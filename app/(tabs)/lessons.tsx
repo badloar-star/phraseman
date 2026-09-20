@@ -186,20 +186,63 @@ import {
   loadLearningV2ActiveCourseCatalogV1,
   peekLearningV2ActiveCourseCatalogV1,
 } from "../learning_v2_active_course_catalog_client_v1";
-import {
-  getLearningV2CourseSessionReadyTimingV3,
-  prepareCurrentLearningV2CourseSessionV3,
-  stageLearningV2CourseSessionReadyHandoffV3,
-  type LearningV2CourseSessionReadyHandleV3,
-} from "../learning_v2_course_released_session_client_v3";
+// зачем: клиент сессии тянет манифест на 1,17 МБ (аудит 20.09). Он нужен
+// только при подготовке занятия — грузим лениво, тип импортируем отдельно
+// (тип стирается при сборке и веса не добавляет).
+import type { LearningV2CourseSessionReadyHandleV3 } from "../learning_v2_course_released_session_client_v3";
 import {
   markLearningV2SessionLaunchStageV1,
   startLearningV2SessionLaunchTraceV1,
 } from "../learning_v2_session_launch_trace_v1";
-import {
-  isLearningV2SessionAudioPublishedV1,
-  prepareLearningV2SessionAudioPackV1,
-} from "../learning_v2_lesson_audio_pack_v1";
+// зачем: аудит 20.09 — эти модули тянут 554 КБ + 503 КБ генерированных
+// данных, которые нужны ТОЛЬКО при запуске занятия, а разбирались при каждом
+// открытии раздела. Грузим лениво; проверка «есть ли озвучка» вынесена в
+// лёгкий срез на 1 КБ (learning_v2_published_audio_sessions_v1.generated).
+import { learningV2HasPublishedAudioV1 } from "../learning_v2_published_audio_sessions_v1.generated";
+
+// Ленивые загрузчики тяжёлых модулей Learning V2.
+// Промис кэшируется: модуль парсится ОДИН раз, при первом запуске занятия,
+// а не при каждом открытии раздела. Суммарно снимает ~2,2 МБ с входа.
+let learningV2SessionClientV3Promise:
+  | Promise<typeof import("../learning_v2_course_released_session_client_v3")>
+  | null = null;
+function loadLearningV2SessionClientV3() {
+  if (!learningV2SessionClientV3Promise) {
+    learningV2SessionClientV3Promise = import(
+      "../learning_v2_course_released_session_client_v3"
+    ).catch((error) => {
+      // Немой catch запрещён: без этого модуля занятие не запустится.
+      learningV2SessionClientV3Promise = null;
+      DebugLogger.error(
+        "learning_v2:session_client_lazy_import",
+        error instanceof Error ? error : new Error(String(error)),
+        "warning",
+      );
+      throw error;
+    });
+  }
+  return learningV2SessionClientV3Promise;
+}
+
+let learningV2AudioPackPromise:
+  | Promise<typeof import("../learning_v2_lesson_audio_pack_v1")>
+  | null = null;
+function loadLearningV2AudioPackV1() {
+  if (!learningV2AudioPackPromise) {
+    learningV2AudioPackPromise = import("../learning_v2_lesson_audio_pack_v1").catch(
+      (error) => {
+        learningV2AudioPackPromise = null;
+        DebugLogger.error(
+          "learning_v2:audio_pack_lazy_import",
+          error instanceof Error ? error : new Error(String(error)),
+          "warning",
+        );
+        throw error;
+      },
+    );
+  }
+  return learningV2AudioPackPromise;
+}
 import { requestLearningV2AudioPrefetchV1 } from "../learning_v2_audio_prefetch_coordinator_v1";
 import type { LearningV2ActiveCourseCatalogV1 } from "../../modules/learning-v2/runtime/course_active_catalog_v1";
 import type { LearningV2CourseSessionOutcomeKindV1 } from "../../modules/learning-v2/runtime/course_lesson_release_index_v1";
@@ -2621,7 +2664,7 @@ export default function LessonsTab({
       const sessionRunId = Crypto.randomUUID();
       const operation = learningV2DevUnlockAllActive && studyTarget === "en"
         ? Promise.resolve({ key, sessionRunId, handle: null })
-        : prepareCurrentLearningV2CourseSessionV3({
+        : loadLearningV2SessionClientV3().then((mod) => mod.prepareCurrentLearningV2CourseSessionV3({
             locator: {
               environment: learningV2Catalog?.environment ?? "production",
               targetLanguage: studyTarget,
@@ -2632,7 +2675,7 @@ export default function LessonsTab({
               sessionOrdinal,
             },
             sessionRunId,
-          }).then((handle) => ({ key, sessionRunId, handle }));
+          })).then((handle) => ({ key, sessionRunId, handle }));
       let guarded: Promise<LearningV2PreparedSessionLaunch>;
       guarded = operation.catch((error) => {
         if (learningV2PreparedLaunchesRef.current.get(key) === guarded) {
@@ -2674,7 +2717,11 @@ export default function LessonsTab({
         });
         return;
       }
-      const timing = getLearningV2CourseSessionReadyTimingV3(prepared.handle);
+      // Тайминг нужен только для трассировки запуска — берём его, когда
+      // ленивый модуль доедет, не превращая эту функцию в async.
+      const preparedHandle = prepared.handle;
+      void loadLearningV2SessionClientV3().then((mod) => {
+      const timing = mod.getLearningV2CourseSessionReadyTimingV3(preparedHandle);
       markLearningV2SessionLaunchStageV1({
         traceId,
         stage: "material_ready",
@@ -2684,6 +2731,7 @@ export default function LessonsTab({
         traceId,
         stage: "audio_ready",
         atMs: timing.audioReadyAtMs,
+      });
       });
     },
     [],
@@ -2704,11 +2752,13 @@ export default function LessonsTab({
   const prepareLearningV2AudioSession = useCallback(
     (lessonOrdinal: number, sessionOrdinal: number) => {
       if (studyTarget !== "en" && studyTarget !== "es") return Promise.resolve();
-      return prepareLearningV2SessionAudioPackV1({
-        lessonOrdinal,
-        sessionOrdinal,
-        targetLanguage: studyTarget,
-      }).then(() => undefined);
+      return loadLearningV2AudioPackV1()
+        .then((mod) => mod.prepareLearningV2SessionAudioPackV1({
+          lessonOrdinal,
+          sessionOrdinal,
+          targetLanguage: studyTarget,
+        }))
+        .then(() => undefined);
     },
     [studyTarget],
   );
@@ -2725,11 +2775,9 @@ export default function LessonsTab({
       const material = prepareLearningV2SessionBeforeModal(lessonOrdinal, sessionOrdinal);
       if (
         (studyTarget !== "en" && studyTarget !== "es") ||
-        isLearningV2SessionAudioPublishedV1({
-          targetLanguage: studyTarget,
-          lessonOrdinal,
-          sessionOrdinal,
-        })
+        (studyTarget === "en"
+          ? learningV2HasPublishedAudioV1(lessonOrdinal, sessionOrdinal)
+          : lessonOrdinal === 1 && (sessionOrdinal === 1 || sessionOrdinal === 2))
       ) {
         void prepareLearningV2AudioSession(lessonOrdinal, sessionOrdinal).catch(() => undefined);
       }
@@ -2931,8 +2979,9 @@ export default function LessonsTab({
         learningV2PreparedLaunchesRef.current.delete(
           selectedLearningV2PreparationKey,
         );
-        if (ready.handle) {
-          stageLearningV2CourseSessionReadyHandoffV3(ready.handle);
+        const readyHandle = ready.handle;
+        if (readyHandle) {
+          void loadLearningV2SessionClientV3().then((mod) => mod.stageLearningV2CourseSessionReadyHandoffV3(readyHandle));
         }
         setSelectedLearningV2Session(null);
         requestAnimationFrame(() => {

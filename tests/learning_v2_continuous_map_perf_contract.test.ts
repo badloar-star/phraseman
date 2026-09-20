@@ -292,6 +292,28 @@ describe("Learning V2 continuous map performance contract", () => {
     expect(source).toContain("viewabilityConfig={MAP_VIEWABILITY_CONFIG}");
   });
 
+  test("тяжёлые модули данных не висят на открытии раздела", () => {
+    // Аудит 20.09: при входе во вкладку синхронно разбирались ~2,2 МБ:
+    // манифест 1171 КБ + записи озвучки 554 КБ + индекс озвучки 503 КБ.
+    // Все нужны только при ЗАПУСКЕ занятия. Статический импорт их вернёт.
+    const lessons = readFileSync(
+      join(__dirname, "..", "app", "(tabs)", "lessons.tsx"),
+      "utf8",
+    );
+    for (const heavy of [
+      "learning_v2_lesson_audio_pack_v1",
+      "learning_v2_course_released_session_client_v3",
+    ]) {
+      const staticImport = new RegExp(`^import \{[^}]*\} from "\.\./${heavy}"`, "m");
+      expect(lessons).not.toMatch(staticImport);
+    }
+    // Загружаются лениво и ровно один раз (промис кэшируется).
+    expect(lessons).toContain("loadLearningV2SessionClientV3");
+    expect(lessons).toContain("loadLearningV2AudioPackV1");
+    // Проверка «есть ли озвучка» идёт по лёгкому срезу, а не по 503 КБ.
+    expect(lessons).toContain("learningV2HasPublishedAudioV1");
+  });
+
   test("на карте есть кнопка возврата к текущему занятию", () => {
     expect(source).toContain("learning-v2-pulse-back-to-current");
     expect(source).toContain("currentOffscreen");

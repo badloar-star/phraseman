@@ -1,6 +1,20 @@
 import { LEARNING_V2_OWNER_LAYOUT } from './learningV2OwnerLayout';
 
 const { nodeSize, mapStep } = LEARNING_V2_OWNER_LAYOUT.map;
+
+/**
+ * Место под подпись занятия ПОД кружком (владелец 20.09: «тексты обрезаются
+ * экраном, делай их под кнопками»).
+ *
+ * Сбоку подпись не помещалась: змейка уводит кружок на ±71px от центра, и
+ * текст упирался в край экрана. Под кружком ширина не ограничена, но нужна
+ * вертикаль: кружок 101 + отступ 8 + две строки по 16 = 141, а базовый шаг
+ * 128 оставлял на подпись 27px, и соседние подписи налезали друг на друга.
+ *
+ * Базовую раскладку (learningV2OwnerLayout) не трогаем: mapStep там общий.
+ */
+const SESSION_LABEL_BLOCK = 40;
+const MAP_STEP_WITH_LABEL = Math.max(mapStep, nodeSize + SESSION_LABEL_BLOCK + 12);
 const FIRST_SESSION_TOP_PADDING = 56;
 
 /** Session 1 starts near the top; later current sessions remain centered. */
@@ -9,11 +23,11 @@ export function pulseMapGeometry(viewportHeight: number, sessionOrdinal: number)
 }> {
   const height = Math.max(0, viewportHeight);
   const ordinal = Math.max(1, Math.min(56, sessionOrdinal));
-  const centeredPadding = Math.max(0, (height - mapStep) / 2);
+  const centeredPadding = Math.max(0, (height - MAP_STEP_WITH_LABEL) / 2);
   return {
     padding: ordinal === 1 ? Math.min(centeredPadding, FIRST_SESSION_TOP_PADDING) : centeredPadding,
-    offset: (ordinal - 1) * mapStep,
-    step: mapStep,
+    offset: (ordinal - 1) * MAP_STEP_WITH_LABEL,
+    step: MAP_STEP_WITH_LABEL,
     nodeSize,
   };
 }

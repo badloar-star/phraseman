@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="ru" data-theme="forest">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Карта курса · Learning V2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="phone.css">
+<link rel="stylesheet" href="map.css">
+<style>
+  /* Витрина: три телефона в ряд + панель управления. */
+  .wrap { padding: 30px 22px 70px; }
+  .lede { max-width: 980px; margin: 0 auto 26px; }
+  .lede h1 { font-size: 30px; font-weight: 900; letter-spacing: -.8px; color: #F0F7F2; }
+  .lede p { margin-top: 9px; font-size: 15.5px; line-height: 1.5; color: #9FB8A8; max-width: 72ch; }
+  .lede .hint { margin-top: 12px; font-size: 14px; color: #6F8C7C; }
+  .panel {
+    max-width: 980px; margin: 0 auto 26px; display: flex; flex-wrap: wrap; gap: 9px;
+    align-items: center;
+  }
+  .panel button, .panel select {
+    height: 40px; padding: 0 15px; border-radius: 13px; border: none; cursor: pointer;
+    font-family: inherit; font-size: 14px; font-weight: 750; color: #DCEAE1;
+    background: #16221A; box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+  }
+  .panel button.on { background: #2B7A4B; color: #F2FFF6; }
+  .panel .sp { flex: 1; }
+  .panel .fps {
+    font-size: 13.5px; font-weight: 800; color: #8AB49A;
+    font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+  .cap { text-align: center; margin-top: 13px; }
+  .cap b { display: block; font-size: 16px; font-weight: 850; color: #E8F2EC; }
+  .cap span { display: block; margin-top: 3px; font-size: 13.5px; color: #7F9C8C; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="lede">
+    <h1>Карта курса Learning V2</h1>
+    <p>«Новые уроки» открывают сразу карту. Она идёт вниз непрерывно: 56 занятий урока,
+       затем плашка следующего урока во весь разворот — и снова 1…56, до конца курса.
+       Каждый кружок подписан. В футере — кнопка со списком всех уроков.</p>
+    <p class="hint">Имена занятий настоящие, из плана курса: уроки 1–3 (168 занятий) уже написаны.
+       Где текста ещё нет — карта честно показывает номер, а не выдуманное название.</p>
+  </div>
+
+  <div class="panel">
+    <button id="t-forest" class="on">Лес</button>
+    <button id="t-gold">Золото</button>
+    <button id="t-coral">Коралл</button>
+    <select id="progress">
+      <option value="0">Новичок · 0 занятий</option>
+      <option value="34" selected>В пути · 34 занятия</option>
+      <option value="120">Урок 3 · 120 занятий</option>
+      <option value="1792">Курс пройден</option>
+    </select>
+    <button id="reduce">Меньше движения</button>
+    <span class="sp"></span>
+    <span class="fps" id="fps">—</span>
+  </div>
+
+  <div class="stage">
+
+    <!-- ══════════ 1 · Карта ══════════ -->
+    <div>
+      <div class="phone" id="phone-map" data-ch="1">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="sb-right">
+            <svg viewBox="0 0 24 16" fill="currentColor"><rect x="1" y="4" width="18" height="9" rx="2.5" opacity=".45"/><rect x="2.6" y="5.6" width="12" height="5.8" rx="1.4"/><rect x="20.4" y="7" width="2" height="3" rx="1" opacity=".45"/></svg>
+          </span>
+        </div>
+
+        <div class="map-hdr">
+          <div class="row1">
+            <button class="back" aria-label="Назад"></button>
+            <div class="h-label">
+              <div class="h-title">Английский</div>
+              <div class="h-scene"><span class="dot"></span><span id="scene">Урок 1 · Первый рабочий день</span></div>
+            </div>
+          </div>
+          <div class="progress-row">
+            <span class="count" id="count">34 / 1792</span>
+            <div class="spectrum" id="spectrum"></div>
+          </div>
+        </div>
+
+        <div class="map-scroll">
+          <div class="map-canvas"><div class="map-window"></div></div>
+        </div>
+
+        <div class="map-foot">
+          <button class="foot-btn" id="open-list"><span class="i"></span>Все уроки</button>
+          <button class="foot-now" id="go-now" aria-label="К текущему занятию"></button>
+        </div>
+
+        <div class="veil" id="veil"></div>
+        <div class="sheet" id="sheet">
+          <div class="grab"></div>
+          <div class="sh-hdr">
+            <div class="sh-title">Все уроки</div>
+            <div class="sh-count" id="sh-count">32 урока</div>
+          </div>
+          <div class="sh-list" id="sh-list"></div>
+        </div>
+
+        <div class="home-indicator"></div>
+      </div>
+      <div class="cap"><b>Карта</b><span>Скролл от урока 1 до урока 32 без разрывов</span></div>
+    </div>
+
+    <!-- ══════════ 2 · Шторка открыта ══════════ -->
+    <div>
+      <div class="phone" id="phone-sheet" data-ch="1">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="sb-right">
+            <svg viewBox="0 0 24 16" fill="currentColor"><rect x="1" y="4" width="18" height="9" rx="2.5" opacity=".45"/><rect x="2.6" y="5.6" width="12" height="5.8" rx="1.4"/><rect x="20.4" y="7" width="2" height="3" rx="1" opacity=".45"/></svg>
+          </span>
+        </div>
+        <div class="map-hdr">
+          <div class="row1">
+            <button class="back" aria-label="Назад"></button>
+            <div class="h-label">
+              <div class="h-title">Английский</div>
+              <div class="h-scene"><span class="dot"></span><span>Урок 1 · Первый рабочий день</span></div>
+            </div>
+          </div>
+          <div class="progress-row">
+            <span class="count">34 / 1792</span>
+            <div class="spectrum" id="spectrum2"></div>
+          </div>
+        </div>
+        <div class="map-scroll">
+          <div class="map-canvas"><div class="map-window"></div></div>
+        </div>
+        <div class="veil show"></div>
+        <div class="sheet show">
+          <div class="grab"></div>
+          <div class="sh-hdr">
+            <div class="sh-title">Все уроки</div>
+            <div class="sh-count">32 урока</div>
+          </div>
+          <div class="sh-list" id="sh-list2"></div>
+        </div>
+        <div class="home-indicator"></div>
+      </div>
+      <div class="cap"><b>Список уроков</b><span>Тап по строке — карта прыгает к уроку</span></div>
+    </div>
+
+    <!-- ══════════ 3 · Высота плашки ══════════ -->
+    <div>
+      <div class="phone" data-ch="1">
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="sb-right">
+            <svg viewBox="0 0 24 16" fill="currentColor"><rect x="1" y="4" width="18" height="9" rx="2.5" opacity=".45"/><rect x="2.6" y="5.6" width="12" height="5.8" rx="1.4"/><rect x="20.4" y="7" width="2" height="3" rx="1" opacity=".45"/></svg>
+          </span>
+        </div>
+        <div class="map-hdr">
+          <div class="row1">
+            <button class="back" aria-label="Назад"></button>
+            <div class="h-label">
+              <div class="h-title">Высота плашки</div>
+              <div class="h-scene"><span class="dot"></span><span>Было 108 · стало 72</span></div>
+            </div>
+          </div>
+        </div>
+        <div style="flex:1; min-height:0; overflow-y:auto; padding: 4px 14px 26px;">
+          <div class="cmp-note">Сейчас в V2 — <b>108 px и выше</b>: заголовок разливается на три строки, кольцо 48.</div>
+          <div class="tall" id="cmp-tall"></div>
+          <div class="cmp-note" style="padding-top:16px">Как в V1 — <b>72 px</b>: заголовок в одну строку, кольцо 44. Индикатор остаётся.</div>
+          <div id="cmp-short"></div>
+        </div>
+        <div class="home-indicator"></div>
+      </div>
+      <div class="cap"><b>Плашки уроков</b><span>Высота как в Learning V1, кольцо прогресса на месте</span></div>
+    </div>
+
+  </div>
+</div>
+
+<script src="mapkit.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var LESSONS = 32, PER = 56, TOTAL = LESSONS * PER;
+  var data = null, map = null, mapB = null;
+
+  function chLight(i) { return String((i % 7) + 1); }
+
+  // ---------- Плашка урока в списке ----------
+  function lessonRow(L, data, done, currentLesson) {
+    var arc = data.arcs[String(L + 1)] || { sys: "", arc: "" };
+    var written = data.written[String(L + 1)] || 0;
+    var doneIn = Math.max(0, Math.min(PER, done - L * PER));
+    var pct = Math.round((doneIn / PER) * 100);
+    var open = done >= L * PER;
+    var full = doneIn >= PER;
+
+    var b = document.createElement("button");
+    b.className = "row" + (open ? "" : " locked") + (L === currentLesson ? " here" : "");
+    b.setAttribute("data-ch", chLight(L));
+    b.style.setProperty("--fill", pct + "%");
+
+    var C = 2 * Math.PI * 15.1;
+    var off = C * (1 - doneIn / PER);
+    // Цифра процента видна внутри кольца — владелец подтвердил 20.09.
+    var ringInner = full
+      ? '<span class="mark">' + window.MapKitIcons.check + "</span>"
+      : open
+        ? '<span class="lbl">' + pct + "%</span>"
+        : '<span class="mark">' + window.MapKitIcons.lock + "</span>";
+
+    // Кольцо справа в своей колонке — цифра процента видна, название слева
+    // ложится в две строки и не обрезается.
+    b.innerHTML =
+      '<span class="fill"></span>' +
+      '<span class="txt">' +
+        '<span class="r-num">УРОК ' + (L + 1) + "</span>" +
+        '<span class="r-title">' + arc.sys + "</span>" +
+      "</span>" +
+      '<span class="ring' + (full ? " done" : open ? "" : " locked") + '">' +
+        '<svg class="dial" viewBox="0 0 34 34">' +
+          '<circle class="track" cx="17" cy="17" r="15.1"></circle>' +
+          (doneIn > 0 ? '<circle class="seg" cx="17" cy="17" r="15.1" stroke-dasharray="' + C.toFixed(1) + '" stroke-dashoffset="' + off.toFixed(1) + '"></circle>' : "") +
+        "</svg>" + ringInner +
+      "</span>";
+    b.querySelector(".r-num").style.display = "block";
+    b.querySelector(".r-title").style.display = "block";
+    b.title = written > 0 ? arc.arc : "Урок пишется";
+    b.setAttribute(
+      "aria-label",
+      "Урок " + (L + 1) + ". " + arc.sys + ". " +
+      (open ? doneIn + " из 56 занятий, " + pct + " процентов" : "закрыт")
+    );
+    return b;
+  }
+
+  function fillList(node, done) {
+    var cur = Math.min(LESSONS - 1, Math.floor(done / PER));
+    var frag = document.createDocumentFragment();
+    for (var L = 0; L < LESSONS; L++) {
+      var row = lessonRow(L, data, done, cur);
+      (function (L) {
+        row.addEventListener("click", function () {
+          if (map) { map.scrollToLesson(L, true); closeSheet(); }
+        });
+      })(L);
+      frag.appendChild(row);
+    }
+    node.innerHTML = "";
+    node.appendChild(frag);
+  }
+
+  // ---------- Шторка ----------
+  function openSheet() {
+    document.getElementById("veil").classList.add("show");
+    document.getElementById("sheet").classList.add("show");
+  }
+  function closeSheet() {
+    document.getElementById("veil").classList.remove("show");
+    document.getElementById("sheet").classList.remove("show");
+  }
+
+  // ---------- Спектр прогресса (32 деления = 32 урока) ----------
+  function buildSpectrum(el, done) {
+    el.innerHTML = "";
+    for (var L = 0; L < LESSONS; L++) {
+      var s = document.createElement("span");
+      var d = Math.max(0, Math.min(PER, done - L * PER)) / PER;
+      s.style.setProperty("--p", d.toFixed(3));
+      el.appendChild(s);
+    }
+  }
+
+  // ---------- Инициализация ----------
+  fetch("course-data.json").then(function (r) { return r.json(); }).then(function (d) {
+    data = d;
+    var done = 34;
+
+    document.querySelector("#phone-map .back").innerHTML = window.MapKitIcons.back;
+    document.querySelector("#phone-sheet .back").innerHTML = window.MapKitIcons.back;
+    document.querySelector("#open-list .i").innerHTML = window.MapKitIcons.list;
+    document.getElementById("go-now").innerHTML = window.MapKitIcons.down;
+
+    map = new MapKit(document.getElementById("phone-map"), d, { done: done });
+    mapB = new MapKit(document.getElementById("phone-sheet"), d, { done: done });
+
+    buildSpectrum(document.getElementById("spectrum"), done);
+    buildSpectrum(document.getElementById("spectrum2"), done);
+    fillList(document.getElementById("sh-list"), done);
+    fillList(document.getElementById("sh-list2"), done);
+
+    // Шапка называет место, где человек сейчас смотрит.
+    map.onSection = function (L, C) {
+      // d.chapters — МАССИВ, по ключу его не достать. Индекс уже построен
+      // внутри MapKit, берём его оттуда, а не заводим второй.
+      var ch = map.chapters[(L + 1) + ":" + (C + 1)];
+      // Сцена главы, а не арка урока: арка — длинная фраза и обрезается
+      // многоточием (проверено в браузере). Сцена короткая и точнее говорит,
+      // где человек сейчас находится.
+      document.getElementById("scene").textContent =
+        "Урок " + (L + 1) + " · " + (ch ? ch.scene : "Глава " + (C + 1));
+      document.getElementById("phone-map").setAttribute("data-ch", chLight(C));
+    };
+    // Кнопка «к текущему» — только когда текущий узел не виден.
+    map.onFrame = function () {
+      document.getElementById("go-now").classList.toggle("show", !map.currentIsVisible());
+    };
+
+    map.scrollToCurrent(false);
+    mapB.scrollToCurrent(false);
+
+    document.getElementById("open-list").addEventListener("click", openSheet);
+    document.getElementById("veil").addEventListener("click", closeSheet);
+    document.getElementById("go-now").addEventListener("click", function () { map.scrollToCurrent(true); });
+
+    // Сравнение высоты плашек
+    var tall = document.getElementById("cmp-tall");
+    var short = document.getElementById("cmp-short");
+    [2, 3].forEach(function (L) {
+      tall.appendChild(lessonRow(L, d, done, -1));
+      short.appendChild(lessonRow(L, d, done, -1));
+    });
+
+    // Переключатель прогресса
+    document.getElementById("progress").addEventListener("change", function (e) {
+      var v = parseInt(e.target.value, 10);
+      map.done = v; mapB.done = v;
+      map.render(); mapB.render();
+      buildSpectrum(document.getElementById("spectrum"), v);
+      buildSpectrum(document.getElementById("spectrum2"), v);
+      document.getElementById("count").textContent = v + " / " + TOTAL;
+      fillList(document.getElementById("sh-list"), v);
+      fillList(document.getElementById("sh-list2"), v);
+    });
+  }).catch(function (err) {
+    // Немой catch запрещён: макет обязан сказать, почему он пуст.
+    console.error("[V2-MAP] course-data.json не загрузился:", err && err.message);
+    document.querySelector(".lede").insertAdjacentHTML(
+      "beforeend",
+      '<p style="color:#FF8A96;margin-top:14px">Данные курса не загрузились: ' +
+      (err && err.message ? err.message : "неизвестная причина") +
+      ". Откройте макет через локальный сервер, а не файлом с диска.</p>"
+    );
+  });
+
+  // Темы
+  ["forest", "gold", "coral"].forEach(function (t) {
+    document.getElementById("t-" + t).addEventListener("click", function () {
+      document.documentElement.setAttribute("data-theme", t);
+      ["forest", "gold", "coral"].forEach(function (x) {
+        document.getElementById("t-" + x).classList.toggle("on", x === t);
+      });
+    });
+  });
+  document.getElementById("reduce").addEventListener("click", function () {
+    var on = document.documentElement.getAttribute("data-reduced") === "1";
+    document.documentElement.setAttribute("data-reduced", on ? "0" : "1");
+    this.classList.toggle("on", !on);
+  });
+
+  // Счётчик кадров: показывает, что быстрый скролл не роняет fps.
+  var frames = 0, last = performance.now();
+  (function loop(now) {
+    frames++;
+    if (now - last >= 1000) {
+      var live = map ? map.stats() : null;
+      document.getElementById("fps").textContent =
+        frames + " fps · в DOM " + (live ? live.liveNodes : 0) + " узлов из " + TOTAL;
+      frames = 0; last = now;
+    }
+    requestAnimationFrame(loop);
+  })(performance.now());
+})();
+</script>
+</body>
+</html>

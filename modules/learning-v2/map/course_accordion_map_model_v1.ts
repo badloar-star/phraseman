@@ -206,6 +206,12 @@ export function buildLearningV2CourseAccordionMapFromPreparedProgressV1(
     lessonOrdinal += 1
   ) {
     const lessonId = learningV2CourseLessonIdV1(lessonOrdinal);
+    // зачем: владелец 20.09 отменил аккордеон — карта обязана идти вниз
+    // непрерывно, после 56 занятий плашка следующего урока и снова 1..56.
+    // Раньше здесь стоял `if (!expanded) continue`, из-за которого занятия
+    // существовали только у одного раскрытого урока. Теперь занятия есть
+    // ВСЕГДА у всех 32 уроков, а `expanded` остаётся лишь пометкой «этот
+    // урок сейчас в фокусе» для оформления плашки.
     const expanded = lessonOrdinal === expandedLessonOrdinal;
     rows.push(
       Object.freeze({
@@ -215,7 +221,6 @@ export function buildLearningV2CourseAccordionMapFromPreparedProgressV1(
         expanded,
       }),
     );
-    if (!expanded) continue;
 
     for (
       let sessionOrdinal = 1;
@@ -247,7 +252,14 @@ export function buildLearningV2CourseAccordionMapFromPreparedProgressV1(
         ? "completed"
         : prepared.currentSessionId === sessionId
           ? "current"
-          : sessionOrdinal === 1 && prepared.currentSessionId === null
+          : // зачем: у новичка (currentSessionId === null) текущим считается
+            // первое занятие ПЕРВОГО урока, а не первое занятие каждого.
+            // В аккордеоне разница не была видна — на экране жил один урок.
+            // На сплошной карте без проверки урока засветились бы 32 «текущих»
+            // узла сразу, и человек не понял бы, откуда начинать.
+            sessionOrdinal === 1 &&
+              lessonOrdinal === 1 &&
+              prepared.currentSessionId === null
             ? "current"
             : prepared.currentCoordinate?.lessonOrdinal === lessonOrdinal &&
                 prepared.currentCoordinate.sessionOrdinal + 1 === sessionOrdinal

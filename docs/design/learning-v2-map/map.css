@@ -1,0 +1,457 @@
+/* ============================================================
+   Learning V2 · Сплошная карта курса (32 урока × 56 сессий = 1792 узла).
+   Наследует язык «Атласа»: район главы, улица, фонарь-узел, печать.
+   Новое: карта НЕ обрывается на уроке — после 56 сессий идёт плашка
+   следующего урока на пол-экрана, и путь продолжается с 1 до 56.
+
+   Требование владельца: «ничего не должно лагать!!!!!»
+   Поэтому в этом файле НЕТ:
+   - теней и фильтров, меняющихся в кадре скролла;
+   - анимаций на узлах, которых много (дышит только текущий);
+   - свойств, вызывающих layout при скролле (только transform/opacity).
+
+   Законы владельца: без обводок контейнеров, без подписей-расшифровок
+   мелким шрифтом, без эмодзи и растра, всё крупно.
+   ============================================================ */
+
+/* ---------- Шапка карты ---------- */
+.map-hdr {
+  position: relative;
+  z-index: var(--z-header);
+  flex: 0 0 auto;
+  padding: 2px 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  background: linear-gradient(180deg, var(--bg-a) 0%, var(--bg-a) 70%, transparent 100%);
+}
+.map-hdr .row1 { display: flex; align-items: center; gap: 12px; }
+.map-hdr .h-label { flex: 1; min-width: 0; }
+.map-hdr .h-title {
+  font-size: 26px; font-weight: 900; letter-spacing: -.7px;
+  line-height: 1.1; color: var(--text);
+}
+/* Это НЕ подпись-расшифровка под названием: живой статус «где я сейчас»,
+   он меняется при скролле и ведёт себя как индикатор, а не как описание. */
+.map-hdr .h-scene {
+  margin-top: 3px; font-size: 14.5px; font-weight: 650;
+  color: var(--ch); display: flex; align-items: center; gap: 7px;
+  transition: color var(--t-slow);
+}
+.map-hdr .h-scene span:last-child { min-width: 0; }
+.map-hdr .h-scene .dot {
+  flex: 0 0 auto; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--ch); box-shadow: 0 0 10px var(--ch-glow);
+  transition: background var(--t-slow), box-shadow var(--t-slow);
+}
+.map-hdr .back {
+  flex: 0 0 auto; width: 44px; height: 44px; border-radius: 15px;
+  border: none; cursor: pointer; display: grid; place-items: center;
+  background: linear-gradient(160deg, var(--elev2), var(--card));
+  box-shadow: 0 6px 14px var(--shadow), inset 0 1px 0 var(--inner-light);
+  color: var(--text); transition: transform var(--t-press) var(--ease-out);
+}
+.map-hdr .back:active { transform: scale(.93); }
+.map-hdr .back svg { width: 20px; height: 20px; }
+
+.progress-row { display: flex; align-items: center; gap: 11px; padding: 0 2px; }
+.progress-row .count {
+  font-size: 14px; font-weight: 800; font-variant-numeric: tabular-nums;
+  color: var(--text-2); white-space: nowrap;
+}
+.spectrum { flex: 1; display: flex; gap: 3px; height: 6px; }
+.spectrum span {
+  flex: 1; border-radius: 3px; background: rgba(255, 255, 255, .07);
+  position: relative; overflow: hidden;
+}
+.spectrum span::after {
+  content: ""; position: absolute; inset: 0; background: var(--ch);
+  transform-origin: left; transform: scaleX(var(--p, 0));
+  transition: transform var(--t-scene) var(--ease-out);
+}
+
+/* ---------- Полотно ---------- */
+.map-scroll {
+  position: relative; flex: 1; min-height: 0;
+  overflow-y: auto; overflow-x: hidden;
+  z-index: var(--z-map);
+  scrollbar-width: none;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+.map-scroll::-webkit-scrollbar { display: none; }
+/* Высота полотна — число, посчитанное из индексов. Скроллбар честный
+   с первого кадра: контент не дорастает по мере прокрутки. */
+.map-canvas { position: relative; width: 100%; }
+/* Окно: JS держит здесь только видимые элементы и двигает их transform'ом. */
+.map-window { position: absolute; left: 0; right: 0; top: 0; }
+
+/* ---------- Район главы (фон под узлами) ---------- */
+.district {
+  position: absolute; left: 0; right: 0; pointer-events: none;
+  background:
+    radial-gradient(86% 34% at 22% 10%, var(--ch-soft), transparent 68%),
+    linear-gradient(180deg, var(--ch-ground) 0%, transparent 62%);
+  opacity: .9;
+}
+.district.locked { opacity: .22; }
+
+/* ---------- Заголовок главы ---------- */
+.ch-head {
+  position: absolute; left: 0; right: 0;
+  padding: 0 22px; display: flex; align-items: center; gap: 12px;
+}
+.ch-head .t { flex: 1; min-width: 0; }
+.ch-num {
+  font-size: 13px; font-weight: 800; letter-spacing: .6px;
+  color: var(--ch); margin-bottom: 3px;
+}
+/* Многоточие запрещено: «Пятница, паб, быстрая речь» обязана читаться
+   целиком. Замер по данным: самая длинная сцена главы — 32 знака, в две
+   строки помещается с запасом. */
+.ch-title {
+  font-size: 22px; font-weight: 900; letter-spacing: -.5px;
+  line-height: 1.12; color: var(--text);
+  text-wrap: balance;
+}
+.ch-head.locked .ch-num { color: var(--ghost); }
+.ch-head.locked .ch-title { color: var(--text-2); opacity: .5; }
+.ch-status {
+  flex: 0 0 auto; width: 44px; height: 44px; border-radius: 15px;
+  display: grid; place-items: center;
+  background: linear-gradient(160deg, var(--elev2), var(--card));
+  box-shadow: 0 6px 14px var(--shadow), inset 0 1px 0 var(--inner-light);
+  font-size: 13.5px; font-weight: 800; color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+}
+.ch-status.done {
+  background: linear-gradient(160deg, #D19E1D, #FFD86E 55%, #E3A812);
+  color: #241A05;
+  box-shadow: 0 8px 18px rgba(255, 212, 59, .28), inset 0 1px 0 rgba(255, 255, 255, .5);
+}
+.ch-status svg { width: 19px; height: 19px; }
+.ch-status.locked { color: var(--ghost); }
+
+/* ---------- Улица ---------- */
+.street-svg { position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none; }
+.street-svg .street {
+  fill: none; stroke: rgba(255, 255, 255, .07);
+  stroke-width: 14; stroke-linecap: round; stroke-linejoin: round;
+}
+.street-svg .lit {
+  fill: none; stroke: var(--ch); stroke-width: 5;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+
+/* ---------- Узел-фонарь ---------- */
+.node {
+  position: absolute; --s: 58px;
+  left: 0; top: 0;
+  width: var(--s); height: var(--s);
+  border: none; background: transparent; padding: 0; cursor: pointer;
+  color: var(--text);
+  /* Позиция ставится одним transform'ом из JS — это не вызывает layout. */
+}
+.node.current { --s: 72px; }
+.node.next { --s: 62px; }
+.node .ground {
+  position: absolute; left: 50%; top: 62%;
+  width: calc(var(--s) * 2.2); height: calc(var(--s) * 1.3);
+  transform: translate(-50%, -32%); border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(closest-side, var(--ch-glow), transparent);
+  opacity: 0;
+}
+.node.done .ground { opacity: .4; }
+.node.current .ground { opacity: .85; }
+/* Дышит ТОЛЬКО текущий узел — он на экране один.
+   Массовых бесконечных анимаций на карте нет принципиально. */
+.node .halo {
+  position: absolute; inset: -15px; border-radius: 50%;
+  pointer-events: none; opacity: 0;
+  background: radial-gradient(closest-side, transparent 58%, var(--ch-glow) 64%, transparent 100%);
+}
+.node.current .halo {
+  opacity: 1; animation: breath var(--t-breath) ease-in-out infinite;
+  will-change: transform, opacity;
+}
+@keyframes breath {
+  0%, 100% { transform: scale(1); opacity: .55; }
+  50% { transform: scale(1.13); opacity: 1; }
+}
+.node .gem {
+  position: absolute; inset: 0; border-radius: 50%;
+  display: grid; place-items: center; overflow: hidden;
+  font-size: 21px; font-weight: 900; letter-spacing: -.5px;
+  font-variant-numeric: tabular-nums;
+  transition: transform var(--t-press) var(--ease-out);
+}
+.node.current .gem { font-size: 26px; }
+.node .gem svg { width: 24px; height: 24px; }
+.node.done .gem, .node.current .gem {
+  color: var(--ch-ink);
+  background: radial-gradient(circle at 34% 26%, color-mix(in oklab, var(--ch) 58%, white) 0%, var(--ch) 40%, var(--ch-2) 100%);
+  box-shadow: 0 12px 22px -10px var(--ch-glow), inset 0 -9px 14px rgba(0, 0, 0, .26), inset 0 2px 0 rgba(255, 255, 255, .4);
+}
+.node.next .gem {
+  color: var(--ch);
+  background: radial-gradient(circle at 50% 42%, var(--ch-soft) 0%, var(--elev2) 60%, var(--card) 100%);
+  box-shadow: 0 9px 18px -10px rgba(0, 0, 0, .62), inset 0 1px 0 rgba(255, 255, 255, .1);
+}
+.node.locked .gem {
+  color: var(--ghost);
+  background: radial-gradient(circle at 34% 26%, var(--elev3) 0%, var(--card) 72%);
+  box-shadow: 0 7px 14px -8px rgba(0, 0, 0, .58), inset 0 1px 0 rgba(255, 255, 255, .06);
+}
+.node.locked .gem svg { width: 19px; height: 19px; opacity: .7; }
+.node:active .gem { transform: scale(.94); }
+/* Чекпоинт — скруглённый квадрат, его не спутать с обычной сессией. */
+.node.checkpoint { --s: 64px; }
+.node.checkpoint .gem { border-radius: 21px; }
+.node.checkpoint.done .gem {
+  background: linear-gradient(160deg, #D19E1D 0%, #FFD86E 52%, #E3A812 100%);
+  color: #241A05;
+  box-shadow: 0 12px 24px -8px rgba(255, 212, 59, .42), inset 0 -7px 12px rgba(0, 0, 0, .16), inset 0 2px 0 rgba(255, 255, 255, .5);
+}
+
+/* ---------- Имя сессии СБОКУ от узла ---------- */
+/* Владелец 20.09: «текст должен быть на карте не снизу, а уменьшен и слева
+   или справа — зависит от того, к какому краю телефона кружок ближе».
+   Подпись снизу съедала вертикаль (шаг 138px) и толкала соседей. Сбоку она
+   живёт в пустом поле, которое змейка и так оставляет, — шаг падает до 96px,
+   на экран помещается больше пути.
+   Сторона выбирается из положения кружка: узел слева — подпись справа, и
+   наоборот. Так текст всегда уходит в центр экрана, а не за край. */
+.node .nm {
+  position: absolute; top: 50%;
+  font-size: 12px; font-weight: 700; line-height: 1.25;
+  color: var(--text-2);
+  pointer-events: none;
+  /* Многоточие ЗАПРЕЩЕНО (закон владельца): текст переносится и показывается
+     целиком. Ширина подобрана по самой длинной подписи плана. */
+  width: 150px;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+}
+/* Кружок в левой половине → подпись справа от него, прижата к левому краю. */
+.node.side-right .nm {
+  left: calc(100% + 12px);
+  transform: translateY(-50%);
+  text-align: left;
+}
+/* Кружок в правой половине → подпись слева, прижата к правому краю. */
+.node.side-left .nm {
+  right: calc(100% + 12px);
+  transform: translateY(-50%);
+  text-align: right;
+}
+.node.current .nm { color: var(--ch); font-weight: 800; font-size: 13px; }
+.node.locked .nm { color: var(--ghost); }
+/* Урок ещё пишется — имени нет. Показываем номер и не выдумываем текст. */
+.node .nm.ordinal { color: var(--ghost); font-weight: 750; }
+
+/* ---------- Плашка урока на пол-экрана ---------- */
+.lesson-plate {
+  position: absolute; left: 0; right: 0;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 0 26px;
+  overflow: hidden;
+}
+.lesson-plate .aura {
+  position: absolute; left: 50%; top: 50%;
+  width: 440px; height: 440px; transform: translate(-50%, -50%);
+  border-radius: 50%; pointer-events: none;
+  background: radial-gradient(closest-side, var(--ch-glow), transparent 70%);
+  opacity: .45;
+}
+.lesson-plate.locked .aura { opacity: .14; }
+/* Световая нить вместо обводки-контейнера (закон владельца). */
+.lesson-plate .rule {
+  position: absolute; left: 26px; right: 26px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ch), transparent);
+  opacity: .32;
+}
+.lesson-plate .rule.top { top: 0; }
+.lesson-plate .rule.bot { bottom: 0; }
+.lesson-plate .kicker {
+  position: relative;
+  font-size: 13px; font-weight: 800; letter-spacing: 1.4px;
+  color: var(--ch); margin-bottom: 10px;
+}
+.lesson-plate .lp-title {
+  position: relative;
+  font-size: 33px; font-weight: 900; letter-spacing: -1px;
+  line-height: 1.06; color: var(--text);
+  text-wrap: balance;
+}
+.lesson-plate .lp-arc {
+  position: relative; margin-top: 12px;
+  font-size: 16px; font-weight: 600; line-height: 1.35;
+  color: var(--text-2); max-width: 30ch;
+  text-wrap: pretty;
+}
+.lesson-plate .lp-meta {
+  position: relative; margin-top: 18px;
+  display: flex; align-items: center; gap: 9px;
+  font-size: 14px; font-weight: 750; color: var(--muted);
+}
+.lesson-plate .lp-meta .pip {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--ch); box-shadow: 0 0 9px var(--ch-glow);
+}
+.lesson-plate.locked .kicker { color: var(--ghost); }
+.lesson-plate.locked .lp-title { color: var(--text-2); opacity: .62; }
+.lesson-plate.locked .lp-arc { opacity: .5; }
+.lesson-plate.locked .rule { opacity: .12; }
+
+/* ---------- Футер с кнопкой списка ---------- */
+.map-foot {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  z-index: var(--z-float);
+  padding: 14px 16px 26px;
+  display: flex; align-items: center; gap: 11px;
+  background: linear-gradient(180deg, transparent, var(--bg-b) 46%);
+  pointer-events: none;
+}
+.map-foot > * { pointer-events: auto; }
+.foot-btn {
+  flex: 1; height: 56px; border-radius: 19px; border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  font-size: 16px; font-weight: 800; color: var(--text);
+  background: linear-gradient(160deg, var(--elev2), var(--card));
+  box-shadow: 0 12px 26px var(--shadow), inset 0 1px 0 var(--inner-light);
+  transition: transform var(--t-press) var(--ease-out);
+}
+.foot-btn:active { transform: scale(.97); }
+.foot-btn svg { width: 20px; height: 20px; }
+/* «Сейчас» появляется, только когда текущий узел ушёл с экрана. */
+.foot-now {
+  flex: 0 0 auto; width: 56px; height: 56px; border-radius: 19px;
+  border: none; cursor: pointer; display: grid; place-items: center;
+  color: var(--ch-ink);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--ch) 76%, white), var(--ch));
+  box-shadow: 0 12px 26px -6px var(--ch-glow), inset 0 1px 0 rgba(255, 255, 255, .45);
+  opacity: 0; transform: scale(.7); pointer-events: none;
+  transition: opacity var(--t-normal) var(--ease-out), transform var(--t-normal) var(--ease-spring);
+}
+.foot-now.show { opacity: 1; transform: scale(1); pointer-events: auto; }
+.foot-now svg { width: 22px; height: 22px; }
+
+/* ---------- Шторка со списком уроков ---------- */
+.veil {
+  position: absolute; inset: 0; z-index: var(--z-backdrop);
+  background: rgba(0, 0, 0, .58);
+  opacity: 0; pointer-events: none;
+  transition: opacity var(--t-normal) var(--ease-out);
+}
+.veil.show { opacity: 1; pointer-events: auto; }
+.sheet {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  z-index: var(--z-sheet);
+  max-height: 80%;
+  display: flex; flex-direction: column;
+  border-radius: 30px 30px 0 0;
+  background: linear-gradient(180deg, var(--elev), var(--card) 40%);
+  box-shadow: 0 -22px 50px rgba(0, 0, 0, .6), inset 0 1px 0 var(--inner-light);
+  transform: translateY(102%);
+  transition: transform var(--t-slow) var(--ease-drawer);
+  will-change: transform;
+}
+.sheet.show { transform: translateY(0); }
+.sheet .grab {
+  width: 40px; height: 5px; border-radius: 3px; margin: 11px auto 4px;
+  background: rgba(255, 255, 255, .18); flex: 0 0 auto;
+}
+.sheet .sh-hdr {
+  flex: 0 0 auto; padding: 8px 20px 12px;
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+}
+.sheet .sh-title { font-size: 23px; font-weight: 900; letter-spacing: -.5px; color: var(--text); }
+.sheet .sh-count { font-size: 14px; font-weight: 750; color: var(--muted); font-variant-numeric: tabular-nums; }
+.sheet .sh-list { flex: 1; min-height: 0; overflow-y: auto; padding: 0 14px 26px; scrollbar-width: none; }
+.sheet .sh-list::-webkit-scrollbar { display: none; }
+
+/* ---------- Плашка урока в списке ---------- */
+/* Владелец 20.09: «плашки должны выглядеть так же как в Learning V1, а не
+   быть такими высокими (но индикатор круговой должен остаться)».
+   V1 = 72px. Высоту в V2 распирали три вещи, и все три сняты:
+   minHeight 108 → 72 · кольцо 48 → 44 · заголовок в 3 строки → одна строка. */
+.row {
+  position: relative; width: 100%;
+  min-height: 72px;
+  border: none; cursor: pointer; text-align: left;
+  /* Кольцо справа в своей колонке, текст слева — так цифра процента
+     читается (владелец 20.09 подтвердил, что её надо видеть), а название
+     всё равно ложится в две строки: замер даёт 62px из отведённых 72. */
+  display: flex; align-items: center; gap: 14px;
+  padding: 7px 16px;
+  margin-bottom: 8px;
+  border-radius: var(--r-md);
+  background: linear-gradient(160deg, var(--elev2), var(--card));
+  box-shadow: 0 8px 18px -10px rgba(0, 0, 0, .7), inset 0 1px 0 var(--inner-light);
+  overflow: hidden;
+  transition: transform var(--t-press) var(--ease-out);
+}
+.row:active { transform: scale(.985); }
+.row .fill {
+  position: absolute; left: 0; top: 0; bottom: 0; width: var(--fill, 0%);
+  background: linear-gradient(90deg, var(--ch-soft), transparent);
+  pointer-events: none;
+}
+.row .txt { flex: 1; min-width: 0; position: relative; }
+.row .r-num {
+  font-size: 12px; font-weight: 800; letter-spacing: .9px;
+  color: var(--ch); margin-bottom: 2px;
+}
+/* Высоту плашки делал перенос в ТРИ строки при кегле 16. Многоточие взамен
+   ставить нельзя (закон владельца), поэтому решаем вёрсткой: кегль 13 плюс
+   метка «УРОК N» уехала на одну строку с кольцом (см. .row .head) — текст
+   получил всю ширину 258px. Замер: самое длинное название 71 знак ложится
+   в две строки = 32px, плашка держит 72px, как в V1, и ничего не обрезано. */
+.row .r-title {
+  font-size: 13px; font-weight: 750; color: var(--text);
+  line-height: 1.22;
+  overflow-wrap: break-word;
+}
+.row.locked .r-num { color: var(--ghost); }
+.row.locked .r-title { color: var(--text-2); opacity: .62; }
+.row.here { background: linear-gradient(160deg, var(--elev3), var(--elev)); }
+.row.here .r-title { font-weight: 850; }
+
+/* Круговой индикатор — остаётся по прямому требованию владельца, и цифра
+   процента в нём ВИДНА (владелец 20.09: «да, хорошо делай»).
+   34px вместо 44: ровно столько, чтобы цифра читалась кеглем 11, а плашка
+   осталась 72px. Замер: 62px из 72 при самом длинном названии. */
+.ring { flex: 0 0 auto; width: 34px; height: 34px; position: relative; display: grid; place-items: center; }
+.ring > svg.dial { position: absolute; inset: 0; width: 34px; height: 34px; transform: rotate(-90deg); }
+.ring .track { fill: none; stroke: rgba(255, 255, 255, .13); stroke-width: 3.8; }
+.ring .seg { fill: none; stroke: var(--ch); stroke-width: 3.8; stroke-linecap: round; }
+.ring .lbl { position: relative; font-size: 11px; font-weight: 800; color: var(--text-2); font-variant-numeric: tabular-nums; }
+.ring .mark { position: relative; width: 16px; height: 16px; }
+.ring.done .seg { stroke: var(--gold); }
+.ring.done .mark { color: var(--gold); }
+.ring.locked .mark { color: var(--ghost); }
+
+/* ---------- Витрина сравнения высоты ---------- */
+.cmp-note {
+  font-size: 13.5px; font-weight: 700; color: var(--muted);
+  padding: 0 4px 9px;
+}
+.cmp-note b { color: var(--text-2); font-weight: 850; }
+/* Нынешняя V2: то, что владелец прислал на скриншоте. */
+.tall .row { min-height: 108px; align-items: flex-start; padding-top: 14px; }
+.tall .row .txt { padding-top: 1px; }
+.tall .row .r-title { white-space: normal; overflow: visible; text-overflow: clip; }
+.tall .ring { width: 48px; height: 48px; }
+.tall .ring > svg.dial { width: 48px; height: 48px; }
+
+/* ---------- Доступность: движение ---------- */
+:root[data-reduced="1"] .node.current .halo { animation: none; opacity: .7; }
+:root[data-reduced="1"] .sheet,
+:root[data-reduced="1"] .veil,
+:root[data-reduced="1"] .foot-now { transition-duration: 1ms; }
+@media (prefers-reduced-motion: reduce) {
+  .node.current .halo { animation: none; opacity: .7; }
+  .sheet, .veil, .foot-now { transition-duration: 1ms; }
+  .map-scroll { scroll-behavior: auto; }
+}

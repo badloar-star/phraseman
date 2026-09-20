@@ -17,18 +17,26 @@ const sessions = (rows: readonly LearningV2CourseAccordionRowV1[]) =>
 const PROJECTION_SCOPE = "test-account:en";
 
 describe("Learning V2 owner-current course accordion map model v1", () => {
-  test("shows one compact list of 32 lessons while every lesson is closed", () => {
+  // Владелец 20.09 отменил аккордеон: карта идёт вниз непрерывно через весь
+  // курс. Прежние ожидания (32 строки, пока всё закрыто; 95 строк у одного
+  // раскрытого урока) сторожили ОТМЕНЁННОЕ решение и переписаны здесь.
+  test("builds one continuous map: every lesson always carries its 56 sessions", () => {
     const model = buildLearningV2CourseAccordionMapModelV1({
       projectionScopeKey: PROJECTION_SCOPE,
       expandedLessonOrdinal: null,
       completedSessionIds: [],
       currentSessionId: null,
     });
-    expect(model.rows).toHaveLength(32);
-    expect(model.rows.every((row) => row.kind === "lesson")).toBe(true);
+    expect(model.rows.filter((row) => row.kind === "lesson")).toHaveLength(32);
+    expect(sessions(model.rows)).toHaveLength(32 * 56);
+    expect(model.rows.filter((row) => row.kind === "chapter")).toHaveLength(
+      32 * 7,
+    );
+    // 32 плашки уроков + 224 главы + 1792 занятия.
+    expect(model.rows).toHaveLength(2048);
   });
 
-  test("opens 56 sessions inline and shifts every later lesson below them", () => {
+  test("keeps 56 sessions and 7 chapters between one lesson and the next", () => {
     const model = buildLearningV2CourseAccordionMapModelV1({
       projectionScopeKey: PROJECTION_SCOPE,
       expandedLessonOrdinal: 2,
@@ -37,10 +45,24 @@ describe("Learning V2 owner-current course accordion map model v1", () => {
     });
     const lesson2Index = model.rows.findIndex((row) => row.id === "lesson-02");
     const lesson3Index = model.rows.findIndex((row) => row.id === "lesson-03");
-    expect(sessions(model.rows)).toHaveLength(56);
-    expect(model.rows.filter((row) => row.kind === "chapter")).toHaveLength(7);
+    // 1 плашка + 7 глав + 56 занятий = 64 строки на урок.
     expect(lesson3Index - lesson2Index).toBe(64);
-    expect(model.rows).toHaveLength(95);
+  });
+
+  test("marks only the first session of the FIRST lesson current for a newcomer", () => {
+    // На сплошной карте без проверки урока «текущими» становились первые
+    // занятия всех 32 уроков сразу — человек не понял бы, откуда начинать.
+    const model = buildLearningV2CourseAccordionMapModelV1({
+      projectionScopeKey: PROJECTION_SCOPE,
+      expandedLessonOrdinal: null,
+      completedSessionIds: [],
+      currentSessionId: null,
+    });
+    const current = sessions(model.rows).filter(
+      (row) => row.state === "current",
+    );
+    expect(current).toHaveLength(1);
+    expect(current[0]?.id).toBe(learningV2CourseSessionIdV1(1, 1));
   });
 
   test("keeps the exact lesson, chapter and session order around the expanded lesson", () => {
@@ -64,15 +86,15 @@ describe("Learning V2 owner-current course accordion map model v1", () => {
       },
     ).flat();
 
-    expect(model.rows.map((row) => row.id)).toEqual([
-      "lesson-01",
-      "lesson-02",
-      ...expectedExpandedRows,
-      ...Array.from(
-        { length: 30 },
-        (_, index) => `lesson-${String(index + 3).padStart(2, "0")}`,
-      ),
-    ]);
+    // Карта сплошная: занятия урока 2 идут сразу после его плашки, а следом
+    // без разрыва плашка урока 3 со своими занятиями.
+    const ids = model.rows.map((row) => row.id);
+    const lesson2At = ids.indexOf("lesson-02");
+    expect(ids.slice(lesson2At + 1, lesson2At + 1 + expectedExpandedRows.length)).toEqual(
+      expectedExpandedRows,
+    );
+    expect(ids[lesson2At + 1 + expectedExpandedRows.length]).toBe("lesson-03");
+    expect(ids[0]).toBe("lesson-01");
   });
 
   test("maps current, next, checkpoint and final exam without plan side cards", () => {
@@ -135,8 +157,20 @@ describe("Learning V2 owner-current course accordion map model v1", () => {
       completedSessionIds: [],
       currentSessionId: learningV2CourseSessionIdV1(1, 1),
     });
+    // Смысл прежний: прогресс урока 1 не должен «протекать» в урок 2.
+    // Но на сплошной карте занятия урока 1 тоже есть в модели, поэтому
+    // проверяем адресно, а не «всё заперто».
+    const lit = sessions(model.rows).filter(
+      (session) => session.state !== "locked",
+    );
+    expect(lit.map((session) => session.id)).toEqual([
+      learningV2CourseSessionIdV1(1, 1),
+      learningV2CourseSessionIdV1(1, 2),
+    ]);
     expect(
-      sessions(model.rows).every((session) => session.state === "locked"),
+      sessions(model.rows)
+        .filter((session) => session.lessonOrdinal === 2)
+        .every((session) => session.state === "locked"),
     ).toBe(true);
   });
 

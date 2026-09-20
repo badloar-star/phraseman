@@ -174,15 +174,18 @@ export default function LearningV2FounderPassModal({
       onDismiss();
       return;
     }
+    // зачем: владелец 20.09 — «кнопка Начать знакомство блокируется».
+    // Раньше onDismiss ждал КОНЦА анимации: 180мс тап выглядел мёртвым, а
+    // если анимацию прерывали (быстрый повторный тап, уход приложения в фон),
+    // onDismiss не вызывался вовсе и модал залипал.
+    // Optimistic UI: закрываем сразу, анимация догоняет фоном.
+    onDismiss();
     Animated.timing(entrance, {
       toValue: 0,
       duration: 180,
       easing: Easing.in(Easing.quad),
       useNativeDriver: true,
-    }).start(({ finished }) => {
-      if (finished) onDismiss();
-      else closingRef.current = false;
-    });
+    }).start();
   }, [entrance, onDismiss, reduceMotion]);
 
   const cardStyle = {

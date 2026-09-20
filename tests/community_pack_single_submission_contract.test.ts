@@ -1,21 +1,30 @@
 /**
- * Сторож: повторное «Сделать публичным» обновляет ОДНУ заявку, а не плодит дубли.
+ * Сторож публикации набора сообщества.
  *
- * Инцидент владельца 20.09.2026: в админке («Наборы сообщества» → «Заявки»)
- * висели ТРИ одинаковые заявки «My phrases verbs» — 12:31, 12:44 и 12:49.
- * Три нажатия кнопки публикации дали три документа в community_pack_submissions.
+ * История (важна, чтобы сторож снова не начал охранять ложь):
  *
- * Корень был на клиенте, в publishLocalPack.ts, и состоял из двух звеньев:
- *   1. в поле cloudPackId (по контракту — id документа community_packs)
- *      записывался возвращённый submissionId, то есть id документа ДРУГОЙ
- *      коллекции, community_pack_submissions. Сервер такого набора не находил,
- *      сбрасывал updatePackId и уходил в ветку создания;
- *   2. ключ идемпотентности publicationKey перезаписывался после каждой
- *      отправки, поэтому серверная защита «один submissionKey — одна заявка»
- *      не срабатывала: ключ каждый раз был новым.
+ * 20.09.2026 владелец увидел в админке ТРИ одинаковые заявки «My phrases verbs»
+ * (12:31, 12:44, 12:49). Был поставлен диагноз «клиент каждый раз шлёт новый
+ * submissionKey» и написана функция sanitizeCloudPackId, отбрасывавшая значения
+ * вида `create_*`. Аудит диагноз ОПРОВЕРГ:
  *
- * Обычные тесты этого класса НЕ ловят: сервер корректен и изолированно зелёный,
- * ломал контракт вызывающий. Поэтому сторожим именно клиентскую сторону.
+ *   1. publicationKey был стабилен: saveLocalAuthorPack хранит его через
+ *      `existing?.publicationKey`, а публикация писала обратно ТО ЖЕ значение,
+ *      которое прочитала. Серверная идемпотентность работала.
+ *   2. Опубликованный набор создаётся сервером как
+ *      community_packs.doc(submissionId) — то есть ПОД ID ЗАЯВКИ. При наличии
+ *      submissionKey этот id всегда `create_<sha256>`. Значит id заявки и id
+ *      набора — одно и то же значение по конструкции, и отбрасывать `create_*`
+ *      означало выбрасывать ЗАКОННЫЙ идентификатор: автор терял возможность
+ *      править свой опубликованный набор.
+ *
+ * Поэтому сторож охраняет ДВА инварианта и НЕ закрепляет версию про ключ:
+ *   — cloudPackId сохраняется, а не «санируется» по форме строки;
+ *   — каждый ранний выход и каждый catch называет причину (правило владельца
+ *     «сперва логи»: немой выход = «нажал, ничего не произошло, в логе пусто»).
+ *
+ * Настоящая причина трёх заявок НЕ НАЙДЕНА и ищется по логам [UGC-PUBLISH]
+ * с телефона владельца. Гадать запрещено.
  */
 import fs from 'fs';
 import path from 'path';
@@ -23,93 +32,115 @@ import path from 'path';
 const read = (...p: string[]): string =>
   fs.readFileSync(path.join(process.cwd(), ...p), 'utf8');
 
-describe('публикация набора не создаёт дубли заявок', () => {
-  const client = read('app', 'community_packs', 'publishLocalPack.ts');
-  const publishFn = client.slice(
-    client.indexOf('export async function publishLocalAuthorPack('),
-    client.indexOf('/** Withdraw public visibility'),
-  );
+const client = read('app', 'community_packs', 'publishLocalPack.ts');
+const publishFn = client.slice(
+  client.indexOf('export async function publishLocalAuthorPack('),
+  client.indexOf('/** Withdraw public visibility'),
+);
 
+describe('идентификатор набора не теряется', () => {
   it('фрагмент публикации найден (иначе сторож охраняет пустоту)', () => {
-    expect(publishFn.length).toBeGreaterThan(200);
+    expect(publishFn.length).toBeGreaterThan(400);
   });
 
-  it('id заявки НИКОГДА не записывается в cloudPackId', () => {
-    // Ровно та строка, что породила инцидент:
-    //   cloudPackId: local.cloudPackId ?? result.submissionId
-    expect(publishFn).not.toMatch(/cloudPackId:[^,;\n]*result\.submissionId/u);
-    expect(publishFn).not.toMatch(/cloudPackId:[^,;\n]*submissionId/u);
+  it('возвращённый сервером id сохраняется в cloudPackId', () => {
+    // Прежнее поведение, ошибочно принятое за баг и откаченное обратно.
+    // Без него автор не сможет править свой опубликованный набор.
+    expect(publishFn).toContain('result.submissionId');
+    expect(publishFn).toMatch(/cloudPackId:\s*nextCloudPackId/u);
   });
 
-  it('сохраняется только просанированный id опубликованного набора', () => {
-    expect(publishFn).toContain('sanitizeCloudPackId(local.cloudPackId, local.id)');
-    // В updateLocalPackPublication уходит проверенная переменная, не сырое поле.
-    expect(publishFn).toMatch(/updateLocalPackPublication\([\s\S]*?cloudPackId,[\s\S]*?\)/u);
+  it('id НЕ фильтруется по форме строки', () => {
+    // sanitizeCloudPackId отбрасывала `create_*` — а это законный id набора.
+    expect(client).not.toContain('sanitizeCloudPackId');
+    expect(publishFn).not.toMatch(/startsWith\('create_'\)/u);
   });
 
-  it('ключ идемпотентности берётся из сохранённого publicationKey', () => {
-    // Он обязан пережить повторные нажатия — иначе серверная склейка заявок
-    // по submissionKey не работает.
+  it('уже известный id набора уходит как updatePackId', () => {
+    expect(publishFn).toMatch(/updatePackId:\s*cloudPackId/u);
+  });
+
+  it('ключ идемпотентности читается и возвращается без изменения', () => {
+    // Стабильный ключ — то, что позволяет серверу склеить повторную отправку
+    // в ту же заявку. Пересоздание ключа допустимо ТОЛЬКО при отзыве публикации.
     expect(publishFn).toContain('local.publicationKey ?? local.id');
-    expect(publishFn).toContain('submissionKey,');
-    expect(publishFn).toContain('replacePending: true');
-  });
-
-  it('publicationKey не пересоздаётся при отправке', () => {
-    // Новый ключ на каждой отправке = новая заявка на сервере. Обновление
-    // ключа допустимо ТОЛЬКО при отзыве публикации (withdrawLocalAuthorPack).
-    expect(publishFn).not.toMatch(/publicationKey:\s*`/u);
+    expect(publishFn).toMatch(/publicationKey:\s*submissionKey/u);
     expect(publishFn).not.toMatch(/publicationKey:[^,\n]*Date\.now\(\)/u);
   });
+});
 
-  it('отказ публикации пишет причину в лог навсегда, а не только в __DEV__', () => {
+describe('ни одного немого выхода', () => {
+  it('каждый ранний return называет причину', () => {
+    for (const marker of [
+      'exit:cloud_disabled',
+      'exit:not_found',
+      'exit:invalid',
+      'exit:account_changed',
+    ]) {
+      expect(publishFn).toContain(marker);
+    }
+  });
+
+  it('отказ валидации печатает КОНКРЕТНУЮ причину, а не факт отказа', () => {
+    // validateCommunityPackPayload возвращает код: card_count, title_or_desc,
+    // study_target_gate… Голое «invalid» не даёт понять, что чинить.
+    expect(publishFn).toContain('invalidReason');
+    expect(publishFn).toMatch(/reason:\s*String\(invalidReason\)/u);
+  });
+
+  it('проглоченные ошибки чтения и личности пишут причину', () => {
+    // Запрет немого catch: пустой список выглядел бы как «набора нет»,
+    // хотя на деле упало чтение хранилища.
+    expect(publishFn).toContain('load:failed');
+    expect(publishFn).toContain('identity:failed');
+    expect(publishFn).not.toMatch(/catch\(\(\)\s*=>\s*\[\]\)/u);
+    expect(publishFn).not.toMatch(/catch\(\(\)\s*=>\s*null\)/u);
+  });
+
+  it('отказ отправки логируется в релизе, а не только в __DEV__', () => {
     const catchBlock = publishFn.slice(publishFn.indexOf('} catch'));
-    // Префикс [UGC-PUBLISH] живёт в хелпере logPublish — здесь сторожим сам
-    // вызов трассировки, а не литерал строки.
     expect(catchBlock).toContain('logPublish(');
     expect(catchBlock).not.toContain('__DEV__');
-    // Немой catch запрещён: причина обязана попасть в лог.
-    expect(catchBlock).toMatch(/code|message/u);
+    expect(catchBlock).toMatch(/code/u);
+    expect(catchBlock).toMatch(/message/u);
   });
 
-  it('трассировка показывает ключ, режим и оба значения id', () => {
+  it('три выхода по смене аккаунта различимы между собой', () => {
+    // Иначе в логе три неразличимых 'error' и непонятно, какой сработал.
+    expect(publishFn).toContain("at: 'after getCanonicalUserId'");
+    expect(publishFn).toContain("at: 'after signInAnonymously'");
+    expect(publishFn).toContain("at: 'after submit returned'");
+  });
+
+  it('трассировка печатает значения, а не голые булевы', () => {
     expect(client).toContain('[UGC-PUBLISH]');
-    expect(publishFn).toContain('logPublish(');
-    expect(publishFn).toContain('submissionKey');
-    expect(publishFn).toContain('cloudPackIdStored');
-    expect(publishFn).toContain('cloudPackIdUsed');
-    expect(publishFn).toContain('mode');
+    expect(publishFn).toMatch(/authorStableId:\s*authorStableId\s*\?\?\s*null/u);
+    expect(publishFn).not.toContain('hasAuthorId: Boolean(');
   });
 });
 
-describe('самолечение телефонов с битым cloudPackId', () => {
-  const client = read('app', 'community_packs', 'publishLocalPack.ts');
-
-  it('sanitizeCloudPackId экспортируется и отбрасывает id заявок', () => {
-    expect(client).toContain('export function sanitizeCloudPackId');
-    // Детерминированный id заявки: `create_<sha256>` (см. community_packs.ts).
-    expect(client).toContain("value.startsWith('create_')");
-    // Локальный id набора — тоже не идентификатор опубликованного набора.
-    expect(client).toContain('LOCAL_AUTHOR_PACK_ID_PREFIX');
-  });
-
-  it('константа префикса импортируется, а не вписана строкой', () => {
-    expect(client).toMatch(/import\s*\{[^}]*LOCAL_AUTHOR_PACK_ID_PREFIX[^}]*\}\s*from\s*'\.\/localAuthorPacks'/u);
-  });
-});
-
-describe('серверная защита от дублей осталась на месте', () => {
+describe('серверная модель идентификаторов (основание для клиента)', () => {
   const server = read('functions', 'src', 'community_packs.ts');
 
-  it('заявка создаётся с детерминированным id по submissionKey', () => {
+  it('опубликованный набор создаётся ПОД ID ЗАЯВКИ', () => {
+    // Ровно этот факт делает фильтрацию по `create_` невозможной.
+    // Если строка изменится — клиентскую модель надо пересматривать.
+    expect(server).toContain('db.collection(COMMUNITY_PACKS).doc(submissionId)');
+  });
+
+  it('id заявки детерминирован по submissionKey', () => {
     expect(server).toContain('const deterministicId = submissionKey');
     expect(server).toContain('create_${createHash(');
   });
 
   it('повторная отправка того же ключа обновляет заявку, а не создаёт вторую', () => {
     const createBranch = server.slice(server.indexOf('const deterministicId = submissionKey'));
-    // tx.create упал бы на существующем документе — поэтому ветка «existing»
-    // обязана обновлять payload, а не создавать.
-    expect(createBranch).toContain('tx.update(subRef, { status: \'pending\', payload, payloadHash, submittedAt: now });');
+    // Гибко к форматированию: важен факт update той же заявки, а не её создание.
+    expect(createBranch).toMatch(/tx\.update\(subRef,\s*\{[^}]*status:\s*'pending'[^}]*payload[^}]*\}/u);
+  });
+
+  it('сервер сам умеет вернуть id опубликованного набора по ключу', () => {
+    // Подстраховка на случай пустого cloudPackId на телефоне.
+    expect(server).toContain('prior.data()?.publishedPackId');
   });
 });

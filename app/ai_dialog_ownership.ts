@@ -32,11 +32,16 @@ import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import {
   isCurrentAccountGeneration,
-  withAccountTransitionLock,
+  withAccountTransitionLockWithDeadline,
   type AccountGenerationToken,
 } from './account_generation';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { DebugLogger } from './debug-logger';
+import {
+  dialogueStateStorageKey,
+  resolveDialogueStudyTarget,
+  type DialogueStudyTarget,
+} from './dialogue_language_registry';
 import { emitAppEvent } from './events';
 import { mergeLevelSpinServerStars, readUnifiedLevelSpinStars } from './level_spin_star_grants';
 import { withStorageLock } from './storage_mutex';
@@ -44,18 +49,28 @@ import { withStorageLock } from './storage_mutex';
 const REGION = 'us-central1';
 
 /** Ключ владения. Своя запись, не смешивается с прогрессом прохождения. */
-function ownedKey(stableId: string): string {
-  return `ai_dialog_owned_ids_v1:${stableId}`;
+export function dialogOwnershipStorageKey(studyTarget: unknown, stableId: string): string | null {
+  if (!stableId) return null;
+  return dialogueStateStorageKey(studyTarget, `ai_dialog_owned_ids_v1:${stableId}`);
 }
 
 /** Очередь непереданных серверу покупок (переживает убийство процесса). */
-function outboxKey(stableId: string): string {
-  return `ai_dialog_owned_outbox_v1:${stableId}`;
+export function dialogOwnershipOutboxStorageKey(studyTarget: unknown, stableId: string): string | null {
+  if (!stableId) return null;
+  return dialogueStateStorageKey(studyTarget, `ai_dialog_owned_outbox_v1:${stableId}`);
 }
 
 /** Стабильный id операции: один сценарий — одна трата, сколько бы раз ни жали. */
-export function dialogUnlockOperationId(stableId: string, scenarioId: string): string {
-  return `dialog_unlock:${stableId}:${scenarioId}`;
+export function dialogUnlockOperationId(
+  studyTarget: unknown,
+  stableId: string,
+  scenarioId: string,
+): string | null {
+  const target = resolveDialogueStudyTarget(studyTarget);
+  if (!target || !stableId || !scenarioId) return null;
+  return target === 'en'
+    ? `dialog_unlock:${stableId}:${scenarioId}`
+    : `dialog_unlock:${target}:${stableId}:${scenarioId}`;
 }
 
 function parseIds(raw: string | null): Set<string> {
@@ -77,9 +92,10 @@ function parseIds(raw: string | null): Set<string> {
 }
 
 /** Купленные сценарии. Пусто при сбое чтения — но об этом пишет лог выше. */
-export async function getOwnedDialogIds(stableId: string): Promise<Set<string>> {
-  if (!stableId) return new Set();
-  const raw = await AsyncStorage.getItem(ownedKey(stableId)).catch((error: unknown) => {
+export async function getOwnedDialogIds(studyTarget: unknown, stableId: string): Promise<Set<string>> {
+  const storageKey = dialogOwnershipStorageKey(studyTarget, stableId);
+  if (!storageKey) return new Set();
+  const raw = await AsyncStorage.getItem(storageKey).catch((error: unknown) => {
     DebugLogger.error(
       'ai_dialog_ownership:read_failed',
       error instanceof Error ? error : new Error(String(error)),
@@ -90,9 +106,16 @@ export async function getOwnedDialogIds(stableId: string): Promise<Set<string>> 
   return parseIds(raw);
 }
 
+/**
+ * Сколько ждём замок хранилища, прежде чем признать его занятым.
+ * 8 с — заметно больше любой честной операции с AsyncStorage (самое долгое
+ * чтение баланса в логах — 452мс), но человек ещё готов ждать.
+ */
+const DIALOG_PURCHASE_LOCK_TIMEOUT_MS = 8000;
+
 export type DialogPurchaseResult =
   | { ok: true; alreadyOwned: boolean; balance: number }
-  | { ok: false; reason: 'insufficient_runes' | 'identity_changed' | 'invalid_scenario' };
+  | { ok: false; reason: 'insufficient_runes' | 'identity_changed' | 'invalid_scenario' | 'invalid_target' | 'storage_busy' };
 
 /**
  * Покупка доступа к сценарию. Всё решается ЛОКАЛЬНО и мгновенно: списываем
@@ -105,10 +128,16 @@ export type DialogPurchaseResult =
  * а не спишет вторую цену.
  */
 export async function buyDialogAccessLocally(
+  studyTarget: unknown,
   token: AccountGenerationToken,
   scenarioId: string,
   priceRunes: number,
 ): Promise<DialogPurchaseResult> {
+  const target = resolveDialogueStudyTarget(studyTarget);
+  if (!target) {
+    DebugLogger.info('[RUNES-BUY] denied', 'invalid_target');
+    return { ok: false, reason: 'invalid_target' };
+  }
   const ownerStableId = token.stableId?.trim();
   if (!ownerStableId || !isCurrentAccountGeneration(token, ownerStableId)) {
     DebugLogger.info('[RUNES-BUY] denied', 'identity_changed');
@@ -119,12 +148,29 @@ export async function buyDialogAccessLocally(
     return { ok: false, reason: 'invalid_scenario' };
   }
 
-  return withAccountTransitionLock(async () => withStorageLock(async () => {
+  /**
+   * Замок берём С ДЕДЛАЙНОМ, а не навечно.
+   *
+   * зачем (владелец 2026-09-20, по логам 14:58:01): тап по покупке
+   * дошёл сюда (`tap_buy busy=false`, баланс 5523 при цене 5000) — и функция
+   * НЕ ВЕРНУЛАСЬ вообще: ни `ok`, ни `denied`, ни `buy_failed`. Следующие 6 тапов
+   * ушли в `tap_ignored busy=true` — кнопка умерла до ухода с экрана.
+   *
+   * Причина: `withAccountTransitionLock` и `withStorageLock` — ВЕЧНЫЕ очереди
+   * (`await previous` / `acquireStorageLock()` без таймаута). Любая из 304
+   * других точек, взявшая замок и не отпустившая его, вешает покупку навсегда.
+   *
+   * Молчание не отказ: лучше честное `storage_busy` через 8 секунд, чем
+   * мёртвая кнопка. Деньги при этом в безопасности: дедлайн режет ТОЛЬКО
+   * ожидание В ОЧЕРЕДИ — если работа началась, она доходит до конца
+   * и списание с записью владения не разорвётся пополам.
+   */
+  const outcome = await withAccountTransitionLockWithDeadline(async () => withStorageLock(async () => {
     if (!isCurrentAccountGeneration(token, ownerStableId)) {
       return { ok: false, reason: 'identity_changed' } as const;
     }
 
-    const owned = await getOwnedDialogIds(ownerStableId);
+    const owned = await getOwnedDialogIds(target, ownerStableId);
     if (owned.has(scenarioId)) {
       // Повторный тап/возврат на экран — не вторая трата.
       const { balance } = await readUnifiedLevelSpinStars(token);
@@ -141,11 +187,16 @@ export async function buyDialogAccessLocally(
     const balanceAfter = balance - priceRunes;
     // Иммутабельно: собираем новый набор, не мутируем прочитанный.
     const nextOwned = [...owned, scenarioId];
-    await AsyncStorage.setItem(ownedKey(ownerStableId), JSON.stringify(nextOwned));
+    const storageKey = dialogOwnershipStorageKey(target, ownerStableId);
+    const pendingKey = dialogOwnershipOutboxStorageKey(target, ownerStableId);
+    if (!storageKey || !pendingKey) {
+      return { ok: false, reason: 'invalid_target' } as const;
+    }
+    await AsyncStorage.setItem(storageKey, JSON.stringify(nextOwned));
 
-    const outbox = parseIds(await AsyncStorage.getItem(outboxKey(ownerStableId)).catch(() => null));
+    const outbox = parseIds(await AsyncStorage.getItem(pendingKey).catch(() => null));
     if (!outbox.has(scenarioId)) {
-      await AsyncStorage.setItem(outboxKey(ownerStableId), JSON.stringify([...outbox, scenarioId]));
+      await AsyncStorage.setItem(pendingKey, JSON.stringify([...outbox, scenarioId]));
     }
 
     // Мгновенное локальное зеркало баланса — та же проекция, что рисует «Руны».
@@ -156,7 +207,14 @@ export async function buyDialogAccessLocally(
       `scenario=${scenarioId} price=${priceRunes} balance ${balance}→${balanceAfter}`,
     );
     return { ok: true, alreadyOwned: false, balance: balanceAfter } as const;
-  }));
+  }), DIALOG_PURCHASE_LOCK_TIMEOUT_MS);
+
+  if (!outcome.completed) {
+    // Немой отказ запрещён: именно он делал кнопку мёртвой.
+    DebugLogger.info('[RUNES-BUY] denied', `storage_busy scenario=${scenarioId} waitedMs=${DIALOG_PURCHASE_LOCK_TIMEOUT_MS}`);
+    return { ok: false, reason: 'storage_busy' };
+  }
+  return outcome.value;
 }
 
 function callable() {
@@ -178,12 +236,26 @@ function callable() {
  * список одной транзакцией, идемпотентность по-прежнему на operationId каждой
  * покупки, поэтому повтор всего батча не спишет ничего дважды.
  */
-export async function syncDialogPurchases(token: AccountGenerationToken): Promise<void> {
+export async function syncDialogPurchases(
+  studyTarget: unknown,
+  token: AccountGenerationToken,
+): Promise<void> {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
+  const target = resolveDialogueStudyTarget(studyTarget);
+  if (!target) return;
+  // The existing callable contract is English-only. Non-English state stays
+  // isolated in its own durable outbox until a target-aware server contract is
+  // released; sending it through the English endpoint would corrupt ownership.
+  if (target !== 'en') {
+    DebugLogger.info('[RUNES-BUY] sync:skip', `target_not_supported target=${target}`);
+    return;
+  }
   const ownerStableId = token.stableId?.trim();
   if (!ownerStableId || !isCurrentAccountGeneration(token, ownerStableId)) return;
 
-  const pending = [...parseIds(await AsyncStorage.getItem(outboxKey(ownerStableId)).catch(() => null))];
+  const pendingKey = dialogOwnershipOutboxStorageKey(target, ownerStableId);
+  if (!pendingKey) return;
+  const pending = [...parseIds(await AsyncStorage.getItem(pendingKey).catch(() => null))];
   if (pending.length === 0) return;
 
   const { DIALOG_SCENARIOS, scenarioPriceRunes } = await import('./ai_dialog_scenarios');
@@ -199,7 +271,7 @@ export async function syncDialogPurchases(token: AccountGenerationToken): Promis
   }
   if (stale.length > 0) {
     DebugLogger.info('[RUNES-BUY] sync:skip', `stale=${stale.join(',')}`);
-    await dropFromOutbox(ownerStableId, stale);
+    await dropFromOutbox(target, ownerStableId, stale);
   }
   if (purchases.length === 0) return;
 
@@ -212,7 +284,7 @@ export async function syncDialogPurchases(token: AccountGenerationToken): Promis
       ...(Number.isFinite(stars) ? { stars: Math.max(0, Math.trunc(stars)) } : {}),
       ...(Number.isSafeInteger(seq) && seq >= 0 ? { starsSeq: seq } : {}),
     });
-    await dropFromOutbox(ownerStableId, purchases.map((p) => p.scenarioId));
+    await dropFromOutbox(target, ownerStableId, purchases.map((p) => p.scenarioId));
     DebugLogger.info('[RUNES-BUY] sync:ok', `count=${purchases.length}`);
   } catch (error) {
     // Немой catch запрещён. Записи остаются в очереди — следующий заход
@@ -225,12 +297,18 @@ export async function syncDialogPurchases(token: AccountGenerationToken): Promis
   }
 }
 
-async function dropFromOutbox(stableId: string, scenarioIds: readonly string[]): Promise<void> {
-  const outbox = parseIds(await AsyncStorage.getItem(outboxKey(stableId)).catch(() => null));
+async function dropFromOutbox(
+  studyTarget: DialogueStudyTarget,
+  stableId: string,
+  scenarioIds: readonly string[],
+): Promise<void> {
+  const storageKey = dialogOwnershipOutboxStorageKey(studyTarget, stableId);
+  if (!storageKey) return;
+  const outbox = parseIds(await AsyncStorage.getItem(storageKey).catch(() => null));
   let changed = false;
   for (const id of scenarioIds) if (outbox.delete(id)) changed = true;
   if (!changed) return;
-  await AsyncStorage.setItem(outboxKey(stableId), JSON.stringify([...outbox])).catch((error: unknown) => {
+  await AsyncStorage.setItem(storageKey, JSON.stringify([...outbox])).catch((error: unknown) => {
     DebugLogger.error(
       'ai_dialog_ownership:outbox_write_failed',
       error instanceof Error ? error : new Error(String(error)),
@@ -245,19 +323,24 @@ async function dropFromOutbox(stableId: string, scenarioIds: readonly string[]):
  * покупки, ещё не дошедшие до сервера, обязаны пережить слияние.
  */
 export async function mergeOwnedDialogsFromCloud(
+  studyTarget: unknown,
   token: AccountGenerationToken,
   cloudIds: readonly string[],
 ): Promise<void> {
+  const target = resolveDialogueStudyTarget(studyTarget);
+  if (!target) return;
   const ownerStableId = token.stableId?.trim();
   if (!ownerStableId || !isCurrentAccountGeneration(token, ownerStableId)) return;
   if (!Array.isArray(cloudIds) || cloudIds.length === 0) return;
 
   await withStorageLock(async () => {
-    const owned = await getOwnedDialogIds(ownerStableId);
+    const owned = await getOwnedDialogIds(target, ownerStableId);
     const before = owned.size;
     for (const id of cloudIds) if (typeof id === 'string' && id) owned.add(id);
     if (owned.size === before) return;
-    await AsyncStorage.setItem(ownerStableId ? ownedKey(ownerStableId) : '', JSON.stringify([...owned]));
+    const storageKey = dialogOwnershipStorageKey(target, ownerStableId);
+    if (!storageKey) return;
+    await AsyncStorage.setItem(storageKey, JSON.stringify([...owned]));
     emitAppEvent('dialogs_progress_changed');
     DebugLogger.info('[RUNES-BUY] cloud_merge', `${before} → ${owned.size}`);
   });

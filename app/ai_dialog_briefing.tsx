@@ -301,6 +301,8 @@ function AiDialogBriefingBody() {
     router.push('/runes_wallet' as never);
   }, [price, router, runeBalance, scenario]);
 
+  // Причина неудачной покупки для человека: тап не смеет уходить в тишину.
+  const [buyError, setBuyError] = useState<string | null>(null);
   const buyingRef = useRef(false);
   const handleBuy = useCallback(() => {
     console.log(`[RUNES-BUY] briefing:tap_buy scenario=${scenario?.id ?? 'null'} price=${price} balance=${runeBalance} busy=${buyingRef.current}`); // guard-ok: вход обязан логироваться и в релизе
@@ -313,15 +315,24 @@ function AiDialogBriefingBody() {
     void buyDialogAccessLocally(studyTarget, token, scenario.id, price).then((result) => {
       // The grant belongs to the captured target even if its screen closed.
       if (result.ok) void syncDialogPurchases(studyTarget, token);
-      if (!briefingMountedRef.current) return;
+      // зачем: флаг снимаем ДО проверки монтирования — иначе при уходе
+      // с экрана он залипал в `true` и кнопка оставалась мёртвой навсегда.
+      buyingRef.current = false;
+      if (!briefingMountedRef.current) {
+        console.log(`[RUNES-BUY] briefing:late_result scenario=${scenario.id} ok=${result.ok} — экран закрыт`); // guard-ok: ранний выход обязан логироваться и в релизе
+        return;
+      }
       if (!result.ok) {
-        buyingRef.current = false;
         console.log(`[RUNES-BUY] briefing:denied scenario=${scenario.id} reason=${result.reason}`); // guard-ok: отказ обязан логироваться и в релизе
         if (result.reason === 'insufficient_runes') {
           setRuneBalance((prev) => prev); // причина уже видна под кнопкой
+        } else {
+          // Молчание не отказ: человек обязан увидеть причину и мочь повторить.
+          setBuyError(result.reason);
         }
         return;
       }
+      setBuyError(null);
       console.log(`[RUNES-BUY] briefing:bought scenario=${scenario.id} already=${result.alreadyOwned} balance=${result.balance} → open`); // guard-ok: финальный результат обязан логироваться и в релизе
       setOwnedIds((prev) => new Set([...(prev ?? []), scenario.id]));
       setRuneBalance(result.balance);
@@ -331,6 +342,7 @@ function AiDialogBriefingBody() {
       buyingRef.current = false;
       console.warn('[RUNES-BUY] briefing:buy_failed', // guard-ok: сбой покупки обязан логироваться и в релизе
         error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+      if (briefingMountedRef.current) setBuyError('failed');
     });
   }, [price, runeBalance, scenario, studyTarget]);
   // Открытие сессии живёт ниже по файлу — держим ссылку, чтобы покупка могла
@@ -491,6 +503,7 @@ function AiDialogBriefingBody() {
               balanceRunes: runeBalance,
               onBuy: handleBuy,
               onTopUp: handleTopUp,
+              errorReason: buyError,
             }
           : null}
       />

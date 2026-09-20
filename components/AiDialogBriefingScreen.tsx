@@ -42,6 +42,8 @@ type AiDialogBriefingScreenProps = {
     onBuy: () => void;
     // Зачем: при нехватке рун тап ведёт туда, где руны берут, а не в никуда.
     onTopUp: () => void;
+    // Причина прошлого отказа (например storage_busy) — тап не уходит в тишину.
+    errorReason?: string | null;
   } | null;
 };
 
@@ -90,6 +92,13 @@ const briefingCopy = (lang: ReturnType<typeof useLang>['lang']) => ({
   notEnoughBy: (value: string) => triLang(lang, {
     ru: `Не хватает ${value}`, uk: `Не вистачає ${value}`, en: `${value} short`, es: `Faltan ${value}`,
     'pt-BR': `Faltam ${value}`, vi: `Thiếu ${value}`, id: `Kurang ${value}`, tr: `${value} eksik`, pl: `Brakuje ${value}`,
+  }),
+  // Занятое хранилище/сбой: говорим что делать, а не просто «ошибка».
+  retry: triLang(lang, {
+    ru: 'Не успели — нажмите ещё раз', uk: 'Не встигли — натисніть ще раз',
+    en: 'Took too long — tap again', es: 'Tardó demasiado: toca otra vez',
+    'pt-BR': 'Demorou demais — toque de novo', vi: 'Quá lâu — hãy nhấn lại',
+    id: 'Terlalu lama — ketuk lagi', tr: 'Çok uzun sürdü — tekrar dokun', pl: 'Trwało za długo — naciśnij ponownie',
   }),
   getRunes: triLang(lang, {
     ru: 'Где взять руны', uk: 'Де взяти руни', en: 'Where to get runes', es: 'Dónde conseguir runas',
@@ -307,15 +316,17 @@ export default function AiDialogBriefingScreen({
                     style={{
                       marginTop: 10,
                       textAlign: 'center',
-                      color: purchase.balanceRunes >= purchase.priceRunes ? t.textMuted : t.gold,
+                      color: purchase.errorReason || purchase.balanceRunes < purchase.priceRunes ? t.gold : t.textMuted,
                       fontSize: f.sub,
                       fontWeight: '700',
                     }}
                     maxFontSizeMultiplier={1.2}
                   >
-                    {purchase.balanceRunes >= purchase.priceRunes
-                      ? copy.remaining(formatRunes(purchase.balanceRunes - purchase.priceRunes))
-                      : copy.notEnoughBy(formatRunes(purchase.priceRunes - purchase.balanceRunes))}
+                    {purchase.errorReason
+                      ? copy.retry
+                      : purchase.balanceRunes >= purchase.priceRunes
+                        ? copy.remaining(formatRunes(purchase.balanceRunes - purchase.priceRunes))
+                        : copy.notEnoughBy(formatRunes(purchase.priceRunes - purchase.balanceRunes))}
                   </Text>
                 </>
               ) : (

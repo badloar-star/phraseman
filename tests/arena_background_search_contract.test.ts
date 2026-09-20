@@ -30,6 +30,7 @@ type Harness = Readonly<{
     findMatch: { mode: string; requestId: string }[];
     cancelQueue: string[];
     releaseStaleMatch: number;
+    cancelStaleQueue: number;
     declineMatch: string[];
     requestBot: string[];
   };
@@ -53,6 +54,7 @@ function createHarness(): Harness {
     declineMatch: [] as string[],
     requestBot: [] as string[],
     releaseStaleMatch: 0,
+    cancelStaleQueue: 0,
   };
   let findError: Error | null = null;
   let releaseResult = true;
@@ -73,6 +75,7 @@ function createHarness(): Harness {
     cancelQueue: async (_target, requestId) => { calls.cancelQueue.push(requestId); },
     declineMatch: async (matchId) => { calls.declineMatch.push(matchId); },
     releaseStaleMatch: async () => { calls.releaseStaleMatch += 1; return releaseResult; },
+    cancelStaleQueue: async () => { calls.cancelStaleQueue += 1; },
     createRequestId: () => { seq += 1; return `req-${seq}`; },
     nowMs: () => now,
     setTimer: (fn, ms) => {
@@ -343,6 +346,7 @@ describe('фоновый поиск: отмена и гонки', () => {
       cancelQueue: async () => {},
       declineMatch: async () => {},
       releaseStaleMatch: async () => true,
+      cancelStaleQueue: async () => {},
       createRequestId: () => 'req-late',
       nowMs: () => 1_000_000,
       setTimer: () => null,
@@ -486,5 +490,30 @@ describe('поиск не дольше 10 секунд (владелец 2026-09
     h.search.start('quick', 'en');
     // Ответ сервера ещё не пришёл, а отсчёт уже должен идти.
     expect(h.search.getState().startedAtMs).not.toBeNull();
+  });
+});
+
+describe('висящая очередь не вешает поиск (владелец 2026-09-20)', () => {
+  /**
+   * Лог 14:38:19→14:39:20: пять подряд reconcile с
+   * arena_queue_request_active, поиск шёл «минуту» и не мог получить очередь.
+   */
+  test('arena_queue_request_active снимает висящую очередь и повторяет', async () => {
+    const h = createHarness();
+    h.setFindError(new Error('arena_queue_request_active'));
+    h.search.start('ranked', 'en');
+    for (let i = 0; i < 6; i += 1) await Promise.resolve();
+
+    expect(h.calls.cancelStaleQueue).toBeGreaterThan(0);
+  });
+
+  test('если очередь не снимается — поиск честно заканчивается', async () => {
+    const h = createHarness();
+    h.setFindError(new Error('arena_queue_request_active'));
+    h.search.start('ranked', 'en');
+    // Предел попыток обязан сработать, а не крутиться вечно.
+    for (let i = 0; i < 40; i += 1) await Promise.resolve();
+
+    expect(h.search.getState().phase).toBe('stopped');
   });
 });

@@ -91,6 +91,11 @@ export const arenaBackgroundSearch = new ArenaBackgroundSearch({
   cancelQueue: async (studyTarget, requestId) => {
     await arenaV2QueueCancel(studyTarget, requestId);
   },
+  // Без requestId сервер закрывает ТЕКУЩУЮ очередь профиля — именно то, что
+  // нужно, когда id висящей очереди неизвестен.
+  cancelStaleQueue: async (studyTarget) => {
+    await arenaV2QueueCancel(studyTarget);
+  },
   declineMatch: async (matchId, studyTarget) => {
     await arenaV2MatchDecline(matchId, studyTarget);
   },

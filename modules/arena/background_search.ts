@@ -144,6 +144,15 @@ export type ArenaBackgroundSearchDeps = Readonly<{
     requestId: string,
   ) => Promise<ArenaBackgroundSearchMatched>;
   cancelQueue: (studyTarget: ArenaStudyTarget, requestId: string) => Promise<void>;
+  /**
+   * Снять ВИСЯЩУЮ очередь профиля, id которой неизвестен.
+   *
+   * зачем (владелец 2026-09-20, «поиск идёт минуту»): сервер отбивает
+   * постановку с `arena_queue_request_active`, если за профилем висит очередь
+   * со СТАРЫМ requestId. Клиент крутил heartbeat бесконечно и никогда не
+   * получал очередь — ни бот, ни живой соперник прийти не могли.
+   */
+  cancelStaleQueue: (studyTarget: ArenaStudyTarget) => Promise<void>;
   /** Отказ от найденного матча: обязателен и для кнопки, и для молчания. */
   declineMatch: (matchId: string, studyTarget: ArenaStudyTarget) => Promise<void>;
   /**
@@ -203,6 +212,9 @@ export class ArenaBackgroundSearch {
   /** Сервер подтвердил очередь. Отдельно от startedAtMs: тот ведёт секундомер. */
   private queueConfirmed = false;
 
+  /** Сколько раз за этот поиск снимали чужую висящую очередь. */
+  private staleQueueResets = 0;
+
   constructor(private readonly deps: ArenaBackgroundSearchDeps) {}
 
   getState(): ArenaBackgroundSearchState {
@@ -235,6 +247,7 @@ export class ArenaBackgroundSearch {
     this.botRetryNotBeforeMs = 0;
     this.lockReleaseAttempts = 0;
     this.queueConfirmed = false;
+    this.staleQueueResets = 0;
     this.deps.log(`[ARENA-BGSEARCH] start mode=${mode} target=${studyTarget} requestId=${requestId}`);
     /**
      * зачем startedAtMs СРАЗУ (владелец 2026-09-20, «таймер показывает первые
@@ -432,6 +445,31 @@ export class ArenaBackgroundSearch {
        * и продолжаем искать. Предел попыток спасает от петли
        * «отбой → снятие → NOT FOUND», которая держала поиск минутами.
        */
+      /**
+       * Висящая очередь ПРЕДЫДУЩЕГО поиска: сервер отбивает постановку, пока
+       * за профилем числится билет со старым requestId. Без реакции heartbeat
+       * крутится вечно — ровно это владелец видел как «поиск идёт минуту».
+       * Снимаем очередь профиля целиком и пробуем снова.
+       */
+      if (String(error).includes('arena_queue_request_active')) {
+        if (this.state.requestId !== requestId || this.state.phase !== 'searching') return;
+        if (this.staleQueueResets >= ARENA_LOCK_RELEASE_MAX_ATTEMPTS) {
+          this.deps.log('[ARENA-BGSEARCH] stale queue stuck — ending search');
+          this.stop('no_opponent');
+          return;
+        }
+        this.staleQueueResets += 1;
+        this.deps.log(`[ARENA-BGSEARCH] stale queue detected — cancelling `
+          + `(attempt ${this.staleQueueResets})`);
+        try {
+          await this.deps.cancelStaleQueue(studyTarget);
+          if (this.state.requestId !== requestId || this.state.phase !== 'searching') return;
+          void this.reconcile('stale_queue_cleared');
+        } catch (cancelError) {
+          this.deps.log('[ARENA-BGSEARCH] stale queue cancel failed: ' + String(cancelError));
+        }
+        return;
+      }
       if (!String(error).includes('arena_active_match_exists')) return;
       if (this.state.requestId !== requestId || this.state.phase !== 'searching') return;
       if (this.lockReleaseAttempts >= ARENA_LOCK_RELEASE_MAX_ATTEMPTS) {

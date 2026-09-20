@@ -32,6 +32,7 @@ import { hapticTap } from '../../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
+import PremiumCelebrationModal from '../PremiumCelebrationModal';
 import ResultsSequence from '../feedback/ResultsSequence';
 import { SpinRewardPlaque } from '../SpinRewardPlaque';
 import WelcomeGiftModal from '../WelcomeGiftModal';
@@ -89,6 +90,14 @@ type PreviewState =
   | Readonly<{
       type: 'daily-journey';
       day: number;
+      run: number;
+    }>
+  // зачем (владелец 2026-09-20): празднование Plus/Pro первой кнопкой хаба.
+  // variant хранится здесь, а не двумя типами, чтобы монтировался один и тот
+  // же боевой компонент — палитра у него приходит пропом.
+  | Readonly<{
+      type: 'celebration';
+      variant: 'premium' | 'pro';
       run: number;
     }>;
 
@@ -361,6 +370,17 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
     requestClose(true);
   }, [requestClose]);
 
+  // зачем: тот же контракт, что у welcome-gift — хаб закрывается ДО показа
+  // (requestClose(true) сохраняет preview), иначе native Modal хаба останется
+  // поверх празднования и его не будет видно. Ни pending-флаг, ни consume
+  // здесь не вызываются: реальная очередь празднования на Главной не трогается.
+  const openCelebrationPreview = useCallback((variant: 'premium' | 'pro') => {
+    hapticTap();
+    runRef.current += 1;
+    setPreview({ type: 'celebration', variant, run: runRef.current });
+    requestClose(true);
+  }, [requestClose]);
+
   const openLeaguePreview = useCallback((seed: LeagueDevSeedId) => {
     hapticTap();
     runRef.current += 1;
@@ -552,6 +572,12 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
       case 'preview-update-modal-force':
         requestClose(false, () => emitAppEvent('update_modal_preview', { mode: 'force' }));
         return;
+      case 'preview-celebration-plus':
+        openCelebrationPreview('premium');
+        return;
+      case 'preview-celebration-pro':
+        openCelebrationPreview('pro');
+        return;
       case 'preview-lesson-results':
         openLessonResultsPreview();
         return;
@@ -646,7 +672,7 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
         } as never));
         return;
     }
-  }, [account, applyPlusOverride, busy, openDailyJourneyPreview, openLeaguePreview, openLessonResultsPreview, openPaywallVariant, openSpinRewardPreview, openWelcomeGiftPreview, requestClose, router, runOnboardingPreview, selectedPaywallContext]);
+  }, [account, applyPlusOverride, busy, openCelebrationPreview, openDailyJourneyPreview, openLeaguePreview, openLessonResultsPreview, openPaywallVariant, openSpinRewardPreview, openWelcomeGiftPreview, requestClose, router, runOnboardingPreview, selectedPaywallContext]);
 
   const accountReady = account.phase === 'active' && Boolean(account.stableId);
   const overrideLabel = plusOverride === 'granted'
@@ -901,6 +927,22 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
           visible={!visible && devSurfaceGranted}
           onClose={() => closePreview()}
           testID="dev-welcome-gift-preview"
+        />
+      ) : null}
+
+      {preview?.type === 'celebration' ? (
+        // зачем: PremiumCelebrationModal рисует свой native Modal сама — второй
+        // Modal снаружи на iOS ломает стек показа (та же причина, что у
+        // WelcomeGiftModal выше). key={run} перезапускает хореографию с нуля на
+        // каждый тап, иначе повторный показ стартовал бы с конца анимации.
+        <PremiumCelebrationModal
+          key={preview.run}
+          visible={!visible && devSurfaceGranted}
+          variant={preview.variant}
+          onClose={() => {
+            closePreview();
+            onOpen?.();
+          }}
         />
       ) : null}
 

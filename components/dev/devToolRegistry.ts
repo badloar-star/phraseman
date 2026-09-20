@@ -44,7 +44,12 @@ export type DevToolAction =
   // как включив его в Пульте ВСЕМ живым пользователям. Здесь оно
   // показывается только на этом устройстве, без записи в remote_config.
   | 'preview-update-modal-optional'
-  | 'preview-update-modal-force';
+  | 'preview-update-modal-force'
+  // зачем (владелец 2026-09-20): «добавь в дев-хаб в самый вверх кнопку,
+  // которая показывает анимацию празднования получения Плюс или Про».
+  // Раньше это жило только внутри витрины движения — два уровня вглубь.
+  | 'preview-celebration-plus'
+  | 'preview-celebration-pro';
 
 export type DevToolIcon =
   | 'call-outline'
@@ -100,6 +105,44 @@ export type DevToolSection = Readonly<{
 }>;
 
 export const DEV_TOOL_SECTIONS = [
+  /**
+   * зачем (владелец 2026-09-20): «ДОБАВЬ В ДЕВ ХАБ В САМЫЙ ВВЕРХ КНОПКУ КОТОРАЯ
+   * ПОКАЗЫВАЕТ АНИМАЦИЮ ПРАЗДНОВАНИЯ ПОЛУЧЕНИЯ ПЛЮС ИЛИ ПРО». order: -2 —
+   * выше рун (-1), то есть самая первая секция хаба. Оба пункта монтируют
+   * БОЕВУЮ модалку PremiumCelebrationModal (хореография v6 «Золотая палата»)
+   * со звуком; вход в неё был только внутри «Движение · все поверхности», где
+   * владелец его не находил. Превью ничего не начисляет и не пишет в
+   * premium_celebration_state — очередь празднования на Главной не трогается.
+   */
+  {
+    id: 'purchase-celebration',
+    order: -2,
+    title: 'Празднование покупки',
+    icon: 'sparkles-outline',
+    testID: 'dev-section-purchase-celebration',
+    tools: [
+      {
+        id: 'celebration-plus',
+        order: 10,
+        title: 'Анимация Plus',
+        detail: 'Боевая золотая хореография со звуком. Ничего не начисляется.',
+        actionLabel: 'Показать',
+        action: 'preview-celebration-plus',
+        icon: 'sparkles-outline',
+        testID: 'dev-celebration-plus',
+      },
+      {
+        id: 'celebration-pro',
+        order: 20,
+        title: 'Анимация Pro',
+        detail: 'Та же хореография в синей палитре Phraseman Pro. Ничего не начисляется.',
+        actionLabel: 'Показать',
+        action: 'preview-celebration-pro',
+        icon: 'diamond-outline',
+        testID: 'dev-celebration-pro',
+      },
+    ],
+  },
   {
     id: 'dev-runes-grant',
     order: -1,

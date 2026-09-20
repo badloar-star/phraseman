@@ -62,6 +62,8 @@ describe('DEV center bottom sheet', () => {
     expect(registry).toContain("action: 'grant-dev-runes'");
     expect(registry).toContain("action: 'open-motion-showcase'");
     expect(registry).toContain("action: 'open-max-voice'");
+    expect(registry).toContain("action: 'preview-celebration-plus'");
+    expect(registry).toContain("action: 'preview-celebration-pro'");
     expect(registry).toContain("action: 'preview-lesson-results'");
     expect(registry).toContain("action: 'preview-spin-reward'");
     expect(registry).toContain("action: 'preview-league-promoted'");
@@ -83,6 +85,9 @@ describe('DEV center bottom sheet', () => {
     // Новая реальная DEV-выдача рун обязана быть первой по последнему решению
     // владельца. Окно обновления остаётся вторым, онбординг — сразу за ним.
     expect(ordered.map((section: { id: string }) => section.id)).toEqual([
+      // Празднование Plus/Pro — самая первая секция (владелец, 2026-09-20):
+      // «в самый вверх кнопку, которая показывает анимацию празднования».
+      'purchase-celebration',
       'dev-runes-grant',
       'update-modal-preview',
       'onboarding-tools',
@@ -107,6 +112,12 @@ describe('DEV center bottom sheet', () => {
       'practice-runes-preview',
     ]);
     const byId = Object.fromEntries(ordered.map((section: { id: string }) => [section.id, section]));
+    expect(byId['purchase-celebration'].tools.map((tool: { id: string }) => tool.id)).toEqual([
+      'celebration-plus',
+      'celebration-pro',
+    ]);
+    // Секция развёрнута: смысл правки — увидеть кнопку сразу, без лишнего тапа.
+    expect(byId['purchase-celebration'].collapsed).toBeUndefined();
     expect(byId['dev-runes-grant'].tools.map((tool: { id: string }) => tool.id)).toEqual(['dev-runes-grant-5000']);
     expect(byId['update-modal-preview'].tools.map((tool: { id: string }) => tool.id)).toEqual([
       'update-modal-optional',

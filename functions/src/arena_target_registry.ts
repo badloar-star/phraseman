@@ -57,6 +57,16 @@ export type ArenaTargetPublication<T extends ArenaStudyTarget = ArenaStudyTarget
     enabled: true;
     ready: true;
     publicationFingerprint: string;
+    /**
+     * Публикация собрана из СТАРОГО конфига, в котором нет `targetPublications`.
+     *
+     * зачем (владелец 2026-09-20): «контуры других языков не готовы, значит
+     * они НЕ ДОЛЖНЫ НИКАК ВЛИЯТЬ на Арену в английском». Задания в Firestore
+     * записаны старой схемой — без `studyTarget` и `publicationFingerprint`.
+     * Контурный запрос их не находит, и Арена умирает во ВСЕХ языках.
+     * По этому признаку выбор заданий идёт старой формой.
+     */
+    legacy?: true;
   }>;
 
 export type ArenaTargetPublicationState<T extends ArenaStudyTarget = ArenaStudyTarget> =
@@ -223,6 +233,7 @@ function legacySingleContourPublication(
     enabled: true,
     ready: true,
     publicationFingerprint: arenaTargetPublicationFingerprint(identity),
+    legacy: true,
   };
 }
 

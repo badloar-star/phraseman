@@ -12,6 +12,7 @@ import { arenaV2ReceiptReward } from './arena_v2_receipt_contract';
 import {
   type TournamentTask,
   applySpeedMatchAttempt,
+  validateTournamentTaskForNewRoom,
 } from './tournament_core';
 import {
   validateArenaTaskForNewRoom,
@@ -273,6 +274,18 @@ type ArenaDuelStoredReport = {
 function arenaDuelSlimOutcomes(outcomes: readonly ArenaTaskOutcome[]): ArenaTaskOutcome[] {
   return outcomes.map((outcome) => ({ ...outcome, answer: null }));
 }
+
+/**
+ * Префиксы id заданий СТАРОГО пула (до языковых контуров).
+ *
+ * зачем: курсор выборки строится из них, и без точного совпадения запрос
+ * промахивается мимо всех заданий. Значения взяты из рабочей версии
+ * (коммит 0217c4a21) без изменений.
+ */
+const LEGACY_TASK_ID_PREFIXES: Record<string, string> = {
+  guess_phrase: 'guess', fill_gap: 'gap', find_oddity: 'odd',
+  translate_build: 'build', speed_match: 'pairs',
+};
 
 const db = admin.firestore();
 const MAX_SPEED_ATTEMPT_IDS = 40;
@@ -704,14 +717,39 @@ async function loadArenaTaskPool(
     const cursorContentSha256 = createHash('sha256')
       .update(`${publication.publicationFingerprint}|${seed}|${cell.mode}|${cell.difficulty}`)
       .digest('hex');
-    const cursor = arenaPublishedTaskCursorDocumentId(publication, cursorContentSha256);
-    const base = db.collection(ARENA_V2_COLLECTIONS.taskSource)
-      .where('poolVersion', '==', publication.poolVersion)
-      .where('studyTarget', '==', publication.studyTarget)
-      .where('publicationFingerprint', '==', publication.publicationFingerprint)
-      .where('mode', '==', cell.mode)
-      .where('difficulty', '==', cell.difficulty)
-      .orderBy(admin.firestore.FieldPath.documentId());
+    /**
+     * СТАРЫЙ пул заданий не знает про языковые контуры.
+     *
+     * зачем (владелец 2026-09-20, «контуры других языков не готовы, значит они
+     * НЕ ДОЛЖНЫ НИКАК ВЛИЯТЬ на Арену в английском»): задания в
+     * `tournamentTasks` записаны без `studyTarget` и `publicationFingerprint`.
+     * Контурный запрос их не находит НИ ОДНОГО — очередь падала с
+     * `arena_task_pool_insufficient`, и Арена умирала во всех языках сразу.
+     *
+     * Пока конфиг без `targetPublications` (publication.legacy), выбираем
+     * задания ровно так, как работало месяцами. Включит владелец контуры —
+     * пойдёт полный запрос соседней сессии.
+     */
+    const legacyPool = publication.legacy === true;
+    /* Старый курсор: id задания собран из префикса режима и sha1 от seed. */
+    const legacyPrefix = `tp2_20260801_v10_${LEGACY_TASK_ID_PREFIXES[cell.mode] ?? cell.mode}_d${cell.difficulty}_`;
+    const cursor = legacyPool
+      ? `${legacyPrefix}${createHash('sha1')
+        .update(`${seed}|${cell.mode}|${cell.difficulty}`).digest('hex')}`
+      : arenaPublishedTaskCursorDocumentId(publication, cursorContentSha256);
+    const base = legacyPool
+      ? db.collection(ARENA_V2_COLLECTIONS.taskSource)
+        .where('poolVersion', '==', publication.poolVersion)
+        .where('mode', '==', cell.mode)
+        .where('difficulty', '==', cell.difficulty)
+        .orderBy(admin.firestore.FieldPath.documentId())
+      : db.collection(ARENA_V2_COLLECTIONS.taskSource)
+        .where('poolVersion', '==', publication.poolVersion)
+        .where('studyTarget', '==', publication.studyTarget)
+        .where('publicationFingerprint', '==', publication.publicationFingerprint)
+        .where('mode', '==', cell.mode)
+        .where('difficulty', '==', cell.difficulty)
+        .orderBy(admin.firestore.FieldPath.documentId());
     const after = await tx.get(base.startAt(cursor).limit(cell.count));
     const docs = [...after.docs];
     if (docs.length < cell.count) {
@@ -724,17 +762,30 @@ async function loadArenaTaskPool(
         arenaPublication?: ArenaPublication;
       };
       const taskPublication = raw.arenaPublication;
-      if (!validateArenaTaskForNewRoom(raw, {
-        studyTarget: publication.studyTarget,
-        factPackVersion: publication.factPackVersion,
-        factPackSha256: publication.factPackSha256,
-      }).ok || raw.mode !== cell.mode
-        || raw.difficulty !== cell.difficulty
-        || taskPublication?.publicationFingerprint !== publication.publicationFingerprint
-        || taskPublication?.manifestSha256 !== publication.manifestSha256
-        || taskPublication?.poolContentSha256 !== publication.manifestSha256
-        || taskPublication?.merkleRootSha256 !== publication.merkleRootSha256
-        || !verifyTournamentPoolTaskProof(raw, publication.merkleRootSha256)) {
+      /**
+       * У СТАРЫХ заданий нет ни `arenaPublication`, ни контурных полей —
+       * контурная валидация отвергла бы каждое. Проверяем их ровно тем, чем
+       * проверяли месяцами: режим, сложность и доказательство Меркла.
+       * Владелец 2026-09-20: незавершённые контуры не смеют влиять на
+       * английский.
+       */
+      const taskInvalid = legacyPool
+        ? (raw.mode !== cell.mode
+          || raw.difficulty !== cell.difficulty
+          || !validateTournamentTaskForNewRoom(raw).ok
+          || !verifyTournamentPoolTaskProof(raw, publication.merkleRootSha256))
+        : (!validateArenaTaskForNewRoom(raw, {
+          studyTarget: publication.studyTarget,
+          factPackVersion: publication.factPackVersion,
+          factPackSha256: publication.factPackSha256,
+        }).ok || raw.mode !== cell.mode
+          || raw.difficulty !== cell.difficulty
+          || taskPublication?.publicationFingerprint !== publication.publicationFingerprint
+          || taskPublication?.manifestSha256 !== publication.manifestSha256
+          || taskPublication?.poolContentSha256 !== publication.manifestSha256
+          || taskPublication?.merkleRootSha256 !== publication.merkleRootSha256
+          || !verifyTournamentPoolTaskProof(raw, publication.merkleRootSha256));
+      if (taskInvalid) {
         throw new HttpsError('failed-precondition', 'arena_task_publication_invalid');
       }
       // Keep the bounded Merkle proof sealed with the match. A later Remote

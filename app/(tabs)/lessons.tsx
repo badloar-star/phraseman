@@ -2485,13 +2485,37 @@ export default function LessonsTab({
       // зависящие от флага эффекты прогрева перезапускались — лишняя работа
       // ровно в момент открытия. Флаг переводится в true один раз, когда
       // прогресс прочитан, и назад уже не откатывается.
+      // [V2-OPEN] Прогрев прогресса: КОГДА стартовал относительно тапа.
+      const warmupStartedAt = Date.now();
+      if (__DEV__) {
+        const t0 = (globalThis as { __v2OpenT0?: number }).__v2OpenT0;
+        console.log(
+          "[V2-OPEN] progress:start",
+          JSON.stringify({
+            sinceTap: t0 ? warmupStartedAt - t0 : null,
+            page,
+            warmupEnabledBy: ENABLE_DEV_TOOLS ? "dev_tools" : "page_is_v2",
+          }),
+        );
+      }
       void withAccountTransitionLock(async () => {
         const stableId = await getStableId();
         const accountScopeHash =
           deriveLocalOfflineProgressAccountScopeHash(stableId);
+        const diskStartedAt = Date.now();
         const state = await createLearningV2CourseLocalProgressStoreV1(
           AsyncStorage,
         ).load(accountScopeHash);
+        if (__DEV__) {
+          console.log(
+            "[V2-OPEN] progress:disk",
+            JSON.stringify({
+              diskMs: Date.now() - diskStartedAt,
+              completed: state.completedSessionIds.length,
+              current: state.currentSessionId,
+            }),
+          );
+        }
         // зачем: звёзды 0–3 на пройденных узлах читаются в том же прогреве, что
         // и прогресс — один заход на диск вместо двух, ноль запросов к серверу.
         await hydrateLearningV2SessionStarResults(accountScopeHash);
@@ -2522,6 +2546,18 @@ export default function LessonsTab({
                   currentSessionId: value.currentSessionId,
                 };
           });
+          if (__DEV__) {
+            const t0 = (globalThis as { __v2OpenT0?: number }).__v2OpenT0;
+            console.log(
+              "[V2-OPEN] progress:applied",
+              JSON.stringify({
+                sinceTap: t0 ? Date.now() - t0 : null,
+                warmupMs: Date.now() - warmupStartedAt,
+                completed: value.completedSessionIds.length,
+                current: value.currentSessionId,
+              }),
+            );
+          }
           setLearningV2ProgressHydrated(true);
         })
         .catch((error) => {
@@ -3999,6 +4035,26 @@ export default function LessonsTab({
       return;
     }
     hapticTap();
+    // [V2-OPEN] Точка отсчёта: момент тапа. Всё, что идёт после, меряется от неё.
+    if (__DEV__) {
+      (globalThis as { __v2OpenT0?: number }).__v2OpenT0 = Date.now();
+      console.log("[V2-OPEN] tap", JSON.stringify({ from: "openNewLessons", t0: 0 }));
+      // Меряем, сколько сам setState держит поток, и когда поток снова свободен.
+      const beforeSetState = Date.now();
+      setPage("v2");
+      console.log(
+        "[V2-OPEN] setState:returned",
+        JSON.stringify({ ms: Date.now() - beforeSetState }),
+      );
+      requestAnimationFrame(() => {
+        const t0 = (globalThis as { __v2OpenT0?: number }).__v2OpenT0;
+        console.log(
+          "[V2-OPEN] js_thread:free",
+          JSON.stringify({ sinceTap: t0 ? Date.now() - t0 : null }),
+        );
+      });
+      return;
+    }
     setPage("v2");
   }, []);
   // зачем (владелец 2026-09-17): вход в «комбинированный урок» — несколько тем
@@ -4926,6 +4982,10 @@ export default function LessonsTab({
                 onPress={() => {
                   if (page !== "v2") {
                     hapticTap();
+                    if (__DEV__) {
+                      (globalThis as { __v2OpenT0?: number }).__v2OpenT0 = Date.now();
+                      console.log("[V2-OPEN] tap", JSON.stringify({ from: "tab_v2", t0: 0 }));
+                    }
                     setPage("v2");
                   }
                 }}
@@ -5014,7 +5074,10 @@ export default function LessonsTab({
                 pl: "Ta lekcja jest jeszcze przygotowywana",
               }))}
               onLockedLessonPress={(lessonOrdinal) => showLearningV2DenialHint(triLang(lang, {
-                ru: "Ещё рано",
+                // зачем (владелец 2026-09-20): та же болезнь, что и в модалке
+                // замка — русский говорил «Ещё рано» и НЕ называл требование,
+                // хотя остальные 8 языков честно называют номер урока.
+                ru: `Пройди урок ${lessonOrdinal - 1}, чтобы открыть этот`,
                 en: `Complete lesson ${lessonOrdinal - 1} to unlock`,
                 uk: `Пройди урок ${lessonOrdinal - 1}, щоб відкрити`,
                 es: `Completa la lección ${lessonOrdinal - 1} para desbloquear`,
@@ -6045,7 +6108,11 @@ export default function LessonsTab({
                   })
                 : gateModal?.kind === "lesson"
                       ? triLang(lang, {
-                          ru: "Ещё рано",
+                          // зачем (владелец 2026-09-20): здесь стояло "Ещё рано" —
+                          // дубль ЗАГОЛОВКА вместо требования. Человек видел дважды
+                          // одну и ту же фразу и НЕ знал, что именно нужно сделать.
+                          // Остальные 8 языков всё это время были написаны верно.
+                          ru: `Пройди урок ${gateModal.prevNum} на 2.5+, чтобы открыть этот`,
                       en: `Complete lesson ${gateModal.prevNum} with 2.5+ to unlock`,
                       uk: `Пройдіть урок ${gateModal.prevNum} з оцінкою 2.5+, щоб відкрити`,
                       es: `Completa la lección ${gateModal.prevNum} con nota mínima de 2,5 para desbloquear`,
@@ -6073,7 +6140,15 @@ export default function LessonsTab({
           // зачем (владелец 2026-09-17): у замка по прогрессу человек не должен
           // упереться в тупик — рядом с причиной сразу лежит выход: открыть
           // именно этот урок за 100 жемчужин, навсегда. Одна шторка, одно решение.
-          isPremium && (gateModal?.kind === "lesson" || gateModal?.kind === "levelGate")
+          //
+          // зачем (владелец 2026-09-20): условие было голым `isPremium`, и после
+          // закрытия уроков 2–3 Free получил РОВНО ТОТ ТУПИК, который обещает
+          // не допускать комментарий выше: причина есть, выхода нет. Теперь кнопка
+          // есть там, где замок ИМЕННО по прогрессу: у Plus — везде, у Free — на
+          // уроках без пейвола (2–3). На уроках 4+ у Free пейвол, а не покупка —
+          // туда ведёт отдельный экран, и покупка там не предлагается.
+          (isPremium || (gateModal?.kind === "lesson" && !requiresPremiumForLesson(gateModal.lessonNum)))
+            && (gateModal?.kind === "lesson" || gateModal?.kind === "levelGate")
             ? [
                 {
                   /**

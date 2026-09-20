@@ -3,8 +3,11 @@
  *
  * зачем (владелец, 2026-09-17): курс снова открывается по порядку, но у
  * человека должен быть выход, если он не хочет проходить предыдущий урок —
- * активный Plus-пользователь может открыть нужный урок за 100 жемчужин.
- * Free-пользователь не может начать эту покупку даже прямым вызовом API.
+ * открыть нужный урок за 100 жемчужин.
+ *
+ * Кто может платить (владелец 2026-09-20): active Plus — за любой закрытый
+ * урок; Free — только за уроки БЕЗ пейвола (2–3), иначе замок прогресса на
+ * них был бы тупиком. Уроки 4+ без Plus не продаются — пейвол не ослаблен.
  *
  * Правила владельца, зашитые здесь:
  *  • покупка открывает РОВНО один урок и НЕ считается его прохождением —
@@ -21,6 +24,7 @@
 import { commitShardCompositeOperation, semanticShardOperationId } from './shards_system';
 import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 import { isMainCourseLesson, isAlwaysOpenLesson } from './main_course_access';
+import { requiresPremiumForLesson } from './monetization_policy';
 import { emitAppEvent } from './events';
 import { DebugLogger } from './debug-logger';
 import { getVerifiedPremiumAccessStatus } from './premium_guard';
@@ -87,10 +91,9 @@ export async function buyLessonWithPearls(params: Readonly<{
   const storageKey = purchasedLessonsKey(studyTarget);
   try {
     const operationId = await semanticShardOperationId('lesson_pearl_unlock', subjectId);
-    // Денежная граница обязана жить внутри экспортируемой операции, а не только
-    // в UI. Free отклоняется ДО чтения доступности урока, поэтому прямой вызов
-    // всегда получает premium_required, даже если передал Free-урок/стартер.
-    // Кэш и cloud restore исключены; ошибка проверки трактуется fail-closed.
+    // Денежная граница обязана жить внутри экспортируемой операции, а не только в UI.
+    // Кэш и cloud restore исключены; ошибка проверки трактуется fail-closed
+    // (hasActivePlus остаётся false — тогда платный урок не продастся).
     const accountToken = captureAccountGeneration();
     let hasActivePlus = false;
     try {
@@ -106,10 +109,22 @@ export async function buyLessonWithPearls(params: Readonly<{
         'warning',
       );
     }
-    if (!hasActivePlus) return { ok: false, reason: 'premium_required' };
+    // зачем (владелец 2026-09-20): раньше здесь был глухой отказ всем без Plus.
+    // После закрытия уроков 2–3 это стало тупиком: на них пейвола нет,
+    // а выхода за жемчужины не было. Теперь Free платит ТОЛЬКО за уроки без
+    // пейвола; уроки 4+ по-прежнему требуют подписки — пейвол не ослаблен.
+    // Граница живёт ЗДЕСЬ, а не только в UI: прямой вызов тоже получит отказ.
+    if (!hasActivePlus && requiresPremiumForLesson(lessonId)) {
+      console.warn('[LESSON-UNLOCK] buy:out premium_required', JSON.stringify({
+        lessonId,
+        hasActivePlus,
+        paywalled: true,
+      }));
+      return { ok: false, reason: 'premium_required' };
+    }
 
-    // У active Plus платить можно только за реально закрытый урок. Этот единый
-    // helper учитывает Free 1–3, старты 9/19/29, точную прошлую покупку и
+    // Платить можно только за реально закрытый урок. Этот единый
+    // helper учитывает урок 1, старты 9/19/29, точную прошлую покупку и
     // бронзу на предыдущем уроке. No-op случаи не доходят до дебета.
     if (await isLessonUnlockedByPremiumCourse(lessonId, studyTarget)) {
       return { ok: false, reason: 'already_accessible' };

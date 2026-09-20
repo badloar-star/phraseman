@@ -68,11 +68,13 @@ describe('lesson pearl purchase Plus boundary', () => {
     expect(emitAppEvent).not.toHaveBeenCalled();
   });
 
+  // ВНИМАНИЕ: до 2026-09-20 сюда входили уроки 2 и 3 — Free получал отказ
+  // ВСЕГДА. После закрытия уроков 2–3 это стало тупиком: пейвола на них нет,
+  // а выхода за жемчужины не было. Здесь остались ТОЛЬКО платные уроки.
   it.each([
-    [2, 'Free sample'],
-    [3, 'Free sample'],
     [9, 'Plus section starter'],
     [7, 'prior pearl purchase'],
+    [32, 'last paid lesson'],
   ] as ReadonlyArray<readonly [number, string]>)('returns premium_required to Free before checking accessible lesson %i (%s)', async (lessonId) => {
     mockPremiumCourseAccess.mockResolvedValue(true);
 
@@ -84,6 +86,39 @@ describe('lesson pearl purchase Plus boundary', () => {
     expect(mockPremiumCourseAccess).not.toHaveBeenCalled();
     expect(mockCompositeCommit).not.toHaveBeenCalled();
     expect(emitAppEvent).not.toHaveBeenCalled();
+  });
+
+  // Владелец 2026-09-20: Free МОЖЕТ купить урок без пейвола (2–3),
+  // иначе замок прогресса на них — тупик без выхода.
+  it.each([
+    [2, 'Free sample'],
+    [3, 'Free sample'],
+  ] as ReadonlyArray<readonly [number, string]>)('lets Free buy non-paywalled lesson %i (%s)', async (lessonId) => {
+    mockPremiumCourseAccess.mockResolvedValue(false);
+    mockCompositeCommit.mockResolvedValue({
+      status: 'applied',
+      operation: { ownerStableId: 'account-a' },
+    } as never);
+
+    await expect(buyLessonWithPearls({ lessonId })).resolves.toEqual({
+      ok: true,
+      spent: LESSON_PEARL_UNLOCK_PRICE,
+      lessonId,
+      alreadyOwned: false,
+    });
+
+    expect(mockCompositeCommit).toHaveBeenCalledTimes(1);
+  });
+
+  it('у Free уже открытый урок 2 не доходит до дебета', async () => {
+    mockPremiumCourseAccess.mockResolvedValue(true);
+
+    await expect(buyLessonWithPearls({ lessonId: 2 })).resolves.toEqual({
+      ok: false,
+      reason: 'already_accessible',
+    });
+
+    expect(mockCompositeCommit).not.toHaveBeenCalled();
   });
 
   it('keeps the Plus purchase as one idempotent composite debit and grant', async () => {

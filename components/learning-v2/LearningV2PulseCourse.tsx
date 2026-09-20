@@ -336,6 +336,18 @@ export default function LearningV2PulseCourse(props: Props) {
       }
     },
   );
+  // [V2-OPEN] Монтирование карты. Лог остаётся НАВСЕГДА: второе монтирование
+  // за один вход значит, что раздел открылся дважды — именно этот класс бага
+  // владелец видел как «моргает и открывается снова» (20.09).
+  useEffect(() => {
+    if (!__DEV__) return;
+    const t0 = (globalThis as { __v2OpenT0?: number }).__v2OpenT0;
+    console.log(
+      "[V2-OPEN] map:mount",
+      JSON.stringify({ sinceTap: t0 ? Date.now() - t0 : null }),
+    );
+    return () => console.log("[V2-OPEN] map:unmount", JSON.stringify({ reason: "component_destroyed" }));
+  }, []);
   const entryPlayed = useRef(false);
   const centeredOnce = useRef(false);
   const mapEntry = useSharedValue(1);
@@ -639,41 +651,27 @@ export default function LearningV2PulseCourse(props: Props) {
         // Далёкие строки и reducedMotion не создают хуков Reanimated вовсе:
         // обёртка с useAnimatedStyle монтируется только рядом с текущей.
         const distance = Math.abs(index - currentRowIndex);
-        // Отрезок между соседними узлами: длина и угол по смещению.
-        const connectorDx = nextX - x;
-        const connectorLength = Math.sqrt(connectorDx * connectorDx + geometry.step * geometry.step);
-        const connectorAngle = (Math.atan2(connectorDx, geometry.step) * 180) / Math.PI;
+        // зачем: ЗАМЕР НА ЭМУЛЯТОРЕ 20.09. SVG на каждой строке
+        // ПОДОЗРЕВАЛСЯ в долгом открытии раздела, и я заменил его на
+        // повёрнутый View. Замер опроверг гипотезу: быстрее не стало (7,5 с
+        // против 5,7 с), а линии снова уехали мимо кружков — ровно тот же
+        // дефект, из-за которого View откатывали в прошлый раз.
+        // Настоящая причина найдена отдельно и уже устранена: подготовка
+        // занятия и аудио стартовала ДО первого кадра карты (семь сборок
+        // мусора подряд). Рендер строк стоит 0 мс — SVG здесь ни при чём.
+        // НЕ МЕНЯТЬ на View: проверено дважды, оба раза ломает геометрию.
+        const routeD = `M ${x} 0 C ${x} 64 ${nextX} 64 ${nextX} ${geometry.step}`;
         const body = (
           <View style={{ height: geometry.step, alignItems: 'center', justifyContent: 'flex-start', paddingTop: 6 }}>
-          {/* зачем: здесь был Svg-холст на КАЖДОЙ строке. react-native-svg
-              монтирует отдельную нативную поверхность на каждый такой холст — при
-              окне 11 их держалось ~62 одновременно ради декоративной дужки
-              прозрачностью 0.35 (аудит 20.09, третья по тяжести причина).
-              Замер геометрии: сдвиг между соседними узлами принимает ровно
-              три значения (+71, 0, −71), то есть дужка — это отрезок, и его
-              рисует обычный View с поворотом. Нативных поверхностей больше нет. */}
+          {/* зачем: дужка между узлами. Попытка заменить SVG на повёрнутый
+              View провалилась — палки уехали мимо кружков (владелец 20.09
+              прислал скриншот). Поворот идёт вокруг центра блока, и концы
+              отрезка не совпадают с центрами кружков. Возвращён рабочий SVG:
+              он рисует кривую по точным координатам узлов. */}
           {index < rows.length - 1 ? (
-            <View
-              pointerEvents="none"
-              style={{
-                position: 'absolute',
-                // Полоска идёт от ЦЕНТРА этого кружка до центра следующего.
-                // Кружок стоит с paddingTop 6, значит его центр — 6 + размер/2.
-                top: 6 + geometry.nodeSize / 2,
-                // x и nextX УЖЕ содержат viewport.width / 2 (см. выше:
-                // const x = viewport.width / 2 + nodeOffsetX). Прибавлять
-                // половину ширины второй раз нельзя — полоски уезжали на
-                // пол-экрана вправо (владелец 20.09).
-                left: (x + nextX) / 2 - 3.5,
-                width: 7,
-                height: connectorLength,
-
-                borderRadius: 3.5,
-                backgroundColor: t.bgSurface2,
-                opacity: 0.35,
-                transform: [{ rotate: `${connectorAngle}deg` }],
-              }}
-            />
+            <Svg pointerEvents="none" width={viewport.width} height={geometry.step * 2} style={{ position: 'absolute', top: geometry.step / 2, left: 0 }}>
+              <Path d={routeD} fill="none" stroke={t.bgSurface2} strokeOpacity={0.35} strokeWidth={7} strokeLinecap="round" />
+            </Svg>
           ) : null}
           {/* зачем: владелец 20.09 — «тексты обрезаются экраном, делай их ПОД
               кнопками». Сбоку подпись не помещалась: змейка уводит кружок на

@@ -2485,19 +2485,7 @@ export default function LessonsTab({
       // зависящие от флага эффекты прогрева перезапускались — лишняя работа
       // ровно в момент открытия. Флаг переводится в true один раз, когда
       // прогресс прочитан, и назад уже не откатывается.
-      // [V2-OPEN] Прогрев прогресса: КОГДА стартовал относительно тапа.
       const warmupStartedAt = Date.now();
-      if (__DEV__) {
-        const t0 = (globalThis as { __v2OpenT0?: number }).__v2OpenT0;
-        console.log(
-          "[V2-OPEN] progress:start",
-          JSON.stringify({
-            sinceTap: t0 ? warmupStartedAt - t0 : null,
-            page,
-            warmupEnabledBy: ENABLE_DEV_TOOLS ? "dev_tools" : "page_is_v2",
-          }),
-        );
-      }
       void withAccountTransitionLock(async () => {
         const stableId = await getStableId();
         const accountScopeHash =
@@ -2915,25 +2903,38 @@ export default function LessonsTab({
     // This is intentionally fire-and-forget: map and session modals never wait
     // for audio I/O. The coordinator persists the request, resumes on network
     // changes, prioritizes three sessions, then fills released lessons on Wi-Fi.
-    void import("../learning_v2_audio_prefetch_coordinator_v1")
-      .then(({ requestLearningV2AudioPrefetchV1 }) => {
-        if (cancelled) return undefined;
-        return requestLearningV2AudioPrefetchV1({
-          targetLanguage: studyTarget,
-          interfaceLocale: lang,
-          lessonOrdinal: currentLessonOrdinal,
-          sessionOrdinal: currentSessionOrdinal,
+    //
+    // зачем: динамический import парсит модуль на JS-потоке, а координатор
+    // сразу тянет аудио. Замер 20.09 показал, что вместе с прогревом занятия
+    // это давало семь сборок мусора подряд и держало поток 6+ секунд — ровно
+    // в тот момент, когда человек ждал первый кадр карты. Ждём кадр: сначала
+    // карта на экране, потом тяжёлое.
+    let frame: number | null = requestAnimationFrame(() => {
+      frame = null;
+      if (cancelled) return;
+      void import("../learning_v2_audio_prefetch_coordinator_v1")
+        .then(({ requestLearningV2AudioPrefetchV1 }) => {
+          if (cancelled) return undefined;
+          return requestLearningV2AudioPrefetchV1({
+            targetLanguage: studyTarget,
+            interfaceLocale: lang,
+            lessonOrdinal: currentLessonOrdinal,
+            sessionOrdinal: currentSessionOrdinal,
+          });
+        })
+        .catch((error) => {
+          if (cancelled) return;
+          DebugLogger.error(
+            "learning_v2:lesson_audio_pack_prepare",
+            error instanceof Error ? error : new Error(String(error)),
+            "warning",
+          );
         });
-      })
-      .catch((error) => {
-        if (cancelled) return;
-        DebugLogger.error(
-          "learning_v2:lesson_audio_pack_prepare",
-          error instanceof Error ? error : new Error(String(error)),
-          "warning",
-        );
-      });
-    return () => { cancelled = true; };
+    });
+    return () => {
+      cancelled = true;
+      if (frame !== null) cancelAnimationFrame(frame);
+    };
   }, [
     currentLessonOrdinal,
     currentLearningV2SessionCoordinates?.sessionOrdinal,
@@ -2946,6 +2947,8 @@ export default function LessonsTab({
     lang,
   ]);
 
+  // Кадр, на котором запланирован отложенный прогрев занятия (см. эффект ниже).
+  const prewarmFrameRef = useRef<number | null>(null);
   const prewarmCurrentLearningV2SessionOnEntry = useCallback(() => {
     const current = currentLearningV2SessionCoordinates;
     if (!current) return;
@@ -2982,15 +2985,42 @@ export default function LessonsTab({
       !learningV2ProgressHydrated
     )
       return;
-    // This deliberately runs while Founder Pass and map-entry motion are on
-    // screen. currentSessionId comes from local progress; lesson expansion is
-    // not a prerequisite for text/audio preparation.
+    // зачем: ЗАМЕР НА ЭМУЛЯТОРЕ 20.09. От тапа до первого кадра карты
+    // проходило 5,5–7,5 секунды. Логи показали, что модель строится 4–32 мс,
+    // а layout 1 мс — время съедал НЕ рендер. В окне ожидания стояли СЕМЬ
+    // сборок мусора подряд (13–23 МБ каждая, сотни LOS-объектов) и следом
+    // предупреждение learning_v2:lesson_audio_pack_prepare. Это подготовка
+    // материала и аудио текущего занятия: она стартовала СРАЗУ по входу и
+    // душила JS-поток, пока человек смотрел на пустой экран.
+    //
+    // Раньше комментарий обещал, что прогрев идёт «пока на экране вступление»
+    // — но вступление мгновенное, и прогрев приходился ровно на первый кадр.
+    // Откладываем его за первый кадр: карта показывается сразу, подготовка
+    // догоняет фоном. Ничего не теряем — занятие всё равно готовится задолго
+    // до того, как человек успеет выбрать узел.
     if (
       learningV2FounderPassVisible ||
       learningV2FounderPassGate.revealCourse
     ) {
-      prewarmCurrentLearningV2SessionOnEntry();
+      let cancelled = false;
+      // Два кадра: первый отдаёт карту на экран, второй запускает тяжёлое.
+      const firstFrame = requestAnimationFrame(() => {
+        const secondFrame = requestAnimationFrame(() => {
+          if (cancelled) return;
+          prewarmCurrentLearningV2SessionOnEntry();
+        });
+        prewarmFrameRef.current = secondFrame;
+      });
+      prewarmFrameRef.current = firstFrame;
+      return () => {
+        cancelled = true;
+        if (prewarmFrameRef.current !== null) {
+          cancelAnimationFrame(prewarmFrameRef.current);
+          prewarmFrameRef.current = null;
+        }
+      };
     }
+    return undefined;
   }, [
     learningV2FounderPassGate.revealCourse,
     learningV2FounderPassVisible,
@@ -4035,25 +4065,11 @@ export default function LessonsTab({
       return;
     }
     hapticTap();
-    // [V2-OPEN] Точка отсчёта: момент тапа. Всё, что идёт после, меряется от неё.
+    // [V2-OPEN] Точка отсчёта входа в раздел. Остаётся навсегда: по ней
+    // меряется всё остальное, если вход снова начнёт тормозить.
     if (__DEV__) {
       (globalThis as { __v2OpenT0?: number }).__v2OpenT0 = Date.now();
-      console.log("[V2-OPEN] tap", JSON.stringify({ from: "openNewLessons", t0: 0 }));
-      // Меряем, сколько сам setState держит поток, и когда поток снова свободен.
-      const beforeSetState = Date.now();
-      setPage("v2");
-      console.log(
-        "[V2-OPEN] setState:returned",
-        JSON.stringify({ ms: Date.now() - beforeSetState }),
-      );
-      requestAnimationFrame(() => {
-        const t0 = (globalThis as { __v2OpenT0?: number }).__v2OpenT0;
-        console.log(
-          "[V2-OPEN] js_thread:free",
-          JSON.stringify({ sinceTap: t0 ? Date.now() - t0 : null }),
-        );
-      });
-      return;
+      console.log("[V2-OPEN] tap", JSON.stringify({ from: "openNewLessons" }));
     }
     setPage("v2");
   }, []);
@@ -4984,7 +5000,7 @@ export default function LessonsTab({
                     hapticTap();
                     if (__DEV__) {
                       (globalThis as { __v2OpenT0?: number }).__v2OpenT0 = Date.now();
-                      console.log("[V2-OPEN] tap", JSON.stringify({ from: "tab_v2", t0: 0 }));
+                      console.log("[V2-OPEN] tap", JSON.stringify({ from: "tab_v2" }));
                     }
                     setPage("v2");
                   }

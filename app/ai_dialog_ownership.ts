@@ -44,7 +44,7 @@ import {
 } from './dialogue_language_registry';
 import { emitAppEvent } from './events';
 import { mergeLevelSpinServerStars, readUnifiedLevelSpinStars } from './level_spin_star_grants';
-import { withStorageLock } from './storage_mutex';
+import { withStorageLock, withStorageLockDeadline } from './storage_mutex';
 
 const REGION = 'us-central1';
 
@@ -165,7 +165,7 @@ export async function buyDialogAccessLocally(
    * ожидание В ОЧЕРЕДИ — если работа началась, она доходит до конца
    * и списание с записью владения не разорвётся пополам.
    */
-  const outcome = await withAccountTransitionLockWithDeadline(async () => withStorageLock(async () => {
+  const outcome = await withAccountTransitionLockWithDeadline(async () => withStorageLockDeadline(async () => {
     if (!isCurrentAccountGeneration(token, ownerStableId)) {
       return { ok: false, reason: 'identity_changed' } as const;
     }
@@ -207,14 +207,15 @@ export async function buyDialogAccessLocally(
       `scenario=${scenarioId} price=${priceRunes} balance ${balance}→${balanceAfter}`,
     );
     return { ok: true, alreadyOwned: false, balance: balanceAfter } as const;
-  }), DIALOG_PURCHASE_LOCK_TIMEOUT_MS);
+  }, DIALOG_PURCHASE_LOCK_TIMEOUT_MS), DIALOG_PURCHASE_LOCK_TIMEOUT_MS);
 
-  if (!outcome.completed) {
+  if (!outcome.completed || !outcome.value.completed) {
     // Немой отказ запрещён: именно он делал кнопку мёртвой.
-    DebugLogger.info('[RUNES-BUY] denied', `storage_busy scenario=${scenarioId} waitedMs=${DIALOG_PURCHASE_LOCK_TIMEOUT_MS}`);
+    const stage = outcome.completed ? 'storage' : 'account';
+    DebugLogger.info('[RUNES-BUY] denied', `storage_busy stage=${stage} scenario=${scenarioId} waitedMs=${DIALOG_PURCHASE_LOCK_TIMEOUT_MS}`);
     return { ok: false, reason: 'storage_busy' };
   }
-  return outcome.value;
+  return outcome.value.value;
 }
 
 function callable() {

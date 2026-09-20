@@ -134,6 +134,9 @@ import { registerInLeagueGroupSilently } from './firestore_leagues';
 import { PlayInstallReferrer } from 'react-native-play-install-referrer';
 import { migrateWeekPointsIfNeeded, updateStreakOnActivity } from './hall_of_fame_utils';
 import { preloadDeferredNonPrimaryImages, preloadPrimaryTabImages } from './image_preload';
+import { seedLearningV2BootstrapAudioCacheV1 } from './learning_v2_bootstrap_audio_seed_v1';
+import { registerLearningV2AudioPrefetchBackgroundTaskV1 } from './learning_v2_audio_prefetch_background_v1';
+import { startLearningV2AudioPrefetchNetworkObserverV1 } from './learning_v2_audio_prefetch_coordinator_v1';
 import { setupNotificationTapHandler } from './notification_tap_handler';
 // зачем: разбиение общего импорта из './notifications' на точечные потеряло эти
 // две функции — файл перестал собираться (TS2552/TS2304 на строках 2816/2819),
@@ -170,6 +173,7 @@ import PerfectWeekHost from '../components/PerfectWeekHost';
 import BoonActivatedHost from '../components/BoonActivatedHost';
 import StreakRiskToastHost from '../components/StreakRiskToastHost';
 import BillingIssueToastHost from '../components/BillingIssueToastHost';
+import ArenaOpponentFoundHost from '../components/arena/ArenaOpponentFoundHost';
 import ThemedBlockingAlertHost from '../components/ThemedBlockingAlertHost';
 import PhoneStateRecoveryScreen from '../components/PhoneStateRecoveryScreen';
 import AccountSwitchRecoveryScreen from '../components/AccountSwitchRecoveryScreen';
@@ -1071,6 +1075,10 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   useEffect(() => {
     void cleanupRetiredMistakePracticeStorage().catch(() => {});
   }, []);
+  useEffect(() => startLearningV2AudioPrefetchNetworkObserverV1(), []);
+  useEffect(() => {
+    void registerLearningV2AudioPrefetchBackgroundTaskV1().catch(() => {});
+  }, []);
   useEffect(() => {
     if (!ready) return undefined;
     let cancelled = false;
@@ -1302,9 +1310,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     if (accountGeneration.phase !== 'active' || !accountGeneration.stableId) return;
     // Warm before navigation, without waiting for first content or delaying splash dismissal.
     void import('./arena_home_preload')
-      .then(({ startArenaHomePreload }) => startArenaHomePreload(accountGeneration))
+      .then(({ startArenaHomePreload }) => startArenaHomePreload(accountGeneration, studyTarget))
       .catch(() => { /* The hub can still load and retry independently. */ });
-  }, [accountGeneration.generation, accountGeneration.phase, accountGeneration.stableId]);
+  }, [accountGeneration.generation, accountGeneration.phase, accountGeneration.stableId, studyTarget]);
 
   // Смена аккаунта — накопленное чужое НЕ должно прилететь в счётчик нового
   // пользователя (класс бага «чужие пиксели после смены аккаунта»,
@@ -2554,6 +2562,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       const iconFontsReady = preloadVectorIconFonts();
       void iconFontsReady.catch(() => {});
       void preloadPrimaryTabImages().catch(() => {});
+      void seedLearningV2BootstrapAudioCacheV1().catch(() => {});
 
       if (safetyTimer) clearTimeout(safetyTimer);
       bootMark('setReady(true) — bootstrap COMPLETE');
@@ -3561,6 +3570,9 @@ export default function RootLayout() {
                     <GlobalFriendGiftHost />
                     <StreakRiskToastHost />
                     <BillingIssueToastHost />
+                    {/* зачем: поиск соперника живёт вне экрана Арены, поэтому
+                        и предложение матча обязано приходить на любом экране. */}
+                    <ArenaOpponentFoundHost />
                     <ThemedBlockingAlertHost />
                     <PhoneStateRecoveryScreen />
                     <AccountSwitchRecoveryScreen />

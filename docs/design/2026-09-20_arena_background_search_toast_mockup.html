@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Арена — фоновый поиск: макет тоста</title>
+<style>
+  :root{
+    --bg:#070C08; --elev:#161F17;
+    --text:#F0F7F2; --dim:rgba(240,247,242,.62); --faint:rgba(240,247,242,.40);
+    --accent:#47C870; --accentSoft:rgba(71,200,112,.14); --accentText:#042010;
+    --gold:#FFD43B;
+    --page:#0A0F0B;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{
+    margin:0;background:var(--page);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+    padding:40px 20px 80px;
+  }
+  .wrap{max-width:1180px;margin:0 auto}
+  h1{font-size:26px;font-weight:800;letter-spacing:-.02em;margin:0 0 6px}
+  .sub{color:var(--dim);font-size:15px;line-height:1.55;margin:0 0 34px;max-width:70ch}
+  .grid{display:flex;flex-wrap:wrap;gap:30px}
+  .col{flex:1 1 320px;min-width:300px;max-width:356px}
+  .cap{font-size:13px;font-weight:700;margin:0 0 4px}
+  .capnote{font-size:12px;color:var(--faint);line-height:1.5;margin:0 0 12px;min-height:36px}
+
+  /* ── телефон ── */
+  .phone{
+    position:relative;width:100%;aspect-ratio:9/17.5;border-radius:36px;
+    background:var(--bg);overflow:hidden;
+    box-shadow:0 22px 50px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.05);
+  }
+  .screenbg{position:absolute;inset:0;padding:46px 16px 0;opacity:.45}
+  .fakebar{height:11px;border-radius:6px;background:var(--elev);margin-bottom:11px}
+  .w60{width:60%} .w40{width:40%} .w80{width:80%}
+  .fakecard{height:74px;border-radius:18px;background:var(--elev);margin-bottom:12px}
+  .tabbar{position:absolute;left:14px;right:14px;bottom:14px;height:56px;border-radius:26px;
+    background:var(--elev);opacity:.55}
+
+  /* ── тост находки ── */
+  .toast{
+    position:absolute;left:12px;right:12px;bottom:84px;
+    border-radius:24px;padding:14px 14px 13px;
+    background:linear-gradient(152deg,#1B2A1E 0%,#131B14 62%,#111812 100%);
+    box-shadow:0 18px 36px rgba(0,0,0,.52),inset 0 1px 0 rgba(255,255,255,.07);
+  }
+  .toast::before{ /* нимб находки — тон, не обводка */
+    content:'';position:absolute;inset:0;border-radius:24px;pointer-events:none;
+    background:radial-gradient(120% 90% at 50% 0%,rgba(71,200,112,.20) 0%,transparent 62%);
+  }
+  .thead{position:relative;display:flex;align-items:center;gap:11px;margin-bottom:12px}
+  .avatar{
+    width:44px;height:44px;border-radius:15px;flex:none;
+    background:linear-gradient(145deg,#2B4A33,#18251B);
+    display:grid;place-items:center;font-size:21px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.09);
+  }
+  .tmeta{flex:1;min-width:0}
+  .tname{font-size:16px;font-weight:800;letter-spacing:-.01em;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tline{display:flex;align-items:center;gap:7px;margin-top:3px}
+  .tsub{font-size:13px;color:var(--dim);font-weight:600;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .stars{display:flex;gap:2px;flex:none}
+  .star{color:var(--gold);font-size:11px}
+
+  /* кольцо обратного отсчёта */
+  .ring{position:relative;width:38px;height:38px;flex:none}
+  .ring svg{transform:rotate(-90deg);display:block}
+  .ring .track{stroke:rgba(240,247,242,.13)}
+  .ring .fill{stroke:var(--accent);stroke-linecap:round;
+    stroke-dasharray:100.5;stroke-dashoffset:0;
+    animation:drain 12s linear forwards}
+  .ring.warn .fill{stroke:var(--gold);stroke-dashoffset:75;animation:none}
+  @keyframes drain{to{stroke-dashoffset:100.5}}
+  .ringnum{position:absolute;inset:0;display:grid;place-items:center;
+    font-size:13px;font-weight:800;font-variant-numeric:tabular-nums}
+
+  .tbtns{display:flex;gap:9px;position:relative}
+  .btn{
+    flex:1;border:0;border-radius:15px;padding:13px 10px;
+    font-size:15px;font-weight:800;letter-spacing:-.01em;cursor:pointer;
+    font-family:inherit;transition:transform .12s cubic-bezier(.22,1,.36,1);
+  }
+  .btn:active{transform:scale(.97)}
+  .btn.accept{
+    background:linear-gradient(180deg,#6FE39A 0%,#47C870 52%,#2F9E55 100%);
+    color:var(--accentText);
+    box-shadow:0 5px 14px rgba(71,200,112,.30),inset 0 1px 0 rgba(255,255,255,.35);
+  }
+  .btn.decline{background:rgba(240,247,242,.08);color:var(--dim)}
+
+  /* ── плашка «идёт поиск» ── */
+  .pill{
+    position:absolute;left:12px;right:12px;bottom:84px;
+    border-radius:22px;padding:11px 14px;
+    display:flex;align-items:center;gap:11px;
+    background:linear-gradient(150deg,#16201A,#111812);
+    box-shadow:0 12px 26px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.05);
+  }
+  .pulse{width:9px;height:9px;border-radius:50%;background:var(--accent);flex:none;
+    animation:pulse 1.7s ease-out infinite}
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(71,200,112,.5)}
+    70%{box-shadow:0 0 0 9px rgba(71,200,112,0)}
+    100%{box-shadow:0 0 0 0 rgba(71,200,112,0)}
+  }
+  .pilltxt{flex:1;font-size:14px;font-weight:700}
+  .pilltime{font-size:14px;font-weight:800;color:var(--dim);font-variant-numeric:tabular-nums}
+  .pillx{width:30px;height:30px;border-radius:50%;background:rgba(240,247,242,.08);
+    display:grid;place-items:center;color:var(--dim);font-size:15px;flex:none;cursor:pointer}
+  .pill.quiet .pulse{animation:none;background:var(--faint);box-shadow:none}
+
+  .toast.warm::before{background:radial-gradient(120% 90% at 50% 0%,rgba(255,212,59,.14) 0%,transparent 62%)}
+  .toast.warm .avatar{background:linear-gradient(145deg,#33301C,#1C1A12)}
+
+  /* ── модалка нехватки энергии (существующая NoEnergyModal) ── */
+  .scrim{position:absolute;inset:0;background:rgba(4,8,5,.72)}
+  .sheet{
+    position:absolute;left:16px;right:16px;bottom:76px;
+    border-radius:26px;padding:22px 18px 16px;text-align:center;
+    background:linear-gradient(160deg,#1A241B,#121814);
+    box-shadow:0 20px 44px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.07);
+  }
+  .sheeticon{
+    width:52px;height:52px;border-radius:18px;margin:0 auto 12px;
+    display:grid;place-items:center;font-size:25px;
+    background:linear-gradient(145deg,#3A3520,#1F1C12);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.1);
+  }
+  .sheettitle{font-size:19px;font-weight:800;letter-spacing:-.015em;margin-bottom:6px}
+  .sheettext{font-size:14px;color:var(--dim);line-height:1.5;margin-bottom:16px}
+  .sheetcta{width:100%;margin-top:8px}
+
+  .legend{margin-top:46px;padding-top:26px;border-top:1px solid rgba(240,247,242,.08)}
+  .legend h2{font-size:17px;font-weight:800;margin:0 0 14px}
+  .legend ul{margin:0;padding-left:20px;color:var(--dim);font-size:14px;line-height:1.8;max-width:82ch}
+  .legend b{color:var(--text);font-weight:700}
+  .tag{display:inline-block;font-size:11px;font-weight:800;padding:2px 8px;border-radius:7px;
+    background:var(--accentSoft);color:var(--accent);margin-left:6px;vertical-align:middle}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Арена — поиск соперника продолжается вне экрана</h1>
+  <p class="sub">
+    Ушёл в Карточки или Настройки — поиск идёт дальше. Соперник найден — поверх
+    любого экрана приходит тост с выбором. Отклонил или промолчал — поиск
+    останавливается. Энергия проверяется на входе, а списывается только в момент
+    принятия матча.
+  </p>
+
+  <div class="grid">
+
+    <!-- 1 -->
+    <div class="col">
+      <p class="cap">1 · Поиск идёт, вы на другом экране</p>
+      <p class="capnote">Тихая плашка над таббаром — напоминание, что поиск живой. Крестик останавливает.</p>
+      <div class="phone">
+        <div class="screenbg">
+          <div class="fakebar w60"></div><div class="fakecard"></div>
+          <div class="fakebar w80"></div><div class="fakecard"></div>
+          <div class="fakebar w40"></div><div class="fakecard"></div>
+        </div>
+        <div class="tabbar"></div>
+        <div class="pill">
+          <span class="pulse"></span>
+          <span class="pilltxt">Ищем соперника</span>
+          <span class="pilltime">0:14</span>
+          <span class="pillx">✕</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="col">
+      <p class="cap">2 · Соперник найден<span class="tag">главный экран</span></p>
+      <p class="capnote">Кольцо истекает за 12 секунд — ровно столько держит матч сервер. Цифра живая.</p>
+      <div class="phone">
+        <div class="screenbg">
+          <div class="fakebar w60"></div><div class="fakecard"></div>
+          <div class="fakebar w80"></div><div class="fakecard"></div>
+          <div class="fakebar w40"></div><div class="fakecard"></div>
+        </div>
+        <div class="tabbar"></div>
+        <div class="toast">
+          <div class="thead">
+            <div class="avatar">🦊</div>
+            <div class="tmeta">
+              <div class="tname">Соперник найден</div>
+              <div class="tline">
+                <span class="tsub">Марина</span>
+                <span class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+              </div>
+            </div>
+            <div class="ring">
+              <svg width="38" height="38" viewBox="0 0 38 38">
+                <circle class="track" cx="19" cy="19" r="16" fill="none" stroke-width="3"/>
+                <circle class="fill" cx="19" cy="19" r="16" fill="none" stroke-width="3"/>
+              </svg>
+              <div class="ringnum" id="cd">12</div>
+            </div>
+          </div>
+          <div class="tbtns">
+            <button class="btn decline">Отклонить</button>
+            <button class="btn accept">Принять · 25⚡</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="col">
+      <p class="cap">3 · Последние секунды</p>
+      <p class="capnote">Кольцо желтеет. Вёрстка не двигается ни на пиксель — меняется только цвет и цифра.</p>
+      <div class="phone">
+        <div class="screenbg">
+          <div class="fakebar w60"></div><div class="fakecard"></div>
+          <div class="fakebar w80"></div><div class="fakecard"></div>
+          <div class="fakebar w40"></div><div class="fakecard"></div>
+        </div>
+        <div class="tabbar"></div>
+        <div class="toast">
+          <div class="thead">
+            <div class="avatar">🦊</div>
+            <div class="tmeta">
+              <div class="tname">Соперник найден</div>
+              <div class="tline">
+                <span class="tsub">Марина</span>
+                <span class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span>
+              </div>
+            </div>
+            <div class="ring warn">
+              <svg width="38" height="38" viewBox="0 0 38 38">
+                <circle class="track" cx="19" cy="19" r="16" fill="none" stroke-width="3"/>
+                <circle class="fill" cx="19" cy="19" r="16" fill="none" stroke-width="3"/>
+              </svg>
+              <div class="ringnum">3</div>
+            </div>
+          </div>
+          <div class="tbtns">
+            <button class="btn decline">Отклонить</button>
+            <button class="btn accept">Принять · 25⚡</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="col">
+      <p class="cap">4 · Приложение свернули</p>
+      <p class="capnote">Таймеры глохнут, батарея не тратится. Вернулись — поиск продолжится с того же места.</p>
+      <div class="phone">
+        <div class="screenbg">
+          <div class="fakebar w60"></div><div class="fakecard"></div>
+          <div class="fakebar w80"></div><div class="fakecard"></div>
+          <div class="fakebar w40"></div><div class="fakecard"></div>
+        </div>
+        <div class="tabbar"></div>
+        <div class="pill quiet">
+          <span class="pulse"></span>
+          <span class="pilltxt">Поиск на паузе</span>
+          <span class="pilltime">0:14</span>
+          <span class="pillx">✕</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="col">
+      <p class="cap">5 · Энергии не хватает — поиск не начинается</p>
+      <p class="capnote">Проверка на входе, до очереди. Человек не уходит ждать соперника впустую.</p>
+      <div class="phone">
+        <div class="screenbg">
+          <div class="fakebar w60"></div><div class="fakecard"></div>
+          <div class="fakebar w80"></div><div class="fakecard"></div>
+          <div class="fakebar w40"></div><div class="fakecard"></div>
+        </div>
+        <div class="tabbar"></div>
+        <div class="scrim"></div>
+        <div class="sheet">
+          <div class="sheeticon">⚡</div>
+          <div class="sheettitle">Нужно 25⚡</div>
+          <div class="sheettext">Сейчас у вас 10⚡. Следующая через 12 минут.</div>
+          <button class="btn accept sheetcta">Пополнить</button>
+          <button class="btn decline sheetcta">Закрыть</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="col">
+      <p class="cap">6 · Отклонили — поиск остановлен</p>
+      <p class="capnote">Короткое подтверждение без кнопок, уходит само. Нового соперника не ищут.</p>
+      <div class="phone">
+        <div class="screenbg">
+          <div class="fakebar w60"></div><div class="fakecard"></div>
+          <div class="fakebar w80"></div><div class="fakecard"></div>
+          <div class="fakebar w40"></div><div class="fakecard"></div>
+        </div>
+        <div class="tabbar"></div>
+        <div class="pill quiet">
+          <span class="pulse"></span>
+          <span class="pilltxt">Поиск остановлен</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="legend">
+    <h2>Что здесь решено и почему</h2>
+    <ul>
+      <li><b>12 секунд, а не 15.</b> Столько держит найденный матч сервер. Обещать 15 нельзя: на 13-й секунде кнопка «Принять» уже не сработает, а человек будет смотреть на живую кнопку. Хотите ровно 15 — меняем правило на сервере отдельной задачей.</li>
+      <li><b>Энергия — только за состоявшийся матч.</b> Вход в очередь бесплатный, 25⚡ списываются на «Принять». Поэтому возвращать энергию больше не нужно нигде: её просто не берут заранее.</li>
+      <li><b>Но без энергии поиск не начинается.</b> На входе баланс проверяется, хоть и не списывается: меньше 25⚡ — сразу видно, что играть не на что, и человек не уходит ждать соперника впустую (карточка 5).</li>
+      <li><b>Цена написана на кнопке.</b> «Принять · 25⚡» — видно до нажатия, а не после.</li>
+      <li><b>Кольцо, а не полоска.</b> Полоска во всю ширину читалась бы как загрузка. Кольцо стоит на своём месте и не двигает вёрстку, когда цифра меняется.</li>
+      <li><b>«Отклонить» слева, «Принять» справа.</b> Под большой палец попадает то действие, которого человек и так хотел.</li>
+      <li><b>Молчание = отказ.</b> Никого не втягиваем в матч, пока он за рулём или в переписке. На том конце живой человек — он не должен ждать дольше срока.</li>
+      <li><b>Один тост за раз.</b> Пока висит предложение матча, обычные тосты приложения ждут очереди — распорядитель оверлеев это уже умеет.</li>
+      <li><b>В фоне — пауза.</b> Свернули приложение: таймеры глохнут, батарея цела. Вернулись — поиск идёт дальше.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  // Живой отсчёт во второй карточке — чтобы был виден ритм цифры.
+  (function(){
+    var el=document.getElementById('cd'); if(!el) return;
+    var n=12;
+    setInterval(function(){ n=(n<=1)?12:n-1; el.textContent=n; },1000);
+  })();
+</script>
+</body>
+</html>

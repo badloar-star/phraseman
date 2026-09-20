@@ -1,6 +1,7 @@
 export type OverlayKey =
   | 'onboardingWelcome'
   | 'authRecovery'
+  | 'arenaOpponentFound'
   | 'update'
   | 'releaseNotes'
   | 'broadcast'
@@ -46,6 +47,11 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   // (welcome) схлопывался («мелькнул и пропал»), стек презентаций зависал (фриз). Через
   // арбитр welcome держит единственный слот первым, остальные ждут очереди.
   'onboardingWelcome',
+  // arenaOpponentFound — предложение найденного матча. Живёт всего 12 секунд
+  // (серверное окно согласия) и ждать очереди за наградами и обновлениями не
+  // может: пока оно стоит в очереди, срок истечёт и человек увидит пустой
+  // экран вместо соперника. Пропускает вперёд только приветствие новичка.
+  'arenaOpponentFound',
   'update',
   'authRecovery',
   'releaseNotes',
@@ -201,6 +207,7 @@ export function isForceEvictable(key: OverlayKey | null): boolean {
 export const EMPTY_OVERLAY_WANTS: WantsMap = {
   onboardingWelcome: false,
   authRecovery: false,
+  arenaOpponentFound: false,
   update: false,
   releaseNotes: false,
   broadcast: false,

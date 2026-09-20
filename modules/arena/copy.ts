@@ -69,6 +69,16 @@ const C = {
   accept: ['Принять дуэль', 'Прийняти дуель', 'Accept duel', 'Aceptar duelo', 'Aceitar duelo', 'Chấp nhận', 'Terima duel', 'Düelloyu kabul et', 'Przyjmij pojedynek'],
   decline: ['Отказаться', 'Відмовитися', 'Decline', 'Rechazar', 'Recusar', 'Từ chối', 'Tolak', 'Reddet', 'Odrzuć'],
   opponent: ['Соперник', 'Суперник', 'Opponent', 'Rival', 'Adversário', 'Đối thủ', 'Lawan', 'Rakip', 'Rywal'],
+  /*
+   * зачем (владелец 2026-09-20): поиск соперника продолжается вне экрана, и
+   * находка приходит тостом поверх любого раздела. Заголовок обязан сразу
+   * сказать, ЧТО случилось — человек мог уйти в урок и забыть про Арену.
+   */
+  opponentFound: ['Соперник найден', 'Суперника знайдено', 'Opponent found', 'Rival encontrado', 'Adversário encontrado', 'Đã tìm thấy đối thủ', 'Lawan ditemukan', 'Rakip bulundu', 'Znaleziono rywala'],
+  /* Цена стоит НА кнопке: человек видит, за что платит, до нажатия. */
+  acceptForEnergy: ['Принять · {n}⚡', 'Прийняти · {n}⚡', 'Accept · {n}⚡', 'Aceptar · {n}⚡', 'Aceitar · {n}⚡', 'Chấp nhận · {n}⚡', 'Terima · {n}⚡', 'Kabul et · {n}⚡', 'Przyjmij · {n}⚡'],
+  declineShort: ['Отклонить', 'Відхилити', 'Decline', 'Rechazar', 'Recusar', 'Từ chối', 'Tolak', 'Reddet', 'Odrzuć'],
+  searchStopped: ['Поиск остановлен', 'Пошук зупинено', 'Search stopped', 'Búsqueda detenida', 'Busca interrompida', 'Đã dừng tìm kiếm', 'Pencarian dihentikan', 'Arama durduruldu', 'Wyszukiwanie zatrzymane'],
   // зачем (аудит по Библии, 2026-08-26): было «Сервер проверяет ответ…» —
   // Часть V п.3 запрещает технические детали в UI. Человеку важно, что ответ
   // проверяется, а не кем именно. Заменено во всех девяти позициях.

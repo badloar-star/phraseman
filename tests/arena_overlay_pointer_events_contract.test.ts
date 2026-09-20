@@ -39,3 +39,32 @@ describe('глобальные оверлеи Арены пропускают к
     expect(code('ArenaSearchIndicator.tsx')).toContain('pointerEvents="none"');
   });
 });
+
+/**
+ * Экономика приёма матча (аудит 2026-09-20, раунд 2).
+ *
+ * Обе защиты потерялись при переписи экрана поиска и стоили владельцу
+ * реальных поломок:
+ *  • без подтверждения старта трата остаётся открытой для возврата — человек
+ *    сыграл матч, а энергия могла вернуться;
+ *  • мёртвый матч вёл на экран «Этого матча больше нет» с уже списанными 25⚡.
+ */
+describe('приём матча закрывает экономику', () => {
+  const host = (): string => source('ArenaOpponentFoundHost.tsx');
+
+  test('подтверждает старт после успешного входа в матч', () => {
+    expect(host()).toContain('acknowledgeSessionStart(energyIntent.operationId)');
+  });
+
+  test('возвращает энергию, когда матч оказался мёртв', () => {
+    const src = host();
+    expect(src).toContain("failure === 'rejected'");
+    expect(src).toContain('refundActivityStart(energyIntent.operationId');
+  });
+
+  test('не ведёт на экран матча при мёртвом матче', () => {
+    // После возврата обязателен ранний выход, иначе человек всё равно уйдёт
+    // на «Этого матча больше нет».
+    expect(host()).toContain("arenaBackgroundSearch.stop('no_opponent');");
+  });
+});

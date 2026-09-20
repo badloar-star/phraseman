@@ -50,7 +50,7 @@ export default function ArenaOpponentFoundHost() {
 
   /** Цена входа берётся из единого каталога, а не из числа в разметке. */
   const energyCost = activityEnergyCost('arena_match');
-  const { confirmSpendAmount, refundActivityStart } = useEnergy();
+  const { acknowledgeSessionStart, confirmSpendAmount, refundActivityStart } = useEnergy();
   const energyIntent = useEnergySessionIntent(
     'arena_match',
     search.mode ?? 'quick',
@@ -130,6 +130,22 @@ export default function ArenaOpponentFoundHost() {
        * отдаёт экрану уже готовый план и избавляет от лишнего круга сети.
        */
       arenaEntryPrefetchStart(matchId, studyTarget).then(() => {
+        /**
+         * Печать «старт подтверждён» (возвращена аудитом 2026-09-20).
+         *
+         * зачем: она ЗАКРЫВАЕТ возможность возврата этой траты — леджер
+         * отвечает `energy_session_already_acknowledged` любому позднему
+         * возврату. Без неё операция оставалась открытой навсегда: человек
+         * сыграл матч, а энергия могла вернуться. Старый экран её ставил,
+         * при переписи она потерялась.
+         *
+         * Именно ЗДЕСЬ, а не раньше: до успешного входа матч ещё может не
+         * состояться, и тогда возврат обязан остаться возможным.
+         */
+        void acknowledgeSessionStart(energyIntent.operationId).catch((error: unknown) => {
+          DebugLogger.warn('arena_opponent_found',
+            `[ARENA-BGSEARCH] ack failed matchId=${matchId}: ${String(error)}`);
+        });
         setBusy(false);
         router.push({
           pathname: '/arena_match',
@@ -148,6 +164,26 @@ export default function ArenaOpponentFoundHost() {
         DebugLogger.warn('arena_opponent_found',
           `[ARENA-BGSEARCH] prefetch failed matchId=${matchId} failure=${failure}: ${String(reason)}`);
         setBusy(false);
+        /**
+         * МЁРТВЫЙ матч ('rejected'/'gated') — вести туда человека нельзя:
+         * он увидит «Этого матча больше нет», а 25⚡ уже списаны за матч,
+         * которого не случилось. Возвращаем плату и гасим поиск.
+         *
+         * зачем (аудит 2026-09-20): это ровно тот экран, который прислал
+         * владелец. Подтверждения старта тут ещё НЕ было, поэтому возврат
+         * пройдёт — именно ради таких случаев печать ставится позже.
+         */
+        if (failure === 'rejected' || failure === 'gated') {
+          void refundActivityStart(energyIntent.operationId, `arena_entry_${failure}`)
+            .catch((refundError: unknown) => {
+              DebugLogger.warn('arena_opponent_found',
+                `[ARENA-BGSEARCH] refund after dead match failed matchId=${matchId}: `
+                + String(refundError));
+            });
+          arenaBackgroundSearch.stop('no_opponent');
+          return;
+        }
+        // Временный сбой (сеть моргнула) — матч жив, экран матча догрузит план.
         router.push({
           pathname: '/arena_match',
           params: { matchId, studyTarget },
@@ -171,8 +207,8 @@ export default function ArenaOpponentFoundHost() {
       setBusy(false);
       arenaBackgroundSearch.stop('declined');
     });
-  }, [confirmSpendAmount, energyCost, energyIntent, found, refundActivityStart, router,
-    search.studyTarget]);
+  }, [acknowledgeSessionStart, confirmSpendAmount, energyCost, energyIntent, found,
+    refundActivityStart, router, search.studyTarget]);
 
   if (noEnergy) {
     return (

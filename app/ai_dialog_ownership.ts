@@ -165,7 +165,7 @@ export async function buyDialogAccessLocally(
    * ожидание В ОЧЕРЕДИ — если работа началась, она доходит до конца
    * и списание с записью владения не разорвётся пополам.
    */
-  const outcome = await withAccountTransitionLockWithDeadline(async () => withStorageLockDeadline(async () => {
+  const outcome = await withAccountTransitionLockWithDeadline(async (lease) => withStorageLockDeadline(async () => {
     if (!isCurrentAccountGeneration(token, ownerStableId)) {
       return { ok: false, reason: 'identity_changed' } as const;
     }
@@ -173,12 +173,12 @@ export async function buyDialogAccessLocally(
     const owned = await getOwnedDialogIds(target, ownerStableId);
     if (owned.has(scenarioId)) {
       // Повторный тап/возврат на экран — не вторая трата.
-      const { balance } = await readUnifiedLevelSpinStars(token);
+      const { balance } = await readUnifiedLevelSpinStars(token, lease);
       DebugLogger.info('[RUNES-BUY] already_owned', `scenario=${scenarioId}`);
       return { ok: true, alreadyOwned: true, balance } as const;
     }
 
-    const { balance } = await readUnifiedLevelSpinStars(token);
+    const { balance } = await readUnifiedLevelSpinStars(token, lease);
     if (balance < priceRunes) {
       DebugLogger.info('[RUNES-BUY] denied', `insufficient balance=${balance} price=${priceRunes}`);
       return { ok: false, reason: 'insufficient_runes' } as const;
@@ -200,7 +200,7 @@ export async function buyDialogAccessLocally(
     }
 
     // Мгновенное локальное зеркало баланса — та же проекция, что рисует «Руны».
-    await mergeLevelSpinServerStars(token, { stars: balanceAfter });
+    await mergeLevelSpinServerStars(token, { stars: balanceAfter }, lease);
     emitAppEvent('dialogs_progress_changed');
     DebugLogger.info(
       '[RUNES-BUY] ok',

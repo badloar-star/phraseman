@@ -24,6 +24,10 @@ import {
   paidLevelSpinOperationId,
   paidLevelSpinRuneFingerprint,
   parsePaidLevelSpinRuneOperation,
+  dialogExtraRepliesRuneOperationId,
+  dialogExtraRepliesRuneOperationFingerprint,
+  hasValidDialogExtraRepliesRuneOperationFingerprint,
+  parseDialogExtraRepliesRuneOperation,
   sessionAttemptRuneRecoveryOperationId,
   parseLevelSpinStarCreditAckExactResult,
   parseLevelSpinStarCreditExactResult,
@@ -31,6 +35,7 @@ import {
   type CustomizationRunePurchaseExactResultV1,
   type SessionAttemptRuneRecoveryExactResultV1,
   type PaidLevelSpinRuneOperationV1,
+  type DialogueExtraRepliesRuneOperationV1,
 } from '../modules/phone-state/domains/economy';
 import {
   practiceRuneSettlementOperationId,
@@ -94,6 +99,7 @@ type LocalRuneOperation = LevelSpinStarOperation
   | PracticeRuneOperation
   | SessionAttemptRuneRecoveryExactResultV1
   | PaidLevelSpinRuneOperationV1
+  | DialogueExtraRepliesRuneOperationV1
   | CustomizationRunePurchaseExactResultV1;
 
 type LevelSpinStarProjection = Readonly<{
@@ -342,6 +348,10 @@ function parseLocalRuneOperation(value: unknown, ownerStableId: string): LocalRu
       return entry?.ownerStableId === ownerStableId ? entry : null;
     })()
     ?? (() => {
+      const entry = parseDialogExtraRepliesRuneOperation(value);
+      return entry?.ownerStableId === ownerStableId ? entry : null;
+    })()
+    ?? (() => {
       const entry = parseCustomizationRunePurchaseExactResult(value);
       return entry?.ownerStableId === ownerStableId ? entry : null;
     })();
@@ -405,7 +415,13 @@ async function hasValidLocalRuneFingerprint(operation: LocalRuneOperation): Prom
   if (operation.schemaVersion === 'client-paid-level-spin-rune-operation.v1') {
     return hasValidPaidLevelSpinRuneFingerprint(operation);
   }
-  return hasValidCustomizationRunePurchaseFingerprint(operation);
+  if (operation.schemaVersion === 'client-dialog-extra-replies-rune-operation.v1') {
+    return hasValidDialogExtraRepliesRuneOperationFingerprint(operation);
+  }
+  if (operation.schemaVersion === 'client-customization-rune-operation.v1') {
+    return hasValidCustomizationRunePurchaseFingerprint(operation);
+  }
+  return false;
 }
 
 function parseOutbox(raw: string | null, ownerStableId: string): LevelSpinStarOperation[] {
@@ -919,6 +935,7 @@ async function recoverProjection(
     const spendOperations = projection.operations.filter((operation) => (
       operation.schemaVersion !== 'client-level-spin-star-operation.v1'
       && operation.schemaVersion !== 'client-practice-rune-operation.v1'
+      && operation.schemaVersion !== 'client-dialog-extra-replies-rune-operation.v1'
     ));
     const newestSpendOperationId = spendOperations.length > 0
       ? [...spendOperations].sort((left, right) => (
@@ -994,6 +1011,8 @@ export async function recoverAndHydrateLevelSpinStarGrants(
 export async function mergeLevelSpinServerStars(
   token: AccountGenerationToken,
   observation: Readonly<{ stars?: unknown; starsEarnedTotal?: unknown; starsSeq?: unknown }>,
+  // Аренда вызывающего — см. комментарий у readUnifiedLevelSpinStars (самозахват).
+  accountTransitionLockLease?: AccountTransitionLockLease,
 ): Promise<Readonly<{ balance: number; earnedTotal: number }>> {
   const ownerStableId = token.stableId?.trim();
   if (!ownerStableId || !isCurrentAccountGeneration(token, ownerStableId)) {
@@ -1035,7 +1054,7 @@ export async function mergeLevelSpinServerStars(
     await AsyncStorage.setItem(levelSpinStarProjectionKey(ownerStableId), JSON.stringify(next));
     return next;
     });
-  });
+  }, accountTransitionLockLease);
   publishProjection(token, projection);
   return visibleProjection(projection);
 }
@@ -1050,10 +1069,21 @@ export async function hydrateLevelSpinStarsAfterPhoneStatePull(
   await recoverAndHydrateLevelSpinStarGrants(token, { syncNow: false });
 }
 
+/**
+ * Зачем `accountTransitionLockLease` (владелец 2026-09-20, логи 15:19):
+ * без него вызов ИЗНУТРИ уже взятого `withAccountTransitionLock`
+ * вставал в очередь за ЗАМКОМ, КОТОРЫЙ ДЕРЖИТ САМ ВЫЗЫВАЮЩИЙ —
+ * классический самозахват. Покупка диалога зависала НАВСЕГДА именно
+ * здесь: ни `ok`, ни `denied`, ни таймаута — дедлайн режет ожидание
+ * СНАРУЖИ, а зависали мы ВНУТРИ уже взятого замка.
+ *
+ * Передал аренду — замок узнаёт «это свой» и пускает без ожидания.
+ */
 export async function readUnifiedLevelSpinStars(
   token: AccountGenerationToken,
+  accountTransitionLockLease?: AccountTransitionLockLease,
 ): Promise<Readonly<{ balance: number; earnedTotal: number }>> {
-  return visibleProjection(await recoverProjection(token));
+  return visibleProjection(await recoverProjection(token, accountTransitionLockLease));
 }
 
 /**
@@ -1105,6 +1135,140 @@ export type PreparedPaidLevelSpinRunePurchase = Readonly<{
   balanceAfter: number;
   durableWrites: readonly (readonly [string, string])[];
 }>;
+
+export type PreparedDialogExtraRepliesRunePurchase = Readonly<{
+  duplicate: boolean;
+  operation: DialogueExtraRepliesRuneOperationV1;
+  balanceBefore: number;
+  balanceAfter: number;
+  durableWrites: readonly (readonly [string, string])[];
+}>;
+
+export async function prepareDialogExtraRepliesRunePurchase(input: Readonly<{
+  token: AccountGenerationToken;
+  requestId: string;
+  createdAtMs: number;
+  recoveryOperation?: DialogueExtraRepliesRuneOperationV1;
+}>, accountTransitionLockLease?: AccountTransitionLockLease): Promise<PreparedDialogExtraRepliesRunePurchase> {
+  const ownerStableId = input.token.stableId?.trim();
+  const operationId = dialogExtraRepliesRuneOperationId(input.requestId);
+  if (!ownerStableId || !operationId || !isCurrentAccountGeneration(input.token, ownerStableId)) {
+    throw new Error('level_spin_star_identity_changed');
+  }
+  const recoveryOperation = input.recoveryOperation === undefined
+    ? null
+    : parseDialogExtraRepliesRuneOperation(input.recoveryOperation);
+  if (input.recoveryOperation !== undefined
+    && (!recoveryOperation
+      || recoveryOperation.ownerStableId !== ownerStableId
+      || recoveryOperation.operationId !== operationId
+      || recoveryOperation.createdAtMs !== input.createdAtMs
+      || !await hasValidDialogExtraRepliesRuneOperationFingerprint(recoveryOperation))) {
+    throw new Error('dialog_extra_replies_request_conflict');
+  }
+  return withAccountTransitionLock(async (lease) => {
+    await recoverProjection(input.token, lease);
+    return withStorageLock(async () => {
+      if (!isCurrentAccountGeneration(input.token, ownerStableId)) {
+        throw new Error('level_spin_star_identity_changed');
+      }
+      const operationKey = operationStorageKey(ownerStableId, operationId);
+      const [projectionRaw, existingRaw] = await Promise.all([
+        AsyncStorage.getItem(levelSpinStarProjectionKey(ownerStableId)),
+        AsyncStorage.getItem(operationKey),
+      ]);
+      const projection = parseProjection(projectionRaw, ownerStableId);
+      if (existingRaw !== null) {
+        let parsed: unknown;
+        try { parsed = JSON.parse(existingRaw); } catch { throw new Error('level_spin_star_operation_corrupt'); }
+        const existing = parseDialogExtraRepliesRuneOperation(parsed);
+        if (!existing || existing.ownerStableId !== ownerStableId
+          || !await hasValidDialogExtraRepliesRuneOperationFingerprint(existing)) {
+          throw new Error('level_spin_star_operation_corrupt');
+        }
+        if (existing.requestId !== input.requestId) {
+          throw new Error('level_spin_star_request_conflict');
+        }
+        return Object.freeze({
+          duplicate: true,
+          operation: existing,
+          balanceBefore: existing.balanceBefore,
+          balanceAfter: existing.balanceAfter,
+          durableWrites: Object.freeze([]),
+        });
+      }
+
+      const projectedOperation = projection.operations.find((candidate) => candidate.operationId === operationId);
+      if (projectedOperation) {
+        const existing = parseDialogExtraRepliesRuneOperation(projectedOperation);
+        if (!existing || existing.ownerStableId !== ownerStableId
+          || !await hasValidDialogExtraRepliesRuneOperationFingerprint(existing)) {
+          throw new Error('level_spin_star_operation_corrupt');
+        }
+        if (recoveryOperation
+          && existing.requestFingerprint !== recoveryOperation.requestFingerprint) {
+          throw new Error('dialog_extra_replies_request_conflict');
+        }
+        return Object.freeze({
+          duplicate: true,
+          operation: existing,
+          balanceBefore: existing.balanceBefore,
+          balanceAfter: existing.balanceAfter,
+          durableWrites: Object.freeze([
+            Object.freeze([operationKey, JSON.stringify(existing)] as const),
+          ]),
+        });
+      }
+
+      const balanceBefore = visibleProjection(projection).balance;
+      if (balanceBefore < 300) throw new Error('dialog_extra_replies_runes_insufficient');
+      const balanceAfter = balanceBefore - 300;
+      if (recoveryOperation
+        && (recoveryOperation.balanceBefore !== balanceBefore
+          || recoveryOperation.balanceAfter !== balanceAfter)) {
+        throw new Error('dialog_extra_replies_rune_projection_invalid');
+      }
+      const operation: DialogueExtraRepliesRuneOperationV1 = recoveryOperation ?? await (async () => {
+        const unsigned: Omit<DialogueExtraRepliesRuneOperationV1, 'schemaVersion' | 'requestFingerprint'> = {
+          operationId,
+          ownerStableId,
+          accountGeneration: input.token.generation,
+          requestId: input.requestId,
+          runeDelta: -300,
+          price: 300,
+          repliesGranted: 10,
+          balanceBefore,
+          balanceAfter,
+          reason: 'dialog_extra_replies',
+          createdAtMs: input.createdAtMs,
+        };
+        return Object.freeze({
+          schemaVersion: 'client-dialog-extra-replies-rune-operation.v1' as const,
+          ...unsigned,
+          requestFingerprint: await dialogExtraRepliesRuneOperationFingerprint(unsigned),
+        });
+      })();
+      if (!parseDialogExtraRepliesRuneOperation(operation)
+        || !await hasValidDialogExtraRepliesRuneOperationFingerprint(operation)) {
+        throw new Error('dialog_extra_replies_rune_operation_invalid');
+      }
+      const nextProjection = withOperations(projection, [operation]);
+      if (visibleProjection(nextProjection).balance !== balanceAfter) {
+        throw new Error('dialog_extra_replies_rune_projection_invalid');
+      }
+      return Object.freeze({
+        duplicate: false,
+        operation,
+        balanceBefore,
+        balanceAfter,
+        durableWrites: Object.freeze([
+          Object.freeze([operationKey, JSON.stringify(operation)] as const),
+          Object.freeze([levelSpinStarProjectionKey(ownerStableId), JSON.stringify(nextProjection)] as const),
+        ]),
+      });
+    });
+  }, accountTransitionLockLease);
+}
 
 export async function preparePaidLevelSpinRunePurchase(input: Readonly<{
   token: AccountGenerationToken;

@@ -80,6 +80,7 @@ import {
   type DailyJourneyGiftPendingItem,
   type DailyJourneyGiftRewardV1,
 } from './daily_journey_gift_inbox';
+import { autocreditPendingDailyJourneySpins } from './daily_journey_spin_autocredit';
 import {
   createDailyJourneyGiftInventoryController,
   dailyJourneyGiftArtDescriptor,
@@ -326,6 +327,11 @@ const DailyJourneyGiftArt = memo(function DailyJourneyGiftArt({
       />
     );
   }
+  // зачем (владелец, 2026-09-20): спин в витрину «Подарков» больше не попадает —
+  // он начисляется сразу на счёт спинов, а старые плитки подбирает миграция
+  // (autocreditPendingDailyJourneySpins в loadDaily). Ветка оставлена намеренно
+  // как страховка: если автоначисление не прошло (упало хранилище, сменился
+  // аккаунт), награда обязана остаться видимой, а не отрисоваться пустотой.
   if (art.kind === 'spin') {
     return (
       <SpinTicketArt
@@ -596,13 +602,18 @@ export default function LevelGiftsInventoryScreen() {
       loadDaily: async (accountToken) => {
         // зачем (владелец, 2026-09-20): «СПИН НЕ ДОЛЖЕН ИДТИ В РАЗДЕЛ ПОДАРКИ».
         // Новые спины начисляются сразу при выдаче дня, но у живых людей могли
-        // остаться плитки, заработанные до обновления — начисляем их молча и
-        // не показываем. Вызов идемпотентен: уже начисленный спин не удвоится.
+        // остаться плитки, заработанные ДО обновления — начисляем их молча.
+        // Вызов идемпотентен: уже начисленный спин не удвоится.
+        //
+        // Намеренно БЕЗ фильтра по kind='spins' после этого: начисленный спин
+        // и так уходит из pending (occurrence становится claimed), а слепой
+        // фильтр скрыл бы спин, который начислить НЕ удалось (упало хранилище,
+        // сменился аккаунт) — то есть спрятал бы award, который человек ещё не
+        // получил. Награда обязана оставаться видимой, пока она не выдана.
         await autocreditPendingDailyJourneySpins(accountToken);
         const projection = await readDailyJourneyGiftProjection(accountToken);
         return {
-          pending: dailyJourneyGiftVisualItems(projection)
-            .filter((item) => !isDailyJourneySpinReward(item.reward)),
+          pending: dailyJourneyGiftVisualItems(projection),
           latestRevision: projection.latestRevision,
         };
       },

@@ -81,6 +81,15 @@ beforeEach(async () => {
   (AsyncStorage.removeItem as jest.Mock).mockImplementation(async (key: string) => {
     delete storage[key];
   });
+  (AsyncStorage.getAllKeys as jest.Mock).mockImplementation(async () => Object.keys(storage));
+  (AsyncStorage.multiGet as jest.Mock).mockImplementation(
+    async (keys: readonly string[]) => keys.map((key) => [key, storage[key] ?? null]),
+  );
+  (AsyncStorage.multiSet as jest.Mock).mockImplementation(async (
+    pairs: readonly (readonly [string, string])[],
+  ) => {
+    pairs.forEach(([key, value]) => { storage[key] = value; });
+  });
   (grantLocalDailyJourneySpins as jest.Mock).mockReset();
   (grantLocalDailyJourneySpins as jest.Mock).mockResolvedValue(true);
   __resetAccountGenerationForTests();

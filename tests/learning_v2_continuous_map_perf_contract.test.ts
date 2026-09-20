@@ -194,7 +194,44 @@ describe("Learning V2 continuous map performance contract", () => {
   test("при открытии карты плашка главы не попадает в кадр", () => {
     // Владелец 20.09: «плашка ГЛАВА 1 в кадр попадать не должна, но если
     // проскроллить вверх — да».
-    expect(source).toContain("const lead = atCourseStart ? 18 :");
+    // Ровно 0: при 18 от главы (118px) снизу торчал огрызок в 18px —
+    // владелец: «плашка глава 1 обрезается и вообще не попадает полностью».
+    expect(source).toContain("const lead = atCourseStart ? 0 :");
+  });
+
+  test("карта не пересоздаётся: на ней нет key от generation", () => {
+    // Владелец 20.09: «открывается с потушением экрана, а затем снова».
+    // key={learningV2ProjectionScopeKey} заставлял React уничтожать карту и
+    // строить заново, потому что generation читался вне зависимостей useMemo.
+    const lessons = readFileSync(
+      join(__dirname, "..", "app", "(tabs)", "lessons.tsx"),
+      "utf8",
+    );
+    // Ищем реальный проп, а не упоминание в комментарии.
+    expect(lessons).not.toMatch(/^\s*key=\{learningV2ProjectionScopeKey\}/m);
+    expect(lessons).toContain("scopeKey={learningV2ProjectionScopeKey}");
+  });
+
+  test("на карте скрыт таббар и возвращается при уходе", () => {
+    const lessons = readFileSync(
+      join(__dirname, "..", "app", "(tabs)", "lessons.tsx"),
+      "utf8",
+    );
+    expect(lessons).toContain('useHideTabBar(page === "v2")');
+    const ctx = readFileSync(
+      join(__dirname, "..", "components", "TabBarVisibilityContext.tsx"),
+      "utf8",
+    );
+    // Счётчик, а не булев флаг: иначе размонтирование одного экрана покажет
+    // таббар поверх другого, а двойной release уведёт счётчик в минус.
+    expect(ctx).toContain("setHiddenCount");
+    expect(ctx).toContain("Math.max(0, value - 1)");
+    expect(ctx).toContain("if (released) return;");
+  });
+
+  test("в шапке карты нет заголовка урока, меняющегося при скролле", () => {
+    // Владелец 20.09: «я не просил».
+    expect(source).not.toContain("LearningV2PulseMapLessonTitle");
   });
 
   test("на карте есть кнопка возврата к текущему занятию", () => {

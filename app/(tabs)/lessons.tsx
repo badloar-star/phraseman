@@ -121,6 +121,7 @@ import LearningV2SessionOutcomeSheet, {
 } from "../../components/LearningV2SessionOutcomeSheet";
 import LearningV2LessonDictionaryOverlayV1 from "../../components/learning-v2/LearningV2LessonDictionaryOverlayV1";
 import LearningV2FounderPassModal from "../../components/learning-v2/LearningV2FounderPassModal";
+import { useHideTabBar } from "../../components/TabBarVisibilityContext";
 import { useLearningV2UnlockedLessonWordsV1 } from "../../hooks/use_learning_v2_unlocked_lesson_words_v1";
 import { useRequestedFeatureIntro } from "../../hooks/use_requested_feature_intro";
 import FeatureIntroModal from "../../components/FeatureIntroModal";
@@ -2206,6 +2207,10 @@ export default function LessonsTab({
   // Карта раскрывается прямо под выбранной плашкой; одновременно открыта одна.
   const dialogsEnabled = isAiDialogEnabled();
   const [page, setPage] = useState<"lessons" | "dialogs" | "v2">(initialPage);
+  // зачем: карта Learning V2 занимает весь экран, а раздел открывается ВНУТРИ
+  // вкладки — таббар с Главной оставался поверх карты (владелец 20.09).
+  // Прячем его только пока открыта карта; при уходе запрос отпускается сам.
+  useHideTabBar(page === "v2");
   const [learningV2FounderNickname, setLearningV2FounderNickname] =
     useState<string | null>(() =>
       normalizeLearningV2FounderNicknameV1(learningV2SnapshotNickname),
@@ -4792,7 +4797,15 @@ export default function LessonsTab({
           {page === "v2" ? (
             learningV2FounderPassGate.revealCourse ? (
             <LearningV2PulseCourse
-              key={learningV2ProjectionScopeKey}
+              // зачем: здесь стоял key={learningV2ProjectionScopeKey}. Ключ
+              // собирается из captureAccountGeneration().generation, который
+              // читается ВНЕ зависимостей useMemo: при пересчёте мемо ключ
+              // получал новое значение, React уничтожал карту и строил заново
+              // — экран гас и открывался второй раз (владелец 20.09: «с
+              // потушением экрана, а затем снова, как будто два раза»).
+              // Ключ не нужен: смена аккаунта и так меняет scopeKey, который
+              // передаётся пропом и пересобирает проекцию внутри компонента.
+              scopeKey={learningV2ProjectionScopeKey}
               topPadding={headerTopPad}
               headerAccessory={learningV2ResourceHud}
               navigationControl={
@@ -4811,7 +4824,6 @@ export default function LessonsTab({
               lang={lang}
               legacyLessonsLabel={triLang(lang, { ru: "Старые уроки", en: "Classic lessons", uk: "Старі уроки", es: "Lecciones clásicas", "pt-BR": "Lições clássicas", vi: "Bài học cũ", id: "Pelajaran klasik", tr: "Klasik dersler", pl: "Klasyczne lekcje" })}
               onLegacyLessons={requestLegacyLessons}
-              scopeKey={learningV2ProjectionScopeKey}
               preparedProgress={learningV2PreparedProgress}
               currentSessionId={learningV2Progress.currentSessionId}
               completedSessionIds={learningV2Progress.completedSessionIds}

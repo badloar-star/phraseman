@@ -301,14 +301,15 @@ type MapViewStore = ReturnType<typeof createMapViewStoreV1>;
 /** Ключ строки карты: вынесен, чтобы ссылка не менялась между рендерами. */
 const mapRowKeyV1 = (row: MapRow) => row.id;
 
-/** Заголовок урока в шапке карты. Перерисовывается только он. */
-const LearningV2PulseMapLessonTitle = React.memo(function LearningV2PulseMapLessonTitle({
-  store, titles, style,
-}: Readonly<{ store: MapViewStore; titles: readonly string[]; style: StyleProp<TextStyle> }>) {
-  const ordinal = useSyncExternalStore(store.subscribe, store.getLesson, store.getLesson);
-  if (ordinal === null) return null;
-  return <Text style={style}>{titles[ordinal - 1]}</Text>;
-});
+/**
+ * Порог видимости строки. Без конфига RN зовёт onViewableItemsChanged на
+ * каждом кадре прокрутки и пересобирает массивы видимых элементов —
+ * заметная работа на длинном списке. 50% и минимум 120мс между замерами.
+ */
+const MAP_VIEWABILITY_CONFIG = {
+  itemVisiblePercentThreshold: 50,
+  minimumViewTime: 120,
+} as const;
 
 /** Кнопка «к текущему занятию». Появляется, когда узел ушёл с экрана. */
 const LearningV2PulseBackToCurrent = React.memo(function LearningV2PulseBackToCurrent({
@@ -492,12 +493,12 @@ export default function LearningV2PulseCourse(props: Props) {
       currentSession?.kind === 'session' &&
       currentSession.lessonOrdinal === 1 &&
       currentSession.chapterOrdinal === 1;
-    // зачем: владелец 20.09 — «при открытии плашка ГЛАВА 1 в кадр попадать не
-    // должна, но если проскроллить вверх — да». Поэтому в начале курса ведём
-    // ровно к занятию 1: всё, что выше (плашка урока и глава), остаётся за
-    // верхним краем и доступно только прокруткой вверх. 18px — воздух, чтобы
-    // кружок не лип к краю; этого мало, чтобы показался низ главы (она 118).
-    const lead = atCourseStart ? 18 : viewport.height * 0.4;
+    // зачем: владелец 20.09 — «плашка ГЛАВА 1 в кадр попадать не должна»,
+    // затем «она обрезается и вообще не попадает полностью».
+    // Замер: при lead=18 от главы (118px) снизу торчал огрызок ровно 18px.
+    // Правило: либо главы не видно СОВСЕМ, либо она видна целиком. В начале
+    // курса встаём ровно на занятие 1 — граница строки, огрызка не остаётся.
+    const lead = atCourseStart ? 0 : viewport.height * 0.4;
     mapRef.current?.scrollToOffset({
       offset: Math.max(0, (layout.offsets[currentRowIndex] ?? 0) - lead),
       animated,
@@ -704,13 +705,8 @@ export default function LearningV2PulseCourse(props: Props) {
       </View>
       {/* На сплошной карте шапка называет урок, который человек сейчас
           видит: он меняется при прокрутке, а не при выборе в списке. */}
-      {!lessonListOpen ? (
-        <LearningV2PulseMapLessonTitle
-          store={mapViewStore}
-          titles={props.titles}
-          style={[styles.mapHeaderTitle, { color: t.textPrimary }]}
-        />
-      ) : null}
+      {/* зачем: заголовок урока, меняющийся при скролле, владелец не просил —
+          убран по его прямому указанию 20.09. */}
     </View>
     {lessonListOpen ? <>
       <View style={styles.sectionsRow}>
@@ -779,7 +775,7 @@ export default function LearningV2PulseCourse(props: Props) {
         </PressableHybrid>;
       }} />
     </> : <Animated.View testID="learning-v2-pulse-map-entry" style={[styles.mapContainer, mapEntryStyle]} onLayout={e => setViewport(e.nativeEvent.layout)}>
-      <FlatList ref={mapRef} testID="learning-v2-pulse-map" data={rows} keyExtractor={mapRowKeyV1} contentContainerStyle={{ paddingVertical: geometry.padding }} getItemLayout={getMapItemLayout} onContentSizeChange={centerCurrent} onViewableItemsChanged={onViewableItemsChangedRef.current} onMomentumScrollBegin={cancelVisibleSessionsSettledAfterDrag} onMomentumScrollEnd={handleMomentumScrollEnd} onScrollEndDrag={scheduleVisibleSessionsSettledAfterDrag} initialNumToRender={12} maxToRenderPerBatch={12} updateCellsBatchingPeriod={16} windowSize={11} showsVerticalScrollIndicator={false} renderItem={renderMapRow} />
+      <FlatList ref={mapRef} testID="learning-v2-pulse-map" data={rows} keyExtractor={mapRowKeyV1} contentContainerStyle={{ paddingVertical: geometry.padding }} getItemLayout={getMapItemLayout} onContentSizeChange={centerCurrent} onViewableItemsChanged={onViewableItemsChangedRef.current} viewabilityConfig={MAP_VIEWABILITY_CONFIG} onMomentumScrollBegin={cancelVisibleSessionsSettledAfterDrag} onMomentumScrollEnd={handleMomentumScrollEnd} onScrollEndDrag={scheduleVisibleSessionsSettledAfterDrag} initialNumToRender={12} maxToRenderPerBatch={12} updateCellsBatchingPeriod={16} windowSize={11} showsVerticalScrollIndicator={false} renderItem={renderMapRow} />
       {/* зачем: владелец 20.09 — «когда мы на карте, в футере есть кнопочка
           специальная, которая открывает список всех уроков». Карта под ней
           продолжает скроллиться: кнопка плавает, а не занимает место. */}

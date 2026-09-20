@@ -21,6 +21,7 @@ import { HOME_ENTRANCE } from '../../constants/motion';
 // зачем: гибрид таббара («жидкое золото») живёт в реальном таббаре под dev-флагом —
 // владелец требует видеть его на месте, а не в превью; default 'classic'.
 import { useDevTabBarMotionVariant } from '../../hooks/dev_motion_variant';
+import { TabBarVisibilityProvider, useTabBarVisibility } from '../../components/TabBarVisibilityContext';
 import { TABBAR_HYBRID } from '../../constants/motionHybrid';
 import { OLIVE_RICH } from '../../constants/oliveTheme';
 import { isLightThemeMode } from '../../constants/theme';
@@ -512,6 +513,7 @@ function TabScaffold({
   const tabActiveBg = withAlpha(tabIconActive, TAB_DARK_ACTIVE_BG_ALPHA);
   const tabPillBottom = Math.max(PB, ds.spacing.sm) + FLOATING_PILL_BOTTOM_GAP;
   const tabOverlayHeight = tabBarHeight + tabPillBottom + ds.spacing.md;
+  const { hidden: tabBarHidden } = useTabBarVisibility();
   const [tabPillWidth, setTabPillWidth] = useState(0);
   const tabHighlightAnim = useRef(new Animated.Value(activeIdx)).current;
   const tabPressAnim = useRef(new Animated.Value(0)).current;
@@ -741,6 +743,11 @@ function TabScaffold({
             </GestureHandlerRootView>
           </View>
           {/* Плавающая капсула поверх контента: нижняя safe-area остаётся без отдельной полосы. */}
+          {/* зачем: раздел Learning V2 открывается ВНУТРИ вкладки «Уроки», и
+              таббар оставался поверх карты на весь экран (владелец 20.09).
+              Экран просит скрытие через useHideTabBar и обязан отпустить его
+              при размонтировании — иначе таббар залипнет скрытым. */}
+          {tabBarHidden ? null : (
           <View
             style={[s.tabBarWrap, { height: tabOverlayHeight }]}
             pointerEvents="box-none"
@@ -840,6 +847,7 @@ function TabScaffold({
               })}
             </Animated.View>
           </View>
+          )}
         </View>
       </View>
       {ENABLE_DEV_TOOLS ? (
@@ -1212,7 +1220,13 @@ export default function TabLayout() {
   if (isDisabledTournamentTabPath(pathname)) {
     return <DeferredRedirect href="/(tabs)/home" />;
   }
-  return <ReleasedTabLayout />;
+  // Провайдер видимости таббара обязан стоять ВЫШЕ самого таббара: экран
+  // внутри вкладки просит скрытие, а рисует таббар этот же layout.
+  return (
+    <TabBarVisibilityProvider>
+      <ReleasedTabLayout />
+    </TabBarVisibilityProvider>
+  );
 }
 
 const s = StyleSheet.create({

@@ -1,3 +1,5 @@
+import { createHash } from 'node:crypto';
+
 import {
   type SpeedMatchAttemptProgress,
   type TournamentPublicTask,
@@ -12,6 +14,11 @@ import {
   type OwnerApprovedTournamentMode,
 } from './tournament_mode_contract';
 import { ARENA_STAR_POLICY, type ArenaEntryMode } from './arena_stars_v3';
+import {
+  resolveArenaStudyTarget,
+  type ArenaStudyTarget,
+  type ArenaTargetPublication,
+} from './arena_target_registry';
 
 export const ARENA_V2_COLLECTIONS = Object.freeze({
   config: 'arena_v2_config',
@@ -34,6 +41,93 @@ export const ARENA_V2_COLLECTIONS = Object.freeze({
   members: 'arena_v2_members',
 });
 
+export const ARENA_V2_TARGET_PROFILE_SUBCOLLECTION = 'arena_v2_target_profiles';
+
+/**
+ * Competitive Arena state is language-local. English keeps its historical
+ * document address byte-for-byte; new contours start clean under the user's
+ * canonical profile and never inherit English rating or an active match.
+ */
+export function arenaCompetitiveProfilePath(
+  stableUid: string,
+  studyTarget: ArenaStudyTarget,
+): string {
+  const uid = String(stableUid ?? '').trim();
+  if (!uid || uid.includes('/')) throw new Error('arena_profile_uid_invalid');
+  const root = `${ARENA_V2_COLLECTIONS.profiles}/${uid}`;
+  return studyTarget === 'en'
+    ? root
+    : `${root}/${ARENA_V2_TARGET_PROFILE_SUBCOLLECTION}/${studyTarget}`;
+}
+
+/** English keeps its installed mastery evidence ids; new contours cannot consume them. */
+export function arenaMasterySignatureId(
+  studyTarget: ArenaStudyTarget,
+  signature: string,
+): string {
+  return studyTarget === 'en' ? signature : `${studyTarget}_${signature}`;
+}
+
+export type ArenaRequiredStudyTargetResult =
+  | Readonly<{ ok: true; studyTarget: ArenaStudyTarget }>
+  | Readonly<{ ok: false; reason: 'arena_target_required' | 'arena_target_invalid' }>;
+
+/** New Arena entry points never infer English from a missing target. */
+export function arenaResolveRequiredStudyTarget(value: unknown): ArenaRequiredStudyTargetResult {
+  if (value === undefined || value === null || (typeof value === 'string' && value.trim() === '')) {
+    return { ok: false, reason: 'arena_target_required' };
+  }
+  const studyTarget = resolveArenaStudyTarget(value);
+  return studyTarget
+    ? { ok: true, studyTarget }
+    : { ok: false, reason: 'arena_target_invalid' };
+}
+
+export type ArenaPublicationTagged = Readonly<{
+  studyTarget?: unknown;
+  publicationFingerprint?: unknown;
+}>;
+
+export type ArenaQueuePublicationCompatibility =
+  | Readonly<{ ok: true }>
+  | Readonly<{
+      ok: false;
+      reason: 'arena_queue_legacy_untagged' | 'arena_queue_target_mismatch' | 'arena_queue_publication_mismatch';
+    }>;
+
+/** Matchmaking is scoped by both language and the immutable content publication. */
+export function arenaQueuePublicationCompatible(
+  candidate: ArenaPublicationTagged,
+  expected: Pick<ArenaTargetPublication, 'studyTarget' | 'publicationFingerprint'>,
+): ArenaQueuePublicationCompatibility {
+  if (typeof candidate.studyTarget !== 'string' || typeof candidate.publicationFingerprint !== 'string') {
+    return { ok: false, reason: 'arena_queue_legacy_untagged' };
+  }
+  if (candidate.studyTarget !== expected.studyTarget) {
+    return { ok: false, reason: 'arena_queue_target_mismatch' };
+  }
+  if (candidate.publicationFingerprint !== expected.publicationFingerprint) {
+    return { ok: false, reason: 'arena_queue_publication_mismatch' };
+  }
+  return { ok: true };
+}
+
+/** Target/publication-bound plan hash; changing either invalidates a stale report. */
+export function arenaTargetBoundPlanHash(
+  matchId: string,
+  studyTarget: ArenaStudyTarget,
+  publicationFingerprint: string,
+  tasks: readonly Readonly<{ taskId: string; mode: string; difficulty: number }>[],
+): string {
+  const canonical = tasks
+    .map((task, index) => `${index}:${task.taskId}:${task.mode}:${task.difficulty}`)
+    .join('|');
+  return createHash('sha256')
+    .update(`arena-target-plan.v1|${matchId}|${studyTarget}|${publicationFingerprint}|${canonical}`)
+    .digest('base64url')
+    .slice(0, 32);
+}
+
 /** Рейтинг, дружеская дуэль, серия, Arena Today — полный матч. */
 export const ARENA_V2_TASK_COUNT = 10;
 /** Владелец (2026-08-21): быстрый матч — восемь заданий. */
@@ -55,8 +149,14 @@ export const ARENA_V2_PRIVATE_BUDGET_BYTES = 384 * 1_024;
  * бота. Повторный бот после сорванного назначения тоже укладывается в 20 с.
  */
 export const ARENA_V2_QUICK_BOT_MIN_MS = 3_000;
-export const ARENA_V2_QUICK_BOT_MAX_MS = 20_000;
-/** Смещение к началу диапазона: медиана ≈ 9 с, потолок жёсткий — 20 с. */
+/*
+ * зачем 10 секунд (владелец 2026-09-20): «рейтинг сократи поиск и блиц игра
+ * на арене до 10 секунд, бот подключается уже не более чем через 10 секунд».
+ * Клиент режет срок своим потолком, но сервер обязан совпасть — иначе он
+ * отбивает запрос как `bot_too_early`, и человек ждёт лишний круг повтора.
+ */
+export const ARENA_V2_QUICK_BOT_MAX_MS = 10_000;
+/** Смещение к началу диапазона: медиана ≈ 6 с, потолок жёсткий — 10 с. */
 export const ARENA_V2_QUICK_BOT_BIAS = 1.6;
 
 /** `unit` — равномерное [0,1). Возвращает задержку в миллисекундах. */
@@ -78,8 +178,14 @@ export const ARENA_V2_QUICK_BOT_FALLBACK_MS = ARENA_V2_QUICK_BOT_MIN_MS;
  * быстрому матчу; для рейтинга — до минуты, ставки выше и живой соперник
  * ценнее подождать.
  */
-export const ARENA_V2_RANKED_BOT_MIN_MS = 20_000;
-export const ARENA_V2_RANKED_BOT_MAX_MS = 60_000;
+/*
+ * зачем 10 секунд (владелец 2026-09-20): прежнее окно «до минуты» отменено
+ * прямым указанием — «рейтинг сократи поиск… до 10 секунд». Нижняя граница
+ * опущена вместе с верхней: при MIN=20 с сервер физически не отдавал бота
+ * раньше двадцатой секунды, и потолок клиента ничего не решал.
+ */
+export const ARENA_V2_RANKED_BOT_MIN_MS = 3_000;
+export const ARENA_V2_RANKED_BOT_MAX_MS = 10_000;
 /** Тот же профиль смещения к началу окна, что и у быстрого бота. */
 export const ARENA_V2_RANKED_BOT_BIAS = 1.6;
 

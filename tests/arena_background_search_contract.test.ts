@@ -517,3 +517,34 @@ describe('висящая очередь не вешает поиск (владе
     expect(h.search.getState().phase).toBe('stopped');
   });
 });
+
+describe('окончательные отказы бота не крутятся вечно (аудит 2026-09-20)', () => {
+  /**
+   * Дневной лимит рейтинговых ботов и закрытая очередь не рассасываются
+   * сами. Повтор после них = вечный поиск — тот же класс, что владелец видел
+   * как «поиск идёт минуту».
+   */
+  const terminal = [
+    'arena_ranked_bot_daily_limit',
+    'arena_quick_queue_not_waiting',
+    'arena_ranked_queue_not_waiting',
+  ];
+
+  for (const code of terminal) {
+    test(`${code} заканчивает поиск, а не повторяется`, async () => {
+      const h = createHarness();
+      h.setFindResult({
+        queue: { joinedAtMs: 1_000_000, botDueAtMs: 1_000_000 + 3_000 },
+        match: null,
+      });
+      h.setBotResult(new Error(code));
+      h.search.start('ranked', 'en');
+      await Promise.resolve();
+      await h.advance(4_000);
+
+      expect(h.search.getState().phase).toBe('stopped');
+      // Ровно одна попытка: повторять бессмысленно.
+      expect(h.calls.requestBot).toHaveLength(1);
+    });
+  }
+});

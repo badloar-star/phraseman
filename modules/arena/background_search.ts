@@ -555,10 +555,29 @@ export class ArenaBackgroundSearch {
       this.handleFound(match, 'bot');
     } catch (error) {
       this.botInFlight = false;
-      // Отказ почти всегда временный (часы забежали, сеть моргнула): следующая
-      // сверка попробует снова. Причину называем всегда.
+      const reason = String(error);
+      /**
+       * ОКОНЧАТЕЛЬНЫЕ отказы бота: после них он не придёт НИКОГДА, сколько ни
+       * повторяй. Повтор тут = вечный поиск, ровно тот класс, что владелец
+       * видел как «поиск идёт минуту».
+       *
+       * зачем (аудит 2026-09-20): раньше ядро повторяло ЛЮБОЙ отказ, включая
+       * эти три. Дневной лимит рейтинговых ботов и закрытая очередь не
+       * рассасываются сами — поиск обязан честно закончиться.
+       */
+      const terminalRefusal = reason.includes('arena_ranked_bot_daily_limit')
+        || reason.includes('arena_quick_queue_not_waiting')
+        || reason.includes('arena_ranked_queue_not_waiting');
+      if (terminalRefusal) {
+        this.deps.log(`[ARENA-BGSEARCH] bot refused terminally mode=${mode} `
+          + `requestId=${requestId} took=${this.deps.nowMs() - startedAt}ms: ${reason}`);
+        if (this.state.phase === 'searching') this.stop('no_opponent');
+        return;
+      }
+      // Остальные отказы почти всегда временные (часы забежали, сеть
+      // моргнула): следующая сверка попробует снова. Причину называем всегда.
       this.deps.log(`[ARENA-BGSEARCH] bot rejected mode=${mode} requestId=${requestId} `
-        + `took=${this.deps.nowMs() - startedAt}ms retryInMs=${ARENA_BOT_RETRY_MS}: ${String(error)}`);
+        + `took=${this.deps.nowMs() - startedAt}ms retryInMs=${ARENA_BOT_RETRY_MS}: ${reason}`);
       this.botRetryNotBeforeMs = this.deps.nowMs() + ARENA_BOT_RETRY_MS;
       if (this.state.phase === 'searching') this.armBot();
     }

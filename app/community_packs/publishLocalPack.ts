@@ -58,6 +58,22 @@ function logPublish(step: string, data: Record<string, unknown>): void {
   console.log(`[UGC-PUBLISH] ${step}`, JSON.stringify(data));
 }
 
+/**
+ * Отказ «эта публикация отозвана, начните новую».
+ *
+ * Сервер бросает failed-precondition с текстом 'Publication withdrawn; start a
+ * new publication' (functions/src/community_packs.ts:676). Отзыв мог произойти
+ * не с этого телефона, поэтому локальный ключ идемпотентности остался прежним
+ * и без распознавания этого кода автор упирался в отказ бесконечно.
+ */
+export function isPublicationWithdrawnError(error: unknown): boolean {
+  const e = error as { code?: string; message?: string } | null;
+  const code = String(e?.code ?? '');
+  const message = String(e?.message ?? '');
+  if (!/failed-precondition/i.test(code) && !/failed-precondition/i.test(message)) return false;
+  return /withdrawn/i.test(message);
+}
+
 export async function publishLocalAuthorPack(
   packId: string,
   sourceLang: Lang,
@@ -138,40 +154,66 @@ export async function publishLocalAuthorPack(
       authorStableId: authorStableId ?? null,
     });
 
-    const result = await callCommunitySubmitPackForReview({
-      authorStableId: authorStableId ?? '',
-      payload: buildCommunityPackPayloadForCloud(payload),
-      submissionKey,
-      replacePending: true,
-      ...(cloudPackId ? { updatePackId: cloudPackId } : {}),
-    });
-    if (!isCurrentAccountGeneration(token)) {
-      logPublish('exit:account_changed', { packId: id, at: 'after submit returned', submissionId: result.submissionId });
-      return 'error';
-    }
+    const sendWithKey = async (key: string, attempt: 'first' | 'retry-after-withdrawn') => {
+      const result = await callCommunitySubmitPackForReview({
+        authorStableId: authorStableId ?? '',
+        payload: buildCommunityPackPayloadForCloud(payload),
+        submissionKey: key,
+        replacePending: true,
+        ...(cloudPackId ? { updatePackId: cloudPackId } : {}),
+      });
+      if (!isCurrentAccountGeneration(token)) {
+        logPublish('exit:account_changed', { packId: id, at: 'after submit returned', attempt, submissionId: result.submissionId });
+        return null;
+      }
+      // зачем: сохраняем id, под которым набор будет жить в community_packs —
+      // он равен id заявки, сервер создаёт набор именно под ним. Заполняем с
+      // опережением (до одобрения набора ещё нет, но id уже зарезервирован),
+      // иначе автор не сможет править свой набор после публикации.
+      const nextCloudPackId = cloudPackId ?? result.submissionId;
+      logPublish('submit:ok', {
+        localId: local.id,
+        attempt,
+        submissionId: result.submissionId,
+        cloudPackIdBefore: cloudPackId ?? null,
+        cloudPackIdAfter: nextCloudPackId,
+        submissionKeyUsed: key,
+      });
+      await updateLocalPackPublication(local.id, {
+        isPublic: true,
+        publicationState: 'submitted',
+        publicationKey: key,
+        cloudPackId: nextCloudPackId,
+      });
+      invalidateCommunityPackCatalog();
+      return 'submitted' as const;
+    };
 
-    // зачем: сохраняем id, под которым набор будет жить в community_packs —
-    // он равен id заявки, сервер создаёт набор именно под ним. Заполняем с
-    // опережением (до одобрения набора ещё нет, но id уже зарезервирован),
-    // иначе автор не сможет править свой набор после публикации.
-    // publicationKey пишется тем же значением, что и прочитано — ключ
-    // идемпотентности обязан оставаться стабильным.
-    const nextCloudPackId = cloudPackId ?? result.submissionId;
-    logPublish('submit:ok', {
-      localId: local.id,
-      submissionId: result.submissionId,
-      cloudPackIdBefore: cloudPackId ?? null,
-      cloudPackIdAfter: nextCloudPackId,
-      submissionKeyKept: submissionKey,
-    });
-    await updateLocalPackPublication(local.id, {
-      isPublic: true,
-      publicationState: 'submitted',
-      publicationKey: submissionKey,
-      cloudPackId: nextCloudPackId,
-    });
-    invalidateCommunityPackCatalog();
-    return 'submitted';
+    try {
+      // Обычный путь: ключ стабилен, повторное нажатие обновляет ту же заявку.
+      const ok = await sendWithKey(submissionKey, 'first');
+      return ok ?? 'error';
+    } catch (submitError: unknown) {
+      // зачем (владелец 20.09.2026, «исправь если ещё что-то найдёшь»): сервер
+      // отвечает failed-precondition на ОТОЗВАННУЮ заявку и предлагает начать
+      // публикацию заново (functions/src/community_packs.ts:676). Клиент этого
+      // не понимал и слал тот же мёртвый ключ снова: человек получал вечный
+      // отказ с ложным советом «нажмите ещё раз при подключении» — подключение
+      // тут ни при чём. Отзыв мог случиться не с этого телефона (другое
+      // устройство, действие администратора, переустановка), поэтому локальный
+      // withdrawLocalAuthorPack ключ не сменил и свести состояние было нечем.
+      if (!isPublicationWithdrawnError(submitError)) throw submitError;
+      // Повтор РОВНО ОДИН: новый ключ на сервере заведомо свободен, цикла нет.
+      const freshKey = `${local.id}_${Date.now()}`;
+      logPublish('retry:withdrawn', {
+        localId: local.id,
+        deadKey: submissionKey,
+        freshKey,
+        reason: String((submitError as { message?: string } | null)?.message ?? submitError),
+      });
+      const ok = await sendWithKey(freshKey, 'retry-after-withdrawn');
+      return ok ?? 'error';
+    }
   } catch (e) {
     // зачем: немой catch уже стоил месяцев немых багов — причина отказа
     // публикации остаётся в логе НАВСЕГДА, а не только в дев-сборке.

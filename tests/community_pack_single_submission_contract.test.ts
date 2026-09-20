@@ -64,8 +64,14 @@ describe('идентификатор набора не теряется', () => 
     // Стабильный ключ — то, что позволяет серверу склеить повторную отправку
     // в ту же заявку. Пересоздание ключа допустимо ТОЛЬКО при отзыве публикации.
     expect(publishFn).toContain('local.publicationKey ?? local.id');
-    expect(publishFn).toMatch(/publicationKey:\s*submissionKey/u);
-    expect(publishFn).not.toMatch(/publicationKey:[^,\n]*Date\.now\(\)/u);
+    // Сохраняется РОВНО тот ключ, которым отправляли (параметр key), а не
+    // свежесгенерированный: иначе сервер не склеит повторное нажатие.
+    expect(publishFn).toContain('publicationKey: key,');
+    // На обычном пути ключ не выдумывается. Новый ключ допустим ТОЛЬКО в
+    // ветке повтора после отзыва — она проверяется отдельным describe ниже.
+    const beforeRetry = publishFn.slice(0, publishFn.indexOf('catch (submitError'));
+    expect(beforeRetry.length).toBeGreaterThan(200);
+    expect(beforeRetry).not.toMatch(/Date\.now\(\)/u);
   });
 });
 
@@ -116,6 +122,35 @@ describe('ни одного немого выхода', () => {
     expect(client).toContain('[UGC-PUBLISH]');
     expect(publishFn).toMatch(/authorStableId:\s*authorStableId\s*\?\?\s*null/u);
     expect(publishFn).not.toContain('hasAuthorId: Boolean(');
+  });
+});
+
+describe('отозванная публикация не запирает набор навсегда', () => {
+  it('код отказа «withdrawn» распознаётся, а не валится в общий error', () => {
+    // Сервер: functions/src/community_packs.ts:676 — failed-precondition
+    // 'Publication withdrawn; start a new publication'. Раньше клиент слал
+    // тот же мёртвый ключ снова и получал вечный отказ.
+    expect(client).toContain('export function isPublicationWithdrawnError');
+    expect(client).toMatch(/failed-precondition/u);
+    expect(client).toMatch(/withdrawn/iu);
+  });
+
+  it('после такого отказа выдаётся НОВЫЙ ключ', () => {
+    expect(publishFn).toContain('retry:withdrawn');
+    expect(publishFn).toContain('const freshKey = `${local.id}_${Date.now()}`;');
+    expect(publishFn).toContain('deadKey');
+  });
+
+  it('повтор ровно один — цикла быть не может', () => {
+    // Два вызова sendWithKey: обычный и один повтор. Третий означал бы,
+    // что кто-то завёл цикл повторов.
+    const calls = publishFn.match(/await sendWithKey\(/gu) ?? [];
+    expect(calls).toHaveLength(2);
+  });
+
+  it('прочие ошибки НЕ глотаются повтором, а идут в общий лог отказа', () => {
+    // Без этого throw любая ошибка молча превращалась бы в повтор.
+    expect(publishFn).toContain('if (!isPublicationWithdrawnError(submitError)) throw submitError;');
   });
 });
 

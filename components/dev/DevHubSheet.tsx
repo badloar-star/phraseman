@@ -469,8 +469,22 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
   const handleTool = useCallback((action: DevToolAction) => {
     switch (action) {
       case 'grant-dev-runes':
+        // зачем (владелец 2026-09-21): тап по «Добавить 5 000 рун» уходил в
+        // ПОЛНУЮ тишину — четыре причины отказа и ни одного лога, кнопка
+        // выглядела мёртвой. Тот же класс бага, что убил покупку диалога:
+        // молчание не отказ. Каждый ранний выход обязан назвать причину.
+        console.log('[DEV-RUNES] tap', JSON.stringify({ // guard-ok: вход обязан логироваться и в релизе
+          busy,
+          inFlight: grantRunesInFlightRef.current,
+          phase: account.phase,
+          stableId: account.stableId ? account.stableId.slice(0, 8) : null,
+          generation: account.generation,
+        }));
         if (busy || grantRunesInFlightRef.current
-          || account.phase !== 'active' || !account.stableId) return;
+          || account.phase !== 'active' || !account.stableId) {
+          console.log(`[DEV-RUNES] ignored busy=${busy} inFlight=${grantRunesInFlightRef.current} phase=${account.phase} hasStableId=${!!account.stableId}`); // guard-ok: ранний выход обязан логироваться и в релизе
+          return;
+        }
         grantRunesInFlightRef.current = true;
         void (async () => {
           const accountToken = account;
@@ -479,8 +493,12 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
           setNotice('');
           try {
             const result = await grantRunesOnServerForDev(accountToken);
+            console.log(`[DEV-RUNES] result ok=${result.ok}${result.ok ? '' : ` reason=${result.reason}`}`); // guard-ok: исход обязан логироваться и в релизе
             if (!devHubMountedRef.current
-              || !isCurrentAccountGeneration(accountToken, accountToken.stableId)) return;
+              || !isCurrentAccountGeneration(accountToken, accountToken.stableId)) {
+              console.log('[DEV-RUNES] late_result — экран закрыт или аккаунт сменился'); // guard-ok: ранний выход обязан логироваться и в релизе
+              return;
+            }
             setNotice(result.ok
               ? 'Добавлено 5 000 настоящих рун.'
               : result.reason === 'disabled'

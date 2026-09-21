@@ -1,3 +1,5 @@
+import { readFileSync } from 'fs';
+import { join } from 'path';
 import {
   MAX_REFERRER_CLAIMS_PER_DAY,
   MAX_REFERRER_CLAIMS_PER_MONTH,
@@ -17,6 +19,18 @@ import {
   prunePeriodCounter,
   referralFirstLaunchSource,
 } from './referral';
+
+describe('окно ввода реферального кода', () => {
+  it('держит 30 дней — не 72 часа (решение владельца 2026-09-21)', () => {
+    // Повод: при 72ч замер по проду дал 1518 выданных кодов и всего 8 привязок
+    // (0,5%), 25 дней подряд без единой новой. Человек ставил приложение, через
+    // неделю получал код от друга — и упирался в REFERRAL_REFEREE_ACCOUNT_TOO_OLD.
+    // Сторож нужен, чтобы окно не вернулось к прежнему значению незаметно.
+    const source = readFileSync(join(__dirname, 'referral.ts'), 'utf8');
+    expect(source).toContain('const REFEREE_MAX_ACCOUNT_AGE_MS = 30 * 24 * 60 * 60 * 1000;');
+    expect(source).not.toContain('const REFEREE_MAX_ACCOUNT_AGE_MS = 72 * 60 * 60 * 1000;');
+  });
+});
 
 describe('referralFirstLaunchSource — честный сигнал установки/первого запуска', () => {
   it('принимает только install-referrer и initial deeplink', () => {

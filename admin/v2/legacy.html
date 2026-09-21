@@ -46368,9 +46368,14 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       .join('') || '—';
   }
 
+  // зачем (владелец 2026-09-21: «должно показывать точные даты, когда что и в
+  // какой час произошло»): стоял toLocaleDateString — только «21.08.2026», без
+  // времени. По такой записи нельзя было понять порядок событий внутри дня.
   function referralDate(ms) {
     const value = Number(ms) || 0;
-    return value > 0 ? new Date(value).toLocaleDateString('ru-RU') : '';
+    if (value <= 0) return '';
+    const d = new Date(value);
+    return `${d.toLocaleDateString('ru-RU')} ${d.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}`;
   }
 
   function referralPrizeLabel(roulette) {
@@ -46620,6 +46625,9 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     tbody.innerHTML = list.map((row) => {
       const spun = row.roulette?.state === 'spun';
       const plusLabel = row.plusPurchased ? 'Plus куплен' : 'Ожидает покупки';
+      // Дата приглашения приходила с сервера (createdAtMs), но нигде не
+      // показывалась — было видно только в CSV. Теперь видно в таблице.
+      const invitedDate = row.createdAtMs ? `<div class="ref-date">приглашён ${escapeHtml(referralDate(row.createdAtMs))}</div>` : '';
       const plusDate = row.plusPurchased && row.purchasedAtMs ? `<div class="ref-date">${escapeHtml(referralDate(row.purchasedAtMs))}</div>` : '';
       const spinDate = spun && row.roulette.createdAtMs ? `<div class="ref-date">${escapeHtml(referralDate(row.roulette.createdAtMs))}</div>` : '';
       const canAttemptRevoke = row.status !== 'revoked' && (!row.plusPurchased || spun);
@@ -46627,7 +46635,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       return `<div class="ref-grid-row" role="row" data-referee="${escapeHtml(row.refereeId)}">
         <div role="cell" data-label="Пригласивший"><div class="ref-person">${pmUserIdentityHtml(row.referrerId, row.referrerName || '')}</div></div>
         <div class="ref-arrow" aria-label="пригласил">→</div>
-        <div role="cell" data-label="Приглашённый"><div class="ref-person">${pmUserIdentityHtml(row.refereeId, row.refereeName || '')}</div></div>
+        <div role="cell" data-label="Приглашённый"><div class="ref-person">${pmUserIdentityHtml(row.refereeId, row.refereeName || '')}</div>${invitedDate}</div>
         <div role="cell" data-label="Plus"><span class="ref-status-pill ${row.plusPurchased ? 'is-plus' : 'is-waiting'}">${plusLabel}</span>${plusDate}</div>
         <div role="cell" data-label="Рулетка"><span class="ref-status-pill ${spun ? 'is-plus' : 'is-waiting'}">${escapeHtml(referralPrizeLabel(row.roulette))}</span>${spinDate}</div>
         <div role="cell" data-label="Действия" class="ref-row-actions">

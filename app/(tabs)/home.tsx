@@ -6,7 +6,7 @@ import { FlowText } from '../../components/text-integrity';
 import { isPromoBannerEnabled, isDiscountOfferBadgeEnabled, getDiscountOfferBadgeLabel, getStreakFreezeCostShards } from '../remote_flags';
 import { openPremiumPaywall } from '../paywall_navigation';
 import HomeDiscountBadge from '../../components/HomeDiscountBadge';
-import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Dimensions, Modal, AppState, DeviceEventEmitter, InteractionManager, Easing, Platform, type GestureResponderEvent, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent, type PressableProps, type PressableStateCallbackType, type StyleProp, type ViewStyle, } from 'react-native';
+import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Dimensions, Modal, AppState, DeviceEventEmitter, InteractionManager, Easing, Platform, type GestureResponderEvent, type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent, type PressableProps, type PressableStateCallbackType, type StyleProp, type TextStyle, type ViewStyle, } from 'react-native';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import TapScale from '../../components/TapScale';
@@ -135,7 +135,7 @@ import { HOME_REWARD_DEMO_MODES } from '../reward_flight_particles';
 // зачем отдельное имя: в этом файле `Animated` — из react-native и им пользуются
 // сотни мест. Пульс счётчиков живёт на Reanimated (UI-поток), поэтому его
 // компонент импортируется как Reanimated, а не подменяет существующий.
-import Reanimated, { useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
+import Reanimated, { runOnJS, useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
 import { runeAmount } from '../../constants/runes';
 import { ruKnowledgeShardsAfterNumber, ukKnowledgeShardsAfterNumber } from '../../constants/shard_plurals';
 import MaxHomeOrb from '../../components/home/MaxHomeOrb';
@@ -181,9 +181,14 @@ import { isAiVoiceConsentGranted } from '../max_voice_consent';
 import { isMaxVoiceEntryVisible } from '../max_voice_flags';
 import { getHomeLastLessonImage } from '../home_last_lesson_assets';
 import { getMistakePracticeHomeCounts } from '../mistake_practice_insights';
-import HomeSectionPulseButton from '../../components/home/HomeSectionPulseButton';
+// зачем (владелец 2026-09-21): HomeSectionPulseButton больше не импортируется —
+// ряд из двух пилюль у «Сегодня» удалён. Сам компонент оставлен в проекте: он
+// пригодится следующему разделу, которому понадобится такая же кнопка.
 import HomeMistakesLockedSheet from '../../components/home/HomeMistakesLockedSheet';
-import { homeMistakesButtonState, homeMistakesPulsePeriodMs } from '../home_mistakes_pulse_model';
+import { homeMistakesButtonState, homeMistakesCounterLabel } from '../home_mistakes_pulse_model';
+import { getHomeMistakesImage } from '../home_mistakes_assets';
+// зачем (владелец 2026-09-21): зарубка на полосе опыта заменила кнопку «Ошибки».
+import { computeMistakeXpNotchGeometry } from '../home_mistake_xp_forecast';
 import { getLingmanYoutubeSnapshot, markLingmanYoutubeCatalogSeen } from '../lingman_youtube';
 import { isVideoButtonEnabled } from '../remote_flags';
 import { prewarmMistakeHubAdvice } from '../mistake_hub_advice';
@@ -1132,6 +1137,26 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const homePriorityCardScaleStyle = useAnimatedStyle(() => ({
         transform: [{ scale: homePriorityCardScale.value }],
     }));
+    /**
+     * Какое «лицо» карточки выбрал человек долгим нажатием: урок или ошибки.
+     *
+     * зачем (владелец 2026-09-21): «плашка последнего урока при зажатии
+     * менялась анимированно на плашку раздела мои ошибки». Состояние живёт
+     * только в памяти экрана и НЕ сохраняется на диск: это выбор показа, а не
+     * награда. Durable-очередь показа — прямой запрет владельца (см. правило
+     * «празднование не ставится в durable-очередь»): непоказанная запись
+     * однажды всплыла бы не вовремя.
+     */
+    const [homePriorityCardFace, setHomePriorityCardFace] = useState<'lesson' | 'mistakes'>('lesson');
+    /** Переворот карточки: 0 — покой, 1 — середина оборота (содержимое скрыто). */
+    const homePriorityCardFlip = useSharedValue(0);
+    const homePriorityCardFlipStyle = useAnimatedStyle(() => ({
+        // Сжатие по вертикали вместо rotateX: RN-тень и градиент при настоящем
+        // 3D-повороте на Android мерцают, а результат читается так же — грань
+        // схлопывается и раскрывается обратно.
+        transform: [{ scaleY: 1 - homePriorityCardFlip.value }],
+        opacity: 1 - homePriorityCardFlip.value * 0.85,
+    }));
     useEffect(() => {
         if (homePriorityCardReduceMotion) homePriorityCardScale.value = 1;
     }, [homePriorityCardReduceMotion, homePriorityCardScale]);
@@ -1145,6 +1170,48 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             ? 1
             : withSpring(1, { damping: 18, stiffness: 260, mass: 0.7 });
     }, [homePriorityCardReduceMotion, homePriorityCardScale]);
+    /**
+     * Долгое нажатие переворачивает карточку «урок ↔ мои ошибки».
+     *
+     * зачем (владелец 2026-09-21): это ускоритель для того, кто уже понял, а не
+     * единственная дверь — при 10+ ошибках карточка переключается сама, и жест
+     * искать не нужно. Поэтому обучающего экрана здесь нет.
+     *
+     * Optimistic UI: лицо меняется в том же кадре, что и нажатие. Сети тут нет
+     * вообще — ни запроса, ни отката: mistakeActiveCount уже лежит локально.
+     */
+    const handleHomeLearningPriorityCardLongPress = useCallback(() => {
+        const takenOver = homeMistakesButtonState(mistakeActiveCount) === 'ready';
+        if (takenOver || mistakeActiveCount < 1) {
+            // Ранний выход обязан объяснять причину (правило «сперва логи»):
+            // при 10+ карточку держат ошибки и возврат урока запрещён, при нуле
+            // переворачивать не на что.
+            console.warn('[MISTAKES-CARD] longPress:ignored', JSON.stringify({ // guard-ok: ранний выход логирует причину
+                reason: takenOver ? 'mistakes_took_over' : 'no_active_mistakes',
+                activeCount: mistakeActiveCount,
+                face: homePriorityCardFace,
+            }));
+            return;
+        }
+        homePriorityCardLongPressHandledRef.current = true;
+        hapticTap();
+        const nextFace = homePriorityCardFace === 'mistakes' ? 'lesson' : 'mistakes';
+        if (homePriorityCardReduceMotion) {
+            setHomePriorityCardFace(nextFace);
+            return;
+        }
+        // Схлопнули грань → подменили содержимое на середине → раскрыли обратно.
+        homePriorityCardFlip.value = withTiming(1, { duration: 150 }, (finished) => {
+            if (!finished) return;
+            runOnJS(setHomePriorityCardFace)(nextFace);
+            homePriorityCardFlip.value = withTiming(0, { duration: 210 });
+        });
+    }, [
+        homePriorityCardFace,
+        homePriorityCardFlip,
+        homePriorityCardReduceMotion,
+        mistakeActiveCount,
+    ]);
     const [requestedReportReply, setRequestedReportReply] = useState<UserNotification | null>(null);
     const handleReportReplyBannerOpen = useCallback((notification: UserNotification) => {
         setRequestedReportReply(notification);
@@ -1530,6 +1597,20 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // наливания обязан жить на верхнем уровне компонента. getXPProgress —
     // чистая функция от totalXP, второй вызов ничего не стоит.
     const homeXpBarPercent = getXPProgress(totalXP).progress * 100;
+    /**
+     * Зарубка ошибок на полосе опыта (владелец, 2026-09-21).
+     *
+     * Показывает, сколько опыта вернётся за разбор ВСЕХ активных ошибок.
+     * Считается от тех же чисел, что реально начисляет
+     * mistake_practice_rewards, и не участвует в расчёте уровня — см.
+     * home_mistake_xp_forecast.ts и сторож
+     * tests/home_mistake_xp_forecast_contract.test.ts.
+     */
+    const homeMistakeXpNotch = computeMistakeXpNotchGeometry(
+        mistakeActiveCount,
+        homeXpBarPercent,
+        getXPProgress(totalXP).xpNeeded,
+    );
 
     // Сбор наград: частицы со всех сторон экрана в счётчики валют.
     //
@@ -3578,12 +3659,88 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const lastLessonName = lastLesson == null
             ? ''
             : (lessonNamesForStudyTarget(lang, studyTarget)[lastLesson.id - 1] ?? lastLesson.name);
-        // зачем (владелец 2026-09-14/15): вход в ошибки переехал на кнопку у
-        // «Сегодня», поэтому приоритетная карточка — всегда последний урок.
-        const priorityCardVisible = lastLesson !== null;
-        const priorityCardTitle = lastLessonName;
-        const priorityCardImage = lastLessonImage;
-        const priorityCardCounter = `${Math.max(0, Math.min(50, lastLesson?.progress ?? 0))}/50`;
+        // зачем (владелец 2026-09-21): отдельной кнопки «Ошибки» у «Сегодня»
+        // больше нет — её заменили зарубка на полосе опыта и ЭТА карточка.
+        // Правила владельца:
+        //   · ошибок 10+ → карточка сама показывает ошибки и держится так,
+        //     пока их не разберут (жест в этом состоянии выключен: вернуть урок
+        //     насильно нельзя, иначе автопереключение теряет смысл);
+        //   · ошибок 1..9 → карточка показывает урок, а долгое нажатие
+        //     переключает её на ошибки и обратно;
+        //   · ошибок нет → всегда урок.
+        const mistakesTakeOverPriorityCard = homeMistakesButtonState(mistakeActiveCount) === 'ready';
+        const priorityCardShowsMistakes = mistakesTakeOverPriorityCard
+            || (mistakeActiveCount > 0 && homePriorityCardFace === 'mistakes');
+        // Карточка ошибок живёт и без последнего урока: разбирать есть что даже
+        // тому, кто ни одного урока не открыл (ошибки копятся и в карточках).
+        const priorityCardVisible = lastLesson !== null || priorityCardShowsMistakes;
+        const priorityCardTitle = priorityCardShowsMistakes
+            ? triLang(lang, {
+                ru: 'Мои ошибки', uk: 'Мої помилки', en: 'My mistakes', es: 'Mis errores',
+                'pt-BR': 'Meus erros', vi: 'Lỗi của tôi', id: 'Kesalahan saya',
+                tr: 'Hatalarım', pl: 'Moje błędy',
+            })
+            : lastLessonName;
+        const priorityCardImage = priorityCardShowsMistakes
+            ? getHomeMistakesImage(themeMode)
+            : lastLessonImage;
+        const priorityCardCounter = priorityCardShowsMistakes
+            ? homeMistakesCounterLabel(mistakeActiveCount)
+            : `${Math.max(0, Math.min(50, lastLesson?.progress ?? 0))}/50`;
+        // Жест работает только в «серой зоне» 1..9: при 10+ карточку держат
+        // ошибки, при нуле переворачивать не на что.
+        const priorityCardLongPressEnabled = mistakeActiveCount > 0 && !mistakesTakeOverPriorityCard;
+        /**
+         * Единственный вход в «Мои ошибки» с Главной.
+         *
+         * зачем: раньше защита жила в кнопке-пилюле у «Сегодня». Кнопки больше
+         * нет, а входов стало два (карточка и зарубка на полосе) — значит
+         * защита обязана быть общей, иначе один из входов однажды поведёт в
+         * закрытый раздел.
+         *
+         * Сохранены ОБА правила из репорта #9 (Ion, 2026-09-20):
+         *  · счётчик ещё не прогружен → пускаем в хаб (0 из непрогруженного
+         *    снимка неотличим от настоящего нуля, и человек с реальными
+         *    ошибками упирался в «ошибок мало»);
+         *  · ниже порога → показываем шторку, а не ведём в пустой раздел.
+         */
+        const openHomeMistakesHub = (entrySource: string) => {
+            trackMistakePracticeEvent('mistake_practice_menu_opened', {
+                study_target: mistakeStudyTarget ?? studyTarget,
+                entry_source: entrySource,
+                ready_count: effectiveMistakeReadyCount,
+                active_count: mistakeActiveCount,
+                plus_access: hasPremiumAccess,
+            });
+            if (!mistakeSnapshotCurrent) {
+                console.warn('[MISTAKES-HUB] home:open:count_unknown → open', JSON.stringify({ // guard-ok: ранний выход обязан логировать причину (правило владельца «сперва логи»)
+                    entrySource,
+                    snapshotTarget: mistakeReadySnapshot?.target ?? null,
+                    studyTarget: String(studyTarget),
+                    ownerKeyMatches: mistakeReadySnapshot?.ownerKey === mistakeAccountGenerationKey,
+                    phase: mistakeAccountGeneration.phase,
+                }));
+                nav.push('/mistakes_hub' as never);
+                return;
+            }
+            if (homeMistakesButtonState(mistakeActiveCount) !== 'ready') {
+                console.warn('[MISTAKES-HUB] home:open:below_threshold → sheet', JSON.stringify({ // guard-ok: ранний выход обязан логировать причину
+                    entrySource,
+                    activeCount: mistakeActiveCount,
+                    state: homeMistakesButtonState(mistakeActiveCount),
+                }));
+                setMistakesLockedVisible(true);
+                return;
+            }
+            nav.push('/mistakes_hub' as never);
+        };
+        // зачем (владелец 2026-09-21): «напиши её видео уроки» — кнопка в хедере
+        // называется именно так, а не просто «Видео».
+        const homeVideoLessonsLabel = triLang(lang, {
+            ru: 'Видеоуроки', uk: 'Відеоуроки', en: 'Video lessons', es: 'Videolecciones',
+            'pt-BR': 'Videoaulas', vi: 'Bài học video', id: 'Video pelajaran',
+            tr: 'Video dersler', pl: 'Wideolekcje',
+        });
         const homeQuickRowPad = 8;
         const homeQuickRowGap = 14;
         // зачем (владелец 2026-09-14): ряд снова из трёх плиток (Уроки / Диалоги /
@@ -3705,11 +3862,14 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             justifyContent: 'center' as const,
             backgroundColor: t.gold,
         };
-        const homeHeaderBadgeTextStyle = {
+        // зачем (2026-09-21): `fontVariant: [...] as const` давал readonly-массив,
+        // который RN не принимает (TS2769 на всех трёх бейджах хедера). Тип
+        // ставим явно, без as const — массив остаётся изменяемым, как ждёт RN.
+        const homeHeaderBadgeTextStyle: TextStyle = {
             color: '#211500',
             fontSize: 11,
-            fontWeight: '900' as const,
-            fontVariant: ['tabular-nums'] as const,
+            fontWeight: '900',
+            fontVariant: ['tabular-nums'], // guard-ok: счётчик бейджа, не баланс
         };
         // Метка одна на кнопку и на чип: чип свою группу доступности отдаёт.
         const homeRunesA11yLabel = `${triLang(lang, {
@@ -4038,7 +4198,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     </TouchableOpacity>
                   </View>
 
-                  <View
+                  <Pressable
+                    testID="home-xp-bar"
                     // Ширина дорожки нужна как якорь масштабирования заливки.
                     // Замер пассивный, вёрстку не двигает и высоту не меняет,
                     // поэтому layout stability не страдает.
@@ -4048,6 +4209,30 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                         setHomeXpBarWidth(width);
                       }
                     }}
+                    // зачем (владелец 2026-09-21): «при нажатии на неё
+                    // открывался хаб ошибок». Пока зарубки нет, полоса остаётся
+                    // частью карточки и тап проваливается в статистику, как
+                    // раньше, — поэтому обработчик вешается условно.
+                    onPress={homeMistakeXpNotch.visible ? (event) => {
+                      event.stopPropagation?.();
+                      hapticTap();
+                      openHomeMistakesHub('home_xp_notch');
+                    } : undefined}
+                    accessibilityRole={homeMistakeXpNotch.visible ? 'button' : undefined}
+                    accessibilityLabel={homeMistakeXpNotch.visible
+                      ? triLang(lang, {
+                          ru: `Разобрать ошибки: вернётся до ${homeMistakeXpNotch.forecastXp} опыта`,
+                          uk: `Розібрати помилки: повернеться до ${homeMistakeXpNotch.forecastXp} досвіду`,
+                          en: `Review mistakes: up to ${homeMistakeXpNotch.forecastXp} XP back`,
+                          es: `Repasar errores: hasta ${homeMistakeXpNotch.forecastXp} de experiencia`,
+                          'pt-BR': `Revisar erros: até ${homeMistakeXpNotch.forecastXp} de XP`,
+                          vi: `Xem lại lỗi: tối đa ${homeMistakeXpNotch.forecastXp} kinh nghiệm`,
+                          id: `Bahas kesalahan: hingga ${homeMistakeXpNotch.forecastXp} XP`,
+                          tr: `Hataları gözden geçir: en çok ${homeMistakeXpNotch.forecastXp} deneyim`,
+                          pl: `Przejrzyj błędy: do ${homeMistakeXpNotch.forecastXp} doświadczenia`,
+                        })
+                      : undefined}
+                    hitSlop={{ top: 8, bottom: 8, left: 0, right: 0 }}
                     style={{
                     height: 18,
                     borderRadius: 999,
@@ -4055,6 +4240,37 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     backgroundColor: isPaperHomeTheme ? homeThemeTrackBg : isGoldTheme ? 'rgba(0,0,0,0.36)' : 'rgba(255,255,255,0.09)',
                     borderWidth: 0,
                   }}>
+                    {/* ЗАРУБКА ОШИБОК — владелец, 2026-09-21.
+                        Тянется ОТ НАЧАЛА дорожки (слева) до «текущий опыт +
+                        прогноз». Стоит ПЕРВОЙ, поэтому заливка рисуется поверх
+                        неё, и видимым остаётся только хвост справа — ровно
+                        столько опыта, сколько вернётся за разбор всех ошибок.
+
+                        Почему это не мешает повышению уровня (прямое требование
+                        владельца): зарубка — отдельный слой, она не участвует в
+                        расчёте homeXpBarPercent и не трогает scaleX заливки.
+                        Уровень поднимется ровно тогда же, когда и раньше. */}
+                    {homeMistakeXpNotch.visible ? (
+                      <View
+                        testID="home-xp-mistake-notch"
+                        pointerEvents="none"
+                        style={{
+                          position: 'absolute',
+                          left: 0,
+                          top: 0,
+                          bottom: 0,
+                          // Шаблонный литерал `${number}%` — валидный DimensionValue,
+                          // приведение не нужно: тип сужаем явно, а не глушим.
+                          width: `${homeMistakeXpNotch.widthPercent}%` as `${number}%`,
+                          borderRadius: 999,
+                          backgroundColor: t.wrong,
+                          // Приглушение обязательно: в полную силу тёплый цвет
+                          // спорил бы с заливкой и читался как ошибка системы,
+                          // а не как «вот столько можно вернуть».
+                          opacity: isPaperHomeTheme ? 0.34 : 0.42,
+                        }}
+                      />
+                    ) : null}
                     {/* Полоса опыта наливается, а не проставляется мгновенно
                         (владелец, 2026-09-01: «чуть преувеличиться и заполниться,
                         как в играх»). Масштабируем, а не меняем width: scaleX
@@ -4085,7 +4301,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                       <LinearGradient colors={isPaperHomeTheme ? [t.accent, t.accent] : isGoldTheme ? GOLD_GRADIENTS.progressMetal : [t.gold, '#FFF2B0', t.accent]} locations={isGoldTheme ? [0, 0.48, 1] : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ width: '100%', height: '100%', borderRadius: 999, overflow: 'hidden' }}>
                       </LinearGradient>
                     </Animated.View>
-                  </View>
+                  </Pressable>
 
                 </View>
               </View>
@@ -4315,6 +4531,38 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     requestedReportReply={requestedReportReply}
                     onRequestedReportReplyHandled={handleRequestedReportReplyHandled}
                   />
+                ) : null}
+                {/* зачем (владелец 2026-09-21): вход в видео вернулся в хедер и
+                    называется «Видеоуроки» — из ряда «Сегодня» кнопка убрана
+                    вместе с соседней «Ошибки» (её заменили зарубка на полосе
+                    опыта и переключаемая карточка урока). Счётчик показывает
+                    непросмотренные ролики и гаснет сразу по тапу. */}
+                {isVideoButtonEnabled() ? (
+                  <TouchableOpacity
+                    testID="home-header-videos"
+                    activeOpacity={0.7}
+                    accessibilityRole="button"
+                    accessibilityLabel={videoUnreadCount > 0
+                      ? `${homeVideoLessonsLabel}: ${homeMistakesCounterLabel(videoUnreadCount)}`
+                      : homeVideoLessonsLabel}
+                    onPress={() => {
+                      hapticTap();
+                      // Optimistic: значок гаснет в этом же кадре, отметка
+                      // «просмотрено» уходит фоном (сети не ждём).
+                      setVideoUnreadCount(0);
+                      void markLingmanYoutubeCatalogSeen(latestVideoIdRef.current);
+                      nav.push('/lingman_videos' as never);
+                    }}
+                    hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
+                    style={{ minHeight: 46, paddingHorizontal: 6, alignItems: 'center', justifyContent: 'center' }}
+                  >
+                    <Ionicons name="play-circle-outline" size={HOME_HEADER_ACTION_ICON} color={t.heroTextPrimary} />
+                    {videoUnreadCount > 0 ? (
+                      <View testID="home-header-videos-count" style={homeHeaderBadgeStyle}>
+                        <Text maxFontSizeMultiplier={1} style={homeHeaderBadgeTextStyle}>{homeMistakesCounterLabel(videoUnreadCount)}</Text>
+                      </View>
+                    ) : null}
+                  </TouchableOpacity>
                 ) : null}
                 {/* зачем (владелец 2026-09-14): энергия уехала отсюда в строку
                     «Быстрый старт» — к жемчужинам и рунам, одного размера с ними.
@@ -4656,13 +4904,38 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 testID="home-continue-lesson"
                 accessible={true}
                 accessibilityRole="button"
-                accessibilityLabel={`${s.home.continueBtn}: ${lastLessonName}`}
+                accessibilityLabel={priorityCardShowsMistakes
+                  ? `${priorityCardTitle}: ${homeMistakesCounterLabel(mistakeActiveCount)}`
+                  : `${s.home.continueBtn}: ${lastLessonName}`}
+                // Жест не самоочевиден, поэтому его называет подсказка — но
+                // только когда он реально работает (1..9 ошибок).
+                accessibilityHint={priorityCardLongPressEnabled
+                  ? triLang(lang, {
+                      ru: 'Удерживай, чтобы переключить на мои ошибки и обратно',
+                      uk: 'Утримуй, щоб перемкнути на мої помилки та назад',
+                      en: 'Hold to switch between the lesson and your mistakes',
+                      es: 'Mantén pulsado para cambiar entre la lección y tus errores',
+                      'pt-BR': 'Segure para alternar entre a lição e seus erros',
+                      vi: 'Giữ để chuyển giữa bài học và lỗi của bạn',
+                      id: 'Tahan untuk beralih antara pelajaran dan kesalahan',
+                      tr: 'Ders ile hataların arasında geçmek için basılı tut',
+                      pl: 'Przytrzymaj, aby przełączyć między lekcją a błędami',
+                    })
+                  : undefined}
                 activeOpacity={0.82}
                 onPressIn={handleHomeLearningPriorityCardPressIn}
                 onPressOut={handleHomeLearningPriorityCardPressOut}
+                onLongPress={handleHomeLearningPriorityCardLongPress}
+                delayLongPress={380}
                 onPress={() => {
                   if (homePriorityCardLongPressHandledRef.current) return;
                   hapticTap();
+                  // зачем: карточка ведёт туда, что на ней нарисовано. Иначе
+                  // человек, увидевший «Мои ошибки», попал бы в меню урока.
+                  if (priorityCardShowsMistakes) {
+                    openHomeMistakesHub('home_priority_card');
+                    return;
+                  }
                   if (!lastLesson) return;
                   logFeatureOpened('lesson_menu');
                   trackFeatureOpened('lesson_menu').catch(() => { });
@@ -4673,7 +4946,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               >
                 <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: 20, paddingHorizontal: 16, overflow: 'hidden' }}>
                   {isGoldTheme && <GoldBevel radius={20} intensity="quiet"/>}
-                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 8, minHeight: 72 }}>
+                  {/* Переворот живёт на внутреннем слое: сама карточка держит
+                      размер, поэтому соседи не дёргаются (layout stability). */}
+                  <Reanimated.View style={[{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 8, minHeight: 72 }, homePriorityCardFlipStyle]}>
                     <View style={{ width: homeLastLessonArtSlotWidth, height: homeLastLessonArtSlotHeight, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                       <LightSketchMenuImage source={priorityCardImage} width={priorityCardArtSize} height={priorityCardArtSize} lighten={false} contentFit="contain" cachePolicy="memory-disk"/>
                     </View>
@@ -4683,11 +4958,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                       </FlowText>
                     </View>
                     <View style={{ minWidth: 30, alignItems: 'flex-end', flexShrink: 0 }}>
-                      <Text style={{ color: homeThemePanelMuted, fontSize: 13, fontWeight: '700', fontVariant: ['tabular-nums'] /* guard-ok: правый счётчик прогресса */ }}>
+                      <Text style={{ color: priorityCardShowsMistakes ? t.wrong : homeThemePanelMuted, fontSize: 13, fontWeight: '700', fontVariant: ['tabular-nums'] /* guard-ok: правый счётчик прогресса */ }}>
                         {priorityCardCounter}
                       </Text>
                     </View>
-                  </View>
+                  </Reanimated.View>
                 </LinearGradient>
               </TouchableOpacity>
             </Reanimated.View>
@@ -4827,11 +5102,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
           {/* СЕГОДНЯ: лига одним полотном */}
           <Animated.View style={sectionStyle(4)}>
           <>
-          {/* зачем (владелец 2026-09-14): вход в «Работу над ошибками» - небольшая
-              пульсирующая кнопка напротив «Сегодня», ничего не раздвигает: ряд
-              держит фиксированную высоту 30, кнопка скрыта при нуле ошибок. */}
-          <View style={{ marginHorizontal: 8, marginBottom: 10, minHeight: 30, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
-            <Text style={{ color: t.textPrimary, fontSize: Math.max(13, f.label), fontWeight: '900', letterSpacing: 0, textTransform: 'uppercase', flexShrink: 1 }} numberOfLines={1}>
+          {/* зачем (владелец 2026-09-21): ряд из двух пилюль («Видео» и
+              «Ошибки») убран целиком — он был главным источником «наляпистости»
+              на Главной. Видео уехало в хедер отдельной кнопкой «Видеоуроки»,
+              ошибки — на зарубку полосы опыта и переключаемую карточку урока.
+              Заголовок остался один, без спутников. */}
+          <View style={{ marginHorizontal: 8, marginBottom: 10, minHeight: 30, justifyContent: 'center' }}>
+            <Text style={{ color: t.textPrimary, fontSize: Math.max(13, f.label), fontWeight: '900', letterSpacing: 0, textTransform: 'uppercase' }} numberOfLines={1}>
               {triLang(lang, {
                     ru: 'Сегодня',
                     uk: 'Сьогодні',
@@ -4844,66 +5121,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     pl: "Dzisiaj",
                 })}
             </Text>
-            {/* зачем (владелец 2026-09-15): «Видео» слева от «Ошибки», обе кнопки
-                одинаковые. Вход в видео из шапки убран — остался только этот. */}
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, flexShrink: 0 }}>
-              {isVideoButtonEnabled() ? (
-                <HomeSectionPulseButton
-                  testID="home-videos-pulse-button"
-                  label={triLang(lang, { ru: 'Видео', uk: 'Відео', en: 'Videos', es: 'Vídeos', 'pt-BR': 'Vídeos', vi: 'Video', id: 'Video', tr: 'Videolar', pl: 'Filmy' })}
-                  count={videoUnreadCount}
-                  pulsePeriodMs={homeMistakesPulsePeriodMs(videoUnreadCount)}
-                  tone={videoUnreadCount > 0 ? 'accent' : 'muted'}
-                  ownerVisible={homeRuntimeActive}
-                  onPress={() => {
-                    hapticTap();
-                    // Optimistic: значок гаснет сразу, отметка «просмотрено» уходит фоном.
-                    setVideoUnreadCount(0);
-                    void markLingmanYoutubeCatalogSeen(latestVideoIdRef.current);
-                    nav.push('/lingman_videos' as never);
-                  }}
-                />
-              ) : null}
-              <HomeSectionPulseButton
-                testID="home-mistakes-pulse-button"
-                label={triLang(lang, { ru: 'Ошибки', uk: 'Помилки', en: 'Mistakes', es: 'Errores', 'pt-BR': 'Erros', vi: 'Lỗi sai', id: 'Kesalahan', tr: 'Hatalar', pl: 'Błędy' })}
-                count={mistakeActiveCount}
-                pulsePeriodMs={homeMistakesPulsePeriodMs(mistakeActiveCount)}
-                tone={homeMistakesButtonState(mistakeActiveCount) === 'ready' ? 'accent' : 'muted'}
-                ownerVisible={homeRuntimeActive}
-                onPress={() => {
-                  hapticTap();
-                  trackMistakePracticeEvent('mistake_practice_menu_opened', {
-                    study_target: mistakeStudyTarget ?? studyTarget,
-                    entry_source: 'home',
-                    ready_count: effectiveMistakeReadyCount,
-                    active_count: mistakeActiveCount,
-                    plus_access: hasPremiumAccess,
-                  });
-                  // зачем (репорт #9 Ion, 2026-09-20): шторка «тут пока нечего
-                  // разбирать» показывалась и тогда, когда счётчик ещё НЕ
-                  // прогружен — снимок null или чужого поколения аккаунта даёт
-                  // active = 0, неотличимый от настоящего нуля. Человек с
-                  // реальными ошибками четырежды упёрся в «ошибок мало».
-                  // Ниже порога раздел закрыт — но только когда счётчик known.
-                  if (!mistakeSnapshotCurrent) {
-                    console.warn('[MISTAKES-HUB] home:tap:count_unknown → open', JSON.stringify({ // guard-ok: ранний выход обязан логировать причину (правило владельца «сперва логи»)
-                      snapshotTarget: mistakeReadySnapshot?.target ?? null,
-                      studyTarget: String(studyTarget),
-                      ownerKeyMatches: mistakeReadySnapshot?.ownerKey === mistakeAccountGenerationKey,
-                      phase: mistakeAccountGeneration.phase,
-                    }));
-                    nav.push('/mistakes_hub' as never);
-                    return;
-                  }
-                  if (homeMistakesButtonState(mistakeActiveCount) !== 'ready') {
-                    setMistakesLockedVisible(true);
-                    return;
-                  }
-                  nav.push('/mistakes_hub' as never);
-                }}
-              />
-            </View>
           </View>
           {/* зачем: владелец попросил низ «не плашками» — одно полотно тоном,
               строки внутри разделены hairline (не рамка контейнера). Практика

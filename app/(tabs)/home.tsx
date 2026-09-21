@@ -772,11 +772,43 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         dailyPhraseCardVisibleRef.current = next;
         setDailyPhraseCardVisible(next);
     }, []);
-    const handleHomeScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
-        topFadeScroll?.onScroll?.(event);
-        homeScrollYRef.current = event.nativeEvent.contentOffset.y;
+    // зачем (владелец 2026-09-21, «ещё лагает»): скролл Главной шёл через
+    // JS-поток — handleHomeScroll дёргался 60 раз в секунду, и каждый кадр
+    // updateScrollMetrics писал три SharedValue из JS, то есть ~180 переходов
+    // через мост в секунду. При Новой Архитектуре это дорого.
+    // Теперь замер offset живёт на UI-потоке, а JS будим ТОЛЬКО на пересечении
+    // порога: верхняя маска (6px, как в TopFadeScrollContext) и порог видимости
+    // карточки дня. Образец — personal_plan_stats_screen.tsx, тот же приём.
+    // Пороги: маска сверху (6px, как в TopFadeScrollContext) и сворачивание
+    // таббара (8px по модулю, как в его reportOffset). Оба — «да/нет», поэтому
+    // решение принимается на UI-потоке, а JS будится только на переключении.
+    //
+    // Карточка дня СОЗНАТЕЛЬНО осталась на JS-пути: её видимость зависит от
+    // положения карточки и высоты экрана (isDailyPhraseCardHalfVisible), а не от
+    // порога по offset. Грубый порог в worklet сломал бы её появление — проверено
+    // до правки, поэтому она обновляется на onScrollEndDrag/onMomentumScrollEnd,
+    // где и была точна, а не 60 раз в секунду.
+    const homeTopFadeShown = useSharedValue(false);
+    const homeTabBarLastY = useSharedValue(0);
+    const notifyHomeScrollY = useCallback((y: number) => {
+        homeScrollYRef.current = y;
+        topFadeScroll?.reportTabBarOffset?.(y);
         refreshDailyPhraseVisibility();
     }, [refreshDailyPhraseVisibility, topFadeScroll]);
+    const homeScrollWorklet = useCallback((y: number) => {
+        'worklet';
+        const clamped = Math.max(0, y);
+        const fadeShown = clamped > 6;
+        // Тот же шаг 8px, что в TopFadeScrollContext.reportOffset — таббар и так
+        // не реагировал на более мелкие сдвиги, просто теперь их отсекает
+        // UI-поток, а не JS.
+        const tabBarMoved = clamped <= 6 || Math.abs(clamped - homeTabBarLastY.value) >= 8;
+        if (fadeShown !== homeTopFadeShown.value || tabBarMoved) {
+            homeTopFadeShown.value = fadeShown;
+            homeTabBarLastY.value = clamped;
+            runOnJS(notifyHomeScrollY)(clamped);
+        }
+    }, [homeTabBarLastY, homeTopFadeShown, notifyHomeScrollY]);
     const handleHomeScrollSettled = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
         homeScrollYRef.current = event.nativeEvent.contentOffset.y;
         refreshDailyPhraseVisibility();
@@ -4530,7 +4562,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   {homeHintText ?? s.home.statsPulseHint}
                 </Animated.Text>)}
             </Animated.View>);
-        return (<BouncyScrollView ref={homeScrollRef} scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="fast" onScroll={handleHomeScroll} onScrollEndDrag={handleHomeScrollSettled} onMomentumScrollEnd={handleHomeScrollSettled} onLayout={(event: LayoutChangeEvent) => {
+        return (<BouncyScrollView ref={homeScrollRef} scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="fast" onScrollWorklet={homeScrollWorklet} onScrollEndDrag={handleHomeScrollSettled} onMomentumScrollEnd={handleHomeScrollSettled} onLayout={(event: LayoutChangeEvent) => {
             homeViewportHeightRef.current = event.nativeEvent.layout.height;
             refreshDailyPhraseVisibility();
         }} scrollEventThrottle={16} contentContainerStyle={{ paddingBottom: tabContentBottomPad, marginTop: -4 }}>

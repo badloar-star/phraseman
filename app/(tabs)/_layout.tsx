@@ -522,6 +522,9 @@ function TabScaffold({
   const tabBloomAnim = useRef(new Animated.Value(0)).current;
   const tabScrollProgress = useRef(new Animated.Value(0)).current;
   const tabScrollCollapsedRef = useRef(false);
+  // «Хром доехал до состояния из tabScrollCollapsedRef, анимация не в полёте».
+  // На старте таббар развёрнут и неподвижен — значит true.
+  const tabScrollSettledRef = useRef(true);
   const tabScrollLastYRef = useRef(0);
   const tabScrollLastToggleAtRef = useRef(0);
   const [pressedTabIdx, setPressedTabIdx] = useState<number | null>(null);
@@ -621,7 +624,22 @@ function TabScaffold({
   });
 
   const animateTabChrome = useCallback((collapsed: boolean, immediate = false) => {
-    if (!immediate && tabScrollCollapsedRef.current === collapsed) return;
+    // зачем (владелец 2026-09-21, «всё лагает, причём везде» на TestFlight):
+    // раньше ранний выход проверял состояние ТОЛЬКО при immediate=false. А
+    // слушатель скролла ниже зовёт animateTabChrome(false, true) на КАЖДЫЙ кадр,
+    // пока палец в верхних 10 пикселях (TAB_SCROLL_EXPAND_TRIGGER_Y) — то есть
+    // в начале любого скролла на любом табе. Из-за immediate=true проверка и
+    // кулдаун пропускались, и каждый кадр шли stopAnimation() + setValue() на
+    // старом Animated.Value — работа через мост прямо под пальцем.
+    // Теперь «уже в нужном состоянии — не делаем ничего» действует ВСЕГДА, но
+    // ТОЛЬКО если хром действительно ДОЕХАЛ до этого состояния. Иначе был бы
+    // новый баг: свернулись (ref=true) → пошла анимация разворота (ref=false) →
+    // следующий вызов отбил кулдаун и прервал её на середине. Ref говорит
+    // «развёрнуто», а таббар визуально застрял между. Раньше от этого спасал
+    // как раз покадровый immediate-вызов, который я и убираю.
+    // Признак «доехали» держим сами, а не читаем приватный _value у
+    // Animated.Value: приватное поле молча исчезнет на любом обновлении RN.
+    if (tabScrollCollapsedRef.current === collapsed && tabScrollSettledRef.current) return;
     const now = Date.now();
     if (!immediate && now - tabScrollLastToggleAtRef.current < TAB_SCROLL_TOGGLE_COOLDOWN_MS) return;
     tabScrollLastToggleAtRef.current = now;
@@ -629,14 +647,23 @@ function TabScaffold({
     tabScrollProgress.stopAnimation();
     if (immediate || reduceMotion) {
       tabScrollProgress.setValue(collapsed ? 1 : 0);
+      tabScrollSettledRef.current = true;
       return;
     }
+    // В полёте: пока анимация не закончилась, ранний выход выше не сработает —
+    // прерванный разворот всегда получит шанс доиграть.
+    tabScrollSettledRef.current = false;
     Animated.timing(tabScrollProgress, {
       toValue: collapsed ? 1 : 0,
       duration: collapsed ? TAB_SCROLL_COLLAPSE_MS : TAB_SCROLL_EXPAND_MS,
       easing: Easing.out(Easing.cubic),
       useNativeDriver: true,
-    }).start();
+    }).start(({ finished }) => {
+      // Доехали только если анимация не была прервана следующим переключением.
+      if (finished && tabScrollCollapsedRef.current === collapsed) {
+        tabScrollSettledRef.current = true;
+      }
+    });
   }, [reduceMotion, tabScrollProgress]);
 
   useLayoutEffect(() => {

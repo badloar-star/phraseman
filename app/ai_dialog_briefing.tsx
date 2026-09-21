@@ -18,7 +18,8 @@ import { warmPremiumDialog } from './ai_dialog_client';
 import { warmPremiumDialogStream } from './ai_dialog_stream_client';
 import { trackEvent as trackAiDialogEvent } from './analytics';
 import { isScenarioUnlockedForAccount } from './ai_dialog_level_lock';
-import { getScenarioById, scenarioPriceRunes } from './ai_dialog_scenarios';
+import { dialogScenarioTitle, getScenarioById, scenarioPriceRunes } from './ai_dialog_scenarios';
+import FirstPurchaseSealCelebration from '../components/FirstPurchaseSealCelebration';
 import { dialogueScenarioPresentation } from './dialogue_scenario_presentation';
 import {
   buyDialogAccessLocally,
@@ -303,6 +304,9 @@ function AiDialogBriefingBody() {
 
   // Причина неудачной покупки для человека: тап не смеет уходить в тишину.
   const [buyError, setBuyError] = useState<string | null>(null);
+  // Празднование первой покупки. Состояние В ПАМЯТИ ЭКРАНА, не durable:
+  // пропущенная анимация не должна всплыть когда-нибудь потом.
+  const [celebrating, setCelebrating] = useState(false);
   const buyingRef = useRef(false);
   const handleBuy = useCallback(() => {
     console.log(`[RUNES-BUY] briefing:tap_buy scenario=${scenario?.id ?? 'null'} price=${price} balance=${runeBalance} busy=${buyingRef.current}`); // guard-ok: вход обязан логироваться и в релизе
@@ -336,8 +340,21 @@ function AiDialogBriefingBody() {
       console.log(`[RUNES-BUY] briefing:bought scenario=${scenario.id} already=${result.alreadyOwned} balance=${result.balance} → open`); // guard-ok: финальный результат обязан логироваться и в релизе
       setOwnedIds((prev) => new Set([...(prev ?? []), scenario.id]));
       setRuneBalance(result.balance);
-      // Синхронизация фоном — экран её НЕ ждёт.
-      openSessionRef.current?.();
+      /**
+       * Празднуем ТОЛЬКО первую покупку (владелец 21.09: «анимация покупки
+       * когда диалог открывается впервые»). `alreadyOwned` — это повторный
+       * тап или возврат на экран: там праздник был бы навязчивым.
+       *
+       * Награда уже выдана ВЫШЕ, до показа: празднование ничего не держит и
+       * ничего не выдаёт (правило «празднование не ставится в durable-очередь»).
+       * Пропусти человек анимацию — диалог всё равно куплен.
+       */
+      if (result.alreadyOwned) {
+        openSessionRef.current?.();
+        return;
+      }
+      console.log(`[RUNES-BUY] briefing:celebrate scenario=${scenario.id}`); // guard-ok: ветка решения обязана логироваться и в релизе
+      setCelebrating(true);
     }).catch((error: unknown) => {
       buyingRef.current = false;
       console.warn('[RUNES-BUY] briefing:buy_failed', // guard-ok: сбой покупки обязан логироваться и в релизе
@@ -506,6 +523,51 @@ function AiDialogBriefingBody() {
               errorReason: buyError,
             }
           : null}
+      />
+      {/* Празднование живёт на СВОЁМ экране (правило владельца), поэтому
+          рисуется здесь, а не глобальным оверлеем поверх чужого контента. */}
+      <FirstPurchaseSealCelebration
+        visible={celebrating}
+        kind="dialog"
+        subjectTitle={dialogScenarioTitle(scenario, lang)}
+        title={triLang(lang, {
+          ru: 'Диалог открыт',
+          en: 'Dialogue unlocked',
+          uk: 'Діалог відкрито',
+          es: 'Diálogo desbloqueado',
+          'pt-BR': 'Diálogo desbloqueado',
+          vi: 'Đã mở hội thoại',
+          id: 'Dialog terbuka',
+          tr: 'Diyalog açıldı',
+          pl: 'Dialog odblokowany',
+        })}
+        subtitle={triLang(lang, {
+          ru: 'Теперь он твой навсегда',
+          en: 'It is yours for good',
+          uk: 'Тепер він твій назавжди',
+          es: 'Es tuyo para siempre',
+          'pt-BR': 'Agora é seu para sempre',
+          vi: 'Nó là của bạn mãi mãi',
+          id: 'Sekarang milikmu selamanya',
+          tr: 'Artık kalıcı olarak senin',
+          pl: 'Jest twój na zawsze',
+        })}
+        ctaLabel={triLang(lang, {
+          ru: 'Начать диалог',
+          en: 'Start dialogue',
+          uk: 'Почати діалог',
+          es: 'Empezar diálogo',
+          'pt-BR': 'Começar diálogo',
+          vi: 'Bắt đầu hội thoại',
+          id: 'Mulai dialog',
+          tr: 'Diyaloğu başlat',
+          pl: 'Rozpocznij dialog',
+        })}
+        onDone={() => {
+          console.log(`[RUNES-BUY] briefing:celebrate_done scenario=${scenario.id} → open`); // guard-ok: финальный результат обязан логироваться и в релизе
+          setCelebrating(false);
+          openSessionRef.current?.();
+        }}
       />
     </>
   );

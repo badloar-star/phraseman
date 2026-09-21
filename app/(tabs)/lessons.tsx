@@ -39,6 +39,7 @@ import Svg, {
   Stop,
 } from "react-native-svg";
 import TapScale from "../../components/TapScale";
+import FirstPurchaseSealCelebration from "../../components/FirstPurchaseSealCelebration";
 import { useFocusEffect, useRouter } from "expo-router";
 import { useFeatureAccess, usePremium } from "../../components/PremiumContext";
 import {
@@ -3616,6 +3617,9 @@ export default function LessonsTab({
   // покупку после тапа. Читаем лениво — только когда шторка замка открыта.
   const [pearlBalance, setPearlBalance] = useState<number | null>(null);
   const [lessonUnlockPending, setLessonUnlockPending] = useState(false);
+  // Номер урока, который празднуем. В памяти экрана, не durable: пропущенная
+  // анимация не должна всплыть когда-нибудь потом (правило владельца).
+  const [celebratingLesson, setCelebratingLesson] = useState<number | null>(null);
   useEffect(() => {
     if (gateModalKind !== "lesson" && gateModalKind !== "levelGate") return;
     let alive = true;
@@ -3713,7 +3717,19 @@ export default function LessonsTab({
       }
       if (__DEV__) console.log('[LESSON-UNLOCK] press:ok', JSON.stringify({ lessonNum, already: result.alreadyOwned }));
       void prefetchLessonMenuCache(lessonNum, studyTarget);
-      router.push({ pathname: "/lesson_menu", params: { id: lessonNum } });
+      /**
+       * Празднуем ТОЛЬКО первую покупку урока (владелец 21.09). Повторный тап
+       * или возврат на экран (`alreadyOwned`) праздника не получает.
+       *
+       * Урок уже открыт ВЫШЕ, до показа: празднование ничего не выдаёт и
+       * ничего не держит — правило «празднование не ставится в durable-очередь».
+       */
+      if (result.alreadyOwned) {
+        router.push({ pathname: "/lesson_menu", params: { id: lessonNum } });
+        return;
+      }
+      console.log('[LESSON-UNLOCK] celebrate', JSON.stringify({ lessonNum })); // guard-ok: ветка решения обязана логироваться и в релизе
+      setCelebratingLesson(lessonNum);
     } finally {
       setLessonUnlockPending(false);
     }
@@ -6232,6 +6248,63 @@ export default function LessonsTab({
               ]
         }
         onRequestClose={() => setGateModal(null)}
+      />
+      {/* Празднование первой покупки урока — на СВОЁМ экране, не глобальным
+          оверлеем (правило владельца о празднованиях). */}
+      <FirstPurchaseSealCelebration
+        visible={celebratingLesson !== null}
+        kind="lesson"
+        subjectTitle={triLang(lang, {
+          ru: `Урок ${celebratingLesson ?? ''}`,
+          en: `Lesson ${celebratingLesson ?? ''}`,
+          uk: `Урок ${celebratingLesson ?? ''}`,
+          es: `Lección ${celebratingLesson ?? ''}`,
+          'pt-BR': `Lição ${celebratingLesson ?? ''}`,
+          vi: `Bài học ${celebratingLesson ?? ''}`,
+          id: `Pelajaran ${celebratingLesson ?? ''}`,
+          tr: `Ders ${celebratingLesson ?? ''}`,
+          pl: `Lekcja ${celebratingLesson ?? ''}`,
+        })}
+        title={triLang(lang, {
+          ru: 'Урок открыт',
+          en: 'Lesson unlocked',
+          uk: 'Урок відкрито',
+          es: 'Lección desbloqueada',
+          'pt-BR': 'Lição desbloqueada',
+          vi: 'Đã mở bài học',
+          id: 'Pelajaran terbuka',
+          tr: 'Ders açıldı',
+          pl: 'Lekcja odblokowana',
+        })}
+        subtitle={triLang(lang, {
+          ru: 'Теперь он твой навсегда',
+          en: 'It is yours for good',
+          uk: 'Тепер він твій назавжди',
+          es: 'Es tuya para siempre',
+          'pt-BR': 'Agora é sua para sempre',
+          vi: 'Nó là của bạn mãi mãi',
+          id: 'Sekarang milikmu selamanya',
+          tr: 'Artık kalıcı olarak senin',
+          pl: 'Jest twoja na zawsze',
+        })}
+        ctaLabel={triLang(lang, {
+          ru: 'Начать урок',
+          en: 'Start lesson',
+          uk: 'Почати урок',
+          es: 'Empezar lección',
+          'pt-BR': 'Começar lição',
+          vi: 'Bắt đầu bài học',
+          id: 'Mulai pelajaran',
+          tr: 'Derse başla',
+          pl: 'Rozpocznij lekcję',
+        })}
+        onDone={() => {
+          const lessonNum = celebratingLesson;
+          setCelebratingLesson(null);
+          if (lessonNum === null) return;
+          console.log('[LESSON-UNLOCK] celebrate_done', JSON.stringify({ lessonNum })); // guard-ok: финальный результат обязан логироваться и в релизе
+          router.push({ pathname: '/lesson_menu', params: { id: lessonNum } });
+        }}
       />
     </>
   );

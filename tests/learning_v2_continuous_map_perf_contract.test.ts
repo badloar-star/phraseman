@@ -124,18 +124,24 @@ describe("Learning V2 continuous map performance contract", () => {
     }
   });
 
-  test("первое занятие курса показывается вверху, а не по центру", () => {
-    // Владелец 20.09: «когда урок 1 сессия 1 — она должна быть ВВЕРХУ».
-    expect(source).toContain("const atCourseStart =");
-    // Индекс строки сюда не годится: занятие 1 лежит на индексе 2 (перед ним
-    // плашка урока и глава). Признак начала — урок 1, глава 1, занятие 1.
-    expect(source).toContain("currentSession.lessonOrdinal === 1");
-    expect(source).toContain("currentSession.chapterOrdinal === 1");
-    // Владелец 21.09: «активный урок должен быть чуть выше середины, но не в
-    // самом верху». Без этой строки условие ловило занятия 2..7 главы 1, и
-    // они тоже липли к верхнему краю.
-    expect(source).toContain("currentSession.sessionOrdinal === 1");
-    expect(source).toContain("const lead = atCourseStart ?");
+  test("позиция активного кружка задана ОДНОЙ формулой, без веток", () => {
+    // Владелец 21.09 прислал эталонный скриншот: активный узел на четверти
+    // экрана сверху, над ним видна плашка главы.
+    //
+    // Два промаха подряд родились из развилки «начало курса / все остальные»:
+    // сначала занятия 2..7 липли к верхнему краю, потом все прочие уезжали
+    // слишком низко. Ветки быть НЕ ДОЛЖНО — только одна константа.
+    expect(source).toContain("const MAP_CURRENT_NODE_VIEWPORT_RATIO =");
+    expect(source).not.toContain("const atCourseStart =");
+    expect(source).not.toContain("const lead = atCourseStart ?");
+    // Обе точки (наведение и первый кадр) считают по одной и той же константе.
+    const leads = source.match(/const lead = [^;]+;/g) ?? [];
+    expect(leads).toHaveLength(2);
+    for (const lead of leads) {
+      expect(lead).toContain("MAP_CURRENT_NODE_VIEWPORT_RATIO");
+      // Тернарник здесь = возврат той самой развилки.
+      expect(lead).not.toContain("?");
+    }
   });
 
   test("модель карты не строится дважды", () => {
@@ -203,12 +209,12 @@ describe("Learning V2 continuous map performance contract", () => {
     expect(source).toContain("getItemLayout={getMapItemLayout}");
   });
 
-  test("при открытии карты плашка главы не попадает в кадр", () => {
-    // Владелец 20.09: «плашка ГЛАВА 1 в кадр попадать не должна, но если
-    // проскроллить вверх — да».
-    // Ровно 0: при 18 от главы (118px) снизу торчал огрызок в 18px —
-    // владелец: «плашка глава 1 обрезается и вообще не попадает полностью».
-    expect(source).toContain("const lead = atCourseStart ? 0 :");
+  test("первый кадр и наведение встают в одно и то же место", () => {
+    // Иначе список рисует первый кадр в одном месте, а наведение тут же
+    // дёргает карту в другое — владелец 20.09 видел «ДВА кадра».
+    // Стартовая позиция обязана задаваться до первой отрисовки.
+    expect(source).toContain("contentOffset={initialOffset}");
+    expect(source).toContain("const initialOffset = useMemo(");
   });
 
   test("карта не пересоздаётся: на ней нет key от generation", () => {

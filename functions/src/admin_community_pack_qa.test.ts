@@ -12,12 +12,44 @@ const index = readFileSync(join(__dirname, 'index.ts'), 'utf8');
 const adminHtml = readFileSync(join(__dirname, '..', '..', 'admin', 'v2', 'legacy.html'), 'utf8');
 
 describe('admin community pack QA review', () => {
-  test('экспортирует оба callable и подключает их в index', () => {
+  test('экспортирует три callable и подключает их в index', () => {
     expect(source).toContain('export const adminCommunityPackQaReview = onCall({');
     expect(source).toContain('export const adminCommunityPackApplyQaFixes = onCall({');
+    expect(source).toContain('export const adminCommunityPackApplyQaFixesToPublished = onCall({');
     expect(index).toContain(
-      "export { adminCommunityPackQaReview, adminCommunityPackApplyQaFixes } from './admin_community_pack_qa';",
+      "export { adminCommunityPackQaReview, adminCommunityPackApplyQaFixes, adminCommunityPackApplyQaFixesToPublished } from './admin_community_pack_qa';",
     );
+  });
+
+  test('имена коллекций взяты из community_packs.ts, а не выдуманы', () => {
+    // Повод: здесь стояло 'community_submissions' — НЕСУЩЕСТВУЮЩАЯ коллекция.
+    // Применение правок молча писало бы мимо заявки, и ни один тест это не ловил.
+    const packsSource = readFileSync(join(__dirname, 'community_packs.ts'), 'utf8');
+    expect(packsSource).toContain("const COMMUNITY_SUBMISSIONS = 'community_pack_submissions'");
+    expect(source).toContain("const COMMUNITY_SUBMISSIONS = 'community_pack_submissions'");
+    expect(source).toContain("const COMMUNITY_PACKS = 'community_packs'");
+    // Именно присваивание неверного имени, а не подстрока: 'community_submissions'
+    // входит в 'community_pack_submissions' как часть.
+    expect(source).not.toMatch(/=\s*'community_submissions'/);
+  });
+
+  test('язык определяется ПО ТЕКСТУ, а не по имени поля', () => {
+    // Повод (владелец 2026-09-21): промпт объявлял эталоном имя поля, и на
+    // заявке с обратной раскладкой ИИ «чинил» правильный английский под кривой
+    // русский: «Wake up in the morning» → «Sprinkle in the morning».
+    expect(source).toContain('Field names are just storage slots');
+    expect(source).toContain('Never assume');
+    expect(source).toContain('category "swapped"');
+    expect(source).toContain('NEVER "fix" a correct text to match an incorrect one');
+    expect(source).toContain('swapped: \'Перепутаны поля\'');
+  });
+
+  test('правка опубликованного набора двигает реестр дублей', () => {
+    // Без этого карточки прежней версии остаются в индексе навсегда —
+    // класс бага, который в проекте уже случался.
+    expect(source).toContain('syncFlashcardRegistryPackMutation');
+    expect(source).toContain("if (listingStatus !== 'published')");
+    expect(source).toContain('pendingSubmissionId');
   });
 
   test('имя callable совпадает с тем, что зовёт админка', () => {
@@ -34,9 +66,13 @@ describe('admin community pack QA review', () => {
     expect(adminHtml).not.toMatch(/запустить\\s\+ai\|ai\[-\\s\]\?провер/i);
   });
 
-  test('оба callable доступны только админу', () => {
+  test('все три callable доступны только админу', () => {
     const guards = source.match(/if \(!request\.auth\?\.token\?\.admin\)/g) ?? [];
-    expect(guards.length).toBe(2);
+    const callables = source.match(/export const \w+ = onCall\(\{/g) ?? [];
+    // Гард обязан стоять в КАЖДОМ callable — считаем их поштучно, чтобы новый
+    // экспорт нельзя было добавить без проверки прав.
+    expect(guards.length).toBe(callables.length);
+    expect(callables.length).toBe(3);
     expect(source).toContain("throw new HttpsError('permission-denied', 'admin_only')");
   });
 

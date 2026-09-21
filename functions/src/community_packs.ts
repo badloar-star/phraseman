@@ -26,7 +26,11 @@ const SELLER_INBOX = 'community_seller_inbox';
 const FLASHCARD_SEMANTIC_KEYS = 'content_factory_flashcard_semantic_keys';
 const FLASHCARD_REGISTRY_CONFIG = 'flashcard_semantic_registry';
 
-async function syncFlashcardRegistryPackMutation(tx: FirebaseFirestore.Transaction, db: FirebaseFirestore.Firestore, previous: { id: string; studyTarget?: string; cards?: readonly unknown[] } | null, next: { id: string; studyTarget?: string; cards?: readonly unknown[] } | null) {
+// зачем (владелец 2026-09-21): AI-правка ОПУБЛИКОВАННЫХ наборов обязана двигать
+// реестр дублей той же транзакцией — иначе карточки старой версии останутся в
+// индексе навсегда (этот класс бага в проекте уже был). Экспорт, чтобы
+// admin_community_pack_qa.ts не заводил вторую копию той же логики.
+export async function syncFlashcardRegistryPackMutation(tx: FirebaseFirestore.Transaction, db: FirebaseFirestore.Firestore, previous: { id: string; studyTarget?: string; cards?: readonly unknown[] } | null, next: { id: string; studyTarget?: string; cards?: readonly unknown[] } | null) {
   const plan = planFlashcardRegistryPackMutation(previous, next).filter((item) => item.addSources.length || item.removeSources.length);
   if (!plan.length) return;
   const configRef = db.collection('content_factory_config').doc(FLASHCARD_REGISTRY_CONFIG);

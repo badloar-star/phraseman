@@ -1,7 +1,7 @@
 # Task packet: руны за набор получает АВТОР, цена прячется за галочкой «Сделать платным»
 
 Governance-ID: TG-FE800044C0BF
-Status: Planned
+Status: Deployed (2026-09-21)
 Owner: Claude Opus 5 (сессия 2026-09-21), владелец badloar@gmail.com
 Related epic/enabler: экономика рун (docs/design/runes/MAKET.html, экраны 6 и 8)
 
@@ -134,6 +134,29 @@ Out of scope:
   ползунка нет → нажать «Сделать платным» → появился ползунок; текстов
   «Руны остаются у приложения» и «Это цена для больших наборов» нет.
 - Evidence: вывод jest сохраняется в ответе сессии.
+
+## Деплой (2026-09-21)
+
+Развёрнуты ТРИ функции в `us-central1`, кодовая база `default`:
+
+- `communitySyncPackRuneSale` — создана (новая);
+- `communitySubmitPackForReview` — обновлена (сохраняет цену при публикации);
+- `communityModerateSubmission` — обновлена (сохраняет цену при одобрении правки).
+
+⚠️ Деплоить надо было именно ТРИ, а не одну новую: цену в документ набора
+пишут две СТАРЫЕ функции. Развернув только новую, мы получили бы ровно тот же
+мёртвый механизм — `priceRunes = 0` и отказ `pack_is_not_paid` на каждой продаже.
+
+Проверка после деплоя:
+- `firebase functions:list` — все три `callable`, `us-central1`, `nodejs22`;
+- живой вызов новой функции вернул `auth_required / UNAUTHENTICATED` — то есть
+  функция выполняется и защита авторизации работает;
+- логи: `state: ACTIVE`, healthcheck с первой попытки, `maxInstanceCount: 10`
+  (глобальный лимит применился, квота CPU по региону не выбирается);
+- `Callable request verification passed`, `app: MISSING` — App Check не требуется,
+  пломба владельца соблюдена;
+- `communitySubmitPackForReview` подняла новую ревизию штатно — публикация
+  наборов не сломана.
 
 ## Rollback
 

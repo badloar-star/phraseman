@@ -1,8 +1,26 @@
 /**
  * Offline English → IPA transcription.
- * Strategy: dictionary lookup first, rule-based approximation for unknown words.
- * Guarantees a result for every non-empty English string.
+ * Strategy: dictionary lookup first, conservative rules for regular spellings.
+ *
+ * зачем: пользователь прислал репорт — на карточке "Where do we meet guests?"
+ * слово guests показывалось как /gdʒʌːsts/ вместо /ɡests/. Проверка правил
+ * показала, что выдумка была массовой: girl → dʒɪrl, school → stʃʌːl,
+ * ghost → ɒst, two → twɒ, know → knæʊ, heart → hɪːt. Английская орфография
+ * не выводится побуквенными правилами, поэтому прежняя гарантия «вернуть
+ * результат для любой строки» означала «врать, когда не знаем».
+ *
+ * Новая гарантия: либо правда, либо ничего. Неуверенное слово даёт пустую
+ * строку, и карточка показывается без транскрипции — отсутствие подсказки
+ * честнее ложной подсказки, за которую пользователь справедливо ловит нас
+ * на Cambridge/Oxford.
  */
+
+/**
+ * Версия генератора. Транскрипция сохраняется в документ карточки навсегда,
+ * поэтому карточки, записанные более старой версией, нужно перегенерировать.
+ * Поднимай число при каждом изменении словаря или правил.
+ */
+export const TRANSCRIPTION_ENGINE_VERSION = 2;
 
 // ─── Dictionary ───────────────────────────────────────────────────────────────
 // Common A1–B2 words + all system flashcard vocabulary
@@ -220,6 +238,35 @@ const DICT: Record<string, string> = {
   car: 'kɑːr', phone: 'foʊn',
   // зачем: точная транскрипция вместо приблизительной из правил (репорт про [k] в pharmacy).
   pharmacy: 'ˈfɑːrməsi', pharmacies: 'ˈfɑːrməsiz',
+  // зачем: репорт пользователя 21.09.2026 — guests показывалось как /gdʒʌːsts/.
+  // Немой "u" после "g" правилами не выводится, поэтому всё гнездо — в словарь.
+  guest: 'ɡest', guests: 'ɡests', guess: 'ɡes', guessed: 'ɡest', guessing: 'ˈɡesɪŋ',
+  guide: 'ɡaɪd', guides: 'ɡaɪdz', guided: 'ˈɡaɪdɪd', guitar: 'ɡɪˈtɑːr',
+  guard: 'ɡɑːrd', guards: 'ɡɑːrdz', guilty: 'ˈɡɪlti', league: 'liːɡ',
+  tongue: 'tʌŋ', vague: 'veɪɡ', colleague: 'ˈkɒliːɡ', dialogue: 'ˈdaɪəlɒɡ',
+  // зачем: слова, где побуквенные правила давали мусор (замер 21.09.2026):
+  // girl → dʒɪrl, school → stʃʌːl, ghost → ɒst, two → twɒ, know → knæʊ.
+  girl: 'ɡɜːrl', girls: 'ɡɜːrlz', boy: 'bɔɪ', boys: 'bɔɪz',
+  two: 'tuː', once: 'wʌns', one: 'wʌn', ghost: 'ɡoʊst',
+  island: 'ˈaɪlənd', knife: 'naɪf', knee: 'niː', knock: 'nɒk',
+  half: 'hɑːf', castle: 'ˈkæsl', listen: 'ˈlɪsən',
+  bread: 'bred', field: 'fiːld', piece: 'piːs', receive: 'rɪˈsiːv',
+  weight: 'weɪt', eight: 'eɪt', height: 'haɪt',
+  hour: 'ˈaʊər', honest: 'ˈɒnɪst', rhythm: 'ˈrɪðəm',
+  sign: 'saɪn', design: 'dɪˈzaɪn', column: 'ˈkɒləm', autumn: 'ˈɔːtəm',
+  debt: 'det', doubt: 'daʊt', subtle: 'ˈsʌtl', scissors: 'ˈsɪzərz',
+  science: 'ˈsaɪəns', muscle: 'ˈmʌsl',
+  character: 'ˈkærəktər', machine: 'məˈʃiːn', chef: 'ʃef',
+  ocean: 'ˈoʊʃən', nation: 'ˈneɪʃən', picture: 'ˈpɪktʃər',
+  future: 'ˈfjuːtʃər', usually: 'ˈjuːʒuəli', measure: 'ˈmeʒər',
+  vision: 'ˈvɪʒən', bird: 'bɜːrd', earth: 'ɜːrθ',
+  women: 'ˈwɪmɪn',
+  cost: 'kɒst', costs: 'kɒsts', bag: 'bæɡ', bags: 'bæɡz',
+  psychology: 'saɪˈkɒlədʒi', pneumonia: 'njuːˈmoʊniə',
+  // зачем: слова, которые новый консервативный фильтр отсекает как
+  // r-окрашенные / с удвоением, но которые часто встречаются на карточках.
+  desk: 'desk', grass: 'ɡrɑːs', glass: 'ɡlɑːs', class: 'klɑːs',
+  sword: 'sɔːrd', worth: 'wɜːrθ',
   story: 'ˈstɔːri', problem: 'ˈprɒbləm', question: 'ˈkwesʃən', answer: 'ˈænsər',
   idea: 'aɪˈdiːə', reason: 'ˈriːzən', point: 'pɔɪnt',
   fact: 'fækt', news: 'njuːz',
@@ -294,48 +341,133 @@ const DICT: Record<string, string> = {
   'sorry to keep you waiting': 'ˈsɒri tuː kiːp juː ˈweɪtɪŋ',
 };
 
-// ─── Rule-based IPA approximation ─────────────────────────────────────────────
-// Converts unknown English words to approximate IPA using spelling rules.
-// Not perfect, but guarantees a result for every word.
-function ruleBasedIPA(word: string): string {
-  let w = word.toLowerCase();
-  // Order matters — longer patterns first
+// ─── Conservative rule-based IPA ──────────────────────────────────────────────
+// зачем: прежняя версия обещала результат для ЛЮБОГО слова и потому врала.
+// Замер 21.09.2026 на 70 частотных словах: 40+ мусорных выдач
+// (guests → gdʒʌːsts, girl → dʒɪrl, school → stʃʌːl, ghost → ɒst, two → twɒ).
+// Теперь правила применяются только к словам с регулярной орфографией,
+// а всё, что похоже на исключение, честно отдаётся как "не знаю" (null).
+
+/**
+ * Написания, которые побуквенными правилами не берутся никогда.
+ * Слово с таким куском обязано жить в словаре, иначе транскрипции не будет.
+ */
+const IRREGULAR_SPELLINGS: RegExp[] = [
+  /^gu[ei]/,          // guest, guess, guide — немой u
+  /^kn/,              // knife, know — немой k
+  /^wr/,              // write, wrong — немой w
+  /^ps/, /^pn/, /^mn/, // psychology, pneumonia — немой первый согласный
+  /^rh/,              // rhythm, rhyme
+  /gh/,               // ghost, night, enough, laugh — читается тремя разными способами
+  /ough|augh/,        // though, through, bought, laugh — классика непредсказуемости
+  /mb$/, /mn$/,       // climb, column — немой конец
+  /^wh?o/,            // who, whose, one, once — отдельный класс
+  /ea/,               // bread/great/heart/bead — четыре разных чтения
+  /ie|ei/,            // field/friend/receive/eight
+  /^ch/,              // chef/character/chair — три чтения
+  /tion|sion|ture|sure|cious|tious/, // nation, picture, measure — нужен словарь
+  /^[^aeiou]*[aeiou][^aeiou]*e$/,    // silent-e: come/some/done ломают правило
+  /ould|alk|alf|sten|stle|^is(l)/,   // could, walk, half, listen, castle, island
+  /bt|mn|sc(?=[ei])/, // debt, autumn, science, muscle
+  /^o(n|nce)$/,       // one, once
+  /^sw?or/,           // sword (немой w), word, work — "or" после s/w нестабильно
+  /^[wq]u?o/,         // who, quote, work
+  /ar$|er$|or$|ir$|ur$|[aeiou]r[^aeiou]/, // r-окрашенные гласные: car, bird,
+                      // word, turn — долгота и качество правилами не берутся
+  /ss$|ll$|ff$|zz$/,  // grass, will, off — удвоение меняет гласную (grass /ɑː/)
+];
+
+/**
+ * Приблизительная IPA по правилам — только для регулярных написаний.
+ * Возвращает null, когда уверенности нет: лучше не показать транскрипцию,
+ * чем показать выдуманную.
+ */
+function ruleBasedIPA(word: string): string | null {
+  const w = word.toLowerCase();
+
+  // зачем: слишком короткое или слишком длинное — доверия нет.
+  // Короткие служебные слова уже есть в словаре, длинные почти всегда
+  // содержат ударение, которое правилами не расставить.
+  if (w.length < 3 || w.length > 8) return null;
+  if (!/^[a-z]+$/.test(w)) return null;
+
+  for (const irregular of IRREGULAR_SPELLINGS) {
+    if (irregular.test(w)) return null;
+  }
+
+  // Регулярная слоговая структура: согласные + гласная + согласные,
+  // опционально с обычным окончанием. Всё сложнее — в словарь.
+  const regular = /^([bcdfghjklmnpqrstvwxyz]{0,3})([aeiou]{1,2})([bcdfghjklmnpqrstvwxyz]{1,3})(s|es|ed|ing)?$/;
+  if (!regular.test(w)) return null;
+
   const rules: [RegExp, string][] = [
-    // Common digraphs and trigraphs
-    [/tch/g, 'tʃ'], [/ch/g, 'tʃ'], [/sh/g, 'ʃ'], [/th/g, 'ð'],
-    [/ph/g, 'f'], [/wh/g, 'w'], [/ng/g, 'ŋ'], [/nk/g, 'ŋk'],
-    [/ck/g, 'k'], [/qu/g, 'kw'], [/gh/g, ''],
-    // Vowel digraphs
-    [/oo/g, 'uː'], [/ee/g, 'iː'], [/ea/g, 'iː'], [/oa/g, 'oʊ'],
+    // Диграфы, читающиеся однозначно
+    [/tch/g, 'tʃ'], [/ch/g, 'tʃ'], [/sh/g, 'ʃ'],
+    [/ph/g, 'f'], [/ng/g, 'ŋ'], [/nk/g, 'ŋk'],
+    [/ck/g, 'k'], [/qu/g, 'kw'],
+    // Гласные диграфы с устойчивым чтением
+    [/oo/g, 'ʊ'], [/ee/g, 'iː'], [/oa/g, 'oʊ'],
     [/ou/g, 'aʊ'], [/ow/g, 'aʊ'], [/oi/g, 'ɔɪ'], [/oy/g, 'ɔɪ'],
     [/au/g, 'ɔː'], [/aw/g, 'ɔː'], [/ai/g, 'eɪ'], [/ay/g, 'eɪ'],
-    [/ie/g, 'iː'], [/ei/g, 'eɪ'], [/ue/g, 'juː'],
-    // Silent e patterns (approximate)
-    [/a([^aeiou])e\b/g, 'eɪ$1'], [/i([^aeiou])e\b/g, 'aɪ$1'],
-    [/o([^aeiou])e\b/g, 'oʊ$1'], [/u([^aeiou])e\b/g, 'juː$1'],
-    // Consonants
-    // зачем: юзер сообщил, что в транскрипции pharmacy звучит [k] вместо [s].
-    // Мягкая "c" в английском — перед e, i И y (pharmacy, agency, policy, fancy),
-    // а "y" в классе отсутствовала, поэтому все слова на -cy читались через [k].
+    // Согласные
+    // зачем: мягкая "c" — перед e, i и y (pharmacy, agency, policy, fancy);
+    // без "y" в классе все слова на -cy читались через [k] (старый репорт).
     [/c(?=[eiy])/g, 's'], [/c/g, 'k'],
-    [/g(?=[ei])/g, 'dʒ'],
-    [/x/g, 'ks'], [/z/g, 'z'],
-    [/j/g, 'dʒ'], [/y(?=[aeiou])/g, 'j'], [/y\b/g, 'i'],
-    // Vowels (simple)
+    // зачем: "g" перед e/i мягкая НЕ всегда (get, give, girl, gift),
+    // поэтому в надёжном режиме всегда твёрдая — мягкие случаи в словаре.
+    [/g/g, 'ɡ'],
+    [/x/g, 'ks'], [/j/g, 'dʒ'],
+    [/y(?=[aeiou])/g, 'j'], [/y\b/g, 'i'],
+    // Краткие гласные
     [/a/g, 'æ'], [/e/g, 'e'], [/i/g, 'ɪ'], [/o/g, 'ɒ'], [/u/g, 'ʌ'],
   ];
+
   let result = w;
   for (const [pattern, replacement] of rules) {
     result = result.replace(pattern, replacement);
   }
+
+  // зачем: согласные b d f h k l m n p r s t v w z в IPA пишутся теми же
+  // знаками, что и в латинице, — они законны. А вот буквы, у которых в IPA
+  // есть отдельный символ (c, g, j, q, x, y) или которые должны были стать
+  // гласными (a e i o u), остаться не имеют права: их наличие означает,
+  // что правила не справились. Такой результат не показываем.
+  if (/[aeiougcjqxy]/.test(result)) return null;
+
   return result;
 }
 
 // ─── Public API ───────────────────────────────────────────────────────────────
 
 /**
+ * Нужно ли перегенерировать сохранённую транскрипцию?
+ *
+ * зачем: транскрипция пишется в документ карточки навсегда, поэтому у
+ * пострадавших от версии 1 в поле лежит выдумка ("/gdʒʌːsts/" вместо
+ * "/ɡests/"). Миграция «чиним только пустые» их бы не тронула никогда.
+ *
+ * ВАЖНО, как НЕ надо: распознавать порчу по виду строки нельзя. Проверка
+ * «есть латинские гласные → мусор» выглядит логично и полностью неверна:
+ * замер на словаре (872 записи) пометил бы 525 ПРАВИЛЬНЫХ записей как мусор
+ * (ðem, ˈeni, skuːl, aɪ — в IPA эти буквы законны) и при этом не поймал бы
+ * реальный мусор /dʒɪrl/, собранный из легальных символов. Такая миграция
+ * стёрла бы верные транскрипции у всех пользователей.
+ *
+ * Единственный надёжный признак — ЧЕМ сгенерировано. Карточка несёт версию
+ * движка; всё, что записано версией ниже текущей, перегенерируется один раз.
+ */
+export function needsTranscriptionRefresh(engineVersion: number | undefined): boolean {
+  return (engineVersion ?? 1) < TRANSCRIPTION_ENGINE_VERSION;
+}
+
+/**
  * Returns IPA transcription for any English phrase.
- * Always returns a non-empty string (uses rule-based approximation for unknown words).
+ * Возвращает пустую строку, когда уверенности нет хотя бы в одном слове:
+ * карточка тогда показывается без транскрипции.
+ *
+ * зачем: показать фразу с одним выдуманным словом хуже, чем не показать
+ * ничего — пользователь сверяет с Cambridge/Oxford и ловит нас на вранье
+ * (репорт 21.09.2026 про guests → /gdʒʌːsts/).
  */
 export function getTranscription(text: string): string {
   const cleaned = text.trim().replace(/[.,!?;:'"()[\]{}]/g, '').toLowerCase();
@@ -364,8 +496,12 @@ export function getTranscription(text: string): string {
       }
     }
     if (!matched) {
-      // Single word: dict or rule-based approximation
-      parts.push(DICT[words[i]] ?? ruleBasedIPA(words[i]));
+      const word = words[i];
+      const known = DICT[word] ?? ruleBasedIPA(word);
+      // зачем: ранний выход с причиной — ни одно слово не имеет права
+      // попасть на экран выдуманным, поэтому молчим про всю фразу целиком.
+      if (!known) return '';
+      parts.push(known);
       i++;
     }
   }

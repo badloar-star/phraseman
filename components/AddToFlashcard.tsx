@@ -13,7 +13,7 @@ import { useTheme } from './ThemeContext';
 import { useStudyTarget } from './StudyTargetContext';
 import { checkAchievements } from '../app/achievements';
 import { logFlashcardAdded } from '../app/firebase';
-import { getTranscription } from '../app/transcription';
+import { getTranscription, TRANSCRIPTION_ENGINE_VERSION } from '../app/transcription';
 import {
   addFlashcard,
   isEnSavedInCacheSync,
@@ -212,6 +212,10 @@ function AddToFlashcard({
                 pl: sourceLocales?.pl,
               },
               transcription,
+              // зачем: помечаем версией движка, чтобы будущая починка
+              // генератора смогла отличить эту запись от старых (репорт
+              // 21.09.2026 про guests → /gdʒʌːsts/).
+              transcriptionEngineVersion: TRANSCRIPTION_ENGINE_VERSION,
               source,
               sourceId,
               literalRu, literalUk, literalEs,

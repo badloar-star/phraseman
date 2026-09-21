@@ -39,7 +39,7 @@ import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { useAudio } from '../hooks/use-audio';
 import { loadFlashcards } from '../hooks/use-flashcards';
 import { soundDirector } from '../modules/audio/sound_director';
-import { getTranscription } from './transcription';
+import { getTranscription, TRANSCRIPTION_ENGINE_VERSION } from './transcription';
 import { STR } from './flashcards/constants';
 import { fcHaptic, playSfx } from './flashcards/SoundService';
 import {
@@ -380,8 +380,12 @@ export default function FlashcardsCardEditorScreen() {
       ...(existing ?? {}),
       id: existing?.id ?? `custom_${Date.now()}`,
       en: draftEN.trim(),
-      // E13: автотранскрипция — считаем от актуального EN (правка EN обновляет IPA)
-      transcription: getTranscription(draftEN.trim()) || existing?.transcription,
+      // E13: автотранскрипция — считаем от актуального EN (правка EN обновляет IPA).
+      // зачем: без `|| existing` — пустой результат означает «правильной
+      // транскрипции нет», и подставлять вместо неё прежнюю (возможно
+      // выдуманную старым движком) нельзя (репорт 21.09.2026 про guests).
+      transcription: getTranscription(draftEN.trim()),
+      transcriptionEngineVersion: TRANSCRIPTION_ENGINE_VERSION,
       // Плановые локали: ru/uk/es — базовые поля, остальные 5 языков уходят в
       // sourceLocales (иначе перевод терялся у pt-BR/vi/id/tr/pl).
       ru: localized.baseRu,

@@ -24,6 +24,11 @@ export interface Flashcard {
   es?: string;
   sourceLocales?: Record<string, string | undefined>;
   transcription?: string;
+  // зачем: транскрипция хранится в карточке навсегда, а генератор чинился
+  // (репорт 21.09.2026 про guests → /gdʒʌːsts/). Версия движка — единственный
+  // надёжный признак, что запись сделана старым генератором и её надо
+  // перегенерировать: по виду строки выдумку от правды не отличить.
+  transcriptionEngineVersion?: number;
   source: 'lesson' | 'word' | 'verb' | 'dialog' | 'daily_phrase' | 'video_phrase';
   sourceId?: string;
   sourceTitle?: string;
@@ -342,7 +347,18 @@ export const mergeSavedFlashcardRepairs = async (updates: Flashcard[], accountTo
       const byId = new Map(updates.filter(card => card.studyTarget === target).map(card => [card.id, card]));
       const next = current.map(card => {
         const update = byId.get(card.id);
-        return update ? { ...card, uk: update.uk, transcription: update.transcription } : card;
+        // зачем: версию движка транскрипции переносим вместе с самой
+        // транскрипцией. Без неё карточка осталась бы «старой» навсегда и
+        // миграция перезаписывала бы её при КАЖДОМ заходе на экран —
+        // бесконечные записи в Firestore на ровном месте.
+        return update
+          ? {
+              ...card,
+              uk: update.uk,
+              transcription: update.transcription,
+              transcriptionEngineVersion: update.transcriptionEngineVersion,
+            }
+          : card;
       });
       if (JSON.stringify(next) !== JSON.stringify(current) && !await persistFlashcards(next, target, accountToken)) throw new Error('Could not enrich saved cards');
     }

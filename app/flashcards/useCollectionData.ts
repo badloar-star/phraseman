@@ -28,7 +28,11 @@ import {
   restoreFlashcard,
   mergeSavedFlashcardRepairs,
 } from '../../hooks/use-flashcards';
-import { getTranscription } from '../transcription';
+import {
+  getTranscription,
+  needsTranscriptionRefresh,
+  TRANSCRIPTION_ENGINE_VERSION,
+} from '../transcription';
 import { actionToastTri, emitAppEvent } from '../events';
 import { checkAchievements } from '../achievements';
 import { deleteCustomCard, restoreCustomCard } from './custom_cards_store';
@@ -474,7 +478,16 @@ export function useCollectionData(opts: {
       // (інакше платні картки з’являються пізніше за «Збережені» / порожній список).
       const migrationPromise = (async (): Promise<Flashcard[]> => {
         const hasMissingUk = saved.some((c: Flashcard) => !c.uk || c.uk === c.ru);
-        const hasMissingTr = saved.some((c: Flashcard) => !c.transcription);
+        // зачем: условие обязано совпадать с тем, что миграция реально чинит
+        // (ниже она пропускает не-английские карточки). Иначе у человека с
+        // французскими карточками "нужна миграция" истинно ВСЕГДА — версия
+        // им не проставляется никогда — и каждый заход на экран тянул бы
+        // лишний loadAllSavedFlashcards() из Firestore.
+        const hasMissingTr = saved.some(
+          (c: Flashcard) =>
+            normalizePackLanguage(c.packLanguage ?? c.studyTarget) === 'en' &&
+            (!c.transcription || needsTranscriptionRefresh(c.transcriptionEngineVersion)),
+        );
         if (!hasMissingUk && !hasMissingTr) return saved;
         const enToUk = hasMissingUk ? await getEnToUkMap() : null;
         let needsSave = false;
@@ -488,11 +501,22 @@ export function useCollectionData(opts: {
               updated = { ...updated, uk: ukTranslation };
             }
           }
-          if (!updated.transcription) {
+          // зачем: репорт 21.09.2026 — в сохранённых карточках лежит выдуманная
+          // транскрипция от старой версии генератора (guests → /gdʒʌːsts/).
+          // Чинить только пустые недостаточно: у пострадавших поле НЕ пустое,
+          // поэтому такие карточки не мигрировали бы никогда. Признак порчи —
+          // версия движка, а не вид строки (по виду выдумку не отличить).
+          if (!updated.transcription || needsTranscriptionRefresh(updated.transcriptionEngineVersion)) {
             const tr = getTranscription(updated.en);
-            if (tr) {
+            if (tr !== (updated.transcription ?? '')) {
               needsSave = true;
+              // Пустая строка здесь — осознанный результат: правильной
+              // транскрипции у нас нет, и молчание честнее выдумки.
               updated = { ...updated, transcription: tr };
+            }
+            if (updated.transcriptionEngineVersion !== TRANSCRIPTION_ENGINE_VERSION) {
+              needsSave = true;
+              updated = { ...updated, transcriptionEngineVersion: TRANSCRIPTION_ENGINE_VERSION };
             }
           }
           return updated;

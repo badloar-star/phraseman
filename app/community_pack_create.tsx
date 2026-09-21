@@ -1,5 +1,4 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import Slider from '@react-native-community/slider';
 import TapScale from '../components/TapScale';
 import { Image } from 'expo-image';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -84,9 +83,6 @@ import {
 } from './flashcards/pack_languages';
 import { buildSourceLabel } from './flashcards/source_labels';
 import {
-  COMMUNITY_PACK_PRICE_MAX_RUNES,
-  COMMUNITY_PACK_PRICE_MIN_RUNES,
-  COMMUNITY_PACK_PRICE_STEP_RUNES,
 } from './flashcards/marketplace';
 import { consumeSavedCardSetStage } from './community_packs/savedCardSetStaging';
 
@@ -296,17 +292,6 @@ export default function CommunityPackCreateScreen() {
   const [cardBackIdx, setCardBackIdx] = useState(0);
   const [packLanguage, setPackLanguage] = useState<PackLanguage>(() => normalizePackLanguage(params.packLanguage ?? studyTarget));
   const [publishToCommunity, setPublishToCommunity] = useState(false);
-  /**
-   * Цена набора в рунах, которую ставит автор (экран 6 макета экономики рун,
-   * владелец 2026-09-17: выбран ползунок с прогнозом).
-   *
-   * зачем ползунок, а не пресеты: владелец выбрал вариант 3 ради свободы —
-   * кто-то захочет 1 500, а три готовых кнопки такого не дают.
-   *
-   * Цену можно менять когда угодно, в том числе у уже опубликованного набора
-   * (решение владельца), поэтому в режиме правки поле не блокируется.
-   */
-  const [priceRunes, setPriceRunes] = useState(0);
   const [rows, setRows] = useState<Row[]>([]);
   const [busy, setBusy] = useState(false);
   const [loadErr, setLoadErr] = useState<string | null>(null);
@@ -469,7 +454,6 @@ export default function CommunityPackCreateScreen() {
         setPublishToCommunity(local.isPublic !== false);
         // зачем (владелец 2026-09-21): цена платного набора восстанавливается
         // вместе с галочкой — иначе правка молча делала набор бесплатным.
-        setPriceRunes(Math.max(0, Math.floor(Number(local.priceRunes ?? 0))) || 0);
         const localThemeIdx = UGC_CARD_THEME_IDS.indexOf(local.cardThemeKey as UgcCardThemeId);
         setThemeIdx(localThemeIdx >= 0 ? localThemeIdx : 0);
         const localBackIdx = UGC_CARD_BACK_IDS.indexOf(local.cardBackKey as UgcCardBackId);
@@ -510,7 +494,6 @@ export default function CommunityPackCreateScreen() {
       setDescription(snap.description);
       setPackLanguage(normalizePackLanguage(snap.packLanguage));
       setPublishToCommunity(true);
-      setPriceRunes(Math.max(0, Math.floor(Number(snap.priceRunes ?? 0))) || 0);
       const ti = UGC_CARD_THEME_IDS.indexOf(snap.cardThemeKey as UgcCardThemeId);
       setThemeIdx(ti >= 0 ? ti : 0);
       const bi = UGC_CARD_BACK_IDS.indexOf(snap.cardBackKey as UgcCardBackId);
@@ -568,7 +551,6 @@ export default function CommunityPackCreateScreen() {
         setCardBackIdx(d.cardBackIdx);
         setPackLanguage(normalizePackLanguage(d.packLanguage ?? studyTarget));
         setPublishToCommunity(d.publishToCommunity !== false);
-        setPriceRunes(Math.max(0, Math.floor(Number(d.priceRunes ?? 0))) || 0);
         setRows(d.rows.map((r, i) => ({ ...r, id: r.id || `c${i + 1}` })));
         setAddCardFormOpen(d.addCardFormOpen);
         setDraftEn(d.draftEn);
@@ -595,7 +577,6 @@ export default function CommunityPackCreateScreen() {
         cardBackIdx,
         packLanguage,
         publishToCommunity,
-        priceRunes,
         rows,
         addCardFormOpen,
         draftEn,
@@ -617,7 +598,6 @@ export default function CommunityPackCreateScreen() {
     cardBackIdx,
     packLanguage,
     publishToCommunity,
-    priceRunes,
     rows,
     addCardFormOpen,
     draftEn,
@@ -806,7 +786,6 @@ export default function CommunityPackCreateScreen() {
     setThemeIdx(0);
     setCardBackIdx(0);
     setPublishToCommunity(false);
-    setPriceRunes(0);
     setRows([]);
     setAddCardFormOpen(false);
     setDraftEn('');
@@ -850,11 +829,15 @@ export default function CommunityPackCreateScreen() {
       cardThemeKey: themeKey,
       cardBackKey,
       // Приватный набор ценой не обладает: его никто, кроме автора, не увидит.
-      // Приватный или не отмеченный платным набор цены не имеет.
-      priceRunes: publishToCommunity ? priceRunes : 0,
+      // зачем ноль жёстко (владелец 2026-09-21: «убери чтобы никто не смог
+      // сделать набор платным»): блок цены снят с экрана, назначить её через
+      // приложение нельзя. Поле оставлено в payload осознанно — сервер НЕ
+      // трогаем по прямому запрету владельца, и возврат цены будет обратным
+      // коммитом, а не переписыванием.
+      priceRunes: 0,
     };
     return p;
-  }, [title, description, rows, themeKey, cardBackKey, lang, packLanguage, publishToCommunity, priceRunes, studyTarget]);
+  }, [title, description, rows, themeKey, cardBackKey, lang, packLanguage, publishToCommunity, studyTarget]);
 
   /** Локальная проверка перед сохранением: название, описание и хотя бы одна карточка. */
   const localSaveError = useCallback((submission: CommunityPackSubmissionPayload): string | null => {
@@ -1190,46 +1173,11 @@ export default function CommunityPackCreateScreen() {
                 <Ionicons name={publishToCommunity ? 'checkmark-circle' : 'ellipse-outline'} size={22} color={publishToCommunity ? t.accent : t.textGhost} />
               </TouchableOpacity>
 
-              {/* зачем цена только у публичных (владелец 2026-09-17, экран 6
-                  макета рун): приватный набор никто, кроме автора, не увидит —
-                  цена для него бессмысленна и только путала бы. Границы тоном,
-                  без обводки контейнера (запрет владельца). */}
-              {/* зачем цена только у публичных (владелец 2026-09-17): приватный
-                  набор никто, кроме автора, не увидит — цена для него
-                  бессмысленна. Галочки «Сделать платным» здесь НЕТ: владелец
-                  снял её 2026-09-21, включил публичность — сразу цена. */}
-              {publishToCommunity ? (
-                <View style={{ marginTop: 16, padding: 16, borderRadius: 16, backgroundColor: t.bgCard }}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
-                      {L('Цена для других', 'Ціна для інших', 'Price for others', 'Precio para otros', 'Preço para outros', 'Giá cho người khác', 'Harga untuk orang lain', 'Diğerleri için fiyat', 'Cena dla innych')}
-                    </Text>
-                    <Text
-                      testID="ugc-pack-price-value"
-                      style={{ color: priceRunes > 0 ? t.gold : t.textMuted, fontSize: f.bodyLg, fontWeight: '900' }}
-                      maxFontSizeMultiplier={1.2}
-                    >
-                      {priceRunes > 0
-                        ? `ᚱ ${priceRunes.toLocaleString('ru-RU').replace(/ /g, ' ')}`
-                        : L('Бесплатно', 'Безкоштовно', 'Free', 'Gratis', 'Grátis', 'Miễn phí', 'Gratis', 'Ücretsiz', 'Za darmo')}
-                    </Text>
-                  </View>
-                  <Slider
-                    testID="ugc-pack-price-slider"
-                    style={{ width: '100%', height: 44, marginTop: 6 }}
-                    minimumValue={COMMUNITY_PACK_PRICE_MIN_RUNES}
-                    maximumValue={COMMUNITY_PACK_PRICE_MAX_RUNES}
-                    step={COMMUNITY_PACK_PRICE_STEP_RUNES}
-                    value={priceRunes}
-                    minimumTrackTintColor={priceRunes > 0 ? t.gold : t.accent}
-                    maximumTrackTintColor={t.border}
-                    thumbTintColor={priceRunes > 0 ? t.gold : t.accent}
-                    onValueChange={(value) => setPriceRunes(Math.round(value))}
-                    accessibilityLabel={L('Цена набора в рунах', 'Ціна набору в рунах', 'Pack price in runes', 'Precio del pack en runas', 'Preço do pacote em runas', 'Giá bộ thẻ bằng rune', 'Harga paket dalam rune', 'Paketin rün fiyatı', 'Cena zestawu w runach')}
-                  />
-                </View>
-              ) : null}
-
+              {/* зачем здесь НЕТ цены (владелец 2026-09-21: «убери чтобы никто
+                  не смог сделать набор платным»): блок цены с ползунком снят
+                  целиком, наборы бесплатны. Отменяет решение 2026-09-17. Сервер
+                  по прямому запрету владельца НЕ трогали — механизм начисления
+                  автору цел и оживёт, если цену вернут. */}
               <TouchableOpacity
                 onPress={() => {
                   Keyboard.dismiss();

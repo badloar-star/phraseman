@@ -5832,11 +5832,11 @@ body[data-admin-skin="onboarding"] #uid-lookup {
     }
 
     .pm-v4-action-menu { position:relative; flex:0 0 auto; }
-    /* Открытая строка поднимается над соседними: иначе её меню обрезает
-       следующая карточка списка, даже с большим z-index у самого меню. */
-    .report-card:has(.pm-v4-action-menu[open]),
-    .app-msg-card:has(.pm-v4-action-menu[open]),
-    .cp-pack-card:has(.pm-v4-action-menu[open]) { position:relative; z-index:2999; }
+    /* зачем (владелец 2026-09-21: «сломался список, он не виден полностью»):
+       здесь стояло `position:relative; z-index:2999` на .report-card при
+       открытом меню — это ломало раскладку списка. Правило снято.
+       Меню и так поднято своим z-index (см. .pm-v4-action-popover ниже);
+       position карточек не трогаем — он принадлежит раскладке списка. */
     .pm-v4-action-menu[open] { z-index:3000; }
     .pm-v4-action-menu > summary { list-style:none; width:32px!important; min-width:32px!important; padding:0!important; display:grid!important; place-items:center!important; cursor:pointer; }
     .pm-v4-action-menu > summary::-webkit-details-marker { display:none; }

@@ -12108,14 +12108,15 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
 
 <div id="stats-bar" style="display:none">
   <div class="stats">
-    <div class="stat-card"><div class="label" data-i18n-es="Total">Total</div><div class="value" id="s-total">—</div></div>
-    <div class="stat-card"><div class="label" data-i18n-es="XP medio">Avg XP</div><div class="value" id="s-xp">—</div></div>
-    <div class="stat-card"><div class="label" data-i18n-es="Racha media">Avg streak</div><div class="value" id="s-streak">—</div><div class="sub" data-i18n-es="días seguidos">days</div></div>
-    <div class="stat-card"><div class="label">Plus</div><div class="value" id="s-prem">—</div></div>
-    <div class="stat-card"><div class="label" data-i18n-es="Tema">Theme</div><div class="value" id="s-dark">—</div></div>
-    <div class="stat-card"><div class="label">Language</div><div class="value" id="s-lang">—</div></div>
-    <div class="stat-card"><div class="label">Платформа</div><div class="value" id="s-plat">—</div></div>
-    <div class="stat-card"><div class="label" data-i18n-es="Fragmentos medios">Avg shards</div><div class="value" id="s-shards">—</div></div>
+    <!-- зачем (аудит 2026-09-21): раздел работает постранично (50 строк из 5376),
+         поэтому «средний XP / серия / осколки», посчитанные по загруженным строкам,
+         были неправдой о всей базе. Firestore count() умеет считать только КОЛИЧЕСТВО,
+         а не среднее, и «Plus» им тоже не посчитать: активность подписки вычисляет
+         premiumInfo() в браузере по срокам RevenueCat из нескольких полей.
+         Решение владельца: оставить только то, что почти бесплатно — серверный
+         count() всей коллекции. Остальные карточки убраны, а не заполнены прочерком. -->
+    <div class="stat-card"><div class="label" data-i18n-es="Total">Total</div><div class="value" id="s-total">—</div><div class="sub">вся база</div></div>
+    <div class="stat-card"><div class="label">На странице</div><div class="value" id="s-page-count">—</div><div class="sub">загружено сейчас</div></div>
   </div>
 </div>
 
@@ -12941,7 +12942,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
 
   <div class="toolbar">
     <input type="text" id="search" placeholder="Search name or UID" data-i18n-es="Buscar por nombre o UID" oninput="renderTable()">
-    <select id="sort-by" onchange="window._sortBy=this.value;window._sortDir=(this.value==='xp'||this.value==='version'?1:-1);renderTable()">
+    <select id="sort-by" onchange="window.applyUsersSort(this.value)">
       <option value="xp" data-i18n-es="Por XP">Sort by XP</option>
       <option value="name" data-i18n-es="Por nombre">Sort by name</option>
       <option value="streak" data-i18n-es="Por racha">Sort by streak</option>
@@ -12959,14 +12960,13 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       <option value="premium" data-i18n-es="Plus">Plus</option>
       <option value="free" data-i18n-es="Free">Free</option>
     </select>
-    <select id="f-theme" onchange="renderTable()">
-      <option value="" data-i18n-es="Todos los temas">All themes</option>
-      <option value="minimalDark" data-i18n-es="Grafito">Graphite</option>
-      <option value="minimalLight" data-i18n-es="Boceto">Sketch</option>
-      <option value="dark" data-i18n-es="Bosque">Forest</option>
-      <option value="neon" data-i18n-es="Neón">Neon</option>
-      <option value="gold" data-i18n-es="Recompensa Gold">Gold reward</option>
-    </select>
+    <!-- зачем (аудит 2026-09-21, решение владельца): фильтр «Все темы» удалён.
+         `app_theme` НАМЕРЕННО не синхронизируется в облако (app/cloud_sync.ts:572 —
+         «синк с облаком ломал тему: при restore облако перетирало выбор»), поэтому
+         в Firestore лежит либо старое значение, либо ничего, а маппер подставлял
+         дефолт 'minimalDark'. Фильтр отбирал по выдуманным данным. То же верно для
+         app_font_size и haptics_tap — их тоже нельзя показывать как факт.
+         Не возвращать, пока тема не начнёт синхронизироваться на самом деле. -->
     <select id="f-platform" onchange="renderTable()">
       <option value="" data-i18n-es="Todas las plataformas">All platforms</option>
       <option value="ios" data-i18n-es="iOS">iOS</option>
@@ -13009,10 +13009,16 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         <tr>
           <th style="width:36px"><input type="checkbox" id="bulk-select-all" onchange="toggleSelectAll(this.checked)" style="accent-color:#7c5cfc;cursor:pointer;width:15px;height:15px" title="Select all" data-i18n-es-title="Seleccionar todos" /></th>
           <th onclick="setSort('name')" data-i18n-es="Usuario">User</th>
-          <th onclick="setSort('xp')" data-i18n-es="Progreso">Progress <button type="button" class="users-head-sort" onclick="event.stopPropagation();setSort('streak')">Streak</button><button type="button" class="users-head-sort" onclick="event.stopPropagation();setSort('lessons')">Lessons</button></th>
+          <!-- зачем (аудит 2026-09-21): «Уроки» и «Осколки» помечены как сортировка
+               в пределах страницы. Уроки лежат в Firestore JSON-СТРОКОЙ (unlocked_lessons) —
+               сервер не может их сортировать по количеству; users.shards — старая витрина,
+               которую сервер больше не ведёт (настоящий баланс считается по
+               external_economy_events уже в браузере). Молча сортировать по ним «как по
+               базе» значило бы врать, поэтому подписано прямо на кнопке. -->
+          <th onclick="setSort('xp')" data-i18n-es="Progreso">Progress <button type="button" class="users-head-sort" onclick="event.stopPropagation();setSort('streak')">Streak</button><button type="button" class="users-head-sort" onclick="event.stopPropagation();setSort('lessons')" title="Уроки лежат JSON-строкой — сортировка только в пределах загруженной страницы">Lessons ·стр.</button></th>
           <th onclick="setSort('version')" title="Sort by semantic app version" data-i18n-es="App" data-i18n-es-title="Ordenar por número de versión de la app (comparación semántica)">App</th>
           <th data-i18n-es="Plus">Plus</th>
-          <th onclick="setSort('updated')" data-i18n-es="Cuenta">Account <button type="button" class="users-head-sort" onclick="event.stopPropagation();setSort('shards')">Shards</button></th>
+          <th onclick="setSort('updated')" data-i18n-es="Cuenta">Account <button type="button" class="users-head-sort" onclick="event.stopPropagation();setSort('shards')" title="users.shards — устаревшая витрина; настоящий баланс считается по событиям кошелька. Сортировка только в пределах страницы">Shards ·стр.</button></th>
         </tr>
       </thead>
       <tbody id="tbody"></tbody>
@@ -20016,7 +20022,17 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     return `<img src="avatars/1.webp" width="${sz}" height="${sz}" style="border-radius:50%;object-fit:cover;background:#6c47ff33">`;
   }
   const ADMIN_DATE_LOCALE = 'ru-RU';
-  function fdate(ts) { if(!ts) return '—'; const d=new Date(ts); return d.toLocaleDateString(ADMIN_DATE_LOCALE,{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}); }
+  // зачем (аудит 2026-09-21): раньше тут был голый new Date(ts) — и любая дата,
+  // записанная сервером через serverTimestamp() (Firestore Timestamp, а не
+  // число), выводилась как «Invalid Date». Это било не только по пользователям:
+  // fdate зовут жалобы, покупки, события премиума и бан-лист, где createdAt
+  // почти всегда Timestamp. Чиним КОРЕНЬ, а не 20 мест вызова.
+  // usersMillis понимает число, Timestamp ({seconds}/toMillis/toDate) и строку.
+  function fdate(ts) {
+    const ms = usersMillis(ts);
+    if (!ms) return '—';
+    return new Date(ms).toLocaleDateString(ADMIN_DATE_LOCALE,{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});
+  }
   function premiumMs(v) {
     if (v == null || v === '') return 0;
     if (typeof v === 'object') {
@@ -20507,6 +20523,33 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     } catch (e) { /* */ }
     return '—';
   }
+  // зачем (аудит 2026-09-21): поля времени в users приходят в ТРЁХ видах —
+  // число (клиент пишет Date.now()), Firestore Timestamp (сервер пишет
+  // serverTimestamp(), см. functions/src/account_delete.ts) и пустое значение.
+  // Раньше таблица звала new Date(ts) в лоб → «Invalid Date» на серверных
+  // записях, а сортировка по дате сравнивала объект с числом и давала мусор.
+  // зачем: именно ОБЪЯВЛЕНИЕ функции, а не присваивание в window — она нужна
+  // в fdate() на ~500 строк ВЫШЕ. Присваивание не поднимается, и вызов до него
+  // дал бы ReferenceError, который молча убил бы весь раздел (этот класс бага
+  // уже ронял экран: память project_const_used_before_declared_killed_screen).
+  function usersMillis(value) {
+    if (!value) return 0;
+    if (typeof value === 'number') return Number.isFinite(value) ? value : 0;
+    // Немой catch запрещён правилом владельца: даже проглоченная ошибка пишет
+    // причину, иначе поле молча превращается в «—» и баг живёт месяцами.
+    if (typeof value.toMillis === 'function') {
+      try { return value.toMillis() || 0; }
+      catch (e) { console.warn('[ADMIN-DATE] toMillis failed', e); return 0; }
+    }
+    if (typeof value.toDate === 'function') {
+      try { return value.toDate().getTime() || 0; }
+      catch (e) { console.warn('[ADMIN-DATE] toDate failed', e); return 0; }
+    }
+    if (value.seconds != null) return Number(value.seconds) * 1000;
+    const parsed = new Date(value).getTime();
+    return Number.isFinite(parsed) ? parsed : 0;
+  }
+
   function refCreatedMs(row) {
     const t = row && row.createdAt;
     if (!t) return 0;
@@ -21169,51 +21212,15 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
           const bannedSnap = await getDocs(query(collection(db, 'banned_users'), limit(500)));
           bannedSnap.forEach((docSnap) => bannedUids.add(docSnap.id));
         } catch (error) { console.warn('banned_users skipped', error); }
-        const mapUserDoc = (docSnap) => {
-          const data = docSnap.data() || {};
-          const p = data.progress || {};
-          const lessons = tryJson(p.unlocked_lessons, []);
-          const flashcards = tryJson(p.flashcards, []);
-          const settings = tryJson(p.user_settings, {});
-          const achievements = tryJson(p.achievements_state, {});
-          const leagueState = tryJson(p.league_state_v3, {});
-          const xp = parseInt(p.user_total_xp) || 0;
-          return {
-            uid: docSnap.id,
-            name: p.user_name || (titleFor(xp) + ' #' + uidToNum(docSnap.id)),
-            xp,
-            streak: parseInt(p.streak_count) || 0,
-            streakLastDate: p.streak_last_date || null,
-            lang: p.lang || p.app_lang || 'ru',
-            premium: p.premium_plan || null,
-            premiumExpiry: Math.max(0, parseInt(String(p.premium_expiry || '0'), 10) || 0),
-            theme: p.app_theme || 'minimalDark',
-            fontSize: p.app_font_size || 'medium',
-            haptics: p.haptics_tap,
-            avatar: p.user_avatar || null,
-            frame: p.user_avatar_frame || null,
-            onboarding: !!p.onboarding_done && p.onboarding_done !== '0' && p.onboarding_done !== 'false',
-            lessons: Array.isArray(lessons) ? lessons : [],
-            flashcards: Array.isArray(flashcards) ? flashcards.length : 0,
-            settings,
-            achievements,
-            leagueState,
-            placementLevel: p.placement_level || null,
-            platform: p.device_platform || null,
-            appVersion: p.app_version || null,
-            updatedAt: data.updatedAt || 0,
-            createdAt: data.created_at || 0,
-            lastActiveAt: data.last_active_at || 0,
-            shards: toSafeNumber(data.shards, 0),
-            banned: bannedUids.has(docSnap.id) || (data.banned ?? false),
-            userStats: tryJson(p.user_stats_v1, null),
-            linkedAuth: data.linkedAuth || null,
-            firebaseAuthUid: data.firebaseAuthUid || null,
-            identityHidden: data.identityHidden === true,
-            canonicalStableId: data.canonicalStableId || null,
-            raw: p,
-          };
-        };
+        // зачем (аудит 2026-09-21): здесь жила ВТОРАЯ копия маппера строк, почти
+        // идентичная userRowFromDocSnap, но без поля nameIndex. Из-за этого поиск
+        // по #nameIndex работал по-разному в зависимости от того, как открыли
+        // раздел: постранично (есть поле) или полной выгрузкой (нет поля).
+        // Один маппер на оба пути — расхождение больше невозможно.
+        const mapUserDoc = (docSnap) => userRowFromDocSnap(
+          docSnap,
+          bannedUids.has(docSnap.id) || ((docSnap.data() || {}).banned ?? false),
+        );
         const loadToken = (window._usersLoadToken = (window._usersLoadToken || 0) + 1);
         const users = [];
         let cursor = null;
@@ -21351,37 +21358,74 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     });
   };
 
+  // зачем (аудит 2026-09-21): раньше функция писала в 8 карточек через
+  // getElementById(...).textContent без проверки — удаление одной карточки
+  // роняло ВЕСЬ расчёт молча, на первой же отсутствующей. Теперь пишем только
+  // в то, что есть, а «Всего» по всей базе приходит из серверного count().
+  function setStatCard(id, value) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = String(value);
+  }
+
   function updateStats(users) {
     const n = users.length;
-    const avgXP = n ? Math.round(users.reduce((s,u)=>s+u.xp,0)/n) : 0;
-    const avgStreak = n ? Math.round(users.reduce((s,u)=>s+u.streak,0)/n) : 0;
-    const premN = users.filter(isUserPremiumActive).length;
-    const darkN = users.filter(u=>u.theme==='dark').length;
-    const ruN = users.filter(u=>u.lang==='ru').length;
-    const iosN = users.filter(u=>u.platform==='ios').length;
-    const androidN = users.filter(u=>u.platform==='android').length;
-    document.getElementById('s-total').textContent=n;
-    document.getElementById('s-xp').textContent=avgXP.toLocaleString();
-    document.getElementById('s-streak').textContent=avgStreak+'🔥';
-    document.getElementById('s-prem').textContent=premN+' ⭐';
-    document.getElementById('s-dark').textContent=darkN+'/'+n;
-    document.getElementById('s-lang').textContent=ruN+'/'+(n-ruN);
-    document.getElementById('s-plat').textContent='📱'+iosN+' / 🤖'+androidN;
-    const avgShards = n ? Math.round(users.reduce((s,u)=>s + toSafeNumber(u.shards, 0), 0)/n) : 0;
-    document.getElementById('s-shards').textContent = avgShards;
-    document.getElementById('stats-bar').style.display='block';
-    document.getElementById('status-text').textContent=n+' пользователей';
-    // Заполняем фильтр версий
-    const versSet = [...new Set(users.map(u=>u.appVersion||'—'))].sort().reverse();
-    const verSel = document.getElementById('f-version');
-    verSel.innerHTML = '<option value="">Все версии</option>' + versSet.map(v=>`<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join('');
+    setStatCard('s-page-count', n);
+    // «Всего» — только серверный count() по всей коллекции. Пока он не пришёл,
+    // показываем количество загруженных строк, но НЕ выдаём его за всю базу.
+    const serverTotal = window._usersServerTotal;
+    setStatCard('s-total', serverTotal == null ? n : Number(serverTotal).toLocaleString('ru-RU'));
+    const statsBar = document.getElementById('stats-bar');
+    if (statsBar) statsBar.style.display = 'block';
+    setStatCard('status-text', n + ' пользователей');
+    syncVersionFilterOptions(users);
   }
+
+  // зачем (аудит 2026-09-21): список версий строился по загруженным строкам и
+  // переписывался целиком при каждой отрисовке — выбранная версия слетала, а в
+  // постраничном режиме в списке была только горстка случайных версий.
+  // Копим объединение всех версий, что видели за сессию, и НЕ теряем выбор.
+  window._usersSeenVersions = window._usersSeenVersions || new Set();
+  function syncVersionFilterOptions(users) {
+    const verSel = document.getElementById('f-version');
+    if (!verSel) return;
+    (users || []).forEach((u) => window._usersSeenVersions.add(u.appVersion || '—'));
+    const known = [...window._usersSeenVersions].sort().reverse();
+    const current = verSel.value;
+    verSel.innerHTML = '<option value="">Все версии</option>'
+      + known.map((v) => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`).join('');
+    if (current && known.includes(current)) verSel.value = current;
+  }
+
+  // Поля, порядок по которым задаёт сервер (см. PM_P1_USERS_SORT_FIELDS ниже,
+  // в Phase-1 слое). Держим отдельным списком, потому что renderTable объявлен
+  // ВЫШЕ того слоя и не видит его константу. Списки обязаны совпадать — их
+  // сверяет tests/admin_users_sort_contract.test.js.
+  const PM_P1_USERS_SORT_FIELDS_VIEW = new Set(['xp','streak','updated','version','name']);
 
   window.setSort = function(f) {
     if(window._sortBy===f) window._sortDir*=-1; else { window._sortBy=f; window._sortDir=(f==='xp'||f==='version'?1:-1); }
     const selSort=document.getElementById('sort-by');
     if(selSort && ['xp','name','streak','lessons','updated','version'].includes(f)) selSort.value=f;
-    renderTable();
+    window.requestUsersSortRefresh();
+  };
+
+  // зачем (аудит 2026-09-21): смена сортировки обязана ПЕРЕСПРОСИТЬ сервер, а не
+  // перетасовать 50 строк на экране. Иначе «топ по XP» — это топ той случайной
+  // полусотни, что уже загружена (ровно тот баг, с которого начался аудит).
+  window.applyUsersSort = function applyUsersSort(field) {
+    window._sortBy = field;
+    window._sortDir = (field === 'xp' || field === 'version') ? 1 : -1;
+    window.requestUsersSortRefresh();
+  };
+
+  window.requestUsersSortRefresh = function requestUsersSortRefresh() {
+    // В постраничном режиме порядок задаёт запрос — перезапрашиваем первую
+    // страницу. В режиме полного списка (CSV/дубли) всё уже в памяти, хватает
+    // локальной пересортировки.
+    if (window._usersServerPaging && typeof window.loadUsersPage === 'function') {
+      return window.loadUsersPage({ reset:true });
+    }
+    return window.renderTable?.();
   };
 
   window.renderTable = function() {
@@ -21409,12 +21453,14 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     const sb=window._sortBy;
     // sync select to current sort state
     const selSort=document.getElementById('sort-by');
-    if(['xp','name','streak','lessons','updated','version'].includes(sb)) selSort.value=sb;
-    const fl=document.getElementById('f-lang').value;
-    const fp=document.getElementById('f-prem').value;
-    const ft=document.getElementById('f-theme').value;
-    const fpl=document.getElementById('f-platform').value;
-    const fver=document.getElementById('f-version').value;
+    if(selSort && ['xp','name','streak','lessons','updated','version'].includes(sb)) selSort.value=sb;
+    // зачем (аудит 2026-09-21): читаем фильтры через helper. Раньше прямой
+    // .value падал бы на удалённом фильтре и ронял ВЕСЬ рендер таблицы молча.
+    const filterValue = (id) => document.getElementById(id)?.value || '';
+    const fl=filterValue('f-lang');
+    const fp=filterValue('f-prem');
+    const fpl=filterValue('f-platform');
+    const fver=filterValue('f-version');
     const fAuthEl=document.getElementById('f-auth');
     const fAuth = fAuthEl ? fAuthEl.value : '';
     let us=[...window._users];
@@ -21443,7 +21489,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     if(fl) us=us.filter(u=>u.lang===fl);
     if(fp==='premium') us=us.filter(isUserPremiumActive);
     if(fp==='free') us=us.filter(u=>!isUserPremiumActive(u));
-    if(ft) us=us.filter(u=>(u.theme||'minimalDark')===ft);
     if(fpl) us=us.filter(u=>u.platform===fpl);
     if(fver) us=us.filter(u=>(u.appVersion||'—')===fver);
     if(fAuth==='any')   us=us.filter(u=>hasAnyAuth(u));
@@ -21451,12 +21496,21 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     if(fAuth==='apple') us=us.filter(u=>u.linkedAuth && u.linkedAuth.provider==='apple');
     if(fAuth==='anon')  us=us.filter(u=>!hasAnyAuth(u));
     const d=window._sortDir;
-    us.sort((a,b)=>{
+    // зачем (аудит 2026-09-21): когда порядок задал СЕРВЕР, пересортировывать те
+    // же строки локально нельзя — результаты расходятся. Версии сервер сравнивает
+    // как строку ('1.6.9' > '1.6.17'), а локальный компаратор семантически
+    // (1.6.17 > 1.6.9), и порядок «прыгал» бы после каждой перерисовки.
+    // Локальная сортировка остаётся для полного списка и для полей, которых на
+    // сервере нет (lessons, shards).
+    const serverOrdered = window._usersServerPaging
+      && PM_P1_USERS_SORT_FIELDS_VIEW.has(sb);
+    if (serverOrdered) { /* порядок уже верный — пришёл из запроса */ }
+    else us.sort((a,b)=>{
       if(sb==='name') return d*a.name.localeCompare(b.name,'ru');
       if(sb==='xp') return d*(b.xp-a.xp);
       if(sb==='streak') return d*(b.streak-a.streak);
       if(sb==='lessons') return d*(b.lessons.length-a.lessons.length);
-      if(sb==='updated') return d*(b.updatedAt-a.updatedAt);
+      if(sb==='updated') return d*(usersMillis(b.updatedAt)-usersMillis(a.updatedAt));
       if(sb==='version') {
         const parseSem = (v) => {
           if (v == null || v === '' || v === '—') return null;
@@ -21542,10 +21596,8 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       pgBar.style.display = 'none';
     }
 
-    const theme_icon = {minimalDark:'⚫',minimalLight:'✏️',dark:'🌲',neon:'💚',gold:'🌟'};
     document.getElementById('tbody').innerHTML = pageUsers.map(u=>{
       const isPrem=isUserPremiumActive(u);
-      const th=u.theme||'minimalDark';
       const settingsBits = [];
       if(u.settings.hardMode) settingsBits.push('💀');
       if(u.settings.autoCheck) settingsBits.push('✅');
@@ -21559,14 +21611,14 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
           <div class="users-compact-line"><span>🔥 ${u.streak}</span><span class="users-compact-muted">Lessons ${u.lessons.length}/${LESSON_NAMES.length}</span></div>
         </div></td>
         <td><div class="users-compact-cell">
-          <div class="users-compact-line"><span class="theme-badge theme-${th}">${theme_icon[th]||'🌙'} ${th}</span><span class="lang-badge lang-${u.lang}">${u.lang==='uk'?'🇺🇦':'🇷🇺'} ${u.lang.toUpperCase()}</span>${platBadge(u.platform)}</div>
+          <div class="users-compact-line"><span class="lang-badge lang-${u.lang}">${u.lang==='uk'?'🇺🇦':'🇷🇺'} ${u.lang.toUpperCase()}</span>${platBadge(u.platform)}</div>
           <div class="users-compact-line"><span style="font-size:11px;color:#a78bfa;font-family:monospace;background:#2d1a5c;padding:2px 6px;border-radius:4px">${escapeHtml(u.appVersion||'—')}</span>${klvlBadge(u.placementLevel)}</div>
         </div></td>
         <td>${premiumCellHtml(u)}</td>
         <td><div class="users-compact-cell">
           <div class="users-compact-email">${authCellHtml(u)}</div>
           <div class="users-compact-line"><span style="font-size:13px;letter-spacing:2px">${settingsBits.join('')||'—'}</span><span data-shard-balance-uid="${u.uid}" title="Точный баланс: сумма подтверждённых событий кошелька" style="color:#34d399;font-weight:700;background:#0f2a1a;padding:2px 8px;border-radius:6px;font-size:13px">💎 <span style="opacity:.55">…</span></span></div>
-          <div class="users-compact-muted">${fdate(u.updatedAt)}</div>
+          <div class="users-compact-muted">${fdateAny(u.updatedAt)}</div>
         </div></td>
       </tr>`;
     }).join('');
@@ -21966,10 +22018,17 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       window.ensureFullUsersLoaded(() => window.exportUsersCSV());
       return;
     }
-    const users = window._pagedUsers || window._users || [];
+    // зачем (аудит 2026-09-21): было `_pagedUsers || _users`, и это молча ломало
+    // выгрузку. `_pagedUsers` — ОТФИЛЬТРОВАННАЯ текущая страница, её ставит
+    // renderTable, и после честной догрузки всей базы она непуста — CSV отдавал
+    // 50 строк вместо 5376. Защита сверху срабатывала, результат всё равно врал.
+    // Полная выгрузка обязана идти из полного списка.
+    const users = (window._usersFullDatasetLoaded ? window._users : (window._pagedUsers || window._users)) || [];
     if (!users.length) { showToast('Нет данных для экспорта', 'warn'); return; }
     const esc = v => '"' + String(v ?? '').replace(/"/g, '""') + '"';
-    const headers = ['UID','Имя','Email','Provider','XP','Уровень','Streak','Уроков','Язык','Платформа','Версия','Plus','Plus source','Plus from','Plus to','Тема','Осколки','Забанен','Обновлён'];
+    // «Тема» убрана: app_theme не синхронизируется в облако (cloud_sync.ts:572),
+    // в выгрузке стоял бы дефолт вместо настоящей темы пользователя.
+    const headers = ['UID','Имя','Email','Provider','XP','Уровень','Streak','Уроков','Язык','Платформа','Версия','Plus','Plus source','Plus from','Plus to','Осколки','Забанен','Обновлён'];
     const rows = users.map(u => [
       u.uid, u.name,
       u.linkedAuth?.email || '',
@@ -21980,8 +22039,12 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       (() => premiumInfo(u).source)(),
       (() => { const p = premiumInfo(u); return p.issuedAt ? new Date(p.issuedAt).toISOString() : ''; })(),
       (() => { const p = premiumInfo(u); return p.endsAt ? new Date(p.endsAt).toISOString() : ''; })(),
-      u.theme||'', toSafeNumber(u.shards, 0), u.banned?'1':'0',
-      u.updatedAt ? new Date(u.updatedAt).toISOString().slice(0,10) : '',
+      toSafeNumber(u.shards, 0), u.banned?'1':'0',
+      // зачем (аудит 2026-09-21): updatedAt приходит и числом, и Firestore
+      // Timestamp (сервер пишет serverTimestamp()). new Date(Timestamp) даёт
+      // Invalid Date, а .toISOString() на нём БРОСАЕТ исключение и роняет весь
+      // экспорт целиком. Нормализуем перед форматированием.
+      usersMillis(u.updatedAt) ? new Date(usersMillis(u.updatedAt)).toISOString().slice(0,10) : '',
     ].map(esc).join(','));
     const csv = [headers.join(','), ...rows].join('\n');
     const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
@@ -23280,9 +23343,12 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       ${acc('system', '🖥️ Система', `
         <div class="drow"><span class="k">UID</span><span class="v" style="font-size:10px;font-family:monospace">${escapeHtml(u.uid)}</span></div>
         <div class="drow"><span class="k">Версия приложения</span><span class="v">${escapeHtml(u.appVersion||'—')}</span></div>
-        <div class="drow"><span class="k">Зарегистрирован</span><span class="v">${u.createdAt ? fdate(u.createdAt) : '<span style="color:#555">нет данных</span>'}</span></div>
-        <div class="drow"><span class="k">Последняя активность</span><span class="v">${u.lastActiveAt ? fdate(u.lastActiveAt) : fdate(u.updatedAt)}</span></div>
-        <div class="drow"><span class="k">Обновлён</span><span class="v">${fdate(u.updatedAt)}</span></div>
+        <!-- зачем (аудит 2026-09-21): те же три поля давали «Invalid Date» в
+             карточке — сервер пишет их через serverTimestamp() (Timestamp),
+             а fdate() делает new Date(ts) в лоб. fdateAny понимает оба вида. -->
+        <div class="drow"><span class="k">Зарегистрирован</span><span class="v">${u.createdAt ? fdateAny(u.createdAt) : '<span style="color:#555">нет данных</span>'}</span></div>
+        <div class="drow"><span class="k">Последняя активность</span><span class="v">${u.lastActiveAt ? fdateAny(u.lastActiveAt) : fdateAny(u.updatedAt)}</span></div>
+        <div class="drow"><span class="k">Обновлён</span><span class="v">${fdateAny(u.updatedAt)}</span></div>
         <div class="drow"><span class="k">Статус</span><span class="v">${u.banned?'<span class="pill pill-red">🚫 Забанен</span>':'<span class="pill pill-green">✅ Активен</span>'}</span></div>`)}
       ${acc('manage', '🛠️ Управление аккаунтом', `
         <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px">
@@ -53383,16 +53449,12 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       if (prev) prev.disabled = PM_P1_USERS_STATE.index <= 0 || PM_P1_USERS_STATE.loading;
       if (next) next.disabled = !PM_P1_USERS_STATE.hasMore || PM_P1_USERS_STATE.loading;
     }
-    const stats = document.getElementById('stats-bar');
-    if (stats) stats.style.display = 'block';
-    ['s-xp','s-streak','s-prem','s-dark','s-lang','s-shards'].forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) el.textContent = '—';
-    });
-    const totalEl = document.getElementById('s-total');
-    if (totalEl) totalEl.textContent = PM_P1_USERS_STATE.total == null
-      ? String((window._users || []).length)
-      : Number(PM_P1_USERS_STATE.total).toLocaleString('ru-RU');
+    // зачем (аудит 2026-09-21): раньше этот блок сам заполнял карточки прочерками
+    // и в обход updateStats писал «Всего» — из-за чего фильтр версий в постраничном
+    // режиме вообще не заполнялся (его строит только updateStats). Теперь один
+    // расчёт на оба режима, а «Всего» берётся из серверного count().
+    window._usersServerTotal = PM_P1_USERS_STATE.total;
+    updateStats(window._users || []);
     const status = document.getElementById('status-text');
     if (status) status.textContent = `Пользователи · страница ${PM_P1_USERS_STATE.index + 1} · ${pmP1UsersTotalLabel()}`;
   }
@@ -53407,12 +53469,49 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     });
   };
 
+  // зачем (аудит 2026-09-21, решение владельца): сортировка была ЛОЖНОЙ — она
+  // сортировала 50 уже загруженных строк из 5376, а Firestore отдавал страницу
+  // по documentId (алфавит UID). «Топ по XP» показывал топ случайных пятидесяти.
+  // Теперь порядок задаёт СЕРВЕР, и листание идёт по тому же полю.
+  //
+  // Индексы НЕ нужны намеренно: сортировка по ОДНОМУ полю покрывается
+  // автоматическими одиночными индексами Firestore. Композитный индекс
+  // потребовался бы только для «фильтр по одному полю + сортировка по другому» —
+  // владелец такой режим не заказывал (ответ 2026-09-21: «никаких индексов»).
+  // Не добавляй сюда orderBy по полю, которого нет в where, без деплоя индекса:
+  // незадеплоенный индекс отвечает INTERNAL (инцидент Арены 2026-09-20).
+  const PM_P1_USERS_SORT_FIELDS = {
+    xp:      { path:'progress.user_total_xp', dir:'desc' },
+    streak:  { path:'progress.streak_count',  dir:'desc' },
+    updated: { path:'updatedAt',              dir:'desc' },
+    version: { path:'progress.app_version',   dir:'desc' },
+    name:    { path:'progress.user_name',     dir:'asc'  },
+  };
+
+  function pmP1ActiveSortField() {
+    const raw = String(window._sortBy || 'xp');
+    return PM_P1_USERS_SORT_FIELDS[raw] ? raw : null;
+  }
+
+  // Сортировка по полю требует, чтобы поле СУЩЕСТВОВАЛО в документе: Firestore
+  // молча не возвращает документы без него. Для XP/серии это безопасно (их пишут
+  // всем), а вот `app_version`/`user_name` есть не у каждого — о потере строк
+  // честно предупреждаем, а не делаем вид, что база такая.
+  const PM_P1_SPARSE_SORT_FIELDS = new Set(['version', 'name']);
+
   window.loadUsersPage = function loadUsersPage(options = {}) {
     options = options && typeof options === 'object' ? options : {};
     return pmPhase1Coalesce('users:page', async () => {
       const priorIndex = PM_P1_USERS_STATE.index;
       const direction = Number(options.direction || 0);
-      if (options.reset) {
+      // зачем (аудит 2026-09-21): курсоры startAfter привязаны к ПОРЯДКУ. Если
+      // сортировку сменили, старые курсоры и кэш страниц указывают в прошлый
+      // порядок — без сброса вторая страница вернула бы чужие строки.
+      const sortSignature = `${window._sortBy || 'xp'}:${window._sortDir < 0 ? -1 : 1}`;
+      const sortChanged = PM_P1_USERS_STATE.sortSignature !== undefined
+        && PM_P1_USERS_STATE.sortSignature !== sortSignature;
+      PM_P1_USERS_STATE.sortSignature = sortSignature;
+      if (options.reset || sortChanged) {
         PM_P1_USERS_STATE.index = 0;
         PM_P1_USERS_STATE.pages.clear();
         PM_P1_USERS_STATE.before = [null];
@@ -53444,9 +53543,18 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       }
       try {
         const before = PM_P1_USERS_STATE.before[index] || null;
+        // Порядок задаёт сервер. documentId() остаётся вторым ключом — он
+        // разводит документы с ОДИНАКОВЫМ значением (у сотен людей 0 XP), иначе
+        // курсор startAfter зациклил бы страницу на одной и той же пачке.
+        const sortKey = pmP1ActiveSortField();
+        const sort = sortKey ? PM_P1_USERS_SORT_FIELDS[sortKey] : null;
+        const dir = sort ? (window._sortDir < 0 ? (sort.dir === 'desc' ? 'asc' : 'desc') : sort.dir) : null;
+        const orderParts = sort
+          ? [orderBy(sort.path, dir), orderBy(documentId())]
+          : [orderBy(documentId())];
         const pageQuery = before
-          ? query(collection(db, 'users'), orderBy(documentId()), startAfter(before), limit(PM_P1_USERS_PAGE_SIZE))
-          : query(collection(db, 'users'), orderBy(documentId()), limit(PM_P1_USERS_PAGE_SIZE));
+          ? query(collection(db, 'users'), ...orderParts, startAfter(before), limit(PM_P1_USERS_PAGE_SIZE))
+          : query(collection(db, 'users'), ...orderParts, limit(PM_P1_USERS_PAGE_SIZE));
         const snap = await getDocs(pageQuery);
         const banned = await pmP1BannedSetFor(snap.docs.map((row) => row.id));
         const rows = snap.docs.map((row) => userRowFromDocSnap(row, banned.has(row.id))).filter(Boolean);

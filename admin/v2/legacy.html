@@ -56221,6 +56221,10 @@ html[data-pm-theme="light"] #pm-phase3-overview-tabs{background:#f7f8fa!importan
       <div class="pm-phase4-actions" style="margin-top:12px">
         <button type="button" id="pm-phase4-ai-run" class="pm-phase4-primary">Проверить</button>
         <button type="button" id="pm-phase4-swap-fields" hidden>Поставить поля на место</button>
+        <!-- зачем (владелец 2026-09-21): «наборы должны переводиться автоматически
+             на все языки интерфейса — если включён украинский, будет перевод на
+             укр». Автор пишет на одном родном языке. -->
+        <button type="button" id="pm-phase4-translate">Перевести на все языки</button>
       </div>
       <!-- Скрытые носители состояния: код панели их читает, на экране их нет.
            Удалять их нельзя — renderResponse/renderTech/renderSummary пишут в них. -->
@@ -56429,6 +56433,53 @@ html[data-pm-theme="light"] #pm-phase3-overview-tabs{background:#f7f8fa!importan
   // Две проверенные операции под одной кнопкой: сначала правки пишутся в заявку
   // (adminCommunityPackApplyQaFixes), потом публикация идёт СУЩЕСТВУЮЩИМ путём
   // «Одобрить» — дублировать публикацию нельзя, она несёт реестр дублей и inbox.
+  // зачем (владелец 2026-09-21): «при одобрении набора надо добавить кнопку
+  // перевести на все языки», «ИИ переводит на все языки интерфейса которые у
+  // нас есть в приложении» — ru, uk, es, pt-BR, vi, id, tr, pl.
+  async function translateAllLocales(){
+    const draft=getCurrent();const row=getRow(state.currentId);if(!draft||!row)return;
+    if(!canEdit()){notify('Нет права править наборы сообщества','err');return;}
+    // зачем: флаг на черновике не спасал — ensureDraft пересоздаёт объект, и
+    // второй тап видел чистый. Замер показал 2 вызова вместо 1, то есть двойную
+    // оплату OpenAI. Держим состояние в state панели, он один на всю сессию.
+    if(state.translating)return;
+    const btn=document.getElementById('pm-phase4-translate');
+    state.translating=true;draft.translating=true;if(btn){btn.disabled=true;btn.textContent='Перевожу…';}
+    setApplyStatus('Перевожу набор на языки интерфейса… это занимает до минуты.','');
+    const core=window.__pmAdminCore;
+    if(!core?.httpsCallable||!core?.functionsUs){state.translating=false;draft.translating=false;if(btn){btn.disabled=false;btn.textContent='Перевести на все языки';}setApplyStatus('Firebase callable runtime ещё не готов. Перезагрузите страницу.','error');return;}
+    const isPublished=row?.kind==='published';
+    try{
+      const fn=core.httpsCallable(core.functionsUs,'adminCommunityPackTranslateLocales');
+      const raw=await fn(isPublished?{packId:draft.submissionId}:{submissionId:draft.submissionId});
+      const data=raw?.data??raw??{};
+      if(data.ok!==true)throw new Error(trim(data.message||data.error||'Сервер не подтвердил перевод',240));
+      const filled=plainObject(data.filledPerLocale)?data.filledPerLocale:{};
+      const parts=Object.keys(filled).map((code)=>`${code}: ${filled[code]}`).join(' · ');
+      setApplyStatus(`Переведено карточек: ${Number(data.translatedCards)||0}${parts?` · ${parts}`:''}${data.costUsd!=null?` · $${Number(data.costUsd).toFixed(5)}`:''}`,'success');
+      notify('Набор переведён на языки интерфейса','ok');
+      // Данные изменились — иначе повторная проверка уйдёт со старым текстом.
+      try{
+        const reload=isPublished?window.loadActiveCommunityPacks:window.loadCommunitySubmissions;
+        if(typeof reload==='function')await reload(true);
+      }catch(error){
+        notify(`Перевод записан, но список не перезагрузился: ${trim(error?.message||error,120)}. Обновите страницу.`,'warn');
+      }
+    }catch(error){
+      const code=String(error?.code||'');
+      const base=trim(error?.message||error?.details||error,300);
+      const message=/not-found|unimplemented/i.test(code+' '+base)
+        ?'Серверная функция перевода ещё не развёрнута.'
+        :base||'Сервер не ответил';
+      setApplyStatus(`Перевод не выполнен: ${message.replace(/\s*\.*\s*$/,'')}. Набор не изменён.`,'error');
+      notify('Перевод не выполнен; набор не изменён.','err');
+    }finally{
+      state.translating=false;
+      const current=getCurrent()||draft;
+      current.translating=false;
+      if(btn){btn.disabled=false;btn.textContent='Перевести на все языки';}
+    }
+  }
   // Главная кнопка: до проверки запускает ИИ, после — применяет и публикует.
   async function mainAction(){
     const draft=getCurrent();
@@ -56566,6 +56617,7 @@ html[data-pm-theme="light"] #pm-phase3-overview-tabs{background:#f7f8fa!importan
     // Одна кнопка — два действия по состоянию черновика.
     document.getElementById('pm-phase4-ai-run')?.addEventListener('click',()=>void mainAction());
     document.getElementById('pm-phase4-swap-fields')?.addEventListener('click',()=>void applyFixesAndPublish({onlySwap:true}));
+    document.getElementById('pm-phase4-translate')?.addEventListener('click',()=>void translateAllLocales());
     document.getElementById('pm-phase4-response')?.addEventListener('input',(event)=>{const draft=getCurrent();if(!draft)return;draft.responseRu=String(event.target.value||'');draft.responseTouched=true;draft.acceptedAt=0;draft.updatedAt=Date.now();renderResponse(draft);});
     document.addEventListener('keydown',(event)=>{const drawer=document.getElementById('pm-phase4-qa-drawer');if(drawer?.hidden)return;if(event.key==='Escape'){event.preventDefault();close();return;}if(event.key==='Tab'){const items=focusable();if(!items.length)return;const first=items[0],last=items[items.length-1];if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}}});
     document.addEventListener('pm:section-opened',(event)=>{if(event.detail?.tab==='community-packs')scheduleEnhance();});
@@ -56573,7 +56625,7 @@ html[data-pm-theme="light"] #pm-phase3-overview-tabs{background:#f7f8fa!importan
   function init(){observeCards();wire();cleanupDrafts();}
   function wait(frame=0){if(document.getElementById('cp-submissions-list')&&document.getElementById('pm-phase4-qa-drawer')){init();return;}if(frame<180)requestAnimationFrame(()=>wait(frame+1));}
 
-  window.PMPhase4PackQa={version:'phase4',BUILD,ENDPOINT,LIMITS,drafts,state,open,close,validatePack,moderationDraft,rerunLocal,runAi,applyFixesAndPublish,acceptedFixes,acceptDraft,discardDraft,prepareRevision,enhanceCards,canView,canEdit,getDraft:(id)=>drafts.get(String(id||''))||null};
+  window.PMPhase4PackQa={version:'phase4',BUILD,ENDPOINT,LIMITS,drafts,state,open,close,validatePack,moderationDraft,rerunLocal,runAi,applyFixesAndPublish,translateAllLocales,acceptedFixes,acceptDraft,discardDraft,prepareRevision,enhanceCards,canView,canEdit,getDraft:(id)=>drafts.get(String(id||''))||null};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>wait(),{once:true});else wait();
 })();
 </script>

@@ -74,6 +74,30 @@ describe('admin community pack QA review', () => {
     expect(adminHtml).toContain('pm-phase4-apply-fixes');
   });
 
+  test('исправленный набор НЕ объявляется перевёрнутым повторно', () => {
+    // Повод (владелец 2026-09-21: «нажимаю проверить, оно возвращается каждый
+    // раз после исправления»): модель видела английскую ЗАМЕТКУ автора в поле
+    // uk и откатывала уже применённые правки. Замер по боевой заявке:
+    // en латиница 16/16, ru кириллица 16/16 — набор был исправен.
+    const { looksSwapped } = require('./admin_community_pack_qa') as typeof import('./admin_community_pack_qa');
+
+    const fixed = [
+      { index: 0, en: 'Clean up, wash the cup', ru: 'Подберись, вымой чашку', uk: 'Make your bed and don’t give up.' },
+      { index: 1, en: 'Wake up in the morning', ru: 'Просыпайся утром', uk: 'And get up without yawning' },
+    ];
+    expect(looksSwapped(fixed as never, 'en', 'ru')).toBe(false);
+
+    const reversed = [
+      { index: 0, en: 'Подберись, вымой чашку', ru: 'Clean up, wash the cup' },
+      { index: 1, en: 'Просыпайся утром', ru: 'Wake up in the morning' },
+    ];
+    expect(looksSwapped(reversed as never, 'en', 'ru')).toBe(true);
+
+    // Заметка в поле uk на решение не влияет — только два основных поля.
+    expect(source).toContain('IGNORE every other field for this decision');
+    expect(source).toContain('ОТКЛОНЁН: основные поля уже на месте');
+  });
+
   test('правка опубликованного набора двигает реестр дублей', () => {
     // Без этого карточки прежней версии остаются в индексе навсегда —
     // класс бага, который в проекте уже случался.

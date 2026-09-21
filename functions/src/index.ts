@@ -996,6 +996,9 @@ export { adminTranslateMessage } from "./admin_translate";
 // зачем (владелец 2026-09-21): админка звала adminCommunityPackQaReview с
 // 18.08.2026, а функции не существовало — кнопку AI-проверки прятала заплатка.
 export { adminCommunityPackQaReview, adminCommunityPackApplyQaFixes, adminCommunityPackApplyQaFixesToPublished } from './admin_community_pack_qa';
+// зачем (владелец 2026-09-21): набор пишется на одном родном языке — человек с
+// украинским интерфейсом видел русский текст. Перевод на все языки интерфейса.
+export { adminCommunityPackTranslateLocales } from './admin_community_pack_translate';
 export { submitSettingsPollVote } from "./settings_poll_vote";
 export { adminEmailBroadcast, adminEmailContactsBackfill } from "./admin_email";
 export { emailUnsubscribe } from "./email_unsubscribe";

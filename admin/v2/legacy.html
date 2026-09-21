@@ -34165,8 +34165,41 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       : '';
     document.getElementById('am-form-title').textContent = normalizedSlot === 'top' ? 'Верхняя плашка' : 'Нижняя плашка';
     window.onAppMessageSurfaceChange();
-    document.getElementById('am-compose-panel')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    revealAppMessageComposer();
   };
+
+  /**
+   * Показывает форму сообщения, даже если она на другой подвкладке.
+   *
+   * зачем (владелец 2026-09-21: «кнопка не работает, я не могу создать
+   * плашки»): форма #am-compose-panel живёт на подвкладке «Сообщения», а
+   * кнопки плашек — на подвкладке «Плашки». Функция честно заполняла форму и
+   * звала scrollIntoView, но прокручивать было нечего: родительская секция
+   * скрыта механизмом подвкладок (installSubsections). Замер на боевой:
+   * панель_видна false, родитель_display none. Для владельца — мёртвая кнопка.
+   */
+  function revealAppMessageComposer() {
+    const panel = document.getElementById('am-compose-panel');
+    if (!panel) { console.warn('[AM-SLOT] форма #am-compose-panel не найдена'); return; }
+    const host = panel.closest('[data-pm-v7-subsection]');
+    if (host) {
+      const index = host.dataset.pmV7Subsection;
+      const section = host.closest('.reports-tab, [id^="tab-"]') || document;
+      const bar = section.querySelector('.pm-v7-subtabs');
+      const button = bar?.children?.[Number(index)];
+      // Идём тем же путём, что живой пользователь: клик по вкладке сохраняет
+      // согласованность состояния (aria-selected, обновление подвида).
+      if (button) button.click();
+      else {
+        console.warn('[AM-SLOT] кнопка подвкладки не найдена, снимаю hidden напрямую', { index });
+        section.querySelectorAll('[data-pm-v7-subsection]').forEach((el) => {
+          el.hidden = el.dataset.pmV7Subsection !== String(index);
+        });
+      }
+    }
+    // Прокручиваем после показа: до него у элемента нулевая геометрия.
+    requestAnimationFrame(() => panel.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+  }
 
   function renderAppMessages() {
     const list = document.getElementById('am-list');

@@ -2969,8 +2969,6 @@ export default function LessonsTab({
     lang,
   ]);
 
-  // Кадр, на котором запланирован отложенный прогрев занятия (см. эффект ниже).
-  const prewarmFrameRef = useRef<number | null>(null);
   const prewarmCurrentLearningV2SessionOnEntry = useCallback(() => {
     const current = currentLearningV2SessionCoordinates;
     if (!current) {
@@ -3053,30 +3051,23 @@ export default function LessonsTab({
     //
     // Раньше комментарий обещал, что прогрев идёт «пока на экране вступление»
     // — но вступление мгновенное, и прогрев приходился ровно на первый кадр.
-    // Откладываем его за первый кадр: карта показывается сразу, подготовка
-    // догоняет фоном. Ничего не теряем — занятие всё равно готовится задолго
-    // до того, как человек успеет выбрать узел.
+    //
+    // зачем: владелец 21.09 — «загрузки должны быть ЗАРАНЕЕ, чтобы вообще до
+    // входа на карту», «при этом ничего не стопорится, все кнопки обязаны
+    // нажиматься мгновенно с первого раза». Откладывание на два кадра сдвигало
+    // подготовку ровно в то окно, когда человек уже видит карту и тапает по
+    // кружку: занятие ещё не готово. Запускаем сразу, как только известен
+    // прогресс — это раньше первого кадра карты.
+    //
+    // Инцидент 20.09 при этом НЕ возвращается: там поток душила синхронная
+    // работа на первом кадре, а здесь подготовка остаётся fire-and-forget и
+    // ничего не держит. Тап не зависит от неё ни в одной ветке — обработчик
+    // ставит состояние модалки синхронно и лишь НАБЛЮДАЕТ промис.
     if (
       learningV2FounderPassVisible ||
       learningV2FounderPassGate.revealCourse
     ) {
-      let cancelled = false;
-      // Два кадра: первый отдаёт карту на экран, второй запускает тяжёлое.
-      const firstFrame = requestAnimationFrame(() => {
-        const secondFrame = requestAnimationFrame(() => {
-          if (cancelled) return;
-          prewarmCurrentLearningV2SessionOnEntry();
-        });
-        prewarmFrameRef.current = secondFrame;
-      });
-      prewarmFrameRef.current = firstFrame;
-      return () => {
-        cancelled = true;
-        if (prewarmFrameRef.current !== null) {
-          cancelAnimationFrame(prewarmFrameRef.current);
-          prewarmFrameRef.current = null;
-        }
-      };
+      prewarmCurrentLearningV2SessionOnEntry();
     }
     return undefined;
   }, [
@@ -3404,6 +3395,19 @@ export default function LessonsTab({
       const request = ++learningV2ModalRequestRef.current;
       // Metadata is already in memory, so the modal mounts in this tap's
       // synchronous state update. Preparation is observed, never awaited here.
+      //
+      // зачем: владелец 21.09 — «все кнопки обязаны нажиматься мгновенно с
+      // первого раза, ничего не стопорится». Лог показывает, был ли узел уже
+      // прогрет к моменту тапа; открытие модалки от этого НЕ зависит.
+      if (__DEV__) {
+        console.log('[V2-TAP] press', JSON.stringify({
+          courseSessionId: selectedCourseSessionId,
+          state,
+          prewarmed: learningV2PreparedLaunchesRef.current.has(
+            learningV2PreparationKeyFor(selectedLesson, sessionOrdinal),
+          ),
+        }));
+      }
       setSelectedLearningV2Session({
         lessonOrdinal: selectedLesson,
         sessionOrdinal,
@@ -3429,6 +3433,7 @@ export default function LessonsTab({
       learningV2DevUnlockAllActive,
       learningV2Progress.currentSessionId,
       learningV2FactoryNativeSessionIds,
+      learningV2PreparationKeyFor,
       markLearningV2PreparedLaunchTrace,
       prewarmLearningV2SessionLaunch,
       showLearningV2DenialHint,

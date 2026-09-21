@@ -29,11 +29,8 @@ import {
   VIDEO_WATCH_RUNES_DAILY_CAP,
   VIDEO_WATCH_RUNES_PER_MINUTE,
 } from '../app/video_watch_runes_client';
-import { captureAccountGeneration, isCurrentAccountGeneration } from '../app/account_generation';
-import {
-  readUnifiedLevelSpinStars,
-  showVideoWatchRunesInGlobalBalance,
-} from '../app/level_spin_star_grants';
+import { captureAccountGeneration } from '../app/account_generation';
+import { showVideoWatchRunesInGlobalBalance } from '../app/level_spin_star_grants';
 import { DebugLogger } from '../app/debug-logger';
 import { applySuperSundayRuneMultiplier } from '../modules/economy/super_sunday_runes';
 
@@ -102,12 +99,16 @@ export function useVideoWatchEnergyBoost(videoId: string): VideoWatchEnergyBoost
   const runeVerifiedMsRef = useRef(0);
   const latestPositionMsRef = useRef(0);
   /**
-   * Баланс рун на момент старта просмотра. Глобальный счётчик пишем всегда как
-   * `baseline + заработано`, а не «прибавь ещё»: повторный кадр с тем же числом
-   * тогда не наращивает цифру, и пересчёт идемпотентен.
-   * `null` = базис ещё не прочитан, показывать во внешнем счётчике нечего.
+   * Сколько рун этого сеанса УЖЕ показано в глобальном счётчике. В снапшот
+   * уходит только прирост с прошлого кадра.
+   *
+   * зачем инкремент, а не «базис + всего» (замерено симуляцией 2026-09-21):
+   * при абсолютном значении одной чужой награды во время просмотра (руны за
+   * урок, покупка) хватало, чтобы счётчик замер до конца ролика — цель
+   * оказывалась ниже уже видимого числа, и защита от понижения отбрасывала
+   * патч. Инкремент складывается с любым посторонним начислением.
    */
-  const runeBaselineBalanceRef = useRef<number | null>(null);
+  const runesShownInGlobalRef = useRef(0);
   /**
    * Дневной расход рун — через ref, а не состояние: `reportPlaybackSample`
    * пересоздаётся редко и замкнул бы устаревшее значение, из-за чего дневной
@@ -198,17 +199,17 @@ export function useVideoWatchEnergyBoost(videoId: string): VideoWatchEnergyBoost
       // в бейдже плеера. Считаем ту же сумму, что показывает бейдж, и кладём её
       // поверх глобального баланса — Главная и все экраны видят прирост сразу,
       // не дожидаясь паузы и ответа сервера.
-      const baseline = runeBaselineBalanceRef.current;
-      if (baseline !== null) {
-        const baseEarned = Math.min(
-          nextMinutes * VIDEO_WATCH_RUNES_PER_MINUTE,
-          Math.max(0, VIDEO_WATCH_RUNES_DAILY_CAP - grantedTodayRef.current),
-        );
-        showVideoWatchRunesInGlobalBalance(runeSessionRef.current.token, {
-          baselineBalance: baseline,
+      const baseEarned = Math.min(
+        nextMinutes * VIDEO_WATCH_RUNES_PER_MINUTE,
+        Math.max(0, VIDEO_WATCH_RUNES_DAILY_CAP - grantedTodayRef.current),
+      );
+      runesShownInGlobalRef.current = showVideoWatchRunesInGlobalBalance(
+        runeSessionRef.current.token,
+        {
+          alreadyShownRunes: runesShownInGlobalRef.current,
           earnedRunes: applySuperSundayRuneMultiplier(baseEarned, Date.now()),
-        });
-      }
+        },
+      );
       const willReport = runeProgressPendingMsRef.current >= 5_000;
       runeTrace('sample_credited', {
         creditedMs: measured.creditedMs,
@@ -330,19 +331,10 @@ export function useVideoWatchEnergyBoost(videoId: string): VideoWatchEnergyBoost
       void reportVideoWatchRuneProgress(token, stableId, result.sessionId, latestPositionMsRef.current);
       setGrantedToday(result.grantedToday);
       grantedTodayRef.current = result.grantedToday;
-      // Базис глобального счётчика: баланс ДО просмотра. Без него прирост
-      // некуда прибавлять, поэтому до его прочтения внешняя цифра не трогается.
-      void readUnifiedLevelSpinStars(token).then((stars) => {
-        if (stopped || !isCurrentAccountGeneration(token, stableId)) return;
-        runeBaselineBalanceRef.current = stars.balance;
-        runeTrace('global_balance_baseline', { baselineBalance: stars.balance, sessionId: result.sessionId });
-      }).catch((error: unknown) => {
-        // Немой catch запрещён: без базиса глобальный счётчик молча замрёт,
-        // хотя бейдж в плеере будет исправно двигаться.
-        runeTrace('global_balance_baseline_failed', { // guard-ok: причина обязана попасть в журнал
-          error: error instanceof Error ? `${error.name}: ${error.message}` : String(error),
-        });
-      });
+      // Инкрементальному показу базис не нужен: прибавляем прирост к тому, что
+      // на экране сейчас. Это ещё и экономит полное восстановление проекции
+      // (скан всех ключей хранилища) на каждом старте просмотра.
+      runesShownInGlobalRef.current = 0;
       setSecondsToNextRune(Math.max(1, Math.ceil((60_000 - result.carryMs) / 1000)));
     });
 
@@ -350,9 +342,9 @@ export function useVideoWatchEnergyBoost(videoId: string): VideoWatchEnergyBoost
       stopped = true;
       setRuneSessionActive(false);
       setBaseUnclaimedMinutes(0);
-      // Базис устарел вместе с сеансом: следующий просмотр прочитает свой,
-      // иначе прирост лёг бы поверх числа, которое сервер уже учёл в claim.
-      runeBaselineBalanceRef.current = null;
+      // Счёт показанного обнуляем вместе с сеансом: дальше авторитетным
+      // становится ответ сервера на claim, и следующий просмотр начинает с нуля.
+      runesShownInGlobalRef.current = 0;
       if (!sessionId) {
         // Ранний выход: сессия так и не открылась — всё накопленное время
         // просмотра пропадает, и до сих пор об этом не было ни строчки.

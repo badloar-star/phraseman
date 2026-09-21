@@ -277,10 +277,19 @@ describe("Learning V2 continuous map performance contract", () => {
     expect(source).toContain("contentOffset={initialOffset}");
   });
 
-  test("прокрутка учитывает padding контейнера", () => {
+  test("прокрутка учитывает верхний отступ контейнера", () => {
     // Без него экран вставал выше строки ровно на padding, и снизу торчал
     // огрызок плашки главы (владелец: «глава 1 обрезается»).
-    expect(source).toContain("geometry.padding + (layout.offsets[currentRowIndex] ?? 0) - lead");
+    //
+    // 21.09 слагаемых стало ДВА: центрирование (geometry.padding) плюс резерв
+    // под плавающую шапку — карта поехала ПОД неё. Формула жила в четырёх
+    // копиях, поэтому её свели в единый mapContentTop: забытая копия
+    // промахнулась бы ровно на высоту шапки. Порядок объявления стережёт
+    // learning_v2_map_geometry_order_gate.ts (там же инцидент с undefined).
+    expect(source).toContain("const mapContentTop = geometry.padding + mapHeaderReserve;");
+    expect(source).toContain("mapContentTop + (layout.offsets[currentRowIndex] ?? 0) - lead");
+    // Ни одна точка прокрутки не считает смещение мимо общего начала координат.
+    expect(source).not.toContain("geometry.padding + (layout.offsets");
   });
 
   test("нет отладочного лога, фильтрующего 2048 строк", () => {

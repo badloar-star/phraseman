@@ -1344,33 +1344,43 @@ export async function readUnifiedLevelSpinStars(
  */
 export function showVideoWatchRunesInGlobalBalance(
   token: AccountGenerationToken,
-  input: Readonly<{ baselineBalance: number; earnedRunes: number }>,
-): void {
+  input: Readonly<{ alreadyShownRunes: number; earnedRunes: number }>,
+): number {
   const ownerStableId = token.stableId?.trim();
-  if (!ownerStableId || !isCurrentAccountGeneration(token, ownerStableId)) return;
-  const baseline = Math.max(0, Math.trunc(input.baselineBalance));
+  if (!ownerStableId || !isCurrentAccountGeneration(token, ownerStableId)) {
+    return Math.max(0, Math.trunc(input.alreadyShownRunes));
+  }
+  const alreadyShown = Math.max(0, Math.trunc(input.alreadyShownRunes));
   const earned = Math.max(0, Math.trunc(input.earnedRunes));
-  if (!Number.isSafeInteger(baseline) || !Number.isSafeInteger(earned)) return;
-  const target = baseline + earned;
+  if (!Number.isSafeInteger(alreadyShown) || !Number.isSafeInteger(earned)) return alreadyShown;
+  // Показываем ТОЛЬКО прирост с прошлого раза.
+  //
+  // зачем инкремент, а не «базис + всего заработано» (замерено симуляцией
+  // 2026-09-21): при абсолютном значении хватало ОДНОЙ чужой награды во время
+  // просмотра, чтобы счётчик замер. Награда за урок поднимала баланс выше
+  // нашей цели, защита от понижения честно отбрасывала патч — и следующие
+  // минуты просмотра человек уже не видел. Инкремент складывается с чем угодно:
+  // сколько накапало, столько и прибавили.
+  const delta = earned - alreadyShown;
+  if (delta <= 0) return alreadyShown;
   patchAppSnapshot((current) => {
     if (!current.progress) return {};
     const currentStars = Math.max(0, Math.trunc(current.progress.stars ?? 0));
-    // НИКОГДА не понижаем баланс. Сработал DATA-SAFETY-GUARD, и он был прав:
-    // безусловная запись `stars: target` стирала бы руны, пришедшие во время
-    // просмотра из другого источника (награда за урок, покупка, ответ сервера).
-    // Overlay имеет право только ДОБАВЛЯТЬ поверх уже видимого числа; всё, что
-    // ниже текущего, — устаревший базис, а не новость. Понижение остаётся
-    // исключительно за сервером (класс бага «сервер понижал», 3 инцидента).
-    if (target <= currentStars) return {};
+    // Прибавляем к ТЕКУЩЕМУ числу, поэтому руны, пришедшие во время просмотра
+    // из другого источника (награда за урок, покупка, ответ сервера), остаются
+    // на месте. Сработавший здесь DATA-SAFETY-GUARD был прав: прежняя
+    // безусловная запись `stars: target` их стирала — прямая потеря валюты
+    // (класс бага «клиент понизил баланс», 3 инцидента в проекте).
     return {
       progress: {
         ...current.progress,
         source: 'local',
         updatedAt: Date.now(),
-        stars: target,
+        stars: currentStars + delta,
       },
     };
   });
+  return earned;
 }
 
 /**

@@ -463,6 +463,7 @@ export default function LearningV2PulseCourse(props: Props) {
   // onLayout: замер дал бы второй кадр с другой геометрией, а это ровно тот
   // баг «видно ДВА кадра», который уже чинили contentOffset'ом (20.09).
   const mapHeaderReserve = (props.topPadding ?? 0) + 4 + 52 + 8;
+  const geometry = pulseMapGeometry(mapViewportHeight, target);
   // Начало координат прокрутки = весь верхний отступ контента.
   //
   // зачем: смещение строки считается в ЧЕТЫРЁХ местах (getItemLayout,
@@ -470,8 +471,11 @@ export default function LearningV2PulseCourse(props: Props) {
   // `geometry.padding + offsets[i]` своей копией. Появился второй слагаемый
   // (резерв шапки) — и любая забытая копия промахнулась бы ровно на высоту
   // шапки. Держим ОДНО значение: разойтись больше нечему.
+  //
+  // ОБЯЗАТЕЛЬНО ПОСЛЕ `geometry`: const не поднимается, и строкой выше это
+  // давало `Cannot read property 'padding' of undefined` — раздел не
+  // открывался вовсе (поймано логом Metro 21.09).
   const mapContentTop = geometry.padding + mapHeaderReserve;
-  const geometry = pulseMapGeometry(mapViewportHeight, target);
   // зачем: строки карты РАЗНОЙ высоты — плашка урока это разворот на
   // пол-экрана, заголовок главы ниже, занятие ещё ниже. Раньше getItemLayout
   // считал все строки одинаковыми (geometry.step), поэтому плашку пришлось

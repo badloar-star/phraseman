@@ -59,25 +59,40 @@ assert.match(
   /const cancel[\s\S]*?pending\.current = false;[\s\S]*?setVisible\(false\)/,
 );
 
-assert.match(
+// зачем: ОТМЕНА правила от 2026-09-17. Владелец 21.09: «убери A1 A2 B1 B2
+// кнопочки вверху, пусть всё будет списком как было когда-то». Раньше здесь
+// сторожились чипы уровней, их геометрия и подкрутка рельсы к активному
+// уровню. Теперь сторожим ОБРАТНОЕ: переключателя быть не должно, а список
+// обязан идти сплошняком.
+assert.doesNotMatch(
   lessons,
-  /const \[legacySelectedLevel, setLegacySelectedLevel\]\s*=\s*useState<CourseLevel>/,
+  /const \[legacySelectedLevel/,
+  'фильтр по уровню отменён владельцем 21.09 — список идёт сплошняком',
 );
-assert.match(lessons, /COURSE_LEVELS\.map/);
-assert.match(lessons, /COURSE_LEVEL_RANGES\[legacySelectedLevel\]/);
+assert.doesNotMatch(
+  lessons,
+  /COURSE_LEVELS\.map/,
+  'чипы A1 A2 B1 B2 удалены по прямому указанию владельца 21.09',
+);
+assert.doesNotMatch(
+  lessons,
+  /COURSE_LEVEL_RANGES\[legacySelectedLevel\]/,
+  'список не режется по уровню: заголовки уровней живут в самом потоке',
+);
+// Ряд сохраняется целиком: владелец просил убрать ТОЛЬКО уровни.
 assert.match(lessons, /testID="legacy-lessons-level-rail"/);
-// зачем: рельса уровней обязана занимать ОСТАТОК строки и уметь сжиматься, иначе
-// последний чип (B2) срезается краем — скриншот владельца 2026-09-17. Раньше
-// здесь стояло `flex: 1, minWidth: 0` ПОСЛЕ testID рельсы, но нежадный [\s\S]*?
-// дотягивался до любого `flex: 1` ниже по файлу и давал зелёный свет чему угодно.
-// Теперь проверяем именно обёртку рельсы — блок ПЕРЕД её testID.
 const levelRailWrapper = lessons.slice(
   Math.max(0, lessons.indexOf('testID="legacy-lessons-level-rail"') - 600),
   lessons.indexOf('testID="legacy-lessons-level-rail"'),
 );
 assert.match(levelRailWrapper, /\{ flex: 1, minWidth: 0 \}/);
-assert.match(lessons, /selected \? t\.correctText : t\.textSecond/);
+assert.match(lessons, /testID="legacy-lessons-level-combo"/);
 assert.match(lessons, /testID="legacy-lessons-open-new-lessons"/);
+// Заголовки уровней и экзамены обязаны остаться в потоке списка — без них
+// сплошной список теряет границы разделов.
+assert.match(lessons, /kind: "header",/);
+assert.match(lessons, /kind: "exam",/);
+assert.match(lessons, /data\.push\(\{ kind: "attestation" \}\)/);
 assert.match(lessons, /ru: "Новые уроки"/);
 assert.match(lessons, /data=\{legacyFilteredListData\}/);
 
@@ -100,31 +115,44 @@ assert.match(
   /testID="learning-v2-level-rail"[\s\S]*?<\/ScrollView>[\s\S]*?testID="learning-v2-open-legacy-lessons"/,
 );
 assert.match(pulseCourse, /utilitySection: \{[\s\S]*?maxWidth: 160/);
-// зачем: чип уровня обязан иметь ФИКСИРОВАННУЮ высоту 44, а не minHeight.
-// PressableHybrid применяет alignSelf:'stretch' перед пользовательским стилем;
-// с одним лишь minHeight чип внутри горизонтального ScrollView схлопывался, и
-// B2 приходил обрезанным по вертикали (скриншот владельца 2026-09-17).
-// 44 — это ещё и минимальная область тапа, ниже опускать нельзя.
-assert.match(
-  legacyBranch,
-  /minWidth: 52,[\s\S]*?height: 44,[\s\S]*?paddingHorizontal: 12/,
-);
-// Спор за выравнивание не должен вернуться: у чипов уровней своего alignSelf нет,
-// его задаёт только contentContainerStyle рельсы.
-const levelChipBlock = legacyBranch.slice(
-  legacyBranch.indexOf("testID={`legacy-lessons-level-"),
+// зачем: здесь сторожилась геометрия чипов уровней (minWidth 52 / height 44)
+// и отсутствие у них своего alignSelf. Чипы удалены владельцем 21.09, так что
+// сторожить нечего. Высота 44 как минимальная область тапа осталась у COMBO —
+// проверяем её там, чтобы правило не потерялось вместе с чипами.
+const comboChipBlock = legacyBranch.slice(
+  legacyBranch.indexOf('testID="legacy-lessons-level-combo"'),
   legacyBranch.indexOf('testID="legacy-lessons-open-new-lessons"'),
 );
-assert.doesNotMatch(levelChipBlock, /alignSelf: "center"/);
+assert.match(comboChipBlock, /height: 44/);
+assert.doesNotMatch(comboChipBlock, /alignSelf: "center"/);
+// зачем: «Новые уроки» живут ВНУТРИ рельсы (решение владельца 2026-09-17:
+// «это один ряд весь») — рельса открывается, кнопка идёт в ней, рельса
+// закрывается. Раньше здесь стояло обратное ожидание (кнопка ПОСЛЕ
+// </ScrollView>), и проверка проходила лишь потому, что чипы уровней давали
+// совпадение в другом месте файла. Чипы убраны 21.09, ложное совпадение
+// исчезло — фиксируем реальный порядок.
 assert.match(
   legacyBranch,
-  /testID="legacy-lessons-level-rail"[\s\S]*?<\/ScrollView>[\s\S]*?testID="legacy-lessons-open-new-lessons"/,
+  /testID="legacy-lessons-level-rail"[\s\S]*?testID="legacy-lessons-open-new-lessons"[\s\S]*?<\/ScrollView>/,
 );
-assert.match(legacyBranch, /maxWidth: 150/);
-assert.match(legacyBranch, /minWidth: 44,[\s\S]*?maxWidth: 150/);
-assert.match(legacyBranch, /testID="legacy-lessons-open-new-lessons"[\s\S]*?fontSize: 13,/);
-assert.match(legacyBranch, /testID="legacy-lessons-open-new-lessons"[\s\S]*?flexShrink: 1,[\s\S]*?textAlign: "center"/);
-assert.match(legacyBranch, /<PressableHybrid[\s\S]*?testID=\{`legacy-lessons-level-/);
+// зачем: ширина 150 у «Новых уроков» ОТМЕНЕНА владельцем 2026-09-17 — чип
+// получил тот же размер, что остальные кнопки ряда (52x44), «чтобы ряд
+// читался как единая лента». Проверка на 150 оставалась зелёной только из-за
+// совпадения в блоке чипов уровней; после их удаления 21.09 она вскрылась.
+const newLessonsChipBlock = legacyBranch.slice(
+  legacyBranch.indexOf('testID="legacy-lessons-open-new-lessons"'),
+);
+assert.match(newLessonsChipBlock, /width: 52/);
+assert.match(newLessonsChipBlock, /height: 44/);
+// зачем: подпись у «Новых уроков» отменена владельцем 2026-09-17 («кнопка
+// должна быть такого же размера») — текст не влезал в 52pt без ужатия шрифта,
+// а ужимать владелец запрещает. Осталась иконка, название несёт
+// accessibilityLabel. Поэтому fontSize/flexShrink/textAlign больше не
+// сторожим: их в кнопке нет.
+assert.match(newLessonsChipBlock, /name="sparkles"/);
+// Шаблонный testID `legacy-lessons-level-${level}` ушёл вместе с чипами
+// уровней (владелец 21.09). Остаётся фиксированный COMBO.
+assert.doesNotMatch(legacyBranch, /testID=\{`legacy-lessons-level-/);
 assert.match(legacyBranch, /<PressableHybrid[\s\S]*?testID="legacy-lessons-open-new-lessons"/);
 
 // зачем: на узком экране рельса листается, и это ОБЯЗАНО быть видно. Владелец
@@ -136,9 +164,12 @@ assert.match(
 );
 // Затухание не имеет права перехватывать тап по чипу под ним.
 assert.match(legacyBranch, /<LinearGradient[\s\S]*?pointerEvents="none"/);
-// И активный уровень доводится в зону видимости, иначе человек с B2 своего
-// уровня просто не увидит при открытии экрана.
-assert.match(lessons, /onContentSizeChange=\{revealSelectedLegacyLevel\}/);
-assert.match(lessons, /legacyLevelRailRevealedForRef/);
+// зачем: здесь сторожилась подкрутка рельсы к активному уровню
+// (revealSelectedLegacyLevel + legacyLevelRailRevealedForRef) — она доводила
+// чип B2 в зону видимости на узком экране. Чипов уровней больше нет
+// (владелец 21.09), доводить нечего. Сторожим ОТСУТСТВИЕ, чтобы механика не
+// вернулась вместе с переключателем.
+assert.doesNotMatch(lessons, /revealSelectedLegacyLevel/);
+assert.doesNotMatch(lessons, /legacyLevelRailRevealedForRef/);
 
 process.stdout.write("LEARNING V2 LEGACY LESSONS ENTRY 2026-09-12: PASS\n");

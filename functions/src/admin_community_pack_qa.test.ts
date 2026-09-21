@@ -44,6 +44,19 @@ describe('admin community pack QA review', () => {
     expect(source).toContain('swapped: \'Перепутаны поля\'');
   });
 
+  test('перевёрнутый набор — ОДИН вердикт, а не правка на каждую карточку', () => {
+    // Повод (владелец 2026-09-21, дословно «12 правок вместо одного вердикта»):
+    // на перевёрнутом наборе из 16 карточек ИИ выдавал 12 отдельных находок.
+    // Это ОДНА проблема всего набора, и чинится она одним действием.
+    expect(source).toContain('If MOST cards are affected');
+    expect(source).toContain('Report EXACTLY ONE finding');
+    expect(source).toContain('One problem, one finding');
+    expect(source).toContain('function buildWholePackSwap');
+    expect(source).toContain('wholePackSwap: true');
+    // Пары считает СЕРВЕР по фактическому тексту, а не модель по памяти.
+    expect(source).toContain('pairs.push');
+  });
+
   test('правка опубликованного набора двигает реестр дублей', () => {
     // Без этого карточки прежней версии остаются в индексе навсегда —
     // класс бага, который в проекте уже случался.

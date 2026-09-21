@@ -27,48 +27,56 @@ describe('руны за видео: глобальный счётчик живо
     // превратится в «только в плеере».
     expect(hook).toContain('showVideoWatchRunesInGlobalBalance');
 
-    // Базис читается ОДИН раз на сеанс и хранится в ref: без него прирост
-    // некуда прибавлять, а через state колбэк замкнул бы устаревшее значение.
-    expect(hook).toContain('runeBaselineBalanceRef');
-    expect(hook).toContain('readUnifiedLevelSpinStars');
+    // Сколько уже показано — в ref: через state колбэк замкнул бы устаревшее
+    // значение и прирост считался бы от числа на момент открытия плеера.
+    expect(hook).toContain('runesShownInGlobalRef');
 
-    // Дневной расход — тоже через ref. Через state потолок считался бы по
-    // числу на момент открытия плеера и переставал бы двигаться.
+    // Дневной расход — тоже через ref, по той же причине.
     expect(hook).toContain('grantedTodayRef');
 
-    // Базис обязан сбрасываться на выходе: иначе следующий сеанс положит
-    // прирост поверх числа, которое сервер уже учёл в claim.
-    expect(hook).toContain('runeBaselineBalanceRef.current = null');
+    // Счёт показанного обнуляется на выходе: дальше авторитетен ответ сервера.
+    expect(hook).toContain('runesShownInGlobalRef.current = 0');
   });
 
-  it('прирост считается от базиса, а не прибавляется вслепую', () => {
-    const grants = read('app/level_spin_star_grants.ts');
-    const signature = grants.slice(
-      grants.indexOf('export function showVideoWatchRunesInGlobalBalance'),
-      grants.indexOf('export function showVideoWatchRunesInGlobalBalance') + 1_400,
-    );
-
-    // baseline + earned, а не «+= delta»: повторный кадр с тем же числом не
-    // должен наращивать цифру. Идемпотентность вместо накопления.
-    expect(signature).toContain('baselineBalance');
-    expect(signature).toContain('earnedRunes');
-    expect(signature).toContain('const target = baseline + earned;');
-  });
-
-  it('overlay НИКОГДА не понижает баланс — понижение только за сервером', () => {
+  it('в снапшот уходит ПРИРОСТ, а не абсолютная цель', () => {
     const grants = read('app/level_spin_star_grants.ts');
     const body = grants.slice(
       grants.indexOf('export function showVideoWatchRunesInGlobalBalance'),
-      grants.indexOf('export function showVideoWatchRunesInGlobalBalance') + 1_400,
+      grants.indexOf('export function showVideoWatchRunesInGlobalBalance') + 2_200,
     );
 
-    // зачем (сработал DATA-SAFETY-GUARD при написании починки, и он был прав):
-    // безусловная запись `stars: target` стирала бы руны, пришедшие во время
-    // просмотра из другого источника — награда за урок, покупка, ответ
-    // сервера. Это прямая потеря валюты пользователя; в проекте уже было три
-    // инцидента класса «клиент понизил баланс».
-    expect(body).toContain('if (target <= currentStars) return {};');
-    expect(body).toContain('currentStars');
+    // зачем инкремент (замерено симуляцией 2026-09-21): при абсолютной цели
+    // `baseline + earned` ОДНОЙ чужой награды во время просмотра (руны за
+    // урок, покупка) хватало, чтобы счётчик замер до конца ролика — цель
+    // оказывалась ниже уже видимого числа, и защита от понижения честно
+    // отбрасывала патч. Человек досматривал минуты и не видел прироста.
+    expect(body).toContain('alreadyShownRunes');
+    expect(body).toContain('earnedRunes');
+    expect(body).toContain('const delta = earned - alreadyShown;');
+    expect(body).toContain('stars: currentStars + delta');
+
+    // Абсолютной записи быть не должно: именно она стирала чужие руны.
+    // Ищем именно КОД (строка без ведущего `//`), а не упоминание в
+    // комментарии — там она названа как раз в объяснении, почему так нельзя.
+    const codeLines = body
+      .split('\n')
+      .filter((line) => !line.trim().startsWith('//') && !line.trim().startsWith('*'));
+    expect(codeLines.join('\n')).not.toContain('stars: target');
+  });
+
+  it('повторный кадр с тем же числом не наращивает счётчик', () => {
+    const grants = read('app/level_spin_star_grants.ts');
+    const body = grants.slice(
+      grants.indexOf('export function showVideoWatchRunesInGlobalBalance'),
+      grants.indexOf('export function showVideoWatchRunesInGlobalBalance') + 2_200,
+    );
+    // delta <= 0 -> выходим, ничего не трогая. Идемпотентность.
+    expect(body).toContain('if (delta <= 0) return alreadyShown;');
+
+    // Вызывающий ОБЯЗАН сохранять возвращённое значение, иначе следующий кадр
+    // посчитает тот же прирост заново и цифра поедет вверх.
+    const hook = read('hooks/use_video_watch_energy_boost.ts');
+    expect(hook).toContain('runesShownInGlobalRef.current = showVideoWatchRunesInGlobalBalance');
   });
 
   it('смена аккаунта в процессе просмотра не переносит руны на чужой счёт', () => {
@@ -77,11 +85,9 @@ describe('руны за видео: глобальный счётчик живо
       grants.indexOf('export function showVideoWatchRunesInGlobalBalance'),
       grants.indexOf('export function showVideoWatchRunesInGlobalBalance') + 1_400,
     );
+    // Показ рун чужому аккаунту — прямая порча чужого баланса, поэтому
+    // проверка поколения стоит ДО патча снапшота.
     expect(body).toContain('isCurrentAccountGeneration');
-
-    const hook = read('hooks/use_video_watch_energy_boost.ts');
-    // Чтение базиса асинхронное: к моменту ответа аккаунт мог смениться.
-    expect(hook).toContain('isCurrentAccountGeneration(token, stableId)');
   });
 
   it('множитель Супервоскресенья применяется РОВНО один раз', () => {

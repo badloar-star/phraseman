@@ -3,6 +3,9 @@
 Governance-ID: TG-91A150A2BC93
 Governance-ID: TG-40465D13D21F
 Governance-ID: TG-335F14457742
+Governance-ID: TG-0B0376A775F6
+Governance-ID: TG-D1BA9FC71354
+Governance-ID: TG-205148C77FCA
 Status: In progress
 Owner: сессия Claude Opus 5, 2026-09-21
 Related epic/enabler: Performance Bible (AGENTS.md → Instagram-Grade Runtime)

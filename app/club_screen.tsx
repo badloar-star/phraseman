@@ -126,6 +126,7 @@ import { leaguePublicName } from './league_public_name';
 import { LeagueBonusMission } from '../components/league/LeagueBonusMission';
 import { LeagueCompetitionScene } from '../components/league/LeagueCompetitionScene';
 import { LeagueAmbientRelic } from '../components/league/LeagueAmbientRelic';
+import { countScreenRender } from './perf_release_probe';
 import { LeagueRaceFeed, type LeagueRaceFeedItem } from '../components/league/LeagueRaceFeed';
 import { LeagueChestTeaserModal } from '../components/league/LeagueChestTeaserModal';
 import { LeagueSuperSundayBanner } from '../components/league/LeagueSuperSundayBanner';
@@ -421,6 +422,11 @@ function leagueMemberKeyExtractor(member: GroupMember, index: number): string {
 }
 
 export default function ClubScreen() {
+  // зачем (владелец 2026-09-21, «в лиге лагает скролл», TestFlight): замер живёт
+  // в релизе и пишет в журнал ТОЛЬКО всплеск перерисовок (>12 за секунду).
+  // Список тут настроен верно (memo/useCallback/useMemo, скролл на UI-потоке) —
+  // если всплеск всё же будет, виноват не список, а родитель экрана.
+  countScreenRender('league');
   const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy();
   const bouncyStyle = useBouncyStyle(bouncyStretch);
   const router = useRouter();

@@ -49,11 +49,16 @@ function LeagueAmbientRelicComponent({
     };
   }, [active, motion, reduceMotion]);
 
+  // зачем (владелец 2026-09-21, «в лиге лагает скролл» на TestFlight): раньше
+  // тут рядом с translateY жило масштабирование на 1.5% от motion. Слой —
+  // полноэкранный и РАЗМЕРОМ В 1.2 ЭКРАНА (AMBIENT_RELIC_WIDTH_RATIO), поэтому
+  // масштабирование заставляло систему пересэмплировать огромную картинку
+  // КАЖДЫЙ кадр, и делало это параллельно со скроллом списка — две тяжёлые
+  // задачи на композитор одновременно. translateY двигает уже готовый слой и
+  // стоит копейки. Разница на глаз неразличима: амплитуда была 1.5%, причём при
+  // прозрачности 0.07 (AMBIENT_RELIC_OPACITY) — то есть её физически не видно.
   const animatedStyle = useAnimatedStyle(() => ({
-    transform: [
-      { translateY: -8 * motion.value },
-      { scale: 1 + 0.015 * motion.value },
-    ],
+    transform: [{ translateY: -8 * motion.value }],
   }));
 
   const relicSize = Math.max(1, Math.round(viewportWidth * AMBIENT_RELIC_WIDTH_RATIO));

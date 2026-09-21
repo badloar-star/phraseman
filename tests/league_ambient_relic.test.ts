@@ -20,7 +20,15 @@ describe('League ambient knowledge relic', () => {
     expect(source).toContain('cancelAnimation(motion)');
     expect(source).toMatch(/!active\s*\|\|\s*reduceMotion/);
     expect(source).toContain('translateY: -8 * motion.value');
-    expect(source).toContain('scale: 1 + 0.015 * motion.value');
+    // зачем (владелец 2026-09-21, «в лиге лагает скролл» на TestFlight): раньше
+    // тут требовался ещё и `scale: 1 + 0.015 * motion.value`. Требование снято
+    // НАМЕРЕННО: слой размером 1.2 экрана, и масштабирование заставляло систему
+    // пересэмплировать огромную картинку каждый кадр — параллельно со скроллом
+    // списка. translateY двигает готовый слой и стоит копейки.
+    // Сторож охраняет ПРИНЦИП «тихий дешёвый цикл только на трансформах», и
+    // удаление тяжёлого трансформа этот принцип усиливает, а не нарушает.
+    // Поэтому здесь закрепляем обратное: scale вернуться не должен.
+    expect(source).not.toContain('scale:');
     expect(source).not.toContain('rotate');
     expect(source).not.toContain('setInterval');
     expect(source).not.toContain('setTimeout');

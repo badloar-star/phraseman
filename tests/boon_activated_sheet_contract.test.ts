@@ -26,6 +26,16 @@ describe('daily boon production sheet', () => {
     expect(sheet).toContain('RewardImpactRings');
   });
 
+  // зачем (владелец, 2026-09-21): пять «тихих» бонусов переведены на героический
+  // модал BoonHeroSheet — такой же, как у Супервоскресенья. Развилка идёт по
+  // наличию эмблемы, а не по списку id: список можно забыть пополнить, и человек
+  // молча увидит старую заглушку.
+  test('routes the five quiet boons to the hero sheet', () => {
+    expect(sheet).toContain("import BoonHeroSheet from './BoonHeroSheet'");
+    expect(sheet).toContain('hasBoonHeroEmblem(props.boon)');
+    expect(sheet).toContain('<BoonHeroSheet visible={props.visible} boon={props.boon} lang={lang} onClose={props.onClose} />');
+  });
+
   test('uses the shared idempotent animated dismiss path for the CTA', () => {
     expect(shell).toContain('requestDismiss: dismissSheet');
     expect(shell).toContain("typeof children === 'function'");
@@ -36,7 +46,11 @@ describe('daily boon production sheet', () => {
   });
 
   test('uses themed accessible controls and the existing boon art', () => {
-    expect(sheet).toContain('weeklyBoonIconSource(boon, themeMode)');
+    // зачем (2026-09-21): сторож требовал `weeklyBoonIconSource(boon, themeMode)`,
+    // но этой строки в файле нет давно — герой-заглушка был заменён на
+    // RetiredRasterFallback ещё до правки, и сторож падал, стерегя несуществующее.
+    // Охраняем то, что реально есть: fallback-ветка рисует героя от темы.
+    expect(sheet).toContain('<RetiredRasterFallback kind="boon"');
     expect(sheet).toContain('accessible={false}');
     expect(sheet).toContain('accessibilityLabel={ctaLabel}');
     expect(sheet).toContain('accessibilityHint={closeLabel}');

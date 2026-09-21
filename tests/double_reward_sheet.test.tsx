@@ -2,7 +2,37 @@
 import React from 'react';
 import { act, fireEvent, render } from '@testing-library/react-native';
 import { DARK, GOLD, OLIVE, MIDNIGHT, EMBER, AURORA, VOLT, INDIGO, SAGE_PORCELAIN } from '../constants/theme';
-jest.unmock('react-native');
+// зачем (2026-09-21): этот сюит никогда не запускался — его не было в testMatch,
+// и `jest.unmock` тут бессилен: react-native подменён через moduleNameMapper на
+// урезанную заглушку без StyleSheet. Даём локальную, как в других рабочих .tsx-тестах.
+jest.mock('react-native', () => {
+  class MockAnimatedValue {
+    private current: number;
+    constructor(initial: number) { this.current = initial; }
+    setValue(next: number) { this.current = next; }
+    stopAnimation() { /* значение финальное: reduce motion в этих тестах включён */ }
+    interpolate() { return this; }
+  }
+  return {
+    View: 'View',
+    Text: 'Text',
+    Pressable: 'Pressable',
+    ScrollView: 'ScrollView',
+    Platform: { OS: 'ios', select: (obj: Record<string, unknown>) => obj.ios ?? obj.default },
+    StyleSheet: {
+      create: (styles: unknown) => styles,
+      flatten: (style: unknown) => (Array.isArray(style) ? Object.assign({}, ...style.filter(Boolean)) : style),
+      absoluteFill: {},
+      hairlineWidth: 1,
+    },
+    Easing: { linear: (v: number) => v },
+    Animated: {
+      View: 'AnimatedView',
+      Value: MockAnimatedValue,
+      timing: () => ({ start: (done?: () => void) => done?.(), stop: () => {} }),
+    },
+  };
+});
 
 let mockTheme = INDIGO;
 const mockDismiss = jest.fn();
@@ -56,7 +86,18 @@ test.each([DARK, GOLD, OLIVE, MIDNIGHT, EMBER, AURORA, VOLT, INDIGO, SAGE_PORCEL
   const ui = await render(<DoubleRewardSheet visible kind="runes" lang="ru" onClose={jest.fn()} />);
   expect(ui.getByLabelText('Продолжить')).toHaveStyle({ backgroundColor: theme.accent });
   expect(ui.getByTestId('double-reward-cta-text')).toHaveStyle({ color: theme.correctText });
-  expect(ui.getByTestId('double-reward-metal-accent', { includeHiddenElements: true }).props.stopColor).toBe(theme.accent);
+  // зачем (2026-09-21): метка переехала со <Stop> на <Svg> — testID нет ни в
+  // StopProps, ни в LinearGradientProps, и типы валили запуск всего сюита.
+  const metal = ui.getByTestId('double-reward-metal', { includeHiddenElements: true });
+  const stopColors: unknown[] = [];
+  const walk = (node: unknown): void => {
+    if (!node || typeof node !== 'object') return;
+    const element = node as { props?: Record<string, unknown>; children?: unknown[] };
+    if (element.props && 'stopColor' in element.props) stopColors.push(element.props.stopColor);
+    element.children?.forEach(walk);
+  };
+  walk(metal);
+  expect(stopColors).toContain(theme.accent);
 });
 
 test('Sunday banner opens the rune sheet and removes it at the UTC boundary', async () => {
@@ -64,7 +105,10 @@ test('Sunday banner opens the rune sheet and removes it at the UTC boundary', as
   try {
     const ui = await render(<LeagueSuperSundayBanner lang="ru" />);
     expect(ui.queryByText('Продолжить')).toBeNull();
-    await fireEvent.press(ui.getByRole('button', { name: /СУПЕРВОСКРЕСЕНЬЕ/ }));
+    // зачем: Pressable здесь — строковый мок, getByRole по нему не матчит роль.
+    // Метка продублирована на внутренней AnimatedView (она accessible={false}),
+    // поэтому берём первый — внешний нажимаемый элемент.
+    await fireEvent.press(ui.getAllByLabelText(/СУПЕРВОСКРЕСЕНЬЕ/)[0]);
     expect(ui.getByText('×2 руны')).toBeTruthy();
     await act(() => { mockClockTick?.(Date.parse('2026-09-21T00:00:00Z')); });
     expect(ui.queryByText('Продолжить')).toBeNull();

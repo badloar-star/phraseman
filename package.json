@@ -351,7 +351,9 @@
       "<rootDir>/tests/privacy_settings_tutor_memory.test.tsx",
       "<rootDir>/tests/ai_dialog_energy_target_remount.test.tsx",
       "<rootDir>/tests/max_voice_accessibility.test.tsx",
-      "<rootDir>/tests/home_rune_balance_render.test.tsx"
+      "<rootDir>/tests/home_rune_balance_render.test.tsx",
+      "<rootDir>/tests/double_reward_sheet.test.tsx",
+      "<rootDir>/tests/boon_hero_sheet.test.tsx"
     ],
     "setupFilesAfterEnv": [
       "<rootDir>/tests/setup_jest_write_guard.js"

@@ -84,9 +84,11 @@ function DoubleRewardSheet({ visible, kind, lang, onClose }: Props) {
                   { scale: progress.interpolate({ inputRange: [0, 0.25, 0.4, 1], outputRange: [0.65, 1.04, 1, 1] }) },
                 ],
               }]}>
-                <Svg width="100%" height="100%" viewBox="0 0 300 220">
+                {/* зачем (2026-09-21): testID нет ни в StopProps, ни в LinearGradientProps —
+                    он валил запуск сюита по типам. Метку несёт Svg, он здесь один. */}
+                <Svg testID="double-reward-metal" width="100%" height="100%" viewBox="0 0 300 220">
                   <Defs><SvgGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="65%">
-                    <Stop offset="0" stopColor={t.btnShadow} /><Stop offset="0.24" stopColor={t.accent} testID="double-reward-metal-accent" />
+                    <Stop offset="0" stopColor={t.btnShadow} /><Stop offset="0.24" stopColor={t.accent} />
                     <Stop offset="0.36" stopColor={highlight} /><Stop offset="0.45" stopColor={t.accent} />
                     <Stop offset="0.58" stopColor={t.btnShadow} /><Stop offset="0.72" stopColor={highlight} /><Stop offset="1" stopColor={t.accent} />
                   </SvgGradient></Defs>

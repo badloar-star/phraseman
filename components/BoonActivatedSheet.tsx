@@ -19,6 +19,8 @@ import RewardImpactRings from './celebration/RewardImpactRings';
 import { useRewardImpactHybrid } from './celebration/use_reward_impact_hybrid';
 import RetiredRasterFallback from './feedback/RetiredRasterFallback';
 import DoubleRewardSheet from './DoubleRewardSheet';
+import BoonHeroSheet from './BoonHeroSheet';
+import { hasBoonHeroEmblem } from './boon_hero/BoonHeroEmblem';
 
 interface BoonActivatedSheetProps {
   visible: boolean;
@@ -150,6 +152,14 @@ function BoonActivatedSheet(props: BoonActivatedSheetProps) {
   const { lang } = useLang();
   if (props.boon === 'double_xp') {
     return <DoubleRewardSheet visible={props.visible} kind="xp" lang={lang} onClose={props.onClose} />;
+  }
+  // зачем (владелец, 2026-09-21): пять «тихих» бонусов получили такой же
+  // героический модал, как Супервоскресенье — со своей эмблемой на каждый.
+  // Развилка идёт по НАЛИЧИЮ эмблемы, а не по списку id: забыть добавить id в
+  // список — немой дефект (человек молча увидит старую заглушку), а забыть
+  // нарисовать символ невозможно, он и есть содержимое экрана.
+  if (hasBoonHeroEmblem(props.boon)) {
+    return <BoonHeroSheet visible={props.visible} boon={props.boon} lang={lang} onClose={props.onClose} />;
   }
   return <OtherBoonActivatedSheet {...props} />;
 }

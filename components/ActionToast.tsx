@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
-import { Animated, StyleSheet, Text, View } from 'react-native';
+import { Animated, Pressable, StyleSheet, Text, View } from 'react-native';
 import Reanimated, {
   Easing,
   cancelAnimation,
@@ -12,7 +12,7 @@ import Reanimated, {
 } from 'react-native-reanimated';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from './SafeLinearGradient';
-import { onAppEvent } from '../app/events';
+import { onAppEvent, type AppEventMap } from '../app/events';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { hapticError, hapticWarning, hapticSoftImpact, hapticSuccess } from '../hooks/use-haptics';
@@ -30,7 +30,7 @@ import { noAndroidOutline } from '../constants/androidGlow';
 import { soundDirector } from '../modules/audio/sound_director';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import type { SoundEventId } from '../modules/audio/sound_events';
-import { actionToastToneLabel, resolveActionToastMessage } from './action_toast_copy';
+import { actionToastToneLabel, resolveActionToastActionLabel, resolveActionToastMessage } from './action_toast_copy';
 
 type ToastPayload = {
   type: ToastType;
@@ -47,6 +47,12 @@ type ToastPayload = {
   messageId?: string;
   messageTr?: string;
   messagePl?: string;
+  /**
+   * Действие прямо в тосте (аудит 2026-09-21). Опционально: без него тост
+   * остаётся сквозным для тапов и ведёт себя ровно как раньше.
+   * Полное описание — у события `action_toast` в app/events.ts.
+   */
+  action?: AppEventMap['action_toast']['action'];
 };
 
 /**
@@ -244,6 +250,12 @@ function ActionToast() {
   const scheduledStateUpdatesRef = useRef<ScheduledAnimatedStateUpdate[]>([]);
   /** Ключ текущего показа — глушим повторы того же текста, пока он на экране или уже в очереди. */
   const showingKeyRef = useRef<string | null>(null);
+  /**
+   * Действие текущего тоста. Живёт в ref, а не в state: обнуление после нажатия
+   * не должно перерисовывать тост и дёргать его анимацию. Обнуляется и при
+   * закрытии — иначе кнопка следующего тоста запустила бы действие прошлого.
+   */
+  const toastActionRef = useRef<(() => void) | null>(null);
   const lastDismissedKeyRef = useRef<string | null>(null);
   const lastDismissedAtRef = useRef(0);
   /** rAF id для отложенного старта анимации появления.
@@ -279,6 +291,9 @@ function ActionToast() {
     if (rafIn.current != null) cancelAnimationFrame(rafIn.current);
     if (rafOut.current != null) cancelAnimationFrame(rafOut.current);
     showingKeyRef.current = toastKey(payload);
+    // Действие принадлежит КОНКРЕТНОМУ тосту: перезаписываем на каждом показе,
+    // чтобы кнопка нового тоста не выполнила действие предыдущего.
+    toastActionRef.current = payload.action?.onPress ?? null;
     soundDirector.request(payload.soundEventId ?? TOAST_SOUND_EVENTS[payload.type], {
       scope: 'action-toast',
       dedupeKey: toastKey(payload),
@@ -321,6 +336,8 @@ function ActionToast() {
         hardDismissTimer.current = null;
         scheduleTrackedAnimatedStateUpdate(scheduledStateUpdatesRef, () => {
           setToast(null);
+          // Тост ушёл — действие вместе с ним. Иначе оно пережило бы свой тост.
+          toastActionRef.current = null;
           const dismissedKey = showingKeyRef.current;
           const next = queueRef.current.shift();
 
@@ -420,6 +437,28 @@ function ActionToast() {
     };
   }, [enqueue]);
 
+  // зачем: хук обязан вызываться ДО раннего возврата — иначе при появлении
+  // тоста порядок хуков меняется и React падает.
+  // Защита от двойного тапа: повторное нажатие по уже сработавшей кнопке
+  // игнорируется, иначе один тост мог бы запустить действие дважды.
+  const handleActionPress = useCallback(() => {
+    const pending = toastActionRef.current;
+    if (!pending) {
+      // guard-ok: ранний выход объясняет причину навсегда — иначе «кнопка в
+      // тосте не работает» выглядит как мистика.
+      console.warn('[ACTION-TOAST] action:ignored_no_pending');
+      return;
+    }
+    toastActionRef.current = null;
+    hapticSoftImpact();
+    try {
+      pending();
+    } catch (err: unknown) {
+      // guard-ok: немой catch запрещён — действие тоста часто денежное.
+      console.warn('[ACTION-TOAST] action:threw', err instanceof Error ? err.message : String(err));
+    }
+  }, []);
+
   if (!toast || !overlayVisible) return null;
 
   const message = resolveActionToastMessage(toast, lang);
@@ -427,6 +466,10 @@ function ActionToast() {
   const toneLabel = tone.label[lang] ?? tone.label.ru;
   const chrome = themedToastChrome(themeMode, t);
   const isHybrid = toast.motionVariant !== 'classic';
+  // Действие есть только у классической карточки: гибридная — чисто
+  // декоративная и отдельного места под кнопку не имеет.
+  const toastAction = !isHybrid ? toast.action : undefined;
+  const actionLabel = toastAction ? resolveActionToastActionLabel(toastAction, lang) : null;
 
   return (
     // зачем: аудит 2026-08-17 (скрин владельца, iPhone) — тост показывался
@@ -437,7 +480,11 @@ function ActionToast() {
     // пересчитываются вместе со сдвигом анимации на некоторых версиях Fabric.
     <View
       style={[styles.hostAnchor, { bottom: bottomOffset }]}
-      pointerEvents="none"
+      // зачем: тост исторически сквозной для тапов, чтобы не перехватывать
+      // касания по экрану под собой. Перехват включается ТОЛЬКО когда у тоста
+      // есть кнопка: box-none пропускает тапы мимо карточки, но даёт нажать
+      // саму кнопку. Тосты без действия ведут себя ровно как раньше.
+      pointerEvents={actionLabel ? 'box-none' : 'none'}
     >
     <Animated.View
       style={[
@@ -447,7 +494,8 @@ function ActionToast() {
           opacity,
         },
       ]}
-      pointerEvents="none"
+      // Тот же принцип, что у внешней обёртки: перехват только ради кнопки.
+      pointerEvents={actionLabel ? 'box-none' : 'none'}
     >
       {isHybrid ? (
         <ActionToastHybridCard
@@ -491,6 +539,24 @@ function ActionToast() {
               {message}
             </Text>
           </View>
+          {actionLabel ? (
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel={actionLabel}
+              hitSlop={8}
+              onPress={handleActionPress}
+              style={({ pressed }) => [
+                styles.actionButton,
+                {
+                  backgroundColor: chrome.closeBg,
+                  transform: [{ scale: pressed ? 0.94 : 1 }],
+                },
+              ]}
+              testID="action-toast-action"
+            >
+              <Text style={[styles.actionLabel, { color: chrome.accent }]}>{actionLabel}</Text>
+            </Pressable>
+          ) : null}
         </LinearGradient>
       )}
     </Animated.View>
@@ -568,5 +634,18 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     fontWeight: '700',
     letterSpacing: 0,
+  },
+  // Кнопка действия: зона тапа 44×… по вертикали набирается padding 12 + текст,
+  // плюс hitSlop 8 — комфортно для пальца, но карточку не раздувает.
+  actionButton: {
+    flexShrink: 0,
+    marginLeft: 10,
+    borderRadius: 12,
+    paddingHorizontal: 15,
+    paddingVertical: 12,
+  },
+  actionLabel: {
+    fontSize: 13.5,
+    fontWeight: '800',
   },
 });

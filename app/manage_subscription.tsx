@@ -482,11 +482,33 @@ export default function ManageSubscription() {
         messageId: 'Pembelian tidak dapat diperiksa. Periksa koneksi dan coba lagi.',
         messageTr: 'Satın alımlar kontrol edilemedi. Bağlantını kontrol edip tekrar dene.',
         messagePl: 'Nie udało się sprawdzić zakupów. Sprawdź połączenie i spróbuj ponownie.',
+        // зачем: повтор прямо в тосте. Без него человек должен сам найти
+        // экран и ряд заново — а сообщение о сбое уже может висеть поверх
+        // другого экрана. `void` — onPress синхронный, ждать его некому.
+        action: {
+          labelRu: 'Повторить',
+          labelUk: 'Повторити',
+          labelEn: 'Retry',
+          labelEs: 'Reintentar',
+          labelPtBr: 'Tentar de novo',
+          labelVi: 'Thử lại',
+          labelId: 'Coba lagi',
+          labelTr: 'Tekrar dene',
+          labelPl: 'Ponów',
+          onPress: () => { void handleRestoreRef.current?.(); },
+        },
       });
     } finally {
       if (isOperationCurrent()) setRestoring(false);
     }
   }, [restoring]);
+
+  // зачем: кнопка «Повторить» в тосте должна звать АКТУАЛЬНУЮ версию обработчика.
+  // Прямая ссылка внутри самого обработчика дала бы циклическую зависимость
+  // useCallback → пересоздание на каждый рендер; ref разрывает цикл и всегда
+  // указывает на свежую замкнутую версию.
+  const handleRestoreRef = useRef<(() => Promise<void>) | null>(null);
+  handleRestoreRef.current = handleRestore;
 
   const closeCancelSheet = useCallback(() => {
     setShowCancelSheet(false);

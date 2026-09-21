@@ -138,3 +138,31 @@ export function resolveActionToastMessage(
   if (lang === 'pl') return toast.messagePl ?? toast.messageRu;
   return toast.messageRu;
 }
+
+/** Подпись кнопки-действия в тосте. Те же правила отката, что у сообщения. */
+export type LocalizedActionToastAction = Readonly<{
+  labelRu: string;
+  labelUk?: string;
+  labelEn?: string;
+  labelEs?: string;
+  labelPtBr?: string;
+  labelVi?: string;
+  labelId?: string;
+  labelTr?: string;
+  labelPl?: string;
+}>;
+
+export function resolveActionToastActionLabel(
+  action: LocalizedActionToastAction,
+  lang: Lang,
+): string {
+  if (lang === 'uk') return action.labelUk ?? action.labelRu;
+  if (lang === 'en') return action.labelEn ?? action.labelRu;
+  if (lang === 'es') return action.labelEs ?? action.labelRu;
+  if (lang === 'pt-BR') return action.labelPtBr ?? action.labelRu;
+  if (lang === 'vi') return action.labelVi ?? action.labelRu;
+  if (lang === 'id') return action.labelId ?? action.labelRu;
+  if (lang === 'tr') return action.labelTr ?? action.labelRu;
+  if (lang === 'pl') return action.labelPl ?? action.labelRu;
+  return action.labelRu;
+}

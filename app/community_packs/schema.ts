@@ -245,6 +245,10 @@ export function buildCommunityPackPayloadForCloud(p: CommunityPackSubmissionPayl
     })),
     cardThemeKey: String(p.cardThemeKey ?? '').trim() || undefined,
     cardBackKey: String(p.cardBackKey ?? '').trim() || undefined,
+    // зачем (владелец 2026-09-21): цена автора обязана доехать до сервера.
+    // Без неё документ набора получал priceRunes=0, и начисление автору
+    // отвергало КАЖДУЮ продажу как pack_is_not_paid — весь механизм был мёртв.
+    priceRunes: Math.max(0, Math.floor(Number(p.priceRunes ?? 0))) || 0,
   };
 }
 

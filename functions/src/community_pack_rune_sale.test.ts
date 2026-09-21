@@ -7,6 +7,7 @@
  * крутит себе руны бесконечно.
  */
 import { decidePackSale, authorNetRunes } from './community_pack_rune_sale';
+import { normalizePackPriceRunes } from './community_packs';
 
 const AUTHOR = 'author_stable_1';
 const BUYER = 'buyer_stable_2';
@@ -83,5 +84,48 @@ describe('решение о продаже набора', () => {
     const decision = decidePackSale({ ...publishedPaidPack, priceRunes: 200 }, BUYER);
     expect(decision.ok && decision.priceRunes).toBe(200);
     expect(decision.ok && decision.netRunes).toBe(200);
+  });
+});
+
+/**
+ * Сквозная цепочка. Проверка 2026-09-21 нашла разрыв: цена автора никуда не
+ * доезжала — санитайзер заявки её отбрасывал, в документ набора она не
+ * попадала, и сервер видел priceRunes=0. Начисление отвергало бы КАЖДУЮ
+ * продажу как pack_is_not_paid: механизм был написан, но мёртв целиком.
+ * Класс бага «механизм есть, а данных не дали».
+ */
+describe('цена доезжает от автора до начисления', () => {
+  it('цена с ползунка проходит нормализацию и даёт начисление автору', () => {
+    // Ровно то, что кладёт экран создания набора.
+    const priceFromSlider = 1500;
+    const stored = normalizePackPriceRunes(priceFromSlider);
+    expect(stored).toBe(1500);
+
+    const decision = decidePackSale(
+      { listingStatus: 'published', authorStableId: AUTHOR, priceRunes: stored },
+      BUYER,
+    );
+    expect(decision.ok && decision.netRunes).toBe(1500);
+  });
+
+  it('набор без цены остаётся бесплатным и начисления не даёт', () => {
+    const stored = normalizePackPriceRunes(undefined);
+    expect(stored).toBe(0);
+    const decision = decidePackSale(
+      { listingStatus: 'published', authorStableId: AUTHOR, priceRunes: stored },
+      BUYER,
+    );
+    expect(decision).toEqual({ ok: false, reason: 'pack_is_not_paid' });
+  });
+
+  it('мусор и выход за границы гасятся в 0, а не ломают публикацию', () => {
+    expect(normalizePackPriceRunes('чтопопало')).toBe(0);
+    expect(normalizePackPriceRunes(-500)).toBe(0);
+    expect(normalizePackPriceRunes(999_999)).toBe(0);
+  });
+
+  it('цена подгоняется к шагу 100', () => {
+    expect(normalizePackPriceRunes(1437)).toBe(1400);
+    expect(normalizePackPriceRunes(1450)).toBe(1500);
   });
 });

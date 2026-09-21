@@ -64,6 +64,9 @@ const CARD_MIN = 10;
 const CARD_MAX = 50;
 /** Фиксированная цена UGC-набора (осколки). Клиент не может задать другую — подменяем здесь. */
 const UGC_PACK_PRICE_SHARDS = 10;
+/** Границы цены в рунах — зеркало клиента (app/flashcards/marketplace.ts). */
+const UGC_PACK_PRICE_MAX_RUNES = 5000;
+const UGC_PACK_PRICE_STEP_RUNES = 100;
 /** Базис 10_000 = 100 %. Часть цены не передаётся автору (остаётся в экономике приложения). */
 const PLATFORM_FEE_BPS = 1500;
 type CommunityStudyTarget = 'en' | 'fr';
@@ -239,6 +242,7 @@ type SubmissionPayload = {
   cardThemeKey?: string;
   cardBackKey?: string;
   readonly priceShards?: unknown;
+  readonly priceRunes?: unknown;
   cards: Array<{
     id: string;
     en: string;
@@ -465,10 +469,29 @@ function normalizeSubmissionPayload(raw: SubmissionPayload): SubmissionPayload {
     descriptionTr,
     descriptionPl,
     priceShards: UGC_PACK_PRICE_SHARDS,
+    // зачем (владелец 2026-09-21): цена в рунах, которую автор поставил
+    // ползунком. Без неё документ набора всегда имел priceRunes=0, и
+    // начисление автору (communitySyncPackRuneSale) отвергало КАЖДУЮ продажу
+    // как pack_is_not_paid — механизм был бы мёртв целиком.
+    priceRunes: normalizePackPriceRunes(raw.priceRunes),
     cards,
     cardThemeKey,
     cardBackKey,
   };
+}
+
+/**
+ * Цена набора в рунах: 0…5 000 с шагом 100 — зеркало клиентских границ
+ * (COMMUNITY_PACK_PRICE_MIN/MAX/STEP_RUNES в app/flashcards/marketplace.ts).
+ *
+ * Мусор и выход за границы превращаются в 0 (бесплатный набор), а НЕ в отказ
+ * публикации: автор не должен терять готовую заявку из-за битого поля.
+ */
+export function normalizePackPriceRunes(raw: unknown): number {
+  const value = Math.floor(Number(raw ?? 0));
+  if (!Number.isFinite(value) || value <= 0) return 0;
+  if (value > UGC_PACK_PRICE_MAX_RUNES) return 0;
+  return Math.round(value / UGC_PACK_PRICE_STEP_RUNES) * UGC_PACK_PRICE_STEP_RUNES;
 }
 
 function safeCardThemeKey(p: SubmissionPayload): string {
@@ -649,6 +672,9 @@ export const communitySubmitPackForReview = onCall({ enforceAppCheck: ENFORCE_AP
         descriptionTr: (payload.descriptionTr ?? '').trim() || null,
         descriptionPl: (payload.descriptionPl ?? '').trim() || null,
         priceShards: UGC_PACK_PRICE_SHARDS,
+        // зачем (владелец 2026-09-21): без этого поля начисление автору
+        // отвергало бы КАЖДУЮ продажу как pack_is_not_paid.
+        priceRunes: normalizePackPriceRunes(payload.priceRunes),
         cards: cardsWithRichFallback,
         cardCount: cardsWithRichFallback.length,
         cardThemeKey: themeKey,
@@ -946,6 +972,9 @@ export const communityModerateSubmission = onCall({ enforceAppCheck: ENFORCE_APP
       descriptionTr: (payload.descriptionTr ?? '').trim() || null,
       descriptionPl: (payload.descriptionPl ?? '').trim() || null,
       priceShards: UGC_PACK_PRICE_SHARDS,
+      // зачем (владелец 2026-09-21): цена автора доезжает до документа набора —
+      // именно её читает communitySyncPackRuneSale при начислении.
+      priceRunes: normalizePackPriceRunes(payload.priceRunes),
       cards: payload.cards,
       cardCount: payload.cards.length,
       cardThemeKey: themeKey,

@@ -36,7 +36,7 @@ export type PublishLocalPackResult =
 
 /** Payload публикации из локальной копии набора. */
 export function localPackSubmissionPayload(
-  pack: { title: string; description: string; cardThemeKey: string; cardBackKey: string; cards: CommunityPackSubmissionPayload['cards']; packLanguage?: PackLanguage },
+  pack: { title: string; description: string; cardThemeKey: string; cardBackKey: string; cards: CommunityPackSubmissionPayload['cards']; packLanguage?: PackLanguage; priceRunes?: number },
   sourceLang: Lang,
   studyTarget?: RuntimeStudyTarget,
 ): CommunityPackSubmissionPayload {
@@ -50,6 +50,9 @@ export function localPackSubmissionPayload(
     cards: pack.cards,
     cardThemeKey: pack.cardThemeKey || undefined,
     cardBackKey: pack.cardBackKey || undefined,
+    // зачем (владелец 2026-09-21): цена, которую автор поставил ползунком,
+    // хранится в локальном наборе и обязана уехать вместе с заявкой.
+    priceRunes: Math.max(0, Math.floor(Number(pack.priceRunes ?? 0))) || 0,
   };
 }
 

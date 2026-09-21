@@ -634,6 +634,56 @@ function computeHomeTitles(args: HomeTitlesArgs): HomeTitlesComputation {
     return homeTitlesCacheValue;
 }
 
+/**
+ * Потолок ожидания для СЕТЕВЫХ данных Главной.
+ *
+ * зачем: владелец 21.09 — «нажала 20 раз, открылось просто тёмный экран на 20
+ * секунд». Замер [PERF-STEPS] показал шаг lessons+unlockLoop = 26 154 мс из
+ * 28 186, а тот же код в соседних заходах занимал 1 мс, 34 мс и 194 мс.
+ * Так ведёт себя не вычисление, а ожидание сети: у loadLeagueState() и
+ * getMyLeagueWeekRunes() был .catch на кэш, но НЕ БЫЛО таймаута — при слабой
+ * связи await висел сколько угодно и держал весь экран.
+ *
+ * Это тот же класс бага, что в Диалогах 17.09: любому await нужен таймаут.
+ * 2,5 секунды — потолок, после которого показываем кэш. Данные лиги не
+ * настолько срочные, чтобы ради них держать человека перед тёмным экраном.
+ */
+const HOME_REMOTE_STEP_TIMEOUT_MS = 2500;
+
+/**
+ * Отдаёт запасное значение, если обещание не уложилось в срок.
+ *
+ * Сам вызов НЕ отменяется — он просто перестаёт нас держать; если ответ придёт
+ * позже, он осядет в кэше и попадёт в следующее открытие экрана.
+ */
+function withHomeRemoteTimeout<T>(
+  promise: Promise<T>,
+  fallback: () => T,
+  label: string,
+): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  const guard = new Promise<T>((resolve) => {
+    timer = setTimeout(() => {
+      // Ранний выход обязан называть причину (правило «сперва логи»).
+      // DebugLogger, а не console: баг ловится в TestFlight, где console молчит.
+      DebugLogger.warn('[HOME-SLOW]', `timeout ${label} ${HOME_REMOTE_STEP_TIMEOUT_MS}ms`);
+      resolve(fallback());
+    }, HOME_REMOTE_STEP_TIMEOUT_MS);
+  });
+  return Promise.race([
+    promise.then((value) => {
+      if (timer) clearTimeout(timer);
+      return value;
+    }).catch((error) => {
+      if (timer) clearTimeout(timer);
+      // Немой catch запрещён: причина отказа обязана попасть в журнал.
+      DebugLogger.warn('[HOME-SLOW]', `failed ${label}: ${String(error)}`);
+      return fallback();
+    }),
+    guard,
+  ]);
+}
+
 export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void } = {}) {
   // зачем (владелец 2026-09-21, «всё лагает, причём везде», TestFlight): замер
   // работает В РЕЛИЗЕ и пишет в журнал ТОЛЬКО всплеск (>12 перерисовок за
@@ -3140,8 +3190,12 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             // Home never reads a foreign league group. Club owns the six-hour
             // remote refresh; Home consumes only its local pending/cache projection.
             const [leagueState, myLeagueWeekRunes, leaguePending, allMedals, repairEligible, bannerStoragePairs] = await Promise.all([
-                loadLeagueState().catch(() => getCachedLeagueStateSync()),
-                getMyLeagueWeekRunes().catch(() => peekMyLeagueWeekRunes()),
+                // зачем: .catch отдавал кэш при ОШИБКЕ, но не при ЗАВИСАНИИ —
+                // при слабой связи эти два вызова держали весь экран
+                // (замер 21.09: шаг 26 154 мс, тёмный экран на 20 секунд).
+                // Теперь через 2,5 с берём тот же кэш и рисуем экран.
+                withHomeRemoteTimeout(loadLeagueState(), () => getCachedLeagueStateSync(), 'league_state'),
+                withHomeRemoteTimeout(getMyLeagueWeekRunes(), () => peekMyLeagueWeekRunes(), 'league_week_runes'),
                 loadPendingResult().catch(() => null),
                 loadAllMedals(studyTarget),
                 isRepairEligible(),
@@ -3937,7 +3991,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const homeQuickThemeArtSize = Math.max(112, homeQuickIconPlateSize + 36);
         const homeQuickIconLegacySize = Math.max(96, homeQuickIconPlateSize + 14);
         const homeQuickIconRadius = isGoldTheme ? 26 : 30;
-        const homeLastLessonArtSize = 124;
+        // зачем (владелец 2026-09-21): картинка упиралась в край слота 92×72 —
+        // при 124 она заметно крупнее слота и обрезалась им вплотную. Минус 3%
+        // (124 → 120) даёт воздух по краям. Целое число намеренно: дробный
+        // размер даёт нецелые пиксели и мыло на картинке.
+        const homeLastLessonArtSize = 120;
         const priorityCardArtSize = homeLastLessonArtSize;
         const homeLastLessonArtSlotWidth = 92;
         const homeLastLessonArtSlotHeight = 72;
@@ -5148,8 +5206,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     <View style={{ width: homeLastLessonArtSlotWidth, height: homeLastLessonArtSlotHeight, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                       <LightSketchMenuImage source={priorityCardImage} width={priorityCardArtSize} height={priorityCardArtSize} lighten={false} contentFit="contain" cachePolicy="memory-disk"/>
                     </View>
-                    <View style={{ flex: 1, minWidth: 0 }}>
-                      <FlowText testID="home-continue-lesson-title" provenance="authored" style={{ color: homeThemePanelText, fontSize: Math.max(15, f.body), fontWeight: '700' }}>
+                    {/* зачем (владелец 2026-09-21): название стояло прижатым
+                        влево — центрируем его в своём блоке, между картинкой и
+                        счётчиком. Центрируем контейнер, а не textAlign: так
+                        длинное имя урока переносится по месту и не наезжает на
+                        счётчик. Вес 800 вместо 700 — по просьбе владельца. */}
+                    <View style={{ flex: 1, minWidth: 0, alignItems: 'center' }}>
+                      <FlowText testID="home-continue-lesson-title" provenance="authored" style={{ color: homeThemePanelText, fontSize: Math.max(15, f.body), fontWeight: '800', textAlign: 'center' }}>
                         {priorityCardTitle}
                       </FlowText>
                     </View>

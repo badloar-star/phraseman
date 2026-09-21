@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { Lang } from '../constants/i18n';
 import { COURSE_LEVEL_RANGES } from './course_levels';
+import { DebugLogger } from './debug-logger';
 import {
   lessonBestScoreKey,
   lessonPassCountKey,
@@ -222,7 +223,14 @@ export const loadAllMedals = async (studyTarget?: RuntimeStudyTarget): Promise<M
     const medals = pairs.map(([, v]) => getMedalTier(parseFloat(v ?? '0') || 0));
     _medalsCacheByTarget[cacheKey] = medals;
     return medals;
-  } catch {
+  } catch (e) {
+    // Немой catch запрещён: молча вернуть «медалей нет» — значит соврать
+    // пользователю о его прогрессе и никогда об этом не узнать.
+    DebugLogger.error(
+      'medal_utils:loadAllMedals',
+      e instanceof Error ? e : new Error(String(e)),
+      'warning',
+    );
     return new Array(32).fill('none');
   }
 };

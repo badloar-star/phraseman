@@ -57,6 +57,24 @@ type LibraryRowProps = {
  * Совпадают ли каталоги по составу (id и социальные счётчики, которые видно на
  * плитке). Полное глубокое сравнение на каждый фокус дороже самой перерисовки.
  */
+/**
+ * Сколько держать прогрев хаба без повторной сборки при возврате на вкладку.
+ *
+ * зачем (владелец 2026-09-21): это про «мазнул по вкладкам и вернулся», а не
+ * кэш данных. Настоящие TTL живут внутри самих загрузчиков
+ * (MARKETPLACE_REMOTE_REFRESH_TTL_MS, COMMUNITY_CATALOG_TTL_MS) и здесь не
+ * меняются — отсекается только повторная СБОРКА цепочки на свежих данных.
+ *
+ * Почему именно 3 секунды, а не 20-30, как просится по цене запросов: хаб
+ * узнаёт о покупке набора ТОЛЬКО из этого фокус-эффекта. События вроде
+ * «набор куплен», на которое можно подписаться, в проекте нет (проверял
+ * grep'ом), а кнопка «Повторить» — жест человека, на неё рассчитывать нельзя.
+ * Поставь больше — и купленный в соседнем разделе набор не появился бы при
+ * возврате. Три секунды закрывают дребезг переключения вкладок и физически не
+ * могут пережить поход за покупкой.
+ */
+const HUB_FOCUS_WARM_TTL_MS = 3_000;
+
 function sameCatalog(a: readonly FlashcardMarketPack[], b: readonly FlashcardMarketPack[]): boolean {
   if (a === b) return true;
   if (a.length !== b.length) return false;
@@ -159,6 +177,12 @@ export default function FlashcardsHubScreen() {
   /** Зеркало длины каталога: фокус-эффект решает по нему, нужен ли спиннер. */
   const catalogLenRef = useRef(0);
   catalogLenRef.current = catalog.length;
+  /**
+   * Когда прогрев хаба выполнялся последний раз и для какого сочетания
+   * язык+цель+ревизия. Живёт в памяти экрана: пережить перезапуск он не должен,
+   * после холодного старта данные обязаны подняться заново.
+   */
+  const hubWarmRef = useRef<{ key: string; atMs: number }>({ key: '', atMs: 0 });
   const [modeSheetVisible, setModeSheetVisible] = useState(false);
   const pendingModeRef = useRef<CardsTrainingMode | null>(null);
   const trainButtonRef = useRef<View>(null);
@@ -248,6 +272,24 @@ export default function FlashcardsHubScreen() {
       let cancelled = false;
       // Revision is an explicit retry signal: changing it restarts this focused load.
       void catalogLoadRevision;
+      /**
+       * зачем (владелец 2026-09-21, «всё лагает, причём везде», TestFlight):
+       * этот обработчик зовётся при КАЖДОМ открытии вкладки и собирал полную
+       * цепочку — семь источников наборов, прогрев коллекции и четыре запроса,
+       * из них до шести в облако. У самих запросов внутри есть кэши с TTL, но
+       * СБОРКА цепочки, слияние и пересчёт шли всё равно, даже на свежих данных.
+       * Теперь короткий TTL на сам вход: человек, листающий вкладки туда-сюда,
+       * не платит за это ничего.
+       * Гейт СОЗНАТЕЛЬНО обходят: кнопка «Повторить» (catalogLoadRevision — жест
+       * человека, он ждёт свежих данных) и смена языка/цели обучения (ключ
+       * ниже), иначе витрина показывала бы чужой язык.
+       */
+      const warmKey = `${lang}:${studyTarget}:${catalogLoadRevision}`;
+      const warmedAt = hubWarmRef.current;
+      if (warmedAt.key === warmKey && Date.now() - warmedAt.atMs < HUB_FOCUS_WARM_TTL_MS) {
+        return () => { cancelled = true; };
+      }
+      hubWarmRef.current = { key: warmKey, atMs: Date.now() };
       /**
        * зачем (владелец 2026-09-13, «должно открываться молниеносно»): снимок
        * списка наборов поднимается с диска ЗДЕСЬ, пока человек смотрит на хаб.

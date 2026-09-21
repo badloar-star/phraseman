@@ -91,6 +91,17 @@ function packTitle(
  * Ключ включает язык: заголовки наборов локализованы.
  */
 let _warmDeckOptions: { key: string; options: DeckSheetOption[] } | null = null;
+/**
+ * Когда список наборов собирался последний раз. Нужен, чтобы прогрев из хаба не
+ * поднимал семь источников заново на каждое открытие вкладки.
+ *
+ * Окно СОЗНАТЕЛЬНО крошечное (3 секунды): это единственный источник свежего
+ * состава наборов, и купленный набор обязан появиться при следующем заходе.
+ * Окно закрывает только дребезг «мазнул по вкладкам», а не реальный поход
+ * человека за покупкой.
+ */
+let _warmDeckOptionsBuiltAtMs = 0;
+const DECK_OPTIONS_REBUILD_MIN_GAP_MS = 3_000;
 
 /**
  * Ключ durable-снимка списка наборов.
@@ -239,6 +250,25 @@ export async function loadFcDeckOptions(
    * регрессия скорости снова будет невидимой.
    */
   const startedAtMs = Date.now();
+  /**
+   * зачем (владелец 2026-09-21, «всё лагает, причём везде», TestFlight): хаб
+   * карточек зовёт этот прогрев при КАЖДОМ открытии вкладки, а он поднимает семь
+   * источников — включая чтение всех сохранённых и своих карточек с диска.
+   * Раньше проверки «а не собирали ли мы это только что» в начале не было
+   * вообще: `_warmDeckOptions` только ЗАПИСЫВАЛСЯ в конце (строка ниже) и
+   * никогда не читался на входе.
+   *
+   * Отдаём готовый список только внутри очень короткого окна и ТОЛЬКО для
+   * точно того же ключа (аккаунт + цель + язык + режим). Окно намеренно
+   * маленькое: этот загрузчик — единственный источник свежего состава наборов,
+   * и купленный набор обязан появиться при следующем заходе, а не «когда-нибудь».
+   */
+  const reuseKey = deckOptionsCacheKey(mode, lang, studyTarget);
+  if (reuseKey && _warmDeckOptions?.key === reuseKey
+    && Date.now() - _warmDeckOptionsBuiltAtMs < DECK_OPTIONS_REBUILD_MIN_GAP_MS) {
+    console.log(`[FC-DECKS] build:skip — тот же ключ собран ${Date.now() - _warmDeckOptionsBuiltAtMs}мс назад, отдаём готовое`);
+    return _warmDeckOptions.options;
+  }
   const timed = async <T,>(name: string, run: () => Promise<T>, fallback: T): Promise<T> => {
     const at = Date.now();
     try {
@@ -360,6 +390,8 @@ export async function loadFcDeckOptions(
   const warm = _warmDeckOptions?.key === key ? _warmDeckOptions.options : null;
   // Тот же состав — держим ПРЕЖНЮЮ ссылку, чтобы экран не перерисовывался зря.
   _warmDeckOptions = { key, options: warm && sameDeckOptions(warm, out) ? warm : out };
+  // Отметка для короткого окна выше: без неё гейт никогда не сработал бы.
+  _warmDeckOptionsBuiltAtMs = Date.now();
   // Тот же снимок — на диск, чтобы следующий ЗАПУСК приложения открыл экран сразу.
   persistDeckOptionsSnapshot(key, _warmDeckOptions.options);
 

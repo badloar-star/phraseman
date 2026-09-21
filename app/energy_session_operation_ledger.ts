@@ -1099,7 +1099,22 @@ export async function recoverEnergySessionOperations(
       await AsyncStorage.removeItem(grantKey(owner, operationId));
       await AsyncStorage.removeItem(key);
     }
-    allKeys = await AsyncStorage.getAllKeys();
+    // зачем (владелец 2026-09-21, «всё лагает, причём везде», TestFlight):
+    // здесь стоял ВТОРОЙ полный getAllKeys подряд. Цикл выше только УДАЛЯЕТ
+    // ключи (removeItem), новых не создаёт — значит список ключей с префиксом
+    // prepared в нём измениться не мог, и перечитывать весь индекс хранилища
+    // незачем. getAllKeys читает индекс ЦЕЛИКОМ, а он растёт с возрастом
+    // аккаунта: реестр пишет запись на каждый вход в урок и не чистит их.
+    // Удалённые в цикле выше ключи отфильтровываем из уже прочитанного списка.
+    const removedKeys = new Set<string>();
+    for (const key of allKeys.filter((item) => item.startsWith(abortPrefix))) {
+      const operationId = key.slice(abortPrefix.length);
+      removedKeys.add(preparedKey(owner, operationId));
+      removedKeys.add(opKey(owner, operationId));
+      removedKeys.add(grantKey(owner, operationId));
+      removedKeys.add(key);
+    }
+    allKeys = allKeys.filter((item) => !removedKeys.has(item));
     const preparedPrefix = `${PREPARED_PREFIX}${ownerPart(owner)}:`;
     let projection = projectionInput;
     const preparedRecords: Prepared[] = [];
@@ -1116,7 +1131,13 @@ export async function recoverEnergySessionOperations(
     }
 
     const refundRequestPrefix = `${REFUND_REQUEST_PREFIX}${ownerPart(owner)}:`;
-    const keysAfterPrepared = await AsyncStorage.getAllKeys();
+    // зачем (владелец 2026-09-21): здесь стоял ТРЕТИЙ полный getAllKeys подряд.
+    // Между ним и первым работает только finalizePrepared, а он ключей возврата
+    // (REFUND_REQUEST_) не создаёт — проверено построчно: внутри лишь
+    // removeItem по prepared/operation/grant/abort и setItem по grant и
+    // operation. Значит набор ключей возврата с первого скана не изменился, и
+    // третье чтение всего индекса — чистая трата.
+    const keysAfterPrepared = allKeys;
     for (const key of keysAfterPrepared.filter((item) => item.startsWith(refundRequestPrefix)).sort()) {
       const requestRaw = await AsyncStorage.getItem(key);
       const request = parseRefundRequest(requestRaw, owner);

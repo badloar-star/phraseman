@@ -11,6 +11,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
+  AppState,
   BackHandler,
   Easing,
   PanResponder,
@@ -272,6 +273,48 @@ function compactMemory(memory: SwipeMemory): SwipeMemory {
 
 async function saveSwipeMemory(memory: SwipeMemory, studyTarget?: RuntimeStudyTarget): Promise<void> {
   await AsyncStorage.setItem(flashcardsSwipeMemoryKey(studyTarget), JSON.stringify(compactMemory(memory)));
+}
+
+/**
+ * Отложенная запись памяти карточек.
+ *
+ * зачем (владелец 2026-09-21, «всё лагает, причём везде», TestFlight): раньше
+ * КАЖДЫЙ свайп звал saveSwipeMemory, а это сортировка до 1200 записей
+ * (compactMemory) плюс JSON.stringify всего объекта — синхронно на JS-потоке,
+ * прямо внутри жеста. Отсюда вязкость карточек.
+ *
+ * Теперь свайп только запоминает намерение, а запись уходит одна на пачку.
+ * Данные не теряются: источник правды — memoryRef в компоненте, он обновляется
+ * мгновенно и до диска не зависит; flushSwipeMemoryNow() вызывается при уходе с
+ * экрана и при сворачивании приложения. Окно незаписанного не длиннее
+ * SWIPE_MEMORY_FLUSH_MS и закрывается раньше, если человек уходит.
+ */
+const SWIPE_MEMORY_FLUSH_MS = 1_500;
+let pendingSwipeMemory: { memory: SwipeMemory; studyTarget?: RuntimeStudyTarget } | null = null;
+let pendingSwipeMemoryTimer: ReturnType<typeof setTimeout> | null = null;
+
+function flushSwipeMemoryNow(): void {
+  if (pendingSwipeMemoryTimer) {
+    clearTimeout(pendingSwipeMemoryTimer);
+    pendingSwipeMemoryTimer = null;
+  }
+  const pending = pendingSwipeMemory;
+  if (!pending) return;
+  pendingSwipeMemory = null;
+  void saveSwipeMemory(pending.memory, pending.studyTarget).catch((error: unknown) => {
+    // зачем: немой catch запрещён правилом владельца — иначе прогресс карточек
+    // мог бы теряться месяцами без единого следа в логах.
+    console.warn('[SWIPE-MEMORY] flush:catch', error instanceof Error ? error.message : String(error)); // guard-ok: лог в catch обязателен
+  });
+}
+
+function scheduleSwipeMemorySave(memory: SwipeMemory, studyTarget?: RuntimeStudyTarget): void {
+  pendingSwipeMemory = { memory, studyTarget };
+  if (pendingSwipeMemoryTimer) return;
+  pendingSwipeMemoryTimer = setTimeout(() => {
+    pendingSwipeMemoryTimer = null;
+    flushSwipeMemoryNow();
+  }, SWIPE_MEMORY_FLUSH_MS);
 }
 
 function memoryFor(memory: SwipeMemory, key: string): CardMemory {
@@ -1027,6 +1070,19 @@ function FlashcardsSwipeScreen() {
   const correctTranslationReminderTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const progressRef = useRef<Record<string, CardProgress>>({});
   const memoryRef = useRef<SwipeMemory>({});
+  // зачем (владелец 2026-09-21): запись памяти карточек отложена, чтобы не
+  // держать жест свайпа. Эти два сброса — страховка, без них потерялись бы
+  // последние свайпы: при уходе с экрана и при сворачивании приложения
+  // записываем немедленно, не дожидаясь таймера.
+  useEffect(() => {
+    const appStateSub = AppState.addEventListener('change', (state) => {
+      if (state !== 'active') flushSwipeMemoryNow();
+    });
+    return () => {
+      appStateSub.remove();
+      flushSwipeMemoryNow();
+    };
+  }, []);
   const settlingRef = useRef(false);
   /**
    * Один вопрос — один ответ. Ошибочный ответ больше не блокирует экран улётом
@@ -2518,7 +2574,10 @@ function FlashcardsSwipeScreen() {
       }
 
       memoryRef.current = { ...memoryRef.current, [key]: next };
-      void saveSwipeMemory(memoryRef.current, studyTarget);
+      // зачем: запись отложена — см. scheduleSwipeMemorySave. memoryRef уже
+      // обновлён, поэтому следующая карточка берёт свежие данные из памяти, а
+      // диск догоняет фоном и не держит жест.
+      scheduleSwipeMemorySave(memoryRef.current, studyTarget);
     },
     [studyTarget],
   );

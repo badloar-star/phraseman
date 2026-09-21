@@ -1,10 +1,9 @@
-import React, { memo, useEffect, useRef } from 'react';
+import React, { memo, useCallback, useEffect, useRef } from 'react';
 import { Pressable, StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
 import Animated, {
   Easing,
   cancelAnimation,
   useAnimatedStyle,
-  type SharedValue,
   useSharedValue,
   withRepeat,
   withSequence,
@@ -68,12 +67,36 @@ interface Props {
  * бывает только у текущего — то есть 2047 узлов из 2048 платили за маппер
  * Reanimated впустую (аудит 20.09). Вынесено в отдельный компонент: хук
  * существует ровно там, где гало реально рисуется.
+ *
+ * 21.09 сюда же переехали само shared value и его бесконечный цикл: раньше
+ * их создавал родитель, то есть мост JS↔UI всё равно заводился у каждого
+ * узла. Теперь у гало нет следа за пределами текущего узла.
  */
 function LearningV2MapNodeHalo({
-  halo,
   radius,
   color,
-}: Readonly<{ halo: SharedValue<number>; radius: number; color: string }>) {
+  active,
+  reduceMotion,
+}: Readonly<{ radius: number; color: string; active: boolean; reduceMotion: boolean }>) {
+  const halo = useSharedValue(0);
+  useEffect(() => {
+    if (!active || reduceMotion) {
+      // Статичный кадр: гало видно, но не работает в фоне/при reduce motion.
+      cancelAnimation(halo);
+      halo.value = 0.4;
+      return undefined;
+    }
+    halo.value = 0;
+    halo.value = withRepeat(
+      withSequence(
+        withTiming(1, { duration: HALO_MS / 2, easing: Easing.inOut(Easing.quad) }),
+        withTiming(0, { duration: HALO_MS / 2, easing: Easing.inOut(Easing.quad) }),
+      ),
+      -1,
+      false,
+    );
+    return () => cancelAnimation(halo);
+  }, [active, halo, reduceMotion]);
   const haloStyle = useAnimatedStyle(() => ({
     opacity: (0.55 + halo.value * 0.45) * 0.3,
     transform: [{ scale: 1 + halo.value * 0.14 }],
@@ -97,29 +120,52 @@ function LearningV2MapNodeHalo({
   );
 }
 
-export const LearningV2MapNode = memo(function LearningV2MapNode({
+type NodePressHandlers = Readonly<{
+  pressIn: () => void;
+  pressOut: () => void;
+  denial: () => void;
+}>;
+
+/**
+ * Анимированная «начинка» узла: нажатие, отказ и pop при смене состояния.
+ *
+ * зачем: владелец 21.09 — «экран при быстром скролле всё равно не успевает
+ * рисоваться». Замер по коду: КАЖДЫЙ узел создавал 4 useSharedValue и
+ * 3 useAnimatedStyle, хотя анимации нужны далеко не всем. Закрытый узел не
+ * нажимается и не меняет состояние — он платил за мосты JS↔UI и
+ * worklet-мапперы впустую, а на карте 2048 узлов.
+ *
+ * Хуки нельзя вызывать условно, поэтому тяжёлая часть живёт здесь и
+ * монтируется только там, где реально нужна (см. needsMotion ниже).
+ */
+function LearningV2MapNodeMotion({
   state,
-  width,
   height,
   radius,
   faceColor,
-  haloColor,
   accessible,
   active,
   reduceMotion,
-  accessibilityLabel,
-  onPress,
   onCompletedTransition,
-  style,
-  testID,
+  rootRef,
+  registerPress,
   children,
-}: Props) {
-  const rootRef = useRef<View>(null);
+}: Readonly<{
+  state: LearningV2MapNodeStateV1;
+  height: number;
+  radius: number;
+  faceColor: string;
+  accessible: boolean;
+  active: boolean;
+  reduceMotion: boolean;
+  onCompletedTransition?: (point: { x: number; y: number }) => void;
+  rootRef: React.RefObject<View | null>;
+  registerPress: (handlers: NodePressHandlers | null) => void;
+  children: React.ReactNode;
+}>) {
   const pressY = useSharedValue(0);
   const denialScale = useSharedValue(1);
   const popScale = useSharedValue(1);
-  const halo = useSharedValue(0);
-  const showHalo = state === 'current' && Boolean(haloColor);
   const previousState = useRef<LearningV2MapNodeStateV1 | null>(null);
 
   // зачем: возвращение из пройденной сессии меняет состояния узлов на месте —
@@ -147,27 +193,7 @@ export const LearningV2MapNode = memo(function LearningV2MapNode({
         });
       }
     }
-  }, [active, onCompletedTransition, popScale, reduceMotion, state]);
-
-  useEffect(() => {
-    if (!showHalo) return undefined;
-    if (!active || reduceMotion) {
-      // Статичный кадр: гало видно, но не работает в фоне/при reduce motion.
-      cancelAnimation(halo);
-      halo.value = 0.4;
-      return undefined;
-    }
-    halo.value = 0;
-    halo.value = withRepeat(
-      withSequence(
-        withTiming(1, { duration: HALO_MS / 2, easing: Easing.inOut(Easing.quad) }),
-        withTiming(0, { duration: HALO_MS / 2, easing: Easing.inOut(Easing.quad) }),
-      ),
-      -1,
-      false,
-    );
-    return () => cancelAnimation(halo);
-  }, [active, halo, reduceMotion, showHalo]);
+  }, [active, onCompletedTransition, popScale, reduceMotion, rootRef, state]);
 
   const faceStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: pressY.value }, { scale: denialScale.value }],
@@ -176,33 +202,114 @@ export const LearningV2MapNode = memo(function LearningV2MapNode({
     transform: [{ scale: popScale.value }],
   }));
 
-  const pressIn = () => {
-    if (!accessible) return;
-    hapticTap();
-    pressY.value = withTiming(PLATE_H, {
-      duration: reduceMotion ? 1 : PRESS_MS,
-      easing: PRESS_EASE,
-    });
-  };
-  const pressOut = () => {
-    if (!accessible) return;
-    pressY.value = withTiming(0, {
-      duration: reduceMotion ? 1 : PRESS_MS,
-      easing: PRESS_EASE,
-    });
-  };
-  const press = () => {
-    if (!accessible) {
-      hapticTap();
-      if (!reduceMotion) {
+  // Обработчики отдаём наружу: Pressable остаётся в родителе, поэтому узел
+  // нажимается и без этой начинки (у статичных она не монтируется вовсе).
+  useEffect(() => {
+    registerPress({
+      pressIn: () => {
+        if (!accessible) return;
+        pressY.value = withTiming(PLATE_H, {
+          duration: reduceMotion ? 1 : PRESS_MS,
+          easing: PRESS_EASE,
+        });
+      },
+      pressOut: () => {
+        if (!accessible) return;
+        pressY.value = withTiming(0, {
+          duration: reduceMotion ? 1 : PRESS_MS,
+          easing: PRESS_EASE,
+        });
+      },
+      denial: () => {
+        if (reduceMotion) return;
         denialScale.value = withSequence(
           withTiming(0.96, { duration: DENIAL_HALF_MS, easing: PRESS_EASE }),
           withTiming(1, { duration: DENIAL_HALF_MS, easing: PRESS_EASE }),
         );
-      }
+      },
+    });
+    return () => registerPress(null);
+  }, [accessible, denialScale, pressY, reduceMotion, registerPress]);
+
+  return (
+    <Animated.View style={[styles.body, popStyle]}>
+      <View
+        pointerEvents="none"
+        style={[
+          styles.plate,
+          { top: PLATE_H, height, borderRadius: radius, backgroundColor: faceColor },
+        ]}
+      >
+        <View style={styles.plateShade} />
+      </View>
+      <Animated.View
+        style={[
+          styles.face,
+          { height, borderRadius: radius, backgroundColor: faceColor },
+          faceStyle,
+        ]}
+      >
+        {children}
+      </Animated.View>
+    </Animated.View>
+  );
+}
+
+export const LearningV2MapNode = memo(function LearningV2MapNode({
+  state,
+  width,
+  height,
+  radius,
+  faceColor,
+  haloColor,
+  accessible,
+  active,
+  reduceMotion,
+  accessibilityLabel,
+  onPress,
+  onCompletedTransition,
+  style,
+  testID,
+  children,
+}: Props) {
+  const rootRef = useRef<View>(null);
+  const pressHandlersRef = useRef<NodePressHandlers | null>(null);
+  const registerPress = useCallback((handlers: NodePressHandlers | null) => {
+    pressHandlersRef.current = handlers;
+  }, []);
+  const showHalo = state === 'current' && Boolean(haloColor);
+
+  // зачем (владелец 21.09, «не успевает рисоваться»): анимационная начинка
+  // монтируется ТОЛЬКО там, где её видно. Закрытый узел статичен — он не
+  // нажимается, не меняет состояние на глазах и не имеет гало, поэтому
+  // остаётся обычной вёрсткой без единого моста в UI-поток.
+  // reduceMotion гасит анимации целиком — тогда начинка не нужна вообще.
+  const needsMotion = !reduceMotion && (accessible || showHalo);
+
+  const pressIn = () => {
+    if (!accessible) return;
+    hapticTap();
+    pressHandlersRef.current?.pressIn();
+  };
+  const pressOut = () => {
+    pressHandlersRef.current?.pressOut();
+  };
+  const press = () => {
+    if (!accessible) {
+      hapticTap();
+      pressHandlersRef.current?.denial();
     }
     onPress();
   };
+
+  const halo = showHalo ? (
+    <LearningV2MapNodeHalo
+      radius={radius}
+      color={haloColor as string}
+      active={active}
+      reduceMotion={reduceMotion}
+    />
+  ) : null;
 
   return (
     <Pressable
@@ -218,29 +325,46 @@ export const LearningV2MapNode = memo(function LearningV2MapNode({
       testID={testID}
       style={[{ width, height: height + PLATE_H }, style]}
     >
-      <Animated.View style={[styles.body, popStyle]}>
-        {showHalo ? (
-          <LearningV2MapNodeHalo halo={halo} radius={radius} color={haloColor as string} />
-        ) : null}
-        <View
-          pointerEvents="none"
-          style={[
-            styles.plate,
-            { top: PLATE_H, height, borderRadius: radius, backgroundColor: faceColor },
-          ]}
-        >
-          <View style={styles.plateShade} />
-        </View>
-        <Animated.View
-          style={[
-            styles.face,
-            { height, borderRadius: radius, backgroundColor: faceColor },
-            faceStyle,
-          ]}
+      {/* зачем: гало рисуется ПОД кружком — оно лежит первым в разметке.
+          Поставить его после узла нельзя: absolute-слой перекрыл бы лицо
+          кружка, и иконка с номером ушли бы под свечение. */}
+      {halo}
+      {needsMotion ? (
+        <LearningV2MapNodeMotion
+          state={state}
+          height={height}
+          radius={radius}
+          faceColor={faceColor}
+          accessible={accessible}
+          active={active}
+          reduceMotion={reduceMotion}
+          onCompletedTransition={onCompletedTransition}
+          rootRef={rootRef}
+          registerPress={registerPress}
         >
           {children}
-        </Animated.View>
-      </Animated.View>
+        </LearningV2MapNodeMotion>
+      ) : (
+        <View style={styles.body}>
+          <View
+            pointerEvents="none"
+            style={[
+              styles.plate,
+              { top: PLATE_H, height, borderRadius: radius, backgroundColor: faceColor },
+            ]}
+          >
+            <View style={styles.plateShade} />
+          </View>
+          <View
+            style={[
+              styles.face,
+              { height, borderRadius: radius, backgroundColor: faceColor },
+            ]}
+          >
+            {children}
+          </View>
+        </View>
+      )}
     </Pressable>
   );
 });

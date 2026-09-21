@@ -10,7 +10,7 @@ import { triLang, type Lang } from '../../constants/i18n';
 import { horizonsCopy } from './horizons/copy';
 import { buildLearningV2CourseAccordionMapFromPreparedProgressV1, type LearningV2PreparedAccordionProgressV1, type LearningV2AccordionSessionStateV1, type LearningV2CourseAccordionRowV1 } from '../../modules/learning-v2/map/course_accordion_map_model_v1';
 import { learningV2CourseSessionIdV1 } from '../../modules/learning-v2/content/course_topology_v1';
-import { learningV2LessonArcV1, learningV2SessionTitleV1 } from '../../modules/learning-v2/content/session_titles_v1.generated';
+import { learningV2LessonArcV1 } from '../../modules/learning-v2/content/session_titles_v1.generated';
 import { LEARNING_V2_OWNER_LAYOUT as L } from './learningV2OwnerLayout';
 import { isPulseLessonMapAvailable, isPulseLessonWorkInProgress, pulseCourseSectionForLesson, pulseMapGeometry, pulseMapOffsetX, PULSE_COURSE_SECTIONS } from './learningV2PulseGeometry';
 
@@ -94,30 +94,6 @@ type LessonRow = Extract<LearningV2CourseAccordionRowV1, { kind: 'lesson' }>;
 /** Строка сплошной карты: занятие или плашка урока между уроками. */
 type ChapterRow = Extract<LearningV2CourseAccordionRowV1, { kind: 'chapter' }>;
 type MapRow = SessionRow | LessonRow | ChapterRow;
-/**
- * Подпись под кружком карты. Имя занятия берём только там, где оно реально
- * написано (уроки 1–3 плана курса, 168 занятий) и только для русского
- * интерфейса: переводов названий пока нет, а показывать русский текст в
- * английском UI нельзя. Для остального — номер занятия, без выдумок.
- */
-function pulseSessionTitle(
-  lang: Lang,
-  lessonOrdinal: number,
-  sessionOrdinal: number,
-  role: SessionRow['role'],
-  c: ReturnType<typeof horizonsCopy>,
-): string {
-  if (role === 'final_exam' || role === 'chapter_checkpoint') {
-    return triLang(lang, {
-      ru: 'Проверка главы', uk: 'Перевірка розділу', en: 'Chapter checkpoint',
-      es: 'Repaso del capítulo', 'pt-BR': 'Revisão do capítulo', vi: 'Kiểm tra chương',
-      id: 'Cek bab', tr: 'Bölüm kontrolü', pl: 'Sprawdzian rozdziału',
-    });
-  }
-  const authored = lang === 'ru' ? learningV2SessionTitleV1(lessonOrdinal, sessionOrdinal) : null;
-  return authored ?? `${c.session} ${sessionOrdinal}`;
-}
-
 /**
  * Плашка главы на карте. Владелец 20.09: «плашки должны быть ПЛАШКАМИ на
  * карте, а не просто текстом», «текст отцентрирован и красиво подан, очень
@@ -733,18 +709,13 @@ export default function LearningV2PulseCourse(props: Props) {
               <Path d={routeD} fill="none" stroke={t.bgSurface2} strokeOpacity={0.35} strokeWidth={7} strokeLinecap="round" />
             </Svg>
           ) : null}
-          {/* зачем: владелец 20.09 — «тексты обрезаются экраном, делай их ПОД
-              кнопками». Сбоку подпись не помещалась: змейка уводит кружок на
-              ±71px от центра, и текст шириной 150 упирался в край экрана.
-              Под кружком ширина не ограничена ничем, кроме самого экрана,
-              поэтому название читается целиком при любом смещении.
-              Подпись лежит в СТРОКЕ (ширина экрана), а не в nodeCluster —
-              тот шириной ровно с кружок и обрезает всё за своими границами. */}
-          <View pointerEvents="none" accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={[styles.nodeLabel, { top: 6 + geometry.nodeSize + 6, transform: [{ translateX: nodeOffsetX }] }]}>
-            <Text style={{ color: row.state === 'current' ? t.accent : row.state === 'completed' ? t.textPrimary : t.textMuted, fontSize: row.state === 'current' ? 13 : 12, lineHeight: row.state === 'current' ? 16 : 15, fontWeight: row.state === 'current' ? '800' : '700', textAlign: 'center' }}>
-              {pulseSessionTitle(lang, rowLesson, row.sessionOrdinal, row.role, c)}
-            </Text>
-          </View>
+          {/* зачем: владелец 21.09 — «названия уроков убирай, я уже говорил,
+              вместо названий нумерация». Подписи были «абы какие, не
+              интересные». Номер занятия уже написан ВНУТРИ кружка, поэтому
+              подпись не несла новой информации и только мешала.
+              Побочный выигрыш: минус текстовый узел на КАЖДОЙ строке и минус
+              40px её высоты — при быстрой прокрутке карта успевает рисоваться
+              («экран при быстром скролле не успевает рисоваться», 21.09). */}
           <View style={[styles.nodeCluster, { transform: [{ translateX: nodeOffsetX }] }]}>
               <LearningV2MapNode testID={`learning-v2-pulse-session-${row.sessionOrdinal}`} state={row.state} width={geometry.nodeSize} height={geometry.nodeSize} radius={geometry.nodeSize / 2} faceColor={nodeColor} haloColor={t.accent} accessible active={active} reduceMotion={reducedMotion} accessibilityLabel={`${c.chapter} ${row.chapterOrdinal}, ${c.session} ${row.sessionOrdinal}, ${statusLabel}${completedStarsLabel ? `, ${completedStarsLabel}` : ''}`} onPress={() => onSessionPress(rowLesson, row.sessionOrdinal, row.state)} onCompletedTransition={onSessionCompleted}>
                 <View pointerEvents="none" style={styles.nodeFace}><Ionicons testID={`learning-v2-pulse-session-icon-${row.sessionOrdinal}`} name={!hasMaterial ? 'construct-outline' : row.state === 'completed' ? 'checkmark' : available && (row.role === 'final_exam' || row.role === 'chapter_checkpoint') ? 'trophy' : available ? 'play' : 'lock-closed'} size={31} color={ink} /><Text style={{ color: ink, fontSize: 13, fontWeight: '700' }}>{row.sessionOrdinal}</Text></View>
@@ -938,7 +909,6 @@ const styles = StyleSheet.create({
   // отцентрированы»). Двигаем её тем же смещением, что и узел.
   // Ширина считается так, чтобы подпись НЕ вылезла за экран при крайнем
   // смещении змейки: width/2 + 82 <= 390/2 - 10 → width <= 206.
-  nodeLabel: { position: 'absolute', alignSelf: 'center', width: 206, alignItems: 'center' },
   sessionStars: {
     position: 'absolute',
     bottom: -16,

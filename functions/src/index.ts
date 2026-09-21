@@ -993,6 +993,9 @@ export {
 } from "./openai_dialog_model_config";
 export { openAiJobsConfig } from "./openai_jobs_config";
 export { adminTranslateMessage } from "./admin_translate";
+// зачем (владелец 2026-09-21): админка звала adminCommunityPackQaReview с
+// 18.08.2026, а функции не существовало — кнопку AI-проверки прятала заплатка.
+export { adminCommunityPackQaReview, adminCommunityPackApplyQaFixes } from './admin_community_pack_qa';
 export { submitSettingsPollVote } from "./settings_poll_vote";
 export { adminEmailBroadcast, adminEmailContactsBackfill } from "./admin_email";
 export { emailUnsubscribe } from "./email_unsubscribe";

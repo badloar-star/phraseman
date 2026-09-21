@@ -19,6 +19,23 @@ import { mergeLevelSpinServerStars } from './level_spin_star_grants';
 const REGION = 'us-central1';
 const ID_RE = /^[A-Za-z0-9_-]{12,96}$/;
 
+/**
+ * Трассировка рун за просмотр (владелец 2026-09-21: «нет начисления рун»).
+ *
+ * зачем не под `__DEV__`: каждый ранний выход ниже гасит начисление молча, и в
+ * прод-сборке «руны не капают» не оставляло ни строчки. Правило владельца
+ * «сперва логи, потом починка»: причина КАЖДОГО раннего выхода обязана попасть
+ * в журнал под общим префиксом, чтобы цепочка вытаскивалась одним поиском.
+ */
+function trace(step: string, payload: Readonly<Record<string, unknown>>): void {
+  try {
+    console.log(`[VIDEO-RUNES] client:${step} ${JSON.stringify(payload)}`);
+  } catch (error: unknown) {
+    console.log(`[VIDEO-RUNES] client:${step} trace_serialize_failed`, // guard-ok: причина обязана писаться
+      error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+  }
+}
+
 export const VIDEO_WATCH_RUNES_PER_MINUTE = 3;
 /** 600 base runes = 200 rewarded minutes (3 h 20 min) per UTC day. */
 export const VIDEO_WATCH_RUNES_DAILY_CAP = 600;
@@ -163,7 +180,11 @@ async function flushPendingProgressUnlocked(
   const key = pendingProgressKey(stableId);
   const pending = parsePendingProgress(await AsyncStorage.getItem(key).catch(() => null));
   if (!pending) return { ok: true, reason: 'nothing_pending' };
-  if (!isCurrentAccountGeneration(token, stableId)) return { ok: false, reason: 'account_changed_before_progress' };
+  if (!isCurrentAccountGeneration(token, stableId)) {
+    trace('progress_blocked', { reason: 'account_changed_before_progress', sessionId: pending.sessionId });
+    return { ok: false, reason: 'account_changed_before_progress' };
+  }
+  const progressStartedMs = Date.now();
   try {
     await initFirebaseAppCheckIfAvailable().catch(() => {});
     const response = await callable()({
@@ -174,7 +195,22 @@ async function flushPendingProgressUnlocked(
       progressSeq: pending.progressSeq,
       positionMs: pending.positionMs,
     });
-    if (!isCurrentAccountGeneration(token, stableId)) return { ok: false, reason: 'account_changed_after_progress' };
+    // Ответ сервера на progress: `creditedMs` и `verifiedMs` показывают, сколько
+    // времени сервер реально засчитал — расхождение с локальным счётом и есть
+    // корень «бейдж двигается, а рун нет».
+    trace('progress_response', {
+      sessionId: pending.sessionId,
+      progressSeq: pending.progressSeq,
+      sentPositionMs: pending.positionMs,
+      reason: response.data.reason ?? null,
+      creditedMs: response.data.creditedMs ?? null,
+      verifiedMs: response.data.verifiedMs ?? null,
+      tookMs: Date.now() - progressStartedMs,
+    });
+    if (!isCurrentAccountGeneration(token, stableId)) {
+      trace('progress_blocked', { reason: 'account_changed_after_progress', sessionId: pending.sessionId });
+      return { ok: false, reason: 'account_changed_after_progress' };
+    }
     const stillPending = parsePendingProgress(await AsyncStorage.getItem(key).catch(() => null));
     if (stillPending?.requestId === pending.requestId) {
       await AsyncStorage.setItem(
@@ -186,9 +222,20 @@ async function flushPendingProgressUnlocked(
     return { ok: true, reason: String(response.data.reason ?? 'progress_accepted'), verifiedMs: Number(response.data.verifiedMs) || 0 };
   } catch (error) {
     const code = String((error as { code?: unknown })?.code ?? '');
-    if (code.includes('failed-precondition') || code.includes('permission-denied')) {
+    const dropped = code.includes('failed-precondition') || code.includes('permission-denied');
+    if (dropped) {
       await AsyncStorage.removeItem(key).catch(() => {});
     }
+    // `dropped: true` = этот отрезок просмотра выброшен НАВСЕГДА. Без лога такая
+    // потеря времени была полностью невидимой.
+    trace('progress_threw', {
+      code: code || 'unknown',
+      message: error instanceof Error ? `${error.name}: ${error.message}` : String(error),
+      sessionId: pending.sessionId,
+      progressSeq: pending.progressSeq,
+      droppedPendingProgress: dropped,
+      tookMs: Date.now() - progressStartedMs,
+    });
     return { ok: false, reason: `progress_failed:${code || 'unknown'}` };
   }
 }
@@ -199,8 +246,12 @@ export async function reportVideoWatchRuneProgress(
   sessionId: string,
   positionMs: number,
 ): Promise<{ ok: boolean; reason: string; verifiedMs?: number }> {
-  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return { ok: false, reason: 'cloud_disabled' };
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
+    trace('progress_blocked', { reason: 'cloud_disabled', isExpoGo: IS_EXPO_GO, cloudSyncEnabled: CLOUD_SYNC_ENABLED });
+    return { ok: false, reason: 'cloud_disabled' };
+  }
   if (!ID_RE.test(sessionId) || !Number.isFinite(positionMs) || positionMs < 0) {
+    trace('progress_blocked', { reason: 'invalid_progress', sessionId, positionMs });
     return { ok: false, reason: 'invalid_progress' };
   }
   return serializeAccountOperation(stableId, async () => {
@@ -226,11 +277,16 @@ async function flushPendingClaimUnlocked(
   stableId: string,
 ): Promise<VideoWatchClaimResult> {
   const pending = parsePendingClaim(await AsyncStorage.getItem(pendingClaimKey(stableId)).catch(() => null));
-  if (!pending) return { ok: false, reason: 'nothing_pending' };
+  if (!pending) {
+    trace('claim_blocked', { reason: 'nothing_pending', stableId });
+    return { ok: false, reason: 'nothing_pending' };
+  }
   if (!isCurrentAccountGeneration(token, stableId)) {
+    trace('claim_blocked', { reason: 'account_changed_before_claim', sessionId: pending.sessionId });
     return { ok: false, reason: 'account_changed_before_claim' };
   }
 
+  const claimStartedMs = Date.now();
   try {
     await initFirebaseAppCheckIfAvailable().catch(() => {});
     const response = await callable()({
@@ -239,7 +295,22 @@ async function flushPendingClaimUnlocked(
       sessionId: pending.sessionId,
       requestId: pending.requestId,
     });
+    // Финальный результат: сколько рун сервер реально начислил и почему.
+    // `granted: 0` при `reason: 'no_complete_minute'` = сервер не засчитал ни
+    // одной полной минуты, хотя человек смотрел.
+    trace('claim_response', {
+      sessionId: pending.sessionId,
+      reason: response.data.reason ?? null,
+      granted: response.data.granted ?? null,
+      grantedToday: response.data.grantedToday ?? null,
+      dailyCap: response.data.dailyCap ?? null,
+      serverStars: response.data.stars ?? null,
+      starsSeq: response.data.starsSeq ?? null,
+      carryMs: response.data.carryMs ?? null,
+      tookMs: Date.now() - claimStartedMs,
+    });
     if (!isCurrentAccountGeneration(token, stableId)) {
+      trace('claim_blocked', { reason: 'account_changed_after_claim', sessionId: pending.sessionId });
       return { ok: false, reason: 'account_changed_after_claim' };
     }
     await mergeAuthoritativeStars(token, response.data);
@@ -258,9 +329,18 @@ async function flushPendingClaimUnlocked(
     };
   } catch (error) {
     const code = String((error as { code?: unknown })?.code ?? '');
-    if (code.includes('permission-denied') || code.includes('failed-precondition')) {
+    const dropped = code.includes('permission-denied') || code.includes('failed-precondition');
+    if (dropped) {
       await AsyncStorage.removeItem(pendingClaimKey(stableId)).catch(() => {});
     }
+    // `dropped: true` = весь сеанс просмотра выброшен без начисления.
+    trace('claim_threw', {
+      code: code || 'unknown',
+      message: error instanceof Error ? `${error.name}: ${error.message}` : String(error),
+      sessionId: pending.sessionId,
+      droppedPendingClaim: dropped,
+      tookMs: Date.now() - claimStartedMs,
+    });
     DebugLogger.error(
       'video_watch_runes_client:claim_failed',
       error instanceof Error ? error : new Error(String(error)),
@@ -316,19 +396,37 @@ export async function startVideoWatchRuneSession(
   token: AccountGenerationToken,
   stableId: string,
 ): Promise<VideoWatchSessionStartResult> {
-  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return { ok: false, reason: 'cloud_disabled' };
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
+    // Самый частый молчаливый отказ: в Expo Go руны за видео не работают вовсе.
+    trace('start_blocked', { reason: 'cloud_disabled', isExpoGo: IS_EXPO_GO, cloudSyncEnabled: CLOUD_SYNC_ENABLED });
+    return { ok: false, reason: 'cloud_disabled' };
+  }
   return serializeAccountOperation(stableId, async () => {
     const recovered = await recoverPendingVideoWatchRuneSessionUnlocked(token, stableId);
-    if (!recovered.ok) return recovered;
+    if (!recovered.ok) {
+      trace('start_blocked', { reason: 'recover_failed', detail: recovered.reason, stableId });
+      return recovered;
+    }
     if (!isCurrentAccountGeneration(token, stableId)) {
+      trace('start_blocked', { reason: 'account_changed_before_start', stableId, generation: token.generation });
       return { ok: false, reason: 'account_changed_before_start' };
     }
 
+    const startedAtMs = Date.now();
     try {
       await initFirebaseAppCheckIfAvailable().catch(() => {});
       const sessionId = makeId('vws');
       const response = await callable()({ stableId, action: 'start', sessionId });
+      trace('start_response', {
+        sessionId,
+        reason: response.data.reason ?? null,
+        grantedToday: response.data.grantedToday ?? null,
+        dailyCap: response.data.dailyCap ?? null,
+        carryMs: response.data.carryMs ?? null,
+        tookMs: Date.now() - startedAtMs,
+      });
       if (!isCurrentAccountGeneration(token, stableId)) {
+        trace('start_blocked', { reason: 'account_changed_after_start', sessionId });
         return { ok: false, reason: 'account_changed_after_start' };
       }
       // Old client-side minute totals are intentionally not migrated into the
@@ -343,6 +441,14 @@ export async function startVideoWatchRuneSession(
       };
     } catch (error) {
       const code = String((error as { code?: unknown })?.code ?? '');
+      // `permission-denied` здесь означает «нет премиума» — самая вероятная
+      // причина, по которой у владельца счётчик не двигается вообще.
+      trace('start_threw', {
+        code: code || 'unknown',
+        message: error instanceof Error ? `${error.name}: ${error.message}` : String(error),
+        tookMs: Date.now() - startedAtMs,
+        stableId,
+      });
       DebugLogger.error(
         'video_watch_runes_client:start_failed',
         error instanceof Error ? error : new Error(String(error)),

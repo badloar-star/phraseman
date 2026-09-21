@@ -39,6 +39,26 @@ import { applySuperSundayRuneMultiplier } from '../modules/economy/super_sunday_
  */
 const VIDEO_WATCH_CREDIT_FLUSH_MS = 36 * 1000;
 
+/**
+ * Сквозная трассировка рун за просмотр (владелец 2026-09-21: «нет начисления рун
+ * во время просмотра»).
+ *
+ * зачем НЕ под `__DEV__`: прежние три лога этой ветки были в `__DEV__` и в
+ * прод-сборку не попадали — «руны не капают» не оставляло ни строчки, и диагноз
+ * приходилось угадывать. Правило владельца «сперва логи, потом починка»: лог
+ * обязан показать вход, КАЖДОЕ ветвление со значением, которое его решило,
+ * каждый ранний выход и каждый catch.
+ */
+function runeTrace(step: string, payload: Readonly<Record<string, unknown>>): void {
+  try {
+    console.log(`[VIDEO-RUNES] ${step} ${JSON.stringify(payload)}`);
+  } catch (error: unknown) {
+    // Немой catch запрещён: несериализуемое поле не должно глушить всю трассу.
+    console.log(`[VIDEO-RUNES] ${step} trace_serialize_failed`, // guard-ok: причина обязана попасть в журнал
+      error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+  }
+}
+
 export type VideoWatchEnergyBoost = {
   /** Показывать ли значок ускорения энергии (видео идёт И лимит энергии есть). */
   boostVisible: boolean;
@@ -138,16 +158,52 @@ export function useVideoWatchEnergyBoost(videoId: string): VideoWatchEnergyBoost
     trackerRef.current = measured.state;
     setPlaying(sample.playing);
     if (measured.creditedMs > 0) pendingVerifiedMsRef.current += measured.creditedMs;
-    if (measured.creditedMs > 0 && runeSessionRef.current) {
+    // Ветвление, которое решает, двигается ли счётчик рун вообще. Печатаем оба
+    // значения: ноль creditedMs и отсутствие сессии дают одинаковый симптом
+    // «счётчик стоит», но чинятся в разных местах.
+    if (measured.creditedMs <= 0 || !runeSessionRef.current) {
+      runeTrace('sample_no_rune_credit', {
+        reason: measured.creditedMs <= 0 ? 'credited_ms_zero' : 'no_rune_session',
+        creditedMs: measured.creditedMs,
+        hasRuneSession: runeSessionRef.current !== null,
+        playing: sample.playing,
+        positionMs: Math.round(sample.positionMs),
+        videoId,
+      });
+    } else {
       runeProgressPendingMsRef.current += measured.creditedMs;
       runeVerifiedMsRef.current += measured.creditedMs;
       const verifiedWithCarry = runeVerifiedMsRef.current;
-      setBaseUnclaimedMinutes(Math.floor(verifiedWithCarry / 60_000));
+      const nextMinutes = Math.floor(verifiedWithCarry / 60_000);
+      setBaseUnclaimedMinutes(nextMinutes);
       setSecondsToNextRune(Math.max(1, Math.ceil((60_000 - (verifiedWithCarry % 60_000)) / 1000)));
-      if (runeProgressPendingMsRef.current >= 5_000) {
+      const willReport = runeProgressPendingMsRef.current >= 5_000;
+      runeTrace('sample_credited', {
+        creditedMs: measured.creditedMs,
+        verifiedMsWithCarry: verifiedWithCarry,
+        unclaimedMinutes: nextMinutes,
+        pendingProgressMs: runeProgressPendingMsRef.current,
+        willReportToServer: willReport,
+        positionMs: Math.round(sample.positionMs),
+      });
+      if (willReport) {
         runeProgressPendingMsRef.current = 0;
         const session = runeSessionRef.current;
-        void reportVideoWatchRuneProgress(session.token, session.stableId, session.sessionId, sample.positionMs);
+        void reportVideoWatchRuneProgress(session.token, session.stableId, session.sessionId, sample.positionMs)
+          .then((result) => {
+            runeTrace('progress_result', {
+              ok: result.ok,
+              reason: result.reason,
+              serverVerifiedMs: result.verifiedMs ?? null,
+              localVerifiedMs: runeVerifiedMsRef.current,
+            });
+          })
+          .catch((error: unknown) => {
+            // Немой catch запрещён: потерянный progress = потерянное время просмотра.
+            runeTrace('progress_threw', { // guard-ok: проглоченная ошибка обязана писать причину
+              error: error instanceof Error ? `${error.name}: ${error.message}` : String(error),
+            });
+          });
       }
     }
     if (!sample.playing) flushVerifiedPlayback('pause');
@@ -180,27 +236,59 @@ export function useVideoWatchEnergyBoost(videoId: string): VideoWatchEnergyBoost
 
   useEffect(() => {
     setRuneSessionActive(false);
-    if (!(playing && runesEligible)) return undefined;
+    // Решение «капают ли руны вообще». Печатаем сами значения, а не голый
+    // результат: «не премиум» и «энергия ещё не загрузилась» — разные диагнозы
+    // с одинаковым симптомом.
+    if (!(playing && runesEligible)) {
+      runeTrace('session_effect_idle', {
+        playing,
+        runesEligible,
+        energyReady,
+        isUnlimited,
+        reason: !playing ? 'not_playing' : !energyReady ? 'energy_not_ready' : 'not_unlimited_no_premium',
+      });
+      return undefined;
+    }
     let stopped = false;
     let sessionId: string | null = null;
     const token = captureAccountGeneration();
     const stableId = token.stableId?.trim();
     setBaseUnclaimedMinutes(0);
     if (!stableId) {
-      if (__DEV__) console.log('[VIDEO-RUNES] старт пропущен: нет stableId');
+      // Первое звено цепочки: без личности серверная сессия не откроется, и
+      // счётчик замрёт молча (класс бага stable_identity_unavailable).
+      runeTrace('session_start_skipped', { reason: 'no_stable_id', generation: token.generation });
       return undefined;
     }
+    runeTrace('session_start_requested', { stableId, generation: token.generation, videoId });
 
     // Start сначала досдаёт предыдущий immutable claim. Поэтому быстрый
     // pause/resume не может заменить активную серверную сессию раньше её сдачи.
+    const startedAtMs = Date.now();
     void startVideoWatchRuneSession(token, stableId).then((result) => {
       if (!result.ok) {
-        if (__DEV__) console.log(`[VIDEO-RUNES] серверная сессия не открыта: ${result.reason}`);
+        runeTrace('session_start_failed', {
+          reason: result.reason,
+          tookMs: Date.now() - startedAtMs,
+          stableId,
+        });
         return;
       }
       sessionId = result.sessionId;
+      runeTrace('session_started', {
+        sessionId: result.sessionId,
+        carryMs: result.carryMs,
+        grantedToday: result.grantedToday,
+        dailyCap: VIDEO_WATCH_RUNES_DAILY_CAP,
+        tookMs: Date.now() - startedAtMs,
+        stoppedWhileStarting: stopped,
+      });
       if (stopped) {
-        void claimVideoWatchRuneSession(token, stableId, result.sessionId);
+        // Ранний выход: просмотр кончился раньше, чем сервер ответил.
+        runeTrace('session_claimed_immediately', { sessionId: result.sessionId, reason: 'stopped_before_ready' });
+        void claimVideoWatchRuneSession(token, stableId, result.sessionId).then((claim) => {
+          runeTrace('claim_result', { phase: 'stopped_before_ready', ok: claim.ok, reason: claim.reason });
+        });
         return;
       }
       setRuneSessionActive(true);
@@ -216,18 +304,58 @@ export function useVideoWatchEnergyBoost(videoId: string): VideoWatchEnergyBoost
       stopped = true;
       setRuneSessionActive(false);
       setBaseUnclaimedMinutes(0);
-      if (!sessionId) return;
-      if (runeProgressPendingMsRef.current > 0) {
+      if (!sessionId) {
+        // Ранний выход: сессия так и не открылась — всё накопленное время
+        // просмотра пропадает, и до сих пор об этом не было ни строчки.
+        runeTrace('cleanup_without_session', {
+          reason: 'session_never_opened',
+          lostVerifiedMs: runeVerifiedMsRef.current,
+          lastPositionMs: Math.round(latestPositionMsRef.current),
+        });
+        return;
+      }
+      const pendingMs = runeProgressPendingMsRef.current;
+      runeTrace('cleanup_claiming', {
+        sessionId,
+        pendingProgressMs: pendingMs,
+        localVerifiedMs: runeVerifiedMsRef.current,
+        lastPositionMs: Math.round(latestPositionMsRef.current),
+      });
+      if (pendingMs > 0) {
         runeProgressPendingMsRef.current = 0;
-        void reportVideoWatchRuneProgress(token, stableId, sessionId, latestPositionMsRef.current);
+        void reportVideoWatchRuneProgress(token, stableId, sessionId, latestPositionMsRef.current)
+          .then((result) => {
+            runeTrace('final_progress_result', { ok: result.ok, reason: result.reason, serverVerifiedMs: result.verifiedMs ?? null });
+          })
+          .catch((error: unknown) => {
+            runeTrace('final_progress_threw', { // guard-ok: причина обязана попасть в журнал
+              error: error instanceof Error ? `${error.name}: ${error.message}` : String(error),
+            });
+          });
       }
       runeSessionRef.current = null;
+      const claimStartedMs = Date.now();
       void claimVideoWatchRuneSession(token, stableId, sessionId).then((result) => {
-        if (!result.ok && __DEV__) {
-          console.log(`[VIDEO-RUNES] сдача не прошла: ${result.reason}`);
-        }
+        // Итог, который увидел пользователь: сколько рун реально начислено.
+        runeTrace('claim_result', {
+          phase: 'cleanup',
+          ok: result.ok,
+          reason: result.reason,
+          granted: result.ok ? result.granted : 0,
+          grantedToday: result.ok ? result.grantedToday : null,
+          localVerifiedMs: runeVerifiedMsRef.current,
+          tookMs: Date.now() - claimStartedMs,
+        });
+      }).catch((error: unknown) => {
+        runeTrace('claim_threw', { // guard-ok: проглоченная ошибка обязана писать причину
+          error: error instanceof Error ? `${error.name}: ${error.message}` : String(error),
+        });
       });
     };
+    // зачем именно этот список: `energyReady`/`isUnlimited` уже свёрнуты в
+    // `runesEligible`, а `videoId` здесь добавлять НЕЛЬЗЯ — он пересоздавал бы
+    // серверную сессию на каждой смене ролика. Трассировка обязана только
+    // наблюдать, а не менять поведение.
   }, [playing, runesEligible]);
 
   // Уход в фон = видео больше не смотрят. YouTube в WebView всё равно встаёт на

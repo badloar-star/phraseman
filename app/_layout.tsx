@@ -431,13 +431,27 @@ const LEAGUE_BONUS_CHECK_MIN_MS = 60_000;
 const FOREGROUND_FLUSH_MIN_MS = 15_000;
 const FOREGROUND_MODAL_CHECK_MIN_MS = 60_000;
 const ENABLE_STARTUP_CONTENT_PREWARM = false;
-const FIRST_CONTENT_READY_FALLBACK_MS = 900;
+/** зачем (владелец, 2026-09-21: «вход ДО 1 СЕКУНДЫ»): 900 мс этого потолка
+ * съедали почти весь бюджет входа в одиночку, а следом ещё ждал homeScreenReady.
+ * Событие от Главной приходит раньше на здоровом старте — fallback нужен только
+ * когда экран промолчал, и ждать его почти секунду больше нельзя. */
+const FIRST_CONTENT_READY_FALLBACK_MS = 400;
+/** Столько ждём чанк Главной, прежде чем перестать держать им сплеш.
+ * зачем (владелец, 2026-09-21): см. развёрнутый комментарий у самого fallback
+ * ниже — это был единственный флаг гейта вообще без потолка. */
+const HOME_SCREEN_READY_FALLBACK_MS = 550;
 /** Жёсткий потолок: дольше этого стартовая цепочка не имеет права держать сплеш.
  * зачем (владелец, 2026-09-14): здоровый старт по замеру — ~2.1 с от загрузки
- * модуля до скрытия сплеша, поэтому 6 с оставляют запас даже медленному
- * устройству и при этом не дают вырасти минуте. Работа не отменяется — снимается
- * только право держать экран. Парный fallback для ветки онбординга ниже. */
-const BOOTSTRAP_READY_DEADLINE_MS = 6_000;
+ * модуля до скрытия сплеша. Работа не отменяется — снимается только право
+ * держать экран. Парный fallback для ветки онбординга ниже.
+ *
+ * зачем 6000 → 1000 (владелец, 2026-09-21: «вход ДО 1 СЕКУНДЫ, мгновенно на
+ * 100%»): потолки гейта СКЛАДЫВАЮТСЯ, а не идут параллельно — сплеш ждёт ready,
+ * и только потом firstContentReady и чанк Главной. При 6000 обещание секунды
+ * было невыполнимо в принципе. Держать экран закрытым дольше секунды запрещено;
+ * bootstrap при этом продолжает работу в фоне и досыпает состояние событиями —
+ * ровно так, как было задумано с самого начала. */
+const BOOTSTRAP_READY_DEADLINE_MS = 1_000;
 /** Столько ждём модуль онбординга, прежде чем перестать держать им сплеш.
  * зачем: в dev по LAN замерено `Bundled 34052ms components\onboarding.tsx` —
  * ровно этот модуль и держал экран 34 секунды; в проде тот же риск даёт
@@ -1666,6 +1680,26 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     const sub = onAppEvent('app_home_screen_ready', () => setHomeScreenReady(true));
     return () => sub.remove();
   }, []);
+  // зачем (владелец, 2026-09-21: «вход ДО 1 СЕКУНДЫ, мгновенно на 100%»):
+  // homeScreenReady был ЕДИНСТВЕННЫМ флагом гейта без потолка времени. Все
+  // соседи ограничены (ready — 6000, firstContentReady — 900, онбординг — 4000,
+  // шрифты — 1000), а этот ждал события от Главной бесконечно. Событие шлёт
+  // HomeScreenHost в (tabs)/_layout.tsx, и он монтируется только когда доедет
+  // динамический чанк home.tsx — 5872 строки со 163 импортами. Пока чанк
+  // грузится и вычисляется, сплеш держался, и остановить это было НЕЧЕМ.
+  // Именно поэтому прошлые починки (потолки соседним флагам) не давали эффекта:
+  // чинили не тот флаг.
+  //
+  // Потолок НЕ отменяет загрузку Главной — она продолжается, и экран дорисуется
+  // сам. Снимается только право этой загрузки держать сплеш закрытым.
+  useEffect(() => {
+    if (homeScreenReady || effectiveShowOnboarding || isBanned) return;
+    const timer = setTimeout(() => {
+      bootMark('homeScreenReady FALLBACK fired (чанк Главной не доехал за потолок)');
+      setHomeScreenReady(true);
+    }, HOME_SCREEN_READY_FALLBACK_MS);
+    return () => clearTimeout(timer);
+  }, [homeScreenReady, effectiveShowOnboarding, isBanned]);
   useEffect(() => {
     if (!nativeSplashCanHide) return;
     bootMark('SplashScreen.hideAsync() — сплеш скрыт');
@@ -2434,7 +2468,12 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       }
       beginInitialAccountGeneration(startupStableId);
       recoveryBootAllowsCloud = true;
-      safetyTimer = setTimeout(() => setReady(true), 1200);
+      // зачем 1200 → 600 (владелец, 2026-09-21, вход до 1 секунды): внешний
+      // дедлайн теперь 1000 мс, поэтому страховка на 1200 не успевала сработать
+      // НИКОГДА — она превратилась в мёртвый код. Оставляем её живой и полезной:
+      // взводится после трёх await, поэтому 600 мс отпускают экран заметно
+      // раньше общего потолка, когда затык случился именно здесь.
+      safetyTimer = setTimeout(() => setReady(true), 600);
       onboardingPathRef.current = false;
       deferLessonPrimeRef.current = false;
       const forceOnboardingForQA = isForcedOnboardingForQaRuntime();

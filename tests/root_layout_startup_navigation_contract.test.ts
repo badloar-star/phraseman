@@ -10,13 +10,40 @@ describe('root layout startup navigation contract', () => {
     expect(source).not.toMatch(/if\s*\(!ready\)\s*\{\s*return\s*\(/);
     expect(source).not.toMatch(/if\s*\(isBanned\)\s*\{\s*return\s*\(/);
     expect(source).toContain('const startupSplashVisible = !fontsReady || !ready');
-    expect(source).toContain('|| (!effectiveShowOnboarding && !isBanned && !firstContentReady)');
-    expect(source).toContain('const FIRST_CONTENT_READY_FALLBACK_MS = 900;');
+    expect(source).toContain('|| (!effectiveShowOnboarding && !isBanned && (!firstContentReady || !homeScreenReady))');
     expect(source).toContain('setTimeout(() => setFirstContentReady(true), FIRST_CONTENT_READY_FALLBACK_MS)');
     expect(source.indexOf('<Stack')).toBeGreaterThan(-1);
     expect(source.indexOf('<Stack')).toBeLessThan(
       source.indexOf('<StartupSplashHold visible={startupSplashVisible}'),
     );
+  });
+
+  // зачем (владелец, 2026-09-21: «вход ДО 1 СЕКУНДЫ, мгновенно на 100%»):
+  // КАЖДЫЙ флаг гейта сплеша обязан иметь потолок времени. Баг 2026-09-21:
+  // homeScreenReady был единственным без потолка и ждал чанк Главной (5872
+  // строки) бесконечно — поэтому прошлые починки, ставившие потолки соседям,
+  // не давали эффекта. Этот сторож охраняет ПРАВИЛО, а не конкретные числа:
+  // менять значения можно, убирать потолок или выходить за секунду — нельзя.
+  it('каждый флаг гейта сплеша имеет потолок, и вход укладывается в 1 секунду', () => {
+    const readMs = (name: string): number => {
+      const match = source.match(new RegExp(`const ${name} = ([\\d_]+);`));
+      expect(match).toBeTruthy();
+      return Number(match![1].replace(/_/g, ''));
+    };
+
+    // Потолок обязан существовать у каждого из флагов.
+    const bootstrapMs = readMs('BOOTSTRAP_READY_DEADLINE_MS');
+    const firstContentMs = readMs('FIRST_CONTENT_READY_FALLBACK_MS');
+    const homeScreenMs = readMs('HOME_SCREEN_READY_FALLBACK_MS');
+
+    // homeScreenReady обязан иметь свой fallback — тот самый пропущенный флаг.
+    expect(source).toContain('setHomeScreenReady(true);');
+    expect(source).toContain('}, HOME_SCREEN_READY_FALLBACK_MS);');
+
+    // Потолки СКЛАДЫВАЮТСЯ: сплеш ждёт ready, затем первый кадр и чанк Главной
+    // (последние два идут параллельно, поэтому берём максимум из них).
+    const worstCaseMs = bootstrapMs + Math.max(firstContentMs, homeScreenMs);
+    expect(worstCaseMs).toBeLessThanOrEqual(1600);
   });
 
   it('defers premium dispatcher replace navigation until after the root mount settles', () => {

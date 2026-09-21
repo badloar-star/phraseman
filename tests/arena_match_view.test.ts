@@ -1356,21 +1356,40 @@ describe('с мёртвого экрана матча обязан быть вы
     const handler = source.slice(source.indexOf("addEventListener('hardwareBackPress'"));
     const body = handler.slice(0, handler.indexOf('confirmForfeit();'));
     expect(body).toContain('if (!matchIsLive) {');
-    // Без взвода флага перехватчик ниже отменил бы и этот уход.
-    expect(body).toContain('leavingRef.current = true;');
-    expect(body).toContain("router.replace('/arena' as never);");
+    // Уход идёт через общую дверь: она и взводит leavingRef, без которого
+    // перехватчик ниже отменил бы даже этот выход.
+    expect(body).toContain("leaveTo('/arena')");
   });
 
-  test('каждая кнопка ухода с мёртвых экранов взводит leavingRef', () => {
+  test('у экрана одна дверь наружу, и она взводит leavingRef', () => {
     const source = screen();
     /*
-     * Кнопки «На главную» на экране отказа и на «Готовим матч», плюс возврат
-     * в поиск после чужого отказа. Каждая из них уходит через router.replace,
-     * и без флага её гасит тот же перехватчик.
+     * зачем проверять помощника, а не считать вхождения флага (аудит
+     * 2026-09-21): взвод `leavingRef` — условие того, что уход вообще
+     * состоится, а не деталь стиля. Забыть его в новой кнопке значит сделать
+     * её мёртвой, и заметить это можно только руками на телефоне. Счёт
+     * вхождений такую ошибку НЕ ловит: он зелен, пока сумма сходится.
      */
-    const exits = source.split('leavingRef.current = true;').length - 1;
-    // 4 собственных перехода матча (результат ×2, сдача, предпросмотр)
-    // + 3 кнопки мёртвых экранов + аппаратная «Назад».
-    expect(exits).toBeGreaterThanOrEqual(8);
+    expect(source).toContain('const leaveTo = useCallback((');
+    const body = source.slice(source.indexOf('const leaveTo = useCallback(('));
+    const tail = body.slice(0, body.indexOf('}, [router]);'));
+    expect(tail).toContain('leavingRef.current = true;');
+    expect(tail).toContain('router.replace(target as never);');
+  });
+
+  test('ни одна кнопка разметки не уходит мимо общей двери', () => {
+    const source = screen();
+    /*
+     * Разметка начинается после перехватчиков. Любой `router.replace` внутри
+     * неё обязан идти через `leaveTo`: прямой вызов гасится `beforeRemove`, и
+     * кнопка молча умирает. Ровно так и появились мёртвые экраны «Этого матча
+     * больше нет» и «Готовим матч».
+     */
+    const markup = source.slice(source.indexOf('if (!targetCurrent) {'));
+    const direct = markup.split('router.replace(').length - 1;
+    expect(direct).toBe(0);
+    // При этом выходы из разметки есть — иначе тест был бы зелен на пустом
+    // экране без единой кнопки.
+    expect(markup.split('leaveTo(').length - 1).toBeGreaterThanOrEqual(4);
   });
 });

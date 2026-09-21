@@ -66,9 +66,28 @@ async function describeMatch(
       opponentStars: typeof opponent?.rank === 'number' ? opponent.rank : undefined,
     };
   } catch (error) {
+    /**
+     * Матч НЕ описался — предлагать его человеку нельзя.
+     *
+     * зачем `describeFailed` (живой прогон 2026-09-21, лог на эмуляторе:
+     * `describe failed matchId=6xjFtwWuzzEzoHpsb0Y9:
+     * arena_match_sealed_publication_invalid`): раньше отсюда возвращался
+     * голый `{ matchId }` без срока, и ядро подставляло ЗАПАСНОЕ окно 12 с от
+     * текущего момента. Тост показывал бодрую кнопку «Принять» с выдуманным
+     * отсчётом — по матчу, который сервер не смог даже прочитать. Тап →
+     * списание 25⚡ → отказ сервера → «Этого матча больше нет».
+     *
+     * Это вторая дорога к той же жалобе владельца: первая — протухший срок
+     * после фона, эта — срок, которого никогда и не было. Запасное окно
+     * создавалось для другого случая (старый документ без `stateDeadlineAtMs`
+     * у ЖИВОГО матча), и подменять им сломанный матч оно не должно.
+     *
+     * Причину не глотаем: она уже в логе выше и теперь ещё и в состоянии.
+     */
     DebugLogger.warn('arena_background_search',
-      `[ARENA-BGSEARCH] describe failed matchId=${matchId}: ${String(error)}`);
-    return { matchId };
+      `[ARENA-BGSEARCH] describe failed matchId=${matchId}: ${String(error)}`
+      + ' — находка НЕ будет показана: срок неизвестен, матч мог не состояться');
+    return { matchId, describeFailed: true };
   }
 }
 

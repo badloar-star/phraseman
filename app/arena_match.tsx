@@ -908,6 +908,27 @@ function ArenaMatchGenerationScreen({
   const matchIsLive = Boolean(match) && !planError
     && match?.state.phase !== 'finished';
 
+  /**
+   * Уйти с экрана НАМЕРЕННО.
+   *
+   * зачем общий помощник (аудит 2026-09-21): взвод `leavingRef` — не деталь
+   * стиля, а условие того, что уход вообще состоится: перехватчик
+   * `beforeRemove` отменяет любую навигацию без него. Забыть его в новой
+   * кнопке = сделать её мёртвой, и заметить это можно только руками на
+   * телефоне. Так уже случилось с кнопками экранов отказа и «Готовим матч»,
+   * а в алертах «отчёт не сохранён» / «отчёт отклонён» кнопка «На главную»
+   * висела на том же волоске: она показывается после игры, но фаза матча в
+   * этот момент не обязана быть 'finished'.
+   *
+   * Теперь у экрана ОДНА дверь, и она всегда открыта.
+   */
+  const leaveTo = useCallback((
+    target: string | { pathname: string; params: Record<string, string> },
+  ) => {
+    leavingRef.current = true;
+    router.replace(target as never);
+  }, [router]);
+
   useEffect(() => {
     if (!active) return undefined;
     const subscription = BackHandler.addEventListener('hardwareBackPress', () => {
@@ -916,10 +937,9 @@ function ArenaMatchGenerationScreen({
           + ` planError=${String(planError)} entryFailure=${String(entryFailure)}`
           + ` hasMatch=${String(Boolean(match))} phase=${String(match?.state.phase)}`
           + ` matchId=${matchId ?? 'none'}`);
-        // зачем: без этого beforeRemove ниже отменит и ЭТОТ уход — экран
-        // остался бы мёртвым ровно так же, как до правки.
-        leavingRef.current = true;
-        router.replace('/arena' as never);
+        // leaveTo взводит leavingRef: без него beforeRemove ниже отменил бы и
+        // ЭТОТ уход — экран остался бы мёртвым ровно так же, как до правки.
+        leaveTo('/arena');
         return true;
       }
       confirmForfeit();
@@ -1234,7 +1254,7 @@ function ArenaMatchGenerationScreen({
           </DuoPressable>
           <DuoPressable
             testID="arena-match-storage-home"
-            onPress={() => { setMatchAlert(null); router.replace('/arena' as never); }}
+            onPress={() => { setMatchAlert(null); leaveTo('/arena'); }}
             edgeColor={t.bgSurface2}
             style={[styles.alertSecondary, { backgroundColor: t.bgSurface2 }]}
           >
@@ -1251,7 +1271,7 @@ function ArenaMatchGenerationScreen({
           </Text>
           <DuoPressable
             testID="arena-match-rejected-home"
-            onPress={() => { setMatchAlert(null); router.replace('/arena' as never); }}
+            onPress={() => { setMatchAlert(null); leaveTo('/arena'); }}
             edgeColor={t.accent}
             style={[styles.alertPrimary, { backgroundColor: t.accent }]}
           >
@@ -1270,7 +1290,7 @@ function ArenaMatchGenerationScreen({
             {arenaText(lang, 'valueUnknown')}
           </Text>
           <Text style={[styles.failureHint, hintLine, { color: P.muted }]}>{arenaText(lang, 'modeOff')}</Text>
-          <V2Cta tone="ghost" onPress={() => router.replace('/arena' as never)}>{arenaText(lang, 'home')}</V2Cta>
+          <V2Cta tone="ghost" onPress={() => leaveTo('/arena')}>{arenaText(lang, 'home')}</V2Cta>
         </View>
       </ArenaScreen>
     );
@@ -1303,19 +1323,14 @@ function ArenaMatchGenerationScreen({
               новым requestId — старый билет уже закрыт сервером. */}
           {entryFailure === 'no_opponent' ? (
             <View style={{ position: 'relative' }}>
-              <V2Cta onPress={() => {
-                // Тот же предохранитель, что и у «На главную»: без него
-                // beforeRemove отменял и этот уход.
-                leavingRef.current = true;
-                router.replace({
-                  pathname: '/arena_matchmaking',
-                  params: {
-                    mode: 'quick',
-                    studyTarget,
-                    requestId: createArenaRequestId(arenaTargetRequestIdPrefix('queue', studyTarget)),
-                  },
-                } as never);
-              }}>
+              <V2Cta onPress={() => leaveTo({
+                pathname: '/arena_matchmaking',
+                params: {
+                  mode: 'quick',
+                  studyTarget,
+                  requestId: createArenaRequestId(arenaTargetRequestIdPrefix('queue', studyTarget)),
+                },
+              })}>
                 {arenaText(lang, 'quick')}
               </V2Cta>
               <EnergyCostBadge activity="arena_match" testID="arena-match-retry-energy-cost" />
@@ -1326,10 +1341,7 @@ function ArenaMatchGenerationScreen({
               ничем, кроме закрытия приложения. */}
           <V2Cta
             tone="ghost"
-            onPress={() => {
-              leavingRef.current = true;
-              router.replace('/arena' as never);
-            }}
+            onPress={() => leaveTo('/arena')}
           >
             {arenaText(lang, 'home')}
           </V2Cta>
@@ -1397,10 +1409,7 @@ function ArenaMatchGenerationScreen({
               матч. Кнопка была, а выхода не было. */}
           <V2Cta
             tone="ghost"
-            onPress={() => {
-              leavingRef.current = true;
-              router.replace('/arena' as never);
-            }}
+            onPress={() => leaveTo('/arena')}
           >
             {arenaText(lang, 'home')}
           </V2Cta>

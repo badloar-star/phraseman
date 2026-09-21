@@ -627,3 +627,59 @@ describe('находка не переживает свой срок в фоне
     expect(h.search.getState().stopReason).toBe('accept_timeout');
   });
 });
+
+describe('нечитаемый матч не доходит до кнопки «Принять» (живой прогон 2026-09-21)', () => {
+  /**
+   * Третья дорога к той же жалобе владельца «нажимаю Принять и сразу этого
+   * матча больше нет».
+   *
+   * Найдена НЕ рассуждением, а логом с эмулятора:
+   *   describe failed matchId=6xjFtwWuzzEzoHpsb0Y9:
+   *   arena_match_sealed_publication_invalid
+   *
+   * `describeMatch` не смог прочитать матч и возвращал голый `{ matchId }`
+   * без срока. Ядро подставляло ЗАПАСНОЕ окно 12 с от текущего момента — и
+   * тост показывал бодрую кнопку по матчу, про который УЖЕ известно, что он
+   * сломан. Тап стоил 25⚡ и заканчивался отказом сервера.
+   *
+   * Запасное окно создавалось для другого случая: старый документ ЖИВОГО
+   * матча без `stateDeadlineAtMs`. Подменять им сломанный матч оно не должно,
+   * и отличить одно от другого по пустому полю нельзя — нужен явный признак.
+   */
+  test('находка с describeFailed не показывается и честно заканчивает поиск', async () => {
+    const h = createHarness();
+    h.setFindResult({
+      queue: null,
+      // Ровно то, что вернул живой describeMatch после отказа сервера.
+      match: { matchId: 'match-broken', describeFailed: true },
+    });
+    h.search.start('quick', 'en');
+    await Promise.resolve();
+
+    // Кнопки «Принять» не появилось: платить не за что.
+    expect(h.search.getState().found).toBeNull();
+    expect(h.search.getState().phase).toBe('stopped');
+    expect(h.search.getState().stopReason).toBe('no_opponent');
+    // Причина названа: немой отказ здесь и породил бы «матч исчез сам».
+    expect(h.logs.some((line) => line.includes('матч не читается на сервере'))).toBe(true);
+  });
+
+  test('живой матч без серверного срока по-прежнему получает запасное окно', async () => {
+    const h = createHarness();
+    /*
+     * Защита от чрезмерной правки: старый документ БЕЗ срока — это законный
+     * случай, ради которого запасное окно и существует. Забрать его вместе
+     * со сломанными матчами значило бы сломать рабочий путь.
+     */
+    h.setFindResult({
+      queue: null,
+      match: { matchId: 'match-old', opponentName: 'Марина' },
+    });
+    h.search.start('quick', 'en');
+    await Promise.resolve();
+
+    expect(h.search.getState().phase).toBe('found');
+    expect(h.search.getState().found?.matchId).toBe('match-old');
+    expect(h.search.getState().found?.acceptDeadlineAtMs).toBeGreaterThan(0);
+  });
+});

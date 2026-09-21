@@ -128,9 +128,13 @@ describe("Learning V2 continuous map performance contract", () => {
     // Владелец 20.09: «когда урок 1 сессия 1 — она должна быть ВВЕРХУ».
     expect(source).toContain("const atCourseStart =");
     // Индекс строки сюда не годится: занятие 1 лежит на индексе 2 (перед ним
-    // плашка урока и глава). Признак начала — урок 1, глава 1.
+    // плашка урока и глава). Признак начала — урок 1, глава 1, занятие 1.
     expect(source).toContain("currentSession.lessonOrdinal === 1");
     expect(source).toContain("currentSession.chapterOrdinal === 1");
+    // Владелец 21.09: «активный урок должен быть чуть выше середины, но не в
+    // самом верху». Без этой строки условие ловило занятия 2..7 главы 1, и
+    // они тоже липли к верхнему краю.
+    expect(source).toContain("currentSession.sessionOrdinal === 1");
     expect(source).toContain("const lead = atCourseStart ?");
   });
 

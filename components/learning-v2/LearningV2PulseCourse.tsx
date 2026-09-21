@@ -545,12 +545,17 @@ export default function LearningV2PulseCourse(props: Props) {
     // Начало курса определяем по СМЫСЛУ, а не по индексу строки: первые
     // строки — плашка урока и глава, поэтому занятие 1 лежит на индексе 2
     // (лог с телефона: currentRowIndex=2, offset=476 — карта всё равно
-    // уезжала вниз). Считаем началом любое занятие урока 1 главы 1.
+    // уезжала вниз).
+    // зачем: владелец 21.09 — «активный урок должен быть чуть выше середины,
+    // но не в самом верху». Условие ловило ЛЮБОЕ занятие главы 1 урока 1
+    // (занятия 2..7 тоже), и они все липли к верхнему краю. Верх — привилегия
+    // ровно ПЕРВОГО занятия курса, над которым и правда ничего нет.
     const currentSession = rows[currentRowIndex];
     const atCourseStart =
       currentSession?.kind === 'session' &&
       currentSession.lessonOrdinal === 1 &&
-      currentSession.chapterOrdinal === 1;
+      currentSession.chapterOrdinal === 1 &&
+      currentSession.sessionOrdinal === 1;
     // зачем: владелец 20.09 — «плашка ГЛАВА 1 в кадр попадать не должна»,
     // затем «она обрезается и вообще не попадает полностью».
     // Замер: при lead=18 от главы (118px) снизу торчал огрызок ровно 18px.
@@ -578,10 +583,13 @@ export default function LearningV2PulseCourse(props: Props) {
   // centerCurrent его сдвигал. Видно ДВА кадра. contentOffset ставит нужную
   // позицию СРАЗУ, до первой отрисовки: прыжка нет.
   const initialOffset = useMemo(() => {
+    // Зеркало условия из scrollToCurrent: правим одно — правим второе, иначе
+    // первый кадр встанет вверху, а наведение тут же дёрнет карту вниз.
     const atStart =
       rows[currentRowIndex]?.kind === 'session' &&
       (rows[currentRowIndex] as SessionRow).lessonOrdinal === 1 &&
-      (rows[currentRowIndex] as SessionRow).chapterOrdinal === 1;
+      (rows[currentRowIndex] as SessionRow).chapterOrdinal === 1 &&
+      (rows[currentRowIndex] as SessionRow).sessionOrdinal === 1;
     const lead = atStart ? 0 : (mapViewportHeight || 700) * 0.4;
     return { x: 0, y: Math.max(0, mapContentTop + (layout.offsets[currentRowIndex] ?? 0) - lead) };
   }, [currentRowIndex, mapContentTop, layout.offsets, mapViewportHeight, rows, viewport.height]);

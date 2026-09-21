@@ -34,7 +34,12 @@ describe('home learning CTA contract', () => {
 
     expect(source).toContain("import { getHomeLastLessonImage } from '../home_last_lesson_assets';");
     expect(source).toContain('const lastLessonImage = getHomeLastLessonImage(themeMode);');
-    expect(source).toContain('const priorityCardImage = lastLessonImage;');
+    // зачем (владелец 2026-09-21): карточка переключается между уроком и
+    // ошибками, поэтому арт выбирается условно. Намерение проверки прежнее —
+    // берём подготовленный арт ТЕМЫ, а не общий menuImages.lesson.
+    expect(source).toContain('const priorityCardImage = priorityCardShowsMistakes');
+    expect(source).toContain('? getHomeMistakesImage(themeMode)');
+    expect(source).toContain(': lastLessonImage;');
     expect(cardSource).toContain('source={priorityCardImage}');
     expect(cardSource).not.toContain('source={menuImages.lesson}');
     expect(cardSource).not.toContain('align="center"');
@@ -77,15 +82,26 @@ describe('home learning CTA contract', () => {
     expect(source).not.toContain('personalPlanSnapshot: planSnapshot');
   });
 
-  it('no longer swaps the lesson card for a mistakes tile', () => {
-    // зачем (владелец 2026-09-14/15): вход в ошибки переехал на кнопку у
-    // заголовка «Сегодня», поэтому подмены и переключения удержанием больше нет.
+  it('swaps the lesson card for mistakes on long press', () => {
+    // зачем (владелец 2026-09-21): «плашка последнего урока при зажатии
+    // менялась анимированно на плашку раздела мои ошибки», и «зажатие
+    // работало» при любом числе ошибок.
+    //
+    // Это ОТМЕНА решения от 2026-09-14/15, по которому вход в ошибки жил
+    // отдельной кнопкой-пилюлей у заголовка «Сегодня», а переключение
+    // удержанием было запрещено. Ряд из двух пилюль удалён целиком: он был
+    // источником визуального шума на Главной.
+    expect(source).toContain('onLongPress={handleHomeLearningPriorityCardLongPress}');
+    expect(source).toContain('homePriorityCardFace');
+    expect(source).toContain('priorityCardShowsMistakes');
+    // Пилюль у «Сегодня» больше нет — вход живёт на карточке и на полосе опыта.
+    expect(source).not.toContain('testID="home-mistakes-pulse-button"');
+    expect(source).not.toContain('testID="home-videos-pulse-button"');
+    // Старые механизмы подмены не возвращаются.
     expect(source).not.toContain('showMistakesCard');
     expect(source).not.toContain('homeLearningPriorityOverride');
     expect(source).not.toContain('canToggleHomeLearningPriority');
-    expect(source).not.toContain('onLongPress={handleHomeLearningPriorityCardLongPress}');
     expect(source).not.toContain('MistakePracticeSetupSheet');
-    expect(source).toContain('testID="home-mistakes-pulse-button"');
   });
 
   it('uses a reduced-motion-aware UI-thread scale while the priority card is held', () => {

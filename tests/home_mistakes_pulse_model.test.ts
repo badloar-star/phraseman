@@ -54,15 +54,31 @@ describe('home mistakes button', () => {
     expect(button).toContain('useReduceMotion');
   });
 
-  test('home shows both buttons in one row and the videos header entry is gone', () => {
+  test('ряд пилюль у «Сегодня» убран: видео в шапке, ошибки на карточке и полосе', () => {
+    // зачем (владелец 2026-09-21): ряд из двух одинаковых пилюль был главным
+    // источником «наляпистости» на Главной и удалён целиком. Это ОТМЕНА
+    // решения от 2026-09-14/15 («Видео» слева от «Ошибки», вход в видео из
+    // шапки убран).
     const home = read('app/(tabs)/home.tsx');
-    expect(home).toContain('testID="home-mistakes-pulse-button"');
-    expect(home).toContain('testID="home-videos-pulse-button"');
-    // Вход в видео остался только этой кнопкой (владелец 2026-09-15).
-    expect(home).not.toContain('<LingmanVideosButton');
+    expect(home).not.toContain('testID="home-mistakes-pulse-button"');
+    expect(home).not.toContain('testID="home-videos-pulse-button"');
+    // Видео вернулось в шапку и называется «Видеоуроки» (владелец).
+    expect(home).toContain('testID="home-header-videos"');
+    expect(home).toContain('homeVideoLessonsLabel');
+    // Гашение счётчика оптимистичное — сети не ждём.
     expect(home).toContain('markLingmanYoutubeCatalogSeen');
-    // Ниже порога раздел не открывается — показываем объяснение.
-    expect(home).toContain('setMistakesLockedVisible(true)');
-    expect(home).toContain('<HomeMistakesLockedSheet');
+    // Ошибки: два входа — переключаемая карточка и зарубка на полосе опыта.
+    expect(home).toContain('testID="home-xp-mistake-notch"');
+    expect(home).toContain('openHomeMistakesHub');
+  });
+
+  test('порог 10 больше не закрывает раздел ошибок', () => {
+    // зачем (владелец 2026-09-21): «я хочу чтобы даже если меньше 10 чтобы хаб
+    // открывался». Отмена решения от 2026-09-15. Шторка «ошибок мало» стала
+    // недостижимой и убрана с Главной — мёртвый показ однажды всплыл бы не
+    // вовремя (правило фундамента про durable-очереди).
+    const home = read('app/(tabs)/home.tsx');
+    expect(home).not.toContain('setMistakesLockedVisible(true)');
+    expect(home).not.toContain('<HomeMistakesLockedSheet');
   });
 });

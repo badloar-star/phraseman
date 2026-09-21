@@ -1175,6 +1175,17 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const [homePriorityCardFace, setHomePriorityCardFace] = useState<'lesson' | 'mistakes' | null>(null);
     /** Переворот карточки: 0 — покой, 1 — середина оборота (содержимое скрыто). */
     const homePriorityCardFlip = useSharedValue(0);
+    /** Замок на время переворота — см. handleHomeLearningPriorityCardLongPress. */
+    const homePriorityCardFlipBusyRef = useRef(false);
+    const releaseHomePriorityCardFlip = useCallback(() => {
+        homePriorityCardFlipBusyRef.current = false;
+    }, []);
+    // Страховка на размонтирование: экран живёт под freeze-on-blur, и прерванный
+    // переворот иначе пережил бы уход с вкладки схлопнутой гранью.
+    useEffect(() => () => {
+        homePriorityCardFlip.value = 0;
+        homePriorityCardFlipBusyRef.current = false;
+    }, [homePriorityCardFlip]);
     const homePriorityCardFlipStyle = useAnimatedStyle(() => ({
         // Сжатие по вертикали вместо rotateX: RN-тень и градиент при настоящем
         // 3D-повороте на Android мерцают, а результат читается так же — грань
@@ -1185,6 +1196,23 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     useEffect(() => {
         if (homePriorityCardReduceMotion) homePriorityCardScale.value = 1;
     }, [homePriorityCardReduceMotion, homePriorityCardScale]);
+    /**
+     * Ошибок не осталось — ручной выбор лица забываем.
+     *
+     * зачем (аудит 2026-09-21): без сброса старый выбор оживал. Человек
+     * переключал карточку на ошибки, разбирал их все, а при появлении ОДНОЙ
+     * новой карточка снова показывала ошибки — хотя порог автозахвата 10 и он
+     * этого не просил. Это ровно правило фундамента «поздравляем ФАКТОМ, а не
+     * записью»: сохранённый выбор описывал уже закрытую пачку ошибок.
+     */
+    useEffect(() => {
+        if (mistakeActiveCount >= 1 || homePriorityCardFace === null) return;
+        console.warn('[MISTAKES-CARD] face:reset', JSON.stringify({ // guard-ok: сброс состояния обязан быть виден в логе
+            reason: 'no_active_mistakes',
+            was: homePriorityCardFace,
+        }));
+        setHomePriorityCardFace(null);
+    }, [homePriorityCardFace, mistakeActiveCount]);
     const handleHomeLearningPriorityCardPressIn = useCallback(() => {
         homePriorityCardLongPressHandledRef.current = false;
         if (homePriorityCardReduceMotion) return;
@@ -1219,7 +1247,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             xpInLevel: progress.xpInLevel,
             xpNeeded: progress.xpNeeded,
             barPercent: Number((progress.progress * 100).toFixed(2)),
-            notchWidthPercent: Number(geometry.widthPercent.toFixed(2)),
+            notchEndPercent: Number(geometry.endPercent.toFixed(2)),
+            notchVisible: geometry.visible,
             notchForecastXp: geometry.forecastXp,
             notchReachesNextLevel: geometry.reachesNextLevel,
             cardTakesOver: homeMistakesButtonState(next) === 'ready',
@@ -1283,17 +1312,40 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             setHomePriorityCardFace(nextFace);
             return;
         }
+        // зачем (аудит 2026-09-21): замок от повторного входа. Без него второе
+        // зажатие внутри 360 мс отменяло идущую анимацию, её колбэк приходил с
+        // finished === false и прежний код просто выходил — обратное раскрытие
+        // не планировалось НИКОГДА, и карточка оставалась схлопнутой полоской в
+        // 15% непрозрачности. Shared value, управляющий ВИДИМОСТЬЮ, не должен
+        // уметь застревать в скрытом состоянии.
+        if (homePriorityCardFlipBusyRef.current) {
+            console.warn('[MISTAKES-CARD] longPress:busy', JSON.stringify({ // guard-ok: ранний выход логирует причину
+                reason: 'flip_in_progress',
+                faceState: homePriorityCardFace,
+            }));
+            return;
+        }
+        homePriorityCardFlipBusyRef.current = true;
         // Схлопнули грань → подменили содержимое на середине → раскрыли обратно.
         homePriorityCardFlip.value = withTiming(1, { duration: 150 }, (finished) => {
-            if (!finished) return;
             runOnJS(setHomePriorityCardFace)(nextFace);
-            homePriorityCardFlip.value = withTiming(0, { duration: 210 });
+            if (!finished) {
+                // Анимацию оборвали — грань раскрываем немедленно, иначе
+                // карточка останется невидимой.
+                homePriorityCardFlip.value = 0;
+                runOnJS(releaseHomePriorityCardFlip)();
+                return;
+            }
+            homePriorityCardFlip.value = withTiming(0, { duration: 210 }, () => {
+                runOnJS(releaseHomePriorityCardFlip)();
+            });
         });
     }, [
         homePriorityCardFace,
         homePriorityCardFlip,
         homePriorityCardReduceMotion,
         mistakeActiveCount,
+        releaseHomePriorityCardFlip,
     ]);
     const [requestedReportReply, setRequestedReportReply] = useState<UserNotification | null>(null);
     const handleReportReplyBannerOpen = useCallback((notification: UserNotification) => {
@@ -3744,13 +3796,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             : (lessonNamesForStudyTarget(lang, studyTarget)[lastLesson.id - 1] ?? lastLesson.name);
         // зачем (владелец 2026-09-21): отдельной кнопки «Ошибки» у «Сегодня»
         // больше нет — её заменили зарубка на полосе опыта и ЭТА карточка.
-        // Правила владельца:
-        //   · ошибок 10+ → карточка сама показывает ошибки и держится так,
-        //     пока их не разберут (жест в этом состоянии выключен: вернуть урок
-        //     насильно нельзя, иначе автопереключение теряет смысл);
-        //   · ошибок 1..9 → карточка показывает урок, а долгое нажатие
-        //     переключает её на ошибки и обратно;
-        //   · ошибок нет → всегда урок.
+        // Правила владельца (уточнены 2026-09-21 — жест работает ВЕЗДЕ):
+        //   · ошибок 10+ → карточка САМА встаёт на ошибки (автозахват);
+        //   · ошибок 1..9 → по умолчанию урок;
+        //   · в обоих случаях долгое нажатие переключает лицо и перебивает
+        //     автозахват: держать человека на одной стороне нельзя;
+        //   · ошибок нет → всегда урок, ручной выбор забывается (см. эффект
+        //     сброса homePriorityCardFace).
         const mistakesTakeOverPriorityCard = homeMistakesButtonState(mistakeActiveCount) === 'ready';
         // зачем (владелец 2026-09-21): ручной выбор СИЛЬНЕЕ автозахвата — жест
         // обязан работать всегда, в том числе при 10+ ошибках. Пока человек не
@@ -4324,6 +4376,45 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     backgroundColor: isPaperHomeTheme ? homeThemeTrackBg : isGoldTheme ? 'rgba(0,0,0,0.36)' : 'rgba(255,255,255,0.09)',
                     borderWidth: 0,
                   }}>
+                    {/* ЗАРУБКА ОШИБОК — владелец, 2026-09-21.
+                        Слой ПОД заливкой шириной до endPercent («докуда дойдёт
+                        опыт, если разобрать все ошибки»). Заливка рисуется
+                        следующей и закрывает левую часть зарубки, поэтому
+                        видимым остаётся хвост справа.
+
+                        Почему именно так (аудит 2026-09-21): раньше зарубка
+                        позиционировалась статичным left от процента заливки, а
+                        заливка анимируется нативным scaleX с перелётом 4% и
+                        сбросом в ноль на повышении уровня. В кадрах анимации
+                        слои расходились: зарубка пряталась под залитой дорожкой
+                        и затем выскакивала на новом месте. Теперь её левый край
+                        неподвижен (0), а «съедает» её сама заливка — рассинхрон
+                        невозможен по построению.
+
+                        Инвариант владельца цел: зарубка не входит в расчёт
+                        homeXpBarPercent и не трогает scaleX заливки. Уровень
+                        поднимается ровно тогда же, когда и раньше. */}
+                    {homeMistakeXpNotch.visible ? (
+                      <View
+                        testID="home-xp-mistake-notch"
+                        pointerEvents="none"
+                        style={{
+                          position: 'absolute',
+                          left: 0,
+                          top: 0,
+                          bottom: 0,
+                          // Шаблонный литерал `${number}%` — валидный DimensionValue,
+                          // приведение не нужно: тип сужаем явно, а не глушим.
+                          width: `${homeMistakeXpNotch.endPercent}%` as `${number}%`,
+                          backgroundColor: t.wrong,
+                          borderRadius: 999,
+                          // Приглушение обязательно: в полную силу тёплый цвет
+                          // спорил бы с заливкой и читался как поломка, а не как
+                          // «вот столько можно вернуть».
+                          opacity: isPaperHomeTheme ? 0.42 : 0.5,
+                        }}
+                      />
+                    ) : null}
                     {/* Полоса опыта наливается, а не проставляется мгновенно
                         (владелец, 2026-09-01: «чуть преувеличиться и заполниться,
                         как в играх»). Масштабируем, а не меняем width: scaleX
@@ -4354,42 +4445,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                       <LinearGradient colors={isPaperHomeTheme ? [t.accent, t.accent] : isGoldTheme ? GOLD_GRADIENTS.progressMetal : [t.gold, '#FFF2B0', t.accent]} locations={isGoldTheme ? [0, 0.48, 1] : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ width: '100%', height: '100%', borderRadius: 999, overflow: 'hidden' }}>
                       </LinearGradient>
                     </Animated.View>
-                    {/* ЗАРУБКА ОШИБОК — владелец, 2026-09-21.
-                        Показывает, докуда дойдёт опыт, если разобрать все
-                        ошибки: начинается там, где КОНЧАЕТСЯ заливка, и тянется
-                        до конца прогноза.
-
-                        Почему ПОСЛЕ заливки, а не до (правка после проверки на
-                        телефоне): заливка рисуется на полную ширину дорожки и
-                        сжимается через scaleX, то есть физически лежит поверх
-                        всего слоя под собой. Зарубка, стоявшая первой, была
-                        перекрыта целиком и не показывалась никогда.
-
-                        Почему не мешает повышению уровня (требование владельца):
-                        зарубка живёт ПРАВЕЕ заливки и не входит в расчёт
-                        homeXpBarPercent. Растущий опыт просто съедает её слева —
-                        сам уровень поднимается ровно как раньше. */}
-                    {homeMistakeXpNotch.visible ? (
-                      <View
-                        testID="home-xp-mistake-notch"
-                        pointerEvents="none"
-                        style={{
-                          position: 'absolute',
-                          top: 0,
-                          bottom: 0,
-                          // Шаблонный литерал `${number}%` — валидный DimensionValue,
-                          // приведение не нужно: тип сужаем явно, а не глушим.
-                          left: `${Math.min(100, Math.max(0, homeXpBarPercent))}%` as `${number}%`,
-                          right: `${Math.max(0, 100 - homeMistakeXpNotch.widthPercent)}%` as `${number}%`,
-                          backgroundColor: t.wrong,
-                          borderRadius: 999,
-                          // Приглушение обязательно: в полную силу тёплый цвет
-                          // спорил бы с заливкой и читался как поломка, а не как
-                          // «вот столько можно вернуть».
-                          opacity: isPaperHomeTheme ? 0.42 : 0.5,
-                        }}
-                      />
-                    ) : null}
                   </Pressable>
 
                 </View>
@@ -5000,7 +5055,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   ? `${priorityCardTitle}: ${homeMistakesCounterLabel(mistakeActiveCount)}`
                   : `${s.home.continueBtn}: ${lastLessonName}`}
                 // Жест не самоочевиден, поэтому его называет подсказка — но
-                // только когда он реально работает (1..9 ошибок).
+                // только когда он реально работает (есть хотя бы одна ошибка).
                 accessibilityHint={priorityCardLongPressEnabled
                   ? triLang(lang, {
                       ru: 'Удерживай, чтобы переключить на мои ошибки и обратно',

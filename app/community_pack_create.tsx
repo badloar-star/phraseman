@@ -307,13 +307,6 @@ export default function CommunityPackCreateScreen() {
    * (решение владельца), поэтому в режиме правки поле не блокируется.
    */
   const [priceRunes, setPriceRunes] = useState(0);
-  /**
-   * зачем галочка перед ценой (владелец 2026-09-21): включение публичности
-   * сразу выбрасывало ползунок цены — человек ещё не решил, платный ли набор,
-   * а экран уже требовал назначить сумму. Теперь публичный набор по умолчанию
-   * БЕСПЛАТНЫЙ, а цена — осознанный второй шаг.
-   */
-  const [isPaid, setIsPaid] = useState(false);
   const [rows, setRows] = useState<Row[]>([]);
   const [busy, setBusy] = useState(false);
   const [loadErr, setLoadErr] = useState<string | null>(null);
@@ -476,9 +469,7 @@ export default function CommunityPackCreateScreen() {
         setPublishToCommunity(local.isPublic !== false);
         // зачем (владелец 2026-09-21): цена платного набора восстанавливается
         // вместе с галочкой — иначе правка молча делала набор бесплатным.
-        const localPrice = Math.max(0, Math.floor(Number(local.priceRunes ?? 0))) || 0;
-        setPriceRunes(localPrice);
-        setIsPaid(localPrice > 0);
+        setPriceRunes(Math.max(0, Math.floor(Number(local.priceRunes ?? 0))) || 0);
         const localThemeIdx = UGC_CARD_THEME_IDS.indexOf(local.cardThemeKey as UgcCardThemeId);
         setThemeIdx(localThemeIdx >= 0 ? localThemeIdx : 0);
         const localBackIdx = UGC_CARD_BACK_IDS.indexOf(local.cardBackKey as UgcCardBackId);
@@ -519,9 +510,7 @@ export default function CommunityPackCreateScreen() {
       setDescription(snap.description);
       setPackLanguage(normalizePackLanguage(snap.packLanguage));
       setPublishToCommunity(true);
-      const cloudPrice = Math.max(0, Math.floor(Number(snap.priceRunes ?? 0))) || 0;
-      setPriceRunes(cloudPrice);
-      setIsPaid(cloudPrice > 0);
+      setPriceRunes(Math.max(0, Math.floor(Number(snap.priceRunes ?? 0))) || 0);
       const ti = UGC_CARD_THEME_IDS.indexOf(snap.cardThemeKey as UgcCardThemeId);
       setThemeIdx(ti >= 0 ? ti : 0);
       const bi = UGC_CARD_BACK_IDS.indexOf(snap.cardBackKey as UgcCardBackId);
@@ -579,9 +568,7 @@ export default function CommunityPackCreateScreen() {
         setCardBackIdx(d.cardBackIdx);
         setPackLanguage(normalizePackLanguage(d.packLanguage ?? studyTarget));
         setPublishToCommunity(d.publishToCommunity !== false);
-        const draftPrice = Math.max(0, Math.floor(Number(d.priceRunes ?? 0))) || 0;
-        setPriceRunes(draftPrice);
-        setIsPaid(draftPrice > 0);
+        setPriceRunes(Math.max(0, Math.floor(Number(d.priceRunes ?? 0))) || 0);
         setRows(d.rows.map((r, i) => ({ ...r, id: r.id || `c${i + 1}` })));
         setAddCardFormOpen(d.addCardFormOpen);
         setDraftEn(d.draftEn);
@@ -820,7 +807,6 @@ export default function CommunityPackCreateScreen() {
     setCardBackIdx(0);
     setPublishToCommunity(false);
     setPriceRunes(0);
-    setIsPaid(false);
     setRows([]);
     setAddCardFormOpen(false);
     setDraftEn('');
@@ -865,10 +851,10 @@ export default function CommunityPackCreateScreen() {
       cardBackKey,
       // Приватный набор ценой не обладает: его никто, кроме автора, не увидит.
       // Приватный или не отмеченный платным набор цены не имеет.
-      priceRunes: publishToCommunity && isPaid ? priceRunes : 0,
+      priceRunes: publishToCommunity ? priceRunes : 0,
     };
     return p;
-  }, [title, description, rows, themeKey, cardBackKey, lang, packLanguage, publishToCommunity, isPaid, priceRunes, studyTarget]);
+  }, [title, description, rows, themeKey, cardBackKey, lang, packLanguage, publishToCommunity, priceRunes, studyTarget]);
 
   /** Локальная проверка перед сохранением: название, описание и хотя бы одна карточка. */
   const localSaveError = useCallback((submission: CommunityPackSubmissionPayload): string | null => {
@@ -1208,35 +1194,12 @@ export default function CommunityPackCreateScreen() {
                   макета рун): приватный набор никто, кроме автора, не увидит —
                   цена для него бессмысленна и только путала бы. Границы тоном,
                   без обводки контейнера (запрет владельца). */}
-              {/* зачем галочка (владелец 2026-09-21): «когда нажимаем чтобы набор
-                  был публичным — не появляется сразу ползунок цена, а сперва надо
-                  поставить галочку». Публичный набор по умолчанию БЕСПЛАТНЫЙ,
-                  цена — осознанный второй шаг. */}
+              {/* зачем цена только у публичных (владелец 2026-09-17): приватный
+                  набор никто, кроме автора, не увидит — цена для него
+                  бессмысленна. Галочки «Сделать платным» здесь НЕТ: владелец
+                  снял её 2026-09-21, включил публичность — сразу цена. */}
               {publishToCommunity ? (
-                <TouchableOpacity
-                  testID="ugc-pack-paid-toggle"
-                  accessibilityRole="checkbox"
-                  accessibilityState={{ checked: isPaid }}
-                  accessibilityLabel={L('Сделать набор платным', 'Зробити набір платним', 'Make the pack paid', 'Hacer el pack de pago', 'Tornar o pacote pago', 'Đặt bộ thẻ trả phí', 'Jadikan paket berbayar', 'Paketi ücretli yap', 'Ustaw zestaw jako płatny')}
-                  onPress={() => {
-                    // Снял галочку — набор снова бесплатный. Оставить цену «про
-                    // запас» значило бы продавать его без ведома автора.
-                    setIsPaid((value) => {
-                      if (value) setPriceRunes(0);
-                      return !value;
-                    });
-                  }}
-                  style={{ marginTop: 16, padding: 16, borderRadius: 16, backgroundColor: t.bgCard, flexDirection: 'row', alignItems: 'center', gap: 12 }}
-                >
-                  <Ionicons name={isPaid ? 'checkbox' : 'square-outline'} size={24} color={isPaid ? t.gold : t.textGhost} />
-                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800', flex: 1 }}>
-                    {L('Сделать платным', 'Зробити платним', 'Make it paid', 'Hacerlo de pago', 'Tornar pago', 'Đặt trả phí', 'Jadikan berbayar', 'Ücretli yap', 'Ustaw jako płatny')}
-                  </Text>
-                </TouchableOpacity>
-              ) : null}
-
-              {publishToCommunity && isPaid ? (
-                <View style={{ marginTop: 12, padding: 16, borderRadius: 16, backgroundColor: t.bgCard }}>
+                <View style={{ marginTop: 16, padding: 16, borderRadius: 16, backgroundColor: t.bgCard }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                     <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
                       {L('Цена для других', 'Ціна для інших', 'Price for others', 'Precio para otros', 'Preço para outros', 'Giá cho người khác', 'Harga untuk orang lain', 'Diğerleri için fiyat', 'Cena dla innych')}

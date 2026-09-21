@@ -1320,6 +1320,60 @@ export async function readUnifiedLevelSpinStars(
 }
 
 /**
+ * Показывает руны, накапавшие за просмотр видео, в ГЛОБАЛЬНОМ счётчике — сразу,
+ * не дожидаясь сервера.
+ *
+ * зачем (владелец 2026-09-21, дословно: «во время просмотра видео нету
+ * начисления рун, начисление должно происходить сразу во время просмотра и оно
+ * должно прям сразу изменять счетчик везде во всех местах»): бейдж поверх
+ * плеера считал минуты локально, но глобального баланса не касался вообще.
+ * Руны падали на счёт только при паузе/закрытии, когда сервер отвечал на claim.
+ * На Главной цифра стояла всё время просмотра.
+ *
+ * зачем БЕЗ durable-операции (важно, не «недоделка»): сервер при claim
+ * пересчитывает время ПО СВОИМ ЧАСАМ и возвращает авторитетный баланс — он и
+ * есть источник истины. Записать здесь ещё и постоянную операцию значило бы
+ * посчитать одни и те же минуты дважды: один раз локальной распиской, второй —
+ * серверной. Поэтому это ЧИСТО ЭКРАННЫЙ overlay поверх снапшота: он живёт, пока
+ * идёт просмотр, и снимается ответом сервера (`mergeAuthoritativeStars`).
+ * Пропажа overlay при крахе ничего не стоит — время просмотра хранит серверная
+ * сессия, а не телефон (правило «празднование не ставится в durable-очередь»).
+ *
+ * `baseline` — баланс на момент старта просмотра. Пишем всегда от него, а не
+ * «+= delta», иначе повторный вызов с тем же значением наращивал бы цифру.
+ */
+export function showVideoWatchRunesInGlobalBalance(
+  token: AccountGenerationToken,
+  input: Readonly<{ baselineBalance: number; earnedRunes: number }>,
+): void {
+  const ownerStableId = token.stableId?.trim();
+  if (!ownerStableId || !isCurrentAccountGeneration(token, ownerStableId)) return;
+  const baseline = Math.max(0, Math.trunc(input.baselineBalance));
+  const earned = Math.max(0, Math.trunc(input.earnedRunes));
+  if (!Number.isSafeInteger(baseline) || !Number.isSafeInteger(earned)) return;
+  const target = baseline + earned;
+  patchAppSnapshot((current) => {
+    if (!current.progress) return {};
+    const currentStars = Math.max(0, Math.trunc(current.progress.stars ?? 0));
+    // НИКОГДА не понижаем баланс. Сработал DATA-SAFETY-GUARD, и он был прав:
+    // безусловная запись `stars: target` стирала бы руны, пришедшие во время
+    // просмотра из другого источника (награда за урок, покупка, ответ сервера).
+    // Overlay имеет право только ДОБАВЛЯТЬ поверх уже видимого числа; всё, что
+    // ниже текущего, — устаревший базис, а не новость. Понижение остаётся
+    // исключительно за сервером (класс бага «сервер понижал», 3 инцидента).
+    if (target <= currentStars) return {};
+    return {
+      progress: {
+        ...current.progress,
+        source: 'local',
+        updatedAt: Date.now(),
+        stars: target,
+      },
+    };
+  });
+}
+
+/**
  * Дешёвое чтение баланса рун для СТАРТОВОЙ гидратации снапшота.
  *
  * зачем (владелец, 2026-08-24, «руны на Главной ждут подгрузки и показывают

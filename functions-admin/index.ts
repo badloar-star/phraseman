@@ -32,7 +32,9 @@ export {
   adminAlertOnCriticalError,
   adminAlertOnAuthFailureSpike,
   adminAlertOnContentReport,
-  adminAlertContentReportDigest,
+  // зачем убрано: `adminAlertContentReportDigest` не существует НИГДЕ в
+  // репозитории — остался только этот импорт от удалённой функции. Деплой
+  // кодбазы `admin` на нём падал бы, а проверка типов уже падала.
   adminAlertOnCancelSurvey,
   adminAlertOnUgcRefund,
   adminAlertOnConfigWritten,

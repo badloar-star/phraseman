@@ -114,7 +114,11 @@ function ReportReplyHomeBanner({ active, refreshTick, onOpen }: Props) {
         accessibilityLabel={label}
         activeOpacity={0.84}
         onPress={open}
-        style={({ pressed }) => [{ minHeight: 72, paddingLeft: 14, paddingRight: 52, paddingVertical: 12, flexDirection: 'row', alignItems: 'center', gap: 12 }, pressed && { opacity: 0.84, transform: [{ scale: 1.02 }] }]}
+        /* зачем убрана функция-стиль: это TouchableOpacity, а он НЕ передаёт
+           `pressed` — функция вызывалась без него, и ветка нажатия была
+           мёртвой с самого начала. Отклик на нажатие здесь даёт activeOpacity
+           выше, он уже стоит. */
+        style={{ minHeight: 72, paddingLeft: 14, paddingRight: 52, paddingVertical: 12, flexDirection: 'row', alignItems: 'center', gap: 12 }}
       >
         <View style={{ width: 42, height: 42, borderRadius: 15, backgroundColor: t.correctBg, alignItems: 'center', justifyContent: 'center' }}>
           <Ionicons name="chatbox-ellipses" size={22} color={t.correct} />
@@ -130,7 +134,8 @@ function ReportReplyHomeBanner({ active, refreshTick, onOpen }: Props) {
         accessibilityLabel={triLang(lang as Lang, { ru: 'Скрыть', uk: 'Сховати', en: 'Dismiss', es: 'Ocultar', 'pt-BR': 'Ocultar', vi: 'Ẩn', id: 'Tutup', tr: 'Gizle', pl: 'Ukryj' })}
         onPress={dismiss}
         activeOpacity={0.72}
-        style={({ pressed }) => [{ position: 'absolute', top: 8, right: 7, width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' }, pressed && { opacity: 0.72, transform: [{ scale: 1.02 }] }]}
+        /* Тот же случай: TouchableOpacity, `pressed` не приходит. */
+        style={{ position: 'absolute', top: 8, right: 7, width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' }}
       >
         <Ionicons name="close" size={19} color={t.textMuted} />
       </TouchableOpacity>

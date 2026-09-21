@@ -143,7 +143,11 @@ function HomeYoutubeFeatureCard({ ownerActive, studyTarget }: HomeYoutubeFeature
     setActiveVideoId(video.id);
   }, [video]);
   const handleClose = useCallback(() => setActiveVideoId(null), []);
-  if (!enabled || !video) return null;
+  // зачем проверка snapshot ЯВНО: `video` выводится из него
+  // (selectHomeYoutubeFeaturedVideo), поэтому при наличии видео снимок заведомо
+  // есть — но компилятор этой связи не знает, и без проверки ниже стояло бы
+  // приведение, которое молча переживёт будущую смену источника.
+  if (!enabled || !video || !snapshot) return null;
   const videoPackLanguage = normalizePackLanguage(snapshot.channel.languageTags[0]?.split('-')[0]);
 
   return (

@@ -6,6 +6,8 @@ import Reanimated, { useAnimatedStyle, useSharedValue, withDelay, withTiming } f
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import EnergyCostBadge from '../components/EnergyCostBadge';
+// зачем: тот же контрол обновления, что в лиге — один язык жеста по приложению.
+import HybridRefreshControl from '../components/feedback/HybridRefreshControl';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import SkeletonBlock from '../components/SkeletonShimmer';
@@ -113,6 +115,43 @@ export default function MistakesHubScreen() {
     return () => { cancelled = true; };
   }, [lang, peekKey, target]));
 
+  // зачем (аудит 2026-09-21, одобрено владельцем): pull-to-refresh ставим ТОЛЬКО
+  // там, где жест стоит 0 чтений Firestore. Журнал ошибок лежит на устройстве,
+  // поэтому жест ПЕРЕСЧИТЫВАЕТ локальный снапшот и в сеть не идёт вовсе.
+  // Подсказку-наблюдение здесь намеренно НЕ трогаем: она кэшируется на день,
+  // дёргать её жестом — лишние вызовы ИИ за деньги.
+  const [refreshing, setRefreshing] = useState(false);
+  const refreshingRef = useRef(false);
+  const onPullRefresh = useCallback(() => {
+    if (refreshingRef.current) {
+      // guard-ok: ранний выход объясняет причину навсегда.
+      console.warn('[MISTAKES-HUB] refresh:ignored_already_running');
+      return;
+    }
+    refreshingRef.current = true;
+    setRefreshing(true);
+    const startedAt = Date.now();
+    void loadMistakePracticeHubSnapshot(target)
+      .then((next) => {
+        hubSnapshotPeek = { key: peekKey, snapshot: next };
+        setSnapshot(next);
+        if (__DEV__) {
+          console.log('[MISTAKES-HUB] refresh:done', JSON.stringify({
+            ready: next.readyCount, active: next.insights.active, ms: Date.now() - startedAt, reads: 0,
+          }));
+        }
+      })
+      .catch((error: unknown) => {
+        // guard-ok: немой catch запрещён. Данные локальные, поэтому отказ здесь
+        // почти невозможен — но если он есть, причина обязана быть видна.
+        console.warn('[MISTAKES-HUB] refresh:catch', error instanceof Error ? error.message : String(error));
+      })
+      .finally(() => {
+        refreshingRef.current = false;
+        setRefreshing(false);
+      });
+  }, [peekKey, target]);
+
   const readyCount = snapshot?.readyCount ?? 0;
   const options = useMemo(() => mistakePracticeLengthOptions(readyCount), [readyCount]);
   useEffect(() => {
@@ -162,7 +201,11 @@ export default function MistakesHubScreen() {
           </Pressable>
           <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h3 }]} numberOfLines={2}>{copy.title}</Text>
         </View>
-        <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+        <ScrollView
+          contentContainerStyle={styles.content}
+          showsVerticalScrollIndicator={false}
+          refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={onPullRefresh} />}
+        >
           {/* Сводка: готовы / исправлено. Тап ведёт в список с нужным фильтром. */}
           <View style={styles.pillRow}>
             {loaded ? (

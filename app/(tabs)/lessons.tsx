@@ -15,6 +15,7 @@ import {
   InteractionManager,
   Alert,
   ScrollView,
+  TextInput,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Crypto from "expo-crypto";
@@ -2413,6 +2414,11 @@ export default function LessonsTab({
   const learningV2FounderPassVisible = learningV2FounderPassGate.visible;
   const [legacySelectedLevel, setLegacySelectedLevel] =
     useState<CourseLevel>("A1");
+  // зачем (аудит 2026-09-21): поиск по урокам открывается ЛУПОЙ в ряду чипов,
+  // а не живёт постоянной строкой — владелец: «не фулл строка ввода, а просто
+  // кнопочка». Поле раскрывается НАД рядом, поэтому ряд чипов не сдвигается.
+  const [legacySearchOpen, setLegacySearchOpen] = useState(false);
+  const [legacyLessonQuery, setLegacyLessonQuery] = useState("");
   const [learningV2DevUnlockAllRequested, setLearningV2DevUnlockAllRequested] =
     useState(false);
   const learningV2DevUnlockAllActive =
@@ -3961,6 +3967,21 @@ export default function LessonsTab({
     return idx >= 0 ? idx + 1 : null;
   }, [progCounts, unlockedLessons]);
   const legacyFilteredListData = useMemo(() => {
+    // зачем (аудит 2026-09-21, одобрено владельцем): поиск по урокам. Запрос
+    // непустой → ищем по ВСЕМУ курсу, игнорируя выбранный уровень: человек
+    // ищет «прошедшее время», а не «прошедшее время внутри A1». Фильтрация
+    // локальная, по уже загруженному списку — 0 чтений Firestore.
+    const query = legacyLessonQuery.trim().toLocaleLowerCase();
+    if (query) {
+      return listData.filter((item) => {
+        if (item.kind !== "lesson") return false;
+        const lessonNumber = item.index + 1;
+        return (
+          item.name.toLocaleLowerCase().includes(query)
+          || String(lessonNumber) === query
+        );
+      });
+    }
     const [firstLesson, lastLesson] =
       COURSE_LEVEL_RANGES[legacySelectedLevel];
     return listData.filter((item) => {
@@ -3972,7 +3993,7 @@ export default function LessonsTab({
       if (item.kind === "attestation") return legacySelectedLevel === "B2";
       return false;
     });
-  }, [legacySelectedLevel, listData]);
+  }, [legacyLessonQuery, legacySelectedLevel, listData]);
   // зачем: карта V2 стала сплошной, и «текущее» занятие может лежать в
   // тысячах строк от начала. Ведём список к нему по индексу строки; высоты
   // строк разные (плашка урока / глава / занятие), поэтому арифметику по
@@ -5196,6 +5217,69 @@ export default function LessonsTab({
               </View>
             </View>
 
+            {/* Поле поиска живёт НАД рядом чипов в своём слоте: ряд остаётся
+                ровно на месте, интерфейс не разъезжается (требование владельца). */}
+            {legacySearchOpen ? (
+              <View
+                style={{
+                  marginHorizontal: 16,
+                  marginBottom: 10,
+                  height: 46,
+                  borderRadius: 16,
+                  flexDirection: "row",
+                  alignItems: "center",
+                  gap: 10,
+                  paddingHorizontal: 14,
+                  backgroundColor: t.bgCard,
+                }}
+              >
+                <Ionicons name="search" size={18} color={t.textGhost} />
+                <TextInput
+                  testID="legacy-lessons-search-input"
+                  value={legacyLessonQuery}
+                  onChangeText={setLegacyLessonQuery}
+                  autoFocus
+                  returnKeyType="search"
+                  accessibilityLabel={triLang(lang, {
+                    ru: "Поиск по урокам", uk: "Пошук за уроками", en: "Search lessons",
+                    es: "Buscar lecciones", "pt-BR": "Buscar lições", vi: "Tìm bài học",
+                    id: "Cari pelajaran", tr: "Derslerde ara", pl: "Szukaj lekcji",
+                  })}
+                  placeholder={triLang(lang, {
+                    ru: "Урок или тема", uk: "Урок або тема", en: "Lesson or topic",
+                    es: "Lección o tema", "pt-BR": "Lição ou tema", vi: "Bài học hoặc chủ đề",
+                    id: "Pelajaran atau topik", tr: "Ders veya konu", pl: "Lekcja lub temat",
+                  })}
+                  placeholderTextColor={t.textGhost}
+                  style={{
+                    flex: 1,
+                    minWidth: 0,
+                    color: t.textPrimary,
+                    fontSize: 15,
+                    fontWeight: "600",
+                    padding: 0,
+                  }}
+                />
+                <TouchableOpacity
+                  testID="legacy-lessons-search-close"
+                  accessibilityRole="button"
+                  accessibilityLabel={triLang(lang, {
+                    ru: "Закрыть поиск", uk: "Закрити пошук", en: "Close search",
+                    es: "Cerrar búsqueda", "pt-BR": "Fechar busca", vi: "Đóng tìm kiếm",
+                    id: "Tutup pencarian", tr: "Aramayı kapat", pl: "Zamknij wyszukiwanie",
+                  })}
+                  hitSlop={10}
+                  onPress={() => {
+                    hapticTap();
+                    setLegacyLessonQuery("");
+                    setLegacySearchOpen(false);
+                  }}
+                >
+                  <Ionicons name="close" size={18} color={t.textMuted} />
+                </TouchableOpacity>
+              </View>
+            ) : null}
+
             <View
               style={{
                 flexDirection: "row",
@@ -5205,6 +5289,44 @@ export default function LessonsTab({
                 paddingBottom: 8,
               }}
             >
+              {/* Лупа — ЧЛЕН ряда, а не гость: та же высота 44 и радиус 15,
+                  что у чипов уровней. Появляется всегда: список уроков длинный
+                  (32 урока), искать по нему глазами дорого. */}
+              <TouchableOpacity
+                testID="legacy-lessons-search-toggle"
+                accessibilityRole="button"
+                accessibilityState={{ selected: legacySearchOpen }}
+                accessibilityLabel={triLang(lang, {
+                  ru: "Поиск по урокам", uk: "Пошук за уроками", en: "Search lessons",
+                  es: "Buscar lecciones", "pt-BR": "Buscar lições", vi: "Tìm bài học",
+                  id: "Cari pelajaran", tr: "Derslerde ara", pl: "Szukaj lekcji",
+                })}
+                onPress={() => {
+                  hapticTap();
+                  setLegacySearchOpen((prev) => {
+                    // Закрываем — снимаем и фильтр: иначе список остался бы
+                    // урезанным без единого видимого признака почему.
+                    if (prev) setLegacyLessonQuery("");
+                    return !prev;
+                  });
+                }}
+                style={{
+                  width: 46,
+                  height: 44,
+                  borderRadius: 15,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexShrink: 0,
+                  backgroundColor: legacySearchOpen ? t.accent : t.bgCard,
+                }}
+              >
+                <Ionicons
+                  name="search"
+                  size={18}
+                  color={legacySearchOpen ? t.correctText : t.textSecond}
+                />
+              </TouchableOpacity>
+
               {/* ОДИН РЯД ЦЕЛИКОМ (владелец 2026-09-17: «это один ряд весь»).
                   Внутри прокрутки живут ВСЕ элементы: A1 A2 B1 B2, COMBO и
                   «Новые уроки». Раньше чип «Новые уроки» стоял СОСЕДОМ рельсы и
@@ -5463,6 +5585,36 @@ export default function LessonsTab({
               alwaysBounceVertical
               overScrollMode="always"
               data={legacyFilteredListData}
+              // зачем: поиск без результата не должен давать белый экран —
+              // объясняем, что искали, и подсказываем сузить запрос.
+              // Показываем ТОЛЬКО при активном запросе: пустой список без
+              // поиска здесь невозможен (уровни всегда что-то содержат).
+              ListEmptyComponent={
+                legacyLessonQuery.trim() ? (
+                  <View style={{ paddingHorizontal: 40, paddingTop: 44, alignItems: "center" }}>
+                    <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: "800", textAlign: "center" }}>
+                      {triLang(lang, {
+                        ru: "Ничего не нашлось", uk: "Нічого не знайшлося", en: "Nothing found",
+                        es: "No se encontró nada", "pt-BR": "Nada encontrado", vi: "Không tìm thấy gì",
+                        id: "Tidak ada yang cocok", tr: "Bir şey bulunamadı", pl: "Nic nie znaleziono",
+                      })}
+                    </Text>
+                    <Text style={{ color: t.textMuted, fontSize: 14, lineHeight: 21, marginTop: 8, textAlign: "center" }}>
+                      {triLang(lang, {
+                        ru: "Попробуй короче — например «прош» вместо целой фразы.",
+                        uk: "Спробуй коротше — наприклад «мин» замість цілої фрази.",
+                        en: "Try something shorter — for example “past” instead of a whole phrase.",
+                        es: "Prueba algo más corto, por ejemplo «pas» en vez de la frase entera.",
+                        "pt-BR": "Tente algo mais curto — por exemplo “pass” em vez da frase toda.",
+                        vi: "Hãy thử ngắn hơn — ví dụ “quá” thay vì cả cụm.",
+                        id: "Coba lebih pendek — misalnya “lam” alih-alih seluruh frasa.",
+                        tr: "Daha kısa dene — örneğin tüm cümle yerine “geç”.",
+                        pl: "Spróbuj krócej — na przykład „prze” zamiast całej frazy.",
+                      })}
+                    </Text>
+                  </View>
+                ) : null
+              }
               keyExtractor={(item, index) =>
                 item.kind === "lesson"
                   ? `l-${item.index + 1}`

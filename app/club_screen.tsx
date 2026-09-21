@@ -21,6 +21,7 @@ import LeagueCrownName from '../components/LeagueCrownName';
 import ProfileCardBadge from '../components/ProfileCardBadge';
 import AvatarView from '../components/AvatarView';
 import HybridRefreshControl from '../components/feedback/HybridRefreshControl';
+import OfflineDataNotice from '../components/ui/new/OfflineDataNotice';
 
 // Фаза 4: золото имени владельца карточки V «Легенда» — насыщенное золото + лёгкое
 // свечение. Применяется только в «простой» ветке имени (vip/premium-стили сильнее).
@@ -456,6 +457,10 @@ export default function ClubScreen() {
   const [myLeagueId, setMyLeagueId]     = useState(initialLeagueState?.leagueId ?? 0);
   const [group, setGroup]               = useState<GroupMember[]>(() => Array.isArray(initialLeagueState?.group) ? initialLeagueState!.group : []);
   const [profilePlayer, setProfile]     = useState<UnifiedPlayerInfo | null>(null);
+  // зачем (аудит 2026-09-21): когда сети нет, чужие очки в таблице — из кэша,
+  // и человек об этом не знал. Держим время последней синхронизации, чтобы
+  // плашка офлайна могла честно сказать «эти цифры от 14:20».
+  const [lastRemoteSyncAt, setLastRemoteSyncAt] = useState(0);
   const [myAvatarEmoji, setMyAvatarEmoji] = useState('🐣');
   const [myFrameId, setMyFrameId]         = useState('plain');
   const [myAuraId, setMyAuraId]           = useState('');
@@ -840,6 +845,7 @@ export default function ClubScreen() {
       // смены ISO-недели. Иначе после полуночи понедельника (новая неделя) пользователь
       // может зайти в Лиги и не увидеть LeagueResultModal, если последний refresh был <6h.
       const lastRemoteAt = parseInt(lastRemoteAtRaw || '0', 10) || 0;
+      setLastRemoteSyncAt(lastRemoteAt);
       const withinRefreshTtl = (Date.now() - lastRemoteAt < CLUB_REMOTE_REFRESH_MS);
       const weekChanged = !!cachedLeague && cachedLeague.weekId !== getWeekId();
       const shouldRefreshRemote = !!opts?.forceRemote || !withinRefreshTtl || weekChanged;
@@ -905,6 +911,27 @@ export default function ClubScreen() {
   // зачем: пункт 3 — тонкая надстройка над УЖЕ существующим loadData(forceRemote),
   // никакого нового Firestore-запроса. Локальный флаг гасится в finally, чтобы
   // жест не завис при ошибке сети.
+  // зачем: текст плашки офлайна. Время берём из отметки последней синхронизации
+  // — экран сам знает, ЧТО у него устарело, компонент это не угадывает.
+  // Синхронизации ещё не было (0) → сообщать нечего, плашку не показываем.
+  const leagueStaleMessage = useMemo(() => {
+    if (!lastRemoteSyncAt) return null;
+    const at = new Date(lastRemoteSyncAt);
+    const hh = String(at.getHours()).padStart(2, '0');
+    const mm = String(at.getMinutes()).padStart(2, '0');
+    return triLang(lang, {
+      ru: `Нет интернета · чужие очки от ${hh}:${mm}`,
+      uk: `Немає інтернету · чужі очки від ${hh}:${mm}`,
+      en: `No internet · other players' points from ${hh}:${mm}`,
+      es: `Sin internet · puntos de otros desde las ${hh}:${mm}`,
+      'pt-BR': `Sem internet · pontos dos outros de ${hh}:${mm}`,
+      vi: `Không có mạng · điểm của người khác lúc ${hh}:${mm}`,
+      id: `Tidak ada internet · poin pemain lain per ${hh}:${mm}`,
+      tr: `İnternet yok · diğerlerinin puanları ${hh}:${mm} itibarıyla`,
+      pl: `Brak internetu · punkty innych z ${hh}:${mm}`,
+    });
+  }, [lang, lastRemoteSyncAt]);
+
   const onLeagueRefresh = useCallback(async () => {
     setLeagueRefreshing(true);
     try {
@@ -1823,6 +1850,11 @@ export default function ClubScreen() {
         scrollEventThrottle={16}
         refreshControl={<HybridRefreshControl refreshing={leagueRefreshing} onRefresh={() => void onLeagueRefresh()} />}
         ListHeaderComponent={(<>
+
+        {/* зачем (аудит 2026-09-21): без сети таблица показывает кэш чужих очков,
+            и человек об этом не знал. Плашка честно называет время данных.
+            Своих очков это не касается — они локальные и всегда живые. */}
+        <OfflineDataNotice message={leagueStaleMessage} />
 
         {leagueXpPromotionMode && myLeagueId < LEAGUES.length - 1 && (
           <View

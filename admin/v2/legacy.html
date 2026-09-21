@@ -56368,6 +56368,9 @@ html[data-pm-theme="light"] #pm-phase3-overview-tabs{background:#f7f8fa!importan
   function applyAiResponse(){const draft=getCurrent();if(!draft?.aiResponseRu)return;draft.responseRu=draft.aiResponseRu;draft.responseTouched=true;draft.acceptedAt=0;draft.updatedAt=Date.now();renderResponse(draft);setView('response');}
   // Отмеченные владельцем правки: галочка у находки = «эту правку применяем».
   function acceptedFixes(draft){return (draft?.aiFindings||[]).filter((item)=>item.included!==false&&item.fix&&item.fix.after).map((item)=>item.fix);}
+  // зачем: «Применить 3 правок» — так по-русски не пишут. Число на кнопке
+  // владелец читает каждый раз, кривое склонение выглядит как недоделка.
+  function pluralFixes(n){const d=n%10,h=n%100;if(d===1&&h!==11)return 'правку';if(d>=2&&d<=4&&(h<12||h>14))return 'правки';return 'правок';}
   // Кнопка публикации видна только когда есть что применять и есть право.
   // Единая точка: зовётся и из renderAi, и при каждом щелчке галочки.
   function syncApplyFixesButton(draft){
@@ -56375,7 +56378,7 @@ html[data-pm-theme="light"] #pm-phase3-overview-tabs{background:#f7f8fa!importan
     const count=acceptedFixes(draft).length;
     const has=draft.aiStatus==='confirmed'&&count>0&&canEdit();
     node.hidden=!has;node.disabled=!!draft.applying;
-    if(has)node.textContent=draft.applying?'Применяю правки…':`Применить ${count} ${count===1?'правку':'правок'} и опубликовать`;
+    if(has)node.textContent=draft.applying?'Применяю правки…':`Применить ${count} ${pluralFixes(count)} и опубликовать`;
     node.title='Правки запишутся в заявку, затем откроется обычное подтверждение публикации';
   }
   function setApplyStatus(text,state){const host=document.getElementById('pm-phase4-apply-status');if(!host)return;if(!text){host.hidden=true;host.textContent='';host.dataset.state='';return;}host.hidden=false;host.dataset.state=state||'';host.textContent=text;}
@@ -56391,7 +56394,7 @@ html[data-pm-theme="light"] #pm-phase3-overview-tabs{background:#f7f8fa!importan
     const button=document.getElementById('pm-phase4-apply-fixes');
     if(draft.applying)return; // защита от двойного тапа
     draft.applying=true;if(button){button.disabled=true;button.textContent='Применяю правки…';}
-    setApplyStatus(`Записываю ${fixes.length} ${fixes.length===1?'правку':'правок'} в заявку…`,'');
+    setApplyStatus(`Записываю ${fixes.length} ${pluralFixes(fixes.length)} в заявку…`,'');
     const core=window.__pmAdminCore;
     if(!core?.httpsCallable||!core?.functionsUs){draft.applying=false;if(button){button.disabled=false;button.textContent='Применить и опубликовать';}setApplyStatus('Firebase callable runtime ещё не готов. Перезагрузите страницу.','error');return;}
     try{
@@ -56417,7 +56420,8 @@ html[data-pm-theme="light"] #pm-phase3-overview-tabs{background:#f7f8fa!importan
       const message=/not-found|unimplemented/i.test(code+' '+base)
         ?'Серверная функция adminCommunityPackApplyQaFixes ещё не развёрнута.'
         :base||'Сервер не ответил';
-      setApplyStatus(`Правки не применены: ${message}. Набор не изменён.`,'error');
+      // зачем: message часто уже заканчивается точкой — без этого выходило «заново.. Набор».
+      setApplyStatus(`Правки не применены: ${message.replace(/\s*\.*\s*$/,'')}. Набор не изменён.`,'error');
       notify('Правки не применены; набор не изменён.','err');
     }finally{
       draft.applying=false;
@@ -56450,7 +56454,7 @@ html[data-pm-theme="light"] #pm-phase3-overview-tabs{background:#f7f8fa!importan
   function init(){observeCards();wire();cleanupDrafts();}
   function wait(frame=0){if(document.getElementById('cp-submissions-list')&&document.getElementById('pm-phase4-qa-drawer')){init();return;}if(frame<180)requestAnimationFrame(()=>wait(frame+1));}
 
-  window.PMPhase4PackQa={version:'phase4',BUILD,ENDPOINT,LIMITS,drafts,state,open,close,validatePack,moderationDraft,rerunLocal,runAi,acceptDraft,discardDraft,prepareRevision,enhanceCards,canView,canEdit,getDraft:(id)=>drafts.get(String(id||''))||null};
+  window.PMPhase4PackQa={version:'phase4',BUILD,ENDPOINT,LIMITS,drafts,state,open,close,validatePack,moderationDraft,rerunLocal,runAi,applyFixesAndPublish,acceptedFixes,acceptDraft,discardDraft,prepareRevision,enhanceCards,canView,canEdit,getDraft:(id)=>drafts.get(String(id||''))||null};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>wait(),{once:true});else wait();
 })();
 </script>

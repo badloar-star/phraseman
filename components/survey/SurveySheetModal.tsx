@@ -47,13 +47,13 @@ const SURVEY_PROGRESS_GAP_PX = 2;
 /**
  * Тайминги хореографии «Прилив» (макет A, владелец 2026-09-13).
  * pillSettleMs — «+1» встал в строку, только потом старт перелёта;
- * settleMs — чип докрутился, человек увидел новое число, затем автопереход;
- * stepAdvanceMs — на промежуточном вопросе (без награды) просто короткая пауза.
+ * settleMs — чип докрутился, человек увидел новое число, затем отправка.
+ * Хореография играет ТОЛЬКО по кнопке «Отправить» (владелец, 2026-09-21):
+ * выбор варианта ничего не запускает, поэтому шага «просто пауза» больше нет.
  */
 const SURVEY_TIDE = {
   pillSettleMs: 140,
   settleMs: 520,
-  stepAdvanceMs: 320,
 } as const;
 
 type SurveyOptionClient = SurveyQuestionClient['options'][number];
@@ -399,22 +399,35 @@ function SurveySheetContent({
 
   const showInlineReward = flow.isLastStep && survey.rewardShards > 0;
 
+  /**
+   * зачем (владелец, 2026-09-21: «юзер может клоцать любую, пока не нажал
+   * Отправить»): раньше тап по варианту запускал хореографию с автопереходом,
+   * а на последнем шаге — саму отправку. Передумать было нельзя: пока таймер
+   * шёл, повторный тап игнорировался, и ответ улетал сам. Теперь тап ТОЛЬКО
+   * выбирает (pickOption уже отработал в onPress), а переход и отправка идут
+   * исключительно по кнопке внизу.
+   */
   const handlePicked = useCallback((option: SurveyOptionClient) => {
-    if (option.action?.kind === 'app_route') {
-      logTide('автопереход пропущен: вариант ведёт на экран, кнопка остаётся');
+    cancelCelebration('пересмотр выбора');
+    logTide(`выбран вариант ${option.id}: ждём кнопку, автоперехода нет`);
+  }, [cancelCelebration]);
+
+  /**
+   * Шаг вперёд по кнопке. На последнем шаге с наградой сначала играет перелёт
+   * жемчужины (он и ведёт к goNext → submit), иначе переходим сразу.
+   */
+  const handleAdvance = useCallback(() => {
+    if (celebrationRef.current) {
+      logTide('повторное нажатие кнопки во время хореографии: игнор');
       return;
     }
-    if (celebrationRef.current) {
-      logTide('повторный тап во время хореографии: игнор');
+    if (!showInlineReward) {
+      goNextRef.current();
       return;
     }
     const token: CelebrationToken = { cancelled: false, timers: [] };
     celebrationRef.current = token;
     setCelebrating(true);
-    if (!showInlineReward) {
-      scheduleGoNext(token, SURVEY_TIDE.stepAdvanceMs);
-      return;
-    }
     if (reduceMotion) {
       setOptimisticDelta((delta) => delta + 1);
       scheduleGoNext(token, SURVEY_TIDE.settleMs);
@@ -478,11 +491,14 @@ function SurveySheetContent({
   const confirmedZero = flow.submission.phase === 'reconciled'
     && flow.submission.confirmedReward === 0;
 
-  // Кнопка внизу остаётся только там, где без неё нельзя: текстовый ответ и
-  // вариант, ведущий на другой экран. Обычный выбор уходит сам (макет A).
+  // зачем (владелец, 2026-09-21): кнопка внизу теперь на КАЖДОМ шаге. Пока её
+  // не нажали, человек волен переклацывать варианты сколько угодно — ничего не
+  // уходит само. Неактивна, пока на шаге нет ответа.
   const selectedOptionId = flow.answers[flow.currentQuestion.id]?.optionId;
-  const selectedAction = flow.currentQuestion.options.find((option) => option.id === selectedOptionId)?.action;
-  const showCta = flow.currentQuestion.type === 'text' || selectedAction?.kind === 'app_route';
+  const ctaDisabled = !flow.currentAnswered || flow.submitting || celebrating;
+  const ctaLabel = flow.submitting
+    ? copy.sending
+    : (flow.isLastStep ? copy.submit : copy.next);
 
   const closeButton = (
     <PressableHybrid
@@ -630,30 +646,28 @@ function SurveySheetContent({
             </View>
           </ScrollView>
 
-          {showCta ? (
-            <PressableHybrid
-              testID="survey-sheet-cta"
-              variant="primary"
-              disabled={!flow.currentAnswered || flow.submitting}
-              busy={flow.submitting}
-              onPress={flow.goNext}
-              withHaptic={false}
-              accessibilityLabel={flow.submitting ? copy.sending : (flow.isLastStep ? copy.submit : copy.next)}
-              accessibilityState={{ disabled: !flow.currentAnswered || flow.submitting, busy: flow.submitting }}
-              accessibilityLiveRegion={flow.submitting ? 'polite' : undefined}
-              style={[styles.cta, { backgroundColor: flow.currentAnswered ? t.accent : t.bgSurface2 }]}
-              contentStyle={styles.ctaContent}
+          <PressableHybrid
+            testID="survey-sheet-cta"
+            variant="primary"
+            disabled={ctaDisabled}
+            busy={flow.submitting}
+            onPress={handleAdvance}
+            withHaptic={false}
+            accessibilityLabel={ctaLabel}
+            accessibilityState={{ disabled: ctaDisabled, busy: flow.submitting }}
+            accessibilityLiveRegion={flow.submitting ? 'polite' : undefined}
+            style={[styles.cta, { backgroundColor: ctaDisabled ? t.bgSurface2 : t.accent }]}
+            contentStyle={styles.ctaContent}
+          >
+            {flow.submitting ? <ActivityIndicator color={t.correctText} /> : null}
+            <FlowText
+              testID="survey-sheet-cta-label"
+              provenance="authored"
+              style={[styles.ctaLabel, { color: ctaDisabled ? t.textMuted : t.correctText, fontSize: f.body }]}
             >
-              {flow.submitting ? <ActivityIndicator color={t.correctText} /> : null}
-              <FlowText
-                testID="survey-sheet-cta-label"
-                provenance="authored"
-                style={[styles.ctaLabel, { color: flow.currentAnswered ? t.correctText : t.textMuted, fontSize: f.body }]}
-              >
-                {flow.submitting ? copy.sending : (flow.isLastStep ? copy.submit : copy.next)}
-              </FlowText>
-            </PressableHybrid>
-          ) : null}
+              {ctaLabel}
+            </FlowText>
+          </PressableHybrid>
         </>
       )}
       {flight ? (

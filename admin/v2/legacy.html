@@ -54351,7 +54351,20 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     const controls = Array.from(group.children).filter((node) => node.matches?.('button,a[role="button"],a.pm-btn'));
     if (controls.length <= 2) return;
     group.dataset.pmV4Actions = '1';
-    const keep = controls.find((node) => !node.classList.contains('pm-v4-danger')) || controls[0];
+    // зачем (владелец 2026-09-21: «ПОЧЕМУ НЕТ КНОПКИ УДАЛИТЬ СООБЩЕНИЕ»):
+    // удаление всегда пряталось в меню «•••», а оно у владельца не
+    // раскрывалось — действие становилось недостижимым. Держим снаружи и
+    // первую кнопку, и удаление: это частое действие, ему не место за
+    // капризным меню. Остальные (изменить, вкл/выкл) сворачиваются как прежде.
+    const primaryKeep = controls.find((node) => !node.classList.contains('pm-v4-danger')) || controls[0];
+    const deleteKeep = controls.find((node) => node !== primaryKeep
+      && (node.classList.contains('btn-delete')
+        || node.classList.contains('pm-v4-danger')
+        || node.dataset?.amAct === 'delete'
+        || /удалить|снять с продажи|🗑/i.test(node.textContent || '')));
+    const kept = [primaryKeep, deleteKeep].filter(Boolean);
+    // Прятать нечего, если после изъятия остаётся меньше двух — меню не нужно.
+    if (controls.length - kept.length < 2) return;
     const details = document.createElement('details');
     details.className = 'pm-v4-action-menu';
     const summary = document.createElement('summary');
@@ -54360,9 +54373,12 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     summary.setAttribute('title', 'Управление');
     const popover = document.createElement('div');
     popover.className = 'pm-v4-action-popover';
-    controls.forEach((node) => { if (node !== keep) popover.appendChild(node); });
+    controls.forEach((node) => { if (!kept.includes(node)) popover.appendChild(node); });
     details.append(summary, popover);
     group.appendChild(details);
+    // Удаление ставим ПОСЛЕ меню — крайним справа, как принято для опасного
+    // действия, и подальше от остальных кнопок.
+    if (deleteKeep) group.appendChild(deleteKeep);
   }
 
   function collapseActionGroups(root) {

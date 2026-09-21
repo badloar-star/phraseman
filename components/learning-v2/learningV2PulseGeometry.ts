@@ -15,7 +15,18 @@ const { nodeSize, mapStep } = LEARNING_V2_OWNER_LAYOUT.map;
  */
 const SESSION_LABEL_BLOCK = 40;
 const MAP_STEP_WITH_LABEL = Math.max(mapStep, nodeSize + SESSION_LABEL_BLOCK + 12);
-const FIRST_SESSION_TOP_PADDING = 56;
+/**
+ * Запас сверху для ПЕРВОГО занятия курса.
+ *
+ * зачем: владелец 21.09 — «при открытии ничего не должно обрезаться на карте,
+ * но анимация первого кружка обрезается верхним краем». Кружок 101px, но его
+ * гало раздувается до scale 1.14 (LearningV2MapNode, haloStyle) — это ещё
+ * ~7px сверху за габаритом строки. Вдобавок вступление карты сдвигает её на
+ * 24px вверх (mapEntryStyle, translateY). При отступе 56 верх свечения
+ * уходил под край экрана.
+ * 56 + 7 (гало) + 24 (вступление) = 87, округляем до 88.
+ */
+const FIRST_SESSION_TOP_PADDING = 88;
 
 /** Session 1 starts near the top; later current sessions remain centered. */
 export function pulseMapGeometry(viewportHeight: number, sessionOrdinal: number): Readonly<{

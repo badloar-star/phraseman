@@ -2262,6 +2262,41 @@ export default function LearningV2DirectSessionPlayerV1() {
   ]);
 
   if (!locator || !lessonOrdinal || !sessionOrdinal) {
+    // зачем: владелец 21.09 — «вышел из сессии (закрыл её) и написано этой
+    // сессии больше недоступна — такого экрана не должно быть НИКОГДА».
+    // exitLearningV2Session зовёт router.replace, но React успевает
+    // отрендерить этот компонент ЕЩЁ РАЗ до размонтирования, а параметры
+    // маршрута к тому моменту уже пусты → routeCoordinates === null → сюда.
+    // Человек видел ошибку вместо выхода.
+    // При запрошенном выходе рисуем пустой фон под цвет темы: экран всё
+    // равно уходит в следующем кадре. Саму ветку НЕ удаляем — она нужна,
+    // когда экран реально открыли с битым маршрутом.
+    if (sessionExitRequestedRef.current) {
+      if (__DEV__) {
+        console.log(
+          "[V2-SESSION] unavailable:suppressed_on_exit",
+          JSON.stringify({
+            reason: "exit_requested",
+            hasLocator: Boolean(locator),
+            lessonOrdinal,
+            sessionOrdinal,
+          }),
+        );
+      }
+      return <View style={[styles.center, { backgroundColor: t.bgPrimary }]} />;
+    }
+    // Ранний выход обязан называть причину (правило «сперва логи»).
+    if (__DEV__) {
+      console.log(
+        "[V2-SESSION] unavailable:shown",
+        JSON.stringify({
+          hasLocator: Boolean(locator),
+          lessonOrdinal,
+          sessionOrdinal,
+          routeId: first(params.id) ?? null,
+        }),
+      );
+    }
     return (
       <View style={[styles.center, { backgroundColor: t.bgPrimary }]}>
         <Text style={[styles.errorText, { color: t.textPrimary }]}>
@@ -2315,6 +2350,37 @@ export default function LearningV2DirectSessionPlayerV1() {
     !introScreens ||
     !introIds
   ) {
+    // зачем: та же ловушка, что и выше (владелец 21.09, «такого экрана не
+    // должно быть НИКОГДА»). При закрытии сессии run/runSummary обнуляются,
+    // и последний кадр перед уходом показывал ошибку. Чинить надо ОБЕ
+    // ветки: починка одной оставляла баг живым на втором пути.
+    if (sessionExitRequestedRef.current) {
+      if (__DEV__) {
+        console.log(
+          "[V2-SESSION] unavailable:suppressed_on_exit",
+          JSON.stringify({
+            reason: "exit_requested_run_gone",
+            hasRun: Boolean(run),
+            hasRunSummary: Boolean(runSummary),
+          }),
+        );
+      }
+      return <View style={[styles.center, { backgroundColor: t.bgPrimary }]} />;
+    }
+    // Ранний выход обязан называть причину (правило «сперва логи»).
+    if (__DEV__) {
+      console.log(
+        "[V2-SESSION] unavailable:shown",
+        JSON.stringify({
+          reason: "run_not_ready",
+          hasReadyHandle: Boolean(readyHandle),
+          hasRun: Boolean(run),
+          hasRunSummary: Boolean(runSummary),
+          hasIntroScreens: Boolean(introScreens),
+          loadFailureReason: loadFailureReason ?? null,
+        }),
+      );
+    }
     return (
       <View style={[styles.center, { backgroundColor: t.bgPrimary }]}>
         <Ionicons name="cloud-offline-outline" size={34} color={t.textMuted} />

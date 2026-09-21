@@ -72,11 +72,15 @@ const MAP_FOOTER_BUTTON_HEIGHT = 56;
  * это читается как «экран тормозит», а не как «плавно» (решение владельца
  * 21.09, вариант «палец свободен»).
  *
- * 0.985 вместо дефолтных ~0.998: инерция сохраняется целиком, но затухает
- * заметно быстрее — карта проезжает 1–2 экрана и мягко замирает где угодно,
- * без привязки к сетке и без видимой границы. Строкового 'fast' не берём:
- * на iOS это 0.99 (слишком резко для карты такой длины), а нам нужно одно
- * и то же ощущение на обеих платформах.
+ * 0.97 вместо дефолтных ~0.998. Первая попытка (0.985) владельца не
+ * устроила 21.09: «оно всё равно ускоряется если скроллить быстро и
+ * продолжительно и не успевает прорисоваться». Причина: на длинном быстром
+ * жесте скорость набирает САМ жест, и мягкого затухания не хватает, чтобы
+ * погасить её до того, как строки перестанут успевать рисоваться.
+ * При 0.97 инерция сохраняется целиком, но гаснет примерно за один экран —
+ * карта не успевает разогнаться до скорости, на которой видна пустота.
+ * Строкового 'fast' не берём: на iOS это 0.99, нам нужно одно и то же
+ * ощущение на обеих платформах.
  *
  * Рядом ставим bounces + alwaysBounceVertical + overScrollMode="always" —
  * тот же набор, что у списка старых уроков в app/(tabs)/lessons.tsx. Край
@@ -84,7 +88,7 @@ const MAP_FOOTER_BUTTON_HEIGHT = 56;
  * читалось бы как «упёрся в стену». На Android пружину включает именно
  * overScrollMode, одного alwaysBounceVertical там мало.
  */
-const MAP_DECELERATION_RATE = 0.985;
+const MAP_DECELERATION_RATE = 0.97;
 type SessionRow = Extract<LearningV2CourseAccordionRowV1, { kind: 'session' }>;
 type LessonRow = Extract<LearningV2CourseAccordionRowV1, { kind: 'lesson' }>;
 /** Строка сплошной карты: занятие или плашка урока между уроками. */
@@ -393,9 +397,15 @@ export default function LearningV2PulseCourse(props: Props) {
   // создание НАТИВНЫХ вьюх строк. Каждая строка дорогая: узел с 4 shared
   // values и 3 animated styles, SVG-дужка, две иконки.
   // windowSize={11} держал ~110 строк (шаг строки ~153px, экран ~10 строк),
-  // initialNumToRender={12} создавал 12 сразу. На экран влезает 10, поэтому
-  // окно 5 и первая партия 6 дают тот же видимый результат, но враз меньше
-  // нативных вьюх на первом кадре. Остальные достраиваются при прокрутке.
+  // initialNumToRender={12} создавал 12 сразу.
+  //
+  // Первая партия остаётся маленькой (6) — именно она решает скорость
+  // ОТКРЫТИЯ раздела, и трогать её нельзя: это те самые 191 мс.
+  // А вот окно 5 оказалось слишком узким для БЫСТРОЙ прокрутки: владелец
+  // 21.09 — «не успевает прорисоваться». Окно отвечает за запас строк вокруг
+  // экрана, а не за первый кадр, поэтому поднимаем его до 9 и возвращаем
+  // партию 10 с периодом 16 мс: карта успевает достраиваться на ходу,
+  // открытие при этом не замедляется (initialNumToRender не изменился).
   const mapEntry = useSharedValue(1);
   const current = /^lesson-(\d+):session:(\d+)$/.exec(props.currentSessionId ?? '');
   const currentLesson = Number(current?.[1] ?? 1);
@@ -830,7 +840,7 @@ export default function LearningV2PulseCourse(props: Props) {
         </PressableHybrid>;
       }} />
     </> : <Animated.View testID="learning-v2-pulse-map-entry" style={[styles.mapContainer, mapEntryStyle]} onLayout={e => setViewport(e.nativeEvent.layout)}>
-      <FlatList ref={mapRef} testID="learning-v2-pulse-map" data={rows} keyExtractor={mapRowKeyV1} style={{ marginBottom: mapFooterReserve }} contentContainerStyle={{ paddingVertical: geometry.padding }} getItemLayout={getMapItemLayout} contentOffset={initialOffset} onContentSizeChange={centerCurrent} onViewableItemsChanged={onViewableItemsChangedRef.current} viewabilityConfig={MAP_VIEWABILITY_CONFIG} onMomentumScrollBegin={cancelVisibleSessionsSettledAfterDrag} onMomentumScrollEnd={handleMomentumScrollEnd} onScrollEndDrag={scheduleVisibleSessionsSettledAfterDrag} initialNumToRender={6} maxToRenderPerBatch={6} updateCellsBatchingPeriod={32} windowSize={5} removeClippedSubviews showsVerticalScrollIndicator={false} decelerationRate={MAP_DECELERATION_RATE} bounces alwaysBounceVertical overScrollMode="always" renderItem={renderMapRow} />
+      <FlatList ref={mapRef} testID="learning-v2-pulse-map" data={rows} keyExtractor={mapRowKeyV1} style={{ marginBottom: mapFooterReserve }} contentContainerStyle={{ paddingVertical: geometry.padding }} getItemLayout={getMapItemLayout} contentOffset={initialOffset} onContentSizeChange={centerCurrent} onViewableItemsChanged={onViewableItemsChangedRef.current} viewabilityConfig={MAP_VIEWABILITY_CONFIG} onMomentumScrollBegin={cancelVisibleSessionsSettledAfterDrag} onMomentumScrollEnd={handleMomentumScrollEnd} onScrollEndDrag={scheduleVisibleSessionsSettledAfterDrag} initialNumToRender={6} maxToRenderPerBatch={10} updateCellsBatchingPeriod={16} windowSize={9} removeClippedSubviews showsVerticalScrollIndicator={false} decelerationRate={MAP_DECELERATION_RATE} bounces alwaysBounceVertical overScrollMode="always" renderItem={renderMapRow} />
       {/* зачем: владелец 20.09 — «когда мы на карте, в футере есть кнопочка
           специальная, которая открывает список всех уроков». Карта под ней
           продолжает скроллиться: кнопка плавает, а не занимает место. */}

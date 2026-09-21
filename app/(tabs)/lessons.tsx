@@ -2973,26 +2973,62 @@ export default function LessonsTab({
   const prewarmFrameRef = useRef<number | null>(null);
   const prewarmCurrentLearningV2SessionOnEntry = useCallback(() => {
     const current = currentLearningV2SessionCoordinates;
-    if (!current) return;
-    const courseSessionId = learningV2CourseSessionIdV1(
-      current.lessonOrdinal,
-      current.sessionOrdinal,
-    );
-    if (
-      studyTarget === "en" &&
-      !learningV2FactoryNativeSessionIds.has(courseSessionId)
-    )
+    if (!current) {
+      // Ранний выход обязан называть причину (правило «сперва логи»).
+      if (__DEV__) {
+        console.log('[V2-PREWARM] skip', JSON.stringify({ reason: 'no_current_coordinates' }));
+      }
       return;
-    void prewarmLearningV2SessionLaunch(
-      current.lessonOrdinal,
-      current.sessionOrdinal,
-    ).catch((error) => {
-      DebugLogger.error(
-        "learning_v2:current_session_entry_prewarm",
-        error instanceof Error ? error : new Error(String(error)),
-        "warning",
+    }
+    // зачем: владелец 21.09 — «кружок не нажимается первые пару секунд… всё
+    // должно быть мгновенно, загрузки только в фоне и ЗАРАНЕЕ, чтобы вообще до
+    // входа на карту». Грелось только текущее занятие, поэтому сразу после его
+    // прохождения следующий тап снова был холодным. Греем пару: текущее и
+    // следующее. Обе подготовки fire-and-forget — они наполняют кэш промисов
+    // learningV2PreparedLaunchesRef и НИКОГДА не стоят на пути нажатия.
+    const targets = [
+      { lessonOrdinal: current.lessonOrdinal, sessionOrdinal: current.sessionOrdinal },
+      { lessonOrdinal: current.lessonOrdinal, sessionOrdinal: current.sessionOrdinal + 1 },
+    ] as const;
+    for (const target of targets) {
+      if (target.sessionOrdinal > 56) {
+        if (__DEV__) {
+          console.log('[V2-PREWARM] skip', JSON.stringify({ ...target, reason: 'beyond_last_session' }));
+        }
+        continue;
+      }
+      const courseSessionId = learningV2CourseSessionIdV1(
+        target.lessonOrdinal,
+        target.sessionOrdinal,
       );
-    });
+      if (
+        studyTarget === "en" &&
+        !learningV2FactoryNativeSessionIds.has(courseSessionId)
+      ) {
+        if (__DEV__) {
+          console.log('[V2-PREWARM] skip', JSON.stringify({ courseSessionId, reason: 'not_authored' }));
+        }
+        continue;
+      }
+      const startedAt = Date.now();
+      if (__DEV__) console.log('[V2-PREWARM] start', JSON.stringify({ courseSessionId }));
+      void prewarmLearningV2SessionLaunch(
+        target.lessonOrdinal,
+        target.sessionOrdinal,
+      )
+        .then(() => {
+          if (__DEV__) {
+            console.log('[V2-PREWARM] ready', JSON.stringify({ courseSessionId, ms: Date.now() - startedAt }));
+          }
+        })
+        .catch((error) => {
+          DebugLogger.error(
+            "learning_v2:current_session_entry_prewarm",
+            error instanceof Error ? error : new Error(String(error)),
+            "warning",
+          );
+        });
+    }
   }, [
     currentLearningV2SessionCoordinates,
     learningV2FactoryNativeSessionIds,
@@ -4078,33 +4114,26 @@ export default function LessonsTab({
   // тап не выглядел «проваленным»: человек чувствует, что кнопка его услышала.
   const [learningV2LockedNoticeVisible, setLearningV2LockedNoticeVisible] =
     useState(false);
-  // зачем: владелец 2026-09-13 — «в релизе оно не должно называться старые уроки,
-  // а просто "Уроки"». Для человека это единственный курс, слово «старые» его
-  // только смущает. В дев-сборке оставляем «Старые уроки»: там рядом живёт
-  // страница нового курса, и их надо различать.
-  const legacyLessonsScreenTitle = LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY
-    ? triLang(lang, {
-        ru: "Старые уроки",
-        en: "Classic lessons",
-        uk: "Старі уроки",
-        es: "Lecciones clásicas",
-        "pt-BR": "Lições clássicas",
-        vi: "Bài học cũ",
-        id: "Pelajaran klasik",
-        tr: "Klasik dersler",
-        pl: "Klasyczne lekcje",
-      })
-    : triLang(lang, {
-        ru: "Уроки",
-        en: "Lessons",
-        uk: "Уроки",
-        es: "Lecciones",
-        "pt-BR": "Lições",
-        vi: "Bài học",
-        id: "Pelajaran",
-        tr: "Dersler",
-        pl: "Lekcje",
-      });
+  // зачем: владелец 2026-09-21 — «написано "Старые уроки", а должно быть
+  // "Обучение"». Раньше (2026-09-13) дев-сборка звала раздел «Старые уроки»,
+  // чтобы отличать его от страницы нового курса рядом. Владелец увидел это имя
+  // на телефоне и отверг: для человека это единственный курс, а «старые» звучит
+  // как свалка. Теперь имя ОДНО во всех сборках — различать ветки по названию
+  // раздела больше не пытаемся, для этого есть чип «Новые уроки» рядом.
+  // Это имя — ЕДИНСТВЕННОЕ место, где живёт название раздела. Его же берёт проп
+  // legacyLessonsLabel у страницы нового курса (кнопка возврата сюда), чтобы
+  // надпись на кнопке и заголовок экрана, куда она ведёт, не могли разъехаться.
+  const legacyLessonsScreenTitle = triLang(lang, {
+    ru: "Обучение",
+    en: "Learning",
+    uk: "Навчання",
+    es: "Aprendizaje",
+    "pt-BR": "Aprendizado",
+    vi: "Học tập",
+    id: "Pembelajaran",
+    tr: "Öğrenme",
+    pl: "Nauka",
+  });
   const openNewLessons = useCallback(() => {
     if (!LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY) {
       // зачем: надпись встаёт в поток и сдвигает список — без этого вставка
@@ -5083,7 +5112,7 @@ export default function LessonsTab({
               }
               titles={lessons}
               lang={lang}
-              legacyLessonsLabel={triLang(lang, { ru: "Старые уроки", en: "Classic lessons", uk: "Старі уроки", es: "Lecciones clásicas", "pt-BR": "Lições clássicas", vi: "Bài học cũ", id: "Pelajaran klasik", tr: "Klasik dersler", pl: "Klasyczne lekcje" })}
+              legacyLessonsLabel={legacyLessonsScreenTitle}
               onLegacyLessons={requestLegacyLessons}
               preparedProgress={learningV2PreparedProgress}
               currentSessionId={learningV2Progress.currentSessionId}

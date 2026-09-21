@@ -5832,13 +5832,23 @@ body[data-admin-skin="onboarding"] #uid-lookup {
     }
 
     .pm-v4-action-menu { position:relative; flex:0 0 auto; }
+    /* Открытая строка поднимается над соседними: иначе её меню обрезает
+       следующая карточка списка, даже с большим z-index у самого меню. */
+    .report-card:has(.pm-v4-action-menu[open]),
+    .app-msg-card:has(.pm-v4-action-menu[open]),
+    .cp-pack-card:has(.pm-v4-action-menu[open]) { position:relative; z-index:2999; }
+    .pm-v4-action-menu[open] { z-index:3000; }
     .pm-v4-action-menu > summary { list-style:none; width:32px!important; min-width:32px!important; padding:0!important; display:grid!important; place-items:center!important; cursor:pointer; }
     .pm-v4-action-menu > summary::-webkit-details-marker { display:none; }
+    /* зачем (владелец 2026-09-21: «это выпадающее не раскрывается, оно
+       обрезано»): z-index 120 проигрывал соседним карточкам списка — меню
+       уходило под следующую строку и выглядело обрезанным. Поднимаем над
+       списком и даём открытой строке свой слой (правило ниже). */
     .pm-v4-action-popover {
       position:absolute;
       top:calc(100% + 5px);
       right:0;
-      z-index:120;
+      z-index:3000;
       display:grid;
       gap:3px;
       min-width:210px;
@@ -56158,7 +56168,10 @@ html[data-pm-theme="light"] #pm-phase3-overview-tabs{background:#f7f8fa!importan
 
 <!-- Phase 4 — Content QA Copilot for community pack drafts -->
 <style id="pm-phase4-pack-qa-style">
-  [data-pm-phase4-check-pack]{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;min-height:30px!important;padding:5px 9px!important;margin-bottom:4px!important;border-radius:7px!important;border:1px solid rgba(96,165,250,.36)!important;background:rgba(37,99,235,.12)!important;color:#bfdbfe!important;font-size:11.5px!important;font-weight:800!important;white-space:nowrap!important}
+  /* зачем (владелец 2026-09-21, «ЧТО ЗА»): кнопка выглядела как выделенный
+     синий текст. user-select снимает выделение по двойному клику, cursor и
+     appearance гарантируют вид кнопки даже там, где сброшены стили строки. */
+  [data-pm-phase4-check-pack]{display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;min-height:30px!important;padding:5px 9px!important;margin-bottom:4px!important;border-radius:7px!important;border:1px solid rgba(96,165,250,.36)!important;background:rgba(37,99,235,.12)!important;color:#bfdbfe!important;font-size:11.5px!important;font-weight:800!important;white-space:nowrap!important;-webkit-appearance:none!important;appearance:none!important;cursor:pointer!important;-webkit-user-select:none!important;user-select:none!important;line-height:1.2!important;font-family:inherit!important}
   [data-pm-phase4-check-pack]:hover{background:rgba(37,99,235,.20)!important;border-color:rgba(96,165,250,.58)!important}
   [data-pm-phase4-check-pack][data-state="error"]{border-color:rgba(248,113,113,.38)!important;background:rgba(127,29,29,.14)!important;color:#fecaca!important}
   [data-pm-phase4-check-pack][data-state="warning"]{border-color:rgba(251,191,36,.38)!important;background:rgba(120,53,15,.14)!important;color:#fde68a!important}
@@ -56603,7 +56616,15 @@ html[data-pm-theme="light"] #pm-phase3-overview-tabs{background:#f7f8fa!importan
   // чтобы не заводить второй экземпляр той же логики.
   const CARD_SOURCES=[{listId:'cp-submissions-list',attr:'data-cp-open-pack'},{listId:'cp-active-list',attr:'data-cp-active-open'}];
   function enhanceCards(){CARD_SOURCES.forEach((src)=>enhanceCardList(src.listId,src.attr));}
-  function enhanceCardList(listId,attr){const list=document.getElementById(listId);if(!list)return;list.querySelectorAll('.report-card').forEach((card)=>{const source=card.querySelector(`[${attr}]`);const actions=card.querySelector('.rc-right');if(!source||!actions)return;const id=source.getAttribute(attr);let button=actions.querySelector('[data-pm-phase4-check-pack]');if(!button){button=document.createElement('button');button.type='button';button.setAttribute('data-pm-phase4-check-pack',id);button.addEventListener('click',(event)=>{event.preventDefault();event.stopPropagation();open(button.getAttribute('data-pm-phase4-check-pack'));});actions.insertBefore(button,source.nextSibling);}const view=buttonState(id);if(button.textContent!==view.label)button.textContent=view.label;if(button.dataset.state!==view.state)button.dataset.state=view.state;});}
+  function enhanceCardList(listId,attr){const list=document.getElementById(listId);if(!list)return;list.querySelectorAll('.report-card').forEach((card)=>{const source=card.querySelector(`[${attr}]`);const actions=card.querySelector('.rc-right');if(!source||!actions)return;const id=source.getAttribute(attr);let button=actions.querySelector('[data-pm-phase4-check-pack]');if(!button){button=document.createElement('button');button.type='button';button.setAttribute('data-pm-phase4-check-pack',id);button.addEventListener('click',(event)=>{event.preventDefault();event.stopPropagation();open(button.getAttribute('data-pm-phase4-check-pack'));});
+      // зачем (владелец 2026-09-21, «ЧТО ЗА»): админка сворачивает кнопки строки
+      // в меню «•••» (collapseActionGroup, legacy.html:54338) и помечает группу
+      // как готовую. Кнопка, добавленная ПОСЛЕ этого, оказывалась снаружи меню
+      // голым обрезанным текстом. Кладём её ТУДА ЖЕ, где остальные действия.
+      const popover=actions.querySelector('.pm-v4-action-popover');
+      if(popover)popover.insertBefore(button,popover.firstChild);
+      else actions.insertBefore(button,source.nextSibling);
+    }const view=buttonState(id);if(button.textContent!==view.label)button.textContent=view.label;if(button.dataset.state!==view.state)button.dataset.state=view.state;});}
   function updateCardButtons(){enhanceCards();}
   // Наблюдаем за ОБОИМИ списками: наборы рисуются позже заявок, и без этого
   // кнопка на них не появлялась бы вовсе.

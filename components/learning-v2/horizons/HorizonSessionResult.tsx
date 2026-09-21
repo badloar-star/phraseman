@@ -7,6 +7,7 @@ import { triLang, type Lang } from "../../../constants/i18n";
 import { runeAmount } from "../../../constants/runes";
 import { useRuntimeActive } from "../../../hooks/use_runtime_active";
 import FeedbackRatingCard from "../../FeedbackRatingCard";
+import HorizonMistakeReview, { type HorizonMistakeReviewItem } from "./HorizonMistakeReview";
 import ResultsSequence from "../../feedback/ResultsSequence";
 import RuneBalanceChip from "../../RuneBalanceChip";
 import { useTheme } from "../../ThemeContext";
@@ -34,6 +35,16 @@ type Props = Readonly<{
   preview?: boolean;
   nextLessonAvailable?: boolean;
   onContinue: () => void;
+  /**
+   * Промахи занятия для разбора (аудит 2026-09-21). Максимум три — больше
+   * это уже лента стыда. Пусто/не передано → блок не рисуется вовсе:
+   * пустой заголовок «ошибок нет» был бы шумом.
+   */
+  mistakes?: readonly HorizonMistakeReviewItem[];
+  /** Сколько промахов было всего — чтобы честно сказать «и ещё N». */
+  mistakesTotal?: number;
+  onOpenMistake?: (id: string) => void;
+  onOpenAllMistakes?: () => void;
 }>;
 
 function copyFor(lang: Lang) {
@@ -163,6 +174,10 @@ export default function HorizonSessionResult({
   preview = false,
   nextLessonAvailable = true,
   onContinue,
+  mistakes,
+  mistakesTotal,
+  onOpenMistake,
+  onOpenAllMistakes,
 }: Props) {
   const { theme: t } = useTheme();
   const insets = useStableSafeAreaInsets();
@@ -250,6 +265,18 @@ export default function HorizonSessionResult({
           { value: String(Math.max(0, facts.total)), label: c.tasks },
         ]}
         feedbackSlot={!preview ? (
+          <View style={styles.afterResultStack}>
+            {/* Разбор ВЫШЕ отзыва: сначала учёба, потом просьба оценить.
+                Нет промахов → блок не рисуется, пустого «ошибок нет» не будет. */}
+            {mistakes && mistakes.length > 0 ? (
+              <HorizonMistakeReview
+                items={mistakes}
+                totalCount={mistakesTotal ?? mistakes.length}
+                lang={lang}
+                onOpenItem={onOpenMistake}
+                onOpenAll={onOpenAllMistakes}
+              />
+            ) : null}
           <View style={[styles.feedbackShell, { backgroundColor: t.bgSurface2 }]}>
             <Text style={[styles.feedbackKicker, { color: t.accent }]}>{c.feedbackKicker}</Text>
             <FeedbackRatingCard
@@ -265,6 +292,7 @@ export default function HorizonSessionResult({
               testID="learning-v2-completion-feedback"
               presentation="compact-stars"
             />
+            </View>
           </View>
         ) : undefined}
         ctaPrimaryLabel={c.continue}
@@ -301,6 +329,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   balanceSlot: { minWidth: 64, alignItems: "flex-end" },
+  // Разбор ошибок и карточка отзыва живут одной колонкой: сначала учёба,
+  // потом просьба оценить.
+  afterResultStack: { gap: 16 },
   feedbackShell: { borderRadius: 22, padding: 4 },
   feedbackKicker: {
     paddingTop: 5,

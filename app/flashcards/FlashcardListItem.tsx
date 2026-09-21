@@ -19,6 +19,7 @@ import Reanimated, {
 } from 'react-native-reanimated';
 import { getHintFlag, setHintFlag } from './hint_flags';
 import type { Theme } from '../../constants/theme';
+import { computeHeightScale } from '../../constants/layout-scale';
 import { inferExpoSpeechLanguage, speechLocaleToShortLabel, type SpeakOpts } from '../../hooks/use-audio';
 import { SOURCE_COLORS } from './constants';
 import FlashcardDetailsBody from './FlashcardDetailsBody';
@@ -249,6 +250,27 @@ function FlashcardListItemImpl({
   const hasDetailsActions = !!(onEditCard || onDeleteFromDetails);
   const hasDetails = !isModernAbbrevCard && (cardHasDetails(item) || hasDetailsActions);
   const { height: winH } = useWindowDimensions();
+  // зачем: на низких экранах (iPhone SE 667pt, Android 360x800) текст фразы почти
+  // не ужимался — uiScale в ThemeContext считается от ШИРИНЫ, а она у телефонов
+  // почти одинаковая (360-430 против эталона 390) и даёт всего -3%. Короткая у
+  // таких устройств именно ВЫСОТА (667 против 844 = 0.79). Берём ту же
+  // computeHeightScale, что уже решает этот класс бага в онбординге.
+  const cardScale = computeHeightScale(winH);
+  /** Кегль карточки: округляем и держим читаемый пол, чтобы фраза не стала мелкой. */
+  const cardFont = useCallback(
+    (base: number, floor: number) => Math.max(floor, Math.round(base * cardScale)),
+    [cardScale],
+  );
+  /**
+   * зачем: отступ грани (22 в общей геометрии) тоже ужимаем по высоте — иначе на
+   * низком экране текст уменьшился, а поля остались прежними, и карточка не стала
+   * компактнее. Переопределяем локально ПОСЛЕ cardStyle, чтобы не менять общий
+   * FLASHCARD_LIST_ITEM_CARD_STYLE: его же использует Learning V2.
+   */
+  const cardFacePadStyle = useMemo(
+    () => ({ padding: Math.max(14, Math.round(22 * cardScale)) }),
+    [cardScale],
+  );
   /** Backup height if layout measure fails (should be rare) */
   const expandSectionMax = Math.min(Math.round(winH * 0.92), 4000);
   const expandMaxSV = useSharedValue(expandSectionMax);
@@ -686,6 +708,7 @@ function FlashcardListItemImpl({
               <Reanimated.View
                 style={[
                   cardStyle,
+                  cardFacePadStyle,
                   cardSplitEdgeStyle,
                   { overflow: 'hidden' },
                   usePackFace
@@ -787,7 +810,7 @@ function FlashcardListItemImpl({
                       numberOfLines={2}
                       style={{
                         color: t.textPrimary,
-                        fontSize: f.h1 + 4,
+                        fontSize: cardFont(f.h1 + 4, 18),
                         fontWeight: '800',
                         textAlign: 'center',
                         letterSpacing: 0.5,
@@ -802,9 +825,9 @@ function FlashcardListItemImpl({
                         numberOfLines={3}
                         style={{
                           color: t.textMuted,
-                          fontSize: f.body,
+                          fontSize: cardFont(f.body, 12),
                           fontWeight: '500',
-                          marginTop: 8,
+                          marginTop: Math.round(8 * cardScale),
                           textAlign: 'center',
                           width: '100%',
                         }}
@@ -820,7 +843,7 @@ function FlashcardListItemImpl({
                       numberOfLines={item.transcription?.trim() ? 4 : 6}
                       style={{
                         color: t.textPrimary,
-                        fontSize: f.h1 + 2,
+                        fontSize: cardFont(f.h1 + 2, 17),
                         fontWeight: '700',
                         textAlign: 'center',
                         width: '100%',
@@ -834,8 +857,8 @@ function FlashcardListItemImpl({
                         numberOfLines={4}
                         style={{
                           color: t.textMuted,
-                          fontSize: f.sub,
-                          marginTop: 4,
+                          fontSize: cardFont(f.sub, 11),
+                          marginTop: Math.round(4 * cardScale),
                           textAlign: 'center',
                           fontStyle: 'italic',
                           letterSpacing: 0.25,
@@ -860,6 +883,7 @@ function FlashcardListItemImpl({
               <Reanimated.View
                 style={[
                   cardStyle,
+                  cardFacePadStyle,
                   cardSplitEdgeStyle,
                   { overflow: 'hidden' },
                   usePackFace
@@ -959,7 +983,7 @@ function FlashcardListItemImpl({
                     <>
                       <Text
                         maxFontSizeMultiplier={1.35}
-                        style={{ color: t.correct, fontSize: f.h1 + 2, fontWeight: '700', textAlign: 'center', width: '100%' }}
+                        style={{ color: t.correct, fontSize: cardFont(f.h1 + 2, 17), fontWeight: '700', textAlign: 'center', width: '100%' }}
                       >
                         {tr.split('≠')[0].trim()}
                       </Text>
@@ -967,10 +991,10 @@ function FlashcardListItemImpl({
                         maxFontSizeMultiplier={1.35}
                         style={{
                           color: t.wrong,
-                          fontSize: f.body,
+                          fontSize: cardFont(f.body, 12),
                           fontWeight: '600',
                           textAlign: 'center',
-                          marginTop: 8,
+                          marginTop: Math.round(8 * cardScale),
                           textDecorationLine: 'line-through',
                           width: '100%',
                         }}
@@ -981,7 +1005,7 @@ function FlashcardListItemImpl({
                   ) : (
                     <Text
                       maxFontSizeMultiplier={1.35}
-                      style={{ color: t.textPrimary, fontSize: f.h1 + 2, fontWeight: '700', textAlign: 'center', width: '100%' }}
+                      style={{ color: t.textPrimary, fontSize: cardFont(f.h1 + 2, 17), fontWeight: '700', textAlign: 'center', width: '100%' }}
                     >
                       {tr}
                     </Text>

@@ -23,6 +23,7 @@ import {
   Pressable,
   Text,
   View,
+  useWindowDimensions,
   type StyleProp,
   type ViewStyle,
 } from 'react-native';
@@ -50,6 +51,7 @@ import {
   FC_TIMING,
 } from '../../constants/flashcards_motion';
 import { useTheme } from '../../components/ThemeContext';
+import { computeHeightScale } from '../../constants/layout-scale';
 import { soundDirector } from '../../modules/audio/sound_director';
 import { isLowPowerEffective } from './low_power';
 import { fcHaptic, playSfx } from './SoundService';
@@ -215,6 +217,18 @@ function PhraseCardImpl({
   const ctx = useTheme();
   const t = tProp ?? ctx.theme;
   const f = fProp ?? (ctx.f as unknown as Record<string, number>);
+  // зачем: на низких экранах (iPhone SE 667pt, Android 360x800) текст фразы почти
+  // не ужимался — ctx.uiScale считается от ШИРИНЫ, а она у телефонов почти
+  // одинаковая (360-430 против эталона 390), и давала всего -3%. Короткая у таких
+  // устройств именно ВЫСОТА (667 против 844 = 0.79). Берём ту же computeHeightScale,
+  // что уже решает этот класс бага в онбординге, но применяем только к карточке.
+  const { height: windowH } = useWindowDimensions();
+  const cardScale = computeHeightScale(windowH);
+  /** Кегль карточки: округляем и держим читаемый пол, чтобы фраза не стала мелкой. */
+  const cardFont = useCallback(
+    (base: number, floor: number) => Math.max(floor, Math.round(base * cardScale)),
+    [cardScale],
+  );
   const crossfade = useFcCrossfadeFlip();
   const isWeb = Platform.OS === 'web';
 
@@ -497,6 +511,12 @@ function PhraseCardImpl({
     textTransform: 'uppercase' as const,
     width: '100%' as const,
   });
+  // зачем: отступы тоже ужимаются по высоте экрана — иначе на SE карточка
+  // остаётся высокой даже с уменьшенным текстом. Пол 12/10 держит воздух.
+  // Живут отдельной переменной, потому что ИЗМЕРИТЕЛЬ обязан считать по тем же
+  // полям, что и реальная грань: разойдутся — карточка получит неверную высоту.
+  const facePadH = Math.max(12, Math.round(16 * cardScale));
+  const facePadV = Math.max(10, Math.round(14 * cardScale));
   const faceBaseStyle: ViewStyle = {
     position: 'absolute',
     top: 0,
@@ -508,22 +528,22 @@ function PhraseCardImpl({
     overflow: 'hidden',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 16,
-    paddingVertical: 14,
+    paddingHorizontal: facePadH,
+    paddingVertical: facePadV,
   };
 
   const defaultFront = (
     <>
       <Text
         maxFontSizeMultiplier={1.35}
-        style={{ color: t.textPrimary, fontSize: (f.h1 ?? 22) + 2, fontWeight: '600', textAlign: 'center', width: '100%' }}
+        style={{ color: t.textPrimary, fontSize: cardFont((f.h1 ?? 22) + 2, 17), fontWeight: '600', textAlign: 'center', width: '100%' }}
       >
         {en}
       </Text>
       {transcription?.trim() ? (
         <Text
           maxFontSizeMultiplier={1.35}
-          style={{ color: t.textMuted, fontSize: f.sub ?? 14, marginTop: 6, textAlign: 'center', fontStyle: 'italic', letterSpacing: 0.25 }}
+          style={{ color: t.textMuted, fontSize: cardFont(f.sub ?? 14, 12), marginTop: Math.round(6 * cardScale), textAlign: 'center', fontStyle: 'italic', letterSpacing: 0.25 }}
         >
           {transcription.trim()}
         </Text>
@@ -533,7 +553,7 @@ function PhraseCardImpl({
   const defaultBack = (
     <Text
       maxFontSizeMultiplier={1.35}
-      style={{ color: t.textPrimary, fontSize: (f.h1 ?? 22), fontWeight: '400', textAlign: 'center', width: '100%' }}
+      style={{ color: t.textPrimary, fontSize: cardFont(f.h1 ?? 22, 16), fontWeight: '400', textAlign: 'center', width: '100%' }}
     >
       {translation ?? ''}
     </Text>
@@ -656,6 +676,8 @@ function PhraseCardImpl({
         {/* Both faces must fit: a translation can be much longer than the prompt. */}
         <PhraseCardSizer
           minHeight={minHeight}
+          paddingHorizontal={facePadH}
+          paddingVertical={facePadV}
           front={renderFront ? renderFront() : defaultFront}
           back={renderBack ? renderBack() : defaultBack}
         />

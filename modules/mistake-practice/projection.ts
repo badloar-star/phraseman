@@ -40,6 +40,12 @@ export interface MistakeProjectionItem {
   readonly audioRef?: string | null;
   readonly tokenIndex?: number | null;
   readonly expected?: string | null;
+  /**
+   * Что ответил ученик (аудит 2026-09-21). Нужен для строки «ты написал X →
+   * надо Y» в разборе после занятия. У старых записей журнала его нет — тогда
+   * разбор показывает только правильный вариант, без зачёркнутого.
+   */
+  readonly given?: string | null;
 }
 
 export interface MistakeProjection {
@@ -74,6 +80,8 @@ interface MutableProjectionItem {
   audioRef: string | null;
   tokenIndex: number | null;
   expected: string | null;
+  /** Ответ ученика; у старых записей журнала его нет → null. */
+  given: string | null;
 }
 
 const FACETS = new Set<MistakeFacet>([
@@ -136,6 +144,9 @@ function fromCapture(event: MistakeEvent): MutableProjectionItem {
       ? Number(event.payload.tokenIndex)
       : null,
     expected: payloadString(event.payload, 'expected'),
+    // Старые записи журнала этого поля не имеют → null, и разбор просто
+    // покажет правильный вариант без зачёркнутого. Миграции не нужно.
+    given: payloadString(event.payload, 'given'),
   };
 }
 

@@ -135,6 +135,11 @@ export async function captureObjectiveAttempt(
         distractors: attempt.content.distractors ?? null,
         tokenIndex: attempt.facet.tokenIndex ?? null,
         expected: attempt.facet.expected ?? null,
+        // зачем (аудит 2026-09-21): без ответа ученика разбор после занятия
+        // не может показать «ты написал X → надо Y» — а это его суть.
+        // В отпечаток ошибки поле НЕ входит (см. identity.ts), поэтому повторы
+        // одной ошибки с разными опечатками по-прежнему склеиваются в одну.
+        given: attempt.facet.given ?? null,
       },
     },
   });

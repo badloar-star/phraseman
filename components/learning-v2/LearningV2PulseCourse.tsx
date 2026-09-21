@@ -56,6 +56,8 @@ interface Props {
   headerAccessory?: React.ReactNode;
   renderLessonCard?: (props: LearningV2PulseLessonCardRenderProps) => React.ReactNode;
 }
+/** Высота кнопки «Все уроки» в плавающем футере карты (styles.mapFooterButton). */
+const MAP_FOOTER_BUTTON_HEIGHT = 56;
 type SessionRow = Extract<LearningV2CourseAccordionRowV1, { kind: 'session' }>;
 type LessonRow = Extract<LearningV2CourseAccordionRowV1, { kind: 'lesson' }>;
 /** Строка сплошной карты: занятие или плашка урока между уроками. */
@@ -350,6 +352,23 @@ export default function LearningV2PulseCourse(props: Props) {
   }, []);
   const entryPlayed = useRef(false);
   const centeredOnce = useRef(false);
+  // зачем: владелец 21.09 — «не хочу чтобы при открытии край кружка
+  // обрезался». Кнопка «Все уроки» — плавающий футер поверх списка
+  // (styles.mapFooter, absolute bottom), а у списка снизу стоял только
+  // geometry.padding. Последний видимый кружок уходил ПОД кнопку.
+  // Резервируем высоту футера ОТСТУПОМ САМОГО СПИСКА (marginBottom), а не
+  // paddingBottom контента: padding добавляет место в конце всех 2048 строк,
+  // а обрезался кружок в СЕРЕДИНЕ — просто нижний край видимой области
+  // уходил под кнопку. marginBottom укорачивает саму видимую область.
+  const mapFooterReserve = MAP_FOOTER_BUTTON_HEIGHT + Math.max(18, props.bottomPadding);
+  // зачем: ЗАМЕР 21.09 — между рендером разметки (4 мс) и монтированием карты
+  // проходило 537 мс. React отдаёт разметку мгновенно, полсекунды уходит на
+  // создание НАТИВНЫХ вьюх строк. Каждая строка дорогая: узел с 4 shared
+  // values и 3 animated styles, SVG-дужка, две иконки.
+  // windowSize={11} держал ~110 строк (шаг строки ~153px, экран ~10 строк),
+  // initialNumToRender={12} создавал 12 сразу. На экран влезает 10, поэтому
+  // окно 5 и первая партия 6 дают тот же видимый результат, но враз меньше
+  // нативных вьюх на первом кадре. Остальные достраиваются при прокрутке.
   const mapEntry = useSharedValue(1);
   const current = /^lesson-(\d+):session:(\d+)$/.exec(props.currentSessionId ?? '');
   const currentLesson = Number(current?.[1] ?? 1);
@@ -373,7 +392,11 @@ export default function LearningV2PulseCourse(props: Props) {
   );
   const currentRow = rows[currentRowIndex];
   const target = currentRow?.kind === 'session' ? currentRow.sessionOrdinal : 1;
-  const geometry = pulseMapGeometry(viewport.height, target);
+  // зачем: viewport меряется с КОНТЕЙНЕРА, а список теперь короче на высоту
+  // футера (marginBottom). Центрирование текущего узла обязано считаться от
+  // высоты СПИСКА, иначе узел уезжает вниз ровно на высоту кнопки.
+  const mapViewportHeight = Math.max(0, viewport.height - mapFooterReserve);
+  const geometry = pulseMapGeometry(mapViewportHeight, target);
   // зачем: строки карты РАЗНОЙ высоты — плашка урока это разворот на
   // пол-экрана, заголовок главы ниже, занятие ещё ниже. Раньше getItemLayout
   // считал все строки одинаковыми (geometry.step), поэтому плашку пришлось
@@ -454,7 +477,7 @@ export default function LearningV2PulseCourse(props: Props) {
     // Замер: при lead=18 от главы (118px) снизу торчал огрызок ровно 18px.
     // Правило: либо главы не видно СОВСЕМ, либо она видна целиком. В начале
     // курса встаём ровно на занятие 1 — граница строки, огрызка не остаётся.
-    const lead = atCourseStart ? 0 : viewport.height * 0.4;
+    const lead = atCourseStart ? 0 : mapViewportHeight * 0.4;
     mapRef.current?.scrollToOffset({
       // + geometry.padding: у contentContainer есть paddingVertical, и без
       // него прокрутка встаёт ВЫШЕ строки ровно на это значение — снизу
@@ -462,7 +485,7 @@ export default function LearningV2PulseCourse(props: Props) {
       offset: Math.max(0, geometry.padding + (layout.offsets[currentRowIndex] ?? 0) - lead),
       animated,
     });
-  }, [currentRowIndex, geometry.padding, layout.offsets, rows, viewport.height]);
+  }, [currentRowIndex, geometry.padding, layout.offsets, mapViewportHeight, rows, viewport.height]);
   // Первичное наведение: ровно ОДИН раз за жизнь экрана.
   // зачем: висело на onContentSizeChange — а размер контента меняется каждый
   // раз, когда список дорисовывает строки при прокрутке. Владелец 20.09:
@@ -479,9 +502,9 @@ export default function LearningV2PulseCourse(props: Props) {
       rows[currentRowIndex]?.kind === 'session' &&
       (rows[currentRowIndex] as SessionRow).lessonOrdinal === 1 &&
       (rows[currentRowIndex] as SessionRow).chapterOrdinal === 1;
-    const lead = atStart ? 0 : (viewport.height || 700) * 0.4;
+    const lead = atStart ? 0 : (mapViewportHeight || 700) * 0.4;
     return { x: 0, y: Math.max(0, geometry.padding + (layout.offsets[currentRowIndex] ?? 0) - lead) };
-  }, [currentRowIndex, geometry.padding, layout.offsets, rows, viewport.height]);
+  }, [currentRowIndex, geometry.padding, layout.offsets, mapViewportHeight, rows, viewport.height]);
   const backToCurrent = useCallback(() => { scrollToCurrent(true); }, [scrollToCurrent]);
   const centerCurrent = useCallback(() => {
     if (!viewport.height || centeredOnce.current) return;
@@ -780,7 +803,7 @@ export default function LearningV2PulseCourse(props: Props) {
         </PressableHybrid>;
       }} />
     </> : <Animated.View testID="learning-v2-pulse-map-entry" style={[styles.mapContainer, mapEntryStyle]} onLayout={e => setViewport(e.nativeEvent.layout)}>
-      <FlatList ref={mapRef} testID="learning-v2-pulse-map" data={rows} keyExtractor={mapRowKeyV1} contentContainerStyle={{ paddingVertical: geometry.padding }} getItemLayout={getMapItemLayout} contentOffset={initialOffset} onContentSizeChange={centerCurrent} onViewableItemsChanged={onViewableItemsChangedRef.current} viewabilityConfig={MAP_VIEWABILITY_CONFIG} onMomentumScrollBegin={cancelVisibleSessionsSettledAfterDrag} onMomentumScrollEnd={handleMomentumScrollEnd} onScrollEndDrag={scheduleVisibleSessionsSettledAfterDrag} initialNumToRender={12} maxToRenderPerBatch={12} updateCellsBatchingPeriod={16} windowSize={11} showsVerticalScrollIndicator={false} renderItem={renderMapRow} />
+      <FlatList ref={mapRef} testID="learning-v2-pulse-map" data={rows} keyExtractor={mapRowKeyV1} style={{ marginBottom: mapFooterReserve }} contentContainerStyle={{ paddingVertical: geometry.padding }} getItemLayout={getMapItemLayout} contentOffset={initialOffset} onContentSizeChange={centerCurrent} onViewableItemsChanged={onViewableItemsChangedRef.current} viewabilityConfig={MAP_VIEWABILITY_CONFIG} onMomentumScrollBegin={cancelVisibleSessionsSettledAfterDrag} onMomentumScrollEnd={handleMomentumScrollEnd} onScrollEndDrag={scheduleVisibleSessionsSettledAfterDrag} initialNumToRender={6} maxToRenderPerBatch={6} updateCellsBatchingPeriod={32} windowSize={5} removeClippedSubviews showsVerticalScrollIndicator={false} renderItem={renderMapRow} />
       {/* зачем: владелец 20.09 — «когда мы на карте, в футере есть кнопочка
           специальная, которая открывает список всех уроков». Карта под ней
           продолжает скроллиться: кнопка плавает, а не занимает место. */}

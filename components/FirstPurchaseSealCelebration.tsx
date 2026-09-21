@@ -48,6 +48,11 @@ import { PEARL_ICONS } from '../app/coin_icons';
 import { useTheme } from './ThemeContext';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { hapticSuccess } from '../hooks/use-haptics';
+import { playCelebrationSceneSound } from '../modules/audio/celebrationScenePlayer';
+// зачем тип, а не `as never`: имя звука здесь КОНСТАНТА, и компилятор обязан
+// поймать опечатку в нём. У празднования Plus приведение оправдано — там имя
+// собирается динамически, а здесь оно пряталo бы настоящую проверку.
+import type { SoundEventId } from '../modules/audio/sound_events';
 import { HOME_RUNE_ICON_SOURCE } from './home/homeRuneAsset';
 
 export type FirstPurchaseKind = 'dialog' | 'lesson';
@@ -80,6 +85,23 @@ const CTA_MS = 460;
 
 const DROP_EASE = Easing.bezier(0.23, 1, 0.32, 1);
 const SHOCK_EASE = Easing.bezier(0.33, 0.52, 0.25, 0.99);
+
+/**
+ * Звук печати — существующий `pm.celebration.promo_stamp` (штамп), ассет
+ * cel_promo_stamp_v1. Новый файл не заводим: этот и по смыслу, и по форме
+ * («double», два удара) ровно то, что нужно оттиску.
+ *
+ * зачем ЗАПУСК РАНЬШЕ УДАРА: у звука `attackMs: 410` (карта движения
+ * modules/audio/sound_motion.ts) — пик приходит через 410 мс после старта.
+ * Запусти его В момент печати, и грохот опоздал бы на те же 410 мс, читаясь
+ * как рассинхрон. Поэтому стартуем за 410 мс до оттиска, и пик совпадает
+ * с кадром удара и с хаптиком.
+ *
+ * Менять IMPACT_MS — пересчитать и это число: они связаны по построению,
+ * а не случайно совпали.
+ */
+const STAMP_SOUND_EVENT: SoundEventId = 'pm.celebration.promo_stamp';
+const STAMP_SOUND_ATTACK_MS = 410;
 
 /** Мягкое проявление вместо движения — для reduce motion. */
 const SOFT_MS = 260;
@@ -119,6 +141,8 @@ function FirstPurchaseSealCelebrationImpl({
   // Хаптик ровно один раз за показ: повтор превратил бы удар в дребезг
   // (та же ошибка была у старого празднования Plus — 12 ударов подряд).
   const impactFiredRef = useRef(false);
+  // Тот же предохранитель для звука: два штампа подряд слиплись бы в кашу.
+  const soundFiredRef = useRef(false);
 
   const reset = useCallback(() => {
     cancelAnimation(drop);
@@ -132,6 +156,7 @@ function FirstPurchaseSealCelebrationImpl({
     text.value = 0;
     cta.value = 0;
     impactFiredRef.current = false;
+    soundFiredRef.current = false;
   }, [cta, drop, shockA, shockB, text]);
 
   useEffect(() => {
@@ -144,6 +169,26 @@ function FirstPurchaseSealCelebrationImpl({
       drop.value = withTiming(1, { duration: SOFT_MS });
       text.value = withTiming(1, { duration: SOFT_MS });
       cta.value = withTiming(1, { duration: SOFT_MS });
+      /**
+       * зачем звук и хаптик ОСТАЮТСЯ: «уменьшенное движение» — это про
+       * движение, а не про тишину. Укачивание вызывает перемещение на экране,
+       * а не штамп в динамике. Убери их здесь — человек с этой настройкой
+       * получил бы немое празднование и вообще не понял, что случилось
+       * событие. Ждать нечего: анимации нет, поэтому бьём сразу.
+       */
+      if (!impactFiredRef.current) {
+        impactFiredRef.current = true;
+        void hapticSuccess();
+      }
+      if (!soundFiredRef.current) {
+        soundFiredRef.current = true;
+        try {
+          playCelebrationSceneSound(STAMP_SOUND_EVENT);
+        } catch (error) {
+          console.warn('[FIRST-PURCHASE] sound_failed_reduced', // guard-ok: сбой обязан логироваться и в релизе
+            error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+        }
+      }
       return;
     }
     drop.value = withDelay(DROP_DELAY_MS, withTiming(1, { duration: DROP_MS, easing: DROP_EASE }));
@@ -162,7 +207,24 @@ function FirstPurchaseSealCelebrationImpl({
       impactFiredRef.current = true;
       void hapticSuccess();
     }, IMPACT_MS);
-    return () => clearTimeout(timer);
+
+    // Звук стартует РАНЬШЕ на длину атаки, чтобы его пик лёг ровно на оттиск.
+    const soundTimer = setTimeout(() => {
+      if (soundFiredRef.current) return;
+      soundFiredRef.current = true;
+      try {
+        playCelebrationSceneSound(STAMP_SOUND_EVENT);
+      } catch (error) {
+        // Немой catch запрещён: без звука праздник переживём, но знать надо.
+        console.warn('[FIRST-PURCHASE] sound_failed', // guard-ok: сбой обязан логироваться и в релизе
+          error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+      }
+    }, Math.max(0, IMPACT_MS - STAMP_SOUND_ATTACK_MS));
+
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(soundTimer);
+    };
   }, [cta, drop, reduceMotion, reset, shockA, shockB, text, visible]);
 
   const coinStyle = useAnimatedStyle(() => {

@@ -45,8 +45,11 @@ const STRIPE_SECRET_KEY = defineSecret('STRIPE_SECRET_KEY');
 const STRIPE_WEBHOOK_SECRET = defineSecret('STRIPE_WEBHOOK_SECRET');
 const PAYPAL_CLIENT_ID = defineSecret('PAYPAL_CLIENT_ID');
 const PAYPAL_CLIENT_SECRET = defineSecret('PAYPAL_CLIENT_SECRET');
-const webCheckoutEmailFrom = defineString('WEB_CHECKOUT_EMAIL_FROM', { default: '' });
-const webCheckoutSupportEmail = defineString('WEB_CHECKOUT_SUPPORT_EMAIL', { default: 'support.phraseman@gmail.com' });
+// зачем экспортируем: крон напоминаний (web_activation_reminders.ts) обязан
+// объявить ТЕ ЖЕ параметры в своих secrets/params, иначе письмо уйдёт с пустым
+// отправителем и провалится как skipped_no_resend_from.
+export const webCheckoutEmailFrom = defineString('WEB_CHECKOUT_EMAIL_FROM', { default: '' });
+export const webCheckoutSupportEmail = defineString('WEB_CHECKOUT_SUPPORT_EMAIL', { default: 'support.phraseman@gmail.com' });
 
 type WebPlan = 'monthly' | 'yearly' | 'lifetime';
 
@@ -2026,7 +2029,10 @@ export function buildActivationEmail(
   return { subject, text, html };
 }
 
-async function sendActivationEmail(
+// зачем: экспортируем, чтобы крон напоминаний (web_activation_reminders.ts)
+// досылал письмо ТЕМ ЖЕ путём, а не заводил вторую копию отправки. Одна
+// точка отправки — один набор статусов доставки, один формат письма.
+export async function sendActivationEmail(
   order: FirebaseFirestore.DocumentData,
   statusRef?: FirebaseFirestore.DocumentReference,
   idempotencyKey?: string,

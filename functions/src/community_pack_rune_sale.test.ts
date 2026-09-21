@@ -18,15 +18,19 @@ const publishedPaidPack = {
 };
 
 describe('доля автора', () => {
-  it('автор получает цену за вычетом 15% комиссии платформы', () => {
-    expect(authorNetRunes(1000)).toBe(850);
-    expect(authorNetRunes(100)).toBe(85);
+  // зачем (владелец 2026-09-21, дословно «100 % автору блять!»): комиссии
+  // платформы НЕТ. Сторож существует ровно затем, чтобы её не вернули
+  // «для единообразия с осколками» — это решение владельца, а не недосмотр.
+  it('автор получает ВСЮ цену набора, без удержаний', () => {
+    expect(authorNetRunes(1000)).toBe(1000);
+    expect(authorNetRunes(100)).toBe(100);
+    expect(authorNetRunes(5000)).toBe(5000);
   });
 
-  it('комиссия совпадает с продажей за осколки (PLATFORM_FEE_BPS = 1500)', () => {
-    // Две валюты не должны иметь разную экономику за одно и то же действие.
-    const price = 5000;
-    expect(authorNetRunes(price)).toBe(price - Math.floor((price * 1500) / 10_000));
+  it('никакой комиссии не удерживается ни на одной цене', () => {
+    for (const price of [100, 500, 1000, 2500, 5000]) {
+      expect(authorNetRunes(price)).toBe(price);
+    }
   });
 
   it('мусорная цена не превращается в начисление', () => {
@@ -43,7 +47,7 @@ describe('решение о продаже набора', () => {
       ok: true,
       authorStableId: AUTHOR,
       priceRunes: 1000,
-      netRunes: 850,
+      netRunes: 1000,
     });
   });
 
@@ -78,6 +82,6 @@ describe('решение о продаже набора', () => {
     // не принимает цену от вызывающего — только документ набора.
     const decision = decidePackSale({ ...publishedPaidPack, priceRunes: 200 }, BUYER);
     expect(decision.ok && decision.priceRunes).toBe(200);
-    expect(decision.ok && decision.netRunes).toBe(170);
+    expect(decision.ok && decision.netRunes).toBe(200);
   });
 });

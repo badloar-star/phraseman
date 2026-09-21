@@ -1264,22 +1264,6 @@ export default function CommunityPackCreateScreen() {
                     onValueChange={(value) => setPriceRunes(Math.round(value))}
                     accessibilityLabel={L('Цена набора в рунах', 'Ціна набору в рунах', 'Pack price in runes', 'Precio del pack en runas', 'Preço do pacote em runas', 'Giá bộ thẻ bằng rune', 'Harga paket dalam rune', 'Paketin rün fiyatı', 'Cena zestawu w runach')}
                   />
-                  {/* Прогноз — суть выбранного дизайна 3: автор видит не просто
-                      число, а что оно значит для читателей.
-                      зачем убран вариант «цена для больших наборов» (владелец
-                      2026-09-21): прямое указание удалить этот текст. */}
-                  <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700', lineHeight: Math.round(f.sub * 1.5) }} maxFontSizeMultiplier={1.2}>
-                    {priceRunes <= 2000
-                      ? L('Активный игрок соберёт это за день-два.', 'Активний гравець збере це за день-два.', 'An active player earns this in a day or two.', 'Un jugador activo lo junta en un día o dos.', 'Um jogador ativo junta isso em um ou dois dias.', 'Người chơi tích cực kiếm được trong một hai ngày.', 'Pemain aktif mengumpulkannya dalam satu dua hari.', 'Aktif bir oyuncu bunu bir iki günde toplar.', 'Aktywny gracz zbierze to w dzień lub dwa.')
-                      : L('Копить на такой набор придётся дольше.', 'Збирати на такий набір доведеться довше.', 'Saving up for this one takes longer.', 'Ahorrar para este lleva más tiempo.', 'Juntar para este leva mais tempo.', 'Để dành cho bộ này sẽ lâu hơn.', 'Menabung untuk yang ini butuh waktu lebih lama.', 'Buna biriktirmek daha uzun sürer.', 'Zbieranie na taki zestaw potrwa dłużej.')}
-                  </Text>
-                  {/* зачем этот текст (владелец 2026-09-21): «начисление должно
-                      быть юзеры чьи наборы покупаются». Руны с покупки идут
-                      АВТОРУ — см. communitySyncPackRuneSale. Прежний текст
-                      «руны остаются у приложения» удалён как неверный. */}
-                  <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700', marginTop: 10, lineHeight: Math.round(f.sub * 1.5) }} maxFontSizeMultiplier={1.2}>
-                    {L('Руны за каждую покупку получаешь ты.', 'Руни за кожну покупку отримуєш ти.', 'You get the runes from every purchase.', 'Tú recibes las runas de cada compra.', 'Você recebe as runas de cada compra.', 'Bạn nhận rune từ mỗi lượt mua.', 'Kamu menerima rune dari setiap pembelian.', 'Her satın almadan rünleri sen alırsın.', 'Runy z każdego zakupu trafiają do Ciebie.')}
-                  </Text>
                 </View>
               ) : null}
 

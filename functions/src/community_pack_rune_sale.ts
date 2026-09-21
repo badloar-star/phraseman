@@ -53,22 +53,22 @@ const PACK_RUNE_SALES = 'community_pack_rune_sales';
 /** Инбокс продавца — тот же, что у продаж за осколки. */
 const SELLER_INBOX = 'seller_inbox';
 
-/**
- * Доля платформы, в базисных пунктах. 1500 = 15% — ровно та же комиссия, что у
- * продажи набора за осколки (`PLATFORM_FEE_BPS` в community_packs.ts):
- * две валюты не должны иметь разную экономику за одно и то же действие.
- */
-const PLATFORM_FEE_BPS = 1500;
-
 /** Потолок цены — зеркало клиентского COMMUNITY_PACK_PRICE_MAX_RUNES. */
 const MAX_PACK_PRICE_RUNES = 5000;
 
-/** Доля автора после комиссии платформы. */
+/**
+ * Автор получает ВСЮ цену набора. Комиссии платформы НЕТ.
+ *
+ * зачем (владелец, 2026-09-21, дословно: «100 % автору блять!»): первая версия
+ * брала 15% — ту же комиссию, что у продажи за осколки. Владелец её отменил:
+ * сколько покупатель заплатил, столько автор и получил, без удержаний.
+ *
+ * ⚠️ Не возвращать комиссию «за компанию» с осколками и не «выравнивать
+ * экономику двух валют»: это прямое решение владельца, а не недосмотр.
+ */
 export function authorNetRunes(priceRunes: number): number {
   if (!Number.isFinite(priceRunes) || priceRunes <= 0) return 0;
-  const price = Math.floor(priceRunes);
-  const fee = Math.floor((price * PLATFORM_FEE_BPS) / 10_000);
-  return Math.max(0, price - fee);
+  return Math.floor(priceRunes);
 }
 
 /**
@@ -216,7 +216,7 @@ export const communitySyncPackRuneSale = onCall(CALLABLE_BASE, async (request) =
       sourceId: packId,
       ruleVersion: 1,
       earnedAtMs: now,
-      meta: { packId, priceRunes, platformFeeRunes: priceRunes - net },
+      meta: { packId, priceRunes },
     }];
 
     const prepared = await prepareStarOperations(tx, db, authorStableId, authorSnap, starOps, {
@@ -238,7 +238,6 @@ export const communitySyncPackRuneSale = onCall(CALLABLE_BASE, async (request) =
       authorStableId,
       priceRunes,
       authorNetRunes: net,
-      platformFeeRunes: priceRunes - net,
       createdAtMs: now,
     });
 

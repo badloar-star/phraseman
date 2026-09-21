@@ -56446,6 +56446,19 @@ html[data-pm-theme="light"] #pm-phase3-overview-tabs{background:#f7f8fa!importan
       const skipped=Array.isArray(data.skipped)?data.skipped:[];
       // Пропуск не глотаем молча: владелец должен видеть, что применилось не всё.
       draft.fixesAppliedAt=Date.now();draft.updatedAt=Date.now();
+      // зачем (владелец 2026-09-21: «какого зуя после исправления снова появилось это»):
+      // правки уходят в Firestore, а панель читает _communitySubmissionsCache —
+      // снимок очереди, снятый при её открытии. Без перезагрузки повторная
+      // проверка уезжала на сервер со СТАРЫМИ, ещё перевёрнутыми карточками, и
+      // ИИ честно отвечал «набор наоборот». Логи: applied 32 / skipped 0 в 17:41,
+      // а последний [PACK-QA] вход — 16:07, то есть свежая проверка не доходила.
+      try{
+        if(typeof window.loadCommunitySubmissions==='function')await window.loadCommunitySubmissions(true);
+        else notify('Правки применены, но очередь не перезагрузилась — обновите страницу перед повторной проверкой.','warn');
+      }catch(error){
+        // Немого catch быть не должно: иначе панель снова тихо жила бы на старых данных.
+        notify(`Правки применены, но очередь не перезагрузилась: ${trim(error?.message||error,120)}. Обновите страницу.`,'warn');
+      }
       // зачем: перестановка полей — подготовка, а НЕ публикация. Публиковать
       // набор сразу после переворота значит выпустить непроверенный текст:
       // грамматику на нём ещё не судили. Остаёмся в панели, предлагаем проверку.
@@ -56453,11 +56466,15 @@ html[data-pm-theme="light"] #pm-phase3-overview-tabs{background:#f7f8fa!importan
         const cards=new Set(fixes.map((f)=>f.cardIndex)).size;
         setApplyStatus(`Поля переставлены в ${cards} ${cards===1?'карточке':'карточках'}. Нажмите «Проверить» — теперь ИИ прочитает набор правильно.`,'success');
         notify('Поля поставлены на место','ok');
-        // Черновик устарел: находки были про перевёрнутый текст.
-        draft.aiFindings=[];draft.aiStatus='idle';draft.aiError='';draft.costUsd=null;
+        // Черновик устарел: находки были про перевёрнутый текст. Пересобираем
+        // его от СВЕЖЕЙ заявки — ensureDraft сам заметит смену fingerprint.
+        drafts.delete(draft.submissionId);
+        const fresh=getRow(state.currentId);
+        if(fresh)ensureDraft(state.currentId,fresh);
         // зачем: флаг снимаем ДО render(), иначе кнопка застревает на «Применяю…»
         // (finally отрабатывает уже после отрисовки).
-        draft.applying=false;
+        const next=getCurrent();
+        if(next)next.applying=false;
         render();updateCardButtons();
         return;
       }
@@ -56481,8 +56498,12 @@ html[data-pm-theme="light"] #pm-phase3-overview-tabs{background:#f7f8fa!importan
     }finally{
       // зачем: текст кнопки принадлежит syncApplyFixesButton — раньше здесь
       // жёстко писалось «Применить и опубликовать» и затирало верную подпись.
+      // Черновик берём ЗАНОВО: после переворота он пересоздан на свежих данных,
+      // и запись в старый объект не дошла бы до экрана.
       draft.applying=false;
-      syncApplyFixesButton(draft);
+      const current=getCurrent()||draft;
+      current.applying=false;
+      syncApplyFixesButton(current);
     }
   }
   function regenerateResponse(){const draft=getCurrent();const row=getRow(state.currentId);if(!draft||!row)return;draft.responseRu=responseFromFindings(draft,row);draft.responseTouched=false;draft.acceptedAt=0;draft.updatedAt=Date.now();renderResponse(draft);notify('Ответ собран из выбранных замечаний','ok');}

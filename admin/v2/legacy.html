@@ -14192,7 +14192,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         </div>
         <div class="app-msg-field" id="am-settings-slot-field" style="display:none">
           <label>Положение в настройках</label>
-          <select id="am-settings-slot" aria-label="Settings message slot" oninput="updateAppMessagePreview()">
+          <select id="am-settings-slot" aria-label="Settings message slot" oninput="onAppMessageSurfaceChange()">
             <option value="top">Сверху — под Phraseman Plus</option>
             <option value="bottom">Снизу — в конце настроек</option>
           </select>
@@ -34005,8 +34005,33 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       option.disabled = settings && Number(option.value) > 4;
     });
     if (settings && appMessageGetPollOptionCount() > 4) appMessageSetPollOptionCount(4);
+    syncAppMessageFormTitle();
     window.updateAppMessagePreview();
   };
+
+  /**
+   * Заголовок формы следует за выбранным положением плашки.
+   *
+   * зачем (владелец 2026-09-21: «а чё тут только нижняя плашка? как добавить
+   * верхнюю»): форма ОДНА на оба слота, положение меняется полем «Положение в
+   * настройках». Но заголовок ставился один раз при открытии и не обновлялся —
+   * выбрав «Сверху», владелец продолжал видеть «Нижняя плашка». Экран выглядел
+   * так, будто доступен только нижний слот.
+   *
+   * В режиме правки существующего сообщения заголовок не трогаем: подменять
+   * его значило бы потерять контекст, что правится уже созданная запись.
+   */
+  function syncAppMessageFormTitle() {
+    const titleEl = document.getElementById('am-form-title');
+    if (!titleEl) return;
+    if (titleEl.dataset.amEditing === '1') return;
+    if (!appMessageIsSettingsDraft()) {
+      titleEl.textContent = 'Новое сообщение';
+      return;
+    }
+    const slot = document.getElementById('am-settings-slot')?.value === 'bottom' ? 'bottom' : 'top';
+    titleEl.textContent = slot === 'top' ? 'Верхняя плашка' : 'Нижняя плашка';
+  }
 
   window.updateAppMessagePreview = function() {
     buildAppMessageTranslationFields();
@@ -34074,7 +34099,10 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     document.getElementById('am-priority').value = '0';
     document.getElementById('am-days').value = '30';
     document.getElementById('am-poll-option-count').value = String(APP_MESSAGE_POLL_MIN_OPTIONS);
-    document.getElementById('am-form-title').textContent = 'Новое сообщение';
+    // Сброс формы выходит из режима правки — заголовок снова следует за слотом.
+    const resetTitleEl = document.getElementById('am-form-title');
+    resetTitleEl.textContent = 'Новое сообщение';
+    delete resetTitleEl.dataset.amEditing;
     const st = document.getElementById('am-status');
     if (st) st.textContent = '';
     window.updateAppMessagePreview();
@@ -39658,7 +39686,11 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       });
     });
     appMessageSetPollOptionCount(row.poll?.options?.length || APP_MESSAGE_POLL_MIN_OPTIONS);
-    document.getElementById('am-form-title').textContent = 'Редактирование сообщения';
+    // Метка режима: syncAppMessageFormTitle не подменяет этот заголовок, иначе
+    // потеряется контекст, что правится уже созданная запись.
+    const editTitleEl = document.getElementById('am-form-title');
+    editTitleEl.textContent = 'Редактирование сообщения';
+    editTitleEl.dataset.amEditing = '1';
     const st = document.getElementById('am-status');
     if (st) st.textContent = `Редактируется ${row.id}. Срок хранения не продлевается.`;
     window.updateAppMessagePreview();

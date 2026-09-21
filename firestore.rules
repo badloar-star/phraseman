@@ -2634,6 +2634,15 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    // Чеки продаж наборов за руны (владелец 2026-09-21: руны получает АВТОР
+    // набора). Пишет ТОЛЬКО сервер в транзакции начисления: разреши запись
+    // клиенту — и любой подделал бы себе продажу. Читает только админка,
+    // ей же разбирать возможные накрутки.
+    match /community_pack_rune_sales/{saleId} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+
     // Arena ghost challenges: async shareable arena replays.
     match /arena_ghost_challenges/{challengeId} {
       allow read, write: if false;

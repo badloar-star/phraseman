@@ -251,6 +251,8 @@ export type CommunityPackEditorSnapshot = {
   description: string;
   cardThemeKey: string;
   cardBackKey: string;
+  /** Цена набора в рунах (0 — бесплатный). */
+  priceRunes?: number;
   cards: {
     id: string;
     en: string;
@@ -321,6 +323,9 @@ export async function fetchCommunityPackForAuthorEdit(
       description: String(d.descriptionRu ?? d.descriptionUk ?? d.descriptionEs ?? d.descriptionPtBr ?? d.descriptionVi ?? d.descriptionId ?? d.descriptionTr ?? d.descriptionPl ?? '').trim(),
       cardThemeKey: String(d.cardThemeKey ?? UGC_CARD_THEME_DEFAULT_ID).trim() || UGC_CARD_THEME_DEFAULT_ID,
       cardBackKey: normalizeUgcCardBackKey(String(d.cardBackKey ?? '').trim()),
+      // зачем (владелец 2026-09-21): без этого автор платного набора открывал
+      // правку с ценой 0 и обнулял её, сам того не зная.
+      priceRunes: Math.max(0, Math.floor(Number(d.priceRunes ?? 0))) || 0,
       cards,
     };
   } catch (e) {

@@ -29,6 +29,7 @@ import {
   readUnifiedLevelSpinStars,
 } from '../level_spin_star_grants';
 import { withStorageLock } from '../storage_mutex';
+import { enqueuePackSaleForAuthor } from './packSaleSync';
 
 /** Ключ купленных наборов. Отдельный от «добавленных»: добавить можно и бесплатный. */
 function paidPacksKey(stableId: string): string {
@@ -131,6 +132,11 @@ export async function buyCommunityPackLocally(
       [paidPacksKey(ownerStableId), JSON.stringify([...owned, packId])],
     ]);
     publishRuneSpend(token, spend);
+    // зачем (владелец 2026-09-21): руны с покупки получает АВТОР набора, а не
+    // приложение. Ставим продажу в durable-очередь СРАЗУ после списания — до
+    // всякой сети, иначе покупка в офлайне не дошла бы до автора никогда.
+    // Покупатель этого не ждёт: набор у него уже открыт.
+    await enqueuePackSaleForAuthor(ownerStableId, packId);
     DebugLogger.info('[PACK-BUY] ok', `pack=${packId} price=${priceRunes} balance ${balance}→${balanceAfter}`);
     return { ok: true, alreadyOwned: false, balance: balanceAfter } as const;
   }));

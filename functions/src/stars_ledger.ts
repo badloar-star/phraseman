@@ -127,7 +127,13 @@ export type StarOpReason =
   // капают руны, 3 в минуту просмотра. Класс — grant, НЕ earn: просмотр видео не
   // оплачен учёбой и не должен двигать очки лиги и соревновательный earnedTotal,
   // иначе таблицу лиги выигрывал бы тот, кто дольше держал плеер открытым.
-  | 'video_watch';
+  | 'video_watch'
+  // зачем (владелец 2026-09-21: «начисление должно быть юзеры чьи наборы
+  // покупаются, а не блять приложению»): автор набора сообщества получает руны
+  // с каждой покупки своего набора. Класс — grant, НЕ earn: продажа своего
+  // набора не оплачена учёбой и не должна двигать очки лиги, иначе таблицу
+  // выигрывал бы автор популярного набора, а не тот, кто занимается.
+  | 'community_pack_sale';
 
 export type StarOpClass = 'earn' | 'grant' | 'spend';
 
@@ -156,6 +162,7 @@ export const STAR_OP_CLASS: Readonly<Record<StarOpReason, StarOpClass>> = Object
   video_watch: 'grant',
   dialog_extra_replies: 'spend',
   dialog_unlock: 'spend',
+  community_pack_sale: 'grant',
 });
 
 /**
@@ -204,6 +211,9 @@ export const STAR_OP_SOURCE: Readonly<Record<StarOpReason, RuneSourceKey>> = Obj
   learning_v2_unlock: 'other',
   dialog_extra_replies: 'other',
   dialog_unlock: 'other',
+  // Продажа своего набора — отдельного смысла в разрезе «откуда руны» пока нет,
+  // поэтому «другое»: приток обязан быть виден в сумме.
+  community_pack_sale: 'other',
 });
 
 export type StarOpMeta = Record<string, string | number | boolean>;

@@ -307,6 +307,13 @@ export default function CommunityPackCreateScreen() {
    * (решение владельца), поэтому в режиме правки поле не блокируется.
    */
   const [priceRunes, setPriceRunes] = useState(0);
+  /**
+   * зачем галочка перед ценой (владелец 2026-09-21): включение публичности
+   * сразу выбрасывало ползунок цены — человек ещё не решил, платный ли набор,
+   * а экран уже требовал назначить сумму. Теперь публичный набор по умолчанию
+   * БЕСПЛАТНЫЙ, а цена — осознанный второй шаг.
+   */
+  const [isPaid, setIsPaid] = useState(false);
   const [rows, setRows] = useState<Row[]>([]);
   const [busy, setBusy] = useState(false);
   const [loadErr, setLoadErr] = useState<string | null>(null);
@@ -467,6 +474,11 @@ export default function CommunityPackCreateScreen() {
         setDescription(local.description);
         setPackLanguage(normalizePackLanguage(local.packLanguage));
         setPublishToCommunity(local.isPublic !== false);
+        // зачем (владелец 2026-09-21): цена платного набора восстанавливается
+        // вместе с галочкой — иначе правка молча делала набор бесплатным.
+        const localPrice = Math.max(0, Math.floor(Number(local.priceRunes ?? 0))) || 0;
+        setPriceRunes(localPrice);
+        setIsPaid(localPrice > 0);
         const localThemeIdx = UGC_CARD_THEME_IDS.indexOf(local.cardThemeKey as UgcCardThemeId);
         setThemeIdx(localThemeIdx >= 0 ? localThemeIdx : 0);
         const localBackIdx = UGC_CARD_BACK_IDS.indexOf(local.cardBackKey as UgcCardBackId);
@@ -507,6 +519,9 @@ export default function CommunityPackCreateScreen() {
       setDescription(snap.description);
       setPackLanguage(normalizePackLanguage(snap.packLanguage));
       setPublishToCommunity(true);
+      const cloudPrice = Math.max(0, Math.floor(Number(snap.priceRunes ?? 0))) || 0;
+      setPriceRunes(cloudPrice);
+      setIsPaid(cloudPrice > 0);
       const ti = UGC_CARD_THEME_IDS.indexOf(snap.cardThemeKey as UgcCardThemeId);
       setThemeIdx(ti >= 0 ? ti : 0);
       const bi = UGC_CARD_BACK_IDS.indexOf(snap.cardBackKey as UgcCardBackId);
@@ -564,6 +579,9 @@ export default function CommunityPackCreateScreen() {
         setCardBackIdx(d.cardBackIdx);
         setPackLanguage(normalizePackLanguage(d.packLanguage ?? studyTarget));
         setPublishToCommunity(d.publishToCommunity !== false);
+        const draftPrice = Math.max(0, Math.floor(Number(d.priceRunes ?? 0))) || 0;
+        setPriceRunes(draftPrice);
+        setIsPaid(draftPrice > 0);
         setRows(d.rows.map((r, i) => ({ ...r, id: r.id || `c${i + 1}` })));
         setAddCardFormOpen(d.addCardFormOpen);
         setDraftEn(d.draftEn);
@@ -590,6 +608,7 @@ export default function CommunityPackCreateScreen() {
         cardBackIdx,
         packLanguage,
         publishToCommunity,
+        priceRunes,
         rows,
         addCardFormOpen,
         draftEn,
@@ -611,6 +630,7 @@ export default function CommunityPackCreateScreen() {
     cardBackIdx,
     packLanguage,
     publishToCommunity,
+    priceRunes,
     rows,
     addCardFormOpen,
     draftEn,
@@ -799,6 +819,8 @@ export default function CommunityPackCreateScreen() {
     setThemeIdx(0);
     setCardBackIdx(0);
     setPublishToCommunity(false);
+    setPriceRunes(0);
+    setIsPaid(false);
     setRows([]);
     setAddCardFormOpen(false);
     setDraftEn('');
@@ -842,10 +864,11 @@ export default function CommunityPackCreateScreen() {
       cardThemeKey: themeKey,
       cardBackKey,
       // Приватный набор ценой не обладает: его никто, кроме автора, не увидит.
-      priceRunes: publishToCommunity ? priceRunes : 0,
+      // Приватный или не отмеченный платным набор цены не имеет.
+      priceRunes: publishToCommunity && isPaid ? priceRunes : 0,
     };
     return p;
-  }, [title, description, rows, themeKey, cardBackKey, lang, packLanguage, publishToCommunity, priceRunes, studyTarget]);
+  }, [title, description, rows, themeKey, cardBackKey, lang, packLanguage, publishToCommunity, isPaid, priceRunes, studyTarget]);
 
   /** Локальная проверка перед сохранением: название, описание и хотя бы одна карточка. */
   const localSaveError = useCallback((submission: CommunityPackSubmissionPayload): string | null => {
@@ -1185,8 +1208,35 @@ export default function CommunityPackCreateScreen() {
                   макета рун): приватный набор никто, кроме автора, не увидит —
                   цена для него бессмысленна и только путала бы. Границы тоном,
                   без обводки контейнера (запрет владельца). */}
+              {/* зачем галочка (владелец 2026-09-21): «когда нажимаем чтобы набор
+                  был публичным — не появляется сразу ползунок цена, а сперва надо
+                  поставить галочку». Публичный набор по умолчанию БЕСПЛАТНЫЙ,
+                  цена — осознанный второй шаг. */}
               {publishToCommunity ? (
-                <View style={{ marginTop: 16, padding: 16, borderRadius: 16, backgroundColor: t.bgCard }}>
+                <TouchableOpacity
+                  testID="ugc-pack-paid-toggle"
+                  accessibilityRole="checkbox"
+                  accessibilityState={{ checked: isPaid }}
+                  accessibilityLabel={L('Сделать набор платным', 'Зробити набір платним', 'Make the pack paid', 'Hacer el pack de pago', 'Tornar o pacote pago', 'Đặt bộ thẻ trả phí', 'Jadikan paket berbayar', 'Paketi ücretli yap', 'Ustaw zestaw jako płatny')}
+                  onPress={() => {
+                    // Снял галочку — набор снова бесплатный. Оставить цену «про
+                    // запас» значило бы продавать его без ведома автора.
+                    setIsPaid((value) => {
+                      if (value) setPriceRunes(0);
+                      return !value;
+                    });
+                  }}
+                  style={{ marginTop: 16, padding: 16, borderRadius: 16, backgroundColor: t.bgCard, flexDirection: 'row', alignItems: 'center', gap: 12 }}
+                >
+                  <Ionicons name={isPaid ? 'checkbox' : 'square-outline'} size={24} color={isPaid ? t.gold : t.textGhost} />
+                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800', flex: 1 }}>
+                    {L('Сделать платным', 'Зробити платним', 'Make it paid', 'Hacerlo de pago', 'Tornar pago', 'Đặt trả phí', 'Jadikan berbayar', 'Ücretli yap', 'Ustaw jako płatny')}
+                  </Text>
+                </TouchableOpacity>
+              ) : null}
+
+              {publishToCommunity && isPaid ? (
+                <View style={{ marginTop: 12, padding: 16, borderRadius: 16, backgroundColor: t.bgCard }}>
                   <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                     <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
                       {L('Цена для других', 'Ціна для інших', 'Price for others', 'Precio para otros', 'Preço para outros', 'Giá cho người khác', 'Harga untuk orang lain', 'Diğerleri için fiyat', 'Cena dla innych')}
@@ -1215,17 +1265,20 @@ export default function CommunityPackCreateScreen() {
                     accessibilityLabel={L('Цена набора в рунах', 'Ціна набору в рунах', 'Pack price in runes', 'Precio del pack en runas', 'Preço do pacote em runas', 'Giá bộ thẻ bằng rune', 'Harga paket dalam rune', 'Paketin rün fiyatı', 'Cena zestawu w runach')}
                   />
                   {/* Прогноз — суть выбранного дизайна 3: автор видит не просто
-                      число, а что оно значит для читателей. */}
+                      число, а что оно значит для читателей.
+                      зачем убран вариант «цена для больших наборов» (владелец
+                      2026-09-21): прямое указание удалить этот текст. */}
                   <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700', lineHeight: Math.round(f.sub * 1.5) }} maxFontSizeMultiplier={1.2}>
-                    {priceRunes === 0
-                      ? L('Заберут больше людей — набор ничего не стоит.', 'Візьмуть більше людей — набір нічого не коштує.', 'More people will take it — the pack costs nothing.', 'Más gente lo tomará: el pack no cuesta nada.', 'Mais pessoas vão pegar — o pacote não custa nada.', 'Nhiều người sẽ lấy hơn — bộ thẻ miễn phí.', 'Lebih banyak orang mengambilnya — paket ini gratis.', 'Daha çok kişi alır — paket ücretsiz.', 'Weźmie więcej osób — zestaw nic nie kosztuje.')
-                      : priceRunes <= 2000
-                        ? L('Активный игрок соберёт это за день-два.', 'Активний гравець збере це за день-два.', 'An active player earns this in a day or two.', 'Un jugador activo lo junta en un día o dos.', 'Um jogador ativo junta isso em um ou dois dias.', 'Người chơi tích cực kiếm được trong một hai ngày.', 'Pemain aktif mengumpulkannya dalam satu dua hari.', 'Aktif bir oyuncu bunu bir iki günde toplar.', 'Aktywny gracz zbierze to w dzień lub dwa.')
-                        : L('Это цена для больших наборов — копить придётся неделю.', 'Це ціна для великих наборів — збирати доведеться тиждень.', 'A price for big packs — it takes about a week to save.', 'Un precio para packs grandes: hay que ahorrar una semana.', 'Um preço para pacotes grandes — leva cerca de uma semana.', 'Giá cho bộ thẻ lớn — cần khoảng một tuần để dành.', 'Harga untuk paket besar — perlu sekitar seminggu menabung.', 'Büyük paketler için bir fiyat — bir hafta biriktirmek gerekir.', 'Cena dla dużych zestawów — trzeba zbierać tydzień.')}
+                    {priceRunes <= 2000
+                      ? L('Активный игрок соберёт это за день-два.', 'Активний гравець збере це за день-два.', 'An active player earns this in a day or two.', 'Un jugador activo lo junta en un día o dos.', 'Um jogador ativo junta isso em um ou dois dias.', 'Người chơi tích cực kiếm được trong một hai ngày.', 'Pemain aktif mengumpulkannya dalam satu dua hari.', 'Aktif bir oyuncu bunu bir iki günde toplar.', 'Aktywny gracz zbierze to w dzień lub dwa.')
+                      : L('Копить на такой набор придётся дольше.', 'Збирати на такий набір доведеться довше.', 'Saving up for this one takes longer.', 'Ahorrar para este lleva más tiempo.', 'Juntar para este leva mais tempo.', 'Để dành cho bộ này sẽ lâu hơn.', 'Menabung untuk yang ini butuh waktu lebih lama.', 'Buna biriktirmek daha uzun sürer.', 'Zbieranie na taki zestaw potrwa dłużej.')}
                   </Text>
-                  {/* Честность про деньги: автор не должен думать, что ему платят. */}
+                  {/* зачем этот текст (владелец 2026-09-21): «начисление должно
+                      быть юзеры чьи наборы покупаются». Руны с покупки идут
+                      АВТОРУ — см. communitySyncPackRuneSale. Прежний текст
+                      «руны остаются у приложения» удалён как неверный. */}
                   <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700', marginTop: 10, lineHeight: Math.round(f.sub * 1.5) }} maxFontSizeMultiplier={1.2}>
-                    {L('Руны остаются у приложения — ты получаешь читателей, а не выплату.', 'Руни залишаються в застосунку — ти отримуєш читачів, а не виплату.', 'Runes stay with the app — you gain readers, not a payout.', 'Las runas se quedan en la app: ganas lectores, no un pago.', 'As runas ficam no app — você ganha leitores, não pagamento.', 'Rune thuộc về ứng dụng — bạn nhận người đọc, không phải tiền.', 'Rune tetap di aplikasi — kamu dapat pembaca, bukan bayaran.', 'Rünler uygulamada kalır — ödeme değil, okuyucu kazanırsın.', 'Runy zostają w aplikacji — zyskujesz czytelników, nie wypłatę.')}
+                    {L('Руны за каждую покупку получаешь ты.', 'Руни за кожну покупку отримуєш ти.', 'You get the runes from every purchase.', 'Tú recibes las runas de cada compra.', 'Você recebe as runas de cada compra.', 'Bạn nhận rune từ mỗi lượt mua.', 'Kamu menerima rune dari setiap pembelian.', 'Her satın almadan rünleri sen alırsın.', 'Runy z każdego zakupu trafiają do Ciebie.')}
                   </Text>
                 </View>
               ) : null}

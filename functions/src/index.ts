@@ -995,7 +995,7 @@ export { openAiJobsConfig } from "./openai_jobs_config";
 export { adminTranslateMessage } from "./admin_translate";
 // зачем (владелец 2026-09-21): админка звала adminCommunityPackQaReview с
 // 18.08.2026, а функции не существовало — кнопку AI-проверки прятала заплатка.
-export { adminCommunityPackQaReview, adminCommunityPackApplyQaFixes } from './admin_community_pack_qa';
+export { adminCommunityPackQaReview, adminCommunityPackApplyQaFixes, adminCommunityPackApplyQaFixesToPublished } from './admin_community_pack_qa';
 export { submitSettingsPollVote } from "./settings_poll_vote";
 export { adminEmailBroadcast, adminEmailContactsBackfill } from "./admin_email";
 export { emailUnsubscribe } from "./email_unsubscribe";
@@ -1213,6 +1213,9 @@ export { aiDialogBuyExtraReplies } from "./ai_dialog_extra_replies";
 // а догоняет: телефон авторитетен, здесь только журнал траты и сохранение
 // владения, чтобы переустановка приложения не потеряла купленное.
 export { aiDialogSyncPurchase } from "./ai_dialog_sync_purchase";
+// зачем (владелец 2026-09-21): руны с покупки набора получает АВТОР набора,
+// а не приложение. См. community_pack_rune_sale.ts.
+export { communitySyncPackRuneSale } from "./community_pack_rune_sale";
 export { globalBroadcastClaim } from "./global_broadcast_claim";
 export { globalBroadcastListActive } from "./global_broadcast_public";
 export {

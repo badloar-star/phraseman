@@ -41,6 +41,8 @@ export type CommunityPackCreateDraftV1 = {
   cardBackIdx: number;
   packLanguage?: PackLanguage;
   publishToCommunity?: boolean;
+  /** Цена набора в рунах в незавершённом черновике (0 — бесплатный). */
+  priceRunes?: number;
   rows: CommunityPackCreateDraftRow[];
   addCardFormOpen: boolean;
   draftEn: string;
@@ -111,6 +113,7 @@ function parseDraft(raw: string | null): CommunityPackCreateDraftV1 | null {
       cardBackIdx: clampCardBackIdx(typeof o.cardBackIdx === 'number' ? o.cardBackIdx : 0),
       packLanguage: isPackLanguage(o.packLanguage) ? o.packLanguage : undefined,
       publishToCommunity: o.publishToCommunity === true,
+      priceRunes: Math.max(0, Math.floor(Number(o.priceRunes ?? 0))) || 0,
       rows,
       addCardFormOpen: o.addCardFormOpen === true,
       draftEn: typeof o.draftEn === 'string' ? o.draftEn : '',
@@ -187,6 +190,7 @@ export async function saveCommunityPackCreateDraft(
     cardBackIdx: clampCardBackIdx(d.cardBackIdx),
     packLanguage: isPackLanguage(d.packLanguage) ? d.packLanguage : undefined,
     publishToCommunity: d.publishToCommunity === true,
+    priceRunes: Math.max(0, Math.floor(Number(d.priceRunes ?? 0))) || 0,
     rows: d.rows.slice(0, COMMUNITY_PACK_CARD_COUNT_MAX).map((r, i) => ({ ...r, id: r.id || `c${i + 1}` })),
     addCardFormOpen: d.addCardFormOpen,
     draftEn: d.draftEn,

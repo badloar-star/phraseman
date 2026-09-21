@@ -97,6 +97,7 @@ import { DebugLogger } from './debug-logger';
 import { captureAccountGeneration } from './account_generation';
 import { readUnifiedLevelSpinStars } from './level_spin_star_grants';
 import { buyCommunityPackLocally } from './community_packs/packPurchase';
+import { syncPendingPackSales } from './community_packs/packSaleSync';
 import { addCommunityPackToLibrary } from './community_packs/communityPackActions';
 import CardPackShardPaywallModal from './flashcards/CardPackShardPaywallModal';
 import type { FlashcardMarketPack } from './flashcards/marketplace';
@@ -178,6 +179,11 @@ export default function FlashcardsScreen() {
   useEffect(() => {
     if (!purchasePack) return;
     let cancelled = false;
+    // зачем здесь же (владелец 2026-09-21): разбираем очередь непришедших
+    // начислений авторам. Покупка проходит и в офлайне, поэтому без разбора
+    // при следующем заходе автор не получил бы руны НИКОГДА. Момент выбран
+    // намеренно: шит покупки, а не старт экрана — холодный старт не трогаем.
+    void syncPendingPackSales(captureAccountGeneration());
     void readUnifiedLevelSpinStars(captureAccountGeneration()).then(({ balance }) => {
       if (!cancelled) setRuneBalance(balance);
     }).catch((error: unknown) => {
@@ -1267,6 +1273,9 @@ export default function FlashcardsScreen() {
                 return;
               }
               await addCommunityPackToLibrary(purchasePack);
+              // зачем (владелец 2026-09-21): руны получает АВТОР набора. Догонка
+              // фоновая — покупатель её не ждёт, набор уже добавлен.
+              void syncPendingPackSales(token);
               purchasingRef.current = false;
               setPurchasing(false);
               setPurchasePack(null);

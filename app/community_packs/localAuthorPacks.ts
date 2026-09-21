@@ -34,6 +34,12 @@ export type LocalAuthorPack = {
   /** Independent language of the phrases in this pack; legacy local packs are English. */
   packLanguage?: PackLanguage;
   isPublic?: boolean;
+  /**
+   * Цена набора в рунах. зачем (владелец 2026-09-21): раньше не хранилась —
+   * автор открывал свой платный набор на правку, видел цену 0 и молча делал
+   * набор бесплатным при сохранении.
+   */
+  priceRunes?: number;
   studyTarget?: 'en' | 'fr';
   cloudPackId?: string;
   publicationKey?: string;
@@ -118,6 +124,7 @@ export async function saveLocalAuthorPack(
     cards: payload.cards,
     packLanguage: normalizePackLanguage(payload.packLanguage ?? payload.studyTarget ?? existing?.packLanguage),
     isPublic: payload.publishToCommunity !== false,
+    priceRunes: Math.max(0, Math.floor(Number(payload.priceRunes ?? existing?.priceRunes ?? 0))) || 0,
     studyTarget: target,
     cloudPackId: opts?.cloudPackId ?? existing?.cloudPackId,
     publicationKey: existing?.publicationKey ?? `${id}_${now}`,

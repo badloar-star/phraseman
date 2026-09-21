@@ -1,4 +1,10 @@
 export type DevToolAction =
+  // зачем (владелец 2026-09-21): «в девхаб в самом вверху добавь обе анимации
+  // чтобы я мог запустить и проверить их». Празднование первой покупки иначе
+  // видно только один раз в жизни аккаунта — после первой покупки его уже не
+  // вызвать, и проверять правки было бы нечем.
+  | 'preview-first-purchase-dialog'
+  | 'preview-first-purchase-lesson'
   | 'grant-dev-runes'
   | 'run-onboarding'
   | 'open-max-voice'
@@ -105,6 +111,49 @@ export type DevToolSection = Readonly<{
 }>;
 
 export const DEV_TOOL_SECTIONS = [
+  /**
+   * зачем (владелец 2026-09-21): «в девхаб в самом вверху добавь обе анимации
+   * в приложении чтобы я мог запустить и проверить их». order: -3 — выше
+   * празднования Plus (-2) и рун (-1), то есть самая первая секция хаба.
+   *
+   * Без этой секции празднование первой покупки увидеть практически нельзя:
+   * оно показывается ОДИН раз за товар (повторная покупка отдаёт
+   * `alreadyOwned` и праздника не получает), а проверять правки анимации
+   * надо многократно.
+   *
+   * Обе кнопки монтируют БОЕВОЙ FirstPurchaseSealCelebration с теми же
+   * пропсами, что и настоящая покупка. Ничего не начисляется и не
+   * списывается: компонент только показывает, доступ выдаёт покупка.
+   */
+  {
+    id: 'first-purchase-celebration',
+    order: -3,
+    title: 'Первая покупка',
+    icon: 'sparkles-outline',
+    testID: 'dev-section-first-purchase',
+    tools: [
+      {
+        id: 'first-purchase-dialog',
+        order: 10,
+        title: 'Диалог за руны',
+        detail: 'Боевая анимация «Печать» с иконкой руны. Ничего не списывается.',
+        actionLabel: 'Показать',
+        action: 'preview-first-purchase-dialog',
+        icon: 'sparkles-outline',
+        testID: 'dev-first-purchase-dialog',
+      },
+      {
+        id: 'first-purchase-lesson',
+        order: 20,
+        title: 'Урок за жемчужины',
+        detail: 'Та же анимация с иконкой жемчуга. Ничего не списывается.',
+        actionLabel: 'Показать',
+        action: 'preview-first-purchase-lesson',
+        icon: 'diamond-outline',
+        testID: 'dev-first-purchase-lesson',
+      },
+    ],
+  },
   /**
    * зачем (владелец 2026-09-20): «ДОБАВЬ В ДЕВ ХАБ В САМЫЙ ВВЕРХ КНОПКУ КОТОРАЯ
    * ПОКАЗЫВАЕТ АНИМАЦИЮ ПРАЗДНОВАНИЯ ПОЛУЧЕНИЯ ПЛЮС ИЛИ ПРО». order: -2 —

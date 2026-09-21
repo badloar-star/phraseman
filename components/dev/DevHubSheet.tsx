@@ -33,6 +33,9 @@ import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import PremiumCelebrationModal from '../PremiumCelebrationModal';
+import FirstPurchaseSealCelebration, {
+  type FirstPurchaseKind,
+} from '../FirstPurchaseSealCelebration';
 import ResultsSequence from '../feedback/ResultsSequence';
 import { SpinRewardPlaque } from '../SpinRewardPlaque';
 import WelcomeGiftModal from '../WelcomeGiftModal';
@@ -98,6 +101,14 @@ type PreviewState =
   | Readonly<{
       type: 'celebration';
       variant: 'premium' | 'pro';
+      run: number;
+    }>
+  // зачем (владелец 2026-09-21): празднование ПЕРВОЙ покупки. kind хранится
+  // здесь, а не двумя типами, по той же причине, что и variant выше — монтируем
+  // один боевой компонент, валюта приходит пропом.
+  | Readonly<{
+      type: 'first-purchase';
+      kind: FirstPurchaseKind;
       run: number;
     }>;
 
@@ -381,6 +392,16 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
     requestClose(true);
   }, [requestClose]);
 
+  // Празднование первой покупки. Закрываем хаб с сохранением превью по той же
+  // причине, что и у празднования Plus: иначе native Modal хаба остаётся
+  // поверх и анимации не видно.
+  const openFirstPurchasePreview = useCallback((kind: FirstPurchaseKind) => {
+    hapticTap();
+    runRef.current += 1;
+    setPreview({ type: 'first-purchase', kind, run: runRef.current });
+    requestClose(true);
+  }, [requestClose]);
+
   const openLeaguePreview = useCallback((seed: LeagueDevSeedId) => {
     hapticTap();
     runRef.current += 1;
@@ -590,6 +611,12 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
       case 'preview-update-modal-force':
         requestClose(false, () => emitAppEvent('update_modal_preview', { mode: 'force' }));
         return;
+      case 'preview-first-purchase-dialog':
+        openFirstPurchasePreview('dialog');
+        return;
+      case 'preview-first-purchase-lesson':
+        openFirstPurchasePreview('lesson');
+        return;
       case 'preview-celebration-plus':
         openCelebrationPreview('premium');
         return;
@@ -690,7 +717,7 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
         } as never));
         return;
     }
-  }, [account, applyPlusOverride, busy, openCelebrationPreview, openDailyJourneyPreview, openLeaguePreview, openLessonResultsPreview, openPaywallVariant, openSpinRewardPreview, openWelcomeGiftPreview, requestClose, router, runOnboardingPreview, selectedPaywallContext]);
+  }, [account, applyPlusOverride, busy, openCelebrationPreview, openDailyJourneyPreview, openFirstPurchasePreview, openLeaguePreview, openLessonResultsPreview, openPaywallVariant, openSpinRewardPreview, openWelcomeGiftPreview, requestClose, router, runOnboardingPreview, selectedPaywallContext]);
 
   const accountReady = account.phase === 'active' && Boolean(account.stableId);
   const overrideLabel = plusOverride === 'granted'
@@ -958,6 +985,29 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
           visible={!visible && devSurfaceGranted}
           variant={preview.variant}
           onClose={() => {
+            closePreview();
+            onOpen?.();
+          }}
+        />
+      ) : null}
+
+      {preview?.type === 'first-purchase' ? (
+        // Тот же боевой компонент, что и в покупке: владелец обязан видеть
+        // ровно то, что увидит человек. key={run} перезапускает хореографию с
+        // нуля — иначе повторный тап стартовал бы с конца анимации.
+        //
+        // Отличие от боевого показа ровно одно: onDone никуда не ведёт, а
+        // возвращает в хаб — превью не должно уносить в платный диалог/урок.
+        <FirstPurchaseSealCelebration
+          key={preview.run}
+          visible={!visible && devSurfaceGranted}
+          kind={preview.kind}
+          subjectTitle={preview.kind === 'dialog' ? 'В ресторане' : 'Урок 4'}
+          title={preview.kind === 'dialog' ? 'Диалог открыт' : 'Урок открыт'}
+          subtitle="Теперь он твой навсегда"
+          ctaLabel={preview.kind === 'dialog' ? 'Начать диалог' : 'Начать урок'}
+          onDone={() => {
+            console.log(`[DEV-CELEBRATION] first_purchase_done kind=${preview.kind}`); // guard-ok: исход обязан логироваться и в релизе
             closePreview();
             onOpen?.();
           }}

@@ -124,7 +124,7 @@ import LearningV2SessionOutcomeSheet, {
 import LearningV2LessonDictionaryOverlayV1 from "../../components/learning-v2/LearningV2LessonDictionaryOverlayV1";
 import LearningV2FounderPassModal from "../../components/learning-v2/LearningV2FounderPassModal";
 import { useHideTabBar } from "../../components/TabBarVisibilityContext";
-import { useLearningV2UnlockedLessonWordsV1 } from "../../hooks/use_learning_v2_unlocked_lesson_words_v1";
+import { useLearningV2CourseUnlockedWordsV1 } from "../../hooks/use_learning_v2_course_unlocked_words_v1";
 import { useRequestedFeatureIntro } from "../../hooks/use_requested_feature_intro";
 import FeatureIntroModal from "../../components/FeatureIntroModal";
 import PressableHybrid from "../../components/PressableHybrid";
@@ -148,7 +148,6 @@ import {
   invalidatePremiumCache,
 } from "../premium_guard";
 import {
-  COURSE_LEVELS,
   COURSE_LEVEL_RANGES,
   getCourseLevelForLesson,
   getCourseLevelIndex,
@@ -306,6 +305,18 @@ function writeLessonsUiSessionCache(
  */
 export const useSketchLessonVisual = true;
 const USE_ELITE_LESSONS_MAP = true;
+/**
+ * Номера уроков курса Learning V2 для словаря всего курса.
+ *
+ * зачем: владелец 21.09 — словарь в шапке карты показывает слова всего курса.
+ * Слова лежат по ключу НА УРОК, значит нужен явный список уроков. Константа
+ * модульная, а не собранная в рендере: новая ссылка на каждый рендер сорвала
+ * бы мемоизацию скоупа и перезапускала чтение хранилища.
+ * 32 — столько же уроков открывает карта (isPulseLessonMapAvailable).
+ */
+const LEARNING_V2_COURSE_LESSON_ORDINALS: readonly number[] = Object.freeze(
+  Array.from({ length: 32 }, (_, index) => index + 1),
+);
 // ── Список уроков: один стиль «Туман / Графит» (мягкие заливки + чернила) во всех темах приложения ──
 const PALETTE_SKETCH: Record<string, string> = {
   A1: "#D4CCBC",
@@ -2412,8 +2423,6 @@ export default function LessonsTab({
         learningV2FounderReceipt.accountScopeHash,
   });
   const learningV2FounderPassVisible = learningV2FounderPassGate.visible;
-  const [legacySelectedLevel, setLegacySelectedLevel] =
-    useState<CourseLevel>("A1");
   // зачем (аудит 2026-09-21): поиск по урокам открывается ЛУПОЙ в ряду чипов,
   // а не живёт постоянной строкой — владелец: «не фулл строка ввода, а просто
   // кнопочка». Поле раскрывается НАД рядом, поэтому ряд чипов не сдвигается.
@@ -2428,18 +2437,24 @@ export default function LessonsTab({
   >(null);
   const [learningV2DictionaryOpen, setLearningV2DictionaryOpen] =
     useState(false);
+  // зачем (владелец 2026-09-21): словарь показывает слова ВСЕГО курса, а не
+  // одного урока. Прежний скоуп висел на `expandedLearningV2Lesson`, который
+  // после перехода 20.09 на сплошную карту при обычном входе НЕ заполняется
+  // вовсе — и словарь молча умирал вместе с кнопкой (класс бага «механизм
+  // есть, а данных не дали»). Уроков 32, все ключи локальные: ни одного
+  // чтения Firestore здесь нет и не появляется.
   const learningV2DictionaryScope = useMemo(
     () =>
-      page === "v2" && expandedLearningV2Lesson !== null
+      page === "v2"
         ? {
             targetLanguage: studyTarget,
-            lessonOrdinal: expandedLearningV2Lesson,
+            lessonOrdinals: LEARNING_V2_COURSE_LESSON_ORDINALS,
           }
         : null,
-    [expandedLearningV2Lesson, page, studyTarget],
+    [page, studyTarget],
   );
   const { words: learningV2DictionaryWords } =
-    useLearningV2UnlockedLessonWordsV1(learningV2DictionaryScope, {
+    useLearningV2CourseUnlockedWordsV1(learningV2DictionaryScope, {
       includeAuthoringPreview: __DEV__,
     });
   const [selectedLearningV2Session, setSelectedLearningV2Session] = useState<{
@@ -3982,18 +3997,14 @@ export default function LessonsTab({
         );
       });
     }
-    const [firstLesson, lastLesson] =
-      COURSE_LEVEL_RANGES[legacySelectedLevel];
-    return listData.filter((item) => {
-      if (item.kind === "lesson") {
-        const lessonNumber = item.index + 1;
-        return lessonNumber >= firstLesson && lessonNumber <= lastLesson;
-      }
-      if (item.kind === "exam") return item.level === legacySelectedLevel;
-      if (item.kind === "attestation") return legacySelectedLevel === "B2";
-      return false;
-    });
-  }, [legacyLessonQuery, legacySelectedLevel, listData]);
+    // зачем: владелец 21.09 — «убери A1 A2 B1 B2 кнопочки вверху, пусть всё
+    // будет списком как было когда-то». Здесь стоял фильтр по выбранному
+    // уровню: он резал список до одного уровня и прятал чужие экзамены с
+    // аттестацией. Фильтр не нужен — listData УЖЕ собран как сплошной поток:
+    // заголовок уровня перед уроками 1/9/19/29, экзамен после 8/18/28,
+    // аттестация после 32. Границы уровней человек видит прямо в прокрутке.
+    return listData;
+  }, [legacyLessonQuery, listData]);
   // зачем: карта V2 стала сплошной, и «текущее» занятие может лежать в
   // тысячах строк от начала. Ведём список к нему по индексу строки; высоты
   // строк разные (плашка урока / глава / занятие), поэтому арифметику по
@@ -4041,9 +4052,11 @@ export default function LessonsTab({
   const openLegacyLessons = useCallback(() => {
     setLearningV2DictionaryOpen(false);
     setExpandedLearningV2Lesson(null);
-    setLegacySelectedLevel(getCourseLevelForLesson(currentLessonNum ?? 1));
+    // зачем: здесь выставлялся уровень текущего урока, чтобы список открылся
+    // на нужном разделе. Список теперь сплошной (владелец 21.09), уровень
+    // выбирать не нужно — человек просто листает.
     setPage("lessons");
-  }, [currentLessonNum]);
+  }, []);
   const legacyLessonsIntroDef = featureIntroById(
     "legacy_lessons_first_visit",
   )!;
@@ -4126,48 +4139,10 @@ export default function LessonsTab({
     if (__DEV__) console.log('[COMBO-ENTRY] press:ok → /combined_lesson_pick');
     router.push('/combined_lesson_pick');
   }, [isPremium, router]);
-  const selectLegacyLevel = useCallback((level: CourseLevel) => {
-    setLegacySelectedLevel(level);
-    scrollRef.current?.scrollToOffset?.({ offset: 0, animated: false });
-  }, []);
-  // зачем: на узком экране ряд не влезает целиком и листается. Без подкрутки
-  // человек с уровнем B2 открывал экран и своего уровня НЕ ВИДЕЛ — он оставался
-  // за правым краем (скриншот владельца 2026-09-17). Доводим активный чип в зону
-  // видимости один раз при появлении рельсы: измерять каждый чип дорого и не
-  // нужно — ширина чипа стабильна (52 + зазор 6), смещение считаем по индексу.
-  //
-  // ВАЖНО (2026-09-17): после переноса «Новых уроков» ВНУТРЬ рельсы нельзя
-  // звать scrollToEnd — конец ряда это теперь чип «Новые уроки», и B2 снова
-  // остался бы за краем. Скроллим на вычисленную позицию самого уровня.
-  const legacyLevelRailRef = useRef<ScrollView | null>(null);
-  // Что уже доводили: храним сам уровень, а не голое «да/нет». Иначе после
-  // ручного выбора A1 повторный заход на экран не вернул бы рельсу на место.
-  const legacyLevelRailRevealedForRef = useRef<CourseLevel | null>(null);
-  const revealSelectedLegacyLevel = useCallback(() => {
-    const level = legacySelectedLevel;
-    if (legacyLevelRailRevealedForRef.current === level) return;
-    const index = COURSE_LEVELS.indexOf(level);
-    if (index < 0) {
-      // Немой выход запрещён: уровень вне каталога — это рассинхрон данных.
-      // В релизе молчим: подкрутка рельсы не стоит работы на горячем пути.
-      if (__DEV__) {
-        console.warn(
-          `[LESSONS-RAIL] уровень вне COURSE_LEVELS, подкрутка пропущена: ${String(level)}`,
-        );
-      }
-      return;
-    }
-    legacyLevelRailRevealedForRef.current = level;
-    // Первые два уровня и так видны от левого края — не дёргаем рельсу зря.
-    if (index <= 1) return;
-    // Чип уровня: ширина 52 + зазор 6. Доводим его левый край почти к началу
-    // рельсы (минус один чип слева как «контекст», что ряд листается назад).
-    const CHIP_STEP = 58;
-    legacyLevelRailRef.current?.scrollTo?.({
-      x: Math.max(0, (index - 1) * CHIP_STEP),
-      animated: false,
-    });
-  }, [legacySelectedLevel]);
+  // зачем: здесь жила подкрутка рельсы к выбранному уровню
+  // (доводка + ref на рельсу). Она подкручивала чип B2 в
+  // зону видимости на узком экране. Чипов уровней больше нет (владелец
+  // 21.09: «убери A1 A2 B1 B2 кнопочки вверху»), доводить нечего.
   // Keep this dense list stable: JS-driven per-card scroll scale made cards jitter.
   const itemAnims = useMemo(() => listData.map(() => null), [listData]);
   const handleLessonsScroll = useCallback(
@@ -4687,7 +4662,13 @@ export default function LessonsTab({
   ) : null;
   const learningV2ResourceHud = <View testID="learning-v2-resource-hud" style={{ flexDirection: "row", alignItems: "center", gap: 7, flexShrink: 0 }}>
               {learningV2DevUnlockControl}
-              {expandedLearningV2Lesson !== null ? (
+              {/* зачем (владелец 2026-09-21): «верни кнопку словаря в хедере».
+                  Кнопка никуда не удалялась — она висела на условии
+                  `expandedLearningV2Lesson !== null`, а раскрытых уроков после
+                  перехода 20.09 на сплошную карту не существует, и условие не
+                  выполнялось НИКОГДА. Теперь словарь про весь курс, поэтому
+                  привязка к уроку снята целиком. */}
+              {page === "v2" ? (
                 <PressableHybrid
                   testID="learning-v2-map-dictionary-open"
                   accessibilityLabel={triLang(lang, {
@@ -5343,13 +5324,8 @@ export default function LessonsTab({
               <View style={{ flex: 1, minWidth: 0 }}>
                 <ScrollView
                   horizontal
-                  ref={legacyLevelRailRef}
                   testID="legacy-lessons-level-rail"
                   showsHorizontalScrollIndicator={false}
-                  // зачем: доводим активный уровень в зону видимости ровно один
-                  // раз, когда рельса уже знает свою ширину. onLayout срабатывает
-                  // до первой отрисовки для пользователя, поэтому прыжка не видно.
-                  onContentSizeChange={revealSelectedLegacyLevel}
                   // зачем: рельса обязана иметь свою высоту ДО замера контента —
                   // иначе первый кадр прыгает (правило стабильности раскладки).
                   style={{ flexGrow: 0 }}
@@ -5362,58 +5338,14 @@ export default function LessonsTab({
                     paddingRight: 18,
                   }}
                 >
-                  {COURSE_LEVELS.map((level) => {
-                    const selected = legacySelectedLevel === level;
-                    return (
-                      <PressableHybrid
-                        key={level}
-                        testID={`legacy-lessons-level-${level}`}
-                        accessibilityRole="tab"
-                        accessibilityState={{ selected }}
-                        accessibilityLabel={triLang(lang, {
-                          ru: `Уровень ${level}`,
-                          en: `Level ${level}`,
-                          uk: `Рівень ${level}`,
-                          es: `Nivel ${level}`,
-                          "pt-BR": `Nível ${level}`,
-                          vi: `Cấp độ ${level}`,
-                          id: `Level ${level}`,
-                          tr: `${level} seviyesi`,
-                          pl: `Poziom ${level}`,
-                        })}
-                        onPress={() => selectLegacyLevel(level)}
-                        variant="chip"
-                        style={{
-                          minWidth: 52,
-                          height: 44,
-                          borderRadius: 15,
-                          backgroundColor: selected ? t.accent : t.bgCard,
-                        }}
-                        contentStyle={{
-                          height: 44,
-                          paddingHorizontal: 12,
-                          alignItems: "center",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <Text
-                          // зачем: системный шрифт «очень крупный» не имеет права
-                          // ломать рельсу — перенос тут невозможен (метка из двух
-                          // знаков), а ужимать шрифт владелец запрещает. Поэтому
-                          // ограничиваем множитель, а не размер глифа.
-                          maxFontSizeMultiplier={1.3}
-                          style={{
-                            color: selected ? t.correctText : t.textSecond,
-                            fontSize: 15,
-                            lineHeight: 19,
-                            fontWeight: "700",
-                          }}
-                        >
-                          {level}
-                        </Text>
-                      </PressableHybrid>
-                    );
-                  })}
+                  {/* зачем: владелец 21.09 — «убери A1 A2 B1 B2 кнопочки
+                      вверху, пусть всё будет списком как было когда-то».
+                      Здесь жили чипы уровней, собранные по COURSE_LEVELS. Список
+                      теперь идёт сплошняком, а границу уровня показывает
+                      заголовок прямо в потоке — переключатель дублировал бы
+                      то, что и так видно при прокрутке.
+                      Ряд остался: поиск, COMBO и «Новые уроки» владелец
+                      убирать не просил. */}
                   {/* зачем (владелец 2026-09-17): пользователь просил
                       «комбинированный урок» — несколько тем вперемешку, потому
                       что после 50 вопросов одной темы первые вопросы следующей
@@ -6201,9 +6133,11 @@ export default function LessonsTab({
           setSelectedLearningV2Session(null);
         }}
       />
-      {learningV2DictionaryOpen && expandedLearningV2Lesson !== null ? (
+      {/* lessonOrdinal={null} — словарь всего курса: урок называет каждая
+          секция списка, а не шапка шторки (владелец 2026-09-21). */}
+      {learningV2DictionaryOpen ? (
         <LearningV2LessonDictionaryOverlayV1
-          lessonOrdinal={expandedLearningV2Lesson}
+          lessonOrdinal={null}
           words={learningV2DictionaryWords}
           onClose={() => setLearningV2DictionaryOpen(false)}
         />

@@ -4,6 +4,8 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import Svg, { Circle, Path } from 'react-native-svg';
 import Animated, { cancelAnimation, Easing, useAnimatedProps, useAnimatedStyle, useSharedValue, withTiming, type SharedValue } from 'react-native-reanimated';
 import { useTheme } from '../ThemeContext';
+import { LinearGradient } from '../SafeLinearGradient';
+import { withAlpha } from '../../app/flashcards/pill_tabbar_chrome';
 import { LearningV2MapNode } from '../LearningV2MapNode';
 import PressableHybrid from '../PressableHybrid';
 import { triLang, type Lang } from '../../constants/i18n';
@@ -99,6 +101,30 @@ const MAP_FOOTER_AIR = 56;
  * overScrollMode, одного alwaysBounceVertical там мало.
  */
 const MAP_DECELERATION_RATE = 0.97;
+/**
+ * Высота тающей полосы у верхнего и нижнего края карты.
+ *
+ * зачем: владелец 21.09 — «чтобы оно блурилось, а не был такой жёсткий край»,
+ * «чтобы поле карты было больше». Карта теперь идёт ПОД шапкой и под панелью
+ * «Все уроки», а на кромках растворяется в фоне: кружок тает, а не режется
+ * линейкой.
+ *
+ * Почему НЕ живой блюр (expo-blur / BlurView). На Android BlurView подписан на
+ * pre-draw и пересчитывает снапшот подложки КАЖДЫЙ кадр, пока под ним что-то
+ * движется, — а под полосой едут 2048 строк. Это прямо возвращает жалобу
+ * владельца 21.09 «при быстром скролле не успевает прорисоваться», ради
+ * которой правили decelerationRate, windowSize и первую партию рендера
+ * (открытие 7,5 с → 191 мс). Затухание альфы — статический слой, который при
+ * прокрутке не перерисовывается вовсе. На полосе в половину кружка блюр и
+ * растворение визуально неразличимы, а цена кадра отличается на порядок.
+ * Тот же приём уже принят в проекте: components/TopFadeMask.tsx.
+ *
+ * 56 = половина кружка (101/2 ≈ 50) + запас на гало (оно раздувается до
+ * scale 1.14). Меньше 48 — кружок «щёлкает» из резкости в ничто, видна
+ * кромка. Больше 72 — полоса перестаёт быть тонкой (владелец выбрал
+ * «тонкая полоса») и начинает съедать содержимое.
+ */
+const MAP_EDGE_FADE_HEIGHT = 56;
 type SessionRow = Extract<LearningV2CourseAccordionRowV1, { kind: 'session' }>;
 type LessonRow = Extract<LearningV2CourseAccordionRowV1, { kind: 'lesson' }>;
 /** Строка сплошной карты: занятие или плашка урока между уроками. */
@@ -369,19 +395,19 @@ export default function LearningV2PulseCourse(props: Props) {
   }, []);
   const entryPlayed = useRef(false);
   const centeredOnce = useRef(false);
-  // зачем: владелец 21.09 — «не хочу чтобы при открытии край кружка
-  // обрезался». Кнопка «Все уроки» — плавающий футер поверх списка
-  // (styles.mapFooter, absolute bottom), а у списка снизу стоял только
-  // geometry.padding. Последний видимый кружок уходил ПОД кнопку.
-  // Резервируем высоту футера ОТСТУПОМ САМОГО СПИСКА (marginBottom), а не
-  // paddingBottom контента: padding добавляет место в конце всех 2048 строк,
-  // а обрезался кружок в СЕРЕДИНЕ — просто нижний край видимой области
-  // уходил под кнопку. marginBottom укорачивает саму видимую область.
-  // зачем: владелец 21.09 — «чтобы при открытии ничего не обрезалось».
-  // Резерв = высота кнопки + её собственный нижний отступ (ровно как у
-  // styles.mapFooter) ПЛЮС воздух: кружок 101px в строке 128px оставляет
-  // снизу всего 21px, и его цоколь с тенью всё равно подлезал под кнопку.
-  // Замерено на эмуляторе 21.09: без этого запаса кружок №5 срезан.
+  // Резерв под плавающую кнопку «Все уроки»: высота кнопки + её собственный
+  // нижний отступ (ровно как у styles.mapFooter) + воздух.
+  //
+  // зачем (владелец 21.09, ДВА захода): сначала «не хочу чтобы при открытии
+  // край кружка обрезался» — тогда резерв стоял отступом САМОГО СПИСКА
+  // (marginBottom), укорачивая видимую область, чтобы кружок не подлезал под
+  // кнопку. Затем владелец попросил обратное: «опусти ниже и вверху тоже,
+  // чтобы поле карты было больше» — карта обязана идти ПОД панелью, а кромку
+  // прячет тающая полоса (MAP_EDGE_FADE_HEIGHT), а не укороченная область.
+  // Поэтому резерв переехал в paddingBottom КОНТЕНТА: видимая область снова
+  // во всю высоту контейнера, но последняя строка списка по-прежнему не
+  // упирается в кнопку. marginBottom здесь больше НЕ ставим — он вернёт
+  // жёсткий край, ради снятия которого и делалась эта правка.
   const mapFooterReserve =
     MAP_FOOTER_BUTTON_HEIGHT + Math.max(18, props.bottomPadding) + MAP_FOOTER_AIR;
   // зачем: ЗАМЕР 21.09 — между рендером разметки (4 мс) и монтированием карты
@@ -421,10 +447,30 @@ export default function LearningV2PulseCourse(props: Props) {
   );
   const currentRow = rows[currentRowIndex];
   const target = currentRow?.kind === 'session' ? currentRow.sessionOrdinal : 1;
-  // зачем: viewport меряется с КОНТЕЙНЕРА, а список теперь короче на высоту
-  // футера (marginBottom). Центрирование текущего узла обязано считаться от
-  // высоты СПИСКА, иначе узел уезжает вниз ровно на высоту кнопки.
-  const mapViewportHeight = Math.max(0, viewport.height - mapFooterReserve);
+  // зачем: раньше список был КОРОЧЕ контейнера на высоту футера (marginBottom),
+  // и центрирование считалось от высоты списка — иначе узел уезжал вниз ровно
+  // на высоту кнопки. Теперь карта идёт под панелью во всю высоту контейнера
+  // (резерв переехал в paddingBottom контента), поэтому центрировать надо от
+  // ПОЛНОЙ высоты. Оставить здесь вычитание — значит поднять текущий узел
+  // вверх на ~130px и показать пустоту снизу.
+  const mapViewportHeight = Math.max(0, viewport.height);
+  // Высота плавающей шапки карты: safe-area + ряд кнопок (styles.headerRow
+  // minHeight 52) + собственные отступы styles.mapHeader (4 сверху, 8 снизу).
+  //
+  // зачем: шапка ушла в absolute, значит она больше НЕ занимает места в потоке
+  // и список стартует от самого верха экрана. Без этого отступа первый кружок
+  // уезжает под кнопки «назад» и «523». Величина считается, а не меряется
+  // onLayout: замер дал бы второй кадр с другой геометрией, а это ровно тот
+  // баг «видно ДВА кадра», который уже чинили contentOffset'ом (20.09).
+  const mapHeaderReserve = (props.topPadding ?? 0) + 4 + 52 + 8;
+  // Начало координат прокрутки = весь верхний отступ контента.
+  //
+  // зачем: смещение строки считается в ЧЕТЫРЁХ местах (getItemLayout,
+  // initialOffset, scrollToCurrent, jumpToLesson), и раньше каждое повторяло
+  // `geometry.padding + offsets[i]` своей копией. Появился второй слагаемый
+  // (резерв шапки) — и любая забытая копия промахнулась бы ровно на высоту
+  // шапки. Держим ОДНО значение: разойтись больше нечему.
+  const mapContentTop = geometry.padding + mapHeaderReserve;
   const geometry = pulseMapGeometry(mapViewportHeight, target);
   // зачем: строки карты РАЗНОЙ высоты — плашка урока это разворот на
   // пол-экрана, заголовок главы ниже, занятие ещё ниже. Раньше getItemLayout
@@ -474,10 +520,10 @@ export default function LearningV2PulseCourse(props: Props) {
       return;
     }
     mapRef.current?.scrollToOffset({
-      offset: geometry.padding + (layout.offsets[index] ?? 0),
+      offset: mapContentTop + (layout.offsets[index] ?? 0),
       animated: false,
     });
-  }, [geometry.padding, layout.offsets, rows]);
+  }, [mapContentTop, layout.offsets, rows]);
   // зачем: раньше позиция считалась как (sessionOrdinal - 1) * step —
   // смещение ВНУТРИ одного урока. На сплошной карте это всегда приводило бы
   // к уроку 1: у человека на уроке 5 текущее занятие лежит на сотни строк
@@ -508,13 +554,14 @@ export default function LearningV2PulseCourse(props: Props) {
     // курса встаём ровно на занятие 1 — граница строки, огрызка не остаётся.
     const lead = atCourseStart ? 0 : mapViewportHeight * 0.4;
     mapRef.current?.scrollToOffset({
-      // + geometry.padding: у contentContainer есть paddingVertical, и без
-      // него прокрутка встаёт ВЫШЕ строки ровно на это значение — снизу
-      // торчал огрызок плашки главы (владелец 20.09: «глава 1 обрезается»).
-      offset: Math.max(0, geometry.padding + (layout.offsets[currentRowIndex] ?? 0) - lead),
+      // + mapContentTop: у contentContainer есть верхний отступ (центрирование
+      // плюс резерв под плавающую шапку), и без него прокрутка встаёт ВЫШЕ
+      // строки ровно на это значение — снизу торчал огрызок плашки главы
+      // (владелец 20.09: «глава 1 обрезается»).
+      offset: Math.max(0, mapContentTop + (layout.offsets[currentRowIndex] ?? 0) - lead),
       animated,
     });
-  }, [currentRowIndex, geometry.padding, layout.offsets, mapViewportHeight, rows, viewport.height]);
+  }, [currentRowIndex, mapContentTop, layout.offsets, mapViewportHeight, rows, viewport.height]);
   // Первичное наведение: ровно ОДИН раз за жизнь экрана.
   // зачем: висело на onContentSizeChange — а размер контента меняется каждый
   // раз, когда список дорисовывает строки при прокрутке. Владелец 20.09:
@@ -532,8 +579,8 @@ export default function LearningV2PulseCourse(props: Props) {
       (rows[currentRowIndex] as SessionRow).lessonOrdinal === 1 &&
       (rows[currentRowIndex] as SessionRow).chapterOrdinal === 1;
     const lead = atStart ? 0 : (mapViewportHeight || 700) * 0.4;
-    return { x: 0, y: Math.max(0, geometry.padding + (layout.offsets[currentRowIndex] ?? 0) - lead) };
-  }, [currentRowIndex, geometry.padding, layout.offsets, mapViewportHeight, rows, viewport.height]);
+    return { x: 0, y: Math.max(0, mapContentTop + (layout.offsets[currentRowIndex] ?? 0) - lead) };
+  }, [currentRowIndex, mapContentTop, layout.offsets, mapViewportHeight, rows, viewport.height]);
   const backToCurrent = useCallback(() => { scrollToCurrent(true); }, [scrollToCurrent]);
   const centerCurrent = useCallback(() => {
     if (!viewport.height || centeredOnce.current) return;
@@ -631,10 +678,10 @@ export default function LearningV2PulseCourse(props: Props) {
   const getMapItemLayout = useCallback(
     (_: unknown, index: number) => ({
       length: layout.heights[index] ?? geometry.step,
-      offset: geometry.padding + (layout.offsets[index] ?? 0),
+      offset: mapContentTop + (layout.offsets[index] ?? 0),
       index,
     }),
-    [geometry.padding, geometry.step, layout.heights, layout.offsets],
+    [mapContentTop, geometry.step, layout.heights, layout.offsets],
   );
   // зачем: в зависимостях useCallback стоял весь объект `props`, а его
   // идентичность меняется при КАЖДОМ рендере родителя — useCallback был
@@ -748,9 +795,22 @@ export default function LearningV2PulseCourse(props: Props) {
         );
   }, [active, c, completed, currentRowIndex, devUnlockAll, geometry.nodeSize, geometry.step, isSessionMaterialAvailable, lang, mapEntry, onSessionCompleted, onSessionPress, reducedMotion, rows.length, stars, t, titles, viewport.width]);
 
-  return <View testID="learning-v2-pulse-course" style={[styles.root, { backgroundColor: t.bgPrimary, paddingTop: props.topPadding ?? 0 }]}>
-    <View style={[styles.header, lessonListOpen ? null : styles.mapHeader]}>
-      <View style={styles.headerRow}>
+  // зачем: владелец 21.09 — «опусти ниже и вверху тоже, чтобы поле карты было
+  // больше». На КАРТЕ шапка становится плавающей (absolute) и safe-area уходит
+  // в неё саму: карта получает всю высоту контейнера и проезжает под шапкой,
+  // а кромку прячет верхняя полоса растворения.
+  // В режиме СПИСКА уроков всё остаётся как было — шапка в потоке, отступ на
+  // корне: под ней идут чипы уровней и список, которым нужна честная высота.
+  const mapTopPad = props.topPadding ?? 0;
+  return <View testID="learning-v2-pulse-course" style={[styles.root, { backgroundColor: t.bgPrimary, paddingTop: lessonListOpen ? mapTopPad : 0 }]}>
+    <View
+      pointerEvents="box-none"
+      style={[
+        styles.header,
+        lessonListOpen ? null : [styles.mapHeader, styles.mapHeaderFloating, { paddingTop: mapTopPad + 4 }],
+      ]}
+    >
+      <View pointerEvents="box-none" style={styles.headerRow}>
         {lessonListOpen ? <PressableHybrid variant="icon" accessibilityLabel={c.back} onPress={back} style={[styles.iconButton, { backgroundColor: t.bgCard }]} contentStyle={styles.iconButtonContent}><Ionicons name="chevron-back" size={24} color={t.textPrimary} /></PressableHybrid> : props.navigationControl}
         {lessonListOpen ? <Text style={[styles.headerTitle, { color: t.textPrimary }]}>{c.all}</Text> : <View style={styles.headerSpacer} />}
         {props.headerAccessory}
@@ -827,7 +887,28 @@ export default function LearningV2PulseCourse(props: Props) {
         </PressableHybrid>;
       }} />
     </> : <Animated.View testID="learning-v2-pulse-map-entry" style={[styles.mapContainer, mapEntryStyle]} onLayout={e => setViewport(e.nativeEvent.layout)}>
-      <FlatList ref={mapRef} testID="learning-v2-pulse-map" data={rows} keyExtractor={mapRowKeyV1} style={{ marginBottom: mapFooterReserve }} contentContainerStyle={{ paddingVertical: geometry.padding }} getItemLayout={getMapItemLayout} contentOffset={initialOffset} onContentSizeChange={centerCurrent} onViewableItemsChanged={onViewableItemsChangedRef.current} viewabilityConfig={MAP_VIEWABILITY_CONFIG} onMomentumScrollBegin={cancelVisibleSessionsSettledAfterDrag} onMomentumScrollEnd={handleMomentumScrollEnd} onScrollEndDrag={scheduleVisibleSessionsSettledAfterDrag} initialNumToRender={6} maxToRenderPerBatch={10} updateCellsBatchingPeriod={16} windowSize={9} removeClippedSubviews showsVerticalScrollIndicator={false} decelerationRate={MAP_DECELERATION_RATE} bounces alwaysBounceVertical overScrollMode="always" renderItem={renderMapRow} />
+      <FlatList ref={mapRef} testID="learning-v2-pulse-map" data={rows} keyExtractor={mapRowKeyV1} contentContainerStyle={{ paddingTop: geometry.padding + mapHeaderReserve, paddingBottom: geometry.padding + mapFooterReserve }} getItemLayout={getMapItemLayout} contentOffset={initialOffset} onContentSizeChange={centerCurrent} onViewableItemsChanged={onViewableItemsChangedRef.current} viewabilityConfig={MAP_VIEWABILITY_CONFIG} onMomentumScrollBegin={cancelVisibleSessionsSettledAfterDrag} onMomentumScrollEnd={handleMomentumScrollEnd} onScrollEndDrag={scheduleVisibleSessionsSettledAfterDrag} initialNumToRender={6} maxToRenderPerBatch={10} updateCellsBatchingPeriod={16} windowSize={9} removeClippedSubviews showsVerticalScrollIndicator={false} decelerationRate={MAP_DECELERATION_RATE} bounces alwaysBounceVertical overScrollMode="always" renderItem={renderMapRow} />
+      {/* Тающие края. Карта проезжает под шапкой и под панелью, а кромку
+          прячет затухание в цвет фона — кружок растворяется, а не режется
+          (владелец 21.09). pointerEvents="none": полосы лежат ПОВЕРХ списка,
+          и без этого они съели бы тап по верхним и нижним кружкам.
+          Три точки вместо двух: у линейного градиента заметна «середина», а
+          с ускоренным началом (0.58 на половине) переход читается как
+          растворение, а не как полупрозрачная плёнка. */}
+      <LinearGradient
+        pointerEvents="none"
+        testID="learning-v2-pulse-map-fade-top"
+        colors={[t.bgPrimary, withAlpha(t.bgPrimary, 0.58), withAlpha(t.bgPrimary, 0)]}
+        locations={[0, 0.5, 1]}
+        style={[styles.mapEdgeFadeTop, { height: MAP_EDGE_FADE_HEIGHT + (props.topPadding ?? 0) }]}
+      />
+      <LinearGradient
+        pointerEvents="none"
+        testID="learning-v2-pulse-map-fade-bottom"
+        colors={[withAlpha(t.bgPrimary, 0), withAlpha(t.bgPrimary, 0.58), t.bgPrimary]}
+        locations={[0, 0.5, 1]}
+        style={[styles.mapEdgeFadeBottom, { height: MAP_EDGE_FADE_HEIGHT + Math.max(18, props.bottomPadding) }]}
+      />
       {/* зачем: владелец 20.09 — «когда мы на карте, в футере есть кнопочка
           специальная, которая открывает список всех уроков». Карта под ней
           продолжает скроллиться: кнопка плавает, а не занимает место. */}
@@ -863,6 +944,17 @@ const styles = StyleSheet.create({
   root: { flex: 1 },
   header: { minHeight: 72, paddingHorizontal: 12, justifyContent: 'center' },
   mapHeader: { paddingTop: 4, paddingBottom: 8, gap: 6 },
+  // Плавающая шапка карты: карта идёт ПОД ней (владелец 21.09 — «поле карты
+  // должно быть больше»). zIndex=3 — выше полос растворения (они без zIndex,
+  // то есть в обычном порядке потока), иначе верхняя полоса легла бы на
+  // кнопки и притушила их. pointerEvents="box-none" на самой шапке: пустое
+  // место между кнопками не должно перехватывать прокрутку карты.
+  mapHeaderFloating: { position: 'absolute', left: 0, right: 0, top: 0, zIndex: 3, elevation: 3 },
+  // Плавающая шапка карты: лежит ПОВЕРХ карты и полос растворения.
+  // zIndex/elevation обязаны быть выше полос, иначе затухание накроет кнопки
+  // и они станут блёклыми. pointerEvents="box-none" на контейнере — пустое
+  // место шапки пропускает жест к карте, сами кнопки остаются кликабельными.
+  mapHeaderFloating: { position: 'absolute', top: 0, left: 0, right: 0, zIndex: 3, elevation: 3 },
   headerRow: { minHeight: 52, flexDirection: 'row', alignItems: 'center', gap: 10 },
   headerSpacer: { flex: 1 },
   headerTitle: { flex: 1, minWidth: 0, fontSize: L.map.headingSize, lineHeight: 23, fontWeight: '700', paddingVertical: 10 },
@@ -907,6 +999,11 @@ const styles = StyleSheet.create({
   plateArc: { fontSize: 15, fontWeight: '600', lineHeight: 21, marginTop: 14, textAlign: 'center' },
   plateCount: { marginTop: 20, borderRadius: 999, paddingVertical: 7, paddingHorizontal: 16 },
   plateCountText: { fontSize: 13, fontWeight: '800', letterSpacing: 0.3 },
+  // Полосы растворения у кромок карты. Лежат поверх списка, тач пропускают
+  // (pointerEvents="none" на самих элементах), высота задаётся инлайном —
+  // она зависит от safe-area конкретного телефона.
+  mapEdgeFadeTop: { position: 'absolute', left: 0, right: 0, top: 0 },
+  mapEdgeFadeBottom: { position: 'absolute', left: 0, right: 0, bottom: 0 },
   mapFooter: { position: 'absolute', left: 0, right: 0, bottom: 0, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 11 },
   mapFooterButton: { borderRadius: 19, height: 56, flex: 1 },
   mapFooterNow: { borderRadius: 19, height: 56, width: 56 },

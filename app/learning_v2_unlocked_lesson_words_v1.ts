@@ -241,6 +241,37 @@ export function subscribeLearningV2AuthoringPreviewUnlockedLessonWordsV1(
   };
 }
 
+/**
+ * Подписка на изменения слов ЛЮБОГО из перечисленных уроков.
+ *
+ * зачем: словарь курса показывает 32 урока сразу, а `emit` бьёт по ключу
+ * одного урока. Без этой подписки слово, открытое в уроке 3, не появилось бы
+ * в уже открытой шторке — молчаливое расхождение, которое человек прочитал бы
+ * как «словарь не работает».
+ */
+export function subscribeLearningV2CourseUnlockedWordsV1(
+  account: LearningV2UnlockedLessonWordsAccountScopeV1,
+  targetLanguage: string,
+  lessonOrdinals: readonly number[],
+  includeAuthoringPreview: boolean,
+  listener: Listener,
+): () => void {
+  const unsubscribes: (() => void)[] = [];
+  for (const lessonOrdinal of lessonOrdinals) {
+    if (!isPositiveInteger(lessonOrdinal)) continue;
+    const scope = { ...account, targetLanguage, lessonOrdinal };
+    unsubscribes.push(subscribeLearningV2UnlockedLessonWordsV1(scope, listener));
+    if (includeAuthoringPreview) {
+      unsubscribes.push(
+        subscribeLearningV2AuthoringPreviewUnlockedLessonWordsV1(scope, listener),
+      );
+    }
+  }
+  return () => {
+    for (const unsubscribe of unsubscribes) unsubscribe();
+  };
+}
+
 export async function loadLearningV2UnlockedLessonWordsV1(
   scope: Scope,
 ): Promise<readonly LearningV2UnlockedLessonWordV1[]> {
@@ -281,6 +312,45 @@ export async function loadLearningV2VisibleUnlockedLessonWordsV1(
   if (!includeAuthoringPreview) return learner;
   const preview = await loadLearningV2AuthoringPreviewUnlockedLessonWordsV1(scope);
   return mergeLearningV2UnlockedLessonWordListsV1(learner, preview);
+}
+
+/**
+ * Слова ВСЕХ уроков курса одним заходом.
+ *
+ * зачем: владелец 21.09 выбрал «все открытые слова курса» — словарь в шапке
+ * карты больше не про один урок. Слова лежат по ключу НА УРОК, поэтому курс
+ * это 32 ключа (или 64 с превью автора). Читаем их одним `multiGet`, а не
+ * циклом из 32 `getItem`: на слабом телефоне цикл — это 32 моста в натив
+ * подряд, прямо в момент открытия шторки.
+ *
+ * Проверка поколения аккаунта берётся ровно та же (`isCurrentScope`) и стоит
+ * ДО и ПОСЛЕ чтения: если человек успел переключить аккаунт, пока читали, —
+ * отдаём пусто, а не чужие слова.
+ */
+export async function loadLearningV2CourseUnlockedWordsV1(
+  account: LearningV2UnlockedLessonWordsAccountScopeV1,
+  targetLanguage: string,
+  lessonOrdinals: readonly number[],
+  includeAuthoringPreview: boolean,
+): Promise<readonly LearningV2UnlockedLessonWordV1[]> {
+  const ordinals = lessonOrdinals.filter(isPositiveInteger);
+  if (ordinals.length === 0) return Object.freeze([]);
+  const keys: string[] = [];
+  for (const lessonOrdinal of ordinals) {
+    keys.push(learningV2UnlockedLessonWordsKeyV1(account, targetLanguage, lessonOrdinal));
+    if (includeAuthoringPreview) {
+      keys.push(
+        learningV2AuthoringPreviewUnlockedLessonWordsKeyV1(account, targetLanguage, lessonOrdinal),
+      );
+    }
+  }
+  return withAccountTransitionLock(async () => {
+    if (!isCurrentScope(account)) return Object.freeze([]);
+    const rows = await AsyncStorage.multiGet(keys);
+    if (!isCurrentScope(account)) return Object.freeze([]);
+    const lists = rows.map(([, raw]) => parseLearningV2UnlockedLessonWordsV1(raw));
+    return mergeLearningV2UnlockedLessonWordListsV1(...lists);
+  });
 }
 
 async function markAtKey(

@@ -1066,7 +1066,87 @@ export async function readEnergySessionRefundCredit(
   return amount;
 }
 
-export async function recoverEnergySessionOperations(
+export /**
+ * Сколько держать записи завершённых операций с энергией.
+ *
+ * зачем (владелец 2026-09-21, «всё лагает, причём везде» → «да» на чистку):
+ * реестр писал по ~3 ключа на каждый вход в урок или матч и НИКОГДА их не
+ * удалял. Замер: при 15 сессиях в день за год набегает ~16 000 ключей, а
+ * полный перебор индекса становится заметным примерно от 2000-3000. Именно
+ * поэтому новый телефон владельцу не помог — данные приехали со старого
+ * аккаунта вместе с распухшим индексом.
+ *
+ * Владелец спросил, не хватит ли 10 часов. Не хватит: эти записи — не история,
+ * а ЗАЩИТА ОТ ДВОЙНОГО СПИСАНИЯ. Опасен не обычный сценарий, а застрявший —
+ * телефон в самолётном режиме, сервер не подтвердил операцию, возврат энергии
+ * висит в очереди. Такое разгребается при следующем заходе в сеть, и если
+ * запись исчезнет за 10 часов, а человек откроет приложение через сутки,
+ * застрявшая операция останется без своей защиты.
+ *
+ * 7 дней — середина по замеру: ~315 ключей при обычной игре (это глубоко ниже
+ * порога заметности) и неделя запаса на любой застрявший возврат.
+ */
+const SETTLED_OPERATION_RETENTION_MS = 7 * 24 * 60 * 60 * 1000;
+
+/**
+ * Удаляет записи ПОЛНОСТЬЮ завершённых операций старше срока хранения.
+ *
+ * Условия удаления намеренно параноидальные — эти ключи защищают от двойного
+ * списания энергии, поэтому удаляется только то, что уже ничего не защищает:
+ *   • есть квитанция с отметкой времени (иначе возраст неизвестен — не трогаем);
+ *   • квитанция старше срока хранения;
+ *   • НЕТ незавершённых стадий: prepared, abort, запроса возврата;
+ *   • НЕТ записи обратной операции возврата (она означает живой сценарий).
+ * Любое сомнение — ключ остаётся. Пропущенная чистка стоит нисколько, лишнее
+ * удаление стоит энергии человека.
+ */
+async function pruneSettledEnergyOperations(
+  owner: string,
+  allKeys: readonly string[],
+): Promise<void> {
+  const grantPrefix = `${GRANT_PREFIX}${ownerPart(owner)}:`;
+  const grantKeys = allKeys.filter((key) => key.startsWith(grantPrefix));
+  if (grantKeys.length === 0) return;
+
+  const liveKeys = new Set(allKeys);
+  const cutoffMs = Date.now() - SETTLED_OPERATION_RETENTION_MS;
+  const doomed: string[] = [];
+
+  const grantRows = await AsyncStorage.multiGet(grantKeys);
+  for (const [grantStorageKey, raw] of grantRows) {
+    if (raw === null) continue;
+    const operationId = grantStorageKey.slice(grantPrefix.length);
+    if (!OP_ID_RE.test(operationId)) continue;
+    const receipt = parseGrantReceipt(raw, owner, operationId);
+    // Битую квитанцию НЕ трогаем: её разберёт штатная проверка целостности,
+    // а чистка не должна прятать порчу данных.
+    if (!receipt || !Number.isFinite(receipt.createdAtMs)) continue;
+    if (receipt.createdAtMs > cutoffMs) continue;
+    // Любая незавершённая стадия — операция ещё живая, уходим.
+    if (liveKeys.has(preparedKey(owner, operationId))) continue;
+    if (liveKeys.has(abortKey(owner, operationId))) continue;
+    if (liveKeys.has(refundRequestKey(owner, operationId))) continue;
+    const reversalId = refundOperationId(operationId);
+    if (liveKeys.has(opKey(owner, reversalId))) continue;
+    if (liveKeys.has(preparedKey(owner, reversalId))) continue;
+    if (liveKeys.has(grantKey(owner, reversalId))) continue;
+    doomed.push(grantStorageKey, opKey(owner, operationId), ackKey(owner, operationId));
+  }
+
+  if (doomed.length === 0) return;
+  const existing = doomed.filter((key) => liveKeys.has(key));
+  if (existing.length === 0) return;
+  try {
+    await AsyncStorage.multiRemove(existing);
+    console.log(`[ENERGY-LEDGER] prune: удалено ${existing.length} ключей завершённых операций старше ${SETTLED_OPERATION_RETENTION_MS / (24 * 60 * 60 * 1000)} дней`);
+  } catch (error: unknown) {
+    // зачем: немой catch запрещён правилом владельца. Неудачная чистка — не
+    // повод ронять восстановление: реестр останется корректным, просто длиннее.
+    console.warn('[ENERGY-LEDGER] prune:catch', error instanceof Error ? error.message : String(error)); // guard-ok: лог в catch обязателен
+  }
+}
+
+async function recoverEnergySessionOperations(
   projectionInput: EnergySessionProjection,
   _bootId: string,
   options: Readonly<{ accountToken?: AccountGenerationToken; accountTransitionLockLease?: AccountTransitionLockLease }> = {},
@@ -1159,6 +1239,7 @@ export async function recoverEnergySessionOperations(
     // restart must replay that grant with the same operation id; it must not
     // mint free energy merely because the UI had no chance to write an ack.
     // Only an explicit, keyed entry-failed/cancel refund reverses the debit.
+    await pruneSettledEnergyOperations(owner, allKeys);
     return projection;
   }), options.accountTransitionLockLease);
 }

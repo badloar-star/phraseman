@@ -129,3 +129,39 @@ describe('цена доезжает от автора до начисления'
     expect(normalizePackPriceRunes(1450)).toBe(1500);
   });
 });
+
+/**
+ * Потолок цены живёт в ТРЁХ местах: у ползунка на клиенте
+ * (COMMUNITY_PACK_PRICE_MAX_RUNES), в санитайзере публикации
+ * (UGC_PACK_PRICE_MAX_RUNES) и в начислении (MAX_PACK_PRICE_RUNES).
+ *
+ * Разъедутся — появится тихая дыра: цена пройдёт публикацию и осядет в
+ * документе набора, но начисление отвергнет её как pack_is_not_paid. Набор
+ * платный, покупатель платит, автор не получает. Сторож ловит расхождение
+ * ДВУХ серверных копий, между которыми и проходит эта граница.
+ */
+describe('границы цены не разъезжаются между публикацией и начислением', () => {
+  it('цена на самом потолке проходит обе проверки', () => {
+    const stored = normalizePackPriceRunes(5000);
+    expect(stored).toBe(5000);
+    const decision = decidePackSale(
+      { listingStatus: 'published', authorStableId: AUTHOR, priceRunes: stored },
+      BUYER,
+    );
+    expect(decision.ok && decision.netRunes).toBe(5000);
+  });
+
+  it('любая цена, принятая публикацией, принимается и начислением', () => {
+    // Полный перебор шага: ни одно допустимое значение не должно застрять
+    // между двумя проверками.
+    for (let price = 100; price <= 5000; price += 100) {
+      const stored = normalizePackPriceRunes(price);
+      expect(stored).toBe(price);
+      const decision = decidePackSale(
+        { listingStatus: 'published', authorStableId: AUTHOR, priceRunes: stored },
+        BUYER,
+      );
+      expect(decision.ok).toBe(true);
+    }
+  });
+});

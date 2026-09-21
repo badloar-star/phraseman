@@ -924,6 +924,11 @@ export const communityModerateSubmission = onCall({ enforceAppCheck: ENFORCE_APP
         descriptionTr: (payload.descriptionTr ?? '').trim() || null,
         descriptionPl: (payload.descriptionPl ?? '').trim() || null,
         priceShards: UGC_PACK_PRICE_SHARDS,
+        // зачем (проверка 2026-09-21): без этой строки одобрение правки
+        // сохраняло СТАРУЮ цену — `...existing` подставлял прежнее значение, и
+        // автор, изменивший цену, молча оставался со старой. Поля не было
+        // видно как баг: набор оставался платным, просто не по новой цене.
+        priceRunes: normalizePackPriceRunes(payload.priceRunes),
         cards: cardsWithRichFallback,
         cardCount: cardsWithRichFallback.length,
         cardThemeKey: themeKey,

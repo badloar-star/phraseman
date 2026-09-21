@@ -263,9 +263,6 @@ export default function ArenaMatchmakingScreen() {
             style={[styles.elapsed, { color: P.text }]}
           >
             {elapsedLabel}</Text>
-          {/* зачем: обещание «можно уйти» должно быть НАПИСАНО. Иначе человек
-              не знает, что поиск переживёт уход, и продолжает сторожить экран. */}
-          <Text style={[styles.hint, { color: P.muted }]}>{arenaText(lang, 'keepOpen')}</Text>
         </V2Card>
       </View>
       <V2Cta tone="ghost" onPress={cancel}>{arenaText(lang, 'cancel')}</V2Cta>
@@ -283,5 +280,4 @@ const styles = StyleSheet.create({
     fontVariant: ['tabular-nums'],
     letterSpacing: 0.5,
   },
-  hint: { fontSize: 13, fontWeight: '600', textAlign: 'center', paddingHorizontal: 12 },
 });

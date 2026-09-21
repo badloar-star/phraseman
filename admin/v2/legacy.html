@@ -26224,7 +26224,17 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   // QA drawer. Nothing is persisted and no extra Firestore read is triggered.
   window.pmPhase4GetCommunitySubmission = function pmPhase4GetCommunitySubmission(submissionId) {
     const id = String(submissionId || '');
-    return _communitySubmissionsCache.find((row) => String(row?.id || '') === id) || null;
+    const submission = _communitySubmissionsCache.find((row) => String(row?.id || '') === id);
+    // Заявка приоритетнее набора: у правки и набора совпадает id
+    // (editTargetPackId), и решение по заявке перезапишет набор.
+    if (submission) return submission;
+    // зачем (владелец 2026-09-21: «я там должен иметь возможность исправлять
+    // так же через ИИ все наборы»): панель проверки умела только заявки.
+    // У опубликованного набора карточки лежат в КОРНЕ документа, а панель
+    // ждёт payload — приводим к общему виду, не копируя сам набор.
+    const pack = _communityActivePacksCache.find((row) => String(row?.id || '') === id);
+    if (!pack) return null;
+    return { id: pack.id, kind: 'published', payload: pack };
   };
   let _communityActivePacksCache = [];
   const COMMUNITY_PACK_FIXED_PRICE_SHARDS = 10;
@@ -56400,7 +56410,7 @@ html[data-pm-theme="light"] #pm-phase3-overview-tabs{background:#f7f8fa!importan
       run.disabled=draft.aiStatus==='running'||!!draft.applying||!allowed;
       if(draft.aiStatus==='running')run.textContent='Проверяю…';
       else if(draft.applying)run.textContent='Применяю…';
-      else if(draft.aiStatus==='confirmed'&&others.length)run.textContent=`Исправить ${others.length} ${pluralFixes(others.length)} и опубликовать`;
+      else if(draft.aiStatus==='confirmed'&&others.length)run.textContent=getRow(draft.submissionId)?.kind==='published'?`Исправить ${others.length} ${pluralFixes(others.length)}`:`Исправить ${others.length} ${pluralFixes(others.length)} и опубликовать`;
       else if(draft.aiStatus==='confirmed')run.textContent='Проверить заново';
       else run.textContent='Проверить';
       run.title=draft.aiStatus==='confirmed'&&others.length
@@ -56438,8 +56448,12 @@ html[data-pm-theme="light"] #pm-phase3-overview-tabs{background:#f7f8fa!importan
     const core=window.__pmAdminCore;
     if(!core?.httpsCallable||!core?.functionsUs){draft.applying=false;syncApplyFixesButton(draft);setApplyStatus('Firebase callable runtime ещё не готов. Перезагрузите страницу.','error');return;}
     try{
-      const apply=core.httpsCallable(core.functionsUs,'adminCommunityPackApplyQaFixes');
-      const raw=await apply({submissionId:draft.submissionId,fixes});
+      // зачем: у опубликованного набора своя функция — она двигает реестр
+      // дублей той же транзакцией, иначе карточки старой версии остались бы
+      // в индексе навсегда. Заявка такого реестра ещё не касается.
+      const isPublished=row?.kind==='published';
+      const apply=core.httpsCallable(core.functionsUs,isPublished?'adminCommunityPackApplyQaFixesToPublished':'adminCommunityPackApplyQaFixes');
+      const raw=await apply(isPublished?{packId:draft.submissionId,fixes}:{submissionId:draft.submissionId,fixes});
       const data=raw?.data??raw??{};
       if(data.ok!==true)throw new Error(trim(data.message||data.error||'Сервер не подтвердил применение правок',240));
       const applied=Number(data.appliedCount)||0;
@@ -56453,8 +56467,10 @@ html[data-pm-theme="light"] #pm-phase3-overview-tabs{background:#f7f8fa!importan
       // ИИ честно отвечал «набор наоборот». Логи: applied 32 / skipped 0 в 17:41,
       // а последний [PACK-QA] вход — 16:07, то есть свежая проверка не доходила.
       try{
-        if(typeof window.loadCommunitySubmissions==='function')await window.loadCommunitySubmissions(true);
-        else notify('Правки применены, но очередь не перезагрузилась — обновите страницу перед повторной проверкой.','warn');
+        // Перезагружаем ТОТ список, из которого пришла строка.
+        const reload=isPublished?window.loadActiveCommunityPacks:window.loadCommunitySubmissions;
+        if(typeof reload==='function')await reload(true);
+        else notify('Правки применены, но список не перезагрузился — обновите страницу перед повторной проверкой.','warn');
       }catch(error){
         // Немого catch быть не должно: иначе панель снова тихо жила бы на старых данных.
         notify(`Правки применены, но очередь не перезагрузилась: ${trim(error?.message||error,120)}. Обновите страницу.`,'warn');
@@ -56475,6 +56491,19 @@ html[data-pm-theme="light"] #pm-phase3-overview-tabs{background:#f7f8fa!importan
         // (finally отрабатывает уже после отрисовки).
         const next=getCurrent();
         if(next)next.applying=false;
+        render();updateCardButtons();
+        return;
+      }
+      // зачем: опубликованный набор УЖЕ в каталоге — правки применены на месте,
+      // публиковать нечего. Шаг «Одобрить» есть только у заявки.
+      if(isPublished){
+        setApplyStatus(`Исправлено в наборе: ${applied}${skipped.length?` · пропущено ${skipped.length} (текст изменился)`:''}. Набор уже в каталоге — публиковать не нужно.`,'success');
+        notify(`Набор исправлен (${applied})`,'ok');
+        drafts.delete(draft.submissionId);
+        const freshPack=getRow(state.currentId);
+        if(freshPack)ensureDraft(state.currentId,freshPack);
+        const nextDraft=getCurrent();
+        if(nextDraft)nextDraft.applying=false;
         render();updateCardButtons();
         return;
       }
@@ -56515,11 +56544,21 @@ html[data-pm-theme="light"] #pm-phase3-overview-tabs{background:#f7f8fa!importan
   function prepareRevision(){const draft=getCurrent();if(!draft)return;if(!canEdit()){notify('Нет права отправлять набор на доработку','err');return;}const area=document.getElementById('pm-phase4-response');draft.responseRu=String(area?.value||draft.responseRu||'').trim();draft.responseTouched=true;draft.updatedAt=Date.now();if(!draft.responseRu){notify('Сначала подготовьте текст ответа','warn');setView('response');return;}const id=draft.submissionId;close();const button=findCardControl(id,'data-cp-revision');if(!button){notify('Кнопка «На доработку» не найдена. Откройте очередь заявок повторно.','warn');return;}button.click();}
   function openPreview(){const id=state.currentId;close();const button=findCardControl(id,'data-cp-open-pack');if(button)button.click();else notify('Кнопка просмотра набора не найдена','warn');}
 
-  function buttonState(id){const draft=drafts.get(id);if(!draft)return{state:'idle',label:'✨ Проверить набор'};const c=severityCounts(draft);const ds=draftState(draft);if(ds==='accepted')return{state:'accepted',label:'✓ Черновик принят'};if(c.errors)return{state:'error',label:`Проверка: ${c.errors} ошибок`};if(c.warnings)return{state:'warning',label:`Проверка: ${c.warnings} замечаний`};return{state:'clean',label:'✓ Структура проверена'};}
-  function enhanceCards(){const list=document.getElementById('cp-submissions-list');if(!list)return;list.querySelectorAll('.report-card').forEach((card)=>{const source=card.querySelector('[data-cp-open-pack]');const actions=card.querySelector('.rc-right');if(!source||!actions)return;const id=source.getAttribute('data-cp-open-pack');let button=actions.querySelector('[data-pm-phase4-check-pack]');if(!button){button=document.createElement('button');button.type='button';button.setAttribute('data-pm-phase4-check-pack',id);button.addEventListener('click',(event)=>{event.preventDefault();event.stopPropagation();open(button.getAttribute('data-pm-phase4-check-pack'));});actions.insertBefore(button,source.nextSibling);}const view=buttonState(id);if(button.textContent!==view.label)button.textContent=view.label;if(button.dataset.state!==view.state)button.dataset.state=view.state;});}
+  // зачем: «✓ Структура проверена» писалось сразу при открытии панели, хотя ИИ
+  // ещё не запускали — подпись врала. Теперь она отражает ФАКТ проверки.
+  function buttonState(id){const draft=drafts.get(id);if(!draft||draft.aiStatus!=='confirmed')return{state:'idle',label:'✨ Проверить набор'};const c=severityCounts(draft);if(c.errors)return{state:'error',label:`Ошибок: ${c.errors}`};if(c.warnings)return{state:'warning',label:`Замечаний: ${c.warnings}`};return{state:'clean',label:'✓ Проверено, ошибок нет'};}
+  // зачем (владелец 2026-09-21): кнопка проверки жила только в списке заявок.
+  // Опубликованные наборы — свой список и свой атрибут; механизм один на оба,
+  // чтобы не заводить второй экземпляр той же логики.
+  const CARD_SOURCES=[{listId:'cp-submissions-list',attr:'data-cp-open-pack'},{listId:'cp-active-list',attr:'data-cp-active-open'}];
+  function enhanceCards(){CARD_SOURCES.forEach((src)=>enhanceCardList(src.listId,src.attr));}
+  function enhanceCardList(listId,attr){const list=document.getElementById(listId);if(!list)return;list.querySelectorAll('.report-card').forEach((card)=>{const source=card.querySelector(`[${attr}]`);const actions=card.querySelector('.rc-right');if(!source||!actions)return;const id=source.getAttribute(attr);let button=actions.querySelector('[data-pm-phase4-check-pack]');if(!button){button=document.createElement('button');button.type='button';button.setAttribute('data-pm-phase4-check-pack',id);button.addEventListener('click',(event)=>{event.preventDefault();event.stopPropagation();open(button.getAttribute('data-pm-phase4-check-pack'));});actions.insertBefore(button,source.nextSibling);}const view=buttonState(id);if(button.textContent!==view.label)button.textContent=view.label;if(button.dataset.state!==view.state)button.dataset.state=view.state;});}
   function updateCardButtons(){enhanceCards();}
-  function scheduleEnhance(){if(state.scheduled)return;state.scheduled=true;requestAnimationFrame(()=>{state.scheduled=false;const list=document.getElementById('cp-submissions-list');if(!list)return;state.observer?.disconnect();enhanceCards();state.observer?.observe(list,{childList:true});});}
-  function observeCards(){const list=document.getElementById('cp-submissions-list');if(!list||!window.MutationObserver)return;state.observer?.disconnect();state.observer=new MutationObserver(scheduleEnhance);enhanceCards();state.observer.observe(list,{childList:true});}
+  // Наблюдаем за ОБОИМИ списками: наборы рисуются позже заявок, и без этого
+  // кнопка на них не появлялась бы вовсе.
+  function observedLists(){return CARD_SOURCES.map((s)=>document.getElementById(s.listId)).filter(Boolean);}
+  function scheduleEnhance(){if(state.scheduled)return;state.scheduled=true;requestAnimationFrame(()=>{state.scheduled=false;const lists=observedLists();if(!lists.length)return;state.observers?.forEach((o)=>o.disconnect());enhanceCards();state.observers?.forEach((o,i)=>{if(lists[i])o.observe(lists[i],{childList:true});});});}
+  function observeCards(){const lists=observedLists();if(!lists.length||!window.MutationObserver)return;state.observers?.forEach((o)=>o.disconnect());state.observers=lists.map(()=>new MutationObserver(scheduleEnhance));enhanceCards();state.observers.forEach((o,i)=>o.observe(lists[i],{childList:true}));}
   function focusable(){const drawer=document.getElementById('pm-phase4-qa-drawer');return drawer?Array.from(drawer.querySelectorAll('button:not([disabled]):not([hidden]),textarea:not([disabled]),input:not([disabled]),select:not([disabled]),[tabindex]:not([tabindex="-1"])')).filter((node)=>!node.hidden&&node.getClientRects().length):[];}
   function wire(){
     document.getElementById('pm-phase4-qa-close')?.addEventListener('click',close);document.getElementById('pm-phase4-qa-backdrop')?.addEventListener('click',close);document.getElementById('pm-phase4-open-preview')?.addEventListener('click',openPreview);

@@ -1399,11 +1399,33 @@ export function stageLearningV2CourseSessionReadyHandoffV3(
 ): void {
   const summary = getLearningV2CourseSessionReadySummaryV3(handle);
   readyHandoffs.set(summary.sessionRunId, handle);
+  // зачем (владелец 21.09): парный лог к [V2-HANDOFF] consume. Печатаем ключ,
+  // под которым карта положила готовую сессию — расхождение с ключом маршрута
+  // видно одним grep, гадать не нужно.
+  if (__DEV__) {
+    console.log(
+      "[V2-HANDOFF] stage",
+      JSON.stringify({
+        sessionRunId: summary.sessionRunId,
+        courseSessionId: summary.courseSessionId,
+        stagedKeys: [...readyHandoffs.keys()],
+      }),
+    ); // guard-ok: диагностика моста
+  }
   while (readyHandoffs.size > 8) {
     const oldest = readyHandoffs.keys().next().value as string | undefined;
     if (!oldest) break;
     readyHandoffs.delete(oldest);
   }
+}
+
+/**
+ * Только для диагностики: какие ключи сейчас лежат в мосту. Нужен, чтобы
+ * отличить «карта ничего не положила» от «положила под другим sessionRunId».
+ * Ничего не потребляет и не меняет.
+ */
+export function peekLearningV2CourseSessionReadyHandoffKeysV3(): readonly string[] {
+  return Object.freeze([...readyHandoffs.keys()]);
 }
 
 export function consumeLearningV2CourseSessionReadyHandoffV3(input: {

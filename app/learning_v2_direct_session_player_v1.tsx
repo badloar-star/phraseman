@@ -107,6 +107,7 @@ import {
 import {
   bundledLearningV2CourseSessionMaterialV3,
   consumeLearningV2CourseSessionReadyHandoffV3,
+  peekLearningV2CourseSessionReadyHandoffKeysV3,
   resolveLearningV2CourseSessionReadyMaterialV3,
   type LearningV2CourseReleasedSessionCurrentLocatorV3,
   type LearningV2CourseReleasedSessionMaterialV3,
@@ -390,6 +391,34 @@ export default function LearningV2DirectSessionPlayerV1() {
             sessionRunId: routedSessionRunId,
           })
         : null;
+    // зачем (владелец 21.09, экран «Сессия недоступна» вернулся): это ПЕРВОЕ
+    // звено цепочки — мост карта→сессия. Без этого лога нельзя отличить «карта
+    // не положила handoff» от «положила под другим ключом» и от «пришли вообще
+    // без sessionRunId». Печатаем сами значения, а не факт их наличия.
+    const handoffTrace = {
+      routedCourseSessionId: routedCourseSessionId || null,
+      routedSessionRunId: routedSessionRunId || null,
+      askedBridge: Boolean(routedCourseSessionId && routedSessionRunId),
+      got: Boolean(initialReadyHandleRef.current),
+      stagedKeys: peekLearningV2CourseSessionReadyHandoffKeysV3(),
+      runtimeMode: first(params.runtimeMode) || null,
+      previewMode: first(params.previewMode) || null,
+      previewOrigin: first(params.previewOrigin) || null,
+      runKind: first(params.runKind) || null,
+      lessonOrdinal: first(params.lessonOrdinal) || null,
+      sessionOrdinal: first(params.sessionOrdinal) || null,
+    };
+    if (__DEV__) {
+      console.log("[V2-HANDOFF] consume", JSON.stringify(handoffTrace)); // guard-ok: диагностика моста
+    }
+    // Провал моста обязан пережить перезапуск: владелец ловит это на телефоне.
+    if (!initialReadyHandleRef.current && !isAuthoringPreview) {
+      DebugLogger.error(
+        "[V2-HANDOFF] missing",
+        new Error(JSON.stringify(handoffTrace)),
+        "warning",
+      );
+    }
   }
   const routeCoordinates = resolveLearningV2SessionRouteCoordinatesV1({
     id: first(params.id),

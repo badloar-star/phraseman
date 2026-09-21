@@ -171,6 +171,16 @@ const RU = {
   celebrations_boon_activated_title: 'Бонус дня активирован (тихий бонус)',
   celebrations_boon_activated_hybrid_title: 'Бонус дня активирован (тихий бонус) · гибрид',
   celebrations_boon_activated_detail: 'реальный компонент — демо-бонус double_xp',
+  // зачем (владелец, 2026-09-21): пять «тихих» бонусов получили героический
+  // модал, но у премиум-аккаунта они НЕ показываются (FREE_ONLY_VISUAL_BOONS
+  // в BoonActivatedHost) — владелец физически не мог их увидеть на своём
+  // телефоне. Отдельная кнопка на каждый: ждать нужного дня недели не нужно.
+  celebrations_boon_hero_streak_title: 'Бонус дня · Щит серии',
+  celebrations_boon_hero_energy_title: 'Бонус дня · Окно без энергии',
+  celebrations_boon_hero_turbo_title: 'Бонус дня · Турбо-восстановление',
+  celebrations_boon_hero_cards_title: 'Бонус дня · Колода в подарок',
+  celebrations_boon_hero_speaking_title: 'Бонус дня · День голоса',
+  celebrations_boon_hero_detail: 'реальный модал — своя эмблема, металл, каскад',
   celebrations_weekly_boon_detail_title: 'Подробности бонуса дня',
   celebrations_weekly_boon_detail_hybrid_title: 'Подробности бонуса дня · гибрид',
   celebrations_weekly_boon_detail_detail: 'реальный компонент — карточка описания, без действий с прогрессом',

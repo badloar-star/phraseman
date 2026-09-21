@@ -4,11 +4,12 @@
 // .tsx (не .ts): render использует JSX (React.createElement напрямую тоже
 // годится, но для читаемости демо-компонентов ниже используется JSX).
 import React from 'react';
-import type { ShowcaseSection } from '../types';
+import type { ShowcaseRenderProps, ShowcaseSection } from '../types';
 import LevelGiftModal from '../../../LevelGiftModal';
 import LevelGiftDualModal from '../../../LevelGiftDualModal';
 import BoonChestModal from '../../../BoonChestModal';
 import BoonActivatedModal from '../../../BoonActivatedModal';
+import BoonActivatedSheet from '../../../BoonActivatedSheet';
 import WeeklyBoonDetailModal from '../../../WeeklyBoonDetailModal';
 import SeasonGiftModal from '../../../SeasonGiftModal';
 import SeasonRewardInfoModal from '../../../SeasonRewardInfoModal';
@@ -189,6 +190,29 @@ export const SECTION: ShowcaseSection = {
         <BoonActivatedModal visible={visible} boon="double_xp" onClose={onClose} motionVariant="hybrid" />
       ),
     },
+    // зачем (владелец, 2026-09-21): пять «тихих» бонусов получили героический
+    // модал уровня «Супервоскресенья», но увидеть их на своём телефоне владелец
+    // НЕ МОЖЕТ: BoonActivatedHost гасит их при премиуме (FREE_ONLY_VISUAL_BOONS),
+    // и каждый выпадает лишь в свой день недели. Пять кнопок снимают оба барьера.
+    //
+    // Монтируем BoonActivatedSheet, а не BoonHeroSheet напрямую: так витрина
+    // проходит ту же развилку, что живое приложение, и покажет подмену, если
+    // маршрутизация сломается. Модал чисто презентационный — ничего не начисляет.
+    ...([
+      ['streak', 'streak_saver', cs('celebrations_boon_hero_streak_title')],
+      ['energy', 'energy_free_window', cs('celebrations_boon_hero_energy_title')],
+      ['turbo', 'turbo_regen', cs('celebrations_boon_hero_turbo_title')],
+      ['cards', 'flashcard_friday', cs('celebrations_boon_hero_cards_title')],
+      ['speaking', 'speaking_saturday', cs('celebrations_boon_hero_speaking_title')],
+    ] as const).map(([slug, boon, title]) => ({
+      id: `celebrations-boon-hero-${slug}`,
+      title,
+      detail: cs('celebrations_boon_hero_detail'),
+      kind: 'render' as const,
+      render: ({ visible, onClose }: ShowcaseRenderProps) => (
+        <BoonActivatedSheet visible={visible} boon={boon} onClose={onClose} />
+      ),
+    })),
     {
       id: 'celebrations-weekly-boon-detail',
       title: cs('celebrations_weekly_boon_detail_title'),

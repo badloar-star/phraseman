@@ -57,6 +57,23 @@ describe('admin community pack QA review', () => {
     expect(source).toContain('pairs.push');
   });
 
+  test('на перевёрнутом наборе ошибки НЕ замалчиваются', () => {
+    // Повод (владелец 2026-09-21: «а ошибки там нет вообще ошибок???»): прежняя
+    // версия глушила все прочие находки, и владелец переворачивал набор вслепую,
+    // а про опечатки узнавал только вторым запуском и второй оплатой.
+    expect(source).toContain('STILL judge the content in the SAME response');
+    expect(source).not.toContain('judged only after the pack is flipped back');
+    // Информационные находки без текста — чтобы две правки не били в одно поле.
+    expect(source).toContain('two edits to one field would collide');
+  });
+
+  test('в панели проверки одна кнопка действия, а не две', () => {
+    // Владелец: «что за две кнопки, зачем там две отдельные кнопки?»
+    expect(adminHtml).not.toContain('pm-phase4-apply-ai-response');
+    expect(adminHtml).not.toContain('applyAiResponse');
+    expect(adminHtml).toContain('pm-phase4-apply-fixes');
+  });
+
   test('правка опубликованного набора двигает реестр дублей', () => {
     // Без этого карточки прежней версии остаются в индексе навсегда —
     // класс бага, который в проекте уже случался.

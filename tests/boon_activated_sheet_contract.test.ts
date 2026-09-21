@@ -36,6 +36,25 @@ describe('daily boon production sheet', () => {
     expect(sheet).toContain('<BoonHeroSheet visible={props.visible} boon={props.boon} lang={lang} onClose={props.onClose} />');
   });
 
+  // зачем (владелец, 2026-09-21): владелец НЕ МОЖЕТ увидеть эти пять модалов на
+  // своём телефоне — BoonActivatedHost гасит их при премиуме
+  // (FREE_ONLY_VISUAL_BOONS), и каждый выпадает лишь в свой день недели.
+  // Кнопки в витрине DEV Hub — единственный способ проверить их глазами,
+  // поэтому они под сторожем: удалят — и проверять снова будет нечем.
+  test('every quiet boon stays reachable from the DEV showcase', () => {
+    const showcase = readFileSync(
+      join(process.cwd(), 'components', 'dev', 'motion_showcase', 'sections', 'celebrations.tsx'),
+      'utf8',
+    );
+    expect(showcase).toContain("import BoonActivatedSheet from '../../../BoonActivatedSheet'");
+    // Витрина обязана идти через развилку BoonActivatedSheet, а не звать
+    // BoonHeroSheet напрямую: иначе она покажет экран, которого человек не увидит.
+    expect(showcase).toContain('<BoonActivatedSheet visible={visible} boon={boon} onClose={onClose} />');
+    for (const boon of ['streak_saver', 'energy_free_window', 'turbo_regen', 'flashcard_friday', 'speaking_saturday']) {
+      expect(showcase).toContain(`'${boon}'`);
+    }
+  });
+
   test('uses the shared idempotent animated dismiss path for the CTA', () => {
     expect(shell).toContain('requestDismiss: dismissSheet');
     expect(shell).toContain("typeof children === 'function'");

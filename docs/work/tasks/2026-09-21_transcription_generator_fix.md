@@ -1,7 +1,7 @@
 # Task packet: карточки перестают показывать выдуманную транскрипцию
 
 Governance-ID: TG-9C65955E3373
-Status: In progress
+Status: Done (код в 8b432948b); tsc/jest не прогнаны — светофор 3/3 занят
 Owner: сессия Claude (21.09.2026)
 Related epic/enabler: none
 

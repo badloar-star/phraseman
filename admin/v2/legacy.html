@@ -16576,7 +16576,12 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   <div class="pm-v4-section-header" data-pm-v4-header="referrals"><div class="pm-v4-section-heading"><h2 class="pm-v4-section-title">Рефералы</h2><div class="pm-v4-section-sub">Приглашения, покупки, награды и аналитика.</div></div></div>
 
   <div class="reports-toolbar" style="flex-wrap:wrap;align-items:center;gap:12px">
+    <!-- зачем (владелец 2026-09-21: «в разделе рефералы ничего не обновляется»):
+         обновить данные было НЕЧЕМ — в разделе были только CSV и «показать ещё».
+         Кнопка зовёт загрузку принудительно, мимо срока годности снимка. -->
+    <button type="button" onclick="loadReferralsData(true, false)" data-pm-v5-refresh-control="true" style="background:#1a2a3a;border:1px solid #2a4a6a;color:#93c5fd">🔄 Обновить</button>
     <button type="button" onclick="exportReferralsCSV()" style="background:#1f2937;border:1px solid #374151;color:#9ca3af">⬇ CSV</button>
+    <span id="ref-freshness" style="color:#6b7280;font-size:12px"></span>
     <input type="text" id="ref-search" placeholder="🔍 Код, UID, имя…" data-i18n-es="🔍 Código, UID, nombre…" oninput="renderReferralsTable()"
       style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e0e0e0;padding:7px 12px;min-width:240px;font-size:13px" />
     <span class="reports-count" id="ref-status"></span>
@@ -46647,9 +46652,31 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     }));
   };
 
+  /**
+   * Показывает, когда данные получены.
+   *
+   * зачем: раньше свежесть приходилось угадывать — раздел молча отдавал
+   * старый снимок, и отличить «данных нет» от «данные не обновились» было
+   * нельзя. Теперь время загрузки видно прямо в панели.
+   */
+  function renderReferralsFreshness() {
+    const host = document.getElementById('ref-freshness');
+    if (!host) return;
+    const at = Number(window._referralsLoadedAtMs || 0);
+    host.textContent = at ? `обновлено ${new Date(at).toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}` : '';
+  }
+
   window.loadReferralsData = async function loadReferralsData(force, append) {
     ensureReferralDashboardChrome();
-    if (!force && !append && window._referralsDashboardLoaded) return;
+    // зачем (владелец 2026-09-21: «в разделе рефералы ничего не обновляется»):
+    // здесь стоял флаг `_referralsDashboardLoaded` — загрузив данные один раз,
+    // раздел молча выходил при КАЖДОМ следующем входе: ни запроса, ни лога.
+    // Владелец видел вчерашние цифры. Теперь — срок годности снимка: вход
+    // перезагружает устаревшие данные, но частое переключение вкладок не
+    // выливается в лишние чтения Firestore (дашборд тянет по 100 строк).
+    const REFERRALS_TTL_MS = 2 * 60 * 1000;
+    const snapshotAge = Date.now() - Number(window._referralsLoadedAtMs || 0);
+    if (!force && !append && window._referralsDashboardLoaded && snapshotAge < REFERRALS_TTL_MS) return;
     const loading = document.getElementById('ref-loading');
     const errorBox = document.getElementById('ref-error');
     const table = document.getElementById('ref-table');
@@ -46684,6 +46711,8 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         plusPurchased: allRowsLoaded ? loadedPurchased : null,
       };
       window._referralsDashboardLoaded = true;
+      window._referralsLoadedAtMs = Date.now();
+      renderReferralsFreshness();
       renderReferralDashboardSummary(window._referralsSummary);
       renderReferralRouletteAnalytics(window._referralsRoulette, window._referralsSourceHealth);
       renderPendingReferralRepairs();

@@ -129,7 +129,11 @@ function TopPackTileBase({
   const authorName = useCommunityAuthorName(pack, lang);
   const title = packTitleForInterface(pack, lang) || pack.codeName || pack.id;
   const png = packTileImageForPack(pack) ?? bundledPackTilePng(pack.id);
-  const iconSize = Math.floor(width * 0.68);
+  /* зачем (владелец 2026-09-21: «иконки маленькие, увеличь»): было 68% плитки,
+     и после `contain` по пропорции веера обложка терялась в пустом квадрате.
+     92% — тот же масштаб, что в каталоге сообщества и «Моих наборах», при этом
+     угловые бейджи (счётчик карт, галочка «в моих») остаются читаемыми. */
+  const iconSize = Math.floor(width * 0.92);
 
   const [labelReflowed, setLabelReflowed] = useState(false);
   const onLabelReflow = useCallback(() => setLabelReflowed(true), []);

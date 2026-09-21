@@ -795,7 +795,13 @@ export default function FlashcardsCategoryHub({
         reduceMotion={reduceMotion}
         showEdit={showAuthorEdit}
         labelSize={labelSize}
-        icon={packIcon(pack, Math.floor(tileW * 0.68))}
+        /* зачем (владелец 2026-09-21: «иконки маленькие, увеличь»): обложка
+           занимала 68% плитки и после `contain` по пропорции веера съедала ещё
+           часть — набор читался как крошечная марка в пустом квадрате. Растим
+           до 92%: это +35% к площади и один масштаб с «Моими наборами», но
+           угловые бейджи (флаг, счётчик, галочка, тренд) остаются читаемыми —
+           у них свой слой поверх, а 0.98 как в «Моих» их бы поджало. */
+        icon={packIcon(pack, Math.floor(tileW * 0.92))}
         opening={openingPackId === pack.id}
         disabled={openingPackId !== null}
         onOpen={() => {

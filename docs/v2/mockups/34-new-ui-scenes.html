@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Макет · ТОП-12 сцен по аудиту (2026-09-21)</title>
+<style>
+/* ============================================================
+   ТОП-12 СЦЕН — элементы из 33-new-ui-system-catalog.html
+   в реальном контексте экранов приложения.
+
+   Источник: docs/work/tasks/2026-09-21_app_wide_ux_gap_audit.md
+   Система токенов — 1:1 из 33-го каталога (он же из 24/23).
+   Все цифры из кода: constants/theme.ts, constants/motion.ts,
+   ActionToast.tsx, themedToastChrome.ts.
+
+   У каждой сцены свои СОСТОЯНИЯ — переключаются кнопками под
+   телефоном: покой → действие → успех → ошибка.
+   ============================================================ */
+:root {
+  --tf: 1;
+  --t-press: calc(120ms * var(--tf));
+  --t-fast: calc(180ms * var(--tf));
+  --t-normal: calc(240ms * var(--tf));
+  --t-slow: calc(320ms * var(--tf));
+  --t-celebrate: calc(420ms * var(--tf));
+  --ease-slide: cubic-bezier(0.33, 0.52, 0.25, 0.99);
+  --ease-outquint: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-spring: cubic-bezier(0.38, 0.70, 0.125, 1.0);
+}
+:root[data-theme="dark"] {
+  --bg-primary:#030604; --bg-card:#101710; --bg-surface:#17241A; --bg-surface2:#203028;
+  --text-primary:#F0F7F2; --text-second:#58CC89; --text-muted:#8AB49A; --text-ghost:#506A5C;
+  --correct:#47C870; --correct-bg:rgba(71,200,112,0.16);
+  --wrong:#F05454; --wrong-bg:rgba(240,84,84,0.12);
+  --gold:#FFC800; --gold-bg:rgba(255,200,0,0.14);
+  --accent:#47C870; --accent-bg:rgba(71,200,112,0.14); --correct-text:#042010;
+  --btn-shadow:#1E6B3A; --card-shadow:rgba(0,0,0,0.55);
+  --chip-grad-a:#2A4230; --chip-grad-b:#131D14;
+  --bg-grad-a:#071009; --bg-grad-b:#010101;
+  --sheen:rgba(88,204,137,0.05);
+  --cta-grad:linear-gradient(180deg,#5EDC94 0%,#3FC172 48%,#289654 100%);
+  --cta-hi:rgba(255,255,255,0.34);
+  --danger-grad:linear-gradient(180deg,#FF7B7B 0%,#E04545 100%);
+  --chip-hi:rgba(255,255,255,0.12);
+  --surface-grad:linear-gradient(160deg,#1E2E22,#0F1810);
+  --text-on-gold:#1A1A1A;
+  --skel-a:rgba(255,255,255,0.05); --skel-b:rgba(255,255,255,0.13);
+  --toast-a:rgba(16,40,30,0.98); --toast-b:rgba(8,23,18,0.97); --toast-c:rgba(4,12,10,0.95);
+  --toast-accent:#47C870; --toast-accent-soft:rgba(71,200,112,0.16);
+  --toast-close-bg:rgba(71,200,112,0.10); --toast-shadow:rgba(3,25,12,0.84);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html, body { background:#0B0E0C; }
+body {
+  font-family:-apple-system,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+  color:#E8EDEA; min-height:100vh; padding:34px 24px 90px;
+}
+svg { display:block; }
+
+.doc-head { max-width:1240px; margin:0 auto 26px; }
+.doc-title { font-size:30px; font-weight:800; letter-spacing:-0.4px; color:#F0F7F2; }
+.doc-sub { font-size:14.5px; line-height:1.65; color:#8AB49A; margin-top:12px; max-width:78ch; }
+.doc-sub b { color:#C9DED1; font-weight:700; }
+
+.ctl {
+  max-width:1240px; margin:0 auto 32px; padding:14px 16px; border-radius:18px;
+  background:rgba(255,255,255,0.03); display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+}
+.ctl-btn {
+  border:none; cursor:pointer; border-radius:12px; padding:9px 16px; font-family:inherit;
+  font-size:13.5px; font-weight:800; color:#C9DED1; background:rgba(255,255,255,0.07);
+  transition:transform var(--t-press) var(--ease-outquint), background var(--t-press);
+}
+.ctl-btn:hover { background:rgba(255,255,255,0.12); }
+.ctl-btn:active { transform:scale(0.96); }
+.ctl-btn.on { background:var(--accent); color:var(--correct-text); }
+.ctl-lbl { font-size:12.5px; font-weight:700; color:#6F9480; }
+
+.grid { max-width:1240px; margin:0 auto; display:flex; flex-wrap:wrap; gap:40px; align-items:flex-start; }
+.item { width:390px; }
+.item-head { margin-bottom:13px; }
+.tagline { font-size:12px; font-weight:800; color:#4E7A63; letter-spacing:0.6px; text-transform:uppercase; }
+.item-name { font-size:17.5px; font-weight:800; color:#F0F7F2; margin-top:5px; }
+.item-why { font-size:13.5px; line-height:1.6; color:#8AB49A; margin-top:7px; }
+.item-why b { color:#58CC89; font-weight:700; }
+.item-why .bad { color:#E98B8B; font-weight:700; }
+.states { display:flex; gap:7px; flex-wrap:wrap; margin-top:13px; }
+.st-btn {
+  border:none; cursor:pointer; border-radius:10px; padding:7px 13px; font-family:inherit;
+  font-size:12.5px; font-weight:800; color:#9FC9AF; background:rgba(255,255,255,0.055);
+  transition:transform var(--t-press) var(--ease-outquint), background var(--t-press), color var(--t-press);
+}
+.st-btn:hover { background:rgba(255,255,255,0.1); }
+.st-btn:active { transform:scale(0.95); }
+.st-btn.on { background:var(--accent); color:var(--correct-text); }
+.spec {
+  margin-top:12px; padding:12px 14px; border-radius:14px; background:rgba(255,255,255,0.028);
+  font-size:12.5px; line-height:1.7; color:#7FA891;
+  font-family:ui-monospace,"SF Mono",Menlo,monospace; white-space:pre-wrap;
+}
+.spec b { color:#9FC9AF; font-weight:700; }
+
+/* ================= ТЕЛЕФОН ================= */
+.phone {
+  width:390px; height:720px; position:relative; overflow:hidden; margin-bottom:14px;
+  border-radius:46px; display:flex; flex-direction:column; user-select:none;
+  background:
+    radial-gradient(120% 60% at 50% -8%, var(--sheen), transparent 60%),
+    linear-gradient(175deg, var(--bg-grad-a), var(--bg-grad-b));
+  box-shadow:0 34px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.phone::before {
+  content:""; position:absolute; inset:0; pointer-events:none; z-index:1;
+  background:radial-gradient(135% 92% at 50% 46%, transparent 62%, rgba(0,0,0,0.38) 100%);
+}
+.scene { position:absolute; inset:0; display:flex; flex-direction:column; }
+
+.hdr { padding:22px 16px 0; }
+.hdr-row { display:flex; align-items:center; gap:12px; }
+.icon-btn {
+  width:40px; height:40px; border-radius:14px; border:none; cursor:pointer;
+  background:var(--surface-grad); color:var(--text-muted); display:grid; place-items:center;
+  transition:transform var(--t-press) var(--ease-outquint);
+  box-shadow:0 6px 14px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+}
+.icon-btn:active { transform:scale(0.94); }
+.icon-btn svg { width:21px; height:21px; }
+.hdr-spacer { flex:1; }
+.screen-title { font-size:27px; font-weight:800; color:var(--text-primary); padding:18px 20px 0; letter-spacing:0.1px; }
+.sect-title { font-size:15px; font-weight:800; color:var(--text-primary); padding:20px 20px 0; }
+.list { padding:14px 16px 0; display:flex; flex-direction:column; gap:10px; }
+.dock { margin-top:auto; padding:14px 16px 26px; display:flex; flex-direction:column; gap:10px; }
+
+/* Кнопки */
+.cta {
+  width:100%; height:56px; border:none; border-radius:20px; cursor:pointer;
+  font-family:inherit; font-size:17px; font-weight:800; letter-spacing:0.3px;
+  color:var(--correct-text); background:var(--cta-grad);
+  box-shadow:0 5px 0 var(--btn-shadow), 0 14px 26px var(--card-shadow), inset 0 1px 0 var(--cta-hi);
+  position:relative; overflow:hidden; display:grid; place-items:center;
+  transition:transform var(--t-press) var(--ease-outquint), box-shadow var(--t-press) var(--ease-outquint);
+}
+.cta:active { transform:translateY(4px); box-shadow:0 1px 0 var(--btn-shadow), 0 8px 16px var(--card-shadow); }
+.cta.busy { background:var(--bg-surface2); color:var(--text-muted); box-shadow:0 5px 0 rgba(0,0,0,0.35); cursor:default; }
+.cta-secondary {
+  width:100%; height:48px; border:none; border-radius:18px; cursor:pointer;
+  font-family:inherit; font-size:15px; font-weight:700; color:var(--text-primary);
+  background:linear-gradient(160deg, rgba(255,255,255,0.09), rgba(255,255,255,0.02)), var(--bg-surface2);
+  box-shadow:inset 0 1px 0 var(--chip-hi), 0 6px 14px rgba(0,0,0,0.25);
+  transition:transform var(--t-press) var(--ease-outquint);
+}
+.cta-secondary:active { transform:scale(0.98); }
+.cta-tertiary {
+  width:100%; height:44px; border:none; background:transparent; cursor:pointer;
+  font-family:inherit; font-size:14.5px; font-weight:700; color:var(--text-muted);
+  transition:opacity var(--t-press);
+}
+.cta-tertiary:active { opacity:0.6; }
+.cta-inline { display:inline-flex; align-items:center; gap:9px; }
+.spinner { transform-origin:50% 50%; animation:orbit calc(900ms * var(--tf)) linear infinite; }
+@keyframes orbit { to { transform:rotate(360deg); } }
+
+/* Ряды настроек — как SettingsRow (плитка-иконка + текст, без обводок) */
+.srow {
+  display:flex; align-items:center; gap:13px; padding:0 16px; min-height:56px;
+  background:transparent; border:none; cursor:pointer; width:100%; text-align:left; font-family:inherit;
+  transition:background var(--t-press);
+}
+.srow:active { background:rgba(255,255,255,0.03); }
+.sgroup { margin:0 16px; border-radius:20px; overflow:hidden; background:var(--surface-grad);
+  box-shadow:0 8px 18px var(--card-shadow), inset 0 1px 0 var(--chip-hi); }
+.sgroup .srow + .srow { border-top:1px solid rgba(255,255,255,0.045); }
+.stile { width:34px; height:34px; border-radius:12px; flex:0 0 auto; display:grid; place-items:center;
+  background:linear-gradient(150deg, var(--chip-grad-a), var(--chip-grad-b)); color:var(--text-second); }
+.stile svg { width:17px; height:17px; }
+.stile.gold { color:var(--gold); }
+.slabel { flex:1; min-width:0; font-size:15.5px; font-weight:700; color:var(--text-primary); }
+.sval { font-size:14.5px; font-weight:700; color:var(--text-muted); white-space:nowrap; }
+.schev { color:var(--text-ghost); width:18px; flex:0 0 auto; }
+.schev svg { width:16px; height:16px; }
+
+/* Карточки */
+.card {
+  margin:0 16px; padding:18px; border-radius:22px; background:var(--surface-grad);
+  box-shadow:0 8px 18px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+}
+.card-title { font-size:16px; font-weight:800; color:var(--text-primary); }
+.card-body { font-size:14px; line-height:1.55; color:var(--text-muted); margin-top:7px; }
+
+/* Тост (геометрия дословно из ActionToast) */
+.toast-layer {
+  position:absolute; left:0; right:0; bottom:0; z-index:6;
+  padding:0 14px 22px; display:flex; flex-direction:column; gap:10px; pointer-events:none;
+}
+.toast {
+  min-height:66px; border-radius:18px; padding:12px 14px; display:flex; align-items:center; gap:12px;
+  background:linear-gradient(160deg, var(--toast-a), var(--toast-b) 58%, var(--toast-c));
+  box-shadow:0 18px 38px var(--toast-shadow), inset 0 1px 0 rgba(255,255,255,0.06);
+  pointer-events:auto; position:relative; overflow:hidden;
+  transform:translateY(130%); opacity:0;
+  transition:transform var(--t-slow) var(--ease-spring), opacity var(--t-fast) ease;
+}
+.toast.show { transform:translateY(0); opacity:1; }
+.toast-ico { width:40px; height:40px; border-radius:12px; flex:0 0 auto; display:grid; place-items:center;
+  background:var(--toast-accent-soft); color:var(--toast-accent); }
+.toast-ico svg { width:19px; height:19px; }
+.toast-body { flex:1; min-width:0; display:flex; flex-direction:column; gap:2px; }
+.toast-label { font-size:12px; font-weight:800; letter-spacing:0.4px; color:var(--toast-accent); text-transform:uppercase; }
+.toast-msg { font-size:15px; font-weight:700; line-height:1.35; color:var(--text-primary); }
+.toast-act {
+  flex:0 0 auto; border:none; cursor:pointer; border-radius:12px; padding:10px 15px;
+  font-family:inherit; font-size:13.5px; font-weight:800; color:var(--toast-accent);
+  background:var(--toast-close-bg); transition:transform var(--t-press) var(--ease-outquint);
+}
+.toast-act:active { transform:scale(0.94); }
+.toast.error .toast-ico { background:var(--wrong-bg); color:var(--wrong); }
+.toast.error .toast-label { color:var(--wrong); }
+.toast.error .toast-act { color:var(--wrong); background:var(--wrong-bg); }
+.toast.error .toast-life { background:var(--wrong); }
+.toast.reward .toast-ico { background:var(--gold-bg); color:var(--gold); }
+.toast.reward .toast-label { color:var(--gold); }
+.toast.reward .toast-life { background:var(--gold); }
+.toast.error.show { animation:toastShake calc(300ms * var(--tf)) steps(1,end) var(--t-slow) 1; }
+@keyframes toastShake {
+  0% { transform:translateX(6px); } 20% { transform:translateX(-5px); }
+  40% { transform:translateX(3px); } 60% { transform:translateX(-2px); }
+  80%,100% { transform:translateX(0); }
+}
+.toast-life { position:absolute; left:0; bottom:0; height:2px; width:100%;
+  background:var(--toast-accent); opacity:0.5; transform-origin:0 50%; }
+.toast.show .toast-life { animation:lifeDrain calc(4000ms * var(--tf)) linear forwards; }
+.toast.error.show .toast-life { animation-duration:calc(6000ms * var(--tf)); }
+@keyframes lifeDrain { from { transform:scaleX(1); } to { transform:scaleX(0); } }
+.undo-wrap { position:relative; width:34px; height:34px; flex:0 0 auto; }
+.undo-ring { width:34px; height:34px; }
+.undo-ring circle { fill:none; stroke-width:3; }
+.undo-ring .trk { stroke:rgba(255,255,255,0.10); }
+.undo-ring .val { stroke:var(--toast-accent); stroke-linecap:round; stroke-dasharray:88;
+  stroke-dashoffset:0; transform:rotate(-90deg); transform-origin:50% 50%; }
+.toast.show .undo-ring .val { animation:ringDrain calc(5000ms * var(--tf)) linear forwards; }
+@keyframes ringDrain { to { stroke-dashoffset:88; } }
+.undo-count { position:absolute; inset:0; display:grid; place-items:center;
+  font-size:11.5px; font-weight:800; color:var(--text-muted); font-variant-numeric:tabular-nums; }
+
+/* Скрим / шторка / карточка по центру */
+.scrim { position:absolute; inset:0; background:rgba(3,6,4,0.58); opacity:0; pointer-events:none;
+  transition:opacity var(--t-normal) ease; z-index:2; }
+.scrim.show { opacity:1; pointer-events:auto; }
+.sheet-layer { position:absolute; inset:0; z-index:3; pointer-events:none; display:flex; align-items:flex-end; }
+.sheet {
+  width:100%; padding:26px 22px 28px; border-radius:28px 28px 0 0;
+  background:linear-gradient(180deg, var(--bg-card), var(--bg-primary));
+  box-shadow:0 -18px 50px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+  transform:translateY(100%); transition:transform var(--t-slow) var(--ease-spring); pointer-events:auto;
+}
+.sheet-layer.show .sheet { transform:translateY(0); }
+.sheet-grabber { width:36px; height:4px; border-radius:99px; background:rgba(255,255,255,0.16); margin:0 auto 18px; }
+.sheet-title { font-size:21px; font-weight:800; color:var(--text-primary); text-align:center; }
+.sheet-body { font-size:14.5px; line-height:1.5; color:var(--text-muted); text-align:center; margin-top:10px; }
+.sheet-actions { margin-top:22px; display:flex; flex-direction:column; gap:10px; }
+.inbody-layer { position:absolute; inset:0; z-index:3; display:flex; align-items:center; justify-content:center;
+  padding:0 22px; pointer-events:none; }
+.inbody-layer.show { pointer-events:auto; }
+.inbody-card {
+  width:100%; padding:26px 22px; border-radius:26px;
+  background:linear-gradient(160deg, #1A241C, #0E140F);
+  box-shadow:0 24px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05); text-align:center;
+  transform:scale(0.9) translateY(14px); opacity:0;
+  transition:transform var(--t-normal) var(--ease-spring), opacity var(--t-fast) ease;
+}
+.inbody-layer.show .inbody-card { transform:none; opacity:1; }
+.inbody-title { font-size:20px; font-weight:800; color:var(--text-primary); margin-top:16px; }
+.inbody-body { font-size:14.5px; line-height:1.5; color:var(--text-muted); margin-top:8px; }
+.medal { width:76px; height:76px; border-radius:26px; display:grid; place-items:center; margin:0 auto;
+  background:linear-gradient(155deg, var(--chip-grad-a), var(--chip-grad-b));
+  box-shadow:0 14px 30px var(--card-shadow), inset 0 1px 0 var(--chip-hi); color:var(--text-second); }
+.medal svg { width:34px; height:34px; }
+.medal.warn { color:var(--gold); }
+.medal.danger { color:var(--wrong); }
+
+/* Чек цены */
+.price-check { margin-top:18px; padding:14px 16px; border-radius:18px;
+  background:rgba(0,0,0,0.26); display:flex; flex-direction:column; gap:10px; }
+.pc-row { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.pc-k { font-size:14px; font-weight:700; color:var(--text-muted); }
+.pc-v { font-size:15.5px; font-weight:800; color:var(--text-primary); font-variant-numeric:tabular-nums;
+  display:flex; align-items:center; gap:6px; }
+.pc-v .coin { width:17px; height:17px; }
+.pc-row.total { padding-top:10px; border-top:1px solid rgba(255,255,255,0.055); }
+.pc-row.total .pc-k { color:var(--text-primary); font-weight:800; }
+.pc-row.total .pc-v { color:var(--text-second); }
+.pc-cost { color:var(--gold); }
+
+/* Плашка «устарело» */
+.stale-bar {
+  margin:12px 16px 0; padding:11px 14px; border-radius:16px; display:flex; align-items:center; gap:11px;
+  background:linear-gradient(160deg, rgba(255,200,0,0.13), rgba(255,200,0,0.04));
+  transform:translateY(-8px); opacity:0;
+  transition:transform var(--t-normal) var(--ease-spring), opacity var(--t-fast) ease;
+}
+.stale-bar.show { transform:none; opacity:1; }
+.stale-ico { width:20px; height:20px; flex:0 0 auto; color:var(--gold); }
+.stale-txt { flex:1; min-width:0; font-size:13.5px; font-weight:700; color:var(--text-primary); line-height:1.4; }
+.stale-act { border:none; cursor:pointer; background:transparent; font-family:inherit;
+  font-size:13.5px; font-weight:800; color:var(--gold); padding:4px 2px; transition:opacity var(--t-press); }
+.stale-act:active { opacity:0.55; }
+
+/* Пустое состояние */
+.empty { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:0 34px 20px; text-align:center; }
+.empty-art { width:96px; height:96px; border-radius:32px; display:grid; place-items:center;
+  background:linear-gradient(155deg, var(--chip-grad-a), var(--chip-grad-b));
+  box-shadow:0 18px 40px var(--card-shadow), inset 0 1px 0 var(--chip-hi); color:var(--text-second);
+  animation:emptyBreathe calc(4200ms * var(--tf)) var(--ease-slide) infinite; }
+@keyframes emptyBreathe { 0%,100% { transform:translateY(0) scale(1); } 50% { transform:translateY(-5px) scale(1.02); } }
+.empty-art svg { width:42px; height:42px; }
+.empty-title { font-size:19px; font-weight:800; color:var(--text-primary); margin-top:20px; }
+.empty-body { font-size:14.5px; line-height:1.55; color:var(--text-muted); margin-top:9px; }
+.empty-cta { margin-top:22px; width:100%; }
+
+/* Строка-действие */
+.stat-row {
+  display:flex; align-items:center; gap:13px; padding:14px 16px; border-radius:20px;
+  background:var(--surface-grad); box-shadow:0 8px 18px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+  cursor:pointer; border:none; width:100%; text-align:left; font-family:inherit;
+  transition:transform var(--t-press) var(--ease-outquint);
+}
+.stat-row:active { transform:scale(0.978); }
+.stat-body { flex:1; min-width:0; }
+.stat-top { display:flex; align-items:baseline; justify-content:space-between; gap:10px; }
+.stat-name { font-size:15.5px; font-weight:700; color:var(--text-primary); }
+.stat-pct { font-size:15px; font-weight:800; color:var(--wrong); font-variant-numeric:tabular-nums; }
+.stat-track { height:8px; border-radius:5px; background:rgba(255,255,255,0.055); margin-top:9px; overflow:hidden; }
+.stat-fill { height:100%; border-radius:5px; background:var(--wrong); transform-origin:0 50%; transform:scaleX(0);
+  transition:transform calc(720ms * var(--tf)) var(--ease-slide); }
+.stat-row.lit .stat-fill { transform:scaleX(var(--w, 0.42)); }
+.stat-row.calm .stat-pct { color:var(--text-muted); }
+.stat-row.calm .stat-fill { background:var(--accent); }
+.stat-go { flex:0 0 auto; color:var(--text-ghost); display:grid; place-items:center; width:22px; }
+.stat-go svg { width:17px; height:17px; }
+
+/* Сводка паузы */
+.keep-strip { margin-top:18px; padding:14px 16px; border-radius:18px; background:rgba(0,0,0,0.26);
+  display:flex; align-items:center; justify-content:space-around; gap:10px; }
+.keep-cell { display:flex; flex-direction:column; align-items:center; gap:3px; }
+.keep-n { font-size:20px; font-weight:800; color:var(--text-primary); font-variant-numeric:tabular-nums; }
+.keep-k { font-size:12.5px; font-weight:700; color:var(--text-muted); }
+.keep-cell.good .keep-n { color:var(--text-second); }
+
+/* Разбор ошибок после сессии */
+.miss-row {
+  display:flex; align-items:center; gap:12px; padding:13px 15px; border-radius:18px;
+  background:var(--surface-grad); box-shadow:0 6px 14px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+  cursor:pointer; border:none; width:100%; text-align:left; font-family:inherit;
+  opacity:0; transform:translateY(10px);
+  transition:transform var(--t-normal) var(--ease-spring), opacity var(--t-fast) ease;
+}
+.miss-row.in { opacity:1; transform:none; }
+.miss-x { width:30px; height:30px; border-radius:11px; flex:0 0 auto; display:grid; place-items:center;
+  background:var(--wrong-bg); color:var(--wrong); }
+.miss-x svg { width:15px; height:15px; }
+.miss-b { flex:1; min-width:0; }
+.miss-you { font-size:14px; font-weight:700; color:var(--text-muted); text-decoration:line-through; }
+.miss-ok { font-size:15.5px; font-weight:800; color:var(--text-primary); margin-top:2px; }
+
+/* Итог сессии */
+.result-hero { padding:30px 20px 0; text-align:center; }
+.stars { display:flex; justify-content:center; gap:10px; }
+.star { width:40px; height:40px; color:var(--gold); transform:scale(0); }
+.star.in { animation:starPop calc(420ms * var(--tf)) var(--ease-spring) forwards; }
+@keyframes starPop { 0% { transform:scale(0) rotate(-24deg); } 70% { transform:scale(1.12) rotate(4deg); } 100% { transform:scale(1) rotate(0); } }
+.star.off { color:rgba(255,255,255,0.10); }
+.result-title { font-size:24px; font-weight:800; color:var(--text-primary); margin-top:18px; }
+.result-sub { font-size:14.5px; color:var(--text-muted); margin-top:8px; line-height:1.5; }
+.metrics { display:flex; gap:10px; padding:20px 16px 0; }
+.metric { flex:1; padding:14px 10px; border-radius:18px; background:rgba(0,0,0,0.24); text-align:center; }
+.metric-n { font-size:20px; font-weight:800; color:var(--text-primary); font-variant-numeric:tabular-nums; }
+.metric-k { font-size:12px; font-weight:700; color:var(--text-muted); margin-top:3px; }
+
+/* Поиск */
+.search-wrap { padding:14px 16px 0; }
+.search { height:46px; border-radius:16px; display:flex; align-items:center; gap:10px; padding:0 14px;
+  background:rgba(255,255,255,0.045); transition:background var(--t-fast) ease; }
+.search > svg { width:18px; height:18px; color:var(--text-ghost); flex:0 0 auto; }
+.search input { flex:1; min-width:0; background:transparent; border:none; outline:none;
+  font-family:inherit; font-size:15px; font-weight:600; color:var(--text-primary); }
+.search input::placeholder { color:var(--text-ghost); font-weight:600; }
+.search-clear { width:22px; height:22px; border-radius:99px; border:none; cursor:pointer; flex:0 0 auto;
+  background:rgba(255,255,255,0.10); color:var(--text-muted); display:grid; place-items:center;
+  opacity:0; transform:scale(0.7); pointer-events:none;
+  transition:opacity var(--t-press) ease, transform var(--t-press) var(--ease-outquint); }
+.search.filled .search-clear { opacity:1; transform:none; pointer-events:auto; }
+.search-clear svg { width:11px; height:11px; }
+
+/* Чип-фильтр */
+.chips { display:flex; gap:8px; padding:14px 16px 0; flex-wrap:wrap; }
+.chip { border:none; cursor:pointer; border-radius:99px; padding:9px 15px; font-family:inherit;
+  font-size:13.5px; font-weight:800; color:var(--text-muted); background:rgba(255,255,255,0.055);
+  transition:transform var(--t-press) var(--ease-outquint); }
+.chip:active { transform:scale(0.95); }
+.chip.on { background:var(--accent-bg); color:var(--text-second); }
+
+/* Транзакции */
+.tx-row { display:flex; align-items:center; gap:12px; padding:13px 16px; }
+.sgroup .tx-row + .tx-row { border-top:1px solid rgba(255,255,255,0.045); }
+.tx-i { width:34px; height:34px; border-radius:12px; flex:0 0 auto; display:grid; place-items:center;
+  background:linear-gradient(150deg, var(--chip-grad-a), var(--chip-grad-b)); color:var(--text-second); }
+.tx-i svg { width:16px; height:16px; }
+.tx-i.spend { color:var(--gold); }
+.tx-b { flex:1; min-width:0; }
+.tx-t { font-size:15px; font-weight:700; color:var(--text-primary); }
+.tx-d { font-size:12.5px; font-weight:600; color:var(--text-ghost); margin-top:2px; }
+.tx-v { font-size:15.5px; font-weight:800; color:var(--text-second); font-variant-numeric:tabular-nums; }
+.tx-v.minus { color:var(--gold); }
+
+/* Бейдж на плитке */
+.badge-demo { display:flex; gap:14px; padding:14px 16px 0; }
+.tile { flex:1; height:96px; border-radius:22px; position:relative; background:var(--surface-grad);
+  box-shadow:0 8px 18px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
+  color:var(--text-second); cursor:pointer; border:none; font-family:inherit;
+  transition:transform var(--t-press) var(--ease-outquint); }
+.tile:active { transform:scale(0.965); }
+.tile svg.ti { width:26px; height:26px; }
+.tile-name { font-size:13.5px; font-weight:800; color:var(--text-primary); }
+.badge { position:absolute; top:9px; right:9px; min-width:22px; height:22px; padding:0 6px;
+  border-radius:99px; background:var(--wrong); color:#fff; font-size:12px; font-weight:800;
+  display:grid; place-items:center; font-variant-numeric:tabular-nums;
+  box-shadow:0 3px 8px rgba(0,0,0,0.4); transform:scale(0);
+  transition:transform var(--t-normal) var(--ease-spring); }
+.badge.show { transform:scale(1); }
+.badge.calm { background:var(--accent); color:var(--correct-text); }
+
+/* Скелетон — точная геометрия финала */
+.skel { position:relative; overflow:hidden; border-radius:12px; background:var(--skel-a); }
+.skel::after { content:""; position:absolute; inset:0; transform:translateX(-100%);
+  background:linear-gradient(90deg, transparent, var(--skel-b), transparent);
+  animation:shimmer calc(1400ms * var(--tf)) var(--ease-slide) infinite; }
+@keyframes shimmer { to { transform:translateX(100%); } }
+
+/* Слои сцен: показывается один */
+.layer { position:absolute; inset:0; opacity:0; pointer-events:none; transition:opacity var(--t-fast) ease; }
+.layer.on { opacity:1; pointer-events:auto; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="doc-head">
+  <div class="doc-title">ТОП-12 сцен · аудит 21.09.2026</div>
+  <div class="doc-sub">
+    Двенадцать приоритетных находок из аудита — <b>в контексте реальных экранов</b>.
+    У каждой сцены свои состояния, кнопки под телефоном переключают их:
+    покой → действие → успех → ошибка. Элементы взяты из каталога
+    <b>33-new-ui-system-catalog.html</b>, токены и тайминги — из кода приложения.
+    Порядок сцен = порядок приоритета: сначала то, что стоит денег и доверия.
+  </div>
+</div>
+
+<div class="ctl">
+  <span class="ctl-lbl">Скорость анимаций</span>
+  <button class="ctl-btn on" data-tf="1">1×</button>
+  <button class="ctl-btn" data-tf="2">0,5×</button>
+  <button class="ctl-btn" data-tf="4">0,25×</button>
+</div>
+
+<div class="grid">
+
+<!-- ══════════════ 1. ВОССТАНОВИТЬ ПОКУПКИ ══════════════ -->
+<div class="item" data-scene>
+  <div class="item-head">
+    <div class="tagline">1 · Деньги и доверие</div>
+    <div class="item-name">Восстановить покупки</div>
+    <div class="item-why">
+      RevenueCat подключён, но <span class="bad">restorePurchases() не вызывается нигде в интерфейсе</span>.
+      Сменил телефон — потерял Plus, только через поддержку. Это ещё и
+      <b>требование гайдлайнов Apple</b> для подписок.
+    </div>
+    <div class="states">
+      <button class="st-btn on" data-go="0">Ряд в настройках</button>
+      <button class="st-btn" data-go="1">Идёт проверка</button>
+      <button class="st-btn" data-go="2">Нашлось</button>
+      <button class="st-btn" data-go="3">Не нашлось</button>
+    </div>
+    <div class="spec"><b>где</b>    Настройки → блок Plus, ряд под «Управлять подпиской»
+<b>виден</b>  ВСЕГДА, даже без активной подписки —
+        именно без неё он и нужен
+<b>тап</b>    ряд в busy, спиннер вместо шеврона, геометрия та же
+<b>успех</b>  Plus включается СРАЗУ, тост reward, празднование
+        не durable (правило проекта: поздравляем фактом)
+<b>пусто</b>  «Покупок не найдено» + «войти другим аккаунтом» —
+        самая частая причина: вход не тем Apple ID</div>
+  </div>
+  <div class="phone">
+    <!-- покой -->
+    <div class="layer on" data-l="0"><div class="scene">
+      <div class="hdr"><div class="hdr-row">
+        <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+      </div></div>
+      <div class="screen-title">Настройки</div>
+      <div class="sect-title">Подписка</div>
+      <div class="sgroup" style="margin-top:12px">
+        <button class="srow"><span class="stile gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.4 5.3 5.6.6-4.2 3.9 1.2 5.6L12 15.6 6.9 18.4l1.2-5.6L4 8.9l5.6-.6z"/></svg></span><span class="slabel">Phraseman Plus</span><span class="sval">до 14 окт</span><span class="schev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button>
+        <button class="srow"><span class="stile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-6.2-8.6"/><path d="M21 3v6h-6"/></svg></span><span class="slabel">Восстановить покупки</span><span class="schev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button>
+        <button class="srow"><span class="stile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M7 7V5.5A1.5 1.5 0 018.5 4h7A1.5 1.5 0 0117 5.5V7M6 7l1 12.5A1.5 1.5 0 008.5 21h7a1.5 1.5 0 001.5-1.5L18 7"/></svg></span><span class="slabel">Управлять подпиской</span><span class="schev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button>
+      </div>
+    </div></div>
+    <!-- проверка -->
+    <div class="layer" data-l="1"><div class="scene">
+      <div class="hdr"><div class="hdr-row">
+        <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+      </div></div>
+      <div class="screen-title">Настройки</div>
+      <div class="sect-title">Подписка</div>
+      <div class="sgroup" style="margin-top:12px">
+        <div class="srow" style="opacity:0.45"><span class="stile gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.4 5.3 5.6.6-4.2 3.9 1.2 5.6L12 15.6 6.9 18.4l1.2-5.6L4 8.9l5.6-.6z"/></svg></span><span class="slabel">Phraseman Plus</span><span class="sval">не активен</span></div>
+        <div class="srow"><span class="stile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-6.2-8.6"/><path d="M21 3v6h-6"/></svg></span><span class="slabel">Восстановить покупки</span><span class="schev"><svg class="spinner" viewBox="0 0 24 24" fill="none" stroke="var(--text-second)" stroke-width="2.6" stroke-linecap="round"><path d="M21 12a9 9 0 11-6.2-8.6"/></svg></span></div>
+        <div class="srow" style="opacity:0.45"><span class="stile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M7 7V5.5A1.5 1.5 0 018.5 4h7A1.5 1.5 0 0117 5.5V7M6 7l1 12.5A1.5 1.5 0 008.5 21h7a1.5 1.5 0 001.5-1.5L18 7"/></svg></span><span class="slabel">Управлять подпиской</span></div>
+      </div>
+    </div></div>
+    <!-- нашлось -->
+    <div class="layer" data-l="2"><div class="scene">
+      <div class="hdr"><div class="hdr-row">
+        <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+      </div></div>
+      <div class="screen-title">Настройки</div>
+      <div class="sect-title">Подписка</div>
+      <div class="sgroup" style="margin-top:12px">
+        <button class="srow"><span class="stile gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.4 5.3 5.6.6-4.2 3.9 1.2 5.6L12 15.6 6.9 18.4l1.2-5.6L4 8.9l5.6-.6z"/></svg></span><span class="slabel">Phraseman Plus</span><span class="sval" style="color:var(--text-second)">до 14 окт</span><span class="schev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button>
+        <button class="srow"><span class="stile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-6.2-8.6"/><path d="M21 3v6h-6"/></svg></span><span class="slabel">Восстановить покупки</span><span class="schev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button>
+      </div>
+      <div class="toast-layer"><div class="toast reward" data-toast>
+        <div class="toast-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.4 5.3 5.6.6-4.2 3.9 1.2 5.6L12 15.6 6.9 18.4l1.2-5.6L4 8.9l5.6-.6z"/></svg></div>
+        <div class="toast-body"><div class="toast-label">Plus вернулся</div><div class="toast-msg">Подписка активна до 14 октября</div></div>
+        <div class="toast-life"></div>
+      </div></div>
+    </div></div>
+    <!-- не нашлось -->
+    <div class="layer" data-l="3"><div class="scene">
+      <div class="hdr"><div class="hdr-row">
+        <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+      </div></div>
+      <div class="screen-title">Настройки</div>
+    </div>
+    <div class="scrim show"></div>
+    <div class="inbody-layer show"><div class="inbody-card">
+      <div class="medal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7.5"/><path d="M20.5 20.5l-4.2-4.2"/></svg></div>
+      <div class="inbody-title">Покупок не нашлось</div>
+      <div class="inbody-body">Проверь, тот ли это аккаунт магазина, с которого покупал. Чаще всего дело именно в нём.</div>
+      <div class="sheet-actions">
+        <button class="cta-secondary">Сменить аккаунт магазина</button>
+        <button class="cta-tertiary">Написать в поддержку</button>
+      </div>
+    </div></div></div>
+  </div>
+</div>
+
+<!-- ══════════════ 2. ПОДТВЕРЖДЕНИЕ ТРАТЫ ══════════════ -->
+<div class="item" data-scene>
+  <div class="item-head">
+    <div class="tagline">2 · Деньги и доверие</div>
+    <div class="item-name">Трата валюты с чеком</div>
+    <div class="item-why">
+      Тема за жемчуг и заморозка серии списываются <span class="bad">одним тапом, без вопроса</span>.
+      Чек «было → станет» важнее вопроса «точно?»: человек видит остаток
+      <b>до того, как валюта ушла</b>.
+    </div>
+    <div class="states">
+      <button class="st-btn on" data-go="0">Чек</button>
+      <button class="st-btn" data-go="1">Списано</button>
+      <button class="st-btn" data-go="2">Сервер отказал</button>
+      <button class="st-btn" data-go="3">Не хватает</button>
+    </div>
+    <div class="spec"><b>Optimistic</b> баланс уменьшается ЛОКАЛЬНО в кадре тапа,
+          тема применяется сразу, сеть догоняет фоном
+<b>откат</b>     сервер отказал → баланс возвращается,
+          тема снимается, тост с «Повторить»
+<b>гонка</b>     поздний ответ НЕ затирает свежий баланс
+          (last-write-guard, как в истории с осколками)
+<b>двойной тап</b> кнопка в busy до ответа или закрытия
+<b>не хватает</b>  чек показывает нехватку и ведёт туда,
+          где валюту берут — не в тупик</div>
+  </div>
+  <div class="phone">
+    <div class="layer on" data-l="0"><div class="scene">
+      <div class="hdr"><div class="hdr-row"><button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button></div></div>
+      <div class="screen-title">Темы</div>
+    </div>
+    <div class="scrim show"></div>
+    <div class="inbody-layer show"><div class="inbody-card">
+      <div class="medal warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.4 5.3 5.6.6-4.2 3.9 1.2 5.6L12 15.6 6.9 18.4l1.2-5.6L4 8.9l5.6-.6z"/></svg></div>
+      <div class="inbody-title">Открыть тему «Сакура»?</div>
+      <div class="price-check">
+        <div class="pc-row"><div class="pc-k">Сейчас у тебя</div><div class="pc-v"><svg class="coin" viewBox="0 0 24 24" fill="none" stroke="#7FD7F0" stroke-width="2.1" stroke-linejoin="round"><path d="M12 3l4.5 5.2L12 21 7.5 8.2z"/></svg>340</div></div>
+        <div class="pc-row"><div class="pc-k">Стоит тема</div><div class="pc-v pc-cost">− 120</div></div>
+        <div class="pc-row total"><div class="pc-k">Останется</div><div class="pc-v">220</div></div>
+      </div>
+      <div class="sheet-actions"><button class="cta">Открыть тему</button><button class="cta-tertiary">Не сейчас</button></div>
+    </div></div></div>
+
+    <div class="layer" data-l="1"><div class="scene">
+      <div class="hdr"><div class="hdr-row"><button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button><div class="hdr-spacer"></div>
+        <div style="display:flex;align-items:center;gap:6px;font-size:15px;font-weight:800;color:var(--text-primary)"><svg style="width:17px;height:17px" viewBox="0 0 24 24" fill="none" stroke="#7FD7F0" stroke-width="2.1" stroke-linejoin="round"><path d="M12 3l4.5 5.2L12 21 7.5 8.2z"/></svg>220</div>
+      </div></div>
+      <div class="screen-title">Темы</div>
+      <div class="card" style="margin-top:16px"><div class="card-title">Сакура</div><div class="card-body">Тема применена. Можно вернуть прежнюю в любой момент.</div></div>
+      <div class="toast-layer"><div class="toast" data-toast>
+        <div class="toast-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <div class="toast-body"><div class="toast-label">Готово</div><div class="toast-msg">Тема «Сакура» открыта</div></div>
+        <div class="toast-life"></div>
+      </div></div>
+    </div></div>
+
+    <div class="layer" data-l="2"><div class="scene">
+      <div class="hdr"><div class="hdr-row"><button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button><div class="hdr-spacer"></div>
+        <div style="display:flex;align-items:center;gap:6px;font-size:15px;font-weight:800;color:var(--text-primary)"><svg style="width:17px;height:17px" viewBox="0 0 24 24" fill="none" stroke="#7FD7F0" stroke-width="2.1" stroke-linejoin="round"><path d="M12 3l4.5 5.2L12 21 7.5 8.2z"/></svg>340</div>
+      </div></div>
+      <div class="screen-title">Темы</div>
+      <div class="card" style="margin-top:16px"><div class="card-title">Сакура</div><div class="card-body">Жемчужины вернулись на счёт — списания не было.</div></div>
+      <div class="toast-layer"><div class="toast error" data-toast>
+        <div class="toast-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L2.7 17.2A1.9 1.9 0 004.4 20h15.2a1.9 1.9 0 001.7-2.8L13.7 3.9a1.9 1.9 0 00-3.4 0z"/><path d="M12 9v4.2"/><path d="M12 16.8v.01"/></svg></div>
+        <div class="toast-body"><div class="toast-label">Не купилось</div><div class="toast-msg">Жемчужины на месте — нет связи</div></div>
+        <button class="toast-act">Повторить</button>
+        <div class="toast-life"></div>
+      </div></div>
+    </div></div>
+
+    <div class="layer" data-l="3"><div class="scene">
+      <div class="hdr"><div class="hdr-row"><button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button></div></div>
+      <div class="screen-title">Темы</div>
+    </div>
+    <div class="scrim show"></div>
+    <div class="inbody-layer show"><div class="inbody-card">
+      <div class="medal warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"><path d="M12 3l4.5 5.2L12 21 7.5 8.2z"/></svg></div>
+      <div class="inbody-title">Не хватает 40</div>
+      <div class="price-check">
+        <div class="pc-row"><div class="pc-k">Сейчас у тебя</div><div class="pc-v">80</div></div>
+        <div class="pc-row"><div class="pc-k">Стоит тема</div><div class="pc-v pc-cost">− 120</div></div>
+        <div class="pc-row total"><div class="pc-k">Не хватает</div><div class="pc-v" style="color:var(--gold)">40</div></div>
+      </div>
+      <div class="sheet-actions"><button class="cta">Где взять жемчужины</button><button class="cta-tertiary">Не сейчас</button></div>
+    </div></div></div>
+  </div>
+</div>
+
+<!-- ══════════════ 3. ВЫХОД ИЗ АККАУНТА ══════════════ -->
+<div class="item" data-scene>
+  <div class="item-head">
+    <div class="tagline">3 · Деньги и доверие</div>
+    <div class="item-name">Выход с подтверждением</div>
+    <div class="item-why">
+      «Выйти» срабатывает мгновенно, а прямо под ним — «Удалить аккаунт».
+      У человека <span class="bad">без привязанной почты промах необратим</span>.
+      Подтверждение спрашивает не «точно?», а показывает <b>чем он рискует</b>.
+    </div>
+    <div class="states">
+      <button class="st-btn on" data-go="0">Почта привязана</button>
+      <button class="st-btn" data-go="1">Почты НЕТ</button>
+    </div>
+    <div class="spec"><b>развилка</b> текст зависит от того, есть ли способ вернуться
+<b>есть почта</b>  спокойный тон: «войдёшь снова по почте»
+<b>нет почты</b>   предупреждение золотом + первая кнопка
+           НЕ «выйти», а «привязать почту»
+           (даём выход из ловушки, а не только предупреждаем)
+<b>кнопки</b>   «Выйти» — вторичная, НЕ красная:
+           выход не разрушение, не пугаем цветом
+<b>развод</b>   «Удалить аккаунт» переезжает в отдельную
+           группу ниже, с воздухом между ними</div>
+  </div>
+  <div class="phone">
+    <div class="layer on" data-l="0"><div class="scene">
+      <div class="hdr"><div class="hdr-row"><button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button></div></div>
+      <div class="screen-title">Аккаунт</div>
+    </div>
+    <div class="scrim show"></div>
+    <div class="inbody-layer show"><div class="inbody-card">
+      <div class="medal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4h3.5A1.5 1.5 0 0120 5.5v13a1.5 1.5 0 01-1.5 1.5H15"/><path d="M10 16l-4-4 4-4M6 12h10"/></svg></div>
+      <div class="inbody-title">Выйти из аккаунта?</div>
+      <div class="inbody-body">Прогресс сохранён в облаке. Войдёшь снова по почте <b style="color:var(--text-second)">b•••@gmail.com</b> — всё будет на месте.</div>
+      <div class="sheet-actions"><button class="cta-secondary">Выйти</button><button class="cta-tertiary">Остаться</button></div>
+    </div></div></div>
+
+    <div class="layer" data-l="1"><div class="scene">
+      <div class="hdr"><div class="hdr-row"><button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button></div></div>
+      <div class="screen-title">Аккаунт</div>
+    </div>
+    <div class="scrim show"></div>
+    <div class="inbody-layer show"><div class="inbody-card">
+      <div class="medal warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L2.7 17.2A1.9 1.9 0 004.4 20h15.2a1.9 1.9 0 001.7-2.8L13.7 3.9a1.9 1.9 0 00-3.4 0z"/><path d="M12 9v4.2"/><path d="M12 16.8v.01"/></svg></div>
+      <div class="inbody-title">Почта не привязана</div>
+      <div class="inbody-body">Если выйти сейчас, вернуться в этот аккаунт будет нечем: <b style="color:var(--gold)">348 дней серии, Plus и весь прогресс</b> останутся здесь.</div>
+      <div class="sheet-actions">
+        <button class="cta">Привязать почту</button>
+        <button class="cta-tertiary">Всё равно выйти</button>
+      </div>
+    </div></div></div>
+  </div>
+</div>
+
+<!-- ══════════════ 4. ПАУЗА В ТРЕНИРОВКЕ ══════════════ -->
+<div class="item" data-scene>
+  <div class="item-head">
+    <div class="tagline">4 · Деньги и доверие</div>
+    <div class="item-name">Пауза и резюме экзамена</div>
+    <div class="item-why">
+      Выход из тренировки карточек стирает раунд молча, а
+      <span class="bad">финальный экзамен теряет 60 минут работы</span> при закрытии приложения.
+      Образец уже написан — <b>LevelExamV2 это умеет</b>, надо распространить.
+    </div>
+    <div class="states">
+      <button class="st-btn on" data-go="0">Пауза тренировки</button>
+      <button class="st-btn" data-go="1">Экзамен: вернуться</button>
+    </div>
+    <div class="spec"><b>пауза</b>   таймер встаёт в тот же кадр, что и шторка
+<b>сводка</b>  три числа — «12 карточек» останавливает,
+         абстрактное «прогресс» не останавливает
+<b>черновик</b> пишется в AsyncStorage при КАЖДОМ ответе,
+         не при выходе: приложение могут убить
+<b>резюме</b>  вход в раздел предлагает продолжить,
+         показывает, когда остановились
+<b>срок</b>    черновик экзамена живёт, пока идёт его окно;
+         истёк — честно говорим и предлагаем заново</div>
+  </div>
+  <div class="phone">
+    <div class="layer on" data-l="0"><div class="scene">
+      <div class="hdr"><div class="hdr-row"><button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div></div>
+      <div class="screen-title">Вспомни и напиши</div>
+    </div>
+    <div class="scrim show"></div>
+    <div class="sheet-layer show"><div class="sheet">
+      <div class="sheet-grabber"></div>
+      <div class="sheet-title">Сделать паузу?</div>
+      <div class="sheet-body">Таймер остановлен. Можно продолжить с этого места.</div>
+      <div class="keep-strip">
+        <div class="keep-cell"><div class="keep-n">12</div><div class="keep-k">пройдено</div></div>
+        <div class="keep-cell"><div class="keep-n">18</div><div class="keep-k">осталось</div></div>
+        <div class="keep-cell good"><div class="keep-n">10</div><div class="keep-k">верно</div></div>
+      </div>
+      <div class="sheet-actions">
+        <button class="cta">Продолжить</button>
+        <button class="cta-secondary">Выйти и сохранить</button>
+        <button class="cta-tertiary">Выйти без сохранения</button>
+      </div>
+    </div></div></div>
+
+    <div class="layer" data-l="1"><div class="scene">
+      <div class="hdr"><div class="hdr-row"><button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button></div></div>
+      <div class="screen-title">Экзамен</div>
+      <div class="card" style="margin-top:18px">
+        <div class="card-title">Ты остановился на 31 вопросе</div>
+        <div class="card-body">Осталось 19 вопросов и 24 минуты. Ответы сохранены.</div>
+        <div class="keep-strip" style="margin-top:16px">
+          <div class="keep-cell"><div class="keep-n">31</div><div class="keep-k">отвечено</div></div>
+          <div class="keep-cell"><div class="keep-n">19</div><div class="keep-k">осталось</div></div>
+          <div class="keep-cell good"><div class="keep-n">24:06</div><div class="keep-k">времени</div></div>
+        </div>
+      </div>
+      <div class="dock">
+        <button class="cta">Продолжить экзамен</button>
+        <button class="cta-tertiary">Начать заново</button>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ══════════════ 5. КЛИКАБЕЛЬНАЯ АНАЛИТИКА ══════════════ -->
+<div class="item" data-scene>
+  <div class="item-head">
+    <div class="tagline">5 · Мёртвое → живое</div>
+    <div class="item-name">Аналитика, которая ведёт в тренировку</div>
+    <div class="item-why">
+      Экран показывает «Глаголы — 42%» и <span class="bad">не даёт ничего сделать</span>:
+      строки — статичные View. В коде даже осталась мёртвая заготовка
+      <b>{/* ── CTA тренировка ── */}</b>. Правка дешёвая, эффект большой.
+    </div>
+    <div class="states">
+      <button class="st-btn on" data-go="0">Было: тупик</button>
+      <button class="st-btn" data-go="1">Стало: действие</button>
+      <button class="st-btn" data-go="2">Загрузка</button>
+    </div>
+    <div class="spec"><b>каскад</b>  полосы scaleX 0→доля, 720мс ease-slide,
+         задержка index×90мс — сверху вниз
+<b>тап</b>     scale .978 → тренировка с фильтром этой темы
+<b>инсайт</b>  строка «слабая тема» тоже кликабельна:
+         называет проблему — ведёт к решению
+<b>скелетон</b> та же геометрия, что у финального кадра:
+         строка 66px, полоса 8px — БЕЗ прыжка при загрузке
+<b>a11y</b>    сейчас на 894 строки НОЛЬ accessibility —
+         каждая строка получает role + понятный label</div>
+  </div>
+  <div class="phone">
+    <div class="layer on" data-l="0"><div class="scene">
+      <div class="hdr"><div class="hdr-row"><button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button></div></div>
+      <div class="screen-title">Слабые места</div>
+      <div class="list">
+        <div class="stat-row lit" style="--w:0.42; cursor:default"><div class="stat-body"><div class="stat-top"><span class="stat-name">Глаголы</span><span class="stat-pct">42%</span></div><div class="stat-track"><div class="stat-fill"></div></div></div></div>
+        <div class="stat-row lit" style="--w:0.27; cursor:default"><div class="stat-body"><div class="stat-top"><span class="stat-name">Артикли</span><span class="stat-pct">27%</span></div><div class="stat-track"><div class="stat-fill"></div></div></div></div>
+        <div class="stat-row lit calm" style="--w:0.09; cursor:default"><div class="stat-body"><div class="stat-top"><span class="stat-name">Предлоги</span><span class="stat-pct">9%</span></div><div class="stat-track"><div class="stat-fill"></div></div></div></div>
+      </div>
+      <div style="padding:22px 20px 0; font-size:13.5px; line-height:1.6; color:var(--text-ghost); text-align:center">
+        Данные есть — действия нет.<br>Дальше идти некуда.
+      </div>
+    </div></div>
+
+    <div class="layer" data-l="1"><div class="scene">
+      <div class="hdr"><div class="hdr-row"><button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button></div></div>
+      <div class="screen-title">Слабые места</div>
+      <div class="card" style="margin-top:14px; background:linear-gradient(160deg, rgba(71,200,112,0.12), rgba(71,200,112,0.03))">
+        <div class="card-title" style="font-size:15px">Глаголы подводят чаще всего — 8 промахов за неделю</div>
+        <button class="cta" style="height:48px; font-size:15.5px; margin-top:14px">Разобрать глаголы</button>
+      </div>
+      <div class="list">
+        <button class="stat-row" style="--w:0.42" data-bar><div class="stat-body"><div class="stat-top"><span class="stat-name">Глаголы</span><span class="stat-pct">42%</span></div><div class="stat-track"><div class="stat-fill"></div></div></div><span class="stat-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button>
+        <button class="stat-row" style="--w:0.27" data-bar><div class="stat-body"><div class="stat-top"><span class="stat-name">Артикли</span><span class="stat-pct">27%</span></div><div class="stat-track"><div class="stat-fill"></div></div></div><span class="stat-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button>
+        <button class="stat-row calm" style="--w:0.09" data-bar><div class="stat-body"><div class="stat-top"><span class="stat-name">Предлоги</span><span class="stat-pct">9%</span></div><div class="stat-track"><div class="stat-fill"></div></div></div><span class="stat-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button>
+      </div>
+    </div></div>
+
+    <div class="layer" data-l="2"><div class="scene">
+      <div class="hdr"><div class="hdr-row"><button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button></div></div>
+      <div class="screen-title">Слабые места</div>
+      <div class="card skel" style="margin-top:14px; height:106px; box-shadow:none"></div>
+      <div class="list">
+        <div class="stat-row" style="cursor:default"><div class="stat-body"><div class="stat-top"><span class="skel" style="display:block;width:96px;height:16px"></span><span class="skel" style="display:block;width:38px;height:16px"></span></div><div class="stat-track"></div></div></div>
+        <div class="stat-row" style="cursor:default"><div class="stat-body"><div class="stat-top"><span class="skel" style="display:block;width:78px;height:16px"></span><span class="skel" style="display:block;width:38px;height:16px"></span></div><div class="stat-track"></div></div></div>
+        <div class="stat-row" style="cursor:default"><div class="stat-body"><div class="stat-top"><span class="skel" style="display:block;width:88px;height:16px"></span><span class="skel" style="display:block;width:38px;height:16px"></span></div><div class="stat-track"></div></div></div>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ══════════════ 6. РАЗБОР ОШИБОК ПОСЛЕ СЕССИИ ══════════════ -->
+<div class="item" data-scene>
+  <div class="item-head">
+    <div class="tagline">6 · Мёртвое → живое</div>
+    <div class="item-name">Разбор: на чём споткнулся</div>
+    <div class="item-why">
+      Ни Learning V2, ни карточки, ни три экзамена <span class="bad">не показывают, что именно человек не угадал</span> —
+      только «точность 72%». Это учебное приложение; разбор — <b>его суть</b>,
+      а не украшение.
+    </div>
+    <div class="states">
+      <button class="st-btn on" data-go="0">Было: цифры</button>
+      <button class="st-btn" data-go="1">Стало: разбор</button>
+      <button class="st-btn" data-go="2">Без ошибок</button>
+    </div>
+    <div class="spec"><b>появление</b> строки ошибок каскадом translateY 10→0,
+          задержка index×70мс, ПОСЛЕ звёзд
+<b>строка</b>   зачёркнут твой ответ → правильный крупнее
+          (что сказал → как надо, в одну строку взгляда)
+<b>тап</b>      открывает разбор конкретной ошибки
+<b>кнопки</b>   «Следующее занятие» — основная (обещание
+          «следующая открыта» наконец выполняется),
+          «Повторить ошибки» — вторичная
+<b>ноль</b>     чисто прошёл → разбора нет, есть похвала
+          и всё равно следующий шаг</div>
+  </div>
+  <div class="phone">
+    <div class="layer on" data-l="0"><div class="scene">
+      <div class="result-hero">
+        <div class="stars">
+          <svg class="star in" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l2.4 5.3 5.6.6-4.2 3.9 1.2 5.6L12 15.6 6.9 18.4l1.2-5.6L4 8.9l5.6-.6z"/></svg>
+          <svg class="star in" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l2.4 5.3 5.6.6-4.2 3.9 1.2 5.6L12 15.6 6.9 18.4l1.2-5.6L4 8.9l5.6-.6z"/></svg>
+          <svg class="star off in" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l2.4 5.3 5.6.6-4.2 3.9 1.2 5.6L12 15.6 6.9 18.4l1.2-5.6L4 8.9l5.6-.6z"/></svg>
+        </div>
+        <div class="result-title">Занятие пройдено</div>
+        <div class="result-sub">Следующая сессия уже открыта</div>
+      </div>
+      <div class="metrics">
+        <div class="metric"><div class="metric-n">72%</div><div class="metric-k">точность</div></div>
+        <div class="metric"><div class="metric-n">4:18</div><div class="metric-k">время</div></div>
+        <div class="metric"><div class="metric-n">18</div><div class="metric-k">заданий</div></div>
+      </div>
+      <div style="padding:22px 26px 0; font-size:13.5px; line-height:1.6; color:var(--text-ghost); text-align:center">
+        Где ошибся — не показано.<br>Кнопки «следующее занятие» нет,<br>хотя подпись его обещает.
+      </div>
+      <div class="dock"><button class="cta-secondary">Продолжить</button></div>
+    </div></div>
+
+    <div class="layer" data-l="1"><div class="scene">
+      <div class="result-hero" style="padding-top:26px">
+        <div class="stars">
+          <svg class="star" data-star viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l2.4 5.3 5.6.6-4.2 3.9 1.2 5.6L12 15.6 6.9 18.4l1.2-5.6L4 8.9l5.6-.6z"/></svg>
+          <svg class="star" data-star viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l2.4 5.3 5.6.6-4.2 3.9 1.2 5.6L12 15.6 6.9 18.4l1.2-5.6L4 8.9l5.6-.6z"/></svg>
+          <svg class="star off" data-star viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l2.4 5.3 5.6.6-4.2 3.9 1.2 5.6L12 15.6 6.9 18.4l1.2-5.6L4 8.9l5.6-.6z"/></svg>
+        </div>
+        <div class="result-title">Занятие пройдено</div>
+      </div>
+      <div class="metrics">
+        <div class="metric"><div class="metric-n">72%</div><div class="metric-k">точность</div></div>
+        <div class="metric"><div class="metric-n">4:18</div><div class="metric-k">время</div></div>
+        <div class="metric"><div class="metric-n">18</div><div class="metric-k">заданий</div></div>
+      </div>
+      <div class="sect-title">Споткнулся на трёх</div>
+      <div class="list" style="padding-top:10px">
+        <button class="miss-row" data-miss>
+          <span class="miss-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span>
+          <span class="miss-b"><span class="miss-you">he don't like</span><span class="miss-ok">he doesn't like</span></span>
+        </button>
+        <button class="miss-row" data-miss>
+          <span class="miss-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span>
+          <span class="miss-b"><span class="miss-you">a apple</span><span class="miss-ok">an apple</span></span>
+        </button>
+        <button class="miss-row" data-miss>
+          <span class="miss-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span>
+          <span class="miss-b"><span class="miss-you">go to home</span><span class="miss-ok">go home</span></span>
+        </button>
+      </div>
+      <div class="dock">
+        <button class="cta">Следующее занятие</button>
+        <button class="cta-secondary">Повторить эти три</button>
+      </div>
+    </div></div>
+
+    <div class="layer" data-l="2"><div class="scene">
+      <div class="result-hero" style="padding-top:34px">
+        <div class="stars">
+          <svg class="star in" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l2.4 5.3 5.6.6-4.2 3.9 1.2 5.6L12 15.6 6.9 18.4l1.2-5.6L4 8.9l5.6-.6z"/></svg>
+          <svg class="star in" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l2.4 5.3 5.6.6-4.2 3.9 1.2 5.6L12 15.6 6.9 18.4l1.2-5.6L4 8.9l5.6-.6z"/></svg>
+          <svg class="star in" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l2.4 5.3 5.6.6-4.2 3.9 1.2 5.6L12 15.6 6.9 18.4l1.2-5.6L4 8.9l5.6-.6z"/></svg>
+        </div>
+        <div class="result-title">Без единой ошибки</div>
+        <div class="result-sub">Восемнадцать из восемнадцати. Разбирать нечего.</div>
+      </div>
+      <div class="metrics">
+        <div class="metric"><div class="metric-n">100%</div><div class="metric-k">точность</div></div>
+        <div class="metric"><div class="metric-n">3:41</div><div class="metric-k">время</div></div>
+        <div class="metric"><div class="metric-n">18</div><div class="metric-k">заданий</div></div>
+      </div>
+      <div class="dock">
+        <button class="cta">Следующее занятие</button>
+        <button class="cta-tertiary">На карту курса</button>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ══════════════ 7. КАРТА ОШИБОК — ФИЛЬТРЫ ══════════════ -->
+<div class="item" data-scene>
+  <div class="item-head">
+    <div class="tagline">7 · Мёртвое → живое</div>
+    <div class="item-name">Карта слабых мест как фильтр</div>
+    <div class="item-why">
+      Карта типов и «откуда приходят» <span class="bad">не кликабельны</span> — тап по «артикли»
+      должен фильтровать список. Плюс механизм «скрыть ошибку»
+      <b>уже есть в данных</b> (hidden/restored), а кнопки нет.
+    </div>
+    <div class="states">
+      <button class="st-btn on" data-go="0">Хаб с фильтрами</button>
+      <button class="st-btn" data-go="1">Фильтр применён</button>
+      <button class="st-btn" data-go="2">Скрыли ошибку</button>
+    </div>
+    <div class="spec"><b>тап по типу</b> список фильтруется локально, 0 чтений
+<b>чип</b>        показывает активный фильтр и снимается крестиком
+<b>скрыть</b>     свайп по строке влево → «Скрыть» и «Удалить»
+            механизм hidden/restored уже в данных
+<b>undo</b>       скрытие обратимо 5 секунд (кольцо-таймер)
+<b>пусто</b>      фильтр ничего не нашёл → предложить сбросить,
+            а не показывать пустоту</div>
+  </div>
+  <div class="phone">
+    <div class="layer on" data-l="0"><div class="scene">
+      <div class="hdr"><div class="hdr-row"><button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button></div></div>
+      <div class="screen-title">Работа над ошибками</div>
+      <div class="sect-title">За 30 дней · 47 ошибок</div>
+      <div class="list" style="padding-top:10px">
+        <button class="stat-row" style="--w:0.42" data-bar><div class="stat-body"><div class="stat-top"><span class="stat-name">Глаголы</span><span class="stat-pct">42%</span></div><div class="stat-track"><div class="stat-fill"></div></div></div><span class="stat-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button>
+        <button class="stat-row" style="--w:0.27" data-bar><div class="stat-body"><div class="stat-top"><span class="stat-name">Артикли</span><span class="stat-pct">27%</span></div><div class="stat-track"><div class="stat-fill"></div></div></div><span class="stat-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button>
+      </div>
+      <div class="sect-title">Откуда приходят</div>
+      <div class="chips">
+        <button class="chip">Уроки · 21</button>
+        <button class="chip">Арена · 14</button>
+        <button class="chip">Карточки · 12</button>
+      </div>
+      <div class="dock"><button class="cta">Разобрать 5</button></div>
+    </div></div>
+
+    <div class="layer" data-l="1"><div class="scene">
+      <div class="hdr"><div class="hdr-row"><button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button></div></div>
+      <div class="screen-title">Мои ошибки</div>
+      <div class="chips">
+        <button class="chip on">Артикли · 13 <span style="margin-left:4px">✕</span></button>
+        <button class="chip">Все</button>
+      </div>
+      <div class="list" style="padding-top:12px">
+        <button class="miss-row in"><span class="miss-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span><span class="miss-b"><span class="miss-you">a apple</span><span class="miss-ok">an apple</span></span></button>
+        <button class="miss-row in"><span class="miss-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span><span class="miss-b"><span class="miss-you">the water is cold</span><span class="miss-ok">water is cold</span></span></button>
+        <button class="miss-row in"><span class="miss-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span><span class="miss-b"><span class="miss-you">a hour</span><span class="miss-ok">an hour</span></span></button>
+      </div>
+      <div class="dock"><button class="cta">Разобрать артикли</button></div>
+    </div></div>
+
+    <div class="layer" data-l="2"><div class="scene">
+      <div class="hdr"><div class="hdr-row"><button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button></div></div>
+      <div class="screen-title">Мои ошибки</div>
+      <div class="list" style="padding-top:14px">
+        <button class="miss-row in"><span class="miss-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span><span class="miss-b"><span class="miss-you">the water is cold</span><span class="miss-ok">water is cold</span></span></button>
+        <button class="miss-row in"><span class="miss-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span><span class="miss-b"><span class="miss-you">a hour</span><span class="miss-ok">an hour</span></span></button>
+      </div>
+      <div class="toast-layer"><div class="toast" data-toast>
+        <div class="undo-wrap">
+          <svg class="undo-ring" viewBox="0 0 34 34"><circle class="trk" cx="17" cy="17" r="14"/><circle class="val" cx="17" cy="17" r="14"/></svg>
+          <div class="undo-count" data-count>5</div>
+        </div>
+        <div class="toast-body"><div class="toast-label">Скрыто</div><div class="toast-msg">«a apple» больше не придёт</div></div>
+        <button class="toast-act">Вернуть</button>
+      </div></div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ══════════════ 8. АРЕНА: СОПЕРНИК ══════════════ -->
+<div class="item" data-scene>
+  <div class="item-head">
+    <div class="tagline">8 · Рост</div>
+    <div class="item-name">Соперник после матча</div>
+    <div class="item-why">
+      Самый азартный момент <span class="bad">не конвертируется в социальную связь</span>:
+      с экрана результата нельзя ни открыть профиль соперника, ни добавить
+      в друзья, ни <b>поделиться победой</b>.
+    </div>
+    <div class="states">
+      <button class="st-btn on" data-go="0">Результат</button>
+      <button class="st-btn" data-go="1">Заявка ушла</button>
+    </div>
+    <div class="spec"><b>Optimistic</b> «В друзья» → кнопка сразу «Заявка отправлена»,
+          сеть догоняет; отказ → возврат + тост с повтором
+<b>профиль</b>   тап по имени/аватару открывает карточку
+          (PlayerProfileModal уже есть, просто не подключён)
+<b>реванш</b>    для дуэли с другом — «Позвать снова»
+<b>шаринг</b>    Share со счётом; в текст НЕ попадают
+          ни uid, ни почта — только имена и счёт
+<b>жалоба</b>    остаётся, но уходит в меню «⋯», не в первый ряд</div>
+  </div>
+  <div class="phone">
+    <div class="layer on" data-l="0"><div class="scene">
+      <div class="result-hero">
+        <div class="medal" style="width:88px;height:88px;border-radius:30px;background:linear-gradient(180deg,#5BD991,#38B96A);color:var(--correct-text)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v5a5 5 0 01-10 0z"/><path d="M17 5h2.5a2.5 2.5 0 01-2.5 4.5M7 5H4.5A2.5 2.5 0 007 9.5"/><path d="M12 14v3M9 20h6"/></svg></div>
+        <div class="result-title">Победа</div>
+        <div class="result-sub">8 : 5 · +24 руны</div>
+      </div>
+      <div class="sect-title">Соперник</div>
+      <div class="sgroup" style="margin-top:12px">
+        <button class="srow" style="min-height:64px">
+          <span class="stile" style="width:42px;height:42px;border-radius:15px;font-size:17px;font-weight:800;color:var(--text-second)">М</span>
+          <span class="slabel">Марина<span style="display:block;font-size:13px;font-weight:600;color:var(--text-ghost);margin-top:2px">Серебро II</span></span>
+          <span class="schev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+        </button>
+      </div>
+      <div class="dock">
+        <button class="cta">Ещё матч</button>
+        <button class="cta-secondary">Добавить в друзья</button>
+        <button class="cta-tertiary">Поделиться победой</button>
+      </div>
+    </div></div>
+
+    <div class="layer" data-l="1"><div class="scene">
+      <div class="result-hero">
+        <div class="medal" style="width:88px;height:88px;border-radius:30px;background:linear-gradient(180deg,#5BD991,#38B96A);color:var(--correct-text)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v5a5 5 0 01-10 0z"/><path d="M17 5h2.5a2.5 2.5 0 01-2.5 4.5M7 5H4.5A2.5 2.5 0 007 9.5"/><path d="M12 14v3M9 20h6"/></svg></div>
+        <div class="result-title">Победа</div>
+        <div class="result-sub">8 : 5 · +24 руны</div>
+      </div>
+      <div class="sect-title">Соперник</div>
+      <div class="sgroup" style="margin-top:12px">
+        <button class="srow" style="min-height:64px">
+          <span class="stile" style="width:42px;height:42px;border-radius:15px;font-size:17px;font-weight:800;color:var(--text-second)">М</span>
+          <span class="slabel">Марина<span style="display:block;font-size:13px;font-weight:600;color:var(--text-ghost);margin-top:2px">Серебро II</span></span>
+          <span class="schev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+        </button>
+      </div>
+      <div class="dock">
+        <button class="cta">Ещё матч</button>
+        <button class="cta-secondary" style="color:var(--text-second)">Заявка отправлена</button>
+        <button class="cta-tertiary">Поделиться победой</button>
+      </div>
+      <div class="toast-layer"><div class="toast" data-toast>
+        <div class="toast-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M16 19h6M19 16v6"/><circle cx="9.5" cy="8" r="4"/><path d="M2.5 20a7 7 0 0111-5.7"/></svg></div>
+        <div class="toast-body"><div class="toast-label">Отправлено</div><div class="toast-msg">Марина получит заявку</div></div>
+        <div class="toast-life"></div>
+      </div></div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ══════════════ 9. ГЛАВНАЯ ДЛЯ НОВИЧКА ══════════════ -->
+<div class="item" data-scene>
+  <div class="item-head">
+    <div class="tagline">9 · Рост</div>
+    <div class="item-name">Первый экран новичка</div>
+    <div class="item-why">
+      Карточка «Продолжить» рисуется только при lastLesson ≠ null, а карточка лиги
+      исчезает без else. У человека без единого урока <span class="bad">главный слот пуст</span> —
+      первое впечатление о приложении <b>пустота</b>.
+    </div>
+    <div class="states">
+      <button class="st-btn on" data-go="0">Было: пусто</button>
+      <button class="st-btn" data-go="1">Стало: приглашение</button>
+    </div>
+    <div class="spec"><b>правило</b>  главный слот Главной НЕ бывает пустым:
+          есть прогресс → «Продолжить урок N»
+          нет прогресса → «Начать урок 1»
+<b>лига</b>     нет лиги → не исчезаем молча, а объясняем,
+          как в неё попасть
+<b>каскад</b>   секции появляются stagger 58мс (HOME_ENTRANCE),
+          у новичка тот же каскад — не отдельный экран
+<b>обещание</b> подпись честная: «5 минут», а не «начни путь»</div>
+  </div>
+  <div class="phone">
+    <div class="layer on" data-l="0"><div class="scene">
+      <div class="hdr"><div class="hdr-row">
+        <div style="display:flex;align-items:center;gap:8px"><div class="stile" style="width:36px;height:36px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 20a7.5 7.5 0 0115 0"/></svg></div></div>
+        <div class="hdr-spacer"></div>
+        <div style="display:flex;align-items:center;gap:6px;font-size:15px;font-weight:800;color:var(--text-primary)"><svg style="width:17px;height:17px" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.2" stroke-linejoin="round"><path d="M13 2L4.5 13H11l-1 9 9.5-11H13z"/></svg>25</div>
+      </div></div>
+      <div class="screen-title">Привет!</div>
+      <div class="sect-title">Сегодня</div>
+      <div style="padding:60px 34px; text-align:center; font-size:13.5px; line-height:1.6; color:var(--text-ghost)">
+        Карточки «Продолжить» нет —<br>уроков ещё не было.<br><br>Карточка лиги тоже не рисуется.<br>Слот пустой.
+      </div>
+      <div class="sect-title">Практика</div>
+      <div class="badge-demo">
+        <button class="tile"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A1.5 1.5 0 015.5 4H10a2 2 0 012 2v13a2 2 0 00-2-2H5.5A1.5 1.5 0 014 15.5z"/><path d="M20 5.5A1.5 1.5 0 0018.5 4H14a2 2 0 00-2 2v13a2 2 0 012-2h4.5a1.5 1.5 0 001.5-1.5z"/></svg><span class="tile-name">Уроки</span></button>
+        <button class="tile"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 01-8 8H4l2.2-2.6A8 8 0 1120 12z"/></svg><span class="tile-name">Диалоги</span></button>
+        <button class="tile"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="14" height="12" rx="2.5"/><path d="M7 3.5h10.5A3.5 3.5 0 0121 7v9"/></svg><span class="tile-name">Карточки</span></button>
+      </div>
+    </div></div>
+
+    <div class="layer" data-l="1"><div class="scene">
+      <div class="hdr"><div class="hdr-row">
+        <div style="display:flex;align-items:center;gap:8px"><div class="stile" style="width:36px;height:36px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 20a7.5 7.5 0 0115 0"/></svg></div></div>
+        <div class="hdr-spacer"></div>
+        <div style="display:flex;align-items:center;gap:6px;font-size:15px;font-weight:800;color:var(--text-primary)"><svg style="width:17px;height:17px" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.2" stroke-linejoin="round"><path d="M13 2L4.5 13H11l-1 9 9.5-11H13z"/></svg>25</div>
+      </div></div>
+      <div class="screen-title">Привет!</div>
+      <div class="sect-title">Сегодня</div>
+      <div class="card" style="margin-top:12px; background:linear-gradient(160deg, rgba(71,200,112,0.14), rgba(71,200,112,0.03))">
+        <div style="display:flex;align-items:center;gap:13px">
+          <div class="stile" style="width:46px;height:46px;border-radius:16px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px"><path d="M5 3.5v17l14-8.5z"/></svg></div>
+          <div style="flex:1;min-width:0">
+            <div class="card-title">Урок 1 · Первые слова</div>
+            <div class="card-body" style="margin-top:4px">Пять минут — и первая фраза твоя</div>
+          </div>
+        </div>
+        <button class="cta" style="margin-top:16px">Начать</button>
+      </div>
+      <div class="card" style="margin-top:12px">
+        <div class="card-title" style="font-size:15px">Лига откроется после первого занятия</div>
+        <div class="card-body" style="margin-top:6px">Там соревнуются те, кто учится на этой же неделе.</div>
+      </div>
+      <div class="sect-title">Практика</div>
+      <div class="badge-demo">
+        <button class="tile"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A1.5 1.5 0 015.5 4H10a2 2 0 012 2v13a2 2 0 00-2-2H5.5A1.5 1.5 0 014 15.5z"/><path d="M20 5.5A1.5 1.5 0 0018.5 4H14a2 2 0 00-2 2v13a2 2 0 012-2h4.5a1.5 1.5 0 001.5-1.5z"/></svg><span class="tile-name">Уроки</span></button>
+        <button class="tile"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 01-8 8H4l2.2-2.6A8 8 0 1120 12z"/></svg><span class="tile-name">Диалоги</span></button>
+        <button class="tile"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="14" height="12" rx="2.5"/><path d="M7 3.5h10.5A3.5 3.5 0 0121 7v9"/></svg><span class="tile-name">Карточки</span></button>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ══════════════ 10. ОБНОВЛЕНИЕ И УСТАРЕВШИЕ ДАННЫЕ ══════════════ -->
+<div class="item" data-scene>
+  <div class="item-head">
+    <div class="tagline">10 · Рост</div>
+    <div class="item-name">Потянуть и честность про данные</div>
+    <div class="item-why">
+      Pull-to-refresh в <span class="bad">3 файлах из 144</span>. И если фоновое обновление
+      провалилось — человек молча смотрит вчерашние цифры:
+      баннер есть <b>только при полном провале первой загрузки</b>.
+    </div>
+    <div class="states">
+      <button class="st-btn on" data-go="0">Тянем</button>
+      <button class="st-btn" data-go="1">Данные устарели</button>
+      <button class="st-btn" data-go="2">Обновлено</button>
+    </div>
+    <div class="spec"><b>что обновляем</b> только реально устаревшее:
+              лига — не чаще раза в 6 часов (правило),
+              свои очки локальные → всегда живые, 0 чтений
+<b>жест</b>          на 56px спиннер, отпустил — запрос
+<b>устарело</b>      плашка золотом + время последних данных
+<b>кнопка</b>        «Обновлю…» в том же ряду: без прыжка
+<b>после</b>         цифры перерисовываются, плашка уезжает,
+              НЕ показываем тост: результат виден сам</div>
+  </div>
+  <div class="phone">
+    <div class="layer on" data-l="0"><div class="scene">
+      <div class="hdr"><div class="hdr-row"><button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button></div></div>
+      <div style="padding:16px 16px 0"><div style="height:56px;display:flex;align-items:center;justify-content:center;gap:9px;color:var(--text-muted);font-size:13.5px;font-weight:700">
+        <svg class="spinner" style="width:20px;height:20px;color:var(--text-second)" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M21 12a9 9 0 11-6.2-8.6"/></svg>
+        <span>Обновляю…</span>
+      </div></div>
+      <div class="screen-title" style="padding-top:2px">Лига</div>
+      <div class="list">
+        <div class="stat-row calm lit" style="--w:0.72;cursor:default"><div class="stat-body"><div class="stat-top"><span class="stat-name">Ты · 12 место</span><span class="stat-pct">840</span></div><div class="stat-track"><div class="stat-fill"></div></div></div></div>
+        <div class="stat-row calm lit" style="--w:0.64;cursor:default"><div class="stat-body"><div class="stat-top"><span class="stat-name">Марина</span><span class="stat-pct">790</span></div><div class="stat-track"><div class="stat-fill"></div></div></div></div>
+      </div>
+    </div></div>
+
+    <div class="layer" data-l="1"><div class="scene">
+      <div class="hdr"><div class="hdr-row"><button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button></div></div>
+      <div class="stale-bar show">
+        <svg class="stale-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 1.8"/></svg>
+        <div class="stale-txt">Чужие очки от 14:20 — обновить не удалось</div>
+        <button class="stale-act">Обновить</button>
+      </div>
+      <div class="screen-title">Лига</div>
+      <div class="list">
+        <div class="stat-row calm lit" style="--w:0.72;cursor:default"><div class="stat-body"><div class="stat-top"><span class="stat-name">Ты · 12 место</span><span class="stat-pct" style="color:var(--text-second)">840</span></div><div class="stat-track"><div class="stat-fill"></div></div></div></div>
+        <div class="stat-row calm lit" style="--w:0.64;cursor:default; opacity:0.6"><div class="stat-body"><div class="stat-top"><span class="stat-name">Марина</span><span class="stat-pct">790</span></div><div class="stat-track"><div class="stat-fill"></div></div></div></div>
+      </div>
+      <div style="padding:20px 26px 0;font-size:13px;line-height:1.6;color:var(--text-ghost);text-align:center">
+        Свои очки живые — они локальные.<br>Приглушены только чужие.
+      </div>
+    </div></div>
+
+    <div class="layer" data-l="2"><div class="scene">
+      <div class="hdr"><div class="hdr-row"><button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button></div></div>
+      <div class="screen-title">Лига</div>
+      <div class="list">
+        <div class="stat-row calm lit" style="--w:0.78;cursor:default"><div class="stat-body"><div class="stat-top"><span class="stat-name">Ты · 9 место</span><span class="stat-pct" style="color:var(--text-second)">840</span></div><div class="stat-track"><div class="stat-fill"></div></div></div></div>
+        <div class="stat-row calm lit" style="--w:0.71;cursor:default"><div class="stat-body"><div class="stat-top"><span class="stat-name">Марина</span><span class="stat-pct">812</span></div><div class="stat-track"><div class="stat-fill"></div></div></div></div>
+        <div class="stat-row calm lit" style="--w:0.66;cursor:default"><div class="stat-body"><div class="stat-top"><span class="stat-name">Игорь</span><span class="stat-pct">775</span></div><div class="stat-track"><div class="stat-fill"></div></div></div></div>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ══════════════ 11. ИСТОРИЯ ТРАТ ══════════════ -->
+<div class="item" data-scene>
+  <div class="item-head">
+    <div class="tagline">11 · Рост</div>
+    <div class="item-name">Куда ушли руны</div>
+    <div class="item-why">
+      Экрана истории <span class="bad">нет ни для одной валюты</span>, хотя внутренние леджеры
+      написаны. Один экран закрывает целый класс обращений
+      <b>«у меня пропали руны»</b>.
+    </div>
+    <div class="states">
+      <button class="st-btn on" data-go="0">История</button>
+      <button class="st-btn" data-go="1">Пока пусто</button>
+    </div>
+    <div class="spec"><b>источник</b> локальные леджеры, которые УЖЕ пишутся
+          (personal_plan_xp_ledger и соседние) —
+          0 дополнительных чтений Firestore
+<b>группы</b>   по дням, свежие сверху
+<b>строка</b>   что · когда · сколько; приход зелёный,
+          трата золотая — как сами валюты
+<b>глубина</b>  30 дней локально; дальше не тянем
+<b>вход</b>     ряд в «Рунах» под балансом
+          (товаров тут по-прежнему НЕТ — запрет владельца)</div>
+  </div>
+  <div class="phone">
+    <div class="layer on" data-l="0"><div class="scene">
+      <div class="hdr"><div class="hdr-row"><button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button></div></div>
+      <div class="screen-title">Движение рун</div>
+      <div class="sect-title">Сегодня</div>
+      <div class="sgroup" style="margin-top:10px">
+        <div class="tx-row"><span class="tx-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v5a5 5 0 01-10 0z"/><path d="M12 14v3M9 20h6"/></svg></span><span class="tx-b"><span class="tx-t">Победа в Арене</span><span class="tx-d">14:22</span></span><span class="tx-v">+24</span></div>
+        <div class="tx-row"><span class="tx-i spend"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 01-8 8H4l2.2-2.6A8 8 0 1120 12z"/></svg></span><span class="tx-b"><span class="tx-t">Диалог «В кафе»</span><span class="tx-d">12:08</span></span><span class="tx-v minus">−80</span></div>
+        <div class="tx-row"><span class="tx-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3.5v17l14-8.5z"/></svg></span><span class="tx-b"><span class="tx-t">Занятие 14 · 3 звезды</span><span class="tx-d">09:40</span></span><span class="tx-v">+15</span></div>
+      </div>
+      <div class="sect-title">Вчера</div>
+      <div class="sgroup" style="margin-top:10px">
+        <div class="tx-row"><span class="tx-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span class="tx-b"><span class="tx-t">Сундук друзей</span><span class="tx-d">19:14</span></span><span class="tx-v">+50</span></div>
+        <div class="tx-row"><span class="tx-i spend"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.4 5.3 5.6.6-4.2 3.9 1.2 5.6L12 15.6 6.9 18.4l1.2-5.6L4 8.9l5.6-.6z"/></svg></span><span class="tx-b"><span class="tx-t">Подсказка в диалоге</span><span class="tx-d">18:52</span></span><span class="tx-v minus">−20</span></div>
+      </div>
+    </div></div>
+
+    <div class="layer" data-l="1"><div class="scene">
+      <div class="hdr"><div class="hdr-row"><button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button></div></div>
+      <div class="screen-title">Движение рун</div>
+      <div class="empty">
+        <div class="empty-art"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg></div>
+        <div class="empty-title">Движения пока нет</div>
+        <div class="empty-body">Руны приходят за занятия, матчи и сундуки — здесь будет видно каждое начисление.</div>
+        <button class="cta empty-cta">Начать занятие</button>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ══════════════ 12. ID АККАУНТА + ПОДДЕРЖКА ══════════════ -->
+<div class="item" data-scene>
+  <div class="item-head">
+    <div class="tagline">12 · Рост</div>
+    <div class="item-name">ID аккаунта и живая поддержка</div>
+    <div class="item-why">
+      Копируется только почта — <span class="bad">назвать свой ID в поддержке нечем</span>.
+      А после отправки обращения нет ни номера, ни места, где ждать ответ,
+      хотя текст обещает <b>«ответим в приложении»</b>.
+    </div>
+    <div class="states">
+      <button class="st-btn on" data-go="0">Аккаунт</button>
+      <button class="st-btn" data-go="1">Скопировано</button>
+      <button class="st-btn" data-go="2">Обращение ушло</button>
+    </div>
+    <div class="spec"><b>ID</b>        ряд с моноширинным id и иконкой копирования
+<b>копия</b>     иконка → галочка на 1,6 с, тост успеха,
+           хаптик success
+<b>тикет</b>     после отправки виден номер и статус,
+           а не только «спасибо»
+<b>ответ</b>     пришёл → бейдж в Настройках и строка
+           на Главной (правило: не durable-очередь,
+           а факт — проверяем при входе на экран)
+<b>скриншот</b>  форма принимает картинку: для UI-багов
+           это основной носитель смысла</div>
+  </div>
+  <div class="phone">
+    <div class="layer on" data-l="0"><div class="scene">
+      <div class="hdr"><div class="hdr-row"><button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button></div></div>
+      <div class="screen-title">Аккаунт</div>
+      <div class="sgroup" style="margin-top:16px">
+        <button class="srow"><span class="stile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7.5A1.5 1.5 0 014.5 6h15A1.5 1.5 0 0121 7.5v9a1.5 1.5 0 01-1.5 1.5h-15A1.5 1.5 0 013 16.5z"/><path d="M3.5 7.5l8.5 6 8.5-6"/></svg></span><span class="slabel">Почта</span><span class="sval">b•••@gmail.com</span><span class="schev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a1 1 0 011-1h9"/></svg></span></button>
+        <button class="srow"><span class="stile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8.2v.01"/></svg></span><span class="slabel">ID аккаунта</span><span class="sval" style="font-family:ui-monospace,Menlo,monospace;font-size:13.5px">4f2a·9c71</span><span class="schev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a1 1 0 011-1h9"/></svg></span></button>
+        <button class="srow"><span class="stile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 17v.01M12 14c0-2 2.2-2.2 2.2-4A2.2 2.2 0 0012 7.8"/></svg></span><span class="slabel">Написать в поддержку</span><span class="schev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button>
+      </div>
+    </div></div>
+
+    <div class="layer" data-l="1"><div class="scene">
+      <div class="hdr"><div class="hdr-row"><button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button></div></div>
+      <div class="screen-title">Аккаунт</div>
+      <div class="sgroup" style="margin-top:16px">
+        <button class="srow"><span class="stile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7.5A1.5 1.5 0 014.5 6h15A1.5 1.5 0 0121 7.5v9a1.5 1.5 0 01-1.5 1.5h-15A1.5 1.5 0 013 16.5z"/><path d="M3.5 7.5l8.5 6 8.5-6"/></svg></span><span class="slabel">Почта</span><span class="sval">b•••@gmail.com</span><span class="schev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a1 1 0 011-1h9"/></svg></span></button>
+        <button class="srow"><span class="stile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8.2v.01"/></svg></span><span class="slabel">ID аккаунта</span><span class="sval" style="font-family:ui-monospace,Menlo,monospace;font-size:13.5px">4f2a·9c71</span><span class="schev" style="color:var(--text-second)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span></button>
+      </div>
+      <div class="toast-layer"><div class="toast" data-toast>
+        <div class="toast-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a1 1 0 011-1h9"/></svg></div>
+        <div class="toast-body"><div class="toast-label">Скопировано</div><div class="toast-msg">ID можно вставить в письмо</div></div>
+        <div class="toast-life"></div>
+      </div></div>
+    </div></div>
+
+    <div class="layer" data-l="2"><div class="scene">
+      <div class="hdr"><div class="hdr-row"><button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button></div></div>
+      <div class="screen-title">Поддержка</div>
+      <div class="card" style="margin-top:16px">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span class="stile" style="width:40px;height:40px;border-radius:14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width:19px;height:19px"><path d="M20 6L9 17l-5-5"/></svg></span>
+          <div style="flex:1;min-width:0">
+            <div class="card-title" style="font-size:15px">Обращение №1428</div>
+            <div class="card-body" style="margin-top:3px">Принято · отвечаем обычно за день</div>
+          </div>
+        </div>
+      </div>
+      <div class="sect-title">Мои обращения</div>
+      <div class="sgroup" style="margin-top:10px">
+        <button class="srow"><span class="stile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span class="slabel">№1428 · Не пришли руны</span><span class="sval">в работе</span><span class="schev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button>
+        <button class="srow"><span class="stile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span class="slabel">№1109 · Вопрос про Plus</span><span class="sval" style="color:var(--text-second)">отвечено</span><span class="schev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button>
+      </div>
+      <div class="dock"><button class="cta-secondary">Новое обращение</button></div>
+    </div></div>
+  </div>
+</div>
+
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  function tf() { return parseFloat(getComputedStyle(root).getPropertyValue('--tf')) || 1; }
+
+  function animateLayer(layer) {
+    if (!layer) return;
+    // Тосты
+    layer.querySelectorAll('[data-toast]').forEach(function (t) {
+      t.classList.remove('show');
+      void t.offsetWidth;
+      setTimeout(function () { t.classList.add('show'); }, 60);
+    });
+    // Полосы — каскад index × 90мс (спека элемента 7)
+    var bars = layer.querySelectorAll('[data-bar]');
+    bars.forEach(function (b) { b.classList.remove('lit'); });
+    bars.forEach(function (b, i) {
+      setTimeout(function () { b.classList.add('lit'); }, (120 + 90 * i) * tf());
+    });
+    // Звёзды — celebrate 420мс, задержка 140мс между
+    var stars = layer.querySelectorAll('[data-star]');
+    stars.forEach(function (s) { s.classList.remove('in'); });
+    stars.forEach(function (s, i) {
+      setTimeout(function () { s.classList.add('in'); }, (100 + 140 * i) * tf());
+    });
+    // Строки разбора — каскад 70мс, ПОСЛЕ звёзд
+    var miss = layer.querySelectorAll('[data-miss]');
+    miss.forEach(function (m) { m.classList.remove('in'); });
+    miss.forEach(function (m, i) {
+      setTimeout(function () { m.classList.add('in'); }, (520 + 70 * i) * tf());
+    });
+    // Undo-отсчёт
+    layer.querySelectorAll('[data-count]').forEach(function (el) {
+      var n = 5; el.textContent = n;
+      if (el._t) clearInterval(el._t);
+      el._t = setInterval(function () {
+        n -= 1;
+        if (n <= 0) { clearInterval(el._t); el.textContent = '0'; return; }
+        el.textContent = n;
+      }, 1000 * tf());
+    });
+  }
+
+  document.querySelectorAll('[data-scene]').forEach(function (scene) {
+    var layers = scene.querySelectorAll('[data-l]');
+    var btns = scene.querySelectorAll('[data-go]');
+    btns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        btns.forEach(function (b) { b.classList.remove('on'); });
+        btn.classList.add('on');
+        var idx = btn.dataset.go;
+        layers.forEach(function (l) { l.classList.toggle('on', l.dataset.l === idx); });
+        animateLayer(scene.querySelector('[data-l="' + idx + '"]'));
+      });
+    });
+    animateLayer(scene.querySelector('[data-l].on'));
+  });
+
+  document.querySelectorAll('[data-tf]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('[data-tf]').forEach(function (b) { b.classList.remove('on'); });
+      btn.classList.add('on');
+      root.style.setProperty('--tf', btn.dataset.tf);
+      document.querySelectorAll('[data-scene]').forEach(function (s) {
+        animateLayer(s.querySelector('[data-l].on'));
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

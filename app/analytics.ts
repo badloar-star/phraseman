@@ -225,6 +225,13 @@ export type AnalyticsEvent =
   | 'change_plan_started'          // нажал «перейти на годовой»
   | 'change_plan_completed'
   | 'change_plan_failed'
+  // Восстановление покупок (аудит 2026-09-21). Важна доля `empty`: если она
+  // высокая — люди массово входят не с того аккаунта магазина, и это повод
+  // менять текст подсказки, а не чинить код.
+  | 'restore_purchases_started'
+  | 'restore_purchases_completed'
+  | 'restore_purchases_empty'
+  | 'restore_purchases_failed'
   | 'winback_shown'
   ;
 

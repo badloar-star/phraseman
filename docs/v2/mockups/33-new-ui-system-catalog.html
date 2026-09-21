@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Макет · Каталог новых элементов интерфейса (аудит 2026-09-21)</title>
+<style>
+/* ============================================================
+   КАТАЛОГ НОВЫХ ЭЛЕМЕНТОВ — система, которую переиспользуют сцены
+   в 34-new-ui-scenes.html.
+
+   Источник находок: docs/work/tasks/2026-09-21_app_wide_ux_gap_audit.md
+   Токены/телефон/кнопки — перенос 1:1 из 24-missing-states.html,
+   который сам наследует эталон 23-modals-states.html.
+
+   ВСЕ ЦИФРЫ ВЗЯТЫ ИЗ КОДА, не на глаз:
+   · цвета         constants/theme.ts → DARK
+   · тост          components/ActionToast.tsx + constants/themedToastChrome.ts
+                   minHeight 66 · radius 18 (dark) · padding 12/14 · gap 12
+                   label 12/800 · message 15/700
+   · тайминги      constants/motion.ts → MOTION_DURATION
+                   fast 180 · normal 240 · slow 320 · celebrate 420
+   · пружины       constants/motion.ts → MOTION_SPRING
+                   toast {damping 18, stiffness 250} · ui {20/300} · micro {25/400}
+   · дрожь ошибки  constants/motionHybrid.ts → TOAST.errorShakePx
+                   [6,-5,3,-2,0] шаг 60мс — единственное место, где дрожь уместна
+   · шрифты        components/ThemeContext.tsx BASE_FONTS × 1.15
+                   h1 22 h2 18 h3 16 bodyLg 16 body 14 sub 14 caption 13 label 12
+
+   Законы владельца, соблюдённые здесь:
+   - без обводок вокруг блоков (только односторонние разделители тоном);
+   - без подписей-расшифровок мелким шрифтом под названием;
+   - без adjustsFontSizeToFit — длинный текст переносится;
+   - только transform/opacity в анимациях (UI-тред);
+   - скелетон = точная геометрия финального кадра;
+   - Optimistic UI: экран не ждёт сервер, синк догоняет фоном.
+   ============================================================ */
+:root {
+  --tf: 1;
+  --t-press: calc(120ms * var(--tf));
+  --t-fast: calc(180ms * var(--tf));
+  --t-normal: calc(240ms * var(--tf));
+  --t-slow: calc(320ms * var(--tf));
+  --t-celebrate: calc(420ms * var(--tf));
+  --ease-slide: cubic-bezier(0.33, 0.52, 0.25, 0.99);
+  --ease-outquint: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-spring: cubic-bezier(0.38, 0.70, 0.125, 1.0);
+}
+:root[data-theme="dark"] {
+  --bg-primary:#030604; --bg-card:#101710; --bg-surface:#17241A; --bg-surface2:#203028;
+  --text-primary:#F0F7F2; --text-second:#58CC89; --text-muted:#8AB49A; --text-ghost:#506A5C;
+  --correct:#47C870; --correct-bg:rgba(71,200,112,0.16);
+  --wrong:#F05454; --wrong-bg:rgba(240,84,84,0.12);
+  --gold:#FFC800; --gold-bg:rgba(255,200,0,0.14);
+  --accent:#47C870; --accent-bg:rgba(71,200,112,0.14); --correct-text:#042010;
+  --btn-shadow:#1E6B3A; --card-shadow:rgba(0,0,0,0.55);
+  --chip-grad-a:#2A4230; --chip-grad-b:#131D14; --chip-edge:#0B120C;
+  --bg-grad-a:#071009; --bg-grad-b:#010101;
+  --sheen:rgba(88,204,137,0.05);
+  --cta-grad:linear-gradient(180deg,#5EDC94 0%,#3FC172 48%,#289654 100%);
+  --cta-hi:rgba(255,255,255,0.34);
+  --ok-grad:linear-gradient(180deg,#5BD991 0%,#38B96A 100%);
+  --warn-grad:linear-gradient(180deg,#FFD75E 0%,#E8A800 100%);
+  --danger-grad:linear-gradient(180deg,#FF7B7B 0%,#E04545 100%);
+  --chip-hi:rgba(255,255,255,0.12);
+  --surface-grad:linear-gradient(160deg,#1E2E22,#0F1810);
+  --text-on-gold:#1A1A1A;
+  --skel-a:rgba(255,255,255,0.05); --skel-b:rgba(255,255,255,0.13);
+  /* Тост — дословно из themedToastChrome.dark */
+  --toast-a:rgba(16,40,30,0.98); --toast-b:rgba(8,23,18,0.97); --toast-c:rgba(4,12,10,0.95);
+  --toast-accent:#47C870; --toast-accent-soft:rgba(71,200,112,0.16);
+  --toast-close-bg:rgba(71,200,112,0.10); --toast-shadow:rgba(3,25,12,0.84);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html, body { background:#0B0E0C; }
+body {
+  font-family:-apple-system,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+  color:#E8EDEA; min-height:100vh; padding:34px 24px 90px;
+}
+svg { display:block; }
+
+/* ================= РАСКЛАДКА ДОКУМЕНТА ================= */
+.doc-head { max-width:1180px; margin:0 auto 30px; }
+.doc-title { font-size:30px; font-weight:800; letter-spacing:-0.4px; color:#F0F7F2; }
+.doc-sub { font-size:14.5px; line-height:1.65; color:#8AB49A; margin-top:12px; max-width:76ch; }
+.doc-sub b { color:#C9DED1; font-weight:700; }
+.grid { max-width:1180px; margin:0 auto; display:flex; flex-wrap:wrap; gap:38px; align-items:flex-start; }
+.item { width:390px; }
+.item-head { margin-bottom:14px; }
+.item-name { font-size:17px; font-weight:800; color:#F0F7F2; }
+.item-why { font-size:13.5px; line-height:1.6; color:#8AB49A; margin-top:6px; }
+.item-why b { color:#58CC89; font-weight:700; }
+.spec {
+  margin-top:12px; padding:12px 14px; border-radius:14px;
+  background:rgba(255,255,255,0.028);
+  font-size:12.5px; line-height:1.7; color:#7FA891;
+  font-family:ui-monospace,"SF Mono",Menlo,monospace;
+  white-space:pre-wrap;
+}
+.spec b { color:#9FC9AF; font-weight:700; }
+
+/* ================= ТЕЛЕФОН ================= */
+.phone {
+  width:390px; height:520px; position:relative; overflow:hidden;
+  border-radius:46px; display:flex; flex-direction:column; user-select:none;
+  background:
+    radial-gradient(120% 60% at 50% -8%, var(--sheen), transparent 60%),
+    linear-gradient(175deg, var(--bg-grad-a), var(--bg-grad-b));
+  box-shadow:0 34px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.phone::before {
+  content:""; position:absolute; inset:0; pointer-events:none; z-index:1;
+  background:radial-gradient(135% 92% at 50% 46%, transparent 62%, rgba(0,0,0,0.38) 100%);
+}
+.scene { position:absolute; inset:0; display:flex; flex-direction:column; }
+
+/* ---------- Шапка ---------- */
+.hdr { padding:22px 16px 0; }
+.hdr-row { display:flex; align-items:center; gap:12px; }
+.icon-btn {
+  width:40px; height:40px; border-radius:14px; border:none; cursor:pointer;
+  background:var(--surface-grad); color:var(--text-muted);
+  display:grid; place-items:center;
+  transition:transform var(--t-press) var(--ease-outquint);
+  box-shadow:0 6px 14px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+}
+.icon-btn:active { transform:scale(0.94); }
+.icon-btn svg { width:21px; height:21px; }
+.screen-title { font-size:27px; font-weight:800; color:var(--text-primary); letter-spacing:0.1px; padding:18px 20px 0; }
+.sect-title { font-size:15px; font-weight:800; color:var(--text-primary); padding:18px 20px 0; }
+
+/* ---------- Кнопки ---------- */
+.cta {
+  width:100%; height:56px; border:none; border-radius:20px; cursor:pointer;
+  font-family:inherit; font-size:17px; font-weight:800; letter-spacing:0.3px;
+  color:var(--correct-text); background:var(--cta-grad);
+  box-shadow:0 5px 0 var(--btn-shadow), 0 14px 26px var(--card-shadow), inset 0 1px 0 var(--cta-hi);
+  position:relative; overflow:hidden; display:grid; place-items:center;
+  transition:transform var(--t-press) var(--ease-outquint), box-shadow var(--t-press) var(--ease-outquint);
+}
+.cta:active { transform:translateY(4px); box-shadow:0 1px 0 var(--btn-shadow), 0 8px 16px var(--card-shadow); }
+.cta-secondary {
+  width:100%; height:48px; border:none; border-radius:18px; cursor:pointer;
+  font-family:inherit; font-size:15px; font-weight:700; color:var(--text-primary);
+  background:linear-gradient(160deg, rgba(255,255,255,0.09), rgba(255,255,255,0.02)), var(--bg-surface2);
+  box-shadow:inset 0 1px 0 var(--chip-hi), 0 6px 14px rgba(0,0,0,0.25);
+  transition:transform var(--t-press) var(--ease-outquint);
+}
+.cta-secondary:active { transform:scale(0.98); }
+.cta-tertiary {
+  width:100%; height:44px; border:none; background:transparent; cursor:pointer;
+  font-family:inherit; font-size:14.5px; font-weight:700; color:var(--text-muted);
+  transition:opacity var(--t-press);
+}
+.cta-tertiary:active { opacity:0.6; }
+.spinner { transform-origin:50% 50%; animation:orbit calc(900ms * var(--tf)) linear infinite; }
+@keyframes orbit { to { transform:rotate(360deg); } }
+
+/* ================= 1-3. ТОСТ (расширение ActionToast) ================= */
+/* Геометрия дословно: minHeight 66 · radius 18 · padding 12/14 · gap 12 */
+.toast-layer {
+  position:absolute; left:0; right:0; bottom:0; z-index:6;
+  padding:0 14px 22px; display:flex; flex-direction:column; gap:10px;
+  pointer-events:none;
+}
+.toast {
+  min-height:66px; border-radius:18px; padding:12px 14px;
+  display:flex; align-items:center; gap:12px;
+  background:linear-gradient(160deg, var(--toast-a), var(--toast-b) 58%, var(--toast-c));
+  box-shadow:0 18px 38px var(--toast-shadow), inset 0 1px 0 rgba(255,255,255,0.06);
+  pointer-events:auto; position:relative; overflow:hidden;
+  transform:translateY(130%); opacity:0;
+  transition:transform var(--t-slow) var(--ease-spring), opacity var(--t-fast) ease;
+}
+.toast.show { transform:translateY(0); opacity:1; }
+.toast-ico {
+  width:40px; height:40px; border-radius:12px; flex:0 0 auto; display:grid; place-items:center;
+  background:var(--toast-accent-soft); color:var(--toast-accent);
+}
+.toast-ico svg { width:19px; height:19px; }
+.toast-body { flex:1; min-width:0; display:flex; flex-direction:column; gap:2px; }
+.toast-label { font-size:12px; font-weight:800; letter-spacing:0.4px; color:var(--toast-accent); text-transform:uppercase; }
+.toast-msg { font-size:15px; font-weight:700; line-height:1.35; color:var(--text-primary); }
+.toast-act {
+  flex:0 0 auto; border:none; cursor:pointer; border-radius:12px; padding:10px 15px;
+  font-family:inherit; font-size:13.5px; font-weight:800; color:var(--toast-accent);
+  background:var(--toast-close-bg);
+  transition:transform var(--t-press) var(--ease-outquint);
+}
+.toast-act:active { transform:scale(0.94); }
+.toast.error   .toast-ico { background:var(--wrong-bg); color:var(--wrong); }
+.toast.error   .toast-label { color:var(--wrong); }
+.toast.error   .toast-act { color:var(--wrong); background:var(--wrong-bg); }
+.toast.error   .toast-life { background:var(--wrong); }
+.toast.warning .toast-ico { background:var(--gold-bg); color:var(--gold); }
+.toast.warning .toast-label { color:var(--gold); }
+.toast.warning .toast-act { color:var(--gold); background:var(--gold-bg); }
+.toast.warning .toast-life { background:var(--gold); }
+.toast.reward  .toast-ico { background:var(--gold-bg); color:var(--gold); }
+.toast.reward  .toast-label { color:var(--gold); }
+/* Дрожь ошибки — TOAST.errorShakePx [6,-5,3,-2,0], шаг 60мс */
+.toast.error.show { animation:toastShake calc(300ms * var(--tf)) steps(1,end) var(--t-slow) 1; }
+@keyframes toastShake {
+  0%   { transform:translateX(6px); }
+  20%  { transform:translateX(-5px); }
+  40%  { transform:translateX(3px); }
+  60%  { transform:translateX(-2px); }
+  80%,100% { transform:translateX(0); }
+}
+/* Полоса автозакрытия: время видно, а не угадывается */
+.toast-life {
+  position:absolute; left:0; bottom:0; height:2px; width:100%;
+  background:var(--toast-accent); opacity:0.5; transform-origin:0 50%;
+}
+.toast.show .toast-life { animation:lifeDrain calc(4000ms * var(--tf)) linear forwards; }
+.toast.error.show .toast-life, .toast.warning.show .toast-life { animation-duration:calc(6000ms * var(--tf)); }
+@keyframes lifeDrain { from { transform:scaleX(1); } to { transform:scaleX(0); } }
+/* Undo: кольцо-таймер вместо полосы — видно, сколько осталось */
+.undo-wrap { position:relative; width:34px; height:34px; flex:0 0 auto; }
+.undo-ring { width:34px; height:34px; }
+.undo-ring circle { fill:none; stroke-width:3; }
+.undo-ring .trk { stroke:rgba(255,255,255,0.10); }
+.undo-ring .val {
+  stroke:var(--toast-accent); stroke-linecap:round;
+  stroke-dasharray:88; stroke-dashoffset:0;
+  transform:rotate(-90deg); transform-origin:50% 50%;
+}
+.toast.show .undo-ring .val { animation:ringDrain calc(5000ms * var(--tf)) linear forwards; }
+@keyframes ringDrain { to { stroke-dashoffset:88; } }
+.undo-count {
+  position:absolute; inset:0; display:grid; place-items:center;
+  font-size:11.5px; font-weight:800; color:var(--text-muted); font-variant-numeric:tabular-nums;
+}
+
+/* ================= 4. ПОДТВЕРЖДЕНИЕ ТРАТЫ ================= */
+.scrim {
+  position:absolute; inset:0; background:rgba(3,6,4,0.58); opacity:0; pointer-events:none;
+  transition:opacity var(--t-normal) ease; z-index:2;
+}
+.scrim.show { opacity:1; pointer-events:auto; }
+.inbody-layer {
+  position:absolute; inset:0; z-index:3; display:flex; align-items:center; justify-content:center;
+  padding:0 22px; pointer-events:none;
+}
+.inbody-layer.show { pointer-events:auto; }
+.inbody-card {
+  width:100%; padding:26px 22px; border-radius:26px;
+  background:linear-gradient(160deg, #1A241C, #0E140F);
+  box-shadow:0 24px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+  text-align:center;
+  transform:scale(0.9) translateY(14px); opacity:0;
+  transition:transform var(--t-normal) var(--ease-spring), opacity var(--t-fast) ease;
+}
+.inbody-layer.show .inbody-card { transform:none; opacity:1; }
+.inbody-title { font-size:20px; font-weight:800; color:var(--text-primary); margin-top:16px; }
+.medal {
+  width:76px; height:76px; border-radius:26px; display:grid; place-items:center; margin:0 auto;
+  background:linear-gradient(155deg, var(--chip-grad-a), var(--chip-grad-b));
+  box-shadow:0 14px 30px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+  color:var(--text-second);
+}
+.medal svg { width:34px; height:34px; }
+.medal.warn { color:var(--gold); }
+/* Чек цены: до → после. Главная причина существования этого экрана. */
+.price-check {
+  margin-top:18px; padding:14px 16px; border-radius:18px;
+  background:rgba(0,0,0,0.26); display:flex; flex-direction:column; gap:10px;
+}
+.pc-row { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.pc-k { font-size:14px; font-weight:700; color:var(--text-muted); }
+.pc-v { font-size:15.5px; font-weight:800; color:var(--text-primary); font-variant-numeric:tabular-nums; display:flex; align-items:center; gap:6px; }
+.pc-v .coin { width:17px; height:17px; }
+.pc-row.total { padding-top:10px; border-top:1px solid rgba(255,255,255,0.055); }
+.pc-row.total .pc-k { color:var(--text-primary); font-weight:800; }
+.pc-row.total .pc-v { color:var(--text-second); }
+.pc-cost { color:var(--gold); }
+.sheet-actions { margin-top:22px; display:flex; flex-direction:column; gap:10px; }
+
+/* ================= 5. ПЛАШКА «ДАННЫЕ УСТАРЕЛИ» ================= */
+.stale-bar {
+  margin:12px 16px 0; padding:11px 14px; border-radius:16px;
+  display:flex; align-items:center; gap:11px;
+  background:linear-gradient(160deg, rgba(255,200,0,0.13), rgba(255,200,0,0.04));
+  transform:translateY(-8px); opacity:0;
+  transition:transform var(--t-normal) var(--ease-spring), opacity var(--t-fast) ease;
+}
+.stale-bar.show { transform:none; opacity:1; }
+.stale-ico { width:20px; height:20px; flex:0 0 auto; color:var(--gold); }
+.stale-txt { flex:1; min-width:0; font-size:13.5px; font-weight:700; color:var(--text-primary); line-height:1.4; }
+.stale-act {
+  border:none; cursor:pointer; background:transparent; font-family:inherit;
+  font-size:13.5px; font-weight:800; color:var(--gold); padding:4px 2px;
+  transition:opacity var(--t-press);
+}
+.stale-act:active { opacity:0.55; }
+
+/* ================= 6. ПУСТОЕ СОСТОЯНИЕ С ДЕЙСТВИЕМ ================= */
+.empty {
+  flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:0 34px 20px; text-align:center;
+}
+.empty-art {
+  width:96px; height:96px; border-radius:32px; display:grid; place-items:center;
+  background:linear-gradient(155deg, var(--chip-grad-a), var(--chip-grad-b));
+  box-shadow:0 18px 40px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+  color:var(--text-second);
+  animation:emptyBreathe calc(4200ms * var(--tf)) var(--ease-slide) infinite;
+}
+@keyframes emptyBreathe {
+  0%,100% { transform:translateY(0) scale(1); }
+  50%     { transform:translateY(-5px) scale(1.02); }
+}
+.empty-art svg { width:42px; height:42px; }
+.empty-title { font-size:19px; font-weight:800; color:var(--text-primary); margin-top:20px; }
+.empty-body { font-size:14.5px; line-height:1.55; color:var(--text-muted); margin-top:9px; }
+.empty-cta { margin-top:22px; width:100%; }
+
+/* ================= 7. СТРОКА-ДЕЙСТВИЕ ================= */
+.stat-row {
+  display:flex; align-items:center; gap:13px; padding:14px 16px; border-radius:20px;
+  background:var(--surface-grad);
+  box-shadow:0 8px 18px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+  cursor:pointer; border:none; width:100%; text-align:left; font-family:inherit;
+  transition:transform var(--t-press) var(--ease-outquint);
+}
+.stat-row:active { transform:scale(0.978); }
+.stat-body { flex:1; min-width:0; }
+.stat-top { display:flex; align-items:baseline; justify-content:space-between; gap:10px; }
+.stat-name { font-size:15.5px; font-weight:700; color:var(--text-primary); }
+.stat-pct { font-size:15px; font-weight:800; color:var(--wrong); font-variant-numeric:tabular-nums; }
+.stat-track { height:8px; border-radius:5px; background:rgba(255,255,255,0.055); margin-top:9px; overflow:hidden; }
+.stat-fill {
+  height:100%; border-radius:5px; background:var(--wrong);
+  transform-origin:0 50%; transform:scaleX(0);
+  transition:transform calc(720ms * var(--tf)) var(--ease-slide);
+}
+.stat-row.lit .stat-fill { transform:scaleX(var(--w, 0.42)); }
+.stat-row.calm .stat-pct { color:var(--text-muted); }
+.stat-row.calm .stat-fill { background:var(--accent); }
+.stat-go { flex:0 0 auto; color:var(--text-ghost); display:grid; place-items:center; width:22px; }
+.stat-go svg { width:17px; height:17px; }
+.list { padding:16px 16px 0; display:flex; flex-direction:column; gap:10px; }
+
+/* ================= 8. ПАУЗА В ТРЕНИРОВКЕ ================= */
+.sheet-layer { position:absolute; inset:0; z-index:3; pointer-events:none; display:flex; align-items:flex-end; }
+.sheet {
+  width:100%; padding:26px 22px 28px; border-radius:28px 28px 0 0;
+  background:linear-gradient(180deg, var(--bg-card), var(--bg-primary));
+  box-shadow:0 -18px 50px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+  transform:translateY(100%);
+  transition:transform var(--t-slow) var(--ease-spring);
+  pointer-events:auto;
+}
+.sheet-layer.show .sheet { transform:translateY(0); }
+.sheet-grabber { width:36px; height:4px; border-radius:99px; background:rgba(255,255,255,0.16); margin:0 auto 18px; }
+.sheet-title { font-size:21px; font-weight:800; color:var(--text-primary); text-align:center; letter-spacing:0.1px; }
+.sheet-body { font-size:14.5px; line-height:1.5; color:var(--text-muted); text-align:center; margin-top:10px; }
+/* Сводка: человек видит, ЧТО именно он рискует потерять */
+.keep-strip {
+  margin-top:18px; padding:14px 16px; border-radius:18px; background:rgba(0,0,0,0.26);
+  display:flex; align-items:center; justify-content:space-around; gap:10px;
+}
+.keep-cell { display:flex; flex-direction:column; align-items:center; gap:3px; }
+.keep-n { font-size:20px; font-weight:800; color:var(--text-primary); font-variant-numeric:tabular-nums; }
+.keep-k { font-size:12.5px; font-weight:700; color:var(--text-muted); }
+.keep-cell.good .keep-n { color:var(--text-second); }
+
+/* ================= 9. ПОИСК ================= */
+.search-wrap { padding:14px 16px 0; }
+.search {
+  height:46px; border-radius:16px; display:flex; align-items:center; gap:10px; padding:0 14px;
+  background:rgba(255,255,255,0.045);
+  transition:background var(--t-fast) ease;
+}
+.search:focus-within { background:rgba(255,255,255,0.075); }
+.search > svg { width:18px; height:18px; color:var(--text-ghost); flex:0 0 auto; }
+.search input {
+  flex:1; min-width:0; background:transparent; border:none; outline:none;
+  font-family:inherit; font-size:15px; font-weight:600; color:var(--text-primary);
+}
+.search input::placeholder { color:var(--text-ghost); font-weight:600; }
+.search-clear {
+  width:22px; height:22px; border-radius:99px; border:none; cursor:pointer; flex:0 0 auto;
+  background:rgba(255,255,255,0.10); color:var(--text-muted); display:grid; place-items:center;
+  opacity:0; transform:scale(0.7); pointer-events:none;
+  transition:opacity var(--t-press) ease, transform var(--t-press) var(--ease-outquint);
+}
+.search.filled .search-clear { opacity:1; transform:none; pointer-events:auto; }
+.search-clear svg { width:11px; height:11px; }
+
+/* ================= 10. PULL-TO-REFRESH + БЕЙДЖИ ================= */
+.ptr-stage { padding:16px 16px 0; }
+.ptr {
+  height:56px; display:flex; align-items:center; justify-content:center; gap:9px;
+  color:var(--text-muted); font-size:13.5px; font-weight:700;
+}
+.ptr-spin { width:20px; height:20px; color:var(--text-second); }
+.ptr.loading .ptr-spin { animation:orbit calc(900ms * var(--tf)) linear infinite; }
+.badge-demo { display:flex; gap:14px; padding:16px 16px 0; }
+.tile {
+  flex:1; height:96px; border-radius:22px; position:relative;
+  background:var(--surface-grad);
+  box-shadow:0 8px 18px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
+  color:var(--text-second); cursor:pointer; border:none; font-family:inherit;
+  transition:transform var(--t-press) var(--ease-outquint);
+}
+.tile:active { transform:scale(0.965); }
+.tile svg.ti { width:26px; height:26px; }
+.tile-name { font-size:13.5px; font-weight:800; color:var(--text-primary); }
+.badge {
+  position:absolute; top:9px; right:9px; min-width:22px; height:22px; padding:0 6px;
+  border-radius:99px; background:var(--wrong); color:#fff;
+  font-size:12px; font-weight:800; display:grid; place-items:center; font-variant-numeric:tabular-nums;
+  box-shadow:0 3px 8px rgba(0,0,0,0.4);
+  transform:scale(0); transition:transform var(--t-normal) var(--ease-spring);
+}
+.badge.show { transform:scale(1); }
+.badge.calm { background:var(--accent); color:var(--correct-text); }
+
+/* ================= ПАНЕЛЬ ================= */
+.ctl {
+  max-width:1180px; margin:0 auto 30px; padding:14px 16px; border-radius:18px;
+  background:rgba(255,255,255,0.03);
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+}
+.ctl-btn {
+  border:none; cursor:pointer; border-radius:12px; padding:9px 16px; font-family:inherit;
+  font-size:13.5px; font-weight:800; color:#C9DED1; background:rgba(255,255,255,0.07);
+  transition:transform var(--t-press) var(--ease-outquint), background var(--t-press);
+}
+.ctl-btn:hover { background:rgba(255,255,255,0.12); }
+.ctl-btn:active { transform:scale(0.96); }
+.ctl-btn.on { background:var(--accent); color:var(--correct-text); }
+.ctl-sep { width:1px; height:22px; background:rgba(255,255,255,0.10); }
+.ctl-lbl { font-size:12.5px; font-weight:700; color:#6F9480; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="doc-head">
+  <div class="doc-title">Каталог новых элементов · аудит 21.09.2026</div>
+  <div class="doc-sub">
+    Десять переиспользуемых элементов, которых приложению не хватает. У каждого —
+    <b>правило поведения</b>: когда появляется, как анимируется, что делает при ошибке.
+    Цвета, геометрия, тайминги и пружины взяты <b>дословно из кода</b>
+    (constants/theme.ts, constants/motion.ts, ActionToast.tsx, themedToastChrome.ts).
+    Тосты — <b>расширение существующего ActionToast</b>, а не второй механизм:
+    двух очередей тостов на экране быть не должно.
+    Сцены, где эти элементы работают вместе — в файле <b>34-new-ui-scenes.html</b>.
+  </div>
+</div>
+
+<div class="ctl">
+  <span class="ctl-lbl">Скорость анимаций</span>
+  <button class="ctl-btn on" data-tf="1">1×</button>
+  <button class="ctl-btn" data-tf="2">0,5×</button>
+  <button class="ctl-btn" data-tf="4">0,25×</button>
+  <div class="ctl-sep"></div>
+  <button class="ctl-btn" id="replay">Проиграть заново</button>
+</div>
+
+<div class="grid">
+
+  <!-- ══════════ 1 ══════════ -->
+  <div class="item">
+    <div class="item-head">
+      <div class="item-name">1 · Тост успеха</div>
+      <div class="item-why">
+        Расширение существующего <b>ActionToast</b>: та же геометрия (66 · r18 · 12/14),
+        те же пять тонов. Добавлена <b>полоса жизни</b> — видно, сколько тост провисит,
+        и он не исчезает «вдруг».
+      </div>
+      <div class="spec"><b>когда</b>  действие удалось, но результат не виден на экране
+<b>вход</b>   translateY 130%→0, spring damping 18 / stiffness 250
+<b>жизнь</b>  4000мс · полоса scaleX 1→0 linear
+<b>выход</b>  reverse 180мс · свайп вниз закрывает сразу
+<b>звук</b>   pm.system.success · хаптик success</div>
+    </div>
+    <div class="phone">
+      <div class="scene">
+        <div class="hdr"><div class="hdr-row">
+          <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+        </div></div>
+        <div class="screen-title">Мои наборы</div>
+        <div class="toast-layer">
+          <div class="toast" data-toast>
+            <div class="toast-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <div class="toast-body">
+              <div class="toast-label">Готово</div>
+              <div class="toast-msg">Набор добавлен · 48 карточек</div>
+            </div>
+            <div class="toast-life"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ 2 ══════════ -->
+  <div class="item">
+    <div class="item-head">
+      <div class="item-name">2 · Ошибка с «Повторить»</div>
+      <div class="item-why">
+        Сейчас тосты ошибок пишут «проверь связь и попробуй ещё раз», но тянуться и
+        тапать надо заново. <b>Повтор — в самом тосте.</b> Живёт дольше успеха (6 с):
+        ошибку надо успеть прочитать.
+      </div>
+      <div class="spec"><b>когда</b>  сеть отвалилась, действие откатилось
+<b>вход</b>   тот же spring + дрожь TOAST.errorShakePx
+        [6,−5,3,−2,0] шаг 60мс — один раз, после входа
+<b>жизнь</b>  6000мс (дольше успеха)
+<b>тап</b>    «Повторить» → спиннер вместо текста, геометрия та же
+<b>звук</b>   pm.system.error_recoverable · хаптик error</div>
+    </div>
+    <div class="phone">
+      <div class="scene">
+        <div class="hdr"><div class="hdr-row">
+          <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+        </div></div>
+        <div class="screen-title">Задания</div>
+        <div class="toast-layer">
+          <div class="toast error" data-toast>
+            <div class="toast-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L2.7 17.2A1.9 1.9 0 004.4 20h15.2a1.9 1.9 0 001.7-2.8L13.7 3.9a1.9 1.9 0 00-3.4 0z"/><path d="M12 9v4.2"/><path d="M12 16.8v.01"/></svg></div>
+            <div class="toast-body">
+              <div class="toast-label">Не отправилось</div>
+              <div class="toast-msg">Награда не забралась — нет связи</div>
+            </div>
+            <button class="toast-act">Повторить</button>
+            <div class="toast-life"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ 3 ══════════ -->
+  <div class="item">
+    <div class="item-head">
+      <div class="item-name">3 · Отмена удаления</div>
+      <div class="item-why">
+        В коллекции карточек undo уже есть, но <b>без таймера</b> — человек не знает,
+        сколько у него секунд. Кольцо отсчитывает вслух. Удаление набора
+        (сейчас необратимо) получает тот же путь.
+      </div>
+      <div class="spec"><b>когда</b>  удалили карточку / набор / запись ошибки
+<b>UI</b>     элемент исчезает СРАЗУ (Optimistic), сеть ждёт 5 с
+<b>кольцо</b> dashoffset 0→88 linear 5000мс, цифра 5·4·3·2·1
+<b>тап</b>    «Вернуть» → элемент на место, запрос НЕ уходит вовсе
+<b>таймаут</b> удаление уходит на сервер, тост гаснет</div>
+    </div>
+    <div class="phone">
+      <div class="scene">
+        <div class="hdr"><div class="hdr-row">
+          <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+        </div></div>
+        <div class="screen-title">Сохранённые</div>
+        <div class="toast-layer">
+          <div class="toast" data-toast>
+            <div class="undo-wrap">
+              <svg class="undo-ring" viewBox="0 0 34 34">
+                <circle class="trk" cx="17" cy="17" r="14"/>
+                <circle class="val" cx="17" cy="17" r="14"/>
+              </svg>
+              <div class="undo-count" data-count>5</div>
+            </div>
+            <div class="toast-body">
+              <div class="toast-label">Удалено</div>
+              <div class="toast-msg">«to look forward to»</div>
+            </div>
+            <button class="toast-act">Вернуть</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ 4 ══════════ -->
+  <div class="item">
+    <div class="item-head">
+      <div class="item-name">4 · Подтверждение траты</div>
+      <div class="item-why">
+        Сейчас тема за жемчуг и заморозка серии списываются <b>одним тапом</b>.
+        Главное здесь не вопрос «точно?», а <b>чек «было → станет»</b>: человек видит
+        остаток до того, как валюта ушла.
+      </div>
+      <div class="spec"><b>когда</b>  любое списание валюты по тапу
+<b>вход</b>   scrim 240мс · карточка scale .9→1 spring ui
+<b>чек</b>    было / цена / станет — всегда три строки
+<b>тап</b>    списание ЛОКАЛЬНО сразу, тост успеха, сеть фоном
+<b>откат</b>  сервер отказал → баланс назад + тост с «Повторить»
+<b>защита</b> повторный тап игнорируется до закрытия</div>
+    </div>
+    <div class="phone">
+      <div class="scene">
+        <div class="hdr"><div class="hdr-row">
+          <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+        </div></div>
+        <div class="screen-title">Темы</div>
+      </div>
+      <div class="scrim show"></div>
+      <div class="inbody-layer show">
+        <div class="inbody-card">
+          <div class="medal warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.4 5.3 5.6.6-4.2 3.9 1.2 5.6L12 15.6 6.9 18.4l1.2-5.6L4 8.9l5.6-.6z"/></svg></div>
+          <div class="inbody-title">Открыть тему «Сакура»?</div>
+          <div class="price-check">
+            <div class="pc-row">
+              <div class="pc-k">Сейчас у тебя</div>
+              <div class="pc-v"><svg class="coin" viewBox="0 0 24 24" fill="none" stroke="#7FD7F0" stroke-width="2.1" stroke-linejoin="round"><path d="M12 3l4.5 5.2L12 21 7.5 8.2z"/></svg>340</div>
+            </div>
+            <div class="pc-row">
+              <div class="pc-k">Стоит тема</div>
+              <div class="pc-v pc-cost">− 120</div>
+            </div>
+            <div class="pc-row total">
+              <div class="pc-k">Останется</div>
+              <div class="pc-v">220</div>
+            </div>
+          </div>
+          <div class="sheet-actions">
+            <button class="cta">Открыть тему</button>
+            <button class="cta-tertiary">Не сейчас</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ 5 ══════════ -->
+  <div class="item">
+    <div class="item-head">
+      <div class="item-name">5 · Данные могли устареть</div>
+      <div class="item-why">
+        Сейчас баннер появляется <b>только при полном провале первой загрузки</b>.
+        Если сеть отвалилась при обновлении — человек молча смотрит вчерашние цифры.
+        Плашка честно это говорит и даёт обновить.
+      </div>
+      <div class="spec"><b>когда</b>  фоновое обновление не прошло, показан кэш
+<b>вход</b>   translateY −8→0, spring ui, 240мс
+<b>тон</b>    золотой, не красный: ничего не сломалось,
+        данные просто старые
+<b>тап</b>    текст на «Обновляю…», геометрия НЕ меняется
+<b>успех</b>  плашка уезжает вверх, цифры перерисовываются
+<b>отказ</b>  плашка остаётся, время в тексте растёт</div>
+    </div>
+    <div class="phone">
+      <div class="scene">
+        <div class="hdr"><div class="hdr-row">
+          <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+        </div></div>
+        <div class="stale-bar show">
+          <svg class="stale-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 1.8"/></svg>
+          <div class="stale-txt">Данные от 14:20 — обновить не удалось</div>
+          <button class="stale-act">Обновить</button>
+        </div>
+        <div class="screen-title">Лига</div>
+        <div class="list">
+          <div class="stat-row calm lit" style="--w:0.72; cursor:default">
+            <div class="stat-body"><div class="stat-top"><span class="stat-name">Ты · 12 место</span><span class="stat-pct">840</span></div><div class="stat-track"><div class="stat-fill"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ 6 ══════════ -->
+  <div class="item">
+    <div class="item-head">
+      <div class="item-name">6 · Пусто — но есть куда пойти</div>
+      <div class="item-why">
+        18 списков при пустых данных показывают <b>белое ничто</b>, а полка достижений —
+        добрый текст без кнопки. Пустое состояние обязано предлагать
+        <b>ровно один</b> следующий шаг.
+      </div>
+      <div class="spec"><b>когда</b>  список пуст ПО ФАКТУ (данные пришли, их ноль)
+        не путать с загрузкой — там скелетон
+<b>арт</b>    дыхание translateY 0→−5, scale→1.02, 4200мс
+<b>текст</b>  заголовок = состояние, строка = что будет дальше
+<b>кнопка</b> одна, ведёт туда, где пустота исчезнет
+<b>a11y</b>   при reduce-motion дыхание выключено</div>
+    </div>
+    <div class="phone">
+      <div class="scene">
+        <div class="hdr"><div class="hdr-row">
+          <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+        </div></div>
+        <div class="screen-title">Награды</div>
+        <div class="empty">
+          <div class="empty-art"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v5a5 5 0 01-10 0z"/><path d="M17 5h2.5a2.5 2.5 0 01-2.5 4.5M7 5H4.5A2.5 2.5 0 007 9.5"/><path d="M12 14v3M9 20h6"/></svg></div>
+          <div class="empty-title">Полка пока пустая</div>
+          <div class="empty-body">Первая награда придёт уже за одно занятие — она ближе, чем кажется.</div>
+          <button class="cta empty-cta">Начать занятие</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ 7 ══════════ -->
+  <div class="item">
+    <div class="item-head">
+      <div class="item-name">7 · Статистика, по которой можно тапнуть</div>
+      <div class="item-why">
+        Аналитика ошибок показывает «Глаголы — 42%» и <b>не даёт ничего сделать</b>:
+        строки — статичные View, в коде даже осталась мёртвая заготовка CTA.
+        Та же строка, но это кнопка в тренировку ровно этой темы.
+      </div>
+      <div class="spec"><b>когда</b>  любая строка статистики, за которой есть действие
+<b>полоса</b> scaleX 0→доля, 720мс ease-slide,
+        задержка index×90мс — каскад сверху вниз
+<b>тап</b>    scale .978 (120мс) → тренировка с фильтром темы
+<b>цвет</b>   красный = слабое место, зелёный = закрытое
+<b>a11y</b>   role=button, «Глаголы, 42 процента ошибок,
+        открыть тренировку»</div>
+    </div>
+    <div class="phone">
+      <div class="scene">
+        <div class="hdr"><div class="hdr-row">
+          <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+        </div></div>
+        <div class="screen-title">Слабые места</div>
+        <div class="list">
+          <button class="stat-row" style="--w:0.42" data-bar>
+            <div class="stat-body">
+              <div class="stat-top"><span class="stat-name">Глаголы</span><span class="stat-pct">42%</span></div>
+              <div class="stat-track"><div class="stat-fill"></div></div>
+            </div>
+            <span class="stat-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+          </button>
+          <button class="stat-row" style="--w:0.27" data-bar>
+            <div class="stat-body">
+              <div class="stat-top"><span class="stat-name">Артикли</span><span class="stat-pct">27%</span></div>
+              <div class="stat-track"><div class="stat-fill"></div></div>
+            </div>
+            <span class="stat-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+          </button>
+          <button class="stat-row calm" style="--w:0.09" data-bar>
+            <div class="stat-body">
+              <div class="stat-top"><span class="stat-name">Предлоги</span><span class="stat-pct">9%</span></div>
+              <div class="stat-track"><div class="stat-fill"></div></div>
+            </div>
+            <span class="stat-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ 8 ══════════ -->
+  <div class="item">
+    <div class="item-head">
+      <div class="item-name">8 · Пауза и выход без потери</div>
+      <div class="item-why">
+        Выход из тренировки карточек и уход в фон в Learning V2 <b>молча стирают прогресс</b>.
+        Шторка показывает, <b>что именно</b> будет потеряно: абстрактное «прогресс»
+        не останавливает, а «12 карточек» останавливает.
+      </div>
+      <div class="spec"><b>когда</b>  тап «назад» / жест назад, если раунд начат
+<b>вход</b>   sheet translateY 100%→0, 320мс ease-spring
+        таймер раунда встаёт на паузу в этот же кадр
+<b>сводка</b> три числа: пройдено · осталось · верно
+<b>выбор</b>  «Продолжить» → таймер идёт дальше
+        «Выйти и сохранить» → прогресс в черновик
+        «Выйти без сохранения» → третичная, НЕ красная
+<b>возврат</b> вход в раздел предлагает продолжить черновик</div>
+    </div>
+    <div class="phone">
+      <div class="scene">
+        <div class="hdr"><div class="hdr-row">
+          <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+        </div></div>
+        <div class="screen-title">Вспомни и напиши</div>
+      </div>
+      <div class="scrim show"></div>
+      <div class="sheet-layer show">
+        <div class="sheet">
+          <div class="sheet-grabber"></div>
+          <div class="sheet-title">Сделать паузу?</div>
+          <div class="sheet-body">Таймер остановлен. Можно продолжить с этого места.</div>
+          <div class="keep-strip">
+            <div class="keep-cell"><div class="keep-n">12</div><div class="keep-k">пройдено</div></div>
+            <div class="keep-cell"><div class="keep-n">18</div><div class="keep-k">осталось</div></div>
+            <div class="keep-cell good"><div class="keep-n">10</div><div class="keep-k">верно</div></div>
+          </div>
+          <div class="sheet-actions">
+            <button class="cta">Продолжить</button>
+            <button class="cta-secondary">Выйти и сохранить</button>
+            <button class="cta-tertiary">Выйти без сохранения</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ 9 ══════════ -->
+  <div class="item">
+    <div class="item-head">
+      <div class="item-name">9 · Поиск в списке</div>
+      <div class="item-why">
+        Поиск есть в <b>2 экранах из 144</b>. Нужен там, где список длинный: 32 урока,
+        15+ настроек, 30 участников лиги, каталог наборов, список ошибок.
+        Появляется <b>только если элементов больше 12</b> — иначе это шум.
+      </div>
+      <div class="spec"><b>когда</b>  в списке > 12 элементов
+<b>ввод</b>   фильтрация локальная, БЕЗ запроса в сеть
+        (0 чтений Firestore — данные уже в руках)
+<b>дебаунс</b> не нужен: список локальный, фильтруем в кадре
+<b>крестик</b> с первым символом, scale .7→1 + opacity, 120мс
+<b>пусто</b>  «Ничего не нашлось» + подсказка сбросить
+<b>клавиша</b> «Найти» прячет клавиатуру, не сбрасывая запрос</div>
+    </div>
+    <div class="phone">
+      <div class="scene">
+        <div class="hdr"><div class="hdr-row">
+          <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+        </div></div>
+        <div class="screen-title">Все уроки</div>
+        <div class="search-wrap">
+          <label class="search filled">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+            <input value="прош" placeholder="Урок или тема" readonly>
+            <button class="search-clear"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+          </label>
+        </div>
+        <div class="list" style="padding-top:12px">
+          <button class="stat-row calm" style="--w:0.68" data-bar>
+            <div class="stat-body"><div class="stat-top"><span class="stat-name">14 · Прошедшее время</span><span class="stat-pct">38/56</span></div><div class="stat-track"><div class="stat-fill"></div></div></div>
+            <span class="stat-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+          </button>
+          <button class="stat-row calm" style="--w:0.14" data-bar>
+            <div class="stat-body"><div class="stat-top"><span class="stat-name">22 · Прошлый опыт</span><span class="stat-pct">8/56</span></div><div class="stat-track"><div class="stat-fill"></div></div></div>
+            <span class="stat-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ 10 ══════════ -->
+  <div class="item">
+    <div class="item-head">
+      <div class="item-name">10 · Потянуть и счётчики на плитках</div>
+      <div class="item-why">
+        Pull-to-refresh есть в <b>3 файлах из 144</b> — его отсутствие на Главной читается
+        как «зависло». Плитки «Уроки / Диалоги / Карточки» не показывают,
+        <b>где скопились дела</b>, пока не зайдёшь.
+      </div>
+      <div class="spec"><b>тяга</b>   стрелка поворачивается пропорционально тяге,
+        на 56px переворачивается и включается спиннер
+<b>обновляем</b> только реально устаревшее: лига не чаще
+        раза в 6 часов (правило проекта), свои цифры
+        локальные — всегда живые, 0 чтений
+<b>бейдж</b>  scale 0→1 spring ui, ПОСЛЕ загрузки
+        красный = требует внимания, зелёный = приятное
+<b>ноль</b>   бейджа нет вовсе (не рисуем «0»)</div>
+    </div>
+    <div class="phone">
+      <div class="scene">
+        <div class="hdr"><div class="hdr-row">
+          <button class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+        </div></div>
+        <div class="ptr-stage">
+          <div class="ptr loading">
+            <svg class="ptr-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M21 12a9 9 0 11-6.2-8.6"/></svg>
+            <span>Обновляю…</span>
+          </div>
+        </div>
+        <div class="sect-title" style="padding-top:2px">Практика</div>
+        <div class="badge-demo">
+          <button class="tile">
+            <span class="badge calm" data-badge>3</span>
+            <svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A1.5 1.5 0 015.5 4H10a2 2 0 012 2v13a2 2 0 00-2-2H5.5A1.5 1.5 0 014 15.5z"/><path d="M20 5.5A1.5 1.5 0 0018.5 4H14a2 2 0 00-2 2v13a2 2 0 012-2h4.5a1.5 1.5 0 001.5-1.5z"/></svg>
+            <span class="tile-name">Уроки</span>
+          </button>
+          <button class="tile">
+            <svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 01-8 8H4l2.2-2.6A8 8 0 1120 12z"/></svg>
+            <span class="tile-name">Диалоги</span>
+          </button>
+          <button class="tile">
+            <span class="badge" data-badge>12</span>
+            <svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="14" height="12" rx="2.5"/><path d="M7 3.5h10.5A3.5 3.5 0 0121 7v9"/></svg>
+            <span class="tile-name">Карточки</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+
+  function tf() {
+    return parseFloat(getComputedStyle(root).getPropertyValue('--tf')) || 1;
+  }
+
+  // Обратный отсчёт в undo — синхронно с кольцом (5 с)
+  function runCounters() {
+    document.querySelectorAll('[data-count]').forEach(function (el) {
+      var n = 5;
+      el.textContent = n;
+      if (el._t) clearInterval(el._t);
+      el._t = setInterval(function () {
+        n -= 1;
+        if (n <= 0) { clearInterval(el._t); el.textContent = '0'; return; }
+        el.textContent = n;
+      }, 1000 * tf());
+    });
+  }
+
+  // Каскад полос: задержка index × 90мс — как в спеке элемента 7
+  function runBars() {
+    document.querySelectorAll('[data-bar]').forEach(function (row) {
+      row.classList.remove('lit');
+    });
+    var byPhone = {};
+    document.querySelectorAll('[data-bar]').forEach(function (row) {
+      var key = row.closest('.phone') ? row.closest('.phone').dataset.k || '' : '';
+      byPhone[key] = byPhone[key] || [];
+      byPhone[key].push(row);
+    });
+    document.querySelectorAll('.phone').forEach(function (ph) {
+      var rows = ph.querySelectorAll('[data-bar]');
+      rows.forEach(function (row, i) {
+        setTimeout(function () { row.classList.add('lit'); }, 90 * i * tf());
+      });
+    });
+  }
+
+  function runToasts() {
+    document.querySelectorAll('[data-toast]').forEach(function (t) { t.classList.remove('show'); });
+    void document.body.offsetWidth;
+    setTimeout(function () {
+      document.querySelectorAll('[data-toast]').forEach(function (t) { t.classList.add('show'); });
+    }, 40);
+  }
+
+  function runBadges() {
+    document.querySelectorAll('[data-badge]').forEach(function (b) { b.classList.remove('show'); });
+    setTimeout(function () {
+      document.querySelectorAll('[data-badge]').forEach(function (b) { b.classList.add('show'); });
+    }, 520 * tf());
+  }
+
+  function replay() {
+    runToasts();
+    runBars();
+    runCounters();
+    runBadges();
+  }
+
+  document.querySelectorAll('[data-tf]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('[data-tf]').forEach(function (b) { b.classList.remove('on'); });
+      btn.classList.add('on');
+      root.style.setProperty('--tf', btn.dataset.tf);
+      replay();
+    });
+  });
+  document.getElementById('replay').addEventListener('click', replay);
+
+  replay();
+})();
+</script>
+</body>
+</html>

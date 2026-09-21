@@ -34,6 +34,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { usePaywallChrome, PaywallCloseButton } from '../components/paywall/paywallShared';
 import { initRevenueCat, resolvePremiumPackages, syncRevenueCatIdentity } from './revenuecat_init';
 import { storePriceTrim } from './paywall_purchase';
+import { revenueCatCustomerInfoHasPremiumAccess } from './revenuecat_premium_access';
 import {
   inferPremiumPlanFromCustomerInfo,
   inferPremiumPlanFromProductId,
@@ -206,6 +207,10 @@ export default function ManageSubscription() {
   const [yearlyPriceStr, setYearlyPriceStr] = useState('');
   const [yearlyPkg, setYearlyPkg] = useState<import('react-native-purchases').PurchasesPackage | null>(null);
   const [changing, setChanging] = useState(false);
+  // зачем: восстановление покупок — отдельное состояние от смены плана, иначе
+  // одна операция гасила бы кнопку другой и человек не понимал бы, что занято.
+  const [restoring, setRestoring] = useState(false);
+  const [showRestoreEmpty, setShowRestoreEmpty] = useState(false);
   const [showCancelSheet, setShowCancelSheet] = useState(false);
   const [cancelReason, setCancelReason] = useState<string | null>(null);
   const [cancelText, setCancelText] = useState('');
@@ -382,6 +387,107 @@ export default function ManageSubscription() {
     }
   }, [changing, yearlyPkg, metadata.productId, fallbackPlan]);
 
+  // ── восстановление покупок ──────────────────────────────────────────────────
+  // зачем (аудит 2026-09-21, одобрено владельцем): RevenueCat был подключён, но
+  // `restorePurchases()` не вызывался НИ ОДНОЙ кнопкой в интерфейсе. Человек,
+  // сменивший телефон или переустановивший приложение, терял Plus и мог вернуть
+  // его только через поддержку. Это ещё и требование гайдлайнов Apple для
+  // приложений с подпиской — без такой кнопки ревью вправе отклонить сборку.
+  //
+  // Ряд живёт ЗДЕСЬ, на экране Plus, а не в общих настройках (решение владельца).
+  // Виден всегда, в том числе без активной подписки: именно без неё он и нужен.
+  const handleRestore = useCallback(async () => {
+    if (restoring) {
+      // guard-ok: ранний выход обязан объяснять причину навсегда — иначе
+      // «кнопка не работает», а она просто занята предыдущей попыткой.
+      console.warn('[RESTORE] ignored:already_running');
+      return;
+    }
+    // Генерация аккаунта — как в handleChangePlan: поздний ответ чужой
+    // генерации не должен включать Plus уже ДРУГОМУ человеку на этом телефоне
+    // (класс бага «подмена stable_id», инцидент 25.08).
+    const generation = captureAccountGeneration();
+    const isOperationCurrent = () => (
+      !!generation.stableId && isCurrentAccountGeneration(generation, generation.stableId)
+    );
+    if (!isOperationCurrent()) {
+      console.warn('[RESTORE] ignored:stale_generation'); // guard-ok
+      return;
+    }
+    hapticTap();
+    void trackEvent('restore_purchases_started');
+    setRestoring(true);
+    const startedAt = Date.now();
+    try {
+      await initRevenueCat(isOperationCurrent);
+      if (!await syncRevenueCatIdentity(isOperationCurrent)) {
+        console.warn('[RESTORE] drop:identity_sync_failed'); // guard-ok
+        return;
+      }
+      const restored = await Purchases.restorePurchases();
+      if (!isOperationCurrent()) {
+        console.warn('[RESTORE] drop:stale_after_network'); // guard-ok
+        return;
+      }
+      // Источник истины по «есть ли Plus» — общий помощник, а не своя проверка:
+      // вторая реализация этой логики неизбежно разойдётся с первой.
+      const hasPremium = revenueCatCustomerInfoHasPremiumAccess(restored);
+      const meta = revenueCatPremiumMetadata(restored);
+      console.log('[RESTORE] done', JSON.stringify({ // guard-ok: денежный путь, лог остаётся
+        hasPremium,
+        productId: meta.productId ?? null,
+        ms: Date.now() - startedAt,
+      }));
+      if (!hasPremium) {
+        void trackEvent('restore_purchases_empty');
+        setShowRestoreEmpty(true);
+        return;
+      }
+      // Optimistic: экран показывает Plus сразу, кэш сбрасывается, остальные
+      // экраны узнают через событие — без перезапуска приложения.
+      setInfo(restored);
+      invalidatePremiumCache();
+      emitAppEvent('premium_activated');
+      void trackEvent('restore_purchases_completed', { product_id: meta.productId ?? 'unknown' });
+      emitAppEvent('action_toast', {
+        type: 'reward',
+        messageRu: 'Plus вернулся — подписка снова активна.',
+        messageUk: 'Plus повернувся — передплата знову активна.',
+        messageEn: 'Plus is back — your subscription is active again.',
+        messageEs: 'Plus ha vuelto: tu suscripción está activa de nuevo.',
+        messagePtBr: 'O Plus voltou — sua assinatura está ativa de novo.',
+        messageVi: 'Plus đã trở lại — gói đăng ký của bạn lại hoạt động.',
+        messageId: 'Plus kembali — langgananmu aktif lagi.',
+        messageTr: 'Plus geri döndü — aboneliğin yeniden aktif.',
+        messagePl: 'Plus wrócił — subskrypcja znów jest aktywna.',
+      });
+    } catch (err: unknown) {
+      if ((err as { userCancelled?: boolean })?.userCancelled) {
+        console.warn('[RESTORE] cancelled_by_user'); // guard-ok
+        return;
+      }
+      void trackEvent('restore_purchases_failed');
+      // Причина сбоя денежного пути обязана переживать перезапуск.
+      void import('./debug-logger')
+        .then(({ DebugLogger }) => DebugLogger.error('manage_subscription.tsx:restore', err, 'critical'))
+        .catch(() => {});
+      emitAppEvent('action_toast', {
+        type: 'error',
+        messageRu: 'Не удалось проверить покупки. Проверь связь и попробуй ещё раз.',
+        messageUk: 'Не вдалося перевірити покупки. Перевір зв’язок і спробуй ще раз.',
+        messageEn: 'Could not check your purchases. Check your connection and try again.',
+        messageEs: 'No se pudieron comprobar las compras. Revisa la conexión e inténtalo de nuevo.',
+        messagePtBr: 'Não foi possível verificar as compras. Verifique a conexão e tente de novo.',
+        messageVi: 'Không kiểm tra được giao dịch. Hãy kiểm tra kết nối và thử lại.',
+        messageId: 'Pembelian tidak dapat diperiksa. Periksa koneksi dan coba lagi.',
+        messageTr: 'Satın alımlar kontrol edilemedi. Bağlantını kontrol edip tekrar dene.',
+        messagePl: 'Nie udało się sprawdzić zakupów. Sprawdź połączenie i spróbuj ponownie.',
+      });
+    } finally {
+      if (isOperationCurrent()) setRestoring(false);
+    }
+  }, [restoring]);
+
   const closeCancelSheet = useCallback(() => {
     setShowCancelSheet(false);
     setCancelStep('reasons');
@@ -556,6 +662,29 @@ export default function ManageSubscription() {
                 </TouchableOpacity>
               )}
 
+              {/* Восстановить покупки — виден ВСЕГДА, в том числе без активной
+                  подписки: именно без неё он и нужен (сменил телефон, переустановил).
+                  Геометрия строки не меняется в busy — крутится только иконка,
+                  текст остаётся на месте (без прыжка раскладки). */}
+              <TouchableOpacity
+                accessibilityRole="button"
+                accessibilityState={{ disabled: restoring }}
+                accessibilityLabel={LP('Восстановить покупки', 'Відновити покупки', 'Restore purchases', 'Restaurar compras', 'Restaurar compras', 'Khôi phục giao dịch', 'Pulihkan pembelian', 'Satın alımları geri yükle', 'Przywróć zakupy')}
+                activeOpacity={0.85}
+                onPress={handleRestore}
+                disabled={restoring}
+                style={[S.restoreRow, { backgroundColor: chrome.cardBg }]}
+                testID="manage-subscription-restore"
+              >
+                <Ionicons name="refresh" size={18} color={chrome.tc.heroAccent} />
+                <Text style={[S.restoreText, { color: chrome.textPrimary }]}>
+                  {LP('Восстановить покупки', 'Відновити покупки', 'Restore purchases', 'Restaurar compras', 'Restaurar compras', 'Khôi phục giao dịch', 'Pulihkan pembelian', 'Satın alımları geri yükle', 'Przywróć zakupy')}
+                </Text>
+                {restoring
+                  ? <ActivityIndicator color={chrome.tc.heroAccent} />
+                  : <Ionicons name="chevron-forward" size={18} color={chrome.textMuted} />}
+              </TouchableOpacity>
+
               {/* Отмена — только для подписок (не lifetime). */}
               {!isLifetime && (
                 <TouchableOpacity onPress={() => { hapticTap(); setShowCancelSheet(true); }} style={S.cancelBtn}>
@@ -685,6 +814,53 @@ export default function ManageSubscription() {
             </View>
           </View>
         )}
+
+        {/* ── покупок не нашлось ──
+            зачем: пустой результат восстановления — НЕ ошибка, поэтому тон
+            спокойный. Самая частая причина в проде — вход не с того аккаунта
+            магазина, поэтому её называем прямо, а не оставляем человека гадать. */}
+        {showRestoreEmpty && (
+          <View style={S.sheetOverlay}>
+            <View style={[S.sheet, { backgroundColor: chrome.bgColors[1] ?? '#11151a' }]}>
+              <Text style={[S.sheetTitle, { color: chrome.textPrimary }]}>
+                {LP('Покупок не нашлось', 'Покупок не знайшлося', 'No purchases found', 'No se encontraron compras', 'Nenhuma compra encontrada', 'Không tìm thấy giao dịch', 'Pembelian tidak ditemukan', 'Satın alım bulunamadı', 'Nie znaleziono zakupów')}
+              </Text>
+              <Text style={[S.sheetSub, { color: chrome.textMuted }]}>
+                {LP(
+                  'Проверь, тот ли это аккаунт магазина, с которого покупал. Чаще всего дело именно в нём.',
+                  'Перевір, чи той це акаунт магазину, з якого купував. Найчастіше річ саме в ньому.',
+                  'Check whether this is the store account you bought with. That is usually the reason.',
+                  'Comprueba si es la cuenta de la tienda con la que compraste. Suele ser eso.',
+                  'Verifique se é a conta da loja com que você comprou. Quase sempre é isso.',
+                  'Hãy kiểm tra xem đây có đúng là tài khoản cửa hàng bạn đã mua không. Thường là do vậy.',
+                  'Periksa apakah ini akun toko yang kamu pakai saat membeli. Biasanya itu penyebabnya.',
+                  'Satın alırken kullandığın mağaza hesabı bu mu, kontrol et. Genelde sebebi budur.',
+                  'Sprawdź, czy to konto sklepu, z którego kupowałeś. Zwykle o to chodzi.',
+                )}
+              </Text>
+
+              <TouchableOpacity
+                accessibilityRole="button"
+                onPress={() => { hapticTap(); setShowRestoreEmpty(false); router.push('/support_report' as never); }}
+                style={[S.sheetPrimary, { backgroundColor: chrome.tc.ctaBg }]}
+              >
+                <Text style={[S.sheetPrimaryText, { color: chrome.tc.ctaText }]}>
+                  {LP('Написать в поддержку', 'Написати в підтримку', 'Contact support', 'Escribir a soporte', 'Falar com o suporte', 'Liên hệ hỗ trợ', 'Hubungi dukungan', 'Desteğe yaz', 'Napisz do wsparcia')}
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                accessibilityRole="button"
+                onPress={() => { hapticTap(); setShowRestoreEmpty(false); }}
+                style={S.sheetSecondary}
+              >
+                <Text style={[S.sheetSecondaryText, { color: chrome.textMuted }]}>
+                  {LP('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij')}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        )}
       </SafeAreaView>
     </LinearGradient>
   );
@@ -714,6 +890,13 @@ const S = StyleSheet.create({
   },
   changeTitle: { fontSize: 15, fontWeight: '800' },
   changeSub: { fontSize: 12, marginTop: 2 },
+  // Ряд «Восстановить покупки»: minHeight 56 — комфортная зона тапа (выше
+  // минимума 44pt). Разделяем тоном карточки, без обводки (запрет владельца).
+  restoreRow: {
+    marginTop: 16, minHeight: 56, borderRadius: 16,
+    paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 12,
+  },
+  restoreText: { flex: 1, minWidth: 0, fontSize: 15, fontWeight: '700' },
   cancelBtn: { alignSelf: 'center', marginTop: 24, paddingVertical: 8, paddingHorizontal: 12 },
   cancelText: { fontSize: 13, textDecorationLine: 'underline', opacity: 0.7 },
   sheetOverlay: { position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.62)', justifyContent: 'flex-end' },

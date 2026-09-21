@@ -1315,3 +1315,62 @@ describe('отчёт не теряется при раннем переходе 
     expect(source).toContain('if (screenAlive) setFinishQueued(true);');
   });
 });
+
+describe('с мёртвого экрана матча обязан быть выход (владелец 2026-09-21)', () => {
+  /**
+   * Дословно: «с этого экрана „этого матча больше нет“ или „готовим матч“
+   * нельзя ни кнопку на арену нажать (ничего не происходит), ни кнопку назад
+   * (ничего не происходит) — только закрывать приложение».
+   *
+   * Корень: перехватчик `beforeRemove` отменял ЛЮБУЮ навигацию, пока не
+   * взведён `leavingRef`, и предлагал сдать матч. Но на этих экранах матча
+   * НЕТ вовсе (`match === null`): ветка «матч закончен» не срабатывала,
+   * `router.replace('/arena')` молча отменялся, а аппаратная «Назад»
+   * открывала окно сдачи несуществующего матча. Человек оказывался заперт.
+   *
+   * Это тот же класс, что чинили 2026-09-04 (законченный матч), но с другого
+   * конца: там матч кончился, здесь он не начинался. Сторож держит оба.
+   */
+  const screen = () => fs.readFileSync(path.join(process.cwd(), 'app/arena_match.tsx'), 'utf8');
+
+  test('удержание экрана решает одно условие «матч живой», а не только фаза', () => {
+    const source = screen();
+    // Понятие существует и учитывает ОБА мёртвых случая: нет матча и отказ.
+    expect(source).toContain('const matchIsLive = Boolean(match) && !planError');
+    expect(source).toContain("match?.state.phase !== 'finished'");
+    // Оба перехватчика выхода спрашивают именно его.
+    expect(source).toContain('if (!matchIsLive) {');
+  });
+
+  test('перехватчик beforeRemove пропускает уход, когда сдавать нечего', () => {
+    const source = screen();
+    const guard = source.slice(source.indexOf("addListener('beforeRemove'"));
+    const branch = guard.slice(0, guard.indexOf('event.preventDefault()'));
+    // Ранний выход ОБЯЗАН стоять до preventDefault, иначе уход снова умрёт.
+    expect(branch).toContain('if (!matchIsLive) {');
+    expect(branch).toContain('return;');
+  });
+
+  test('аппаратная «Назад» на мёртвом экране уводит на хаб, а не просит сдаться', () => {
+    const source = screen();
+    const handler = source.slice(source.indexOf("addEventListener('hardwareBackPress'"));
+    const body = handler.slice(0, handler.indexOf('confirmForfeit();'));
+    expect(body).toContain('if (!matchIsLive) {');
+    // Без взвода флага перехватчик ниже отменил бы и этот уход.
+    expect(body).toContain('leavingRef.current = true;');
+    expect(body).toContain("router.replace('/arena' as never);");
+  });
+
+  test('каждая кнопка ухода с мёртвых экранов взводит leavingRef', () => {
+    const source = screen();
+    /*
+     * Кнопки «На главную» на экране отказа и на «Готовим матч», плюс возврат
+     * в поиск после чужого отказа. Каждая из них уходит через router.replace,
+     * и без флага её гасит тот же перехватчик.
+     */
+    const exits = source.split('leavingRef.current = true;').length - 1;
+    // 4 собственных перехода матча (результат ×2, сдача, предпросмотр)
+    // + 3 кнопки мёртвых экранов + аппаратная «Назад».
+    expect(exits).toBeGreaterThanOrEqual(8);
+  });
+});

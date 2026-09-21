@@ -204,11 +204,23 @@ export function ArenaOpponentFoundToast({
           >
             <Text numberOfLines={1} style={[styles.buttonText, { color: P.muted }]}>{declineLabel}</Text>
           </DuoPressable>
+          {/*
+            * зачем `|| expired` (владелец 2026-09-21: «выйти из поиска, зайти
+            * назад — появляется кнопка Принять, нажимаю и сразу этого матча
+            * больше нет»): кнопка гасла ТОЛЬКО флагом `busy`, а срок приёма
+            * её не касался. Досчитав кольцо до нуля, она оставалась живой и
+            * нажималась — сервер к тому времени матч уже закрыл, и человек
+            * платил 25⚡ за отказ. Кнопка, которая не может сработать, не
+            * должна выглядеть рабочей.
+            */}
           <DuoPressable
             onPress={onAccept}
-            disabled={busy}
+            disabled={busy || remainingMs <= 0}
             wrapStyle={styles.half}
-            style={[styles.button, { backgroundColor: P.accent }]}
+            style={[styles.button, {
+              backgroundColor: P.accent,
+              opacity: remainingMs <= 0 ? 0.45 : 1,
+            }]}
           >
             <Text numberOfLines={1} style={[styles.buttonText, { color: P.accentText }]}>
               {busy ? busyLabel : acceptLabel}

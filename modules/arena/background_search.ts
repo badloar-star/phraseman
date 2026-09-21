@@ -281,7 +281,15 @@ export class ArenaBackgroundSearch {
    */
   pause(): void {
     if (this.state.phase !== 'searching') {
-      this.deps.log(`[ARENA-BGSEARCH] pause ignored: phase=${this.state.phase}`);
+      /*
+       * Находку в фоне НЕ гасим намеренно: человек может вернуться в срок, и
+       * отнимать у него живой матч нельзя. Но и обещать его вечно тоже — срок
+       * проверяется на возврате (`resume`) и в момент тапа «Принять».
+       */
+      this.deps.log(`[ARENA-BGSEARCH] pause ignored: phase=${this.state.phase}`
+        + ` found=${this.state.found?.matchId ?? 'none'}`
+        + ` deadlineIn=${this.state.found
+          ? String(this.state.found.acceptDeadlineAtMs - this.deps.nowMs()) : 'n/a'}ms`);
       return;
     }
     this.clearAllTimers();
@@ -290,6 +298,35 @@ export class ArenaBackgroundSearch {
   }
 
   resume(): void {
+    /**
+     * Возврат из фона к УЖЕ НАЙДЕННОМУ сопернику.
+     *
+     * зачем (владелец 2026-09-21: «выйти из поиска, зайти назад — появляется
+     * кнопка Принять, нажимаю и сразу этого матча больше нет»): срок приёма
+     * держал обычный `setTimeout`. В фоне Android его не будит, а `pause()`
+     * его и не снимал — он выходил рано, потому что фаза была 'found'.
+     * Человек возвращался к тосту, который сервер уже закрыл: кнопка живая,
+     * матча нет.
+     *
+     * Здесь и решается: срок вышел — находка снимается честно, как и всякое
+     * молчание (`accept_timeout`). Срок ещё идёт — перевзводим таймер на
+     * ОСТАТОК, потому что старый в фоне мог не выстрелить.
+     *
+     * Ноль обращений к сети: дедлайн серверный и уже лежит в состоянии.
+     */
+    if (this.state.phase === 'found' && this.state.found) {
+      const remainingMs = this.state.found.acceptDeadlineAtMs - this.deps.nowMs();
+      if (remainingMs <= 0) {
+        this.deps.log(`[ARENA-BGSEARCH] resume: окно приёма истекло в фоне `
+          + `matchId=${this.state.found.matchId} просрочено=${-remainingMs}ms — снимаем находку`);
+        this.stop('accept_timeout');
+        return;
+      }
+      this.deps.log(`[ARENA-BGSEARCH] resume: находка жива matchId=${this.state.found.matchId} `
+        + `осталось=${remainingMs}ms — перевзводим срок`);
+      this.armAcceptDeadline(this.state.found.acceptDeadlineAtMs);
+      return;
+    }
     if (this.state.phase !== 'paused') {
       this.deps.log(`[ARENA-BGSEARCH] resume ignored: phase=${this.state.phase}`);
       return;
@@ -620,6 +657,10 @@ export class ArenaBackgroundSearch {
    * соперник, и он не должен ждать дольше серверного срока.
    */
   private armAcceptDeadline(deadlineAtMs: number): void {
+    // зачем: на возврате из фона срок перевзводится (`resume`), и без снятия
+    // прежнего таймера их накапливалось бы по одному на каждый возврат —
+    // старый выстрелил бы по чужому матчу и снял живую находку.
+    if (this.timers.accept !== null) this.deps.clearTimer(this.timers.accept);
     this.timers = {
       ...this.timers,
       accept: this.deps.setTimer(() => {

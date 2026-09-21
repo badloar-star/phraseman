@@ -888,14 +888,45 @@ function ArenaMatchGenerationScreen({
     setMatchAlert({ kind: 'leave' });
   }, []);
 
+  /**
+   * Есть ли что сдавать.
+   *
+   * зачем (владелец 2026-09-21: «на экране „этого матча больше нет“ или
+   * „готовим матч“ нельзя нажать ни кнопку на арену, ни назад — только
+   * закрывать приложение»): оба перехватчика выхода держали экран ВСЕГДА,
+   * пока не взведён `leavingRef`, и спрашивали про сдачу. Но на экране отказа
+   * матча не существует вовсе: `match` равен null, ветка «матч закончен» не
+   * срабатывает, `router.replace('/arena')` молча отменяется, а аппаратная
+   * «Назад» открывает окно сдачи НЕСУЩЕСТВУЮЩЕГО матча. Выхода не остаётся.
+   *
+   * Сдача осмысленна ровно в одном случае: матч загружен и ещё идёт. Нет
+   * плана, нет матча, экран показывает отказ — держать нечего, и уход обязан
+   * проходить без вопросов. Это тот же класс бага, что чинили 2026-09-04
+   * (законченный матч), просто с другого конца: там матч кончился, здесь он
+   * не начинался.
+   */
+  const matchIsLive = Boolean(match) && !planError
+    && match?.state.phase !== 'finished';
+
   useEffect(() => {
     if (!active) return undefined;
     const subscription = BackHandler.addEventListener('hardwareBackPress', () => {
+      if (!matchIsLive) {
+        DebugLogger.info('[ARENA-EXIT]', `hardwareBack: сдавать нечего — уходим на хаб.`
+          + ` planError=${String(planError)} entryFailure=${String(entryFailure)}`
+          + ` hasMatch=${String(Boolean(match))} phase=${String(match?.state.phase)}`
+          + ` matchId=${matchId ?? 'none'}`);
+        // зачем: без этого beforeRemove ниже отменит и ЭТОТ уход — экран
+        // остался бы мёртвым ровно так же, как до правки.
+        leavingRef.current = true;
+        router.replace('/arena' as never);
+        return true;
+      }
       confirmForfeit();
       return true;
     });
     return () => subscription.remove();
-  }, [active, confirmForfeit]);
+  }, [active, confirmForfeit, entryFailure, match, matchId, matchIsLive, planError, router]);
 
   /**
    * зачем (владелец 2026-09-02): BackHandler ловит ТОЛЬКО аппаратную кнопку
@@ -928,20 +959,32 @@ function ArenaMatchGenerationScreen({
        * Сдача имеет смысл только в ЖИВОМ матче. Закончившийся матч сдавать
        * не в чем — держать экран не за что.
        */
-      if (match?.state.phase === 'finished') {
-        DebugLogger.info('[ARENA-SETTLE]', 'уход с законченного матча разрешён без вопроса о сдаче');
+      /*
+       * Одно условие вместо прежней проверки только на 'finished'
+       * (владелец 2026-09-21: «с экрана „этого матча больше нет“ не выйти
+       * ничем»). Держать экран можно ТОЛЬКО пока есть живой матч: иначе
+       * человек заперт на экране, который сам же сообщает, что играть нечего.
+       */
+      if (!matchIsLive) {
+        DebugLogger.info('[ARENA-EXIT]', `beforeRemove пропускает уход: сдавать нечего.`
+          + ` planError=${String(planError)} entryFailure=${String(entryFailure)}`
+          + ` hasMatch=${String(Boolean(match))} phase=${String(match?.state.phase)}`
+          + ` matchId=${matchId ?? 'none'}`);
         return;
       }
       event.preventDefault();
-      DebugLogger.info('arena_match', `back intercepted action=${
-        String(event.data?.action?.type ?? 'unknown')} matchId=${matchId ?? 'none'}`);
+      DebugLogger.info('[ARENA-EXIT]', `beforeRemove ОТМЕНИЛ уход: action=${
+        String(event.data?.action?.type ?? 'unknown')} planError=${String(planError)}`
+        + ` entryFailure=${String(entryFailure)} hasPlan=${String(Boolean(plan))}`
+        + ` hasMatch=${String(Boolean(match))} phase=${String(match?.state.phase)}`
+        + ` matchId=${matchId ?? 'none'}`);
       confirmForfeit();
     }) as never);
     return unsubscribe;
-    // match?.state.phase обязателен в зависимостях: без него перехватчик
-    // остаётся с замыканием на старую фазу и продолжает держать экран после
-    // конца матча — ровно тот мёртвый экран, что видел владелец.
-  }, [active, confirmForfeit, match?.state.phase, matchId, navigation]);
+    // matchIsLive обязателен в зависимостях: без него перехватчик остаётся с
+    // замыканием на старое состояние и продолжает держать экран после конца
+    // матча или на экране отказа — ровно тот мёртвый экран, что видел владелец.
+  }, [active, confirmForfeit, entryFailure, match, matchId, matchIsLive, navigation, plan, planError]);
 
   /* ---- звуки, привязанные к смене состояния ---- */
   const lastTaskRef = useRef(-1);
@@ -1260,20 +1303,36 @@ function ArenaMatchGenerationScreen({
               новым requestId — старый билет уже закрыт сервером. */}
           {entryFailure === 'no_opponent' ? (
             <View style={{ position: 'relative' }}>
-              <V2Cta onPress={() => router.replace({
-                pathname: '/arena_matchmaking',
-                params: {
-                  mode: 'quick',
-                  studyTarget,
-                  requestId: createArenaRequestId(arenaTargetRequestIdPrefix('queue', studyTarget)),
-                },
-              } as never)}>
+              <V2Cta onPress={() => {
+                // Тот же предохранитель, что и у «На главную»: без него
+                // beforeRemove отменял и этот уход.
+                leavingRef.current = true;
+                router.replace({
+                  pathname: '/arena_matchmaking',
+                  params: {
+                    mode: 'quick',
+                    studyTarget,
+                    requestId: createArenaRequestId(arenaTargetRequestIdPrefix('queue', studyTarget)),
+                  },
+                } as never);
+              }}>
                 {arenaText(lang, 'quick')}
               </V2Cta>
               <EnergyCostBadge activity="arena_match" testID="arena-match-retry-energy-cost" />
             </View>
           ) : null}
-          <V2Cta tone="ghost" onPress={() => router.replace('/arena' as never)}>{arenaText(lang, 'home')}</V2Cta>
+          {/* зачем leavingRef (владелец 2026-09-21): без него перехватчик
+              beforeRemove отменял этот уход, и с экрана отказа было НЕ выйти
+              ничем, кроме закрытия приложения. */}
+          <V2Cta
+            tone="ghost"
+            onPress={() => {
+              leavingRef.current = true;
+              router.replace('/arena' as never);
+            }}
+          >
+            {arenaText(lang, 'home')}
+          </V2Cta>
         </View>
       </ArenaScreen>
     );
@@ -1331,7 +1390,18 @@ function ArenaMatchGenerationScreen({
           <Text accessibilityLiveRegion="polite" style={[styles.failureHint, hintLine, { color: P.muted }]}>
             {arenaText(lang, 'preparing')}
           </Text>
-          <V2Cta tone="ghost" onPress={() => router.replace('/arena' as never)}>
+          {/* зачем leavingRef (владелец 2026-09-21: «на экране „готовим матч“
+              ни кнопку на арену нажать, ни назад — только закрывать
+              приложение»): матча здесь ещё НЕТ, поэтому перехватчик
+              beforeRemove отменял этот уход и предлагал сдать несуществующий
+              матч. Кнопка была, а выхода не было. */}
+          <V2Cta
+            tone="ghost"
+            onPress={() => {
+              leavingRef.current = true;
+              router.replace('/arena' as never);
+            }}
+          >
             {arenaText(lang, 'home')}
           </V2Cta>
         </View>

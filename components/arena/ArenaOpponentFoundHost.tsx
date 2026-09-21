@@ -145,6 +145,36 @@ export default function ArenaOpponentFoundHost() {
 
   const accept = useCallback(() => {
     if (!found || decidedRef.current === found.matchId) return;
+    /**
+     * ПРЕДОХРАНИТЕЛЬ СРОКА — стоит ДО списания энергии.
+     *
+     * зачем (владелец 2026-09-21: «выйти из поиска, зайти назад — появляется
+     * кнопка Принять, нажимаю и сразу этого матча больше нет»): окно приёма
+     * живёт на СЕРВЕРЕ (~12 с), а местный таймер отказа — обычный setTimeout.
+     * В фоне Android его не будит, и `pause()` его не снимал: он выходил
+     * рано, потому что фаза была 'found', а не 'searching'. Человек
+     * возвращался к тосту, который сервер уже закрыл.
+     *
+     * Дальше шло списание 25⚡, затем `accept` получал от сервера 'aborted',
+     * и экран честно писал «Этого матча больше нет» — за деньги. Возврат
+     * потом срабатывал, но человек этого не видел и считал, что энергию съели.
+     *
+     * Проверяем срок в момент тапа и не платим за матч, которого уже нет.
+     * Локально, без единого обращения к сети: дедлайн клиент уже знает.
+     */
+    const remainingMs = found.acceptDeadlineAtMs - Date.now();
+    if (remainingMs <= 0) {
+      decidedRef.current = found.matchId;
+      DebugLogger.warn('arena_opponent_found',
+        `[ARENA-BGSEARCH] accept отклонён: окно приёма истекло matchId=${found.matchId} `
+        + `просрочено=${-remainingMs}ms — энергия НЕ списана`);
+      setBusy(false);
+      // Слова те же, что у экрана матча: одна причина не называется двумя
+      // способами. Энергии эта ветка не касается — платить было не за что.
+      setEntryFailure('rejected');
+      arenaBackgroundSearch.stop('accept_timeout');
+      return;
+    }
     decidedRef.current = found.matchId;
     setBusy(true);
     const matchId = found.matchId;
@@ -163,6 +193,15 @@ export default function ArenaOpponentFoundHost() {
     }
     DebugLogger.info('arena_opponent_found',
       `[ARENA-BGSEARCH] accept tapped matchId=${matchId} cost=${energyCost}`);
+    /*
+     * зачем (владелец 2026-09-21: «выйти из поиска, зайти назад — Принять, и
+     * сразу этого матча больше нет»): подозрение, что окно приёма истекло,
+     * пока экрана не было, а кнопка осталась живой. Печатаем остаток срока в
+     * момент ТАПА — он и скажет, протух матч или дело в другом.
+     */
+    DebugLogger.info('[ARENA-EXIT]', `accept тап: matchId=${matchId}`
+      + ` deadlineIn=${found.acceptDeadlineAtMs - Date.now()}ms`
+      + ` phase=${search.phase} studyTarget=${String(studyTarget)}`);
 
     void confirmSpendAmount(energyCost, energyIntent).then((result) => {
       /*

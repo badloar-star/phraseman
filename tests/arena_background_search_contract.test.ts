@@ -36,6 +36,8 @@ type Harness = Readonly<{
   };
   /** Прокрутить виртуальное время и выполнить созревшие таймеры. */
   advance: (ms: number) => Promise<void>;
+  /** Время идёт, таймеры молчат — приложение в фоне. */
+  advanceIdle: (ms: number) => void;
   setFindResult: (result: ArenaBackgroundSearchFindResult) => void;
   setBotResult: (match: ArenaBackgroundSearchMatched | Error) => void;
   setFindError: (error: Error | null) => void;
@@ -119,10 +121,22 @@ function createHarness(): Harness {
     throw new Error('advance(): таймеры не сходятся за 500 шагов — похоже на петлю');
   };
 
+  /**
+   * Время в ФОНЕ: часы идут, отложенные вызовы — нет.
+   *
+   * зачем (владелец 2026-09-21): именно так ведёт себя Android, когда
+   * приложение свёрнуто, и именно в этом жил баг «вернулся — кнопка Принять,
+   * нажал — матча больше нет». Обычный `advance` исполняет таймеры и потому
+   * маскирует его: локальный срок отказа срабатывает сам и снимает находку.
+   * Здесь он молчит, как на живом телефоне.
+   */
+  const advanceIdle = (ms: number) => { now += ms; };
+
   return {
     search: new ArenaBackgroundSearch(deps),
     calls,
     advance,
+    advanceIdle,
     setFindResult: (result) => { findResult = result; },
     setBotResult: (match) => { botResult = match; },
     setFindError: (error: Error | null) => { findError = error; },
@@ -547,4 +561,69 @@ describe('окончательные отказы бота не крутятся
       expect(h.calls.requestBot).toHaveLength(1);
     });
   }
+});
+
+describe('находка не переживает свой срок в фоне (владелец 2026-09-21)', () => {
+  /**
+   * Дословно: «если во время поиска матча в арене выйти, то зайти назад — то
+   * написано что готовим матч, появляется кнопка принять, я нажимаю и сразу
+   * появляется этого матча больше нет».
+   *
+   * Корень был в паре pause/resume. Срок приёма держал обычный setTimeout;
+   * в фоне Android его не будит, а `pause()` его и НЕ снимал — он выходил
+   * рано, потому что фаза была 'found', а не 'searching'. Человек
+   * возвращался к тосту, который сервер уже закрыл: кнопка живая, матча нет.
+   * Дальше списывались 25⚡ и сервер отвечал 'aborted'.
+   *
+   * Эти тесты сторожат именно возврат из фона, а не сам таймер: обычные
+   * тесты находки его не ловят, потому что в них приложение не уходит в фон.
+   */
+  test('возврат после истёкшего срока снимает находку, а не показывает её', async () => {
+    const h = createHarness();
+    h.setFindResult({ queue: null, match: MATCH });
+    h.search.start('quick', 'en');
+    await Promise.resolve();
+    expect(h.search.getState().phase).toBe('found');
+
+    // Ушли в фон с живой находкой: гасить её нельзя, срок ещё идёт.
+    h.search.pause();
+    expect(h.search.getState().phase).toBe('found');
+
+    /*
+     * Фон: время идёт, но таймеры телефона молчат — ровно то, что делает
+     * Android. `advanceIdle` двигает часы, НЕ исполняя отложенные вызовы;
+     * обычный `advance` выстрелил бы локальным таймером и замаскировал баг,
+     * который живёт именно в его отсутствии.
+     */
+    h.advanceIdle(13_000);
+
+    // Вернулись позже серверного срока — матча на сервере уже нет.
+    h.search.resume();
+    await Promise.resolve();
+
+    expect(h.search.getState().phase).toBe('stopped');
+    expect(h.search.getState().stopReason).toBe('accept_timeout');
+    // Главное: кнопки «Принять» больше нет, платить не за что.
+    expect(h.search.getState().found).toBeNull();
+  });
+
+  test('возврат в срок сохраняет находку и перевзводит таймер', async () => {
+    const h = createHarness();
+    h.setFindResult({ queue: null, match: MATCH });
+    h.search.start('quick', 'en');
+    await Promise.resolve();
+
+    h.search.pause();
+    h.search.resume();
+    await Promise.resolve();
+
+    // Находка на месте: человек вернулся вовремя и вправе принять матч.
+    expect(h.search.getState().phase).toBe('found');
+    expect(h.search.getState().found?.matchId).toBe(MATCH.matchId);
+
+    // Перевзведённый срок обязан сработать ровно один раз и вовремя.
+    await h.advance(13_000);
+    expect(h.search.getState().phase).toBe('stopped');
+    expect(h.search.getState().stopReason).toBe('accept_timeout');
+  });
 });

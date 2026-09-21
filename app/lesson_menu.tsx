@@ -34,7 +34,8 @@ import { getMedalTier, loadMedalInfo, getEarnedDots } from './medal_utils';
 import {
   isLessonUnlockedByEarnedProgress,
   getLessonLockInfo,
-  getLockMessageText,
+  // getLockMessageText больше не нужен: его читал удалённый модал блокировки
+  // этого экрана. Причину замка теперь называет модал в списке уроков.
   isLessonUnlockedByPremiumCourse,
 } from './lesson_lock_system';
 import { effectiveLessonStarScore } from './lesson_star_score';
@@ -49,7 +50,8 @@ import {
   requiresPremiumForLesson,
 } from './monetization_policy';
 import { lessonPurchaseContinuationParams } from './paywall_lesson_continuation';
-import { getCourseLevelForLesson, getPreviousCourseLevel } from './course_levels';
+// getPreviousCourseLevel больше не нужен: его читала удалённая заглушка «Ещё рано».
+import { getCourseLevelForLesson } from './course_levels';
 import { getLessonScreenPrimed, primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
 import GoldBevel from '../components/GoldBevel';
@@ -400,7 +402,8 @@ function LessonMenu() {
   const [lockStateLoaded, setLockStateLoaded] = useState(false);
   const [lockReason, setLockReason] = useState<'premium' | 'level' | 'progress'>('progress');
   const [lockInfo, setLockInfo] = useState<Awaited<ReturnType<typeof getLessonLockInfo>> | null>(null);
-  const [showLockModal, setShowLockModal] = useState(false);
+  // showLockModal удалён вместе со своим модалом: при закрытом уроке этот экран
+  // больше не рисуется, показывать поверх него было нечего.
   const lessonLaunchBlocked = !lockStateLoaded || isLessonLocked;
   // Гард: премиум-пейвол открываем один раз, чтобы не зациклить редирект.
   const premiumPaywallDispatchedRef = useRef(false);
@@ -423,6 +426,34 @@ function LessonMenu() {
       },
     } as any);
   }, [lockStateLoaded, isLessonLocked, lockReason, lessonId, router]);
+
+  // Замок по уровню/прогрессу: экран НЕ открываем — уходим назад в список,
+  // где тап по закрытому уроку показывает модал (gateModal). Владелец 2026-09-21:
+  // «модал и только модал, или пейвол если фри» — полноэкранная заглушка
+  // «Ещё рано» была отдельным экраном и правило нарушала.
+  //
+  // Сюда вообще попадают только в обход: список ловит замок ДО навигации. Обход
+  // был реален — дев-флаг DEV_CONTENT_UNLOCK в TestFlight считал все 32 урока
+  // открытыми, список пропускал тап, а честная проверка здесь рисовала заглушку.
+  // Флаг починен в config.ts, но возврат оставляем предохранителем: любой другой
+  // путь сюда (deep link, continuation после покупки, устаревший кэш) обязан
+  // приводить к модалу в списке, а не к тупиковому экрану.
+  const lockedBackDispatchedRef = useRef(false);
+  useEffect(() => {
+    if (!lockStateLoaded || !isLessonLocked) return;
+    if (lockReason === 'premium') return; // им занимается эффект выше (пейвол)
+    if (lockedBackDispatchedRef.current) return;
+    lockedBackDispatchedRef.current = true;
+    // Ранний выход с экрана обязан логироваться и в релизе — без этого
+    // «урок не открывается» снова станет немым багом.
+    console.log('[LESSON-LOCK] menu:bounce_back', JSON.stringify({ // guard-ok: ранний выход логируется в релизе намеренно
+      lessonId,
+      lockReason,
+      prevLessonId: lockInfo?.prevLessonId ?? null,
+      requiredScore: lockInfo?.requiredScore ?? null,
+    }));
+    safeRouterBack(router, '/(tabs)/lessons');
+  }, [lockStateLoaded, isLessonLocked, lockReason, lessonId, lockInfo, router]);
 
   // Служебный флаг первого завершения: после него основной CTA подписывается как replay.
   const [finishedOnce, setFinishedOnce] = useState(false);
@@ -750,10 +781,9 @@ function LessonMenu() {
     });
   }, [frenchLessonSourceGated, lessonId, lessonLaunchBlocked, router, studyTarget]);
 
-  const handleLockedLessonPress = useCallback(() => {
-    hapticTap();
-    setShowLockModal(true);
-  }, []);
+  // handleLockedLessonPress удалён: при закрытом уроке экран меню не рисуется,
+  // и нажать эту плитку стало невозможно (ранний return уводит на пейвол или
+  // назад в список под модал).
 
   useFocusEffect(loadProgress);
   useFocusEffect(loadLockState);
@@ -825,9 +855,9 @@ function LessonMenu() {
           ? 'refresh-circle-outline'
           : (isStarted ? 'play-circle-outline' : 'rocket-outline'),
       pct: frenchLessonSourceGated || showReplayCta ? undefined : Math.round(progress / 50 * 100),
-      onPress: isLessonLocked
-        ? handleLockedLessonPress
-        : frenchLessonSourceGated
+      // Ветка isLessonLocked убрана: до отрисовки этой плитки при закрытом уроке
+      // дело больше не доходит — ранний return выше уводит с экрана.
+      onPress: frenchLessonSourceGated
           ? () => setSoonOpen('frenchLesson')
         : showReplayCta
           ? handleStartLesson
@@ -1108,229 +1138,20 @@ function LessonMenu() {
     },
   ];
 
-  // Премиум-лок: заглушку не рисуем — редирект-эффект уже уводит на пейвол.
-  // Возвращаем пустой фон, чтобы не мелькал промежуточный экран «доступно в Premium».
-  if (isLessonLocked && lockReason === 'premium') {
+  // Урок закрыт — экран меню НЕ показываем ни в каком виде.
+  // Премиум уводит на пейвол, уровень/прогресс — назад в список под модал
+  // (оба редиректа живут в эффектах выше). Здесь только пустой фон, чтобы не
+  // мелькал промежуточный кадр, пока навигация доигрывает.
+  //
+  // зачем (владелец 2026-09-21): тут стояла полноэкранная заглушка «Ещё рано»
+  // со своей иконкой, текстом и кнопкой — фактически ВТОРОЙ экран отказа рядом
+  // с модалом списка. Правило владельца: «модал и только модал, или пейвол если
+  // фри». Заглушка удалена вместе со своими текстами; причину замка называет
+  // модал в списке уроков, у него же лежит покупка за жемчужины.
+  if (isLessonLocked) {
     return (
       <ScreenGradient>
         <LessonArtBackdrop variant="menu" />
-      </ScreenGradient>
-    );
-  }
-
-  // Заглушка для заблокированного урока (уровень / прогресс)
-  if (isLessonLocked) {
-    const prevId = Math.max(1, lessonId - 1);
-    const lessonLevel = getCourseLevelForLesson(lessonId);
-    const prevLevel = getPreviousCourseLevel(lessonLevel);
-    const lockedIcon = lockReason === 'premium'
-      ? 'diamond-outline'
-      : lockReason === 'level'
-        ? 'school-outline'
-        : 'lock-closed';
-    const lockedTitle = lockReason === 'premium'
-      ? triLang(lang, {
-  ru: 'Premium',
-  uk: 'Premium',
-  es: 'Premium',
-  en: 'Premium',
-  "pt-BR": 'Premium',
-  vi: 'Premium',
-  id: 'Premium',
-  tr: 'Premium',
-  pl: 'Premium',
-})
-      : lockReason === 'level'
-        ? triLang(lang, {
-  ru: 'Уровень ещё не открыт',
-  uk: 'Рівень поки закритий',
-  es: 'Nivel bloqueado',
-  en: 'Level not unlocked yet',
-  "pt-BR": 'Nível bloqueado',
-  vi: 'Cấp độ đang bị khóa',
-  id: 'Level masih terkunci',
-  tr: 'Seviye henüz kilitli',
-  pl: 'Poziom jest jeszcze zablokowany',
-})
-        : triLang(lang, {
-  ru: 'Ещё рано',
-  uk: 'Урок заблоковано',
-  en: 'Lesson locked',
-  es: 'Lección bloqueada',
-  "pt-BR": 'Lição bloqueada',
-  vi: 'Bài học bị khóa',
-  id: 'Pelajaran terkunci',
-  tr: 'Ders kilitli',
-  pl: 'Lekcja zablokowana',
-});
-    const lockedMessage = lockReason === 'premium'
-      ? triLang(lang, {
-  ru: 'Этот урок доступен в Premium.',
-  uk: 'Цей урок входить до Premium.',
-  en: 'This lesson is part of Premium.',
-  es: 'Esta lección forma parte de Premium.',
-  "pt-BR": 'Esta lição faz parte do Premium.',
-  vi: 'Bài học này thuộc Premium.',
-  id: 'Pelajaran ini termasuk Premium.',
-  tr: 'Bu ders Premium kapsamındadır.',
-  pl: 'Ta lekcja jest częścią Premium.',
-})
-      : lockReason === 'level' && prevLevel
-        ? triLang(lang, {
-  ru: `Чтобы открыть уровень ${lessonLevel}, сначала сдай зачёт ${prevLevel}.`,
-  uk: `Щоб відкрити рівень ${lessonLevel}, спочатку складіть залік ${prevLevel}.`,
-  en: `To unlock level ${lessonLevel}, first pass the ${prevLevel} test.`,
-  es: `Para abrir el nivel ${lessonLevel}, primero supera el examen de ${prevLevel}.`,
-  "pt-BR": `Para abrir o nível ${lessonLevel}, primeiro passe no teste ${prevLevel}.`,
-  vi: `Để mở cấp ${lessonLevel}, trước tiên hãy vượt qua bài kiểm tra ${prevLevel}.`,
-  id: `Untuk membuka level ${lessonLevel}, selesaikan dulu ujian ${prevLevel}.`,
-  tr: `${lessonLevel} seviyesini açmak için önce ${prevLevel} sınavını geç.`,
-  pl: `Aby odblokować poziom ${lessonLevel}, najpierw zdaj test ${prevLevel}.`,
-})
-        : triLang(lang, {
-  ru: 'Ещё рано',
-  uk: `Пройдіть урок ${prevId} з оцінкою 2.5 або більше, щоб відкрити цей урок`,
-  en: `Complete lesson ${prevId} with a score of 2.5 or higher to unlock this lesson`,
-  es: `Completa la lección ${prevId} con nota mínima de 2,5 para desbloquear esta lección`,
-  "pt-BR": `Conclua a lição ${prevId} com nota 2,5 ou maior para desbloquear esta lição`,
-  vi: `Hoàn thành bài ${prevId} với điểm 2.5 trở lên để mở bài này`,
-  id: `Selesaikan pelajaran ${prevId} dengan nilai 2,5 atau lebih untuk membuka pelajaran ini`,
-  tr: `Bu dersi açmak için ${prevId}. dersi 2.5 veya üzeri puanla bitir`,
-  pl: `Ukończ lekcję ${prevId} z oceną 2,5 lub wyższą, aby odblokować tę lekcję`,
-});
-    const lockedButtonLabel = lockReason === 'premium'
-      ? triLang(lang, {
-  ru: 'Открыть Premium',
-  uk: 'Отримати Premium',
-  en: 'Get Premium',
-  es: 'Obtener Premium',
-  "pt-BR": 'Obter Premium',
-  vi: 'Nhận Premium',
-  id: 'Dapatkan Premium',
-  tr: 'Premium al',
-  pl: 'Zdobądź Premium',
-})
-      : lockReason === 'level' && prevLevel
-        ? triLang(lang, {
-  ru: `К зачёту ${prevLevel}`,
-  uk: `До заліку ${prevLevel}`,
-  en: `To the ${prevLevel} test`,
-  es: `Ir al examen ${prevLevel}`,
-  "pt-BR": `Ir para o teste ${prevLevel}`,
-  vi: `Đến bài kiểm tra ${prevLevel}`,
-  id: `Ke ujian ${prevLevel}`,
-  tr: `${prevLevel} sınavına git`,
-  pl: `Do testu ${prevLevel}`,
-})
-        : triLang(lang, {
-  ru: `Перейти к уроку ${prevId}`,
-  uk: `Перейти до уроку ${prevId}`,
-  en: `Go to lesson ${prevId}`,
-  es: `Ir a la lección ${prevId}`,
-  "pt-BR": `Ir para a lição ${prevId}`,
-  vi: `Đi tới bài ${prevId}`,
-  id: `Buka pelajaran ${prevId}`,
-  tr: `${prevId}. derse git`,
-  pl: `Przejdź do lekcji ${prevId}`,
-});
-    return (
-      <ScreenGradient>
-      <LessonArtBackdrop variant="menu" />
-      <SafeAreaView style={{flex:1}}>
-        <ContentWrap>
-        {/* Хедер */}
-        <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',paddingHorizontal:16,paddingVertical:14,borderBottomWidth:0.5,borderBottomColor:t.border}}>
-          <PremiumCard level={1} onPress={()=>{
-            hapticTap();
-            // Safe-back: после онбординга стек может быть пуст — возвращаемся на список уроков.
-            safeRouterBack(router, '/(tabs)/home' as any);
-          }}
-            style={{width:38,height:38,borderRadius:19}}
-            innerStyle={{width:38,height:38,borderRadius:19,justifyContent:'center',alignItems:'center'}}
-          >
-            <Ionicons name="chevron-back" size={22} color={t.heroTextPrimary}/>
-          </PremiumCard>
-          <Text style={{color:t.heroTextPrimary,fontSize:f.body,fontWeight:'700',letterSpacing:0.5}}>
-            {triLang(lang, {
-  ru: 'УРОК',
-  uk: 'УРОК',
-  en: 'LESSON',
-  es: 'LECCIÓN',
-  "pt-BR": 'LIÇÃO',
-  vi: 'BÀI',
-  id: 'PELAJARAN',
-  tr: 'DERS',
-  pl: 'LEKCJA',
-})} {lessonId}
-          </Text>
-          <View style={{width:38}}/>
-        </View>
-
-        {/* Заглушка */}
-        <View style={{flex:1,justifyContent:'center',alignItems:'center',paddingHorizontal:32}}>
-          <LinearGradient
-            colors={isGoldTheme ? GOLD_GRADIENTS.raisedTile : [t.bgCard, t.bgCard, t.bgCard]}
-            locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            style={{
-            width:90,height:90,borderRadius:45,
-            backgroundColor:t.bgCard,
-            borderWidth: 0,borderColor:isGoldTheme ? GOLD_RICH.hairline : t.border,
-            justifyContent:'center',alignItems:'center',
-            marginBottom:24,
-            shadowColor:'#000',shadowOffset:{width:0,height:4},shadowOpacity:0.2,shadowRadius:8,...noAndroidOutline,
-            overflow:'hidden',
-            ...(isGoldTheme ? goldShadow(2) : {}),
-          }}>
-            {isGoldTheme && <GoldBevel radius={45} intensity="normal" />}
-            <Ionicons name={lockedIcon} size={40} color={isGoldTheme ? GOLD_RICH.champagne : t.textMuted}/>
-          </LinearGradient>
-          <Text style={{color:t.heroTextPrimary,fontSize:f.h2,fontWeight:'700',textAlign:'center',marginBottom:12}}>
-            {lockedTitle}
-          </Text>
-          <Text style={{color:t.heroTextMuted,fontSize:f.bodyLg,textAlign:'center',lineHeight:24,marginBottom:32}}>
-            {lockedMessage}
-          </Text>
-          <PremiumCard level={2}
-            onPress={() => {
-              hapticTap();
-              if (lockReason === 'premium') {
-                router.push({
-                  pathname: '/premium_modal',
-                  params: {
-                    context: lessonPaywallContext(lessonId),
-                    source: 'lesson_menu',
-                    lessons_done: String(Math.max(0, lessonId - 1)),
-                    ...lessonPurchaseContinuationParams(lessonId),
-                  },
-                } as any);
-              } else if (lockReason === 'level' && prevLevel) {
-                // Свапаем заблокированное по уровню меню на зачёт. Без пометки replace
-                // это меню осталось бы в стеке и «назад» из зачёта возвращало бы на тот же
-                // заблокированный экран, снова предлагающий этот зачёт → петля.
-                markNextNavigationAsReplace();
-                router.replace({ pathname: '/level_exam', params: { level: prevLevel } });
-              } else {
-                void prefetchLessonMenuCache(prevId, studyTarget).catch(() => {});
-                markNextNavigationAsReplace();
-                router.replace({ pathname: '/lesson_menu', params: { id: prevId } });
-              }
-            }}
-            innerStyle={{paddingHorizontal:28,paddingVertical:14,flexDirection:'row',alignItems:'center',gap:10}}
-          >
-            <Ionicons
-              name={lockReason === 'premium' ? 'diamond-outline' : lockReason === 'level' ? 'school-outline' : 'arrow-back-outline'}
-              size={20}
-              color={t.textPrimary}
-            />
-            <Text style={{color:t.textPrimary,fontSize:f.bodyLg,fontWeight:'600'}} numberOfLines={1}>
-              {lockedButtonLabel}
-            </Text>
-          </PremiumCard>
-        </View>
-        </ContentWrap>
-      </SafeAreaView>
       </ScreenGradient>
     );
   }
@@ -1581,99 +1402,11 @@ function LessonMenu() {
       </ScrollView>
       </BouncyWrap>
       </Reanimated.View>
-      {/* Модальное окно блокировки */}
-      <Modal transparent animationType="fade" visible={showLockModal} onRequestClose={() => setShowLockModal(false)}>
-        <Pressable style={{flex:1, backgroundColor:'rgba(0,0,0,0.5)'}} onPress={() => setShowLockModal(false)}>
-          <View style={{flex:1, justifyContent:'flex-end'}}>
-            <Pressable onPress={(e) => e.stopPropagation()}>
-              <LinearGradient
-                colors={isGoldTheme ? GOLD_GRADIENTS.premiumPanel : [t.bgCard, t.bgCard, t.bgCard]}
-                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-                style={{
-                backgroundColor:t.bgCard,
-                borderTopLeftRadius:24, borderTopRightRadius:24,
-                padding:28, paddingBottom:40,
-                borderTopWidth:0.5, borderColor:isGoldTheme ? GOLD_RICH.hairlineStrong : t.border,
-                alignItems:'center',
-                overflow:'hidden',
-              }}>
-                {isGoldTheme && <GoldBevel radius={24} intensity="strong" />}
-                <LinearGradient
-                  colors={isGoldTheme ? GOLD_GRADIENTS.raisedTile : [t.bgSurface, t.bgSurface, t.bgSurface]}
-                  locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
-                  style={{
-                    width: 64,
-                    height: 64,
-                    borderRadius: 32,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginBottom: 16,
-                    borderWidth: 0,
-                    borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : t.border,
-                    overflow: 'hidden',
-                  }}
-                >
-                  {isGoldTheme && <GoldBevel radius={32} intensity="normal" />}
-                  <Ionicons name="lock-closed" size={30} color={isGoldTheme ? GOLD_RICH.champagne : t.textMuted} />
-                </LinearGradient>
-                <Text style={{color:t.textPrimary, fontSize:f.h2, fontWeight:'700', textAlign:'center', marginBottom:12}}>
-                  {triLang(lang, {
-  ru: 'Ещё рано',
-  uk: 'Урок заблоковано',
-  en: 'Lesson locked',
-  es: 'Lección bloqueada',
-  "pt-BR": 'Lição bloqueada',
-  vi: 'Bài học bị khóa',
-  id: 'Pelajaran terkunci',
-  tr: 'Ders kilitli',
-  pl: 'Lekcja zablokowana',
-})}
-                </Text>
-                <Text style={{color:t.textMuted, fontSize:f.body, textAlign:'center', marginBottom:28, lineHeight:22}}>
-                  {lockInfo ? getLockMessageText(lockInfo, lang) : ''}
-                </Text>
-                <TapScale scaleTo={0.96}
-                  style={{
-                    backgroundColor:t.accent,
-                    borderRadius:14, padding:16, width:'100%', alignItems:'center',
-                    overflow:'hidden',
-                    borderWidth: 0,
-                    borderColor: 'transparent',
-                  }}
-                  onPress={() => {
-                    hapticTap();
-                    setShowLockModal(false);
-                  }}
-                >
-                  {isGoldTheme && (
-                    <>
-                      <LinearGradient colors={GOLD_GRADIENTS.primaryButton} locations={[0, 0.36, 1]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill} />
-                      <GoldBevel radius={14} intensity="strong" />
-                    </>
-                  )}
-                  <Text style={{color:t.correctText, fontSize:f.body, fontWeight:'700'}}>
-                    {triLang(lang, {
-  ru: 'Понимаю',
-  uk: 'Розумію',
-  en: 'Got it',
-  es: 'Entendido',
-  "pt-BR": 'Entendi',
-  vi: 'Tôi hiểu',
-  id: 'Mengerti',
-  tr: 'Anladım',
-  pl: 'Rozumiem',
-})}
-                  </Text>
-                </TapScale>
-              </LinearGradient>
-            </Pressable>
-          </View>
-        </Pressable>
-      </Modal>
+      {/* зачем (владелец 2026-09-21): здесь был модал блокировки ЭТОГО экрана.
+          Он стал недостижим: при закрытом уроке экран меню больше не рисуется —
+          ранний return выше уводит на пейвол (премиум) или назад в список
+          (уровень/прогресс), где причину называет модал списка. Мёртвый модал
+          удалён, чтобы не выглядел работающим запасным путём. */}
       <ThemedChoiceModal
         visible={soonOpen !== null}
         title={triLang(lang, {

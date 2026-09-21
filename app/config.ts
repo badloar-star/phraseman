@@ -140,8 +140,25 @@ export const DEV_IAP_BYPASS = DEV_MODE && !IS_STORE_RELEASE;
  *
  * В dev-сборке поведение идентично прежнему DEV_MODE (всё открыто для удобства QA).
  * Инвариант держит tests/dev_content_unlock_prod_guard.test.ts.
+ *
+ * зачем IS_DEV_RUNTIME (владелец 2026-09-21): раньше было `DEV_MODE &&
+ * !IS_STORE_RELEASE`, а профиль `testflight-dev` в eas.json ставит
+ * EXPO_PUBLIC_STORE_RELEASE=0 — значит в TestFlight флаг был ВКЛЮЧЁН и открывал
+ * все 32 урока владельцу со статусом Free. Проверить, что видит настоящий Free,
+ * стало физически невозможно, и вдобавок это порождало второй баг: список
+ * считал урок доступным и уходил на экран lesson_menu, где срабатывал честный
+ * замок из lesson_lock_system и рисовал полноэкранное «Ещё рано» вместо модалки.
+ *
+ * IS_DEV_RUNTIME — это литерал `__DEV__` от Metro: true при локальной разработке
+ * и false в любой собранной сборке (TestFlight в том числе). Тот же предохранитель
+ * уже стоит у FORCE_PREMIUM. `!IS_STORE_RELEASE` оставлен намеренно: сторож
+ * dev_content_unlock_prod_guard требует видеть стор-предохранитель в выражении,
+ * и он же страхует случай, если Metro-рантайм когда-нибудь окажется в стор-сборке.
+ *
+ * Дев-инструменты (Пульт, логи) НЕ затронуты: они живут на ENABLE_DEV_TOOLS,
+ * который читает TESTFLIGHT_DEV_TOOLS и в TestFlight остаётся включённым.
  */
-export const DEV_CONTENT_UNLOCK = DEV_MODE && !IS_STORE_RELEASE;
+export const DEV_CONTENT_UNLOCK = DEV_MODE && IS_DEV_RUNTIME && !IS_STORE_RELEASE;
 
 /**
  * DEV-ONLY, ВРЕМЕННО (владелец, 2026-08-28): пока авторы Learning V2 пишут

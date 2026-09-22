@@ -18,6 +18,47 @@ const entryByContentHash = new Map<string, LearningV2BootstrapAudioEntryV1>(
 let assetPrewarm: Promise<void> | null = null;
 let durableSeed: Promise<void> | null = null;
 
+/**
+ * Потолок ожидания загрузки ОДНОГО звукового ассета.
+ *
+ * зачем: владелец 21.09 — прогрев занятия 2 не давал НИ `ready`, НИ ошибки:
+ * висел вечно. Корень — `asset.downloadAsync()` ниже: в дев-сборке ассеты
+ * тянутся по сети с бандлера, и у этого вызова НЕ БЫЛО срока. Один мёртвый
+ * запрос останавливал подготовку занятия целиком и отравлял кэш подготовок
+ * незавершённым промисом.
+ *
+ * 8 секунд на файл: озвучка одной фразы — это десятки килобайт, столько не
+ * качается даже на слабой связи. Не уложились — честный отказ, который выше
+ * по стеку превращается в «озвучки нет», а не в вечное ожидание.
+ */
+const BOOTSTRAP_AUDIO_ASSET_TIMEOUT_MS = 8_000;
+
+/** Отклоняет обещание по сроку, называя причину (немой отказ запрещён). */
+async function withAssetTimeout<T>(
+  promise: Promise<T>,
+  label: string,
+): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  try {
+    return await Promise.race([
+      promise,
+      new Promise<never>((_, reject) => {
+        timer = setTimeout(
+          () =>
+            reject(
+              new Error(
+                `learning_v2_bootstrap_audio_timeout: ${label} ${BOOTSTRAP_AUDIO_ASSET_TIMEOUT_MS}ms`,
+              ),
+            ),
+          BOOTSTRAP_AUDIO_ASSET_TIMEOUT_MS,
+        );
+      }),
+    ]);
+  } finally {
+    if (timer) clearTimeout(timer);
+  }
+}
+
 async function runBootstrapSeedPool(
   length: number,
   work: (index: number) => Promise<void>,
@@ -34,9 +75,22 @@ async function runBootstrapSeedPool(
 
 export function preloadLearningV2BootstrapAudioAssetsV1(): Promise<void> {
   if (assetPrewarm) return assetPrewarm;
-  assetPrewarm = Asset.loadAsync(
-    LEARNING_V2_BOOTSTRAP_AUDIO_ENTRIES_V1.map((entry) => entry.assetModule),
-  ).then(() => undefined).catch((error) => {
+  // зачем срок: это массовая загрузка ВСЕХ звуковых ассетов, в дев-сборке —
+  // по сети с бандлера. Без него одна мёртвая загрузка вешала посев кэша
+  // озвучки на всё время жизни приложения. Срок на пачку больше, чем на файл.
+  assetPrewarm = Promise.race([
+    Asset.loadAsync(
+      LEARNING_V2_BOOTSTRAP_AUDIO_ENTRIES_V1.map((entry) => entry.assetModule),
+    ).then(() => undefined),
+    new Promise<never>((_, reject) => {
+      setTimeout(
+        () => reject(new Error("learning_v2_bootstrap_audio_timeout: preload_all")),
+        BOOTSTRAP_AUDIO_ASSET_TIMEOUT_MS * 4,
+      );
+    }),
+  ]).catch((error) => {
+    // Сбрасываем, чтобы следующая попытка началась заново, а не подхватила
+    // мёртвое обещание (та же болезнь, что в кэше подготовок занятий).
     assetPrewarm = null;
     throw error;
   });
@@ -50,12 +104,29 @@ export function seedLearningV2BootstrapAudioCacheV1(): Promise<void> {
       const files = learningV2FactoryRemoteAudioFilesForContentHashesV1(
         LEARNING_V2_BOOTSTRAP_AUDIO_ENTRIES_V1.map((entry) => entry.contentHash),
       );
+      // зачем: раньше ЛЮБОЙ упавший файл рвал весь посев, и остальные записи
+      // не попадали в кэш вовсе. С появлением сроков это стало бы обычным
+      // делом: один медленный файл обнулял бы работу по всем остальным.
+      // Считаем отказы, сеем что можем, и сообщаем итог одной строкой.
+      let failed = 0;
+      let lastReason = "";
       await runBootstrapSeedPool(files.length, async (itemIndex) => {
         const file = files[itemIndex]!;
         const identity = learningV2NativeDecoderIdentityForAudioFileV1(file, itemIndex);
-        const prepared = await resolveLearningV2BootstrapAudioOfflineFileV1(identity);
-        if (!prepared) throw new Error("learning_v2_bootstrap_audio_seed_missing");
+        try {
+          const prepared = await resolveLearningV2BootstrapAudioOfflineFileV1(identity);
+          if (!prepared) throw new Error("learning_v2_bootstrap_audio_seed_missing");
+        } catch (error) {
+          // Немой catch запрещён: причина обязана быть названа.
+          failed += 1;
+          lastReason = String(error);
+        }
       });
+      if (failed > 0) {
+        throw new Error(
+          `learning_v2_bootstrap_audio_seed_incomplete: ${failed}/${files.length} last=${lastReason}`,
+        );
+      }
     })
     .catch((error) => {
       durableSeed = null;
@@ -72,13 +143,26 @@ export async function resolveLearningV2BootstrapAudioOfflineFileV1(
   const existing = await resolvePreparedLearningV2VoiceAudioOfflineFileV1(identity);
   if (existing) return existing;
   const asset = Asset.fromModule(entry.assetModule);
-  if (!asset.localUri) await asset.downloadAsync();
+  // зачем срок (владелец 21.09, «надо чинить», лог без ready и без ошибки):
+  // в дев-сборке downloadAsync тянет файл по сети с бандлера. Без срока один
+  // мёртвый запрос останавливал подготовку занятия НАВСЕГДА.
+  if (!asset.localUri) {
+    await withAssetTimeout(
+      asset.downloadAsync(),
+      `download ${identity.contentHash}`,
+    );
+  }
   const localUri = asset.localUri ?? asset.uri;
   if (!localUri) throw new Error("learning_v2_bootstrap_audio_asset_unavailable");
   return prepareLearningV2VoiceAudioOfflineBytesV1({
     identity,
     loadBytes: async () => {
-      const bytes = await new File(localUri).bytes();
+      // Чтение с диска тоже под сроком: localUri в дев-сборке может указывать
+      // на http-адрес бандлера, и тогда это снова сеть, а не файл.
+      const bytes = await withAssetTimeout(
+        new File(localUri).bytes(),
+        `bytes ${identity.contentHash}`,
+      );
       if (bytes.byteLength !== entry.byteSize)
         throw new Error("learning_v2_bootstrap_audio_asset_invalid");
       return bytes;

@@ -2627,7 +2627,15 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       const iconFontsReady = preloadVectorIconFonts();
       void iconFontsReady.catch(() => {});
       void preloadPrimaryTabImages().catch(() => {});
-      void seedLearningV2BootstrapAudioCacheV1().catch(() => {});
+      // Немой catch запрещён: если посев озвучки падает или висит, занятия
+      // молча остаются без звука, и узнать об этом неоткуда (владелец 21.09 —
+      // прогрев занятия 2 не давал ни готовности, ни ошибки).
+      void seedLearningV2BootstrapAudioCacheV1().catch((error) => {
+        if (__DEV__) {
+          console.log('[V2-AUDIO-SEED] failed', JSON.stringify({ reason: String(error) }));
+        }
+        DebugLogger.warn('[V2-AUDIO-SEED]', `bootstrap seed failed: ${String(error)}`);
+      });
 
       if (safetyTimer) clearTimeout(safetyTimer);
       bootMark('setReady(true) — bootstrap COMPLETE');

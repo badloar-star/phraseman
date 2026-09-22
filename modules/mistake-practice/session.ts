@@ -150,6 +150,7 @@ export function buildMistakePracticeSession(input: {
         mode,
         canonicalTarget: item.canonicalTarget,
         sourceMeaning: item.sourceMeaning ?? undefined,
+        sourcePrompt: item.sourcePrompt ?? undefined,
         tokens: item.tokens,
         distractors: item.distractors,
         audioRef: item.audioRef ?? undefined,

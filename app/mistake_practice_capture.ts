@@ -130,6 +130,10 @@ export async function captureObjectiveAttempt(
         sourceId: attempt.content.sourceId,
         sourceKind: attempt.content.sourceKind,
         sourceMeaning: attempt.content.sourceMeaning ?? null,
+        // зачем (2026-09-21): без текста задания повтор ошибки нерешаем —
+        // на экране оставался один перевод. В отпечаток поле НЕ входит,
+        // повторы одной ошибки по-прежнему склеиваются (см. identity.ts).
+        sourcePrompt: attempt.content.sourcePrompt ?? null,
         audioRef: attempt.content.audioRef ?? null,
         tokens: attempt.content.tokens ?? null,
         distractors: attempt.content.distractors ?? null,

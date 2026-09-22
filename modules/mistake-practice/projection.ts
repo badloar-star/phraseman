@@ -35,6 +35,12 @@ export interface MistakeProjectionItem {
   readonly facet: MistakeFacet;
   readonly canonicalTarget: string;
   readonly sourceMeaning?: string | null;
+  /**
+   * Текст задания с пропуском, как его видел ученик (2026-09-21). У старых
+   * записей журнала его нет → null, тогда задание показывается переводом,
+   * как раньше. См. MistakeContentRef.sourcePrompt.
+   */
+  readonly sourcePrompt?: string | null;
   readonly tokens?: readonly string[];
   readonly distractors?: readonly string[];
   readonly audioRef?: string | null;
@@ -75,6 +81,8 @@ interface MutableProjectionItem {
   facet: MistakeFacet;
   canonicalTarget: string;
   sourceMeaning: string | null;
+  /** Текст задания с пропуском; у старых записей журнала его нет → null. */
+  sourcePrompt: string | null;
   tokens: string[];
   distractors: string[];
   audioRef: string | null;
@@ -137,6 +145,9 @@ function fromCapture(event: MistakeEvent): MutableProjectionItem {
     facet,
     canonicalTarget: payloadString(event.payload, 'canonicalTarget') ?? '',
     sourceMeaning: payloadString(event.payload, 'sourceMeaning'),
+    // Старые записи журнала этого поля не имеют → null, и задание показывается
+    // переводом, как раньше. Миграции не нужно.
+    sourcePrompt: payloadString(event.payload, 'sourcePrompt'),
     tokens: payloadStrings(event.payload, 'tokens'),
     distractors: payloadStrings(event.payload, 'distractors'),
     audioRef: payloadString(event.payload, 'audioRef'),

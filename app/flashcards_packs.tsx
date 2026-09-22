@@ -111,7 +111,13 @@ export default function FlashcardsPacksScreen() {
    * состояние только при изменившемся отпечатке (commFpRef).
    */
   const [communityPacks, setCommunityPacks] = useState<FlashcardMarketPack[]>(
-    () => peekPublishedCommunityMarketPacks() ?? [],
+    /**
+     * зачем (владелец: «сначала моргает и затем появляется»): снимок КЛЮЧУЕТСЯ
+     * по цели обучения, а здесь его читали без аргумента — ключ 'default' против
+     * ключа реальной цели у записи. Посев промахивался ВСЕГДА, и тёплый кадр не
+     * работал ни разу. Читаем тем же ключом, которым пишет loadHubMarket.
+     */
+    () => peekPublishedCommunityMarketPacks(studyTarget) ?? [],
   );
   const [ownedPackIds, setOwnedPackIds] = useState<string[]>([]);
   const [ownedCommunityPackIds, setOwnedCommunityPackIds] = useState<string[]>([]);

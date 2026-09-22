@@ -61,11 +61,26 @@ export function resolveDialogueAsrCapability(input: Readonly<{
   if (input.platform === 'android' && (input.androidApiLevel == null || input.androidApiLevel <= 32)) {
     return { available: false, locale, reason: 'android_api_unsupported' };
   }
+  // зачем: iOS не отдаёт список локалей распознавания (getSupportedLocales там
+  // пустой), но системный распознаватель есть всегда. Требовать от него список
+  // как доказательство — значит отказывать ВСЕМ пользователям iPhone, что и
+  // случилось: экран Диалогов писал «недоступен на этом устройстве» при живом
+  // микрофоне в остальных разделах (владелец, 21.09).
+  if (input.platform === 'ios') {
+    if (!input.inventoryServiceId) return { available: false, locale, reason: 'inventory_unverified' };
+    return { available: true, locale, reason: null };
+  }
   if (!Array.isArray(input.locales) || input.locales.length === 0 || !input.inventoryServiceId) {
     return { available: false, locale, reason: 'inventory_unverified' };
   }
   if (input.startServiceId !== input.inventoryServiceId) return { available: false, locale, reason: 'service_mismatch' };
-  return input.locales.includes(locale)
+  // Android отдаёт локали то через дефис, то через подчёркивание (en-US / en_US),
+  // иногда без региона — сравниваем нормализованно, а не строкой в строку.
+  const want = locale.toLowerCase().replace(/_/g, '-');
+  const wantLang = want.split('-')[0];
+  const normalized = input.locales.map((l) => String(l).toLowerCase().replace(/_/g, '-'));
+  const matched = normalized.includes(want) || normalized.some((l) => l === wantLang || l.startsWith(`${wantLang}-`));
+  return matched
     ? { available: true, locale, reason: null }
     : { available: false, locale, reason: 'exact_locale_missing' };
 }

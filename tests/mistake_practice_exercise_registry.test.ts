@@ -143,4 +143,67 @@ describe('mistake exercise mode registry', () => {
     expect(exercise).not.toHaveProperty('opponent');
     expect(exercise).not.toHaveProperty('reward');
   });
+
+  /**
+   * Инцидент 2026-09-21 (жалоба владельца со скриншота).
+   *
+   * Вопрос диагностики «She usually drinks coffee, but today she ___ tea.»
+   * доходил до «Моих ошибок» ОДНИМ переводом: «Обычно она пьёт кофе, но
+   * сегодня пьёт чай». Варианты при этом оставались английскими
+   * (drinks / is drinking / drink / drank), а `today` — единственная зацепка
+   * для Continuous — на экран не попадало. Выбрать верный вариант было
+   * физически невозможно, и человек терял жизнь на неразрешимом задании.
+   *
+   * Причина: поля под текст задания в журнале ошибок просто не было, в prompt
+   * уходил sourceMeaning. Лечится полем sourcePrompt через всю цепочку:
+   * источник → capture → projection → session → builder.
+   */
+  test('shows the authored task text, not only its translation', () => {
+    const exercise = buildMistakeExercise({
+      mistakeId: 'mistake:v1:authored',
+      mode: 'lesson_choice',
+      canonicalTarget: 'is drinking',
+      sourceMeaning: 'Обычно она пьёт кофе, но сегодня пьёт чай.',
+      sourcePrompt: 'She usually drinks coffee, but today she ___ tea.',
+      distractors: ['drinks', 'is drinking', 'drink', 'drank'],
+    });
+
+    // Задание решаемо: виден пропуск и слово today, ради которого Continuous.
+    expect(exercise.prompt).toBe('She usually drinks coffee, but today she ___ tea.');
+    expect(exercise.hint).toBe('Обычно она пьёт кофе, но сегодня пьёт чай.');
+    expect(exercise.correctAnswer).toBe('is drinking');
+  });
+
+  test('keeps pre-sourcePrompt journal entries working unchanged', () => {
+    // Старые записи (до 2026-09-21) поля не имеют — показываем перевод, как
+    // раньше, и НЕ дублируем его подсказкой. Миграции журнала нет.
+    const exercise = buildMistakeExercise({
+      mistakeId: 'mistake:v1:legacy',
+      mode: 'lesson_choice',
+      canonicalTarget: 'is drinking',
+      sourceMeaning: 'Обычно она пьёт кофе, но сегодня пьёт чай.',
+      distractors: ['drinks', 'is drinking'],
+    });
+
+    expect(exercise.prompt).toBe('Обычно она пьёт кофе, но сегодня пьёт чай.');
+    expect(exercise).not.toHaveProperty('hint');
+  });
+
+  test('never lets an authored prompt override a generated gap', () => {
+    // fill_gap строит пропуск сам из токенов: чужой текст задания его не
+    // перебивает, иначе ответ утёк бы в формулировку.
+    const exercise = buildMistakeExercise({
+      mistakeId: 'mistake:v1:gap-guard',
+      mode: 'lesson_fill_gap',
+      canonicalTarget: 'I am ready.',
+      sourceMeaning: 'Я готов.',
+      sourcePrompt: 'I am ready.',
+      tokens: ['I', 'am', 'ready.'],
+      distractors: ['is'],
+      tokenIndex: 1,
+      expected: 'am',
+    });
+
+    expect(exercise.prompt).toBe('I _____ ready.');
+  });
 });

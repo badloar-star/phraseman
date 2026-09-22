@@ -26,10 +26,19 @@ export type SpeechRecognitionModule = {
   supportsOnDeviceRecognition?: () => boolean | Promise<boolean>;
   /** Present on expo-speech-recognition; resolves whether any recognizer can run. */
   isRecognitionAvailable?: () => boolean;
-  /** Native service inventory. Optional for old binaries, which therefore fail closed for Dialogues. */
-  getSupportedLocalesAsync?: () => Promise<readonly string[]>;
-  /** Stable service identity: inventory and start must use the same recognizer. */
-  getRecognitionServiceId?: () => string | null | undefined;
+  /**
+   * Native locale inventory. ВНИМАНИЕ: реальное имя в expo-speech-recognition —
+   * `getSupportedLocales`, оно принимает объект опций и возвращает
+   * `{ locales, installedLocales }`, а НЕ голый массив.
+   */
+  getSupportedLocales?: (options: { androidRecognitionServicePackage?: string }) => Promise<{
+    locales?: readonly string[];
+    installedLocales?: readonly string[];
+  }>;
+  /** [Android only] Пакеты служб распознавания. На iOS возвращает пустой массив. */
+  getSpeechRecognitionServices?: () => readonly string[];
+  /** [Android only] Служба по умолчанию. */
+  getDefaultRecognitionService?: () => { packageName?: string } | null | undefined;
 };
 
 export type SpeechRecognitionLocaleInventory = Readonly<{
@@ -44,23 +53,73 @@ export type SpeechRecognitionLocaleInventory = Readonly<{
  */
 export async function readSpeechRecognitionLocaleInventory(
   speechModule: SpeechRecognitionModule | null,
+  platform: 'android' | 'ios' | 'web' = 'android',
   timeoutMs = 1500,
 ): Promise<SpeechRecognitionLocaleInventory | null> {
-  if (!speechModule || typeof speechModule.getSupportedLocalesAsync !== 'function' || typeof speechModule.getRecognitionServiceId !== 'function') return null;
-  const serviceId = speechModule.getRecognitionServiceId();
-  if (typeof serviceId !== 'string' || !serviceId.trim()) return null;
+  // зачем: владелец 21.09 видит «голосовой ввод недоступен» в Диалогах при
+  // рабочем микрофоне в других разделах. Пять немых catch ниже умели вернуть
+  // null молча — теперь каждый ранний выход называет ПРИЧИНУ и значение.
+  const startedAtMs = Date.now();
+  if (!speechModule) {
+    if (__DEV__) console.warn('[DIALOG-VOICE] inventory: early return — speechModule=null');
+    return null;
+  }
+  if (typeof speechModule.getSupportedLocales !== 'function') {
+    if (__DEV__) console.warn('[DIALOG-VOICE] inventory: early return — нет getSupportedLocales в этом бинарнике');
+    return null;
+  }
+
+  // serviceId сверяется только там, где служб распознавания реально несколько
+  // (Android). На iOS распознаватель системный и единственный — там сверять
+  // нечего, поэтому берём стабильный синтетический id вместо отказа.
+  const isIos = platform === 'ios';
+  let serviceId = 'ios-system';
+  if (!isIos) {
+    try {
+      serviceId = speechModule.getDefaultRecognitionService?.()?.packageName
+        || speechModule.getSpeechRecognitionServices?.()?.[0]
+        || '';
+    } catch (e) {
+      if (__DEV__) console.warn('[DIALOG-VOICE] inventory: service lookup threw', String(e));
+      serviceId = '';
+    }
+    if (!serviceId.trim()) {
+      if (__DEV__) console.warn('[DIALOG-VOICE] inventory: early return — на Android не нашли службу распознавания');
+      return null;
+    }
+  }
+
   let timeout: ReturnType<typeof setTimeout> | null = null;
   try {
-    const locales = await Promise.race<readonly string[]>([
-      speechModule.getSupportedLocalesAsync(),
-      new Promise<readonly string[]>((_, reject) => {
+    const raw = await Promise.race([
+      speechModule.getSupportedLocales({}),
+      new Promise<never>((_, reject) => {
         timeout = setTimeout(() => reject(new Error('speech_inventory_timeout')), timeoutMs);
       }),
     ]);
-    const exact = locales.filter((locale): locale is string => typeof locale === 'string' && locale.trim().length > 0);
-    return exact.length ? { serviceId, locales: exact } : null;
-  } catch {
-    return null;
+    const list = Array.isArray(raw?.locales) ? raw.locales : [];
+    const exact = list.filter((locale): locale is string => typeof locale === 'string' && locale.trim().length > 0);
+    if (__DEV__) console.log('[DIALOG-VOICE] inventory: ok', JSON.stringify({
+      platform, serviceId,
+      ms: Date.now() - startedAtMs,
+      localeCount: exact.length,
+      installedCount: Array.isArray(raw?.installedLocales) ? raw.installedLocales.length : -1,
+      sample: exact.slice(0, 40),
+    }));
+    // iOS часто отдаёт пустой список, хотя распознавание работает: там это не
+    // доказательство отсутствия, поэтому пустота фатальна только на Android.
+    if (!exact.length && !isIos) {
+      if (__DEV__) console.warn('[DIALOG-VOICE] inventory: early return — пустой список локалей (Android)');
+      return null;
+    }
+    return { serviceId, locales: exact };
+  } catch (e) {
+    if (__DEV__) console.warn('[DIALOG-VOICE] inventory: threw/timeout', JSON.stringify({
+      platform, serviceId, ms: Date.now() - startedAtMs,
+      error: e instanceof Error ? e.message : String(e),
+    }));
+    // На iOS сбой инвентаря не означает отсутствие распознавателя.
+    return isIos ? { serviceId, locales: [] } : null;
   } finally {
     if (timeout != null) clearTimeout(timeout);
   }
@@ -103,26 +162,37 @@ export async function requestSpeechPermissionForHold(
   if (typeof speechModule.getPermissionsAsync === 'function') {
     try {
       before = await speechModule.getPermissionsAsync();
-    } catch {
+    } catch (e) {
+      if (__DEV__) console.warn('[DIALOG-VOICE] permission: getPermissionsAsync threw', String(e));
       before = null;
     }
   }
   if (before?.granted === true) return 'granted';
   try {
     const result = await speechModule.requestPermissionsAsync();
-    if (result?.granted !== true) return 'denied';
+    if (result?.granted !== true) {
+      if (__DEV__) console.warn('[DIALOG-VOICE] permission: denied by user/system', JSON.stringify({ granted: result?.granted ?? null }));
+      return 'denied';
+    }
     return before == null ? 'granted' : 'granted_after_prompt';
-  } catch {
+  } catch (e) {
+    if (__DEV__) console.warn('[DIALOG-VOICE] permission: requestPermissionsAsync threw', String(e));
     return 'denied';
   }
 }
 
 export function isSpeechRecognitionAvailable(speechModule: SpeechRecognitionModule | null): boolean {
-  if (!speechModule) return false;
+  if (!speechModule) {
+    if (__DEV__) console.warn('[DIALOG-VOICE] isRecognitionAvailable: false — speechModule=null');
+    return false;
+  }
   if (typeof speechModule.isRecognitionAvailable !== 'function') return true;
   try {
-    return speechModule.isRecognitionAvailable() !== false;
-  } catch {
+    const raw = speechModule.isRecognitionAvailable();
+    if (raw === false && __DEV__) console.warn('[DIALOG-VOICE] isRecognitionAvailable: native said false');
+    return raw !== false;
+  } catch (e) {
+    if (__DEV__) console.warn('[DIALOG-VOICE] isRecognitionAvailable: threw', String(e));
     return false;
   }
 }
@@ -139,10 +209,16 @@ export function loadSpeechRecognitionModule(): SpeechRecognitionModule | null {
     const native = mod?.ExpoSpeechRecognitionModule ?? null;
     // Guard against a stub that lacks the methods we depend on.
     if (!native || typeof native.addListener !== 'function' || typeof native.start !== 'function') {
+      if (__DEV__) console.warn('[DIALOG-VOICE] loadModule: stub/absent native module', JSON.stringify({
+        hasNative: !!native,
+        hasAddListener: typeof native?.addListener,
+        hasStart: typeof native?.start,
+      }));
       return null;
     }
     return native as SpeechRecognitionModule;
-  } catch {
+  } catch (e) {
+    if (__DEV__) console.warn('[DIALOG-VOICE] loadModule: require threw', String(e));
     return null;
   }
 }

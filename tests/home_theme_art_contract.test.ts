@@ -39,7 +39,12 @@ describe('Home per-theme artwork contract', () => {
     expect(home).toContain('source={menuImages.league}');
     expect(home).not.toContain('RetiredRasterFallback kind="league"');
     expect(home).toContain('const lastLessonImage = getHomeLastLessonImage(themeMode);');
-    expect(home).toContain('source={lastLessonImage}');
+    // Проверка была КРАСНОЙ до 2026-09-21: карточку научили переключаться на
+    // «Мои ошибки», и в разметку арт идёт через priorityCardImage. Намерение
+    // прежнее — арт последнего урока берётся из подготовленного набора темы.
+    expect(home).toContain('? getHomeMistakesImage(themeMode)');
+    expect(home).toContain(': lastLessonImage;');
+    expect(home).toContain('source={priorityCardImage}');
     expect(survey).toContain('getHomeSupportingArt(themeMode).survey');
     expect(phrase).toContain('getHomeSupportingArt(themeMode).phraseOfDay');
   });
@@ -53,13 +58,21 @@ describe('Home per-theme artwork contract', () => {
     expect(home).toContain('const homeQuickThemeArtSize = Math.max(112, homeQuickIconPlateSize + 36);');
     expect(home).toContain('size={homeQuickIconImageSize}');
     expect(home).toContain('width={homeQuickThemeArtSize} height={homeQuickThemeArtSize}');
-    expect(home).toContain('const homeLastLessonArtSize = 124;');
+    // Владелец 2026-09-21: 124 → 120 (минус 3%). При 124 картинка упиралась в
+    // край слота 92×72 вплотную; 120 даёт воздух по краям. Слот НЕ меняли —
+    // высота плитки прежняя, соседи не сдвигаются.
+    expect(home).toContain('const homeLastLessonArtSize = 120;');
     expect(home).toContain('const homeLastLessonArtSlotWidth = 92;');
     expect(home).toContain('const homeLastLessonArtSlotHeight = 72;');
     expect(home).toContain('const homeTodayIconSize = 112;');
     expect(home).toContain('const homeLeagueWatermarkSize = 164;');
     expect(home).toContain('width: homeLastLessonArtSlotWidth, height: homeLastLessonArtSlotHeight');
-    expect(home).toContain('width={homeLastLessonArtSize} height={homeLastLessonArtSize}');
+    // Проверка была КРАСНОЙ до 2026-09-21: разметку перевели на псевдоним
+    // priorityCardArtSize (карточка переключается между уроком и ошибками),
+    // а сторожа не обновили. Сверяем обе половины связки, чтобы размер нельзя
+    // было увести в обход константы.
+    expect(home).toContain('const priorityCardArtSize = homeLastLessonArtSize;');
+    expect(home).toContain('width={priorityCardArtSize} height={priorityCardArtSize}');
     expect(home).toContain("gap: 12, paddingVertical: 8, minHeight: 72");
     expect(surveyMotion).toContain('taskIconSize: 64');
     expect(phrase).toContain('const HOME_ADDITIONAL_ART_SIZE = 144;');

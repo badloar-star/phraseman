@@ -172,8 +172,26 @@ export function peekPublishedCommunityMarketPacks(
   studyTarget?: RuntimeStudyTarget,
 ): FlashcardMarketPack[] | null {
   const key = String(studyTarget ?? 'default');
-  if (!_communityCatalogCache || _communityCatalogCache.key !== key) return null;
-  if (Date.now() - _communityCatalogCache.at > COMMUNITY_CATALOG_TTL_MS) return null;
+  /**
+   * зачем (владелец: «сначала моргает и затем появляется»): промах этого снимка
+   * НЕ виден на экране как поломка — каталог просто приезжает вторым кадром.
+   * Поэтому каждый ранний выход обязан назвать причину и оба ключа: именно
+   * рассинхрон ключа (peek без studyTarget vs load с ним) и давал пустой кадр.
+   */
+  if (!_communityCatalogCache) {
+    if (__DEV__) console.log('[PACKS-FIRSTFRAME] peek MISS reason=no-cache wantKey=%s', key);
+    return null;
+  }
+  if (_communityCatalogCache.key !== key) {
+    if (__DEV__) console.log('[PACKS-FIRSTFRAME] peek MISS reason=key-mismatch wantKey=%s cacheKey=%s cachedPacks=%d', key, _communityCatalogCache.key, _communityCatalogCache.packs.length);
+    return null;
+  }
+  const ageMs = Date.now() - _communityCatalogCache.at;
+  if (ageMs > COMMUNITY_CATALOG_TTL_MS) {
+    if (__DEV__) console.log('[PACKS-FIRSTFRAME] peek MISS reason=stale key=%s ageMs=%d ttlMs=%d', key, ageMs, COMMUNITY_CATALOG_TTL_MS);
+    return null;
+  }
+  if (__DEV__) console.log('[PACKS-FIRSTFRAME] peek HIT key=%s packs=%d ageMs=%d', key, _communityCatalogCache.packs.length, ageMs);
   return _communityCatalogCache.packs;
 }
 
@@ -182,11 +200,20 @@ export async function loadPublishedCommunityMarketPacks(
   opts?: { forceRemote?: boolean },
 ): Promise<FlashcardMarketPack[]> {
   const generation = catalogGeneration;
-  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return [];
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
+    /** зачем: пустой каталог в Expo Go выглядел как «сообщество пустое», а не как отключённое облако. */
+    if (__DEV__) console.log('[PACKS-FIRSTFRAME] load EARLY-RETURN reason=cloud-off isExpoGo=%s cloudSync=%s', String(IS_EXPO_GO), String(CLOUD_SYNC_ENABLED));
+    return [];
+  }
   const cacheKey = String(studyTarget ?? 'default');
   if (!opts?.forceRemote) {
     const warm = peekPublishedCommunityMarketPacks(studyTarget);
-    if (warm) return warm;
+    if (warm) {
+      if (__DEV__) console.log('[PACKS-FIRSTFRAME] load CACHE key=%s packs=%d source=warm-cache', cacheKey, warm.length);
+      return warm;
+    }
+  } else if (__DEV__) {
+    console.log('[PACKS-FIRSTFRAME] load FORCE-REMOTE key=%s (cache bypassed by user gesture)', cacheKey);
   }
   try {
     // Limit each language independently; a busy EN catalog must not starve FR/DE/ES.
@@ -207,8 +234,12 @@ export async function loadPublishedCommunityMarketPacks(
       .filter(Boolean) as FlashcardMarketPack[];
     list.sort(sortCommunityMarketPacksBySocial);
     const out = (['en', 'fr', 'de', 'es'] as const).flatMap(language => list.filter(pack => normalizePackLanguage(pack.packLanguage) === language).slice(0, 40));
-    if (generation !== catalogGeneration) return [];
+    if (generation !== catalogGeneration) {
+      if (__DEV__) console.log('[PACKS-FIRSTFRAME] load ABORT reason=catalog-invalidated key=%s', cacheKey);
+      return [];
+    }
     _communityCatalogCache = { key: cacheKey, at: Date.now(), packs: out };
+    if (__DEV__) console.log('[PACKS-FIRSTFRAME] load NETWORK key=%s packs=%d source=firestore', cacheKey, out.length);
     return out;
   } catch (e) {
     // зачем: вкладка «Сообщество» тихо показывала пустой список без единой

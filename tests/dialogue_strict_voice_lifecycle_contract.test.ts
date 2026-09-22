@@ -8,7 +8,7 @@ describe('Dialogue strict voice lifecycle contract', () => {
   const scenario = read('app/ai_dialog_session.tsx');
 
   it('checks exact inventory before permission/start and commits only on native start', () => {
-    expect(scenario).toContain('readSpeechRecognitionLocaleInventory(speechModule)');
+    expect(scenario).toContain('readSpeechRecognitionLocaleInventory(speechModule, asrPlatform)');
     expect(scenario).toContain('resolveDialogueAsrCapability');
     expect(scenario.indexOf('voiceInputGate.canStartAttempt()')).toBeLessThan(scenario.indexOf('speechModule.start('));
     expect(scenario.indexOf('voiceInputGate.commitStartedAttempt()')).toBeGreaterThan(scenario.indexOf("addListener('start'"));

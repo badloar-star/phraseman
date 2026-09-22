@@ -1035,7 +1035,7 @@ function MistakePracticeSessionScreen() {
         <ReportErrorButton
           screen="mistake_practice"
           dataId={`mistake_${entry.exercise.exerciseId ?? 'unknown'}`}
-          dataText={`${entry.exercise.prompt}
+          dataText={`${entry.exercise.prompt}${entry.exercise.hint ? `\n${entry.exercise.hint}` : ''}
 OK: ${entry.exercise.correctAnswer}`}
           variant="icon-flag"
           accessibilityLabel={triLang(lang, { ru: 'Сообщить об ошибке в задании', uk: 'Повідомити про помилку у завданні', en: 'Report an error in the exercise', es: 'Informar de un error en el ejercicio', 'pt-BR': 'Relatar erro no exercício', vi: 'Báo lỗi trong bài tập', id: 'Laporkan kesalahan pada latihan', tr: 'Alıştırmadaki hatayı bildir', pl: 'Zgłoś błąd w zadaniu' })}
@@ -1047,6 +1047,15 @@ OK: ${entry.exercise.correctAnswer}`}
       <View ref={runeFlight.originRef} collapsable={false} style={{ flex: 1 }}>
       <ScrollView decelerationRate="fast" contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
         <Text style={[styles.prompt, { color: t.textPrimary, fontSize: f.h3 }]}>{entry.exercise.prompt}</Text>
+        {/* зачем: перевод-подсказка под заданием. Не «подпись-расшифровка» из
+            запрета владельца (та — мелкий пояснительный текст под названием):
+            это рабочий слой задания, читаемым кеглем f.body. От заголовка
+            отделён тоном и весом, а не уменьшением шрифта и не обводкой. */}
+        {entry.exercise.hint ? (
+          <Text style={[styles.promptHint, { color: t.textMuted, fontSize: f.body }]}>
+            {entry.exercise.hint}
+          </Text>
+        ) : null}
 
         {!feedback && !hiddenUndo && (entry.exercise.renderer === 'choices' || entry.exercise.renderer === 'fill_gap' || entry.exercise.renderer === 'matching') ? (
           <View style={styles.optionList}>
@@ -1236,6 +1245,10 @@ const styles = StyleSheet.create({
   counter: { minWidth: 36, fontWeight: '700' },
   content: { paddingHorizontal: 22, paddingTop: 28, paddingBottom: 120, gap: 20 },
   prompt: { fontWeight: '700', lineHeight: 34 },
+  // зачем: контейнер content держит gap 20 — без подтягивания перевод повис бы
+  // ровно между заданием и вариантами, не примыкая ни к чему. Пара
+  // «задание + перевод» обязана читаться одним блоком.
+  promptHint: { marginTop: -12, lineHeight: 26 },
   optionList: { gap: 11 },
   option: { minHeight: 58, borderRadius: 18, paddingHorizontal: 18, justifyContent: 'center' },
   input: { minHeight: 58, borderRadius: 18, paddingHorizontal: 18 },

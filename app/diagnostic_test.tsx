@@ -1066,6 +1066,12 @@ export default function DiagnosticTest() {
         sourceId: `${question.level}:${question.phrase}`,
         canonicalTarget: correctAnswer,
         sourceMeaning: question.hintRU,
+        // зачем: без самой фразы повтор этой ошибки нерешаем. Вопрос
+        // «She usually drinks coffee, but today she ___ tea.» приходил в «Мои
+        // ошибки» одним переводом, где `today` — единственная зацепка для
+        // Continuous — терялось, и выбор между drinks и is drinking был лотереей.
+        // У build-заданий фразы с пропуском нет: там задание — собрать её.
+        sourcePrompt: question.type === 'build' ? undefined : question.phrase,
         tokens: question.words ?? question.answer?.split(/\s+/),
         distractors: question.opts,
       },

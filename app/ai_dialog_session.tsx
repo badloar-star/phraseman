@@ -953,32 +953,68 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
     // отдельный Plus-замок; Plus и «Фри» проходят без чека.
     // Eligibility is not a billable speech attempt. Commit only after native
     // recognizer emits `start`; capability/permission failures stay neutral.
-    if (!voiceInputGate.canStartAttempt()) return;
+    // зачем: владелец 21.09 — «недоступен на этом устройстве» при рабочем
+    // микрофоне в других разделах и непотраченных 3 бесплатных попытках.
+    // Четыре разные причины схлопывались в одно слово; логируем вход и КАЖДУЮ.
+    DebugLogger.info('[DIALOG-VOICE]', `start: enter ${JSON.stringify({
+      scenario: scenario.id,
+      dialogueTarget,
+      platform: Platform.OS,
+      androidApiLevel: Platform.OS === 'android' ? Number(Platform.Version) : null,
+      hasSpeechModule: !!speechModule,
+      accessResolved,
+    })}`);
+    if (!voiceInputGate.canStartAttempt()) {
+      DebugLogger.warn('[DIALOG-VOICE]', 'start: early return — gate.canStartAttempt()=false (дневная квота/замок)');
+      return;
+    }
     if (!speechModule) {
+      DebugLogger.warn('[DIALOG-VOICE]', 'unavailable: reason=module_missing');
       setVoiceInputStatus('unavailable');
       return;
     }
     if (!isSpeechRecognitionAvailable(speechModule)) {
+      DebugLogger.warn('[DIALOG-VOICE]', 'unavailable: reason=recognition_not_available');
       setVoiceInputStatus('unavailable');
       return;
     }
 
-    const inventory = await readSpeechRecognitionLocaleInventory(speechModule);
+    const asrPlatform = Platform.OS === 'ios' ? 'ios' : Platform.OS === 'android' ? 'android' : 'web';
+    const inventory = await readSpeechRecognitionLocaleInventory(speechModule, asrPlatform);
     const asrCapability = dialogueTarget
       ? resolveDialogueAsrCapability({
           target: dialogueTarget,
-          platform: Platform.OS === 'ios' ? 'ios' : Platform.OS === 'android' ? 'android' : 'web',
+          platform: asrPlatform,
           androidApiLevel: Platform.OS === 'android' ? Number(Platform.Version) : undefined,
           locales: inventory?.locales,
           inventoryServiceId: inventory?.serviceId,
           startServiceId: inventory?.serviceId,
         })
       : null;
-    if (!isCurrentSession() || generation !== voiceInputGenerationRef.current) return;
+    if (!isCurrentSession() || generation !== voiceInputGenerationRef.current) {
+      DebugLogger.warn('[DIALOG-VOICE]', 'start: early return — сессия/поколение устарели после инвентаря');
+      return;
+    }
     if (!asrCapability?.available) {
+      // Четыре причины (inventory_unverified / android_api_unsupported /
+      // exact_locale_missing / service_mismatch) показывались одним текстом —
+      // печатаем какая, и на чём именно не сошлось.
+      DebugLogger.warn('[DIALOG-VOICE]', `unavailable: reason=asr_capability ${JSON.stringify({
+        capabilityReason: asrCapability?.reason ?? (dialogueTarget ? 'null_capability' : 'no_dialogue_target'),
+        wantLocale: asrCapability?.locale ?? null,
+        dialogueTarget,
+        inventoryServiceId: inventory?.serviceId ?? null,
+        inventoryLocaleCount: inventory?.locales?.length ?? 0,
+        inventoryHasWanted: asrCapability?.locale
+          ? (inventory?.locales ?? []).includes(asrCapability.locale)
+          : null,
+        inventorySample: (inventory?.locales ?? []).slice(0, 40),
+        androidApiLevel: Platform.OS === 'android' ? Number(Platform.Version) : null,
+      })}`);
       setVoiceInputStatus('unavailable');
       return;
     }
+    DebugLogger.info('[DIALOG-VOICE]', `start: capability ok, locale=${asrCapability.locale}`);
 
     setVoiceInputStatus('requesting');
     const permission = await requestSpeechPermissionForHold(speechModule);

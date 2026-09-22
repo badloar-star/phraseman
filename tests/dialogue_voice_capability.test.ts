@@ -24,6 +24,24 @@ describe('strict dialogue voice capability', () => {
     expect(resolveDialogueAsrCapability({ target: 'de', platform: 'android', androidApiLevel: 33, inventoryServiceId: 'a', startServiceId: 'a', locales: ['de-DE'] })).toMatchObject({ available: true, locale: 'de-DE' });
   });
 
+  // Регрессия 2026-09-21: на iPhone Диалоги писали «Голосовой ввод недоступен на
+  // этом устройстве» ВСЕГДА. iOS не отдаёт список локалей распознавания, а код
+  // требовал его как доказательство. Микрофон в остальных разделах работал.
+  it('never blocks iOS voice input just because the locale list is empty', () => {
+    expect(resolveDialogueAsrCapability({ target: 'en', platform: 'ios', inventoryServiceId: 'ios-system', startServiceId: 'ios-system', locales: [] }))
+      .toMatchObject({ available: true, locale: 'en-US' });
+    expect(resolveDialogueAsrCapability({ target: 'es', platform: 'ios', inventoryServiceId: 'ios-system', startServiceId: 'ios-system', locales: [] }).available).toBe(true);
+  });
+
+  // Android отдаёт локали то через дефис, то через подчёркивание, иногда без
+  // региона — строгое сравнение строкой в строку тоже отказывало зря.
+  it('matches Android locales regardless of separator or missing region', () => {
+    const base = { target: 'en', platform: 'android', androidApiLevel: 33, inventoryServiceId: 'a', startServiceId: 'a' } as const;
+    expect(resolveDialogueAsrCapability({ ...base, locales: ['en_US'] }).available).toBe(true);
+    expect(resolveDialogueAsrCapability({ ...base, locales: ['en'] }).available).toBe(true);
+    expect(resolveDialogueAsrCapability({ ...base, locales: ['fr-FR'] })).toMatchObject({ available: false, reason: 'exact_locale_missing' });
+  });
+
   it('cancels an in-flight capability result after target switch, unmount, or a late result', () => {
     const guard = createDialogueVoiceAttemptGuard();
     const ticket = guard.begin();

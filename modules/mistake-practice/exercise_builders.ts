@@ -19,6 +19,12 @@ export interface MistakeExercise {
   readonly mode: MistakeExerciseMode;
   readonly renderer: MistakeExerciseRenderer;
   readonly prompt: string;
+  /**
+   * Перевод-подсказка под заданием (2026-09-21). Появляется только когда
+   * задание показывается на изучаемом языке (sourcePrompt), иначе перевод и
+   * так стоит в prompt и дублировать его нечем.
+   */
+  readonly hint?: string;
   readonly correctAnswer: string;
   readonly feedbackAnswer: string;
   readonly options?: readonly string[];
@@ -33,6 +39,8 @@ export interface MistakeExerciseMaterial {
   readonly mode: MistakeExerciseMode;
   readonly canonicalTarget: string;
   readonly sourceMeaning?: string;
+  /** Текст задания с пропуском, как его видел ученик. См. MistakeContentRef. */
+  readonly sourcePrompt?: string;
   readonly tokens?: readonly string[];
   readonly distractors?: readonly string[];
   readonly audioRef?: string;
@@ -63,9 +71,20 @@ export function buildMistakeExercise(
     ? Number(material.tokenIndex)
     : Math.max(0, targetTokens.length - 1);
   const gapAnswer = material.expected?.trim() || targetTokens[gapIndex] || canonicalTarget;
+  // зачем: задание обязано показывать ТЕКСТ ЗАДАНИЯ, а не только перевод.
+  // Вопрос «She usually drinks coffee, but today she ___ tea.» доходил сюда
+  // одним переводом («Обычно она пьёт кофе, но сегодня пьёт чай») — выбрать
+  // между drinks и is drinking было физически невозможно: слово `today`,
+  // единственная зацепка для Continuous, на экран не попадало.
+  // fill_gap строит пропуск сам из токенов — его порядок не трогаем.
+  const authoredPrompt = material.sourcePrompt?.trim() || '';
+  const meaning = material.sourceMeaning?.trim() || '';
   const prompt = renderer === 'fill_gap'
     ? targetTokens.map((token, index) => index === gapIndex ? '_____' : token).join(' ')
-    : material.sourceMeaning?.trim() || canonicalTarget;
+    : authoredPrompt || meaning || canonicalTarget;
+  // Перевод уходит подсказкой ВТОРОЙ строкой — но только если первую занял
+  // текст задания, иначе перевод продублировал бы сам себя.
+  const hint = prompt !== meaning ? meaning : '';
   const tokens = renderer === 'builder'
     ? Object.freeze([
         ...targetTokens,
@@ -91,6 +110,7 @@ export function buildMistakeExercise(
     mode: material.mode,
     renderer,
     prompt,
+    ...(hint ? { hint } : {}),
     correctAnswer,
     feedbackAnswer: canonicalTarget,
     ...(options ? { options } : {}),

@@ -20,15 +20,13 @@ import Reanimated, {
 import { getHintFlag, setHintFlag } from './hint_flags';
 import type { Theme } from '../../constants/theme';
 import { computeHeightScale } from '../../constants/layout-scale';
-import { inferExpoSpeechLanguage, speechLocaleToShortLabel, type SpeakOpts } from '../../hooks/use-audio';
-import { SOURCE_COLORS } from './constants';
+import { inferExpoSpeechLanguage, type SpeakOpts } from '../../hooks/use-audio';
 import FlashcardDetailsBody from './FlashcardDetailsBody';
 import { buildLegacyFlipFaceStyles, useFcCrossfadeFlip } from './PhraseCard';
 import WordStrengthDots from './WordStrengthDots';
 import type { WordStrength } from './word_strength';
 import { OFFICIAL_MODERN_ABBREV_EN_ID } from './bundles/packIds';
 import { CardItem, CategoryId, cardHasDetails, resolveFlashcardBackText, type FlashcardContentLang } from './types';
-import { buildSourceLabel } from './source_labels';
 
 const MODERN_ABBREV_DEV = `DEV:${OFFICIAL_MODERN_ABBREV_EN_ID}`;
 
@@ -190,19 +188,13 @@ function FlashcardListItemImpl({
 }: Props) {
   const effectiveOs = useEffectivePlatformOS();
   const tr = resolveFlashcardBackText(item, lang);
-  const srcBadgeColor = SOURCE_COLORS[item.origin?.source ?? item.source ?? 'lesson'] ?? '#4A90D9';
-  const legacySourceLabel = item.source ? sourceLabels[item.source] : null;
   /** Saved cards retain `DEV:<packId>` as their provenance; expose that provenance as a human label. */
   const isMarketplaceBundleCard = String(item.sourceId ?? '').startsWith('DEV:');
-  const srcLabel = item.source
-    ? buildSourceLabel({
-        source: item.origin?.source ?? (activeCat === 'saved' && isMarketplaceBundleCard ? 'community' : item.source),
-        sourceId: item.origin?.sourceId ?? item.sourceId,
-        sourceTitle: item.origin?.sourceTitle ?? item.sourceTitle,
-      }, lang) || legacySourceLabel
-    : null;
+  // зачем: плашка «ИСТОЧНИК: ВИДЕО · …» на карточке убрана навсегда (владелец,
+  // 22.09.2026) — она ничему не учила и перебивала саму фразу. Сама подпись
+  // (buildSourceLabel) жива и нужна: по ней идёт ПОИСК в CollectionListView и
+  // её показывает конструктор набора сообщества. Удалена только отрисовка тут.
   const showDevPackCornerBadge = DEV_CONTENT_UNLOCK && isMarketplaceBundleCard;
-  const showSourceBadge = !!(srcLabel && (item.origin || !isMarketplaceBundleCard || activeCat === 'saved'));
   const isModernAbbrevCard = item.sourceId === MODERN_ABBREV_DEV;
   const parsedAbbrevEn = useMemo(
     () => splitAbbrevMarketplaceEn(item.en, item.abbrevEn, item.expansionEn),
@@ -563,8 +555,9 @@ function FlashcardListItemImpl({
     () => speechLocaleForFlashcardBack(lang),
     [voiceTextBack, lang],
   );
-  const frontLangBadge = speechLocaleToShortLabel(frontSpeakLocale);
-  const backLangBadge = speechLocaleToShortLabel(backSpeakLocale);
+  // зачем: коды языка («EN», «RU»…) над фразой владелец убрал навсегда 22.09.2026 —
+  // язык и так очевиден из самой фразы, пометка только шумела. Локали озвучки
+  // (frontSpeakLocale/backSpeakLocale) остаются: их читает кнопка звука.
 
   const speakFront = useCallback(() => {
     onSpeak(voiceTextFront, { language: frontSpeakLocale });
@@ -736,33 +729,6 @@ function FlashcardListItemImpl({
                   style={StyleSheet.absoluteFillObject}
                 />
               )}
-              <Text
-                style={
-                  voiceSpeakOnRight
-                    ? {
-                        position: 'absolute',
-                        top: 14,
-                        left: 0,
-                        right: 0,
-                        textAlign: 'center',
-                        color: t.textGhost,
-                        fontSize: 10,
-                        fontWeight: '800',
-                        letterSpacing: 1.5,
-                      }
-                    : {
-                        position: 'absolute',
-                        top: 14,
-                        left: 44,
-                        color: t.textGhost,
-                        fontSize: 10,
-                        fontWeight: '800',
-                        letterSpacing: 1.5,
-                      }
-                }
-              >
-                {frontLangBadge}
-              </Text>
               {showDevPackCornerBadge && (
                 <View
                   style={{
@@ -778,20 +744,6 @@ function FlashcardListItemImpl({
                   }}
                 >
                   <Text style={{ color: t.accent, fontSize: 10, fontWeight: '800', letterSpacing: 0.4 }}>DEV PACK</Text>
-                </View>
-              )}
-              {showSourceBadge && (
-                <View
-                  style={[
-                    sourceBadgeStyle,
-                    voiceSpeakOnRight
-                      ? { backgroundColor: `${srcBadgeColor}22`, borderColor: `${srcBadgeColor}55` }
-                      : { left: 48, backgroundColor: `${srcBadgeColor}22`, borderColor: `${srcBadgeColor}55` },
-                  ]}
-                >
-                  <Text style={[sourceBadgeTextStyle, { color: srcBadgeColor }]}>
-                    {srcLabel}
-                  </Text>
                 </View>
               )}
               <View
@@ -911,34 +863,6 @@ function FlashcardListItemImpl({
                   style={StyleSheet.absoluteFillObject}
                 />
               )}
-              <Text
-                maxFontSizeMultiplier={1.35}
-                style={
-                  voiceSpeakOnRight
-                    ? {
-                        position: 'absolute',
-                        top: 14,
-                        left: 0,
-                        right: 0,
-                        textAlign: 'center',
-                        color: t.accent,
-                        fontSize: 10,
-                        fontWeight: '800',
-                        letterSpacing: 1.5,
-                      }
-                    : {
-                        position: 'absolute',
-                        top: 14,
-                        left: 44,
-                        color: t.accent,
-                        fontSize: 10,
-                        fontWeight: '800',
-                        letterSpacing: 1.5,
-                      }
-                }
-              >
-                {backLangBadge}
-              </Text>
               {showDevPackCornerBadge && (
                 <View
                   style={{
@@ -954,13 +878,6 @@ function FlashcardListItemImpl({
                   }}
                 >
                   <Text style={{ color: t.accent, fontSize: 10, fontWeight: '800', letterSpacing: 0.4 }}>DEV PACK</Text>
-                </View>
-              )}
-              {showSourceBadge && (
-                <View style={[sourceBadgeStyle, { backgroundColor: `${srcBadgeColor}22`, borderColor: `${srcBadgeColor}55` }]}>
-                  <Text style={[sourceBadgeTextStyle, { color: srcBadgeColor }]}>
-                    {srcLabel}
-                  </Text>
                 </View>
               )}
               <ScrollView decelerationRate="fast"

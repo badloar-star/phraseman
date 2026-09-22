@@ -533,5 +533,19 @@ export async function countAvailableFcCards(
   }
 }
 
+/**
+ * Сбросить тёплый снимок между тестами (по образцу __resetCustomCardsStoreForTests).
+ *
+ * зачем: снимок и его отметка времени живут в памяти МОДУЛЯ и переживают
+ * AsyncStorage.clear(). Тесты выполняются быстрее окна DECK_OPTIONS_REBUILD_MIN_GAP_MS
+ * (3 с), поэтому следующий тест получал список наборов от предыдущего и падал на
+ * чужом packId. Из-за этого сторож своих наборов не мог отработать ни разу.
+ * В проде сбрасывать нечего: снимок там и должен переживать переходы между экранами.
+ */
+export function __resetDeckOptionsWarmCacheForTests(): void {
+  _warmDeckOptions = null;
+  _warmDeckOptionsBuiltAtMs = 0;
+}
+
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }

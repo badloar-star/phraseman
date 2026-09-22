@@ -27,7 +27,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { saveLocalAuthorPack } from '../app/community_packs/localAuthorPacks';
 import { addCommunityOwnedPackId } from '../app/community_packs/communityOwnedStorage';
-import { loadAllFcDeckRefs, loadFcDeckOptions } from '../app/flashcards/deck_options';
+import {
+  __resetDeckOptionsWarmCacheForTests,
+  loadAllFcDeckRefs,
+  loadFcDeckOptions,
+} from '../app/flashcards/deck_options';
 import type { CommunityPackSubmissionPayload } from '../app/community_packs/schema';
 
 /** Хранилище карточек скоуплено по аккаунту — мокаем как в `fc_deck_options.test.ts`. */
@@ -63,6 +67,9 @@ const packPayload = (title: string, cardIds: readonly string[]): CommunityPackSu
 
 beforeEach(async () => {
   await AsyncStorage.clear();
+  // Тёплый снимок списка наборов живёт в памяти модуля и переживает clear():
+  // без сброса следующий тест получает список предыдущего (окно пересборки 3 с).
+  __resetDeckOptionsWarmCacheForTests();
 });
 
 describe('свой набор в списке наборов для тренировки', () => {

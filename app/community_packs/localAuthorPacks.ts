@@ -13,6 +13,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { flashcardsLocalAuthorPacksKey, storageStudyTarget, type RuntimeStudyTarget } from '../target_storage_keys';
+import type { StudyTarget } from '../study_target';
 import type { CardItem } from '../flashcards/types';
 import type { FlashcardMarketPack } from '../flashcards/marketplace';
 import { derivePackCodeName } from '../flashcards/marketplace';
@@ -40,7 +41,11 @@ export type LocalAuthorPack = {
    * набор бесплатным при сохранении.
    */
   priceRunes?: number;
-  studyTarget?: 'en' | 'fr';
+  // зачем: поле заполняется из storageStudyTarget(), который возвращает StudyTarget
+  // (все языки курса). Литерал 'en' | 'fr' был снимком двухъязычной эпохи и отстал,
+  // когда добавили de/es — присваивание перестало типизироваться. Ссылаемся на
+  // канонический тип, чтобы следующий язык не потребовал правки здесь снова.
+  studyTarget?: StudyTarget;
   cloudPackId?: string;
   publicationKey?: string;
   publicationState?: 'private' | 'pending' | 'submitted';

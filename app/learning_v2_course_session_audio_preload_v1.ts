@@ -96,8 +96,23 @@ const inFlight = new Map<
 >();
 const verifiedPhysicalAudioFiles = new Map<string, Promise<string>>();
 
-function fail(): never {
-  throw new Error("learning_v2_course_session_audio_preload_invalid");
+/**
+ * Отказ подготовки озвучки — ВСЕГДА с названием причины.
+ *
+ * зачем: владелец 21.09 — прогрев занятия 2 падал, и в журнале была ровно одна
+ * строка `learning_v2_course_session_audio_preload_invalid` без единой детали.
+ * В этом файле 18 точек отказа, и все кидали одну и ту же безымянную ошибку:
+ * по такому логу невозможно понять, что именно не так, — а это тот самый
+ * класс «механизм молча умер», на котором уже терялись круги работы.
+ *
+ * Текст ошибки сохраняем прежним ПЕРВЫМ словом: на него смотрят вызывающие
+ * и тесты. Причина дописывается через двоеточие.
+ */
+function fail(reason: string, details?: Readonly<Record<string, unknown>>): never {
+  const suffix = details ? ` ${JSON.stringify(details)}` : "";
+  throw new Error(
+    `learning_v2_course_session_audio_preload_invalid: ${reason}${suffix}`,
+  );
 }
 
 function exactMaterial(
@@ -109,7 +124,10 @@ function exactMaterial(
     !handles.has(handle as object) ||
     !isCurrentAccountGeneration(material.account, material.account.stableId)
   )
-    fail();
+    fail("handle_not_owned_by_current_account", {
+      hasMaterial: Boolean(material),
+      knownHandle: handles.has(handle as object),
+    });
   return material;
 }
 
@@ -151,7 +169,12 @@ function selectionHandleCacheKey(
     !ID_RE.test(sessionRunId) ||
     !HASH_RE.test(supplementalFingerprint)
   )
-    fail();
+    fail("selection_cache_key_malformed", {
+      accountScopeHashOk: HASH_RE.test(accountScopeHash),
+      audioFingerprintOk: HASH_RE.test(audioFingerprint),
+      sessionRunIdOk: ID_RE.test(sessionRunId),
+      supplementalFingerprintOk: HASH_RE.test(supplementalFingerprint),
+    });
   return `${accountScopeHash}:${audioFingerprint}:${sessionRunId}:${supplementalFingerprint}`;
 }
 
@@ -165,7 +188,11 @@ function physicalAudioCacheKeyV1(
     !HASH_RE.test(audioFingerprint) ||
     !HASH_RE.test(contentHash)
   )
-    fail();
+    fail("physical_cache_key_malformed", {
+      accountScopeHashOk: HASH_RE.test(accountScopeHash),
+      audioFingerprintOk: HASH_RE.test(audioFingerprint),
+      contentHashOk: HASH_RE.test(contentHash),
+    });
   return `${accountScopeHash}:${audioFingerprint}:${contentHash}`;
 }
 
@@ -189,7 +216,11 @@ async function preload(
     const learnerInteraction = learner.interactions.find(
       (candidate) => candidate.interactionId === interaction.interactionId,
     );
-    if (!learnerInteraction) fail();
+    if (!learnerInteraction)
+      fail("interaction_missing_in_learner_child", {
+        courseSessionId: audioChild.courseSessionId,
+        interactionId: interaction.interactionId,
+      });
     const selection = selectLearningV2CourseSessionInteractionAudioV1({
       child: audioChild,
       interactionId: interaction.interactionId,
@@ -218,7 +249,12 @@ async function preload(
   }
   for (const entry of supplementalAudio) {
     if (!ID_RE.test(entry.supplementalId) || supplementalFileFingerprints.has(entry.supplementalId))
-      fail();
+      fail("supplemental_id_invalid_or_duplicate", {
+        courseSessionId: audioChild.courseSessionId,
+        supplementalId: entry.supplementalId,
+        idOk: ID_RE.test(entry.supplementalId),
+        duplicate: supplementalFileFingerprints.has(entry.supplementalId),
+      });
     supplementalFileFingerprints.set(entry.supplementalId, addFile(entry.file));
   }
   const orderedFiles = [...files.values()];
@@ -231,10 +267,20 @@ async function preload(
       LEARNING_V2_COURSE_SESSION_AUDIO_PRELOAD_MAX_FILES_V1 ||
     selectedByteSize > LEARNING_V2_COURSE_SESSION_AUDIO_PRELOAD_MAX_BYTES_V1
   )
-    fail();
+    fail("preload_budget_exceeded", {
+      courseSessionId: audioChild.courseSessionId,
+      files: orderedFiles.length,
+      maxFiles: LEARNING_V2_COURSE_SESSION_AUDIO_PRELOAD_MAX_FILES_V1,
+      bytes: selectedByteSize,
+      maxBytes: LEARNING_V2_COURSE_SESSION_AUDIO_PRELOAD_MAX_BYTES_V1,
+    });
   const localUris = new Map<string, string>();
   await runPool(orderedFiles.length, async (index) => {
-    if (!isCurrentAccountGeneration(account, account.stableId)) fail();
+    if (!isCurrentAccountGeneration(account, account.stableId))
+      fail("account_changed_before_file_fetch", {
+        courseSessionId: audioChild.courseSessionId,
+        index,
+      });
     const file = orderedFiles[index]!;
     const identity = learningV2NativeDecoderIdentityForAudioFileV1(file, index);
     const physicalKey = physicalAudioCacheKeyV1(
@@ -247,7 +293,15 @@ async function preload(
       verifiedFile = resolvePreparedLearningV2VoiceAudioOfflineFileV1(identity)
         .then(async (prepared) => prepared ?? resolveLearningV2BootstrapAudioOfflineFileV1(identity))
         .then((cache) => {
-          if (!cache) fail();
+          // Самая частая причина отказа: озвучки этого занятия ещё нет на
+          // устройстве. Раньше это выглядело как безымянный сбой прогрева.
+          if (!cache)
+            fail("audio_file_not_in_offline_cache", {
+              courseSessionId: audioChild.courseSessionId,
+              objectPath: file.objectPath,
+              contentHash: file.contentHash,
+              byteSize: file.byteSize,
+            });
           return resolveLearningV2VoiceAudioOfflineCacheMaterialV1({
             handle: cache,
             identity,
@@ -267,10 +321,19 @@ async function preload(
       }
     }
     const fileUri = await verifiedFile;
-    if (!isCurrentAccountGeneration(account, account.stableId)) fail();
+    if (!isCurrentAccountGeneration(account, account.stableId))
+      fail("account_changed_after_file_fetch", {
+        courseSessionId: audioChild.courseSessionId,
+        index,
+      });
     localUris.set(file.fileFingerprint, fileUri);
   });
-  if (localUris.size !== files.size) fail();
+  if (localUris.size !== files.size)
+    fail("resolved_files_count_mismatch", {
+      courseSessionId: audioChild.courseSessionId,
+      resolved: localUris.size,
+      expected: files.size,
+    });
   const body = {
     schemaVersion: LEARNING_V2_COURSE_SESSION_AUDIO_PRELOAD_SCHEMA_V1,
     courseSessionId: audioChild.courseSessionId,
@@ -343,9 +406,16 @@ export async function preloadLearningV2CourseSessionAudioV1(input: {
     input.audioChild.learnerFingerprint !== input.learner.learnerFingerprint ||
     !ID_RE.test(input.sessionRunId)
   )
-    fail();
+    fail("prepare_input_shape_invalid", {
+      learnerOk: isLearningV2CourseSessionLearnerChildV1(input.learner),
+      audioOk: isLearningV2CourseSessionAudioChildV1(input.audioChild),
+      sessionRunIdOk: ID_RE.test(input.sessionRunId),
+    });
   const supplementalAudio = input.supplementalAudio ?? Object.freeze([]);
-  if (!Array.isArray(supplementalAudio)) fail();
+  if (!Array.isArray(supplementalAudio))
+    fail("supplemental_audio_not_array", {
+      actualType: typeof supplementalAudio,
+    });
   for (const entry of supplementalAudio) {
     if (
       !entry ||
@@ -359,7 +429,9 @@ export async function preloadLearningV2CourseSessionAudioV1(input: {
       !HASH_RE.test(entry.file.fileFingerprint) ||
       !HASH_RE.test(entry.file.contentHash)
     )
-      fail();
+      fail("supplemental_entry_shape_invalid", {
+        supplementalId: entry?.supplementalId,
+      });
   }
   const supplementalFingerprint = hashCanonicalBody(
     supplementalAudio.map((entry) => ({
@@ -396,7 +468,10 @@ export async function preloadLearningV2CourseSessionAudioV1(input: {
     accountScopeHash,
     supplementalAudio,
   ).then((handle) => {
-    if (!isCurrentAccountGeneration(account, stableId)) fail();
+    if (!isCurrentAccountGeneration(account, stableId))
+      fail("account_changed_before_handle_publish", {
+        courseSessionId: input.audioChild.courseSessionId,
+      });
     peek.set(key, handle);
     while (peek.size > 12) {
       const oldest = peek.keys().next().value as string | undefined;
@@ -440,7 +515,12 @@ function resolveFile(
   if (!fingerprint) return null;
   const file = material.files.get(fingerprint);
   const fileUri = material.localUris.get(fingerprint);
-  if (!file || !fileUri) fail();
+  if (!file || !fileUri)
+    fail("selected_file_missing_local_uri", {
+      fingerprint,
+      hasFile: Boolean(file),
+      hasUri: Boolean(fileUri),
+    });
   return Object.freeze({ fileUri, voiceId: file.voiceId });
 }
 
@@ -456,7 +536,7 @@ export function resolveLearningV2CourseSessionFullPhraseAudioV1(input: {
     Object.keys(input).sort().join("|") !== "handle|interactionId" ||
     !ID_RE.test(input.interactionId)
   )
-    fail();
+    fail("interaction_audio_input_invalid");
   const material = exactMaterial(input.handle);
   return resolveFile(
     material,
@@ -479,7 +559,7 @@ export function resolveLearningV2CourseSessionSelectableAudioV1(input: {
     !ID_RE.test(input.interactionId) ||
     !ID_RE.test(input.selectableId)
   )
-    fail();
+    fail("selectable_audio_input_invalid");
   const material = exactMaterial(input.handle);
   return resolveFile(
     material,
@@ -501,7 +581,7 @@ export function resolveLearningV2CourseSessionSupplementalAudioV1(input: {
     Object.keys(input).sort().join("|") !== "handle|supplementalId" ||
     !ID_RE.test(input.supplementalId)
   )
-    fail();
+    fail("supplemental_audio_input_invalid");
   const material = exactMaterial(input.handle);
   return resolveFile(
     material,

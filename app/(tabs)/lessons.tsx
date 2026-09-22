@@ -1318,6 +1318,19 @@ type LessonsTabProps = {
 // доступностью не управляет.
 const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = true;
 
+/**
+ * Потолок ожидания подготовки занятия.
+ *
+ * зачем: владелец 21.09 — в логе прогрева занятия 2 не было НИ `ready`, НИ
+ * ошибки: сетевой вызов подготовки висел без срока, и промис оставался в кэше
+ * навсегда. Мёртвая запись в кэше хуже отказа — повторная попытка подхватывала
+ * её и ждала вместе с ней.
+ *
+ * 12 секунд: это подготовка настоящего занятия (материал урока), она законно
+ * дольше фоновой мелочи, но человек не должен ждать дольше при живой сети.
+ */
+const LEARNING_V2_PREPARE_TIMEOUT_MS = 12_000;
+
 const LEARNING_V2_SESSION_STATE_ICON: Readonly<
   Record<
     LearningV2AccordionSessionStateV1,
@@ -2607,7 +2620,15 @@ export default function LessonsTab({
         .then((result) => {
           if (!cancelled) setLearningV2Catalog(result.catalog);
         })
-        .catch(() => undefined);
+        // Немой catch запрещён: отказ каталога оставляет экран на кэше, и без
+        // записи в журнал это выглядит как «просто старые данные».
+        .catch((error) => {
+          if (cancelled) return;
+          DebugLogger.warn(
+            '[V2-CATALOG]',
+            `active catalog load failed: ${String(error)}`,
+          );
+        });
       return () => {
         cancelled = true;
       };
@@ -2778,8 +2799,26 @@ export default function LessonsTab({
               }),
             )
             .then((handle) => ({ key, sessionRunId, handle }));
+      // зачем: владелец 21.09 — в логе прогрева для занятия 2 НЕ приходило ни
+      // `ready`, ни ошибки: промис просто висел. Причина та же, что у тёмного
+      // экрана Главной — сетевой вызов (prepareCurrentLearningV2CourseSessionV3)
+      // без таймаута. Подставить пустой результат нельзя: занятие без данных не
+      // откроется, поэтому по сроку ОТКЛОНЯЕМ — тогда кэш чистится ниже и
+      // следующая попытка начинается заново, а не ждёт мёртвый промис вечно.
+      const courseSessionId = learningV2CourseSessionIdV1(lessonOrdinal, sessionOrdinal);
+      const timed = new Promise<LearningV2PreparedSessionLaunch>((_, reject) => {
+        const timer = setTimeout(() => {
+          reject(new Error(
+            `learning_v2_session_prepare_timeout: ${courseSessionId} ${LEARNING_V2_PREPARE_TIMEOUT_MS}ms`,
+          ));
+        }, LEARNING_V2_PREPARE_TIMEOUT_MS);
+        void operation.then(
+          () => clearTimeout(timer),
+          () => clearTimeout(timer),
+        );
+      });
       let guarded: Promise<LearningV2PreparedSessionLaunch>;
-      guarded = operation.catch((error) => {
+      guarded = Promise.race([operation, timed]).catch((error) => {
         if (learningV2PreparedLaunchesRef.current.get(key) === guarded) {
           learningV2PreparedLaunchesRef.current.delete(key);
         }
@@ -2910,7 +2949,22 @@ export default function LessonsTab({
           ? learningV2HasPublishedAudioV1(lessonOrdinal, sessionOrdinal)
           : lessonOrdinal === 1 && (sessionOrdinal === 1 || sessionOrdinal === 2))
       ) {
-        void prepareLearningV2AudioSession(lessonOrdinal, sessionOrdinal).catch(() => undefined);
+        // Немой catch запрещён: озвучка может молча не готовиться месяцами,
+        // и человек просто слышит тишину (класс бага «мёртвый прогрев»).
+        // Отказ аудио намеренно НЕ валит подготовку материала — занятие
+        // открывается и без звука.
+        void prepareLearningV2AudioSession(lessonOrdinal, sessionOrdinal).catch((error) => {
+          if (__DEV__) {
+            console.log('[V2-PREWARM] audio_failed', JSON.stringify({
+              courseSessionId: learningV2CourseSessionIdV1(lessonOrdinal, sessionOrdinal),
+              reason: String(error),
+            }));
+          }
+          DebugLogger.warn(
+            '[V2-PREWARM]',
+            `audio pack failed ${lessonOrdinal}:${sessionOrdinal}: ${String(error)}`,
+          );
+        });
       }
       return material;
     },
@@ -3020,8 +3074,19 @@ export default function LessonsTab({
           }
         })
         .catch((error) => {
+          // зачем: владелец 21.09 — в журнале была одна безымянная строка
+          // отказа, и по ней нельзя было понять, КАКОЕ занятие не прогрелось
+          // (падало второе, а выглядело как общий сбой). Теперь занятие
+          // названо, и видно, сколько времени прошло до отказа.
+          if (__DEV__) {
+            console.log('[V2-PREWARM] failed', JSON.stringify({
+              courseSessionId,
+              ms: Date.now() - startedAt,
+              reason: String(error),
+            }));
+          }
           DebugLogger.error(
-            "learning_v2:current_session_entry_prewarm",
+            `learning_v2:current_session_entry_prewarm:${courseSessionId}`,
             error instanceof Error ? error : new Error(String(error)),
             "warning",
           );
@@ -3088,10 +3153,20 @@ export default function LessonsTab({
       ) {
         // Current session is always high priority. The prepared-promise cache
         // deduplicates this with the entry prewarm above.
+        // Немой catch запрещён: иначе прогрев молча не работает месяцами.
         void prewarmLearningV2SessionLaunch(
           lessonOrdinal,
           currentLearningV2SessionCoordinates.sessionOrdinal,
-        ).catch(() => undefined);
+        ).catch((error) => {
+          if (__DEV__) {
+            console.log('[V2-PREWARM] failed', JSON.stringify({
+              where: 'expanded_lesson',
+              lessonOrdinal,
+              sessionOrdinal: currentLearningV2SessionCoordinates.sessionOrdinal,
+              reason: String(error),
+            }));
+          }
+        });
       }
     },
     [
@@ -3123,10 +3198,20 @@ export default function LessonsTab({
       });
       const current = available.find((session) => session.state === "current");
       if (current) {
+        // Немой catch запрещён: отказ обязан назвать причину.
         void prewarmLearningV2SessionLaunch(
           lessonOrdinal,
           current.sessionOrdinal,
-        ).catch(() => undefined);
+        ).catch((error) => {
+          if (__DEV__) {
+            console.log('[V2-PREWARM] failed', JSON.stringify({
+              where: 'visible_settled_current',
+              lessonOrdinal,
+              sessionOrdinal: current.sessionOrdinal,
+              reason: String(error),
+            }));
+          }
+        });
       }
       // зачем: было 7 повторов на КАЖДУЮ остановку прокрутки. При листании
       // карты это до 8 подготовок занятий подряд, каждая из которых грузит
@@ -3142,10 +3227,20 @@ export default function LessonsTab({
       // the map's scroll frame budget.
       void (async () => {
         for (const session of repeats) {
+          // Немой catch запрещён; отказ одного повтора не рвёт цикл.
           await prewarmLearningV2SessionLaunch(
             lessonOrdinal,
             session.sessionOrdinal,
-          ).catch(() => undefined);
+          ).catch((error) => {
+            if (__DEV__) {
+              console.log('[V2-PREWARM] failed', JSON.stringify({
+                where: 'visible_settled_repeat',
+                lessonOrdinal,
+                sessionOrdinal: session.sessionOrdinal,
+                reason: String(error),
+              }));
+            }
+          });
         }
       })();
     },
@@ -3238,13 +3333,33 @@ export default function LessonsTab({
       .catch((error) => {
         if (learningV2ModalRequestRef.current !== launchRequest) return;
         setSelectedLearningV2Session(null);
+        // зачем: владелец 21.09 — «нажала 20 раз». Раньше отказ подготовки
+        // ЗАКРЫВАЛ модалку молча: человек нажал «Начать» и не получил ничего,
+        // поэтому жал снова и снова. Теперь отказ всегда объясняется.
+        //
+        // ВНИМАНИЕ: showLearningV2DenialHint объявлена НИЖЕ по файлу. Здесь это
+        // безопасно, потому что колбэк выполняется по тапу, а не в рендере.
+        // Не переносить этот вызов в тело рендера — будет ReferenceError, и
+        // tsc его НЕ поймает (класс бага «const выше объявления», 21.09).
+        showLearningV2DenialHint(triLang(lang, {
+          ru: "Занятие не подготовилось. Проверь связь и попробуй ещё раз",
+          en: "The session didn't load. Check your connection and try again",
+          uk: "Заняття не підготувалося. Перевір зв'язок і спробуй ще раз",
+          es: "La sesión no se cargó. Revisa tu conexión e inténtalo de nuevo",
+          "pt-BR": "A sessão não carregou. Verifique a conexão e tente de novo",
+          vi: "Buổi học chưa tải xong. Kiểm tra kết nối và thử lại",
+          id: "Sesi gagal dimuat. Periksa koneksi lalu coba lagi",
+          tr: "Oturum yüklenmedi. Bağlantını kontrol edip tekrar dene",
+          pl: "Sesja się nie wczytała. Sprawdź połączenie i spróbuj ponownie",
+        }));
         DebugLogger.error(
-          "learning_v2:session_launch_prepare",
+          `learning_v2:session_launch_prepare:${sessionId}`,
           error instanceof Error ? error : new Error(String(error)),
           "warning",
         );
       });
   }, [
+    lang,
     learningV2Catalog?.environment,
     learningV2Catalog?.seasonId,
     learningV2DevUnlockAllActive,
@@ -3254,6 +3369,7 @@ export default function LessonsTab({
     router,
     selectedLearningV2PreparationKey,
     selectedLearningV2Session,
+    showLearningV2DenialHint,
     studyTarget,
   ]);
   // Витрина звёзд 0–3 за пройденные сессии: подписка на локальное хранилище,

@@ -1,5 +1,4 @@
 import {
-  isLearningV2BulkAudioNetworkEligibleV1,
   isLearningV2UrgentAudioNetworkEligibleV1,
   learningV2UrgentAudioCoordinatesV1,
   type LearningV2AudioPrefetchCoordinateV1,
@@ -22,17 +21,22 @@ export async function runLearningV2AudioPrefetchCoordinatorCoreV1(input: {
   readonly prepareSession: (coordinate: LearningV2AudioPrefetchCoordinateV1) => Promise<void>;
   readonly prepareLesson: (lessonOrdinal: number) => Promise<void>;
 }): Promise<LearningV2AudioPrefetchRunSummaryV1> {
+  // зачем (владелец 2026-09-22, «всё тормозит с первой секунды на любом
+  // устройстве, и в релизе, и в деве»): этот координатор и был причиной.
+  // Замер 20.09 (комментарий в lessons.tsx) уже фиксировал его цену — семь
+  // сборок мусора подряд и 6+ секунд занятого JS-потока. А 22.09 его ещё и
+  // разогнали: окно 3 → 8 сессий и МАССОВАЯ закачка всех опубликованных
+  // уроков на любой сети. Каждый файл — байты в JS, SHA-256, запись, обратное
+  // чтение. На свежей установке кэша нет — работало на полную с момента входа.
+  //
+  // Массовая закачка уроков УДАЛЕНА целиком: впрок за всех качать нельзя.
+  // Срочное окно — две ближайшие сессии: этого хватает, чтобы следующее
+  // занятие открылось со звуком, а остальное готовится при открытии.
   let urgentSessionCount = 0;
-  let bulkLessonCount = 0;
-  const bulkEligible = isLearningV2BulkAudioNetworkEligibleV1(input.network);
   if (isLearningV2UrgentAudioNetworkEligibleV1(input.network)) {
     const urgent = learningV2UrgentAudioCoordinatesV1({
       ...input.current,
-      // зачем (владелец, 22.09): было 3. Запас в три сессии человек проходит
-      // за один заход, и следующая уже упиралась в «занятие не подготовилось».
-      // Восемь — потолок политики; при 5 озвученных сессиях в бандле это даёт
-      // окно, которое реально едет впереди прохождения.
-      count: 8,
+      count: 2,
       isPublished: input.isSessionPublished,
     });
     for (const coordinate of urgent) {
@@ -43,17 +47,5 @@ export async function runLearningV2AudioPrefetchCoordinatorCoreV1(input: {
       urgentSessionCount += 1;
     }
   }
-  if (bulkEligible) {
-    const lessons = [...new Set(input.publishedLessonOrdinals)]
-      .filter((ordinal) => Number.isSafeInteger(ordinal) && ordinal >= 1 && ordinal <= 32)
-      .sort((left, right) => left - right);
-    for (const lessonOrdinal of lessons) {
-      if (input.shouldContinue && !input.shouldContinue()) break;
-      const network = input.getNetwork ? await input.getNetwork() : input.network;
-      if (!isLearningV2BulkAudioNetworkEligibleV1(network)) break;
-      await input.prepareLesson(lessonOrdinal);
-      bulkLessonCount += 1;
-    }
-  }
-  return Object.freeze({ urgentSessionCount, bulkLessonCount, bulkEligible });
+  return Object.freeze({ urgentSessionCount, bulkLessonCount: 0, bulkEligible: false });
 }

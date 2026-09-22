@@ -28,23 +28,18 @@ async function run(type: "wifi" | "cellular" | "none") {
 }
 
 void (async () => {
-  // Срочное окно останавливается на первой НЕопубликованной сессии, поэтому
-  // при четырёх опубликованных координатах их и ждём — окно шире (8), но
-  // выдумывать несуществующие сессии оно не должно.
+  // зачем (владелец 2026-09-22, «всё тормозит с момента входа»): прогрев
+  // и был причиной — окно 8 сессий плюс массовая закачка ВСЕХ уроков с
+  // SHA-256 каждого файла в JS. Теперь окно — две ближайшие сессии, массовой
+  // закачки нет ни на какой сети. Сторож охраняет именно это: появление
+  // "l:N" в вызовах — регрессия.
   const wifi = await run("wifi");
-  assert.deepEqual(wifi.calls, [
-    "s:1:55",
-    "s:1:56",
-    "s:2:1",
-    "s:2:2",
-    "l:1",
-    "l:2",
-    "l:3",
-  ]);
+  assert.deepEqual(wifi.calls, ["s:1:55", "s:1:56"],
+    "bulk lesson prefetch must never run, even on Wi-Fi");
   assert.deepEqual(wifi.summary, {
-    urgentSessionCount: 4,
-    bulkLessonCount: 3,
-    bulkEligible: true,
+    urgentSessionCount: 2,
+    bulkLessonCount: 0,
+    bulkEligible: false,
   });
 
   // зачем (владелец, 22.09): раньше сторож требовал bulkLessonCount === 0 на
@@ -54,7 +49,7 @@ void (async () => {
   // счётчику), поэтому массовая закачка по-прежнему не идёт — но уже по
   // причине цены, а не типа сети.
   const cellular = await run("cellular");
-  assert.deepEqual(cellular.calls, ["s:1:55", "s:1:56", "s:2:1", "s:2:2"]);
+  assert.deepEqual(cellular.calls, ["s:1:55", "s:1:56"]);
   assert.equal(cellular.summary.bulkLessonCount, 0);
   assert.equal(cellular.summary.bulkEligible, false);
 
@@ -96,7 +91,7 @@ void (async () => {
   // Опубликованных координат четыре, поэтому срочное окно тратит проверки
   // сети 1..4 (все ещё Wi-Fi). Пятая проверка — уже соединение по счётчику,
   // поэтому до массовой очереди дело не доходит.
-  assert.deepEqual(transitionCalls, ["s:1:55", "s:1:56", "s:2:1", "s:2:2"],
+  assert.deepEqual(transitionCalls, ["s:1:55", "s:1:56"],
     "bulk queue must not start after the connection becomes metered");
 
   const preemptionCalls: string[] = [];
@@ -129,7 +124,7 @@ void (async () => {
   // shouldContinue разрешает ровно четыре шага — их забирает срочное окно
   // (четыре опубликованные сессии), поэтому массовая очередь не стартует:
   // более новая заявка вытесняет фоновую работу.
-  assert.deepEqual(preemptionCalls, ["s:1:55", "s:1:56", "s:2:1", "s:2:2"],
+  assert.deepEqual(preemptionCalls, ["s:1:55", "s:1:56"],
     "a newer request must preempt bulk work");
 
   console.log("LEARNING V2 AUDIO PREFETCH COORDINATOR CORE: PASS");

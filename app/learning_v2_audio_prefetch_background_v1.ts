@@ -172,6 +172,27 @@ function defineBackgroundTaskOnce(modules: NativeBackgroundModules): boolean {
  * Регистрирует фоновую догрузку аудио. Безопасна на сборке без нативных
  * модулей: в этом случае просто пишет причину в лог и возвращает управление.
  */
+/**
+ * зачем (владелец 2026-09-22, «что в фоне тормозит — удалить»): фоновая задача
+ * запускала полный прогрев озвучки каждые 15 минут в JS-потоке ЭТОГО ЖЕ
+ * процесса — то есть и тогда, когда человек прямо сейчас пользуется
+ * приложением. Регистрация снята; у тех, кому задача уже была прописана
+ * прошлой версией, она снимается здесь один раз при старте, иначе система
+ * продолжила бы её будить.
+ */
+export async function unregisterLearningV2AudioPrefetchBackgroundTaskV1(): Promise<void> {
+  const modules = loadNativeBackgroundModules();
+  if (!modules) return; // нативной части нет — регистрировать было нечем
+  const { TaskManager, BackgroundTask } = modules;
+  try {
+    if (!(await TaskManager.isTaskRegisteredAsync(LEARNING_V2_AUDIO_PREFETCH_TASK_V1))) return;
+    await BackgroundTask.unregisterTaskAsync(LEARNING_V2_AUDIO_PREFETCH_TASK_V1);
+  } catch (error: unknown) {
+    const reason = error instanceof Error ? error.message : String(error);
+    console.warn(`${LOG} снятие фоновой задачи не удалось: ${reason}`);
+  }
+}
+
 export async function registerLearningV2AudioPrefetchBackgroundTaskV1(): Promise<void> {
   const modules = loadNativeBackgroundModules();
   if (!modules) return; // причина уже записана в лог выше

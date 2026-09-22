@@ -135,7 +135,7 @@ import { PlayInstallReferrer } from 'react-native-play-install-referrer';
 import { migrateWeekPointsIfNeeded, updateStreakOnActivity } from './hall_of_fame_utils';
 import { preloadDeferredNonPrimaryImages, preloadPrimaryTabImages } from './image_preload';
 import { seedLearningV2BootstrapAudioCacheV1 } from './learning_v2_bootstrap_audio_seed_v1';
-import { registerLearningV2AudioPrefetchBackgroundTaskV1 } from './learning_v2_audio_prefetch_background_v1';
+import { unregisterLearningV2AudioPrefetchBackgroundTaskV1 } from './learning_v2_audio_prefetch_background_v1';
 // зачем: координатор статически тянет learning_v2_lesson_audio_pack_v1, а тот —
 // 556 КБ записей озвучки + 504 КБ индекса. Этот импорт разбирал ~1 МБ в ХОЛОДНЫЙ
 // СТАРТ приложения (аудит 20.09: startupLocalHydration шла 5,3 с при бюджете
@@ -1091,32 +1091,24 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   useEffect(() => {
     void cleanupRetiredMistakePracticeStorage().catch(() => {});
   }, []);
+  // зачем (владелец 2026-09-22, «всё тормозит с момента входа, на любом
+  // устройстве, и в релизе, и в деве»): ЗДЕСЬ была причина. При старте корень
+  // подписывался на NetInfo, тот сразу отдавал первое событие, и координатор
+  // запускал сохранённый запрос прогрева озвучки: 8 сессий вперёд плюс
+  // массовая закачка ВСЕХ опубликованных уроков, каждый файл — байты в JS,
+  // SHA-256, запись, обратное чтение. Замер 20.09 фиксировал 6+ секунд
+  // занятого потока. Плюс фоновая задача будила тот же прогрев каждые 15 минут
+  // в этом же процессе. Прогрев при старте снят полностью; озвучка ближайших
+  // двух сессий готовится при открытии карты, текущей — при открытии занятия.
+  // Ранее зарегистрированную у людей фоновую задачу снимаем один раз.
   useEffect(() => {
-    // Наблюдатель сети только планирует докачку озвучки — он не нужен в первом
-    // кадре. Ленивый импорт снимает ~1 МБ разбора с холодного старта.
-    let stop: (() => void) | undefined;
-    let cancelled = false;
-    void import('./learning_v2_audio_prefetch_coordinator_v1')
-      .then(({ startLearningV2AudioPrefetchNetworkObserverV1 }) => {
-        if (cancelled) return;
-        stop = startLearningV2AudioPrefetchNetworkObserverV1();
-      })
-      .catch((error) => {
-        // Немой catch запрещён: без наблюдателя озвучка молча не догружается
-        // после возврата сети — это ровно тот класс бага, что искали месяцами.
-        DebugLogger.error(
-          'learning_v2:audio_prefetch_observer_lazy_import',
-          error instanceof Error ? error : new Error(String(error)),
-          'warning',
-        );
-      });
-    return () => {
-      cancelled = true;
-      stop?.();
-    };
-  }, []);
-  useEffect(() => {
-    void registerLearningV2AudioPrefetchBackgroundTaskV1().catch(() => {});
+    void unregisterLearningV2AudioPrefetchBackgroundTaskV1().catch((error: unknown) => {
+      DebugLogger.error(
+        'learning_v2:audio_prefetch_background_unregister',
+        error instanceof Error ? error : new Error(String(error)),
+        'warning',
+      );
+    });
   }, []);
   useEffect(() => {
     if (!ready) return undefined;

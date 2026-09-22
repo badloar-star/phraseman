@@ -42,8 +42,16 @@ assert.doesNotMatch(
   /isLearningV2SessionAudioPublishedV1/,
   "audio publication must not gate a session tap",
 );
-assert.match(rootLayout, /startLearningV2AudioPrefetchNetworkObserverV1/);
-assert.match(rootLayout, /registerLearningV2AudioPrefetchBackgroundTaskV1/);
+// зачем (владелец 2026-09-22, «всё тормозит с момента входа»): прогрев озвучки
+// при старте был причиной — 8 сессий + массовая закачка всех уроков с SHA-256
+// каждого файла в JS-потоке, плюс фоновая задача каждые 15 минут в том же
+// процессе. Корень обязан НЕ запускать прогрев и НЕ регистрировать задачу;
+// ранее зарегистрированную у людей задачу он снимает один раз.
+assert.doesNotMatch(rootLayout, /startLearningV2AudioPrefetchNetworkObserverV1\(/,
+  "root layout must not start the audio prefetch at app launch");
+assert.doesNotMatch(rootLayout, /(?<!un)registerLearningV2AudioPrefetchBackgroundTaskV1\(/,
+  "root layout must not register the background prefetch task");
+assert.match(rootLayout, /unregisterLearningV2AudioPrefetchBackgroundTaskV1\(/);
 assert.match(appConfig, /expo-background-task/);
 assert.equal(packageJson.dependencies?.["expo-background-task"], "~1.0.10");
 assert.equal(packageJson.dependencies?.["expo-task-manager"], "~14.0.9");

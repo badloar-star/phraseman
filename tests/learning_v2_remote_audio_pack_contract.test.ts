@@ -139,7 +139,11 @@ assert.match(audioPrefetchCoordinator, /prepareLearningV2SessionAudioPackV1/u);
 assert.match(audioPrefetchCoordinator, /learningV2PublishedAudioLessonOrdinalsV1/u);
 assert.match(audioPrefetchCoordinator, /NetInfo\.addEventListener/u);
 assert.match(audioPrefetchCore, /for \(const coordinate of urgent\)/u);
-assert.match(audioPrefetchCore, /for \(const lessonOrdinal of lessons\)/u);
+// зачем (владелец 2026-09-22, «всё тормозит с момента входа»): массовая
+// закачка всех уроков в ядре прогрева была причиной — её цикл удалён и
+// возвращаться не должен. Сторож перевёрнут: наличие цикла — регрессия.
+assert.doesNotMatch(audioPrefetchCore, /for \(const lessonOrdinal of lessons\)/u,
+  "bulk lesson prefetch loop must stay removed from the coordinator core");
 assert.match(lessons, /isLearningV2SessionAudioPublishedV1/u);
 assert.ok(
   (lessons.match(/isLearningV2SessionAudioPublishedV1/gu)?.length ?? 0) >= 2,

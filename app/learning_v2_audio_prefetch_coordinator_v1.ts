@@ -175,17 +175,17 @@ export async function runPersistedLearningV2AudioPrefetchV1(): Promise<void> {
 
 export function startLearningV2AudioPrefetchNetworkObserverV1(): () => void {
   if (!networkUnsubscribe) {
-    networkUnsubscribe = NetInfo.addEventListener(() => {
-      // The active run observes this synchronously and yields before its next
-      // session/lesson. The latest request then restarts under fresh NetInfo.
-      queueRevision += 1;
-      if (lastKnownRequest) {
-        latestRequest = lastKnownRequest;
-        activeRunAbortController?.abort();
-        void schedule().catch(() => undefined);
-      } else {
-        void runPersistedLearningV2AudioPrefetchV1().catch(() => undefined);
-      }
+    // зачем (владелец 2026-09-22, «всё тормозит»): раньше КАЖДОЕ событие сети
+    // (а Android шлёт их часто — смена уровня сигнала, переключение сот)
+    // обрывало идущую закачку и запускало её заново с нуля, включая первое
+    // событие сразу после подписки. Теперь наблюдатель только ДОГОНЯЕТ: если
+    // сеть вернулась, а закачка не идёт — продолжает ту же очередь без сброса.
+    networkUnsubscribe = NetInfo.addEventListener((state) => {
+      if (state.isConnected !== true) return;
+      if (inFlight) return;
+      if (!lastKnownRequest) return;
+      latestRequest ??= lastKnownRequest;
+      void schedule().catch(() => undefined);
     });
   }
   return () => {

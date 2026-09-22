@@ -90,10 +90,14 @@ jest.mock('../components/modal_fx/HybridSheetShell', () => ({
       props.onDismissRequested?.();
       mockRequestDismiss();
     };
+    // зачем: настоящий шелл зовёт onDismissed ПОСЛЕ того, как нативный Modal
+    // реально исчез — именно там опрос исполняет отложенный переход. Без этого
+    // шага мок не мог бы поймать класс бага «навигация из-под живой шторки».
     mockCompleteDismiss = () => {
       if (dismissCompletedRef.current) return;
       dismissCompletedRef.current = true;
       props.onClose();
+      props.onDismissed?.();
     };
     Object.assign(mockShellProps, props);
     if (!visible) return null;
@@ -181,7 +185,7 @@ jest.mock('../app/shards_system', () => ({ SHARD_REWARDS: { survey_completed: 1 
 jest.mock('../app/store_review', () => ({ openStoreReviewPage: () => mockOpenStoreReviewPage() }));
 jest.mock('expo-router', () => ({ useRouter: () => ({ push: mockRouterPush }) }));
 
-import SurveySheetModal from '../components/survey/SurveySheetModal';
+import SurveySheetModal, { __resetPendingSurveyFollowUpForTests } from '../components/survey/SurveySheetModal';
 import SurveyQuestionTransition from '../components/survey/SurveyQuestionTransition';
 
 const ROOT = path.resolve(__dirname, '..');
@@ -250,6 +254,7 @@ describe('SurveySheetModal', () => {
     mockFindNodeHandle.mockClear();
     mockUseSurveyFlowController.mockClear();
     mockCompleteDismiss = null;
+    __resetPendingSurveyFollowUpForTests();
     Object.keys(mockShellProps).forEach((key) => delete mockShellProps[key]);
     mockUseSurveyFlowController.mockReturnValue(editingFlow());
   });
@@ -434,12 +439,16 @@ describe('SurveySheetModal', () => {
     expect(screen.getAllByText('Звёзды в Store уже сошлись?')).toHaveLength(1);
   });
 
-  test('opens the native Store immediately when its answer is selected', async () => {
+  // зачем (владелец, 2026-09-22): выбор варианта больше НИКУДА не уводит.
+  // Раньше стор открывался прямо на тапе по варианту, а кнопка перехода стояла
+  // под вариантом и дёргала router.push из-под живой нативной шторки — экран
+  // менялся невидимо, тап выглядел мёртвым.
+  test('selecting an answer neither opens the Store nor shows an inline CTA', async () => {
     const currentQuestion = {
       ...launch.survey.questions[0],
       options: [
         { id: 'rate_now', label: 'Сейчас поставлю', action: { kind: 'store_review' as const, cta: 'Открыть Store' } },
-        { id: 'later', label: 'Позже' },
+        { id: 'ideas', label: 'Только узнал', action: { kind: 'app_route' as const, route: '/ideas_catalog' as const, cta: 'Открыть Идеи' } },
       ],
     };
     const flow = editingFlow({ currentQuestion, answers: {}, currentAnswered: false });
@@ -449,28 +458,91 @@ describe('SurveySheetModal', () => {
     await fireEvent.press(screen.getByRole('radio', { name: 'Сейчас поставлю' }));
 
     expect(flow.pickOption).toHaveBeenCalledWith('q1', 'rate_now');
-    expect(mockOpenStoreReviewPage).toHaveBeenCalledTimes(1);
+    expect(mockOpenStoreReviewPage).not.toHaveBeenCalled();
+    expect(mockRouterPush).not.toHaveBeenCalled();
+    expect(screen.queryByTestId('survey-option-action-cta')).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Открыть Идеи' })).toBeNull();
   });
 
-  test('shows an explicit CTA for an allowlisted app route after selection', async () => {
-    const currentQuestion = {
-      ...launch.survey.questions[0],
-      options: [
+  // Ядро правки владельца: кнопки живут на финале и КАЖДАЯ реально работает.
+  test('lists every chosen action on the reward screen and navigates only after the sheet is gone', async () => {
+    const questions = [
+      { id: 'q1', type: 'single_choice' as const, text: 'Что помогает учиться?', options: [
         { id: 'ideas', label: 'Только узнал', action: { kind: 'app_route' as const, route: '/ideas_catalog' as const, cta: 'Открыть Идеи' } },
-        { id: 'later', label: 'Позже' },
-      ],
-    };
-    const flow = editingFlow({
-      currentQuestion,
-      answers: { q1: { optionId: 'ideas' } },
-      currentAnswered: true,
-    });
-    mockUseSurveyFlowController.mockReturnValue(flow);
-    const screen = await render(<SurveySheetModal visible launch={launch} onClose={jest.fn()} />);
+      ] },
+      { id: 'q2', type: 'single_choice' as const, text: 'Видео смотришь?', options: [
+        { id: 'video', label: 'Хочу посмотреть', action: { kind: 'app_route' as const, route: '/lingman_videos' as const, cta: 'Открыть видео' } },
+      ] },
+    ];
+    const reconciledLaunch = { ...launch, survey: { ...launch.survey, questions } };
+    mockUseSurveyFlowController.mockReturnValue(editingFlow({
+      currentQuestion: questions[1],
+      stepIndex: 1,
+      isLastStep: true,
+      answers: { q1: { optionId: 'ideas' }, q2: { optionId: 'video' } },
+      submission: { phase: 'reconciled', attemptId: 1, expectedReward: 1, confirmedReward: 1, messageKey: null },
+    }));
+    const onClose = jest.fn();
+    const screen = await render(<SurveySheetModal visible launch={reconciledLaunch} onClose={onClose} />);
 
-    await fireEvent.press(screen.getByRole('button', { name: 'Открыть Идеи' }));
+    expect(screen.getByRole('button', { name: 'Открыть Идеи' })).toBeTruthy();
+    const videoCta = screen.getByRole('button', { name: 'Открыть видео' });
 
-    expect(mockRouterPush).toHaveBeenCalledWith('/ideas_catalog');
+    await fireEvent.press(videoCta);
+
+    // Пока шторка жива — НИ ОДНОГО перехода: именно так тап и выглядел мёртвым.
+    expect(mockRouterPush).not.toHaveBeenCalled();
+    expect(onClose).toHaveBeenCalledTimes(1);
+
+    mockCompleteDismiss?.();
+    expect(mockRouterPush).toHaveBeenCalledWith('/lingman_videos');
+  });
+
+  // Главная рисует опрос как `{launch ? <SurveySheetModal/> : null}` и её
+  // onClose обнуляет launch — модалка исчезает в том же кадре, onDismissed уже
+  // не придёт. Обещание обязано пережить это, иначе кнопка снова «не работает».
+  test('still navigates when the parent unmounts the sheet instead of dismissing it', async () => {
+    const questions = [
+      { id: 'q1', type: 'single_choice' as const, text: 'Видео смотришь?', options: [
+        { id: 'video', label: 'Хочу посмотреть', action: { kind: 'app_route' as const, route: '/lingman_videos' as const, cta: 'Открыть видео' } },
+      ] },
+    ];
+    const videoLaunch = { ...launch, survey: { ...launch.survey, questions } };
+    mockUseSurveyFlowController.mockReturnValue(editingFlow({
+      currentQuestion: questions[0],
+      isLastStep: true,
+      answers: { q1: { optionId: 'video' } },
+      submission: { phase: 'reconciled', attemptId: 1, expectedReward: 1, confirmedReward: 1, messageKey: null },
+    }));
+    const screen = await render(<SurveySheetModal visible launch={videoLaunch} onClose={jest.fn()} />);
+
+    await fireEvent.press(screen.getByRole('button', { name: 'Открыть видео' }));
+    expect(mockRouterPush).not.toHaveBeenCalled();
+
+    screen.unmount();
+    expect(mockRouterPush).toHaveBeenCalledWith('/lingman_videos');
+  });
+
+  test('defers the Store page to the reward screen and opens it after dismissal', async () => {
+    const questions = [
+      { id: 'q1', type: 'single_choice' as const, text: 'Оценишь?', options: [
+        { id: 'rate', label: 'Сейчас поставлю', action: { kind: 'store_review' as const, cta: 'Открыть Store' } },
+      ] },
+    ];
+    const rateLaunch = { ...launch, survey: { ...launch.survey, questions } };
+    mockUseSurveyFlowController.mockReturnValue(editingFlow({
+      currentQuestion: questions[0],
+      isLastStep: true,
+      answers: { q1: { optionId: 'rate' } },
+      submission: { phase: 'reconciled', attemptId: 1, expectedReward: 1, confirmedReward: 1, messageKey: null },
+    }));
+    const screen = await render(<SurveySheetModal visible launch={rateLaunch} onClose={jest.fn()} />);
+
+    await fireEvent.press(screen.getByRole('button', { name: 'Открыть Store' }));
+    expect(mockOpenStoreReviewPage).not.toHaveBeenCalled();
+
+    mockCompleteDismiss?.();
+    expect(mockOpenStoreReviewPage).toHaveBeenCalledTimes(1);
   });
 
   test('keeps the selected purple tone and radio readable on a light theme', async () => {

@@ -12,6 +12,7 @@ import Reanimated, {
 
 import { oskolokImageForPackShards } from '../../app/oskolok';
 import { SHARD_REWARDS } from '../../app/shards_system';
+import type { SurveyFollowUp } from '../../app/survey_followups';
 import { LUM } from '../../constants/motionHybrid';
 import { isLightThemeMode } from '../../constants/theme';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
@@ -43,6 +44,13 @@ export interface SurveyRewardPanelProps {
   onRetry: () => void;
   retryDisabled?: boolean;
   onBack?: () => void;
+  /**
+   * зачем (владелец, 2026-09-22): действия выбранных вариантов («открыть видео»,
+   * «посмотреть темы», «оценить в сторе») живут ТОЛЬКО здесь — после отправки.
+   * Во время опроса их нет, чтобы человек не улетал с полпути в другой экран.
+   */
+  followUps?: readonly SurveyFollowUp[];
+  onFollowUp?: (followUp: SurveyFollowUp) => void;
 }
 
 const ACTION_LABELS = {
@@ -80,6 +88,8 @@ export default function SurveyRewardPanel({
   onRetry,
   retryDisabled = false,
   onBack,
+  followUps,
+  onFollowUp,
 }: SurveyRewardPanelProps) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
@@ -165,9 +175,42 @@ export default function SurveyRewardPanel({
               )}
             </>
           ) : (
-            <PressableHybrid testID="survey-done" accessibilityLabel={labels.done} onPress={onDone} withHaptic={false} variant="primary" style={[styles.action, { backgroundColor: t.accent }]} contentStyle={styles.actionContent}>
-              <FlowText testID="survey-done-label" provenance="authored" style={[styles.actionLabel, { color: t.correctText, fontSize: f.body }]}>{labels.done}</FlowText>
-            </PressableHybrid>
+            <>
+              {/* зачем (владелец, 2026-09-22): обещанные переходы идут ПЕРЕД
+                  «Готово» — сначала то, ради чего человек выбрал вариант,
+                  потом выход. Тоном, без обводок: действие читается акцентом,
+                  «Готово» остаётся единственной залитой кнопкой. */}
+              {followUps?.map((followUp) => (
+                <PressableHybrid
+                  key={followUp.key}
+                  testID={`survey-followup-${followUp.key}`}
+                  accessibilityRole="button"
+                  accessibilityLabel={followUp.cta}
+                  onPress={() => onFollowUp?.(followUp)}
+                  withHaptic={false}
+                  variant="secondary"
+                  style={[styles.action, { backgroundColor: t.accentBg }]}
+                  contentStyle={styles.actionContent}
+                >
+                  <FlowText
+                    testID={`survey-followup-${followUp.key}-label`}
+                    provenance="authored"
+                    style={[styles.actionLabel, { color: t.accent, fontSize: f.body }]}
+                  >
+                    {followUp.cta}
+                  </FlowText>
+                  <Ionicons
+                    name={followUp.kind === 'store_review' ? 'star' : 'arrow-forward'}
+                    size={20}
+                    color={t.accent}
+                    accessibilityElementsHidden
+                  />
+                </PressableHybrid>
+              ))}
+              <PressableHybrid testID="survey-done" accessibilityLabel={labels.done} onPress={onDone} withHaptic={false} variant="primary" style={[styles.action, { backgroundColor: t.accent }]} contentStyle={styles.actionContent}>
+                <FlowText testID="survey-done-label" provenance="authored" style={[styles.actionLabel, { color: t.correctText, fontSize: f.body }]}>{labels.done}</FlowText>
+              </PressableHybrid>
+            </>
           )}
         </View>
       </Reanimated.View>

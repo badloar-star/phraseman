@@ -3690,18 +3690,37 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         '/(tabs)/settings': 3,
         settings: 3,
     };
+    // зачем (владелец 2026-09-22: «нажал 25 раз, даже анимации нет при
+    // нажатии»): отсутствие анимации означает, что JS-поток занят и не успевает
+    // отрисовать нажатое состояние. Поэтому переход обязан уходить ПЕРВЫМ, а
+    // всё необязательное — после него, уже не мешая кадру.
+    //
+    // Порядок был обратный: вибрация и две записи аналитики выполнялись ДО
+    // router.push, то есть перед самым узким местом. Сам hooks/use-haptics.ts
+    // в комментарии прямо предписывает звать вибрацию из onPressIn, а не
+    // внутри onPress вместе с действием — здесь делалось именно запрещённое.
     const go = (path: string) => {
-        hapticTap();
         const tabIdx = TAB_IDX[path];
         if (tabIdx !== undefined) {
             goToTab(tabIdx);
+            void hapticTap();
             return;
         }
         const screenName = path.replace(/^\//, '').split('?')[0];
-        logFeatureOpened(screenName);
-        trackFeatureOpened(screenName).catch(() => { });
+        // Навигация — первым делом: человек ждёт именно её.
         perfNavStart(screenName);
         router.push(path as any);
+        // Вибрация и учёт открытия никого не держат и едут следом.
+        void hapticTap();
+        logFeatureOpened(screenName);
+        trackFeatureOpened(screenName).catch((error: unknown) => {
+            // Немой catch запрещён: молча пропавший счётчик открытий читается
+            // как «аналитика врёт», и причину потом не найти.
+            if (__DEV__) {
+                console.warn('[HOME-NAV] track_feature_failed', // guard-ok
+                    error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+            }
+        });
     };
     const markerForWeekDay = (index: number): StreakWeekDayMarkerKind | null => weekMarkers[index] ?? null;
     const isWeekDayMarked = (index: number): boolean => weekDone[index] || markerForWeekDay(index) !== null;

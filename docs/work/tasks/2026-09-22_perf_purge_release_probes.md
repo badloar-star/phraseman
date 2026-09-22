@@ -1,6 +1,6 @@
 # Вычистить замеры производительности из клиента
 
-Governance-ID: TG-42BB77105699
+Governance-ID: TG-4A355F4DD335
 
 ## Outcome
 

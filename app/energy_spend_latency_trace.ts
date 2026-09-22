@@ -26,8 +26,12 @@
  * logcat / Console.app (release с флагом).
  */
 
+// зачем (владелец 2026-09-22, «всё тормозит и в релизе и в деве»): здесь стояло
+// `__DEV__ ||` — тот же паттерн, что уже сняли в tap_latency_trace. В деве
+// трассировка работала на КАЖДОЕ списание энергии, то есть на старт каждого
+// урока, держа в памяти карту цепочек и кольцо сэмплов. Теперь только по флагу.
 export const ENERGY_SPEND_TRACE_ENABLED: boolean =
-  __DEV__ || process.env.EXPO_PUBLIC_ENERGY_SPEND_TRACE === '1';
+  process.env.EXPO_PUBLIC_ENERGY_SPEND_TRACE === '1';
 
 const LOG_PREFIX = '[ENERGY-SPEND-LAT]';
 /** Выше этого порога задержка уже заметна глазу — помечаем строку как медленную. */

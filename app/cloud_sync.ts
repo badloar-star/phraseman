@@ -982,7 +982,13 @@ const DEFAULT_STABLE_AUTH_LINK_CACHE_TTL_MS = 7 * 24 * 60 * 60_000;
  * когда владелец включит флаг, чтобы снять факты с реального устройства.
  * Снять вместе с логом [AUTH-LOOP] после починки.
  */
-export const AUTH_LOOP_TRACE_ENABLED = true;
+// зачем (владелец 2026-09-22, «удалить все замеры и логи»): здесь стояло
+// захардкоженное `true` вопреки комментарию выше, обещавшему флаг. Из-за этого
+// трассировка работала В РЕЛИЗЕ на каждом вызове authEnsureStableLink — а её и
+// завели потому, что вызовов «лавина». Каждый вызов собирал стек через
+// new Error().stack (дорогая операция) и склеивал JSON. Теперь молчит везде,
+// пока владелец не включит флаг явно.
+export const AUTH_LOOP_TRACE_ENABLED = process.env.EXPO_PUBLIC_AUTH_LOOP_TRACE === '1';
 
 /**
  * Счётчик вызовов за сессию приложения — чтобы лавина была видна с первого
@@ -2424,7 +2430,10 @@ export async function ensureStableAuthLinkForStableIdDetailed(
   // зачем: в тестовой среде глобальной __DEV__ нет, и голая ссылка роняла два
   // контрактных теста синхронизации с ReferenceError. Тот же приём защиты
   // уже применён выше в этом файле. Поведение в приложении не меняется.
-  if ((typeof __DEV__ !== 'undefined' && __DEV__) || AUTH_LOOP_TRACE_ENABLED) {
+  // зачем (владелец 2026-09-22, «всё тормозит И В ДЕВЕ»): здесь стояло
+  // `__DEV__ ||`, из-за чего сбор стека и склейка JSON шли в дев-сборке на
+  // КАЖДЫЙ вызов. Теперь трассировка только по явному флагу.
+  if (AUTH_LOOP_TRACE_ENABLED) {
     _authLinkCallNo += 1;
     const willCallNetwork = options.requireAuthoritative === true || hasFreshMetadata || !cacheHit;
     const caller = new Error().stack?.split('\n').slice(2, 5).join(' <- ').replace(/\s+/g, ' ') ?? 'unknown';

@@ -183,10 +183,21 @@ export function resolveLessonAccess(params: {
   // 2 и 3 возвращали 'available' выше проверки прогресса и открывались сами.
   // Безусловен только урок 1; остальное решает замок ниже.
   if (isAlwaysOpenLesson(lessonId) || isUnconditionallyOpenLesson(lessonId)) return 'available';
-  if (devMode || noLimits) return 'available';
+  // зачем (владелец 22.09, «урок 2 — пустой экран и сразу кидает назад, модала
+  // нет»): здесь стояло `if (devMode || noLimits) return 'available'`, а devMode —
+  // это DEV_CONTENT_UNLOCK, БЕЗУСЛОВНАЯ константа любой дев-сборки, а не флаг с
+  // диска. Список считал открытыми все 32 урока и пускал тап на /lesson_menu, а
+  // тот замок считает ИНАЧЕ (lesson_menu.tsx:547 — только isTesterNoLimitsActive,
+  // без DEV_CONTENT_UNLOCK), честно видел замок и делал safeRouterBack. Отсюда
+  // пустой экран вместо модала: решение о навигации принимала одна логика, а
+  // правду знала другая (8 записей [LESSON-LOCK] menu:bounce_back в логе).
+  // Теперь devMode снимает только ПРЕМИУМ-требование (дев-сборке не нужна
+  // подписка), а замок по прогрессу остаётся — ровно как в lesson_menu, поэтому
+  // список сам показывает gateModal и никуда не ведёт.
+  if (noLimits) return 'available';
   // Exact pearl grants are permanent entitlements and outrank subscription.
   if (purchased) return 'available';
-  if (requiresPremiumForLesson(lessonId) && !isPremium) return 'premium_required';
+  if (requiresPremiumForLesson(lessonId) && !isPremium && !devMode) return 'premium_required';
   return unlocked ? 'available' : 'progress_required';
 }
 

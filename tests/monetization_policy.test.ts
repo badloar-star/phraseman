@@ -115,9 +115,36 @@ describe('monetization_policy: первые три урока free, осталь
     expect(withOldProgress[28]).toBe(false);
   });
 
-  it('dev/no-limits остаются доступом для QA', () => {
+  it('no-limits остаётся доступом для QA', () => {
+    // tester_no_limits — ЯВНО включённый флаг с диска, его читает и lesson_menu
+    // (isTesterNoLimitsActive). Обе стороны считают одинаково — доступ честный.
     expect(resolveLessonAccess({ lessonId: 32, unlocked: false, isPremium: false, noLimits: true })).toBe('available');
-    expect(resolveLessonAccess({ lessonId: 32, unlocked: false, isPremium: false, devMode: true })).toBe('available');
+  });
+
+  // зачем (владелец 22.09, «урок 2 — пустой экран и сразу кидает назад»):
+  // этот тест раньше ЗАКРЕПЛЯЛ баг — он требовал, чтобы devMode открывал любой
+  // урок. Но devMode это DEV_CONTENT_UNLOCK, безусловная константа дев-сборки,
+  // а lesson_menu.tsx:547 её не читает и урок честно блокировал. Список пускал
+  // тап, lesson_menu выбрасывал назад ([LESSON-LOCK] menu:bounce_back), модала
+  // никто не показывал. Инвариант: если здесь 'available', lesson_menu ОБЯЗАН
+  // открыться. Сторож ломать нельзя — он держит две логики в согласии.
+  it('devMode НЕ открывает урок, закрытый по прогрессу (иначе тап уходит в пустой экран)', () => {
+    expect(
+      resolveLessonAccess({ lessonId: 32, unlocked: false, isPremium: false, devMode: true }),
+    ).toBe('progress_required');
+    // Урок 2 из жалобы владельца: закрыт прогрессом → список обязан показать модал.
+    expect(
+      resolveLessonAccess({ lessonId: 2, unlocked: false, isPremium: false, devMode: true }),
+    ).toBe('progress_required');
+    // Пройденный по прогрессу урок в дев-сборке открывается без подписки:
+    // devMode снимает премиум-требование, но не замок прогресса.
+    expect(
+      resolveLessonAccess({ lessonId: 32, unlocked: true, isPremium: false, devMode: true }),
+    ).toBe('available');
+    // Без devMode тот же урок честно уходит на пейвол.
+    expect(
+      resolveLessonAccess({ lessonId: 32, unlocked: true, isPremium: false }),
+    ).toBe('premium_required');
   });
 
   it('legacy-потолок больше не отменяет Plus-пейвол', () => {

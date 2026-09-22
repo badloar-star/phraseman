@@ -9,21 +9,17 @@
 // данные остаются на месте, и юзеру предлагается явный «Выйти без сохранения»
 // (аварийная копия пишется внутри signOutAndWipeForAccountSwitch).
 // ════════════════════════════════════════════════════════════════════════════
-import React, { useEffect, useRef, useCallback } from 'react';
-import { Alert, Modal, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { Modal, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../ThemeContext';
 import { useLang } from '../LangContext';
 import { triLang } from '../../constants/i18n';
 import { signOutAndWipeForAccountSwitch } from '../../app/auth_provider';
-import { enqueueThemedBlockingInfoAlert } from '../../app/themed_blocking_alert_queue';
 import { hapticTap as doHaptic } from '../../hooks/use-haptics';
 import { DebugLogger } from '../../app/debug-logger';
 
-export type LogoutStage = 'idle' | 'confirm' | 'wiping';
-
-/** Зазор на докрытие нативной модалки перед показом следующей (см. showInfoAlert). */
-const LOGOUT_MODAL_DISMISS_SETTLE_MS = 360;
+export type LogoutStage = 'idle' | 'confirm' | 'wiping' | 'failed';
 
 interface AccountLogoutFlowProps {
   stage: LogoutStage;
@@ -40,18 +36,20 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
     vi: string, id: string, tr: string, pl: string,
   ) => triLang(lang, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl });
 
-  // зачем: тот же класс бага, что чинили в удалении аккаунта (present-during-dismiss).
-  // ThemedBlockingAlertHost — нативный <Modal>. Если поставить алерт в очередь в том же
-  // тике, в котором onStageChange('idle') закрывает модалку этого флоу, на iOS present
-  // накладывается на идущий dismiss: стек презентаций ломается, алерт не виден, а экран
-  // перестаёт принимать тапы. Ждём кадр докрытия — как NATIVE_MODAL_HANDOFF_GAP_MS
-  // в OverlayArbiter (сюда он не достаёт: этот флоу живёт мимо арбитра).
-  const showInfoAlert = useCallback((title: string, message: string) => {
-    setTimeout(
-      () => { void enqueueThemedBlockingInfoAlert(title, message, 'OK'); },
-      LOGOUT_MODAL_DISMISS_SETTLE_MS,
-    );
-  }, []);
+  // зачем (владелец, 2026-09-22): отказ показываем ВНУТРИ уже открытого модала,
+  // а не отдельным нативным алертом поверх него.
+  //
+  // Раньше отказ делал onStageChange('idle') (закрывает этот <Modal>) и через
+  // 360 мс презентовал ThemedBlockingAlertHost — второй нативный <Modal>. Это
+  // ровно тот present-during-dismiss, от которого на iOS ломается стек
+  // презентаций: окно не появлялось, а экран настроек намертво переставал
+  // принимать тапы и скролл. Владелец видел это как «выход не происходит, а
+  // если закрыть раздел — всё зависает». Лог с телефона:
+  //   reason=backup_failed detail=account_switch_backup_other_owner_pending
+  //   context=AccountLogoutFlow:wipe_failed
+  // Зазор в 360 мс проблему не решал — он лечил симптом, а не второй present.
+  // Теперь нативный модал ОДИН на весь флоу, меняется только его содержимое.
+  const [failureText, setFailureText] = useState<string | null>(null);
 
   // зачем (владелец, 2026-08-31): экран ставит стадию 'wiping' сразу по тапу,
   // без окна подтверждения — здесь ловим её и запускаем выход один раз.
@@ -74,7 +72,16 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
     // signOutAndWipeForAccountSwitch, поэтому прогресс не теряется и
     // восстановится при следующем входе в этот аккаунт.
     onStageChange('wiping');
+    setFailureText(null);
     const res = await signOutAndWipeForAccountSwitch();
+    // guard-ok: этот отказ пришёл с БОЕВОГО телефона (Telegram-алерт), под
+    // __DEV__ его бы не было видно вообще — а именно его невидимость и стоила
+    // владельцу кругов работы. Одна строка на нажатие «Выйти», не в кадре.
+    console.log('[ACC-MUT] ui:logout_attempt_1', JSON.stringify({
+      ok: res.ok,
+      reason: res.ok ? null : res.reason,
+      detail: !res.ok && 'detail' in res ? String(res.detail ?? '') : null,
+    }));
     if (res.ok) {
       onStageChange('idle');
       onSignedOut({ synced: res.synced });
@@ -86,8 +93,14 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
       allowWipeWithoutSync: true,
       allowPendingShardSpendDiscard: true,
     });
-    onStageChange('idle');
+    // guard-ok: см. причину выше — отказ виден только на боевом телефоне.
+    console.log('[ACC-MUT] ui:logout_attempt_2_forced', JSON.stringify({
+      ok: forced.ok,
+      reason: forced.ok ? null : forced.reason,
+      detail: !forced.ok && 'detail' in forced ? String(forced.detail ?? '') : null,
+    }));
     if (forced.ok) {
+      onStageChange('idle');
       onSignedOut({ synced: forced.synced });
       return;
     }
@@ -98,20 +111,23 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
       new Error(`reason=${forced.reason ?? 'unknown'} detail=${'detail' in forced ? String(forced.detail ?? '') : ''}`),
       'critical',
     );
-    showInfoAlert(
-      L('Не вышло выйти', 'Не вдалося вийти', "Couldn't sign out", 'No se pudo salir', 'Não foi possível sair', 'Không thể đăng xuất', 'Tidak bisa keluar', 'Çıkış yapılamadı', 'Nie udało się wylogować'),
-      L(
-        'Данные на телефоне не удалось очистить, поэтому выход отменён. Перезапусти приложение и попробуй снова.',
-        'Дані на телефоні не вдалося очистити, тому вихід скасовано. Перезапусти застосунок і спробуй знову.',
-        "Local data couldn't be cleared, so the sign-out was cancelled. Restart the app and try again.",
-        'No se pudieron borrar los datos locales, así que se canceló la salida. Reinicia la aplicación e inténtalo de nuevo.',
-        'Não foi possível limpar os dados locais, então a saída foi cancelada. Reinicie o app e tente novamente.',
-        'Không xóa được dữ liệu trên máy nên đã hủy đăng xuất. Hãy khởi động lại ứng dụng và thử lại.',
-        'Data lokal tidak bisa dibersihkan, jadi keluar dibatalkan. Mulai ulang aplikasi lalu coba lagi.',
-        'Yerel veriler temizlenemedi, bu yüzden çıkış iptal edildi. Uygulamayı yeniden başlatıp tekrar dene.',
-        'Nie udało się wyczyścić danych lokalnych, więc wylogowanie anulowano. Uruchom aplikację ponownie i spróbuj jeszcze raz.',
-      ),
-    );
+    // зачем (владелец, 2026-09-22): модал НЕ закрываем. Раньше здесь стоял
+    // onStageChange('idle') ВЫШЕ этой проверки — он закрывал окно даже при
+    // отказе, а сообщение пыталось презентоваться отдельным нативным модалом
+    // поверх закрывающегося. Отсюда «ничего не происходит, а потом всё висит».
+    // Теперь сообщение живёт в том же окне: показываем причину и даём выход.
+    setFailureText(L(
+      'Не удалось выйти. Перезапусти приложение и попробуй снова.',
+      'Не вдалося вийти. Перезапусти застосунок і спробуй знову.',
+      "Couldn't sign out. Restart the app and try again.",
+      'No se pudo salir. Reinicia la aplicación e inténtalo de nuevo.',
+      'Não foi possível sair. Reinicie o app e tente novamente.',
+      'Không thể đăng xuất. Hãy khởi động lại ứng dụng và thử lại.',
+      'Tidak bisa keluar. Mulai ulang aplikasi lalu coba lagi.',
+      'Çıkış yapılamadı. Uygulamayı yeniden başlatıp tekrar dene.',
+      'Nie udało się wylogować. Uruchom aplikację ponownie i spróbuj jeszcze raz.',
+    ));
+    onStageChange('failed');
   };
 
   return (
@@ -124,12 +140,47 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
           стадия меняет только его СОДЕРЖИМОЕ — нативного present/dismiss между стадиями
           больше нет. */}
       <Modal
-        visible={stage === 'confirm' || stage === 'wiping'}
+        visible={stage === 'confirm' || stage === 'wiping' || stage === 'failed'}
         transparent
         animationType="fade"
-        onRequestClose={() => { if (stage === 'confirm') onStageChange('idle'); }}
+        onRequestClose={() => {
+          // Из отказа выпускаем по системному жесту — тупика быть не должно.
+          if (stage === 'confirm' || stage === 'failed') onStageChange('idle');
+        }}
       >
-        {stage === 'wiping' ? (
+        {stage === 'failed' ? (
+          <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 32 }}>
+            <View
+              style={{
+                width: '100%',
+                maxWidth: 300,
+                backgroundColor: t.bgCard,
+                borderRadius: 16,
+                padding: 24,
+                alignItems: 'center',
+              }}
+            >
+              <Ionicons name="alert-circle" size={28} color={t.wrong} />
+              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginTop: 14, textAlign: 'center' }}>
+                {L('Не удалось выйти', 'Не вдалося вийти', "Couldn't sign out", 'No se pudo salir', 'Não foi possível sair', 'Không thể đăng xuất', 'Tidak bisa keluar', 'Çıkış yapılamadı', 'Nie udało się wylogować')}
+              </Text>
+              <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: 20, marginTop: 8, textAlign: 'center' }}>
+                {failureText ?? ''}
+              </Text>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                accessibilityRole="button"
+                testID="account-logout-failed-close"
+                onPress={() => { doHaptic(); onStageChange('idle'); }}
+                style={{ marginTop: 18, paddingHorizontal: 16, paddingVertical: 10 }}
+              >
+                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
+                  {L('Понятно', 'Зрозуміло', 'OK', 'Entendido', 'Entendi', 'Đã hiểu', 'Mengerti', 'Tamam', 'Rozumiem')}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        ) : stage === 'wiping' ? (
           <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 32 }}>
             <View
               style={{

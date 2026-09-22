@@ -4876,9 +4876,50 @@ export async function forceSyncToCloud(): Promise<boolean> {
 // (язык, тема, размер шрифта, haptics) — это per-device preferences, а не per-account.
 //
 // ВАЖНО: stable_id не трогаем тут — это делает clearStableId() в stable_id.ts.
+/**
+ * Отложить чужую аварийную копию в сторону, чтобы она НЕ блокировала выход.
+ *
+ * зачем (владелец, 2026-09-22): выход из аккаунта был заблокирован НАВСЕГДА с
+ * `account_switch_backup_other_owner_pending` — в хранилище лежала аварийная
+ * копия другого аккаунта, а забрать её может только её же владелец при входе
+ * (`restoreAccountSwitchEmergencyBackupIfSafe` → `different_account`), либо
+ * она протухает через 30 дней. Пока её нет — человек заперт в аккаунте.
+ *
+ * Копию НЕ удаляем: она может быть единственным следом чужого офлайн-прогресса.
+ * Переименовываем ТОЛЬКО корневой ключ; страницы с данными не трогаем вообще,
+ * поэтому содержимое остаётся целым и восстановимо вручную поддержкой.
+ */
+const ACCOUNT_SWITCH_BACKUP_SHELVED_PREFIX = 'account_switch_emergency_backup_shelved_v1:';
+
+async function shelveOtherOwnerAccountSwitchBackup(
+  previousBackupRaw: string,
+  otherOwnerStableId: string,
+): Promise<void> {
+  const shelvedKey = `${ACCOUNT_SWITCH_BACKUP_SHELVED_PREFIX}${otherOwnerStableId}:${Date.now().toString(36)}`;
+  // Сначала пишем копию под новым именем и только потом снимаем старый корень —
+  // при обрыве между операциями остаются ОБА, а не ноль.
+  await AsyncStorage.setItem(shelvedKey, previousBackupRaw);
+  const verify = await AsyncStorage.getItem(shelvedKey);
+  if (verify !== previousBackupRaw) {
+    throw new Error('account_switch_backup_shelve_verification_failed');
+  }
+  await AsyncStorage.removeItem(ACCOUNT_SWITCH_EMERGENCY_BACKUP_KEY);
+  console.warn(
+    `[ACC-MUT] backup:shelved_other_owner owner=${otherOwnerStableId} key=${shelvedKey} bytes=${previousBackupRaw.length}`,
+  );
+}
+
 export async function saveAccountSwitchEmergencyBackup(
   reason: string,
   expectedStableId?: string,
+  options?: {
+    /**
+     * Разрешить отложить чужую копию в сторону. Передаётся ТОЛЬКО с
+     * форсированного выхода: обычный путь обязан по-прежнему отказывать,
+     * чтобы чужая копия не отодвигалась молча при штатной смене аккаунта.
+     */
+    allowShelveOtherOwnerBackup?: boolean;
+  },
 ): Promise<boolean> {
   if (await isAccountDeleteIdentityQuarantined()) return false;
   const stableId = await getCanonicalUserId();
@@ -4899,8 +4940,18 @@ export async function saveAccountSwitchEmergencyBackup(
   if (previousBackupRaw !== null && previousBackupIdentity === null) {
     throw new Error('account_switch_backup_history_upgrade_required');
   }
-  if (previousBackupIdentity !== null && previousBackupIdentity.stableId !== stableId) {
-    throw new Error('account_switch_backup_other_owner_pending');
+  if (previousBackupRaw !== null && previousBackupIdentity !== null
+    && previousBackupIdentity.stableId !== stableId) {
+    // Ранний выход: копия принадлежит ДРУГОМУ аккаунту. Обычный путь отказывает
+    // (чужой прогресс важнее удобства), форсированный — откладывает её в сторону,
+    // иначе человек заперт в аккаунте до возвращения того владельца.
+    if (options?.allowShelveOtherOwnerBackup !== true) {
+      console.warn(
+        `[ACC-MUT] backup:other_owner_blocked owner=${previousBackupIdentity.stableId} current=${stableId} reason=${reason}`,
+      );
+      throw new Error('account_switch_backup_other_owner_pending');
+    }
+    await shelveOtherOwnerAccountSwitchBackup(previousBackupRaw, previousBackupIdentity.stableId);
   }
   const shardQueueKey = shardDeltaQueueStorageKey(stableId);
   const keySet = new Set([

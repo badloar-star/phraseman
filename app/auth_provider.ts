@@ -3057,6 +3057,12 @@ async function signOutAndWipeForAccountSwitchReserved(
       return { ok: false, reason: 'sync_failed' };
     }
     const discardPendingShardSpend = options?.allowPendingShardSpendDiscard === true;
+    // зачем (владелец, 2026-09-22): форсированный выход обязан пройти даже когда
+    // в хранилище лежит аварийная копия ДРУГОГО аккаунта. Иначе выход отказывал
+    // с account_switch_backup_other_owner_pending и человек был заперт в аккаунте
+    // до возвращения того владельца (или до протухания копии через 30 дней).
+    // Копия при этом не удаляется, а откладывается — см. cloud_sync.ts.
+    const backupOptions = { allowShelveOtherOwnerBackup: discardPendingShardSpend };
     if ((await hasQuarantinedShardDeltaQueue(switchOwnerStableId)) && !discardPendingShardSpend) {
       logAuthEvent('auth_signout_wipe_sync_failed_aborted', { stage: 'shard_queue_quarantined' });
       return { ok: false, reason: 'shard_queue_quarantined' };
@@ -3074,6 +3080,7 @@ async function signOutAndWipeForAccountSwitchReserved(
         const backedUp = await saveAccountSwitchEmergencyBackup(
           'pending_shard_spend_discard_before_account_switch',
           switchOwnerStableId,
+          backupOptions,
         );
         if (!backedUp) throw new Error('account_switch_backup_unavailable');
       } catch (e: any) {
@@ -3091,6 +3098,7 @@ async function signOutAndWipeForAccountSwitchReserved(
         const backedUp = await saveAccountSwitchEmergencyBackup(
           'force_sync_failed_before_account_switch',
           switchOwnerStableId,
+          backupOptions,
         );
         if (!backedUp) throw new Error('account_switch_backup_unavailable');
       } catch (e: any) {
@@ -3135,6 +3143,7 @@ async function signOutAndWipeForAccountSwitchReserved(
           backedUp = await saveAccountSwitchEmergencyBackup(
             'pending_shard_earn_before_account_switch',
             switchOwnerStableId,
+            backupOptions,
           );
         } catch (e: any) {
           transitionFailure.backupDetail = String(e?.message ?? e).slice(0, 80);
@@ -3151,6 +3160,7 @@ async function signOutAndWipeForAccountSwitchReserved(
         const backedUp = await saveAccountSwitchEmergencyBackup(
           'final_account_snapshot_before_switch',
           switchOwnerStableId,
+          backupOptions,
         );
         if (!backedUp) {
           transitionFailure.backupDetail = 'account_switch_backup_unavailable';

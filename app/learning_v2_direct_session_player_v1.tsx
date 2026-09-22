@@ -97,7 +97,7 @@ import { learningV2CourseSessionVoiceResponseV1 } from "../modules/learning-v2/r
 import { getStableId } from "./stable_id";
 import { captureAccountGeneration } from "./account_generation";
 import { captureCurrentAccountObjectiveAttempt } from "./mistake_practice_capture";
-import { safeRouterBack } from "./navigation_back";
+import { markNextNavigationAsReplace, safeRouterBack } from "./navigation_back";
 import { SPEECH_PRONUNCIATION_PASS_THRESHOLD } from "./pronunciation_scoring_client";
 import { measureLearningV2RuneFlightWithRetryV1 } from "./learning_v2_rune_flight_measure_v1";
 import {
@@ -354,6 +354,10 @@ export default function LearningV2DirectSessionPlayerV1() {
     skipIntro?: string | string[];
     runKind?: string | string[];
     sessionRunId?: string | string[];
+    // зачем: карта передаёт этот параметр (lessons.tsx, router.push), и трасса
+    // [V2-HANDOFF] его печатает, но в типе его не было — ошибка TS2339 жила в
+    // диагностике моста и мешала точечной проверке типов этого файла.
+    runtimeMode?: string | string[];
   }>();
   const previewMode = first(params.previewMode);
   const isDevUnlockedDraftPreview =
@@ -377,6 +381,11 @@ export default function LearningV2DirectSessionPlayerV1() {
   const exitLearningV2Session = useCallback(() => {
     if (sessionExitRequestedRef.current) return;
     sessionExitRequestedRef.current = true;
+    // зачем (владелец 23.09): без этой пометки трекер «назад» клал карту
+    // ПОВЕРХ записи занятия, а не вместо неё. Потом «назад» с карты возвращал
+    // на протухший адрес занятия — мост уже прочитан, гейт энергии списывал
+    // плату второй раз, человек видел «Сессия недоступна».
+    markNextNavigationAsReplace();
     router.replace(exitRoute);
   }, [exitRoute, router]);
   const initialReadyHandleRef = useRef<
@@ -883,20 +892,42 @@ export default function LearningV2DirectSessionPlayerV1() {
       }
       return;
     }
-    setLoadFailed(true);
-    setLoadFailureReason("learning_v2_session_ready_handoff_missing");
-    // Production sessions enter only with the map's fully prepared handoff.
-        // зачем: раньше причина падения выбрасывалась целиком, экран показывал
-        // только «Сессия недоступна», и понять, что сломалось — сеть, релиз или
-        // аудио — было нельзя ни владельцу, ни разработчику. Диагностику
-        // показываем только в дев-сборке: боевому пользователю имя ошибки
-        // ничего не говорит и только пугает.
+    // зачем (владелец 23.09, «сделай такое состояние НЕВОЗМОЖНЫМ»): здесь
+    // экран показывал тупик «Сессия недоступна» с кнопкой «Повторить», у
+    // которой НЕТ успешного исхода — повтор снова приводил ровно сюда.
+    // Боевой материал готовит только карта, поэтому единственный полезный
+    // ход — вернуть человека на карту, где один тап открывает занятие
+    // заново. Флаг выхода заставляет рендер нарисовать пустой кадр в цвет
+    // темы, поэтому ошибку человек не увидит.
+    //
+    // Немой уход запрещён: причина обязана пережить перезапуск, владелец
+    // ловит это на телефоне.
+    DebugLogger.error(
+      "[V2-SESSION] handoff_missing",
+      new Error(
+        JSON.stringify({
+          reason: "learning_v2_session_ready_handoff_missing",
+          action: "bounce_to_map",
+          courseSessionId: first(params.id) ?? null,
+          sessionRunId: routedSessionRunId || null,
+          lessonOrdinal,
+          sessionOrdinal,
+        }),
+      ),
+      "warning",
+    );
+    exitLearningV2Session();
   }, [
+    exitLearningV2Session,
     isAuthoringPreview,
     isDevUnlockedDraftPreview,
     lang,
+    lessonOrdinal,
     loadRevision,
     locator,
+    params.id,
+    routedSessionRunId,
+    sessionOrdinal,
   ]);
 
   const audioPreload: LearningV2CourseSessionAudioPreloadHandleV1 | null =
@@ -2438,18 +2469,25 @@ export default function LearningV2DirectSessionPlayerV1() {
             {footerBackLabel}
           </Text>
         </Pressable>
-        <Pressable
-          accessibilityRole="button"
-          onPress={() => setLoadRevision((value) => value + 1)}
-          style={({ pressed }) => [
-            styles.retry,
-            { backgroundColor: t.accent, opacity: pressed ? 0.8 : 1 },
-          ]}
-        >
-          <Text style={[styles.retryText, { color: t.correctText }]}>
-            {copy.retry}
-          </Text>
-        </Pressable>
+        {/* зачем (владелец 23.09): в боевом режиме у «Повторить» НЕ БЫЛО ни
+            одного успешного исхода — повтор снова упирался в отсутствующий
+            мост. Кнопка обещала то, чего механизм не умел. Боевой путь теперь
+            вообще не доходит сюда (уходит на карту), а здесь повтор осмыслен
+            только в авторском превью, где материал берётся из бандла. */}
+        {isAuthoringPreview ? (
+          <Pressable
+            accessibilityRole="button"
+            onPress={() => setLoadRevision((value) => value + 1)}
+            style={({ pressed }) => [
+              styles.retry,
+              { backgroundColor: t.accent, opacity: pressed ? 0.8 : 1 },
+            ]}
+          >
+            <Text style={[styles.retryText, { color: t.correctText }]}>
+              {copy.retry}
+            </Text>
+          </Pressable>
+        ) : null}
       </View>
     );
   }

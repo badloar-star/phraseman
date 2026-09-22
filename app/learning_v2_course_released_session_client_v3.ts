@@ -1405,9 +1405,16 @@ export function resolveLearningV2CourseSessionReadyMaterialV3(
 }
 
 /**
- * One-shot in-memory bridge between the course map and the native session
- * route. The map performs the expensive text/audio preparation first; the
- * route consumes the opaque handle synchronously on its first render.
+ * Мост карта→занятие в памяти процесса. Карта выполняет дорогую подготовку
+ * текста и аудио, маршрут занятия синхронно забирает непрозрачный handle на
+ * первом рендере.
+ *
+ * зачем (владелец 23.09): раньше мост был ОДНОРАЗОВЫМ — consume удалял запись
+ * при чтении. Любой повторный монтаж маршрута (переигрывание адреса трекером
+ * «назад», второй router.push, ремаунт) получал null и показывал тупик
+ * «Сессия недоступна». Теперь чтение идемпотентно в пределах процесса:
+ * запись вытесняет только лимит в stage ниже. Не возвращать удаление при
+ * чтении — это и был источник тупика.
  */
 export function stageLearningV2CourseSessionReadyHandoffV3(
   handle: LearningV2CourseSessionReadyHandleV3,
@@ -1447,14 +1454,48 @@ export function consumeLearningV2CourseSessionReadyHandoffV3(input: {
   readonly courseSessionId: string;
   readonly sessionRunId: string;
 }): LearningV2CourseSessionReadyHandleV3 | null {
+  // Немой отказ запрещён: раньше ОБА return null молчали, и трасса маршрута
+  // показывала лишь got:false — «не нашли» было не отличить от «нашли чужой».
   if (!plain(input) || !ID_RE.test(input.courseSessionId) || !ID_RE.test(input.sessionRunId)) {
+    console.warn(
+      "[V2-HANDOFF] consume:invalid_input",
+      JSON.stringify({
+        courseSessionId: String(input?.courseSessionId ?? ""),
+        sessionRunId: String(input?.sessionRunId ?? ""),
+        shapeOk: plain(input),
+      }),
+    );
     return null;
   }
   const handle = readyHandoffs.get(input.sessionRunId) ?? null;
-  if (!handle) return null;
-  readyHandoffs.delete(input.sessionRunId);
+  if (!handle) {
+    console.warn(
+      "[V2-HANDOFF] consume:not_staged",
+      JSON.stringify({
+        courseSessionId: input.courseSessionId,
+        sessionRunId: input.sessionRunId,
+        stagedKeys: [...readyHandoffs.keys()],
+      }),
+    );
+    return null;
+  }
+  // зачем: сравниваем ДО любой мутации. Прежде запись сначала удалялась, а
+  // потом сверялась — при расхождении id готовый материал терялся навсегда.
   const summary = getLearningV2CourseSessionReadySummaryV3(handle);
-  return summary.courseSessionId === input.courseSessionId ? handle : null;
+  if (summary.courseSessionId !== input.courseSessionId) {
+    console.warn(
+      "[V2-HANDOFF] consume:course_session_mismatch",
+      JSON.stringify({
+        expected: input.courseSessionId,
+        staged: summary.courseSessionId,
+        sessionRunId: input.sessionRunId,
+      }),
+    );
+    return null;
+  }
+  // Запись НЕ удаляется: повторный монтаж того же маршрута обязан получить
+  // тот же handle, иначе возвращается тупик «Сессия недоступна».
+  return handle;
 }
 
 export async function clearLearningV2CourseReleasedSessionCacheV3(): Promise<void> {

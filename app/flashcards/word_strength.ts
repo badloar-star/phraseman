@@ -2,7 +2,7 @@ import { englishRecallSurface } from '../phrase_target_utils';
 import { projectMistakes, type MistakeProjectionItem } from '../../modules/mistake-practice/projection';
 import { loadMistakeEventJournal } from '../mistake_practice_store';
 import { getStableId } from '../stable_id';
-import { storageStudyTarget } from '../target_storage_keys';
+import { storageStudyTarget, type RuntimeStudyTarget } from '../target_storage_keys';
 
 export type WordStrength = 'weak' | 'medium' | 'strong';
 export type WordStrengthMap = Map<string, WordStrength>;
@@ -43,13 +43,39 @@ export function strengthFor(value: string, map: WordStrengthMap | null | undefin
   return map?.get(strengthKey(value)) ?? null;
 }
 
-export async function loadWordStrengthMap(): Promise<WordStrengthMap> {
+/**
+ * Карта «силы слова» для подсветки карточек.
+ *
+ * зачем (22.09): журнал ошибок разложен по языковым ключам, а здесь
+ * `storageStudyTarget()` звали БЕЗ аргумента — она возвращает умолчание `'en'`.
+ * То есть для испанского/французского/немецкого подсветка строилась по
+ * английскому журналу, то есть по пустоте: точки силы слова не появлялись
+ * вообще, и это выглядело как «фича не работает», а не как ошибка.
+ * Параметр необязательный — прежние вызовы без языка ведут себя как раньше.
+ */
+export async function loadWordStrengthMap(
+  studyTargetInput?: RuntimeStudyTarget,
+): Promise<WordStrengthMap> {
+  const studyTarget = storageStudyTarget(studyTargetInput);
   try {
-    const studyTarget = storageStudyTarget();
     const accountScope = await getStableId();
     const journal = await loadMistakeEventJournal({ accountScope, studyTarget });
-    return buildWordStrengthMap([...projectMistakes(journal.events).items.values()]);
-  } catch {
+    const map = buildWordStrengthMap([...projectMistakes(journal.events).items.values()]);
+    if (__DEV__) console.log('[WORD-STRENGTH] ok', JSON.stringify({
+      studyTarget,
+      requested: studyTargetInput ?? null,
+      events: journal.events.length,
+      words: map.size,
+    }));
+    return map;
+  } catch (e) {
+    // зачем: немой catch прятал ЛЮБУЮ причину — и отсутствие журнала, и сбой
+    // чтения. Подсветка молча исчезала, отличить одно от другого было нечем.
+    console.warn('[WORD-STRENGTH] отказ, карта пустая', JSON.stringify({
+      studyTarget,
+      requested: studyTargetInput ?? null,
+      error: e instanceof Error ? e.message : String(e),
+    }));
     return new Map();
   }
 }

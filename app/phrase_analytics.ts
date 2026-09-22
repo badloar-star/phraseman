@@ -18,7 +18,7 @@ import { getPosMasterySnapshot, type PosMasteryEntry } from './pos_workout_engin
 import type { PhraseWindowSummary } from './weekly_review_types';
 import { loadMistakeEventJournal } from './mistake_practice_store';
 import { getStableId } from './stable_id';
-import { storageStudyTarget } from './target_storage_keys';
+import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 
 // ── Типы ─────────────────────────────────────────────────────────────────────
 
@@ -581,9 +581,19 @@ function computeSessionWeaknessScore(count: number, exactCount: number, totalSig
 const ANALYTICS_WINDOW_DAYS = 30;
 const ANALYTICS_WINDOW_MS = ANALYTICS_WINDOW_DAYS * 24 * 60 * 60 * 1000;
 
-export async function computePhraseAnalytics(): Promise<PhraseAnalyticsResult> {
+/**
+ * зачем (22.09): журнал ошибок разложен по языковым ключам, а `storageStudyTarget()`
+ * звали БЕЗ аргумента — она возвращает умолчание `'en'`. Персональная аналитика
+ * для испанского и немецкого строилась по английскому журналу, то есть по чужим
+ * (обычно пустым) данным. Французский спасала отдельная ветка на экране
+ * (`computeFrenchPhraseAnalytics`), остальные языки — нет.
+ * Параметр необязательный: вызовы без языка ведут себя как раньше.
+ */
+export async function computePhraseAnalytics(
+  studyTargetInput?: RuntimeStudyTarget,
+): Promise<PhraseAnalyticsResult> {
   try {
-    const studyTarget = storageStudyTarget();
+    const studyTarget = storageStudyTarget(studyTargetInput);
     const accountScope = await getStableId();
     const journal = await loadMistakeEventJournal({ accountScope, studyTarget });
     const entries: AnalyticsMistakeEntry[] = journal.events

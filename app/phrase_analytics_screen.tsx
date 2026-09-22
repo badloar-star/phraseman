@@ -360,9 +360,12 @@ export default function PhraseAnalyticsScreen() {
     }
     if (!warm) setLoading(true);
     try {
+      // зачем (22.09): общая ветка звалась БЕЗ языка и читала английский журнал
+      // всегда. Французский спасала своя ветка, испанский и немецкий — нет:
+      // человек видел чужую (обычно пустую) статистику вместо своей.
       const result = storageStudyTarget(studyTarget) === 'fr'
         ? await computeFrenchPhraseAnalytics({ sourceLocale })
-        : await computePhraseAnalytics();
+        : await computePhraseAnalytics(studyTarget);
       if (commitPhraseAnalyticsWarm(request, { data: result })) {
         setLoadedCacheKey(requestCacheKey);
         setCachedData(result);

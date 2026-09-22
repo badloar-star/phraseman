@@ -502,13 +502,15 @@ export default function FlashcardsScreen() {
   useFocusEffect(
     useCallback(() => {
       let cancelled = false;
-      void loadWordStrengthMap().then((m) => {
+      // зачем (22.09): без языка функция читала английский журнал всегда —
+      // на испанском/французском/немецком подсветка не появлялась вовсе.
+      void loadWordStrengthMap(studyTarget).then((m) => {
         if (!cancelled) setStrengthMap(m);
       });
       return () => {
         cancelled = true;
       };
-    }, []),
+    }, [studyTarget]),
   );
   const strengthForCard = useCallback(
     (en: string): WordStrength | null => strengthFor(en, strengthMap),

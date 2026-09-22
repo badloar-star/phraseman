@@ -70,6 +70,24 @@ const MANUAL_REEL_MAX_VELOCITY = 5_200;
 const MANUAL_REEL_DECELERATION = 0.992;
 const MANUAL_REEL_SNAP_MS = 180;
 const DEFAULT_REWARD_GRADIENT: [string, string, string] = ['#15473C', '#0E2B28', '#081918'];
+/**
+ * Бюджет стартов звука для ОДНОГО спина.
+ *
+ * зачем (баг владельца 2026-09-22 «после второго спина звуки не работают»):
+ * стояло `maxStarts: 6, windowMs: 4_000`. Один спин тратит РОВНО 4 старта
+ * (button_press → reel_start → reel_loop → reel_stop_rollback) и длится
+ * ~2.9 с (350 разгон + до 1600 ожидание + 1200 торможение). Второй спин
+ * попадал в то же 4-секундное окно, где уже лежали 4 старта первого, и
+ * упирался в потолок 6 — два звука из четырёх глохли молча по 'rate-limit'.
+ *
+ * Окно намеренно КОРОЧЕ одного спина: оно должно покрывать текущий спин, а не
+ * тянуть хвост предыдущего, иначе каждый следующий спин доедает чужой остаток.
+ * Потолок 8 = 4 честных старта + запас на двойной тап по кнопке.
+ * Защита от спама остаётся: дедуп по ключу и cooldown самих событий
+ * (1000-2000 мс) никуда не делись, они ловят настоящий спам, а этот лимит
+ * страховал от него вторым слоем и по факту глушил штатную игру.
+ */
+const SPIN_SOUND_RATE_LIMIT = { maxStarts: 8, windowMs: 2_500 } as const;
 const RUNE_ASSET = require('../assets/images/level-spin-rewards/stars_10.webp');
 export type LevelSpinFinishLinePhase = 'recovering' | 'idle' | 'spinning' | 'revealed' | 'error' | 'empty';
 
@@ -182,6 +200,13 @@ export default function LevelSpinFinishLine({
   const [resultVisible, setResultVisible] = useState(false);
   const [settledRequestId, setSettledRequestId] = useState<string | null>(null);
   const [landingIndex, setLandingIndex] = useState<number | null>(null);
+  // зачем (баг «третий спин крутится вечно», 2026-09-22): перезапуск эффекта
+  // посадки держался ТОЛЬКО на setLandingIndex. Но landingIndex почти одинаков
+  // на каждом спине, а повтор того же значения React считает no-op — ре-рендера
+  // нет, посадка не исполняется, барабан крутится вечно. Этот счётчик растёт
+  // на КАЖДОМ торможении, поэтому ре-рендер гарантирован независимо от того,
+  // совпал ли выпавший ряд с предыдущим.
+  const [landingTick, setLandingTick] = useState(0);
   const [motionRequestId, setMotionRequestId] = useState<string | null>(null);
   const resultViewRef = useRef<View | null>(null);
   const activeReceiptRef = useRef<string | null>(receipt?.requestId ?? null);
@@ -191,6 +216,8 @@ export default function LevelSpinFinishLine({
   const spinStartedAtRef = useRef<number | null>(null);
   const manualReelSeededRef = useRef(false);
   const decelerationTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // зачем: последний рубеж против вечного вращения (см. FAILSAFE ниже).
+  const landingFailsafeRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pendingLandingRef = useRef<(LevelSpinLandingPlan & { requestId: string; liveOffset: number }) | null>(null);
   activeReceiptRef.current = receipt?.requestId ?? null;
   const resultGift = giftForId(receipt?.baseGiftId);
@@ -397,7 +424,7 @@ export default function LevelSpinFinishLine({
     soundDirector.request('pm.spin.reel_loop', {
       scope: 'level-spin-reel',
       dedupeKey: 'reel-loop',
-      rateLimit: { maxStarts: 6, windowMs: 4_000 },
+      rateLimit: SPIN_SOUND_RATE_LIMIT,
     });
   }, []);
 
@@ -433,11 +460,14 @@ export default function LevelSpinFinishLine({
     soundDirector.request('pm.spin.reel_start', {
       scope: 'level-spin-reel',
       dedupeKey: 'reel-start',
-      rateLimit: { maxStarts: 6, windowMs: 4_000 },
+      rateLimit: SPIN_SOUND_RATE_LIMIT,
     });
     const startOffset = selectorCenterY - cardHeight / 2 - rowPitch * 4;
     const accelerationTarget = startOffset - rowPitch * 4;
     const loopDistance = REWARD_STREAM_IDS.length * rowPitch;
+    // Барабан ВСЕГДА стартует с одного и того же ряда — ряды между спинами не
+    // копятся (проверено при разборе бага 22.09: вечное вращение было не от
+    // накопления позиции, а от несработавшего ре-рендера посадки).
     reelOffset.value = startOffset;
     reelOffset.value = withSequence(
       withTiming(accelerationTarget, {
@@ -459,6 +489,8 @@ export default function LevelSpinFinishLine({
     if (isFocused && appActive && phase === 'spinning') return;
     if (decelerationTimerRef.current) clearTimeout(decelerationTimerRef.current);
     decelerationTimerRef.current = null;
+    if (landingFailsafeRef.current) clearTimeout(landingFailsafeRef.current);
+    landingFailsafeRef.current = null;
     pendingLandingRef.current = null;
     cancelAnimation(reelOffset);
     spinStartedAtRef.current = null;
@@ -472,6 +504,7 @@ export default function LevelSpinFinishLine({
 
   useEffect(() => () => {
     if (decelerationTimerRef.current) clearTimeout(decelerationTimerRef.current);
+    if (landingFailsafeRef.current) clearTimeout(landingFailsafeRef.current);
     cancelAnimation(reelOffset);
   }, [reelOffset]);
 
@@ -486,6 +519,7 @@ export default function LevelSpinFinishLine({
       setSettledRequestId(null);
       setResultVisible(false);
       setLandingIndex(null);
+      setLandingTick(0);
       return;
     }
     if (motionReceiptRef.current !== receipt.requestId) {
@@ -504,6 +538,7 @@ export default function LevelSpinFinishLine({
       setSettledRequestId(null);
       setResultVisible(false);
       setLandingIndex(null);
+      setLandingTick(0);
       setMotionRequestId(receipt.requestId);
       return;
     }
@@ -524,9 +559,27 @@ export default function LevelSpinFinishLine({
       if (spinStartedAtRef.current === null) return;
     }
     const pendingLanding = pendingLandingRef.current;
-    if (pendingLanding?.requestId === receipt.requestId
-      && landingIndex === pendingLanding.landingIndex) {
+    // зачем (баг владельца 2026-09-22 «третий спин крутится вечно»): здесь
+    // стояло условие `landingIndex === pendingLanding.landingIndex` — посадка
+    // ждала, пока state догонит план. Но landingIndex почти одинаков на каждом
+    // спине (старт всегда с ряда 4, круиз линейный, ожидание фиксированное), а
+    // setLandingIndex тем же числом React считает no-op: ре-рендера нет, эффект
+    // не перезапускается, pendingLanding не расходуется — и барабан остаётся в
+    // бесконечном withRepeat НАВСЕГДА.
+    //
+    // Теперь ждём не совпадения ЧИСЕЛ, а факта: лента реально нарисовала
+    // выигрышный приз в целевом ряду. Повтор того же landingIndex эту проверку
+    // не ломает. Подстановка принудительная (см. streamIds), поэтому ждать
+    // нечего, кроме одного ре-рендера, а сверху всё страхует FAILSAFE ниже.
+    const landingRowReady = pendingLanding !== null
+      && landingIndex !== null
+      && streamIds[pendingLanding.landingIndex] === receipt.baseGiftId;
+    if (pendingLanding?.requestId === receipt.requestId && landingRowReady) {
       pendingLandingRef.current = null;
+      // Посадка пошла штатно — сторож больше не нужен, снимаем его сразу,
+      // чтобы он не висел до срока и не оборвал уже правильную анимацию.
+      if (landingFailsafeRef.current) clearTimeout(landingFailsafeRef.current);
+      landingFailsafeRef.current = null;
       reelOffset.value = pendingLanding.liveOffset;
       const overshoot = createLevelSpinOvershootPlan({
         targetOffset: pendingLanding.targetOffset,
@@ -551,11 +604,24 @@ export default function LevelSpinFinishLine({
     const waitMs = levelSpinReceiptWaitMs(0, elapsedMs);
     const beginDeceleration = () => {
       decelerationTimerRef.current = null;
-      if (activeReceiptRef.current !== receipt.requestId || !isFocused || !appActive) return;
+      // зачем (временная трассировка, баг «третий спин крутится вечно»):
+      // этот ранний выход был НЕМЫМ — если он срабатывал, барабан оставался
+      // в бесконечном withRepeat и остановить его было уже нечему.
+      if (activeReceiptRef.current !== receipt.requestId || !isFocused || !appActive) {
+        if (__DEV__) {
+          console.log(
+            `[SPIN-REEL] beginDeceleration EARLY-EXIT`
+            + ` activeReceipt=${activeReceiptRef.current ?? 'null'}`
+            + ` expected=${receipt.requestId}`
+            + ` isFocused=${String(isFocused)} appActive=${String(appActive)}`,
+          );
+        }
+        return;
+      }
       soundDirector.request('pm.spin.reel_stop_rollback', {
         scope: 'level-spin-reel',
         dedupeKey: `reel-stop:${receipt.requestId}`,
-        rateLimit: { maxStarts: 6, windowMs: 4_000 },
+        rateLimit: SPIN_SOUND_RATE_LIMIT,
       });
       cancelAnimation(reelOffset);
       const liveOffset = reelOffset.value;
@@ -568,13 +634,22 @@ export default function LevelSpinFinishLine({
           rowPitch,
           streamLength: streamIds.length,
         });
-      } catch {
+      } catch (e) {
         // зачем: барабан крутится бесконечным withRepeat, и если геометрия
         // посадки невозможна (лента ушла за последний ряд, дробный layout),
         // бросок раньше улетал в никуда из setTimeout — спин не
         // останавливался НИКОГДА. Теперь есть аварийная посадка: садимся на
         // безопасный ряд, а не оставляем человека с вечной анимацией.
+        // зачем (трассировка): ветка ловила ошибку МОЛЧА — нельзя было узнать,
+        // что посадка вообще сорвалась и по какой причине.
         const fallbackIndex = Math.max(1, streamIds.length - 3);
+        if (__DEV__) {
+          console.log(
+            `[SPIN-REEL] landing FAILED -> fallback index=${fallbackIndex}`
+            + ` reason=${e instanceof Error ? e.message : String(e)}`
+            + ` requestId=${receipt.requestId}`,
+          );
+        }
         pendingLandingRef.current = {
           landingIndex: fallbackIndex,
           targetOffset: selectorTop - fallbackIndex * rowPitch,
@@ -584,12 +659,44 @@ export default function LevelSpinFinishLine({
           liveOffset,
         };
         setLandingIndex(fallbackIndex);
+        // зачем: fallbackIndex — ФИКСИРОВАННОЕ число, два срыва подряд дают
+        // одинаковый landingIndex и setLandingIndex становится no-op.
+        setLandingTick((tick) => tick + 1);
         return;
       }
       pendingLandingRef.current = { ...plan, requestId: receipt.requestId, liveOffset };
       setLandingIndex(plan.landingIndex);
+      setLandingTick((tick) => tick + 1);
     };
     decelerationTimerRef.current = setTimeout(beginDeceleration, waitMs);
+    // зачем (баг владельца 2026-09-22 «третий спин крутится вечно»):
+    // ПОСЛЕДНИЙ рубеж. Барабан живёт в бесконечном withRepeat, и любой не
+    // исполнившийся шаг посадки раньше означал вечное вращение — человек
+    // терял спин и убивал экран. Здесь стоит потолок на весь спин: даже если
+    // посадка почему-то не состоялась, барабан ОБЯЗАН остановиться и показать
+    // приз. Срок берём с запасом на штатный путь (ожидание + торможение +
+    // оседание), поэтому здоровый спин сюда не доходит.
+    const failsafeMs = waitMs + SPIN_DECELERATION_MS + SPIN_SETTLE_MS + 1_500;
+    // Старый сторож снимаем ОБЯЗАТЕЛЬНО: иначе он пережил бы свой спин и
+    // выстрелил уже на следующем, оборвав чужую живую анимацию.
+    if (landingFailsafeRef.current) clearTimeout(landingFailsafeRef.current);
+    landingFailsafeRef.current = setTimeout(() => {
+      landingFailsafeRef.current = null;
+      if (activeReceiptRef.current !== receipt.requestId) return;
+      if (revealedRequestRef.current === receipt.requestId) return;
+      console.warn(
+        `[SPIN-REEL] FAILSAFE: посадка не исполнилась за ${failsafeMs}мс —`
+        + ` останавливаю барабан принудительно.`
+        + ` requestId=${receipt.requestId} landingIndex=${String(landingIndex)}`
+        + ` pending=${pendingLandingRef.current ? 'есть' : 'нет'}`,
+      );
+      cancelAnimation(reelOffset);
+      pendingLandingRef.current = null;
+      const safeIndex = landingIndex ?? Math.max(1, streamIds.length - 3);
+      setLandingIndex(safeIndex);
+      reelOffset.value = selectorCenterY - cardHeight / 2 - safeIndex * rowPitch;
+      startRevealSettle(receipt.requestId, SPIN_SETTLE_MS);
+    }, failsafeMs);
     // зачем: cleanup НЕ снимает таймер торможения. Зависимостей у эффекта 15
     // (machineHeight, landingIndex, selectorCenterY, appActive…), и любой
     // ре-рендер в течение окна ожидания (до 1.6 с) раньше убивал таймер —
@@ -597,7 +704,13 @@ export default function LevelSpinFinishLine({
     // Таймер самодостаточен: он сам проверяет актуальность чека и фокус,
     // а полная отмена живёт в эффекте паузы и в unmount-эффекте.
     return undefined;
-  }, [appActive, cardHeight, isFocused, landingIndex, machineHeight, motionRequestId, phase, receipt, reducedMotion, reelOffset, resultOpacity, rowPitch, selectorCenterY, startReelMotion, startRevealSettle, streamIds.length]);
+    // зачем: в deps стоит САМ streamIds, а не streamIds.length. Длина всегда
+    // 57 (константа), а посадка теперь читает СОДЕРЖИМОЕ ленты — ждёт, пока
+    // выигрышный приз реально окажется в целевом ряду. По длине эффект бы не
+    // проснулся на подстановку карточки, и посадка снова не исполнилась бы.
+    // useMemo делает streamIds стабильным между ре-рендерами, лишних проходов
+    // это не добавляет.
+  }, [appActive, cardHeight, isFocused, landingIndex, landingTick, machineHeight, motionRequestId, phase, receipt, reducedMotion, reelOffset, resultOpacity, rowPitch, selectorCenterY, startReelMotion, startRevealSettle, streamIds]);
 
   const ctaTestID = resultVisible
     ? (balance ?? 0) > 0 ? 'level-spin-next' : 'level-spin-done'
@@ -845,7 +958,7 @@ export default function LevelSpinFinishLine({
             soundDirector.request('pm.spin.button_press', {
               scope: 'level-spin-reel',
               dedupeKey: 'spin-button',
-              rateLimit: { maxStarts: 6, windowMs: 4_000 },
+              rateLimit: SPIN_SOUND_RATE_LIMIT,
             });
           }}
           onPress={handleCtaPress}

@@ -46,6 +46,19 @@ export class SoundDirector {
 
   request(eventId: SoundEventId, options: SoundRequestOptions = {}): SoundDecision {
     const decision = this.arbiter.request(eventId, options);
+    // зачем (баг 2026-09-22 «после второго спина звуки не работают»): отказ
+    // арбитра НЕМОЙ по своей природе — звук просто не звучит, и отличить
+    // rate-limit от cooldown, dedupe или занятого слота было нечем. Оставляем
+    // насовсем, но только в разработке: класс «звук молча не сыграл» иначе
+    // повторится и снова будет диагностироваться вслепую.
+    if (__DEV__ && decision.kind === 'drop') {
+      console.log(
+        `[SFX-DROP] ${eventId} reason=${decision.reason}`
+        + ` scope=${options.scope ?? 'global'} dedupeKey=${options.dedupeKey ?? 'none'}`
+        + ` rateLimit=${options.rateLimit ? `${options.rateLimit.maxStarts}/${options.rateLimit.windowMs}ms` : 'shared'}`
+        + ` cooldownMs=${SOUND_EVENTS[eventId].cooldownMs}`,
+      );
+    }
     this.rememberDeferredPlayback(decision, eventId, options);
     this.execute(decision, options);
     if (decision.kind === 'drop' && decision.reason === 'priority' && decision.retryAtMs !== undefined) {

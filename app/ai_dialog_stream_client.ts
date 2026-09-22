@@ -241,6 +241,16 @@ export function callPremiumDialogStream(
             result = parsed;
           } else if (frame.type === 'error') {
             const code = String(frame.code ?? 'dialog_provider_failed');
+            // зачем (диагностика 2026-09-22, «ответ пришёл, через секунду ошибка»):
+            // печатаем КОД и сколько текста человек уже увидел. Ошибка после
+            // дельт выглядит для него как сбой на пустом месте.
+            DebugLogger.info('[DIALOG-SEND] stream error frame', JSON.stringify({
+              code,
+              deltaCount,
+              resets,
+              sawStarted: startedAtMs > 0,
+              msSinceSent: Date.now() - sentAtMs,
+            }));
             // Поток уже шёл → сервер точно начал работу, повтор небезопасен.
             finish(() => reject(new DialogStreamError(code, false)));
           }
@@ -291,6 +301,23 @@ export function callPremiumDialogStream(
           const done = result;
           finish(() => resolve(done));
         } else {
+          // зачем (диагностика 2026-09-22): ИМЕННО эта ветка выглядит как
+          // «ответ пришёл, а через секунду ошибка» — дельты человек уже прочитал,
+          // а финальный кадр не доехал, и ход не засчитался. Печатаем всё, что
+          // отличает обрыв сети от молчания сервера: сколько дельт дошло, был ли
+          // 'started', статус HTTP и ХВОСТ сырого тела (в нём видно, оборвался
+          // ли поток на полкадра).
+          const raw = xhr.responseText ?? '';
+          DebugLogger.info('[DIALOG-SEND] stream ended without done', JSON.stringify({
+            httpStatus: xhr.status,
+            deltaCount,
+            resets,
+            sawStarted: startedAtMs > 0,
+            msSinceSent: Date.now() - sentAtMs,
+            rawLength: raw.length,
+            unreadFrom: cursor,
+            rawTail: raw.slice(-300),
+          }));
           // После xhr.send() отсутствие done — неопределённый исход: сервер мог
           // принять запрос и списать квоту, даже если ни один frame не доехал.
           finish(() => reject(new DialogStreamError('dialog_stream_incomplete', false)));

@@ -607,6 +607,9 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
   const [lastErrorMessage, setLastErrorMessage] = useState('');
   const [lastErrorKind, setLastErrorKind] = useState<PremiumDialogErrorKind | null>(null);
   const lastSentTextRef = useRef('');
+  // зачем: стадия последней отправки — для лога [DIALOG-SEND]. Отличает
+  // «ответ не доехал» от «ответ доехал, упал разбор» (см. catch в send).
+  const sendStageRef = useRef<'idle' | 'stream' | 'reply_received' | 'coach' | 'accept_turn' | 'done'>('idle');
   const scrollRef = useRef<FlatList<UiMessage>>(null);
   const [voiceInputStatus, setVoiceInputStatus] = useState<VoiceInputStatus>('idle');
   const voiceInputBusy = voiceInputStatus === 'requesting'
@@ -1489,6 +1492,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
 
       const history = buildHistory();
       lastSentTextRef.current = trimmed;
+      sendStageRef.current = 'stream';
       setLastErrorMessage('');
       setLastErrorKind(null);
       setMessages((prev) => [...prev, { role: 'user', text: trimmed }]);
@@ -1571,7 +1575,13 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
         // Побочный эффект внутри апдейтера setState был бы небезопасен —
         // React вправе вызвать апдейтер дважды.
         const assistantIndex = history.length + 1;
+        // зачем (диагностика 2026-09-22): дальше идёт разбор ответа, и если он
+        // бросит — человек увидит «не удалось отправить» ПОСЛЕ прочитанной
+        // реплики, а ход не засчитается. Метка стадии отделяет сбой сети от
+        // сбоя разбора: в логе видно, докуда дошли.
+        sendStageRef.current = 'reply_received';
         setMessages((prev) => [...prev, { role: 'assistant', text: res.assistantMessage }]);
+        sendStageRef.current = 'coach';
         applyCoachTurn(res.coach, trimmed, assistantIndex);
         if (!hasPremiumAccess) {
           const quotaObservation = parseAiDialogQuotaObservation(res);
@@ -1581,7 +1591,9 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
           }
         }
         // Игровое состояние хода (настроение/цели/исход). Безопасно при отсутствии.
+        sendStageRef.current = 'accept_turn';
         applyAcceptedTurn(res, exchangeIndex);
+        sendStageRef.current = 'done';
       } catch (error) {
         // Классифицируем ОДИН раз: от вида отказа зависит и уровень лога, и ветка UI.
         const errorKind = classifyPremiumDialogError(error);
@@ -1601,6 +1613,18 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
           errorKind === 'free_limit'
           || errorKind === 'premium_limit'
           || errorKind === 'age_restricted';
+        // зачем (диагностика 2026-09-22, владелец: «ответ приходит, через
+        // секунду ошибка, и реплики не считаются»): стадия показывает, где
+        // рвётся. 'stream' — не доехал ответ; 'coach'/'accept_turn' — ответ
+        // человек УЖЕ прочитал, а упал разбор, и ход не засчитался.
+        DebugLogger.info('[DIALOG-SEND] failed', JSON.stringify({
+          stage: sendStageRef.current,
+          errorKind,
+          exchangeIndex,
+          scenarioId: scenario.id,
+          studyTarget,
+          message: String((error as Error)?.message ?? error).slice(0, 200),
+        }));
         DebugLogger.error(
           'ai_dialog:reply_stream',
           error instanceof Error ? error : new Error(String(error)),

@@ -1146,7 +1146,12 @@ async function pruneSettledEnergyOperations(
   }
 }
 
-async function recoverEnergySessionOperations(
+// зачем (эмулятор 22.09): функция потеряла `export`, но EnergyContext её
+// импортирует — в рантайме выходил undefined, и восстановление энергии падало
+// с «is not a function». Любое занятие со стоимостью энергии не запускалось:
+// экран показывал «отменено». tsc эту ошибку ВИДИТ (TS2724), её просто не
+// замечали, потому что полная проверка падала по памяти на 4 ГБ.
+export async function recoverEnergySessionOperations(
   projectionInput: EnergySessionProjection,
   _bootId: string,
   options: Readonly<{ accountToken?: AccountGenerationToken; accountTransitionLockLease?: AccountTransitionLockLease }> = {},

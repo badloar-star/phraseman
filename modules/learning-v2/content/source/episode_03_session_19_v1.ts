@@ -5,8 +5,8 @@ import { LESSON3_SESSION_19_MODE_NATIVE_PLAN_ID_V1 } from "./lesson3_session_cho
 /** Dedicated diagnostic-contrast packet for bags; retrieval sentences remain the approved plural set. */
 const l=(ru:string,uk:string,es:string,pt:string,vi:string,id:string,tr:string,pl:string)=>({ru,uk,es,"pt-BR":pt,vi,id,tr,pl});
 const replaceBag=(value:string)=>value.replaceAll("books","bags").replaceAll("book","bag").replaceAll("Books","Bags").replaceAll("Book","Bag");
-const contacts=Object.fromEntries(Object.entries(S17.newVocabulary[0]!.contacts).map(([stage,contact])=>[stage,{...contact,guidance:Object.fromEntries(Object.entries(contact.guidance).map(([locale,text])=>[locale,replaceBag(text)])),distractors:contact.distractors.map((distractor,index)=>{const value=index===0?"bag":index===1?"books":"bag's"; return {...distractor,value,feedback:Object.fromEntries(Object.entries(distractor.feedback).map(([locale,text])=>[locale,`Wrong choice: ${value}. ${replaceBag(text)} Correct target: bags.`]))};})}])) as typeof S17.newVocabulary[0]!["contacts"];
-const vocabulary=Object.freeze([{...S17.newVocabulary[0]!,id:"e03-s19-bags",target:"bags",meaning:l("сумки","сумки","bolsas","bolsas","túi","tas","çantalar","torby"),contacts}]);
+const contacts=Object.fromEntries(Object.entries(S17.newVocabulary![0].contacts).map(([stage,contact])=>[stage,{...contact,guidance:Object.fromEntries(Object.entries(contact.guidance).map(([locale,text])=>[locale,replaceBag(text)])),distractors:contact.distractors.map((distractor,index)=>{const value=index===0?"bag":index===1?"books":"bag's"; return {...distractor,value,feedback:Object.fromEntries(Object.entries(distractor.feedback).map(([locale,text])=>[locale,`Wrong choice: ${value}. ${replaceBag(text)} Correct target: bags.`]))};})}])) as NonNullable<typeof S17.newVocabulary>[0]["contacts"];
+const vocabulary=Object.freeze([{...S17.newVocabulary![0],id:"e03-s19-bags",target:"bags",meaning:l("сумки","сумки","bolsas","bolsas","túi","tas","çantalar","torby"),contacts}]);
 
 export const EPISODE_03_SESSION_19_SOURCE:SessionSource=Object.freeze({
  ...S17, requiredSessionOrdinal:19, canDoOutcomeId:"obj-en-plural-nouns-bags-diagnostic",

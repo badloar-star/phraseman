@@ -58,22 +58,33 @@ describe('Home per-theme artwork contract', () => {
     expect(home).toContain('const homeQuickThemeArtSize = Math.max(112, homeQuickIconPlateSize + 36);');
     expect(home).toContain('size={homeQuickIconImageSize}');
     expect(home).toContain('width={homeQuickThemeArtSize} height={homeQuickThemeArtSize}');
-    // Владелец 2026-09-21: 124 → 120 (минус 3%). При 124 картинка упиралась в
-    // край слота 92×72 вплотную; 120 даёт воздух по краям. Слот НЕ меняли —
-    // высота плитки прежняя, соседи не сдвигаются.
-    expect(home).toContain('const homeLastLessonArtSize = 120;');
-    expect(home).toContain('const homeLastLessonArtSlotWidth = 92;');
-    expect(home).toContain('const homeLastLessonArtSlotHeight = 72;');
     expect(home).toContain('const homeTodayIconSize = 112;');
     expect(home).toContain('const homeLeagueWatermarkSize = 164;');
-    expect(home).toContain('width: homeLastLessonArtSlotWidth, height: homeLastLessonArtSlotHeight');
-    // Проверка была КРАСНОЙ до 2026-09-21: разметку перевели на псевдоним
-    // priorityCardArtSize (карточка переключается между уроком и ошибками),
-    // а сторожа не обновили. Сверяем обе половины связки, чтобы размер нельзя
-    // было увести в обход константы.
-    expect(home).toContain('const priorityCardArtSize = homeLastLessonArtSize;');
-    expect(home).toContain('width={priorityCardArtSize} height={priorityCardArtSize}');
-    expect(home).toContain("gap: 12, paddingVertical: 8, minHeight: 72");
+    // Владелец 2026-09-22: приоритетная плашка переведена на дизайн
+    // «Цифра-гигант» (выбран из 10 макетов). Прежняя связка
+    // homeLastLessonArtSize=120 / слот 92×72 / «gap: 12, paddingVertical: 8,
+    // minHeight: 72» описывала ОТМЕНЁННУЮ раскладку (арт слева, имя по центру,
+    // мелкий счётчик справа) — сторожить её больше нельзя.
+    //
+    // Намерение проверки прежнее и остаётся в силе: размер арта нельзя увести
+    // в обход именованной константы. Плюс закрываем класс бага, из-за которого
+    // владелец и забраковал прошлые версии, — арт, упирающийся в края:
+    // при высоте 100 и арте 84 остаётся по 8 px воздуха сверху и снизу.
+    expect(home).toContain('const HOME_PRIORITY_CARD_HEIGHT = 100;');
+    expect(home).toContain('const HOME_PRIORITY_CARD_ART = 84;');
+    expect(home).toContain('width={HOME_PRIORITY_CARD_ART} height={HOME_PRIORITY_CARD_ART}');
+    expect(home).toContain('minHeight: HOME_PRIORITY_CARD_HEIGHT');
+
+    const priorityCardHeight = Number(
+      /const HOME_PRIORITY_CARD_HEIGHT = (\d+);/.exec(home)?.[1] ?? '0',
+    );
+    const priorityCardArt = Number(
+      /const HOME_PRIORITY_CARD_ART = (\d+);/.exec(home)?.[1] ?? '0',
+    );
+    expect(priorityCardHeight).toBeGreaterThan(0);
+    expect(priorityCardArt).toBeGreaterThan(0);
+    // Минимум 8 px воздуха с каждой стороны — иначе картинка снова упрётся в край.
+    expect(priorityCardHeight - priorityCardArt).toBeGreaterThanOrEqual(16);
     expect(surveyMotion).toContain('taskIconSize: 64');
     expect(phrase).toContain('const HOME_ADDITIONAL_ART_SIZE = 144;');
     expect(phrase).toContain('const HOME_ADDITIONAL_ART_SLOT_WIDTH = 112;');

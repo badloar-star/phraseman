@@ -3935,6 +3935,14 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const priorityCardCounter = priorityCardShowsMistakes
             ? homeMistakesCounterLabel(mistakeActiveCount)
             : `${Math.max(0, Math.min(50, lastLesson?.progress ?? 0))}/50`;
+        // зачем (владелец 2026-09-22, дизайн «Цифра-гигант»): число стало главным
+        // героем плашки и рисуется крупно ОТДЕЛЬНО от «/50», поэтому нужны обе
+        // части по отдельности. priorityCardCounter выше не трогаем — он уходит
+        // в accessibilityLabel цельной строкой, как читает его озвучка экрана.
+        const priorityCardBigValue = priorityCardShowsMistakes
+            ? homeMistakesCounterLabel(mistakeActiveCount)
+            : String(Math.max(0, Math.min(50, lastLesson?.progress ?? 0)));
+        const priorityCardTotalLabel = priorityCardShowsMistakes ? null : '/50';
         // зачем (владелец 2026-09-21): жест работает при ЛЮБОМ числе ошибок от
         // одной — прежнее ограничение «только 1..9» снято. Переворачивать не на
         // что лишь когда ошибок нет совсем.
@@ -3994,14 +4002,27 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const homeQuickThemeArtSize = Math.max(112, homeQuickIconPlateSize + 36);
         const homeQuickIconLegacySize = Math.max(96, homeQuickIconPlateSize + 14);
         const homeQuickIconRadius = isGoldTheme ? 26 : 30;
-        // зачем (владелец 2026-09-21): картинка упиралась в край слота 92×72 —
-        // при 124 она заметно крупнее слота и обрезалась им вплотную. Минус 3%
-        // (124 → 120) даёт воздух по краям. Целое число намеренно: дробный
-        // размер даёт нецелые пиксели и мыло на картинке.
-        const homeLastLessonArtSize = 120;
-        const priorityCardArtSize = homeLastLessonArtSize;
-        const homeLastLessonArtSlotWidth = 92;
-        const homeLastLessonArtSlotHeight = 72;
+        // зачем (владелец 2026-09-22, дизайн «Цифра-гигант»): высота и размер
+        // арта — единственные два числа геометрии плашки, держим рядом.
+        // Арт 84 при высоте 100 даёт по 8 px воздуха сверху и снизу. Брать
+        // больше нельзя: на 96 остаётся 2 px и картинка упирается в края —
+        // ровно та претензия владельца, из-за которой правился макет.
+        // Числа целые намеренно: дробный размер даёт мыло на картинке.
+        const HOME_PRIORITY_CARD_HEIGHT = 100;
+        const HOME_PRIORITY_CARD_ART = 84;
+        // Цифра-герой берёт цвет смысла: зелёный прогресс / красные ошибки.
+        // Красный НЕ берём из t.wrong (#F05454): на светлом крае зелёного
+        // градиента он даёт контраст 2.87 при норме 3.0 для крупного текста
+        // (замерено). #FF6B6B даёт 3.56 и остаётся насыщенным, не розовеет.
+        // В золотой теме — металл и приглушённая терракота: яркий красный
+        // на чёрном золоте выглядит инородно.
+        const priorityCardBigColor = priorityCardShowsMistakes
+            ? (isGoldTheme ? '#E08A72' : '#FF6B6B')
+            : (isGoldTheme ? GOLD_RICH.metalGold : t.accent);
+        // Свечение-подложка под артом: мягкая глубина вместо запрещённой обводки.
+        const priorityCardGlowColor = priorityCardShowsMistakes
+            ? (isGoldTheme ? 'rgba(182,90,74,0.20)' : 'rgba(240,84,84,0.16)')
+            : (isGoldTheme ? 'rgba(214,179,90,0.20)' : 'rgba(71,200,112,0.16)');
         const homeTodayIconSize = 112;
         const homeLeagueWatermarkSize = 164;
         const homeTodayLeagueCardMinHeight = 120;
@@ -5205,24 +5226,42 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   {isGoldTheme && <GoldBevel radius={20} intensity="quiet"/>}
                   {/* Переворот живёт на внутреннем слое: сама карточка держит
                       размер, поэтому соседи не дёргаются (layout stability). */}
-                  <Reanimated.View style={[{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 8, minHeight: 72 }, homePriorityCardFlipStyle]}>
-                    <View style={{ width: homeLastLessonArtSlotWidth, height: homeLastLessonArtSlotHeight, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <LightSketchMenuImage source={priorityCardImage} width={priorityCardArtSize} height={priorityCardArtSize} lighten={false} contentFit="contain" cachePolicy="memory-disk"/>
+                  {/* зачем (владелец 2026-09-22): дизайн «Цифра-гигант» — число
+                      стало главным героем слева, название рядом, картинка ушла
+                      вправо отдельным слоем. Выбран из 10 макетов. Прежняя
+                      раскладка (арт слева / имя по центру / мелкий счётчик
+                      справа) читалась как строка списка и терялась на экране. */}
+                  <Reanimated.View style={[{ flexDirection: 'row', alignItems: 'center', minHeight: HOME_PRIORITY_CARD_HEIGHT }, homePriorityCardFlipStyle]}>
+                    {/* Картинка абсолютным слоем: она НЕ участвует в flex-строке,
+                        поэтому её размер не влияет на место под название и не
+                        может на него наехать (этот наезд был в прежней версии). */}
+                    {/* right: -10 гасит paddingHorizontal:16 родителя, оставляя
+                        арту 6 px поля от края плашки. Больше отводить нельзя:
+                        родитель с overflow:hidden срежет вылет. */}
+                    <View pointerEvents="none" style={{ position: 'absolute', right: -10, top: 0, bottom: 0, width: HOME_PRIORITY_CARD_ART, alignItems: 'center', justifyContent: 'center' }}>
+                      <View style={{ position: 'absolute', width: HOME_PRIORITY_CARD_ART - 8, height: HOME_PRIORITY_CARD_ART - 8, borderRadius: (HOME_PRIORITY_CARD_ART - 8) / 2, backgroundColor: priorityCardGlowColor }}/>
+                      <LightSketchMenuImage source={priorityCardImage} width={HOME_PRIORITY_CARD_ART} height={HOME_PRIORITY_CARD_ART} lighten={false} contentFit="contain" cachePolicy="memory-disk"/>
                     </View>
-                    {/* зачем (владелец 2026-09-21): название стояло прижатым
-                        влево — центрируем его в своём блоке, между картинкой и
-                        счётчиком. Центрируем контейнер, а не textAlign: так
-                        длинное имя урока переносится по месту и не наезжает на
-                        счётчик. Вес 800 вместо 700 — по просьбе владельца. */}
-                    <View style={{ flex: 1, minWidth: 0, alignItems: 'center' }}>
-                      <FlowText testID="home-continue-lesson-title" provenance="authored" style={{ color: homeThemePanelText, fontSize: Math.max(15, f.body), fontWeight: '800', textAlign: 'center' }}>
+                    {/* Цифра-герой. tabular-nums обязателен: при 12 → 13 ширина
+                        не меняется и название не дёргается. */}
+                    <Text
+                      maxFontSizeMultiplier={1.1}
+                      style={{ color: priorityCardBigColor, fontSize: 46, lineHeight: 50, fontWeight: '900', letterSpacing: -2, flexShrink: 0, fontVariant: ['tabular-nums'] /* guard-ok: счётчик прогресса плашки */ }}
+                    >
+                      {priorityCardBigValue}
+                    </Text>
+                    {priorityCardTotalLabel ? (
+                      <Text
+                        maxFontSizeMultiplier={1.1}
+                        style={{ color: homeThemePanelMuted, fontSize: 15, lineHeight: 18, fontWeight: '800', marginLeft: 2, alignSelf: 'flex-end', marginBottom: 12, flexShrink: 0, fontVariant: ['tabular-nums'] /* guard-ok: знаменатель счётчика */ }}
+                      >
+                        {priorityCardTotalLabel}
+                      </Text>
+                    ) : null}
+                    <View style={{ flex: 1, minWidth: 0, paddingLeft: 13, paddingRight: HOME_PRIORITY_CARD_ART - 16 }}>
+                      <FlowText testID="home-continue-lesson-title" provenance="authored" numberOfLines={1} style={{ color: homeThemePanelText, fontSize: Math.max(16, f.body + 1), fontWeight: '800' }}>
                         {priorityCardTitle}
                       </FlowText>
-                    </View>
-                    <View style={{ minWidth: 30, alignItems: 'flex-end', flexShrink: 0 }}>
-                      <Text style={{ color: priorityCardShowsMistakes ? t.wrong : homeThemePanelMuted, fontSize: 13, fontWeight: '700', fontVariant: ['tabular-nums'] /* guard-ok: правый счётчик прогресса */ }}>
-                        {priorityCardCounter}
-                      </Text>
                     </View>
                   </Reanimated.View>
                 </LinearGradient>

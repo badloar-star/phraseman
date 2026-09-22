@@ -414,10 +414,31 @@ function parseAbort(raw: string | null, owner: string, operationId: string): Abo
   }
 }
 
+/**
+ * Дольше этого полный скан индекса здесь уже ощущается как заминка при старте
+ * активности. Логируем только выбросы, чтобы журнал не захлебнулся.
+ */
+const PREPARED_SCAN_SLOW_MS = 120;
+
 async function assertNoOtherPrepared(owner: string, allowedOperationId: string): Promise<void> {
   const prefix = `${PREPARED_PREFIX}${ownerPart(owner)}:`;
   const abortPrefix = `${ABORT_PREFIX}${ownerPart(owner)}:`;
+  // зачем (владелец 2026-09-22, «после 5 минут переходов начало лагать»): это
+  // ПОЛНЫЙ скан индекса AsyncStorage, и он выполняется при подготовке КАЖДОЙ
+  // траты энергии, то есть на старте каждой активности. Индекс растёт за
+  // сессию, поэтому скан дорожает по ходу игры.
+  //
+  // Логика НЕ меняется намеренно: пакет 21.09 оставил эту функцию вне области
+  // с прямым обоснованием — ошибка здесь стоит потерянной или дважды списанной
+  // энергии, поэтому сперва факты с устройства. Замер их и даёт: он ничего не
+  // решает, только называет цену.
+  const scanStartedAt = Date.now();
   const keys = await AsyncStorage.getAllKeys();
+  const scanMs = Date.now() - scanStartedAt;
+  if (scanMs >= PREPARED_SCAN_SLOW_MS) {
+    console.warn(`[ENERGY-LEDGER] полный скан индекса при подготовке траты: ${scanMs}мс, `
+      + `ключей=${keys.length} (порог ${PREPARED_SCAN_SLOW_MS}мс)`);
+  }
   for (const key of keys) {
     if (key.startsWith(abortPrefix) && !key.endsWith(`:${allowedOperationId}`)) {
       const abortedOperationId = key.slice(abortPrefix.length);

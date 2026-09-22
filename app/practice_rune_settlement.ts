@@ -650,7 +650,10 @@ export async function flushStalePracticeRuneSettlements(
   // будет не понять, почему досылка «не сработала».
   const confirmedAt = emptyQueueConfirmedAt.get(ownerStableId);
   if (confirmedAt !== undefined && Date.now() - confirmedAt < EMPTY_QUEUE_TRUST_MS) {
-    console.log('[RUNE-SETTLE] скан пропущен: очередь была пуста '
+    // warn, а НЕ log: в релизе babel вырезает log/info/debug
+    // (`babel.config.js:43`), и ранний выход стал бы немым именно там, где
+    // владелец его и проверяет — на TestFlight.
+    console.warn('[RUNE-SETTLE] скан пропущен: очередь была пуста '
       + `${Math.round((Date.now() - confirmedAt) / 1000)}с назад (порог `
       + `${EMPTY_QUEUE_TRUST_MS / 1000}с)`);
     return Object.freeze({ synced: 0, pending: 0 });

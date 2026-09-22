@@ -17,18 +17,29 @@ function PhoneStateRecoveryScreen() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const [snapshot, setSnapshot] = useState(phoneStateDurabilityRecovery.getSnapshot());
+  // зачем: человек вправе убрать экран кнопкой «назад». Сбрасываем отказ, когда
+  // восстановление удалось (failedAttempts вернулся к 0) — тогда при следующей
+  // настоящей беде экран снова имеет право показаться.
+  const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => phoneStateDurabilityRecovery.subscribe(() => {
     setSnapshot(phoneStateDurabilityRecovery.getSnapshot());
   }), []);
 
   useEffect(() => {
-    if (!snapshot.visible) return undefined;
+    if (snapshot.failedAttempts === 0) setDismissed(false);
+  }, [snapshot.failedAttempts]);
+
+  // зачем (владелец, 2026-09-22, «блокера не должно быть»): повторы обязаны
+  // продолжаться и ПОСЛЕ того, как экран скрылся по потолку показа. Иначе
+  // снятие стены превратило бы вечное ожидание в тихо умершее восстановление —
+  // то есть заменило бы один баг другим, молчаливым.
+  useEffect(() => {
     const timer = setTimeout(() => {
       void phoneStateDurabilityRecovery.retryPending();
     }, AUTOMATIC_RETRY_MS);
     return () => clearTimeout(timer);
-  }, [snapshot.failedAttempts, snapshot.visible]);
+  }, [snapshot.failedAttempts]);
 
   const title = triLang(lang, {
     ru: 'Восстанавливаем сохранение',
@@ -71,11 +82,15 @@ function PhoneStateRecoveryScreen() {
 
   return (
     <Modal
-      visible={snapshot.visible}
+      visible={snapshot.visible && !dismissed}
       transparent
       animationType="none"
       statusBarTranslucent
-      onRequestClose={() => { /* durability recovery cannot be dismissed mid-commit */ }}
+      // зачем (владелец, 2026-09-22, «блокера не должно быть»): раньше кнопка
+      // «назад» на Android не делала ничего, и экран был непроходим. Теперь
+      // человек может его убрать: восстановление записи от этого не
+      // отменяется — повторы продолжаются в фоне (см. эффект выше).
+      onRequestClose={() => setDismissed(true)}
     >
       <ResponsiveModalScrollView style={{ backgroundColor: 'rgba(0,0,0,0.68)' }} accessibilityViewIsModal>
         <View

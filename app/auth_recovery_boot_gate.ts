@@ -200,11 +200,17 @@ async function runBootGateAttempt(
 
   if (hasAccountSwitch) {
     beginPremiumAccountTransition();
-    // The recovery wall must appear before Firebase hydration/network waits.
-    // This import is state-only; runtime auth/cloud dependencies stay lazy.
+    // зачем: раньше здесь поднималась стена до гидратации Firebase. Стены
+    // больше нет (владелец, 2026-09-22) — остаётся пометка статуса для
+    // диагностики. Импорт state-only; auth/cloud по-прежнему ленивые.
     try {
       announceAccountSwitchQuarantinePresence();
-    } catch {
+    } catch (error) {
+      // зачем: запрет немого catch — раньше любой сбой молча превращался в
+      // blocked_transient без единого следа причины.
+      console.warn(
+        `[SWITCH-QUARANTINE] announce presence threw: ${error instanceof Error ? error.message : String(error)}`,
+      );
       return { result: 'blocked_transient', reason: 'resume_failed' };
     }
   }

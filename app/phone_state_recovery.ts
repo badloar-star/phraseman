@@ -26,6 +26,18 @@ const INITIAL_SNAPSHOT: PhoneStateDurabilityRecoverySnapshot = Object.freeze({
   failedAttempts: 0,
 });
 
+/**
+ * Потолок показа экрана восстановления записи (владелец, 2026-09-22,
+ * «блокера не должно быть»).
+ *
+ * зачем: выход из `visible: true` существовал ТОЛЬКО через удачную запись, а
+ * `onRequestClose` экрана пуст. На телефоне с кончившимся местом запись не
+ * проходит никогда — человек оставался заперт навсегда, без единой кнопки.
+ * После потолка экран уходит, а повторы продолжаются в фоне: восстановление
+ * не отменяется, оно просто перестаёт держать человека снаружи.
+ */
+const VISIBLE_ATTEMPTS_CEILING = 4;
+
 export function createPhoneStateDurabilityRecovery(
   dependencies: RecoveryDependencies,
 ): PhoneStateDurabilityRecovery {
@@ -49,11 +61,17 @@ export function createPhoneStateDurabilityRecovery(
         pendingAction = null;
         publish(INITIAL_SNAPSHOT);
         return true;
-      } catch {
+      } catch (error) {
+        const failedAttempts = snapshot.failedAttempts + 1;
+        // зачем: запрет немого catch — причина отказа записи обязана быть
+        // названа, иначе «не сохраняется» останется без диагноза.
+        console.warn(
+          `[PHONE-STATE] retry failed attempt=${failedAttempts} reason=${error instanceof Error ? error.message : String(error)}`,
+        );
         publish({
-          visible: true,
+          visible: failedAttempts < VISIBLE_ATTEMPTS_CEILING,
           automaticRetry: true,
-          failedAttempts: snapshot.failedAttempts + 1,
+          failedAttempts,
         });
         return false;
       } finally {
@@ -75,7 +93,12 @@ export function createPhoneStateDurabilityRecovery(
       try {
         await action();
         return true;
-      } catch {
+      } catch (error) {
+        // зачем: запрет немого catch — вторая неудача записи обязана назвать
+        // причину (чаще всего это кончившееся место на устройстве).
+        console.warn(
+          `[PHONE-STATE] commit failed after cache cleanup: ${error instanceof Error ? error.message : String(error)}`,
+        );
         pendingAction = action;
         publish({ visible: true, automaticRetry: true, failedAttempts: 2 });
         return false;

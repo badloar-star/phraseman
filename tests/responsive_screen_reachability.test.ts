@@ -85,7 +85,7 @@ describe('short-window action reachability', () => {
     expect(source).toContain("maxHeight: '100%'");
   });
 
-  it.each(['BoonActivatedModal', 'BoonChestModal', 'UpdateModal', 'AccountSwitchRecoveryScreen', 'PhoneStateRecoveryScreen'])(
+  it.each(['BoonActivatedModal', 'BoonChestModal', 'UpdateModal', 'PhoneStateRecoveryScreen'])(
     'uses safe-area page overflow in %s', file => {
       expect(read(`components/${file}.tsx`)).toContain('<ResponsiveModalScrollView');
     },

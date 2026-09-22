@@ -142,13 +142,48 @@ let snapshot: AccountSwitchQuarantineSnapshot = {
 const listeners = new Set<() => void>();
 const POST_COMPLETION_HANDOFF_TTL_MS = 24 * 60 * 60 * 1000;
 
+/**
+ * зачем (владелец, 2026-09-22, дословно «блокера не должно быть»): раньше
+ * `visible: true` поднимал непроходимый экран «Нужна безопасная проверка».
+ * Выхода из него не было НИ ОДНОГО: `onRequestClose` пуст, а кнопка «Повторить
+ * безопасно» гоняла ту же проверку, где `validOwnerStable` сравнивает строки на
+ * точное равенство — при реальном расхождении stableId ответ не мог измениться
+ * никогда. Человек, который ничего не удалял, оставался заперт навсегда, и
+ * переустановка не лечила (Keychain переживает её).
+ *
+ * Теперь вход не блокируется НИКОГДА. Изоляция данных при этом сохраняется
+ * полностью: её делают `invalidateAccountGeneration()` и
+ * `beginPremiumAccountTransition()`, а не этот экран. При недоказанном
+ * владельце приложение открывается на чистой локальной сессии — старые данные
+ * остаются на диске нетронутыми и невидимыми, пока владелец не подтвердится
+ * штатным входом. Fail-open для входа, fail-closed для данных.
+ */
 function publish(next: AccountSwitchQuarantineSnapshot): void {
-  snapshot = next;
+  if (next.visible) {
+    // зачем: правило владельца «сперва логи» — причина и статус обязаны
+    // остаться видимыми навсегда, даже когда стены больше нет.
+    console.warn(
+      `[SWITCH-QUARANTINE] wall suppressed (вход не блокируется): status=${next.status} reason=${next.reason ?? 'null'}`,
+    );
+  }
+  snapshot = { ...next, visible: false };
   listeners.forEach((listener) => {
-    try { listener(); } catch { /* a UI listener cannot interrupt the quarantine */ }
+    try {
+      listener();
+    } catch (error) {
+      // зачем: запрет немого catch — слушатель UI не может прервать карантин,
+      // но его падение обязано быть видимым.
+      console.warn(
+        `[SWITCH-QUARANTINE] listener threw: ${error instanceof Error ? error.message : String(error)}`,
+      );
+    }
   });
 }
 
+/**
+ * Состояние карантина для диагностики. `visible` здесь всегда false — стены
+ * больше нет (см. `publish`), снимок остаётся источником причины и статуса.
+ */
 export function getAccountSwitchQuarantineSnapshot(): AccountSwitchQuarantineSnapshot {
   return snapshot;
 }
@@ -159,14 +194,20 @@ export function subscribeAccountSwitchQuarantine(listener: () => void): () => vo
 }
 
 /**
- * Boot has already observed the durable key but may still be waiting for
- * Firebase persistence hydration. Publish the wall without starting auth,
- * cloud, RevenueCat, or stable-id work.
+ * Загрузка увидела долговременный ключ, но ещё ждёт гидратацию Firebase.
+ *
+ * зачем: раньше функция поднимала стену («Publish the wall»). Теперь она лишь
+ * помечает статус для диагностики — вход не блокируется, работа auth, облака,
+ * RevenueCat и stable-id по-прежнему не стартует.
  */
 export function announceAccountSwitchQuarantinePresence(): void {
   publish({ visible: true, status: 'recovering', reason: null });
 }
 
+/**
+ * Отказ шага смены аккаунта. Причина уходит в лог `[SWITCH-QUARANTINE]`;
+ * человека это не запирает.
+ */
 export function announceAccountSwitchQuarantineFailure(reason: string): void {
   publish({ visible: true, status: 'retryable', reason });
 }

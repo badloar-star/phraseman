@@ -320,20 +320,43 @@ async function preload(
         verifiedPhysicalAudioFiles.delete(oldest);
       }
     }
-    const fileUri = await verifiedFile;
+    // зачем: владелец 22.09 — «занятие не подготовилось» на уроке 2. Раньше
+    // ОДИН недостающий MP3 отклонял подготовку целиком, и урок не открывался
+    // вовсе. Решение владельца: открывать без звука, звук догоняет фоном.
+    // Поэтому пропуск файла тут НЕ фатален — он уменьшает localFileCount,
+    // и вызывающий сам решает, что делать с неполной озвучкой.
+    let fileUri: string | null = null;
+    try {
+      fileUri = await verifiedFile;
+    } catch (error) {
+      // Немой catch запрещён: без причины «тихое занятие» не отличить от бага.
+      console.warn(
+        "[V2-AUDIO] file_unavailable",
+        JSON.stringify({
+          courseSessionId: audioChild.courseSessionId,
+          contentHash: file.contentHash,
+          objectPath: file.objectPath,
+          byteSize: file.byteSize,
+          reason: String(error),
+        }),
+      );
+    }
     if (!isCurrentAccountGeneration(account, account.stableId))
       fail("account_changed_after_file_fetch", {
         courseSessionId: audioChild.courseSessionId,
         index,
       });
-    localUris.set(file.fileFingerprint, fileUri);
+    if (fileUri !== null) localUris.set(file.fileFingerprint, fileUri);
   });
   if (localUris.size !== files.size)
-    fail("resolved_files_count_mismatch", {
-      courseSessionId: audioChild.courseSessionId,
-      resolved: localUris.size,
-      expected: files.size,
-    });
+    console.warn(
+      "[V2-AUDIO] session_audio_incomplete",
+      JSON.stringify({
+        courseSessionId: audioChild.courseSessionId,
+        resolved: localUris.size,
+        expected: files.size,
+      }),
+    );
   const body = {
     schemaVersion: LEARNING_V2_COURSE_SESSION_AUDIO_PRELOAD_SCHEMA_V1,
     courseSessionId: audioChild.courseSessionId,
@@ -515,12 +538,22 @@ function resolveFile(
   if (!fingerprint) return null;
   const file = material.files.get(fingerprint);
   const fileUri = material.localUris.get(fingerprint);
-  if (!file || !fileUri)
-    fail("selected_file_missing_local_uri", {
-      fingerprint,
-      hasFile: Boolean(file),
-      hasUri: Boolean(fileUri),
-    });
+  // зачем: занятие открывается и без полной озвучки (решение владельца 22.09),
+  // поэтому недостающий файл — это «здесь тихо», а не отказ экрана. Возврат
+  // null уже поддержан вызывающими: так же отвечает фраза без своего аудио.
+  // Немой пропуск запрещён — причина всегда называется.
+  if (!file || !fileUri) {
+    console.warn(
+      "[V2-AUDIO] selected_file_missing_local_uri",
+      JSON.stringify({
+        courseSessionId: material.summary.courseSessionId,
+        fingerprint,
+        hasFile: Boolean(file),
+        hasUri: Boolean(fileUri),
+      }),
+    );
+    return null;
+  }
   return Object.freeze({ fileUri, voiceId: file.voiceId });
 }
 

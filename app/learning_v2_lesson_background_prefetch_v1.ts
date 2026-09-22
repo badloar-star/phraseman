@@ -119,7 +119,19 @@ const lessonKey = (
 export function prefetchLearningV2LessonInBackgroundV1(
   scope: LearningV2LessonBackgroundPrefetchScopeV1,
   lessonOrdinal: number,
-  options: Readonly<{ netInfo?: NetInfoLike | null }> = {},
+  options: Readonly<{
+    netInfo?: NetInfoLike | null;
+    /**
+     * Номер сессии, с которой начинать очередь (её человек проходит сейчас).
+     *
+     * зачем: владелец 22.09 — «урок 1 пройден → урок 24 уже должен грузиться».
+     * Раньше очередь ВСЕГДА стартовала с сессии 1, то есть у человека на 30-й
+     * сессии воркеры заново перемалывали давно готовые 1..29, а нужная 31-я
+     * ждала своей очереди последней. Старт от текущей позиции делает прогрев
+     * скользящим окном: вперёд, а не по кругу.
+     */
+    fromSessionOrdinal?: number;
+  }> = {},
 ): LearningV2LessonBackgroundPrefetchHandle {
   if (
     !Number.isSafeInteger(lessonOrdinal) ||
@@ -128,7 +140,15 @@ export function prefetchLearningV2LessonInBackgroundV1(
   ) {
     return Object.freeze({ cancel: () => {} });
   }
-  const key = lessonKey(scope, lessonOrdinal);
+  const startOrdinal =
+    Number.isSafeInteger(options.fromSessionOrdinal) &&
+    (options.fromSessionOrdinal as number) >= 1 &&
+    (options.fromSessionOrdinal as number) <= LEARNING_V2_LESSON_SESSION_COUNT_V1
+      ? (options.fromSessionOrdinal as number)
+      : 1;
+  // Ключ включает точку старта: после перехода на следующую сессию окно
+  // обязано сдвинуться, а не отсечься как «этот урок уже в очереди».
+  const key = `${lessonKey(scope, lessonOrdinal)}:${startOrdinal}`;
   if (lessonGenerations.has(key)) {
     return Object.freeze({ cancel: () => {} });
   }
@@ -138,30 +158,56 @@ export function prefetchLearningV2LessonInBackgroundV1(
   const isCurrent = () => lessonGenerations.get(key) === generation;
 
   void (async () => {
+    // зачем: владелец 22.09 выбрал «качать на любой сети». Прежний Wi-Fi-гейт
+    // означал, что человек с мобильным интернетом НИКОГДА не получал прогрева
+    // и упирался в «занятие не подготовилось» на каждой новой сессии. Объём
+    // невелик — около 0,7 МБ на сессию, и файл качается один раз навсегда.
+    // Тип соединения всё равно печатаем: без него не понять, почему очередь
+    // шла медленно.
     const netInfo = options.netInfo !== undefined ? options.netInfo : loadNetInfo();
     const onWifi = await isOnWifi(netInfo);
-    if (!onWifi || !isCurrent()) return;
+    if (!isCurrent()) return;
+    console.log(
+      "[V2-AUDIO] background_prefetch_start",
+      JSON.stringify({
+        lessonOrdinal,
+        fromSessionOrdinal: startOrdinal,
+        onWifi,
+        studyTarget: scope.studyTarget,
+      }),
+    );
 
     try {
       await withBackgroundNetworkLease(
         "learning-v2.lesson-background-prefetch",
         async (lease) => {
-          let cursor = 0;
           const total = LEARNING_V2_LESSON_SESSION_COUNT_V1;
+          // Окно едет ВПЕРЁД от текущей сессии: 1..startOrdinal-1 человек уже
+          // прошёл, их озвучка либо в бандле, либо давно в кэше.
+          let cursor = startOrdinal - 1;
           const workers = Array.from(
-            { length: Math.min(CONCURRENCY, total) },
+            { length: Math.min(CONCURRENCY, Math.max(1, total - cursor)) },
             async () => {
               while (cursor < total) {
                 const sessionOrdinal = cursor + 1;
                 cursor += 1;
                 if (!isCurrent() || lease.signal.aborted) return;
-                // Падение одной сессии (пока не написана — 2-56 сейчас
-                // FORBIDDEN) не должно уносить с собой воркер и тем более
-                // всплывать наружу: это предзагрузка, не запрошенное чтение.
+                // Падение одной сессии не должно уносить воркер и всплывать
+                // наружу: это предзагрузка, а не запрошенное чтение. Но немой
+                // catch запрещён — иначе прогрев умирает молча на месяцы.
                 await prepareCurrentLearningV2CourseSessionV3({
                   locator: { ...scope, lessonOrdinal, sessionOrdinal },
                   sessionRunId: Crypto.randomUUID(),
-                }).catch(() => undefined);
+                }).catch((error) => {
+                  console.warn(
+                    "[V2-AUDIO] background_prefetch_session_failed",
+                    JSON.stringify({
+                      lessonOrdinal,
+                      sessionOrdinal,
+                      reason: String(error),
+                    }),
+                  );
+                });
               }
             },
           );

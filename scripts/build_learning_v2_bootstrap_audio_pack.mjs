@@ -5,13 +5,29 @@ import path from "node:path";
 
 const root = process.cwd();
 const check = process.argv.includes("--check");
-const learnerPath = path.join(root, "content/learning-v2-course/release/en/l01/s01/learner.json");
+
+/**
+ * Сколько сессий урока 1 едут ОЗВУЧЕННЫМИ прямо в сборке.
+ *
+ * зачем: владелец 22.09 — «занятие не подготовилось. проверь связь» на уроке 2
+ * и вылет на Главную. Корень был не в связи: в бандл попадала озвучка РОВНО
+ * одной сессии (5 фраз, 27 файлов), а всё остальное качалось из Firebase
+ * Storage в момент нажатия «Начать». Нет файла в оффлайн-кэше — подготовка
+ * отклонялась, и занятие не открывалось вовсе.
+ *
+ * Пять сессий (~3,6 МБ) человек проходит не за один заход, поэтому за это
+ * время скользящее окно (learning_v2_audio_rolling_window_v1) успевает
+ * догрузить следующие. Число согласовано с владельцем: «первые 5 сессий,
+ * сессия 1 завершена — уже должна грузиться сессия 6».
+ */
+const BOOTSTRAP_SESSION_COUNT = 5;
+
+const releaseDirectory = path.join(root, "content/learning-v2-course/release/en/l01");
 const manifestPath = path.join(root, "assets/audio/learning-v2/factory-production-v1/manifest.json");
 const outputDirectory = path.join(root, "assets/audio/learning-v2-bootstrap-v1");
 const outputModule = path.join(root, "app/learning_v2_bootstrap_audio_assets_v1.generated.ts");
 const voices = ["ash", "onyx", "nova", "coral"];
 
-const learner = JSON.parse(fs.readFileSync(learnerPath, "utf8"));
 const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
 const transcripts = new Set();
 const visit = (value) => {
@@ -21,7 +37,18 @@ const visit = (value) => {
     transcripts.add(value.transcript);
   Object.values(value).forEach(visit);
 };
-visit(learner.interactions);
+for (let sessionOrdinal = 1; sessionOrdinal <= BOOTSTRAP_SESSION_COUNT; sessionOrdinal += 1) {
+  const learnerPath = path.join(
+    releaseDirectory,
+    `s${String(sessionOrdinal).padStart(2, "0")}`,
+    "learner.json",
+  );
+  // Немой пропуск запрещён: молча собранный неполный пак — это ровно тот баг,
+  // который чиним (занятие открывается у автора и падает у человека).
+  if (!fs.existsSync(learnerPath))
+    throw new Error(`learning_v2_bootstrap_audio_session_missing:${learnerPath}`);
+  visit(JSON.parse(fs.readFileSync(learnerPath, "utf8")).interactions);
+}
 
 const byCoordinate = new Map(
   manifest.entries.map((entry) => [`${entry.transcript}\u0000${entry.voiceId}`, entry]),

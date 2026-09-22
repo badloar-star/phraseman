@@ -2901,6 +2901,63 @@ export default function LessonsTab({
     };
   }, [learningV2Progress.currentSessionId]);
 
+  // зачем: владелец 22.09 — «как только урок 1 пройден, урок 24 уже должен
+  // грузиться». Механизм фоновой закачки (learning_v2_lesson_background_
+  // prefetch_v1) был написан 27.08, но его НЕ ВЫЗЫВАЛ НИКТО — классический
+  // мёртвый прогрев. Из-за этого в приложении жила озвучка ровно одной
+  // сессии, а всё остальное тянулось по сети в момент нажатия «Начать» и
+  // давало «Занятие не подготовилось. Проверь связь».
+  //
+  // Окно едет от ТЕКУЩЕЙ сессии вперёд и сдвигается при каждом переходе:
+  // прошёл N — очередь стартует с N+1. Firebase-расход разовый: файл
+  // скачивается один раз и живёт в оффлайн-кэше, повторных чтений нет.
+  const learningV2PrefetchLessonOrdinal = currentLearningV2SessionCoordinates?.lessonOrdinal ?? null;
+  const learningV2PrefetchSessionOrdinal = currentLearningV2SessionCoordinates?.sessionOrdinal ?? null;
+  useEffect(() => {
+    if (
+      learningV2PrefetchLessonOrdinal === null ||
+      learningV2PrefetchSessionOrdinal === null ||
+      studyTarget !== "en"
+    )
+      return;
+    let cancelled = false;
+    let handle: { cancel: () => void } | null = null;
+    void import("../learning_v2_lesson_background_prefetch_v1")
+      .then((mod) => {
+        if (cancelled) return;
+        handle = mod.prefetchLearningV2LessonInBackgroundV1(
+          {
+            environment: learningV2Catalog?.environment ?? "production",
+            targetLanguage: studyTarget,
+            studyTarget,
+            learnerSourceLocale: lang,
+            seasonId: learningV2Catalog?.seasonId ?? "learning-v2",
+          },
+          learningV2PrefetchLessonOrdinal,
+          { fromSessionOrdinal: learningV2PrefetchSessionOrdinal },
+        );
+      })
+      .catch((error) => {
+        // Немой catch запрещён: именно так прогрев и умирает незаметно.
+        DebugLogger.error(
+          "learning_v2:background_prefetch_module_load",
+          error instanceof Error ? error : new Error(String(error)),
+          "warning",
+        );
+      });
+    return () => {
+      cancelled = true;
+      handle?.cancel();
+    };
+  }, [
+    lang,
+    learningV2Catalog?.environment,
+    learningV2Catalog?.seasonId,
+    learningV2PrefetchLessonOrdinal,
+    learningV2PrefetchSessionOrdinal,
+    studyTarget,
+  ]);
+
   // зачем: этот проп вызывается для КАЖДОЙ строки карты внутри её рендера.
   // Инлайновая стрелка меняла идентичность на каждый рендер экрана и срывала
   // мемоизацию renderItem — FlatList перестраивал все видимые строки

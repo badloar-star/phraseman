@@ -1301,9 +1301,24 @@ export async function prepareCurrentLearningV2CourseSessionV3(input: {
       audioSummary.sessionRunId !== input.sessionRunId ||
       audioSummary.learnerFingerprint !== result.material.learnerChild.learnerFingerprint ||
       audioSummary.audioFingerprint !== result.material.audioChild.audioFingerprint ||
-      audioSummary.supplementalAudioCount !== supplementalWordAudio.size ||
-      !audioComplete
+      audioSummary.supplementalAudioCount !== supplementalWordAudio.size
     ) fail();
+    // зачем: владелец 22.09 — «занятие не подготовилось. проверь связь» на
+    // уроке 2 и вылет на Главную. Неполная озвучка ОТКЛОНЯЛА подготовку, и
+    // занятие не открывалось вовсе. Решение владельца: открывать без звука,
+    // звук догоняет фоном. Целостность отпечатков выше по-прежнему жёсткая —
+    // мягче стала только полнота набора файлов. Немое молчание запрещено:
+    // неполный звук всегда называет себя в логе.
+    if (!audioComplete) {
+      console.warn(
+        "[V2-AUDIO] opening_session_with_incomplete_audio",
+        JSON.stringify({
+          courseSessionId: result.material.courseSessionId,
+          localFileCount: audioSummary.localFileCount,
+          selectedFileCount: audioSummary.selectedFileCount,
+        }),
+      );
+    }
     audioFingerprint = result.material.audioChild.audioFingerprint;
     audioPreloadFingerprint = audioSummary.preloadFingerprint;
     const body = {

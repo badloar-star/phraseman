@@ -2007,22 +2007,44 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const [showStatsPulseHint, setShowStatsPulseHint] = useState(false);
     const [homeHintText, setHomeHintText] = useState<string | null>(null);
     const homeHintSnapshotRef = useRef<PublishedHomeHints | null>(null);
+    // зачем (владелец 2026-09-22, «что в фоне тормозит»): пульс подсказки над
+    // блоком статистики запускался БЕЗ ссылки на цикл и без гарда активности —
+    // в отличие от двух соседних циклов в этом же файле, у которых гард есть.
+    // Цикл продолжал крутиться после ухода с Главной и в свёрнутом приложении,
+    // потому что остановить его было нечем: hideHomeHint зовётся не всегда.
+    // Теперь ссылка живёт в ref и гасится при потере активности экрана.
+    const statsHintLoopRef = useRef<Animated.CompositeAnimation | null>(null);
     const showHomeHint = useCallback((text: string) => {
+        statsHintLoopRef.current?.stop();
+        statsHintLoopRef.current = null;
         statsHintPulseAnim.stopAnimation();
         statsHintPulseAnim.setValue(1);
         setHomeHintText(text);
         setShowStatsPulseHint(true);
         if (homeMotionReduceMotion) return;
-        Animated.loop(Animated.sequence([
+        const loop = Animated.loop(Animated.sequence([
             Animated.timing(statsHintPulseAnim, { toValue: 0.52, duration: 2200, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }),
             Animated.timing(statsHintPulseAnim, { toValue: 1, duration: 2200, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }),
-        ])).start();
+        ]));
+        statsHintLoopRef.current = loop;
+        loop.start();
     }, [homeMotionReduceMotion, statsHintPulseAnim]);
     const hideHomeHint = useCallback(() => {
+        statsHintLoopRef.current?.stop();
+        statsHintLoopRef.current = null;
         statsHintPulseAnim.stopAnimation();
         statsHintPulseAnim.setValue(1);
         setShowStatsPulseHint(false);
     }, [statsHintPulseAnim]);
+    // зачем: экран ушёл из фокуса или приложение свернули — пульс обязан встать.
+    // Без этого он крутился в фоне и грел процессор впустую (см. showHomeHint).
+    useEffect(() => {
+        if (homeRuntimeActive) return undefined;
+        statsHintLoopRef.current?.stop();
+        statsHintLoopRef.current = null;
+        statsHintPulseAnim.stopAnimation();
+        return undefined;
+    }, [homeRuntimeActive, statsHintPulseAnim]);
     useEffect(() => {
         if (!homeRuntimeActive) return undefined;
         if (homeHintShownThisAppSession) return undefined;

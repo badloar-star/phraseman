@@ -261,6 +261,38 @@ export function callPremiumDialogStream(
             }));
             const parsed = parseDialogStreamDoneFrame(frame);
             if (!parsed) {
+              // зачем (владелец 2026-09-22): раньше отказ разбора выбрасывал
+              // ВЕСЬ ответ — человек читал реплику и получал ошибку. Печатаем
+              // фактические значения служебных полей: без них не понять, какое
+              // именно не прошло (это уже стоило круга поисков).
+              DebugLogger.info('[DIALOG-SEND] done frame rejected', JSON.stringify({
+                remainingQuota: (frame as Record<string, unknown>).remainingQuota,
+                remainingQuotaType: typeof (frame as Record<string, unknown>).remainingQuota,
+                resetAtMs: (frame as Record<string, unknown>).resetAtMs,
+                resetAtMsType: typeof (frame as Record<string, unknown>).resetAtMs,
+                quotaVersion: (frame as Record<string, unknown>).quotaVersion,
+                quotaVersionType: typeof (frame as Record<string, unknown>).quotaVersion,
+                assistantChars: String((frame as Record<string, unknown>).assistantMessage ?? '').length,
+              }));
+              // Ответ УЖЕ у человека на экране и квота на сервере списана —
+              // бухгалтерия не имеет права его отменять. Берём текст как есть,
+              // а квоту помечаем «неизвестно» (-1): парсер такую метку
+              // отвергает сам, счётчик не затрётся, авторитетное значение
+              // придёт следующим ходом.
+              const salvaged = String((frame as Record<string, unknown>).assistantMessage ?? '').trim()
+                || streamedText.trim();
+              if (salvaged) {
+                result = {
+                  assistantMessage: salvaged,
+                  turnState: (frame as Record<string, unknown>).turnState ?? null,
+                  coach: (frame as Record<string, unknown>).coach ?? null,
+                  remainingQuota: -1,
+                  resetAtMs: 0,
+                  quotaVersion: 0,
+                  model: String((frame as Record<string, unknown>).model ?? ''),
+                };
+                continue;
+              }
               finish(() => reject(new DialogStreamError('dialog_quota_observation_invalid', false)));
               return;
             }

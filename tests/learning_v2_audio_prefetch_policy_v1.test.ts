@@ -60,59 +60,82 @@ assert.deepEqual(
   "urgent prefetch must stop at the first unpublished session",
 );
 
+// зачем (владелец, 22.09): прежний сторож фиксировал ОТМЕНЁННОЕ правило —
+// «массово качать только по Wi-Fi» и «при неизвестной достижимости не качать
+// вовсе». Именно оно и давало «Занятие не подготовилось. Проверь связь»:
+// NetInfo отдаёт isInternetReachable === null сразу после запуска, поэтому
+// прогрев не стартовал в тот самый момент, когда человек открывает карту.
+// Владелец решил: качать на любой сети, кроме соединения по счётчику.
+
+// Wi-Fi — качаем.
 assert.equal(isLearningV2BulkAudioNetworkEligibleV1({
   type: "wifi",
   isConnected: true,
   isInternetReachable: true,
   isConnectionExpensive: false,
 }), true);
+// Мобильный интернет — ТОЖЕ качаем (раньше здесь стоял false).
 assert.equal(isLearningV2BulkAudioNetworkEligibleV1({
   type: "cellular",
   isConnected: true,
   isInternetReachable: true,
   isConnectionExpensive: false,
+}), true, "bulk prefetch must work on cellular, not only wi-fi");
+// Неизвестная достижимость не должна останавливать закачку.
+assert.equal(isLearningV2BulkAudioNetworkEligibleV1({
+  type: "cellular",
+  isConnected: true,
+  isInternetReachable: null,
+  isConnectionExpensive: false,
+}), true, "unknown reachability must not block bulk downloads");
+// Единственный настоящий стоп массовой закачки — оплата по счётчику.
+assert.equal(isLearningV2BulkAudioNetworkEligibleV1({
+  type: "wifi",
+  isConnected: true,
+  isInternetReachable: true,
+  isConnectionExpensive: true,
+}), false, "metered connection must never start bulk downloads");
+// Сети нет — не качаем.
+assert.equal(isLearningV2BulkAudioNetworkEligibleV1({
+  type: "none",
+  isConnected: false,
+  isInternetReachable: false,
+  isConnectionExpensive: false,
 }), false);
+
+// Срочное окно ближайших сессий важнее экономии: идёт даже по счётчику.
 assert.equal(isLearningV2UrgentAudioNetworkEligibleV1({
   type: "cellular",
   isConnected: true,
   isInternetReachable: true,
   isConnectionExpensive: true,
 }), true, "urgent window may use cellular data");
+// Неизвестность трактуем как «попробовать стоит» (раньше здесь был false —
+// ровно этот случай и ломал открытие занятия на старте приложения).
+assert.equal(isLearningV2UrgentAudioNetworkEligibleV1({
+  type: "cellular",
+  isConnected: true,
+  isInternetReachable: null,
+  isConnectionExpensive: true,
+}), true, "unknown reachability must still attempt the urgent window");
+assert.equal(isLearningV2UrgentAudioNetworkEligibleV1({
+  type: "unknown",
+  isConnected: null,
+  isInternetReachable: null,
+  isConnectionExpensive: null,
+}), true, "unknown network state must still attempt the urgent window");
+// Явный отказ по-прежнему останавливает.
 assert.equal(isLearningV2UrgentAudioNetworkEligibleV1({
   type: "none",
   isConnected: false,
   isInternetReachable: false,
   isConnectionExpensive: false,
 }), false);
-assert.equal(isLearningV2BulkAudioNetworkEligibleV1({
-  type: "wifi",
-  isConnected: true,
-  isInternetReachable: true,
-  isConnectionExpensive: true,
-}), false);
-assert.equal(isLearningV2BulkAudioNetworkEligibleV1({
-  type: "wifi",
-  isConnected: true,
-  isInternetReachable: null,
-  isConnectionExpensive: false,
-}), false, "unknown reachability must not start bulk downloads");
-assert.equal(isLearningV2BulkAudioNetworkEligibleV1({
-  type: "wifi",
-  isConnected: true,
-  isInternetReachable: true,
-  isConnectionExpensive: null,
-}), false, "unknown connection cost must not start bulk downloads");
 assert.equal(isLearningV2UrgentAudioNetworkEligibleV1({
-  type: "cellular",
-  isConnected: true,
-  isInternetReachable: null,
-  isConnectionExpensive: true,
-}), false, "unknown reachability must not start urgent downloads");
-assert.equal(isLearningV2BulkAudioNetworkEligibleV1({
   type: "wifi",
-  isConnected: false,
+  isConnected: true,
   isInternetReachable: false,
   isConnectionExpensive: false,
-}), false);
+}), false, "connected but provably offline must not download");
 
 console.log("LEARNING V2 AUDIO PREFETCH POLICY: PASS");

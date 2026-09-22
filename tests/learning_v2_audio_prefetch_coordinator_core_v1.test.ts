@@ -28,23 +28,33 @@ async function run(type: "wifi" | "cellular" | "none") {
 }
 
 void (async () => {
+  // Срочное окно останавливается на первой НЕопубликованной сессии, поэтому
+  // при четырёх опубликованных координатах их и ждём — окно шире (8), но
+  // выдумывать несуществующие сессии оно не должно.
   const wifi = await run("wifi");
   assert.deepEqual(wifi.calls, [
     "s:1:55",
     "s:1:56",
     "s:2:1",
+    "s:2:2",
     "l:1",
     "l:2",
     "l:3",
   ]);
   assert.deepEqual(wifi.summary, {
-    urgentSessionCount: 3,
+    urgentSessionCount: 4,
     bulkLessonCount: 3,
     bulkEligible: true,
   });
 
+  // зачем (владелец, 22.09): раньше сторож требовал bulkLessonCount === 0 на
+  // мобильном интернете. Это и есть отменённое правило «только Wi-Fi», из-за
+  // которого человек без Wi-Fi не получал запаса и упирался в «занятие не
+  // подготовилось». Здесь isConnectionExpensive === true (соединение по
+  // счётчику), поэтому массовая закачка по-прежнему не идёт — но уже по
+  // причине цены, а не типа сети.
   const cellular = await run("cellular");
-  assert.deepEqual(cellular.calls, ["s:1:55", "s:1:56", "s:2:1"]);
+  assert.deepEqual(cellular.calls, ["s:1:55", "s:1:56", "s:2:1", "s:2:2"]);
   assert.equal(cellular.summary.bulkLessonCount, 0);
   assert.equal(cellular.summary.bulkEligible, false);
 
@@ -83,8 +93,11 @@ void (async () => {
       transitionCalls.push(`l:${lessonOrdinal}`);
     },
   });
-  assert.deepEqual(transitionCalls, ["s:1:55", "s:1:56", "s:2:1", "l:1"],
-    "bulk queue must stop before the next lesson after Wi-Fi becomes expensive");
+  // Опубликованных координат четыре, поэтому срочное окно тратит проверки
+  // сети 1..4 (все ещё Wi-Fi). Пятая проверка — уже соединение по счётчику,
+  // поэтому до массовой очереди дело не доходит.
+  assert.deepEqual(transitionCalls, ["s:1:55", "s:1:56", "s:2:1", "s:2:2"],
+    "bulk queue must not start after the connection becomes metered");
 
   const preemptionCalls: string[] = [];
   let continueChecks = 0;
@@ -113,8 +126,11 @@ void (async () => {
       preemptionCalls.push(`l:${lessonOrdinal}`);
     },
   });
-  assert.deepEqual(preemptionCalls, ["s:1:55", "s:1:56", "s:2:1", "l:1"],
-    "a newer request must preempt bulk work between lesson packs");
+  // shouldContinue разрешает ровно четыре шага — их забирает срочное окно
+  // (четыре опубликованные сессии), поэтому массовая очередь не стартует:
+  // более новая заявка вытесняет фоновую работу.
+  assert.deepEqual(preemptionCalls, ["s:1:55", "s:1:56", "s:2:1", "s:2:2"],
+    "a newer request must preempt bulk work");
 
   console.log("LEARNING V2 AUDIO PREFETCH COORDINATOR CORE: PASS");
 })().catch((error) => {

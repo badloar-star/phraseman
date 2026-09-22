@@ -28,7 +28,11 @@ export async function runLearningV2AudioPrefetchCoordinatorCoreV1(input: {
   if (isLearningV2UrgentAudioNetworkEligibleV1(input.network)) {
     const urgent = learningV2UrgentAudioCoordinatesV1({
       ...input.current,
-      count: 3,
+      // зачем (владелец, 22.09): было 3. Запас в три сессии человек проходит
+      // за один заход, и следующая уже упиралась в «занятие не подготовилось».
+      // Восемь — потолок политики; при 5 озвученных сессиях в бандле это даёт
+      // окно, которое реально едет впереди прохождения.
+      count: 8,
       isPublished: input.isSessionPublished,
     });
     for (const coordinate of urgent) {

@@ -53,17 +53,38 @@ export function learningV2UrgentAudioCoordinatesV1(input: {
   return Object.freeze(result);
 }
 
+/**
+ * зачем (владелец, 22.09): «занятие не подготовилось» на уроке 2. Массовая
+ * закачка урока требовала Wi-Fi, поэтому человек с мобильным интернетом
+ * НИКОГДА не получал запаса вперёд и упирался в отказ на каждой новой сессии.
+ * Владелец выбрал «качать на любой сети»: файл весит десятки килобайт и
+ * скачивается один раз навсегда.
+ *
+ * Остаётся единственный настоящий стоп — соединение, за которое платят по
+ * счётчику (`isConnectionExpensive === true`, роуминг/лимитный тариф). Там
+ * массовую закачку по-прежнему не начинаем: срочное окно ниже всё равно
+ * принесёт ближайшие сессии.
+ */
 export function isLearningV2BulkAudioNetworkEligibleV1(
   network: LearningV2AudioPrefetchNetworkV1,
 ): boolean {
-  return network.type === "wifi" &&
-    network.isConnected === true &&
-    network.isInternetReachable === true &&
-    network.isConnectionExpensive === false;
+  return network.isConnected === true && network.isConnectionExpensive !== true;
 }
 
+/**
+ * зачем (владелец, 22.09): раньше требовалось `isInternetReachable === true`.
+ * NetInfo отдаёт здесь `null`, пока проверка достижимости не завершилась — а
+ * это обычное состояние сразу после запуска приложения, ровно в тот момент,
+ * когда человек открывает карту уроков. Строгое сравнение с `true` означало,
+ * что прогрев не стартовал ВОВСЕ, и первая же сессия без бандл-озвучки давала
+ * «Занятие не подготовилось. Проверь связь».
+ *
+ * Теперь неизвестность (`null`) трактуется как «попробовать стоит»: худший
+ * исход — неудачная закачка, которую вызывающий переживает и логирует. Явное
+ * `false` (сеть есть, интернета нет) по-прежнему останавливает.
+ */
 export function isLearningV2UrgentAudioNetworkEligibleV1(
   network: LearningV2AudioPrefetchNetworkV1,
 ): boolean {
-  return network.isConnected === true && network.isInternetReachable === true;
+  return network.isConnected !== false && network.isInternetReachable !== false;
 }

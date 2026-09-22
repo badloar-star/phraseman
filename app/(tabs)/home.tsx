@@ -243,6 +243,18 @@ const DEV_HOME_MISTAKES_MIN_COUNT = 10;
 const DEV_HOME_MISTAKES_MAX_COUNT = 140;
 const HOME_PRIORITY_CARD_HOLD_SCALE = 1.035;
 const HOME_PRIORITY_CARD_PRESS_IN_MS = 150;
+// зачем (владелец 2026-09-22, дизайн «Цифра-гигант»): геометрия приоритетной
+// плашки. Арт 84 при высоте 100 даёт по 8 px воздуха сверху и снизу. Брать
+// больше нельзя: на 96 остаётся 2 px и картинка упирается в края — ровно та
+// претензия владельца, из-за которой правился макет. Числа целые намеренно:
+// дробный размер даёт нецелые пиксели и мыло на картинке.
+//
+// Живут на уровне МОДУЛЯ рядом с соседями по плашке, а не внутри
+// renderNewHome: 2026-09-22 объявление внутри функции дало на боевом телефоне
+// `ReferenceError: Property 'HOME_PRIORITY_CARD_HEIGHT' doesn't exist` —
+// значения-константы не должны зависеть от порядка выполнения рендера.
+const HOME_PRIORITY_CARD_HEIGHT = 100;
+const HOME_PRIORITY_CARD_ART = 84;
 /** Единый едва заметный press-feedback для крупных действий Главной. */
 const HOME_BUTTON_PRESS_SCALE = 1.02;
 // Rollback: set false to return to the previous elite home status card.
@@ -4002,14 +4014,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const homeQuickThemeArtSize = Math.max(112, homeQuickIconPlateSize + 36);
         const homeQuickIconLegacySize = Math.max(96, homeQuickIconPlateSize + 14);
         const homeQuickIconRadius = isGoldTheme ? 26 : 30;
-        // зачем (владелец 2026-09-22, дизайн «Цифра-гигант»): высота и размер
-        // арта — единственные два числа геометрии плашки, держим рядом.
-        // Арт 84 при высоте 100 даёт по 8 px воздуха сверху и снизу. Брать
-        // больше нельзя: на 96 остаётся 2 px и картинка упирается в края —
-        // ровно та претензия владельца, из-за которой правился макет.
-        // Числа целые намеренно: дробный размер даёт мыло на картинке.
-        const HOME_PRIORITY_CARD_HEIGHT = 100;
-        const HOME_PRIORITY_CARD_ART = 84;
+        // Геометрия плашки (HOME_PRIORITY_CARD_HEIGHT / _ART) живёт на уровне
+        // модуля — см. комментарий у объявления.
         // Цифра-герой берёт цвет смысла: зелёный прогресс / красные ошибки.
         // Красный НЕ берём из t.wrong (#F05454): на светлом крае зелёного
         // градиента он даёт контраст 2.87 при норме 3.0 для крупного текста

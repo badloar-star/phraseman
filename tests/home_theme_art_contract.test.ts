@@ -70,8 +70,14 @@ describe('Home per-theme artwork contract', () => {
     // в обход именованной константы. Плюс закрываем класс бага, из-за которого
     // владелец и забраковал прошлые версии, — арт, упирающийся в края:
     // при высоте 100 и арте 84 остаётся по 8 px воздуха сверху и снизу.
-    expect(home).toContain('const HOME_PRIORITY_CARD_HEIGHT = 100;');
-    expect(home).toContain('const HOME_PRIORITY_CARD_ART = 84;');
+    // Объявления живут на уровне МОДУЛЯ (без отступа), а не внутри
+    // renderNewHome. 2026-09-22 объявление внутри функции дало на боевом
+    // телефоне `ReferenceError: Property 'HOME_PRIORITY_CARD_HEIGHT'
+    // doesn't exist` и Главная не открывалась вообще. Отступ перед const —
+    // признак возврата внутрь функции, поэтому проверяем начало строки.
+    expect(home).toMatch(/^const HOME_PRIORITY_CARD_HEIGHT = 100;$/m);
+    expect(home).toMatch(/^const HOME_PRIORITY_CARD_ART = 84;$/m);
+    expect(home).not.toMatch(/^\s+const HOME_PRIORITY_CARD_(HEIGHT|ART)\b/m);
     expect(home).toContain('width={HOME_PRIORITY_CARD_ART} height={HOME_PRIORITY_CARD_ART}');
     expect(home).toContain('minHeight: HOME_PRIORITY_CARD_HEIGHT');
 

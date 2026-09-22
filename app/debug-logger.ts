@@ -59,34 +59,111 @@ async function cleanupLegacyDebugLogs(now: number): Promise<void> {
   }
 }
 
-async function appendDebugLog(entry: DebugLogEntry): Promise<void> {
-  const now = Date.now();
+/* ─── Журнал держим В ПАМЯТИ, на диск сбрасываем пачкой ───────────────────
+ *
+ * зачем (владелец 2026-09-22, «всё тормозит, удалить все логи, что копится»):
+ * раньше КАЖДЫЙ из 867 вызовов DebugLogger.error делал полный цикл
+ * чтение-разбор-сборка-запись: getItem всего журнала → JSON.parse до 160
+ * записей со стеками → JSON.stringify → setItem. Это 2 перехода через мост в
+ * SQLite и разбор килобайтов JSON НА ОДИН вызов, одинаково в деве и в релизе
+ * (вырезание console сюда не достаёт — путь идёт мимо console). Один такой
+ * вызов в цикле — и JS-поток стоит колом, отсюда «любая кнопка думает».
+ *
+ * Отсечка повторов при этом стояла ПОСЛЕ разбора, то есть дорогую работу не
+ * экономила вовсе.
+ *
+ * Теперь: правда живёт в памяти, повтор гасится СРАЗУ (без диска), на диск
+ * уходит одна отложенная запись пачкой. Стоимость вызова в горячем цикле —
+ * сравнение строк вместо двух обращений к базе.
+ */
+
+/** Журнал в памяти процесса. Диск — только зеркало для переживания перезапуска. */
+let memoryLogs: DebugLogEntry[] | null = null;
+let flushTimer: ReturnType<typeof setTimeout> | null = null;
+let flushScheduled = false;
+/** Реже этого на диск не пишем: всплеск ошибок даёт ОДНУ запись, а не сотню. */
+const DEBUG_LOG_FLUSH_DELAY_MS = 5_000;
+
+/** Подтягивает журнал с диска один раз за запуск. Дальше память авторитетна. */
+async function ensureMemoryLogs(): Promise<DebugLogEntry[]> {
+  if (memoryLogs) return memoryLogs;
   const raw = await AsyncStorage.getItem(DEBUG_LOGS_KEY).catch(() => null);
-  const logs = compactDebugLogs(parseDebugLogs(raw), now);
-  const last = logs[logs.length - 1];
-  const lastAt = last ? Date.parse(last.timestamp) : 0;
-  if (
-    last
-    && last.context === entry.context
-    && last.error === entry.error
-    && last.severity === entry.severity
-    && Number.isFinite(lastAt)
-    && now - lastAt < DEBUG_LOG_DEDUPE_MS
-  ) {
-    last.timestamp = entry.timestamp;
-    last.stack = entry.stack ?? last.stack;
-    last.count = (last.count ?? 1) + 1;
-  } else {
-    logs.push(entry);
-  }
-  await AsyncStorage.setItem(DEBUG_LOGS_KEY, JSON.stringify(compactDebugLogs(logs, now))).catch(() => {});
-  await cleanupLegacyDebugLogs(now);
+  memoryLogs = compactDebugLogs(parseDebugLogs(raw), Date.now());
+  return memoryLogs;
 }
 
+async function flushDebugLogs(): Promise<void> {
+  flushScheduled = false;
+  const logs = memoryLogs;
+  if (!logs) return;
+  const now = Date.now();
+  const compacted = compactDebugLogs(logs, now);
+  memoryLogs = compacted;
+  await AsyncStorage.setItem(DEBUG_LOGS_KEY, JSON.stringify(compacted)).catch((err: unknown) => {
+    // зачем: немой catch запрещён — молчащий журнал маскирует свою же поломку.
+    if (isDevRuntime) console.warn('[debug-logger] сброс на диск не удался:', err);
+  });
+  await cleanupLegacyDebugLogs(now).catch((err: unknown) => {
+    if (isDevRuntime) console.warn('[debug-logger] чистка старых ключей не удалась:', err);
+  });
+}
+
+function scheduleFlush(): void {
+  if (flushScheduled) return;
+  flushScheduled = true;
+  if (flushTimer) clearTimeout(flushTimer);
+  flushTimer = setTimeout(() => {
+    debugLogWriteQueue = debugLogWriteQueue
+      .catch(() => undefined)
+      .then(() => flushDebugLogs())
+      .catch((err) => {
+        if (isDevRuntime) console.error('Failed to log:', err);
+      });
+  }, DEBUG_LOG_FLUSH_DELAY_MS);
+}
+
+/**
+ * Кладёт запись в журнал. Диска НЕ касается — только память плюс отложенный
+ * сброс. Повтор той же ошибки в пределах окна лишь увеличивает счётчик.
+ */
 function persistDebugLog(entry: DebugLogEntry): void {
+  const now = Date.now();
+
+  // Быстрый путь: журнал уже в памяти — решаем без единого обращения к диску.
+  if (memoryLogs) {
+    const last = memoryLogs[memoryLogs.length - 1];
+    const lastAt = last ? Date.parse(last.timestamp) : 0;
+    if (
+      last
+      && last.context === entry.context
+      && last.error === entry.error
+      && last.severity === entry.severity
+      && Number.isFinite(lastAt)
+      && now - lastAt < DEBUG_LOG_DEDUPE_MS
+    ) {
+      last.timestamp = entry.timestamp;
+      last.stack = entry.stack ?? last.stack;
+      last.count = (last.count ?? 1) + 1;
+      scheduleFlush();
+      return;
+    }
+    memoryLogs.push(entry);
+    if (memoryLogs.length > MAX_DEBUG_LOGS) {
+      memoryLogs = memoryLogs.slice(-MAX_DEBUG_LOGS);
+    }
+    scheduleFlush();
+    return;
+  }
+
+  // Первый вызов за запуск: один раз поднимаем журнал с диска, дальше память.
   debugLogWriteQueue = debugLogWriteQueue
     .catch(() => undefined)
-    .then(() => appendDebugLog(entry))
+    .then(async () => {
+      const logs = await ensureMemoryLogs();
+      logs.push(entry);
+      if (logs.length > MAX_DEBUG_LOGS) memoryLogs = logs.slice(-MAX_DEBUG_LOGS);
+      scheduleFlush();
+    })
     .catch((err) => {
       if (isDevRuntime) console.error('Failed to log:', err);
     });

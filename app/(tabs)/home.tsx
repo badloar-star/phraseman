@@ -147,7 +147,6 @@ import FeatureIntroEntry from '../../components/feature_intro/FeatureIntroEntry'
 import { logFeatureOpened } from '../firebase';
 import { trackFeatureOpened } from '../user_stats';
 import { perfMark, perfSteps, perfScreenMount, perfNavStart } from '../perf-monitor';
-import { countScreenRender, measureRelease } from '../perf_release_probe';
 import { emitAppEvent, onAppEvent } from '../events';
 import { takeHomeLevelUpCelebration } from '../home_level_up_celebration_queue';
 import { registerDailyJourneyRevealTargetMeasurer } from '../../components/daily_journey/dailyJourneyRevealTargetBridge';
@@ -698,12 +697,9 @@ function withHomeRemoteTimeout<T>(
 }
 
 export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void } = {}) {
-  // зачем (владелец 2026-09-21, «всё лагает, причём везде», TestFlight): замер
-  // работает В РЕЛИЗЕ и пишет в журнал ТОЛЬКО всплеск (>12 перерисовок за
-  // секунду). Обычный perf-monitor молчит вне дев-сборки, поэтому фактов с
-  // телефона владельца не было, а статический аудит дал вывод, неверный для
-  // React 19. Правило «сперва логи, потом починка» — сначала цифры с устройства.
-  countScreenRender('home');
+  // зачем (владелец 2026-09-22, «удалить все замеры»): здесь в ТЕЛЕ компонента
+  // стоял countScreenRender('home') — работа на КАЖДЫЙ рендер Главной. Тело
+  // самого горячего экрана обязано быть чистым.
   const tabContentBottomPad = useTabContentBottomPad();
     const router = useRouter();
     // Навигация к отдельным экранам — через guard от двойного тапа (дубли в стеке).
@@ -2877,17 +2873,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // зачем (владелец 2026-09-02): загрузка Главной ~1 с при пороге 300 мс.
         // Отсечки показывают, КАКОЙ шаг её съедает, чтобы не чинить наугад.
         // Снять вместе с диагностикой после починки.
-        const devStep = perfSteps('home:loadData');
-        // зачем (владелец 2026-09-21): тот же замер, но живущий В РЕЛИЗЕ —
-        // владелец видит лаг на TestFlight, где perfSteps молчит. Пишет в журнал
-        // только если загрузка вышла за 400 мс, поэтому в норме он бесплатен.
-        const releaseStep = measureRelease('home:loadData');
-        // Одна «ручка» на оба замера: существующие вызовы step('...') и step.end()
-        // ниже по функции остаются нетронутыми — меняется только адресат.
-        const step = Object.assign(
-            (name: string): void => { devStep(name); releaseStep(name); },
-            { end: (): void => { devStep.end(); releaseStep.end(); } },
-        );
+        // зачем (владелец 2026-09-22, «удалить все замеры»): здесь к дев-замеру
+        // была подклеена релизная копия measureRelease, писавшая в журнал на
+        // устройстве. Осталась только дев-версия — в релизе она молчит.
+        const step = perfSteps('home:loadData');
         try {
             const [homeStoragePairs, currentWeekMarkers, weekPts, shardsBal, premiumSignalPairs, personalProgress] = await Promise.all([
                 AsyncStorage.multiGet([

@@ -270,7 +270,6 @@ import { resumePendingGeneratedNickname } from './nickname_guard';
 import { stableInitialWindowMetrics, useStableSafeAreaInsets } from './stable_safe_area_metrics';
 
 import { DebugLogger } from './debug-logger';
-import { probeStorageGrowth } from './perf_release_probe';
 // AUTH_RECOVERY_BOOT_RETRY_POLICY_START
 export const AUTH_RECOVERY_BOOT_RETRY_DELAYS_MS = [1_500, 5_000, 15_000, 30_000] as const;
 
@@ -1147,23 +1146,11 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     };
   }, []);
 
-  // зачем (владелец 2026-09-22): «после 5 минут в приложении и переходов по
-  // разным разделам оно начало лагать». Это НАРАСТАНИЕ, а счётчик перерисовок
-  // (countScreenRender) его не видит по построению — он считает внутри одного
-  // экрана и обнуляет окно каждую секунду. Замер висит именно на СМЕНЕ
-  // РАЗДЕЛА: владелец назвал переходы моментом, когда начинается лаг, и на них
-  // же висят чужие полные сканы индекса хранилища (20+ мест).
-  //
-  // Запускаем после анимации перехода (runAfterInteractions), иначе замер сам
-  // станет той заминкой, которую измеряет. Внутри — свой потолок частоты (раз
-  // в минуту), поэтому частые переходы лишней работы не создают.
-  useEffect(() => {
-    if (!pathname) return;
-    const task = InteractionManager.runAfterInteractions(() => {
-      void probeStorageGrowth(pathname);
-    });
-    return () => { task.cancel(); };
-  }, [pathname]);
+  // зачем (владелец 2026-09-22, «немедленно удалить все замеры»): здесь на
+  // КАЖДОЙ смене раздела стоял замер probeStorageGrowth, делавший полный скан
+  // индекса AsyncStorage (getAllKeys). Скан дорожает с возрастом установки и
+  // стоял ровно в том месте, где владелец чувствовал заминку — измеритель сам
+  // стал частью болезни. Путь смены раздела обязан быть пустым.
 
   /** Гард от повторного вызова handleOnboardingDone (двойной тап «Позже» в auth-шаге онбординга
    *  раньше планировал два setTimeout → модалка «Начнём первый урок?» открывалась повторно после «Поехали»). */
@@ -1294,7 +1281,16 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       return true;
     });
   }, [showRemoteAccountDeletionNotice]);
-  const navigationPathSignature = buildNavigationPathSignature(pathname, globalSearchParams);
+  // зачем (владелец 2026-09-22, «любая кнопка думает»): строка пересобиралась
+  // на КАЖДОМ рендере корня — сортировка и кодирование всех параметров заново,
+  // хотя меняется она только при смене маршрута. Мемоизация не трогает логику
+  // трекера навигации (от неё зависит «назад» и разбор «Сессии недоступна»),
+  // а лишь перестаёт считать одно и то же. Сам useGlobalSearchParams оставлен
+  // намеренно: в корне только он видит параметры активного экрана.
+  const navigationPathSignature = useMemo(
+    () => buildNavigationPathSignature(pathname, globalSearchParams),
+    [pathname, globalSearchParams],
+  );
   const currentDevUtilityRoute = isDevUtilityRoutePath(pathname);
   const effectiveShowOnboarding = showOnboarding && !currentDevUtilityRoute;
   const isRootIndexRoute = !pathname || pathname === '/';
@@ -1612,6 +1608,18 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   useEffect(() => {
     const sub = Linking.addEventListener('url', ({ url }) => {
       const target = normalizeWarmDeepLink(url);
+      // зачем (владелец 22.09, «урок открывается и сразу закрывается»): этот
+      // слушатель зовёт router.push на нормализованный URL. Если он ложно
+      // срабатывает на только что открытом маршруте сессии — это и есть
+      // повторная навигация, которая рвёт одноразовый handoff моста
+      // карта→сессия. Лог остаётся навсегда — печатаем исходный url ВСЕГДА,
+      // не только когда target не пуст.
+      if (__DEV__) {
+        console.log(
+          "[V2-PAGE] deeplink:url_event",
+          JSON.stringify({ url, target }),
+        );
+      }
       if (!target) return;
       setPendingWarmDeepLink(target);
     });
@@ -1639,6 +1647,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       return;
     }
 
+    if (__DEV__) {
+      console.log("[V2-PAGE] deeplink:push", JSON.stringify({ target }));
+    }
     router.push(target as Href);
   }, [isBanned, pendingWarmDeepLink, ready, rootNavigationReady, router, showOnboarding]);
 
@@ -3304,6 +3315,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       <Stack.Screen name="flashcards_packs" options={cardsSiblingAnimationOptions} />
       {/* Cards 2.1 §5.3: «Мои наборы» — второй раздел всплывашки «Наборы» */}
       <Stack.Screen name="flashcards_my_packs" options={cardsSiblingAnimationOptions} />
+      {/* Наборы из роликов — соседний раздел библиотеки карточек, та же анимация. */}
+      <Stack.Screen name="flashcards_video_packs" options={cardsSiblingAnimationOptions} />
       <Stack.Screen name="flashcards_audio" />
       <Stack.Screen name="flashcards_collection" />
       <Stack.Screen name="flashcards_swipe" />

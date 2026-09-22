@@ -179,7 +179,6 @@ import BillingIssueToastHost from '../components/BillingIssueToastHost';
 import ArenaOpponentFoundHost from '../components/arena/ArenaOpponentFoundHost';
 import ThemedBlockingAlertHost from '../components/ThemedBlockingAlertHost';
 import PhoneStateRecoveryScreen from '../components/PhoneStateRecoveryScreen';
-import AccountSwitchRecoveryScreen from '../components/AccountSwitchRecoveryScreen';
 import { enqueueThemedBlockingInfoAlert } from './themed_blocking_alert_queue';
 import {
   consumeRemoteAccountDeletionNotice,
@@ -271,6 +270,7 @@ import { resumePendingGeneratedNickname } from './nickname_guard';
 import { stableInitialWindowMetrics, useStableSafeAreaInsets } from './stable_safe_area_metrics';
 
 import { DebugLogger } from './debug-logger';
+import { probeStorageGrowth } from './perf_release_probe';
 // AUTH_RECOVERY_BOOT_RETRY_POLICY_START
 export const AUTH_RECOVERY_BOOT_RETRY_DELAYS_MS = [1_500, 5_000, 15_000, 30_000] as const;
 
@@ -1146,6 +1146,25 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       task.cancel();
     };
   }, []);
+
+  // зачем (владелец 2026-09-22): «после 5 минут в приложении и переходов по
+  // разным разделам оно начало лагать». Это НАРАСТАНИЕ, а счётчик перерисовок
+  // (countScreenRender) его не видит по построению — он считает внутри одного
+  // экрана и обнуляет окно каждую секунду. Замер висит именно на СМЕНЕ
+  // РАЗДЕЛА: владелец назвал переходы моментом, когда начинается лаг, и на них
+  // же висят чужие полные сканы индекса хранилища (20+ мест).
+  //
+  // Запускаем после анимации перехода (runAfterInteractions), иначе замер сам
+  // станет той заминкой, которую измеряет. Внутри — свой потолок частоты (раз
+  // в минуту), поэтому частые переходы лишней работы не создают.
+  useEffect(() => {
+    if (!pathname) return;
+    const task = InteractionManager.runAfterInteractions(() => {
+      void probeStorageGrowth(pathname);
+    });
+    return () => { task.cancel(); };
+  }, [pathname]);
+
   /** Гард от повторного вызова handleOnboardingDone (двойной тап «Позже» в auth-шаге онбординга
    *  раньше планировал два setTimeout → модалка «Начнём первый урок?» открывалась повторно после «Поехали»). */
   const onboardingDoneHandledRef = useRef(false);
@@ -2425,19 +2444,39 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       if (authRecoveryBootAbort === recoveryAbort) authRecoveryBootAbort = null;
       if (effectDisposed) return;
       if (recoveryGate.result !== 'proceed') {
+        // зачем (владелец, 2026-09-22, «блокера не должно быть»): раньше этот
+        // блок ОБРЫВАЛ старт (`return`) — приложение объявляло себя готовым, но
+        // не доходило ни до getStableId, ни до гидратации, ни до облака.
+        // Человек оставался с пустым каркасом и модалом поверх, а при
+        // blocked_quarantined — навсегда, потому что повторная проверка давала
+        // тот же вердикт. Это ровно тот же класс бага, что уже сняли выше для
+        // замка удаления («Падаем дальше в обычный старт»).
+        //
+        // Теперь вердикт гейта НЕ приговор: он остаётся диагностикой, а старт
+        // продолжается всегда. Изоляцию данных обеспечивает сам гейт
+        // (invalidateAccountGeneration + beginPremiumAccountTransition), поэтому
+        // при недоказанном владельце мы открываемся на чистой сессии, а не
+        // отдаём чужой прогресс.
+        console.warn(
+          `[SWITCH-QUARANTINE] boot gate verdict=${recoveryGate.result} reason=${'reason' in recoveryGate ? String(recoveryGate.reason ?? 'null') : 'null'} -> вход продолжается, стены нет`,  // guard-ok: обязательная трассировка правила «сперва логи», нужна в проде
+        );
         setReady(true);
         if (
           recoveryGate.result === 'blocked_transient'
           && scheduleAuthRecoveryBootRetry()
         ) return;
         clearAuthRecoveryBootRetry();
+        // зачем: восстановление входа предлагаем, но НЕ как стену — это
+        // закрываемое окно поверх работающего приложения. Человек может его
+        // отклонить и пользоваться дальше.
         if (!startupAuthRecoveryOfferedRef.current) {
           startupAuthRecoveryOfferedRef.current = true;
           setStartupAuthRecoveryVisible(true);
         }
-        return;
+        // Падаем дальше в обычный старт — без return и без экрана-стены.
+      } else {
+        clearAuthRecoveryBootRetry();
       }
-      clearAuthRecoveryBootRetry();
       let startupStableId: string;
       try {
         bootMark('getStableId START');
@@ -3648,7 +3687,6 @@ export default function RootLayout() {
                     <ArenaOpponentFoundHost />
                     <ThemedBlockingAlertHost />
                     <PhoneStateRecoveryScreen />
-                    <AccountSwitchRecoveryScreen />
                     <TapLatencyNavProbe />
                 </OverlayArbiterProvider>
               </AchievementProvider>

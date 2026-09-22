@@ -463,6 +463,10 @@ export async function markPracticeRuneSettlementPending(input: Readonly<{
   if (input.earnings.pendingRunes <= 0) {
     return Object.freeze({ createdAtMs: 0, requestFingerprint: '0'.repeat(64) });
   }
+  // зачем: в очередь что-то встаёт — значит прошлый вывод «досылать нечего»
+  // больше не верен. Без этого сброса новая запись ждала бы досылки до пяти
+  // минут (см. EMPTY_QUEUE_TRUST_MS). Деньги важнее экономии скана.
+  forgetEmptyQueue(input.ownerStableId);
   const key = pendingSettlementKey(
       input.ownerStableId,
       input.earnings.activity,
@@ -602,6 +606,35 @@ export async function clearPracticeRuneSettlementPending(input: Readonly<{
 }
 
 /**
+ * Как долго верим прошлому результату «досылать нечего».
+ *
+ * зачем (владелец 2026-09-22, «после 5 минут и переходов по разделам начало
+ * лагать»): эта функция делает ПОЛНЫЙ скан индекса AsyncStorage и вызывается
+ * при входе в ЛЮБУЮ из семи активностей (`usePracticeRunes.ts:323`) — то есть
+ * на каждом заходе в урок, карточки, арену, диалоги и при каждой смене
+ * `sessionKey` внутри них. Индекс растёт за сессию (каждое действие пишет
+ * 3–5 служебных ключей), поэтому скан дорожает по ходу игры — ровно профиль
+ * «сначала нормально, через пять минут лагает».
+ *
+ * Пропускаем скан ТОЛЬКО когда прошлый показал пустую очередь. Это безопасно:
+ * очередь пополняется исключительно через `markPracticeRuneSettlementPending`
+ * в этом же процессе, и она сбрасывает отметку (см. ниже). Если что-то
+ * ЖДЁТ отправки — скан идёт всегда, без задержки: деньги важнее скорости.
+ */
+const EMPTY_QUEUE_TRUST_MS = 5 * 60 * 1000;
+
+/** Владелец → когда последний скан подтвердил, что досылать нечего. */
+const emptyQueueConfirmedAt = new Map<string, number>();
+
+/**
+ * Сбрасывает доверие к «очередь пуста» — вызывается при постановке в очередь.
+ * Без этого новая запись могла бы ждать досылки до пяти минут.
+ */
+function forgetEmptyQueue(ownerStableId: string): void {
+  emptyQueueConfirmedAt.delete(ownerStableId.trim());
+}
+
+/**
  * Досылает незавершённые серверные синхронизации при следующем входе в любую
  * практику. Локальный баланс уже зафиксирован, поэтому ошибка сети ничего не
  * отнимает и маркер остаётся для следующей попытки.
@@ -611,6 +644,18 @@ export async function flushStalePracticeRuneSettlements(
 ): Promise<Readonly<{ synced: number; pending: number }>> {
   const ownerStableId = ownerStableIdInput.trim();
   if (!ownerStableId) return Object.freeze({ synced: 0, pending: 0 });
+
+  // Ранний выход: прошлый скан недавно подтвердил пустую очередь. Логируем
+  // причину — немой ранний return запрещён правилом владельца, иначе позже
+  // будет не понять, почему досылка «не сработала».
+  const confirmedAt = emptyQueueConfirmedAt.get(ownerStableId);
+  if (confirmedAt !== undefined && Date.now() - confirmedAt < EMPTY_QUEUE_TRUST_MS) {
+    console.log('[RUNE-SETTLE] скан пропущен: очередь была пуста '
+      + `${Math.round((Date.now() - confirmedAt) / 1000)}с назад (порог `
+      + `${EMPTY_QUEUE_TRUST_MS / 1000}с)`);
+    return Object.freeze({ synced: 0, pending: 0 });
+  }
+
   const prefix = `${PENDING_SETTLEMENT_PREFIX}:${encodeURIComponent(ownerStableId)}:`;
   const allKeys = await AsyncStorage.getAllKeys();
   if (allKeys.length > 16_384) throw new Error('practice_rune_storage_scan_too_large');
@@ -685,5 +730,16 @@ export async function flushStalePracticeRuneSettlements(
     }
   }
   tracePracticeRuneSettlement('stale_flush_complete', { ownerStableId, synced, pending });
+
+  // Доверие к «очередь пуста» ставим ТОЛЬКО когда ничего не ждёт и ничего не
+  // отправлялось: непустой результат означает живую очередь, и следующий заход
+  // обязан просканировать заново. Ключей очереди не было вовсе — самый частый
+  // случай у обычного игрока, и именно он экономит полный скан на каждом
+  // переходе между разделами.
+  if (synced === 0 && pending === 0 && keys.length === 0) {
+    emptyQueueConfirmedAt.set(ownerStableId, Date.now());
+  } else {
+    emptyQueueConfirmedAt.delete(ownerStableId);
+  }
   return Object.freeze({ synced, pending });
 }

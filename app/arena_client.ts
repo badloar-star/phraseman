@@ -322,8 +322,29 @@ export function createArenaRequestId(prefix = 'arena'): string {
 
 const viewerSeatCache = new Map<string, 'a' | 'b'>();
 
+/**
+ * Сколько матчей помним. Кэш — ПОДСКАЗКА, а не источник правды: при промахе
+ * место приходит из параметров маршрута, из handoff или с сервера
+ * (`arena_results.tsx:204,245`), поэтому вытеснение не ломает ничего.
+ *
+ * зачем (владелец 2026-09-22, «после 5 минут переходов начало лагать»): здесь
+ * не было НИКАКОЙ границы — по записи на каждый матч за всё время жизни
+ * процесса. Табы в приложении не размонтируются (react-freeze,
+ * `ENABLE_TAB_FREEZE`), поэтому такой кэш живёт до перезапуска приложения и
+ * сам себя не чистит никогда.
+ */
+const VIEWER_SEAT_CACHE_LIMIT = 32;
+
 export function rememberArenaViewerSeat(matchId: string | undefined, viewerSeat: 'a' | 'b' | undefined): void {
-  if (matchId && viewerSeat) viewerSeatCache.set(matchId, viewerSeat);
+  if (!matchId || !viewerSeat) return;
+  // Переставляем ключ в конец, чтобы вытеснялся самый давний, а не текущий матч.
+  viewerSeatCache.delete(matchId);
+  viewerSeatCache.set(matchId, viewerSeat);
+  while (viewerSeatCache.size > VIEWER_SEAT_CACHE_LIMIT) {
+    const oldest = viewerSeatCache.keys().next();
+    if (oldest.done) break;
+    viewerSeatCache.delete(oldest.value);
+  }
 }
 
 export function peekArenaViewerSeat(matchId: string | null | undefined): 'a' | 'b' | null {

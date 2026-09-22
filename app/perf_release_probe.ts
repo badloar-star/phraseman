@@ -129,6 +129,126 @@ export function measureRelease(
 /** Сброс счётчиков — при смене аккаунта, чтобы цифры не смешивались. */
 export function resetReleasePerfCounters(): void {
   counters.clear();
+  storageProbeState = null;
+}
+
+/* ─────────── Замер НАКОПЛЕНИЯ за сессию (владелец 2026-09-22) ───────────
+ *
+ * зачем: симптом изменился. Раньше было «лагает везде» (постоянно, с первой
+ * секунды) — под него и строился замер выше: всплески перерисовок ВНУТРИ
+ * экрана. Теперь владелец описывает другое: «после 5 минут и переходов по
+ * разделам НАЧАЛО лагать», то есть НАРАСТАНИЕ. Счётчик рендеров такое не
+ * видит по построению — он считает внутри одного экрана и обнуляет окно
+ * каждую секунду.
+ *
+ * Рабочая гипотеза (проверяется этим замером, а НЕ принимается на веру):
+ * каждое действие пишет 3–5 служебных ключей в хранилище (операция,
+ * квитанция, подтверждение — защита от двойного списания), а в 20+ местах
+ * код читает индекс ключей ЦЕЛИКОМ (`getAllKeys`) на путях обычной
+ * навигации. Чем дольше сессия, тем длиннее индекс, тем дороже каждый скан,
+ * и все они стоят в очереди за одним глобальным замком хранилища.
+ *
+ * Замер обязан РАЗЛИЧИТЬ две версии, иначе он бесполезен:
+ *   • индекс растёт за сессию  → виноват рост (чинить чистку/кэш);
+ *   • индекс стабилен, а сканы всё равно долгие → виноват РАЗМЕР базы,
+ *     накопленный за месяцы (чинить иначе — кэш поверх скана).
+ * Поэтому пишем И число ключей, И длительность скана, И дельту с прошлого
+ * замера — один снимок не отвечает на вопрос, отвечает только ряд.
+ */
+
+/** Реже этого не замеряем: сам замер делает полный скан и не должен греть. */
+const STORAGE_PROBE_MIN_INTERVAL_MS = 60_000;
+/** Скан дольше этого — уже ощущается человеком как заминка. */
+const SLOW_SCAN_MS = 120;
+
+type StorageProbeState = {
+  firstKeyCount: number;
+  lastKeyCount: number;
+  lastProbeAt: number;
+  startedAt: number;
+  probes: number;
+};
+
+let storageProbeState: StorageProbeState | null = null;
+
+/**
+ * Снимает размер индекса хранилища и время полного скана — в релизе.
+ *
+ * Вызывать на СМЕНЕ РАЗДЕЛА (не в рендере и не по таймеру): именно переходы
+ * владелец называет моментом, когда начинает лагать, и именно на них висят
+ * чужие сканы. Сам по себе замер дорогой ровно настолько же, насколько один
+ * такой скан, поэтому чаще раза в минуту не выполняется.
+ *
+ * Пишет в журнал ТОЛЬКО когда есть что сказать: медленный скан, заметный
+ * прирост ключей или каждый пятый замер (опорная точка для ряда). В норме
+ * молчит, в Firestore не пишет, о пользователе ничего не хранит — только
+ * числа.
+ */
+export async function probeStorageGrowth(reason: string): Promise<void> {
+  const now = Date.now();
+  if (storageProbeState && now - storageProbeState.lastProbeAt < STORAGE_PROBE_MIN_INTERVAL_MS) return;
+
+  let keyCount: number;
+  let scanMs: number;
+  try {
+    const AsyncStorage = (await import('@react-native-async-storage/async-storage')).default;
+    const startedAt = Date.now();
+    const keys = await AsyncStorage.getAllKeys();
+    scanMs = Date.now() - startedAt;
+    keyCount = keys.length;
+  } catch (error: unknown) {
+    // зачем: немой catch запрещён правилом владельца. Замер — не повод
+    // ронять навигацию, но причина обязана быть названа, иначе замер может
+    // молча умереть и мы будем ждать данных, которых не будет.
+    DebugLogger.error(
+      'perf:storage-probe',
+      new Error(`[PERF-RELEASE] замер хранилища не выполнен (${reason}): `
+        + (error instanceof Error ? error.message : String(error))),
+      'warning',
+    );
+    return;
+  }
+
+  if (!storageProbeState) {
+    storageProbeState = {
+      firstKeyCount: keyCount,
+      lastKeyCount: keyCount,
+      lastProbeAt: now,
+      startedAt: now,
+      probes: 1,
+    };
+    // Первый замер пишем ВСЕГДА: это опорная точка. Без неё прирост не с чем
+    // сравнить, а размер базы (накопленный за месяцы) не отличить от роста.
+    DebugLogger.error(
+      'perf:storage-probe',
+      new Error(`[PERF-RELEASE] хранилище, старт сессии (${reason}): `
+        + `ключей=${keyCount} · полный скан=${scanMs}мс`),
+      'warning',
+    );
+    return;
+  }
+
+  const prev = storageProbeState;
+  const grownSinceStart = keyCount - prev.firstKeyCount;
+  const grownSinceLast = keyCount - prev.lastKeyCount;
+  const sessionMinutes = Math.round((now - prev.startedAt) / 60_000);
+
+  prev.lastKeyCount = keyCount;
+  prev.lastProbeAt = now;
+  prev.probes += 1;
+
+  const scanIsSlow = scanMs >= SLOW_SCAN_MS;
+  const grewNoticeably = grownSinceLast >= 25;
+  const isLandmark = prev.probes % 5 === 0;
+  if (!scanIsSlow && !grewNoticeably && !isLandmark) return;
+
+  DebugLogger.error(
+    'perf:storage-probe',
+    new Error(`[PERF-RELEASE] хранилище через ${sessionMinutes}мин (${reason}): `
+      + `ключей=${keyCount} (+${grownSinceStart} за сессию, +${grownSinceLast} с прошлого замера) · `
+      + `полный скан=${scanMs}мс${scanIsSlow ? ' · МЕДЛЕННО' : ''}`),
+    'warning',
+  );
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

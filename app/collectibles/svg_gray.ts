@@ -27,9 +27,29 @@ function hexToGray(hex: string): string {
 
 const grayCache = new Map<string, string>();
 
+/**
+ * Сколько посчитанных серых карточек помним.
+ *
+ * ⚠️ ВНИМАНИЕ (2026-09-22): на сегодня `grayscaleSvg` НЕ ВЫЗЫВАЕТСЯ НИОТКУДА —
+ * проверено поиском по всем .ts/.tsx: единственное вхождение в этом файле.
+ * То есть модуль мёртвый, и на лаги приложения он сейчас не влияет НИКАК.
+ * Граница поставлена не как починка, а чтобы дефект не ожил вместе с модулем:
+ * без неё кэш держал ЦЕЛЫЕ строки SVG-разметки по одной на каждую залоченную
+ * карточку и не чистился никогда (табы не размонтируются — react-freeze).
+ *
+ * Промах ничего не ломает: значение пересчитывается тем же кодом ниже, кэш —
+ * только ускорение повторного показа. 64 — с запасом на экран коллекции.
+ */
+const GRAY_CACHE_LIMIT = 64;
+
 export function grayscaleSvg(cacheKey: string, svg: string): string {
   const hit = grayCache.get(cacheKey);
-  if (hit) return hit;
+  if (hit) {
+    // Переставляем в конец: вытесняем самое давнее, а не то, что смотрят сейчас.
+    grayCache.delete(cacheKey);
+    grayCache.set(cacheKey, hit);
+    return hit;
+  }
   const gray = svg
     .replace(/#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})\b/g, (_m, hex: string) => hexToGray(hex))
     .replace(
@@ -43,5 +63,10 @@ export function grayscaleSvg(cacheKey: string, svg: string): string {
       },
     );
   grayCache.set(cacheKey, gray);
+  while (grayCache.size > GRAY_CACHE_LIMIT) {
+    const oldest = grayCache.keys().next();
+    if (oldest.done) break;
+    grayCache.delete(oldest.value);
+  }
   return gray;
 }

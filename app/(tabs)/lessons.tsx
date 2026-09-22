@@ -3251,6 +3251,55 @@ export default function LessonsTab({
     ],
   );
 
+  // зачем: «спокойный отказ» закрытого узла (спека mock 08, макет A3) — тап по
+  // закрытой сессии называет точную предпосылку вместо мёртвой тишины. Плашка
+  // абсолютная (нет сдвига layout), живёт 2.2с, reduce motion показывает сразу.
+  const [learningV2DenialHint, setLearningV2DenialHint] = useState<
+    string | null
+  >(null);
+  const learningV2DenialHintTimers = useRef<{
+    hide: ReturnType<typeof setTimeout> | null;
+    unmount: ReturnType<typeof setTimeout> | null;
+  }>({ hide: null, unmount: null });
+  const learningV2DenialHintProgress = useSharedValue(0);
+  const learningV2DenialHintStyle = useAnimatedStyle(() => ({
+    opacity: learningV2DenialHintProgress.value,
+    transform: [{ translateY: (1 - learningV2DenialHintProgress.value) * 8 }],
+  }));
+  const clearLearningV2DenialHintTimers = useCallback(() => {
+    const timers = learningV2DenialHintTimers.current;
+    if (timers.hide) clearTimeout(timers.hide);
+    if (timers.unmount) clearTimeout(timers.unmount);
+    timers.hide = null;
+    timers.unmount = null;
+  }, []);
+  useEffect(() => clearLearningV2DenialHintTimers, [clearLearningV2DenialHintTimers]);
+  const showLearningV2DenialHint = useCallback(
+    (text: string) => {
+      clearLearningV2DenialHintTimers();
+      setLearningV2DenialHint(text);
+      const instant = learningV2ReduceMotionPreference !== false;
+      learningV2DenialHintProgress.value = withTiming(1, {
+        duration: instant ? 1 : 200,
+        easing: Easing.bezier(0.23, 1, 0.32, 1),
+      });
+      learningV2DenialHintTimers.current.hide = setTimeout(() => {
+        learningV2DenialHintProgress.value = withTiming(0, {
+          duration: instant ? 1 : 200,
+          easing: Easing.bezier(0.23, 1, 0.32, 1),
+        });
+        learningV2DenialHintTimers.current.unmount = setTimeout(
+          () => setLearningV2DenialHint(null),
+          instant ? 16 : 220,
+        );
+      }, 2200);
+    },
+    [
+      clearLearningV2DenialHintTimers,
+      learningV2DenialHintProgress,
+      learningV2ReduceMotionPreference,
+    ],
+  );
   const launchSelectedLearningV2Session = useCallback((skipIntro: boolean) => {
     const selected = selectedLearningV2Session;
     if (!selected || !selectedLearningV2PreparationKey) return;
@@ -3337,10 +3386,12 @@ export default function LessonsTab({
         // ЗАКРЫВАЛ модалку молча: человек нажал «Начать» и не получил ничего,
         // поэтому жал снова и снова. Теперь отказ всегда объясняется.
         //
-        // ВНИМАНИЕ: showLearningV2DenialHint объявлена НИЖЕ по файлу. Здесь это
-        // безопасно, потому что колбэк выполняется по тапу, а не в рендере.
-        // Не переносить этот вызов в тело рендера — будет ReferenceError, и
-        // tsc его НЕ поймает (класс бага «const выше объявления», 21.09).
+        // зачем (22.09): showLearningV2DenialHint объявлена ВЫШЕ этого хука —
+        // блок подсказки перенесён сюда намеренно. Прежде он стоял ниже, и его
+        // имя в массиве зависимостей (вычисляется В РЕНДЕРЕ, а не по тапу) дало
+        // ReferenceError на каждом рендере экрана уроков. Класс бага «const выше
+        // объявления» (21.09) — tsc ловит его только как TS2448/TS2454, поэтому
+        // держать объявление выше ВСЕХ хуков, которые упоминают его в deps.
         showLearningV2DenialHint(triLang(lang, {
           ru: "Занятие не подготовилось. Проверь связь и попробуй ещё раз",
           en: "The session didn't load. Check your connection and try again",
@@ -3385,55 +3436,6 @@ export default function LessonsTab({
     refresh();
     return unsubscribe;
   }, []);
-  // зачем: «спокойный отказ» закрытого узла (спека mock 08, макет A3) — тап по
-  // закрытой сессии называет точную предпосылку вместо мёртвой тишины. Плашка
-  // абсолютная (нет сдвига layout), живёт 2.2с, reduce motion показывает сразу.
-  const [learningV2DenialHint, setLearningV2DenialHint] = useState<
-    string | null
-  >(null);
-  const learningV2DenialHintTimers = useRef<{
-    hide: ReturnType<typeof setTimeout> | null;
-    unmount: ReturnType<typeof setTimeout> | null;
-  }>({ hide: null, unmount: null });
-  const learningV2DenialHintProgress = useSharedValue(0);
-  const learningV2DenialHintStyle = useAnimatedStyle(() => ({
-    opacity: learningV2DenialHintProgress.value,
-    transform: [{ translateY: (1 - learningV2DenialHintProgress.value) * 8 }],
-  }));
-  const clearLearningV2DenialHintTimers = useCallback(() => {
-    const timers = learningV2DenialHintTimers.current;
-    if (timers.hide) clearTimeout(timers.hide);
-    if (timers.unmount) clearTimeout(timers.unmount);
-    timers.hide = null;
-    timers.unmount = null;
-  }, []);
-  useEffect(() => clearLearningV2DenialHintTimers, [clearLearningV2DenialHintTimers]);
-  const showLearningV2DenialHint = useCallback(
-    (text: string) => {
-      clearLearningV2DenialHintTimers();
-      setLearningV2DenialHint(text);
-      const instant = learningV2ReduceMotionPreference !== false;
-      learningV2DenialHintProgress.value = withTiming(1, {
-        duration: instant ? 1 : 200,
-        easing: Easing.bezier(0.23, 1, 0.32, 1),
-      });
-      learningV2DenialHintTimers.current.hide = setTimeout(() => {
-        learningV2DenialHintProgress.value = withTiming(0, {
-          duration: instant ? 1 : 200,
-          easing: Easing.bezier(0.23, 1, 0.32, 1),
-        });
-        learningV2DenialHintTimers.current.unmount = setTimeout(
-          () => setLearningV2DenialHint(null),
-          instant ? 16 : 220,
-        );
-      }, 2200);
-    },
-    [
-      clearLearningV2DenialHintTimers,
-      learningV2DenialHintProgress,
-      learningV2ReduceMotionPreference,
-    ],
-  );
   const handleLearningV2SessionPress = useCallback(
     (
       selectedLesson: number,

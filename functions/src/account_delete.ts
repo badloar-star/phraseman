@@ -49,7 +49,9 @@ export type DeleteStats = {
   authDeleted: boolean;
 };
 
-type DeleteContext = {
+// зачем: экспорт нужен пломбе assertAccountIsNotSealedFromDeletion — она
+// экспортируемая (её зовёт сторож) и принимает ctx в сигнатуре.
+export type DeleteContext = {
   db: admin.firestore.Firestore;
   writer: FirebaseFirestore.BulkWriter;
   seen: Set<string>;
@@ -1448,6 +1450,56 @@ async function markAccountDeletionTombstone(
   stats.docsUpdated += 1;
 }
 
+/**
+ * Аккаунт администратора удалить нельзя. Никак, ниоткуда, никем.
+ *
+ * Fail-closed: если Auth недоступен и права прочитать не удалось — удаление
+ * ЗАПРЕЩАЕТСЯ. Снести аккаунт вслепую дороже, чем отказать: отказ владелец
+ * переживёт, потерю доступа к собственному продукту — уже нет (так было
+ * 22.09.2026 и, судя по «чинилось 100 раз», далеко не впервые).
+ */
+export async function assertAccountIsNotSealedFromDeletion(
+  authUid: string,
+  ctx: Pick<DeleteContext, 'runId' | 'stableUidHash' | 'authUidHash' | 'startedAtMs'>,
+  stats: DeleteStats,
+  getUser: (uid: string) => Promise<{ customClaims?: Record<string, unknown> | null }> = (
+    (uid) => admin.auth().getUser(uid)
+  ),
+): Promise<void> {
+  let claims: Record<string, unknown> = {};
+  try {
+    const user = await getUser(authUid);
+    claims = (user.customClaims ?? {}) as Record<string, unknown>;
+  } catch (e: any) {
+    // зачем: молчаливый catch здесь стоил бы аккаунта владельца — логируем
+    // причину и запрещаем удаление (правило «запрет немого catch {}»).
+    if (e?.code === 'auth/user-not-found') {
+      accountDeleteLog(ctx, 'owner_seal_auth_missing', stats, {
+        reason: 'auth/user-not-found',
+        decision: 'allow_delete_no_auth_record',
+      });
+      return;
+    }
+    accountDeleteLog(ctx, 'owner_seal_lookup_failed', stats, {
+      code: String(e?.code ?? 'unknown'),
+      message: String(e?.message ?? e).slice(0, 200),
+      decision: 'deny_fail_closed',
+    });
+    throw new HttpsError('unavailable', 'owner_seal_lookup_failed');
+  }
+
+  const isAdmin = claims.admin === true;
+  accountDeleteLog(ctx, 'owner_seal_check', stats, {
+    adminClaim: claims.admin === undefined ? 'absent' : String(claims.admin),
+    adminRole: String(claims.adminRole ?? 'none'),
+    decision: isAdmin ? 'deny_sealed' : 'allow_delete',
+  });
+
+  if (isAdmin) {
+    throw new HttpsError('permission-denied', 'owner_account_delete_sealed');
+  }
+}
+
 export async function executeAccountDeletion(
   db: FirebaseFirestore.Firestore,
   stableUid: string,
@@ -1462,6 +1514,16 @@ export async function executeAccountDeletion(
     ? [...frozenIdentityClosure]
     : await resolveAccountDeleteIdentityClosure(db, stableUid, authUid);
   const ctx = createDeleteContext(db, stableUid, authUid, stats, closureCutoffMs);
+
+  // зачем: 22.09.2026 владелец в СОТЫЙ раз не смог войти в админку. Замер
+  // показал не стёртый claim, а пересозданный аккаунт: created 09:45:00 (момент
+  // входа), а надгробия удалений — 09:32 и 09:34. То есть аккаунт владельца
+  // удалялся целиком, Google-вход создавал новый пустой, и claim «пропадал»
+  // вместе со старым. Сто раз возвращали claim новому аккаунту вместо того,
+  // чтобы закрыть удаление. Защиты здесь не было ни одной строки.
+  // Пломба стоит в ядре, а не в точках входа: дверей к удалению две
+  // (accountDeleteMine и очередь accountDeleteEnqueue), ядро одно.
+  await assertAccountIsNotSealedFromDeletion(authUid, ctx, stats);
 
   try {
     await runDeleteStage(ctx, stats, 'permanent_denials', () => persistPermanentDeletionDenials(db, identities));

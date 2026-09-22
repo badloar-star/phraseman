@@ -27,7 +27,9 @@ import { loadPublishedCommunityMarketPacks, peekPublishedCommunityMarketPacks } 
 import {
   loadLocalAuthorPacks,
   localAuthorPackToMarketPack,
+  type LocalAuthorPack,
 } from '../community_packs/localAuthorPacks';
+import { storageStudyTarget } from '../target_storage_keys';
 import type { DeckSheetOption } from './DeckPickerSheet';
 import { cardBackFanImage } from './cardBackCatalog';
 import { loadDeckCards, type DeckRef } from './deck_sources';
@@ -78,6 +80,55 @@ function packTitle(
     if (picked) return picked;
   }
   return derivePackCodeName(packId);
+}
+
+/**
+ * Свои наборы, созданные в редакторе («Сохранить»), — ТРЕТИЙ источник наборов
+ * наравне с купленными и добавленными из каталога.
+ *
+ * зачем (жалоба пользователя 2026-09-21: «в Карточках создала себе набор, но не
+ * вижу его в выборе наборов, когда выхожу в Начать тренировку»): список наборов
+ * собирался только из `ownedIds` (маркет) + `communityIds` (каталог сообщества).
+ * Свои наборы живут в ТРЕТЬЕМ хранилище (`community_local_author_packs_v1`) и в
+ * список не попадали НИКОГДА — при том что загрузчик их карточек давно написан и
+ * работает (`deck_sources.loadPackDeckCards` умеет `local_pack_*`). Механизм был
+ * цел, его просто не звали. Те же три источника уже склеивают вручную коллекция,
+ * «Мои наборы» и каталог — отстало только это, четвёртое место.
+ *
+ * Два инварианта, которые здесь удерживаются (оба — ранее пойманные классы багов):
+ *  1. ЯЗЫК. `loadLocalAuthorPacks` читает ОБЕ цели (en + fr) и склеивает их,
+ *     проставляя `pack.studyTarget`. Без фильтра французский режим показал бы
+ *     английские наборы (класс бага 2026-09-05, см. комментарий у `studyTarget`).
+ *  2. ДУБЛИ. Локальная копия НЕ удаляется после публикации — она получает
+ *     `cloudPackId` (`publishLocalPack`). Без фильтра опубликованный набор шёл бы
+ *     в список дважды: как `local_pack_*` и как облачный. Прячем облачного
+ *     близнеца по ТОЧНОМУ `cloudPackId` (как `flashcards_my_packs`), а не по
+ *     совпадению названия: `mergeLocalAuthorPacks` сравнивает «автор|язык|название»
+ *     и ошибается при одинаковых названиях и при переименовании. Побеждает
+ *     локальная копия — в ней свежие правки автора, ещё не прошедшие модерацию.
+ */
+type LocalPackSplit = {
+  /** Свои наборы текущей цели изучения — их id добавляются в список. */
+  mine: LocalAuthorPack[];
+  /** Облачные id опубликованных своих наборов — их близнецов прячем. */
+  cloudTwins: Set<string>;
+};
+
+function splitLocalAuthorPacks(
+  packs: readonly LocalAuthorPack[],
+  studyTarget?: RuntimeStudyTarget,
+): LocalPackSplit {
+  const target = storageStudyTarget(studyTarget);
+  const mine: LocalAuthorPack[] = [];
+  const cloudTwins = new Set<string>();
+  for (const pack of packs) {
+    if (!pack?.id) continue;
+    // Близнеца прячем независимо от цели: облачный id уникален глобально.
+    if (pack.cloudPackId) cloudTwins.add(pack.cloudPackId);
+    if (storageStudyTarget(pack.studyTarget) !== target) continue;
+    mine.push(pack);
+  }
+  return { mine, cloudTwins };
 }
 
 /**
@@ -342,11 +393,19 @@ export async function loadFcDeckOptions(
     sourceKind: 'custom',
   });
 
-  /** Порядок первого вхождения, без дублей: сначала добавленные наборы, потом UGC. */
+  /**
+   * Порядок первого вхождения, без дублей: купленные → добавленные из каталога →
+   * СВОИ, созданные в редакторе. Свои идут последними, чтобы у людей без своих
+   * наборов привычный порядок списка не поехал.
+   */
+  const { mine: myLocalPacks, cloudTwins } = splitLocalAuthorPacks(localPacks, studyTarget);
   const packIds: string[] = [];
-  for (const id of [...ownedIds, ...communityIds]) {
-    if (id && !packIds.includes(id)) packIds.push(id);
+  for (const id of [...ownedIds, ...communityIds, ...myLocalPacks.map((p) => p.id)]) {
+    // Облачного близнеца своего же опубликованного набора пропускаем: его
+    // показывает локальная копия, иначе один набор занял бы две строки.
+    if (id && !cloudTwins.has(id) && !packIds.includes(id)) packIds.push(id);
   }
+  console.log(`[FC-DECKS] локальных наборов: всего=${localPacks.length} моей цели=${myLocalPacks.length} скрыто облачных близнецов=${cloudTwins.size}`);
   const bundled = bundledPacksForOwned(packIds, studyTarget, lang);
   const localMarketPacks = localPacks.map((pack) => localAuthorPackToMarketPack(pack, pack.studyTarget));
   const catalogById = new Map<string, FlashcardMarketPack>();
@@ -409,14 +468,36 @@ export async function loadFcDeckOptions(
  * Ошибка отдельного источника не роняет список.
  */
 export async function loadAllFcDeckRefs(studyTarget?: RuntimeStudyTarget): Promise<DeckRef[]> {
-  const [ownedIds, communityIds] = await Promise.all([
-    loadAccessiblePackIds(studyTarget).catch(() => [] as string[]),
-    loadCommunityOwnedPackIds(studyTarget).catch(() => [] as string[]),
+  /**
+   * зачем: свои наборы здесь отсутствовали так же, как в списке выбора, — и это
+   * било отдельно. Блиц без явного `?deck=` берёт пул ИМЕННО отсюда, поэтому у
+   * человека с карточками ТОЛЬКО в своём наборе пул выходил пустым и режим не
+   * стартовал. Ровно тот же отказ уже чинили 13.08.2026 для купленных наборов —
+   * тогда фикс не покрыл свои. Ошибка источника не роняет остальные.
+   */
+  const [ownedIds, communityIds, localPacks] = await Promise.all([
+    loadAccessiblePackIds(studyTarget).catch((error: unknown) => {
+      console.warn('[FC-DECKS] refs:accessiblePackIds FAILED —',
+        error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+      return [] as string[];
+    }),
+    loadCommunityOwnedPackIds(studyTarget).catch((error: unknown) => {
+      console.warn('[FC-DECKS] refs:communityOwnedIds FAILED —',
+        error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+      return [] as string[];
+    }),
+    loadLocalAuthorPacks(studyTarget).catch((error: unknown) => {
+      console.warn('[FC-DECKS] refs:localAuthorPacks FAILED —',
+        error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+      return [] as LocalAuthorPack[];
+    }),
   ]);
+  const { mine: myLocalPacks, cloudTwins } = splitLocalAuthorPacks(localPacks, studyTarget);
   const refs: DeckRef[] = [{ kind: 'saved' }, { kind: 'custom' }];
   const seen = new Set<string>();
-  for (const id of [...ownedIds, ...communityIds]) {
-    if (!id || seen.has(id)) continue;
+  for (const id of [...ownedIds, ...communityIds, ...myLocalPacks.map((p) => p.id)]) {
+    // Облачный близнец своего набора дал бы те же карточки второй раз.
+    if (!id || seen.has(id) || cloudTwins.has(id)) continue;
     seen.add(id);
     refs.push({ kind: 'pack', packId: id });
   }
@@ -444,7 +525,10 @@ export async function countAvailableFcCards(
     const cacheKey = availableCountCacheKey(lang, studyTarget);
     if (cacheKey) _warmAvailableCardCounts.set(cacheKey, ids.size);
     return ids.size;
-  } catch {
+  } catch (error: unknown) {
+    // Немой catch запрещён: «0 карточек» неотличимо от «отказало хранилище».
+    console.warn('[FC-DECKS] countAvailableFcCards FAILED — отдаём 0 —',
+      error instanceof Error ? `${error.name}: ${error.message}` : String(error));
     return 0;
   }
 }

@@ -794,6 +794,17 @@ let _groupCache: {
 } | null = null;
 const GROUP_CACHE_TTL = 60_000; // 60 сек
 
+/**
+ * Потолок ожидания группы в ветке ПЕРВОГО входа (checkLeagueOnAppOpen, !state).
+ *
+ * зачем (владелец 2026-09-22): 5 с — заметно меньше, чем 6-секундная гонка
+ * club_screen.LEAGUE_LOAD_TIMEOUT_MS. Так экран получает ответ (пусть и
+ * локальную группу) ДО того, как сам сдастся в скелет, и первый вход не
+ * упирается в «почти вечно». Порядок величин менять нельзя не глядя: если
+ * поднять этот потолок выше гонки экрана, симптом вернётся.
+ */
+const FIRST_OPEN_GROUP_TIMEOUT_MS = 5_000;
+
 /** Скинути кеш групи (екран клубу / після фокусу), щоб fetchGroupForUser знову пішов у Firestore. */
 export const invalidateLeagueGroupCache = () => {
   _groupCache = null;
@@ -1196,9 +1207,59 @@ export const checkLeagueOnAppOpen = async (
 
   // Первый запуск — state ещё нет, нужно показать хоть что-то
   if (!state) {
-    const remote = await fetchGroupForUser(0, myName, myWeekPoints);
+    // зачем (владелец 2026-09-22, «первый вход в лигу висит почти вечно, надо
+    // переходить заново»): это ЕДИНСТВЕННАЯ ветка, достижимая при входе без
+    // кэша, и у неё не было своего потолка ожидания. fetchGroupForUser идёт в
+    // getOrCreateLeagueGroup, где ДО сетевого чтения стоят ensureAnonUser,
+    // ensureStableAuthLink, App Check, multiGet на 9 ключей и три проверки
+    // статуса подписки — ни у одного звена нет таймаута. Если любое звено
+    // висит, промис не резолвится НИКОГДА: club_screen проигрывает свою гонку
+    // (6 с), показывает скелет, а догоняющий .then/.catch не срабатывает —
+    // ни данных, ни карточки ошибки. Вечный скелет до перезахода.
+    //
+    // Инвариант: эта функция ОБЯЗАНА резолвиться за ограниченное время. Сеть
+    // не отменяем (её ответ ещё пригодится 60-секундному кэшу группы), но
+    // ждём её не дольше потолка, а дальше отдаём локальную группу — ровно для
+    // этого buildLocalFallbackGroup и написана. Лишних чтений Firestore не
+    // добавляем: запрос всё тот же, один.
+    const firstOpenStartedAt = Date.now();
+    let remote: GroupMember[] | null = null;
+    let firstOpenSource: 'remote' | 'timeout-fallback' | 'error-fallback' = 'remote';
+    try {
+      remote = await Promise.race([
+        fetchGroupForUser(0, myName, myWeekPoints),
+        new Promise<null>((resolve) => {
+          setTimeout(() => resolve(null), FIRST_OPEN_GROUP_TIMEOUT_MS);
+        }),
+      ]);
+      if (!remote) firstOpenSource = 'timeout-fallback';
+    } catch (e) {
+      // зачем: запрет немого catch — раньше провал здесь был бы необъяснимым.
+      firstOpenSource = 'error-fallback';
+      // Отказной путь логируется и в проде — правило «логи в catch навсегда».
+      DebugLogger.error('LEAGUE-OPEN:first-open', e, 'warning');
+    }
     const group = remote ?? (await buildLocalFallbackGroup(myName, myWeekPoints));
     state = { leagueId: 0, weekId: currentWeekId, group };
+    if (__DEV__) {
+      console.log('[LEAGUE-OPEN] первый вход: группа получена', {
+        source: firstOpenSource,
+        elapsedMs: Date.now() - firstOpenStartedAt,
+        timeoutMs: FIRST_OPEN_GROUP_TIMEOUT_MS,
+        groupSize: group.length,
+        hasUid: !!myUid,
+        weekId: currentWeekId,
+        persisted: !!remote,
+      });
+    }
+    // Срабатывание потолка — не ошибка, но владелец должен видеть его и в
+    // релизе: это ровно тот случай, из-за которого экран раньше висел вечно.
+    if (firstOpenSource === 'timeout-fallback') {
+      DebugLogger.warn(
+        'LEAGUE-OPEN',
+        `первый вход: сеть не ответила за ${FIRST_OPEN_GROUP_TIMEOUT_MS} мс, показана локальная группа из ${group.length}`,
+      );
+    }
     // Записываем в стабильный state только если получили реальную группу из Firestore.
     // Иначе локальная группа (1 человек) затрёт настоящих участников при следующем открытии.
     if (remote) await saveLeagueState(state);

@@ -72,6 +72,10 @@ import { getMyLeagueWeekRunes } from './league_week_runes';
 // Склонение «руна/руны/рун» — общий помощник валюты, тот же, что в кошельке.
 import { runeWord, runesLabel } from '../constants/runes';
 import { getCanonicalUserId } from './user_id_policy';
+// зачем: отказные пути загрузки лиги обязаны логироваться и в проде (правило
+// владельца «логи в catch и на ранних выходах остаются навсегда»), а console.*
+// в релизе запрещён — поэтому именно DebugLogger, он переживает перезапуск.
+import { DebugLogger } from './debug-logger';
 import { getXPProgress, getLevelFromXP, isLightThemeMode, screenTextOnGradient, type ThemeMode } from '../constants/theme';
 import { getLeagueBonusPalette } from '../constants/leagueBonusPalette';
 import {
@@ -681,6 +685,15 @@ export default function ClubScreen() {
   // фоне и допишет данные, когда придёт (см. ветку winner === 'timeout' ниже).
   const LEAGUE_LOAD_TIMEOUT_MS = 6_000;
 
+  // зачем (владелец 2026-09-22, «первый вход грузится почти вечно»): сколько
+  // ещё ждём догоняющую загрузку ПОСЛЕ проигранной гонки, прежде чем показать
+  // карточку «Повторить». Нужен потому, что .catch ловит только отклонённый
+  // промис — а звено без таймаута внутри getOrCreateLeagueGroup (auth, App
+  // Check, multiGet) может не ответить ВООБЩЕ, и тогда без этого потолка
+  // скелет висит до перезахода. 8 с: движок лиги сдаётся на 5-й секунде, так
+  // что честный ответ почти всегда успевает прийти раньше срабатывания.
+  const LEAGUE_CATCHUP_GRACE_MS = 8_000;
+
   useEffect(() => {
     if (!rankDelta) {
       myRowAnim.stopAnimation();
@@ -875,8 +888,35 @@ export default function ClubScreen() {
       if (!isMountedRef.current) return;
 
       if (winner === 'timeout') {
+        // Диагностика первого кадра — только в разработке: в проде этот путь
+        // проходится при каждом входе, и лог был бы чистым мусором.
+        if (__DEV__) {
+          console.log('[LEAGUE-OPEN] экран: сеть не успела за', LEAGUE_LOAD_TIMEOUT_MS, 'мс', {
+            hadCache: !!cachedLeague,
+            // при живом кэше скелета нет — данные уже на экране, догоняем молча
+            showsSkeleton: !cachedLeague,
+          });
+        }
+        // зачем (владелец 2026-09-22): .catch ниже ловит только ОТКЛОНЁННЫЙ
+        // промис. Если leagueWork не резолвится вообще (звено без таймаута
+        // внутри getOrCreateLeagueGroup: auth, App Check, multiGet), не
+        // сработает ни .then, ни .catch — и без кэша экран остаётся в скелете
+        // навсегда, пока владелец не перезайдёт. Это и был симптом «первый
+        // вход загружается почти вечно». Страховочный потолок гарантирует, что
+        // человек увидит ЛИБО данные, ЛИБО карточку «Повторить».
+        let settled = false;
+        const deadline = setTimeout(() => {
+          if (settled || !isMountedRef.current) return;
+          DebugLogger.warn(
+            'LEAGUE-OPEN',
+            `догоняющая загрузка не ответила за ${LEAGUE_LOAD_TIMEOUT_MS + LEAGUE_CATCHUP_GRACE_MS} мс, показываем карточку ошибки; кэш был: ${cachedLeague ? 'да' : 'нет'}`,
+          );
+          setLeagueLoadFailed(true);
+        }, LEAGUE_CATCHUP_GRACE_MS);
         leagueWork
           .then(({ state, result }) => {
+            settled = true;
+            clearTimeout(deadline);
             if (isMountedRef.current) {
               applyLeagueOpen({
                 ...state,
@@ -888,9 +928,12 @@ export default function ClubScreen() {
             }
             void AsyncStorage.setItem(CLUB_REMOTE_REFRESH_AT_KEY, String(Date.now())).catch(() => {});
           })
-          .catch(() => {
+          .catch((e) => {
+            settled = true;
+            clearTimeout(deadline);
             // зачем: провал догоняющей загрузки после таймаута раньше был немым —
             // без кэша это оставляло вечный скелетон. Флаг включает карточку ошибки.
+            DebugLogger.error('LEAGUE-OPEN:catchup', e, 'warning');
             if (isMountedRef.current) setLeagueLoadFailed(true);
           });
       } else {

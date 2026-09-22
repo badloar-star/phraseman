@@ -5395,7 +5395,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 accessibilityRole="button"
                 // зачем (аудит 2026-08-24): метка была одним названием — незрячий
                 // не слышал ни прогресс, ни баланс, хотя оба нарисованы в карточке.
-                accessibilityLabel={`${triLang(lang, { ru: 'Цель лиги', uk: 'Ціль ліги', en: 'League goal', es: 'Meta de liga', 'pt-BR': 'Meta da liga', vi: 'Mục tiêu giải đấu', id: 'Target liga', tr: 'Lig hedefi', pl: 'Cel ligi' })}, ${homeLeagueChest.leagueName}, ${homeLeagueChestPct}%. ${homeLeagueRunesA11yLabel}`}
+                // зачем (владелец 2026-09-22): порядок в метке следует за новым
+                // визуальным порядком — сначала лига, потом «Цель лиги».
+                accessibilityLabel={`${homeLeagueChest.leagueName}, ${triLang(lang, { ru: 'Цель лиги', uk: 'Ціль ліги', en: 'League goal', es: 'Meta de liga', 'pt-BR': 'Meta da liga', vi: 'Mục tiêu giải đấu', id: 'Target liga', tr: 'Lig hedefi', pl: 'Cel ligi' })}, ${homeLeagueChestPct}%. ${homeLeagueRunesA11yLabel}`}
               >
                 <LinearGradient colors={leagueBonusPalette.card} locations={leagueBonusPalette.cardLocations} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ minHeight: homeTodayLeagueCardMinHeight, borderRadius: 24, borderWidth: 0, borderColor: leagueBonusPalette.border, backgroundColor: leagueBonusPalette.innerBg, paddingHorizontal: homeTodayCardPadX, paddingVertical: homeTodayCardPadY, overflow: 'hidden' }}>
                   <Image pointerEvents="none" source={menuImages.league} style={{ position: 'absolute', right: -8, top: -22, width: homeLeagueWatermarkSize, height: homeLeagueWatermarkSize, opacity: homeLeagueChestReady ? 0.22 : 0.15, transform: [{ rotate: '-8deg' }] }} contentFit="contain" accessible={false}/>
@@ -5404,11 +5406,18 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                       <Image source={menuImages.league} style={{ width: homeTodayIconSize, height: homeTodayIconSize, opacity: homeLeagueChestReady ? 1 : 0.94 }} contentFit="contain" accessibilityLabel={triLang(lang, { ru: 'Лига', uk: 'Ліга', en: 'League', es: 'Liga', 'pt-BR': 'Liga', vi: 'Giải đấu', id: 'Liga', tr: 'Lig', pl: 'Liga' })}/>
                     </View>
                     <View style={{ flex: 1, minWidth: 0 }}>
+                      {/* зачем (владелец 2026-09-22): было наоборот — «Цель лиги»
+                          крупным жирным, а сама лига мелким приглушённым, и плашка
+                          читалась так, будто цель главнее лиги. Ведёт НАЗВАНИЕ лиги
+                          (крупный кегль, вес 900, основной цвет), «Цель лиги» ушла
+                          в поясняющую строку тем же тоном, каким раньше была лига.
+                          Меняются ровно роли двух строк: кегль, вес и цвет едут
+                          вместе с содержимым, новых стилей не заводим. */}
                       <FlowText testID="home-league-goal-title" provenance="authored" style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900', lineHeight: f.bodyLg + 5 }}>
-                        {triLang(lang, { ru: 'Цель лиги', uk: 'Ціль ліги', en: 'League goal', es: 'Meta de liga', 'pt-BR': 'Meta da liga', vi: 'Mục tiêu giải đấu', id: 'Target liga', tr: 'Lig hedefi', pl: 'Cel ligi' })}
+                        {homeLeagueChest.leagueName}
                       </FlowText>
                       <Text style={{ color: leagueBonusPalette.textMuted, fontSize: f.label, fontWeight: '800', lineHeight: f.label + 4, marginTop: 2 }}>
-                        {homeLeagueChest.leagueName}
+                        {triLang(lang, { ru: 'Цель лиги', uk: 'Ціль ліги', en: 'League goal', es: 'Meta de liga', 'pt-BR': 'Meta da liga', vi: 'Mục tiêu giải đấu', id: 'Target liga', tr: 'Lig hedefi', pl: 'Cel ligi' })}
                       </Text>
                     </View>
                     {/* зачем: владелец 2026-08-24 — рядом с целью лиги обязателен

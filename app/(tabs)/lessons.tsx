@@ -2172,6 +2172,25 @@ export default function LessonsTab({
   initialPage = "lessons",
 }: LessonsTabProps = {}) {
   void _overlayIdentityEpoch;
+  // зачем (владелец 22.09, «ни один урок открыть нельзя»): этот экран
+  // рендерится ДВУМЯ разными маршрутами (/lessons_list и /learning-v2/course
+  // — оба ре-экспортируют LessonsTab). Если он размонтируется и монтируется
+  // заново сразу после открытия сессии, initialPage сбрасывается на "lessons"
+  // и внутреннее состояние карты V2 теряется. Лог остаётся навсегда.
+  const instanceIdRef = useRef(Math.random().toString(36).slice(2, 8));
+  useEffect(() => {
+    if (!__DEV__) return;
+    console.log(
+      "[V2-PAGE] LessonsTab:mount",
+      JSON.stringify({ instanceId: instanceIdRef.current, presentation, initialPage }),
+    );
+    return () => {
+      console.log(
+        "[V2-PAGE] LessonsTab:unmount",
+        JSON.stringify({ instanceId: instanceIdRef.current, presentation, initialPage }),
+      );
+    };
+  }, []);
   const isRetainedTab = presentation === "tab";
   const tabContentBottomPad = useTabContentBottomPad();
   const router = useRouter();
@@ -2288,7 +2307,24 @@ export default function LessonsTab({
   // Learning V2 повторно использует этот же список и тот же LessonCard.
   // Карта раскрывается прямо под выбранной плашкой; одновременно открыта одна.
   const dialogsEnabled = isAiDialogEnabled();
-  const [page, setPage] = useState<"lessons" | "dialogs" | "v2">(initialPage);
+  const [pageRaw, setPageRaw] = useState<"lessons" | "dialogs" | "v2">(initialPage);
+  // зачем (владелец 22.09, «открываю урок — секунда — назад в раздел уроки»):
+  // лог владения экраном лестницы. Карта V2 гаснет и открывается заново через
+  // ~3с после открытия сессии (metro-console показал map:unmount сразу после
+  // повторного router.push на ту же сессию) — нужно увидеть, ЧТО меняет page
+  // обратно и МОНТИРУЕТСЯ ли LessonsTab целиком заново. Печатаем стек вызова,
+  // чтобы отличить пользовательский тап от программного сброса.
+  const page = pageRaw;
+  const setPage = useCallback((next: "lessons" | "dialogs" | "v2") => {
+    if (__DEV__) {
+      console.log(
+        "[V2-PAGE] setPage",
+        JSON.stringify({ from: pageRaw, to: next, presentation, initialPage }),
+        new Error("trace").stack?.split("\n").slice(1, 5).join(" | "),
+      );
+    }
+    setPageRaw(next);
+  }, [pageRaw, presentation, initialPage]);
   // зачем: карта Learning V2 занимает весь экран, а раздел открывается ВНУТРИ
   // вкладки — таббар с Главной оставался поверх карты (владелец 20.09).
   // Прячем его только пока открыта карта; при уходе запрос отпускается сам.
@@ -3361,6 +3397,12 @@ export default function LessonsTab({
         }
         setSelectedLearningV2Session(null);
         requestAnimationFrame(() => {
+          if (__DEV__) {
+            console.log(
+              "[V2-PAGE] push:session",
+              JSON.stringify({ sessionId, sessionRunId: ready.sessionRunId, from: "lessons.tsx:modalLaunch" }),
+            );
+          }
           router.push({
             pathname: "/learning-v2/session/[id]",
             params: {
@@ -3828,9 +3870,25 @@ export default function LessonsTab({
   }, [gateModalKind]);
 
   const buyLessonUnlock = useCallback(async (lessonNum: number) => {
-    // Покупка урока за жемчужины — дополнительный путь только внутри Plus.
-    // Free-пользователь всегда должен увидеть обычный Plus-paywall.
-    if (!isPremium) {
+    // зачем (владелец 22.09, «попытка купить за жемчуг любой урок открывает
+    // пейвол», решение — «жемчуг должен работать и у Free»): здесь стояло
+    // `if (!isPremium) → пейвол`, и это противоречило двум соседним слоям.
+    // Кнопка «Разблокировать · 100» ПОКАЗЫВАЕТСЯ Free на уроках без пейвола
+    // (условие модалки ниже), а ядро buyLessonWithPearls Free ПРОДАЁТ
+    // (lessons_pearl_unlock.ts: отказ только при requiresPremiumForLesson).
+    // Отсечка посередине рубила тап ДО вызова ядра — работающий механизм не
+    // звали никогда, а кнопка читалась как обман.
+    //
+    // Решение «продать или нет» теперь принимается в ОДНОМ месте — ядре, где
+    // денежная граница живёт fail-closed (bypassCache, без cloud restore).
+    // Здесь остаётся только честная отсечка по ПЛАТНОСТИ урока: на уроки 4+
+    // у Free пейвол, а не покупка — ровно как обещает условие показа кнопки.
+    if (!isPremium && requiresPremiumForLesson(lessonNum)) {
+      console.log('[LESSON-UNLOCK] press:paywall_instead', JSON.stringify({ // guard-ok: ранний выход логируется в релизе намеренно
+        lessonNum,
+        isPremium,
+        paywalled: true,
+      }));
       setGateModal(null);
       const doneSoFar = scores.filter((score) => score > 0).length;
       openPremiumPaywall(router, {
@@ -4045,7 +4103,15 @@ export default function LessonsTab({
     return idx;
   }, [examResults, passCounts, persistedUnlocked, progCounts, scores]);
   const unlockedLessons = useMemo(() => {
-    if (effectiveDevContentUnlock || effectiveNoLimits)
+    // зачем (владелец 22.09, «все уроки отмечены как открыты — запрещённое
+    // поведение»): effectiveDevContentUnlock — это DEV_CONTENT_UNLOCK, БЕЗУСЛОВНАЯ
+    // константа любой дев-сборки (app/config.ts), а не тестерский флаг с диска.
+    // Список рисовал ВСЕ 32 урока открытыми просто потому что сборка дев, а
+    // реальный вход (lesson_menu.tsx: isTesterNoLimitsActive) требует ЯВНО
+    // включённого tester_no_limits и честно блокирует урок — отсюда «на карте
+    // открыт, при тапе выбрасывает назад». Список обязан считать ТАК ЖЕ, как
+    // реальная проверка: только effectiveNoLimits (тот же диск-флаг).
+    if (effectiveNoLimits)
       return new Array(32).fill(true);
     const u = new Array(32).fill(false);
     // Зачёты уровней — они открывают уроки на границах 9/19/29.
@@ -4063,7 +4129,6 @@ export default function LessonsTab({
       legacyFreeLessonCap: effectiveLegacyFreeLessonCap,
     });
   }, [
-    effectiveDevContentUnlock,
     effectiveLegacyFreeLessonCap,
     effectiveNoLimits,
     examResults,

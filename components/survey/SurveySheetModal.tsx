@@ -21,13 +21,14 @@ import { oskolokImageForPackShards } from '../../app/oskolok';
 import { peekLastKnownShardsBalance } from '../../app/shards_system';
 import { surveyRewardForDisplay } from '../../app/survey_submission_state';
 import { openStoreReviewPage } from '../../app/store_review';
+import { collectSurveyFollowUps, type SurveyFollowUp } from '../../app/survey_followups';
 import {
   useSurveyFlowController,
   type SurveyDurableScope,
   type SurveyFlowController,
   type SurveyLaunch,
 } from '../../app/survey_flow_controller';
-import type { SurveyAppRoute, SurveyQuestionClient } from '../../app/survey_client';
+import type { SurveyQuestionClient } from '../../app/survey_client';
 import { SURVEY_HYBRID } from '../../constants/motionHybrid';
 import { triLang, type Lang } from '../../constants/i18n';
 import { isLightThemeMode } from '../../constants/theme';
@@ -61,6 +62,28 @@ type SurveyOptionClient = SurveyQuestionClient['options'][number];
 /** Логи ранних выходов хореографии (правило владельца «сперва логи»): редкие события, не покадровые. */
 function logTide(message: string): void {
   console.log(`[SURVEY-TIDE] ${message}`); // guard-ok: ранние выходы обязаны логироваться и в проде
+}
+
+/**
+ * Трасса кнопок-действий финала. Владелец ловит всю цепочку одним grep
+ * `[SURVEY-CTA]`: какое действие нажали, закрылась ли шторка, чем кончился
+ * переход. Именно немого отказа тут и не хватало — тап выглядел мёртвым, а
+ * узнать это было неоткуда.
+ */
+function logCta(message: string): void {
+  console.log(`[SURVEY-CTA] ${message}`); // guard-ok: ранние выходы обязаны логироваться и в проде
+}
+
+/**
+ * Обещанный переход, который ждёт исчезновения нативной шторки. Живёт в модуле,
+ * а не в ref: Главная размонтирует опрос тем же onClose, и ref умер бы раньше,
+ * чем обещание исполнилось. Опрос на экране всегда один, гонки за неё нет.
+ */
+let pendingFollowUp: SurveyFollowUp | null = null;
+
+/** Сброс обещания между тестами: модульное состояние иначе течёт в соседний тест. */
+export function __resetPendingSurveyFollowUpForTests(): void {
+  pendingFollowUp = null;
 }
 
 type CelebrationToken = { cancelled: boolean; timers: ReturnType<typeof setTimeout>[] };
@@ -201,19 +224,72 @@ export default function SurveySheetModal({
     activeDeactivateRef.current();
   }, []);
 
+  // ── Отложенный переход по кнопке финала ────────────────────────────────────
+  // зачем (владелец, 2026-09-22): навигация ОБЯЗАНА идти после того, как
+  // нативный Modal реально исчез. Пока шторка жива, expo-router меняет экран
+  // ПОД ней — человек видит ту же шторку и считает кнопку мёртвой.
+  //
+  // Обещание держим ВНЕ компонента (pendingFollowUp в модуле): Главная рисует
+  // опрос как `{openSurveyLaunch ? <SurveySheetModal/> : null}`, и её onClose
+  // обнуляет launch — компонент размонтируется в том же кадре, ref умер бы
+  // вместе с ним, а onDismissed уже не пришёл бы. Поэтому исполняем обещание
+  // по ЛЮБОМУ из двух сигналов: нативное закрытие или размонтирование.
+  const router = useRouter();
+  const runFollowUp = useCallback((followUp: SurveyFollowUp, trigger: string) => {
+    logCta(`run pending action (trigger=${trigger}) key=${followUp.key}`);
+    if (followUp.kind === 'store_review') {
+      void openStoreReviewPage().then((opened) => {
+        logCta(`store page: ${opened ? 'opened' : 'FAILED — no store url could be opened'}`);
+      });
+      return;
+    }
+    try {
+      router.push(followUp.route);
+      logCta(`navigation done: route=${followUp.route}`);
+    } catch (e) {
+      logCta(`navigation FAILED: route=${followUp.route} reason=${e instanceof Error ? e.message : String(e)}`);
+    }
+  }, [router]);
+  const runFollowUpRef = useRef(runFollowUp);
+  runFollowUpRef.current = runFollowUp;
+
+  const handleFollowUp = useCallback((followUp: SurveyFollowUp) => {
+    if (pendingFollowUp) {
+      logCta(`second tap while dismissing: key=${followUp.key} ignored (already pending ${pendingFollowUp.key})`);
+      return;
+    }
+    pendingFollowUp = followUp;
+    logCta(`cta pressed: key=${followUp.key} kind=${followUp.kind} label="${followUp.cta}" — closing sheet, navigation after dismiss`);
+    onClose();
+  }, [onClose]);
+
+  const handleDismissed = useCallback(() => {
+    const pending = pendingFollowUp;
+    pendingFollowUp = null;
+    if (pending) runFollowUpRef.current(pending, 'нативное закрытие');
+    onDismissed?.();
+  }, [onDismissed]);
+
   useLayoutEffect(() => {
     if (!visible) deactivateActiveFlow();
   }, [deactivateActiveFlow, visible]);
   useEffect(() => () => {
     activeDeactivateRef.current();
     activeDeactivateRef.current = () => {};
+    // Родитель снял launch — onDismissed уже не придёт, обещание исполняем тут.
+    const pending = pendingFollowUp;
+    pendingFollowUp = null;
+    if (pending) runFollowUpRef.current(pending, 'размонтирование');
   }, []);
 
   return (
     <HybridSheetShell
       visible={visible}
       onClose={onClose}
-      onDismissed={onDismissed}
+      // зачем: обработчик передаём ВСЕГДА, даже когда родитель свой не дал —
+      // иначе шелл не включает наблюдение за нативным закрытием (dismissalEnabled)
+      // и отложенный переход по кнопке финала никогда бы не исполнился.
+      onDismissed={handleDismissed}
       onDismissRequested={deactivateActiveFlow}
       closeLabel={copy.close}
       backdropAccessible={false}
@@ -228,6 +304,7 @@ export default function SurveySheetModal({
           registerDeactivate={registerDeactivate}
           onDurablyReconciled={onDurablyReconciled}
           pearlBalance={resolvedPearlBalance}
+          onFollowUp={handleFollowUp}
         />
       )}
     </HybridSheetShell>
@@ -240,12 +317,14 @@ function SurveySheetSession({
   registerDeactivate,
   onDurablyReconciled,
   pearlBalance,
+  onFollowUp,
 }: {
   launch: SurveyLaunch;
   shellRequestDismiss: () => void;
   registerDeactivate: (deactivate: () => void) => void;
   onDurablyReconciled?: (scope: SurveyDurableScope) => void;
   pearlBalance: number;
+  onFollowUp: (followUp: SurveyFollowUp) => void;
 }) {
   const dismissLifecycleStartedRef = useRef(false);
   const [autoCloseRequest, requestAutoClose] = useReducer((value: number) => value + 1, 0);
@@ -269,6 +348,7 @@ function SurveySheetSession({
       deactivateForDismiss={deactivateForDismiss}
       autoCloseRequest={autoCloseRequest}
       pearlBalance={pearlBalance}
+      onFollowUp={onFollowUp}
     />
   );
 }
@@ -280,6 +360,7 @@ function SurveySheetContent({
   deactivateForDismiss,
   autoCloseRequest,
   pearlBalance,
+  onFollowUp,
 }: {
   launch: SurveyLaunch;
   flow: SurveyFlowController;
@@ -287,9 +368,9 @@ function SurveySheetContent({
   deactivateForDismiss: () => void;
   autoCloseRequest: number;
   pearlBalance: number;
+  onFollowUp: (followUp: SurveyFollowUp) => void;
 }) {
   const { theme: t, f } = useTheme();
-  const router = useRouter();
   const reduceMotion = useReduceMotion();
   const { survey, lang } = launch;
   const copy = useMemo(() => sheetCopy(lang), [lang]);
@@ -491,6 +572,14 @@ function SurveySheetContent({
   const confirmedZero = flow.submission.phase === 'reconciled'
     && flow.submission.confirmedReward === 0;
 
+  // зачем: кнопки финала — производная от ответов, отдельного состояния нет.
+  // Считаем только когда финальный экран реально виден: во время опроса эта
+  // работа никому не нужна и ни одного лишнего прохода по вопросам не делаем.
+  const followUps = useMemo(
+    () => (feedback ? collectSurveyFollowUps({ questions: survey.questions, answers: flow.answers }) : []),
+    [feedback, flow.answers, survey.questions],
+  );
+
   // зачем (владелец, 2026-09-21): кнопка внизу теперь на КАЖДОМ шаге. Пока её
   // не нажали, человек волен переклацывать варианты сколько угодно — ничего не
   // уходит само. Неактивна, пока на шаге нет ответа.
@@ -555,6 +644,8 @@ function SurveySheetContent({
               onRetry={() => { void flow.retrySubmit(); }}
               retryDisabled={flow.submission.messageKey === 'account_changed'}
               onBack={requestClose}
+              followUps={followUps}
+              onFollowUp={onFollowUp}
             />
           </ScrollView>
         </>
@@ -635,7 +726,6 @@ function SurveySheetContent({
                     questionTitleRef={questionTitleRef}
                     hideQuestionTitle={survey.questions.length === 1
                       && flow.currentQuestion.text.trim() === survey.title.trim()}
-                    onOpenRoute={(route) => router.push(route)}
                     onPicked={handlePicked}
                     showInlineReward={showInlineReward}
                     inlineRewardAmount={survey.rewardShards}
@@ -745,7 +835,6 @@ function SurveyQuestionFields({
   controller,
   questionTitleRef,
   hideQuestionTitle,
-  onOpenRoute,
   onPicked,
   showInlineReward,
   inlineRewardAmount,
@@ -759,14 +848,12 @@ function SurveyQuestionFields({
   controller: Pick<SurveyFlowController, 'pickOption' | 'setComment'>;
   questionTitleRef: React.RefObject<Text | null>;
   hideQuestionTitle: boolean;
-  onOpenRoute: (route: SurveyAppRoute) => void;
   onPicked: (option: SurveyOptionClient) => void;
   showInlineReward: boolean;
   inlineRewardAmount: number;
   rewardPillRef: React.RefObject<View | null>;
 }) {
   const { theme: t, f, themeMode } = useTheme();
-  const selectedAction = question.options.find((option) => option.id === selectedOption)?.action;
   const anySelected = question.options.some((option) => option.id === selectedOption);
   const lightTheme = isLightThemeMode(themeMode);
   const purpleAccent = lightTheme ? SURVEY_PURPLE_TONE.accentLight : SURVEY_PURPLE_TONE.accentDark;
@@ -807,9 +894,12 @@ function SurveyQuestionFields({
                 key={option.id}
                 testID={`survey-option-${option.id}`}
                 variant="card"
+                // зачем (владелец, 2026-09-22): тап по варианту ТОЛЬКО выбирает.
+                // Раньше здесь же открывалась страница стора — окно прилетало
+                // поверх опроса ещё до отправки. Теперь и стор, и переходы
+                // живут на финальном экране, когда уходить уже безопасно.
                 onPress={() => {
                   controller.pickOption(question.id, option.id);
-                  if (option.action?.kind === 'store_review') void openStoreReviewPage();
                   onPicked(option);
                 }}
                 withHaptic={false}
@@ -856,29 +946,12 @@ function SurveyQuestionFields({
               </PressableHybrid>
             );
           })}
-          {selectedAction?.kind === 'app_route' ? (
-            <PressableHybrid
-              testID="survey-option-action-cta"
-              variant="secondary"
-              onPress={() => onOpenRoute(selectedAction.route)}
-              withHaptic={false}
-              disabled={disabled}
-              accessibilityRole="button"
-              accessibilityLabel={selectedAction.cta}
-              accessibilityState={{ disabled }}
-              style={[styles.actionCta, { backgroundColor: t.accentBg }]}
-              contentStyle={styles.actionCtaContent}
-            >
-              <FlowText
-                testID="survey-option-action-cta-label"
-                provenance="authored"
-                style={[styles.actionCtaLabel, { color: t.accent, fontSize: f.body }]}
-              >
-                {selectedAction.cta}
-              </FlowText>
-              <Ionicons name="arrow-forward" size={20} color={t.accent} accessibilityElementsHidden />
-            </PressableHybrid>
-          ) : null}
+          {/* зачем (владелец, 2026-09-22: «убери эти кнопки и сделай так чтобы
+              кнопка появлялась после того как ответ отправлен»): здесь раньше
+              стояла кнопка-действие выбранного варианта. Она дёргала
+              router.push из-под нативной шторки — экран менялся НЕВИДИМО, и тап
+              выглядел мёртвым. Теперь действия копятся и показываются на
+              финальном экране (collectSurveyFollowUps). */}
         </View>
       )}
     </View>
@@ -955,9 +1028,6 @@ const styles = StyleSheet.create({
   plusPill: { flexDirection: 'row', alignItems: 'center', gap: 5, height: 28, paddingLeft: 8, paddingRight: 6, borderRadius: 14 },
   plusLabel: { fontWeight: '800', lineHeight: 18, fontVariant: ['tabular-nums'] },
   plusArt: { width: 18, height: 18 },
-  actionCta: { minHeight: 48, borderRadius: 18 },
-  actionCtaContent: { minHeight: 48, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingHorizontal: 16 },
-  actionCtaLabel: { fontWeight: '700', textAlign: 'center' },
   textInput: { minHeight: 120, borderRadius: 16, padding: 16, textAlignVertical: 'top', lineHeight: 23 },
   cta: { minHeight: 52, borderRadius: 18, marginTop: 8 },
   ctaContent: { minHeight: 52, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingHorizontal: 18 },

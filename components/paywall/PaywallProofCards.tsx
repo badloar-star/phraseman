@@ -476,15 +476,19 @@ export function FaqCard({ lang, chrome, trialDays, priceLine }: {
         pl: 'Co zawiera Plus?',
       }),
       a: triLang(lang, {
-        ru: 'Первые три урока доступны бесплатно. С Plus первые уроки A1, A2, B1 и B2 доступны сразу, остальные открываются по порядку. Также в Plus входят энергия без ожидания, безлимитная практика, AI-диалоги, расширенная статистика и другие возможности.',
-        uk: 'Перші три уроки доступні безкоштовно. З Plus перші уроки A1, A2, B1 і B2 доступні одразу, решта відкривається по черзі. Також Plus дає енергію без очікування, безлімітну практику, AI-діалоги, розширену статистику та інші можливості.',
-        en: 'The first three lessons are free. With Plus, the first A1, A2, B1, and B2 lessons are available immediately; the rest unlock in order. Plus also includes energy with no waiting, unlimited practice, AI dialogues, advanced stats, and more.',
-        es: 'Las tres primeras lecciones son gratis. Con Plus, la primera lección de A1, A2, B1 y B2 está disponible de inmediato; las demás se abren en orden. Plus también incluye energía sin esperas, práctica ilimitada, diálogos IA, estadísticas avanzadas y más.',
-        'pt-BR': 'As três primeiras lições são grátis. Com o Plus, a primeira lição de A1, A2, B1 e B2 fica disponível de imediato; as demais abrem em ordem. O Plus também inclui energia sem espera, prática ilimitada, diálogos com IA, estatísticas avançadas e mais.',
-        vi: 'Ba bài học đầu tiên được miễn phí. Với Plus, bài đầu của A1, A2, B1 và B2 có sẵn ngay; các bài còn lại mở theo thứ tự. Plus còn có năng lượng không phải chờ, luyện tập không giới hạn, hội thoại AI, thống kê nâng cao và nhiều tính năng khác.',
-        id: 'Tiga pelajaran pertama gratis. Dengan Plus, pelajaran pertama A1, A2, B1, dan B2 langsung tersedia; sisanya terbuka berurutan. Plus juga mencakup energi tanpa menunggu, latihan tanpa batas, dialog AI, statistik lanjutan, dan lainnya.',
-        tr: 'İlk üç ders ücretsizdir. Plus ile A1, A2, B1 ve B2’nin ilk dersleri hemen açılır; diğerleri sırayla açılır. Plus ayrıca beklemesiz enerji, sınırsız pratik, AI diyalogları, gelişmiş istatistik ve daha fazlasını sunar.',
-        pl: 'Pierwsze trzy lekcje są bezpłatne. Z Plus pierwsze lekcje A1, A2, B1 i B2 są dostępne od razu, a pozostałe odblokowują się po kolei. Plus obejmuje też energię bez czekania, nielimitowaną praktykę, dialogi AI, rozszerzone statystyki i więcej.',
+        // зачем (владелец, 2026-09-22): ответ дословно повторял текст экрана
+        // покупки вместе с уровнями A1/A2/B1/B2. Здесь вопрос прямой — «что
+        // входит», — поэтому оставлен перечень, но без внутренней терминологии
+        // и без пересказа того, что у человека уже есть бесплатно.
+        ru: 'Весь курс, разговорная практика вслух, диалоги с ИИ без дневного счётчика, тренировки карточек, своя коллекция фраз, подробная статистика и темы оформления. Энергия при этом не тратится — заниматься можно сколько хочется.',
+        uk: 'Увесь курс, розмовна практика вголос, діалоги з ШІ без денного лічильника, тренування карток, власна колекція фраз, докладна статистика й теми оформлення. Енергія при цьому не витрачається — займатися можна скільки завгодно.',
+        en: 'The whole course, speaking practice out loud, AI dialogues with no daily counter, flashcard training, your own phrase collection, detailed statistics and app themes. Energy is never spent, so you can study as much as you like.',
+        es: 'El curso completo, práctica oral en voz alta, diálogos con IA sin contador diario, entrenamientos de tarjetas, tu propia colección de frases, estadísticas detalladas y temas de la app. La energía no se gasta, así que puedes estudiar todo lo que quieras.',
+        'pt-BR': 'O curso inteiro, prática de fala em voz alta, diálogos com IA sem contador diário, treinos de cartões, sua coleção de frases, estatísticas detalhadas e temas do app. A energia não é gasta, então você estuda o quanto quiser.',
+        vi: 'Trọn bộ khóa học, luyện nói thành tiếng, hội thoại AI không giới hạn lượt mỗi ngày, luyện thẻ từ, bộ sưu tập cụm từ của riêng bạn, thống kê chi tiết và giao diện ứng dụng. Năng lượng không bị tiêu hao nên bạn học bao nhiêu tùy thích.',
+        id: 'Seluruh kursus, latihan berbicara lantang, dialog AI tanpa penghitung harian, latihan kartu, koleksi frasamu sendiri, statistik terperinci, dan tema aplikasi. Energi tidak terpakai, jadi kamu bisa belajar sepuasnya.',
+        tr: 'Kursun tamamı, sesli konuşma pratiği, günlük sayaç olmadan yapay zekâ diyalogları, kart antrenmanları, kendi ifade koleksiyonun, ayrıntılı istatistikler ve uygulama temaları. Enerji harcanmaz, yani istediğin kadar çalışabilirsin.',
+        pl: 'Cały kurs, ćwiczenie mówienia na głos, dialogi z AI bez dziennego licznika, treningi fiszek, własna kolekcja zwrotów, szczegółowe statystyki i motywy aplikacji. Energia się nie zużywa, więc możesz uczyć się, ile chcesz.',
       }),
     },
   ];

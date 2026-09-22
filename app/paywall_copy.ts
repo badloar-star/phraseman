@@ -155,92 +155,111 @@ export function resolvePaywallContext(
 
 export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { generic: PaywallCopy } = {
   onboarding_plan: {
-    titleRu: 'Учись без пауз с Plus',
-    titleUk: 'Навчайся без пауз із Plus',
-    titleEs: 'Aprende sin pausas con Plus',
-    subtitleRu: 'Безлимитная энергия, больше разговорной практики, тренировок и подробной статистики.',
-    subtitleUk: 'Безлімітна енергія, більше розмовної практики, тренувань і докладної статистики.',
-    subtitleEs: 'Energía ilimitada, más práctica oral, entrenamientos y estadísticas detalladas.',
+    titleRu: 'Начни говорить, а не зубрить',
+    titleUk: 'Почни говорити, а не зубрити',
+    titleEs: 'Empieza a hablar, no a memorizar',
+    subtitleRu: 'Курс из живых фраз, разговоры вслух и повторы ровно того, что забывается — всё открыто с первого дня.',
+    subtitleUk: 'Курс із живих фраз, розмови вголос і повтори саме того, що забувається — усе відкрито з першого дня.',
+    subtitleEs: 'Un curso de frases reales, práctica oral y repasos de justo lo que se olvida: todo abierto desde el primer día.',
   },
   season_pass_lane: {
-    titleRu: 'Открой премиум-награды сезона',
-    titleUk: 'Відкрий преміум-нагороди сезону',
-    titleEs: 'Desbloquea las recompensas premium de la temporada',
-    subtitleRu: 'Plus открывает премиум-дорожку сезона вместе со всеми учебными преимуществами.',
-    subtitleUk: 'Plus відкриває преміум-доріжку сезону разом з усіма навчальними перевагами.',
-    subtitleEs: 'Plus abre la ruta premium de la temporada junto con todas las ventajas de aprendizaje.',
+    titleRu: 'Забирай награды сезона',
+    titleUk: 'Забирай нагороди сезону',
+    titleEs: 'Llévate las recompensas de la temporada',
+    subtitleRu: 'Премиум-дорожка сезона открывается целиком — вместе с курсом, разговорами вслух, тренировками без счётчика и статистикой.',
+    subtitleUk: 'Преміум-доріжка сезону відкривається цілком — разом із курсом, розмовами вголос, тренуваннями без лічильника та статистикою.',
+    subtitleEs: 'La ruta premium de la temporada se abre entera, junto con el curso, la práctica oral, los entrenamientos sin contador y las estadísticas.',
   },
   language_add: {
-    titleRu: 'Добавь второй язык к изучению',
-    titleUk: 'Додай другу мову до вивчення',
-    titleEs: 'Añade un segundo idioma',
-    subtitleRu: 'Бесплатный аккаунт — один язык. С Plus учи несколько языков сразу: у каждого свой план, свой прогресс и свои достижения, ничего не смешивается.',
-    subtitleUk: 'Безкоштовний акаунт — одна мова. З Plus вивчай кілька мов одразу: у кожної свій план, свій прогрес і свої досягнення, нічого не змішується.',
-    subtitleEs: 'La cuenta gratis incluye un idioma. Con Plus aprende varios a la vez: cada idioma tiene su propio plan, progreso y logros.',
+    titleRu: 'Учи несколько языков сразу',
+    titleUk: 'Вивчай кілька мов одразу',
+    titleEs: 'Aprende varios idiomas a la vez',
+    subtitleRu: 'Бесплатно — один язык. С подпиской у каждого свой план, свой прогресс и свои достижения, ничего не смешивается. И весь курс, разговоры и тренировки — для каждого языка.',
+    subtitleUk: 'Безкоштовно — одна мова. Із передплатою в кожної свій план, свій прогрес і свої досягнення, нічого не змішується. І весь курс, розмови та тренування — для кожної мови.',
+    subtitleEs: 'Gratis es un idioma. Con la suscripción cada uno tiene su plan, su progreso y sus logros, sin mezclarse. Y el curso completo, los diálogos y los entrenamientos para cada idioma.',
   },
   no_energy: {
-    // зачем: заголовок фиксирует момент («энергия кончилась»), а не абстрактную пользу.
-    titleRu: 'Энергия кончилась. С Plus она не кончается',
-    titleUk: 'Енергія скінчилась. З Plus вона не закінчується',
-    titleEs: 'Sin energía. Con Plus no se acaba',
-    subtitleRu: 'Уроки, тренажёр и экзамен — без таймера ожидания. Ритм только твой.',
-    subtitleUk: 'Уроки, тренажер та іспит — без таймера очікування. Ритм лише твій.',
-    subtitleEs: 'Lecciones, entrenador y examen sin temporizador de espera. El ritmo es tuyo.',
+    // зачем (владелец, 2026-09-22): прежний заголовок дважды повторял «кончилась /
+    // не кончается» — экран получался про ожидание, а не про занятия. Подзаголовок
+    // теперь показывает, что подписка снимает не только энергию.
+    titleRu: 'Занимайся без ожидания',
+    titleUk: 'Займайся без очікування',
+    titleEs: 'Estudia sin esperas',
+    subtitleRu: 'С подпиской энергия не тратится вообще: закончил урок — сразу берёшься за следующий. А ещё открывается весь курс, разговорная практика, тренировки без счётчика и статистика.',
+    subtitleUk: 'З передплатою енергія не витрачається взагалі: завершив урок — одразу берешся за наступний. А ще відкривається увесь курс, розмовна практика, тренування без лічильника та статистика.',
+    subtitleEs: 'Con la suscripción la energía no se gasta: terminas una lección y pasas directo a la siguiente. Y además se abre el curso completo, la práctica oral, los entrenamientos sin contador y las estadísticas.',
   },
   streak: {
-    titleRu: 'Не теряй серию, которую уже построил',
-    titleUk: 'Не втрачай серію, яку вже побудував',
-    titleEs: 'No pierdas la racha que ya llevas',
-    subtitleRu: 'Plus защищает твой ритм: учись без пауз и не откатывайся из-за одного пропуска.',
-    subtitleUk: 'Plus захищає твій ритм: навчайся без пауз і не відкатуйся через один пропуск.',
-    subtitleEs: 'Plus protege tu ritmo: estudia sin pausas y no retrocedas por un solo día sin practicar.',
+    // зачем (владелец, 2026-09-22): «которую уже построил» — утверждение о
+    // прошлом, а экран открывается и с Главной, где серии может не быть вовсе.
+    titleRu: 'Держи серию каждый день',
+    titleUk: 'Тримай серію щодня',
+    titleEs: 'Mantén tu racha día a día',
+    subtitleRu: 'Занятия без ожидания энергии — заниматься каждый день проще, когда ничто не останавливает. Вместе с этим открывается весь курс, разговоры вслух и тренировки.',
+    subtitleUk: 'Заняття без очікування енергії — займатися щодня простіше, коли ніщо не зупиняє. Разом із цим відкривається увесь курс, розмови вголос і тренування.',
+    subtitleEs: 'Estudiar sin esperar energía hace que sea más fácil practicar a diario, sin nada que te frene. Junto con esto se abre el curso completo, la práctica oral y los entrenamientos.',
   },
   course_after_lesson3: COURSE_AFTER_LESSON3_COPY,
   lesson_b1: LESSON_B1_COPY,
   flashcard_limit: {
-    // зачем: момент — юзер только что заполнил бесплатные 20 слотов; хвалим выбор, потом снимаем потолок.
-    titleRu: '20 из 20 — база собрана',
-    titleUk: '20 із 20 — база зібрана',
-    titleEs: '20 de 20: colección completa',
-    subtitleRu: 'Ты сохранил всё, что помещалось. Plus снимает потолок: сохраняй каждую нужную фразу.',
-    subtitleUk: 'Ти зберіг усе, що вміщалося. Plus знімає стелю: зберігай кожну потрібну фразу.',
-    subtitleEs: 'Guardaste todo lo que cabía. Plus quita el techo: guarda cada frase que necesites.',
+    // зачем (владелец, 2026-09-22): «20 из 20 — база собрана» читалось как похвала,
+    // человек не понимал, что упёрся. Экран открывается и из коллекции (заход без
+    // упора), поэтому текст не утверждает, что человек что-то уже сохранил.
+    titleRu: 'Сохраняй всё, что нравится',
+    titleUk: 'Зберігай усе, що подобається',
+    titleEs: 'Guarda todo lo que te guste',
+    subtitleRu: 'Бесплатно помещается двадцать фраз, с подпиской — сколько угодно. Плюс тренировки без счётчика, весь курс и разговорная практика.',
+    subtitleUk: 'Безкоштовно вміщається двадцять фраз, із передплатою — скільки завгодно. Плюс тренування без лічильника, увесь курс і розмовна практика.',
+    subtitleEs: 'Gratis caben veinte frases; con la suscripción, todas las que quieras. Además, entrenamientos sin contador, el curso completo y práctica oral.',
   },
   theme: {
-    // зачем: старый субтайтл говорил языком продуктовых метрик («вовлеченность»),
-    // а не языком юзера — заменён на человеческую пользу.
-    titleRu: 'Сделай Phraseman своим',
-    titleUk: 'Зроби Phraseman своїм',
-    titleEs: 'Haz que Phraseman sea tuyo',
-    subtitleRu: 'Темы оформления входят в Plus. Выбери настроение, в котором приятно заниматься каждый день.',
-    subtitleUk: 'Теми оформлення входять у Plus. Обери настрій, у якому приємно займатися щодня.',
-    subtitleEs: 'Los temas visuales van con Plus. Elige el ambiente en el que da gusto estudiar a diario.',
+    // зачем (владелец, 2026-09-22): «Сделай Phraseman своим» — обращение к бренду,
+    // а не к действию. Текст теперь называет, что именно выбирает человек, и
+    // показывает, что тема идёт не отдельно, а вместе со всем приложением.
+    titleRu: 'Выбери, как будет выглядеть',
+    titleUk: 'Обери, як це виглядатиме',
+    titleEs: 'Elige cómo se va a ver',
+    subtitleRu: 'Тёмная, тёплая, контрастная — тема меняет всё приложение и остаётся у тебя навсегда. Входит в подписку вместе с курсом, разговорами и тренировками.',
+    subtitleUk: 'Темна, тепла, контрастна — тема змінює весь застосунок і залишається в тебе назавжди. Входить у передплату разом із курсом, розмовами та тренуваннями.',
+    subtitleEs: 'Oscuro, cálido, de alto contraste: el tema cambia toda la app y se queda contigo para siempre. Va incluido en la suscripción junto al curso, los diálogos y los entrenamientos.',
   },
   club: {
-    titleRu: 'Усиль прогресс через клубы и бонусы',
-    titleUk: 'Підсиль прогрес через клуби та бонуси',
-    titleEs: 'Impulsa tu progreso con clubes y bonus',
-    subtitleRu: 'Соревнуйся, набирай больше XP и не выпадай из ритма.',
-    subtitleUk: 'Змагайся, набирай більше XP і не випадай з ритму.',
-    subtitleEs: 'Compite, suma más XP y no pierdas el ritmo.',
+    // зачем (владелец, 2026-09-22): «Усиль прогресс», «XP-бусты для ускорения» —
+    // три строки подряд без единого понятного слова. Названо то, что реально
+    // происходит: недельная таблица, награды, повышение.
+    titleRu: 'Соревнуйся за место в лиге',
+    titleUk: 'Змагайся за місце в лізі',
+    titleEs: 'Compite por tu puesto en la liga',
+    subtitleRu: 'Каждую неделю — таблица с живыми людьми, опыт растёт быстрее и подниматься проще. Вместе с этим открывается весь курс, разговоры и тренировки.',
+    subtitleUk: 'Щотижня — таблиця з живими людьми, досвід зростає швидше й підійматися простіше. Разом із цим відкривається увесь курс, розмови та тренування.',
+    subtitleEs: 'Cada semana, una tabla con personas reales: la experiencia sube más rápido y es más fácil ascender. Con esto se abre también el curso completo, los diálogos y los entrenamientos.',
   },
+  // зачем (владелец, 2026-09-22): экран открывается ПЯТЬЮ путями, и три из них
+  // (dialogs_catalogue, dialogs_tutor_poster, ai_companion_direct_entry) —
+  // обычный заход, а не исчерпанный лимит. Прежний заголовок «лимит исчерпан»
+  // врал каждому, кто просто открыл каталог. Текст больше не утверждает ничего
+  // о прошлом: называет правило в настоящем времени и показывает, что подписка
+  // открывает не только диалоги.
   dialog_limit: {
-    titleRu: 'Дневной лимит диалогов исчерпан',
-    titleUk: 'Денний ліміт діалогів вичерпано',
-    titleEs: 'Límite diario de diálogos agotado',
-    subtitleRu: `На обычном аккаунте — ${DAILY_DIALOG} реплик в день. Plus снимает дневной лимит и открывает все сценарии: отвечай своими словами и получай подсказки по ходу разговора.`,
-    subtitleUk: `На звичайному акаунті — ${DAILY_DIALOG} реплік на день. Plus знімає денний ліміт і відкриває всі сценарії: відповідай своїми словами та отримуй підказки під час розмови.`,
-    subtitleEs: `En la cuenta normal tienes ${DAILY_DIALOG} respuestas al día. Plus quita el límite diario y abre todos los escenarios: responde con tus palabras y recibe ayuda durante la conversación.`,
+    titleRu: 'Разговаривай сколько хочется',
+    titleUk: 'Розмовляй скільки хочеться',
+    titleEs: 'Conversa todo lo que quieras',
+    subtitleRu: `Бесплатно — ${DAILY_DIALOG} реплик в день, с подпиской счётчика нет. Открываются все сценарии: кафе, собеседование, врач. И не только диалоги — весь курс, тренировки и статистика тоже.`,
+    subtitleUk: `Безкоштовно — ${DAILY_DIALOG} реплік на день, із передплатою лічильника немає. Відкриваються всі сценарії: кафе, співбесіда, лікар. І не лише діалоги — увесь курс, тренування та статистика теж.`,
+    subtitleEs: `Gratis son ${DAILY_DIALOG} respuestas al día; con la suscripción no hay contador. Se abren todos los escenarios: cafetería, entrevista, médico. Y no solo los diálogos: también el curso completo, los entrenamientos y las estadísticas.`,
   },
   // зачем (владелец 2026-09-14): раздел ошибок бесплатен с дневным лимитом,
-  // поэтому текст говорит «лимит на сегодня исчерпан», а не «только в Plus».
+  // поэтому текст называет дневную норму, а не говорит «только в Plus».
+  // зачем (владелец, 2026-09-22): в раздел заходят и без упора (home_mistake_practice,
+  // mistake_practice_direct, learning_v2), поэтому «сессия на сегодня пройдена» врала.
+  // Заодно убраны дефис вместо тире и тавтология «разбирай… с разбором».
   mistake_practice: {
-    titleRu: 'Сессия ошибок на сегодня пройдена',
-    titleUk: 'Сесію помилок на сьогодні пройдено',
-    titleEs: 'La sesión de errores de hoy ya está hecha',
-    subtitleRu: `На обычном аккаунте - ${DAILY_MISTAKES} сессия в день. Plus снимает лимит: разбирай ошибки столько, сколько нужно, с разбором каждого ответа.`,
-    subtitleUk: `На звичайному акаунті - ${DAILY_MISTAKES} сесія на день. Plus знімає ліміт: розбирай помилки стільки, скільки потрібно, з поясненням кожної відповіді.`,
-    subtitleEs: `En la cuenta normal tienes ${DAILY_MISTAKES} sesión al día. Plus quita el límite: repasa tus errores tanto como necesites, con explicación de cada respuesta.`,
+    titleRu: 'Разбирай ошибки когда удобно',
+    titleUk: 'Розбирай помилки коли зручно',
+    titleEs: 'Repasa tus errores cuando quieras',
+    subtitleRu: `Бесплатно — ${DAILY_MISTAKES} подход в день. С подпиской возвращайся к ним сколько нужно, и к каждому ответу будет объяснение, что было не так. Вместе с этим открывается весь курс, разговоры и тренировки.`,
+    subtitleUk: `Безкоштовно — ${DAILY_MISTAKES} підхід на день. Із передплатою повертайся до них скільки потрібно, і до кожної відповіді буде пояснення, що було не так. Разом із цим відкривається увесь курс, розмови та тренування.`,
+    subtitleEs: `Gratis es ${DAILY_MISTAKES} ronda al día. Con la suscripción vuelve a ellos cuantas veces necesites y cada respuesta viene con una explicación de qué falló. Junto con esto se abre el curso completo, los diálogos y los entrenamientos.`,
   },
   mastery: {
     // ВНИМАНИЕ (аудит #22): этот контекст пейвола НЕДОСТИЖИМ — гейт mastery не триггерится
@@ -255,56 +274,66 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
     subtitleUk: 'Plus відкриває повтор будь-якого пройденого раунду. Закріплюй складні фрази без списання перлин.',
     subtitleEs: 'Plus abre el repaso de cualquier ronda completada. Refuerza las frases difíciles sin gastar perlas.',
   },
+  // зачем (владелец, 2026-09-22): три статистических экрана заканчивались на
+  // «— для Plus» — это ценник, а не приглашение. Заголовки теперь про то, что
+  // человек увидит, а подзаголовки показывают, что статистика идёт не отдельно.
   stats: {
-    titleRu: 'Аналитика прогресса — для Plus',
-    titleUk: 'Аналітика прогресу — для Plus',
-    titleEs: 'Analítica del progreso — Plus',
-    subtitleRu: 'Карта активности за год, точки роста, сравнение с другими учениками. Видишь чёткую картину своего движения.',
-    subtitleUk: 'Карта активності за рік, точки росту, порівняння з іншими учнями. Бачиш чітку картину свого руху.',
-    subtitleEs: 'Mapa anual de actividad, puntos de crecimiento y comparación. Ves tu avance con total claridad.',
+    titleRu: 'Посмотри, как идут дела',
+    titleUk: 'Подивися, як ідуть справи',
+    titleEs: 'Mira cómo te va',
+    subtitleRu: 'Год занятий на одном экране: где шло легко, где буксовало и что стоит подтянуть. И это часть подписки, в которую входит весь курс, разговоры вслух и тренировки без счётчика.',
+    subtitleUk: 'Рік занять на одному екрані: де йшло легко, де буксувало й що варто підтягнути. І це частина передплати, до якої входить увесь курс, розмови вголос і тренування без лічильника.',
+    subtitleEs: 'Un año de estudio en una pantalla: dónde fue fácil, dónde te atascaste y qué conviene reforzar. Forma parte de la suscripción, que incluye el curso completo, la práctica oral y los entrenamientos sin contador.',
   },
   heatmap: {
-    titleRu: 'Карта активности — для Plus',
-    titleUk: 'Карта активності — для Plus',
-    titleEs: 'Mapa de actividad — Plus',
-    subtitleRu: '365 дней занятий на одном экране — увидишь свои сильные и слабые периоды.',
-    subtitleUk: '365 днів занять на одному екрані — побач свої сильні й слабкі періоди.',
-    subtitleEs: '365 días de estudio en una sola vista: encuentra tus mejores y peores semanas.',
+    titleRu: 'Весь год занятий на одном экране',
+    titleUk: 'Увесь рік занять на одному екрані',
+    titleEs: 'Todo un año de estudio en una pantalla',
+    subtitleRu: 'Видно каждый день: когда шло каждый день подряд, а когда был перерыв. Открывается вместе со всей статистикой, курсом и разговорной практикой.',
+    subtitleUk: 'Видно кожен день: коли йшло щодня поспіль, а коли була перерва. Відкривається разом з усією статистикою, курсом і розмовною практикою.',
+    subtitleEs: 'Se ve cada día: cuándo estudiaste sin parar y cuándo hubo una pausa. Se abre junto con todas las estadísticas, el curso y la práctica oral.',
   },
   patterns: {
-    titleRu: 'Твои точки роста',
-    titleUk: 'Твої точки росту',
-    titleEs: 'Tus puntos de crecimiento',
-    subtitleRu: 'Узнай, какие темы и фразы проседают чаще всего — и тренируй именно их.',
-    subtitleUk: 'Дізнайся, які теми й фрази просідають найчастіше — і тренуй саме їх.',
-    subtitleEs: 'Descubre los temas y frases que más flojean y entrena justo lo que importa.',
+    titleRu: 'Что забывается чаще всего',
+    titleUk: 'Що забувається найчастіше',
+    titleEs: 'Qué se te olvida más',
+    subtitleRu: 'Приложение помнит каждую ошибку и покажет темы, которые не закрепились — а потом соберёт из них тренировку. Плюс весь курс, разговоры и остальная статистика.',
+    subtitleUk: 'Застосунок пам’ятає кожну помилку й покаже теми, які не закріпилися, — а потім збере з них тренування. Плюс увесь курс, розмови та решта статистики.',
+    subtitleEs: 'La app recuerda cada error y te muestra los temas que no se fijaron; luego arma un entrenamiento con ellos. Además, el curso completo, los diálogos y el resto de estadísticas.',
   },
   percentiles: {
-    titleRu: 'Сравнение с другими — для Plus',
-    titleUk: 'Порівняння з іншими — для Plus',
-    titleEs: 'Comparación con otros — Plus',
-    subtitleRu: 'Увидишь, где ты в топе среди всех учеников. Без дизморали — только то, в чём ты крут.',
-    subtitleUk: 'Бач куди ти в топі серед усіх учнів. Без дизморалі — лише те, в чому ти крутий.',
-    subtitleEs: 'Mira dónde destacas frente a otros estudiantes. Solo lo positivo, sin desmotivar.',
+    // зачем: убраны «дизмораль» и «крут» — чужой сленг; третий буллет этого
+    // контекста был написан от первого лица (единственный такой в проекте).
+    titleRu: 'Ты идёшь лучше, чем думаешь',
+    titleUk: 'Ти йдеш краще, ніж думаєш',
+    titleEs: 'Vas mejor de lo que crees',
+    subtitleRu: 'Твоя серия и темп на фоне остальных учеников — показываем то, в чём ты впереди. Входит в подписку вместе с курсом, разговорами и тренировками.',
+    subtitleUk: 'Твоя серія і темп на тлі решти учнів — показуємо те, у чому ти попереду. Входить у передплату разом із курсом, розмовами та тренуваннями.',
+    subtitleEs: 'Tu racha y tu ritmo frente al resto de estudiantes: te mostramos en qué vas por delante. Incluido en la suscripción junto al curso, los diálogos y los entrenamientos.',
   },
   generic: {
-    titleRu: 'Учись быстрее с Plus',
-    titleUk: 'Навчайся швидше з Plus',
-    titleEs: 'Aprende más rápido con Plus',
-    subtitleRu: 'Больше практики без стоп-экранов: диалоги, тренировки и уроки открыты, когда есть силы учиться.',
-    subtitleUk: 'Більше практики без стоп-екранів: діалоги, тренування й уроки відкриті, коли є сили вчитися.',
-    subtitleEs: 'Más práctica sin pantallas de bloqueo: diálogos, entrenamiento y lecciones cuando tengas energía.',
+    // зачем (владелец, 2026-09-22): сюда попадает вход из настроек — человек
+    // пришёл сам, без повода, поэтому полный перечень и есть содержание экрана.
+    // «Стоп-экран» — слово из внутренней переписки, человек его не знает.
+    titleRu: 'Всё приложение целиком',
+    titleUk: 'Увесь застосунок цілком',
+    titleEs: 'Toda la app, completa',
+    subtitleRu: 'Весь курс, разговоры вслух, тренировки без дневного счётчика, своя коллекция фраз, статистика и темы оформления.',
+    subtitleUk: 'Увесь курс, розмови вголос, тренування без денного лічильника, власна колекція фраз, статистика й теми оформлення.',
+    subtitleEs: 'El curso completo, práctica oral, entrenamientos sin contador diario, tu propia colección de frases, estadísticas y temas visuales.',
   },
 };
 
 PAYWALL_COPY.intro_ended = {
-  // Библия: gain-framing (не loss — стрика 7+ тут нет), ≤10 слов/предложение, «ты».
-  titleRu: 'Продолжай в полном доступе',
-  titleUk: 'Продовжуй у повному доступі',
-  titleEs: 'Sigue con acceso completo',
-  subtitleRu: 'Ты уже почувствовал полный доступ. Plus открывает его без пауз и блокировок.',
-  subtitleUk: 'Ти вже відчув повний доступ. Plus відкриває його без пауз і блокувань.',
-  subtitleEs: 'Ya probaste el acceso completo. Plus lo abre sin pausas ni bloqueos.',
+  // зачем (владелец, 2026-09-22): здесь событие точно произошло — подарочные три
+  // дня кончились, — поэтому о прошлом говорить можно. Но «ты уже почувствовал»
+  // было намёком вместо конкретики: перечисляем, что именно возвращается.
+  titleRu: 'Подарочный доступ закончился',
+  titleUk: 'Подарунковий доступ завершився',
+  titleEs: 'El acceso de regalo ha terminado',
+  subtitleRu: 'Понравилось, как идёт без ограничений? Подписка возвращает всё то же самое: курс целиком, разговоры без счётчика, тренировки и статистику.',
+  subtitleUk: 'Сподобалося, як іде без обмежень? Передплата повертає все те саме: курс цілком, розмови без лічильника, тренування та статистику.',
+  subtitleEs: '¿Te gustó avanzar sin límites? La suscripción devuelve exactamente eso: el curso completo, diálogos sin contador, entrenamientos y estadísticas.',
 };
 
 // План #3: after-win апсейл при повышении уровня.
@@ -313,31 +342,37 @@ PAYWALL_COPY.intro_ended = {
 PAYWALL_COPY.level_up = COURSE_AFTER_LESSON3_COPY;
 
 // Speaking mode — произнести фразу вслух (микрофон + распознавание).
+// зачем (владелец, 2026-09-22): вход из урока (lesson_speaking) — это первое
+// нажатие «Устно», а не исчерпанный лимит. Текст объясняет, что произойдёт, и
+// называет норму в настоящем времени. Число берётся из REVENUE_DAILY_LIMITS:
+// в тексте годами стояло «5», хотя в коде попыток три.
 PAYWALL_COPY.speaking = {
-  titleRu: 'Дневной лимит голосовой практики исчерпан',
-  titleUk: 'Денний ліміт голосової практики вичерпано',
-  titleEs: 'Límite diario de práctica oral agotado',
-  subtitleRu: `На обычном аккаунте — ${DAILY_SPEAKING} голосовые попытки в день. Plus снимает дневной лимит: произноси фразы вслух сколько хочешь, а приложение слушает и подсказывает.`,
-  subtitleUk: `На звичайному акаунті — ${DAILY_SPEAKING} голосові спроби на день. Plus знімає денний ліміт: вимовляй фрази вголос скільки хочеш, а застосунок слухає й підказує.`,
-  subtitleEs: `En la cuenta normal tienes ${DAILY_SPEAKING} intentos de voz al día. Plus quita el límite diario: di las frases en voz alta cuantas veces quieras y la app te escucha y te guía.`,
+  titleRu: 'Говори вслух сколько нужно',
+  titleUk: 'Говори вголос скільки потрібно',
+  titleEs: 'Habla en voz alta cuanto necesites',
+  subtitleRu: `Бесплатно — ${DAILY_SPEAKING} попытки в день, а произношение ставится повторами. С подпиской повторяй, пока не зазвучит правильно: приложение слушает каждую фразу и показывает, где звук ушёл. Плюс весь курс, диалоги и тренировки.`,
+  subtitleUk: `Безкоштовно — ${DAILY_SPEAKING} спроби на день, а вимова ставиться повторами. Із передплатою повторюй, доки не зазвучить правильно: застосунок слухає кожну фразу й показує, де звук пішов не туди. Плюс увесь курс, діалоги та тренування.`,
+  subtitleEs: `Gratis son ${DAILY_SPEAKING} intentos al día, y la pronunciación se logra repitiendo. Con la suscripción repite hasta que suene bien: la app escucha cada frase y te muestra dónde se desvió el sonido. Además, el curso completo, los diálogos y los entrenamientos.`,
 };
 
 PAYWALL_COPY.ai_voice_input = {
-  titleRu: 'Дневной лимит голосового ввода исчерпан',
-  titleUk: 'Денний ліміт голосового введення вичерпано',
-  titleEs: 'Límite diario de entrada por voz agotado',
-  subtitleRu: `Голосовой ввод в диалоге считается голосовой попыткой: на обычном аккаунте их ${DAILY_SPEAKING} в день. Plus снимает дневной лимит — говори любую реплику вслух, а Phraseman превратит её в текст.`,
-  subtitleUk: `Голосове введення в діалозі рахується як голосова спроба: на звичайному акаунті їх ${DAILY_SPEAKING} на день. Plus знімає денний ліміт — промовляй будь-яку репліку вголос, а Phraseman перетворить її на текст.`,
-  subtitleEs: `La entrada por voz en el diálogo cuenta como intento de voz: en la cuenta normal tienes ${DAILY_SPEAKING} al día. Plus quita el límite diario: di cualquier respuesta en voz alta y Phraseman la convierte en texto.`,
+  // зачем: прежний текст начинался с объяснения внутренней механики подсчёта
+  // («считается голосовой попыткой») — человека это не волнует.
+  titleRu: 'Отвечай голосом',
+  titleUk: 'Відповідай голосом',
+  titleEs: 'Responde con la voz',
+  subtitleRu: `Бесплатно — ${DAILY_SPEAKING} реплики голосом в день. С подпиской говори весь диалог вслух, приложение само переведёт речь в текст. И всё остальное тоже открывается: курс, тренировки, статистика.`,
+  subtitleUk: `Безкоштовно — ${DAILY_SPEAKING} репліки голосом на день. Із передплатою говори весь діалог уголос, застосунок сам переведе мовлення в текст. І все інше теж відкривається: курс, тренування, статистика.`,
+  subtitleEs: `Gratis son ${DAILY_SPEAKING} respuestas por voz al día. Con la suscripción habla todo el diálogo en voz alta y la app convierte tu voz en texto. Y también se abre todo lo demás: el curso, los entrenamientos y las estadísticas.`,
 };
 
 PAYWALL_COPY.dialog_analysis = {
-  titleRu: 'Разбор диалога — в Plus',
-  titleUk: 'Розбір діалогу — в Plus',
-  titleEs: 'Análisis del diálogo en Plus',
-  subtitleRu: 'После разговора Plus показывает, где фраза звучала неестественно, как её поправить и какой вариант сказать живее в следующий раз.',
-  subtitleUk: 'Після розмови Plus показує, де фраза звучала неприродно, як її виправити й який варіант сказати живіше наступного разу.',
-  subtitleEs: 'Después de la conversación, Plus muestra qué sonó poco natural, cómo corregirlo y una forma más viva de decirlo la próxima vez.',
+  titleRu: 'Посмотри, как звучала твоя речь',
+  titleUk: 'Подивися, як звучала твоя мова',
+  titleEs: 'Mira cómo sonó lo que dijiste',
+  subtitleRu: 'После разговора видно, где фраза прозвучала неестественно, как её поправить и что сказать живее в следующий раз. Открывается вместе со всеми диалогами, курсом и тренировками.',
+  subtitleUk: 'Після розмови видно, де фраза прозвучала неприродно, як її виправити й що сказати живіше наступного разу. Відкривається разом з усіма діалогами, курсом і тренуваннями.',
+  subtitleEs: 'Al terminar la conversación se ve qué sonó poco natural, cómo corregirlo y qué decir de forma más viva la próxima vez. Se abre junto con todos los diálogos, el curso y los entrenamientos.',
 };
 
 // зачем (владелец 2026-09-13): dialog_limit стал «дневным лимитом», а этот
@@ -350,48 +385,54 @@ PAYWALL_COPY.dialog_analysis = {
 // «уровней выше» на сценарии своего уровня. Теперь заголовок говорит правду:
 // бесплатны три сценария, остальной каталог в Plus.
 PAYWALL_COPY.dialog_locked_level = {
-  titleRu: 'Остальные диалоги — в Plus',
-  titleUk: 'Решта діалогів — у Plus',
-  titleEs: 'Los demás diálogos están en Plus',
-  subtitleRu: 'Все сценарии диалогов входят в Plus. Практикуй ситуации из уроков и жизни, отвечай своими словами и получай подсказки по ходу разговора.',
-  subtitleUk: 'Усі сценарії діалогів входять у Plus. Практикуй ситуації з уроків і життя, відповідай своїми словами та отримуй підказки під час розмови.',
-  subtitleEs: 'Todos los escenarios de diálogo están incluidos en Plus. Practica situaciones de las lecciones y de la vida real, responde con tus propias palabras y recibe ayuda durante la conversación.',
+  // зачем (владелец, 2026-09-22): «Остальные диалоги» читалось как «всё, кроме
+  // того, что ты хотел», хотя человек нажал на конкретный сценарий. Абстрактные
+  // «ситуации из уроков и жизни» заменены живым перечнем.
+  titleRu: 'Этот сценарий в подписке',
+  titleUk: 'Цей сценарій у передплаті',
+  titleEs: 'Este escenario está en la suscripción',
+  subtitleRu: 'С ним открываются все остальные — переговоры, аренда квартиры, приём у врача, знакомство. И вместе с диалогами весь курс, тренировки и разбор ошибок.',
+  subtitleUk: 'Разом із ним відкриваються всі інші — перемовини, оренда квартири, прийом у лікаря, знайомство. І разом із діалогами увесь курс, тренування та розбір помилок.',
+  subtitleEs: 'Con él se abren todos los demás: negociaciones, alquiler de piso, visita al médico, conocer a alguien. Y junto a los diálogos, el curso completo, los entrenamientos y el repaso de errores.',
 };
 
+// зачем (владелец, 2026-09-22): из пяти входов ЧЕТЫРЕ — прямые
+// (flashcards_blitz_direct, recall, speaking, training_setup): человек просто
+// открыл режим тренировки, ничего не исчерпав. «Лимит исчерпан» врал им всем.
 PAYWALL_COPY.flashcard_training = {
-  titleRu: 'Дневной лимит тренировок исчерпан',
-  titleUk: 'Денний ліміт тренувань вичерпано',
-  titleEs: 'Límite diario de entrenamientos agotado',
-  subtitleRu: `На обычном аккаунте — ${DAILY_TRAINING} тренировки карточек в день на все режимы. Plus снимает дневной лимит: вспоминай фразы активнее и закрепляй слабые слова без пауз.`,
-  subtitleUk: `На звичайному акаунті — ${DAILY_TRAINING} тренування карток на день на всі режими. Plus знімає денний ліміт: згадуй фрази активніше й закріплюй слабкі слова без пауз.`,
-  subtitleEs: `En la cuenta normal tienes ${DAILY_TRAINING} entrenamientos de tarjetas al día en todos los modos. Plus quita el límite diario: recuerda frases de forma activa y refuerza palabras débiles sin pausas.`,
+  titleRu: 'Тренируйся сколько хочется',
+  titleUk: 'Тренуйся скільки хочеться',
+  titleEs: 'Entrena todo lo que quieras',
+  subtitleRu: `Бесплатно — ${DAILY_TRAINING} тренировки в день на все режимы. С подпиской счётчика нет, а слабые фразы возвращаются чаще, пока не закрепятся. Вместе с этим открывается весь курс, разговоры вслух и статистика.`,
+  subtitleUk: `Безкоштовно — ${DAILY_TRAINING} тренування на день на всі режими. Із передплатою лічильника немає, а слабкі фрази повертаються частіше, доки не закріпляться. Разом із цим відкривається увесь курс, розмови вголос і статистика.`,
+  subtitleEs: `Gratis son ${DAILY_TRAINING} entrenamientos al día en todos los modos. Con la suscripción no hay contador y las frases flojas vuelven más seguido hasta fijarse. Junto con esto se abre el curso completo, la práctica oral y las estadísticas.`,
 };
 
 PAYWALL_COPY.ai_explain = {
-  titleRu: 'ИИ-разборы ошибок без лимита',
-  titleUk: 'ШІ-розбори помилок без ліміту',
-  titleEs: 'Explicaciones de IA sin límite',
-  subtitleRu: 'Бесплатно доступно несколько разборов в день. Plus снимает лимит: ИИ объясняет каждую ошибку — что не так, почему и как сказать правильно.',
-  subtitleUk: 'Безкоштовно доступно кілька розборів на день. Plus знімає ліміт: ШІ пояснює кожну помилку — що не так, чому і як сказати правильно.',
-  subtitleEs: 'La versión gratis incluye unas pocas explicaciones al día. Plus quita el límite: la IA explica cada error — qué falló, por qué y cómo decirlo bien.',
+  titleRu: 'Спрашивай почему сколько нужно',
+  titleUk: 'Запитуй чому скільки потрібно',
+  titleEs: 'Pregunta por qué las veces que haga falta',
+  subtitleRu: 'Бесплатно — несколько разборов в день. С подпиской ИИ объяснит каждую ошибку: что не так, почему и как сказать правильно. Плюс весь курс, разговоры и тренировки.',
+  subtitleUk: 'Безкоштовно — кілька розборів на день. Із передплатою ШІ пояснить кожну помилку: що не так, чому і як сказати правильно. Плюс увесь курс, розмови та тренування.',
+  subtitleEs: 'Gratis tienes unas pocas explicaciones al día. Con la suscripción la IA explica cada error: qué falló, por qué y cómo decirlo bien. Además, el curso completo, los diálogos y los entrenamientos.',
 };
 
 PAYWALL_COPY.weekly_review = {
-  titleRu: 'Полный недельный обзор прогресса',
-  titleUk: 'Повний тижневий огляд прогресу',
-  titleEs: 'Tu repaso semanal completo',
-  subtitleRu: 'Каждую неделю — личный разбор: что укрепилось, где проседает и точный план на следующую. С Plus обзор открывается целиком — с подсказками и рекомендациями уроков.',
-  subtitleUk: 'Щотижня — особистий розбір: що зміцнилося, де просідає і точний план на наступний. З Plus огляд відкривається повністю — з підказками та рекомендаціями уроків.',
-  subtitleEs: 'Cada semana, un análisis personal: qué mejoró, qué flojea y un plan claro para la próxima. Con Plus el repaso se abre entero, con consejos y lecciones recomendadas.',
+  titleRu: 'Итог недели на одной странице',
+  titleUk: 'Підсумок тижня на одній сторінці',
+  titleEs: 'El resumen de tu semana en una página',
+  subtitleRu: 'Что укрепилось, где проседает и с чего начать следующую неделю — с подсказками и подходящими уроками. Открывается вместе со всей статистикой, курсом и разговорной практикой.',
+  subtitleUk: 'Що зміцнилося, де просідає і з чого почати наступний тиждень — із підказками та відповідними уроками. Відкривається разом з усією статистикою, курсом і розмовною практикою.',
+  subtitleEs: 'Qué se afianzó, qué flojea y por dónde empezar la semana siguiente, con consejos y lecciones a medida. Se abre junto con todas las estadísticas, el curso y la práctica oral.',
 };
 
 PAYWALL_COPY.avatar_aura = {
-  titleRu: 'Выделись аурой вокруг аватара',
-  titleUk: 'Виділися аурою навколо аватара',
-  titleEs: 'Destaca con un aura en tu avatar',
-  subtitleRu: 'Премиум-аура подсвечивает твой аватар в лигах и у друзей. Тебя видно сразу — в списках и чатах.',
-  subtitleUk: 'Преміум-аура підсвічує твій аватар у лігах та в друзів. Тебе видно одразу — у списках і чатах.',
-  subtitleEs: 'El aura premium ilumina tu avatar en ligas y entre amigos. Se te ve al instante en listas y chats.',
+  titleRu: 'Добавь аватару свечение',
+  titleUk: 'Додай аватару сяйво',
+  titleEs: 'Dale un brillo a tu avatar',
+  subtitleRu: 'Аура подсвечивает твой аватар в лигах, у друзей и в списках — тебя видно сразу. Входит в подписку вместе с курсом, разговорами и тренировками.',
+  subtitleUk: 'Аура підсвічує твій аватар у лігах, у друзів і в списках — тебе видно одразу. Входить у передплату разом із курсом, розмовами та тренуваннями.',
+  subtitleEs: 'El aura ilumina tu avatar en las ligas, entre amigos y en las listas: se te ve al instante. Va incluida en la suscripción junto al curso, los diálogos y los entrenamientos.',
 };
 
 export const PAYWALL_PLANNED_COPY: Partial<Record<PremiumContext, PremiumPlannedHeroCopy>> & { generic: PremiumPlannedHeroCopy } = {
@@ -813,10 +854,12 @@ const WIN_BACK_NATIVE_CONTEXTS = new Set<string>([
 // Win-back заголовок: универсальная формулировка «верни доступ», который у юзера
 // УЖЕ был (премиум стал фри/истёк). Перекрывает «получить впервые»-заголовки вроде
 // Заголовки первого получения звучат неактуально для вернувшегося юзера.
+// зачем (владелец, 2026-09-22): «Верни полный доступ Plus» — команда с
+// названием продукта. У вернувшегося другой вопрос: цело ли то, что он учил.
 const WIN_BACK_TITLE: Pick<PaywallCopy, 'titleRu' | 'titleUk' | 'titleEs'> = {
-  titleRu: 'Верни полный доступ Plus',
-  titleUk: 'Поверни повний доступ Plus',
-  titleEs: 'Recupera tu acceso Plus completo',
+  titleRu: 'Всё на месте — продолжим?',
+  titleUk: 'Усе на місці — продовжимо?',
+  titleEs: 'Todo sigue ahí, ¿continuamos?',
 };
 
 // Win-back заголовок для planned-локалей (pt-BR/vi/id/tr/pl), которые берут title
@@ -865,21 +908,24 @@ export function applyWinBackPlannedCopy(
 }
 
 // ── Контексты возврата/ре-энгейджа: заголовки под ситуацию (а не generic) ─────
+// зачем (владелец, 2026-09-22): у вернувшегося один страх — «я всё потерял?».
+// Прежний текст трижды повторял название продукта и отвечал на этот страх лишь
+// в конце фразы. Теперь ответ стоит первым.
 PAYWALL_COPY.premium_expired = {
-  titleRu: 'Верни полный доступ Plus',
-  titleUk: 'Поверни повний доступ Plus',
-  titleEs: 'Recupera tu acceso Plus completo',
-  subtitleRu: 'Твой Plus закончился. Подключи снова — и продолжай учиться без лимитов и пауз, ровно с того места, где остановился.',
-  subtitleUk: 'Твій Plus завершився. Підключи знову — і вчись далі без лімітів і пауз, саме з того місця, де зупинився.',
-  subtitleEs: 'Tu Plus terminó. Reactívalo y sigue aprendiendo sin límites ni pausas, justo donde lo dejaste.',
+  titleRu: 'Всё на месте — продолжим?',
+  titleUk: 'Усе на місці — продовжимо?',
+  titleEs: 'Todo sigue ahí, ¿continuamos?',
+  subtitleRu: 'Подписка закончилась, но серия, сохранённые фразы и пройденные уроки никуда не делись. Подключай — и продолжай с той же страницы.',
+  subtitleUk: 'Передплата завершилася, але серія, збережені фрази та пройдені уроки нікуди не зникли. Підключай — і продовжуй із тієї ж сторінки.',
+  subtitleEs: 'La suscripción terminó, pero tu racha, tus frases guardadas y las lecciones completadas siguen ahí. Reactívala y continúa en la misma página.',
 };
 PAYWALL_COPY.vip_expired = {
-  titleRu: 'Твой Plus-доступ закончился',
-  titleUk: 'Твій Plus-доступ завершився',
-  titleEs: 'Tu acceso Plus ha terminado',
-  subtitleRu: 'Тебе понравились возможности без ограничений? Оформи Plus или Phraseman Pro — и продолжай без пауз в прогрессе.',
-  subtitleUk: 'Сподобались можливості без обмежень? Оформи Plus або Phraseman Pro — і продовжуй без пауз у прогресі.',
-  subtitleEs: '¿Te gustó todo sin límites? Activa Plus o Phraseman Pro y sigue sin pausas.',
+  titleRu: 'Всё выученное осталось с тобой',
+  titleUk: 'Усе вивчене залишилося з тобою',
+  titleEs: 'Todo lo aprendido se queda contigo',
+  subtitleRu: 'Подарочный доступ закончился. Подписка возвращает его целиком: курс, разговоры без счётчика, тренировки и статистику.',
+  subtitleUk: 'Подарунковий доступ завершився. Передплата повертає його цілком: курс, розмови без лічильника, тренування та статистику.',
+  subtitleEs: 'El acceso de regalo ha terminado. La suscripción lo devuelve entero: el curso, los diálogos sin contador, los entrenamientos y las estadísticas.',
 };
 PAYWALL_COPY.notification_upsell = COURSE_AFTER_LESSON3_COPY;
 
@@ -901,27 +947,39 @@ export const CONTEXT_BENEFITS: Partial<Record<PremiumContext, ({ ru: string; uk:
   flashcard_limit: [
     { ru: 'Безлимит на личную базу карточек', uk: 'Безліміт на особисту базу карток', es: 'Tu colección de tarjetas sin límite', 'pt-BR': 'Sem limite para sua base de cartões', vi: 'Không giới hạn kho thẻ cá nhân', id: 'Tanpa batas untuk koleksi kartu pribadi', tr: 'Kişisel kart arşivinde sınır yok', pl: 'Bez limitu własnej bazy fiszek' },
     { ru: 'Храни все важные фразы', uk: 'Зберігай всі важливі фрази', es: 'Guarda todas tus frases clave', 'pt-BR': 'Guarde todas as frases importantes', vi: 'Lưu mọi cụm từ quan trọng', id: 'Simpan semua frasa penting', tr: 'Tüm önemli ifadeleri sakla', pl: 'Przechowuj wszystkie ważne frazy' },
-    { ru: 'Лучше долгосрочное запоминание', uk: 'Краще довгострокове запам\'ятовування', es: 'Memoria a largo plazo más sólida', 'pt-BR': 'Memória de longo prazo mais sólida', vi: 'Ghi nhớ dài hạn chắc hơn', id: 'Ingatan jangka panjang lebih kuat', tr: 'Daha sağlam uzun vadeli hafıza', pl: 'Lepsze zapamiętywanie długoterminowe' },
+    // зачем (владелец, 2026-09-22): «Лучше долгосрочное запоминание» — обрубок
+    // фразы, звучит как заметка в блокноте, а не как обещание человеку.
+    { ru: 'Фразы не теряются со временем', uk: 'Фрази не губляться з часом', es: 'Las frases no se pierden con el tiempo', 'pt-BR': 'As frases não se perdem com o tempo', vi: 'Các cụm từ không mất đi theo thời gian', id: 'Frasa tidak hilang seiring waktu', tr: 'İfadeler zamanla kaybolmaz', pl: 'Zwroty nie giną z czasem' },
   ],
   streak: [
+    // зачем (владелец, 2026-09-22): «Серия не ломает твой темп» — фраза наизнанку
+    // (ломает темп пропуск, а не серия). Буллеты названы тем, что человек делает.
     { ru: 'Защита серии даже при пропуске', uk: 'Захист серії навіть при пропуску', es: 'Protege tu racha aunque faltes un día', 'pt-BR': 'Proteção de sequência mesmo se faltar um dia', vi: 'Bảo vệ chuỗi kể cả khi bỏ lỡ một ngày', id: 'Perlindungan streak meski terlewat sehari', tr: 'Bir gün kaçsa bile seri koruması', pl: 'Ochrona serii nawet przy pominięciu dnia' },
-    { ru: 'Без пауз из-за энергии', uk: 'Без пауз через енергію', es: 'Sin pausas por energía', 'pt-BR': 'Sem pausas por falta de energia', vi: 'Không bị nghỉ vì hết năng lượng', id: 'Tanpa jeda akibat energi', tr: 'Enerji yüzünden ara yok', pl: 'Bez przerw przez energię' },
-    { ru: 'Серия не ломает твой темп', uk: 'Серія не ламає твій темп', es: 'La racha no rompe tu ritmo', 'pt-BR': 'A sequência não quebra seu ritmo', vi: 'Chuỗi ngày không phá nhịp học của bạn', id: 'Runtutan tidak merusak ritmemu', tr: 'Seri temponu bozmaz', pl: 'Seria nie łamie twojego tempa' },
+    { ru: 'Занятия без ожидания энергии', uk: 'Заняття без очікування енергії', es: 'Estudias sin esperar energía', 'pt-BR': 'Estuda sem esperar energia', vi: 'Học mà không phải chờ năng lượng', id: 'Belajar tanpa menunggu energi', tr: 'Enerji beklemeden çalışma', pl: 'Nauka bez czekania na energię' },
+    { ru: 'Заниматься каждый день проще', uk: 'Займатися щодня простіше', es: 'Es más fácil practicar a diario', 'pt-BR': 'Fica mais fácil estudar todo dia', vi: 'Học mỗi ngày trở nên dễ hơn', id: 'Lebih mudah belajar setiap hari', tr: 'Her gün çalışmak daha kolay', pl: 'Łatwiej uczyć się codziennie' },
   ],
   theme: [
-    { ru: 'Персональный стиль приложения', uk: 'Персональний стиль застосунку', es: 'Estilo visual a tu medida', 'pt-BR': 'Estilo visual do seu jeito', vi: 'Phong cách giao diện theo bạn', id: 'Gaya visual sesuai seleramu', tr: 'Kişisel uygulama stili', pl: 'Osobisty styl aplikacji' },
-    { ru: 'Выше вовлеченность в обучение', uk: 'Вища залученість у навчання', es: 'Mayor compromiso al estudiar', 'pt-BR': 'Mais envolvimento no estudo', vi: 'Gắn bó hơn với việc học', id: 'Lebih terlibat saat belajar', tr: 'Öğrenmeye daha fazla bağlılık', pl: 'Większe zaangażowanie w naukę' },
-    { ru: 'Комфортнее заниматься регулярно', uk: 'Комфортніше займатися регулярно', es: 'Sesiones más cómodas y rutinarias', 'pt-BR': 'Mais conforto para estudar sempre', vi: 'Thoải mái hơn để học đều', id: 'Lebih nyaman untuk belajar rutin', tr: 'Düzenli çalışmak daha rahat', pl: 'Wygodniej uczyć się regularnie' },
+    // зачем (владелец, 2026-09-22): «Выше вовлеченность в обучение» — отчёт
+    // маркетолога, адресованный не тому человеку (и ё потеряна). Буллеты теперь
+    // называют проверяемые факты, а не продуктовые метрики.
+    { ru: 'Меняет приложение целиком', uk: 'Змінює застосунок цілком', es: 'Cambia toda la app', 'pt-BR': 'Muda o app inteiro', vi: 'Đổi toàn bộ giao diện ứng dụng', id: 'Mengubah seluruh tampilan aplikasi', tr: 'Uygulamanın tamamını değiştirir', pl: 'Zmienia całą aplikację' },
+    { ru: 'Переключать можно в любой момент', uk: 'Перемикати можна будь-коли', es: 'Puedes cambiarlo cuando quieras', 'pt-BR': 'Pode trocar quando quiser', vi: 'Đổi lúc nào cũng được', id: 'Bisa diganti kapan saja', tr: 'İstediğin an değiştirebilirsin', pl: 'Możesz przełączać w każdej chwili' },
+    { ru: 'Остаётся у тебя навсегда', uk: 'Залишається в тебе назавжди', es: 'Se queda contigo para siempre', 'pt-BR': 'Fica com você para sempre', vi: 'Ở lại với bạn mãi mãi', id: 'Tetap milikmu selamanya', tr: 'Sonsuza dek sende kalır', pl: 'Zostaje z tobą na zawsze' },
   ],
   club: [
-    { ru: 'Клубы и XP-бусты для ускорения', uk: 'Клуби та XP-бусти для прискорення', es: 'Clubs y bonus de XP para acelerar', 'pt-BR': 'Clubes e boosts de XP para acelerar', vi: 'Câu lạc bộ và boost XP để tăng tốc', id: 'Klub dan boost XP untuk mempercepat', tr: 'Hızlanmak için kulüpler ve XP boostları', pl: 'Kluby i boosty XP do przyspieszenia' },
-    { ru: 'Больше пользы с каждой сессии', uk: 'Більше користі з кожної сесії', es: 'Sacas más de cada sesión', 'pt-BR': 'Mais valor em cada sessão', vi: 'Mỗi phiên học có ích hơn', id: 'Manfaat lebih besar di tiap sesi', tr: 'Her seanstan daha fazla fayda', pl: 'Więcej wartości z każdej sesji' },
-    { ru: 'Сильнее мотивация возвращаться', uk: 'Сильніша мотивація повертатися', es: 'Más ganas de volver mañana', 'pt-BR': 'Mais motivação para voltar amanhã', vi: 'Thêm động lực quay lại ngày mai', id: 'Lebih termotivasi untuk kembali besok', tr: 'Yarın dönmek için daha güçlü motivasyon', pl: 'Silniejsza motywacja, żeby wrócić jutro' },
+    // зачем (владелец, 2026-09-22): три строки подряд без единого понятного
+    // слова («XP-бусты для ускорения», «больше пользы с каждой сессии»).
+    // Названо то, что реально происходит в лигах.
+    { ru: 'Недельная таблица и награды за место', uk: 'Тижнева таблиця та нагороди за місце', es: 'Tabla semanal y premios por puesto', 'pt-BR': 'Tabela semanal e prêmios por posição', vi: 'Bảng xếp hạng tuần và phần thưởng theo thứ hạng', id: 'Tabel mingguan dan hadiah sesuai peringkat', tr: 'Haftalık tablo ve sıralama ödülleri', pl: 'Tygodniowa tabela i nagrody za miejsce' },
+    { ru: 'Опыт за занятия начисляется быстрее', uk: 'Досвід за заняття нараховується швидше', es: 'La experiencia por estudiar sube más rápido', 'pt-BR': 'A experiência por estudar sobe mais rápido', vi: 'Điểm kinh nghiệm khi học tăng nhanh hơn', id: 'Pengalaman dari belajar bertambah lebih cepat', tr: 'Çalışmadan kazanılan deneyim daha hızlı artar', pl: 'Doświadczenie za naukę rośnie szybciej' },
+    { ru: 'Повышение в лигу выше', uk: 'Підвищення в лігу вище', es: 'Ascenso a una liga superior', 'pt-BR': 'Promoção para uma liga superior', vi: 'Thăng hạng lên giải cao hơn', id: 'Naik ke liga yang lebih tinggi', tr: 'Bir üst lige yükselme', pl: 'Awans do wyższej ligi' },
   ],
   generic: [
-    { ru: 'Больше практики без ограничений', uk: 'Більше практики без обмежень', es: 'Más práctica sin límites', 'pt-BR': 'Mais prática sem limites', vi: 'Nhiều luyện tập hơn, không giới hạn', id: 'Lebih banyak latihan tanpa batas', tr: 'Sınırsız daha fazla pratik', pl: 'Więcej praktyki bez ograniczeń' },
-    { ru: 'Понятный следующий шаг каждый день', uk: 'Зрозумілий наступний крок щодня', es: 'Un siguiente paso claro cada día', 'pt-BR': 'Um próximo passo claro todos os dias', vi: 'Mỗi ngày có bước tiếp theo rõ ràng', id: 'Langkah berikutnya jelas tiap hari', tr: 'Her gün net bir sonraki adım', pl: 'Jasny kolejny krok każdego dnia' },
-    { ru: 'Плюс-опции сразу после активации', uk: 'Плюс-опції одразу після активації', es: 'Funciones Plus al instante', 'pt-BR': 'Funções Plus logo após ativar', vi: 'Tính năng Plus có ngay sau khi kích hoạt', id: 'Fitur Plus langsung setelah aktif', tr: 'Aktivasyondan hemen sonra Plus özellikler', pl: 'Opcje Plus od razu po aktywacji' },
+    // зачем (владелец, 2026-09-22): «Плюс-опции сразу после активации» — фраза
+    // из инструкции к бытовой технике. Буллеты названы действиями человека.
+    { ru: 'Говоришь вслух с первого дня', uk: 'Говориш уголос із першого дня', es: 'Hablas en voz alta desde el primer día', 'pt-BR': 'Você fala em voz alta desde o primeiro dia', vi: 'Nói thành tiếng ngay từ ngày đầu', id: 'Bicara lantang sejak hari pertama', tr: 'İlk günden sesli konuşursun', pl: 'Mówisz na głos od pierwszego dnia' },
+    { ru: 'Занятия без ожидания энергии', uk: 'Заняття без очікування енергії', es: 'Estudias sin esperar energía', 'pt-BR': 'Estuda sem esperar energia', vi: 'Học mà không phải chờ năng lượng', id: 'Belajar tanpa menunggu energi', tr: 'Enerji beklemeden çalışma', pl: 'Nauka bez czekania na energię' },
+    { ru: 'Всё открыто сразу после оплаты', uk: 'Усе відкрито одразу після оплати', es: 'Todo se abre justo al pagar', 'pt-BR': 'Tudo abre logo após o pagamento', vi: 'Mọi thứ mở ra ngay sau khi thanh toán', id: 'Semua terbuka begitu pembayaran selesai', tr: 'Ödemeden hemen sonra her şey açık', pl: 'Wszystko otwarte zaraz po płatności' },
   ],
   mistake_practice: [
     { ru: 'Все ошибки из уроков и карточек в одном месте', uk: 'Усі помилки з уроків і карток в одному місці', es: 'Todos tus errores de lecciones y tarjetas en un lugar', 'pt-BR': 'Todos os erros de lições e cartões em um só lugar', vi: 'Mọi lỗi từ bài học và thẻ ở một nơi', id: 'Semua kesalahan dari pelajaran dan kartu di satu tempat', tr: 'Ders ve kart hatalarının hepsi tek yerde', pl: 'Wszystkie błędy z lekcji i fiszek w jednym miejscu' },
@@ -950,8 +1008,11 @@ export const CONTEXT_BENEFITS: Partial<Record<PremiumContext, ({ ru: string; uk:
   ],
   percentiles: [
     { ru: 'Увидишь свой ранг среди всех учеников', uk: 'Бач свій ранг серед усіх учнів', es: 'Mira tu rango entre estudiantes', 'pt-BR': 'Veja seu ranking entre todos os alunos', vi: 'Xem thứ hạng của bạn trong số học viên', id: 'Lihat peringkatmu di antara semua siswa', tr: 'Tüm öğrenciler arasındaki sıralamanı gör', pl: 'Zobacz swoją pozycję wśród wszystkich uczniów' },
-    { ru: 'Только позитивные сравнения — мотивация', uk: 'Лише позитивні порівняння — мотивація', es: 'Solo comparaciones positivas: motivación', 'pt-BR': 'Só comparações positivas para motivar', vi: 'Chỉ so sánh tích cực để tạo động lực', id: 'Hanya perbandingan positif untuk motivasi', tr: 'Motivasyon için yalnızca pozitif karşılaştırmalar', pl: 'Tylko pozytywne porównania dla motywacji' },
-    { ru: 'Вижу когда я в топе и где расти дальше', uk: 'Бачу коли я в топі та де рости далі', es: 'Sabes en qué destacas y dónde crecer', 'pt-BR': 'Você sabe onde se destaca e onde crescer', vi: 'Biết bạn mạnh ở đâu và nên phát triển gì', id: 'Tahu di mana kamu unggul dan perlu berkembang', tr: 'Nerede güçlü olduğunu ve nereye büyüyeceğini bilirsin', pl: 'Wiesz, gdzie jesteś mocny i gdzie rosnąć dalej' },
+    // зачем (владелец, 2026-09-22): второй буллет был написан ОТ ПЕРВОГО ЛИЦА
+    // («Вижу когда я в топе») — единственный такой на весь проект, явный
+    // недосмотр. Первый обещал «мотивацию» вместо конкретики.
+    { ru: 'Сравнение по серии, темпу и словарю', uk: 'Порівняння за серією, темпом і словником', es: 'Comparación por racha, ritmo y vocabulario', 'pt-BR': 'Comparação por sequência, ritmo e vocabulário', vi: 'So sánh theo chuỗi ngày, tốc độ và vốn từ', id: 'Perbandingan berdasarkan runtutan, tempo, dan kosakata', tr: 'Seri, tempo ve kelime dağarcığına göre karşılaştırma', pl: 'Porównanie według serii, tempa i słownictwa' },
+    { ru: 'Видно, где ты впереди и куда расти', uk: 'Видно, де ти попереду й куди рости', es: 'Se ve en qué vas por delante y hacia dónde crecer', 'pt-BR': 'Dá para ver onde você está à frente e onde crescer', vi: 'Thấy rõ bạn dẫn trước ở đâu và cần tiến tới đâu', id: 'Terlihat di mana kamu unggul dan ke mana berkembang', tr: 'Nerede önde olduğun ve nereye büyüyeceğin görünür', pl: 'Widać, gdzie jesteś z przodu i dokąd rosnąć' },
   ],
 };
 
@@ -1002,7 +1063,7 @@ CONTEXT_BENEFITS.premium_expired = [
 ];
 
 CONTEXT_BENEFITS.vip_expired = [
-  { ru: 'Продолжай со всем, что открыл Plus', uk: 'Продовжуй з усім, що відкрив Plus', es: 'Continúa con todo lo de Plus', 'pt-BR': 'Continue com tudo do Plus', vi: 'Tiếp tục với mọi thứ Plus đã mở', id: 'Lanjut dengan semua dari Plus', tr: 'Plus’ın açtığı her şeyle devam et', pl: 'Kontynuuj ze wszystkim z Plus' },
+  { ru: 'Весь курс и практика снова открыты', uk: 'Увесь курс і практика знову відкриті', es: 'El curso y la práctica, abiertos otra vez', 'pt-BR': 'O curso e a prática, abertos de novo', vi: 'Khóa học và phần luyện tập lại mở ra', id: 'Kursus dan latihan terbuka lagi', tr: 'Kurs ve pratik yeniden açık', pl: 'Cały kurs i praktyka znów otwarte' },
   { ru: 'Без лимитов на уроки и практику', uk: 'Без лімітів на уроки і практику', es: 'Sin límites en lecciones y práctica', 'pt-BR': 'Sem limites em lições e prática', vi: 'Không giới hạn bài học và luyện tập', id: 'Tanpa batas pelajaran dan latihan', tr: 'Derslerde ve pratikte sınır yok', pl: 'Bez limitów na lekcje i praktykę' },
   { ru: 'Путь без пауз и дневных потолков', uk: 'Шлях без пауз і денних стель', es: 'Camino sin pausas ni techos diarios', 'pt-BR': 'Caminho sem pausas nem tetos diários', vi: 'Lộ trình không dừng và không trần mỗi ngày', id: 'Jalur tanpa jeda dan plafon harian', tr: 'Ara ve günlük tavan olmadan yol', pl: 'Droga bez pauz i dziennych sufitów' },
 ];
@@ -1195,13 +1256,16 @@ PAYWALL_PLANNED_COPY.free_lessons_complete = COURSE_AFTER_LESSON3_PLANNED_COPY;
 CONTEXT_BENEFITS.free_lessons_complete = MAIN_COURSE_PLUS_BENEFITS;
 CONTEXT_BENEFITS_PLANNED.free_lessons_complete = MAIN_COURSE_PLUS_BENEFITS;
 
+// зачем (владелец, 2026-09-22): «войти в ритм и не выпадать» — два штампа
+// подряд. У вернувшегося после долгого перерыва один вопрос: цело ли то, что он
+// учил. Отвечаем на него первой фразой, заголовок оставлен — он хороший.
 PAYWALL_COPY.winback = {
   titleRu: 'С возвращением',
   titleUk: 'З поверненням',
   titleEs: 'Qué bien verte de nuevo',
-  subtitleRu: 'Начать заново проще с открытым курсом. Plus снимает паузы — легче войти в ритм и не выпадать.',
-  subtitleUk: 'Почати знову простіше з відкритим курсом. Plus прибирає паузи — легше увійти в ритм і не випадати.',
-  subtitleEs: 'Volver es más fácil con el curso abierto. Plus quita las pausas: entras en ritmo y no lo pierdes.',
+  subtitleRu: 'Мы ничего не стёрли — выученное на месте. Начни с короткого урока, дальше пойдёт само. А с подпиской открыт весь курс сразу, без ожидания энергии.',
+  subtitleUk: 'Ми нічого не стерли — вивчене на місці. Почни з короткого уроку, далі піде само. А з передплатою відкритий увесь курс одразу, без очікування енергії.',
+  subtitleEs: 'No borramos nada: lo que aprendiste sigue ahí. Empieza con una lección corta y el resto vendrá solo. Y con la suscripción tienes el curso completo desde ya, sin esperar energía.',
 };
 PAYWALL_PLANNED_COPY.winback = {
   title: { 'pt-BR': 'Que bom ver você de novo', vi: 'Mừng bạn quay lại', id: 'Senang kamu kembali', tr: 'Yeniden hoş geldin', pl: 'Dobrze, że wracasz' },
@@ -1225,12 +1289,15 @@ CONTEXT_BENEFITS_PLANNED.winback = [
 ];
 
 PAYWALL_COPY.referral_ended = {
+  // зачем (владелец, 2026-09-22): «ты видел, как идёт» — намёк вместо
+  // конкретики. Перечисляем, что именно возвращается: человек только что этим
+  // пользовался и узнаёт список.
   titleRu: 'Подарочный доступ закончился',
   titleUk: 'Подарунковий доступ завершився',
   titleEs: 'Tu acceso de regalo terminó',
-  subtitleRu: 'Ты видел, как идёт с полным доступом. Plus возвращает его насовсем.',
-  subtitleUk: 'Ти бачив, як іде з повним доступом. Plus повертає його назавжди.',
-  subtitleEs: 'Ya viste cómo va con acceso completo. Plus lo devuelve para siempre.',
+  subtitleRu: 'Понравилось, как идёт без ограничений? Подписка возвращает всё то же самое: курс целиком, разговоры без счётчика, тренировки и статистику.',
+  subtitleUk: 'Сподобалося, як іде без обмежень? Передплата повертає все те саме: курс цілком, розмови без лічильника, тренування та статистику.',
+  subtitleEs: '¿Te gustó avanzar sin límites? La suscripción devuelve exactamente eso: el curso completo, diálogos sin contador, entrenamientos y estadísticas.',
 };
 PAYWALL_PLANNED_COPY.referral_ended = {
   title: { 'pt-BR': 'Seu acesso de presente acabou', vi: 'Quyền truy cập quà tặng đã hết', id: 'Akses hadiah sudah berakhir', tr: 'Hediye erişimin sona erdi', pl: 'Dostęp z prezentu się skończył' },
@@ -1301,12 +1368,15 @@ CONTEXT_BENEFITS_PLANNED.arena_limit = [
 // которому он не обращался. Теперь у каждого действия свой честный текст.
 
 PAYWALL_COPY.flashcard_create = {
-  titleRu: 'Своя карточка — в Plus',
-  titleUk: 'Своя картка — у Plus',
-  titleEs: 'Tus propias tarjetas en Plus',
-  subtitleRu: 'Plus открывает мастерскую: добавляй свои фразы с переводом и учи именно то, что нужно тебе.',
-  subtitleUk: 'Plus відкриває майстерню: додавай свої фрази з перекладом і вивчай саме те, що потрібно тобі.',
-  subtitleEs: 'Plus abre el taller: añade tus propias frases con traducción y estudia justo lo que necesitas.',
+  // зачем (владелец, 2026-09-22): «мастерская» — выдуманное слово, такого
+  // раздела в приложении нет. Текст даёт повод: человек вспоминает момент,
+  // когда ему это было нужно.
+  titleRu: 'Добавь свою фразу',
+  titleUk: 'Додай свою фразу',
+  titleEs: 'Añade tu propia frase',
+  subtitleRu: 'Услышал что-то в сериале или на работе — сохрани, и приложение будет тренировать это вместе с остальным. В подписке ещё весь курс, разговоры вслух и статистика.',
+  subtitleUk: 'Почув щось у серіалі чи на роботі — збережи, і застосунок тренуватиме це разом з усім іншим. У передплаті ще увесь курс, розмови вголос і статистика.',
+  subtitleEs: 'Oíste algo en una serie o en el trabajo: guárdalo y la app lo entrenará junto con lo demás. La suscripción incluye además el curso completo, la práctica oral y las estadísticas.',
 };
 
 PAYWALL_PLANNED_COPY.flashcard_create = {
@@ -1339,12 +1409,14 @@ CONTEXT_BENEFITS_PLANNED.flashcard_create = [
 ];
 
 PAYWALL_COPY.pack_create = {
-  titleRu: 'Свой набор — в Plus',
-  titleUk: 'Свій набір — у Plus',
-  titleEs: 'Tus propios mazos en Plus',
-  subtitleRu: 'Plus открывает мастерскую наборов: собери свою колоду под поездку, работу или сериал — и учи её целиком.',
-  subtitleUk: 'Plus відкриває майстерню наборів: збери свою колоду під поїздку, роботу чи серіал — і вчи її цілком.',
-  subtitleEs: 'Plus abre el taller de mazos: arma tu colección para un viaje, el trabajo o una serie y estúdiala entera.',
+  // зачем (владелец, 2026-09-22): повтор «мастерская», плюс «колода» — карточная
+  // лексика. Добавлено то, чего в тексте не было: наборами можно делиться.
+  titleRu: 'Собери набор под свою задачу',
+  titleUk: 'Збери набір під своє завдання',
+  titleEs: 'Arma un set para lo que necesitas',
+  subtitleRu: 'Фразы для поездки, собеседования или сериала — в одном месте. Учи набор целиком и делись им с друзьями. А с подпиской открывается и весь курс с разговорной практикой.',
+  subtitleUk: 'Фрази для поїздки, співбесіди чи серіалу — в одному місці. Вчи набір цілком і ділися ним із друзями. А з передплатою відкривається й увесь курс із розмовною практикою.',
+  subtitleEs: 'Frases para un viaje, una entrevista o una serie, todas en un sitio. Estudia el set entero y compártelo con amigos. Y con la suscripción se abre también el curso completo con práctica oral.',
 };
 
 PAYWALL_PLANNED_COPY.pack_create = {
@@ -1389,12 +1461,15 @@ CONTEXT_BENEFITS_PLANNED.pack_create = [
  * самой возможности смешивать темы, а не о запрете.
  */
 PAYWALL_COPY.combined_lesson = {
+  // зачем (владелец, 2026-09-22): единственное место во всём пейволе, где было
+  // обращение на «вы» — остальные тексты на «ты». Плюс добавлено, что подписка
+  // открывает не только сборку урока.
   titleRu: 'Несколько тем в одном уроке',
   titleUk: 'Кілька тем в одному уроці',
   titleEs: 'Varios temas en una sola lección',
-  subtitleRu: 'С Plus вы сами выбираете темы и складываете из них занятие.',
-  subtitleUk: 'З Plus ви самі обираєте теми й складаєте з них заняття.',
-  subtitleEs: 'Con Plus eliges los temas y armas la lección a tu medida.',
+  subtitleRu: 'Выбираешь темы сам, а урок собирается из них — и старое не забывается, потому что темы возвращаются вперемешку. Вместе с этим открывается весь курс, разговоры вслух и тренировки.',
+  subtitleUk: 'Обираєш теми сам, а урок збирається з них — і старе не забувається, бо теми повертаються впереміш. Разом із цим відкривається увесь курс, розмови вголос і тренування.',
+  subtitleEs: 'Eliges los temas y la lección se arma con ellos; lo anterior no se olvida porque los temas vuelven mezclados. Junto con esto se abre el curso completo, la práctica oral y los entrenamientos.',
 };
 PAYWALL_PLANNED_COPY.combined_lesson = {
   title: {
@@ -1430,12 +1505,15 @@ CONTEXT_BENEFITS_PLANNED.combined_lesson = [
  * поэтому говорим про сам факт лучшей цены.
  */
 PAYWALL_COPY.home_discount_badge = {
-  titleRu: 'Ваша цена на Plus',
-  titleUk: 'Ваша ціна на Plus',
-  titleEs: 'Tu precio de Plus',
-  subtitleRu: 'Скидка действует ограниченное время — дальше цена вернётся к обычной.',
-  subtitleUk: 'Знижка діє обмежений час — далі ціна повернеться до звичайної.',
-  subtitleEs: 'El descuento dura un tiempo limitado; después vuelve el precio normal.',
+  // зачем (владелец, 2026-09-22): было обращение на «вы» («Ваша цена») — разнобой
+  // с остальными экранами. Добавлено, что за этой ценой стоит всё приложение,
+  // а не абстрактная «подписка».
+  titleRu: 'Твоя цена на подписку',
+  titleUk: 'Твоя ціна на передплату',
+  titleEs: 'Tu precio de la suscripción',
+  subtitleRu: 'Та же подписка — весь курс, разговоры вслух, тренировки без счётчика и статистика — по сниженной цене. Скидка действует ограниченное время.',
+  subtitleUk: 'Та сама передплата — увесь курс, розмови вголос, тренування без лічильника та статистика — за зниженою ціною. Знижка діє обмежений час.',
+  subtitleEs: 'La misma suscripción —el curso completo, la práctica oral, los entrenamientos sin contador y las estadísticas— a un precio rebajado. El descuento dura un tiempo limitado.',
 };
 PAYWALL_PLANNED_COPY.home_discount_badge = {
   title: {

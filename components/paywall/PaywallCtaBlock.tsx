@@ -45,26 +45,28 @@ function TrustBadge({ lang, chrome, hasTrial }: { lang: Lang; chrome: PaywallChr
   const accent = chrome.tc.heroAccent;
   const text = hasTrial
     ? triLang(lang, {
-        ru: 'Платить сейчас не нужно — отмени за день до конца, и деньги не спишутся.',
-        uk: 'Платити зараз не треба — скасуй за день до кінця, і гроші не спишуться.',
-        en: "No need to pay now — cancel a day before it ends and nothing is charged.",
-        es: 'No pagas ahora: cancela un día antes y no se cobra nada.',
-        'pt-BR': 'Você não paga agora: cancele um dia antes e nada será cobrado.',
-        vi: 'Chưa phải trả tiền — hủy trước một ngày là không bị trừ tiền.',
-        id: 'Belum bayar sekarang — batalkan sehari sebelum berakhir, dan tidak ada uang yang ditagih.',
-        tr: 'Şimdi ödeme yok — bitmeden bir gün önce iptal et, paran çekilmez.',
-        pl: 'Teraz nie płacisz — anuluj dzień przed końcem, a pieniądze nie zostaną pobrane.',
+        // зачем (владелец, 2026-09-22): «без риска» и «в два тапа» — язык
+        // рекламы, он и вызывает недоверие там, где нужен спокойный факт.
+        ru: 'Сегодня платить не нужно. Напомним до списания.',
+        uk: 'Сьогодні платити не потрібно. Нагадаємо до списання.',
+        en: 'Nothing to pay today. We’ll remind you before the charge.',
+        es: 'Hoy no pagas nada. Te avisamos antes del cobro.',
+        'pt-BR': 'Hoje você não paga nada. Avisamos antes da cobrança.',
+        vi: 'Hôm nay chưa phải trả gì. Chúng tôi sẽ nhắc trước khi trừ tiền.',
+        id: 'Hari ini tidak perlu bayar. Kami ingatkan sebelum penagihan.',
+        tr: 'Bugün ödeme yok. Tahsilattan önce hatırlatırız.',
+        pl: 'Dziś nic nie płacisz. Przypomnimy przed pobraniem.',
       })
     : triLang(lang, {
-        ru: 'Без риска: отмена в любой момент в два тапа.',
-        uk: 'Без ризику: скасування будь-коли у два тапи.',
-        en: 'No risk: cancel anytime in two taps.',
-        es: 'Sin riesgo: cancela cuando quieras en dos toques.',
-        'pt-BR': 'Sem risco: cancele quando quiser em dois toques.',
-        vi: 'Không rủi ro: hủy bất cứ lúc nào chỉ với hai chạm.',
-        id: 'Tanpa risiko: batalkan kapan saja dalam dua ketukan.',
-        tr: 'Risksiz: istediğin an iki dokunuşla iptal et.',
-        pl: 'Bez ryzyka: anuluj w każdej chwili dwoma dotknięciami.',
+        ru: 'Отменить можно в любой момент.',
+        uk: 'Скасувати можна будь-коли.',
+        en: 'You can cancel at any time.',
+        es: 'Puedes cancelar cuando quieras.',
+        'pt-BR': 'Você pode cancelar quando quiser.',
+        vi: 'Bạn có thể hủy bất cứ lúc nào.',
+        id: 'Bisa dibatalkan kapan saja.',
+        tr: 'İstediğin an iptal edebilirsin.',
+        pl: 'Możesz anulować w każdej chwili.',
       });
   return (
     <View style={[S.trust, { backgroundColor: `${accent}12`, borderColor: `${accent}26` }]}>

@@ -178,6 +178,13 @@ export function isAdminPushJobDue(job: AdminPushJob, nowMs: number): boolean {
   return job.mode !== 'scheduled' || Boolean(job.scheduledAtMs && job.scheduledAtMs <= nowMs);
 }
 
+// ТОЛЬКО для сегментации пуш-рассылок (parseAdminPushUser). НЕ использовать для выдачи
+// платного доступа — для этого есть канонический resolvePremiumAccess (./premium_status).
+// зачем: функция считает премиум активным при плане без срока (expiresAt=0 → expired=false),
+// т.е. «навсегда». Для пуша цена ошибки — лишнее уведомление, для гейта — бесплатный премиум.
+// Топ-уровневые data.premium / data.premiumExpiry дополнительно закрыты в firestore.rules
+// (hasNoTopLevelPremiumWrites), чтобы клиент не мог их себе вписать; но правила — второй
+// рубеж, а не повод звать эту функцию для платного доступа.
 export function isPremiumActive(data: Record<string, unknown>, nowMs: number): boolean {
   const progress = asRecord(data.progress);
   const planRaw = cleanString(data.premium, 80) || cleanString(progress.premium_plan, 80);

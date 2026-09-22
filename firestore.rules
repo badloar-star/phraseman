@@ -225,6 +225,31 @@ service cloud.firestore {
       return resource.data.get('progressServerAuthoritative', false) == true;
     }
 
+    // Топ-уровневые premium-поля (users/{uid}.premium / .premiumExpiry) — legacy-зеркало
+    // подписки, которое читает isPremiumActive (functions/src/admin_push_jobs.ts).
+    // Дыра (аудит 2026-09-03, закрыта 2026-09-22): progress.premium_* были закрыты
+    // blockedPremiumProgressKeys(), а ТОП-уровневые их двойники — нет. Клиент мог написать
+    // себе {premium:'monthly'} без expiry: в isPremiumActive это даёт hasPlan=true при
+    // expiresAt=0 → expired=false → «премиум навсегда». Сейчас цена ошибки — лишний пуш
+    // (единственный вызывающий — сегментация рассылок), но любой будущий вызывающий
+    // унаследовал бы обход пейволла.
+    // зачем: закрываем на уровне правил, чтобы дыра не ожила при новом вызывающем.
+    // Легальных писателей нет: клиент шлёт фиксированный whitelist топ-уровневых полей
+    // (user_avatar / user_avatar_frame / updatedAt / last_active_at / created_at плюс
+    // firebaseAuthUid — см. app/cloud_sync.ts), а 'premium_active' — локальный display-флаг,
+    // НЕ входящий в SYNC_KEYS. Пишет premium/premiumExpiry только Admin SDK (CF).
+    // зачем без create-варианта: в этом дереве `allow create: if false`, то есть клиент не
+    // может создать документ вообще (identity bootstrap делает authEnsureStableLink через
+    // Admin SDK). Парный newDoc*-гард был бы недостижимым кодом; если create когда-нибудь
+    // откроют — гард придётся добавить ВМЕСТЕ с ним, иначе дыра вернётся на пути create.
+    function hasNoTopLevelPremiumWrites() {
+      return isAdmin()
+        || !request.resource.data.diff(resource.data).affectedKeys().hasAny([
+          'premium',
+          'premiumExpiry',
+        ]);
+    }
+
     // Личный shard-баланс принадлежит клиентскому журналу. Ни обычный клиент,
     // ни browser-admin credential не может менять legacy projection в users/*.
     // Админка и соревнования подтверждают только immutable external events через
@@ -1030,6 +1055,7 @@ service cloud.firestore {
         && accountDeletionNotPending(userId)
         && hasNoServerIdentityWrites()
         && progressHasNoPremiumWrites()
+        && hasNoTopLevelPremiumWrites()
         && hasNoShardWrites()
         && hasNoServerGiftPerkWrites()
         && hasNoProgressAuthorityMarkerWrites()

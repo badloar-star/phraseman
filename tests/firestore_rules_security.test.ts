@@ -584,6 +584,37 @@ ${indent}}`,
     );
   });
 
+  test("top-level premium/premiumExpiry are blocked on the users update rule", () => {
+    // Аудит 2026-09-03 (закрыто 2026-09-22): progress.premium_* были закрыты
+    // blockedPremiumProgressKeys(), а их ТОП-уровневые двойники users/{uid}.premium /
+    // .premiumExpiry — нет. isPremiumActive (functions/src/admin_push_jobs.ts) читает
+    // именно их: план без срока даёт expiresAt=0 → expired=false → «премиум навсегда».
+    // Легальных клиентских писателей нет — app/cloud_sync.ts шлёт фиксированный whitelist
+    // топ-уровневых полей, premium/premiumExpiry в него не входят.
+    const guardBlock = rules.match(
+      /function hasNoTopLevelPremiumWrites\(\) \{[\s\S]*?\n    \}/,
+    );
+    expect(guardBlock).not.toBeNull();
+    expect(guardBlock![0]).toContain("'premium'");
+    expect(guardBlock![0]).toContain("'premiumExpiry'");
+    // Гард обязан смотреть diff топ-уровневых ключей, а не вложенный progress-map.
+    expect(guardBlock![0]).toMatch(
+      /request\.resource\.data\.diff\(resource\.data\)\.affectedKeys\(\)/,
+    );
+    // Admin SDK обходит правила, но админ-панель пишет через клиентский SDK — не запираем её.
+    expect(guardBlock![0]).toContain("isAdmin()");
+    // Объявить мало — гард должен быть ВКЛЮЧЁН в цепочку allow update.
+    expect(rules).toMatch(
+      /allow update:\s*if\s+userDocOwnerMatchesAuth\(userId\)\s*&&[\s\S]*?hasNoTopLevelPremiumWrites\(\)/,
+    );
+    // Create-варианта намеренно НЕТ: в этих правилах `allow create: if false`, парный
+    // newDoc*-гард был бы недостижимым кодом. Если create когда-нибудь откроют — этот
+    // assert упадёт и заставит добавить гард вместе с ним, а не после инцидента.
+    expect(executableRules).toMatch(
+      /match \/users\/\{userId\} \{[\s\S]*?allow create: if false;/,
+    );
+  });
+
   test("ordinary user-field updates short-circuit the large progress guard", () => {
     expect(rules).toMatch(
       /function progressHasNoPremiumWrites\(\) \{[\s\S]*?request\.resource\.data\.diff\(resource\.data\)\.affectedKeys\(\)\.hasAny\(\['progress'\]\)/,

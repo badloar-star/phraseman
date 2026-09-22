@@ -2655,6 +2655,13 @@ async function markOrderPaid(
         usedCount: 0,
         expiresAtMs: codeExpiresAtMs,
         note: `web_checkout ${ORDERS_COLLECTION}/${orderId}`,
+        // зачем: связь «код → заказ» жила ТОЛЬКО внутри текстового note, и
+        // promoCodeRedeem про заказ не знал — поэтому активированные заказы
+        // навсегда оставались в статусе paid_pending_activation и админка
+        // врала (22.09.2026: три заказа числились неактивированными, хотя
+        // люди ввели коды через 3–24 минуты после оплаты). Явное поле, чтобы
+        // не разбирать строку.
+        orderId,
         createdAtMs: Date.now(),
         createdBy: 'web_checkout',
         // зачем: раздел «Промокоды» листает adminListPromoCodes через

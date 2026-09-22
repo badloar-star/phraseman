@@ -117,6 +117,27 @@ describe('реальные пострадавшие 2026-09', () => {
     expect(d.send).toBe(true);
   });
 
+  it('НЕ пишем тому, кто код уже активировал, даже если статус заказа врёт', () => {
+    // Это главный урок 22.09.2026: у всех троих статус заказа остался
+    // paid_pending_activation, хотя коды были активированы за минуты. Письмо
+    // «вы не активировали» человеку с работающим Plus — прямой вред.
+    const d = decideReminder(baseOrder({
+      status: 'paid_pending_activation',
+      paidAtMs: NOW - 10 * DAY,
+      codeAlreadyRedeemed: true,
+    }));
+    expect(d.send).toBe(false);
+    if (!d.send) expect(d.reason).toBe('code_already_redeemed');
+  });
+
+  it('неактивированный код письмо получает', () => {
+    const d = decideReminder(baseOrder({
+      paidAtMs: NOW - 10 * DAY,
+      codeAlreadyRedeemed: false,
+    }));
+    expect(d.send).toBe(true);
+  });
+
   it('провал доставки НЕ съедает лимит попыток', () => {
     // Ключ Resend был мёртв: письма проваливались. Если бы счётчик рос при
     // провале, после починки почты человек получил бы «лимит исчерпан»,

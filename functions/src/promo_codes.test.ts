@@ -3,12 +3,47 @@ import {
   buildPromoCodeDeletePlan,
   decidePromoRedemption,
   normalizePromoCode,
+  webOrderIdFromPromoCodeDoc,
   type PromoCodeDoc,
 } from './promo_codes';
 
 function code(over: Partial<PromoCodeDoc> = {}): PromoCodeDoc {
   return { rewardDays: 7, rewardKind: 'days', enabled: true, maxRedemptions: 0, usedCount: 0, expiresAtMs: 0, ...over };
 }
+
+describe('webOrderIdFromPromoCodeDoc', () => {
+  /*
+   * зачем: связь «код → заказ» жила только в текстовом note, поэтому заказ
+   * после активации навсегда оставался в статусе paid_pending_activation.
+   * 22.09.2026 из-за этого трое людей с работающим Plus числились
+   * «оплатившими без доступа».
+   */
+  it('берёт явное поле orderId у новых кодов', () => {
+    expect(webOrderIdFromPromoCodeDoc({ orderId: '5Q7mAlL745DpOlOs5gOJ' })).toBe('5Q7mAlL745DpOlOs5gOJ');
+  });
+
+  it('у старых кодов разбирает note — иначе они не чинятся никогда', () => {
+    expect(webOrderIdFromPromoCodeDoc({ note: 'web_checkout web_premium_orders/KafsNls2wfeBsyZboIvW' }))
+      .toBe('KafsNls2wfeBsyZboIvW');
+  });
+
+  it('явное поле важнее note', () => {
+    expect(webOrderIdFromPromoCodeDoc({
+      orderId: 'NEW_ID',
+      note: 'web_checkout web_premium_orders/OLD_ID',
+    })).toBe('NEW_ID');
+  });
+
+  it('админский код без заказа не даёт id', () => {
+    expect(webOrderIdFromPromoCodeDoc({ note: 'выдан вручную' })).toBe('');
+    expect(webOrderIdFromPromoCodeDoc({})).toBe('');
+    expect(webOrderIdFromPromoCodeDoc(undefined)).toBe('');
+  });
+
+  it('не принимает id с путём — защита от записи не туда', () => {
+    expect(webOrderIdFromPromoCodeDoc({ orderId: 'users/victim' })).toBe('');
+  });
+});
 
 describe('normalizePromoCode', () => {
   it('trim + upper', () => {

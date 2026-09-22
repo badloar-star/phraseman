@@ -39,6 +39,33 @@ const MAX_BATCH_PROMO_CODES = 200;
 const CODE_RE = /^[A-Z0-9_-]{3,32}$/;
 const GENERATED_CODE_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 
+/* ── Связь с заказом сайта ─────────────────────────────────────────────────
+ * зачем: заказы web_premium_orders навсегда застревали в статусе
+ * paid_pending_activation, даже когда человек вводил код через 3 минуты после
+ * оплаты. 22.09.2026 это привело к ложному выводу «трое оплатили и остались
+ * без доступа» и чуть не отправило им извинения и напоминания, хотя у всех
+ * троих Plus работал. Поле status обязано отражать факт.
+ */
+const WEB_ORDERS_COLLECTION = 'web_premium_orders';
+
+/**
+ * Достаёт id заказа сайта из документа кода.
+ *
+ * Новые коды несут явное поле `orderId`. У старых оно отсутствует — для них
+ * разбираем историческое текстовое поле `note` вида
+ * `web_checkout web_premium_orders/<id>`, иначе уже выпущенные коды остались бы
+ * без починки статуса навсегда.
+ */
+export function webOrderIdFromPromoCodeDoc(data: unknown): string {
+  const row = (data ?? {}) as Record<string, unknown>;
+  const explicit = typeof row.orderId === 'string' ? row.orderId.trim() : '';
+  if (explicit && explicit.length <= 200 && !explicit.includes('/')) return explicit;
+
+  const note = typeof row.note === 'string' ? row.note : '';
+  const match = note.match(/web_premium_orders\/([A-Za-z0-9_-]{1,200})/);
+  return match ? match[1] : '';
+}
+
 /** Нормализует пользовательский ввод кода (trim + upper). */
 export function normalizePromoCode(raw: unknown): string {
   return String(raw ?? '').trim().toUpperCase();
@@ -169,7 +196,7 @@ export const promoCodeRedeem = onCall(CALLABLE_BASE, async (request) => {
   const userRef = db.collection('users').doc(stableUid);
   const redemptionRef = userRef.collection(PROMO_REDEMPTIONS).doc(code);
 
-  return db.runTransaction(async (tx) => {
+  const outcome = await db.runTransaction(async (tx) => {
     const [codeSnap, redemptionSnap, userSnap] = await Promise.all([
       tx.get(codeRef),
       tx.get(redemptionRef),
@@ -220,8 +247,38 @@ export const promoCodeRedeem = onCall(CALLABLE_BASE, async (request) => {
       rewardKind: decision.rewardKind,
       vipUntilMs,
       grantAtMs: nowMs,
+      // Достаём из УЖЕ прочитанного документа кода — лишних чтений нет.
+      webOrderId: webOrderIdFromPromoCodeDoc(codeSnap.exists ? codeSnap.data() : undefined),
     };
   });
+
+  // зачем ПОСЛЕ транзакции, а не внутри: отметка в заказе — это отчётность,
+  // и она не имеет права сорвать уже выданный доступ. Доступ важнее статуса.
+  const webOrderId = (outcome as { ok?: boolean; webOrderId?: string }).ok === true
+    ? String((outcome as { webOrderId?: string }).webOrderId ?? '')
+    : '';
+  if (webOrderId) {
+    try {
+      await db.collection(WEB_ORDERS_COLLECTION).doc(webOrderId).set({
+        status: 'activated',
+        activatedAtMs: nowMs,
+        activatedAtIso: new Date(nowMs).toISOString(),
+        activatedByStableUid: stableUid,
+        activationCodeUsed: code,
+      }, { merge: true });
+      console.info(`[PROMO-REDEEM] код=${code} заказ=${webOrderId} помечен activated uid=${stableUid}`);
+    } catch (e) {
+      // Запрет немого catch: доступ выдан, но статус остался лживым — это
+      // обязано быть видно, иначе снова получим «заказ ждёт активации» на
+      // активированном заказе.
+      console.error(
+        `[PROMO-REDEEM] код=${code} заказ=${webOrderId} НЕ помечен activated:`
+        + ` ${String((e as { message?: unknown })?.message ?? e).slice(0, 200)}`,
+      );
+    }
+  }
+
+  return outcome;
 });
 
 function readPromoCodeWritePayload(data: Record<string, unknown>): {

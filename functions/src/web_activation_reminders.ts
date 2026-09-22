@@ -23,6 +23,7 @@ import { sendActivationEmail, webCheckoutEmailFrom, webCheckoutSupportEmail } fr
 
 const REGION = 'us-central1';
 const ORDERS_COLLECTION = 'web_premium_orders';
+const PROMO_CODES_COLLECTION = 'promo_codes';
 const PENDING_STATUS = 'paid_pending_activation';
 
 /** Через сколько дней после оплаты шлём 1-е, 2-е и 3-е напоминание. */
@@ -52,10 +53,22 @@ export function decideReminder(input: {
   lastReminderAtMs: unknown;
   hasEmail: boolean;
   hasActivationCode: boolean;
+  /**
+   * Код уже активирован (usedCount > 0 в promo_codes).
+   *
+   * зачем вторая опора: 22.09.2026 статус заказа НЕ обновлялся при активации,
+   * и по нему трое людей с работающим Plus числились «ожидающими». Письмо
+   * «вы не активировали» оплатившему человеку — прямой вред, поэтому одного
+   * поля мало: спрашиваем ещё и сам код.
+   */
+  codeAlreadyRedeemed?: boolean;
   nowMs: number;
 }): ReminderDecision {
   const status = typeof input.status === 'string' ? input.status : '';
   if (status !== PENDING_STATUS) return { send: false, reason: 'not_pending', detail: status || 'empty' };
+  if (input.codeAlreadyRedeemed === true) {
+    return { send: false, reason: 'code_already_redeemed' };
+  }
   if (!input.hasEmail) return { send: false, reason: 'no_email' };
   if (!input.hasActivationCode) return { send: false, reason: 'no_activation_code' };
 
@@ -123,10 +136,38 @@ export async function sweepActivationReminders(
   let failed = 0;
   let skipped = 0;
 
+  // Состояние кодов читаем ОДНИМ батчем на весь прогон, а не по документу в
+  // цикле: заказов единицы, но привычка дешёвых чтений важнее удобства.
+  const codeIds = [...new Set(
+    snapshot.docs
+      .map((doc) => String((doc.data() || {}).activationCode || '').trim())
+      .filter((code) => code.length > 0),
+  )];
+  const redeemedCodes = new Set<string>();
+  if (codeIds.length > 0) {
+    try {
+      const codeDocs = await db.getAll(...codeIds.map((code) => db.collection(PROMO_CODES_COLLECTION).doc(code)));
+      codeDocs.forEach((codeDoc) => {
+        if (!codeDoc.exists) return;
+        if (Number((codeDoc.data() || {}).usedCount ?? 0) > 0) redeemedCodes.add(codeDoc.id);
+      });
+    } catch (e) {
+      // Запрет немого catch. Читать не смогли — НЕ шлём ничего в этот прогон:
+      // лучше пропустить напоминание, чем написать «вы не активировали»
+      // человеку, который активировал.
+      logger.error(
+        `[ACTIVATION-REMINDER] не прочитали состояние кодов (${codeIds.length}), прогон пропущен: `
+        + String((e as { message?: unknown })?.message ?? e).slice(0, 200),
+      );
+      return { scanned: snapshot.size, sent: 0, failed: 0, skipped: snapshot.size };
+    }
+  }
+
   for (const doc of snapshot.docs) {
     const order = doc.data() || {};
     const email = cleanEmail(order.email) || cleanEmail(order.customerEmail) || cleanEmail(order.payerEmail);
     const paidAtMs = toMs(order.paidAt) || toMs(order.paidAtIso ? Date.parse(String(order.paidAtIso)) : 0);
+    const activationCode = String(order.activationCode || '').trim();
 
     const decision = decideReminder({
       status: order.status,
@@ -134,7 +175,8 @@ export async function sweepActivationReminders(
       remindersSent: order.activationReminderCount,
       lastReminderAtMs: toMs(order.activationReminderLastAt),
       hasEmail: Boolean(email),
-      hasActivationCode: Boolean(order.activationCode),
+      hasActivationCode: Boolean(activationCode),
+      codeAlreadyRedeemed: activationCode ? redeemedCodes.has(activationCode) : false,
       nowMs,
     });
 

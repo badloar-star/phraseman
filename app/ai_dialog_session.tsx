@@ -1432,7 +1432,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
 
   const applyAcceptedTurn = useCallback(
     (
-      res: { turnState: unknown; quality?: DialogQualityMeta; model?: string },
+      res: { turnState: unknown; quality?: DialogQualityMeta; model?: string; remainingQuota?: number },
       exchangeIndex: number,
     ) => {
       if (res.quality) {
@@ -1451,6 +1451,15 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
           outcome: qualityTurnState.outcome,
         });
       }
+
+      // зачем (владелец 2026-09-22): спасённый ход (финальный кадр потерялся,
+      // ответ восстановлен из напечатанного) приходит БЕЗ turnState и без
+      // квоты — remainingQuota:-1 как метка «неизвестно». Игровое состояние в
+      // таком ходе трогать нельзя: parseTurnState(null) вернул бы дефолт и
+      // СБРОСИЛ настроение собеседника и прогресс целей. Реплику человек
+      // получил — этого достаточно, авторитетное состояние придёт следующим
+      // ходом. Ниже — обычный путь, когда сервер прислал полный кадр.
+      if (res.turnState == null && res.remainingQuota === -1) return;
 
       // Модели без надёжного JSON не должны держать сценарий бесконечно. Ровно
       // после RECOMMENDED_EXCHANGES обменов закрываем только такой fallback-путь;

@@ -110,15 +110,34 @@ function streamUrl(): string {
   return `https://${FUNCTIONS_REGION}-${projectId}.cloudfunctions.net/premiumDialogStream`;
 }
 
-/** Разбирает накопленный текст SSE и возвращает целые кадры + непрочитанный хвост. */
-function drainFrames(raw: string, from: number): { frames: StreamFrame[]; nextFrom: number } {
+/**
+ * Разбирает накопленный текст SSE и возвращает целые кадры + непрочитанный хвост.
+ *
+ * `final` = поток закрыт: тогда последний блок БЕЗ завершающего `\n\n` тоже
+ * считается целым кадром.
+ *
+ * зачем (владелец 2026-09-22, «ответ приходит, а через секунду ошибка, и
+ * реплики не считаются»): кадр `done` — последнее, что пишет сервер, и сразу
+ * за ним идёт `res.end()`. Если хвост `\n\n` не доехал отдельным пакетом или
+ * был срезан при закрытии соединения, разбор молча пропускал ГОТОВЫЙ кадр,
+ * ход не засчитывался и человек видел «не удалось отправить» поверх уже
+ * прочитанного ответа. Квота при этом на сервере списана: в логах все вызовы
+ * `stream ok`, ни одного провала — ломалось только на клиенте.
+ */
+function drainFrames(raw: string, from: number, final = false): { frames: StreamFrame[]; nextFrom: number } {
   const frames: StreamFrame[] = [];
   let cursor = from;
   for (;;) {
-    const end = raw.indexOf('\n\n', cursor);
-    if (end < 0) break;
+    let end = raw.indexOf('\n\n', cursor);
+    let skip = 2;
+    if (end < 0) {
+      // Поток ещё идёт — ждём разделитель. Поток закрыт — хвост уже полный.
+      if (!final || cursor >= raw.length) break;
+      end = raw.length;
+      skip = 0;
+    }
     const block = raw.slice(cursor, end);
-    cursor = end + 2;
+    cursor = end + skip;
     for (const line of block.split('\n')) {
       if (!line.startsWith('data:')) continue;
       const payload = line.slice(5).trim();
@@ -206,10 +225,13 @@ export function callPremiumDialogStream(
       let firstDeltaAtMs = 0;
       let resets = 0;
       let deltaCount = 0;
+      // Текст, который человек УЖЕ прочитал на экране. Нужен как запасной
+      // источник ответа, если финальный кадр потерялся (см. onload).
+      let streamedText = '';
 
-      const handleChunk = (): void => {
+      const handleChunk = (final = false): void => {
         const raw = xhr.responseText ?? '';
-        const { frames, nextFrom } = drainFrames(raw, cursor);
+        const { frames, nextFrom } = drainFrames(raw, cursor, final);
         cursor = nextFrom;
         for (const frame of frames) {
           if (frame.type === 'started') {
@@ -220,10 +242,14 @@ export function callPremiumDialogStream(
             if (piece) {
               if (!firstDeltaAtMs) firstDeltaAtMs = Date.now();
               deltaCount += 1;
+              streamedText += piece;
               callbacks.onDelta(piece);
             }
           } else if (frame.type === 'reset') {
             resets += 1;
+            // Сервер отверг черновик — забываем и накопленное, иначе запасной
+            // ответ склеил бы отвергнутый текст с новым.
+            streamedText = '';
             callbacks.onReset?.();
           } else if (frame.type === 'done') {
             DebugLogger.info('[DIALOG-LAT] client stream', JSON.stringify({
@@ -263,10 +289,12 @@ export function callPremiumDialogStream(
       xhr.setRequestHeader('Accept', 'text/event-stream');
       xhr.timeout = timeoutMs;
 
-      xhr.onprogress = handleChunk;
+      // onprogress: поток ещё идёт, незакрытый хвост дожидается следующего пакета.
+      xhr.onprogress = () => handleChunk(false);
 
       xhr.onload = () => {
-        handleChunk();
+        // Поток закрыт — дочитываем хвост, даже если у него нет '\n\n'.
+        handleChunk(true);
         if (xhr.status >= 400) {
           // Ошибка ДО стрима приходит обычным JSON-телом, а не кадром SSE.
           let code = 'dialog_provider_failed';
@@ -308,6 +336,7 @@ export function callPremiumDialogStream(
           // 'started', статус HTTP и ХВОСТ сырого тела (в нём видно, оборвался
           // ли поток на полкадра).
           const raw = xhr.responseText ?? '';
+          const recovered = streamedText.trim();
           DebugLogger.info('[DIALOG-SEND] stream ended without done', JSON.stringify({
             httpStatus: xhr.status,
             deltaCount,
@@ -316,10 +345,30 @@ export function callPremiumDialogStream(
             msSinceSent: Date.now() - sentAtMs,
             rawLength: raw.length,
             unreadFrom: cursor,
+            recoveredChars: recovered.length,
             rawTail: raw.slice(-300),
           }));
-          // После xhr.send() отсутствие done — неопределённый исход: сервер мог
-          // принять запрос и списать квоту, даже если ни один frame не доехал.
+          if (recovered) {
+            // зачем (владелец 2026-09-22): ответ человек УЖЕ прочитал, а сервер
+            // уже списал квоту — выбрасывать ход нельзя. Ответ авторитетен ровно
+            // настолько, насколько его успел напечатать сервер: постфильтры он
+            // применяет ДО публикации дельт (publishAcceptedDialogReply), так что
+            // накопленный текст — это принятая реплика, а не сырой черновик.
+            // Квоту отдаём как «неизвестно» (-1): экран не тронет счётчик, а
+            // авторитетное значение придёт следующим ходом.
+            finish(() => resolve({
+              assistantMessage: recovered,
+              turnState: null,
+              coach: null,
+              remainingQuota: -1,
+              resetAtMs: 0,
+              quotaVersion: 0,
+              model: '',
+            }));
+            return;
+          }
+          // Ни одной дельты — спасать нечего: сервер мог принять запрос и списать
+          // квоту, даже если ни один кадр не доехал.
           finish(() => reject(new DialogStreamError('dialog_stream_incomplete', false)));
         }
       };

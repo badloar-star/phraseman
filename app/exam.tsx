@@ -60,6 +60,7 @@ import { bundleLang, triLang } from '../constants/i18n';
 import { examTopicForLang } from './exam_locale';
 import { trackFeatureBlocked, trackFeatureError, trackFeatureStart, trackFeatureSuccess } from './app_activity';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
+import { isMistakeStudyTargetValue } from '../modules/mistake-practice/contracts';
 import { lessonProgressKey, storageStudyTarget } from './target_storage_keys';
 import { examContentAvailableForTarget, frenchExamGateCopy } from './exam_target_gate';
 import { loadFrenchRemoteFinalExamQuestions } from './french_exam_remote_runtime';
@@ -738,7 +739,9 @@ export default function ExamScreen() {
     try {
       const s = choices.filter((c, i) => c !== null && c === questions[i]?.correct).length;
       const p = questions.length > 0 ? Math.round(s / questions.length * 100) : 0;
-      if (studyTarget === 'en' || studyTarget === 'fr') {
+      // зачем (22.09): узкий список языков не пускал запись ошибок экзамена
+      // для испанского и немецкого — раздел «Мои ошибки» их не получал.
+      if (isMistakeStudyTargetValue(studyTarget)) {
         questions.forEach((question, questionIndex) => {
           const pickedIndex = choices[questionIndex];
           if (pickedIndex === null || pickedIndex === question.correct) return;

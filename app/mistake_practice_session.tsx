@@ -33,7 +33,7 @@ import {
   mistakeVoiceOutcomeToSessionAttemptVerdict,
 } from '../modules/mistake-practice/voice_verdict';
 import { SPEECH_PRONUNCIATION_PASS_THRESHOLD } from './pronunciation_scoring_client';
-import type { MistakeEvent } from '../modules/mistake-practice/contracts';
+import { isMistakeStudyTargetValue, type MistakeEvent } from '../modules/mistake-practice/contracts';
 import { projectMistakes } from '../modules/mistake-practice/projection';
 import {
   advanceMistakePracticeSession,
@@ -475,7 +475,11 @@ function MistakePracticeSessionScreen() {
     console.log('[MISTAKES-GATE] session:mount', JSON.stringify({ // guard-ok: трассировка входа (правило «сперва логи»)
       entrySource, requestedLength, focusMistakeId: focusedMistakeId || null, plus: hasPremiumAccess,
     }));
-    if (studyTarget !== 'en' && studyTarget !== 'fr') {
+    // зачем (22.09): здесь тренажёр ошибок ОТКАЗЫВАЛ испанскому и немецкому
+    // экраном «не поддерживается» — при том что язык предлагается на выборе.
+    // Отказ оставляем только для языка вне курса (теоретический случай).
+    if (!isMistakeStudyTargetValue(studyTarget)) {
+      if (__DEV__) console.warn('[MISTAKES-GATE] session:unsupported', JSON.stringify({ studyTarget }));
       setLoadError(copy.unsupported);
       setLoading(false);
       return;
@@ -676,7 +680,10 @@ function MistakePracticeSessionScreen() {
             ? current
             : [...current, { mistakeId: entry.mistakeId, phrase: entry.exercise.correctAnswer, meaning: entry.exercise.prompt || null }]);
         }
-        if (reward.starGranted && (studyTarget === 'en' || studyTarget === 'fr')) {
+        // зачем (22.09): проверка языка здесь лишняя — экран уже отсёк язык вне
+        // курса на входе (isMistakeStudyTargetValue). Прежний узкий список
+        // отнимал достижения у испанского и немецкого.
+        if (reward.starGranted) {
           void getMistakePracticeAchievementSnapshot(studyTarget).then((snapshot) =>
             checkAchievements({
               type: 'mistake_practice_progress',
@@ -761,7 +768,9 @@ function MistakePracticeSessionScreen() {
         wrong_count: wrongAnswers,
       });
       setComplete(true);
-      if (accountScope && (studyTarget === 'en' || studyTarget === 'fr')) {
+      // зачем (22.09): узкий список языков отнимал итоги серии у испанского и
+      // немецкого. Язык вне курса уже отсечён на входе в экран.
+      if (accountScope) {
         // зачем (макет финала А): серия и звание считаются из журнала ПОСЛЕ
         // того, как награды за исправления записаны — иначе сегодняшнее
         // исправление не попало бы в свою же серию.
@@ -949,7 +958,9 @@ function MistakePracticeSessionScreen() {
     if (next.cursor >= next.queue.length) {
       analyticsCompletedRef.current = true;
       setComplete(true);
-      if (persistSession && accountScope && (studyTarget === 'en' || studyTarget === 'fr')) {
+      // зачем (22.09): без этого сохранённая сессия испанского/немецкого не
+      // очищалась и всплывала снова. Язык вне курса отсечён на входе в экран.
+      if (persistSession && accountScope) {
         void clearMistakePracticeSession({ accountScope, studyTarget });
       }
     }

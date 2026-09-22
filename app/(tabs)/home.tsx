@@ -182,6 +182,7 @@ import { isAiVoiceConsentGranted } from '../max_voice_consent';
 import { isMaxVoiceEntryVisible } from '../max_voice_flags';
 import { getHomeLastLessonImage } from '../home_last_lesson_assets';
 import { getMistakePracticeHomeCounts } from '../mistake_practice_insights';
+import { isMistakeStudyTargetValue } from '../../modules/mistake-practice/contracts';
 // зачем (владелец 2026-09-21): HomeSectionPulseButton больше не импортируется —
 // ряд из двух пилюль у «Сегодня» удалён. Сам компонент оставлен в проекте: он
 // пригодится следующему разделу, которому понадобится такая же кнопка.
@@ -1198,7 +1199,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         progress: number;
         score: string;
     } | null>(() => buildLastLessonFromHydration(lang, studyTarget) ?? null);
-    const mistakeStudyTarget = studyTarget === 'en' || studyTarget === 'fr' ? studyTarget : null;
+    // зачем (22.09): null означал «раздела ошибок нет» — на Главной у
+    // испанского и немецкого карточка «Мои ошибки» не показывалась вовсе.
+    const mistakeStudyTarget = isMistakeStudyTargetValue(studyTarget) ? studyTarget : null;
     const [mistakeAccountGeneration, setMistakeAccountGeneration] = useState(captureAccountGeneration);
     const mistakeAccountGenerationKey = `${mistakeAccountGeneration.generation}:${mistakeAccountGeneration.phase}:${mistakeAccountGeneration.stableId ?? ''}`;
     const [mistakeReadySnapshot, setMistakeReadySnapshot] = useState<{

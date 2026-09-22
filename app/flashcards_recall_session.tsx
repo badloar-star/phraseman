@@ -67,6 +67,7 @@ import {
 import { SessionResultScreen } from './flashcards/SessionResultScreen';
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
+import { isMistakeStudyTargetValue } from '../modules/mistake-practice/contracts';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { fcHaptic, playSfx } from './flashcards/SoundService';
 
@@ -462,7 +463,9 @@ export default function FlashcardsRecallSession() {
       );
       queueRef.current = requeued.queue;
       repeatCountsRef.current = requeued.repeatCounts;
-      if (studyTarget === 'en' || studyTarget === 'fr') {
+      // зачем (22.09): узкий список языков не пускал запись ошибки для
+      // испанского и немецкого — «вспомнить» не пополняло «Мои ошибки».
+      if (isMistakeStudyTargetValue(studyTarget)) {
         void captureCurrentAccountObjectiveAttempt({
           attemptId: `flashcard-recall-${attemptSessionId}:${eventsRef.current.length}:${card.id}`,
           studyTarget,

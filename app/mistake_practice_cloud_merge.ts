@@ -1,7 +1,8 @@
 import { canonicalJsonV1 } from '../modules/learning-v2/policies/decision_registry';
-import type {
-  MistakeEvent,
-  MistakeStudyTarget,
+import {
+  isMistakeStudyTargetValue,
+  type MistakeEvent,
+  type MistakeStudyTarget,
 } from '../modules/mistake-practice/contracts';
 
 export interface MistakeEventJournal {
@@ -36,7 +37,9 @@ function isMistakeEvent(value: unknown): value is MistakeEvent {
       'correction_rewarded',
     ].includes(value.type)
     && Number.isSafeInteger(value.occurredAtMs)
-    && (value.studyTarget === 'en' || value.studyTarget === 'fr');
+    // зачем (22.09): здесь перечислялись только en/fr, поэтому событие ошибки
+    // на испанском или немецком считалось невалидным и отбрасывалось.
+    && isMistakeStudyTargetValue(value.studyTarget);
 }
 
 export function parseMistakeEventJournal(raw: string): MistakeEventJournal {
@@ -51,7 +54,10 @@ export function parseMistakeEventJournal(raw: string): MistakeEventJournal {
     || parsed.version !== 1
     || typeof parsed.accountScope !== 'string'
     || !parsed.accountScope.trim()
-    || (parsed.studyTarget !== 'en' && parsed.studyTarget !== 'fr')
+    // зачем (22.09): непризнанный язык ронял ВЕСЬ журнал как «испорченный»
+    // (mistake_practice_events_corrupt), а не одну запись. Для испанского и
+    // немецкого это означало, что «Мои ошибки» не работали в принципе.
+    || !isMistakeStudyTargetValue(parsed.studyTarget)
     || !Array.isArray(parsed.events)
     || !parsed.events.every(isMistakeEvent)
   ) {

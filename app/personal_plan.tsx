@@ -59,6 +59,7 @@ import EnergyCostBadge from '../components/EnergyCostBadge';
 import { getPersonalPlanTaskVisual } from './personal_plan_task_visuals';
 import { resolvePersonalPlanFlashcardsReviewCount } from './personal_plan_flashcards_review_gate';
 import { getMistakePracticeReadyCount } from './mistake_practice_insights';
+import { isMistakeStudyTargetValue } from '../modules/mistake-practice/contracts';
 import { ENABLE_DEV_TOOLS } from './config';
 import { PERSONAL_PLAN_SUNSET_AT_MS, PERSONAL_PLAN_SUNSET_FALLBACK_ROUTE } from './personal_plan_sunset';
 import { withPersonalPlanSunsetGuard } from '../components/personal_plan_sunset_guard';
@@ -530,7 +531,9 @@ function PersonalPlanScreen() {
 
     const [dueFlashcardsCount, mistakePracticeReadyCount] = await Promise.all([
       resolvePersonalPlanFlashcardsReviewCount(studyTarget).catch(() => 0),
-      studyTarget === 'en' || studyTarget === 'fr'
+      // зачем (22.09): для испанского и немецкого счётчик готовых ошибок был
+      // жёстко нулевым — задание «поработать над ошибками» не предлагалось.
+      isMistakeStudyTargetValue(studyTarget)
         ? getMistakePracticeReadyCount(studyTarget).catch(() => 0)
         : Promise.resolve(0),
     ]);

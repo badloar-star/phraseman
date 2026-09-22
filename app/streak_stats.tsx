@@ -51,6 +51,7 @@ import { loadLifetimeProfileStats, type LifetimeProfileStats } from './lifetime_
 import { devRandomizeLifetimePathDailyMetrics, loadLifetimeTotalsChartDays, loadWeeklyLearnedCounts, type LifetimeTotalsChartKind, type LifetimeChartDay, type DevLifetimePathRandomSums, } from './stats_daily_breakdown';
 import { ALL_ACHIEVEMENTS, achievementNameForLang, loadAchievementStates } from './achievements';
 import { loadMistakePracticeInsights } from './mistake_practice_insights';
+import { normalizeMistakeStudyTarget } from '../modules/mistake-practice/contracts';
 import CefrLine from '../components/journal/CefrLine';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import AchievementArt from '../components/AchievementArt';
@@ -3502,7 +3503,9 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     // и trainerPracticeDue в statsCache, для согласованности «фраз под риском».
     useFocusEffect(useCallback(() => {
         let cancelled = false;
-        void loadMistakePracticeInsights(studyTarget === 'fr' ? 'fr' : 'en')
+        // зачем (22.09): подмена языка показывала статистику ЧУЖОГО журнала —
+        // на испанском человек видел английские «фразы под риском».
+        void loadMistakePracticeInsights(normalizeMistakeStudyTarget(studyTarget))
             .then((dash) => {
                 if (cancelled) return;
                 const snapshot: JournalMemorySnapshot = {

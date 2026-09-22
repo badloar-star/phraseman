@@ -16,6 +16,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { useMistakePracticeStartGate } from '../hooks/useMistakePracticeStartGate';
 import { mistakeFacetLabel, mistakeSourceLabel } from './mistake_facet_copy';
 import { loadMistakeDetail, type MistakeDetail, type MistakeTimelineEntry } from './mistake_detail_model';
+import { normalizeMistakeStudyTarget } from '../modules/mistake-practice/contracts';
 import { trackMistakePracticeEvent } from './mistake_practice_analytics';
 import { safeRouterBack } from './navigation_back';
 import { getStableId } from './stable_id';
@@ -71,7 +72,9 @@ export default function MistakeDetailScreen() {
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const copy = useMemo(() => copyFor(lang), [lang]);
-  const target = studyTarget === 'fr' ? 'fr' : 'en';
+  // зачем (22.09): подмена испанского/немецкого на английский — карточка
+  // ошибки открывалась из чужого журнала. Язык журнала подменять нельзя.
+  const target = normalizeMistakeStudyTarget(studyTarget);
   const mistakeId = typeof params.mistakeId === 'string' ? params.mistakeId : '';
   const [detail, setDetail] = useState<MistakeDetail | null | 'missing'>(null);
   const gate = useMistakePracticeStartGate('mistakes_hub_start');

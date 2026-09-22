@@ -14,7 +14,18 @@ const EVENT_MAX_CHARS = 32_000;
 const ID = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,159}$/;
 const TYPES = new Set(['captured', 'hint_used', 'practice_answered', 'hidden', 'restored', 'content_unavailable', 'correction_rewarded']);
 
-type StudyTarget = 'en' | 'fr';
+/**
+ * зачем (22.09): здесь стояло `'en' | 'fr'` — НЕЗАВИСИМАЯ копия клиентского
+ * ограничения, не связанная с ним типами. Пока она узкая, синхронизация ошибок
+ * для испанского и немецкого отвечает `mistake_practice_event_sync_invalid`
+ * даже после починки клиента. Список обязан совпадать с MISTAKE_STUDY_TARGETS
+ * в modules/mistake-practice/contracts.ts — сервер не импортирует клиентский
+ * код, поэтому связь держится сторожем, а не типом.
+ */
+const STUDY_TARGETS = ['en', 'es', 'fr', 'de'] as const;
+type StudyTarget = (typeof STUDY_TARGETS)[number];
+const isStudyTarget = (value: unknown): value is StudyTarget =>
+  typeof value === 'string' && (STUDY_TARGETS as readonly string[]).includes(value);
 type EventRecord = Readonly<{
   schemaVersion: 'mistake-practice-event-record.v1';
   recordKind: 'mistake_practice_event';
@@ -51,7 +62,7 @@ function parseEvent(input: unknown, target: StudyTarget): Record<string, unknown
 }
 
 export function parseMistakePracticeEventSyncRequest(input: unknown): SyncRequest {
-  if (!isRecord(input) || (input.studyTarget !== 'en' && input.studyTarget !== 'fr') ||
+  if (!isRecord(input) || !isStudyTarget(input.studyTarget) ||
     typeof input.expectedStableUid !== 'string' || !ID.test(input.expectedStableUid)) return fail();
   if (input.action === 'append' && exact(input, ['action', 'expectedStableUid', 'studyTarget', 'events']) &&
     Array.isArray(input.events) && input.events.length > 0 &&

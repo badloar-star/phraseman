@@ -19,7 +19,7 @@ import {
 import { planTaskCompletionKey, readCompletedPlanTasks } from './personal_plan_progress';
 import { resolvePersonalPlanFlashcardsReviewCount } from './personal_plan_flashcards_review_gate';
 import type { RuntimeStudyTarget } from './target_storage_keys';
-import type { MistakeStudyTarget } from '../modules/mistake-practice/contracts';
+import { isMistakeStudyTargetValue, type MistakeStudyTarget } from '../modules/mistake-practice/contracts';
 import { getMistakePracticeReadyCount } from './mistake_practice_insights';
 
 export type NextPlanTask = {
@@ -43,8 +43,11 @@ function taskHasAvailableMaterial(
   return true;
 }
 
+// зачем (22.09): здесь дублировалась проверка на два языка — испанский и
+// немецкий отбрасывались, и задание «поработать над ошибками» для них не
+// подбиралось никогда. Ссылаемся на канонический список модуля ошибок.
 function isMistakeStudyTarget(value: RuntimeStudyTarget | undefined): value is MistakeStudyTarget {
-  return value === 'en' || value === 'fr';
+  return isMistakeStudyTargetValue(value);
 }
 
 /**

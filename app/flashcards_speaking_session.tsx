@@ -88,6 +88,7 @@ import {
   type SpeakingTask,
 } from './flashcards/speaking_session_logic';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
+import { isMistakeStudyTargetValue } from '../modules/mistake-practice/contracts';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import { PracticeRuneCounter } from '../components/PracticeRuneCounter';
 import { LearningV2RuneFlight } from '../components/LearningV2RuneFlight';
@@ -876,7 +877,9 @@ export default function FlashcardsSpeakingSession() {
             pending?.();
           });
         }
-        if (failedCard && (studyTarget === 'en' || studyTarget === 'fr')) {
+        // зачем (22.09): узкий список языков не пускал запись ошибки для
+        // испанского и немецкого — «говорить» не пополняло «Мои ошибки».
+        if (failedCard && isMistakeStudyTargetValue(studyTarget)) {
           void captureCurrentAccountObjectiveAttempt({
             attemptId: `${mistakeCaptureRunRef.current}:${s.index}:${failedCard.id}:${attempt.score}`,
             studyTarget,

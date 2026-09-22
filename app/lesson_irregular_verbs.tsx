@@ -46,6 +46,7 @@ import ReportErrorButton from '../components/ReportErrorButton';
 import BouncyScrollView from '../components/BouncyScrollView';
 import AddToFlashcard from '../components/AddToFlashcard';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
+import { normalizeMistakeStudyTarget } from '../modules/mistake-practice/contracts';
 import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundary';
 import { irregularVerbsGlobalKey, lessonIrregularShardsGrantedKey, type RuntimeStudyTarget } from './target_storage_keys';
 import {
@@ -562,10 +563,14 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
       hadErrorThisVerb.current = true;
 
       const vKey = verb.base;
-      if (studyTarget === 'en' || studyTarget === 'fr') {
+      // зачем (22.09): здесь стоял замок `studyTarget === 'en' || 'fr'` — для
+      // испанского и немецкого ошибка НЕ записывалась вовсе, и «Мои ошибки»
+      // для них были пусты навсегда. Журнал ключуется по языку, писать можно
+      // любой язык курса.
+      {
         void captureCurrentAccountObjectiveAttempt({
           attemptId: `irregular:${studyTarget}:${lessonId ?? 0}:${pos}:${step}:${vKey}:${word}`,
-          studyTarget: studyTarget === 'fr' ? 'fr' : 'en',
+          studyTarget: normalizeMistakeStudyTarget(studyTarget),
           verdict: 'wrong',
           objective: true,
           content: {

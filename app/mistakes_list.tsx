@@ -14,6 +14,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { mistakeFacetLabel } from './mistake_facet_copy';
 import MistakeTitleShelf from '../components/mistake-practice/MistakeTitleShelf';
 import { buildMistakeRewardsSnapshot, type MistakeRewardsSnapshot } from '../modules/mistake-practice/rewards_model';
+import { normalizeMistakeStudyTarget } from '../modules/mistake-practice/contracts';
 import { loadMistakeEventJournal } from './mistake_practice_store';
 import { getStableId } from './stable_id';
 import { loadMistakePracticeHubSnapshot, type MistakePracticeListItem } from './mistake_practice_insights';
@@ -49,7 +50,9 @@ export default function MistakesListScreen() {
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const copy = useMemo(() => copyFor(lang), [lang]);
-  const target = studyTarget === 'fr' ? 'fr' : 'en';
+  // зачем (22.09): подмена испанского/немецкого на английский — человек видел
+  // чужой список ошибок. Журнал ключуется по языку, подменять его нельзя.
+  const target = normalizeMistakeStudyTarget(studyTarget);
   const [filter, setFilter] = useState<Filter>(params.filter === 'corrected' || params.filter === 'all' ? params.filter : 'ready');
   const [items, setItems] = useState<readonly MistakePracticeListItem[] | null>(null);
   // Полка «Исправлены» носит шапку со званием и лестницей (макет полки А).

@@ -90,6 +90,7 @@ import { buildPlanListeningPlaybackSource } from './personal_plan_listening_play
 import { getPersonalPlanRuntimeAudioAssetModule } from './personal_plan_runtime_audio_asset_modules';
 import { getPlanAudioUrl } from './plan_audio_url_map.generated';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
+import { isMistakeStudyTargetValue } from '../modules/mistake-practice/contracts';
 import { buildPlanPronunciationAttemptPayload } from './personal_plan_pronunciation_recording_contract';
 import { markPersonalPlanTaskCompleted } from './personal_plan_progress';
 import {
@@ -2138,7 +2139,12 @@ function PersonalPlanExerciseScreen() {
     facet: 'meaning' | 'form' | 'word_order' | 'missing_token' | 'listening' | 'pronunciation';
     distractors?: readonly string[];
   }) => {
-    if (studyTarget !== 'en' && studyTarget !== 'fr') return;
+    // зачем (22.09): ранний выход пропускал запись ошибки для испанского и
+    // немецкого — упражнения личного плана не пополняли «Мои ошибки».
+    if (!isMistakeStudyTargetValue(studyTarget)) {
+      if (__DEV__) console.warn('[MISTAKES-CAPTURE] personal_plan: пропуск, язык вне курса', JSON.stringify({ studyTarget }));
+      return;
+    }
     void captureCurrentAccountObjectiveAttempt({
       attemptId: `personal-plan:${planInstanceId}:${planTaskId}:${input.itemId}:${input.selected}`,
       studyTarget,

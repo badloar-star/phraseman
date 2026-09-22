@@ -18,7 +18,7 @@ import { pluralWord } from '../constants/plural';
 import { hapticTap } from '../hooks/use-haptics';
 import { useMistakePracticeStartGate } from '../hooks/useMistakePracticeStartGate';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
-import type { MistakeFacet } from '../modules/mistake-practice/contracts';
+import { normalizeMistakeStudyTarget, type MistakeFacet } from '../modules/mistake-practice/contracts';
 import {
   mistakePracticeLengthOptions,
   mistakePracticeSessionCostsEnergy,
@@ -80,7 +80,10 @@ export default function MistakesHubScreen() {
   const { studyTarget } = useStudyTarget();
   const reduceMotion = useReduceMotion();
   const copy = useMemo(() => copyFor(lang), [lang]);
-  const target = studyTarget === 'fr' ? 'fr' : 'en';
+  // зачем (22.09): было `studyTarget === 'fr' ? 'fr' : 'en'` — испанский и
+  // немецкий молча превращались в английский, и человек видел ЧУЖИЕ ошибки
+  // вместо своих. Журнал разложен по языковым ключам, язык нельзя подменять.
+  const target = normalizeMistakeStudyTarget(studyTarget);
   const peekKey = `${target}:${lang}`;
   const [snapshot, setSnapshot] = useState<MistakePracticeHubSnapshot | null>(() =>
     hubSnapshotPeek?.key === peekKey ? hubSnapshotPeek.snapshot : null);

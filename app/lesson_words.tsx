@@ -55,6 +55,7 @@ import { safeRouterBack } from './navigation_back';
 import { lessonWordRecognitionPrompt } from './lesson_words_spanish_gloss';
 import { LESSON_WORD_ES_BY_EN } from './lesson_words_es_by_en';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
+import { normalizeMistakeStudyTarget } from '../modules/mistake-practice/contracts';
 import type { PhraseMistakeInput } from './phrase_analytics';
 import { bumpStatsDaily } from './stats_daily_breakdown';
 import { LESSON_DATA } from './lesson_data_all';
@@ -2991,10 +2992,13 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
       expected: card.word.en,
       rawCategory: card.word.pos,
     });
-    if (studyTarget === 'en' || studyTarget === 'fr') {
+    // зачем (22.09): замок `studyTarget === 'en' || 'fr'` пропускал запись для
+    // испанского и немецкого — ошибка не попадала в журнал, и раздел «Мои
+    // ошибки» для этих языков оставался пустым независимо от занятий.
+    {
       void captureCurrentAccountObjectiveAttempt({
         attemptId: `lesson-words:${studyTarget}:${lessonId}:${qIdx}:${card.word.en}:${card.roundIndex}:${picked}`,
-        studyTarget: studyTarget === 'fr' ? 'fr' : 'en',
+        studyTarget: normalizeMistakeStudyTarget(studyTarget),
         verdict: 'wrong',
         objective: true,
         content: {

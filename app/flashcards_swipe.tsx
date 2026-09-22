@@ -98,6 +98,7 @@ import {
   flashcardsOfficialPacksAvailableForTarget,
 } from './flashcards_target_gate';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
+import { isMistakeStudyTargetValue } from '../modules/mistake-practice/contracts';
 import { captureAccountGeneration } from './account_generation';
 import { consumeFlashcardTrainingQuota } from './revenue_quota_access';
 import {
@@ -2866,7 +2867,9 @@ function FlashcardsSwipeScreen() {
           streak: 0,
         }));
         setFeedback({ kind: 'wrong', prompt });
-        if (studyTarget === 'en' || studyTarget === 'fr') {
+        // зачем (22.09): узкий список языков не пускал запись ошибки для
+        // испанского и немецкого — свайп не пополнял «Мои ошибки».
+        if (isMistakeStudyTargetValue(studyTarget)) {
           void captureCurrentAccountObjectiveAttempt({
             attemptId: `${mistakeCaptureRunRef.current}:${prompt.id}:${cardProgress.attempts}`,
             studyTarget,

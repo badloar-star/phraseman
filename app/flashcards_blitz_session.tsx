@@ -81,6 +81,7 @@ import { commitBlitzScore, getBlitzBest } from './flashcards/blitz_record';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { summarizeSession, type SessionAnswerEvent, type SessionOutcomeSummary } from './flashcards/session_queue';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
+import { isMistakeStudyTargetValue } from '../modules/mistake-practice/contracts';
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { captureAccountGeneration } from './account_generation';
 import { consumeFlashcardTrainingQuota } from './revenue_quota_access';
@@ -812,7 +813,9 @@ export default function FlashcardsBlitzSession() {
         gainAnim.value = 0;
         gainAnim.value = withTiming(1, { duration: 650, easing: Easing.out(Easing.cubic) });
       } else {
-        if (studyTarget === 'en' || studyTarget === 'fr') {
+        // зачем (22.09): узкий список языков не пускал запись ошибки для
+        // испанского и немецкого — блиц для них не пополнял «Мои ошибки».
+        if (isMistakeStudyTargetValue(studyTarget)) {
           void captureCurrentAccountObjectiveAttempt({
             attemptId: `flashcard-blitz:${roundId}:${qIdxRef.current}:${question.card.id}:${optIdx}`,
             studyTarget,

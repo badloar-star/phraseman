@@ -1,4 +1,5 @@
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
+import { normalizeMistakeStudyTarget } from '../modules/mistake-practice/contracts';
 import type { PlanRecoveryWriteHandlers } from './personal_plan_recovery_write_adapter';
 import type { PlanRecoveryAction } from './personal_plan_recovery_actions';
 import type { RuntimeStudyTarget } from './target_storage_keys';
@@ -18,7 +19,9 @@ function facetFor(payload: PlanRecoveryAction) {
 export function createPlanRecoveryDefaultHandlers(
   options: PlanRecoveryDefaultHandlersOptions = {},
 ): PlanRecoveryWriteHandlers {
-  const studyTarget = options.studyTarget === 'fr' ? 'fr' : 'en';
+  // зачем (22.09): подмена писала ошибки испанского и немецкого в АНГЛИЙСКИЙ
+  // журнал — чужие данные смешивались, а свои не появлялись.
+  const studyTarget = normalizeMistakeStudyTarget(options.studyTarget);
   const capture = async (payload: PlanRecoveryAction) => {
     await captureCurrentAccountObjectiveAttempt({
       attemptId: payload.id,

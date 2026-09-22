@@ -57,6 +57,7 @@ import fk from './feedback/feedback_kit';
 import { comboLevelFor } from './feedback/combo_engine';
 import ComboRing from '../components/feedback/ComboRing';
 import { captureObjectiveAttempt } from './mistake_practice_capture';
+import { isMistakeStudyTargetValue } from '../modules/mistake-practice/contracts';
 import { getStableId } from './stable_id';
 import { resolvePhraseMistakeToken } from './mistake_token_resolver';
 import { lessonMistakeFacet } from './lesson_mistake_facet';
@@ -3106,7 +3107,9 @@ function LessonScreen() {
             rawCategory: tokenRow?.category,
           };
           lessonWrongMistakesRef.current.push({ phrase: analyticsPhraseKey || canonKey, ...mistakeMeta });
-          if (stRm === 'en' || stRm === 'fr') {
+          // зачем (22.09): узкий список языков не пускал запись ошибки для
+          // испанского и немецкого — урок не пополнял «Мои ошибки».
+          if (isMistakeStudyTargetValue(stRm)) {
             const attemptScope = serverAttemptIdRef.current
               || lessonAnalyticsAttemptRef.current?.id
               || String(lessonStorageId);

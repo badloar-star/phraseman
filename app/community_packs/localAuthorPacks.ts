@@ -14,6 +14,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { flashcardsLocalAuthorPacksKey, storageStudyTarget, type RuntimeStudyTarget } from '../target_storage_keys';
 import type { StudyTarget } from '../study_target';
+import { LEARNING_LANGUAGE_TARGETS } from '../learning_language_contour';
 import type { CardItem } from '../flashcards/types';
 import type { FlashcardMarketPack } from '../flashcards/marketplace';
 import { derivePackCodeName } from '../flashcards/marketplace';
@@ -80,10 +81,21 @@ async function readPacksForTarget(studyTarget?: RuntimeStudyTarget): Promise<Loc
   }
 }
 
-/** Pack languages are independent from the course; retain the original write location. */
+/**
+ * Pack languages are independent from the course; retain the original write location.
+ *
+ * зачем (22.09): здесь перебирались только `['en','fr']`, а цель обучения писалась
+ * в СВОЙ ключ (`scopedOrLegacyKey`, target_storage_keys.ts). Набор, созданный на
+ * испанском или немецком, сохранялся корректно — и не показывался НИ НА ОДНОМ
+ * экране: ни в «Мои наборы», ни в выборе наборов, ни в публикации. Данные лежали
+ * целыми, но для человека это неотличимо от пропажи.
+ *
+ * Перебираем канонический список языков курса, чтобы пятый язык не потребовал
+ * править это место снова.
+ */
 export async function loadLocalAuthorPacks(_studyTarget?: RuntimeStudyTarget): Promise<LocalAuthorPack[]> {
   const token = captureAccountGeneration();
-  const lists = await Promise.all((['en', 'fr'] as const).map(async studyTarget =>
+  const lists = await Promise.all(LEARNING_LANGUAGE_TARGETS.map(async studyTarget =>
     (await readPacksForTarget(studyTarget)).map(pack => ({ ...pack, studyTarget }))));
   return isCurrentAccountGeneration(token) ? lists.flat() : [];
 }

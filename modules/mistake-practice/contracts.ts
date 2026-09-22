@@ -1,4 +1,39 @@
-export type MistakeStudyTarget = 'en' | 'fr';
+/**
+ * Языки курса, для которых ведётся журнал ошибок.
+ *
+ * зачем (22.09): здесь стояло `'en' | 'fr'` — снимок двухъязычной эпохи. Языков
+ * давно четыре (`LEARNING_LANGUAGE_TARGETS` в app/learning_language_contour.ts),
+ * и испанский реально предлагается человеку при выборе. Из-за узкого типа
+ * по коду расплодились фолбэки `studyTarget === 'fr' ? 'fr' : 'en'`, которые
+ * молча писали ИСПАНСКИЕ ошибки в АНГЛИЙСКИЙ журнал, а валидатор
+ * (mistake_practice_cloud_merge) объявлял журнал на es/de испорченным целиком.
+ *
+ * Список продублирован здесь намеренно: `modules/` не импортирует из `app/`
+ * (граница слоёв), а тянуть сюда экранный модуль ради четырёх строк — хуже,
+ * чем держать копию под сторожем. Расхождение ловит
+ * mistake_study_target_languages_contract.test.ts.
+ */
+export const MISTAKE_STUDY_TARGETS = ['en', 'es', 'fr', 'de'] as const;
+
+export type MistakeStudyTarget = (typeof MISTAKE_STUDY_TARGETS)[number];
+
+export function isMistakeStudyTargetValue(value: unknown): value is MistakeStudyTarget {
+  return typeof value === 'string'
+    && (MISTAKE_STUDY_TARGETS as readonly string[]).includes(value);
+}
+
+/**
+ * Приводит цель обучения к языку журнала ошибок.
+ *
+ * зачем (22.09): по экранам было рассыпано `studyTarget === 'fr' ? 'fr' : 'en'` —
+ * одиннадцать копий одной подмены. Испанский и немецкий молча становились
+ * английским, поэтому человек на испанском видел ЧУЖИЕ ошибки, а его
+ * собственные уходили в английский журнал. Неизвестный язык по-прежнему даёт
+ * 'en' (иначе экран остался бы без данных вовсе), но известный сохраняется.
+ */
+export function normalizeMistakeStudyTarget(value: unknown): MistakeStudyTarget {
+  return isMistakeStudyTargetValue(value) ? value : 'en';
+}
 
 export type MistakeFacet =
   | 'meaning'

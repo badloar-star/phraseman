@@ -18,6 +18,7 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { logEvent as firebaseLogEvent } from './firebase';
+import { isMistakeStudyTargetValue } from '../modules/mistake-practice/contracts';
 import {
   capturePostHog,
   identifyPostHog,
@@ -413,7 +414,9 @@ export async function trackSoftUpsellEvent<Event extends SoftUpsellAnalyticsEven
   if (!SOFT_UPSELL_ANALYTICS_EVENTS.includes(event)) return;
   if (!SOFT_UPSELL_CONTEXTS.includes(candidate?.context)) return;
   if (!SOFT_UPSELL_TRIGGERS.includes(candidate?.trigger)) return;
-  if (candidate?.studyTarget !== 'en' && candidate?.studyTarget !== 'fr') return;
+  // зачем (22.09): событие аналитики с испанским/немецким языком отбрасывалось
+  // как невалидное — статистика по этим языкам не собиралась вообще.
+  if (!isMistakeStudyTargetValue(candidate?.studyTarget)) return;
   if (typeof candidate?.overlayOccupied !== 'boolean' || candidate?.schemaVersion !== 1) return;
   if (!Number.isSafeInteger(candidate?.triggerValue) || candidate.triggerValue < 0 || candidate.triggerValue > 10_000) return;
 

@@ -30,6 +30,7 @@ import { addShards, awardOneTime } from './shards_system';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import GoldBevel from '../components/GoldBevel';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
+import { isMistakeStudyTargetValue } from '../modules/mistake-practice/contracts';
 import { trackFeatureBlocked, trackFeatureError, trackFeatureStart, trackFeatureSuccess } from './app_activity';
 import { getCourseLevelIndex, getFirstLessonForLevel, getLastLessonForLevel, getNextCourseLevel, getPreviousCourseLevel, type CourseLevel } from './course_levels';
 import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from './premium_guard';
@@ -862,7 +863,9 @@ export default function LevelExam() {
       const canonicalTarget = q.type === 'choice4'
         ? expected
         : q.q.replace('___', expected).replace(/\[[^\]]+\]/, expected).replace(/^Correct:\s*/i, '');
-      if ((studyTarget === 'en' || studyTarget === 'fr') && expected) {
+      // зачем (22.09): узкий список языков не пускал запись ошибки для
+      // испанского и немецкого — экзамен уровня не пополнял «Мои ошибки».
+      if (isMistakeStudyTargetValue(studyTarget) && expected) {
         void captureCurrentAccountObjectiveAttempt({
           attemptId: `${mistakeCaptureRunRef.current}:${idx}:${ci}`,
           studyTarget,

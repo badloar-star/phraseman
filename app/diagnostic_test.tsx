@@ -38,6 +38,7 @@ import { shuffle } from './utils_shuffle';
 import { isCorrectAnswer } from '../constants/contractions';
 import { registerXP } from './xp_manager';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
+import { isMistakeStudyTargetValue } from '../modules/mistake-practice/contracts';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { awardOneTime } from './shards_system';
 import ReportErrorButton from '../components/ReportErrorButton';
@@ -1054,7 +1055,12 @@ export default function DiagnosticTest() {
   const diagnosticChargeInFlightRef = useRef(false);
 
   const captureDiagnosticWrong = (question: Question, questionIndex: number, mode: string) => {
-    if (studyTarget !== 'en' && studyTarget !== 'fr') return;
+    // зачем (22.09): ранний выход пропускал запись ошибки для испанского и
+    // немецкого — диагностика для них не пополняла «Мои ошибки» вообще.
+    if (!isMistakeStudyTargetValue(studyTarget)) {
+      if (__DEV__) console.warn('[MISTAKES-CAPTURE] diagnostic: пропуск, язык вне курса', JSON.stringify({ studyTarget }));
+      return;
+    }
     const correctAnswer = question.answer || question.opts[question.correct] || '';
     void captureCurrentAccountObjectiveAttempt({
       attemptId: `diagnostic:${diagnosticAttemptIdRef.current}:${questionIndex}:${mode}`,

@@ -11,7 +11,6 @@ import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
 import { hapticSuccess } from '../hooks/use-haptics';
 import { withPersonalPlanSunsetGuard } from '../components/personal_plan_sunset_guard';
-import EnergyCostBadge from '../components/EnergyCostBadge';
 import { DebugLogger } from './debug-logger';
 
 function firstParam(v: string | string[] | undefined): string {
@@ -361,7 +360,7 @@ function PersonalPlanExerciseTransitionScreen() {
                 pl: 'Zacznij',
               })}</Text>
             </LinearGradient>
-            {nextParams ? <EnergyCostBadge activity="personal_plan_exercise" testID="personal-plan-transition-energy-cost" /> : null}
+            {/* зачем (PM-086): ценник энергии на кнопке убран — сам расход энергии не менялся. */}
           </TouchableOpacity>
         </Animated.View>
         </ScrollView>

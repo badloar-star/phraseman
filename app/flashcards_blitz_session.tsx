@@ -197,9 +197,10 @@ export default function FlashcardsBlitzSession() {
   const [deckPickerOpen, setDeckPickerOpen] = useState(false);
   const [deckOptions, setDeckOptions] = useState<DeckSheetOption[]>([]);
   const [deckPreset, setDeckPreset] = useState<FcModePreset | null>(null);
-  // Старт/рестарт блиц-раунда = 10 ⚡ за попытку (numeric energy:
-  // экономика). Гейт стоит ДО эффекта старта раунда ниже — раунд не запускается,
-  // пока энергия не подтверждена.
+  // зачем (PM-129, владелец 2026-09-24): комментарий держал устаревшую цену
+  // энергии («10 ⚡ за попытку») после единой цены 1 из PM-081..083 —
+  // цифра лгала бы читающему код. Гейт стоит ДО эффекта старта раунда ниже —
+  // раунд не запускается, пока энергия не подтверждена (текущая цена — 1 за сессию).
   const {
     isUnlimited: blitzEnergyUnlimited,
     confirmSpendOne: confirmBlitzEnergy,

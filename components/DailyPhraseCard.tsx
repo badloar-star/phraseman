@@ -56,6 +56,8 @@ import { featureIntroById } from '../app/feature_intro_registry';
 import { featureIntroClose } from '../app/feature_intro_copy';
 import { useRequestedFeatureIntro } from '../hooks/use_requested_feature_intro';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
+import { V2, V2_TYPE } from '../constants/v2Style';
+import { useV2Palette } from './v2/useV2Palette';
 
 // Chrome (per-theme palette) now lives in app/daily_phrase_chrome.ts so the
 // home/lock-screen widget can render the identical look. See that file.
@@ -68,7 +70,8 @@ const HOME_ADDITIONAL_ART_SLOT_HEIGHT = 72;
 
 interface Props {
   userLevel?: number;
-  variant?: 'default' | 'homeAdditional';
+  /** 'homeV2' — карточка «Фраза дня» новой Главной (референс владельца 24.09, 2.0). */
+  variant?: 'default' | 'homeAdditional' | 'homeV2';
   homeCardVisible?: boolean;
 }
 
@@ -87,7 +90,11 @@ function DailyPhraseCard({
   const sheetBottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const params = useGlobalSearchParams<{ openPhrase?: string; play?: string }>();
   const dailyPhraseGateOpen = dailyPhraseContentAvailableForTarget(studyTarget);
-  const homeAdditional = variant === 'homeAdditional';
+  // зачем: homeV2 наследует поведение homeAdditional (пульс, видимость, intro),
+  // но рисуется своим телом по референсу 2.0.
+  const homeV2 = variant === 'homeV2';
+  const homeAdditional = variant === 'homeAdditional' || homeV2;
+  const v2 = useV2Palette();
   const homeKickerFontSize = Math.max(12, f.caption);
   const chrome = dailyPhraseChromeFor(themeMode);
   const phraseOfDayArt = getHomeSupportingArt(themeMode).phraseOfDay;
@@ -343,6 +350,19 @@ function DailyPhraseCard({
 
   if (!dailyPhraseGateOpen) {
     const gateCopy = dailyPhraseGateCopyForTarget(studyTarget, lang);
+    if (homeV2) {
+      return (
+        <View accessibilityRole="text" accessibilityLabel={gateCopy.title} style={[styles.v2Card, { backgroundColor: v2.card, borderColor: v2.hairline }]}>
+          <View style={[styles.v2Quote, { backgroundColor: v2.control }]}>
+            <Ionicons name="shield-checkmark-outline" size={20} color={v2.text} />
+          </View>
+          <View style={[styles.v2Copy, { paddingRight: 0 }]}>
+            <Text style={[styles.v2Phrase, { color: v2.text, marginTop: 0, fontSize: 18, lineHeight: 23 }]} numberOfLines={2}>{gateCopy.title}</Text>
+            <Text style={[styles.v2Translation, { color: v2.textSecondary }]} numberOfLines={3}>{gateCopy.body}</Text>
+          </View>
+        </View>
+      );
+    }
     return (
       <Pressable
         accessibilityRole="text"
@@ -396,6 +416,8 @@ function DailyPhraseCard({
   }
 
   if (!phrase) {
+    // Резерв той же высоты, что у готовой карточки: первый кадр = финальная геометрия.
+    if (homeV2) return <View style={[styles.v2Card, { backgroundColor: v2.card, borderColor: v2.hairline }]} />; // guard-ok: D43
     return <View style={[styles.placeholder, { backgroundColor: t.bgCard }]} />;
   }
 
@@ -610,6 +632,52 @@ function DailyPhraseCard({
       <Animated.View
         style={homeAdditional ? { transform: [{ scale: homePulseScale }] } : undefined}
       >
+        {homeV2 ? (
+        <Pressable
+          testID="home-v2-phrase-of-day"
+          onPress={openDetails}
+          accessibilityRole="button"
+          accessibilityLabel={`${title}. ${phrase.english}. ${phraseCopy.literal}`}
+          style={({ pressed }) => [styles.v2Card, { backgroundColor: v2.card, borderColor: v2.hairline }, pressed && styles.pressed]} // guard-ok: D43
+        >
+          {/* Слот арта справа: ассет рисует Codex, до него — тихая заглушка того же размера. */}
+          <View pointerEvents="none" style={[styles.v2Art, { backgroundColor: v2.cardRaised }]} />
+          <View style={[styles.v2Quote, { backgroundColor: v2.control }]}>
+            <Text style={[styles.v2QuoteMark, { color: v2.text }]}>{'“'}</Text>
+          </View>
+          <View style={styles.v2Copy}>
+            <Text style={[styles.v2Kicker, { color: v2.textSecondary }]} numberOfLines={1}>{title.toUpperCase()}</Text>
+            <Text style={[styles.v2Phrase, { color: v2.text }]} numberOfLines={2}>{phrase.english}</Text>
+            {phraseCopy.literal ? (
+              <Text style={[styles.v2Translation, { color: v2.textSecondary }]} numberOfLines={2}>{phraseCopy.literal}</Text>
+            ) : null}
+            <View style={styles.v2Actions}>
+              <Pressable
+                testID="home-v2-phrase-play"
+                hitSlop={6}
+                accessibilityRole="button"
+                accessibilityLabel={triLang(lang, { uk: 'Озвучити', ru: 'Озвучить', en: 'Play', es: 'Reproducir', 'pt-BR': 'Reproduzir', vi: 'Phát', id: 'Putar', tr: 'Seslendir', pl: 'Odtwórz' })}
+                onPress={() => { const en = phrase.english?.trim(); if (en) speak(en); }}
+                style={({ pressed }) => [styles.v2Round, { backgroundColor: v2.control, borderColor: v2.hairline }, pressed && styles.pressed]} // guard-ok: D43
+              >
+                <Ionicons name="volume-medium-outline" size={18} color={v2.text} />
+              </Pressable>
+              <Pressable
+                testID="home-v2-phrase-save"
+                hitSlop={6}
+                accessibilityRole="button"
+                accessibilityLabel={triLang(lang, { uk: 'Зберегти', ru: 'Сохранить', en: 'Save', es: 'Guardar', 'pt-BR': 'Salvar', vi: 'Lưu', id: 'Simpan', tr: 'Kaydet', pl: 'Zapisz' })}
+                // зачем: сохранить фразу можно только после ответа на вопрос дня —
+                // звезда открывает шторку, где закладка и сам вопрос.
+                onPress={openDetails}
+                style={({ pressed }) => [styles.v2Round, { backgroundColor: v2.control, borderColor: v2.hairline }, pressed && styles.pressed]} // guard-ok: D43
+              >
+                <Ionicons name="star-outline" size={18} color={v2.text} />
+              </Pressable>
+            </View>
+          </View>
+        </Pressable>
+        ) : (
         <Pressable
           onPress={openDetails}
           accessibilityRole="button"
@@ -687,6 +755,7 @@ function DailyPhraseCard({
           </View>
         </View>
         </Pressable>
+        )}
       </Animated.View>
 
       <FeatureIntroModal visible={dailyIntro.visible} icon={dailyIntroDef.icon} family={dailyIntroDef.family} art={dailyIntroDef.art}
@@ -993,6 +1062,36 @@ function DailyPhraseCard({
 export default memo(DailyPhraseCard);
 
 const styles = StyleSheet.create({
+  // ── «Фраза дня» новой Главной (референс 2.0): цитата-плашка слева, текст, две
+  //    круглые кнопки, арт справа. Размеры сняты с референса (2× кадр 863 px).
+  v2Card: {
+    minHeight: 116,
+    borderRadius: V2.radius.card,
+    borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    paddingVertical: 18,
+    paddingLeft: 16,
+    paddingRight: 16,
+    gap: 14,
+    overflow: 'hidden',
+  },
+  v2Art: { position: 'absolute', right: 0, top: 0, bottom: 0, width: '34%', opacity: 0.6 },
+  v2Quote: { width: 40, height: 40, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
+  v2QuoteMark: { fontSize: 30, lineHeight: 36, fontWeight: '800', marginTop: 6 },
+  v2Copy: { flex: 1, minWidth: 0, paddingRight: '24%' },
+  v2Kicker: { ...V2_TYPE.overline },
+  v2Phrase: { fontSize: 22, lineHeight: 27, fontWeight: '800', letterSpacing: -0.3, marginTop: 6 },
+  v2Translation: { ...V2_TYPE.body, marginTop: 4 },
+  v2Actions: { flexDirection: 'row', gap: 10, marginTop: 10 },
+  v2Round: {
+    width: 34,
+    height: 34,
+    borderRadius: 17,
+    borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   placeholder: {
     minHeight: 88,
     marginHorizontal: 16,

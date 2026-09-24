@@ -126,6 +126,13 @@ import HomeRewardCollectFlight from '../../components/home/HomeRewardCollectFlig
 import { useHomeRewardCollect } from '../../components/home/use_home_reward_collect';
 import { useHomeLevelUpCelebration } from '../../components/home/use_home_level_up_celebration';
 import { useHomeXpBarFill } from '../../components/home/use_home_xp_bar_fill';
+import HomeV2Header from '../../components/home/v2/HomeV2Header';
+import HomeV2ContinueCard from '../../components/home/v2/HomeV2ContinueCard';
+import HomeV2FeatureTiles from '../../components/home/v2/HomeV2FeatureTiles';
+import HomeV2TodayCard from '../../components/home/v2/HomeV2TodayCard';
+import { buildTodayTasksPlaceholder } from '../../components/home/v2/today_tasks_placeholder';
+import type { HomeFeatureTile } from '../../components/home/v2/home_v2_types';
+import { V2 } from '../../constants/v2Style';
 import { HOME_REWARD_DEMO_MODES } from '../reward_flight_particles';
 // зачем отдельное имя: в этом файле `Animated` — из react-native и им пользуются
 // сотни мест. Пульс счётчиков живёт на Reanimated (UI-поток), поэтому его
@@ -390,6 +397,9 @@ const HOME_DAILY_GREETING_KEY = 'home_daily_greeting_v1';
 const HOME_ONBOARDING_DONE_KEY = 'onboarding_done';
 // Контент карточек-подсказок и ключи хранения — app/home_feature_tips.ts
 // (общие с settings.tsx; повторные показы переключают юмористические наборы).
+/** Новая Главная 2.0 по референсу владельца 24.09. false — прежняя разметка (откат одной строкой). */
+const HOME_V2_LAYOUT = true;
+
 function getHomeFeatureTipTouchPoint(event: GestureResponderEvent): { x: number; y: number } | null {
     const nativeEvent = event.nativeEvent as typeof event.nativeEvent & {
         changedTouches?: Array<{ pageX?: number; pageY?: number }>;
@@ -3626,11 +3636,18 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
      *  зачем: карта дублирует _layout.tsx, поэтому при любом изменении набора
      *  вкладок её обязательно править вместе с ним — иначе переходы отсюда
      *  уводят не на тот экран. */
+    // зачем (2.0, D39): таббар «Главная · Обучение · Видео · Сообщество ·
+    // Настройки». Друзья — раздел «Сообщества» (индекс 3). Прежняя карта
+    // (друзья 2, настройки 3) устарела ещё с появления Арены и вела не туда.
     const TAB_IDX: Record<string, number> = {
-        '/(tabs)/friends': 2,
-        friends: 2,
-        '/(tabs)/settings': 3,
-        settings: 3,
+        '/(tabs)/video': 2,
+        video: 2,
+        '/(tabs)/community': 3,
+        community: 3,
+        '/(tabs)/friends': 3,
+        friends: 3,
+        '/(tabs)/settings': 4,
+        settings: 4,
     };
     // зачем (владелец 2026-09-22: «нажал 25 раз, даже анимации нет при
     // нажатии»): отсутствие анимации означает, что JS-поток занят и не успевает
@@ -4597,6 +4614,132 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   {homeHintText ?? s.home.statsPulseHint}
                 </Animated.Text>)}
             </Animated.View>);
+        const homeV2Days = Math.max(0, displayStreak);
+        const homeV2DaysRuForm = homeV2Days % 10 === 1 && homeV2Days % 100 !== 11
+            ? 0
+            : homeV2Days % 10 >= 2 && homeV2Days % 10 <= 4 && (homeV2Days % 100 < 12 || homeV2Days % 100 > 14) ? 1 : 2;
+        const homeV2DaysLabel = triLang(lang, {
+            ru: `${homeV2Days} ${['день', 'дня', 'дней'][homeV2DaysRuForm]}`,
+            uk: `${homeV2Days} ${['день', 'дні', 'днів'][homeV2DaysRuForm]}`,
+            en: `${homeV2Days} ${homeV2Days === 1 ? 'day' : 'days'}`,
+            es: `${homeV2Days} ${homeV2Days === 1 ? 'día' : 'días'}`,
+            'pt-BR': `${homeV2Days} ${homeV2Days === 1 ? 'dia' : 'dias'}`,
+            vi: `${homeV2Days} ngày`, id: `${homeV2Days} hari`, tr: `${homeV2Days} gün`,
+            pl: `${homeV2Days} ${homeV2Days === 1 ? 'dzień' : 'dni'}`,
+        });
+        const homeV2StreakWord = triLang(lang, { ru: 'Серия', uk: 'Серія', en: 'Streak', es: 'Racha', 'pt-BR': 'Sequência', vi: 'Chuỗi', id: 'Runtunan', tr: 'Seri', pl: 'Seria' });
+        const homeV2Tiles: HomeFeatureTile[] = [
+            {
+                key: 'lessons',
+                title: quickItems[0]!.label,
+                subtitle: triLang(lang, { ru: 'Грамматика шаг за шагом', uk: 'Граматика крок за кроком', en: 'Grammar step by step', es: 'Gramática paso a paso', 'pt-BR': 'Gramática passo a passo', vi: 'Ngữ pháp từng bước', id: 'Tata bahasa langkah demi langkah', tr: 'Adım adım dilbilgisi', pl: 'Gramatyka krok po kroku' }),
+                onPress: quickItems[0]!.onPress,
+            },
+            {
+                key: 'dialogs',
+                title: quickItems[1]!.label,
+                subtitle: triLang(lang, { ru: 'Реальные ситуации', uk: 'Реальні ситуації', en: 'Real-life situations', es: 'Situaciones reales', 'pt-BR': 'Situações reais', vi: 'Tình huống thực tế', id: 'Situasi nyata', tr: 'Gerçek durumlar', pl: 'Prawdziwe sytuacje' }),
+                onPress: quickItems[1]!.onPress,
+            },
+            {
+                key: 'cards',
+                title: quickItems[2]!.label,
+                subtitle: triLang(lang, { ru: 'Слова, фразы и выражения', uk: 'Слова, фрази й вирази', en: 'Words, phrases and idioms', es: 'Palabras, frases y expresiones', 'pt-BR': 'Palavras, frases e expressões', vi: 'Từ, cụm từ và thành ngữ', id: 'Kata, frasa, dan ungkapan', tr: 'Kelimeler, ifadeler, deyimler', pl: 'Słowa, zwroty i wyrażenia' }),
+                onPress: quickItems[2]!.onPress,
+            },
+        ];
+        // TODO(PM-259): заменить заглушку на useTodayTasks() программы 2.0.
+        const homeV2Tasks = buildTodayTasksPlaceholder(lang, lastLesson ? lastLessonName : null);
+        const renderHomeV2 = () => (
+          <BouncyScrollView ref={homeScrollRef} scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="fast" onScrollWorklet={homeScrollWorklet} onScrollEndDrag={handleHomeScrollSettled} onMomentumScrollEnd={handleHomeScrollSettled} onLayout={(event: LayoutChangeEvent) => {
+            homeViewportHeightRef.current = event.nativeEvent.layout.height;
+            refreshDailyPhraseVisibility();
+          }} scrollEventThrottle={16} contentContainerStyle={{ paddingBottom: tabContentBottomPad, paddingHorizontal: V2.homePad, gap: V2.gap }}>
+            <View style={{ paddingHorizontal: 12, paddingBottom: 6 }}>
+              <HomeV2Header
+                isPro={hasPremiumAccess}
+                tagline={triLang(lang, { ru: 'Маленькие фразы.\nБольшие возможности.', uk: 'Маленькі фрази.\nВеликі можливості.', en: 'Small phrases.\nBig possibilities.', es: 'Frases pequeñas.\nGrandes posibilidades.', 'pt-BR': 'Frases pequenas.\nGrandes possibilidades.', vi: 'Cụm từ nhỏ.\nCơ hội lớn.', id: 'Frasa kecil.\nPeluang besar.', tr: 'Küçük ifadeler.\nBüyük fırsatlar.', pl: 'Małe zwroty.\nWielkie możliwości.' })}
+                bellSlot={(
+                  <NotificationCenterButton
+                    isHomeTabActive={homeRuntimeActive}
+                    homeFocusTick={focusTick}
+                    requestedReportReply={requestedReportReply}
+                    onRequestedReportReplyHandled={handleRequestedReportReplyHandled}
+                  />
+                )}
+                avatarSlot={(
+                  <TouchableOpacity
+                    testID="home-hero-avatar-button"
+                    activeOpacity={0.82}
+                    onPress={openHomeProfile}
+                    accessibilityRole="button"
+                    accessibilityLabel={triLang(lang, { ru: 'Мой профиль', uk: 'Мій профіль', en: 'My profile', es: 'Mi perfil', 'pt-BR': 'Meu perfil', vi: 'Hồ sơ của tôi', id: 'Profil saya', tr: 'Profilim', pl: 'Mój profil' })}
+                    hitSlop={6}
+                  >
+                    <AvatarView avatar={userAvatar} level={level} size={48} auraId={effectiveUserAvatarAura} ownerActive={homeRuntimeActive} />
+                  </TouchableOpacity>
+                )}
+                stats={[
+                  {
+                    testID: 'home-v2-streak',
+                    icon: <Ionicons name="flame" size={22} color="#FF8A3D" />,
+                    value: homeV2DaysLabel,
+                    label: homeV2StreakWord,
+                    accessibilityLabel: `${homeV2StreakWord}: ${homeV2DaysLabel}`,
+                    onPress: () => { nav.push('/streak_stats'); },
+                  },
+                  {
+                    testID: 'home-v2-coins',
+                    icon: <Image source={homeHeaderRuneIconSource} style={{ width: 22, height: 22 }} contentFit="contain" />,
+                    value: String(rewardCollect.displayRunes(runesBalance)),
+                    label: triLang(lang, { ru: 'Монеты', uk: 'Монети', en: 'Coins', es: 'Monedas', 'pt-BR': 'Moedas', vi: 'Xu', id: 'Koin', tr: 'Jeton', pl: 'Monety' }),
+                    accessibilityLabel: homeRunesA11yLabel,
+                  },
+                ]}
+              />
+            </View>
+            {priorityCardVisible ? (
+              <HomeV2ContinueCard
+                overline={triLang(lang, { ru: 'Продолжить обучение', uk: 'Продовжити навчання', en: 'Continue learning', es: 'Seguir aprendiendo', 'pt-BR': 'Continuar aprendendo', vi: 'Tiếp tục học', id: 'Lanjutkan belajar', tr: 'Öğrenmeye devam et', pl: 'Kontynuuj naukę' }).toUpperCase()}
+                title={priorityCardTitle}
+                done={priorityCardShowsMistakes ? 0 : Math.max(0, Math.min(50, lastLesson?.progress ?? 0))}
+                total={priorityCardShowsMistakes ? Math.max(1, mistakeActiveCount) : 50}
+                badge={!priorityCardShowsMistakes && lastLesson ? triLang(lang, { ru: `Урок ${lastLesson.id}`, uk: `Урок ${lastLesson.id}`, en: `Lesson ${lastLesson.id}`, es: `Lección ${lastLesson.id}`, 'pt-BR': `Lição ${lastLesson.id}`, vi: `Bài ${lastLesson.id}`, id: `Pelajaran ${lastLesson.id}`, tr: `Ders ${lastLesson.id}`, pl: `Lekcja ${lastLesson.id}` }) : undefined}
+                accessibilityLabel={priorityCardShowsMistakes ? `${priorityCardTitle}: ${homeMistakesCounterLabel(mistakeActiveCount)}` : `${s.home.continueBtn}: ${lastLessonName}`}
+                onLongPress={priorityCardLongPressEnabled ? handleHomeLearningPriorityCardLongPress : undefined}
+                onPress={() => {
+                  if (homePriorityCardLongPressHandledRef.current) return;
+                  if (priorityCardShowsMistakes) { openHomeMistakesHub('home_priority_card'); return; }
+                  if (!lastLesson) return;
+                  logFeatureOpened('lesson_menu');
+                  trackFeatureOpened('lesson_menu').catch((error: unknown) => {
+                    if (__DEV__) console.warn('[HOME-NAV] track_feature_failed', error instanceof Error ? error.message : String(error)); // guard-ok
+                  });
+                  perfNavStart('lesson_menu');
+                  router.push({ pathname: '/lesson_menu', params: { id: String(lastLesson.id) } } as never);
+                }}
+              />
+            ) : null}
+            <HomeV2FeatureTiles tiles={homeV2Tiles} />
+            <HomeV2TodayCard
+              title={triLang(lang, { ru: 'Сегодня', uk: 'Сьогодні', en: 'Today', es: 'Hoy', 'pt-BR': 'Hoje', vi: 'Hôm nay', id: 'Hari ini', tr: 'Bugün', pl: 'Dziś' }).toUpperCase()}
+              tasks={homeV2Tasks}
+              onOpenTask={(task) => go(task.route)}
+            />
+            <View onLayout={(event: LayoutChangeEvent) => {
+                dailyPhraseLayoutRef.current = { top: event.nativeEvent.layout.y, height: event.nativeEvent.layout.height };
+                refreshDailyPhraseVisibility();
+            }}>
+              <DailyPhraseCard variant="homeV2" homeCardVisible={dailyPhraseCardVisible} />
+            </View>
+          </BouncyScrollView>
+        );
+        // зачем (владелец 24.09, 2.0): Главная ровно как на референсе — шапка,
+        // «Продолжить обучение», три плитки, «Сегодня», «Фраза дня». Остальные
+        // блоки (цель лиги, видео, опрос, подсказки, герой-статус) ушли с Главной:
+        // лига — в «Сообщество», видео — во вкладку «Видео». Старая разметка ниже
+        // больше не рисуется; её осиротевшую логику дочищает программа 2.0.
+        if (HOME_V2_LAYOUT) return renderHomeV2();
         return (<BouncyScrollView ref={homeScrollRef} scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="fast" onScrollWorklet={homeScrollWorklet} onScrollEndDrag={handleHomeScrollSettled} onMomentumScrollEnd={handleHomeScrollSettled} onLayout={(event: LayoutChangeEvent) => {
             homeViewportHeightRef.current = event.nativeEvent.layout.height;
             refreshDailyPhraseVisibility();

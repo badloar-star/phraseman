@@ -32,6 +32,8 @@ import {
 } from '../app/notification_delete_undo';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import PressableScale from './PressableScale';
+import { V2 } from '../constants/v2Style';
+import { useV2Palette } from './v2/useV2Palette';
 import MotionModal from './MotionModal';
 import auth from '@react-native-firebase/auth';
 import { arenaInviteRouteFromPayload } from '../app/arena_notification_route';
@@ -164,6 +166,7 @@ function NotificationCenterButton({
   requestedReportReply = null,
   onRequestedReportReplyHandled,
 }: NotificationCenterButtonProps) {
+  const v2 = useV2Palette();
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const isScreenFocused = useIsScreenFocused();
@@ -577,18 +580,18 @@ function NotificationCenterButton({
         variant="icon"
         pressScaleTo={1.02}
         accessibilityRole="button"
-        accessibilityLabel={copy.title}
+        accessibilityLabel={combinedUnreadCount > 0 ? `${copy.title}: ${combinedUnreadCount}` : copy.title}
         onPress={open}
         style={styles.headerPressable}
-        contentStyle={styles.headerButton}
+        contentStyle={[styles.headerButton, { backgroundColor: v2.control, borderColor: v2.hairline }]}
       >
+        {/* зачем (2.0, референс владельца 24.09): круглая кнопка на графите,
+            непрочитанное — светлая точка, число уходит в подпись для скринридера. */}
         <Reanimated.View style={[styles.headerIconWrap, bellShakeStyle]}>
-          <Ionicons name="notifications-outline" size={30} color={t.accent} />
+          <Ionicons name="notifications-outline" size={22} color={v2.textSecondary} />
         </Reanimated.View>
         {combinedUnreadCount > 0 ? (
-          <View testID="home-notification-center-badge" style={styles.badge}>
-            <Text style={styles.badgeText}>{combinedUnreadCount > 99 ? '99+' : String(combinedUnreadCount)}</Text>
-          </View>
+          <View testID="home-notification-center-badge" style={[styles.badge, { backgroundColor: v2.text, borderColor: v2.control }]} />
         ) : null}
       </PressableScale>
       </View>
@@ -655,32 +658,31 @@ function NotificationCenterButton({
 
 const styles = StyleSheet.create({
   headerPressable: {
-    width: 48,
-    height: 46,
+    width: V2.iconButton,
+    height: V2.iconButton,
   },
   headerButton: {
-    width: 48,
-    height: 46,
+    width: V2.iconButton,
+    height: V2.iconButton,
+    borderRadius: V2.iconButton / 2,
+    borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43
     alignItems: 'center',
     justifyContent: 'center',
   },
   headerIconWrap: {
-    width: 44,
-    height: 38,
+    width: 28,
+    height: 28,
     alignItems: 'center',
     justifyContent: 'center',
   },
   badge: {
     position: 'absolute',
-    top: 6,
-    right: 3,
-    minWidth: 20,
-    height: 20,
-    paddingHorizontal: 5,
-    borderRadius: 10,
-    backgroundColor: HOME_NOTIFICATION_BADGE_COLOR,
-    alignItems: 'center',
-    justifyContent: 'center',
+    top: 8,
+    right: 9,
+    width: 9,
+    height: 9,
+    borderRadius: 4.5,
+    borderWidth: 1.5,
   },
   badgeText: {
     color: HOME_NOTIFICATION_BADGE_TEXT_COLOR,

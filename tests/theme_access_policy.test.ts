@@ -79,11 +79,16 @@ describe('selectable theme access policy', () => {
   });
 
   it('uses that same policy for picker badges and persisted selection enforcement', () => {
+    // зачем (PM-064, D45): полка 'shards' опустела 2026-09-13 — isThemeShardPurchasable
+    // всегда false, модалка покупки темы за жемчуг и её CTA-ветка в пикере были
+    // недостижимым кодом и удалены (сам файл модалки — тоже; в settings_themes.tsx
+    // остался только комментарий с историей решения). ThemeContext.tsx сохраняет
+    // проверку как страховку контракта (если полка снова заполнится, замок должен
+    // сработать) — там она и проверяется.
     expect(pickerSource).toContain("} from './theme_access_policy';");
-    expect(pickerSource).toContain('isThemeShardPurchasable(candidate)');
-    expect(pickerSource).toContain('themePriceShards(item.mode)');
     expect(pickerSource).toContain('isThemeAvailable(item.mode)');
     expect(pickerSource).not.toContain('premiumOnly?: boolean;');
+    expect(pickerSource).not.toContain('<ThemeShardPaywallModal');
 
     expect(contextSource).toContain("from '../app/theme_access_policy';");
     expect(contextSource).toContain('isThemeUnlockedFor');

@@ -83,10 +83,8 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
     requiredTokens: ['if (!pulse || !CLUB_ENTRY_REPEATING_MOTION_ENABLED)', 'return () => anim.stop()'],
   },
   'app/flashcards/CardPackShardPaywallModal.tsx': owned('Paywall motion follows the visible prop and is stopped by effect cleanup.', ['if (visible) {', 'cancelAnimation(ctaPulse)']),
-  'app/ThemeShardPaywallModal.tsx': runtime(
-    'Theme purchase CTA pulse runs only while its visible modal owns focused foreground runtime and resets when that ownership ends.',
-    ['useRuntimeActive(visible)', 'if (!themePaywallRuntimeActive)', 'cancelAnimation(ctaPulse)'],
-  ),
+  // зачем (PM-064): app/ThemeShardPaywallModal.tsx удалён (D45, тема-«за-жемчуг»
+  // была недостижимым кодом с 2026-09-13) — запись реестра убрана вместе с файлом.
   // зачем 2026-08-22: подсказка-шеврон переписана (E2) — вечный цикл заменён на
   // ОГРАНИЧЕННЫЙ Animated.loop с iterations: 2, только первая карточка списка и
   // одноразовый флаг fc_hint_flags_v1. Гард AppState стал не нужен: цикл не

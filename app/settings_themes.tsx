@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo } from 'react';
 import { StyleSheet, useWindowDimensions, View, TouchableOpacity } from 'react-native';
 import { Image } from 'expo-image';
 import BouncyScrollView from '../components/BouncyScrollView';
@@ -35,15 +35,12 @@ import { themeDisplayName } from './theme_display_names';
 import {
   isThemePlusOnly,
   isThemeRewardOnly,
-  isThemeShardPurchasable,
-  themePriceShards,
 } from './theme_access_policy';
 import { oliveThemeTileA11y } from './olive_completion_chrome';
-import ThemeShardPaywallModal, { type ThemePaywallMode } from './ThemeShardPaywallModal';
-import { purchaseThemeWithShards } from './theme_shard_purchase';
-import { getShardsBalance, peekLastKnownShardsBalance } from './shards_system';
-import { onAppEvent } from './events';
-import { oskolokImageForPackShards } from './oskolok';
+// зачем (PM-064, D38/D45): полка тем «за жемчуг» опустела ещё 2026-09-13 —
+// isThemeShardPurchasable/themePriceShards всегда возвращали false/0, а
+// ThemeShardPaywallModal и purchaseThemeWithShards были недостижимым кодом.
+// D45 требует убрать все модалки «за жемчуг» целиком — модуль и модалка удалены.
 
 // зачем: «Примерочная» (решение владельца 2026-08-02) — каждая плашка рисуется
 // НАСТОЯЩИМИ токенами своей темы (никаких ручных дублей цветов: они уже
@@ -119,8 +116,6 @@ type ThemeTileProps = {
   label: string;
   nameColor: string;
   locked: boolean;
-  /** Замок за жемчуг: вместо бейджа Plus показываем цену — сразу видно, чем открыть. */
-  priceShards: number;
   applied: boolean;
   candidate: boolean;
   size: number;
@@ -141,13 +136,9 @@ type ThemeTileProps = {
 // и они все встают в один ряд крошечными кружками — баг, который поймал
 // владелец на скриншоте). Точный пиксельный размер, посчитанный один раз от
 // ширины экрана в SettingsThemes, исключает эту неопределённость целиком.
-const ThemeTile = memo(function ThemeTile({ option, label, nameColor, locked, priceShards, applied, candidate, size, onPress, lang }: ThemeTileProps) {
+const ThemeTile = memo(function ThemeTile({ option, label, nameColor, locked, applied, candidate, size, onPress, lang }: ThemeTileProps) {
   const palette: Theme = PALETTES[option.mode];
   const shadow = getVolumetricShadow(option.mode, palette, candidate ? 3 : 2);
-  // зачем: тема за жемчуг показывает ЦЕНУ с иконкой жемчужины прямо на плитке
-  // (требование владельца «иконка соответствующая возле темы»). Бейдж Plus
-  // остаётся только у «Оливы» — единственной темы, которую даёт подписка.
-  const shardBadgeImg = priceShards > 0 ? oskolokImageForPackShards(priceShards, option.mode) : null;
   return (
     <View style={{ width: size }}>
       <TapScale
@@ -171,18 +162,7 @@ const ThemeTile = memo(function ThemeTile({ option, label, nameColor, locked, pr
               плитку, tile уже overflow:'hidden' со скруглением, так что
               иконка обрежется точно по форме карточки. */}
           <Image source={THEME_ICONS[option.mode]} style={StyleSheet.absoluteFillObject} contentFit="cover" accessible={false} />
-          {locked && shardBadgeImg ? (
-            <View style={[styles.priceBadge, { backgroundColor: palette.bgCard }]}>
-              <Image source={shardBadgeImg} style={styles.priceBadgeIcon} contentFit="contain" accessible={false} />
-              <FlowText
-                testID={`theme-tile-price-${option.mode}`}
-                provenance="authored"
-                style={[styles.priceBadgeText, { color: palette.textPrimary }]}
-              >
-                {String(priceShards)}
-              </FlowText>
-            </View>
-          ) : locked ? (
+          {locked ? (
             <PlusBadge themeMode={option.mode} size="sm" style={styles.lockBadge} />
           ) : applied ? (
             <View style={[styles.appliedBadge, { backgroundColor: palette.accent }]}>
@@ -219,33 +199,12 @@ export default function SettingsThemes() {
     isGoldThemeUnlocked,
     isMidnightGrandfathered,
     isThemeAvailable,
-    markThemePurchased,
   } = useTheme();
   const { lang } = useLang();
   // зачем удалено (аудит 2026-08-25): мёртвая переменная — «Пульт» (remote-config
   // тумблер 'themes') уже учтён ВНУТРИ ThemeContext как liveThemeAccess и подмешан
   // в isThemeAvailable/isThemeUnlockedFor. Дублировать здесь — источник расхождения,
   // не защита.
-
-  // зачем: баланс берём из уже известного значения (peek) — первый кадр рисуется
-  // без ожидания диска/сети, точное значение догоняет фоном. Так экран не мигает
-  // нулём и не показывает спиннер там, где хватает локального состояния.
-  const [shardBalance, setShardBalance] = useState<number>(() => peekLastKnownShardsBalance() ?? 0);
-  const [purchaseTarget, setPurchaseTarget] = useState<PickerThemeMode | null>(null);
-  const [purchaseMode, setPurchaseMode] = useState<ThemePaywallMode>('confirm');
-  const [purchasing, setPurchasing] = useState(false);
-  /** Синхронный замок покупки — см. onConfirmPurchase (гонка двойного тапа). */
-  const purchasingRef = useRef(false);
-
-  useEffect(() => {
-    let cancelled = false;
-    void getShardsBalance().then((value) => { if (!cancelled) setShardBalance(value); }).catch(() => {});
-    // Баланс мог измениться в магазине жемчуга — слушаем общее событие.
-    const sub = onAppEvent('shards_balance_updated', ({ balance }) => {
-      if (typeof balance === 'number') setShardBalance(balance);
-    });
-    return () => { cancelled = true; sub.remove(); };
-  }, []);
 
   // зачем: явный пиксельный размер плитки вместо %/flexGrow — гарантирует РОВНО
   // 3 в ряд на любой ширине экрана (см. комментарий у ThemeTile). Экран открыт
@@ -267,9 +226,6 @@ export default function SettingsThemes() {
   // награда/«дедушка»). Экран больше не собирает свой замок из кусочков — раньше
   // это уже расходилось с реальным правом применить тему.
   const candidateLocked = !isThemeAvailable(candidate) && !DEV_THEME_UNLOCKS;
-  // Тема продаётся за жемчуг и ещё не куплена → CTA ведёт в покупку, не в пейвол Plus.
-  const candidateNeedsShards = candidateLocked && isThemeShardPurchasable(candidate);
-  const candidatePrice = themePriceShards(candidate);
   const candidateApplied = candidate === appliedThemeMode;
 
   const onRowPress = useCallback((mode: PickerThemeMode) => {
@@ -291,15 +247,6 @@ export default function SettingsThemes() {
 
   const onCtaPress = useCallback(() => {
     hapticTap();
-    if (candidateNeedsShards) {
-      // зачем: тема за жемчуг НЕ ведёт в подписочный пейвол — подписка её не
-      // открывает (решение владельца). Открываем валютную модалку, а режим
-      // выбираем сразу по известному балансу: человек не жмёт «купить», чтобы
-      // только тогда узнать, что жемчуга не хватает.
-      setPurchaseMode(shardBalance >= candidatePrice ? 'confirm' : 'insufficient');
-      setPurchaseTarget(candidate);
-      return;
-    }
     if (candidateLocked) {
       // Примерку не сбрасываем: юзер вернётся из пейволла в примеряемой теме,
       // а после покупки кнопка сама станет «Применить тему».
@@ -308,58 +255,9 @@ export default function SettingsThemes() {
     }
     if (candidateApplied) return;
     applyCandidate(candidate);
-  }, [candidate, candidateApplied, candidateLocked, candidateNeedsShards, candidatePrice, shardBalance, router, applyCandidate]);
+  }, [candidate, candidateApplied, candidateLocked, router, applyCandidate]);
 
-  /**
-   * Покупка темы. Optimistic: как только журнал подтвердил списание, тема
-   * открывается и применяется в этом же кадре — без ожидания диска и сети.
-   * Двойной тап защищён и флагом `purchasing`, и семантическим id операции.
-   */
-  const onConfirmPurchase = useCallback(async () => {
-    const mode = purchaseTarget;
-    // зачем ref, а не только состояние (аудит 2026-08-25): setPurchasing
-    // применяется асинхронно, поэтому ДВА быстрых тапа успевали пройти проверку
-    // `purchasing` до её обновления и уходили в две параллельные покупки. Ref
-    // меняется синхронно и закрывает окно гонки. Семантический operationId —
-    // вторая линия: даже проскочивший дубль не спишет жемчуг второй раз.
-    if (!mode || purchasingRef.current) return;
-    purchasingRef.current = true;
-    setPurchasing(true);
-    try {
-      const result = await purchaseThemeWithShards(mode);
-      if (result === 'ok' || result === 'already_owned') {
-        markThemePurchased(mode);
-        setPurchaseTarget(null);
-        applyCandidate(mode);
-        return;
-      }
-      if (result === 'insufficient') {
-        // Не закрываем модалку: переводим в режим «не хватает» — путь к пополнению
-        // остаётся в один тап, человек не теряет контекст покупки.
-        setPurchaseMode('insufficient');
-        return;
-      }
-      // 'failed'/'not_purchasable' — тост уже показан в purchaseThemeWithShards.
-      setPurchaseTarget(null);
-    } finally {
-      purchasingRef.current = false;
-      setPurchasing(false);
-    }
-  }, [purchaseTarget, markThemePurchased, applyCandidate]);
-
-  const ctaLabel = candidateNeedsShards
-    ? triLang(lang, {
-      ru: `Открыть за ${candidatePrice}`,
-      uk: `Відкрити за ${candidatePrice}`,
-      en: `Unlock for ${candidatePrice}`,
-      es: `Desbloquear por ${candidatePrice}`,
-      'pt-BR': `Desbloquear por ${candidatePrice}`,
-      vi: `Mở khoá với ${candidatePrice}`,
-      id: `Buka seharga ${candidatePrice}`,
-      tr: `${candidatePrice} ile aç`,
-      pl: `Odblokuj za ${candidatePrice}`,
-    })
-    : candidateLocked
+  const ctaLabel = candidateLocked
     ? triLang(lang, { ru: 'Открыть с Plus', uk: 'Відкрити з Plus', en: 'Unlock with Plus', es: 'Desbloquear con Plus', 'pt-BR': 'Desbloquear com Plus', vi: 'Mở khoá với Plus', id: 'Buka dengan Plus', tr: 'Plus ile aç', pl: 'Odblokuj z Plus' })
     : candidateApplied
       ? triLang(lang, { ru: 'Тема применена', uk: 'Тему застосовано', en: 'Theme applied', es: 'Tema aplicado', 'pt-BR': 'Tema aplicado', vi: 'Đã áp dụng chủ đề', id: 'Tema diterapkan', tr: 'Tema uygulandı', pl: 'Motyw zastosowany' })
@@ -393,9 +291,6 @@ export default function SettingsThemes() {
             <View style={styles.grid}>
               {THEME_OPTIONS.filter(item => !isThemeRewardOnly(item.mode) || DEV_THEME_UNLOCKS || (item.mode === 'gold' && isGoldThemeUnlocked)).map(item => {
                 const locked = !isThemeAvailable(item.mode) && !DEV_THEME_UNLOCKS;
-                // Цена показывается только на ЗАКРЫТОЙ теме: купленная выглядит
-                // как обычная доступная, ценник на ней был бы ложью.
-                const tilePrice = locked ? themePriceShards(item.mode) : 0;
                 return (
                   <ThemeTile
                     key={item.mode}
@@ -403,7 +298,6 @@ export default function SettingsThemes() {
                     label={themeLabel(item.mode, lang)}
                     nameColor={t.textPrimary}
                     locked={locked}
-                    priceShards={tilePrice}
                     size={tileSize}
                     applied={item.mode === appliedThemeMode}
                         candidate={item.mode === candidate}
@@ -463,29 +357,6 @@ export default function SettingsThemes() {
               </FlowText>
             </TouchableOpacity>
           </View>
-
-          {/* зачем: модалка монтируется только когда покупка реально начата —
-              лишний Modal в дереве стоит кадров на открытии экрана. */}
-          {purchaseTarget ? (
-            <ThemeShardPaywallModal
-              visible
-              mode={purchaseMode}
-              themeMode={purchaseTarget}
-              themeName={themeLabel(purchaseTarget, lang)}
-              themeIcon={THEME_ICONS[purchaseTarget]}
-              palette={PALETTES[purchaseTarget]}
-              priceShards={themePriceShards(purchaseTarget)}
-              balance={shardBalance}
-              lang={lang}
-              purchasing={purchasing}
-              onClose={() => { if (!purchasing) setPurchaseTarget(null); }}
-              onConfirmPurchase={onConfirmPurchase}
-              onGoToShards={() => {
-                setPurchaseTarget(null);
-                router.push({ pathname: '/shards_shop', params: { tab: 'catalog', source: 'theme_insufficient' } } as never);
-              }}
-            />
-          ) : null}
         </ContentWrap>
       </SafeAreaView>
     </ScreenGradient>
@@ -515,30 +386,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 8,
     right: 8,
-  },
-  // зачем: ценник читается на любой обложке темы — плотный фон карточки той же
-  // палитры (без обводки: запрет владельца), число крупное и жирное.
-  priceBadge: {
-    position: 'absolute',
-    top: 8,
-    right: 8,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 4,
-    paddingLeft: 5,
-    paddingRight: 8,
-    paddingVertical: 4,
-    borderRadius: 13,
-  },
-  priceBadgeIcon: {
-    width: 15,
-    height: 15,
-  },
-  priceBadgeText: {
-    fontSize: 12,
-    lineHeight: 15,
-    fontWeight: '900',
-    letterSpacing: -0.2,
   },
   appliedBadge: {
     position: 'absolute',

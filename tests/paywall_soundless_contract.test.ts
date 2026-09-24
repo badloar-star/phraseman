@@ -54,12 +54,12 @@ describe('paywall surfaces stay silent', () => {
 
   it('keeps shard paywall button feedback haptic-only', () => {
     const pressable = read('components/PressableHybrid.tsx');
-    const themePaywall = read('app/ThemeShardPaywallModal.tsx');
+    // зачем (PM-064): ThemeShardPaywallModal удалён — полка тем «за жемчуг»
+    // опустела 2026-09-13, модалка была недостижимым кодом (D45).
     const cardPackPaywall = read('app/flashcards/CardPackShardPaywallModal.tsx');
 
     expect(pressable).toContain('withSound?: boolean');
     expect(pressable).toMatch(/if \(!silent && withHaptic && withSound\)\s*\{/u);
-    expect(themePaywall).toContain('withSound={false}');
     expect(cardPackPaywall).toContain('withSound={false}');
   });
 });

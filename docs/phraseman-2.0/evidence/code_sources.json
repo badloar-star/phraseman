@@ -1,0 +1,89 @@
+{
+  "checked_date": "2026-09-23",
+  "method": "GitHub connector read in this conversation",
+  "repository": "badloar-star/phraseman",
+  "sample_sha": "79c3f6984528beb2368cf64304b2067f3685cff6",
+  "canonical_baseline_confirmed": false,
+  "deployment_verified": false,
+  "entries": [
+    {
+      "id": "C01",
+      "path": "app/energy_contract.ts",
+      "sha": "79c3f6984528beb2368cf64304b2067f3685cff6",
+      "requested_start_line": 1,
+      "requested_end_line": 180,
+      "url": "https://github.com/badloar-star/phraseman/blob/79c3f6984528beb2368cf64304b2067f3685cff6/app/energy_contract.ts#L1-L180",
+      "limits": "Constants and table read; runtime flags unknown."
+    },
+    {
+      "id": "C02",
+      "path": "app/energy_system.ts",
+      "sha": "79c3f6984528beb2368cf64304b2067f3685cff6",
+      "requested_start_line": 1,
+      "requested_end_line": 170,
+      "url": "https://github.com/badloar-star/phraseman/blob/79c3f6984528beb2368cf64304b2067f3685cff6/app/energy_system.ts#L1-L170",
+      "limits": "Initial range read; not all callers or writes."
+    },
+    {
+      "id": "C03",
+      "path": "app/_layout.tsx",
+      "sha": "79c3f6984528beb2368cf64304b2067f3685cff6",
+      "requested_start_line": 1,
+      "requested_end_line": 275,
+      "url": "https://github.com/badloar-star/phraseman/blob/79c3f6984528beb2368cf64304b2067f3685cff6/app/_layout.tsx#L1-L275",
+      "limits": "Two overlapping ranges read. Imports are not measured execution frequency."
+    },
+    {
+      "id": "C04",
+      "path": "app/app_resume_policy.ts",
+      "sha": "79c3f6984528beb2368cf64304b2067f3685cff6",
+      "requested_start_line": 1,
+      "requested_end_line": 195,
+      "url": "https://github.com/badloar-star/phraseman/blob/79c3f6984528beb2368cf64304b2067f3685cff6/app/app_resume_policy.ts#L1-L195",
+      "limits": "Queue source read; callsites and device timing not established."
+    },
+    {
+      "id": "C05",
+      "path": "functions/src/index.ts",
+      "sha": "79c3f6984528beb2368cf64304b2067f3685cff6",
+      "requested_start_line": 1,
+      "requested_end_line": 150,
+      "url": "https://github.com/badloar-star/phraseman/blob/79c3f6984528beb2368cf64304b2067f3685cff6/functions/src/index.ts#L1-L150",
+      "limits": "Exports/imports only; deployed inventory not established."
+    },
+    {
+      "id": "C06",
+      "path": "firebase.json",
+      "sha": "79c3f6984528beb2368cf64304b2067f3685cff6",
+      "requested_start_line": 1,
+      "requested_end_line": 190,
+      "url": "https://github.com/badloar-star/phraseman/blob/79c3f6984528beb2368cf64304b2067f3685cff6/firebase.json#L1-L190",
+      "limits": "Configuration range read; deployed settings unknown."
+    },
+    {
+      "id": "C07",
+      "path": "scripts/canonical_workspace_guard.mjs",
+      "sha": "79c3f6984528beb2368cf64304b2067f3685cff6",
+      "requested_start_line": 1,
+      "requested_end_line": 190,
+      "url": "https://github.com/badloar-star/phraseman/blob/79c3f6984528beb2368cf64304b2067f3685cff6/scripts/canonical_workspace_guard.mjs#L1-L190",
+      "limits": "Read source; user filesystem not inspected."
+    },
+    {
+      "id": "C08",
+      "path": "package.json",
+      "sha": "79c3f6984528beb2368cf64304b2067f3685cff6",
+      "requested_start_line": null,
+      "requested_end_line": null,
+      "url": "https://github.com/badloar-star/phraseman/blob/79c3f6984528beb2368cf64304b2067f3685cff6/package.json",
+      "limits": "Partial truncated connector response. No claim of full dependency inventory."
+    }
+  ],
+  "default_branch_check": {
+    "name": "master",
+    "sha": "53bb63352751f1ab3499fad3e8a035890e0d21f9",
+    "commit_date": "2026-08-08",
+    "checked_date": "2026-09-23",
+    "url": "https://api.github.com/repos/badloar-star/phraseman/branches/master"
+  }
+}

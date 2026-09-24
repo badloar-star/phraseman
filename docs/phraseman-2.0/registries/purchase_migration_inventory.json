@@ -1,0 +1,15 @@
+{
+  "status": "NOT_YET_AUDITED",
+  "purpose": "Форма для фактического аудита. Пустые entries не означают, что объектов нет. Не публиковать данные покупателей.",
+  "columns": [
+    "pseudonymous_account_ref",
+    "product_type",
+    "old_entitlement",
+    "new_entitlement",
+    "compensation_rule",
+    "idempotency_key",
+    "status",
+    "evidence"
+  ],
+  "entries": []
+}

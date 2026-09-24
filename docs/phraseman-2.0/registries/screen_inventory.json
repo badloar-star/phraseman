@@ -1,0 +1,14 @@
+{
+  "status": "NOT_YET_AUDITED",
+  "purpose": "Форма для фактического аудита. Пустые entries не означают, что объектов нет. Не публиковать данные покупателей.",
+  "columns": [
+    "route",
+    "entry_points",
+    "exclusive_to_feature",
+    "decision",
+    "new_design_approval",
+    "deeplink_migration",
+    "evidence"
+  ],
+  "entries": []
+}

@@ -1,0 +1,52 @@
+{
+  "version": "1.0",
+  "date": "2026-09-23",
+  "private_source_warning": "Do not automatically publish these personal source notes/screenshots to a public repository.",
+  "files": [
+    {
+      "path": "sources/01_original_message.txt",
+      "bytes": 76012,
+      "sha256": "206b30d1f2df9cc657d93a51ca670dcf20aa283d8c8b1fca9fdbd30f15775b7f"
+    },
+    {
+      "path": "sources/02_screenshot_transcript.md",
+      "bytes": 11302,
+      "sha256": "9b2e06b7c38cb38804aefd4c2a9e86811301201bde025d9e257f70763b0b8134"
+    },
+    {
+      "path": "sources/03_design_rejection.txt",
+      "bytes": 625,
+      "sha256": "a32500f1066c5ab9ad335cd01e52c68d4ba0588aff7e66dcb20a56c71efeac86"
+    },
+    {
+      "path": "sources/images/IMG_2997.jpeg",
+      "bytes": 404454,
+      "sha256": "2ca9783be18a7533c85c4938e22539f7aa449e8db56c402735ece1ec5db87b9b"
+    },
+    {
+      "path": "sources/images/IMG_2998.jpeg",
+      "bytes": 389807,
+      "sha256": "f8b457be84f29636a223e9afe6d75ed638b6992c73ae0b4dc8c24ff0ab5ddd8f"
+    },
+    {
+      "path": "sources/images/IMG_2999.jpeg",
+      "bytes": 402757,
+      "sha256": "cc959afd8cb83c8f48adb53339b113db081f4b004608c7c6981ddf784c19262d"
+    },
+    {
+      "path": "sources/images/IMG_3001.jpeg",
+      "bytes": 420980,
+      "sha256": "119886d753f3e3c381e41429790bd18dbe99beb4f834563f9a030a124aa929fb"
+    },
+    {
+      "path": "sources/images/IMG_3002.jpeg",
+      "bytes": 450808,
+      "sha256": "d341035e12e0289e1252d5dbe8281bc9b833d83b79eac4548a348dac2722260b"
+    },
+    {
+      "path": "sources/images/IMG_3003.jpeg",
+      "bytes": 436736,
+      "sha256": "549b6190694a3678953ba935a6cfe47737215e97c79326335ada2113d532f1db"
+    }
+  ]
+}

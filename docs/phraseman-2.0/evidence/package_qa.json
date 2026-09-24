@@ -1,0 +1,35 @@
+{
+  "date": "2026-09-23",
+  "scope": "Package self-check only. No independent agent review or application execution.",
+  "guide": {
+    "pages": 8,
+    "renderer": "LibreOffice via skill render_docx.py",
+    "all_pages_visually_inspected": true,
+    "visual_result": "PASS: no clipping, overlaps, missing glyphs or orphan overflow page"
+  },
+  "board": {
+    "engine": "Chromium / Playwright",
+    "all_tasks_rendered": 257,
+    "search": "PASS",
+    "details": "PASS",
+    "epic_filter": "PASS",
+    "status_filter": "PASS",
+    "model_filter": "PASS",
+    "mobile_horizontal_overflow": false,
+    "page_errors": [],
+    "load_method": "HTML content loaded with Playwright set_content. This environment blocks file:// navigation; all content, filters and scripts tested without external services.",
+    "desktop_visual_check": "PASS"
+  },
+  "prompts": {
+    "generated_all": 257,
+    "unknown_id": "correct ValueError"
+  },
+  "negative_validator_tests": {
+    "done_without_evidence": "correctly rejected",
+    "dependency_cycle": "correctly rejected"
+  },
+  "app_code_tests": "NOT_RUN",
+  "device_profiling": "NOT_RUN",
+  "billing_audit": "NOT_RUN",
+  "new_app_design_approval": "NOT_APPROVED"
+}

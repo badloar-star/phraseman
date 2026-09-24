@@ -1,0 +1,9 @@
+{
+  "BASELINE_SHA_APPROVED": "Точный HEAD/ветка/релиз сопоставлены; владелец согласовал рабочую базу.",
+  "OWNER_DECISION_RECORDED": "Явное решение по открытому вопросу записано с датой и источником.",
+  "PROPOSED_SCOPE_APPROVED": "Дополнительная рекомендация не реализуется без согласования.",
+  "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED": "Аудит затронутого контура и карточка влияния прочитаны владельцем.",
+  "IMPLEMENTATION_AND_MIGRATION_READY": "Код/совместимость готовы к проверке или выпуску, есть rollback.",
+  "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "Владелец одобрил новый макет соответствующего экрана.",
+  "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE": "Перед удалением согласованы сохранность данных, совместимость, backup и rollback."
+}

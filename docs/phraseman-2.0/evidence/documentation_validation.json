@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "tasks": 257,
+  "requirements": 257,
+  "epics": 24,
+  "acceptance_criteria": 509,
+  "accepted_criteria": 0,
+  "status_counts": {
+    "deferred": 6,
+    "needs_decision": 19,
+    "planned": 221,
+    "ready_audit": 11
+  },
+  "errors": [],
+  "scope": "Documentation integrity only; not source-code, billing, device, migration or visual app validation."
+}

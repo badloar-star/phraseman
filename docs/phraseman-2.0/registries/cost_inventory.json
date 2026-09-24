@@ -1,0 +1,18 @@
+{
+  "status": "NOT_YET_AUDITED",
+  "purpose": "Форма для фактического аудита. Пустые entries не означают, что объектов нет. Не публиковать данные покупателей.",
+  "columns": [
+    "task_id",
+    "operation",
+    "before_count",
+    "after_count",
+    "frequency",
+    "unit_price_date",
+    "region",
+    "currency",
+    "one_off_or_recurring",
+    "estimate_or_measured",
+    "evidence"
+  ],
+  "entries": []
+}

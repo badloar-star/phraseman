@@ -1,0 +1,3816 @@
+[
+  {
+    "id": "R001",
+    "requirement": "Установить фактическую рабочую ветку и релизный SHA",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 22360,
+      "end_char": 22384,
+      "excerpt": "актуальные данные в коде",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-001"
+    ]
+  },
+  {
+    "id": "R002",
+    "requirement": "Установить документацию как источник продолжения",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 28993,
+      "end_char": 29024,
+      "excerpt": "не на контекст сжатие контекста",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-002"
+    ]
+  },
+  {
+    "id": "R003",
+    "requirement": "Сверить требования с исходной записью и шестью скриншотами",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 40909,
+      "end_char": 40960,
+      "excerpt": "каждую задачу для того чтобы не пропустить ни одной",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-003"
+    ]
+  },
+  {
+    "id": "R004",
+    "requirement": "Построить полный реестр экранов и маршрутов",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 36054,
+      "end_char": 36082,
+      "excerpt": "экраны разделы все удаляются",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-004"
+    ]
+  },
+  {
+    "id": "R005",
+    "requirement": "Построить реестр файлов и зависимостей",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 35493,
+      "end_char": 35532,
+      "excerpt": "все строчки кода каждой каждого файлика",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-005"
+    ]
+  },
+  {
+    "id": "R006",
+    "requirement": "Инвентаризировать фоновые работы и подписки",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 712,
+      "end_char": 744,
+      "excerpt": "фоновые задачи фоновые подгрузки",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-006"
+    ]
+  },
+  {
+    "id": "R007",
+    "requirement": "Сопоставить код и реально развёрнутые cron/functions",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 13197,
+      "end_char": 13244,
+      "excerpt": "мы удаляем кроны полностью все которые не нужны",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-007"
+    ]
+  },
+  {
+    "id": "R008",
+    "requirement": "Собрать реестр пользовательских строк",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 25386,
+      "end_char": 25417,
+      "excerpt": "все тексты в приложении видимые",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-008"
+    ]
+  },
+  {
+    "id": "R009",
+    "requirement": "Инвентаризировать ассеты и тяжёлые библиотеки",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 22594,
+      "end_char": 22612,
+      "excerpt": "убрать лишнее сеты",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-009"
+    ]
+  },
+  {
+    "id": "R010",
+    "requirement": "Снять воспроизводимый baseline на слабом устройстве",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 952,
+      "end_char": 973,
+      "excerpt": "юзеры скидывают видео",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-010"
+    ]
+  },
+  {
+    "id": "R011",
+    "requirement": "Запросить реальные расходы и конверсии",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 4639,
+      "end_char": 4666,
+      "excerpt": "смотрим статистику по полам",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-011"
+    ]
+  },
+  {
+    "id": "R012",
+    "requirement": "Зафиксировать основной путь YouTube → набор → тренировка",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 1359,
+      "end_char": 1434,
+      "excerpt": "человек который скачивает приложение он скачивает его для определённой цели",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-012"
+    ]
+  },
+  {
+    "id": "R013",
+    "requirement": "Утвердить общую модель без XP и старых уровней",
+    "basis": "DECISION",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 41059,
+      "end_char": 41107,
+      "excerpt": "Убрать уровеньзаменит на повышения уровня монеты",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-013"
+    ]
+  },
+  {
+    "id": "R014",
+    "requirement": "Разрешить связь ранга монеты и доступа к диалогам",
+    "basis": "DECISION",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S67",
+      "excerpt": "Отдельное уточнение: «Не плюс а уровень». После удаления обычного уровня необходимо согласовать использование ранга монеты; это явная рабочая интерпретация, не повод оставить скрытый XP.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-014"
+    ]
+  },
+  {
+    "id": "R015",
+    "requirement": "Закрыть конфликт 100 / 10 / 5 энергии",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 20814,
+      "end_char": 20840,
+      "excerpt": "пять кстати да пять кстати",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-015"
+    ]
+  },
+  {
+    "id": "R016",
+    "requirement": "Развести бесплатные части Learning V1 и V2",
+    "basis": "DECISION",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 2376,
+      "end_char": 2392,
+      "excerpt": "первые три урока",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-016"
+    ]
+  },
+  {
+    "id": "R017",
+    "requirement": "Определить лимиты своих наборов и карточек",
+    "basis": "DECISION",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 7250,
+      "end_char": 7264,
+      "excerpt": "до 50 карточек",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-017"
+    ]
+  },
+  {
+    "id": "R018",
+    "requirement": "Отклонить оплату за удаление и выбрать безопасный лимит",
+    "basis": "PROPOSAL",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 12495,
+      "end_char": 12525,
+      "excerpt": "удаление карточек тоже прятать",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-018"
+    ]
+  },
+  {
+    "id": "R019",
+    "requirement": "Развести ранг, титул автора и улучшенную визитку",
+    "basis": "DECISION",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 17257,
+      "end_char": 17295,
+      "excerpt": "титулы но назвать их как-то по-другому",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-019"
+    ]
+  },
+  {
+    "id": "R020",
+    "requirement": "Уточнить исключения к TTS",
+    "basis": "DECISION",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 11527,
+      "end_char": 11549,
+      "excerpt": "вот либо наш голос уже",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-020"
+    ]
+  },
+  {
+    "id": "R021",
+    "requirement": "Зафиксировать отказ от макета «Графит»",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/03_design_rejection.txt",
+      "start_char": 0,
+      "end_char": 362,
+      "excerpt": "Последнее сообщение владельца в этой сессии:\nэм?а где все остальное???))) кстати твой мкет говно! оно ыглдяит вообще как приложение из интернет 2000х\n\nа где все документы и тд\n\nСтатус: PhraseMan_Home_Graphite.png ОТКЛОНЁН. Не переносить его стиль в реализацию. Ни один новый дизайн не утверждён. Этот пакет — документация, не выдача новых согласованных макетов.\n",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-021"
+    ]
+  },
+  {
+    "id": "R022",
+    "requirement": "Подготовить три действительно разных дизайн-направления",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 39977,
+      "end_char": 40005,
+      "excerpt": "покажешь несколько вариантов",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-022"
+    ]
+  },
+  {
+    "id": "R023",
+    "requirement": "Показать каждое направление на пяти главных экранах",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 40081,
+      "end_char": 40101,
+      "excerpt": "скажем пять разделов",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-023"
+    ]
+  },
+  {
+    "id": "R024",
+    "requirement": "Получить явное утверждение направления",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 39890,
+      "end_char": 39938,
+      "excerpt": "я выбрал вот как будет выглядеть новый интерфейс",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-024"
+    ]
+  },
+  {
+    "id": "R025",
+    "requirement": "Создать единую нейтральную тёмную систему",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 30992,
+      "end_char": 31012,
+      "excerpt": "одну тему интерфейса",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-025"
+    ]
+  },
+  {
+    "id": "R026",
+    "requirement": "Установить компактную шкалу типографики",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S25",
+      "excerpt": "Строго ограничить типографику: «2 шрифта ... два размера ... жирный и обычный». Итоговый смысл: единая компактная система, не произвольные шрифты на экранах. Буквальная реализация обсуждается в дизайн-контракте.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-026"
+    ]
+  },
+  {
+    "id": "R027",
+    "requirement": "Унифицировать кнопки и поверхности",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 19628,
+      "end_char": 19659,
+      "excerpt": "все плашки все кнопки полностью",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-027"
+    ]
+  },
+  {
+    "id": "R028",
+    "requirement": "Заменить крупные плитки удобными списками",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 6568,
+      "end_char": 6600,
+      "excerpt": "убрать вот эти квадраты здоровые",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-028"
+    ]
+  },
+  {
+    "id": "R029",
+    "requirement": "Исправить горизонтальные отступы и safe area",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S04",
+      "excerpt": "Тексты «Практика» / «Сегодня» на главной слишком близко к краю; исправить отступы.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-029"
+    ]
+  },
+  {
+    "id": "R030",
+    "requirement": "Убрать декоративные эмодзи и мультяшные ассеты",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 40525,
+      "end_char": 40552,
+      "excerpt": "мультяшность удалить эмодзи",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-030"
+    ]
+  },
+  {
+    "id": "R031",
+    "requirement": "Заменить иконки разделов на согласованный набор",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 31533,
+      "end_char": 31566,
+      "excerpt": "соответствующие как бы библиотеке",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-031"
+    ]
+  },
+  {
+    "id": "R032",
+    "requirement": "Установить allowlist движения",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 31367,
+      "end_char": 31406,
+      "excerpt": "минимальный слой всяких разных анимаций",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-032"
+    ]
+  },
+  {
+    "id": "R033",
+    "requirement": "Проверить доступность нового стиля",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 10903,
+      "end_char": 10924,
+      "excerpt": "всё так элитно строго",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-033"
+    ]
+  },
+  {
+    "id": "R034",
+    "requirement": "Распространить новый стиль на все оставляемые экраны",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 39774,
+      "end_char": 39823,
+      "excerpt": "мне не надо сохранение интерфейса в любом разделе",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-034"
+    ]
+  },
+  {
+    "id": "R035",
+    "requirement": "Спроектировать главную вокруг практики карточек",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 6239,
+      "end_char": 6277,
+      "excerpt": "акцент на разделах на разделе карточки",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-035"
+    ]
+  },
+  {
+    "id": "R036",
+    "requirement": "Удалить точку входа арены из навигации",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 14538,
+      "end_char": 14553,
+      "excerpt": "арена полностью",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-036"
+    ]
+  },
+  {
+    "id": "R037",
+    "requirement": "Убрать иконки спинов и подарков с главной",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S17",
+      "excerpt": "Не показывать иконки спинов и подарков на главной.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-037"
+    ]
+  },
+  {
+    "id": "R038",
+    "requirement": "Убрать колокольчик из хедера",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S02",
+      "excerpt": "Убрать уведомления из хедера; социальные события перенести к друзьям во вкладку «Активность» / «Социальная активность».",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-038"
+    ]
+  },
+  {
+    "id": "R039",
+    "requirement": "Убрать лишние подписи блока статистики",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S16",
+      "excerpt": "Убрать тексты в блоке статистики.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-039"
+    ]
+  },
+  {
+    "id": "R040",
+    "requirement": "Удалить «Продолжение скоро»",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S23",
+      "excerpt": "Убрать «Продолжение скоро».",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-040"
+    ]
+  },
+  {
+    "id": "R041",
+    "requirement": "Убрать XP-полосу и старый уровень с главной",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 41178,
+      "end_char": 41191,
+      "excerpt": "никаой полосы",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-041"
+    ]
+  },
+  {
+    "id": "R042",
+    "requirement": "Добавить спокойное действие повышения ранга монеты",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 41456,
+      "end_char": 41490,
+      "excerpt": "прям на главной когда юзер накопит",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-042"
+    ]
+  },
+  {
+    "id": "R043",
+    "requirement": "Разместить энергию Free в хедере",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S07",
+      "excerpt": "Перенести энергию в хедер.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-043"
+    ]
+  },
+  {
+    "id": "R044",
+    "requirement": "Заменить перо статичным огнём серии",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S50",
+      "excerpt": "Вместо пера контур огня: каждый день контур толще/заполненнее, к десятому дню заполнен; далее ярче от центра. Не постоянная пульсация.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-044"
+    ]
+  },
+  {
+    "id": "R045",
+    "requirement": "Добавить понятную кнопку системного sharing",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 16995,
+      "end_char": 17030,
+      "excerpt": "в хедере на главной кнопочку шеринг",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-045"
+    ]
+  },
+  {
+    "id": "R046",
+    "requirement": "Удалить рулетку и экраны спинов",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 7913,
+      "end_char": 7942,
+      "excerpt": "удаляем спины вообще как коды",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-046"
+    ]
+  },
+  {
+    "id": "R047",
+    "requirement": "Удалить все источники выдачи спинов",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S33",
+      "excerpt": "Удалить выдачу спинов за любые действия.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-047"
+    ]
+  },
+  {
+    "id": "R048",
+    "requirement": "Удалить раздел подарков и его эксклюзивные зависимости",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 7884,
+      "end_char": 7912,
+      "excerpt": "вычищаем удаляем все подарки",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-048"
+    ]
+  },
+  {
+    "id": "R049",
+    "requirement": "Удалить бонус входа и welcome-подарки",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 7829,
+      "end_char": 7868,
+      "excerpt": "бонус входа бонус дня бонус возвращения",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-049"
+    ]
+  },
+  {
+    "id": "R050",
+    "requirement": "Удалить недельные бонусы и PerfectWeek",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 7793,
+      "end_char": 7806,
+      "excerpt": "бонусы недели",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-050"
+    ]
+  },
+  {
+    "id": "R051",
+    "requirement": "Удалить comeback-бонусы и «мы ждали»",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 7851,
+      "end_char": 7868,
+      "excerpt": "бонус возвращения",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-051"
+    ]
+  },
+  {
+    "id": "R052",
+    "requirement": "Удалить «новый день» и полёт рун",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S51",
+      "excerpt": "Удалить анимации главной, «новый день», полёт рун, подарок за вход, бонус дня, недели, «мы ждали». Вычистить код; ничто декоративное не преграждает вход.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-052"
+    ]
+  },
+  {
+    "id": "R053",
+    "requirement": "Удалить тосты достижений",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 34876,
+      "end_char": 34904,
+      "excerpt": "тосты тосты тосты достижений",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-053"
+    ]
+  },
+  {
+    "id": "R054",
+    "requirement": "Убрать достижения удалённых механик",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 35724,
+      "end_char": 35768,
+      "excerpt": "удалить соответствие на достижение некоторые",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-054"
+    ]
+  },
+  {
+    "id": "R055",
+    "requirement": "Удалить множители опыта и бусты",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S09",
+      "excerpt": "Убрать все множители опыта.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-055"
+    ]
+  },
+  {
+    "id": "R056",
+    "requirement": "Удалить сундук лиги и общий сундук друзей",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 30214,
+      "end_char": 30260,
+      "excerpt": "сундук лиги точно также как и сундук в друзьях",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-056"
+    ]
+  },
+  {
+    "id": "R057",
+    "requirement": "Убрать магазин и покупки жемчуга",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S28",
+      "excerpt": "Удалить жемчуг, товары и раздел, включая карточки за жемчуг, вычистить код.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-057"
+    ]
+  },
+  {
+    "id": "R058",
+    "requirement": "Прекратить начисление жемчуга во всех сценариях",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S34",
+      "excerpt": "Удалить выдачу жемчуга за любые действия.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-058"
+    ]
+  },
+  {
+    "id": "R059",
+    "requirement": "Мигрировать остаток жемчуга в монеты 1:10",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S52",
+      "excerpt": "Всем, кто имел жемчуг, выдать эквивалент рун 1 к 10. Для 2.0 целевая валюта — монеты. Отдельно проверить оплаченные права и компенсацию удаляемой косметики.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-059"
+    ]
+  },
+  {
+    "id": "R060",
+    "requirement": "Удалить жемчужные товарные плашки карточек",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 9217,
+      "end_char": 9252,
+      "excerpt": "удаляем карточки платные за жемчуге",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-060"
+    ]
+  },
+  {
+    "id": "R061",
+    "requirement": "Удалить старые аватары, ауры и редакторы",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 8149,
+      "end_char": 8191,
+      "excerpt": "убираем аватарки мы убираем ауры полностью",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-061"
+    ]
+  },
+  {
+    "id": "R062",
+    "requirement": "Удалить гексаэдрические аватары и ассеты",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 41240,
+      "end_char": 41260,
+      "excerpt": "гексаедры как автары",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-062"
+    ]
+  },
+  {
+    "id": "R063",
+    "requirement": "Удалить студию образов из релиза",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 8192,
+      "end_char": 8223,
+      "excerpt": "с тудию образом мы тоже убираем",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-063"
+    ]
+  },
+  {
+    "id": "R064",
+    "requirement": "Удалить декоративные темы и переключатель",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 30146,
+      "end_char": 30175,
+      "excerpt": "отказаться от теми интерфейса",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-064"
+    ]
+  },
+  {
+    "id": "R065",
+    "requirement": "Удалить рубашки и цвета наборов",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S26",
+      "excerpt": "Убрать рубашки/ассеты наборов, все наборы карточек оформлены одинаково.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-065"
+    ]
+  },
+  {
+    "id": "R066",
+    "requirement": "Удалить неприменимые ресурсы и импорты косметики",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 30381,
+      "end_char": 30417,
+      "excerpt": "все полностью импорт мы тоже убираем",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-066"
+    ]
+  },
+  {
+    "id": "R067",
+    "requirement": "Инвентаризировать и удалить runtime XP",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 41123,
+      "end_char": 41161,
+      "excerpt": "удаляем все что связано сопытом вообще",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-067"
+    ]
+  },
+  {
+    "id": "R068",
+    "requirement": "Удалить старые level-up награды и расчёт уровня",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 41194,
+      "end_char": 41227,
+      "excerpt": "никого уровня больше как такового",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-068"
+    ]
+  },
+  {
+    "id": "R069",
+    "requirement": "Мигрировать кошелёк рун в монеты без потери баланса",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 8675,
+      "end_char": 8705,
+      "excerpt": "руны и мы переводим на монетки",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-069"
+    ]
+  },
+  {
+    "id": "R070",
+    "requirement": "Определить единый coin identity token",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S59",
+      "excerpt": "Один стиль/ассет монеты используется как валюта и аватар. Начальный дизайн классический.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-070"
+    ]
+  },
+  {
+    "id": "R071",
+    "requirement": "Утвердить число рангов и терминологию",
+    "basis": "DECISION",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 41685,
+      "end_char": 41698,
+      "excerpt": "15-30 уровней",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-071"
+    ]
+  },
+  {
+    "id": "R072",
+    "requirement": "Проверить экономику линейной цены апгрейдов",
+    "basis": "DECISION",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 41701,
+      "end_char": 41734,
+      "excerpt": "каждый доррже предыдущего на тыщу",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-072"
+    ]
+  },
+  {
+    "id": "R073",
+    "requirement": "Разработать систему дизайнов монеты",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 41810,
+      "end_char": 41830,
+      "excerpt": "Ассеты надо придумат",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-073"
+    ]
+  },
+  {
+    "id": "R074",
+    "requirement": "Подготовить короткие ранговые подписи",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 41859,
+      "end_char": 41888,
+      "excerpt": "для каждогтуровня новый титул",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-074"
+    ]
+  },
+  {
+    "id": "R075",
+    "requirement": "Сделать атомарное повышение ранга",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 41540,
+      "end_char": 41563,
+      "excerpt": "у него списывются коины",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-075"
+    ]
+  },
+  {
+    "id": "R076",
+    "requirement": "Обновлять аватар и валюту после подтверждённого апгрейда",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 41758,
+      "end_char": 41788,
+      "excerpt": "И меняется типа и стиль коинов",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-076"
+    ]
+  },
+  {
+    "id": "R077",
+    "requirement": "Создать разовую анимацию превращения монеты",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 41595,
+      "end_char": 41617,
+      "excerpt": "подсказкаветв крутится",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-077"
+    ]
+  },
+  {
+    "id": "R078",
+    "requirement": "Обработать сбой/офлайн/смену аккаунта при апгрейде",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 41456,
+      "end_char": 41490,
+      "excerpt": "прям на главной когда юзер накопит",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-078"
+    ]
+  },
+  {
+    "id": "R079",
+    "requirement": "Отделить потраченный баланс от права доступа",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 41405,
+      "end_char": 41418,
+      "excerpt": "уровнем коина",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-079"
+    ]
+  },
+  {
+    "id": "R080",
+    "requirement": "Ограничить источники монет полезной практикой",
+    "basis": "PROPOSAL",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 18755,
+      "end_char": 18786,
+      "excerpt": "как будто человек на охоту идёт",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-080"
+    ]
+  },
+  {
+    "id": "R081",
+    "requirement": "Заменить ёмкость энергии на 5",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 20891,
+      "end_char": 20921,
+      "excerpt": "пять меня полностью устраивает",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-081"
+    ]
+  },
+  {
+    "id": "R082",
+    "requirement": "Установить одну стоимость занятия",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 20504,
+      "end_char": 20526,
+      "excerpt": "все будет одна единица",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-082"
+    ]
+  },
+  {
+    "id": "R083",
+    "requirement": "Пересчитывать восстановление по времени",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 20021,
+      "end_char": 20064,
+      "excerpt": "одной энергии будет происходить за 10 минут",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-083"
+    ]
+  },
+  {
+    "id": "R084",
+    "requirement": "Списывать энергию ровно при начале занятия",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 20312,
+      "end_char": 20338,
+      "excerpt": "как только урок начинается",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-084"
+    ]
+  },
+  {
+    "id": "R085",
+    "requirement": "Показывать короткий расход энергии на экране занятия",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S43",
+      "excerpt": "У Free показывать счётчик энергии на каждом экране активности; при начале занятия видимое короткое уменьшение цифры.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-085"
+    ]
+  },
+  {
+    "id": "R086",
+    "requirement": "Убрать ценники энергии со всех кнопок",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 19823,
+      "end_char": 19860,
+      "excerpt": "со всех кнопок абсолютно со всех надо",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-086"
+    ]
+  },
+  {
+    "id": "R087",
+    "requirement": "Сделать Plus без расхода энергии",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 20977,
+      "end_char": 21007,
+      "excerpt": "купил плюс всё никакой энергии",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-087"
+    ]
+  },
+  {
+    "id": "R088",
+    "requirement": "Удалить расширители и ускорители энергии",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S45",
+      "excerpt": "Убрать все бонусы, увеличивающие энергию и её вместимость.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-088"
+    ]
+  },
+  {
+    "id": "R089",
+    "requirement": "Спроектировать миграцию старого запаса",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 19995,
+      "end_char": 20005,
+      "excerpt": "вместо 100",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-089"
+    ]
+  },
+  {
+    "id": "R090",
+    "requirement": "Определить поведение при нуле энергии",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 20149,
+      "end_char": 20179,
+      "excerpt": "не будем давить юзера энергией",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-090"
+    ]
+  },
+  {
+    "id": "R091",
+    "requirement": "Сохранить простой путь просмотра и переворота",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 6772,
+      "end_char": 6809,
+      "excerpt": "карточку развернул повернул посмотрел",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-091"
+    ]
+  },
+  {
+    "id": "R092",
+    "requirement": "Переделать каталог наборов в компактный список",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 37342,
+      "end_char": 37376,
+      "excerpt": "не вот эти квадраты блоки здоровые",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-092"
+    ]
+  },
+  {
+    "id": "R093",
+    "requirement": "Добавить короткое описание раздела карточек",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S64",
+      "excerpt": "Каждый подраздел карточек и сам раздел должны иметь короткое описание.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-093"
+    ]
+  },
+  {
+    "id": "R094",
+    "requirement": "Добавить краткие описания подразделов",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S64",
+      "excerpt": "Каждый подраздел карточек и сам раздел должны иметь короткое описание.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-094"
+    ]
+  },
+  {
+    "id": "R095",
+    "requirement": "Добавить поиск по своим наборам",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 7534,
+      "end_char": 7563,
+      "excerpt": "Сортировка поиск по карточкам",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-095"
+    ]
+  },
+  {
+    "id": "R096",
+    "requirement": "Добавить согласованную сортировку наборов",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 7526,
+      "end_char": 7544,
+      "excerpt": "удобное Сортировка",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-096"
+    ]
+  },
+  {
+    "id": "R097",
+    "requirement": "Сохранить нейтральные поля сторон карточки",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 3804,
+      "end_char": 3827,
+      "excerpt": "лицевая либо не лицевая",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-097"
+    ]
+  },
+  {
+    "id": "R098",
+    "requirement": "Добавить явный выбор языка каждой стороны",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 3871,
+      "end_char": 3896,
+      "excerpt": "юзер может выбрать локаль",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-098"
+    ]
+  },
+  {
+    "id": "R099",
+    "requirement": "Удалить выбор оформления при создании",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S53",
+      "excerpt": "Все карточки одного полупрозрачного цвета; убрать выбор рубашек и цвета при создании.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-099"
+    ]
+  },
+  {
+    "id": "R100",
+    "requirement": "Разрешить неязыковые наборы",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 7072,
+      "end_char": 7100,
+      "excerpt": "как детали машины запоминать",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-100"
+    ]
+  },
+  {
+    "id": "R101",
+    "requirement": "Реализовать согласованный лимит своих наборов",
+    "basis": "DECISION",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 7372,
+      "end_char": 7400,
+      "excerpt": "три набора ты можешь создать",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-101"
+    ]
+  },
+  {
+    "id": "R102",
+    "requirement": "Реализовать согласованный лимит карточек",
+    "basis": "DECISION",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 7250,
+      "end_char": 7264,
+      "excerpt": "до 50 карточек",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-102"
+    ]
+  },
+  {
+    "id": "R103",
+    "requirement": "Сделать навигацию к своему набору предсказуемой",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 7575,
+      "end_char": 7615,
+      "excerpt": "по своим набором чтобы человек мог найти",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-103"
+    ]
+  },
+  {
+    "id": "R104",
+    "requirement": "Переделать общий выбор наборов для режимов",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 37215,
+      "end_char": 37256,
+      "excerpt": "когда мы отмечаем карточки для тренировки",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-104"
+    ]
+  },
+  {
+    "id": "R105",
+    "requirement": "Отмечать наборы из видео миниатюрой",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 37451,
+      "end_char": 37478,
+      "excerpt": "превьюшка видео не помешает",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-105"
+    ]
+  },
+  {
+    "id": "R106",
+    "requirement": "Открывать связанное видео отдельным действием",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 37482,
+      "end_char": 37498,
+      "excerpt": "с кнопочкой play",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-106"
+    ]
+  },
+  {
+    "id": "R107",
+    "requirement": "Заменить текст жалобы иконкой флага",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S65",
+      "excerpt": "Жалоба на набор — кнопка с иконкой флага, не текстовая плашка. Доступная подпись для screen reader остаётся.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-107"
+    ]
+  },
+  {
+    "id": "R108",
+    "requirement": "Защитить публичные наборы и жалобы",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 17516,
+      "end_char": 17533,
+      "excerpt": "для других юзеров",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-108"
+    ]
+  },
+  {
+    "id": "R109",
+    "requirement": "Сохранить админ-публикацию видео и набора",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 5970,
+      "end_char": 6011,
+      "excerpt": "я добавляю все эти карточки через админку",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-109"
+    ]
+  },
+  {
+    "id": "R110",
+    "requirement": "Описать единый контентный пакет ролика",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 5839,
+      "end_char": 5869,
+      "excerpt": "документам размещаю в Telegram",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-110"
+    ]
+  },
+  {
+    "id": "R111",
+    "requirement": "Добавить личное избранное видео",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S29",
+      "excerpt": "Сделать акцент на видео, добавить избранное.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-111"
+    ]
+  },
+  {
+    "id": "R112",
+    "requirement": "Добавить счётчик уникальных сохранений",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S68",
+      "excerpt": "Для каждого видео виден счётчик, сколько пользователей добавили его в избранное.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-112"
+    ]
+  },
+  {
+    "id": "R113",
+    "requirement": "Сделать счётчик без realtime на каждой карточке",
+    "basis": "PROPOSAL",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S68",
+      "excerpt": "Для каждого видео виден счётчик, сколько пользователей добавили его в избранное.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-113"
+    ]
+  },
+  {
+    "id": "R114",
+    "requirement": "Проверить компактный список при скролле видео",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S05",
+      "excerpt": "При скролле раздела видео рассмотреть переход в удобный компактный список с меньшими превью.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-114"
+    ]
+  },
+  {
+    "id": "R115",
+    "requirement": "Удалить награды за просмотр видео",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S54",
+      "excerpt": "Убрать начисление рун и энергии за просмотр видео и соответствующие тексты.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-115"
+    ]
+  },
+  {
+    "id": "R116",
+    "requirement": "Удалить тексты о наградах в видео",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S54",
+      "excerpt": "Убрать начисление рун и энергии за просмотр видео и соответствующие тексты.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-116"
+    ]
+  },
+  {
+    "id": "R117",
+    "requirement": "Сделать воспроизводимый переход ролик → нужные карточки",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 16278,
+      "end_char": 16301,
+      "excerpt": "акцент на разделе видео",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-117"
+    ]
+  },
+  {
+    "id": "R118",
+    "requirement": "Проверить кеш превью и lifecycle плеера",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 16316,
+      "end_char": 16344,
+      "excerpt": "более удобным более понятным",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-118"
+    ]
+  },
+  {
+    "id": "R119",
+    "requirement": "Создать реестр поддерживаемых content locale",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 3957,
+      "end_char": 3987,
+      "excerpt": "добавить намного больше языков",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-119"
+    ]
+  },
+  {
+    "id": "R120",
+    "requirement": "Изолировать учебные данные по языковой паре",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 21838,
+      "end_char": 21890,
+      "excerpt": "все локальные нужно конечно же контуры и изолировать",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-120"
+    ]
+  },
+  {
+    "id": "R121",
+    "requirement": "Сохранить общий кошелёк и ранг",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 21932,
+      "end_char": 21969,
+      "excerpt": "единственное что у нас остается общее",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-121"
+    ]
+  },
+  {
+    "id": "R122",
+    "requirement": "Сделать переключение языка бесплатным",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S48",
+      "excerpt": "Смена языка обучения бесплатная.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-122"
+    ]
+  },
+  {
+    "id": "R123",
+    "requirement": "Проверить и вернуть английский в нужном селекторе",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S35",
+      "excerpt": "Вернуть английский язык. Нужно отдельно выяснить, какой селектор/экран затронут, а не объявлять отсутствие всего английского курса.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-123"
+    ]
+  },
+  {
+    "id": "R124",
+    "requirement": "Упростить выбор языка на онбординге",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 9421,
+      "end_char": 9453,
+      "excerpt": "он бординг человек выбирает язык",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-124"
+    ]
+  },
+  {
+    "id": "R125",
+    "requirement": "Проверить TTS capabilities для выбранной локали",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 4170,
+      "end_char": 4210,
+      "excerpt": "из разных стран могут юзеры пользоваться",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-125"
+    ]
+  },
+  {
+    "id": "R126",
+    "requirement": "Добавлять локали диалогов по реальной готовности",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 5426,
+      "end_char": 5444,
+      "excerpt": "диалоги и карточки",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-126"
+    ]
+  },
+  {
+    "id": "R127",
+    "requirement": "Определить locale-free контур предметных наборов",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 7168,
+      "end_char": 7204,
+      "excerpt": "человек сможет запоминать что угодно",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-127"
+    ]
+  },
+  {
+    "id": "R128",
+    "requirement": "Проверить длинные строки, RTL и диакритику",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 4033,
+      "end_char": 4052,
+      "excerpt": "с разных точек мира",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-128"
+    ]
+  },
+  {
+    "id": "R129",
+    "requirement": "Переделать экран «Блиц»",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 15815,
+      "end_char": 15830,
+      "excerpt": "блиц тренировка",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-129"
+    ]
+  },
+  {
+    "id": "R130",
+    "requirement": "Переделать экран «Устно»",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 15831,
+      "end_char": 15843,
+      "excerpt": "устно напиши",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-130"
+    ]
+  },
+  {
+    "id": "R131",
+    "requirement": "Переделать «Напиши»",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 15837,
+      "end_char": 15860,
+      "excerpt": "напиши вспомни и напиши",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-131"
+    ]
+  },
+  {
+    "id": "R132",
+    "requirement": "Переделать «Вспомни и напиши»",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 15844,
+      "end_char": 15860,
+      "excerpt": "вспомни и напиши",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-132"
+    ]
+  },
+  {
+    "id": "R133",
+    "requirement": "Переделать «Правда/неправда»",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 15861,
+      "end_char": 15876,
+      "excerpt": "правда неправда",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-133"
+    ]
+  },
+  {
+    "id": "R134",
+    "requirement": "Удалить неиспользуемые controls во всех режимах",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 15898,
+      "end_char": 15918,
+      "excerpt": "убрать лишние кнопки",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-134"
+    ]
+  },
+  {
+    "id": "R135",
+    "requirement": "Сохранить полезный «Разбор промаха»",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 15618,
+      "end_char": 15648,
+      "excerpt": "разбор промаха объяснить проще",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-135"
+    ]
+  },
+  {
+    "id": "R136",
+    "requirement": "Сохранить «Объяснить проще» с пересмотром логики",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 15633,
+      "end_char": 15665,
+      "excerpt": "объяснить проще это хорошее фичи",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-136"
+    ]
+  },
+  {
+    "id": "R137",
+    "requirement": "Унифицировать итог тренировки",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 16031,
+      "end_char": 16052,
+      "excerpt": "максимально упростить",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-137"
+    ]
+  },
+  {
+    "id": "R138",
+    "requirement": "Полностью переделать каталог диалогов",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 4454,
+      "end_char": 4497,
+      "excerpt": "раздел диалоги нужно переделать тоже строго",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-138"
+    ]
+  },
+  {
+    "id": "R139",
+    "requirement": "Обновить главный ассет диалогов",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S13",
+      "excerpt": "Изменить дизайн диалогов внутри и ассет диалогов на главной.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-139"
+    ]
+  },
+  {
+    "id": "R140",
+    "requirement": "Заменить прямую покупку диалога ранговым правилом",
+    "basis": "DECISION",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S66",
+      "excerpt": "Новые диалоги открывает уровень, а не прямая покупка за руны.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-140"
+    ]
+  },
+  {
+    "id": "R141",
+    "requirement": "Не использовать Plus как замену рангу",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S67",
+      "excerpt": "Отдельное уточнение: «Не плюс а уровень». После удаления обычного уровня необходимо согласовать использование ранга монеты; это явная рабочая интерпретация, не повод оставить скрытый XP.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-141"
+    ]
+  },
+  {
+    "id": "R142",
+    "requirement": "Сохранить ранее открытые диалоги",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 18428,
+      "end_char": 18465,
+      "excerpt": "диалоги у нас уже за руны открываются",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-142"
+    ]
+  },
+  {
+    "id": "R143",
+    "requirement": "Проверить локализацию диалогового движка",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 5291,
+      "end_char": 5319,
+      "excerpt": "локали то диалоги это просто",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-143"
+    ]
+  },
+  {
+    "id": "R144",
+    "requirement": "Обновить экран выполнения диалога",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 4446,
+      "end_char": 4453,
+      "excerpt": "диалоги",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-144"
+    ]
+  },
+  {
+    "id": "R145",
+    "requirement": "Согласовать AI-квоты диалогов с отсутствием Plus-gate",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 15666,
+      "end_char": 15678,
+      "excerpt": "они полезные",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-145"
+    ]
+  },
+  {
+    "id": "R146",
+    "requirement": "Изолировать и сохранить действующий английский Learning V1",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 11868,
+      "end_char": 11908,
+      "excerpt": "я не хочу удалять основной курс обучения",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-146"
+    ]
+  },
+  {
+    "id": "R147",
+    "requirement": "Оставить 3 бесплатных урока V1",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 2376,
+      "end_char": 2401,
+      "excerpt": "первые три урока как было",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-147"
+    ]
+  },
+  {
+    "id": "R148",
+    "requirement": "Удалить жемчужное открытие уроков",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 2462,
+      "end_char": 2508,
+      "excerpt": "берём возможность разблокирование за жемчужины",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-148"
+    ]
+  },
+  {
+    "id": "R149",
+    "requirement": "Согласовать шкалу 1/2/3 звезды",
+    "basis": "DECISION",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 2823,
+      "end_char": 2845,
+      "excerpt": "классика три звёздочки",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-149"
+    ]
+  },
+  {
+    "id": "R150",
+    "requirement": "Задать условие продвижения от 2 звёзд",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 2924,
+      "end_char": 2945,
+      "excerpt": "минимум две звёздочки",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-150"
+    ]
+  },
+  {
+    "id": "R151",
+    "requirement": "Сохранить экзамены и срезы знаний",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 2977,
+      "end_char": 3010,
+      "excerpt": "экзамены средств знания оставляем",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-151"
+    ]
+  },
+  {
+    "id": "R152",
+    "requirement": "Перевести экзамены на согласованную звёздную шкалу",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 3065,
+      "end_char": 3089,
+      "excerpt": "открыть следующие раздел",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-152"
+    ]
+  },
+  {
+    "id": "R153",
+    "requirement": "Подготовить позиционирование V1 как тренировочного курса",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 32875,
+      "end_char": 32934,
+      "excerpt": "назвать это какой-то знаешь там тренировкой курс тренировки",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-153"
+    ]
+  },
+  {
+    "id": "R154",
+    "requirement": "Разработать план новых языковых курсов V1",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 33685,
+      "end_char": 33709,
+      "excerpt": "32 урока 50 фраз на урок",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-154"
+    ]
+  },
+  {
+    "id": "R155",
+    "requirement": "Создать языковой QA-процесс для 1600 фраз",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 33771,
+      "end_char": 33806,
+      "excerpt": "качественный правильный список фраз",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-155"
+    ]
+  },
+  {
+    "id": "R156",
+    "requirement": "Сохранить независимый план Learning V2",
+    "basis": "LATER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 2253,
+      "end_char": 2280,
+      "excerpt": "он будет писаться ещё долго",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-156"
+    ]
+  },
+  {
+    "id": "R157",
+    "requirement": "Согласовать пробные 10 сессий V2",
+    "basis": "LATER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 12221,
+      "end_char": 12241,
+      "excerpt": "первые там 10 сессий",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-157"
+    ]
+  },
+  {
+    "id": "R158",
+    "requirement": "Исследовать облачное распознавание голоса",
+    "basis": "LATER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 31800,
+      "end_char": 31840,
+      "excerpt": "распознавание голоса через например open",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-158"
+    ]
+  },
+  {
+    "id": "R159",
+    "requirement": "Спроектировать голосовую ветку V2",
+    "basis": "LATER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 32414,
+      "end_char": 32442,
+      "excerpt": "вторую линейку прям на карте",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-159"
+    ]
+  },
+  {
+    "id": "R160",
+    "requirement": "Вернуться к башне только отдельным решением",
+    "basis": "LATER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 33221,
+      "end_char": 33240,
+      "excerpt": "поста ставить башню",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-160"
+    ]
+  },
+  {
+    "id": "R161",
+    "requirement": "Расширять V1 по подтверждённому спросу локали",
+    "basis": "LATER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 4320,
+      "end_char": 4370,
+      "excerpt": "если community типа этой стороны становится больше",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-161"
+    ]
+  },
+  {
+    "id": "R162",
+    "requirement": "Оставить простой список и добавление друга",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 13978,
+      "end_char": 14023,
+      "excerpt": "удалить все кроме возможности добавлять друга",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-162"
+    ]
+  },
+  {
+    "id": "R163",
+    "requirement": "Убрать заголовок «Список друзей» и лишнее пустое описание",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S19",
+      "excerpt": "Убрать «Список друзей» из раздела друзей.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-163"
+    ]
+  },
+  {
+    "id": "R164",
+    "requirement": "Реализовать минимальный «Привет»",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 14026,
+      "end_char": 14047,
+      "excerpt": "отправлять ему привет",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-164"
+    ]
+  },
+  {
+    "id": "R165",
+    "requirement": "Решить, нужна ли награда за «Привет»",
+    "basis": "DECISION",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 14306,
+      "end_char": 14327,
+      "excerpt": "50 рун или там 10 рун",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-165"
+    ]
+  },
+  {
+    "id": "R166",
+    "requirement": "Перенести опросы в активность",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 19307,
+      "end_char": 19334,
+      "excerpt": "туда же мы перенесём опросы",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-166"
+    ]
+  },
+  {
+    "id": "R167",
+    "requirement": "Перенести полезные социальные события в активность",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 19236,
+      "end_char": 19274,
+      "excerpt": "то что приходит сейчас вот колокольчик",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-167"
+    ]
+  },
+  {
+    "id": "R168",
+    "requirement": "Переписать опросы в нормальном взрослом тоне",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 19399,
+      "end_char": 19434,
+      "excerpt": "все тексты опросы надо пересмотреть",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-168"
+    ]
+  },
+  {
+    "id": "R169",
+    "requirement": "Показывать актуальный опрос в верхней части активности",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 19343,
+      "end_char": 19372,
+      "excerpt": "каждый день где-то там вверху",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-169"
+    ]
+  },
+  {
+    "id": "R170",
+    "requirement": "Удалить friend quest/chest/gifts",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 14064,
+      "end_char": 14076,
+      "excerpt": "общий сундук",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-170"
+    ]
+  },
+  {
+    "id": "R171",
+    "requirement": "Скрыть идеи и убрать их runtime-прогрев",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 16053,
+      "end_char": 16081,
+      "excerpt": "раздел идеи тоже мы скрываем",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-171"
+    ]
+  },
+  {
+    "id": "R172",
+    "requirement": "Сделать пагинацию и кеш активности",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 19079,
+      "end_char": 19091,
+      "excerpt": "в активность",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-172"
+    ]
+  },
+  {
+    "id": "R173",
+    "requirement": "Согласовать короткое название недельного рейтинга",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 14753,
+      "end_char": 14778,
+      "excerpt": "одним словом мы придумаем",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-173"
+    ]
+  },
+  {
+    "id": "R174",
+    "requirement": "Удалить длинную таблицу лиги",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 14809,
+      "end_char": 14840,
+      "excerpt": "список вот этих всех 30 человек",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-174"
+    ]
+  },
+  {
+    "id": "R175",
+    "requirement": "Сделать простой недельный топ-3",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 15096,
+      "end_char": 15109,
+      "excerpt": "лучше топ три",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-175"
+    ]
+  },
+  {
+    "id": "R176",
+    "requirement": "Определить единственную метрику недели",
+    "basis": "DECISION",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 15183,
+      "end_char": 15222,
+      "excerpt": "зависимость того сколько там этих самых",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-176"
+    ]
+  },
+  {
+    "id": "R177",
+    "requirement": "Спроектировать дешёвый агрегат топ-3",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 15406,
+      "end_char": 15429,
+      "excerpt": "минимум было считывании",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-177"
+    ]
+  },
+  {
+    "id": "R178",
+    "requirement": "Сделать разовую анимацию изменения пьедестала",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 15296,
+      "end_char": 15332,
+      "excerpt": "с прошлого момента когда мы заходили",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-178"
+    ]
+  },
+  {
+    "id": "R179",
+    "requirement": "Утвердить частоту обновления топа",
+    "basis": "DECISION",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 15381,
+      "end_char": 15392,
+      "excerpt": "06:00 03:00",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-179"
+    ]
+  },
+  {
+    "id": "R180",
+    "requirement": "Удалить league boost и дополнительные привилегии",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S32",
+      "excerpt": "Удалить буст лиги.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-180"
+    ]
+  },
+  {
+    "id": "R181",
+    "requirement": "Определить границы недели и историю",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 14724,
+      "end_char": 14744,
+      "excerpt": "недельный лидер борт",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-181"
+    ]
+  },
+  {
+    "id": "R182",
+    "requirement": "Сохранить простую визитку",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 8224,
+      "end_char": 8273,
+      "excerpt": "единственное что я думаю мы оставляем это визитка",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-182"
+    ]
+  },
+  {
+    "id": "R183",
+    "requirement": "Убрать энергию и лишние параметры визитки",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 8274,
+      "end_char": 8311,
+      "excerpt": "визиток мы удаляем конечно же энергию",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-183"
+    ]
+  },
+  {
+    "id": "R184",
+    "requirement": "Согласовать одну улучшенную визитку",
+    "basis": "DECISION",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 17820,
+      "end_char": 17840,
+      "excerpt": "оставить только один",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-184"
+    ]
+  },
+  {
+    "id": "R185",
+    "requirement": "Проверить цену визитки относительно ранга монеты",
+    "basis": "DECISION",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 18399,
+      "end_char": 18420,
+      "excerpt": "20 000 вон 30 000 рун",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-185"
+    ]
+  },
+  {
+    "id": "R186",
+    "requirement": "Спроектировать знак автора полезных наборов",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 17475,
+      "end_char": 17512,
+      "excerpt": "создал создал там например 10 наборов",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-186"
+    ]
+  },
+  {
+    "id": "R187",
+    "requirement": "Сохранить системное sharing профиля",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 16946,
+      "end_char": 16975,
+      "excerpt": "Ширинг профиля можно оставить",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-187"
+    ]
+  },
+  {
+    "id": "R188",
+    "requirement": "Предложить два варианта содержимого sharing",
+    "basis": "DECISION",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 17093,
+      "end_char": 17129,
+      "excerpt": "что будет шарится мы с тобой обсудим",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-188"
+    ]
+  },
+  {
+    "id": "R189",
+    "requirement": "Связать монету-аватар с визиткой",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S03",
+      "excerpt": "Убрать щёлканье по аватарке; использовать существующую визитку, туда добавить кнопку аватара. Более позднее решение: аватар — монета, не редактор старых аватаров.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-189"
+    ]
+  },
+  {
+    "id": "R190",
+    "requirement": "Сохранить полезную общую статистику",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 22026,
+      "end_char": 22072,
+      "excerpt": "раздел статистика наверное тоже остается общий",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-190"
+    ]
+  },
+  {
+    "id": "R191",
+    "requirement": "Удалить «Закреплено фраз»",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 21222,
+      "end_char": 21256,
+      "excerpt": "закреплено фразу зачем оно удалить",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-191"
+    ]
+  },
+  {
+    "id": "R192",
+    "requirement": "Удалить неподтверждённые диагнозы ошибок",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 21544,
+      "end_char": 21577,
+      "excerpt": "а с хуя ли блядь как ты определил",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-192"
+    ]
+  },
+  {
+    "id": "R193",
+    "requirement": "Показывать фактические слова и фразы с ошибками",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 21704,
+      "end_char": 21735,
+      "excerpt": "конкретно фразы конкретно слова",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-193"
+    ]
+  },
+  {
+    "id": "R194",
+    "requirement": "Дать прямую практику выбранных ошибок",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 21803,
+      "end_char": 21833,
+      "excerpt": "отработать через раздел ошибок",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-194"
+    ]
+  },
+  {
+    "id": "R195",
+    "requirement": "Добавить языковую метку/фильтр ошибок",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 22148,
+      "end_char": 22171,
+      "excerpt": "в каком языке ты ошибся",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-195"
+    ]
+  },
+  {
+    "id": "R196",
+    "requirement": "Отвязать статистику от XP",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 41123,
+      "end_char": 41154,
+      "excerpt": "удаляем все что связано сопытом",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-196"
+    ]
+  },
+  {
+    "id": "R197",
+    "requirement": "Пересобрать настройки без мёртвых пунктов",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 16534,
+      "end_char": 16561,
+      "excerpt": "настройки я тоже надо будет",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-197"
+    ]
+  },
+  {
+    "id": "R198",
+    "requirement": "Убрать настройки голосовых разборов Макса",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S37",
+      "excerpt": "Удалить из настроек голосовые разборы с Максом.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-198"
+    ]
+  },
+  {
+    "id": "R199",
+    "requirement": "Проверить и исправить «Очистить кеш»",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S38",
+      "excerpt": "Проверить, что делает «Очистить кеш».",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-199"
+    ]
+  },
+  {
+    "id": "R200",
+    "requirement": "Инвентаризировать уведомления и согласовать новый allowlist",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 16783,
+      "end_char": 16812,
+      "excerpt": "уведомления тоже пересмотреть",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-200"
+    ]
+  },
+  {
+    "id": "R201",
+    "requirement": "Снять старые локальные расписания уведомлений",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 16880,
+      "end_char": 16911,
+      "excerpt": "удалить и написать список новых",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-201"
+    ]
+  },
+  {
+    "id": "R202",
+    "requirement": "Снять серверные отправки удалённых событий",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 16642,
+      "end_char": 16660,
+      "excerpt": "раздел уведомления",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-202"
+    ]
+  },
+  {
+    "id": "R203",
+    "requirement": "Установить один основной TTS путь",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 11489,
+      "end_char": 11508,
+      "excerpt": "оставляем TTS везде",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-203"
+    ]
+  },
+  {
+    "id": "R204",
+    "requirement": "Мигрировать разрешённое учебное аудио по allowlist",
+    "basis": "DECISION",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 11527,
+      "end_char": 11549,
+      "excerpt": "вот либо наш голос уже",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-204"
+    ]
+  },
+  {
+    "id": "R205",
+    "requirement": "Удалить ненужные audio packs/cache warmups",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 11449,
+      "end_char": 11485,
+      "excerpt": "полностью полностью вычищаем озвучку",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-205"
+    ]
+  },
+  {
+    "id": "R206",
+    "requirement": "Удалить фанфары и лишние звуковые эффекты",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S30",
+      "excerpt": "Удалить ненужные звуки.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-206"
+    ]
+  },
+  {
+    "id": "R207",
+    "requirement": "Проверить координацию TTS, видео и микрофона",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 11489,
+      "end_char": 11502,
+      "excerpt": "оставляем TTS",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-207"
+    ]
+  },
+  {
+    "id": "R208",
+    "requirement": "Упростить настройки языка и доступности",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/02_screenshot_transcript.md",
+      "anchor": "S48",
+      "excerpt": "Смена языка обучения бесплатная.",
+      "verbatim": false
+    },
+    "tasks": [
+      "PM-208"
+    ]
+  },
+  {
+    "id": "R209",
+    "requirement": "Спроектировать целевую очередь на основе существующей",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 13568,
+      "end_char": 13596,
+      "excerpt": "сразу определить очерёдность",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-209"
+    ]
+  },
+  {
+    "id": "R210",
+    "requirement": "Зарегистрировать каждую оставшуюся фоновую работу",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 24557,
+      "end_char": 24578,
+      "excerpt": "в текущей очереди уже",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-210"
+    ]
+  },
+  {
+    "id": "R211",
+    "requirement": "Разделить первый кадр и необязательные прогревы",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 13471,
+      "end_char": 13501,
+      "excerpt": "так чтобы все летало не лагало",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-211"
+    ]
+  },
+  {
+    "id": "R212",
+    "requirement": "Убрать module-evaluation side effects удалённых фич",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 13613,
+      "end_char": 13638,
+      "excerpt": "фоновые загрузки прогрева",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-212"
+    ]
+  },
+  {
+    "id": "R213",
+    "requirement": "Отменять работу при blur/background/account switch",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 696,
+      "end_char": 711,
+      "excerpt": "больше нагрузки",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-213"
+    ]
+  },
+  {
+    "id": "R214",
+    "requirement": "Упростить загрузочные состояния и кеш",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 22929,
+      "end_char": 22964,
+      "excerpt": "меньше вот этих скелетов постоянных",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-214"
+    ]
+  },
+  {
+    "id": "R215",
+    "requirement": "Обеспечить ограниченную параллельность и приоритет записи",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 13524,
+      "end_char": 13546,
+      "excerpt": "для всего было очередь",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-215"
+    ]
+  },
+  {
+    "id": "R216",
+    "requirement": "Измерить release bundle и убрать недостижимое",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 22535,
+      "end_char": 22572,
+      "excerpt": "освободить банду сделать банда лёгким",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-216"
+    ]
+  },
+  {
+    "id": "R217",
+    "requirement": "Исключить архивные генераторы из release graph",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 36435,
+      "end_char": 36459,
+      "excerpt": "генераторы и плюс режимы",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-217"
+    ]
+  },
+  {
+    "id": "R218",
+    "requirement": "Исключить Макса из production и сохранить исходники",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 36605,
+      "end_char": 36631,
+      "excerpt": "Макс да он законсервирован",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-218"
+    ]
+  },
+  {
+    "id": "R219",
+    "requirement": "Удалить персональные планы из релизного контура",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 22505,
+      "end_char": 22534,
+      "excerpt": "раздел планы его надо удалить",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-219"
+    ]
+  },
+  {
+    "id": "R220",
+    "requirement": "Добавить регрессионные performance gates",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 13471,
+      "end_char": 13491,
+      "excerpt": "так чтобы все летало",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-220"
+    ]
+  },
+  {
+    "id": "R221",
+    "requirement": "Составить карту серверных доменов и владельцев",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 13148,
+      "end_char": 13166,
+      "excerpt": "мы чистим Back and",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-221"
+    ]
+  },
+  {
+    "id": "R222",
+    "requirement": "Отключать лишние cron по dependency plan",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 13208,
+      "end_char": 13244,
+      "excerpt": "кроны полностью все которые не нужны",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-222"
+    ]
+  },
+  {
+    "id": "R223",
+    "requirement": "Оценить cost до и после по операциям",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 15470,
+      "end_char": 15506,
+      "excerpt": "fire store fire Base мы тоже очищаем",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-223"
+    ]
+  },
+  {
+    "id": "R224",
+    "requirement": "Настроить бюджет, лимиты и fail-safe",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 15529,
+      "end_char": 15539,
+      "excerpt": "ноль денег",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-224"
+    ]
+  },
+  {
+    "id": "R225",
+    "requirement": "Убрать ненужные realtime listeners",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 15430,
+      "end_char": 15453,
+      "excerpt": "минимум денег тратилось",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-225"
+    ]
+  },
+  {
+    "id": "R226",
+    "requirement": "Определить минимальный контракт диагностики",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 27316,
+      "end_char": 27349,
+      "excerpt": "логи которые передаются в админку",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-226"
+    ]
+  },
+  {
+    "id": "R227",
+    "requirement": "Обеспечить видимость существенных ошибок в админке",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 27439,
+      "end_char": 27479,
+      "excerpt": "полноценные вот что если какая-то ошибка",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-227"
+    ]
+  },
+  {
+    "id": "R228",
+    "requirement": "Сделать логи bounded, sampled и неблокирующими",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 27507,
+      "end_char": 27545,
+      "excerpt": "будут ли эти лаги как-нибудь нагружать",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-228"
+    ]
+  },
+  {
+    "id": "R229",
+    "requirement": "Не подавлять ошибки очереди молча",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 27350,
+      "end_char": 27381,
+      "excerpt": "случае если что-то здесь не так",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-229"
+    ]
+  },
+  {
+    "id": "R230",
+    "requirement": "Проверить security rules и права админки",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 13151,
+      "end_char": 13166,
+      "excerpt": "чистим Back and",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-230"
+    ]
+  },
+  {
+    "id": "R231",
+    "requirement": "Ограничить платные AI-запросы",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 15766,
+      "end_char": 15796,
+      "excerpt": "пересмотреть логику и механику",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-231"
+    ]
+  },
+  {
+    "id": "R232",
+    "requirement": "Убрать мёртвые поля и формы из админки",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 13148,
+      "end_char": 13166,
+      "excerpt": "мы чистим Back and",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-232"
+    ]
+  },
+  {
+    "id": "R233",
+    "requirement": "Собрать ledger существующих покупок и прав",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 1823,
+      "end_char": 1866,
+      "excerpt": "естественно нужно будет сделать компенсацию",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-233"
+    ]
+  },
+  {
+    "id": "R234",
+    "requirement": "Определить правила для оплаченной косметики/бустов",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 1855,
+      "end_char": 1866,
+      "excerpt": "компенсацию",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-234"
+    ]
+  },
+  {
+    "id": "R235",
+    "requirement": "Спроектировать migration version и совместимость клиентов",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 24823,
+      "end_char": 24840,
+      "excerpt": "удалить полностью",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-235"
+    ]
+  },
+  {
+    "id": "R236",
+    "requirement": "Проверить idempotent миграции на двух устройствах",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 8675,
+      "end_char": 8679,
+      "excerpt": "руны",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-236"
+    ]
+  },
+  {
+    "id": "R237",
+    "requirement": "Сделать backup и испытать восстановление",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 13360,
+      "end_char": 13382,
+      "excerpt": "вычистить код максимум",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-237"
+    ]
+  },
+  {
+    "id": "R238",
+    "requirement": "Выбрать формат консервации арены и Макса",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 36512,
+      "end_char": 36540,
+      "excerpt": "просто их не пускать в релиз",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-238"
+    ]
+  },
+  {
+    "id": "R239",
+    "requirement": "Инвентаризировать remote/local branches и worktrees",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 36760,
+      "end_char": 36804,
+      "excerpt": "удалить все ветки и в GitHub и на компьютере",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-239"
+    ]
+  },
+  {
+    "id": "R240",
+    "requirement": "Выбрать одну каноническую ветку без потери работы",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 36805,
+      "end_char": 36846,
+      "excerpt": "оставить одну ветку все остальные удалить",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-240"
+    ]
+  },
+  {
+    "id": "R241",
+    "requirement": "Архивировать уникальную историю перед удалением веток",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 36825,
+      "end_char": 36846,
+      "excerpt": "все остальные удалить",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-241"
+    ]
+  },
+  {
+    "id": "R242",
+    "requirement": "Удалить только согласованный список веток",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 36780,
+      "end_char": 36804,
+      "excerpt": "в GitHub и на компьютере",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-242"
+    ]
+  },
+  {
+    "id": "R243",
+    "requirement": "Установить срок финального удаления legacy-данных",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 13360,
+      "end_char": 13382,
+      "excerpt": "вычистить код максимум",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-243"
+    ]
+  },
+  {
+    "id": "R244",
+    "requirement": "Создать правило одного редактора канонической ветки",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 29059,
+      "end_char": 29104,
+      "excerpt": "в этих же планах должен быть вестись прогресс",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-244"
+    ]
+  },
+  {
+    "id": "R245",
+    "requirement": "Переписать служебные тексты всех остающихся экранов",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 26458,
+      "end_char": 26491,
+      "excerpt": "минимум текста минимум под текста",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-245"
+    ]
+  },
+  {
+    "id": "R246",
+    "requirement": "Выбрать paywall по сопоставимым данным",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 4667,
+      "end_char": 4703,
+      "excerpt": "какой PWL является самым эффективным",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-246"
+    ]
+  },
+  {
+    "id": "R247",
+    "requirement": "Упростить paywall без удаления существенных условий",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 4828,
+      "end_char": 4885,
+      "excerpt": "Павол по сути должен быть я думаю максимально простеньким",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-247"
+    ]
+  },
+  {
+    "id": "R248",
+    "requirement": "Обновить Privacy Policy после фактической реализации",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 25242,
+      "end_char": 25271,
+      "excerpt": "обновить политику приватности",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-248"
+    ]
+  },
+  {
+    "id": "R249",
+    "requirement": "Обновить Terms и условия подписки/компенсации",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 25317,
+      "end_char": 25335,
+      "excerpt": "юридическим языком",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-249"
+    ]
+  },
+  {
+    "id": "R250",
+    "requirement": "Проверить store-декларации и оригинальность интерфейса",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 28401,
+      "end_char": 28429,
+      "excerpt": "не копируем чей-то интерфейс",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-250"
+    ]
+  },
+  {
+    "id": "R251",
+    "requirement": "Ввести независимую проверку UX и текста",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 26818,
+      "end_char": 26853,
+      "excerpt": "судья тоже должен отдельно работать",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-251"
+    ]
+  },
+  {
+    "id": "R252",
+    "requirement": "Ввести review корректности, удаления, расходов и диагностики",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 27097,
+      "end_char": 27107,
+      "excerpt": "свои судьи",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-252"
+    ]
+  },
+  {
+    "id": "R253",
+    "requirement": "Вести прогресс с доказательствами",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 29219,
+      "end_char": 29250,
+      "excerpt": "вот это сделано вот это сделано",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-253"
+    ]
+  },
+  {
+    "id": "R254",
+    "requirement": "Прогнать upgrade и регрессионную матрицу",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 952,
+      "end_char": 973,
+      "excerpt": "юзеры скидывают видео",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-254"
+    ]
+  },
+  {
+    "id": "R255",
+    "requirement": "Выпустить поэтапно с rollback gates",
+    "basis": "SAFETY",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 10987,
+      "end_char": 11031,
+      "excerpt": "приложение выглядит просто знаешь премиально",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-255"
+    ]
+  },
+  {
+    "id": "R256",
+    "requirement": "Подготовить спокойное сообщение об обновлении 2.0",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 10832,
+      "end_char": 10865,
+      "excerpt": "добро пожаловать в Prime два ноль",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-256"
+    ]
+  },
+  {
+    "id": "R257",
+    "requirement": "Проверить модели и reasoning в каждой карточке задачи",
+    "basis": "OWNER",
+    "source": {
+      "file": "sources/01_original_message.txt",
+      "start_char": 38188,
+      "end_char": 38223,
+      "excerpt": "для каждой задачи для каждой задачи",
+      "verbatim": true
+    },
+    "tasks": [
+      "PM-257"
+    ]
+  }
+]

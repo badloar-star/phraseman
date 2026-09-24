@@ -1,0 +1,23 @@
+{
+  "status": "NOT_YET_AUDITED",
+  "purpose": "Форма для фактического аудита. Пустые entries не означают, что объектов нет. Не публиковать данные покупателей.",
+  "columns": [
+    "job_id",
+    "code_owner",
+    "deployed_name",
+    "trigger",
+    "priority",
+    "queue_owner",
+    "dedupe_key",
+    "ttl_ms",
+    "concurrency",
+    "cancel_policy",
+    "retry_policy",
+    "reads",
+    "writes",
+    "cost_basis",
+    "decision",
+    "evidence"
+  ],
+  "entries": []
+}

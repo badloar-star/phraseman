@@ -17,17 +17,22 @@ describe('dense home streak status layout', () => {
   });
 
   // зачем: владелец вернул раскладку «аватар слева, серия справа сверху».
+  // зачем (PM-039, владелец 2026-09-24): подпись «Уровень» перед числом
+  // убрана — карточка показывает только число, полная формулировка осталась
+  // в accessibilityLabel для озвучки (see below).
   it('places the avatar before the level progress panel', () => {
     expect(status).toContain('testID="home-hero-avatar-button"');
     expect(status).toContain('testID="home-level-progress-panel"');
     expect(status).toContain('<AvatarView');
     expect(status.indexOf('home-hero-avatar-button')).toBeLessThan(status.indexOf('home-level-progress-panel'));
-    expect(status).toContain('{experimentalStatusLevelLabel} {level}');
+    expect(status).toContain('testID="home-level-title"');
+    expect(status).toContain('accessibilityLabel={`${experimentalStatusLevelLabel} ${level}`}');
+    expect(status).not.toContain('{experimentalStatusLevelLabel} {level}');
   });
 
   it('keeps the streak inline on the level row, to the right of the level label', () => {
     expect(status).toContain('testID="home-streak-status-panel"');
-    expect(status.indexOf('{experimentalStatusLevelLabel} {level}')).toBeLessThan(status.indexOf('home-streak-status-panel'));
+    expect(status.indexOf('testID="home-level-title"')).toBeLessThan(status.indexOf('home-streak-status-panel'));
     expect(status.indexOf('home-level-progress-panel')).toBeLessThan(status.indexOf('home-streak-status-panel'));
   });
 
@@ -50,7 +55,10 @@ describe('dense home streak status layout', () => {
     expect(levelPanelBlock).not.toContain('weekDays.map');
   });
 
-  it('keeps the streak icon unboxed with the count and day label beside it', () => {
+  // зачем (PM-039, владелец 2026-09-24): видимая подпись «день/дня/дней»
+  // под числом серии убрана — остаётся только число. homeStreakDaysLabel
+  // по-прежнему вычисляется и используется в accessibilityLabel кнопки.
+  it('keeps the streak icon unboxed with only the count visible', () => {
     const streakPanelStart = status.indexOf('testID="home-streak-status-panel"');
     const streakPanelEnd = status.indexOf('</TouchableOpacity>', streakPanelStart);
     const streakPanel = status.slice(streakPanelStart, streakPanelEnd);
@@ -58,8 +66,11 @@ describe('dense home streak status layout', () => {
     expect(streakPanel).toContain("flexDirection: 'row'");
     expect(streakPanel).not.toContain('backgroundColor:');
     expect(streakPanel).toContain('{displayStreak}');
-    expect(streakPanel).toContain('{homeStreakDaysLabel}');
-    expect(streakPanel).not.toContain('{displayStreak} {homeStreakDaysLabel}');
+    // зачем: не ловим подстроку внутри собственного accessibilityLabel ниже
+    // (`${homeStreakDaysLabel}` содержит `{homeStreakDaysLabel}` как substring) —
+    // запрещаем именно ВИДИМЫЙ JSX-текст с подписью дня, а не сам идентификатор.
+    expect(streakPanel).not.toMatch(/>\s*\{homeStreakDaysLabel\}\s*</);
+    expect(streakPanel).toContain('accessibilityLabel={`${displayStreak} ${homeStreakDaysLabel}`}');
   });
 
   // зачем: аватар в карточке открывает кастомизацию внешнего вида; карточка

@@ -111,13 +111,9 @@ import { commitPremiumFreeFreeze } from '../economy/premium_free_freeze';
 import { coinIconForBalance } from '../coin_icons';
 import { buildLastLessonFromHydration, patchHomeScreenHydration, peekHomeScreenHydration, rememberHomeScreenHydration, resolveHomeProfileVisuals, resolveHomeStorageStats, shouldApplyHomeSnapshotToStats } from '../home_screen_hydration';
 import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountGeneration, type AccountGenerationToken } from '../account_generation';
-// зачем: плавающая кнопка спина на карточке уровня. peek — синхронный кэш баланса,
-// чтобы первый кадр карточки был финальным (правило layout stability), а readLocal
-// — авторитетное локальное значение без единого обращения к сети/Firestore.
-import { animateNextLayoutTransition } from '../smooth_layout';
-import { peekLevelSpinBalance } from '../level_reward_spins_client';
-import { readLocalLevelSpinBalance } from '../local_level_spins';
-import SpinTicketArt from '../../components/SpinTicketArt';
+// зачем (PM-037, владелец 2026-09-24): плавающая кнопка спина на карточке
+// уровня удалена из хедера Главной — peekLevelSpinBalance/readLocalLevelSpinBalance/
+// иконка билета спина/animateNextLayoutTransition жили только ради неё и удалены вместе с ней.
 import { getAppSnapshot, patchAppSnapshot, resolveHydratedProfileName, subscribeAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
 import { getPersonalProgressSnapshot, hydratePersonalProgress } from '../personal_progress_store';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
@@ -289,9 +285,10 @@ let homeHintShownThisAppSession = false;
  * бОльшую из двух, чтобы готовое содержимое гарантированно влезало без обрезки.
  */
 const HOME_STATS_CARD_MIN_HEIGHT = 196;
-// Static require first: every bundled Daily Journey raster must have one live,
-// deterministic consumer so Metro can package it and asset audits can prove use.
-const HOME_DAILY_JOURNEY_GIFT_ART = require('../../assets/images/daily_journey/home_gift_button.webp');
+// зачем (PM-037, владелец 2026-09-24): require-константа с артом подарка удалена —
+// единственный потребитель был в иконке подарка хедера, которую убрали.
+// Сам файл assets/images/daily_journey/home_gift_button.webp пока не удалён
+// (не входит в это задание), но в бандле кода больше не используется.
 const GREETINGS_RU = [
     'Твой лингвистический дзен', 'Время покорять вершины', 'Зарядись знаниями', 'Твой мозг скажет «спасибо»',
     'Готов к новым инсайтам?', 'Мир ждет твоего слова', 'На шаг ближе к цели', 'Твой интеллект в тонусе',
@@ -3491,57 +3488,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             });
         }
     }, [focusTick, homeRuntimeActive, shardsAnim, shardsBonusAnim]);
-    // ── ПЛАВАЮЩАЯ КНОПКА СПИНА НА КАРТОЧКЕ УРОВНЯ ──
-    // зачем (владелец 2026-08-23): заработанный спин было видно только внутри
-    // «Статистики» — до него надо было доехать. Кнопка живёт прямо в углу карточки
-    // уровня на главной и появляется, ТОЛЬКО когда спинов ≥ 1.
-    // Стоимость Firebase: ноль — баланс спинов целиком локальный (AsyncStorage),
-    // peek синхронный, чтения коллекций нет.
-    const [homeSpinBalance, setHomeSpinBalance] = useState<number>(() => {
-        // Первый кадр = финальная геометрия: если спин уже был в кэше, кнопка
-        // рисуется сразу, а не «вспыхивает» после первого асинхронного чтения.
-        const token = captureAccountGeneration();
-        const owner = token.stableId;
-        if (!owner) return 0;
-        return Math.max(0, Math.floor(peekLevelSpinBalance(owner) ?? 0));
-    });
-    // Несколько быстрых начислений эмитят несколько событий подряд. AsyncStorage
-    // может завершить более старое чтение позже нового; без поколения устаревшая
-    // «1» перезаписывала уже прочитанный точный баланс «2+».
-    const homeSpinRefreshGenerationRef = useRef(0);
-    const homeSpinPulse = useRef(new Animated.Value(1)).current;
-    const homeSpinReduceMotion = useReduceMotion();
-    const refreshHomeSpinBalance = useCallback(() => {
-        const refreshGeneration = ++homeSpinRefreshGenerationRef.current;
-        const token = captureAccountGeneration();
-        const owner = token.stableId;
-        if (!owner) { setHomeSpinBalance(0); return; }
-        void readLocalLevelSpinBalance()
-            .then((balance) => {
-                // Гонка смены аккаунта: поздний ответ чужого владельца не должен
-                // подставить его число (класс бага «чужие пиксели после смены аккаунта»).
-                if (!isCurrentAccountGeneration(token, owner)) return;
-                if (refreshGeneration !== homeSpinRefreshGenerationRef.current) return;
-                const next = Math.max(0, Math.floor(balance ?? 0));
-                // Кнопка стоит в потоке: её появление/уход сдвигает карточку.
-                // Плавный переход вместо телепорта (правило layout stability).
-                setHomeSpinBalance((prev) => {
-                    if ((prev > 0) !== (next > 0)) animateNextLayoutTransition();
-                    return next;
-                });
-            })
-            .catch(() => { /* держим последнее известное значение, без мигания нулём */ });
-    }, []);
-    useEffect(() => {
-        if (!homeRuntimeActive) return;
-        refreshHomeSpinBalance();
-    }, [homeRuntimeActive, focusTick, refreshHomeSpinBalance]);
-    useEffect(() => {
-        // Спин может быть начислен, пока главная открыта (урок/арена в фоне) и
-        // потрачен на экране колеса — событие обновляет кнопку мгновенно.
-        const subscription = onAppEvent('level_spin_balance_changed', refreshHomeSpinBalance);
-        return () => subscription.remove();
-    }, [refreshHomeSpinBalance]);
+    // зачем (PM-037, владелец 2026-09-24): плавающая кнопка спина на карточке
+    // уровня удалена вместе с балансом/пульсом, которые существовали только
+    // ради неё (peekLevelSpinBalance/readLocalLevelSpinBalance больше не
+    // читаются на Главной). Сам раздел /level_reward_spin не удалён.
 
     // ── Повышение уровня: проигрываем на Главной, когда экран реально показан ──
     //
@@ -3606,21 +3556,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             celebrationTimersRef.current = [];
         };
     }, [homeRuntimeActive, totalXP]);
-    useEffect(() => {
-        // Пульс — единственный «зов» кнопки. Крутится только на активной вкладке,
-        // на UI-треде (useNativeDriver) и молчит при «уменьшить движение».
-        homeSpinPulse.stopAnimation();
-        if (!homeRuntimeActive || homeSpinBalance <= 0 || homeSpinReduceMotion) {
-            homeSpinPulse.setValue(1);
-            return;
-        }
-        const loop = Animated.loop(Animated.sequence([
-            Animated.timing(homeSpinPulse, { toValue: 1.06, duration: 700, easing: Easing.inOut(Easing.quad), useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }),
-            Animated.timing(homeSpinPulse, { toValue: 1, duration: 700, easing: Easing.inOut(Easing.quad), useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }),
-        ]));
-        loop.start();
-        return () => { loop.stop(); homeSpinPulse.setValue(1); };
-    }, [homeRuntimeActive, homeSpinBalance, homeSpinPulse, homeSpinReduceMotion]);
 
     const FREEZE_COST_SHARDS = getStreakFreezeCostShards();
     const handleFreezeStreak = async () => {
@@ -4328,9 +4263,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const experimentalStatusWeekDotSize = eliteStatsCompact ? 26 : 30;
         const homeHeroAvatarSize = eliteStatsCompact ? 68 : 76;
         const homeHeroStreakIconSize = eliteStatsCompact ? 30 : 34;
-        // Единица («дней») уступает место, когда ряд и так плотный: узкий экран
-        // со щитом заморозки, либо трёхзначная серия.
-        const homeHeroShowStreakUnit = !(eliteStatsCompact && (streakAtRisk && !freezeActive)) && displayStreak < 100;
+        // зачем (PM-039, владелец 2026-09-24): homeHeroShowStreakUnit удалён —
+        // он решал, показывать ли слово «день/дней», которого теперь нет вовсе.
         const renderHomeHeroStatus = () => (<Animated.View style={{
                 opacity: eliteStatusEntrance,
                 transform: [{ translateY: eliteCardY }, { scale: eliteCardScale }],
@@ -4402,11 +4336,15 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 </TouchableOpacity>
 
                 <View testID="home-level-progress-panel" style={{ flex: 1, minWidth: 0, gap: eliteStatsCompact ? 10 : 12 }}>
-                  {/* Ряд «Уровень N» + серия справа: серия больше не занимает
+                  {/* Ряд «N» + серия справа: серия больше не занимает
                       отдельную колонку, поэтому полоса XP тянется во всю ширину. */}
                   <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
-                    <FlowText testID="home-level-title" provenance="authored" maxFontSizeMultiplier={1} style={{ flexShrink: 1, color: homeThemePanelText, fontSize: eliteStatsCompact ? 20 : 24, fontWeight: '800', lineHeight: eliteStatsCompact ? 24 : 29 }}>
-                      {experimentalStatusLevelLabel} {level}
+                    {/* зачем (PM-039, владелец 2026-09-24): подпись «Уровень»
+                        убрана — остаётся только число, оно самодостаточно.
+                        Полная формулировка не потеряна: она в
+                        accessibilityLabel для озвучки. */}
+                    <FlowText testID="home-level-title" provenance="authored" maxFontSizeMultiplier={1} accessibilityLabel={`${experimentalStatusLevelLabel} ${level}`} style={{ flexShrink: 1, color: homeThemePanelText, fontSize: eliteStatsCompact ? 20 : 24, fontWeight: '800', lineHeight: eliteStatsCompact ? 24 : 29 }}>
+                      {level}
                     </FlowText>
 
                     <TouchableOpacity
@@ -4447,16 +4385,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                             {displayStreak}
                           </Animated.Text>
                         </View>
-                        {/* зачем: на узком экране со щитом и трёхзначной серией ряд
-                            переполнялся и «Уровень N» уходил в многоточие. Слово-единица
-                            — наименее ценная часть (иконка + число читаются сами), поэтому
-                            жертвуем им, а не заголовком. Для озвучки полная формулировка
-                            остаётся в accessibilityLabel кнопки. */}
-                        {homeHeroShowStreakUnit ? (
-                          <Text maxFontSizeMultiplier={1} style={{ color: homeThemePanelMuted, fontSize: eliteStatsCompact ? 12 : 13, fontWeight: '700', lineHeight: eliteStatsCompact ? 15 : 16, includeFontPadding: false }}>
-                            {homeStreakDaysLabel}
-                          </Text>
-                        ) : null}
+                        {/* зачем (PM-039, владелец 2026-09-24): подпись «день/дня/дней»
+                            под серией убрана — остаётся только число. Полная
+                            формулировка не потеряна: она в accessibilityLabel
+                            кнопки home-streak-status-panel (строка выше). */}
                         {/* Щит «защитить серию» — отдельная кнопка рядом с числом, а не
                             наложение поверх иконки: в компактном ряду перекрытие давало
                             промахи по тапу. */}
@@ -4704,6 +4636,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     теперь колокольчик (с бейджем непрочитанных) идёт сразу после осколков,
                     а аватар/бюст профиля уходит на дальний правый край, где раньше был
                     колокольчик. onPress/бейдж каждой кнопки не тронуты. */}
+                {/* зачем (PM-038 ОТМЕНЁН владельцем 2026-09-24, см. коммит PM-037/039/040):
+                    колокольчик возвращён в хедер как было — попытка убрать его отменена. */}
                 {!homeHeaderCompact ? (
                   <NotificationCenterButton
                     isHomeTabActive={homeRuntimeActive}
@@ -4838,6 +4772,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   </View>
                 ) : null}
                 <View testID="home-header-secondary-actions" style={{ flexDirection: 'row', alignItems: 'center', justifyContent: homeHeaderCompact ? 'flex-end' : 'flex-start', gap: 0 }}>
+                {/* зачем (PM-038 ОТМЕНЁН владельцем 2026-09-24): колокольчик
+                    возвращён и в компактный ряд как было. */}
                 {homeHeaderCompact ? (
                   <NotificationCenterButton
                     isHomeTabActive={homeRuntimeActive}
@@ -4878,68 +4814,12 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     ) : null}
                   </TouchableOpacity>
                 ) : null}
-                {/* зачем (владелец 2026-09-14): энергия уехала отсюда в строку
-                    «Быстрый старт» — к жемчужинам и рунам, одного размера с ними.
-                    Хедер теперь несёт ДЕЙСТВИЯ: спин и подарок показываются
-                    маленькой иконкой со счётчиком только пока они новые, и
-                    пропадают, как только человек открыл свой раздел. */}
-                {homeSpinBalance > 0 ? (
-                  <Animated.View style={{ transform: [{ scale: homeSpinPulse }], flexShrink: 0 }}>
-                    <TouchableOpacity
-                      testID="home-header-spin"
-                      activeOpacity={0.7}
-                      accessibilityRole="button"
-                      accessibilityLiveRegion="polite"
-                      accessibilityLabel={triLang(lang, {
-                        ru: `Спины: ${homeSpinBalance}`, uk: `Спіни: ${homeSpinBalance}`,
-                        en: `Spins: ${homeSpinBalance}`,
-                        es: `Giros: ${homeSpinBalance}`, 'pt-BR': `Giros: ${homeSpinBalance}`,
-                        vi: `Lượt quay: ${homeSpinBalance}`, id: `Putaran: ${homeSpinBalance}`,
-                        tr: `Çevirmeler: ${homeSpinBalance}`, pl: `Spiny: ${homeSpinBalance}`,
-                      })}
-                      onPress={() => { hapticTap(); nav.push('/level_reward_spin'); }}
-                      hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
-                      style={{ minHeight: 46, paddingHorizontal: 4, alignItems: 'center', justifyContent: 'center' }}
-                    >
-                      {/* Метка на кнопке — значок и счётчик декоративные. */}
-                      <SpinTicketArt size={HOME_HEADER_ACTION_ICON} accessibilityLabel="" />
-                      <View testID="home-header-spin-count" style={homeHeaderBadgeStyle}>
-                        <Text maxFontSizeMultiplier={1} style={homeHeaderBadgeTextStyle}>{homeSpinBalance}</Text>
-                      </View>
-                    </TouchableOpacity>
-                  </Animated.View>
-                ) : null}
-                {dailyJourneyUnreadCount > 0 ? (
-                  <View ref={homeGiftEntryTargetRef as React.Ref<View>} collapsable={false} style={{ flexShrink: 0 }}>
-                    <TouchableOpacity
-                      testID="home-header-gift"
-                      activeOpacity={0.7}
-                      accessibilityRole="button"
-                      accessibilityLiveRegion="polite"
-                      accessibilityLabel={triLang(lang, {
-                        ru: `Подарки: ${dailyJourneyUnreadCount}`, uk: `Подарунки: ${dailyJourneyUnreadCount}`,
-                        en: `Gifts: ${dailyJourneyUnreadCount}`,
-                        es: `Regalos: ${dailyJourneyUnreadCount}`, 'pt-BR': `Presentes: ${dailyJourneyUnreadCount}`,
-                        vi: `Quà tặng: ${dailyJourneyUnreadCount}`, id: `Hadiah: ${dailyJourneyUnreadCount}`,
-                        tr: `Hediyeler: ${dailyJourneyUnreadCount}`, pl: `Prezenty: ${dailyJourneyUnreadCount}`,
-                      })}
-                      onPress={() => {
-                        // Тот же путь гашения, что и раньше: Главная гасит свою
-                        // проекцию сразу, экран подарков подтверждает seen долговечно.
-                        hapticTap();
-                        dailyJourneyProjectionController.markInventoryOpened();
-                        nav.push('/level_gifts_inventory');
-                      }}
-                      hitSlop={{ top: 8, bottom: 8, left: 4, right: 4 }}
-                      style={{ minHeight: 46, paddingHorizontal: 4, alignItems: 'center', justifyContent: 'center' }}
-                    >
-                      <Image source={HOME_DAILY_JOURNEY_GIFT_ART} style={{ width: HOME_HEADER_ACTION_ICON, height: HOME_HEADER_ACTION_ICON }} contentFit="contain" accessible={false} accessibilityElementsHidden importantForAccessibility="no" />
-                      <View testID="home-header-gift-count" style={homeHeaderBadgeStyle}>
-                        <Text maxFontSizeMultiplier={1} style={homeHeaderBadgeTextStyle}>{dailyJourneyUnreadCount}</Text>
-                      </View>
-                    </TouchableOpacity>
-                  </View>
-                ) : null}
+                {/* зачем (PM-037, владелец 2026-09-24): иконки спина и подарка
+                    убраны из хедера Главной. Разделы (/level_reward_spin,
+                    /level_gifts_inventory) не удалены — только точка входа
+                    отсюда. Невидимая цель полёта подарка (home-gift-entry-target,
+                    строка ~4664) не трогаем: ею всё ещё пользуется анимация
+                    доставки подарка дня (Daily Journey), это отдельная механика. */}
                 {renderHomeProfileButton()}
                 </View>
               </View>

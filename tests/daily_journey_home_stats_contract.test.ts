@@ -170,13 +170,11 @@ describe('Daily Journey Home orchestration', () => {
     expect(reportError).toHaveBeenCalledWith('offer', expect.any(Error));
   });
 
-  test('Home gift entry relies on TapScale haptics and does not vibrate twice', () => {
-    const home = read('app/(tabs)/home.tsx');
-    const start = home.indexOf('testID="home-gift-entry-button"');
-    const end = home.indexOf('</TapScale>', start);
-    expect(start).toBeGreaterThan(-1);
-    expect(home.slice(start, end)).not.toContain('hapticTap()');
-  });
+  // зачем (PM-037, владелец 2026-09-24): иконка подарка убрана из хедера
+  // Главной целиком (testID="home-gift-entry-button" больше не существует).
+  // Прежний тест сторожил отменённое правило старого макета (testID даже не
+  // совпадал с реальным кодом до этой правки — home-header-gift). Раздел
+  // /level_gifts_inventory не удалён, только точка входа с Главной.
 
   test('Home keeps only target measurement and a one-shot deferred landing pulse', () => {
     const home = read('app/(tabs)/home.tsx');
@@ -683,52 +681,27 @@ describe('Home source wiring for Daily Journey', () => {
     expect(home).toContain('measureDailyJourneyHomeTarget');
   });
 
-  test('keeps reward shortcuts in the header and removes empty visible slots', () => {
-    expect(home.indexOf('testID="home-spin-fab"')).toBeLessThan(home.indexOf('testID="home-gift-entry"'));
-    expect(home).toMatch(/testID="home-spin-fab"[\s\S]{0,260}width: 44/);
-    expect(home).toMatch(/testID="home-gift-entry"[\s\S]{0,500}style=\{dailyJourneyUnreadCount > 0 \? \{[\s\S]{0,300}\} : \{[\s\S]{0,260}position: 'absolute'[\s\S]{0,100}right: 0/);
-    expect(home).toMatch(/testID="home-gift-entry-button"[\s\S]{0,1200}nav\.push\('\/level_gifts_inventory'\)/);
-    expect(home).toMatch(/testID="home-gift-entry"[\s\S]{0,350}ref=\{homeGiftEntryTargetRef as React\.Ref<View>\}[\s\S]{0,350}collapsable=\{false\}[\s\S]{0,1200}\{dailyJourneyUnreadCount > 0 \? \(/);
-    expect(home).toMatch(/\{\(homeSpinBalance > 0 \|\| dailyJourneyUnreadCount > 0\) \? \(\s*<View testID="home-header-reward-icons"[\s\S]{0,180}height: 44/);
+  // зачем (PM-037, владелец 2026-09-24): иконки спина и подарка убраны из
+  // хедера Главной целиком — вместе с ними ушли homeSpinBalance/homeSpinPulse
+  // (жили только ради кнопки) и HOME_DAILY_JOURNEY_GIFT_ART (жил только ради
+  // <Image> в удалённой кнопке). Прежние 3 теста ниже сторожили ДАЖЕ более
+  // старый макет (testID="home-spin-fab"/"home-gift-entry-button"), которого
+  // в коде не было ещё ДО этой правки — они были красными от предыдущей
+  // перестройки хедера и чинятся сейчас заодно.
+  //
+  // Что остаётся жить и проверяется здесь: невидимая цель полёта подарка
+  // (home-gift-entry-target, PM-037 её не трогает — ею пользуется анимация
+  // доставки Daily Journey) и мостик открытия раздела подарков по факту
+  // непрочитанных (markInventoryOpened → nav.push), который переехал в
+  // /level_gifts_inventory напрямую из других мест приложения, не из хедера.
+  test('keeps the invisible gift flight target after the header icons are removed', () => {
+    expect(home).not.toContain('testID="home-header-spin"');
+    expect(home).not.toContain('testID="home-header-gift"');
+    expect(home).not.toContain('SpinTicketArt');
+    expect(home).not.toContain('HOME_DAILY_JOURNEY_GIFT_ART');
+    expect(home).not.toContain('homeSpinBalance');
+    expect(home).not.toContain('homeSpinPulse');
     expect(home).toMatch(/testID="home-gift-entry-target"[\s\S]{0,220}ref=\{homeGiftEntryTargetRef as React\.Ref<View>\}[\s\S]{0,220}pointerEvents="none"[\s\S]{0,300}position: 'absolute'/);
-    expect(home).toContain('dailyJourneyProjectionController.markInventoryOpened();');
-    expect(home.indexOf('dailyJourneyProjectionController.markInventoryOpened();')).toBeLessThan(home.indexOf("nav.push('/level_gifts_inventory')"));
-    expect(home).not.toContain('Сам ряд всегда зарезервирован');
-  });
-
-  test('places simultaneous Spin and Gift entries in separate compact slots', () => {
-    // Visible controls always occupy separate 44-point slots. Absolute positioning
-    // is reserved for the invisible flight target when no gift is visible.
-    expect(home).toMatch(/testID="home-header-reward-icons"[\s\S]{0,500}flexDirection: 'row'[\s\S]{0,260}justifyContent: 'space-between'/);
-    expect(home).toMatch(/testID="home-gift-entry"[\s\S]{0,500}style=\{dailyJourneyUnreadCount > 0 \? \{[\s\S]{0,300}width: 44[\s\S]{0,300}\} : \{[\s\S]{0,260}position: 'absolute'/);
-  });
-
-  test('renders the Spin and Gift controls without a bottom shadow border', () => {
-    const spinStart = home.indexOf('testID="home-spin-fab-button"');
-    const giftStart = home.indexOf('testID="home-gift-entry-button"');
-    const spinButton = home.slice(spinStart, home.indexOf('</TapScale>', spinStart));
-    const giftButton = home.slice(giftStart, home.indexOf('</TapScale>', giftStart));
-
-    expect(spinButton).not.toContain('borderBottomWidth');
-    expect(spinButton).not.toContain('borderBottomColor');
-    expect(giftButton).not.toContain('borderBottomWidth');
-    expect(giftButton).not.toContain('borderBottomColor');
-  });
-
-  test('uses recognizable reward art and compact badges with full accessible counts', () => {
-    expect(home).toContain('<SpinTicketArt size={homeActionIconSize} accessibilityLabel="" />');
-    expect(home).toContain('const homeActionIconSize = 28;');
-    expect(home).toContain('const homeActionCountBox = 18;');
-    expect(home).toContain("{homeSpinBalance > 99 ? '99+' : homeSpinBalance}");
-    expect(home).toContain("{dailyJourneyUnreadCount > 99 ? '99+' : dailyJourneyUnreadCount}");
-    const giftStart = home.indexOf('testID="home-gift-entry-button"');
-    const giftButton = home.slice(giftStart, home.indexOf('</TapScale>', giftStart));
-    expect(giftButton).toContain('<Image source={HOME_DAILY_JOURNEY_GIFT_ART}');
-    expect(giftButton).toContain('accessibilityLabel={triLang(lang, {');
-    expect(giftButton).not.toContain("ru: 'Подарок'");
-    const assetPath = path.join(ROOT, 'assets/images/daily_journey/home_gift_button.webp');
-    expect(fs.existsSync(assetPath)).toBe(true);
-    expect(fs.statSync(assetPath).size).toBeLessThan(100_000);
   });
 
   test('reloads on inbox events and account changes without marking seen on Home', () => {

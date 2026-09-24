@@ -12311,7 +12311,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -12320,14 +12320,19 @@
       {
         "id": "PM-271-A1",
         "text": "Описаны: прогресс недели, запись ступени, пакет недели, конфиг (таймер, монеты, высота, боты)",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/docs/TOWER_CONTRACT.md §3-4"
+        ]
       },
       {
         "id": "PM-271-A2",
         "text": "Правила Firestore закрывают новые пути; клиент не пишет чужой прогресс и очки комнаты",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/docs/TOWER_CONTRACT.md §7",
+          "firestore.rules (config/spire_v1, spire_groups, spire_week_results, progress.spire_week_v1)"
+        ]
       }
     ],
     "depends_on": [
@@ -12343,21 +12348,22 @@
     "owner": "Claude (сессия «Башня»)",
     "reviewer": null,
     "evidence": [
-      "docs/TOWER_CONTRACT.md"
+      "docs/phraseman-2.0/docs/TOWER_CONTRACT.md"
     ],
     "notes": [
       "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md",
       "Черновик контракта готов (docs/TOWER_CONTRACT.md): переиспользует league_groups, leagueUpdateMyMember, жителей, крон итога. Ждёт «да» владельца по §6: убрать часовой крон жителей, отчёт ступеней пачкой, удалить бусты/сундуки/короны.",
-      "D56: владелец принял все 3 пункта §6 целиком (2026-09-24). Гейт OWNER_DECISION_RECORDED закрыт evidence docs/TOWER_CONTRACT.md §6."
+      "D56: владелец принял все 3 пункта §6 целиком (2026-09-24). Гейт OWNER_DECISION_RECORDED закрыт evidence docs/TOWER_CONTRACT.md §6.",
+      "2026-09-24 Sonnet 5 (сессия «Башня»): статус приведён в соответствие факту — контракт (§1-7) полностью реализован последующими задачами эпика (PM-273/275/276/277/278/280/281/282/283, все в review), Firestore rules покрывают все перечисленные в §7 пути (config/spire_v1, spire_groups, spire_week_results, progress.spire_week_v1). Путь evidence был указан без префикса docs/phraseman-2.0/ — исправлено."
     ],
     "actual_cost": null,
     "kind": "design",
     "review_verdict": null,
     "gate_evidence": {
-      "OWNER_DECISION_RECORDED": "docs/TOWER_CONTRACT.md §6 (D56, PROGRESS.md)"
+      "OWNER_DECISION_RECORDED": "docs/phraseman-2.0/docs/TOWER_CONTRACT.md §6 (D56, PROGRESS.md)"
     },
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "claude-sonnet-5",
+    "actual_reasoning": "medium"
   },
   {
     "id": "PM-272",

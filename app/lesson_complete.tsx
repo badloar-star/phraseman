@@ -2,7 +2,6 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
 import DuoPressable from '../components/DuoPressable';
-import EnergyCostBadge from '../components/EnergyCostBadge';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -1822,7 +1821,7 @@ export default function LessonComplete() {
                 ↺ {c.repeatLesson}
               </Text>
             </DuoPressable>
-            <EnergyCostBadge activity="classic_lesson" testID="lesson-complete-repeat-energy-cost" />
+            {/* зачем (PM-086): ценник энергии на кнопке убран — сам расход энергии не менялся. */}
           </View>
 
           {/* Поделиться результатом */}

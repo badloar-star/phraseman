@@ -54,8 +54,7 @@ import {
   type PersonalPlanState,
   type PlanDayRuntime,
 } from './personal_plan_state';
-import { openPersonalPlanTask, personalPlanTaskStartsPaidExercise } from './personal_plan_navigation';
-import EnergyCostBadge from '../components/EnergyCostBadge';
+import { openPersonalPlanTask } from './personal_plan_navigation';
 import { getPersonalPlanTaskVisual } from './personal_plan_task_visuals';
 import { resolvePersonalPlanFlashcardsReviewCount } from './personal_plan_flashcards_review_gate';
 import { getMistakePracticeReadyCount } from './mistake_practice_insights';
@@ -234,7 +233,6 @@ function TaskRow({
   isNext,
   chrome,
   onPress,
-  showEnergyCost,
   lang,
 }: {
   task: PlanDailyTask;
@@ -244,7 +242,6 @@ function TaskRow({
   isNext: boolean;
   chrome: PlanChrome;
   onPress: () => void;
-  showEnergyCost: boolean;
   lang: Lang;
 }) {
   const visual = getPersonalPlanTaskVisual(task, planId, themeMode);
@@ -329,7 +326,7 @@ function TaskRow({
           )}
         </View>
       </TouchableOpacity>
-      {showEnergyCost ? <EnergyCostBadge activity="personal_plan_exercise" testID={`personal-plan-task-${task.id}-energy-cost`} /> : null}
+      {/* зачем (PM-086): ценник энергии на кнопке убран — сам расход энергии не менялся. */}
     </Animated.View>
   );
 }
@@ -723,9 +720,7 @@ function PersonalPlanScreen() {
       && hasBundledCompatibilityPlanContentTheoryEntry(loaded.plan.id, day.dayIndex)
       && visibleProgressPct === 0,
   );
-  const heroShowsEnergyCost = Boolean(
-    nextTask && !heroOpensTheory && personalPlanTaskStartsPaidExercise(nextTask),
-  );
+  // зачем (PM-086): ценник энергии на кнопке убран — heroShowsEnergyCost существовал только для него.
 
   // Real "days in a row" streak — same source the stats screen uses
   // (completed-task timestamps), not the plan day number. UTC todayKey to match
@@ -923,7 +918,6 @@ function PersonalPlanScreen() {
                 </Text>
                 </LinearGradient>
               </TouchableOpacity>
-              {heroShowsEnergyCost ? <EnergyCostBadge activity="personal_plan_exercise" testID="personal-plan-hero-energy-cost" /> : null}
             </View>
           </LinearGradient>
 
@@ -1025,7 +1019,6 @@ function PersonalPlanScreen() {
                       isNext={isNext}
                       chrome={chrome}
                       onPress={() => openTask(task)}
-                      showEnergyCost={personalPlanTaskStartsPaidExercise(task)}
                       lang={lang}
                     />
                   );

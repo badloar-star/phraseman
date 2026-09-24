@@ -5,7 +5,6 @@ import { ActivityIndicator, Pressable, ScrollView, StatusBar, StyleSheet, Text, 
 import { useReducedMotion } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
-import EnergyCostBadge from '../components/EnergyCostBadge';
 import ScreenGradient from '../components/ScreenGradient';
 import FeatureIntroEntry from '../components/feature_intro/FeatureIntroEntry';
 import { useLang } from '../components/LangContext';
@@ -554,7 +553,7 @@ export default function FlashcardsTrainingSetupScreen() {
               style={[styles.startButton, { backgroundColor: t.accent, opacity: canStart ? 1 : 0.38 }]}
             >
               <Text style={[styles.startText, { color: t.correctText, fontSize: f.bodyLg }]}>{copy.start}</Text>
-              {canStart ? <EnergyCostBadge activity="flashcards" testID="fc-training-setup-energy-cost" /> : null}
+              {/* зачем (PM-086): ценник энергии на кнопке убран — сам расход энергии не менялся. */}
             </Pressable>
           </ScrollView>
         </ContentWrap>

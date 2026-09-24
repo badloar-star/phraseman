@@ -6546,7 +6546,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -6555,8 +6555,10 @@
       {
         "id": "PM-134-A1",
         "text": "По каждому control указано назначение",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commit f61e9f468"
+        ]
       },
       {
         "id": "PM-134-A2",
@@ -6573,15 +6575,19 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "commit f61e9f468"
+    ],
+    "notes": [
+      "4 экрана практики проверены, мусора почти нет (PM-086 уже вычистил). Убраны 2 мёртвых импорта в mistake_practice_session.tsx"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
+    "actual_model": "sonnet-5",
     "actual_reasoning": null
   },
   {
@@ -6593,7 +6599,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -6602,14 +6608,18 @@
       {
         "id": "PM-135-A1",
         "text": "Вызов только по действию, есть понятная ошибка и retry",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "tests/mistake_practice_screen_contract.test.ts 8/8"
+        ]
       },
       {
         "id": "PM-135-A2",
         "text": "ответ привязан к конкретной попытке/языку",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "tests/mistake_practice_screen_contract.test.ts 8/8"
+        ]
       }
     ],
     "depends_on": [],
@@ -6620,15 +6630,19 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "tests/mistake_practice_screen_contract.test.ts 8/8"
+    ],
+    "notes": [
+      "Разбор промаха цел и не задет прошлыми удалениями"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
+    "actual_model": "sonnet-5",
     "actual_reasoning": null
   },
   {
@@ -6640,7 +6654,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -6649,14 +6663,18 @@
       {
         "id": "PM-136-A1",
         "text": "Не вызывается при каждом открытии экрана",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "проверка use_mistake_explain.ts"
+        ]
       },
       {
         "id": "PM-136-A2",
         "text": "явное согласие/кеш/лимит/стоимость определены до подключения",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "проверка use_mistake_explain.ts"
+        ]
       }
     ],
     "depends_on": [],
@@ -6667,15 +6685,19 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "проверка use_mistake_explain.ts"
+    ],
+    "notes": [
+      "Объяснить проще цело, экономика рун уже реализована владельцем ранее, XP-зависимости нет"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
+    "actual_model": "sonnet-5",
     "actual_reasoning": null
   },
   {

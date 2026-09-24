@@ -7957,7 +7957,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -7983,17 +7983,21 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
-    "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "result_sha": "41648d48d",
+    "owner": "Claude Sonnet 5 (субагент)",
+    "reviewer": "self-check (не независимое ревью)",
+    "evidence": [
+      "commit 41648d48d"
+    ],
+    "notes": [
+      "Экраны/клиент/прогрев idea_inbox на старте удалены; 15 серверных функций идей и флаг ideas_enabled оставлены (админка использует). functions/src/shard_survey_core.ts изменён (тип маршрута) — не задеплоено"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-172",

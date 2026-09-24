@@ -2855,7 +2855,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "blocked",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -2864,14 +2864,18 @@
       {
         "id": "PM-061-A1",
         "text": "Оставшаяся публичная идентичность использует монету",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commits 3753997b2 ce9eb65f0 f1499a756 6bfbe74f7"
+        ]
       },
       {
         "id": "PM-061-A2",
         "text": "исторические ссылки профилей имеют fallback",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commits 3753997b2 ce9eb65f0 f1499a756 6bfbe74f7"
+        ]
       }
     ],
     "depends_on": [],
@@ -2882,18 +2886,21 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
+    "evidence": [
+      "commits 3753997b2 ce9eb65f0 f1499a756 6bfbe74f7"
+    ],
     "notes": [
-      "Аудит (без правок): app/avatar_select.tsx 1741 строк — редактор/каталог/покупки аватаров-аур за руны/жемчуг, завязан на cloud sync/лигу/достижения/level-spin/friends. Слишком крупно для безопасной правки без typecheck. Компенсация уже покрыта в gifts_to_coins_table_v1.ts (cosmetic_avatar_aura 1500, cosmetic_avatar_common/premium_cosmetic_avatar 900). Нужны решения владельца — см. PROGRESS.md"
+      "Аудит (без правок): app/avatar_select.tsx 1741 строк — редактор/каталог/покупки аватаров-аур за руны/жемчуг, завязан на cloud sync/лигу/достижения/level-spin/friends. Слишком крупно для безопасной правки без typecheck. Компенсация уже покрыта в gifts_to_coins_table_v1.ts (cosmetic_avatar_aura 1500, cosmetic_avatar_common/premium_cosmetic_avatar 900). Нужны решения владельца — см. PROGRESS.md",
+      "avatar_select.tsx (1740 строк) удалён, точки входа и маршрут убраны. Одна кнопка осталась в home.tsx (~4294) — ведёт в никуда, home.tsx занят сессией интерфейса, ей передано"
     ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-062",
@@ -2935,7 +2942,8 @@
     "reviewer": null,
     "evidence": [],
     "notes": [
-      "«Гексаэдры» как отдельные файлы-ассеты НЕ найдены (grep hexahedron/hex_avatar — пусто). Вероятно образное название текущих ассетов avatar-auras/avatar-auras-hd — нужно подтверждение владельца, что именно называется гексаэдрами"
+      "«Гексаэдры» как отдельные файлы-ассеты НЕ найдены (grep hexahedron/hex_avatar — пусто). Вероятно образное название текущих ассетов avatar-auras/avatar-auras-hd — нужно подтверждение владельца, что именно называется гексаэдрами",
+      "Ассеты avatar-auras/avatar-auras-hd НЕ удалены: это боевая отрисовка уже купленных аур (AvatarAura.tsx), не редактор. Отдельных 'гексаэдрических' файлов физически нет. Нужно уточнение владельца: что именно в этих папках удалять, раз они ещё используются для показа купленного"
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -2953,7 +2961,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "blocked",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -2962,14 +2970,18 @@
       {
         "id": "PM-063-A1",
         "text": "Удалены эксклюзивные экраны, навигация и обработчики",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commits ce9eb65f0 6bfbe74f7"
+        ]
       },
       {
         "id": "PM-063-A2",
         "text": "существующие покупки учтены в migration ledger",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commits ce9eb65f0 6bfbe74f7"
+        ]
       }
     ],
     "depends_on": [],
@@ -2980,18 +2992,21 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
+    "evidence": [
+      "commits ce9eb65f0 6bfbe74f7"
+    ],
     "notes": [
-      "Найдено ДВА кандидата: app/avatar_select.tsx (Студия, 1741 строк, живой экран с покупками) и app/avatar_dna_studio.tsx (второй, невыпущенный, за флагом isAvatarDNAEnabled, screen_inventory decision=unknown). Нужно решение, какой из них 'студия образов' из задания"
+      "Найдено ДВА кандидата: app/avatar_select.tsx (Студия, 1741 строк, живой экран с покупками) и app/avatar_dna_studio.tsx (второй, невыпущенный, за флагом isAvatarDNAEnabled, screen_inventory decision=unknown). Нужно решение, какой из них 'студия образов' из задания",
+      "avatar_select.tsx и avatar_dna_studio.tsx удалены оба (D57). components/avatar-dna/* НЕ удалены — используются боевым AvatarView.tsx для показа уже купленных аватаров"
     ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-064",

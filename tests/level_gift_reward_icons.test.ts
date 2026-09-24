@@ -35,11 +35,12 @@ describe('level gift reward art', () => {
   });
 
   it('uses universal Level Spin art at every gift render site', () => {
+    // зачем (PM-046, владелец): components/LevelSpinFinishLine.tsx удалён
+    // вместе с экраном /level_reward_spin — из списка снят.
     for (const file of [
       'components/LevelGiftModal.tsx',
       'components/LevelGiftDualModal.tsx',
       'components/LevelSpinRewardModal.tsx',
-      'components/LevelSpinFinishLine.tsx',
       'app/level_gifts_inventory.tsx',
     ]) {
       const component = fs.readFileSync(path.join(process.cwd(), file), 'utf8');

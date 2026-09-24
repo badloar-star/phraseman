@@ -2081,7 +2081,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -2107,17 +2107,21 @@
       "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE"
     ],
     "audit_sha": null,
-    "result_sha": null,
-    "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "result_sha": "5c98ac424",
+    "owner": "Claude Sonnet 5 (субагент)",
+    "reviewer": "self-check оркестратора (не независимое ревью)",
+    "evidence": [
+      "commits 72d217bfc a3b826949 5c98ac424"
+    ],
+    "notes": [
+      "Экран /level_reward_spin и эксклюзивные модули удалены; реферальная рулетка (referrals) НЕ тронута; SpinRewardPlaque/LevelSpinRewardModal остались в dev/ResultsSequence (мёртвый проп). tests/level_gift_reward_icons + runtime_lifecycle_ratchet правки НЕ закоммичены (блок as_any ratchet из-за чужого home.tsx)"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-047",
@@ -2128,7 +2132,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -2154,17 +2158,21 @@
       "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE"
     ],
     "audit_sha": null,
-    "result_sha": null,
-    "owner": null,
+    "result_sha": "a3b826949",
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "commit a3b826949"
+    ],
+    "notes": [
+      "grantLocal*Spin* → no-op; уже выданные/купленные за руны спины (LOCAL_LEVEL_SPIN_STATE_KEY) и claim-путь сохранены до решения владельца; серверные функции спинов не тронуты; сервер Арены ещё шлёт spinAwarded (клиент игнорирует)"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-048",

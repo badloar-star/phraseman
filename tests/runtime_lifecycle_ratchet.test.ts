@@ -111,10 +111,11 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   'app/lesson1.tsx': runtime('Lesson cursor loop requires focused foreground runtime.', ['!lessonRuntimeActive || selectedWords.length > 0']),
   'app/lesson_complete.tsx': runtime('Completion decoration requires focused foreground runtime.', ['!lessonCompleteRuntimeActive || !seqDone', 'bounce.stop()']),
   'app/lesson_intro_screens.tsx': runtime('Intro hint and CTA loops require focused foreground runtime.', ['!lessonIntroRuntimeActive || allRevealed', '!lessonIntroRuntimeActive || !ctaReady']),
-  'app/level_gifts_inventory.tsx': guarded('Spin pulse runs only on the focused foreground inventory and cancels on blur.'),
+  // зачем (PM-046, владелец): app/level_gifts_inventory.tsx и app/streak_stats.tsx
+  // держали здесь запись ТОЛЬКО ради пульса кнопки спина — кнопка и пульс
+  // удалены, других вечных анимаций в этих файлах нет, записи сняты.
   'app/pack_opening.tsx': runtime('Card pulse receives runtime activity from the screen owner.', ['active={packOpeningRuntimeActive}', 'if (!active || flipped)', 'loop.stop()']),
   'app/shards_shop.tsx': guarded('Shop loops already use screen focus plus AppState and explicit cancellation.'),
-  'app/streak_stats.tsx': runtime('Stats spin pulse runs only while the stats screen is focused in the foreground.', ['statsRuntimeActive && spinBalance > 0', 'cancelAnimation(spinButtonPulse)']),
   // зачем 2026-08-22: эквалайзер переписан под императивный setSample-путь —
   // idle-луп стал управляемым ресурсом (startIdle/stopIdle на ref'ах). Гард не
   // ослаб: луп включается только при active и без rawSample-пропа, а cleanup
@@ -164,10 +165,8 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   'components/LeagueChestOpenModal.tsx': owned('League chest motion is visible-only and unmounts while hidden.', ['if (!visible) return null', 'if (!visible) return']),
   'components/LevelGiftDualModal.tsx': owned('Dual gift loops are guarded by visible phase and stopped on cleanup.', ['if (!visible', 'idleAll.current?.stop()']),
   'components/LevelGiftModal.tsx': owned('Gift loops are guarded by visibility and stopped whenever hidden.', ['if (!visible || !gift)', 'idleLoop.current?.stop()']),
-  'components/LevelSpinFinishLine.tsx': guarded(
-    'Spin reel runs only during the focused foreground spin phase and cancels on every exit.',
-    'appActive',
-  ),
+  // зачем (PM-046, владелец): components/LevelSpinFinishLine.tsx удалён вместе
+  // с экраном /level_reward_spin — барабану больше нечего сторожить.
   'components/LevelSpinRewardModal.tsx': owned('Reward glow exists only while the visible modal is mounted and stops on cleanup.', ['if (!visible || !requestId) return', 'glowLoopRef.current?.stop()']),
   'components/max/MaxSpeechSparkline.tsx': runtime(
     'Empty-history dotted breath runs only while the sparkline owner is visible on focused foreground runtime.',

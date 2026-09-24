@@ -4,6 +4,7 @@ Governance-ID: TG-DDAB4B34D59F
 Governance-ID: TG-B08D6ACD9EB2
 Governance-ID: TG-41CB66802AB9
 Governance-ID: TG-DE517B0959B7
+Governance-ID: TG-36B729A96807
 Status: In progress
 Owner: сессия Claude 2026-09-24 (оркестратор Opus 5.5, исполнители — субагенты по таблице моделей)
 Related epic/enabler: E01–E24 пакета `docs/phraseman-2.0/`

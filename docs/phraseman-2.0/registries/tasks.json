@@ -4237,7 +4237,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -4246,8 +4246,10 @@
       {
         "id": "PM-087-A1",
         "text": "Состояния покупка, restore, offline entitlement, истечение и возврат проверены",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "проверено помощником в PM-081..084 (commit a83f4a46b area)"
+        ]
       },
       {
         "id": "PM-087-A2",
@@ -4264,16 +4266,20 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Opus 5.5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "проверено помощником в PM-081..084 (commit a83f4a46b area)"
+    ],
+    "notes": [
+      "Списание пропускается до журнала для Plus, запас при активации доливается до полного, не обнуляется. Второй критерий (A2) требует отдельной проверки UI-подсказки для Plus, не проверялся явно"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "opus-5.5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-088",
@@ -5827,7 +5833,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -5847,15 +5853,19 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "docs/phraseman-2.0/docs/CONTENT_LOCALE_REGISTRY.md"
+    ],
+    "notes": [
+      "4 языка изучения: en полный, es/fr/de частично или заблокированы гейтами"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
+    "actual_model": "sonnet-5",
     "actual_reasoning": null
   },
   {
@@ -5867,7 +5877,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -5876,8 +5886,10 @@
       {
         "id": "PM-120-A1",
         "text": "Ключи прогресса, ошибок, курсов, диалогов и тренировок включают нужные контуры",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/docs/CONTENT_LOCALE_REGISTRY.md"
+        ]
       },
       {
         "id": "PM-120-A2",
@@ -5893,15 +5905,19 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "docs/phraseman-2.0/docs/CONTENT_LOCALE_REGISTRY.md"
+    ],
+    "notes": [
+      "изоляция уже надёжная через target_storage_keys.ts + assertTargetKey. Энергия/монеты/ранг намеренно общие на аккаунт"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
+    "actual_model": "sonnet-5",
     "actual_reasoning": null
   },
   {
@@ -5965,7 +5981,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -5974,8 +5990,10 @@
       {
         "id": "PM-122-A1",
         "text": "Ни paywall, ни энергия не блокируют смену",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "проверка StudyLanguagePicker.tsx"
+        ]
       },
       {
         "id": "PM-122-A2",
@@ -5991,15 +6009,19 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "проверка StudyLanguagePicker.tsx"
+    ],
+    "notes": [
+      "уже бесплатно, код не менялся. Платный гейт — отдельная механика (добавление НОВОГО языка сверх лимита), не смена уже начатого"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
+    "actual_model": "sonnet-5",
     "actual_reasoning": null
   },
   {

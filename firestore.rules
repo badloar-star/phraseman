@@ -2399,6 +2399,14 @@ service cloud.firestore {
       allow create, update, delete: if isAdmin();
     }
 
+    // Шпиль (PM-277): комнаты по 30 на язык и день входа. Пишет только сервер
+    // (spireJoinRoom, spireReportSteps); клиент читает раз в 6 ч при заходе.
+    // Ступени ботов в документе не хранятся — формула на устройстве (D56).
+    match /spire_groups/{groupId} {
+      allow read: if request.auth != null;
+      allow create, update, delete: if isAdmin();
+    }
+
     // â”€â”€ Auth links (Google/Apple â†’ stable_id mapping) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // Doc id = providerUid (Google sub / Apple sub).
     // Ð˜ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐµÑ‚ÑÑ Ð¿Ñ€Ð¸ Ð»Ð¾Ð³Ð¸Ð½Ðµ Ð½Ð° Ð½Ð¾Ð²Ð¾Ð¼ ÑƒÑÑ‚Ñ€Ð¾Ð¹ÑÑ‚Ð²Ðµ: query auth_links/{providerUid}

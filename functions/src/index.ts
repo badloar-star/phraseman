@@ -1090,6 +1090,9 @@ export { adminArenaConfigGet, adminArenaConfigSet } from "./admin_arena_config";
 // Управление конфигом Шпиля из админки (PM-283, TOWER_CONTRACT.md §7): таймер,
 // монеты, боты меняются без релиза через config/spire_v1.
 export { adminSpireConfigGet, adminSpireConfigSet } from "./admin_spire_config";
+// Шпиль: комнаты по 30 на язык и день входа (PM-277, T15/T24); боты — формула
+// spire_residents.ts без чтений/записей и без крона (D56).
+export { spireJoinRoom } from "./spire_groups";
 // Read-only DRAFT workspace for target-isolated Arena content. The callable
 // surface deliberately has no stage/publish mutation until a reviewed durable
 // transport exists for the large static packages.

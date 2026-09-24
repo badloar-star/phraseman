@@ -12511,7 +12511,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -12520,14 +12520,25 @@
       {
         "id": "PM-277-A1",
         "text": "Комнаты по 30 на каждый язык, набор по дню входа в неделю",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "functions/src/spire_groups.ts",
+          "functions/src/spire_residents.ts",
+          "firestore.rules",
+          "docs/phraseman-2.0/evidence/PM-277_rooms_and_residents.md"
+        ]
       },
       {
         "id": "PM-277-A2",
         "text": "Боты детерминированы из зерна комнаты (0 чтений/записей), средние, не занимают зоны, не раскрываются (T26)",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "functions/src/spire_residents.ts",
+          "modules/spire/residents.ts",
+          "functions/src/spire_residents.test.ts",
+          "tests/spire_residents_mirror_contract.test.ts",
+          "docs/phraseman-2.0/evidence/PM-277_rooms_and_residents.md"
+        ]
       }
     ],
     "depends_on": [
@@ -12540,18 +12551,28 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Opus 5.5 (сессия «Башня», субагент)",
     "reviewer": null,
-    "evidence": [],
+    "evidence": [
+      "functions/src/spire_groups.ts",
+      "functions/src/spire_residents.ts",
+      "modules/spire/residents.ts",
+      "functions/src/spire_residents.test.ts",
+      "tests/spire_residents_mirror_contract.test.ts",
+      "functions/src/index.ts",
+      "firestore.rules",
+      "docs/phraseman-2.0/evidence/PM-277_rooms_and_residents.md"
+    ],
     "notes": [
-      "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md"
+      "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md",
+      "2026-09-24: callable spireJoinRoom (комнаты по 30 на en/es/fr/de, подбор по weekId+lang+tier+cohortDay, когорта = день первого входа в неделю) и формула ботов spireRoomResidents (зерно комнаты, 0 чтений/записей, без крона D56; бот строго между зонами повышения/понижения живых, при упоре — пропорциональное сжатие), клиентская копия modules/spire/residents.ts + сторож зеркала. Отдельная коллекция spire_groups вместо league_groups (кроны живой Лиги иначе трогали бы комнаты Шпиля). jest/tsc НЕ прогнаны (щадящий режим). Осталось: вызов spireMemberStepsUpdate в spire_progress.ts (PM-275, чужой файл), spireTiers из PM-278, итог PM-276 на spireLiveZoneSize. Открытые вопросы владельцу О-277-1 (один живой в комнате не повышается) и О-277-2 (просадка чисел ботов) — evidence/PM-277_rooms_and_residents.md."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
+    "kind": "code",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "claude-opus-5-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-278",

@@ -4,6 +4,7 @@ import { hapticTap } from '../../hooks/use-haptics';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { V2, V2_TYPE } from '../../constants/v2Style';
 import { useV2Palette } from './useV2Palette';
+import { V2GlassSheen, useV2GlassStyle } from './V2Glass';
 
 export type V2Segment<K extends string> = Readonly<{ key: K; label: string }>;
 
@@ -21,6 +22,7 @@ type Props<K extends string> = {
  */
 export default function V2SegmentedControl<K extends string>({ segments, value, onChange, testID }: Props<K>) {
   const p = useV2Palette();
+  const glass = useV2GlassStyle();
   const reduceMotion = useReduceMotion();
   const [width, setWidth] = useState(0);
   const index = Math.max(0, segments.findIndex((s) => s.key === value));
@@ -39,8 +41,9 @@ export default function V2SegmentedControl<K extends string>({ segments, value, 
       testID={testID}
       accessibilityRole="tablist"
       onLayout={onLayout}
-      style={[s.track, { backgroundColor: p.card, borderColor: p.hairline }]} // guard-ok: D43 кромка нового стиля
+      style={[s.track, glass]}
     >
+      <V2GlassSheen />
       {segmentWidth > 0 ? (
         <Animated.View
           pointerEvents="none"
@@ -48,7 +51,9 @@ export default function V2SegmentedControl<K extends string>({ segments, value, 
             s.thumb,
             {
               width: segmentWidth,
-              backgroundColor: p.control,
+              backgroundColor: p.glassRaised,
+              borderColor: p.stroke,
+              borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43
               transform: [{
                 translateX: anim.interpolate({
                   inputRange: segments.map((_, i) => i),

@@ -58,6 +58,7 @@ import { useRequestedFeatureIntro } from '../hooks/use_requested_feature_intro';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { V2, V2_TYPE } from '../constants/v2Style';
 import { useV2Palette } from './v2/useV2Palette';
+import { V2GlassSheen, V2IconTile, useV2GlassStyle } from './v2/V2Glass';
 
 // Chrome (per-theme palette) now lives in app/daily_phrase_chrome.ts so the
 // home/lock-screen widget can render the identical look. See that file.
@@ -95,6 +96,7 @@ function DailyPhraseCard({
   const homeV2 = variant === 'homeV2';
   const homeAdditional = variant === 'homeAdditional' || homeV2;
   const v2 = useV2Palette();
+  const v2Glass = useV2GlassStyle();
   const homeKickerFontSize = Math.max(12, f.caption);
   const chrome = dailyPhraseChromeFor(themeMode);
   const phraseOfDayArt = getHomeSupportingArt(themeMode).phraseOfDay;
@@ -352,7 +354,7 @@ function DailyPhraseCard({
     const gateCopy = dailyPhraseGateCopyForTarget(studyTarget, lang);
     if (homeV2) {
       return (
-        <View accessibilityRole="text" accessibilityLabel={gateCopy.title} style={[styles.v2Card, { backgroundColor: v2.card, borderColor: v2.hairline }]}>
+        <View accessibilityRole="text" accessibilityLabel={gateCopy.title} style={[styles.v2Card, v2Glass]}>
           <View style={[styles.v2Quote, { backgroundColor: v2.control }]}>
             <Ionicons name="shield-checkmark-outline" size={20} color={v2.text} />
           </View>
@@ -417,7 +419,7 @@ function DailyPhraseCard({
 
   if (!phrase) {
     // Резерв той же высоты, что у готовой карточки: первый кадр = финальная геометрия.
-    if (homeV2) return <View style={[styles.v2Card, { backgroundColor: v2.card, borderColor: v2.hairline }]} />; // guard-ok: D43
+    if (homeV2) return <View style={[styles.v2Card, v2Glass]} />; // guard-ok: D43
     return <View style={[styles.placeholder, { backgroundColor: t.bgCard }]} />;
   }
 
@@ -638,13 +640,12 @@ function DailyPhraseCard({
           onPress={openDetails}
           accessibilityRole="button"
           accessibilityLabel={`${title}. ${phrase.english}. ${phraseCopy.literal}`}
-          style={({ pressed }) => [styles.v2Card, { backgroundColor: v2.card, borderColor: v2.hairline }, pressed && styles.pressed]} // guard-ok: D43
+          style={({ pressed }) => [styles.v2Card, v2Glass, pressed && styles.pressed]}
         >
+          <V2GlassSheen />
           {/* Слот арта справа: ассет рисует Codex, до него — тихая заглушка того же размера. */}
-          <View pointerEvents="none" style={[styles.v2Art, { backgroundColor: v2.cardRaised }]} />
-          <View style={[styles.v2Quote, { backgroundColor: v2.control }]}>
-            <Text style={[styles.v2QuoteMark, { color: v2.text }]}>{'“'}</Text>
-          </View>
+          <View pointerEvents="none" style={[styles.v2Art, { backgroundColor: v2.glassRaised }]} />
+          <V2IconTile name="chatbubble-ellipses-outline" size={40} iconSize={20} />
           <View style={styles.v2Copy}>
             <Text style={[styles.v2Kicker, { color: v2.textSecondary }]} numberOfLines={1}>{title.toUpperCase()}</Text>
             <Text style={[styles.v2Phrase, { color: v2.text }]} numberOfLines={2}>{phrase.english}</Text>
@@ -658,9 +659,9 @@ function DailyPhraseCard({
                 accessibilityRole="button"
                 accessibilityLabel={triLang(lang, { uk: 'Озвучити', ru: 'Озвучить', en: 'Play', es: 'Reproducir', 'pt-BR': 'Reproduzir', vi: 'Phát', id: 'Putar', tr: 'Seslendir', pl: 'Odtwórz' })}
                 onPress={() => { const en = phrase.english?.trim(); if (en) speak(en); }}
-                style={({ pressed }) => [styles.v2Round, { backgroundColor: v2.control, borderColor: v2.hairline }, pressed && styles.pressed]} // guard-ok: D43
+                style={({ pressed }) => [styles.v2Round, { backgroundColor: v2.glassRaised, borderColor: v2.stroke }, pressed && styles.pressed]} // guard-ok: D43
               >
-                <Ionicons name="volume-medium-outline" size={18} color={v2.text} />
+                <Ionicons name="volume-medium-outline" size={18} color={v2.iconTint} />
               </Pressable>
               <Pressable
                 testID="home-v2-phrase-save"
@@ -670,9 +671,9 @@ function DailyPhraseCard({
                 // зачем: сохранить фразу можно только после ответа на вопрос дня —
                 // звезда открывает шторку, где закладка и сам вопрос.
                 onPress={openDetails}
-                style={({ pressed }) => [styles.v2Round, { backgroundColor: v2.control, borderColor: v2.hairline }, pressed && styles.pressed]} // guard-ok: D43
+                style={({ pressed }) => [styles.v2Round, { backgroundColor: v2.glassRaised, borderColor: v2.stroke }, pressed && styles.pressed]} // guard-ok: D43
               >
-                <Ionicons name="star-outline" size={18} color={v2.text} />
+                <Ionicons name="star-outline" size={18} color={v2.iconTint} />
               </Pressable>
             </View>
           </View>

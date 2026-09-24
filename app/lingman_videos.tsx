@@ -31,6 +31,7 @@ import { useTabNav } from './TabContext';
 import { useTabContentBottomPad } from '../hooks/use-tab-content-bottom-pad';
 import { V2, V2_TYPE } from '../constants/v2Style';
 import { useV2Palette } from '../components/v2/useV2Palette';
+import { V2GlassSheen, V2IconTile, useV2GlassStyle } from '../components/v2/V2Glass';
 import {
   getActiveYoutubeChannel,
   getLingmanYoutubeSnapshot,
@@ -92,6 +93,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   const { runtimeOwnerId } = useTabNav();
   const tabContentBottomPad = useTabContentBottomPad();
   const p = useV2Palette();
+  const packsGlass = useV2GlassStyle();
   const router = useRouter();
   const { videoId: deepLinkedVideoId, channelId: deepLinkedChannelId } = useLocalSearchParams<{ videoId?: string; channelId?: string }>();
   const { lang } = useLang();
@@ -355,11 +357,10 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
             activeOpacity={0.8}
             onPressIn={() => hapticTap()}
             onPress={() => router.push('/flashcards_video_packs' as never)}
-            style={[styles.packsRow, { backgroundColor: p.card, borderColor: p.hairline }]} // guard-ok: D43
+            style={[styles.packsRow, packsGlass]}
           >
-            <View style={[styles.packsIcon, { backgroundColor: p.control }]}>
-              <Ionicons name="albums-outline" size={20} color={p.text} />
-            </View>
+            <V2GlassSheen />
+            <V2IconTile name="albums-outline" size={V2.rowIcon} iconSize={20} />
             <View style={styles.packsCopy}>
               <Text numberOfLines={1} style={[styles.packsTitle, { color: p.text }]}>{copy.videoPacks}</Text>
               <Text numberOfLines={1} style={[styles.packsSub, { color: p.textSecondary }]}>{copy.videoPacksSub}</Text>

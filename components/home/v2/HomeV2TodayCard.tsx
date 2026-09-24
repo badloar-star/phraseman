@@ -4,6 +4,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import V2Pressable from '../../v2/V2Pressable';
 import { V2, V2_TYPE } from '../../../constants/v2Style';
 import { useV2Palette } from '../../v2/useV2Palette';
+import { V2GlassSheen, V2IconTile, useV2GlassStyle } from '../../v2/V2Glass';
 import type { TodayTask, TodayTaskKind } from './home_v2_types';
 
 const KIND_ICON: Record<TodayTaskKind, React.ComponentProps<typeof Ionicons>['name']> = {
@@ -27,11 +28,11 @@ type Props = {
  */
 export default function HomeV2TodayCard({ title, tasks, onOpenTask }: Props) {
   const p = useV2Palette();
+  const glass = useV2GlassStyle();
+  const rowGlass = useV2GlassStyle(true);
   return (
-    <View
-      testID="home-v2-today"
-      style={[s.card, { backgroundColor: p.card, borderColor: p.hairline }]} // guard-ok: D43
-    >
+    <View testID="home-v2-today" style={[s.card, glass]}>
+      <V2GlassSheen />
       <Text accessibilityRole="header" style={[s.header, { color: p.textSecondary }]}>{title}</Text>
       <View style={s.list}>
         {tasks.map((task) => {
@@ -45,14 +46,14 @@ export default function HomeV2TodayCard({ title, tasks, onOpenTask }: Props) {
               accessibilityLabel={`${task.title}${task.subtitle ? `. ${task.subtitle}` : ''}. ${counter}`}
               onPress={() => onOpenTask(task)}
               scaleTo={0.98}
-              style={[s.row, { backgroundColor: p.cardRaised, borderColor: p.hairline }]} // guard-ok: D43
+              style={[s.row, rowGlass]}
             >
               <View
-                style={[s.check, task.done ? { backgroundColor: p.text, borderColor: p.text } : { borderColor: p.textSecondary }]} // guard-ok: D43 отметка-кружок
+                style={[s.check, task.done ? { backgroundColor: p.iconTint, borderColor: p.iconTint } : { borderColor: p.textMuted }]} // guard-ok: D43 отметка-кружок
               >
                 {task.done ? <Ionicons name="checkmark" size={14} color={p.card} /> : null}
               </View>
-              <Ionicons name={KIND_ICON[task.kind]} size={22} color={p.textSecondary} style={s.kindIcon} />
+              <V2IconTile name={KIND_ICON[task.kind]} size={36} iconSize={19} />
               <View style={s.copy}>
                 <Text numberOfLines={1} style={[s.taskTitle, { color: p.text }]}>{task.title}</Text>
                 {task.subtitle ? (

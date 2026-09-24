@@ -4,6 +4,7 @@ import Svg, { Path } from 'react-native-svg';
 import V2Pressable from '../../v2/V2Pressable';
 import { V2, V2_TYPE } from '../../../constants/v2Style';
 import { useV2Palette } from '../../v2/useV2Palette';
+import { V2GlassSheen, V2IconTile, useV2GlassStyle } from '../../v2/V2Glass';
 
 type StatChip = Readonly<{
   testID: string;
@@ -31,6 +32,7 @@ type Props = {
  */
 export default function HomeV2Header({ isPro, tagline, bellSlot, avatarSlot, stats }: Props) {
   const p = useV2Palette();
+  const glass = useV2GlassStyle();
   return (
     <View testID="home-v2-header" style={s.root}>
       <View style={s.topRow}>
@@ -61,8 +63,9 @@ export default function HomeV2Header({ isPro, tagline, bellSlot, avatarSlot, sta
               accessibilityLabel={stat.accessibilityLabel}
               onPress={stat.onPress}
               scaleTo={0.96}
-              style={[s.stat, { backgroundColor: p.card, borderColor: p.hairline }]} // guard-ok: D43
+              style={[s.stat, glass]}
             >
+              <V2GlassSheen />
               <View style={s.statIcon}>{stat.icon}</View>
               <View style={s.statCopy}>
                 <Text numberOfLines={1} style={[s.statValue, { color: p.text }]}>{stat.value}</Text>
@@ -107,21 +110,23 @@ const s = StyleSheet.create({
   proText: { fontSize: 12, lineHeight: 15, fontWeight: '800', letterSpacing: 0.6 },
   actions: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   bottomRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 10 },
-  tagline: { ...V2_TYPE.subtitle, flexShrink: 1 },
-  stats: { flexDirection: 'row', gap: 8 },
+  tagline: { ...V2_TYPE.subtitle, fontSize: 13, lineHeight: 18, flexShrink: 1 },
+  stats: { flexDirection: 'row', gap: 8, flexShrink: 0 },
   stat: {
-    // Обе плашки одной ширины, как на референсе: число не «толкает» соседа.
-    width: 104,
+    // Одинаковая минимальная ширина, как на референсе; длинное «12 дней»
+    // растит плашку, а не обрезается.
+    minWidth: 100,
     height: 46,
     borderRadius: V2.radius.row,
     borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
-    paddingHorizontal: 10,
+    gap: 7,
+    paddingHorizontal: 9,
+    paddingRight: 12,
   },
-  statIcon: { width: 24, height: 24, alignItems: 'center', justifyContent: 'center' },
-  statCopy: { flex: 1, minWidth: 0 },
+  statIcon: { width: 22, height: 22, alignItems: 'center', justifyContent: 'center' },
+  statCopy: { flexShrink: 0 },
   statValue: { fontSize: 15, lineHeight: 18, fontWeight: '800' },
   statLabel: { ...V2_TYPE.caption },
 });

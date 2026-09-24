@@ -4,6 +4,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import V2Pressable from '../../v2/V2Pressable';
 import { V2, V2_TYPE } from '../../../constants/v2Style';
 import { useV2Palette } from '../../v2/useV2Palette';
+import { V2GlassSheen, V2IconTile, useV2GlassStyle } from '../../v2/V2Glass';
 
 type Props = {
   overline: string;
@@ -24,6 +25,7 @@ type Props = {
  */
 export default function HomeV2ContinueCard({ overline, title, done, total, badge, accessibilityLabel, onPress, onLongPress }: Props) {
   const p = useV2Palette();
+  const glass = useV2GlassStyle();
   const safeTotal = Math.max(1, total);
   const ratio = Math.max(0, Math.min(1, done / safeTotal));
   return (
@@ -34,9 +36,10 @@ export default function HomeV2ContinueCard({ overline, title, done, total, badge
       onPress={onPress}
       onLongPress={onLongPress}
       scaleTo={0.98}
-      style={[s.card, { backgroundColor: p.card, borderColor: p.hairline }]} // guard-ok: D43
+      style={[s.card, glass]}
     >
-      <View pointerEvents="none" style={[s.art, { backgroundColor: p.cardRaised }]}>
+      <V2GlassSheen />
+      <View pointerEvents="none" style={[s.art, { backgroundColor: p.glassRaised }]}>
         {badge ? (
           <View
             style={[s.badge, { backgroundColor: p.control, borderColor: p.hairline }]} // guard-ok: D43
@@ -54,7 +57,7 @@ export default function HomeV2ContinueCard({ overline, title, done, total, badge
             {/* Ширина задаётся сразу — первый кадр = финальная геометрия. */}
             <View style={[s.fill, { width: `${ratio * 100}%`, backgroundColor: p.progressFill }]} />
           </View>
-          <View style={[s.arrow, { backgroundColor: p.control }]}>
+          <View style={[s.arrow, { backgroundColor: p.glassRaised, borderColor: p.stroke }]}>
             <Ionicons name="chevron-forward" size={18} color={p.text} />
           </View>
         </View>
@@ -91,5 +94,5 @@ const s = StyleSheet.create({
   progressRow: { flexDirection: 'row', alignItems: 'center', gap: 12, marginTop: 6 },
   track: { flex: 1, height: V2.progress.height, borderRadius: V2.progress.height / 2, overflow: 'hidden' },
   fill: { height: '100%', borderRadius: V2.progress.height / 2, minWidth: V2.progress.height * 2 },
-  arrow: { width: 32, height: 32, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
+  arrow: { width: 32, height: 32, borderRadius: 16, borderWidth: StyleSheet.hairlineWidth, alignItems: 'center', justifyContent: 'center' }, // guard-ok: D43
 });

@@ -583,7 +583,7 @@ function NotificationCenterButton({
         accessibilityLabel={combinedUnreadCount > 0 ? `${copy.title}: ${combinedUnreadCount}` : copy.title}
         onPress={open}
         style={styles.headerPressable}
-        contentStyle={[styles.headerButton, { backgroundColor: v2.control, borderColor: v2.hairline }]}
+        contentStyle={[styles.headerButton, { backgroundColor: v2.glassRaised, borderColor: v2.stroke }]}
       >
         {/* зачем (2.0, референс владельца 24.09): круглая кнопка на графите,
             непрочитанное — светлая точка, число уходит в подпись для скринридера. */}

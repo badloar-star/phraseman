@@ -98,6 +98,19 @@ export type V2Palette = Readonly<{
   correct: string;
   wrong: string;
   gold: string;
+  /** Стекло (референс владельца 24.09, вторая серия): полупрозрачная заливка
+   *  карточки, сквозь которую видны пятна света фона, + перелив сверху-слева. */
+  glass: string;
+  glassRaised: string;
+  sheenFrom: string;
+  sheenTo: string;
+  /** Кромка стекла: светлее, чем hairline, — она и даёт «дорогой» край. */
+  stroke: string;
+  /** Тёплый оттенок значков и акцентных слов (шампань, подкрашенная темой). */
+  iconTint: string;
+  /** Пятна света на фоне экрана. */
+  glowA: string;
+  glowB: string;
 }>;
 
 const paletteCache = new Map<string, V2Palette>();
@@ -132,6 +145,14 @@ export function getV2Palette(theme: Theme, themeMode: ThemeMode): V2Palette {
     correct: theme.correct,
     wrong: theme.wrong,
     gold: theme.gold,
+    glass: alphaHex(mixHex(BASE.card, tintColor, tint), 0.55),
+    glassRaised: alphaHex(mixHex(BASE.cardRaised, tintColor, tint), 0.7),
+    sheenFrom: 'rgba(255,255,255,0.095)',
+    sheenTo: 'rgba(255,255,255,0.008)',
+    stroke: 'rgba(255,255,255,0.12)',
+    iconTint: mixHex('#E2C9A0', tintColor, 0.15),
+    glowA: mixHex('#C9A370', tintColor, 0.2),
+    glowB: mixHex('#8C8F99', tintColor, 0.25),
   };
   paletteCache.set(key, palette);
   return palette;

@@ -4682,7 +4682,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 stats={[
                   {
                     testID: 'home-v2-streak',
-                    icon: <Ionicons name="flame" size={22} color="#FF8A3D" />,
+                    icon: <Ionicons name="flame" size={20} color="#FF8A3D" />,
                     value: homeV2DaysLabel,
                     label: homeV2StreakWord,
                     accessibilityLabel: `${homeV2StreakWord}: ${homeV2DaysLabel}`,
@@ -4690,7 +4690,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                   },
                   {
                     testID: 'home-v2-coins',
-                    icon: <Image source={homeHeaderRuneIconSource} style={{ width: 22, height: 22 }} contentFit="contain" />,
+                    icon: <Image source={homeHeaderRuneIconSource} style={{ width: 20, height: 20 }} contentFit="contain" />,
                     value: String(rewardCollect.displayRunes(runesBalance)),
                     label: triLang(lang, { ru: 'Монеты', uk: 'Монети', en: 'Coins', es: 'Monedas', 'pt-BR': 'Moedas', vi: 'Xu', id: 'Koin', tr: 'Jeton', pl: 'Monety' }),
                     accessibilityLabel: homeRunesA11yLabel,

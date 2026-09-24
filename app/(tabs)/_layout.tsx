@@ -583,7 +583,7 @@ function TabScaffold({
                   height: tabDockHeight,
                   paddingBottom: tabDockBottomPad,
                   backgroundColor: v2.tabBar,
-                  borderColor: v2.hairline,
+                  borderColor: v2.stroke,
                 },
               ]}
             >

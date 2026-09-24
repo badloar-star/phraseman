@@ -16,6 +16,9 @@ import AppArtBackdrop, { AppRouteArtBackdrop } from './AppArtBackdrop';
 import type { AppArtBackdropName } from './appArtBackdropRegistry';
 import type { ThemeMode } from '../constants/theme';
 
+import V2Backdrop from './v2/V2Backdrop';
+
+const V2_BACKDROP_ENABLED = true;
 const GradientActiveCtx = React.createContext(false);
 
 const { width: W, height: H } = Dimensions.get('window');
@@ -738,7 +741,10 @@ function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, for
         ? { transform: [{ translateY: animatedY }] }
         : {}),
   };
-  const backgroundLayers = (
+  // зачем (2.0, владелец 24.09): один фон на все экраны — графит с мягкими пятнами
+  // света (V2Backdrop), вместо орбов/артов тем. Темы меняют только оттенок (D38/D41).
+  // false — вернуть прежний фон тем одной строкой.
+  const backgroundLayers = V2_BACKDROP_ENABLED ? <V2Backdrop /> : (
     <>
       {bgLayers.map(layer => renderBackgroundLayer(layer))}
       {fixedArtBackdrop ? <AppArtBackdrop name={fixedArtBackdrop} /> : routeArtBackdropEnabled ? <AppRouteArtBackdrop /> : null}

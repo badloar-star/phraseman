@@ -25,7 +25,7 @@ export default function YoutubeChannelHeader({ channel, title, onBack, onOpenCha
   const p = useV2Palette();
   const allChannels = triLang(lang, { ru: 'Все наши каналы', uk: 'Усі наші канали', en: 'All our channels', es: 'Todos nuestros canales', 'pt-BR': 'Todos os nossos canais', vi: 'Tất cả kênh', id: 'Semua kanal kami', tr: 'Tüm kanallarımız', pl: 'Wszystkie nasze kanały' });
   const back = triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' });
-  const roundButton = [styles.round, { backgroundColor: p.control }];
+  const roundButton = [styles.round, { backgroundColor: p.glassRaised, borderColor: p.stroke }];
   return (
     <View style={styles.wrap}>
       <View style={styles.topRow}>
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   wrap: { marginBottom: 16 },
   topRow: { flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: V2.iconButton },
   spacer: { flex: 1 },
-  round: { width: V2.iconButton, height: V2.iconButton, borderRadius: V2.iconButton / 2, alignItems: 'center', justifyContent: 'center' },
+  round: { width: V2.iconButton, height: V2.iconButton, borderRadius: V2.iconButton / 2, borderWidth: StyleSheet.hairlineWidth, alignItems: 'center', justifyContent: 'center' }, // guard-ok: D43
   title: { ...V2_TYPE.largeTitle, marginTop: 12 },
   subtitle: { ...V2_TYPE.body, marginTop: 4 },
 });

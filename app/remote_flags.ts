@@ -257,8 +257,8 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
   free_lesson_limit: 3,
   // зачем (PM-081, D06): запас энергии ровно 5, пульт его не меняет.
   max_energy: 5,
-  // Numeric energy: +1 every 6 minutes = +10/hour; 0→100 takes 10 hours.
-  energy_recovery_interval_ms: 6 * 60 * 1000,
+  // PM-083 (BIBLE «+1 за 10 минут»; D06): 0→5 занимает 50 минут.
+  energy_recovery_interval_ms: 10 * 60 * 1000,
   onboarding_ab_welcome_pct: 0,
   onboarding_ab_builder_pct: 0,
   paywall_v2_pct: 100,
@@ -452,7 +452,8 @@ const NUMBER_BOUNDS: Record<RemoteNumberKey, { min: number; max: number }> = {
   free_lesson_limit: { min: 1, max: 32 },
   // Product invariant (PM-081, D06/D07): capacity is exactly 5, no bonuses.
   max_energy: { min: 5, max: 5 },
-  energy_recovery_interval_ms: { min: 10_000, max: 24 * 60 * 60 * 1000 },
+  // PM-083 (D06): интервал фиксирован — пульт не ускоряет и не замедляет.
+  energy_recovery_interval_ms: { min: 10 * 60 * 1000, max: 10 * 60 * 1000 },
   onboarding_ab_welcome_pct: { min: 0, max: 100 },
   onboarding_ab_builder_pct: { min: 0, max: 100 },
   paywall_v2_pct: { min: 0, max: 100 },

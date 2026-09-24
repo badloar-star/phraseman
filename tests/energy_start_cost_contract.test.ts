@@ -13,7 +13,8 @@ describe('numeric energy v2 contract', () => {
     expect(contract).toContain('ENERGY_BASE_CAPACITY = 5');
     expect(contract).toContain('ENERGY_SESSION_COST = 1');
     expect(contract).toContain('ENERGY_ACTIVE_CAPACITY_LIMIT = ENERGY_PERMANENT_CAPACITY_LIMIT + ENERGY_BONUS_CAPACITY_LIMIT');
-    expect(contract).toContain('ENERGY_PASSIVE_UNIT_MS = 6 * 60 * 1000');
+    // PM-083 (BIBLE «+1 за 10 минут»): прежние 6 минут отменены.
+    expect(contract).toContain('ENERGY_PASSIVE_UNIT_MS = 10 * 60 * 1000');
     expect(contract).toContain('ENERGY_VIDEO_UNIT_MS = 36 * 1000');
     expect(contract).toContain('flashcards: ENERGY_SESSION_COST');
     expect(contract).toContain('classic_lesson: ENERGY_SESSION_COST');
@@ -25,12 +26,13 @@ describe('numeric energy v2 contract', () => {
     expect(contract).toContain('max_call: 0');
   });
 
-  it('remote defaults resolve to 5 energy', () => {
+  it('remote defaults resolve to 5 energy and one unit every ten minutes', () => {
     const flags = read('app/remote_flags.ts');
     expect(flags).toContain('numeric_energy_v2: true');
     expect(flags).toContain('max_energy: 5,');
     expect(flags).toContain('max_energy: { min: 5, max: 5 }');
-    expect(flags).toContain('energy_recovery_interval_ms: 6 * 60 * 1000');
+    expect(flags).toContain('energy_recovery_interval_ms: 10 * 60 * 1000');
+    expect(flags).toContain('energy_recovery_interval_ms: { min: 10 * 60 * 1000, max: 10 * 60 * 1000 }');
   });
 
   it('all paid starts use the single durable activity-first context entry point', () => {

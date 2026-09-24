@@ -24,7 +24,8 @@ describe('numeric energy contract', () => {
     expect(ENERGY_ACTIVE_CAPACITY_LIMIT).toBe(205);
     expect(ENERGY_VIDEO_UNIT_MS).toBe(36_000);
     expect(ENERGY_MICRO_UNITS_PER_UNIT).toBe(1_000_000);
-    expect(ENERGY_PASSIVE_UNIT_MS).toBeGreaterThan(0);
+    // PM-083 (BIBLE «+1 за 10 минут»; D06): прежние 6 минут отменены.
+    expect(ENERGY_PASSIVE_UNIT_MS).toBe(600_000);
   });
 
   // PM-081 (D07): «никаких бонусов cap/rate от визиток/лиги/видео».

@@ -25,7 +25,7 @@ export type EnergyState = EnergyStateV2;
 
 const ENERGY_STORAGE_KEY = 'energy_state';
 /** Build-time default; runtime uses remote-tunable getEnergyRecoveryIntervalMs(). */
-// Numeric energy: +1 every 6 minutes = +10/hour, so 0→100 takes 10 hours.
+// PM-083 (BIBLE «+1 за 10 минут»): 0→5 занимает 50 минут.
 export const ENERGY_RECOVERY_INTERVAL_MS = ENERGY_PASSIVE_UNIT_MS;
 
 /** Remote-tunable max energy (cap). Read at call time so admin changes apply live. */

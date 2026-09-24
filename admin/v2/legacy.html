@@ -34514,7 +34514,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   const RC_NUMBER_FIELDS = [
     { key: 'free_lesson_limit', label: 'Совместимость: лимит бесплатных уроков (только старые клиенты)', def: 3, min: 1, max: 32 },
     { key: 'max_energy', label: 'Лимит энергии (PM-081: ровно 5)', def: 5, min: 5, max: 5 },
-    { key: 'energy_recovery_interval_ms', label: 'Интервал +1 энергии (мс)', def: 360000, min: 10000, max: 86400000 },
+    { key: 'energy_recovery_interval_ms', label: 'Интервал +1 энергии (мс, PM-083: ровно 10 мин)', def: 600000, min: 600000, max: 600000 },
     { key: 'paywall_v2_pct', label: 'АРХИВ: paywall_v2_pct (не управляет новым пейволом)', def: 100, min: 0, max: 100 },
     { key: 'avatar_dna_rollout_pct', label: 'Студия персонажа: доля пользователей, %', def: 0, min: 0, max: 100 },
     { key: 'league_xp_promotion_threshold', label: 'Лиги: XP для перехода вверх', def: 1000, min: 1, max: 1000000 },

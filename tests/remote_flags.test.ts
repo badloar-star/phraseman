@@ -53,7 +53,8 @@ describe('remote_flags', () => {
       expect(getFreeLessonLimit()).toBe(3);
       // PM-081 (BIBLE «Энергия: 5»; D06): запас ровно 5, прежние 100 отменены.
       expect(getRemoteNumber('max_energy')).toBe(5);
-      expect(getRemoteNumber('energy_recovery_interval_ms')).toBe(6 * 60 * 1000);
+      // PM-083 (BIBLE «+1 за 10 минут»; D06): прежние 6 минут — отменённое правило.
+      expect(getRemoteNumber('energy_recovery_interval_ms')).toBe(10 * 60 * 1000);
       expect(getRemoteBool('numeric_energy_v2')).toBe(true);
       expect(getRemoteBool('intro_full_access_enabled')).toBe(false);
       expect(getRemoteNumber('onboarding_ab_welcome_pct')).toBe(0);

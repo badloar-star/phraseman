@@ -25,7 +25,15 @@ export const PROFILE_CARD_ENERGY_MAX_LEVEL = 5 as const;
 export const ENERGY_PERMANENT_CAPACITY_LIMIT: number = ENERGY_BASE_CAPACITY;
 export const ENERGY_BONUS_CAPACITY_LIMIT = 200 as const;
 export const ENERGY_ACTIVE_CAPACITY_LIMIT = ENERGY_PERMANENT_CAPACITY_LIMIT + ENERGY_BONUS_CAPACITY_LIMIT;
-export const ENERGY_PASSIVE_UNIT_MS = 6 * 60 * 1000;
+/**
+ * +1 энергия за каждые 10 минут; от нуля до полного запаса 5 — 50 минут.
+ *
+ * зачем (PM-083, BIBLE «+1 за 10 минут»; D06): прежние «6 минут» (под запас
+ * 100) и «час» из ранних заметок — отменённые версии. Пересчёт ленивый: по
+ * времени последнего сохранения (energy_state_v2.settleEnergyState), без
+ * таймеров и серверного крона на каждого пользователя.
+ */
+export const ENERGY_PASSIVE_UNIT_MS = 10 * 60 * 1000;
 export const ENERGY_VIDEO_UNIT_MS = 36 * 1000;
 export const ENERGY_MICRO_UNITS_PER_UNIT = 1_000_000 as const;
 

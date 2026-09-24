@@ -2232,7 +2232,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -2241,14 +2241,18 @@
       {
         "id": "PM-049-A1",
         "text": "Первый вход не прерывается наградой",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commit d6d41bda6 58fadc511"
+        ]
       },
       {
         "id": "PM-049-A2",
         "text": "регистрация, age/consent и восстановление покупки работают",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commit d6d41bda6 58fadc511"
+        ]
       }
     ],
     "depends_on": [],
@@ -2259,16 +2263,21 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "commit d6d41bda6 58fadc511"
+    ],
+    "notes": [
+      "см. журнал PROGRESS.md раздел 5",
+      "welcome-модалка удалена, деньги начисляются молча"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-050",
@@ -2279,7 +2288,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -2288,14 +2297,18 @@
       {
         "id": "PM-050-A1",
         "text": "Сняты источники начисления, хосты, уведомления и админ-настройки",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commit 2c81341eb"
+        ]
       },
       {
         "id": "PM-050-A2",
         "text": "пользовательский прогресс недели не потерян",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commit 2c81341eb"
+        ]
       }
     ],
     "depends_on": [],
@@ -2306,16 +2319,21 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "commit 2c81341eb"
+    ],
+    "notes": [
+      "см. журнал PROGRESS.md раздел 5",
+      "getTodaysBoons всегда пуст — гасит недельные бонусы/PerfectWeek"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-051",
@@ -2326,7 +2344,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -2335,8 +2353,10 @@
       {
         "id": "PM-051-A1",
         "text": "Возврат из фона/после отсутствия не запускает бонусный сценарий и его фоновые проверки",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commit 2c81341eb"
+        ]
       }
     ],
     "depends_on": [],
@@ -2347,16 +2367,21 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "commit 2c81341eb"
+    ],
+    "notes": [
+      "см. журнал PROGRESS.md раздел 5",
+      "comeback-бонусы отключены тем же getTodaysBoons()"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-052",
@@ -2367,7 +2392,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -2376,8 +2401,10 @@
       {
         "id": "PM-052-A1",
         "text": "Баланс обновляется без reward-flight очереди",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commit 2c81341eb"
+        ]
       },
       {
         "id": "PM-052-A2",
@@ -2394,16 +2421,21 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "commit 2c81341eb"
+    ],
+    "notes": [
+      "см. журнал PROGRESS.md раздел 5",
+      "PM-052-A2 (полёт рун на Главной) НЕ закрыт — home.tsx занят сессией интерфейса, довершим отдельно"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-053",
@@ -2465,7 +2497,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -2474,14 +2506,18 @@
       {
         "id": "PM-054-A1",
         "text": "Есть список retired IDs и судьба исторических данных",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "проверка achievement_catalog_v2.ts"
+        ]
       },
       {
         "id": "PM-054-A2",
         "text": "оставшиеся достижения не ссылаются на недоступные действия",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "проверка achievement_catalog_v2.ts"
+        ]
       }
     ],
     "depends_on": [],
@@ -2492,16 +2528,21 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "проверка achievement_catalog_v2.ts"
+    ],
+    "notes": [
+      "см. журнал PROGRESS.md раздел 5",
+      "критерии уже выполнены существующим кодом, без правок"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-055",
@@ -2559,7 +2600,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -2568,14 +2609,18 @@
       {
         "id": "PM-056-A1",
         "text": "Отвязаны энергия/награды/кроны",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commit 34af28903"
+        ]
       },
       {
         "id": "PM-056-A2",
         "text": "нет работающих серверных таймеров после удаления кнопок",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commit 34af28903"
+        ]
       }
     ],
     "depends_on": [],
@@ -2586,16 +2631,21 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "commit 34af28903"
+    ],
+    "notes": [
+      "см. журнал PROGRESS.md раздел 5",
+      "leagueChestReady/canClaim всегда false; прошлые награды не тронуты"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-057",

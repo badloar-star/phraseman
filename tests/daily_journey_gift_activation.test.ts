@@ -123,20 +123,12 @@ it.each(rewardCases)('maps $kind amount $amount exactly and activates only on cl
   await expect(claimDailyJourneyGift(operationId, token)).resolves.toEqual({ status: 'claimed' });
 
   const claimOperationId = `daily-journey-gift-claim:${operationId}`;
+  // зачем (PM-058, владелец: «удалить выдачу жемчуга за любые действия»):
+  // выдача жемчуга «Дневного пути» остановлена (см. app/daily_journey_gift_activation.ts,
+  // case 'pearls'). Клейм по-прежнему успешен (без commitShardCreditOperation),
+  // как отдельная механика ниже проверяет пустой список наград без выдачи.
   if (reward.kind === 'pearls') {
-    expect(commitShardCreditOperation).toHaveBeenCalledWith(expect.objectContaining({
-      amount: reward.amount,
-      reason: 'daily_journey_pearls',
-      grant: expect.objectContaining({
-        kind: 'daily_journey_reward',
-        payload: expect.objectContaining({
-          operationId,
-          occurrenceFingerprint: committed.occurrence.payloadFingerprint,
-          reward,
-        }),
-      }),
-      accountToken: token,
-    }));
+    expect(commitShardCreditOperation).not.toHaveBeenCalled();
   } else if (reward.kind === 'runes') {
     const calls = (enqueueLevelSpinStarGrant as jest.Mock).mock.calls;
     expect(calls.reduce((sum, [input]) => sum + runeAmount(input.giftId), 0)).toBe(reward.amount);
@@ -174,19 +166,25 @@ it.each(rewardCases)('maps $kind amount $amount exactly and activates only on cl
 });
 
 it('returns already_claimed without applying a duplicate effect', async () => {
+  // зачем (PM-058): пример-носитель механики идемпотентности переведён с
+  // pearls (выдача остановлена, commitShardCreditOperation больше не
+  // вызывается) на runes (ещё активная выдача) — сама проверка «не
+  // применили дважды» не про жемчуг и должна остаться живой.
   const token = beginAccountGeneration('owner-a');
   const operationId = 'daily-duplicate-claim-0001';
   await commitDailyJourneyGift({
     operationId, source: 'daily_journey_dev', cycle: 1, day: 1,
-    reward: { kind: 'pearls', amount: 20 },
+    reward: { kind: 'runes', amount: 100 },
   }, token);
 
   expect(await claimDailyJourneyGift(operationId, token)).toEqual({ status: 'claimed' });
   expect(await claimDailyJourneyGift(operationId, token)).toEqual({ status: 'already_claimed' });
-  expect(commitShardCreditOperation).toHaveBeenCalledTimes(1);
+  expect(enqueueLevelSpinStarGrant).toHaveBeenCalledTimes(1);
 });
 
 it('re-emits invalidation when prepared removal deleted durable state and then threw', async () => {
+  // зачем (PM-058): носитель механики переведён с pearls на runes (см. коммент
+  // у предыдущего теста) — сама выдача жемчуга больше не участвует.
   const token = beginAccountGeneration('owner-a');
   const operationId = 'daily-remove-then-throw-0001';
   await commitDailyJourneyGift({
@@ -194,7 +192,7 @@ it('re-emits invalidation when prepared removal deleted durable state and then t
     source: 'daily_journey_dev',
     cycle: 1,
     day: 1,
-    reward: { kind: 'pearls', amount: 10 },
+    reward: { kind: 'runes', amount: 100 },
   }, token);
   const preparedKey = dailyJourneyGiftClaimPreparedStorageKey('owner-a');
   let throwAfterPreparedDelete = true;
@@ -208,42 +206,44 @@ it('re-emits invalidation when prepared removal deleted durable state and then t
 
   await expect(claimDailyJourneyGift(operationId, token))
     .rejects.toThrow('simulated_process_death_after_remove');
-  expect(commitShardCreditOperation).toHaveBeenCalledTimes(1);
+  expect(enqueueLevelSpinStarGrant).toHaveBeenCalledTimes(1);
   (emitAppEvent as jest.Mock).mockClear();
 
   await expect(claimDailyJourneyGift(operationId, token))
     .resolves.toEqual({ status: 'already_claimed' });
-  expect(commitShardCreditOperation).toHaveBeenCalledTimes(1);
+  expect(enqueueLevelSpinStarGrant).toHaveBeenCalledTimes(1);
   expect(emitAppEvent).toHaveBeenCalledWith('daily_journey_gifts_changed');
 });
 
 it('keeps a failed effect intent pending and retries with the same stable downstream id', async () => {
+  // зачем (PM-058): носитель механики переведён с pearls на runes.
   const token = beginAccountGeneration('owner-a');
   const operationId = 'daily-effect-retry-0001';
   await commitDailyJourneyGift({
     operationId, source: 'daily_journey_dev', cycle: 1, day: 1,
-    reward: { kind: 'pearls', amount: 50 },
+    reward: { kind: 'runes', amount: 100 },
   }, token);
-  (commitShardCreditOperation as jest.Mock)
+  (enqueueLevelSpinStarGrant as jest.Mock)
     .mockRejectedValueOnce(new Error('simulated_effect_failure'))
-    .mockResolvedValueOnce({ status: 'applied' });
+    .mockResolvedValueOnce(undefined);
 
   await expect(claimDailyJourneyGift(operationId, token)).rejects.toThrow('simulated_effect_failure');
   expect(await readDailyJourneyGiftClaimState(operationId, token)).toBe('pending');
   expect(storage[dailyJourneyGiftClaimPreparedStorageKey('owner-a')]).toBeDefined();
 
   await expect(claimDailyJourneyGift(operationId, token)).resolves.toEqual({ status: 'claimed' });
-  const effectIds = (commitShardCreditOperation as jest.Mock).mock.calls.map(([input]) => input.operationId);
+  const effectIds = (enqueueLevelSpinStarGrant as jest.Mock).mock.calls.map(([input]) => input.requestId);
   expect(effectIds).toHaveLength(2);
   expect(new Set(effectIds).size).toBe(1);
 });
 
 it('recovers a torn receipt response without applying the effect twice', async () => {
+  // зачем (PM-058): носитель механики переведён с pearls на runes.
   const token = beginAccountGeneration('owner-a');
   const operationId = 'daily-torn-receipt-0001';
   await commitDailyJourneyGift({
     operationId, source: 'daily_journey_dev', cycle: 1, day: 1,
-    reward: { kind: 'pearls', amount: 100 },
+    reward: { kind: 'runes', amount: 100 },
   }, token);
   const receiptKey = dailyJourneyGiftClaimReceiptStorageKey('owner-a', operationId);
   let tearReceiptResponse = true;
@@ -258,24 +258,24 @@ it('recovers a torn receipt response without applying the effect twice', async (
   await expect(claimDailyJourneyGift(operationId, token))
     .rejects.toThrow('simulated_torn_receipt_response');
   expect(storage[receiptKey]).toBeDefined();
-  expect(commitShardCreditOperation).toHaveBeenCalledTimes(1);
+  expect(enqueueLevelSpinStarGrant).toHaveBeenCalledTimes(1);
 
   await expect(claimDailyJourneyGift(operationId, token))
     .resolves.toEqual({ status: 'already_claimed' });
-  expect(commitShardCreditOperation).toHaveBeenCalledTimes(1);
+  expect(enqueueLevelSpinStarGrant).toHaveBeenCalledTimes(1);
   expect(storage[dailyJourneyGiftClaimPreparedStorageKey('owner-a')]).toBeUndefined();
 });
 
 it('fails stale after an account switch inside the downstream async boundary', async () => {
+  // зачем (PM-058): носитель механики переведён с pearls на runes.
   const token = beginAccountGeneration('owner-a');
   const operationId = 'daily-claim-account-switch';
   await commitDailyJourneyGift({
     operationId, source: 'daily_journey_dev', cycle: 1, day: 1,
-    reward: { kind: 'pearls', amount: 10 },
+    reward: { kind: 'runes', amount: 100 },
   }, token);
-  (commitShardCreditOperation as jest.Mock).mockImplementationOnce(async () => {
+  (enqueueLevelSpinStarGrant as jest.Mock).mockImplementationOnce(async () => {
     beginAccountGeneration('owner-b');
-    return { status: 'applied' };
   });
 
   await expect(claimDailyJourneyGift(operationId, token)).rejects.toThrow('daily_journey_account_stale');

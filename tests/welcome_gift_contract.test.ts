@@ -26,30 +26,21 @@ describe('Welcome gift economics contract', () => {
     expect(server).toContain('export const WELCOME_GIFT_RUNES = 300');
   });
 
-  it('pearls bypass the device-global one-time registry and rely on the per-account ledger', () => {
-    // Корень инцидента-вечер: awardOneTimeVariable сверялся с девайс-глобальным
-    // shards_one_time_events — restored-аккаунт получал ложный alreadyClaimed.
-    // Теперь путь идёт через awardOneTimePerAccount: тот же детерминированный
-    // operationId, но решает аккаунт-скоупный леджер, а не список на устройстве.
-    // Сверяем КОД без комментариев: слово живёт в объяснениях выше по файлу,
-    // запрещён именно вызов.
+  // зачем (PM-058, владелец: «удалить выдачу жемчуга за любые действия»):
+  // прежний тест сторожил вызов awardOneTimePerAccount — именно ЭТОТ вызов
+  // и есть отменённая бесплатная выдача жемчуга. Тест правила, которое
+  // владелец отменил, переписан на факт остановки, а не на внутренности
+  // отменённого вызова. Руны (claimRunesFromServer) эта задача не трогает.
+  it('pearls grant is stopped: no free-pearls call, marker still recorded (PM-058)', () => {
     const clientCode = client
       .replace(/\/\*[\s\S]*?\*\//g, '')
       .replace(/^[ 	]*\/\/.*$/gm, '');
     expect(clientCode).not.toMatch(/awardOneTimeVariable\s*\(/);
-    expect(client).toMatch(/import \{ awardOneTimePerAccount \} from '\.\/shards_system'/);
-    expect(client).toMatch(/awardOneTimePerAccount\(\s*WELCOME_GIFT_PEARLS_EVENT_KEY/);
-
-    const start = shards.indexOf('export const awardOneTimePerAccount');
-    expect(start).toBeGreaterThan(-1);
-    const body = shards.slice(start, shards.indexOf('\n};', start));
-    // Никакого пре-чека по девайс-глобальному реестру — только запись маркера.
-    expect(body).not.toMatch(/events\.has\(/);
-    expect(body).toMatch(/localWrites: \[\[ONE_TIME_KEY, JSON\.stringify\(\[\.\.\.events\]\)\]\]/);
-    // Тот же вывод хэша, что у awardOneTimeVariable: аккаунты, выданные старым
-    // путём, получают already-applied от леджера, а не второй кредит.
-    expect(body).toMatch(/`\$\{source\}:\$\{eventKey\}`/);
-    expect(body).toMatch(/operationId: `one-time:\$\{eventHash\.slice\(0, 40\)\}`/);
+    expect(clientCode).not.toMatch(/awardOneTimePerAccount\s*\(/);
+    expect(client).not.toMatch(/import \{ awardOneTimePerAccount \} from '\.\/shards_system'/);
+    expect(client).toMatch(/async function grantPearlsLocal\(_token: AccountGenerationToken\): Promise<boolean> \{/);
+    // Маркер «выдано» по-прежнему ставится (return true), иначе модалка не закроется.
+    expect(client).toMatch(/grantPearlsLocal\(_token: AccountGenerationToken\): Promise<boolean> \{\s*\n\s*DebugLogger\.warn\([\s\S]*?return true;/);
   });
 
   // зачем (корень, найденный по логам эмулятора 2026-08-26): кредит без
@@ -72,9 +63,9 @@ describe('Welcome gift economics contract', () => {
     // Корень №2: выдача на монтировании хоста стартовала до active-фазы и
     // молча ловила stale_account_generation при каждом запуске.
     expect(client).toContain('waitForActiveAccountGeneration(15_000)');
-    // Реальный отказ начисления остаётся warning, но отсутствие аккаунта во
-    // время глобального старта — нормальное состояние, не Console Error.
-    expect(client).toMatch(/DebugLogger\.error\(\s*'welcome_gift:pearls'/);
+    // PM-058: жемчуг больше не начисляется, поэтому grantPearlsLocal больше не
+    // пишет DebugLogger.error про отказ кредита — там теперь fixed warn-лог
+    // об остановке (см. тест 'pearls grant is stopped').
     expect(client).not.toContain("DebugLogger.error('welcome_gift:run', new Error('account_not_active_in_15s')");
     expect(client).toContain("DebugLogger.info('welcome_gift:run', 'account_not_active_in_15s')");
   });

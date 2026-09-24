@@ -85,9 +85,11 @@ export type ShardSource =
  * покупаются. Структура каталога и ShardSource сохранены: addShards() при amount <= 0
  * завершается no-op, вызывающие не меняются.
  *
- * ИСКЛЮЧЕНИЕ (решение владельца 2026-07-26): survey_completed = 1 за пройденный
- * опрос. Награда идёт мимо generic-каталога через submitShardSurvey с маркером
- * идемпотентности на surveyId.
+ * PM-058 (владелец: «удалить выдачу жемчуга за любые действия»): исключение
+ * survey_completed = 1 (решение владельца 2026-07-26) ОТМЕНЕНО. Сервер
+ * (functions/src/shard_survey.ts, SURVEY_SHARD_AMOUNT) синхронно занулён —
+ * клиентское значение обязано совпадать, иначе expectedReward в UI разойдётся
+ * с фактической (нулевой) выплатой.
  *
  * Остальные источники по-прежнему нулевые. Подтверждённый баг-репорт (+1 монета)
  * начисляется админом вручную (admin/v2/legacy.html, reason 'bug_fixed') и в каталоге
@@ -106,7 +108,7 @@ export const SHARD_REWARDS: Record<ShardSource, number> = {
   lessons_5_perfect: 0,
   level_gift: 0,
   preposition_drill_perfect: 0,
-  survey_completed: 1,
+  survey_completed: 0,
 };
 
 const STORAGE_KEY = 'shards_balance';

@@ -10,13 +10,11 @@
 // есть явные состояния «применяю…» и откат-тост при ошибке.
 // ════════════════════════════════════════════════════════════════════════════
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as Crypto from 'expo-crypto';
 import { getEnergyRecoveryIntervalMs } from './remote_flags';
 import { TURBO_REGEN_FACTOR } from './boons/boon_effects_energy';
 import { reviveStreak } from './streak_revive';
 import { addOwnedPackId } from './flashcards/marketplace';
 import { unlockRandomCustomAvatarGift, type GiftCosmeticUnlock } from './level_gift_system';
-import { commitShardCreditOperation } from './shards_system';
 import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { prepareVipSnapshotWritesForAccount, readVipSnapshotForAccount } from './premium_vip_storage';
 import { emitAppEvent } from './events';
@@ -40,7 +38,6 @@ import { ENABLE_TOURNAMENTS } from './config';
 import {
   commitSeasonPassGiftEffect,
   markSeasonPassGiftUsed,
-  prepareSeasonPassGiftUseLocalWrites,
 } from './season_pass_gift_inventory';
 
 /** Пак сезона 1 — фирменный набор, открывается навсегда (каталог §6, ур. 45). */
@@ -145,33 +142,17 @@ export async function applySeasonRewardLocal(
 ): Promise<ApplySeasonRewardResult> {
   switch (reward.kind) {
     case 'pearls': {
+      // зачем (PM-058, владелец: «удалить выдачу жемчуга за любые действия»):
+      // награда сезонного пропуска «жемчуг» остановлена тем же паттерном, что
+      // спины (PM-047) — commitShardCreditOperation убран, маркер «подарок
+      // использован» по-прежнему ставится, чтобы клейм закрывался штатно и не
+      // зависал в очереди. Сам сезонный пропуск (удаление/миграция) — D53,
+      // отдельная задача, здесь не трогается.
       const giftId = String(idempotencyKey ?? '').trim();
       const amount = Math.max(0, Math.floor(Number(reward.amount) || 0));
       if (!giftId || amount <= 0) return { ok: false, failReason: 'unknown' };
-      const eventHash = await Crypto.digestStringAsync(
-        Crypto.CryptoDigestAlgorithm.SHA256,
-        `season-pass-reward:${giftId}`,
-      );
-      const localWrites = prepareSeasonPassGiftUseLocalWrites(giftId);
-      const result = await commitShardCreditOperation({
-        operationId: `season-reward:${eventHash.slice(0, 40)}`,
-        amount,
-        reason: 'season_pass_pearls',
-        grant: {
-          kind: 'season_pass_reward',
-          subjectId: eventHash.slice(0, 40),
-          payload: { giftId, rewardKind: 'pearls', amount },
-        },
-        localWrites,
-      });
-      const ok = result.status === 'applied' || result.status === 'already-applied';
-      if (ok) await markSeasonPassGiftUsed(giftId).catch(() => {});
-      return {
-        ok,
-        ...(ok
-          ? {}
-          : { failReason: 'unknown' as const }),
-      };
+      await markSeasonPassGiftUsed(giftId).catch(() => {});
+      return { ok: true };
     }
     case 'battery':
       return commitIncrementalSeasonGift(idempotencyKey, async () => {

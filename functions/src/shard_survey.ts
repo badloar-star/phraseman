@@ -40,12 +40,13 @@ const DAY_MS = 24 * 60 * 60 * 1000;
 // Анти-спам: не больше N сабмитов опросов в сутки на пользователя (спека §2.2).
 // Легальный поток — единицы опросов в день; 20 покрывает ретраи с запасом.
 const SUBMIT_MAX_PER_DAY = 20;
-// зачем: решение владельца 2026-07-26 — за опрос ровно 1 жемчужина, ФИКСИРОВАННО.
-// config.rewardShards (1..20 из админки) сознательно НЕ используется для выплаты:
-// владелец не хочет, чтобы редактор опроса мог случайно выдать 20 монет. Поле
-// оставлено в конфиге/валидации ради обратной совместимости уже сохранённых
-// документов shard_surveys. Клиентский дубль: SHARD_REWARDS.survey_completed.
-const SURVEY_SHARD_AMOUNT = 1;
+// зачем (PM-058, владелец: «удалить выдачу жемчуга за любые действия»):
+// награда за опрос остановлена — было решение владельца 2026-07-26 платить
+// ровно 1 жемчужину фиксированно, PM-058 это решение отменяет. config.rewardShards
+// (1..20 из админки) по-прежнему НЕ используется для выплаты — поле осталось
+// в конфиге/валидации ради обратной совместимости сохранённых документов
+// shard_surveys. Клиентский дубль: SHARD_REWARDS.survey_completed (app/shards_system.ts).
+const SURVEY_SHARD_AMOUNT = 0;
 
 function text(value: unknown, max: number): string {
   return String(value ?? '').trim().slice(0, max);
@@ -299,17 +300,24 @@ export const submitShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request) =>
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
     });
 
-    appendExternalEconomyEvent(tx, userRef, {
-      source: 'shard_survey',
-      eventId: occurrenceId,
-      ownerStableId: stableUid,
-      delta: reward,
-      reason: 'survey_completed',
-      kind: 'survey_reward',
-      subjectId: canonicalSurveyId,
-      payload: { surveyId: canonicalSurveyId, occurrenceId, occurrenceDay },
-      createdAtMs: nowMs,
-    });
+    // зачем (PM-058, владелец: «удалить выдачу жемчуга за любые действия»):
+    // reward сейчас всегда 0 (SURVEY_SHARD_AMOUNT), а appendExternalEconomyEvent
+    // бросает invalid_external_event_delta на delta === 0 — экономическое
+    // событие с нулевой дельтой создавать нельзя и не нужно, опрос закрывается
+    // без начисления.
+    if (reward > 0) {
+      appendExternalEconomyEvent(tx, userRef, {
+        source: 'shard_survey',
+        eventId: occurrenceId,
+        ownerStableId: stableUid,
+        delta: reward,
+        reason: 'survey_completed',
+        kind: 'survey_reward',
+        subjectId: canonicalSurveyId,
+        payload: { surveyId: canonicalSurveyId, occurrenceId, occurrenceDay },
+        createdAtMs: nowMs,
+      });
+    }
 
     // Только метка последнего опроса (для cooldown в getActive).
     tx.set(userRef, {
@@ -320,7 +328,7 @@ export const submitShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request) =>
       ...responseBase,
       submittedAt: nowIso,
       submittedAtMs: nowMs,
-      rewardGranted: true,
+      rewardGranted: reward > 0,
     }, { merge: true });
 
     // Агрегат для сводки в админке.

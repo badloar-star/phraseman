@@ -64,7 +64,6 @@ import {
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { mergeLevelSpinServerStars } from './level_spin_star_grants';
-import { awardOneTimePerAccount } from './shards_system';
 import { getRemoteBool } from './remote_flags';
 import { DebugLogger } from './debug-logger';
 
@@ -156,27 +155,17 @@ type WelcomeGiftClaimWire = Readonly<{
  * Жемчужины: мгновенный локальный кредит через аккаунт-скоупный леджер.
  * true = выдано этому аккаунту (сейчас или раньше, на этом или другом девайсе).
  */
-async function grantPearlsLocal(token: AccountGenerationToken): Promise<boolean> {
-  try {
-    // awardOneTimePerAccount: тот же детерминированный operationId, что строил
-    // прежний awardOneTimeVariable (аккаунты, выданные старым путём, получат
-    // already-applied вместо второго кредита), но БЕЗ девайс-глобального
-    // пре-чека, который и был корнем инцидента. Маркер в реестр пишется внутри.
-    const result = await awardOneTimePerAccount(
-      WELCOME_GIFT_PEARLS_EVENT_KEY,
-      WELCOME_GIFT_PEARLS,
-      'welcome_gift',
-      token,
-    );
-    if (result.awarded > 0 || result.alreadyClaimed) return true;
-    // зачем: молчаливый отказ уже стоил часов поиска — причина обязана быть в
-    // логе. Детальную причину пишет сам awardOneTimePerAccount.
-    DebugLogger.error('welcome_gift:pearls', new Error('grant_refused'), 'warning');
-    return false;
-  } catch (error) {
-    DebugLogger.error('welcome_gift:pearls', error, 'warning');
-    return false;
-  }
+// зачем (PM-058, владелец): «удалить выдачу жемчуга за любые действия» —
+// стартовый подарок «просто так» останавливается тем же паттерном, что и
+// спины (PM-047, app/local_level_spins.ts): сигнатура и место вызова не
+// меняются (readState/writeState/beginWelcomeGiftGrant не трогаем), поэтому
+// маркер «выдано» по-прежнему ставится и модалка закрывается штатно — просто
+// баланс жемчуга больше не растёт. Руны (claimRunesFromServer) — ОТДЕЛЬНАЯ
+// ветка ниже, не затронута: эта задача останавливает только жемчуг.
+// awardOneTimePerAccount(shards_system.ts) не вызываем — валюту не трогаем.
+async function grantPearlsLocal(_token: AccountGenerationToken): Promise<boolean> {
+  DebugLogger.warn('welcome_gift:pearls_grant_disabled_pm058', 'free pearls grant stopped by PM-058');
+  return true;
 }
 
 /** Руны: серверный грант + мердж авторитетного баланса. true = выдано аккаунту. */

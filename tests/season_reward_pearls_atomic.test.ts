@@ -7,11 +7,18 @@ import {
   seasonPassGiftUseMarkerStorageKey,
 } from '../app/season_pass_gift_inventory';
 import { applySeasonRewardLocal } from '../app/season_reward_apply';
-import { commitShardCreditOperation, getShardsBalance } from '../app/shards_system';
+import { getShardsBalance } from '../app/shards_system';
 
 const storage = AsyncStorage as typeof AsyncStorage & { __reset?: () => void };
 
-describe('Season Pass pearl reward composite operation', () => {
+// зачем (PM-058, владелец: «удалить выдачу жемчуга за любые действия»):
+// прежний файл сторожил, что клейм награды сезонного пропуска РЕАЛЬНО
+// начисляет жемчуг на баланс — это и есть отменённое правило. Тест
+// переписан: клейм по-прежнему закрывает подарок (маркер «использован»,
+// подарок уходит из инвентаря, повтор идемпотентен), но баланс жемчуга
+// больше не растёт. Сам сезонный пропуск (удаление/миграция — D53) эта
+// задача не трогает.
+describe('Season Pass pearl reward — free grant stopped (PM-058)', () => {
   beforeEach(async () => {
     storage.__reset?.();
     _resetStableIdCache();
@@ -19,41 +26,29 @@ describe('Season Pass pearl reward composite operation', () => {
     ensureAccountGeneration('season-pearl-user');
   });
 
-  it('accepts the marker-only season reward credit shape', async () => {
-    const result = await commitShardCreditOperation({
-      operationId: 'season-reward:marker-shape-0001',
-      amount: 8,
-      reason: 'season_pass_pearls',
-      grant: { kind: 'season_pass_reward', subjectId: 'gift-shape-0001' },
-      localWrites: [[seasonPassGiftUseMarkerStorageKey('gift-shape-0001'), '1']],
-    });
-    if (result.status === 'failed') throw new Error(result.reason);
-    expect(result).toMatchObject({ status: 'applied' });
-  });
-
-  it('commits the credit and gift-use marker together and replays without a second credit', async () => {
+  it('closes the gift without crediting shards, and replay stays a no-op', async () => {
     const gift = await addSeasonPassGift('season_1', 11, 'pass', 'pearls', 8);
     const before = await getShardsBalance();
 
     await expect(applySeasonRewardLocal({ kind: 'pearls', amount: 8 }, gift.id))
       .resolves.toEqual({ ok: true });
-    await expect(getShardsBalance()).resolves.toBe(before + 8);
+    await expect(getShardsBalance()).resolves.toBe(before);
     await expect(AsyncStorage.getItem(seasonPassGiftUseMarkerStorageKey(gift.id))).resolves.toBe('1');
     await expect(loadSeasonPassGiftInventory()).resolves.toEqual([]);
 
     await expect(applySeasonRewardLocal({ kind: 'pearls', amount: 8 }, gift.id))
       .resolves.toEqual({ ok: true });
-    await expect(getShardsBalance()).resolves.toBe(before + 8);
+    await expect(getShardsBalance()).resolves.toBe(before);
   });
 
-  it('keeps a choice_3 pearl selection idempotent by the parent gift id', async () => {
+  it('closes a choice_3 pearl selection idempotently by the parent gift id, without crediting shards', async () => {
     const gift = await addSeasonPassGift('season_1', 13, 'free', 'choice_3');
     const before = await getShardsBalance();
 
     await applySeasonRewardLocal({ kind: 'pearls', amount: 15 }, gift.id);
     await applySeasonRewardLocal({ kind: 'pearls', amount: 15 }, gift.id);
 
-    await expect(getShardsBalance()).resolves.toBe(before + 15);
+    await expect(getShardsBalance()).resolves.toBe(before);
     await expect(loadSeasonPassGiftInventory()).resolves.toEqual([]);
   });
 
@@ -69,7 +64,7 @@ describe('Season Pass pearl reward composite operation', () => {
     ]);
   });
 
-  it('refuses an unidentifiable pearl credit instead of creating a random operation', async () => {
+  it('refuses an unidentifiable pearl claim instead of closing a random gift', async () => {
     const before = await getShardsBalance();
     await expect(applySeasonRewardLocal({ kind: 'pearls', amount: 8 }))
       .resolves.toMatchObject({ ok: false });

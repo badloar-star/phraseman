@@ -392,26 +392,14 @@ async function applyQuestRewards(
   token: AccountGenerationToken,
 ): Promise<void> {
   for (const [index, reward] of rewards.entries()) {
-    const operationId = `quest:${questId}:${reward.kind}:${index}`;
     switch (reward.kind) {
       case 'pearls': {
-        const { commitShardCreditOperation } = await import('./shards_system');
-        const result = await commitShardCreditOperation({
-          operationId,
-          amount: reward.amount,
-          reason: 'quest_reward',
-          grant: {
-            kind: 'quest_reward',
-            subjectId: questId,
-            payload: { questId, reward },
-          },
-          accountToken: token,
-        });
-        if (result.status !== 'applied' && result.status !== 'already-applied') {
-          console.warn(`${LOG} apply_pearls_failed quest=${questId} status=${result.status}`);
-          throw new Error('quest_reward_pearls_failed');
-        }
-        console.log(`${LOG} apply_pearls quest=${questId} amount=${reward.amount} status=${result.status}`);
+        // зачем (PM-058, владелец: «удалить выдачу жемчуга за любые действия»):
+        // выдача жемчуга за задания остановлена тем же паттерном, что спины
+        // (PM-047, app/local_level_spins.ts) — вызов commitShardCreditOperation
+        // убран, остальной цикл начисления наград задания (XP, руны, energy и
+        // т.д.) не меняется и не должен падать из-за отсутствующего кредита.
+        console.log(`${LOG} apply_pearls_disabled_pm058 quest=${questId} amount=${reward.amount}`);
         break;
       }
       case 'runes': {

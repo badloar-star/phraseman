@@ -19,7 +19,6 @@ import {
   dailyJourneySpinCompensationGrants,
   reserveDailyJourneySpinCompensation,
 } from './gifts_to_coins_spin_cap_v1';
-import { commitShardCreditOperation } from './shards_system';
 import { DebugLogger } from './debug-logger';
 
 const RUNE_DENOMINATIONS = Object.freeze([1_000, 500, 250, 100, 50, 20, 10] as const);
@@ -154,25 +153,12 @@ export async function applyDailyJourneyGiftActivation(
   const hash = await activationHash(occurrence, claimOperationId, token);
   switch (occurrence.reward.kind) {
     case 'pearls': {
-      const result = await commitShardCreditOperation({
-        operationId: `daily-journey:${hash.slice(0, 40)}`,
-        amount: occurrence.reward.amount,
-        reason: 'daily_journey_pearls',
-        grant: {
-          kind: 'daily_journey_reward',
-          subjectId: hash.slice(0, 40),
-          payload: {
-            operationId: occurrence.operationId,
-            occurrenceFingerprint: occurrence.payloadFingerprint,
-            reward: occurrence.reward,
-          },
-        },
-        accountToken: token,
-      });
+      // зачем (PM-058, владелец: «удалить выдачу жемчуга за любые действия»):
+      // выдача жемчуга по «Дневному пути» остановлена тем же паттерном, что
+      // спины (PM-047) — commitShardCreditOperation убран, активация
+      // по-прежнему завершается успешно (не бросает), чтобы очередь подарков
+      // закрывалась штатно и не зависала в непогашенном состоянии.
       assertCurrent(token, occurrence.ownerStableId);
-      if (result.status !== 'applied' && result.status !== 'already-applied') {
-        throw new Error('daily_journey_activation_effect_failed');
-      }
       return;
     }
     case 'runes': {

@@ -232,7 +232,9 @@ export default function FlashcardsSpeakingSession() {
   const [loading, setLoading] = useState(true);
   const [quotaUnavailable, setQuotaUnavailable] = useState(false);
   const quotaUnavailableRef = useRef(false);
-  // Старт сессии «Говорить» = 10 ⚡ (numeric energy).
+  // зачем (PM-130, владелец 2026-09-24): комментарий держал устаревшую цену
+  // энергии («10 ⚡») после единой цены 1 из PM-081..083 — текущая цена
+  // старта сессии «Говорить» — 1 за сессию (numeric energy).
   const {
     confirmSpendOne: confirmSpeakEnergy,
     refundOne: refundSpeakEnergy,

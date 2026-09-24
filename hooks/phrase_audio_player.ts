@@ -294,6 +294,30 @@ async function getCachedOrDownload(textKey: string, url: string): Promise<string
 }
 
 /**
+ * Уже ли клип на диске — без скачивания, без сети. Для D48 (докачка вперёд):
+ * чтобы честно отличить в логе «уже было» от «скачали сейчас», проверяем ДО
+ * вызова ensurePhraseAudioCached ниже — сам он этого не различает (true и на
+ * готовый файл, и на свежую закачку).
+ */
+export function isPhraseAudioCached(text: string, url: string): boolean {
+  const key = normalizePhraseAudioKey(text);
+  if (!key || !url) return false;
+  try {
+    const identity = phraseAudioCacheIdentity(key, url);
+    const file = cacheFileFor(identity);
+    return file.exists && (file.size ?? 0) > MIN_VALID_AUDIO_BYTES;
+  } catch (error: unknown) {
+    // Немой catch запрещён: File API на Android может бросить (например,
+    // не готов нативный модуль при раннем вызове) — трактуем как «нет
+    // файла» (безопасный дефолт — заставит перекачать), но причина обязана
+    // остаться, иначе «докачка не работает» снова станет немым классом бага.
+    console.warn('[V1-AUDIO-AHEAD] is_cached_probe_failed', // guard-ok: проглоченная ошибка обязана писать причину
+      error instanceof Error ? `${error.name}: ${error.message}` : String(error));
+    return false;
+  }
+}
+
+/**
  * Положить клип в кэш, ничего не проигрывая. Для фоновой докачки пачкой
  * (hooks/phrase_audio_prefetch.ts).
  *

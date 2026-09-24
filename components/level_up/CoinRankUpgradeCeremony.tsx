@@ -1,0 +1,25 @@
+// ─── Церемония «Монетный двор» для повышения ранга монеты (PM-077 ← PM-075) ─
+// зачем (D62 п.4): LevelUpMintCeremony уже готова; здесь она подключена к результату
+// повышения из hooks/use_coin_rank_upgrade.ts — старая и новая монеты берутся из единой
+// таблицы рангов (coinRankMintSide). Компонент ничего не пишет: к моменту показа ранг и
+// списание уже применены атомарно, закрытие/пропуск только убирает украшение.
+import React, { memo, useMemo } from 'react';
+
+import LevelUpMintCeremony from './LevelUpMintCeremony';
+import { coinRankMintSide } from './coin_rank_mint_side';
+import type { CoinRankCeremony } from '../../hooks/use_coin_rank_upgrade';
+
+type Props = Readonly<{
+  ceremony: CoinRankCeremony | null;
+  onDone: () => void;
+}>;
+
+function CoinRankUpgradeCeremony({ ceremony, onDone }: Props) {
+  // Без повышения модалка просто невидима (visible=false); стороны-заглушки 0→1 не
+  // показываются — нужны лишь чтобы дерево было одинаковым в обоих состояниях.
+  const from = useMemo(() => coinRankMintSide(ceremony?.fromRank ?? 0), [ceremony]);
+  const to = useMemo(() => coinRankMintSide(ceremony?.toRank ?? 1), [ceremony]);
+  return <LevelUpMintCeremony visible={ceremony !== null} from={from} to={to} onDone={onDone} />;
+}
+
+export default memo(CoinRankUpgradeCeremony);

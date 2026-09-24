@@ -7,6 +7,9 @@ import { View, Text, TouchableOpacity, Modal, Pressable, ScrollView, StyleSheet,
 import { Image } from 'expo-image';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { V2IconButton, V2InfoCard, V2Row, V2ScreenHeader } from '../components/v2/V2Kit';
+import { useV2Palette } from '../components/v2/useV2Palette';
+import { V2 } from '../constants/v2Style';
 import { useRouter, useLocalSearchParams, useFocusEffect } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -367,6 +370,7 @@ function LessonMenu() {
 });
   const lessonName = lessonNames[lessonId - 1] || defaultLessonTitle;
   const lessonCefrLabel = lessonCefrLabelForStudyTarget(lessonId, studyTarget);
+  const v2p = useV2Palette();
   const cachedMenu = lessonMenuCacheById[lessonMenuCacheKey(lessonId, studyTarget)];
   const frenchAuxiliarySourceGated = storageStudyTarget(studyTarget) === 'fr';
   const frenchLessonSourceGated = !frenchLessonRuntimeAvailableForTarget(studyTarget, lessonId);
@@ -1151,233 +1155,89 @@ function LessonMenu() {
   // push доигрывал на пустом прозрачном экране, а вёрстка влетала уже после (главный
   // источник «прыжков» при входе в урок). Разметка не зависит от uiReady: имя урока,
   // плитки и хедер известны синхронно, поэтому рисуем финальный кадр сразу.
+  // зачем (2.0, владелец 24.09): меню урока в новом стиле — ТОЛЬКО прежнее
+  // содержимое (номер урока с уровнем, название, медали и счёт, пункты, подсказка),
+  // ничего нового из референсов не добавлено. Логика пунктов (menuItems) не тронута.
   return (
     <ScreenGradient>
-    <LessonArtBackdrop variant="menu" />
-    <SafeAreaView style={{flex:1}}>
+    <SafeAreaView style={{ flex: 1 }} edges={['top', 'left', 'right']}>
       <ContentWrap>
       <Reanimated.View style={[{ flex: 1 }, bouncyStyle]}>
-      {/* Хедер */}
-      <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',paddingHorizontal:16,paddingVertical:14,borderBottomWidth:0.5,borderBottomColor:t.border}}>
-        <PremiumCard testID="lesson-menu-back" level={1} onPress={()=>{
-          hapticTap();
-          // Safe-back: после онбординга стек может быть пуст — возвращаемся на список уроков.
-          safeRouterBack(router, '/(tabs)/home' as any);
-        }}
-          style={{width:38,height:38,borderRadius:19}}
-          innerStyle={{width:38,height:38,borderRadius:19,justifyContent:'center',alignItems:'center'}}
-        >
-          <Ionicons name="chevron-back" size={22} color={t.heroTextPrimary}/>
-        </PremiumCard>
-        <Text style={{color:t.heroTextPrimary,fontSize: f.body,fontWeight:'700',letterSpacing:0.5}}>
-          {triLang(lang, {
-  ru: 'УРОК',
-  uk: 'УРОК',
-  en: 'LESSON',
-  es: 'LECCIÓN',
-  "pt-BR": 'LIÇÃO',
-  vi: 'BÀI',
-  id: 'PELAJARAN',
-  tr: 'DERS',
-  pl: 'LEKCJA',
-})} {lessonId}{'  '}<Text style={{fontSize: f.label,fontWeight:'700',color:
-            lessonId<=8  ? (isLightTheme?'#2F6F4F':'#4CAF72') :
-            lessonId<=18 ? (isLightTheme?'#2E5366':'#40B4E8') :
-            lessonId<=28 ? (isLightTheme?'#8B6320':'#D4A017') :
-                           (isLightTheme?'#A8464D':'#DC6428')
-          }}>{lessonCefrLabel}</Text>
-        </Text>
-        <EnergyBar size={30} />
-        <PremiumCard level={1} onPress={()=>{ hapticTap(); router.push('/settings_edu'); }}
-          style={{width:38,height:38,borderRadius:19,marginLeft:8}}
-          innerStyle={{width:38,height:38,borderRadius:19,justifyContent:'center',alignItems:'center'}}
-        >
-          <Ionicons name="settings-outline" size={20} color={t.heroTextMuted}/>
-        </PremiumCard>
+      <View style={{ paddingHorizontal: V2.screenPad, paddingTop: 6, paddingBottom: 8 }}>
+        <V2ScreenHeader
+          testID="lesson-menu"
+          title={`${triLang(lang, { ru: 'Урок', uk: 'Урок', en: 'Lesson', es: 'Lección', 'pt-BR': 'Lição', vi: 'Bài', id: 'Pelajaran', tr: 'Ders', pl: 'Lekcja' })} ${lessonId}`}
+          subtitle={lessonCefrLabel}
+          onBack={() => {
+            hapticTap();
+            // Safe-back: после онбординга стек может быть пуст — возвращаемся на Главную.
+            safeRouterBack(router, '/(tabs)/home' as never);
+          }}
+          backLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
+          right={(
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+            <EnergyBar size={30} />
+            <V2IconButton
+              icon="settings-outline"
+              testID="lesson-menu-settings"
+              accessibilityLabel={triLang(lang, { ru: 'Настройки обучения', uk: 'Налаштування навчання', en: 'Learning settings', es: 'Ajustes de aprendizaje', 'pt-BR': 'Configurações de estudo', vi: 'Cài đặt học', id: 'Pengaturan belajar', tr: 'Öğrenme ayarları', pl: 'Ustawienia nauki' })}
+              onPress={() => { hapticTap(); router.push('/settings_edu'); }}
+            />
+            </View>
+          )}
+        />
       </View>
 
       <BouncyWrap>
-      <ScrollView decelerationRate="fast" bounces alwaysBounceVertical overScrollMode="always" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 24 }} onScroll={onBouncyScroll} scrollEventThrottle={16}>
-      {/* Тема урока */}
-      <Text style={{color:t.heroTextMuted,fontSize: f.bodyLg,textAlign:'center',marginTop:20,marginHorizontal:30,lineHeight:24}}>
-        {lessonName}
-      </Text>
-
-      {/* Медали прогресса */}
-      <View style={{alignItems:'center',marginTop:12,marginBottom:8}}>
+      <ScrollView decelerationRate="fast" bounces alwaysBounceVertical overScrollMode="always" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: V2.screenPad, paddingBottom: 32, gap: 14 }} onScroll={onBouncyScroll} scrollEventThrottle={16}>
+        {/* Название урока, медали и счёт — как было, в новом стиле. */}
+        <Text accessibilityRole="header" style={{ color: v2p.text, fontSize: 26, lineHeight: 31, fontWeight: '800', letterSpacing: -0.4, marginTop: 4 }}>{lessonName}</Text>
         {(() => {
           const earnedDots = getEarnedDots(getMedalTier(score), passCount);
-          const medalSize = 60;
-          const gap = 8;
+          if (earnedDots.length === 0 && progress <= 0) return null;
           return (
-            <View style={{gap:8}}>
-              <View style={{flexDirection:'row', flexWrap:'wrap', justifyContent:'center', gap, alignItems:'center'}}>
-                {earnedDots.map((dot, i) => (
-                  <View key={i} style={{
-                    width: medalSize,
-                    height: medalSize,
-                    shadowColor: '#000',
-                    shadowOffset: { width: 0, height: 2 },
-                    shadowOpacity: 0.25,
-                    shadowRadius: 4,
-                    elevation: 4,
-                  }}>
-                    <Image
-                      source={MEDAL_IMAGES[dot]}
-                      style={{ width: medalSize, height: medalSize }}
-                      contentFit="contain"
-                    />
-                  </View>
-                ))}
-              </View>
-              {progress > 0 && (
-                <Text style={{color:t.heroTextMuted,fontSize:f.caption,textAlign:'center'}}>
-                  {progress}/50  ★ {score.toFixed(1)}
-                </Text>
-              )}
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 8 }}>
+              {earnedDots.map((dot, i) => (
+                <Image key={i} source={MEDAL_IMAGES[dot]} style={{ width: 44, height: 44 }} contentFit="contain" />
+              ))}
+              {progress > 0 ? (
+                <Text style={{ color: v2p.textSecondary, fontSize: 15, fontWeight: '500', marginLeft: 4 }}>{`${progress}/50  ★ ${score.toFixed(1)}`}</Text>
+              ) : null}
             </View>
           );
         })()}
-      </View>
 
-      {/* Меню */}
-      <View style={{paddingHorizontal:16,gap:10}}>
-        {menuItems.filter(item => !item.hidden).map((item)=>(
-          <View key={item.testID} style={{ position: 'relative', overflow: 'visible' }}>
-          <PremiumCard testID={item.testID} level={2} onPress={() => {
-            if (item.disabled) return;
-            // [FeedbackKit] Карточка раздела уже объёмная (PremiumCard со своим
-            // press-откликом) — НЕ оборачиваем в PressableScale; добавляем только
-            // тихий клик касания. fk.tap сам даёт тот же light haptic (кулдаун 80мс
-            // исключает двойную вибрацию с внутренним hapticTap карточки).
-            fk.tap();
-            item.onPress();
-          }}
+        {menuItems.filter(item => !item.hidden).map((item, index) => (
+          <V2Row
+            key={item.testID}
+            testID={item.testID}
+            seed={index + 1}
+            icon={item.icon}
+            iconShape="circle"
+            title={item.label}
+            subtitle={item.sub || undefined}
+            dimmed={item.unavailable}
+            disabled={item.disabled}
+            onPress={() => {
+              if (item.disabled) return;
+              fk.tap();
+              item.onPress();
+            }}
             onLongPress={item.onLongPress && !item.disabled ? item.onLongPress : undefined}
-            delayLongPress={550}
-            innerStyle={{
-              padding: 18,
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 14,
-              opacity: (item.disabled || item.unavailable) ? 0.5 : 1,
-            }}
-          >
-            {item.pct !== undefined && dataLoaded ? (
-              <CircularProgress
-                pct={item.pct}
-                size={44}
-                sw={4}
-                color={t.accent}
-                bg={t.bgSurface}
-                textColor={t.textPrimary}
-                fontSize={9}
-              />
-            ) : item.pct !== undefined ? (
-              <LinearGradient
-                colors={isGoldTheme ? GOLD_GRADIENTS.mutedPanel : [t.bgSurface, t.bgSurface, t.bgSurface]}
-                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-                style={{
-                width:44,height:44,borderRadius:22,
-                backgroundColor:t.bgSurface,
-                borderWidth:0,borderColor:isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border,
-                overflow:'hidden',
-              }}>
-                {isGoldTheme && <GoldBevel radius={22} intensity="quiet" />}
-              </LinearGradient>
-            ) : (
-              <LinearGradient
-                colors={isGoldTheme
-                  ? (item.disabled || item.unavailable ? GOLD_GRADIENTS.mutedPanel : GOLD_GRADIENTS.raisedTile)
-                  : [((item.disabled || item.unavailable) ? t.bgPrimary : t.bgSurface), ((item.disabled || item.unavailable) ? t.bgPrimary : t.bgSurface), ((item.disabled || item.unavailable) ? t.bgPrimary : t.bgSurface)]}
-                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-                style={{
-                width:44,height:44,borderRadius:22,
-                backgroundColor: (item.disabled || item.unavailable) ? t.bgPrimary : t.bgSurface,
-                borderTopWidth:0, borderLeftWidth:0,
-                borderRightWidth:0, borderBottomWidth:0,
-                borderTopColor:isGoldTheme ? GOLD_RICH.hairlineStrong : t.borderHighlight, borderLeftColor:isGoldTheme ? GOLD_RICH.hairline : t.borderHighlight,
-                borderRightColor:isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border, borderBottomColor:isGoldTheme ? GOLD_RICH.hairlineDark : t.border,
-                justifyContent:'center', alignItems:'center',
-                overflow:'hidden',
-              }}>
-                {isGoldTheme && <GoldBevel radius={22} intensity={(item.disabled || item.unavailable) ? 'quiet' : 'normal'} />}
-                <Ionicons name={item.icon} size={22} color={(item.disabled || item.unavailable) ? t.textGhost : isGoldTheme ? GOLD_RICH.champagne : t.textSecond}/>
-              </LinearGradient>
-            )}
-            <View style={{
-              flex:1,
-              alignSelf:'stretch',
-              justifyContent:'center',
-            }}>
-              <Text style={{
-                color:(item.disabled || item.unavailable) ? t.textGhost : t.textPrimary,
-                fontSize: f.bodyLg,
-                fontWeight:'600',
-                ...(item.sub ? {} : { transform: [{ translateY: 3 }] }),
-              }}>{item.label}</Text>
-              <Text style={{color:t.textMuted,fontSize: f.sub,marginTop:3}}>{item.sub}</Text>
-            </View>
-            <Ionicons name="chevron-forward" size={18} color={item.disabled ? t.textGhost : t.textGhost}/>
-          </PremiumCard>
-            {/* зачем (PM-086, владелец 2026-09-24): ценник энергии над
-                пунктами меню убран — расход энергии не меняется. */}
-          </View>
+          />
         ))}
-      </View>
 
-      {/* зачем: раньше здесь стоял ещё и lockStateLoaded — подсказка появлялась только
-          после async-проверки замка и сдвигала всё под собой. isLessonLocked уже гарантирует,
-          что на закрытом уроке этот блок вообще не рендерится (см. ранние return выше). */}
-      {lessonPrepHintVisible && canShowLessonPrepHint && !isLessonLocked ? (
-        <View testID="lesson-menu-prep-hint" style={{ paddingHorizontal: 16, marginTop: 12 }}>
-          <LinearGradient
-            colors={isGoldTheme ? GOLD_GRADIENTS.mutedPanel : ['rgba(255,255,255,0.070)', 'rgba(255,255,255,0.045)', 'rgba(255,255,255,0.035)']}
-            locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            style={{
-              borderRadius: 18,
-              borderWidth: 0,
-              borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border,
-              paddingHorizontal: 16,
-              paddingVertical: 14,
-              flexDirection: 'row',
-              alignItems: 'flex-start',
-              gap: 12,
-              overflow: 'hidden',
-            }}
-          >
-            {isGoldTheme && <GoldBevel radius={18} intensity="quiet" />}
-            <View
-              style={{
-                width: 34,
-                height: 34,
-                borderRadius: 17,
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: isGoldTheme ? 'rgba(232,195,108,0.10)' : t.bgSurface,
-                borderWidth: 0,
-                borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border,
-              }}
-            >
-              <Ionicons
-                name="information-circle-outline"
-                size={20}
-                color={isGoldTheme ? GOLD_RICH.champagne : t.accent}
-              />
-            </View>
-            <Text style={{ flex: 1, color: t.heroTextMuted, fontSize: f.sub, lineHeight: 20 }}>
-              {lessonPrepHintText}
-            </Text>
-          </LinearGradient>
-        </View>
-      ) : null}
-
+        {/* зачем: подсказка перед уроком — «Небольшой совет» референса. */}
+        {lessonPrepHintVisible && canShowLessonPrepHint && !isLessonLocked ? (
+          <View testID="lesson-menu-prep-hint">
+            <V2InfoCard
+              icon="bulb-outline"
+              title={triLang(lang, { ru: 'Небольшой совет', uk: 'Невелика порада', en: 'A quick tip', es: 'Un consejo', 'pt-BR': 'Uma dica', vi: 'Mẹo nhỏ', id: 'Tips singkat', tr: 'Küçük bir ipucu', pl: 'Mała wskazówka' })}
+              body={lessonPrepHintText}
+              seed={3}
+            />
+          </View>
+        ) : null}
       </ScrollView>
       </BouncyWrap>
       </Reanimated.View>

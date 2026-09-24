@@ -183,6 +183,9 @@ type RowProps = {
   badge?: string;
   chevron?: boolean;
   onPress?: () => void;
+  onLongPress?: () => void;
+  /** Раздел временно недоступен: строка приглушена, но нажимается (покажет причину). */
+  dimmed?: boolean;
   seed?: number;
   testID?: string;
   disabled?: boolean;
@@ -190,7 +193,7 @@ type RowProps = {
   flat?: boolean;
 };
 
-export const V2Row = memo(function V2Row({ title, subtitle, icon, iconShape = 'square', leading, trailing, badge, chevron = true, onPress, seed = 0, testID, disabled, flat }: RowProps) {
+export const V2Row = memo(function V2Row({ title, subtitle, icon, iconShape = 'square', leading, trailing, badge, chevron = true, onPress, onLongPress, dimmed, seed = 0, testID, disabled, flat }: RowProps) {
   const p = useV2Palette();
   const content = (
     <>
@@ -212,7 +215,7 @@ export const V2Row = memo(function V2Row({ title, subtitle, icon, iconShape = 's
     ) : <View testID={testID} style={s.rowFlat}>{content}</View>;
   }
   return (
-    <V2Card seed={seed} onPress={onPress} disabled={disabled} testID={testID} accessibilityLabel={subtitle ? `${title}. ${subtitle}` : title} radius={V2.radius.row} style={s.row}>
+    <V2Card seed={seed} onPress={onPress} onLongPress={onLongPress} disabled={disabled} testID={testID} accessibilityLabel={subtitle ? `${title}. ${subtitle}` : title} radius={V2.radius.row} style={[s.row, dimmed || disabled ? { opacity: 0.5 } : null]}>
       {content}
     </V2Card>
   );

@@ -32,17 +32,17 @@ function V2KitPreview() {
       <SafeAreaView style={{ flex: 1 }} edges={['top', 'left', 'right']}>
         <ScrollView contentContainerStyle={s.content} showsVerticalScrollIndicator={false}>
           <V2ScreenHeader
-            title="Набор 2.0"
-            subtitle="Кнопки, строки, карточки"
+            title="Витрина деталей"
+            subtitle="Не экран — образцы кнопок и строк"
             onBack={() => safeRouterBack(router, '/(tabs)/home' as never)}
             right={<V2IconButton icon="ellipsis-horizontal" accessibilityLabel="Ещё" />}
           />
-          <V2LargeTitle title="Карточки" subtitle="Учите слова и фразы эффективнее" right={<V2IconButton icon="add" accessibilityLabel="Создать" />} />
-          <V2SegmentedControl segments={[{ key: 'theory', label: 'Теория' }, { key: 'practice', label: 'Практика' }, { key: 'cards', label: 'Карточки' }]} value={tab} onChange={setTab} />
+          <V2LargeTitle title="Крупный заголовок" subtitle="Образец подписи под заголовком" right={<V2IconButton icon="add" accessibilityLabel="Создать" />} />
+          <V2SegmentedControl segments={[{ key: 'theory', label: 'Раздел 1' }, { key: 'practice', label: 'Раздел 2' }, { key: 'cards', label: 'Раздел 3' }]} value={tab} onChange={setTab} />
           <V2StatStrip stats={[
-            { icon: 'bar-chart-outline', label: 'Урок', value: '8 из 12' },
-            { icon: 'albums-outline', label: 'Карточек', value: '50' },
-            { icon: 'time-outline', label: 'Время', value: '~ 12 мин' },
+            { icon: 'bar-chart-outline', label: 'Показатель 1', value: '8 из 12' },
+            { icon: 'albums-outline', label: 'Показатель 2', value: '50' },
+            { icon: 'time-outline', label: 'Показатель 3', value: '~ 12 мин' },
           ]} />
           <V2Card seed={0} style={s.progressCard}>
             <View style={{ flex: 1, gap: 12 }}>
@@ -54,7 +54,7 @@ function V2KitPreview() {
             </View>
             <V2Button label="Продолжить" variant="secondary" size="small" icon="chevron-forward" />
           </V2Card>
-          <V2SectionHeader title="Лучшее у сообщества" actionLabel="Смотреть все" onAction={() => {}} />
+          <V2SectionHeader title="Заголовок секции" actionLabel="Смотреть все" onAction={() => {}} />
           <V2Row seed={1} icon="play" iconShape="circle" title="Продолжить" subtitle="Упражнение 3 · Выбери правильную форму" onPress={() => {}} />
           <V2Row seed={2} icon="book-outline" iconShape="circle" title="Словарь" subtitle="20 ключевых слов и выражений" onPress={() => {}} />
           <V2Row seed={3} icon="flash-outline" title="Блиц" subtitle="За 60 секунд находи верные переводы" onPress={() => {}} />

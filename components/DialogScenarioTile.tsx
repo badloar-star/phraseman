@@ -1,11 +1,12 @@
 /**
  * DialogScenarioTile — крупная строка сценария внутри карточки-мира Диалогов.
  *
- * зачем: владелец задал эталон — раздел «Статистика»: никаких мелких плиток и
- * мелких подписей, всё крупное. Строка ровно как ряды эталона: медальон 44,
- * заголовок bodyLg, чип уровня f.sub; статус — иконкой (✓ пройдено / › открыто /
- * замок), текстовая причина остаётся только у закрытых. Полки 128px из первой
- * версии редизайна удалены сознательно (2026-08-23, «делать как в эталоне»).
+ * зачем (стиль 2.0, владелец 24.09): строка теперь — «приподнятая» стеклянная
+ * плашка (glassRaised) внутри уже стеклянной карточки-мира, ровно как на
+ * референсе экрана B («Закажи кофе», уровень-пилюль справа). Медальон значка
+ * и пилюля уровня используют палитру V2 (тёплое стекло + тонкая кромка), но
+ * логика статусов (done/available/locked) и вся раскладка не изменились —
+ * только визуальный слой.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React from 'react';
@@ -15,6 +16,7 @@ import { Text, View } from 'react-native';
 import type { DialogSceneTheme } from '../constants/dialogSceneThemes';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { PressableScale } from './feedback/PressableScale';
+import { useV2Palette } from './v2/useV2Palette';
 
 type ScenarioStatus = 'done' | 'available' | 'locked';
 
@@ -52,19 +54,20 @@ export default function DialogScenarioTile({
   status,
   statusLabel,
   lockedText: _lockedText,
-  scene,
+  scene: _scene,
   onPress,
   onLongPress,
-  colors,
+  colors: _colors,
   fontSizes,
   accessibilityLabel,
   accessibilityHint,
 }: DialogScenarioTileProps) {
+  const p = useV2Palette();
   const reduceMotion = useReduceMotion();
   const locked = status === 'locked';
   const done = status === 'done';
   const entering = reduceMotion ? undefined : FadeInDown.delay(Math.min(index, 10) * 40).duration(220);
-  const glyphColor = locked ? colors.textMuted : scene.hue;
+  const glyphColor = locked ? p.textMuted : p.iconTint;
 
   return (
     <Reanimated.View entering={entering} style={{ position: 'relative', overflow: 'visible' }}>
@@ -78,8 +81,10 @@ export default function DialogScenarioTile({
         style={{
           minHeight: 64,
           marginTop: index === 0 ? 0 : 6,
-          borderRadius: 16,
-          backgroundColor: colors.bgSurface,
+          borderRadius: 14,
+          backgroundColor: p.glassRaised,
+          borderColor: p.stroke, // guard-ok: D43 приподнятая строка внутри карточки-мира
+          borderWidth: 1, // guard-ok: D43 приподнятая строка внутри карточки-мира
           paddingHorizontal: 10,
           paddingVertical: 10,
           flexDirection: 'row',
@@ -92,7 +97,7 @@ export default function DialogScenarioTile({
             width: 44,
             height: 44,
             borderRadius: 15,
-            backgroundColor: locked ? colors.bgCard : scene.hue + '22',
+            backgroundColor: p.control,
             alignItems: 'center',
             justifyContent: 'center',
           }}
@@ -102,7 +107,7 @@ export default function DialogScenarioTile({
         <View style={{ flex: 1, minWidth: 0, opacity: locked ? 0.62 : 1 }}>
           <Text
             style={{
-              color: colors.textPrimary,
+              color: locked ? p.textSecondary : p.text,
               fontSize: fontSizes.bodyLg,
               fontWeight: '700',
               lineHeight: Math.round(fontSizes.bodyLg * 1.25),
@@ -114,7 +119,7 @@ export default function DialogScenarioTile({
           {/* Причина замка — только у закрытых, крупным f.sub (не мелкая подпись). */}
           {locked && (
             <Text
-              style={{ color: colors.textMuted, fontSize: fontSizes.sub, fontWeight: '700', marginTop: 3 }}
+              style={{ color: p.textMuted, fontSize: fontSizes.sub, fontWeight: '700', marginTop: 3 }}
               maxFontSizeMultiplier={1.2}
             >
               {statusLabel}
@@ -123,20 +128,22 @@ export default function DialogScenarioTile({
         </View>
         <View
           style={{
-            backgroundColor: locked ? colors.bgCard : scene.hue + '22',
+            backgroundColor: p.control,
+            borderColor: p.stroke,
+            borderWidth: 1, // guard-ok: D43 пилюля уровня, как на референсе (A1/A2/B1)
             borderRadius: 9,
             paddingHorizontal: 9,
             paddingVertical: 4,
           }}
         >
-          <Text style={{ color: glyphColor, fontSize: fontSizes.sub, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
+          <Text style={{ color: p.text, fontSize: fontSizes.sub, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
             {levelChip}
           </Text>
         </View>
         {done ? (
-          <Ionicons name="checkmark-circle" size={22} color={scene.hue} />
+          <Ionicons name="checkmark-circle" size={22} color={p.iconTint} />
         ) : locked ? null : (
-          <Ionicons name="chevron-forward" size={18} color={colors.textMuted} />
+          <Ionicons name="chevron-forward" size={18} color={p.textMuted} />
         )}
       </PressableScale>
       {/* зачем энергии здесь БОЛЬШЕ НЕТ (владелец 2026-09-17): цена входа висела

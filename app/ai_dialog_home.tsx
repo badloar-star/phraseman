@@ -1,19 +1,18 @@
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import { View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
 import EnergyBar from '../components/EnergyBar';
 import DialogsTabContent from '../components/DialogsTabContent';
-import { useTheme } from '../components/ThemeContext';
+import { V2IconButton, V2LargeTitle } from '../components/v2/V2Kit';
 import { useLang } from '../components/LangContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { triLang } from '../constants/i18n';
+import { V2 } from '../constants/v2Style';
 import { safeRouterBack } from './navigation_back';
 
 export default function AiDialogHome() {
-  const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const router = useRouter();
 
@@ -22,59 +21,43 @@ export default function AiDialogHome() {
     vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
   });
 
-  // зачем (аудит 2026-08-23): подпись-расшифровка под заголовком нарушала
-  // жёсткий запрет владельца («название самодостаточно, не добавляй подпись»)
-  // — счётчик сценариев убран из шапки целиком; он и так виден на каждой
-  // карточке-мире каталога («3/7» и т.п.), дублировать под заголовком незачем.
+  // зачем: перевод на стиль 2.0 (владелец 24.09, референс «Диалоги»). Экран
+  // без нативного хедера, поэтому маленькая круглая стеклянная «‹» сохранена
+  // (иначе жест/аппаратная кнопка — единственный путь назад), но крупный
+  // заголовок и подпись теперь ровно как на референсе — V2LargeTitle слева,
+  // энергия справа от него отдельной пилюлью (квота — своей строкой внутри
+  // списка, см. DialogsTabContent).
   const header = (
-    <View>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          paddingVertical: 12,
-          paddingHorizontal: 20,
-          paddingBottom: 6,
-        }}
-      >
-      <TouchableOpacity
-        accessibilityRole="button"
-        accessibilityLabel={backLabel}
-        onPress={() => {
-          hapticTap();
-          safeRouterBack(router, '/(tabs)/home' as any);
-        }}
-        style={{
-          width: 44,
-          height: 44,
-          borderRadius: 22,
-          backgroundColor: t.bgCard,
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginRight: 14,
-        }}
-      >
-        <Ionicons name="chevron-back" size={22} color={t.textPrimary} />
-      </TouchableOpacity>
-      <View style={{ flex: 1, minWidth: 0 }}>
-        <Text
-          style={{ color: t.textPrimary, fontSize: f.h1, fontWeight: '700' }}
-        >
-          {triLang(lang, {
-            ru: 'Диалоги',
-            uk: 'Діалоги',
-            en: 'Dialogues',
-            es: 'Diálogos',
-            'pt-BR': 'Diálogos',
-            vi: 'Đối thoại',
-            id: 'Dialog',
-            tr: 'Diyaloglar',
-            pl: 'Dialogi',
-          })}
-        </Text>
-      </View>
-        <EnergyBar size={30} />
-      </View>
+    <View style={{ paddingHorizontal: V2.screenPad, paddingTop: 12, gap: 12 }}>
+      <V2IconButton icon="chevron-back" accessibilityLabel={backLabel} onPress={() => {
+        hapticTap();
+        safeRouterBack(router, '/(tabs)/home' as any);
+      }} />
+      <V2LargeTitle
+        title={triLang(lang, {
+          ru: 'Диалоги',
+          uk: 'Діалоги',
+          en: 'Dialogues',
+          es: 'Diálogos',
+          'pt-BR': 'Diálogos',
+          vi: 'Đối thoại',
+          id: 'Dialog',
+          tr: 'Diyaloglar',
+          pl: 'Dialogi',
+        })}
+        subtitle={triLang(lang, {
+          ru: 'Практикуйте язык в жизненных ситуациях',
+          uk: 'Практикуйте мову в життєвих ситуаціях',
+          en: 'Practice the language in real-life situations',
+          es: 'Practica el idioma en situaciones de la vida real',
+          'pt-BR': 'Pratique o idioma em situações reais',
+          vi: 'Luyện ngôn ngữ trong các tình huống đời thường',
+          id: 'Latih bahasa dalam situasi kehidupan nyata',
+          tr: 'Dili gerçek hayat durumlarında pratik yap',
+          pl: 'Ćwicz język w codziennych sytuacjach',
+        })}
+        right={<EnergyBar size={30} />}
+      />
     </View>
   );
 

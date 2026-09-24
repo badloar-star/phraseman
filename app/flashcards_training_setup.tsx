@@ -11,6 +11,12 @@ import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
 import { usePremium } from '../components/PremiumContext';
 import { triLang } from '../constants/i18n';
+// зачем: рестайл 2.0 — экран остаётся полноэкранным (не шторкой), но шапка,
+// кнопки и состояния собраны из общего набора деталей стиля 2.0, а не рисуются
+// вручную. DeckSelectionTile — общий компонент с DeckPickerSheet, не трогаем.
+import { V2Button, V2ScreenHeader } from '../components/v2/V2Kit';
+import { useV2Palette } from '../components/v2/useV2Palette';
+import { V2 } from '../constants/v2Style';
 import { canStartBlitz } from './flashcards/blitz_logic';
 import { trainingSetupExplanation } from './flashcards/training_setup_explanation';
 import { loadFcDeckOptions, peekFcDeckOptions, sameDeckOptions } from './flashcards/deck_options';
@@ -66,6 +72,7 @@ export default function FlashcardsTrainingSetupScreen() {
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { theme: t, f, statusBarLight } = useTheme();
+  const p = useV2Palette();
   const reducedMotion = useReducedMotion();
   const { accessResolved } = usePremium();
   const quotaPreview = useFlashcardTrainingQuotaPreview();
@@ -420,18 +427,17 @@ export default function FlashcardsTrainingSetupScreen() {
       <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
         <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
         <ContentWrap>
-          <View style={styles.header}>
-            <Pressable accessibilityRole="button" accessibilityLabel={triLang(lang, {
+          {/* зачем: та же круглая «назад» и заголовок 2.0, что на других экранах —
+              вместо квадратной кнопки на bgSurface и ручного заголовка. */}
+          <V2ScreenHeader
+            title={copy.title}
+            onBack={leave}
+            backLabel={triLang(lang, {
               ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại',
               id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
-            })} onPress={leave} style={[styles.backButton, { backgroundColor: t.bgSurface }]}>
-              <Ionicons name="arrow-back" size={23} color={t.textPrimary} />
-            </Pressable>
-            <Text accessibilityRole="header" style={[
-              styles.title,
-              { color: t.textPrimary, fontSize: Math.max(24, Math.round(f.h1 * 1.1)) },
-            ]}>{copy.title}</Text>
-          </View>
+            })}
+            testID="fc-training-setup-header"
+          />
 
           <ScrollView style={styles.scroll} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
             <View style={styles.summaryRow}>
@@ -452,15 +458,19 @@ export default function FlashcardsTrainingSetupScreen() {
                 <ActivityIndicator color={t.accent} />
               </View>
             ) : loadState === 'error' ? (
-              <View style={[styles.messageBox, { backgroundColor: t.bgSurface }]}>
+              <View style={[styles.messageBox, { backgroundColor: p.glass, borderColor: p.stroke }]/* guard-ok: D43 */}>
                 <Text accessibilityLiveRegion="polite" style={[
                   styles.message,
                   { color: t.textSecond, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.45) },
                 ]}>{loadErrorMessage}</Text>
                 {loadErrorKind === 'load' ? (
-                  <Pressable accessibilityRole="button" accessibilityLabel={retryLabel} onPress={() => setLoadRevision((value) => value + 1)} style={[styles.retryButton, { backgroundColor: t.accent }]}>
-                    <Text style={[styles.retryText, { color: t.correctText, fontSize: f.body }]}>{retryLabel}</Text>
-                  </Pressable>
+                  <V2Button
+                    testID="fc-training-setup-retry"
+                    label={retryLabel}
+                    variant="primary"
+                    size="small"
+                    onPress={() => setLoadRevision((value) => value + 1)}
+                  />
                 ) : null}
               </View>
             ) : decks.length === 0 ? (
@@ -491,22 +501,23 @@ export default function FlashcardsTrainingSetupScreen() {
                             style={({ pressed }) => [
                               styles.suggestTile,
                               {
-                                backgroundColor: t.bgSurface,
+                                backgroundColor: p.glass,
+                                borderColor: p.stroke, // guard-ok: D43
                                 opacity: pressed ? 0.82 : openingPackId !== null && !opening ? 0.5 : 1,
                               },
                             ]}
                           >
-                            <View style={[styles.suggestIcon, { backgroundColor: `${t.accent}1F` }]}>
+                            <View style={[styles.suggestIcon, { backgroundColor: p.glassRaised }]}>
                               {opening ? (
-                                <ActivityIndicator color={t.accent} />
+                                <ActivityIndicator color={p.iconTint} />
                               ) : (
-                                <Ionicons name="albums-outline" size={21} color={t.accent} />
+                                <Ionicons name="albums-outline" size={21} color={p.iconTint} />
                               )}
                             </View>
                             {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- compact source tile has fixed geometry; the full pack title is exposed by the parent accessibilityLabel */}
                             <Text
                               numberOfLines={2}
-                              style={[styles.suggestTitle, { color: t.textPrimary, fontSize: f.caption }]}
+                              style={[styles.suggestTitle, { color: p.text, fontSize: f.caption }]}
                             >
                               {packTitleForInterface(pack, contentLangForTitle) || pack.codeName || pack.id}
                             </Text>
@@ -544,17 +555,15 @@ export default function FlashcardsTrainingSetupScreen() {
                 { color: t.wrong, fontSize: f.sub },
               ]}>{blitzMinimumLabel}</Text>
             ) : null}
-            <Pressable
+            {/* зачем (PM-086): ценник энергии на кнопке убран — сам расход энергии не менялся.
+                Кнопка — светлая главная кнопка стиля 2.0. */}
+            <V2Button
               testID="fc-training-setup-start"
-              accessibilityRole="button"
-              accessibilityState={{ disabled: !canStart }}
+              label={copy.start}
               disabled={!canStart}
               onPress={() => void startTraining()}
-              style={[styles.startButton, { backgroundColor: t.accent, opacity: canStart ? 1 : 0.38 }]}
-            >
-              <Text style={[styles.startText, { color: t.correctText, fontSize: f.bodyLg }]}>{copy.start}</Text>
-              {/* зачем (PM-086): ценник энергии на кнопке убран — сам расход энергии не менялся. */}
-            </Pressable>
+              style={{ marginTop: 14 }}
+            />
           </ScrollView>
         </ContentWrap>
       </SafeAreaView>
@@ -569,26 +578,20 @@ export default function FlashcardsTrainingSetupScreen() {
 
 const styles = StyleSheet.create({
   safe: { flex: 1, minHeight: 0, backgroundColor: 'transparent' },
-  header: { minHeight: 62, paddingHorizontal: 16, paddingVertical: 9, flexDirection: 'row', alignItems: 'center', gap: 11 },
-  backButton: { width: 48, height: 48, borderRadius: 15, alignItems: 'center', justifyContent: 'center' },
-  title: { flex: 1, fontWeight: '900' },
   scroll: { flex: 1, minHeight: 0 },
-  content: { paddingHorizontal: 16, paddingBottom: 32 },
+  content: { paddingHorizontal: V2.screenPad, paddingBottom: 32 },
   summaryRow: { minHeight: 44, marginTop: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 10 },
   summary: { flex: 1, fontWeight: '800' },
   loadingBox: { minHeight: 280, alignItems: 'center', justifyContent: 'center' },
-  messageBox: { minHeight: 150, borderRadius: 18, padding: 18, alignItems: 'center', justifyContent: 'center', gap: 14 },
+  // Тонкая кромка стекла — разрешённое исключение стиля 2.0 (D43), см. guard-ok рядом с использованием.
+  messageBox: { minHeight: 150, borderRadius: V2.radius.card, borderWidth: 1, padding: 18, alignItems: 'center', justifyContent: 'center', gap: 14 },
   emptyBox: { minHeight: 150, paddingVertical: 18, alignItems: 'center', justifyContent: 'center', gap: 16 },
   suggestHeading: { textAlign: 'center', fontWeight: '900' },
   suggestRow: { alignSelf: 'stretch', flexDirection: 'row', gap: 10 },
-  suggestTile: { flex: 1, minHeight: 118, borderRadius: 18, paddingHorizontal: 8, paddingVertical: 12, alignItems: 'center', justifyContent: 'flex-start', gap: 9 },
+  suggestTile: { flex: 1, minHeight: 118, borderRadius: V2.radius.card, borderWidth: 1, paddingHorizontal: 8, paddingVertical: 12, alignItems: 'center', justifyContent: 'flex-start', gap: 9 },
   suggestIcon: { width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
   suggestTitle: { textAlign: 'center', fontWeight: '800' },
   message: { textAlign: 'center', fontWeight: '600' },
-  retryButton: { minHeight: 48, borderRadius: 14, paddingHorizontal: 18, alignItems: 'center', justifyContent: 'center' },
-  retryText: { fontWeight: '900' },
   deckGrid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', gap: 10 },
   validation: { marginTop: 10, textAlign: 'center', fontWeight: '700' },
-  startButton: { minHeight: 52, marginTop: 14, borderRadius: 17, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center' },
-  startText: { textAlign: 'center', fontWeight: '900' },
 });

@@ -2664,7 +2664,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -2673,14 +2673,18 @@
       {
         "id": "PM-057-A1",
         "text": "Новые покупки отключены после снимка каталога",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commits 6799803a3 ec91e411c 5b83367df"
+        ]
       },
       {
         "id": "PM-057-A2",
         "text": "обработчики старых платежей/возвратов не удалены преждевременно",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commits 6799803a3 ec91e411c 5b83367df"
+        ]
       }
     ],
     "depends_on": [],
@@ -2691,16 +2695,20 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Opus 5.5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "commits 6799803a3 ec91e411c 5b83367df"
+    ],
+    "notes": [
+      "Покупка жемчуга за деньги отключена в релизе; вкладка Жемчуг скрыта (Карточки остаются — PM-060). Баланс/вебхук/возврат/резюме pending-начислений НЕ тронуты. Требует действий владельца в App Store/Google Play/RevenueCat (снять 4 товара). Вход в home.tsx ~5051 передан сессии интерфейса. typecheck: 0 ошибок в затронутых файлах (173 всего в проекте, чужие)"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "opus-5.5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-058",

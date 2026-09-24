@@ -34,12 +34,25 @@ describe('evaluateSafety — keyword layer', () => {
     expect(v.category).toBe('sexual_minors');
     expect(evaluateSafety('секс с детьми').category).toBe('sexual_minors');
     expect(evaluateSafety('секс з дітьми').category).toBe('sexual_minors');
+    // зачем (PM-143, 2026-09-24): fr/de не имели ни одной фразы в этой
+    // категории — быстрый слой их не защищал вообще, только медленный слой 2.
+    expect(evaluateSafety('sexe avec des enfants').category).toBe('sexual_minors');
+    expect(evaluateSafety('sex mit kindern').category).toBe('sexual_minors');
   });
 
   it('flags direct threats of violence (category used to have zero phrases)', () => {
     expect(evaluateSafety('I will kill you').category).toBe('violence');
     expect(evaluateSafety("I'll kill you").category).toBe('violence');
     expect(evaluateSafety('я тебя убью').category).toBe('violence');
+    expect(evaluateSafety('je vais te tuer').category).toBe('violence');
+    expect(evaluateSafety('ich werde dich töten').category).toBe('violence');
+  });
+
+  it('flags suicide/self-harm phrases in French and German (PM-143 gap closed)', () => {
+    expect(evaluateSafety('je veux me suicider').category).toBe('suicide');
+    expect(evaluateSafety('ich will mich umbringen').category).toBe('suicide');
+    expect(evaluateSafety('je veux me faire du mal').category).toBe('self_harm');
+    expect(evaluateSafety('ich will mich selbst verletzen').category).toBe('self_harm');
   });
 
   it('does not flag ordinary rude roleplay (rudeness is handled in-game, not alerted)', () => {

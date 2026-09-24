@@ -7003,7 +7003,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -7012,14 +7012,20 @@
       {
         "id": "PM-143-A1",
         "text": "Исследованы prompt, validation, TTS, сохранение, безопасность и стоимость",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/evidence/PM-143_dialogue_localization_audit.md",
+          "functions/src/ai_safety.test.ts 16/16 PASS"
+        ]
       },
       {
         "id": "PM-143-A2",
         "text": "локаль не признана «просто строкой» без проверки",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/evidence/PM-143_dialogue_localization_audit.md",
+          "functions/src/ai_safety.test.ts 16/16 PASS"
+        ]
       }
     ],
     "depends_on": [],
@@ -7030,16 +7036,21 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент) + Claude Opus 5.5",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "docs/phraseman-2.0/evidence/PM-143_dialogue_localization_audit.md",
+      "functions/src/ai_safety.test.ts 16/16 PASS"
+    ],
+    "notes": [
+      "Разведка по 6 осям (prompt/validation/TTS/persistence/safety/cost) для es/fr/de. Локаль НЕ 'просто строка' — контент реально написан отдельно на каждый язык, тесты это стерегут. Найден и сразу закрыт реальный пробел безопасности: быстрый keyword-детектор самоповреждения/насилия/детской эксплуатации (functions/src/ai_safety.ts) не имел ни одной фразы для fr/de — только медленный слой (OpenAI Moderation API), который молча пропускает сообщение при сетевом сбое. Добавлены фразы для fr/de во все 5 категорий по аналогии с существующими en/ru/uk/es, покрыто тестами"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "medium"
   },
   {
     "id": "PM-144",

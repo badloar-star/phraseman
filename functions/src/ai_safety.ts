@@ -65,9 +65,16 @@ export const SAFETY_SYSTEM_INSTRUCTION =
   'In game mode, treat such messages as the worst possible behaviour: drop mood straight to 0 and end the scene.';
 
 /**
- * Многоязычные триггеры (EN/RU/UK/ES — языки приложения). Строчные, проверяются по
+ * Многоязычные триггеры (EN/RU/UK/ES/FR/DE — языки приложения). Строчные, проверяются по
  * подстроке в нормализованном тексте. Список консервативный, цель — высокая чувствительность
  * на самоповреждение/суицид (главная регуляторная категория).
+ *
+ * зачем FR/DE (PM-143, разведка 2026-09-24): для этих двух языков список был пуст —
+ * диалоги на fr/de защищал только слой 2 (moderateUserText), который при сетевом
+ * сбое/таймауте молча пропускает сообщение без флага (см. moderateUserText ниже).
+ * То же сообщение на en/ru/uk/es ловилось бы мгновенно слоем 1 даже при сбое сети —
+ * fr/de оставались без этой страховки. Фразы подобраны по аналогии с уже
+ * существующими категориями (прямые, однозначные, без грамматических вариаций).
  */
 const TRIGGERS: ReadonlyArray<{ category: SafetyCategory; phrases: ReadonlyArray<string> }> = [
   {
@@ -84,6 +91,12 @@ const TRIGGERS: ReadonlyArray<{ category: SafetyCategory; phrases: ReadonlyArray
       'покінчити з собою', 'покінчу з собою', 'самогубство', 'вбити себе', 'не хочу жити', 'хочу померти',
       // ES
       'suicidarme', 'suicidio', 'matarme', 'quitarme la vida', 'no quiero vivir', 'quiero morir',
+      // FR
+      'me suicider', 'suicide', 'suicidaire', 'me tuer', 'en finir avec ma vie',
+      'je ne veux plus vivre', 'je veux mourir', 'mettre fin à mes jours',
+      // DE
+      'mich umbringen', 'selbstmord', 'suizid', 'suizidal', 'mein leben beenden',
+      'ich will nicht mehr leben', 'ich will sterben',
     ],
   },
   {
@@ -98,6 +111,10 @@ const TRIGGERS: ReadonlyArray<{ category: SafetyCategory; phrases: ReadonlyArray
       'ріжу себе', 'порізати себе', 'завдати собі шкоди',
       // ES
       'hacerme daño', 'cortarme', 'autolesion', 'autolesión', 'lastimarme',
+      // FR
+      'me faire du mal', 'me couper', 'automutilation', 'me blesser', 'me scarifier',
+      // DE
+      'mir wehtun', 'mich selbst verletzen', 'selbstverletzung', 'mich ritzen',
     ],
   },
   {
@@ -113,6 +130,11 @@ const TRIGGERS: ReadonlyArray<{ category: SafetyCategory; phrases: ReadonlyArray
       'мене бють', 'мене ґвалтують', 'мене зґвалтували',
       // ES
       'me pegan', 'me maltratan', 'me violaron', 'abusan de mí',
+      // FR
+      'il me frappe', 'elle me frappe', 'on me frappe', 'je me fais violer', 'on abuse de moi',
+      // DE
+      'er schlägt mich', 'sie schlägt mich', 'ich werde geschlagen', 'ich werde missbraucht',
+      'ich wurde vergewaltigt',
     ],
   },
   {
@@ -131,6 +153,12 @@ const TRIGGERS: ReadonlyArray<{ category: SafetyCategory; phrases: ReadonlyArray
       'секс з дітьми', 'секс з дитиною', 'дитяче порно', 'педофіл',
       // ES
       'sexo con niños', 'sexo con ninos', 'sexo con menores', 'pornografía infantil', 'pornografia infantil',
+      // FR
+      'sexe avec des enfants', 'sexe avec un enfant', 'sexe avec des mineurs',
+      'pornographie infantile', 'pédophile', 'pedophile',
+      // DE
+      'sex mit kindern', 'sex mit einem kind', 'sex mit minderjährigen',
+      'kinderpornografie', 'pädophil', 'pädophiler',
     ],
   },
   {
@@ -147,6 +175,10 @@ const TRIGGERS: ReadonlyArray<{ category: SafetyCategory; phrases: ReadonlyArray
       'я тебе вбю', 'вбю тебе', 'хочу вбити', 'всіх вбю',
       // ES
       'te voy a matar', 'voy a matar', 'quiero matar', 'los matare', 'los mataré',
+      // FR
+      'je vais te tuer', 'je vais vous tuer', 'je veux tuer', 'je vais tous les tuer',
+      // DE
+      'ich werde dich töten', 'ich werde dich umbringen', 'ich will töten', 'ich bringe dich um',
     ],
   },
 ];

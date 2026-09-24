@@ -1,0 +1,11 @@
+# Предложение для слияния с существующей .codex/config.toml, НЕ файл для слепой замены.
+# Проверить поддержку в текущем клиенте. В этой сессии не устанавливалось.
+model = "gpt-6-luna"
+model_reasoning_effort = "high"
+
+[agents]
+enabled = true
+max_concurrent_threads_per_session = 2
+# Это число не включает основной поток. Параллельная запись в одну копию запрещена BIBLE.
+default_subagent_model = "gpt-6-luna"
+default_subagent_reasoning_effort = "high"

@@ -387,3 +387,6 @@ functions-*/node_modules/
 /full_scan.txt
 /tsconfig.*.tmp.json
 /_worktree_backups_*/
+
+# PhraseMan 2.0: сырые исходники владельца (голос, скриншоты) — репозиторий публичный, не коммитить
+docs/phraseman-2.0/sources/

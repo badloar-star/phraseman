@@ -93,9 +93,8 @@ jest.mock('../app/services/league_chest_rewards', () => ({
   peekLeagueChestXpOverrideMultiplier: jest.fn(async () => 1),
 }));
 
-jest.mock('../app/boons/boon_effects_xp', () => ({
-  boonXpMultiplierContribution: jest.fn(() => 0),
-}));
+// PM-055: boon_effects_xp.ts (double_xp/early_bird) удалён — xp_manager теперь
+// использует константный вклад 0 напрямую, мок больше не нужен.
 
 jest.mock('../app/notifications', () => ({
   refreshWeeklyRecapNotificationAfterXpChange: jest.fn(),

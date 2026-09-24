@@ -23,7 +23,6 @@ import { getCanonicalUserId } from './user_id_policy';
 import { addWeeklyXp } from './weekly_xp';
 import { consumeSeasonGoldenLessonMultiplier, peekSeasonGoldenLessonCharges } from './season_reward_apply';
 import { consumeLeagueChestXpOverrideMultiplier, peekLeagueChestXpOverrideMultiplier } from './services/league_chest_rewards';
-import { boonXpMultiplierContribution } from './boons/boon_effects_xp';
 import { syncPublicProfileSnapshot } from './public_profile_snapshot';
 import { patchAppSnapshot } from './app_snapshot_store';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
@@ -572,9 +571,11 @@ export const registerXP = async (
           : await consumeLeagueChestXpOverrideMultiplier();
       if (!isXpAccountGenerationCurrent(accountToken)) return staleResult();
 
-      // Ж) Weekly Boons: «Двойной четверг» (×2) + «Ранняя пташка» (×1.1 до 10:00).
-      // Аддитивный вклад в ту же формулу, что и остальные множители.
-      const boonXpContribution = boonXpMultiplierContribution();
+      // Ж) Weekly Boons (PM-055, владелец: «убрать все множители опыта») — «Двойной
+      // четверг»/«Ранняя пташка» удалены целиком. Поле boonXpContribution оставлено
+      // в MultiplierBreakdown как константный 0 — его читают тесты и UI-брейкдаун
+      // ниже, переименование расширило бы diff без пользы.
+      const boonXpContribution = 0;
 
       // З) Фаза 1: постоянный XP-буст карточки уровня II+ (×1.02) — как остальные
       // множители, только для заработанного XP (внутри if isEarnedXP).
@@ -1132,7 +1133,8 @@ export const getCurrentMultiplier = async (): Promise<number> => {
     // H13: ранее UI занижал множитель — не учитывал leagueChestM и boonXpContribution,
     // иначе UI прожжёт одноразовый league chest бонус.
     const leagueChestM = await peekLeagueChestXpOverrideMultiplier();
-    const boonXpContribution = boonXpMultiplierContribution();
+    // PM-055: weekly-boon множители (двойной четверг/ранняя пташка) удалены — вклад 0.
+    const boonXpContribution = 0;
     // Фаза 1: буст карточки II+ — тот же вклад, что registerXP добавляет при начислении.
     const cardM = await readProfileCardXpMultiplier();
 
@@ -1198,7 +1200,8 @@ export const getCurrentMultiplierBreakdown = async (): Promise<MultiplierBreakdo
     const leagueBoostM = await getLeagueBoostMultiplier();
     const leagueGroupBoostM = await getLeagueGroupBoostMultiplier();
     const leagueChestM = await peekLeagueChestXpOverrideMultiplier();
-    const boonXpContribution = boonXpMultiplierContribution();
+    // PM-055: weekly-boon множители (двойной четверг/ранняя пташка) удалены — вклад 0.
+    const boonXpContribution = 0;
     // Фаза 1: буст карточки II+ — тот же вклад, что registerXP добавляет при начислении.
     const cardM = await readProfileCardXpMultiplier();
     const total = 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution + (cardM - 1);

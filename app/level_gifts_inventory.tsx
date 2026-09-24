@@ -21,7 +21,6 @@ import GiftExpiryCountdown from '../components/GiftExpiryCountdown';
 import LevelGiftDualModal from '../components/LevelGiftDualModal';
 import LevelGiftModal from '../components/LevelGiftModal';
 import CenteredDialogShell from '../components/centered_dialog_shell';
-import TodaysBoonStrip from '../components/TodaysBoonStrip';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
@@ -689,12 +688,9 @@ export default function LevelGiftsInventoryScreen() {
           </View>
 
           <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ padding: 16, gap: 12 }} showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
-            <View testID="level-gifts-bonus-of-day" style={{ gap: 8 }}>
-              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', paddingHorizontal: 2 }}>
-                {triLang(lang, { ru: 'Бонус дня', uk: 'Бонус дня', en: 'Daily bonus', es: 'Bono del día', 'pt-BR': 'Bônus do dia', vi: 'Ưu đãi hôm nay', id: 'Bonus hari ini', tr: 'Günün bonusu', pl: 'Bonus dnia' })}
-              </Text>
-              <TodaysBoonStrip marginTop={0} />
-            </View>
+            {/* PM-055 (владелец: «убрать все множители опыта»): секция «Бонус дня» —
+                плашка Weekly Boons — удалена целиком (getTodaysBoons() уже давно
+                всегда пуст, секция рисовала пустой заголовок без содержимого). */}
             <View testID="level-gifts-active-multipliers" style={{ gap: 8 }}>
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', paddingHorizontal: 2 }}>
                 {triLang(lang, { ru: 'Активные множители', uk: 'Активні множники', en: 'Active multipliers', es: 'Multiplicadores activos', 'pt-BR': 'Multiplicadores ativos', vi: 'Hệ số đang hoạt động', id: 'Pengali aktif', tr: 'Aktif çarpanlar', pl: 'Aktywne mnożniki' })}
@@ -720,12 +716,8 @@ export default function LevelGiftsInventoryScreen() {
                     <Text style={{ color: t.accent, fontSize: f.sub, fontWeight: '900' }}>+{Math.round((item.value - 1) * 100)}%</Text>
                   </View>
                 ))}
-                {(multiplierBreakdown?.boonXpContribution ?? 0) > 0 ? (
-                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700' }}>{triLang(lang, { ru: 'Бонус дня', uk: 'Бонус дня', en: 'Daily bonus', es: 'Bono del día', 'pt-BR': 'Bônus do dia', vi: 'Ưu đãi hôm nay', id: 'Bonus hari ini', tr: 'Günün bonusu', pl: 'Bonus dnia' })}</Text>
-                    <Text style={{ color: t.accent, fontSize: f.sub, fontWeight: '900' }}>+{Math.round((multiplierBreakdown?.boonXpContribution ?? 0) * 100)}%</Text>
-                  </View>
-                ) : null}
+                {/* PM-055: строка «Бонус дня» (boonXpContribution) удалена — источник
+                    всегда 0 (Weekly Boons вычищены), строка никогда не рендерилась. */}
                 {(multiplierBreakdown?.total ?? 1) <= 1 ? (
                   <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: f.sub + 4 }}>
                     {triLang(lang, { ru: 'Сейчас дополнительных множителей нет', uk: 'Зараз додаткових множників немає', en: 'No extra multipliers right now', es: 'Ahora no hay multiplicadores extra', 'pt-BR': 'Não há multiplicadores extras agora', vi: 'Hiện chưa có hệ số thêm', id: 'Belum ada pengali tambahan', tr: 'Şu anda ek çarpan yok', pl: 'Brak dodatkowych mnożników' })}

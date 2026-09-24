@@ -29,7 +29,6 @@ import { usePremium } from '../components/PremiumContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import StatsPremiumBlur from '../components/StatsPremiumBlur';
 import ActivityHeatmap365 from '../components/ActivityHeatmap365';
-import TodaysBoonStrip from '../components/TodaysBoonStrip';
 import { StreakChainIcon } from '../components/StreakChainIcon';
 import StreakReviveModal from '../components/StreakReviveModal';
 import { hapticTap } from '../hooks/use-haptics';
@@ -80,7 +79,6 @@ import { safeRouterBack } from './navigation_back';
 import { visiblePercentile } from './stats_percentile_display';
 import { getReviveOffer, type StreakReviveOffer } from './streak_revive';
 import { resolveTesterNoPremiumOverride } from './tester_premium_override';
-import { doubleXpMultiplier, earlyBirdMultiplier } from './boons/boon_effects_xp';
 import { noAndroidOutline } from '../constants/androidGlow';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { readAttemptRestoreGiftCount } from './session_attempts/session_attempt_restore_inventory';
@@ -4356,9 +4354,6 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                 {seriesOpen ? (<>
                 <StreakStatsHero t={t} f={f} lang={lang} themeMode={themeMode} totalStreak={totalStreak} bestStreak={bestStreak} days={days} freezeActive={freezeActive} chainShieldDays={chainShieldDays} purpleColor={purpleColor} isGoldTheme={isGoldTheme} isPremium={isPremium} premiumFreezeUsed={premiumFreezeUsed} freezeShardCost={FREEZE_COST_SHARDS} shardsBalance={shardsBalance} onFreezePress={handleFreezeStreak} reviveOffer={reviveOffer} onRevivePress={handleReviveStreak} percentilesStreak={percentiles.streak}/>
 
-                {/* [WEEKLY BOONS] Плашка «бонус сегодня» — перенесена с главной. Отступ берёт gap контейнера. */}
-                <TodaysBoonStrip marginTop={0}/>
-
                 {/* ── ПАРИ НА ЦЕПОЧКУ — сразу под стриком: это действие про серию,
                     в подвале экрана до него никто не доскролливал. Новичкам без серии
                     CTA не показываем (активное пари и результат — показываем всегда). */}
@@ -4370,14 +4365,10 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                     const clubWeekTierM = 1 + engineLeague.id * 0.1;
                     const clubCombinedM = clubBoostMultiplier + clubWeekTierM + stationaryClubMultiplier - 2;
                     const comebackM = comebackActive ? 2 : 1;
-                    // Weekly Boons (двойной опыт / ранняя пташка) реально применяются в
-                    // xp_manager (boonXpMultiplierContribution), но раньше НЕ попадали ни в
-                    // total, ни в список — юзер видел активный бонус «Двойной опыт», а в
-                    // множителях его не было и итог был занижен. Считаем их здесь так же
-                    // (аддитивно), чтобы UI совпал с реальным начислением.
-                    const doubleXpM = doubleXpMultiplier();
-                    const earlyBirdM = earlyBirdMultiplier();
-                    const total = 1 + (streakM - 1) + (clubCombinedM - 1) + (leagueBoostMultiplier - 1) + (leagueGroupBoostMultiplier - 1) + (comebackM - 1) + (giftMultiplier - 1) + (doubleXpM - 1) + (earlyBirdM - 1);
+                    // PM-055 (владелец: «убрать все множители опыта») — Weekly Boons
+                    // (двойной опыт / ранняя пташка) удалены целиком, вместе с их
+                    // вкладом в xp_manager (см. boonXpContribution = 0 там же).
+                    const total = 1 + (streakM - 1) + (clubCombinedM - 1) + (leagueBoostMultiplier - 1) + (leagueGroupBoostMultiplier - 1) + (comebackM - 1) + (giftMultiplier - 1);
                     const hasBonus = total > 1;
                     const pct = (m: number) => `+${Math.round((m - 1) * 100)}%`;
                     const bonusAccentColor = isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, 'multipliers');
@@ -4456,28 +4447,8 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                                 tr: "Seviye hediyesi",
                                 pl: "Prezent za poziom",
                             }), value: pct(giftMultiplier), color: isGoldTheme ? bonusGold : statsAccent(themeMode, 'percentiles'), active: giftMultiplier > 1 },
-                        { key: 'double_xp', label: triLang(lang, {
-                                ru: 'Двойной опыт',
-                                uk: 'Подвійний досвід',
-                                es: 'Experiencia doble',
-                                en: 'Double XP',
-                                'pt-BR': 'Experiência dobrada',
-                                vi: 'Kinh nghiệm nhân đôi',
-                                id: 'XP ganda',
-                                tr: 'Çift tecrübe',
-                                pl: 'Podwójne XP',
-                            }), value: pct(doubleXpM), color: isGoldTheme ? bonusGold : statsAccent(themeMode, 'multipliers'), active: doubleXpM > 1 },
-                        { key: 'early_bird', label: triLang(lang, {
-                                ru: 'Ранняя пташка',
-                                uk: 'Рання пташка',
-                                es: 'Madrugador',
-                                en: 'Early bird',
-                                'pt-BR': 'Madrugador',
-                                vi: 'Dậy sớm',
-                                id: 'Bangun pagi',
-                                tr: 'Erkenci',
-                                pl: 'Ranny ptaszek',
-                            }), value: pct(earlyBirdM), color: isGoldTheme ? bonusMutedGold : statsAccent(themeMode, 'percentiles'), active: earlyBirdM > 1 },
+                        // PM-055: пункты 'double_xp'/'early_bird' (Weekly Boons) удалены — владелец
+                        // просил убрать все множители опыта, источник уже всегда даёт 0.
                     ];
                     const activeItems = items.filter(i => i.active);
                     const bonusAccent = isGoldTheme

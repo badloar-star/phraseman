@@ -139,6 +139,7 @@ import { participantsLabel } from '../components/league/leagueStatusShared';
 import { LeagueLeaderboardRow, type LeagueLeaderboardZone } from '../components/league/LeagueLeaderboardRow';
 import type { LeagueHubPalette } from '../components/league/leagueHubPalette';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
+import { useTabNav } from './TabContext';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 
 // v2 — bumped после фикса race на signInAnonymously + остановки резервной записи
@@ -424,13 +425,21 @@ function leagueMemberKeyExtractor(member: GroupMember, index: number): string {
   return member.uid ?? member.botId ?? `${member.name}-${index}`;
 }
 
-export default function ClubScreen() {
+export type ClubScreenProps = {
+  /** 'embedded' — раздел «Лига» внутри вкладки «Сообщество» (2.0, D39): без «назад» и своего фона. */
+  presentation?: 'push' | 'embedded';
+};
+
+export default function ClubScreen({ presentation = 'push' }: ClubScreenProps = {}) {
+  const embedded = presentation === 'embedded';
+  const { runtimeOwnerId } = useTabNav();
   // зачем (владелец 2026-09-22, «удалить все замеры»): здесь в теле компонента
   // стоял countScreenRender('league') — работа на каждый рендер экрана лиги.
   const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy();
   const bouncyStyle = useBouncyStyle(bouncyStretch);
   const router = useRouter();
-  const runtimeActive = useRuntimeActive();
+  // зачем: во вкладке «Сообщество» лига живёт, только пока раздел «Лига» на экране.
+  const runtimeActive = useRuntimeActive(embedded ? runtimeOwnerId === 'league' : true);
   const reduceMotion = useReduceMotion();
   const { width: viewportWidth } = useWindowDimensions();
   const runtimeActiveRef = useRef(runtimeActive);
@@ -1759,11 +1768,12 @@ export default function ClubScreen() {
       reduceMotion={reduceMotion}
       viewportWidth={viewportWidth}
     />
-    <SafeAreaView style={{ flex:1, zIndex: 1 }}>
+    <SafeAreaView style={{ flex:1, zIndex: 1 }} edges={embedded ? ['left', 'right'] : undefined}>
       <ContentWrap>
       <Reanimated.View style={[{ flex: 1 }, bouncyStyle]}>
       {/* Хедер */}
       <View style={{ flexDirection:'row', alignItems:'center', padding:16, borderBottomWidth:0.5, borderBottomColor:t.border }}>
+        {embedded ? null : (
         <TapScale
           testID="league-screen-back"
           accessibilityRole="button"
@@ -1787,6 +1797,7 @@ export default function ClubScreen() {
         >
           <Ionicons name="chevron-back" size={28} color={sx.primary} />
         </TapScale>
+        )}
         <View style={{ flex: 1 }} />
         {/* зачем (владелец, 24.08): «пусть ещё в разделе лига будет где-то
             кнопка» открыть сезонный пропуск. Раньше единственный вход жил в

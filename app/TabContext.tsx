@@ -55,5 +55,23 @@ export function TabProvider({
   return <TabContext.Provider value={value}>{children}</TabContext.Provider>;
 }
 
+/**
+ * зачем (2.0, D39): Друзья и Лига переехали внутрь вкладки «Сообщество». Их экраны
+ * гасят таймеры/анимации по runtimeOwnerId (например, === 'friends'). Раздел
+ * внутри «Сообщества» переобъявляет владельца только для своего поддерева:
+ * видимый раздел получает своё имя, скрытый — имя вкладки, то есть «не я».
+ */
+export function TabRuntimeOwnerOverride({
+  runtimeOwnerId,
+  children,
+}: {
+  runtimeOwnerId: TabRuntimeOwnerId;
+  children: React.ReactNode;
+}) {
+  const parent = useContext(TabContext);
+  const value = useMemo(() => ({ ...parent, runtimeOwnerId }), [parent, runtimeOwnerId]);
+  return <TabContext.Provider value={value}>{children}</TabContext.Provider>;
+}
+
 // Required by Expo Router — not a screen
 export default function TabContextModule() { return null; }

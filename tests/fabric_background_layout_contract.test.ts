@@ -39,16 +39,11 @@ describe('Fabric background layout guard', () => {
     expect(topFadeMask).not.toContain('dimezisBlurView');
     expect(topFadeMask).not.toContain('FEATHER_INTENSITY_STOPS');
     expect(topFadeMask).not.toContain('feather-');
-    expect(tabLayout).toContain('const tabOverlayHeight = tabBarHeight + tabPillBottom + ds.spacing.md;');
-    expect(tabLayout).toContain('style={[s.tabBarWrap, { height: tabOverlayHeight }]}');
+    // 2.0 (D39/D43): таббар — непрозрачная панель во всю ширину, без блюра.
+    expect(tabLayout).toContain('style={[s.tabBarWrap, { height: tabDockHeight }]}');
+    expect(tabLayout).toContain('backgroundColor: v2.tabBar,');
     expect(tabLayout).not.toContain("from 'expo-blur'");
     expect(tabLayout).not.toContain('<BlurView');
-    expect(tabLayout).not.toContain('intensity={isMinimal ? 96 : 100}');
-    expect(tabLayout).not.toContain('intensity={100}');
-    expect(tabLayout).toContain('const TAB_UNDERLAY_DIM_ALPHA = 0.95;');
-    expect(tabLayout).toContain('const TAB_UNDERLAY_DIM_BG = `rgba(0,0,0,${TAB_UNDERLAY_DIM_ALPHA})`;');
-    expect(tabLayout).toContain('const tabPillBackground = isSagePorcelainTabChrome ? t.accent : TAB_UNDERLAY_DIM_BG;');
-    expect(tabLayout).toContain('{ backgroundColor: tabPillBackground }');
     expect(tabLayout).toContain("position: 'absolute'");
     expect(tabLayout).toContain('bottom: 0');
     expect(tabLayout).toContain("overflow: 'hidden'");

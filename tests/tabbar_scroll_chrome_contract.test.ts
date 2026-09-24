@@ -25,27 +25,16 @@ describe('tabbar scroll chrome contract', () => {
     expect(settings).toContain('onScroll={handleSettingsScroll}');
   });
 
-  it('compacts the whole capsule without replacing it with a side orb', () => {
+  // зачем (2.0, референс владельца 24.09, D39/D43): таббар — неподвижная панель
+  // во всю ширину, а не капсула, которая сжимается от скролла. Сторож держит
+  // главное следствие: JS не слушает скролл активного таба ради хрома таббара.
+  it('keeps the docked 2.0 tab bar static while content scrolls', () => {
     const layout = fs.readFileSync(layoutPath, 'utf8');
-
-    expect(layout).not.toContain('manualLiftTab');
-    expect(layout).not.toContain('TAB_MANUAL_LIFT_TAB_IDX');
-    expect(layout).not.toContain('TAB_SCROLL_LIFT_TO_EXPAND');
-    expect(layout).toContain('const TAB_SCROLL_COLLAPSED_SCALE = 0.9;');
-    expect(layout).toContain('const TAB_SCROLL_COLLAPSED_TRANSLATE_Y = 8;');
-    expect(layout).toContain('const TAB_SCROLL_COLLAPSED_OPACITY = 0.94;');
-    expect(layout).toContain('transform: [{ translateY: tabScrollTranslateY }, { scale: tabScrollScale }, { scale: tabPillPressScale }]');
-    expect(layout).not.toContain('TAB_ORB_HIT_SLOP');
+    expect(layout).toContain('s.tabDock,');
+    expect(layout).not.toContain('tabBarScrollY');
+    expect(layout).not.toContain('animateTabChrome');
+    expect(layout).not.toContain('TAB_SCROLL_COLLAPSED_SCALE');
     expect(layout).not.toContain('tab-collapsed-orb');
-  });
-
-  it('uses scroll-direction hysteresis and always expands at the top', () => {
-    const layout = fs.readFileSync(layoutPath, 'utf8');
-    expect(layout).toContain('const TAB_SCROLL_COLLAPSE_TRIGGER_Y = 36;');
-    expect(layout).toContain('const TAB_SCROLL_EXPAND_TRIGGER_Y = 10;');
-    expect(layout).toContain('const TAB_SCROLL_DIRECTION_EPSILON = 5;');
-    expect(layout).toContain('if (y <= TAB_SCROLL_EXPAND_TRIGGER_Y) {');
-    expect(layout).toContain('if (y <= TAB_SCROLL_EXPAND_TRIGGER_Y) {\n        animateTabChrome(false, true);');
   });
 });
 
@@ -57,24 +46,12 @@ describe('tabbar scroll chrome contract', () => {
  */
 describe('flashcards tabbar mirrors the home scroll chrome', () => {
   const chrome = fs.readFileSync(fc('flashcards', 'pill_tabbar_chrome.ts'), 'utf8');
-  const layout = fs.readFileSync(layoutPath, 'utf8');
 
-  it('reuses the same collapse geometry, thresholds and timings', () => {
-    for (const name of [
-      'TAB_SCROLL_COLLAPSED_SCALE',
-      'TAB_SCROLL_COLLAPSED_TRANSLATE_Y',
-      'TAB_SCROLL_COLLAPSED_OPACITY',
-      'TAB_SCROLL_COLLAPSE_TRIGGER_Y',
-      'TAB_SCROLL_EXPAND_TRIGGER_Y',
-      'TAB_SCROLL_DIRECTION_EPSILON',
-      'TAB_SCROLL_COLLAPSE_MS',
-      'TAB_SCROLL_EXPAND_MS',
-      'TAB_SCROLL_TOGGLE_COOLDOWN_MS',
-    ]) {
-      const re = new RegExp(`${name} = ([-0-9.]+);`);
-      const home = layout.match(re);
-      const cards = chrome.match(re);
-      expect([name, cards?.[1]]).toEqual([name, home?.[1]]);
+  // Главная больше не сжимает таббар (2.0), поэтому зеркалить её числа не с чем:
+  // собственные числа карточек живут в pill_tabbar_chrome.ts до их перерисовки.
+  it('keeps its own collapse numbers in one place', () => {
+    for (const name of ['TAB_SCROLL_COLLAPSED_SCALE', 'TAB_SCROLL_COLLAPSE_TRIGGER_Y', 'TAB_SCROLL_EXPAND_TRIGGER_Y']) {
+      expect(chrome).toMatch(new RegExp(`${name} = ([-0-9.]+);`));
     }
   });
 

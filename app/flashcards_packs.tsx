@@ -43,6 +43,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { safeRouterBack } from './navigation_back';
+import { useTabContentBottomPad } from '../hooks/use-tab-content-bottom-pad';
 import { primeFlashcardsCollectionCache } from './flashcards/useCollectionData';
 import FlashcardsCategoryHub from './flashcards/FlashcardsCategoryHub';
 import { packTileArtRevision } from './flashcards/packMarketplaceIcons';
@@ -74,7 +75,14 @@ import {
 } from './flashcards/pack_languages';
 import { getStoredPackLanguage, setStoredPackLanguage, subscribePackLanguage } from './flashcards/pack_language_preferences';
 
-export default function FlashcardsPacksScreen() {
+export type FlashcardsPacksScreenProps = {
+  /** 'embedded' — раздел «Наборы» во вкладке «Сообщество» (2.0, D39): без «назад», док над таббаром. */
+  presentation?: 'push' | 'embedded';
+};
+
+export default function FlashcardsPacksScreen({ presentation = 'push' }: FlashcardsPacksScreenProps = {}) {
+  const embedded = presentation === 'embedded';
+  const tabContentBottomPad = useTabContentBottomPad();
   const router = useRouter();
   const params = useLocalSearchParams<{ sort?: string }>();
   const { theme: t, f, statusBarLight, themeMode } = useTheme();
@@ -368,6 +376,9 @@ export default function FlashcardsPacksScreen() {
 
   useEffect(() => {
     if (Platform.OS !== 'android') return;
+    // зачем: во вкладке «Сообщество» уходить некуда — «назад» принадлежит таббару,
+    // перехватываем его только чтобы закрыть открытый поиск.
+    if (embedded && !searchOpen) return;
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
       /** Открытый поиск закрываем первым — иначе «назад» уводит с экрана мимо намерения. */
       if (searchOpen) {
@@ -378,16 +389,17 @@ export default function FlashcardsPacksScreen() {
       return true;
     });
     return () => sub.remove();
-  }, [leavePacks, searchOpen, toggleSearch]);
+  }, [embedded, leavePacks, searchOpen, toggleSearch]);
 
   return (
-    <ScreenGradient entranceOffsetY={reduceMotion ? undefined : (parallaxY as unknown as Animated.Value)}>
+    <ScreenGradient entranceOffsetY={reduceMotion || embedded ? undefined : (parallaxY as unknown as Animated.Value)}>
       <SafeAreaView
         style={[styles.safe, { backgroundColor: 'transparent' }]}
-        edges={['top', 'left', 'right']}
+        edges={embedded ? ['left', 'right'] : ['top', 'left', 'right']}
       >
         <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
         <View style={[styles.header, { borderBottomColor: t.border }]}>
+          {embedded ? null : (
           <TouchableOpacity
             testID="flashcards-header-back"
             accessibilityLabel="qa-flashcards-header-back"
@@ -398,6 +410,7 @@ export default function FlashcardsPacksScreen() {
           >
             <Ionicons name="arrow-back" size={24} color={onColoredGradient ? gradHeaderInk : t.textPrimary} />
           </TouchableOpacity>
+          )}
 
           {/*
             Единственный заголовок экрана — сразу справа от стрелки «назад».
@@ -504,7 +517,7 @@ export default function FlashcardsPacksScreen() {
             style={styles.scrollView}
             contentContainerStyle={[
               styles.scrollContent,
-              { paddingBottom: Math.max(insets.bottom, 16) + 84 },
+              { paddingBottom: (embedded ? tabContentBottomPad : Math.max(insets.bottom, 16)) + 84 },
             ]}
             showsVerticalScrollIndicator
             keyboardShouldPersistTaps="handled"
@@ -531,7 +544,7 @@ export default function FlashcardsPacksScreen() {
             />
           </Animated.ScrollView>
         </View>
-        <View style={[styles.bottomTabsDock, { paddingBottom: Math.max(insets.bottom, 12) }]}>
+        <View style={[styles.bottomTabsDock, { paddingBottom: embedded ? tabContentBottomPad - 8 : Math.max(insets.bottom, 12) }]}>
           <View style={[styles.bottomTabs, { backgroundColor: t.bgCard }]}>
             <TouchableOpacity
               testID="flashcards-packs-sort-new"

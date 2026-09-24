@@ -13,7 +13,8 @@ describe('Tab page model', () => {
   // снова появится страница, сдвиг обязан вернуться СЮДА, в одну точку правды,
   // а не расползтись по _layout.tsx.
   test('maps every logical tab onto the same physical page', () => {
-    expect(LOGICAL_TAB_IDS).toEqual(['home', 'lessons', 'arena', 'friends', 'settings']);
+    // 2026-09-24 (2.0, D39): «Главная · Обучение · Видео · Сообщество · Настройки».
+    expect(LOGICAL_TAB_IDS).toEqual(['home', 'lessons', 'video', 'community', 'settings']);
     expect(PHYSICAL_PAGE_IDS).toEqual(LOGICAL_TAB_IDS);
     for (const index of [0, 1, 2, 3, 4]) {
       expect(physicalPageToLogicalTab(logicalTabToPhysicalPage(index))).toBe(index);
@@ -26,8 +27,8 @@ describe('Tab page model', () => {
     expect([0, 1, 2, 3, 4].map(physicalPageToRuntimeOwner)).toEqual([
       'home',
       'lessons',
-      'arena',
-      'friends',
+      'video',
+      'community',
       'settings',
     ]);
   });

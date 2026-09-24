@@ -138,8 +138,10 @@ describe('Economy Constitution — client authority is a permanent source contra
   });
 
   test('RevenueCat never trusts the SDK credit and handles refund reversal as an external fact', () => {
+    // PM-057: клиентская покупка жемчуга за деньги убрана целиком — SDK-кредита
+    // нет вообще; зачисление старых покупок остаётся только за вебхуком ниже.
     const shop = read('app/shards_shop.tsx');
-    expect(shop).toContain('wasConfirmedExternalShardEventApplied');
+    expect(shop).not.toContain('Purchases.purchasePackage');
     expect(shop).not.toContain("source: 'revenuecat_sdk_purchase'");
     const webhook = read('functions/src/revenuecat_shards.ts');
     expect(webhook).toContain("if (eventType === 'REFUND_REVERSED')");

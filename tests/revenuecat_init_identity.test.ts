@@ -6,9 +6,7 @@ describe('RevenueCat identity bootstrap', () => {
     jest.doMock('../app/user_id_policy', () => ({
       getCanonicalUserId: jest.fn(async () => stableId),
     }));
-    jest.doMock('../app/shards_shop_cache', () => ({
-      prefetchShardsShopOfferings: jest.fn(async () => undefined),
-    }));
+    // PM-057: прогрев офферингов магазина жемчуга (shards_shop_cache) удалён.
     jest.doMock('../app/account_generation', () => ({
       captureAccountGeneration: jest.fn(() => ({ generation: 1, stableId, phase: 'active' })),
       isCurrentAccountGeneration: jest.fn(() => true),

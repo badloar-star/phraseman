@@ -690,7 +690,8 @@ describe('owner runtime direction contract', () => {
       'app/app_health.ts': 1,
       'app/firebase.ts': 1,
       'app/firestore_friend_requests.ts': 1,
-      'app/shards_shop.tsx': 3,
+      // PM-057: запись успешной покупки жемчуга за деньги ушла вместе с покупкой.
+      'app/shards_shop.tsx': 2,
       'app/streak_wager.ts': 1,
       // Два шага онбординга пишут веху в Firestore. Событие разовое на
       // пользователя (не на кадр и не на тап), поэтому по стоимости безопасно;

@@ -3,7 +3,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from 'expo-constants';
 import { Platform } from 'react-native';
 import { IS_EXPO_GO, IS_STORE_RELEASE } from './config';
-import { prefetchShardsShopOfferings } from './shards_shop_cache';
 import { getCanonicalUserId } from './user_id_policy';
 import {
   inferPremiumPlanFromProductId,
@@ -354,11 +353,12 @@ async function _doInit(): Promise<void> {
         if (__DEV__) console.warn('[RevenueCat] addCustomerInfoUpdateListener failed:', e);
       }
     }
-    // Параллельно с getCustomerInfo: прогрев getOfferings → кэш цен для мгновенного магазина
+    // зачем (PM-057): прогрев getOfferings для магазина жемчуга убран вместе с
+    // самим магазином — это был лишний сетевой запрос к RevenueCat на КАЖДОМ
+    // старте. Подписка Plus грузит свои offerings сама, в paywall.
     if (DEV_STORE_BILLING_OPTIONAL) {
       return;
     }
-    void prefetchShardsShopOfferings().catch(() => {});
     if (!identityReady || !isInitAccountCurrent()) return;
 
     const info = await Promise.race([

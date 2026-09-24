@@ -3,7 +3,6 @@ import {
   Animated as RNAnim,
   AppState,
   BackHandler,
-  InteractionManager,
   LayoutChangeEvent,
   ScrollView,
   StatusBar,
@@ -14,7 +13,6 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
-import * as Crypto from 'expo-crypto';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import Animated, {
   cancelAnimation,
@@ -28,7 +26,6 @@ import Animated, {
 } from 'react-native-reanimated';
 import type { ThemeMode } from '../constants/theme';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
-import Purchases, { PurchasesPackage } from 'react-native-purchases';
 import { useTheme, getVolumetricShadow } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -39,36 +36,23 @@ import { bundleLang, triLang, type Lang } from '../constants/i18n';
 import {
   ruKnowledgeShardsAccusativeAfterNumber,
   ukKnowledgeShardsAccusativeAfterNumber,
-  ruKnowledgeShardsAfterNumber,
-  ukKnowledgeShardsAfterNumber,
 } from '../constants/shard_plurals';
 import { BRAND_SHARDS_ES } from '../constants/terms_es';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import PressableScale from '../components/PressableScale';
 import { DebugLogger } from './debug-logger';
-import { ENABLE_DEV_TOOLS } from './config';
 import GoldBevel from '../components/GoldBevel';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
 import { OLIVE_GRADIENTS, OLIVE_RICH, oliveShadow } from '../constants/oliveTheme';
-import { commitConfirmedExternalShardEvent, getShardAchievementEligibleBalance, getShardsBalance, loadShardsFromCloud, peekLastKnownShardsBalance, wasConfirmedExternalShardEventApplied } from './shards_system';
+import { commitConfirmedExternalShardEvent, getShardsBalance, loadShardsFromCloud, peekLastKnownShardsBalance } from './shards_system';
 import { SHARDS_PACKS, totalShardsFromPack, type ShardsPack } from './shards_shop_catalog';
 import { safeRouterBack } from './navigation_back';
-import {
-  clearPendingShardGrant,
-  clearPendingShardRecoveryNeeded,
-  markPendingShardRecoveryNeeded,
-  recordPendingShardGrant,
-  resumePendingShardGrants,
-} from './shards_pending_grants';
-import {
-  getWarmShardsPackagesMap,
-  isCompleteShardsPackageMap,
-  loadShardsPriceCache,
-  loadShardsShopPackagesMap,
-  peekShardsPriceCacheSync,
-  type ShardsPriceCache,
-} from './shards_shop_cache';
+// зачем (PM-057): покупок жемчуга за деньги больше нет, но старые оплаченные
+// покупки (сделанные в прежних версиях) обязаны дойти — поэтому дотягивание
+// pending-начислений остаётся, а запись новых pending-покупок убрана.
+import { resumePendingShardGrants } from './shards_pending_grants';
+import { logPearlStoreEntryBlocked } from './pearl_store_retired';
 import {
   reserveBundledMarketPacks,
   loadAccessiblePackIds,
@@ -90,19 +74,16 @@ import { syncFlashcardPackGiftState } from './flashcards/pack_gift_sync';
 import { useCardPackShardPaywall } from './flashcards/useCardPackShardPaywall';
 import { flashcardsOfficialPacksAvailableForTarget, frenchFlashcardsGateCopy } from './flashcards_target_gate';
 import { DEV_IAP_BYPASS, IS_EXPO_GO } from './config';
-import { initRevenueCat, syncRevenueCatIdentity } from './revenuecat_init';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
   subscribeAccountGeneration,
 } from './account_generation';
-import { runRevenueCatOperationForGeneration } from './revenuecat_account_identity';
 import { trackActivity } from './app_activity';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { FlashList } from '@shopify/flash-list';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { emitAppEvent, onAppEvent } from './events';
-import { logShardsPurchased } from './firebase';
 import { oskolokImageForPackShards, oskolokImageForShardIapRow } from './oskolok';
 import { coinIconForBalance } from './coin_icons';
 // зачем: дев-начисление обязано доезжать до сервера — иначе турнир и другие
@@ -115,7 +96,13 @@ import {
   trackShardsShopOpen,
 } from './user_stats';
 
-/** Реліз-збірка: false → Purchases.purchasePackage і системний діалог магазину (App Store / Google Play), без миттєвого DEV-нарахування. */
+/**
+ * Дев-сборка: вкладка «Жемчуг» остаётся как ДЕВ-инструмент начисления через
+ * сервер (правило владельца 2026-07-27, tests/dev_shards_grant_contract.test.ts).
+ * зачем (PM-057): в релизной сборке вкладки «Жемчуг» и покупки за деньги НЕТ —
+ * жемчуг удаляется из 2.0 (D28), остаток компенсирует миграция PM-059. Дев-
+ * начисление нужно, чтобы проверять эту миграцию и наборы за жемчуг (PM-060).
+ */
 const isDevStoreBypass = __DEV__ || DEV_IAP_BYPASS || IS_EXPO_GO;
 
 /** Teal / cyan в стилі «осколків» на paywall-референсі */
@@ -681,8 +668,6 @@ export default function ShardsShopScreen() {
   const storePaymentCopy = useMemo<{
     icon: IoniconName;
     cardPurchase: string;
-    footerPayment: string;
-    notReady: string;
   }>(() => {
     if (effectiveOs === 'ios') {
       return {
@@ -697,32 +682,6 @@ export default function ShardsShopScreen() {
           id: 'Pembelian — App Store',
           tr: 'Satın alma — App Store',
           pl: 'Zakup — App Store',
-        }),
-        footerPayment: triLang(lang, {
-          ru: 'Оплата в App Store',
-          uk: 'Оплата в App Store',
-          es: 'Pago en App Store',
-          en: 'Payment via App Store',
-          'pt-BR': 'Pagamento na App Store',
-          vi: 'Thanh toán trong App Store',
-          id: 'Pembayaran di App Store',
-          tr: 'App Store üzerinden ödeme',
-          pl: 'Płatność w App Store',
-        }),
-        // зачем (аудит по Библии, 2026-08-26): русский текст починили в прошлом
-        // аудите, а семь остальных языков остались с инструкцией для
-        // разработчика («перевір Offering «shards» у RevenueCat»). Часть V п.3
-        // запрещает техдетали в интерфейсе — человеку они бесполезны.
-        notReady: triLang(lang, {
-          ru: 'Магазин временно недоступен. Попробуй позже.',
-          uk: 'Магазин тимчасово недоступний. Спробуй пізніше.',
-          en: 'The store is temporarily unavailable. Try again later.',
-          es: 'La tienda no está disponible ahora. Inténtalo más tarde.',
-          'pt-BR': 'A loja está indisponível agora. Tente mais tarde.',
-          vi: 'Cửa hàng tạm thời không khả dụng. Hãy thử lại sau.',
-          id: 'Toko sementara tidak tersedia. Coba lagi nanti.',
-          tr: 'Mağaza şu anda kullanılamıyor. Daha sonra tekrar dene.',
-          pl: 'Sklep jest chwilowo niedostępny. Spróbuj później.',
         }),
       };
     }
@@ -740,28 +699,6 @@ export default function ShardsShopScreen() {
           tr: 'Satın alma — Google Play',
           pl: 'Zakup — Google Play',
         }),
-        footerPayment: triLang(lang, {
-          ru: 'Оплата в Google Play',
-          uk: 'Оплата в Google Play',
-          es: 'Pago en Google Play',
-          en: 'Payment via Google Play',
-          'pt-BR': 'Pagamento no Google Play',
-          vi: 'Thanh toán trong Google Play',
-          id: 'Pembayaran di Google Play',
-          tr: 'Google Play üzerinden ödeme',
-          pl: 'Płatność w Google Play',
-        }),
-        notReady: triLang(lang, {
-          ru: 'Магазин временно недоступен. Попробуй позже.',
-          uk: 'Магазин тимчасово недоступний. Спробуй пізніше.',
-          es: 'La tienda no está disponible ahora. Inténtalo más tarde.',
-          en: 'The store is temporarily unavailable. Try again later.',
-          'pt-BR': 'A loja está indisponível agora. Tente mais tarde.',
-          vi: 'Cửa hàng tạm thời không khả dụng. Hãy thử lại sau.',
-          id: 'Toko sementara tidak tersedia. Coba lagi nanti.',
-          tr: 'Mağaza şu anda kullanılamıyor. Daha sonra tekrar dene.',
-          pl: 'Sklep jest chwilowo niedostępny. Spróbuj później.',
-        }),
       };
     }
     return {
@@ -777,28 +714,6 @@ export default function ShardsShopScreen() {
         tr: 'Satın alma — uygulama mağazası',
         pl: 'Zakup — sklep z aplikacjami',
       }),
-      footerPayment: triLang(lang, {
-        ru: 'Оплата в магазине приложений',
-        uk: 'Оплата в магазині застосунків',
-        en: 'Payment through the app store',
-        es: 'Pago en la tienda de apps',
-        'pt-BR': 'Pagamento na loja de apps',
-        vi: 'Thanh toán trong cửa hàng ứng dụng',
-        id: 'Pembayaran di toko aplikasi',
-        tr: 'Uygulama mağazası üzerinden ödeme',
-        pl: 'Płatność w sklepie z aplikacjami',
-      }),
-      notReady: triLang(lang, {
-        ru: 'Магазин временно недоступен. Попробуй позже.',
-        uk: 'Магазин тимчасово недоступний. Спробуй пізніше.',
-        en: 'The store is temporarily unavailable. Try again later.',
-        es: 'La tienda no está disponible ahora. Inténtalo más tarde.',
-        'pt-BR': 'A loja está indisponível agora. Tente mais tarde.',
-        vi: 'Cửa hàng tạm thời không khả dụng. Hãy thử lại sau.',
-        id: 'Toko sementara tidak tersedia. Coba lagi nanti.',
-        tr: 'Mağaza şu anda kullanılamıyor. Daha sonra tekrar dene.',
-        pl: 'Sklep jest chwilowo niedostępny. Spróbuj później.',
-      }),
     };
   }, [effectiveOs, lang]);
   const params = useLocalSearchParams<{ need?: string; source?: string; tab?: string; returnTo?: string }>();
@@ -813,8 +728,9 @@ export default function ShardsShopScreen() {
   const shopEntryBalanceRef = useRef<number | null>(null);
   type ShopTab = 'catalog' | 'paid';
   const firestoreOpenTabsRef = useRef<Set<ShopTab>>(new Set());
+  // зачем (PM-057): в релизе вкладки «Жемчуг» нет — всегда открываем «Карточки».
   const [shopTab, setShopTab] = useState<ShopTab>(() =>
-    params.tab === 'paid' || params.tab === 'cards' ? 'paid' : 'catalog',
+    !isDevStoreBypass || params.tab === 'paid' || params.tab === 'cards' ? 'paid' : 'catalog',
   );
   const [balance, setBalance] = useState(() => peekLastKnownShardsBalance() ?? 0);
   const [packTrialHours, setPackTrialHours] = useState<number | null>(null);
@@ -824,12 +740,6 @@ export default function ShardsShopScreen() {
     const subscription = subscribeAccountGeneration(() => setProcessingPackId(null));
     return () => subscription.remove();
   }, []);
-  const [packagesByProductId, setPackagesByProductId] = useState<Record<string, PurchasesPackage>>(() => getWarmShardsPackagesMap() ?? {});
-  /** Завершён getOfferings (успех или нет) — кнопки/подсказки, не мешаем с кэшем с диска. */
-  const [storeChecked, setStoreChecked] = useState(
-    () => isDevStoreBypass || isCompleteShardsPackageMap(getWarmShardsPackagesMap() ?? undefined),
-  );
-  const [pricesFromDisk, setPricesFromDisk] = useState<ShardsPriceCache>(() => peekShardsPriceCacheSync());
   const [marketPacks, setMarketPacks] = useState<FlashcardMarketPack[]>(() =>
     officialCardPacksEnabled ? peekWarmMarketplacePacks(studyTarget, lang) ?? reserveBundledMarketPacks(studyTarget, lang) : [],
   );
@@ -981,26 +891,6 @@ export default function ShardsShopScreen() {
     }
   }, [refreshBalance, loadCardMarket, shopTab]);
 
-  const waitForServerShardGrant = useCallback(async (
-    startingBalance: number,
-    expectedShards: number,
-    isCurrent: () => boolean = () => true,
-  ): Promise<number> => {
-    const expectedBalance = startingBalance + expectedShards;
-    for (let i = 0; i < 8; i += 1) {
-      await new Promise(resolve => setTimeout(resolve, i === 0 ? 1200 : 2500));
-      if (!isCurrent()) return startingBalance;
-      await loadShardsFromCloud(isCurrent);
-      if (!isCurrent()) return startingBalance;
-      const next = await getShardsBalance();
-      if (!isCurrent()) return startingBalance;
-      setBalance(next);
-      if (next >= expectedBalance) return next;
-    }
-    const finalBalance = await getShardsBalance();
-    return isCurrent() ? finalBalance : startingBalance;
-  }, []);
-
   /** Активний 48-год ваучер: на вкладці «Картки» ціни замінюються іконкою подарка, paywall відкривається в voucher-режимі. */
   const hasActiveVoucher = packTrialHours != null && packTrialHours > 0;
 
@@ -1026,9 +916,6 @@ export default function ShardsShopScreen() {
     onAfterPurchase: syncAfterStoreAction,
     onPurchaseStart: (id) => setBuyingShardPackId(id),
     onPurchaseEnd: () => setBuyingShardPackId(null),
-    // зачем: этот экран И ЕСТЬ магазин жемчуга. При нехватке показываем пакеты
-    // переключением вкладки, а не push того же маршрута поверх себя.
-    onShowShardPacksInPlace: () => setShopTab('catalog'),
   });
 
   useFocusEffect(
@@ -1054,7 +941,7 @@ export default function ShardsShopScreen() {
           shopEntryBalanceRef.current = next;
         }
         // Дотягиваем pending-начисления из прошлых покупок (если вебхук задержался
-        // дольше окна waitForServerShardGrant ~18с). resumePendingShardGrants сам
+        // или покупка сделана в прежней версии — PM-057). resumePendingShardGrants сам
         // обновит баланс и покажет toast «+N осколков», когда облако подтвердит.
         const resumeAccount = captureAccountGeneration();
         void resumePendingShardGrants(resumeAccount).catch(() => {});
@@ -1095,7 +982,11 @@ export default function ShardsShopScreen() {
 
   useEffect(() => {
     if (params.tab === 'paid' || params.tab === 'cards') setShopTab('paid');
-    else if (params.tab === 'catalog' || params.tab === 'shards') setShopTab('catalog');
+    // зачем (PM-057): вкладку «Жемчуг» по ссылке открываем только в дев-сборке.
+    else if (isDevStoreBypass && (params.tab === 'catalog' || params.tab === 'shards')) setShopTab('catalog');
+    else if (params.tab === 'catalog' || params.tab === 'shards') {
+      logPearlStoreEntryBlocked('card_pack_insufficient', null);
+    }
   }, [params.tab]);
 
   /**
@@ -1105,56 +996,6 @@ export default function ShardsShopScreen() {
   const heroEnt = useRef(new RNAnim.Value(1)).current;
   const shardRowEnt = useRef(SHARDS_PACKS.map(() => new RNAnim.Value(1))).current;
   const paidListEnt = useRef(new RNAnim.Value(1)).current;
-
-  useEffect(() => {
-    if (isDevStoreBypass) return;
-    // initial state уже взят из peekShardsPriceCacheSync — обновляемся в фоне без флэша.
-    let m = true;
-    const task = InteractionManager.runAfterInteractions(() => {
-      void loadShardsPriceCache().then((c) => {
-        if (!m) return;
-        // setState только если реально что-то изменилось (избегаем ре-рендера всего экрана).
-        const sameKeys =
-          Object.keys(c).length === Object.keys(pricesFromDisk).length &&
-          Object.keys(c).every((k) => pricesFromDisk[k]?.priceString === c[k]?.priceString);
-        if (!sameKeys) setPricesFromDisk(c);
-      });
-    });
-    return () => { m = false; task.cancel(); };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const hasAnyPriceFromDisk = useMemo(
-    () => SHARDS_PACKS.some((p) => !!pricesFromDisk[p.productId]?.priceString),
-    [pricesFromDisk],
-  );
-
-  const allPacksHavePackages = useMemo(
-    () => isDevStoreBypass || SHARDS_PACKS.every((pack) => !!packagesByProductId[pack.productId]),
-    [isDevStoreBypass, packagesByProductId],
-  );
-
-  useEffect(() => {
-    let mounted = true;
-    const loadStoreProducts = async () => {
-      if (isDevStoreBypass) {
-        if (mounted) {
-          setPackagesByProductId({});
-          setStoreChecked(true);
-        }
-        return;
-      }
-      const map = await loadShardsShopPackagesMap();
-      if (mounted) {
-        setPackagesByProductId(map);
-        setStoreChecked(true);
-      }
-    };
-    void loadStoreProducts();
-    return () => {
-      mounted = false;
-    };
-  }, []);
 
   const shardTerm = triLang(lang, {
     ru: 'жемчужин',
@@ -1332,223 +1173,17 @@ export default function ShardsShopScreen() {
           });
           return;
         }
-        await initRevenueCat(isOperationCurrent);
-        if (!isOperationCurrent()) return;
-        if (!(await syncRevenueCatIdentity(isOperationCurrent))) return;
-        if (!isOperationCurrent()) return;
-        const purchasesConfigured = await Purchases.isConfigured();
-        if (!isOperationCurrent()) return;
-        if (!purchasesConfigured) {
-          emitAppEvent('action_toast', {
-            type: 'error',
-            messageRu: 'Платежи временно недоступны. Подожди несколько секунд и попробуй снова.',
-            messageUk: 'Платежі тимчасово недоступні. Зачекай кілька секунд і спробуй знову.',
-            messageEs: 'Pagos no disponibles. Espera unos segundos e inténtalo de nuevo.',
-            messagePtBr: 'Pagamentos temporariamente indisponíveis. Aguarde alguns segundos e tente novamente.',
-            messageVi: 'Thanh toán tạm thời không khả dụng. Hãy chờ vài giây rồi thử lại.',
-            messageId: 'Pembayaran sementara tidak tersedia. Tunggu beberapa detik lalu coba lagi.',
-            messageTr: 'Ödemeler geçici olarak kullanılamıyor. Birkaç saniye bekleyip tekrar dene.',
-            messagePl: 'Płatności są tymczasowo niedostępne. Poczekaj kilka sekund i spróbuj ponownie.',
-          });
-          return;
-        }
-        const pkg = packagesByProductId[productId];
-        if (!pkg) {
-          emitAppEvent('action_toast', {
-            type: 'error',
-            messageRu: 'Магазин временно недоступен. Попробуй позже.',
-            messageUk: 'Магазин тимчасово недоступний. Спробуй пізніше.',
-            messageEs: 'La tienda no está disponible ahora. Inténtalo más tarde.',
-            messagePtBr: 'A loja está indisponível agora. Tente mais tarde.',
-            messageVi: 'Cửa hàng tạm thời không khả dụng. Hãy thử lại sau.',
-            messageId: 'Toko sementara tidak tersedia. Coba lagi nanti.',
-            messageTr: 'Mağaza şu anda kullanılamıyor. Daha sonra tekrar dene.',
-            messagePl: 'Sklep jest chwilowo niedostępny. Spróbuj później.',
-          });
-          return;
-        }
-        const beforePurchaseBalance = await getShardsBalance();
-        if (!isOperationCurrent()) return;
-        const purchaseOperation = await runRevenueCatOperationForGeneration(
-          operationAccount,
-          () => Purchases.purchasePackage(pkg),
-        );
-        if (purchaseOperation.status !== 'ok') return;
-        const purchaseResult = purchaseOperation.value;
-        // СРАЗУ записываем pending — даже если вебхук задержится или упадёт,
-        // `resumePendingShardGrants` при следующем заходе в магазин/на главную
-        // дотянет осколки. Без этого деньги списывались, а осколки молча терялись.
-        const storeTransactionId = (purchaseResult as { transaction?: { transactionIdentifier?: string } } | undefined)
-          ?.transaction?.transactionIdentifier?.trim() || null;
-        const shardGrantJournalId = Crypto.randomUUID();
-        const journalResult = await recordPendingShardGrant(operationAccount, {
-          journalId: shardGrantJournalId,
-          storeTransactionId: storeTransactionId,
-          productId,
-          expectedShards: shards,
-          beforeBalance: beforePurchaseBalance,
-          createdAtMs: Date.now(),
-        }).catch(() => ({ status: 'storage_unavailable' as const }));
-        if (!isOperationCurrent() || journalResult.status === 'stale') return;
-        // A successful SDK callback proves StoreKit/Play completed, but it does
-        // not expose a production-verifiable environment. Credit only the
-        // immutable RevenueCat webhook event; sandbox purchases stay harmless.
-        let confirmedPurchase: { status: 'applied'; balanceAfter: number } | null = null;
-        if (storeTransactionId) {
-          for (let attempt = 0; attempt < 4 && !confirmedPurchase; attempt += 1) {
-            await loadShardsFromCloud(isOperationCurrent).catch(() => {});
-            if (!isOperationCurrent()) return;
-            if (await wasConfirmedExternalShardEventApplied(
-              operationAccount.stableId!,
-              'revenuecat_purchase',
-              storeTransactionId,
-            )) {
-              confirmedPurchase = { status: 'applied', balanceAfter: await getShardsBalance() };
-              break;
-            }
-            await new Promise((resolve) => setTimeout(resolve, attempt === 0 ? 1200 : 2500));
-          }
-        }
-        if (!isOperationCurrent()) return;
-        if (confirmedPurchase?.status === 'applied') {
-          if (journalResult.status === 'recorded') {
-            await clearPendingShardGrant(operationAccount, journalResult.journalId).catch(() => false);
-          }
-          await clearPendingShardRecoveryNeeded(operationAccount).catch(() => false);
-          if (!isOperationCurrent()) return;
-          setBalance(confirmedPurchase.balanceAfter);
-          logShardsPurchased(productId, shards);
-          void trackShardPackPurchase(packId).catch(() => {});
-          emitAppEvent('action_toast', {
-            type: 'success',
-            messageRu: `Готово: +${shards} ${ruKnowledgeShardsAfterNumber(shards)}`,
-            messageUk: `Готово: +${shards} ${ukKnowledgeShardsAfterNumber(shards)}`,
-            messageEs: `Listo: +${shards} ${BRAND_SHARDS_ES.toLowerCase()}`,
-            messagePtBr: `Pronto: +${shards} perlas`,
-            messageVi: `Xong: +${shards} mảnh`,
-            messageId: `Selesai: +${shards} shard`,
-            messageTr: `Tamam: +${shards} parça`,
-            messagePl: `Gotowe: +${shards} monet`,
-          });
-          return;
-        }
-        if (journalResult.status !== 'recorded') {
-          await markPendingShardRecoveryNeeded(operationAccount).catch(() => false);
-          if (!isOperationCurrent()) return;
-          emitAppEvent('action_toast', {
-            type: 'error',
-            // зачем (аудит по Библии, 2026-08-26): деньги уже списаны — текст обязан
-            // быть предельно ясным. Было «вы» (Правило 14) и техножаргон про
-            // «автоматическое восстановление» (Часть V п.3). Смысл сохранён
-            // полностью: не платить второй раз, баланс придёт сам.
-            messageRu: 'Деньги списаны. Не оплачивай второй раз — жемчуг придёт сам.',
-            messageUk: 'Гроші списано. Не оплачуй удруге — перлини надійдуть самі.',
-            messageEs: 'El pago se completó. No pagues otra vez: el saldo llegará solo.',
-            messagePtBr: 'O pagamento foi concluído. Não pague de novo: o saldo chega sozinho.',
-            messageVi: 'Đã thanh toán xong. Đừng trả lần nữa — số dư sẽ tự về.',
-            messageId: 'Pembayaran berhasil. Jangan bayar lagi — saldo akan masuk sendiri.',
-            messageTr: 'Ödeme tamamlandı. Tekrar ödeme yapma — bakiye kendi gelecek.',
-            messagePl: 'Płatność przeszła. Nie płać drugi raz — saldo dojdzie samo.',
-          });
-          const recoveredBalance = await waitForServerShardGrant(beforePurchaseBalance, shards, isOperationCurrent);
-          if (!isOperationCurrent()) return;
-          await syncAfterStoreAction(isOperationCurrent);
-          if (!isOperationCurrent()) return;
-          if (recoveredBalance >= beforePurchaseBalance + shards) {
-            const eligibleAchievementBalance = await getShardAchievementEligibleBalance(recoveredBalance);
-            if (!isOperationCurrent()) return;
-            emitAppEvent('shards_balance_updated', {
-              balance: recoveredBalance,
-              op: 'earn',
-              reason: 'shards_store_purchase',
-              eligibleAchievementBalance,
-            });
-            await clearPendingShardRecoveryNeeded(operationAccount).catch(() => false);
-            if (!isOperationCurrent()) return;
-            emitAppEvent('action_toast', {
-              type: 'success',
-              // зачем: склонение по числу — «+1 жемчужина», а не «+1 жемчужин».
-              messageRu: `Готово: +${shards} ${ruKnowledgeShardsAfterNumber(shards)}`,
-              messageUk: `Готово: +${shards} ${ukKnowledgeShardsAfterNumber(shards)}`,
-              messageEs: `Listo: +${shards} ${BRAND_SHARDS_ES.toLowerCase()}`,
-              messagePtBr: `Pronto: +${shards} perlas`,
-              messageVi: `Xong: +${shards} mảnh`,
-              messageId: `Selesai: +${shards} shard`,
-              messageTr: `Tamam: +${shards} parça`,
-              messagePl: `Gotowe: +${shards} monet`,
-            });
-          }
-          return;
-        }
-        logShardsPurchased(productId, shards);
-        void trackShardPackPurchase(packId).catch(() => {});
-        void trackActivity('shards_shop:purchase_success', {
-          feature: 'revenue',
-          screen: 'shards_shop',
-          result: 'success',
-          writeToFirestore: true,
-          tags: { packId, productId, shards, devBypass: false },
-        }).catch(() => {});
-        emitAppEvent('action_toast', {
-          type: 'info',
-          // зачем (аудит по Библии, 2026-08-26): сухая констатация «оплата
-          // подтверждена» ничего не говорит о выгоде. Стиль ИГРА: называем то,
-          // что человек получил.
-          messageRu: 'Готово — жемчуг уже твой.',
-          messageUk: 'Готово — перлини вже твої.',
-          messageEs: '¡Listo! Las perlas ya son tuyas.',
-          messagePtBr: 'Pronto! As pérolas já são suas.',
-          messageVi: 'Xong! Ngọc trai đã là của bạn.',
-          messageId: 'Selesai! Mutiara sudah jadi milikmu.',
-          messageTr: 'Tamam! İnciler artık senin.',
-          messagePl: 'Gotowe! Perły są już twoje.',
-        });
-        const nextBalance = await waitForServerShardGrant(beforePurchaseBalance, shards, isOperationCurrent);
-        if (!isOperationCurrent()) return;
-        await syncAfterStoreAction(isOperationCurrent);
-        if (!isOperationCurrent()) return;
-        const eligibleAchievementBalance = await getShardAchievementEligibleBalance(nextBalance);
-        if (!isOperationCurrent()) return;
-        emitAppEvent('shards_balance_updated', {
-          balance: nextBalance,
-          op: 'earn',
-          reason: 'shards_store_purchase',
-          eligibleAchievementBalance,
-        });
-        if (nextBalance >= beforePurchaseBalance + shards) {
-          // Дошёл — закрываем pending запись.
-          const cleared = await clearPendingShardGrant(operationAccount, journalResult.journalId).catch(() => false);
-          if (!cleared || !isOperationCurrent()) return;
-          emitAppEvent('action_toast', {
-            type: 'success',
-            // зачем: склонение по числу — «+1 жемчужина», а не «+1 жемчужин».
-            messageRu: `Готово: +${shards} ${ruKnowledgeShardsAfterNumber(shards)}`,
-            messageUk: `Готово: +${shards} ${ukKnowledgeShardsAfterNumber(shards)}`,
-            messageEs: `Listo: +${shards} ${BRAND_SHARDS_ES.toLowerCase()}`,
-            messagePtBr: `Pronto: +${shards} perlas`,
-            messageVi: `Xong: +${shards} mảnh`,
-            messageId: `Selesai: +${shards} shard`,
-            messageTr: `Tamam: +${shards} parça`,
-            messagePl: `Gotowe: +${shards} odłamków`,
-          });
-        } else {
-          emitAppEvent('action_toast', {
-            type: 'info',
-            messageRu: 'Оплата принята. Жемчуг появится через пару минут.',
-            messageUk: 'Оплату прийнято. Перлини з\'являться за пару хвилин.',
-            // зачем (аудит 2026-08-26): было «Los perlas» — ошибка рода (perla
-            // женского рода), а vi/id/pl называли валюту старым словом «осколки».
-            messageEs: 'Pago recibido. Las perlas aparecerán en un par de minutos.',
-            messagePtBr: 'Pagamento recebido. As pérolas aparecerão em alguns minutos.',
-            messageVi: 'Đã nhận thanh toán. Ngọc trai sẽ xuất hiện sau vài phút.',
-            messageId: 'Pembayaran diterima. Mutiara akan muncul dalam beberapa menit.',
-            messageTr: 'Ödeme alındı. Parçalar birkaç dakika içinde görünecek.',
-            messagePl: 'Płatność przyjęta. Perły pojawią się za kilka minut.',
-          });
-        }
+        // зачем (PM-057, D28): покупка жемчуга за реальные деньги закрыта. Сюда
+        // попадают только из дев-вкладки, её обслуживает ветка выше; если флаг
+        // обхода почему-то сброшен — системный диалог магазина НЕ открываем.
+        // Товары phraseman_shards_* остаются в сторах, пока их не снимет
+        // владелец; старые оплаченные покупки дотягивает resumePendingShardGrants.
+        logPearlStoreEntryBlocked('card_pack_insufficient', shards);
+        console.warn('[PM-057] shards_shop:buyPack_blocked_release', JSON.stringify({ packId, productId, shards }));
+        return;
       } catch (e: any) {
         if (!isOperationCurrent()) return;
-        if (e?.userCancelled) return;
+        console.warn('[PM-057] shards_shop:buyPack_dev_failed', e instanceof Error ? e.message : String(e));
         emitAppEvent('action_toast', {
           type: 'error',
           messageRu: 'Не получилось оформить. Давай ещё раз.',
@@ -1564,7 +1199,7 @@ export default function ShardsShopScreen() {
         if (isOperationCurrent()) setProcessingPackId(null);
       }
     },
-    [syncAfterStoreAction, packagesByProductId, processingPackId, refreshBalance, loadCardMarket, waitForServerShardGrant],
+    [processingPackId, refreshBalance, loadCardMarket],
   );
 
   const promptBuyCardPack = useCallback(
@@ -1583,17 +1218,13 @@ export default function ShardsShopScreen() {
     // Теперь слева база (pack.shards), справа бонус (pack.bonusShards), сумма = totalShards
     // = ровно то, что зачислит сервер. totalShards остаётся для самой покупки и аналитики.
     const totalShards = totalShardsFromPack(pack);
-    const pkg = packagesByProductId[pack.productId];
-    const priceHint = pricesFromDisk[pack.productId];
-    const priceLabel =
-      pkg?.product.priceString ??
-      priceHint?.priceString ??
-      '--';
+    // зачем (PM-057): вкладка живёт только в дев-сборке, цены стора больше не грузим.
+    const priceLabel = 'DEV';
     const isPopular = pack.badge === 'popular';
     const isBest = pack.badge === 'best_value';
     const busy = processingPackId === pack.id;
     const anotherBusy = processingPackId != null && processingPackId !== pack.id;
-    const canPurchase = isDevStoreBypass || !!pkg;
+    const canPurchase = isDevStoreBypass;
     const disabled = busy || anotherBusy || !canPurchase;
     const shardsLabel = shardTerm;
     const bonusLabel = triLang(lang, {
@@ -1648,7 +1279,7 @@ export default function ShardsShopScreen() {
         <View
           style={{
             width: cardW,
-            opacity: anotherBusy ? 0.48 : !isDevStoreBypass && !pkg && storeChecked ? 0.55 : 1,
+            opacity: anotherBusy ? 0.48 : 1,
           }}
         >
           <View
@@ -1870,6 +1501,9 @@ export default function ShardsShopScreen() {
             </LinearGradient>
           </View>
 
+          {/* зачем (PM-057): переключатель вкладок только в дев-сборке — в релизе
+              вкладки «Жемчуг» нет, остаётся одна «Карточки». */}
+          {isDevStoreBypass && (
           <View
             style={{
               flexDirection: 'row',
@@ -1940,63 +1574,8 @@ export default function ShardsShopScreen() {
                 </View>
               );
             })}
-            {/* Вход на «Биржу» — обмен монет на руны (спека §6).
-                зачем: фича скрыта из публичной сборки по решению владельца, но код/маршрут
-                остаются рабочими для dev/QA — тот же флаг, что и остальные dev-only входы. */}
-            {false && ENABLE_DEV_TOOLS && (
-            <View style={{ minWidth: 0, minHeight: 48, justifyContent: 'center' }}>
-              <PressableScale
-                onPress={() => router.push('/coin_exchange' as any)}
-                scaleTo={0.97}
-                withHaptic
-                accessibilityRole="button"
-                accessibilityLabel={triLang(lang, {
-                  ru: 'Биржа: обмен жемчуга на руны',
-                  uk: 'Біржа: обмін перлин на руни',
-                  en: 'Exchange: trade pearls for runes',
-                  es: 'Intercambio: cambia perlas por runas',
-                  'pt-BR': 'Câmbio: troque pérolas por runas',
-                  vi: 'Sàn giao dịch: đổi xu lấy rune',
-                  id: 'Bursa: tukar koin dengan rune',
-                  tr: 'Borsa: jetonları rünle değiştir',
-                  pl: 'Giełda: wymień monety na runy',
-                })}
-                style={{ width: '100%' }}
-              >
-                <View
-                  style={{
-                    minHeight: 46,
-                    paddingVertical: 12,
-                    paddingHorizontal: 14,
-                    borderRadius: 999,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexDirection: 'row',
-                    gap: 6,
-                    backgroundColor: t.bgSurface,
-                    borderWidth: 0,
-                    borderColor: t.border,
-                  }}
-                >
-                  <Ionicons name="swap-horizontal" size={16} color={t.accent} accessibilityElementsHidden importantForAccessibility="no" />
-                  <Text style={{ fontSize: typeof f.caption === 'number' && f.caption > 0 ? f.caption : 13, lineHeight: 18, fontWeight: '800', color: t.textPrimary, letterSpacing: 0.2 }} numberOfLines={1}>
-                    {triLang(lang, {
-                      ru: 'Биржа',
-                      uk: 'Біржа',
-                      en: 'Exchange',
-                      es: 'Cambio',
-                      'pt-BR': 'Câmbio',
-                      vi: 'Sàn',
-                      id: 'Bursa',
-                      tr: 'Borsa',
-                      pl: 'Giełda',
-                    })}
-                  </Text>
-                </View>
-              </PressableScale>
-            </View>
-            )}
           </View>
+          )}
           </View>
 
           {/**
@@ -2112,6 +1691,7 @@ export default function ShardsShopScreen() {
               ДВА flex:1-сиблинга (список + невидимая обёртка «Жемчуга»), Yoga делила высоту 50/50,
               и нижняя половина экрана была мёртвой белой зоной (замер: список получал 321px вместо
               ~670px). Гасим всю вкладку целиком внешним View — скрытая вкладка выпадает из layout. */}
+          {isDevStoreBypass && (
           <View style={{ flex: 1, display: shopTab === 'catalog' ? 'flex' : 'none' }}>
           <BouncyScrollView
             style={{ zIndex: 0 }}
@@ -2184,40 +1764,19 @@ export default function ShardsShopScreen() {
               </View>
             </RNAnim.View>
 
-            {!allPacksHavePackages && storeChecked && !isDevStoreBypass && (
-              <View
-                style={{
-                  backgroundColor: t.wrongBg,
-                  borderWidth: 0,
-                  borderColor: `${t.wrong}55`,
-                  borderRadius: 18,
-                  padding: 16,
-                  flexDirection: 'row',
-                  gap: 12,
-                  alignItems: 'flex-start',
-                  marginBottom: 16,
-                }}
-              >
-                <Ionicons name="warning" size={22} color={t.wrong} style={{ marginTop: 2 }} />
-                <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '600', flex: 1, lineHeight: 20 }}>
-                  {storePaymentCopy.notReady}
-                </Text>
-              </View>
-            )}
-
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 14 }}>
               <View style={{ flex: 1, height: 1, backgroundColor: t.border }} />
               <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '800', letterSpacing: 1, textTransform: 'uppercase' }}>
                 {triLang(lang, {
-                  ru: 'Жемчуг за деньги',
-                  uk: 'Перлини за гроші',
-                  en: 'Pearls for money',
-                  es: `${BRAND_SHARDS_ES} (pago)`,
-                  'pt-BR': 'Pérolas (pagamento)',
-                  vi: 'Xu (thanh toán)',
-                  id: 'Koin (pembayaran)',
-                  tr: 'Jetonlar (ödeme)',
-                  pl: 'Monety (płatność)',
+                  ru: 'DEV: начисление жемчуга',
+                  uk: 'DEV: нарахування перлин',
+                  en: 'DEV: pearl grant',
+                  es: 'DEV: pearl grant',
+                  'pt-BR': 'DEV: pearl grant',
+                  vi: 'DEV: pearl grant',
+                  id: 'DEV: pearl grant',
+                  tr: 'DEV: pearl grant',
+                  pl: 'DEV: pearl grant',
                 })}
               </Text>
               <View style={{ flex: 1, height: 1, backgroundColor: t.border }} />
@@ -2245,25 +1804,11 @@ export default function ShardsShopScreen() {
               </RNAnim.View>
             ))}
 
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: 8,
-                paddingVertical: 10,
-              }}
-            >
-              <Ionicons name="shield-checkmark" size={16} color={t.textMuted} />
-              <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
-                {storePaymentCopy.footerPayment}
-              </Text>
-            </View>
-
               </>
             </View>
           </BouncyScrollView>
           </View>
+          )}
         </ContentWrap>
       </SafeAreaView>
       {cardPackPaywallModal}

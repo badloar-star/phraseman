@@ -34,6 +34,11 @@ import {
   type GiftCoinValuation,
   type PlusGiftId,
 } from './gifts_to_coins_table_v1';
+import {
+  dailyJourneySpinGrantKey,
+  spinCapUsed,
+  type SpinCapLedger,
+} from './gifts_to_coins_spin_cap_v1';
 
 /** 72 ч — тот же срок, что GIFT_TTL_MS/LOCAL_RESULT_TTL_MS; импорт не тянем ради константы. */
 export const GIFTS_TO_COINS_GIFT_TTL_MS = 72 * 60 * 60 * 1000;
@@ -314,11 +319,15 @@ export async function readGiftsToCoinsInventory(
   owner: string,
   nowMs: number,
   dailyJourneyPending: readonly GiftsToCoinsDailyJourneyPending[] | 'corrupt',
+  /** Общий учёт потолка с активацией «Дневного пути» (gifts_to_coins_spin_cap_v1). */
+  spinCap: SpinCapLedger = Object.freeze({ schemaVersion: 'gifts-to-coins-spin-cap.v1', owner, grants: {} }),
 ): Promise<GiftsToCoinsInventory> {
   const collector = new ItemCollector();
   const corrupt: GiftsToCoinsCorruptSource[] = [];
   const expired = { spin_prize: 0, level_gift: 0 };
-  let freeSpinsLeft = FREE_SPIN_CAP;
+  // зачем: часть потолка уже могла уйти на спины «Дневного пути», закрытые
+  // штатной активацией, или на прошлый прогон миграции — считаем от общего учёта.
+  let freeSpinsLeft = Math.max(0, FREE_SPIN_CAP - spinCapUsed(spinCap));
   let cappedSpins = 0;
 
   // п.1 — кредиты спинов.
@@ -454,8 +463,11 @@ export async function readGiftsToCoinsInventory(
       kinds[kind] = (kinds[kind] ?? 0) + 1;
       let valuation = valueDailyJourneyReward(kind, amount);
       if (kind === 'spins') {
-        const paidSpins = Math.min(Math.max(0, amount), freeSpinsLeft);
-        freeSpinsLeft -= paidSpins;
+        // Уже зарезервированное активацией число берём как есть (оно в учёте),
+        // иначе платим из остатка потолка. Одинаковое число = одинаковые ключи.
+        const reserved = spinCap.grants[dailyJourneySpinGrantKey(occurrence.operationId)];
+        const paidSpins = reserved ?? Math.min(Math.max(0, amount), freeSpinsLeft);
+        if (reserved === undefined) freeSpinsLeft -= paidSpins;
         cappedSpins += Math.max(0, amount - paidSpins);
         valuation = { coins: paidSpins * FREE_SPIN_COINS, kind: 'coins' };
       }

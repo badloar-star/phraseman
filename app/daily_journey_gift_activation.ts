@@ -15,6 +15,10 @@ import {
   type GiftDef,
 } from './level_gift_system';
 import { enqueueLevelSpinStarGrant } from './level_spin_star_grants';
+import {
+  dailyJourneySpinCompensationGrants,
+  reserveDailyJourneySpinCompensation,
+} from './gifts_to_coins_spin_cap_v1';
 import { commitShardCreditOperation } from './shards_system';
 import { DebugLogger } from './debug-logger';
 
@@ -185,20 +189,40 @@ export async function applyDailyJourneyGiftActivation(
       }
       return;
     }
-    case 'spins':
-      // зачем (PM-047, владелец): спин как механика убран — grantLocalDailyJourneySpins
-      // теперь всегда no-op (false), поэтому эта ветка раньше бросала
-      // daily_journey_activation_effect_failed на КАЖДОМ заходе в «Подарки»
-      // (autocreditPendingDailyJourneySpins вызывается там при каждой загрузке).
-      // Обещание спина отменено — закрываем occurrence как обработанную, ничего
-      // не начисляя взамен (компенсация — отдельная миграция D51/GIFTS_TO_COINS).
+    case 'spins': {
+      // зачем (D51/D53, владелец 2026-09-24): спин как механика убран (PM-047),
+      // но закрыть его «без начисления» нельзя — человек теряет компенсацию, а
+      // миграция «Подарки → монеты» увидит подарок уже забранным. Поэтому здесь
+      // платим по таблице D53 (130 монет за спин, общий потолок 20) ТЕМИ ЖЕ
+      // ключами, что и миграция (gifts_to_coins_spin_cap_v1): кто бы ни пришёл
+      // вторым, кошелёк схлопнет повтор. Подарок закрывает штатная квитанция.
+      const ownerStableId = occurrence.ownerStableId;
+      const reservation = await reserveDailyJourneySpinCompensation(
+        ownerStableId, occurrence.operationId, occurrence.reward.amount,
+      );
+      assertCurrent(token, ownerStableId);
+      const grants = await dailyJourneySpinCompensationGrants(
+        ownerStableId, occurrence.operationId, reservation.paidSpins,
+      );
+      for (const grant of grants) {
+        await enqueueLevelSpinStarGrant({
+          token,
+          requestId: grant.requestId,
+          lane: 'base',
+          giftId: grant.giftId,
+          promotionEligibility: 'excluded_compensation',
+        });
+        assertCurrent(token, ownerStableId);
+      }
       DebugLogger.info(
         '[SPIN-RETIRED]',
         `source=daily_journey op=${claimOperationId} amount=${occurrence.reward.amount}`
-        + ' promised=spins action=closed_no_credit reason=PM-047_spin_mechanic_retired',
+        + ` promised=spins action=closed_with_coins paidSpins=${reservation.paidSpins}`
+        + ` capped=${reservation.cappedSpins} coins=${grants.reduce((sum, grant) => sum + Number(grant.giftId.replace('stars_', '')), 0)}`
+        + ` ops=${grants.length} replayed=${reservation.replayed} reason=PM-047_D53_compensation`,
       );
-      assertCurrent(token, occurrence.ownerStableId);
       return;
+    }
     case 'energy_full':
     case 'energy_plus':
       await applyInventoryEffect(occurrence, hash, token);

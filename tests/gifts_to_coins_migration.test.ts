@@ -14,6 +14,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   __resetAccountGenerationForTests,
   beginAccountGeneration,
+  captureAccountGeneration,
   isCurrentAccountGeneration,
   type AccountGenerationToken,
 } from '../app/account_generation';
@@ -32,6 +33,10 @@ import {
   valueGiftForCoins,
   valuePaidSpinPrize,
 } from '../app/gifts_to_coins_table_v1';
+import {
+  dailyJourneySpinCompensationGrants,
+  reserveDailyJourneySpinCompensation,
+} from '../app/gifts_to_coins_spin_cap_v1';
 import {
   LEVEL_SPIN_BALANCE_CACHE_KEY,
   LEVEL_SPIN_GIFT_JOURNAL_KEY,
@@ -339,7 +344,10 @@ describe('миграция', () => {
     await seedFullInventory(owner, h);
     const multiSet = AsyncStorage.multiSet as jest.Mock;
     const original = multiSet.getMockImplementation();
-    multiSet.mockImplementationOnce(async () => { throw new Error('disk_full'); });
+    // Первая запись — план (журнал + учёт потолка), вторая — списание: роняем её.
+    multiSet
+      .mockImplementationOnce(original as (...args: unknown[]) => Promise<void>)
+      .mockImplementationOnce(async () => { throw new Error('disk_full'); });
     await expect(runGiftsToCoinsMigration({ trigger: 'crash', deps: h.deps })).resolves.toBe('retire_failed');
     expect((await readWal(owner)).phase).toBe('credited');
     const afterCrash = h.enqueued.length;
@@ -493,6 +501,40 @@ describe('миграция', () => {
     expect(h.reports).toHaveLength(1);
     expect((await readWal(owner)).report.status).toBe('sent');
     expect(coinsOf(h.enqueued)).toBe(130);
+  });
+
+  it('спин «Дневного пути»: миграция и штатная активация платят одними ключами', async () => {
+    const owner = 'owner-A';
+    beginAccountGeneration(owner);
+    const h = harness();
+    // Активация успела зарезервировать оплату, но не записала квитанцию (крах).
+    await reserveDailyJourneySpinCompensation(owner, 'dj-op-spins-race', 2);
+    h.setDailyJourney([dj(owner, 'dj-op-spins-race', 'spins', 2)]);
+    await expect(runGiftsToCoinsMigration({ trigger: 'race', deps: h.deps })).resolves.toBe('done');
+    const shared = await dailyJourneySpinCompensationGrants(owner, 'dj-op-spins-race', 2);
+    expect(h.enqueued.map((entry) => entry.requestId).sort()).toEqual(shared.map((grant) => grant.requestId).sort());
+    expect(coinsOf(h.enqueued)).toBe(260);
+    // Повтор активации теми же ключами кошелёк схлопывает — ни одной новой операции.
+    const before = h.enqueued.length;
+    for (const grant of shared) {
+      await h.deps.enqueueCoins({ token: captureAccountGeneration(), requestId: grant.requestId, giftId: grant.giftId });
+    }
+    expect(h.enqueued).toHaveLength(before);
+  });
+
+  it('общий потолок: спины, оплаченные активацией, уменьшают остаток миграции', async () => {
+    const owner = 'owner-A';
+    beginAccountGeneration(owner);
+    const h = harness();
+    await expect(reserveDailyJourneySpinCompensation(owner, 'dj-op-closed-18', 18))
+      .resolves.toMatchObject({ paidSpins: 18 });
+    await AsyncStorage.setItem(`local_level_spin_state_v1:${owner}`, spinState(owner, 5));
+    await expect(runGiftsToCoinsMigration({ trigger: 'cap-shared', deps: h.deps })).resolves.toBe('done');
+    expect(coinsOf(h.enqueued)).toBe(2 * 130);
+    expect((await readWal(owner)).cappedSpins).toBe(3);
+    // И обратно: после миграции активация новой плитки упирается в потолок.
+    await expect(reserveDailyJourneySpinCompensation(owner, 'dj-op-after', 3))
+      .resolves.toMatchObject({ paidSpins: 0, cappedSpins: 3 });
   });
 
   it('без активной личности ничего не делает', async () => {

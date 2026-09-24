@@ -52,11 +52,18 @@ import {
 } from './gifts_to_coins_inventory_v1';
 import {
   coinDenominationGiftIds,
+  FREE_SPIN_COINS,
   GIFTS_TO_COINS_TABLE_VERSION,
   roundCoinsUp,
   type PlusGiftId,
 } from './gifts_to_coins_table_v1';
 import { buildGiftsToCoinsRetireWrites } from './gifts_to_coins_retire_v1';
+import {
+  dailyJourneySpinCompensationGrants,
+  dailyJourneySpinGrantKey,
+  parseSpinCapLedger,
+  spinCapLedgerKey,
+} from './gifts_to_coins_spin_cap_v1';
 import { getRemoteBool } from './remote_flags';
 import { withStorageLock } from './storage_mutex';
 
@@ -84,6 +91,8 @@ export type GiftsToCoinsWal = Readonly<{
   totalCoins: number;
   grants: readonly string[];
   creditedOps: number;
+  /** Подарки-спины «Дневного пути», чья компенсация уже поставлена в кошелёк. */
+  djCredited?: readonly string[];
   plusApplied: readonly string[];
   items: readonly GiftsToCoinsItem[];
   expired: GiftsToCoinsInventory['expired'];
@@ -190,6 +199,10 @@ async function manifestHash(owner: string, run: number, items: readonly GiftsToC
   }));
 }
 
+function isDailyJourneySpinItem(item: GiftsToCoinsItem): boolean {
+  return item.retire.kind === 'daily_journey' && item.retire.reward.kind === 'spins';
+}
+
 export function giftsToCoinsRequestId(hash: string, index: number): string {
   return `g2c1_${hash.slice(0, 32)}_${index + 1}`;
 }
@@ -218,11 +231,17 @@ async function planRun(
   return withAccountTransitionLock(async () => {
     assertCurrent(token, owner);
     const nowMs = deps.now();
-    const inventory = await readGiftsToCoinsInventory(owner, nowMs, dailyJourney);
+    const spinCap = parseSpinCapLedger(await AsyncStorage.getItem(spinCapLedgerKey(owner)), owner);
+    const inventory = await readGiftsToCoinsInventory(owner, nowMs, dailyJourney, spinCap);
     assertCurrent(token, owner);
     const run = (previous?.run ?? 0) + 1;
     const rawCoins = inventory.items.reduce((sum, item) => sum + item.coins, 0);
-    const totalCoins = roundCoinsUp(rawCoins);
+    // зачем: спины «Дневного пути» платятся ОТДЕЛЬНО, по-подарочными ключами,
+    // общими с штатной активацией (gifts_to_coins_spin_cap_v1) — иначе гонка
+    // «миграция описала → человек закрыл плитку» заплатила бы дважды.
+    const djSpinCoins = inventory.items.filter(isDailyJourneySpinItem).reduce((sum, item) => sum + item.coins, 0);
+    const pooledCoins = roundCoinsUp(rawCoins - djSpinCoins);
+    const totalCoins = pooledCoins + djSpinCoins;
     const hash = await manifestHash(owner, run, inventory.items);
     const history = previous
       ? [...previous.history, {
@@ -242,8 +261,9 @@ async function planRun(
       hash,
       rawCoins,
       totalCoins,
-      grants: coinDenominationGiftIds(totalCoins),
+      grants: coinDenominationGiftIds(pooledCoins),
       creditedOps: 0,
+      djCredited: [],
       plusApplied: [],
       items: inventory.items,
       expired: inventory.expired,
@@ -255,7 +275,18 @@ async function planRun(
       history,
     });
     assertCurrent(token, owner);
-    await writeWal(wal);
+    // Учёт потолка и журнал — одной записью: крах между ними исказил бы потолок.
+    const paidCredits = inventory.items.filter((item) => item.source === 'spin_credit' && item.coins > 0).length;
+    const nextGrants: Record<string, number> = { ...spinCap.grants, [`credits:run${run}`]: paidCredits };
+    for (const item of inventory.items) {
+      if (isDailyJourneySpinItem(item) && item.retire.kind === 'daily_journey') {
+        nextGrants[dailyJourneySpinGrantKey(item.retire.operationId)] = item.coins / FREE_SPIN_COINS;
+      }
+    }
+    await AsyncStorage.multiSet([
+      [giftsToCoinsWalKey(owner), JSON.stringify(wal)],
+      [spinCapLedgerKey(owner), JSON.stringify({ ...spinCap, grants: nextGrants })],
+    ]);
     log(`wal planned run=${run} total=${totalCoins} raw=${rawCoins} items=${inventory.items.length} `
       + `grants=${wal.grants.length} corrupt=${inventory.corruptSources.join(',') || '-'} `
       + `capped=${inventory.cappedSpins} hash=${hash.slice(0, 8)}`);
@@ -318,6 +349,29 @@ async function creditCoins(
     // Прогресс пишется после КАЖДОЙ операции: окно повтора — одна операция,
     // а её дубль кошелёк всё равно схлопывает по requestId.
     current = Object.freeze({ ...current, creditedOps: index + 1, updatedAtMs: deps.now() });
+    await writeWal(current);
+  }
+  for (const item of wal.items) {
+    if (!isDailyJourneySpinItem(item) || item.retire.kind !== 'daily_journey') continue;
+    if ((current.djCredited ?? []).includes(item.key)) continue;
+    assertCurrent(token, wal.owner);
+    const grants = await dailyJourneySpinCompensationGrants(
+      wal.owner, item.retire.operationId, item.coins / FREE_SPIN_COINS,
+    );
+    for (const grant of grants) {
+      try {
+        await deps.enqueueCoins({ token, requestId: grant.requestId, giftId: grant.giftId });
+      } catch (error) {
+        if (error instanceof AccountChangedError || !isCurrentAccountGeneration(token, wal.owner)) {
+          throw new AccountChangedError();
+        }
+        logCatch('credit_dj_spin', error);
+        return null;
+      }
+    }
+    log(`credit source=daily_journey_spin op=${item.retire.operationId.slice(0, 16)} coins=${item.coins} ops=${grants.length}`);
+    assertCurrent(token, wal.owner);
+    current = Object.freeze({ ...current, djCredited: [...(current.djCredited ?? []), item.key], updatedAtMs: deps.now() });
     await writeWal(current);
   }
   assertCurrent(token, wal.owner);

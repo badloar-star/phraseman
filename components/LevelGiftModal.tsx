@@ -571,11 +571,8 @@ function LevelGiftModal({
       setAppliedResult({ success: true });
       onClose(true);
     }
-    if (presentationMode !== 'apply' && isCosmeticGiftId(chosen.id)) {
-      setTimeout(() => {
-        if (isCurrentOpening(accountToken)) router.push('/avatar_select' as any);
-      }, 80);
-    }
+    // зачем: автопереход в редактор аватара убран — app/avatar_select.tsx
+    // удалён по D57/PM-063, косметический подарок применяется молча.
     void (async () => {
       try {
         const setEnergyFn = scheduleEnergyReload;
@@ -637,11 +634,9 @@ function LevelGiftModal({
     const accountToken = openingAccountTokenRef.current;
     if (!accountToken || !isCurrentOpening(accountToken)) return;
     onClose(claimed);
-    if (openAvatar) {
-      setTimeout(() => {
-        if (isCurrentOpening(accountToken)) router.push('/avatar_select' as any);
-      }, 80);
-    }
+    // зачем: редактор аватара удалён (D57/PM-063) — переход по openAvatar
+    // больше никуда не ведёт, параметр остаётся ради совместимости вызовов.
+    void openAvatar;
   };
 
   const previewingStoredGift = presentationMode === 'apply' && phase === 'box';
@@ -1103,29 +1098,8 @@ function LevelGiftModal({
                 </View>
               )}
 
-              {!storesOnly && !previewingStoredGift && isCosmeticGiftId(gift?.id) && (
-                <TouchableOpacity
-                  testID="level-gift-open-avatar"
-                  activeOpacity={0.85}
-                  onPress={() => {
-                    void hapticSuccess();
-                    closeForCurrentOpening(true, true);
-                  }}
-                  style={{
-                    backgroundColor: t.bgSurface2,
-                    borderRadius: 14,
-                    paddingVertical: 12,
-                    paddingHorizontal: 24,
-                    borderWidth: 0,
-                    borderColor: t.border,
-                    marginBottom: 10,
-                  }}
-                >
-                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
-                    {triLang(lang, { ru: 'Открыть аватар', uk: 'Відкрити аватар', en: 'Open avatar', es: 'Abrir avatar', 'pt-BR': 'Abrir avatar', vi: 'Mở avatar', id: 'Buka avatar', tr: 'Avatarı aç', pl: 'Otwórz awatar' })}
-                  </Text>
-                </TouchableOpacity>
-              )}
+              {/* зачем: кнопка "Открыть аватар" вела в редактор app/avatar_select.tsx,
+                  удалённый по D57/PM-063 — переход больше никуда не ведёт, кнопка убрана. */}
 
               <TouchableOpacity
                 testID="level-gift-claim"

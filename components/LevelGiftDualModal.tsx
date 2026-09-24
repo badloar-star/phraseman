@@ -694,11 +694,9 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
     const f2p = f2pGift;
     const prem = premGift;
     onClose(true);
-    if (openAvatar) {
-      setTimeout(() => {
-        if (isCurrentOpening(accountToken)) router.push('/avatar_select' as any);
-      }, 80);
-    }
+    // зачем: редактор аватара удалён (D57/PM-063) — переход по openAvatar
+    // больше никуда не ведёт, параметр остаётся ради совместимости вызовов.
+    void openAvatar;
     void (async () => {
       try {
         const [f2pResult, premResult] = await Promise.all([
@@ -730,11 +728,9 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
     const f2p = f2pGift;
     const prem = premGift;
     onClose(true);
-    if (openAvatar) {
-        setTimeout(() => {
-          if (isCurrentOpening(accountToken)) router.push('/avatar_select' as any);
-        }, 80);
-      }
+    // зачем: редактор аватара удалён (D57/PM-063) — переход по openAvatar
+    // больше никуда не ведёт, параметр остаётся ради совместимости вызовов.
+    void openAvatar;
     void (async () => {
       try {
         const [f2pResult, premResult] = await Promise.all([
@@ -765,11 +761,9 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
     setClaimNowBusy(true);
     void hapticSuccess();
     onClose(true);
-    if (openAvatar) {
-      setTimeout(() => {
-        if (isCurrentOpening(accountToken)) router.push('/avatar_select' as any);
-      }, 80);
-    }
+    // зачем: редактор аватара удалён (D57/PM-063) — переход по openAvatar
+    // больше никуда не ведёт, параметр остаётся ради совместимости вызовов.
+    void openAvatar;
     const f2pResultP = applyGift(f2pGift, userName, energy, maxEnergy, setEnergyFn, {
       isPremium: true,
       studyTarget,
@@ -1114,22 +1108,8 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                       </Text>
                     </LinearGradient>
                   </TouchableOpacity>
-                  {hasCosmeticGift && (
-                    <TouchableOpacity
-                      testID="level-gift-dual-open-avatar"
-                      activeOpacity={0.7}
-                      onPress={() => {
-                        if (presentationMode === 'apply') handleApplyPreview(true);
-                        else void (storesOnly ? handleUseNow(true) : handleDone(true));
-                      }}
-                      disabled={claimNowBusy}
-                      style={{ marginTop: 4, alignSelf: 'center', paddingVertical: 10, paddingHorizontal: 20, minHeight: 40, justifyContent: 'center', opacity: claimNowBusy ? 0.6 : 1 }}
-                    >
-                      <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '600', textAlign: 'center' }}>
-                        {triLang(lang, { ru: 'Открыть аватар', uk: 'Відкрити аватар', en: 'Open avatar', es: 'Abrir avatar', 'pt-BR': 'Abrir avatar', vi: 'Mở avatar', id: 'Buka avatar', tr: 'Avatarı aç', pl: 'Otwórz avatar' })}
-                      </Text>
-                    </TouchableOpacity>
-                  )}
+                  {/* зачем: кнопка "Открыть аватар" вела в редактор app/avatar_select.tsx,
+                      удалённый по D57/PM-063 — переход больше никуда не ведёт, кнопка убрана. */}
                   {storesOnly && (
                     <TouchableOpacity
                       testID="level-gift-dual-save-opened"

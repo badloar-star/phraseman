@@ -3018,7 +3018,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -3027,8 +3027,10 @@
       {
         "id": "PM-064-A1",
         "text": "Выбор старой темы мигрирует в единую систему",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commit 1844f2b9f"
+        ]
       },
       {
         "id": "PM-064-A2",
@@ -3045,16 +3047,20 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "commit 1844f2b9f"
+    ],
+    "notes": [
+      "D38 подтверждено: система тем не трогается. Механика 'тема за жемчуг' мертва с 13.09 (владелец перевёл на Plus), удалены ThemeShardPaywallModal.tsx, theme_shard_purchase.ts и мёртвая CTA-ветка в settings_themes.tsx. theme_access_policy/ownership_store/gift_pool оставлены — живые (спин-розыгрыш, дедушкины права)"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-065",
@@ -3065,7 +3071,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "needs_decision",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -3095,7 +3101,9 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": [
+      "Preflight записан (docs/phraseman-2.0/evidence/PM-065_card_back_removal_preflight.md, commit 45bd08ad4): рубашка/цвет набора живёт в app/community_pack_create.tsx + СЕРВЕРНАЯ схема functions/src/community_packs.ts + 16 клиентских файлов. Не безопасно для экономного режима без typecheck — риск сломать публикацию/совместимость старых наборов. Нужна отдельная полноценная сессия"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -3112,7 +3120,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -3139,16 +3147,20 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "commit 3c15409e6"
+    ],
+    "notes": [
+      "Разведка: expo-background-task в package.json без вызовов API — не удалён (нужен npm install/ребилд, риск в общем дереве); устаревшие evidence-пути в screen_inventory.json на удалённые студии — не критично; level_reward_spin_balance в firestore.rules проверен — живой, не трогать"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-067",

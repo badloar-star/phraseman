@@ -15,8 +15,6 @@ import { useVideoWatchEnergyBoost } from '../../hooks/use_video_watch_energy_boo
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
 import { FlowText } from '../text-integrity';
-import VideoEnergyBoostBadge from './VideoEnergyBoostBadge';
-import VideoRunesBadge from './VideoRunesBadge';
 
 const LINGMAN_WEBVIEW_ORIGIN_WHITELIST = [
   'https://www.youtube.com',
@@ -76,16 +74,10 @@ export default function YoutubeInlinePlayer({
   const [playerError, setPlayerError] = useState(false);
   const [playerKey, setPlayerKey] = useState(0);
   const chrome = getLingmanYoutubeChrome(t, isDark, themeMode);
-  // Ускорение восстановления энергии, пока видео реально играет (владелец
-  // 2026-09-02). Хук сам решает, положено ли оно этому человеку.
-  const {
-    boostVisible,
-    runesVisible,
-    runesEarned,
-    secondsToNextRune,
-    setPlaying,
-    reportPlaybackSample,
-  } = useVideoWatchEnergyBoost(videoId);
+  // зачем (PM-116): бейджи-обещания «энергия быстрее»/«руны за просмотр» убраны
+  // из плеера — начисление (логика) остаётся не тронутым, это PM-115. Хук
+  // по-прежнему нужен ради setPlaying/reportPlaybackSample — моста плеер→счётчик.
+  const { setPlaying, reportPlaybackSample } = useVideoWatchEnergyBoost(videoId);
 
   // Родитель снимает active (ушли с экрана, свернули приложение, закрыли
   // карточку) — WebView размонтируется и сообщения от него больше не придут.
@@ -207,19 +199,9 @@ export default function YoutubeInlinePlayer({
           </TouchableOpacity>
         </View>
       )}
-      {/* Значок ускорения живёт внутри поверхности плеера, поэтому он одинаково
-          работает и в карточке, и в превью — во всех трёх местах, где плеер
-          монтируется (раздел «Видео», плейлист, карточка на Главной). */}
-      <VideoEnergyBoostBadge visible={boostVisible} testID="video-energy-boost-badge" />
-      {/* Plus/Pro вместо ускорения энергии получают руны — 3 в минуту. Два значка
-          взаимоисключающи по построению: boostVisible требует лимит энергии,
-          runesVisible — безлимит, поэтому одновременно они не покажутся. */}
-      <VideoRunesBadge
-        visible={runesVisible}
-        earned={runesEarned}
-        secondsToNext={secondsToNextRune}
-        testID="video-runes-badge"
-      />
+      {/* зачем (PM-116): значки «энергия быстрее»/«руны за просмотр» убраны —
+          владелец просил убрать тексты-обещания наград за просмотр видео.
+          Начисление энергии/рун (use_video_watch_energy_boost) не тронуто. */}
       {presentation === 'preview' ? (
         <View pointerEvents="box-none" style={styles.previewActions}>
           {onClose ? (

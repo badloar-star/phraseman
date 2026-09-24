@@ -7391,7 +7391,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -7400,14 +7400,18 @@
       {
         "id": "PM-151-A1",
         "text": "Экзамены не исчезли из навигации",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/evidence/PM-151_exam_continuity_check.md"
+        ]
       },
       {
         "id": "PM-151-A2",
         "text": "пересдача и результат работают на прежних данных",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/evidence/PM-151_exam_continuity_check.md"
+        ]
       }
     ],
     "depends_on": [],
@@ -7417,15 +7421,19 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент) + Claude Opus 5.5",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "docs/phraseman-2.0/evidence/PM-151_exam_continuity_check.md"
+    ],
+    "notes": [
+      "Экзамены/срезы целы: обе точки входа на месте (lessons.tsx, diagnostic_test.tsx), ни один exam-файл не тронут чисткой 2.0. Данные попыток/подсчёт результата не зависят от удаляемых полей (totalXp/pearls/shards/spins/themes). Prerequisite (звёзды) и entitlement (Plus) — действительно два независимых условия в коде, звёзды не обходят paywall. 23 теста, покрытие достаточное. Побочная находка вне скоупа этой задачи: экзамен всё ещё вызывает registerXP/addShards при сдаче — потенциально противоречит правилу 'учебные проценты не опыт', зафиксировано отдельно, не чинил"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
+    "actual_model": "sonnet-5",
     "actual_reasoning": null
   },
   {

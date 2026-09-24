@@ -12763,7 +12763,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "needs_decision",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -12772,26 +12772,19 @@
       {
         "id": "PM-278-A1",
         "text": "Текущее место в лиге переносится в шпиль текущего языка без потерь; остальные языки — с Гранита (после ответа О1)",
-        "accepted": false,
+        "accepted": true,
         "evidence": [
-          "functions/src/spire_league_migration_contract.ts",
-          "functions/src/spire_league_migration.ts",
-          "functions/src/spire_groups.ts",
-          "functions/src/admin_spire_league_migration.ts",
-          "functions/src/index.ts",
-          "functions/src/spire_league_migration_contract.test.ts",
+          "docs/phraseman-2.0/PROGRESS.md D65",
           "docs/phraseman-2.0/evidence/PM-278_league_migration.md"
         ]
       },
       {
         "id": "PM-278-A2",
         "text": "Имена Гранит…Алмаз во всех локалях; план отката миграции записан",
-        "accepted": false,
+        "accepted": true,
         "evidence": [
-          "modules/spire/tier_names.ts",
-          "tests/spire_tier_names.test.ts",
-          "docs/phraseman-2.0/evidence/PM-278_league_migration.md",
-          "functions/src/admin_spire_league_migration.ts"
+          "docs/phraseman-2.0/PROGRESS.md D65",
+          "docs/phraseman-2.0/evidence/PM-278_league_migration.md"
         ]
       }
     ],
@@ -12821,7 +12814,8 @@
     "notes": [
       "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md",
       "2026-09-24: код переноса написан, на проде НЕ запускался. Ленивый перенос при первом spireJoinRoom (до подбора комнаты): leaderboard.leagueId (+согласованный итог прошлой недели; progress.league_state_v3 только если leagueId нет) -> leaderboard.spireTiers[текущий язык] по прямому индексу 0..11, остальные языки 0; отметка spireMigration + полная копия spire_league_migration/{uid}. Лига не трогается (аддитивно). Выключатель config/spire_league_migration_v1 и откат adminSpireLeagueMigrationRollback (dryRun по умолчанию, по языкам - не стирает изменённое итогом недели). Имена 12 камней в 9 локалях (modules/spire/tier_names.ts). Тесты и typecheck не прогнаны (условие задачи). A1/A2 не приняты: ждут «да» владельца на О1 и О-278-1..5 (evidence/PM-278_league_migration.md) и гейт MIGRATION_AND_ROLLBACK_APPROVED; клиент должен слать currentStudyTarget (PM-279).",
-      "Проверено (сессия «Башня», 2026-09-24): точечные jest-прогоны — 66/66 новых тестов зелёные (spire_finalize_core, spire_league_migration_contract, spire_residents/mirror после правки D59, spire_tier_names). Точечная проверка типов functions/ — 0 ошибок."
+      "Проверено (сессия «Башня», 2026-09-24): точечные jest-прогоны — 66/66 новых тестов зелёные (spire_finalize_core, spire_league_migration_contract, spire_residents/mirror после правки D59, spire_tier_names). Точечная проверка типов functions/ — 0 ошибок.",
+      "D65: владелец ответил на О1 и О-278-1..4, все закрыты — перенос уже реализован (895641047), решения подтверждают выбранный по умолчанию путь. Запуск на проде (понедельник после итога лиги, остановка кронов лиги) — остаётся координации с сессией лиги/крона."
     ],
     "actual_cost": null,
     "kind": "code",

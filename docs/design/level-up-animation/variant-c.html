@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Повышение уровня — C «Глубина»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+<style>
+/* ============================================================
+   PhraseMan 2.0 · PM-077 · Прототип C «Глубина»
+   Настоящая 3D-сцена (three.js): монета с толщиной и гуртом, зеркальный пол (Reflector),
+   объёмный луч света (god rays), камера облетает монету во время флипа, параллакс от мыши/гироскопа.
+   HTML-слой поверх канваса: стартовый экран, название уровня, кнопки.
+   ============================================================ */
+:root{
+  --bg:#000; --phone:#07070a; --ink:#f5f5f7; --ink2:rgba(245,245,247,.62); --ink3:rgba(245,245,247,.38);
+  --ease-out:cubic-bezier(.23,1,.32,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,"SF Pro Text",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.phone{position:relative;width:390px;height:844px;border-radius:46px;background:var(--phone);overflow:hidden;
+  box-shadow:0 0 0 1px rgba(255,255,255,.08),0 40px 120px rgba(0,0,0,.75);user-select:none;touch-action:manipulation}
+.notch{position:absolute;left:50%;top:14px;width:120px;height:34px;margin-left:-60px;border-radius:20px;background:#000;z-index:60}
+canvas#gl{position:absolute;inset:0;width:390px;height:844px;display:block;opacity:0}
+
+.home{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:20;
+  background:radial-gradient(120% 70% at 50% 0%,#101017 0%,#07070a 60%)}
+.home .coinPreview{width:132px;height:132px;margin-bottom:26px;filter:drop-shadow(0 18px 30px rgba(0,0,0,.6))}
+.home .name{font-size:22px;font-weight:600;letter-spacing:-.01em}
+.home .lvl{margin-top:6px;font-size:14px;font-weight:500;color:var(--ink3)}
+.home .balance{margin-top:34px;font-size:13px;font-weight:500;color:var(--ink2)}
+.home .cta{margin-top:12px;height:52px;padding:0 28px;border-radius:16px;background:rgba(255,255,255,.94);color:#0b0b0f;font-weight:600;font-size:16px;transition:transform 160ms var(--ease-out),background 160ms ease,opacity 200ms ease}
+.home .cta:active{transform:scale(.97);background:#fff}
+.home .cta[disabled]{opacity:.5}
+.home .hint{position:absolute;bottom:44px;font-size:12px;color:var(--ink3)}
+
+.flash{position:absolute;inset:0;opacity:0;pointer-events:none;z-index:15;
+  background:radial-gradient(circle at 50% 44%,rgba(255,255,255,.32),rgba(255,255,255,0) 55%)}
+.caption{position:absolute;left:0;right:0;top:596px;text-align:center;pointer-events:none;z-index:16}
+.caption .title{font-size:34px;line-height:40px;font-weight:700;letter-spacing:-.02em;opacity:0}
+.caption .sub{margin-top:8px;font-size:15px;font-weight:500;color:var(--ink2);opacity:0}
+.actions{position:absolute;left:24px;right:24px;bottom:44px;display:flex;flex-direction:column;align-items:center;gap:14px;opacity:0;pointer-events:none;z-index:16}
+.actions.on{pointer-events:auto}
+.btn{width:100%;height:52px;border-radius:16px;background:rgba(255,255,255,.94);color:#0b0b0f;font-weight:600;font-size:16px;transition:transform 160ms var(--ease-out),background 160ms ease}
+.btn:active{transform:scale(.97);background:#fff}
+.link{font-size:14px;font-weight:500;color:var(--ink2);padding:6px 10px;border-radius:10px;transition:transform 160ms var(--ease-out),color 160ms ease}
+.link:active{transform:scale(.96);color:var(--ink)}
+
+.hud{position:absolute;left:16px;right:16px;top:58px;display:flex;justify-content:space-between;align-items:center;z-index:70;font-size:12px;font-weight:500}
+.seg{display:flex;gap:2px;padding:3px;border-radius:12px;background:rgba(255,255,255,.07);backdrop-filter:blur(10px)}
+.seg button{padding:6px 10px;border-radius:9px;color:var(--ink3);transition:background 160ms ease,color 160ms ease,transform 160ms var(--ease-out)}
+.seg button:active{transform:scale(.96)}
+.seg button.on{background:rgba(255,255,255,.14);color:var(--ink)}
+.tap{position:absolute;inset:0;z-index:30;cursor:pointer;display:none}
+.tap.on{display:block}
+.err{position:absolute;left:24px;right:24px;bottom:110px;text-align:center;font-size:13px;color:var(--ink2);display:none;z-index:80}
+</style>
+</head>
+<body>
+<div class="phone" id="phone">
+  <div class="notch"></div>
+  <div class="hud"><div class="seg" id="pairs"></div></div>
+
+  <canvas id="gl" width="390" height="844"></canvas>
+  <div class="flash" id="flash"></div>
+  <div class="caption">
+    <div class="title" id="title">Душа компании</div>
+    <div class="sub" id="sub">Уровень 9</div>
+  </div>
+  <div class="actions" id="actions">
+    <button class="btn" id="continue">Продолжить</button>
+    <button class="link" id="replay">Повторить</button>
+  </div>
+
+  <div class="home" id="home">
+    <div class="coinPreview" id="preview"></div>
+    <div class="name" id="homeName">Ловец идиом</div>
+    <div class="lvl" id="homeLvl">Уровень 8</div>
+    <div class="balance" id="homeBalance">9 000 монет · хватает на повышение</div>
+    <button class="cta" id="start" disabled>Повысить уровень</button>
+    <div class="hint">Нажми, чтобы повысить уровень</div>
+  </div>
+  <div class="err" id="err"></div>
+  <div class="tap" id="tap"></div>
+</div>
+
+<script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { Reflector } from 'three/addons/objects/Reflector.js';
+
+/* ============================================================
+   КОНФИГ АНИМАЦИИ — тайминги (мс от старта), кривые и последовательность.
+   Для переноса в React Native (Reanimated/Skia): каждый шаг — независимая
+   кривая по времени; сцена обновляется в одном rAF-цикле по мастер-часам.
+   ============================================================ */
+const TIMELINE = {
+  total: 3900,
+  fade:    { at: 0,    dur: 380 },                       // 1. экран уходит в темноту, сцена и луч света проявляются
+  rise:    { at: 260,  dur: 700, from: -1.6, over: 1.36, to: 1.18 },  // 2. монета выстреливает из-под пола (y в мировых единицах), перелёт, оседание
+  breathe: { at: 960,  dur: 280, tilt: 0.09 },           // 3. «вдох»: лёгкий кивок
+  flip:    { at: 1220, dur: 1000, turns: 1.5, zoom: 1.12, // 4. полтора оборота вокруг вертикали + наезд камеры
+             orbit: 0.62, lift: 0.18 },                  //    камера облетает монету (рад) и чуть приподнимается
+  land:    { at: 2200, dur: 560, squash: 1.07 },         // 5. посадка: сжатие-раздутие, вспышка, свет пульсирует, пыль
+  title:   { at: 2500, dur: 520 },                       // 6. название уровня
+  sub:     { at: 2620, dur: 460 },
+  button:  { at: 3220, dur: 420 },                       // 7. кнопка
+  idle:    { amp: 0.035, period: 3400 },                 // 8. парение после посадки
+  parallax:{ x: 0.42, y: 0.22, lerp: 0.07 },             //    параллакс камеры от мыши/гироскопа (мировые единицы)
+  skipRate: 6,
+  sounds: [                                              // метки для будущей озвучки (мс) — см. onSoundCue
+    { at: 0,    fn: 'drop' }, { at: 260, fn: 'riser' }, { at: 1720, fn: 'flip' }, { at: 2220, fn: 'mint' }, { at: 2500, fn: 'shimmer' },
+  ],
+};
+const TIMELINE_REDUCED = { fade: { at: 0, dur: 300 }, cross: { at: 400, dur: 500 }, title: { at: 950, dur: 350 }, sub: { at: 1050, dur: 350 }, button: { at: 1450, dur: 300 }, total: 1900,
+  sounds: [ { at: 0, fn: 'drop' }, { at: 650, fn: 'mint' }, { at: 950, fn: 'shimmer' } ] };
+
+/* ЗВУК: озвучку владелец добавит сам; здесь только точки вызова по мастер-часам. */
+function onSoundCue(name){ /* drop | riser | flip | mint | shimmer */ }
+
+/* ---- уровни и металлы (COIN_RANKS.md) ---- */
+const LEVELS = [
+  { n:0,  name:'Гость',             coin:'Классика',  m:['#dcdde1','#9c9ea6','#5a5c64','#3a3b42'] },
+  { n:1,  name:'Турист',            coin:'Медь',      m:['#f4b892','#c8774c','#6f3a1f','#3f2010'] },
+  { n:2,  name:'Путник',            coin:'Бронза',    m:['#dcaa70','#9e6d38','#4f3418','#2c1c0c'] },
+  { n:3,  name:'Собеседник',        coin:'Латунь',    m:['#f2de92','#cbad4c','#6f5a1c','#3e320f'] },
+  { n:4,  name:'Говорун',           coin:'Никель',    m:['#e6e8ec','#aaaeb6','#5b5f68','#33363d'] },
+  { n:5,  name:'Рассказчик',        coin:'Сталь',     m:['#a1aac0','#57627c','#232a3b','#131722'] },
+  { n:6,  name:'Острослов',         coin:'Серебро',   m:['#f7f8fa','#c3c7ce','#6c717b','#3c3f46'] },
+  { n:7,  name:'Знаток фраз',       coin:'Стерлинг',  m:['#f3f4f7','#babec7','#646975','#373a42'] },
+  { n:8,  name:'Ловец идиом',       coin:'Электрум',  m:['#f9edd4','#d5bc82','#7d6a3c','#463b20'] },
+  { n:9,  name:'Душа компании',     coin:'Золото',    m:['#fce9a4','#dcab3c','#7a561a','#43300e'] },
+  { n:10, name:'Местный',           coin:'Червонец',  m:['#f8caa8','#d28252','#703a1c','#3f200f'] },
+  { n:11, name:'Свой среди своих',  coin:'Дукат',     m:['#f3db92','#cb9e3c','#6b4d17','#3b2a0c'] },
+  { n:12, name:'Краснобай',         coin:'Флорин',    m:['#f8e4a8','#d5ac49','#74561c','#402f0f'] },
+  { n:13, name:'Мастер слова',      coin:'Соверен',   m:['#fce8ac','#dbaf40','#7a5a1a','#43310e'] },
+  { n:14, name:'Толмач',            coin:'Империал',  m:['#fae4a4','#d8a93c','#765418','#412e0d'] },
+  { n:15, name:'Полиглот',          coin:'Платина',   m:['#eef0f3','#bbc0c8','#6a707a','#3a3e46'] },
+  { n:16, name:'Лингвист',          coin:'Палладий',  m:['#f2f3f5','#c4c8ce','#70757e','#3e424a'] },
+  { n:17, name:'Златоуст',          coin:'Родий',     m:['#ffffff','#cbd0d7','#5a5f69','#2f333b'] },
+  { n:18, name:'Виртуоз',           coin:'Иридий',    m:['#cfd2dc','#7e8492','#33374a','#1c1e2a'] },
+  { n:19, name:'Легенда разговора', coin:'Осмий',     m:['#adbad0','#5d6e8e','#24304a','#131a29'] },
+  { n:20, name:'Носитель',          coin:'Эталон',    m:['#eef0f3','#bbc0c8','#6a707a','#3a3e46'], ring:['#fce9a4','#dcab3c','#7a561a'] },
+];
+const PAIRS = [ [0,1], [8,9], [19,20] ];
+/* когда появятся PNG монет — coinSrc[n] = 'coin_r09.png' (1024×1024, прозрачный фон) */
+const coinSrc = {};
+
+/* ---- процедурная монета (SVG) — тот же мотив, что в A/B; в 3D это текстура грани ---- */
+let uid = 0;
+function coinSVG(level, flat){
+  const id = 'c' + (uid++);
+  const [hi, mid, lo, deep] = level.m; const ring = level.ring;
+  // flat=true — для 3D-текстуры: без вкладываемого «студийного» блика, свет даст сцена
+  const key = flat ? '' : `<circle cx="0" cy="0" r="98" fill="url(#${id}-key)"/>`;
+  const rim = ring ? `
+    <circle cx="0" cy="0" r="98" fill="url(#${id}-ring)"/>
+    <circle cx="0" cy="0" r="72" fill="url(#${id}-metal)"/>
+    <circle cx="0" cy="0" r="72" fill="none" stroke="${ring[2]}" stroke-opacity=".55" stroke-width="1.2"/>
+    <circle cx="0" cy="0" r="73.5" fill="none" stroke="${ring[0]}" stroke-opacity=".35" stroke-width=".8"/>`
+  : `
+    <circle cx="0" cy="0" r="98" fill="url(#${id}-metal)"/>
+    <circle cx="0" cy="0" r="92" fill="none" stroke="${deep}" stroke-opacity=".55" stroke-width="5.5" stroke-dasharray="2.2 2.2"/>
+    <circle cx="0" cy="0" r="95.5" fill="none" stroke="${hi}" stroke-opacity=".28" stroke-width=".9"/>
+    <circle cx="0" cy="0" r="88.6" fill="none" stroke="${hi}" stroke-opacity=".22" stroke-width=".8"/>
+    <circle cx="0" cy="0" r="66" fill="none" stroke="${deep}" stroke-opacity=".38" stroke-width="1.6"/>
+    <circle cx="0" cy="0" r="64.2" fill="none" stroke="${hi}" stroke-opacity=".32" stroke-width=".7"/>`;
+  const emblem = `M -44 2 A 32 32 0 0 1 20 2 Z  M -10 2 A 24 24 0 0 0 38 2 Z`;
+  return `
+<svg viewBox="-110 -110 220 220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="${id}-metal" x1="-1" y1="-1" x2="1" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="${hi}"/><stop offset=".42" stop-color="${mid}"/><stop offset=".78" stop-color="${lo}"/><stop offset="1" stop-color="${deep}"/>
+    </linearGradient>
+    ${ring ? `<linearGradient id="${id}-ring" x1="-1" y1="-1" x2="1" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="${ring[0]}"/><stop offset=".5" stop-color="${ring[1]}"/><stop offset="1" stop-color="${ring[2]}"/></linearGradient>` : ''}
+    <radialGradient id="${id}-key" cx="34%" cy="28%" r="60%"><stop offset="0" stop-color="#fff" stop-opacity=".42"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="${id}-vig" cx="50%" cy="50%" r="50%"><stop offset=".72" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".42"/></radialGradient>
+    <linearGradient id="${id}-emb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${hi}"/><stop offset="1" stop-color="${mid}"/></linearGradient>
+    <clipPath id="${id}-clip"><circle cx="0" cy="0" r="98"/></clipPath>
+  </defs>
+  <g clip-path="url(#${id}-clip)">
+    ${rim}
+    ${key}
+    <g transform="translate(3,2)">
+      <path d="${emblem}" fill="${deep}" fill-opacity=".6" transform="translate(2,2.4)"/>
+      <path d="${emblem}" fill="#fff" fill-opacity=".38" transform="translate(-1.1,-1.3)"/>
+      <path d="${emblem}" fill="url(#${id}-emb)"/>
+      <path d="M -10 2 A 24 24 0 0 0 38 2 Z" fill="${deep}" fill-opacity=".18"/>
+    </g>
+    <circle cx="0" cy="0" r="98" fill="url(#${id}-vig)"/>
+  </g>
+</svg>`;
+}
+const faceMarkup = (level) => coinSrc[level.n] ? `<img src="${coinSrc[level.n]}" alt="">` : coinSVG(level, false);
+
+/* SVG/PNG → канвас 1024² → текстура. mirrorX — для обратной грани цилиндра (её UV зеркальны). */
+function loadImage(src){ return new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = () => rej(new Error('image load failed: ' + src.slice(0, 40))); im.src = src; }); }
+async function faceTexture(level, mirrorX){
+  const src = coinSrc[level.n] || ('data:image/svg+xml;charset=utf-8,' + encodeURIComponent(coinSVG(level, true)));
+  const im = await loadImage(src);
+  const c = document.createElement('canvas'); c.width = c.height = 1024;
+  const g = c.getContext('2d');
+  g.translate(512, 512); g.scale(mirrorX ? -1 : 1, 1); g.drawImage(im, -512, -512, 1024, 1024);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
+  t.center.set(0.5, 0.5); t.rotation = Math.PI / 2;   // UV крышек цилиндра повёрнуты на 90° относительно экрана
+  return t;
+}
+/* гурт: полоски насечки */
+function edgeTexture(level){
+  const [hi, mid, lo, deep] = level.m;
+  const c = document.createElement('canvas'); c.width = 512; c.height = 64; const g = c.getContext('2d');
+  for (let x = 0; x < 512; x += 4){ g.fillStyle = deep; g.fillRect(x, 0, 2, 64); g.fillStyle = hi; g.fillRect(x + 2, 0, 1, 64); g.fillStyle = mid; g.fillRect(x + 3, 0, 1, 64); }
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = THREE.RepeatWrapping; t.repeat.set(24, 1); return t;
+}
+function edgeBump(){
+  const c = document.createElement('canvas'); c.width = 512; c.height = 64; const g = c.getContext('2d');
+  for (let x = 0; x < 512; x += 4){ g.fillStyle = '#000'; g.fillRect(x, 0, 2, 64); g.fillStyle = '#fff'; g.fillRect(x + 2, 0, 2, 64); }
+  const t = new THREE.CanvasTexture(c); t.wrapS = THREE.RepeatWrapping; t.repeat.set(24, 1); return t;
+}
+/* вертикальный градиент прозрачности для луча света */
+function beamTexture(){
+  const c = document.createElement('canvas'); c.width = 4; c.height = 256; const g = c.getContext('2d');
+  const gr = g.createLinearGradient(0, 0, 0, 256); gr.addColorStop(0, 'rgba(255,255,255,0.75)'); gr.addColorStop(0.55, 'rgba(255,255,255,0.22)'); gr.addColorStop(1, 'rgba(255,255,255,0)');
+  g.fillStyle = gr; g.fillRect(0, 0, 4, 256); const t = new THREE.CanvasTexture(c); return t;
+}
+/* мягкая круглая точка для частиц */
+function dotTexture(){
+  const c = document.createElement("canvas"); c.width = c.height = 64; const g = c.getContext("2d");
+  const gr = g.createRadialGradient(32, 32, 0, 32, 32, 32); gr.addColorStop(0, "rgba(255,255,255,1)"); gr.addColorStop(0.4, "rgba(255,255,255,.6)"); gr.addColorStop(1, "rgba(255,255,255,0)");
+  g.fillStyle = gr; g.fillRect(0, 0, 64, 64); return new THREE.CanvasTexture(c);
+}
+const dotTex = dotTexture();
+/* радиальная маска затемнения пола: у монеты светлее, к краям чернота */
+function floorFadeTexture(){
+  const c = document.createElement('canvas'); c.width = c.height = 512; const g = c.getContext('2d');
+  // зачем: alphaMap в three.js читает ЗЕЛЁНЫЙ канал — градиент рисуем яркостью (белым по чёрному), не прозрачностью
+  g.fillStyle = '#000'; g.fillRect(0, 0, 512, 512);
+  const gr = g.createRadialGradient(256, 256, 20, 256, 256, 256); gr.addColorStop(0, 'rgba(255,255,255,0.72)'); gr.addColorStop(0.3, 'rgba(255,255,255,0.9)'); gr.addColorStop(1, 'rgba(255,255,255,1)');
+  g.fillStyle = gr; g.fillRect(0, 0, 512, 512); const t = new THREE.CanvasTexture(c); return t;
+}
+
+/* ============================================================
+   СЦЕНА
+   ============================================================ */
+const $ = (id) => document.getElementById(id);
+const W = 390, H = 844;
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const canvas = $('gl');
+let renderer;
+try {
+  renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
+} catch (e) {
+  $('err').style.display = 'block'; $('err').textContent = 'WebGL недоступен: ' + e.message; throw e;
+}
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+renderer.setSize(W, H, false);
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.22;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x050507);
+scene.fog = new THREE.Fog(0x050507, 7, 16);
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(renderer), 0.04).texture;
+
+const camera = new THREE.PerspectiveCamera(28, W / H, 0.1, 60);
+// зачем: низкая камера (почти уровень пола) — отражение ложится прямо под монету, как в продуктовой съёмке
+const camRig = { radius: 11.6, elev: 0.06, azim: 0, target: new THREE.Vector3(0, 1.0, 0), lift: 0, px: 0, py: 0, tx: 0, ty: 0 };
+function placeCamera(){
+  const r = camRig.radius, e = camRig.elev + camRig.lift * 0.4, a = camRig.azim;
+  camera.position.set(Math.sin(a) * r * Math.cos(e) + camRig.px, Math.sin(e) * r + camRig.target.y + camRig.py, Math.cos(a) * r * Math.cos(e));
+  camera.lookAt(camRig.target);
+}
+
+/* свет: ключевой прожектор сверху, холодный контровой сзади, слабая заливка */
+const spot = new THREE.SpotLight(0xfff1dc, 420, 26, 0.36, 0.75, 1.6);
+spot.position.set(0.4, 8.5, 1.2); spot.target.position.set(0, 1.0, 0); scene.add(spot, spot.target);
+const rim = new THREE.DirectionalLight(0xa9c1ff, 2.6); rim.position.set(-3, 3.5, -5); scene.add(rim);
+const fill = new THREE.HemisphereLight(0x2a2c36, 0x050507, 0.35); scene.add(fill);
+const front = new THREE.PointLight(0xfff4e6, 70, 30, 1.6); front.position.set(1.2, 4.6, 7.5); scene.add(front);   // фронтальная подсветка грани
+
+/* пол: настоящее зеркало + затемняющая маска сверху (в центре светлее) */
+const floorGeo = new THREE.PlaneGeometry(40, 40);
+const mirror = new Reflector(floorGeo, { clipBias: 0.003, textureWidth: 1024, textureHeight: 1024, color: 0x26262b });
+mirror.rotateX(-Math.PI / 2); scene.add(mirror);
+const floorShade = new THREE.Mesh(floorGeo, new THREE.MeshBasicMaterial({ color: 0x050507, transparent: true, alphaMap: floorFadeTexture(), depthWrite: false }));
+floorShade.rotateX(-Math.PI / 2); floorShade.position.y = 0.002; scene.add(floorShade);
+/* в отражении — только монета: аддитивные лучи/пыль/пятно с зеркальной камеры выгорают в белое */
+const hideInMirror = [];
+{ const orig = mirror.onBeforeRender.bind(mirror); mirror.onBeforeRender = (...a) => { hideInMirror.forEach(o => o.visible = false); orig(...a); hideInMirror.forEach(o => o.visible = true); }; }
+/* тонкая полоса контактного света на полу под монетой */
+const pool = new THREE.Mesh(new THREE.CircleGeometry(2.6, 48), new THREE.MeshBasicMaterial({ color: 0xffe2b8, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false }));
+pool.rotateX(-Math.PI / 2); pool.position.y = 0.004; scene.add(pool);
+const poolTexC = document.createElement('canvas'); poolTexC.width = poolTexC.height = 256; { const g = poolTexC.getContext('2d'); g.fillStyle = '#000'; g.fillRect(0,0,256,256); const gr = g.createRadialGradient(128,128,0,128,128,128); gr.addColorStop(0,'rgba(255,255,255,1)'); gr.addColorStop(1,'rgba(255,255,255,0)'); g.fillStyle = gr; g.fillRect(0,0,256,256); }
+pool.material.alphaMap = new THREE.CanvasTexture(poolTexC);
+
+/* объёмный луч (god rays): два конуса с аддитивным градиентом, медленно вращаются */
+const beamTex = beamTexture();
+function makeBeam(top, bottom, opacity){
+  const geo = new THREE.CylinderGeometry(top, bottom, 9, 48, 1, true);
+  const mat = new THREE.MeshBasicMaterial({ map: beamTex, transparent: true, opacity, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, color: 0xfff3e2 });
+  const m = new THREE.Mesh(geo, mat); m.position.set(0, 4.5, 0); return m;
+}
+const beam1 = makeBeam(0.35, 2.6, 0.0), beam2 = makeBeam(0.2, 3.4, 0.0);
+beam2.rotation.y = 0.9; scene.add(beam1, beam2); hideInMirror.push(beam1, beam2, pool);
+const BEAM_OPACITY = [0.3, 0.16];
+
+/* пыль в луче: медленно парящие точки */
+const dustN = 140, dustPos = new Float32Array(dustN * 3), dustVel = new Float32Array(dustN);
+for (let i = 0; i < dustN; i++){ dustPos[i*3] = (Math.random() - .5) * 3.2; dustPos[i*3+1] = Math.random() * 6; dustPos[i*3+2] = (Math.random() - .5) * 3.2; dustVel[i] = 0.05 + Math.random() * 0.12; }
+const dustGeo = new THREE.BufferGeometry(); dustGeo.setAttribute('position', new THREE.BufferAttribute(dustPos, 3));
+const dust = new THREE.Points(dustGeo, new THREE.PointsMaterial({ color: 0xffe9c8, size: 0.05, map: dotTex, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false }));
+scene.add(dust); hideInMirror.push(dust);
+
+/* золотая пыль при посадке: разлёт частиц (в мировых координатах) */
+const burstN = 60, burstPos = new Float32Array(burstN * 3), burstDir = [];
+for (let i = 0; i < burstN; i++){ const a = Math.random() * Math.PI * 2, up = 0.3 + Math.random() * 1.2; burstDir.push(new THREE.Vector3(Math.cos(a) * (0.4 + Math.random()), up, Math.sin(a) * (0.4 + Math.random()))); }
+const burstGeo = new THREE.BufferGeometry(); burstGeo.setAttribute('position', new THREE.BufferAttribute(burstPos, 3));
+const burst = new THREE.Points(burstGeo, new THREE.PointsMaterial({ color: 0xffd98a, size: 0.09, map: dotTex, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false }));
+scene.add(burst); hideInMirror.push(burst);
+
+/* монета: цилиндр с толщиной; грань[1] — текущий уровень, грань[2] — новый */
+const COIN_R = 1.0, COIN_T = 0.13;
+const coinGeo = new THREE.CylinderGeometry(COIN_R, COIN_R, COIN_T, 128);
+coinGeo.rotateX(Math.PI / 2);                       // ось цилиндра → Z, грани смотрят на камеру
+const coin = new THREE.Group(); const coinMesh = new THREE.Mesh(coinGeo); coin.add(coinMesh); scene.add(coin);
+const coinSpin = coinMesh;                          // вращение (флип) — на меше, подъём/дыхание — на группе
+const bumpTex = edgeBump();
+let faceOld = null, faceNew = null;
+
+async function buildCoin(from, to){
+  const [tOld, tNew] = await Promise.all([faceTexture(from, false), faceTexture(to, true)]);
+  faceOld?.dispose(); faceNew?.dispose(); faceOld = tOld; faceNew = tNew;
+  const mk = (map) => new THREE.MeshPhysicalMaterial({ map, metalness: 0.85, roughness: 0.24, envMapIntensity: 2.0, clearcoat: 0.3, clearcoatRoughness: 0.3 });
+  const edge = new THREE.MeshStandardMaterial({ map: edgeTexture(from), bumpMap: bumpTex, bumpScale: 0.02, metalness: 1, roughness: 0.42, envMapIntensity: 1 });
+  edge.userData.newMap = edgeTexture(to); edge.userData.oldMap = edge.map;
+  if (Array.isArray(coinMesh.material)) coinMesh.material.forEach(m => m.dispose());
+  coinMesh.material = [edge, mk(tOld), mk(tNew)];
+}
+
+/* ============================================================
+   ПРОИГРЫВАТЕЛЬ — мастер-часы + шаги; каждый шаг = кривая по прогрессу p∈[0,1]
+   ============================================================ */
+const E = {
+  outExpo: p => p === 1 ? 1 : 1 - Math.pow(2, -10 * p),
+  outQuint: p => 1 - Math.pow(1 - p, 5),
+  inOutHeavy: p => p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2,   // медленно срывается, быстро проходит середину
+  inOutSine: p => -(Math.cos(Math.PI * p) - 1) / 2,
+  overshoot: (p, k = 1.4) => { const s = k; return 1 + (s + 1) * Math.pow(p - 1, 3) + s * Math.pow(p - 1, 2); },
+  linear: p => p,
+};
+const clamp01 = v => Math.max(0, Math.min(1, v));
+const lerp = (a, b, t) => a + (b - a) * t;
+
+let pair = PAIRS[1];
+let state = 'home';        // home | playing | done
+let t0 = 0, tMaster = 0, rate = 1, skipped = false, fired = new Set();
+let ready = false;
+
+function seg(T, now){ return clamp01((now - T.at) / T.dur); }
+
+/* состояние сцены по времени t (мс) — чистая функция, удобно переносить */
+function applyFrame(t){
+  const T = TIMELINE;
+  // 1. проявление
+  const fade = E.outQuint(seg(T.fade, t));
+  canvas.style.opacity = fade; $('home').style.opacity = 1 - fade; $('home').style.transform = `scale(${1 + 0.04 * fade})`;
+  beam1.material.opacity = BEAM_OPACITY[0] * fade; beam2.material.opacity = BEAM_OPACITY[1] * fade; dust.material.opacity = 0.4 * fade;
+  // 2. подъём с перелётом
+  const pr = seg(T.rise, t);
+  let y = T.rise.from;
+  if (pr > 0){ const q = E.overshoot(pr, 1.25); y = lerp(T.rise.from, T.rise.to, q); }
+  // 3. «вдох»
+  const pb = seg(T.breathe, t); const tilt = Math.sin(pb * Math.PI) * T.breathe.tilt;
+  // 4. флип + наезд + облёт камеры
+  const pf = seg(T.flip, t); const fe = E.inOutHeavy(pf);
+  coinSpin.rotation.y = fe * Math.PI * 2 * T.flip.turns;
+  const zoom = 1 + (T.flip.zoom - 1) * Math.sin(pf * Math.PI);
+  camRig.azim = Math.sin(pf * Math.PI) * T.flip.orbit; camRig.lift = Math.sin(pf * Math.PI) * T.flip.lift;
+  if (t >= T.flip.at + T.flip.dur * 0.5 && Array.isArray(coinMesh.material)){ const e = coinMesh.material[0]; if (e.map !== e.userData.newMap){ e.map = e.userData.newMap; e.needsUpdate = true; } }
+  else if (Array.isArray(coinMesh.material)){ const e = coinMesh.material[0]; if (e.map !== e.userData.oldMap){ e.map = e.userData.oldMap; e.needsUpdate = true; } }
+  // 5. посадка: сжатие-раздутие, вспышка, свет
+  const pl = seg(T.land, t); const squash = 1 + (T.land.squash - 1) * Math.sin(pl * Math.PI) * (1 - pl);
+  const flash = pl > 0 ? Math.max(0, 1 - Math.abs(pl - 0.12) / 0.5) : 0; $('flash').style.opacity = flash;
+  spot.intensity = 420 + 520 * flash; pool.material.opacity = 0.12 * E.outQuint(pl);
+  beam1.material.opacity = (BEAM_OPACITY[0] + 0.14 * flash) * fade;
+  // взрыв золотой пыли
+  if (pl > 0){ burst.material.opacity = (1 - pl) * 0.95; const pos = burst.geometry.attributes.position.array; const k = E.outQuint(pl);
+    for (let i = 0; i < burstN; i++){ const d = burstDir[i]; pos[i*3] = d.x * k * 1.6; pos[i*3+1] = T.rise.to + d.y * k * 1.4 - 1.2 * pl * pl; pos[i*3+2] = d.z * k * 1.6; }
+    burst.geometry.attributes.position.needsUpdate = true; } else burst.material.opacity = 0;
+  // 8. парение
+  const idle = t > T.land.at + T.land.dur ? Math.sin((t - T.land.at) / T.idle.period * Math.PI * 2) * T.idle.amp : 0;
+  coin.position.y = y + idle; coin.rotation.x = tilt; coin.scale.setScalar(zoom * squash);
+  // 6–7. текст и кнопка
+  const pt = E.outQuint(seg(T.title, t)), ps = E.outQuint(seg(T.sub, t)), pbt = E.outQuint(seg(T.button, t));
+  $('title').style.opacity = pt; $('title').style.transform = `translateY(${18 * (1 - pt)}px) scale(${0.92 + 0.08 * pt})`; $('title').style.filter = `blur(${8 * (1 - pt)}px)`;
+  $('sub').style.opacity = ps; $('sub').style.transform = `translateY(${12 * (1 - ps)}px)`; $('sub').style.filter = `blur(${4 * (1 - ps)}px)`;
+  $('actions').style.opacity = pbt; $('actions').style.transform = `translateY(${16 * (1 - pbt)}px)`;
+  if (t >= T.button.at && state === 'playing'){ state = 'done'; $('actions').classList.add('on'); $('tap').classList.remove('on'); }
+}
+
+/* сокращённая версия без вращения: затемнение → кроссфейд граней → название */
+function applyFrameReduced(t){
+  const T = TIMELINE_REDUCED;
+  const fade = E.outQuint(seg(T.fade, t)); canvas.style.opacity = fade; $('home').style.opacity = 1 - fade;
+  beam1.material.opacity = BEAM_OPACITY[0] * fade; beam2.material.opacity = BEAM_OPACITY[1] * fade;
+  coin.position.y = TIMELINE.rise.to;
+  const pc = seg(T.cross, t);
+  if (Array.isArray(coinMesh.material)){ coinSpin.rotation.y = pc >= 0.5 ? Math.PI : 0; const f = pc < 0.5 ? 1 - pc * 2 : (pc - 0.5) * 2; coinMesh.material[1].opacity = coinMesh.material[2].opacity = 1; canvas.style.opacity = fade * (0.55 + 0.45 * Math.abs(f)); }
+  pool.material.opacity = 0.12 * pc;
+  const pt = E.outQuint(seg(T.title, t)), ps = E.outQuint(seg(T.sub, t)), pbt = E.outQuint(seg(T.button, t));
+  $('title').style.opacity = pt; $('sub').style.opacity = ps; $('actions').style.opacity = pbt;
+  if (t >= T.button.at && state === 'playing'){ state = 'done'; $('actions').classList.add('on'); $('tap').classList.remove('on'); }
+}
+
+let last = performance.now(), frozen = false;
+/* отладка (покадровый просмотр из консоли): __lvl.seek(мс) → кадр и стоп, __lvl.resume() */
+window.__lvl = { get scene(){ return { mirror, floorShade, pool, beam1, beam2, burst, dust, coin, camera, spot, front }; }, seek(t){ state = "done"; tMaster = t; frozen = false; requestAnimationFrame(loop); setTimeout(() => { frozen = true; }, 150); }, resume(){ frozen = false; requestAnimationFrame(loop); } };
+function loop(now){
+  if (!frozen) requestAnimationFrame(loop);
+  const dt = Math.min(0.05, (now - last) / 1000); last = now;
+  if (state === 'playing' || state === 'done'){
+    if (state === 'playing') tMaster += (now - t0) * rate; t0 = now;
+    const total = reduced ? TIMELINE_REDUCED.total : TIMELINE.total;
+    const tt = Math.min(tMaster, state === 'done' ? tMaster : total);
+    (reduced ? applyFrameReduced : applyFrame)(tt);
+    const cues = reduced ? TIMELINE_REDUCED.sounds : TIMELINE.sounds;
+    cues.forEach((c, i) => { if (tt >= c.at && !fired.has(i)){ fired.add(i); if (!skipped || c.fn === 'mint' || c.fn === 'shimmer') onSoundCue(c.fn); } });
+  }
+  // параллакс камеры — пружинная догонка цели
+  camRig.px += (camRig.tx * TIMELINE.parallax.x - camRig.px) * TIMELINE.parallax.lerp;
+  camRig.py += (camRig.ty * TIMELINE.parallax.y - camRig.py) * TIMELINE.parallax.lerp;
+  placeCamera();
+  // луч медленно живёт, пыль парит
+  beam1.rotation.y += dt * 0.08; beam2.rotation.y -= dt * 0.05;
+  const p = dust.geometry.attributes.position.array;
+  for (let i = 0; i < dustN; i++){ p[i*3+1] += dustVel[i] * dt; if (p[i*3+1] > 6.5) p[i*3+1] = 0; p[i*3] += Math.sin(now * 0.0004 + i) * 0.0008; }
+  dust.geometry.attributes.position.needsUpdate = true;
+  if (canvas.style.opacity !== '0') renderer.render(scene, camera);
+}
+
+/* ---- управление ---- */
+function setPair(p){
+  pair = p;
+  const from = LEVELS[p[0]], to = LEVELS[p[1]];
+  $('preview').innerHTML = faceMarkup(from);
+  $('homeName').textContent = from.name; $('homeLvl').textContent = 'Уровень ' + from.n;
+  $('homeBalance').textContent = `${(to.n * 1000).toLocaleString('ru-RU')} монет · хватает на повышение`;
+  $('title').textContent = to.name; $('sub').textContent = 'Уровень ' + to.n;
+  document.querySelectorAll('#pairs button').forEach((b, i) => b.classList.toggle('on', PAIRS[i] === p));
+  ready = false; $('start').disabled = true;
+  buildCoin(from, to).then(() => { ready = true; $('start').disabled = false; }).catch(e => { $('err').style.display = 'block'; $('err').textContent = 'Не удалось собрать монету: ' + e.message; });
+}
+function reset(){
+  state = 'home'; tMaster = 0; rate = 1; skipped = false; fired = new Set();
+  $('actions').classList.remove('on'); $('tap').classList.remove('on');
+  $('home').style.opacity = 1; $('home').style.transform = ''; canvas.style.opacity = 0;
+  $('title').style.opacity = 0; $('sub').style.opacity = 0; $('actions').style.opacity = 0; $('flash').style.opacity = 0;
+  coinSpin.rotation.y = 0; coin.position.y = TIMELINE.rise.from; coin.scale.setScalar(1); pool.material.opacity = 0; burst.material.opacity = 0;
+  camRig.azim = 0; camRig.lift = 0; spot.intensity = 420;
+  if (Array.isArray(coinMesh.material)){ const e = coinMesh.material[0]; e.map = e.userData.oldMap; e.needsUpdate = true; }
+}
+function play(){ if (!ready || state !== 'home') return; state = 'playing'; t0 = performance.now(); tMaster = 0; $('tap').classList.add('on'); }
+function skip(){ if (state !== 'playing' || skipped) return; skipped = true; rate = TIMELINE.skipRate; }
+
+PAIRS.forEach((p) => { const b = document.createElement('button'); b.textContent = `${p[0]}→${p[1]}`; b.addEventListener('click', () => { reset(); setPair(p); }); $('pairs').appendChild(b); });
+$('start').addEventListener('click', play);
+$('tap').addEventListener('click', skip);
+$('replay').addEventListener('click', () => { reset(); play(); });
+$('continue').addEventListener('click', () => reset());
+
+/* параллакс: мышь над телефоном и гироскоп */
+$('phone').addEventListener('pointermove', (e) => { const r = $('phone').getBoundingClientRect(); camRig.tx = ((e.clientX - r.left) / r.width - .5) * 2; camRig.ty = ((e.clientY - r.top) / r.height - .5) * 2; });
+$('phone').addEventListener('pointerleave', () => { camRig.tx = 0; camRig.ty = 0; });
+window.addEventListener('deviceorientation', (e) => { if (e.gamma == null) return; camRig.tx = Math.max(-1, Math.min(1, e.gamma / 25)); camRig.ty = Math.max(-1, Math.min(1, (e.beta - 45) / 25)); });
+
+reset(); setPair(pair); requestAnimationFrame(loop);
+</script>
+</body>
+</html>

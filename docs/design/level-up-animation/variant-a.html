@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Повышение уровня — A «Студия»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   PhraseMan 2.0 · PM-077 · Прототип A «Студия»
+   Чёрный зеркальный пол, один конусный прожектор сверху,
+   строгая Apple-подача, медленный флип ~1.1 с, блик после проявления.
+   Анимируются только transform / opacity / filter (на отдельных слоях).
+   ============================================================ */
+:root{
+  --bg:#000;
+  --phone:#07070a;
+  --ink:#f5f5f7;
+  --ink2:rgba(245,245,247,.62);
+  --ink3:rgba(245,245,247,.38);
+  --coin:220px;            /* диаметр монеты */
+  --coin-depth:14px;       /* толщина ребра */
+  --horizon:540px;         /* линия пола внутри экрана 844 */
+  --ease-out:cubic-bezier(.23,1,.32,1);
+  --ease-in-out:cubic-bezier(.77,0,.175,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,"SF Pro Text",system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+
+/* ---- телефон 390×844 ---- */
+.phone{position:relative;width:390px;height:844px;border-radius:46px;background:var(--phone);overflow:hidden;
+  box-shadow:0 0 0 1px rgba(255,255,255,.08),0 40px 120px rgba(0,0,0,.75);user-select:none;touch-action:manipulation}
+.notch{position:absolute;left:50%;top:14px;width:120px;height:34px;margin-left:-60px;border-radius:20px;background:#000;z-index:60}
+
+/* ---- стартовый экран (заглушка Главной) ---- */
+.home{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;z-index:20;
+  background:radial-gradient(120% 70% at 50% 0%,#101017 0%,#07070a 60%)}
+.home .coinPreview{width:132px;height:132px;margin-bottom:26px;filter:drop-shadow(0 18px 30px rgba(0,0,0,.6))}
+.home .name{font-size:22px;font-weight:600;letter-spacing:-.01em}
+.home .lvl{margin-top:6px;font-size:14px;font-weight:500;color:var(--ink3)}
+.home .balance{margin-top:34px;font-size:13px;font-weight:500;color:var(--ink2);letter-spacing:.01em}
+.home .cta{margin-top:12px;height:52px;padding:0 28px;border-radius:16px;background:rgba(255,255,255,.94);color:#0b0b0f;font-weight:600;font-size:16px;
+  transition:transform 160ms var(--ease-out),background 160ms ease}
+.home .cta:active{transform:scale(.97);background:#fff}
+.home .hint{position:absolute;bottom:44px;font-size:12px;color:var(--ink3)}
+
+/* ---- сцена ---- */
+.stage{position:absolute;inset:0;opacity:0;background:#050507}
+/* конус прожектора: узкий вверху, широкий у пола, блюр как объёмный свет */
+.spot{position:absolute;left:0;top:0;width:100%;height:var(--horizon);pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,.07) 45%,rgba(255,255,255,0) 100%);
+  clip-path:polygon(46% -10%,54% -10%,92% 100%,8% 100%);filter:blur(22px);opacity:.9}
+.spot2{position:absolute;left:50%;top:-80px;width:520px;height:520px;margin-left:-260px;pointer-events:none;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.09) 0%,rgba(255,255,255,0) 60%);filter:blur(10px)}
+/* пол: глянец, пятно света у горизонта, уходит в черноту */
+.floor{position:absolute;left:0;top:var(--horizon);width:100%;height:calc(844px - var(--horizon));pointer-events:none;
+  background:
+    radial-gradient(60% 80% at 50% 0%,rgba(255,255,255,.13) 0%,rgba(255,255,255,.04) 40%,rgba(255,255,255,0) 72%),
+    linear-gradient(180deg,#121218 0%,#0a0a0e 35%,#050507 100%)}
+.floor::before{content:"";position:absolute;left:0;top:0;width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12) 35%,rgba(255,255,255,.12) 65%,transparent)}
+/* пятно контактного света под монетой (появляется при посадке) */
+.pool{position:absolute;left:50%;top:var(--horizon);width:300px;height:60px;margin:-30px 0 0 -150px;border-radius:50%;opacity:0;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(255,255,255,.14),rgba(255,255,255,0));filter:blur(6px)}
+/* ударная волна при посадке: кольцо из радиального градиента (без обводок), расширяется и гаснет */
+.ring{position:absolute;left:50%;top:360px;width:300px;height:300px;border-radius:50%;opacity:0;pointer-events:none;transform:translate(-50%,-50%) scale(.55);
+  background:radial-gradient(circle,rgba(255,255,255,0) 58%,rgba(255,255,255,.22) 66%,rgba(255,255,255,0) 74%)}
+/* золотая пыль */
+.dust{position:absolute;left:50%;top:360px;width:0;height:0;pointer-events:none}
+.dust i{position:absolute;left:0;top:0;border-radius:50%;opacity:0;will-change:transform,opacity}
+/* вспышка при проявлении новой монеты */
+.flash{position:absolute;inset:0;opacity:0;pointer-events:none;
+  background:radial-gradient(circle at 50% 42%,rgba(255,255,255,.28),rgba(255,255,255,0) 55%)}
+
+/* верхняя половина: монета над полом (ниже горизонта — скрыта, «выходит из-за края») */
+.upper{position:absolute;left:0;top:0;width:100%;height:var(--horizon);overflow:hidden;perspective:1100px;perspective-origin:50% 100%}
+/* нижняя половина: отражение в полу */
+.lower{position:absolute;left:0;top:var(--horizon);width:100%;height:calc(844px - var(--horizon));overflow:hidden;perspective:1100px;perspective-origin:50% 0%;pointer-events:none}
+/* зачем: отражение НЕ через scaleY(-1) на 3D-контейнере (маска и backface в зеркальном пространстве вели себя непредсказуемо):
+   зеркалим содержимое граней 2D-трансформом, а движение по Y задаём с обратным знаком в play(). Без filter — blur поверх
+   preserve-3d заставлял перерисовывать всю зону каждый кадр. */
+.mirror{position:absolute;left:0;top:0;width:100%;height:var(--horizon);
+  -webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.28) 0%,rgba(0,0,0,0) 44%);mask-image:linear-gradient(180deg,rgba(0,0,0,.28) 0%,rgba(0,0,0,0) 44%)}
+.mirror .pivot{top:0}
+.mirror .face svg,.mirror .face img{transform:scaleY(-1)}
+/* цепочка обёрток: у каждой своя анимация transform, чтобы не драться за одно свойство */
+.pivot{position:absolute;left:50%;top:100%;width:0;height:0;transform-style:preserve-3d}
+.lift{position:absolute;left:calc(var(--coin) / -2);top:calc(var(--coin) / -2);width:var(--coin);height:var(--coin);transform:translateY(160px);transform-style:preserve-3d}
+.bob,.flip,.settle,.coin3d{position:absolute;inset:0;transform-style:preserve-3d}
+.face{position:absolute;inset:0;border-radius:50%;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;transform-style:preserve-3d}
+.face svg,.face img{display:block;width:100%;height:100%}
+.face.front{transform:translateZ(calc(var(--coin-depth) / 2))}
+.face.back{transform:rotateY(180deg) translateZ(calc(var(--coin-depth) / 2))}
+/* блик, пробегающий по новой монете после проявления */
+.sheen{position:absolute;inset:-20%;opacity:0;transform:translateX(-120%) rotate(18deg);pointer-events:none;
+  background:linear-gradient(90deg,rgba(255,255,255,0) 40%,rgba(255,255,255,.55) 50%,rgba(255,255,255,0) 60%);mix-blend-mode:screen}
+/* гурт: 48 пластин по окружности, насечка — полосатый градиент */
+.edge{position:absolute;inset:0;transform-style:preserve-3d}
+.slat{position:absolute;left:50%;top:50%;width:15px;height:var(--coin-depth);margin:calc(var(--coin-depth) / -2) 0 0 -7.5px;backface-visibility:hidden}
+.edge.new{opacity:0}
+/* мягкая тень-«вес» под монетой на полу видна только в отражении — пропускаем, пол сам глянцевый */
+
+/* ---- текст и кнопки ---- */
+.caption{position:absolute;left:0;right:0;top:596px;text-align:center;pointer-events:none}
+.caption .title{font-size:34px;line-height:40px;font-weight:700;letter-spacing:-.02em;opacity:0}
+.caption .sub{margin-top:8px;font-size:15px;font-weight:500;color:var(--ink2);opacity:0}
+.actions{position:absolute;left:24px;right:24px;bottom:44px;display:flex;flex-direction:column;align-items:center;gap:14px;opacity:0;pointer-events:none}
+.actions.on{pointer-events:auto}
+.btn{width:100%;height:52px;border-radius:16px;background:rgba(255,255,255,.94);color:#0b0b0f;font-weight:600;font-size:16px;transition:transform 160ms var(--ease-out),background 160ms ease}
+.btn:active{transform:scale(.97);background:#fff}
+.link{font-size:14px;font-weight:500;color:var(--ink2);padding:6px 10px;border-radius:10px;transition:transform 160ms var(--ease-out),color 160ms ease}
+.link:active{transform:scale(.96);color:var(--ink)}
+
+/* ---- служебная панель (только для прототипа) ---- */
+.hud{position:absolute;left:16px;right:16px;top:58px;display:flex;justify-content:space-between;align-items:center;z-index:70;font-size:12px;font-weight:500}
+.seg{display:flex;gap:2px;padding:3px;border-radius:12px;background:rgba(255,255,255,.07);backdrop-filter:blur(10px)}
+.seg button{padding:6px 10px;border-radius:9px;color:var(--ink3);transition:background 160ms ease,color 160ms ease,transform 160ms var(--ease-out)}
+.seg button:active{transform:scale(.96)}
+.seg button.on{background:rgba(255,255,255,.14);color:var(--ink)}
+
+.tap{position:absolute;inset:0;z-index:30;cursor:pointer;display:none}
+.tap.on{display:block}
+
+@media (prefers-reduced-motion:reduce){
+  .mirror{filter:none}
+}
+</style>
+</head>
+<body>
+<div class="phone" id="phone">
+  <div class="notch"></div>
+
+  <div class="hud">
+    <div class="seg" id="pairs"></div>
+  </div>
+
+  <!-- сцена -->
+  <div class="stage" id="stage">
+    <div class="spot2"></div>
+    <div class="spot"></div>
+    <div class="floor"></div>
+    <div class="pool" id="pool"></div>
+    <div class="upper" id="upper"></div>
+    <div class="lower"><div class="mirror" id="mirror"></div></div>
+    <div class="ring" id="ring"></div>
+    <div class="dust" id="dust"></div>
+    <div class="flash" id="flash"></div>
+    <div class="caption">
+      <div class="title" id="title">Душа компании</div>
+      <div class="sub" id="sub">Уровень 9</div>
+    </div>
+    <div class="actions" id="actions">
+      <button class="btn" id="continue">Продолжить</button>
+      <button class="link" id="replay">Повторить</button>
+    </div>
+  </div>
+
+  <!-- стартовый экран -->
+  <div class="home" id="home">
+    <div class="coinPreview" id="preview"></div>
+    <div class="name" id="homeName">Ловец идиом</div>
+    <div class="lvl" id="homeLvl">Уровень 8</div>
+    <div class="balance" id="homeBalance">36 000 монет · хватает на повышение</div>
+    <button class="cta" id="start">Повысить уровень</button>
+    <div class="hint">Нажми, чтобы повысить уровень</div>
+  </div>
+
+  <div class="tap" id="tap"></div>
+</div>
+
+<script>
+/* ============================================================
+   КОНФИГ АНИМАЦИИ — единственное место с таймингами и кривыми.
+   Для переноса в React Native (Reanimated/Skia) читать сверху вниз:
+   каждый шаг = когда (at, мс от старта), сколько (dur), какая кривая (ease),
+   что меняется. Все шаги — transform/opacity, ничего layout-зависимого.
+   ============================================================ */
+const TIMELINE = {
+  // зачем: владелец попросил «динамичнее и привлекательнее» — общая длина ужата до ~3.3 с,
+  // флип полтора оборота с наездом камеры, посадка с ударной волной и золотой пылью.
+  total: 3900,                                   // длина мастер-часов (кнопка + хвост)
+  fade:    { at: 0,    dur: 360,  ease: 'cubic-bezier(.4,0,.2,1)' },        // 1. экран уходит в темноту, проявляется пол и прожектор
+  rise:    { at: 300,  dur: 640,  ease: 'cubic-bezier(.22,1,.36,1)',         // 2. монета выстреливает из-за края пола, перелёт и оседание
+             from: 170, over: -236, to: -180 },                              //    px по Y относительно линии пола (минус = выше)
+  breathe: { at: 940,  dur: 300,  ease: 'cubic-bezier(.45,0,.55,1)' },       // 3. короткий «вдох» перед флипом
+  flip:    { at: 1220, dur: 980,  ease: 'cubic-bezier(.6,0,.12,1)',          // 4. полтора оборота (540°) + наезд: монета растёт к 1.14 и садится
+             turns: 540, zoom: 1.14, edgeAt: 1760 },                         //    edgeAt — момент смены гурта (старый→новый металл)
+  land:    { at: 2160, dur: 560,  ease: 'cubic-bezier(.22,1,.36,1)' },       // 5. посадка: сжатие-раздутие, вспышка, ударная волна, пыль, свет на полу
+  sheen:   { at: 2380, dur: 720,  ease: 'cubic-bezier(.4,0,.2,1)' },         // 6. блик пробегает по новой монете
+  title:   { at: 2480, dur: 520,  ease: 'cubic-bezier(.2,1,.3,1)' },         // 7. название нового уровня (масштаб + блюр)
+  sub:     { at: 2600, dur: 460,  ease: 'cubic-bezier(.23,1,.32,1)' },       //    строка «Уровень N»
+  button:  { at: 3200, dur: 420,  ease: 'cubic-bezier(.23,1,.32,1)' },       // 8. кнопка «Продолжить»
+  idle:    { at: 2720, dur: 3200 },                                          // 9. после посадки монета едва парит (бесконечно)
+  dust:    { count: 18, minDur: 900, maxDur: 1500, spread: 150, lift: 220 }, //    золотая пыль при посадке
+  skipRate: 6,                                                               // ускорение при тапе (досмотреть до финала)
+  sounds: [                                                                  // метки для будущей озвучки (мс) — см. onSoundCue
+    { at: 0,    fn: 'drop'    },
+    { at: 300,  fn: 'riser'   },
+    { at: 1700, fn: 'flip'    },
+    { at: 2180, fn: 'mint'    },
+    { at: 2480, fn: 'shimmer' },
+  ],
+};
+/* Сокращённая версия для prefers-reduced-motion: затемнение → кроссфейд монеты → название. */
+const TIMELINE_REDUCED = {
+  fade:   { at: 0,   dur: 300 },
+  cross:  { at: 400, dur: 500 },
+  title:  { at: 950, dur: 350 },
+  sub:    { at: 1050, dur: 350 },
+  button: { at: 1450, dur: 300 },
+  sounds: [ { at: 0, fn: 'drop' }, { at: 700, fn: 'mint' }, { at: 1150, fn: 'shimmer' } ],
+};
+
+/* ---- уровни и металлы (COIN_RANKS.md) ---- */
+const LEVELS = [
+  { n:0,  name:'Гость',             coin:'Классика',  m:['#dcdde1','#9c9ea6','#5a5c64','#3a3b42'] },
+  { n:1,  name:'Турист',            coin:'Медь',      m:['#f4b892','#c8774c','#6f3a1f','#3f2010'] },
+  { n:2,  name:'Путник',            coin:'Бронза',    m:['#dcaa70','#9e6d38','#4f3418','#2c1c0c'] },
+  { n:3,  name:'Собеседник',        coin:'Латунь',    m:['#f2de92','#cbad4c','#6f5a1c','#3e320f'] },
+  { n:4,  name:'Говорун',           coin:'Никель',    m:['#e6e8ec','#aaaeb6','#5b5f68','#33363d'] },
+  { n:5,  name:'Рассказчик',        coin:'Сталь',     m:['#a1aac0','#57627c','#232a3b','#131722'] },
+  { n:6,  name:'Острослов',         coin:'Серебро',   m:['#f7f8fa','#c3c7ce','#6c717b','#3c3f46'] },
+  { n:7,  name:'Знаток фраз',       coin:'Стерлинг',  m:['#f3f4f7','#babec7','#646975','#373a42'] },
+  { n:8,  name:'Ловец идиом',       coin:'Электрум',  m:['#f9edd4','#d5bc82','#7d6a3c','#463b20'] },
+  { n:9,  name:'Душа компании',     coin:'Золото',    m:['#fce9a4','#dcab3c','#7a561a','#43300e'] },
+  { n:10, name:'Местный',           coin:'Червонец',  m:['#f8caa8','#d28252','#703a1c','#3f200f'] },
+  { n:11, name:'Свой среди своих',  coin:'Дукат',     m:['#f3db92','#cb9e3c','#6b4d17','#3b2a0c'] },
+  { n:12, name:'Краснобай',         coin:'Флорин',    m:['#f8e4a8','#d5ac49','#74561c','#402f0f'] },
+  { n:13, name:'Мастер слова',      coin:'Соверен',   m:['#fce8ac','#dbaf40','#7a5a1a','#43310e'] },
+  { n:14, name:'Толмач',            coin:'Империал',  m:['#fae4a4','#d8a93c','#765418','#412e0d'] },
+  { n:15, name:'Полиглот',          coin:'Платина',   m:['#eef0f3','#bbc0c8','#6a707a','#3a3e46'] },
+  { n:16, name:'Лингвист',          coin:'Палладий',  m:['#f2f3f5','#c4c8ce','#70757e','#3e424a'] },
+  { n:17, name:'Златоуст',          coin:'Родий',     m:['#ffffff','#cbd0d7','#5a5f69','#2f333b'] },
+  { n:18, name:'Виртуоз',           coin:'Иридий',    m:['#cfd2dc','#7e8492','#33374a','#1c1e2a'] },
+  { n:19, name:'Легенда разговора', coin:'Осмий',     m:['#adbad0','#5d6e8e','#24304a','#131a29'] },
+  { n:20, name:'Носитель',          coin:'Эталон',    m:['#eef0f3','#bbc0c8','#6a707a','#3a3e46'], ring:['#fce9a4','#dcab3c','#7a561a'] },
+];
+const PAIRS = [ [0,1], [8,9], [19,20] ];
+
+/* ---- источник картинки монеты: когда появятся PNG — coinSrc[n] = 'coin_r09.png' ---- */
+const coinSrc = {};
+
+/* ---- процедурная монета (SVG) ---- */
+let uid = 0;
+function coinSVG(level){
+  const id = 'c' + (uid++);
+  const [hi, mid, lo, deep] = level.m;
+  const ring = level.ring; // биметалл для «Эталона»
+  const R = 100;
+  const rim = ring ? `
+    <circle cx="0" cy="0" r="98" fill="url(#${id}-ring)"/>
+    <circle cx="0" cy="0" r="72" fill="url(#${id}-metal)"/>
+    <circle cx="0" cy="0" r="72" fill="none" stroke="${ring[2]}" stroke-opacity=".55" stroke-width="1.2"/>
+    <circle cx="0" cy="0" r="73.5" fill="none" stroke="${ring[0]}" stroke-opacity=".35" stroke-width=".8"/>`
+  : `
+    <circle cx="0" cy="0" r="98" fill="url(#${id}-metal)"/>
+    <circle cx="0" cy="0" r="92" fill="none" stroke="${deep}" stroke-opacity=".55" stroke-width="5.5" stroke-dasharray="2.2 2.2"/>
+    <circle cx="0" cy="0" r="95.5" fill="none" stroke="${hi}" stroke-opacity=".28" stroke-width=".9"/>
+    <circle cx="0" cy="0" r="88.6" fill="none" stroke="${hi}" stroke-opacity=".22" stroke-width=".8"/>
+    <circle cx="0" cy="0" r="66" fill="none" stroke="${deep}" stroke-opacity=".38" stroke-width="1.6"/>
+    <circle cx="0" cy="0" r="64.2" fill="none" stroke="${hi}" stroke-opacity=".32" stroke-width=".7"/>`;
+  // эмблема: два перекрывающихся полукруга (пузырь речи), рельеф — тёмный и светлый сдвиг
+  // верхний полукруг (большой) и нижний полукруг (меньше, сдвинут вправо) на одной линии — пузырь речи
+  const emblem = `M -44 2 A 32 32 0 0 1 20 2 Z  M -10 2 A 24 24 0 0 0 38 2 Z`;
+  return `
+<svg viewBox="-110 -110 220 220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="${id}-metal" x1="-1" y1="-1" x2="1" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="${hi}"/><stop offset=".42" stop-color="${mid}"/><stop offset=".78" stop-color="${lo}"/><stop offset="1" stop-color="${deep}"/>
+    </linearGradient>
+    ${ring ? `<linearGradient id="${id}-ring" x1="-1" y1="-1" x2="1" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="${ring[0]}"/><stop offset=".5" stop-color="${ring[1]}"/><stop offset="1" stop-color="${ring[2]}"/></linearGradient>` : ''}
+    <radialGradient id="${id}-key" cx="34%" cy="28%" r="60%"><stop offset="0" stop-color="#fff" stop-opacity=".42"/><stop offset=".55" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="${id}-vig" cx="50%" cy="50%" r="50%"><stop offset=".72" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".42"/></radialGradient>
+    <linearGradient id="${id}-emb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${hi}"/><stop offset="1" stop-color="${mid}"/></linearGradient>
+    <clipPath id="${id}-clip"><circle cx="0" cy="0" r="98"/></clipPath>
+  </defs>
+  <g clip-path="url(#${id}-clip)">
+    ${rim}
+    <circle cx="0" cy="0" r="98" fill="url(#${id}-key)"/>
+    <g transform="translate(3,2)">
+      <path d="${emblem}" fill="${deep}" fill-opacity=".6" transform="translate(2,2.4)"/>
+      <path d="${emblem}" fill="#fff" fill-opacity=".38" transform="translate(-1.1,-1.3)"/>
+      <path d="${emblem}" fill="url(#${id}-emb)"/>
+      <path d="M -10 2 A 24 24 0 0 0 38 2 Z" fill="${deep}" fill-opacity=".18"/>
+    </g>
+    <circle cx="0" cy="0" r="98" fill="url(#${id}-vig)"/>
+  </g>
+</svg>`;
+}
+function faceMarkup(level){
+  return coinSrc[level.n] ? `<img src="${coinSrc[level.n]}" alt="">` : coinSVG(level);
+}
+
+/* ---- сборка 3D-монеты: две грани + два гурта (старый/новый металл) ---- */
+function edgeMarkup(level, cls){
+  const [hi, mid, lo, deep] = level.m;
+  const N = 48, R = 110 - 0.5;
+  let s = `<div class="edge ${cls}">`;
+  for (let i = 0; i < N; i++){
+    const a = i * (360 / N);
+    s += `<div class="slat" style="transform:rotateZ(${a}deg) translateY(${-R}px) rotateX(90deg);background:repeating-linear-gradient(90deg,${deep} 0 1.6px,${hi} 1.6px 2.6px,${mid} 2.6px 5px)"></div>`;
+  }
+  return s + `</div>`;
+}
+function coinTree(from, to){
+  return `
+  <div class="pivot"><div class="lift"><div class="bob"><div class="flip"><div class="settle">
+    <div class="coin3d">
+      ${edgeMarkup(from, 'old')}
+      ${edgeMarkup(to, 'new')}
+      <div class="face front">${faceMarkup(from)}</div>
+      <div class="face back">${faceMarkup(to)}<div class="sheen"></div></div>
+    </div>
+  </div></div></div></div></div>`;
+}
+
+/* ЗВУК: по решению владельца озвучку он добавит сам. Здесь только метки моментов —
+   onSoundCue(name) вызывается по мастер-часам в нужный миллисекундный момент (см. TIMELINE.sounds). */
+function onSoundCue(name){ /* drop | riser | flip | mint | shimmer — точки для будущих звуков */ }
+
+/* ============================================================
+   ПРОИГРЫВАТЕЛЬ — WAAPI, ускорение при тапе, звуки по мастер-часам.
+   ============================================================ */
+const $ = (id) => document.getElementById(id);
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let pair = PAIRS[1];
+let anims = [];        // все запущенные Animation
+let clock = null;      // мастер-анимация для отсчёта времени
+let firedSounds = new Set();
+let skipped = false;
+let raf = 0;
+
+function setPair(p){
+  pair = p;
+  const from = LEVELS[p[0]], to = LEVELS[p[1]];
+  $('preview').innerHTML = faceMarkup(from);
+  $('homeName').textContent = from.name;
+  $('homeLvl').textContent = 'Уровень ' + from.n;
+  const price = (to.n * 1000).toLocaleString('ru-RU');
+  $('homeBalance').textContent = `${price} монет · хватает на повышение`;
+  $('title').textContent = to.name;
+  $('sub').textContent = 'Уровень ' + to.n;
+  $('upper').innerHTML = coinTree(from, to);
+  $('mirror').innerHTML = coinTree(from, to);
+  document.querySelectorAll('#pairs button').forEach((b, i) => b.classList.toggle('on', PAIRS[i] === p));
+}
+
+function animate(sel, keyframes, opts){
+  const els = typeof sel === 'string' ? document.querySelectorAll(sel) : [sel];
+  els.forEach(el => anims.push(el.animate(keyframes, Object.assign({ fill: 'forwards' }, opts))));
+}
+
+function reset(){
+  cancelAnimationFrame(raf);
+  anims.forEach(a => a.cancel()); anims = []; clock = null; firedSounds = new Set(); skipped = false;
+  $('dust').innerHTML = '';
+  $('actions').classList.remove('on');
+  $('tap').classList.remove('on');
+  setPair(pair);
+  $('home').style.opacity = 1; $('stage').style.opacity = 0;
+  $('title').style.opacity = 0; $('sub').style.opacity = 0; $('actions').style.opacity = 0;
+}
+
+function play(){
+  $('tap').classList.add('on');
+  const T = TIMELINE;
+  if (reduced) return playReduced();
+
+  clock = document.body.animate([{ opacity: 1 }, { opacity: 1 }], { duration: T.total, fill: 'forwards' });
+  anims.push(clock);
+
+  // 1. затемнение
+  animate($('home'),  [{ opacity: 1, transform: 'scale(1)' }, { opacity: 0, transform: 'scale(1.04)' }], { delay: T.fade.at, duration: T.fade.dur, easing: T.fade.ease });
+  animate($('stage'), [{ opacity: 0 }, { opacity: 1 }], { delay: T.fade.at, duration: T.fade.dur, easing: T.fade.ease });
+
+  // 2. выстрел из-за края пола с перелётом и оседанием (offset .7 — пик перелёта)
+  const liftFrames = (k) => [
+    { transform: `translateY(${k * T.rise.from}px)`, easing: 'cubic-bezier(.2,0,.1,1)' },
+    { transform: `translateY(${k * T.rise.over}px)`, offset: .7, easing: 'cubic-bezier(.4,0,.6,1)' },
+    { transform: `translateY(${k * T.rise.to}px)` },
+  ];
+  animate('#upper .lift',  liftFrames(1),  { delay: T.rise.at, duration: T.rise.dur });
+  animate('#mirror .lift', liftFrames(-1), { delay: T.rise.at, duration: T.rise.dur });
+
+  // 3. «вдох»
+  const bobFrames = (k) => [
+    { transform: 'rotateX(0deg)' }, { transform: `rotateX(${5 * k}deg) translateY(${-4 * k}px)`, offset: .45 }, { transform: 'rotateX(0deg)' },
+  ];
+  animate('#upper .bob',  bobFrames(1),  { delay: T.breathe.at, duration: T.breathe.dur, easing: T.breathe.ease });
+  animate('#mirror .bob', bobFrames(-1), { delay: T.breathe.at, duration: T.breathe.dur, easing: T.breathe.ease });
+
+  // 4. флип: полтора оборота с наездом (масштаб растёт к середине и садится к концу)
+  animate('.flip', [
+    { transform: 'rotateY(0deg) scale(1)' },
+    { transform: `rotateY(${T.flip.turns * .5}deg) scale(${T.flip.zoom})`, offset: .5 },
+    { transform: `rotateY(${T.flip.turns}deg) scale(1)` },
+  ], { delay: T.flip.at, duration: T.flip.dur, easing: T.flip.ease });
+  animate('.edge.old', [{ opacity: 1 }, { opacity: 0 }], { delay: T.flip.edgeAt - 50, duration: 100, easing: 'linear' });
+  animate('.edge.new', [{ opacity: 0 }, { opacity: 1 }], { delay: T.flip.edgeAt - 50, duration: 100, easing: 'linear' });
+  // прожектор чуть разгорается к моменту чеканки
+  animate('.spot', [{ opacity: .9 }, { opacity: 1, offset: .8 }, { opacity: .95 }], { delay: T.flip.at, duration: T.flip.dur + 400, easing: 'ease-in-out' });
+
+  // 5. посадка: тяжёлое оседание + вспышка + ударная волна + пыль + пятно света на полу
+  const settleFrames = (k) => [
+    { transform: 'scale(1) translateY(0)' }, { transform: `scale(1.06) translateY(${7 * k}px)`, offset: .28 }, { transform: `scale(.99) translateY(${-2 * k}px)`, offset: .66 }, { transform: 'scale(1) translateY(0)' },
+  ];
+  animate('#upper .settle',  settleFrames(1),  { delay: T.land.at, duration: T.land.dur, easing: T.land.ease });
+  animate('#mirror .settle', settleFrames(-1), { delay: T.land.at, duration: T.land.dur, easing: T.land.ease });
+  animate($('flash'), [{ opacity: 0 }, { opacity: 1, offset: .14 }, { opacity: 0 }], { delay: T.land.at, duration: 640, easing: 'cubic-bezier(.4,0,.2,1)' });
+  animate($('ring'),  [{ opacity: 0, transform: 'translate(-50%,-50%) scale(.55)' }, { opacity: .7, offset: .08 }, { opacity: 0, transform: 'translate(-50%,-50%) scale(2.1)' }], { delay: T.land.at, duration: 820, easing: 'cubic-bezier(.16,1,.3,1)' });
+  animate($('pool'),  [{ opacity: 0 }, { opacity: 1 }], { delay: T.land.at, duration: 700, easing: T.land.ease });
+  spawnDust(T.land.at + 20, LEVELS[pair[1]]);
+
+  // 6. блик по новой монете
+  animate('.sheen', [
+    { opacity: 0, transform: 'translateX(-120%) rotate(18deg)' }, { opacity: 1, offset: .25 }, { opacity: 1, offset: .75 }, { opacity: 0, transform: 'translateX(120%) rotate(18deg)' },
+  ], { delay: T.sheen.at, duration: T.sheen.dur, easing: T.sheen.ease });
+
+  // 7. название и уровень: масштаб из 0.92 + блюр — быстро и дорого
+  animate($('title'), [{ opacity: 0, transform: 'translateY(18px) scale(.92)', filter: 'blur(8px)' }, { opacity: 1, transform: 'translateY(0) scale(1)', filter: 'blur(0)' }], { delay: T.title.at, duration: T.title.dur, easing: T.title.ease });
+  animate($('sub'),   [{ opacity: 0, transform: 'translateY(12px)', filter: 'blur(4px)' }, { opacity: 1, transform: 'translateY(0)', filter: 'blur(0)' }], { delay: T.sub.at, duration: T.sub.dur, easing: T.sub.ease });
+
+  // 8. кнопка
+  animate($('actions'), [{ opacity: 0, transform: 'translateY(16px)' }, { opacity: 1, transform: 'translateY(0)' }], { delay: T.button.at, duration: T.button.dur, easing: T.button.ease });
+
+  // 9. живое парение после посадки (не ускоряется при скипе — см. skip())
+  const idleFrames = (k) => [{ transform: 'translateY(0)' }, { transform: `translateY(${-5 * k}px)` }, { transform: 'translateY(0)' }];
+  animate('#upper .bob',  idleFrames(1),  { id: 'idle', delay: T.idle.at, duration: T.idle.dur, iterations: Infinity, easing: 'ease-in-out' });
+  animate('#mirror .bob', idleFrames(-1), { id: 'idle', delay: T.idle.at, duration: T.idle.dur, iterations: Infinity, easing: 'ease-in-out' });
+
+  tick(T.sounds, T.button.at);
+}
+
+/* золотая пыль: несколько точек разлетаются вверх от места посадки, цвет — металл новой монеты */
+function spawnDust(at, level){
+  const D = TIMELINE.dust, host = $('dust');
+  host.innerHTML = '';
+  for (let i = 0; i < D.count; i++){
+    const p = document.createElement('i');
+    const size = 2 + Math.random() * 3;
+    p.style.cssText = `width:${size}px;height:${size}px;background:${level.m[0]};box-shadow:0 0 ${6 + size * 2}px ${level.m[1]}`;
+    host.appendChild(p);
+    const ang = (Math.random() - .5) * Math.PI * 1.2 - Math.PI / 2;   // вверх, разброс ±108°
+    const dist = D.spread * (0.35 + Math.random() * 0.65);
+    const dx = Math.cos(ang) * dist, dy = Math.sin(ang) * dist - Math.random() * D.lift * .4;
+    const dur = D.minDur + Math.random() * (D.maxDur - D.minDur);
+    anims.push(p.animate([
+      { opacity: 0, transform: 'translate(0,0) scale(.4)' },
+      { opacity: 1, transform: `translate(${dx * .25}px,${dy * .25}px) scale(1)`, offset: .12 },
+      { opacity: 0, transform: `translate(${dx}px,${dy + 30}px) scale(.3)` },
+    ], { delay: at + Math.random() * 120, duration: dur, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'forwards' }));
+  }
+}
+
+function playReduced(){
+  const T = TIMELINE_REDUCED;
+  clock = document.body.animate([{ opacity: 1 }, { opacity: 1 }], { duration: 1900, fill: 'forwards' }); anims.push(clock);
+  animate($('home'),  [{ opacity: 1 }, { opacity: 0 }], { delay: T.fade.at, duration: T.fade.dur, easing: 'ease-out' });
+  animate($('stage'), [{ opacity: 0 }, { opacity: 1 }], { delay: T.fade.at, duration: T.fade.dur, easing: 'ease-out' });
+  animate('#upper .lift',  [{ transform: 'translateY(-180px)' }, { transform: 'translateY(-180px)' }], { duration: 10 });
+  animate('#mirror .lift', [{ transform: 'translateY(180px)' },  { transform: 'translateY(180px)' }],  { duration: 10 });
+  // без вращения: кроссфейд граней
+  animate('.face.front', [{ opacity: 1 }, { opacity: 0 }], { delay: T.cross.at, duration: T.cross.dur, easing: 'ease' });
+  animate('.flip', [{ transform: 'rotateY(0deg)' }, { transform: 'rotateY(180deg)' }], { delay: T.cross.at + T.cross.dur / 2, duration: 1 });
+  animate('.edge.old', [{ opacity: 1 }, { opacity: 0 }], { delay: T.cross.at, duration: T.cross.dur, easing: 'ease' });
+  animate('.edge.new', [{ opacity: 0 }, { opacity: 1 }], { delay: T.cross.at, duration: T.cross.dur, easing: 'ease' });
+  animate($('pool'),   [{ opacity: 0 }, { opacity: 1 }], { delay: T.cross.at, duration: T.cross.dur, easing: 'ease' });
+  animate($('title'),  [{ opacity: 0 }, { opacity: 1 }], { delay: T.title.at, duration: T.title.dur, easing: 'ease-out' });
+  animate($('sub'),    [{ opacity: 0 }, { opacity: 1 }], { delay: T.sub.at, duration: T.sub.dur, easing: 'ease-out' });
+  animate($('actions'),[{ opacity: 0 }, { opacity: 1 }], { delay: T.button.at, duration: T.button.dur, easing: 'ease-out' });
+  tick(T.sounds, T.button.at);
+}
+
+/* мастер-часы: звуки стреляют по currentTime мастер-анимации (уважают ускорение) */
+function tick(sounds, buttonAt){
+  const loop = () => {
+    if (!clock) return;
+    const t = clock.currentTime || 0;
+    sounds.forEach((s, i) => {
+      if (t >= s.at && !firedSounds.has(i)){
+        firedSounds.add(i);
+        // при ускоренном досмотре имеет смысл озвучивать только удар и шиммер — иначе каша
+        if (!skipped || s.fn === 'mint' || s.fn === 'shimmer') onSoundCue(s.fn);
+      }
+    });
+    if (t >= buttonAt){ $('actions').classList.add('on'); $('tap').classList.remove('on'); }
+    if (t < (clock.effect.getTiming().duration)) raf = requestAnimationFrame(loop);
+  };
+  raf = requestAnimationFrame(loop);
+}
+
+/* тап в любой момент — досмотреть ускоренно */
+function skip(){
+  if (skipped || !clock) return;
+  skipped = true;
+  anims.forEach(a => { if (a.id !== 'idle' && (a.playState === 'running' || a.playState === 'pending')) a.updatePlaybackRate(TIMELINE.skipRate); });
+}
+
+/* ---- HUD ---- */
+PAIRS.forEach((p, i) => {
+  const b = document.createElement('button');
+  b.textContent = `${p[0]}→${p[1]}`;
+  b.addEventListener('click', () => { pair = p; reset(); });
+  $('pairs').appendChild(b);
+});
+$('start').addEventListener('click', () => play());
+$('tap').addEventListener('click', skip);
+$('replay').addEventListener('click', () => { reset(); play(); });
+$('continue').addEventListener('click', () => reset());
+
+reset();
+</script>
+</body>
+</html>

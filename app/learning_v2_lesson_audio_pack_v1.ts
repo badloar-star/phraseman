@@ -1,8 +1,4 @@
 import { ensureAccountGeneration, isCurrentAccountGeneration, subscribeAccountGeneration, type AccountGenerationToken } from "./account_generation";
-import {
-  createLearningV2ActivityAudioTransportV1,
-  downloadLearningV2ActivityAudioBytesV1,
-} from "./learning_v2_activity_audio_transport_v1";
 import { learningV2NativeDecoderIdentityForAudioFileV1 } from "./learning_v2_audio_identity_v1";
 import { learningV2EsSession1RemoteAudioFilesV1 } from "./learning_v2_es_session1_production_audio_v1";
 import { learningV2EsSession2RemoteAudioFilesV1 } from "./learning_v2_es_session2_production_audio_v1";
@@ -14,14 +10,13 @@ import { LEARNING_V2_FACTORY_LESSON_AUDIO_INDEX_V1 } from "./learning_v2_factory
 import { getStableId } from "./stable_id";
 import { learningV2Lesson1RemoteAudioFilesV1 } from "./learning_v2_lesson1_audio_assets";
 import { resolveLearningV2BootstrapAudioOfflineFileV1 } from "./learning_v2_bootstrap_audio_seed_v1";
-import { withBackgroundNetworkLease } from "./interactive_network_quiet";
 import type { LearningV2InterfaceLocale } from "../modules/learning-v2/content/generator_course_contract";
 import { hashCanonicalBody } from "../modules/learning-v2/policies/decision_registry";
 import type { LearningV2CourseSessionAudioFileV1 } from "../modules/learning-v2/runtime/course_session_audio_child_v1";
 import {
-  prepareLearningV2VoiceAudioOfflineBytesV1,
   replaceLearningV2VoiceAudioProtectedContentHashesV1,
   resolveLearningV2VoiceAudioOfflineCacheMaterialV1,
+  resolvePreparedLearningV2VoiceAudioOfflineFileV1,
 } from "../modules/learning-v2/runtime/voice_audio_offline_cache_v1";
 
 export const LEARNING_V2_LESSON_AUDIO_PACK_SCHEMA_V1 =
@@ -153,11 +148,18 @@ async function runPool(length: number, work: (index: number) => Promise<void>): 
   }));
 }
 
+// зачем (D47, владелец): все способы СКАЧИВАНИЯ озвучки V2 убраны — файл
+// подготавливается ТОЛЬКО из того, что уже есть на устройстве (стартовый
+// бандл + то, что успело скачаться прежними версиями приложения). Сети здесь
+// больше нет вообще: раньше недостающий бандл-файл падал в сетевую закачку
+// (prepareLearningV2VoiceAudioOfflineBytesV1 + downloadLearningV2ActivityAudioBytesV1),
+// именно это и было прогревом, убившим скорость старта (see D47/22.09).
+// Недостающий файл теперь просто пропускается: занятие открывается без него,
+// а `learning_v2_direct_session_player_v1.tsx` подставляет TTS телефона.
 async function prepareFiles(input: {
   readonly files: readonly LearningV2CourseSessionAudioFileV1[];
   readonly stableId: string;
   readonly account: AccountGenerationToken;
-  readonly loadBytes: (file: LearningV2CourseSessionAudioFileV1) => Promise<Uint8Array>;
   readonly onProgress?: (completed: number, total: number) => void;
 }): Promise<void> {
   let completed = 0;
@@ -167,13 +169,22 @@ async function prepareFiles(input: {
       throw new Error("learning_v2_lesson_audio_pack_account_changed");
     const file = input.files[index]!;
     const identity = learningV2NativeDecoderIdentityForAudioFileV1(file, index);
-    const bundled = await resolveLearningV2BootstrapAudioOfflineFileV1(identity);
-    const handle = bundled ?? await prepareLearningV2VoiceAudioOfflineBytesV1({
-      identity,
-      loadBytes: () => input.loadBytes(file),
-    });
+    const handle =
+      (await resolveLearningV2BootstrapAudioOfflineFileV1(identity)) ??
+      (await resolvePreparedLearningV2VoiceAudioOfflineFileV1(identity));
     if (!isCurrentAccountGeneration(input.account, input.stableId))
       throw new Error("learning_v2_lesson_audio_pack_account_changed");
+    if (!handle) {
+      // Немой пропуск запрещён: без этой строки «тихая фраза» неотличима от
+      // бага прогрева. TTS-фолбэк называет причину сам, эта — на уровне пака.
+      console.warn(
+        "[V2-AUDIO-TTS] lesson_audio_pack_file_not_local",
+        JSON.stringify({ contentHash: file.contentHash, objectPath: file.objectPath }),
+      );
+      completed += 1;
+      input.onProgress?.(completed, input.files.length);
+      return;
+    }
     const material = resolveLearningV2VoiceAudioOfflineCacheMaterialV1({ handle, identity });
     if (!isCurrentAccountGeneration(input.account, input.stableId))
       throw new Error("learning_v2_lesson_audio_pack_account_changed");
@@ -263,8 +274,12 @@ export async function prepareLearningV2LessonAudioPackV1(input: {
   const pending = inFlight.get(packKey);
   if (pending) return pending;
 
+  // зачем (D47): раньше здесь была withBackgroundNetworkLease — аренда сети
+  // на время скачивания. Скачивания больше нет (см. prepareFiles выше), поэтому
+  // и аренда не нужна; signal сохранён в сигнатуре ради вызывающих, но само тело
+  // синхронно проверяет отмену только через account generation guard'ы внутри.
   let operation: Promise<LearningV2LessonAudioPackSummaryV1>;
-  operation = withBackgroundNetworkLease("learning-v2.lesson-audio-pack", async (lease) => {
+  operation = (async () => {
     const { files, sessionCount } = filesForLesson(
       input.lessonOrdinal,
       input.targetLanguage,
@@ -273,17 +288,14 @@ export async function prepareLearningV2LessonAudioPackV1(input: {
     if (sessionCount === 0) throw new Error("learning_v2_lesson_audio_pack_empty");
     fileHashesByPack.set(packKey, new Set(files.map((file) => file.contentHash)));
     refreshProtectedHashes();
-    let transportPromise: ReturnType<typeof createLearningV2ActivityAudioTransportV1> | null = null;
     await prepareFiles({
       files,
       stableId,
       account,
       onProgress: input.onProgress,
-      loadBytes: async (file) => {
-        transportPromise ??= createLearningV2ActivityAudioTransportV1({ account, lease });
-        return downloadLearningV2ActivityAudioBytesV1({ entry: file, transport: await transportPromise });
-      },
     });
+    if (input.signal?.aborted)
+      throw new Error("learning_v2_lesson_audio_pack_aborted");
     if (!isCurrentAccountGeneration(account, stableId))
       throw new Error("learning_v2_lesson_audio_pack_account_changed");
     const body = {
@@ -303,7 +315,7 @@ export async function prepareLearningV2LessonAudioPackV1(input: {
     });
     ready.set(packKey, summary);
     return summary;
-  }, input.signal).finally(() => {
+  })().finally(() => {
     if (inFlight.get(packKey) === operation) inFlight.delete(packKey);
   });
   inFlight.set(packKey, operation);
@@ -335,19 +347,18 @@ export async function prepareLearningV2SessionAudioPackV1(input: {
   files.forEach((file) => protectedHashes.add(file.contentHash));
   fileHashesByPack.set(retentionKey, protectedHashes);
   refreshProtectedHashes();
+  // зачем (D47): без сетевой закачки аренда сети не нужна (см. правку выше
+  // в prepareLearningV2LessonAudioPackV1).
   let operation: Promise<LearningV2SessionAudioPackSummaryV1>;
-  operation = withBackgroundNetworkLease("learning-v2.session-audio-pack", async (lease) => {
-    let transportPromise: ReturnType<typeof createLearningV2ActivityAudioTransportV1> | null = null;
+  operation = (async () => {
     await prepareFiles({
       files,
       stableId,
       account,
       onProgress: input.onProgress,
-      loadBytes: async (file) => {
-        transportPromise ??= createLearningV2ActivityAudioTransportV1({ account, lease });
-        return downloadLearningV2ActivityAudioBytesV1({ entry: file, transport: await transportPromise });
-      },
     });
+    if (input.signal?.aborted)
+      throw new Error("learning_v2_session_audio_pack_aborted");
     if (!isCurrentAccountGeneration(account, stableId))
       throw new Error("learning_v2_lesson_audio_pack_account_changed");
     const body = {
@@ -367,7 +378,7 @@ export async function prepareLearningV2SessionAudioPackV1(input: {
     });
     sessionReady.set(packKey, summary);
     return summary;
-  }, input.signal).finally(() => {
+  })().finally(() => {
     if (sessionInFlight.get(packKey) === operation) sessionInFlight.delete(packKey);
   });
   sessionInFlight.set(packKey, operation);

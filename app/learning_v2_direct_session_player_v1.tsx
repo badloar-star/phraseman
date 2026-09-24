@@ -513,9 +513,14 @@ export default function LearningV2DirectSessionPlayerV1() {
     }
     return null;
   });
-  // OS speech is permitted only in an explicit DEV authoring preview. A
-  // released learner session must always play its verified local MP3.
-  const allowsDeviceSpeech = isAuthoringPreview;
+  // зачем (D47, владелец): раньше TTS телефона разрешался ТОЛЬКО в дев-превью
+  // автора, а обычный ученик при отсутствующем локальном mp3 слышал тишину
+  // (resolveFile просто возвращал null, см. course_session_audio_preload_v1.ts).
+  // Теперь способов СКАЧАТЬ недостающую озвучку V2 не осталось вовсе — значит
+  // единственная замена немому занятию это системный TTS, и он обязан работать
+  // для всех, не только для автора. Клип по-прежнему в приоритете: TTS — это
+  // ветка "нет локального файла", а не замена готовой озвучки.
+  const allowsDeviceSpeech = true;
   const [readyHandle] =
     useState<LearningV2CourseSessionReadyHandleV3 | null>(
       initialReadyHandleRef.current ?? null,
@@ -767,6 +772,21 @@ export default function LearningV2DirectSessionPlayerV1() {
     (text: string | null | undefined, key: string, rate?: number) => {
       const normalized = text?.trim();
       if (!allowsDeviceSpeech || !normalized) return;
+      // зачем (D47): единственная точка входа TTS-фолбэка V2 — сюда попадают
+      // и «нет клипа у практики», и «нет клипа у нового слова». Лог здесь
+      // покрывает все случаи одним местом вместо дублирования на каждом вызове.
+      // Персистентный след — DebugLogger (переживает перезапуск), console.log
+      // только в деве ради живого наблюдения на устройстве разработчика.
+      // зачем БЕЗ courseSessionId: run объявлен ниже по файлу (useMemo,
+      // строка ~958) и НЕ входит в deps этого useCallback — считывать его
+      // тут значило бы либо ловить устаревшее замыкание, либо (если добавить
+      // в deps) пересоздавать колбэк на каждую смену run без нужды. `key`
+      // (`practice:<interactionId>` / `new-word:<id>`) уже называет контекст.
+      const ttsTrace = { key, reason: "no_local_audio_file" };
+      if (__DEV__) {
+        console.log("[V2-AUDIO-TTS]", JSON.stringify(ttsTrace)); // guard-ok: диагностика фолбэка на TTS
+      }
+      DebugLogger.warn("[V2-AUDIO-TTS]", JSON.stringify(ttsTrace));
       managedAudio.stop();
       setAudioRequest(null);
       setLocalAudioPlayback(null);

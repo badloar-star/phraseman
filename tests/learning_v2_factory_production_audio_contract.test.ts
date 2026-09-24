@@ -31,7 +31,10 @@ assert.match(generator, /https:\/\/api\.openai\.com\/v1\/audio\/speech/);
 assert.match(generator, /requireCodexOpenAiTtsOnly/);
 assert.match(generator, /PHRASEMAN_ALLOW_OPENAI_DEV_SPEND|requireOpenAiDevSpendGuard/);
 assert.match(generator, /64 \* 1024/);
-assert.match(player, /const allowsDeviceSpeech = isAuthoringPreview;/);
+// зачем (D47, владелец): TTS телефона теперь разрешён ВСЕГДА, не только в
+// дев-превью автора — способов скачать недостающую озвучку V2 больше нет,
+// значит единственная замена тишине это системный TTS для любого ученика.
+assert.match(player, /const allowsDeviceSpeech = true;/);
 assert.doesNotMatch(player, /material\?\.audioDelivery === "device_speech"/);
 assert.match(player, /resolveLearningV2CourseSessionSupplementalAudioV1/);
 assert.match(player, /playLocalAudio\(fullPhraseAudio\.fileUri, 0\.72\)/);

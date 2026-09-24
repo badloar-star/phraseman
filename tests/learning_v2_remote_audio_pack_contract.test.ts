@@ -118,8 +118,6 @@ for (const [lessonOrdinal, expected] of expectedLessons) {
 }
 
 const lessons = read("app/(tabs)/lessons.tsx");
-const audioPrefetchCoordinator = read("app/learning_v2_audio_prefetch_coordinator_v1.ts");
-const audioPrefetchCore = read("app/learning_v2_audio_prefetch_coordinator_core_v1.ts");
 assert.doesNotMatch(
   lessons,
   /Готовим аудио урока|Preparing lesson audio|Готуємо аудіо уроку|Preparando el audio de la lección/u,
@@ -132,31 +130,27 @@ assert.doesNotMatch(
   /loading:\s*"(?:Загружается|Завантаження|Cargando|Carregando|Đang tải|Memuat|Yükleniyor|Wczytywanie|Loading)/u,
   "local decoder setup must not expose loading copy",
 );
-assert.match(lessons, /requestLearningV2AudioPrefetchV1/u);
-assert.match(lessons, /prepareLearningV2SessionAudioPackV1/u);
-assert.match(audioPrefetchCoordinator, /prepareLearningV2LessonAudioPackV1/u);
-assert.match(audioPrefetchCoordinator, /prepareLearningV2SessionAudioPackV1/u);
-assert.match(audioPrefetchCoordinator, /learningV2PublishedAudioLessonOrdinalsV1/u);
-assert.match(audioPrefetchCoordinator, /NetInfo\.addEventListener/u);
-assert.match(audioPrefetchCore, /for \(const coordinate of urgent\)/u);
-// зачем (владелец 2026-09-22, «всё тормозит с момента входа»): массовая
-// закачка всех уроков в ядре прогрева была причиной — её цикл удалён и
-// возвращаться не должен. Сторож перевёрнут: наличие цикла — регрессия.
-assert.doesNotMatch(audioPrefetchCore, /for \(const lessonOrdinal of lessons\)/u,
-  "bulk lesson prefetch loop must stay removed from the coordinator core");
-assert.match(lessons, /isLearningV2SessionAudioPublishedV1/u);
-assert.ok(
-  (lessons.match(/isLearningV2SessionAudioPublishedV1/gu)?.length ?? 0) >= 2,
-  "published-audio checks must protect only speculative prewarm work",
-);
-const materialAvailability = lessons.slice(
-  lessons.indexOf("isSessionMaterialAvailable="),
-  lessons.indexOf("bottomPadding=", lessons.indexOf("isSessionMaterialAvailable=")),
-);
+// зачем (D47, владелец): координатор скачивания
+// (learning_v2_audio_prefetch_coordinator_v1 и соседи) удалён целиком — все
+// способы СКАЧИВАНИЯ озвучки V2 отменены. Карта готовит текущую сессию
+// напрямую через prepareLearningV2SessionAudioPackV1, а он больше не качает
+// по сети — только то, что уже есть локально (стартовый бандл + ранее
+// скачанное). Сторож перевёрнут: возврат координатора — регрессия.
+assert.doesNotMatch(lessons, /requestLearningV2AudioPrefetchV1/u,
+  "the deleted download coordinator must never come back");
 assert.doesNotMatch(
-  materialAvailability,
-  /isLearningV2SessionAudioPublishedV1/u,
-  "audio publication must not gate map material or navigation",
+  lessons,
+  /from ["'].*learning_v2_audio_prefetch_coordinator_v1["']/u,
+  "the deleted download coordinator module must never be imported again",
+);
+assert.match(lessons, /prepareLearningV2SessionAudioPackV1/u);
+assert.ok(
+  !existsSync(join(root, "app/learning_v2_audio_prefetch_coordinator_v1.ts")),
+  "audio prefetch coordinator must stay deleted (D47)",
+);
+assert.ok(
+  !existsSync(join(root, "app/learning_v2_audio_prefetch_background_v1.ts")),
+  "audio prefetch background task must stay deleted (D47)",
 );
 
 assert.ok(existsSync(join(root, bootstrapModulePath)), "bootstrap audio module must be generated");

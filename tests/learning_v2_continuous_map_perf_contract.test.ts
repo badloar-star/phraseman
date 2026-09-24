@@ -315,7 +315,7 @@ describe("Learning V2 continuous map performance contract", () => {
     // Аудит 20.09: при входе во вкладку синхронно разбирались ~2,2 МБ:
     // манифест 1172 КБ + записи озвучки 556 КБ + индекс озвучки 504 КБ.
     // Замер по логам: JS-тред был занят 2612 мс, тапы не доходили.
-    // Все три нужны только при ЗАПУСКЕ занятия. Статический импорт их вернёт.
+    // Оба нужны только при ЗАПУСКЕ занятия. Статический импорт их вернёт.
     const lessons = readFileSync(
       join(__dirname, "..", "app", "(tabs)", "lessons.tsx"),
       "utf8",
@@ -323,26 +323,21 @@ describe("Learning V2 continuous map performance contract", () => {
     for (const heavy of [
       "learning_v2_lesson_audio_pack_v1",
       "learning_v2_course_released_session_client_v3",
-      // Координатор догрузки статически тянет аудиопак — через него вес
-      // возвращался бы в обход ленивой загрузки выше.
-      "learning_v2_audio_prefetch_coordinator_v1",
     ]) {
       const staticImport = new RegExp(`^import \\{[^}]*\\} from "\\.\\./${heavy}"`, "m");
       expect(lessons).not.toMatch(staticImport);
     }
-    // Те же данные лежали на ХОЛОДНОМ СТАРТЕ: корень приложения и фоновая
-    // задача статически тянули координатор (аудит 20.09, старт 19–46 с).
+    // зачем (D47, владелец): координатор догрузки озвучки (плюс фоновая
+    // задача) удалён целиком вместе со всеми способами СКАЧИВАНИЯ озвучки V2 —
+    // раньше он статически тянул тот же тяжёлый аудиопак и в корне, и в фоне
+    // (аудит 20.09, старт 19–46 с). Файлов больше нет — сторож проверяет, что
+    // импорт удалённого модуля не вернулся (текст комментариев не считается).
+    const deletedCoordinatorImport = /from ["'][^"']*learning_v2_audio_prefetch_coordinator_v1["']/;
+    const deletedBackgroundImport = /from ["'][^"']*learning_v2_audio_prefetch_background_v1["']/;
+    expect(lessons).not.toMatch(deletedCoordinatorImport);
     const layout = readFileSync(join(__dirname, "..", "app", "_layout.tsx"), "utf8");
-    expect(layout).not.toMatch(
-      /^import .*learning_v2_audio_prefetch_coordinator_v1/m,
-    );
-    const background = readFileSync(
-      join(__dirname, "..", "app", "learning_v2_audio_prefetch_background_v1.ts"),
-      "utf8",
-    );
-    expect(background).not.toMatch(
-      /^import .*learning_v2_audio_prefetch_coordinator_v1/m,
-    );
+    expect(layout).not.toMatch(deletedCoordinatorImport);
+    expect(layout).not.toMatch(deletedBackgroundImport);
     // Загружаются лениво и ровно один раз (промис кэшируется).
     expect(lessons).toContain("loadLearningV2SessionClientV3");
     expect(lessons).toContain("loadLearningV2AudioPackV1");

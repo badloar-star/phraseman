@@ -3302,7 +3302,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "needs_decision",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -3329,16 +3329,20 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Opus 5.5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "docs/phraseman-2.0/evidence/PM-069_wallet_recon.md"
+    ],
+    "notes": [
+      "🔴 НАЙДЕНО ДВА КОШЕЛЬКА: A — глобальный (руны=монеты технически уже один и тот же баланс, миграция не нужна, только замена слов в UI). B — независимый кошелёк курса Learning V2 (access_star, users/{uid}.v2_access_stars), туда падают награды за курс/ошибки/биржу жемчуга, НЕ виден на Главной, потратить нельзя. 6 открытых вопросов владельцу (О-069-1..6): переносить ли B в A, как округлять дроби, жив ли курс V2 в 2.0, выключать ли биржу, риск двойного счёта legacy_opening_import, деплой сервера"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "opus-5.5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-070",
@@ -3349,7 +3353,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "needs_decision",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -3379,7 +3383,9 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": [
+      "Таблица ранг→монета уже есть (coin_rank_table_v1.ts), используется AvatarView и анимацией. НЕ подключены: иконка валюты в шапке (HOME_RUNE_ICON_SOURCE), визитка, шаринг — зона сессии интерфейса, связано с PM-077"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,

@@ -10529,7 +10529,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -10538,8 +10538,11 @@
       {
         "id": "PM-217-A1",
         "text": "Одного feature flag недостаточно: проверены router discovery/static imports/build manifests/native inclusion",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/evidence/PM-217_archive_generators_release_graph_audit.md",
+          "app/_learning_v2_authoring_preview.tsx typecheck чист"
+        ]
       }
     ],
     "depends_on": [],
@@ -10549,15 +10552,20 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент) + Claude Opus 5.5",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "docs/phraseman-2.0/evidence/PM-217_archive_generators_release_graph_audit.md",
+      "app/_learning_v2_authoring_preview.tsx typecheck чист"
+    ],
+    "notes": [
+      "Проверены router discovery/static imports/build manifests/native inclusion для всех кандидатов в 'генераторы'. Большинство — ложные тревоги: content_factory/content_studio (functions/src) — серверные Cloud Functions, не попадают в мобильный бандл; modules/learning-v2/authoring — нет импортов из app/components; generator_*_contract.ts/factory_native_* — легитимный боевой контент английского курса, не authoring-тулинг. Реальная находка: app/_learning_v2_authoring_preview.tsx лежит в app/ (Expo Router автообнаруживает как маршрут независимо от Stack.Screen registration за ENABLE_DEV_TOOLS — это условие управляет только видимостью в списке экранов, не диплинком), не имел собственного in-file release guard в отличие от соседнего dev-экрана intro-reader-fixture.tsx (у которого именно такой guard появился после реального инцидента: мёртвый !DEV_MODE пропускал фикстуру в стор-сборку по диплинку, владелец 25.08). Добавлен идентичный guard if (!ENABLE_DEV_TOOLS) return <Redirect href='/' />"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
+    "actual_model": "sonnet-5",
     "actual_reasoning": null
   },
   {
@@ -11278,7 +11286,8 @@
       "tests/quests_core.test.ts 16/16 PASS, tests/quests_client_reward_kind_contract.test.ts 2/2 PASS, functions typecheck чист"
     ],
     "notes": [
-      "Убраны мёртвые виды награды 'pearls'/'spins' из QUEST_REWARD_KINDS (functions/src/quests_core.ts) — обе выдачи были no-op на клиенте (PM-058/PM-047), редактор заданий в админке предлагал создать обманчивое задание, дефолт новой строки награды был именно 'pearls'. Убрана мёртвая серверная ветка записи shard_log для pearls (рассинхрон сервер/клиент). Клиент (app/quests_client.ts) и 2 UI-компонента (QuestSheetModal.tsx, QuestTaskCard.tsx) синхронизированы, добавлена граница валидации kind (isQuestRewardKind) вместо слепого type cast — защита от старых данных в кэше/базе, не полагается только на TS-тип. НЕ статус done: 🔴 КРИТИЧНЫЙ РИСК ПЕРЕД ДЕПЛОЕМ (найден Advisor) — активные/queued задания в продовой Firestore-коллекции 'quests', у которых ЕДИНСТВЕННОЙ наградой был pearls/spins, станут null в parseQuestConfig после деплоя этой версии функций и исчезнут у игроков вместе с набранным прогрессом. Нужна ручная проверка коллекции quests ДО деплоя functions (у этой сессии нет доступа к продовому Firestore) — если такие задания есть, решить: заменить награду или архивировать. Деплой functions НЕ делать, пока владелец не подтвердит эту проверку"
+      "Убраны мёртвые виды награды 'pearls'/'spins' из QUEST_REWARD_KINDS (functions/src/quests_core.ts) — обе выдачи были no-op на клиенте (PM-058/PM-047), редактор заданий в админке предлагал создать обманчивое задание, дефолт новой строки награды был именно 'pearls'. Убрана мёртвая серверная ветка записи shard_log для pearls (рассинхрон сервер/клиент). Клиент (app/quests_client.ts) и 2 UI-компонента (QuestSheetModal.tsx, QuestTaskCard.tsx) синхронизированы, добавлена граница валидации kind (isQuestRewardKind) вместо слепого type cast — защита от старых данных в кэше/базе, не полагается только на TS-тип. НЕ статус done: 🔴 КРИТИЧНЫЙ РИСК ПЕРЕД ДЕПЛОЕМ (найден Advisor) — активные/queued задания в продовой Firestore-коллекции 'quests', у которых ЕДИНСТВЕННОЙ наградой был pearls/spins, станут null в parseQuestConfig после деплоя этой версии функций и исчезнут у игроков вместе с набранным прогрессом. Нужна ручная проверка коллекции quests ДО деплоя functions (у этой сессии нет доступа к продовому Firestore) — если такие задания есть, решить: заменить награду или архивировать. Деплой functions НЕ делать, пока владелец не подтвердит эту проверку",
+      "ДОПОЛНЕНИЕ: серверный и клиентский (app) код синхронизирован и закоммичен (ac0f43ae2). Осталась несинхронизированная часть — сама форма в admin/v2/legacy.html (QUEST_REWARD_KINDS, строки ~42994-43181) всё ещё предлагает выбрать pearls/spins и дефолт новой строки награды всё ещё {kind:'pearls'} — НЕ тронул, т.к. файл сейчас редактируется другой параллельной сессией (chужой незакоммиченный diff в этом же файле, git status). Ждать, пока файл освободится, затем убрать 2 опции из UI-списка и поменять дефолт новой строки на 'runes'"
     ],
     "actual_cost": null,
     "kind": "unclassified",

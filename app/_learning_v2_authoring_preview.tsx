@@ -1,11 +1,12 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useRouter } from "expo-router";
+import { Redirect, useRouter } from "expo-router";
 import React, { useEffect, useMemo } from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 
 import PressableHybrid from "../components/PressableHybrid";
 import ScreenGradient from "../components/ScreenGradient";
 import { useTheme } from "../components/ThemeContext";
+import { ENABLE_DEV_TOOLS } from "./config";
 import { LEARNING_V2_AUTHORING_PREVIEW_ROUTE } from "../constants/devRoutes";
 import { factoryNativeLearningV2AvailabilityV1 } from "../modules/learning-v2/content/factory_native/factory_native_catalog_v1";
 import { rememberNavigationPath, safeRouterBack } from "./navigation_back";
@@ -27,6 +28,16 @@ export default function LearningV2AuthoringPreviewScreen() {
   useEffect(() => {
     rememberNavigationPath(LEARNING_V2_AUTHORING_PREVIEW_ROUTE);
   }, []);
+
+  // зачем (PM-217, 2026-09-24): экран лежит в app/, Expo Router автоматически
+  // регистрирует его как маршрут независимо от того, добавлен ли для него
+  // <Stack.Screen> за ENABLE_DEV_TOOLS в _layout.tsx (это условие управляет
+  // только видимостью в списке экранов Stack, не диплинком/router discovery).
+  // Соседний dev-экран app/learning-v2/intro-reader-fixture.tsx уже имел
+  // именно такой in-file redirect после похожего инцидента (владелец, 25.08:
+  // мёртвый `!DEV_MODE` пропускал фикстуру в стор-сборку по диплинку) —
+  // применяем тот же проверенный паттерн.
+  if (!ENABLE_DEV_TOOLS) return <Redirect href="/" />;
 
   const openSession = (row: (typeof rows)[number]) => {
     rememberNavigationPath(LEARNING_V2_AUTHORING_PREVIEW_ROUTE);

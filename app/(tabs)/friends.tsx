@@ -3224,17 +3224,19 @@ export default function FriendsTabScreen() {
                 ))}
               </>
             )}
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12, gap: 6 }}>
-              <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1, flex: 1 }}>
-                {L('Список друзей', 'Список друзів', 'Friends list', 'Lista de amigos', 'Lista de amigos', 'Danh sách bạn bè', 'Daftar teman', 'Arkadaş listesi', 'Lista znajomych')}
-                {sortedFriends.length > 0 ? ` · ${sortedFriends.length}` : ''}
-              </Text>
-              {sortedFriends.length > 0 && (
+            {/* зачем (PM-163): заголовок «Список друзей» убран как самоочевидный —
+                список уже показан ниже. Счётчик и сортировка остаются, они несут
+                информацию, а не дублируют название раздела. */}
+            {sortedFriends.length > 0 && (
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', marginBottom: 12, gap: 6 }}>
+                <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700' }}>
+                  {sortedFriends.length}
+                </Text>
                 <Text style={{ color: t.textMuted, fontSize: f.sub }}>
                   {L('по XP', 'за XP', 'by XP', 'por XP', 'por XP', 'theo XP', 'berdasarkan XP', "XP'ye göre", 'wg XP')}
                 </Text>
-              )}
-            </View>
+              </View>
+            )}
           </>
   );
 
@@ -3245,19 +3247,9 @@ export default function FriendsTabScreen() {
                   {L('Учиться вместе веселее', 'Навчатися разом веселіше', 'Learning together is more fun', 'Aprender juntos es más divertido', 'Aprender junto é mais divertido', 'Học cùng nhau vui hơn', 'Belajar bersama lebih seru', 'Birlikte öğrenmek daha eğlenceli', 'Nauka razem jest fajniejsza')}
                 </Text>
                   <>
-                    <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', lineHeight: Math.round(f.sub * 1.4), maxWidth: 320 }}>
-                      {L(
-                        'Добавьте друзей по коду или нику — соревнуйтесь в лигах и дарите подарки.',
-                        'Додайте друзів за кодом або ніком — змагайтеся в лігах і даруйте подарунки.',
-                        'Add friends by code or nickname — compete in leagues and send gifts.',
-                        'Agrega amigos por código o apodo: compitan en ligas y envíen regalos.',
-                        'Adicione amigos por código ou apelido — compita em ligas e troque presentes.',
-                        'Thêm bạn bằng mã hoặc biệt danh — thi đua trong giải và tặng quà.',
-                        'Tambahkan teman lewat kode atau nama — berkompetisi di liga dan beri hadiah.',
-                        'Kod veya takma adla arkadaş ekle — liglerde yarış ve hediye gönder.',
-                        'Dodaj znajomych po kodzie lub nicku — rywalizujcie w ligach i dawajcie prezenty.',
-                      )}
-                    </Text>
+                    {/* зачем (PM-163): длинная подсказка «Добавьте друзей по коду или
+                        нику…» убрана — она повторяла очевидное рядом с иконкой и
+                        кнопкой «Добавить друга». Действие добавления осталось. */}
                     <View style={{ marginTop: 6, alignSelf: 'stretch', paddingHorizontal: 8 }}>
                       <DuoPressable
                         testID="friends-empty-add"

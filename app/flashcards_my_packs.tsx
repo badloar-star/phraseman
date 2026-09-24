@@ -23,7 +23,8 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { DebugLogger } from './debug-logger';
 import { Image } from 'expo-image';
 import { useFocusEffect, useRouter } from 'expo-router';
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   ActivityIndicator,
   BackHandler,
@@ -33,6 +34,7 @@ import {
   StyleSheet,
   ScrollView,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
   useWindowDimensions,
@@ -98,6 +100,57 @@ type MyPacksGroups = {
 };
 
 const EMPTY_GROUPS: MyPacksGroups = { added: [], created: [] };
+
+// PM-096: согласованная сортировка «Мои наборы» — по дате изменения, сохраняется
+// локально (без сети, без Firestore-чтений). 'updated' — новые сверху (как уже
+// сортирует каталог сообщества в marketplace.ts, sortByFreshness); 'name' — по
+// алфавиту текущей локали, стабильно (одинаковые названия не меняют порядок).
+type MyPacksSort = 'updated' | 'name';
+const MY_PACKS_SORT_KEY = 'fc_my_packs_sort_v1';
+
+function isMyPacksSort(value: unknown): value is MyPacksSort {
+  return value === 'updated' || value === 'name';
+}
+
+async function getStoredMyPacksSort(): Promise<MyPacksSort> {
+  const raw = await AsyncStorage.getItem(MY_PACKS_SORT_KEY).catch(() => null);
+  return isMyPacksSort(raw) ? raw : 'updated';
+}
+
+async function setStoredMyPacksSort(sort: MyPacksSort): Promise<void> {
+  await AsyncStorage.setItem(MY_PACKS_SORT_KEY, sort).catch(() => {});
+}
+
+/** Сортировка стабильна: Array.prototype.sort в Hermes/JSC стабилен (ES2019),
+ *  равные ключи не меняют относительный порядок — не «прыгает» при повторном выборе. */
+function sortMyPacks(packs: FlashcardMarketPack[], sort: MyPacksSort, lang: 'ru' | 'uk' | 'es'): FlashcardMarketPack[] {
+  if (sort === 'name') {
+    return [...packs].sort((a, b) => {
+      const an = (packTitleForInterface(a, lang) || packHubCodeName(a)).trim();
+      const bn = (packTitleForInterface(b, lang) || packHubCodeName(b)).trim();
+      return an.localeCompare(bn, lang);
+    });
+  }
+  return [...packs].sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime());
+}
+
+/** PM-095: локальный поиск по названию — без сети, регистр/диакритика игнорируются. */
+function normalizeSearchText(value: string): string {
+  return value.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
+}
+
+function filterMyPacksByQuery(
+  packs: FlashcardMarketPack[],
+  query: string,
+  lang: 'ru' | 'uk' | 'es',
+): FlashcardMarketPack[] {
+  const needle = normalizeSearchText(query);
+  if (!needle) return packs;
+  return packs.filter((pack) => {
+    const title = packTitleForInterface(pack, lang) || packHubCodeName(pack);
+    return normalizeSearchText(title).includes(needle);
+  });
+}
 
 /**
  * Разложить наборы по двум разделам. Вынесено из loadMine, чтобы синхронная
@@ -165,6 +218,18 @@ export default function FlashcardsMyPacksScreen() {
   const [deletePackBusy, setDeletePackBusy] = useState(false);
   const openingPackRef = useRef<string | null>(null);
   const openingRequestGenerationRef = useRef(0);
+  // PM-095/PM-096: поиск и сортировка — чисто локальные, без новых Firestore-чтений.
+  const [myPacksQuery, setMyPacksQuery] = useState('');
+  const [myPacksSort, setMyPacksSort] = useState<MyPacksSort>('updated');
+  useEffect(() => {
+    let cancelled = false;
+    void getStoredMyPacksSort().then((stored) => { if (!cancelled) setMyPacksSort(stored); });
+    return () => { cancelled = true; };
+  }, []);
+  const handleMyPacksSortChange = useCallback((next: MyPacksSort) => {
+    setMyPacksSort(next);
+    void setStoredMyPacksSort(next);
+  }, []);
 
   const contentLang: 'ru' | 'uk' | 'es' = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
   const cloudCommunityEnabled = CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
@@ -184,6 +249,14 @@ export default function FlashcardsMyPacksScreen() {
 
   const tileW = Math.floor((Math.min(width, 640) - H_PAD * 2 - GAP * (COLS - 1)) / COLS);
   const packCount = groups.added.length + groups.created.length;
+
+  /** PM-095/PM-096: поиск и сортировка применяются к каждому разделу отдельно,
+   *  порядок разделов (добавленные/созданные) не меняется — только порядок ВНУТРИ. */
+  const visibleGroups = useMemo<MyPacksGroups>(() => ({
+    added: sortMyPacks(filterMyPacksByQuery(groups.added, myPacksQuery, contentLang), myPacksSort, contentLang),
+    created: sortMyPacks(filterMyPacksByQuery(groups.created, myPacksQuery, contentLang), myPacksSort, contentLang),
+  }), [groups, myPacksQuery, myPacksSort, contentLang]);
+  const visiblePackCount = visibleGroups.added.length + visibleGroups.created.length;
 
   /** Владение читается при каждом фокусе: «Добавить себе» пишет AsyncStorage без событий. */
   const loadMine = useCallback(async (): Promise<MyPacksGroups> => {
@@ -384,6 +457,37 @@ export default function FlashcardsMyPacksScreen() {
       back: triLang(lang, {
         ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás',
         'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
+      }),
+      // PM-093/094 (D20, S64 — прямое требование владельца, не общий запрет на
+      // подписи): одна короткая полезная строка у раздела «Мои наборы».
+      sectionHint: triLang(lang, {
+        ru: 'Всё, что ты добавил или создал сам — открой набор и начни тренировку.',
+        uk: 'Усе, що ти додав або створив сам — відкрий набір і почни тренування.',
+        en: 'Everything you added or created — open a pack to start practicing.',
+        es: 'Todo lo que añadiste o creaste — abre un pack y empieza a practicar.',
+        'pt-BR': 'Tudo que você adicionou ou criou — abra um pacote e comece a treinar.',
+        vi: 'Mọi thứ bạn đã thêm hoặc tự tạo — mở bộ thẻ và bắt đầu luyện tập.',
+        id: 'Semua yang kamu tambahkan atau buat — buka paket dan mulai berlatih.',
+        tr: 'Eklediğin veya oluşturduğun her şey — bir paketi aç ve çalışmaya başla.',
+        pl: 'Wszystko, co dodałeś lub stworzyłeś — otwórz zestaw i zacznij trening.',
+      }),
+      searchPlaceholder: triLang(lang, {
+        ru: 'Поиск по названию', uk: 'Пошук за назвою', en: 'Search by name', es: 'Buscar por nombre',
+        'pt-BR': 'Buscar por nome', vi: 'Tìm theo tên', id: 'Cari berdasarkan nama',
+        tr: 'İsme göre ara', pl: 'Szukaj po nazwie',
+      }),
+      sortByUpdated: triLang(lang, {
+        ru: 'Сначала новые', uk: 'Спочатку нові', en: 'Newest first', es: 'Más recientes',
+        'pt-BR': 'Mais recentes', vi: 'Mới nhất', id: 'Terbaru', tr: 'En yeni', pl: 'Najnowsze',
+      }),
+      sortByName: triLang(lang, {
+        ru: 'По алфавиту', uk: 'За алфавітом', en: 'A–Z', es: 'A–Z',
+        'pt-BR': 'A–Z', vi: 'A–Z', id: 'A–Z', tr: 'A–Z', pl: 'A–Z',
+      }),
+      noSearchResults: triLang(lang, {
+        ru: 'Ничего не найдено.', uk: 'Нічого не знайдено.', en: 'Nothing found.', es: 'No se encontró nada.',
+        'pt-BR': 'Nada encontrado.', vi: 'Không tìm thấy gì.', id: 'Tidak ada yang ditemukan.',
+        tr: 'Bir şey bulunamadı.', pl: 'Nic nie znaleziono.',
       }),
     }),
     [lang],
@@ -666,9 +770,63 @@ export default function FlashcardsMyPacksScreen() {
             <Text style={{ color: t.textPrimary, fontSize: 26, fontWeight: '800', letterSpacing: 0.2 }}>
               {copy.title}
             </Text>
+            {/* PM-093/094: короткое описание раздела — одна строка, не пересказ кнопок. */}
+            <Text style={{ color: t.textMuted, fontSize: 13, fontWeight: '600', marginTop: 4 }}>
+              {copy.sectionHint}
+            </Text>
 
-            {renderSection('added', copy.added, groups.added)}
-            {renderSection('created', copy.created, groups.created)}
+            {packCount > 0 ? (
+              <View style={styles.toolsRow}>
+                <View style={[styles.searchField, { borderColor: t.border, backgroundColor: t.bgSurface }]}>
+                  <Ionicons name="search-outline" size={16} color={t.textMuted} />
+                  <TextInput
+                    testID="fc-my-packs-search"
+                    accessibilityLabel={copy.searchPlaceholder}
+                    value={myPacksQuery}
+                    onChangeText={setMyPacksQuery}
+                    placeholder={copy.searchPlaceholder}
+                    placeholderTextColor={t.textMuted}
+                    autoCorrect={false}
+                    autoCapitalize="none"
+                    returnKeyType="search"
+                    maxFontSizeMultiplier={1.2}
+                    style={[styles.searchInput, { color: t.textPrimary }]}
+                  />
+                  {myPacksQuery.length > 0 ? (
+                    <TouchableOpacity
+                      testID="fc-my-packs-search-clear"
+                      accessibilityRole="button"
+                      accessibilityLabel={copy.searchPlaceholder}
+                      onPress={() => setMyPacksQuery('')}
+                      hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                    >
+                      <Ionicons name="close-circle" size={16} color={t.textMuted} />
+                    </TouchableOpacity>
+                  ) : null}
+                </View>
+                <TouchableOpacity
+                  testID="fc-my-packs-sort-toggle"
+                  accessibilityRole="button"
+                  accessibilityLabel={myPacksSort === 'updated' ? copy.sortByName : copy.sortByUpdated}
+                  onPress={() => { void hapticTap(); handleMyPacksSortChange(myPacksSort === 'updated' ? 'name' : 'updated'); }}
+                  style={[styles.sortBtn, { borderColor: t.border, backgroundColor: t.bgSurface }]}
+                >
+                  <Ionicons name={myPacksSort === 'updated' ? 'time-outline' : 'text-outline'} size={16} color={t.textSecond} />
+                  <Text style={{ color: t.textSecond, fontSize: 12, fontWeight: '700' }}>
+                    {myPacksSort === 'updated' ? copy.sortByUpdated : copy.sortByName}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            ) : null}
+
+            {renderSection('added', copy.added, visibleGroups.added)}
+            {renderSection('created', copy.created, visibleGroups.created)}
+
+            {packCount > 0 && visiblePackCount === 0 ? (
+              <Text style={{ color: t.textMuted, fontSize: 13, marginTop: 16, textAlign: 'center' }}>
+                {copy.noSearchResults}
+              </Text>
+            ) : null}
 
             {packCount === 0 ? (
               <View style={{ marginTop: 24, alignItems: 'center', gap: 14 }}>
@@ -744,6 +902,28 @@ export default function FlashcardsMyPacksScreen() {
 }
 
 const styles = StyleSheet.create({
+  // PM-095/PM-096: строка поиска + переключатель сортировки над разделами.
+  toolsRow: { flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 14 },
+  searchField: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    height: 38,
+    paddingHorizontal: 12,
+    borderRadius: 12,
+    borderWidth: 1,
+  },
+  searchInput: { flex: 1, height: 36, paddingVertical: 0, fontSize: 14 },
+  sortBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    height: 38,
+    paddingHorizontal: 12,
+    borderRadius: 12,
+    borderWidth: 1,
+  },
   safe: { flex: 1, flexDirection: 'column', minHeight: 0, backgroundColor: 'transparent' },
   scroll: { flex: 1, minHeight: 0 },
   scrollContent: { paddingTop: 16 },

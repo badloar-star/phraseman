@@ -12,7 +12,7 @@ import type { CoinMetal } from './coin_metal_palette';
 type Props = Readonly<{
   metal: CoinMetal;
   size: number;
-  /** PNG монеты 1024×1024 с прозрачным фоном; если задан — процедурная графика не рисуется. */
+  /** Картинка монеты ранга (квадрат, прозрачный фон, coin_rank_table_v1); если задана — процедурная графика не рисуется. */
   source?: ImageSourcePropType;
 }>;
 

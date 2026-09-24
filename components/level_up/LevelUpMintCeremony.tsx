@@ -69,12 +69,12 @@ function trace(message: string, data?: Record<string, unknown>): void {
 }
 
 export type LevelUpMintSide = Readonly<{
-  /** Номер уровня (ранг монеты) 0…20. */
+  /** Номер уровня (ранг монеты) 0…19, см. app/coin_rank_table_v1.ts. */
   level: number;
   /** Название уровня уже на языке интерфейса (из таблицы рангов вызывающего). */
   name: string;
   metal: CoinMetal;
-  /** PNG монеты, когда появятся ассеты (PM-073). Без него — процедурная монета. */
+  /** Картинка монеты ранга (PM-073, coinRankMintSide). Без неё — процедурная монета. */
   coinSource?: ImageSourcePropType;
 }>;
 

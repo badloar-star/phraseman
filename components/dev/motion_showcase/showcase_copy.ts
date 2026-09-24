@@ -636,15 +636,10 @@ const RU = {
   // ── level_up_mint: церемония повышения уровня 2.0 «Монетный двор» (PM-077, D49) ──
   level_up_mint_section_title: 'Повышение уровня 2.0',
   level_up_mint_detail: 'вариант B «Монетный двор» · выбран владельцем',
-  level_up_mint_0_1: 'Гость → Турист · медь',
-  level_up_mint_8_9: 'Ловец идиом → Душа компании · золото',
-  level_up_mint_19_20: 'Легенда разговора → Носитель · эталон',
-  level_up_name_0: 'Гость',
-  level_up_name_1: 'Турист',
-  level_up_name_8: 'Ловец идиом',
-  level_up_name_9: 'Душа компании',
-  level_up_name_19: 'Легенда разговора',
-  level_up_name_20: 'Носитель',
+  // Названия уровней и картинки — из app/coin_rank_table_v1.ts (PM-073, нумерация 0–19 по D60).
+  level_up_mint_0_1: 'Стажёр → Кадет · медь',
+  level_up_mint_7_8: 'Профи → Мастер · серебро',
+  level_up_mint_18_19: 'Легенда → Титан · платина',
 };
 
 type Key = keyof typeof RU;

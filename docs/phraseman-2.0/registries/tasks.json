@@ -2925,7 +2925,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "blocked",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -2934,14 +2934,18 @@
       {
         "id": "PM-062-A1",
         "text": "Все размеры, icon maps и прелоадеры проверены",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commits fbf2ee51c 44ec5c26e 0e929959e 3e0eb8af1 c4a535b76 47964dae3"
+        ]
       },
       {
         "id": "PM-062-A2",
         "text": "нет broken images у старых пользователей",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commits fbf2ee51c 44ec5c26e 0e929959e 3e0eb8af1 c4a535b76 47964dae3"
+        ]
       }
     ],
     "depends_on": [],
@@ -2952,20 +2956,23 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
+    "evidence": [
+      "commits fbf2ee51c 44ec5c26e 0e929959e 3e0eb8af1 c4a535b76 47964dae3"
+    ],
     "notes": [
       "«Гексаэдры» как отдельные файлы-ассеты НЕ найдены (grep hexahedron/hex_avatar — пусто). Вероятно образное название текущих ассетов avatar-auras/avatar-auras-hd — нужно подтверждение владельца, что именно называется гексаэдрами",
       "Ассеты avatar-auras/avatar-auras-hd НЕ удалены: это боевая отрисовка уже купленных аур (AvatarAura.tsx), не редактор. Отдельных 'гексаэдрических' файлов физически нет. Нужно уточнение владельца: что именно в этих папках удалять, раз они ещё используются для показа купленного",
-      "D59: не трогать до готовности монет-ассетов ранга (PM-073/077), заменится целиком одним разом"
+      "D59: не трогать до готовности монет-ассетов ранга (PM-073/077), заменится целиком одним разом",
+      "D61: ауры удалены БЕЗ замены (234 файла ассетов), AvatarAura.tsx упрощён до нейтральной прослойки (283→41 строк). Данные о покупке ауры (constants/avatar_auras.ts) НЕ тронуты — читает миграция компенсации. tests/lazy_cdn_art_contract 11/11, season_aura_account_preview 1/1 PASS. Скан HEAD чист"
     ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-063",

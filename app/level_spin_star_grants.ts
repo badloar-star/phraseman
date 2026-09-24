@@ -415,6 +415,15 @@ async function hasValidFingerprint(operation: LevelSpinStarOperation): Promise<b
     ...(operation.deliveryToken ? { deliveryToken: operation.deliveryToken } : {}),
     giftId: operation.giftId,
     amount: operation.amount,
+    // зачем (D51, найдено 2026-09-24 тестом миграции «Подарки → монеты»):
+    // отпечаток СОЗДАЁТСЯ с promotionEligibility (fingerprintFor в
+    // enqueueLevelSpinStarGrant; так же считает сервер), а проверялся без него.
+    // С 20.09 каждая новая операция несёт это поле, поэтому ЛЮБАЯ вторая
+    // выдача рун падала с level_spin_star_operation_corrupt (скан истории в
+    // recoverProjection), а синхронизация молча пропускала такие операции.
+    ...(operation.promotionEligibility === undefined
+      ? {}
+      : { promotionEligibility: operation.promotionEligibility }),
   });
   return expected === operation.requestFingerprint;
 }

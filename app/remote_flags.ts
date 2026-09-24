@@ -155,7 +155,11 @@ export type RemoteBoolKey =
   // выданный подарок НЕ отбирается — активные докатывают свои 72ч, их модалы не
   // трогаются (гейт стоит только в точке ВЫДАЧИ). Включение возвращает подарок
   // будущим новичкам. Гейт в app/intro_full_access.ts.
-  | 'intro_full_access_enabled';
+  | 'intro_full_access_enabled'
+  // D51/D53 (владелец 2026-09-24): рубильник миграции «Подарки и спины → монеты».
+  // Дефолт TRUE = kill-switch: false в remote_config/app.bools останавливает
+  // НОВЫЕ прогоны; уже прошедшие не трогает, зачисленное не забирается.
+  | 'gifts_to_coins_enabled';
 
 /** Строковые ключи (тексты), управляемые из админки. Сейчас — режим обслуживания. */
 export type RemoteTextKey =
@@ -387,6 +391,8 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // новые юзеры больше НЕ получают подарок/модал живьём (onSnapshot), без релиза.
   // Уже выданные подарки не отбираются (гейт только в точке выдачи).
   intro_full_access_enabled: false,
+  // зачем (D51): миграция едет включённой, флаг — аварийный стоп без релиза.
+  gifts_to_coins_enabled: true,
 };
 
 const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {

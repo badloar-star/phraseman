@@ -750,6 +750,9 @@ const ACCOUNT_LOCAL_KEY_PREFIXES = [
   ...DAILY_JOURNEY_FREEZE_ACCOUNT_LOCAL_PREFIXES,
   'external_economy_result_v1:',
   'external_economy_event_applied_v1:',
+  // зачем (D51): журнал миграции «Подарки → монеты» путешествует вместе с
+  // инвентарём аккаунта; вернувшаяся копия инвентаря без метки = двойная выплата.
+  'gifts_to_coins_v1:',
 ] as const;
 
 export function isAccountLocalJournalStorageKey(key: string): boolean {

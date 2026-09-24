@@ -1037,6 +1037,18 @@ function GlobalLevelUpRewards() {
     return () => task.cancel();
   }, [themeMode]);
 
+  // зачем (D51, владелец 2026-09-24): молчаливая миграция «Подарки и спины →
+  // монеты». Сам планировщик ждёт ~15 с после старта и повторяет на каждой
+  // активации аккаунта; модуль грузится лениво, первый кадр не трогает.
+  useEffect(() => {
+    let stop: (() => void) | null = null;
+    let cancelled = false;
+    void import('./gifts_to_coins_migration_v1')
+      .then((m) => { if (!cancelled) stop = m.startGiftsToCoinsMigrationScheduler(); })
+      .catch((error) => console.warn('[GIFTS-TO-COINS] catch step=scheduler_import', error));
+    return () => { cancelled = true; stop?.(); };
+  }, []);
+
   return null;
 }
 

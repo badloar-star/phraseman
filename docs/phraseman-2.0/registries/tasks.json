@@ -12186,7 +12186,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "needs_decision",
+    "status": "planned",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -12222,12 +12222,15 @@
     ],
     "notes": [
       "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md",
-      "Черновик контракта готов (docs/TOWER_CONTRACT.md): переиспользует league_groups, leagueUpdateMyMember, жителей, крон итога. Ждёт «да» владельца по §6: убрать часовой крон жителей, отчёт ступеней пачкой, удалить бусты/сундуки/короны."
+      "Черновик контракта готов (docs/TOWER_CONTRACT.md): переиспользует league_groups, leagueUpdateMyMember, жителей, крон итога. Ждёт «да» владельца по §6: убрать часовой крон жителей, отчёт ступеней пачкой, удалить бусты/сундуки/короны.",
+      "D56: владелец принял все 3 пункта §6 целиком (2026-09-24). Гейт OWNER_DECISION_RECORDED закрыт evidence docs/TOWER_CONTRACT.md §6."
     ],
     "actual_cost": null,
     "kind": "design",
     "review_verdict": null,
-    "gate_evidence": {},
+    "gate_evidence": {
+      "OWNER_DECISION_RECORDED": "docs/TOWER_CONTRACT.md §6 (D56, PROGRESS.md)"
+    },
     "actual_model": null,
     "actual_reasoning": null
   },

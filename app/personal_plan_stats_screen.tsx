@@ -19,7 +19,6 @@ import { LinearGradient } from '../components/SafeLinearGradient';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ReportErrorButton from '../components/ReportErrorButton';
-import EnergyCostBadge from '../components/EnergyCostBadge';
 import { triLang } from '../constants/i18n';
 import type { ThemeMode } from '../constants/theme';
 import { hapticTap } from '../hooks/use-haptics';
@@ -635,7 +634,7 @@ function DayReviewSheet({
                       <Text style={[styles.replayBtnText, { color: chrome.bg[2] }]}>Пройти этот день заново</Text>
                     </LinearGradient>
                   </TouchableOpacity>
-                  {replayStartsPaid ? <EnergyCostBadge activity="personal_plan_exercise" testID="personal-plan-stats-replay-energy-cost" /> : null}
+                  {/* зачем (PM-086): ценник энергии на кнопке убран — сам расход энергии не менялся. */}
                 </View>
               )}
             </>

@@ -2711,7 +2711,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -2720,8 +2720,10 @@
       {
         "id": "PM-058-A1",
         "text": "Сервер, клиент, админка, рефералы, события наград и старые очереди проверены",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commit 825a5a9f6"
+        ]
       },
       {
         "id": "PM-058-A2",
@@ -2738,16 +2740,20 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "commit 825a5a9f6"
+    ],
+    "notes": [
+      "5 источников бесплатного жемчуга остановлены (welcome_gift, quests_client, season_reward_apply, daily_journey_gift_activation, shard_survey сервер+клиент 1→0). Баланс/магазин/миграция не тронуты (PM-057/059). tests/shards_system.test.ts 2 падения не связаны, отдельная проблема"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-059",

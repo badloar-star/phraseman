@@ -143,6 +143,8 @@
 - 2026-09-24 · PM-066 · Sonnet 5 · разведка осиротевших ресурсов: expo-background-task в package.json без вызовов (не удалён — нужен ребилд), устаревшие пути в screen_inventory.json, ложный след level_reward_spin_balance (живой, не трогать) · 3c15409e6
 - 2026-09-24 · PM-065 · Sonnet 5 · ОСТАНОВЛЕНА (needs_decision): рубашки/цвет набора завязаны на СЕРВЕРНУЮ схему functions/src/community_packs.ts + 16 клиентских файлов — риск сломать публикацию/совместимость старых наборов, нужна отдельная полноценная сессия с typecheck. Preflight в evidence/PM-065_card_back_removal_preflight.md
 
+- 2026-09-24 · PM-058 · Sonnet 5 · бесплатная выдача жемчуга остановлена в 5 источниках (welcome_gift, quests_client, season_reward_apply, daily_journey_gift_activation, shard_survey сервер SURVEY_SHARD_AMOUNT 1→0 + клиент) · 825a5a9f6 · баланс/магазин/миграция не тронуты · tests/shards_system.test.ts 2 предсуществующих падения (energy_refill/account-switch race), не связаны с правкой — отдельно проверить
+
 ## 6. Известные конфликты 2.0 со старыми правилами проекта
 
 - Покупка уроков за жемчуг (сделана 2026-09-17…24, коммит `efbe0dcd9`) — по 2.0 удаляется (PM-148, D15). Не делать до вопроса о компенсации.

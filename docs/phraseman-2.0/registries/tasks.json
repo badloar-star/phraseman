@@ -12807,7 +12807,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -12816,14 +12816,22 @@
       {
         "id": "PM-283-A1",
         "text": "Таймер, монеты, высота, боты меняются без релиза в admin/v2/legacy.html; uid рядом с именем",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "functions/src/spire_config_contract.ts",
+          "functions/src/admin_spire_config.ts",
+          "modules/spire/config_contract.ts",
+          "app/spire_config_client.ts",
+          "firestore.rules"
+        ]
       },
       {
         "id": "PM-283-A2",
         "text": "Если данные читает Джарвис — контракт обновлён",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "functions/src/jarvis/jarvis_data_contract_guard.test.ts"
+        ]
       }
     ],
     "depends_on": [
@@ -12834,18 +12842,27 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (сессия «Башня»)",
     "reviewer": null,
-    "evidence": [],
+    "evidence": [
+      "functions/src/spire_config_contract.ts",
+      "functions/src/admin_spire_config.ts",
+      "modules/spire/config_contract.ts",
+      "app/spire_config_client.ts",
+      "firestore.rules"
+    ],
     "notes": [
-      "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md"
+      "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md",
+      "A2 проверено: jarvis_data_contract_guard.test.ts отслеживает content-коллекции, которые Джарвис ЧИТАЕТ для отчётов (arena_v2_receipts, arena_v2_target_profiles); config-документы вроде arena_v2_config там числятся только как writer в чужом списке, не как источник для Джарвиса. config/spire_v1 — тот же случай (таймер/монеты/боты), Джарвис его не читает — контракт обновлять не требуется. HTML-раздел админки (admin/v2/legacy.html) отложен отдельным ходом — 58k строк живой боевой админки, правка без dev-сервера/typecheck в щадящем режиме слишком рискованна сейчас."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
+    "kind": "code",
     "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "gate_evidence": {
+      "BASELINE_SHA_APPROVED": "HEAD на старте программы (см. PM-001)"
+    },
+    "actual_model": "claude-sonnet-5",
+    "actual_reasoning": "medium"
   },
   {
     "id": "PM-284",

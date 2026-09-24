@@ -938,6 +938,7 @@ export {
   adminSaveVideoPhraseDraft,
   adminPublishVideoPhrases,
   adminParseVideoPhraseDocument,
+  adminBackfillVideoPacks,
 } from "./video_phrases";
 export {
   adminCreateContentStage,
@@ -1086,6 +1087,9 @@ export { webActivationReminderCron } from "./web_activation_reminders";
 // Управление конфигом Арены из админки. Без документа arena_v2_config/current
 // бэкенд Арены отказывает во всём — это и есть корневая причина «не работает».
 export { adminArenaConfigGet, adminArenaConfigSet } from "./admin_arena_config";
+// Управление конфигом Шпиля из админки (PM-283, TOWER_CONTRACT.md §7): таймер,
+// монеты, боты меняются без релиза через config/spire_v1.
+export { adminSpireConfigGet, adminSpireConfigSet } from "./admin_spire_config";
 // Read-only DRAFT workspace for target-isolated Arena content. The callable
 // surface deliberately has no stage/publish mutation until a reviewed durable
 // transport exists for the large static packages.

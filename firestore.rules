@@ -1920,6 +1920,16 @@ service cloud.firestore {
       allow create, update, delete: if isAdmin();
     }
 
+    // Шпиль (TOWER_CONTRACT.md §7, PM-283): таймер/монеты/боты — читает любой
+    // вошедший клиент для локального расчёта ступени (не через callable на
+    // каждое действие, см. modules/spire/step_machine.ts). Пишет только
+    // сервер (adminSpireConfigSet, callable, Admin SDK bypass), doc id
+    // фиксирован ('spire_v1', SPIRE_CONFIG_DOC_ID в spire_config_contract.ts).
+    match /config/spire_v1 {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+
     // Published home hints are a server-authored content snapshot. Signed-in
     // clients may read only the public snapshot; drafts, history and writes
     // stay behind the admin callable / Admin SDK.

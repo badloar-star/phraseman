@@ -9,15 +9,18 @@ const callable = jest.fn();
 const httpsCallable = jest.fn(() => callable);
 const commitConfirmedExternalShardEvent = jest.fn(async (_event?: unknown) => ({ status: 'applied' }));
 const enqueueLevelSpinStarGrant = jest.fn(async (_grant?: unknown, _options?: unknown) => undefined);
-const grantLocalReportRewardSpins = jest.fn(async (_messageId?: string, _count?: number, _token?: unknown) => true);
 const emitAppEvent = jest.fn();
+// PM-047 (владелец): grantLocalReportRewardSpins больше не импортируется из
+// report_reward_bundle.ts — спин закрывается молча логом [SPIN-RETIRED],
+// без вызова local_level_spins. Мок local_level_spins оставлен пустым на
+// случай, если модуль всё ещё резолвится транзитивно другими импортами.
 let currentUid = 'account-a';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/config', () => ({ IS_EXPO_GO: false, CLOUD_SYNC_ENABLED: true }));
 jest.mock('../app/events', () => ({ emitAppEvent }));
 jest.mock('../app/level_spin_star_grants', () => ({ enqueueLevelSpinStarGrant }));
-jest.mock('../app/local_level_spins', () => ({ grantLocalReportRewardSpins }));
+jest.mock('../app/local_level_spins', () => ({}));
 jest.mock('../app/shards_system', () => ({ commitConfirmedExternalShardEvent }));
 jest.mock('../app/user_id_policy', () => ({
   getCanonicalUserId: jest.fn(async () => currentUid),
@@ -57,10 +60,9 @@ beforeEach(() => {
   });
   commitConfirmedExternalShardEvent.mockResolvedValue({ status: 'applied' });
   enqueueLevelSpinStarGrant.mockResolvedValue(undefined);
-  grantLocalReportRewardSpins.mockResolvedValue(true);
 });
 
-it('delivers pearls, all rune lanes and spins only after the server confirms the exact bundle', async () => {
+it('delivers pearls and all rune lanes, and retires the spins portion without crediting it', async () => {
   await expect(claimReportRewardBundle('reply-1', REPORT_REWARD_TIERS.minor)).resolves.toEqual({
     status: 'claimed',
     rewardBundle: REPORT_REWARD_TIERS.minor,
@@ -77,7 +79,8 @@ it('delivers pearls, all rune lanes and spins only after the server confirms the
     expect.objectContaining({ requestId: 'report_reward_reply-1', lane: 'base', giftId: 'stars_250' }),
     expect.objectContaining({ requestId: 'report_reward_reply-1', lane: 'premium', giftId: 'stars_50' }),
   ]);
-  expect(grantLocalReportRewardSpins).toHaveBeenCalledWith('reply-1', 1, expect.any(Object));
+  // PM-047: спин больше не начисляется — REPORT_REWARD_TIERS.minor.spins === 1,
+  // но claim обязан закрыться без ошибки и без внешнего вызова на выдачу спина.
   expect(Object.keys(storage)).toHaveLength(0);
 });
 
@@ -88,12 +91,10 @@ it('resumes after a rune failure without calling the server or crediting pearls 
     .rejects.toThrow('temporary rune failure');
   expect(callable).toHaveBeenCalledTimes(1);
   expect(commitConfirmedExternalShardEvent).toHaveBeenCalledTimes(1);
-  expect(grantLocalReportRewardSpins).not.toHaveBeenCalled();
 
   await expect(resumePendingReportRewardBundleClaims()).resolves.toEqual({ resolved: 1, pending: 0 });
   expect(callable).toHaveBeenCalledTimes(1);
   expect(commitConfirmedExternalShardEvent).toHaveBeenCalledTimes(1);
-  expect(grantLocalReportRewardSpins).toHaveBeenCalledTimes(1);
   expect(Object.keys(storage)).toHaveLength(0);
 });
 
@@ -115,6 +116,5 @@ it('never credits account A after the server responds to a claim while account B
   await expect(claim).rejects.toThrow('report_reward_account_changed');
   expect(commitConfirmedExternalShardEvent).not.toHaveBeenCalled();
   expect(enqueueLevelSpinStarGrant).not.toHaveBeenCalled();
-  expect(grantLocalReportRewardSpins).not.toHaveBeenCalled();
   expect(Object.keys(storage)).toEqual(['report_reward_bundle_claims_v1:account-a']);
 });

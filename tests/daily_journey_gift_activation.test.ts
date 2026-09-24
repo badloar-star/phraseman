@@ -26,8 +26,8 @@ import {
   confirmDeferredLocalLevelGiftEffectReceipt,
 } from '../app/level_gift_system';
 import { enqueueLevelSpinStarGrant } from '../app/level_spin_star_grants';
-import { grantLocalDailyJourneySpins } from '../app/local_level_spins';
 import { commitShardCreditOperation } from '../app/shards_system';
+import { DebugLogger } from '../app/debug-logger';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('expo-crypto', () => ({
@@ -38,7 +38,12 @@ jest.mock('expo-crypto', () => ({
 jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
 jest.mock('../app/shards_system', () => ({ commitShardCreditOperation: jest.fn() }));
 jest.mock('../app/level_spin_star_grants', () => ({ enqueueLevelSpinStarGrant: jest.fn() }));
-jest.mock('../app/local_level_spins', () => ({ grantLocalDailyJourneySpins: jest.fn() }));
+// PM-047 (владелец): спин убран как механика — daily_journey_gift_activation.ts
+// больше не импортирует функцию выдачи локального спина, spins-награда
+// закрывается молча логом [SPIN-RETIRED] через DebugLogger.
+jest.mock('../app/debug-logger', () => ({
+  DebugLogger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() },
+}));
 jest.mock('../app/energy_system', () => ({
   getEnergyState: jest.fn(),
   getEffectiveMaxEnergyValue: jest.fn(),
@@ -92,7 +97,6 @@ beforeEach(() => {
   });
   (commitShardCreditOperation as jest.Mock).mockResolvedValue({ status: 'applied' });
   (enqueueLevelSpinStarGrant as jest.Mock).mockResolvedValue(undefined);
-  (grantLocalDailyJourneySpins as jest.Mock).mockResolvedValue(true);
   (getEnergyState as jest.Mock).mockResolvedValue({ current: 2, lastRecoveryTime: 123 });
   (getEffectiveMaxEnergyValue as jest.Mock).mockResolvedValue(5);
   (commitDailyJourneyFreezeGrant as jest.Mock).mockResolvedValue({ status: 'applied' });
@@ -113,7 +117,6 @@ it.each(rewardCases)('maps $kind amount $amount exactly and activates only on cl
 
   expect(commitShardCreditOperation).not.toHaveBeenCalled();
   expect(enqueueLevelSpinStarGrant).not.toHaveBeenCalled();
-  expect(grantLocalDailyJourneySpins).not.toHaveBeenCalled();
   expect(getEnergyState).not.toHaveBeenCalled();
   expect(applyGift).not.toHaveBeenCalled();
 
@@ -140,10 +143,11 @@ it.each(rewardCases)('maps $kind amount $amount exactly and activates only on cl
     expect(new Set(calls.map(([input]) => input.requestId)).size).toBe(calls.length);
     calls.forEach(([input]) => expect(input.token).toBe(token));
   } else if (reward.kind === 'spins') {
-    expect(grantLocalDailyJourneySpins).toHaveBeenCalledWith(
-      claimOperationId,
-      reward.amount,
-      token,
+    // PM-047 (владелец): спин как механика убран — claim закрывается без
+    // начисления, вместо выдачи локального спина пишется [SPIN-RETIRED].
+    expect(DebugLogger.info).toHaveBeenCalledWith(
+      '[SPIN-RETIRED]',
+      expect.stringContaining(`op=${claimOperationId}`),
     );
   } else if (reward.kind === 'freeze') {
     expect(commitDailyJourneyFreezeGrant).toHaveBeenCalledWith({
@@ -291,7 +295,9 @@ it('rejects an activation request whose stable claim identity does not match the
     'daily-journey-gift-claim:another-operation',
     token,
   )).rejects.toThrow('daily_journey_claim_identity_mismatch');
-  expect(grantLocalDailyJourneySpins).not.toHaveBeenCalled();
+  // PM-047: identity-мисматч обязан отказать ДО ветки reward.kind==='spins' —
+  // никакого [SPIN-RETIRED] лога тоже быть не должно.
+  expect(DebugLogger.info).not.toHaveBeenCalledWith('[SPIN-RETIRED]', expect.anything());
 });
 
 it('fails closed for a non-catalog reward and leaves the occurrence pending', async () => {

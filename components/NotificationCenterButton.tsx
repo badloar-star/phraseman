@@ -361,7 +361,12 @@ function NotificationCenterButton({
 
   const claimReportReward = useCallback(async (row: UserNotification) => {
     const reward = row.reportReply;
-    const hasReward = !!reward && (reward.rewardBundle.spins > 0 || reward.rewardBundle.runes > 0 || reward.rewardBundle.pearls > 0);
+    // зачем (PM-047, владелец): спин убран из наград — claimReportRewardBundle
+    // теперь молча закрывает spins-часть без начисления ([SPIN-RETIRED] в
+    // report_reward_bundle.ts). hasReward больше не считает spins, чтобы
+    // тир, где остались только спины, не показывал забираемую награду,
+    // которая ничего не даст.
+    const hasReward = !!reward && (reward.rewardBundle.runes > 0 || reward.rewardBundle.pearls > 0);
     if (!reward || !hasReward || reward.claimed || claimingMessageId === reward.messageId) return;
     hapticTap();
     setClaimErrorMessageId(null);
@@ -431,7 +436,7 @@ function NotificationCenterButton({
         <Text style={[styles.detailMeta, { color: t.textGhost }]}>{timeLabel(row.createdAt)}</Text>
         <Text style={[styles.detailTitle, { color: t.textPrimary }]}>{title}</Text>
         {body ? <Text style={[styles.detailBody, { color: t.textMuted }]}>{body}</Text> : null}
-        {(reward.rewardBundle.spins > 0 || reward.rewardBundle.runes > 0 || reward.rewardBundle.pearls > 0) ? (
+        {(reward.rewardBundle.runes > 0 || reward.rewardBundle.pearls > 0) ? (
           <View style={[styles.rewardCard, { backgroundColor: t.bgSurface, borderColor: 'rgba(99,217,143,0.35)' }]}>
             <Reanimated.View entering={reduceMotion ? undefined : ZoomIn.duration(420).springify()} style={styles.rewardTop}>
               <View style={styles.rewardIcon}>
@@ -449,12 +454,9 @@ function NotificationCenterButton({
               </Reanimated.View>
             ) : null}
             <View style={styles.rewardList}>
-              {reward.rewardBundle.spins > 0 ? (
-                <Reanimated.View entering={reduceMotion ? undefined : FadeInDown.delay(90).duration(260)} style={styles.rewardLine}>
-                  <Ionicons name="sync-circle-outline" size={21} color="#7A6FF0" />
-                  <Text style={[styles.rewardLineText, { color: t.textPrimary }]}>{`+${reward.rewardBundle.spins} ${triLang(lang as Lang, { ru: 'спин', uk: 'спін', en: 'spin', es: 'giro', 'pt-BR': 'giro', vi: 'lượt quay', id: 'putaran', tr: 'çevirme', pl: 'obrót' })}`}</Text>
-                </Reanimated.View>
-              ) : null}
+              {/* зачем (PM-047, владелец): строка "+N спин" убрана — спин
+                  больше не начисляется (grantLocalReportRewardSpins no-op),
+                  обещание в UI отменено вместе с механикой. */}
               {reward.rewardBundle.runes > 0 ? (
                 <Reanimated.View entering={reduceMotion ? undefined : FadeInDown.delay(180).duration(260)} style={styles.rewardLine}>
                   <Ionicons name="star-outline" size={21} color="#F6C453" />
@@ -503,8 +505,8 @@ function NotificationCenterButton({
     const hasUnclaimedReportReward = row.type === 'report_reply'
       && !!row.reportReply
       && !row.reportReply.claimed
-      && (row.reportReply.rewardBundle.spins > 0
-        || row.reportReply.rewardBundle.runes > 0
+      // зачем (PM-047): spins больше не считается наградой в UI (см. claimReportReward выше).
+      && (row.reportReply.rewardBundle.runes > 0
         || row.reportReply.rewardBundle.pearls > 0);
     const hasAvatar = !!row.fromAvatar;
     return (

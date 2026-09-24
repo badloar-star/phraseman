@@ -262,7 +262,14 @@ function QuestSheetModal({
               })}
             </Text>
             <View style={styles.rewardsRow}>
-              {quest.rewards.map((reward, index) => {
+              {quest.rewards
+                // зачем (PM-047, владелец): спин как награда убран из механики —
+                // grantLocalQuestSpins стал no-op, поэтому больше нельзя
+                // показывать «+N спинов» как обещание: старые задания в
+                // админке ещё могут нести kind='spins', но начисления не
+                // будет никогда. Не рисуем — не обещаем.
+                .filter((reward) => reward.kind !== 'spins')
+                .map((reward, index) => {
                 const icon = questRewardIcon(reward.kind, themeMode);
                 return (
                   <View

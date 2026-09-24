@@ -17,17 +17,20 @@ import {
   isDailyJourneySpinReward,
   withDailyJourneySpinAutocredit,
 } from '../app/daily_journey_spin_autocredit';
-import { grantLocalDailyJourneySpins } from '../app/local_level_spins';
+import { DebugLogger } from '../app/debug-logger';
 
 /**
  * Сторож правила владельца (2026-09-20): «СПИН НЕ ДОЛЖЕН ИДТИ В РАЗДЕЛ
  * ПОДАРКИ. СПИН СРАЗУ НАЧИСЛЯЕТСЯ НА СЧЕТ СПИНОВ».
  *
- * зачем именно сторож: до правки спин был ЕДИНСТВЕННОЙ наградой, которая ждала
- * ручного тапа в «Подарках» (все прочие источники — лига, арена, квесты,
- * level-up, урок, бонус — начисляли мгновенно). Существующие тесты проверяли
- * лишь то, что начисление корректно, и молчали о том, КОГДА оно происходит,
- * поэтому возврат ручного шага прошёл бы незамеченным.
+ * PM-047 (владелец, 2026-09-24): спин как механика убран целиком —
+ * grantLocalDailyJourneySpins стал always no-op, поэтому «начисление на счёт
+ * спинов» из правила выше больше физически не происходит. Что ДОЛЖНО
+ * сохраниться: спин по-прежнему не ждёт ручного тапа в «Подарках» — он
+ * закрывается МОЛЧА (лог [SPIN-RETIRED], без начисления и без исключения)
+ * в момент выдачи дня или миграцией старых плиток, а не всплывает как
+ * дело, которое надо сделать вручную. Тест переписан под это поведение,
+ * а не удалён — регресс «спин снова ждёт тапа» остаётся ловимым.
  */
 
 jest.mock('@react-native-async-storage/async-storage');
@@ -39,7 +42,6 @@ jest.mock('expo-crypto', () => ({
 jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
 jest.mock('../app/shards_system', () => ({ commitShardCreditOperation: jest.fn() }));
 jest.mock('../app/level_spin_star_grants', () => ({ enqueueLevelSpinStarGrant: jest.fn() }));
-jest.mock('../app/local_level_spins', () => ({ grantLocalDailyJourneySpins: jest.fn() }));
 jest.mock('../app/energy_system', () => ({
   getEnergyState: jest.fn(),
   getEffectiveMaxEnergyValue: jest.fn(),
@@ -49,6 +51,9 @@ jest.mock('../app/level_gift_system', () => ({
   GIFT_POOL: [{ id: 'energy_full' }, { id: 'energy_plus2' }, { id: 'energy_plus3' }],
   applyGift: jest.fn(),
   confirmDeferredLocalLevelGiftEffectReceipt: jest.fn(),
+}));
+jest.mock('../app/debug-logger', () => ({
+  DebugLogger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() },
 }));
 
 const storage: Record<string, string> = {};
@@ -90,13 +95,12 @@ beforeEach(async () => {
   ) => {
     pairs.forEach(([key, value]) => { storage[key] = value; });
   });
-  (grantLocalDailyJourneySpins as jest.Mock).mockReset();
-  (grantLocalDailyJourneySpins as jest.Mock).mockResolvedValue(true);
+  (DebugLogger.info as jest.Mock).mockClear();
   __resetAccountGenerationForTests();
   await beginAccountGeneration(OWNER);
 });
 
-describe('спин никогда не ждёт в «Подарках»', () => {
+describe('спин никогда не ждёт в «Подарках» (PM-047: закрывается молча, не начисляется)', () => {
   it('распознаёт награду-спин и отличает её от прочих', () => {
     expect(isDailyJourneySpinReward({ kind: 'spins' })).toBe(true);
     expect(isDailyJourneySpinReward({ kind: 'pearls' })).toBe(false);
@@ -105,19 +109,17 @@ describe('спин никогда не ждёт в «Подарках»', () => 
     expect(isDailyJourneySpinReward(null)).toBe(false);
   });
 
-  it('спин начисляется в момент выдачи дня, без тапа по плитке', async () => {
+  it('спин закрывается в момент выдачи дня, без тапа по плитке и без ошибки', async () => {
     const token = captureAccountGeneration();
     const commit = withDailyJourneySpinAutocredit(commitDailyJourneyGift);
 
     const committed = await commit(spinInput(4, 2), token);
     expect(committed.status).toBe('committed');
 
-    // Начисление на счёт спинов уже произошло — человек в «Подарки» не заходил.
-    expect(grantLocalDailyJourneySpins).toHaveBeenCalledTimes(1);
-    expect(grantLocalDailyJourneySpins).toHaveBeenCalledWith(
-      expect.stringContaining('daily-journey-gift-claim:'),
-      2,
-      expect.anything(),
+    // Обещание отменено (PM-047): лог о закрытии есть, начисления нет.
+    expect(DebugLogger.info).toHaveBeenCalledWith(
+      '[SPIN-RETIRED]',
+      expect.stringContaining('source=daily_journey'),
     );
 
     // И подарок помечен использованным, то есть плиткой уже не всплывёт.
@@ -134,8 +136,6 @@ describe('спин никогда не ждёт в «Подарках»', () => 
 
     const committed = await commit(pearlsInput(5), token);
 
-    // Жемчужины не трогаем — правило владельца касается только спина.
-    expect(grantLocalDailyJourneySpins).not.toHaveBeenCalled();
     const claimState = await readDailyJourneyGiftClaimState(
       committed.occurrence.operationId,
       token,
@@ -146,25 +146,27 @@ describe('спин никогда не ждёт в «Подарках»', () => 
     expect(projection.pending.map((item) => item.reward.kind)).toContain('pearls');
   });
 
-  it('повторная выдача того же дня не удваивает баланс', async () => {
+  it('повторная выдача того же дня не пишет лог закрытия дважды', async () => {
     const token = captureAccountGeneration();
     const commit = withDailyJourneySpinAutocredit(commitDailyJourneyGift);
 
     await commit(spinInput(6, 3), token);
-    const callsAfterFirst = (grantLocalDailyJourneySpins as jest.Mock).mock.calls.length;
+    const callsAfterFirst = (DebugLogger.info as jest.Mock).mock.calls
+      .filter(([tag]) => tag === '[SPIN-RETIRED]').length;
 
     // Повтор после обрыва сети / перезапуска обязан быть экономически инертным.
     await commit(spinInput(6, 3), token);
-    const granted = (grantLocalDailyJourneySpins as jest.Mock).mock.calls.length;
+    const callsAfterSecond = (DebugLogger.info as jest.Mock).mock.calls
+      .filter(([tag]) => tag === '[SPIN-RETIRED]').length;
 
     expect(callsAfterFirst).toBe(1);
-    expect(granted).toBe(1);
+    expect(callsAfterSecond).toBe(1);
   });
 
-  it('старые плитки со спином начисляются миграцией и исчезают из витрины', async () => {
+  it('старые плитки со спином закрываются миграцией и исчезают из витрины без начисления', async () => {
     const token = captureAccountGeneration();
 
-    // Плитка, заработанная ДО обновления: коммит без автоклейма.
+    // Плитка, заработанная ДО отмены механики: коммит без автозакрытия.
     const legacy = await commitDailyJourneyGift(spinInput(7, 5), token);
     expect(
       await readDailyJourneyGiftClaimState(legacy.occurrence.operationId, token),
@@ -172,32 +174,15 @@ describe('спин никогда не ждёт в «Подарках»', () => 
 
     const first = await autocreditPendingDailyJourneySpins(token);
     expect(first.credited).toBe(1);
-    expect(grantLocalDailyJourneySpins).toHaveBeenCalledWith(
-      expect.stringContaining('daily-journey-gift-claim:'),
-      5,
-      expect.anything(),
-    );
+    expect(first.failed).toBe(0);
     expect(
       await readDailyJourneyGiftClaimState(legacy.occurrence.operationId, token),
     ).toBe('claimed');
 
-    // Второй запуск ничего не находит — повторно спин не выдаётся.
-    (grantLocalDailyJourneySpins as jest.Mock).mockClear();
+    // Второй запуск ничего не находит — повторно не закрывает и не логирует.
+    (DebugLogger.info as jest.Mock).mockClear();
     const second = await autocreditPendingDailyJourneySpins(token);
     expect(second.credited).toBe(0);
-    expect(grantLocalDailyJourneySpins).not.toHaveBeenCalled();
-  });
-
-  it('сбой начисления не роняет выдачу дня и оставляет награду в журнале', async () => {
-    (grantLocalDailyJourneySpins as jest.Mock).mockResolvedValue(false);
-    const token = captureAccountGeneration();
-    const commit = withDailyJourneySpinAutocredit(commitDailyJourneyGift);
-
-    // Выдача дня обязана пройти: награда не теряется, её подберёт миграция.
-    const committed = await commit(spinInput(8, 1), token);
-    expect(committed.status).toBe('committed');
-    expect(
-      await readDailyJourneyGiftClaimState(committed.occurrence.operationId, token),
-    ).toBe('pending');
+    expect(DebugLogger.info).not.toHaveBeenCalledWith('[SPIN-RETIRED]', expect.anything());
   });
 });

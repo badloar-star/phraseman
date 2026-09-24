@@ -434,9 +434,16 @@ async function applyQuestRewards(
         break;
       }
       case 'spins': {
-        const { grantLocalQuestSpins } = await import('./local_level_spins');
-        const granted = await grantLocalQuestSpins(`${questId}_${index}`, reward.amount, token);
-        console.log(`${LOG} apply_spins quest=${questId} amount=${reward.amount} granted=${granted}`);
+        // зачем (PM-047, владелец): спин как механика убран — сервер может
+        // засчитать задание с наградой-спином (старые задания в админке),
+        // но grantLocalQuestSpins теперь always no-op. Раньше человек видел
+        // «награда получена», но спин на счёт не приходил ни разу — молчаливый
+        // ноль. Обещание отменено: закрываем награду явным логом, ничего не
+        // начисляя взамен (компенсация — отдельная миграция D51).
+        console.log(
+          `${LOG} [SPIN-RETIRED] source=quest op=${questId}_${index} amount=${reward.amount} `
+          + 'promised=spins action=closed_no_credit reason=PM-047_spin_mechanic_retired',
+        );
         break;
       }
       case 'plus_days':

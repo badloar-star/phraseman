@@ -23,21 +23,22 @@ describe('report reward bundle client contract', () => {
     const server = source.indexOf('const server = await callClaim');
     const pearls = source.indexOf('await commitConfirmedExternalShardEvent', server);
     const runes = source.indexOf('await creditRunes', server);
-    const spins = source.indexOf('grantLocalReportRewardSpins', server);
     expect(server).toBeGreaterThanOrEqual(0);
     expect(pearls).toBeGreaterThan(server);
     expect(runes).toBeGreaterThan(pearls);
-    expect(spins).toBeGreaterThan(runes);
     expect(source).toContain("source: 'report_reply'");
     expect(source).toContain("reason: 'report_reward_bundle_claim'");
   });
 
-  it('mints deterministic spin IDs for the exact report and ordinal', () => {
-    const spins = read('app/local_level_spins.ts');
-    const ids = read('app/level_spin_credit_ids.ts');
-    expect(spins).toContain('grantLocalReportRewardSpins');
-    expect(spins).toContain('`local_spin_report_${safeMessageId}_${index + 1}`');
-    expect(ids).toContain('chest|report');
+  // PM-047 (владелец): спин убран как механика — grantLocalReportRewardSpins
+  // больше не вызывается, spins-часть бандла закрывается молча логом
+  // [SPIN-RETIRED] вместо начисления. Тест старого правила (спин начислялся
+  // детерминированным id) заменён проверкой, что обещание отменено.
+  it('retires the spins portion of a report reward without crediting or retrying', () => {
+    const source = read('app/report_reward_bundle.ts');
+    expect(source).not.toContain('grantLocalReportRewardSpins');
+    expect(source).not.toContain("throw new Error('report_reward_spins_failed')");
+    expect(source).toContain('[SPIN-RETIRED]');
   });
 
   it('replays rune and spin extras from the immutable cloud event before marking it applied', () => {

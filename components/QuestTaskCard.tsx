@@ -149,7 +149,13 @@ function QuestTaskCard({ quest, onOpen }: QuestTaskCardProps) {
 
         {showRewards ? (
           <View style={styles.rewards}>
-            {quest.rewards.slice(0, 2).map((reward, index) => {
+            {quest.rewards
+              // зачем (PM-047, владелец): спин убран из механики — старые
+              // задания в админке могут ещё нести kind='spins', но начисления
+              // больше не будет (grantLocalQuestSpins no-op). Не показываем
+              // плашку с обещанием, которое не сдержится.
+              .filter((reward) => reward.kind !== 'spins')
+              .slice(0, 2).map((reward, index) => {
               const icon = questRewardIcon(reward.kind, themeMode);
               return (
                 <View key={`${reward.kind}-${index}`} style={styles.rewardChip}>

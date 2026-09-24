@@ -8,7 +8,6 @@ import {
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { emitAppEvent } from './events';
 import { enqueueLevelSpinStarGrant } from './level_spin_star_grants';
-import { grantLocalReportRewardSpins } from './local_level_spins';
 import { commitConfirmedExternalShardEvent } from './shards_system';
 import { getCanonicalUserId } from './user_id_policy';
 import { DebugLogger } from './debug-logger';
@@ -191,9 +190,18 @@ export async function applyConfirmedReportRewardBundleExtrasFromEvent(
   assertCurrent(token, owner);
   if (rewardBundle.runes > 0) await creditRunes(cleanMessageId, rewardBundle, token);
   assertCurrent(token, owner);
-  if (rewardBundle.spins > 0
-      && !await grantLocalReportRewardSpins(cleanMessageId, rewardBundle.spins, token)) {
-    throw new Error('report_reward_spins_failed');
+  // зачем (PM-047, владелец): спин как механика убран — старая функция выдачи
+  // локального спина за отчёт стала всегда-провальной, и эта ветка раньше
+  // бросала ошибку на каждый ретрай синхронизатора внешних событий —
+  // админ-награда со спином ретраилась бесконечно. Обещание спина отменено —
+  // закрываем без начисления.
+  if (rewardBundle.spins > 0) {
+    DebugLogger.info(
+      'report_reward_bundle:spin_retired',
+      `[SPIN-RETIRED] source=admin_report_reward op=${cleanMessageId}`
+      + ` amount=${rewardBundle.spins} promised=spins action=closed_no_credit`
+      + ' reason=PM-047_spin_mechanic_retired',
+    );
   }
   assertCurrent(token, owner);
   emitAppEvent('app_messages_local_changed');
@@ -236,9 +244,15 @@ async function processClaim(claim: PendingClaim, token: AccountGenerationToken, 
     await upsertPending(owner, current);
   }
   if (!current.spinsCredited && current.rewardBundle.spins > 0) {
-    if (!await grantLocalReportRewardSpins(current.messageId, current.rewardBundle.spins, token)) {
-      throw new Error('report_reward_spins_failed');
-    }
+    // зачем (PM-047): та же отмена обещания спина, что в
+    // applyConfirmedReportRewardBundleExtrasFromEvent — иначе локальная
+    // очередь claimReportRewardBundle ретраит вечно на первом же заходе.
+    DebugLogger.info(
+      'report_reward_bundle:spin_retired',
+      `[SPIN-RETIRED] source=report_reward_claim op=${current.messageId}`
+      + ` amount=${current.rewardBundle.spins} promised=spins action=closed_no_credit`
+      + ' reason=PM-047_spin_mechanic_retired',
+    );
     current = { ...current, spinsCredited: true, updatedAtMs: Date.now() };
     await upsertPending(owner, current);
   }

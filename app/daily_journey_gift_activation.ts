@@ -15,8 +15,8 @@ import {
   type GiftDef,
 } from './level_gift_system';
 import { enqueueLevelSpinStarGrant } from './level_spin_star_grants';
-import { grantLocalDailyJourneySpins } from './local_level_spins';
 import { commitShardCreditOperation } from './shards_system';
+import { DebugLogger } from './debug-logger';
 
 const RUNE_DENOMINATIONS = Object.freeze([1_000, 500, 250, 100, 50, 20, 10] as const);
 const SUPPORTED_AMOUNTS: Readonly<Record<DailyJourneyGiftOccurrenceV1['reward']['kind'], readonly number[]>> = Object.freeze({
@@ -186,10 +186,17 @@ export async function applyDailyJourneyGiftActivation(
       return;
     }
     case 'spins':
-      if (!await grantLocalDailyJourneySpins(claimOperationId, occurrence.reward.amount, token)) {
-        assertCurrent(token, occurrence.ownerStableId);
-        throw new Error('daily_journey_activation_effect_failed');
-      }
+      // зачем (PM-047, владелец): спин как механика убран — grantLocalDailyJourneySpins
+      // теперь всегда no-op (false), поэтому эта ветка раньше бросала
+      // daily_journey_activation_effect_failed на КАЖДОМ заходе в «Подарки»
+      // (autocreditPendingDailyJourneySpins вызывается там при каждой загрузке).
+      // Обещание спина отменено — закрываем occurrence как обработанную, ничего
+      // не начисляя взамен (компенсация — отдельная миграция D51/GIFTS_TO_COINS).
+      DebugLogger.info(
+        '[SPIN-RETIRED]',
+        `source=daily_journey op=${claimOperationId} amount=${occurrence.reward.amount}`
+        + ' promised=spins action=closed_no_credit reason=PM-047_spin_mechanic_retired',
+      );
       assertCurrent(token, occurrence.ownerStableId);
       return;
     case 'energy_full':

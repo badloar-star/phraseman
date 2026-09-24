@@ -4402,7 +4402,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -4411,8 +4411,10 @@
       {
         "id": "PM-091-A1",
         "text": "Открытие/переворот/следующая карточка доступны без лишних панелей",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "проверка PhraseCard.tsx"
+        ]
       },
       {
         "id": "PM-091-A2",
@@ -4429,15 +4431,19 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "проверка PhraseCard.tsx"
+    ],
+    "notes": [
+      "не задет соседними правками сессии"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
+    "actual_model": "sonnet-5",
     "actual_reasoning": null
   },
   {
@@ -4449,7 +4455,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -4458,8 +4464,10 @@
       {
         "id": "PM-092-A1",
         "text": "Мои/официальные/из видео различимы без цветовой мешанины",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commit 378ac4081"
+        ]
       },
       {
         "id": "PM-092-A2",
@@ -4476,15 +4484,19 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "commit 378ac4081"
+    ],
+    "notes": [
+      "DeckPickerSheet: квадратные плитки → компактный список. Каталог сообщества (сетка 3-в-ряд) НЕ переделан — делит файл с активной сессией наборов из видео, риск конфликта"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
+    "actual_model": "sonnet-5",
     "actual_reasoning": null
   },
   {
@@ -4496,7 +4508,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -4505,8 +4517,10 @@
       {
         "id": "PM-093-A1",
         "text": "Описание объясняет одну полезную вещь, не пересказывает очевидные кнопки",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commits 13c9f3012 8d38d6733"
+        ]
       },
       {
         "id": "PM-093-A2",
@@ -4523,15 +4537,19 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "commits 13c9f3012 8d38d6733"
+    ],
+    "notes": [
+      "D20: короткие описания у «Мои наборы» и «Наборы сообщества»"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
+    "actual_model": "sonnet-5",
     "actual_reasoning": null
   },
   {
@@ -4543,7 +4561,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -4552,8 +4570,10 @@
       {
         "id": "PM-094-A1",
         "text": "Для каждого существующего подраздела есть одна осмысленная строка или согласованное исключение",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commits 13c9f3012 8d38d6733"
+        ]
       },
       {
         "id": "PM-094-A2",
@@ -4570,15 +4590,17 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
+    "evidence": [
+      "commits 13c9f3012 8d38d6733"
+    ],
     "notes": [],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
+    "actual_model": "sonnet-5",
     "actual_reasoning": null
   },
   {
@@ -4590,7 +4612,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -4599,8 +4621,10 @@
       {
         "id": "PM-095-A1",
         "text": "Пустой результат, диакритика, регистр и офлайн проверены",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commit 13c9f3012"
+        ]
       },
       {
         "id": "PM-095-A2",
@@ -4617,15 +4641,19 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "commit 13c9f3012"
+    ],
+    "notes": [
+      "локальный поиск по названию, без сети"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
+    "actual_model": "sonnet-5",
     "actual_reasoning": null
   },
   {
@@ -4637,7 +4665,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -4646,8 +4674,10 @@
       {
         "id": "PM-096-A1",
         "text": "Порядок стабилен",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commit 13c9f3012"
+        ]
       },
       {
         "id": "PM-096-A2",
@@ -4670,15 +4700,19 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "commit 13c9f3012"
+    ],
+    "notes": [
+      "единая сортировка «Мои наборы», сохраняется в AsyncStorage"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
+    "actual_model": "sonnet-5",
     "actual_reasoning": null
   },
   {
@@ -4690,7 +4724,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -4699,8 +4733,10 @@
       {
         "id": "PM-097-A1",
         "text": "«Лицевая сторона» / «Обратная сторона» подходят неязыковым карточкам",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "проверка"
+        ]
       },
       {
         "id": "PM-097-A2",
@@ -4717,15 +4753,19 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "проверка"
+    ],
+    "notes": [
+      "поля стороны уже нейтральны (Передняя/Задняя), PM-065 не выполнялась и ничего не задела"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
+    "actual_model": "sonnet-5",
     "actual_reasoning": null
   },
   {
@@ -4737,7 +4777,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "needs_decision",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -4767,7 +4807,9 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": [
+      "Один packLanguage на весь набор, не по сторонам. Требует смены модели данных: что с уже созданными наборами, TTS-голос по стороне. Нужно решение владельца + DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,

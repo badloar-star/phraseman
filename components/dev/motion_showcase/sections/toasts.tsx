@@ -1,8 +1,10 @@
 // ─── Витрина движения · шард «Тосты» ───
 // зачем: каждый пункт запускает РЕАЛЬНУЮ поверхность приложения (не бутафорию).
 // Шард пополняется независимо от других (мультиагентная параллель без конфликтов).
+// зачем (PM-053): AchievementToast удалён целиком (владелец — «тосты тосты
+// тосты достижений»), пункты витрины для него убраны вместе с компонентом.
 // Семья: ActionToast (5 типов через emitAppEvent('action_toast', …)),
-// AchievementToast, MedalToast (демо-медаль), InGameToast — render
+// MedalToast (демо-медаль), InGameToast — render
 // с демо-пропсами; StreakRiskToastHost/BillingIssueToastHost — фоновые хосты
 // без своего UI, поэтому note с честной причиной (условия показа завязаны на
 // время суток / AsyncStorage / RevenueCat, безопасного мгновенного триггера нет).
@@ -136,19 +138,6 @@ export const SECTION: ShowcaseSection = {
       detail: cs('real_event'),
       kind: 'event',
       fire: () => emitAppEvent('action_toast', { ...actionToastTri('reward', copy('reward_1')), motionVariant: 'hybrid' }),
-    },
-    {
-      id: 'achievement-toast',
-      title: cs('achievement_toast_title'),
-      kind: 'note',
-      note: cs('achievement_toast_note'),
-    },
-    {
-      id: 'achievement-toast-hybrid',
-      approval: 'pending',
-      title: cs('achievement_toast_hybrid_title'),
-      kind: 'note',
-      note: cs('achievement_toast_hybrid_note'),
     },
     {
       id: 'medal-toast',

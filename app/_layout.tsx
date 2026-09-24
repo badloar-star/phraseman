@@ -1465,6 +1465,25 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       .catch(() => { /* durable outbox remains pending for the next active pass */ });
   }, [accountGeneration, appIsActive, effectiveShowOnboarding, firstContentReady, isBanned, ready]);
 
+  // зачем (D48, владелец): озвучку ТЕКУЩЕГО и СЛЕДУЮЩЕГО обычного урока (V1)
+  // качаем тихо в фоне заранее, до входа в урок — чтобы к моменту открытия
+  // диск уже был тёплым и первые фразы не звучали роботом expo-speech. НЕ на
+  // первом кадре (D47/22.09 показал, чем это кончается для V2) — модуль
+  // сам ждёт ~20 с внутри себя и качается ленивым import(), парсится только
+  // когда таймер реально сработал, а не на этом рендере.
+  useEffect(() => {
+    if (!ready || !firstContentReady || !appIsActive || effectiveShowOnboarding || isBanned) return;
+    void import('../hooks/phrase_audio_ahead_prefetch').then(
+      ({ scheduleAheadPhraseAudioPrefetch }) => scheduleAheadPhraseAudioPrefetch(),
+    ).catch((error: unknown) => {
+      DebugLogger.error(
+        'phrase_audio_ahead_prefetch:schedule',
+        error instanceof Error ? error : new Error(String(error)),
+        'warning',
+      );
+    });
+  }, [appIsActive, effectiveShowOnboarding, isBanned, firstContentReady, ready]);
+
   const closePersonalAdminMessage = useCallback(async (messageId: string) => {
     const ownerUid = accountGeneration.stableId;
     setPersonalAdminMessage((current) => current?.id === messageId ? null : current);
@@ -3655,7 +3674,6 @@ export default function RootLayout() {
                         Ключ onboardingWelcome стоит первым в приоритете арбитра,
                         поэтому новичок видит его раньше наград и обновлений. */}
                     <OnboardingWelcomeHost />
-                    <AchievementToast />
                     <ActionToast />
                     <GlobalLevelUpRewards />
                     <GlobalShardsEarnedHost />
@@ -3675,7 +3693,6 @@ export default function RootLayout() {
                     <PhoneStateRecoveryScreen />
                     <TapLatencyNavProbe />
                 </OverlayArbiterProvider>
-              </AchievementProvider>
             </EnergyProvider>
             </StudyTargetProvider>
           </LangProvider>

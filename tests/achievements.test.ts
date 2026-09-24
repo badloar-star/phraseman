@@ -155,17 +155,14 @@ describe('achievements', () => {
 
   it('shares the generated image registry with compact achievement surfaces', () => {
     const statsSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'streak_stats.tsx'), 'utf8');
-    const toastSource = fs.readFileSync(path.join(__dirname, '..', 'components', 'AchievementToast.tsx'), 'utf8');
 
     // зачем: цель контракта прежняя — компактные поверхности берут арт из общего
-    // источника, а не заводят свою копию реестра. Изменился только вход: теперь
-    // это achievementImageSource (бандл + URL) либо общий компонент AchievementArt.
+    // источника, а не заводят свою копию реестра. AchievementToast (второй
+    // потребитель achievementImageSource) удалён целиком в PM-053.
     expect(statsSource).toContain("import AchievementArt from '../components/AchievementArt'");
-    expect(toastSource).toContain("import { achievementImageSource } from '../constants/achievementImageAssets'");
 
-    // Ни одна поверхность не должна require-ить арт напрямую в обход реестра.
+    // Поверхность не должна require-ить арт напрямую в обход реестра.
     expect(statsSource).not.toMatch(/require\('\.\.\/assets\/images\/achievements\//);
-    expect(toastSource).not.toMatch(/require\('\.\.\/assets\/images\/achievements\//);
   });
 
   it('renders generated achievement art immediately and keeps fallback only for image errors', () => {

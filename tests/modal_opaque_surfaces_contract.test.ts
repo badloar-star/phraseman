@@ -17,7 +17,7 @@ describe('modal opaque surface contract', () => {
   it('does not use transparent backgrounds for reward modal card containers', () => {
     const files = [
       'app/_layout.tsx',
-      'components/AchievementToast.tsx',
+      // AchievementToast.tsx удалён в PM-053 (владелец — «тосты тосты тосты достижений»).
       'components/ActivityHeatmap365.tsx',
       'components/LevelGiftModal.tsx',
       'components/StreakReviveModal.tsx',

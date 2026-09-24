@@ -3922,7 +3922,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -3931,8 +3931,10 @@
       {
         "id": "PM-081-A1",
         "text": "Одинаковая ёмкость в runtime, серверной проекции, админке и тестах",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commit 2eeef959e"
+        ]
       },
       {
         "id": "PM-081-A2",
@@ -3949,16 +3951,20 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Opus 5.5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "commit 2eeef959e"
+    ],
+    "notes": [
+      "ёмкость 5, бонусы лиги/уровня карточки убраны, переход старых запасов (>5→5, журнал срезан, лог [ENERGY-CAP])"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "opus-5.5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-082",
@@ -3969,7 +3975,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -3978,8 +3984,10 @@
       {
         "id": "PM-082-A1",
         "text": "Единая таблица: платное энергией учебное занятие 1",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commit a83f4a46b"
+        ]
       },
       {
         "id": "PM-082-A2",
@@ -3998,16 +4006,20 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Opus 5.5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "commit a83f4a46b"
+    ],
+    "notes": [
+      "единая цена 1 за любое занятие (было 0/10/20/25), теория/видео = 0"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "opus-5.5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-083",
@@ -4018,7 +4030,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -4027,8 +4039,10 @@
       {
         "id": "PM-083-A1",
         "text": "Не нужен cron на каждого пользователя",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commit cd42985e7"
+        ]
       },
       {
         "id": "PM-083-A2",
@@ -4045,16 +4059,20 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Opus 5.5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "commit cd42985e7"
+    ],
+    "notes": [
+      "интервал 10 мин, ленивый пересчёт по времени сохранения (уже был), потолок 5 при долгом офлайне, защита от перевода часов назад"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "opus-5.5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-084",
@@ -4065,7 +4083,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "blocked",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -4101,7 +4119,9 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": [
+      "🔴 НАЙДЕНА ПРОБЛЕМА: урок (lesson1), Learning V2, слова урока, неправильные глаголы, предлоги, личный план, диалог списывают энергию ПРИ ОТКРЫТИИ ЭКРАНА, не при первом вопросе — и списывают ПОВТОРНО при каждом повторном входе в незавершённое занятие. Карточки/экзамены/диагностика уже корректны (список при реальном старте, без повтора). Нужно решение владельца: сколько живёт 'начатое, но не законченное' занятие (предложение помощника: как у карточек — до завершения или 24ч). app/learning-v2/session/[id].tsx занят другой сессией — перенос списания отложен"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -4264,7 +4284,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "needs_decision",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -4288,7 +4308,9 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": [
+      "Дозаправка за жемчуг: цена сохранена как была (20 за полный бак) — при запасе 5 это будет казаться дорого сравнительно, но менять цену без решения владельца не стал (жемчуг всё равно переводится в монеты, PM-059). Подарки энергии +20/+40/+60/+200 не вписываются в запас 5 — не удалены, ждут решения"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,

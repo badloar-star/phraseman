@@ -1,6 +1,8 @@
 # Task packet: концепт «Башни» — замена Лиги и Арены (PhraseMan 2.0)
 
 Governance-ID: TG-0836D6356A0B
+Governance-ID: TG-50A4F2DECD5E
+(второй ход: запись D54/D55 в пакет 2.0, эпик E25, preflight PM-270 — только документация)
 Status: In progress
 Owner: сессия «концепт башни» (Opus 5.5), владелец badloar@gmail.com
 Related epic/enabler: E15 / PM-160 (владелец 2026-09-24 перевёл башню из LATER в релиз 2.0)

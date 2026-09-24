@@ -12132,7 +12132,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -12141,14 +12141,18 @@
       {
         "id": "PM-270-A1",
         "text": "Посчитан объём готовых заданий на язык × шпиль × тип (включая голос); unknown не заменён нулём",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "evidence/PM-270_pool_preflight.md"
+        ]
       },
       {
         "id": "PM-270-A2",
         "text": "Вывод: хватает ли на вершину (135 ступеней) и повторы; список дыр по языкам (О2, О3)",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "evidence/PM-270_pool_preflight.md"
+        ]
       }
     ],
     "depends_on": [],
@@ -12157,18 +12161,21 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude (сессия «Башня»)",
     "reviewer": null,
-    "evidence": [],
+    "evidence": [
+      "evidence/PM-270_pool_preflight.md"
+    ],
     "notes": [
-      "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md"
+      "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md",
+      "en-пул в Firestore не посчитан (unknown, без запросов к проду); es/de/fr по 4000, A1–A2, без слуха/голоса, BLOCK. Решения владельца T39–T42 → D55."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
+    "kind": "audit",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "claude-opus-5-5",
+    "actual_reasoning": "medium"
   },
   {
     "id": "PM-271",
@@ -12250,7 +12257,8 @@
       }
     ],
     "depends_on": [
-      "PM-271"
+      "PM-271",
+      "PM-285"
     ],
     "gates": [
       "BASELINE_SHA_APPROVED",
@@ -12853,6 +12861,156 @@
     "evidence": [],
     "notes": [
       "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md"
+    ],
+    "actual_cost": null,
+    "kind": "unclassified",
+    "review_verdict": null,
+    "gate_evidence": {},
+    "actual_model": null,
+    "actual_reasoning": null
+  },
+  {
+    "id": "PM-285",
+    "epic": "E25",
+    "title": "Шпиль: починить дистракторы «угадай фразу» до запуска",
+    "requirement_ids": [
+      "R270"
+    ],
+    "basis": "OWNER",
+    "stage": "C",
+    "status": "planned",
+    "profile": "S1",
+    "model": "gpt-6-sol",
+    "reasoning": "medium",
+    "spec": "docs/TOWER.md",
+    "acceptance": [
+      {
+        "id": "PM-285-A1",
+        "text": "Во всех 4 языках неверные варианты guess_phrase — только грамматически неверные (правило владельца)",
+        "accepted": false,
+        "evidence": []
+      },
+      {
+        "id": "PM-285-A2",
+        "text": "Повторный аудит по методике ARENA_DISTRACTOR_AUDIT: 0 смысловых подмен",
+        "accepted": false,
+        "evidence": []
+      }
+    ],
+    "depends_on": [
+      "PM-270"
+    ],
+    "gates": [
+      "BASELINE_SHA_APPROVED",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED"
+    ],
+    "audit_sha": null,
+    "result_sha": null,
+    "owner": null,
+    "reviewer": null,
+    "evidence": [],
+    "notes": [
+      "Решение владельца 2026-09-24, D55 (T39–T42); evidence/PM-270_pool_preflight.md"
+    ],
+    "actual_cost": null,
+    "kind": "unclassified",
+    "review_verdict": null,
+    "gate_evidence": {},
+    "actual_model": null,
+    "actual_reasoning": null
+  },
+  {
+    "id": "PM-286",
+    "epic": "E25",
+    "title": "Шпиль: задания на слух и голосом из Learning V2",
+    "requirement_ids": [
+      "R270"
+    ],
+    "basis": "OWNER",
+    "stage": "C",
+    "status": "planned",
+    "profile": "S1",
+    "model": "gpt-6-sol",
+    "reasoning": "medium",
+    "spec": "docs/TOWER.md",
+    "acceptance": [
+      {
+        "id": "PM-286-A1",
+        "text": "Найдены V2-тексты/режимы listen/voice по языкам; собран конвертер в формат задания Шпиля",
+        "accepted": false,
+        "evidence": []
+      },
+      {
+        "id": "PM-286-A2",
+        "text": "Звук: стартовый пакет V2 или голос телефона (D47); проверено на устройстве, что звучит",
+        "accepted": false,
+        "evidence": []
+      }
+    ],
+    "depends_on": [
+      "PM-270"
+    ],
+    "gates": [
+      "BASELINE_SHA_APPROVED",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED"
+    ],
+    "audit_sha": null,
+    "result_sha": null,
+    "owner": null,
+    "reviewer": null,
+    "evidence": [],
+    "notes": [
+      "Решение владельца 2026-09-24, D55 (T39–T42); evidence/PM-270_pool_preflight.md"
+    ],
+    "actual_cost": null,
+    "kind": "unclassified",
+    "review_verdict": null,
+    "gate_evidence": {},
+    "actual_model": null,
+    "actual_reasoning": null
+  },
+  {
+    "id": "PM-287",
+    "epic": "E25",
+    "title": "Шпиль: публикация пулов es/de/fr без проверки носителем",
+    "requirement_ids": [
+      "R270"
+    ],
+    "basis": "OWNER",
+    "stage": "C",
+    "status": "planned",
+    "profile": "S1",
+    "model": "gpt-6-sol",
+    "reasoning": "medium",
+    "spec": "docs/TOWER.md",
+    "acceptance": [
+      {
+        "id": "PM-287-A1",
+        "text": "Пулы опубликованы через админку после PM-285; язык включается в Шпиле сам после публикации",
+        "accepted": false,
+        "evidence": []
+      },
+      {
+        "id": "PM-287-A2",
+        "text": "В админке есть быстрое снятие задания, на которое пожаловались",
+        "accepted": false,
+        "evidence": []
+      }
+    ],
+    "depends_on": [
+      "PM-285"
+    ],
+    "gates": [
+      "BASELINE_SHA_APPROVED",
+      "OWNER_DECISION_RECORDED"
+    ],
+    "audit_sha": null,
+    "result_sha": null,
+    "owner": null,
+    "reviewer": null,
+    "evidence": [],
+    "notes": [
+      "Решение владельца 2026-09-24, D55 (T39–T42); evidence/PM-270_pool_preflight.md"
     ],
     "actual_cost": null,
     "kind": "unclassified",

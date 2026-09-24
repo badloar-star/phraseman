@@ -124,8 +124,7 @@ import HomeRuneBalance, { HOME_RUNE_ICON_SOURCE } from '../../components/home/Ho
 // app/reward_flight_queue.ts, оркестрацию держит хук — home.tsx и так огромен.
 import HomeRewardCollectFlight from '../../components/home/HomeRewardCollectFlight';
 import { useHomeRewardCollect } from '../../components/home/use_home_reward_collect';
-import { levelUpSpinPlaqueDelayMs, useHomeLevelUpCelebration } from '../../components/home/use_home_level_up_celebration';
-import { SpinRewardPlaque } from '../../components/SpinRewardPlaque';
+import { useHomeLevelUpCelebration } from '../../components/home/use_home_level_up_celebration';
 import { useHomeXpBarFill } from '../../components/home/use_home_xp_bar_fill';
 import { HOME_REWARD_DEMO_MODES } from '../reward_flight_particles';
 // зачем отдельное имя: в этом файле `Animated` — из react-native и им пользуются
@@ -764,7 +763,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 router.push('/referrals' as any);
                 return;
             case 'spin_wheel':
-                router.push('/level_reward_spin' as any);
+                // зачем (PM-046, владелец): раздел /level_reward_spin удалён —
+                // задание-квест такого типа больше никуда вести не может.
+                // Оставаться на Главной безопаснее, чем 404 на снятом маршруте.
                 return;
             case 'watch_video':
                 router.push('/lingman_videos' as any);
@@ -1865,14 +1866,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // что наливает полосу, и на время цепочки глушит обычное наливание.
     const homeLevelUpCelebrationRef = useRef<((from: number, to: number) => void) | null>(null);
     const [homeLevelUpPlaying, setHomeLevelUpPlaying] = useState(false);
-    /**
-     * Чек спина, показываемого плашкой «+1 СПИН» после цепочки повышения.
-     *
-     * зачем (владелец, 2026-09-01): «спин появляется отдельно сразу же за
-     * этим». Это ТА ЖЕ плашка, что в результатах урока и арены — единый вид
-     * награды во всех местах. null — плашки нет.
-     */
-    const [homeLevelUpSpinReceipt, setHomeLevelUpSpinReceipt] = useState<string | null>(null);
+    // зачем (PM-046, владелец): homeLevelUpSpinReceipt (чек плашки «+1 СПИН»
+    // после повышения уровня) и её таймер удалены вместе со спином — ниже
+    // больше никто её не выставляет и не показывает.
     /** Таймеры цепочки: без уборки плашка всплыла бы на уже покинутом экране. */
     const celebrationTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
     const homeXpBarFill = useHomeXpBarFill(
@@ -3488,10 +3484,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             });
         }
     }, [focusTick, homeRuntimeActive, shardsAnim, shardsBonusAnim]);
-    // зачем (PM-037, владелец 2026-09-24): плавающая кнопка спина на карточке
-    // уровня удалена вместе с балансом/пульсом, которые существовали только
-    // ради неё (peekLevelSpinBalance/readLocalLevelSpinBalance больше не
-    // читаются на Главной). Сам раздел /level_reward_spin не удалён.
+    // зачем (PM-037/PM-046, владелец 2026-09-24): плавающая кнопка спина на
+    // карточке уровня удалена вместе с балансом/пульсом, которые существовали
+    // только ради неё (peekLevelSpinBalance/readLocalLevelSpinBalance больше
+    // не читаются на Главной). Сам раздел /level_reward_spin теперь тоже
+    // удалён (PM-046) — спин убран как механика целиком.
 
     // ── Повышение уровня: проигрываем на Главной, когда экран реально показан ──
     //
@@ -3522,21 +3519,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             if (!celebration) return;
             if (__DEV__) console.log('[HOME-LEVELUP] playing on home', { celebration, totalXP });
             play(celebration.fromLevel, celebration.toLevel);
-            // Плашка «+1 СПИН» — та же самая, что показывают результаты урока и
-            // арены (components/SpinRewardPlaque). Раньше спин за УРОВЕНЬ она
-            // показывала внутри удалённой модалки поздравления; владелец
-            // 2026-09-01: «спин появляется отдельно сразу же за этим». Ждём
-            // конца цепочки, чтобы плашка не перебивала прыжок аватарки.
-            //
-            // receiptId — уровень: тот же чек, что и у durable-начисления
-            // спина, поэтому повторный заход на Главную не проиграет плашку
-            // второй раз (SpinRewardPlaque дедуплицирует по нему сам).
-            const spinChainMs = levelUpSpinPlaqueDelayMs(celebration.fromLevel, celebration.toLevel);
-            const plaqueTimer = setTimeout(() => {
-                if (cancelled) return;
-                setHomeLevelUpSpinReceipt(`level_spin_v1_${String(celebration.toLevel).padStart(3, '0')}`);
-            }, spinChainMs);
-            celebrationTimersRef.current.push(plaqueTimer);
+            // зачем (PM-046, владелец): плашка «+1 СПИН» после повышения
+            // уровня удалена вместе со спином — таймер и setHomeLevelUpSpinReceipt
+            // сняты, сама анимация повышения уровня (play выше) не тронута.
             // Человек ТОЧНО увидел новый уровень — на этот момент повешен
             // разовый апселл премиума на 5-м уровне (раньше он висел на кнопке
             // «Готово» удалённой модалки поздравления).
@@ -4814,12 +4799,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     ) : null}
                   </TouchableOpacity>
                 ) : null}
-                {/* зачем (PM-037, владелец 2026-09-24): иконки спина и подарка
-                    убраны из хедера Главной. Разделы (/level_reward_spin,
-                    /level_gifts_inventory) не удалены — только точка входа
-                    отсюда. Невидимая цель полёта подарка (home-gift-entry-target,
-                    строка ~4664) не трогаем: ею всё ещё пользуется анимация
-                    доставки подарка дня (Daily Journey), это отдельная механика. */}
+                {/* зачем (PM-037/PM-046, владелец 2026-09-24): иконки спина и
+                    подарка убраны из хедера Главной. /level_reward_spin
+                    удалён целиком (PM-046); /level_gifts_inventory не удалён —
+                    только точка входа отсюда. Невидимая цель полёта подарка
+                    (home-gift-entry-target, строка ~4664) не трогаем: ею
+                    всё ещё пользуется анимация доставки подарка дня
+                    (Daily Journey), это отдельная механика. */}
                 {renderHomeProfileButton()}
                 </View>
               </View>
@@ -5602,22 +5588,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         />
       ) : null}
 
-      {/* Плашка «+1 СПИН» после цепочки повышения уровня.
-          Тот же компонент, что в результатах урока и арены — одна награда
-          обязана выглядеть одинаково везде. Всплывает и улетает вверх сама,
-          поэтому box-none: под ней экран остаётся кликабельным. */}
-      {homeLevelUpSpinReceipt ? (
-        <View pointerEvents="none" style={{ position: 'absolute', left: 0, right: 0, top: '38%', alignItems: 'center' }}>
-          <SpinRewardPlaque
-            amount={1}
-            receiptId={homeLevelUpSpinReceipt}
-            visible
-            soundScope="home-level-up-spin"
-            onComplete={() => setHomeLevelUpSpinReceipt(null)}
-            testID="home-level-up-spin-plaque"
-          />
-        </View>
-      ) : null}
+      {/* зачем (PM-046, владелец): плашка «+1 СПИН» после повышения уровня
+          удалена вместе с homeLevelUpSpinReceipt и её setTimeout — спин
+          убран как механика, показывать было бы нечего. */}
 
       {/* Energy Tooltip — Modal чтобы не обрезался */}
       <Modal visible={showHomeEnergy && energyTooltip.visible} transparent animationType="none" onRequestClose={() => setEnergyTooltip((p) => ({ ...p, visible: false }))}>

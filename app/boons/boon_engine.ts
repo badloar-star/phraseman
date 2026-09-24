@@ -6,9 +6,6 @@
 // energy-window) проверяют локальный час отдельно — это не задача резолвера.
 
 import { getUtcDayKey } from '../local_date';
-import { getWeeklyBoonsConfigRaw, hasRemoteConfigSnapshotApplied } from '../remote_flags';
-import { isFirstDayAfterInstall } from './first_day_silence';
-import { parseWeeklyBoonsConfig } from './boon_config';
 import {
   ALL_BOON_MODIFIER_IDS,
   type BoonId,
@@ -96,58 +93,31 @@ export function resolveTodaysBoons(
   return { primary, modifiers, utcWeekday, weekNumber };
 }
 
-// Мемоизация по (raw-config, todayKey): getTodaysBoons зовётся в hot-path (xp_manager
-// на каждое начисление XP, EnergyContext), а parseWeeklyBoonsConfig делает JSON.parse.
-// Кэш инвалидируется сам, когда меняется сырой конфиг (админка) или день (todayKey).
-let _cachedRaw: string | null = null;
-let _cachedKey: string | null = null;
-let _cachedBoons: TodaysBoons | null = null;
-
 /**
- * Удобная обёртка: читает «живой» конфиг из Remote Config и резолвит сегодняшние
- * бонусы. Мемоизировано по (сырой конфиг + день) — дёшево даже в hot-path (XP, энергия).
+ * Удобная обёртка: раньше читала «живой» конфиг из Remote Config и резолвила
+ * сегодняшние бонусы (кэш убран вместе с этой логикой — см. зачем внутри).
  */
 export function getTodaysBoons(todayKey: string = getUtcDayKey()): TodaysBoons {
-  // Fail closed during cold start. The bundled defaults intentionally enable
-  // weekly boons, but they must never win a race against a persisted/live
-  // admin kill-switch that has not been applied yet.
-  if (!hasRemoteConfigSnapshotApplied()) {
-    return {
-      primary: null,
-      modifiers: [],
-      utcWeekday: utcWeekdayFromTodayKey(todayKey),
-      weekNumber: utcWeekNumberFromTodayKey(todayKey),
-    };
-  }
-  // зачем (владелец, 2026-09-13): в СВОЙ первый календарный день человек не
-  // видит модалок недельных бонусов — ни «бонус дня активирован» (двойной опыт,
-  // турбо-регенерация и пр.), ни сундуков. Ему уже показали приветственный
-  // подарок за установку, и вторая праздничная модалка поверх онбординга мешает
-  // начать учиться. Гард стоит ЗДЕСЬ, в единственном источнике истины: одним
-  // условием гаснут и четыре хоста модалок, и write-эффекты (boon_bootstrap), и
-  // read-эффекты в hot-path (xp/energy), и полоска бонуса на Главной. Владелец
-  // выбрал «не выдавать вовсе», поэтому глушим не только показ, но и эффект.
-  // Со второго календарного дня всё возвращается само. Приветственный подарок
-  // за установку живёт отдельно (OnboardingWelcomeHost) и здесь не участвует.
-  // Подробности и откат: app/boons/first_day_silence.ts.
-  if (isFirstDayAfterInstall()) {
-    return {
-      primary: null,
-      modifiers: [],
-      utcWeekday: utcWeekdayFromTodayKey(todayKey),
-      weekNumber: utcWeekNumberFromTodayKey(todayKey),
-    };
-  }
-  const raw = getWeeklyBoonsConfigRaw();
-  if (_cachedBoons && _cachedRaw === raw && _cachedKey === todayKey) {
-    return _cachedBoons;
-  }
-  const cfg = parseWeeklyBoonsConfig(raw);
-  const resolved = resolveTodaysBoons(cfg, todayKey);
-  _cachedRaw = raw;
-  _cachedKey = todayKey;
-  _cachedBoons = resolved;
-  return resolved;
+  // зачем (PM-050/051/052, D09/S51 владельца, 2026-09-24): «бонусы дня/недели,
+  // бонус возвращения, "новый день"» удалены — ничто декоративное не
+  // преграждает вход. Это ЕДИНСТВЕННЫЙ источник истины: одним условием гаснут
+  // разом все read/write-эффекты (boon_bootstrap, xp_manager, energy_system,
+  // feature_gates), плашка TodaysBoonStrip (у неё уже есть `if (!primary)
+  // return null`) и хосты сундуков/модалок (сняты с монтирования в
+  // app/_layout.tsx отдельным PM-049 коммитом; сами файлы host-компонентов и
+  // их тесты ждут отдельной сессии — построчная чистка 10+ интеграций
+  // (xp_manager/energy_system/feature_gates) не влезает в бюджет этой сессии,
+  // единая точка правды безопаснее частичного вычищения). Деньги, уже
+  // выданные ДО этой правки (спины/осколки в кошельке), не отнимаются —
+  // гасится только НОВОЕ начисление. Прежняя логика (remote-config резолвер,
+  // first-day-silence, кэш) оставлена НИЖЕ недостижимой намеренно не была —
+  // удалена целиком вместе с этим комментарием, откат — через git revert.
+  return {
+    primary: null,
+    modifiers: [],
+    utcWeekday: utcWeekdayFromTodayKey(todayKey),
+    weekNumber: utcWeekNumberFromTodayKey(todayKey),
+  };
 }
 
 /** Активен ли сейчас конкретный primary-бонус (синхронно, по живому конфигу). */

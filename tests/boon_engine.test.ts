@@ -110,7 +110,14 @@ describe('week number monotonicity', () => {
   });
 });
 
-describe('getTodaysBoons — runtime Remote Config gate', () => {
+// зачем (PM-050/051/052, D09/S51 владельца, 2026-09-24): «бонусы дня/недели,
+// бонус возвращения, "новый день"» удалены — getTodaysBoons() теперь ВСЕГДА
+// возвращает "выключено", независимо от Remote Config. Прежний контракт
+// («живой конфиг решает, admin disable отражается мгновенно») проверял
+// логику, которой больше нет; resolveTodaysBoons/resolvePrimaryFromSlot
+// (чистые функции выше) остаются рабочими и покрытыми — их можно вернуть в
+// строй одной правкой getTodaysBoons, без переписывания резолвера.
+describe('getTodaysBoons — disabled by design (PM-050/051/052)', () => {
   beforeEach(() => {
     __resetRemoteFlagsForTest();
   });
@@ -119,11 +126,9 @@ describe('getTodaysBoons — runtime Remote Config gate', () => {
     __resetRemoteFlagsForTest();
   });
 
-  it('fails closed until a cached or live Remote Config snapshot has been applied', () => {
+  it('always returns no primary and no modifiers, regardless of Remote Config', () => {
     expect(getTodaysBoons(MON)).toMatchObject({ primary: null, modifiers: [] });
-  });
 
-  it('immediately reflects an admin disable after a snapshot change', () => {
     applyRemoteConfigSnapshot({
       texts: {
         weekly_boons_config: JSON.stringify(cfg({
@@ -132,16 +137,7 @@ describe('getTodaysBoons — runtime Remote Config gate', () => {
         })),
       },
     });
-    expect(getTodaysBoons(MON).primary).toBe('mystery_monday');
-
-    applyRemoteConfigSnapshot({
-      texts: {
-        weekly_boons_config: JSON.stringify(cfg({
-          schedule: { 1: 'mystery_monday' },
-          enabled: { mystery_monday: false },
-        })),
-      },
-    });
+    // Живой конфиг больше не читается — источник истины заглушен целиком.
     expect(getTodaysBoons(MON).primary).toBeNull();
   });
 });

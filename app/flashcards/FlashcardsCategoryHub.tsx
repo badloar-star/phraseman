@@ -917,6 +917,21 @@ export default function FlashcardsCategoryHub({
         <Reanimated.View {...enterProps(2)} style={sectionGapStyle}>
           {/* Подзаголовок «Наборы сообщества» убран: он дублировал заголовок экрана
               и теперь стоит в шапке, справа от стрелки «назад». */}
+          {/* PM-093/094 (D20, S64 — прямое требование владельца): короткая строка
+              описания подраздела «Наборы сообщества», не пересказ кнопок. */}
+          <Text style={{ color: hubLabelMuted, fontSize: 13, fontWeight: '600', marginBottom: 12 }}>
+            {triLang(lang, {
+              ru: 'Готовые наборы от других пользователей — добавь себе и тренируйся.',
+              uk: 'Готові набори від інших користувачів — додай собі й тренуйся.',
+              en: 'Ready-made packs from other learners — add one and start practicing.',
+              es: 'Packs listos de otros usuarios — añádelo y empieza a practicar.',
+              'pt-BR': 'Pacotes prontos de outros usuários — adicione e comece a treinar.',
+              vi: 'Bộ thẻ có sẵn từ người dùng khác — thêm vào và luyện tập.',
+              id: 'Paket siap pakai dari pengguna lain — tambahkan dan mulai berlatih.',
+              tr: 'Diğer kullanıcılardan hazır paketler — ekle ve çalışmaya başla.',
+              pl: 'Gotowe zestawy od innych użytkowników — dodaj i zacznij trening.',
+            })}
+          </Text>
           {hasUnfinishedPackDraft ? (
             <TouchableOpacity
               testID="flashcards-packs-continue-draft"

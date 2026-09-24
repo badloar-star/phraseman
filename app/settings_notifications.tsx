@@ -257,11 +257,9 @@ export default function SettingsNotifications() {
   const streakLabel = L({ ru:'Серия под угрозой', uk:'Серія під загрозою', en:'Streak at risk', es:'Racha en riesgo', 'pt-BR':'Sequência em risco', vi:'Chuỗi gặp nguy', id:'Streak terancam', tr:'Seri risk altında', pl:'Seria zagrożona' });
   const phraseLabel = L({ ru:'Фраза дня', uk:'Фраза дня', en:'Phrase of the day', es:'Frase del día', 'pt-BR':'Frase do dia', vi:'Cụm từ hôm nay', id:'Frasa hari ini', tr:'Günün ifadesi', pl:'Zwrot dnia' });
   const energyLabel = L({ ru:'Энергия восстановилась', uk:'Енергію відновлено', en:'Energy restored', es:'Energía recargada', 'pt-BR':'Energia recarregada', vi:'Năng lượng đã hồi', id:'Energi pulih', tr:'Enerji doldu', pl:'Energia odnowiona' });
-  // зачем (2026-08-23, владелец, P2-1): учитель MAX обещает тему на завтра —
-  // напоминание об этом отдельным тумблером, чтобы отказ от него не отключал
-  // заодно «Серию». Название самодостаточно, подписи под ним нет (правило
-  // владельца: не поясняем настройку мелким текстом).
-  const maxLessonsLabel = L({ ru:'Уроки с MAX', uk:'Уроки з MAX', en:'Lessons with MAX', es:'Clases con MAX', 'pt-BR':'Aulas com o MAX', vi:'Buổi học với MAX', id:'Pelajaran dengan MAX', tr:'MAX ile dersler', pl:'Lekcje z MAX' });
+  // PM-198 (владелец): пункт «Уроки с MAX» убран из настроек — раздел MAX
+  // законсервирован (MAX_SECTION_SEALED_BY_OWNER_2026_09_04), напоминание
+  // никогда не наступит. Категория max_lessons удалена из app/notifications.ts.
   const sectionRecaps = L({ ru:'Итоги', uk:'Підсумки', en:'Recaps', es:'Resúmenes', 'pt-BR':'Resumos', vi:'Tổng kết', id:'Ringkasan', tr:'Özetler', pl:'Podsumowania' });
   const weeklyLabel = L({ ru:'Итоги недели', uk:'Підсумки тижня', en:'Weekly recap', es:'Resumen semanal', 'pt-BR':'Resumo da semana', vi:'Tổng kết tuần', id:'Ringkasan mingguan', tr:'Haftalık özet', pl:'Podsumowanie tygodnia' });
   const monthlyLabel = L({ ru:'Итоги месяца', uk:'Підсумки місяця', en:'Monthly recap', es:'Resumen mensual', 'pt-BR':'Resumo do mês', vi:'Tổng kết tháng', id:'Ringkasan bulanan', tr:'Aylık özet', pl:'Podsumowanie miesiąca' });
@@ -368,8 +366,7 @@ export default function SettingsNotifications() {
             </TapScale>
             <ToggleRow label={streakLabel} value={prefs.categories.streak} onChange={toggleCategory('streak')} />
             <ToggleRow label={phraseLabel} value={prefs.categories.phrase_of_day} onChange={toggleCategory('phrase_of_day')} />
-            <ToggleRow label={energyLabel} value={prefs.categories.energy} onChange={toggleCategory('energy')} />
-            <ToggleRow label={maxLessonsLabel} value={prefs.categories.max_lessons} onChange={toggleCategory('max_lessons')} last />
+            <ToggleRow label={energyLabel} value={prefs.categories.energy} onChange={toggleCategory('energy')} last />
           </View>
 
           <Text style={sectionTitleStyle}>{sectionRecaps}</Text>

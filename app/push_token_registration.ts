@@ -151,7 +151,9 @@ export async function registerPushTokenForServerPush(lang: string): Promise<bool
 
 /** Пользовательский выбор для СЕРВЕРНЫХ пушей: false = этот тип не слать. */
 // `league` covers league-only notifications. Tournament pushes are owner-locked off.
-export type ServerPushPrefs = { streak: boolean; offers: boolean; league: boolean; maxLessons: boolean };
+// PM-198: поле MAX-напоминаний удалено вместе с пунктом настроек «Уроки с MAX» —
+// раздел MAX законсервирован, серверный читатель этого поля не задеплоен.
+export type ServerPushPrefs = { streak: boolean; offers: boolean; league: boolean };
 
 /** Локальный кэш последних записанных префов — чтобы не писать в Firestore повторно. */
 const PUSH_PREFS_LOCAL_KEY = 'server_push_prefs_last_written';
@@ -173,14 +175,14 @@ export async function updateServerPushPrefs(prefs: ServerPushPrefs): Promise<voi
     const linkOk = await ensureStableAuthLinkForStableId(stableId).catch(() => false);
     if (!linkOk) return;
 
-    const cacheKey = `${stableId}:${prefs.streak ? 1 : 0}${prefs.offers ? 1 : 0}${prefs.league ? 1 : 0}${prefs.maxLessons ? 1 : 0}`;
+    const cacheKey = `${stableId}:${prefs.streak ? 1 : 0}${prefs.offers ? 1 : 0}${prefs.league ? 1 : 0}`;
     const lastWritten = await AsyncStorage.getItem(PUSH_PREFS_LOCAL_KEY);
     if (lastWritten === cacheKey) return;
 
+    // PM-198: поле `lessons` больше не пишем — читатель (maxLessonReminderCron)
+    // уже снят с деплоя под пломбой MAX_SECTION_SEALED_BY_OWNER_2026_09_04.
     await db.collection('users').doc(stableId).set(
-      // зачем (2026-08-23): lessons читает maxLessonReminderCron. Без зеркала
-      // человек, выключивший «Уроки с MAX», продолжал бы получать напоминания.
-      { pushPrefs: { streak: prefs.streak, offers: prefs.offers, league: prefs.league, lessons: prefs.maxLessons } },
+      { pushPrefs: { streak: prefs.streak, offers: prefs.offers, league: prefs.league } },
       { merge: true },
     );
     await AsyncStorage.setItem(PUSH_PREFS_LOCAL_KEY, cacheKey);

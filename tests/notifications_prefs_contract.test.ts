@@ -92,20 +92,17 @@ describe('зеркало pushPrefs для серверных пушей', () => 
     // зачем: категории перечислены поимённо — забыть зеркалить новую значит
     // молча слать серверный пуш тому, кто её выключил (так и было с league
     // до 2026-08-03, когда под ней появился пуш «турнир начинается»).
-    expect(src).toContain('pushPrefs: { streak: prefs.streak, offers: prefs.offers, league: prefs.league, lessons: prefs.maxLessons }');
+    // PM-198: поле `lessons`/maxLessons удалено вместе с пунктом настроек
+    // «Уроки с MAX» — читатель (max_lesson_reminder_push.ts) не задеплоен.
+    expect(src).toContain('pushPrefs: { streak: prefs.streak, offers: prefs.offers, league: prefs.league }');
     expect(src).toContain('PUSH_PREFS_LOCAL_KEY');
-    // Кэш-ключ обязан включать КАЖДУЮ зеркалируемую категорию: иначе смена
-    // только этого тумблера совпадёт со старым ключом и запись не уйдёт —
-    // человек выключил напоминание, а сервер об этом не узнал.
-    expect(src).toContain('${prefs.maxLessons ? 1 : 0}');
+    expect(src).not.toContain('maxLessons');
   });
 
-  it('сервер уважает pushPrefs.lessons перед напоминанием об уроке MAX', () => {
-    const src = appSource('functions/src/max_lesson_reminder_push.ts');
-    expect(src).toContain('profile.pushPrefs?.lessons === false');
-    // Поле обязано быть в проекции чтения профилей, иначе придёт пустым.
-    expect(src).toContain("'pushPrefs'");
-  });
+  // PM-198: раздел MAX законсервирован, серверный читатель этого поля
+  // (functions/src/max_lesson_reminder_push.ts) не задеплоен —
+  // maxLessonReminderCron закомментирован в functions/src/index.ts, поэтому
+  // тест на его поведение больше не нужен как контракт клиент↔сервер.
 
   it('сервер уважает pushPrefs.league перед пушем о старте турнира', () => {
     const src = appSource('functions/src/tournament_start_push.ts');

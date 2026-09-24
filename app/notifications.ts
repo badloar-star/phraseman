@@ -1317,11 +1317,12 @@ export type NotifCategory =
   | 'gifts'
   // «Вместе» (friends_together §1.3): пуш «Позвал(а)» от друга. Локальных
   // напоминаний нет (см. CATEGORY_LOCAL_TYPES ниже) — шлёт только сервер по чужому тапу.
-  | 'friends'
-  // зачем (2026-08-23, владелец, P2-1): учитель MAX в конце урока обещает тему
-  // на завтра; напоминание об этом шлёт СЕРВЕР в «час прошлого урока»
-  // (functions/src/max_lesson_reminder_push.ts). Локальных напоминаний нет.
-  | 'max_lessons';
+  | 'friends';
+  // PM-198 (владелец): категория 'max_lessons' удалена вместе с пунктом
+  // настроек «Уроки с MAX» — раздел MAX законсервирован
+  // (MAX_SECTION_SEALED_BY_OWNER_2026_09_04), серверный
+  // functions/src/max_lesson_reminder_push.ts уже снят с деплоя (см.
+  // maxLessonReminderCron, закомментирован в functions/src/index.ts).
 
 export type NotifPrefs = { master: boolean; categories: Record<NotifCategory, boolean> };
 
@@ -1341,10 +1342,6 @@ export const DEFAULT_NOTIF_PREFS: NotifPrefs = {
     // «Вместе»: по умолчанию включено, как и остальные социальные категории;
     // получатель может выключить в настройках (friendsNudge это уважает).
     friends: true,
-    // Напоминание об уроке приходит только тем, кому учитель реально обещал
-    // тему, поэтому включено по умолчанию: это продолжение начатого занятия,
-    // а не рассылка.
-    max_lessons: true,
   },
 };
 
@@ -1363,9 +1360,6 @@ const CATEGORY_LOCAL_TYPES: Record<NotifCategory, LocalNotificationType[]> = {
   // Пустой массив: «Позвать» — не локальное напоминание с расписанием, а серверный
   // пуш по тапу другого человека. Отменять здесь нечего.
   friends: [],
-  // Тоже пусто: напоминание об уроке шлёт сервер в «час прошлого урока», а не
-  // локальное расписание телефона. Отменять на клиенте нечего.
-  max_lessons: [],
 };
 
 function normalizeNotifPrefs(raw: unknown): NotifPrefs {
@@ -1466,7 +1460,6 @@ export const saveNotifPrefs = async (p: NotifPrefs): Promise<void> => {
       streak: normalized.master && normalized.categories.streak,
       offers: normalized.master && normalized.categories.offers,
       league: normalized.master && normalized.categories.league,
-      maxLessons: normalized.master && normalized.categories.max_lessons,
     }))
     .catch(() => {});
 };

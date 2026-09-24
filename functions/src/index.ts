@@ -1090,6 +1090,11 @@ export { adminArenaConfigGet, adminArenaConfigSet } from "./admin_arena_config";
 // Управление конфигом Шпиля из админки (PM-283, TOWER_CONTRACT.md §7): таймер,
 // монеты, боты меняются без релиза через config/spire_v1.
 export { adminSpireConfigGet, adminSpireConfigSet } from "./admin_spire_config";
+// Шпиль: быстрое снятие задания es/de/fr из админки (PM-287-A2, T41) — пулы
+// публикуются без проверки носителем, значит ошибки первыми увидят игроки;
+// снятое задание попадает в config/spire_task_flags_{lang}, сборщик
+// недельного пакета (PM-272) обязан исключать эти id.
+export { adminSpireTaskFlagList, adminSpireTaskFlagAdd, adminSpireTaskFlagRemove } from "./admin_spire_task_flag";
 // Шпиль: приём пачки отчётов о ступенях (PM-275, TOWER_CONTRACT.md §5) —
 // одна запись progress.spire_week_v1 на пачку, проверка правдоподобия по config/spire_v1.
 export { spireReportSteps } from "./spire_progress";
@@ -1103,6 +1108,10 @@ export { adminSpireLeagueMigrationSetMode, adminSpireLeagueMigrationRollback } f
 // между шпилями, сумма монет за место/повышение (выплата — PM-280). Свой крон,
 // не leagueFinalizeCron: комнаты в spire_groups, файлы лиги под замком.
 export { spireFinalizeCron } from "./spire_finalize_cron";
+// Шпиль: пакет недели (PM-272, TOWER_CONTRACT.md §4) — файл в Storage
+// spire_packs/{lang}/{tier}/{weekId}.json, packHash в customMetadata (его читает
+// spireReportSteps). Крон раз в неделю + ручной пересбор из админки.
+export { spirePackWeeklyCron, adminSpirePackBuild } from "./spire_pack_build";
 // Read-only DRAFT workspace for target-isolated Arena content. The callable
 // surface deliberately has no stage/publish mutation until a reviewed durable
 // transport exists for the large static packages.

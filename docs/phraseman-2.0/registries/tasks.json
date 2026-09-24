@@ -12323,7 +12323,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -12332,14 +12332,23 @@
       {
         "id": "PM-272-A1",
         "text": "Пакет язык × шпиль собирается из пула Арены с отпечатками ответов и публикуется файлом (CDN), не документами Firestore",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "functions/src/spire_pack_build.ts (runSpirePackBuild, writePack → spire_packs/{lang}/{tier}/{weekId}.json, customMetadata.packHash)",
+          "functions/src/spire_pack_contract.ts (buildSpirePack)",
+          "storage.rules (spire_packs: get для вошедших, list/write запрещены)",
+          "evidence/PM-272_weekly_pack_build.md"
+        ]
       },
       {
         "id": "PM-272-A2",
         "text": "Логика плана взята из arena_duel_v3 без дуэли; стоимость сборки и хранения записана",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "functions/src/spire_pack_contract.ts (toPublicTournamentTask + вырезанные объяснения, как arenaPlanTask; соль saltId вместо matchId)",
+          "functions/src/spire_pack_build.ts (loadPool — та же выборка и проверка, что loadArenaTaskPool)",
+          "evidence/PM-272_weekly_pack_build.md §Стоимость"
+        ]
       }
     ],
     "depends_on": [
@@ -12352,19 +12361,30 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Opus 5.5 (субагент)",
     "reviewer": null,
-    "evidence": [],
+    "evidence": [
+      "functions/src/spire_pack_contract.ts",
+      "functions/src/spire_pack_build.ts",
+      "functions/src/spire_pack_contract.test.ts",
+      "storage.rules",
+      "evidence/PM-272_weekly_pack_build.md"
+    ],
     "notes": [
       "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md",
-      "Убрана зависимость от PM-271: контракт (черновик) реализован дочерними задачами PM-273/275/277/283 (все review), сама PM-271 осталась planned после D56 и никогда не станет review/done — это блокировало граф навсегда."
+      "Убрана зависимость от PM-271: контракт (черновик) реализован дочерними задачами PM-273/275/277/283 (все review), сама PM-271 осталась planned после D56 и никогда не станет review/done — это блокировало граф навсегда.",
+      "PM-272 (2026-09-24, Claude Opus 5.5): пакет собирается кроном spirePackWeeklyCron (вс 20:00 UTC, следующая неделя + текущая, если файла нет) и админ-callable adminSpirePackBuild (ручной пересбор, force перезаписывает). packHash — в customMetadata файла, ровно там, где его читает spire_progress.ts::resolveExpectedPackHash. Существующий файл недели без force не перезаписывается (иначе pack_mismatch у игроков).",
+      "Источник — живой пул Арены tournamentTasks той же публикации (arena_v2_config/current). es/fr/de требуют свой готовый контур; сейчас manifest es/de/fr verdict=BLOCK (не опубликован) → для них пакета НЕ будет (честное «скоро», §4.8), отчёты уйдут в pack_unknown. Реально пакет сейчас соберётся только для en (legacy-пул).",
+      "Слух/диктант/голос в пакет НЕ входят: audioUri не решён (PM-286), голос снят из пула Арены. Этажи 6–9 и 11+ собираются как 3–4 с растущей долей трудных; voiceRequired=false честно, pendingKinds перечисляет недостающее.",
+      "Флаги PM-287 (config/spire_task_flags_{lang}) учитываются, но читаются инлайн: spire_task_flag_contract.ts ещё не закоммичен соседней сессией — после коммита заменить на parseSpireTaskFlagsDoc/spireFlaggedTaskIds.",
+      "НЕ проверено штатным тест-раннером и проверкой типов (условие задачи). Логика проверена через tsx: 7/7 утверждений test-файла на мини-шиме, смоук на синтетическом пуле 4050 заданий — 135 ступеней, 4050 слотов, 0 повторов внутри ступени, детерминированный packHash, ~1,2 МБ JSON, 170 мс на шпиль. Деплой функций и storage.rules не выполнялся."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
+    "kind": "code",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "claude-opus-5-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-273",
@@ -13225,7 +13245,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -13235,13 +13255,18 @@
         "id": "PM-287-A1",
         "text": "Пулы опубликованы через админку после PM-285; язык включается в Шпиле сам после публикации",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "functions/src/arena_target_registry.ts + admin_arena_publication.ts (adminArenaPublicationActivate — механизм автовключения языка уже существует и общий с Арeной; документирован в task packet, docs/work/tasks/2026-09-24_pm287_spire_task_flag.md, раздел Architecture)"
+        ]
       },
       {
         "id": "PM-287-A2",
         "text": "В админке есть быстрое снятие задания, на которое пожаловались",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "functions/src/admin_spire_task_flag.ts",
+          "functions/src/spire_task_flag_contract.ts"
+        ]
       }
     ],
     "depends_on": [
@@ -13253,17 +13278,23 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "claude-sonnet-5-session",
     "reviewer": null,
-    "evidence": [],
+    "evidence": [
+      "functions/src/spire_task_flag_contract.ts",
+      "functions/src/admin_spire_task_flag.ts",
+      "functions/src/index.ts (регистрация adminSpireTaskFlagList/Add/Remove)",
+      "docs/work/tasks/2026-09-24_pm287_spire_task_flag.md"
+    ],
     "notes": [
-      "Решение владельца 2026-09-24, D55 (T39–T42); evidence/PM-270_pool_preflight.md"
+      "Решение владельца 2026-09-24, D55 (T39–T42); evidence/PM-270_pool_preflight.md",
+      "PM-287 реализовано 2026-09-24 частично: A2 полностью закрыт — новый callable adminSpireTaskFlagAdd/Remove/List поверх config/spire_task_flags_{lang}, быстрое снятие задания без релиза и без отката пула. A1 НЕ принят: acceptance требует, чтобы пулы es/de/fr были реально опубликованы через админку (adminArenaPublicationActivate) — эта сессия публикацию не выполняла (не входило в разрешённый объём «небольшой задачи», требует отдельного явного шага оператора). Механизм автовключения языка уже существует и ничего нового не требует: как только adminArenaPublicationActivate переводит targetPublications.{lang} в ready/enabled=true, Шпиль (через PM-272, ещё planned) читает ту же публикацию — отдельного тумблера «включить язык X» нет. Задокументировано в docs/work/tasks/2026-09-24_pm287_spire_task_flag.md, раздел Architecture. Осталось для закрытия A1: реальная публикация es/de/fr через adminArenaPublicationStage/Activate (отдельная сессия/задача) и реализация PM-272, которая должна вызвать spireFlaggedTaskIds() при сборке пакета — законтейнировано как техдолг."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
+    "kind": "backend",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "claude-sonnet-5",
+    "actual_reasoning": "medium"
   }
 ]

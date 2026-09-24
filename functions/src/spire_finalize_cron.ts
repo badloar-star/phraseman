@@ -49,6 +49,7 @@ import { computeSpireRoomResults } from './spire_finalize_core';
 import { payoutSpireWeekReward } from './spire_week_payout';
 import { SPIRE_GROUPS_COLLECTION, spireWeekId } from './spire_groups';
 import { spireWeekStartMs } from './spire_residents';
+import { runSpireWeekResultPush, type SpireWeekResultPushInput } from './spire_week_result_push';
 
 const LOG = '[SPIRE-FINALIZE]';
 // зачем 200 комнат на страницу при выплатах: каждая комната теперь ещё и
@@ -122,6 +123,12 @@ export const spireFinalizeCron = onSchedule(
     let lastDoc: FirebaseFirestore.QueryDocumentSnapshot | null = null;
     let batch = db.batch();
     let batchCount = 0;
+    // зачем (PM-281, T30): понедельничный пуш «итог + новый шпиль» собирается
+    // ПОПУТНО тем же циклом — экономия чтений (см. шапку spire_week_result_push.ts).
+    // Уходит ТОЛЬКО после всех комнат: пуш обязан прийти после того, как
+    // итоги реально записаны, иначе текст соврёт про шпиль, который крон
+    // ещё не подвёл.
+    const pushInputs: SpireWeekResultPushInput[] = [];
 
     const flush = async () => {
       if (batchCount === 0) return;
@@ -188,6 +195,12 @@ export const spireFinalizeCron = onSchedule(
           if (result.rewardCoins.total > 0) toPay.push({ uid, ref: resultRef });
           if (result.promoted) roomPromoted++;
           if (result.demoted) roomDemoted++;
+          // зачем: кандидат понедельничного пуша (PM-281) — данные уже в памяти,
+          // отдельного чтения не требуется. Отправка — после ВСЕХ комнат ниже.
+          pushInputs.push({
+            uid, studyLang: lang, prevTier: result.prevTier, newTier: result.newTier,
+            promoted: result.promoted, demoted: result.demoted,
+          });
           if (result.newTier !== result.prevTier) {
             // merge: карта spireTiers сливается по ключам — другие языки не трогаем.
             await add((b) => b.set(db.collection('leaderboard').doc(uid), {
@@ -253,9 +266,24 @@ export const spireFinalizeCron = onSchedule(
     }
 
     await flush();
+
+    // ── Пуш понедельника (PM-281, T30) ─────────────────────────────────────
+    // зачем: строго ПОСЛЕ flush() — итоги и переходы шпилей уже в Firestore,
+    // текст пуша не может соврать про шпиль, который ещё не записан. Провал
+    // отправки НЕ бросает исключение крона: пуш — не источник истины, итог
+    // уже сохранён и его всё равно увидит экран Шпиля фактом при заходе.
+    let pushSent = 0;
+    try {
+      const pushSummary = await runSpireWeekResultPush(db, pushInputs);
+      pushSent = pushSummary.sent;
+      console.log(LOG, JSON.stringify({ event: 'week_result_push', ...pushSummary }));
+    } catch (err) {
+      console.error(LOG, JSON.stringify({ event: 'week_result_push_failed', error: String((err as Error)?.message ?? err) }));
+    }
+
     const summary = {
       weekId, rooms, skipped, results, tierWrites, promoted, demoted,
-      payoutsPaid, payoutsFailed, coinsPaid, tookMs: Date.now() - startedAt,
+      payoutsPaid, payoutsFailed, coinsPaid, pushSent, tookMs: Date.now() - startedAt,
     };
     console.log(LOG, JSON.stringify({ event: 'done', ...summary }));
     if (payoutsFailed > 0) {
@@ -263,6 +291,6 @@ export const spireFinalizeCron = onSchedule(
       // монеты тех, кому не заплатили, повисли бы до ручного вмешательства.
       throw new Error(`spire_payouts_incomplete:${payoutsFailed}`);
     }
-    return { rooms, skipped, results, tierWrites, promoted, demoted, payoutsPaid, coinsPaid };
+    return { rooms, skipped, results, tierWrites, promoted, demoted, payoutsPaid, coinsPaid, pushSent };
   }),
 );

@@ -12981,7 +12981,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -12990,14 +12990,21 @@
       {
         "id": "PM-281-A1",
         "text": "Понедельник: итог + новый шпиль; воскресенье: у края зоны. Больше пушей Шпиль не шлёт",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "functions/src/spire_week_result_push.ts",
+          "functions/src/spire_zone_warning_push.ts",
+          "functions/src/spire_notifications.ts",
+          "docs/phraseman-2.0/evidence/PM-281_notifications.md"
+        ]
       },
       {
         "id": "PM-281-A2",
         "text": "Частота и стоимость отправки записаны",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/evidence/PM-281_notifications.md"
+        ]
       }
     ],
     "depends_on": [
@@ -13008,18 +13015,25 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude",
     "reviewer": null,
-    "evidence": [],
+    "evidence": [
+      "functions/src/spire_week_result_push.ts",
+      "functions/src/spire_zone_warning_push.ts",
+      "functions/src/spire_notifications.ts",
+      "docs/phraseman-2.0/evidence/PM-281_notifications.md"
+    ],
     "notes": [
-      "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md"
+      "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md",
+      "2026-09-24 Sonnet 5: понедельничный пуш вызывается ИЗНУТРИ spireFinalizeCron строго после flush() итогов; воскресный — отдельный лёгкий крон (every sunday 20:00 UTC), читает только открытые комнаты текущей недели. Граница зоны — та же функция (spireLiveZoneSize+compareSpireStanding), что и итог недели, оба пуша и итог видят одну границу. Токены докупаются db.getAll чанками, отдельного скана users/ нет.",
+      "Проверено: 153/153 зелёные во всём наборе spire_* (13 test suites, включая 29 новых для двух пушей), полный functions/ typecheck — 0 ошибок."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
+    "kind": "impl",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "claude-sonnet-5",
+    "actual_reasoning": "medium"
   },
   {
     "id": "PM-282",

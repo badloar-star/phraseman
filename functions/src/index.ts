@@ -1112,6 +1112,10 @@ export { spireFinalizeCron } from "./spire_finalize_cron";
 // spire_packs/{lang}/{tier}/{weekId}.json, packHash в customMetadata (его читает
 // spireReportSteps). Крон раз в неделю + ручной пересбор из админки.
 export { spirePackWeeklyCron, adminSpirePackBuild } from "./spire_pack_build";
+// Шпиль: пуш воскресенья «ты у края зоны» (PM-281, T30/§4.7). Понедельничный
+// пуш «итог + новый шпиль» уже уходит ИЗНУТРИ spireFinalizeCron (см. выше) —
+// отдельного экспорта не требует.
+export { spireZoneWarningCron } from "./spire_zone_warning_push";
 // Read-only DRAFT workspace for target-isolated Arena content. The callable
 // surface deliberately has no stage/publish mutation until a reviewed durable
 // transport exists for the large static packages.

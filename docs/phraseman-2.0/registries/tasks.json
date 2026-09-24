@@ -4826,7 +4826,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "needs_decision",
     "profile": "L0",
     "model": "gpt-6-luna",
     "reasoning": "low",
@@ -4856,7 +4856,9 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": [
+      "Единственная найденная механика оформления (цвет/иконка набора в community_pack_create.tsx) — это та же серверная схема, что и остановленная PM-065/D53. Не выполнена, ждёт решения владельца"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -5208,7 +5210,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -5217,8 +5219,10 @@
       {
         "id": "PM-107-A1",
         "text": "Действие реально создаёт жалобу, показывает результат и имеет screen-reader label",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commit 3dda4a5f5"
+        ]
       },
       {
         "id": "PM-107-A2",
@@ -5235,15 +5239,19 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "commit 3dda4a5f5"
+    ],
+    "notes": [
+      "текст «Пожаловаться» → иконка флага, accessibilityLabel сохранён"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
+    "actual_model": "sonnet-5",
     "actual_reasoning": null
   },
   {
@@ -5605,7 +5613,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -5614,8 +5622,10 @@
       {
         "id": "PM-115-A1",
         "text": "Нет выдачи монет/энергии, таймеров начисления и скрытых heartbeat ради награды",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commit 024201650"
+        ]
       },
       {
         "id": "PM-115-A2",
@@ -5632,15 +5642,19 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "commit 024201650"
+    ],
+    "notes": [
+      "energy_video_watch_credit и video_watch_runes_client — no-op. Серверный callable video_watch_runes.ts НЕ тронут (недостижим с клиента). 16/16 тестов"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
+    "actual_model": "sonnet-5",
     "actual_reasoning": null
   },
   {

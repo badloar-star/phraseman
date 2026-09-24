@@ -643,8 +643,10 @@ function DailyPhraseCard({
           style={({ pressed }) => [styles.v2Card, v2Glass, pressed && styles.pressed]}
         >
           <V2GlassSheen seed={4} />
-          {/* Слот арта справа: ассет рисует Codex, до него — тихая заглушка того же размера. */}
-          <View pointerEvents="none" style={[styles.v2Art, { backgroundColor: v2.glassRaised }]} />
+          {/* зачем: плейсхолдер-арт 2.0 (mug_quote) до финальной картинки от Codex. */}
+          <View pointerEvents="none" style={styles.v2Art}>
+            <Image source={require('../assets/images/v2/mug_quote.png')} style={styles.v2ArtImage} contentFit="contain" accessible={false} />
+          </View>
           <V2IconTile name="chatbubble-ellipses-outline" size={40} iconSize={20} />
           <View style={styles.v2Copy}>
             <Text style={[styles.v2Kicker, { color: v2.textSecondary }]} numberOfLines={1}>{title.toUpperCase()}</Text>
@@ -1077,7 +1079,8 @@ const styles = StyleSheet.create({
     gap: 14,
     overflow: 'hidden',
   },
-  v2Art: { position: 'absolute', right: 0, top: 0, bottom: 0, width: '34%', opacity: 0.6 },
+  v2Art: { position: 'absolute', right: 0, top: 0, bottom: 0, width: '34%', opacity: 0.6, alignItems: 'center', justifyContent: 'center' },
+  v2ArtImage: { width: '86%', height: '86%' },
   v2Quote: { width: 40, height: 40, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
   v2QuoteMark: { fontSize: 30, lineHeight: 36, fontWeight: '800', marginTop: 6 },
   v2Copy: { flex: 1, minWidth: 0, paddingRight: '24%' },

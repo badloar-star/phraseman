@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Image } from 'expo-image';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import V2Pressable from '../../v2/V2Pressable';
 import { V2, V2_TYPE } from '../../../constants/v2Style';
@@ -29,7 +30,9 @@ export default function HomeV2FeatureTiles({ tiles }: { tiles: readonly HomeFeat
           style={[s.tile, glass]}
         >
           <V2GlassSheen seed={index + 2} />
-          <View pointerEvents="none" style={[s.art, { backgroundColor: p.glassRaised }]} />
+          <View pointerEvents="none" style={[s.art, { backgroundColor: p.glassRaised }]}>
+            <Image source={tile.art} style={s.artImage} contentFit="contain" accessible={false} /* guard-ok: декоративный арт, подпись на V2Pressable */ />
+          </View>
           <Text numberOfLines={1} style={[s.title, { color: p.text }]}>{tile.title}</Text>
           <View style={s.footer}>
             <Text numberOfLines={2} style={[s.subtitle, { color: p.textSecondary }]}>{tile.subtitle}</Text>
@@ -55,7 +58,8 @@ const s = StyleSheet.create({
     paddingBottom: 10,
     overflow: 'hidden',
   },
-  art: { height: 76, marginHorizontal: -10, marginBottom: 10, opacity: 0.85 },
+  art: { height: 76, marginHorizontal: -10, marginBottom: 10, alignItems: 'center', justifyContent: 'center' },
+  artImage: { width: 60, height: 60 },
   title: { ...V2_TYPE.headline },
   footer: { flexDirection: 'row', alignItems: 'flex-end', gap: 4, marginTop: 4 },
   subtitle: { ...V2_TYPE.caption, fontSize: 12, lineHeight: 16, flex: 1 },

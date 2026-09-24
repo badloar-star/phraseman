@@ -88,9 +88,17 @@ export function buildWeeklyChestModel(input: WeeklyChestModelInput): WeeklyChest
   const eligibleByMyStats = myDays >= config.chestMinDays && myWeeklyXp >= config.chestMinWeeklyXp;
   const alreadyClaimed = input.claimedWeekKey === input.weekKey;
 
-  // зачем: сундук открывается только в воскресенье (макет владельца) — до этого кнопки нет.
-  const isClaimDay = input.isClaimDay ?? (config.chestClaimAnyDay || new Date().getDay() === 0);
-  const canClaim = !alreadyClaimed && eligibleByMyStats && tiersReached > 0 && isClaimDay;
+  // зачем (PM-056, владелец, D09): «общий сундук друзей» убран из релиза так
+  // же, как сундук лиги. Награда сундука выдаётся ТОЛЬКО в момент клейма
+  // (app/friends_together/chest_reward_apply.ts не копит неполученный
+  // инвентарь), поэтому canClaim=false — единственная точка, где нужно
+  // погасить кнопку/эффект: она гасит и CTA на карточке (FriendsChestCard),
+  // и guard в handleClaimWeeklyChest (app/(tabs)/friends.tsx), и авто-открытие
+  // модалки. Полоса прогресса «Общее пламя» остаётся видимой — задача просит
+  // убрать сундук, а не саму метрику дружбы. Прежняя проверка «открывается
+  // только в воскресенье» (isClaimDay) снята за ненадобностью — раз клейм
+  // навсегда закрыт, день недели её больше не решает.
+  const canClaim = false;
   const state: WeeklyChestState = alreadyClaimed
     ? 'claimed'
     : canClaim

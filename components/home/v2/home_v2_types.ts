@@ -24,4 +24,6 @@ export type HomeFeatureTile = Readonly<{
   title: string;
   subtitle: string;
   onPress: () => void;
+  // зачем: плейсхолдер-арт 2.0 (assets/images/v2), пока Codex не нарисовал финальные картинки.
+  art: number;
 }>;

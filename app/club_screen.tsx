@@ -1169,7 +1169,14 @@ export default function ClubScreen({ presentation = 'push' }: ClubScreenProps = 
       participants: sortedGroup.length,
     }));
   }, [leagueRoomXp, localLeagueHydrated, myLeagueChestContribution, sortedGroup.length]);
-  const leagueChestReady = leagueRaceVisible && (leagueBonusAdminActive || leagueChestProgress >= leagueChestGoal);
+  // зачем (PM-056, владелец, D09): сундук лиги убран из релиза — «сундук лиги
+  // точно также как и сундук в друзьях». Награды сундука лиги выдаются ТОЛЬКО
+  // в момент клейма (не копятся как неполученный инвентарь, в отличие от
+  // спинов/подарков уровня), поэтому убрать достаточно здесь: единственная
+  // точка, откуда сундук считается «готовым». Отсюда гасится auto-open эффект,
+  // сама кнопка клейма, корона победителя недели и сцена confetti/beam —
+  // остальной клуб/лидерборд (leagueRaceVisible) НЕ трогаем, они вне задачи.
+  const leagueChestReady = false;
   const leagueCrownWinnerUid = leagueRaceVisible && leagueChestReady
     ? leagueBonusAdminActive && leagueBonusAdminPreview?.crownWinner
       ? myLeagueMemberUid

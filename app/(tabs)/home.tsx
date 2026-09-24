@@ -4634,18 +4634,21 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 title: quickItems[0]!.label,
                 subtitle: triLang(lang, { ru: 'Грамматика шаг за шагом', uk: 'Граматика крок за кроком', en: 'Grammar step by step', es: 'Gramática paso a paso', 'pt-BR': 'Gramática passo a passo', vi: 'Ngữ pháp từng bước', id: 'Tata bahasa langkah demi langkah', tr: 'Adım adım dilbilgisi', pl: 'Gramatyka krok po kroku' }),
                 onPress: quickItems[0]!.onPress,
+                art: require('../../assets/images/v2/book_stack.png'),
             },
             {
                 key: 'dialogs',
                 title: quickItems[1]!.label,
                 subtitle: triLang(lang, { ru: 'Реальные ситуации', uk: 'Реальні ситуації', en: 'Real-life situations', es: 'Situaciones reales', 'pt-BR': 'Situações reais', vi: 'Tình huống thực tế', id: 'Situasi nyata', tr: 'Gerçek durumlar', pl: 'Prawdziwe sytuacje' }),
                 onPress: quickItems[1]!.onPress,
+                art: require('../../assets/images/v2/chat_bubbles.png'),
             },
             {
                 key: 'cards',
                 title: quickItems[2]!.label,
                 subtitle: triLang(lang, { ru: 'Слова, фразы и выражения', uk: 'Слова, фрази й вирази', en: 'Words, phrases and idioms', es: 'Palabras, frases y expresiones', 'pt-BR': 'Palavras, frases e expressões', vi: 'Từ, cụm từ và thành ngữ', id: 'Kata, frasa, dan ungkapan', tr: 'Kelimeler, ifadeler, deyimler', pl: 'Słowa, zwroty i wyrażenia' }),
                 onPress: quickItems[2]!.onPress,
+                art: require('../../assets/images/v2/notecard_stack.png'),
             },
         ];
         // TODO(PM-259): заменить заглушку на useTodayTasks() программы 2.0.

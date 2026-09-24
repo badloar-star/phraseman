@@ -176,7 +176,10 @@ describe('buildWeeklyChestModel', () => {
     expect(weekday.canClaim).toBe(false);
     expect(weekday.state).toBe('active');
 
-    const ready = buildWeeklyChestModel({
+    // зачем (PM-056): сундук друзей убран из релиза — canClaim теперь всегда
+    // false, даже когда все условия (дни, XP, тир, воскресенье) выполнены.
+    // Полоса прогресса при этом жива (state остаётся 'active', не 'ready').
+    const wouldHaveBeenReady = buildWeeklyChestModel({
       friends: tier1Friends(),
       myDays: 5,
       myWeeklyXp: 1000,
@@ -184,8 +187,8 @@ describe('buildWeeklyChestModel', () => {
       claimedWeekKey: null,
       isClaimDay: true,
     });
-    expect(ready.canClaim).toBe(true);
-    expect(ready.state).toBe('ready');
+    expect(wouldHaveBeenReady.canClaim).toBe(false);
+    expect(wouldHaveBeenReady.state).toBe('active');
 
     const claimed = buildWeeklyChestModel({
       friends: tier1Friends(),

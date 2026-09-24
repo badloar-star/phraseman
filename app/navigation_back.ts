@@ -91,8 +91,7 @@ const CONTEXTUAL_PORTAL_PATHS: ReadonlySet<string> = new Set([
   '/manage_subscription',
   '/shards_shop',
   '/coin_exchange',
-  '/avatar_select',
-  '/avatar_dna_studio',
+  // зачем: /avatar_select и /avatar_dna_studio удалены (D57/PM-062) — записи убраны.
   '/shop',
   '/runes_wallet',
   '/collectibles_screen',

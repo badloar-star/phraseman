@@ -1,5 +1,6 @@
 const STATIC_SCREEN_NAMES = [
-  'achievements_screen', 'avatar_select', 'club_screen',
+  // зачем: 'avatar_select' удалён из списка — экран убран по D57/PM-062.
+  'achievements_screen', 'club_screen',
   'arena', 'arena_friend_duel', 'arena_invite', 'arena_match', 'arena_matchmaking',
   'arena_ranks', 'arena_results', 'arena_season_pass',
   'arena_star_wallet', 'arena_today',

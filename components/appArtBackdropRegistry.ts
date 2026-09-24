@@ -75,7 +75,7 @@ export const APP_ART_ROUTE_BACKDROPS: Record<string, AppArtBackdropName> = {
   settings_themes: 'settings',
   settings_language: 'settings',
   premium_modal: 'settings',
-  avatar_select: 'settings',
+  // зачем: avatar_select удалён (D57/PM-062) — запись фона убрана.
   privacy_screen: 'settings',
   terms_screen: 'settings',
   pos_analytics_audit: 'statistics',

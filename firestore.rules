@@ -409,6 +409,8 @@ service cloud.firestore {
           'weekly_xp_period_start',
           'week_points',
           'week_points_v2',
+          // PM-275: недельный прогресс Шпиля пишет только сервер spireReportSteps (TOWER_CONTRACT §7).
+          'spire_week_v1',
           'streak_count',
           'last_active_date',
           'streak_last_date',
@@ -521,6 +523,8 @@ service cloud.firestore {
                 'weekly_xp_period_start',
                 'week_points',
                 'week_points_v2',
+                // PM-275: недельный прогресс Шпиля пишет только сервер spireReportSteps (TOWER_CONTRACT §7).
+                'spire_week_v1',
                 'streak_count',
                 'last_active_date',
                 'streak_last_date',

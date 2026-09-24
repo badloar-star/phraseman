@@ -1343,6 +1343,9 @@ export const SERVER_OWNED_PROGRESS_KEYS = new Set([
   // не даёт общей синхронизации спорить с отдельным projection callable.
   'profile_card_level',
   'shard_survey_last_at_ms',
+  // PM-275: недельный прогресс Шпиля пишет только spireReportSteps; правила его блокируют,
+  // и попавший в исходящий патч ключ уронил бы ВЕСЬ апдейт progress.
+  'spire_week_v1',
   ACHIEVEMENT_ACCESS_PLUS_PAID_KEY,
   ACHIEVEMENT_ACCESS_PRO_PAID_KEY,
 ]);

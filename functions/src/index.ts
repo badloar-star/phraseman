@@ -1090,6 +1090,9 @@ export { adminArenaConfigGet, adminArenaConfigSet } from "./admin_arena_config";
 // Управление конфигом Шпиля из админки (PM-283, TOWER_CONTRACT.md §7): таймер,
 // монеты, боты меняются без релиза через config/spire_v1.
 export { adminSpireConfigGet, adminSpireConfigSet } from "./admin_spire_config";
+// Шпиль: приём пачки отчётов о ступенях (PM-275, TOWER_CONTRACT.md §5) —
+// одна запись progress.spire_week_v1 на пачку, проверка правдоподобия по config/spire_v1.
+export { spireReportSteps } from "./spire_progress";
 // Шпиль: комнаты по 30 на язык и день входа (PM-277, T15/T24); боты — формула
 // spire_residents.ts без чтений/записей и без крона (D56).
 export { spireJoinRoom } from "./spire_groups";

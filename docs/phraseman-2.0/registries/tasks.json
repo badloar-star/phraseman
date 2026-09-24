@@ -12466,7 +12466,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -12475,14 +12475,24 @@
       {
         "id": "PM-275-A1",
         "text": "После ступени одна запись; офлайн — очередь с досылкой; маркер поднимается мгновенно (optimistic)",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "modules/spire/report_queue.ts",
+          "modules/spire/report_store.ts",
+          "app/spire_report_client.ts",
+          "functions/src/spire_progress.ts",
+          "tests/spire_report_queue.test.ts"
+        ]
       },
       {
         "id": "PM-275-A2",
         "text": "Сервер отклоняет неправдоподобные записи (минимум секунд на ступень, максимум ступеней в час, отпечаток пакета)",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "functions/src/spire_progress_contract.ts",
+          "functions/src/spire_progress.ts",
+          "functions/src/spire_progress_contract.test.ts"
+        ]
       }
     ],
     "depends_on": [
@@ -12495,18 +12505,34 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Opus 5.5 (сессия «Башня», субагент)",
     "reviewer": null,
-    "evidence": [],
+    "evidence": [
+      "functions/src/spire_progress_contract.ts",
+      "functions/src/spire_progress.ts",
+      "functions/src/spire_progress_contract.test.ts",
+      "modules/spire/report_queue.ts",
+      "modules/spire/report_store.ts",
+      "app/spire_report_client.ts",
+      "tests/spire_report_queue.test.ts",
+      "firestore.rules",
+      "app/cloud_sync.ts"
+    ],
     "notes": [
-      "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md"
+      "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md",
+      "A1: клиент — чистая очередь modules/spire/report_queue.ts (маркер вверх сразу, pending[] в AsyncStorage spire_week_v1:{uid}:{lang}, пачка до 60 строк, интервал 5 мин/уход с экрана/фон — D56) + report_store.ts (замок на ключ, single-flight, ответ применяется к свежему состоянию по reportId). Сервер spireReportSteps: на пачку 1 транзакция — чтения users+leaderboard+своя комната spire_groups, записи progress.spire_week_v1 и строки комнаты через spireMemberStepsUpdate (PM-277). Экран (UI) не подключён — отдельная сессия интерфейса.",
+      "A2: spire_progress_contract.ts отвергает too_fast (integrity.minStepMs), rate_limited (integrity.maxStepsPerHour в скользящем часе), pack_mismatch/pack_unknown (ожидаемый packHash из customMetadata файла Storage spire_packs/{lang}/{tier}/{weekKey}.json), tier_mismatch (шпиль комнаты/leaderboard), stale_week, clock_ahead, overlap, malformed. Идемпотентность по времени завершения ступени (duplicate). Отказ — лог [SPIRE-REPORT] + честный ответ по строке; локальный маркер не стирается.",
+      "ЗАВИСИМОСТЬ для PM-272: сборка пакета обязана класть packHash в customMetadata файла пакета — иначе все отчёты уйдут в pack_unknown (fail-closed).",
+      "Энергия за ступень НЕ списывается — TODO(PM-274) в app/spire_report_client.ts (заблокировано E08).",
+      "НЕ проверено прогоном: jest/tsc не запускались по условию задачи (щадящий режим); тесты functions/src/spire_progress_contract.test.ts и tests/spire_report_queue.test.ts написаны, но не прогнаны.",
+      "ОТКРЫТЫЕ ВОПРОСЫ владельцу: О-275-1 — minStepMs по умолчанию 45 с, а 10 быстрых заданий «выбор» реально пройти за ~35–40 с: честного быстрого игрока отвергнет too_fast; снизить (например до 25 с) или оставить? О-275-2 — если сервер отверг ступень, локальный маркер остаётся выше серверного (serverAck хранит правду): показывать ли человеку расхождение или молча держать? О-275-3 — отчёты прошлой недели, дошедшие после полуночи понедельника (офлайн через смену недели), отвергаются stale_week: принять так или давать окно досылки?"
     ],
     "actual_cost": null,
-    "kind": "unclassified",
+    "kind": "code",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "claude-opus-5-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-276",

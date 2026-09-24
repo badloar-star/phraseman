@@ -159,7 +159,11 @@ export type RemoteBoolKey =
   // D51/D53 (владелец 2026-09-24): рубильник миграции «Подарки и спины → монеты».
   // Дефолт TRUE = kill-switch: false в remote_config/app.bools останавливает
   // НОВЫЕ прогоны; уже прошедшие не трогает, зачисленное не забирается.
-  | 'gifts_to_coins_enabled';
+  | 'gifts_to_coins_enabled'
+  // PM-059 (D15, владелец 2026-09-24): рубильник миграции «остаток жемчуга →
+  // монеты 1:10». Дефолт TRUE = kill-switch: false останавливает только НОВЫЕ
+  // прогоны; начатый (жемчуг уже списан) доводится монетами при любом флаге.
+  | 'pearls_to_coins_enabled';
 
 /** Строковые ключи (тексты), управляемые из админки. Сейчас — режим обслуживания. */
 export type RemoteTextKey =
@@ -393,6 +397,8 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   intro_full_access_enabled: false,
   // зачем (D51): миграция едет включённой, флаг — аварийный стоп без релиза.
   gifts_to_coins_enabled: true,
+  // зачем (PM-059): миграция жемчуга едет включённой, флаг — аварийный стоп без релиза.
+  pearls_to_coins_enabled: true,
 };
 
 const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {

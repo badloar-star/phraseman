@@ -1045,6 +1045,18 @@ function GlobalLevelUpRewards() {
     return () => { cancelled = true; stop?.(); };
   }, []);
 
+  // зачем (PM-059, D15): остаток жемчуга молча уходит в монеты 1:10. Планировщик
+  // ждёт ~18 с после старта (не толкается с подарками на 15 с) и повторяет на
+  // каждой активации аккаунта; модуль ленивый, первый кадр не трогает.
+  useEffect(() => {
+    let stop: (() => void) | null = null;
+    let cancelled = false;
+    void import('./pearls_to_coins_migration_v1')
+      .then((m) => { if (!cancelled) stop = m.startPearlsToCoinsMigrationScheduler(); })
+      .catch((error) => console.warn('[PEARLS-TO-COINS] catch step=scheduler_import', error));
+    return () => { cancelled = true; stop?.(); };
+  }, []);
+
   return null;
 }
 

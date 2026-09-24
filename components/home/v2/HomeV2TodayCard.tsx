@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import TapScale from '../../TapScale';
+import V2Pressable from '../../v2/V2Pressable';
 import { V2, V2_TYPE } from '../../../constants/v2Style';
 import { useV2Palette } from '../../v2/useV2Palette';
 import type { TodayTask, TodayTaskKind } from './home_v2_types';
@@ -37,7 +37,7 @@ export default function HomeV2TodayCard({ title, tasks, onOpenTask }: Props) {
         {tasks.map((task) => {
           const counter = `${Math.min(task.progress, task.target)}/${task.target}`;
           return (
-            <TapScale
+            <V2Pressable
               key={task.id}
               testID={`home-v2-today-${task.kind}`}
               accessibilityRole="button"
@@ -60,7 +60,7 @@ export default function HomeV2TodayCard({ title, tasks, onOpenTask }: Props) {
                 ) : null}
               </View>
               <Text style={[s.counter, { color: p.textSecondary }]}>{counter}</Text>
-            </TapScale>
+            </V2Pressable>
           );
         })}
       </View>

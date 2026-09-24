@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import TapScale from '../../TapScale';
+import V2Pressable from '../../v2/V2Pressable';
 import { V2, V2_TYPE } from '../../../constants/v2Style';
 import { useV2Palette } from '../../v2/useV2Palette';
 
@@ -27,7 +27,7 @@ export default function HomeV2ContinueCard({ overline, title, done, total, badge
   const safeTotal = Math.max(1, total);
   const ratio = Math.max(0, Math.min(1, done / safeTotal));
   return (
-    <TapScale
+    <V2Pressable
       testID="home-continue-lesson"
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel}
@@ -59,7 +59,7 @@ export default function HomeV2ContinueCard({ overline, title, done, total, badge
           </View>
         </View>
       </View>
-    </TapScale>
+    </V2Pressable>
   );
 }
 

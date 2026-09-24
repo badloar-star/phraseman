@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import TapScale from '../../TapScale';
+import V2Pressable from '../../v2/V2Pressable';
 import { V2, V2_TYPE } from '../../../constants/v2Style';
 import { useV2Palette } from '../../v2/useV2Palette';
 import type { HomeFeatureTile } from './home_v2_types';
@@ -16,13 +16,14 @@ export default function HomeV2FeatureTiles({ tiles }: { tiles: readonly HomeFeat
   return (
     <View testID="home-v2-feature-tiles" style={s.row}>
       {tiles.map((tile) => (
-        <TapScale
+        <V2Pressable
           key={tile.key}
           testID={`home-quick-tile-${tile.key}`}
           accessibilityRole="button"
           accessibilityLabel={`${tile.title}. ${tile.subtitle}`}
           onPress={tile.onPress}
           scaleTo={0.96}
+          outerStyle={s.tileSlot}
           style={[s.tile, { backgroundColor: p.card, borderColor: p.hairline }]} // guard-ok: D43
         >
           <View pointerEvents="none" style={[s.art, { backgroundColor: p.cardRaised }]} />
@@ -33,7 +34,7 @@ export default function HomeV2FeatureTiles({ tiles }: { tiles: readonly HomeFeat
               <Ionicons name="chevron-forward" size={16} color={p.text} />
             </View>
           </View>
-        </TapScale>
+        </V2Pressable>
       ))}
     </View>
   );
@@ -41,18 +42,19 @@ export default function HomeV2FeatureTiles({ tiles }: { tiles: readonly HomeFeat
 
 const s = StyleSheet.create({
   row: { flexDirection: 'row', gap: V2.gapTight },
+  tileSlot: { flex: 1 },
   tile: {
     flex: 1,
     minHeight: 156,
     borderRadius: V2.radius.tile,
     borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43
-    paddingHorizontal: 12,
-    paddingBottom: 12,
+    paddingHorizontal: 10,
+    paddingBottom: 10,
     overflow: 'hidden',
   },
-  art: { height: 76, marginHorizontal: -12, marginBottom: 10, opacity: 0.85 },
+  art: { height: 76, marginHorizontal: -10, marginBottom: 10, opacity: 0.85 },
   title: { ...V2_TYPE.headline },
   footer: { flexDirection: 'row', alignItems: 'flex-end', gap: 4, marginTop: 4 },
-  subtitle: { ...V2_TYPE.caption, fontSize: 13, lineHeight: 17, flex: 1 },
-  arrow: { width: 28, height: 28, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
+  subtitle: { ...V2_TYPE.caption, fontSize: 12, lineHeight: 16, flex: 1 },
+  arrow: { width: 26, height: 26, borderRadius: 13, alignItems: 'center', justifyContent: 'center', marginRight: -2 },
 });

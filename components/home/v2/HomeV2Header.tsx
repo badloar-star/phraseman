@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
-import TapScale from '../../TapScale';
+import V2Pressable from '../../v2/V2Pressable';
 import { V2, V2_TYPE } from '../../../constants/v2Style';
 import { useV2Palette } from '../../v2/useV2Palette';
 
@@ -54,7 +54,7 @@ export default function HomeV2Header({ isPro, tagline, bellSlot, avatarSlot, sta
         <Text numberOfLines={2} style={[s.tagline, { color: p.textSecondary }]}>{tagline}</Text>
         <View style={s.stats}>
           {stats.map((stat) => (
-            <TapScale
+            <V2Pressable
               key={stat.testID}
               testID={stat.testID}
               accessibilityRole="button"
@@ -64,11 +64,11 @@ export default function HomeV2Header({ isPro, tagline, bellSlot, avatarSlot, sta
               style={[s.stat, { backgroundColor: p.card, borderColor: p.hairline }]} // guard-ok: D43
             >
               <View style={s.statIcon}>{stat.icon}</View>
-              <View>
+              <View style={s.statCopy}>
                 <Text numberOfLines={1} style={[s.statValue, { color: p.text }]}>{stat.value}</Text>
                 <Text numberOfLines={1} style={[s.statLabel, { color: p.textSecondary }]}>{stat.label}</Text>
               </View>
-            </TapScale>
+            </V2Pressable>
           ))}
         </View>
       </View>
@@ -110,7 +110,8 @@ const s = StyleSheet.create({
   tagline: { ...V2_TYPE.subtitle, flexShrink: 1 },
   stats: { flexDirection: 'row', gap: 8 },
   stat: {
-    minWidth: 92,
+    // Обе плашки одной ширины, как на референсе: число не «толкает» соседа.
+    width: 104,
     height: 46,
     borderRadius: V2.radius.row,
     borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43
@@ -120,6 +121,7 @@ const s = StyleSheet.create({
     paddingHorizontal: 10,
   },
   statIcon: { width: 24, height: 24, alignItems: 'center', justifyContent: 'center' },
+  statCopy: { flex: 1, minWidth: 0 },
   statValue: { fontSize: 15, lineHeight: 18, fontWeight: '800' },
   statLabel: { ...V2_TYPE.caption },
 });

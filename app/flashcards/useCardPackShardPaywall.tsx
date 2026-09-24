@@ -6,6 +6,7 @@ import { purchaseCardPackWithShards, redeemPackGiftVoucher } from './cardPackSha
 import { isPackCeremoniallyOpened } from './openedPacksTracker';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
+import { logPearlStoreEntryBlocked } from '../pearl_store_retired';
 
 type Routerish = { push: (h: any) => void };
 
@@ -16,7 +17,8 @@ type Routerish = { push: (h: any) => void };
  *  - voucher       — активний 48-год подарунок-ваучер (офіційні + community): пропонуємо
  *                    забрати безкоштовно з попередженням, що подарунок «згорить».
  *  - confirm       — звичайна покупка за осколки.
- *  - insufficient  — балансу не вистачає, кидаємо в магазин осколків.
+ *  - insufficient  — балансу не вистачає. PM-057: магазину жемчуга більше
+ *                    немає — модалка лише повідомляє про нестачу.
  */
 export function useCardPackShardPaywall(args: {
   balance: number;
@@ -31,11 +33,6 @@ export function useCardPackShardPaywall(args: {
   onPurchaseStart?: (packId: string) => void;
   onPurchaseEnd?: () => void;
   onCommunityPackHiddenOnDevice?: () => void;
-  /**
-   * Экран уже сам является магазином жемчуга: вместо push дубля того же
-   * маршрута он просто переключает вкладку на пакеты.
-   */
-  onShowShardPacksInPlace?: () => void;
 }): {
   openPaywall: (pack: FlashcardMarketPack) => void;
   closePaywall: () => void;
@@ -52,7 +49,6 @@ export function useCardPackShardPaywall(args: {
     onPurchaseStart,
     onPurchaseEnd,
     onCommunityPackHiddenOnDevice,
-    onShowShardPacksInPlace,
   } = args;
   const [paywall, setPaywall] = useState<{ pack: FlashcardMarketPack; mode: 'confirm' | 'insufficient' | 'voucher' } | null>(null);
   const [purchasing, setPurchasing] = useState(false);
@@ -151,19 +147,12 @@ export function useCardPackShardPaywall(args: {
   }, [lang, onAfterPurchase, onPurchaseStart, onPurchaseEnd, router, studyTarget]);
 
   const onGoToShards = useCallback(() => {
-    // зачем: наборы карточек продаются ТОЛЬКО с экрана магазина жемчуга, и
-    // старый push клал /shards_shop поверх самого себя — лишний дубль в стеке
-    // и «назад», ведущее на тот же экран. Если хозяин экрана умеет показать
-    // пакеты сам, просто переключаем вкладку.
-    if (onShowShardPacksInPlace) {
-      navigateAfterModalClose(() => setPaywall(null), onShowShardPacksInPlace);
-      return;
-    }
-    navigateAfterModalClose(
-      () => setPaywall(null),
-      () => router.push({ pathname: '/shards_shop', params: { tab: 'catalog', source: 'card_pack_insufficient' } }),
-    );
-  }, [onShowShardPacksInPlace, router]);
+    // зачем (PM-057, D28): купить жемчуг больше негде — кнопка «Пополнить
+    // жемчуг» в модалке скрыта для жемчужной валюты. Если колбэк всё же
+    // вызван (старый путь), просто закрываем модалку и пишем, откуда пришли.
+    logPearlStoreEntryBlocked('card_pack_insufficient', null);
+    setPaywall(null);
+  }, []);
 
   const CardPackPaywallModalEl =
     paywall != null ? (

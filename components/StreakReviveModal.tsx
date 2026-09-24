@@ -11,7 +11,6 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
-import { useRouter } from 'expo-router';
 // зачем: сырой useSafeAreaInsets в свежесмонтированном модале даёт 0 до прихода
 // нативных метрик — контент прыгал; стабильная обёртка знает инсеты синхронно.
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
@@ -28,7 +27,7 @@ import {
 import { getShardsBalance } from '../app/shards_system';
 import { oskolokImageForPackShards } from '../app/oskolok';
 import { emitAppEvent } from '../app/events';
-import { navigateAfterModalClose } from '../app/safe_modal_navigation';
+import { notifyPearlShortageWithoutStore } from '../app/pearl_store_retired';
 import { triLang, type Lang } from '../constants/i18n';
 import { isLightThemeMode } from '../constants/theme';
 import { OLIVE_RICH } from '../constants/oliveTheme';
@@ -45,6 +44,7 @@ interface StreakReviveModalProps {
   offer: StreakReviveOffer | null;
   onClose: () => void;
   onRevived?: (restoredStreak: number) => void;
+  /** PM-057: не используется — магазина жемчуга больше нет; оставлено, чтобы не править вызывающих. */
   shopReturnTo?: 'home' | 'streak_stats';
   /** default 'classic' — боевое поведение не меняется, пока не передан явно. */
   motionVariant?: 'classic' | 'hybrid';
@@ -79,8 +79,7 @@ function formatCountdown(msLeft: number, lang: Lang): string {
   });
 }
 
-function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 'home', motionVariant = 'classic' }: StreakReviveModalProps) {
-  const router = useRouter();
+function StreakReviveModal({ visible, offer, onClose, onRevived, motionVariant = 'classic' }: StreakReviveModalProps) {
   const { lang } = useLang();
   const { theme: t, f, themeMode } = useTheme();
   const isOliveTheme = themeMode === 'olive';
@@ -220,9 +219,9 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
       const balance = await getShardsBalance();
       if (balance < cost) {
         const need = Math.max(0, cost - balance);
-        navigateAfterModalClose(onClose, () => {
-          router.push({ pathname: '/shards_shop', params: { need: String(need), source: 'streak_revive', returnTo: shopReturnTo } } as any);
-        });
+        // зачем (PM-057): магазина жемчуга больше нет — закрываем и говорим о нехватке.
+        onClose();
+        notifyPearlShortageWithoutStore('streak_revive', need);
         return;
       }
       const r = await reviveStreak();
@@ -250,9 +249,9 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
       if (r.reason === 'insufficient_shards') {
         const balance2 = await getShardsBalance();
         const need = Math.max(0, cost - balance2);
-        navigateAfterModalClose(onClose, () => {
-          router.push({ pathname: '/shards_shop', params: { need: String(need), source: 'streak_revive', returnTo: shopReturnTo } } as any);
-        });
+        // зачем (PM-057): магазина жемчуга больше нет — закрываем и говорим о нехватке.
+        onClose();
+        notifyPearlShortageWithoutStore('streak_revive', need);
         return;
       }
       if (r.reason === 'no_offer' || r.reason === 'expired') {
@@ -264,7 +263,7 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
     } finally {
       setBusy(false);
     }
-  }, [busy, offer, cost, onClose, router, onRevived, shopReturnTo, hybrid]);
+  }, [busy, offer, cost, onClose, onRevived, hybrid]);
 
   const onDismiss = useCallback(() => {
     if (busy) return;

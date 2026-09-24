@@ -100,6 +100,7 @@ import SeasonProfileCardFrame from './SeasonProfileCardFrame';
 import { fetchActiveLeagueCrowns } from '../app/services/league_chest_rewards';
 import { PREMIUM_AVATAR_AURA_ID, getEffectiveAvatarAuraId } from '../constants/avatar_auras';
 import { emitAppEvent, onAppEvent } from '../app/events';
+import { notifyPearlShortageWithoutStore } from '../app/pearl_store_retired';
 import {
   loadSeasonCosmetics,
   peekSeasonCosmetics,
@@ -861,12 +862,10 @@ function PlayerProfileModalBody({
         return;
       }
       if (result.reason === 'insufficient') {
-        // Осколков не хватает — закрываем модал и ведём в магазин с готовой суммой.
+        // зачем (PM-057): магазина жемчуга больше нет — закрываем модал и честно
+        // говорим о нехватке, без перехода в магазин.
         onClose();
-        router.push({
-          pathname: '/shards_shop',
-          params: { need: String(Math.max(0, result.need ?? 0)), source: 'profile_card_upgrade' },
-        } as any);
+        notifyPearlShortageWithoutStore('profile_card_upgrade', Math.max(0, result.need ?? 0));
         return;
       }
       onFriendRequestToast(triLang(lang as Lang, {

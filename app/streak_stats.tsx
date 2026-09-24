@@ -69,6 +69,7 @@ import { DEFAULT_STATS_PRIMARY_METRIC, normalizeStatsPrimaryMetric, recentUnlock
 import { statsPrimaryMetricKey } from './target_storage_keys';
 import Svg, { Polyline, Line, Circle } from 'react-native-svg';
 import { navigateAfterModalClose } from './safe_modal_navigation';
+import { logPearlStoreEntryBlocked } from './pearl_store_retired';
 import { loadPendingLevelGiftCount, readPendingLevelGiftCountCache } from './level_gift_inventory';
 import { readLocalLevelSpinBalance } from './local_level_spins';
 import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountGeneration } from './account_generation';
@@ -1862,26 +1863,22 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
             tr: "İptal",
             pl: "Anuluj",
         })} confirmLabel={triLang(lang, {
-            ru: 'В магазин',
-            uk: 'У магазин',
-            es: 'A la tienda',
-            en: "Go to shop",
-            'pt-BR': "Ir à loja",
-            vi: "Đến cửa hàng",
-            id: "Ke toko",
-            tr: "Mağazaya",
-            pl: "Do sklepu",
+            ru: 'Понятно',
+            uk: 'Зрозуміло',
+            es: 'Entendido',
+            en: "Got it",
+            'pt-BR': "Entendi",
+            vi: "Đã hiểu",
+            id: "Mengerti",
+            tr: "Anladım",
+            pl: "Rozumiem",
         })} testIDPrefix="wager-need-shards" onCancel={() => {
             setWagerNeedShards(false);
             setModalOpen(true);
         }} onConfirm={() => {
-            navigateAfterModalClose(() => setWagerNeedShards(false), () => router.push({
-                pathname: '/shards_shop',
-                params: {
-                    need: String(Math.max(0, effectiveBetShards - shardsWager)),
-                    source: 'streak_wager',
-                },
-            } as any));
+            // зачем (PM-057): магазина жемчуга больше нет — кнопка просто закрывает окно.
+            logPearlStoreEntryBlocked('streak_wager', Math.max(0, effectiveBetShards - shardsWager));
+            setWagerNeedShards(false);
         }}/>
       <ThemedConfirmModal visible={wagerConfirm} title={triLang(lang, {
             ru: 'Подтвердить пари',
@@ -5018,23 +5015,19 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                     tr: "İptal",
                     pl: "Anuluj",
                 })} confirmLabel={triLang(lang, {
-                    ru: 'В магазин',
-                    uk: 'У магазин',
-                    en: 'To the store',
-                    es: 'A la tienda',
-                    'pt-BR': "Ir à loja",
-                    vi: "Đến cửa hàng",
-                    id: "Ke toko",
-                    tr: "Mağazaya",
-                    pl: "Do sklepu",
+                    ru: 'Понятно',
+                    uk: 'Зрозуміло',
+                    en: 'Got it',
+                    es: 'Entendido',
+                    'pt-BR': "Entendi",
+                    vi: "Đã hiểu",
+                    id: "Mengerti",
+                    tr: "Anladım",
+                    pl: "Rozumiem",
                 })} onCancel={() => setFreezeNeedShardsModal(false)} onConfirm={() => {
-                    navigateAfterModalClose(() => setFreezeNeedShardsModal(false), () => router.push({
-                        pathname: '/shards_shop',
-                        params: {
-                            need: String(Math.max(0, FREEZE_COST_SHARDS - shardsBalance)),
-                            source: 'streak_stats_freeze',
-                        },
-                    } as any));
+                    // зачем (PM-057): магазина жемчуга больше нет — кнопка просто закрывает окно.
+                    logPearlStoreEntryBlocked('streak_freeze', Math.max(0, FREEZE_COST_SHARDS - shardsBalance));
+                    setFreezeNeedShardsModal(false);
                 }}/>
 
               <StreakReviveModal

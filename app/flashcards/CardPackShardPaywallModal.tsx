@@ -439,6 +439,10 @@ export default function CardPackShardPaywallModal({
    * напрямую; с двумя валютами это гарантированно разошлось бы.
    */
   const isRunes = currency === 'runes';
+  // зачем (PM-057, D28): жемчуг за деньги больше не продаётся — для жемчужной
+  // валюты модалка нехватки не зовёт в магазин и не обещает «пакеты ниже».
+  // Руны пополняются по-прежнему (свой кошелёк), им кнопка остаётся.
+  const canTopUpCurrency = isRunes;
   const price = isRunes ? Math.max(0, Math.floor(Number(pack.priceRunes ?? 0))) : pack.priceShards;
   // Картинка осколка — только у жемчуга: у рун свой знак ᚱ, он рисуется текстом.
   const shardPriceImg = useMemo(
@@ -706,6 +710,7 @@ export default function CardPackShardPaywallModal({
                           >
                             {str.insufficientTitle}
                           </Animated.Text>
+                          {canTopUpCurrency ? (
                           <Animated.Text
                             entering={FadeInDown.delay(140).duration(420).easing(Easing.out(Easing.cubic))}
                             style={{
@@ -717,6 +722,7 @@ export default function CardPackShardPaywallModal({
                           >
                             {str.insufficientIntro}
                           </Animated.Text>
+                          ) : null}
 
                           <Animated.View
                             entering={FadeInDown.delay(200).duration(400)}
@@ -820,6 +826,7 @@ export default function CardPackShardPaywallModal({
                                 </View>
                               </View>
                             </LinearGradient>
+                            {canTopUpCurrency ? (
                             <Text
                               style={{
                                 color: subLabelColor,
@@ -831,6 +838,7 @@ export default function CardPackShardPaywallModal({
                             >
                               {str.shopCtaSub}
                             </Text>
+                            ) : null}
                           </Animated.View>
                         </>
                       ) : mode === 'voucher' ? (
@@ -1072,6 +1080,7 @@ export default function CardPackShardPaywallModal({
                     <View style={{ paddingHorizontal: 16, paddingTop: 4, paddingBottom: 6 }}>
                       {mode === 'insufficient' ? (
                         <>
+                          {canTopUpCurrency ? (
                           <View style={{ position: 'relative', marginBottom: 10 }}>
                             <AnimatedLinearGradient
                               colors={[paywallVisual.ctaGlowTop, 'rgba(0,0,0,0)']}
@@ -1101,6 +1110,7 @@ export default function CardPackShardPaywallModal({
                               </View>
                             </DuoPressable>
                           </View>
+                          ) : null}
                           <PressableHybrid
                             onPress={handleClose}
                             hitSlop={8}

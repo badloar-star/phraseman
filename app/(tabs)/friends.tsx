@@ -111,6 +111,7 @@ import { oskolokImageForPackShards } from '../oskolok';
 import type { IncomingFriendGift } from '../friend_gift_inbox';
 import { friendsAccountStore } from '../friends_account_store';
 import { emitAppEvent, onAppEvent } from '../events';
+import { logPearlStoreEntryBlocked, notifyPearlShortageWithoutStore } from '../pearl_store_retired';
 import {
   FRIEND_GIFT_CATALOG,
   isFriendGiftsCloudEnabled,
@@ -2683,7 +2684,8 @@ export default function FriendsTabScreen() {
         messageTr: `Daha fazla inci gerekiyor: ${missing}`,
         messagePl: `Potrzeba więcej monet: ${missing}`,
       });
-      router.push({ pathname: '/shards_shop', params: { need: String(missing), source: 'friend_gift' } } as any);
+      // зачем (PM-057): магазина жемчуга больше нет — сообщение о нехватке выше, без перехода.
+      logPearlStoreEntryBlocked('friend_gift', missing);
       return;
     }
     giftRequestInFlightRef.current = true;
@@ -2744,7 +2746,8 @@ export default function FriendsTabScreen() {
     const knownBalance = peekLastKnownShardsBalance();
     if (knownBalance !== null && knownBalance < giftCost) {
       setIncomingGiftModal(null);
-      router.push({ pathname: '/shards_shop', params: { need: String(giftCost - knownBalance), source: 'friend_gift_reply' } } as any);
+      // зачем (PM-057): магазина жемчуга больше нет — говорим о нехватке вместо перехода.
+      notifyPearlShortageWithoutStore('friend_gift_reply', giftCost - knownBalance);
       return;
     }
     setIncomingGiftModal(null);

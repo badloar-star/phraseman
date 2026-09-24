@@ -21,6 +21,7 @@ import { useLang } from '../components/LangContext';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { triLang, type Lang } from '../constants/i18n';
 import { actionToastTri, emitAppEvent, onAppEvent } from './events';
+import { logPearlStoreEntryBlocked } from './pearl_store_retired';
 import { hapticTap } from '../hooks/use-haptics';
 import { pearlIconForTheme } from './coin_icons';
 import { safeRouterBack } from './navigation_back';
@@ -470,7 +471,8 @@ export default function SeasonPassScreen() {
         tr: `İnci yetersiz: ${SEASON_PASS_PRICE_PEARLS} gerekli`,
         pl: `Za mało pereł: potrzeba ${SEASON_PASS_PRICE_PEARLS}`,
       }));
-      router.push('/shards_shop' as never);
+      // зачем (PM-057): магазина жемчуга больше нет — тост о нехватке выше, без перехода.
+      logPearlStoreEntryBlocked('season_pass', SEASON_PASS_PRICE_PEARLS - balance);
       return;
     }
     setBuying(true);

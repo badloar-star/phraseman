@@ -98,6 +98,8 @@
 - 2026-09-24 · PM-270 · Opus 5.5 (сессия «Башня») · preflight пула → review; решения D55; заведены PM-285 (дистракторы), PM-286 (слух/голос из V2), PM-287 (публикация es/de/fr) · evidence/PM-270_pool_preflight.md · en-пул в Firestore не посчитан (unknown)
 - 2026-09-24 · PM-284 · Opus 5.5 (сессия «Башня») · бриф картинок Шпиля для Codex → review · docs/TOWER_ASSET_PROMPTS.md · передать Codex
 - 2026-09-24 · PM-271 · Opus 5.5 (сессия «Башня») · черновик контракта данных → needs_decision · docs/TOWER_CONTRACT.md · нашлось: жители лиги уже = боты с формулой; 3 вопроса владельцу (§6)
+- 2026-09-24 · D56 · Sonnet 5 (сессия «Башня») · владелец принял §6 контракта целиком → PM-271 planned, гейт OWNER_DECISION_RECORDED закрыт · —
+- 2026-09-24 · PM-273 · Sonnet 5 (сессия «Башня») · движок ступени → review · modules/spire/step_machine.ts, evidence/PM-273_step_engine_preflight.md · нашлось: голос не проходит через answer_check.ts (нужен отдельный модуль); цена энергии 1/ступень ждёт E08 — добавлена зависимость PM-274→PM-084; не typecheck-проверено (щадящий режим, 44 процесса node на машине)
 
 - 2026-09-24 · D51/D53 доработка · Opus 5.5 · спины «Дневного пути» закрываются С компенсацией (130 монет/спин, общий потолок 20, общие ключи начисления между активацией и миграцией) · d462bceb4 · 61/61 тестов (daily_journey_gift_activation 32/32, daily_journey_spin_never_in_gifts_contract 5/5, gifts_to_coins_migration 21/21) · typecheck и gifts_to_coins_real_wallet НЕ прогнаны (экономия ресурсов)
 

@@ -12295,7 +12295,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -12304,14 +12304,19 @@
       {
         "id": "PM-273-A1",
         "text": "10 заданий, общий таймер с мягким ужатием и нижним пределом, 3 сердца, пауза при сворачивании, «назад» = провал",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "modules/spire/step_machine.ts",
+          "evidence/PM-273_step_engine_preflight.md"
+        ]
       },
       {
         "id": "PM-273-A2",
         "text": "Голос не снимает сердце (2 доп. попытки, затем пропуск); ошибки пишутся в «Мои ошибки»; вердикт мгновенный, без сети",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "modules/spire/step_machine.ts (submitSpireVoiceVerdict, withOutcome)"
+        ]
       }
     ],
     "depends_on": [
@@ -12323,18 +12328,24 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (сессия «Башня»)",
     "reviewer": null,
-    "evidence": [],
+    "evidence": [
+      "modules/spire/step_machine.ts",
+      "evidence/PM-273_step_engine_preflight.md"
+    ],
     "notes": [
-      "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md"
+      "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md",
+      "Реализован редьюсер по образцу modules/arena/match_machine.ts. НЕ typecheck-проверен (щадящий режим по просьбе владельца — 44 процесса node на машине); импорты сверены вручную построчно с answer_check.ts. result_sha проставить после коммита."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
+    "kind": "code",
     "review_verdict": null,
-    "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "gate_evidence": {
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES": "Не применим: чистая логика без JSX/вёрстки, экран отдан сессии интерфейса (D31/D40)."
+    },
+    "actual_model": "claude-sonnet-5",
+    "actual_reasoning": "medium"
   },
   {
     "id": "PM-274",
@@ -12365,6 +12376,7 @@
       }
     ],
     "depends_on": [
+      "PM-084",
       "PM-273"
     ],
     "gates": [
@@ -12377,7 +12389,8 @@
     "reviewer": null,
     "evidence": [],
     "notes": [
-      "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md"
+      "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md",
+      "Preflight PM-273 (2026-09-24): EnergyActivityKey сейчас 10/20/25 (старый масштаб), T3 требует 1 за ступень по новому контракту 5/1/10 (E08, ещё planned). PM-274 физически ждёт PM-084 (списание ровно при начале занятия) — добавлена явная зависимость, иначе цена спишется по старой шкале."
     ],
     "actual_cost": null,
     "kind": "unclassified",

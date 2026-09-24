@@ -10889,7 +10889,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "needs_decision",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -10898,8 +10898,10 @@
       {
         "id": "PM-225-A1",
         "text": "Каждая оставшаяся подписка имеет owner/lifetime",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/evidence/PM-225_realtime_listeners_audit.md"
+        ]
       },
       {
         "id": "PM-225-A2",
@@ -10915,15 +10917,19 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент) + Claude Opus 5.5",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "docs/phraseman-2.0/evidence/PM-225_realtime_listeners_audit.md"
+    ],
+    "notes": [
+      "A1 подтверждён: все 9 realtime-подписок имеют корректный owner/lifetime, утечек нет. A2 (каталоги/топ используют TTL там, где realtime не нужен) НЕ выполнен кодом — только разведка: найдено 5 явных кандидатов на замену one-shot+TTL (3 канала в app_messages.ts — лента объявлений/личные сообщения/состояния прочитанности; 2 в league_group_boosts.ts — groupId лидерборда и буст лиги), плюс 2 сомнительных (список друзей и заявки в друзья). НЕ стал резать app_messages.ts (2110 строк, сложные pending-очереди наград/claim'ов, был инцидент Android OOM в этом же файле) и league_group_boosts.ts (буст уже гейтится фокусом экрана прошлым аудитом нагрева 07-25, несёт live-счётчик лайков) без возможности протестировать на устройстве — риск денежной/наградной регрессии выше экономии. Нужно решение владельца: приоритизировать ли эту оптимизацию отдельной задачей с ручным тестированием"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
+    "actual_model": "sonnet-5",
     "actual_reasoning": null
   },
   {

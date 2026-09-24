@@ -129,43 +129,44 @@ export function getV2Palette(theme: Theme, themeMode: ThemeMode): V2Palette {
   const tint = TINT_BY_THEME[themeMode] ?? 0.04;
   const palette: V2Palette = {
     // Фон тёплый почти чёрный, как во второй серии референсов; тема — едва-едва.
-    bg: mixHex('#0C0C0C', tintColor, 0.015),
-    bgTop: mixHex('#141312', tintColor, 0.015),
+    bg: mixHex('#0C0C0D', tintColor, 0.015),
+    bgTop: mixHex('#141415', tintColor, 0.015),
     card: mixHex(BASE.card, tintColor, tint),
     cardRaised: mixHex(BASE.cardRaised, tintColor, tint),
     // Тёплый нейтральный графит (вторая серия референсов), тема — едва-едва.
-    control: mixHex('#2B2927', tintColor, 0.02),
-    track: mixHex('#34322F', tintColor, 0.02),
-    tabBar: mixHex('#151413', tintColor, 0.015),
+    control: mixHex('#2A2A2B', tintColor, 0.02),
+    track: mixHex('#333334', tintColor, 0.02),
+    tabBar: mixHex('#151515', tintColor, 0.015),
     hairline: 'rgba(255,255,255,0.09)',
     outline: 'rgba(255,255,255,0.30)',
     divider: 'rgba(255,255,255,0.07)',
     text: BASE.text,
-    textSecondary: mixHex('#A8A5A0', tintColor, 0.03),
-    textMuted: mixHex('#74716C', tintColor, 0.03),
+    textSecondary: mixHex('#A6A6A8', tintColor, 0.03),
+    textMuted: mixHex('#727274', tintColor, 0.03),
     accent: tintColor,
     accentSoft: alphaHex(tintColor, 0.16),
     // На референсе заливка прогресса почти белая; тема добавляет свой оттенок.
-    // Заливка прогресса — тёплое шампанское, как «24%» на референсе; тема подмешивается слегка.
-    progressFill: mixHex('#D8C3A0', tintColor, 0.15),
+    // Заливка прогресса — светлая с лёгкой теплотой, как на референсе.
+    progressFill: mixHex('#D9D5CE', tintColor, 0.1),
     cta: mixHex(BASE.cta, tintColor, 0.08),
     ctaText: BASE.ctaText,
     correct: theme.correct,
     wrong: theme.wrong,
     gold: theme.gold,
-    // зачем: вторая серия референсов — стекло тёплое, нейтрально-коричневатое.
+    // зачем: стекло нейтрально-графитовое (владелец: тёплое вышло «слишком рыжим»).
     // Тема здесь почти не участвует (0.02), иначе индиго красит всё в синь.
-    glass: alphaHex(mixHex('#1B1A19', tintColor, 0.02), 0.9),
-    glassRaised: alphaHex(mixHex('#232120', tintColor, 0.02), 0.92),
-    sheenFrom: 'rgba(255,248,236,0.045)',
-    sheenTo: 'rgba(255,248,236,0)',
+    glass: alphaHex(mixHex('#1A1A1B', tintColor, 0.015), 0.9),
+    glassRaised: alphaHex(mixHex('#222223', tintColor, 0.015), 0.92),
+    sheenFrom: 'rgba(255,255,255,0.045)',
+    sheenTo: 'rgba(255,255,255,0)',
     stroke: 'rgba(255,255,255,0.14)',
-    iconTint: mixHex('#E2C9A0', tintColor, 0.15),
+    // Значки почти белые с едва тёплым оттенком (владелец: «слишком рыжее»).
+    iconTint: mixHex('#DDD8D0', tintColor, 0.08),
     glowA: mixHex('#C9A370', tintColor, 0.2),
     glowB: mixHex('#8C8F99', tintColor, 0.25),
-    smoke: '#FFF3E0',
-    tileFrom: mixHex('#34302B', tintColor, 0.04),
-    tileTo: mixHex('#1E1C1A', tintColor, 0.02),
+    smoke: '#FFFFFF',
+    tileFrom: mixHex('#303031', tintColor, 0.03),
+    tileTo: mixHex('#1C1C1D', tintColor, 0.02),
   };
   paletteCache.set(key, palette);
   return palette;

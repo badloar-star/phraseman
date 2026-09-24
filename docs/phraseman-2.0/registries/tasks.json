@@ -12343,7 +12343,6 @@
       }
     ],
     "depends_on": [
-      "PM-271",
       "PM-285"
     ],
     "gates": [
@@ -12357,7 +12356,8 @@
     "reviewer": null,
     "evidence": [],
     "notes": [
-      "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md"
+      "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md",
+      "Убрана зависимость от PM-271: контракт (черновик) реализован дочерними задачами PM-273/275/277/283 (все review), сама PM-271 осталась planned после D56 и никогда не станет review/done — это блокировало граф навсегда."
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -12621,7 +12621,8 @@
       "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md",
       "D59/D60: недельный итог обязан использовать ту же функцию зон (spireLiveZoneSize из functions/src/spire_residents.ts), что и spire_groups.ts — боты в общем числе для зоны, но без награды/повышения; допустима просадка чисел ботов при входе живого в зону.",
       "2026-09-24: отдельный крон spireFinalizeCron (пн 00:01 UTC) по spire_groups прошлой недели; итог комнаты — чистая computeSpireRoomResults (ступени, ничья reachedAtMs, затем totalMs; зоны spireLiveZoneSize по живым; боты только для «место X из 30»). Итог -> users/{uid}/spire_week_results/{weekId}_{lang}, новый шпиль -> leaderboard.spireTiers.{lang} только при смене, finalizedAt на комнату для ретрая. D59 применено в spireLiveZoneSize (оба зеркала + тест): зона от комнаты с ботами (5 из 30), одинокий живой повышается. Лидер вершины не понижается (отличие от лиги). Тесты и проверка типов НЕ прогнаны (щадящий режим).",
-      "A1 не принят: формулировка устарела — требует зеркальной правки файлов лиги, а Шпиль после PM-277 живёт в своей коллекции, файлы лиги не тронуты по заданию. Предложено переписать критерий. Монеты за место/повышение посчитаны (rewardCoins, rewardStatus pending_wallet), но НЕ начислены — нет готового модуля кошелька 2.0 (PM-069/PM-280). Открытые О-276-1..5 — в evidence."
+      "A1 не принят: формулировка устарела — требует зеркальной правки файлов лиги, а Шпиль после PM-277 живёт в своей коллекции, файлы лиги не тронуты по заданию. Предложено переписать критерий. Монеты за место/повышение посчитаны (rewardCoins, rewardStatus pending_wallet), но НЕ начислены — нет готового модуля кошелька 2.0 (PM-069/PM-280). Открытые О-276-1..5 — в evidence.",
+      "Проверено (сессия «Башня», 2026-09-24): точечные jest-прогоны — 66/66 новых тестов зелёные (spire_finalize_core, spire_league_migration_contract, spire_residents/mirror после правки D59, spire_tier_names). Точечная проверка типов functions/ — 0 ошибок."
     ],
     "actual_cost": null,
     "kind": "code",
@@ -12770,7 +12771,8 @@
     ],
     "notes": [
       "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md",
-      "2026-09-24: код переноса написан, на проде НЕ запускался. Ленивый перенос при первом spireJoinRoom (до подбора комнаты): leaderboard.leagueId (+согласованный итог прошлой недели; progress.league_state_v3 только если leagueId нет) -> leaderboard.spireTiers[текущий язык] по прямому индексу 0..11, остальные языки 0; отметка spireMigration + полная копия spire_league_migration/{uid}. Лига не трогается (аддитивно). Выключатель config/spire_league_migration_v1 и откат adminSpireLeagueMigrationRollback (dryRun по умолчанию, по языкам - не стирает изменённое итогом недели). Имена 12 камней в 9 локалях (modules/spire/tier_names.ts). Тесты и typecheck не прогнаны (условие задачи). A1/A2 не приняты: ждут «да» владельца на О1 и О-278-1..5 (evidence/PM-278_league_migration.md) и гейт MIGRATION_AND_ROLLBACK_APPROVED; клиент должен слать currentStudyTarget (PM-279)."
+      "2026-09-24: код переноса написан, на проде НЕ запускался. Ленивый перенос при первом spireJoinRoom (до подбора комнаты): leaderboard.leagueId (+согласованный итог прошлой недели; progress.league_state_v3 только если leagueId нет) -> leaderboard.spireTiers[текущий язык] по прямому индексу 0..11, остальные языки 0; отметка spireMigration + полная копия spire_league_migration/{uid}. Лига не трогается (аддитивно). Выключатель config/spire_league_migration_v1 и откат adminSpireLeagueMigrationRollback (dryRun по умолчанию, по языкам - не стирает изменённое итогом недели). Имена 12 камней в 9 локалях (modules/spire/tier_names.ts). Тесты и typecheck не прогнаны (условие задачи). A1/A2 не приняты: ждут «да» владельца на О1 и О-278-1..5 (evidence/PM-278_league_migration.md) и гейт MIGRATION_AND_ROLLBACK_APPROVED; клиент должен слать currentStudyTarget (PM-279).",
+      "Проверено (сессия «Башня», 2026-09-24): точечные jest-прогоны — 66/66 новых тестов зелёные (spire_finalize_core, spire_league_migration_contract, spire_residents/mirror после правки D59, spire_tier_names). Точечная проверка типов functions/ — 0 ошибок."
     ],
     "actual_cost": null,
     "kind": "code",
@@ -12973,7 +12975,8 @@
     ],
     "notes": [
       "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md",
-      "2026-09-24 Sonnet 5: этаж друга едет тем же батчевым callable friendsGetProfiles, что weeklyXp лиги (spireFloor/spireLang, 0 доп. чтений). UI-строка на экране Шпиля не нарисована — следующий шаг отдельной (дизайн-)сессии."
+      "2026-09-24 Sonnet 5: этаж друга едет тем же батчевым callable friendsGetProfiles, что weeklyXp лиги (spireFloor/spireLang, 0 доп. чтений). UI-строка на экране Шпиля не нарисована — следующий шаг отдельной (дизайн-)сессии.",
+      "Проверено (сессия «Башня», 2026-09-24): точечные jest-прогоны — 66/66 новых тестов зелёные (spire_finalize_core, spire_league_migration_contract, spire_residents/mirror после правки D59, spire_tier_names). Точечная проверка типов functions/ — 0 ошибок."
     ],
     "actual_cost": null,
     "kind": "impl",

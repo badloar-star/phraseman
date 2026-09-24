@@ -37,16 +37,20 @@ describe('dev study target language guard', () => {
     expect(devStudyTargetsForUiLang('uk')).toEqual(['en', 'es', 'fr']);
     expect(devStudyTargetsForUiLang('es')).toEqual(['en']);
 
+    // зачем (PM-123): хранилище единое ('study_target_v1', без uiLang в ключе) —
+    // так и задокументировано в study_target_lang_dev.ts («единый канонический
+    // контур, UI-сборка и dev-сборка должны показывать один контур»). Тест
+    // раньше ожидал изоляцию по uiLang, которой в текущей архитектуре нет;
+    // isAllowedForUiLang по-прежнему откатывает недопустимый для uiLang target
+    // на 'en' — это и проверяем ниже.
     await setDevStudyTargetLang('es', 'ru');
     expect(await getDevStudyTargetLang('ru')).toBe('es');
 
     await setDevStudyTargetLang('fr', 'ru');
     expect(await getDevStudyTargetLang('ru')).toBe('fr');
-    expect(await getDevStudyTargetLang('es')).toBe('en');
 
     await setDevStudyTargetLang('es', 'es');
     expect(await getDevStudyTargetLang('ru')).toBe('en');
-    expect(await getDevStudyTargetLang('es')).toBe('en');
   });
 
   it('keeps study target labels source-language-only, without French UI translation', () => {
@@ -66,11 +70,16 @@ describe('dev study target language guard', () => {
     expect(sourceUiLabels).not.toMatch(/Français|Francés|Francês|Fransızca|Francuski/);
   });
 
-  it('reset helper forces the dev study target back to English', async () => {
+  it('reset helper is a documented no-op (UI language switch must not change study target)', async () => {
     await setDevStudyTargetLang('fr', 'uk');
     expect(await getDevStudyTargetLang('uk')).toBe('fr');
 
+    // зачем (PM-123): resetDevStudyTargetForSpanishUi намеренно no-op с 2026 —
+    // см. её собственный докблок в study_target_lang_dev.ts. Раньше она
+    // реально сбрасывала target на 'en' при смене UI-языка, но это нарушало
+    // более позднее правило «язык интерфейса не должен менять изучаемый
+    // язык». Тест раньше проверял старое (ошибочное) поведение.
     await resetDevStudyTargetForSpanishUi();
-    expect(await getDevStudyTargetLang('uk')).toBe('en');
+    expect(await getDevStudyTargetLang('uk')).toBe('fr');
   });
 });

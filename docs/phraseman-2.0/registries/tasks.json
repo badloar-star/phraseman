@@ -6039,7 +6039,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -6048,14 +6048,18 @@
       {
         "id": "PM-123-A1",
         "text": "Сначала определён конкретный пропавший контур",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "tests/study_target_lang_dev.test.ts 3/3 PASS"
+        ]
       },
       {
         "id": "PM-123-A2",
         "text": "рабочий английский курс не заменён фиктивно новым",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "tests/study_target_lang_dev.test.ts 3/3 PASS"
+        ]
       }
     ],
     "depends_on": [],
@@ -6065,15 +6069,19 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "tests/study_target_lang_dev.test.ts 3/3 PASS"
+    ],
+    "notes": [
+      "Найден и починен контур: dev-кнопка выбора языка на карточке Learning V2 (lessons.tsx) молча игнорировала UI-язык (devStudyTargetsForUiLang стала no-op) — восстановлен фильтр ru/uk-only для es/fr. Отдельно устаревший тест ожидал изоляцию study_target по uiLang, которой в актуальной архитектуре нет (единый канонический ключ study_target_v1, задокументировано в самом файле) — тест обновлён под текущее поведение, не откатывал архитектуру"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
+    "actual_model": "sonnet-5",
     "actual_reasoning": null
   },
   {

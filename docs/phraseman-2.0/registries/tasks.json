@@ -2162,10 +2162,12 @@
     "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
     "evidence": [
-      "commit a3b826949"
+      "commit a3b826949",
+      "commit 7c2145dff"
     ],
     "notes": [
-      "grantLocal*Spin* → no-op; уже выданные/купленные за руны спины (LOCAL_LEVEL_SPIN_STATE_KEY) и claim-путь сохранены до решения владельца; серверные функции спинов не тронуты; сервер Арены ещё шлёт spinAwarded (клиент игнорирует)"
+      "grantLocal*Spin* → no-op; уже выданные/купленные за руны спины (LOCAL_LEVEL_SPIN_STATE_KEY) и claim-путь сохранены до решения владельца; серверные функции спинов не тронуты; сервер Арены ещё шлёт spinAwarded (клиент игнорирует)",
+      "Обещания спинов в заданиях/админ-наградах за отчёт/дневном пути убраны, входящие спины закрываются с логом [SPIN-RETIRED]. СЕРВЕР (владельцу): quests_core QUEST_REWARD_KINDS содержит spins; admin_reports_center тиры spins 1/2/3; arena_v2 arenaRareSpin; level_reward_spins*/enrollment/merge/star_grant живы"
     ],
     "actual_cost": null,
     "kind": "unclassified",

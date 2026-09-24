@@ -14,7 +14,8 @@ import { answerFingerprint, type TournamentTask } from './tournament_core';
 /** Минимальный валидный пул: выбор (3 режима) + сборка + пары по трём сложностям. */
 function makePool(perCell: number): TournamentTask[] {
   const out: TournamentTask[] = [];
-  const base = { isVoice: false, tags: [], verified: true } as const;
+  // зачем: без as const на tags тип сужается до readonly [], а TournamentTask.tags — мутабельный string[].
+  const base: Pick<TournamentTask, 'isVoice' | 'tags' | 'verified'> = { isVoice: false, tags: [] as string[], verified: true };
   for (let difficulty = 1; difficulty <= 3; difficulty += 1) {
     for (let i = 0; i < perCell; i += 1) {
       for (const mode of ['guess_phrase', 'fill_gap', 'find_oddity']) {

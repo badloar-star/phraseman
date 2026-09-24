@@ -12919,7 +12919,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -12928,14 +12928,19 @@
       {
         "id": "PM-285-A1",
         "text": "Во всех 4 языках неверные варианты guess_phrase — только грамматически неверные (правило владельца)",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "evidence/PM-285_distractor_fix_report.md",
+          "scripts/validate_arena_guess_phrase_distractors.mjs"
+        ]
       },
       {
         "id": "PM-285-A2",
         "text": "Повторный аудит по методике ARENA_DISTRACTOR_AUDIT: 0 смысловых подмен",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "evidence/PM-285_distractor_fix_report.md"
+        ]
       }
     ],
     "depends_on": [
@@ -12947,18 +12952,23 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5",
     "reviewer": null,
-    "evidence": [],
+    "evidence": [
+      "evidence/PM-285_distractor_fix_report.md",
+      "scripts/validate_arena_guess_phrase_distractors.mjs"
+    ],
     "notes": [
-      "Решение владельца 2026-09-24, D55 (T39–T42); evidence/PM-270_pool_preflight.md"
+      "Решение владельца 2026-09-24, D55 (T39–T42); evidence/PM-270_pool_preflight.md",
+      "es/de/fr tasks.jsonl закоммичены 2026-09-20 — это уже V11-пул, позже даты аудита ARENA_DISTRACTOR_AUDIT (24.08). Проверка валидатором: 13437/13437 дистракторов грамматические, 0 lexical/meaning. Правка контента НЕ потребовалась.",
+      "Английский пул (target='en') живёт в Firestore tournamentBank/tournamentTasks, не в файле — read-only сессия его НЕ проверяла (без доступа к проду). A1 честно принят только по es/de/fr; en остаётся открытым пунктом для отдельной сессии с доступом к Firestore."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
+    "kind": "audit",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "claude-sonnet-5",
+    "actual_reasoning": "medium"
   },
   {
     "id": "PM-286",
@@ -12969,7 +12979,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -12978,8 +12988,12 @@
       {
         "id": "PM-286-A1",
         "text": "Найдены V2-тексты/режимы listen/voice по языкам; собран конвертер в формат задания Шпиля",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "evidence/PM-286_listen_voice_from_v2.md",
+          "scripts/convert_learning_v2_to_spire_listen_tasks.mjs",
+          "content/arena-multilingual/generated/en/spire_listen_dictate_draft.jsonl"
+        ]
       },
       {
         "id": "PM-286-A2",
@@ -12997,18 +13011,23 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5",
     "reviewer": null,
-    "evidence": [],
+    "evidence": [
+      "evidence/PM-286_listen_voice_from_v2.md",
+      "scripts/convert_learning_v2_to_spire_listen_tasks.mjs"
+    ],
     "notes": [
-      "Решение владельца 2026-09-24, D55 (T39–T42); evidence/PM-270_pool_preflight.md"
+      "Решение владельца 2026-09-24, D55 (T39–T42); evidence/PM-270_pool_preflight.md",
+      "Learning V2 покрывает ТОЛЬКО английский (155 learner.json файлов, все targetLanguage='en'). de/fr — только пустые REQUIREMENT_MANIFEST_V1.json без сессий; es в V2 как курс не встречается вообще. Preflight-формулировка «в основном испанский курс» не подтвердилась.",
+      "Конвертер собрал 611 черновых заданий Шпиля (493 listen + 118 dictate) из реальных V2-текстов, без выдумывания. A2 НЕ принят: audioUri — плейсхолдер device-tts:<lang>:<hash>, реальный источник звука (файл в Storage vs on-device TTS, см. D47) не решён этой сессией — архитектурный вопрос для владельца/отдельной сессии."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
+    "kind": "code",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "claude-sonnet-5",
+    "actual_reasoning": "medium"
   },
   {
     "id": "PM-287",

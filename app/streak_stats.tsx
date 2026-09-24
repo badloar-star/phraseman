@@ -50,9 +50,6 @@ import { type AllPercentiles } from './leaderboard_stats';
 import { loadLifetimeProfileStats, type LifetimeProfileStats } from './lifetime_profile_stats';
 import { devRandomizeLifetimePathDailyMetrics, loadLifetimeTotalsChartDays, loadWeeklyLearnedCounts, type LifetimeTotalsChartKind, type LifetimeChartDay, type DevLifetimePathRandomSums, } from './stats_daily_breakdown';
 import { ALL_ACHIEVEMENTS, achievementNameForLang, loadAchievementStates } from './achievements';
-import { loadMistakePracticeInsights } from './mistake_practice_insights';
-import { normalizeMistakeStudyTarget } from '../modules/mistake-practice/contracts';
-import CefrLine from '../components/journal/CefrLine';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import AchievementArt from '../components/AchievementArt';
 import { REPORT_SCREENS_RUSSIAN_ONLY } from '../constants/report_ui_ru';
@@ -1111,17 +1108,10 @@ let wagerCardWarm: {
 let achievementCountPeek: number | null = null;
 let recentAchievementIdsPeek: string[] | null = null;
 
-/** зачем: тот же peek-паттерн для «Прочность памяти»/CEFR-строки (MemoryGauge,
- * CefrLine) — totalTracked/masteredCount/dueToday читаются из локального
- * журнал ошибок (AsyncStorage, без сети) в useFocusEffect ниже; peek не даёт
- * модулям стартовать с нулей на повторных открытиях экрана в этой сессии. */
-interface JournalMemorySnapshot {
-    totalTracked: number;
-    masteredCount: number;
-    masteredPhraseCount: number;
-    dueToday: number;
-}
-let journalMemorySnapshotPeek: JournalMemorySnapshot | null = null;
+/* зачем (PM-191): «Прочность памяти»/CEFR-строка (MemoryGauge, CefrLine) и её
+ * JournalMemorySnapshot peek удалены целиком — «Закреплено фраз» была непонятной
+ * метрикой без объяснения. Данные журнала ошибок (mistake_practice_insights)
+ * не тронуты, только этот эксклюзивный для карточки peek/state/эффект. */
 
 /** зачем: тот же peek-паттерн для вкладки «Активность за год» (Время/Опыт/Год) —
  * primaryMetric раньше стартовал с useState(DEFAULT_STATS_PRIMARY_METRIC) и
@@ -3385,18 +3375,14 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     // экрана до ответа loadAchievementStates() (см. achievementCountPeek выше).
     const [achievementCount, setAchievementCount] = useState(() => achievementCountPeek ?? 0);
     const [recentAchievementIds, setRecentAchievementIds] = useState<string[]>(() => recentAchievementIdsPeek ?? []);
-    // зачем: MemoryGauge/CefrLine — то же правило «первый кадр = финальные
-    // числа», что и achievementCount выше (см. journalMemorySnapshotPeek).
-    const [journalMemory, setJournalMemory] = useState<JournalMemorySnapshot>(
-        () => journalMemorySnapshotPeek ?? { totalTracked: 0, masteredCount: 0, masteredPhraseCount: 0, dueToday: 0 },
-    );
     const [pendingGiftCount, setPendingGiftCount] = useState(_sc.pendingGiftCount);
-    const [spinBalance, setSpinBalance] = useState(0);
+    // зачем (PM-046, владелец): spinBalance/spinButtonPulse (состояние и пульс
+    // удалённой кнопки спина) сняты — refreshRewardInventoryCounts всё ещё
+    // сам считает currentSpinBalance локальной переменной (не state) и
+    // прибавляет её к pendingGiftCount ниже, счётчик подарков не меняется.
     const [dailyJourneyUnreadCount, setDailyJourneyUnreadCount] = useState(0);
     const [dailyJourneyPendingCount, setDailyJourneyPendingCount] = useState(0);
     const combinedPendingGiftCount = pendingGiftCount + dailyJourneyPendingCount;
-    const spinButtonPulse = useSharedValue(1);
-    const spinButtonPulseStyle = useAnimatedStyle(() => ({ transform: [{ scale: spinButtonPulse.value }] }));
     const dailyJourneyUnreadHop = useSharedValue(0);
     const dailyJourneyUnreadHopStyle = useAnimatedStyle(() => ({ transform: [{ translateY: dailyJourneyUnreadHop.value }] }));
     const reduceMotion = useReduceMotion();
@@ -3496,33 +3482,10 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         });
         return () => { cancelled = true; };
     }, []));
-    // зачем: MemoryGauge/CefrLine (журнал) — getTrainerDashboard читает только
-    // локальный AsyncStorage тренажёра (уже используется на других экранах:
-    // signal_bus, mistake-practice bootstrap, weekly_review_briefing), НИКАКИХ
-    // новых чтений Firestore. words+phrases — та же выборка, что
-    // и trainerPracticeDue в statsCache, для согласованности «фраз под риском».
-    useFocusEffect(useCallback(() => {
-        let cancelled = false;
-        // зачем (22.09): подмена языка показывала статистику ЧУЖОГО журнала —
-        // на испанском человек видел английские «фразы под риском».
-        void loadMistakePracticeInsights(normalizeMistakeStudyTarget(studyTarget))
-            .then((dash) => {
-                if (cancelled) return;
-                const snapshot: JournalMemorySnapshot = {
-                    totalTracked: dash.totalTracked,
-                    masteredCount: dash.corrected,
-                    masteredPhraseCount: dash.correctedPhrases,
-                    dueToday: dash.dueWords + dash.duePhrases,
-                };
-                journalMemorySnapshotPeek = snapshot;
-                setJournalMemory(snapshot);
-            })
-            .catch(() => {
-                // Peek уже наполнен — оставляем последнее известное состояние
-                // вместо отката к нулям (тот же принцип, что и achievementCount).
-            });
-        return () => { cancelled = true; };
-    }, [studyTarget]));
+    // зачем (PM-191): эффект, кормивший JournalMemorySnapshot (карточка
+    // «Закреплено фраз»/CefrLine), удалён целиком вместе с картой — метрика была
+    // непонятной. loadMistakePracticeInsights остаётся импортированным в других
+    // модулях (ai_companion_memory, max_call_mint_request) — общий код не тронут.
     useEffect(() => {
         let cancelled = false;
         const key = statsPrimaryMetricKey(studyTarget);
@@ -3551,7 +3514,6 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         const accountToken = captureAccountGeneration();
         const owner = accountToken.stableId;
         if (!owner || !isCurrentAccountGeneration(accountToken, owner)) {
-            setSpinBalance(0);
             setPendingGiftCount(0);
             return;
         }
@@ -3562,7 +3524,6 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         ]);
         if (!isCurrentAccountGeneration(accountToken, owner)) return;
         const currentSpinBalance = Math.max(0, Math.floor(rawSpinBalance));
-        setSpinBalance(currentSpinBalance);
         setPendingGiftCount(legacyPendingGiftCount + attemptRestoreGiftCount + currentSpinBalance);
     }, []);
     useFocusEffect(useCallback(() => {
@@ -3598,13 +3559,9 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
             giftSubscription.remove();
         };
     }, [refreshRewardInventoryCounts]);
-    useEffect(() => {
-        cancelAnimation(spinButtonPulse);
-        spinButtonPulse.value = statsRuntimeActive && spinBalance > 0
-            ? withRepeat(withSequence(withTiming(1.07, { duration: 650 }), withTiming(1, { duration: 650 })), -1, true)
-            : 1;
-        return () => cancelAnimation(spinButtonPulse);
-    }, [spinBalance, spinButtonPulse, statsRuntimeActive]);
+    // зачем (PM-046, владелец): эффект пульса кнопки спина удалён вместе с
+    // самой кнопкой (spinBalance/spinButtonPulse больше не объявлены выше) —
+    // раздел /level_reward_spin снят, пульсировать больше нечему.
     const scrollRef = useRef<any>(null);
     const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy();
     const bouncyStyle = useBouncyStyle(bouncyStretch);
@@ -4186,24 +4143,8 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                     pl: "Twoje wyniki",
                 })}
                 </FlowText>
-                <Reanimated.View style={spinButtonPulseStyle}>
-                <TouchableOpacity
-                  testID="stats-header-spins"
-                  accessibilityRole="button"
-                  accessibilityLabel={triLang(lang, { ru: `Спины: ${spinBalance}`, uk: `Спіни: ${spinBalance}`, en: `Spins: ${spinBalance}`, es: `Giros: ${spinBalance}`, 'pt-BR': `Giros: ${spinBalance}`, vi: `Lượt: ${spinBalance}`, id: `Putaran: ${spinBalance}`, tr: `Çevirmeler: ${spinBalance}`, pl: `Spiny: ${spinBalance}` })}
-                  activeOpacity={0.82}
-                  onPress={() => { hapticTap(); router.push('/level_reward_spin' as any); }}
-                  style={[{ width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', marginLeft: 8, overflow: 'hidden', borderWidth: 0 }, isGoldTheme ? goldShadow(2) : statsGlowStyle(themeMode, 'streak')]}
-                >
-                  <LinearGradient colors={statsCardGradient(t)} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill}/>
-                  <Ionicons name="sync-outline" size={20} color={spinBalance > 0 ? (isGoldTheme ? GOLD_RICH.champagne : statsThemeAccent(themeMode)) : t.textMuted}/>
-                  {spinBalance > 0 ? (
-                    <View style={{ position: 'absolute', top: 4, right: 4, minWidth: 16, height: 16, borderRadius: 8, paddingHorizontal: 4, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? GOLD_RICH.champagne : statsThemeAccent(themeMode) }}>
-                      <Text style={{ color: t.bgCard, fontSize: 9, fontWeight: '900' }}>{spinBalance}</Text>
-                    </View>
-                  ) : null}
-                </TouchableOpacity>
-                </Reanimated.View>
+                {/* зачем (PM-046, владелец): кнопка спина в шапке статистики
+                    удалена — раздел /level_reward_spin снят, новых спинов нет. */}
                 <Reanimated.View style={dailyJourneyUnreadHopStyle}>
                 <TouchableOpacity
                   testID="stats-header-gifts"
@@ -4280,34 +4221,10 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
               <BouncyWrap>
               <Reanimated.ScrollView ref={scrollRef} decelerationRate="fast" bounces alwaysBounceVertical overScrollMode="always" pointerEvents={statsReady ? 'auto' : 'none'} style={{ opacity: statsReady ? 1 : 0 }} contentContainerStyle={{ padding: 16, paddingBottom: embedded ? 140 : 16 }} showsVerticalScrollIndicator={false} onScroll={onAnimatedScroll} scrollEventThrottle={16}>
                 <View style={{ gap: 12 }}>
+                {/* зачем (PM-191): карточка «Закреплено фраз» (CefrLine, testID
+                    journal-memory-card) удалена целиком — непонятная метрика без
+                    объяснения. Следующая карточка сдвинута на первую позицию. */}
                 <Reanimated.View entering={FadeInDown.duration(420).delay(0)}>
-                  <StatsCardArtSurface
-                    testID="journal-memory-card"
-                    name="practiceBalance"
-                    theme={t}
-                    themeMode={themeMode}
-                    isGoldTheme={isGoldTheme}
-                    gradientColors={statsCardGradient(t)}
-                    gradientLocations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
-                    radius={statsSurfaceRadius(themeMode, 22)}
-                    scrim="stats"
-                    style={[
-                      { borderRadius: statsSurfaceRadius(themeMode, 22), padding: 14, borderWidth: 0, overflow: 'hidden', gap: 10 },
-                      isGoldTheme ? goldShadow(2) : statsGlowStyle(themeMode, 'practiceBalance'),
-                    ]}
-                  >
-                    {isGoldTheme ? <GoldBevel radius={16} intensity="normal" /> : null}
-                    <CefrLine
-                      t={t}
-                      f={f}
-                      lang={lang}
-                      themeMode={themeMode}
-                      isGoldTheme={isGoldTheme}
-                      masteredPhraseCount={journalMemory.masteredPhraseCount}
-                    />
-                  </StatsCardArtSurface>
-                </Reanimated.View>
-                <Reanimated.View entering={FadeInDown.duration(420).delay(70)}>
                   <StreakHeroCard
                     t={t}
                     f={f}

@@ -2849,7 +2849,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "blocked",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -2879,7 +2879,9 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": [
+      "Аудит (без правок): app/avatar_select.tsx 1741 строк — редактор/каталог/покупки аватаров-аур за руны/жемчуг, завязан на cloud sync/лигу/достижения/level-spin/friends. Слишком крупно для безопасной правки без typecheck. Компенсация уже покрыта в gifts_to_coins_table_v1.ts (cosmetic_avatar_aura 1500, cosmetic_avatar_common/premium_cosmetic_avatar 900). Нужны решения владельца — см. PROGRESS.md"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -2896,7 +2898,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "blocked",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -2926,7 +2928,9 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": [
+      "«Гексаэдры» как отдельные файлы-ассеты НЕ найдены (grep hexahedron/hex_avatar — пусто). Вероятно образное название текущих ассетов avatar-auras/avatar-auras-hd — нужно подтверждение владельца, что именно называется гексаэдрами"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -2943,7 +2947,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "blocked",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -2973,7 +2977,9 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": [
+      "Найдено ДВА кандидата: app/avatar_select.tsx (Студия, 1741 строк, живой экран с покупками) и app/avatar_dna_studio.tsx (второй, невыпущенный, за флагом isAvatarDNAEnabled, screen_inventory decision=unknown). Нужно решение, какой из них 'студия образов' из задания"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,

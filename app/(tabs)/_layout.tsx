@@ -1,10 +1,8 @@
 ﻿import React, { Profiler, useState, useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { Freeze } from 'react-freeze';
 import { useFocusEffect, usePathname, useRouter, useSegments } from 'expo-router';
-import { View, Text, TouchableOpacity, StyleSheet, Animated, AppState, Easing } from 'react-native';
+import { View, StyleSheet, Animated, AppState, Easing } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { BlurView } from 'expo-blur';
-import { LinearGradient } from '../../components/SafeLinearGradient';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
@@ -16,13 +14,12 @@ import { TopFadeScrollProvider, useTopFadeScroll } from '../../components/TopFad
 import { DeferredRedirect } from '../../components/DeferredRedirect';
 import TabSlider from '../TabSlider';
 import { TabProvider, useTabNav } from '../TabContext';
-import { hapticTap } from '../../hooks/use-haptics';
 import { createTapLatencyProfilerHandler, noteTapAction } from '../tap_latency_trace';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { HOME_ENTRANCE } from '../../constants/motion';
 import { TabBarVisibilityProvider, useTabBarVisibility } from '../../components/TabBarVisibilityContext';
-import { V2 } from '../../constants/v2Style';
-import { useV2Palette } from '../../components/v2/useV2Palette';
+import V2TabBar, { V2_TAB_BAR_HEIGHT, type V2TabBarItem } from '../../components/v2/V2TabBar';
+import { FLOATING_PILL_BOTTOM_GAP } from '../../hooks/use-tab-content-bottom-pad';
 import { emitAppEvent, onAppEvent } from '../events';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 // Home stays behind the tab shell until React can commit the first frame. Its
@@ -341,11 +338,8 @@ function addVisitedTab(prev: Set<number>, idx: number): Set<number> {
 
 /** Минимальный отступ панели таббара от низа, когда системной полосы нет. */
 const TAB_DOCK_MIN_BOTTOM_PAD = 8;
-/** Панель чуть выше tabBarHeight: под иконкой подпись (референс 2.0). */
-const TAB_DOCK_EXTRA_HEIGHT = 4;
-/** Отступ плавающей капсулы от боковых и нижнего краёв (референс 24.09). */
-const TAB_FLOAT_SIDE_MARGIN = 16;
-const TAB_FLOAT_BOTTOM_GAP = 6;
+/** Запас над капсулой в оверлее — чтобы тень под ней не обрезалась. */
+const TAB_BAR_WRAP_SHADOW_ROOM = 24;
 // зачем (владелец 24.09, референс): та же механика сжатия при скролле вниз, что
 // была у дореформенного таббара (commit bfdc8e783~1) — капсула не исчезает,
 // а слегка уменьшается и оседает. Портирована 1:1, только без gold/olive веток.
@@ -358,9 +352,6 @@ const TAB_SCROLL_DIRECTION_EPSILON = 5;
 const TAB_SCROLL_COLLAPSE_MS = 220;
 const TAB_SCROLL_EXPAND_MS = 260;
 const TAB_SCROLL_TOGGLE_COOLDOWN_MS = 140;
-/** Бегущая стеклянная подсветка активного пункта — ширина/высота под иконку+подпись. */
-const TAB_ACTIVE_PILL_WIDTH = 64;
-const TAB_ACTIVE_PILL_HEIGHT = 52;
 /** Фоновый премаунт соседних табов в idle: первое открытие любого таба — мгновенное,
  *  без «плейсхолдер → полный маунт на глазах». Дёшев в связке с ENABLE_TAB_FREEZE:
  *  премаунченный таб делает первый коммит (модуль + первый рендер + старт загрузок)
@@ -494,24 +485,26 @@ function TabScaffold({
   onOpenDevHub,
 }: TabScaffoldProps) {
   const { lang } = useLang();
-  const { tabBarHeight, bottomInset: PB } = useScreen();
+  const { bottomInset: PB } = useScreen();
   const insets = useStableSafeAreaInsets();
   const { goToTab, activeIdx, onSwipeStart, onSwipeComplete } = useTabNav();
   const [devOverlayVisible, setDevOverlayVisible] = useState(false);
   const topFadeScroll = useTopFadeScroll();
   const reduceMotion = useReduceMotion();
-  const v2 = useV2Palette();
-  // зачем: низ панели — под системной полосой жестов/кнопок; содержимое панели
-  // занимает tabBarHeight + 4, что укладывается в запас useTabContentBottomPad.
-  const tabDockBottomPad = Math.max(PB, TAB_DOCK_MIN_BOTTOM_PAD);
-  const tabDockHeight = tabBarHeight + TAB_DOCK_EXTRA_HEIGHT + tabDockBottomPad;
+  // зачем: капсула висит над системной полосой жестов на том же зазоре, что
+  // закладывает useTabContentBottomPad — последний элемент докручивается выше неё.
+  const tabBarBottom = Math.max(PB, TAB_DOCK_MIN_BOTTOM_PAD) + FLOATING_PILL_BOTTOM_GAP;
   const { hidden: tabBarHidden } = useTabBarVisibility();
-  const tabPressAnim = useRef(new Animated.Value(0)).current;
-  const [pressedTabIdx, setPressedTabIdx] = useState<number | null>(null);
   const firstContentReadyEmittedRef = useRef(false);
   const activeBarTabIdx = TAB_BAR_TABS.findIndex((tab) => tab.logicalIdx === visualIdx);
-  const [tabPillWidth, setTabPillWidth] = useState(0);
-  const tabHighlightAnim = useRef(new Animated.Value(activeBarTabIdx >= 0 ? activeBarTabIdx : 0)).current;
+  const tabBarItems = useMemo<V2TabBarItem[]>(
+    () => TAB_BAR_TABS.map((tab) => ({ key: tab.key, label: triLang(lang, tab.label), icon: tab.icon, activeIcon: tab.active })),
+    [lang],
+  );
+  const handleTabBarSelect = useCallback((barIndex: number) => {
+    const tab = TAB_BAR_TABS[barIndex];
+    if (tab) goToTab(tab.logicalIdx);
+  }, [goToTab]);
   // зачем (владелец 24.09, референс): капсула сжимается при скролле вниз и
   // разворачивается при скролле вверх/смене таба/свайпе — портировано из
   // дореформенного таббара (commit bfdc8e783~1), см. TAB_SCROLL_* выше.
@@ -521,38 +514,6 @@ function TabScaffold({
   const tabScrollLastYRef = useRef(0);
   const tabScrollLastToggleAtRef = useRef(0);
   const previousVisualIdxRef = useRef(visualIdx);
-
-  useEffect(() => {
-    if (activeBarTabIdx < 0) return;
-    if (reduceMotion) {
-      tabHighlightAnim.setValue(activeBarTabIdx);
-      return;
-    }
-    Animated.spring(tabHighlightAnim, { toValue: activeBarTabIdx, speed: 18, bounciness: 4, useNativeDriver: true }).start();
-  }, [activeBarTabIdx, tabHighlightAnim, reduceMotion]);
-
-  const endTabPress = useCallback(() => {
-    tabPressAnim.stopAnimation();
-    if (reduceMotion) {
-      tabPressAnim.setValue(0);
-      setPressedTabIdx(null);
-      return;
-    }
-    Animated.spring(tabPressAnim, { toValue: 0, speed: 28, bounciness: 4, useNativeDriver: true }).start(({ finished }) => {
-      if (finished) setPressedTabIdx(null);
-    });
-  }, [reduceMotion, tabPressAnim]);
-
-  const beginTabPress = useCallback((idx: number) => {
-    setPressedTabIdx(idx);
-    tabPressAnim.stopAnimation();
-    if (reduceMotion) {
-      tabPressAnim.setValue(0);
-    } else {
-      Animated.spring(tabPressAnim, { toValue: 1, speed: 34, bounciness: 0, useNativeDriver: true }).start();
-    }
-    hapticTap();
-  }, [reduceMotion, tabPressAnim]);
 
   const animateTabChrome = useCallback((collapsed: boolean, immediate = false) => {
     // зачем: тот же ранний-выход и кулдаун, что и в дореформенном коде — иначе
@@ -618,6 +579,8 @@ function TabScaffold({
   const tabScrollTranslateY = tabScrollProgress.interpolate({ inputRange: [0, 1], outputRange: [0, TAB_SCROLL_COLLAPSED_TRANSLATE_Y], extrapolate: 'clamp' });
   const tabScrollOpacity = tabScrollProgress.interpolate({ inputRange: [0, 1], outputRange: [1, TAB_SCROLL_COLLAPSED_OPACITY], extrapolate: 'clamp' });
 
+  const expandTabChrome = useCallback(() => animateTabChrome(false), [animateTabChrome]);
+
   const handleSwipeStartChrome = useCallback((physicalIdx: number) => {
     tabScrollLastYRef.current = 0;
     animateTabChrome(false, true);
@@ -675,101 +638,21 @@ function TabScaffold({
               при размонтировании — иначе таббар залипнет скрытым. */}
           {tabBarHidden ? null : (
           <View
-            style={[s.tabBarWrap, { height: tabDockHeight + TAB_FLOAT_BOTTOM_GAP }]}
+            style={[s.tabBarWrap, { height: tabBarBottom + V2_TAB_BAR_HEIGHT + TAB_BAR_WRAP_SHADOW_ROOM }]}
             pointerEvents="box-none"
           >
-            {/* зачем (2.0, референс владельца 24.09 — плавающая стеклянная капсула):
-                панель плавает с отступами со всех сторон (не докнута), скругление
-                полное. Физика — 1:1 портирована из дореформенного таббара: сжатие
-                при скролле вниз (tabScrollProgress) + spring-press на иконке +
-                бегущая стеклянная подсветка активного пункта (tabHighlightAnim). */}
-            <Animated.View
-              onLayout={(event) => setTabPillWidth(event.nativeEvent.layout.width)}
-              style={[
-                s.tabDock,
-                {
-                  height: tabDockHeight,
-                  bottom: Math.max(tabDockBottomPad, TAB_FLOAT_BOTTOM_GAP),
-                  marginHorizontal: TAB_FLOAT_SIDE_MARGIN,
-                  borderRadius: tabDockHeight / 2,
-                  borderColor: v2.glowA, // guard-ok: D43 — тонкая тёплая кромка стекла, как на референсе
-                  opacity: tabScrollOpacity,
-                  transform: [{ translateY: tabScrollTranslateY }, { scale: tabScrollScale }],
-                },
-              ]}
-            >
-              {/* зачем (владелец: «должно быть стеклянным, но НЕ прозрачным» —
-                  первая версия просвечивала контент насквозь как окно). Лёгкое
-                  размытие + почти непрозрачная заливка поверх: матовое стекло,
-                  а не окно. */}
-              <BlurView intensity={22} tint="dark" style={StyleSheet.absoluteFillObject} pointerEvents="none" />
-              <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, { backgroundColor: v2.tabBar, opacity: 0.94 }]} />
-              <LinearGradient
-                pointerEvents="none"
-                colors={[v2.glowA, 'transparent']}
-                locations={[0, 0.5]}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-                style={[StyleSheet.absoluteFillObject, { opacity: 0.14 }]}
-              />
-              {tabPillWidth > 0 && activeBarTabIdx >= 0 ? (
-                <Animated.View
-                  pointerEvents="none"
-                  style={[
-                    s.tabActivePill,
-                    {
-                      top: (tabDockHeight - TAB_ACTIVE_PILL_HEIGHT) / 2,
-                      left: (tabPillWidth / TAB_BAR_TABS.length - TAB_ACTIVE_PILL_WIDTH) / 2,
-                      backgroundColor: v2.glassRaised,
-                      borderColor: v2.glowA, // guard-ok: D43 подсветка активного пункта, как на референсе
-                      transform: [{
-                        translateX: tabHighlightAnim.interpolate({
-                          inputRange: TAB_BAR_TABS.map((_, index) => index),
-                          outputRange: TAB_BAR_TABS.map((_, index) => index * (tabPillWidth / TAB_BAR_TABS.length)),
-                          extrapolate: 'clamp',
-                        }),
-                      }],
-                    },
-                  ]}
-                />
-              ) : null}
-              {TAB_BAR_TABS.map((tab, barIndex) => {
-                const visuallyFocused = activeBarTabIdx === barIndex;
-                const color = visuallyFocused ? v2.text : v2.textSecondary;
-                const iconScale = pressedTabIdx === barIndex
-                  ? tabPressAnim.interpolate({ inputRange: [0, 1], outputRange: [1, 0.9] })
-                  : 1;
-                const label = triLang(lang, tab.label);
-                return (
-                  <TouchableOpacity
-                    key={tab.key}
-                    testID={`tab-${tab.key}`}
-                    accessibilityLabel={label}
-                    accessible={true}
-                    accessibilityRole="tab"
-                    accessibilityState={{ selected: visuallyFocused }}
-                    style={s.tabBtn}
-                    onPressIn={() => beginTabPress(barIndex)}
-                    onPressOut={endTabPress}
-                    onPress={() => {
-                      goToTab(tab.logicalIdx);
-                    }}
-                    activeOpacity={1}
-                  >
-                    <Animated.View style={{ transform: [{ scale: iconScale }] }}>
-                      <Ionicons name={visuallyFocused ? tab.active : tab.icon} size={V2.tabBar.iconSize} color={color} />
-                    </Animated.View>
-                    <Text
-                      numberOfLines={1}
-                      maxFontSizeMultiplier={1.15}
-                      style={[s.tabLabel, { color, fontWeight: visuallyFocused ? '700' : '500' }]}
-                    >
-                      {label}
-                    </Text>
-                  </TouchableOpacity>
-                );
-              })}
-            </Animated.View>
+            {/* зачем (владелец 24.09): стеклянная капсула по варианту «В · Тёплая кромка»
+                с макета docs/design/tabbar/tabbar-variants.html — сжатие при скролле,
+                пружинная капсула и перетаскивание её пальцем. */}
+            <V2TabBar
+              items={tabBarItems}
+              activeIndex={activeBarTabIdx}
+              onSelect={handleTabBarSelect}
+              onInteract={expandTabChrome}
+              bottomOffset={tabBarBottom}
+              reduceMotion={reduceMotion}
+              collapseStyle={{ opacity: tabScrollOpacity, transform: [{ translateY: tabScrollTranslateY }, { scale: tabScrollScale }] }}
+            />
           </View>
           )}
         </View>
@@ -1180,41 +1063,4 @@ const s = StyleSheet.create({
     elevation: 20,
     backgroundColor: 'transparent',
   },
-  /** Плавающая стеклянная капсула (референс 24.09): отступы со всех сторон,
-   *  полное скругление, объёмная тень — панель «парит» над контентом. */
-  tabDock: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    flexDirection: 'row',
-    alignItems: 'stretch',
-    borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43
-    overflow: 'hidden',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.28,
-    shadowRadius: 16,
-    shadowColor: '#000',
-    elevation: 12,
-  },
-  tabBtn: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 3,
-    paddingTop: 6,
-    zIndex: 10,
-  },
-  tabLabel: {
-    fontSize: V2.tabBar.labelSize,
-    lineHeight: 14,
-    letterSpacing: 0.1,
-  },
-  tabActivePill: {
-    position: 'absolute',
-    width: TAB_ACTIVE_PILL_WIDTH,
-    height: TAB_ACTIVE_PILL_HEIGHT,
-    borderRadius: TAB_ACTIVE_PILL_HEIGHT / 2,
-    borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43 подсветка активного пункта, референс 24.09
-  },
-
 });

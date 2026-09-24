@@ -52,3 +52,46 @@ if (fs.existsSync(knowledgeFrom)) {
 } else {
   console.warn('[assets] src/jarvis/knowledge отсутствует — пропускаю');
 }
+
+/*
+ * Multilingual-контент Шпиля (PM-272, es/de/fr прямая публикация, владелец
+ * 2026-09-24) — похожие грабли, но НЕ идентичные tournament_content.json
+ * выше: тот файл создаётся ВНЕ этого скрипта (в .gitignore, руками/другим
+ * процессом) и только копируется в lib/. Здесь источник (.jsonl) ЕСТЬ в
+ * репозитории и детерминирован — поэтому генерируем .json сразу в ДВА места:
+ * src/generated/ (оттуда require() резолвит его при `ts-jest` — тесты
+ * запускаются из src/, не из lib/, см. jest.config.js roots: ['<rootDir>/src'])
+ * и lib/generated/ (прод-рантайм после tsc). `.jsonl` не проходит
+ * resolveJsonModule (он только для .json), поэтому конвертируем построчный
+ * файл в один .json-массив, который читает ленивый require() в
+ * spire_pack_build.ts::loadMultilingualRows — тот же приём, что
+ * sourceDays()/tournament_content.json.
+ *
+ * src/generated/spire_multilingual_*.json — тоже в .gitignore (см. ниже):
+ * производный от content/arena-multilingual/generated/{lang}/tasks.jsonl,
+ * который И ЕСТЬ источник правды и уже в git.
+ */
+const multilingualLangs = ['es', 'de', 'fr'];
+const multilingualSrcTo = path.resolve(__dirname, '..', 'src', 'generated');
+const multilingualLibTo = path.resolve(__dirname, '..', 'lib', 'functions', 'src', 'generated');
+let multilingualCopied = 0;
+for (const lang of multilingualLangs) {
+  const jsonlPath = path.resolve(__dirname, '..', '..', 'content', 'arena-multilingual', 'generated', lang, 'tasks.jsonl');
+  if (!fs.existsSync(jsonlPath)) {
+    console.warn(`[assets] content/arena-multilingual/generated/${lang}/tasks.jsonl отсутствует — es/de/fr Шпиля недоступен для ${lang}`);
+    continue;
+  }
+  const rows = fs.readFileSync(jsonlPath, 'utf8')
+    .split('\n')
+    .filter((line) => line.trim())
+    .map((line) => JSON.parse(line));
+  const json = JSON.stringify(rows);
+  for (const to of [multilingualSrcTo, multilingualLibTo]) {
+    fs.mkdirSync(to, { recursive: true });
+    fs.writeFileSync(path.join(to, `spire_multilingual_${lang}.json`), json);
+  }
+  const mb = (Buffer.byteLength(json, 'utf8') / 1024 / 1024).toFixed(2);
+  console.log(`[assets] spire_multilingual_${lang}.json → src+lib (${mb} МБ, ${rows.length} заданий)`);
+  multilingualCopied += 1;
+}
+console.log(`[assets] multilingual-пулов Шпиля собрано: ${multilingualCopied}/${multilingualLangs.length}`);

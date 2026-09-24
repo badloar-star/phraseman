@@ -16,6 +16,19 @@
 // (legacy-пул английский и «обслуживает все языки» только для Арены — Шпилю
 // это запрещено §4.8: «скоро», а не чужой язык).
 //
+// es/de/fr — ПРЯМАЯ ПУБЛИКАЦИЯ (владелец 2026-09-24, после разбора кода): для
+// этих языков `adminArenaPublicationActivate` физически недостижим — нет
+// стейджинг-транспорта на 10 МБ (см. admin_arena_content.ts), а v11-бандл-
+// пайплайн никогда не видел multilingual-контент. Ждать общей инфраструктуры
+// Арены — отдельная большая задача; вместо неё, КОГДА spirePublicationForLang
+// вернул arena_publication_not_ready ИЛИ target_contour_not_published для
+// es/de/fr, сборщик читает content/arena-multilingual/generated/{lang}/
+// tasks.jsonl напрямую и конвертирует через spire_multilingual_pool.ts
+// (spireConvertMultilingualPool) — 0 обращений к Firestore/tournamentTasks
+// для этих языков, файл в бандле функций, не в Storage. Арену (её код
+// удаляет соседняя сессия) это не трогает вообще — только Шпиль читает
+// bundled JSONL для СВОЕГО пакета.
+//
 // Firebase-экономия:
 //   - крон раз в неделю (воскресенье 20:00 UTC) собирает СЛЕДУЮЩУЮ неделю;
 //     текущую — только если её файла нет (первый запуск);
@@ -45,6 +58,7 @@ import {
   type SpireConfigStatus,
 } from './spire_config_contract';
 import { spireWeekId } from './spire_groups';
+import { spireConvertMultilingualPool, type SpireMultilingualLang } from './spire_multilingual_pool';
 import {
   SPIRE_PACK_MAX_TIER,
   SPIRE_PACK_SCHEMA,
@@ -138,6 +152,36 @@ async function loadFlaggedTaskIds(db: admin.firestore.Firestore, lang: SpireLang
     warn('flags_read_failed', { lang, reason: errMessage(error) });
     return [];
   }
+}
+
+/* --------------------------- прямая публикация es/de/fr ------------------- */
+
+const MULTILINGUAL_LANGS = new Set<string>(['es', 'de', 'fr']);
+
+/**
+ * Ленивый require, как sourceDays() в admin_tournament_tasks.ts: файл
+ * появляется только после copy_generated_assets.js (build-шаг), юнит-тесты
+ * и холодный старт без этого языка его не парсят.
+ */
+function loadMultilingualRows(lang: string): unknown[] {
+  // guard-ok: require одного сгенерированного файла, не Firestore-запрос.
+  return require(`./generated/spire_multilingual_${lang}.json`) as unknown[];
+}
+
+/** Пул для es/de/fr напрямую из bundled-контента — 0 чтений Firestore. См. шапку файла. */
+export function loadMultilingualPool(lang: SpireLang): { tasks: TournamentTask[]; reads: number; rejected: number } {
+  if (!MULTILINGUAL_LANGS.has(lang)) return { tasks: [], reads: 0, rejected: 0 };
+  let rows: unknown[];
+  try {
+    rows = loadMultilingualRows(lang);
+  } catch (error) {
+    warn('multilingual_pool_missing', { lang, reason: errMessage(error) });
+    return { tasks: [], reads: 0, rejected: 0 };
+  }
+  const { tasks, stats } = spireConvertMultilingualPool(lang as 'es' | 'de' | 'fr', rows);
+  log('multilingual_pool_loaded', { ...stats });
+  const rejected = stats.totalRows - stats.converted;
+  return { tasks, reads: 0, rejected };
 }
 
 /* --------------------------------- пул ----------------------------------- */
@@ -303,10 +347,20 @@ export async function runSpirePackBuild(input: SpirePackRunInput): Promise<{
 
   for (const lang of input.langs) {
     const resolved = spirePublicationForLang(arenaConfig, lang);
-    if (!resolved.ok) {
+    // зачем (владелец 2026-09-24): es/de/fr не имеют пути через Арену (нет
+    // стейджинг-транспорта — см. шапку файла). Если Арена честно отвечает
+    // «не готово», а язык из MULTILINGUAL_LANGS — пробуем bundled-контент
+    // напрямую, ПРЕЖДЕ чем сдаться в unavailableLangs.
+    const multilingualPool = !resolved.ok && MULTILINGUAL_LANGS.has(lang) ? loadMultilingualPool(lang) : null;
+    if (!resolved.ok && !multilingualPool) {
       // §4.8: язык без готового пула — честное «скоро» на клиенте, пакета нет.
       unavailableLangs[lang] = resolved.reason;
       warn('lang_unavailable', { lang, reason: resolved.reason });
+      continue;
+    }
+    if (!resolved.ok && multilingualPool && multilingualPool.tasks.length === 0) {
+      unavailableLangs[lang] = 'multilingual_pool_empty';
+      warn('lang_unavailable', { lang, reason: 'multilingual_pool_empty' });
       continue;
     }
     // Сначала смотрим, что вообще нужно собрать — пул читаем только если есть работа.
@@ -326,12 +380,29 @@ export async function runSpirePackBuild(input: SpirePackRunInput): Promise<{
       log('lang_nothing_to_build', { lang });
       continue;
     }
-    const pool = await loadPool(db, resolved.publication, lang);
+    const pool = resolved.ok ? await loadPool(db, resolved.publication, lang) : multilingualPool!;
     const excludedTaskIds = await loadFlaggedTaskIds(db, lang);
     poolReads += pool.reads;
-    log('pool_loaded', { lang, reads: pool.reads, accepted: pool.tasks.length, rejected: pool.rejected, legacy: resolved.publication.legacy === true });
+    log('pool_loaded', {
+      lang, reads: pool.reads, accepted: pool.tasks.length, rejected: pool.rejected,
+      legacy: resolved.ok ? resolved.publication.legacy === true : false,
+      multilingualDirect: !resolved.ok,
+    });
 
     for (const job of todo) {
+      const source = resolved.ok
+        ? {
+          poolVersion: resolved.publication.poolVersion,
+          publicationFingerprint: resolved.publication.publicationFingerprint,
+          legacyPool: resolved.publication.legacy === true,
+        }
+        : {
+          // зачем: нет ArenaTargetPublication для прямого пути — синтетическая
+          // версия, чтобы старый пакет с чужим содержимым не считался «тем же».
+          poolVersion: `spire-multilingual-direct-${lang}`,
+          publicationFingerprint: 'spire-multilingual-direct',
+          legacyPool: false,
+        };
       const built = buildSpirePack({
         weekId: job.weekId,
         lang,
@@ -339,11 +410,7 @@ export async function runSpirePackBuild(input: SpirePackRunInput): Promise<{
         pool: pool.tasks,
         timer: spireConfig.config.timer,
         excludedTaskIds,
-        source: {
-          poolVersion: resolved.publication.poolVersion,
-          publicationFingerprint: resolved.publication.publicationFingerprint,
-          legacyPool: resolved.publication.legacy === true,
-        },
+        source,
       });
       if (!built.ok) {
         warn('build_failed', { lang, tier: job.tier, weekId: job.weekId, reason: built.reason, detail: built.detail ?? null });

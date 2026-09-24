@@ -344,6 +344,14 @@ C:*Tempclaude*
 functions/src/generated/tournament_content.json
 functions/src/generated/support_repo_context.json
 
+# Шпиль es/de/fr прямая публикация (PM-272, владелец 2026-09-24) —
+# производные от content/arena-multilingual/generated/{lang}/tasks.jsonl
+# (тот файл в git, это его копия под resolveJsonModule), пересобираются
+# copy_generated_assets.js на этапе build.
+functions/src/generated/spire_multilingual_es.json
+functions/src/generated/spire_multilingual_de.json
+functions/src/generated/spire_multilingual_fr.json
+
 # Огрызки от упавших правок редактора (*.tsx.tmp.<pid>.<hash>) — мусор,
 # засоряют git status и grep-поиск по проекту.
 *.tmp.[0-9]*.[0-9a-f]*

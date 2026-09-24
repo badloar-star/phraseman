@@ -100,16 +100,20 @@ export const QUEST_KIND_IS_DELTA: Readonly<Record<QuestKind, boolean>> = Object.
 // ────────────────────────────────────────────────────────────────────────────
 // Награды.
 // ────────────────────────────────────────────────────────────────────────────
-export const QUEST_REWARD_KINDS = ['pearls', 'runes', 'spins', 'plus_days', 'energy_full', 'freeze'] as const;
+// зачем (PM-232, 2026-09-24): 'pearls' и 'spins' убраны из допустимых видов
+// награды задания — обе механики отключены на клиенте (app/quests_client.ts:
+// PM-058 «удалить выдачу жемчуга», PM-047 «спин снят») и превращали получение
+// награды в молчаливый no-op: пользователь видел «награда получена», но не
+// получал ничего. Админка предлагала создавать такие задания (см. аудит
+// docs/phraseman-2.0/evidence/PM-232_dead_admin_forms_audit.md).
+export const QUEST_REWARD_KINDS = ['runes', 'plus_days', 'energy_full', 'freeze'] as const;
 export type QuestRewardKind = (typeof QUEST_REWARD_KINDS)[number];
 
 export type QuestReward = Readonly<{ kind: QuestRewardKind; amount: number }>;
 
 /** Допустимые количества по каждому виду награды. */
 export const QUEST_REWARD_LIMITS: Readonly<Record<QuestRewardKind, Readonly<{ min: number; max: number }>>> = Object.freeze({
-  pearls: Object.freeze({ min: 1, max: 500 }),
   runes: Object.freeze({ min: 10, max: 3_000 }),
-  spins: Object.freeze({ min: 1, max: 10 }),
   plus_days: Object.freeze({ min: 1, max: 60 }),
   energy_full: Object.freeze({ min: 1, max: 1 }),
   freeze: Object.freeze({ min: 1, max: 3 }),

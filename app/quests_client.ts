@@ -47,7 +47,18 @@ export const QUEST_REFRESH_TTL_MS = 30 * 60 * 1000;
 
 const CACHE_KEY_PREFIX = 'quests_active_v1';
 
-export type QuestRewardKind = 'pearls' | 'runes' | 'spins' | 'plus_days' | 'energy_full' | 'freeze';
+// зачем (PM-232, 2026-09-24): 'pearls'/'spins' убраны синхронно с серверным
+// QUEST_REWARD_KINDS (functions/src/quests_core.ts) — сервер уже отбрасывает
+// эти виды в parseQuestReward, до клиента они не долетят из НОВЫХ ответов;
+// узкий тип здесь только фиксирует контракт, не единственная защита (см.
+// default-ветку в applyQuestRewards ниже — она ловит любой сюрприз рантайма,
+// а не полагается на то, что тип якобы гарантирует чистоту данных).
+export type QuestRewardKind = 'runes' | 'plus_days' | 'energy_full' | 'freeze';
+export const CLIENT_QUEST_REWARD_KINDS: readonly QuestRewardKind[] = ['runes', 'plus_days', 'energy_full', 'freeze'];
+/** Экспортирована для тестов границы — не для использования вне этого модуля. */
+export function isQuestRewardKind(value: unknown): value is QuestRewardKind {
+  return typeof value === 'string' && (CLIENT_QUEST_REWARD_KINDS as readonly string[]).includes(value);
+}
 export type QuestReward = Readonly<{ kind: QuestRewardKind; amount: number }>;
 
 export type QuestKind =
@@ -123,7 +134,12 @@ function normalizeQuest(raw: unknown): QuestSnapshot | null {
   const rewards = rewardsRaw
     .map((entry) => {
       const row = (entry ?? {}) as Record<string, unknown>;
-      const kind = String(row.kind ?? '') as QuestRewardKind;
+      const kind = String(row.kind ?? '');
+      // зачем (PM-232): не приводить неизвестный kind типом вслепую — старый
+      // кэш/старая версия сервера теоретически ещё может прислать 'pearls'/
+      // 'spins'; отбрасываем на границе, а не тащим мусор в QuestSnapshot,
+      // который дальше рендерится пользователю как обещанная награда.
+      if (!isQuestRewardKind(kind)) return null;
       const amount = Math.trunc(Number(row.amount ?? 0));
       if (!Number.isSafeInteger(amount) || amount <= 0) return null;
       return Object.freeze({ kind, amount });
@@ -393,15 +409,6 @@ async function applyQuestRewards(
 ): Promise<void> {
   for (const [index, reward] of rewards.entries()) {
     switch (reward.kind) {
-      case 'pearls': {
-        // зачем (PM-058, владелец: «удалить выдачу жемчуга за любые действия»):
-        // выдача жемчуга за задания остановлена тем же паттерном, что спины
-        // (PM-047, app/local_level_spins.ts) — вызов commitShardCreditOperation
-        // убран, остальной цикл начисления наград задания (XP, руны, energy и
-        // т.д.) не меняется и не должен падать из-за отсутствующего кредита.
-        console.log(`${LOG} apply_pearls_disabled_pm058 quest=${questId} amount=${reward.amount}`);
-        break;
-      }
       case 'runes': {
         const giftIds = runeGiftIds(reward.amount);
         if (giftIds.length === 0) {
@@ -421,19 +428,6 @@ async function applyQuestRewards(
         console.log(`${LOG} apply_runes quest=${questId} amount=${reward.amount} gifts=${giftIds.length}`);
         break;
       }
-      case 'spins': {
-        // зачем (PM-047, владелец): спин как механика убран — сервер может
-        // засчитать задание с наградой-спином (старые задания в админке),
-        // но grantLocalQuestSpins теперь always no-op. Раньше человек видел
-        // «награда получена», но спин на счёт не приходил ни разу — молчаливый
-        // ноль. Обещание отменено: закрываем награду явным логом, ничего не
-        // начисляя взамен (компенсация — отдельная миграция D51).
-        console.log(
-          `${LOG} [SPIN-RETIRED] source=quest op=${questId}_${index} amount=${reward.amount} `
-          + 'promised=spins action=closed_no_credit reason=PM-047_spin_mechanic_retired',
-        );
-        break;
-      }
       case 'plus_days':
         // Доступ Plus выдал сервер в той же транзакции — на клиенте делать
         // нечего. Логируем, чтобы цепочка в логах не обрывалась.
@@ -445,6 +439,19 @@ async function applyQuestRewards(
         // подхватит инвентарь при следующем чтении.
         console.log(`${LOG} apply_inventory quest=${questId} kind=${reward.kind} amount=${reward.amount}`);
         break;
+      default: {
+        // зачем (PM-232, 2026-09-24, совет Advisor): 'pearls'/'spins' убраны из
+        // QuestRewardKind, но рантайм-данные не обязаны следовать TS-типу —
+        // старый кэш на диске (AsyncStorage) или задержанный ответ старой
+        // версии сервера теоретически ещё может принести незнакомый kind.
+        // Раньше это ловилось молчаливым case без лога (запрет «немого catch»,
+        // здесь тот же принцип для switch); never-проверка ниже даст ошибку
+        // компиляции, если кто-то добавит новый QuestRewardKind и забудет сюда
+        // ветку.
+        const unknownKind: never = reward.kind;
+        console.warn(`${LOG} apply_unknown_kind quest=${questId} kind=${String(unknownKind)} amount=${reward.amount}`);
+        break;
+      }
     }
   }
 }
@@ -481,7 +488,11 @@ export async function claimQuestReward(
     const rewards = rewardsRaw
       .map((entry) => {
         const row = (entry ?? {}) as Record<string, unknown>;
-        const kind = String(row.kind ?? '') as QuestRewardKind;
+        const kind = String(row.kind ?? '');
+        // зачем (PM-232): та же граница, что normalizeQuest выше — сервер уже
+        // отфильтровал pearls/spins в parseQuestReward, но не доверяем этому
+        // повторно на клиенте вслепую.
+        if (!isQuestRewardKind(kind)) return null;
         const amount = Math.trunc(Number(row.amount ?? 0));
         return Number.isSafeInteger(amount) && amount > 0 ? Object.freeze({ kind, amount }) : null;
       })

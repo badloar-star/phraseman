@@ -14,7 +14,6 @@ import { Image } from 'expo-image';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { themeUiAsset } from '../app/theme_ui_assets';
-import { pearlIconForTheme } from '../app/coin_icons';
 import type { QuestReward, QuestSnapshot } from '../app/quests_client';
 import { triLang } from '../constants/i18n';
 import { useLang } from './LangContext';
@@ -34,9 +33,7 @@ export type QuestTaskCardProps = Readonly<{
 /** Иконка вида награды. Ассеты общие с шапкой и кошельками — один источник. */
 export function questRewardIcon(kind: QuestReward['kind'], themeMode: Parameters<typeof themeUiAsset>[0]) {
   switch (kind) {
-    case 'pearls': return pearlIconForTheme(themeMode);
     case 'runes': return themeUiAsset(themeMode, 'rune');
-    case 'spins': return themeUiAsset(themeMode, 'spinTicket');
     case 'energy_full': return null;
     case 'freeze': return themeUiAsset(themeMode, 'streakIce');
     default: return null;
@@ -150,11 +147,10 @@ function QuestTaskCard({ quest, onOpen }: QuestTaskCardProps) {
         {showRewards ? (
           <View style={styles.rewards}>
             {quest.rewards
-              // зачем (PM-047, владелец): спин убран из механики — старые
-              // задания в админке могут ещё нести kind='spins', но начисления
-              // больше не будет (grantLocalQuestSpins no-op). Не показываем
-              // плашку с обещанием, которое не сдержится.
-              .filter((reward) => reward.kind !== 'spins')
+              // зачем (PM-232, 2026-09-24): 'spins'/'pearls' больше не входят
+              // в QuestRewardKind — граница парсинга в quests_client.ts уже
+              // отбрасывает эти виды до того, как quest.rewards сюда попадёт
+              // (см. тот же комментарий в QuestSheetModal.tsx).
               .slice(0, 2).map((reward, index) => {
               const icon = questRewardIcon(reward.kind, themeMode);
               return (

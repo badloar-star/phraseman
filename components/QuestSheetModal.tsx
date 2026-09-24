@@ -51,20 +51,10 @@ function rewardLabel(reward: QuestReward, lang: Parameters<typeof triLang>[0]): 
     return many;
   };
   switch (reward.kind) {
-    case 'pearls':
-      return triLang(lang, {
-        ru: plural('жемчужина', 'жемчужины', 'жемчужин'), uk: 'перлин', en: 'pearls',
-        es: 'perlas', 'pt-BR': 'pérolas', vi: 'ngọc trai', id: 'mutiara', tr: 'inci', pl: 'pereł',
-      });
     case 'runes':
       return triLang(lang, {
         ru: plural('руна', 'руны', 'рун'), uk: 'рун', en: 'runes',
         es: 'runas', 'pt-BR': 'runas', vi: 'rune', id: 'rune', tr: 'rün', pl: 'run',
-      });
-    case 'spins':
-      return triLang(lang, {
-        ru: plural('спин', 'спина', 'спинов'), uk: 'спінів', en: 'spins',
-        es: 'giros', 'pt-BR': 'giros', vi: 'lượt quay', id: 'putaran', tr: 'çevirme', pl: 'losowań',
       });
     case 'plus_days':
       return triLang(lang, {
@@ -263,12 +253,15 @@ function QuestSheetModal({
             </Text>
             <View style={styles.rewardsRow}>
               {quest.rewards
-                // зачем (PM-047, владелец): спин как награда убран из механики —
-                // grantLocalQuestSpins стал no-op, поэтому больше нельзя
-                // показывать «+N спинов» как обещание: старые задания в
-                // админке ещё могут нести kind='spins', но начисления не
-                // будет никогда. Не рисуем — не обещаем.
-                .filter((reward) => reward.kind !== 'spins')
+                // зачем (PM-232, 2026-09-24): 'spins'/'pearls' больше не входят
+                // в QuestRewardKind (functions/src/quests_core.ts,
+                // app/quests_client.ts) — граница парсинга в quests_client.ts
+                // (normalizeQuest/claimQuestReward) уже отбрасывает эти виды
+                // до того, как quest.rewards сюда попадёт, так что отдельный
+                // .filter здесь стал избыточен по типам. Раньше (PM-047)
+                // фильтровался только 'spins' — 'pearls' рисовался как
+                // обещание, которое молча не выполнялось; граница закрывает
+                // оба случая разом.
                 .map((reward, index) => {
                 const icon = questRewardIcon(reward.kind, themeMode);
                 return (

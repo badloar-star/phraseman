@@ -16,7 +16,6 @@ import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
-import { appendExternalEconomyEvent } from './external_economy_events';
 import {
   parseQuestConfig,
   parseQuestProgress,
@@ -401,27 +400,6 @@ export const questClaimReward = onCall(HOT_CALLABLE_OPTIONS, async (request) => 
       rewards: rewards.map((r) => ({ kind: r.kind, amount: r.amount })),
       claimedAtMs: nowMs,
     };
-
-    // Жемчуг — внешний экономический факт (клиент зачислит по нему баланс,
-    // как делает Путь дня). Свой баланс сервер не считает и не пишет.
-    const pearls = rewards.filter((r) => r.kind === 'pearls').reduce((sum, r) => sum + r.amount, 0);
-    if (pearls > 0) {
-      appendExternalEconomyEvent(tx, userRef, {
-        source: 'quest',
-        eventId: questId,
-        ownerStableId: stableUid,
-        delta: pearls,
-        reason: 'quest_reward',
-        kind: 'quest_reward',
-        subjectId: questId,
-        payload: { questId, kind: config.kind },
-        createdAtMs: nowMs,
-      });
-      tx.set(userRef.collection('shard_log').doc(), {
-        ts: new Date(nowMs).toISOString(), type: 'earn', amount: pearls,
-        reason: 'quest_reward', authority: 'external_event', questId,
-      });
-    }
 
     // Дни Plus — единственная награда, которую обязан выдать сервер: доступ
     // живёт в progress.premium_*, клиент его не пишет. Продлеваем от большего

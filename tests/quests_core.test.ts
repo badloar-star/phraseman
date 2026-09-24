@@ -2,6 +2,7 @@ import {
   parseQuestConfig, validateQuestConfigForWrite, resolveQueuePromotion,
   resolveQuestPhase, questIsComplete, parseQuestProgress, questExpiryMs,
   runeAmountIsPayable, buildPublicQuestSnapshot, questProgressValue,
+  parseQuestReward, QUEST_REWARD_KINDS,
 } from '../functions/src/quests_core';
 
 const base = {
@@ -34,6 +35,23 @@ describe('quests_core', () => {
   it('требует хотя бы одну награду', () => {
     const res = validateQuestConfigForWrite({ ...base, rewards: [] });
     expect(res.ok).toBe(false);
+  });
+
+  // зачем (PM-232, 2026-09-24): 'pearls'/'spins' убраны из QUEST_REWARD_KINDS —
+  // обе выдачи давно no-op на клиенте (PM-058/PM-047), админка предлагала
+  // создать задание с наградой, которую пользователь никогда не получит.
+  // Тесты фиксируют новый контракт и предупреждают, если список расширят
+  // обратно без сознательного решения.
+  it('отклоняет отключённые виды награды pearls/spins', () => {
+    expect(QUEST_REWARD_KINDS).not.toContain('pearls');
+    expect(QUEST_REWARD_KINDS).not.toContain('spins');
+    expect(parseQuestReward({ kind: 'pearls', amount: 50 })).toBeNull();
+    expect(parseQuestReward({ kind: 'spins', amount: 1 })).toBeNull();
+  });
+
+  it('задание с единственной наградой pearls/spins не парсится (риск потери прогресса — see PM-232 evidence)', () => {
+    expect(parseQuestConfig({ ...base, rewards: [{ kind: 'pearls', amount: 50 }] })).toBeNull();
+    expect(parseQuestConfig({ ...base, rewards: [{ kind: 'spins', amount: 1 }] })).toBeNull();
   });
 
   it('дельта-цель считает прирост от baseline', () => {

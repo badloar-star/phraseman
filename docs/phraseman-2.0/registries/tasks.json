@@ -11239,7 +11239,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -11248,14 +11248,20 @@
       {
         "id": "PM-232-A1",
         "text": "Нельзя выдать удалённый спин/жемчуг/буст",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/evidence/PM-232_dead_admin_forms_audit.md",
+          "tests/quests_core.test.ts 16/16 PASS, tests/quests_client_reward_kind_contract.test.ts 2/2 PASS, functions typecheck чист"
+        ]
       },
       {
         "id": "PM-232-A2",
         "text": "управление действующими наборами/видео/пользователями не сломано",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/evidence/PM-232_dead_admin_forms_audit.md",
+          "tests/quests_core.test.ts 16/16 PASS, tests/quests_client_reward_kind_contract.test.ts 2/2 PASS, functions typecheck чист"
+        ]
       }
     ],
     "depends_on": [],
@@ -11265,15 +11271,20 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент) + Claude Opus 5.5 (Advisor)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "docs/phraseman-2.0/evidence/PM-232_dead_admin_forms_audit.md",
+      "tests/quests_core.test.ts 16/16 PASS, tests/quests_client_reward_kind_contract.test.ts 2/2 PASS, functions typecheck чист"
+    ],
+    "notes": [
+      "Убраны мёртвые виды награды 'pearls'/'spins' из QUEST_REWARD_KINDS (functions/src/quests_core.ts) — обе выдачи были no-op на клиенте (PM-058/PM-047), редактор заданий в админке предлагал создать обманчивое задание, дефолт новой строки награды был именно 'pearls'. Убрана мёртвая серверная ветка записи shard_log для pearls (рассинхрон сервер/клиент). Клиент (app/quests_client.ts) и 2 UI-компонента (QuestSheetModal.tsx, QuestTaskCard.tsx) синхронизированы, добавлена граница валидации kind (isQuestRewardKind) вместо слепого type cast — защита от старых данных в кэше/базе, не полагается только на TS-тип. НЕ статус done: 🔴 КРИТИЧНЫЙ РИСК ПЕРЕД ДЕПЛОЕМ (найден Advisor) — активные/queued задания в продовой Firestore-коллекции 'quests', у которых ЕДИНСТВЕННОЙ наградой был pearls/spins, станут null в parseQuestConfig после деплоя этой версии функций и исчезнут у игроков вместе с набранным прогрессом. Нужна ручная проверка коллекции quests ДО деплоя functions (у этой сессии нет доступа к продовому Firestore) — если такие задания есть, решить: заменить награду или архивировать. Деплой functions НЕ делать, пока владелец не подтвердит эту проверку"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
+    "actual_model": "sonnet-5",
     "actual_reasoning": null
   },
   {

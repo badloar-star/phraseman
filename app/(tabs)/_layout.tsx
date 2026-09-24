@@ -1,8 +1,10 @@
 ﻿import React, { Profiler, useState, useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { Freeze } from 'react-freeze';
 import { useFocusEffect, usePathname, useRouter, useSegments } from 'expo-router';
-import { View, Text, TouchableOpacity, StyleSheet, Animated, AppState } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Animated, AppState, Easing } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { BlurView } from 'expo-blur';
+import { LinearGradient } from '../../components/SafeLinearGradient';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
@@ -341,6 +343,24 @@ function addVisitedTab(prev: Set<number>, idx: number): Set<number> {
 const TAB_DOCK_MIN_BOTTOM_PAD = 8;
 /** Панель чуть выше tabBarHeight: под иконкой подпись (референс 2.0). */
 const TAB_DOCK_EXTRA_HEIGHT = 4;
+/** Отступ плавающей капсулы от боковых и нижнего краёв (референс 24.09). */
+const TAB_FLOAT_SIDE_MARGIN = 16;
+const TAB_FLOAT_BOTTOM_GAP = 6;
+// зачем (владелец 24.09, референс): та же механика сжатия при скролле вниз, что
+// была у дореформенного таббара (commit bfdc8e783~1) — капсула не исчезает,
+// а слегка уменьшается и оседает. Портирована 1:1, только без gold/olive веток.
+const TAB_SCROLL_COLLAPSED_SCALE = 0.9;
+const TAB_SCROLL_COLLAPSED_TRANSLATE_Y = 8;
+const TAB_SCROLL_COLLAPSED_OPACITY = 0.94;
+const TAB_SCROLL_COLLAPSE_TRIGGER_Y = 36;
+const TAB_SCROLL_EXPAND_TRIGGER_Y = 10;
+const TAB_SCROLL_DIRECTION_EPSILON = 5;
+const TAB_SCROLL_COLLAPSE_MS = 220;
+const TAB_SCROLL_EXPAND_MS = 260;
+const TAB_SCROLL_TOGGLE_COOLDOWN_MS = 140;
+/** Бегущая стеклянная подсветка активного пункта — ширина/высота под иконку+подпись. */
+const TAB_ACTIVE_PILL_WIDTH = 64;
+const TAB_ACTIVE_PILL_HEIGHT = 52;
 /** Фоновый премаунт соседних табов в idle: первое открытие любого таба — мгновенное,
  *  без «плейсхолдер → полный маунт на глазах». Дёшев в связке с ENABLE_TAB_FREEZE:
  *  премаунченный таб делает первый коммит (модуль + первый рендер + старт загрузок)
@@ -490,6 +510,26 @@ function TabScaffold({
   const [pressedTabIdx, setPressedTabIdx] = useState<number | null>(null);
   const firstContentReadyEmittedRef = useRef(false);
   const activeBarTabIdx = TAB_BAR_TABS.findIndex((tab) => tab.logicalIdx === visualIdx);
+  const [tabPillWidth, setTabPillWidth] = useState(0);
+  const tabHighlightAnim = useRef(new Animated.Value(activeBarTabIdx >= 0 ? activeBarTabIdx : 0)).current;
+  // зачем (владелец 24.09, референс): капсула сжимается при скролле вниз и
+  // разворачивается при скролле вверх/смене таба/свайпе — портировано из
+  // дореформенного таббара (commit bfdc8e783~1), см. TAB_SCROLL_* выше.
+  const tabScrollProgress = useRef(new Animated.Value(0)).current;
+  const tabScrollCollapsedRef = useRef(false);
+  const tabScrollSettledRef = useRef(true);
+  const tabScrollLastYRef = useRef(0);
+  const tabScrollLastToggleAtRef = useRef(0);
+  const previousVisualIdxRef = useRef(visualIdx);
+
+  useEffect(() => {
+    if (activeBarTabIdx < 0) return;
+    if (reduceMotion) {
+      tabHighlightAnim.setValue(activeBarTabIdx);
+      return;
+    }
+    Animated.spring(tabHighlightAnim, { toValue: activeBarTabIdx, speed: 18, bounciness: 4, useNativeDriver: true }).start();
+  }, [activeBarTabIdx, tabHighlightAnim, reduceMotion]);
 
   const endTabPress = useCallback(() => {
     tabPressAnim.stopAnimation();
@@ -514,9 +554,75 @@ function TabScaffold({
     hapticTap();
   }, [reduceMotion, tabPressAnim]);
 
+  const animateTabChrome = useCallback((collapsed: boolean, immediate = false) => {
+    // зачем: тот же ранний-выход и кулдаун, что и в дореформенном коде — иначе
+    // покадровый listener скролла на каждый тик дёргает stopAnimation/setValue
+    // через мост под пальцем (владелец, «всё лагает» 2026-09-21).
+    if (tabScrollCollapsedRef.current === collapsed && tabScrollSettledRef.current) return;
+    const now = Date.now();
+    if (!immediate && now - tabScrollLastToggleAtRef.current < TAB_SCROLL_TOGGLE_COOLDOWN_MS) return;
+    tabScrollLastToggleAtRef.current = now;
+    tabScrollCollapsedRef.current = collapsed;
+    tabScrollProgress.stopAnimation();
+    if (immediate || reduceMotion) {
+      tabScrollProgress.setValue(collapsed ? 1 : 0);
+      tabScrollSettledRef.current = true;
+      return;
+    }
+    tabScrollSettledRef.current = false;
+    Animated.timing(tabScrollProgress, {
+      toValue: collapsed ? 1 : 0,
+      duration: collapsed ? TAB_SCROLL_COLLAPSE_MS : TAB_SCROLL_EXPAND_MS,
+      easing: Easing.out(Easing.cubic),
+      useNativeDriver: true,
+    }).start(({ finished }) => {
+      if (finished && tabScrollCollapsedRef.current === collapsed) {
+        tabScrollSettledRef.current = true;
+      }
+    });
+  }, [reduceMotion, tabScrollProgress]);
+
+  useLayoutEffect(() => {
+    if (previousVisualIdxRef.current === visualIdx) return;
+    previousVisualIdxRef.current = visualIdx;
+    tabScrollLastYRef.current = 0;
+    animateTabChrome(false, true);
+  }, [animateTabChrome, visualIdx]);
+
+  useEffect(() => {
+    const scrollY = topFadeScroll?.tabBarScrollY;
+    if (!scrollY || tabBarHidden) return undefined;
+    const id = scrollY.addListener(({ value }) => {
+      const y = Math.max(0, value);
+      const delta = y - tabScrollLastYRef.current;
+      tabScrollLastYRef.current = y;
+      if (y <= TAB_SCROLL_EXPAND_TRIGGER_Y) {
+        animateTabChrome(false, true);
+        return;
+      }
+      if (delta >= TAB_SCROLL_DIRECTION_EPSILON && y >= TAB_SCROLL_COLLAPSE_TRIGGER_Y) {
+        animateTabChrome(true);
+        return;
+      }
+      if (delta <= -TAB_SCROLL_DIRECTION_EPSILON) {
+        animateTabChrome(false);
+      }
+    });
+    return () => {
+      scrollY.removeListener(id);
+      tabScrollProgress.stopAnimation();
+    };
+  }, [animateTabChrome, tabBarHidden, tabScrollProgress, topFadeScroll?.tabBarScrollY]);
+
+  const tabScrollScale = tabScrollProgress.interpolate({ inputRange: [0, 1], outputRange: [1, TAB_SCROLL_COLLAPSED_SCALE], extrapolate: 'clamp' });
+  const tabScrollTranslateY = tabScrollProgress.interpolate({ inputRange: [0, 1], outputRange: [0, TAB_SCROLL_COLLAPSED_TRANSLATE_Y], extrapolate: 'clamp' });
+  const tabScrollOpacity = tabScrollProgress.interpolate({ inputRange: [0, 1], outputRange: [1, TAB_SCROLL_COLLAPSED_OPACITY], extrapolate: 'clamp' });
+
   const handleSwipeStartChrome = useCallback((physicalIdx: number) => {
+    tabScrollLastYRef.current = 0;
+    animateTabChrome(false, true);
     onSwipeStart(physicalIdx);
-  }, [onSwipeStart]);
+  }, [animateTabChrome, onSwipeStart]);
 
   const notifyFirstContentReady = useCallback(() => {
     if (!currentRouteIsTab || activeIdx === 0 || firstContentReadyEmittedRef.current) return;
@@ -569,24 +675,64 @@ function TabScaffold({
               при размонтировании — иначе таббар залипнет скрытым. */}
           {tabBarHidden ? null : (
           <View
-            style={[s.tabBarWrap, { height: tabDockHeight }]}
+            style={[s.tabBarWrap, { height: tabDockHeight + TAB_FLOAT_BOTTOM_GAP }]}
             pointerEvents="box-none"
           >
-            {/* зачем (2.0, референс владельца 24.09): таббар — панель во всю ширину
-                со скруглённым верхом и тонкой кромкой, под иконкой подпись. Без
-                плавающей капсулы и без сжатия при скролле: панель неподвижна, а
-                значит, JS не слушает скролл активного таба вовсе. */}
-            <View
+            {/* зачем (2.0, референс владельца 24.09 — плавающая стеклянная капсула):
+                панель плавает с отступами со всех сторон (не докнута), скругление
+                полное. Физика — 1:1 портирована из дореформенного таббара: сжатие
+                при скролле вниз (tabScrollProgress) + spring-press на иконке +
+                бегущая стеклянная подсветка активного пункта (tabHighlightAnim). */}
+            <Animated.View
+              onLayout={(event) => setTabPillWidth(event.nativeEvent.layout.width)}
               style={[
                 s.tabDock,
                 {
                   height: tabDockHeight,
-                  paddingBottom: tabDockBottomPad,
-                  backgroundColor: v2.tabBar,
-                  borderColor: v2.stroke,
+                  bottom: Math.max(tabDockBottomPad, TAB_FLOAT_BOTTOM_GAP),
+                  marginHorizontal: TAB_FLOAT_SIDE_MARGIN,
+                  borderRadius: tabDockHeight / 2,
+                  borderColor: v2.glowA, // guard-ok: D43 — тонкая тёплая кромка стекла, как на референсе
+                  opacity: tabScrollOpacity,
+                  transform: [{ translateY: tabScrollTranslateY }, { scale: tabScrollScale }],
                 },
               ]}
             >
+              {/* зачем (владелец: «должно быть стеклянным, но НЕ прозрачным» —
+                  первая версия просвечивала контент насквозь как окно). Лёгкое
+                  размытие + почти непрозрачная заливка поверх: матовое стекло,
+                  а не окно. */}
+              <BlurView intensity={22} tint="dark" style={StyleSheet.absoluteFillObject} pointerEvents="none" />
+              <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, { backgroundColor: v2.tabBar, opacity: 0.94 }]} />
+              <LinearGradient
+                pointerEvents="none"
+                colors={[v2.glowA, 'transparent']}
+                locations={[0, 0.5]}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={[StyleSheet.absoluteFillObject, { opacity: 0.14 }]}
+              />
+              {tabPillWidth > 0 && activeBarTabIdx >= 0 ? (
+                <Animated.View
+                  pointerEvents="none"
+                  style={[
+                    s.tabActivePill,
+                    {
+                      top: (tabDockHeight - TAB_ACTIVE_PILL_HEIGHT) / 2,
+                      left: (tabPillWidth / TAB_BAR_TABS.length - TAB_ACTIVE_PILL_WIDTH) / 2,
+                      backgroundColor: v2.glassRaised,
+                      borderColor: v2.glowA, // guard-ok: D43 подсветка активного пункта, как на референсе
+                      transform: [{
+                        translateX: tabHighlightAnim.interpolate({
+                          inputRange: TAB_BAR_TABS.map((_, index) => index),
+                          outputRange: TAB_BAR_TABS.map((_, index) => index * (tabPillWidth / TAB_BAR_TABS.length)),
+                          extrapolate: 'clamp',
+                        }),
+                      }],
+                    },
+                  ]}
+                />
+              ) : null}
               {TAB_BAR_TABS.map((tab, barIndex) => {
                 const visuallyFocused = activeBarTabIdx === barIndex;
                 const color = visuallyFocused ? v2.text : v2.textSecondary;
@@ -623,7 +769,7 @@ function TabScaffold({
                   </TouchableOpacity>
                 );
               })}
-            </View>
+            </Animated.View>
           </View>
           )}
         </View>
@@ -1023,7 +1169,8 @@ const s = StyleSheet.create({
   },
   /** Область свайпа табов; minHeight:0 — иначе flex не даёт скроллу сжиматься (RN). Фон прозрачный — градиент с TabScaffold, без белого «просвета». */
   tabContent: { flex: 1, minHeight: 0, width: '100%', backgroundColor: 'transparent' },
-  /** Нижний overlay не резервирует место: контент уходит под него без отдельной safe-area полосы. */
+  /** Нижний overlay не резервирует место: контент уходит под него без отдельной
+   *  safe-area полосы. overflow не задаём — капсула плавает и должна ронять тень. */
   tabBarWrap: {
     position: 'absolute',
     left: 0,
@@ -1031,21 +1178,23 @@ const s = StyleSheet.create({
     bottom: 0,
     zIndex: 20,
     elevation: 20,
-    overflow: 'hidden',
     backgroundColor: 'transparent',
   },
-  /** Панель таббара во всю ширину: скруглённый верх и тонкая кромка (D43). */
+  /** Плавающая стеклянная капсула (референс 24.09): отступы со всех сторон,
+   *  полное скругление, объёмная тень — панель «парит» над контентом. */
   tabDock: {
     position: 'absolute',
     left: 0,
     right: 0,
-    bottom: 0,
     flexDirection: 'row',
     alignItems: 'stretch',
-    borderTopLeftRadius: V2.radius.sheet,
-    borderTopRightRadius: V2.radius.sheet,
     borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43
-    borderBottomWidth: 0,
+    overflow: 'hidden',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.28,
+    shadowRadius: 16,
+    shadowColor: '#000',
+    elevation: 12,
   },
   tabBtn: {
     flex: 1,
@@ -1053,11 +1202,19 @@ const s = StyleSheet.create({
     justifyContent: 'center',
     gap: 3,
     paddingTop: 6,
+    zIndex: 10,
   },
   tabLabel: {
     fontSize: V2.tabBar.labelSize,
     lineHeight: 14,
     letterSpacing: 0.1,
+  },
+  tabActivePill: {
+    position: 'absolute',
+    width: TAB_ACTIVE_PILL_WIDTH,
+    height: TAB_ACTIVE_PILL_HEIGHT,
+    borderRadius: TAB_ACTIVE_PILL_HEIGHT / 2,
+    borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43 подсветка активного пункта, референс 24.09
   },
 
 });

@@ -2555,7 +2555,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -2564,8 +2564,10 @@
       {
         "id": "PM-055-A1",
         "text": "Убраны покупки, выдача, расчёт, UI, кеш и notifications",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commit f0ff086ae"
+        ]
       },
       {
         "id": "PM-055-A2",
@@ -2582,16 +2584,20 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "commit f0ff086ae"
+    ],
+    "notes": [
+      "boon_effects_xp.ts удалён, xp_manager.ts переключён на константу 0 (поведение не изменилось). Найдены club_boosts.ts и league_personal_boosts.ts — живые платные ×2/×3 ускорители опыта за осколки, часть системы Клуба/Season Pass, НЕ тронуты — требуют отдельного решения владельца"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-056",

@@ -27,6 +27,7 @@ Governance-ID: TG-4CBF51E96CF5
 Governance-ID: TG-00F952498F82
 Governance-ID: TG-6A0C730989BF
 Governance-ID: TG-D01E85DD6809
+Governance-ID: TG-7F99C66A2E36
 Governance-ID: TG-816719164EA2
 Status: In progress
 Owner: сессия Claude 2026-09-24 (оркестратор Opus 5.5, исполнители — субагенты по таблице моделей)

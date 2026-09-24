@@ -44,6 +44,8 @@ const GLASS_FILL = Platform.OS === 'ios'
   ? (['rgba(42,40,38,0.64)', 'rgba(18,17,16,0.76)'] as const)
   : (['rgba(42,40,38,0.90)', 'rgba(18,17,16,0.94)'] as const);
 const CAP_SPRING = { stiffness: 260, damping: 19, mass: 1, useNativeDriver: true } as const;
+// Слежение за пальцем: быстро, без перелёта — капсула «едет» за ним, а не прыгает.
+const CAP_FOLLOW_SPRING = { stiffness: 700, damping: 48, mass: 0.7, useNativeDriver: true } as const;
 const ACTIVATE_ACTION = [{ name: 'activate' as const }];
 
 type Props = {
@@ -155,7 +157,10 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
     const { slotW: sw, count: n } = live.current;
     const left = Math.max(PAD, Math.min(PAD + (n - 1) * sw, fingerX - sw / 2));
     dragLeftRef.current = left;
-    capX.setValue(left);
+    // зачем (владелец: «капсула должна переезжать, а не прыгать»): раньше здесь
+    // стоял setValue — капсула мгновенно вставала под палец в момент захвата и
+    // дёргалась по шагам касания. Теперь она догоняет палец быстрой пружиной.
+    Animated.spring(capX, { toValue: left, ...CAP_FOLLOW_SPRING }).start(); // guard-ok: useNativeDriver в CAP_FOLLOW_SPRING
     const near = clampIdx(Math.round((left - PAD) / sw));
     setHoverIdx((prev) => (prev === near ? prev : near));
   };
@@ -163,7 +168,6 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
   const startDrag = (fingerX: number) => {
     if (draggingRef.current) return;
     draggingRef.current = true;
-    capX.stopAnimation();
     pressOut();
     hapticTap();
     Animated.spring(capLift, { toValue: 1, speed: 30, bounciness: 0, useNativeDriver: true }).start();

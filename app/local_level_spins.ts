@@ -34,7 +34,6 @@ import {
 } from './level_spin_reward_catalog';
 import {
   normalizeLessonSpinMisses,
-  rollLessonSpin,
 } from './lesson_spin_chance';
 import { listExhaustedSpinRewardIds } from './theme_gift_pool';
 import { stableUniqueStrings } from './spin_gift_storage_integrity';
@@ -615,364 +614,86 @@ export async function readLocalLevelSpinBalance(): Promise<number> {
   return isCurrentAccountGeneration(token, owner) ? state.credits.length : 0;
 }
 
-export async function grantLocalLevelSpins(levels: readonly number[]): Promise<number[]> {
-  return grantLocalLevelSpinsForAccount(levels, captureAccountGeneration());
+// зачем (PM-047, владелец): все ниже — точки выдачи спинов. Спин убран как
+// механика (D09, R046/R047), но переписывать 8+ независимых вызывающих мест
+// (задания, сундук лиги, урок/курс-сессия, Арена, отчёты, Daily Journey, dev)
+// рискованнее, чем оставить их звать те же функции и просто вернуть «ничего
+// не выдано» — сигнатуры и типы возврата НЕ меняются, поэтому ни один
+// вызывающий файл не требует правки. Хранилище (loadLocalState/writeLocalState)
+// не трогаем — уже выданные локальные спины остаются на устройстве нетронутыми,
+// просто новых больше не прибавляется (см. отчёт PM-046/047 про баланс).
+export async function grantLocalLevelSpins(_levels: readonly number[]): Promise<number[]> {
+  return [];
 }
 
 export async function grantLocalLevelSpinsForAccount(
-  levels: readonly number[], token: AccountGenerationToken, accountTransitionLockLease?: AccountTransitionLockLease,
+  _levels: readonly number[], _token: AccountGenerationToken, _accountTransitionLockLease?: AccountTransitionLockLease,
 ): Promise<number[]> {
-  const owner = token.stableId;
-  if (!owner) return [];
-  return withAccountTransitionLock(async () => {
-    if (!isCurrentAccountGeneration(token, owner)) return [];
-    const current = await loadLocalState(owner);
-    const additions = [...new Set(levels.map(Number))]
-      .filter((level) => Number.isInteger(level) && level >= 2 && level <= 60)
-      .sort((left, right) => left - right)
-      .filter((level) => !current.issuedLevels.includes(level));
-    if (additions.length === 0) return [];
-    const next: LocalSpinState = {
-      ...current,
-      credits: [...current.credits, ...additions.map((level) => ({ id: `local_spin_v1_${String(level).padStart(3, '0')}`, level }))],
-      issuedLevels: normalizeLevels([...current.issuedLevels, ...additions]),
-      issuedCreditIds: stableUniqueStrings([...current.issuedCreditIds, ...additions.map((level) => `local_spin_v1_${String(level).padStart(3, '0')}`)]),
-    };
-    await writeLocalState(next);
-    return additions;
-  }, accountTransitionLockLease);
+  return [];
 }
 
-/** DEV-only one-off credit: distinct from level credits so every press is visible immediately. */
-export async function grantLocalDevSpin(token: AccountGenerationToken): Promise<boolean> {
-  const owner = token.stableId;
-  if (!owner) return false;
-  return withAccountTransitionLock(async () => {
-    if (!isCurrentAccountGeneration(token, owner)) return false;
-    const current = await loadLocalState(owner);
-    const id = `local_spin_dev_${Crypto.randomUUID().replace(/-/g, '')}`;
-    const next: LocalSpinState = {
-      ...current,
-      credits: [...current.credits, { id, level: 2 }],
-      issuedCreditIds: stableUniqueStrings([...current.issuedCreditIds, id]),
-    };
-    await writeLocalState(next);
-    return true;
-  });
+/** зачем (PM-047): dev-кнопка «+1 спин» тоже не выдаёт — механики нет даже в dev. */
+export async function grantLocalDevSpin(_token: AccountGenerationToken): Promise<boolean> {
+  return false;
 }
 
-/**
- * Общий путь «спин за учебную единицу»: один бросок на первое прохождение.
- *
- * зачем (владелец, 2026-09-17): «спин это привилегия» — гарантированная выдача
- * за каждый урок обесценила приз. Шанс 20% + страховка после 8 неудач подряд
- * (см. lesson_spin_chance.ts).
- *
- * КРИТИЧНО: `id` уходит в `issuedCreditIds` и при НЕУДАЧНОМ броске. Иначе
- * неудача не оставляет следа, и перепрохождение того же урока даёт новый
- * бросок — фарм призов, прямо запрещённый владельцем («один бросок навсегда»).
- * Поэтому запись состояния происходит в обеих ветках, а не только при удаче.
- */
-async function grantLocalStudySpinWithChance(
-  id: string, owner: string, token: AccountGenerationToken, source: string,
-): Promise<boolean> {
-  return withAccountTransitionLock(async () => {
-    if (!isCurrentAccountGeneration(token, owner)) {
-      DebugLogger.warn('local_level_spins:study_spin_stale_account', source);
-      return false;
-    }
-    const current = await loadLocalState(owner);
-    // Повторное прохождение: бросок уже был (удачный или нет) — второго нет.
-    if (current.issuedCreditIds.includes(id)) return false;
-    const outcome = rollLessonSpin({ misses: current.lessonSpinMisses });
-    const issuedCreditIds = stableUniqueStrings([...current.issuedCreditIds, id]);
-    await writeLocalState({
-      ...current,
-      credits: outcome.granted
-        ? [...current.credits, { id, level: 2 }]
-        : current.credits,
-      issuedCreditIds,
-      lessonSpinMisses: outcome.nextMisses,
-    });
-    DebugLogger.info(
-      '[LESSON-SPIN] roll',
-      `source=${source} id=${id} granted=${outcome.granted} pity=${outcome.pity} `
-      + `missesBefore=${current.lessonSpinMisses} missesAfter=${outcome.nextMisses}`,
-    );
-    return outcome.granted;
-  });
-}
-
-/**
- * Первое прохождение полного урока даёт ОДИН бросок на спин (шанс 20%).
- *
- * Словарь и неправильные глаголы этот путь не вызывают и спина не дают —
- * сторож tests/lesson_spin_privilege_contract.test.ts это фиксирует.
- */
+// зачем (PM-047, владелец): все функции ниже — источники выдачи спинов
+// (урок, курс-сессия, Арена, сундук лиги/друзей, отчёты, Daily Journey,
+// задания). Спин убран как механика — сигнатуры и типы возврата сохранены
+// (везде «не выдано»: false/true-без-начисления там, где раньше был true),
+// чтобы 8+ независимых вызывающих файлов (quests_client.ts,
+// league_chest_rewards.ts, friend_quests.ts, boons/boon_rewards.ts,
+// daily_journey_*, arena_results.tsx, lesson/course-session completion) не
+// требовали отдельной правки и не могли получить неожиданный undefined/throw.
 export async function grantLocalLessonCompletionSpin(
-  lessonId: number, studyTarget: string | null | undefined, token: AccountGenerationToken,
+  _lessonId: number, _studyTarget: string | null | undefined, _token: AccountGenerationToken,
 ): Promise<boolean> {
-  const owner = token.stableId;
-  const safeLesson = Math.trunc(lessonId);
-  if (!owner || !Number.isInteger(safeLesson) || safeLesson < 1) return false;
-  const scope = `${String(studyTarget ?? 'default').replace(/[^A-Za-z0-9_-]/g, '_')}-${safeLesson}`;
-  return grantLocalStudySpinWithChance(`local_spin_lesson_${scope}`, owner, token, 'lesson');
+  return false;
 }
 
-/**
- * Первое прохождение каждой сессии курса Learning V2 даёт ОДИН бросок (20%).
- *
- * зачем (владелец, 23.08): спин — награда и за повышение уровня, и за
- * пройденную сессию. Уровни покрыты очередью level-up, урок — функцией выше;
- * здесь закрывается курс V2.
- *
- * зачем 20% (владелец, 2026-09-17): сессия курса — тот же «полный урок», и
- * планка привилегии у них обязана быть общей. Иначе курс стал бы дешёвым
- * источником спинов на фоне урезанных уроков.
- *
- * Повторы броска НЕ дают: одну лёгкую сессию иначе перепроходили бы ради
- * призов. Идемпотентность — по `issuedCreditIds`, поэтому повторный вызов
- * при ретрае безопасен.
- */
 export async function grantLocalCourseSessionCompletionSpin(
-  sessionId: string, studyTarget: string | null | undefined, token: AccountGenerationToken,
+  _sessionId: string, _studyTarget: string | null | undefined, _token: AccountGenerationToken,
 ): Promise<boolean> {
-  const owner = token.stableId;
-  const safeSession = String(sessionId ?? '').trim();
-  if (!owner || !safeSession) return false;
-  const scope = `${String(studyTarget ?? 'default').replace(/[^A-Za-z0-9_-]/g, '_')}-${safeSession.replace(/[^A-Za-z0-9_-]/g, '_').slice(0, 64)}`;
-  return grantLocalStudySpinWithChance(`local_spin_session_${scope}`, owner, token, 'course_session');
+  return false;
 }
 
-/**
- * Победа в рейтинговом матче Арены над реальным игроком даёт ровно один спин
- * из ОБЩЕГО каталога подарков — тот же, что за уровень и сессию.
- *
- * зачем (владелец, 23.08): раньше победа в Арене копила отдельный «кредит
- * Арены» на сервере (`arena_v2_spin_credits`), который разыгрывался своей
- * рулеткой (только жемчужины 5/10/20) через отдельный экран звёздного
- * кошелька. Владелец прямо запретил параллельные спины — в приложении должен
- * существовать один спин, доступный из раздела «Подарки». Сервер теперь лишь
- * гарантирует сам факт награды (`reward.spinAwarded`, см. `arenaRareSpin` в
- * functions/src/arena_v2_core.ts) и присылает `spinReceiptId` = matchId;
- * розыгрыш приза остаётся локальным, как у остальных источников спина.
- *
- * Идемпотентность — по matchId: тот же матч не может выдать кредит дважды,
- * даже если экран результата перемонтируется или сервер повторит ответ.
- */
 export async function grantLocalArenaRankedWinSpin(
-  matchId: string, token: AccountGenerationToken,
+  _matchId: string, _token: AccountGenerationToken,
 ): Promise<boolean> {
-  const owner = token.stableId;
-  const safeMatchId = String(matchId ?? '').trim();
-  if (!owner || !safeMatchId) return false;
-  const id = `local_spin_arena_ranked_${safeMatchId.replace(/[^A-Za-z0-9_-]/g, '_').slice(0, 80)}`;
-  return withAccountTransitionLock(async () => {
-    if (!isCurrentAccountGeneration(token, owner)) return false;
-    const current = await loadLocalState(owner);
-    if (current.issuedCreditIds.includes(id)) return false;
-    await writeLocalState({
-      ...current,
-      credits: [...current.credits, { id, level: 2 }],
-      issuedCreditIds: stableUniqueStrings([...current.issuedCreditIds, id]),
-    });
-    return true;
-  });
+  return false;
 }
 
-/**
- * Спин из сундука (лига, друзья) — та же общая рулетка, что уровень/урок/Арена.
- *
- * зачем (владелец, 2026-08-26): в сундуках наградой значилась жемчужина, но
- * сервер клал дроп с amount=0 (все shard-константы были обнулены планом
- * 2026-07-20), а модалка всё равно рисовала «+N жемчужин». Игрок видел награду,
- * которой не существовало. Владелец заменил её на 1 спин.
- *
- * Идемпотентность — по `dropKey` = «id клейма + id дропа»: сундук лиги при
- * КАЖДОМ повторном обращении получает от сервера тот же пакет наград
- * (alreadyClaimed + rewards), поэтому без ключа один сундук выдавал бы спин
- * снова и снова при каждом заходе на экран.
- */
 export async function grantLocalChestSpin(
-  dropKey: string, token: AccountGenerationToken,
+  _dropKey: string, _token: AccountGenerationToken,
 ): Promise<boolean> {
-  const owner = token.stableId;
-  const safeKey = String(dropKey ?? '').trim();
-  if (!owner || !safeKey) return false;
-  const id = `local_spin_chest_${safeKey.replace(/[^A-Za-z0-9_-]/g, '_').slice(0, 100)}`;
-  return withAccountTransitionLock(async () => {
-    if (!isCurrentAccountGeneration(token, owner)) return false;
-    const current = await loadLocalState(owner);
-    if (current.issuedCreditIds.includes(id)) return false;
-    await writeLocalState({
-      ...current,
-      credits: [...current.credits, { id, level: 2 }],
-      issuedCreditIds: stableUniqueStrings([...current.issuedCreditIds, id]),
-    });
-    return true;
-  });
+  return false;
 }
 
-/**
- * Confirmed support reward. One report message can mint 1..3 deterministic
- * credits; retries observe the same IDs and can never increase the balance.
- */
 export async function grantLocalReportRewardSpins(
-  messageId: string,
-  count: number,
-  token: AccountGenerationToken,
-  accountTransitionLockLease?: AccountTransitionLockLease,
+  _messageId: string,
+  _count: number,
+  _token: AccountGenerationToken,
+  _accountTransitionLockLease?: AccountTransitionLockLease,
 ): Promise<boolean> {
-  const owner = token.stableId;
-  const safeMessageId = String(messageId ?? '').trim()
-    .replace(/[^A-Za-z0-9_-]/g, '_')
-    .slice(0, 96);
-  const safeCount = Math.trunc(count);
-  if (!owner || !safeMessageId || safeCount < 1 || safeCount > 3) return false;
-  const ids = Array.from({ length: safeCount }, (_, index) => (
-    `local_spin_report_${safeMessageId}_${index + 1}`
-  ));
-  return withAccountTransitionLock(async () => {
-    if (!isCurrentAccountGeneration(token, owner)) return false;
-    const current = await loadLocalState(owner);
-    const missingIds = ids.filter((id) => !current.issuedCreditIds.includes(id));
-    if (missingIds.length === 0) return true;
-    await writeLocalState({
-      ...current,
-      credits: [...current.credits, ...missingIds.map((id) => ({ id, level: 2 }))],
-      issuedCreditIds: stableUniqueStrings([...current.issuedCreditIds, ...missingIds]),
-    });
-    return isCurrentAccountGeneration(token, owner);
-  }, accountTransitionLockLease);
+  return false;
 }
 
-/**
- * Daily Journey delayed-use Spin grant. The claim operation is hashed into a
- * bounded deterministic credit family, so a retry can materialize 1..5 exact
- * credits without minting a second set.
- */
 export async function grantLocalDailyJourneySpins(
-  claimOperationId: string,
-  count: number,
-  token: AccountGenerationToken,
-  accountTransitionLockLease?: AccountTransitionLockLease,
+  _claimOperationId: string,
+  _count: number,
+  _token: AccountGenerationToken,
+  _accountTransitionLockLease?: AccountTransitionLockLease,
 ): Promise<boolean> {
-  const owner = token.stableId?.trim();
-  const stableClaimId = claimOperationId.trim();
-  const safeCount = Math.trunc(count);
-  if (!owner
-    || !/^daily-journey-gift-claim:[A-Za-z0-9][A-Za-z0-9_.:-]{7,159}$/.test(stableClaimId)
-    || safeCount < 1
-    || safeCount > 5
-    || !isCurrentAccountGeneration(token, owner)) return false;
-  const claimHash = await Crypto.digestStringAsync(
-    Crypto.CryptoDigestAlgorithm.SHA256,
-    `daily-journey-spin:${owner}:${stableClaimId}`,
-  );
-  if (!isCurrentAccountGeneration(token, owner)) return false;
-  const ids = Array.from({ length: safeCount }, (_, index) => (
-    `local_spin_daily_journey_${claimHash.slice(0, 40)}_${index + 1}`
-  ));
-  return withAccountTransitionLock(async () => {
-    if (!isCurrentAccountGeneration(token, owner)) return false;
-    const current = await loadLocalState(owner);
-    if (!isCurrentAccountGeneration(token, owner)) return false;
-    const missingIds = ids.filter((id) => !current.issuedCreditIds.includes(id));
-    if (missingIds.length === 0) {
-      await AsyncStorage.setItem(
-        LEVEL_SPIN_BALANCE_CACHE_KEY,
-        JSON.stringify({ owner, balance: current.credits.length }),
-      );
-      if (!isCurrentAccountGeneration(token, owner)) return false;
-      emitAppEvent('level_spin_balance_changed');
-      return true;
-    }
-    const nextState: LocalSpinState = {
-      ...current,
-      credits: [...current.credits, ...missingIds.map((id) => ({ id, level: 2 }))],
-      issuedCreditIds: stableUniqueStrings([...current.issuedCreditIds, ...missingIds]),
-    };
-    const expectedAuthoritativeBytes = JSON.stringify(nextState);
-    await AsyncStorage.setItem(localLevelSpinStateKey(owner), expectedAuthoritativeBytes);
-    if (!isCurrentAccountGeneration(token, owner)) return false;
-    const durableAuthoritativeBytes = await AsyncStorage.getItem(localLevelSpinStateKey(owner));
-    if (!isCurrentAccountGeneration(token, owner)) return false;
-    if (durableAuthoritativeBytes !== expectedAuthoritativeBytes) {
-      throw new Error('local_daily_journey_spin_state_not_durable');
-    }
-    await AsyncStorage.setItem(
-      LEVEL_SPIN_BALANCE_CACHE_KEY,
-      JSON.stringify({ owner, balance: nextState.credits.length }),
-    );
-    if (!isCurrentAccountGeneration(token, owner)) return false;
-    emitAppEvent('level_spin_balance_changed');
-    return true;
-  }, accountTransitionLockLease);
+  return false;
 }
 
-/**
- * Спины как награда за «Задание» (владелец, 2026-08-31).
- *
- * зачем именно так: повторяет договор grantLocalDailyJourneySpins — кредиты
- * детерминированы по questId, поэтому повтор после обрыва сети не удваивает
- * баланс, а запись проверяется на долговечность (иначе награда «показана, но
- * не начислена» — класс бага project_reward_shown_not_credited_class).
- */
 export async function grantLocalQuestSpins(
-  questClaimId: string,
-  count: number,
-  token: AccountGenerationToken,
-  accountTransitionLockLease?: AccountTransitionLockLease,
+  _questClaimId: string,
+  _count: number,
+  _token: AccountGenerationToken,
+  _accountTransitionLockLease?: AccountTransitionLockLease,
 ): Promise<boolean> {
-  const owner = token.stableId?.trim();
-  const safeClaimId = String(questClaimId ?? '').trim().replace(/[^A-Za-z0-9_-]/g, '_').slice(0, 100);
-  const safeCount = Math.trunc(count);
-  if (!owner || !safeClaimId || safeCount < 1 || safeCount > 10 || !isCurrentAccountGeneration(token, owner)) {
-    return false;
-  }
-  const claimHash = await Crypto.digestStringAsync(
-    Crypto.CryptoDigestAlgorithm.SHA256,
-    `quest-spin:${owner}:${safeClaimId}`,
-  );
-  if (!isCurrentAccountGeneration(token, owner)) return false;
-  const ids = Array.from({ length: safeCount }, (_, index) => (
-    `local_spin_quest_${claimHash.slice(0, 40)}_${index + 1}`
-  ));
-  return withAccountTransitionLock(async () => {
-    if (!isCurrentAccountGeneration(token, owner)) return false;
-    const current = await loadLocalState(owner);
-    if (!isCurrentAccountGeneration(token, owner)) return false;
-    const missingIds = ids.filter((id) => !current.issuedCreditIds.includes(id));
-    if (missingIds.length === 0) {
-      await AsyncStorage.setItem(
-        LEVEL_SPIN_BALANCE_CACHE_KEY,
-        JSON.stringify({ owner, balance: current.credits.length }),
-      );
-      if (!isCurrentAccountGeneration(token, owner)) return false;
-      emitAppEvent('level_spin_balance_changed');
-      return true;
-    }
-    const nextState: LocalSpinState = {
-      ...current,
-      credits: [...current.credits, ...missingIds.map((id) => ({ id, level: 2 }))],
-      issuedCreditIds: stableUniqueStrings([...current.issuedCreditIds, ...missingIds]),
-    };
-    const expectedAuthoritativeBytes = JSON.stringify(nextState);
-    await AsyncStorage.setItem(localLevelSpinStateKey(owner), expectedAuthoritativeBytes);
-    if (!isCurrentAccountGeneration(token, owner)) return false;
-    const durableAuthoritativeBytes = await AsyncStorage.getItem(localLevelSpinStateKey(owner));
-    if (!isCurrentAccountGeneration(token, owner)) return false;
-    if (durableAuthoritativeBytes !== expectedAuthoritativeBytes) {
-      throw new Error('local_quest_spin_state_not_durable');
-    }
-    await AsyncStorage.setItem(
-      LEVEL_SPIN_BALANCE_CACHE_KEY,
-      JSON.stringify({ owner, balance: nextState.credits.length }),
-    );
-    if (!isCurrentAccountGeneration(token, owner)) return false;
-    emitAppEvent('level_spin_balance_changed');
-    return true;
-  }, accountTransitionLockLease);
+  return false;
 }
 
 export async function recoverLocalLevelSpin(): Promise<LocalLevelSpinReceipt | null> {

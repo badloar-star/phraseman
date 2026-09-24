@@ -554,7 +554,7 @@ const RU = {
   collectibles_screen_title: 'Коллекция (артефакты/значки)',
   achievements_screen_title: 'Достижения',
   level_gifts_inventory_title: 'Инвентарь уровневых подарков',
-  level_reward_spin_title: 'Колесо наград за уровень',
+  // зачем (PM-046, владелец): level_reward_spin_title удалён — экран убран.
   season_pass_title: 'Сезонный пропуск',
   referrals_invite_title: 'Пригласить друзей (рефералка)',
   promo_code_entry_title: 'Ввод промокода',
@@ -632,6 +632,19 @@ const RU = {
   lv2_showcase_done_subtitle: 'Все 7 режимов показаны подряд, как в настоящем уроке.',
   lv2_showcase_done_status: 'готово',
   lv2_showcase_again: 'Ещё раз',
+
+  // ── level_up_mint: церемония повышения уровня 2.0 «Монетный двор» (PM-077, D49) ──
+  level_up_mint_section_title: 'Повышение уровня 2.0',
+  level_up_mint_detail: 'вариант B «Монетный двор» · выбран владельцем',
+  level_up_mint_0_1: 'Гость → Турист · медь',
+  level_up_mint_8_9: 'Ловец идиом → Душа компании · золото',
+  level_up_mint_19_20: 'Легенда разговора → Носитель · эталон',
+  level_up_name_0: 'Гость',
+  level_up_name_1: 'Турист',
+  level_up_name_8: 'Ловец идиом',
+  level_up_name_9: 'Душа компании',
+  level_up_name_19: 'Легенда разговора',
+  level_up_name_20: 'Носитель',
 };
 
 type Key = keyof typeof RU;

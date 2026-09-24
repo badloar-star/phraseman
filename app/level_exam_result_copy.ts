@@ -14,8 +14,6 @@ export type LevelExamResultCopy = {
   skillsLabel: string;
   weakLessonsLabel: string;
   rewardEarned: string;
-  rewardPending: string;
-  rewardAlreadyClaimed: string;
   retryCoach: string;
   primaryAction: string;
   formatLabels: Record<LevelExamFormat, string>;
@@ -50,26 +48,15 @@ export function getLevelExamResultCopy(
       ru: 'Что повторить', uk: 'Що повторити', en: 'What to review', es: 'Qué repasar', 'pt-BR': 'O que revisar',
       vi: 'Nội dung cần ôn', id: 'Yang perlu diulang', tr: 'Tekrar edilecekler', pl: 'Co powtórzyć',
     }),
+    // зачем (PM-046, владелец): спин убран как награда экзамена; rewardPending/
+    // rewardAlreadyClaimed существовали только для спин-состояний и удалены
+    // вместе с ним — единственный текст на успехе теперь общий, без валюты.
     rewardEarned: triLang(lang, {
-      ru: '+1 спин за первое успешное прохождение', uk: '+1 спін за перше успішне проходження',
-      en: '+1 spin for your first successful pass',
-      es: '+1 giro por aprobar por primera vez', 'pt-BR': '+1 giro pela primeira aprovação',
-      vi: '+1 lượt quay cho lần vượt qua đầu tiên', id: '+1 spin untuk kelulusan pertama',
-      tr: 'İlk başarılı tamamlamaya +1 çevirme', pl: '+1 obrót za pierwsze zaliczenie',
-    }),
-    rewardPending: triLang(lang, {
-      ru: 'Спин будет начислен после синхронизации', uk: 'Спін буде нараховано після синхронізації',
-      en: 'The spin will be added after syncing',
-      es: 'El giro se añadirá después de sincronizar', 'pt-BR': 'O giro será adicionado após a sincronização',
-      vi: 'Lượt quay sẽ được thêm sau khi đồng bộ', id: 'Spin akan ditambahkan setelah sinkronisasi',
-      tr: 'Çevirme senkronizasyondan sonra eklenecek', pl: 'Obrót zostanie dodany po synchronizacji',
-    }),
-    rewardAlreadyClaimed: triLang(lang, {
-      ru: 'Награда за этот уровень уже получена', uk: 'Нагороду за цей рівень уже отримано',
-      en: 'The reward for this level has already been claimed',
-      es: 'Ya recibiste la recompensa de este nivel', 'pt-BR': 'A recompensa deste nível já foi recebida',
-      vi: 'Bạn đã nhận thưởng của cấp độ này', id: 'Hadiah level ini sudah diterima',
-      tr: 'Bu seviyenin ödülü zaten alındı', pl: 'Nagroda za ten poziom została już odebrana',
+      ru: 'Уровень подтверждён — так держать!', uk: 'Рівень підтверджено — так тримати!',
+      en: 'Level confirmed — keep it up!',
+      es: '¡Nivel confirmado, sigue así!', 'pt-BR': 'Nível confirmado, continue assim!',
+      vi: 'Đã xác nhận cấp độ — tiếp tục phát huy!', id: 'Level terkonfirmasi — pertahankan!',
+      tr: 'Seviye onaylandı — böyle devam!', pl: 'Poziom potwierdzony — tak trzymaj!',
     }),
     retryCoach: triLang(lang, {
       ru: 'Повтори слабые темы — следующая попытка будет увереннее.',

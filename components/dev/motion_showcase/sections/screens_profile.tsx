@@ -118,7 +118,7 @@ export const SECTION: ShowcaseSection = {
     { id: 'collectibles-screen', title: cs('collectibles_screen_title'), kind: 'route', route: '/collectibles_screen', detail: cs('real_screen') },
     { id: 'achievements-screen', title: cs('achievements_screen_title'), kind: 'route', route: '/achievements_screen', detail: cs('real_screen') },
     { id: 'level-gifts-inventory', title: cs('level_gifts_inventory_title'), kind: 'route', route: '/level_gifts_inventory', detail: cs('real_screen') },
-    { id: 'level-reward-spin', title: cs('level_reward_spin_title'), kind: 'route', route: '/level_reward_spin', detail: cs('real_screen') },
+    // зачем (PM-046, владелец): пункт /level_reward_spin удалён из дев-витрины вместе с экраном.
     { id: 'season-pass', title: cs('season_pass_title'), kind: 'route', route: '/season_pass', detail: cs('real_screen') },
     { id: 'club-screen', title: cs('club_screen_title'), kind: 'route', route: '/club_screen', detail: cs('real_screen') },
     { id: 'referrals', title: cs('referrals_invite_title'), kind: 'route', route: '/referrals', detail: cs('real_screen') },

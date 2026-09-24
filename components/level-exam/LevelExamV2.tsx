@@ -511,9 +511,9 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
         rewardState={rewardState}
         energyCost={ENERGY_COST}
         unlimitedEnergy={unlimitedEnergy}
-        onPrimary={() => result.passed && rewardState === 'earned'
-          ? router.replace('/level_reward_spin' as never)
-          : result.passed ? router.replace('/lessons_list' as never) : setPhase('intro')}
+        // зачем (PM-046, владелец): /level_reward_spin удалён — успешный
+        // экзамен больше никуда не ведёт кроме уроков, спин-ветка снята.
+        onPrimary={() => result.passed ? router.replace('/lessons_list' as never) : setPhase('intro')}
       />
     );
   }

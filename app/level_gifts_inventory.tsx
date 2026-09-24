@@ -6,13 +6,12 @@ import BouncyScrollView from '../components/BouncyScrollView';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { AppState, Dimensions, InteractionManager, Platform, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, InteractionManager, Platform, Text, View } from 'react-native';
 import Animated, {
   cancelAnimation,
   useAnimatedStyle,
   useReducedMotion,
   useSharedValue,
-  withRepeat,
   withSequence,
   withTiming,
 } from 'react-native-reanimated';
@@ -59,11 +58,6 @@ import {
   type AccountGenerationToken,
 } from './account_generation';
 import { emitAppEvent, onAppEvent } from './events';
-import {
-  fetchLevelSpinStatus,
-  peekLevelSpinBalance,
-  readCachedLevelSpinBalance,
-} from './level_reward_spins_client';
 import {
   giftGradientAlpha,
   giftGradientBaseColor,
@@ -455,55 +449,11 @@ export default function LevelGiftsInventoryScreen() {
   );
   const [activeItems, setActiveItems] = useState<ActiveLevelGiftInventoryItem[]>([]);
   const [multiplierBreakdown, setMultiplierBreakdown] = useState<MultiplierBreakdown | null>(null);
-  const [spinBalance, setSpinBalance] = useState<number | null>(() => {
-    const token = captureAccountGeneration();
-    return peekLevelSpinBalance(token.stableId) ?? null;
-  });
-  const reducedMotion = useReducedMotion();
-  const spinPulse = useSharedValue(1);
-  const spinPulseStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: spinPulse.value }, { rotate: '-1deg' }, { translateY: 2 }],
-  }));
-  const startSpinPulse = useCallback((appIsActive: boolean) => {
-    cancelAnimation(spinPulse);
-    spinPulse.value = 1;
-    if (appIsActive && (spinBalance ?? 0) > 0 && !reducedMotion) {
-      spinPulse.value = withRepeat(
-        withSequence(
-          withTiming(1.06, { duration: 720 }),
-          withTiming(1, { duration: 720 }),
-        ),
-        -1,
-        false,
-      );
-    }
-  }, [reducedMotion, spinBalance, spinPulse]);
-
-  useFocusEffect(useCallback(() => {
-    startSpinPulse(AppState.currentState === 'active');
-    const appStateSubscription = AppState.addEventListener('change', (state) => {
-      startSpinPulse(state === 'active');
-    });
-    return () => {
-      appStateSubscription.remove();
-      cancelAnimation(spinPulse);
-      spinPulse.value = 1;
-    };
-  }, [spinPulse, startSpinPulse]));
-
-  const spinBalanceA11yLabel = spinBalance === null
-    ? triLang(lang, {
-      ru: 'Спины: количество загружается', uk: 'Спіни: кількість завантажується',
-      en: 'Spins: loading count',
-      es: 'Giros: cantidad cargando', 'pt-BR': 'Giros: quantidade carregando',
-      vi: 'Lượt quay: đang tải số lượng', id: 'Putaran: jumlah sedang dimuat',
-      tr: 'Çevirmeler: sayı yükleniyor', pl: 'Spiny: wczytywanie liczby',
-    })
-    : triLang(lang, {
-      ru: `Спины: ${spinBalance}`, uk: `Спіни: ${spinBalance}`, en: `Spins: ${spinBalance}`, es: `Giros: ${spinBalance}`,
-      'pt-BR': `Giros: ${spinBalance}`, vi: `Lượt quay: ${spinBalance}`,
-      id: `Putaran: ${spinBalance}`, tr: `Çevirmeler: ${spinBalance}`, pl: `Spiny: ${spinBalance}`,
-    });
+  // зачем (PM-046, владелец): счётчик и пульс кнопки спина удалены вместе с
+  // кнопкой — новый спин больше нигде не выдаётся, показывать баланс/пульс
+  // было бы рекламой мёртвой механики. spinBalance больше не читается для UI,
+  // но обновление кэша (loadSpinBalance/level_spin_balance_changed) оставлено
+  // ниже: оно безвредно и делит подписку с автоначислением старых плиток.
   const [userName, setUserName] = useState('');
   const [selected, setSelected] = useState<PendingLevelGiftInventoryItem | null>(null);
   const [selectedDailyJourneyGift, setSelectedDailyJourneyGift] = useState<DailyJourneyGiftVisualItem<DailyJourneyGiftPendingItem> | null>(null);
@@ -660,37 +610,16 @@ export default function LevelGiftsInventoryScreen() {
     };
   }, [dailyJourneyItems, inventoryController]);
 
-  const loadSpinBalance = useCallback(async () => {
-    const accountToken = captureAccountGeneration();
-    const stableId = accountToken.stableId;
-    if (!stableId || !isCurrentAccountGeneration(accountToken, stableId)) return;
-
-    const cached = await readCachedLevelSpinBalance(stableId);
-    if (cached !== null && isCurrentAccountGeneration(accountToken, stableId)) {
-      setSpinBalance(cached);
-    }
-
-    try {
-      const status = await fetchLevelSpinStatus();
-      if (isCurrentAccountGeneration(accountToken, stableId)) {
-        setSpinBalance(status.balance);
-      }
-    } catch (e) {
-      // Offline/error: keep the account-scoped cached count without blocking legacy gifts.
-      DebugLogger.error('level_gifts_inventory:status', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
-  }, []);
-
+  // зачем (PM-046, владелец): loadSpinBalance/setSpinBalance удалены вместе с
+  // кнопкой спина — баланс больше нигде не отображается на этом экране.
+  // Подписка на 'level_spin_balance_changed' остаётся: она по-прежнему
+  // перезагружает список (reloadAll), а список всё ещё может содержать
+  // оплаченные рунами спины (см. level_gift_inventory.ts spinItems) —
+  // их удаление из показа было бы решением про деньги, не входит в этот пакет.
   useFocusEffect(useCallback(() => {
     void inventoryController.activate();
-    void loadSpinBalance();
     const subscription = onAppEvent('level_spin_balance_changed', () => {
       void inventoryController.reloadAll();
-      const accountToken = captureAccountGeneration();
-      const stableId = accountToken.stableId;
-      if (!stableId || !isCurrentAccountGeneration(accountToken, stableId)) return;
-      const cached = peekLevelSpinBalance(stableId);
-      if (cached !== null) setSpinBalance(cached);
     });
     const dailyJourneySubscription = onAppEvent('daily_journey_gifts_changed', () => {
       void inventoryController.reloadDaily();
@@ -700,13 +629,7 @@ export default function LevelGiftsInventoryScreen() {
     });
     const accountGenerationSubscription = subscribeAccountGeneration((accountToken) => {
       const reloadActiveAccount = accountToken.phase === 'active' && accountToken.stableId !== null;
-      setSpinBalance(reloadActiveAccount
-        ? peekLevelSpinBalance(accountToken.stableId) ?? null
-        : null);
       void inventoryController.resetForAccount(reloadActiveAccount);
-      if (reloadActiveAccount) {
-        void loadSpinBalance();
-      }
     });
     return () => {
       inventoryController.deactivate();
@@ -716,7 +639,7 @@ export default function LevelGiftsInventoryScreen() {
       giftInventorySubscription.remove();
       accountGenerationSubscription.remove();
     };
-  }, [inventoryController, loadSpinBalance]));
+  }, [inventoryController]));
 
   // зачем: таймер дошёл до нуля — подарок сгорел; ряд уходит плавным
   // layout-переходом, а перезагрузка данных заодно вычищает его из хранилища.
@@ -758,41 +681,11 @@ export default function LevelGiftsInventoryScreen() {
                 pl: 'Prezenty',
               })}
             </Text>
-            <Animated.View style={spinPulseStyle}>
-                  <TapScale
-                testID="level-gifts-spins-button"
-                accessibilityRole="button"
-                accessibilityLiveRegion="polite"
-                accessibilityLabel={spinBalanceA11yLabel}
-                onPress={() => {
-                  hapticTap();
-                  router.push('/level_reward_spin' as any);
-                }}
-                scaleTo={0.97}
-                style={styles.spinHeaderButton}
-              >
-                <LinearGradient
-                  colors={[t.gold, '#F4C95D', '#D99D18']}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
-                  style={styles.spinHeaderGradient}
-                >
-                  {/* зачем (владелец, 2026-08-26): единый значок спина — тот же,
-                      что на Главной, в награде сундука лиги и в итоге Арены.
-                      Метка доступности уже на кнопке, значок декоративный. */}
-                  <SpinTicketArt size={24} accessibilityLabel="" />
-                  <Text style={styles.spinHeaderLabel}>
-                    {triLang(lang, {
-                      ru: 'Спин', uk: 'Спін', en: 'Spin', es: 'Giro', 'pt-BR': 'Giro',
-                      vi: 'Quay', id: 'Putar', tr: 'Çevir', pl: 'Spin',
-                    })}
-                  </Text>
-                  <View testID="level-gifts-spin-count" style={styles.spinCountBadge}>
-                    <Text style={styles.spinCountText}>{spinBalance ?? '…'}</Text>
-                  </View>
-                </LinearGradient>
-              </TapScale>
-            </Animated.View>
+            {/* зачем (PM-046, владелец): кнопка нового спина удалена вместе с
+                разделом /level_reward_spin — новых спинов больше не выдают.
+                Уже оплаченные рунами спины (paid-runes journal) остаются
+                видимыми ниже в общем списке — их удаление затронуло бы деньги
+                и требует отдельного решения владельца (см. отчёт PM-046/047). */}
           </View>
 
           <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ padding: 16, gap: 12 }} showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
@@ -1251,31 +1144,3 @@ export default function LevelGiftsInventoryScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  spinHeaderButton: { borderRadius: 16 },
-  spinHeaderGradient: {
-    minWidth: 104,
-    minHeight: 44,
-    borderRadius: 16,
-    // зачем: слева теперь значок спина, а не пустое поле (см. Главную).
-    paddingLeft: 9,
-    paddingRight: 7,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 9,
-    borderBottomWidth: 4,
-    borderBottomColor: '#A96F06',
-  },
-  spinHeaderLabel: { color: '#211500', fontSize: 15, fontWeight: '900', letterSpacing: 0.15 },
-  spinCountBadge: {
-    minWidth: 30,
-    height: 30,
-    borderRadius: 10,
-    paddingHorizontal: 7,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'rgba(33,21,0,0.14)',
-  },
-  spinCountText: { color: '#211500', fontSize: 15, fontWeight: '900', fontVariant: ['tabular-nums'] },
-});

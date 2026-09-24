@@ -66,10 +66,9 @@ export default function LevelExamResult({ lang, attemptId, result, rewardState, 
   }));
   const heroColor = result.passed ? t.correct : t.wrong;
   const heroBackground = result.passed ? t.correctBg : t.wrongBg;
-  const rewardText = rewardState === 'earned' ? copy.rewardEarned
-    : rewardState === 'pending' ? copy.rewardPending
-      : rewardState === 'already_claimed' ? copy.rewardAlreadyClaimed
-        : copy.retryCoach;
+  // зачем (PM-046, владелец): текст награды был только про спин; теперь это
+  // просто общее «сдано»/«тренируйся ещё» без спин-состояний pending/claimed.
+  const rewardText = result.passed ? copy.rewardEarned : copy.retryCoach;
 
   return (
     <ScreenGradient artBackdrop="exam">

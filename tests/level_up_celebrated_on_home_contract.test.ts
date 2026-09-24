@@ -108,18 +108,8 @@ describe('level-up is celebrated on Home, never as a global modal', () => {
     }
   });
 
-  test('the spin plaque survived the modal removal and plays after the chain', () => {
-    // Плашка «+1 СПИН» показывалась ВНУТРИ модалки — вместе с ней показ спина
-    // за уровень исчез бы молча. Владелец: «спин появляется отдельно сразу же
-    // за этим», поэтому она переехала на Главную, после цепочки.
-    expect(home).toContain('SpinRewardPlaque');
-    expect(home).toContain('levelUpSpinPlaqueDelayMs');
-    expect(home).toContain('homeLevelUpSpinReceipt');
-    // Задержка считается из тех же констант, что ведут цепочку — иначе плашка
-    // начнёт перебивать прыжок аватарки.
-    expect(player).toContain('export function levelUpSpinPlaqueDelayMs');
-    expect(player).toContain('FILL_TO_EDGE_MS + LEVEL_BEAT_MS');
-    // Компонент плашки — общий с результатами урока и арены, не копия.
-    expect(existsSync(join(ROOT, 'components', 'SpinRewardPlaque.tsx'))).toBe(true);
-  });
+  // зачем (PM-046, владелец): тест «спин переехал на Главную» сторожил
+  // отменённую механику — спины убраны, плашка «+1 СПИН» удалена вместе с
+  // ними. Остальной файл (модалка/очередь/цепочка повышения) не трогаем —
+  // это другой, действующий сторож.
 });

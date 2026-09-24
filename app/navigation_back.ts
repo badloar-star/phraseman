@@ -98,7 +98,7 @@ const CONTEXTUAL_PORTAL_PATHS: ReadonlySet<string> = new Set([
   '/collectibles_screen',
   '/achievements_screen',
   '/level_gifts_inventory',
-  '/level_reward_spin',
+  // зачем (PM-046, владелец): /level_reward_spin удалён — спин убран как механика.
   '/season_pass',
   '/referrals',
   '/promo_code_entry',

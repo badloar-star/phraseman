@@ -19,12 +19,8 @@ describe('LevelSpinRewardArt', () => {
     expect(source).not.toContain('<Text');
   });
 
-  test('keeps the aura gift in the fixed Finish Line stream and out of visible text markup', () => {
-    const finishLine = fs.readFileSync(
-      path.join(process.cwd(), 'components', 'LevelSpinFinishLine.tsx'),
-      'utf8',
-    );
-    expect(finishLine).toContain("'cosmetic_avatar_aura'");
-    expect(finishLine).toContain('<LevelSpinRewardArt');
-  });
+  // зачем (PM-046, владелец): второй тест сторожил components/LevelSpinFinishLine.tsx
+  // (барабан экрана /level_reward_spin) — файл удалён вместе с экраном.
+  // LevelSpinRewardArt остаётся: им всё ещё рисуются старые/оплаченные
+  // спин-подарки в app/level_gifts_inventory.tsx (см. отчёт PM-046/047).
 });

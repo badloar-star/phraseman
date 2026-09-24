@@ -132,26 +132,5 @@ export const SECTION_FEATURE_INTROS: readonly FeatureIntroDef[] = [{
   ctaLabel: lang => triLang(lang, {
     ru: 'Посмотреть визитку', uk: 'Переглянути візитку', en: 'View profile card', es: 'Ver la tarjeta', 'pt-BR': 'Ver cartão', vi: 'Xem thẻ hồ sơ', id: 'Lihat kartu profil', tr: 'Profil kartını gör', pl: 'Zobacz wizytówkę',
   }),
-}, {
-  // зачем: PM-171 — раздел «Идеи» скрыт владельцем, интро-запись 'ideas_first_visit' удалена
-  // вместе с маршрутом /ideas_catalog, на который она указывала.
-  id: 'spin_first_visit', trigger: 'first_visit', screenRoute: '/level_reward_spin', icon: 'sync-outline',
-  title: lang => triLang(lang, {
-    ru: 'Крути — вдруг сегодня повезёт', uk: 'Крути — раптом сьогодні пощастить', en: 'Spin it — luck may be on your side', es: 'Gira: quizá hoy tengas suerte',
-    'pt-BR': 'Gire — quem sabe hoje dá sorte', vi: 'Quay đi — biết đâu hôm nay may mắn', id: 'Putar — siapa tahu hari ini beruntung', tr: 'Çevir — belki bugün şanslısın', pl: 'Zakreć — może dziś dopisze szczęście',
-  }),
-  body: lang => triLang(lang, {
-    ru: 'Спин — быстрый шанс забрать награду. Нажми, посмотри, что выпало, и реши, на что потратить удачу.',
-    uk: 'Спін — швидкий шанс отримати нагороду. Натисни, подивися, що випало, і виріши, на що витратити удачу.',
-    en: 'Spin is a quick chance to claim a reward. Tap, see what appears and decide where to spend your luck.',
-    es: 'El giro es una oportunidad rápida de conseguir una recompensa. Toca, mira qué sale y decide en qué gastar tu suerte.',
-    'pt-BR': 'O giro é uma chance rápida de ganhar uma recompensa. Toque, veja o que saiu e decida onde gastar sua sorte.',
-    vi: 'Vòng quay là cơ hội nhanh để nhận phần thưởng. Nhấn, xem kết quả rồi quyết định dùng vận may vào đâu.',
-    id: 'Spin adalah kesempatan cepat untuk mengambil hadiah. Ketuk, lihat hasilnya, lalu tentukan untuk apa keberuntunganmu.',
-    tr: 'Spin, ödül kazanmak için hızlı bir şanstır. Dokun, ne çıktığına bak ve şansını nerede kullanacağına karar ver.',
-    pl: 'Spin to szybka szansa na nagrodę. Dotknij, zobacz wynik i zdecyduj, na co przeznaczyć szczęście.',
-  }),
-  ctaLabel: lang => triLang(lang, {
-    ru: 'Открыть спин', uk: 'Відкрити спін', en: 'Open spin', es: 'Abrir giro', 'pt-BR': 'Abrir giro', vi: 'Mở vòng quay', id: 'Buka spin', tr: 'Spini aç', pl: 'Otwórz spin',
-  }),
 }];
+// PM-046: intro spin_first_visit removed with /level_reward_spin route.

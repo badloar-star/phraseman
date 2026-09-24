@@ -40,8 +40,6 @@ import { Animated, AppState, BackHandler, Easing, InteractionManager, LogBox, Pl
 import MaskedView from '@react-native-masked-view/masked-view';
 import { Image } from 'expo-image';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { AchievementProvider, useAchievement } from '../components/AchievementContext';
-import AchievementToast from '../components/AchievementToast';
 import { EnergyProvider } from '../components/EnergyContext';
 // зачем (владелец, 25.08: «на главной всегда нули при заходе»): статический
 // импорт запускает прогрев рун при загрузке модуля (см. комментарий
@@ -117,7 +115,7 @@ import {
 } from './onboarding_notification_choice';
 import { resumePendingAgeConsent } from './age_consent_cloud';
 import { persistPortableProgressRegister } from './phone_state_progress_register_bridge';
-import { checkAchievements, getPendingNotifications } from './achievements';
+import { checkAchievements, getPendingNotifications, markAchievementsNotified } from './achievements';
 import {
   ensureAnonUser,
   ensureStableAuthLink,
@@ -135,11 +133,6 @@ import { PlayInstallReferrer } from 'react-native-play-install-referrer';
 import { migrateWeekPointsIfNeeded, updateStreakOnActivity } from './hall_of_fame_utils';
 import { preloadDeferredNonPrimaryImages, preloadPrimaryTabImages } from './image_preload';
 import { seedLearningV2BootstrapAudioCacheV1 } from './learning_v2_bootstrap_audio_seed_v1';
-import { unregisterLearningV2AudioPrefetchBackgroundTaskV1 } from './learning_v2_audio_prefetch_background_v1';
-// зачем: координатор статически тянет learning_v2_lesson_audio_pack_v1, а тот —
-// 556 КБ записей озвучки + 504 КБ индекса. Этот импорт разбирал ~1 МБ в ХОЛОДНЫЙ
-// СТАРТ приложения (аудит 20.09: startupLocalHydration шла 5,3 с при бюджете
-// 350 мс). Наблюдатель сети не нужен в первом кадре — ставим его лениво.
 import { setupNotificationTapHandler } from './notification_tap_handler';
 // зачем: разбиение общего импорта из './notifications' на точечные потеряло эти
 // две функции — файл перестал собираться (TS2552/TS2304 на строках 2816/2819),
@@ -1091,25 +1084,15 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   useEffect(() => {
     void cleanupRetiredMistakePracticeStorage().catch(() => {});
   }, []);
-  // зачем (владелец 2026-09-22, «всё тормозит с момента входа, на любом
-  // устройстве, и в релизе, и в деве»): ЗДЕСЬ была причина. При старте корень
-  // подписывался на NetInfo, тот сразу отдавал первое событие, и координатор
-  // запускал сохранённый запрос прогрева озвучки: 8 сессий вперёд плюс
-  // массовая закачка ВСЕХ опубликованных уроков, каждый файл — байты в JS,
-  // SHA-256, запись, обратное чтение. Замер 20.09 фиксировал 6+ секунд
-  // занятого потока. Плюс фоновая задача будила тот же прогрев каждые 15 минут
-  // в этом же процессе. Прогрев при старте снят полностью; озвучка ближайших
-  // двух сессий готовится при открытии карты, текущей — при открытии занятия.
-  // Ранее зарегистрированную у людей фоновую задачу снимаем один раз.
-  useEffect(() => {
-    void unregisterLearningV2AudioPrefetchBackgroundTaskV1().catch((error: unknown) => {
-      DebugLogger.error(
-        'learning_v2:audio_prefetch_background_unregister',
-        error instanceof Error ? error : new Error(String(error)),
-        'warning',
-      );
-    });
-  }, []);
+  // зачем (D47, владелец): прогрев озвучки V2 (координатор + фоновая задача
+  // expo-background-task) удалён целиком — это и был источник «всё тормозит
+  // с момента входа» (22.09: 8 сессий вперёд + массовая закачка всех уроков,
+  // SHA-256 каждого файла в JS-потоке, плюс тот же прогрев каждые 15 минут в
+  // фоне). Файлы (`learning_v2_audio_prefetch_coordinator_v1` и соседи) больше
+  // не существуют — регистрировать/снимать нечего. Тем, у кого фоновая задача
+  // осталась зарегистрированной прошлой версией, ОС забудет её сама при
+  // следующем обновлении сборки (задача определяется только внутри удалённого
+  // модуля, TaskManager.defineTask для неё больше не вызывается никогда).
   useEffect(() => {
     if (!ready) return undefined;
     let cancelled = false;
@@ -1210,7 +1193,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   // доступом (как у Виталия: premium_plan='annual', admin_premium_override=true,
   // но не realPremium/vip флаг).
   const { hasPremiumAccess } = usePremium();
-  const { showAchievement } = useAchievement();
   const { theme: tTheme, themeMode, statusBarLight } = useTheme();
   const router = useRouter();
   const pathname = usePathname();
@@ -2054,15 +2036,16 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     return unsub;
   }, [router]);
 
-  // Ref всегда указывает на актуальный showAchievement — не зависит от closure в useEffect([], []).
-  const showAchievementRef = useRef(showAchievement);
-  useEffect(() => { showAchievementRef.current = showAchievement; }, [showAchievement]);
   const achievementFlushRunningRef = useRef(false);
   const achievementFlushQueuedRef = useRef(false);
 
-  // Проверяем pending-ачивки и показываем тосты.
+  // PM-053: тост «Достижение разблокировано» удалён (владелец — «тосты тосты
+  // тосты достижений»). Награда (XP) начисляется в achievements.ts В МОМЕНТ
+  // разблокировки, независимо от notified/показа — здесь только гасим
+  // durable-долг «непоказанный тост», чтобы pending не копился вечно
+  // (правило «празднование не ставится в durable-очередь»: показ можно не
+  // делать, а не показанная запись не должна жить дальше первого прохода).
   // Вызывается сразу при старте и по событию 'achievement_unlocked' (DeviceEventEmitter).
-  // Polling убран — он блокировал JS-поток каждые 4с во время навигационных переходов.
   const flushPending = useCallback(async () => {
     if (achievementFlushRunningRef.current) {
       achievementFlushQueuedRef.current = true;
@@ -2074,13 +2057,13 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         achievementFlushQueuedRef.current = false;
         const pending = await getPendingNotifications();
         if (pending && pending.length > 0) {
-          pending.forEach(a => showAchievementRef.current(a));
+          await markAchievementsNotified(pending.map(a => a.id)).catch(() => {});
         }
       } while (achievementFlushQueuedRef.current);
     } finally {
       achievementFlushRunningRef.current = false;
     }
-  }, []); // deps пусты — читаем showAchievement через ref, не через closure
+  }, []);
 
   useEffect(() => {
     const lifetime = createDisposableAdoption();
@@ -3664,7 +3647,6 @@ export default function RootLayout() {
           <LangProvider>
             <StudyTargetProvider>
             <EnergyProvider>
-              <AchievementProvider>
                 <OverlayArbiterProvider>
                     <AppContent fontsReady={fontsReady} />
                     <DailyJourneyProductionModalHost />

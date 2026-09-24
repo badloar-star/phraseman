@@ -3251,7 +3251,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "blocked",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -3278,16 +3278,20 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "commit bfeec6e9d"
+    ],
+    "notes": [
+      "Сделан только п.3 (дефолт аватара по уровню, мёртвый код) — customization_service.test.ts 6/6. П.1 Level Gift (4600+ строк, 18 живых потребителей) НЕ удалён — компенсация уже покрыта (gifts_to_coins_inventory_v1.ts читает источник level_gift), но само удаление требует отдельной полноценной сессии. П.2 отменён: розыгрыш по уровню НЕ мёртвый код — functions/src/level_reward_spins.ts (creditsToMintForCompletion/MILESTONE_GIFTS) живой, пишет реальный баланс. Помощник по ошибке начал удалять, typecheck показал живого вызывающего, откатил ДО коммита — ничего не сломано"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-069",

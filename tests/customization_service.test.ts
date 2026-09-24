@@ -1,10 +1,8 @@
 import {
   applyCustomizationDraft,
-  resetToLevelAvatar,
   type CustomizationServiceDeps,
 } from '../app/customization_service';
 import type { CustomizationSnapshot } from '../app/customization_snapshot';
-import type { AccountTransitionLockLease } from '../app/account_generation';
 
 const previousSnapshot: CustomizationSnapshot = {
   source: 'storage',
@@ -163,37 +161,7 @@ describe('customization service', () => {
     expect(deps.syncPublicProfile).not.toHaveBeenCalled();
   });
 
-  it('resets to computed level avatar and frame while preserving stored aura', async () => {
-    const deps = makeDeps();
-    await resetToLevelAvatar({ level: 18, storedAuraSelection: 'none' }, deps);
-
-    expect(deps.storage.multiSet).toHaveBeenCalledWith(expect.arrayContaining([
-      ['user_avatar', '18'],
-      ['user_avatar_aura', 'none'],
-      ['user_frame', expect.any(String)],
-    ]));
-    expect(deps.invalidateCaches).toHaveBeenCalledTimes(1);
-    expect(deps.syncCloud).toHaveBeenCalledTimes(1);
-    expect(deps.syncPublicProfile).toHaveBeenCalledTimes(1);
-  });
-
-  it('passes an inherited account lock through the canonical level reset commit', async () => {
-    const deps = makeDeps();
-    const commitSelection = jest.fn(async () => undefined);
-    deps.commitSelection = commitSelection;
-    const lease = Object.freeze({}) as AccountTransitionLockLease;
-
-    await resetToLevelAvatar(
-      { level: 18, storedAuraSelection: null },
-      deps,
-      lease,
-      { source: 'user', operationId: 'dev:restore-baseline' },
-    );
-
-    expect(commitSelection).toHaveBeenCalledWith(
-      expect.objectContaining({ avatarValue: '18', storedAuraSelection: null }),
-      { source: 'user', operationId: 'dev:restore-baseline' },
-      lease,
-    );
-  });
+  // зачем (PM-068/D65 п.3): resetToLevelAvatar удалена как мёртвый код (0
+  // вызывающих мест после удаления app/avatar_select.tsx, PM-061/063) —
+  // тесты на неё убраны вместе с функцией.
 });

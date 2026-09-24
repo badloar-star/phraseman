@@ -1,5 +1,4 @@
 import type AsyncStorage from '@react-native-async-storage/async-storage';
-import { getBestAvatarForLevel, getBestFrameForLevel } from '../constants/avatars';
 import { USER_AVATAR_AURA_KEY } from '../constants/customization_storage_keys';
 import type { AccountTransitionLockLease } from './account_generation';
 import type { CustomizationSnapshot } from './customization_snapshot';
@@ -155,18 +154,8 @@ export async function applyCustomizationDraft(
   return applyCustomizationDraftInternal(input, deps, false, accountTransitionLockLease, selectionContext);
 }
 
-export async function resetToLevelAvatar(
-  input: { level: number; storedAuraSelection: string | null },
-  deps: CustomizationServiceDeps,
-  accountTransitionLockLease?: AccountTransitionLockLease,
-  selectionContext?: CustomizationSelectionCommitContext,
-): Promise<CustomizationSnapshot> {
-  const level = Math.max(1, Math.floor(input.level));
-  return applyCustomizationDraftInternal({
-    avatarValue: getBestAvatarForLevel(level),
-    storedAuraSelection: input.storedAuraSelection,
-    level,
-    frameId: getBestFrameForLevel(level).id,
-    cloudSyncMode: 'deferred',
-  }, deps, true, accountTransitionLockLease, selectionContext);
-}
+// зачем (PM-068/D65 п.3): resetToLevelAvatar сбрасывал аватар/рамку к
+// «дефолту по XP-уровню» (getBestAvatarForLevel/getBestFrameForLevel). Аватар
+// теперь монета ранга (D60), а сам старый редактор app/avatar_select.tsx,
+// который был единственным вызывающим местом, уже удалён целиком (PM-061/063,
+// 3753997b2). Функция осталась без единого вызова — удалена как мёртвый код.

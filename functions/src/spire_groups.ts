@@ -41,6 +41,8 @@ import {
   spireCohortDay,
   spireWeekStartMs,
 } from './spire_residents';
+import { ensureSpireLeagueMigration } from './spire_league_migration';
+import { hasSpireMigrationMarker } from './spire_league_migration_contract';
 
 export const SPIRE_GROUPS_COLLECTION = 'spire_groups' as const;
 /** T16/T29: 12 шпилей-камней, 0 = Гранит … 11 = Алмаз. */
@@ -223,7 +225,32 @@ export const spireJoinRoom = onCall(HOT_CALLABLE_OPTIONS, async (request): Promi
     console.warn(LOG, JSON.stringify({ event: 'reject', reason: 'banned', lang }));
     throw new HttpsError('permission-denied', 'user_banned');
   }
-  const lbData = lbSnap.data();
+  let lbData = lbSnap.data();
+
+  // PM-278: перенос места лиги — ДО подбора комнаты, иначе человек на неделю
+  // сядет в Гранит. Отметка уже стоит (все входы, кроме самого первого) —
+  // ноль лишних чтений: lbData уже прочитан выше.
+  // зачем currentStudyTarget отдельно от lang: место лиги уходит в шпиль
+  // языка, который человек учит СЕЙЧАС (§4.8), а первым он может открыть
+  // Шпиль другого языка. Язык хранится только на устройстве — шлёт клиент.
+  if (!hasSpireMigrationMarker(lbData)) {
+    const clientCurrent = resolveArenaStudyTarget(request.data?.currentStudyTarget);
+    const migration = await ensureSpireLeagueMigration(db, {
+      stableUid,
+      currentLang: clientCurrent ?? lang,
+      currentLangSource: clientCurrent ? 'client_current' : 'room_lang',
+      currentWeekId: weekId,
+      previousWeekId: spireWeekId(new Date(nowMs - 7 * 24 * 60 * 60 * 1000)),
+      nowMs,
+    });
+    if (migration.status === 'paused') {
+      // Пауза владельца: не сажаем в Гранит «без места» — честный отказ.
+      console.warn(LOG, JSON.stringify({ event: 'reject', reason: 'spire_migration_paused', lang }));
+      throw new HttpsError('failed-precondition', 'spire_migration_paused');
+    }
+    lbData = { ...(lbData ?? {}), spireTiers: migration.tiers };
+    console.log(LOG, JSON.stringify({ event: 'migration_applied', status: migration.status, tiers: migration.tiers }));
+  }
   const tier = resolveSpireTier(lbData, lang);
 
   // 1) Уже в комнате этой недели по этому языку — когорта закреплена первым

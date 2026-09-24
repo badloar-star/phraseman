@@ -1096,6 +1096,9 @@ export { spireReportSteps } from "./spire_progress";
 // Шпиль: комнаты по 30 на язык и день входа (PM-277, T15/T24); боты — формула
 // spire_residents.ts без чтений/записей и без крона (D56).
 export { spireJoinRoom } from "./spire_groups";
+// Шпиль: перенос мест лиги в шпили (PM-278) — сам перенос идёт внутри
+// spireJoinRoom при первом входе; здесь только выключатель и откат для админки.
+export { adminSpireLeagueMigrationSetMode, adminSpireLeagueMigrationRollback } from "./admin_spire_league_migration";
 // Шпиль: недельный итог (PM-276, TOWER.md §4.7) — место по ступеням, переход
 // между шпилями, сумма монет за место/повышение (выплата — PM-280). Свой крон,
 // не leagueFinalizeCron: комнаты в spire_groups, файлы лиги под замком.

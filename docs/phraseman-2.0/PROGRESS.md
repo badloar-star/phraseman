@@ -109,6 +109,9 @@
 - 2026-09-24 · PM-285 · Sonnet 5 · дистракторы guess_phrase проверены новым валидатором (scripts/validate_arena_guess_phrase_distractors.mjs): es/de/fr tasks.jsonl (V11, коммит 20.09, позже аудита 21.08) — 13437/13437 дистракторов грамматические, 0 lexical/meaning; правка контента не потребовалась → review · evidence/PM-285_distractor_fix_report.md · английский пул в Firestore не проверен (нет доступа к проду в read-only сессии)
 - 2026-09-24 · PM-286 · Sonnet 5 · Learning V2 покрывает только en (155 learner.json, de/fr — пустые заготовки, es в V2 не встречается — preflight-формулировка про «испанский» не подтвердилась); конвертер scripts/convert_learning_v2_to_spire_listen_tasks.mjs собрал 611 черновых заданий Шпиля (493 listen + 118 dictate) из реальных V2-текстов → review, A1 принят · evidence/PM-286_listen_voice_from_v2.md, content/arena-multilingual/generated/en/spire_listen_dictate_draft.jsonl · A2 не принят: audioUri — плейсхолдер device-tts, источник звука (файл vs on-device TTS, D47) не решён этой сессией
 
+- 2026-09-24 · PM-054 · Sonnet 5 · проверено: активный реестр достижений (achievement_catalog_v2.ts) уже не ссылается на спины/бонусы/тосты — правок не потребовалось, критерии выполнены существующим кодом
+- 2026-09-24 · PM-056 · Sonnet 5 · сундук лиги и друзей выключен (leagueChestReady/canClaim всегда false) — оба выдают награду только в момент клейма, неполученного инвентаря нет, миграция D51 их не должна покрывать · 34af28903 · friends_together_chest_model 10/10, league_chest_goal 6/6 · в коммит попали 3 чужие строки home.tsx (ассет плитки сессии интерфейса) через общий git-индекс — не потеряно, просто смешанный коммит
+
 ## 6. Известные конфликты 2.0 со старыми правилами проекта
 
 - Покупка уроков за жемчуг (сделана 2026-09-17…24, коммит `efbe0dcd9`) — по 2.0 удаляется (PM-148, D15). Не делать до вопроса о компенсации.

@@ -13,6 +13,7 @@ const KIND_ICON: Record<TodayTaskKind, React.ComponentProps<typeof Ionicons>['na
   cards: 'copy-outline',
   video: 'play-circle-outline',
   mistakes: 'refresh-outline',
+  spire_steps: 'trending-up-outline',
 };
 
 type Props = {

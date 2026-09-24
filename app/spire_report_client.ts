@@ -24,6 +24,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { DebugLogger } from './debug-logger';
+import { getLocalDayKey } from './local_date';
 import {
   type SpireFlushResponse,
   type SpireFlushTrigger,
@@ -63,9 +64,45 @@ async function callSpireReportSteps(payload: Readonly<Record<string, unknown>>):
   return res.data ?? { ok: false, reason: 'empty_response' };
 }
 
+/**
+ * День серии уже засчитан Шпилем в этом процессе — ключ локального дня.
+ * зачем: updateStreakOnActivity читает/пишет ~10 ключей AsyncStorage; звать её
+ * на каждой ступени незачем — день засчитывается один раз, остальные ступени
+ * дня серию уже не меняют. Память процесса, не диск: после перезапуска первая
+ * ступень дня позовёт функцию ещё раз, а та сама увидит «сегодня уже был».
+ */
+let spireStreakDayMarked: string | null = null;
+
+/**
+ * T38 (владелец 2026-09-24): пройденная ступень засчитывает день серии, как урок.
+ * Тот же механизм, что у остальных активностей — updateStreakOnActivity
+ * (заморозки, щиты, починка, week_days_done). Урок засчитывает день через
+ * registerXP, но Шпиль опыта не даёт (TOWER.md его не назначает), поэтому
+ * зовём сам механизм серии, без выдумывания опыта. Ленивый импорт: модуль
+ * серии тяжёлый и не нужен экрану Шпиля до первой пройденной ступени.
+ */
+async function markSpireStreakDay(report: SpireStepReport): Promise<void> {
+  const today = getLocalDayKey();
+  if (spireStreakDayMarked === today) return;
+  try {
+    const { updateStreakOnActivity } = await import('./hall_of_fame_utils');
+    const streak = await updateStreakOnActivity();
+    spireStreakDayMarked = today;
+    DebugLogger.info(LOG, `streak: день ${today} засчитан ступенью ${report.reportId}, серия=${streak}`);
+  } catch (error) {
+    // Не помечаем день — следующая пройденная ступень попробует снова.
+    DebugLogger.warn(LOG, `streak: не удалось засчитать день ${today} (${error instanceof Error ? error.message : String(error)})`);
+  }
+}
+
 /** Записать результат ступени на диск (очередь). Сеть не трогает. */
-export function spireRecordStepResult(uid: string, lang: SpireLang, report: SpireStepReport) {
-  return spireRecordStep(store, { uid, lang, report, logger });
+export async function spireRecordStepResult(uid: string, lang: SpireLang, report: SpireStepReport) {
+  const applied = await spireRecordStep(store, { uid, lang, report, logger });
+  // Серия — только за ПРОЙДЕННУЮ и новую ступень (провал и повтор дня не дают).
+  if (report.outcome === 'passed' && applied.effect !== 'duplicate_ignored') {
+    void markSpireStreakDay(report);
+  }
+  return applied;
 }
 
 /** Текущее локальное состояние недели — для первого кадра экрана из снапшота. */

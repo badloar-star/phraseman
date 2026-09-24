@@ -12861,7 +12861,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -12870,14 +12870,25 @@
       {
         "id": "PM-280-A1",
         "text": "Монеты по T35 из конфига, одна выплата на ступень/этаж; пройденная ступень засчитывает день серии",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "functions/src/spire_coins.ts",
+          "functions/src/spire_coins.test.ts",
+          "functions/src/spire_progress.ts",
+          "functions/src/spire_week_payout.ts",
+          "functions/src/spire_finalize_cron.ts",
+          "app/spire_report_client.ts"
+        ]
       },
       {
         "id": "PM-280-A2",
         "text": "Тип задачи «Пройди N ступеней» в пуле «Сегодня»",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "components/home/v2/home_v2_types.ts",
+          "components/home/v2/HomeV2TodayCard.tsx",
+          "docs/phraseman-2.0/evidence/PM-280_coins_and_streak.md"
+        ]
       }
     ],
     "depends_on": [
@@ -12889,18 +12900,33 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Opus 5.5 (сессия «Башня», субагент)",
     "reviewer": null,
-    "evidence": [],
+    "evidence": [
+      "functions/src/spire_coins.ts",
+      "functions/src/spire_coins.test.ts",
+      "functions/src/spire_progress.ts",
+      "functions/src/spire_week_payout.ts",
+      "functions/src/spire_finalize_cron.ts",
+      "functions/src/stars_ledger.ts",
+      "app/spire_report_client.ts",
+      "components/home/v2/home_v2_types.ts",
+      "components/home/v2/HomeV2TodayCard.tsx",
+      "docs/phraseman-2.0/evidence/PM-280_coins_and_streak.md"
+    ],
     "notes": [
-      "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md"
+      "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md",
+      "2026-09-24: монеты = руны до PM-069 (D49/D51) — выплаты через единый журнал stars_ledger.ts, новые причины spire_step (earn) и spire_week_reward (grant). Ступени/этажи/вершина платятся в транзакции spireReportSteps, ключ по номеру (spire_step:{lang}_{week}_s{n}, spire_floor:…_f{f}, spire_summit:…) — повтор пачки, ретрай и обнулённая запись недели не дают второй выплаты. О-276-1 закрыт: крон после итогов платит spire_week:{lang}_{weekId} (payoutSpireWeekReward), rewardStatus pending_wallet→paid, сбой выплаты → комната не отмечена + retryCount 3.",
+      "T38: пройденная новая ступень → updateStreakOnActivity (раз в локальный день на процесс) в app/spire_report_client.ts; урок считает день через registerXP, но Шпиль опыта не даёт.",
+      "A2 не принят целиком: хука useTodayTasks в коде нет (только placeholder) — добавлен тип spire_steps в TodayTaskKind + иконка, контракт задачи в evidence; пул и счёт — PM-259.",
+      "Тесты и проверка типов не прогнаны (условие задачи); хук проверки типов на правках functions/ ошибок не показал. Открыто О-280-1..6 (16+ над облаками, класс призов для рангов D34, серия при запуске приложения, переезд аккаунта в понедельник, испорченный баланс, время крона)."
     ],
     "actual_cost": null,
-    "kind": "unclassified",
+    "kind": "code",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "claude-opus-5-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-281",

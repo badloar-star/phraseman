@@ -21,10 +21,13 @@
 // И на комнату: spire_groups/{id}.finalizedAt + open:false — повторный запуск
 // (ретрай крона) пропускает уже подведённые комнаты и не пишет второй раз.
 //
-// МОНЕТЫ НЕ НАЧИСЛЯЮТСЯ (открытый вопрос PM-276, evidence): кошелёк 2.0 ещё не
-// выбран (PM-069 — миграция рун в монеты, PM-280 — выплаты Шпиля). Сумма
-// пишется в итог (rewardCoins, rewardStatus: 'pending_wallet'), выплатит её
-// PM-280 идемпотентно по id документа итога.
+// МОНЕТЫ (PM-280, закрывает О-276-1): сумма пишется в итог (rewardCoins,
+// rewardStatus: 'pending_wallet'), затем payoutSpireWeekReward кладёт её в
+// журнал рун (монеты = руны до PM-069) по ключу spire_week:{lang}_{weekId} и
+// ставит rewardStatus: 'paid'. Порядок на комнату: итоги → flush → выплаты →
+// отметка finalizedAt. Если хоть одна выплата комнаты не прошла, отметку НЕ
+// ставим и в конце прогона бросаем ошибку: Cloud Scheduler повторит прогон
+// (retryCount), ретрай пропустит подведённые комнаты, а выплаты идемпотентны.
 //
 // Firebase-экономия: 1 запуск в неделю; 1 чтение config/spire_v1; комнаты —
 // одним запросом по weekId страницами по 200 (чтений = число комнат прошлой
@@ -43,10 +46,14 @@ import {
   type SpireConfigDoc,
 } from './spire_config_contract';
 import { computeSpireRoomResults } from './spire_finalize_core';
+import { payoutSpireWeekReward } from './spire_week_payout';
 import { SPIRE_GROUPS_COLLECTION, spireWeekId } from './spire_groups';
 import { spireWeekStartMs } from './spire_residents';
 
 const LOG = '[SPIRE-FINALIZE]';
+// зачем 200 комнат на страницу при выплатах: каждая комната теперь ещё и
+// flush + до ~8 транзакций выплат; страница остаётся прежней, лимит времени
+// 540 с — при росте числа комнат выплаты стоит вынести в отдельный крон.
 const PAGE_SIZE = 200;
 const BATCH_LIMIT = 400;
 export const SPIRE_WEEK_RESULTS_SUBCOLLECTION = 'spire_week_results' as const;
@@ -91,6 +98,9 @@ export const spireFinalizeCron = onSchedule(
     timeoutSeconds: 540,
     memory: '512MiB',
     region: 'us-central1',
+    // зачем (PM-280): упавшая выплата монет роняет прогон, чтобы его повторили.
+    // Повтор безопасен: подведённые комнаты пропускаются, выплаты — по ключу.
+    retryCount: 3,
   },
   withCronHeartbeat('spireFinalizeCron', async () => {
     const db = admin.firestore();
@@ -105,6 +115,10 @@ export const spireFinalizeCron = onSchedule(
     let tierWrites = 0;
     let promoted = 0;
     let demoted = 0;
+    let coinsPaid = 0;
+    let payoutsPaid = 0;
+    let payoutsFailed = 0;
+    const weekEndMs = spireWeekStartMs(startedAt);
     let lastDoc: FirebaseFirestore.QueryDocumentSnapshot | null = null;
     let batch = db.batch();
     let batchCount = 0;
@@ -158,6 +172,7 @@ export const spireFinalizeCron = onSchedule(
 
         let roomPromoted = 0;
         let roomDemoted = 0;
+        const toPay: Array<{ uid: string; ref: FirebaseFirestore.DocumentReference }> = [];
         for (const [uid, result] of Object.entries(out.results)) {
           const resultRef = db.collection('users').doc(uid)
             .collection(SPIRE_WEEK_RESULTS_SUBCOLLECTION).doc(`${weekId}_${lang}`);
@@ -170,6 +185,7 @@ export const spireFinalizeCron = onSchedule(
             finalizedAt: admin.firestore.FieldValue.serverTimestamp(),
           }));
           results++;
+          if (result.rewardCoins.total > 0) toPay.push({ uid, ref: resultRef });
           if (result.promoted) roomPromoted++;
           if (result.demoted) roomDemoted++;
           if (result.newTier !== result.prevTier) {
@@ -180,9 +196,47 @@ export const spireFinalizeCron = onSchedule(
             tierWrites++;
           }
         }
-        // Отметка идёт ПОСЛЕ итогов: батчи коммитятся по порядку, значит
-        // отмеченная комната уже целиком записана; упали раньше — ретрай
-        // перепишет те же документы теми же значениями.
+        // ── Выплата монет (PM-280) ────────────────────────────────────────
+        // Итоги комнаты обязаны быть записаны ДО выплат: транзакция выплаты
+        // читает сумму из документа итога и ставит в нём 'paid' через merge.
+        // Если бы итог ещё лежал в батче, его set без merge затёр бы 'paid'.
+        let roomPayoutFailed = 0;
+        if (toPay.length > 0) {
+          await flush();
+          for (const row of toPay) {
+            try {
+              const paid = await payoutSpireWeekReward(db, {
+                uid: row.uid, weekId, lang, resultRef: row.ref, weekEndMs,
+              });
+              if (paid.status === 'paid') {
+                payoutsPaid++;
+                coinsPaid += paid.coins;
+              } else if (paid.status === 'rejected' || paid.status === 'skipped_identity_transition') {
+                // Отказ журнала или аккаунт в переезде — повторить стоит.
+                roomPayoutFailed++;
+              }
+            } catch (err) {
+              roomPayoutFailed++;
+              console.error(LOG, JSON.stringify({
+                event: 'payout_failed', groupId: doc.id, uid: row.uid, lang,
+                error: String((err as Error)?.message ?? err),
+              }));
+            }
+          }
+        }
+        payoutsFailed += roomPayoutFailed;
+        if (roomPayoutFailed > 0) {
+          // Комнату НЕ отмечаем: ретрай прогона перепишет итоги и доплатит
+          // только тех, у кого нет расписки (остальные — already_paid).
+          console.warn(LOG, JSON.stringify({ event: 'room_payout_incomplete', groupId: doc.id, lang, failed: roomPayoutFailed }));
+          promoted += roomPromoted;
+          demoted += roomDemoted;
+          rooms++;
+          continue;
+        }
+        // Отметка идёт ПОСЛЕ итогов и выплат: батчи коммитятся по порядку, значит
+        // отмеченная комната уже целиком записана и оплачена; упали раньше —
+        // ретрай перепишет те же документы теми же значениями.
         await add((b) => b.update(doc.ref, {
           finalizedAt: admin.firestore.FieldValue.serverTimestamp(),
           open: false,
@@ -199,8 +253,16 @@ export const spireFinalizeCron = onSchedule(
     }
 
     await flush();
-    const summary = { weekId, rooms, skipped, results, tierWrites, promoted, demoted, tookMs: Date.now() - startedAt };
+    const summary = {
+      weekId, rooms, skipped, results, tierWrites, promoted, demoted,
+      payoutsPaid, payoutsFailed, coinsPaid, tookMs: Date.now() - startedAt,
+    };
     console.log(LOG, JSON.stringify({ event: 'done', ...summary }));
-    return { rooms, skipped, results, tierWrites, promoted, demoted };
+    if (payoutsFailed > 0) {
+      // зачем: без броска Cloud Scheduler считает прогон успешным и не повторит —
+      // монеты тех, кому не заплатили, повисли бы до ручного вмешательства.
+      throw new Error(`spire_payouts_incomplete:${payoutsFailed}`);
+    }
+    return { rooms, skipped, results, tierWrites, promoted, demoted, payoutsPaid, coinsPaid };
   }),
 );

@@ -2,7 +2,9 @@ import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { resolveStableUidForAuth } from './auth_identity';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
+import { arenaSeasonWindow } from './arena_v2_core';
 import { getWeekKey, isoDateUtc } from './progress_events';
+import { spireStepCoinOps } from './spire_coins';
 import {
   SPIRE_CONFIG_COLLECTION,
   SPIRE_CONFIG_DOC_ID,
@@ -27,6 +29,12 @@ import {
   spireWeekStartMsFromDate,
   type SpireLang,
 } from './spire_progress_contract';
+import {
+  beginStarLedgerTransactionAttempt,
+  commitStarOperations,
+  prepareStarOperations,
+  type StarLedgerPrepared,
+} from './stars_ledger';
 
 /**
  * spireReportSteps — приём ПАЧКИ отчётов о ступенях Шпиля (PM-275).
@@ -43,6 +51,11 @@ import {
  * каждой строке (`results[]`), локальный прогресс на устройстве НЕ стирается
  * (TOWER_CONTRACT §5). Каждая отказанная строка пишется в лог с причиной
  * (правило «сперва логи»), префикс [SPIRE-REPORT].
+ *
+ * Монеты (PM-280, T35): за каждую НОВУЮ в этой транзакции ступень, этаж и
+ * вершину — операции журнала рун (монеты = руны до PM-069) с ключом по номеру
+ * ступени/этажа (spire_coins.ts). Журнал и прогресс недели пишутся одним set
+ * users/{uid}. Лог монет — тот же префикс [SPIRE-REPORT], события coins_*.
  *
  * App Check НЕ требуется — запломбирован владельцем 2026-08-17, опции
  * HOT_CALLABLE_OPTIONS берутся как есть.
@@ -166,6 +179,9 @@ export const spireReportSteps = onCall(HOT_CALLABLE_OPTIONS, async (request) => 
   // guard-ok: точечные документы по id, не листинг коллекции.
   const lbRef = db.collection('leaderboard').doc(stableUid);
   const outcome = await db.runTransaction(async (tx) => {
+    // зачем: журнал монет защищается от второго prepare в одной попытке; SDK
+    // повторяет колбэк с тем же tx при конфликте — сбрасываем отметку в начале.
+    beginStarLedgerTransactionAttempt(tx);
     const [snap, lbSnap] = await Promise.all([tx.get(userRef), tx.get(lbRef)]);
     const lbData = lbSnap.data();
     // Своя комната недели (PM-277). Нет комнаты — очки идут только в progress;
@@ -204,11 +220,67 @@ export const spireReportSteps = onCall(HOT_CALLABLE_OPTIONS, async (request) => 
       expectedPackHashByTier,
       expectedTier,
     });
-    if (evaluation.changed) {
-      const nextProgress = { ...weekProgress, [lang]: evaluation.record };
+    // ── Монеты за новые ступени (PM-280, T35) ───────────────────────────────
+    // зачем: платим в ТОЙ ЖЕ транзакции, что поднимает счётчик ступеней, —
+    // ступень не может быть засчитана без монет или оплачена без засчёта.
+    // Ступени (fromSteps, toSteps] — новые именно в этой транзакции; ключ
+    // операции по номеру ступени/этажа, поэтому повтор пачки, ретрай и даже
+    // обнулённая запись недели не дадут второй выплаты (журнал ответит
+    // already_applied). Все чтения журнала — здесь, до любых записей.
+    const fromSteps = weekProgress[lang]?.weekKey === serverWeekKey ? weekProgress[lang]?.steps ?? 0 : 0;
+    const toSteps = evaluation.record.steps;
+    let coinsPrepared: StarLedgerPrepared | null = null;
+    let coinsPlanned = 0;
+    if (toSteps > fromSteps) {
+      const plan = spireStepCoinOps({
+        lang,
+        weekKey: serverWeekKey,
+        fromSteps,
+        toSteps,
+        coins: config.config.coins,
+        earnedAtMs: nowMs,
+      });
+      coinsPlanned = plan.total;
+      if (plan.truncatedSteps > 0) {
+        warn('coins_truncated', { stableUid, lang, fromSteps, toSteps, truncatedSteps: plan.truncatedSteps });
+      }
+      try {
+        coinsPrepared = await prepareStarOperations(tx, db, stableUid, snap, plan.ops, {
+          nowMs,
+          activeSeasonId: arenaSeasonWindow(nowMs).seasonId,
+          weekKeyNow: serverWeekKey,
+          authUid,
+        });
+      } catch (error) {
+        // зачем: испорченный баланс (star_ledger_inconsistent) — отдельный
+        // инцидент журнала. Синхронизацию ступеней из-за него не роняем
+        // (иначе человек навсегда застрял бы в рейтинге), но монеты НЕ пишем
+        // и громко логируем диапазон, чтобы его можно было доплатить руками.
+        console.error(JSON.stringify({
+          tag: LOG,
+          event: 'coins_ledger_failed',
+          stableUid,
+          lang,
+          weekKey: serverWeekKey,
+          fromSteps,
+          toSteps,
+          coinsPlanned,
+          reason: error instanceof HttpsError ? `${error.code}:${error.message}` : String(error),
+        }));
+        coinsPrepared = null;
+      }
+    }
+    const progressFields = evaluation.changed
+      ? { progress: { [SPIRE_PROGRESS_FIELD]: spireSerializeWeekProgress({ ...weekProgress, [lang]: evaluation.record }) } }
+      : null;
+    if (coinsPrepared) {
+      // Журнал пишет users/{uid} ровно одним set — прогресс недели едет в нём же.
+      // guard-ok: запись внутри runTransaction — её ошибка роняет await выше, молча не теряется.
+      commitStarOperations(tx, coinsPrepared, progressFields ?? undefined);
+    } else if (progressFields) {
       // guard-ok: запись внутри runTransaction — её ошибка роняет await выше, молча не теряется.
       tx.set(userRef, {
-        progress: { [SPIRE_PROGRESS_FIELD]: spireSerializeWeekProgress(nextProgress) },
+        ...progressFields,
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       }, { merge: true });
     }
@@ -226,8 +298,31 @@ export const spireReportSteps = onCall(HOT_CALLABLE_OPTIONS, async (request) => 
         log('room_not_raised', { stableUid, lang, groupId, roomSteps: current?.steps ?? null, serverSteps: evaluation.record.steps });
       }
     }
-    return { ...evaluation, groupId: roomValid ? groupId : null, expectedTier };
+    return {
+      ...evaluation,
+      groupId: roomValid ? groupId : null,
+      expectedTier,
+      coins: coinsPrepared
+        ? {
+          granted: coinsPrepared.outcomes.reduce((sum, o) => sum + (o.status === 'applied' ? o.appliedDelta : 0), 0),
+          planned: coinsPlanned,
+          balance: coinsPrepared.result.balance,
+          seq: coinsPrepared.result.seq,
+          outcomes: coinsPrepared.outcomes,
+        }
+        : { granted: 0, planned: coinsPlanned, balance: null, seq: null, outcomes: [] },
+      fromSteps,
+    };
   });
+
+  for (const o of outcome.coins.outcomes) {
+    if (o.status === 'rejected') {
+      // Отказ журнала = монеты не пришли. Причина обязана быть в логе.
+      console.error(JSON.stringify({ tag: LOG, event: 'coins_op_rejected', stableUid, lang, opId: o.opId, errorCode: o.errorCode ?? null }));
+    } else if (o.status === 'already_applied') {
+      log('coins_op_already_applied', { stableUid, lang, opId: o.opId });
+    }
+  }
 
   for (const row of outcome.results) {
     if (row.verdict === 'rejected') {
@@ -247,6 +342,9 @@ export const spireReportSteps = onCall(HOT_CALLABLE_OPTIONS, async (request) => 
     serverSteps: outcome.record.steps,
     groupId: outcome.groupId,
     expectedTier: outcome.expectedTier,
+    fromSteps: outcome.fromSteps,
+    coinsPlanned: outcome.coins.planned,
+    coinsGranted: outcome.coins.granted,
     tookMs: Date.now() - startedAt,
   });
 
@@ -258,5 +356,10 @@ export const spireReportSteps = onCall(HOT_CALLABLE_OPTIONS, async (request) => 
     reachedAtMs: outcome.record.reachedAtMs,
     totalMs: outcome.record.totalMs,
     results: outcome.results,
+    // PM-280: монеты = руны до PM-069. Клиент кладёт `stars` в свой баланс
+    // (как ответы других начислений журнала); null — журнал не трогали.
+    coinsGranted: outcome.coins.granted,
+    stars: outcome.coins.balance,
+    starsSeq: outcome.coins.seq,
   };
 });

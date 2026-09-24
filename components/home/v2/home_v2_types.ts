@@ -3,7 +3,10 @@
  * Источник данных — хук useTodayTasks() программы 2.0; здесь только форма,
  * чтобы вид не зависел от того, как задачи считаются.
  */
-export type TodayTaskKind = 'lesson' | 'dialog' | 'cards' | 'video' | 'mistakes';
+// зачем 'spire_steps' (PM-280, D49 + TOWER.md): «Пройди N ступеней Шпиля» — тип
+// задачи в пуле «Сегодня». progress = ступени, ПРОЙДЕННЫЕ сегодня (локальный
+// день), target = N, route = экран Шпиля (PM-279). Счёт и выдача — useTodayTasks (PM-259).
+export type TodayTaskKind = 'lesson' | 'dialog' | 'cards' | 'video' | 'mistakes' | 'spire_steps';
 
 export type TodayTask = Readonly<{
   id: string;

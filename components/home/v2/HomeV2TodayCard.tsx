@@ -32,10 +32,10 @@ export default function HomeV2TodayCard({ title, tasks, onOpenTask }: Props) {
   const rowGlass = useV2GlassStyle(true);
   return (
     <View testID="home-v2-today" style={[s.card, glass]}>
-      <V2GlassSheen />
+      <V2GlassSheen seed={3} />
       <Text accessibilityRole="header" style={[s.header, { color: p.textSecondary }]}>{title}</Text>
       <View style={s.list}>
-        {tasks.map((task) => {
+        {tasks.map((task, index) => {
           const counter = `${Math.min(task.progress, task.target)}/${task.target}`;
           return (
             <V2Pressable
@@ -48,6 +48,7 @@ export default function HomeV2TodayCard({ title, tasks, onOpenTask }: Props) {
               scaleTo={0.98}
               style={[s.row, rowGlass]}
             >
+              <V2GlassSheen seed={index + 1} />
               <View
                 style={[s.check, task.done ? { backgroundColor: p.iconTint, borderColor: p.iconTint } : { borderColor: p.textMuted }]} // guard-ok: D43 отметка-кружок
               >

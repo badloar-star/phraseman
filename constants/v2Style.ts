@@ -111,6 +111,11 @@ export type V2Palette = Readonly<{
   /** Пятна света на фоне экрана. */
   glowA: string;
   glowB: string;
+  /** Цвет «дымки» внутри стеклянных карточек (тёплый белый). */
+  smoke: string;
+  /** Перелив стеклянных плашек значков (тёплый серо-коричневый, референс). */
+  tileFrom: string;
+  tileTo: string;
 }>;
 
 const paletteCache = new Map<string, V2Palette>();
@@ -123,36 +128,44 @@ export function getV2Palette(theme: Theme, themeMode: ThemeMode): V2Palette {
   const tintColor = theme.accent;
   const tint = TINT_BY_THEME[themeMode] ?? 0.04;
   const palette: V2Palette = {
-    bg: mixHex(BASE.bg, tintColor, tint * 0.6),
-    bgTop: mixHex(BASE.bgTop, tintColor, tint),
+    // Фон тёплый почти чёрный, как во второй серии референсов; тема — едва-едва.
+    bg: mixHex('#0C0C0C', tintColor, 0.015),
+    bgTop: mixHex('#141312', tintColor, 0.015),
     card: mixHex(BASE.card, tintColor, tint),
     cardRaised: mixHex(BASE.cardRaised, tintColor, tint),
-    control: mixHex(BASE.control, tintColor, tint),
-    track: mixHex(BASE.track, tintColor, tint),
-    tabBar: mixHex(BASE.tabBar, tintColor, tint),
+    // Тёплый нейтральный графит (вторая серия референсов), тема — едва-едва.
+    control: mixHex('#2B2927', tintColor, 0.02),
+    track: mixHex('#34322F', tintColor, 0.02),
+    tabBar: mixHex('#151413', tintColor, 0.015),
     hairline: 'rgba(255,255,255,0.09)',
     outline: 'rgba(255,255,255,0.30)',
     divider: 'rgba(255,255,255,0.07)',
     text: BASE.text,
-    textSecondary: mixHex(BASE.textSecondary, tintColor, tint * 1.5),
-    textMuted: mixHex(BASE.textMuted, tintColor, tint * 1.5),
+    textSecondary: mixHex('#A8A5A0', tintColor, 0.03),
+    textMuted: mixHex('#74716C', tintColor, 0.03),
     accent: tintColor,
     accentSoft: alphaHex(tintColor, 0.16),
     // На референсе заливка прогресса почти белая; тема добавляет свой оттенок.
-    progressFill: mixHex('#CECDD2', tintColor, 0.35),
+    // Заливка прогресса — тёплое шампанское, как «24%» на референсе; тема подмешивается слегка.
+    progressFill: mixHex('#D8C3A0', tintColor, 0.15),
     cta: mixHex(BASE.cta, tintColor, 0.08),
     ctaText: BASE.ctaText,
     correct: theme.correct,
     wrong: theme.wrong,
     gold: theme.gold,
-    glass: alphaHex(mixHex(BASE.card, tintColor, tint), 0.55),
-    glassRaised: alphaHex(mixHex(BASE.cardRaised, tintColor, tint), 0.7),
-    sheenFrom: 'rgba(255,255,255,0.095)',
-    sheenTo: 'rgba(255,255,255,0.008)',
-    stroke: 'rgba(255,255,255,0.12)',
+    // зачем: вторая серия референсов — стекло тёплое, нейтрально-коричневатое.
+    // Тема здесь почти не участвует (0.02), иначе индиго красит всё в синь.
+    glass: alphaHex(mixHex('#1B1A19', tintColor, 0.02), 0.9),
+    glassRaised: alphaHex(mixHex('#232120', tintColor, 0.02), 0.92),
+    sheenFrom: 'rgba(255,248,236,0.045)',
+    sheenTo: 'rgba(255,248,236,0)',
+    stroke: 'rgba(255,255,255,0.14)',
     iconTint: mixHex('#E2C9A0', tintColor, 0.15),
     glowA: mixHex('#C9A370', tintColor, 0.2),
     glowB: mixHex('#8C8F99', tintColor, 0.25),
+    smoke: '#FFF3E0',
+    tileFrom: mixHex('#34302B', tintColor, 0.04),
+    tileTo: mixHex('#1E1C1A', tintColor, 0.02),
   };
   paletteCache.set(key, palette);
   return palette;

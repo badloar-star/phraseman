@@ -642,7 +642,7 @@ function DailyPhraseCard({
           accessibilityLabel={`${title}. ${phrase.english}. ${phraseCopy.literal}`}
           style={({ pressed }) => [styles.v2Card, v2Glass, pressed && styles.pressed]}
         >
-          <V2GlassSheen />
+          <V2GlassSheen seed={4} />
           {/* Слот арта справа: ассет рисует Codex, до него — тихая заглушка того же размера. */}
           <View pointerEvents="none" style={[styles.v2Art, { backgroundColor: v2.glassRaised }]} />
           <V2IconTile name="chatbubble-ellipses-outline" size={40} iconSize={20} />

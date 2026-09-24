@@ -38,7 +38,7 @@ export default function HomeV2ContinueCard({ overline, title, done, total, badge
       scaleTo={0.98}
       style={[s.card, glass]}
     >
-      <V2GlassSheen />
+      <V2GlassSheen seed={0} />
       <View pointerEvents="none" style={[s.art, { backgroundColor: p.glassRaised }]}>
         {badge ? (
           <View

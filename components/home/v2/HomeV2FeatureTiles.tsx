@@ -17,7 +17,7 @@ export default function HomeV2FeatureTiles({ tiles }: { tiles: readonly HomeFeat
   const glass = useV2GlassStyle();
   return (
     <View testID="home-v2-feature-tiles" style={s.row}>
-      {tiles.map((tile) => (
+      {tiles.map((tile, index) => (
         <V2Pressable
           key={tile.key}
           testID={`home-quick-tile-${tile.key}`}
@@ -28,7 +28,7 @@ export default function HomeV2FeatureTiles({ tiles }: { tiles: readonly HomeFeat
           outerStyle={s.tileSlot}
           style={[s.tile, glass]}
         >
-          <V2GlassSheen />
+          <V2GlassSheen seed={index + 2} />
           <View pointerEvents="none" style={[s.art, { backgroundColor: p.glassRaised }]} />
           <Text numberOfLines={1} style={[s.title, { color: p.text }]}>{tile.title}</Text>
           <View style={s.footer}>

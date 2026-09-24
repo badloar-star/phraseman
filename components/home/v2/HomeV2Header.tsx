@@ -55,7 +55,7 @@ export default function HomeV2Header({ isPro, tagline, bellSlot, avatarSlot, sta
       <View style={s.bottomRow}>
         <Text numberOfLines={2} style={[s.tagline, { color: p.textSecondary }]}>{tagline}</Text>
         <View style={s.stats}>
-          {stats.map((stat) => (
+          {stats.map((stat, index) => (
             <V2Pressable
               key={stat.testID}
               testID={stat.testID}
@@ -65,7 +65,7 @@ export default function HomeV2Header({ isPro, tagline, bellSlot, avatarSlot, sta
               scaleTo={0.96}
               style={[s.stat, glass]}
             >
-              <V2GlassSheen />
+              <V2GlassSheen seed={index} />
               <View style={s.statIcon}>{stat.icon}</View>
               <View style={s.statCopy}>
                 <Text numberOfLines={1} style={[s.statValue, { color: p.text }]}>{stat.value}</Text>

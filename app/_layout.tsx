@@ -184,7 +184,6 @@ import { getCanonicalUserId } from './user_id_policy';
 import { dismissReleaseNotesModalPermanently, shouldOfferReleaseNotesModal } from './release_notes_modal';
 import { prefetchEasUpdateAfterStartup } from './eas_update_prefetch';
 import { prefetchAchievementArtInBackground, prefetchAllAchievementArt } from './achievement_art_prefetch';
-import { prefetchAllAvatarAuraArt, prefetchAvatarAuraArtInBackground } from './avatar_aura_art_prefetch';
 import { fetchPendingGlobalBroadcastModal, GlobalBroadcastModalPayload } from './global_broadcast_modal';
 import { emitAppEvent, onAppEvent } from './events';
 import {
@@ -953,13 +952,11 @@ function GlobalLevelUpRewards() {
     return () => sub.remove();
   }, [hasPremiumAccess]);
 
-  // зачем: слои аур живут в Storage (Фаза 4 «Бандл-диеты», 2026-08-24). За уровни
-  // выдают новые ауры, а аватарка на Главной обновляется СРАЗУ в момент прыжка —
-  // поэтому греем каталог по событию повышения, задолго до показа. Награда за
-  // достижение может всплыть тостом в тот же момент, поэтому греем и полку.
+  // зачем: награда за достижение может всплыть тостом в момент повышения
+  // уровня, поэтому греем полку заранее. Прогрев аур убран вместе с показом
+  // ауры целиком (PM-062/D61, владелец 2026-09-24: «ауры удаляем без замены»).
   useEffect(() => {
     const sub = onAppEvent('level_up_pending', () => {
-      prefetchAllAvatarAuraArt();
       prefetchAllAchievementArt();
     });
     return () => sub.remove();
@@ -2387,13 +2384,6 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       // устройство, малыми пачками, строго после первого кадра.
       InteractionManager.runAfterInteractions(() => {
         prefetchAchievementArtInBackground();
-      });
-      // зачем (аудит 2026-08-25): ауры рисуются НЕ только в студии — своя видна
-      // на Главной с первого кадра, чужие в друзьях, Арене, лиге и клубе. Без
-      // прогрева на старте пользователь, который просто листает эти экраны,
-      // видел бы ореол вместо кольца. Тот же режим, что у достижений.
-      InteractionManager.runAfterInteractions(() => {
-        prefetchAvatarAuraArtInBackground();
       });
       InteractionManager.runAfterInteractions(() => {
         void import('./flashcards_swipe').catch(() => {});

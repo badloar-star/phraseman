@@ -68,7 +68,6 @@ import { claimAvatarNudgeSession } from '../avatar_nudge_state';
 import { isCustomAvatarValue } from '../../constants/custom_avatars';
 import { checkAchievements, loadAchievementStates } from '../achievements';
 import { USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId, normalizeAvatarAuraId } from '../../constants/avatar_auras';
-import { prefetchAvatarAuraArtNow } from '../avatar_aura_art_prefetch';
 import EnergyIcon from '../../components/EnergyIcon';
 import { StreakChainIcon } from '../../components/StreakChainIcon';
 import { loadAllMedals, countMedals } from '../medal_utils';
@@ -1599,13 +1598,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
       isPro,
       captureAccountGeneration().stableId,
     );
-    // зачем (аудит 2026-08-25): слои колец живут в Storage, а СВОЯ аура видна на
-    // Главной с первого кадра. Просим её вне очереди, иначе она ждала бы
-    // прогрева всего каталога (111 слоёв) и юзер несколько секунд смотрел бы на
-    // ореол вместо кольца. Повторно ничего не качается — URL помнятся.
-    useEffect(() => {
-        prefetchAvatarAuraArtNow(effectiveUserAvatarAura);
-    }, [effectiveUserAvatarAura]);
+    // зачем (PM-062/D61, владелец 2026-09-24): прогрев ауры убран вместе с
+    // показом ауры целиком — «ауры удаляем без замены», монета ранга и есть
+    // новый аватар. effectiveUserAvatarAura оставлен (используется ниже как
+    // auraId для AvatarView — параметр принимается, но больше не рисует
+    // ничего сверх нейтрального аватара).
     const [userFrame, setUserFrame] = useState(() => initialVisuals.frame);
     // Бонусные баннеры
     const [loginBonus, setLoginBonus] = useState<{

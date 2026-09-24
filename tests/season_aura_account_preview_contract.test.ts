@@ -1,13 +1,8 @@
-import fs from 'fs';
-import path from 'path';
 import {
   SEASON_AVATAR_AURA_IDS,
   getAvatarAuraById,
   normalizeAvatarAuraId,
 } from '../constants/avatar_auras';
-
-const ROOT = path.resolve(__dirname, '..');
-const read = (relativePath: string): string => fs.readFileSync(path.join(ROOT, relativePath), 'utf8');
 
 describe('season aura account preview', () => {
   it('registers every season aura in the canonical user_aura catalog', () => {
@@ -25,16 +20,9 @@ describe('season aura account preview', () => {
     }
   });
 
-  it('renders season art around the real AvatarView at avatar-relative size', () => {
-    const aura = read('components/AvatarAura.tsx');
-
-    expect(aura).toContain('getSeasonAuraAssetForAvatarId');
-    expect(aura).toContain('const SEASON_AURA_RING_SCALE = 1.40;');
-    expect(aura).toContain('const ringScale = approvedAsset ? APPROVED_AURA_RING_SCALE : SEASON_AURA_RING_SCALE;');
-    expect(aura).toContain('const ringSize = requestedVisualSize ?? Math.round(size * ringScale);');
-    expect(aura).toContain('const SEASON_AURA_LAYOUT_GUTTER = 12;');
-    expect(aura).toContain('<SeasonAuraRing');
-    expect(aura).not.toMatch(/\b(?:220|240|280)\b/);
-  });
-
+  // зачем (PM-062/D61, владелец 2026-09-24): AvatarAura.tsx больше не рисует
+  // ни одобренные, ни сезонные кольца — «ауры удаляем без замены». Тест на
+  // рендер-внутренности AvatarAura.tsx (SeasonAuraRing/scale/размер кольца)
+  // отменён вместе с самим рендером; каталог id/владения (проверен выше)
+  // остаётся источником правды для данных.
 });

@@ -591,10 +591,10 @@ export default function ManageSubscription() {
     hapticTap();
     void trackEvent('cancel_save_offer_accepted', { reason: cancelReason ?? 'unknown', offer: saveOffer });
     if (saveOffer === 'support') {
-      // ideas_submit не принимает параметров — ведём без них, чтобы ссылка не
-      // притворялась, будто передаёт контекст обращения.
+      // зачем: PM-171 — раздел «Идеи» скрыт, редирект «поддержки» из шага удержания
+      // теперь ведёт в реальную поддержку, а не в удалённый экран идей.
       closeCancelSheet();
-      router.push('/ideas_submit');
+      router.push('/support_report');
       return;
     }
     closeCancelSheet();

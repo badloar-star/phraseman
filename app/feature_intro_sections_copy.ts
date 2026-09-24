@@ -133,26 +133,8 @@ export const SECTION_FEATURE_INTROS: readonly FeatureIntroDef[] = [{
     ru: 'Посмотреть визитку', uk: 'Переглянути візитку', en: 'View profile card', es: 'Ver la tarjeta', 'pt-BR': 'Ver cartão', vi: 'Xem thẻ hồ sơ', id: 'Lihat kartu profil', tr: 'Profil kartını gör', pl: 'Zobacz wizytówkę',
   }),
 }, {
-  id: 'ideas_first_visit', trigger: 'first_visit', screenRoute: '/ideas_catalog', icon: 'bulb-outline',
-  title: lang => triLang(lang, {
-    ru: 'Идеи, которые двигают приложение', uk: 'Ідеї, що рухають застосунок', en: 'Ideas that move the app forward', es: 'Ideas que hacen avanzar la app',
-    'pt-BR': 'Ideias que fazem o app avançar', vi: 'Ý tưởng giúp ứng dụng tiến lên', id: 'Ide yang menggerakkan aplikasi', tr: 'Uygulamayı ileri taşıyan fikirler', pl: 'Pomysły, które rozwijają aplikację',
-  }),
-  body: lang => triLang(lang, {
-    ru: 'Сделай своё предложение публичным, собери поддержку и покажи, что оно крутое. Идеи с сильным откликом мы можем взять в работу — так Phraseman растёт вместе с пользователями.',
-    uk: 'Зроби свою пропозицію публічною, збери підтримку й покажи, що вона крута. Ідеї з великим відгуком ми можемо взяти в роботу — так Phraseman росте разом із користувачами.',
-    en: 'Make your suggestion public, gather support and show why it is great. Ideas with a strong response may become work items — that is how Phraseman grows with its users.',
-    es: 'Haz pública tu propuesta, reúne apoyo y demuestra que es genial. Las ideas con mucho respaldo pueden entrar en nuestro trabajo: así Phraseman crece con sus usuarios.',
-    'pt-BR': 'Torne sua sugestão pública, reúna apoio e mostre por que ela é ótima. Ideias com forte apoio podem entrar no trabalho — é assim que o Phraseman cresce com seus usuários.',
-    vi: 'Công khai đề xuất, kêu gọi ủng hộ và cho mọi người thấy nó hay thế nào. Ý tưởng nhận nhiều phản hồi có thể được đưa vào làm — Phraseman lớn lên cùng người dùng như vậy.',
-    id: 'Jadikan saranmu publik, kumpulkan dukungan, dan tunjukkan bahwa idemu keren. Ide dengan respons kuat bisa kami kerjakan — begitulah Phraseman tumbuh bersama penggunanya.',
-    tr: 'Önerini herkese aç, destek topla ve neden harika olduğunu göster. Güçlü ilgi gören fikirleri çalışmaya alabiliriz — Phraseman böylece kullanıcılarıyla büyür.',
-    pl: 'Opublikuj swoją propozycję, zbierz poparcie i pokaż, że jest świetna. Pomysły z dużym odzewem możemy wziąć na warsztat — tak Phraseman rośnie razem z użytkownikami.',
-  }),
-  ctaLabel: lang => triLang(lang, {
-    ru: 'Предложить идею', uk: 'Запропонувати ідею', en: 'Suggest an idea', es: 'Proponer una idea', 'pt-BR': 'Sugerir uma ideia', vi: 'Đề xuất ý tưởng', id: 'Ajukan ide', tr: 'Fikir öner', pl: 'Zaproponuj pomysł',
-  }),
-}, {
+  // зачем: PM-171 — раздел «Идеи» скрыт владельцем, интро-запись 'ideas_first_visit' удалена
+  // вместе с маршрутом /ideas_catalog, на который она указывала.
   id: 'spin_first_visit', trigger: 'first_visit', screenRoute: '/level_reward_spin', icon: 'sync-outline',
   title: lang => triLang(lang, {
     ru: 'Крути — вдруг сегодня повезёт', uk: 'Крути — раптом сьогодні пощастить', en: 'Spin it — luck may be on your side', es: 'Gira: quizá hoy tengas suerte',

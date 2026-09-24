@@ -55,7 +55,7 @@ describe('navigation back underlay', () => {
       'settings_themes',
       'settings_language',
       'privacy_settings',
-      'ideas_submit',
+      // зачем: PM-171 — 'ideas_submit' удалён вместе с разделом «Идеи», маршрут больше не регистрируется.
       'account_details',
       'referrals',
       'promo_code_entry',

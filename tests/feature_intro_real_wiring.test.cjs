@@ -34,13 +34,13 @@ test('listening training has its own registered first-visit definition', () => {
   assert.match(trainingCopy, /art: 'training_listening'/u);
 });
 
-test('new profile, ideas and spin intros are mounted at their real entry screens', () => {
+// зачем: PM-171 — раздел «Идеи» удалён (app/ideas_catalog.tsx больше не существует),
+// сторож проверявший его intro-запись переписан без ideas; профиль и спин остаются.
+test('new profile and spin intros are mounted at their real entry screens', () => {
   const home = read('app/(tabs)/home.tsx');
-  const ideas = read('app/ideas_catalog.tsx');
   const spin = read('app/level_reward_spin.tsx');
 
   assert.match(home, /setProfileIntroRequested\(true\)/u);
   assert.match(home, /id="profile_card_first_visit"/u);
-  assert.match(ideas, /id="ideas_first_visit"/u);
   assert.match(spin, /id="spin_first_visit"/u);
 });

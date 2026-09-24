@@ -127,7 +127,7 @@ export const SECTION: ShowcaseSection = {
     { id: 'diagnostic-test', title: cs('diagnostic_test_level_title'), kind: 'route', route: '/diagnostic_test', detail: cs('real_screen') },
     { id: 'exam-screen', title: cs('exam_screen_title'), kind: 'route', route: '/exam', detail: cs('real_screen') },
     { id: 'survey-screen', title: cs('survey_screen_title'), kind: 'route', route: '/survey_screen', detail: cs('real_screen') },
-    { id: 'ideas-submit', title: cs('ideas_submit_title'), kind: 'route', route: '/ideas_submit', detail: cs('real_screen') },
+    // зачем: PM-171 — плитка «Предложить идею» вела на удалённый /ideas_submit, убрана вместе с разделом.
     { id: 'community-pack-create', title: cs('community_pack_create_title'), kind: 'route', route: '/community_pack_create', detail: cs('real_screen') },
     { id: 'language-welcome', title: cs('language_welcome_title'), kind: 'route', route: '/language_welcome', detail: cs('real_screen') },
     {

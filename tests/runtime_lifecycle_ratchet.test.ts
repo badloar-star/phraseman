@@ -106,12 +106,8 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   // зачем 2026-09-02: пульсация подсказки правильного слова удалена по требованию
   // владельца — в lesson1 остался единственный повторяющийся луп (мигание курсора),
   // и он по-прежнему привязан к runtime; сторож не ослаблен, охраняемых лупов меньше.
-  // зачем 2026-09-20 (аудит нагрева): экран открыт пользователям из настроек,
-  // а не только разработчику — три его Animated.loop получили гард фокуса.
-  'app/ideas_catalog.tsx': runtime(
-    'Lifecycle gear spin and both loading skeletons run only on the focused foreground screen; inactive state pins a static frame.',
-    ['if (status !== \'in_progress\' || !runtimeActive) return', 'if (!runtimeActive) {', 'animation.stop()'],
-  ),
+  // зачем PM-171 (2026-09-24): app/ideas_catalog.tsx удалён вместе с разделом «Идеи» —
+  // экран не существует, его lifecycle-запись в реестре снята вместе с файлом.
   'app/lesson1.tsx': runtime('Lesson cursor loop requires focused foreground runtime.', ['!lessonRuntimeActive || selectedWords.length > 0']),
   'app/lesson_complete.tsx': runtime('Completion decoration requires focused foreground runtime.', ['!lessonCompleteRuntimeActive || !seqDone', 'bounce.stop()']),
   'app/lesson_intro_screens.tsx': runtime('Intro hint and CTA loops require focused foreground runtime.', ['!lessonIntroRuntimeActive || allRevealed', '!lessonIntroRuntimeActive || !ctaReady']),

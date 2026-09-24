@@ -18,7 +18,7 @@ export type LocalizedString = { ru: string } & Partial<Record<SurveyLang, string
 export type SurveyQuestionType = 'single_choice' | 'text';
 
 export const SURVEY_APP_ROUTES = [
-  '/ideas_catalog',
+  // зачем: PM-171 — маршрут '/ideas_catalog' убран из союза вместе с удалённым разделом «Идеи»; зеркало app/survey_client.ts.
   '/referrals',
   '/settings_themes',
   '/settings_notifications',

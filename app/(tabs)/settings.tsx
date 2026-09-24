@@ -47,8 +47,6 @@ import { reserveNameDetailed, warmNameAvailabilityAuth } from '../firestore_lead
 import { syncMyLeagueMemberProfileNow } from '../firestore_leagues';
 import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
-import { isIdeasEnabled } from '../remote_flags';
-import { prefetchPublicUserIdeas } from '../ideas_client';
 import { useReferralRoulettePolicy } from '../referral_roulette_flag';
 import { getClaimableReferralState } from '../referral_vip';
 import { captureAccountGeneration, isCurrentAccountGeneration } from '../account_generation';
@@ -485,7 +483,6 @@ export default function SettingsMain() {
   const [premiumPlan, setPremiumPlan] = useState<string | null>(null);
   const [vipPlan, setVipPlan] = useState('');
   const [vipUntilMs, setVipUntilMs] = useState(0);
-  const [ideasOn, setIdeasOn] = useState(isIdeasEnabled());
   /** зачем: единый ряд «Ввести код» вверху настроек переключается между
    *  реферальным и промокодом одним тумблером внутри той же карточки —
    *  тип берём не из отдельного экрана, а из этого локального состояния. */
@@ -682,18 +679,9 @@ export default function SettingsMain() {
       })
       .catch(() => {
       });
-    setIdeasOn(isIdeasEnabled());
     refreshSupplementalAccessState();
     return () => { cancelled = true; };
   }, [settingsRuntimeActive, refreshSupplementalAccessState]); // warm once, refresh when opening Settings
-
-  useEffect(() => {
-    const refreshRemoteFlags = () => {
-      setIdeasOn(isIdeasEnabled());
-    };
-    const sub = DeviceEventEmitter.addListener('remote_config_changed', refreshRemoteFlags);
-    return () => sub.remove();
-  }, []);
 
   useEffect(() => {
     const refreshVipUntil = () => {
@@ -1544,19 +1532,9 @@ export default function SettingsMain() {
             переехали в верхнюю группу и инвайт-баннер (референс Bevel). */}
         <SettingsSectionTitle title={L('Сообщество и помощь', 'Спільнота й допомога', 'Community and support', 'Comunidad y ayuda', 'Comunidade e ajuda', 'Cộng đồng và trợ giúp', 'Komunitas dan bantuan', 'Topluluk ve yardım', 'Społeczność i pomoc')} />
         <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
-          {ideasOn ? (
-            <SettingsRow
-              testID="settings-ideas-row"
-              icon="bulb"
-              color="yellow"
-              label={L('Идеи', 'Ідеї', 'Ideas', 'Ideas', 'Ideias', 'Ý tưởng', 'Ide', 'Fikirler', 'Pomysły')}
-              onPress={() => {
-                prefetchPublicUserIdeas('new');
-                prefetchPublicUserIdeas('top');
-                router.push('/ideas_catalog' as any);
-              }}
-            />
-          ) : null}
+          {/* зачем: PM-171 — раздел «Идеи» скрыт владельцем; ряд и его
+              runtime-прогрев (prefetchPublicUserIdeas) убраны, вход в раздел
+              исключён из настроек. */}
           <SettingsRow
             testID="settings-support-report-row"
             icon="chatbox-ellipses"

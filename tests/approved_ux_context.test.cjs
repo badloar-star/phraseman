@@ -50,15 +50,8 @@ test('voice controls announce user-facing labels and retain QA testIDs', () => {
   assert.ok(voice.includes('testID={`fc-voice-rate-${p.key}`}'));
   assert.ok(voice.includes('accessibilityState={{ selected: active }}'));
 });
-test('an idea error returns to the form, while a successful submission still returns to settings', () => {
-  const source = read('app/ideas_submit.tsx');
-  assert.ok(source.includes('Вернуться к идее'));
-  assert.ok(source.slice(0, source.indexOf('catch (error: unknown)')).includes('Вернуться в настройки'));
-  assert.ok(source.slice(source.indexOf('catch (error: unknown)')).includes('Вернуться к идее'));
-  assert.ok(source.includes('Название — от 3 символов, описание — от 10.'));
-  assert.ok(!source.includes('Название — от 3 символов, описание — от 10. Одна идея в день.'));
-  assert.ok(source.includes('Можно отправить одну идею в день. Возвращайся завтра со следующей.'));
-});
+// зачем: PM-171 — app/ideas_submit.tsx удалён вместе с разделом «Идеи», UX-контракт
+// на его тексты снят вместе с экраном.
 test('approved empty shelves and learning settings explain the next action', () => {
   assert.ok(read('app/achievements_screen.tsx').includes('Здесь будут твои награды. Занимайся'));
   assert.ok(read('app/flashcards_my_packs.tsx').includes('кнопкой «+» внизу'));

@@ -2331,9 +2331,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         void import('./community_packs/communityModerationAlerts')
           .then((m) => m.flushCommunityModerationAlertsFromInbox())
           .catch(() => {});
-        void import('./idea_decision_modals')
-          .then((m) => m.flushIdeaDecisionModals())
-          .catch(() => {});
+        // зачем: PM-171 — раздел «Идеи» скрыт, runtime-прогрев уведомлений о решениях
+        // по идеям (flushIdeaDecisionModals, Firestore-чтение idea_inbox на каждом
+        // старте приложения) убран вместе с ним; app/idea_decision_modals.ts удалён.
         // iOS: инвайт-страница кладёт ссылку в буфер при переходе в App Store —
         // читаем ОДИН раз (бережём системный промпт вставки), потом применяем pending-код.
         // ВАЖНО: до 2026-07-04 checkClipboardForReferralOnce нигде не вызывался — весь
@@ -3238,8 +3238,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       <Stack.Screen name="settings_language" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="privacy_settings" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="max_memory_settings" options={SECTION_SHEET_STACK_OPTIONS} />
-      <Stack.Screen name="ideas_catalog" options={SECTION_SHEET_STACK_OPTIONS} />
-      <Stack.Screen name="ideas_submit" options={SECTION_SHEET_STACK_OPTIONS} />
+      {/* зачем: PM-171 — раздел «Идеи» удалён (ideas_catalog/ideas_submit), маршруты сняты. */}
       <Stack.Screen name="support_report" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="language_welcome" />
       <Stack.Screen name="league_screen" />
@@ -3326,7 +3325,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       {/* зачем: раздел «Руны» — открывается тапом по счётчику рун (шапка главной и «Обучения») */}
       <Stack.Screen name="runes_wallet" />
       <Stack.Screen name="level_gifts_inventory" />
-      <Stack.Screen name="level_reward_spin" />
+      {/* зачем (PM-046): /level_reward_spin удалён вместе с экраном — спины убраны как механика. */}
       <Stack.Screen name="achievements_screen" />
       <Stack.Screen name="collectibles_screen" />
       <Stack.Screen name="level_exam" />

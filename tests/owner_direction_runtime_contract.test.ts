@@ -682,29 +682,8 @@ describe('owner runtime direction contract', () => {
     expect(review).toContain('KEY_SHOW_COUNT');
   });
 
-  it('keeps non-T0 ideas callable setup cached without changing submit payloads', () => {
-    const source = read('app/ideas_client.ts');
-
-    expect(source).toContain('type SubmitUserIdeaCallable = (');
-    expect(source).toContain('let submitUserIdeaCallable: SubmitUserIdeaCallable | null = null');
-    expect(source).toContain('let ideaAppCheckWarmupInFlight: Promise<void> | null = null');
-    expect(source).toContain('function getSubmitUserIdeaCallable(): SubmitUserIdeaCallable');
-    expect(source).toContain('if (!submitUserIdeaCallable)');
-    expect(source).toContain("callable<SubmitUserIdeaRequest, SubmitUserIdeaResult>('submitUserIdea')");
-    expect(source).toContain('function warmIdeasAppCheck(): Promise<void>');
-    expect(source).toContain('if (!ideaAppCheckWarmupInFlight)');
-    expect(source).toContain('ideaAppCheckWarmupInFlight = initFirebaseAppCheckIfAvailable()');
-    expect(source).toContain('.finally(() => {');
-    expect(source).toContain('ideaAppCheckWarmupInFlight = null;');
-    expect(source).toContain('await warmIdeasAppCheck();');
-    expect(source).toContain('const fn = getSubmitUserIdeaCallable();');
-    expect(source).toContain('const res = await withCallableTimeout(');
-    expect(source).toContain('fn({');
-    expect(source).toContain('title: input.title');
-    expect(source).toContain('description: input.description');
-    expect(source).toContain('benefit: input.benefit');
-    expect(source).not.toContain("const fn = callable<{ payload: Record<string, unknown> }, SubmitUserIdeaResult>('submitUserIdea')");
-  });
+  // зачем: PM-171 — app/ideas_client.ts удалён вместе с разделом «Идеи» (client-only
+  // модуль, экран удалён); контракт на его форму кэширования снят вместе с файлом.
 
   it('keeps explicit Firestore telemetry writes owner-reviewed', () => {
     const allowlist: Record<string, number> = {

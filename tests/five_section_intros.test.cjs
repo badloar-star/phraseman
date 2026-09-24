@@ -12,7 +12,7 @@ const routes = [
   ['friends_first_visit', 'orbit', 'app/(tabs)/friends.tsx'],
   ['legacy_lessons_first_visit', 'orbit', 'app/(tabs)/lessons.tsx'],
   ['profile_card_first_visit', undefined, 'app/(tabs)/home.tsx'],
-  ['ideas_first_visit', undefined, 'app/ideas_catalog.tsx'],
+  // зачем: PM-171 — 'ideas_first_visit' удалена вместе с разделом «Идеи» (app/ideas_catalog.tsx больше не существует).
   ['spin_first_visit', undefined, 'app/level_reward_spin.tsx'],
 ];
 test('approved explanations have complete localized copy and selected families', () => {

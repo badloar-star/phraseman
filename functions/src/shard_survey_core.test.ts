@@ -100,13 +100,15 @@ const validConfigInput = {
   rewardShards: 3,
   minDaysBetweenSurveys: 7,
   audience: { tier: 'free', minLessons: 1, platforms: ['ios'] },
+  // зачем: PM-171 — '/ideas_catalog' удалён из SURVEY_APP_ROUTES вместе с разделом «Идеи»,
+  // фикстура переведена на другой валидный маршрут ('/referrals'), логика проверки не менялась.
   questions: [
     {
       id: 'most_useful',
       type: 'single_choice',
       text: { ru: 'Что полезнее всего?' },
       options: [
-        { id: 'lessons', label: { ru: 'Уроки' }, action: { kind: 'app_route', route: '/ideas_catalog', cta: { ru: 'Открыть Идеи' } } },
+        { id: 'lessons', label: { ru: 'Уроки' }, action: { kind: 'app_route', route: '/referrals', cta: { ru: 'Открыть' } } },
         { id: 'quizzes', label: { ru: 'Квизы' }, action: { kind: 'store_review', cta: { ru: 'Оценить приложение' } } },
       ],
     },
@@ -129,8 +131,8 @@ describe('parseSurveyConfig', () => {
     expect(c!.audience.platforms).toEqual(['ios']);
     expect((c!.questions[0].options[0] as any).action).toEqual({
       kind: 'app_route',
-      route: '/ideas_catalog',
-      cta: { ru: 'Открыть Идеи' },
+      route: '/referrals',
+      cta: { ru: 'Открыть' },
     });
     expect((c!.questions[0].options[1] as any).action).toEqual({
       kind: 'store_review',
@@ -146,12 +148,12 @@ describe('parseSurveyConfig', () => {
         type: 'single_choice',
         text: { ru: 'Куда пойдём?' },
         options: [
-          { id: 'safe', label: { ru: 'В Идеи' }, action: { kind: 'app_route', route: '/ideas_catalog', cta: { ru: 'Открыть' } } },
+          { id: 'safe', label: { ru: 'В Идеи' }, action: { kind: 'app_route', route: '/referrals', cta: { ru: 'Открыть' } } },
           { id: 'unsafe', label: { ru: 'На чужой сайт' }, action: { kind: 'app_route', route: 'https://example.com', cta: { ru: 'Открыть' } } },
         ],
       }],
     });
-    expect((c!.questions[0].options[0] as any).action?.route).toBe('/ideas_catalog');
+    expect((c!.questions[0].options[0] as any).action?.route).toBe('/referrals');
     expect((c!.questions[0].options[1] as any).action).toBeUndefined();
   });
 

@@ -23,7 +23,7 @@ export type SurveyQuestionClient = {
 };
 
 export type SurveyAppRoute =
-  | '/ideas_catalog'
+  // зачем: PM-171 — маршрут '/ideas_catalog' убран из союза вместе с удалённым разделом «Идеи».
   | '/referrals'
   | '/settings_themes'
   | '/settings_notifications'

@@ -1008,10 +1008,10 @@
         "functions/src/shard_survey_core.ts:21"
       ],
       "exclusive_to_feature": "community_ideas",
-      "decision": "unknown",
+      "decision": "remove",
       "new_design_approval": "pending",
       "deeplink_migration": false,
-      "evidence": "app/ideas_catalog.tsx:109"
+      "evidence": "PM-171 удалено 2026-09-24"
     },
     {
       "route": "/ideas_submit",
@@ -1024,10 +1024,10 @@
         "components/dev/motion_showcase/sections/screens_profile.tsx:130"
       ],
       "exclusive_to_feature": "community_ideas",
-      "decision": "unknown",
+      "decision": "remove",
       "new_design_approval": "pending",
       "deeplink_migration": false,
-      "evidence": "app/ideas_submit.tsx:40"
+      "evidence": "PM-171 удалено 2026-09-24"
     },
     {
       "route": "/index",

@@ -121,10 +121,12 @@ export default function DevCancelFlowPreview() {
     if (offer === 'support') {
       // Тот же замок, что в боевом экране: двойной тап открывал бы экран
       // обращения двумя слоями. Снимаем при следующем открытии сценария.
+      // зачем: PM-171 — витрина зеркалит боевой редирект, который теперь ведёт
+      // в /support_report (раздел «Идеи» скрыт).
       navBusyRef.current = true;
       setOpenedReason(null);
       setRunIndex(null);
-      router.push('/ideas_submit');
+      router.push('/support_report');
       return;
     }
     if (runIndex !== null) stepNext();

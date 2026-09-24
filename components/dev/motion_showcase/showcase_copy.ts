@@ -561,7 +561,6 @@ const RU = {
   diagnostic_test_level_title: 'Диагностический тест уровня',
   exam_screen_title: 'Экзамен (сертификат)',
   survey_screen_title: 'Опрос ученика',
-  ideas_submit_title: 'Предложить идею',
   community_pack_create_title: 'Создать пользовательский набор карточек',
   language_welcome_title: 'Приветствие выбора языка',
 

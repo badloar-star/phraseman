@@ -291,7 +291,6 @@ function fixedChildSection(pathname: string): NavigationSection | null {
     || pathname === '/privacy_screen'
     || pathname === '/terms_screen'
     || pathname === '/account_details'
-    || pathname === '/ideas_submit'
     || pathname === '/language_welcome'
     // зачем: DEV-витрина движения живёт в DEV Hub (настройки). Без записи в
     // журнал экраны, открытые из неё (пейволы и др.), при закрытии не находили

@@ -22,14 +22,8 @@ describe('community ideas public contract', () => {
     expect(source).toContain('lang: nullableText(data.lang, 16)');
   });
 
-  test('feed keeps pagination and detail metadata available to the client', () => {
-    const client = read('app/ideas_client.ts');
-    const catalog = read('app/ideas_catalog.tsx');
-    expect(client).toContain('options: { force?: boolean; limit?: number; cursor?: string | null }');
-    expect(catalog).toContain('listPublicUserIdeas(expectedTab, { cursor })');
-    expect(catalog).toContain('Показать ещё идеи');
-    expect(catalog).toContain('IdeasDetailSkeleton');
-  });
+  // зачем: PM-171 — app/ideas_client.ts и app/ideas_catalog.tsx удалены вместе с
+  // разделом «Идеи» (client-only, экран скрыт); контракт на клиентскую пагинацию снят.
 
   test('idea likes use deterministic receipts and existing received-like surfaces', () => {
     const source = read('functions/src/user_idea_likes.ts');
@@ -47,10 +41,5 @@ describe('community ideas public contract', () => {
     expect(source).toContain("collectionGroup: 'user_ideas'");
   });
 
-  test('successful submit and edit can refresh the catalog from the local cache', () => {
-    const client = read('app/ideas_client.ts');
-    expect(client).toContain('function mergeCachedPublicIdea');
-    expect(client).toContain('if (res.data.idea) mergeCachedPublicIdea(res.data.idea);');
-    expect(client).toContain('if (res.data.idea) mergeCachedPublicIdea(res.data.idea);\n    else invalidatePublicIdeasCache();');
-  });
+  // зачем: PM-171 — то же самое: клиентский кэш идей удалён вместе с app/ideas_client.ts.
 });

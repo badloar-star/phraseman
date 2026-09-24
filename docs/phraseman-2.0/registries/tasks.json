@@ -3475,7 +3475,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -3502,18 +3502,21 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Opus 5.5 (субагент)",
     "reviewer": null,
-    "evidence": [],
+    "evidence": [
+      "commit a6853bb20"
+    ],
     "notes": [
-      "2026-09-24: временная процедурная монета (SVG, 21 металл) — components/level_up/coin_metal_palette.ts + CoinFaceArt.tsx; PNG подставляется одним пропсом source/coinSource. Сами ассеты по-прежнему за художником."
+      "2026-09-24: временная процедурная монета (SVG, 21 металл) — components/level_up/coin_metal_palette.ts + CoinFaceArt.tsx; PNG подставляется одним пропсом source/coinSource. Сами ассеты по-прежнему за художником.",
+      "20 монет webp (~0.5МБ), таблица app/coin_rank_table_v1.ts единый источник, coin_metal_palette обновлён на 4 металла. Ранг 19 = Титан, «Оракул» не используется — открытый вопрос владельцу"
     ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "opus-5.5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-074",
@@ -3575,7 +3578,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -3606,16 +3609,20 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Opus 5.5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "commit 276fc003f"
+    ],
+    "notes": [
+      "upgradeCoinRank атомарно через prepareRuneSpend (тот же путь что другие покупки), защита от двойного списания (expectedFromRank + постоянная метка траты), офлайн-совместимо. tests/coin_rank_upgrade.test.ts 6/6 PASS. Анимация CoinRankUpgradeCeremony подключена, показывается только после свежего upgraded"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "opus-5.5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-076",
@@ -3626,7 +3633,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -3653,16 +3660,20 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Opus 5.5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "commit f27519c02"
+    ],
+    "notes": [
+      "coin_rank_state_v1.ts (ключ на аккаунт, дефолт ранг 0, в cloud_sync); useMyCoinRank(); AvatarView получил необязательный coinRank"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "opus-5.5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-077",
@@ -3715,7 +3726,8 @@
       "tests/level_up_mint_timeline.test.ts"
     ],
     "notes": [
-      "2026-09-24: вариант B «Монетный двор» (D49) перенесён в приложение: components/level_up/*, коммит 5c98ac424 (попал в коммит соседней сессии PM-046 из общего индекса). Готово: компонент, тайминги 1:1 с эталоном (тест-сверка с variant-b.html), reduce motion, скип, метки звука onCue, превью в DEV Hub → Витрина движения → «Повышение уровня 2.0». Осталось: подключить к кнопке повышения после PM-075 (критерий A1), заменить процедурные монеты на PNG (PM-073), звуки — владелец."
+      "2026-09-24: вариант B «Монетный двор» (D49) перенесён в приложение: components/level_up/*, коммит 5c98ac424 (попал в коммит соседней сессии PM-046 из общего индекса). Готово: компонент, тайминги 1:1 с эталоном (тест-сверка с variant-b.html), reduce motion, скип, метки звука onCue, превью в DEV Hub → Витрина движения → «Повышение уровня 2.0». Осталось: подключить к кнопке повышения после PM-075 (критерий A1), заменить процедурные монеты на PNG (PM-073), звуки — владелец.",
+      "Церемония подключена к хуку useCoinRankUpgrade(), но САМА кнопка на Главной ещё не поставлена — ждёт сессию интерфейса"
     ],
     "actual_cost": null,
     "kind": "unclassified",

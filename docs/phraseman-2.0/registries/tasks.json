@@ -1852,7 +1852,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "blocked",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -1876,7 +1876,9 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": [
+      "Разведка: вся логика XP-полосы/уровня Главной прошита в home.tsx (хуки use_home_xp_bar_fill.ts, use_home_level_up_celebration.ts, очередь home_level_up_celebration_queue.ts, страж tests/level_up_celebrated_on_home_contract.test.ts). home.tsx занят сессией интерфейса — удалять нельзя, единственный потребитель. Список точных координат передан ей. xp_manager.ts (начисление XP) НЕ трогать — это S2-миграция PM-067/068/069"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,

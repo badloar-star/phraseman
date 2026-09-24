@@ -9648,7 +9648,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -9671,16 +9671,20 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "commits 219d80a72 3e19b799c cd7a90984"
+    ],
+    "notes": [
+      "D47: скачивание озвучки V2 удалено, V2 на TTS; D48: V1 текущий+следующий урок заранее"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-206",

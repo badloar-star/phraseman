@@ -87,6 +87,11 @@
 - 2026-09-24 · PM-074 · Opus 5.5 · названия уровней выбраны владельцем (Стажёр…Оракул) · af1aaec47 · docs/COIN_RANKS.md
 - Известные падения ДО 2.0 (не чинить в чужих задачах): energy_start_confirmation_contract (2), home_social_notifications/header_theme_accent_buttons/home_header_shards_left (старый JSX колокольчика), level_spin_gifts_entry_contract (4), stats_tonal_hierarchy_contract, ~36–168 ошибок tsc в modules/learning-v2/content/source/*
 
+- 2026-09-24 · PM-053/198 · Sonnet 5 · тосты достижений (97858f631, файлы af3d920d4), пункт «Уроки с MAX» (ddf8e551e)
+- 2026-09-24 · D47 · Sonnet 5 · скачивание озвучки V2 удалено (219d80a72, 3e19b799c); TTS-фолбэк V2 был заперт флагом isAuthoringPreview — открыт для всех · остались мёртвые learning_v2_activity_audio_preload_v1/_transport_v1 (ES-сессии), expo-background-task в package.json
+- 2026-09-24 · D48 · Sonnet 5 · hooks/phrase_audio_ahead_prefetch.ts: текущий+следующий урок через ~20 с (cd7a90984), 8/8 PASS
+- 2026-09-24 · СБОРКА · Opus 5.5 · HEAD ссылался на удалённые модули (EnergyCostBadge в 6 файлах, prefetch-координатор V2): помощники коммитили удаление модуля, а правки потребителей оставались незакоммиченными · 3372bbdfe f634ebc04 135fda75b af3d920d4 + статистика планов · **ПРАВИЛО: после каждого помощника, удалявшего файлы, сканировать HEAD на импорты удалённых модулей** (`git grep -l -E "(from|import\(|require\()\s*['\"][^'\"]*/<имя>['\"]" HEAD -- app components hooks modules`)
+
 ## 6. Известные конфликты 2.0 со старыми правилами проекта
 
 - Покупка уроков за жемчуг (сделана 2026-09-17…24, коммит `efbe0dcd9`) — по 2.0 удаляется (PM-148, D15). Не делать до вопроса о компенсации.

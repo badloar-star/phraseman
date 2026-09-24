@@ -57,7 +57,7 @@
     ],
     "basis": "OWNER",
     "stage": "A",
-    "status": "done",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -93,7 +93,8 @@
       "commits aa08f5894..385daed73"
     ],
     "notes": [
-      "Корневые AGENTS.md/CLAUDE.md не перезаписаны; правила пакета действуют через PROGRESS.md; сырые sources в .gitignore"
+      "Корневые AGENTS.md/CLAUDE.md не перезаписаны; правила пакета действуют через PROGRESS.md; сырые sources в .gitignore",
+      "статус review: решение записано, независимое ревью/gates не пройдены (validate.py)"
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -732,7 +733,7 @@
     ],
     "basis": "DECISION",
     "stage": "A",
-    "status": "done",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -768,7 +769,8 @@
       "Ответ владельца в чате 2026-09-24, PROGRESS.md D34–D37"
     ],
     "notes": [
-      "D35: Free максимум 3 набора всего, созданные И добавленные считаются; официальные наборы в приложении и наборы из видео — уточнить при PM-101, считаются ли 'добавленными'"
+      "D35: Free максимум 3 набора всего, созданные И добавленные считаются; официальные наборы в приложении и наборы из видео — уточнить при PM-101, считаются ли 'добавленными'",
+      "статус review: решение записано, независимое ревью/gates не пройдены (validate.py)"
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -1660,7 +1662,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "L0",
     "model": "gpt-6-luna",
     "reasoning": "low",
@@ -1680,17 +1682,21 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
-    "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "result_sha": "78f58650e",
+    "owner": "Claude Sonnet 5 (субагент)",
+    "reviewer": "self-check оркестратора (не независимое ревью)",
+    "evidence": [
+      "commit 78f58650e"
+    ],
+    "notes": [
+      "typecheck: 0 ошибок в затронутых файлах"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-038",
@@ -1701,7 +1707,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "deferred",
     "profile": "L0",
     "model": "gpt-6-luna",
     "reasoning": "low",
@@ -1731,7 +1737,9 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": [
+      "ОТМЕНЕНО владельцем 2026-09-24 (D42): колокольчик остаётся по новому референсу Главной"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -1748,7 +1756,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "L0",
     "model": "gpt-6-luna",
     "reasoning": "low",
@@ -1774,17 +1782,21 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
-    "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "result_sha": "78f58650e",
+    "owner": "Claude Sonnet 5 (субагент)",
+    "reviewer": "self-check оркестратора (не независимое ревью)",
+    "evidence": [
+      "commit 78f58650e"
+    ],
+    "notes": [
+      "typecheck: 0 ошибок в затронутых файлах"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-040",
@@ -1795,7 +1807,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "L0",
     "model": "gpt-6-luna",
     "reasoning": "low",
@@ -1815,17 +1827,21 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
-    "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "result_sha": "78f58650e",
+    "owner": "Claude Sonnet 5 (субагент)",
+    "reviewer": "self-check оркестратора (не независимое ревью)",
+    "evidence": [
+      "commit 78f58650e"
+    ],
+    "notes": [
+      "typecheck: 0 ошибок в затронутых файлах"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-041",
@@ -3982,7 +3998,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "L0",
     "model": "gpt-6-luna",
     "reasoning": "low",
@@ -4008,17 +4024,22 @@
       "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE"
     ],
     "audit_sha": null,
-    "result_sha": null,
-    "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "result_sha": "ac9c8e31d",
+    "owner": "Claude Sonnet 5 (субагент)",
+    "reviewer": "self-check оркестратора (не независимое ревью)",
+    "evidence": [
+      "commit ac9c8e31d"
+    ],
+    "notes": [
+      "typecheck: 0 ошибок в затронутых файлах",
+      "app/learning-v2/lesson/[id].tsx: ценники убраны локально, НЕ закоммичено (чужие правки в файле)"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-087",
@@ -5422,7 +5443,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "L0",
     "model": "gpt-6-luna",
     "reasoning": "low",
@@ -5442,17 +5463,21 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
-    "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "result_sha": "f4312f4a9",
+    "owner": "Claude Sonnet 5 (субагент)",
+    "reviewer": "self-check оркестратора (не независимое ревью)",
+    "evidence": [
+      "commit f4312f4a9"
+    ],
+    "notes": [
+      "typecheck: 0 ошибок в затронутых файлах"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-117",
@@ -6940,7 +6965,7 @@
     ],
     "basis": "DECISION",
     "stage": "C",
-    "status": "done",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -6977,7 +7002,8 @@
       "Ответ владельца в чате 2026-09-24, PROGRESS.md D34–D37"
     ],
     "notes": [
-      "D36: 1★<60, 2★ 60–84, 3★ ≥85; продвижение от 2★"
+      "D36: 1★<60, 2★ 60–84, 3★ ≥85; продвижение от 2★",
+      "статус review: решение записано, независимое ревью/gates не пройдены (validate.py)"
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -7586,7 +7612,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "L0",
     "model": "gpt-6-luna",
     "reasoning": "low",
@@ -7612,17 +7638,21 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
-    "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "result_sha": "8c77a34d4",
+    "owner": "Claude Sonnet 5 (субагент)",
+    "reviewer": "self-check оркестратора (не независимое ревью)",
+    "evidence": [
+      "commit 8c77a34d4"
+    ],
+    "notes": [
+      "typecheck: 0 ошибок в затронутых файлах"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-164",
@@ -8352,7 +8382,7 @@
     ],
     "basis": "DECISION",
     "stage": "C",
-    "status": "done",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -8398,7 +8428,8 @@
       "Ответ владельца в чате 2026-09-24, PROGRESS.md D34–D37"
     ],
     "notes": [
-      "6 часов и только при заходе на экран — как действующее правило лиг"
+      "6 часов и только при заходе на экран — как действующее правило лиг",
+      "статус review: решение записано, независимое ревью/gates не пройдены (validate.py)"
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -8936,7 +8967,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "L0",
     "model": "gpt-6-luna",
     "reasoning": "low",
@@ -8956,17 +8987,21 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
-    "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "result_sha": "5edb8757a",
+    "owner": "Claude Sonnet 5 (субагент)",
+    "reviewer": "self-check оркестратора (не независимое ревью)",
+    "evidence": [
+      "commit 5edb8757a"
+    ],
+    "notes": [
+      "typecheck: 0 ошибок в затронутых файлах"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-192",

@@ -1438,7 +1438,7 @@
       "decision": "remove",
       "new_design_approval": "pending",
       "deeplink_migration": false,
-      "evidence": "app/level_reward_spin.tsx:39"
+      "evidence": "PM-046 удалено 2026-09-24"
     },
     {
       "route": "/lingman_playlist",

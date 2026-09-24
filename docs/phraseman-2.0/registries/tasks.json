@@ -10161,7 +10161,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "A1",
     "model": "gpt-6-astra",
     "reasoning": "low",
@@ -10170,14 +10170,18 @@
       {
         "id": "PM-209-A1",
         "text": "Исследован app_resume_policy и реальные callers",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/evidence/PM-209_resume_queue_survey.md"
+        ]
       },
       {
         "id": "PM-209-A2",
         "text": "не добавлена вторая независимая «главная очередь»",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/evidence/PM-209_resume_queue_survey.md"
+        ]
       }
     ],
     "depends_on": [],
@@ -10187,15 +10191,19 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент) + Claude Opus 5.5",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "docs/phraseman-2.0/evidence/PM-209_resume_queue_survey.md"
+    ],
+    "notes": [
+      "A1/A2 закрыты разведкой: app_resume_policy — три узких примитива (классификатор длительности, dedupe-раннер, keyed foreground-scheduler с cancel), не приоритетная очередь. 8 файлов/12 call-сайтов используют его без конфликтов по ключам — вторая независимая очередь НЕ обоснована фактами. Найден конкретный дефект: 2 места в _layout.tsx (~2938 'конец интро-доступа', ~2983 winback-оффер) вручную копируют паттерн общего примитива (AppState listener + useRef таймстемп + минимальный интервал) вместо вызова scheduleCoalescedForegroundTask. НЕ стал чинить сам: разобрал точную семантику — ручной код это THROTTLE (выполнить немедленно, не чаще раза в 60с), а scheduleCoalescedForegroundTask это DEBOUNCE (отложить на 900мс, новый foreground отменяет предыдущий отложенный запуск) — прямая подстановка изменит частоту показа платных предложений (premium_modal intro_ended и winback), это денежная конверсия paywall, нужно явное решение владельца, не мелкая правка"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
+    "actual_model": "sonnet-5",
     "actual_reasoning": null
   },
   {

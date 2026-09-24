@@ -3306,8 +3306,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       <Stack.Screen name="account_details" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="referrals" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="promo_code_entry" options={SECTION_SHEET_STACK_OPTIONS} />
-      <Stack.Screen name="avatar_select" />
-      <Stack.Screen name="avatar_dna_studio" options={{ headerShown: false }} />
+      {/* зачем: app/avatar_select.tsx и app/avatar_dna_studio.tsx удалены целиком
+          по D57/PM-062/063 — старые "гексаэдрические" студии аватаров закрыты. */}
       <Stack.Screen name="flashcards" options={cardsSiblingAnimationOptions} />
       {/* Cards 2.1 §5.3: каталог наборов сообщества — правая позиция таббара раздела */}
       <Stack.Screen name="flashcards_packs" options={cardsSiblingAnimationOptions} />

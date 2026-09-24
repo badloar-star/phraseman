@@ -59,23 +59,28 @@ describe('spireEvaluateBatch', () => {
     expect(again.record.steps).toBe(2);
   });
 
-  test('быстрее minStepMs — too_fast; провал за то же время — принят без очков', () => {
+  // зачем (владелец 2026-09-24, О-275-1/О-275-2): сервер больше НЕ отклоняет
+  // ступень по скорости — она уже пройдена на телефоне, сервер только
+  // синхронизирует. Прежние тесты «быстрее minStepMs → too_fast» и «больше
+  // maxStepsPerHour → rate_limited» заменены на обратную проверку: такая же
+  // быстрая/частая пачка теперь принимается целиком.
+  test('быстрее minStepMs — всё равно принята (сервер не судит скорость); провал засчитан без очков', () => {
     const out = spireEvaluateBatch(input([
       report(1, { durationMs: MIN - 1 }),
       report(2, { durationMs: 10_000, outcome: 'failed' }),
     ]));
-    expect(out.results[0]).toEqual({ reportId: 'r1', verdict: 'rejected', reason: 'too_fast' });
+    expect(out.results[0]).toEqual({ reportId: 'r1', verdict: 'accepted', outcome: 'passed' });
     expect(out.results[1]).toEqual({ reportId: 'r2', verdict: 'accepted', outcome: 'failed' });
-    expect(out.record.steps).toBe(0);
+    expect(out.record.steps).toBe(1);
     expect(out.record.failedAttempts).toBe(1);
   });
 
-  test('больше maxStepsPerHour за час — rate_limited', () => {
+  test('больше старого maxStepsPerHour за час — всё равно принята целиком', () => {
     const integrity = { minStepMs: 1_000, maxStepsPerHour: 3 };
     const rows = [1, 2, 3, 4].map((i) => report(i, { durationMs: 60_000 }));
     const out = spireEvaluateBatch(input(rows, { integrity }));
-    expect(out.acceptedPassed).toBe(3);
-    expect(out.results[3]).toEqual({ reportId: 'r4', verdict: 'rejected', reason: 'rate_limited' });
+    expect(out.acceptedPassed).toBe(4);
+    expect(out.results.every((r) => r.verdict === 'accepted')).toBe(true);
   });
 
   test('чужой отпечаток пакета — pack_mismatch; пакета нет — pack_unknown', () => {
@@ -106,6 +111,18 @@ describe('spireEvaluateBatch', () => {
     expect(byId.r2).toMatchObject({ verdict: 'rejected', reason: 'clock_ahead' });
     expect(byId.r3).toMatchObject({ verdict: 'accepted' });
     expect(byId.r4).toMatchObject({ verdict: 'rejected', reason: 'overlap' });
+  });
+
+  test('О-275-3: отчёт из старой недели за 5 мин до полуночи — принят (окно 10 мин), за 20 мин — отклонён', () => {
+    const withinGrace = spireEvaluateBatch(input([
+      report(1, { weekKey: '2026-W38', completedAtMs: WEEK_START - 5 * 60_000 }),
+    ]));
+    expect(withinGrace.results[0]).toMatchObject({ verdict: 'accepted' });
+
+    const outsideGrace = spireEvaluateBatch(input([
+      report(1, { weekKey: '2026-W38', completedAtMs: WEEK_START - 20 * 60_000 }),
+    ]));
+    expect(outsideGrace.results[0]).toMatchObject({ verdict: 'rejected', reason: 'stale_week' });
   });
 
   test('мусорная строка — malformed, остальные не страдают', () => {

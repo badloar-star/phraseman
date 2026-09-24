@@ -3,13 +3,21 @@
  *
  * зачем: владелец (TOWER.md §6, TOWER_CONTRACT.md §5–§6, D56) — ступень целиком
  * играется на устройстве, сервер узнаёт о ней ПАЧКОЙ (при уходе с экрана или раз
- * в 5 минут) и пишет ОДНУ агрегированную запись `progress.spire_week_v1`. Раз
- * сервер не видел саму ступень, он обязан отсеять неправдоподобное:
- *   • ступень не быстрее `integrity.minStepMs`;
- *   • не больше `integrity.maxStepsPerHour` пройденных ступеней за любые 60 минут;
- *   • отпечаток пакета недели совпадает с ожидаемым;
- *   • ступени идут друг за другом во времени (не пересекаются, не из будущего,
- *     не из прошлой недели).
+ * в 5 минут) и пишет ОДНУ агрегированную запись `progress.spire_week_v1`.
+ *
+ * ⛔ Сервер НЕ судит, правда ли ступень пройдена (владелец 2026-09-24, дословно:
+ * «сервер идёт нахуй с самого начала, никакого сервера, сервер только для
+ * синхронизации»). Раньше здесь были отказы по скорости прохождения
+ * (`too_fast`/`rate_limited`) — они убраны: локальный прогресс на устройстве
+ * авторитетен всегда, сервер синхронизирует его в общий рейтинг комнаты, не
+ * откатывает. Остаются только проверки ЦЕЛОСТНОСТИ данных (не правды):
+ *   • отпечаток пакета недели совпадает с ожидаемым (`pack_mismatch`/`pack_unknown`);
+ *   • ступени идут друг за другом во времени, не пересекаются (`overlap`);
+ *   • не из будущего (`clock_ahead`) и не из прошлой недели (`stale_week`);
+ *   • шпиль отчёта совпадает со шпилем комнаты (`tier_mismatch`);
+ *   • форма отчёта корректна (`malformed`).
+ * Если накрутка станет проблемой — перевести верхние шпили на серверный план
+ * (как в Арене, TOWER.md §6), а не возвращать эти отказы.
  *
  * Чистый модуль: ни Firestore, ни часов, ни сети — всё приходит аргументами,
  * поэтому проверяется тестом целиком (`spire_progress_contract.test.ts`).
@@ -43,6 +51,14 @@ export const SPIRE_CLOCK_SKEW_MS = 2 * 60_000;
 export const SPIRE_STEP_OVERLAP_TOLERANCE_MS = 1_000;
 /** Верх для длительности одной ступени: бюджет этажа 1 ≈ 2 мин, пауза таймер не тратит. */
 export const SPIRE_STEP_MAX_DURATION_MS = 30 * 60_000;
+/**
+ * зачем (владелец 2026-09-24, О-275-3): ступень пройдена в последние минуты
+ * старой недели, а отчёт (пачкой, раз в 5 мин) дошёл уже после полуночи
+ * понедельника — окно засчитывает её в ТЕКУЩУЮ неделю, а не отбрасывает
+ * `stale_week`. Не разбивает запись на две недели (усложнение архитектуры) —
+ * достаточно принять погрешность в несколько минут на границе.
+ */
+export const SPIRE_WEEK_ROLLOVER_GRACE_MS = 10 * 60_000;
 const HOUR_MS = 60 * 60_000;
 const PACK_HASH_RE = /^[A-Za-z0-9:_-]{8,128}$/u;
 const REPORT_ID_RE = /^[A-Za-z0-9:_.-]{1,160}$/u;
@@ -85,6 +101,11 @@ export type SpireLangWeekRecord = Readonly<{
 
 export type SpireWeekProgress = Readonly<Partial<Record<SpireLang, SpireLangWeekRecord>>>;
 
+/**
+ * зачем: 'too_fast'/'rate_limited' убраны владельцем 2026-09-24 (сервер не
+ * судит правду о скорости — см. комментарий в шапке файла). Оставшиеся
+ * причины — только целостность данных, не правдоподобие прохождения.
+ */
 export type SpireReportRejectReason =
   | 'malformed'
   | 'stale_week'
@@ -92,9 +113,7 @@ export type SpireReportRejectReason =
   | 'pack_unknown'
   | 'pack_mismatch'
   | 'tier_mismatch'
-  | 'overlap'
-  | 'too_fast'
-  | 'rate_limited';
+  | 'overlap';
 
 export type SpireReportVerdict =
   | Readonly<{ reportId: string; verdict: 'accepted'; outcome: SpireStepOutcome }>
@@ -229,13 +248,6 @@ export type SpireEvaluateInput = Readonly<{
   expectedTier?: number | null;
 }>;
 
-function countInWindow(times: readonly number[], atMs: number): number {
-  const from = atMs - HOUR_MS;
-  let n = 0;
-  for (const t of times) if (t > from && t <= atMs) n += 1;
-  return n;
-}
-
 /**
  * Главная проверка. Отчёты обрабатываются в порядке времени завершения —
  * ступени на устройстве идут строго друг за другом, и только так окно «в час»
@@ -272,7 +284,13 @@ export function spireEvaluateBatch(input: SpireEvaluateInput): SpireBatchEvaluat
       results.push({ reportId: report.reportId, verdict: 'rejected', reason });
     };
 
-    if (report.weekKey !== input.serverWeekKey || report.completedAtMs < input.weekStartMs) {
+    // зачем (О-275-3): ступень пройдена в последние SPIRE_WEEK_ROLLOVER_GRACE_MS
+    // старой недели — засчитываем в текущую запись вместо отказа. Клиент шлёт
+    // report.weekKey своей недели; сервер сверяет только время, не строку,
+    // чтобы часовой пояс клиента не решал, попала ли ступень в допуск.
+    const withinRolloverGrace = report.completedAtMs >= input.weekStartMs - SPIRE_WEEK_ROLLOVER_GRACE_MS
+      && report.completedAtMs < input.weekStartMs;
+    if ((report.weekKey !== input.serverWeekKey && !withinRolloverGrace) || report.completedAtMs < input.weekStartMs - SPIRE_WEEK_ROLLOVER_GRACE_MS) {
       reject('stale_week');
       continue;
     }
@@ -319,15 +337,15 @@ export function spireEvaluateBatch(input: SpireEvaluateInput): SpireBatchEvaluat
       continue;
     }
 
-    if (report.durationMs < integrity.minStepMs) {
-      reject('too_fast');
-      continue;
-    }
-    if (countInWindow(record.recentPassedAtMs, report.completedAtMs) >= integrity.maxStepsPerHour) {
-      reject('rate_limited');
-      continue;
-    }
-
+    // зачем (владелец 2026-09-24, О-275-1/О-275-2, дословно: «сервер идёт
+    // нахуй с самого начала, никакого сервера, сервер только для
+    // синхронизации»): раньше здесь стоял отказ 'too_fast'/'rate_limited',
+    // который мог откатить ЛОКАЛЬНО уже пройденную на телефоне ступень в
+    // общем рейтинге недели. Владелец это прямо запретил — сервер только
+    // синхронизирует прогресс, не судит, правда ли ступень пройдена.
+    // recentPassedAtMs остаётся в состоянии как диагностика (видно тому,
+    // кто смотрит данные, кто проходит подозрительно быстро), но не
+    // используется для отказа.
     const windowFrom = report.completedAtMs - HOUR_MS;
     record = {
       ...record,

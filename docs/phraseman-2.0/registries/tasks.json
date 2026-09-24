@@ -154,7 +154,7 @@
     ],
     "basis": "OWNER",
     "stage": "A",
-    "status": "ready_audit",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -169,18 +169,22 @@
     ],
     "depends_on": [],
     "gates": [],
-    "audit_sha": null,
+    "audit_sha": "385daed73",
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "registries/screen_inventory.json"
+    ],
+    "notes": [
+      "139 маршрутов: keep 55, remove 29, conserve 6 (MAX), redesign 12, unknown 37 (пейволы, аватар, коллекции, достижения, диалоги, Идеи). Критерий не принят: 37 unknown. Мёртвые кандидаты: app/modal.tsx, learning-v2/lesson/[id].tsx без входа, personal_plan_exercise_transition/task_done, flashcards_audio"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-005",
@@ -240,7 +244,7 @@
     ],
     "basis": "OWNER",
     "stage": "A",
-    "status": "ready_audit",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -255,18 +259,22 @@
     ],
     "depends_on": [],
     "gates": [],
-    "audit_sha": null,
+    "audit_sha": "385daed73",
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "registries/job_inventory.json"
+    ],
+    "notes": [
+      "33 клиентские работы: keep 16, remove-with-feature 6, unknown 11. Самое тяжёлое: root init в app/_layout.tsx:2140-2393 (десятки сетевых вызовов на старте без лимита), прогрев Арены и маркетплейса на каждом старте. Не все ~140 AppState-файлов прочитаны построчно"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-007",

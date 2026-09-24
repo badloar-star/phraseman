@@ -1,5 +1,5 @@
 {
-  "status": "NOT_YET_AUDITED",
+  "status": "AUDITED_AT_385daed73",
   "purpose": "Форма для фактического аудита. Пустые entries не означают, что объектов нет. Не публиковать данные покупателей.",
   "columns": [
     "route",
@@ -10,5 +10,2291 @@
     "deeplink_migration",
     "evidence"
   ],
-  "entries": []
+  "audited_sha": "385daed73530cf6a568e5b9562e0b99c3f2e18f7",
+  "audited_at": "2026-09-24",
+  "method": "Полный список файлов app/**/*.{ts,tsx} получен через find (1341 файлов). Экраны отличены от утилит по паттерну: экран = .tsx файл с `export default` React-компонента; ВСЕ 556 .ts-файлов с export default в app/ оказались служебными __RouteShim-заглушками (export default function __XRouteShim() { return null; } или export default {}) — намеренный паттерн, чтобы Expo Router не терял файл из дерева роутинга, но реальным экраном не считать (556 utils, из них 1 feedback_kit.ts — фасад-синглтон fk без Shim-обёртки, тоже утилита). Router root не переопределён (app.json experiments.router={}, typedRoutes=true, дефолтный app/ как корень). Из 188 .tsx с export default исключено 49: layout/preview-файлы с ведущим '_' (кроме _layout.tsx — по конвенции Expo Router файлы/папки с '_' не входят в дерево роутинга, что подтверждено production-safe gate паттерном: напр. motion_showcase.tsx лениво require()-ит _motion_showcase.tsx только в dev-сборке) и PascalCase/колокейтед-компоненты внутри app/ (LeagueResultModal.tsx, TabContext.tsx, TabSlider.tsx, ThemeShardPaywallModal.tsx, app/community_packs/*.tsx, app/flashcards/*.tsx, direct_paywall_route.tsx, lesson_runtime_access_boundary.tsx, max_call_halo.tsx, max_call_live_caption_view.tsx, max_voice_consent_gate.tsx, product_analytics_runtime_observer.tsx, referral_access_ended_modal.tsx, voice_equalizer.tsx) — подтверждено grep'ом: каждый импортируется как `import X from '...'` и рендерится как <X/>, ни разу не встречается в router.push/replace/navigate или <Stack.Screen name=.../>. Итого 139 реальных маршрутов. entry_points искались через: grep по router.push(/replace(/navigate(, <Link href=, pathname: '...' (многострочные push({pathname:...}) объекты), safeRouterBack(router, '...'), <Stack.Screen name=\"...\"/>, плюс широкий проход по всем кавыченным строкам вида '/slug' в app/ и components/ для маршрутов, которые push'ятся через центральные реестры (app/navigation_back.ts, app/paywall_navigation.ts, app/arena_notification_route.ts) а не инлайн-строкой. Ограничение метода: динамические pathname (переменные, конкатенация) могли быть пропущены — где entry_points пуст, это зафиксировано как факт, а не изобретено; часть таких экранов (напр. app/learning-v2/lesson/[id].tsx, app/modal.tsx — неиспользуемый шаблон Expo Router 'This is a modal') похожи на осиротевшие/неиспользуемые. Deeplink/уведомления: схема 'phraseman' в app.json, реальные push-таргеты найдены в app/notification_tap_handler.ts и app/arena_notification_route.ts — (tabs)/home, lingman_videos, lessons_list, premium_modal, max_call_prestart, level_gifts_inventory, arena_invite, (tabs)/friends помечены deeplink_migration=true, остальные false (не найдено доказательств) — не unknown, т.к. поиск по всем notification/Linking источникам дал исчерпывающий список. Классификация decision опирается на 03_DECISIONS.md (D02 XP/level, D03 руны→монеты, D08 темы, D09 подарки/спины/сундуки, D10 Арена эксклюзивные экраны, D12 Learning V1 keep, D14 Learning V2 LATER/redesign, D21 лига топ-3 open) и на найденный в коде факт: app/personal_plan*.tsx уже находится в процессе самостоятельного sunset владельцем (components/PersonalPlanSunsetNotice.tsx, components/personal_plan_sunset_guard.tsx, shouldGateFeature('personal_plan', false), tests/personal_plan_sunset_wiring_contract.test.ts) — это и есть legacy 'Планы' из задания, классифицирован remove. Раздел 'Идеи' (ideas_catalog.tsx, ideas_submit.tsx) существует и подключён ((tabs)/settings → ideas_catalog), но 03_DECISIONS.md явно его не упоминает — decision=unknown, не додумано. MAX (max_*) — conserve по уже задокументированной консервации в CLAUDE.md. Где feature/decision не удалось надёжно определить по коду+decisions doc — unknown, как требует задание.",
+  "totals": {
+    "routes": 139,
+    "remove": 29,
+    "conserve": 6,
+    "keep": 55,
+    "redesign": 12,
+    "unknown": 37
+  },
+  "entries": [
+    {
+      "route": "/(tabs)/_layout",
+      "entry_points": [],
+      "exclusive_to_feature": null,
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/(tabs)/_layout.tsx:1249"
+    },
+    {
+      "route": "/(tabs)/arena",
+      "entry_points": [
+        "app/(tabs)/_layout.tsx:327",
+        "app/(tabs)/_layout.tsx:333",
+        "app/+native-intent.tsx:70",
+        "app/+native-intent.tsx:76",
+        "app/arena_friend_duel.tsx:47",
+        "app/arena_friend_duel.tsx:95",
+        "app/arena_invite.tsx:192",
+        "app/arena_invite.tsx:198",
+        "app/arena_invite.tsx:205",
+        "app/arena_invite.tsx:29",
+        "app/arena_invite.tsx:80",
+        "app/arena_match.tsx:1257",
+        "app/arena_match.tsx:1274",
+        "app/arena_match.tsx:1293",
+        "app/arena_match.tsx:1344",
+        "app/arena_match.tsx:1412",
+        "app/arena_match.tsx:884",
+        "app/arena_match.tsx:899",
+        "app/arena_match.tsx:942",
+        "app/arena_matchmaking.tsx:177",
+        "app/arena_matchmaking.tsx:207",
+        "app/arena_matchmaking.tsx:212",
+        "app/arena_matchmaking.tsx:232",
+        "app/arena_matchmaking.tsx:98",
+        "app/arena_notification_route.ts:17",
+        "app/arena_notification_route.ts:3",
+        "app/arena_results.tsx:179",
+        "app/arena_results.tsx:776",
+        "app/arena_results.tsx:921",
+        "app/arena_review.tsx:100",
+        "app/arena_review.tsx:148",
+        "app/arena_review.tsx:174",
+        "app/arena_star_wallet.tsx:158",
+        "app/arena_today.tsx:222",
+        "app/arena_today.tsx:231",
+        "app/feature_intro_registry.ts:86",
+        "app/navigation_back.ts:286",
+        "app/navigation_back.ts:567",
+        "app/navigation_back.ts:65",
+        "app/session_attempts/session_attempts_registry.ts:16",
+        "app/session_attempts/session_attempts_registry.ts:83",
+        "components/arena/ArenaHomeCard.tsx:66",
+        "components/dev/motion_showcase/sections/screens_arena_social.ts:16"
+      ],
+      "exclusive_to_feature": "arena",
+      "decision": "remove",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/(tabs)/arena.tsx:6"
+    },
+    {
+      "route": "/(tabs)/friends",
+      "entry_points": [
+        "app/(tabs)/_layout.tsx:327",
+        "app/(tabs)/_layout.tsx:334",
+        "app/navigation_back.ts:68",
+        "app/notification_tap_handler.ts:108",
+        "app/notification_tap_handler.ts:111",
+        "app/notification_tap_handler.ts:99",
+        "app/notifications.ts:2717",
+        "app/notifications.ts:2727",
+        "app/notifications.ts:2730",
+        "app/product_analytics_screen_registry.ts:23",
+        "components/NotificationCenterButton.tsx:402",
+        "components/NotificationCenterButton.tsx:418",
+        "components/NotificationCenterButton.tsx:424"
+      ],
+      "exclusive_to_feature": null,
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": true,
+      "evidence": "app/(tabs)/friends.tsx:1245"
+    },
+    {
+      "route": "/(tabs)/home",
+      "entry_points": [
+        "app/(tabs)/_layout.tsx:327",
+        "app/(tabs)/_layout.tsx:330",
+        "app/(tabs)/_layout.tsx:431",
+        "app/(tabs)/_layout.tsx:440",
+        "app/(tabs)/_layout.tsx:441",
+        "app/+native-intent.tsx:100",
+        "app/+native-intent.tsx:40",
+        "app/+native-intent.tsx:49",
+        "app/_layout.tsx:1222",
+        "app/_layout.tsx:1629",
+        "app/_layout.tsx:1650",
+        "app/_layout.tsx:1651",
+        "app/_layout.tsx:2804",
+        "app/_layout.tsx:3003",
+        "app/_layout.tsx:3004",
+        "app/ai_companion_session.tsx:286",
+        "app/ai_dialog_home.tsx:45",
+        "app/ai_dialog_session.tsx:1902",
+        "app/ai_dialog_session.tsx:2042",
+        "app/ai_dialog_session.tsx:361",
+        "app/ai_dialog_tutor_session.tsx:465",
+        "app/arena_match.tsx:1293",
+        "app/arena_results.tsx:921",
+        "app/club_screen.tsx:1784",
+        "app/collectibles_screen.tsx:638",
+        "app/diagnostic_test.tsx:1796",
+        "app/diagnostic_test.tsx:2132",
+        "app/exam.tsx:1112",
+        "app/exam.tsx:1456",
+        "app/flashcards/FlashcardsHubScreen.tsx:481",
+        "app/hint.tsx:1563",
+        "app/hint.tsx:1600",
+        "app/hint.tsx:181",
+        "app/language_welcome.tsx:240",
+        "app/lesson1.tsx:2648",
+        "app/lesson1.tsx:2653",
+        "app/lesson_complete.tsx:1356",
+        "app/lesson_complete.tsx:1869",
+        "app/lesson_menu.tsx:1174",
+        "app/lingman_videos.tsx:326",
+        "app/max_call_prestart.tsx:583",
+        "app/max_call_session.tsx:1152",
+        "app/max_call_session.tsx:1171",
+        "app/max_call_session.tsx:1347",
+        "app/max_lessons.tsx:411",
+        "app/max_voice_consent_gate.tsx:26",
+        "app/max_voice_review.tsx:386",
+        "app/navigation_back.ts:49",
+        "app/notification_tap_handler.ts:24",
+        "app/notification_tap_handler.ts:27",
+        "app/notifications.ts:2636",
+        "app/notifications.ts:2639",
+        "app/paywall_purchase.ts:938",
+        "app/personal_plan.tsx:763",
+        "app/personal_plan_complete.tsx:59",
+        "app/personal_plan_complete.tsx:99",
+        "app/product_analytics_screen_registry.ts:21",
+        "app/shards_shop.tsx:1206",
+        "app/shards_shop.tsx:1796",
+        "app/shards_shop.tsx:855",
+        "app/shop.tsx:351",
+        "app/streak_stats.tsx:4159",
+        "components/arena/ArenaHubSurface.tsx:471"
+      ],
+      "exclusive_to_feature": null,
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": true,
+      "evidence": "app/(tabs)/home.tsx:699"
+    },
+    {
+      "route": "/(tabs)/index",
+      "entry_points": [
+        "app/(tabs)/_layout.tsx:441"
+      ],
+      "exclusive_to_feature": null,
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/(tabs)/index.tsx:9"
+    },
+    {
+      "route": "/(tabs)/journal",
+      "entry_points": [
+        "app/(tabs)/_layout.tsx:327",
+        "app/(tabs)/_layout.tsx:331",
+        "app/navigation_back.ts:54"
+      ],
+      "exclusive_to_feature": null,
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/(tabs)/journal.tsx"
+    },
+    {
+      "route": "/(tabs)/lessons",
+      "entry_points": [
+        "app/(tabs)/_layout.tsx:327",
+        "app/(tabs)/_layout.tsx:332",
+        "app/(tabs)/friends.tsx:3858",
+        "app/(tabs)/home.tsx:784",
+        "app/ai_dialog_briefing.tsx:140",
+        "app/ai_dialog_briefing.tsx:91",
+        "app/ai_dialog_consent_gate.tsx:139",
+        "app/learning-v2/session/[id].tsx:2134",
+        "app/learning-v2/session/[id].tsx:2160",
+        "app/learning-v2/session/[id].tsx:2174",
+        "app/lesson_menu.tsx:455",
+        "app/navigation_back.ts:53",
+        "app/navigation_back.ts:54",
+        "app/navigation_back.ts:552",
+        "app/navigation_back.ts:57",
+        "app/product_analytics_screen_registry.ts:22"
+      ],
+      "exclusive_to_feature": null,
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/(tabs)/lessons.tsx:2163"
+    },
+    {
+      "route": "/(tabs)/settings",
+      "entry_points": [
+        "app/(tabs)/_layout.tsx:327",
+        "app/(tabs)/_layout.tsx:335",
+        "app/(tabs)/settings.tsx:1226",
+        "app/(tabs)/settings.tsx:1251",
+        "app/(tabs)/settings.tsx:1255",
+        "app/(tabs)/settings.tsx:1316",
+        "app/_dev_cancel_flow_preview.tsx:161",
+        "app/_learning_v2_authoring_preview.tsx:57",
+        "app/_learning_v2_modes_showcase.tsx:48",
+        "app/_motion_showcase.tsx:84",
+        "app/account_details.tsx:200",
+        "app/ideas_catalog.tsx:151",
+        "app/ideas_catalog.tsx:348",
+        "app/ideas_submit.tsx:160",
+        "app/ideas_submit.tsx:69",
+        "app/navigation_back.ts:70",
+        "app/privacy_screen.tsx:39",
+        "app/privacy_settings.tsx:138",
+        "app/promo_code_entry.tsx:279",
+        "app/settings_edu.tsx:177",
+        "app/settings_language.tsx:31",
+        "app/settings_notifications.tsx:307",
+        "app/settings_themes.tsx:386",
+        "app/support_report.tsx:59",
+        "app/terms_screen.tsx:39"
+      ],
+      "exclusive_to_feature": null,
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/(tabs)/settings.tsx:214"
+    },
+    {
+      "route": "/+native-intent",
+      "entry_points": [],
+      "exclusive_to_feature": null,
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/+native-intent.tsx:131"
+    },
+    {
+      "route": "/+not-found",
+      "entry_points": [],
+      "exclusive_to_feature": null,
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/+not-found.tsx:3"
+    },
+    {
+      "route": "/_layout",
+      "entry_points": [],
+      "exclusive_to_feature": null,
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/_layout.tsx:3626"
+    },
+    {
+      "route": "/account_details",
+      "entry_points": [
+        "app/(tabs)/settings.tsx:1468",
+        "app/navigation_back.ts:293",
+        "components/dev/motion_showcase/sections/screens_profile.tsx:109"
+      ],
+      "exclusive_to_feature": null,
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/account_details.tsx:96"
+    },
+    {
+      "route": "/achievements_screen",
+      "entry_points": [
+        "app/navigation_back.ts:99",
+        "app/streak_stats.tsx:4335",
+        "app/streak_stats.tsx:4365",
+        "app/streak_stats.tsx:4372",
+        "app/survey_client.ts:38",
+        "components/AchievementToast.tsx:322",
+        "components/dev/motion_showcase/sections/screens_profile.tsx:119",
+        "functions/src/shard_survey_core.ts:33"
+      ],
+      "exclusive_to_feature": "achievements",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/achievements_screen.tsx:959"
+    },
+    {
+      "route": "/ai_companion_session",
+      "entry_points": [
+        "app/ai_dialog_target_gate.ts:64",
+        "app/ai_dialog_target_gate.ts:74",
+        "app/ai_dialog_target_gate.ts:84",
+        "app/ai_dialog_target_gate.ts:93",
+        "app/navigation_back.ts:111",
+        "components/dev/motion_showcase/sections/screens_learn.ts:31"
+      ],
+      "exclusive_to_feature": "ai_dialogs",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/ai_companion_session.tsx:629"
+    },
+    {
+      "route": "/ai_dialog_briefing",
+      "entry_points": [
+        "app/ai_dialog_target_gate.ts:64",
+        "app/ai_dialog_target_gate.ts:74",
+        "app/ai_dialog_target_gate.ts:84",
+        "app/ai_dialog_target_gate.ts:93",
+        "app/navigation_back.ts:108",
+        "components/DialogsTabContent.tsx:365",
+        "components/dev/motion_showcase/sections/screens_learn.ts:29"
+      ],
+      "exclusive_to_feature": "ai_dialogs",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/ai_dialog_briefing.tsx:126"
+    },
+    {
+      "route": "/ai_dialog_consent_gate",
+      "entry_points": [
+        "app/navigation_back.ts:109"
+      ],
+      "exclusive_to_feature": "ai_dialogs",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/ai_dialog_consent_gate.tsx:32"
+    },
+    {
+      "route": "/ai_dialog_home",
+      "entry_points": [
+        "app/(tabs)/home.tsx:4100",
+        "app/ai_dialog_target_gate.ts:64",
+        "app/ai_dialog_target_gate.ts:74",
+        "app/ai_dialog_target_gate.ts:84",
+        "app/ai_dialog_target_gate.ts:93",
+        "app/max_call_prestart.tsx:818",
+        "app/navigation_back.ts:62",
+        "components/dev/motion_showcase/sections/screens_learn.ts:28"
+      ],
+      "exclusive_to_feature": "ai_dialogs",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/ai_dialog_home.tsx:15"
+    },
+    {
+      "route": "/ai_dialog_session",
+      "entry_points": [
+        "app/ai_dialog_briefing.tsx:502",
+        "app/ai_dialog_session.tsx:3373",
+        "app/ai_dialog_target_gate.ts:64",
+        "app/ai_dialog_target_gate.ts:74",
+        "app/ai_dialog_target_gate.ts:84",
+        "app/ai_dialog_target_gate.ts:93",
+        "app/navigation_back.ts:110",
+        "components/dev/motion_showcase/sections/screens_learn.ts:30"
+      ],
+      "exclusive_to_feature": "ai_dialogs",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/ai_dialog_session.tsx:3597"
+    },
+    {
+      "route": "/ai_dialog_tutor_session",
+      "entry_points": [
+        "components/DialogsTabContent.tsx:558"
+      ],
+      "exclusive_to_feature": "ai_dialogs",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/ai_dialog_tutor_session.tsx:989"
+    },
+    {
+      "route": "/arena_friend_duel",
+      "entry_points": [
+        "app/(tabs)/friends.tsx:2898",
+        "app/(tabs)/friends.tsx:2900",
+        "app/arena_results.tsx:901",
+        "components/dev/motion_showcase/sections/screens_arena_social.ts:29"
+      ],
+      "exclusive_to_feature": "arena",
+      "decision": "remove",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/arena_friend_duel.tsx:41"
+    },
+    {
+      "route": "/arena_history",
+      "entry_points": [
+        "components/dev/motion_showcase/sections/screens_arena_social.ts:20"
+      ],
+      "exclusive_to_feature": "arena",
+      "decision": "remove",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/arena_history.tsx:40"
+    },
+    {
+      "route": "/arena_invite",
+      "entry_points": [
+        "app/(tabs)/friends.tsx:2960",
+        "app/arena_notification_route.ts:16",
+        "app/arena_notification_route.ts:4",
+        "components/dev/motion_showcase/sections/screens_arena_social.ts:30"
+      ],
+      "exclusive_to_feature": "arena",
+      "decision": "remove",
+      "new_design_approval": "pending",
+      "deeplink_migration": true,
+      "evidence": "app/arena_invite.tsx:23"
+    },
+    {
+      "route": "/arena_match",
+      "entry_points": [
+        "app/arena_friend_duel.tsx:135",
+        "app/arena_friend_duel.tsx:255",
+        "app/arena_invite.tsx:70",
+        "app/navigation_back.ts:158",
+        "components/arena/ArenaHubSurface.tsx:351",
+        "components/arena/ArenaHubSurface.tsx:431",
+        "components/arena/ArenaOpponentFoundHost.tsx:289",
+        "components/arena/ArenaOpponentFoundHost.tsx:336",
+        "components/dev/motion_showcase/sections/screens_arena_social.ts:26"
+      ],
+      "exclusive_to_feature": "arena",
+      "decision": "remove",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/arena_match.tsx:144"
+    },
+    {
+      "route": "/arena_matchmaking",
+      "entry_points": [
+        "app/(tabs)/home.tsx:776",
+        "app/arena_match.tsx:1327",
+        "app/arena_matchmaking.tsx:70",
+        "app/arena_results.tsx:686",
+        "app/arena_results.tsx:763",
+        "app/arena_results.tsx:768",
+        "app/arena_results.tsx:911",
+        "components/arena/ArenaHubSurface.tsx:357",
+        "components/arena/ArenaHubSurface.tsx:378",
+        "components/arena/ArenaHubSurface.tsx:449",
+        "components/arena/ArenaOpponentFoundHost.tsx:89",
+        "components/dev/motion_showcase/sections/screens_arena_social.ts:25"
+      ],
+      "exclusive_to_feature": "arena",
+      "decision": "remove",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/arena_matchmaking.tsx:48"
+    },
+    {
+      "route": "/arena_ranks",
+      "entry_points": [
+        "components/dev/motion_showcase/sections/screens_arena_social.ts:18"
+      ],
+      "exclusive_to_feature": "arena",
+      "decision": "remove",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/arena_ranks.tsx:140"
+    },
+    {
+      "route": "/arena_results",
+      "entry_points": [
+        "app/arena_match.tsx:548",
+        "app/arena_match.tsx:605",
+        "app/arena_match.tsx:775",
+        "components/dev/motion_showcase/sections/screens_arena_social.ts:27"
+      ],
+      "exclusive_to_feature": "arena",
+      "decision": "remove",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/arena_results.tsx:129"
+    },
+    {
+      "route": "/arena_review",
+      "entry_points": [
+        "app/arena_history.tsx:139",
+        "app/arena_results.tsx:744",
+        "app/arena_results.tsx:891",
+        "components/dev/motion_showcase/sections/screens_arena_social.ts:28"
+      ],
+      "exclusive_to_feature": "arena",
+      "decision": "remove",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/arena_review.tsx:54"
+    },
+    {
+      "route": "/arena_season_pass",
+      "entry_points": [
+        "components/dev/motion_showcase/sections/screens_arena_social.ts:22"
+      ],
+      "exclusive_to_feature": "arena",
+      "decision": "remove",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/arena_season_pass.tsx:5"
+    },
+    {
+      "route": "/arena_star_wallet",
+      "entry_points": [
+        "components/dev/motion_showcase/sections/screens_arena_social.ts:21"
+      ],
+      "exclusive_to_feature": "arena",
+      "decision": "remove",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/arena_star_wallet.tsx:58"
+    },
+    {
+      "route": "/arena_today",
+      "entry_points": [
+        "components/arena/ArenaHubSurface.tsx:420",
+        "components/dev/motion_showcase/sections/screens_arena_social.ts:17"
+      ],
+      "exclusive_to_feature": "arena",
+      "decision": "remove",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/arena_today.tsx:35"
+    },
+    {
+      "route": "/arena_tops",
+      "entry_points": [
+        "components/dev/motion_showcase/sections/screens_arena_social.ts:19"
+      ],
+      "exclusive_to_feature": "arena",
+      "decision": "remove",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/arena_tops.tsx:51"
+    },
+    {
+      "route": "/avatar_dna_studio",
+      "entry_points": [
+        "app/avatar_select.tsx:1552",
+        "app/navigation_back.ts:95",
+        "components/avatar-dna/AvatarDNAInvitationHost.tsx:45"
+      ],
+      "exclusive_to_feature": "avatar",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/avatar_dna_studio.tsx:33"
+    },
+    {
+      "route": "/avatar_select",
+      "entry_points": [
+        "app/(tabs)/home.tsx:4358",
+        "app/avatar_dna_studio.tsx:110",
+        "app/avatar_dna_studio.tsx:49",
+        "app/avatar_dna_studio.tsx:60",
+        "app/avatar_dna_studio.tsx:70",
+        "app/avatar_dna_studio.tsx:83",
+        "app/navigation_back.ts:94",
+        "components/LevelGiftDualModal.tsx:699",
+        "components/LevelGiftDualModal.tsx:735",
+        "components/LevelGiftDualModal.tsx:770",
+        "components/LevelGiftModal.tsx:576",
+        "components/LevelGiftModal.tsx:642",
+        "components/dev/motion_showcase/sections/screens_profile.tsx:117"
+      ],
+      "exclusive_to_feature": "avatar",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/avatar_select.tsx:469"
+    },
+    {
+      "route": "/club_screen",
+      "entry_points": [
+        "app/_layout.tsx:1848",
+        "app/_layout.tsx:1908",
+        "app/_layout.tsx:3507",
+        "app/feature_intro_copy.ts:16",
+        "app/level_gift_active_inventory.ts:487",
+        "app/navigation_back.ts:74",
+        "app/survey_client.ts:34",
+        "components/dev/motion_showcase/sections/screens_arena_social.ts:33",
+        "components/dev/motion_showcase/sections/screens_profile.tsx:123",
+        "functions/src/shard_survey_core.ts:29"
+      ],
+      "exclusive_to_feature": "league",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/club_screen.tsx:427"
+    },
+    {
+      "route": "/coin_exchange",
+      "entry_points": [
+        "app/navigation_back.ts:93",
+        "app/shards_shop.tsx:1949",
+        "components/dev/motion_showcase/sections/screens_profile.tsx:116"
+      ],
+      "exclusive_to_feature": "runes_to_coins",
+      "decision": "redesign",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/coin_exchange.tsx:73"
+    },
+    {
+      "route": "/collectibles_screen",
+      "entry_points": [
+        "app/lesson_complete.tsx:1943",
+        "app/lesson_irregular_verbs.tsx:837",
+        "app/lesson_words.tsx:3300",
+        "app/navigation_back.ts:98",
+        "app/preposition_drill.tsx:848",
+        "components/dev/motion_showcase/sections/screens_profile.tsx:118"
+      ],
+      "exclusive_to_feature": "collectibles",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/collectibles_screen.tsx:547"
+    },
+    {
+      "route": "/combined_lesson_pick",
+      "entry_points": [
+        "app/(tabs)/lessons.tsx:4363"
+      ],
+      "exclusive_to_feature": "learning_v1",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/combined_lesson_pick.tsx:36"
+    },
+    {
+      "route": "/community_pack_create",
+      "entry_points": [
+        "app/(tabs)/home.tsx:764",
+        "app/flashcards/FlashcardsCategoryHub.tsx:741",
+        "app/flashcards/FlashcardsCategoryHub.tsx:824",
+        "app/flashcards/FlashcardsCategoryHub.tsx:924",
+        "app/flashcards/tabbar_state.ts:251",
+        "app/flashcards_collection.tsx:807",
+        "app/flashcards_collection.tsx:957",
+        "app/flashcards_my_packs.tsx:440",
+        "app/flashcards_my_packs.tsx:710",
+        "app/flashcards_packs.tsx:554",
+        "app/navigation_back.ts:281",
+        "components/dev/motion_showcase/sections/screens_profile.tsx:131"
+      ],
+      "exclusive_to_feature": "community_packs",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/community_pack_create.tsx:264"
+    },
+    {
+      "route": "/diagnostic_test",
+      "entry_points": [
+        "app/(tabs)/lessons.tsx:5954",
+        "app/navigation_back.ts:266",
+        "components/dev/motion_showcase/sections/screens_learn.ts:25",
+        "components/dev/motion_showcase/sections/screens_profile.tsx:127"
+      ],
+      "exclusive_to_feature": "learning_v1",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/diagnostic_test.tsx:977"
+    },
+    {
+      "route": "/exam",
+      "entry_points": [
+        "app/diagnostic_test.tsx:1660",
+        "app/navigation_back.ts:159",
+        "app/navigation_back.ts:267",
+        "components/dev/motion_showcase/sections/screens_learn.ts:26",
+        "components/dev/motion_showcase/sections/screens_profile.tsx:128"
+      ],
+      "exclusive_to_feature": "learning_v1",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/exam.tsx:394"
+    },
+    {
+      "route": "/flashcards",
+      "entry_points": [
+        "app/(tabs)/home.tsx:4109",
+        "app/(tabs)/home.tsx:779",
+        "app/community_pack_create.tsx:1035",
+        "app/community_pack_create.tsx:1076",
+        "app/community_pack_create.tsx:929",
+        "app/community_pack_create.tsx:966",
+        "app/community_pack_create.tsx:996",
+        "app/feature_intro_sections_copy.ts:10",
+        "app/flashcards/tabbar_state.ts:284",
+        "app/flashcards_audio.tsx:11",
+        "app/flashcards_blitz_session.tsx:528",
+        "app/flashcards_blitz_session.tsx:896",
+        "app/flashcards_card_editor.tsx:315",
+        "app/flashcards_card_editor.tsx:328",
+        "app/flashcards_collection.tsx:305",
+        "app/flashcards_collection.tsx:314",
+        "app/flashcards_collection.tsx:348",
+        "app/flashcards_collection.tsx:376",
+        "app/flashcards_market_dev.tsx:195",
+        "app/flashcards_market_dev.tsx:212",
+        "app/flashcards_market_dev.tsx:240",
+        "app/flashcards_market_dev.tsx:59",
+        "app/flashcards_my_packs.tsx:264",
+        "app/flashcards_packs.tsx:237",
+        "app/flashcards_recall_session.tsx:205",
+        "app/flashcards_speaking_session.tsx:290",
+        "app/flashcards_speaking_session.tsx:476",
+        "app/flashcards_swipe.tsx:2520",
+        "app/flashcards_swipe.tsx:2544",
+        "app/flashcards_swipe.tsx:3230",
+        "app/flashcards_swipe.tsx:3795",
+        "app/flashcards_training_setup.tsx:359",
+        "app/flashcards_video_packs.tsx:331",
+        "app/level_gift_active_inventory.ts:376",
+        "app/mistake_practice_session.tsx:452",
+        "app/mistake_practice_session.tsx:510",
+        "app/navigation_back.ts:279",
+        "app/navigation_back.ts:59",
+        "app/navigation_back.ts:60",
+        "app/navigation_back.ts:61",
+        "app/pack_opening.tsx:398",
+        "app/pack_opening.tsx:596",
+        "app/pack_opening.tsx:617",
+        "app/survey_client.ts:31",
+        "components/dev/motion_showcase/sections/screens_flashcards.ts:16",
+        "functions/src/shard_survey_core.ts:26"
+      ],
+      "exclusive_to_feature": "flashcards",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/flashcards.tsx:4"
+    },
+    {
+      "route": "/flashcards_audio",
+      "entry_points": [],
+      "exclusive_to_feature": "flashcards",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/flashcards_audio.tsx:10"
+    },
+    {
+      "route": "/flashcards_blitz_session",
+      "entry_points": [
+        "app/flashcards/tabbar_state.ts:232",
+        "app/flashcards/training_entry.ts:14",
+        "app/flashcards/training_entry.ts:41",
+        "app/flashcards_blitz_session.tsx:991",
+        "app/session_attempts/session_attempts_registry.ts:53",
+        "app/session_attempts/session_attempts_registry.ts:7",
+        "components/dev/DevHubSheet.tsx:697",
+        "components/dev/motion_showcase/sections/runes_check.ts:28",
+        "components/dev/motion_showcase/sections/screens_flashcards.ts:22"
+      ],
+      "exclusive_to_feature": "flashcards",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/flashcards_blitz_session.tsx:131"
+    },
+    {
+      "route": "/flashcards_card_editor",
+      "entry_points": [
+        "app/flashcards/tabbar_state.ts:252",
+        "app/flashcards_collection.tsx:794",
+        "app/flashcards_collection.tsx:825",
+        "app/flashcards_collection.tsx:989",
+        "components/dev/motion_showcase/sections/screens_flashcards.ts:23"
+      ],
+      "exclusive_to_feature": "flashcards",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/flashcards_card_editor.tsx:115"
+    },
+    {
+      "route": "/flashcards_collection",
+      "entry_points": [
+        "app/community_pack_create.tsx:928",
+        "app/flashcards/FlashcardsCategoryHub.tsx:558",
+        "app/flashcards/FlashcardsCategoryHub.tsx:593",
+        "app/flashcards/FlashcardsHubScreen.tsx:389",
+        "app/flashcards/FlashcardsHubScreen.tsx:540",
+        "app/flashcards_card_editor.tsx:327",
+        "app/flashcards_card_editor.tsx:341",
+        "app/flashcards_collection.tsx:789",
+        "app/flashcards_my_packs.tsx:311",
+        "app/flashcards_target_gate.ts:66",
+        "app/flashcards_training_setup.tsx:303",
+        "app/flashcards_video_packs.tsx:294",
+        "app/navigation_back.ts:160",
+        "app/navigation_back.ts:553",
+        "app/pack_opening.tsx:524",
+        "app/phrase_analytics_screen.tsx:409",
+        "components/NotificationCenterButton.tsx:416",
+        "components/NotificationCenterButton.tsx:417",
+        "components/dev/motion_showcase/sections/screens_flashcards.ts:20"
+      ],
+      "exclusive_to_feature": "flashcards",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/flashcards_collection.tsx:158"
+    },
+    {
+      "route": "/flashcards_market_dev",
+      "entry_points": [
+        "components/dev/motion_showcase/sections/screens_flashcards.ts:19"
+      ],
+      "exclusive_to_feature": "flashcards",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/flashcards_market_dev.tsx:43"
+    },
+    {
+      "route": "/flashcards_my_packs",
+      "entry_points": [
+        "app/flashcards/FlashcardsHubScreen.tsx:557",
+        "app/flashcards/tabbar_state.ts:275",
+        "app/navigation_back.ts:161",
+        "app/navigation_back.ts:61",
+        "components/dev/motion_showcase/sections/screens_flashcards.ts:18"
+      ],
+      "exclusive_to_feature": "flashcards",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/flashcards_my_packs.tsx:152"
+    },
+    {
+      "route": "/flashcards_packs",
+      "entry_points": [
+        "app/flashcards/FlashcardsHubScreen.tsx:564",
+        "app/flashcards/tabbar_state.ts:273",
+        "app/navigation_back.ts:162",
+        "app/navigation_back.ts:60",
+        "components/dev/motion_showcase/sections/screens_flashcards.ts:17"
+      ],
+      "exclusive_to_feature": "flashcards",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/flashcards_packs.tsx:77"
+    },
+    {
+      "route": "/flashcards_recall_session",
+      "entry_points": [
+        "app/flashcards/training_entry.ts:17",
+        "app/flashcards/training_entry.ts:47"
+      ],
+      "exclusive_to_feature": "flashcards",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/flashcards_recall_session.tsx:95"
+    },
+    {
+      "route": "/flashcards_speaking_session",
+      "entry_points": [
+        "app/flashcards/tabbar_state.ts:201",
+        "app/flashcards/training_entry.ts:15",
+        "app/flashcards/training_entry.ts:44",
+        "app/flashcards_speaking_session.tsx:1057",
+        "app/session_attempts/session_attempts_registry.ts:58",
+        "app/session_attempts/session_attempts_registry.ts:8",
+        "components/dev/DevHubSheet.tsx:715",
+        "components/dev/motion_showcase/sections/runes_check.ts:29"
+      ],
+      "exclusive_to_feature": "flashcards",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/flashcards_speaking_session.tsx:183"
+    },
+    {
+      "route": "/flashcards_swipe",
+      "entry_points": [
+        "app/feature_intro_copy.ts:37",
+        "app/flashcards/tabbar_state.ts:198",
+        "app/flashcards/training_entry.ts:16",
+        "app/flashcards/training_entry.ts:49",
+        "app/flashcards_target_gate.ts:66",
+        "app/navigation_back.ts:163",
+        "app/personal_plan_navigation.ts:204",
+        "app/session_attempts/session_attempts_registry.ts:48",
+        "app/session_attempts/session_attempts_registry.ts:6",
+        "components/dev/DevHubSheet.tsx:703",
+        "components/dev/motion_showcase/sections/runes_check.ts:30",
+        "components/dev/motion_showcase/sections/screens_flashcards.ts:21"
+      ],
+      "exclusive_to_feature": "flashcards",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/flashcards_swipe.tsx:4640"
+    },
+    {
+      "route": "/flashcards_training_setup",
+      "entry_points": [
+        "app/flashcards/FlashcardsHubScreen.tsx:464",
+        "app/flashcards_recall_session.tsx:570"
+      ],
+      "exclusive_to_feature": "flashcards",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/flashcards_training_setup.tsx:63"
+    },
+    {
+      "route": "/flashcards_video_packs",
+      "entry_points": [
+        "app/flashcards/FlashcardsHubScreen.tsx:550"
+      ],
+      "exclusive_to_feature": "flashcards",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/flashcards_video_packs.tsx:94"
+    },
+    {
+      "route": "/flashcards_voice_picker",
+      "entry_points": [
+        "app/navigation_back.ts:106",
+        "app/settings_edu.tsx:307",
+        "components/dev/motion_showcase/sections/screens_flashcards.ts:24"
+      ],
+      "exclusive_to_feature": "flashcards",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/flashcards_voice_picker.tsx:77"
+    },
+    {
+      "route": "/hint",
+      "entry_points": [
+        "app/lesson1.tsx:1554",
+        "app/lesson_menu.tsx:1132",
+        "app/lesson_support_target_gate.ts:75",
+        "app/navigation_back.ts:264",
+        "components/dev/motion_showcase/sections/screens_learn.ts:23"
+      ],
+      "exclusive_to_feature": "learning_v1",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/hint.tsx:1623"
+    },
+    {
+      "route": "/ideas_catalog",
+      "entry_points": [
+        "app/(tabs)/settings.tsx:1556",
+        "app/feature_intro_sections_copy.ts:136",
+        "app/ideas_submit.tsx:118",
+        "app/ideas_submit.tsx:82",
+        "app/survey_client.ts:26",
+        "functions/src/shard_survey_core.ts:21"
+      ],
+      "exclusive_to_feature": "community_ideas",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/ideas_catalog.tsx:109"
+    },
+    {
+      "route": "/ideas_submit",
+      "entry_points": [
+        "app/_dev_cancel_flow_preview.tsx:127",
+        "app/ideas_catalog.tsx:362",
+        "app/ideas_catalog.tsx:383",
+        "app/manage_subscription.tsx:597",
+        "app/navigation_back.ts:294",
+        "components/dev/motion_showcase/sections/screens_profile.tsx:130"
+      ],
+      "exclusive_to_feature": "community_ideas",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/ideas_submit.tsx:40"
+    },
+    {
+      "route": "/index",
+      "entry_points": [],
+      "exclusive_to_feature": null,
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/index.tsx:3"
+    },
+    {
+      "route": "/language_welcome",
+      "entry_points": [
+        "app/navigation_back.ts:295",
+        "components/dev/motion_showcase/sections/screens_profile.tsx:132",
+        "components/settings/StudyLanguagePicker.tsx:117",
+        "components/settings/StudyLanguagePicker.tsx:149"
+      ],
+      "exclusive_to_feature": null,
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/language_welcome.tsx:128"
+    },
+    {
+      "route": "/league_screen",
+      "entry_points": [
+        "app/(tabs)/home.tsx:5467",
+        "app/_layout.tsx:1908",
+        "app/navigation_back.ts:73",
+        "components/dev/motion_showcase/sections/league.tsx:68"
+      ],
+      "exclusive_to_feature": "league",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/league_screen.tsx"
+    },
+    {
+      "route": "/learning-v2/course",
+      "entry_points": [
+        "app/learning-v2/lesson/[id].tsx:1120",
+        "app/learning-v2/session/[id].tsx:1307",
+        "app/learning-v2/session/[id].tsx:1331",
+        "app/learning-v2/session/[id].tsx:1389",
+        "app/learning-v2/session/[id].tsx:2078",
+        "app/learning_v2_direct_session_player_v1.tsx:371",
+        "components/appArtBackdropRegistry.ts:111",
+        "components/dev/motion_showcase/sections/screens_learn.ts:32"
+      ],
+      "exclusive_to_feature": "learning_v2",
+      "decision": "redesign",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/learning-v2/course.tsx:11"
+    },
+    {
+      "route": "/learning-v2/intro-reader-fixture",
+      "entry_points": [],
+      "exclusive_to_feature": "learning_v2",
+      "decision": "redesign",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/learning-v2/intro-reader-fixture.tsx:124"
+    },
+    {
+      "route": "/learning-v2/lesson/[id]",
+      "entry_points": [],
+      "exclusive_to_feature": "learning_v2",
+      "decision": "redesign",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/learning-v2/lesson/[id].tsx:630"
+    },
+    {
+      "route": "/learning-v2/session/[id]",
+      "entry_points": [
+        "app/(tabs)/lessons.tsx:3407",
+        "app/_learning_v2_authoring_preview.tsx:34",
+        "app/learning-v2/lesson/[id].tsx:1073",
+        "app/navigation_back.ts:144"
+      ],
+      "exclusive_to_feature": "learning_v2",
+      "decision": "redesign",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/learning-v2/session/[id].tsx:2180"
+    },
+    {
+      "route": "/learning_v2_authoring_preview",
+      "entry_points": [
+        "app/learning_v2_direct_session_player_v1.tsx:370",
+        "app/native_runtime_capability.ts:31"
+      ],
+      "exclusive_to_feature": "learning_v2",
+      "decision": "redesign",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/learning_v2_authoring_preview.tsx:5"
+    },
+    {
+      "route": "/learning_v2_direct_session_player_v1",
+      "entry_points": [
+        "app/session_attempts/session_attempts_registry.ts:63",
+        "app/session_attempts/session_attempts_registry.ts:9",
+        "components/dev/motion_showcase/sections/screens_learn.ts:35"
+      ],
+      "exclusive_to_feature": "learning_v2",
+      "decision": "redesign",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/learning_v2_direct_session_player_v1.tsx:344"
+    },
+    {
+      "route": "/learning_v2_modes_showcase",
+      "entry_points": [],
+      "exclusive_to_feature": "learning_v2",
+      "decision": "redesign",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/learning_v2_modes_showcase.tsx:9"
+    },
+    {
+      "route": "/learning_v2_modes_showcase_run/[family]",
+      "entry_points": [],
+      "exclusive_to_feature": "learning_v2",
+      "decision": "redesign",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/learning_v2_modes_showcase_run/[family].tsx:184"
+    },
+    {
+      "route": "/learning_v2_session_intro",
+      "entry_points": [
+        "components/dev/motion_showcase/sections/screens_learn.ts:33"
+      ],
+      "exclusive_to_feature": "learning_v2",
+      "decision": "redesign",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/learning_v2_session_intro.tsx:302"
+    },
+    {
+      "route": "/learning_v2_session_intro_check",
+      "entry_points": [
+        "components/dev/motion_showcase/sections/screens_learn.ts:34"
+      ],
+      "exclusive_to_feature": "learning_v2",
+      "decision": "redesign",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/learning_v2_session_intro_check.tsx:45"
+    },
+    {
+      "route": "/lesson1",
+      "entry_points": [
+        "app/combined_lesson_pick.tsx:74",
+        "app/lesson_complete.tsx:1382",
+        "app/lesson_menu.tsx:754",
+        "app/lesson_menu.tsx:766",
+        "app/lesson_menu.tsx:779",
+        "app/navigation_back.ts:164",
+        "app/session_attempts/session_attempts_registry.ts:2",
+        "app/session_attempts/session_attempts_registry.ts:28",
+        "components/dev/motion_showcase/sections/runes_check.ts:23",
+        "components/dev/motion_showcase/sections/screens_learn.ts:14"
+      ],
+      "exclusive_to_feature": "learning_v1",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/lesson1.tsx:4182"
+    },
+    {
+      "route": "/lesson_complete",
+      "entry_points": [
+        "app/lesson1.tsx:3447",
+        "app/lesson1.tsx:3481",
+        "app/navigation_back.ts:165",
+        "components/dev/DevHubSheet.tsx:679",
+        "components/dev/motion_showcase/sections/runes_check.ts:24",
+        "components/dev/motion_showcase/sections/screens_learn.ts:21"
+      ],
+      "exclusive_to_feature": "learning_v1",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/lesson_complete.tsx:610"
+    },
+    {
+      "route": "/lesson_help",
+      "entry_points": [
+        "app/lesson1.tsx:1554",
+        "app/lesson_menu.tsx:1135",
+        "app/lesson_support_target_gate.ts:75",
+        "app/lesson_theory_v2.tsx:174",
+        "components/dev/motion_showcase/sections/screens_learn.ts:19"
+      ],
+      "exclusive_to_feature": "learning_v1",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/lesson_help.tsx:634"
+    },
+    {
+      "route": "/lesson_intro_screens",
+      "entry_points": [
+        "components/dev/motion_showcase/sections/screens_learn.ts:20"
+      ],
+      "exclusive_to_feature": "learning_v1",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/lesson_intro_screens.tsx:383"
+    },
+    {
+      "route": "/lesson_irregular_verbs",
+      "entry_points": [
+        "app/lesson_menu.tsx:1013",
+        "app/lesson_verbs.tsx:16",
+        "app/session_attempts/session_attempts_registry.ts:38",
+        "app/session_attempts/session_attempts_registry.ts:4",
+        "app/vocabulary_target_gate.ts:79",
+        "components/dev/DevHubSheet.tsx:691",
+        "components/dev/motion_showcase/sections/runes_check.ts:26",
+        "components/dev/motion_showcase/sections/screens_learn.ts:16"
+      ],
+      "exclusive_to_feature": "learning_v1",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/lesson_irregular_verbs.tsx:1530"
+    },
+    {
+      "route": "/lesson_menu",
+      "entry_points": [
+        "app/(tabs)/home.tsx:5242",
+        "app/(tabs)/lessons.tsx:3972",
+        "app/(tabs)/lessons.tsx:6615",
+        "app/(tabs)/lessons.tsx:928",
+        "app/lesson1.tsx:2746",
+        "app/lesson_help.tsx:465",
+        "app/lesson_irregular_verbs.tsx:1420",
+        "app/lesson_irregular_verbs.tsx:1435",
+        "app/lesson_irregular_verbs.tsx:813",
+        "app/lesson_menu.tsx:754",
+        "app/lesson_menu.tsx:766",
+        "app/lesson_premium_gate.ts:59",
+        "app/lesson_theory_v2.tsx:226",
+        "app/paywall_lesson_continuation.ts:39",
+        "app/personal_plan.tsx:679",
+        "app/personal_plan_navigation.ts:79",
+        "app/preposition_drill.tsx:161",
+        "app/preposition_drill.tsx:170",
+        "app/preposition_drill.tsx:333",
+        "app/preposition_drill.tsx:349",
+        "app/preposition_drill.tsx:514",
+        "app/preposition_drill.tsx:738",
+        "components/dev/motion_showcase/sections/screens_learn.ts:13"
+      ],
+      "exclusive_to_feature": "learning_v1",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/lesson_menu.tsx:1505"
+    },
+    {
+      "route": "/lesson_theory_v2",
+      "entry_points": [
+        "components/dev/motion_showcase/sections/screens_learn.ts:18"
+      ],
+      "exclusive_to_feature": "learning_v1",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/lesson_theory_v2.tsx:161"
+    },
+    {
+      "route": "/lesson_verbs",
+      "entry_points": [
+        "components/dev/motion_showcase/sections/screens_learn.ts:17"
+      ],
+      "exclusive_to_feature": "learning_v1",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/lesson_verbs.tsx:14"
+    },
+    {
+      "route": "/lesson_words",
+      "entry_points": [
+        "app/lesson_menu.tsx:938",
+        "app/navigation_back.ts:166",
+        "app/session_attempts/session_attempts_registry.ts:3",
+        "app/session_attempts/session_attempts_registry.ts:33",
+        "app/vocabulary_target_gate.ts:82",
+        "components/dev/DevHubSheet.tsx:685",
+        "components/dev/motion_showcase/sections/runes_check.ts:25",
+        "components/dev/motion_showcase/sections/screens_learn.ts:15"
+      ],
+      "exclusive_to_feature": "learning_v1",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/lesson_words.tsx:3921"
+    },
+    {
+      "route": "/lessons_list",
+      "entry_points": [
+        "app/(tabs)/home.tsx:4083",
+        "app/ai_companion_session.tsx:306",
+        "app/ai_dialog_session.tsx:2007",
+        "app/diagnostic_test.tsx:1511",
+        "app/exam.tsx:436",
+        "app/exam.tsx:904",
+        "app/exam.tsx:955",
+        "app/lesson1.tsx:2613",
+        "app/lesson1.tsx:2626",
+        "app/lesson1.tsx:2630",
+        "app/lesson1.tsx:2639",
+        "app/lesson1.tsx:4035",
+        "app/lesson_complete.tsx:1143",
+        "app/lesson_complete.tsx:1346",
+        "app/lesson_complete.tsx:1363",
+        "app/lesson_words.tsx:3277",
+        "app/lesson_words.tsx:3765",
+        "app/lesson_words.tsx:3832",
+        "app/lesson_words.tsx:3843",
+        "app/level_exam.tsx:1017",
+        "app/level_exam.tsx:1018",
+        "app/level_exam.tsx:1041",
+        "app/level_exam.tsx:1096",
+        "app/level_exam.tsx:1236",
+        "app/level_exam.tsx:1387",
+        "app/level_exam.tsx:1900",
+        "app/level_exam.tsx:1910",
+        "app/level_exam.tsx:999",
+        "app/navigation_back.ts:552",
+        "app/navigation_back.ts:57",
+        "app/notification_tap_handler.ts:71",
+        "app/notification_tap_handler.ts:72",
+        "app/notifications.ts:2673",
+        "app/notifications.ts:2675",
+        "app/personal_plan_post_premium.ts:10",
+        "app/personal_plan_post_premium.ts:5",
+        "app/personal_plan_setup.tsx:61",
+        "app/personal_plan_sunset.ts:11",
+        "components/level-exam/LevelExamV2.tsx:449",
+        "components/level-exam/LevelExamV2.tsx:466",
+        "components/level-exam/LevelExamV2.tsx:493",
+        "components/level-exam/LevelExamV2.tsx:516"
+      ],
+      "exclusive_to_feature": "learning_v1",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": true,
+      "evidence": "app/lessons_list.tsx"
+    },
+    {
+      "route": "/level_exam",
+      "entry_points": [
+        "app/(tabs)/lessons.tsx:4561",
+        "app/navigation_back.ts:268",
+        "components/dev/motion_showcase/sections/screens_learn.ts:27"
+      ],
+      "exclusive_to_feature": null,
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/level_exam.tsx:582"
+    },
+    {
+      "route": "/level_gifts_inventory",
+      "entry_points": [
+        "app/(tabs)/friends.tsx:3675",
+        "app/(tabs)/home.tsx:4916",
+        "app/level_reward_spin.tsx:337",
+        "app/navigation_back.ts:100",
+        "app/notification_tap_handler.ts:85",
+        "app/notifications.ts:2699",
+        "app/season_pass.tsx:987",
+        "app/streak_stats.tsx:4200",
+        "app/streak_stats.tsx:4230",
+        "app/streak_stats.tsx:4237",
+        "components/dev/motion_showcase/sections/screens_profile.tsx:120"
+      ],
+      "exclusive_to_feature": "gifts_spins_chests",
+      "decision": "remove",
+      "new_design_approval": "pending",
+      "deeplink_migration": true,
+      "evidence": "app/level_gifts_inventory.tsx:440"
+    },
+    {
+      "route": "/level_reward_spin",
+      "entry_points": [
+        "app/(tabs)/home.tsx:4885",
+        "app/(tabs)/home.tsx:770",
+        "app/feature_intro_sections_copy.ts:156",
+        "app/level_gifts_inventory.tsx:769",
+        "app/navigation_back.ts:101",
+        "app/streak_stats.tsx:4158",
+        "app/streak_stats.tsx:4188",
+        "app/streak_stats.tsx:4195",
+        "components/dev/motion_showcase/sections/screens_profile.tsx:121",
+        "components/level-exam/LevelExamV2.tsx:515"
+      ],
+      "exclusive_to_feature": "gifts_spins_chests",
+      "decision": "remove",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/level_reward_spin.tsx:39"
+    },
+    {
+      "route": "/lingman_playlist",
+      "entry_points": [
+        "app/lingman_videos.tsx:261",
+        "components/dev/motion_showcase/sections/screens_learn.ts:37"
+      ],
+      "exclusive_to_feature": "lingman",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/lingman_playlist.tsx:32"
+    },
+    {
+      "route": "/lingman_videos",
+      "entry_points": [
+        "app/(tabs)/home.tsx:4853",
+        "app/(tabs)/home.tsx:773",
+        "app/feature_intro_sections_copy.ts:61",
+        "app/lingman_playlist.tsx:72",
+        "app/navigation_back.ts:566",
+        "app/navigation_back.ts:63",
+        "app/notification_tap_handler.ts:53",
+        "app/notifications.ts:2653",
+        "app/survey_client.ts:35",
+        "components/LingmanVideosButton.tsx:150",
+        "components/dev/motion_showcase/sections/screens_learn.ts:36",
+        "functions/src/shard_survey_core.ts:30"
+      ],
+      "exclusive_to_feature": "lingman",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": true,
+      "evidence": "app/lingman_videos.tsx:81"
+    },
+    {
+      "route": "/manage_subscription",
+      "entry_points": [
+        "app/(tabs)/settings.tsx:1026",
+        "app/navigation_back.ts:91",
+        "app/paywall_navigation.ts:82",
+        "app/paywall_navigation.ts:88",
+        "components/dev/DevHubSheet.tsx:659",
+        "components/dev/motion_showcase/sections/paywalls.tsx:72",
+        "components/dev/motion_showcase/sections/screens_profile.tsx:125"
+      ],
+      "exclusive_to_feature": null,
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/manage_subscription.tsx:163"
+    },
+    {
+      "route": "/max_call_prestart",
+      "entry_points": [
+        "app/max_voice_review.tsx:399",
+        "app/navigation_back.ts:254",
+        "app/notification_tap_handler.ts:82",
+        "app/notifications.ts:2693",
+        "components/PremiumCelebrationModal.tsx:326"
+      ],
+      "exclusive_to_feature": "max_voice",
+      "decision": "conserve",
+      "new_design_approval": "pending",
+      "deeplink_migration": true,
+      "evidence": "app/max_call_prestart.tsx:1069"
+    },
+    {
+      "route": "/max_call_session",
+      "entry_points": [
+        "app/max_call_prestart.tsx:507",
+        "app/max_lessons.tsx:339",
+        "app/navigation_back.ts:255",
+        "components/dev/DevHubSheet.tsx:564"
+      ],
+      "exclusive_to_feature": "max_voice",
+      "decision": "conserve",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/max_call_session.tsx:1791"
+    },
+    {
+      "route": "/max_lessons",
+      "entry_points": [
+        "app/max_call_session.tsx:1782"
+      ],
+      "exclusive_to_feature": "max_voice",
+      "decision": "conserve",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/max_lessons.tsx:86"
+    },
+    {
+      "route": "/max_memory_settings",
+      "entry_points": [
+        "app/navigation_back.ts:257",
+        "app/privacy_settings.tsx:216"
+      ],
+      "exclusive_to_feature": "max_voice",
+      "decision": "conserve",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/max_memory_settings.tsx:356"
+    },
+    {
+      "route": "/max_paywall",
+      "entry_points": [
+        "app/navigation_back.ts:128",
+        "app/navigation_back.ts:90",
+        "app/paywall_e.tsx:82",
+        "app/paywall_f.tsx:83",
+        "components/dev/DevHubSheet.tsx:602"
+      ],
+      "exclusive_to_feature": "max_voice",
+      "decision": "conserve",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/max_paywall.tsx:28"
+    },
+    {
+      "route": "/max_voice_review",
+      "entry_points": [
+        "app/max_call_session.tsx:1111",
+        "app/mistake_practice_session.tsx:445",
+        "app/navigation_back.ts:256"
+      ],
+      "exclusive_to_feature": "max_voice",
+      "decision": "conserve",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/max_voice_review.tsx:154"
+    },
+    {
+      "route": "/mistake_detail",
+      "entry_points": [
+        "app/mistakes_list.tsx:90"
+      ],
+      "exclusive_to_feature": "mistakes",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/mistake_detail.tsx:68"
+    },
+    {
+      "route": "/mistake_practice_session",
+      "entry_points": [
+        "app/learning-v2/lesson/[id].tsx:1280",
+        "app/max_voice_review.tsx:437",
+        "app/mistake_detail.tsx:106",
+        "app/mistakes_hub.tsx:190",
+        "app/navigation_back.ts:280",
+        "app/personal_plan_navigation.ts:191",
+        "app/session_attempts/session_attempts_registry.ts:43",
+        "app/session_attempts/session_attempts_registry.ts:5",
+        "components/dev/DevHubSheet.tsx:709",
+        "components/dev/motion_showcase/sections/runes_check.ts:27"
+      ],
+      "exclusive_to_feature": "mistakes",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/mistake_practice_session.tsx:1283"
+    },
+    {
+      "route": "/mistakes_hub",
+      "entry_points": [
+        "app/(tabs)/home.tsx:4027",
+        "app/mistakes_list.tsx:129"
+      ],
+      "exclusive_to_feature": "mistakes",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/mistakes_hub.tsx:76"
+    },
+    {
+      "route": "/mistakes_list",
+      "entry_points": [
+        "app/mistake_detail.tsx:116",
+        "app/mistakes_hub.tsx:195"
+      ],
+      "exclusive_to_feature": "mistakes",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/mistakes_list.tsx:46"
+    },
+    {
+      "route": "/modal",
+      "entry_points": [],
+      "exclusive_to_feature": null,
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/modal.tsx:8"
+    },
+    {
+      "route": "/motion_showcase",
+      "entry_points": [
+        "app/navigation_back.ts:299"
+      ],
+      "exclusive_to_feature": "dev_tooling",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/motion_showcase.tsx:7"
+    },
+    {
+      "route": "/pack_opening",
+      "entry_points": [
+        "app/flashcards/useCardPackShardPaywall.tsx:119",
+        "app/flashcards_target_gate.ts:66",
+        "app/navigation_back.ts:167",
+        "app/navigation_back.ts:282",
+        "components/dev/motion_showcase/sections/screens_flashcards.ts:25"
+      ],
+      "exclusive_to_feature": "gifts_spins_chests",
+      "decision": "remove",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/pack_opening.tsx:368"
+    },
+    {
+      "route": "/paywall_a",
+      "entry_points": [
+        "app/navigation_back.ts:121",
+        "app/navigation_back.ts:83",
+        "app/paywall_navigation.ts:18",
+        "app/paywall_navigation.ts:5",
+        "app/premium_modal.tsx:59",
+        "components/dev/DevHubSheet.tsx:574",
+        "components/dev/motion_showcase/sections/paywalls.tsx:60"
+      ],
+      "exclusive_to_feature": "monetization",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/paywall_a.tsx:316"
+    },
+    {
+      "route": "/paywall_b",
+      "entry_points": [
+        "app/navigation_back.ts:122",
+        "app/navigation_back.ts:84",
+        "app/paywall_navigation.ts:19",
+        "app/paywall_navigation.ts:5",
+        "app/premium_modal.tsx:60",
+        "components/dev/DevHubSheet.tsx:577",
+        "components/dev/motion_showcase/sections/paywalls.tsx:61"
+      ],
+      "exclusive_to_feature": "monetization",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/paywall_b.tsx:333"
+    },
+    {
+      "route": "/paywall_c",
+      "entry_points": [
+        "app/navigation_back.ts:123",
+        "app/navigation_back.ts:85",
+        "app/paywall_navigation.ts:20",
+        "app/paywall_navigation.ts:5",
+        "components/dev/DevHubSheet.tsx:580",
+        "components/dev/motion_showcase/sections/paywalls.tsx:62"
+      ],
+      "exclusive_to_feature": "monetization",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/paywall_c.tsx:386"
+    },
+    {
+      "route": "/paywall_d",
+      "entry_points": [
+        "app/navigation_back.ts:124",
+        "app/navigation_back.ts:86",
+        "app/paywall_navigation.ts:21",
+        "app/paywall_navigation.ts:6",
+        "app/premium_modal.tsx:61",
+        "components/dev/DevHubSheet.tsx:583",
+        "components/dev/motion_showcase/sections/paywalls.tsx:63"
+      ],
+      "exclusive_to_feature": "monetization",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/paywall_d.tsx:290"
+    },
+    {
+      "route": "/paywall_e",
+      "entry_points": [
+        "app/navigation_back.ts:125",
+        "app/navigation_back.ts:87",
+        "app/paywall_navigation.ts:22",
+        "app/paywall_navigation.ts:6",
+        "app/premium_modal.tsx:62",
+        "components/dev/DevHubSheet.tsx:586",
+        "components/dev/motion_showcase/sections/paywalls.tsx:64"
+      ],
+      "exclusive_to_feature": "monetization",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/paywall_e.tsx:402"
+    },
+    {
+      "route": "/paywall_f",
+      "entry_points": [
+        "app/navigation_back.ts:126",
+        "app/navigation_back.ts:88",
+        "app/paywall_navigation.ts:23",
+        "app/paywall_navigation.ts:6",
+        "app/premium_modal.tsx:63",
+        "components/dev/DevHubSheet.tsx:589",
+        "components/dev/motion_showcase/sections/paywalls.tsx:65"
+      ],
+      "exclusive_to_feature": "monetization",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/paywall_f.tsx:297"
+    },
+    {
+      "route": "/paywall_g",
+      "entry_points": [
+        "app/navigation_back.ts:127",
+        "app/navigation_back.ts:89",
+        "app/paywall_navigation.ts:24",
+        "app/paywall_navigation.ts:6",
+        "app/premium_modal.tsx:64",
+        "components/dev/DevHubSheet.tsx:592",
+        "components/dev/motion_showcase/sections/paywalls.tsx:66"
+      ],
+      "exclusive_to_feature": "monetization",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/paywall_g.tsx:314"
+    },
+    {
+      "route": "/personal_plan",
+      "entry_points": [
+        "app/(tabs)/lessons.tsx:3783",
+        "app/navigation_back.ts:269",
+        "app/personal_plan.tsx:498",
+        "app/personal_plan_complete.tsx:91",
+        "app/personal_plan_dev.tsx:104",
+        "app/personal_plan_exercise.tsx:1905",
+        "app/personal_plan_exercise.tsx:1934",
+        "app/personal_plan_exercise.tsx:2711",
+        "app/personal_plan_exercise.tsx:3144",
+        "app/personal_plan_exercise.tsx:3154",
+        "app/personal_plan_exercise_transition.tsx:274",
+        "app/personal_plan_exercise_transition.tsx:290",
+        "app/personal_plan_quiz.tsx:31",
+        "app/personal_plan_runtime_dev.tsx:223",
+        "app/personal_plan_setup.tsx:309",
+        "app/personal_plan_setup.tsx:469",
+        "app/personal_plan_stats_screen.tsx:369",
+        "app/personal_plan_task_done.tsx:81",
+        "app/personal_plan_thank_you.tsx:16",
+        "app/personal_plan_theory.tsx:103"
+      ],
+      "exclusive_to_feature": "personal_plan_legacy",
+      "decision": "remove",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/personal_plan.tsx:1117"
+    },
+    {
+      "route": "/personal_plan_complete",
+      "entry_points": [
+        "app/(tabs)/lessons.tsx:3782",
+        "app/personal_plan.tsx:507",
+        "app/personal_plan.tsx:573"
+      ],
+      "exclusive_to_feature": "personal_plan_legacy",
+      "decision": "remove",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/personal_plan_complete.tsx:244"
+    },
+    {
+      "route": "/personal_plan_dev",
+      "entry_points": [
+        "app/personal_plan.tsx:1051"
+      ],
+      "exclusive_to_feature": "personal_plan_legacy",
+      "decision": "remove",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/personal_plan_dev.tsx:35"
+    },
+    {
+      "route": "/personal_plan_exercise",
+      "entry_points": [
+        "app/personal_plan_exercise_transition.tsx:267",
+        "app/personal_plan_navigation.ts:108",
+        "app/personal_plan_navigation.ts:132",
+        "app/personal_plan_navigation.ts:155",
+        "app/personal_plan_navigation.ts:171"
+      ],
+      "exclusive_to_feature": "personal_plan_legacy",
+      "decision": "remove",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/personal_plan_exercise.tsx:3167"
+    },
+    {
+      "route": "/personal_plan_exercise_transition",
+      "entry_points": [],
+      "exclusive_to_feature": "personal_plan_legacy",
+      "decision": "remove",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/personal_plan_exercise_transition.tsx:374"
+    },
+    {
+      "route": "/personal_plan_quiz",
+      "entry_points": [
+        "app/personal_plan_navigation.ts:186"
+      ],
+      "exclusive_to_feature": "personal_plan_legacy",
+      "decision": "remove",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/personal_plan_quiz.tsx:35"
+    },
+    {
+      "route": "/personal_plan_runtime_dev",
+      "entry_points": [
+        "app/personal_plan_dev.tsx:218"
+      ],
+      "exclusive_to_feature": "personal_plan_legacy",
+      "decision": "remove",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/personal_plan_runtime_dev.tsx:90"
+    },
+    {
+      "route": "/personal_plan_setup",
+      "entry_points": [
+        "app/(tabs)/lessons.tsx:3743",
+        "app/personal_plan.tsx:1095",
+        "app/personal_plan.tsx:501"
+      ],
+      "exclusive_to_feature": "personal_plan_legacy",
+      "decision": "remove",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/personal_plan_setup.tsx:783"
+    },
+    {
+      "route": "/personal_plan_stats_screen",
+      "entry_points": [
+        "app/personal_plan.tsx:806"
+      ],
+      "exclusive_to_feature": "personal_plan_legacy",
+      "decision": "remove",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/personal_plan_stats_screen.tsx:535"
+    },
+    {
+      "route": "/personal_plan_task_done",
+      "entry_points": [],
+      "exclusive_to_feature": "personal_plan_legacy",
+      "decision": "remove",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/personal_plan_task_done.tsx:233"
+    },
+    {
+      "route": "/personal_plan_thank_you",
+      "entry_points": [
+        "app/personal_plan_post_premium.ts:10",
+        "app/personal_plan_post_premium.ts:5"
+      ],
+      "exclusive_to_feature": "personal_plan_legacy",
+      "decision": "remove",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/personal_plan_thank_you.tsx:49"
+    },
+    {
+      "route": "/personal_plan_theory",
+      "entry_points": [
+        "app/personal_plan.tsx:889"
+      ],
+      "exclusive_to_feature": "personal_plan_legacy",
+      "decision": "remove",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/personal_plan_theory.tsx:165"
+    },
+    {
+      "route": "/phrase_analytics_screen",
+      "entry_points": [
+        "app/_pos_analytics_audit.tsx:146",
+        "app/navigation_back.ts:273",
+        "components/dev/motion_showcase/sections/screens_profile.tsx:114"
+      ],
+      "exclusive_to_feature": "dev_tooling",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/phrase_analytics_screen.tsx:321"
+    },
+    {
+      "route": "/pos_analytics_audit",
+      "entry_points": [
+        "app/navigation_back.ts:275"
+      ],
+      "exclusive_to_feature": "dev_tooling",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/pos_analytics_audit.tsx:6"
+    },
+    {
+      "route": "/premium_modal",
+      "entry_points": [
+        "app/(tabs)/friends.tsx:3730",
+        "app/(tabs)/home.tsx:3340",
+        "app/(tabs)/home.tsx:3637",
+        "app/(tabs)/settings.tsx:1038",
+        "app/_layout.tsx:2897",
+        "app/_layout.tsx:2958",
+        "app/_layout.tsx:951",
+        "app/ai_companion_session.tsx:127",
+        "app/ai_companion_session.tsx:139",
+        "app/ai_dialog_briefing.tsx:400",
+        "app/ai_dialog_session.tsx:3387",
+        "app/ai_dialog_session.tsx:484",
+        "app/ai_dialog_tutor_session.tsx:458",
+        "app/avatar_select.tsx:1199",
+        "app/community_pack_create.tsx:352",
+        "app/flashcards/FlashcardsHubScreen.tsx:437",
+        "app/flashcards_blitz_session.tsx:564",
+        "app/flashcards_card_editor.tsx:150",
+        "app/flashcards_collection.tsx:789",
+        "app/flashcards_recall_session.tsx:346",
+        "app/flashcards_speaking_session.tsx:521",
+        "app/flashcards_swipe.tsx:1216",
+        "app/flashcards_training_setup.tsx:102",
+        "app/learning-v2/lesson/[id].tsx:1269",
+        "app/lesson_complete.tsx:1334",
+        "app/lesson_complete.tsx:1767",
+        "app/lesson_complete.tsx:795",
+        "app/lesson_menu.tsx:420",
+        "app/level_exam.tsx:1087",
+        "app/navigation_back.ts:385",
+        "app/navigation_back.ts:82",
+        "app/notification_tap_handler.ts:79",
+        "app/notifications.ts:2684",
+        "app/paywall_navigation.ts:95",
+        "app/phrase_analytics_screen.tsx:496",
+        "app/premium_modal_v2.tsx:21",
+        "app/season_pass.tsx:448",
+        "app/settings_themes.tsx:306",
+        "app/streak_stats.tsx:3883",
+        "app/streak_stats.tsx:3913",
+        "app/streak_stats.tsx:3920",
+        "components/AddToFlashcard.tsx:232",
+        "components/AiLimitUpsellCard.tsx:169",
+        "components/DialogsTabContent.tsx:388",
+        "components/DialogsTabContent.tsx:416",
+        "components/DialogsTabContent.tsx:438",
+        "components/DialogsTabContent.tsx:458",
+        "components/DialogsTabContent.tsx:554",
+        "components/DialogsTabContent.tsx:859",
+        "components/EntitlementExpiredHost.tsx:313",
+        "components/NoEnergyModal.tsx:210",
+        "components/PremiumGoldButton.tsx:115",
+        "components/StatsPremiumBlur.tsx:209",
+        "components/dev/motion_showcase/sections/paywalls.tsx:129"
+      ],
+      "exclusive_to_feature": "monetization",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": true,
+      "evidence": "app/premium_modal.tsx:68"
+    },
+    {
+      "route": "/premium_modal_v2",
+      "entry_points": [
+        "app/navigation_back.ts:117"
+      ],
+      "exclusive_to_feature": "monetization",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/premium_modal_v2.tsx:8"
+    },
+    {
+      "route": "/preposition_drill",
+      "entry_points": [
+        "app/lesson_menu.tsx:1077",
+        "app/navigation_back.ts:265",
+        "app/vocabulary_target_gate.ts:81",
+        "components/dev/motion_showcase/sections/screens_learn.ts:22"
+      ],
+      "exclusive_to_feature": "learning_v1",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/preposition_drill.tsx:856"
+    },
+    {
+      "route": "/privacy_screen",
+      "entry_points": [
+        "app/navigation_back.ts:291",
+        "app/privacy_settings.tsx:247",
+        "components/dev/motion_showcase/sections/screens_profile.tsx:111"
+      ],
+      "exclusive_to_feature": null,
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/privacy_screen.tsx:21"
+    },
+    {
+      "route": "/privacy_settings",
+      "entry_points": [
+        "app/(tabs)/settings.tsx:1602",
+        "app/ai_dialog_consent_gate.tsx:124",
+        "app/max_memory_settings.tsx:240",
+        "app/navigation_back.ts:290",
+        "components/dev/motion_showcase/sections/screens_profile.tsx:110"
+      ],
+      "exclusive_to_feature": null,
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/privacy_settings.tsx:54"
+    },
+    {
+      "route": "/promo_code_entry",
+      "entry_points": [
+        "app/(tabs)/settings.tsx:1226",
+        "app/(tabs)/settings.tsx:1251",
+        "app/navigation_back.ts:104",
+        "components/dev/motion_showcase/sections/screens_profile.tsx:126"
+      ],
+      "exclusive_to_feature": "monetization",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/promo_code_entry.tsx:201"
+    },
+    {
+      "route": "/referrals",
+      "entry_points": [
+        "app/(tabs)/home.tsx:767",
+        "app/(tabs)/settings.tsx:1255",
+        "app/(tabs)/settings.tsx:1316",
+        "app/navigation_back.ts:103",
+        "app/survey_client.ts:27",
+        "components/EntitlementExpiredHost.tsx:324",
+        "components/dev/motion_showcase/sections/screens_arena_social.ts:45",
+        "components/dev/motion_showcase/sections/screens_profile.tsx:124",
+        "functions/src/shard_survey_core.ts:22"
+      ],
+      "exclusive_to_feature": null,
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/referrals.tsx:125"
+    },
+    {
+      "route": "/runes_wallet",
+      "entry_points": [
+        "app/(tabs)/home.tsx:5087",
+        "app/ai_dialog_briefing.tsx:302",
+        "app/avatar_select.tsx:1002",
+        "app/customization_purchase_cta.ts:144",
+        "app/customization_purchase_cta.ts:15",
+        "app/navigation_back.ts:97",
+        "components/RuneBalanceChip.tsx:145"
+      ],
+      "exclusive_to_feature": "runes_to_coins",
+      "decision": "redesign",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/runes_wallet.tsx:33"
+    },
+    {
+      "route": "/season_pass",
+      "entry_points": [
+        "app/arena_season_pass.tsx:6",
+        "app/club_screen.tsx:1818",
+        "app/navigation_back.ts:102",
+        "components/dev/motion_showcase/sections/screens_profile.tsx:122"
+      ],
+      "exclusive_to_feature": null,
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/season_pass.tsx:185"
+    },
+    {
+      "route": "/settings_edu",
+      "entry_points": [
+        "app/(tabs)/settings.tsx:1527",
+        "app/flashcards_voice_picker.tsx:155",
+        "app/lesson_menu.tsx:1200",
+        "app/navigation_back.ts:105",
+        "components/dev/motion_showcase/sections/screens_profile.tsx:108"
+      ],
+      "exclusive_to_feature": null,
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/settings_edu.tsx:45"
+    },
+    {
+      "route": "/settings_language",
+      "entry_points": [
+        "app/(tabs)/settings.tsx:1477",
+        "app/language_welcome.tsx:147",
+        "components/dev/motion_showcase/sections/screens_profile.tsx:105"
+      ],
+      "exclusive_to_feature": null,
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/settings_language.tsx:17"
+    },
+    {
+      "route": "/settings_notifications",
+      "entry_points": [
+        "app/(tabs)/settings.tsx:1535",
+        "app/survey_client.ts:29",
+        "components/dev/motion_showcase/sections/screens_profile.tsx:106",
+        "functions/src/shard_survey_core.ts:24"
+      ],
+      "exclusive_to_feature": null,
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/settings_notifications.tsx:154"
+    },
+    {
+      "route": "/settings_themes",
+      "entry_points": [
+        "app/(tabs)/settings.tsx:1353",
+        "app/survey_client.ts:28",
+        "components/dev/motion_showcase/sections/screens_profile.tsx:107",
+        "functions/src/shard_survey_core.ts:23"
+      ],
+      "exclusive_to_feature": "themes",
+      "decision": "remove",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/settings_themes.tsx:210"
+    },
+    {
+      "route": "/shards_shop",
+      "entry_points": [
+        "app/(tabs)/friends.tsx:2686",
+        "app/(tabs)/friends.tsx:2747",
+        "app/(tabs)/home.tsx:5024",
+        "app/avatar_select.tsx:1005",
+        "app/avatar_select.tsx:1611",
+        "app/customization_purchase_cta.ts:145",
+        "app/customization_purchase_cta.ts:15",
+        "app/flashcards/useCardPackShardPaywall.tsx:164",
+        "app/flashcards_target_gate.ts:66",
+        "app/navigation_back.ts:168",
+        "app/navigation_back.ts:92",
+        "app/season_pass.tsx:473",
+        "app/settings_themes.tsx:485",
+        "app/streak_stats.tsx:1882",
+        "app/streak_stats.tsx:1884",
+        "app/streak_stats.tsx:5107",
+        "app/streak_stats.tsx:5137",
+        "components/PlayerProfileModal.tsx:867",
+        "components/StreakReviveModal.tsx:224",
+        "components/StreakReviveModal.tsx:254",
+        "components/dev/motion_showcase/sections/screens_profile.tsx:115"
+      ],
+      "exclusive_to_feature": "monetization",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/shards_shop.tsx:664"
+    },
+    {
+      "route": "/shop",
+      "entry_points": [
+        "app/_layout.tsx:3322",
+        "app/navigation_back.ts:96"
+      ],
+      "exclusive_to_feature": "monetization",
+      "decision": "unknown",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/shop.tsx:228"
+    },
+    {
+      "route": "/streak_stats",
+      "entry_points": [
+        "app/(tabs)/home.tsx:4418",
+        "app/(tabs)/home.tsx:4949",
+        "app/feature_intro_sections_copy.ts:27",
+        "app/navigation_back.ts:75",
+        "app/shards_shop.tsx:1206",
+        "app/survey_client.ts:32",
+        "components/dev/motion_showcase/sections/screens_profile.tsx:113",
+        "functions/src/shard_survey_core.ts:27"
+      ],
+      "exclusive_to_feature": "streak",
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/streak_stats.tsx:3288"
+    },
+    {
+      "route": "/support_report",
+      "entry_points": [
+        "app/(tabs)/settings.tsx:1567",
+        "app/manage_subscription.tsx:866",
+        "app/survey_client.ts:36",
+        "functions/src/shard_survey_core.ts:31"
+      ],
+      "exclusive_to_feature": null,
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/support_report.tsx:29"
+    },
+    {
+      "route": "/survey_screen",
+      "entry_points": [
+        "app/navigation_back.ts:107",
+        "components/dev/motion_showcase/sections/screens_profile.tsx:129"
+      ],
+      "exclusive_to_feature": null,
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/survey_screen.tsx:34"
+    },
+    {
+      "route": "/terms_screen",
+      "entry_points": [
+        "app/navigation_back.ts:292",
+        "app/privacy_settings.tsx:257",
+        "components/dev/motion_showcase/sections/screens_profile.tsx:112"
+      ],
+      "exclusive_to_feature": null,
+      "decision": "keep",
+      "new_design_approval": "pending",
+      "deeplink_migration": false,
+      "evidence": "app/terms_screen.tsx:21"
+    }
+  ]
 }

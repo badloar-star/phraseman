@@ -100,8 +100,12 @@
 - 2026-09-24 · PM-271 · Opus 5.5 (сессия «Башня») · черновик контракта данных → needs_decision · docs/TOWER_CONTRACT.md · нашлось: жители лиги уже = боты с формулой; 3 вопроса владельцу (§6)
 - 2026-09-24 · D56 · Sonnet 5 (сессия «Башня») · владелец принял §6 контракта целиком → PM-271 planned, гейт OWNER_DECISION_RECORDED закрыт · —
 - 2026-09-24 · PM-273 · Sonnet 5 (сессия «Башня») · движок ступени → review · modules/spire/step_machine.ts, evidence/PM-273_step_engine_preflight.md · нашлось: голос не проходит через answer_check.ts (нужен отдельный модуль); цена энергии 1/ступень ждёт E08 — добавлена зависимость PM-274→PM-084; не typecheck-проверено (щадящий режим, 44 процесса node на машине)
+- 2026-09-24 · PM-283 · Sonnet 5 (сессия «Башня») · конфиг Шпиля (backend+клиент) → review · functions/src/spire_config_contract.ts, functions/src/admin_spire_config.ts, modules/spire/config_contract.ts, app/spire_config_client.ts, firestore.rules (config/spire_v1) · по образцу admin_arena_config.ts (App Check не трогал — пломба владельца); Джарвис не читает конфиг-документы — контракт не требует правки; HTML-раздел в admin/v2/legacy.html (58k строк) НЕ сделан — отдельный ход, живая боевая админка требует dev-сервера
+
 
 - 2026-09-24 · D51/D53 доработка · Opus 5.5 · спины «Дневного пути» закрываются С компенсацией (130 монет/спин, общий потолок 20, общие ключи начисления между активацией и миграцией) · d462bceb4 · 61/61 тестов (daily_journey_gift_activation 32/32, daily_journey_spin_never_in_gifts_contract 5/5, gifts_to_coins_migration 21/21) · typecheck и gifts_to_coins_real_wallet НЕ прогнаны (экономия ресурсов)
+
+- 2026-09-24 · PM-049/050/051/052 · Sonnet 5 · приветственный подарок и бонусы дня/недели/возвращения выключены (getTodaysBoons() всегда пуст — гасит сундук недели, comeback, PerfectWeek, XP-множители, энергоокна); welcome-модалка удалена, деньги начисляются молча тем же callable welcomeGiftClaim · d6d41bda6 58fadc511 2c81341eb 9ce920950 · тесты boon_engine/onboarding_skip_and_welcome_contract/welcome_gift_contract PASS · хост-компоненты бонусов (мёртвый код, безопасны) и «полёт рун» на Главной (HomeRewardCollectFlight в home.tsx) НЕ удалены — см. docs/work/tasks/2026-09-24_pm049-052_boon_bonuses_removal.md
 
 ## 6. Известные конфликты 2.0 со старыми правилами проекта
 

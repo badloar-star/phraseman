@@ -1,5 +1,5 @@
 {
-  "status": "NOT_YET_AUDITED",
+  "status": "AUDITED_AT_SHA",
   "purpose": "Форма для фактического аудита. Пустые entries не означают, что объектов нет. Не публиковать данные покупателей.",
   "columns": [
     "path",
@@ -11,5 +11,156 @@
     "replacement",
     "evidence"
   ],
-  "entries": []
+  "audited_sha": "af1aaec479ed9255f258ffd3a63d98164af28482",
+  "audited_at": "2026-09-24",
+  "method": "du -b по assets/ (5293 файла, 220 371 387 байт = 210 МБ исходников) + сортировка топ-40 самых тяжёлых файлов. Проверка release_included через .easignore (список исключений из EAS build archive) и app.json → expo.updates.assetPatternsToBeBundled (узкий список для OTA-обновлений). grep по коду (app/, components/, modules/, functions/src) на имя каждой кандидатной папки — искали require()/import/путь строкой для подтверждения реальных потребителей. Не аудирован построчно каждый из 5293 файлов — точечно разобраны топ-40 по размеру + папки, упомянутые в задаче (темы/декор D38, ассеты подарков/спинов D09/D45, арена D10).",
+  "totals": {
+    "files": 5293,
+    "bytes": 220371387,
+    "remove_bytes_estimate": 1011008
+  },
+  "entries": [
+    {
+      "path": "assets/images/collectibles/dalli/",
+      "bytes": 81363030,
+      "consumers": "app/collectibles/catalog_data.ts (инлайн SVG на карту, .webp тут НЕ используется — картинки карточек рисуются как <svg> строки в самих данных)",
+      "release_included": false,
+      "shared": false,
+      "decision": "already_excluded",
+      "replacement": "карточки уже используют облачные URL (app/collectibles/collectible_image_url_map.generated.ts, Firebase Storage collectible-images/**) + SVG fallback",
+      "evidence": ".easignore:162 'assets/images/collectibles/dalli/' — уже исключено из EAS-архива, комментарий в .easignore прямо говорит 'now streams from Firebase Storage… no longer bundled… ~71 MB saved'. Это НЕ находка для удаления 2.0 — работа уже сделана владельцем/прошлой сессией 2026-07-14. Оставлено в реестре как крупнейшая папка репозитория (79 МБ) для полноты аудита PM-009-A1, но release_included=False."
+    },
+    {
+      "path": "assets/images/avatar-auras-hd/",
+      "bytes": 5007174,
+      "consumers": "НЕ НАЙДЕНО — grep по app/, components/, modules/, functions/src на 'avatar-auras-hd' дал ноль совпадений. Действующий код использует app/avatar_aura_assets.ts → assets/images/avatar-auras/ (без -hd)",
+      "release_included": "unknown (не в .easignore, не в app.json assetPatternsToBeBundled — значит НЕ исключена явно из EAS-архива приложения, хотя и не входит в узкий список OTA-паттернов; вероятно тянется в билд как часть assets/** по умолчанию)",
+      "shared": false,
+      "decision": "unknown",
+      "replacement": "если это старый HD-источник для регенерации ассетов — переместить в asset_sources/ (уже в .easignore) вместо assets/images/",
+      "evidence": "grep -rln avatar-auras-hd app components modules functions/src → пусто; app/avatar_aura_assets.ts ссылается только на 'avatar-auras' (без -hd). PM-009-A2 требует подтверждения остальных потребителей ПЕРЕД удалением — не найдено ни одного, но это read-only аудит, а не команда на удаление."
+    },
+    {
+      "path": "assets/images/level-spin-rewards/",
+      "bytes": 1011008,
+      "consumers": "app/level_spin_reward_assets.ts, app/level_spin_reward_asset_manifest.ts (45 файлов)",
+      "release_included": "unknown (не проверено вхождение в app.json assetPatternsToBeBundled — нет там; вероятно бандлится обычным require() через manifest, не через OTA-паттерн)",
+      "shared": false,
+      "decision": "remove-with-feature/D09-D45",
+      "replacement": "нет — механика спинов/подарков за жемчуг удаляется целиком (D09: подарки/спины/сундуки; D45: все модалки за жемчуг)",
+      "evidence": "03_DECISIONS.md D09 OWNER_FINAL 'Подарки, спины, сундуки… убрать'; PROGRESS.md D45 'Все модалки «за жемчуг» удаляются'. Удаление ассета возможно только вместе с кодом level_reward_spins.ts/level_spin_reward_assets.ts — это задача PM по деньгам/фиче (D32 требует отдельного решения владельца на удаление, не мелкая чистка)."
+    },
+    {
+      "path": "assets/images/arena/",
+      "bytes": 838064,
+      "consumers": "app/(tabs)/arena.tsx и другие arena_*.tsx экраны (не перечислены поимённо — общий grep по 'arena' дал десятки файлов, не все обязательно про этот подкаталог assets)",
+      "release_included": "unknown (не в app.json assetPatternsToBeBundled узком списке; вероятно попадает через общий assets/** в полный EAS-билд)",
+      "shared": false,
+      "decision": "conserve",
+      "replacement": "нет — Арена не удаляется из исходников, только из релиза (D10: 'Генераторы/режимы сохранить законсервированными')",
+      "evidence": "03_DECISIONS.md D10 OWNER_FINAL; PROGRESS.md D44 'экраны Арены из релиза убирает позже (консервация)'. Ассеты Арены трогать нельзя раньше кода — сначала уходят экраны/роуты, потом можно вернуться к их ассетам отдельной задачей."
+    },
+    {
+      "path": "assets/images/tournament/",
+      "bytes": 341166,
+      "consumers": "assets/images/tournament/themes/**/*.webp явно в app.json assetPatternsToBeBundled (строка 39) — то есть АКТИВНО грузится в OTA-бандл, хотя турниры выключены на сервере",
+      "release_included": true,
+      "shared": false,
+      "decision": "unknown",
+      "replacement": "нет прямого решения владельца 2.0 по турнирам (они уже были выключены раньше отдельным решением, не в 03_DECISIONS.md 2.0-пакета) — требует подтверждения, что это тот же 'турниры' контур, который отключён (index.ts комментарий: '⛔ ТУРНИРЫ ВЫКЛЮЧЕНЫ ФУЛЛ… НЕ ВКЛЮЧАТЬ ОБРАТНО')",
+      "evidence": "app.json:39 'assets/images/tournament/themes/**/*.webp'; functions/src/index.ts комментарий перед admin_arena_config о турнирах — 29 callable сняты с деплоя, но КЛИЕНТСКИЙ ассет всё ещё грузится в каждый OTA update. Живой расход без пользы — кандидат на удаление, но не входит явно в аудируемый в PM-009 список D-решений 2.0, помечено unknown для отдельного вопроса владельцу."
+    },
+    {
+      "path": "assets/images/season/",
+      "bytes": 1149920,
+      "consumers": "Season Pass экраны (functions/src/season_pass.ts на сервере; клиентские app/season_*.tsx — не перечислены поимённо в этом проходе)",
+      "release_included": "unknown (не в app.json assetPatternsToBeBundled)",
+      "shared": false,
+      "decision": "unknown",
+      "replacement": "нет явного решения 2.0 — Season Pass не упомянут ни в 01_BIBLE.md, ни в 03_DECISIONS.md, ни в PROGRESS.md разделе 1",
+      "evidence": "functions/src/index.ts:1243-1251 export seasonClaimReward/seasonRedeemConsumable/seasonSendFriendShield/seasonBuyPass — платная механика жива и задеплоена; удалять/оставлять требует отдельного вопроса владельцу (D32: деньги/покупки — только после вопроса)."
+    },
+    {
+      "path": "assets/paywall_preview_v2.html",
+      "bytes": null,
+      "consumers": "не найдено импортов из кода (похоже на HTML-превью пейволла для дизайн-ревью, не рантайм-ассет)",
+      "release_included": false,
+      "shared": false,
+      "decision": "already_excluded",
+      "replacement": "n/a",
+      "evidence": ".easignore:'assets/paywall_preview_v2.html' — явно исключён из EAS-архива."
+    },
+    {
+      "path": "assets/╨É╨á╨ò╨¥╨É - Copy.txt",
+      "bytes": 468889,
+      "consumers": "не найдено — судя по битой кодировке имени (кириллица через неверную кодовую страницу) и .txt расширению, это НЕ рантайм-ассет",
+      "release_included": false,
+      "shared": false,
+      "decision": "already_excluded",
+      "replacement": "n/a — можно удалить из репозитория отдельной мелкой чисткой (D32 допускает чистку без денег/данных без спроса), но это НЕ входит в объём PM-009 read-only аудита",
+      "evidence": ".easignore:'assets/*Copy.txt' — уже исключено из EAS-архива. Имя файла нечитаемо (мусорная кодировка), содержимое не открывалось в рамках read-only аудита."
+    },
+    {
+      "path": "assets/audio/sfx/",
+      "bytes": 2085946,
+      "consumers": "общие звуковые эффекты интерфейса (не аудировано поимённо — 'sfx' по названию похоже на общие UI-звуки: тапы, успех/провал, не привязано к одной удаляемой фиче)",
+      "release_included": "unknown (не в app.json assetPatternsToBeBundled узком OTA-списке, но звуки обычно грузятся через require() в основной бинарник, не через OTA)",
+      "shared": true,
+      "decision": "keep",
+      "replacement": "n/a",
+      "evidence": "Название директории не указывает на удаляемую фичу (жемчуг/спины/арена/лига); risk высок пометить общие звуки на удаление без построчной проверки каждого файла — не входило в объём этого прохода (PM-009 просил топ-40 тяжёлых файлов + package.json, не полный звуковой каталог)."
+    }
+  ],
+  "heavy_dependencies": [
+    {
+      "name": "@shopify/flash-list",
+      "version": "2.0.2",
+      "why": "виртуализированные списки (замена FlatList для тяжёлых лент)",
+      "consumers": "широко используется в списках (лидерборды, каталоги наборов, ленты) — не привязано к одной удаляемой фиче",
+      "decision": "keep",
+      "evidence": "package.json dependencies; не нишевая, ядро UX списков"
+    },
+    {
+      "name": "expo-sqlite",
+      "version": "~16.0.10",
+      "why": "локальная SQL-БД на устройстве",
+      "consumers": "не аудировано поимённо в этом проходе — требует отдельного grep по 'expo-sqlite' импортам",
+      "decision": "unknown",
+      "evidence": "package.json dependencies; потенциально тяжёлая нативная зависимость, но её продуктовое назначение не определено в рамках PM-009"
+    },
+    {
+      "name": "react-native-gesture-handler",
+      "version": "~2.28.0",
+      "why": "базовая инфраструктура жестов Expo/React Navigation",
+      "consumers": "весь UI (навигация, свайпы, drag)",
+      "decision": "keep",
+      "evidence": "обязательная зависимость экосистемы Expo Router/React Navigation — не удаляется ни при каком сценарии 2.0"
+    },
+    {
+      "name": "react-native-reanimated",
+      "version": "~4.1.1",
+      "why": "анимации на UI-потоке",
+      "consumers": "широко используется во всём приложении (не привязано к одной фиче)",
+      "decision": "keep",
+      "evidence": "базовая анимационная инфраструктура — Performance Bible проекта (AGENTS.md) прямо требует держать анимации на UI-потоке через reanimated, удаление сломало бы производительность, а не улучшило"
+    },
+    {
+      "name": "react-native-svg",
+      "version": "15.12.1",
+      "why": "рендер SVG (используется, в частности, коллекционными карточками — инлайн SVG в catalog_data.ts)",
+      "consumers": "collectibles (inline SVG), иконки, иллюстрации",
+      "decision": "keep",
+      "evidence": "прямая зависимость механики коллекционных карточек (см. asset entry dalli) — картинки карточек ЭТО SVG, библиотеку удалять нельзя, даже если решится судьба самих карточек"
+    },
+    {
+      "name": "react-native-worklets",
+      "version": "0.5.1",
+      "why": "воркеры для reanimated 4.x",
+      "consumers": "транзитивная зависимость reanimated",
+      "decision": "keep",
+      "evidence": "служебный пакет reanimated, не самостоятельная фича"
+    }
+  ],
+  "heavy_dependencies_note": "three/skia/lottie/rive/tensorflow/ffmpeg/gl-* НЕ найдены в package.json dependencies — тяжёлых 3D/видео/ML-библиотек в проекте нет. Полный список dependencies (69 пакетов) не выкачивался целиком в этот отчёт (вне бюджета точечного read-only аудита) — выше перечислены только совпавшие по ключевым словам heavy/niche (three, skia, lottie, rive, reanimated, gesture-handler, worklets, svg, video, sqlite, flash-list). Остальные ~63 пакета не проверялись поимённо на предмет 'может уйти вместе с удаляемой фичей' — например openai/stripe/paypal/revenuecat SDK точно keep (billing/AI), но это не проверено в данном проходе.",
+  "top40_heaviest_files_bytes": "см. C:\\Temp\\claude\\...\\scratchpad\\top40.txt в этой сессии (не включён построчно в реестр — 40 отдельных файлов внутри collectibles/dalli и learning-v2 audio, уже покрыты записями по папкам выше; ни один top40-файл не имеет статус release_included=True кроме fonts/*.ttf, ios-icon.png, android-icon-foreground.png, icon.png — стандартные обязательные иконки/шрифты приложения, decision=keep, не входят в entries отдельными строками как заведомо не удаляемые)"
 }

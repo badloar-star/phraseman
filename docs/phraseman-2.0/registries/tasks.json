@@ -285,7 +285,7 @@
     ],
     "basis": "OWNER",
     "stage": "A",
-    "status": "ready_audit",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -308,16 +308,20 @@
     "gates": [],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "registries/job_inventory.json"
+    ],
+    "notes": [
+      "30 серверных записей; 25 scheduled задеплоены (functions:list, 509 функций в облаке). resetWeeklyXpCron — перевести на монеты, не выключать. webActivationReminderCron есть в коде, нет в облаке. Арена ~45 callable + arenaV2CleanupHourly — консервация отдельной задачей"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-008",
@@ -365,7 +369,7 @@
     ],
     "basis": "OWNER",
     "stage": "A",
-    "status": "ready_audit",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -388,16 +392,20 @@
     "gates": [],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "registries/asset_inventory.json"
+    ],
+    "notes": [
+      "assets 210 МБ/5293 файла; dalli 79 МБ уже вне сборки (.easignore); avatar-auras-hd 5 МБ без импортёров — кандидат; level-spin-rewards 1 МБ уйдёт со спинами; тяжёлых 3D/ML библиотек нет"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-010",

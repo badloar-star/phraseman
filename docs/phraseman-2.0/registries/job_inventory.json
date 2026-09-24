@@ -23,10 +23,13 @@
   "audited_at": "2026-09-24",
   "method": "Grep по всему репозиторию (app/, components/, modules/, functions/ исключены кроме имён scheduled functions) на паттерны: setInterval(, setTimeout( (только образующие цикл/периодику или заметную отложенную загрузку — точечные UI debounce <300ms исключены), AppState.addEventListener|useAppState, onSnapshot(, NetInfo.addEventListener, TaskManager.defineTask|BackgroundTask|expo-background-task|expo-task-manager, scheduleNotificationAsync, app_resume_policy (callers), prewarm|prefetch|warmup|preload (case-insensitive, app/). Глубоко прочитаны: app/_layout.tsx (root bootstrap, ~3700 строк, все 11 AppState-листенеров и все setTimeout/InteractionManager-прогревы в runHeavyInit), app/app_resume_policy.ts (сама очередь), app/learning_v2_audio_prefetch_background_v1.ts + coordinator_v1.ts (известный инцидент 2026-09-22), app/remote_account_deletion_monitor.ts, app/app_messages.ts, components/PremiumContext.tsx, app/league_group_boosts.ts, app/arena_client.ts (onSnapshot hook), app/arena_home_preload.ts, app/foreground_usage_ms.ts, app/max_call_client.ts. Ограничения: не читал построчно все ~140 файлов с AppState-совпадением и все ~84 файла с prefetch-совпадением — многие из них локальные UI-хуки (usePremium, useRevenueDailyQuotaPreview и т.п.), не самостоятельные фоновые job'ы; отобраны те, что явно создают периодическую работу, держат подписку дольше экрана, или запускаются при старте приложения вне явного действия пользователя. Обычные экранные countdown-таймеры (setInterval 1000мс с tick(), например exam.tsx, club_screen.tsx, GiftExpiryCountdown.tsx, QuestSheetModal.tsx, V2Countdown.tsx, StreakReviveModal.tsx, max_call_session.tsx) включены отдельным блоком с decision=unknown по фиче, а не расписаны каждый в деталях — они экранно-скоупные и корректно чистятся в cleanup. Бесконечные UI-анимации (Animated.loop/Reanimated withRepeat) исключены по инструкции.",
   "totals": {
-    "jobs": 33,
-    "keep": 16,
-    "remove_with_feature": 6,
-    "unknown": 11
+    "jobs": 63,
+    "keep": 37,
+    "remove_with_feature": 10,
+    "unknown": 15,
+    "conserve": 1,
+    "client_jobs": 33,
+    "server_jobs": 30
   },
   "entries": [
     {
@@ -613,6 +616,278 @@
       "cost_basis": "0-low — most are purely visual UI ticks with no network; shards_shop pack trial refresh — 1 request/60s ONLY while the screen is open",
       "decision": "unknown (mixed: arena_matchmaking/league/quest/max_call/shards_shop/max_voice timers belong to mechanics being removed or in question; decision per item depends on the judgement for that feature, not individually audited in this task)",
       "evidence": "see code_owner — list of files and lines"
+    },
+    {
+      "job_id": "cron_computeLeaderboardStatsCron",
+      "code_owner": "functions/src/index.ts:517-527",
+      "deployed_name": "computeLeaderboardStatsCron",
+      "trigger": "scheduled: 0 3 * * * UTC (daily)",
+      "domain": "лига/лидерборд",
+      "decision": "keep",
+      "evidence": "deployed (firebase functions:list); лига остаётся по D37, перцентили используются лидербордом"
+    },
+    {
+      "job_id": "cron_resetWeeklyXpCron",
+      "code_owner": "functions/src/index.ts:531-535",
+      "deployed_name": "resetWeeklyXpCron",
+      "trigger": "scheduled: 0 0 * * 1 UTC (Monday)",
+      "domain": "XP/лига недельные очки",
+      "decision": "remove-with-feature/xp-level",
+      "evidence": "deployed; зануляет progress.weekly_xp — XP удаляется полностью (BIBLE p.11, D02); D37 требует вместо XP считать заработанные за неделю монеты, крон обязан поменять поле, не исчезнуть"
+    },
+    {
+      "job_id": "cron_cleanupExpiredAppMessagesCron",
+      "code_owner": "functions/src/index.ts:537-541",
+      "deployed_name": "cleanupExpiredAppMessagesCron",
+      "trigger": "scheduled: 0 4 * * * UTC (daily)",
+      "domain": "системные сообщения/поддержка",
+      "decision": "keep",
+      "evidence": "deployed; чистка истёкших app_messages — служебная гигиена, не относится к удаляемым фичам"
+    },
+    {
+      "job_id": "cron_reEngagePushCron",
+      "code_owner": "functions/src/index.ts:576-593",
+      "deployed_name": "reEngagePushCron",
+      "trigger": "scheduled: 0 10 * * * UTC (daily)",
+      "domain": "ретеншн/пуши",
+      "decision": "keep",
+      "evidence": "deployed; push о готовности вернуться — не в списке удаляемого в BIBLE/03_DECISIONS"
+    },
+    {
+      "job_id": "cron_premiumExpiryReminderCron",
+      "code_owner": "functions/src/index.ts:599-616",
+      "deployed_name": "premiumExpiryReminderCron",
+      "trigger": "scheduled: 0 9 * * * UTC (daily)",
+      "domain": "покупки/Plus",
+      "decision": "keep",
+      "evidence": "deployed; billing-related reminder — BIBLE запрещает трогать billing webhooks/подписки"
+    },
+    {
+      "job_id": "cron_supportOpsCron",
+      "code_owner": "functions/src/index.ts:638-708",
+      "deployed_name": "supportOpsCron",
+      "trigger": "scheduled: every 10 minutes UTC",
+      "domain": "поддержка (единый диспетчер вместо 7 кронов)",
+      "decision": "keep",
+      "evidence": "deployed; BIBLE прямо запрещает отключать поддержку и pending outbox"
+    },
+    {
+      "job_id": "cron_leagueFinalizeCron",
+      "code_owner": "functions/src/league_finalize_cron.ts:170",
+      "deployed_name": "leagueFinalizeCron",
+      "trigger": "scheduled: every monday 00:05",
+      "domain": "лига",
+      "decision": "keep",
+      "evidence": "deployed; D37 — лига остаётся механикой (комнаты по 30, крон почти не переписываем), меняется только отображение и метрика (монеты вместо XP)"
+    },
+    {
+      "job_id": "cron_leagueResidentsTickCron",
+      "code_owner": "functions/src/league_residents_cron.ts:55",
+      "deployed_name": "leagueResidentsTickCron",
+      "trigger": "scheduled: every 1 hours",
+      "domain": "лига (визуальный рост аватаров жителей)",
+      "decision": "keep",
+      "evidence": "deployed; часть лиги (D37 keep), не входит в список удаляемого"
+    },
+    {
+      "job_id": "cron_youtubeCatalogSyncCron",
+      "code_owner": "functions/src/youtube_catalog.ts:412",
+      "deployed_name": "youtubeCatalogSyncCron",
+      "trigger": "scheduled: every 5 minutes",
+      "domain": "видео/YouTube-каталог",
+      "decision": "keep",
+      "evidence": "deployed; главный путь продукта 2.0 — YouTube → фразы → карточки (01_BIBLE.md p.7), видео-раздел остаётся и явно усиливается (таббар D39)"
+    },
+    {
+      "job_id": "cron_adminPushJobsCron",
+      "code_owner": "functions/src/admin_push_jobs.ts:567",
+      "deployed_name": "adminPushJobsCron",
+      "trigger": "scheduled: every 6 hours",
+      "domain": "админка/массовые пуши",
+      "decision": "keep",
+      "evidence": "deployed; админский инструмент рассылки, не связан с удаляемыми игровыми механиками"
+    },
+    {
+      "job_id": "cron_adminAlertRecoveryCron",
+      "code_owner": "functions/src/admin_alert_dispatcher.ts:392",
+      "deployed_name": "adminAlertRecoveryCron",
+      "trigger": "scheduled: every 1 minutes",
+      "domain": "владельческие Telegram-алерты (durable outbox)",
+      "decision": "keep",
+      "evidence": "deployed; retry durable outbox — диагностика/оповещения владельца, BIBLE относит к keep-инфраструктуре"
+    },
+    {
+      "job_id": "cron_adminAlertDailyDigestsCron",
+      "code_owner": "functions/src/admin_alert_digests.ts:52",
+      "deployed_name": "adminAlertDailyDigestsCron",
+      "trigger": "scheduled: 0 20 * * * (Europe/Dublin)",
+      "domain": "владельческие дайджесты",
+      "decision": "keep",
+      "evidence": "deployed; ежедневный дайджест владельцу, не относится к удаляемым фичам"
+    },
+    {
+      "job_id": "cron_webLeadNudgeCron",
+      "code_owner": "functions/src/web_leads.ts:427",
+      "deployed_name": "webLeadNudgeCron",
+      "trigger": "scheduled: 17 */6 * * * UTC (every 6h)",
+      "domain": "веб-лиды/квиз-воронка (покупки)",
+      "decision": "keep",
+      "evidence": "deployed; часть billing/checkout воронки сайта — BIBLE запрещает трогать billing без спроса"
+    },
+    {
+      "job_id": "cron_webActivationReminderCron_SOURCE_ONLY",
+      "code_owner": "functions/src/web_activation_reminders.ts:240 (export в index.ts:1065)",
+      "deployed_name": "NOT_DEPLOYED (не найден в firebase functions:list; ближайший деплой-кандидат activationEmailRetryCron — другой файл/крон, не проверено что это одно и то же)",
+      "trigger": "scheduled: 0 10 * * * UTC (объявлен в коде)",
+      "domain": "покупки на сайте (напоминание про неактивированный код)",
+      "decision": "unknown",
+      "evidence": "код существует и экспортируется, но в живом списке функций (firebase functions:list, 2026-09-24) такого имени нет — расхождение код↔деплой, PM-007-A2: не удалять автоматически, нужно уточнение у владельца/отдельная проверка"
+    },
+    {
+      "job_id": "cron_jarvisDailyDepartmentsCron",
+      "code_owner": "functions/src/jarvis/*.ts (export в index.ts:869-873)",
+      "deployed_name": "jarvisDailyDepartmentsCron",
+      "trigger": "scheduled: daily 06:00 UTC (по комментарию в index.ts)",
+      "domain": "Джарвис (внутренняя аналитика владельца)",
+      "decision": "keep",
+      "evidence": "deployed; внутренний инструмент владельца, не пользовательская механика, не в списке удаляемого"
+    },
+    {
+      "job_id": "cron_jarvisDailyBusinessHistoryCron",
+      "code_owner": "functions/src/jarvis/*.ts (export в index.ts:869-873)",
+      "deployed_name": "jarvisDailyBusinessHistoryCron",
+      "trigger": "scheduled: daily 07:00 UTC (по комментарию)",
+      "domain": "Джарвис",
+      "decision": "keep",
+      "evidence": "deployed; см. cron_jarvisDailyDepartmentsCron"
+    },
+    {
+      "job_id": "cron_jarvisProductKnowledgeReviewCron",
+      "code_owner": "functions/src/jarvis/*.ts (export в index.ts:869-873)",
+      "deployed_name": "jarvisProductKnowledgeReviewCron",
+      "trigger": "scheduled: weekly (по комментарию, конкретный день не подтверждён)",
+      "domain": "Джарвис",
+      "decision": "keep",
+      "evidence": "deployed; см. cron_jarvisDailyDepartmentsCron"
+    },
+    {
+      "job_id": "cron_soc2ReadinessCollectorCron",
+      "code_owner": "functions/src/soc2_readiness_collector.ts:241 (export в index.ts:7)",
+      "deployed_name": "soc2ReadinessCollectorCron",
+      "trigger": "scheduled: 0 4 * * 1 UTC (Monday)",
+      "domain": "security/compliance",
+      "decision": "keep",
+      "evidence": "deployed; BIBLE прямо запрещает отключать security без спроса"
+    },
+    {
+      "job_id": "cron_accountDeleteRetryCron",
+      "code_owner": "functions/src/account_delete_worker.ts (see also retry cron file)",
+      "deployed_name": "accountDeleteRetryCron",
+      "trigger": "scheduled (deployed, exact expr not read in this pass)",
+      "domain": "удаление аккаунта",
+      "decision": "keep",
+      "evidence": "deployed; BIBLE прямо запрещает отключать account deletion"
+    },
+    {
+      "job_id": "cron_accountMergeOutboxRetryCron",
+      "code_owner": "functions/src/auth_merge.ts:1423",
+      "deployed_name": "accountMergeOutboxRetryCron",
+      "trigger": "scheduled: every 5 minutes",
+      "domain": "auth (merge аккаунтов)",
+      "decision": "keep",
+      "evidence": "deployed; BIBLE запрещает отключать auth"
+    },
+    {
+      "job_id": "cron_activationEmailRetryCron",
+      "code_owner": "unknown (deployed name found via functions:list, source file not matched in this pass — possibly web_activation_reminders.ts или соседний)",
+      "deployed_name": "activationEmailRetryCron",
+      "trigger": "scheduled (deployed, exact expr not read)",
+      "domain": "покупки на сайте / письма активации",
+      "decision": "unknown",
+      "evidence": "deployed, но code_owner не подтверждён построчно — требует отдельной точечной проверки, не удалять до подтверждения (billing-related, BIBLE keep-кандидат)"
+    },
+    {
+      "job_id": "cron_recalcCoinExchangeRate",
+      "code_owner": "functions/src/coin_exchange.ts:342",
+      "deployed_name": "recalcCoinExchangeRate",
+      "trigger": "scheduled (RECALC_SCHEDULE constant, exact cron not read)",
+      "domain": "монеты/экономика (руны→монеты, D03)",
+      "decision": "keep",
+      "evidence": "deployed; напрямую обслуживает новую монетную экономику 2.0 (D03/D34), нельзя удалять — это часть целевой механики, не удаляемой"
+    },
+    {
+      "job_id": "cron_resendKeyHealthCron",
+      "code_owner": "unknown (not located in this pass — email infra, likely resend_* module)",
+      "deployed_name": "resendKeyHealthCron",
+      "trigger": "scheduled (deployed, exact expr not read)",
+      "domain": "email-инфраструктура",
+      "decision": "keep",
+      "evidence": "deployed; служебная проверка почтового провайдера — инфраструктурная диагностика, не пользовательская фича"
+    },
+    {
+      "job_id": "cron_userNotificationsCleanupCron",
+      "code_owner": "functions/src/user_notifications.ts:174",
+      "deployed_name": "userNotificationsCleanupCron",
+      "trigger": "scheduled: every day 04:20 UTC",
+      "domain": "уведомления (чистка)",
+      "decision": "keep",
+      "evidence": "deployed; служебная гигиена коллекции уведомлений"
+    },
+    {
+      "job_id": "cron_arenaV2CleanupHourly",
+      "code_owner": "functions/src/arena_v2.ts:4416",
+      "deployed_name": "arenaV2CleanupHourly",
+      "trigger": "scheduled: every 60 minutes",
+      "domain": "арена",
+      "decision": "remove-with-feature/arena",
+      "evidence": "deployed; D10 — Арена и её эксклюзивные экраны убираются из релиза, генераторы/режимы консервируются вне release graph, а не удаляются из деплоя молча; серверную часть трогать нельзя без отдельного решения по консервации сервера (PM задача по Арене), помечено remove-with-feature/arena для отслеживания"
+    },
+    {
+      "job_id": "functions_max_all_conserved",
+      "code_owner": "functions-max/index.ts:52-70 (весь файл — экспорты закомментированы); реализация в functions/src/max_voice_*.ts не тронута",
+      "deployed_name": "NOT_DEPLOYED (0 функций из functions-max в firebase functions:list — искал 'maxVoice' в живом списке)",
+      "trigger": "n/a (законсервировано)",
+      "domain": "MAX (голосовой учитель)",
+      "decision": "conserve",
+      "evidence": "maxVoicePreflight, maxVoiceMint, maxVoiceHeartbeat, maxVoiceSessionEnd, maxVoiceWatchdog, maxVoiceUsageRecon, maxVoiceSafetyReport, maxVoiceFinalize, maxVoiceGetMemory, maxVoiceUpdateMemory, maxVoiceDeleteMemoryItem, maxVoiceClearMemory — все экспорты закомментированы в functions-max/index.ts. Пломба MAX_SECTION_SEALED_BY_OWNER_2026_09_04 (functions/src/max_section_seal.ts, импортируется на index.ts:31). Совпадает с D11 (01_BIBLE.md/03_DECISIONS.md): код не удалять, только не включать без прямой команды владельца."
+    },
+    {
+      "job_id": "callable_levelRewardSpin_group",
+      "code_owner": "functions/src/level_reward_spins.ts (export в index.ts:1230-1236)",
+      "deployed_name": "levelRewardSpinStatus, levelRewardSpinClaim, levelRewardSpinAcknowledge, levelRewardSpinDelivery, levelRewardSpinEnrollV1, levelSpinStarGrant",
+      "trigger": "onCall",
+      "domain": "спины/подарки",
+      "decision": "remove-with-feature/D09-D45",
+      "evidence": "index.ts:1230-1239; D09 — подарки/спины/сундуки убрать; deployed=не проверено поимённо в этом проходе, помечено для отдельного PM по деньгам (D32 требует спроса владельца на удаление денег/балансов)"
+    },
+    {
+      "job_id": "callable_welcomeGiftClaim",
+      "code_owner": "functions/src/welcome_gift.ts (export в index.ts:1214)",
+      "deployed_name": "welcomeGiftClaim",
+      "trigger": "onCall",
+      "domain": "стартовый подарок (руны)",
+      "decision": "unknown",
+      "evidence": "index.ts:1213-1214: '+300 рун одной выдачей на аккаунт'; руны становятся монетами (D03) — механику приветственного бонуса явно не отменяли, но валюта меняется; требует решения владельца по D32 (деньги/балансы)"
+    },
+    {
+      "job_id": "callable_globalBroadcastClaim_pearl_modals",
+      "code_owner": "functions/src/global_broadcast_claim.ts (export в index.ts:1228)",
+      "deployed_name": "globalBroadcastClaim, globalBroadcastListActive",
+      "trigger": "onCall",
+      "domain": "рассылки/подарки",
+      "decision": "unknown",
+      "evidence": "index.ts:1228-1229; не прочитан подробно в этом проходе — общий broadcast механизм, не обязательно 'жемчужная' модалка из D45; требует отдельной точечной проверки, не относить автоматически к remove"
+    },
+    {
+      "job_id": "callable_arenaV2_and_arenaExpansion_group",
+      "code_owner": "functions/src/arena_v2.ts, functions/src/arena_expansion.ts (export в index.ts:1103-1178)",
+      "deployed_name": "arenaV2Home, arenaV2FindMatch, arenaV2OnQueueWrite(firestore trigger), arenaV2QueueCancel, arenaV2QuickBotFallback, arenaV2RankedBotFallback, arenaV2MatchAccept/Decline/Plan/Finish/Settle, arenaV2SubmitAnswer/SubmitSpeedAttempt, arenaV2SyncMatch, arenaV2Forfeit, arenaV2ReleaseStaleMatch, arenaV2Invite* (6 функций), arenaV2DevFriendBotCreate, arenaV2FriendsBoard, arenaV2SeasonClaim, arenaV2CleanupHourly, arenaExpansionHome, arenaToday* (4), arenaMatchLabGet, arenaGhost* (4), arenaRival* (5), arenaPartner* (7), arenaStarStore, arenaStarPurchase, arenaStarEquip",
+      "trigger": "onCall / 1 firestore trigger (arenaV2OnQueueWrite) / 1 scheduled (arenaV2CleanupHourly, отдельная запись выше)",
+      "domain": "арена",
+      "decision": "remove-with-feature/arena",
+      "evidence": "index.ts:1094-1178; D10 (03_DECISIONS.md) — 'Арену и её эксклюзивные экраны убрать из релиза. Генераторы/режимы сохранить законсервированными.' PM-007 A2: расхождения НЕ удалять автоматически — это ~45 callable, консервация сервера требует отдельной согласованной задачи, не входит в read-only аудит"
     }
-  ]
+  ],
+  "server_audited_at": "2026-09-24",
+  "server_method": "grep -n \"^export \" functions/src/index.ts (134 export statements) + grep schedule: по *.ts верхнего уровня functions/src + firebase functions:list --project phraseman-ea0b3 (read-only, реально вернул 509 задеплоенных функций: 422 callable, 25 scheduled, 47 firestore triggers, 15 https/onRequest). Полный построчный аудит всех 422 callable не проводился (вне бюджета PM-007 A1/A2) — сфокусировано на 25 scheduled (все), functions-max (весь, законсервирован) и callable-группах, явно относящихся к доменам из D09/D10/D45 (спины/подарки/арена). Остальные ~370 callable (auth, покупки, admin/Jarvis/Telegram-алерты, support, content factory, community packs, learning-v2, friends, referral, season pass) не входили в явный список удаления 2.0 и не аудировались поимённо в этом read-only проходе."
 }

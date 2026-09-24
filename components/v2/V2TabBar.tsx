@@ -48,6 +48,8 @@ const CAP_SPRING = { stiffness: 260, damping: 19, mass: 1, useNativeDriver: true
 const CAP_FOLLOW_SPRING = { stiffness: 700, damping: 48, mass: 0.7, useNativeDriver: true } as const;
 const ACTIVATE_ACTION = [{ name: 'activate' as const }];
 
+type Gesture = { x0: number; idx: number; moved: boolean; timer: ReturnType<typeof setTimeout> | null };
+
 type Props = {
   items: readonly V2TabBarItem[];
   activeIndex: number;
@@ -114,22 +116,37 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
   const placedRef = useRef(false);
   const draggingRef = useRef(false);
   const dragLeftRef = useRef(0);
-  const gestureRef = useRef<{ x0: number; idx: number; dx: number; timer: ReturnType<typeof setTimeout> | null } | null>(null);
+  // Куда капсула сейчас едет/стоит — чтобы эффект не перезапускал ту же пружину.
+  const targetLeftRef = useRef(0);
+  const gestureRef = useRef<Gesture | null>(null);
   // Обработчики жеста создаются один раз — свежие значения читают отсюда.
   const live = useRef({ slotW, count, onSelect, onInteract, reduceMotion });
   live.current = { slotW, count, onSelect, onInteract, reduceMotion };
+
+  const travelTo = (left: number) => {
+    targetLeftRef.current = left;
+    if (live.current.reduceMotion) {
+      capX.setValue(left);
+      return;
+    }
+    Animated.spring(capX, { toValue: left, ...CAP_SPRING }).start(); // guard-ok: useNativeDriver в CAP_SPRING
+  };
 
   useEffect(() => {
     if (slotW <= 0 || activeIndex < 0 || draggingRef.current) return;
     const to = PAD + activeIndex * slotW;
     // Первый кадр — капсула сразу на месте (стабильная геометрия), дальше едет пружиной.
-    if (!placedRef.current || reduceMotion) {
+    if (!placedRef.current) {
       capX.setValue(to);
+      targetLeftRef.current = to;
       placedRef.current = true;
       return;
     }
-    Animated.spring(capX, { toValue: to, ...CAP_SPRING }).start();
-  }, [activeIndex, capX, reduceMotion, slotW]);
+    // Тап уже запустил переезд к этой вкладке — не перезапускаем пружину.
+    if (Math.abs(targetLeftRef.current - to) < 0.5) return;
+    travelTo(to);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeIndex, slotW]);
 
   const pressIn = useCallback((idx: number) => {
     setPressedIdx(idx);
@@ -152,36 +169,41 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
   }, [pressAnim]);
 
   const clampIdx = (i: number) => Math.max(0, Math.min(live.current.count - 1, i));
+  const setLift = (on: boolean) => {
+    Animated.spring(capLift, on
+      ? { toValue: 1, speed: 30, bounciness: 0, useNativeDriver: true }
+      : { toValue: 0, speed: 24, bounciness: 4, useNativeDriver: true }).start();
+  };
 
-  const moveCap = (fingerX: number) => {
+  const followFinger = (fingerX: number) => {
     const { slotW: sw, count: n } = live.current;
     const left = Math.max(PAD, Math.min(PAD + (n - 1) * sw, fingerX - sw / 2));
     dragLeftRef.current = left;
-    // зачем (владелец: «капсула должна переезжать, а не прыгать»): раньше здесь
-    // стоял setValue — капсула мгновенно вставала под палец в момент захвата и
-    // дёргалась по шагам касания. Теперь она догоняет палец быстрой пружиной.
+    targetLeftRef.current = left;
+    // Капсула догоняет палец быстрой пружиной — едет за ним, а не телепортируется.
     Animated.spring(capX, { toValue: left, ...CAP_FOLLOW_SPRING }).start(); // guard-ok: useNativeDriver в CAP_FOLLOW_SPRING
     const near = clampIdx(Math.round((left - PAD) / sw));
     setHoverIdx((prev) => (prev === near ? prev : near));
   };
 
-  const startDrag = (fingerX: number) => {
+  // зачем (владелец 24.09: «при НАЖАТИИ капсула должна переехать, а не прыгнуть»):
+  // раньше удержание 0,17 с сразу ставило капсулу под палец. На загруженном JS
+  // таймер срабатывал раньше отпускания, и обычный тап превращался в рывок.
+  // Теперь удержание только приподнимает капсулу на месте; за пальцем она идёт
+  // лишь когда палец реально сдвинулся, иначе это тап — и она плавно переезжает.
+  const grab = () => {
     if (draggingRef.current) return;
     draggingRef.current = true;
+    dragLeftRef.current = targetLeftRef.current;
     pressOut();
     hapticTap();
-    Animated.spring(capLift, { toValue: 1, speed: 30, bounciness: 0, useNativeDriver: true }).start();
-    moveCap(fingerX);
+    setLift(true);
   };
 
-  const finishDrag = () => {
-    draggingRef.current = false;
-    const { slotW: sw, onSelect: select } = live.current;
-    const target = clampIdx(Math.round((dragLeftRef.current - PAD) / sw));
-    setHoverIdx(null);
-    Animated.spring(capLift, { toValue: 0, speed: 24, bounciness: 4, useNativeDriver: true }).start();
-    Animated.spring(capX, { toValue: PAD + target * sw, ...CAP_SPRING }).start(); // guard-ok: useNativeDriver в CAP_SPRING
-    select(target);
+  const tapSelect = (idx: number) => {
+    // Переезд стартует прямо в обработчике касания, до тяжёлой перерисовки экрана вкладки.
+    travelTo(PAD + idx * live.current.slotW);
+    live.current.onSelect(idx);
   };
 
   const endGesture = (cancelled: boolean) => {
@@ -190,11 +212,21 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
     if (!g) return;
     if (g.timer) clearTimeout(g.timer);
     if (draggingRef.current) {
-      finishDrag();
+      draggingRef.current = false;
+      setHoverIdx(null);
+      setLift(false);
+      if (!g.moved) {
+        if (cancelled) travelTo(targetLeftRef.current);
+        else tapSelect(g.idx);
+        return;
+      }
+      const target = clampIdx(Math.round((dragLeftRef.current - PAD) / live.current.slotW));
+      travelTo(PAD + target * live.current.slotW);
+      live.current.onSelect(target);
       return;
     }
     pressOut();
-    if (!cancelled) live.current.onSelect(g.idx);
+    if (!cancelled) tapSelect(g.idx);
   };
 
   const responder = useRef(PanResponder.create({
@@ -208,23 +240,21 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
       const idx = clampIdx(Math.floor((x0 - PAD) / live.current.slotW));
       live.current.onInteract?.();
       pressIn(idx);
-      const g: { x0: number; idx: number; dx: number; timer: ReturnType<typeof setTimeout> | null } = { x0, idx, dx: 0, timer: null };
+      const g: Gesture = { x0, idx, moved: false, timer: null };
       g.timer = setTimeout(() => {
-        if (gestureRef.current === g) startDrag(g.x0 + g.dx);
+        if (gestureRef.current === g) grab();
       }, HOLD_TO_DRAG_MS);
       gestureRef.current = g;
     },
     onPanResponderMove: (_e, gs) => {
       const g = gestureRef.current;
       if (!g) return;
-      g.dx = gs.dx;
-      const x = g.x0 + gs.dx;
-      if (!draggingRef.current && Math.abs(gs.dx) > DRAG_SLOP) {
+      if (!g.moved && Math.abs(gs.dx) > DRAG_SLOP) {
+        g.moved = true;
         if (g.timer) clearTimeout(g.timer);
-        startDrag(x);
-        return;
+        grab();
       }
-      if (draggingRef.current) moveCap(x);
+      if (g.moved) followFinger(g.x0 + gs.dx);
     },
     onPanResponderRelease: () => endGesture(false),
     onPanResponderTerminate: () => endGesture(true),

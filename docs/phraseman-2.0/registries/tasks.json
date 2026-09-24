@@ -2412,7 +2412,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -2438,17 +2438,21 @@
       "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE"
     ],
     "audit_sha": null,
-    "result_sha": null,
-    "owner": null,
+    "result_sha": "97858f631",
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "commit 97858f631"
+    ],
+    "notes": [
+      "AchievementToast/AchievementContext удалены; награда начисляется при разблокировке (registerXP) — не унесена; pending гасится без durable-долга"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-054",
@@ -9314,7 +9318,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -9340,17 +9344,21 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
-    "owner": null,
+    "result_sha": "ddf8e551e",
+    "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "commit ddf8e551e"
+    ],
+    "notes": [
+      "Пункт «Уроки с MAX» и категория max_lessons убраны; пломба MAX не тронута"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "sonnet-5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-199",

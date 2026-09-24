@@ -107,7 +107,11 @@ import { SECTION_SHEET_STACK_OPTIONS } from './section_sheet_navigation';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { subscribeNetStatus } from './net_status';
 import { resumePendingOnboardingFunnel } from './onboarding_funnel';
-import { raiseWelcomeGiftForExistingUserIfEligible } from './onboarding_welcome_state';
+// зачем (PM-049, D09/S51 владельца): вход больше не прерывает приветственная
+// модалка — деньги (+100 жемчужин, +300 рун) начисляются молча, без окна и
+// фанфар, тем же путём, что уже принят для D51 (молчаливая миграция). Функция
+// сама идемпотентна за аккаунт (welcome_gift.ts), рубильник admin остаётся.
+import { ensureWelcomeGiftGranted } from './welcome_gift';
 import { cleanupRetiredMistakePracticeStorage } from './mistake_practice_legacy_cleanup';
 import {
   readOnboardingNotificationChoice,
@@ -162,11 +166,6 @@ import GlobalShardsEarnedHost from '../components/GlobalShardsEarnedHost';
 import EntitlementExpiredHost from '../components/EntitlementExpiredHost';
 import GlobalFriendGiftHost from '../components/GlobalFriendGiftHost';
 import ReferralWelcomeHost from '../components/ReferralWelcomeHost';
-import OnboardingWelcomeHost from '../components/OnboardingWelcomeHost';
-import MysteryMondayHost from '../components/MysteryMondayHost';
-import ComebackBoonHost from '../components/ComebackBoonHost';
-import PerfectWeekHost from '../components/PerfectWeekHost';
-import BoonActivatedHost from '../components/BoonActivatedHost';
 import StreakRiskToastHost from '../components/StreakRiskToastHost';
 import BillingIssueToastHost from '../components/BillingIssueToastHost';
 import ArenaOpponentFoundHost from '../components/arena/ArenaOpponentFoundHost';
@@ -2696,21 +2695,15 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       if (safetyTimer) clearTimeout(safetyTimer);
       bootMark('setReady(true) — bootstrap COMPLETE');
       setReady(true);
-      // зачем (владелец, 2026-08-26): «все старые кто после обновы откроет
-      // приложение тоже» должны получить подарок — CleanOnboarding ставит флаг
-      // только когда САМ монтируется, а у человека, который свой онбординг
-      // прошёл раньше (onboarding_done уже был на диске = !willShowOnboarding),
-      // он в этом запуске не смонтируется никогда. Вызов чисто фоновый: не
-      // await'ится, ничего не возвращает, любая ошибка внутри проглатывается —
-      // первый кадр и вся остальная загрузка НЕ ждут и не зависят от него.
-      // once-guard живёт в самой функции, поэтому повторные холодные старты
-      // обычных пользователей — одно быстрое чтение AsyncStorage, не больше.
-      // Читаем onboardingPathRef, а не willShowOnboarding напрямую: та
-      // объявлена const внутри try-блока выше и здесь уже не в scope, а ref —
-      // тот же самый источник значения (строка "onboardingPathRef.current =
-      // willShowOnboarding" чуть выше), уже используемый остальным файлом вне
-      // этого блока.
-      if (!onboardingPathRef.current) void raiseWelcomeGiftForExistingUserIfEligible();
+      // зачем (PM-049, D09/S51 владельца, 2026-09-24): первый вход не должен
+      // прерываться наградой — приветственная модалка и её "pending"-флаг
+      // (onboarding_welcome_state.ts, OnboardingWelcomeHost) удалены целиком.
+      // Деньги (+100 жемчужин, +300 рун) при этом остаются: welcome_gift.ts —
+      // единственный источник истины, полностью идемпотентен за аккаунт, сам
+      // ждёт готовности identity и решает по account-scoped состоянию, нужно
+      // ли ещё что-то довыдать (новый юзер, старый после обновы, крэш/офлайн).
+      // Вызов фоновый: не await'ится, ошибка внутри проглатывается функцией.
+      void ensureWelcomeGiftGranted();
       setTimeout(flushPending, 280);
       if (shouldPrimeLessonsAfterReveal) {
         InteractionManager.runAfterInteractions(() => {
@@ -3681,20 +3674,18 @@ export default function RootLayout() {
                 <OverlayArbiterProvider>
                     <AppContent fontsReady={fontsReady} />
                     <DailyJourneyProductionModalHost />
-                    {/* зачем: приветствие после онбординга — над ГЛАВНОЙ, а не
-                        поверх последнего экрана анкеты (владелец, 2026-07-27).
-                        Ключ onboardingWelcome стоит первым в приоритете арбитра,
-                        поэтому новичок видит его раньше наград и обновлений. */}
-                    <OnboardingWelcomeHost />
+                    {/* зачем (PM-049/050/051/052, D09/S51 владельца): бонус входа,
+                        сундук недели, «день возвращения», «идеальная неделя» и
+                        «бонус дня активирован» убраны — ничто декоративное не
+                        преграждает вход. Хосты BoonActivatedHost/MysteryMondayHost/
+                        ComebackBoonHost/PerfectWeekHost/OnboardingWelcomeHost
+                        удалены целиком (components/*Host.tsx). Деньги welcome-
+                        подарка начисляются молча ниже, без модалки. */}
                     <ActionToast />
                     <GlobalLevelUpRewards />
                     <GlobalShardsEarnedHost />
                     <EntitlementExpiredHost />
                     <ReferralWelcomeHost />
-                    <MysteryMondayHost />
-                    <ComebackBoonHost />
-                    <PerfectWeekHost />
-                    <BoonActivatedHost />
                     <GlobalFriendGiftHost />
                     <StreakRiskToastHost />
                     <BillingIssueToastHost />

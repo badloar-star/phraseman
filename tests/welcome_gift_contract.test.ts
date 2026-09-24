@@ -10,10 +10,7 @@ const clientLedger = fs.readFileSync(
 const server = fs.readFileSync(path.join(process.cwd(), 'functions', 'src', 'welcome_gift.ts'), 'utf8');
 const ledger = fs.readFileSync(path.join(process.cwd(), 'functions', 'src', 'stars_ledger.ts'), 'utf8');
 const fnIndex = fs.readFileSync(path.join(process.cwd(), 'functions', 'src', 'index.ts'), 'utf8');
-const welcomeHost = fs.readFileSync(
-  path.join(process.cwd(), 'components', 'OnboardingWelcomeHost.tsx'),
-  'utf8',
-);
+const rootLayout = fs.readFileSync(path.join(process.cwd(), 'app', '_layout.tsx'), 'utf8');
 
 // зачем: владелец (2026-08-26) — стартовый подарок (+100 жемчужин, +300 рун)
 // из приветственной модалки, СТРОГО один раз на аккаунт. Контракт сторожит
@@ -82,10 +79,14 @@ describe('Welcome gift economics contract', () => {
     expect(client).toContain("DebugLogger.info('welcome_gift:run', 'account_not_active_in_15s')");
   });
 
-  it('retries the grant when an account becomes active after the startup timeout', () => {
-    expect(welcomeHost).toContain('subscribeAccountGeneration');
-    expect(welcomeHost).toMatch(/token\.phase === 'active'[\s\S]*?token\.stableId\?\.trim\(\)[\s\S]*?ensureWelcomeGiftGranted\(\)/);
-    expect(welcomeHost).toMatch(/accountGenerationSubscription\.remove\(\)/);
+  // зачем (PM-049, D09/S51 владельца, 2026-09-24): OnboardingWelcomeHost
+  // (первый ретрай через subscribeAccountGeneration) удалён вместе с модалкой
+  // — единственный вызов теперь фоновый, один раз на bootstrap _layout.tsx.
+  // Функция сама ждёт готовности identity внутри (waitForActiveAccountGeneration),
+  // поэтому отдельный ретрай-хост больше не нужен.
+  it('is called once on bootstrap, directly, with no modal/host in between', () => {
+    expect(rootLayout).toContain('void ensureWelcomeGiftGranted();');
+    expect(rootLayout).not.toContain('<OnboardingWelcomeHost />');
   });
 
   it('runes stay server-authoritative: no client-side star writer, only merge', () => {

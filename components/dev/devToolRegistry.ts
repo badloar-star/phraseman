@@ -23,7 +23,6 @@ export type DevToolAction =
   | 'open-max-paywall'
   | 'preview-lesson-results'
   | 'preview-spin-reward'
-  | 'preview-welcome-gift'
   | 'preview-daily-journey'
   | 'preview-session-attempt-gift'
   | 'preview-league-promoted'
@@ -546,22 +545,6 @@ export const DEV_TOOL_SECTIONS = [
         action: 'preview-spin-reward',
         icon: 'sync-outline',
         testID: 'dev-preview-spin-reward',
-      },
-      // зачем (владелец, 2026-08-26): «добавь кнопку в DEV Hub чтобы проверить
-      // модал» — приветственная церемония начисляет ОДИН раз на аккаунт
-      // навсегда (жёсткая идемпотентность), поэтому кнопка ни разу не зовёт
-      // beginWelcomeGiftGrant — только монтирует WelcomeGiftModal саму по себе.
-      // Компонент не начисляет ничего сам (см. components/WelcomeGiftModal.tsx)
-      // — начисление живёт снаружи, в OnboardingWelcomeHost, сюда не подключено.
-      {
-        id: 'welcome-gift',
-        order: 50,
-        title: 'Приветствие + бонус новичку',
-        detail: 'Только анимация и текст. Жемчужины и руны НЕ начисляются — реальная выдача живёт отдельно и одноразова.',
-        actionLabel: 'Показать',
-        action: 'preview-welcome-gift',
-        icon: 'gift-outline',
-        testID: 'dev-preview-welcome-gift',
       },
     ],
   },

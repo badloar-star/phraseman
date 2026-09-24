@@ -35,8 +35,9 @@ const HYBRID_DEFAULT_SURFACES = [
   'components/MedalToast.tsx',
   'components/NotificationPermissionModal.tsx',
   'components/OfflineBanner.tsx',
-  // OnboardingWelcomeSheet удалена (2026-08-26): приветствие новичка теперь
-  // WelcomeGiftModal — гибрид-нативная церемония без classic-варианта.
+  // зачем (PM-049, D09/S51 владельца, 2026-09-24): WelcomeGiftModal удалена —
+  // первый вход не должен прерываться наградой. Деньги welcome-подарка
+  // начисляются молча, без модалки (app/welcome_gift.ts, ensureWelcomeGiftGranted).
   'components/PromoBanner.tsx',
   'components/RankChangeBanner.tsx',
   'components/ReferralInviteBannerArt.tsx',

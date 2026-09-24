@@ -91,7 +91,6 @@ import {
   MANDATORY_ONBOARDING_STEP,
   type OnboardingStepId,
 } from '../app/onboarding_flow';
-import { markOnboardingWelcomePending } from '../app/onboarding_welcome_state';
 import { recordOnboardingFunnelCompletion, recordOnboardingFunnelStart } from '../app/onboarding_funnel';
 import {
   ONBOARDING_REQUESTED_STUDY_TARGET_KEY,
@@ -2332,9 +2331,6 @@ function CleanOnboarding({
   // тому же событию remote_config_changed, что и список экранов — владелец
   // выключает их из админки без релиза, живые сессии подхватывают за секунды.
   const [skipEnabled, setSkipEnabled] = useState(() => getRemoteBool('onboarding_skip_enabled'));
-  const [welcomeSheetEnabled, setWelcomeSheetEnabled] = useState(
-    () => getRemoteBool('onboarding_welcome_sheet_enabled'),
-  );
   const finishingRef = useRef(false);
   const paywallTransitionBusyRef = useRef(false);
 
@@ -2457,7 +2453,6 @@ function CleanOnboarding({
     const subscription = onAppEvent('remote_config_changed', () => {
       setRemoteEnabledSteps(resolveRuntimeOnboardingSteps(getEnabledOnboardingSteps(), FORCE_ONBOARDING_QA));
       setSkipEnabled(getRemoteBool('onboarding_skip_enabled'));
-      setWelcomeSheetEnabled(getRemoteBool('onboarding_welcome_sheet_enabled'));
     });
     return () => subscription.remove();
   }, []);
@@ -3078,15 +3073,10 @@ function CleanOnboarding({
       if (analyticsAllowed) {
         trackOnboarding('onboarding_complete', { level: selectedLevel, target: studyTarget });
       }
-      // зачем: владелец (2026-07-27) — приветственную шторку показываем НЕ поверх
-      // последнего экрана анкеты, а когда уже открылась главная. Поэтому здесь
-      // только ставим одноразовый флаг и сразу отдаём управление; шторку поднимет
-      // OnboardingWelcomeHost из _layout.tsx через OverlayArbiter. Рубильник
-      // выключен → флага нет, поведение ровно как раньше.
-      if (welcomeSheetEnabled) {
-        await markOnboardingWelcomePending();
-        trackOnboarding('onboarding_welcome_sheet_view', { skipped: skippedRef.current });
-      }
+      // зачем (PM-049, D09/S51 владельца): приветственная шторка убрана —
+      // первый вход не прерывается наградой. Деньги welcome-подарка
+      // начисляются отдельно и молча из app/_layout.tsx (ensureWelcomeGiftGranted),
+      // без флага/хоста/модалки; здесь больше нечего ставить.
       onDone();
       void resumePendingGeneratedNickname();
       void AsyncStorage.multiRemove([STEP_KEY, PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY]).catch(() => {});
@@ -3099,7 +3089,7 @@ function CleanOnboarding({
     } finally {
       finishingRef.current = false;
     }
-  }, [lang, notificationChoice, onDone, selectedLevel, studyTarget, welcomeSheetEnabled]);
+  }, [lang, notificationChoice, onDone, selectedLevel, studyTarget]);
   const completeOnboardingRef = useRef(completeOnboarding);
   completeOnboardingRef.current = completeOnboarding;
 

@@ -38,7 +38,6 @@ import FirstPurchaseSealCelebration, {
 } from '../FirstPurchaseSealCelebration';
 import ResultsSequence from '../feedback/ResultsSequence';
 import { SpinRewardPlaque } from '../SpinRewardPlaque';
-import WelcomeGiftModal from '../WelcomeGiftModal';
 import DailyJourneyRewardPreviewModal from './DailyJourneyRewardPreviewModal';
 import { useOverlayVisible } from '../OverlayArbiter';
 import { usePremium } from '../PremiumContext';

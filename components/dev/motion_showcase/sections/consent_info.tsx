@@ -12,7 +12,6 @@ import AiDialogConsentModal from '../../../AiDialogConsentModal';
 import AiExplainConsentModal from '../../../AiExplainConsentModal';
 import NotificationPermissionModal from '../../../NotificationPermissionModal';
 import MistakeEli5Modal from '../../../MistakeEli5Modal';
-import WelcomeGiftModal from '../../../WelcomeGiftModal';
 import DeckPickerSheet from '../../../../app/flashcards/DeckPickerSheet';
 import SectionSheetHeader from '../../../SectionSheetHeader';
 import { useTheme } from '../../../ThemeContext';
@@ -186,19 +185,9 @@ export const SECTION: ShowcaseSection = {
       kind: 'note',
       note: cs('explain_sheet_note'),
     },
-    {
-      // зачем (владелец, 2026-08-26): вместо шторки «Спасибо за установку» —
-      // церемония стартового подарка. Витрина только рисует модалку: начисление
-      // живёт в OnboardingWelcomeHost/welcome_gift.ts и отсюда НЕ запускается.
-      id: 'welcome-gift-modal',
-      approval: 'accepted',
-      title: cs('welcome_gift_modal_title'),
-      detail: cs('real_component'),
-      kind: 'render',
-      render: ({ visible, onClose }) => (
-        <WelcomeGiftModal visible={visible} onClose={onClose} />
-      ),
-    },
+    // зачем (PM-049, D09/S51 владельца): приветственная модалка удалена из
+    // приложения — пункт витрины убран вместе с ней (components/WelcomeGiftModal.tsx
+    // больше не существует).
     // зачем: пункт «шторка выбора канала» УДАЛЁН из витрины (владелец, 2026-08-17).
     // Шторка открывает настоящий YouTube и выкидывает из приложения — проверять её
     // здесь невозможно, а автопрогон она ломала: после ухода наружу все следующие

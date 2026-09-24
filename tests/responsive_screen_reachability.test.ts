@@ -74,7 +74,6 @@ describe('short-window action reachability', () => {
     'components/celebration/BoonChestHybrid.tsx',
     'components/celebration/ReferralFriendRewardHybrid.tsx',
     'components/friends_together/FriendLevelUpModal.tsx',
-    'components/WelcomeGiftModal.tsx',
     'components/LevelSpinRewardModal.tsx',
     'components/PersonalAdminMessageModal.tsx',
     'components/GlobalBroadcastModal.tsx',

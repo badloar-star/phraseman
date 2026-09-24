@@ -3385,7 +3385,9 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": [
+      "2026-09-24: временная процедурная монета (SVG, 21 металл) — components/level_up/coin_metal_palette.ts + CoinFaceArt.tsx; PNG подставляется одним пропсом source/coinSource. Сами ассеты по-прежнему за художником."
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -3551,7 +3553,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "in_progress",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -3566,8 +3568,11 @@
       {
         "id": "PM-077-A2",
         "text": "reduce motion и отмена безопасны",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "tests/level_up_mint_timeline.test.ts (25/25: reduce-версия без движения монеты и короче; досмотр по тапу ×6, метки не теряются)",
+          "components/level_up/LevelUpMintCeremony.tsx (onRequestClose: до финала досмотр, после — закрыть; повторное «Продолжить» игнорируется)"
+        ]
       }
     ],
     "depends_on": [
@@ -3581,16 +3586,23 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Opus 5.5",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "components/level_up/LevelUpMintCeremony.tsx",
+      "components/level_up/level_up_mint_timeline.ts",
+      "docs/design/level-up-animation/variant-b.html",
+      "tests/level_up_mint_timeline.test.ts"
+    ],
+    "notes": [
+      "2026-09-24: вариант B «Монетный двор» (D49) перенесён в приложение: components/level_up/*, коммит 5c98ac424 (попал в коммит соседней сессии PM-046 из общего индекса). Готово: компонент, тайминги 1:1 с эталоном (тест-сверка с variant-b.html), reduce motion, скип, метки звука onCue, превью в DEV Hub → Витрина движения → «Повышение уровня 2.0». Осталось: подключить к кнопке повышения после PM-075 (критерий A1), заменить процедурные монеты на PNG (PM-073), звуки — владелец."
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "opus-5.5",
+    "actual_reasoning": "low"
   },
   {
     "id": "PM-078",

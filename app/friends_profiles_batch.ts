@@ -56,6 +56,12 @@ export interface FriendProfileBatchRecord {
   weeklyXp?: number;
   /** Настройки пуша «Позвать» друга — null, если сервер не знает/друг не настраивал. */
   friendsPush?: { enabled: boolean; tz: number } | null;
+  // ── Шпиль (TOWER.md §4.5, PM-282): «Друзья на этой неделе». Едет тем же
+  // батчевым callable, 0 доп. чтений на друга — сервер уже читал users/{uid}.
+  /** Лучший этаж друга ЗА ТЕКУЩУЮ неделю среди всех языков. null = не играл / нет данных. */
+  spireFloor?: number | null;
+  /** Язык, на котором друг достиг spireFloor. null = нет данных. */
+  spireLang?: string | null;
 }
 
 type ProfilesResponse = {

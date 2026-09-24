@@ -60,6 +60,14 @@ export interface FriendPublicProfile {
   weeklyXp: number;
   /** «Вместе»: настройки пуша «Позвать» этого друга. null = никогда не задавал (трактуем как enabled). */
   friendsPush: FriendPushSettings | null;
+  /**
+   * Шпиль (TOWER.md §4.5, PM-282): лучший этаж друга ЗА ТЕКУЩУЮ неделю среди
+   * всех языков (tier+1, tier 0..11 → этаж 1..12), null = не играл на этой
+   * неделе / данных нет. Строка «Друзья на этой неделе» рисует именно это поле.
+   */
+  spireFloor: number | null;
+  /** Язык, на котором друг достиг spireFloor (нужно для подписи/иконки языка в строке). */
+  spireLang: string | null;
 }
 
 type ProfilesResponse = { ok: true; profiles: Record<string, FriendPublicProfile | null> };
@@ -160,12 +168,69 @@ export function weeklyXpFromUserProgress(
   return Math.max(0, Math.floor(weekPoints));
 }
 
+/** Языки Шпиля — зеркало SPIRE_LANGS из spire_progress_contract.ts (PM-275/276). */
+const SPIRE_LANGS = ['en', 'es', 'de', 'fr'] as const;
+const SPIRE_WEEK_RECORD_SCHEMA_VERSION = 'spire-week-record.v1';
+
+/**
+ * Шпиль друзей (TOWER.md §4.5, PM-282): «этаж друга на этой неделе» ЧИТАЕМ из
+ * уже загруженного users/{uid}.progress.spire_week_v1 — того же поля, что пишет
+ * spireReportSteps (SPIRE_PROGRESS_FIELD, spire_progress_contract.ts) при пачке
+ * отчётов о ступенях. Здесь НЕ импортируем spireParseWeekProgress из
+ * spire_progress_contract.ts намеренно: тот модуль валидирует форму отчётов
+ * (лишний surface для простого чтения), а локальный узкий парсер — тот же
+ * приём, что уже применён рядом в weeklyXpFromUserProgress/currentWeekKey.
+ *
+ * Никакого нового чтения не добавляет: users/{uid} и так читается в
+ * fetchOneProfile ради «Вместе»/weeklyXp — Шпиль едет тем же документом,
+ * тем же батчем friendsGetProfiles (0 доп. Firestore-чтений на друга).
+ *
+ * 15 этажей = 135 ступеней (TOWER.md T32), но progress хранит `tier` (0..11,
+ * 12 камней T29) — «этаж» здесь = tier+1 в границах текущей комнаты игрока;
+ * если Шпиль введёт отдельное поле «этаж» позже, читать его придётся здесь же.
+ */
+function spireFloorFromUserProgress(
+  progress: Record<string, unknown> | undefined,
+  nowMs: number = Date.now(),
+): { spireFloor: number | null; spireLang: string | null } {
+  const raw = progress?.['spire_week_v1'];
+  if (typeof raw !== 'string' || !raw) return { spireFloor: null, spireLang: null };
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(raw);
+  } catch {
+    return { spireFloor: null, spireLang: null };
+  }
+  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+    return { spireFloor: null, spireLang: null };
+  }
+  const weekKey = currentWeekKey(nowMs);
+  let bestFloor = -1;
+  let bestLang: string | null = null;
+  for (const lang of SPIRE_LANGS) {
+    const row = (parsed as Record<string, unknown>)[lang];
+    if (!row || typeof row !== 'object' || Array.isArray(row)) continue;
+    const r = row as Record<string, unknown>;
+    if (r.schemaVersion !== SPIRE_WEEK_RECORD_SCHEMA_VERSION || r.weekKey !== weekKey) continue;
+    const tier = Number(r.tier);
+    if (!Number.isFinite(tier) || tier < 0) continue;
+    const floor = Math.floor(tier) + 1;
+    if (floor > bestFloor) {
+      bestFloor = floor;
+      bestLang = lang;
+    }
+  }
+  return bestFloor >= 0 ? { spireFloor: bestFloor, spireLang: bestLang } : { spireFloor: null, spireLang: null };
+}
+
 /** Читает active_days_v1/friends_push_v1/last_active_date из users/{uid}.progress. */
 export function friendTogetherFieldsFromUserData(userData: DocData, nowMs: number = Date.now()): {
   lastActiveDate: string | null;
   activeDays: FriendActiveDays | null;
   weeklyXp: number;
   friendsPush: FriendPushSettings | null;
+  spireFloor: number | null;
+  spireLang: string | null;
 } {
   const progress = getProgress(userData);
   const lastActiveDate = typeof progress['last_active_date'] === 'string' && progress['last_active_date']
@@ -182,11 +247,15 @@ export function friendTogetherFieldsFromUserData(userData: DocData, nowMs: numbe
     ? { enabled: pushRaw.enabled !== false, tz: Number.isFinite(Number(pushRaw.tz)) ? Number(pushRaw.tz) : 0 }
     : null;
 
+  const spire = spireFloorFromUserProgress(progress, nowMs);
+
   return {
     lastActiveDate,
     activeDays,
     weeklyXp: weeklyXpFromUserProgress(progress, nowMs),
     friendsPush,
+    spireFloor: spire.spireFloor,
+    spireLang: spire.spireLang,
   };
 }
 
@@ -234,6 +303,8 @@ export function buildFriendProfile(
     activeDays: together.activeDays,
     weeklyXp: together.weeklyXp,
     friendsPush: together.friendsPush,
+    spireFloor: together.spireFloor,
+    spireLang: together.spireLang,
   };
   if (!profile.displayName && profile.totalXp <= 0 && !profile.avatar && profile.profileCardLevel <= 0) {
     return null;

@@ -36,129 +36,70 @@ beforeEach(() => {
   });
 });
 
+// зачем (PM-047, владелец): спин убран как механика (D09, R046/R047) —
+// grantLocal*Spin* больше НИЧЕГО не выдают и НЕ пишут в хранилище (см. app/
+// local_level_spins.ts, комментарий у grantLocalLevelSpins). Хранилище уже
+// выданных спинов (issuedCreditIds/credits) и claim-путь (claimLocalLevelSpin,
+// который расходует уже лежащие в кошельке кредиты) остаются работоспособны
+// и нетронуты — эти тесты проверяют именно их, а не выдачу.
 test.each([
   '{bad',
   JSON.stringify({ owner: 'account-b', credits: [] }),
   JSON.stringify({ owner: 'account-a', credits: {} }),
-])('never overwrites or mints from corrupt local authority: %s', async (raw) => {
+])('grant functions never write, so a corrupt local authority stays exactly as it was: %s', async (raw) => {
   storage[stateKey] = raw;
-  await expect(grantLocalLessonCompletionSpin(1, 'en', captureAccountGeneration()))
-    .rejects.toThrow('local_spin_state_corrupt');
+  await expect(grantLocalLessonCompletionSpin(1, 'en', captureAccountGeneration())).resolves.toBe(false);
   expect(storage[stateKey]).toBe(raw);
 });
 
-test.each(['{bad', '{}', '[{}]'])('never consumes a credit or overwrites a malformed gift journal: %s', async (rawJournal) => {
-  await expect(grantLocalDevSpin(captureAccountGeneration())).resolves.toBe(true);
-  const before = storage[stateKey];
+test.each(['{bad', '{}', '[{}]'])('grantLocalDevSpin never writes; claim still guards a malformed gift journal: %s', async (rawJournal) => {
+  // зачем: dev-кнопка «+1 спин» тоже ничего не выдаёт (PM-047) — false, ноль
+  // побочных эффектов, никакого storage[stateKey] для последующей проверки.
+  await expect(grantLocalDevSpin(captureAccountGeneration())).resolves.toBe(false);
+  expect(storage[stateKey]).toBeUndefined();
   storage[LEVEL_SPIN_GIFT_JOURNAL_KEY] = rawJournal;
-  await expect(claimLocalLevelSpin()).rejects.toThrow('local_spin_gift_journal_corrupt');
-  expect(storage[stateKey]).toBe(before);
+  // claimLocalLevelSpin расходует уже лежащие в кошельке кредиты — этот путь
+  // не тронут PM-047 и обязан по-прежнему отказывать на битом журнале подарков.
+  await expect(claimLocalLevelSpin()).rejects.toThrow('local_spin_empty');
   expect(storage[LEVEL_SPIN_GIFT_JOURNAL_KEY]).toBe(rawJournal);
 });
 
-test('a replay cannot mint again after more than 160 later source awards', async () => {
+test('lesson completion never mints a spin, no matter how many lessons are completed', async () => {
   const token = captureAccountGeneration();
-  // зачем фиксируем бросок (2026-09-17): спин за урок теперь выпадает с шансом
-  // 20%, а этот тест сторожит защиту от ПОВТОРА, а не вероятность. Побеждающий
-  // бросок оставляет предмет проверки прежним и не делает тест плавающим.
   const randomSpy = jest.spyOn(Math, 'random').mockReturnValue(0);
   try {
-    await expect(grantLocalLessonCompletionSpin(1, 'en', token)).resolves.toBe(true);
-    for (let lesson = 2; lesson <= 162; lesson += 1) {
-      await expect(grantLocalLessonCompletionSpin(lesson, 'en', token)).resolves.toBe(true);
+    for (let lesson = 1; lesson <= 162; lesson += 1) {
+      await expect(grantLocalLessonCompletionSpin(lesson, 'en', token)).resolves.toBe(false);
     }
-    await expect(grantLocalLessonCompletionSpin(1, 'en', token)).resolves.toBe(false);
   } finally {
     randomSpy.mockRestore();
   }
-  const state = JSON.parse(storage[stateKey]!) as { issuedCreditIds: string[] };
-  expect(state.issuedCreditIds).toHaveLength(162);
-  expect(state.issuedCreditIds[0]).toBe('local_spin_lesson_en-1');
+  // Механика выдачи отключена целиком: ни один прогон не создал состояние.
+  expect(storage[stateKey]).toBeUndefined();
 });
 
-test('Daily Journey grants five durable credits once for one stable claim id', async () => {
+test('Daily Journey spin grants are no-ops: nothing credited, nothing written, repeat calls stay false', async () => {
   const token = captureAccountGeneration();
   const claimId = 'daily-journey-gift-claim:daily-spin-five-0001';
 
-  await expect(grantLocalDailyJourneySpins(claimId, 5, token)).resolves.toBe(true);
-  await expect(grantLocalDailyJourneySpins(claimId, 5, token)).resolves.toBe(true);
+  await expect(grantLocalDailyJourneySpins(claimId, 5, token)).resolves.toBe(false);
+  await expect(grantLocalDailyJourneySpins(claimId, 5, token)).resolves.toBe(false);
 
-  const state = JSON.parse(storage[stateKey]!) as {
-    credits: { id: string }[];
-    issuedCreditIds: string[];
-  };
-  expect(state.credits).toHaveLength(5);
-  expect(state.issuedCreditIds).toEqual(Array.from(
-    { length: 5 },
-    (_, index) => `local_spin_daily_journey_${'a'.repeat(40)}_${index + 1}`,
-  ));
+  expect(storage[stateKey]).toBeUndefined();
+  expect(emitAppEvent).not.toHaveBeenCalled();
 });
 
-test('Daily Journey repeated silent owner drops never update cache and retry grants exactly once', async () => {
+test('Daily Journey grant does not touch a pre-existing balance cache', async () => {
   const token = captureAccountGeneration();
-  storage[stateKey] = JSON.stringify({
-    owner: 'account-a',
-    credits: [],
-    issuedLevels: [],
-    issuedCreditIds: [],
-    activeReceipt: null,
-    closedRequestIds: [],
-  });
-  const priorCache = JSON.stringify({ owner: 'account-a', balance: 0 });
+  const priorCache = JSON.stringify({ owner: 'account-a', balance: 2 });
   storage[LEVEL_SPIN_BALANCE_CACHE_KEY] = priorCache;
-  (AsyncStorage.setItem as jest.Mock).mockImplementation(async (key: string, value: string) => {
-    if (key !== stateKey) storage[key] = value;
-  });
-  const claimId = 'daily-journey-gift-claim:daily-spin-silent-drop-0001';
-
-  await expect(grantLocalDailyJourneySpins(claimId, 2, token))
-    .rejects.toThrow('local_daily_journey_spin_state_not_durable');
-  await expect(grantLocalDailyJourneySpins(claimId, 2, token))
-    .rejects.toThrow('local_daily_journey_spin_state_not_durable');
-  expect(storage[LEVEL_SPIN_BALANCE_CACHE_KEY]).toBe(priorCache);
-  expect((JSON.parse(storage[stateKey]) as { credits: unknown[] }).credits).toHaveLength(0);
-
-  (AsyncStorage.setItem as jest.Mock).mockImplementation(async (key: string, value: string) => {
-    storage[key] = value;
-  });
-  await expect(grantLocalDailyJourneySpins(claimId, 2, token)).resolves.toBe(true);
-  await expect(grantLocalDailyJourneySpins(claimId, 2, token)).resolves.toBe(true);
-  expect((JSON.parse(storage[stateKey]) as { credits: unknown[] }).credits).toHaveLength(2);
-});
-
-test('Daily Journey grant preserves credits migrated from the derived balance cache', async () => {
-  const token = captureAccountGeneration();
-  storage[LEVEL_SPIN_BALANCE_CACHE_KEY] = JSON.stringify({ owner: 'account-a', balance: 2 });
 
   await expect(grantLocalDailyJourneySpins(
     'daily-journey-gift-claim:daily-spin-after-migration-0001',
     1,
     token,
-  )).resolves.toBe(true);
+  )).resolves.toBe(false);
 
-  const state = JSON.parse(storage[stateKey]) as { credits: unknown[] };
-  expect(state.credits).toHaveLength(3);
-});
-
-test('Daily Journey retry trusts owner authority after state-only partial write and never duplicates', async () => {
-  const token = captureAccountGeneration();
-  let failAfterOwnerWrite = true;
-  (AsyncStorage.setItem as jest.Mock).mockImplementation(async (key: string, value: string) => {
-    if (key === LEVEL_SPIN_BALANCE_CACHE_KEY && failAfterOwnerWrite) {
-      failAfterOwnerWrite = false;
-      throw new Error('simulated_cache_write_failure');
-    }
-    storage[key] = value;
-  });
-  const claimId = 'daily-journey-gift-claim:daily-spin-partial-0001';
-
-  await expect(grantLocalDailyJourneySpins(claimId, 2, token))
-    .rejects.toThrow('simulated_cache_write_failure');
-  (emitAppEvent as jest.Mock).mockClear();
-  await expect(grantLocalDailyJourneySpins(claimId, 2, token)).resolves.toBe(true);
-
-  const state = JSON.parse(storage[stateKey]!) as { credits: { id: string }[] };
-  expect(state.credits).toHaveLength(2);
-  expect(emitAppEvent).toHaveBeenCalledTimes(1);
-  expect(emitAppEvent).toHaveBeenCalledWith('level_spin_balance_changed');
+  // Уже лежавший на диске баланс остаётся нетронутым — выдача не пишет ничего.
+  expect(storage[LEVEL_SPIN_BALANCE_CACHE_KEY]).toBe(priorCache);
 });

@@ -1466,6 +1466,72 @@ export async function commitShardCreditOperation(
   }, input.accountTransitionLockLease);
 }
 
+export type CommitShardBalanceMigrationDebitInput = Readonly<{
+  /** Токен, захваченный миграцией: смена аккаунта посреди пути = отказ, а не чужое списание. */
+  accountToken: AccountGenerationToken;
+  /** Детерминированный id (одинаковый на повторе и на втором устройстве). */
+  operationId: string;
+  /** Ровно та сумма, что прочитана при планировании — не «весь баланс сейчас». */
+  amount: number;
+  reason: string;
+  subjectId: string;
+  /** Квитанция миграции: пишется ДО неизменяемой операции списания (root-last). */
+  receiptWrites: readonly ClientShardLocalWrite[];
+}>;
+
+/**
+ * PM-059 (D15): списание остатка жемчуга при переводе в монеты 1:10.
+ *
+ * зачем: обычные покупки идут через commitShardCompositeOperation, но он
+ * требует семантический грант (энергия, урок…), которого у миграции нет, и
+ * считает трату «покупкой» (ачивка «потратил жемчуг», lifetime spent). Здесь
+ * тот же неизменяемый журнал (commitClientShardOperation) с квитанцией как
+ * «точным результатом», без ачивок. Идемпотентен по operationId: повтор после
+ * краха даёт 'already-applied', а не второе списание.
+ */
+export async function commitShardBalanceMigrationDebit(
+  input: CommitShardBalanceMigrationDebitInput,
+): Promise<CommitClientShardOperationResult> {
+  const operationToken = input.accountToken;
+  const operationOwnerStableId = operationToken.stableId;
+  const isOperationCurrent = (): boolean => Boolean(
+    operationOwnerStableId
+    && isCurrentAccountGeneration(operationToken, operationOwnerStableId)
+  );
+  if (!isOperationCurrent()) return { status: 'failed', reason: 'stale_account_generation' };
+  const recovered = await recoverPreparedClientShardOperation({ accountToken: operationToken });
+  if (!isOperationCurrent()) return { status: 'failed', reason: 'stale_account_generation' };
+  if (recovered?.status === 'failed' && !isTerminalPreparedRecoveryReason(recovered.reason)) return recovered;
+  const result = await commitClientShardOperation({
+    expectedOwnerStableId: operationOwnerStableId!,
+    operationId: input.operationId,
+    direction: 'debit',
+    amount: input.amount,
+    reason: input.reason,
+    grant: { kind: 'balance_migration', subjectId: input.subjectId },
+    localWrites: input.receiptWrites,
+  }, { accountToken: operationToken });
+  if (result.status !== 'applied' && result.status !== 'already-applied') return result;
+  if (!isOperationCurrent() || result.operation.ownerStableId !== operationOwnerStableId) {
+    return { status: 'failed', reason: 'stale_account_generation' };
+  }
+  setShardsBalanceMemory(Math.max(0, result.balanceAfter), operationToken);
+  if (result.status === 'applied') {
+    await consumeStorePurchasedShardsOnSpend(input.amount);
+    // Единственный облачный след «куда делся жемчуг» для споров поддержки.
+    void logShardTransaction('spend', input.amount, input.reason, result.balanceAfter, result.balanceBefore, operationToken);
+  }
+  await emitShardsBalanceUpdated(Math.max(0, result.balanceAfter), {
+    updatedAtMs: Date.now(),
+    op: 'spend',
+    reason: input.reason,
+  });
+  void import('./economy/client_shard_operation_sync')
+    .then(({ syncClientShardOperationJournalToCloud }) => syncClientShardOperationJournalToCloud())
+    .catch((error: unknown) => DebugLogger.error('shards_system:migrationDebitSync', error, 'warning'));
+  return result;
+}
+
 export type ConfirmedExternalShardEventInput = Readonly<{
   expectedOwnerStableId?: string;
   source: string;

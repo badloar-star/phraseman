@@ -1267,6 +1267,8 @@ export { levelSpinStarGrant } from "./level_spin_star_grant";
 // зачем (D51/D53, владелец 2026-09-24): строка-итог миграции «Подарки → монеты»
 // для контроля в админке. Требует деплоя с согласия владельца.
 export { giftsToCoinsMigrationReport } from "./gifts_to_coins_report";
+// PM-059 (D15): строка-итог миграции «жемчуг → монеты 1:10». ⚠️ Деплой — только с согласия владельца.
+export { pearlsToCoinsMigrationReport } from "./pearls_to_coins_report";
 // зачем (владелец, 2026-08-27): руны за семь учебных активностей — урок,
 // словарь, неправильные глаголы, блиц, тренировка, отработка ошибок, голос.
 export { practiceRuneGrant } from "./practice_rune_grant";

@@ -1025,6 +1025,15 @@ service cloud.firestore {
       allow write: if false;
     }
 
+    // PM-059 (D15, владелец 2026-09-24): строка-итог миграции «остаток жемчуга →
+    // монеты 1:10», одна на аккаунт. Пишет ТОЛЬКО callable pearlsToCoinsMigrationReport
+    // (Admin SDK); клиентам запись закрыта, читает админ. Внутри только внутренний
+    // id, суммы и время — без имён.
+    match /pearls_to_coins_migrations/{stableUid} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+
     // Recovery secrets, rate-limit state, and audit events are server-only.
     // Cloud Functions use the Admin SDK, which bypasses Firestore Rules.
     match /auth_recovery_codes/{document=**} {

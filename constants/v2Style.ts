@@ -116,6 +116,10 @@ export type V2Palette = Readonly<{
   /** Перелив стеклянных плашек значков (тёплый серо-коричневый, референс). */
   tileFrom: string;
   tileTo: string;
+  /** Заливка акцентной кнопки («Добавить себе» — светлое шампанское). */
+  accentFill: string;
+  /** Лист нижней шторки. */
+  sheet: string;
 }>;
 
 const paletteCache = new Map<string, V2Palette>();
@@ -148,7 +152,7 @@ export function getV2Palette(theme: Theme, themeMode: ThemeMode): V2Palette {
     // На референсе заливка прогресса почти белая; тема добавляет свой оттенок.
     // Заливка прогресса — светлая с лёгкой теплотой, как на референсе.
     progressFill: mixHex('#D9D5CE', tintColor, 0.1),
-    cta: mixHex(BASE.cta, tintColor, 0.08),
+    cta: mixHex(BASE.cta, tintColor, 0.03),
     ctaText: BASE.ctaText,
     correct: theme.correct,
     wrong: theme.wrong,
@@ -167,6 +171,8 @@ export function getV2Palette(theme: Theme, themeMode: ThemeMode): V2Palette {
     smoke: '#FFFFFF',
     tileFrom: mixHex('#303031', tintColor, 0.03),
     tileTo: mixHex('#1C1C1D', tintColor, 0.02),
+    accentFill: mixHex('#E6DCCB', tintColor, 0.1),
+    sheet: mixHex('#1B1B1C', tintColor, 0.015),
   };
   paletteCache.set(key, palette);
   return palette;

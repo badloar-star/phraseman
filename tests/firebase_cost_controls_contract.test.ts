@@ -172,7 +172,6 @@ describe("Firebase cost controls", () => {
     const indexSource = read("functions/src/index.ts");
     const packageJson = read("functions/package.json");
     const xpSource = read("app/xp_manager.ts");
-    const avatarSource = read("app/avatar_select.tsx");
     const layoutSource = read("app/_layout.tsx");
     const surveySource = read("app/vip_survey.ts");
     const publicProfileSource = read("app/public_profile_snapshot.ts");
@@ -183,7 +182,6 @@ describe("Firebase cost controls", () => {
     }
 
     expect(xpSource).not.toContain("pushMyScore(");
-    expect(avatarSource).not.toContain("pushMyScoreImmediate");
     expect(layoutSource).not.toContain("updateMyPremiumInLeaderboard");
     expect(layoutSource).not.toContain("updateMyVipInLeaderboard");
     expect(surveySource).not.toContain("updateMyVipInLeaderboard");
@@ -193,7 +191,6 @@ describe("Firebase cost controls", () => {
 
   it("uses a throttled public profile snapshot instead of the old leaderboard write path", () => {
     const xpSource = read("app/xp_manager.ts");
-    const avatarSource = read("app/avatar_select.tsx");
     const layoutSource = read("app/_layout.tsx");
     const rulesSource = read("firestore.rules");
     const publicProfileSource = read("app/public_profile_snapshot.ts");
@@ -212,9 +209,9 @@ describe("Firebase cost controls", () => {
     expect(xpSource).toMatch(
       /syncPublicProfileSnapshot\(\{[\s\S]*?reason: 'daily_xp'/,
     );
-    expect(avatarSource).toMatch(
-      /syncPublicProfileSnapshot\(\{[\s\S]*?reason: 'display_change'/,
-    );
+    // зачем (D57/PM-063): app/avatar_select.tsx удалён целиком — с ним ушёл
+    // единственный вызывающий с reason: 'display_change' (смена аватара/ауры
+    // больше нигде не происходит), проверка этой конкретной причины снята.
     expect(layoutSource).toMatch(
       /syncPublicProfileSnapshot\(\{[\s\S]*?reason: 'entitlement_change'/,
     );
@@ -225,29 +222,10 @@ describe("Firebase cost controls", () => {
     );
   });
 
-  it("defers non-critical avatar cosmetics while profile-card Pro purchase syncs immediately", () => {
-    const avatarSource = read("app/avatar_select.tsx");
-    const profileCardSource = read("components/PlayerProfileModal.tsx");
-
-    expect(avatarSource).toContain(
-      "AVATAR_DISPLAY_CLOUD_SYNC_DEFER_MS = 30_000",
-    );
-    expect(avatarSource).toContain(
-      "syncToCloud({ deferMs: AVATAR_DISPLAY_CLOUD_SYNC_DEFER_MS })",
-    );
-    expect(avatarSource).toContain("cost > 0 ? 'immediate' : 'deferred'");
-    expect(avatarSource).toContain("purchasedAura ? 'immediate' : 'deferred'");
-
-    expect(profileCardSource).not.toContain(
-      "PROFILE_CARD_DISPLAY_CLOUD_SYNC_DEFER_MS",
-    );
-    expect(profileCardSource).toContain("syncToCloud({ forceNow: true })");
-    expect(
-      (profileCardSource.match(/syncToCloud\(\{ forceNow: true \}\)/g) ?? [])
-        .length,
-    ).toBe(1);
-    expect(profileCardSource).not.toContain("syncToCloud({ deferMs:");
-  });
+  // зачем (D57/PM-063): "defers non-critical avatar cosmetics..." проверял
+  // AVATAR_DISPLAY_CLOUD_SYNC_DEFER_MS/deferMs-троттлинг внутри
+  // app/avatar_select.tsx — экран удалён целиком, троттлинг для отменённого
+  // экрана больше не существует и не нужен.
 
   it("updates percentile stats daily and keeps full-scan premium cron cadence modest", () => {
     const indexSource = read("functions/src/index.ts");

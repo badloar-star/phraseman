@@ -102,12 +102,8 @@ describe('avatar aura catalog rework', () => {
     expect(leagueChestSource).toContain('!item.retiredFromShop');
   });
 
-  it('refreshes server sale availability when customization regains focus', () => {
-    const selectorSource = fs.readFileSync(path.join(__dirname, '../app/avatar_select.tsx'), 'utf8');
-    expect(selectorSource).toContain("import { hydrateCosmeticAssetCatalog } from './cosmetic_asset_archive';");
-    expect(selectorSource).toContain('hydrateCosmeticAssetCatalog(true)');
-    expect(selectorSource).toContain('REVALIDATE_TTL_MS');
-  });
+  // зачем (D57/PM-063): app/avatar_select.tsx удалён целиком — тест проверял
+  // отменённое правило (revalidate на регейне фокуса в старом редакторе).
 });
 
 describe('AvatarAura compact renderer contract', () => {

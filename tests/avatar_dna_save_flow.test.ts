@@ -4,19 +4,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 describe('Avatar DNA local-first save flow', () => {
-  it('ships gated entry and the shared hybrid dirty-exit choices', () => {
-    const root = path.resolve(__dirname, '..');
-    const studio = fs.readFileSync(path.join(root, 'app/avatar_dna_studio.tsx'), 'utf8');
-    const entry = fs.readFileSync(path.join(root, 'app/avatar_select.tsx'), 'utf8');
-    const admin = fs.readFileSync(path.join(root, 'admin/v2/legacy.html'), 'utf8');
-    expect(studio).toContain('<ThemedChoiceModal');
-    expect(studio).toContain('copy.saveAndClose');
-    expect(studio).toContain('copy.continueEditing');
-    expect(studio).toContain('copy.discardChanges');
-    expect(entry).toContain('{avatarDNAEnabled ? <Pressable');
-    expect(admin).toContain("key: 'avatar_dna_enabled'");
-    expect(admin).toContain("key: 'avatar_dna_rollout_pct'");
-  });
+  // зачем (D57/PM-063): app/avatar_dna_studio.tsx и app/avatar_select.tsx
+  // удалены целиком — гейтованный вход в студию и её dirty-exit модалка
+  // больше не существуют, проверка отменена.
 
   it('commits local DNA before starting best-effort public sync', async () => {
     const calls: string[] = [];

@@ -8,7 +8,6 @@ import path from 'path';
  */
 describe('profile card has one personal entry surface', () => {
   const read = (relativePath: string) => fs.readFileSync(path.join(process.cwd(), relativePath), 'utf8');
-  const avatarScreen = read('app/avatar_select.tsx');
   const homeScreen = read('app/(tabs)/home.tsx');
   const layout = read('app/_layout.tsx');
   const controls = read('components/customization/CustomizationControls.tsx');
@@ -17,7 +16,8 @@ describe('profile card has one personal entry surface', () => {
   it('does not ship or navigate to the retired standalone route', () => {
     expect(fs.existsSync(path.join(process.cwd(), 'app', 'profile_card_upgrade.tsx'))).toBe(false);
     expect(layout).not.toContain('Stack.Screen name="profile_card_upgrade"');
-    expect(avatarScreen).not.toContain("router.push('/profile_card_upgrade'");
+    // зачем (D57/PM-063): app/avatar_select.tsx удалён целиком — проверка
+    // отсутствия перехода в отменённый экран больше неприменима.
     expect(controls).not.toContain('onOpenProfileCard');
   });
 

@@ -4,103 +4,15 @@ import path from 'path';
 const root = path.resolve(__dirname, '..');
 const readProjectFile = (...parts: string[]) => fs.readFileSync(path.join(root, ...parts), 'utf8');
 
+// зачем (D57/PM-063): app/avatar_select.tsx удалён целиком (старая студия
+// аватаров) — семь из восьми проверок этого файла читали именно тот экран
+// и тестировали отменённое правило. Единственная оставшаяся проверка живого
+// компонента CustomizationHero.tsx сохранена ниже.
 describe('avatar customization studio structure', () => {
   it('renders a theme-accented hero with one animated aura', () => {
     const hero = readProjectFile('components', 'customization', 'CustomizationHero.tsx');
     expect(hero).toContain('themeAccent');
     expect(hero).toContain('animateAura={props.motionEnabled && !reduceMotion}');
     expect(hero).not.toContain('previewLabel');
-  });
-
-  it('keeps the try-on stage fixed above the one scrolling catalog', () => {
-    const screen = readProjectFile('app', 'avatar_select.tsx');
-    const heroIndex = screen.indexOf('<CustomizationHero');
-    const listIndex = screen.indexOf('<Reanimated.FlatList');
-    const headerSource = screen.slice(
-      screen.indexOf('const listHeader = useMemo'),
-      screen.indexOf('const purchaseMessage', screen.indexOf('const listHeader = useMemo')),
-    );
-
-    expect(heroIndex).toBeGreaterThan(-1);
-    expect(heroIndex).toBeLessThan(listIndex);
-    expect(headerSource).not.toContain('<CustomizationHero');
-    expect(screen).not.toContain('YinYangControl');
-    expect(screen).toContain('<RuneBalanceChip');
-    expect(screen).toContain('<Reanimated.FlatList');
-    expect(screen).toContain('ListHeaderComponent={listHeader}');
-    expect(screen).toContain('data={displayCatalogItems}');
-    expect(screen).toContain('numColumns={3}');
-    expect(screen).toContain('columnWrapperStyle={styles.row}');
-    expect(screen).not.toContain('<ScrollView');
-    expect(screen).not.toContain('<Reanimated.ScrollView');
-    expect(screen).not.toContain('catalogSections');
-    expect(screen).not.toContain('section.items.map');
-    expect(screen).not.toContain('miniPreviewStyle');
-  });
-
-  it('keeps the catalog free of ownership and price filters', () => {
-    const screen = readProjectFile('app', 'avatar_select.tsx');
-    expect(screen).not.toContain('filterRail');
-    expect(screen).not.toContain('avatarCatalogFilter');
-    expect(screen).not.toContain('setAvatarCatalogFilter');
-  });
-
-  it('renders catalog auras statically and keeps green CTA text dark', () => {
-    const card = readProjectFile('components', 'customization', 'CustomizationCatalogCard.tsx');
-    const controls = readProjectFile('components', 'customization', 'CustomizationControls.tsx');
-    expect(card).toContain('animateAura={false}');
-    expect(controls).toContain('t.correctText');
-  });
-
-  it('keeps level-avatar reset without restoring the retired profile-card route', () => {
-    const screen = readProjectFile('app', 'avatar_select.tsx');
-    const controls = readProjectFile('components', 'customization', 'CustomizationControls.tsx');
-    expect(screen).toContain('Вернуть аватар уровня');
-    expect(controls).not.toContain('onOpenProfileCard');
-    expect(screen).not.toContain("router.push('/profile_card_upgrade')");
-    expect(screen).toContain('resetToLevelAvatar');
-  });
-
-  it('preserves the custom-avatar achievement after a first purchase', () => {
-    const screen = readProjectFile('app', 'avatar_select.tsx');
-    expect(screen).toContain("checkAchievements({ type: 'avatar_custom_set' })");
-    expect(screen).toContain("target === 'avatar' && !current.ownedAvatars[itemId]");
-  });
-
-  it('keeps the studio compact with only avatar and aura tabs', () => {
-    const screen = readProjectFile('app', 'avatar_select.tsx');
-    const hero = readProjectFile('components', 'customization', 'CustomizationHero.tsx');
-    expect(screen).toContain("title: 'Студия'");
-    expect(screen).not.toContain("title: 'Студия образа'");
-    expect(screen).toContain("const fixedStageHeight = Math.max(184, Math.min(250, Math.round(Dimensions.get('window').height * 0.28)))");
-    expect(screen).not.toContain('OwnershipFilters');
-    expect(screen).not.toContain('filterCatalog(');
-    expect(screen).not.toContain('const handleFilterChange = useCallback');
-    expect(hero).not.toContain('styles.preview');
-  });
-
-  it('emits toast payloads and keeps catalog position when switching tabs', () => {
-    const screen = readProjectFile('app', 'avatar_select.tsx');
-    expect(screen).toContain("emitAppEvent('action_toast', actionToastTri(");
-    expect(screen).not.toContain('scrollToCatalog');
-    expect(screen).toContain('onChange={handleTabChange}');
-    expect(screen).not.toContain('key={`${activeTab}-${filter}`}');
-  });
-
-  it('uses confirmed selections for ownership instead of granting previewed items for free', () => {
-    const screen = readProjectFile('app', 'avatar_select.tsx');
-    const avatarCatalogCall = screen.slice(
-      screen.indexOf('const avatarItems = useMemo'),
-      screen.indexOf('const auraItems = useMemo'),
-    );
-    const auraCatalogCall = screen.slice(
-      screen.indexOf('const auraItems = useMemo'),
-      screen.indexOf('const catalogItems = useMemo'),
-    );
-
-    expect(avatarCatalogCall).toContain('activeAvatar: confirmed.activeAvatar');
-    expect(avatarCatalogCall).not.toContain('activeAvatar: previewAvatarValue');
-    expect(auraCatalogCall).toContain('activeAuraId: confirmed.storedAuraSelection');
-    expect(auraCatalogCall).not.toContain('activeAuraId: previewStoredAuraSelection');
   });
 });

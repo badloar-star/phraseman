@@ -60,19 +60,8 @@ describe('single light avatar contract', () => {
     }
   });
 
-  it('removes Yin/Yang and All/Mine controls from both studio surfaces', () => {
-    const screen = readSource('app', 'avatar_select.tsx');
-    const editor = readSource('components', 'customization', 'AvatarEditorSheet.tsx');
-    const controls = readSource('components', 'customization', 'CustomizationControls.tsx');
-
-    expect(screen).not.toContain('YinYangControl');
-    expect(screen).not.toContain('avatarSide');
-    expect(screen).not.toContain('avatarCatalogFilter');
-    expect(screen).not.toContain('setAvatarCatalogFilter');
-    expect(screen).not.toContain('filterRail');
-    expect(editor).not.toContain('YinYangControl');
-    expect(editor).not.toContain('onLogoColorChange');
-    expect(controls).not.toContain('YinYangControl');
-    expect(controls).not.toContain('avatar-side-');
-  });
+  // зачем (D57/PM-063): app/avatar_select.tsx удалён целиком — проверка
+  // Yin/Yang-контролов на этом экране больше неприменима. Оставшиеся два
+  // файла (AvatarEditorSheet/CustomizationControls) не проверялись изолированно
+  // раньше, отдельный тест на них не заводим — не входит в объём этой задачи.
 });

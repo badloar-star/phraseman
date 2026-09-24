@@ -39,6 +39,6 @@ describe('profile card label has no "CARD" prefix', () => {
     expect(read('components/ProfileCardBadge.tsx')).not.toMatch(/CARD \{/);
     expect(read('components/ProfileCardBadge.tsx')).not.toMatch(/['"`]CARD /);
     expect(read('components/PlayerProfileModal.tsx')).not.toMatch(/CARD \$\{/);
-    expect(read('app/avatar_select.tsx')).not.toMatch(/· CARD /);
+    // зачем (D57/PM-063): app/avatar_select.tsx удалён целиком — проверка снята.
   });
 });

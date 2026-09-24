@@ -17,17 +17,9 @@ describe('support diagnostic high-signal integration', () => {
     expect(source).toContain('action,');
   });
 
-  test('records avatar and aura purchase outcomes without raw commercial or identity data', () => {
-    const source = read('app/avatar_select.tsx');
-    expect(source).toContain("event: 'customization_purchase'");
-    expect(source).toContain("reason: 'insufficient_currency'");
-    expect(source).toContain("reason: 'account_changed'");
-    expect(source).toContain("reason: 'transaction_failed'");
-    expect(source).toContain('subject: pendingPurchase.target');
-    const diagnosticCalls = source.match(/recordSupportDiagnostic\(\{[\s\S]*?\}\)/g) || [];
-    expect(diagnosticCalls.length).toBeGreaterThanOrEqual(4);
-    expect(diagnosticCalls.join('\n')).not.toMatch(/itemId|cost|balance|email|uid|error\.message|stack|tags/);
-  });
+  // зачем (D57/PM-063): app/avatar_select.tsx удалён целиком — диагностика
+  // покупок аватара/ауры (customization_purchase) ушла вместе с экраном,
+  // покупать эту косметику больше негде.
 
   test('keeps account deletion privacy authoritative over diagnostic retention', () => {
     const auth = read('app/auth_provider.ts');

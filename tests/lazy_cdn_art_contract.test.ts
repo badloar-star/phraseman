@@ -109,8 +109,10 @@ describe('ленивая CDN-загрузка арта: путь заливки 
 });
 
 describe('ленивая CDN-загрузка арта: прогрев по событиям, а не по таймеру', () => {
-  it('ауры греются на входе в студию и при повышении уровня', () => {
-    expect(read('app/avatar_select.tsx')).toContain('prefetchAllAvatarAuraArt()');
+  it('ауры греются при повышении уровня', () => {
+    // зачем (D57/PM-063): app/avatar_select.tsx удалён целиком — прогрев на
+    // "входе в студию" ушёл вместе с экраном; прогрев по level_up_pending
+    // остаётся (ауры видны на Главной/друзьях/Арене/лиге/клубе, не только там).
     const layout = read('app/_layout.tsx');
     expect(layout).toContain("onAppEvent('level_up_pending'");
     expect(layout).toContain('prefetchAllAvatarAuraArt()');

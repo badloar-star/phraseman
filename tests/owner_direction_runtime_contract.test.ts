@@ -125,7 +125,8 @@ describe('owner runtime direction contract', () => {
       // Two account-boundary syncs are deliberate: pre-swap preservation and
       // post-link recovery after RevenueCat/auth restoration.
       'app/auth_provider.ts': 2,
-      'app/avatar_select.tsx': 1,
+      // зачем (D57/PM-063): app/avatar_select.tsx удалён целиком — его forceNow
+      // вызов ушёл вместе с экраном, запись из allowlist убрана.
       'app/lesson1.tsx': 2,
       'app/lesson_complete.tsx': 1,
       'app/premium_revenuecat_state.ts': 1,
@@ -151,17 +152,14 @@ describe('owner runtime direction contract', () => {
     expect(found).toEqual(allowlist);
   });
 
-  it('keeps non-critical avatar cosmetic sync deferred and profile-card purchase sync immediate', () => {
-    const avatarSource = read('app/avatar_select.tsx');
+  it('keeps profile-card purchase sync immediate and deferred sync semantics intact', () => {
+    // зачем (D57/PM-063): app/avatar_select.tsx удалён целиком — проверки
+    // AVATAR_DISPLAY_CLOUD_SYNC_DEFER_MS/syncAvatarDisplayToCloud/'immediate'
+    // на удалённом экране сняты. customization_service.ts и PlayerProfileModal
+    // не зависят от avatar_select, их контракт остаётся валиден и проверяется.
     const customizationService = read('app/customization_service.ts');
     const profileCardSource = read('components/PlayerProfileModal.tsx');
 
-    expect(avatarSource).toContain('const AVATAR_DISPLAY_CLOUD_SYNC_DEFER_MS = 30_000');
-    expect(avatarSource).toContain('syncToCloud({ deferMs: AVATAR_DISPLAY_CLOUD_SYNC_DEFER_MS })');
-    expect(avatarSource).toContain("if (mode === 'immediate') void syncToCloud({ forceNow: true })");
-    expect(avatarSource).toContain('syncCloud: syncAvatarDisplayToCloud');
-    // Явное действие пользователя (применить/купить) — немедленный sync.
-    expect(avatarSource).toContain("cloudSyncMode: 'immediate'");
     // Режим по умолчанию и сброс к уровневому аватару остаются отложенными (deferred).
     expect(customizationService).toContain("return deps.syncCloud(input.cloudSyncMode ?? 'deferred')");
     expect(customizationService).not.toContain("await deps.syncCloud(input.cloudSyncMode ?? 'deferred')");

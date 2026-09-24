@@ -10623,7 +10623,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "needs_decision",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -10632,8 +10632,10 @@
       {
         "id": "PM-219-A1",
         "text": "Уточнён конкретный legacy Plans, не учебные планы V1/V2",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/evidence/PM-219_personal_plan_legacy_audit.md"
+        ]
       },
       {
         "id": "PM-219-A2",
@@ -10649,15 +10651,19 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент) + Claude Opus 5.5",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "docs/phraseman-2.0/evidence/PM-219_personal_plan_legacy_audit.md"
+    ],
+    "notes": [
+      "A1 подтверждён: 'Personal Plan' — отдельная legacy-фича (~90 файлов app/personal_plan_*, ~1.28 МБ исходников), НЕ связана с учебными курсами Learning V1/V2. A2 НЕ выполнен намеренно: фича не полностью мертва — app/personal_plan_sunset.ts зашивает grandfather cutoff (новые активации закрыты с 2026-08-20) и жёсткую дату полного отключения 2026-10-20T00:00:00Z; до этой даты пользователи, купившие план раньше, ещё имеют живой доступ через lessons.tsx (openLearningRoute -> /personal_plan), и это обещание с таймером уже показано им в UI (personal_plan_retired_redirect.ts). Удаление кода ДО 20.10.2026 нарушит это обещание. Найдено 16 файлов вне personal_plan_* с живыми ссылками (навигация, cloud_sync с 10+ AsyncStorage-ключами, paywall_purchase.ts с отдельным purchase context, personal_plan_sunset_guard.tsx оборачивает lesson1/lesson_menu/flashcards_swipe/mistake_practice_session) + 3 файла-спутника без префикса (plan_content_remote_facade.ts, plan_day_lesson_recommendation.ts, plan_week_mode_progression.ts). Серверной части (Cloud Functions/Firestore rules) нет — чистка чисто клиентская. Конкретный план удаления (список файлов + 13 внешних точек вызова) уже составлен в evidence-файле для исполнения ПОСЛЕ 20.10.2026"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
+    "actual_model": "sonnet-5",
     "actual_reasoning": null
   },
   {

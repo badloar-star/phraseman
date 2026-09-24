@@ -47,7 +47,6 @@ import { useLang } from "../../../components/LangContext";
 import type { Lang } from "../../../constants/i18n";
 import { useStudyTarget } from "../../../components/StudyTargetContext";
 import { useTheme } from "../../../components/ThemeContext";
-import EnergyCostBadge from "../../../components/EnergyCostBadge";
 import { usePremium } from "../../../components/PremiumContext";
 import MistakePracticeLoopNode from "../../../components/mistake-practice/MistakePracticeLoopNode";
 import { trackMistakePracticeEvent } from "../../../app/mistake_practice_analytics";
@@ -91,7 +90,6 @@ import {
 } from "../../../modules/learning-v2/progress/progress_account_scope";
 import { createRequiredSessionLocalCommitCoordinator } from "../../../modules/learning-v2/progress/required_session_local_commit";
 import { warmLesson1SessionRuntime } from "../../../modules/learning-v2/runtime/lesson1_session_runtime";
-import { preloadCurrentLearningV2ActivityAudioSessionV1 } from "../../../app/learning_v2_activity_audio_preload_v1";
 import { preloadCurrentLearningV2ActivityReleasedSessionV1 } from "../../../app/learning_v2_activity_released_session_client_v1";
 import {
   prepareCurrentLearningV2CourseSessionV3,
@@ -851,12 +849,13 @@ export default function LearningV2LessonMap() {
       learnerSourceLocale: lang,
       sessionOrdinal,
     }).catch(() => undefined);
-    void preloadCurrentLearningV2ActivityAudioSessionV1({
-      ...auxiliaryScope,
-      studyTarget,
-      learnerSourceLocale: lang,
-      sessionOrdinal,
-    }).catch(() => undefined);
+    // зачем УБРАНО (D47, владелец): preloadCurrentLearningV2ActivityAudioSessionV1
+    // скачивал mp3 этой сессии из Firebase Storage — это и есть способ
+    // СКАЧИВАНИЯ озвучки V2, который правило D47 требует убрать целиком. Текст
+    // занятия (строка выше) остаётся — он не про звук. useLearningV2ActivityAudioSessionV1
+    // (app/use_learning_v2_activity_audio_session_v1.ts) переживает отсутствие
+    // прогретого handle: без него отдаёт status:"unavailable", экран уже не
+    // падает на этом (resolveSelectable/resolveFullPhrase возвращают null).
     // зачем ВРЕМЕННО откачено на одну сессию вперёд, а не весь урок (владелец,
     // 2026-08-27, «stable identity unavailable» при запуске сессии на боевом
     // устройстве): фоновая загрузка всего урока (все 56 по порядку) стала
@@ -1365,11 +1364,8 @@ export default function LearningV2LessonMap() {
                   : localized(lang, "Закрыть", "Close")}
             </Text>
           </Pressable>
-          {/* Цена входа видна до нажатия. На «Понятно» (сессия заблокирована)
-              бейджа нет — там ничего не спишется. */}
-          {selectedSession?.state === "current" || selectedSession?.state === "completed" ? (
-            <EnergyCostBadge activity="learning_v2_session" testID="learning-v2-map-energy-cost" />
-          ) : null}
+          {/* зачем (PM-086, владелец 2026-09-24): ценник энергии над кнопкой
+              убран — расход энергии не меняется. */}
         </View>
         {/* зачем: владелец — «начать» уже есть, второй кнопкой текстом ниже
             даём пропустить теорию для новой (ещё не пройденной) сессии.
@@ -1384,7 +1380,8 @@ export default function LearningV2LessonMap() {
             <Text style={[styles.sheetSkipText, { color: t.textMuted }]}>
               {localized(lang, "Пропустить теорию", "Skip theory")}
             </Text>
-            <EnergyCostBadge activity="learning_v2_session" testID="learning-v2-skip-theory-energy-cost" />
+            {/* зачем (PM-086, владелец 2026-09-24): ценник энергии убран —
+                расход энергии не меняется. */}
           </Pressable>
         )}
       </LessonMapSheet>

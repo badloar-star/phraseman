@@ -2937,11 +2937,12 @@ export default function LessonsTab({
     };
   }, [learningV2Progress.currentSessionId]);
 
-  // зачем (22.09): прогрев озвучки вперёд живёт В ОДНОМ месте —
-  // learning_v2_audio_prefetch_coordinator_v1 (вызывается ниже, после первого
-  // кадра карты). Второй механизм здесь был бы дублем: оба тянули бы те же
-  // файлы. learning_v2_lesson_background_prefetch_v1 намеренно НЕ подключён —
-  // он остаётся неиспользуемым; окно расширено в политике координатора.
+  // зачем (D47, владелец): координатор скачивания озвучки удалён целиком —
+  // подготовка текущей сессии живёт В ОДНОМ месте, prepareLearningV2AudioSession
+  // ниже (вызывается после первого кадра карты). Он больше не качает по сети,
+  // только проверяет стартовый бандл и уже скачанное. Второй механизм здесь
+  // был бы дублем. learning_v2_lesson_background_prefetch_v1 по-прежнему НЕ
+  // подключён — остаётся неиспользуемым.
 
   // зачем: этот проп вызывается для КАЖДОЙ строки карты внутри её рендера.
   // Инлайновая стрелка меняла идентичность на каждый рендер экрана и срывала
@@ -3013,41 +3014,35 @@ export default function LessonsTab({
     [prepareLearningV2AudioSession, prepareLearningV2SessionBeforeModal, studyTarget],
   );
 
+  // зачем (D47, владелец): координатор скачивания озвучки V2
+  // (learning_v2_audio_prefetch_coordinator_v1 + соседи) удалён целиком — все
+  // способы СКАЧИВАНИЯ отменены. То, что раньше делал координатор (готовил
+  // локальный пак для текущей+следующей сессии), теперь делает напрямую
+  // prepareLearningV2AudioSession ниже: он больше не качает по сети —
+  // prepareFiles внутри learning_v2_lesson_audio_pack_v1.ts проверяет только
+  // стартовый бандл и уже скачанное прошлыми версиями. Недостающий файл не
+  // отклоняет занятие — компенсирует TTS телефона в самом плеере (D47).
   useEffect(() => {
     if (page !== "v2" || !lessonsRuntimeActive || !learningV2ProgressHydrated || (studyTarget !== "en" && studyTarget !== "es"))
       return;
     let cancelled = false;
     const currentSessionOrdinal = currentLearningV2SessionCoordinates?.sessionOrdinal ?? 1;
-    // This is intentionally fire-and-forget: map and session modals never wait
-    // for audio I/O. The coordinator persists the request, resumes on network
-    // changes, prioritizes three sessions, then fills released lessons on Wi-Fi.
+    // Fire-and-forget: карта и модалки занятия никогда не ждут аудио-подготовку.
     //
-    // зачем: динамический import парсит модуль на JS-потоке, а координатор
-    // сразу тянет аудио. Замер 20.09 показал, что вместе с прогревом занятия
-    // это давало семь сборок мусора подряд и держало поток 6+ секунд — ровно
-    // в тот момент, когда человек ждал первый кадр карты. Ждём кадр: сначала
-    // карта на экране, потом тяжёлое.
+    // зачем requestAnimationFrame: даже локальная подготовка (SHA-256, чтение
+    // с диска) занимает JS-поток. Ждём кадр: сначала карта на экране, потом
+    // тяжёлое (аудит 20.09).
     let frame: number | null = requestAnimationFrame(() => {
       frame = null;
       if (cancelled) return;
-      void import("../learning_v2_audio_prefetch_coordinator_v1")
-        .then(({ requestLearningV2AudioPrefetchV1 }) => {
-          if (cancelled) return undefined;
-          return requestLearningV2AudioPrefetchV1({
-            targetLanguage: studyTarget,
-            interfaceLocale: lang,
-            lessonOrdinal: currentLessonOrdinal,
-            sessionOrdinal: currentSessionOrdinal,
-          });
-        })
-        .catch((error) => {
-          if (cancelled) return;
-          DebugLogger.error(
-            "learning_v2:lesson_audio_pack_prepare",
-            error instanceof Error ? error : new Error(String(error)),
-            "warning",
-          );
-        });
+      void prepareLearningV2AudioSession(currentLessonOrdinal, currentSessionOrdinal).catch((error) => {
+        if (cancelled) return;
+        DebugLogger.error(
+          "learning_v2:lesson_audio_pack_prepare",
+          error instanceof Error ? error : new Error(String(error)),
+          "warning",
+        );
+      });
     });
     return () => {
       cancelled = true;
@@ -3061,8 +3056,8 @@ export default function LessonsTab({
     learningV2ProjectionScopeKey,
     lessonsRuntimeActive,
     page,
+    prepareLearningV2AudioSession,
     studyTarget,
-    lang,
   ]);
 
   const prewarmCurrentLearningV2SessionOnEntry = useCallback(() => {
@@ -5816,58 +5811,13 @@ export default function LessonsTab({
               // строк. Виртуализация FlatList (windowSize 7) это держит:
               // в памяти живёт ~7 экранов, а не весь курс. Не заменять
               // FlatList на ScrollView/map — это положит раздел.
+              // зачем (PM-040, владелец 2026-09-24): заглушка «· · · / Продолжение
+              // скоро» под списком уроков убрана — она обещала контент,
+              // которого нет, и повторяла отменённое правило (список уроков
+              // теперь либо полный, либо честно ограничен доступом, а не
+              // «скоро продолжится»). Кнопка жалобы на список уроков остаётся.
               ListFooterComponent={
                 <>
-                  <View
-                    style={{
-                      alignItems: "center",
-                      paddingTop: 28,
-                      paddingBottom: 8,
-                    }}
-                  >
-                    <Text
-                      style={{
-                        fontSize: 18,
-                        fontWeight: "700",
-                        color: "#ffffff",
-                        opacity: 0.15,
-                        letterSpacing: 0.5,
-                      }}
-                    >
-                      {triLang(lang, {
-                        ru: "· · ·",
-                        en: "· · ·",
-                        uk: "· · ·",
-                        es: "· · ·",
-                        "pt-BR": "· · ·",
-                        vi: "· · ·",
-                        id: "· · ·",
-                        tr: "· · ·",
-                        pl: "· · ·",
-                      })}
-                    </Text>
-                    <Text
-                      style={{
-                        fontSize: 13,
-                        fontWeight: "600",
-                        color: "#ffffff",
-                        opacity: 0.2,
-                        marginTop: 8,
-                      }}
-                    >
-                      {triLang(lang, {
-                        ru: "Продолжение скоро",
-                        en: "More coming soon",
-                        uk: "Продовження незабаром",
-                        es: "Próximamente",
-                        "pt-BR": "Continuação em breve",
-                        vi: "Sắp có tiếp",
-                        id: "Segera hadir",
-                        tr: "Devamı yakında",
-                        pl: "Ciąg dalszy wkrótce",
-                      })}
-                    </Text>
-                  </View>
                   <View style={{ alignItems: "center", paddingVertical: 20 }}>
                     <ReportErrorButton
                       screen="lessons_tab"

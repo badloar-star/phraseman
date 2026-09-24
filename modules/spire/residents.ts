@@ -212,16 +212,23 @@ export function spireResidentRawState(
 // ── Зоны по живым (T25) ──────────────────────────────────────────────────────
 
 /**
- * Размер зоны повышения/понижения от числа ЖИВЫХ. Правило то же, что
- * getLeagueResultZoneSize в league_finalize_cron.ts (15%, минимум 1, при
- * одном участнике зон нет), только база — живые, а не все видимые.
- * ОТКРЫТЫЙ ВОПРОС владельцу (evidence/PM-277_rooms_and_residents.md, О-277-1):
- * может ли повыситься единственный живой в комнате из ботов. Сейчас — нет,
- * как в лиге при total < 2. Итог недели (PM-276) обязан взять ту же функцию.
+ * Размер зоны повышения/понижения. Аргумент — число ЖИВЫХ в комнате.
+ *
+ * зачем (владелец 2026-09-24, D59 — ответ на О-277-1): «одинокий живой в
+ * комнате из 29 ботов может повышаться, как в лиге: боты считаются в общем
+ * числе для определения зоны, но сами не получают повышение/награду».
+ * Поэтому база процента — вся видимая комната (живые + добивка ботами до 30),
+ * как getLeagueResultZoneSize в league_finalize_cron.ts считал от total с
+ * жителями; а заполняют зону только живые — ранги считаются среди живых
+ * (spireResidentBounds здесь, итог недели spire_finalize_core.ts). В полной
+ * комнате это 15% от 30 = 5 мест. Пока живых нет — зон нет.
+ * Итог недели (PM-276) обязан брать ЭТУ функцию, а не свою.
  */
 export function spireLiveZoneSize(liveCount: number): number {
   const n = Math.max(0, Math.trunc(liveCount) || 0);
-  return n >= 2 ? Math.max(1, Math.round(n * SPIRE_ZONE_RATIO)) : 0;
+  if (n < 1) return 0;
+  const roomTotal = n + spireVisibleResidentCount(n);
+  return Math.max(1, Math.round(roomTotal * SPIRE_ZONE_RATIO));
 }
 
 export type SpireResidentBounds = Readonly<{

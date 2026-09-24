@@ -1096,6 +1096,10 @@ export { spireReportSteps } from "./spire_progress";
 // Шпиль: комнаты по 30 на язык и день входа (PM-277, T15/T24); боты — формула
 // spire_residents.ts без чтений/записей и без крона (D56).
 export { spireJoinRoom } from "./spire_groups";
+// Шпиль: недельный итог (PM-276, TOWER.md §4.7) — место по ступеням, переход
+// между шпилями, сумма монет за место/повышение (выплата — PM-280). Свой крон,
+// не leagueFinalizeCron: комнаты в spire_groups, файлы лиги под замком.
+export { spireFinalizeCron } from "./spire_finalize_cron";
 // Read-only DRAFT workspace for target-isolated Arena content. The callable
 // surface deliberately has no stage/publish mutation until a reviewed durable
 // transport exists for the large static packages.

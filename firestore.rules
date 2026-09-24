@@ -1526,6 +1526,13 @@ service cloud.firestore {
         allow read:   if userDocOwnerMatchesAuth(userId);
         allow write:  if false;
       }
+
+      // Шпиль (PM-276): итог недели {weekId}_{lang}. Пишет только spireFinalizeCron
+      // (Admin SDK); клиент читает, чтобы показать итог фактом при первом заходе.
+      match /spire_week_results/{resultId} {
+        allow read:   if userDocOwnerMatchesAuth(userId);
+        allow write:  if false;
+      }
     }
 
     // â”€â”€ Arena profiles â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€

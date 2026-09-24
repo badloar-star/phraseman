@@ -1,0 +1,216 @@
+// ═══════════════════════════════════════════════════════════════════════════
+// spire_finalize_core.ts — итог недели одной комнаты Шпиля (PM-276).
+//
+// зачем (владелец 2026-09-24, TOWER.md §4.5/§4.7, D54/D59/D60): Шпиль заменяет
+// Лигу. В понедельник комната подводит итог: место = пройденные ступени (не
+// монеты, T1/T9), ничья — кто раньше добрался (reachedAtMs), затем меньшее
+// суммарное время (totalMs). По месту — переход в соседний шпиль и монеты
+// за 1/2/3 место и за повышение.
+//
+// Правила зон — те же, что у лиги (сторож guard_league_demotion, инцидент
+// 2026-08-17), но на живых:
+//   • повышение — ранг среди живых ≤ зоны И хотя бы одна ступень;
+//   • понижение — нижняя зона среди живых И ВСЕ с нулём ступеней;
+//   • комната, где не играл никто, никого не понижает.
+// Размер зоны — spireLiveZoneSize из spire_residents.ts (D59: база — вся
+// комната с ботами, 15% от 30 = 5 мест; одинокий живой повышается). Своей
+// функции зон здесь НЕТ намеренно: экран (формула ботов) и итог обязаны
+// видеть одну и ту же зону, иначе бот встанет над повышаемым.
+//
+// Боты: в итог не попадают вообще — ни документа, ни шпиля, ни монет. Их
+// ступени считаются той же формулой spireRoomResidents только чтобы честно
+// записать «место X из 30», которое человек видел на экране.
+//
+// Чистый модуль: ни сети, ни Firestore, ни Date.now() внутри. Крон —
+// spire_finalize_cron.ts.
+//
+// Отличие от лиги (осознанное): в лиге понижение гасится `!promoted`, а
+// promoted на вершине (leagueId = 11) всегда false — лидер высшей лиги в
+// маленькой комнате мог попасть в «нижние 15%» и понизиться. Здесь понижение
+// гасится попаданием в зону повышения (promotionEligible), а не фактом
+// повышения, поэтому лидер Алмаза не понижается.
+// ═══════════════════════════════════════════════════════════════════════════
+
+import type { SpireCoinsConfig } from './spire_config_contract';
+import {
+  isSpireResidentMember,
+  spireLiveZoneSize,
+  spireRoomResidents,
+  type SpireResidentTuning,
+} from './spire_residents';
+
+/** T16/T29: 0 = Гранит … 11 = Алмаз. То же, что SPIRE_MAX_TIER в spire_groups.ts. */
+export const SPIRE_FINAL_MAX_TIER = 11;
+
+export const SPIRE_WEEK_RESULT_SCHEMA = 'spire-week-result.v1' as const;
+
+export type SpireStanding = Readonly<{
+  uid: string;
+  steps: number;
+  reachedAtMs: number;
+  totalMs: number;
+}>;
+
+export type SpireRewardCoins = Readonly<{
+  /** Монеты за 1/2/3 место недели (config/spire_v1.coins.weekPlace1..3). */
+  place: number;
+  /** Монеты за повышение (config/spire_v1.coins.promotionBonus). */
+  promotion: number;
+  total: number;
+}>;
+
+export type SpireMemberWeekResult = Readonly<{
+  schema: typeof SPIRE_WEEK_RESULT_SCHEMA;
+  steps: number;
+  reachedAtMs: number;
+  totalMs: number;
+  /** Место среди живых — по нему зоны и монеты. */
+  liveRank: number;
+  liveTotal: number;
+  /** Место в комнате с ботами — то, что человек видел на экране («X из 30»). */
+  roomRank: number;
+  roomTotal: number;
+  zoneSize: number;
+  promoted: boolean;
+  demoted: boolean;
+  prevTier: number;
+  newTier: number;
+  rewardCoins: SpireRewardCoins;
+}>;
+
+export type SpireRoomFinalizeInput = Readonly<{
+  groupId: string;
+  tier: number;
+  weekStartMs: number;
+  cohortDay: number;
+  /** Карта members документа spire_groups (только живые; ботов там нет, но фильтруем на всякий случай). */
+  members: Readonly<Record<string, unknown>>;
+  coins: Pick<SpireCoinsConfig, 'weekPlace1' | 'weekPlace2' | 'weekPlace3' | 'promotionBonus'>;
+  tuning: SpireResidentTuning;
+}>;
+
+export type SpireRoomFinalizeOutput = Readonly<{
+  zoneSize: number;
+  liveTotal: number;
+  roomTotal: number;
+  hasAnyScorer: boolean;
+  results: Readonly<Record<string, SpireMemberWeekResult>>;
+}>;
+
+const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+
+function nonNegativeInt(value: unknown): number {
+  const n = Math.trunc(Number(value));
+  return Number.isFinite(n) && n > 0 ? n : 0;
+}
+
+export function clampSpireFinalTier(value: unknown): number {
+  const n = Math.trunc(Number(value));
+  return Number.isFinite(n) ? Math.max(0, Math.min(SPIRE_FINAL_MAX_TIER, n)) : 0;
+}
+
+/**
+ * Порядок в комнате (§4.5): больше ступеней — выше; ничья — раньше добрался;
+ * затем меньшее суммарное время. < 0 — a выше b, 0 — полная ничья.
+ *
+ * зачем особый случай для нуля ступеней: у не игравшего reachedAtMs/totalMs
+ * = 0, и «раньше добрался = 0» поставило бы его выше всех нулей с мусорным
+ * временем. Все нули — одна ничья, как в лиге.
+ */
+export function compareSpireStanding(a: SpireStanding, b: SpireStanding): number {
+  if (a.steps !== b.steps) return b.steps - a.steps;
+  if (a.steps === 0) return 0;
+  const aReached = a.reachedAtMs > 0 ? a.reachedAtMs : Number.MAX_SAFE_INTEGER;
+  const bReached = b.reachedAtMs > 0 ? b.reachedAtMs : Number.MAX_SAFE_INTEGER;
+  if (aReached !== bReached) return aReached - bReached;
+  const aTotal = a.totalMs > 0 ? a.totalMs : Number.MAX_SAFE_INTEGER;
+  const bTotal = b.totalMs > 0 ? b.totalMs : Number.MAX_SAFE_INTEGER;
+  return aTotal - bTotal;
+}
+
+/** Живые строки комнаты: без ботов и без скрытых дублей (как countLiveMembers лиги). */
+export function spireLiveStandings(members: Readonly<Record<string, unknown>>): SpireStanding[] {
+  const out: SpireStanding[] = [];
+  for (const [uid, raw] of Object.entries(members || {})) {
+    if (!raw || typeof raw !== 'object') continue;
+    const member = raw as Record<string, unknown>;
+    if (isSpireResidentMember(uid, member)) continue;
+    if (member.identityHidden === true) continue;
+    const steps = nonNegativeInt(member.steps);
+    out.push({
+      uid,
+      steps,
+      reachedAtMs: steps > 0 ? nonNegativeInt(member.reachedAtMs) : 0,
+      totalMs: steps > 0 ? nonNegativeInt(member.totalMs) : 0,
+    });
+  }
+  return out;
+}
+
+function placeCoins(rank: number, coins: SpireRoomFinalizeInput['coins']): number {
+  if (rank === 1) return coins.weekPlace1;
+  if (rank === 2) return coins.weekPlace2;
+  if (rank === 3) return coins.weekPlace3;
+  return 0;
+}
+
+/**
+ * Итог одной комнаты. Возвращает результат ТОЛЬКО для живых.
+ * Ранг — competition ranking по compareSpireStanding (полная ничья делит место).
+ */
+export function computeSpireRoomResults(input: SpireRoomFinalizeInput): SpireRoomFinalizeOutput {
+  const tier = clampSpireFinalTier(input.tier);
+  const live = spireLiveStandings(input.members);
+  const liveTotal = live.length;
+  const zoneSize = spireLiveZoneSize(liveTotal);
+  const hasAnyScorer = live.some((m) => m.steps > 0);
+
+  // Боты на конец недели — та же формула, что на экране (0 чтений/записей).
+  const bots = spireRoomResidents({
+    groupId: input.groupId,
+    weekStartMs: input.weekStartMs,
+    cohortDay: input.cohortDay,
+    nowMs: input.weekStartMs + WEEK_MS - 1,
+    live: live.map((m) => ({ uid: m.uid, steps: m.steps })),
+    tuning: input.tuning,
+  });
+  const room: SpireStanding[] = [...live, ...bots];
+  const roomTotal = room.length;
+
+  const results: Record<string, SpireMemberWeekResult> = {};
+  for (const me of live) {
+    const liveRank = 1 + live.filter((o) => compareSpireStanding(o, me) < 0).length;
+    const bottomRank = 1 + live.filter((o) => compareSpireStanding(o, me) > 0).length;
+    const roomRank = 1 + room.filter((o) => compareSpireStanding(o, me) < 0).length;
+    const scored = me.steps > 0;
+    // Зона повышения требует ≥1 ступени: иначе нули в тихой комнате (строго
+    // выше них — только игравшие) попадали бы в «топ» и гасили себе понижение
+    // — ровно баг лиги 2026-08-17.
+    const promotionEligible = scored && zoneSize > 0 && liveRank <= zoneSize;
+    const promoted = promotionEligible && tier < SPIRE_FINAL_MAX_TIER;
+    const inZeroZone = !scored && hasAnyScorer;
+    const demoted = hasAnyScorer
+      && !promotionEligible
+      && (inZeroZone || (zoneSize > 0 && bottomRank <= zoneSize))
+      && tier > 0;
+    const place = scored ? placeCoins(liveRank, input.coins) : 0;
+    const promotion = promoted ? input.coins.promotionBonus : 0;
+    results[me.uid] = {
+      schema: SPIRE_WEEK_RESULT_SCHEMA,
+      steps: me.steps,
+      reachedAtMs: me.reachedAtMs,
+      totalMs: me.totalMs,
+      liveRank,
+      liveTotal,
+      roomRank,
+      roomTotal,
+      zoneSize,
+      promoted,
+      demoted,
+      prevTier: tier,
+      newTier: promoted ? tier + 1 : demoted ? tier - 1 : tier,
+      rewardCoins: { place, promotion, total: place + promotion },
+    };
+  }
+  return { zoneSize, liveTotal, roomTotal, hasAnyScorer, results };
+}

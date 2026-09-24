@@ -70,11 +70,13 @@ describe('spire residents: формула', () => {
 });
 
 describe('spire residents: зоны только по живым (T25)', () => {
-  it('размер зоны — как у лиги, но от числа живых', () => {
+  it('размер зоны — от всей комнаты с ботами (D59), живых нет — зон нет', () => {
     expect(spireLiveZoneSize(0)).toBe(0);
-    expect(spireLiveZoneSize(1)).toBe(0);
-    expect(spireLiveZoneSize(2)).toBe(1);
-    expect(spireLiveZoneSize(20)).toBe(3);
+    // D59: одинокий живой среди 29 ботов повышается — зона 15% от 30 = 5.
+    expect(spireLiveZoneSize(1)).toBe(5);
+    expect(spireLiveZoneSize(2)).toBe(5);
+    expect(spireLiveZoneSize(20)).toBe(5);
+    expect(spireLiveZoneSize(30)).toBe(5);
   });
 
   it('бот строго ниже зоны повышения и выше зоны понижения', () => {
@@ -83,7 +85,8 @@ describe('spire residents: зоны только по живым (T25)', () => {
       { uid: 'd', steps: 5 }, { uid: 'e', steps: 0 },
     ];
     const bounds = spireResidentBounds(live, 1);
-    expect(bounds.hi).toBe(29); // зона 1 из 5: повышается a (30)
+    // D59: зона 5 (от 30 с ботами) — повышаются все игравшие a..d, слабейший d (5).
+    expect(bounds.hi).toBe(4);
     expect(bounds.lo).toBe(1);  // понижаются нули
     const late = WEEK_START + 6 * 24 * HOUR;
     const bots = spireRoomResidents({
@@ -91,7 +94,7 @@ describe('spire residents: зоны только по живым (T25)', () => {
     });
     expect(bots).toHaveLength(SPIRE_ROOM_SIZE - live.length);
     for (const bot of bots) {
-      expect(bot.steps).toBeLessThan(30);
+      expect(bot.steps).toBeLessThan(5);
       expect(bot.steps).toBeGreaterThan(0);
     }
   });

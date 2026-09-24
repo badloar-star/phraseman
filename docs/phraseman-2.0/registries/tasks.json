@@ -8,7 +8,7 @@
     ],
     "basis": "SAFETY",
     "stage": "A",
-    "status": "ready_audit",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -23,24 +23,30 @@
       {
         "id": "PM-001-A2",
         "text": "default master не объявлен текущим автоматически",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "PROGRESS.md раздел 4"
+        ]
       }
     ],
     "depends_on": [],
     "gates": [],
-    "audit_sha": null,
+    "audit_sha": "574a9542053a6299f1bd1557c3c09a52825e4fc3",
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Opus 5.5",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "PROGRESS.md раздел 4"
+    ],
+    "notes": [
+      "HEAD/ветка/версия 1.6.24(130) зафиксированы; опубликованная сборка в сторе НЕ подтверждена (A1 открыт)"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "opus-5.5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-002",
@@ -51,7 +57,7 @@
     ],
     "basis": "OWNER",
     "stage": "A",
-    "status": "ready_audit",
+    "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -60,30 +66,41 @@
       {
         "id": "PM-002-A1",
         "text": "Определён путь docs/phraseman-2.0",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/PROGRESS.md",
+          "commits aa08f5894..385daed73"
+        ]
       },
       {
         "id": "PM-002-A2",
         "text": "существующие AGENTS.md прочитаны и правила слиты без перезаписи чужих инструкций",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/PROGRESS.md",
+          "commits aa08f5894..385daed73"
+        ]
       }
     ],
     "depends_on": [],
     "gates": [],
     "audit_sha": null,
-    "result_sha": null,
-    "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "result_sha": "385daed73",
+    "owner": "Claude Opus 5.5",
+    "reviewer": "self-check (не независимое ревью)",
+    "evidence": [
+      "docs/phraseman-2.0/PROGRESS.md",
+      "commits aa08f5894..385daed73"
+    ],
+    "notes": [
+      "Корневые AGENTS.md/CLAUDE.md не перезаписаны; правила пакета действуют через PROGRESS.md; сырые sources в .gitignore"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "opus-5.5",
+    "actual_reasoning": "high"
   },
   {
     "id": "PM-003",
@@ -699,7 +716,7 @@
     ],
     "basis": "DECISION",
     "stage": "A",
-    "status": "needs_decision",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -708,14 +725,18 @@
       {
         "id": "PM-017-A1",
         "text": "Уточнено: 50 суммарно или на набор, 3 активных или за всё время",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Ответ владельца в чате 2026-09-24, PROGRESS.md D34–D37"
+        ]
       },
       {
         "id": "PM-017-A2",
         "text": "опубликованные/официальные наборы не смешаны со своими",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Ответ владельца в чате 2026-09-24, PROGRESS.md D34–D37"
+        ]
       }
     ],
     "depends_on": [],
@@ -727,8 +748,12 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "Ответ владельца в чате 2026-09-24, PROGRESS.md D34–D37"
+    ],
+    "notes": [
+      "D35: Free максимум 3 набора всего, созданные И добавленные считаются; официальные наборы в приложении и наборы из видео — уточнить при PM-101, считаются ли 'добавленными'"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -3196,7 +3221,7 @@
     ],
     "basis": "DECISION",
     "stage": "C",
-    "status": "needs_decision",
+    "status": "in_progress",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -3205,8 +3230,10 @@
       {
         "id": "PM-071-A1",
         "text": "Определено, входят ли начальное состояние и последний апгрейд в N",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Ответ владельца в чате 2026-09-24, PROGRESS.md D34–D37"
+        ]
       },
       {
         "id": "PM-071-A2",
@@ -3226,8 +3253,12 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "Ответ владельца в чате 2026-09-24, PROGRESS.md D34–D37"
+    ],
+    "notes": [
+      "20 рангов = начальная классическая монета + 20 повышений (1000…20000, итого 210000), 21 дизайн; ассеты рисует не LLM; названия рангов — PM-074"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -3339,7 +3370,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -3366,16 +3397,20 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Opus 5.5",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "docs/phraseman-2.0/docs/COIN_RANKS.md"
+    ],
+    "notes": [
+      "21 название (Классика + 20 рангов, металлы/монеты) предложено, ждёт утверждения владельца"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
-    "actual_reasoning": null
+    "actual_model": "opus-5.5",
+    "actual_reasoning": "medium"
   },
   {
     "id": "PM-075",
@@ -6889,7 +6924,7 @@
     ],
     "basis": "DECISION",
     "stage": "C",
-    "status": "needs_decision",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -6898,14 +6933,18 @@
       {
         "id": "PM-149-A1",
         "text": "Пороги вычисляются из реального результата",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Ответ владельца в чате 2026-09-24, PROGRESS.md D34–D37"
+        ]
       },
       {
         "id": "PM-149-A2",
         "text": "рекомендация 60/80/95% не считается утверждённой автоматически",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Ответ владельца в чате 2026-09-24, PROGRESS.md D34–D37"
+        ]
       }
     ],
     "depends_on": [],
@@ -6918,8 +6957,12 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "Ответ владельца в чате 2026-09-24, PROGRESS.md D34–D37"
+    ],
+    "notes": [
+      "D36: 1★<60, 2★ 60–84, 3★ ≥85; продвижение от 2★"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -7992,7 +8035,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "needs_decision",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -8022,7 +8065,9 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": [
+      "Рейтинг — рабочее название, владелец ещё думает"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -8133,7 +8178,7 @@
     ],
     "basis": "DECISION",
     "stage": "C",
-    "status": "needs_decision",
+    "status": "in_progress",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -8148,8 +8193,10 @@
       {
         "id": "PM-176-A2",
         "text": "XP исключён, решение явно записано",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Ответ владельца в чате 2026-09-24, PROGRESS.md D34–D37"
+        ]
       }
     ],
     "depends_on": [],
@@ -8163,8 +8210,12 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "Ответ владельца в чате 2026-09-24, PROGRESS.md D34–D37"
+    ],
+    "notes": [
+      "D37: очки недели = монеты, заработанные за неделю; XP исключён. Лига-механика (комнаты 30) сохраняется"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -8281,7 +8332,7 @@
     ],
     "basis": "DECISION",
     "stage": "C",
-    "status": "needs_decision",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -8290,20 +8341,26 @@
       {
         "id": "PM-179-A1",
         "text": "3/6 часов — варианты",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Ответ владельца в чате 2026-09-24, PROGRESS.md D34–D37"
+        ]
       },
       {
         "id": "PM-179-A2",
         "text": "сначала нагрузка и актуальность",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Ответ владельца в чате 2026-09-24, PROGRESS.md D34–D37"
+        ]
       },
       {
         "id": "PM-179-A3",
         "text": "UI не обещает realtime при снимках",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Ответ владельца в чате 2026-09-24, PROGRESS.md D34–D37"
+        ]
       }
     ],
     "depends_on": [],
@@ -8317,8 +8374,12 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "Ответ владельца в чате 2026-09-24, PROGRESS.md D34–D37"
+    ],
+    "notes": [
+      "6 часов и только при заходе на экран — как действующее правило лиг"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,

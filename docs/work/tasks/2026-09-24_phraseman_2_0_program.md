@@ -1,6 +1,7 @@
 # Task packet: PhraseMan 2.0 — программа упрощения (исполнение пакета документации)
 
 Governance-ID: TG-DDAB4B34D59F
+Governance-ID: TG-B08D6ACD9EB2
 Status: In progress
 Owner: сессия Claude 2026-09-24 (оркестратор Opus 5.5, исполнители — субагенты по таблице моделей)
 Related epic/enabler: E01–E24 пакета `docs/phraseman-2.0/`

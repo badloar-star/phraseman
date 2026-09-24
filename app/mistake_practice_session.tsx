@@ -3,7 +3,6 @@ import { useAudioPlayer } from 'expo-audio';
 import { useManagedSpokenAudioPlayer } from '../hooks/use_managed_spoken_audio_player';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Image } from 'expo-image';
 import {
   ActivityIndicator,
   Pressable,
@@ -78,7 +77,7 @@ import { useSessionAttempts } from '../hooks/useSessionAttempts';
 import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
 import { captureAccountGeneration } from './account_generation';
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
-import { SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
+// зачем (PM-134): SESSION_ATTEMPTS_MOTION был мёртвым импортом — константа анимации нигде не читалась в этом экране
 
 type Feedback = {
   correct: boolean;

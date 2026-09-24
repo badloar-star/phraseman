@@ -12,6 +12,7 @@ import type { LevelAvatarMaterial } from '../constants/avatar_level_materials';
 import LevelAvatarMaterialOverlay from './LevelAvatarMaterialOverlay';
 import { AvatarDNAStage } from './avatar-dna/AvatarDNAStage';
 import type { AvatarDNA, AvatarV2Projection } from '../modules/avatar-dna/contracts';
+import { coinRankRowForDisplay, isValidCoinRank } from '../app/coin_rank_table_v1';
 
 interface Props {
   avatar?: string | null;
@@ -37,6 +38,12 @@ interface Props {
    * зачем: восстановлено из работы 2026-08-30/31 (клуб, полёт наград).
    */
   auraMotionProgress?: Animated.Value;
+  /**
+   * Ранг монеты (0…19). Задан → аватар = монета этого ранга, без ауры и старой картинки
+   * (D03/D61: монета и есть новый аватар). Передавай только там, где ранг известен
+   * (свой аватар — useMyCoinRank); null/undefined → прежний показ.
+   */
+  coinRank?: number | null;
 }
 
 function AvatarImageWithFallback({
@@ -79,7 +86,11 @@ function AvatarImageWithFallback({
   );
 }
 
-function AvatarView({ avatar, avatarV2, localDNA, totalXP, level, size = 44, style, auraId, auraVisualSize, animateAura = true, ownerActive, auraMotionProgress }: Props) {
+function AvatarView({ avatar, avatarV2, localDNA, totalXP, level, size = 44, style, auraId, auraVisualSize, animateAura = true, ownerActive, auraMotionProgress, coinRank }: Props) {
+  // зачем (PM-076, D62 п.2): параллельный путь к старому показу — если ранг монеты
+  // известен, рисуем монету ранга из единой таблицы. Старые ветки ниже не трогаем:
+  // чужие аватары (друзья, лига, арена) ранга не несут и показываются как раньше.
+  const coinRow = isValidCoinRank(coinRank) ? coinRankRowForDisplay(coinRank) : null;
   // Уровень известен, только если его передали явно или дали опыт. Часть
   // вызывающих (соперник в арене, строка друга) даёт ТОЛЬКО картинку — там
   // уровня нет, и выдумывать его нельзя.
@@ -107,6 +118,20 @@ function AvatarView({ avatar, avatarV2, localDNA, totalXP, level, size = 44, sty
   const material = getLevelAvatarMaterial(avatarIndex);
   const portraitUrl = avatarV2?.state === 'ready' ? avatarV2.portraitUrl : null;
   const [failedPortraitUrl, setFailedPortraitUrl] = React.useState<string | null>(null);
+
+  if (coinRow) {
+    return (
+      <View style={[{ width: size, height: size }, style]}>
+        <Image
+          testID="avatar-coin-rank"
+          source={coinRow.source}
+          style={{ width: size, height: size }}
+          contentFit="contain"
+          accessibilityLabel={coinRow.levelTitle}
+        />
+      </View>
+    );
+  }
 
   let content: React.ReactNode;
   if (portraitUrl && portraitUrl !== failedPortraitUrl) {

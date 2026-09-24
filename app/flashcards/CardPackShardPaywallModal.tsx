@@ -1228,17 +1228,20 @@ export default function CardPackShardPaywallModal({
                         </>
                       )}
 
-                      {/* Apple Guideline 1.2 (UGC): кнопка скарги для community-наборів */}
+                      {/* Apple Guideline 1.2 (UGC): кнопка скарги для community-наборів.
+                          зачем (PM-107, владелец): текстовая плашка заменена иконкой флага —
+                          доступная подпись для screen reader сохранена через accessibilityLabel
+                          (то же значение str.reportPack, без ведущего ⚐, который был декоративным). */}
                       {pack.isCommunityUgc ? (
                         <>
                           <Pressable
                             onPress={() => setReportVisible(true)}
                             hitSlop={8}
+                            accessibilityRole="button"
+                            accessibilityLabel={str.reportPack.replace(/^[^\p{L}]*/u, '')}
                             style={{ marginTop: 6, paddingVertical: 6, alignItems: 'center' }}
                           >
-                            <Text style={{ color: t.textGhost, fontSize: 12, textDecorationLine: 'underline' }}>
-                              {str.reportPack}
-                            </Text>
+                            <Ionicons name="flag-outline" size={16} color={t.textGhost} />
                           </Pressable>
                           <Pressable
                             onPress={async () => {

@@ -330,7 +330,9 @@ export default function DeckPickerSheet({
         </Text>
 
         <ScrollView decelerationRate="fast" style={{ flexGrow: 0 }} showsVerticalScrollIndicator={false}>
-          <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', gap: 10 }}>
+          {/* PM-092 (владелец: «не квадраты блоки здоровые, а типа удобно
+              списочек»): столбец компактных строк вместо сетки 2-в-ряд. */}
+          <View style={{ flexDirection: 'column', gap: 8 }}>
             {decks.map((d, i) => (
               <DeckSelectionTile
                 key={d.deckId}
@@ -541,9 +543,10 @@ export default function DeckPickerSheet({
                 })}
           </Text>
 
-          {/* Наборы — чекбоксы (мультивыбор) */}
+          {/* Наборы — чекбоксы (мультивыбор). PM-092: столбец компактных строк
+              вместо сетки 2-в-ряд (владелец: «не квадраты блоки здоровые»). */}
           <ScrollView decelerationRate="fast" style={{ flexGrow: 0 }} showsVerticalScrollIndicator={false}>
-            <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', gap: 10 }}>
+            <View style={{ flexDirection: 'column', gap: 8 }}>
               {decks.map((d, i) => (
                 <DeckSelectionTile
                   key={d.deckId}

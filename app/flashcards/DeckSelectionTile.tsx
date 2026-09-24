@@ -47,7 +47,11 @@ export default function DeckSelectionTile({
   const check = useSharedValue(selected ? 1 : 0);
   const [labelReflowed, setLabelReflowed] = useState(false);
   const onLabelReflow = useCallback(() => setLabelReflowed(true), []);
-  const labelWidth = Math.max(120, Math.min(280, viewportWidth * 0.485 - 28));
+  // зачем (PM-092, владелец: «не вот эти квадраты блоки здоровые, а типа удобно
+  // списочек»): раньше это была квадратная плитка 48.5% ширины — переделано в
+  // компактную строку списка (маленькая обложка слева, текст и чекбокс справа).
+  // Ширина заголовка теперь считается от полной ширины строки, а не половины экрана.
+  const labelWidth = Math.max(140, viewportWidth - 32 /* H_PAD экрана */ - 52 /* обложка */ - 40 /* чекбокс */ - 24 /* внутренние отступы строки */);
 
   useEffect(() => {
     if (simpleMotion) {
@@ -86,111 +90,110 @@ export default function DeckSelectionTile({
           onToggle(deck.deckId);
         }}
         style={({ pressed }) => [
-          styles.tile,
+          styles.row,
           {
+            borderColor: selected ? t.accent : t.border,
+            backgroundColor: selected ? `${t.accent}14` : t.bgSurface,
             opacity: disabled ? 0.42 : pressed ? 0.82 : 1,
-            transform: [{ scale: pressed ? 0.98 : 1 }],
           },
         ]}
       >
-        <View
-          style={[
-            styles.artwork,
-            {
-              borderColor: selected ? t.accent : t.border,
-              backgroundColor: selected ? `${t.accent}14` : t.bgSurface,
-            },
-          ]}
-        >
+        {/* Компактная обложка слева (§ видео-наборы: превью с play-иконкой
+            рисует отдельный VideoPackRow в каталоге; здесь — общий выбор
+            наборов для тренировки, обложка/иконка та же, что была). */}
+        <View style={[styles.cover, { backgroundColor: selected ? `${t.accent}26` : `${t.textMuted}1A` }]}>
           {deck.coverImage ? (
             <Image
               key={deck.coverRevision ?? deck.deckId}
               accessible={false}
               source={deck.coverImage}
               style={styles.coverImage}
-              contentFit="contain"
+              contentFit="cover"
               transition={simpleMotion ? 0 : FC_TIMING.fast}
             />
           ) : (
-            <View style={[styles.fallback, { backgroundColor: selected ? `${t.accent}26` : `${t.textMuted}1A` }]}>
-              <Ionicons name={deck.icon} size={34} color={selected ? t.accent : t.textMuted} />
-            </View>
+            <Ionicons name={deck.icon} size={22} color={selected ? t.accent : t.textMuted} />
           )}
-
-          <View style={[styles.countBadge, { backgroundColor: t.bgCard, borderColor: t.border }]}>
-            <Text style={[styles.countText, { color: t.textSecond, fontSize: f.caption }]}>{deck.count}</Text>
-          </View>
-
-          <View
-            style={[
-              styles.checkbox,
-              {
-                borderColor: selected ? t.accent : t.textGhost,
-                backgroundColor: selected ? t.accent : t.bgCard,
-              },
-            ]}
-          >
-            <Reanimated.View style={checkStyle}>
-              <Ionicons name="checkmark" size={16} color={t.correctText} />
-            </Reanimated.View>
-          </View>
         </View>
 
-        <AdaptiveLabel
-          testID={`${testIDPrefix}-title-${deck.deckId}`}
-          provenance="user"
-          availableWidth={labelWidth}
-          compactLineLimit={2}
-          onReflowNeeded={onLabelReflow}
+        <View style={styles.textCol}>
+          <AdaptiveLabel
+            testID={`${testIDPrefix}-title-${deck.deckId}`}
+            provenance="user"
+            availableWidth={labelWidth}
+            compactLineLimit={2}
+            onReflowNeeded={onLabelReflow}
+            style={[
+              styles.title,
+              {
+                color: t.textPrimary,
+                fontSize: labelReflowed ? Math.max(11, Math.round(f.sub * 0.9)) : f.sub,
+                lineHeight: labelReflowed ? 15 : 18,
+              },
+            ]}
+            maxFontSizeMultiplier={1.5}
+          >
+            {deck.title}
+          </AdaptiveLabel>
+        </View>
+
+        <View style={[styles.countBadge, { backgroundColor: t.bgCard, borderColor: t.border }]}>
+          <Text style={[styles.countText, { color: t.textSecond, fontSize: f.caption }]}>{deck.count}</Text>
+        </View>
+
+        <View
           style={[
-            styles.title,
+            styles.checkbox,
             {
-              color: t.textPrimary,
-              fontSize: labelReflowed ? Math.max(11, Math.round(f.sub * 0.82)) : f.sub,
-              lineHeight: labelReflowed ? 15 : 17,
+              borderColor: selected ? t.accent : t.textGhost,
+              backgroundColor: selected ? t.accent : t.bgCard,
             },
           ]}
-          maxFontSizeMultiplier={1.5}
         >
-          {deck.title}
-        </AdaptiveLabel>
+          <Reanimated.View style={checkStyle}>
+            <Ionicons name="checkmark" size={16} color={t.correctText} />
+          </Reanimated.View>
+        </View>
       </Pressable>
     </Reanimated.View>
   );
 }
 
 const styles = StyleSheet.create({
-  wrapper: { width: '48.5%' },
-  tile: {
+  // PM-092: раньше плитка 48.5% ширины в сетке 2-в-ряд — теперь строка на всю
+  // ширину списка (родитель передаёт flexDirection:'column' вместо wrap-сетки).
+  wrapper: { width: '100%' },
+  row: {
     width: '100%',
+    flexDirection: 'row',
     alignItems: 'center',
-  },
-  artwork: {
-    width: '100%',
-    aspectRatio: 1,
-    borderRadius: 18,
+    gap: 10,
+    paddingVertical: 8,
+    paddingHorizontal: 10,
+    borderRadius: 14,
     borderWidth: 1.5,
+  },
+  cover: {
+    width: 44,
+    height: 44,
+    borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
+    flexShrink: 0,
   },
-  coverImage: { width: '120%', height: '98%' },
-  fallback: { width: 62, height: 62, borderRadius: 19, alignItems: 'center', justifyContent: 'center' },
+  coverImage: { width: '100%', height: '100%' },
+  textCol: { flex: 1, minWidth: 0 },
   checkbox: {
-    position: 'absolute',
-    top: 8,
-    right: 8,
     width: 26,
     height: 26,
     borderRadius: 9,
     borderWidth: 2,
     alignItems: 'center',
     justifyContent: 'center',
+    flexShrink: 0,
   },
   countBadge: {
-    position: 'absolute',
-    right: 0,
-    bottom: 0,
     minWidth: 30,
     minHeight: 24,
     paddingHorizontal: 7,
@@ -198,7 +201,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    flexShrink: 0,
   },
   countText: { fontWeight: '800', fontVariant: ['tabular-nums'] },
-  title: { minHeight: 34, marginTop: 7, textAlign: 'center', fontWeight: '800' },
+  title: { fontWeight: '800' },
 });

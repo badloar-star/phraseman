@@ -248,6 +248,39 @@ describe('submitClientReport', () => {
     expect(collectionDocs('client_report_rate_limits')[0]?.data).toMatchObject({ count: 1 });
   });
 
+  // зачем (PM-227, 2026-09-24): аудит цепи "ошибка → очередь → транспорт →
+  // запись → отображение" (docs/phraseman-2.0/evidence/PM-227_error_visibility_audit.md)
+  // нашёл, что ни один существующий тест не доходит до самого документа
+  // `app_errors` — только до побочного агрегата jarvis_quality_daily ниже.
+  // Это и есть проверка acceptance PM-227-A2: инъецированная тестовая ошибка
+  // реально создаёт документ в `app_errors` с ожидаемыми контрактными полями
+  // (не просто "logger был вызван").
+  test('writes the app_errors document itself with the full field contract', async () => {
+    await callSubmitClientReport({
+      kind: 'app_error',
+      payload: {
+        platform: 'ios', appVersion: '2.4.1', buildNumber: '319', feature: 'auth', screen: 'sign_in',
+        severity: 'critical', context: 'auth:sign_in_failed', fingerprint: 'abc123',
+        errorName: 'FirebaseAuthError', message: 'person@example.com could not sign in',
+        stack: 'private stack text', tags: { retry: 2 },
+      },
+    });
+
+    const errorDocs = reportDocs('app_errors');
+    expect(errorDocs).toHaveLength(1);
+    expect(errorDocs[0]).toMatchObject({
+      platform: 'ios', appVersion: '2.4.1', buildNumber: '319', feature: 'auth', screen: 'sign_in',
+      severity: 'critical', context: 'auth:sign_in_failed', fingerprint: 'abc123',
+      errorName: 'FirebaseAuthError', message: 'person@example.com could not sign in',
+      stack: 'private stack text', status: 'new',
+    });
+    // зачем: PM-227 audit нашёл, что uid НЕ псевдонимизируется по контракту
+    // BACKEND.md ("псевдонимизация account identifier при необходимости") —
+    // это осознанный компромисс поддержки (админ должен видеть, кому чинить),
+    // зафиксирован явно как контракт, а не проверен по ошибке.
+    expect(errorDocs[0]).toMatchObject({ uid: 'stable-reporter' });
+  });
+
   test('atomically records a release-aware server aggregate without uid or report text', async () => {
     await callSubmitClientReport({
       kind: 'app_error',

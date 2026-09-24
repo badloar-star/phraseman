@@ -10995,7 +10995,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -11004,8 +11004,11 @@
       {
         "id": "PM-227-A1",
         "text": "Проверена цепь ошибка → очередь → транспорт → запись → отображение",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/evidence/PM-227_error_visibility_audit.md",
+          "functions/src/client_reports.test.ts 10/10 PASS, новый тест 'writes the app_errors document itself with the full field contract'"
+        ]
       },
       {
         "id": "PM-227-A2",
@@ -11021,15 +11024,20 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Claude Sonnet 5 (субагент) + Claude Opus 5.5",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "docs/phraseman-2.0/evidence/PM-227_error_visibility_audit.md",
+      "functions/src/client_reports.test.ts 10/10 PASS, новый тест 'writes the app_errors document itself with the full field contract'"
+    ],
+    "notes": [
+      "A1 подтверждён: цепь ошибка→очередь→throttle→callable→Firestore app_errors→админка работает end-to-end, прослежена полностью по коду. A2 частично закрыт: добавлен сквозной тест, который инъецирует тестовую ошибку и проверяет реальный документ в app_errors (раньше все 3 существующих теста обрывались на границе мока/агрегата, не на самом документе) — 10/10 PASS. НЕ статус done: остаются 2 находки аудита, требующие решения владельца, не чинил сам — traceId из контракта BACKEND.md не реализован нигде в коде (заявлен, не сделан); errorName/buildNumber доезжают до Firestore, но не отображаются в карточке админки (admin/v2/legacy.html), администратор должен вручную идти в консоль Firestore за этими полями"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
     "gate_evidence": {},
-    "actual_model": null,
+    "actual_model": "sonnet-5",
     "actual_reasoning": null
   },
   {

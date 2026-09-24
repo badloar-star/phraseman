@@ -195,6 +195,8 @@
 
 - 2026-09-24 · PM-151 · Sonnet 5 (субагент) + Opus 5.5 · проверка целостности экзаменов/срезов после чистки 2.0 — ВСЁ ЦЕЛО: точки входа на месте, данные попыток не зависят от удаляемых gamification-полей, prerequisite (звёзды) и entitlement (Plus) — реально независимые условия в коде · evidence: docs/phraseman-2.0/evidence/PM-151_exam_continuity_check.md · ПОБОЧНАЯ НАХОДКА (needs_decision, вне скоупа PM-151): сдача экзамена всё ещё вызывает registerXP/addShards — возможно противоречит правилу спеки COURSES.md «учебные проценты/звёзды — не опыт и не основание вернуть XP», не чинил, нужно решение владельца, включать ли в отдельную задачу удаления XP-начислений
 
+- 2026-09-24 · PM-227 · Sonnet 5 (субагент) + Opus 5.5 · аудит видимости ошибок в админке — цепь ошибка→очередь→throttle→callable→Firestore app_errors→admin/v2/legacy.html работает end-to-end (A1 закрыт) · добавлен недостающий сквозной тест functions/src/client_reports.test.ts ('writes the app_errors document itself with the full field contract') — раньше 3 существующих теста обрывались на границе мока/побочного агрегата, ни один не проверял сам документ app_errors, 10/10 PASS · needs_decision, не чинил: traceId из контракта BACKEND.md не реализован нигде; errorName/buildNumber доезжают до Firestore, но не отображаются в карточке админки · evidence: docs/phraseman-2.0/evidence/PM-227_error_visibility_audit.md
+
 ## 6. Известные конфликты 2.0 со старыми правилами проекта
 
 - Покупка уроков за жемчуг (сделана 2026-09-17…24, коммит `efbe0dcd9`) — по 2.0 удаляется (PM-148, D15). Не делать до вопроса о компенсации.

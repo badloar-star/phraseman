@@ -24,7 +24,6 @@ import {
   orderGroupForResultDisplay,
 } from './league_engine';
 import { isLeagueXpPromotionEnabled, getLeagueXpPromotionThreshold } from './remote_flags';
-import { LEAGUE_ENERGY_PER_LEVEL } from './energy_contract';
 import AvatarView from '../components/AvatarView';
 import LeagueResultHybrid from '../components/league/LeagueResultHybrid';
 import PremiumAvatarHalo from '../components/PremiumAvatarHalo';
@@ -1243,19 +1242,8 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
 })}
                         </Text>
                       </View>
-                      {/* зачем (владелец, 2026-09-14): лига меняет постоянный запас
-                          энергии на ±10, и раньше это происходило молча. Показываем
-                          дельту там же, где человек узнаёт исход недели — иначе
-                          прибавку не заметят, а потерю не поймут. Только при смене
-                          лиги: тем, кто остался, показывать «+0» бессмысленно. */}
-                      {isPromo && (
-                        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}>
-                          <Ionicons name="flash" size={15} color={palette.primary} />
-                          <Text style={{ color: palette.primary, fontSize: f.body, fontWeight: '900' }}>
-                            {`+${LEAGUE_ENERGY_PER_LEVEL}`}
-                          </Text>
-                        </View>
-                      )}
+                      {/* зачем (PM-081, D07): лига больше не меняет запас энергии —
+                          чип «+10 ⚡» у повышения снят, иначе он обещал бы то, чего нет. */}
                     </LinearGradient>
                   </Animated.View>
                 )}
@@ -1275,16 +1263,8 @@ export default function LeagueResultModal({ visible, result, onClose, previewMod
                       <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
                         {motivation}
                       </Text>
-                      {/* зачем (владелец, 2026-09-14): понижение молча отнимало 10
-                          энергии постоянного запаса — человек этого не замечал и не
-                          понимал, почему запас «усох». Дельта стоит рядом с бейджем
-                          исхода, тем же тоном, что и остальная плашка понижения. */}
-                      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}>
-                        <Ionicons name="flash" size={15} color={palette.primary} />
-                        <Text style={{ color: palette.primary, fontSize: f.body, fontWeight: '900' }}>
-                          {`−${LEAGUE_ENERGY_PER_LEVEL}`}
-                        </Text>
-                      </View>
+                      {/* зачем (PM-081, D07): понижение больше не отнимает энергию —
+                          чип «−10 ⚡» снят вместе с прибавкой лиги к запасу. */}
                     </View>
                   </Animated.View>
                 )}

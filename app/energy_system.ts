@@ -13,7 +13,6 @@ import {
   type EnergyStateV2,
 } from './energy_state_v2';
 import { ENERGY_PASSIVE_UNIT_MS, permanentEnergyCapacity } from './energy_contract';
-import { getCachedLeagueIdSync } from './league_open_cache_policy';
 import { BONUS_ENERGY_KEY, readBonusEnergyForMutation } from './bonus_energy_store';
 import { requireGiftAccountStorageKey } from './gift_account_storage';
 import {
@@ -35,19 +34,15 @@ function MAX_ENERGY_VALUE(): number {
 }
 
 /**
- * Same profile-card-aware permanent capacity used by EnergyContext.
+ * Постоянный потолок энергии — тот же, что в EnergyContext.
  *
- * зачем лига здесь (владелец, 2026-09-14): «каждая новая лига даёт +10 к общему
- * запасу энергии». Номер лиги берём из синхронного снимка — лишнего чтения диска
- * в этом пути не появляется.
+ * зачем (PM-081, D06/D07): потолок ровно 5; ни ярус карточки профиля, ни лига
+ * его больше не меняют, поэтому чтение `profile_card_level` с диска убрано —
+ * на каждом пересчёте энергии на одно обращение к хранилищу меньше.
+ * Функция осталась async, чтобы не трогать сигнатуры вызывающих.
  */
 async function readLevelAwareBaseMaxEnergy(): Promise<number> {
-  const rawProfileCardLevel = await AsyncStorage.getItem('profile_card_level');
-  return permanentEnergyCapacity({
-    profileCardLevel: rawProfileCardLevel,
-    leagueId: getCachedLeagueIdSync(),
-    base: MAX_ENERGY_VALUE(),
-  });
+  return permanentEnergyCapacity({ base: MAX_ENERGY_VALUE() });
 }
 
 /**

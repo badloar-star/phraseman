@@ -7,71 +7,48 @@
  */
 
 export const ENERGY_SCHEMA_VERSION = 2 as const;
-export const ENERGY_BASE_CAPACITY = 100 as const;
-export const PROFILE_CARD_ENERGY_PER_LEVEL = 10 as const;
-export const PROFILE_CARD_ENERGY_MAX_LEVEL = 5 as const;
 /**
- * зачем (владелец, 2026-09-14): «каждая новая лига даёт +10 к общему запасу
- * энергии». Считаем по ТЕКУЩЕЙ лиге (выбор владельца), а не по рекорду: ушёл
- * лигой ниже — прибавка уменьшается вместе с ней.
- *
- * Лиг двенадцать (CLUBS в league_engine: id 0 «Медная» … id 11 «Высшая»), но
- * прибавку даёт именно НОМЕР лиги, поэтому стартовая Медная остаётся на 100, а
- * максимум приходится на Высшую: 100 + 11 × 10 = 210.
+ * зачем (PM-081, BIBLE «Энергия: 5, −1 за начавшееся учебное занятие, +1 за
+ * 10 минут, Plus не расходует»; решения D06/D07 — OWNER_FINAL): запас энергии
+ * ровно 5 у всех. Прежние 100 и прибавки к потолку от лиги (+10 за лигу) и от
+ * карточки профиля (+10 за ярус) отменены — «никаких бонусов cap/rate от
+ * визиток/лиги/видео». Потолок — одно число, без формул и удалённой настройки.
  */
-export const LEAGUE_ENERGY_PER_LEVEL = 10 as const;
-export const LEAGUE_ENERGY_MAX_LEVEL = 11 as const;
-export const ENERGY_PERMANENT_CAPACITY_LIMIT =
-  ENERGY_BASE_CAPACITY
-  + PROFILE_CARD_ENERGY_PER_LEVEL * PROFILE_CARD_ENERGY_MAX_LEVEL
-  + LEAGUE_ENERGY_PER_LEVEL * LEAGUE_ENERGY_MAX_LEVEL;
+export const ENERGY_BASE_CAPACITY = 5 as const;
+/**
+ * Максимальный ярус карточки профиля. Остался здесь только как граница яруса
+ * (его читает profile_card_system) — к запасу энергии ярус больше НИЧЕГО не
+ * добавляет (PM-081, D07).
+ */
+export const PROFILE_CARD_ENERGY_MAX_LEVEL = 5 as const;
+/** Постоянный потолок = базовый запас: прибавок сверху больше нет (PM-081). */
+export const ENERGY_PERMANENT_CAPACITY_LIMIT: number = ENERGY_BASE_CAPACITY;
 export const ENERGY_BONUS_CAPACITY_LIMIT = 200 as const;
 export const ENERGY_ACTIVE_CAPACITY_LIMIT = ENERGY_PERMANENT_CAPACITY_LIMIT + ENERGY_BONUS_CAPACITY_LIMIT;
 export const ENERGY_PASSIVE_UNIT_MS = 6 * 60 * 1000;
 export const ENERGY_VIDEO_UNIT_MS = 36 * 1000;
 export const ENERGY_MICRO_UNITS_PER_UNIT = 1_000_000 as const;
 
-/** Clamps any unknown tier input to [0, max]; anything non-numeric reads as 0. */
-function normalizeTier(input: unknown, maxLevel: number): number {
-  const raw = Number(input);
-  return Number.isFinite(raw) ? Math.max(0, Math.min(maxLevel, Math.floor(raw))) : 0;
-}
-
 /**
- * Единственная формула постоянного потолка энергии: база плюс 10 за каждый
- * купленный ярус карточки профиля плюс 10 за каждую лигу выше стартовой.
+ * Единственная формула постоянного потолка энергии — теперь просто 5.
  *
- * зачем оба слагаемых здесь: прибавки складываются (решение владельца
- * 2026-09-14), и второй таблицы потолков в проекте быть не должно — иначе
- * знаменатель энергии на Главной и в прогреве разойдутся.
- *
- * Неизвестная лига (снимок ещё не прогрет, игрок вышел из аккаунта) читается
- * как нулевая: лучше не показать прибавку, чем выдумать её.
+ * зачем сигнатура сохранена (PM-081): её зовут EnergyContext, energy_system,
+ * прогрев первого кадра и подарочные модули. Входы (ярус карточки, лига, база
+ * из удалённого конфига) намеренно ИГНОРИРУЮТСЯ: по D07 ни лига, ни визитка,
+ * ни пульт не меняют потолок. Держим одну точку правды, чтобы знаменатель на
+ * Главной и в прогреве не разошёлся.
  */
-export function permanentEnergyCapacity(input: {
+export function permanentEnergyCapacity(_input: {
   profileCardLevel?: unknown;
   leagueId?: unknown;
   base?: number;
-}): number {
-  const baseInput = input.base ?? ENERGY_BASE_CAPACITY;
-  const base = Number.isFinite(baseInput)
-    ? Math.max(ENERGY_BASE_CAPACITY, Math.floor(baseInput))
-    : ENERGY_BASE_CAPACITY;
-  const cardBonus = normalizeTier(input.profileCardLevel, PROFILE_CARD_ENERGY_MAX_LEVEL)
-    * PROFILE_CARD_ENERGY_PER_LEVEL;
-  const leagueBonus = normalizeTier(input.leagueId, LEAGUE_ENERGY_MAX_LEVEL)
-    * LEAGUE_ENERGY_PER_LEVEL;
-  return Math.min(ENERGY_PERMANENT_CAPACITY_LIMIT, base + cardBonus + leagueBonus);
+} = {}): number {
+  return ENERGY_BASE_CAPACITY;
 }
 
-/**
- * Permanent base capacity: 100 plus 10 for every owned profile-card tier.
- *
- * Обёртка над permanentEnergyCapacity: сохраняет прежнюю сигнатуру для мест,
- * где лига не важна (тесты подарков энергии, серверные проекции).
- */
-export function profileCardEnergyCapacity(levelInput: unknown, baseInput: number = ENERGY_BASE_CAPACITY): number {
-  return permanentEnergyCapacity({ profileCardLevel: levelInput, base: baseInput });
+/** Обёртка прежней сигнатуры: ярус карточки больше не влияет на потолок (PM-081). */
+export function profileCardEnergyCapacity(_levelInput?: unknown, _baseInput?: number): number {
+  return ENERGY_BASE_CAPACITY;
 }
 
 export type EnergyRuntimeConfig = Readonly<{
@@ -81,7 +58,7 @@ export type EnergyRuntimeConfig = Readonly<{
 
 export function resolveEnergyRuntimeConfig(
   numericEnergyV2Enabled: boolean,
-  legacyMaxEnergy: number,
+  _legacyMaxEnergy: number,
   legacyRecoveryIntervalMs: number,
 ): EnergyRuntimeConfig {
   return numericEnergyV2Enabled
@@ -90,7 +67,9 @@ export function resolveEnergyRuntimeConfig(
         recoveryIntervalMs: ENERGY_PASSIVE_UNIT_MS,
       }
     : {
-        maxEnergy: legacyMaxEnergy,
+        // зачем (PM-081): аварийный выключатель numeric_energy_v2 не должен
+        // возвращать старый потолок из удалённого конфига — запас всегда 5.
+        maxEnergy: ENERGY_BASE_CAPACITY,
         recoveryIntervalMs: legacyRecoveryIntervalMs,
       };
 }

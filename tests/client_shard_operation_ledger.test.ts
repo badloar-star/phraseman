@@ -344,14 +344,17 @@ it('recovers a prepared cross-device merge with the immutable cloud fingerprint'
 });
 
 it('serializes Promise.all refills and debits only the operation that materializes energy', async () => {
-  storage.energy_state = JSON.stringify(numericEnergyState(20, 7));
+  // PM-081: стартовый запас ниже нового потолка 5 (прежние 20 из шкалы 100 — это уже «полный бак»).
+  storage.energy_state = JSON.stringify(numericEnergyState(2, 7));
   const [first, second] = await Promise.all([
     commitClientShardOperation(semanticEnergyPurchase('energy:race:000001', 100, 11)),
     commitClientShardOperation(semanticEnergyPurchase('energy:race:000002', 100, 22)),
   ]);
   expect([first.status, second.status].sort()).toEqual(['already-satisfied', 'applied']);
   expect(storage.shards_balance).toBe('15');
-  expect(JSON.parse(storage.energy_state)).toMatchObject({ schemaVersion: 2, current: 100 });
+  // PM-081: старый желаемый запас 100 срезается до потолка 5 — вторая покупка
+  // видит полный бак и НЕ списывает жемчуг повторно.
+  expect(JSON.parse(storage.energy_state)).toMatchObject({ schemaVersion: 2, current: 5 });
   expect(Object.keys(storage).filter((key) => key.startsWith(CLIENT_SHARD_OPERATION_PREFIX))).toHaveLength(1);
 });
 
@@ -419,7 +422,8 @@ it('fails closed when a prepared operation id is retried with another fingerprin
 });
 
 it('recovers a semantic result receipt after a crash and charges exactly once', async () => {
-  storage.energy_state = JSON.stringify(numericEnergyState(20, 9));
+  // PM-081: стартовый запас ниже нового потолка 5 (прежние 20 из шкалы 100 — это уже «полный бак»).
+  storage.energy_state = JSON.stringify(numericEnergyState(2, 9));
   let failOperationOnce = true;
   (AsyncStorage.setItem as jest.Mock).mockImplementation(async (key: string, value: string) => {
     if (failOperationOnce && key.startsWith(CLIENT_SHARD_OPERATION_PREFIX)) {
@@ -432,7 +436,9 @@ it('recovers a semantic result receipt after a crash and charges exactly once', 
     status: 'failed',
     reason: 'crash_after_grant',
   });
-  expect(storage.energy_state).toContain('"current":100');
+  // PM-081 (BIBLE «Энергия: 5»): семантическая покупка пишет полный запас 5,
+  // даже если операция несёт старый желаемый запас 100 (срез в редьюсере).
+  expect(storage.energy_state).toContain('"current":5');
   expect(storage.shards_balance).toBe('20');
 
   await expect(recoverPreparedClientShardOperation()).resolves.toMatchObject({
@@ -685,6 +691,8 @@ it('uses the immutable root on a prepared operation-id conflict and preserves th
 });
 
 it('quarantines but never discards a fingerprint-mismatched prepared grant receipt', async () => {
+  // PM-081: запас ниже потолка 5, чтобы покупка реально материализовалась.
+  storage.energy_state = JSON.stringify(numericEnergyState(2, 9));
   // Оставляем prepared-слот тем же способом, что и «recovers a semantic result
   // receipt after a crash» ниже — крах ПОСЛЕ записи слота, ДО завершения
   // операции. Затем симулируем несовместимость со старой версией: запись

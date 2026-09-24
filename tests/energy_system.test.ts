@@ -30,24 +30,26 @@ describe('numeric energy system', () => {
     beginAccountGeneration('energy-system-user');
   });
 
-  it('starts full at 100 with the v2 schema', async () => {
+  // PM-081 (BIBLE «Энергия: 5, −1 за начавшееся занятие, +1 за 10 минут»;
+  // D06/D07): запас ровно 5, прежние 100 и прибавки лиги/карточки отменены.
+  it('starts full at 5 with the v2 schema', async () => {
     (AsyncStorage.getItem as jest.Mock).mockResolvedValue(null);
     (AsyncStorage.setItem as jest.Mock).mockResolvedValue(undefined);
-    await expect(getEnergyState()).resolves.toMatchObject({ schemaVersion: 2, current: 100 });
+    await expect(getEnergyState()).resolves.toMatchObject({ schemaVersion: 2, current: 5 });
   });
 
-  it('migrates a legacy 3/5 balance once to 60/100', async () => {
+  it('keeps a legacy 3/5 balance as 3/5 (the scales now match)', async () => {
     (AsyncStorage.getItem as jest.Mock).mockResolvedValue(JSON.stringify({
       current: 3,
       lastRecoveryTime: Date.now(),
     }));
     (AsyncStorage.setItem as jest.Mock).mockResolvedValue(undefined);
-    await expect(getEnergyState()).resolves.toMatchObject({ schemaVersion: 2, current: 60 });
+    await expect(getEnergyState()).resolves.toMatchObject({ schemaVersion: 2, current: 3 });
   });
 
-  it('uses the same permanent 100 capacity at every level', async () => {
+  it('uses the same capacity of 5 regardless of profile card or league', async () => {
     (AsyncStorage.getItem as jest.Mock).mockResolvedValue('999999999');
-    await expect(getEffectiveMaxEnergyValue()).resolves.toBe(100);
+    await expect(getEffectiveMaxEnergyValue()).resolves.toBe(5);
   });
 
   it('calculates time to a full numeric reserve', () => {
@@ -59,29 +61,33 @@ describe('numeric energy system', () => {
     expect(secondsUntilEnergyFull(86, 100, 0, now, now)).toBe(0);
   });
 
-  it('adds numeric units and clamps the base pool at 100', async () => {
-    (AsyncStorage.getItem as jest.Mock).mockResolvedValue(JSON.stringify(stateAt(94, Date.now())));
+  it('adds numeric units and clamps the base pool at 5', async () => {
+    (AsyncStorage.getItem as jest.Mock).mockResolvedValue(JSON.stringify(stateAt(3, Date.now())));
     (AsyncStorage.setItem as jest.Mock).mockResolvedValue(undefined);
-    await expect(addEnergy(10)).resolves.toMatchObject({ current: 100 });
+    await expect(addEnergy(10)).resolves.toMatchObject({ current: 5 });
   });
 
   it('resets to a clean full v2 state', async () => {
+    // Чистое хранилище: иначе мок getItem из прошлого теста отдаёт энергию
+    // вместо бонусного пула и чтение бонуса честно падает как «битое».
+    (AsyncStorage.getItem as jest.Mock).mockResolvedValue(null);
+    (AsyncStorage.multiSet as jest.Mock | undefined)?.mockResolvedValue?.(undefined);
     (AsyncStorage.setItem as jest.Mock).mockResolvedValue(undefined);
     await expect(resetEnergyToMax()).resolves.toMatchObject({
       schemaVersion: 2,
-      current: 100,
+      current: 5,
       recoveryCreditMicrounits: 0,
       recoveryDivisionRemainder: 0,
     });
   });
 
-  it('recovers one unit after the six-minute interval', async () => {
+  it('recovers one unit after one recovery interval', async () => {
     const now = Date.now();
     (AsyncStorage.getItem as jest.Mock).mockResolvedValue(
-      JSON.stringify(stateAt(82, now - getRecoveryIntervalMs())),
+      JSON.stringify(stateAt(2, now - getRecoveryIntervalMs())),
     );
     (AsyncStorage.setItem as jest.Mock).mockResolvedValue(undefined);
-    await expect(checkAndRecover()).resolves.toMatchObject({ current: 83 });
+    await expect(checkAndRecover()).resolves.toMatchObject({ current: 3 });
   });
 
   it('fills permanent units before active gift capacity', () => {

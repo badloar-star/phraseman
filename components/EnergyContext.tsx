@@ -53,7 +53,6 @@ import {
   permanentEnergyCapacity,
   type EnergyActivityKey,
 } from '../app/energy_contract';
-import { getCachedLeagueIdSync } from '../app/league_open_cache_policy';
 import {
   coerceEnergyStateV2,
   createFullEnergyState,
@@ -105,7 +104,7 @@ type StoredEnergy = EnergyStateV2;
 
 // ── Context type ─────────────────────────────────────────────────────────────
 export interface EnergyContextValue {
-  energy: number;            // 0-150 permanent pool (100 + profile-card upgrades)
+  energy: number;            // 0-5 permanent pool (PM-081: capacity is exactly 5)
   bonusEnergy: number;       // 0-200 temporary gift pool (expires next local midnight)
   /**
    * Временный ПОТОЛОК от подарка, живущий до полуночи независимо от остатка.
@@ -532,18 +531,15 @@ async function readAndRecoverState(
 }
 
 /**
- * Permanent maximum: 100 plus 10 for each purchased profile-card level and
- * 10 more for every league above the starting one (владелец, 2026-09-14).
+ * Постоянный потолок энергии — ровно 5 (PM-081, BIBLE, D06/D07).
+ *
+ * зачем без чтения диска: прибавки от яруса карточки профиля и от лиги
+ * отменены, поэтому `profile_card_level` больше не нужен — на каждой
+ * загрузке энергии на одно обращение к хранилищу меньше. Async оставлен,
+ * чтобы не трогать Promise.all в runLoad/refillToMax.
  */
 async function readDynMax(): Promise<number> {
-  // Storage failure must abort the load. Treating it as level 0 would clamp
-  // and persist a legitimate 110–260 balance down to 100.
-  const rawProfileCardLevel = await AsyncStorage.getItem('profile_card_level');
-  return permanentEnergyCapacity({
-    profileCardLevel: rawProfileCardLevel,
-    leagueId: getCachedLeagueIdSync(),
-    base: getConfiguredBaseEnergy(),
-  });
+  return permanentEnergyCapacity({ base: getConfiguredBaseEnergy() });
 }
 
 /** Язык интерфейса для текста уведомления (тот же источник, что в _layout). */

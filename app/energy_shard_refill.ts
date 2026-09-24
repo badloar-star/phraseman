@@ -8,14 +8,11 @@ import * as Crypto from 'expo-crypto';
 
 const ENERGY_STORAGE_KEY = 'energy_state';
 
-/**
- * Сколько недостающих единиц энергии покрывает одна жемчужина.
- *
- * зачем (владелец, 2026-09-14): полный бак стоил 5 жемчужин — слишком дёшево,
- * жемчужина не ощущалась тратой. Владелец поднял цену полного заряда до 20,
- * то есть курс стал вчетверо дороже: 1 жемчужина за каждые начатые 5 единиц.
+/*
+ * Курс (владелец, 2026-09-14): полный бак — 20 жемчужин. При прежнем запасе 100
+ * это было «1 жемчужина за каждые начатые 5 единиц»; после PM-081 (запас 5)
+ * курс выражен долей бака — см. energyRefillShardCost.
  */
-const ENERGY_UNITS_PER_SHARD = 5 as const;
 
 /**
  * Потолок цены ОДНОЙ дозаправки в жемчужинах (владелец, 2026-09-14).
@@ -42,7 +39,13 @@ export const ENERGY_REFILL_SHARD_COST_CAP = 20 as const;
 export function energyRefillShardCost(maxEnergy: number, baseEnergy: number = 0): number {
   const cap = Math.min(ENERGY_PERMANENT_CAPACITY_LIMIT, Math.max(1, Math.floor(Number(maxEnergy) || 0)));
   const have = Math.max(0, Math.min(cap, Math.floor(Number(baseEnergy) || 0)));
-  const proportional = Math.ceil((cap - have) / ENERGY_UNITS_PER_SHARD);
+  // зачем (PM-081): запас сжался со 100 до 5. Прежняя формула «1 жемчужина за
+  // 5 недостающих единиц» молча удешевила бы ПЛАТНУЮ дозаправку в 20 раз
+  // (полный бак стал бы стоить 1 вместо 20). Решение о самой дозаправке — PM-088
+  // (владелец), поэтому здесь только сохраняем прежнюю экономику: полный бак
+  // по-прежнему 20 жемчужин, частичный — пропорционально доле бака. При запасе
+  // 100 эта формула даёт ровно прежние цены (5 единиц = 1 жемчужина).
+  const proportional = Math.ceil(((cap - have) * ENERGY_REFILL_SHARD_COST_CAP) / cap);
   return Math.max(1, Math.min(ENERGY_REFILL_SHARD_COST_CAP, proportional));
 }
 

@@ -13,9 +13,11 @@ import {
   type EnergySessionProjection,
 } from '../app/energy_session_operation_ledger';
 
+// PM-081/082 (BIBLE «Энергия: 5, −1 за начавшееся занятие»): запас 5, цена 1.
+// Прежние 100 и цена 20 — отменённое правило.
 const projection = (nowMs: number): EnergySessionProjection => ({
   schemaVersion: 2,
-  baseEnergy: 100,
+  baseEnergy: 5,
   bonusEnergy: 0,
   bonusCapacity: 0,
   bonusExpiresAt: 0,
@@ -23,7 +25,7 @@ const projection = (nowMs: number): EnergySessionProjection => ({
   lastSettledAt: nowMs,
   recoveryCreditMicrounits: 0,
   recoveryDivisionRemainder: 0,
-  maxEnergy: 100,
+  maxEnergy: 5,
 });
 
 beforeEach(async () => {
@@ -35,7 +37,7 @@ test('read-only status follows an existing debit through durable ACK without cha
   const token = beginAccountGeneration('account-a');
   const intent = createEnergySessionIntent('flashcards_swipe', 'saved', 'attempt-1');
   const opening = projection(Date.now());
-  await expect(commitEnergySessionStart(intent, 20, opening, 'boot:test', { accountToken: token }))
+  await expect(commitEnergySessionStart(intent, 1, opening, 'boot:test', { accountToken: token }))
     .resolves.toEqual(expect.objectContaining({ status: 'applied' }));
   await expect(readEnergySessionStartStatus(intent.operationId, token)).resolves.toEqual({ status: 'charged' });
 
@@ -47,7 +49,7 @@ test('read-only status recognizes the existing idempotent refund operation', asy
   const token = beginAccountGeneration('account-a');
   const intent = createEnergySessionIntent('flashcards_recall', 'saved', 'attempt-2');
   const opening = projection(Date.now());
-  const debit = await commitEnergySessionStart(intent, 20, opening, 'boot:test', { accountToken: token });
+  const debit = await commitEnergySessionStart(intent, 1, opening, 'boot:test', { accountToken: token });
   if (debit.status !== 'applied') throw new Error(`unexpected debit: ${debit.status}`);
   await expect(refundEnergySessionStart(
     intent.operationId,
@@ -64,7 +66,7 @@ test('ACK refuses an existing refund under the shared account and storage lock',
   const token = beginAccountGeneration('account-a');
   const intent = createEnergySessionIntent('flashcards_speaking', 'saved', 'attempt-conflict');
   const opening = projection(Date.now());
-  const debit = await commitEnergySessionStart(intent, 20, opening, 'boot:test', { accountToken: token });
+  const debit = await commitEnergySessionStart(intent, 1, opening, 'boot:test', { accountToken: token });
   if (debit.status !== 'applied') throw new Error(`unexpected debit: ${debit.status}`);
   await refundEnergySessionStart(
     intent.operationId,
@@ -82,7 +84,7 @@ test('concurrent ACK and refund create exactly one terminal outcome, never both'
   const token = beginAccountGeneration('account-a');
   const intent = createEnergySessionIntent('flashcards_blitz', 'saved', 'attempt-race');
   const opening = projection(Date.now());
-  const debit = await commitEnergySessionStart(intent, 20, opening, 'boot:test', { accountToken: token });
+  const debit = await commitEnergySessionStart(intent, 1, opening, 'boot:test', { accountToken: token });
   if (debit.status !== 'applied') throw new Error(`unexpected debit: ${debit.status}`);
 
   const [acknowledged, refunded] = await Promise.all([

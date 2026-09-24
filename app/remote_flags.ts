@@ -255,7 +255,8 @@ export type RemoteTextKey =
 
 const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
   free_lesson_limit: 3,
-  max_energy: 100,
+  // зачем (PM-081, D06): запас энергии ровно 5, пульт его не меняет.
+  max_energy: 5,
   // Numeric energy: +1 every 6 minutes = +10/hour; 0→100 takes 10 hours.
   energy_recovery_interval_ms: 6 * 60 * 1000,
   onboarding_ab_welcome_pct: 0,
@@ -449,8 +450,8 @@ const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
 // Reasonable guard rails so a fat-fingered admin value can't brick the app.
 const NUMBER_BOUNDS: Record<RemoteNumberKey, { min: number; max: number }> = {
   free_lesson_limit: { min: 1, max: 32 },
-  // Product invariant: base capacity is exactly 5; level 50 adds the sixth slot.
-  max_energy: { min: 100, max: 100 },
+  // Product invariant (PM-081, D06/D07): capacity is exactly 5, no bonuses.
+  max_energy: { min: 5, max: 5 },
   energy_recovery_interval_ms: { min: 10_000, max: 24 * 60 * 60 * 1000 },
   onboarding_ab_welcome_pct: { min: 0, max: 100 },
   onboarding_ab_builder_pct: { min: 0, max: 100 },

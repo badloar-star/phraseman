@@ -128,21 +128,15 @@ export async function primeEnergyPeekFromBoot(): Promise<void> {
     // в readDynMax. Прямое чтение ключа `user_total_xp` было бы неверным: у
     // когорты phone_state прогресс живёт в своей базе, и голый ключ отдал бы
     // устаревшее число.
-    const [{ getMaxEnergy }, { permanentEnergyCapacity }, { getCachedLeagueIdSync }] =
+    const [{ getMaxEnergy }, { permanentEnergyCapacity }] =
       await Promise.all([
         import('./remote_flags'),
         import('./energy_contract'),
-        import('./league_open_cache_policy'),
       ]);
-    const rawProfileCardLevel = await AsyncStorage.getItem('profile_card_level');
-    // зачем лига (владелец, 2026-09-14): +10 к постоянному запасу за каждую
-    // лигу выше стартовой. Снимок лиги синхронный (его заполняет boot-прайм),
-    // поэтому знаменатель первого кадра не требует ещё одного чтения диска.
-    const dynMax = permanentEnergyCapacity({
-      profileCardLevel: rawProfileCardLevel,
-      leagueId: getCachedLeagueIdSync(),
-      base: getMaxEnergy(),
-    });
+    // зачем (PM-081, D06/D07): потолок ровно 5 — ни ярус карточки, ни лига его
+    // не меняют, поэтому чтение profile_card_level на холодном старте убрано.
+    // Формула та же, что в readDynMax EnergyContext: знаменатель не прыгнет.
+    const dynMax = permanentEnergyCapacity({ base: getMaxEnergy() });
     if (!Number.isFinite(dynMax) || dynMax <= 0 || peekEnergyState) return;
     const raw = await AsyncStorage.getItem(ENERGY_PEEK_STORAGE_KEY);
     if (!raw || peekEnergyState) return;

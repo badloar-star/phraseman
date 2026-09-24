@@ -34513,7 +34513,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   // Mirror of app/remote_flags.ts defaults+bounds. Keep in sync.
   const RC_NUMBER_FIELDS = [
     { key: 'free_lesson_limit', label: 'Совместимость: лимит бесплатных уроков (только старые клиенты)', def: 3, min: 1, max: 32 },
-    { key: 'max_energy', label: 'Базовый лимит энергии', def: 100, min: 100, max: 100 },
+    { key: 'max_energy', label: 'Лимит энергии (PM-081: ровно 5)', def: 5, min: 5, max: 5 },
     { key: 'energy_recovery_interval_ms', label: 'Интервал +1 энергии (мс)', def: 360000, min: 10000, max: 86400000 },
     { key: 'paywall_v2_pct', label: 'АРХИВ: paywall_v2_pct (не управляет новым пейволом)', def: 100, min: 0, max: 100 },
     { key: 'avatar_dna_rollout_pct', label: 'Студия персонажа: доля пользователей, %', def: 0, min: 0, max: 100 },
@@ -36721,7 +36721,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     ['gate_arena_premium','Арена'], ['gate_mistake_practice_premium','Работа над ошибками'],
   ];
   const CP_PREMIUM_LIMITS = [
-    ['max_energy','Базовый лимит энергии',100,100,100],
+    ['max_energy','Лимит энергии (PM-081: ровно 5)',5,5,5],
   ];
   function cpPremRender(data) {
     const bools = data.bools || {}; const numbers = data.numbers || {};

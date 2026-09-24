@@ -51,7 +51,8 @@ describe('remote_flags', () => {
   describe('defaults', () => {
     it('returns hardcoded defaults before any snapshot', () => {
       expect(getFreeLessonLimit()).toBe(3);
-      expect(getRemoteNumber('max_energy')).toBe(100);
+      // PM-081 (BIBLE «Энергия: 5»; D06): запас ровно 5, прежние 100 отменены.
+      expect(getRemoteNumber('max_energy')).toBe(5);
       expect(getRemoteNumber('energy_recovery_interval_ms')).toBe(6 * 60 * 1000);
       expect(getRemoteBool('numeric_energy_v2')).toBe(true);
       expect(getRemoteBool('intro_full_access_enabled')).toBe(false);
@@ -124,7 +125,7 @@ describe('remote_flags', () => {
     it('clamps out-of-range values to bounds', () => {
       applyRemoteConfigSnapshot({ numbers: { free_lesson_limit: 999, max_energy: 0, paywall_v2_pct: 250, league_xp_promotion_threshold: 0 } });
       expect(getFreeLessonLimit()).toBe(32);
-      expect(getRemoteNumber('max_energy')).toBe(100);
+      expect(getRemoteNumber('max_energy')).toBe(5);
       expect(getPaywallV2Pct()).toBe(100);
       expect(getLeagueXpPromotionThreshold()).toBe(1);
     });
@@ -136,9 +137,10 @@ describe('remote_flags', () => {
       expect(isReferralRouletteEnabled()).toBe(true);
     });
 
-    it('keeps the runtime energy base fixed at one hundred', () => {
-      applyRemoteConfigSnapshot({ numbers: { max_energy: 7 } });
-      expect(getRemoteNumber('max_energy')).toBe(100);
+    // PM-081 (D06/D07): пульт не может поднять или опустить запас — ровно 5.
+    it('keeps the runtime energy capacity fixed at five', () => {
+      applyRemoteConfigSnapshot({ numbers: { max_energy: 100 } });
+      expect(getRemoteNumber('max_energy')).toBe(5);
     });
 
     it('ignores wrong-typed values (keeps default)', () => {

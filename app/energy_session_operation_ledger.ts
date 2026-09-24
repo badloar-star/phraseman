@@ -193,9 +193,46 @@ function finiteInt(value: unknown, min = 0): number | null {
   return Number.isSafeInteger(value) && Number(value) >= min ? Number(value) : null;
 }
 
+/**
+ * зачем (PM-081, D06): шкала 1..5 первой версии теперь совпадает с новой
+ * шкалой 0..5, поэтому множитель старых записей = 5/5 = 1 (было ×20 под 100).
+ */
+const LEGACY_V1_PROJECTION_SCALE = ENERGY_BASE_CAPACITY / 5;
+
+/**
+ * Приводит сохранённую проекцию эпохи «запас 100–260» к потолку 5.
+ *
+ * зачем (PM-081): состояние журнала и записи операций лежат на диске с
+ * maxEnergy=100…260. Без этого приведения validateProjection отверг бы их как
+ * испорченные, readState бросил бы energy_session_ledger_state_corrupt — и
+ * у КАЖДОГО обновившегося человека перестали бы открываться занятия. Запас
+ * срезаем до 5, кредит возвратов — тоже до 5 (старые возвраты были в единицах
+ * по 10–25, иначе один старый возврат дал бы десятки бесплатных занятий).
+ * Нецелые/битые значения не трогаем — их отвергнет validateProjection.
+ */
+function clampProjectionToCapacity(value: EnergySessionProjection): EnergySessionProjection {
+  if (
+    !Number.isSafeInteger(value.maxEnergy)
+    || !Number.isSafeInteger(value.baseEnergy)
+    || !Number.isSafeInteger(value.refundCredit)
+  ) return value;
+  if (
+    value.maxEnergy <= ENERGY_PERMANENT_CAPACITY_LIMIT
+    && value.baseEnergy <= ENERGY_PERMANENT_CAPACITY_LIMIT
+    && value.refundCredit <= ENERGY_BASE_CAPACITY
+  ) return value;
+  const maxEnergy = Math.min(ENERGY_PERMANENT_CAPACITY_LIMIT, Math.max(ENERGY_BASE_CAPACITY, value.maxEnergy));
+  return {
+    ...value,
+    maxEnergy,
+    baseEnergy: Math.min(maxEnergy, Math.max(0, value.baseEnergy)),
+    refundCredit: Math.min(ENERGY_BASE_CAPACITY, Math.max(0, value.refundCredit)),
+  };
+}
+
 function upgradeProjection(value: EnergySessionProjectionInput): EnergySessionProjection {
-  if (value.schemaVersion === 2) return value;
-  const scale = 20;
+  if (value.schemaVersion === 2) return clampProjectionToCapacity(value);
+  const scale = LEGACY_V1_PROJECTION_SCALE;
   return {
     schemaVersion: 2,
     baseEnergy: Math.min(ENERGY_BASE_CAPACITY, Math.max(0, Math.floor(value.baseEnergy * scale))),
@@ -282,11 +319,12 @@ function parseOperation(raw: string | null, owner: string): EnergySessionOperati
       && stored.projectionBefore.schemaVersion !== 2;
     const value: EnergySessionOperation = {
       ...stored,
-      cost: migratedLegacyProjection ? stored.cost * 20 : stored.cost,
+      // PM-081: шкала v1 (1..5) совпадает с новой (0..5) — множитель 1.
+      cost: migratedLegacyProjection ? stored.cost * LEGACY_V1_PROJECTION_SCALE : stored.cost,
       split: migratedLegacyProjection ? {
-        bonus: stored.split.bonus * 20,
-        refundCredit: stored.split.refundCredit * 20,
-        base: stored.split.base * 20,
+        bonus: stored.split.bonus * LEGACY_V1_PROJECTION_SCALE,
+        refundCredit: stored.split.refundCredit * LEGACY_V1_PROJECTION_SCALE,
+        base: stored.split.base * LEGACY_V1_PROJECTION_SCALE,
       } : stored.split,
       projectionBefore: upgradeProjection(stored.projectionBefore),
       projectionAfter: upgradeProjection(stored.projectionAfter),
@@ -750,7 +788,25 @@ async function commitDebitUnlocked(
   if (existing) {
     const compatibleLegacyReplay = existing.schemaVersion === 'energy-session-operation.v1'
       && canonical(existing.grant) === canonical(intent.grant);
-    if (existing.requestFingerprint !== requestFingerprint && !compatibleLegacyReplay) {
+    // зачем (PM-082): цена занятия сменилась (10/20/25 → 1). Занятие, начатое
+    // до обновления, хранит операцию со старой ценой; повторный вход в него с
+    // тем же operationId отличается ТОЛЬКО ценой. Это не конфликт, а тот же
+    // старт — второй раз не списываем, просто подтверждаем уже сделанный.
+    const repricedReplay = existing.requestFingerprint !== requestFingerprint
+      && existing.cost !== cost
+      && existing.requestFingerprint === await fingerprint(publicRequest({
+        operationId: intent.operationId,
+        ownerStableId: owner,
+        direction: 'debit',
+        cost: existing.cost,
+        reason: 'energy_session_start',
+        grant: intent.grant,
+        reversesOperationId: null,
+      }));
+    if (repricedReplay) {
+      console.warn(`[ENERGY-START] replay of pre-reprice start: op=${intent.operationId} storedCost=${existing.cost} newCost=${cost} -> no second charge`);
+    }
+    if (existing.requestFingerprint !== requestFingerprint && !compatibleLegacyReplay && !repricedReplay) {
       throw new Error('operation_id_conflict');
     }
     const reversalId = refundOperationId(intent.operationId);
@@ -1084,6 +1140,12 @@ export async function readEnergySessionRefundCredit(
   if (raw === null) return 0;
   const amount = Number(raw);
   if (!Number.isSafeInteger(amount) || amount < 0) throw new Error('energy_session_refund_credit_corrupt');
+  if (amount > ENERGY_BASE_CAPACITY) {
+    // зачем (PM-081): кредит возвратов эпохи «запас 100» (единицы по 10–25)
+    // срезается до нового потолка 5 — так же, как в clampProjectionToCapacity.
+    console.warn(`[ENERGY-CAP] refundCredit clamped: stored=${amount} -> ${ENERGY_BASE_CAPACITY}`);
+    return ENERGY_BASE_CAPACITY;
+  }
   return amount;
 }
 

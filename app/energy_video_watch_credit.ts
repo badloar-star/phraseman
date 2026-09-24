@@ -1,23 +1,14 @@
-/** Durable numeric-energy credit earned only while video playback is active. */
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
-import {
-  captureAccountGeneration,
-  isCurrentAccountGeneration,
-  withAccountTransitionLock,
-} from './account_generation';
-import { BONUS_ENERGY_KEY, readBonusEnergyForMutation } from './bonus_energy_store';
+/**
+ * Durable numeric-energy credit earned only while video playback is active.
+ *
+ * зачем (PM-115, владелец): выдача энергии отключена ниже (creditVideoWatchSegment),
+ * поэтому прежние зависимости хранилища/энергии/шины событий здесь больше не
+ * нужны — measureVerifiedPlaybackProgress по-прежнему считает верифицированное
+ * время просмотра (используется трекером в hooks/use_video_watch_energy_boost.ts),
+ * но само начисление удалено.
+ */
 import { DebugLogger } from './debug-logger';
-import { ENERGY_PASSIVE_UNIT_MS, ENERGY_VIDEO_UNIT_MS } from './energy_contract';
-import { coerceEnergyStateV2, settleEnergyState } from './energy_state_v2';
-import { energyVisualTransactions } from './energy_visual_transactions';
-import { emitAppEvent } from './events';
-import { requireGiftAccountStorageKey } from './gift_account_storage';
-import { withStorageLock } from './storage_mutex';
-import { getEffectiveMaxEnergyValue } from './energy_system';
-
-const ENERGY_STORAGE_KEY = 'energy_state';
-const MIN_CREDITED_SEGMENT_MS = 250;
+import { ENERGY_VIDEO_UNIT_MS } from './energy_contract';
 
 /** 100 energy/hour = one whole unit per 36 seconds of verified watch time. */
 export const VIDEO_WATCH_TARGET_RECOVERY_MS = ENERGY_VIDEO_UNIT_MS;
@@ -114,119 +105,19 @@ export type WatchCreditOutcome =
 /**
  * Applies a real watched segment at the video rate. The segment replaces
  * passive recovery for the same time window; it is never added on top of it.
+ *
+ * зачем (PM-115, владелец): «убрать начисление рун и энергии за просмотр
+ * видео» — сигнатура и тип возврата сохранены (по образцу local_level_spins.ts
+ * после PM-047), чтобы hooks/use_video_watch_energy_boost.ts и
+ * YoutubeInlinePlayer.tsx не требовали правки. Проигрывание/счётчик просмотров
+ * не тронуты — гасится только выдача энергии.
  */
 export async function creditVideoWatchSegment(watchedMs: number): Promise<WatchCreditOutcome> {
-  const duration = Math.floor(Number(watchedMs));
-  if (!Number.isFinite(duration) || duration < MIN_CREDITED_SEGMENT_MS) {
-    return { applied: false, reason: `segment_too_short:${watchedMs}` };
-  }
-
-  const accountToken = captureAccountGeneration();
-  try {
-    return await withAccountTransitionLock(async (): Promise<WatchCreditOutcome> => {
-      if (!isCurrentAccountGeneration(accountToken)) {
-        return { applied: false, reason: 'account_changed' };
-      }
-      const maxEnergy = await getEffectiveMaxEnergyValue();
-      return withStorageLock(async (): Promise<WatchCreditOutcome> => {
-        if (!isCurrentAccountGeneration(accountToken)) {
-          return { applied: false, reason: 'account_changed' };
-        }
-        const raw = await AsyncStorage.getItem(ENERGY_STORAGE_KEY);
-      if (!raw) return { applied: false, reason: 'no_energy_state' };
-      let parsed: unknown;
-      try {
-        parsed = JSON.parse(raw);
-      } catch {
-        return { applied: false, reason: 'corrupt_energy_state' };
-      }
-
-      const wallNow = Date.now();
-      const opening = coerceEnergyStateV2(parsed, wallNow);
-      const now = Math.max(wallNow, opening.lastSettledAt);
-      const bonus = await readBonusEnergyForMutation(accountToken);
-      const from = opening.current + (bonus?.amount ?? 0);
-      // First preserve every passive fraction since the previous settlement,
-      // including the passive 1x earned during this watched segment.
-      const passive = settleEnergyState(opening, {
-        nowMs: now,
-        unitMs: ENERGY_PASSIVE_UNIT_MS,
-        bonusEnergy: bonus?.amount ?? 0,
-        bonusCapacity: bonus?.capacity ?? 0,
-        bonusExpiresAt: bonus?.expiresAt ?? 0,
-        maxEnergy,
-      });
-      // Video is 10x total, not passive 1x + another 10x. Since passive has
-      // already been settled through `now`, add only the equivalent extra 9x
-      // while keeping the durable watermark at real time.
-      const extraEquivalentPassiveMs = Math.floor(
-        duration * (ENERGY_PASSIVE_UNIT_MS - ENERGY_VIDEO_UNIT_MS) / ENERGY_VIDEO_UNIT_MS,
-      );
-      const settled = settleEnergyState({
-        ...passive.state,
-        lastSettledAt: Math.max(0, now - extraEquivalentPassiveMs),
-      }, {
-        nowMs: now,
-        unitMs: ENERGY_PASSIVE_UNIT_MS,
-        bonusEnergy: passive.bonusEnergy,
-        bonusCapacity: passive.bonusCapacity,
-        bonusExpiresAt: passive.bonusExpiresAt,
-        maxEnergy,
-      });
-      const nextState = settled.state;
-      const to = nextState.current + settled.bonusEnergy;
-      if (to === from
-        && nextState.recoveryCreditMicrounits === opening.recoveryCreditMicrounits
-        && nextState.recoveryDivisionRemainder === opening.recoveryDivisionRemainder) {
-        return { applied: false, reason: 'already_full' };
-      }
-
-      const writes: [string, string][] = [[ENERGY_STORAGE_KEY, JSON.stringify(nextState)]];
-      if (settled.bonusCapacity > 0) {
-        writes.push([
-          requireGiftAccountStorageKey(BONUS_ENERGY_KEY, accountToken),
-          JSON.stringify({
-            schemaVersion: 2,
-            amount: settled.bonusEnergy,
-            capacity: settled.bonusCapacity,
-            expiresAt: settled.bonusExpiresAt,
-          }),
-        ]);
-      }
-      await AsyncStorage.multiSet(writes);
-      if (!isCurrentAccountGeneration(accountToken)) {
-        return { applied: false, reason: 'account_changed_after_write' };
-      }
-      if (to !== from) {
-        energyVisualTransactions.publish({
-          operationId: `video:${accountToken.stableId ?? 'local'}:${now}:${duration}`,
-          from,
-          to,
-          reason: 'video',
-          source: 'video',
-        });
-        // зачем (владелец, 2026-09-17): «индикатор обязан меняться сразу и ВЕЗДЕ».
-        // energyVisualTransactions — косметическая шина только для анимации числа
-        // в AnimatedEnergyNumber; состояние она не обновляет. Без energy_reload
-        // прибавку видел лишь экран с use_video_watch_energy_boost, а любой другой
-        // открытый экран с useEnergy() узнавал о ней лишь при своём следующем фокусе.
-        emitAppEvent('energy_reload');
-        DebugLogger.info(
-          'energy_video_watch_credit:applied',
-          `[GIFT-DELIVERY] видео: энергия ${from}->${to} за ${duration}мс, разослан energy_reload`,
-        );
-      }
-        return { applied: true, watchedMs: duration, from, to, lastSettledAt: now };
-      });
-    });
-  } catch (error) {
-    DebugLogger.error(
-      'energy_video_watch_credit:write',
-      error instanceof Error ? error : new Error(String(error)),
-      'warning',
-    );
-    return { applied: false, reason: 'storage_error' };
-  }
+  DebugLogger.info(
+    'energy_video_watch_credit:disabled',
+    `[VIDEO-ENERGY] PM-115: начисление энергии за просмотр отключено, watchedMs=${watchedMs}`,
+  );
+  return { applied: false, reason: 'PM-115_video_rewards_disabled' };
 }
 
 /* expo-router route shim */

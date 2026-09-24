@@ -392,76 +392,22 @@ async function recoverPendingVideoWatchRuneSessionUnlocked(
   return { ok: true };
 }
 
+/**
+ * зачем (PM-115, владелец): «убрать начисление рун и энергии за просмотр
+ * видео». Раздаём отказ ДО любого сетевого вызова — сигнатура/тип возврата
+ * сохранены (по образцу local_level_spins.ts после PM-047), чтобы
+ * hooks/use_video_watch_energy_boost.ts не требовал правки: без sessionId
+ * cleanup-ветка хука никогда не вызывает claimVideoWatchRuneSession, поэтому
+ * серверный callable videoWatchRunesClaim (functions/src/video_watch_runes.ts)
+ * этой сессией больше не достигается. Сам callable НЕ удалён — это серверная
+ * функция/деньги, трогать вне согласования с владельцем нельзя (D32).
+ */
 export async function startVideoWatchRuneSession(
-  token: AccountGenerationToken,
+  _token: AccountGenerationToken,
   stableId: string,
 ): Promise<VideoWatchSessionStartResult> {
-  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
-    // Самый частый молчаливый отказ: в Expo Go руны за видео не работают вовсе.
-    trace('start_blocked', { reason: 'cloud_disabled', isExpoGo: IS_EXPO_GO, cloudSyncEnabled: CLOUD_SYNC_ENABLED });
-    return { ok: false, reason: 'cloud_disabled' };
-  }
-  return serializeAccountOperation(stableId, async () => {
-    const recovered = await recoverPendingVideoWatchRuneSessionUnlocked(token, stableId);
-    if (!recovered.ok) {
-      trace('start_blocked', { reason: 'recover_failed', detail: recovered.reason, stableId });
-      return recovered;
-    }
-    if (!isCurrentAccountGeneration(token, stableId)) {
-      trace('start_blocked', { reason: 'account_changed_before_start', stableId, generation: token.generation });
-      return { ok: false, reason: 'account_changed_before_start' };
-    }
-
-    const startedAtMs = Date.now();
-    try {
-      await initFirebaseAppCheckIfAvailable().catch(() => {});
-      const sessionId = makeId('vws');
-      const response = await callable()({ stableId, action: 'start', sessionId });
-      trace('start_response', {
-        sessionId,
-        reason: response.data.reason ?? null,
-        grantedToday: response.data.grantedToday ?? null,
-        dailyCap: response.data.dailyCap ?? null,
-        carryMs: response.data.carryMs ?? null,
-        tookMs: Date.now() - startedAtMs,
-      });
-      if (!isCurrentAccountGeneration(token, stableId)) {
-        trace('start_blocked', { reason: 'account_changed_after_start', sessionId });
-        return { ok: false, reason: 'account_changed_after_start' };
-      }
-      // Old client-side minute totals are intentionally not migrated into the
-      // currency protocol: the server cannot prove their elapsed time.
-      await AsyncStorage.multiRemove(legacyPendingKeys(stableId)).catch(() => {});
-      await AsyncStorage.setItem(progressCursorKey(stableId), JSON.stringify({ sessionId, nextSeq: 1 }));
-      return {
-        ok: true,
-        sessionId,
-        grantedToday: Math.max(0, Math.trunc(Number(response.data.grantedToday) || 0)),
-        carryMs: Math.max(0, Math.min(59_999, Math.trunc(Number(response.data.carryMs) || 0))),
-      };
-    } catch (error) {
-      const code = String((error as { code?: unknown })?.code ?? '');
-      // `permission-denied` здесь означает «нет премиума» — самая вероятная
-      // причина, по которой у владельца счётчик не двигается вообще.
-      trace('start_threw', {
-        code: code || 'unknown',
-        message: error instanceof Error ? `${error.name}: ${error.message}` : String(error),
-        tookMs: Date.now() - startedAtMs,
-        stableId,
-      });
-      DebugLogger.error(
-        'video_watch_runes_client:start_failed',
-        error instanceof Error ? error : new Error(String(error)),
-        'warning',
-      );
-      return {
-        ok: false,
-        reason: code.includes('permission-denied')
-          ? 'premium_required'
-          : `start_failed:${code || 'unknown'}`,
-      };
-    }
-  });
+  trace('start_blocked', { reason: 'PM-115_video_rewards_disabled', stableId });
+  return { ok: false, reason: 'PM-115_video_rewards_disabled' };
 }
 
 export async function claimVideoWatchRuneSession(

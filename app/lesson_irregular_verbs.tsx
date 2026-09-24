@@ -25,7 +25,6 @@ import { useTheme } from '../components/ThemeContext';
 import XpGainBadge from '../components/XpGainBadge';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
-import EnergyCostBadge from '../components/EnergyCostBadge';
 import CollectibleDropModal from '../components/CollectibleDropModal';
 import { useOverlayVisible } from '../components/OverlayArbiter';
 import { maybeRollCollectibleDrop, type CollectibleDropOutcome } from './collectibles/storage';
@@ -1281,19 +1280,17 @@ function DictTab({ allVerbs, globalCounts, lang, lessonId, onStartLearn }: {
   const pack = stringsForLang(lang);
   return (
     <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ paddingBottom: 30 }}>
-      <View style={{ position: 'relative' }}>
-        <TouchableOpacity
-          onPress={onStartLearn}
-          style={{ margin: 16, marginBottom: 12, backgroundColor: t.bgCard, borderRadius: 14, paddingVertical: 13, alignItems: 'center', flexDirection: 'row', justifyContent: 'center', gap: 8 }}
-        >
-          <Ionicons name="pencil-outline" size={18} color={t.textSecond} />
-          <Text style={{ color: t.textSecond, fontSize: f.bodyLg, fontWeight: '600' }}>
-            {pack.words.listStartTraining}
-          </Text>
-        </TouchableOpacity>
-        {/* Тренировка монтирует компонент, который списывает 10 ⚡. */}
-        <EnergyCostBadge activity="irregular_verbs" testID="irregular-verbs-train-energy-cost" />
-      </View>
+      {/* зачем (PM-086, владелец 2026-09-24): ценник энергии над кнопкой
+          убран — расход энергии не меняется. */}
+      <TouchableOpacity
+        onPress={onStartLearn}
+        style={{ margin: 16, marginBottom: 12, backgroundColor: t.bgCard, borderRadius: 14, paddingVertical: 13, alignItems: 'center', flexDirection: 'row', justifyContent: 'center', gap: 8 }}
+      >
+        <Ionicons name="pencil-outline" size={18} color={t.textSecond} />
+        <Text style={{ color: t.textSecond, fontSize: f.bodyLg, fontWeight: '600' }}>
+          {pack.words.listStartTraining}
+        </Text>
+      </TouchableOpacity>
 
       <IrregVerbsScrollTable t={t} f={f} lang={lang} allVerbs={allVerbs} globalCounts={globalCounts} lessonId={lessonId} />
     </BouncyScrollView>

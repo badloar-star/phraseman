@@ -36,7 +36,6 @@ import { getCourseLevelIndex, getFirstLessonForLevel, getLastLessonForLevel, get
 import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from './premium_guard';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
-import EnergyCostBadge from '../components/EnergyCostBadge';
 import { usePremium } from '../components/PremiumContext';
 import { lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
 import { readLegacyFreeLessonCap } from './legacy_free_lesson_access';
@@ -1343,7 +1342,7 @@ export default function LevelExam() {
                       </Text>
                     </LinearGradient>
                   </TouchableOpacity>
-                  <EnergyCostBadge activity="level_exam" testID="level-exam-legacy-start-energy-cost" />
+                  {/* зачем (PM-086): ценник энергии на кнопке убран — сам расход энергии не менялся. */}
                 </View>
               </View>
 
@@ -1614,7 +1613,7 @@ export default function LevelExam() {
                   </Text>
                 </LinearGradient>
               </TouchableOpacity>
-              <EnergyCostBadge activity="level_exam" testID="level-exam-legacy-restart-energy-cost" />
+              {/* зачем (PM-086): ценник энергии на кнопке убран — сам расход энергии не менялся. */}
             </View>
             <TouchableOpacity
               onPress={() => { void leaveResultAfterReview(); }}

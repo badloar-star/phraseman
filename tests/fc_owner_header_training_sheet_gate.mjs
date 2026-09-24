@@ -38,7 +38,9 @@ assert.match(sheet, /AccessibilityInfo\.setAccessibilityFocus/);
 
 const setup = read('app/flashcards_training_setup.tsx');
 assert.doesNotMatch(setup, /mode === 'listening'|Наборы для слушания|Начать слушать/);
-assert.match(setup, /canStart \? <EnergyCostBadge testID="fc-training-setup-energy-cost"/);
+// зачем (PM-086, владелец 2026-09-24): ценник энергии над кнопкой старта
+// убран вместе с EnergyCostBadge — расход энергии не менялся.
+assert.doesNotMatch(setup, /<EnergyCostBadge/);
 const setupStart = setup.slice(setup.indexOf('const startTraining'), setup.indexOf('const retryLabel'));
 assert.doesNotMatch(setupStart, /await setLastPreset/);
 assert.match(setupStart, /router\.push/);

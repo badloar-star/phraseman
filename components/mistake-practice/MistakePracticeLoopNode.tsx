@@ -4,7 +4,6 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { triLang } from '../../constants/i18n';
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
-import EnergyCostBadge from '../EnergyCostBadge';
 
 type Props = {
   count: number;
@@ -50,7 +49,8 @@ export default function MistakePracticeLoopNode({ count, locked, onPress }: Prop
             <Text style={[styles.plusText, { color: t.accent }]}>Plus</Text>
           </View>
         ) : <Ionicons name="chevron-forward" size={21} color={t.textMuted} />}
-        {!locked ? <EnergyCostBadge activity="mistake_practice" testID="mistake-practice-loop-energy-cost" /> : null}
+        {/* зачем (PM-086, владелец 2026-09-24): ценник энергии убран —
+            расход энергии не меняется. */}
       </Pressable>
     </View>
   );

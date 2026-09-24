@@ -15,7 +15,6 @@ import { useStableSafeAreaInsets } from "../app/stable_safe_area_metrics";
 import { hapticTap } from "../hooks/use-haptics";
 import { useReduceMotionPreference } from "../hooks/use_reduce_motion";
 import { LEARNING_V2_OWNER_LAYOUT } from "./learning-v2/learningV2OwnerLayout";
-import EnergyCostBadge from "./EnergyCostBadge";
 import { useTheme } from "./ThemeContext";
 
 export const LEARNING_V2_SESSION_MODAL_EXIT_MS = 180;
@@ -239,7 +238,6 @@ export default function LearningV2SessionOutcomeSheet({
                   <Text style={[styles.primaryLabel, { color: t.correctText, fontSize: f.body }]}>{primaryLabel}</Text>
                   <Ionicons name="arrow-forward" size={19} color={t.correctText} />
                 </TouchableOpacity>
-                <EnergyCostBadge activity="learning_v2_session" testID="learning-v2-session-energy-cost" />
               </View>
               <TouchableOpacity testID="learning-v2-session-skip-intro" accessibilityRole="button" accessibilityState={{ disabled: actionsDisabled }} disabled={actionsDisabled} onPress={skipIntro} style={[styles.secondaryButton, actionsDisabled && { opacity: 0.45 }]}>
                 <Text style={[styles.secondaryLabel, { color: t.textMuted, fontSize: f.body }]}>{secondaryLabel}</Text>

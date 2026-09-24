@@ -15,7 +15,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { glassFill } from '../components/GlassSurface';
 import ScreenGradient from '../components/ScreenGradient';
-import EnergyCostBadge from '../components/EnergyCostBadge';
+// зачем (PM-086): ценник энергии на кнопке убран — сам расход энергии не менялся (импорт EnergyCostBadge был уже неиспользуемым здесь).
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';

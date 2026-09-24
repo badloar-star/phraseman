@@ -24,7 +24,6 @@ import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
-import EnergyCostBadge from '../components/EnergyCostBadge';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useCorrectSound } from '../hooks/use-correct-sound';
 import { useTimerTickCue } from '../hooks/use-timer-tick-cue';
@@ -1684,7 +1683,9 @@ export default function DiagnosticTest() {
           </View>
         </TouchableOpacity>
 
-        <View style={{ position: 'relative', overflow: 'visible', width: '100%', marginTop: 12 }}>
+        {/* зачем (PM-086, владелец 2026-09-24): ценник энергии над кнопкой
+            убран — расход энергии за прохождение не меняется. */}
+        <View style={{ width: '100%', marginTop: 12 }}>
           <TouchableOpacity
             style={{ backgroundColor: t.bgSurface, borderRadius: 16, padding: 20, alignItems: 'center' }}
             onPress={() => { void tryStartDiagnosticQuiz(); }}
@@ -1697,7 +1698,6 @@ export default function DiagnosticTest() {
               {s.diagnostic.startTest}
             </Text>
           </TouchableOpacity>
-          <EnergyCostBadge activity="diagnostic_test" testID="diagnostic-start-energy-cost" />
         </View>
 
         {!isUnlimited && (
@@ -1782,7 +1782,9 @@ export default function DiagnosticTest() {
           )}
         </View>
 
-        <View style={{ position: 'relative', overflow: 'visible', width: '100%', marginBottom: 12 }}>
+        {/* зачем (PM-086, владелец 2026-09-24): ценник энергии над кнопкой
+            убран — расход энергии за повтор не меняется. */}
+        <View style={{ width: '100%', marginBottom: 12 }}>
           <TouchableOpacity
             style={{ backgroundColor: t.bgSurface, borderRadius: 16, padding: 16, alignItems: 'center', width: '100%' }}
             onPress={() => { void tryRestartDiagnosticQuiz(); }}
@@ -1791,7 +1793,6 @@ export default function DiagnosticTest() {
               {s.diagnostic.again}
             </Text>
           </TouchableOpacity>
-          <EnergyCostBadge activity="diagnostic_test" testID="diagnostic-restart-energy-cost" />
         </View>
         <TapScale style={{ padding: 14 }} onPress={() => { hapticTap(); router.replace('/(tabs)/home' as any); }}>
           <Text style={{ color: sx.second, fontSize: f.body }}>{s.diagnostic.backHome}</Text>

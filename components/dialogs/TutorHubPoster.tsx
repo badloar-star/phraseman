@@ -22,7 +22,6 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { useTheme } from '../ThemeContext';
-import EnergyCostBadge from '../EnergyCostBadge';
 import { hapticTap } from '../../hooks/use-haptics';
 import { triLang, type Lang } from '../../constants/i18n';
 import { rankForCompleted } from '../../app/dialogs_rank';
@@ -192,8 +191,8 @@ export default function TutorHubPoster({
         </Text>
       </Pressable>
 
-      {/* Цена урока живёт в общем контракте энергии: экран не владеет числом. */}
-      <EnergyCostBadge activity="ai_dialog" corner="topLeft" micro />
+      {/* зачем (PM-086, владелец 2026-09-24): ценник энергии над кнопкой
+          убран — расход энергии не меняется. */}
     </View>
   );
 }

@@ -39,7 +39,6 @@ import { isLowPowerEffective } from './low_power';
 // early return чуть ниже, использующий те же state/handlers.
 import HybridSheetShell from '../../components/modal_fx/HybridSheetShell';
 import PressableHybrid from '../../components/PressableHybrid';
-import EnergyCostBadge from '../../components/EnergyCostBadge';
 import DeckSelectionTile from './DeckSelectionTile';
 import {
   deckSelectionLabel,
@@ -93,8 +92,8 @@ type Props = {
   mode?: FcPresetMode;
   /** Гибрид «Световод + Чекан» (HybridSheetShell вместо самодельного Modal). Дефолт — боевой 'classic'. */
   motionVariant?: 'classic' | 'hybrid';
-  /** Цена видна только если выбранный пресет действительно запустит новую сессию. */
-  showsEnergyCostForPreset?: (preset: FcModePreset) => boolean;
+  // зачем (PM-086, владелец 2026-09-24): showsEnergyCostForPreset удалён —
+  // жил только ради ценника энергии над кнопкой старта, который убрали.
 };
 
 /**
@@ -129,7 +128,6 @@ export default function DeckPickerSheet({
   reduceMotion = false,
   mode = 'trainer',
   motionVariant = 'hybrid',
-  showsEnergyCostForPreset,
 }: Props) {
   const insets = useStableSafeAreaInsets();
   const { height: winH, width: winW } = useWindowDimensions();
@@ -224,8 +222,6 @@ export default function DeckPickerSheet({
     deckIds: [...deckIds],
     size,
   }), [deckIds, size]);
-  const selectedPresetStartsPaidActivity = showsEnergyCostForPreset?.(selectedPreset) ?? true;
-
   const handleStart = useCallback(() => {
     if (!canStart || deckIds.length === 0) return;
     setStarting(true);
@@ -414,10 +410,8 @@ export default function DeckPickerSheet({
           >
             {startLabel}
           </Text>
-          {/* зачем: коммит 1f44e79df добавил бейдж только в 'classic' JSX ниже,
-              но боевая ветка — 'hybrid' (дефолт motionVariant), там кнопка
-              стартовала активность без видимой цены (владелец 2026-08-24). */}
-          {canStart && selectedPresetStartsPaidActivity ? <EnergyCostBadge activity="flashcards" testID="fc-deck-start-energy-cost" /> : null}
+          {/* зачем (PM-086, владелец 2026-09-24): ценник энергии над кнопкой
+              старта убран — расход энергии не меняется. */}
         </PressableHybrid>
       </HybridSheetShell>
     );
@@ -667,9 +661,8 @@ export default function DeckPickerSheet({
                     })}
             </Text>
           </Pressable>
-          {/* Цена входа видна до нажатия (владелец 2026-08-23). Пока набор не
-              выбран (canStart=false) бейджа нет — списания не будет. */}
-          {canStart && selectedPresetStartsPaidActivity ? <EnergyCostBadge activity="flashcards" testID="fc-deck-start-energy-cost" /> : null}
+          {/* зачем (PM-086, владелец 2026-09-24): ценник энергии над кнопкой
+              старта убран — расход энергии не меняется. */}
           </View>
         </Reanimated.View>
       </View>

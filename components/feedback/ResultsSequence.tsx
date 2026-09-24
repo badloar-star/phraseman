@@ -45,7 +45,6 @@ import fk from '../../app/feedback/feedback_kit';
 import ConfettiBurst from './ConfettiBurst';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { SpinRewardPlaque } from '../SpinRewardPlaque';
-import EnergyCostBadge from '../EnergyCostBadge';
 import { HOME_RUNE_ICON_SOURCE } from '../home/homeRuneAsset';
 import {
   getResultsSequenceAudioPlan,
@@ -1218,7 +1217,7 @@ export function ResultsSequence({
             <Text style={[styles.ctaSecondaryText, { color: t.textMuted }]}>
               {ctaSecondaryLabel}
             </Text>
-            {secondaryShowsEnergyCost ? <EnergyCostBadge activity="arena_match" testID="results-secondary-energy-cost" /> : null}
+            {/* зачем (PM-086): ценник энергии на кнопке убран — сам расход энергии не менялся. */}
           </TouchableOpacity>
         ) : null}
         {onCtaTertiary && ctaTertiaryLabel ? (

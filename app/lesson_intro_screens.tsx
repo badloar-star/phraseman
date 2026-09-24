@@ -22,7 +22,6 @@ import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import ScreenGradient from '../components/ScreenGradient';
 import DuoPressable from '../components/DuoPressable';
-import EnergyCostBadge from '../components/EnergyCostBadge';
 import TopFadeMask from '../components/TopFadeMask';
 import LessonArtBackdrop from '../components/LessonArtBackdrop';
 import { hapticTap } from '../hooks/use-haptics';
@@ -673,12 +672,7 @@ export default function LessonIntroScreens({
             <Ionicons name="arrow-forward" size={18} color={t.correctText} />
           </View>
         </DuoPressable>
-        {/* зачем: знак стоимости энергии торчит НАД кнопкой, а лицо кнопки клипует всё за
-            своими краями (overflow:'hidden' в ctaBtn держит градиент в
-            скруглении + DuoPressable сам клипует градиентную поверхность).
-            Внутри кнопки молния обрезалась по верхнему-правому углу, поэтому
-            бейдж живёт соседом кнопки — в обёртке без клипа. */}
-        {showEnergyCost ? <EnergyCostBadge activity="classic_lesson" testID="lesson-intro-start-energy-cost" /> : null}
+        {/* зачем (PM-086): ценник энергии на кнопке убран — сам расход энергии не менялся. */}
       </Animated.View>
     </Animated.View>
   );

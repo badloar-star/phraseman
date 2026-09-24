@@ -18,7 +18,6 @@ import { hapticTap } from '../../hooks/use-haptics';
 import PressableHybrid from '../PressableHybrid';
 import { useLang } from '../LangContext';
 import { arenaText } from '../../modules/arena/copy';
-import EnergyCostBadge from '../EnergyCostBadge';
 
 /**
  * Выбор режима матча — шторка по кнопке «Матч», как в «Карточках 2.1».
@@ -120,9 +119,7 @@ function ModeRow({
           </View>
         ) : null}
       </PressableHybrid>
-      {option.key !== 'friend' && !option.disabled ? (
-        <EnergyCostBadge activity="arena_match" compact testID={`arena-mode-energy-cost-${option.key}`} style={{ right: -2 }} />
-      ) : null}
+      {/* зачем (PM-086): ценник энергии на кнопке убран — сам расход энергии не менялся. */}
     </Animated.View>
   );
 }

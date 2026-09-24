@@ -10,7 +10,6 @@ import ScreenGradient from '../ScreenGradient';
 import TapScale from '../TapScale';
 import { useTheme } from '../ThemeContext';
 import TonalSurface from '../TonalSurface';
-import EnergyCostBadge from '../EnergyCostBadge';
 import { AnimatedEnergyNumber } from '../energy/AnimatedEnergyNumber';
 
 type Props = {
@@ -176,7 +175,8 @@ export default function LevelExamIntro({
                   </Text>
                 </View>
               </TapScale>
-              <EnergyCostBadge activity="level_exam" testID="level-exam-start-energy-cost" />
+              {/* зачем (PM-086, владелец 2026-09-24): ценник энергии над
+                  кнопкой убран — расход энергии не меняется. */}
             </View>
           </View>
         </View>

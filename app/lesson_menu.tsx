@@ -16,7 +16,6 @@ import LessonArtBackdrop from '../components/LessonArtBackdrop';
 import { useLang } from '../components/LangContext';
 import ContentWrap from '../components/ContentWrap';
 import EnergyBar from '../components/EnergyBar';
-import EnergyCostBadge from '../components/EnergyCostBadge';
 import { useEnergy } from '../components/EnergyContext';
 import PremiumCard from '../components/PremiumCard';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -289,16 +288,8 @@ export async function prefetchLessonMenuCache(
     }
 }
 
-/**
- * Пункты меню урока с канонической стоимостью numeric energy.
- * Теория (lesson-menu-theory) сюда НЕ входит — она бесплатна.
- */
-const ENERGY_COST_MENU_ITEMS = new Set([
-  'lesson-menu-primary',
-  'lesson-menu-words',
-  'lesson-menu-irregular-verbs',
-  'lesson-menu-prepositions',
-]);
+// зачем (PM-086, владелец 2026-09-24): ENERGY_COST_MENU_ITEMS удалён — жил
+// только ради гейта показа ценника энергии на пунктах меню, который убрали.
 
 function LessonMenu() {
   useEffect(() => { perfScreenMount('lesson_menu'); }, []);
@@ -1333,20 +1324,8 @@ function LessonMenu() {
             </View>
             <Ionicons name="chevron-forward" size={18} color={item.disabled ? t.textGhost : t.textGhost}/>
           </PremiumCard>
-            {/* Бейдж лежит поверх карточки отдельным слоем, как на CTA старта.
-                Теория бесплатна; недоступный пункт не обещает списание. */}
-            {ENERGY_COST_MENU_ITEMS.has(item.testID) && !item.disabled && !item.unavailable ? (
-              <EnergyCostBadge
-                activity={item.testID === 'lesson-menu-primary'
-                  ? 'classic_lesson'
-                  : item.testID === 'lesson-menu-words'
-                    ? 'lesson_words'
-                    : item.testID === 'lesson-menu-irregular-verbs'
-                      ? 'irregular_verbs'
-                      : 'preposition_drill'}
-                testID={`${item.testID}-energy-cost`}
-              />
-            ) : null}
+            {/* зачем (PM-086, владелец 2026-09-24): ценник энергии над
+                пунктами меню убран — расход энергии не меняется. */}
           </View>
         ))}
       </View>

@@ -5,7 +5,6 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Reanimated, { useAnimatedStyle, useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import EnergyCostBadge from '../components/EnergyCostBadge';
 // зачем: тот же контрол обновления, что в лиге — один язык жеста по приложению.
 import HybridRefreshControl from '../components/feedback/HybridRefreshControl';
 import { useLang } from '../components/LangContext';
@@ -338,7 +337,8 @@ export default function MistakesHubScreen() {
                   {showSegments ? `${copy.start} ${sessionCount}` : `${copy.startAll} ${sessionCount}`}
                 </Text>
               </Pressable>
-              {costsEnergy ? <EnergyCostBadge activity="mistake_practice" testID="mistakes-hub-energy-cost" /> : null}
+              {/* зачем (PM-086, владелец 2026-09-24): ценник энергии над
+                  кнопкой убран — costsEnergy остаётся для аналитики. */}
             </View>
           </View>
         ) : null}

@@ -22,7 +22,6 @@ import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import ScreenGradient from './ScreenGradient';
 import PressableScale from './feedback/PressableScale';
-import EnergyCostBadge from './EnergyCostBadge';
 import { triLang } from '../constants/i18n';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 
@@ -246,16 +245,7 @@ export default function AiDialogBriefingScreen({
             )}
 
             <Reanimated.View entering={enterAt(220)} style={{ position: 'relative' }}>
-              {/* Цена входа видна до нажатия (владелец 2026-08-23) и теперь это
-                  ЕДИНСТВЕННОЕ место, где она показывается (владелец 2026-09-17):
-                  из плиток списка диалогов значок убран, чтобы каталог не читался
-                  как прайс-лист. Значок лежит в одном relative-контейнере с
-                  кнопкой и садится в её угол — цена ровно в точке решения.
-
-                  В режиме покупки значок энергии скрыт: две цены разом (руны за
-                  доступ и энергия за вход) на одной кнопке читаются как двойная
-                  оплата. Энергия вернётся на кнопку сразу после покупки. */}
-              {!purchase && <EnergyCostBadge activity="ai_dialog" testID="ai-dialog-briefing-energy-cost" />}
+              {/* зачем (PM-086): ценник энергии на кнопке убран — сам расход энергии не менялся. */}
               {purchase ? (
                 <>
                   <PressableScale

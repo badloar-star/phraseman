@@ -37,7 +37,6 @@ import { LearningV2RuneFlight } from '../components/LearningV2RuneFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
-import EnergyCostBadge from '../components/EnergyCostBadge';
 import { SessionResultScreen } from './flashcards/SessionResultScreen';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
@@ -3199,11 +3198,8 @@ function FlashcardsSwipeScreen() {
             {startBlockReason?.label ?? text.start}
           </Text>
         </DuoPressable>
-        {/* Цена входа видна до нажатия. Когда старт заблокирован (нет выбора,
-            идёт загрузка) — бейдж не рисуем: списания не будет. */}
-        {startBlockReason == null ? (
-          <EnergyCostBadge activity="flashcards" testID="flashcards-swipe-energy-cost" />
-        ) : null}
+        {/* зачем (PM-086, владелец 2026-09-24): ценник энергии над кнопкой
+            старта убран — расход энергии не меняется. */}
       </View>
     );
   };
@@ -3866,7 +3862,6 @@ function FlashcardsSwipeScreen() {
         onRetryWrong={() => { void startSession(); }}
         onDone={openSettings}
         retryLabel={text.nextRound}
-        retryShowsEnergyCost
         scoreText={`${text.scoreLabel}: ${resultScore}`}
         testID="flashcards-swipe-result"
       />

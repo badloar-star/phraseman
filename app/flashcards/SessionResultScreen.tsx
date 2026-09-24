@@ -23,7 +23,6 @@ import ScreenGradient from '../../components/ScreenGradient';
 import ContentWrap from '../../components/ContentWrap';
 import XpGainBadge from '../../components/XpGainBadge';
 import { AnimatedCountUpText } from '../../components/AnimatedCountUpText';
-import EnergyCostBadge from '../../components/EnergyCostBadge';
 import FeedbackRatingCard from '../../components/FeedbackRatingCard';
 import { buttonForegroundForBackground } from '../../constants/color_contrast';
 import { triLang } from '../../constants/i18n';
@@ -125,8 +124,9 @@ export type SessionResultScreenProps = {
   accentColor?: string;
   /** E12 (блиц): текст CTA повтора («Ещё разок!») — показывает кнопку даже при learnLeft=0. */
   retryLabel?: string;
-  /** Повтор запускает новый оплачиваемый раунд. */
-  retryShowsEnergyCost?: boolean;
+  // зачем (PM-086, владелец 2026-09-24): retryShowsEnergyCost удалён — жил
+  // только ради ценника энергии над кнопкой повтора, JSX-вывод которого
+  // уже был убран раньше нас; проп остался неиспользуемым мёртвым кодом.
   /** E12 (блиц): пилюля счёта очков под заголовком («Счёт: 1250»). */
   scoreText?: string;
   /**
@@ -152,7 +152,6 @@ function SessionResultScreenImpl({
   onDone,
   accentColor,
   retryLabel,
-  retryShowsEnergyCost = false,
   scoreText,
   feedback,
   testID = 'fc-session-result',
@@ -357,7 +356,6 @@ function SessionResultScreenImpl({
                         })}
                     </Text>
                   </TouchableOpacity>
-                  {retryShowsEnergyCost ? <EnergyCostBadge activity="flashcards" testID={`${testID}-retry-energy-cost`} /> : null}
                 </View>
               ) : null}
               <TouchableOpacity

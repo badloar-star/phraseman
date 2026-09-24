@@ -55,7 +55,8 @@ let mockThemeName = "INDIGO";
 jest.mock("../components/ThemeContext", () => ({
   useTheme: () => ({ theme: require("../constants/theme")[mockThemeName], f: { h2: 24, body: 16 } }),
 }));
-jest.mock("../components/EnergyCostBadge", () => () => null);
+// зачем (PM-086, владелец 2026-09-24): components/EnergyCostBadge.tsx удалён
+// целиком — мок больше не нужен (модуль не существует).
 jest.mock("react-native-worklets", () => ({
   scheduleOnRN: (fn: (...args: any[]) => void, ...args: any[]) => fn(...args),
 }));

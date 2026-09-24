@@ -23,7 +23,6 @@ import { peekFriendsTabSwrWarm, startFriendsTabSwrPrime, type FriendsTabWarmSnap
 import { getCanonicalUserId } from './user_id_policy';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
-import EnergyCostBadge from '../components/EnergyCostBadge';
 import { DebugLogger } from './debug-logger';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { arenaRouteStudyTarget, arenaTargetRequestIdPrefix } from './arena_route_target';
@@ -275,7 +274,8 @@ function ArenaFriendDuelTargetScreen({
           <Text style={[styles.lead, { color: P.muted }]}>{arenaText(lang, 'selectFriend')}</Text>
         ) : null}
         {selected ? <View style={styles.selected}><AvatarView avatar={selected.avatar} auraId={selected.aura} size={64} animateAura={false} ownerActive={active} /><Text style={[styles.name, { color: P.text }]}>{selected.name}</Text></View> : null}
-        {invite ? <><Text testID="arena-friend-invite-countdown" style={[styles.countdown, { color: P.accent }]}>{remainingLabel(invite.expiresAtMs, now)}</Text><V2Cta tone="ghost" disabled={busy} onPress={cancel}>{arenaText(lang, 'cancelChallenge')}</V2Cta></> : <><V2Cta tone="ghost" disabled={busy} onPress={() => setPickerOpen(true)}>{arenaText(lang, selected ? 'pickAnotherFriend' : 'pickFriend')}</V2Cta>{selected ? <View style={styles.ctaWrap}><V2Cta accessibilityHint={arenaText(lang, 'friendHint')} disabled={busy} onPress={create}>{arenaText(lang, 'throwChallenge')}</V2Cta><EnergyCostBadge activity="arena_match" testID="arena-duel-energy-cost" /></View> : null}</>}
+        {invite ? <><Text testID="arena-friend-invite-countdown" style={[styles.countdown, { color: P.accent }]}>{remainingLabel(invite.expiresAtMs, now)}</Text><V2Cta tone="ghost" disabled={busy} onPress={cancel}>{arenaText(lang, 'cancelChallenge')}</V2Cta></> : <><V2Cta tone="ghost" disabled={busy} onPress={() => setPickerOpen(true)}>{arenaText(lang, selected ? 'pickAnotherFriend' : 'pickFriend')}</V2Cta>{/* зачем (PM-086): ценник энергии на кнопке убран — сам расход энергии не менялся. */}
+{selected ? <View style={styles.ctaWrap}><V2Cta accessibilityHint={arenaText(lang, 'friendHint')} disabled={busy} onPress={create}>{arenaText(lang, 'throwChallenge')}</V2Cta></View> : null}</>}
         {error ? <Text accessibilityLiveRegion="polite" style={[styles.error, { color: P.muted }]}>{error}</Text> : null}
       </V2Card>
 

@@ -6,8 +6,10 @@ const read = (file: string): string => fs.readFileSync(path.join(process.cwd(), 
 
 const bar = read('components/EnergyBar.tsx');
 const popover = read('components/energy/EnergyInfoPopover.tsx');
-const price = read('components/EnergyCostBadge.tsx');
 const home = read('app/(tabs)/home.tsx');
+// зачем (PM-086, владелец 2026-09-24): components/EnergyCostBadge.tsx удалён
+// целиком — ценники энергии убраны со всех кнопок. Проверки ниже на price
+// удалены вместе с файлом; расход энергии (EnergyContext) не менялся.
 
 for (const marker of [
   'const ENERGY_PILL_WIDTH = 60',
@@ -36,11 +38,6 @@ for (const marker of [
 
 assert.ok(!popover.includes("ru: 'Следующая единица'"), 'new large-card copy returned');
 assert.ok(!popover.includes("ru: 'Полный заряд'"), 'new large-card copy returned');
-assert.ok(price.includes('const { hasPremiumAccess } = usePremium()'), 'energy price badge ignores verified Premium access');
-assert.ok(
-  price.includes('if (hasPremiumAccess || !energyReady || isUnlimited || cost === 0) return null'),
-  'paid users still see energy prices',
-);
 assert.ok(!popover.includes('100 энергии в час'), 'technical video rate copy returned');
 
 const currencyStart = home.indexOf('testID="home-quickstart-currency-row"');

@@ -11,9 +11,7 @@ import { ArenaResultDuel, type ArenaResultDuelOutcome } from '../components/aren
 import { useCountUp } from '../components/league/leagueStatusShared';
 import { ArenaRewards } from '../components/arena/ArenaRewards';
 import { V2Card, V2Cta } from '../components/ui/v2_ui';
-import EnergyCostBadge from '../components/EnergyCostBadge';
 import { useTournamentPalette } from '../components/ui/v2_theme';
-import { SpinRewardPlaque } from '../components/SpinRewardPlaque';
 import { captureAccountGeneration, subscribeAccountGeneration } from './account_generation';
 import { grantLocalArenaRankedWinSpin } from './local_level_spins';
 import { creditTournamentStarsToSeason } from './season_pass_model';
@@ -833,9 +831,11 @@ export default function ArenaResultsScreen() {
         ) : null}
       </V2Card>
       {reactionPack ? <View style={styles.reactions}><Text style={[styles.reactionHint, reactionLine, { color: P.muted }]}>{arenaExpansionText(lang, 'localReaction')}</Text>{(equipped.reaction_pack === 'reactions_respect' ? ['reactionRespect', 'reactionWellPlayed'] as const : ['reactionComeback', 'reactionAgain'] as const).map((key) => <V2Cta key={key} tone="ghost" disabled={reactionChosen !== null} onPress={() => setReactionChosen(key)}>{arenaExpansionText(lang, reactionChosen === key ? 'ready' : key)}</V2Cta>)}</View> : null}
-      {match?.mode !== 'quick' && reward?.spinAwarded && reward.spinReceiptId ? (
-        <SpinRewardPlaque amount={1} receiptId={reward.spinReceiptId} visible onComplete={() => {}} staticPresentation />
-      ) : null}
+      {/* зачем (PM-046/047, владелец): спины убраны как механика — плашка
+          «+1 спин» удалена, даже если сервер ещё присылает reward.spinAwarded
+          (arenaRareSpin в functions/src/arena_v2_core.ts не трогаем, D32).
+          Клиент это поле теперь игнорирует, локально спин всё равно не
+          начисляется (grantLocalArenaRankedWinSpin — no-op). */}
       {match?.mode === 'series' ? <V2Card style={styles.seriesCard}><Text style={[styles.reactionHint, reactionLine, { color: P.muted }]}>{arenaExpansionText(lang, 'rivalryBody')}</Text><Text style={[styles.seriesScore, { color: P.gold }]}>{arenaExpansionText(lang, 'score').replace('{you}', String(seriesYou)).replace('{them}', String(seriesThem))}</Text></V2Card> : null}
       {/* Ничья тоже получает карточку: «звёзды на месте» — ответ, не молчание. */}
       {(arenaResultHasAnnounce(announce) || reward?.outcome === 'draw')
@@ -915,7 +915,7 @@ export default function ArenaResultsScreen() {
           >
             {arenaText(lang, 'playAgain')}
           </V2Cta>
-          {replayMode ? <EnergyCostBadge activity="arena_match" testID="arena-results-replay-energy-cost" /> : null}
+          {/* зачем (PM-086): ценник энергии на кнопке убран — сам расход энергии не менялся. */}
         </View>
       )}
       <V2Cta tone="ghost" onPress={() => router.replace('/arena' as never)}>{arenaText(lang, 'home')}</V2Cta>

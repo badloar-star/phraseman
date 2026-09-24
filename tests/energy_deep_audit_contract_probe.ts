@@ -69,15 +69,10 @@ for (const expected of [
   assert.ok(gifts.includes(expected), `additive +200 gift copy missing: ${expected}`);
 }
 
-const badge = read('components/EnergyCostBadge.tsx');
-assert.ok(badge.includes("import { usePremium } from './PremiumContext'"), 'energy cost badge ignores verified Premium access');
-assert.ok(badge.includes('hasPremiumAccess'), 'energy cost badge can leak prices to a paid user during EnergyContext failure');
-assert.ok(badge.includes('const { lang } = useLang()'), 'energy cost accessibility does not use app locale');
-assert.ok(badge.includes('triLang(lang, {'), 'energy cost accessibility is not localized');
-for (const locale of ["ru:", "uk:", "en:", "es:", "'pt-BR':", "vi:", "id:", "tr:", "pl:"]) {
-  assert.ok(badge.includes(locale), `energy cost accessibility locale missing: ${locale}`);
-}
-assert.ok(!badge.includes('accessibilityLabel={`Стоимость запуска:'), 'hard-coded Russian accessibility label remains');
+// зачем (PM-086, владелец 2026-09-24): components/EnergyCostBadge.tsx удалён
+// целиком — ценники энергии убраны со всех кнопок, проверки его формата
+// (Premium-гейт, локализация) сторожить больше нечего. Расход энергии
+// (EnergyContext) не менялся.
 
 const estimateStart = context.indexOf('export function estimateEnergyFullRecoveryMs');
 const estimateEnd = context.indexOf('/**', estimateStart + 10);

@@ -23,7 +23,6 @@ import { objectiveLabel, outcomeTitle, type DialogOutcome } from '../app/dialog_
 import type { DialogObjective } from '../app/ai_dialog_scenarios';
 import type { DialogSceneTheme } from '../constants/dialogSceneThemes';
 import { noAndroidOutline } from '../constants/androidGlow';
-import EnergyCostBadge from './EnergyCostBadge';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticSuccess, hapticWarning } from '../hooks/use-haptics';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
@@ -710,7 +709,8 @@ export default function DialogVerdictScreen({
                     pl: 'Jeszcze raz',
                   })}
                 </Text>
-                <EnergyCostBadge activity="ai_dialog" testID="dialog-verdict-retry-energy-cost" />
+                {/* зачем (PM-086, владелец 2026-09-24): ценник энергии над
+                    кнопкой убран — расход энергии не меняется. */}
               </TouchableOpacity>
             )}
             <TouchableOpacity

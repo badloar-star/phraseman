@@ -1072,11 +1072,9 @@ export default function FlashcardsSpeakingSession() {
       t={t}
       f={f}
       reduceMotion={reduceMotion}
+      // зачем (PM-086, владелец 2026-09-24): showsEnergyCostForPreset удалён
+      // из DeckPickerSheet вместе с ценником энергии — проп больше не принимается.
       mode="speaking"
-      showsEnergyCostForPreset={(preset) => {
-        const nextDeck = deckRouteParam(presetDeckIds(preset).filter((d) => d !== SOLO_DECK_ID)) || 'saved';
-        return parseDeckParams(nextDeck).map(deckRefKey).join(',') !== deckKey || preset.size !== sessionSize;
-      }}
     />
   );
 

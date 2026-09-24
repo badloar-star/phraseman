@@ -119,7 +119,8 @@ jest.mock('../components/DuoPressable', () => function MockDuoPressable(props: R
 jest.mock('../components/TapScale', () => 'TapScale');
 jest.mock('../components/FeatureIntroModal', () => 'FeatureIntroModal');
 jest.mock('../components/NoEnergyModal', () => 'NoEnergyModal');
-jest.mock('../components/EnergyCostBadge', () => 'EnergyCostBadge');
+// зачем (PM-086, владелец 2026-09-24): components/EnergyCostBadge.tsx удалён
+// целиком — мок больше не нужен (модуль не существует, jest падал на resolve).
 jest.mock('../components/ReportErrorButton', () => 'ReportErrorButton');
 jest.mock('../components/session_attempts/SessionAttemptsHud', () => 'SessionAttemptsHud');
 jest.mock('../components/PracticeRuneCounter', () => ({ PracticeRuneCounter: 'PracticeRuneCounter' }));

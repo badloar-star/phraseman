@@ -28,7 +28,6 @@ import {
 import { useArenaFontScale } from '../hooks/use_arena_font_scale';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
-import EnergyCostBadge from '../components/EnergyCostBadge';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { arenaRouteStudyTarget, arenaTargetRequestIdPrefix } from './arena_route_target';
 
@@ -243,8 +242,7 @@ export default function ArenaTodayScreen() {
       <V2Card style={styles.startCard}><ArenaProgress value={0} max={10} label={arenaExpansionText(lang, 'todayTitle')} /><Text style={[styles.body, bodyLine, { color: P.muted }]}>{arenaExpansionText(lang, 'todayBody')}</Text>
         <View style={styles.ctaWrap}>
           <V2Cta disabled={submitting} onPress={start}>{arenaExpansionText(lang, 'todayStart')}</V2Cta>
-          {/* Цена входа видна до нажатия (владелец 2026-08-23). */}
-          <EnergyCostBadge activity="arena_match" testID="arena-today-energy-cost" />
+          {/* зачем (PM-086): ценник энергии на кнопке убран — сам расход энергии не менялся. */}
         </View>
       </V2Card>
       <NoEnergyModal visible={noEnergyOpen} onClose={() => setNoEnergyOpen(false)} activity="arena_match" />

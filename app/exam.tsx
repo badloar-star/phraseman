@@ -28,7 +28,6 @@ import { useEnergy } from '../components/EnergyContext';
 import { createEnergySessionIntent, type EnergySessionIntent } from './energy_session_operation_ledger';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import NoEnergyModal from '../components/NoEnergyModal';
-import EnergyCostBadge from '../components/EnergyCostBadge';
 import ScreenGradient from '../components/ScreenGradient';
 import GradientProgressBar from '../components/GradientProgressBar';
 import { useTheme } from '../components/ThemeContext';
@@ -1078,7 +1077,7 @@ export default function ExamScreen() {
                 {t3('Начать тест', 'Почати тест', 'Start', 'Empezar', 'Começar', 'Bắt đầu', 'Mulai', 'Başla', 'Rozpocznij')}
               </Text>
             </TouchableOpacity>
-            <EnergyCostBadge activity="level_exam" testID="exam-start-energy-cost" />
+            {/* зачем (PM-086): ценник энергии на кнопке убран — сам расход энергии не менялся. */}
           </View>
           {!isUnlimited && (
             <Text style={{color:sx.muted,fontSize:f.caption,textAlign:'center',marginTop:10}}>
@@ -1433,7 +1432,9 @@ export default function ExamScreen() {
                 </View>
               </TouchableOpacity>)
             ) : null}
-            <View style={{position:'relative',overflow:'visible',width:'100%',marginBottom:12}}>
+            {/* зачем (PM-086, владелец 2026-09-24): ценник энергии над кнопкой
+                убран — расход энергии за повтор не меняется. */}
+            <View style={{width:'100%',marginBottom:12}}>
               <TouchableOpacity
                 style={{backgroundColor:t.bgCard,borderRadius:14,padding:16,width:'100%',alignItems:'center'}}
                 onPress={() => { void startExam(); }}
@@ -1442,7 +1443,6 @@ export default function ExamScreen() {
                   {t3('🔄 Попробовать ещё раз', '🔄 Спробувати ще раз', '🔄 Try again', '🔄 Intentar otra vez', '🔄 Tentar de novo', '🔄 Thử lại', '🔄 Coba lagi', '🔄 Tekrar dene', '🔄 Spróbuj ponownie')}
                 </Text>
               </TouchableOpacity>
-              <EnergyCostBadge activity="level_exam" testID="exam-restart-energy-cost" />
             </View>
             <TouchableOpacity
               style={{flexDirection:'row',alignItems:'center',gap:8,padding:12,marginBottom:4}}

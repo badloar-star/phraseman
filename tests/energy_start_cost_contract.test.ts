@@ -55,13 +55,14 @@ describe('numeric energy v2 contract', () => {
     expect(context).toContain('const refundOne = refundActivityStart');
   });
 
-  it('uses one vector numeric badge and no energy image asset', () => {
-    const badge = read('components/EnergyCostBadge.tsx');
+  // зачем (PM-086, владелец 2026-09-24): EnergyCostBadge.tsx удалён целиком —
+  // ценники энергии убраны со всех кнопок (расход энергии не менялся).
+  // Прежний тест сторожил формат самого бейджа, которого больше нет.
+  // EnergyIcon остаётся — им пользуется EnergyBar (постоянный индикатор
+  // в хедере), проверка на него переносится сюда.
+  it('keeps the vector energy icon without an image asset', () => {
     const icon = read('components/EnergyIcon.tsx');
-    expect(badge).toContain('activity: EnergyActivityKey');
-    expect(badge).toContain('activityEnergyCost(activity)');
-    expect(badge).toContain('name="flash-outline"');
-    expect(badge).toContain('−{cost}');
+    expect(fs.existsSync(path.join(process.cwd(), 'components/EnergyCostBadge.tsx'))).toBe(false);
     expect(icon).toContain('name="flash-outline"');
     expect(icon).not.toContain('expo-image');
     expect(icon).not.toContain('require(');
@@ -103,11 +104,9 @@ describe('numeric energy v2 contract', () => {
     expect(popover).not.toContain("ru: 'Полный заряд'");
   });
 
-  it('renders activity prices only after energy access is known and only for free users', () => {
-    const badge = read('components/EnergyCostBadge.tsx');
-    expect(badge).toContain('const { isUnlimited, energyReady } = useEnergy()');
-    expect(badge).toContain('if (!energyReady || isUnlimited || cost === 0) return null');
-  });
+  // зачем (PM-086, владелец 2026-09-24): EnergyCostBadge удалён — гейт
+  // "только для бесплатных после готовности энергии" сторожить больше
+  // нечего, сама механика списания энергии (EnergyContext) не менялась.
 
   it('removes the old flying-lightning host and event', () => {
     expect(fs.existsSync(path.join(process.cwd(), 'components/EnergySpendFlightHost.tsx'))).toBe(false);
@@ -126,15 +125,22 @@ describe('numeric energy v2 contract', () => {
     expect(bar).toContain('value={current}');
   });
 
-  it('shows central prices on representative paid CTAs', () => {
-    for (const [file, activity] of [
-      ['app/flashcards_training_setup.tsx', 'flashcards'],
-      ['app/learning-v2/lesson/[id].tsx', 'learning_v2_session'],
-      ['components/arena/ArenaModeSheet.tsx', 'arena_match'],
-      ['components/level-exam/LevelExamIntro.tsx', 'level_exam'],
-      ['components/AiDialogBriefingScreen.tsx', 'ai_dialog'],
-    ] as const) {
-      expect(read(file)).toContain(`activity="${activity}"`);
+  // зачем (PM-086, владелец 2026-09-24): ценники энергии убраны со ВСЕХ
+  // кнопок владельцем — прежний тест требовал их присутствия на 5 экранах,
+  // то есть сторожил отменённое правило. Расход энергии на этих экранах
+  // не меняется (activityEnergyCost/confirmSpendOne остаются внутри
+  // EnergyContext), убрана только видимая цена перед стартом.
+  it('no longer shows a price badge on the representative paid CTAs', () => {
+    for (const file of [
+      'app/flashcards_training_setup.tsx',
+      'app/learning-v2/lesson/[id].tsx',
+      'components/arena/ArenaModeSheet.tsx',
+      'components/level-exam/LevelExamIntro.tsx',
+      'components/AiDialogBriefingScreen.tsx',
+    ]) {
+      // зачем: комментарии могут упоминать бывший бейдж как историю (project_energy_badge_clip
+      // и т.п.) — запрещаем именно живой JSX-тег, а не любое упоминание слова в файле.
+      expect(read(file)).not.toContain('<EnergyCostBadge');
     }
   });
 

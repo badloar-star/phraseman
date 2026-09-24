@@ -28,7 +28,6 @@ import { ArenaComboMeter } from '../components/arena/ArenaComboMeter';
 import { ArenaStarFlight } from '../components/arena/ArenaStarFlight';
 import { ArenaVersusIntro } from '../components/arena/ArenaVersusIntro';
 import { V2Cta, V2Segments } from '../components/ui/v2_ui';
-import EnergyCostBadge from '../components/EnergyCostBadge';
 import { useTournamentPalette, v2motion } from '../components/ui/v2_theme';
 import { arenaAwardReasonText, arenaText } from '../modules/arena/copy';
 import type { ArenaMatch, ArenaMatchReward, ArenaPlayer } from '../modules/arena/contract';
@@ -1321,20 +1320,19 @@ function ArenaMatchGenerationScreen({
               Арены за чужой отказ (владелец, 2026-08-16: «появился экран
               соперник не принял вызов»). Возвращаем в поиск одним нажатием,
               новым requestId — старый билет уже закрыт сервером. */}
+          {/* зачем (PM-086, владелец 2026-09-24): ценник энергии над кнопкой
+              повтора убран — расход энергии на матч не меняется. */}
           {entryFailure === 'no_opponent' ? (
-            <View style={{ position: 'relative' }}>
-              <V2Cta onPress={() => leaveTo({
-                pathname: '/arena_matchmaking',
-                params: {
-                  mode: 'quick',
-                  studyTarget,
-                  requestId: createArenaRequestId(arenaTargetRequestIdPrefix('queue', studyTarget)),
-                },
-              })}>
-                {arenaText(lang, 'quick')}
-              </V2Cta>
-              <EnergyCostBadge activity="arena_match" testID="arena-match-retry-energy-cost" />
-            </View>
+            <V2Cta onPress={() => leaveTo({
+              pathname: '/arena_matchmaking',
+              params: {
+                mode: 'quick',
+                studyTarget,
+                requestId: createArenaRequestId(arenaTargetRequestIdPrefix('queue', studyTarget)),
+              },
+            })}>
+              {arenaText(lang, 'quick')}
+            </V2Cta>
           ) : null}
           {/* зачем leavingRef (владелец 2026-09-21): без него перехватчик
               beforeRemove отменял этот уход, и с экрана отказа было НЕ выйти

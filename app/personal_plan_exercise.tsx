@@ -75,7 +75,6 @@ import {
 } from './speaking_hold_recorder';
 import SpeakingScoreStars from '../components/SpeakingScoreStars';
 import DuoPressable from '../components/DuoPressable';
-import EnergyCostBadge from '../components/EnergyCostBadge';
 import { useWordFlash } from '../hooks/use-word-flash';
 import type { PersonalPlanId } from './personal_plan_catalog';
 import { hasBundledCompatibilityPlanContentDay } from './plan_content_readiness';
@@ -99,7 +98,7 @@ import {
   clearPlanTaskProgress,
 } from './personal_plan_task_progress';
 import { resolveNextPlanTask } from './personal_plan_next_task';
-import { openPersonalPlanTask, personalPlanTaskStartsPaidExercise } from './personal_plan_navigation';
+import { openPersonalPlanTask } from './personal_plan_navigation';
 import { startPlanExerciseSession } from './personal_plan_exercise_session';
 import { submitAndStorePlanExerciseAnswer } from './personal_plan_exercise_submission_store';
 import { createPlanRecoveryDefaultHandlers } from './personal_plan_recovery_default_handlers';
@@ -235,6 +234,9 @@ function chromeForExerciseType(type: PlanExerciseType): PlanExerciseModeChrome {
   }
 }
 
+// зачем (PM-086, владелец 2026-09-24): проп showEnergyCost удалён из
+// PlanGradientButton — жил только ради ценника энергии над кнопкой,
+// который убрали. Расход энергии не меняется.
 function PlanGradientButton({
   label,
   accent,
@@ -242,7 +244,6 @@ function PlanGradientButton({
   onPress,
   disabled,
   style,
-  showEnergyCost = false,
 }: {
   label: string;
   accent: string;
@@ -250,7 +251,6 @@ function PlanGradientButton({
   onPress: () => void;
   disabled?: boolean;
   style?: ViewStyle;
-  showEnergyCost?: boolean;
 }) {
   return (
     <TouchableOpacity
@@ -272,7 +272,6 @@ function PlanGradientButton({
       >
         <Text style={[styles.primaryButtonText, { color: disabled ? actionText + '66' : actionText }]}>{label}</Text>
       </LinearGradient>
-      {showEnergyCost ? <EnergyCostBadge activity="personal_plan_exercise" testID="personal-plan-next-task-energy-cost" /> : null}
     </TouchableOpacity>
   );
 }
@@ -1681,7 +1680,6 @@ function PlanExerciseFeedbackInline({
   actionLabel,
   onAction,
   loading,
-  showEnergyCost = false,
   hideBody,
   children,
 }: {
@@ -1696,7 +1694,6 @@ function PlanExerciseFeedbackInline({
   actionLabel: string;
   onAction: () => void;
   loading?: boolean;
-  showEnergyCost?: boolean;
   /**
    * Скрыть «плашку» подтверждения (заголовок + тело-текст), оставив только эхо
    * правильного ответа (children) и кнопку действия. Для верного ответа в плане
@@ -1717,28 +1714,25 @@ function PlanExerciseFeedbackInline({
   // показываем большую объёмную 3D-кнопку — как CTA на интро-скринах урока.
   const showBareCta = isSuccess && hideBody && !loading && !children;
   if (showBareCta) {
+    // зачем (PM-086, владелец 2026-09-24): ценник энергии над кнопкой убран,
+    // вместе с ним и обёртка bareCtaWrap, которая существовала только ради
+    // position:'relative' под бейджем.
     return (
-      /* зачем: градиентная DuoPressable клипует своё лицо (surfaceClip), чтобы
-         градиент не вылезал за скругление. Знак стоимости энергии торчит НАД кнопкой,
-         поэтому внутри неё он обрезался — держим его соседом кнопки. */
-      <View style={styles.bareCtaWrap}>
-        <DuoPressable
-          accessibilityLabel={actionLabel}
-          onPress={onAction}
-          gradientColors={[accent, accent + 'BB']}
-          gradientStart={{ x: 0, y: 0 }}
-          gradientEnd={{ x: 1, y: 1 }}
-          edgeColor={accent + '99'}
-          edgeHeight={7}
-          style={styles.bareCtaSurface}
-        >
-          <Text style={[styles.bareCtaText, { color: actionText }]}>{actionLabel}</Text>
-          <View style={styles.bareCtaIcon}>
-            <Ionicons name="arrow-forward" size={18} color={actionText} />
-          </View>
-        </DuoPressable>
-        {showEnergyCost ? <EnergyCostBadge activity="personal_plan_exercise" testID="personal-plan-next-task-energy-cost" /> : null}
-      </View>
+      <DuoPressable
+        accessibilityLabel={actionLabel}
+        onPress={onAction}
+        gradientColors={[accent, accent + 'BB']}
+        gradientStart={{ x: 0, y: 0 }}
+        gradientEnd={{ x: 1, y: 1 }}
+        edgeColor={accent + '99'}
+        edgeHeight={7}
+        style={styles.bareCtaSurface}
+      >
+        <Text style={[styles.bareCtaText, { color: actionText }]}>{actionLabel}</Text>
+        <View style={styles.bareCtaIcon}>
+          <Ionicons name="arrow-forward" size={18} color={actionText} />
+        </View>
+      </DuoPressable>
     );
   }
 
@@ -1761,13 +1755,14 @@ function PlanExerciseFeedbackInline({
         )
       )}
       {children}
+      {/* зачем (PM-086, владелец 2026-09-24): ценник энергии над кнопкой
+          убран — расход энергии не меняется. */}
       <TouchableOpacity
         activeOpacity={0.85}
         onPress={onAction}
         style={[styles.inlineFeedbackButton, { borderColor, backgroundColor: isSuccess ? accent : 'transparent' }]}
       >
         <Text style={[styles.inlineFeedbackButtonText, { color: buttonTextColor }]}>{actionLabel}</Text>
-        {showEnergyCost ? <EnergyCostBadge activity="personal_plan_exercise" testID="personal-plan-next-task-energy-cost" /> : null}
       </TouchableOpacity>
     </View>
   );
@@ -1971,7 +1966,6 @@ function PersonalPlanExerciseScreen() {
   // Идёт авто-переход на следующее задание (replace) — подавляем финал-модал дня,
   // чтобы он не мелькнул между завершением и навигацией.
   const [advancing, setAdvancing] = useState(false);
-  const [nextTaskStartsPaid, setNextTaskStartsPaid] = useState(false);
   // Синхронный lock закрывает окно двойного тапа до следующего React render.
   const advancingRef = useRef(false);
   // XP/resume side-effects запускаются один раз, даже если загрузка следующего шага требует retry.
@@ -2226,17 +2220,10 @@ function PersonalPlanExerciseScreen() {
   }, [answerAudioSource, answerAudioPlayer, managedAnswerAudio, speakPhraseFallback]);
   const targetCorrect = Math.min(requiredCorrect, items.length || requiredCorrect);
   const currentCorrectIds = item ? [...new Set([...correctIds, item.id])] : correctIds;
-  const currentCorrectFinishesTask = Boolean(item)
-    && (index + 1 >= items.length || currentCorrectIds.length >= targetCorrect);
-  useEffect(() => {
-    let cancelled = false;
-    void resolveNextPlanTask({ completedTaskId: planTaskId, studyTarget })
-      .then((nextTask) => {
-        if (!cancelled) setNextTaskStartsPaid(Boolean(nextTask && personalPlanTaskStartsPaidExercise(nextTask.task)));
-      })
-      .catch(() => { if (!cancelled) setNextTaskStartsPaid(false); });
-    return () => { cancelled = true; };
-  }, [planTaskId, studyTarget]);
+  // зачем (PM-086, владелец 2026-09-24): currentCorrectFinishesTask и
+  // nextTaskStartsPaid (+ отдельный эффект с resolveNextPlanTask ради него)
+  // удалены — жили только ради условия показа ценника энергии на кнопке
+  // «Дальше», который убрали. Расход энергии по задаче не меняется.
   // Финал дня разрешён только после успешного persisted completion + успешного resolver result `null`.
   const done = !advancing && completed;
   const listeningBlocked = (isListeningMode || isListenBuildMode) && item && 'audioReady' in item && !item.audioReady;
@@ -2332,7 +2319,6 @@ function PersonalPlanExerciseScreen() {
           surfaceColor={t.bgCard}
           textPrimaryColor={t.textPrimary}
           loading={false}
-          showEnergyCost={currentCorrectFinishesTask && nextTaskStartsPaid}
         >
           {isRecallMode && item && 'targetText' in item ? (
             <Text style={[styles.recallAnswer, { color: accent }]}>{item.targetText}</Text>
@@ -2943,7 +2929,6 @@ function PersonalPlanExerciseScreen() {
                   accent={accent}
                   actionText={actionText}
                   disabled={saving || pronunciationScoring}
-                  showEnergyCost={currentCorrectFinishesTask && nextTaskStartsPaid}
                   onPress={() => void completePronunciation()}
                   style={{ marginTop: 18 }}
                 />
@@ -3048,7 +3033,6 @@ function PersonalPlanExerciseScreen() {
                     surfaceColor={t.bgCard}
                     textPrimaryColor={t.textPrimary}
                     loading={false}
-                    showEnergyCost={currentCorrectFinishesTask && nextTaskStartsPaid}
                   />
                 </View>
               ) : lastResult === 'wrong' && usesOptionFeedback ? (
@@ -3256,7 +3240,6 @@ type PersonalPlanExerciseStyles = {
   primaryButton: ViewStyle;
   primaryButtonGradient: ViewStyle;
   primaryButtonText: TextStyle;
-  bareCtaWrap: ViewStyle;
   bareCtaSurface: ViewStyle;
   bareCtaText: TextStyle;
   bareCtaIcon: ViewStyle;
@@ -3564,8 +3547,6 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
   primaryButtonText: { fontSize: 17, lineHeight: 22, fontWeight: '700' },
   // Голая объёмная CTA «Дальше» (как на интро-скринах урока): большая, без рамок
   // и без плашки-контейнера. Объём даёт DuoPressable (нижняя цветная кромка).
-  // Якорь для бейджа цены, вынесенного из клипующей градиентной кнопки.
-  bareCtaWrap: { position: 'relative' },
   bareCtaSurface: {
     flexDirection: 'row',
     alignItems: 'center',

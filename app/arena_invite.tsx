@@ -14,7 +14,6 @@ import { arenaText } from '../modules/arena/copy';
 import { arenaV2Home, arenaV2InviteAccept, arenaV2InviteDecline, arenaV2InviteReady, arenaV2InviteStatus, type ArenaFriendInviteStatus } from './arena_client';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
-import EnergyCostBadge from '../components/EnergyCostBadge';
 import { DebugLogger } from './debug-logger';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { arenaRouteStudyTarget } from './arena_route_target';
@@ -206,7 +205,8 @@ function ArenaInviteTargetScreen({ params, studyTarget }: Readonly<{
         <View style={[styles.modal, { backgroundColor: t.bgCard }]}>
           <Text accessibilityRole="header" style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>{`${status?.counterpartName || 'Друг'} бросает вызов`}</Text>
           <Text style={[styles.body, { color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.35) }]}>10 заданий</Text>
-          <View style={styles.ctaWrap}><DuoPressable testID="arena-friend-invite-accept" disabled={busy} onPress={() => { void accept(); }} edgeColor={t.accent} style={[styles.primary, { backgroundColor: t.accent }]}><Text style={[styles.button, { color: t.correctText }]}>Проверим</Text></DuoPressable><EnergyCostBadge activity="arena_match" testID="arena-invite-energy-cost" /></View>
+          {/* зачем (PM-086): ценник энергии на кнопке убран — сам расход энергии не менялся. */}
+          <View style={styles.ctaWrap}><DuoPressable testID="arena-friend-invite-accept" disabled={busy} onPress={() => { void accept(); }} edgeColor={t.accent} style={[styles.primary, { backgroundColor: t.accent }]}><Text style={[styles.button, { color: t.correctText }]}>Проверим</Text></DuoPressable></View>
           <DuoPressable testID="arena-friend-invite-decline" disabled={busy} onPress={() => { void decline(); }} edgeColor={t.bgSurface2} style={[styles.secondary, { backgroundColor: t.bgSurface2 }]}><Text style={[styles.button, { color: t.textPrimary }]}>Сегодня без драмы</Text></DuoPressable>
         </View>
       </HybridAlertShell>

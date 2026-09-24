@@ -1159,7 +1159,6 @@ export default function FlashcardsBlitzSession() {
         learnLeft={0}
         onRetryWrong={restart}
         feedback={{ entityId: `${feedbackAttemptId}:blitz:${roundId}:${deckParamStr || 'all'}`, entityLabel: 'Блиц' }}
-        retryShowsEnergyCost
         retryLabel={triLang(lang, {
           ru: 'Ещё разок!', uk: 'Ще разок!', en: 'One more!', es: '¡Otra vez!', 'pt-BR': 'Mais uma!',
           vi: 'Chơi lại!', id: 'Sekali lagi!', tr: 'Bir daha!', pl: 'Jeszcze raz!',

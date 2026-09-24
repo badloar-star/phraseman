@@ -5,25 +5,31 @@ import path from 'path';
 const read = (file: string): string => fs.readFileSync(path.join(process.cwd(), file), 'utf8');
 
 describe('numeric energy v2 contract', () => {
+  // PM-081/PM-082 (BIBLE «Энергия: 5, −1 за начавшееся учебное занятие»):
+  // потолок 5 и единая цена 1. Лестница 10/20/25 и запас 100 — отменены.
   it('has one canonical capacity, recovery rate and activity price table', () => {
     const contract = read('app/energy_contract.ts');
     expect(contract).toContain('ENERGY_SCHEMA_VERSION = 2');
-    expect(contract).toContain('ENERGY_BASE_CAPACITY = 100');
+    expect(contract).toContain('ENERGY_BASE_CAPACITY = 5');
+    expect(contract).toContain('ENERGY_SESSION_COST = 1');
     expect(contract).toContain('ENERGY_ACTIVE_CAPACITY_LIMIT = ENERGY_PERMANENT_CAPACITY_LIMIT + ENERGY_BONUS_CAPACITY_LIMIT');
     expect(contract).toContain('ENERGY_PASSIVE_UNIT_MS = 6 * 60 * 1000');
     expect(contract).toContain('ENERGY_VIDEO_UNIT_MS = 36 * 1000');
-    expect(contract).toContain('flashcards: 10');
-    expect(contract).toContain('classic_lesson: 20');
-    expect(contract).toContain('learning_v2_session: 20');
-    expect(contract).toContain('arena_match: 25');
+    expect(contract).toContain('flashcards: ENERGY_SESSION_COST');
+    expect(contract).toContain('classic_lesson: ENERGY_SESSION_COST');
+    expect(contract).toContain('learning_v2_session: ENERGY_SESSION_COST');
+    expect(contract).toContain('level_exam: ENERGY_SESSION_COST');
+    expect(contract).toContain('arena_match: ENERGY_SESSION_COST');
+    expect(contract).not.toMatch(/:s*(10|20|25),/);
     expect(contract).toContain('video: 0');
     expect(contract).toContain('max_call: 0');
   });
 
-  it('remote defaults resolve to 100 energy and one unit every six minutes', () => {
+  it('remote defaults resolve to 5 energy', () => {
     const flags = read('app/remote_flags.ts');
     expect(flags).toContain('numeric_energy_v2: true');
-    expect(flags).toContain('energy_max: 100');
+    expect(flags).toContain('max_energy: 5,');
+    expect(flags).toContain('max_energy: { min: 5, max: 5 }');
     expect(flags).toContain('energy_recovery_interval_ms: 6 * 60 * 1000');
   });
 

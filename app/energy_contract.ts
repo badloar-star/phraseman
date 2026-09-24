@@ -92,21 +92,34 @@ export type EnergyActivityKey =
   | 'video'
   | 'max_call';
 
-export type EnergyActivityCost = 0 | 10 | 20 | 25;
+/**
+ * Цена ОДНОГО начавшегося учебного занятия — любого режима.
+ *
+ * зачем (PM-082, BIBLE «−1 за начавшееся учебное занятие»; владелец: «все
+ * будет одна единица»): прежняя лестница 10/20/25 по видам активности
+ * отменена. Урок, карточки, диалог, экзамен, диагностика — ровно 1.
+ */
+export const ENERGY_SESSION_COST = 1 as const;
 
+export type EnergyActivityCost = 0 | typeof ENERGY_SESSION_COST;
+
+/**
+ * 0 — не учебное занятие (теория, чтение, просмотр видео): такие экраны
+ * энергию не тратят (PM-082-A2). Раздел MAX запломбирован и тоже 0.
+ */
 const ENERGY_ACTIVITY_PRICES: Readonly<Record<EnergyActivityKey, EnergyActivityCost>> = Object.freeze({
-  flashcards: 10,
-  lesson_words: 10,
-  irregular_verbs: 10,
-  preposition_drill: 10,
-  mistake_practice: 10,
-  classic_lesson: 20,
-  learning_v2_session: 20,
-  ai_dialog: 20,
-  personal_plan_exercise: 20,
-  diagnostic_test: 20,
-  level_exam: 20,
-  arena_match: 25,
+  flashcards: ENERGY_SESSION_COST,
+  lesson_words: ENERGY_SESSION_COST,
+  irregular_verbs: ENERGY_SESSION_COST,
+  preposition_drill: ENERGY_SESSION_COST,
+  mistake_practice: ENERGY_SESSION_COST,
+  classic_lesson: ENERGY_SESSION_COST,
+  learning_v2_session: ENERGY_SESSION_COST,
+  ai_dialog: ENERGY_SESSION_COST,
+  personal_plan_exercise: ENERGY_SESSION_COST,
+  diagnostic_test: ENERGY_SESSION_COST,
+  level_exam: ENERGY_SESSION_COST,
+  arena_match: ENERGY_SESSION_COST,
   theory: 0,
   reading: 0,
   video: 0,

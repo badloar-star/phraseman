@@ -43,7 +43,7 @@ import { shouldRenderNoEnergyModal } from '../app/services/no_energy_modal_visib
 import { triLang, type Lang } from '../constants/i18n';
 import type { ThemeMode } from '../constants/theme';
 import { soundDirector } from '../modules/audio/sound_director';
-import { activityEnergyCost, type EnergyActivityKey } from '../app/energy_contract';
+import { activityEnergyCost, ENERGY_SESSION_COST, type EnergyActivityKey } from '../app/energy_contract';
 import { energyGateMessage } from '../app/energy_activity_titles';
 import { formatTimeUntilRecovery } from '../app/energy_system';
 
@@ -194,7 +194,9 @@ function NoEnergyModal({
   const { hasPremiumAccess } = usePremium();
   const { lang } = useLang();
   const totalAvailable = energy + bonusEnergy;
-  const requiredEnergy = activity ? activityEnergyCost(activity) : Math.max(20, minRequired ?? 0);
+  // зачем (PM-082): без указанной активности порог — цена одного занятия (1),
+  // а не старые 20: при запасе 5 порог 20 не выполнился бы никогда.
+  const requiredEnergy = activity ? activityEnergyCost(activity) : Math.max(ENERGY_SESSION_COST, minRequired ?? 0);
   const isGate = requiredEnergy > 0;
   const modalVisible = shouldRenderNoEnergyModal(visible, hasPremiumAccess, qaIgnorePremiumAccess);
   const { formattedTime } = useEnergyCountdown({ visible: modalVisible });

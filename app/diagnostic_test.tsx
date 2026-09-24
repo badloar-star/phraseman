@@ -1700,21 +1700,8 @@ export default function DiagnosticTest() {
           </TouchableOpacity>
         </View>
 
-        {!isUnlimited && (
-          <Text style={{ color: t.textMuted, fontSize: f.caption, textAlign: 'center', marginTop: 10 }}>
-            {triLang(lang, {
-              ru: '20 ⚡ за старт диагностики',
-              uk: '20 ⚡ за початок діагностики',
-              en: '20 ⚡ to start the level test',
-              es: '20 ⚡ al empezar el test de nivel',
-              'pt-BR': '20 ⚡ para iniciar o teste de nível',
-              vi: '20 ⚡ để bắt đầu bài kiểm tra trình độ',
-              id: '20 ⚡ untuk memulai tes level',
-              tr: 'Seviye testini başlatmak için 20 ⚡',
-              pl: '20 ⚡ za rozpoczęcie testu poziomującego',
-            })}
-          </Text>
-        )}
+        {/* зачем (PM-082 + PM-086): подпись «20 ⚡ за старт диагностики» снята —
+            цена стала единой (1), а ценники у кнопок владелец убрал везде. */}
 
         <View
           style={{

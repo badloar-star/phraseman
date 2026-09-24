@@ -46,19 +46,22 @@ describe('numeric energy contract', () => {
     });
   });
 
+  // PM-082 (BIBLE «−1 за начавшееся учебное занятие»; владелец: «все будет
+  // одна единица»): любое учебное занятие стоит 1. Прежние 10/20/25 отменены.
+  // Не-учебные экраны (теория, чтение, видео) энергию не тратят.
   it.each<[EnergyActivityKey, number]>([
-    ['flashcards', 10],
-    ['lesson_words', 10],
-    ['irregular_verbs', 10],
-    ['preposition_drill', 10],
-    ['mistake_practice', 10],
-    ['classic_lesson', 20],
-    ['learning_v2_session', 20],
-    ['ai_dialog', 20],
-    ['personal_plan_exercise', 20],
-    ['diagnostic_test', 20],
-    ['level_exam', 20],
-    ['arena_match', 25],
+    ['flashcards', 1],
+    ['lesson_words', 1],
+    ['irregular_verbs', 1],
+    ['preposition_drill', 1],
+    ['mistake_practice', 1],
+    ['classic_lesson', 1],
+    ['learning_v2_session', 1],
+    ['ai_dialog', 1],
+    ['personal_plan_exercise', 1],
+    ['diagnostic_test', 1],
+    ['level_exam', 1],
+    ['arena_match', 1],
     ['theory', 0],
     ['reading', 0],
     ['video', 0],

@@ -43,6 +43,7 @@ import { useEnergy, useEnergySessionIntent } from '../EnergyContext';
 import { usePremium } from '../PremiumContext';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import NoEnergyModal from '../NoEnergyModal';
+import { activityEnergyCost } from '../../app/energy_contract';
 import ScreenGradient from '../ScreenGradient';
 import TapScale from '../TapScale';
 import { useTheme } from '../ThemeContext';
@@ -56,8 +57,10 @@ import LevelExamResult, { type LevelExamRewardState } from './LevelExamResult';
 import PhraseBuilderQuestion from './PhraseBuilderQuestion';
 import SpeedMatchQuestion from './SpeedMatchQuestion';
 
-// Numeric energy: экзамен стоит 20 ⚡ за один старт.
-const ENERGY_COST = 20;
+// Numeric energy: экзамен стоит одно занятие (1 ⚡) за один старт.
+// зачем (PM-082, BIBLE «−1 за начавшееся учебное занятие»): экзамен — такое же
+// занятие, цена из единого каталога (1), а не собственные 20.
+const ENERGY_COST = activityEnergyCost('level_exam');
 
 type Props = {
   level: LevelExamLevel;

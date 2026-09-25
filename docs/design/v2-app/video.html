@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Видео 2.0</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+.lang { display: inline-flex; align-items: center; gap: 8px; height: 35px; padding: 0 12px 0 10px; border-radius: 18px; background: var(--control); font-size: 15px; font-weight: 700; flex: none; }
+.lang img { width: 24px; height: 15px; border-radius: 3px; object-fit: cover; display: block; }
+.chbtn { display: inline-flex; align-items: center; gap: 10px; height: 44px; padding: 0 14px 0 6px; border-radius: 22px; background: #1C1C1E; border: 1px solid var(--line); font-size: 16px; font-weight: 700; }
+.chav { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(145deg, #3A3A3E, #1B1B1D); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; flex: none; }
+.dot { position: relative; }
+.dot::after { content: ""; position: absolute; top: 8px; right: 8px; width: 9px; height: 9px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 2px #0C0C0D; }
+.tabs3 { display: flex; gap: 22px; border-bottom: 1px solid var(--line); margin-top: 18px; }
+.tabs3 > div { padding: 12px 0; font-size: 16px; font-weight: 600; color: var(--sec); position: relative; }
+.tabs3 > div.on { color: var(--text); }
+.tabs3 > div.on::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; border-radius: 1px; background: #fff; }
+.thumb { position: relative; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; background: radial-gradient(90% 120% at 80% 20%, #3B3B3F, #121214 70%); border: 1px solid var(--line); }
+.thumb .cap { position: absolute; left: 16px; top: 14px; right: 60px; font-size: 22px; line-height: 24px; font-weight: 800; text-transform: uppercase; letter-spacing: -.3px; text-shadow: 0 1px 10px rgba(0,0,0,.6); }
+.thumb.sm .cap { font-size: 14px; line-height: 16px; left: 10px; top: 9px; right: 20px; }
+.thumb .du { position: absolute; right: 10px; bottom: 10px; height: 22px; padding: 0 7px; border-radius: 7px; background: rgba(0,0,0,.72); font-size: 12px; font-weight: 700; display: flex; align-items: center; }
+.thumb .pl { position: absolute; left: 14px; bottom: 12px; width: 44px; height: 44px; border-radius: 50%; background: rgba(0,0,0,.5); border: 1px solid rgba(255,255,255,.25); display: flex; align-items: center; justify-content: center; }
+.thumb.sm .pl { width: 28px; height: 28px; left: 8px; bottom: 7px; }
+.vt { font-size: 17px; line-height: 22px; font-weight: 700; margin-top: 10px; }
+.vm { font-size: 14px; color: var(--sec); margin-top: 4px; }
+.hero { border-radius: 22px; background: var(--card-2); border: 1px solid var(--line); padding: 12px; }
+.hero .badge { display: inline-flex; align-items: center; gap: 7px; height: 26px; padding: 0 10px; border-radius: 13px; background: rgba(0,0,0,.6); font-size: 12px; font-weight: 700; letter-spacing: .3px; position: absolute; left: 12px; top: 12px; z-index: 2; }
+.live { width: 8px; height: 8px; border-radius: 50%; background: #fff; animation: blink 1.2s ease-in-out infinite; }
+@keyframes blink { 50% { opacity: .25; } }
+.vrow { display: flex; gap: 14px; align-items: center; }
+.vrow .thumb { width: 150px; flex: none; border-radius: 12px; }
+.plrow { display: flex; gap: 14px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.plstack { position: relative; width: 128px; flex: none; }
+.plstack::before, .plstack .thumb.sm .cap { font-size: 11px; line-height: 13px; top: 7px; }
+.plstack::after { content: ""; position: absolute; left: 8px; right: 8px; top: -6px; height: 10px; border-radius: 10px 10px 0 0; background: #232326; }
+.plstack::after { left: 16px; right: 16px; top: -11px; background: #1A1A1C; }
+.player { position: relative; aspect-ratio: 16 / 9; background: #000; border-radius: 0; margin: 0 -20px; }
+.player .bar { position: absolute; left: 14px; right: 14px; bottom: 12px; display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 600; }
+.player .bar .trk { flex: 1; height: 4px; }
+.pack { border-radius: 20px; background: var(--card-2); border: 1px solid var(--line); padding: 16px; }
+.tc { display: flex; gap: 14px; align-items: flex-start; padding: 12px 12px; border-radius: 14px; transition: background 300ms; }
+.tc .tm { font-size: 13px; font-weight: 700; color: var(--sec); width: 40px; padding-top: 2px; font-variant-numeric: tabular-nums; flex: none; }
+.tc .en { font-size: 16px; font-weight: 700; }
+.tc .ru { font-size: 14px; color: var(--sec); margin-top: 2px; }
+.tc .bm { color: var(--sec); flex: none; margin-left: auto; }
+.tc.cur { background: #232326; }
+.tc.cur .tm { color: #fff; }
+.bmF path { fill: currentColor; }
+.toast { position: absolute; left: 16px; right: 16px; bottom: 34px; z-index: 60; display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 12px 16px; border-radius: 16px; background: #2A2A2C; border: 1px solid var(--line); font-size: 15px; line-height: 20px; box-shadow: 0 14px 34px rgba(0,0,0,.5); }
+.note { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 14px; background: var(--card-2); border: 1px solid var(--line); font-size: 14.5px; line-height: 19px; color: var(--sec); }
+.note svg { color: var(--text); }
+.skel { background: linear-gradient(90deg, #17171A, #1F1F22, #17171A); background-size: 300px 100%; animation: sk 1.3s infinite linear; border-radius: 12px; }
+@keyframes sk { from { background-position: -300px 0; } to { background-position: 300px 0; } }
+.spin { width: 22px; height: 22px; border-radius: 50%; border: 2.5px solid rgba(255,255,255,.18); border-top-color: #fff; animation: spn .8s linear infinite; display: inline-block; flex: none; }
+@keyframes spn { to { transform: rotate(360deg); } }
+.pgbtn { display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 16px; border-radius: 19px; border: 1px solid var(--line-2); background: #161618; color: var(--text); font: 600 14px Inter, sans-serif; cursor: pointer; }
+.addbtn { transition: background 260ms, color 260ms; }
+.addbtn.done { background: transparent !important; color: #fff; border: 1px solid var(--outline); }
+.addbtn .no, .addbtn .ok { display: inline-flex; align-items: center; gap: 8px; } .addbtn .ok { display: none; } .addbtn.done .ok { display: inline-flex; } .addbtn.done .no { display: none; }
+.pop { animation: pop 420ms cubic-bezier(.3,1.5,.5,1); }
+@keyframes pop { 40% { transform: scale(1.06); } }
+.cov { width: 100%; max-width: 980px; border-collapse: collapse; font-size: 14px; margin-top: 18px; }
+.cov td, .cov th { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); color: #D6D6D8; vertical-align: top; }
+.cov th { color: var(--sec); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Видео</h1>
+  <p class="page-lead">Центральная вкладка 2.0. Всё из кода (app/lingman_videos.tsx, lingman_playlist.tsx, components/youtube/*), плюс набор к ролику одной кнопкой «Добавить себе» и фразы по таймкодам. Монет и энергии за просмотр нет.</p>
+  <nav class="page-nav"><a href="index.html">Все разделы</a><a href="etalon.html">Эталон</a><a class="on" href="video.html">Видео</a></nav>
+  <table class="cov" id="cov"></table>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+const { icon, phone, col, block, sheet } = K;
+const A = 'assets/';
+const lang = () => `<span class="lang t"><img src="${A}language_en.webp" alt="">EN${icon('down', 's16')}</span>`;
+const ch = `<span style="color:var(--sec)">${icon('fwd', 's20')}</span>`;
+const replay = (id, t = 'Повторить анимацию') => `<button class="pgbtn t" data-replay="${id}">${icon('arrowR', 's16')}${t}</button>`;
+const VIDS = [['Catch<br>a flight', '30 фраз для поездки за границу', '12:34', '2 дня назад · 4,1 тыс.'], ['How’s it<br>going?', 'Small talk без неловкости', '8:02', 'неделю назад · 2,7 тыс.'], ['Get over<br>it', 'Фразовые глаголы с get', '10:51', '2 недели назад · 9,8 тыс.'], ['For here<br>or to go?', 'Как заказать кофе и не покраснеть', '6:15', 'месяц назад · 12 тыс.']];
+const vcard = ([cap, t, du, m]) => `<div class="t"><div class="thumb"><span class="cap">${cap}</span><span class="pl">${icon('play', 's24')}</span><span class="du">${du}</span></div><div class="vt">${t}</div><div class="vm">${m}</div></div>`;
+const vrow = ([cap, t, du, m]) => `<div class="vrow t"><div class="thumb sm"><span class="cap">${cap}</span><span class="pl">${icon('play', 's16')}</span><span class="du">${du}</span></div><div class="grow"><div style="font-size:16px;line-height:21px;font-weight:700">${t}</div><div class="vm">${m}</div></div></div>`;
+// зачем: в одну строку не помещалось — название канала переносилось, точка налезала на стрелку
+const head = (unread) => `<div class="flex" style="justify-content:space-between"><div style="font-size:34px;line-height:40px;font-weight:700;letter-spacing:-.5px">Видео</div>${lang()}</div><div style="margin-top:14px"><span class="chbtn t" data-open="chs"><span class="chav">PE</span>Phraseman English${icon('down', 's16')}${unread ? '<span style="width:8px;height:8px;border-radius:50%;background:#fff;margin-left:2px"></span>' : ''}</span></div>`;
+const tabs = (on) => `<div class="tabs3">${['Главная', 'Все видео', 'Плейлисты'].map((t, i) => `<div class="t${i === on ? ' on' : ''}">${t}</div>`).join('')}</div>`;
+const packsRow = `<div class="card t" style="margin-top:18px;display:flex;align-items:center;gap:14px;padding:12px 14px"><div class="tile">${icon('layers', 's20')}</div><div class="grow"><div style="font-size:16px;font-weight:700">Наборы из видео</div><div style="font-size:14px;color:var(--sec);margin-top:2px">Фразы из роликов карточками</div></div>${ch}</div>`;
+const hero = (state) => {
+  const B = { soon: ['Скоро премьера', 'Завтра в 19:00'], live: ['Премьера сейчас', 'Идёт 4 минуты'], air: ['Сейчас в эфире', '128 смотрят'], check: ['Ожидается премьера', 'Через минуту'] }[state];
+  const btn = state === 'soon' ? `<span class="cta sm t addbtn" data-anim="remind" style="width:auto"><span class="no">${icon('flag', 's18')}Напомнить</span><span class="ok">${icon('check', 's18')}Напоминание установлено</span></span>`
+    : state === 'set' ? '' : state === 'check' ? `<span class="cta sm gh t" style="width:auto"><span class="spin" style="width:18px;height:18px"></span>Проверяем начало…</span>` : `<span class="cta sm t" style="width:auto">${icon('play', 's18')}Присоединиться</span>`;
+  return `<div class="hero" style="margin-top:18px"><div class="thumb" style="border-radius:14px"><span class="badge">${state === 'soon' || state === 'check' ? icon('flag', 's16') : '<span class="live"></span>'}${B[0]}</span><span class="cap" style="top:48px">Sorry<br>to bother you</span><span class="pl">${icon('play', 's24')}</span></div>
+    <div style="margin-top:12px"><div style="font-size:17px;font-weight:700">15 вежливых фраз для работы</div><div class="vm">${B[1]}</div></div>${btn ? `<div style="margin-top:12px">${btn.replace('cta sm', 'cta sm').replace('style="width:auto"', 'style="width:100%"')}</div>` : ''}</div>`;
+};
+const main = (o = {}) => phone(`${head(o.unread)}${tabs(0)}${o.note || ''}${o.hero === false ? '' : hero(o.hero || 'soon')}${packsRow}<div class="sec" style="margin-top:26px"><div class="ti">Новые видео</div></div><div class="stack" style="--g:18px;display:flex;flex-direction:column;gap:20px">${VIDS.map(vcard).join('')}</div>`, { time: '12:52', overlay: o.overlay || '' });
+const channelSheet = () => sheet('chs', `<div style="display:flex;align-items:center;padding:0 4px"><div class="grow" style="font-size:22px;font-weight:700">Наши каналы</div><span class="rb fill t" data-close>${icon('close', 's18')}</span></div>
+  <div style="margin-top:14px">${[['PE', 'Phraseman English', 'Английский', 1, 'language_en'], ['PL', 'Professor Lingman', 'Английский', 0, 'language_en']].map(([a, n, s, on, f]) => `<div class="t" style="display:flex;align-items:center;gap:14px;padding:12px 4px;border-bottom:1px solid var(--line)"><span class="chav" style="width:44px;height:44px;font-size:15px">${a}</span><div class="grow"><div style="font-size:17px;font-weight:700">${n}</div><div style="font-size:14px;color:var(--sec);margin-top:2px;display:flex;align-items:center;gap:6px"><img src="${A}${f}.webp" style="width:18px;height:12px;border-radius:2px;object-fit:cover" alt="">${s}</div></div>${on ? icon('check', 's20') : ''}</div>`).join('')}</div>
+  <div class="t" style="margin-top:16px;font-size:16px;font-weight:600;color:var(--sec);text-align:center">Все наши каналы</div>`, true);
+const allVideos = () => phone(`${head()}${tabs(1)}<div style="display:flex;flex-direction:column;gap:16px;margin-top:18px">${[...VIDS, ['Tell me<br>about you', 'Английский на собеседовании', '14:20', 'месяц назад · 7,3 тыс.'], ['Break<br>the ice', 'Как начать разговор', '9:12', '2 месяца назад · 5 тыс.']].map(vrow).join('')}</div>`, { time: '12:52' });
+const playlists = () => phone(`${head()}${tabs(2)}<div style="margin-top:14px">${[['В дорогу', 12], ['Работа и карьера', 9], ['Фразовые глаголы', 15], ['Разговорный английский', 21]].map(([t, n], i) => `<div class="plrow t"><div class="plstack"><div class="thumb sm"><span class="cap">${VIDS[i % 4][0]}</span><span class="pl">${icon('play', 's16')}</span></div></div><div class="grow"><div style="font-size:16px;font-weight:700">${t}</div><div class="vm">${n} видео</div></div>${ch}</div>`).join('')}</div>`, { time: '12:52' });
+const playlist = (empty) => phone(`<div class="topbar"><span class="rb t">${icon('arrowL', 's20')}</span><span></span></div><div style="font-size:30px;line-height:36px;font-weight:700;margin-top:14px">В дорогу</div><div class="vm" style="font-size:15px">12 видео · Phraseman English</div>
+  ${empty ? `<div style="text-align:center;padding:120px 20px 0"><div class="tile t61" style="margin:0 auto">${icon('play', 's24')}</div><div style="font-size:16px;color:var(--sec);margin-top:18px">Видео этого плейлиста пока недоступны.</div></div>` : `<span class="cta t" style="margin-top:18px">${icon('play', 's20')}Воспроизвести всё</span><div style="display:flex;flex-direction:column;gap:16px;margin-top:20px">${VIDS.map(vrow).join('')}</div>`}`, { time: '12:52' });
+
+// --- Плеер + набор к ролику + фразы по таймкодам
+const PH = [['0:42', 'Catch a flight', 'успеть на рейс'], ['1:15', 'Boarding pass', 'посадочный талон'], ['2:03', 'Window or aisle?', 'у окна или у прохода?'], ['3:26', 'Carry-on', 'ручная кладь'], ['4:10', 'Layover', 'пересадка'], ['5:02', 'Jet lag', 'смена часовых поясов']];
+const tcList = (cur, saved = []) => `<div data-tc>${PH.map(([tm, en, ru], i) => `<div class="tc t${i === cur ? ' cur' : ''}"><span class="tm">${tm}</span><div class="grow"><div class="en">${en}</div><div class="ru">${ru}</div></div><span class="bm${saved.includes(i) ? ' bmF' : ''}" style="${saved.includes(i) ? 'color:#fff' : ''}">${icon('bookmark', 's20')}</span></div>`).join('')}</div>`;
+const playerBlock = (pct = 38, t = '4:46') => `<div class="player"><div class="thumb" style="border-radius:0;border:none;height:100%"><span class="cap" style="font-size:26px;line-height:28px">Catch<br>a flight</span></div><span class="rb t" style="position:absolute;right:12px;top:12px;width:34px;height:34px;background:rgba(0,0,0,.55);border-color:rgba(255,255,255,.2)" title="Закрыть видео">${icon('close', 's16')}</span><div class="bar"><span>${t}</span><div class="trk"><i style="width:${pct}%"></i></div><span>12:34</span></div></div>`;
+const packBlock = (added) => `<div class="pack" style="margin-top:16px"><div class="flex"><img src="${A}community_26_ocean_pearl_fan.webp" style="width:58px" alt=""><div class="grow"><div class="ov" style="letter-spacing:2px">Набор к ролику</div><div style="font-size:17px;font-weight:700;margin-top:4px">30 фраз для поездки</div><div class="vm">30 карточек · 118 добавили</div></div></div>
+  <span class="cta t addbtn${added ? ' done' : ''}" data-anim="add" style="margin-top:14px"><span class="no">Добавить себе ${icon('plus', 's18')}</span><span class="ok">${icon('check', 's18')}В моих наборах</span></span></div>`;
+const watch = (o = {}) => phone(`<div style="margin-top:-6px"></div>${playerBlock(o.pct, o.t)}<div style="font-size:20px;line-height:26px;font-weight:700;margin-top:16px">30 фраз для поездки за границу</div><div class="vm">Phraseman English · 2 дня назад · 4,1 тыс.</div>
+  ${packBlock(o.added)}
+  <div class="sec" style="margin-top:24px"><div class="ti" style="font-size:18px">Фразы из видео<span class="n">${PH.length}</span></div><div class="ac">${icon('up', 's16')}</div></div>${o.body || tcList(o.cur ?? 3, o.saved || [])}`, { time: '12:52', overlay: o.overlay || '' });
+const phrasesLoading = () => watch({ body: `<div class="stack">${[0, 1, 2, 3].map(() => `<div class="skel" style="height:58px"></div>`).join('')}</div>` });
+const phrasesError = () => watch({ body: `<div class="card t" style="padding:18px;text-align:center;font-size:15px;color:var(--sec)"><div style="display:flex;justify-content:center">${icon('wifiOff', 's20')}</div><div style="margin-top:8px">Не удалось загрузить. Нажмите, чтобы повторить</div></div>` });
+const phraseSheet = (saved) => watch({ cur: 3, saved: saved ? [3] : [], overlay: sheet('ps', `<div class="ov" style="padding:0 4px;letter-spacing:3px">Фраза · 3:26</div><div style="font-size:30px;font-weight:700;padding:6px 4px 0">Carry-on</div>
+  <div class="stack g13" style="margin-top:18px"><div class="card" style="background:#202022;border-radius:16px;padding:16px"><div class="ov">Перевод</div><div style="font-size:17px;margin-top:8px">Ручная кладь</div></div><div class="card" style="background:#202022;border-radius:16px;padding:16px"><div class="ov">Подробно</div><div style="font-size:16px;line-height:22px;margin-top:8px">Сумка, которую берёшь с собой в салон самолёта. «Is this OK as a carry-on?» — «Это можно взять в салон?»</div></div></div>
+  <span class="cta t${saved ? ' gh' : ''}" style="margin-top:18px">${saved ? `${icon('check', 's18')}Фраза сохранена` : `${icon('bookmark', 's18')}Сохранить фразу`}</span>`, true) });
+const addedToast = () => watch({ added: true, overlay: `<div class="toast">${icon('check', 's18')}Набор добавлен в «Мои наборы»</div>` });
+
+// --- Состояния каталога
+const loading = () => phone(`${head()}${tabs(0)}<div class="skel" style="aspect-ratio:16/9;margin-top:18px;border-radius:22px"></div><div class="skel" style="height:64px;margin-top:18px"></div>${[0, 1].map(() => `<div class="skel" style="aspect-ratio:16/9;margin-top:22px;border-radius:16px"></div><div class="skel" style="height:16px;width:70%;margin-top:10px"></div>`).join('')}`, { time: '12:52' });
+const empty = () => phone(`${head()}${tabs(0)}${packsRow}<div style="text-align:center;padding:110px 20px 0"><div class="tile t61" style="margin:0 auto">${icon('play', 's24')}</div><div style="font-size:16px;color:var(--sec);margin-top:18px">Здесь пока нет опубликованных видео.</div></div>`, { time: '12:52' });
+const offline = () => main({ hero: false, note: `<div class="note" style="margin-top:16px">${icon('wifiOff', 's20')}<span>Показываем сохранённый каталог. Обновим, когда появится связь.</span></div>` });
+const stale = () => main({ hero: false, note: `<div class="note" style="margin-top:16px">${icon('flag', 's20')}<span>Каталог давно не обновлялся</span></div>` });
+const error = () => phone(`${head()}${tabs(0)}<div style="text-align:center;padding:140px 20px 0"><div class="tile t61" style="margin:0 auto">${icon('wifiOff', 's24')}</div><div style="font-size:16px;color:var(--sec);margin-top:18px;line-height:22px">Не удалось загрузить каталог. Потяни вниз, чтобы повторить.</div><span class="cta sm t" style="display:inline-flex;margin-top:22px">Повторить</span></div>`, { time: '12:52' });
+const pull = () => error().replace('<div class="in">', '<div class="in" style="transform:translateY(92px)"><div style="position:absolute;left:0;right:0;top:-46px;display:flex;justify-content:center"><span class="spin"></span></div>');
+
+const COV = [
+  ['VID-01', 'Вкладка «Видео» — главная канала', 'main'], ['VID-01', 'Премьера: скоро / напоминание / сейчас / эфир / проверяем', 'hero'], ['—', 'Шторка «Наши каналы» (YoutubeChannelPickerSheet)', 'main'],
+  ['—', 'Вкладки канала: Главная / Все видео / Плейлисты', 'tabs'], ['VID-02', 'Плейлист · «Воспроизвести всё» · пустой', 'pl'], ['—', 'Плеер (YoutubeInlinePlayer) · «Закрыть видео»', 'watch'],
+  ['—', 'Набор к ролику · «Добавить себе» → «В моих наборах»', 'watch'], ['—', 'Фразы из видео по таймкодам · загрузка · ошибка', 'watch'], ['—', 'Фраза подробно · «Сохранить фразу» → «Фраза сохранена»', 'watch'],
+  ['—', 'Загрузка · пусто · нет сети · устарел · ошибка · потянуть', 'state'], ['—', 'Непрочитанные видео — точка на кнопке канала', 'main'], ['удалено', 'Монеты/энергия за просмотр (VIDEO.md)', '—']];
+document.getElementById('cov').innerHTML = `<tr><th>ID</th><th>Что</th><th>Где на странице</th></tr>` + COV.map(([a, b, c]) => `<tr><td>${a}</td><td>${b}</td><td>${c === '—' ? 'не рисуется' : `<a href="#${c}" style="text-decoration:underline">${c}</a>`}</td></tr>`).join('');
+
+document.getElementById('root').innerHTML =
+  block('main', 'Главная канала', 'Точка на кнопке канала — есть непрочитанные ролики. «Напомнить» меняется на «Напоминание установлено» сразу, без ожидания сети.', [
+    col('Вкладка «Видео»', main({ unread: true })), col('Нажали «Напомнить»', main({}) + replay('remind')), col('Шторка «Наши каналы»', main({ overlay: channelSheet() }))]) +
+  block('hero', 'Премьера — все состояния', '', [col('Премьера сейчас', main({ hero: 'live' })), col('Сейчас в эфире', main({ hero: 'air' })), col('Проверяем начало…', main({ hero: 'check' }))]) +
+  block('tabs', 'Все видео и плейлисты', '', [col('Все видео', allVideos()), col('Плейлисты', playlists())]) +
+  block('pl', 'Плейлист', '', [col('Плейлист', playlist()), col('Плейлист пуст', playlist(true))]) +
+  block('watch', 'Ролик: плеер, набор и фразы по таймкодам', 'Подсветка фразы идёт вместе с роликом (живой пример — первый телефон). «Добавить себе» — мгновенно, сеть догоняет.', [
+    col('Смотрю ролик — фразы по таймкодам', watch({}) + replay('tc', 'Запустить ролик')), col('Добавить себе → «В моих наборах»', watch({}) + replay('add')), col('Набор добавлен', addedToast()),
+    col('Фраза подробно', phraseSheet(false)), col('Фраза сохранена', phraseSheet(true)), col('Фразы грузятся', phrasesLoading()), col('Фразы не загрузились', phrasesError())]) +
+  block('state', 'Каталог — остальные состояния', '', [col('Загрузка', loading()), col('Пусто', empty()), col('Нет сети', offline()), col('Каталог давно не обновлялся', stale()), col('Ошибка', error()), col('Потянули вниз — повтор', pull())]);
+
+// ---- живые анимации ----
+document.body.addEventListener('click', (e) => {
+  const b = e.target.closest('[data-replay]'); if (!b) return;
+  const ph = b.parentElement.querySelector('.ph'); const kind = b.dataset.replay;
+  if (kind === 'remind' || kind === 'add') {
+    const n = ph.querySelector(`[data-anim="${kind}"]`); n.classList.remove('done', 'pop'); void n.offsetWidth;
+    setTimeout(() => { n.classList.add('done', 'pop'); }, 350);
+  }
+  if (kind === 'tc') {
+    // зачем: владелец — «фразы по таймкодам очень хорошо придумал»: подсветка бежит за роликом
+    const rows = ph.querySelectorAll('.tc'); const fill = ph.querySelector('.player .trk i'); const tm = ph.querySelector('.player .bar span');
+    let i = 0; rows.forEach((r) => r.classList.remove('cur'));
+    const step = () => { rows.forEach((r, k) => r.classList.toggle('cur', k === i)); fill.style.width = `${8 + i * 15}%`; tm.textContent = rows[i].querySelector('.tm').textContent; i++; if (i < rows.length) setTimeout(step, 900); };
+    step();
+  }
+});
+K.init();
+</script>
+</body>
+</html>

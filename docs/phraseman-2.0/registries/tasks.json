@@ -8409,8 +8409,10 @@
       {
         "id": "PM-171-A1",
         "text": "Данные не уничтожаются без отдельного решения",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commit 41648d48d"
+        ]
       },
       {
         "id": "PM-171-A2",
@@ -8427,13 +8429,14 @@
     ],
     "audit_sha": null,
     "result_sha": "41648d48d",
-    "owner": "Claude Sonnet 5 (субагент)",
+    "owner": "Claude Opus 5.5 (аудит)",
     "reviewer": "self-check (не независимое ревью)",
     "evidence": [
       "commit 41648d48d"
     ],
     "notes": [
-      "Экраны/клиент/прогрев idea_inbox на старте удалены; 15 серверных функций идей и флаг ideas_enabled оставлены (админка использует). functions/src/shard_survey_core.ts изменён (тип маршрута) — не задеплоено"
+      "Экраны/клиент/прогрев idea_inbox на старте удалены; 15 серверных функций идей и флаг ideas_enabled оставлены (админка использует). functions/src/shard_survey_core.ts изменён (тип маршрута) — не задеплоено",
+      "Аудит 25.09: код закоммичен и в порядке, A1 (данные не уничтожены) подтверждён — 15 серверных функций и флаг оставлены нетронутыми. A2 не accept: functions/src/shard_survey_core.ts изменён, но НЕ задеплоен на Cloud Functions по заметке автора — деплой это отдельное необратимое действие, не делаю его сам без явного разрешения владельца"
     ],
     "actual_cost": null,
     "kind": "unclassified",

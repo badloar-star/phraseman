@@ -53,6 +53,7 @@ const LEVEL_GIFT_REWARD_ICON_KEYS = [
   'pearls_100',
   'pearls_250',
   'pearls_500',
+  'pearls_1000',
   'stars_10',
   'stars_20',
   'stars_50',
@@ -60,8 +61,13 @@ const LEVEL_GIFT_REWARD_ICON_KEYS = [
   'stars_250',
   'stars_500',
   'stars_1000',
+  'stars_2000',
   'plus_days_3',
   'plus_days_7',
+  'plus_days_14',
+  'plus_days_30',
+  'xp_bank_1500',
+  'cosmetic_theme',
 ] as const;
 
 // Reward ids remain part of the inventory/data contract. Spin V2 rewards use

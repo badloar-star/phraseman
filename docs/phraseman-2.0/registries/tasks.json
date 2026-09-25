@@ -2092,8 +2092,11 @@
       {
         "id": "PM-046-A1",
         "text": "Удалены маршруты, UI, клиенты и собственные assets после миграционного gate",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "constants/levelGiftRewardIcons.ts: 6 недостающих ID добавлены (pearls_1000, stars_2000, plus_days_14, plus_days_30, xp_bank_1500, cosmetic_theme)",
+          "tests/level_gift_reward_icons.test.ts 3/3 PASS (был сломан 1/3)"
+        ]
       },
       {
         "id": "PM-046-A2",
@@ -2110,13 +2113,16 @@
     ],
     "audit_sha": null,
     "result_sha": "5c98ac424",
-    "owner": "Claude Sonnet 5 (субагент)",
+    "owner": "Claude Opus 5.5 (аудит)",
     "reviewer": "self-check оркестратора (не независимое ревью)",
     "evidence": [
-      "commits 72d217bfc a3b826949 5c98ac424"
+      "commits 72d217bfc a3b826949 5c98ac424",
+      "constants/levelGiftRewardIcons.ts: 6 недостающих ID добавлены (pearls_1000, stars_2000, plus_days_14, plus_days_30, xp_bank_1500, cosmetic_theme)",
+      "tests/level_gift_reward_icons.test.ts 3/3 PASS (был сломан 1/3)"
     ],
     "notes": [
-      "Экран /level_reward_spin и эксклюзивные модули удалены; реферальная рулетка (referrals) НЕ тронута; SpinRewardPlaque/LevelSpinRewardModal остались в dev/ResultsSequence (мёртвый проп). tests/level_gift_reward_icons + runtime_lifecycle_ratchet правки НЕ закоммичены (блок as_any ratchet из-за чужого home.tsx)"
+      "Экран /level_reward_spin и эксклюзивные модули удалены; реферальная рулетка (referrals) НЕ тронута; SpinRewardPlaque/LevelSpinRewardModal остались в dev/ResultsSequence (мёртвый проп). tests/level_gift_reward_icons + runtime_lifecycle_ratchet правки НЕ закоммичены (блок as_any ratchet из-за чужого home.tsx)",
+      "Аудит 25.09: нашёл и починил второй сломанный тест этого аудита (заметка честно предупреждала — 'НЕ закоммичены'). Список LEVEL_GIFT_REWARD_ICON_IDS отставал от ALL_LEVEL_GIFT_DEFS на 6 записей (обрыв диапазона в конце массива). Экран /level_reward_spin удалён, референальная рулетка не тронута. A2 (серверные старые события) НЕ проверял — требует отдельного анализа Firestore-событий, вне статического code review"
     ],
     "actual_cost": null,
     "kind": "unclassified",

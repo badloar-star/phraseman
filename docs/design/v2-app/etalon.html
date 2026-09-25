@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Эталон 2.0</title>
+<link rel="stylesheet" href="kit.css">
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Эталон — 7 экранов приложения</h1>
+  <p class="page-lead">Калибровка набора деталей: эти экраны собраны из тех же деталей, что и все остальные макеты, и должны совпадать со скриншотами приложения 1:1.</p>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+const { icon, phone, col, block, sheet, energy, coins, coinImg } = K;
+const ch = `<span class="ch">${icon('fwd', 's20')}</span>`;
+
+// 1. Хаб «Карточки»
+const packRow = (t, a, meta, n) => `<div class="card t"><div class="row" style="min-height:74px"><div class="tx"><div class="tt">${t}</div><div class="st" style="font-size:16px">${a}</div><div class="meta">${meta}</div></div><span class="cntp">${n}</span>${ch}</div></div>`;
+const m = (h, p, c) => `<span>${icon('heart', 's18')}${h}</span><span>${icon('people', 's18')}${p}</span>${c ? `<span>${icon('chat', 's18')}${c}</span>` : ''}`;
+const myRow = (ic, t, s) => `<div class="card t"><div class="row"><div class="tile">${icon(ic, 's20')}</div><div class="tx"><div class="tt">${t}</div><div class="st">${s}</div></div>${ch}</div></div>`;
+const cardsHub = () => phone(`
+  <div class="topbar" style="margin-top:0"><span class="rb t">${icon('arrowL', 's20')}</span><span class="rb t">${icon('plus', 's20')}</span></div>
+  <div class="lt"><div class="ti">Карточки</div><div class="su">Учите слова и фразы эффективнее</div></div>
+  <div class="sec" style="margin-top:34px"><div class="ti">Лучшее у сообщества</div><div class="ac">Смотреть все ${icon('fwd', 's16')}</div></div>
+  <div class="stack">${packRow('Family', 'Лидия', m(4, 9), 20)}${packRow('B2 глаголы', 'Ирина', m(3, 11, 1), 49)}${packRow('Антоніми дієслів', 'Natalia', m(1, 2), 30)}</div>
+  <div class="divider"></div>
+  <div class="sec" style="margin-top:0"><div class="ti">Ваши карточки</div></div>
+  <div class="stack">${myRow('bookmark', 'Сохранённые', 'Личная коллекция')}${myRow('layers', 'Мои наборы', 'Созданные и добавленные')}${myRow('people', 'Наборы пользователей', 'Открыть каталог')}</div>
+  <div class="cta t" style="margin-top:22px">Тренироваться с карточками<span class="ar">${icon('arrowR', 's20')}</span></div>
+  <div class="foot-brand">PhraseMan 2.0</div>`, { time: '12:52' });
+
+// 2. Шторка «Фраза дня»
+const phraseSheet = () => phone(`<div class="lt" style="opacity:.35"><div class="ti" style="font-size:28px">Сегодня</div></div>`, { time: '12:53',
+  overlay: sheet('p', `
+    <div class="flex" style="align-items:flex-end;padding:0 4px"><div class="grow"><div class="ov">Фраза дня</div><div style="font-size:30px;line-height:36px;font-weight:700;margin-top:8px">Pitch in</div></div>
+      <span class="rb fill t">${icon('bookmark', 's18')}</span><span class="rb fill t">${icon('vol', 's18')}</span><span class="rb fill t" data-close>${icon('close', 's18')}</span></div>
+    <div class="stack g13" style="margin-top:22px">
+      <div class="card" style="background:#202022;border-radius:16px;padding:18px 16px"><div class="ov">Дословно</div><div style="font-size:17px;line-height:22px;margin-top:10px">Вброситься.</div></div>
+      <div class="card" style="background:#202022;border-radius:16px;padding:18px 16px"><div class="ov">Что значит</div><div style="font-size:17px;line-height:22px;margin-top:10px">Сброситься деньгами или объединить усилия для общего дела.</div></div>
+      <div class="card" style="background:#202022;border-radius:16px;padding:18px 16px"><div class="ov">Пример</div><div style="font-size:17px;line-height:21px;margin-top:10px">Собираете на подарок другу или решили вместе убрать парк? Пора pitch in. Это про командный дух и готовность помочь.</div></div>
+    </div>`, true) });
+
+// 3. Набор «B2 глаголы»
+const word = (w) => `<div class="card t" style="border-radius:16px;min-height:118px;display:flex;align-items:center;gap:22px;padding:0 24px 0 12px">
+  <span class="rb" style="width:38px;height:38px;background:#262628;border:none">${icon('vol', 's18')}</span>
+  <div class="grow"><div style="font-size:12px;color:var(--sec);font-weight:600">EN</div><div style="font-size:26px;line-height:32px;font-weight:600;margin-top:8px">${w}</div></div>
+  <span style="position:absolute;right:18px;top:14px;color:var(--sec)">${icon('dotsH', 's20')}</span></div>`;
+const pack = () => phone(`
+  <div class="topbar"><span class="rb bare t">${icon('back', 's24')}</span><span class="rb sq t">${icon('dotsV', 's18')}</span></div>
+  <div style="font-size:34px;line-height:40px;font-weight:700;margin-top:18px">B2 глаголы</div>
+  <div class="flex" style="margin-top:10px;color:var(--sec);font-size:16px"><span style="width:23px;height:23px;border-radius:50%;background:#2A2A2C;display:flex;align-items:center;justify-content:center;color:#8C8C90">${icon('user', 's16')}</span>Ирина</div>
+  <div class="flex" style="margin-top:8px;justify-content:space-between">
+    <div class="meta" style="margin:0;font-size:16px;gap:22px"><span>${icon('heart', 's20')}3</span><span>${icon('people', 's20')}11</span><span>${icon('chat', 's20')}1</span></div>
+    <span class="cta sm t" style="background:#F0EEE9">Добавить себе ${icon('plus', 's18')}</span></div>
+  <div class="divider" style="margin:24px 0 26px"></div>
+  <div style="font-size:17px;font-weight:600;margin-bottom:14px">Карточки <span style="color:var(--muted);margin-left:10px">126</span></div>
+  <div class="stack g13">${word('Lay')}${word('Claim')}${word('Convince')}</div>`, { time: '12:52' });
+
+// 4. Шторка «Выбери режим тренировки»
+const mode = (ic, t, s, last) => `<div class="t" style="display:flex;align-items:center;gap:20px;padding:16px 4px;${last ? '' : 'border-bottom:1px solid var(--line)'}"><div class="tile t57">${icon(ic, 's24')}</div><div class="grow"><div style="font-size:18px;line-height:23px;font-weight:700">${t}</div><div style="font-size:16px;line-height:19px;color:var(--sec);margin-top:4px">${s}</div></div>${ch}</div>`;
+const modeSheet = () => phone(`<div class="lt" style="opacity:.35"><div class="ti">Карточки</div></div>`, { time: '12:52',
+  overlay: sheet('m', `<div class="center"><div style="font-size:22px;line-height:28px;font-weight:700">Выбери режим тренировки</div><div style="font-size:16px;color:var(--sec);margin-top:6px">Практикуй слова разными способами</div></div>
+    <div style="margin-top:22px">${mode('bolt', 'Блиц', 'За 60 секунд находи верные переводы и вспоминай быстрее.')}${mode('mic', 'Устно', 'Произноси фразы вслух и практикуй разговорную речь. Можно остановиться и попробовать ещё раз.')}${mode('check', 'Правда / ложь', 'Сверяй фразу с переводом и сразу проверяй память.')}${mode('edit', 'Вспомни и напиши', 'Вводи фразу на изучаемом языке целиком по памяти.', true)}</div>`, true) });
+
+// 5. Хаб «Диалоги»
+const cat = (ic, t, s, n) => `<div class="card c2 t" style="padding:16px 16px 18px"><div class="flex" style="gap:12px"><div class="tile t55" style="background:#2A2A2C;margin-right:10px">${icon(ic, 's26')}</div><div class="grow"><div style="font-size:19px;line-height:24px;font-weight:700">${t}</div><div style="font-size:15px;color:var(--sec);margin-top:6px">${s}</div></div><span class="flex" style="gap:12px"><span class="frac"><b>0</b><span>/${n}</span></span>${ch}</span></div><div class="trk dot" style="margin:18px 4px 0"><i></i></div></div>`;
+const dialogsHub = () => phone(`
+  <div class="flex" style="align-items:flex-start;margin-top:22px"><div class="grow"><div style="font-size:40px;line-height:46px;font-weight:700;letter-spacing:-.6px">Диалоги</div><div style="font-size:16px;line-height:20px;color:var(--sec);margin-top:8px;max-width:240px">Практикуйте язык в жизненных ситуациях</div></div>
+    <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-end">${energy(5)}<span class="pill">${icon('chatDots', 's20')}10/10</span></div></div>
+  <div class="stack g13" style="margin-top:32px">${cat('cupF', 'Каждый день', 'Повседневные диалоги', 11)}${cat('planeF', 'Путешествия', 'В поездках и на отдыхе', 8)}${cat('peopleF', 'Общение', 'Знакомства и разговоры', 13)}${cat('docF', 'Ситуации', 'Разные жизненные сценарии', 19)}</div>
+  <div class="card c2" style="margin-top:24px;padding:26px 18px 26px 20px;display:flex;gap:20px;align-items:flex-start"><div class="tile t61">${icon('unlock', 's26')}</div><div class="grow"><div style="font-size:16px;font-weight:600;letter-spacing:-.2px;white-space:nowrap">Некоторые диалоги пока закрыты</div><div style="font-size:15px;line-height:20px;color:var(--sec);margin-top:8px">Продолжайте заниматься, чтобы постепенно открывать новые диалоги и расширять свою практику.</div></div></div>`, { time: '13:00', inStyle: 'padding-left:16px;padding-right:16px' });
+
+// 6. «Диалоги» — категория раскрыта
+const dl = (ic, t, lvl, locked) => `<div class="card t" style="background:#1D1D1F;display:flex;align-items:center;gap:16px;padding:0 14px 0 10px;min-height:60px">
+  <div class="tile t46" style="background:#28282A;color:${locked ? '#8E8E92' : '#fff'}">${icon(locked ? 'lockF' : ic, 's20')}</div>
+  <div class="grow"><div style="font-size:17px;line-height:22px;font-weight:600;${locked ? 'color:#D0D0D2' : ''}">${t}</div>${locked ? '<div style="font-size:14px;color:var(--sec);margin-top:2px">Входит в Plus</div>' : ''}</div><span class="lvl">${lvl}</span>${ch}</div>`;
+const dialogsOpen = () => phone(`
+  <div class="flex" style="gap:18px"><span class="rb l t">${icon('back', 's20')}</span><div class="grow" style="font-size:34px;font-weight:700;letter-spacing:-.4px">Диалоги</div>${energy(5, { ol: true })}</div>
+  <div class="center" style="margin-top:10px"><span class="pill">${icon('chatDots', 's20')}10/10</span></div>
+  <div class="card" style="background:#161618;border-radius:24px;margin-top:12px;padding:14px 14px 16px">
+    <div class="flex" style="gap:16px;padding:0 0 0 0"><div class="tile t55" style="background:#2A2A2C">${icon('cupF', 's26')}</div><div class="grow" style="font-size:20px;font-weight:700">Каждый день</div><span class="frac"><b>0</b><span>/11</span></span><span class="ch" style="margin-left:6px">${icon('up', 's20')}</span></div>
+    <div class="trk dot" style="margin:16px 6px 18px"><i></i></div>
+    <div class="stack">${dl('cupF', 'Закажи кофе', 'A1')}${dl('basket', 'В продуктовом', 'A1')}${dl('shirt', 'Магазин одежды', 'A2')}${dl('', 'В аптеке', 'A2', 1)}${dl('', 'В ресторане', 'A2', 1)}${dl('', 'У врача', 'B1', 1)}${dl('', 'Доставка', 'A2', 1)}</div>
+  </div>`, { time: '13:00' });
+
+// 7. Блиц
+const blitz = () => phone(`
+  <div class="flex" style="gap:8px;margin-top:16px"><span class="rb l t" style="margin-right:17px">${icon('back', 's20')}</span><div class="grow"><div style="font-size:20px;font-weight:700">Блиц</div><div style="font-size:15px;color:var(--sec);margin-top:2px;white-space:nowrap">Набор карточек</div></div>
+    <span class="pill" style="height:37px;gap:8px;padding:0 13px">${icon('heartF', 's18')}${icon('heartF', 's18')}${icon('heartF', 's18')}</span><span style="width:1px;height:30px;background:var(--line-2)"></span><span class="pill" style="height:37px;padding:0 12px;gap:7px">${K.coinImg(5, 18)}0</span></div>
+  <div class="trk" style="margin-top:22px;height:6px"><i style="width:45%"></i></div>
+  <div class="flex" style="justify-content:space-between;margin-top:14px;color:var(--sec);font-size:15px;font-weight:600"><span>0</span><span class="pill" style="height:38px;background:#1F1F21;font-size:18px;padding:0 24px">1:00</span><span>100</span></div>
+  <div class="qc" style="margin-top:38px"><div class="k">Выбери перевод</div><div class="q">Hire, fire, quit</div></div>
+  <div class="stack g13" style="margin-top:23px"><div class="opt t">Нанимать- увольнять-увольняться, бросить привычку</div><div class="opt t">Складывать, сгибать об одежде</div><div class="opt t">Обманывать, изменять</div><div class="opt t">Иметь склонность</div></div>`, { time: '12:53' });
+
+document.getElementById('root').innerHTML = block('et', 'Эталонные экраны', '', [
+  col('Карточки — хаб', cardsHub()), col('Фраза дня — шторка', phraseSheet()), col('Набор «B2 глаголы»', pack()), col('Выбор режима тренировки', modeSheet()),
+  col('Диалоги — хаб', dialogsHub()), col('Диалоги — категория раскрыта', dialogsOpen()), col('Блиц', blitz())]);
+K.init();
+</script>
+</body>
+</html>

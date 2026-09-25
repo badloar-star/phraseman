@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Тренировки и завершение — 2.0</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+/* Локальные детали этой страницы. kit.css/kit.js не трогаем (бриф). */
+.hd { display: flex; align-items: center; gap: 6px; margin-top: 16px; }
+.hd .pill { height: 34px; }
+.hd .pill.s { padding: 0 11px; gap: 6px; }
+.hd .rb.l { margin-right: 6px; }
+.hd .tt { font-size: 20px; font-weight: 700; }
+.hd .su { font-size: 15px; color: var(--sec); margin-top: 2px; white-space: nowrap; }
+.pill.hearts { gap: 5px; padding: 0 10px; }
+.pill.hearts .lost { opacity: .22; }
+.pill.shake { animation: shake 520ms cubic-bezier(.3,1.4,.5,1); }
+@keyframes shake { 0%,100% { transform: none; } 20% { transform: translateX(-5px); } 40% { transform: translateX(5px); } 60% { transform: translateX(-3px); } 80% { transform: translateX(3px); } }
+.prog { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; color: var(--sec); font-size: 15px; font-weight: 600; }
+.timer { height: 38px; background: #1F1F21; font-size: 18px; padding: 0 24px; }
+.opt.ok .mk, .opt.no .mk { position: absolute; right: 16px; }
+.opt { position: relative; }
+.opt .mk { color: var(--good); } .opt.no .mk { color: var(--bad); }
+.opt.fade { opacity: .45; }
+.verdict { display: flex; align-items: center; gap: 10px; justify-content: center; font-size: 16px; font-weight: 600; margin-top: 18px; min-height: 22px; }
+.verdict.ok { color: var(--good); } .verdict.no { color: var(--bad); }
+
+/* Устно */
+.qc.sp { min-height: 200px; padding: 24px 28px 22px; }
+.qc.sp .q { font-size: 30px; line-height: 36px; }
+.listen { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 16px; border-radius: 18px; background: #262628; font-size: 15px; font-weight: 600; margin-top: 18px; }
+.said { border-radius: 16px; background: #131315; border: 1px solid var(--line); padding: 16px 18px; margin-top: 14px; }
+.said .k { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--sec); font-weight: 700; }
+.said .v { font-size: 20px; line-height: 26px; font-weight: 600; margin-top: 8px; }
+.said .v .bad { color: var(--bad); text-decoration: underline; text-decoration-color: rgba(242,118,107,.6); text-underline-offset: 4px; }
+.said.ok { border-color: rgba(111,208,140,.45); } .said.no { border-color: rgba(242,118,107,.45); }
+.micwrap { display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 30px; }
+.mic { width: 76px; height: 76px; border-radius: 50%; background: var(--cta); color: var(--cta-ink); display: flex; align-items: center; justify-content: center; position: relative; }
+.mic.live { background: #FFFFFF; color: #0B0C0E; box-shadow: 0 0 0 8px rgba(255,255,255,.08), 0 0 34px rgba(255,255,255,.25); }
+.mic.live::before { content: ""; position: absolute; inset: -12px; border-radius: 50%; border: 2px solid rgba(255,255,255,.35); animation: halo 1.1s ease-out infinite; }
+@keyframes halo { 0% { transform: scale(.9); opacity: .9; } 100% { transform: scale(1.25); opacity: 0; } }
+.mic .i { width: 30px; height: 30px; }
+.micl { font-size: 15px; color: var(--sec); font-weight: 600; }
+.wave { display: flex; align-items: center; gap: 4px; height: 40px; justify-content: center; margin-top: 30px; }
+.wave i { width: 4px; border-radius: 2px; background: #E9E9EB; height: 8px; animation: wv 900ms ease-in-out infinite; }
+.wave i:nth-child(2n) { animation-duration: 760ms; } .wave i:nth-child(3n) { animation-duration: 1040ms; animation-delay: -300ms; } .wave i:nth-child(5n) { animation-delay: -600ms; }
+@keyframes wv { 0%,100% { height: 8px; opacity: .55; } 50% { height: var(--h, 28px); opacity: 1; } }
+.wave.still i { animation: none; height: 6px; opacity: .3; }
+.aux { display: flex; justify-content: center; gap: 28px; margin-top: 24px; color: var(--sec); font-size: 16px; font-weight: 600; }
+
+/* Правда / ложь */
+.tf { border-radius: 16px; background: #131315; border: 1px solid var(--line); padding: 26px 28px 28px; text-align: center; margin-top: 38px; }
+.tf .k { font-size: 16px; color: var(--sec); }
+.tf .w { font-size: 32px; line-height: 38px; font-weight: 700; margin-top: 22px; letter-spacing: -.3px; }
+.tf .ln { height: 1px; background: var(--line); margin: 22px 30px; }
+.tf .tr { font-size: 22px; line-height: 28px; font-weight: 600; }
+.tfb { display: flex; justify-content: center; gap: 28px; margin-top: 34px; }
+.tfb .b { width: 88px; height: 88px; border-radius: 50%; border: 1px solid var(--outline); display: flex; align-items: center; justify-content: center; }
+.tfb .b .i { width: 34px; height: 34px; stroke-width: 2.2; }
+.tfb .b.ok { border-color: var(--good); background: rgba(111,208,140,.14); color: var(--good); }
+.tfb .b.no { border-color: var(--bad); background: rgba(242,118,107,.14); color: var(--bad); }
+.tfb .b.off { opacity: .4; }
+
+/* Вспомни и напиши */
+.inp { height: 56px; border-radius: 14px; background: #131315; border: 1px solid var(--outline); display: flex; align-items: center; padding: 0 18px; font-size: 18px; font-weight: 500; margin-top: 22px; }
+.inp .plc { color: var(--muted); font-weight: 400; }
+.inp .tv { white-space: pre; }
+.inp.ok { border-color: var(--good); } .inp.no { border-color: var(--bad); } .inp.alm { border-color: #DADADC; }
+.inp .cur { width: 2px; height: 24px; background: #fff; margin-left: 2px; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.inp .typo { color: var(--bad); text-decoration: underline; text-decoration-color: rgba(242,118,107,.6); text-underline-offset: 4px; }
+.hintb { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 16px; border-radius: 18px; background: #262628; font-size: 15px; font-weight: 600; }
+.ansr { margin-top: 18px; border-radius: 16px; background: #131315; border: 1px solid var(--line); padding: 16px 18px; }
+.ansr .k { font-size: 15px; font-weight: 600; } .ansr .k.ok { color: var(--good); } .ansr .k.no { color: var(--bad); } .ansr .k.alm { color: #DADADC; }
+.ansr .v { font-size: 20px; line-height: 26px; font-weight: 600; margin-top: 8px; }
+.kb { position: absolute; left: 0; right: 0; bottom: 0; height: 250px; background: #1C1C1E; border-top: 1px solid var(--line); z-index: 20; padding: 12px 6px 0; }
+.kb .r { display: flex; justify-content: center; gap: 6px; margin-bottom: 10px; }
+.kb .k { width: 34px; height: 44px; border-radius: 6px; background: #3A3A3C; display: flex; align-items: center; justify-content: center; font-size: 19px; font-weight: 500; box-shadow: 0 1px 0 #000; }
+.kb .k.w { width: 52px; background: #2A2A2C; font-size: 13px; } .kb .k.sp { width: 190px; background: #3A3A3C; }
+.kb .k.ret { width: 90px; background: var(--cta); color: var(--cta-ink); font-size: 15px; font-weight: 600; }
+.fx { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; padding: 0 var(--pad) 42px; background: linear-gradient(180deg, rgba(12,12,13,0), var(--bg) 40%); }
+
+/* Завершение */
+.done-h { display: flex; align-items: center; justify-content: space-between; margin-top: 2px; }
+.done-t { text-align: center; margin-top: 18px; }
+.done-t .ti { font-size: 30px; line-height: 36px; font-weight: 700; letter-spacing: -.4px; }
+.done-t .su { font-size: 16px; color: var(--sec); margin-top: 6px; }
+.stats { display: flex; border-radius: 16px; background: #131315; border: 1px solid var(--line); margin-top: 20px; padding: 15px 0; }
+.stats > div { flex: 1; text-align: center; }
+.stats > div + div { border-left: 1px solid var(--line); }
+.stats b { display: block; font-size: 30px; line-height: 34px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -.4px; }
+.stats b.g { color: var(--good); } .stats b.r { color: var(--bad); }
+.stats span { display: block; font-size: 13px; color: var(--sec); font-weight: 600; margin-top: 4px; }
+.stars3 { display: flex; justify-content: center; gap: 14px; margin-top: 22px; }
+.stars3 .i { width: 46px; height: 46px; color: #fff; }
+.stars3 .i.off { color: #2C2C2E; }
+.award { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 12px; height: 54px; }
+.award .coin { display: block; }
+.award .coin.pop { animation: pop 900ms cubic-bezier(.3,1.5,.5,1); }
+@keyframes pop { 0% { transform: scale(.5) rotate(-30deg); opacity: 0; } 55% { transform: scale(1.18) rotate(6deg); opacity: 1; } 100% { transform: none; } }
+.award .n { font-size: 34px; font-weight: 700; letter-spacing: -.5px; font-variant-numeric: tabular-nums; }
+.award .n small { font-size: 16px; color: var(--sec); font-weight: 600; margin-left: 10px; letter-spacing: 0; }
+.errc { border-radius: 16px; background: #131315; border: 1px solid var(--line); margin-top: 14px; padding: 14px 16px 14px; }
+.errc .h { display: flex; align-items: center; justify-content: space-between; font-size: 17px; font-weight: 700; }
+.errc .h .n { color: var(--muted); font-weight: 600; margin-left: 10px; }
+.er { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); }
+.er:first-of-type { border-top: none; }
+.er .w { font-size: 16px; font-weight: 700; width: 92px; flex: none; }
+.er .was { font-size: 15px; color: var(--bad); text-decoration: line-through; text-decoration-color: rgba(242,118,107,.6); }
+.er .ar { color: var(--muted); flex: none; }
+.er .ok { font-size: 15px; color: var(--good); font-weight: 600; }
+.er .tx { flex: 1; min-width: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.errc .cta.gh { height: 44px; border-radius: 22px; font-size: 16px; margin-top: 6px; }
+.rate { border-radius: 16px; background: #131315; border: 1px solid var(--line); margin-top: 14px; padding: 15px 16px 15px; }
+.rate .h { display: flex; align-items: center; justify-content: space-between; font-size: 17px; font-weight: 700; }
+.rate .h .ch { color: var(--sec); }
+.rate .stars { display: flex; justify-content: center; gap: 10px; margin-top: 12px; }
+.rate .stars .i { width: 34px; height: 34px; color: #fff; }
+.rate .stars .i.off { color: #3A3A3E; }
+.rate .fld { min-height: 56px; border-radius: 12px; background: #1C1C1E; border: 1px solid var(--line-2); padding: 12px 14px; font-size: 16px; line-height: 22px; margin-top: 16px; color: var(--muted); }
+.rate .fld.on { color: var(--text); border-color: var(--outline); }
+.rate .cta.sm { margin-top: 10px; margin-left: auto; }
+.rate .cta.sm.dis { background: #1E1E20; color: var(--muted); }
+.next { margin-top: 16px; }
+.next .cta { height: 52px; border-radius: 26px; }
+.quiet { display: block; text-align: center; color: var(--sec); font-size: 16px; font-weight: 600; margin-top: 14px; height: 22px; }
+.replay { display: inline-block; white-space: nowrap; margin-left: 6px; font-size: 13px; color: var(--sec); padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line-2); background: #161618; }
+.replay:hover { color: #fff; }
+.col > .lbl .note { display: block; font-weight: 400; color: var(--sec); margin-top: 2px; font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Тренировки карточек и единый экран завершения</h1>
+  <p class="page-lead">Четыре режима из кода (`flashcards_blitz_session`, `flashcards_speaking_session`, `flashcards_swipe`, `flashcards_recall_session`), энергия 5 у бесплатного на каждом экране занятия (ENERGY.md), один экран завершения для всех режимов (D64.1, PRACTICE.md, D36 для звёзд урока V1). Стиль — эталон «Блиц» 1:1. Опыта нет.</p>
+  <nav class="page-nav"><a href="#blitz">Блиц</a><a href="#speak">Устно</a><a href="#tf">Правда / ложь</a><a href="#recall">Вспомни и напиши</a><a href="#energy">Энергия</a><a href="#done">Завершение</a><a href="#done2">Завершение — один макет</a></nav>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+const { icon, phone, col, block, energy, coins, coinImg } = K;
+
+// ---- локальные значки (только контур 1.8, как в наборе) ----
+const LP = {
+  star: '<path d="M12 3.4l2.7 5.7 6.2.8-4.5 4.3 1.1 6.2L12 17.4l-5.5 3 1.1-6.2L3.1 9.9l6.2-.8z"/>',
+  starF: '<path d="M12 3.4l2.7 5.7 6.2.8-4.5 4.3 1.1 6.2L12 17.4l-5.5 3 1.1-6.2L3.1 9.9l6.2-.8z" fill="currentColor" stroke="none"/>',
+  refresh: '<path d="M20 12a8 8 0 11-2.4-5.7"/><path d="M20 4v5h-5"/>',
+  send: '<path d="M4 12l16-8-4 16-4-6z"/><path d="M12 14l8-10"/>',
+  bulb: '<path d="M9.5 18.5h5M10.5 21.5h3M12 3a6 6 0 014 10.4c-.7.7-1 1.4-1 2.6H9c0-1.2-.3-1.9-1-2.6A6 6 0 0112 3z"/>',
+  arrowR: '<path d="M5 12h14M13 6l6 6-6 6"/>',
+};
+const li = (n, cls = '') => `<svg class="i ${cls}" viewBox="0 0 24 24" aria-hidden="true">${LP[n]}</svg>`;
+
+// ---- общие детали занятия ----
+const hearts = (lost = 0, shake = false) => `<span class="pill hearts${shake ? ' shake' : ''}">${[0, 1, 2].map((i) => `<span${i >= 3 - lost ? ' class="lost"' : ''}>${icon('heartF', 's16')}</span>`).join('')}</span>`;
+const scoreP = (n) => `<span class="pill" style="padding:0 10px;gap:6px;font-size:16px">${coinImg(5, 18)}${n}</span>`;
+// Шапка занятия: круглая «‹», название и подзаголовок, справа энергия (Free), сердца и монеты — у Блица.
+const head = (title, sub, right, o = {}) => `<div class="hd"><span class="rb l t">${icon('back', 's20')}</span><div class="grow"><div class="tt">${title}</div><div class="su">${sub}</div></div>${o.plus ? '' : energy(o.en ?? 4, { s: true, anim: o.enAnim })}${right || ''}</div>`;
+const progress = (pct, timer, a = '0', b = '100') => `<div class="trk" style="margin-top:22px;height:6px"><i style="width:${pct}%"></i></div>${timer ? `<div class="prog"><span>${a}</span><span class="pill timer">${timer}</span><span>${b}</span></div>` : `<div class="prog"><span>${a}</span><span>${b}</span></div>`}`;
+const OPTS = ['Нанимать- увольнять-увольняться, бросить привычку', 'Складывать, сгибать об одежде', 'Обманывать, изменять', 'Иметь склонность'];
+const opts = (state) => `<div class="stack g13" style="margin-top:23px">${OPTS.map((t, i) => { const s = state[i] || ''; return `<div class="opt t ${s}">${t}${s === 'ok' ? `<span class="mk">${icon('check', 's20')}</span>` : s === 'no' ? `<span class="mk">${icon('close', 's20')}</span>` : ''}</div>`; }).join('')}</div>`;
+
+// ================= Блиц =================
+const blitz = (o = {}) => phone(`
+  ${head('Блиц', 'Набор карточек', hearts(o.lost || 0, o.shake) + scoreP(o.score ?? 0), o)}
+  ${progress(o.pct ?? 45, o.timer ?? '0:47')}
+  <div class="qc" style="margin-top:38px"><div class="k">Выбери перевод</div><div class="q">Hire, fire, quit</div></div>
+  ${opts(o.state || [])}`, { time: '12:53' });
+
+// ================= Устно =================
+const speakCard = (o = {}) => `<div class="qc sp" style="margin-top:34px"><div class="k">Скажи по-английски</div><div class="q">I'll get back to you</div><span class="listen t">${icon('vol', 's18')}Послушать</span></div>`;
+const wave = (live) => `<div class="wave${live ? '' : ' still'}">${Array.from({ length: 21 }, (_, i) => `<i style="--h:${8 + Math.round(26 * Math.abs(Math.sin(i * .9 + 1)))}px"></i>`).join('')}</div>`;
+const speak = (o = {}) => phone(`
+  ${head('Устно', 'Набор карточек', null, o)}
+  ${progress(o.pct ?? 30, null, '3', '10')}
+  ${speakCard()}
+  ${o.said ? `<div class="said ${o.said.ok ? 'ok' : 'no'}"><div class="k">Сказано</div><div class="v">${o.said.text}</div></div>` : ''}
+  ${o.said ? '' : wave(!!o.live)}
+  <div class="micwrap" style="margin-top:${o.said ? '26px' : '14px'}">
+    ${o.said && o.said.ok ? `<div class="verdict ok" style="margin:0">${icon('check', 's20')}Верно</div>` : `<span class="mic t${o.live ? ' live' : ''}">${icon('mic')}</span><span class="micl">${o.live ? 'Слушаю…' : o.said ? 'Зажми — скажи ещё раз' : 'Зажми и говори'}</span>`}
+  </div>
+  ${o.said && o.said.ok ? '' : `<div class="aux"><span class="t">Пропустить</span>${o.said ? '<span class="t" style="color:#fff">Ещё раз</span>' : ''}</div>`}`,
+  { time: '12:54', fixed: o.said && o.said.ok ? `<div class="fx"><div class="cta t">Продолжить<span class="ar">${icon('arrowR', 's20')}</span></div></div>` : '' });
+
+// ================= Правда / ложь =================
+const tf = (o = {}) => phone(`
+  ${head('Правда / ложь', 'Набор карточек', null, o)}
+  ${progress(o.pct ?? 60, null, '6', '10')}
+  <div class="tf"><div class="k">Этот перевод подходит?</div><div class="w">Fold</div><div class="ln"></div><div class="tr">${o.wrongPair ? 'Обманывать, изменять' : 'Складывать, сгибать'}</div></div>
+  <div class="tfb"><span class="b t ${o.pick === 'no' ? (o.right ? 'ok' : 'no') : o.pick ? 'off' : ''}">${icon('close')}</span><span class="b t ${o.pick === 'yes' ? (o.right ? 'ok' : 'no') : o.pick ? 'off' : ''}">${icon('check')}</span></div>
+  ${o.pick ? `<div class="verdict ${o.right ? 'ok' : 'no'}">${o.right ? `${icon('check', 's20')}Верно — ${o.wrongPair ? 'чужой перевод' : 'перевод совпадает'}` : `${icon('close', 's20')}Правильный перевод: Складывать, сгибать`}</div>` : ''}`,
+  { time: '12:55', fixed: o.pick ? `<div class="fx"><div class="cta t">Продолжить<span class="ar">${icon('arrowR', 's20')}</span></div></div>` : '' });
+
+// ================= Вспомни и напиши =================
+const keyb = () => `<div class="kb"><div class="r">${'QWERTYUIOP'.split('').map((k) => `<span class="k">${k}</span>`).join('')}</div><div class="r">${'ASDFGHJKL'.split('').map((k) => `<span class="k">${k}</span>`).join('')}</div><div class="r"><span class="k w">⇧</span>${'ZXCVBNM'.split('').map((k) => `<span class="k">${k}</span>`).join('')}<span class="k w">⌫</span></div><div class="r"><span class="k w">123</span><span class="k sp">space</span><span class="k ret">Проверить</span></div></div>`;
+const recall = (o = {}) => phone(`
+  ${head('Вспомни и напиши', 'Набор карточек', null, o)}
+  ${progress(o.pct ?? 40, null, '4', '10')}
+  <div class="qc" style="margin-top:30px;min-height:140px"><div class="k">Напиши на изучаемом языке</div><div class="q" style="font-size:28px;line-height:34px">Я тебе перезвоню</div></div>
+  <div class="inp ${o.res || ''}">${o.typed ? `<span class="tv">${o.typed}</span>` : `<span class="plc">Введи фразу целиком</span>`}${o.typing ? '<span class="cur"></span>' : ''}</div>
+  ${o.res ? `<div class="ansr"><div class="k ${o.res}">${o.res === 'ok' ? 'Верно' : o.res === 'alm' ? 'Почти! Правильно:' : 'Пока нет. Правильно:'}</div>${o.res === 'ok' ? '' : `<div class="v">I'll call you back</div>`}</div>`
+    : `<div class="flex" style="justify-content:space-between;margin-top:18px"><span class="hintb t">${li('bulb', 's18')}Подсказка</span>${o.hint ? `<span style="color:var(--sec);font-size:16px;font-weight:600">I'll c…</span>` : ''}</div>`}`,
+  { time: '12:56', fixed: o.res ? `<div class="fx"><div class="cta t">Продолжить<span class="ar">${icon('arrowR', 's20')}</span></div></div>` : o.typing ? keyb() : `<div class="fx"><div class="cta dis">Проверить</div></div>` });
+
+// ================= Завершение (один макет на все режимы) =================
+// зачем: владелец — «должен включать больше, чем просто монеты», «ошибки и оценка с
+// комментарием (поле ввода)». Состав: результат → монеты (анимация) → ошибки → оценка → дальше.
+const star3 = (n) => `<div class="stars3">${[1, 2, 3].map((i) => li('starF', i <= n ? '' : 'off')).join('')}</div>`;
+const statsRow = (c, w) => { const t = c + w, p = t ? Math.round(c / t * 100) : 0; return `<div class="stats"><div><b class="g">${c}</b><span>верно</span></div><div><b class="r">${w}</b><span>ошибок</span></div><div><b>${p}%</b><span>точность</span></div></div>`; };
+const award = (n) => `<div class="award" data-award="${n}">${coinImg(5, 44)}<span class="n"><span class="cnt">+0</span><small>монет</small></span></div>`;
+const errs = (rows, o = {}) => `<div class="errc"><div class="h">Ошибки<span class="n">${rows.length}</span></div>${rows.map((r) => `<div class="er"><div class="w">${r[0]}</div><div class="tx"><span class="was">${r[1]}</span><span class="ar">${li('arrowR', 's16')}</span><span class="ok">${r[2]}</span></div></div>`).join('')}<div class="cta gh t">${li('refresh', 's18')}Повторить ошибки</div></div>`;
+const rate = (o = {}) => o.open
+  ? `<div class="rate"><div class="h">${o.title || 'Слова того стоили?'}</div><div class="stars">${[1, 2, 3, 4, 5].map((i) => `<span class="t">${li('starF', i <= (o.stars || 0) ? '' : 'off')}</span>`).join('')}</div><div class="fld${o.text ? ' on' : ''}">${o.text || o.ph || 'Каких слов не хватило? Какие лишние?'}</div><span class="cta sm t${o.text || o.stars ? '' : ' dis'}">Отправить ${li('send', 's16')}</span></div>`
+  : `<div class="rate t"><div class="h">${o.title || 'Слова того стоили?'}<span class="ch">${icon('down', 's20')}</span></div></div>`;
+const done = (o) => phone(`
+  <div class="done-h"><span class="rb t">${icon('close', 's20')}</span>${coins(o.balance ?? 1240, { rank: 5, s: false })}</div>
+  <div class="done-t"><div class="ti">${o.title}</div><div class="su">${o.sub}</div>${o.score ? `<span class="pill s" style="margin-top:12px">Счёт: ${o.score}</span>` : ''}</div>
+  ${o.stars != null ? star3(o.stars) : ''}
+  ${statsRow(o.c, o.w)}
+  ${award(o.gain)}
+  ${o.errs ? errs(o.errs) : ''}
+  ${rate(o.rate || {})}
+  <div class="next"><div class="cta t">${o.next || 'Готово'}<span class="ar">${icon('arrowR', 's20')}</span></div><span class="quiet t">${o.errs ? `Добить: Ещё учу (${o.errs.length})` : (o.again || 'Ещё раз')}</span></div>`, { time: '13:02' });
+
+const E_BLITZ = [['Fold', 'Обманывать, изменять', 'Складывать, сгибать'], ['Tend', 'Складывать, сгибать', 'Иметь склонность'], ['Cheat', 'Иметь склонность', 'Обманывать, изменять']];
+const E_RECALL = [['Перезвоню', "I'll call you later", "I'll call you back"], ['Не знаю', 'I dont now', "I don't know"]];
+const E_SPEAK = [['Get back', 'get bag to you', 'get back to you']];
+const E_DLG = [['Заказ', 'I want a coffee', "I'd like a coffee, please"], ['Размер', 'Middle', 'Medium']];
+
+// ================= сборка страницы =================
+const replayBtn = (id) => `<span class="replay t" data-replay="${id}">Повторить анимацию</span>`;
+document.getElementById('root').innerHTML = [
+  block('blitz', 'Блиц', 'Эталонный экран 1:1 плюс энергия у бесплатного пользователя. Состояния: вопрос, верный ответ, неверный (показан правильный), потеря сердца.', [
+    col('Вопрос', blitz({ en: 4 })), col('Верный ответ', blitz({ en: 4, state: ['ok'], score: 120, pct: 55, timer: '0:41' })),
+    col('Неверный ответ', blitz({ en: 4, state: ['ok', , 'no'], score: 120, pct: 55, timer: '0:41', lost: 0 })), col(`Потеря сердца ${replayBtn('h')}`, blitz({ en: 4, state: ['ok', , 'no'], score: 120, pct: 55, timer: '0:41', lost: 1 })),
+  ]),
+  block('speak', 'Устно', 'Кнопка микрофона — чистый круг (76 pt как в коде), без квадратов внутри. Живая волна пока идёт запись, «Сказано» — распознанный текст; расхождение подчёркнуто.', [
+    col('Ожидание — «Зажми и говори»', speak({ en: 4 })), col('Идёт запись — «Слушаю…»', speak({ en: 4, live: true })),
+    col('Распознано верно', speak({ en: 4, said: { ok: true, text: "I'll get back to you" } })), col('Не так — «Ещё раз»', speak({ en: 4, said: { ok: false, text: "I'll get <span class='bad'>bag</span> to you" } })),
+  ]),
+  block('tf', 'Правда / ложь', 'Карточка «Этот перевод подходит?» с фразой и переводом, две круглые кнопки ✕ и ✓ (как в `flashcards_swipe`). После ответа — вердикт и «Продолжить».', [
+    col('Вопрос', tf({ en: 4 })), col('Ответил верно — «перевод совпадает»', tf({ en: 4, pick: 'yes', right: true, pct: 70 })),
+    col('Ответил верно — «чужой перевод»', tf({ en: 4, pick: 'no', right: true, wrongPair: true, pct: 70 })), col('Ответил неверно', tf({ en: 4, pick: 'yes', right: false, wrongPair: true, pct: 70 })),
+  ]),
+  block('recall', 'Вспомни и напиши', 'Поле ввода, «Подсказка» (первые буквы), кнопка «Проверить» в клавиатуре; проверка: верно, почти (опечатка подчёркнута), неверно.', [
+    col('Поле ввода', recall({ en: 4 })), col('Ввод с клавиатурой и подсказкой', recall({ en: 4, typing: true, hint: true, typed: "I'll c" })),
+    col('Верно', recall({ en: 4, res: 'ok', typed: "I'll call you back", pct: 50 })), col('Почти — опечатка', recall({ en: 4, res: 'alm', typed: "I'll call you <span class='typo'>bak</span>", pct: 50 })), col('Неверно', recall({ en: 4, res: 'no', typed: "I'll call you later", pct: 50 })),
+  ]),
+  block('energy', 'Энергия (Free 5 / Plus не тратит)', 'Первый экран занятия: −1 при старте, цифра «проваливается» 5 → 4. Восстановление: +1 через 10 минут, цифра «подрастает» 3 → 4. У Plus пилюли энергии нет — ничего не тратится.', [
+    col(`Старт занятия: 5 → 4 ${replayBtn('e-down')}`, blitz({ en: 5, enAnim: 'down', pct: 0, timer: '1:00' })),
+    col(`Восстановление: 3 → 4 ${replayBtn('e-up')}`, blitz({ en: 3, enAnim: 'up', pct: 0, timer: '1:00' })),
+    col('Plus — энергии нет', blitz({ plus: true, pct: 0, timer: '1:00' })),
+  ]),
+  block('done', 'Единый экран завершения', 'Один макет для всех режимов: результат → анимированное начисление монет (счёт растёт, монета пружинит, баланс в шапке увеличивается) → ошибки этого занятия с «Повторить ошибки» → оценка + комментарий → «Дальше». Опыта нет.', [
+    col(`Без ошибок ${replayBtn('d1')}`, done({ title: 'Тренировка завершена', sub: 'Блиц · 10 карточек', score: '1 250', c: 10, w: 0, gain: 50, again: 'Ещё разок!' })),
+    col(`С ошибками ${replayBtn('d2')}`, done({ title: 'Тренировка завершена', sub: 'Блиц · 10 карточек', score: '860', c: 7, w: 3, gain: 35, errs: E_BLITZ })),
+    col(`Оценка раскрыта, есть комментарий ${replayBtn('d3')}`, done({ title: 'Тренировка завершена', sub: 'Вспомни и напиши · 10 карточек', c: 9, w: 1, gain: 40, errs: E_RECALL.slice(0, 1), rate: { open: true, stars: 4, text: 'Не хватило слов про звонки и встречи.' } })),
+  ]),
+  block('done2', 'Завершение — тот же макет в других режимах', 'Меняются только заголовок, подпись и цифры. Урок V1 добавляет звёзды по D36 (1★ <60%, 2★ 60–84%, 3★ ≥85%).', [
+    col(`Урок V1 — 2 звезды ${replayBtn('d4')}`, done({ title: 'Урок пройден', sub: 'Урок 3 · Present Simple', stars: 2, c: 15, w: 5, gain: 60, errs: [['Вопрос', 'Do she work?', 'Does she work?']], rate: { title: 'Всё было понятно?' }, next: 'Продолжить' })),
+    col(`Устно ${replayBtn('d5')}`, done({ title: 'Тренировка завершена', sub: 'Устно · 10 фраз', c: 9, w: 1, gain: 45, errs: E_SPEAK })),
+    col(`Диалог ${replayBtn('d6')}`, done({ title: 'Диалог пройден', sub: 'Закажи кофе · Каждый день', c: 6, w: 2, gain: 30, errs: E_DLG, rate: { title: 'Диалог был полезен?' } })),
+    col(`Сессия Learning V2 ${replayBtn('d7')}`, done({ title: 'Занятие пройдено', sub: 'Урок 1 · Занятие 4 из 56', c: 12, w: 0, gain: 40, rate: { title: 'Всё было понятно?' }, next: 'Продолжить', again: 'Пройти ещё раз' })),
+    col(`Работа над ошибками ${replayBtn('d8')}`, done({ title: 'Ошибки разобраны', sub: 'Мои ошибки · 6 карточек', c: 5, w: 1, gain: 20, errs: [['Tend', 'Складывать, сгибать', 'Иметь склонность']] })),
+  ]),
+].join('');
+K.init();
+
+// ================= анимации =================
+// зачем: владелец должен видеть движение — монеты растут в счёте и в пилюле баланса,
+// монета пружинит; энергия «проваливается» (−1) или «подрастает» (+1). Запуск при появлении
+// телефона на экране (IntersectionObserver) и по кнопке «Повторить анимацию».
+const ease = (t) => 1 - Math.pow(1 - t, 3);
+function tween(ms, fn, done) { let fin = false; const end = () => { if (fin) return; fin = true; fn(1); done && done(); }; const t0 = performance.now(); const step = (now) => { if (fin) return; const p = Math.max(0, Math.min(1, (now - t0) / ms)); fn(ease(p)); if (p < 1) requestAnimationFrame(step); else end(); }; requestAnimationFrame(step); setTimeout(end, ms + 80); }
+function playDone(ph) {
+  const aw = ph.querySelector('[data-award]'); if (!aw) return;
+  const gain = +aw.dataset.award, cnt = aw.querySelector('.cnt'), coin = aw.querySelector('.coin');
+  const pill = ph.querySelector('[data-coins]'), pnum = pill.querySelector('.num'), base = +pill.dataset.coins;
+  cnt.textContent = '+0'; pnum.textContent = base.toLocaleString('ru-RU');
+  coin.classList.remove('pop'); void coin.offsetWidth; coin.classList.add('pop');
+  setTimeout(() => tween(900, (p) => { cnt.textContent = '+' + Math.round(gain * p); }, () => {
+    pnum.classList.remove('up'); void pnum.offsetWidth; pnum.classList.add('up');
+    tween(700, (p) => { pnum.textContent = Math.round(base + gain * p).toLocaleString('ru-RU'); });
+  }), 350);
+}
+function playEnergy(ph, dir) {
+  const pill = ph.querySelector('[data-energy]'); if (!pill) return;
+  const num = pill.querySelector('.num'), from = +pill.dataset.energy, to = dir === 'down' ? from - 1 : from + 1;
+  num.textContent = from; num.classList.remove('dn', 'up'); void num.offsetWidth;
+  setTimeout(() => { num.classList.add(dir === 'down' ? 'dn' : 'up'); setTimeout(() => { num.textContent = to; }, 230); }, 600);
+}
+// Разметка энергии: K.energy не знает про анимацию — помечаем телефоны блока энергии сами.
+document.querySelectorAll('#energy .col').forEach((c, i) => { c.dataset.en = ['down', 'up', ''][i]; });
+function playShake(ph) { const h = ph.querySelector('.pill.hearts'); if (!h) return; h.classList.remove('shake'); void h.offsetWidth; setTimeout(() => h.classList.add('shake'), 300); }
+function play(col) {
+  const ph = col.querySelector('.ph'); if (!ph) return;
+  if (col.dataset.en) playEnergy(ph, col.dataset.en); else if (col.querySelector('[data-replay="h"]')) playShake(ph); else playDone(ph);
+}
+const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { play(e.target); io.unobserve(e.target); } }), { threshold: .35 });
+document.querySelectorAll('#energy .col, #done .col, #done2 .col, #blitz .col:last-child').forEach((c) => io.observe(c));
+document.addEventListener('click', (e) => { const b = e.target.closest('[data-replay]'); if (b) play(b.closest('.col')); });
+// Ждём шрифты и картинки — для headless-скриншота запускаем сразу первую волну.
+setTimeout(() => { document.querySelectorAll('#energy .col, #done .col, #done2 .col').forEach((c) => { const r = c.getBoundingClientRect(); if (r.top < innerHeight * 2) { play(c); io.unobserve(c); } }); }, 200);
+</script>
+</body>
+</html>

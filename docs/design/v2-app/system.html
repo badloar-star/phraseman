@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Системные окна 2.0</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+/* ---- таббар «В · капсула», как в приложении (components/v2/V2TabBar.tsx), в графитовом стекле ---- */
+.tb { position: absolute; left: 12px; right: 12px; bottom: 26px; height: 66px; border-radius: 33px; z-index: 35; display: flex; padding: 0 9px;
+  background: linear-gradient(180deg, rgba(44,44,46,.86), rgba(20,20,22,.92)); -webkit-backdrop-filter: blur(24px) saturate(150%); backdrop-filter: blur(24px) saturate(150%);
+  box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.22), inset -1px -1.5px 0 -.2px rgba(0,0,0,.5), inset 0 0 0 1px rgba(255,255,255,.07), 0 22px 44px -14px rgba(0,0,0,.85);
+  transform-origin: 50% 100%; transition: transform 260ms cubic-bezier(.33,1,.68,1); }
+.tb.shrink { transform: translateY(8px) scale(.9); }
+.tb .cap { position: absolute; top: 9px; bottom: 9px; left: 9px; width: calc((100% - 18px) / 5); border-radius: 18px;
+  background: linear-gradient(160deg, rgba(255,255,255,.16), rgba(255,255,255,.05) 60%, rgba(255,255,255,.09));
+  box-shadow: inset 1px 1px 0 rgba(255,255,255,.28), inset -1px -1px 0 rgba(0,0,0,.35);
+  transition: transform 460ms cubic-bezier(.28,1.32,.5,1); }
+.tb .it { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #8A8A8D; font-size: 10.5px; font-weight: 600; position: relative; z-index: 1; cursor: pointer; }
+.tb .it.on { color: #fff; }
+.tb .it svg { width: 21px; height: 21px; transition: transform 240ms cubic-bezier(.3,1.5,.5,1); }
+.tb .it .bd { position: absolute; top: 9px; left: 55%; width: 8px; height: 8px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 2px #19191B; }
+.banner { position: absolute; left: 16px; right: 16px; top: 54px; z-index: 55; display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 14px; border-radius: 22px; font-size: 15px; font-weight: 600; }
+.bnr-in { animation: bin 480ms cubic-bezier(.2,1,.3,1) both; }
+@keyframes bin { from { transform: translateY(-70px); } to { transform: none; } }
+.modal { position: absolute; left: 22px; right: 22px; top: 50%; transform: translateY(-50%); z-index: 60; border-radius: 26px; background: var(--sheet); padding: 26px 20px 20px; text-align: center; }
+.modal .mt2 { font-size: 21px; line-height: 27px; font-weight: 700; }
+.modal .mb { font-size: 15px; line-height: 21px; color: var(--sec); margin-top: 8px; }
+.mascot { width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 14px; background: radial-gradient(circle at 35% 30%, #4A4A50, #1C1C1F 70%); display: flex; align-items: center; justify-content: center; }
+.toast { position: absolute; left: 16px; right: 16px; z-index: 60; display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 12px 16px; border-radius: 16px; background: #2A2A2C; font-size: 15px; line-height: 20px; }
+.spin { width: 30px; height: 30px; border-radius: 50%; border: 3px solid rgba(255,255,255,.16); border-top-color: #fff; animation: spn .9s linear infinite; }
+@keyframes spn { to { transform: rotate(360deg); } }
+.msg { display: flex; gap: 14px; padding: 14px 4px; border-bottom: 1px solid var(--line); }
+.msg .dt { width: 8px; height: 8px; border-radius: 50%; background: #fff; margin-top: 7px; flex: none; }
+.msg .dt.r { background: transparent; }
+.pgbtn { display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 16px; border-radius: 19px; border: 1px solid var(--line-2); background: #161618; color: var(--text); font: 600 14px Inter, sans-serif; cursor: pointer; }
+.shot { height: 180px; border-radius: 16px; background: radial-gradient(90% 120% at 70% 20%, #38383C, #141416 70%); display: flex; align-items: flex-end; padding: 14px; font-size: 20px; font-weight: 800; }
+.cov { width: 100%; max-width: 980px; border-collapse: collapse; font-size: 14px; margin-top: 18px; }
+.cov td, .cov th { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); color: #D6D6D8; }
+.cov th { color: var(--sec); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Системные окна и таббар</h1>
+  <p class="page-lead">Всё, что всплывает поверх любого раздела: обновления, офлайн, техработы, ошибки, сообщения команды, разрешения, оплата, оценка, подтверждения, тосты. Плюс нижний таббар во всех состояниях. Тексты — из кода.</p>
+  <nav class="page-nav"><a href="index.html">Все разделы</a><a href="etalon.html">Эталон</a><a class="on" href="system.html">Системные окна</a></nav>
+  <table class="cov" id="cov"></table>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script>
+const { icon, phone, col, block, sheet } = K;
+const replay = (id, t = 'Повторить анимацию') => `<button class="pgbtn t" data-replay="${id}">${icon('arrowR', 's16')}${t}</button>`;
+// значки вкладок (контур 1.8, как везде)
+const TI = {
+  home: '<path d="M4 11l8-7 8 7v8.5a1.5 1.5 0 01-1.5 1.5h-4v-6h-5v6h-4A1.5 1.5 0 014 19.5z"/>',
+  book: '<path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z"/><path d="M4 20.5A2.5 2.5 0 016.5 18H20v3H6.5"/>',
+  video: '<rect x="3" y="5.5" width="18" height="13" rx="3.5"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/>',
+  people: '<circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19c.5-3.2 2.7-5 5.5-5s5 1.8 5.5 5"/><circle cx="16.5" cy="9.5" r="2.6"/><path d="M15.5 14.2c2.6-.3 4.6 1.3 5 4.3"/>',
+  compass: '<circle cx="12" cy="12" r="8.5"/><path d="M14.8 9.2l-1.6 4-4 1.6 1.6-4z" fill="currentColor"/>',
+  bell: '<path d="M6 16.5V11a6 6 0 0112 0v5.5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 004 0"/>',
+  card: '<rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M3 10h18M7 15h4"/>',
+  gear: '<circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v2.4M12 18.8v2.4M4.2 7.5l2 1.2M17.8 15.3l2 1.2M4.2 16.5l2-1.2M17.8 8.7l2-1.2"/><circle cx="12" cy="12" r="7"/>',
+};
+const ti = (n) => `<svg class="i" viewBox="0 0 24 24">${TI[n]}</svg>`;
+const TABS = [['home', 'Главная'], ['book', 'Обучение'], ['video', 'Видео'], ['people', 'Сообщество'], ['gear', 'Настройки']];
+// зачем: таббар — вариант «В», капсула ПЕРЕЕЗЖАЕТ при нажатии (слово владельца), теперь в графитовом стекле
+const tabbar = (on = 0, o = {}) => `<div class="tb${o.col ? ' shrink' : ''}" data-tb><div class="cap" style="transform:translateX(${on * 100}%)"></div>${TABS.map(([k, l], i) => `<div class="it${i === on ? ' on' : ''}" data-i="${i}">${ti(k)}${l}${(o.badge || []).includes(i) ? '<span class="bd"></span>' : ''}</div>`).join('')}</div>`;
+const bg = (t = 'Обучение') => `<div style="font-size:34px;line-height:40px;font-weight:700;margin-top:10px">${t}</div><div class="stack" style="margin-top:22px">${[0, 1, 2, 3, 4].map((i) => `<div class="card" style="height:74px;padding:16px"><div style="height:14px;width:${50 - i * 5}%;border-radius:7px;background:#2A2A2C"></div><div style="height:12px;width:30%;border-radius:6px;background:#222224;margin-top:10px"></div></div>`).join('')}</div>`;
+const dim = '<div class="dim on"></div>';
+
+// ---- Таббар ----
+const tabPhone = (on, o = {}) => phone(bg(TABS[on][1]), { time: '9:41', fixed: tabbar(on, o) });
+
+// ---- Системные окна ----
+const offline = () => phone(`<div class="banner bnr-in card" data-anim="bn" style="position:relative;left:0;right:0;top:0;background:#2A2A2C">${icon('wifiOff', 's20')}Нет соединения</div>` + bg(), { time: '9:41', fixed: tabbar(1) });
+const online = () => phone(`<div class="banner bnr-in card" data-anim="bn" style="position:relative;left:0;right:0;top:0;background:#F2F1F6;color:#0B0C0E">${icon('check', 's20')}Снова в сети</div>` + bg(), { time: '9:41', fixed: tabbar(1) });
+const forceUpd = () => phone(bg(), { time: '9:41', fixed: tabbar(1), overlay: `${dim}<div class="modal"><div class="mascot">${ti('compass').replace('class="i"', 'class="i s28"')}</div><div class="mt2">Это Компас. Без обновления дальше никак</div><div class="mb">Вышла новая версия PhraseMan. Обнови приложение, чтобы продолжить.</div><span class="cta t" style="margin-top:20px">Обновить</span></div>` });
+const softUpd = () => phone(bg(), { time: '9:41', fixed: tabbar(1), overlay: `${dim}<div class="modal"><div class="mascot">${ti('compass').replace('class="i"', 'class="i s28"')}</div><div class="mt2">Это Компас. У меня кое-что новое</div><div class="mb">Доступна новая версия — быстрее и удобнее.</div><span class="cta t" style="margin-top:20px">Обновить</span><span class="cta gh t" style="margin-top:10px;border-color:transparent">Чуть позже</span></div>` });
+const maint = () => phone(`<div style="text-align:center;padding-top:230px"><div class="tile t61" style="margin:0 auto">${ti('gear')}</div><div style="font-size:24px;font-weight:700;margin-top:18px">Технические работы</div><div style="font-size:16px;color:var(--sec);margin-top:8px">Идут технические работы. Скоро вернёмся.</div></div>`, { time: '9:41' });
+const recovery = () => phone(`<div style="text-align:center;padding-top:260px"><div class="spin" style="margin:0 auto"></div><div style="font-size:22px;font-weight:700;margin-top:22px">Восстанавливаем сохранение</div><div style="font-size:15px;color:var(--sec);margin-top:8px">Освобождаем место и восстанавливаем сохранение…</div></div>`, { time: '9:41' });
+const crash = () => phone(`<div style="text-align:center;padding-top:200px"><div class="tile t61" style="margin:0 auto">${icon('close', 's26')}</div><div style="font-size:24px;font-weight:700;margin-top:18px">Что-то пошло не так</div><div style="font-size:15px;color:var(--sec);margin-top:8px">Прогресс сохранён. Попробуй открыть экран ещё раз.</div><span class="cta sm t" style="display:inline-flex;margin-top:22px">Попробовать снова</span>
+  <div class="card" style="margin-top:30px;padding:14px;text-align:left"><div style="font-size:13px;color:var(--sec);font-weight:600">Технические детали:</div><div style="font-size:13px;color:var(--muted);margin-top:6px;font-family:monospace">TypeError: undefined is not an object</div></div></div>`, { time: '9:41' });
+const notFound = () => phone(`<div style="text-align:center;padding-top:240px"><div class="tile t61" style="margin:0 auto">${icon('search', 's26')}</div><div style="font-size:24px;font-weight:700;margin-top:18px">Такой страницы нет</div><div style="font-size:15px;color:var(--sec);margin-top:8px">Ссылка устарела или была с опечаткой.</div><span class="cta sm t" style="display:inline-flex;margin-top:22px">На главную</span></div>`, { time: '9:41' });
+const notes = () => phone(bg(), { time: '9:41', fixed: tabbar(1), overlay: sheet('rn', `<div class="ov" style="padding:0 4px">Что нового · 2.0</div><div style="font-size:28px;font-weight:700;padding:6px 4px 0">Новый PhraseMan</div>
+  <div class="shot" style="margin-top:18px">Шпиль вместо лиги</div>
+  <div class="stack" style="margin-top:16px">${[['layers', 'Карточки из видео', 'Фразы из роликов — одной кнопкой в свои наборы'], ['bolt', 'Энергия проще', 'Пять делений, одно занятие — одно деление'], ['check', 'Только монеты', 'Опыт ушёл, награда одна — монеты и ранг']].map(([ic, t, s]) => `<div class="flex" style="gap:14px;align-items:flex-start"><div class="tile">${icon(ic, 's20')}</div><div class="grow"><div style="font-size:16px;font-weight:700">${t}</div><div style="font-size:14px;color:var(--sec);margin-top:2px">${s}</div></div></div>`).join('')}</div>
+  <span class="cta t" style="margin-top:20px" data-close>Понятно</span>`, true) });
+const broadcast = () => phone(bg(), { time: '9:41', fixed: tabbar(1), overlay: `${dim}<div class="modal"><div class="ov">Сообщение команды</div><div class="mt2" style="margin-top:10px">Мы выпустили раздел «Видео»</div><div class="mb">Смотри ролики и забирай фразы из них в свои карточки — одной кнопкой.</div><span class="cta t" style="margin-top:20px">Посмотреть</span><span class="cta gh t" style="margin-top:10px;border-color:transparent">Позже</span></div>` });
+const personal = () => phone(bg(), { time: '9:41', fixed: tabbar(1), overlay: `${dim}<div class="modal"><div class="ov">Сообщение</div><div class="mt2" style="margin-top:10px">Спасибо за отчёт об ошибке!</div><div class="mb">Мы нашли и исправили проблему со звуком в уроке 12. В благодарность — монеты на твой счёт.</div><div style="display:flex;justify-content:center;margin-top:16px">${K.coins(200)}</div><span class="cta t" style="margin-top:18px">Закрыть</span></div>` });
+const permission = () => phone(bg(), { time: '9:41', fixed: tabbar(1), overlay: `${dim}<div class="modal"><div class="tile t55" style="margin:0 auto 14px;background:#2A2A2C">${ti('bell')}</div><div class="mt2">Включить напоминания?</div>
+  <div style="text-align:left;margin-top:16px;display:flex;flex-direction:column;gap:10px">${['Без пропусков и срывов серии', 'Короткие полезные напоминания', 'Можно отключить в любой момент'].map((t) => `<div class="flex" style="font-size:15px;color:#D6D6D8">${icon('check', 's18')}${t}</div>`).join('')}</div>
+  <span class="cta t" style="margin-top:20px">Включить</span><span class="cta gh t" style="margin-top:10px;border-color:transparent">Не сейчас</span></div>` });
+const billing = () => phone(`<div class="toast card bnr-in" data-anim="bn" style="position:relative;left:0;right:0">${ti('card')}<span class="grow">Оплата не прошла — обнови карту, и Plus останется с тобой</span><b>Обновить</b></div>` + bg(), { time: '9:41', fixed: tabbar(1) });
+const inbox = (empty) => phone(bg(), { time: '9:41', fixed: tabbar(0, { badge: [0] }), overlay: sheet('ib', `<div style="display:flex;align-items:center;padding:0 4px"><div class="grow"><div style="font-size:22px;font-weight:700">Сообщения</div><div style="font-size:14px;color:var(--sec);margin-top:2px">${empty ? 'Все прочитаны' : '2 новых'}</div></div><span class="rb fill t" data-close>${icon('close', 's18')}</span></div>
+  ${empty ? `<div class="center" style="padding:50px 20px 20px"><div class="tile t55" style="margin:0 auto;background:#2A2A2C">${icon('chat', 's24')}</div><div style="font-size:18px;font-weight:700;margin-top:14px">Сообщений нет</div><div style="font-size:15px;color:var(--sec);margin-top:6px">Здесь появятся новости от команды.</div></div>`
+    : `<div style="margin-top:10px">${[[1, 'Новое', 'Раздел «Видео» открыт', 'Смотри ролики и забирай фразы в карточки.'], [1, 'Новое', 'Шпиль недели — Гранит', 'Поднимайся выше всех до воскресенья.'], [0, '2 дня назад', 'Обновление 2.0', 'Энергия стала проще — пять делений.']].map(([n, when, t, s]) => `<div class="msg t"><span class="dt${n ? '' : ' r'}"></span><div class="grow"><div style="font-size:12px;color:var(--sec);font-weight:600">${when}</div><div style="font-size:16px;font-weight:700;margin-top:3px">${t}</div><div style="font-size:14px;color:var(--sec);margin-top:3px">${s}</div><div class="flex" style="margin-top:10px;gap:8px"><span class="chipbtn t" style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-radius:15px;background:var(--control);font-size:13px;font-weight:600">${icon('thumb', 's16')}Нравится</span></div></div></div>`).join('')}</div>`}`, true) });
+const review = () => phone(bg(), { time: '9:41', fixed: tabbar(1), overlay: sheet('rv', `<div class="ov" style="padding:0 4px">Маленький вопрос</div><div style="font-size:24px;font-weight:700;padding:8px 4px 0;line-height:30px">Тебе нравится PhraseMan?</div>
+  <div class="card" style="margin-top:16px;padding:14px 16px;display:flex;align-items:center;gap:12px"><div class="tile">${icon('flame', 's20')}</div><div class="grow"><div style="font-size:12px;color:var(--sec);font-weight:700;letter-spacing:2px">СЕРИЯ</div><div style="font-size:17px;font-weight:700;margin-top:2px">12 дней подряд</div></div></div>
+  <span class="cta t" style="margin-top:18px">Оценить в App Store</span><span class="cta gh t" style="margin-top:10px;border-color:transparent" data-close>Не сейчас</span>`, true) });
+const confirm = (danger) => phone(bg(), { time: '9:41', fixed: tabbar(1), overlay: `${dim}<div class="modal"><div class="mt2">${danger ? 'Удалить набор?' : 'Выйти из урока?'}</div><div class="mb">${danger ? 'Набор исчезнет из твоих наборов. Это нельзя отменить.' : 'Прогресс этого урока не сохранится.'}</div><div style="display:flex;gap:10px;margin-top:20px"><span class="cta gh t" style="flex:1">Отмена</span><span class="cta t" style="flex:1;${danger ? 'background:#3A1E1C;background-image:none;color:#FF8C82;box-shadow:none' : ''}">${danger ? 'Удалить' : 'Выйти'}</span></div></div>` });
+const choice = () => phone(bg(), { time: '9:41', fixed: tabbar(1), overlay: sheet('ch', `<div style="font-size:22px;font-weight:700;padding:0 4px">Что сделать с карточкой?</div><div class="stack" style="margin-top:16px">${[['edit', 'Изменить'], ['layers', 'Добавить в набор'], ['flag', 'Сообщить об ошибке']].map(([ic, t]) => `<div class="card t" style="display:flex;align-items:center;gap:14px;padding:14px 16px"><div class="tile">${icon(ic, 's20')}</div><div class="grow" style="font-size:16px;font-weight:600">${t}</div></div>`).join('')}</div><span class="cta gh t" style="margin-top:14px" data-close>Отмена</span>`, true) });
+const undo = () => phone(bg('Сохранённые'), { time: '9:41', fixed: tabbar(1), overlay: `<div class="toast card bnr-in" data-anim="bnb" style="bottom:106px">${icon('trash', 's20')}<span class="grow">Карточка удалена</span><b>Вернуть</b></div>` });
+const stale = () => phone(`<div class="card" style="margin-top:8px;padding:12px 16px;display:flex;align-items:center;gap:12px;font-size:14.5px;color:var(--sec)">${icon('wifiOff', 's20')}<span>Данные могут быть устаревшими — обновим, когда появится связь.</span></div>${bg()}`, { time: '9:41', fixed: tabbar(1) });
+const rankUp = (up) => phone(`<div class="toast card bnr-in" data-anim="bn" style="position:relative;left:0;right:0">${K.coinImg(up ? 12 : 3, 34)}<div class="grow"><div style="font-weight:700">${up ? 'Обогнал Марка' : 'Уступил Ольге. Не сдавайся!'}</div><div style="font-size:13px;color:var(--sec);margin-top:2px">${up ? 'Ты молодец — стал выше в списке!' : 'Ничего страшного — соберись и наверстаешь.'}</div></div><span style="color:${up ? 'var(--good)' : 'var(--sec)'}">${icon(up ? 'up' : 'down', 's20')}</span></div>` + bg('Шпиль'), { time: '9:41', fixed: tabbar(3) });
+
+const COV = [['NAV-01', 'Таббар: 5 вкладок, выбранная, точка новых, сжатие при прокрутке, переезд капсулы', 'tab'], ['SYS-02', 'Нет соединения / Снова в сети', 'net'], ['—', 'Данные могут быть устаревшими (OfflineDataNotice)', 'net'],
+  ['SYS-03', 'Обязательное и мягкое обновление («Компас»)', 'upd'], ['SYS-04', 'Технические работы', 'gate'], ['SYS-05', 'Восстанавливаем сохранение', 'gate'], ['SYS-01', 'Что-то пошло не так (ошибка экрана)', 'gate'], ['—', 'Такой страницы нет (+not-found)', 'gate'],
+  ['SYS-06', 'Что нового', 'msg'], ['SYS-07', 'Сообщение команды · личное сообщение с монетами', 'msg'], ['SYS-10', 'Входящие: есть новые · пусто', 'msg'], ['SYS-08', 'Разрешение на напоминания', 'ask'], ['SYS-11', 'Просьба оценить', 'ask'],
+  ['SYS-09', 'Оплата не прошла', 'ask'], ['—', 'Подтверждение (обычное / удаление) · выбор действия', 'dlg'], ['—', 'Отмена действия (снекбар)', 'dlg'], ['—', 'Смена места в списке (RankChangeBanner)', 'dlg']];
+document.getElementById('cov').innerHTML = `<tr><th>ID</th><th>Что</th><th>Где</th></tr>` + COV.map(([a, b, c]) => `<tr><td>${a}</td><td>${b}</td><td><a href="#${c}" style="text-decoration:underline">${c}</a></td></tr>`).join('');
+
+document.getElementById('root').innerHTML =
+  block('tab', 'Таббар', 'Капсула при нажатии переезжает (живое — нажми любую вкладку в первом телефоне). При прокрутке вниз таббар сжимается.', [
+    col('Обучение выбрано · нажми вкладку', tabPhone(1)), col('Видео по центру', tabPhone(2)), col('Точка — есть новое в Сообществе', tabPhone(0, { badge: [3] })), col('Сжат при прокрутке', tabPhone(4, { col: true }))]) +
+  block('net', 'Сеть', '', [col('Нет соединения', offline() + replay('bn')), col('Снова в сети', online() + replay('bn')), col('Данные могут быть устаревшими', stale())]) +
+  block('upd', 'Обновления', '', [col('Без обновления дальше никак', forceUpd()), col('Есть новое — можно позже', softUpd())]) +
+  block('gate', 'Экраны-заглушки', '', [col('Технические работы', maint()), col('Восстанавливаем сохранение', recovery()), col('Что-то пошло не так', crash()), col('Такой страницы нет', notFound())]) +
+  block('msg', 'Сообщения', '', [col('Что нового', notes()), col('Сообщение команды', broadcast()), col('Личное сообщение с монетами', personal()), col('Входящие — 2 новых', inbox(false)), col('Входящие — пусто', inbox(true))]) +
+  block('ask', 'Просьбы и оплата', '', [col('Включить напоминания?', permission()), col('Оценить приложение', review()), col('Оплата не прошла', billing() + replay('bn'))]) +
+  block('dlg', 'Подтверждения и тосты', '', [col('Подтверждение', confirm(false)), col('Подтверждение удаления', confirm(true)), col('Выбор действия', choice()), col('Карточка удалена — «Вернуть»', undo() + replay('bnb')), col('Обогнал в списке', rankUp(true) + replay('bn')), col('Уступил в списке', rankUp(false))]);
+
+// капсула переезжает на нажатую вкладку
+document.body.addEventListener('click', (e) => {
+  const it = e.target.closest('[data-tb] .it'); if (it) { const tb = it.closest('[data-tb]'); const i = Number(it.dataset.i); tb.querySelector('.cap').style.transform = `translateX(${i * 100}%)`; tb.querySelectorAll('.it').forEach((n, k) => n.classList.toggle('on', k === i)); }
+  const b = e.target.closest('[data-replay]'); if (b) { const ph = b.parentElement.querySelector('.ph'); ph.querySelectorAll('.bnr-in').forEach((n) => { n.classList.remove('bnr-in'); void n.offsetWidth; n.classList.add('bnr-in'); }); }
+});
+K.init();
+</script>
+</body>
+</html>

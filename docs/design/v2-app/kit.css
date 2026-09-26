@@ -164,3 +164,45 @@ svg.i.s24 { width: 24px; height: 24px; } svg.i.s26 { width: 26px; height: 26px; 
 .flex { display: flex; align-items: center; gap: 10px; }
 .grow { flex: 1; min-width: 0; }
 .center { text-align: center; }
+
+/* =====================================================================
+   LIQUID GLASS в графите — владелец 26.09: «должен быть во ВСЕХ элементах».
+   Как Liquid Glass iOS 26, но в нашем тоне: блик по верхне-левой кромке,
+   мягкий перелив внутри, тёмная нижняя кромка (толщина стекла), лёгкое
+   размытие того, что под элементом. Слой ложится ПОД содержимое (z-index:-1
+   внутри isolation), поэтому ни один текст/значок не перекрывается.
+   В приложении: Android BlurView не размывает — там заливка ≥0.9 + тот же
+   блик/перелив (память «Стекло 2.0 = непрозрачное»).
+   ===================================================================== */
+:root {
+  --lg-sheen: linear-gradient(150deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,.035) 26%, rgba(255,255,255,0) 52%, rgba(255,255,255,.02) 78%, rgba(255,255,255,.055) 100%);
+  --lg-rim: inset 1px 1.5px 0 -.2px rgba(255,255,255,.22), inset -1px -1.5px 0 -.2px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.055);
+  --lg-drop: 0 10px 28px -12px rgba(0,0,0,.7);
+}
+:where(.card, .rb, .pill, .cntp, .lvl, .tile, .opt, .qc, .cta.gh, .cta.dis, .field, .srch, .chipbtn, .lang, .chbtn, .note, .pack, .hero, .finfo, .panel, .week, .opt2, .seg3, .modal, .toast, .play, .fab, .bar3, .ptile .cv, .vthumb, .thumb, .mrow.me, .fr, .pd .blk, .sheet) {
+  position: relative; isolation: isolate;
+}
+:where(.card, .rb, .pill, .cntp, .lvl, .tile, .opt, .qc, .cta.gh, .cta.dis, .field, .srch, .chipbtn, .lang, .chbtn, .note, .pack, .hero, .finfo, .panel, .week, .opt2, .seg3, .modal, .toast, .play, .fab, .bar3, .ptile .cv, .mrow.me, .fr, .pd .blk, .sheet)::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: -1;
+  background: var(--lg-sheen); box-shadow: var(--lg-rim);
+}
+/* крупные поверхности — ещё и размытие фона под ними и мягкая тень */
+:where(.card, .qc, .modal, .toast, .sheet, .panel, .pack, .hero, .bar3, .fab, .week) {
+  -webkit-backdrop-filter: blur(22px) saturate(140%); backdrop-filter: blur(22px) saturate(140%);
+  box-shadow: var(--lg-drop);
+}
+/* шторка: блик только по верхней кромке */
+.sheet::after { box-shadow: inset 0 1.5px 0 -.2px rgba(255,255,255,.2), inset 0 0 0 1px rgba(255,255,255,.05); }
+/* главная белая кнопка — «жидкий» глянец: светлее сверху, блик по кромке, мягкая тень */
+.cta:not(.gh):not(.dis):not(.red) {
+  background-image: linear-gradient(180deg, #FFFFFF 0%, var(--cta) 48%, #E3E2E8 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,1), inset 0 -1.5px 0 rgba(0,0,0,.10), 0 10px 26px -10px rgba(0,0,0,.75);
+}
+/* фон телефона — графит с мягкими пятнами света, чтобы стекло было видно */
+.ph { background:
+  radial-gradient(60% 34% at 12% 22%, rgba(255,255,255,.05), transparent 70%),
+  radial-gradient(52% 30% at 92% 58%, rgba(255,255,255,.04), transparent 70%),
+  radial-gradient(70% 36% at 30% 96%, rgba(255,255,255,.035), transparent 70%),
+  radial-gradient(120% 60% at 50% 0%, var(--bg-top), var(--bg) 60%); }
+/* голые элементы без подложки (стрелка «‹» в наборе) — без стекла */
+.rb.bare::after { display: none; }

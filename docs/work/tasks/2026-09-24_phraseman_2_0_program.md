@@ -1,5 +1,13 @@
 # Task packet: PhraseMan 2.0 — программа упрощения (исполнение пакета документации)
 
+Governance-ID: TG-8F7E08AD4B79
+Governance-ID: TG-8C8924A72A80
+Governance-ID: TG-D5576BA32C37
+Governance-ID: TG-DA4A14321545
+Governance-ID: TG-C2980EAE5F42
+Governance-ID: TG-70DE82A6F08A
+Governance-ID: TG-B5A70B900F9A
+Governance-ID: TG-5F483626D1DD
 Governance-ID: TG-DDE80745E5D9
 Governance-ID: TG-B8B185E8E6FC
 Governance-ID: TG-0D37B324E0CA

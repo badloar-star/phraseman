@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Страница ссылок — 3 варианта</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* зачем: макет страницы knowlyapps.com/links — три подачи в стиле сайта (ночь #171321,
+   персик #efb2a1, заголовки с засечками, картинки сайта), владелец выбирает одну. */
+:root{
+  --night:#171321;--night-2:#211b2e;--plum:#2a2038;
+  --peach:#efb2a1;--peach-ink:#2b1a1a;
+  --cream:#f5f1e9;--ink:#233747;--ink-soft:#58636b;
+  --text:#f5f1e9;--text-soft:rgba(245,241,233,.62);
+  --serif:Georgia,'Times New Roman',serif;--sans:'Golos Text',Arial,sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --img:'https://knowlyapps.com/assets/approved/';
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#0e0b14;color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+/* ---------- студия (обвязка макета, не часть страницы) ---------- */
+.studio{position:sticky;top:0;z-index:50;display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;justify-content:space-between;
+  padding:16px 28px;background:rgba(14,11,20,.86);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.studio h1{font:400 22px/1.2 var(--serif)}
+.studio h1 span{color:var(--text-soft);font:400 14px var(--sans);margin-left:10px}
+.controls{display:flex;gap:12px;flex-wrap:wrap}
+.seg{display:flex;padding:4px;border-radius:999px;background:rgba(255,255,255,.07)}
+.seg button{padding:9px 18px;border-radius:999px;font-size:14px;color:var(--text-soft);transition:background .25s var(--ease),color .25s}
+.seg button[aria-pressed="true"]{background:var(--cream);color:var(--night)}
+.seg.variants{display:none}
+body.desktop .seg.variants{display:flex}
+
+.stage{display:flex;gap:40px;justify-content:center;align-items:flex-start;flex-wrap:wrap;padding:40px 24px 90px}
+.device{display:flex;flex-direction:column;align-items:center;gap:16px}
+.device-label{text-align:center}
+.device-label b{display:block;font:400 26px/1.1 var(--serif)}
+.device-label small{color:var(--text-soft);font-size:14px}
+.frame{width:390px;height:800px;border-radius:48px;padding:10px;background:#050407;
+  box-shadow:0 0 0 1px rgba(255,255,255,.08),0 40px 90px rgba(0,0,0,.55)}
+.screen{width:100%;height:100%;border-radius:38px;overflow:auto;overflow-x:hidden;container-type:inline-size;scrollbar-width:none;position:relative}
+.screen::-webkit-scrollbar{display:none}
+body.desktop .device{display:none}
+body.desktop .device.active{display:flex;width:100%}
+body.desktop .frame{width:min(1180px,100%);height:760px;border-radius:18px;padding:0;background:transparent}
+body.desktop .screen{border-radius:18px}
+body.desktop .frame::before{content:'';display:block;height:34px;border-radius:18px 18px 0 0;background:#221d2b;
+  background-image:radial-gradient(circle at 18px 17px,#ff5f57 5px,transparent 6px),radial-gradient(circle at 38px 17px,#febc2e 5px,transparent 6px),radial-gradient(circle at 58px 17px,#28c840 5px,transparent 6px)}
+body.desktop .screen{height:calc(100% - 34px);border-radius:0 0 18px 18px}
+
+.todo{position:absolute;top:8px;right:8px;width:8px;height:8px;border-radius:50%;background:#ffb020;box-shadow:0 0 0 3px rgba(255,176,32,.25)}
+.legend{max-width:780px;margin:0 auto;padding:0 24px 60px;color:var(--text-soft);font-size:14px;line-height:1.6;text-align:center}
+.legend i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#ffb020;margin-right:6px;vertical-align:middle}
+
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);opacity:0;pointer-events:none;
+  padding:12px 20px;border-radius:999px;background:var(--cream);color:var(--night);font-size:14px;transition:.35s var(--ease);z-index:99}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* общие приёмы нажатия/появления */
+.tap{transition:transform .18s var(--ease),background .25s,box-shadow .25s}
+.tap:active{transform:scale(.97)}
+@media (hover:hover){.tap:hover{transform:translateY(-2px)}}
+.rise{opacity:0;transform:translateY(14px);animation:rise .7s var(--ease) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.rise{animation:none;opacity:1;transform:none}.tap,.tap:hover{transition:none;transform:none}}
+.ico{width:22px;height:22px;flex:none}
+.arrow{margin-left:auto;opacity:.5;transition:transform .25s var(--ease),opacity .25s;flex:none}
+.tap:hover .arrow{transform:translateX(3px);opacity:.9}
+
+/* ====================== A · КИНО ====================== */
+.va{min-height:100%;position:relative;background:var(--night)}
+.va-bg{position:absolute;inset:0 0 auto;height:560px;background:
+  linear-gradient(180deg,rgba(23,19,33,.15),rgba(23,19,33,.55) 45%,var(--night) 100%),
+  url('https://knowlyapps.com/assets/approved/voice-mobile.webp') center 30%/cover}
+.va-in{position:relative;max-width:560px;margin:0 auto;padding:56px 20px 40px}
+.va-brand{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+.va-logo{width:76px;height:76px;border-radius:24px;background:rgba(23,19,33,.55) url('https://knowlyapps.com/assets/approved/brand.png') center/48px no-repeat;
+  backdrop-filter:blur(12px);box-shadow:0 0 0 1px rgba(255,255,255,.14),0 18px 40px rgba(0,0,0,.35)}
+.va h2{font:400 40px/1.08 var(--serif);letter-spacing:-.01em}
+.va h2 em{color:var(--peach)}
+.va-sub{color:var(--text-soft);font-size:15px;line-height:1.5}
+.va-cta{margin-top:26px;display:grid;gap:10px}
+.btn-peach{display:flex;align-items:center;justify-content:center;gap:10px;height:58px;border-radius:18px;background:var(--peach);color:var(--peach-ink);font-weight:600;font-size:17px;
+  box-shadow:0 14px 34px rgba(239,178,161,.28)}
+.stores{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.glass{background:rgba(245,241,233,.07);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.09)}
+.store{display:flex;align-items:center;justify-content:center;gap:8px;height:50px;border-radius:16px;font-size:14px;font-weight:500}
+.va-sec{margin-top:34px}
+.va-sec h3{font:600 12px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--text-soft);margin:0 4px 12px}
+.list{display:grid;gap:8px}
+.row{position:relative;display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:18px;min-height:68px}
+.code{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;font:500 15px var(--serif);background:rgba(239,178,161,.16);color:var(--peach);flex:none}
+.row b{display:block;font-weight:500;font-size:16px}
+.row small{display:block;color:var(--text-soft);font-size:13px;margin-top:2px}
+.socials{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.social{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;height:92px;border-radius:18px;font-size:13px}
+.social .ico{width:26px;height:26px}
+.cards{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -20px;padding:0 20px 6px;scrollbar-width:none}
+.cards::-webkit-scrollbar{display:none}
+.card{flex:0 0 72%;scroll-snap-align:start;border-radius:20px;overflow:hidden}
+.card img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}
+.card div{padding:12px 14px 16px}
+.card span{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--peach)}
+.card b{display:block;font:400 18px/1.25 var(--serif);margin-top:6px}
+.foot{margin-top:40px;display:flex;flex-direction:column;align-items:center;gap:14px;color:var(--text-soft);font-size:13px}
+.share{display:flex;align-items:center;gap:8px;padding:11px 18px;border-radius:999px;font-size:14px;color:var(--text)}
+@container (min-width:900px){
+  .va-bg{height:640px}
+  .va-in{max-width:1040px;padding:80px 48px 60px;display:grid;grid-template-columns:380px 1fr;gap:28px 56px;align-items:start}
+  .va-left{position:sticky;top:48px}
+  .va-brand{align-items:flex-start;text-align:left}
+  .va h2{font-size:54px}
+  .va-right{display:grid;gap:30px}
+  .va-sec{margin-top:0}
+  .va .cards{margin:0;padding:0;overflow:visible;display:grid;grid-template-columns:repeat(3,1fr)}
+  .va .card{flex:none}
+  .foot{grid-column:1/-1}
+}
+
+/* ====================== B · ПЛИТКИ ====================== */
+.vb{min-height:100%;background:radial-gradient(120% 60% at 100% 0,#3a2440 0,transparent 60%),radial-gradient(90% 50% at 0 30%,#1d2a3a 0,transparent 60%),var(--night);padding:28px 16px 40px}
+.vb-in{max-width:640px;margin:0 auto}
+.vb-top{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.vb-top .va-logo{width:48px;height:48px;border-radius:15px;background-size:30px}
+.vb-top b{font:400 24px var(--serif)}
+.vb-top small{display:block;color:var(--text-soft);font-size:13px}
+.vb-top .share{margin-left:auto;padding:10px}
+.bento{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{position:relative;border-radius:24px;padding:18px;overflow:hidden;min-height:132px;display:flex;flex-direction:column;justify-content:space-between;background:rgba(245,241,233,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.07)}
+.tile.wide{grid-column:span 2}
+.tile h4{font:400 22px/1.15 var(--serif)}
+.tile p{color:var(--text-soft);font-size:13px;line-height:1.4}
+.t-app{min-height:250px;background:linear-gradient(115deg,rgba(23,19,33,.95) 35%,rgba(23,19,33,.2)),url('https://knowlyapps.com/assets/approved/app-lessons.webp') right center/cover}
+.t-app h4{font-size:32px;max-width:14ch}
+.t-app h4 em{color:var(--peach)}
+.t-app .stores{max-width:340px}
+.store.solid{background:var(--cream);color:var(--night)}
+.t-yt{min-height:150px}
+.t-yt .big{font:400 44px/1 var(--serif);color:var(--peach)}
+.t-yt .yt{position:absolute;top:18px;right:18px;opacity:.55}
+.t-yt b{font-weight:500;font-size:15px}
+.t-yt small{display:block;color:var(--text-soft);font-size:12px;margin-top:2px}
+.t-tg{background:linear-gradient(135deg,#efb2a1,#e59a8a);color:var(--peach-ink);min-height:120px;flex-direction:row;align-items:center;gap:16px;justify-content:flex-start}
+.t-tg p{color:rgba(43,26,26,.7)}
+.t-tg .ico{width:40px;height:40px}
+.t-soc{min-height:110px;align-items:flex-start}
+.t-soc .ico{width:28px;height:28px}
+.t-soc b{font-weight:500}
+.t-img{min-height:190px;justify-content:flex-end;background-size:cover;background-position:center}
+.t-img::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(23,19,33,.92))}
+.t-img>*{position:relative}
+.vb-h{grid-column:1/-1;font:600 12px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--text-soft);margin:16px 6px 2px}
+@container (min-width:900px){
+  .vb{padding:48px}
+  .vb-in{max-width:1080px}
+  .bento{grid-template-columns:repeat(4,1fr);gap:14px}
+  .tile.t-app{grid-column:span 4;min-height:320px}
+  .t-app h4{font-size:46px}
+  .t-tg{grid-column:span 2}
+}
+
+/* ====================== C · ЖУРНАЛ (светлый) ====================== */
+.vc{min-height:100%;background:var(--cream);color:var(--ink);padding:40px 22px 40px}
+.vc-in{max-width:560px;margin:0 auto}
+.vc-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;padding-bottom:30px}
+.vc-logo{width:64px;height:64px;border-radius:20px;background:#fff url('https://knowlyapps.com/assets/approved/brand.png') center/40px no-repeat;box-shadow:0 12px 30px rgba(35,55,71,.12)}
+.vc h2{font:400 36px/1.1 var(--serif)}
+.vc h2 em{color:#b0624a}
+.vc-sub{color:var(--ink-soft);font-size:15px;line-height:1.5;max-width:30ch}
+.btn-ink{display:flex;align-items:center;justify-content:center;gap:10px;height:56px;border-radius:999px;background:var(--ink);color:var(--cream);font-weight:500;font-size:16px;width:100%;box-shadow:0 14px 30px rgba(35,55,71,.22)}
+.vc .stores{margin-top:10px}
+.vc .store{background:#fff;color:var(--ink);box-shadow:0 6px 18px rgba(35,55,71,.08)}
+.vc-sec{margin-top:36px}
+.vc-sec h3{display:flex;align-items:baseline;gap:10px;font:400 24px var(--serif);margin-bottom:6px}
+.vc-sec h3 span{font:500 12px var(--sans);color:#b0624a;letter-spacing:.1em}
+.line{position:relative;display:flex;align-items:center;gap:14px;padding:16px 4px;border-bottom:1px solid rgba(35,55,71,.12)}
+.line:last-child{border-bottom:0}
+.line b{font-weight:500;font-size:16px}
+.line small{display:block;color:var(--ink-soft);font-size:13px;margin-top:2px}
+.line .code{background:#fff;color:var(--ink);box-shadow:0 4px 12px rgba(35,55,71,.08)}
+.line .ico{color:var(--ink)}
+.vc .arrow{color:var(--ink)}
+.vc-cards{display:flex;gap:12px;margin:12px -22px 0;padding:0 22px 4px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}.vc-cards::-webkit-scrollbar{display:none}.vc-card{flex:0 0 62%;scroll-snap-align:start}
+.vc-card img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:16px}
+.vc-card b{display:block;font:400 16px/1.3 var(--serif);margin-top:8px}
+.vc .foot{color:var(--ink-soft)}
+.vc .share{background:#fff;color:var(--ink);box-shadow:0 6px 18px rgba(35,55,71,.08)}
+@container (min-width:900px){
+  .vc{padding:70px 48px}
+  .vc-in{max-width:1040px;display:grid;grid-template-columns:1fr 1fr;gap:0 64px}
+  .vc-head{grid-column:1/-1;padding-bottom:20px}
+  .vc h2{font-size:52px}
+  .vc-cta{grid-column:1/-1;max-width:460px;margin:0 auto;width:100%}
+  .vc-cards{display:grid;grid-template-columns:repeat(3,1fr);margin:12px 0 0;padding:0;overflow:visible}.vc-card{flex:none}
+  .vc-sec.full{grid-column:1/-1}
+  .vc .foot{grid-column:1/-1}
+}
+</style>
+</head>
+<body>
+<header class="studio">
+  <h1>knowlyapps.com/links <span>3 варианта · все ссылки кликабельны</span></h1>
+  <div class="controls">
+    <div class="seg" role="group" aria-label="Устройство">
+      <button type="button" data-mode="phone" aria-pressed="true">Телефон</button>
+      <button type="button" data-mode="desktop" aria-pressed="false">Компьютер</button>
+    </div>
+    <div class="seg variants" role="group" aria-label="Вариант">
+      <button type="button" data-v="a" aria-pressed="true">A · Кино</button>
+      <button type="button" data-v="b" aria-pressed="false">B · Плитки</button>
+      <button type="button" data-v="c" aria-pressed="false">C · Журнал</button>
+    </div>
+  </div>
+</header>
+
+<main class="stage">
+  <section class="device active" data-v="a"><div class="device-label"><b>A · Кино</b><small>Картина с главной сайта, стеклянные строки</small></div><div class="frame"><div class="screen" id="screen-a"></div></div></section>
+  <section class="device" data-v="b"><div class="device-label"><b>B · Плитки</b><small>Мозаика: крупно главное, всё в один тап</small></div><div class="frame"><div class="screen" id="screen-b"></div></div></section>
+  <section class="device" data-v="c"><div class="device-label"><b>C · Журнал</b><small>Светлая, спокойная, как страницы статей</small></div><div class="frame"><div class="screen" id="screen-c"></div></div></section>
+</main>
+<p class="legend"><i></i>Жёлтая точка — адреса пока нет в проекте, стоит заглушка. Пришлите ссылки на каналы, группу и соцсети — впишу перед выкладкой.</p>
+<div class="toast" id="toast">Ссылка скопирована</div>
+
+<script>
+// зачем: одни и те же данные для трёх вариантов — владелец сравнивает подачу, а не разный набор ссылок
+const IMG='https://knowlyapps.com/assets/approved/';
+const D={
+  appStore:'https://apps.apple.com/app/id6764800879',
+  play:'https://play.google.com/store/apps/details?id=app.phraseman',
+  youtube:[
+    {code:'EN',lang:'English',name:'Phraseman English',handle:'@PhrasemanENGLISH',url:'https://www.youtube.com/@PhrasemanENGLISH'},
+    {code:'ES',lang:'Español',name:'Phraseman Español',handle:'канал на испанском',url:'#',todo:1},
+    {code:'FR',lang:'Français',name:'Phraseman Français',handle:'канал на французском',url:'#',todo:1},
+    {code:'DE',lang:'Deutsch',name:'Phraseman Deutsch',handle:'канал на немецком',url:'#',todo:1},
+  ],
+  social:[
+    {k:'tg',name:'Telegram',desc:'Сообщество Phraseman',url:'#',todo:1},
+    {k:'ig',name:'Instagram',desc:'Короткие уроки и фразы',url:'#',todo:1},
+    {k:'fb',name:'Facebook',desc:'Новости и обсуждения',url:'#',todo:1},
+  ],
+  extra:[
+    {k:'test',name:'Тест уровня',desc:'12–20 вопросов и именной сертификат',url:'https://knowlyapps.com/english-level-test/',img:'guide-plan.webp'},
+    {k:'gift',name:'Подарить доступ',desc:'Сертификат на Plus или Pro',url:'https://knowlyapps.com/gift/',img:'guide-habit.webp'},
+  ],
+  guides:[
+    {tag:'Разговор',title:'Понимаю, но не могу ответить',img:'guide-conversation.webp',url:'https://knowlyapps.com/guides/speaking-barrier/'},
+    {tag:'Путешествия',title:'Весь мир начинается с «извините»',img:'guide-travel.webp',url:'https://knowlyapps.com/guides/english-phrases-for-travel/'},
+    {tag:'Метод',title:'Слова знакомые. А фраза не складывается?',img:'guide-phrases.webp',url:'https://knowlyapps.com/guides/english-by-phrases/'},
+  ],
+};
+const I={
+  yt:'<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.7 15.1V8.9L15.5 12l-5.8 3.1z"/></svg>',
+  tg:'<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.7.8l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.4 13.2l-4.7-1.5c-1-.3-1-1 .2-1.5L20.4 3c.9-.3 1.7.2 1.5 1.3z"/></svg>',
+  ig:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg>',
+  fb:'<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5H16l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.5V4.4A20 20 0 0 0 14.3 4c-2.2 0-3.8 1.4-3.8 3.9v2.6H8v3h2.5V21h3z"/></svg>',
+  apple:'<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9a4.8 4.8 0 0 0-3.8-2c-1.6-.2-3.1.9-3.9.9s-2-.9-3.4-.9a5 5 0 0 0-4.2 2.6c-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8s2 .8 3.4.8 2.2-1.3 3.1-2.5a10 10 0 0 0 1.4-2.9 4.5 4.5 0 0 1-2.6-4.1zM13.9 5c.7-.9 1.2-2 1-3.2-1 .1-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3.1 1.1.1 2.2-.6 2.9-1.4z"/></svg>',
+  play:'<svg class="ico" viewBox="0 0 24 24" fill="currentColor"><path d="M4 2.8v18.4c0 .5.5.8.9.6l10-9.2L4.9 2.2c-.4-.2-.9.1-.9.6zm12.1 8.3-2.4-2.2L6.4 3.1l9.7 8zm0 1.8-9.7 8 7.3-5.8 2.4-2.2zm1.3-1.1 2.9 1.6c.6.3.6.9 0 1.2l-2.9 1.6-2.6-2.2 2.6-2.2z"/></svg>',
+  test:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 11l2 2 4-4"/><rect x="4" y="3" width="16" height="18" rx="4"/></svg>',
+  gift:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="8" width="18" height="13" rx="3"/><path d="M12 8v13M3 13h18M12 8S10.5 3 8 3.5 7 8 12 8zm0 0s1.5-5 4-4.5S17 8 12 8z"/></svg>',
+  share:'<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>',
+  arrow:'<svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>',
+};
+const ext=u=>u.startsWith('http')?' target="_blank" rel="noopener"':'';
+const todo=o=>o.todo?'<i class="todo" title="Нужна ссылка"></i>':'';
+let n=0;const r=()=>' rise'; // задержку появления ставим после рендера — второй style= на элементе браузер отбрасывает
+const stores=(cls='glass')=>`<div class="stores"><a class="store ${cls} tap" href="${D.appStore}"${ext(D.appStore)}>${I.apple}App Store</a><a class="store ${cls} tap" href="${D.play}"${ext(D.play)}>${I.play}Google Play</a></div>`;
+const shareBtn=(cls='glass')=>`<button type="button" class="share ${cls} tap" data-share>${I.share}Поделиться страницей</button>`;
+
+function A(){n=0;return `<div class="va"><div class="va-bg"></div><div class="va-in">
+<div class="va-left"><div class="va-brand${r()}"><div class="va-logo"></div><h2>Ваш голос.<br><em>На другом языке.</em></h2><p class="va-sub">Приложение, каналы и сообщество Phraseman — всё в одном месте.</p></div>
+<div class="va-cta${r()}"><a class="btn-peach tap" href="https://knowlyapps.com/download/" target="_blank" rel="noopener">Скачать Phraseman бесплатно</a>${stores()}</div></div>
+<div class="va-right"><section class="va-sec${r()}"><h3>YouTube на вашем языке</h3><div class="list">${D.youtube.map(y=>`<a class="row glass tap" href="${y.url}"${ext(y.url)}><span class="code">${y.code}</span><span><b>${y.name}</b><small>${y.handle}</small></span>${I.arrow}${todo(y)}</a>`).join('')}</div></section>
+<section class="va-sec${r()}"><h3>Сообщество</h3><div class="socials">${D.social.map(s=>`<a class="social glass tap" href="${s.url}"${ext(s.url)}>${I[s.k]}${s.name}${todo(s)}</a>`).join('')}</div></section>
+<section class="va-sec${r()}"><h3>Попробовать</h3><div class="list">${D.extra.map(e=>`<a class="row glass tap" href="${e.url}"${ext(e.url)}><span class="code">${I[e.k]}</span><span><b>${e.name}</b><small>${e.desc}</small></span>${I.arrow}</a>`).join('')}</div></section>
+<section class="va-sec${r()}"><h3>Из журнала</h3><div class="cards">${D.guides.map(g=>`<a class="card glass tap" href="${g.url}" target="_blank" rel="noopener"><img src="${IMG+g.img}" alt="" loading="lazy"><div><span>${g.tag}</span><b>${g.title}</b></div></a>`).join('')}</div></section></div>
+<div class="foot${r()}">${shareBtn()}<span>© 2026 Knowly · Phraseman</span></div>
+</div></div>`}
+
+function B(){n=0;return `<div class="vb"><div class="vb-in">
+<div class="vb-top${r()}"><div class="va-logo"></div><div><b>phraseman</b><small>Живые фразы на любом языке</small></div><button type="button" class="share glass tap" data-share aria-label="Поделиться">${I.share}</button></div>
+<div class="bento">
+<div class="tile wide t-app${r()}"><h4>Говорите<br><em>с первого урока.</em></h4><div>${stores('solid')}</div></div>
+<p class="vb-h${r()}">YouTube</p>
+${D.youtube.map(y=>`<a class="tile t-yt tap${r()}" href="${y.url}"${ext(y.url)}><span class="yt">${I.yt}</span><span class="big">${y.code}</span><span><b>${y.lang}</b><small>${y.handle}</small></span>${todo(y)}</a>`).join('')}
+<p class="vb-h${r()}">Сообщество</p>
+<a class="tile wide t-tg tap${r()}" href="${D.social[0].url}">${I.tg}<span><h4>Telegram</h4><p>Вопросы, фразы дня и новости</p></span>${todo(D.social[0])}</a>
+${D.social.slice(1).map(s=>`<a class="tile t-soc tap${r()}" href="${s.url}">${I[s.k]}<span><b>${s.name}</b><p>${s.desc}</p></span>${todo(s)}</a>`).join('')}
+<p class="vb-h${r()}">Попробовать</p>
+${D.extra.map(e=>`<a class="tile t-img tap${r()}" href="${e.url}" target="_blank" rel="noopener" style="background-image:url(${IMG+e.img})"><h4>${e.name}</h4><p>${e.desc}</p></a>`).join('')}
+<p class="vb-h${r()}">Журнал</p>
+${D.guides.slice(0,2).map(g=>`<a class="tile t-img tap${r()}" href="${g.url}" target="_blank" rel="noopener" style="background-image:url(${IMG+g.img})"><p>${g.tag}</p><h4 style="font-size:18px">${g.title}</h4></a>`).join('')}
+</div>
+<div class="foot${r()}"><span>© 2026 Knowly · Phraseman</span></div>
+</div></div>`}
+
+function C(){n=0;return `<div class="vc"><div class="vc-in">
+<div class="vc-head${r()}"><div class="vc-logo"></div><h2>Phraseman<br><em>в одном месте.</em></h2><p class="vc-sub">Приложение, каналы на четырёх языках и всё, что мы пишем.</p></div>
+<div class="vc-cta${r()}"><a class="btn-ink tap" href="https://knowlyapps.com/download/" target="_blank" rel="noopener">Скачать бесплатно</a>${stores('')}</div>
+<section class="vc-sec${r()}"><h3><span>01</span>YouTube</h3>${D.youtube.map(y=>`<a class="line tap" href="${y.url}"${ext(y.url)}><span class="code">${y.code}</span><span><b>${y.name}</b><small>${y.handle}</small></span>${I.arrow}${todo(y)}</a>`).join('')}</section>
+<section class="vc-sec${r()}"><h3><span>02</span>Сообщество</h3>${D.social.map(s=>`<a class="line tap" href="${s.url}">${I[s.k]}<span><b>${s.name}</b><small>${s.desc}</small></span>${I.arrow}${todo(s)}</a>`).join('')}</section>
+<section class="vc-sec${r()}"><h3><span>03</span>Попробовать</h3>${D.extra.map(e=>`<a class="line tap" href="${e.url}" target="_blank" rel="noopener">${I[e.k]}<span><b>${e.name}</b><small>${e.desc}</small></span>${I.arrow}</a>`).join('')}</section>
+<section class="vc-sec full${r()}"><h3><span>04</span>Из журнала</h3><div class="vc-cards">${D.guides.map(g=>`<a class="vc-card tap" href="${g.url}" target="_blank" rel="noopener"><img src="${IMG+g.img}" alt="" loading="lazy"><b>${g.title}</b></a>`).join('')}</div></section>
+<div class="foot${r()}">${shareBtn('')}<span>© 2026 Knowly · Phraseman</span></div>
+</div></div>`}
+
+document.getElementById('screen-a').innerHTML=A();
+document.getElementById('screen-b').innerHTML=B();
+document.getElementById('screen-c').innerHTML=C();
+document.querySelectorAll('.screen').forEach(sc=>sc.querySelectorAll('.rise').forEach((el,i)=>el.style.animationDelay=(i*45)+'ms'));
+
+// переключатели макета
+const press=(sel,btn)=>document.querySelectorAll(sel).forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));
+document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>{
+  press('[data-mode]',b);document.body.classList.toggle('desktop',b.dataset.mode==='desktop');
+}));
+document.querySelectorAll('.seg.variants [data-v]').forEach(b=>b.addEventListener('click',()=>{
+  press('.seg.variants [data-v]',b);
+  document.querySelectorAll('.device').forEach(d=>d.classList.toggle('active',d.dataset.v===b.dataset.v));
+}));
+// заглушки не уводят со страницы; «Поделиться» копирует адрес
+const toast=document.getElementById('toast');let tt;
+const say=t=>{toast.textContent=t;toast.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('show'),1800)};
+document.addEventListener('click',e=>{
+  const a=e.target.closest('a[href="#"]');if(a){e.preventDefault();say('Здесь будет ваша ссылка');return}
+  const s=e.target.closest('[data-share]');if(s){
+    const url='https://knowlyapps.com/links';
+    (navigator.share?navigator.share({title:'Phraseman',url}).catch(()=>{}):navigator.clipboard?.writeText(url).then(()=>say('Ссылка скопирована'),()=>say(url)));
+  }
+});
+</script>
+</body>
+</html>

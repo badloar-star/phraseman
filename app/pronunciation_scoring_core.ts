@@ -197,6 +197,7 @@ function charDistance(a: string, b: string): number {
 // a substitution at SOFT_MISS instead of 0. Set per attempt via a module-scoped
 // closure so the shared wordSimilarity stays a 2-arg pure-ish function.
 const SOFT_MISS = 0.5;
+const WORD_HEARD_SIMILARITY = 0.7;
 const LOW_CONFIDENCE_THRESHOLD = 0.4;
 // Normalized transcript words the recognizer returned with low confidence.
 let lowConfidenceTranscriptWords: ReadonlySet<string> = new Set();
@@ -369,9 +370,27 @@ function computeScore(
     ([word, count]) => count < 2 || (transcriptCounts.get(word) ?? 0) >= count,
   );
 
+  // зачем: ученик сказал «afraid» вместо «scared» и «it» вместо «that» — процент
+  // (~78–82%) перекрывал порог, и ЧУЖОЕ слово засчитывалось как верный ответ.
+  // Каждое слово цели обязано иметь похожее слово в распознанном тексте. Прощаем
+  // только то, что прощали и раньше: одно оброненное движком слово на длинной
+  // фразе (распознано меньше слов, чем в цели) и слова, в которых сам движок
+  // не уверен (low-confidence) — это огрех распознавания, а не ученика.
+  // Порог 0.7, а не 0.6 как в самом проценте: при 0.6 «waste»≈«want», «sit»≈«set».
+  // Созвучные написания (centre/center, knight/night) ловит фонетика (0.95).
+  const uncoveredTargets = targetWords.filter(
+    (target) => !transcriptWords.some((heard) => wordSimilarity(target, heard) >= WORD_HEARD_SIMILARITY),
+  ).length;
+  const omissionAllowance = targetWords.length >= 4 && transcriptWords.length < targetWords.length ? 1 : 0;
+  const lowConfidenceSlack = transcriptWords.filter(
+    (heard) => lowConfidenceTranscriptWords.has(heard)
+      && !targetWords.some((target) => wordSimilarity(target, heard) >= WORD_HEARD_SIMILARITY),
+  ).length;
+  const everyTargetWordHeard = uncoveredTargets <= omissionAllowance + lowConfidenceSlack;
+
   return {
     score,
-    passed: score >= threshold && repeatedOccurrencesCovered,
+    passed: score >= threshold && repeatedOccurrencesCovered && everyTargetWordHeard,
     threshold,
     normalizedTarget,
     normalizedTranscript,

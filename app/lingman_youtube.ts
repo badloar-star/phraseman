@@ -36,10 +36,14 @@ export type LingmanYoutubeSnapshot = {
 // channelId. Экспортируется под историческими именами LINGMAN_CHANNEL_* для
 // обратной совместимости импортов; реальный «текущий» канал берётся через
 // getActiveYoutubeChannel() ниже (учитывает remote_config override).
-export const LINGMAN_CHANNEL_ID = 'UCNNVZbMkh4jrW6uluaaJTwA';
+// зачем (2026-09-27): @PhrasemanENGLISH отдаёт 404, владелец подтвердил живой
+// английский канал @professorlingman. Прежний id UCNNVZbMkh4jrW6uluaaJTwA по RSS
+// оказался каналом «Professor Lingman | LEARN ITALIAN» — лента тянула итальянские
+// видео. id ниже сверен с canonical-ссылкой страницы @professorlingman и его RSS.
+export const LINGMAN_CHANNEL_ID = 'UCIr8fwZjbDtcUlQ-IKIbndg';
 export const LINGMAN_CHANNEL_DISPLAY_NAME = 'Professor Lingman';
-export const LINGMAN_CHANNEL_HANDLE = '@PhrasemanENGLISH';
-export const LINGMAN_CHANNEL_URL = 'https://www.youtube.com/@PhrasemanENGLISH/videos';
+export const LINGMAN_CHANNEL_HANDLE = '@professorlingman';
+export const LINGMAN_CHANNEL_URL = 'https://www.youtube.com/@professorlingman/videos';
 const LINGMAN_FEED_TIMEOUT_MS = 10000;
 export const LINGMAN_YOUTUBE_EMBED_BASE_URL = 'https://app.phraseman/';
 

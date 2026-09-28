@@ -67,14 +67,16 @@ describe('lingman YouTube quality gate', () => {
     expect(player).not.toContain('Linking.openURL');
   });
 
-  it('connects the catalog to the PHRASEMAN English YouTube channel', () => {
+  it('connects the catalog to the Professor Lingman English YouTube channel', () => {
     const combined = [catalogSource(), buttonSource(), dataSource()].join('\n');
 
-    expect(dataSource()).toContain("LINGMAN_CHANNEL_ID = 'UCNNVZbMkh4jrW6uluaaJTwA'");
-    expect(dataSource()).toContain("LINGMAN_CHANNEL_HANDLE = '@PhrasemanENGLISH'");
-    expect(dataSource()).toContain('https://www.youtube.com/@PhrasemanENGLISH/videos');
+    expect(dataSource()).toContain("LINGMAN_CHANNEL_ID = 'UCIr8fwZjbDtcUlQ-IKIbndg'");
+    expect(dataSource()).toContain("LINGMAN_CHANNEL_HANDLE = '@professorlingman'");
+    expect(dataSource()).toContain('https://www.youtube.com/@professorlingman/videos');
     expect(combined).toContain('LINGMAN_CHANNEL_DISPLAY_NAME');
-    expect(combined).not.toContain('@professorlingman');
+    // зачем: @PhrasemanENGLISH удалён (404), UCNNVZbMkh4jrW6uluaaJTwA — итальянский канал.
+    expect(combined).not.toContain("= '@PhrasemanENGLISH'");
+    expect(combined).not.toContain("= 'UCNNVZbMkh4jrW6uluaaJTwA'");
   });
 
   it('filters Shorts out and keeps the YouTube tab for long videos only', () => {

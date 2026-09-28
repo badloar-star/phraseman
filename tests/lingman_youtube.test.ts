@@ -32,10 +32,10 @@ function makeVideo(id: string): LingmanYoutubeVideo {
 }
 
 describe('lingman_youtube', () => {
-  it('points the catalog feed and channel button to the PHRASEMAN English channel', () => {
-    expect(LINGMAN_CHANNEL_ID).toBe('UCNNVZbMkh4jrW6uluaaJTwA');
-    expect(LINGMAN_CHANNEL_HANDLE).toBe('@PhrasemanENGLISH');
-    expect(LINGMAN_CHANNEL_URL).toBe('https://www.youtube.com/@PhrasemanENGLISH/videos');
+  it('points the catalog feed and channel button to the Professor Lingman English channel', () => {
+    expect(LINGMAN_CHANNEL_ID).toBe('UCIr8fwZjbDtcUlQ-IKIbndg');
+    expect(LINGMAN_CHANNEL_HANDLE).toBe('@professorlingman');
+    expect(LINGMAN_CHANNEL_URL).toBe('https://www.youtube.com/@professorlingman/videos');
   });
 
   it('parses the YouTube RSS feed entries used by the catalog', () => {
@@ -203,7 +203,7 @@ describe('lingman_youtube', () => {
     expect(getTrustedLingmanYoutubeUrl('https://www.youtube.com/watch?v=X7L3Xg3qITo')).toBe('https://www.youtube.com/watch?v=X7L3Xg3qITo');
     expect(getTrustedLingmanYoutubeUrl('https://m.youtube.com/watch?v=X7L3Xg3qITo')).toBe('https://m.youtube.com/watch?v=X7L3Xg3qITo');
     expect(getTrustedLingmanYoutubeUrl('https://youtu.be/X7L3Xg3qITo')).toBe('https://youtu.be/X7L3Xg3qITo');
-    expect(getTrustedLingmanYoutubeUrl('https://www.youtube.com/@PhrasemanENGLISH/videos')).toBe('https://www.youtube.com/@PhrasemanENGLISH/videos');
+    expect(getTrustedLingmanYoutubeUrl('https://www.youtube.com/@professorlingman/videos')).toBe('https://www.youtube.com/@professorlingman/videos');
     expect(getTrustedLingmanYoutubeUrl('https://evil.example/watch?v=X7L3Xg3qITo', 'X7L3Xg3qITo')).toBe('https://www.youtube.com/watch?v=X7L3Xg3qITo');
     expect(getTrustedLingmanYoutubeUrl('javascript:alert(1)', 'X7L3Xg3qITo')).toBe('https://www.youtube.com/watch?v=X7L3Xg3qITo');
     expect(getTrustedLingmanYoutubeUrl('https://evil.example/watch?v=X7L3Xg3qITo')).toBeNull();

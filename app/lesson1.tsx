@@ -929,6 +929,16 @@ const LessonContent = React.memo(function LessonContent({
       : canonicalResultLine)
     : '';
   const spokenTargetLine = cleanPhraseForDisplay(gradeTarget);
+  // Слова ученика против эталона — той же цепочкой, что isCorrectAnswer/phraseCanonicalAnswer.
+  const wrongResultTokens = (() => {
+    if (!phrase || status !== 'result' || !wasWrong) return [] as { word: string; isWrong: boolean }[];
+    const userAnswer = settings.hardMode ? typedText : selectedWords.join(' ');
+    const userWords = normalizeLessonAssemblyAnswer(userAnswer).split(/\s+/).filter(w => w.length > 0);
+    const correctWords = normalizeLessonAssemblyAnswer(phraseCanonicalAnswer(phrase, studyTarget))
+      .split(/\s+/)
+      .filter(w => w.length > 0);
+    return userWords.map((word, i) => ({ word, isWrong: word !== correctWords[i] }));
+  })();
   const speakingPrimaryLine = speakingResult
     ? (speakingResult.passed ? spokenTargetLine : maskSpokenPhraseKeepInitial(spokenTargetLine))
     : '';
@@ -1158,6 +1168,30 @@ const LessonContent = React.memo(function LessonContent({
             {(status === 'result' || speakingResult) ? (
               <View testID="lesson1-primary-answer-row" style={{ alignItems: 'center', justifyContent: 'center', width: '100%' }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', maxWidth: '100%' }}>
+                  {/* зачем: ученики писали «нажал waist — появилось waste», «нажал know — вышло
+                      remember», «пишу them — ставит they». Приложение ничего не подменяло, но при
+                      неверном ответе на МЕСТЕ собранной фразы зелёным появлялся эталон, а свой
+                      ответ уезжал в красную плашку без подписи. Теперь при ошибке здесь остаются
+                      слова ученика (неверные — красным), а эталон — зелёным в плашке ниже. */}
+                  {status === 'result' && wasWrong && wrongResultTokens.length > 0 ? (
+                    <Text
+                      testID="lesson1-user-answer-on-wrong"
+                      style={{ fontSize: resultAnswerFont, textAlign: 'center', flexShrink: 1 }}
+                    >
+                      {wrongResultTokens.map((token, i) => (
+                        <Text
+                          key={i}
+                          style={{
+                            color: token.isWrong ? t.wrong : t.textPrimary,
+                            fontWeight: token.isWrong ? '700' : '500',
+                            textDecorationLine: token.isWrong ? 'line-through' : 'none',
+                          }}
+                        >
+                          {i > 0 ? ' ' : ''}{token.word}
+                        </Text>
+                      ))}
+                    </Text>
+                  ) : (
                   <Text
                     style={{
                       color: status === 'result' || speakingResult?.passed ? t.correct : t.wrong,
@@ -1168,6 +1202,7 @@ const LessonContent = React.memo(function LessonContent({
                   >
                     {status === 'result' ? resultCorrectLine : speakingPrimaryLine}
                   </Text>
+                  )}
                   {status === 'result' && (
                     <View testID="lesson1-primary-save" style={{ marginLeft: 6 }}>
                       <AddToFlashcard
@@ -1263,29 +1298,12 @@ const LessonContent = React.memo(function LessonContent({
             }}>
               {wasWrong && (
                 <View style={{ backgroundColor: t.wrongBg, padding: linkedSliceCompact ? 10 : 15, borderRadius: 10, marginBottom: linkedSliceCompact ? 6 : 10, borderLeftWidth: 3, borderLeftColor: t.wrong }}>
-                  <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4 }}>
-                    {(() => {
-                      const userAnswer = settings.hardMode ? typedText : selectedWords.join(' ');
-                      // Same pipeline as isCorrectAnswer / phraseCanonicalAnswer (per-token punct strip)
-                      const expandedWords = normalizeLessonAssemblyAnswer(userAnswer).split(/\s+/).filter(w => w.length > 0);
-                      const correctWords = normalizeLessonAssemblyAnswer(phraseCanonicalAnswer(phrase, studyTarget))
-                        .split(/\s+/)
-                        .filter(w => w.length > 0);
-                      return expandedWords.map((word, i) => {
-                        const correctWord = correctWords[i];
-                        const isWrong = word !== correctWord;
-                        return (
-                          <Text key={i} style={{
-                            color: isWrong ? t.wrong : t.textPrimary,
-                            fontWeight: isWrong ? '700' : '500',
-                            fontSize: interactiveAnswerFont,
-                          }}>
-                            {word}
-                          </Text>
-                        );
-                      });
-                    })()}
-                  </View>
+                  <Text
+                    testID="lesson1-correct-answer-on-wrong"
+                    style={{ color: t.correct, fontWeight: '600', fontSize: interactiveAnswerFont, textAlign: 'center' }}
+                  >
+                    {resultCorrectLine}
+                  </Text>
                 </View>
               )}
               {status === 'result' && wasWrong && (

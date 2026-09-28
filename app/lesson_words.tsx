@@ -1950,6 +1950,9 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'whole', ru: 'Весь / целый', uk: 'Весь / цілий', es: 'entero', 'pt-BR': 'inteiro / todo', vi: 'toàn bộ', id: 'seluruh / utuh', tr: 'bütün / tüm', pl: 'cały', pos: 'adjectives' },
     { en: 'helpful', ru: 'Полезный / готовый помочь', uk: 'Корисний / готовий допомогти', es: 'útil', 'pt-BR': 'útil / prestativo', vi: 'hữu ích / hay giúp đỡ', id: 'membantu / berguna', tr: 'yardımsever / faydalı', pl: 'pomocny / użyteczny', pos: 'adjectives' },
     { en: 'tourist', ru: 'Турист', uk: 'Турист', es: 'turista', 'pt-BR': 'turista', vi: 'du khách', id: 'turis / wisatawan', tr: 'turist', pl: 'turysta', pos: 'nouns' },
+    // зачем: ученик не нашёл «strict» в словаре урока 31, хотя слово есть в 4 фразах урока;
+    // строка жила только в неиспользуемой таблице FUNCTION_WORDS.
+    { en: 'strict', ru: 'Строгий', uk: 'Суворий', es: 'estricto', 'pt-BR': 'rígido / rigoroso', vi: 'nghiêm khắc / chặt chẽ', id: 'ketat / tegas', tr: 'katı / sıkı', pl: 'surowy / rygorystyczny', pos: 'adjectives' },
     { en: 'firm', ru: 'Строгий / твёрдый', uk: 'Суворий / твердий', es: 'firme', 'pt-BR': 'firme / rígido', vi: 'vững chắc / nghiêm khắc', id: 'tegas / kuat', tr: 'sıkı / sağlam', pl: 'stanowczy / twardy', pos: 'adjectives' },
     { en: 'employee', ru: 'Сотрудник', uk: 'Працівник / співробітник', es: 'empleado', 'pt-BR': 'funcionário / empregado', vi: 'nhân viên', id: 'karyawan / pegawai', tr: 'çalışan / personel', pl: 'pracownik', pos: 'nouns' },
     { en: 'boring', ru: 'Скучный', uk: 'Нудний', es: 'aburrido', 'pt-BR': 'chato / entediante', vi: 'nhàm chán', id: 'membosankan', tr: 'sıkıcı', pl: 'nudny', pos: 'adjectives' },

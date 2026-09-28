@@ -6507,6 +6507,8 @@ export const LESSON_30_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson30_phrase_33',
     english: 'We helped a student whose answer was wrong',
+    // зачем: в русском нет артикля — «помогли студенту» без контекста равно допускает и the.
+    alternatives: ['We helped the student whose answer was wrong'],
     russian: 'Мы помогли студенту, чей ответ был неправильным',
     ukrainian: 'Ми допомогли студенту, чия відповідь була неправильною',
     spanish: 'Ayudamos a un estudiante cuya respuesta era incorrecta',
@@ -7697,8 +7699,8 @@ export const LESSON_31_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson31_phrase_40',
     english: 'We heard that strict teacher read that long list of rules.',
-    russian: 'Мы слышали, как тот строгий учитель читал длинный список правил.',
-    ukrainian: 'Ми чули, як той суворий вчитель читав довгий перелік правил.',
+    russian: 'Мы слышали, как тот строгий учитель читал тот длинный список правил.',
+    ukrainian: 'Ми чули, як той суворий вчитель читав той довгий перелік правил.',
     spanish: 'Oímos leer a ese profesor estricto esa larga lista de normas.',
     words: [
       { text: 'We', correct: 'We', distractors: ['us', 'our', 'ours', 'they', 'you'] },

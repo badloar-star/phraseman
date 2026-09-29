@@ -97,8 +97,10 @@ jest.mock('../components/ThemeContext', () => ({
       textGhost: '#6b7280',
       wrong: '#ef4444',
       correctText: '#07110a',
+      wrongBg: 'rgba(239,68,68,0.12)',
     },
     f: { h1: 24, body: 16, caption: 13 },
+    liquidGlassThemeId: 'graphite',
   }),
 }));
 jest.mock('../components/LangContext', () => ({ useLang: () => ({ lang: 'ru' }) }));
@@ -111,6 +113,9 @@ jest.mock('../components/SafeLinearGradient', () => {
     ),
   };
 });
+jest.mock('../components/keyboardAvoidance', () => ({ useKeyboardBottomInset: () => 0 }));
+// зачем: PressableHybrid тянет expo-audio (ESM) — в этом наборе не нужен, ломал разбор файла.
+jest.mock('../components/PressableHybrid', () => ({ __esModule: true, default: 'Pressable' }));
 jest.mock('../components/StreakChainIcon', () => ({ StreakChainIcon: () => null }));
 jest.mock('@expo/vector-icons/Ionicons', () => () => null);
 jest.mock('react-native-gesture-handler', () => {

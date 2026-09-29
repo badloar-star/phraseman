@@ -12,7 +12,7 @@ describe('RegistrationPromptModal responsive layout contract', () => {
     const src = source();
 
     expect(src).toContain('useWindowDimensions');
-    expect(src).toContain('const cardMaxHeight = Math.max(280, viewportHeight - 64)');
+    expect(src).toContain('const cardMaxHeight = Math.max(280, viewportHeight - 64 - keyboardInset)');
     expect(src).toContain('maxHeight: cardMaxHeight');
     expect(src).toContain("overflow: 'hidden'");
     expect(src).toContain('<ScrollView');

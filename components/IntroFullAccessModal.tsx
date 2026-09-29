@@ -1,27 +1,21 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useEffect } from 'react';
-import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Modal, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { LinearGradient } from './SafeLinearGradient';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
-import { isLightThemeMode } from '../constants/theme';
-import {
-  RewardModalBackdrop,
-  RewardModalPanelBackdrop,
-  rewardModalAccentColor,
-  rewardModalPanelBorder,
-  rewardModalPanelColors,
-  rewardModalPrimaryButtonColors,
-  rewardModalPrimaryButtonText,
-  rewardModalSoftSurface,
-} from './RewardModalBackdrop';
 import HybridAlertShell, { CascadeItem } from './modal_fx/HybridAlertShell';
-import DuoPressable from './DuoPressable';
 import PressableHybrid from './PressableHybrid';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { LUM } from '../constants/motionHybrid';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { triLang, type Lang } from '../constants/i18n';
 
+// зачем: владелец 2026-09-29 — перенос окна на Liquid Glass «1 в 1 с макета»
+// (overlays-more.html OM-FULL-WELCOME / OM-FULL-ENDED). Без градиентов и россыпи
+// hex: непрозрачная основа и нейтральный CTA из токенов темы (13 тем). Старые
+// обещания Plus (про планы, темы и разборы) убраны — в макете их
+// нет; остаётся только подтверждённое: за три дня занятия не списывают энергию.
 type Props = {
   visible: boolean;
   variant: 'welcome' | 'ended';
@@ -31,112 +25,46 @@ type Props = {
   motionVariant?: 'classic' | 'hybrid';
 };
 
-const COPY = {
-  ru: {
-    welcomeEyebrow: 'Подарок на старт',
-    welcomeTitle: 'Три дня — всё открыто',
-    welcomeBody: 'Мы дарим тебе три дня полного доступа. Никаких лимитов, всё открыто, энергия бесконечная. Посмотри приложение в полной силе — и сам реши, что тебе нужно.',
-    welcomeCta: 'Начать — всё открыто',
-    welcomeFooter: 'Это подарок. Подписка не включается автоматически.',
-    endedEyebrow: 'Три дня позади',
-    // зачем (аудит по Библии, 2026-08-26): «бесплатно» — запрещённое слово
-    // словаря, и оно спорило с соседней кнопкой «Остаться на базовом».
-    // Термин приведён к одному: базовый режим.
-    endedTitle: 'Продолжай — на базовом или с Plus',
-    endedBody: 'Всё, что ты выучил — остаётся с тобой. Базовый режим открыт всегда. Plus вернёт все планы, темы, разборы и практику без ограничений.',
-    endedPrimary: 'Открыть полный доступ',
-    endedSecondary: 'Остаться на базовом',
-  },
-  uk: {
-    welcomeEyebrow: 'Подарунок на старт',
-    welcomeTitle: 'Три дні - весь застосунок без замків',
-    welcomeBody: 'Ми відкрили уроки, плани, теми, аналітику помилок і режим без енергії. Можна спокійно натискати все підряд - майже науковий метод.',
-    welcomeCta: 'Погнали, все відкрито',
-    welcomeFooter: 'Це подарунок. Підписка не вмикається автоматично.',
-    endedEyebrow: 'Подарунковий режим завершився',
-    endedTitle: 'Продовжуй — на базовому або з Plus',
-    endedBody: 'Усе, що ти вивчив — залишається з тобою. Базовий режим відкритий завжди. Plus поверне всі плани, теми, розбори й практику без обмежень.',
-    endedPrimary: 'Залишити повний доступ',
-    endedSecondary: 'Залишитися на базовому',
-  },
-  es: {
-    welcomeEyebrow: 'Regalo inicial',
-    welcomeTitle: 'Tres días con toda la app abierta',
-    welcomeBody: 'Abrimos lecciones, planes, temas, análisis de errores y modo sin energía. Puedes probarlo todo con calma: método científico, casi.',
-    welcomeCta: 'Vamos, todo abierto',
-    welcomeFooter: 'Es un regalo. La suscripción no se activa automáticamente.',
-    endedEyebrow: 'El regalo terminó',
-    endedTitle: 'El modo gratis sigue contigo',
-    endedBody: 'Tus tres días de acceso completo terminaron. Aún puedes aprender gratis: lecciones, frases y progreso siguen aquí. Plus vuelve a guardar las funciones avanzadas si quieres dejar todo abierto.',
-    endedPrimary: 'Mantener acceso completo',
-    endedSecondary: 'Continuar gratis',
-  },
-  'pt-BR': {
-    welcomeEyebrow: 'Presente inicial',
-    welcomeTitle: 'Três dias com tudo aberto',
-    welcomeBody: 'Abrimos lições, planos, temas, análise de erros e modo sem energia. Você pode testar tudo com calma: quase um método científico.',
-    welcomeCta: 'Vamos, tudo aberto',
-    welcomeFooter: 'É um presente. A assinatura não é ativada automaticamente.',
-    endedEyebrow: 'O presente terminou',
-    endedTitle: 'O modo grátis continua com você',
-    endedBody: 'Seus três dias de acesso completo terminaram. Você ainda pode aprender grátis: lições, frases e progresso continuam aqui. O Plus volta a guardar os recursos avançados se quiser deixar tudo aberto.',
-    endedPrimary: 'Manter acesso completo',
-    endedSecondary: 'Continuar grátis',
-  },
-  vi: {
-    welcomeEyebrow: 'Quà khởi đầu',
-    welcomeTitle: 'Ba ngày mở toàn bộ ứng dụng',
-    welcomeBody: 'Chúng tôi đã mở bài học, kế hoạch, chủ đề, phân tích lỗi và chế độ không giới hạn năng lượng. Bạn có thể thử mọi thứ thật thoải mái: gần như một phương pháp khoa học.',
-    welcomeCta: 'Bắt đầu, mọi thứ đã mở',
-    welcomeFooter: 'Đây là quà tặng. Gói đăng ký không tự động bật.',
-    endedEyebrow: 'Quà tặng đã kết thúc',
-    endedTitle: 'Chế độ miễn phí vẫn ở lại với bạn',
-    endedBody: 'Ba ngày truy cập đầy đủ đã kết thúc. Bạn vẫn có thể học miễn phí: bài học, cụm từ và tiến độ vẫn ở đây. Plus sẽ giữ lại các tính năng nâng cao nếu bạn muốn mở tất cả.',
-    endedPrimary: 'Giữ quyền truy cập đầy đủ',
-    endedSecondary: 'Tiếp tục miễn phí',
-  },
-  id: {
-    welcomeEyebrow: 'Hadiah awal',
-    welcomeTitle: 'Tiga hari dengan semua terbuka',
-    welcomeBody: 'Pelajaran, rencana, tema, analisis kesalahan, dan mode tanpa energi sudah kami buka. Kamu bisa mencoba semuanya dengan tenang: hampir seperti metode ilmiah.',
-    welcomeCta: 'Mulai, semuanya terbuka',
-    welcomeFooter: 'Ini hadiah. Langganan tidak aktif otomatis.',
-    endedEyebrow: 'Hadiah selesai',
-    endedTitle: 'Mode gratis tetap bersamamu',
-    endedBody: 'Tiga hari akses penuhmu selesai. Kamu masih bisa belajar gratis: pelajaran, frasa, dan progres tetap ada. Plus kembali menyimpan fitur lanjutan kalau kamu ingin semuanya tetap terbuka.',
-    endedPrimary: 'Pertahankan akses penuh',
-    endedSecondary: 'Lanjut gratis',
-  },
-  tr: {
-    welcomeEyebrow: 'Başlangıç hediyesi',
-    welcomeTitle: 'Üç gün boyunca her şey açık',
-    welcomeBody: 'Dersleri, planları, temaları, hata analizini ve enerjisiz modu açtık. Her şeyi sakin sakin deneyebilirsin: neredeyse bilimsel yöntem.',
-    welcomeCta: 'Başla, her şey açık',
-    welcomeFooter: 'Bu bir hediye. Abonelik otomatik başlamaz.',
-    endedEyebrow: 'Hediye bitti',
-    endedTitle: 'Ücretsiz mod seninle kalıyor',
-    endedBody: 'Üç günlük tam erişimin sona erdi. Yine de ücretsiz öğrenebilirsin: dersler, ifadeler ve ilerleme burada kalır. Her şeyi açık tutmak istersen gelişmiş özellikler yeniden Plus’da.',
-    endedPrimary: 'Tam erişimi koru',
-    endedSecondary: 'Ücretsiz devam et',
-  },
-  pl: {
-    welcomeEyebrow: 'Prezent na start',
-    welcomeTitle: 'Trzy dni z całą aplikacją otwartą',
-    welcomeBody: 'Otworzyliśmy lekcje, plany, motywy, analizę błędów i tryb bez energii. Możesz spokojnie sprawdzić wszystko: prawie metoda naukowa.',
-    welcomeCta: 'Start, wszystko otwarte',
-    welcomeFooter: 'To prezent. Subskrypcja nie włącza się automatycznie.',
-    endedEyebrow: 'Prezent się skończył',
-    endedTitle: 'Tryb darmowy zostaje z tobą',
-    endedBody: 'Trzy dni pełnego dostępu dobiegły końca. Nadal możesz uczyć się za darmo: lekcje, frazy i postęp zostają tutaj. Plus znów przechowuje funkcje zaawansowane, jeśli chcesz mieć wszystko otwarte.',
-    endedPrimary: 'Zachowaj pełny dostęp',
-    endedSecondary: 'Kontynuuj za darmo',
-  },
-};
+function introCopy(lang: Lang) {
+  return {
+    welcomeEyebrow: triLang(lang, { ru: 'Подарок на старт', uk: 'Подарунок на старт', en: 'A gift to start', es: 'Regalo inicial', 'pt-BR': 'Presente inicial', vi: 'Quà khởi đầu', id: 'Hadiah awal', tr: 'Başlangıç hediyesi', pl: 'Prezent na start' }),
+    welcomeTitle: triLang(lang, { ru: 'Три дня доступа начались', uk: 'Три дні доступу почалися', en: 'Your three days of access have begun', es: 'Empezaron tus tres días de acceso', 'pt-BR': 'Seus três dias de acesso começaram', vi: 'Ba ngày truy cập đã bắt đầu', id: 'Tiga hari akses dimulai', tr: 'Üç günlük erişim başladı', pl: 'Trzy dni dostępu się zaczęły' }),
+    welcomeBody: triLang(lang, {
+      ru: 'В течение трёх дней занятия не списывают энергию. Остальные условия полного доступа для 2.0 уточняются.',
+      uk: 'Протягом трьох днів заняття не списують енергію. Решта умов повного доступу для 2.0 уточнюється.',
+      en: 'For three days, lessons do not spend energy. The other full-access terms for 2.0 are still being finalized.',
+      es: 'Durante tres días, las clases no gastan energía. Las demás condiciones del acceso completo para 2.0 aún se están definiendo.',
+      'pt-BR': 'Durante três dias, as aulas não gastam energia. As demais condições do acesso completo para o 2.0 ainda estão sendo definidas.',
+      vi: 'Trong ba ngày, các buổi học không tiêu hao năng lượng. Các điều kiện còn lại của quyền truy cập đầy đủ cho 2.0 vẫn đang được xác định.',
+      id: 'Selama tiga hari, sesi belajar tidak menghabiskan energi. Ketentuan akses penuh lainnya untuk 2.0 masih diperjelas.',
+      tr: 'Üç gün boyunca dersler enerji harcamaz. Tam erişimin diğer koşulları 2.0 için henüz netleştiriliyor.',
+      pl: 'Przez trzy dni lekcje nie zużywają energii. Pozostałe warunki pełnego dostępu w wersji 2.0 są jeszcze doprecyzowywane.',
+    }),
+    welcomeCta: triLang(lang, { ru: 'Начать', uk: 'Почати', en: 'Start', es: 'Empezar', 'pt-BR': 'Começar', vi: 'Bắt đầu', id: 'Mulai', tr: 'Başla', pl: 'Zacznij' }),
+    welcomeFooter: triLang(lang, { ru: 'Это подарок. Подписка не включается автоматически.', uk: 'Це подарунок. Підписка не вмикається автоматично.', en: 'This is a gift. A subscription does not start automatically.', es: 'Es un regalo. La suscripción no se activa automáticamente.', 'pt-BR': 'É um presente. A assinatura não é ativada automaticamente.', vi: 'Đây là quà tặng. Gói đăng ký không tự động bật.', id: 'Ini hadiah. Langganan tidak aktif otomatis.', tr: 'Bu bir hediye. Abonelik otomatik başlamaz.', pl: 'To prezent. Subskrypcja nie włącza się automatycznie.' }),
+    endedEyebrow: triLang(lang, { ru: 'Три дня позади', uk: 'Три дні позаду', en: 'Three days behind you', es: 'Tres días atrás', 'pt-BR': 'Três dias para trás', vi: 'Ba ngày đã qua', id: 'Tiga hari telah berlalu', tr: 'Üç gün geride kaldı', pl: 'Trzy dni za tobą' }),
+    endedTitle: triLang(lang, { ru: 'Три дня доступа завершились', uk: 'Три дні доступу завершилися', en: 'Your three days of access have ended', es: 'Terminaron tus tres días de acceso', 'pt-BR': 'Seus três dias de acesso terminaram', vi: 'Ba ngày truy cập đã kết thúc', id: 'Tiga hari akses telah berakhir', tr: 'Üç günlük erişim sona erdi', pl: 'Trzy dni dostępu dobiegły końca' }),
+    endedBody: triLang(lang, {
+      ru: 'Учебный прогресс остаётся. Базовый режим доступен. Актуальные преимущества Plus — в предложении магазина.',
+      uk: 'Навчальний прогрес залишається. Базовий режим доступний. Актуальні переваги Plus — у пропозиції магазину.',
+      en: 'Your learning progress stays. Basic mode is available. Current Plus benefits are shown in the store offer.',
+      es: 'Tu progreso de aprendizaje se queda. El modo básico está disponible. Las ventajas actuales de Plus están en la oferta de la tienda.',
+      'pt-BR': 'Seu progresso de estudo continua. O modo básico está disponível. As vantagens atuais do Plus estão na oferta da loja.',
+      vi: 'Tiến độ học của bạn vẫn được giữ. Chế độ cơ bản vẫn dùng được. Các lợi ích hiện tại của Plus có trong ưu đãi trên cửa hàng.',
+      id: 'Progres belajarmu tetap ada. Mode dasar tersedia. Keunggulan Plus terkini ada di penawaran toko.',
+      tr: 'Öğrenme ilerlemen duruyor. Temel mod kullanılabilir. Plus’ın güncel avantajları mağaza teklifinde.',
+      pl: 'Twój postęp w nauce zostaje. Tryb podstawowy jest dostępny. Aktualne korzyści Plus są w ofercie sklepu.',
+    }),
+    endedPrimary: triLang(lang, { ru: 'Посмотреть предложение', uk: 'Переглянути пропозицію', en: 'See the offer', es: 'Ver la oferta', 'pt-BR': 'Ver a oferta', vi: 'Xem ưu đãi', id: 'Lihat penawaran', tr: 'Teklifi gör', pl: 'Zobacz ofertę' }),
+    endedSecondary: triLang(lang, { ru: 'Остаться на базовом', uk: 'Залишитися на базовому', en: 'Stay on Basic', es: 'Seguir en el modo básico', 'pt-BR': 'Continuar no básico', vi: 'Ở lại chế độ cơ bản', id: 'Tetap di mode dasar', tr: 'Temel modda kal', pl: 'Zostań na podstawowym' }),
+  };
+}
 
 function IntroFullAccessModal({ visible, variant, onPrimaryPress, onSecondaryPress, motionVariant = 'hybrid' }: Props) {
   const { lang } = useLang();
-  const { theme, themeMode } = useTheme();
-  const copy = COPY[lang as keyof typeof COPY] ?? COPY.ru;
+  const { f, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  const copy = introCopy(lang as Lang);
   const isWelcome = variant === 'welcome';
   const reduceMotion = useReduceMotion();
   const hybrid = motionVariant === 'hybrid';
@@ -150,15 +78,6 @@ function IntroFullAccessModal({ visible, variant, onPrimaryPress, onSecondaryPre
     );
   }, [visible, isWelcome]);
 
-  const accent = rewardModalAccentColor(themeMode, theme);
-  const border = rewardModalPanelBorder(themeMode, theme);
-  const softSurface = rewardModalSoftSurface(themeMode, theme);
-  // зачем: ветка светлой темы была заглушена литералом false — на sagePorcelain
-  // белый текст ложился на фарфоровую панель rewardModalPanelColors (белое-на-белом).
-  const lightPanel = isLightThemeMode(themeMode);
-  const textPrimary = lightPanel ? theme.textPrimary : '#FFFFFF';
-  const textSecondary = lightPanel ? 'rgba(23,32,29,0.72)' : 'rgba(255,255,255,0.78)';
-
   const handlePrimaryPress = () => {
     void import('../app/analytics').then(({ trackEvent }) =>
       trackEvent(isWelcome ? 'intro_welcome_cta' : 'intro_ended_cta', {}),
@@ -170,83 +89,93 @@ function IntroFullAccessModal({ visible, variant, onPrimaryPress, onSecondaryPre
     onSecondaryPress?.();
   };
 
-  // зачем: главная CTA офферных модалок — клавиша с кромкой (владелец, стандарт
-  // «кнопки вдавливаются, а не тускнеют»), тёмный тон кромки — акцент темы.
-  const primaryEdgeColor = accent;
+  const primaryLabel = isWelcome ? copy.welcomeCta : copy.endedPrimary;
+  const primaryTestID = isWelcome ? 'intro-full-access-welcome-primary' : 'intro-full-access-ended-primary';
+
+  // Общий вид панели: hybrid оборачивает в CascadeItem, classic — без анимации.
+  const step = (delay: number, node: React.ReactNode) =>
+    hybrid ? (
+      <CascadeItem delay={delay} reduceMotion={reduceMotion}>{node}</CascadeItem>
+    ) : (
+      <>{node}</>
+    );
+
+  const content = (
+    <View style={[styles.content, { backgroundColor: glass.opaqueSheet }]}>
+      {step(LUM.ladder[1], (
+        <View style={[styles.art, { backgroundColor: glass.opaqueControl }]} accessible={false}>
+          <Ionicons name={isWelcome ? 'lock-open' : 'checkmark'} size={28} color={glass.text} />
+        </View>
+      ))}
+      {step(LUM.ladder[2], (
+        <Text style={[styles.kicker, { color: glass.secondary, fontSize: f.caption }]}>
+          {isWelcome ? copy.welcomeEyebrow : copy.endedEyebrow}
+        </Text>
+      ))}
+      {step(LUM.ladder[2], (
+        <Text accessibilityRole="header" style={[styles.title, { color: glass.text, fontSize: f.h1, lineHeight: Math.round(f.h1 * 1.24) }]}>
+          {isWelcome ? copy.welcomeTitle : copy.endedTitle}
+        </Text>
+      ))}
+      {step(LUM.ladder[3], (
+        <Text style={[styles.body, { color: glass.secondary, fontSize: f.body, lineHeight: Math.round(f.body * 1.45) }]}>
+          {isWelcome ? copy.welcomeBody : copy.endedBody}
+        </Text>
+      ))}
+      {step(LUM.ladder[4], (
+        <PressableHybrid
+          testID={primaryTestID}
+          accessibilityRole="button"
+          accessibilityLabel={primaryLabel}
+          variant="primary"
+          onPress={handlePrimaryPress}
+          style={styles.primaryWrap}
+          contentStyle={[styles.primary, { backgroundColor: glass.cta }]}
+        >
+          <Text style={[styles.primaryText, { color: glass.ctaInk, fontSize: f.body }]}>{primaryLabel}</Text>
+        </PressableHybrid>
+      ))}
+      {isWelcome
+        ? step(LUM.ladder[5], (
+          <Text style={[styles.footer, { color: glass.mutedText, fontSize: f.caption, lineHeight: Math.round(f.caption * 1.4) }]}>
+            {copy.welcomeFooter}
+          </Text>
+        ))
+        : step(LUM.ladder[5], (
+          <PressableHybrid
+            testID="intro-full-access-ended-secondary"
+            accessibilityRole="button"
+            accessibilityLabel={copy.endedSecondary}
+            variant="secondary"
+            onPress={handleSecondaryPress}
+            style={styles.secondaryButton}
+            contentStyle={styles.secondaryContent}
+          >
+            <Text style={[styles.secondaryText, { color: glass.secondary, fontSize: f.body }]}>{copy.endedSecondary}</Text>
+          </PressableHybrid>
+        ))}
+    </View>
+  );
 
   if (hybrid) {
-    // Гибрид «Световод»: панель выходит из света (HybridAlertShell — общий шелл
-    // семьи алертов/оффер-модалок), контент — каскад по LUM.ladder, герой (корона/
-    // значок) settle БЕЗ отскока. hapticSuccess НЕ нужен — это оффер, не награда.
+    // Гибрид «Световод»: панель выходит из света (HybridAlertShell), контент —
+    // каскад по LUM.ladder. Свой ScrollView — крупный шрифт/низкий экран.
     return (
-      <HybridAlertShell scrollContent={false}
+      <HybridAlertShell
+        scrollContent={false}
         visible={visible}
         onRequestClose={onSecondaryPress ?? onPrimaryPress}
-        shadowColor="#000000"
-        backdropColor="rgba(0,0,0,0.72)"
+        shadowColor="rgba(0,0,0,0.5)"
+        backdropColor="rgba(0,0,0,0.58)"
         testID={isWelcome ? 'intro-full-access-welcome-backdrop' : 'intro-full-access-ended-backdrop'}
       >
-        <ScrollView decelerationRate="fast"
+        <ScrollView
+          decelerationRate="fast"
           style={styles.hybridScroll}
           contentContainerStyle={styles.hybridScrollContent}
           showsVerticalScrollIndicator={false}
         >
-          <RewardModalPanelBackdrop themeMode={themeMode} intensity="strong" opacity={0.72} />
-          <LinearGradient
-            pointerEvents="none"
-            colors={rewardModalPanelColors(themeMode, theme)}
-            style={StyleSheet.absoluteFill}
-          />
-          <View style={styles.content}>
-            <CascadeItem delay={LUM.ladder[1]} reduceMotion={reduceMotion}>
-              <View style={[styles.iconWrap, { backgroundColor: softSurface, borderColor: border }]}>
-                <Ionicons name={isWelcome ? 'sparkles' : 'shield-checkmark'} size={28} color={accent} />
-              </View>
-            </CascadeItem>
-            <CascadeItem delay={LUM.ladder[2]} reduceMotion={reduceMotion}>
-              <Text style={[styles.eyebrow, { color: accent }]}>{isWelcome ? copy.welcomeEyebrow : copy.endedEyebrow}</Text>
-            </CascadeItem>
-            <CascadeItem delay={LUM.ladder[2]} reduceMotion={reduceMotion}>
-              <Text style={[styles.title, { color: textPrimary }]}>{isWelcome ? copy.welcomeTitle : copy.endedTitle}</Text>
-            </CascadeItem>
-            <CascadeItem delay={LUM.ladder[3]} reduceMotion={reduceMotion}>
-              <Text style={[styles.body, { color: textSecondary }]}>{isWelcome ? copy.welcomeBody : copy.endedBody}</Text>
-            </CascadeItem>
-
-            <CascadeItem delay={LUM.ladder[4]} reduceMotion={reduceMotion}>
-              <DuoPressable
-                testID={isWelcome ? 'intro-full-access-welcome-primary' : 'intro-full-access-ended-primary'}
-                onPress={handlePrimaryPress}
-                edgeColor={primaryEdgeColor}
-                edgeHeight={6}
-                gradientColors={rewardModalPrimaryButtonColors(themeMode)}
-                style={styles.primaryGradient}
-                wrapStyle={styles.primaryButtonWrap}
-              >
-                <Text style={[styles.primaryText, { color: rewardModalPrimaryButtonText(themeMode) }]}>
-                  {isWelcome ? copy.welcomeCta : copy.endedPrimary}
-                </Text>
-              </DuoPressable>
-            </CascadeItem>
-
-            {isWelcome ? (
-              <CascadeItem delay={LUM.ladder[5]} reduceMotion={reduceMotion}>
-                <Text style={[styles.footer, { color: textSecondary }]}>{copy.welcomeFooter}</Text>
-              </CascadeItem>
-            ) : (
-              <CascadeItem delay={LUM.ladder[5]} reduceMotion={reduceMotion}>
-                <PressableHybrid
-                  testID="intro-full-access-ended-secondary"
-                  variant="secondary"
-                  onPress={handleSecondaryPress}
-                  style={styles.secondaryButton}
-                  contentStyle={{ alignItems: 'center', justifyContent: 'center' }}
-                >
-                  <Text style={[styles.secondaryText, { color: textSecondary }]}>{copy.endedSecondary}</Text>
-                </PressableHybrid>
-              </CascadeItem>
-            )}
-          </View>
+          {content}
         </ScrollView>
       </HybridAlertShell>
     );
@@ -260,65 +189,19 @@ function IntroFullAccessModal({ visible, variant, onPrimaryPress, onSecondaryPre
       statusBarTranslucent
       onRequestClose={onSecondaryPress ?? onPrimaryPress}
     >
-      <View style={styles.overlay}>
-        <RewardModalBackdrop themeMode={themeMode} intensity="strong" />
+      <View style={styles.overlay} accessibilityViewIsModal>
         {/* зачем 2026-08-02 (владелец: «на маленьких экранах кнопки нет»):
-            панель центрировалась во весь рост без прокрутки — на низком экране
-            обрезалась вместе с кнопкой активации подарка. */}
+            панель центрировалась без прокрутки — на низком экране обрезалась
+            вместе с кнопкой активации подарка. */}
         <SafeAreaView style={styles.safeScroll}>
-        <ScrollView decelerationRate="fast"
-          style={styles.safeScroll}
-          contentContainerStyle={styles.safe}
-          showsVerticalScrollIndicator={false}
-        >
-          <View style={[styles.panel, { borderColor: border }]}>
-            <RewardModalPanelBackdrop themeMode={themeMode} intensity="strong" opacity={0.72} />
-            <LinearGradient
-              pointerEvents="none"
-              colors={rewardModalPanelColors(themeMode, theme)}
-              style={StyleSheet.absoluteFill}
-            />
-            <View style={styles.content}>
-              <View style={[styles.iconWrap, { backgroundColor: softSurface, borderColor: border }]}>
-                <Ionicons name={isWelcome ? 'sparkles' : 'shield-checkmark'} size={28} color={accent} />
-              </View>
-              <Text style={[styles.eyebrow, { color: accent }]}>{isWelcome ? copy.welcomeEyebrow : copy.endedEyebrow}</Text>
-              <Text style={[styles.title, { color: textPrimary }]}>{isWelcome ? copy.welcomeTitle : copy.endedTitle}</Text>
-              <Text style={[styles.body, { color: textSecondary }]}>{isWelcome ? copy.welcomeBody : copy.endedBody}</Text>
-
-              <Pressable
-                testID={isWelcome ? 'intro-full-access-welcome-primary' : 'intro-full-access-ended-primary'}
-                accessibilityRole="button"
-                onPress={handlePrimaryPress}
-                style={styles.primaryButton}
-              >
-                <LinearGradient
-                  colors={rewardModalPrimaryButtonColors(themeMode)}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
-                  style={styles.primaryGradient}
-                >
-                  <Text style={[styles.primaryText, { color: rewardModalPrimaryButtonText(themeMode) }]}>
-                    {isWelcome ? copy.welcomeCta : copy.endedPrimary}
-                  </Text>
-                </LinearGradient>
-              </Pressable>
-
-              {isWelcome ? (
-                <Text style={[styles.footer, { color: textSecondary }]}>{copy.welcomeFooter}</Text>
-              ) : (
-                <Pressable
-                  testID="intro-full-access-ended-secondary"
-                  accessibilityRole="button"
-                  onPress={handleSecondaryPress}
-                  style={styles.secondaryButton}
-                >
-                  <Text style={[styles.secondaryText, { color: textSecondary }]}>{copy.endedSecondary}</Text>
-                </Pressable>
-              )}
-            </View>
-          </View>
-        </ScrollView>
+          <ScrollView
+            decelerationRate="fast"
+            style={styles.safeScroll}
+            contentContainerStyle={styles.safe}
+            showsVerticalScrollIndicator={false}
+          >
+            <View style={styles.panel}>{content}</View>
+          </ScrollView>
         </SafeAreaView>
       </View>
     </Modal>
@@ -330,15 +213,13 @@ export default memo(IntroFullAccessModal);
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.72)',
+    backgroundColor: 'rgba(0,0,0,0.58)',
   },
   safeScroll: {
     flex: 1,
   },
   safe: {
-    // flexGrow (а не flex) — в contentContainerStyle это единственный способ
-    // сказать «растянись на всю высоту, если контента мало, но дай прокрутку,
-    // если много». Центрирование сохранено для больших экранов.
+    // flexGrow (а не flex): растянись, если контента мало, дай прокрутку, если много.
     flexGrow: 1,
     justifyContent: 'center',
     paddingHorizontal: 22,
@@ -349,14 +230,10 @@ const styles = StyleSheet.create({
     maxWidth: 440,
     alignSelf: 'center',
     borderRadius: 28,
-    borderWidth: 0, // guard-ok: borderColor у вызова инертен (borderWidth 0) — тон/фон несут разделение, не обводка
     overflow: 'hidden',
   },
-  // зачем: HybridAlertShell даёт панель без встроенного скролла (maxWidth 360,
-  // без ScrollView) — контент этой офферной модалки на низких экранах длиннее,
-  // поэтому оборачиваем children в свой ScrollView внутри шелла (тот же паттерн
-  // прокрутки, что и в classic-ветке). Радиус НЕ дублируем — шелл уже клипует
-  // панель на 16 (styles.panel в HybridAlertShell), это и есть видимый угол.
+  // HybridAlertShell даёт панель без встроенного скролла — оборачиваем контент
+  // в свой ScrollView (низкие экраны и крупный шрифт).
   hybridScroll: {
     overflow: 'hidden',
     width: '100%',
@@ -369,73 +246,57 @@ const styles = StyleSheet.create({
     padding: 22,
     gap: 13,
   },
-  iconWrap: {
+  art: {
     width: 58,
     height: 58,
     borderRadius: 18,
-    borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  eyebrow: {
-    fontSize: 13,
-    lineHeight: 17,
-    fontWeight: '900',
+  kicker: {
+    fontWeight: '800',
     letterSpacing: 0,
     textTransform: 'uppercase',
   },
   title: {
-    fontSize: 25,
-    lineHeight: 30,
-    fontWeight: '900',
+    fontWeight: '800',
     letterSpacing: 0,
   },
   body: {
-    fontSize: 16,
-    lineHeight: 23,
-    fontWeight: '700',
+    fontWeight: '500',
     letterSpacing: 0,
   },
-  primaryButton: {
-    minHeight: 56,
-    borderRadius: 18,
-    overflow: 'hidden',
+  primaryWrap: {
     marginTop: 4,
   },
-  // зачем: DuoPressable(wrapStyle) — обёртка гибрид-CTA; повторяет геометрию
-  // primaryButton (marginTop 4), плюс резерв места под кромку задаёт сам DuoPressable.
-  primaryButtonWrap: {
-    marginTop: 4,
-  },
-  primaryGradient: {
+  primary: {
     minHeight: 56,
     borderRadius: 18,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 18,
+    paddingVertical: 12,
   },
   primaryText: {
-    fontSize: 17,
-    lineHeight: 22,
-    fontWeight: '900',
+    fontWeight: '800',
     letterSpacing: 0,
     textAlign: 'center',
   },
   secondaryButton: {
     minHeight: 48,
+  },
+  secondaryContent: {
+    minHeight: 48,
     alignItems: 'center',
     justifyContent: 'center',
   },
   secondaryText: {
-    fontSize: 16,
-    lineHeight: 21,
-    fontWeight: '800',
+    fontWeight: '700',
     letterSpacing: 0,
+    textAlign: 'center',
   },
   footer: {
-    fontSize: 12,
-    lineHeight: 17,
-    fontWeight: '700',
+    fontWeight: '500',
     letterSpacing: 0,
     textAlign: 'center',
   },

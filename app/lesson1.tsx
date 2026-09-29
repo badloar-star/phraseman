@@ -2,7 +2,6 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Crypto from 'expo-crypto';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
-import { withOptionalPersonalPlanSunsetGuard } from '../components/personal_plan_sunset_guard';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
@@ -11,7 +10,6 @@ import {
   InteractionManager,
   Keyboard,
   KeyboardAvoidingView,
-  Modal,
   Platform,
   Pressable,
   StyleSheet,
@@ -35,15 +33,14 @@ import { screenTextOnGradient, ThemeMode } from '../constants/theme';
 import { isCorrectAnswer, normalizeLessonAssemblyAnswer } from '../constants/contractions';
 import { checkAchievements } from './achievements';
 import { bumpStatsDaily } from './stats_daily_breakdown';
-import { getCurrentMultiplierBreakdown, getLessonDifficultyMultiplier, registerXP } from './xp_manager';
 import { trackActivity, trackFeatureBlocked, trackFeatureError, trackFeatureStart, trackFeatureSuccess } from './app_activity';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import AddToFlashcard from '../components/AddToFlashcard';
 import TapScale from '../components/TapScale';
+import LessonReviewSheet from '../components/LessonReviewSheet';
 import SpeakingPanel, { buildSpeakingPanelTheme } from '../components/SpeakingPanel';
 import SpeakingInlineSlot from '../components/SpeakingInlineSlot';
 import SpeakingInlineResultStars, { type SpeakingAttemptResult } from '../components/SpeakingInlineResultStars';
-import { isSpeakingEnabled } from './remote_flags';
 import { getVerifiedPremiumAccessStatus, isTesterNoLimitsActive } from './premium_guard';
 import { useSpeakingAttemptGate } from '../hooks/useSpeakingAttemptGate';
 import { hapticTap } from '../hooks/use-haptics';
@@ -71,6 +68,7 @@ import {
 } from './lesson_analytics_attempt';
 import { trackLessonStart, trackLessonAbandoned, trackAnswer, trackEnergyHit } from './user_stats';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
+import { canChargeClassicLessonEntry } from './energy_contract';
 import { beginEnergySpendTrace, endEnergySpendTrace, markEnergySpendStage } from './energy_spend_latency_trace';
 import {
   buildCombinedLessonPlan,
@@ -108,7 +106,6 @@ import {
   isLessonScreenPrimedThisSession,
   touchLessonScreenPrimed,
 } from './lesson_screen_bootstrap';
-import { getBonusHintsToday } from './level_gift_system';
 import { lessonPhraseReportDataId } from './error_report';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ExplainSheet from '../components/ExplainSheet';
@@ -130,7 +127,6 @@ import { isExplainEnabled } from './explain_phrase_flags';
 import { resolveLessonAnswerFontSize } from '../lib/lesson_answer_layout';
 import { maskSpokenPhraseKeepInitial } from './speaking_word_report';
 import { makeLessonServerAttemptId, normalizeLessonServerAttemptId } from './lesson_attempt_identity';
-import { LESSON_REPLAY_XP_RATE, resolveLessonAnswerBaseXp } from './lesson_replay_reward';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import PracticeRuneCounter from '../components/PracticeRuneCounter';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
@@ -199,31 +195,6 @@ const stripMarkers = (word: string): string => {
     .trim();
   // Standalone '-' is the zero-article marker (no article in English)
   return stripped === '-' ? '' : stripped;
-};
-
-const safeProgressEventPart = (value: unknown, max = 40): string =>
-  String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
-
-const MAX_LESSON_MULTIPLIER_PARAM_LENGTH = 512;
-const MAX_LESSON_MULTIPLIER_COUNT = 6;
-type ConfirmedLessonMultiplierEntry = { multiplier: number; xpDelta: number };
-
-const sanitizeConfirmedLessonMultiplier = (value: unknown): number => {
-  const numeric = Number(value);
-  if (!Number.isFinite(numeric) || numeric <= 1 || numeric > 20) return 1;
-  return Math.round(numeric * 100) / 100;
-};
-
-const encodeConfirmedLessonMultipliers = (
-  entries: ReadonlyMap<string, ConfirmedLessonMultiplierEntry>,
-): string => {
-  const compact = [...entries.values()]
-    .filter((entry) => entry.multiplier > 1 && entry.xpDelta > 0)
-    .sort((left, right) => left.multiplier - right.multiplier)
-    .slice(0, MAX_LESSON_MULTIPLIER_COUNT)
-    .map((entry) => [entry.multiplier, Math.round(entry.xpDelta)]);
-  const encoded = JSON.stringify(compact);
-  return encoded.length <= MAX_LESSON_MULTIPLIER_PARAM_LENGTH ? encoded : '[]';
 };
 
 // Clean phrase.english for display: strip article markers, remove empty tokens
@@ -499,9 +470,6 @@ interface LessonContentProps {
   displayCell: number;
   isErrorReplay: boolean;
   replaySolvedCorrectly: boolean;
-  xpToastVisible: boolean;
-  xpToastAmount: number;
-  xpToastAnim: Animated.Value;
   realPhraseIdx: number;
   /** Язык, который учим (dev: en|es); упражнение по словам пока по EN, озвучка/ответ могут быть ES. */
   studyTarget: StudyTargetLang;
@@ -581,9 +549,6 @@ const LessonContent = React.memo(function LessonContent({
   displayCell,
   isErrorReplay,
   replaySolvedCorrectly,
-  xpToastVisible,
-  xpToastAmount,
-  xpToastAnim,
   realPhraseIdx,
   studyTarget,
   onReplayPhraseAudio,
@@ -607,14 +572,11 @@ const LessonContent = React.memo(function LessonContent({
 
   // [SPEAKING] Premium "say it out loud" mode. Free users hit the paywall;
   // premium users get the SpeakingPanel (mic + waveform + 90% scoring).
-  // Remote kill-switch (default ON): ops can disable speaking app-wide without a
-  // release if the on-device recognizer misbehaves in production.
-  // «Устно»: учитываем «Пульт» — если фича переведена в «Фри», замок снят у всех.
   // зачем (владелец, 2026-09-13): дневной лимит голосовых попыток обычного
   // аккаунта вместо глухого «только в Plus»; замок горит только при исчерпании.
   const speakingGate = useSpeakingAttemptGate({ context: 'speaking', source: 'lesson_speaking' });
   const speakingIsPremium = !speakingGate.locked;
-  const speakingFeatureEnabled = isSpeakingEnabled();
+  const speakingFeatureEnabled = true;
   const phraseEnterKey = phrase ? `${String(phrase.id ?? '')}:${String(phrase.english ?? phrase.spanish ?? '')}` : '';
   const speakingPhraseKey = `${displayCell}:${realPhraseIdx}:${phraseEnterKey}`;
   const [speakingOpen, setSpeakingOpen] = useState(false);
@@ -1090,7 +1052,7 @@ const LessonContent = React.memo(function LessonContent({
           {comboCount >= 3 && (
             <ComboRing value={comboCount} level={comboLevelFor(comboCount)} size={34} />
           )}
-          {/* Stats row — XP toast floats absolutely; row wrap + shrink so ●wrong не режется у края */}
+          {/* Stats row — legacy reward toast floats absolutely; row wrap + shrink so ●wrong не режется у края */}
           <View
             style={{
               flexDirection: 'row',
@@ -1102,13 +1064,7 @@ const LessonContent = React.memo(function LessonContent({
               gap: isSmallScreen ? 4 : 6,
               position: 'relative',
             }}
-          >
-            {xpToastVisible && (
-              <Animated.Text style={{ position: 'absolute', right: 0, bottom: '100%', color: '#F5A623', fontWeight: '800', fontSize: isSmallScreen ? 10 : f.label, opacity: xpToastAnim, transform: [{ translateY: xpToastAnim.interpolate({ inputRange: [0, 1], outputRange: [4, 0] }) }] }}>
-                +{xpToastAmount} XP
-              </Animated.Text>
-            )}
-          </View>
+          />
         </View>
       </View>
 
@@ -1821,93 +1777,18 @@ const LessonContent = React.memo(function LessonContent({
 
         {/* [REVIEW] Окно «Назад к фразам» — просмотр уже пройденных фраз (read-only, свайп/стрелки).
             Очки НЕ начисляются, текущий ответ не сбивается — это чистое чтение для сравнения. */}
-        <Modal visible={reviewOpen} transparent animationType="fade" onRequestClose={closeReview}>
-          <Pressable
-            onPress={closeReview}
-            style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'flex-end' }}
-          >
-            <Pressable
-              onPress={() => {}}
-              style={{
-                backgroundColor: t.bgCard,
-                borderTopLeftRadius: 22,
-                borderTopRightRadius: 22,
-                paddingHorizontal: 14,
-                paddingTop: 16,
-                paddingBottom: 28,
-              }}
-            >
-              {/* Заголовок + закрыть */}
-              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
-                <Text style={{ color: sx.primary, fontSize: f.bodyLg, fontWeight: '600' }}>
-                  {triLang(lang, {
-                    ru: 'Пройденные фразы',
-                    uk: 'Пройдені фрази',
-                    en: 'Completed phrases',
-                    es: 'Frases completadas',
-                    'pt-BR': 'Frases concluídas',
-                    vi: 'Câu đã hoàn thành',
-                    id: 'Frasa selesai',
-                    tr: 'Tamamlanan cümleler',
-                    pl: 'Ukończone frazy',
-                  })}
-                </Text>
-                <TapScale onPress={closeReview} accessibilityLabel="Close" style={{ padding: 4 }}>
-                  <Ionicons name="close" size={24} color={sx.second} />
-                </TapScale>
-              </View>
-
-              {/* Карточка фразы со стрелками */}
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-                <TapScale
-                  onPress={reviewGoPrev}
-                  disabled={reviewIndex <= 0}
-                  accessibilityLabel="Previous"
-                  style={{ padding: 6, opacity: reviewIndex <= 0 ? 0.25 : 1 }}
-                >
-                  <Ionicons name="chevron-back" size={28} color={sx.second} />
-                </TapScale>
-
-                <View style={{ flex: 1, alignItems: 'center', paddingVertical: 14 }}>
-                  <Text style={{ color: sx.primary, fontSize: f.numMd, fontWeight: '600', textAlign: 'center', marginBottom: 12 }}>
-                    {reviewCurrent?.en ?? ''}
-                  </Text>
-                  <View style={{ height: 0.5, backgroundColor: t.border, width: '70%', marginBottom: 12 }} />
-                  <Text style={{ color: sx.second, fontSize: f.body, textAlign: 'center' }}>
-                    {reviewCurrent?.meaning ?? ''}
-                  </Text>
-                  <TapScale
-                    onPress={() => { if (reviewCurrent?.en) onPlayReviewAudio(reviewCurrent.en); }}
-                    accessibilityLabel={triLang(lang, {
-                      ru: 'Озвучить фразу', uk: 'Озвучити фразу', en: 'Play the phrase', es: 'Reproducir audio',
-                      'pt-BR': 'Reproduzir audio', vi: 'Phát âm thanh', id: 'Putar audio',
-                      tr: 'Sesi çal', pl: 'Odtwórz dźwięk',
-                    })}
-                    style={{ marginTop: 16, padding: 6 }}
-                  >
-                    <Ionicons name="volume-high" size={26} color={t.correct} />
-                  </TapScale>
-                </View>
-
-                <TapScale
-                  onPress={reviewGoNext}
-                  disabled={reviewIndex >= reviewCount - 1}
-                  accessibilityLabel="Next"
-                  style={{ padding: 6, opacity: reviewIndex >= reviewCount - 1 ? 0.25 : 1 }}
-                >
-                  <Ionicons name="chevron-forward" size={28} color={sx.second} />
-                </TapScale>
-              </View>
-
-              {/* Индикатор позиции */}
-              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6, marginTop: 10 }}>
-                <Text style={{ color: sx.muted, fontSize: f.label }}>
-                  {reviewCount > 0 ? `${reviewIndex + 1} / ${reviewCount}` : ''}
-                </Text>
-              </View>
-            </Pressable>
-          </Pressable>
-        </Modal>
+        {/* зачем: шторка вынесена в LessonReviewSheet (Liquid Glass, learn.html D9); логика и обработчики прежние. */}
+        <LessonReviewSheet
+          visible={reviewOpen}
+          lang={lang}
+          index={reviewIndex}
+          count={reviewCount}
+          current={reviewCurrent}
+          onClose={closeReview}
+          onPrev={reviewGoPrev}
+          onNext={reviewGoNext}
+          onPlay={onPlayReviewAudio}
+        />
 
         <MistakeEli5Modal
           visible={eli5ModalOpen}
@@ -1979,7 +1860,7 @@ function LessonScreen() {
   );
   const comboActive = comboTopicIds.length > 0;
   // зачем (владелец, 2026-08-27): «Проверка рун» из DEV-хаба — настоящий Урок
-  // 1, но счётчик рун и XP стартуют со случайного числа вместо реального
+  // 1, но счётчик рун и legacy reward стартуют со случайного числа вместо реального
   // прогресса. Диск и сеть не трогаются в этом режиме.
   const devRunesFake = useMemo(
     () => readDevPracticeRunesFakeState(devRunesSeedParam),
@@ -2111,30 +1992,6 @@ function LessonScreen() {
   const userNameRef      = useRef<string | null>(null); // кешируем имя чтобы не читать AsyncStorage на каждый ответ
   // [COMBO] Отображаемое значение комбо для UI-бейджа. Обновляется в setState.
   const [comboCount, setComboCount] = useState(0);
-  const [xpToastAmount, setXpToastAmount] = useState(0);
-  const [xpToastVisible, setXpToastVisible] = useState(false);
-  const xpToastAnim = useRef(new Animated.Value(0)).current;
-  const xpToastSequenceRef = useRef<Animated.CompositeAnimation | null>(null);
-  useEffect(() => () => {
-    xpToastSequenceRef.current?.stop();
-    xpToastAnim.stopAnimation();
-  }, [xpToastAnim]);
-  const lessonXpEstimateMultiplierRef = useRef(1);
-  // The completion screen reports only XP that registerXP actually committed.
-  // Keep its in-flight awards so navigation cannot race their final multipliers.
-  const lessonEarnedXpRef = useRef(0);
-  const lessonEarnedBaseXpRef = useRef(0);
-  const lessonEarnedMultipliersRef = useRef<Map<string, ConfirmedLessonMultiplierEntry>>(new Map());
-  const pendingLessonXpAwardsRef = useRef<Promise<void>[]>([]);
-  const replayNormalBaseXpRef = useRef(0);
-  const replayAwardedBaseXpRef = useRef(0);
-  const replayXpScope = `${lessonStorageId}:${studyTarget}:${routeServerAttemptId ?? 'stored'}`;
-  const replayXpScopeRef = useRef(replayXpScope);
-  if (replayXpScopeRef.current !== replayXpScope) {
-    replayXpScopeRef.current = replayXpScope;
-    replayNormalBaseXpRef.current = 0;
-    replayAwardedBaseXpRef.current = 0;
-  }
   const [fiftyFiftyUsedToday, setFiftyFiftyUsedToday] = useState(0);
   const [bonusHints, setBonusHints] = useState(0);
   const [passCount, setPassCount]   = useState(0);
@@ -2210,7 +2067,7 @@ function LessonScreen() {
   // зачем: checkAnswer асинхронна и до первого await не поднимала никакого флага, а UI
   // блокировался только через status === 'playing' — setStatus('result') отрабатывает уже
   // ПОСЛЕ await, поэтому два быстрых тапа (или тап + тап по фону) успевали пройти оба и
-  // засчитать один ответ дважды: двойной XP, сбитый счётчик серии. Синхронный ref-флаг
+  // засчитать один ответ дважды: двойной legacy reward, сбитый счётчик серии. Синхронный ref-флаг
   // закрывает окно так же, как locked.current в lesson_words.tsx и settlingRef в
   // flashcards_swipe.tsx. Снимается сразу после setStatus('result') — дальше барьером
   // работает сам статус, поэтому флаг не залипает на путях, минующих goNext.
@@ -2223,21 +2080,6 @@ function LessonScreen() {
     lessonAnalyticsKeyRef.current = lessonAnalyticsKey;
     lessonAnalyticsAttemptRef.current = createLessonAnalyticsAttempt(Crypto.randomUUID);
   }
-  useEffect(() => {
-    let cancelled = false;
-    const lessonMultiplier = getLessonDifficultyMultiplier(lessonId);
-    lessonXpEstimateMultiplierRef.current = lessonMultiplier;
-    getCurrentMultiplierBreakdown()
-      .then((breakdown) => {
-        const multiplierWithoutOneShotChest = Math.max(1, breakdown.total - Math.max(0, breakdown.leagueChestM - 1));
-        if (!cancelled) lessonXpEstimateMultiplierRef.current = Math.max(1, multiplierWithoutOneShotChest * lessonMultiplier);
-      })
-      .catch(() => {
-        if (!cancelled) lessonXpEstimateMultiplierRef.current = lessonMultiplier;
-      });
-    return () => { cancelled = true; };
-  }, [lessonId]);
-
   // [IMMEDIATE ERROR REPLAY] Очередь ячеек с ошибками для повтора через 2-3 вопроса
   const errorQueueRef          = useRef<number[]>([]); // cellIndex ячеек где была ошибка
   const questionsSinceErrorRef = useRef(0);            // сколько вопросов прошло после добавления в очередь
@@ -2546,7 +2388,7 @@ function LessonScreen() {
   // [REVIEW] «Назад к фразам» — список уже пройденных фраз урока для просмотра/сравнения
   // (read-only). Запрошено пользователем: вернуться и сравнить логику прошлых заданий.
   // Только пройденные ячейки (progress[i] непустой), исключая текущую позицию.
-  // Прогресс/XP НЕ трогаем — это чистое чтение, без markTrainerResult/начисления.
+  // Прогресс/legacy reward НЕ трогаем — это чистое чтение, без markTrainerResult/начисления.
   const reviewPhrases = useMemo<ReviewPhrase[]>(() => {
     const out: ReviewPhrase[] = [];
     const activeCell = overridePhraseCell ?? cellIndex;
@@ -2748,8 +2590,15 @@ function LessonScreen() {
 
   useEffect(() => {
     const traceKey = `spend:${String(lessonId)}`;
-    if (!energyReady) {
-      markEnergySpendStage(traceKey, 'gate energyReady=false - spend effect not started yet');
+    if (!canChargeClassicLessonEntry({
+      energyReady,
+      lessonHydrated,
+      introGateReady,
+      introVisible: showIntroScreens,
+      hasPlayableRows: hasPlayableLessonRows,
+      remoteSourceReady: !frenchRemoteLessonRequired || remoteFrenchLessonLoadState === 'ready',
+    })) {
+      markEnergySpendStage(traceKey, 'lesson not ready for paid entry');
       return;
     }
     if (entryEnergyGateLessonRef.current === lessonId) return;
@@ -2764,7 +2613,7 @@ function LessonScreen() {
       if (result === 'cancelled') safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
     });
     return () => { active = false; };
-  }, [acknowledgeSessionStart, bonusEnergy, currentEnergy, energyReady, lessonEnergyIntent, lessonId, router, showEnergyEmptyFeedback, testerEnergyDisabled]);
+  }, [acknowledgeSessionStart, bonusEnergy, currentEnergy, energyReady, frenchRemoteLessonRequired, hasPlayableLessonRows, introGateReady, lessonEnergyIntent, lessonHydrated, lessonId, remoteFrenchLessonLoadState, router, showEnergyEmptyFeedback, showIntroScreens, testerEnergyDisabled]);
 
   const loadData = async () => {
     if (!isLessonScreenPrimedThisSession(lessonStorageId, LESSON_DATA.length, effectiveTotal)) {
@@ -2999,10 +2848,7 @@ function LessonScreen() {
       const todayKey = fiftyFiftyUsageKey(new Date().toISOString().slice(0, 10), studyTargetRef.current);
       const ffCount = await AsyncStorage.getItem(todayKey);
       setFiftyFiftyUsedToday(ffCount ? parseInt(ffCount, 10) : 0);
-      // Подарок «+N подсказок» пишется в ключ с учётом языка-цели (fr — отдельный
-      // namespace), поэтому читать нужно с тем же target, иначе бонус не виден.
-      const bonus = await getBonusHintsToday(studyTargetRef.current);
-      setBonusHints(bonus);
+      setBonusHints(0);
 
       // (проверка энергии при входе — в отдельном useEffect ниже)
     } catch (e) {
@@ -3065,7 +2911,7 @@ function LessonScreen() {
     });
     // [FeedbackKit] Значение серии ДО любых сбросов этого ответа (ветка ошибки
     // сбрасывает correctStreakRef ниже). Нужно, чтобы отличить обрыв серии
-    // (comboBreak) от обычной ошибки (wrong). Только для ОЩУЩЕНИЙ — XP-формула
+    // (comboBreak) от обычной ошибки (wrong). Только для ОЩУЩЕНИЙ — legacy reward-формула
     // ниже читает correctStreakRef.current как и раньше.
     // Определяем реальную ячейку прогресса: при replay ошибки обновляем ячейку из очереди, не текущую
     const progressCell = overridePhraseCell ?? cellIndex;
@@ -3101,7 +2947,7 @@ function LessonScreen() {
           questionsSinceErrorRef.current = 0;
         }
       }
-      // Replay attempts can earn XP too, so a mistake must always break the combo.
+      // Replay attempts can earn legacy reward too, so a mistake must always break the combo.
       correctStreakRef.current = 0;
       // Новая долгосрочная система «Ошибки» только фиксирует объективный fail.
       // Локальный обязательный replay этого урока остаётся выше и не зависит от Plus.
@@ -3170,97 +3016,10 @@ function LessonScreen() {
       }
     }
 
-    // Серия ответов + XP
+    // Серия правильных ответов — используется для комбо-достижений.
     if (isRight) {
       correctStreakRef.current += 1;
       setComboCount(correctStreakRef.current);
-      // Начисляем XP: 5 базовых × комбо-множитель (за серию без ошибок подряд внутри урока)
-      const comboM = correctStreakRef.current >= 25 ? 3.0
-        : correctStreakRef.current >= 15 ? 2.5
-        : correctStreakRef.current >= 10 ? 2.0
-        : correctStreakRef.current >= 5  ? 1.5
-        : 1.0;
-      const normalBaseXp = Math.round(5 * comboM);
-      const answerBaseXp = resolveLessonAnswerBaseXp(normalBaseXp, isReplayRef.current, {
-        normalBaseXpTotal: replayNormalBaseXpRef.current,
-        awardedBaseXpTotal: replayAwardedBaseXpRef.current,
-      });
-      replayNormalBaseXpRef.current = answerBaseXp.normalBaseXpTotal;
-      replayAwardedBaseXpRef.current = answerBaseXp.awardedBaseXpTotal;
-      const xpAmount = answerBaseXp.baseXp;
-
-      // Local-first XP: show the toast now and write the answer XP immediately.
-      const answerCell = overridePhraseCell ?? cellIndex;
-      const answerOrdinal = sessionAnswerCount.current;
-      const optimisticXpAmount = Math.max(1, Math.round(xpAmount * lessonXpEstimateMultiplierRef.current));
-
-      const awardPromise = registerXP(xpAmount, 'lesson_answer', userNameRef.current || '', lang, lessonId, {
-        eventId: [
-          'lesson',
-          safeProgressEventPart(lessonStorageId, 40),
-          safeProgressEventPart(studyTargetRef.current),
-          safeProgressEventPart(serverAttemptIdRef.current || 'local_attempt', 40),
-          'answer',
-          String(answerOrdinal),
-          String(answerCell),
-          safeProgressEventPart(phrase.id ?? answerCell, 50),
-          overridePhraseCell !== null ? 'replay' : 'main',
-        ].join(':'),
-        payload: {
-          surface: 'lesson1_answer',
-          studyTarget: studyTargetRef.current,
-          lessonStorageId: String(lessonStorageId),
-          attemptId: serverAttemptIdRef.current || null,
-          answerOrdinal,
-          cellIndex: answerCell,
-          phraseId: phrase.id ?? null,
-          baseAnswerXp: xpAmount,
-          normalBaseAnswerXp: answerBaseXp.normalBaseXp,
-          replayRewardRate: isReplayRef.current ? LESSON_REPLAY_XP_RATE : 1,
-          optimisticAnswerXp: optimisticXpAmount,
-          combo: correctStreakRef.current,
-          replay: overridePhraseCell !== null,
-          lessonReplay: isReplayRef.current,
-        },
-      }).then(({ finalDelta, multiplier }) => {
-        const confirmedFinalDelta = Number.isFinite(finalDelta)
-          ? Math.max(0, Math.round(finalDelta))
-          : 0;
-        if (confirmedFinalDelta <= 0) return;
-        const confirmedBaseXp = Math.max(0, Math.round(xpAmount));
-        lessonEarnedXpRef.current += confirmedFinalDelta;
-        lessonEarnedBaseXpRef.current += confirmedBaseXp;
-
-        const confirmedMultiplier = sanitizeConfirmedLessonMultiplier(multiplier);
-        const multiplierXpDelta = Math.max(0, confirmedFinalDelta - confirmedBaseXp);
-        if (confirmedMultiplier <= 1 || multiplierXpDelta <= 0) return;
-        const multiplierKey = String(confirmedMultiplier);
-        const current = lessonEarnedMultipliersRef.current.get(multiplierKey);
-        if (!current && lessonEarnedMultipliersRef.current.size >= MAX_LESSON_MULTIPLIER_COUNT) return;
-        lessonEarnedMultipliersRef.current.set(multiplierKey, {
-          multiplier: confirmedMultiplier,
-          xpDelta: (current?.xpDelta ?? 0) + multiplierXpDelta,
-        });
-      }).catch(() => {}).then(() => {});
-      pendingLessonXpAwardsRef.current.push(awardPromise);
-      void awardPromise.finally(() => {
-        pendingLessonXpAwardsRef.current = pendingLessonXpAwardsRef.current.filter((pending) => pending !== awardPromise);
-      });
-
-      setXpToastAmount(optimisticXpAmount);
-      setXpToastVisible(true);
-      xpToastSequenceRef.current?.stop();
-      xpToastAnim.stopAnimation();
-      xpToastAnim.setValue(0);
-      const xpToastSequence = Animated.sequence([
-        Animated.timing(xpToastAnim, { toValue: 1, duration: 200, useNativeDriver: true }),
-        Animated.delay(900),
-        Animated.timing(xpToastAnim, { toValue: 0, duration: 300, useNativeDriver: true }),
-      ]);
-      xpToastSequenceRef.current = xpToastSequence;
-      xpToastSequence.start(({ finished }) => {
-        if (finished) setXpToastVisible(false);
-      });
       // Проверка combo читает/пишет состояние всех достижений. Она нужна только
       // на реальных порогах, а не после каждого правильного ответа.
       if (COMBO_ACHIEVEMENT_THRESHOLDS.has(correctStreakRef.current)) {
@@ -3300,7 +3059,7 @@ function LessonScreen() {
     // [FeedbackKit] Ощущения исхода (звук+вибра). Экономика/серия уже посчитаны
     // выше — здесь только «мягкость». fk сам уважает тумблеры звука/вибры.
     if (isRight) {
-      // correctStreakRef уже инкрементирован в блоке XP выше.
+      // correctStreakRef уже инкрементирован в блоке legacy reward выше.
       fk.verdict({ correct: true });
     } else {
       fk.verdict({ correct: false });
@@ -3345,7 +3104,7 @@ function LessonScreen() {
     // Урок закрывается по кругу позиций: дошли до последней позиции и ответили.
     // Ошибки, replay и очередь ошибок влияют только на оценку/модалку, но не блокируют финал.
     if (nextCell === 0 && !pendingCycleEndReplay) {
-      // Preserve the identity that earned this run's answer XP before rotating
+      // Preserve the identity that earned this run's answer legacy reward before rotating
       // storage to the next replay. Completion dedupe follows the real attempt,
       // never pass_count (whose medal semantics are independent).
       const completedAttemptId = normalizeLessonServerAttemptId(serverAttemptIdRef.current)
@@ -3457,7 +3216,6 @@ function LessonScreen() {
         const coachRouteParams = {};
 
         const navigate = async () => {
-          await Promise.all(pendingLessonXpAwardsRef.current);
           resetShuffleForNextPass();
           lessonWrongMistakesRef.current = [];
           markNextNavigationAsReplace();
@@ -3466,11 +3224,6 @@ function LessonScreen() {
             params: {
               id: String(lessonId),
               unlocked: didUnlock ? '1' : '0',
-              // зачем (владелец, 2026-08-27): в dev-режиме «Проверка рун»
-              // подменяем и XP тоже — «всё, что на экране», не только руны.
-              earnedXp: String(devRunesFake ? devRunesFake.secondary : lessonEarnedXpRef.current),
-              earnedBaseXp: String(devRunesFake ? devRunesFake.secondary : lessonEarnedBaseXpRef.current),
-              earnedMultipliers: encodeConfirmedLessonMultipliers(lessonEarnedMultipliersRef.current),
               completedAttemptId,
               repeatAttemptId: nextAttemptId,
               passed: finalScore >= 2.5 ? '1' : '0',
@@ -3491,7 +3244,6 @@ function LessonScreen() {
         } catch (e) {
           void trackFeatureError('lesson', 'complete', e, { lessonId }, 'lesson1');
           // Fallback: navigate to lesson_complete even if tracking fails
-          await Promise.all(pendingLessonXpAwardsRef.current);
           resetShuffleForNextPass();
           lessonWrongMistakesRef.current = [];
           markNextNavigationAsReplace();
@@ -3500,9 +3252,6 @@ function LessonScreen() {
             params: {
               id: String(lessonId),
               unlocked: '0',
-              earnedXp: String(devRunesFake ? devRunesFake.secondary : lessonEarnedXpRef.current),
-              earnedBaseXp: String(devRunesFake ? devRunesFake.secondary : lessonEarnedBaseXpRef.current),
-              earnedMultipliers: encodeConfirmedLessonMultipliers(lessonEarnedMultipliersRef.current),
               completedAttemptId,
               repeatAttemptId: nextAttemptId,
               passed: finalScore >= 2.5 ? '1' : '0',
@@ -4145,9 +3894,6 @@ function LessonScreen() {
             displayCell={overridePhraseCell ?? cellIndex}
             isErrorReplay={overridePhraseCell !== null}
             replaySolvedCorrectly={replaySolvedCorrectly}
-            xpToastVisible={xpToastVisible}
-            xpToastAmount={xpToastAmount}
-            xpToastAnim={xpToastAnim}
             realPhraseIdx={(() => { const order = phraseOrderRef.current; const cell = overridePhraseCell ?? cellIndex; if (order.length === 0) return cell % (LESSON_DATA?.length || 1); return order[cell] ?? order[cell % order.length]; })()}
             studyTarget={studyTarget}
             onReplayPhraseAudio={replayResultPhraseAudio}
@@ -4197,7 +3943,4 @@ function LessonScreen() {
   );
 }
 
-export default withOptionalPersonalPlanSunsetGuard(
-  withLessonRuntimeAccessBoundary(LessonScreen),
-  ['planTask'],
-);
+export default withLessonRuntimeAccessBoundary(LessonScreen);

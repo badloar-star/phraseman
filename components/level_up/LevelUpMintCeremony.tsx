@@ -40,6 +40,8 @@ import Animated, {
 import { LinearGradient } from '../SafeLinearGradient';
 import PressableScale from '../PressableScale';
 import { useLang } from '../LangContext';
+import { useTheme } from '../ThemeContext';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { triLang } from '../../constants/i18n';
 import { hapticMediumImpact, hapticTap } from '../../hooks/use-haptics';
 import { useReduceMotionPreference } from '../../hooks/use_reduce_motion';
@@ -98,6 +100,9 @@ export default function LevelUpMintCeremony({ visible, from, to, onDone, onCue }
   const { width: W, height: H } = useWindowDimensions();
   const insets = useStableSafeAreaInsets();
   const { lang } = useLang();
+  // зачем: CTA церемонии — нейтральный токен темы Liquid Glass (макет coins.html PAY-05), а не жёстко белая кнопка.
+  const { liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const reducePref = useReduceMotionPreference();
 
   // Геометрия: всё считается от ширины и высоты экрана, первый кадр = финальная раскладка.
@@ -351,6 +356,7 @@ export default function LevelUpMintCeremony({ visible, from, to, onDone, onCue }
         >
           <View style={styles.caption} pointerEvents="none">
             <Animated.View style={titleStyle}>
+              <Text style={styles.eyebrow}>{copy.newLevel}</Text>
               <Text style={styles.title} numberOfLines={2} accessibilityRole="header">
                 {to.name}
               </Text>
@@ -360,8 +366,8 @@ export default function LevelUpMintCeremony({ visible, from, to, onDone, onCue }
             </Animated.View>
           </View>
           <Animated.View style={buttonStyle} pointerEvents={ready ? 'auto' : 'none'}>
-            <PressableScale variant="primary" onPress={finish} disabled={!ready} withHaptic={false} style={styles.button}>
-              <Text style={styles.buttonText}>{copy.cta}</Text>
+            <PressableScale variant="primary" onPress={finish} disabled={!ready} withHaptic={false} style={[styles.button, { backgroundColor: glass.cta }]}>
+              <Text style={[styles.buttonText, { color: glass.ctaInk }]}>{copy.cta}</Text>
             </PressableScale>
           </Animated.View>
         </View>
@@ -376,10 +382,18 @@ const styles = StyleSheet.create({
   clip: { overflow: 'hidden' },
   bottom: { left: 24, right: 24, bottom: 0, justifyContent: 'space-between' },
   caption: { alignItems: 'center' },
+  eyebrow: {
+    color: 'rgba(245,245,247,0.62)',
+    fontSize: 15,
+    lineHeight: 20,
+    fontWeight: '600',
+    textAlign: 'center',
+  },
   title: {
+    marginTop: 8,
     color: '#f5f5f7',
-    fontSize: 32,
-    lineHeight: 38,
+    fontSize: 30,
+    lineHeight: 36,
     fontWeight: '700',
     letterSpacing: -0.6,
     textAlign: 'center',
@@ -394,12 +408,12 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 52,
-    borderRadius: 16,
+    borderRadius: 26,
     backgroundColor: 'rgba(255,255,255,0.94)',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  buttonText: { color: '#0b0b0f', fontSize: 16, fontWeight: '600' },
+  buttonText: { color: '#0b0b0f', fontSize: 17, fontWeight: '700' },
 });
 
 export { MINT_BG };

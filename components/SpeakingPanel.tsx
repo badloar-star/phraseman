@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { DebugLogger } from '../app/debug-logger';
+import { useTheme } from './ThemeContext';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import {
   ActivityIndicator,
   Linking,
@@ -319,6 +321,7 @@ export function SpeakingPanel({
   holdActive = false,
   onStatusChange,
 }: SpeakingPanelProps) {
+  const { liquidGlassThemeId } = useTheme();
   const inlineMetrics = useSpeakingInlineMetrics();
   const speech = useMemo(() => loadSpeechModule(), []);
   // зачем: панель живёт внутри упражнения и при сворачивании приложения НЕ размонтируется —
@@ -2346,16 +2349,30 @@ export function SpeakingPanel({
     );
   }
 
+  // зачем: модальная поверхность «Скажи вслух» — Liquid Glass (learn.html D7/D8): непрозрачная основа темы,
+  // нейтральные текст/кнопка/индикатор; успех/ошибка (correct/wrong/warn) остаются семантическими.
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  const mTheme: SpeakingPanelTheme = {
+    ...theme,
+    card: glass.opaqueSheet,
+    textPrimary: glass.text,
+    textSecond: glass.secondary,
+    textMuted: glass.secondary,
+    accent: glass.cta,
+    onAccent: glass.ctaInk,
+    border: glass.line,
+  };
+
   return (
     <Modal transparent animationType="fade" onRequestClose={handleClose} visible>
       <Pressable style={styles.backdrop} onPress={handleClose}>
         <Pressable
-          style={[styles.card, { backgroundColor: theme.card, borderColor: theme.border }]}
+          style={[styles.card, { backgroundColor: mTheme.card }]}
           onPress={(e) => e.stopPropagation()}
         >
           {/* Header */}
           <View style={styles.headerRow}>
-            <Text style={[styles.title, { color: theme.textPrimary }]}>
+            <Text style={[styles.title, { color: mTheme.textPrimary }]}>
               {L(lang, { ru: 'Скажи вслух', uk: 'Скажи вголос', es: 'Dilo en voz alta', 'pt-BR': 'Diga em voz alta', vi: 'Nói thành tiếng', id: 'Ucapkan keras-keras', tr: 'Yüksek sesle söyle', pl: 'Powiedz na głos' })}
             </Text>
             <Pressable
@@ -2364,7 +2381,7 @@ export function SpeakingPanel({
               accessibilityRole="button"
               accessibilityLabel={L(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
             >
-              <Ionicons name="close" size={24} color={theme.textMuted} />
+              <Ionicons name="close" size={24} color={mTheme.textMuted} />
             </Pressable>
           </View>
 
@@ -2407,13 +2424,13 @@ export function SpeakingPanel({
               const isOpen = drill.openIndex === i;
               const color = effectiveStatus
                 ? effectiveStatus === 'clean'
-                  ? theme.correct
+                  ? mTheme.correct
                   : effectiveStatus === 'fuzzy'
                   ? warnColor
-                  : theme.wrong
+                  : mTheme.wrong
                 : reveal
-                ? theme.correct
-                : theme.textMuted;
+                ? mTheme.correct
+                : mTheme.textMuted;
               const wordText = (
                 <Text
                   style={[
@@ -2472,7 +2489,7 @@ export function SpeakingPanel({
             <WordDrillCard
               word={openWordText}
               lang={lang}
-              theme={theme}
+              theme={mTheme}
               warnColor={warnColor}
               phase={wordPhase}
               verdict={wordVerdict}
@@ -2495,7 +2512,7 @@ export function SpeakingPanel({
               вердикт выше уже дотянуты до прохода (effectiveScore), эта строка —
               явное подтверждение «готово». */}
           {showResult && phrasePerfect && (
-            <Text style={[styles.perfectLine, { color: theme.correct }]}>
+            <Text style={[styles.perfectLine, { color: mTheme.correct }]}>
               {L(lang, {
                 ru: '✓ Фраза идеальна — все слова чисто',
                 uk: '✓ Фраза ідеальна — усі слова чисто',
@@ -2530,8 +2547,8 @@ export function SpeakingPanel({
                 <SpeakingScoreStars
                   score={effectiveScore}
                   passThreshold={passThreshold}
-                  color={theme.accent}
-                  emptyColor={theme.border}
+                  color={mTheme.accent}
+                  emptyColor={mTheme.border}
                   animate
                 />
               </View>
@@ -2539,8 +2556,8 @@ export function SpeakingPanel({
               <VoiceEqualizer
                 ref={equalizerRef}
                 active={listening}
-                color={theme.accent}
-                idleColor={theme.border}
+                color={mTheme.accent}
+                idleColor={mTheme.border}
               />
             )}
           </View>
@@ -2552,10 +2569,10 @@ export function SpeakingPanel({
               {
                 color:
                   (showResult && effectivePassed) || status === 'passed'
-                    ? theme.correct
+                    ? mTheme.correct
                     : status === 'failed' || status === 'denied' || status === 'unavailable' || status === 'stalled'
-                    ? theme.wrong
-                    : theme.textMuted,
+                    ? mTheme.wrong
+                    : mTheme.textMuted,
               },
             ]}
           >
@@ -2564,14 +2581,14 @@ export function SpeakingPanel({
 
           {/* Одна конкретная подсказка: что именно тянет балл вниз. */}
           {showResult && hintLine && (
-            <Text style={[styles.hintLine, { color: theme.textSecond }]}>{hintLine}</Text>
+            <Text style={[styles.hintLine, { color: mTheme.textSecond }]}>{hintLine}</Text>
           )}
 
           {/* Конкретный звук внутри слова, когда его удалось запеленговать.
               Символы фонем языконезависимы — одна строка на все локали.
               Прячем, когда фраза уже дотянута тренировкой до прохода. */}
           {showResult && !effectivePassed && soundHint && (
-            <Text style={[styles.diffSound, { color: theme.textMuted }]}>
+            <Text style={[styles.diffSound, { color: mTheme.textMuted }]}>
               {L(lang, {
                 ru: `звук /${soundHint.hint.expected}/ вместо /${soundHint.hint.said}/ в «${soundHint.word}»`,
                 uk: `звук /${soundHint.hint.expected}/ замість /${soundHint.hint.said}/ у «${soundHint.word}»`,
@@ -2628,15 +2645,15 @@ export function SpeakingPanel({
               style={[
                 styles.micBtn,
                 {
-                  backgroundColor: listening ? theme.wrong : theme.accent,
+                  backgroundColor: listening ? mTheme.wrong : mTheme.accent,
                   opacity: micDisabled ? 0.5 : 1,
                 },
               ]}
             >
               {status === 'requesting' || status === 'scoring' ? (
-                <ActivityIndicator color={theme.onAccent} />
+                <ActivityIndicator color={mTheme.onAccent} />
               ) : (
-                <Ionicons name={listening ? 'stop' : 'mic'} size={28} color={theme.onAccent} />
+                <Ionicons name={listening ? 'stop' : 'mic'} size={28} color={mTheme.onAccent} />
               )}
             </Pressable>
           )}
@@ -2654,9 +2671,9 @@ export function SpeakingPanel({
               }}
               accessibilityRole="button"
               accessibilityLabel={L(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe' })}
-              style={[styles.actionBtn, { backgroundColor: theme.correct }]}
+              style={[styles.actionBtn, { backgroundColor: mTheme.correct }]}
             >
-              <Text style={[styles.actionBtnText, { color: theme.onAccent }]}>
+              <Text style={[styles.actionBtnText, { color: mTheme.onAccent }]}>
                 {L(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe' })}
               </Text>
             </Pressable>
@@ -2667,7 +2684,7 @@ export function SpeakingPanel({
               на системном пути — прямой перезапуск прослушивания. */}
           {(status === 'failed' || status === 'passed' || status === 'no_speech' || status === 'stalled') && (
             <Pressable onPress={holdModeView ? resetForRetry : startListening} hitSlop={8} style={styles.retry}>
-              <Text style={[styles.retryText, { color: theme.accent }]}>
+              <Text style={[styles.retryText, { color: mTheme.accent }]}>
                 {L(lang, { ru: 'Сказать ещё раз', uk: 'Сказати ще раз', es: 'Decir de nuevo', 'pt-BR': 'Dizer de novo', vi: 'Nói lại lần nữa', id: 'Ucapkan lagi', tr: 'Bir daha söyle', pl: 'Powiedz jeszcze raz' })}
               </Text>
             </Pressable>
@@ -2678,9 +2695,9 @@ export function SpeakingPanel({
             <Pressable
               onPress={openAppSettings}
               accessibilityRole="button"
-              style={[styles.actionBtn, { backgroundColor: theme.accent }]}
+              style={[styles.actionBtn, { backgroundColor: mTheme.accent }]}
             >
-              <Text style={[styles.actionBtnText, { color: theme.onAccent }]}>
+              <Text style={[styles.actionBtnText, { color: mTheme.onAccent }]}>
                 {L(lang, { ru: 'Открыть настройки', uk: 'Відкрити налаштування', es: 'Abrir ajustes', 'pt-BR': 'Abrir ajustes', vi: 'Mở cài đặt', id: 'Buka pengaturan', tr: 'Ayarları aç', pl: 'Otwórz ustawienia' })}
               </Text>
             </Pressable>
@@ -2691,9 +2708,9 @@ export function SpeakingPanel({
             <Pressable
               onPress={handleClose}
               accessibilityRole="button"
-              style={[styles.actionBtn, { backgroundColor: theme.accent }]}
+              style={[styles.actionBtn, { backgroundColor: mTheme.accent }]}
             >
-              <Text style={[styles.actionBtnText, { color: theme.onAccent }]}>
+              <Text style={[styles.actionBtnText, { color: mTheme.onAccent }]}>
                 {L(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
               </Text>
             </Pressable>
@@ -2735,8 +2752,7 @@ const styles = StyleSheet.create({
   card: {
     width: '100%',
     maxWidth: 420,
-    borderRadius: 24,
-    borderWidth: 0,
+    borderRadius: 28,
     padding: 22,
     alignItems: 'center',
   },

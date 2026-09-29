@@ -20,6 +20,7 @@ import { LINGMAN_CERT_NAME_MAX_LEN, sanitizeCertName } from '../app/exam_certifi
 import HybridAlertShell, { CascadeItem } from './modal_fx/HybridAlertShell';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { LUM } from '../constants/motionHybrid';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 
 type Props = {
   visible: boolean;
@@ -31,7 +32,9 @@ type Props = {
 };
 
 function CertificateNameModal({ visible, initialName = '', onSave, onSkip, motionVariant = 'hybrid' }: Props) {
-  const { theme: t, f, themeMode } = useTheme();
+  // зачем: окно ввода имени на награде — Liquid Glass (learn.html, exName): непрозрачная основа, нейтральный CTA, без золота и обводок.
+  const { f, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
   const reduceMotion = useReduceMotion();
   const isHybrid = motionVariant === 'hybrid';
@@ -58,15 +61,9 @@ function CertificateNameModal({ visible, initialName = '', onSave, onSkip, motio
   };
 
   const cardContent = (
-    <View style={[styles.card, { backgroundColor: t.bgCard, borderColor: t.border }]}>
+    <View style={[styles.card, { backgroundColor: glass.opaqueSheet }]}>
       <CascadeItem delay={isHybrid ? LUM.ladder[2] : 0} reduceMotion={!isHybrid || reduceMotion}>
-        <View style={[styles.ribbon, { borderColor: '#d4a017' }]}>
-          <Text style={{ color: '#d4a017', fontSize: f.label, fontWeight: '700', letterSpacing: 1.4 }}>
-            PHRASEMAN B2
-          </Text>
-        </View>
-
-        <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginTop: 16, textAlign: 'center' }}>
+        <Text style={{ color: glass.text, fontSize: f.h2, fontWeight: '700', textAlign: 'center' }}>
           {triLang(lang as Lang, {
             ru: 'Чьё имя указать на награде?',
             uk: 'Чиє ім\'я вказати на нагороді?',
@@ -79,7 +76,7 @@ function CertificateNameModal({ visible, initialName = '', onSave, onSkip, motio
             pl: 'Jakie imię wpisać na certyfikacie?',
           })}
         </Text>
-        <Text style={{ color: t.textMuted, fontSize: f.body, marginTop: 8, textAlign: 'center', lineHeight: 20 }}>
+        <Text style={{ color: glass.secondary, fontSize: f.body, marginTop: 10, textAlign: 'center', lineHeight: 21 }}>
           {triLang(lang as Lang, {
             ru: 'Имя появится на награде Phraseman. Можно указать настоящее или ник.',
             uk: 'Ім\'я з\'явиться на нагороді Phraseman. Можна вказати справжнє або нік.',
@@ -109,7 +106,7 @@ function CertificateNameModal({ visible, initialName = '', onSave, onSkip, motio
             tr: 'Adın veya takma adın',
             pl: 'Twoje imię albo nick',
           })}
-          placeholderTextColor={t.textMuted}
+          placeholderTextColor={glass.secondary}
           autoFocus={!isHybrid}
           returnKeyType="done"
           onSubmitEditing={handleSave}
@@ -117,14 +114,13 @@ function CertificateNameModal({ visible, initialName = '', onSave, onSkip, motio
           style={[
             styles.input,
             {
-              color: t.textPrimary,
-              backgroundColor: t.bgPrimary,
-              borderColor: canSave ? '#d4a017' : t.border,
+              color: glass.text,
+              backgroundColor: glass.opaqueControl,
               fontSize: f.bodyLg,
             },
           ]}
         />
-        <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 6, textAlign: 'right' }}>
+        <Text style={{ color: glass.secondary, fontSize: f.caption, marginTop: 6, textAlign: 'right' }}>
           {cleaned.length} / {LINGMAN_CERT_NAME_MAX_LEN}
         </Text>
       </CascadeItem>
@@ -134,8 +130,7 @@ function CertificateNameModal({ visible, initialName = '', onSave, onSkip, motio
           style={[
             styles.primaryBtn,
             {
-              backgroundColor: canSave ? '#B8860B' : t.bgSurface,
-              borderColor: canSave ? '#FFD700' : t.border,
+              backgroundColor: canSave ? glass.cta : glass.opaqueControl,
               opacity: canSave ? 1 : 0.55,
             },
           ]}
@@ -143,7 +138,7 @@ function CertificateNameModal({ visible, initialName = '', onSave, onSkip, motio
           onPress={handleSave}
           activeOpacity={0.85}
         >
-          <Text style={{ color: '#FFD700', fontSize: f.bodyLg, fontWeight: '700', letterSpacing: 0.4 }}>
+          <Text style={{ color: canSave ? glass.ctaInk : glass.secondary, fontSize: f.bodyLg, fontWeight: '700' }}>
             {triLang(lang as Lang, {
               ru: 'Сохранить и выдать сертификат',
               uk: 'Зберегти і видати сертифікат',
@@ -159,7 +154,7 @@ function CertificateNameModal({ visible, initialName = '', onSave, onSkip, motio
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.skipBtn} onPress={handleSkip} activeOpacity={0.7}>
-          <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '600', textAlign: 'center' }}>
+          <Text style={{ color: glass.secondary, fontSize: f.body, fontWeight: '600', textAlign: 'center' }}>
             {triLang(lang as Lang, {
               ru: 'Пропустить (выдать без имени)',
               uk: 'Пропустити (видати без імені)',
@@ -244,39 +239,30 @@ const styles = StyleSheet.create({
   },
   center: { width: '100%' },
   card: {
-    borderRadius: 20,
+    borderRadius: 28,
     padding: 22,
-    borderWidth: 0,
     alignItems: 'stretch',
-  },
-  ribbon: {
-    alignSelf: 'center',
-    paddingHorizontal: 14,
-    paddingVertical: 4,
-    borderRadius: 999,
-    borderWidth: 0,
-    backgroundColor: 'rgba(212,160,23,0.12)',
   },
   input: {
     marginTop: 16,
-    borderWidth: 1.5,
-    borderRadius: 12,
+    borderRadius: 14,
     paddingHorizontal: 14,
     paddingVertical: 12,
   },
   primaryBtn: {
     marginTop: 16,
-    borderRadius: 14,
+    borderRadius: 24,
+    minHeight: 48,
     paddingVertical: 14,
     alignItems: 'center',
-    borderWidth: 0,
+    justifyContent: 'center',
   },
   skipBtn: {
     marginTop: 4,
     alignSelf: 'center',
     paddingVertical: 10,
     paddingHorizontal: 20,
-    minHeight: 40,
+    minHeight: 44,
     justifyContent: 'center',
   },
 });

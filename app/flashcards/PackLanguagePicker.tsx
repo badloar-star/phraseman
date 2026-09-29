@@ -1,4 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { Image } from 'expo-image';
 import React, { useEffect, useRef, useState } from 'react';
 import {
   Animated,
@@ -12,6 +13,8 @@ import {
 } from 'react-native';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { Theme } from '../../constants/theme';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { useTheme } from '../../components/ThemeContext';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { LUM } from '../../constants/motionHybrid';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
@@ -29,9 +32,26 @@ type Props = {
   value: PackLanguage;
   onChange: (language: PackLanguage) => void;
   disabled?: boolean;
+  /** зачем: оставлен для совместимости вызовов — окно теперь всегда Liquid Glass. */
+  liquidGlass?: boolean;
 };
 
+const FLAG_ART: Partial<Record<PackLanguage, number>> = {
+  en: require('../../assets/images/language_flags/language_en.webp'),
+  fr: require('../../assets/images/language_flags/language_fr_dev.webp'),
+  es: require('../../assets/images/language_flags/language_es_dev.webp'),
+};
+
+// зачем: флаг — растровый там, где есть арт (как в макете); для остальных языков — код в плашке, а не эмодзи.
+function FlagMark({ code, width, height, color }: { code: PackLanguage; width: number; height: number; color: string }) {
+  const art = FLAG_ART[code];
+  if (art) return <Image source={art} style={{ width, height, borderRadius: 3 }} contentFit="cover" />;
+  return <Text style={{ width, fontSize: 12, fontWeight: '800', color, textAlign: 'center' }}>{PACK_LANGUAGE_META[code].shortName}</Text>;
+}
+
 export default function PackLanguagePicker({ lang, t, value, onChange, disabled = false }: Props) {
+  const { liquidGlassThemeId } = useTheme();
+  const g = liquidGlassTokens(liquidGlassThemeId);
   const [visible, setVisible] = useState(false);
   const [mounted, setMounted] = useState(false);
   const insets = useStableSafeAreaInsets();
@@ -70,15 +90,15 @@ export default function PackLanguagePicker({ lang, t, value, onChange, disabled 
         accessibilityState={{ expanded: visible, disabled }}
         disabled={disabled}
         onPress={open}
+        hitSlop={4}
         style={({ pressed }) => [styles.trigger, {
-          borderColor: visible ? t.accent : t.border,
-          backgroundColor: visible ? t.accentBg : t.bgSurface,
+          backgroundColor: visible ? g.selected : g.opaqueControl,
           opacity: disabled ? 0.55 : pressed ? 0.78 : 1,
         }]}
       >
-        <Text style={styles.flag}>{PACK_LANGUAGE_META[value].flagGlyph}</Text>
-        <Text style={[styles.code, { color: t.textPrimary }]}>{PACK_LANGUAGE_META[value].shortName}</Text>
-        <Ionicons name="chevron-down" size={12} color={t.textSecond} />
+        <FlagMark code={value} width={24} height={16} color={g.text} />
+        <Text style={[styles.code, { color: g.text }]}>{PACK_LANGUAGE_META[value].shortName}</Text>
+        <Ionicons name="chevron-down" size={14} color={g.secondary} />
       </Pressable>
 
       <Modal
@@ -96,14 +116,12 @@ export default function PackLanguagePicker({ lang, t, value, onChange, disabled 
             onPress={close}
           />
           <Animated.View style={[styles.sheet, {
-            backgroundColor: t.bgSurface,
-            borderColor: t.border,
+            backgroundColor: g.opaqueSheet,
             opacity: progress,
             transform: [{ translateY: progress.interpolate({ inputRange: [0, 1], outputRange: [-8, 0] }) }, {
               scale: progress.interpolate({ inputRange: [0, 1], outputRange: [0.98, 1] }),
             }],
           }]}>
-            <Text style={[styles.heading, { color: t.textMuted }]}>{packLanguagePickerHint(lang)}</Text>
             {PACK_LANGUAGES.map((code) => {
               const item = PACK_LANGUAGE_META[code];
               const selected = item.code === value;
@@ -112,23 +130,18 @@ export default function PackLanguagePicker({ lang, t, value, onChange, disabled 
                   key={item.code}
                   accessibilityRole="button"
                   accessibilityLabel={packLanguageLabel(item.code)}
-                  accessibilityState={{ selected: item.code === value }}
+                  accessibilityState={{ selected }}
                   onPress={() => {
                     onChange(item.code);
                     close();
                   }}
                   style={({ pressed }) => [styles.option, {
-                    backgroundColor: selected ? t.accentBg : pressed ? `${t.border}55` : 'transparent',
-                    borderColor: selected ? `${t.accent}88` : 'transparent',
+                    backgroundColor: selected ? g.opaqueControl : pressed ? g.selected : 'transparent',
                   }]}
                 >
-                  <Text style={styles.optionFlag}>{item.flagGlyph}</Text>
-                  <Text style={[styles.optionText, { color: t.textPrimary }]}>{item.nativeName}</Text>
-                  <Ionicons
-                    name={selected ? 'checkmark-circle' : 'ellipse-outline'}
-                    size={18}
-                    color={selected ? t.accent : t.textGhost}
-                  />
+                  <FlagMark code={item.code} width={26} height={17} color={g.text} />
+                  <Text style={[styles.optionText, { color: g.text }]}>{item.nativeName}</Text>
+                  {selected ? <Ionicons name="checkmark" size={18} color={g.text} /> : null}
                 </Pressable>
               );
             })}
@@ -142,37 +155,28 @@ export default function PackLanguagePicker({ lang, t, value, onChange, disabled 
 const styles = StyleSheet.create({
   trigger: {
     minWidth: 64,
-    minHeight: 44,
-    paddingHorizontal: 8,
-    borderRadius: 13,
-    borderWidth: 1,
+    height: 36,
+    paddingLeft: 10,
+    paddingRight: 12,
+    borderRadius: 18,
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-    gap: 4,
+    gap: 8,
   },
-  flag: { fontSize: 17, lineHeight: 20 },
-  code: { fontSize: 11, fontWeight: '900', letterSpacing: 0.5 },
+  code: { fontSize: 15, fontWeight: '700' },
   overlay: {
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'flex-end',
     paddingHorizontal: 16,
-    backgroundColor: 'rgba(0,0,0,0.36)',
+    backgroundColor: 'rgba(0,0,0,0.5)',
   },
   sheet: {
-    width: 220,
-    padding: 10,
+    width: 230,
+    padding: 6,
     borderRadius: 18,
-    borderWidth: 1,
-    shadowColor: '#000',
-    shadowOpacity: 0.35,
-    shadowRadius: 18,
-    shadowOffset: { width: 0, height: 8 },
-    elevation: 8,
   },
-  heading: { paddingHorizontal: 10, paddingTop: 4, paddingBottom: 6, fontSize: 11, fontWeight: '800', letterSpacing: 0.4 },
-  option: { minHeight: 44, borderRadius: 12, borderWidth: 1, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 10, gap: 9 },
-  optionFlag: { fontSize: 19, width: 24 },
-  optionText: { flex: 1, fontSize: 14, fontWeight: '800' },
+  option: { minHeight: 48, borderRadius: 12, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 12, gap: 12 },
+  optionText: { flex: 1, fontSize: 16, fontWeight: '600' },
 });

@@ -188,8 +188,8 @@ test('A/D benefit model matches the approved five highlights and 16-row comparis
   assert.match(source, /RELEASE BLOCKER:[^\n]*card training/i);
   assert.match(source, /RELEASE BLOCKER:[^\n]*AI mistake/i);
   assert.match(source, /id: 'own_cards'[\s\S]*?plusValue: UNLIMITED/);
-  assert.match(source, /const UNLIMITED: Localized = loc\('Безлимит'/);
-  assert.match(source, /id: 'cards_bundle'[\s\S]*?label: loc\('Карточки без ограничений'/);
+  assert.match(source, /const UNLIMITED: Localized = LP\('Безлимит'/);
+  assert.match(source, /id: 'cards_bundle'[\s\S]*?label: LP\('Карточки без ограничений'/);
   assert.match(source, /RELEASE BLOCKER:[^\n]*cloud paging/i);
   assert.ok(source.includes('accessibilityState={{ expanded }}'), 'comparison disclosure is accessible');
   assert.ok(source.includes('freeValue'), 'rows expose the Free value');

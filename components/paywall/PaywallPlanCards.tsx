@@ -34,6 +34,8 @@ interface Props {
   promo?: StorePromoPricing | null;
   loading: boolean;
   disabled?: boolean;
+  /** Compact opt-in for the non-onboarding A/D price dock. */
+  compact?: boolean;
   /** Цена разовой покупки из стора. Раскрытие Phraseman Pro доступно только когда
    *  lifetimeAvailable=true (флаг включён + пакет реально пришёл). */
   lifetimePrice?: string | null;
@@ -42,30 +44,18 @@ interface Props {
    *  Когда задана — между «Годом» и «Месяцем» рендерится полноразмерная
    *  display-only карточка: без onSelect, не выбирается и не покупается. */
   decoyPriceString?: string | null;
-  /**
-   * Витрина MAX с неистекающими пакетами минут. Карточка визуально
-   * идентична карточке Phraseman Pro (та же renderCard) и живёт под ТЕМ ЖЕ
-   * тогглом «Дополнительное предложение» — владелец 2026-08-24 отверг
-   * отдельный второй тоггл со своим текстом, обе карточки должны
-   * разворачиваться вместе, одним движением. Тап уводит на отдельный
-   * /max_paywall, а не выбирает MAX как Premium-план. Минуты выдаёт только
-   * серверный wallet после подтверждённого store webhook.
-   */
-  onOpenMaxPaywall?: () => void;
 }
 
 export default function PaywallPlanCards({
   lang, chrome, selected, onSelect,
   yearlyPerMonth, yearlyFull, monthlyPrice,
   savingsPct, perDayLabel, trialDays, promo = null, loading, disabled,
-  lifetimePrice, lifetimeAvailable, decoyPriceString, onOpenMaxPaywall,
+  lifetimePrice, lifetimeAvailable, decoyPriceString, compact = false,
 }: Props) {
   const { tc, textPrimary, textMuted, cardBg, uncheckedBorder } = chrome;
   const [showAdditionalOffer, setShowAdditionalOffer] = React.useState(false);
   const annualPromoActive = selected === 'yearly' && promo !== null;
-  // зачем: один тоггл «Дополнительное предложение» открывает ОБЕ карточки —
-  // Pro и MAX — одним движением (владелец 2026-08-24 отверг второй отдельный
-  // тоггл со своим текстом). Выбор Pro как плана тоже держит секцию открытой.
+  // Выбор разовой покупки держит дополнительную секцию открытой.
   const additionalOfferExpanded = showAdditionalOffer || selected === 'lifetime';
   const perMonthLabel = triLang(lang, {
     ru: '/ мес',
@@ -122,16 +112,10 @@ export default function PaywallPlanCards({
     badge: string | null,
     hidePerMonth = false,
     cardPromo: StorePromoPricing | null = null,
-    /**
-     * Карточка-переход, а не карточка-выбор (MAX): тап сразу открывает
-     * /max_paywall вместо onSelect. Визуально идентична карточке Pro —
-     * та же вёрстка/цвета/размеры renderCard, только вместо radio-кружка
-     * chevron-forward (навигация, не выбор плана здесь).
-     */
-    onNavigate?: () => void,
   ) => {
-    const sel = !onNavigate && selected === plan;
+    const sel = selected === plan;
     const billedPrice = cardPromo?.promoPriceString || price;
+    const cardDisabled = !!disabled || (compact && !billedPrice);
     const planSurfaceColors = [
       `${tc.heroAccent}${sel ? '28' : '14'}`,
       sel ? chrome.cardBgStrong : cardBg,
@@ -139,13 +123,13 @@ export default function PaywallPlanCards({
     ] as [string, string, string];
     return (
       <TouchableOpacity
-        accessibilityRole={onNavigate ? 'button' : 'radio'}
+        accessibilityRole="radio"
         accessibilityLabel={`${name} ${billedPrice}`.trim()}
-        accessibilityState={onNavigate ? { disabled: !!disabled } : { selected: sel, disabled: !!disabled }}
+        accessibilityState={{ selected: sel, disabled: cardDisabled }}
         activeOpacity={0.72}
-        disabled={disabled}
-        onPress={() => (onNavigate ? onNavigate() : onSelect(plan))}
-        style={[S.card, {
+        disabled={cardDisabled}
+        onPress={() => onSelect(plan)}
+        style={[S.card, compact && S.cardCompact, {
           backgroundColor: sel ? chrome.cardBgStrong : cardBg,
           shadowColor: sel ? tc.selectedCardShadow : 'transparent',
         }]}
@@ -163,10 +147,10 @@ export default function PaywallPlanCards({
             { backgroundColor: `${tc.heroAccent}${sel ? '66' : '2E'}` },
           ]}
         />
-        <View style={S.planHeader}>
+        <View style={[S.planHeader, compact && S.planHeaderCompact]}>
           <View style={S.nameWrap}>
             <Ionicons
-              name={onNavigate ? 'chevron-forward' : sel ? 'checkmark-circle' : 'ellipse-outline'}
+              name={sel ? 'checkmark-circle' : 'ellipse-outline'}
               size={24}
               color={sel ? tc.heroAccent : uncheckedBorder}
             />
@@ -178,7 +162,7 @@ export default function PaywallPlanCards({
             </PaywallBadgePop>
           )}
         </View>
-        <View style={[S.priceWrap, cardPromo ? S.priceWrapWithPromo : null]}>
+        <View style={[S.priceWrap, compact && S.priceWrapCompact, cardPromo ? S.priceWrapWithPromo : null]}>
           {cardPromo ? (
             <PaywallPromoCorner
               lang={lang}
@@ -191,7 +175,7 @@ export default function PaywallPlanCards({
               должен уходить в три точки»). Раньше numberOfLines={1} резал
               длинные валюты («1 990,00 ₸ / год»). Шрифт НЕ сжимаем (запрет
               владельца) — вместо этого priceWrap переносит строку. */}
-          <Text style={[S.price, { color: sel ? tc.urgencyCurrentPriceText : textPrimary }]}>
+          <Text style={[S.price, compact && S.priceCompact, { color: sel ? tc.urgencyCurrentPriceText : textPrimary }]}>
             {billedPrice || (loading ? '…' : '—')}
           </Text>
           {cardPromo ? (
@@ -201,7 +185,7 @@ export default function PaywallPlanCards({
           ) : null}
           {!hidePerMonth && <Text style={[S.per, { color: textMuted }]}>{perMonthLabel}</Text>}
         </View>
-        {sub ? <Text style={[S.sub, { color: textMuted }]}>{sub}</Text> : null}
+        {sub ? <Text style={[S.sub, compact && S.subCompact, { color: textMuted }]}>{sub}</Text> : null}
       </TouchableOpacity>
     );
   };
@@ -269,33 +253,11 @@ export default function PaywallPlanCards({
     tr: 'Ek teklif',
     pl: 'Dodatkowa oferta',
   });
-  // зачем: подпись под тогглом честно отражает, что реально раскроется —
-  // и Pro, и MAX (если оба доступны), только Pro, или только MAX.
-  const additionalOfferSubtitle = lifetimeAvailable && onOpenMaxPaywall
-    ? triLang(lang, {
-        ru: 'Phraseman Pro и MAX', uk: 'Phraseman Pro та MAX', en: 'Phraseman Pro and MAX', es: 'Phraseman Pro y MAX',
-        'pt-BR': 'Phraseman Pro e MAX', vi: 'Phraseman Pro và MAX', id: 'Phraseman Pro dan MAX',
-        tr: 'Phraseman Pro ve MAX', pl: 'Phraseman Pro i MAX',
-      })
-    : onOpenMaxPaywall
-      ? triLang(lang, {
-          ru: 'MAX · пакеты минут с ИИ-учителем', uk: 'MAX · пакети хвилин із ШІ-вчителем',
-          en: 'MAX · minute packs with an AI teacher',
-          es: 'MAX · paquetes de minutos con tu profesor de IA', 'pt-BR': 'MAX · pacotes de minutos com o professor de IA',
-          vi: 'MAX · gói phút với gia sư AI', id: 'MAX · paket menit bersama guru AI',
-          tr: 'MAX · yapay zekâ öğretmeninle dakika paketleri', pl: 'MAX · pakiety minut z nauczycielem AI',
-        })
-      : triLang(lang, {
-          ru: 'Phraseman Pro · разовая покупка', uk: 'Phraseman Pro · разова покупка', en: 'Phraseman Pro · one-time purchase', es: 'Phraseman Pro · compra única',
-          'pt-BR': 'Phraseman Pro · compra única', vi: 'Phraseman Pro · mua một lần', id: 'Phraseman Pro · pembelian sekali',
-          tr: 'Phraseman Pro · tek seferlik satın alma', pl: 'Phraseman Pro · zakup jednorazowy',
-        });
-  // зачем: сброс на 'yearly' при закрытии специфичен только для Pro
-  // ('lifetime' — единственное non-monthly/yearly значение PaywallPlan).
-  // MAX сюда намеренно не попадает — он никогда не становится selected
-  // (renderCard с onNavigate всегда даёт sel=false, тап уходит на
-  // /max_paywall, а не в onSelect). Если MAX когда-нибудь станет настоящим
-  // PaywallPlan-значением — эту защиту придётся расширить на него тоже.
+  const additionalOfferSubtitle = triLang(lang, {
+    ru: 'Phraseman Pro · разовая покупка', uk: 'Phraseman Pro · разова покупка', en: 'Phraseman Pro · one-time purchase', es: 'Phraseman Pro · compra única',
+    'pt-BR': 'Phraseman Pro · compra única', vi: 'Phraseman Pro · mua một lần', id: 'Phraseman Pro · pembelian sekali',
+    tr: 'Phraseman Pro · tek seferlik satın alma', pl: 'Phraseman Pro · zakup jednorazowy',
+  });
   const toggleAdditionalOffer = () => {
     const nextExpanded = !additionalOfferExpanded;
     if (!nextExpanded && selected === 'lifetime') onSelect('yearly');
@@ -303,7 +265,7 @@ export default function PaywallPlanCards({
   };
 
   return (
-    <View style={S.wrap}>
+    <View style={[S.wrap, compact && S.wrapCompact]}>
       {renderCard(
         'yearly',
         triLang(lang, {
@@ -344,7 +306,7 @@ export default function PaywallPlanCards({
         false,
         selected === 'monthly' ? promo : null,
       )}
-      {(lifetimeAvailable || onOpenMaxPaywall) && (
+      {lifetimeAvailable && (
         <Pressable
           accessibilityRole="button"
           accessibilityLabel={additionalOfferTitle}
@@ -388,30 +350,13 @@ export default function PaywallPlanCards({
         triLang(lang, { ru: 'разовый', uk: 'разовий', en: 'one-time', es: 'único', 'pt-BR': 'único', vi: 'một lần', id: 'sekali', tr: 'tek', pl: 'jednorazowo' }),
         true, // hidePerMonth — lifetime это не /мес
       )}
-      {onOpenMaxPaywall && additionalOfferExpanded && renderCard(
-        'monthly', // зачем: MAX не план usePaywallPurchase — plan-параметр здесь не участвует в selected (onNavigate ставит sel=false всегда)
-        'MAX',
-        triLang(lang, {
-          ru: '30 · 120 · 300 минут', uk: '30 · 120 · 300 хвилин', en: '30 · 120 · 300 minutes', es: '30 · 120 · 300 minutos',
-          'pt-BR': '30 · 120 · 300 minutos', vi: '30 · 120 · 300 phút', id: '30 · 120 · 300 menit',
-          tr: '30 · 120 · 300 dakika', pl: '30 · 120 · 300 minut',
-        }),
-        triLang(lang, {
-          ru: 'Разовая покупка · минуты не сгорают', uk: 'Разова купівля · хвилини не згорають', en: 'One-time purchase · minutes never expire', es: 'Compra única · los minutos no caducan',
-          'pt-BR': 'Compra única · os minutos não expiram', vi: 'Mua một lần · số phút không hết hạn', id: 'Pembelian sekali · menit tidak kedaluwarsa',
-          tr: 'Tek seferlik satın alma · dakikalar süresiz', pl: 'Jednorazowy zakup · minuty nie wygasają',
-        }),
-        null,
-        true, // навигационная карточка пакетов, не периодическая цена
-        null,
-        onOpenMaxPaywall,
-      )}
     </View>
   );
 }
 
 const S = StyleSheet.create({
   wrap: { gap: 11, marginTop: 16 },
+  wrapCompact: { gap: 8, marginTop: 0 },
   card: {
     // зачем: карточки тарифов безрамочные (тон вместо обводки — контракт
     // paywall_tonal_surfaces); мёртвые borderColor-пропсы убраны, borderWidth: 0 явно.
@@ -422,8 +367,10 @@ const S = StyleSheet.create({
     ...noAndroidOutline,
     overflow: 'hidden',
   },
+  cardCompact: { minHeight: 48, paddingHorizontal: 12, paddingVertical: 8, borderRadius: 14 },
   cardHighlight: { position: 'absolute', top: 0, left: 18, right: 18, height: 1, opacity: 0.72 },
   planHeader: { flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'space-between', gap: 10 },
+  planHeaderCompact: { alignItems: 'center' },
   // зачем: имя тарифа переносится по словам и видно целиком; flex:1 отдаёт ему
   // всю свободную ширину, бейдж скидки сохраняет свой размер (flexShrink:0).
   nameWrap: { flexDirection: 'row', alignItems: 'center', gap: 10, minWidth: 0, flex: 1 },
@@ -436,12 +383,15 @@ const S = StyleSheet.create({
   // строку вместо усечения многоточием (владелец 2026-09-17). flexShrink у
   // цены убран намеренно: он сжимал строку до многоточия, а нам нужен перенос.
   priceWrap: { marginTop: 10, flexDirection: 'row', alignItems: 'baseline', gap: 5, flexWrap: 'wrap', position: 'relative' },
+  priceWrapCompact: { marginTop: 4 },
   priceWrapWithPromo: { paddingRight: 82 },
   price: { fontSize: 23, fontWeight: '900', letterSpacing: 0, fontVariant: ['tabular-nums'] },
+  priceCompact: { fontSize: 18, lineHeight: 22 },
   standardPrice: { fontSize: 13, fontWeight: '700', textDecorationLine: 'line-through' },
   promoCorner: { right: -2, top: -3 },
   per: { fontSize: 13, fontWeight: '700' },
   sub: { marginTop: 7, fontSize: 13, lineHeight: 18 },
+  subCompact: { marginTop: 2, fontSize: 11, lineHeight: 14 },
   offerToggle: {
     minHeight: 48,
     borderRadius: 14,

@@ -16,6 +16,7 @@
  * обводок (тон, TonalSurface).
  */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { BlurView } from 'expo-blur';
 import {
   InteractionManager,
   Modal,
@@ -43,6 +44,7 @@ import { LUM, SHEET } from '../../constants/motionHybrid';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useKeyboardBottomInset } from '../keyboardAvoidance';
 import { useTheme } from '../ThemeContext';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { LinearGradient } from '../SafeLinearGradient';
 import TonalSurface from '../TonalSurface';
 import {
@@ -73,6 +75,8 @@ interface HybridSheetShellProps {
   glowColor?: string;
   /** Optional fixed outer sheet height; padding/safe-area/keyboard inset stay inside this box. */
   sheetHeight?: DimensionValue;
+  /** Opt-in approved Liquid Glass materials; legacy callers keep their TonalSurface. */
+  material?: 'liquid-glass' | 'liquid-glass-opaque';
   children: React.ReactNode | ((controls: { requestDismiss: () => void }) => React.ReactNode);
 }
 
@@ -87,9 +91,11 @@ export default function HybridSheetShell({
   testID,
   glowColor,
   sheetHeight,
+  material,
   children,
 }: HybridSheetShellProps) {
-  const { theme: t } = useTheme();
+  const { theme: t, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const keyboardBottomInset = useKeyboardBottomInset(visible);
@@ -334,7 +340,11 @@ export default function HybridSheetShell({
               style={[
                 styles.sheet,
                 {
-                  backgroundColor: t.bgCard,
+                  backgroundColor: material === 'liquid-glass'
+                    ? glass.sheet
+                    : material === 'liquid-glass-opaque'
+                      ? glass.opaqueSheet
+                      : t.bgCard,
                   shadowColor: glowColor || t.accent,
                   paddingBottom: 20 + Math.max(bottomInset, keyboardBottomInset),
                   height: sheetHeight,
@@ -342,7 +352,21 @@ export default function HybridSheetShell({
                 sheetStyle,
               ]}
             >
-              <TonalSurface pointerEvents="none" radius={24} tone="raised" style={StyleSheet.absoluteFillObject} />
+              {material === 'liquid-glass' ? (
+                <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+                  <BlurView intensity={18} blurReductionFactor={3}
+                    experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'}
+                    tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
+                  <View style={[StyleSheet.absoluteFill, { backgroundColor: glass.sheet }]} />
+                  <LinearGradient colors={[glass.selected, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
+                  <View style={{ height: 1, backgroundColor: glass.glassEdge }} />
+                </View>
+              ) : material === 'liquid-glass-opaque' ? (
+                <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: glass.opaqueSheet }]}>
+                  <LinearGradient colors={[glass.selected, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
+                  <View style={{ height: 1, backgroundColor: glass.glassEdge }} />
+                </View>
+              ) : <TonalSurface pointerEvents="none" radius={24} tone="raised" style={StyleSheet.absoluteFillObject} />}
               <LinearGradient
                 colors={[`${glowColor || t.accent}1F`, 'transparent']}
                 start={{ x: 0.5, y: 0 }}

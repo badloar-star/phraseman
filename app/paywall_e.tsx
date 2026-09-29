@@ -10,7 +10,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
+import { useLocalSearchParams, Stack } from 'expo-router';
 import type { PaywallEntry } from './paywall_entry_contract';
 import { paywallEntryAnalyticsParams } from './paywall_entry_contract';
 import DirectPaywallRoute from './direct_paywall_route';
@@ -41,6 +41,7 @@ import PaywallPromoBanner from '../components/paywall/PaywallPromoBanner';
 import PaywallPromoCorner from '../components/paywall/PaywallPromoCorner';
 import PaywallTrialTimeline from '../components/paywall/PaywallTrialTimeline';
 import PaywallLegalDisclosure from '../components/paywall/PaywallLegalDisclosure';
+import PaywallLiquidGlass from '../components/paywall/PaywallLiquidGlass';
 import { PaywallEntrance, PaywallBadgePop } from '../components/paywall/PaywallMotion';
 import { ctaLabelFor, ctaSubLineFor, periodLabelFor, stickyStringsFor } from '../components/paywall/paywallScreenCopy';
 import { hapticTap } from '../hooks/use-haptics';
@@ -76,10 +77,6 @@ export function PaywallEView({ entry }: { readonly entry: PaywallEntry }) {
   }), [attributionCampaign, attributionVariant, creativeRevision, ctx, entitlementState, impressionId, source]);
   const p = usePaywallPurchase({ variant: VARIANT, context: ctx, source, lang: lang as Lang, forceTrialUI, resumeLessonId, impression: analyticsImpression });
   const sticky = useStickyCta();
-  const router = useRouter();
-  // MAX — отдельный экран неистекающих пакетов минут,
-  // не план внутри usePaywallPurchase — витрина уводит на готовый /max_paywall.
-  const openMaxPaywall = () => router.push({ pathname: '/max_paywall', params: { source: `paywall_${VARIANT.toLowerCase()}` } });
 
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [showAltPlans, setShowAltPlans] = useState(false);
@@ -125,7 +122,7 @@ export function PaywallEView({ entry }: { readonly entry: PaywallEntry }) {
   const yearlyBilledPrice = yearlyPromo?.promoPriceString || p.yearlyPrice;
   const period = periodLabelFor(lang as Lang, p.selected);
   const isLifetimeSel = p.selected === 'lifetime';
-  const stickyCopy = stickyStringsFor(lang as Lang, { trialDays: p.trialDays, price, period, isLifetime: isLifetimeSel });
+  const stickyCopy = stickyStringsFor(lang as Lang, { trialDays: p.trialDays, price, period, isLifetime: isLifetimeSel }, isOnboarding);
 
   const { tc } = chrome;
   const perMonthLabel = triLang(lang as Lang, {
@@ -142,10 +139,6 @@ export function PaywallEView({ entry }: { readonly entry: PaywallEntry }) {
     }));
   }
 
-  // зачем: MAX — строка-переход в том же списке «Другие варианты», рядом с
-  // Pro (владелец 2026-08-24: MAX должен жить в собственном механизме
-  // пейвола рядом с Pro, не отдельным баннером). onNavigate вместо plan —
-  // тап сразу открывает /max_paywall, MAX не входит в usePaywallPurchase.
   const altPlans: { plan: PaywallPlan; name: string; priceLabel: string; onNavigate?: () => void }[] = [
     {
       plan: 'monthly',
@@ -167,18 +160,7 @@ export function PaywallEView({ entry }: { readonly entry: PaywallEntry }) {
     });
   }
   if (!isOnboarding) {
-    altPlans.push({
-      plan: 'monthly', // не участвует в выборе — строка навигационная (onNavigate)
-      name: 'MAX',
-      priceLabel: triLang(lang as Lang, {
-        ru: '120 мин · звонки с ИИ-учителем', uk: '120 хв · дзвінки з ШІ-вчителем',
-        en: '120 min · calls with an AI teacher',
-        es: '120 min · llamadas con tu profesor de IA', 'pt-BR': '120 min · ligações com o professor de IA',
-        vi: '120 phút · gọi với gia sư AI', id: '120 mnt · panggilan dengan guru AI',
-        tr: '120 dk · yapay zekâ öğretmeniyle arama', pl: '120 min · rozmowy z nauczycielem AI',
-      }),
-      onNavigate: openMaxPaywall,
-    });
+    return <PaywallLiquidGlass variant={VARIANT} lang={lang as Lang} chrome={chrome} purchase={p} screenOptions={screenOptions} />;
   }
 
   return (
@@ -284,7 +266,7 @@ export function PaywallEView({ entry }: { readonly entry: PaywallEntry }) {
               <PaywallCtaBlock
                 lang={lang as Lang}
                 chrome={chrome}
-                label={ctaLabelFor(lang as Lang, p.trialDays, isLifetimeSel)}
+                label={ctaLabelFor(lang as Lang, p.trialDays, isLifetimeSel, isOnboarding)}
                 subLine={ctaSubLineFor(lang as Lang, { price, period, hasTrial: !!p.trialDays, isLifetime: isLifetimeSel })}
                 disabled={p.ctaDisabled}
                 busy={p.purchasing}

@@ -7,7 +7,7 @@
 // Списываемая сумма года (billed amount) показывается крупно — Apple 3.1.2(c).
 // ════════════════════════════════════════════════════════════════════════════
 import React from 'react';
-import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { triLang, type Lang } from '../../constants/i18n';
@@ -34,13 +34,10 @@ interface Props {
   promo?: StorePromoPricing | null;
   loading: boolean;
   disabled?: boolean;
+  /** Compact opt-in for the non-onboarding D price dock. */
+  compact?: boolean;
   lifetimePrice?: string | null;
   lifetimeAvailable?: boolean;
-  /**
-   * Витрина MAX рядом с Pro — тап открывает неистекающие пакеты минут. Плитка
-   * не выбирается как Premium-план: grant подтверждает серверный wallet.
-   */
-  onOpenMaxPaywall?: () => void;
 }
 
 interface TileSpec {
@@ -49,15 +46,13 @@ interface TileSpec {
   price: string;
   sub: string | null;
   badge: string | null;
-  /** Плитка-переход (MAX): тап вызывает это вместо onSelect. */
-  onNavigate?: () => void;
 }
 
 export default function PaywallPlanTiles({
   lang, chrome, selected, onSelect,
   yearlyPerMonth, yearlyFull, monthlyPrice,
   savingsPct, perDayLabel, promo = null, loading, disabled,
-  lifetimePrice, lifetimeAvailable, onOpenMaxPaywall,
+  lifetimePrice, lifetimeAvailable, compact = false,
 }: Props) {
   const { themeMode } = useTheme();
   const isOlive = themeMode === 'olive';
@@ -132,48 +127,25 @@ export default function PaywallPlanTiles({
       badge: null,
     });
   }
-  if (onOpenMaxPaywall) {
-    tiles.push({
-      plan: 'monthly', // не участвует в выборе — плитка навигационная (onNavigate)
-      name: 'MAX',
-      price: triLang(lang, {
-        ru: '30 · 120 · 300 минут', uk: '30 · 120 · 300 хвилин', en: '30 · 120 · 300 minutes', es: '30 · 120 · 300 minutos',
-        'pt-BR': '30 · 120 · 300 minutos', vi: '30 · 120 · 300 phút', id: '30 · 120 · 300 menit',
-        tr: '30 · 120 · 300 dakika', pl: '30 · 120 · 300 minut',
-      }),
-      sub: triLang(lang, {
-        ru: 'не сгорают', uk: 'не згорають', en: 'never expire', es: 'no caducan', 'pt-BR': 'não expiram',
-        vi: 'không hết hạn', id: 'tidak kedaluwarsa', tr: 'süresiz', pl: 'nie wygasają',
-      }),
-      badge: null,
-      onNavigate: onOpenMaxPaywall,
-    });
-  }
-
-  // зачем: 4 плитки (Месяц/Год/Pro/MAX) в жёстком ряду сжимаются ниже
-  // читаемой ширины на 390px-экране — комментарий в шапке файла уже
-  // предупреждал об этом риске для 3 плиток. При 4+ переключаемся на
-  // горизонтальный скролл с фиксированной шириной плитки; 2-3 плитки
-  // (без MAX/Pro) остаются как раньше — равномерный ряд без скролла.
-  const scrollable = tiles.length >= 4;
-  const tilesRow = (
-    <>
-      {tiles.map((tile, i) => {
-        const sel = !tile.onNavigate && selected === tile.plan;
+  return (
+    <View style={[S.row, compact && S.rowCompact]}>
+      {tiles.map((tile) => {
+        const sel = selected === tile.plan;
         const activePromo = sel ? promo : null;
         const billedPrice = activePromo?.promoPriceString || tile.price;
+        const tileDisabled = !!disabled || (compact && !billedPrice);
         return (
           <TouchableOpacity
-            key={tile.onNavigate ? `${tile.plan}-${i}` : tile.plan}
-            accessibilityRole={tile.onNavigate ? 'button' : 'radio'}
+            key={tile.plan}
+            accessibilityRole="radio"
             accessibilityLabel={`${tile.name} ${billedPrice}`.trim()}
-            accessibilityState={tile.onNavigate ? { disabled: !!disabled } : { selected: sel, disabled: !!disabled }}
+            accessibilityState={{ selected: sel, disabled: tileDisabled }}
             activeOpacity={0.72}
-            disabled={disabled}
-            onPress={() => (tile.onNavigate ? tile.onNavigate() : onSelect(tile.plan))}
+            disabled={tileDisabled}
+            onPress={() => onSelect(tile.plan)}
             style={[
               S.tile,
-              scrollable && S.tileFixedWidth,
+              compact && S.tileCompact,
               // зачем: в оливковой теме выбранная плитка намеренно БЕЗ увеличения
               // и без рамки — матовый вид (см. olive_paywall_reward_contract).
               // Выбор там показывают фон cardBgStrong, галочка и тень.
@@ -195,16 +167,16 @@ export default function PaywallPlanTiles({
               lang={lang}
               chrome={chrome}
               promo={activePromo}
-              style={S.promoCorner}
+              style={[S.promoCorner, compact && S.promoCornerCompact]}
             />
-            <View style={S.checkWrap}>
+            <View style={[S.checkWrap, compact && S.checkWrapCompact]}>
               <Ionicons
-                name={tile.onNavigate ? 'chevron-forward-circle-outline' : sel ? 'checkmark-circle' : 'ellipse-outline'}
+                name={sel ? 'checkmark-circle' : 'ellipse-outline'}
                 size={20}
                 color={sel ? tc.heroAccent : chrome.uncheckedBorder}
               />
             </View>
-            <Text style={[S.name, { color: sel ? textPrimary : textMuted }]}>
+            <Text style={[S.name, compact && S.nameCompact, { color: sel ? textPrimary : textMuted }]}>
               {tile.name}
             </Text>
             {/* зачем: название и цена показываются ЦЕЛИКОМ (владелец 2026-09-17:
@@ -213,7 +185,7 @@ export default function PaywallPlanTiles({
                 высота плитки тянется по содержимому (minHeight вместо фикса).
                 Шрифт не сжимаем — это запрет владельца. */}
             <Text
-              style={[S.price, { color: isOlive && sel ? OLIVE_RICH.ivory : sel ? tc.urgencyCurrentPriceText : textPrimary }]}
+              style={[S.price, compact && S.priceCompact, { color: isOlive && sel ? OLIVE_RICH.ivory : sel ? tc.urgencyCurrentPriceText : textPrimary }]}
             >
               {billedPrice || (loading ? '…' : '—')}
             </Text>
@@ -223,40 +195,20 @@ export default function PaywallPlanTiles({
               </Text>
             ) : null}
             {tile.sub ? (
-              <Text style={[S.sub, { color: textMuted }]}>{tile.sub}</Text>
+              <Text style={[S.sub, compact && S.subCompact, { color: textMuted }]}>{tile.sub}</Text>
             ) : null}
           </TouchableOpacity>
         );
       })}
-    </>
+    </View>
   );
-
-  // зачем: единственная проверка "4+ плиток" — раньше дублировалась здесь и
-  // в scrollable выше; теперь оба места читают один и тот же `scrollable`,
-  // порог не может рассинхронизироваться при будущей правке одного из них.
-  if (scrollable) {
-    return (
-      <ScrollView decelerationRate="fast"
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={S.rowScroll}
-      >
-        {tilesRow}
-      </ScrollView>
-    );
-  }
-
-  return <View style={S.row}>{tilesRow}</View>;
 }
 
 const S = StyleSheet.create({
   // 390px-экран: wrap-паддинг экрана 22×2, gap 8×2 → плитка ~110px, всё влезает
   // без обрезки крайних плиток и без горизонтального скролла (2-3 плитки).
   row: { flexDirection: 'row', gap: 8, marginTop: 16, alignItems: 'stretch' },
-  // 4+ плитки (добавлен MAX) переполняют жёсткий ряд — горизонтальный скролл
-  // с плитками фиксированной ширины вместо сжатия ниже читаемого предела.
-  rowScroll: { flexDirection: 'row', gap: 8, marginTop: 16, alignItems: 'stretch', paddingRight: 4 },
-  tileFixedWidth: { flex: 0, width: 112 },
+  rowCompact: { marginTop: 0 },
   // зачем (аудит по Библии + запрет владельца, 2026-08-26): обводка контейнера
   // запрещена — разделяем тоном. Выбор тарифа и без рамки читается тремя
   // способами: галочка checkmark-circle, увеличение scale 1.04 и более
@@ -278,6 +230,7 @@ const S = StyleSheet.create({
     shadowRadius: 10,
     ...noAndroidOutline,
   },
+  tileCompact: { minHeight: 48, paddingHorizontal: 7, paddingVertical: 7, borderRadius: 14, gap: 2 },
   // Выбранная плитка доминирует статично (без анимаций): чуть крупнее и выше.
   tileSelected: {
     transform: [{ scale: 1.04 }],
@@ -287,15 +240,20 @@ const S = StyleSheet.create({
     paddingHorizontal: 8, paddingVertical: 3, borderRadius: 9,
   },
   promoCorner: { right: -3, top: 42 },
+  promoCornerCompact: { top: 31 },
   saveBadgeText: { fontSize: 11, fontWeight: '900', letterSpacing: 0 },
   checkWrap: { alignSelf: 'flex-end' },
+  checkWrapCompact: { position: 'absolute', right: 6, top: 6 },
   // зачем: имя тарифа переносится по словам и центрируется — на узкой плитке
   // двухстрочное имя должно читаться как единый блок, а не жаться к краю.
   name: { fontSize: 13.5, fontWeight: '800', letterSpacing: 0, textAlign: 'center' },
+  nameCompact: { paddingHorizontal: 18, fontSize: 12.5, lineHeight: 16 },
   price: {
     fontSize: 19, fontWeight: '900', letterSpacing: 0,
     fontVariant: ['tabular-nums'], textAlign: 'center',
   },
+  priceCompact: { fontSize: 17, lineHeight: 21 },
   standardPrice: { fontSize: 10, fontWeight: '700', textDecorationLine: 'line-through', textAlign: 'center' },
   sub: { fontSize: 11, lineHeight: 15, textAlign: 'center' },
+  subCompact: { fontSize: 10, lineHeight: 13 },
 });

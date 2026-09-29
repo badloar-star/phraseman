@@ -14,7 +14,7 @@ export function periodLabelFor(lang: Lang, plan: PaywallPlan): string {
     : triLang(lang, { ru: '/мес', uk: '/міс', en: '/mo', es: '/mes', 'pt-BR': '/mês', vi: '/tháng', id: '/bulan', tr: '/ay', pl: '/mies.' });
 }
 
-export function ctaLabelFor(lang: Lang, trialDays: number | null, isLifetime = false): string {
+export function ctaLabelFor(lang: Lang, trialDays: number | null, isLifetime = false, isOnboarding = false): string {
   if (isLifetime) {
     return triLang(lang, {
       ru: 'Открыть Pro',
@@ -41,16 +41,29 @@ export function ctaLabelFor(lang: Lang, trialDays: number | null, isLifetime = f
       pl: `Wypróbuj ${trialDays} dni za darmo`,
     });
   }
+  if (isOnboarding) {
+    return triLang(lang, {
+      ru: 'Открыть полный доступ',
+      uk: 'Відкрити повний доступ',
+      en: 'Unlock full access',
+      es: 'Desbloquear acceso completo',
+      'pt-BR': 'Abrir acesso completo',
+      vi: 'Mở toàn quyền truy cập',
+      id: 'Buka akses penuh',
+      tr: 'Tam erişimi aç',
+      pl: 'Odblokuj pełny dostęp',
+    });
+  }
   return triLang(lang, {
-    ru: 'Открыть полный доступ',
-    uk: 'Відкрити повний доступ',
-    en: 'Unlock full access',
-    es: 'Desbloquear acceso completo',
-    'pt-BR': 'Abrir acesso completo',
-    vi: 'Mở toàn quyền truy cập',
-    id: 'Buka akses penuh',
-    tr: 'Tam erişimi aç',
-    pl: 'Odblokuj pełny dostęp',
+    ru: 'Оформить Plus',
+    uk: 'Оформити Plus',
+    en: 'Subscribe to Plus',
+    es: 'Suscribirme a Plus',
+    'pt-BR': 'Assinar Plus',
+    vi: 'Đăng ký Plus',
+    id: 'Langganan Plus',
+    tr: 'Plus’a abone ol',
+    pl: 'Subskrybuj Plus',
   });
 }
 
@@ -186,6 +199,7 @@ function stickySubLineFor(
 export function stickyStringsFor(
   lang: Lang,
   args: { trialDays: number | null; price: string; period: string; isLifetime?: boolean },
+  isOnboarding = false,
 ): { title: string; sub: string; button: string } {
   const title = args.isLifetime
     ? triLang(lang, { ru: 'Pro', uk: 'Pro', en: 'Pro', es: 'Pro', 'pt-BR': 'Pro', vi: 'Pro', id: 'Pro', tr: 'Pro', pl: 'Pro' })
@@ -203,17 +217,18 @@ export function stickyStringsFor(
       })
     : triLang(lang, { ru: 'Plus', uk: 'Plus', en: 'Plus', es: 'Plus', 'pt-BR': 'Plus', vi: 'Plus', id: 'Plus', tr: 'Plus', pl: 'Plus' });
   const sub = args.price ? stickySubLineFor(lang, { price: args.price, period: args.period, trialDays: args.trialDays, isLifetime: args.isLifetime }) : '';
-  // Кнопка sticky-бара повторяет смысл главной CTA, а не безликое «Начать»:
-  // при триале — «Попробовать бесплатно», иначе — «Открыть доступ» (lifetime — «Открыть Pro»).
+  // Кнопка sticky-бара повторяет смысл главной CTA, сохраняя прежнюю формулировку онбординга.
   const button = args.isLifetime
     ? triLang(lang, { ru: 'Открыть Pro', uk: 'Відкрити Pro', en: 'Unlock Pro', es: 'Abrir Pro', 'pt-BR': 'Abrir Pro', vi: 'Mở Pro', id: 'Buka Pro', tr: 'Pro aç', pl: 'Otwórz Pro' })
     : args.trialDays
     ? triLang(lang, {
         ru: 'Попробовать бесплатно', uk: 'Спробувати безкоштовно', en: 'Try for free', es: 'Probar gratis', 'pt-BR': 'Testar grátis', vi: 'Dùng thử miễn phí', id: 'Coba gratis', tr: 'Ücretsiz dene', pl: 'Wypróbuj za darmo',
       })
-    : triLang(lang, {
+    : isOnboarding
+    ? triLang(lang, {
         ru: 'Открыть доступ', uk: 'Відкрити доступ', en: 'Unlock access', es: 'Desbloquear acceso', 'pt-BR': 'Abrir acesso', vi: 'Mở quyền truy cập', id: 'Buka akses', tr: 'Erişimi aç', pl: 'Odblokuj dostęp',
-      });
+      })
+    : ctaLabelFor(lang, null, false, false);
   return { title, sub, button };
 }
 

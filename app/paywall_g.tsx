@@ -46,6 +46,7 @@ import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
 import PaywallPromoBanner from '../components/paywall/PaywallPromoBanner';
 import PaywallTrialTimeline from '../components/paywall/PaywallTrialTimeline';
 import PaywallLegalDisclosure from '../components/paywall/PaywallLegalDisclosure';
+import PaywallLiquidGlass from '../components/paywall/PaywallLiquidGlass';
 import { PaywallEntrance } from '../components/paywall/PaywallMotion';
 import { ctaLabelFor, ctaSubLineFor, periodLabelFor, stickyStringsFor } from '../components/paywall/paywallScreenCopy';
 import { hapticTap } from '../hooks/use-haptics';
@@ -153,10 +154,14 @@ export function PaywallGView({ entry }: { readonly entry: PaywallEntry }) {
   const price = p.selectedPromo?.promoPriceString || standardPrice;
   const period = periodLabelFor(lang as Lang, p.selected);
   const isLifetimeSel = p.selected === 'lifetime';
-  const stickyCopy = stickyStringsFor(lang as Lang, { trialDays: p.trialDays, price, period, isLifetime: isLifetimeSel });
+  const stickyCopy = stickyStringsFor(lang as Lang, { trialDays: p.trialDays, price, period, isLifetime: isLifetimeSel }, isOnboarding);
 
   // Якорь-приманка: 85% от годовой цены в той же валюте; не парсится → скрыт.
   const decoyPrice = p.yearlyPrice ? computeDecoyPriceString(p.yearlyPrice) : null;
+
+  if (!isOnboarding) {
+    return <PaywallLiquidGlass variant={VARIANT} lang={lang as Lang} chrome={chrome} purchase={p} screenOptions={screenOptions} />;
+  }
 
   return (
     <PaywallBackground ref={bgRef} isOnboarding={isOnboarding} gradientColors={chrome.bgColors} style={S.root}>
@@ -225,7 +230,7 @@ export function PaywallGView({ entry }: { readonly entry: PaywallEntry }) {
               <PaywallCtaBlock
                 lang={lang as Lang}
                 chrome={chrome}
-                label={ctaLabelFor(lang as Lang, p.trialDays, isLifetimeSel)}
+                label={ctaLabelFor(lang as Lang, p.trialDays, isLifetimeSel, isOnboarding)}
                 subLine={ctaSubLineFor(lang as Lang, { price, period, hasTrial: !!p.trialDays, isLifetime: isLifetimeSel })}
                 disabled={p.ctaDisabled}
                 busy={p.purchasing}

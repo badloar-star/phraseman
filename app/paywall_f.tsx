@@ -11,7 +11,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
+import { useLocalSearchParams, Stack } from 'expo-router';
 import type { PaywallEntry } from './paywall_entry_contract';
 import { paywallEntryAnalyticsParams } from './paywall_entry_contract';
 import DirectPaywallRoute from './direct_paywall_route';
@@ -43,6 +43,7 @@ import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
 import PaywallPromoBanner from '../components/paywall/PaywallPromoBanner';
 import PaywallTrialTimeline from '../components/paywall/PaywallTrialTimeline';
 import PaywallLegalDisclosure from '../components/paywall/PaywallLegalDisclosure';
+import PaywallLiquidGlass from '../components/paywall/PaywallLiquidGlass';
 import { PaywallEntrance } from '../components/paywall/PaywallMotion';
 import { ctaLabelFor, ctaSubLineFor, periodLabelFor, stickyStringsFor } from '../components/paywall/paywallScreenCopy';
 import { hapticTap } from '../hooks/use-haptics';
@@ -77,10 +78,6 @@ export function PaywallFView({ entry }: { readonly entry: PaywallEntry }) {
   }), [attributionCampaign, attributionVariant, creativeRevision, ctx, entitlementState, impressionId, source]);
   const p = usePaywallPurchase({ variant: VARIANT, context: ctx, source, lang: lang as Lang, forceTrialUI, resumeLessonId, impression: analyticsImpression });
   const sticky = useStickyCta();
-  const router = useRouter();
-  // MAX — отдельный экран неистекающих пакетов минут,
-  // не план внутри usePaywallPurchase — витрина уводит на готовый /max_paywall.
-  const openMaxPaywall = () => router.push({ pathname: '/max_paywall', params: { source: `paywall_${VARIANT.toLowerCase()}` } });
 
   const [personalTag, setPersonalTag] = useState<PersonalizedTag | null>(null);
   const [mirror, setMirror] = useState<ProgressMirror | null>(null);
@@ -145,7 +142,11 @@ export function PaywallFView({ entry }: { readonly entry: PaywallEntry }) {
   const price = p.selectedPromo?.promoPriceString || standardPrice;
   const period = periodLabelFor(lang as Lang, p.selected);
   const isLifetimeSel = p.selected === 'lifetime';
-  const stickyCopy = stickyStringsFor(lang as Lang, { trialDays: p.trialDays, price, period, isLifetime: isLifetimeSel });
+  const stickyCopy = stickyStringsFor(lang as Lang, { trialDays: p.trialDays, price, period, isLifetime: isLifetimeSel }, isOnboarding);
+
+  if (!isOnboarding) {
+    return <PaywallLiquidGlass variant={VARIANT} lang={lang as Lang} chrome={chrome} purchase={p} screenOptions={screenOptions} />;
+  }
 
   return (
     <PaywallBackground ref={bgRef} isOnboarding={isOnboarding} gradientColors={chrome.bgColors} style={S.root}>
@@ -226,7 +227,6 @@ export function PaywallFView({ entry }: { readonly entry: PaywallEntry }) {
                   disabled={p.purchasing}
                   lifetimePrice={p.lifetimePrice}
                   lifetimeAvailable={p.lifetimeAvailable}
-                  onOpenMaxPaywall={isOnboarding ? undefined : openMaxPaywall}
                 />
               )}
             </PaywallEntrance>
@@ -235,7 +235,7 @@ export function PaywallFView({ entry }: { readonly entry: PaywallEntry }) {
               <PaywallCtaBlock
                 lang={lang as Lang}
                 chrome={chrome}
-                label={ctaLabelFor(lang as Lang, p.trialDays, isLifetimeSel)}
+                label={ctaLabelFor(lang as Lang, p.trialDays, isLifetimeSel, isOnboarding)}
                 subLine={ctaSubLineFor(lang as Lang, { price, period, hasTrial: !!p.trialDays, isLifetime: isLifetimeSel })}
                 disabled={p.ctaDisabled}
                 busy={p.purchasing}

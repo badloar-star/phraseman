@@ -4,7 +4,26 @@ export type VideoPhrase = Readonly<{
   phrase: string;
   translation: string;
   explanation: string;
+  /**
+   * Секунда ролика, где звучит фраза. Необязательна: старые наборы без неё
+   * остаются валидными, просто без прыжка к моменту.
+   * зачем: владелец 2026-09-25 — тап по фразе перематывает видео к ней.
+   */
+  startSec?: number;
 }>;
+
+/** Потолок таймкода — 12 часов: длиннее роликов на канале не бывает. */
+const MAX_START_SEC = 12 * 60 * 60;
+
+/** Таймкод либо корректное число с шагом 0.1 с, либо отсутствует. */
+export function normalizeVideoPhraseStartSec(value: unknown): number | undefined {
+  if (value === undefined || value === null || value === '') return undefined;
+  const seconds = Number(value);
+  if (!Number.isFinite(seconds) || seconds < 0 || seconds > MAX_START_SEC) {
+    throw new Error('video_phrase_start_sec_invalid');
+  }
+  return Math.round(seconds * 10) / 10;
+}
 
 export type VideoPhraseVersion = Readonly<{
   id: string;
@@ -40,12 +59,15 @@ export function normalizeVideoPhraseDraft(value: unknown): VideoPhrase {
   const videoId = text(row.videoId, 'video_phrase_video_id_required', 11);
   if (!VIDEO_ID_RE.test(videoId)) throw new Error('video_phrase_video_id_invalid');
   const ordinal = Number(row.ordinal);
+  const startSec = normalizeVideoPhraseStartSec(row.startSec);
   return Object.freeze({
     id: videoPhraseId(videoId, ordinal),
     ordinal,
     phrase: text(row.phrase, 'video_phrase_phrase_required'),
     translation: text(row.translation, 'video_phrase_translation_required'),
     explanation: text(row.explanation, 'video_phrase_explanation_required'),
+    // Ключ добавляется только при наличии: у фраз без таймкода форма прежняя.
+    ...(startSec === undefined ? {} : { startSec }),
   });
 }
 

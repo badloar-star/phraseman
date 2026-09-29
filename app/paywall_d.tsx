@@ -43,6 +43,7 @@ import PaywallPlanTiles from '../components/paywall/PaywallPlanTiles';
 import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
 import PaywallPromoBanner from '../components/paywall/PaywallPromoBanner';
 import PaywallLegalDisclosure from '../components/paywall/PaywallLegalDisclosure';
+import PaywallLiquidGlass from '../components/paywall/PaywallLiquidGlass';
 import { PaywallEntrance } from '../components/paywall/PaywallMotion';
 import { ctaLabelFor, ctaSubLineFor, periodLabelFor, stickyStringsFor } from '../components/paywall/paywallScreenCopy';
 import { hapticTap } from '../hooks/use-haptics';
@@ -151,6 +152,23 @@ export function PaywallDView({ entry }: { readonly entry: PaywallEntry }) {
   const period = periodLabelFor(lang as Lang, p.selected);
   const isLifetimeSel = p.selected === 'lifetime';
   const stickyCopy = stickyStringsFor(lang as Lang, { trialDays: p.trialDays, price, period, isLifetime: isLifetimeSel });
+
+  if (!isOnboarding) {
+    return <PaywallLiquidGlass
+      variant={VARIANT}
+      lang={lang as Lang}
+      chrome={chrome}
+      purchase={p}
+      screenOptions={screenOptions}
+      context={ctx}
+      title={title}
+      subtitle={subtitle}
+      personalTagTexts={personalTag ? [LP(personalTag.ru, personalTag.uk, personalTag.ru, personalTag.es, personalTag)] : []}
+      profile={profile}
+      mirror={mirror}
+      testimonials={testimonials}
+    />;
+  }
 
   return (
     <PaywallBackground ref={bgRef} isOnboarding={isOnboarding} gradientColors={chrome.bgColors} style={S.root}>

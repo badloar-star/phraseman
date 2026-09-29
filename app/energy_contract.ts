@@ -10,9 +10,8 @@ export const ENERGY_SCHEMA_VERSION = 2 as const;
 /**
  * зачем (PM-081, BIBLE «Энергия: 5, −1 за начавшееся учебное занятие, +1 за
  * 10 минут, Plus не расходует»; решения D06/D07 — OWNER_FINAL): запас энергии
- * ровно 5 у всех. Прежние 100 и прибавки к потолку от лиги (+10 за лигу) и от
- * карточки профиля (+10 за ярус) отменены — «никаких бонусов cap/rate от
- * визиток/лиги/видео». Потолок — одно число, без формул и удалённой настройки.
+ * ровно 5 у всех. Бонусов cap/rate от оформления или видео нет. Потолок — одно
+ * число, без формул и удалённой настройки.
  */
 export const ENERGY_BASE_CAPACITY = 5 as const;
 /**
@@ -23,8 +22,9 @@ export const ENERGY_BASE_CAPACITY = 5 as const;
 export const PROFILE_CARD_ENERGY_MAX_LEVEL = 5 as const;
 /** Постоянный потолок = базовый запас: прибавок сверху больше нет (PM-081). */
 export const ENERGY_PERMANENT_CAPACITY_LIMIT: number = ENERGY_BASE_CAPACITY;
-export const ENERGY_BONUS_CAPACITY_LIMIT = 200 as const;
-export const ENERGY_ACTIVE_CAPACITY_LIMIT = ENERGY_PERMANENT_CAPACITY_LIMIT + ENERGY_BONUS_CAPACITY_LIMIT;
+/** Retired energy gifts/boosters cannot add capacity or refill units. */
+export const ENERGY_BONUS_CAPACITY_LIMIT = 0 as const;
+export const ENERGY_ACTIVE_CAPACITY_LIMIT = ENERGY_PERMANENT_CAPACITY_LIMIT;
 /**
  * +1 энергия за каждые 10 минут; от нуля до полного запаса 5 — 50 минут.
  *
@@ -41,14 +41,12 @@ export const ENERGY_MICRO_UNITS_PER_UNIT = 1_000_000 as const;
  * Единственная формула постоянного потолка энергии — теперь просто 5.
  *
  * зачем сигнатура сохранена (PM-081): её зовут EnergyContext, energy_system,
- * прогрев первого кадра и подарочные модули. Входы (ярус карточки, лига, база
- * из удалённого конфига) намеренно ИГНОРИРУЮТСЯ: по D07 ни лига, ни визитка,
+ * прогрев первого кадра и подарочные модули. Входы (ярус карточки и база
+ * из удалённого конфига) намеренно ИГНОРИРУЮТСЯ: потолок не меняется,
  * ни пульт не меняют потолок. Держим одну точку правды, чтобы знаменатель на
  * Главной и в прогреве не разошёлся.
  */
 export function permanentEnergyCapacity(_input: {
-  profileCardLevel?: unknown;
-  leagueId?: unknown;
   base?: number;
 } = {}): number {
   return ENERGY_BASE_CAPACITY;
@@ -65,21 +63,15 @@ export type EnergyRuntimeConfig = Readonly<{
 }>;
 
 export function resolveEnergyRuntimeConfig(
-  numericEnergyV2Enabled: boolean,
+  _numericEnergyV2Enabled: boolean,
   _legacyMaxEnergy: number,
-  legacyRecoveryIntervalMs: number,
+  _legacyRecoveryIntervalMs: number,
 ): EnergyRuntimeConfig {
-  return numericEnergyV2Enabled
-    ? {
-        maxEnergy: ENERGY_BASE_CAPACITY,
-        recoveryIntervalMs: ENERGY_PASSIVE_UNIT_MS,
-      }
-    : {
-        // зачем (PM-081): аварийный выключатель numeric_energy_v2 не должен
-        // возвращать старый потолок из удалённого конфига — запас всегда 5.
-        maxEnergy: ENERGY_BASE_CAPACITY,
-        recoveryIntervalMs: legacyRecoveryIntervalMs,
-      };
+  // PM-015 / D66: старые удалённые флаги не управляют учебной энергией.
+  return {
+    maxEnergy: ENERGY_BASE_CAPACITY,
+    recoveryIntervalMs: ENERGY_PASSIVE_UNIT_MS,
+  };
 }
 
 export type EnergyActivityKey =
@@ -91,14 +83,12 @@ export type EnergyActivityKey =
   | 'classic_lesson'
   | 'learning_v2_session'
   | 'ai_dialog'
-  | 'personal_plan_exercise'
   | 'diagnostic_test'
   | 'level_exam'
   | 'arena_match'
   | 'theory'
   | 'reading'
-  | 'video'
-  | 'max_call';
+  | 'video';
 
 /**
  * Цена ОДНОГО начавшегося учебного занятия — любого режима.
@@ -113,7 +103,7 @@ export type EnergyActivityCost = 0 | typeof ENERGY_SESSION_COST;
 
 /**
  * 0 — не учебное занятие (теория, чтение, просмотр видео): такие экраны
- * энергию не тратят (PM-082-A2). Раздел MAX запломбирован и тоже 0.
+ * энергию не тратят (PM-082-A2).
  */
 const ENERGY_ACTIVITY_PRICES: Readonly<Record<EnergyActivityKey, EnergyActivityCost>> = Object.freeze({
   flashcards: ENERGY_SESSION_COST,
@@ -124,18 +114,59 @@ const ENERGY_ACTIVITY_PRICES: Readonly<Record<EnergyActivityKey, EnergyActivityC
   classic_lesson: ENERGY_SESSION_COST,
   learning_v2_session: ENERGY_SESSION_COST,
   ai_dialog: ENERGY_SESSION_COST,
-  personal_plan_exercise: ENERGY_SESSION_COST,
   diagnostic_test: ENERGY_SESSION_COST,
   level_exam: ENERGY_SESSION_COST,
   arena_match: ENERGY_SESSION_COST,
   theory: 0,
   reading: 0,
   video: 0,
-  max_call: 0,
 });
 
 export function activityEnergyCost(activity: EnergyActivityKey): EnergyActivityCost {
   return ENERGY_ACTIVITY_PRICES[activity];
+}
+
+/** A classic lesson starts only when its first exercise can actually be used. */
+export function canChargeClassicLessonEntry(state: Readonly<{
+  energyReady: boolean;
+  lessonHydrated: boolean;
+  introGateReady: boolean;
+  introVisible: boolean;
+  hasPlayableRows: boolean;
+  remoteSourceReady: boolean;
+}>): boolean {
+  return state.energyReady
+    && state.lessonHydrated
+    && state.introGateReady
+    && !state.introVisible
+    && state.hasPlayableRows
+    && state.remoteSourceReady;
+}
+
+/** Direct Learning V2 cannot charge when the prepared session handoff is absent. */
+export function isLearningV2DirectSessionUnready(state: Readonly<{
+  directMode: boolean;
+  sessionId: string;
+  sessionRunId: string;
+  hasReadyHandle: boolean;
+  routeCoordinatesReady: boolean;
+}>): boolean {
+  return state.directMode && (!state.sessionId || !state.sessionRunId || !state.hasReadyHandle || !state.routeCoordinatesReady);
+}
+
+/** Training charges only after a playable queue and the live energy balance are ready. */
+export function canChargePreparedTrainingEntry(state: Readonly<{
+  energyReady: boolean;
+  hasPlayableItems: boolean;
+}>): boolean {
+  return state.energyReady && state.hasPlayableItems;
+}
+
+export function isLearningV2LegacySessionUnready(state: Readonly<{
+  directMode: boolean;
+  sessionIdKnown: boolean;
+}>): boolean {
+  return !state.directMode && !state.sessionIdKnown;
 }
 
 /** Bridges durable legacy intent names to the one canonical price catalog. */
@@ -149,13 +180,11 @@ export function energyActivityForSessionKind(kindInput: string): EnergyActivityK
   if (kind === 'mistake_practice') return 'mistake_practice';
   if (kind === 'learning_v2_session') return 'learning_v2_session';
   if (kind === 'ai_dialog') return 'ai_dialog';
-  if (kind === 'personal_plan_exercise') return 'personal_plan_exercise';
   if (kind === 'diagnostic_test') return 'diagnostic_test';
   if (kind === 'exam' || kind.startsWith('level_exam')) return 'level_exam';
   if (kind === 'theory') return 'theory';
   if (kind === 'reading') return 'reading';
   if (kind === 'video') return 'video';
-  if (kind === 'max_call' || kind.startsWith('max_voice')) return 'max_call';
   return 'classic_lesson';
 }
 

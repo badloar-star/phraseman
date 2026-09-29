@@ -45,6 +45,12 @@ type Props = {
   fillAvailableHeight?: boolean;
   /** Set false when the caller already owns a ScrollView or virtualized list. */
   scrollContent?: boolean;
+  /** Поднять панель над клавиатурой, когда у вызывающего свой ScrollView и НЕТ
+   * своего KeyboardAvoidingView (иначе подъём сложится вдвое). */
+  avoidKeyboard?: boolean;
+  /** Compatibility default is the centered alert. Action menus may opt into
+   * the approved bottom-sheet geometry without duplicating dismissal logic. */
+  placement?: 'center' | 'bottom';
 };
 
 /**
@@ -64,10 +70,21 @@ function HybridAlertShell({
   dismissible = true,
   fillAvailableHeight = false,
   scrollContent = true,
+  avoidKeyboard = false,
+  placement = 'center',
 }: Props) {
   const reduceMotion = useReduceMotion();
   const insets = useStableSafeAreaInsets();
-  const keyboardInset = useKeyboardBottomInset(visible && scrollContent && !fillAvailableHeight);
+  // зачем: по умолчанию отступ считается только для панелей, которые скроллит
+  // сам шелл. Форма со своим ScrollView (окно удаления аккаунта) отказалась от
+  // собственного KeyboardAvoidingView — он требовал растяжки на весь экран, —
+  // и просит отступ явным пропом. Менять условие для ВСЕХ нельзя: у
+  // CertificateName/ReportPack/ReportUser есть свой KeyboardAvoidingView, и они
+  // получили бы двойной подъём.
+  const keyboardInset = useKeyboardBottomInset(
+    visible && !fillAvailableHeight && (avoidKeyboard || scrollContent),
+  );
+  const bottomSheet = placement === 'bottom';
   const backdropOpacity = useSharedValue(0);
   const panelOpacity = useSharedValue(0);
   const panelScale = useSharedValue(1.04);
@@ -160,16 +177,36 @@ function HybridAlertShell({
         accessible={false}
       >
         <Reanimated.View style={[styles.backdrop, { backgroundColor: backdropColor }, backdropStyle]} />
-        <View style={[styles.center, { paddingTop: Math.max(24, insets.top), paddingBottom: Math.max(24, insets.bottom, keyboardInset), paddingLeft: Math.max(16, insets.left), paddingRight: Math.max(16, insets.right) }]} pointerEvents="box-none">
+        <View
+          accessibilityViewIsModal
+          importantForAccessibility="yes"
+          style={[
+            styles.center,
+            bottomSheet ? styles.bottomViewport : undefined,
+            {
+              paddingTop: Math.max(24, insets.top),
+              paddingBottom: bottomSheet ? 0 : Math.max(24, insets.bottom, keyboardInset),
+              paddingLeft: bottomSheet ? Math.max(0, insets.left) : Math.max(16, insets.left),
+              paddingRight: bottomSheet ? Math.max(0, insets.right) : Math.max(16, insets.right),
+            },
+          ]}
+          pointerEvents="box-none"
+        >
           {/* guard-ok: чисто структурная обёртка, гасит всплытие тапа до скрима —
               её единственная роль такая же декоративная, как у самого скрима. */}
           <Pressable
+            accessible={false}
             onPress={(e) => e.stopPropagation()}
-            style={[styles.pressableWrap, fillAvailableHeight ? styles.fillAvailableHeight : undefined]}
+            style={[
+              styles.pressableWrap,
+              bottomSheet ? styles.bottomWrap : undefined,
+              fillAvailableHeight ? styles.fillAvailableHeight : undefined,
+            ]}
           >
             <Reanimated.View
               style={[
                 styles.panel,
+                bottomSheet ? styles.bottomPanel : undefined,
                 fillAvailableHeight ? styles.fillAvailableHeight : undefined,
                 { shadowColor },
                 panelStyle,
@@ -232,10 +269,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 24,
   },
+  bottomViewport: {
+    justifyContent: 'flex-end',
+  },
   pressableWrap: {
     width: '100%',
     maxWidth: 360,
     maxHeight: '100%',
+  },
+  bottomWrap: {
+    maxWidth: 430,
   },
   panel: {
     width: '100%',
@@ -245,6 +288,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.35,
     shadowRadius: 16,
     shadowOffset: { width: 0, height: 10 },
+  },
+  bottomPanel: {
+    borderTopLeftRadius: 28,
+    borderTopRightRadius: 28,
+    borderBottomLeftRadius: 0,
+    borderBottomRightRadius: 0,
   },
   fillAvailableHeight: {
     flex: 1,

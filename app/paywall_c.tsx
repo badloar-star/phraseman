@@ -28,8 +28,6 @@ import { createPaywallAnalyticsImpression, paywallImpressionParams } from './pay
 import { collectPaywallStats, pickPaywallTags, trackPaywallTagsShown, type PersonalizedTag } from './paywall_personalization';
 import { readProgressMirror, isMirrorWorthShowing, type ProgressMirror } from './paywall_progress_mirror';
 import { readPaywallProfile, type PaywallProfile, type PaywallLang } from './paywall_profile';
-import { pickPercentileLine } from './paywall_percentile_line';
-import { loadPercentileData } from './daily_analytics_sync';
 import { pickTestimonials, type Testimonial } from './paywall_testimonials';
 import { isPaywallReviewsEnabled } from './remote_flags';
 import {
@@ -43,6 +41,7 @@ import PaywallCtaBlock from '../components/paywall/PaywallCtaBlock';
 import PaywallPromoBanner from '../components/paywall/PaywallPromoBanner';
 import PaywallTrialTimeline from '../components/paywall/PaywallTrialTimeline';
 import PaywallLegalDisclosure from '../components/paywall/PaywallLegalDisclosure';
+import PaywallLiquidGlass from '../components/paywall/PaywallLiquidGlass';
 import { PersonalizationProofCard, CompareCard, FaqCard } from '../components/paywall/PaywallProofCards';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { PaywallEntrance } from '../components/paywall/PaywallMotion';
@@ -88,7 +87,6 @@ export function PaywallCView({ entry }: { readonly entry: PaywallEntry }) {
   const [personalTag, setPersonalTag] = useState<PersonalizedTag | null>(null);
   const [mirror, setMirror] = useState<ProgressMirror | null>(null);
   const [profile, setProfile] = useState<PaywallProfile | null>(null);
-  const [percentileLine, setPercentileLine] = useState<string | null>(null);
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const scrollDepthSent = useRef(new Set<number>());
   const pendingScrollDepthRef = useRef(new Set<number>());
@@ -172,21 +170,6 @@ export function PaywallCView({ entry }: { readonly entry: PaywallEntry }) {
     return () => { dead = true; };
   }, [ctx, lang, source]);
 
-  useEffect(() => {
-    let dead = false;
-    void (async () => {
-      try {
-        const { percentiles } = await loadPercentileData();
-        const line = pickPercentileLine(ctx, percentiles, { streak: mirror?.streak ?? 0 }, lang as Lang);
-        if (!dead && line) setPercentileLine(line);
-      } catch (e) {
-      // нет данных — молчим
-      DebugLogger.error('paywall_c:line', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
-    })();
-    return () => { dead = true; };
-  }, [ctx, lang, mirror?.streak]);
-
   const hadPremiumEver = getStatsCache().hadPremiumEver;
   const copy = applyWinBackCopy(getPaywallCopy(ctx), ctx, hadPremiumEver);
   const planned = applyWinBackPlannedCopy(getHeroPlannedCopy(ctx, 0), ctx, hadPremiumEver);
@@ -197,10 +180,14 @@ export function PaywallCView({ entry }: { readonly entry: PaywallEntry }) {
   const standardPrice = isLifetimeSel ? p.lifetimePrice : p.selected === 'yearly' ? p.yearlyPrice : p.monthlyPrice;
   const price = p.selectedPromo?.promoPriceString || standardPrice;
   const period = periodLabelFor(lang as Lang, p.selected);
-  const ctaLabel = ctaLabelFor(lang as Lang, p.trialDays, isLifetimeSel);
+  const ctaLabel = ctaLabelFor(lang as Lang, p.trialDays, isLifetimeSel, isOnboarding);
   const subLine = ctaSubLineFor(lang as Lang, { price, period, hasTrial: !!p.trialDays, isLifetime: isLifetimeSel });
   const priceLine = price ? `${price}${period}` : '';
-  const stickyCopy = stickyStringsFor(lang as Lang, { trialDays: p.trialDays, price, period, isLifetime: isLifetimeSel });
+  const stickyCopy = stickyStringsFor(lang as Lang, { trialDays: p.trialDays, price, period, isLifetime: isLifetimeSel }, isOnboarding);
+
+  if (!isOnboarding) {
+    return <PaywallLiquidGlass variant={VARIANT} lang={lang as Lang} chrome={chrome} purchase={p} screenOptions={screenOptions} />;
+  }
 
   return (
     <PaywallBackground ref={bgRef} isOnboarding={isOnboarding} gradientColors={chrome.bgColors} style={S.root}>
@@ -297,7 +284,6 @@ export function PaywallCView({ entry }: { readonly entry: PaywallEntry }) {
                 tagTexts={personalTag ? [LP(personalTag.ru, personalTag.uk, personalTag.ru, personalTag.es, personalTag)] : []}
                 profile={profile}
                 mirror={mirror}
-                percentileLine={percentileLine}
               />
             </PaywallEntrance>
 

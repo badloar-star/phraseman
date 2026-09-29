@@ -1,8 +1,13 @@
 // Модалка дропа карточки «Сокровищницы»: сюрприз ПОСЛЕ результатов активности
 // (никогда не CTA до — см. ресёрч overjustification). Анимация по редкости —
 // готовые ярусы GiftOpenEffects; legendary получает premium-ярус.
+// зачем: владелец 2026-09-29 — перенос на Liquid Glass «1 в 1 с макета»
+// (overlays-more.html OM-COLLECTIBLE-NORMAL/-SET-COMPLETE/-SECRET): непрозрачная
+// основа из токенов темы (13 тем), без рамок и цветного свечения карточки; цвет
+// редкости — только маленькая точка в бейдже. обещание жемчужин в макете убрано.
 import React, { useEffect, useMemo } from 'react';
-import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import CollectibleArt from './CollectibleArt';
 import { GiftOpenBurst, type GiftAnimTier } from './GiftOpenEffects';
@@ -21,12 +26,12 @@ import {
 import type { CollectibleDropOutcome } from '../app/collectibles/storage';
 import { soundDirector } from '../modules/audio/sound_director';
 import HybridAlertShell, { CascadeItem } from './modal_fx/HybridAlertShell';
-import DuoPressable from './DuoPressable';
 import PressableHybrid from './PressableHybrid';
 import RewardImpactRings from './celebration/RewardImpactRings';
 import { useRewardImpactHybrid } from './celebration/use_reward_impact_hybrid';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { LUM } from '../constants/motionHybrid';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 
 function dropAnimTier(rarity: string): GiftAnimTier {
   if (rarity === 'legendary') return 'premium';
@@ -55,7 +60,8 @@ interface CollectibleDropModalProps {
 }
 
 export default function CollectibleDropModal({ outcome, onClose, onOpenCollection, motionVariant = 'hybrid' }: CollectibleDropModalProps) {
-  const { theme: t, f } = useTheme();
+  const { f, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
   const isHybrid = motionVariant === 'hybrid';
   const reduceMotion = useReduceMotion();
@@ -75,6 +81,7 @@ export default function CollectibleDropModal({ outcome, onClose, onOpenCollectio
     });
   }, [outcome, isHybrid]);
 
+  // зачем: цвет редкости — семантика, но только маленькая точка бейджа; карточка/кольца нейтральны.
   const rarityColor = outcome ? COLLECTIBLE_RARITY_COLORS[outcome.rarity] ?? '#9AA6C0' : '#9AA6C0';
   const tier = useMemo(() => dropAnimTier(outcome?.rarity ?? 'common'), [outcome?.rarity]);
 
@@ -92,94 +99,103 @@ export default function CollectibleDropModal({ outcome, onClose, onOpenCollectio
   const newCardKicker = triLang(lang, { ru: 'Новая карточка!', uk: 'Нова картка!', en: 'New card!', es: '¡Nueva carta!', 'pt-BR': 'Nova carta!', vi: 'Thẻ mới!', id: 'Kartu baru!', tr: 'Yeni kart!', pl: 'Nowa karta!' });
   const claimLabel = triLang(lang, { ru: 'Класс!', uk: 'Клас!', en: 'Awesome!', es: '¡Genial!', 'pt-BR': 'Legal!', vi: 'Tuyệt!', id: 'Keren!', tr: 'Harika!', pl: 'Super!' });
   const collectionLabel = triLang(lang, { ru: 'В коллекцию', uk: 'До колекції', en: 'To the collection', es: 'A la colección', 'pt-BR': 'Para a coleção', vi: 'Xem bộ sưu tập', id: 'Ke koleksi', tr: 'Koleksiyona git', pl: 'Do kolekcji' });
-  const setCompletedLabel = triLang(lang, { ru: 'Сет собран! +15 жемчужин', uk: 'Сет зібрано! +15 перлин', en: 'Set complete! +15 pearls', es: '¡Set completo! +15 perlas', 'pt-BR': 'Conjunto completo! +15 pérolas', vi: 'Đủ bộ! +15 ngọc trai', id: 'Set lengkap! +15 mutiara', tr: 'Set tamam! +15 inci', pl: 'Komplet! +15 pereł' });
+  const setCompletedLabel = triLang(lang, { ru: 'Сет собран!', uk: 'Сет зібрано!', en: 'Set complete!', es: '¡Set completo!', 'pt-BR': 'Conjunto completo!', vi: 'Đủ bộ!', id: 'Set lengkap!', tr: 'Set tamam!', pl: 'Komplet!' });
   const secretLabel = secret ? triLang(lang, { ru: `Секретная карточка открыта: ${secret.card.en}`, uk: `Секретну картку відкрито: ${secret.card.en}`, en: `Secret card unlocked: ${secret.card.en}`, es: `Carta secreta desbloqueada: ${secret.card.en}`, 'pt-BR': `Carta secreta liberada: ${secret.card.en}`, vi: `Mở thẻ bí mật: ${secret.card.en}`, id: `Kartu rahasia terbuka: ${secret.card.en}`, tr: `Gizli kart açıldı: ${secret.card.en}`, pl: `Sekretna karta odblokowana: ${secret.card.en}` }) : '';
+
+  const rarityText = rarityLabelForLang(outcome.rarity, lang);
+
+  // Общие куски макета: арт, бейдж редкости, названия, блок «сет собран».
+  const art = (
+    <View style={styles.artWrap}>
+      {isHybrid && (
+        <RewardImpactRings
+          show={impact.showRings}
+          dustCount={impact.dustCount}
+          color={glass.secondary}
+          ring0Style={impact.styles.ring0}
+          ring1Style={impact.styles.ring1}
+        />
+      )}
+      <HoloFoilCard
+        rarity={outcome.rarity}
+        rarityColor={glass.secondary}
+        width={200}
+        height={160}
+        tiltEnabled={false}
+        style={{ backgroundColor: glass.opaqueControl, borderRadius: 18 }}
+      >
+        <CollectibleArt
+          cardId={card.id}
+          svg={card.svg}
+          width={200}
+          height={160}
+          contentFit="cover"
+          borderRadius={16}
+          accessibilityLabel={card.en}
+          fallback={<Text style={[styles.artFallback, { color: glass.text }]}>{card.en.slice(0, 1).toUpperCase()}</Text>}
+        />
+      </HoloFoilCard>
+      {!isHybrid && <GiftOpenBurst tier={tier} size={210} />}
+    </View>
+  );
+  const badge = (
+    <View style={[styles.rarityBadge, { backgroundColor: glass.opaqueControl }]} accessible accessibilityLabel={rarityText}>
+      <View style={[styles.rarityDot, { backgroundColor: rarityColor }]} />
+      <Text style={[styles.rarityText, { color: glass.text }]}>{rarityText}</Text>
+    </View>
+  );
+  const names = (
+    <>
+      <Text accessibilityRole="header" style={[styles.cardName, { color: glass.text, fontSize: f.h2 }]}>{card.en}</Text>
+      <Text style={[styles.cardTranslation, { color: glass.secondary, fontSize: f.body }]}>{cardText.translation}</Text>
+    </>
+  );
+  const setBox = outcome.setCompleted ? (
+    <View style={[styles.setCompletedBox, { backgroundColor: glass.opaqueControl }]}>
+      <Text style={[styles.setCompletedTitle, { color: glass.text, fontSize: f.body }]}>{setCompletedLabel}</Text>
+      {!!secret && <Text style={[styles.setCompletedSub, { color: glass.secondary, fontSize: f.sub }]}>{secretLabel}</Text>}
+    </View>
+  ) : null;
 
   if (isHybrid) {
     return (
-      <HybridAlertShell visible onRequestClose={onClose} shadowColor={rarityColor} testID="collectible-drop-hybrid-backdrop" backdropColor="rgba(2,3,6,0.88)">
-        <View style={[styles.card, { backgroundColor: t.bgCard, borderColor: `${rarityColor}80`, borderWidth: 0 }]}>
+      <HybridAlertShell visible onRequestClose={onClose} shadowColor="rgba(0,0,0,0.5)" testID="collectible-drop-hybrid-backdrop" backdropColor="rgba(2,3,6,0.88)">
+        <View style={[styles.card, { backgroundColor: glass.opaqueSheet }]}>
           <CascadeItem delay={LUM.ladder[1]} reduceMotion={reduceMotion}>
-            <Text style={[styles.kicker, { color: t.textSecond, fontSize: f.sub }]}>{newCardKicker}</Text>
+            <Text style={[styles.kicker, { color: glass.secondary, fontSize: f.sub }]}>{newCardKicker}</Text>
           </CascadeItem>
-
-          <View style={styles.artWrap}>
-            <RewardImpactRings
-              show={impact.showRings}
-              dustCount={impact.dustCount}
-              color={rarityColor}
-              ring0Style={impact.styles.ring0}
-              ring1Style={impact.styles.ring1}
-            />
-            <HoloFoilCard
-              rarity={outcome.rarity}
-              rarityColor={rarityColor}
-              width={200}
-              height={160}
-              tiltEnabled={false}
-              style={{ backgroundColor: `${rarityColor}1C`, borderRadius: 18 }}
-            >
-              <CollectibleArt
-                cardId={card.id}
-                svg={card.svg}
-                width={200}
-                height={160}
-                contentFit="cover"
-                borderRadius={16}
-                accessibilityLabel={card.en}
-                fallback={<Text style={[styles.artFallback, { color: rarityColor }]}>{card.en.slice(0, 1).toUpperCase()}</Text>}
-              />
-            </HoloFoilCard>
-          </View>
-
-          <CascadeItem delay={LUM.ladder[2]} reduceMotion={reduceMotion}>
-            {/* зачем: гибрид держит планку «без обводок контейнеров» — редкость
-                отделена насыщенным тоновым фоном, без borderColor/borderWidth
-                (в отличие от классического rarityBadge). */}
-            <View style={[styles.rarityBadge, { backgroundColor: `${rarityColor}33`, borderWidth: 0 }]}>
-              <Text style={[styles.rarityText, { color: rarityColor }]}>{rarityLabelForLang(outcome.rarity, lang)}</Text>
-            </View>
-          </CascadeItem>
-
-          <CascadeItem delay={LUM.ladder[3]} reduceMotion={reduceMotion}>
-            <>
-              <Text style={[styles.cardName, { color: t.textPrimary, fontSize: f.h2 }]}>{card.en}</Text>
-              <Text style={[styles.cardTranslation, { color: t.textSecond, fontSize: f.body }]}>{cardText.translation}</Text>
-            </>
-          </CascadeItem>
-
-          {outcome.setCompleted && (
-            <CascadeItem delay={LUM.ladder[3]} reduceMotion={reduceMotion}>
-              <View style={styles.setCompletedBox}>
-                <Text style={[styles.setCompletedTitle, { fontSize: f.body }]}>{setCompletedLabel}</Text>
-                {!!secret && <Text style={[styles.setCompletedSub, { color: t.textSecond, fontSize: f.sub }]}>{secretLabel}</Text>}
-              </View>
-            </CascadeItem>
-          )}
+          {art}
+          <CascadeItem delay={LUM.ladder[2]} reduceMotion={reduceMotion}>{badge}</CascadeItem>
+          <CascadeItem delay={LUM.ladder[3]} reduceMotion={reduceMotion}>{names}</CascadeItem>
+          {setBox && <CascadeItem delay={LUM.ladder[3]} reduceMotion={reduceMotion}>{setBox}</CascadeItem>}
 
           <CascadeItem delay={LUM.ladder[4]} reduceMotion={reduceMotion}>
-            <DuoPressable
+            <PressableHybrid
               testID="collectible-drop-claim-hybrid"
+              accessibilityRole="button"
+              accessibilityLabel={claimLabel}
               onPress={onClose}
-              edgeColor={t.bgSurface2}
-              edgeHeight={4}
-              style={[styles.ctaBtn, { backgroundColor: t.accent, marginTop: 0 }]}
+              variant="primary"
+              style={styles.ctaBtn}
+              contentStyle={[styles.ctaInner, { backgroundColor: glass.cta }]}
             >
-              <Text style={[styles.ctaBtnText, { color: t.correctText ?? '#0B0B0E', fontSize: f.body }]}>{claimLabel}</Text>
-            </DuoPressable>
+              <Text style={[styles.ctaBtnText, { color: glass.ctaInk, fontSize: f.body }]}>{claimLabel}</Text>
+            </PressableHybrid>
           </CascadeItem>
 
           {!!onOpenCollection && (
             <CascadeItem delay={LUM.ladder[4]} reduceMotion={reduceMotion}>
               <PressableHybrid
                 testID="collectible-drop-open-collection-hybrid"
+                accessibilityRole="button"
+                accessibilityLabel={collectionLabel}
                 onPress={onOpenCollection}
                 variant="secondary"
                 style={styles.collectionBtn}
-                contentStyle={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 }}
+                contentStyle={styles.collectionInner}
               >
-                <Ionicons name="albums-outline" size={16} color={t.textSecond} />
-                <Text style={[styles.collectionBtnText, { color: t.textSecond, fontSize: f.sub }]}>{collectionLabel}</Text>
+                <Ionicons name="albums-outline" size={16} color={glass.secondary} />
+                <Text style={[styles.collectionBtnText, { color: glass.secondary, fontSize: f.sub }]}>{collectionLabel}</Text>
               </PressableHybrid>
             </CascadeItem>
           )}
@@ -188,153 +204,103 @@ export default function CollectibleDropModal({ outcome, onClose, onOpenCollectio
     );
   }
 
+  // Классический путь (откат): тот же материал макета, без анимации каскада.
   return (
     <Modal visible transparent animationType="fade" onRequestClose={onClose} statusBarTranslucent>
-      <View style={styles.overlay}>
-        <View style={[styles.card, { backgroundColor: t.bgCard, borderColor: `${rarityColor}80` }]}>
-          <Text style={[styles.kicker, { color: t.textSecond, fontSize: f.sub }]}>
-            {triLang(lang, { ru: 'Новая карточка!', uk: 'Нова картка!', en: 'New card!', es: '¡Nueva carta!', 'pt-BR': 'Nova carta!', vi: 'Thẻ mới!', id: 'Kartu baru!', tr: 'Yeni kart!', pl: 'Nowa karta!' })}
-          </Text>
-
-          <View style={styles.artWrap}>
-            <HoloFoilCard
-              rarity={outcome.rarity}
-              rarityColor={rarityColor}
-              width={200}
-              height={160}
-              tiltEnabled={false}
-              style={{ backgroundColor: `${rarityColor}1C`, borderRadius: 18 }}
-            >
-              <CollectibleArt
-                cardId={card.id}
-                svg={card.svg}
-                width={200}
-                height={160}
-                contentFit="cover"
-                borderRadius={16}
-                accessibilityLabel={card.en}
-                fallback={
-                  <Text style={[styles.artFallback, { color: rarityColor }]}>
-                    {card.en.slice(0, 1).toUpperCase()}
-                  </Text>
-                }
-              />
-            </HoloFoilCard>
-            <GiftOpenBurst tier={tier} size={210} />
-          </View>
-
-          <View style={[styles.rarityBadge, { backgroundColor: `${rarityColor}26`, borderColor: `${rarityColor}66` }]}>
-            <Text style={[styles.rarityText, { color: rarityColor }]}>
-              {rarityLabelForLang(outcome.rarity, lang)}
-            </Text>
-          </View>
-
-          <Text style={[styles.cardName, { color: t.textPrimary, fontSize: f.h2 }]}>{card.en}</Text>
-          <Text style={[styles.cardTranslation, { color: t.textSecond, fontSize: f.body }]}>{cardText.translation}</Text>
-
-          {outcome.setCompleted && (
-            <View style={styles.setCompletedBox}>
-              <Text style={[styles.setCompletedTitle, { fontSize: f.body }]}>
-                {triLang(lang, { ru: 'Сет собран! +15 жемчужин', uk: 'Сет зібрано! +15 перлин', en: 'Set complete! +15 pearls', es: '¡Set completo! +15 perlas', 'pt-BR': 'Conjunto completo! +15 pérolas', vi: 'Đủ bộ! +15 ngọc trai', id: 'Set lengkap! +15 mutiara', tr: 'Set tamam! +15 inci', pl: 'Komplet! +15 pereł' })}
-              </Text>
-              {!!secret && (
-                <Text style={[styles.setCompletedSub, { color: t.textSecond, fontSize: f.sub }]}>
-                  {triLang(lang, { ru: `Секретная карточка открыта: ${secret.card.en}`, uk: `Секретну картку відкрито: ${secret.card.en}`, en: `Secret card unlocked: ${secret.card.en}`, es: `Carta secreta desbloqueada: ${secret.card.en}`, 'pt-BR': `Carta secreta liberada: ${secret.card.en}`, vi: `Mở thẻ bí mật: ${secret.card.en}`, id: `Kartu rahasia terbuka: ${secret.card.en}`, tr: `Gizli kart açıldı: ${secret.card.en}`, pl: `Sekretna karta odblokowana: ${secret.card.en}` })}
-                </Text>
-              )}
-            </View>
-          )}
-
-          <TouchableOpacity
-            testID="collectible-drop-claim"
-            activeOpacity={0.85}
-            onPress={onClose}
-            style={[styles.ctaBtn, { backgroundColor: t.accent }]}
-          >
-            <Text style={[styles.ctaBtnText, { color: t.correctText ?? '#0B0B0E', fontSize: f.body }]}>
-              {triLang(lang, { ru: 'Класс!', uk: 'Клас!', en: 'Awesome!', es: '¡Genial!', 'pt-BR': 'Legal!', vi: 'Tuyệt!', id: 'Keren!', tr: 'Harika!', pl: 'Super!' })}
-            </Text>
-          </TouchableOpacity>
-
-          {!!onOpenCollection && (
+      <SafeAreaView style={styles.overlay} edges={['top', 'bottom', 'left', 'right']}>
+        <ScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+          <View style={[styles.card, { backgroundColor: glass.opaqueSheet }]}>
+            <Text style={[styles.kicker, { color: glass.secondary, fontSize: f.sub }]}>{newCardKicker}</Text>
+            {art}
+            {badge}
+            {names}
+            {setBox}
             <TouchableOpacity
-              testID="collectible-drop-open-collection"
-              activeOpacity={0.8}
-              onPress={onOpenCollection}
-              style={styles.collectionBtn}
+              testID="collectible-drop-claim"
+              accessibilityRole="button"
+              accessibilityLabel={claimLabel}
+              activeOpacity={0.85}
+              onPress={onClose}
+              style={[styles.ctaBtn, styles.ctaInner, { backgroundColor: glass.cta }]}
             >
-              <Ionicons name="albums-outline" size={16} color={t.textSecond} />
-              <Text style={[styles.collectionBtnText, { color: t.textSecond, fontSize: f.sub }]}>
-                {triLang(lang, { ru: 'В коллекцию', uk: 'До колекції', en: 'To the collection', es: 'A la colección', 'pt-BR': 'Para a coleção', vi: 'Xem bộ sưu tập', id: 'Ke koleksi', tr: 'Koleksiyona git', pl: 'Do kolekcji' })}
-              </Text>
+              <Text style={[styles.ctaBtnText, { color: glass.ctaInk, fontSize: f.body }]}>{claimLabel}</Text>
             </TouchableOpacity>
-          )}
-        </View>
-      </View>
+
+            {!!onOpenCollection && (
+              <TouchableOpacity
+                testID="collectible-drop-open-collection"
+                accessibilityRole="button"
+                accessibilityLabel={collectionLabel}
+                activeOpacity={0.8}
+                onPress={onOpenCollection}
+                style={[styles.collectionBtn, styles.collectionInner]}
+              >
+                <Ionicons name="albums-outline" size={16} color={glass.secondary} />
+                <Text style={[styles.collectionBtnText, { color: glass.secondary, fontSize: f.sub }]}>{collectionLabel}</Text>
+              </TouchableOpacity>
+            )}
+          </View>
+        </ScrollView>
+      </SafeAreaView>
     </Modal>
   );
 }
 
 const styles = StyleSheet.create({
-  overlay: {
-    flex: 1,
-    backgroundColor: 'rgba(2,3,6,0.88)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 22,
-  },
+  overlay: { flex: 1, backgroundColor: 'rgba(2,3,6,0.88)' },
+  scroll: { flex: 1 },
+  scrollContent: { flexGrow: 1, alignItems: 'center', justifyContent: 'center', padding: 22 },
   card: {
     width: '100%',
     maxWidth: 360,
     borderRadius: 24,
-    borderWidth: 0,
     paddingVertical: 20,
     paddingHorizontal: 18,
     alignItems: 'center',
   },
-  kicker: { fontWeight: '900', textTransform: 'uppercase', letterSpacing: 1.1 },
+  kicker: { fontWeight: '800', textTransform: 'uppercase', letterSpacing: 1.2, textAlign: 'center' },
   artWrap: { marginTop: 14, alignItems: 'center', justifyContent: 'center' },
-  artFallback: { fontSize: 44, fontWeight: '900' },
+  artFallback: { fontSize: 44, fontWeight: '800' },
   rarityBadge: {
     marginTop: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
     paddingHorizontal: 10,
-    paddingVertical: 4,
+    paddingVertical: 5,
     borderRadius: 999,
-    borderWidth: 1,
   },
-  rarityText: { fontSize: 12, fontWeight: '900', letterSpacing: 0.4 },
-  cardName: { fontWeight: '900', textAlign: 'center', marginTop: 10 },
+  rarityDot: { width: 8, height: 8, borderRadius: 4 },
+  rarityText: { fontSize: 12, fontWeight: '800', letterSpacing: 0.4 },
+  cardName: { fontWeight: '800', textAlign: 'center', marginTop: 10 },
   cardTranslation: { textAlign: 'center', marginTop: 4 },
   setCompletedBox: {
     marginTop: 14,
     width: '100%',
     borderRadius: 16,
-    backgroundColor: 'rgba(251,191,36,0.12)',
-    borderWidth: 0,
-    borderColor: 'rgba(251,191,36,0.45)',
-    paddingVertical: 10,
-    paddingHorizontal: 12,
+    paddingVertical: 13,
+    paddingHorizontal: 14,
     alignItems: 'center',
-    gap: 3,
+    gap: 4,
   },
-  setCompletedTitle: { color: '#FBBF24', fontWeight: '900' },
+  setCompletedTitle: { fontWeight: '800', textAlign: 'center' },
   setCompletedSub: { textAlign: 'center' },
-  ctaBtn: {
-    marginTop: 16,
-    width: '100%',
+  ctaBtn: { marginTop: 16, width: '100%' },
+  ctaInner: {
     minHeight: 48,
     borderRadius: 15,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  ctaBtnText: { fontWeight: '900' },
-  collectionBtn: {
-    marginTop: 10,
+  ctaBtnText: { fontWeight: '800' },
+  collectionBtn: { marginTop: 10, alignSelf: 'center', minHeight: 44 },
+  collectionInner: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     gap: 6,
-    paddingVertical: 6,
-    paddingHorizontal: 10,
+    minHeight: 44,
+    paddingHorizontal: 14,
   },
-  collectionBtnText: { fontWeight: '800' },
+  collectionBtnText: { fontWeight: '700' },
 });

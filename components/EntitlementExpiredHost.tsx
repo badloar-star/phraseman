@@ -6,6 +6,8 @@
 // подписка реально была активна (флаг ставится на *_activated): события деактивации
 // эмитятся снапшотами PremiumContext и у юзеров, никогда не имевших подписки.
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { usePathname, useRouter } from 'expo-router';
 import {
@@ -22,10 +24,11 @@ import {
   invalidatePremiumCache,
 } from '../app/premium_guard';
 import { navigateAfterModalClose } from '../app/safe_modal_navigation';
-import { useReferralRouletteEnabled } from '../app/referral_roulette_flag';
 import { useLang } from './LangContext';
 import { useOverlayVisible } from './OverlayArbiter';
-import RewardCardV2 from './reward_v2/RewardCardV2';
+import HybridSheetShell from './modal_fx/HybridSheetShell';
+import { useTheme } from './ThemeContext';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { DebugLogger } from '../app/debug-logger';
 
 type Kind = 'premium' | 'vip';
@@ -51,80 +54,77 @@ function entitlementAccountIsCurrent(token: AccountGenerationToken): token is Ac
     && isCurrentAccountGeneration(token, token.stableId);
 }
 
-type Copy = { kicker: string; title: string; value: string; cta: string; invite: string; ghost: string };
+type Copy = { title: string; value: string; cta: string; ghost: string };
 
+// зачем: владелец 2026-09-29 — карточка «Plus закончился» на Liquid Glass «1 в 1» с
+// макета coins.html PAY-09: значок, заголовок, одна строка без обещаний («Plus
+// завершён. Прогресс сохранён. Актуальные условия — в предложении магазина»),
+// «Продлить Plus» и «Позже». Старые обещания (про уроки и темы),
+// кикер и «Пригласить друга» (рулетка/рефералка удалены) убраны. Раньше en
+// падал в русский текст — добавлен явный en.
 const TEXTS: Record<string, Copy> = {
   ru: {
-    kicker: 'Plus-доступ завершился',
     title: 'Plus закончился',
-    value: 'Прогресс цел. Верни безлимит уроков и все темы.',
+    value: 'Plus завершён. Прогресс сохранён. Актуальные условия доступны в предложении магазина.',
     cta: 'Продлить Plus',
-    invite: 'Пригласить друга',
     ghost: 'Позже',
   },
   uk: {
-    kicker: 'Plus-доступ завершився',
     title: 'Plus закінчився',
-    value: 'Прогрес цілий. Поверни безліміт уроків і всі теми.',
+    value: 'Plus завершено. Прогрес збережено. Актуальні умови доступні в пропозиції магазину.',
     cta: 'Продовжити Plus',
-    invite: 'Запросити друга',
     ghost: 'Пізніше',
   },
+  en: {
+    title: 'Plus has ended',
+    value: 'Plus has ended. Your progress is saved. Current terms are shown in the store offer.',
+    cta: 'Renew Plus',
+    ghost: 'Later',
+  },
   es: {
-    kicker: 'Acceso Plus finalizado',
     title: 'Plus terminó',
-    value: 'Tu progreso está a salvo. Recupera lecciones ilimitadas y todos los temas.',
+    value: 'Plus ha terminado. Tu progreso está guardado. Las condiciones actuales están en la oferta de la tienda.',
     cta: 'Renovar Plus',
-    invite: 'Invitar a un amigo',
     ghost: 'Más tarde',
   },
   'pt-BR': {
-    kicker: 'Acesso Plus encerrado',
     title: 'O Plus acabou',
-    value: 'Seu progresso está salvo. Recupere aulas ilimitadas e todos os temas.',
+    value: 'O Plus terminou. Seu progresso está salvo. As condições atuais estão na oferta da loja.',
     cta: 'Renovar Plus',
-    invite: 'Convidar um amigo',
     ghost: 'Depois',
   },
   vi: {
-    kicker: 'Plus đã kết thúc',
     title: 'Plus đã hết hạn',
-    value: 'Tiến độ vẫn an toàn. Lấy lại bài học không giới hạn và mọi chủ đề.',
+    value: 'Plus đã kết thúc. Tiến độ của bạn đã được lưu. Điều kiện hiện tại có trong ưu đãi trên cửa hàng.',
     cta: 'Gia hạn Plus',
-    invite: 'Mời bạn bè',
     ghost: 'Để sau',
   },
   id: {
-    kicker: 'Akses Plus berakhir',
     title: 'Plus berakhir',
-    value: 'Progresmu aman. Dapatkan kembali pelajaran tanpa batas dan semua tema.',
+    value: 'Plus telah berakhir. Progresmu tersimpan. Ketentuan terkini ada di penawaran toko.',
     cta: 'Perpanjang Plus',
-    invite: 'Undang teman',
     ghost: 'Nanti',
   },
   tr: {
-    kicker: 'Plus erişimi sona erdi',
     title: 'Plus bitti',
-    value: 'İlerlemen güvende. Sınırsız ders ve tüm temaları geri al.',
+    value: 'Plus sona erdi. İlerlemen kayıtlı. Güncel koşullar mağaza teklifinde.',
     cta: 'Plus’ı yenile',
-    invite: 'Arkadaşını davet et',
     ghost: 'Sonra',
   },
   pl: {
-    kicker: 'Dostęp Plus wygasł',
     title: 'Plus się skończył',
-    value: 'Twój postęp jest bezpieczny. Odzyskaj nielimitowane lekcje i wszystkie motywy.',
+    value: 'Plus dobiegł końca. Twój postęp jest zapisany. Aktualne warunki są w ofercie sklepu.',
     cta: 'Przedłuż Plus',
-    invite: 'Zaproś znajomego',
     ghost: 'Później',
   },
 };
 
 function EntitlementExpiredHost() {
   const { lang } = useLang();
+  const { f, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const router = useRouter();
   const pathname = usePathname();
-  const rouletteOn = useReferralRouletteEnabled();
   const pathnameRef = useRef(pathname);
   pathnameRef.current = pathname;
   const [kind, setKind] = useState<Kind | null>(null);
@@ -294,42 +294,78 @@ function EntitlementExpiredHost() {
   if (!kind || !overlayVisible) return null;
 
   const tx = TEXTS[lang] ?? TEXTS.ru;
-  const normalizedKind = kind === 'vip' && !rouletteOn ? 'premium' : kind;
 
   return (
-    <RewardCardV2
+    <HybridSheetShell
       visible
-      semantic="gold"
-      kicker={tx.kicker}
-      allowKickerWrap
-      icon={'👑'}
-      title={tx.title}
-      value={tx.value}
-      ctaLabel={tx.cta}
-      onCta={() => {
-        const context = normalizedKind === 'premium' ? 'premium_expired' : 'vip_expired';
-        navigateAfterModalClose(markShownAndClose, () => {
-          router.push({
-            pathname: '/premium_modal',
-            params: { context, source: 'entitlement_expired' },
-          } as never);
-        });
-      }}
-      /** зачем: владелец (2026-08-02, вариант А) — второй путь с карточки: позвать
-          друга (/referrals). Друг оформит Plus/Pro → пригласившему придёт «Награда
-          за друга». Продление остаётся главным CTA, реферал — tonal-кнопкой ниже. */
-      secondaryLabel={rouletteOn ? tx.invite : undefined}
-      onSecondary={rouletteOn ? () => {
-        navigateAfterModalClose(markShownAndClose, () => {
-          router.push({ pathname: '/referrals' } as never);
-        });
-      } : undefined}
-      ghostLabel={tx.ghost}
-      onGhost={markShownAndClose}
-      /** Карточка продления: тап по фону = «Позже», не CTA. */
-      backdropAction="ghost"
-    />
+      // зачем: тап по фону/свайп/«назад» = «Позже», не CTA (как было у карточки продления).
+      onClose={markShownAndClose}
+      closeLabel={tx.ghost}
+      material="liquid-glass-opaque"
+      glowColor="rgba(0,0,0,0.5)"
+      testID="entitlement-expired-sheet"
+    >
+      <ScrollView
+        bounces={false}
+        showsVerticalScrollIndicator={false}
+        style={styles.scroll}
+        contentContainerStyle={styles.content}
+      >
+        <View style={[styles.tile, { backgroundColor: glass.opaqueControl }]} accessible={false} importantForAccessibility="no-hide-descendants">
+          <Ionicons name="lock-closed" size={26} color={glass.text} />
+        </View>
+        <Text
+          accessibilityRole="header"
+          style={[styles.title, { color: glass.text, fontSize: f.h1, lineHeight: Math.round(f.h1 * 1.24) }]}
+        >
+          {tx.title}
+        </Text>
+        <Text style={[styles.value, { color: glass.secondary, fontSize: f.body, lineHeight: Math.round(f.body * 1.45) }]}>
+          {tx.value}
+        </Text>
+        <TouchableOpacity
+          testID="entitlement-expired-cta"
+          accessibilityRole="button"
+          accessibilityLabel={tx.cta}
+          activeOpacity={0.88}
+          style={[styles.cta, { backgroundColor: glass.cta }]}
+          onPress={() => {
+            const context = kind === 'premium' ? 'premium_expired' : 'vip_expired';
+            navigateAfterModalClose(markShownAndClose, () => {
+              router.push({
+                pathname: '/premium_modal',
+                params: { context, source: 'entitlement_expired' },
+              } as never);
+            });
+          }}
+        >
+          <Text style={[styles.ctaText, { color: glass.ctaInk, fontSize: f.body }]}>{tx.cta}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          testID="entitlement-expired-ghost"
+          accessibilityRole="button"
+          accessibilityLabel={tx.ghost}
+          activeOpacity={0.7}
+          style={styles.ghost}
+          onPress={markShownAndClose}
+        >
+          <Text style={[styles.ghostText, { color: glass.secondary, fontSize: f.body }]}>{tx.ghost}</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </HybridSheetShell>
   );
 }
+
+const styles = StyleSheet.create({
+  scroll: { flexGrow: 0, flexShrink: 1 },
+  content: { alignItems: 'center', paddingTop: 18, paddingBottom: 4 },
+  tile: { width: 64, height: 64, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
+  title: { marginTop: 16, fontWeight: '800', textAlign: 'center' },
+  value: { marginTop: 8, textAlign: 'center' },
+  cta: { alignSelf: 'stretch', marginTop: 22, minHeight: 52, borderRadius: 18, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 16 },
+  ctaText: { fontWeight: '800' },
+  ghost: { alignSelf: 'stretch', marginTop: 8, minHeight: 48, alignItems: 'center', justifyContent: 'center' },
+  ghostText: { fontWeight: '700' },
+});
 
 export default memo(EntitlementExpiredHost);

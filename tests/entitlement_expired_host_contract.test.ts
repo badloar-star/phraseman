@@ -13,10 +13,6 @@ const hostSrc = readFileSync(
   join(__dirname, '..', 'components', 'EntitlementExpiredHost.tsx'),
   'utf8',
 );
-const rewardCardSrc = readFileSync(
-  join(__dirname, '..', 'components', 'reward_v2', 'RewardCardV2.tsx'),
-  'utf8',
-);
 const layoutSrc = readFileSync(join(__dirname, '..', 'app', '_layout.tsx'), 'utf8');
 const arbiterSrc = readFileSync(
   join(__dirname, '..', 'components', 'overlay_arbiter_core.ts'),
@@ -87,24 +83,24 @@ describe('EntitlementExpiredHost contract', () => {
   it('never replaces expiry renewal content with referral roulette promotion', () => {
     expect(hostSrc).not.toContain('useReferralRouletteEnabled');
     expect(hostSrc).toContain('const tx = TEXTS[lang] ?? TEXTS.ru');
-    expect(hostSrc).toContain('semantic="gold"');
-    expect(hostSrc).toContain("icon={'👑'}");
-    expect(hostSrc).not.toContain("semantic={copyKind === 'premium' ? 'gold' : 'social'}");
-    expect(hostSrc).not.toContain("icon={copyKind === 'premium' ? '👑' : '🤝'}");
+    expect(hostSrc).not.toContain('onSecondary');
+    expect(hostSrc).not.toContain('/referrals');
     expect(hostSrc).toContain("const context = kind === 'premium' ? 'premium_expired' : 'vip_expired'");
   });
 
-  it('shows the full expiry heading without one-line truncation', () => {
-    expect(hostSrc).toContain("kicker: 'Plus-доступ завершился'");
-    expect(hostSrc).toContain('allowKickerWrap');
-    expect(rewardCardSrc).toContain('allowKickerWrap?: boolean');
-    expect(rewardCardSrc).toMatch(/allowKickerWrap\s*\?\s*\(\s*<Text[^>]*>\s*\{kicker\.toUpperCase\(\)\}/s);
+  it('renders the Liquid Glass sheet from the PAY-09 mock instead of the legacy reward card', () => {
+    // Устарело (2026-09-29): RewardCardV2 (золотая семантика, кикер, эмодзи-корона)
+    // заменён шторкой HybridSheetShell на токенах Liquid Glass по макету coins.html PAY-09.
+    expect(hostSrc).toContain('HybridSheetShell');
+    expect(hostSrc).toContain('material="liquid-glass-opaque"');
+    expect(hostSrc).not.toContain('RewardCardV2');
+    expect(hostSrc).not.toContain('allowKickerWrap');
   });
 
-  it('uses Plus wording for the user-facing vip expiry card', () => {
-    expect(hostSrc).toContain("kicker: 'Plus-доступ завершился'");
+  it('uses Plus wording and only the mock copy without unconfirmed promises', () => {
     expect(hostSrc).toContain("title: 'Plus закончился'");
-    expect(hostSrc).not.toContain("kicker: 'VIP-доступ завершился'");
+    expect(hostSrc).toContain('Plus завершён. Прогресс сохранён. Актуальные условия доступны в предложении магазина.');
     expect(hostSrc).not.toContain("title: 'VIP закончился'");
+    expect(hostSrc).not.toContain('безлимит');
   });
 });

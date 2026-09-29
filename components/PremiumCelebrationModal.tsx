@@ -1,44 +1,29 @@
 /**
- * PremiumCelebrationModal — празднование покупки Plus/Pro/MAX и активации
- * промокода. Хореография v6 «Золотая палата» (владелец утвердил 2026-08-24).
+ * PremiumCelebrationModal — празднование подтверждённого доступа (Plus / Pro) и
+ * активации промокода.
  *
- * зачем: старая версия показывала ленту из 12 одинаковых строк ~3.4 с, била
- * hapticTap двенадцать раз подряд (ощущалось как дребезг), не имела
- * кульминации и двигала камеру двенадцатью императивными scrollTo по
- * JS-мосту. Всё это удалено целиком. Новая структура — три акта:
+ * зачем: владелец 2026-09-29 — перенос на Liquid Glass «1 в 1 с макета»
+ * overlays-specialist.html (OS-CELEBRATION-PLUS/PRO/VIP-INTRO/BENEFITS/FINALE/PROMO).
+ * Меняется только ВИД: графитовая основа из токенов темы (13 тем), одна плитка
+ * с иконкой вместо золотой/зелёной/синей палитр и семи градиентов, без колец-обводок.
+ * Хореография прежняя по смыслу: три шага (появление → польза → завершение) с
+ * теми же звуками, хаптиком, подложкой и правилами закрытия; промокод — один
+ * экран. Из бенефитов остался единственный подтверждённый — «Без расхода
+ * энергии» (старые сцены и счётчик «11 преимуществ» в показ не входят).
  *
- *   Акт 1 «Разлом» (1.45 с) — вспышка, световой шов, эмблема из света,
- *       ЕДИНСТВЕННЫЙ удар кадра на 900 мс, заголовок.
- *   Акт 2 «Сцены» (11 × 780 мс) — каждое преимущество показывается СВОЕЙ
- *       механикой (CelebrationSceneViews), фон «дышит» в такт сцене.
- *       У тира MAX добавляется 12-я сцена — пробуждение сферы.
- *   Акт 3 «Финал» (1.1 с) — эмблема возвращается, число вылетает крупно,
- *       CTA приезжает последним.
- *
- * Тайминги — источник правды для звука: те же миллисекунды лежат в картах
- * ударов docs/design/CELEBRATION_SOUND_PROMPTS.md и должны попасть в
- * modules/audio/sound_motion.ts. Менять здесь — менять и там.
- *
- * Контракт props сохранён: { visible, onClose, variant }. VipCelebrationModal
- * остаётся тонкой обёрткой (variant="vip").
- *
- * Макет-эталон: .motion-mockups/phraseman-celebration-v6.html
+ * Контракт props сохранён: { visible, onClose, variant, promoCode }.
+ * VipCelebrationModal остаётся тонкой обёрткой (variant="vip").
  */
-import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import {
   Modal,
-  Platform,
-  Pressable,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  useWindowDimensions,
 } from 'react-native';
-import { useRouter } from 'expo-router';
-import { LinearGradient } from './SafeLinearGradient';
 import Reanimated, {
   Easing as REasing,
   cancelAnimation,
@@ -54,67 +39,51 @@ import Reanimated, {
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
-import { triLang } from '../constants/i18n';
+import { type Lang } from '../constants/i18n';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
-import { isLowEndDevice } from '../hooks/device_perf_tier';
 import { startCelebrationBackground, stopCelebrationBackground, letCelebrationBackgroundFinish } from '../modules/audio/celebrationBackgroundPlayer';
 import { playCelebrationSceneSound, stopAllCelebrationSceneSounds } from '../modules/audio/celebrationScenePlayer';
-import CelebrationSceneView from './premium_celebration/CelebrationSceneViews';
-import {
-  CELEBRATION_PALETTES,
-  type CelebrationVariant,
-} from './premium_celebration/celebrationContent';
-import {
-  ALL_SCENES,
-  SCENE_STEP_MS,
-  scenesForVariant,
-  sceneText,
-} from './premium_celebration/celebrationScenes';
+import { type CelebrationVariant } from './premium_celebration/celebrationContent';
+import { celebrationLiquidCopy } from './premium_celebration/celebrationLiquidCopy';
 
 interface PremiumCelebrationModalProps {
   visible: boolean;
   onClose: () => void;
   variant?: CelebrationVariant;
-  /** Промокод: показать штамп кода перед актом 1. */
+  /** Промокод: показать одиночный экран «Промокод применён». */
   promoCode?: string | null;
 }
 
-// ── Тайминги актов (мс). Совпадают с картами ударов в документе звуков. ──
-const ACT1_STRIKE_MS = 900;      // единственный удар акта 1
-const ACT1_TOTAL_MS = 1450;      // конец акта 1 → старт акта 2
-const PROMO_STAMP_MS = 850;      // штамп промокода играет ДО акта 1
-const ACT3_NUMBER_MS = 200;      // число в финале
-const ACT3_CTA_MS = 440;         // CTA в финале
+// ── Тайминги шагов (мс). Совпадают с картами ударов в документе звуков. ──
+const ACT1_STRIKE_MS = 900;      // единственный удар кадра
+const ACT1_TOTAL_MS = 2300;      // конец шага «появление» → шаг «польза»
+const BENEFIT_STEP_MS = 2800;    // шаг «польза» держится, чтобы успеть прочесть
+const STEP_TOTAL = 3;           // всего шагов в подписи «01 / 03»
 
 type Act = 'promo' | 'act1' | 'act2' | 'act3';
 
+function tierLabel(variant: CelebrationVariant): string {
+  return variant === 'pro' ? 'Pro' : 'Plus';
+}
+
 function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoCode = null }: PremiumCelebrationModalProps) {
-  const router = useRouter();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
-  const window = useWindowDimensions();
-  const sceneHeight = Math.max(window.height, 600 * Math.max(1, window.fontScale));
-  const { f } = useTheme();
+  const { f, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
-  const palette = CELEBRATION_PALETTES[variant];
+  const copy = celebrationLiquidCopy(lang as Lang);
   const reduceMotion = useReducedMotion();
-
-  // зачем: на слабых Android тяжёлая сцена с 12 узлами и градиентами роняет
-  // кадры — там показываем финальный кадр каждой сцены без движения, сохраняя
-  // ВЕСЬ смысл (текст и итоговая картинка на месте), но не тратя кадры.
-  const lowEnd = useMemo(
-    () => isLowEndDevice({ OS: Platform.OS as 'ios' | 'android', Version: Platform.Version }),
-    [],
-  );
-  const animateScenes = !reduceMotion && !lowEnd;
-
-  const scenes = useMemo(() => scenesForVariant(variant), [variant]);
   const hasPromo = Boolean(promoCode);
 
   const [act, setAct] = useState<Act>(hasPromo ? 'promo' : 'act1');
-  const [sceneIndex, setSceneIndex] = useState(0);
-  const [skipped, setSkipped] = useState(false);
+  const actRef = useRef<Act>(act);
+  const enterAct = useCallback((next: Act) => {
+    actRef.current = next;
+    setAct(next);
+  }, []);
 
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
   const clearTimers = useCallback(() => {
@@ -127,62 +96,44 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
   const later = useCallback((fn: () => void, ms: number) => {
     timers.current.push(setTimeout(fn, ms));
   }, []);
+  /** «Продолжить» на шагах 1–2: переход к следующему шагу (ставится внутри эффекта). */
+  const advanceRef = useRef<(() => void) | null>(null);
 
   // ── shared values ──
-  const flash = useSharedValue(0);
-  const seam = useSharedValue(0);
   const heroIn = useSharedValue(0);
-  const heroDock = useSharedValue(0);   // 0 = центр акта 1, 1 = медальон акта 2
-  const heroBack = useSharedValue(0);   // финал: возврат из медальона
   const strikeX = useSharedValue(1);
   const strikeY = useSharedValue(1);
   const ring1 = useSharedValue(0);
   const ring2 = useSharedValue(0);
   const titleT = useSharedValue(0);
-  const beat = useSharedValue(0);
-  const finT = useSharedValue(0);
   const ctaT = useSharedValue(0);
-  const stampT = useSharedValue(0);
-  const sceneT = useSharedValue(0);
 
   const cancelAll = useCallback(() => {
-    [flash, seam, heroIn, heroDock, heroBack, strikeX, strikeY, ring1, ring2,
-      titleT, beat, finT, ctaT, stampT, sceneT].forEach(cancelAnimation);
-  }, [flash, seam, heroIn, heroDock, heroBack, strikeX, strikeY, ring1, ring2,
-    titleT, beat, finT, ctaT, stampT, sceneT]);
+    [heroIn, strikeX, strikeY, ring1, ring2, titleT, ctaT].forEach(cancelAnimation);
+  }, [heroIn, strikeX, strikeY, ring1, ring2, titleT, ctaT]);
 
   const resetAll = useCallback(() => {
-    flash.value = 0; seam.value = 0; heroIn.value = 0; heroDock.value = 0;
-    heroBack.value = 0; strikeX.value = 1; strikeY.value = 1;
-    ring1.value = 0; ring2.value = 0; titleT.value = 0; beat.value = 0;
-    finT.value = 0; ctaT.value = 0; stampT.value = 0; sceneT.value = 0;
-  }, [flash, seam, heroIn, heroDock, heroBack, strikeX, strikeY, ring1, ring2,
-    titleT, beat, finT, ctaT, stampT, sceneT]);
+    heroIn.value = 0; strikeX.value = 1; strikeY.value = 1;
+    ring1.value = 0; ring2.value = 0; titleT.value = 0; ctaT.value = 0;
+  }, [heroIn, strikeX, strikeY, ring1, ring2, titleT, ctaT]);
 
   // зачем (владелец 2026-08-25): «звуки не должны обрезаться» — soundDirector
   // держит ОДИН общий канал на всё приложение и обрывает предыдущий звук при
-  // каждом новом (ExpoSfxBackend.play() → this.stop() первой строкой,
-  // см. modules/audio/expo_sfx_backend.ts). Шаг между сценами (780мс) короче
-  // длины самих звуков (900-1200мс) — каждый следующий звук резал предыдущий
-  // на середине. playCelebrationSceneSound даёт каждому звуку свой независимый
+  // каждом новом. playCelebrationSceneSound даёт каждому звуку свой независимый
   // плеер, который доигрывает полностью (modules/audio/celebrationScenePlayer.ts).
   const playSound = useCallback((name: string) => {
     playCelebrationSceneSound(`pm.celebration.${name}` as never);
   }, []);
 
-  /** Мгновенно показать финальный кадр всей последовательности. */
+  /** Мгновенно показать финальный кадр (промокод — его единственный экран). */
   const jumpToEnd = useCallback(() => {
     clearTimers();
     cancelAll();
-    flash.value = 0; seam.value = 0;
-    heroIn.value = 1; heroDock.value = 0; heroBack.value = 1;
+    heroIn.value = 1;
     strikeX.value = 1; strikeY.value = 1; ring1.value = 1; ring2.value = 1;
-    titleT.value = 0; beat.value = 0;
-    finT.value = 1; ctaT.value = 1; stampT.value = 0;
-    setAct('act3');
-    setSkipped(true);
-  }, [clearTimers, cancelAll, flash, seam, heroIn, heroDock, heroBack,
-    strikeX, strikeY, ring1, ring2, titleT, beat, finT, ctaT, stampT]);
+    titleT.value = 1; ctaT.value = 1;
+    enterAct(hasPromo ? 'promo' : 'act3');
+  }, [clearTimers, cancelAll, heroIn, strikeX, strikeY, ring1, ring2, titleT, ctaT, hasPromo, enterAct]);
 
   // ── главная последовательность ──
   useEffect(() => {
@@ -190,9 +141,8 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
       clearTimers();
       cancelAll();
       resetAll();
-      setAct(hasPromo ? 'promo' : 'act1');
-      setSceneIndex(0);
-      setSkipped(false);
+      enterAct(hasPromo ? 'promo' : 'act1');
+      advanceRef.current = null;
       if (letBgFinishRef.current) {
         letBgFinishRef.current = false;
         letCelebrationBackgroundFinish();
@@ -205,10 +155,10 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
 
     hapticSuccess();
     // зачем (владелец 2026-08-25): тёплая подложка на весь показ, отдельно от
-    // точечных ударов сцен — см. modules/audio/celebrationBackgroundPlayer.ts.
+    // точечных ударов — см. modules/audio/celebrationBackgroundPlayer.ts.
     startCelebrationBackground();
 
-    // Reduce Motion / слабое устройство: один финальный кадр, без прогона.
+    // Reduce Motion: один финальный кадр, без прогона.
     if (reduceMotion) {
       jumpToEnd();
       playSound('finale_chord');
@@ -221,69 +171,64 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
       };
     }
 
-    const runAct1 = () => {
-      setAct('act1');
-      playSound('open_rift');
-      flash.value = withSequence(
-        withTiming(1, { duration: 39, easing: REasing.out(REasing.quad) }),
-        withTiming(0, { duration: 261, easing: REasing.in(REasing.quad) }),
+    /** Текст шага выезжает заново на каждом шаге. */
+    const showText = (delay: number) => {
+      titleT.value = withSequence(
+        withTiming(0, { duration: 0 }),
+        withDelay(delay, withTiming(1, { duration: 420, easing: REasing.bezier(0.23, 1, 0.32, 1) })),
       );
-      seam.value = withTiming(1, { duration: 660, easing: REasing.bezier(0.23, 1, 0.32, 1) });
-      heroIn.value = withDelay(150, withTiming(1, { duration: 560, easing: REasing.bezier(0.23, 1, 0.32, 1) }));
+    };
+
+    const runAct1 = () => {
+      enterAct('act1');
+      playSound('open_rift');
+      heroIn.value = withDelay(120, withTiming(1, { duration: 560, easing: REasing.bezier(0.23, 1, 0.32, 1) }));
+      ctaT.value = withDelay(500, withTiming(1, { duration: 320, easing: REasing.bezier(0.23, 1, 0.32, 1) }));
 
       later(() => {
-        // ЕДИНСТВЕННЫЙ удар кадра — один hapticSuccess, а не 12 тапов подряд.
-        strikeY.value = withSequence(withTiming(0.82, { duration: 0 }), withSpring(1, { mass: 0.6, damping: 9, stiffness: 220 }));
-        strikeX.value = withSequence(withTiming(1.2, { duration: 0 }), withSpring(1, { mass: 0.6, damping: 9, stiffness: 220 }));
+        // ЕДИНСТВЕННЫЙ удар кадра — один hapticSuccess, а не россыпь тапов.
+        strikeY.value = withSequence(withTiming(0.86, { duration: 0 }), withSpring(1, { mass: 0.6, damping: 9, stiffness: 220 }));
+        strikeX.value = withSequence(withTiming(1.14, { duration: 0 }), withSpring(1, { mass: 0.6, damping: 9, stiffness: 220 }));
         ring1.value = withTiming(1, { duration: 820, easing: REasing.bezier(0.23, 1, 0.32, 1) });
         hapticSuccess();
       }, ACT1_STRIKE_MS);
       later(() => { ring2.value = withTiming(1, { duration: 820, easing: REasing.bezier(0.23, 1, 0.32, 1) }); }, 1010);
-      titleT.value = withDelay(990, withTiming(1, { duration: 460, easing: REasing.bezier(0.23, 1, 0.32, 1) }));
+      showText(300);
 
       later(runAct2, ACT1_TOTAL_MS);
     };
 
     const runAct2 = () => {
-      setAct('act2');
-      titleT.value = withTiming(0, { duration: 300, easing: REasing.in(REasing.quad) });
-      heroDock.value = withTiming(1, { duration: 620, easing: REasing.bezier(0.77, 0, 0.175, 1) });
-
-      const step = (i: number) => {
-        if (i >= scenes.length) { runAct3(); return; }
-        setSceneIndex(i);
-        // зачем: фон «дышит» на каждой сцене — связывает разные механики
-        // в одно целое; один тихий hapticTap на сцену вместо 12 подряд.
-        beat.value = withSequence(
-          withTiming(1, { duration: 0 }),
-          withTiming(0, { duration: 950, easing: REasing.bezier(0.23, 1, 0.32, 1) }),
-        );
-        sceneT.value = 0;
-        sceneT.value = withTiming(1, { duration: 220, easing: REasing.bezier(0.23, 1, 0.32, 1) });
-        hapticTap();
-        playSound(scenes[i].sound);
-        later(() => step(i + 1), SCENE_STEP_MS);
-      };
-      step(0);
+      clearTimers();
+      enterAct('act2');
+      showText(0);
+      hapticTap();
+      playSound('energy_break');
+      later(runAct3, BENEFIT_STEP_MS);
     };
 
     const runAct3 = () => {
-      setAct('act3');
+      clearTimers();
+      enterAct('act3');
+      showText(0);
       playSound('finale_chord');
-      heroBack.value = withTiming(1, { duration: 620, easing: REasing.bezier(0.77, 0, 0.175, 1) });
-      finT.value = withDelay(ACT3_NUMBER_MS, withTiming(1, { duration: 480, easing: REasing.bezier(0.23, 1, 0.32, 1) }));
-      ctaT.value = withDelay(ACT3_CTA_MS, withSpring(1, { mass: 0.6, damping: 12, stiffness: 120 }));
-      later(hapticSuccess, ACT3_NUMBER_MS);
+      hapticSuccess();
+    };
+
+    advanceRef.current = () => {
+      const current = actRef.current;
+      if (current === 'act1') runAct2();
+      else if (current === 'act2') runAct3();
     };
 
     if (hasPromo) {
-      setAct('promo');
+      // Промокод — один экран без шагов: появление, звук штампа, ждём CTA.
+      enterAct('promo');
       playSound('promo_stamp');
-      stampT.value = withSequence(
-        withTiming(1, { duration: 470, easing: REasing.bezier(0.3, 1.5, 0.4, 1) }),
-        withDelay(60, withTiming(2, { duration: 320, easing: REasing.in(REasing.quad) })),
-      );
-      later(runAct1, PROMO_STAMP_MS);
+      heroIn.value = withDelay(120, withTiming(1, { duration: 560, easing: REasing.bezier(0.23, 1, 0.32, 1) }));
+      ring1.value = withDelay(500, withTiming(1, { duration: 820, easing: REasing.bezier(0.23, 1, 0.32, 1) }));
+      ctaT.value = withDelay(500, withTiming(1, { duration: 320, easing: REasing.bezier(0.23, 1, 0.32, 1) }));
+      showText(300);
     } else {
       runAct1();
     }
@@ -302,254 +247,164 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
   }, [visible, variant, reduceMotion, hasPromo]);
 
   const handleClose = useCallback(() => {
-    // зачем: закрытие тапом/CTA — решение пользователя, а не авария; фон
+    // зачем: закрытие CTA/«Закрыть» — решение пользователя, а не авария; фон
     // догорает сам вместо резкого fade-out (владелец 2026-08-25).
     letBgFinishRef.current = true;
     letCelebrationBackgroundFinish();
     onClose();
   }, [onClose]);
 
-  const isMax = variant === 'max';
-
-  // зачем (владелец 2026-08-25): кнопка «Позвонить MAX» раньше только закрывала
-  // окно, хотя текст обещал звонок. /max_call_prestart — тот же экран, на
-  // который ведёт кнопка звонка с главной (см. app/(tabs)/home.tsx).
-  //
-  // format обязателен. Без него экран уходил в дефолт 'scenario' — отыгрыш
-  // сценки вместо урока с учителем: без памяти об ученике, без цели урока и
-  // без правил медленной речи. Человек, ТОЛЬКО ЧТО купивший премиум, получал
-  // не то, что ему обещали. (Прежний комментарий уверял, что дефолт —
-  // 'companion'; он разошёлся с кодом, см. app/max_call_prestart.tsx.)
   const handleCtaPress = useCallback(() => {
     hapticSuccess();
     handleClose();
-    if (isMax) router.push({ pathname: '/max_call_prestart', params: { format: 'tutor' } } as never);
-  }, [handleClose, isMax, router]);
+  }, [handleClose]);
 
-  /** Тап: первый — досмотреть всё сразу, второй — закрыть. */
-  const handleTap = useCallback(() => {
-    if (skipped || act === 'act3') { handleClose(); return; }
+  const isFinal = act === 'act3' || act === 'promo';
+
+  /** Главная кнопка: на шагах 1–2 — дальше, на финале/промокоде — закрыть. */
+  const handlePrimary = useCallback(() => {
+    if (isFinal) { handleCtaPress(); return; }
+    if (advanceRef.current) { hapticTap(); advanceRef.current(); return; }
     jumpToEnd();
-  }, [skipped, act, handleClose, jumpToEnd]);
+  }, [isFinal, handleCtaPress, jumpToEnd]);
+
+  /** «Пропустить» — досмотреть всё сразу; на финале — «Закрыть». */
+  const handleSkipOrClose = useCallback(() => {
+    if (isFinal) { handleClose(); return; }
+    jumpToEnd();
+  }, [isFinal, handleClose, jumpToEnd]);
 
   // ── стили ──
-  const flashStyle = useAnimatedStyle(() => ({ opacity: flash.value * 0.82 }));
-  const seamStyle = useAnimatedStyle(() => ({
-    opacity: interpolate(seam.value, [0, 0.24, 1], [0, 1, 0]),
-    transform: [
-      { translateX: -1 },
-      { scaleY: interpolate(seam.value, [0, 0.24], [0.06, 1], 'clamp') },
-      { scaleX: interpolate(seam.value, [0.24, 1], [1, 34], 'clamp') },
-    ],
+  const heroStyle = useAnimatedStyle(() => ({
+    opacity: heroIn.value,
+    transform: [{ scale: interpolate(heroIn.value, [0, 1], [0.78, 1]) }],
   }));
-  const heroStyle = useAnimatedStyle(() => {
-    const dock = heroDock.value * (1 - heroBack.value);
-    return {
-      opacity: heroIn.value,
-      transform: [
-        { translateY: interpolate(dock, [0, 1], [0, -138]) },
-        { scale: interpolate(heroIn.value, [0, 1], [0.72, 1]) * interpolate(dock, [0, 1], [1, 0.42]) },
-      ],
-    };
-  });
-  const discStyle = useAnimatedStyle(() => ({
+  const tileStrikeStyle = useAnimatedStyle(() => ({
     transform: [{ scaleX: strikeX.value }, { scaleY: strikeY.value }],
   }));
   // зачем: два отдельных useAnimatedStyle, а не фабрика — хук нельзя вызывать
-  // из вложенной функции (правило хуков React), иначе порядок вызовов поедет.
+  // из вложенной функции (правило хуков React).
+  // Волна — заливка без обводки: тонкая круглая вспышка, расходится и гаснет.
   const ring1Style = useAnimatedStyle(() => ({
-    opacity: interpolate(ring1.value, [0, 1], [0.82, 0]),
-    transform: [{ scale: interpolate(ring1.value, [0, 1], [1, 3.4]) }],
+    opacity: interpolate(ring1.value, [0, 1], [0.5, 0]),
+    transform: [{ scale: interpolate(ring1.value, [0, 1], [1, 1.9]) }],
   }));
   const ring2Style = useAnimatedStyle(() => ({
-    opacity: interpolate(ring2.value, [0, 1], [0.82, 0]),
-    transform: [{ scale: interpolate(ring2.value, [0, 1], [1, 3.4]) }],
+    opacity: interpolate(ring2.value, [0, 1], [0.35, 0]),
+    transform: [{ scale: interpolate(ring2.value, [0, 1], [1, 2.3]) }],
   }));
-  const titleStyle = useAnimatedStyle(() => ({
+  const textStyle = useAnimatedStyle(() => ({
     opacity: titleT.value,
-    transform: [{ translateY: interpolate(titleT.value, [0, 1], [15, 0]) }],
-  }));
-  const beatStyle = useAnimatedStyle(() => ({ opacity: beat.value * 0.5 }));
-  const sceneStyle = useAnimatedStyle(() => ({
-    opacity: sceneT.value,
-    transform: [{ scale: interpolate(sceneT.value, [0, 1], [0.97, 1]) }],
-  }));
-  const finStyle = useAnimatedStyle(() => ({
-    opacity: finT.value,
-    transform: [{ translateY: interpolate(finT.value, [0, 1], [12, 0]) }],
+    transform: [{ translateY: interpolate(titleT.value, [0, 1], [14, 0]) }],
   }));
   const ctaStyle = useAnimatedStyle(() => ({
     opacity: ctaT.value,
-    transform: [
-      { translateY: interpolate(ctaT.value, [0, 1], [18, 0]) },
-      { scale: interpolate(ctaT.value, [0, 1], [0.95, 1]) },
-    ],
-  }));
-  const stampStyle = useAnimatedStyle(() => ({
-    opacity: interpolate(stampT.value, [0, 1, 2], [0, 1, 0]),
-    transform: [
-      { scale: interpolate(stampT.value, [0, 1, 2], [2.5, 1, 0.72]) },
-      { rotate: `${interpolate(stampT.value, [0, 1], [-9, 0], 'clamp')}deg` },
-    ],
+    transform: [{ translateY: interpolate(ctaT.value, [0, 1], [12, 0]) }],
   }));
 
   if (!visible) return null;
 
-  const scene = scenes[Math.min(sceneIndex, scenes.length - 1)];
-  const ctaBottom = 28 + bottomInset;
-  const isPro = variant === 'pro';
-
-  const titleText = isMax
-    ? triLang(lang, { ru: 'MAX активирован', uk: 'MAX активовано', en: 'MAX activated', es: 'MAX activado', 'pt-BR': 'MAX ativado', vi: 'Đã kích hoạt MAX', id: 'MAX aktif', tr: 'MAX etkinleştirildi', pl: 'MAX aktywowany' })
-    : isPro
-      ? triLang(lang, { ru: 'Pro активирован', uk: 'Pro активовано', en: 'Pro activated', es: 'Pro activado', 'pt-BR': 'Pro ativado', vi: 'Đã kích hoạt Pro', id: 'Pro aktif', tr: 'Pro etkinleştirildi', pl: 'Pro aktywowany' })
-      : hasPromo
-        ? triLang(lang, { ru: 'Промокод сработал', uk: 'Промокод спрацював', en: 'Promo code applied', es: 'Código activado', 'pt-BR': 'Código ativado', vi: 'Mã đã kích hoạt', id: 'Kode aktif', tr: 'Kod etkinleşti', pl: 'Kod zadziałał' })
-        : triLang(lang, { ru: 'Plus активирован', uk: 'Plus активовано', en: 'Plus activated', es: 'Plus activado', 'pt-BR': 'Plus ativado', vi: 'Đã kích hoạt Plus', id: 'Plus aktif', tr: 'Plus etkinleştirildi', pl: 'Plus aktywowany' });
-
-  const subtitleText = isMax
-    ? triLang(lang, { ru: 'Всё из Plus — и живой разговор голосом', uk: 'Усе з Plus — і жива розмова голосом', en: 'Everything in Plus — plus live voice conversation', es: 'Todo de Plus y conversación en vivo', 'pt-BR': 'Tudo do Plus e conversa ao vivo', vi: 'Mọi thứ của Plus và trò chuyện trực tiếp', id: 'Semua dari Plus dan percakapan langsung', tr: "Plus'ın hepsi ve canlı sohbet", pl: 'Wszystko z Plus i żywa rozmowa' })
-    : isPro
-      ? triLang(lang, { ru: 'Разовая покупка. Навсегда', uk: 'Разова покупка. Назавжди', en: 'One-time purchase. Forever', es: 'Compra única. Para siempre', 'pt-BR': 'Compra única. Para sempre', vi: 'Mua một lần. Mãi mãi', id: 'Sekali beli. Selamanya', tr: 'Tek seferlik. Sonsuza dek', pl: 'Zakup jednorazowy. Na zawsze' })
-      : triLang(lang, { ru: 'Всё открыто. Прямо сейчас', uk: 'Усе відкрито. Просто зараз', en: 'Everything unlocked. Right now', es: 'Todo abierto. Ahora mismo', 'pt-BR': 'Tudo aberto. Agora mesmo', vi: 'Mở tất cả. Ngay bây giờ', id: 'Semua terbuka. Sekarang', tr: 'Her şey açık. Hemen şimdi', pl: 'Wszystko otwarte. Już teraz' });
-
-  // зачем (владелец 2026-08-25): показ укорочен до 6 сцен, но финальная цифра
-  // должна называть РЕАЛЬНОЕ число преимуществ Plus, а не количество сцен,
-  // которые физически поместились в анимацию — иначе цифра занижена и не
-  // соответствует тому, что человек реально получил за покупку.
-  const finaleNumber = isMax ? 'MAX' : String(ALL_SCENES.length);
-  const finaleLabel = isMax
-    ? triLang(lang, { ru: 'всё открыто', uk: 'усе відкрито', en: 'everything unlocked', es: 'todo abierto', 'pt-BR': 'tudo aberto', vi: 'đã mở tất cả', id: 'semua terbuka', tr: 'her şey açık', pl: 'wszystko otwarte' })
-    : isPro
-      ? triLang(lang, { ru: 'преимуществ навсегда', uk: 'переваг назавжди', en: 'perks forever', es: 'ventajas para siempre', 'pt-BR': 'vantagens para sempre', vi: 'đặc quyền vĩnh viễn', id: 'keuntungan selamanya', tr: 'ayrıcalık sonsuza dek', pl: 'korzyści na zawsze' })
-      : triLang(lang, { ru: 'преимуществ разблокировано', uk: 'переваг розблоковано', en: 'perks unlocked', es: 'ventajas desbloqueadas', 'pt-BR': 'vantagens desbloqueadas', vi: 'đặc quyền đã mở', id: 'keuntungan terbuka', tr: 'ayrıcalık açıldı', pl: 'korzyści odblokowano' });
-
-  const ctaText = isMax
-    ? triLang(lang, { ru: 'Позвонить MAX', uk: 'Зателефонувати MAX', en: 'Call MAX', es: 'Llamar a MAX', 'pt-BR': 'Ligar para MAX', vi: 'Gọi MAX', id: 'Hubungi MAX', tr: "MAX'i ara", pl: 'Zadzwoń do MAX' })
-    : triLang(lang, { ru: 'Поехали', uk: 'Поїхали', en: "Let's go", es: 'Empezar', 'pt-BR': 'Começar', vi: 'Bắt đầu', id: 'Ayo mulai', tr: 'Hadi başla', pl: 'Zaczynamy' });
+  const tier = tierLabel(variant);
+  const phase = act === 'promo' ? 'promo' : act === 'act1' ? 'intro' : act === 'act2' ? 'benefits' : 'finale';
+  const stepText = phase === 'promo'
+    ? `${tier} · ${copy.promoLabel}`
+    : `${tier} · 0${phase === 'intro' ? 1 : phase === 'benefits' ? 2 : 3} / 0${STEP_TOTAL}`;
+  const title = phase === 'promo' ? copy.promoTitle
+    : phase === 'intro' ? copy.titleActivated(tier)
+      : phase === 'benefits' ? copy.benefitsTitle : copy.finaleTitle;
+  const subtitle = phase === 'promo' ? copy.promoSub
+    : phase === 'intro' ? copy.introSub
+      : phase === 'benefits' ? copy.benefitsSub : copy.finaleSub;
+  const icon = phase === 'promo' ? 'checkmark' : phase === 'benefits' ? 'flash' : 'layers';
+  const primaryLabel = phase === 'promo' || phase === 'finale' ? copy.toLessons : copy.next;
+  const skipLabel = isFinal ? copy.close : copy.skip;
 
   return (
-    <Modal visible transparent animationType="fade" statusBarTranslucent onRequestClose={handleTap}>
-      <ScrollView bounces={false} overScrollMode="never" style={styles.root} contentContainerStyle={{ flexGrow: 1 }}>
-      <View style={{ height: sceneHeight, width: '100%' }}>
-        <LinearGradient
-          pointerEvents="none"
-          colors={palette.bg}
-          start={{ x: 0.5, y: 0 }}
-          end={{ x: 0.5, y: 1 }}
-          style={StyleSheet.absoluteFill}
-        />
-
-        {/* «дыхание» фона в такт сцене */}
-        <Reanimated.View pointerEvents="none" style={[StyleSheet.absoluteFill, beatStyle]}>
-          <LinearGradient
-            colors={[`${palette.main}38`, 'transparent']}
-            start={{ x: 0.5, y: 0.4 }}
-            end={{ x: 0.5, y: 1 }}
-            style={StyleSheet.absoluteFill}
-          />
-        </Reanimated.View>
-
-        {/* акт 1: вспышка и световой шов */}
-        <Reanimated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: palette.bright }, flashStyle]} />
-        <Reanimated.View pointerEvents="none" style={[styles.seam, seamStyle]}>
-          <LinearGradient
-            colors={['transparent', palette.bright, 'transparent']}
-            start={{ x: 0.5, y: 0 }}
-            end={{ x: 0.5, y: 1 }}
-            style={StyleSheet.absoluteFill}
-          />
-        </Reanimated.View>
-
-        <Pressable style={StyleSheet.absoluteFill} onPress={handleTap} accessibilityRole="button" />
-
-        {!skipped && act !== 'act3' ? (
-          <View pointerEvents="none" style={[styles.skipHint, { top: insets.top + 14 }]}>
-            <Text style={styles.skipHintText}>
-              {triLang(lang, { ru: 'тапни, чтобы пропустить', uk: 'тапни, щоб пропустити', en: 'tap to skip', es: 'toca para saltar', 'pt-BR': 'toque para pular', vi: 'chạm để bỏ qua', id: 'ketuk untuk lewati', tr: 'geçmek için dokun', pl: 'dotknij, by pominąć' })}
-            </Text>
+    <Modal visible transparent animationType="fade" statusBarTranslucent onRequestClose={handleSkipOrClose}>
+      <View style={[styles.root, { backgroundColor: glass.bg }]} accessibilityViewIsModal>
+        <ScrollView
+          bounces={false}
+          overScrollMode="never"
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={[
+            styles.content,
+            {
+              paddingTop: insets.top + 14,
+              paddingBottom: bottomInset + 24,
+              paddingLeft: Math.max(22, insets.left),
+              paddingRight: Math.max(22, insets.right),
+            },
+          ]}
+        >
+          <View style={styles.topRow}>
+            <Text style={[styles.step, { color: glass.secondary, fontSize: f.caption }]}>{stepText}</Text>
+            <TouchableOpacity
+              testID={`${variant}-celebration-skip`}
+              accessibilityRole="button"
+              accessibilityLabel={skipLabel}
+              activeOpacity={0.8}
+              onPress={handleSkipOrClose}
+              style={[styles.skip, { backgroundColor: glass.opaqueControl }]}
+            >
+              <Text style={[styles.skipText, { color: glass.secondary, fontSize: f.sub }]}>{skipLabel}</Text>
+            </TouchableOpacity>
           </View>
-        ) : null}
 
-        {/* промокод: штамп кода перед актом 1 */}
-        {hasPromo ? (
-          <Reanimated.View pointerEvents="none" style={[styles.stamp, { left: Math.max(24, insets.left), right: Math.max(24, insets.right) }, stampStyle]}>
-            <Text style={[styles.stampText, { color: palette.bright }]}>{promoCode}</Text>
+          {/* Аура: плитка с иконкой и лёгкие искры — без градиентов и обводок. */}
+          <Reanimated.View style={[styles.aura, heroStyle]} accessible={false} importantForAccessibility="no-hide-descendants">
+            <Reanimated.View style={[styles.wave, { backgroundColor: glass.selected }, ring1Style]} />
+            <Reanimated.View style={[styles.wave, { backgroundColor: glass.selected }, ring2Style]} />
+            <View style={[styles.spark, styles.sparkOne, { backgroundColor: glass.secondary }]} />
+            <View style={[styles.spark, styles.sparkTwo, { backgroundColor: glass.secondary }]} />
+            <View style={[styles.spark, styles.sparkThree, { backgroundColor: glass.secondary }]} />
+            <View style={[styles.spark, styles.sparkFour, { backgroundColor: glass.secondary }]} />
+            <Reanimated.View style={[styles.tile, { backgroundColor: glass.opaqueControl }, tileStrikeStyle]}>
+              <Ionicons name={icon} size={42} color={glass.text} />
+            </Reanimated.View>
           </Reanimated.View>
-        ) : null}
 
-        {/* герой: акт 1 в центре → акт 2 медальоном сверху → финал обратно */}
-        <Reanimated.View pointerEvents="none" style={[styles.heroWrap, heroStyle]}>
-          {/* guard-ok: ударные волны от удара эмблемы — кольцо и есть сама линия
-              волны, тоном/тенью её не нарисовать; это не рамка вокруг блока */}
-          <Reanimated.View style={[styles.ringBase, { borderColor: palette.main }, ring1Style]} />
-          <Reanimated.View style={[styles.ringBase, styles.ringThin, { borderColor: palette.main }, ring2Style]} />
-          <Reanimated.View style={[styles.disc, discStyle]}>
-            <LinearGradient
-              colors={[`${palette.main}85`, '#0B0803']}
-              start={{ x: 0.33, y: 0.22 }}
-              end={{ x: 0.7, y: 1 }}
-              style={StyleSheet.absoluteFill}
-            />
-            <Ionicons name={palette.emblemIcon} size={50} color={palette.bright} />
+          <Reanimated.View style={[styles.textBlock, textStyle]}>
+            <Text style={[styles.kicker, { color: glass.secondary, fontSize: f.caption }]}>{copy.kicker}</Text>
+            <Text
+              accessibilityRole="header"
+              style={[styles.title, { color: glass.text, fontSize: f.h1, lineHeight: Math.round(f.h1 * 1.24) }]}
+            >
+              {title}
+            </Text>
+            <Text style={[styles.subtitle, { color: glass.secondary, fontSize: f.body, lineHeight: Math.round(f.body * 1.45) }]}>
+              {subtitle}
+            </Text>
+            {phase === 'benefits' || phase === 'promo' ? (
+              <View style={[styles.card, { backgroundColor: glass.opaqueCard }]}>
+                <Text style={[styles.cardTitle, { color: glass.text, fontSize: f.body }]}>
+                  {phase === 'promo' ? copy.promoCardTitle : copy.benefitCardTitle}
+                </Text>
+                {phase === 'promo' && promoCode ? (
+                  <Text style={[styles.code, { color: glass.text, fontSize: f.body }]}>{promoCode}</Text>
+                ) : null}
+                <Text style={[styles.cardBody, { color: glass.secondary, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.4) }]}>
+                  {phase === 'promo' ? copy.promoCardBody : copy.benefitCardBody}
+                </Text>
+              </View>
+            ) : null}
           </Reanimated.View>
-        </Reanimated.View>
 
-        {/* акт 1: заголовок */}
-        <Reanimated.View pointerEvents="none" style={[styles.titleWrap, { left: Math.max(22, insets.left), right: Math.max(22, insets.right) }, titleStyle]}>
-          <Text style={[styles.title, { color: palette.bright, fontSize: Math.max(28, f.h1 + 5) }]}>{titleText}</Text>
-          <Text style={[styles.subtitle, { color: palette.text, fontSize: f.body }]}>{subtitleText}</Text>
-        </Reanimated.View>
+          <View style={styles.spacer} />
 
-        {/* акт 2: сцена преимущества */}
-        {act === 'act2' ? (
-          <Reanimated.View pointerEvents="none" style={[styles.sceneWrap, { left: insets.left, right: insets.right }, sceneStyle]}>
-            <View style={styles.sceneViz}>
-              <CelebrationSceneView
-                key={`${variant}_${scene.id}`}
-                id={scene.id}
-                palette={palette}
-                animate={animateScenes}
-              />
-            </View>
-            <View style={styles.sceneCaption}>
-              <Text style={[styles.sceneTitle, { color: '#FFFFFF', fontSize: Math.max(20, f.h2) }]}>
-                {sceneText(scene.title, lang)}
-              </Text>
-              <Text style={[styles.sceneSub, { color: palette.rowSub, fontSize: f.body }]}>
-                {sceneText(scene.sub, lang)}
-              </Text>
-            </View>
+          <Reanimated.View style={[styles.ctaWrap, ctaStyle]}>
+            <TouchableOpacity
+              testID={`${variant}-celebration-cta`}
+              accessibilityRole="button"
+              accessibilityLabel={primaryLabel}
+              activeOpacity={0.88}
+              onPress={handlePrimary}
+              style={[styles.cta, { backgroundColor: glass.cta }]}
+            >
+              <Text style={[styles.ctaText, { color: glass.ctaInk, fontSize: f.bodyLg }]}>{primaryLabel}</Text>
+            </TouchableOpacity>
           </Reanimated.View>
-        ) : null}
-
-        {/* акт 3: финал */}
-        {act === 'act3' ? (
-          <Reanimated.View
-            pointerEvents="none"
-            style={[styles.finWrap, { bottom: ctaBottom + 58 + 24, left: Math.max(22, insets.left), right: Math.max(22, insets.right) }, finStyle]}
-          >
-            <Text style={[styles.finNumber, { color: palette.bright }]}>{finaleNumber}</Text>
-            <Text style={[styles.finLabel, { color: palette.text }]}>{finaleLabel}</Text>
-          </Reanimated.View>
-        ) : null}
-
-        {/* CTA */}
-        <Reanimated.View style={[styles.ctaWrap, { bottom: ctaBottom, left: Math.max(20, insets.left), right: Math.max(20, insets.right) }, ctaStyle]} pointerEvents={act === 'act3' ? 'auto' : 'none'}>
-          <TouchableOpacity
-            testID={`${variant}-celebration-cta`}
-            accessibilityRole="button"
-            activeOpacity={0.88}
-            onPress={handleCtaPress}
-            style={styles.ctaTouch}
-          >
-            <LinearGradient colors={palette.cta} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.ctaGradient}>
-              <Text style={[styles.ctaText, { color: palette.ctaText, fontSize: f.bodyLg + 1 }]}>{ctaText}</Text>
-            </LinearGradient>
-          </TouchableOpacity>
-        </Reanimated.View>
+        </ScrollView>
       </View>
-      </ScrollView>
     </Modal>
   );
 }
@@ -558,61 +413,33 @@ export default memo(PremiumCelebrationModal);
 
 const styles = StyleSheet.create({
   root: { flex: 1 },
+  content: { flexGrow: 1, alignItems: 'center' },
 
-  seam: { position: 'absolute', left: '50%', top: 0, bottom: 0, width: 2 },
+  topRow: { alignSelf: 'stretch', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
+  step: { flexShrink: 1, fontWeight: '800', letterSpacing: 0.6, textTransform: 'uppercase' },
+  skip: { minHeight: 44, minWidth: 44, paddingHorizontal: 16, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
+  skipText: { fontWeight: '700' },
 
-  skipHint: {
-    position: 'absolute', right: 16, paddingVertical: 6, paddingHorizontal: 12,
-    borderRadius: 20, backgroundColor: 'rgba(0,0,0,0.3)',
-  },
-  skipHintText: { color: 'rgba(255,255,255,0.5)', fontSize: 12, fontWeight: '600' },
+  aura: { marginTop: 36, width: 176, height: 176, alignItems: 'center', justifyContent: 'center' },
+  wave: { position: 'absolute', width: 104, height: 104, borderRadius: 52 },
+  tile: { width: 104, height: 104, borderRadius: 32, alignItems: 'center', justifyContent: 'center' },
+  spark: { position: 'absolute', width: 6, height: 6, borderRadius: 3, opacity: 0.55 },
+  sparkOne: { top: 14, left: 30 },
+  sparkTwo: { top: 30, right: 16 },
+  sparkThree: { bottom: 24, left: 14 },
+  sparkFour: { bottom: 12, right: 40 },
 
-  stamp: {
-    position: 'absolute', left: 24, right: 24, top: '33%',
-    alignItems: 'center', paddingVertical: 13, borderRadius: 15,
-    backgroundColor: 'rgba(0,0,0,0.46)',
-  },
-  stampText: { fontSize: 20, fontWeight: '900', letterSpacing: 4 },
+  textBlock: { alignSelf: 'stretch', alignItems: 'center', marginTop: 20 },
+  kicker: { fontWeight: '800', letterSpacing: 1.2, textTransform: 'uppercase', textAlign: 'center' },
+  title: { marginTop: 8, fontWeight: '800', textAlign: 'center', letterSpacing: -0.3 },
+  subtitle: { marginTop: 10, textAlign: 'center' },
+  card: { alignSelf: 'stretch', marginTop: 26, padding: 15, borderRadius: 18, gap: 3 },
+  cardTitle: { fontWeight: '800' },
+  code: { fontWeight: '800', letterSpacing: 2 },
+  cardBody: {},
 
-  heroWrap: {
-    position: 'absolute', left: 0, right: 0, top: '33%',
-    alignItems: 'center', justifyContent: 'center',
-  },
-  disc: {
-    width: 106, height: 106, borderRadius: 53, overflow: 'hidden',
-    alignItems: 'center', justifyContent: 'center',
-  },
-  // guard-ok: ударная волна — линия по построению, а не обводка контейнера
-  ringBase: {
-    position: 'absolute', width: 106, height: 106, borderRadius: 53, borderWidth: 2,
-  },
-  ringThin: { borderWidth: 1 },
-
-  titleWrap: { position: 'absolute', left: 22, right: 22, top: '51%', alignItems: 'center' },
-  title: { fontWeight: '900', textAlign: 'center', letterSpacing: -0.5, lineHeight: 38 },
-  subtitle: { textAlign: 'center', marginTop: 11, fontWeight: '600', opacity: 0.86, lineHeight: 20 },
-
-
-  sceneWrap: { position: 'absolute', left: 0, right: 0, top: '17%', bottom: 108 },
-  sceneViz: { flex: 1 },
-  sceneCaption: { paddingHorizontal: 26, alignItems: 'center' },
-  sceneTitle: { fontWeight: '900', textAlign: 'center', letterSpacing: -0.4, lineHeight: 28 },
-  sceneSub: { fontWeight: '600', textAlign: 'center', marginTop: 7, opacity: 0.78, lineHeight: 19 },
-
-  // зачем: top:'44%' без нижнего ограничения давал тексту «N преимуществ
-  // разблокировано» и кнопке общий зазор, зависящий от высоты экрана — на
-  // части устройств подпись прилипала к CTA впритык. bottom (см. инлайн в
-  // JSX, зависит от safe area) держит блок ПРИВЯЗАННЫМ к верху кнопки с
-  // фиксированным зазором, а не плавающим по проценту высоты.
-  finWrap: {
-    position: 'absolute', left: 22, right: 22, top: '30%',
-    alignItems: 'center', justifyContent: 'center',
-  },
-  finNumber: { fontSize: 66, fontWeight: '900', lineHeight: 70, letterSpacing: -2 },
-  finLabel: { fontSize: 15, fontWeight: '700', marginTop: 11, opacity: 0.8, textAlign: 'center' },
-
-  ctaWrap: { position: 'absolute', left: 20, right: 20 },
-  ctaTouch: { borderRadius: 19, overflow: 'hidden' },
-  ctaGradient: { minHeight: 58, paddingVertical: 12, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center' },
-  ctaText: { fontWeight: '900', letterSpacing: 0.3 },
+  spacer: { flexGrow: 1, minHeight: 24 },
+  ctaWrap: { alignSelf: 'stretch' },
+  cta: { minHeight: 52, borderRadius: 18, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 16 },
+  ctaText: { fontWeight: '800' },
 });

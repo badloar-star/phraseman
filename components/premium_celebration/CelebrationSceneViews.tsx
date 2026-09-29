@@ -572,57 +572,6 @@ const AuraScene = memo(function AuraScene({ palette, animate }: SceneViewProps) 
   );
 });
 
-// ═══════════ 12 · MAX — сфера просыпается ═══════════
-// Карта ударов: 80 сфера · 460/1020 кольца речи · 480 дорожка · 700 дыхание
-const VOICE_LINES = [8, 15, 23, 12, 28, 19, 30, 16, 24, 11, 20, 7];
-
-const MaxScene = memo(function MaxScene({ palette, animate }: SceneViewProps) {
-  const wake = useCue(animate, 80, 620);
-  const lines = useCue(animate, 420, 400);
-  const ripple = useSharedValue(0);
-
-  useEffect(() => {
-    if (!animate) { ripple.value = 0; return undefined; }
-    ripple.value = 0;
-    ripple.value = withDelay(460, withTiming(1, { duration: 1700, easing: EASE_OUT }));
-    return () => cancelAnimation(ripple);
-  }, [animate, ripple]);
-
-  const orbStyle = useAnimatedStyle(() => ({
-    opacity: wake.value,
-    transform: [{ scale: interpolate(wake.value, [0, 1], [0.84, 1]) }],
-  }));
-  const rippleStyle = useAnimatedStyle(() => ({
-    opacity: interpolate(ripple.value, [0, 0.14, 1], [0, 0.42, 0]),
-    transform: [{ scale: interpolate(ripple.value, [0, 1], [1, 1.8]) }],
-  }));
-  const linesStyle = useAnimatedStyle(() => ({ opacity: lines.value }));
-
-  return (
-    <View style={styles.center}>
-      <View style={styles.orbStage}>
-        {/* guard-ok: это не обводка контейнера, а сама расходящаяся волна речи —
-            кольцо и есть линия, тоном её не нарисовать */}
-        <Reanimated.View style={[styles.orbRipple, { borderColor: palette.main }, rippleStyle]} />
-        <Reanimated.View style={[styles.orb, orbStyle]}>
-          <LinearGradient
-            colors={C.orbGradient}
-            start={{ x: 0.3, y: 0.2 }}
-            end={{ x: 0.7, y: 1 }}
-            style={StyleSheet.absoluteFill}
-          />
-          <View style={styles.orbGlint} />
-        </Reanimated.View>
-      </View>
-      <Reanimated.View style={[styles.voiceRow, linesStyle]}>
-        {VOICE_LINES.map((h, i) => (
-          <View key={`vl_${i}_${h}`} style={[styles.voiceLine, { height: h, backgroundColor: palette.main }]} />
-        ))}
-      </Reanimated.View>
-    </View>
-  );
-});
-
 // ═══════════ Реестр ═══════════
 
 const SCENE_VIEWS: Record<CelebrationSceneId, React.ComponentType<SceneViewProps>> = {
@@ -637,7 +586,6 @@ const SCENE_VIEWS: Record<CelebrationSceneId, React.ComponentType<SceneViewProps
   stats: StatsScene,
   streak: StreakScene,
   aura: AuraScene,
-  max: MaxScene,
 };
 
 export function CelebrationSceneView({ id, palette, animate }: SceneViewProps & { id: CelebrationSceneId }) {

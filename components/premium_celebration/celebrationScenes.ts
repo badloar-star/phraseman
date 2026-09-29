@@ -32,8 +32,7 @@ export type CelebrationSceneId =
   | 'plan'
   | 'stats'
   | 'streak'
-  | 'aura'
-  | 'max';
+  | 'aura';
 
 type L8Map = Record<string, string>;
 
@@ -165,23 +164,9 @@ export const CELEBRATION_SCENES: readonly CelebrationScene[] = (['energy', 'less
     return scene;
   });
 
-/**
- * Седьмая сцена — ТОЛЬКО для тира MAX. Добавляется в хвост показанных шести,
- * а не заменяет их: владелец потребовал, чтобы MAX показывал полный прогон
- * Plus плюс свою сцену, без счётчика «13 преимуществ».
- */
-export const MAX_SCENE: CelebrationScene = {
-  id: 'max',
-  sound: 'max_awaken',
-  icon: 'mic',
-  durationMs: 2200,
-  title: L8('Живой разговор голосом', 'Жива розмова голосом', 'Conversación en vivo', 'Conversa ao vivo', 'Trò chuyện trực tiếp', 'Percakapan langsung', 'Canlı sesli sohbet', 'Żywa rozmowa głosem'),
-  sub: L8('Учитель слышит тебя и помнит прошлый урок', 'Учитель чує тебе й памʼятає минулий урок', 'Un profesor que te oye y recuerda', 'Um professor que te ouve e lembra', 'Giáo viên nghe bạn và nhớ bài trước', 'Guru mendengarmu dan mengingat', 'Seni duyan ve hatırlayan öğretmen', 'Nauczyciel słyszy cię i pamięta'),
-};
-
-/** Сцены прогона: у MAX те же одиннадцать плюс своя двенадцатая. */
 export function scenesForVariant(variant: string): readonly CelebrationScene[] {
-  return variant === 'max' ? [...CELEBRATION_SCENES, MAX_SCENE] : CELEBRATION_SCENES;
+  void variant;
+  return CELEBRATION_SCENES;
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

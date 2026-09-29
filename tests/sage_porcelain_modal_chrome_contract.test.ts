@@ -10,7 +10,6 @@ jest.mock('expo-linear-gradient', () => ({ LinearGradient: 'LinearGradient' }));
 
 import { PAYWALL_THEME_CONFIG } from '../components/paywallThemeConfig';
 import { getCardPackPaywallTheme, getCommunityUgcPackPaywallTheme } from '../app/flashcards/cardPackPaywallTheme';
-import { getLeagueBonusPalette } from '../constants/leagueBonusPalette';
 import { SAGE_PORCELAIN } from '../constants/theme';
 import {
   rewardModalAccentColor,
@@ -50,7 +49,7 @@ describe('sage porcelain modal, reward, and paywall chrome', () => {
     expect(rewardModalPanelScrimColors('sagePorcelain', 'strong')).toEqual(['rgba(23,32,29,0)', 'rgba(23,32,29,0)', 'rgba(23,32,29,0)']);
   });
 
-  it('uses porcelain paywall, card-pack, and league reward roles', () => {
+  it('uses porcelain paywall and card-pack roles', () => {
     expect(PAYWALL_THEME_CONFIG.sagePorcelain).toMatchObject({
       heroAccent: '#315F50', selectedCardBorder: '#315F50', selectedCardBg: '#D9E9E1',
       // panelBg = #FCFDF9 (не #F0F1EC): цвет страницы сливал карточки с фоном — аудит 2026-08-02.
@@ -62,10 +61,6 @@ describe('sage porcelain modal, reward, and paywall chrome', () => {
       backdropBase: 'rgba(23,32,29,0.26)', outerGlow: ['rgba(49,95,80,0)', 'rgba(49,95,80,0)', 'rgba(49,95,80,0)'],
       borderAccent: '#BDC8BD', iconBg: ['#FCFDF9', '#E1E5DC'], priceGradient: ['#FCFDF9', '#E1E5DC'],
       ctaColors: ['#315F50', '#315F50'], ctaForeground: '#FFFFFF', ctaGlowTop: 'rgba(49,95,80,0)',
-    });
-    expect(getLeagueBonusPalette(SAGE_PORCELAIN, 'sagePorcelain')).toMatchObject({
-      card: ['#FCFDF9', '#F5F7F2', '#E7EAE3'], border: '#BDC8BD', accent: '#315F50', readyAccent: '#2F6F4F',
-      textMuted: '#52605A', modal: { overlay: 'rgba(23,32,29,0.38)', card: ['#FCFDF9', '#F5F7F2', '#E7EAE3'], primary: ['#315F50', '#315F50', '#315F50'], primaryText: '#FFFFFF', rewardBg: '#EEE5D1' },
     });
   });
 

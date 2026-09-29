@@ -10,6 +10,8 @@ describe('PremiumGoldButton runtime ownership', () => {
 
     expect(button).toContain('active: boolean');
     expect(button).toContain('active && premiumButtonRuntimeActive');
-    expect(noEnergy).toContain('<PremiumGoldButton\n            active={modalVisible}');
+    // зачем: NoEnergyModal перенесён на Liquid Glass — золотая кнопка заменена светлой CTA темы,
+    // золотой перелив теперь остаётся только у PremiumGoldButton на других экранах.
+    expect(noEnergy).not.toContain('PremiumGoldButton');
   });
 });

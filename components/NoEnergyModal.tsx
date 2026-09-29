@@ -1,6 +1,5 @@
 import React, { memo, useCallback, useEffect, useRef, useState, useLayoutEffect } from 'react';
 import { useRouter } from 'expo-router';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import {
   View,
   Text,
@@ -11,9 +10,9 @@ import {
   Easing,
   Platform,
   Pressable,
+  ScrollView,
   InteractionManager,
 } from 'react-native';
-import { LinearGradient } from './SafeLinearGradient';
 import { MOTION_SPRING_LEGACY } from '../constants/motion';
 import { lessonEnergyMessages } from '../app/lesson_locale_utils';
 import { useTheme } from './ThemeContext';
@@ -25,7 +24,6 @@ import { hapticTap } from '../hooks/use-haptics';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { emitAppEvent } from '../app/events';
 import { incrementEnergyZeroCount } from '../app/paywall_personalization';
-import PremiumGoldButton from './PremiumGoldButton';
 import {
   energyRefillShardCost,
   createEnergyRefillOperationId,
@@ -41,96 +39,16 @@ import {
 } from '../constants/shard_plurals';
 import { shouldRenderNoEnergyModal } from '../app/services/no_energy_modal_visibility';
 import { triLang, type Lang } from '../constants/i18n';
-import type { ThemeMode } from '../constants/theme';
 import { soundDirector } from '../modules/audio/sound_director';
 import { activityEnergyCost, ENERGY_SESSION_COST, type EnergyActivityKey } from '../app/energy_contract';
 import { energyGateMessage } from '../app/energy_activity_titles';
 import { formatTimeUntilRecovery } from '../app/energy_system';
 
-import { noAndroidOutline } from '../constants/androidGlow';
 import HybridAlertShell, { CascadeItem } from './modal_fx/HybridAlertShell';
-import DuoPressable from './DuoPressable';
-import PressableHybrid from './PressableHybrid';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { LUM } from '../constants/motionHybrid';
-type NoEnergyModalChrome = {
-  glow: string;
-  borderColor: string;
-  surfaceColors: [string, string, string];
-  cardGlowColors: [string, string, string];
-  titleColor: string;
-  subtitleColor: string;
-};
-
-export const NO_ENERGY_MODAL_CHROME: Record<ThemeMode, NoEnergyModalChrome> = {
-  dark: {
-    glow: '#F59E0B',
-    borderColor: 'rgba(245,158,11,0.34)',
-    surfaceColors: ['rgba(24,36,26,0.88)', 'rgba(10,22,14,0.92)', 'rgba(4,10,7,0.94)'],
-    cardGlowColors: ['rgba(245,158,11,0.24)', 'rgba(16,185,129,0.10)', 'transparent'],
-    titleColor: '#F4FFF7',
-    subtitleColor: '#63E894',
-  },
-  gold: {
-    glow: '#D6B35A',
-    borderColor: 'rgba(214,179,90,0.42)',
-    surfaceColors: ['rgba(38,31,18,0.90)', 'rgba(20,15,8,0.93)', 'rgba(8,6,3,0.95)'],
-    cardGlowColors: ['rgba(214,179,90,0.28)', 'rgba(120,82,24,0.14)', 'transparent'],
-    titleColor: '#FFF7DE',
-    subtitleColor: '#F4D986',
-  },
-  olive: { glow: '#C9A84C', borderColor: 'rgba(201,168,76,0.18)', surfaceColors: ['rgba(31,35,20,0.92)', 'rgba(13,15,11,0.94)', 'rgba(5,6,4,0.96)'], cardGlowColors: ['rgba(201,168,76,0.18)', 'rgba(142,170,114,0.07)', 'transparent'], titleColor: '#F4ECD8', subtitleColor: '#CFC5AB' },
-  midnight: {
-    glow: '#8FA0FF',
-    borderColor: 'rgba(143,160,255,0.34)',
-    surfaceColors: ['rgba(26,29,44,0.9)', 'rgba(13,14,22,0.94)', 'rgba(1,1,2,0.96)'],
-    cardGlowColors: ['rgba(91,124,255,0.22)', 'rgba(91,124,255,0.08)', 'transparent'],
-    titleColor: '#FFFFFF',
-    subtitleColor: '#A9AECB',
-  },
-  ember: {
-    glow: '#FFCC55',
-    borderColor: 'rgba(255,204,85,0.34)',
-    surfaceColors: ['rgba(35,26,18,0.9)', 'rgba(15,11,7,0.94)', 'rgba(1,1,2,0.96)'],
-    cardGlowColors: ['rgba(255,176,61,0.22)', 'rgba(255,176,61,0.08)', 'transparent'],
-    titleColor: '#FFFFFF',
-    subtitleColor: '#C9B4A4',
-  },
-  aurora: {
-    glow: '#3DE8A6',
-    borderColor: 'rgba(61,232,166,0.34)',
-    surfaceColors: ['rgba(21,33,27,0.9)', 'rgba(9,15,12,0.94)', 'rgba(1,1,2,0.96)'],
-    cardGlowColors: ['rgba(46,230,160,0.22)', 'rgba(46,230,160,0.08)', 'transparent'],
-    titleColor: '#FFFFFF',
-    subtitleColor: '#A7C0B5',
-  },
-  volt: {
-    glow: '#C6FF34',
-    borderColor: 'rgba(198,255,52,0.34)',
-    surfaceColors: ['rgba(28,32,16,0.9)', 'rgba(12,14,6,0.94)', 'rgba(1,1,2,0.96)'],
-    cardGlowColors: ['rgba(168,232,30,0.22)', 'rgba(168,232,30,0.08)', 'transparent'],
-    titleColor: '#FFFFFF',
-    subtitleColor: '#BFC6A3',
-  },
-  indigo: {
-    glow: '#C8C3FF',
-    borderColor: 'rgba(200,195,255,0.34)',
-    surfaceColors: ['rgba(28,27,46,0.90)', 'rgba(20,19,31,0.94)', 'rgba(1,1,2,0.96)'],
-    cardGlowColors: ['rgba(200,195,255,0.22)', 'rgba(200,195,255,0.08)', 'transparent'],
-    titleColor: '#F1EFFF',
-    subtitleColor: '#B7B3D9',
-  },
-  sagePorcelain: {
-    glow: 'rgba(49,95,80,0)',
-    borderColor: '#BDC8BD',
-    surfaceColors: ['#FCFDF9', '#F5F7F2', '#E7EAE3'],
-    cardGlowColors: ['rgba(49,95,80,0)', 'rgba(49,95,80,0)', 'rgba(49,95,80,0)'],
-    titleColor: '#17201D',
-    subtitleColor: '#52605A',
-  },
-};
-
-const HERO_ENERGY_ICON_CONTENT_OFFSET = { x: 4, y: 0 } as const;
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 
 
 interface Props {
@@ -176,12 +94,9 @@ function NoEnergyModal({
   motionVariant = 'classic',
 }: Props) {
   const router = useRouter();
-  const { theme: t, themeMode, f } = useTheme();
-  const art = NO_ENERGY_MODAL_CHROME[themeMode] ?? NO_ENERGY_MODAL_CHROME.dark;
-  const graphiteRadius = themeMode === 'indigo';
-  const modalRadius = graphiteRadius ? 8 : 22;
-  const buttonRadius = graphiteRadius ? 6 : 14;
-  const paywallCardBg = t.bgCard;
+  const { theme: t, themeMode, liquidGlassThemeId, f } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  const insets = useStableSafeAreaInsets();
   const {
     energy,
     bonusEnergy,
@@ -497,88 +412,167 @@ function NoEnergyModal({
     tr: 'Plus al',
     pl: 'Uzyskaj Plus',
   });
+  // зачем: Liquid Glass 1 в 1 с макета dialogs.html B5 — по центру круг с молнией, заголовок,
+  // одна строка про восстановление и в ряд «Позже» (контур) + «Получить Plus» (светлая кнопка).
+  // Поверхность — непрозрачный opaqueSheet с волосяной кромкой glassEdge из токенов темы; свои
+  // зелёные/золотые палитры по режимам убраны. Оффер энергии — НЕ награда: молния садится
+  // без отскока (LUM.settle), без CHK/RewardImpactRings.
+  const laterPress = () => {
+    if (onGotIt) {
+      onGotIt();
+      return;
+    }
+    (onBackHome ?? onClose)();
+  };
+  const cascade = (delay: number, key: string, node: React.ReactNode) =>
+    hybrid ? (
+      <CascadeItem key={key} delay={delay} reduceMotion={reduceMotion}>
+        {node}
+      </CascadeItem>
+    ) : (
+      <React.Fragment key={key}>{node}</React.Fragment>
+    );
 
-  // зачем: оффер энергии — НЕ награда (закон гибрида: удар/вес только у
-  // кульминации наград). Молния выходит из света и садится БЕЗ отскока
-  // (LUM.settle), без CHK/RewardImpactRings.
+  const shardLabel = enoughShards
+    ? triLang(lang, {
+        ru: `Восстановить за ${shardCost} ${ruKnowledgeShardsAccusativeAfterNumber(shardCost)}`,
+        uk: `Відновити за ${shardCost} ${ukKnowledgeShardsAccusativeAfterNumber(shardCost)}`,
+        en: `Refill for ${shardCost} pearls`,
+        es: `Recargar por ${shardCost} perlas`,
+        'pt-BR': `Recarregar por ${shardCost} pérolas`,
+        vi: `Hồi phục với ${shardCost} ngọc`,
+        id: `Isi ulang seharga ${shardCost} mutiara`,
+        tr: `${shardCost} inci karşılığında doldur`,
+        pl: `Odnów za ${shardCost} pereł`,
+      })
+    : triLang(lang, {
+        ru: `Не хватает ${shardCost - shardBalance} ${ruKnowledgeShardsGenitiveAfterNumber(shardCost - shardBalance)}`,
+        uk: `Не вистачає ${shardCost - shardBalance} ${ukKnowledgeShardsGenitiveAfterNumber(shardCost - shardBalance)}`,
+        en: `You need ${shardCost - shardBalance} more pearls`,
+        es: `Faltan ${shardCost - shardBalance} perlas`,
+        'pt-BR': `Faltam ${shardCost - shardBalance} pérolas`,
+        vi: `Thiếu ${shardCost - shardBalance} ngọc`,
+        id: `Kurang ${shardCost - shardBalance} mutiara`,
+        tr: `${shardCost - shardBalance} inci eksik`,
+        pl: `Brakuje ${shardCost - shardBalance} pereł`,
+      });
+
+  const boltIcon = (
+    <View style={[styles.boltCircle, { backgroundColor: glass.opaqueControl }]}>
+      <EnergyIcon
+        filled
+        themeColor={t.gold}
+        size={40}
+        animateChange={false}
+        shouldShake={false}
+        themeMode={themeMode}
+      />
+    </View>
+  );
+
+  const cardBody = (
+    <>
+      {cascade(
+        LUM.ladder[1],
+        'bolt',
+        hybrid ? (
+          boltIcon
+        ) : (
+          <Animated.View
+            style={{
+              transform: [
+                { scale: Animated.multiply(boltScale, haloPulse.interpolate({ inputRange: [0, 1], outputRange: [1, 1.08] })) },
+                { translateX: boltShake.interpolate({ inputRange: [-1, 1], outputRange: [-3, 3] }) },
+              ],
+            }}
+          >
+            {boltIcon}
+          </Animated.View>
+        ),
+      )}
+      {cascade(
+        LUM.ladder[2],
+        'title',
+        <Text accessibilityRole="header" style={[styles.title, { color: glass.text, fontSize: f.h2 }]}>
+          {titleText}
+        </Text>,
+      )}
+      {cascade(
+        LUM.ladder[2],
+        'body',
+        <Text style={[styles.body, { color: glass.secondary, fontSize: f.body, lineHeight: f.body * 1.45 }]}>
+          {showBody}
+        </Text>,
+      )}
+      {!hybrid && canBuyEnergy ? (
+        <TouchableOpacity
+          key="shards"
+          testID="no-energy-buy-with-shards"
+          accessibilityRole="button"
+          accessibilityLabel={shardLabel}
+          accessibilityState={{ disabled: refilling || !enoughShards, busy: refilling }}
+          disabled={refilling || !enoughShards}
+          onPress={() => {
+            hapticTap();
+            void buyEnergyWithShards();
+          }}
+          activeOpacity={0.76}
+          style={[
+            styles.action,
+            styles.shardAction,
+            { backgroundColor: glass.opaqueControl, opacity: enoughShards ? 1 : 0.55 },
+          ]}
+        >
+          <Text style={[styles.actionLabel, { color: glass.text, fontSize: f.body }]}>{shardLabel}</Text>
+        </TouchableOpacity>
+      ) : null}
+      {cascade(
+        LUM.ladder[3],
+        'actions',
+        <View style={styles.actions}>
+          <TouchableOpacity
+            testID={hybrid ? 'no-energy-modal-hybrid-later' : 'no-energy-modal-later'}
+            accessibilityRole="button"
+            accessibilityLabel={laterLabel}
+            onPress={() => {
+              hapticTap();
+              laterPress();
+            }}
+            activeOpacity={0.76}
+            style={[styles.action, { borderWidth: 1, borderColor: glass.glassEdge }]}
+          >
+            <Text style={[styles.actionLabel, { color: glass.text, fontSize: f.body }]}>{laterLabel}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            testID={hybrid ? 'no-energy-modal-hybrid-cta' : 'no-energy-modal-plus'}
+            accessibilityRole="button"
+            accessibilityLabel={goldCtaLabel}
+            onPress={() => {
+              hapticTap();
+              openPremiumAfterClose();
+            }}
+            activeOpacity={0.82}
+            style={[styles.action, { backgroundColor: glass.cta }]}
+          >
+            <Text style={[styles.actionLabel, { color: glass.ctaInk, fontSize: f.body }]}>{goldCtaLabel}</Text>
+          </TouchableOpacity>
+        </View>,
+      )}
+    </>
+  );
+
+  const cardSurface = { backgroundColor: glass.opaqueSheet, borderColor: glass.glassEdge };
+
   if (hybrid) {
     return (
       <HybridAlertShell
         visible={modalVisible}
         onRequestClose={onClose}
-        shadowColor={art.glow}
-        backdropColor="rgba(0,0,0,0.72)"
+        shadowColor="#000000"
+        backdropColor="rgba(0,0,0,0.6)"
         testID="no-energy-modal-hybrid-backdrop"
       >
-        <View style={[styles.hybridCard, { backgroundColor: paywallCardBg, borderRadius: modalRadius }]}>
-          <LinearGradient
-            colors={art.surfaceColors}
-            locations={[0, 0.5, 1]}
-            start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}
-            style={StyleSheet.absoluteFill}
-            pointerEvents="none"
-          />
-          <LinearGradient
-            colors={art.cardGlowColors}
-            start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}
-            style={styles.cardGlow}
-            pointerEvents="none"
-          />
-
-          <CascadeItem delay={LUM.ladder[1]} reduceMotion={reduceMotion}>
-            <View style={styles.boltIconHybrid}>
-              <EnergyIcon
-                filled
-                themeColor={t.gold}
-                size={64}
-                animateChange={false}
-                shouldShake={false}
-                themeMode={themeMode}
-              />
-            </View>
-          </CascadeItem>
-
-          <CascadeItem delay={LUM.ladder[2]} reduceMotion={reduceMotion}>
-            <Text style={[styles.title, { color: art.titleColor, fontSize: f.h2 }]}>{titleText}</Text>
-          </CascadeItem>
-          <CascadeItem delay={LUM.ladder[2]} reduceMotion={reduceMotion}>
-            <Text style={[styles.subtitle, { color: art.subtitleColor, fontSize: f.body }]}>{showBody}</Text>
-          </CascadeItem>
-
-          <CascadeItem delay={LUM.ladder[3]} reduceMotion={reduceMotion}>
-            <DuoPressable
-              testID="no-energy-modal-hybrid-cta"
-              onPress={openPremiumAfterClose}
-              edgeColor="#8A6B12"
-              edgeHeight={6}
-              gradientColors={['#5C4818', '#9A7B1A', '#D4AF37', '#F0D060', '#D4AF37', '#8A6B12']}
-              style={styles.hybridCtaFace}
-              wrapStyle={styles.hybridCtaWrap}
-            >
-              <Ionicons name="sparkles" size={16} color="#1a1206" />
-              <Text style={styles.hybridCtaText}>{goldCtaLabel}</Text>
-              <Ionicons name="sparkles" size={16} color="#1a1206" />
-            </DuoPressable>
-          </CascadeItem>
-
-          <CascadeItem delay={LUM.ladder[4]} reduceMotion={reduceMotion}>
-            <PressableHybrid
-              testID="no-energy-modal-hybrid-later"
-              variant="secondary"
-              onPress={() => {
-                if (onGotIt) {
-                  onGotIt();
-                  return;
-                }
-                (onBackHome ?? onClose)();
-              }}
-              style={styles.hybridLaterBtn}
-              contentStyle={{ alignItems: 'center', justifyContent: 'center' }}
-            >
-              <Text style={{ fontSize: f.body, color: t.textMuted }}>{laterLabel}</Text>
-            </PressableHybrid>
-          </CascadeItem>
-        </View>
+        <View style={[styles.card, styles.hybridCard, cardSurface]}>{cardBody}</View>
       </HybridAlertShell>
     );
   }
@@ -591,202 +585,44 @@ function NoEnergyModal({
       onDismiss={handleModalDismissIos}
       onRequestClose={onClose}
     >
-      <View style={[styles.overlay, { backgroundColor: 'rgba(0,0,0,0.72)' }]}>
-        {/* Цветной радиальный отблеск над затемнением */}
-        <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-          <LinearGradient
-            colors={[art.glow + '22', 'transparent']}
-            start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 0.6 }}
-            style={StyleSheet.absoluteFill}
-          />
-        </View>
-
+      <View
+        style={[
+          styles.overlay,
+          {
+            backgroundColor: 'rgba(0,0,0,0.6)',
+            paddingTop: Math.max(24, insets.top),
+            paddingBottom: Math.max(24, insets.bottom),
+            paddingLeft: Math.max(24, insets.left),
+            paddingRight: Math.max(24, insets.right),
+          },
+        ]}
+      >
         {/* Тап по фону закрывает модалку */}
         <Pressable
+          accessible={false}
           style={StyleSheet.absoluteFill}
           onPress={() => {
             hapticTap();
             onClose();
           }}
         />
-
         <Animated.View
+          accessibilityViewIsModal
           style={[
             styles.card,
-            {
-              backgroundColor: paywallCardBg,
-              opacity: cardOp,
-              transform: [{ scale: cardScale }],
-              shadowColor: art.glow,
-              shadowOpacity: 0.45,
-              shadowRadius: 24,
-              borderColor: art.borderColor,
-              borderRadius: modalRadius,
-            },
+            styles.classicCard,
+            cardSurface,
+            { opacity: cardOp, transform: [{ scale: cardScale }] },
           ]}
         >
-          <LinearGradient
-            colors={art.surfaceColors}
-            locations={[0, 0.5, 1]}
-            start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}
-            style={StyleSheet.absoluteFill}
-            pointerEvents="none"
-          />
-          {/* Внутренний градиент сверху карточки */}
-          <LinearGradient
-            colors={art.cardGlowColors}
-            start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }}
-            style={styles.cardGlow}
-            pointerEvents="none"
-          />
-          {/* Hero icon: молния с pulse-масштабом */}
-          <Animated.View
-            style={[
-              styles.boltIcon,
-              {
-                transform: [
-                  { scale: Animated.multiply(boltScale, haloPulse.interpolate({ inputRange: [0, 1], outputRange: [1, 1.12] })) },
-                  { translateX: boltShake.interpolate({ inputRange: [-1, 1], outputRange: [-3, 3] }) },
-                ],
-              },
-            ]}
+          <ScrollView
+            style={styles.scroll}
+            contentContainerStyle={styles.scrollContent}
+            showsVerticalScrollIndicator={false}
+            bounces={false}
           >
-            <View
-              style={[
-                styles.energyHeroIconContent,
-                {
-                  transform: [
-                    { translateX: HERO_ENERGY_ICON_CONTENT_OFFSET.x },
-                    { translateY: HERO_ENERGY_ICON_CONTENT_OFFSET.y },
-                  ],
-                },
-              ]}
-            >
-              <EnergyIcon
-                filled
-                themeColor={t.gold}
-                size={64}
-                animateChange={false}
-                shouldShake={false}
-                themeMode={themeMode}
-              />
-            </View>
-          </Animated.View>
-
-          <Text style={[styles.title, { color: art.titleColor, fontSize: f.h2 }]}>
-            {isGate
-              ? triLang(lang, {
-                  ru: 'Недостаточно энергии',
-                  uk: 'Недостатньо енергії',
-                  en: 'Not enough energy',
-                  es: 'No tienes suficiente energía',
-                  'pt-BR': 'Energia insuficiente',
-                  vi: 'Không đủ năng lượng',
-                  id: 'Energi tidak cukup',
-                  tr: 'Yeterli enerji yok',
-                  pl: 'Za mało energii',
-                })
-              : triLang(lang, {
-                  ru: 'Энергия закончилась',
-                  uk: 'Енергія закінчилась',
-                  en: 'Out of energy',
-                  es: 'Se acabó la energía',
-                  'pt-BR': 'A energia acabou',
-                  vi: 'Hết năng lượng',
-                  id: 'Energi habis',
-                  tr: 'Enerji bitti',
-                  pl: 'Energia się skończyła',
-                })}
-          </Text>
-          <Text style={[styles.subtitle, { color: art.subtitleColor, fontSize: f.body }]}>
-            {showBody}
-          </Text>
-          <PremiumGoldButton
-            active={modalVisible}
-            f={f}
-            paywallContext={paywallContext}
-            paywallSource="no_energy_modal"
-            onPress={openPremiumAfterClose}
-            shellStyle={{ marginTop: 4 }}
-          />
-          {canBuyEnergy ? (
-            <TouchableOpacity
-              testID="no-energy-buy-with-shards"
-              accessibilityRole="button"
-              accessibilityState={{ disabled: refilling || !enoughShards, busy: refilling }}
-              disabled={refilling || !enoughShards}
-              onPress={() => {
-                hapticTap();
-                void buyEnergyWithShards();
-              }}
-              activeOpacity={0.7}
-              style={{
-                marginTop: 8,
-                minHeight: 52,
-                borderRadius: buttonRadius,
-                alignItems: 'center',
-                justifyContent: 'center',
-                paddingHorizontal: 16,
-                // Тоном, не обводкой (правило владельца): поверхность на ступень
-                // тише золотой кнопки Плюса — второе по важности действие.
-                backgroundColor: t.bgSurface2,
-                opacity: enoughShards ? 1 : 0.55,
-              }}
-            >
-              <Text style={{ fontSize: f.body, fontWeight: '700', color: t.textPrimary }}>
-                {enoughShards
-                  ? triLang(lang, {
-                      ru: `Восстановить за ${shardCost} ${ruKnowledgeShardsAccusativeAfterNumber(shardCost)}`,
-                      uk: `Відновити за ${shardCost} ${ukKnowledgeShardsAccusativeAfterNumber(shardCost)}`,
-                      en: `Refill for ${shardCost} pearls`,
-                      es: `Recargar por ${shardCost} perlas`,
-                      'pt-BR': `Recarregar por ${shardCost} pérolas`,
-                      vi: `Hồi phục với ${shardCost} ngọc`,
-                      id: `Isi ulang seharga ${shardCost} mutiara`,
-                      tr: `${shardCost} inci karşılığında doldur`,
-                      pl: `Odnów za ${shardCost} pereł`,
-                    })
-                  : triLang(lang, {
-                      ru: `Не хватает ${shardCost - shardBalance} ${ruKnowledgeShardsGenitiveAfterNumber(shardCost - shardBalance)}`,
-                      uk: `Не вистачає ${shardCost - shardBalance} ${ukKnowledgeShardsGenitiveAfterNumber(shardCost - shardBalance)}`,
-                      en: `You need ${shardCost - shardBalance} more pearls`,
-                      es: `Faltan ${shardCost - shardBalance} perlas`,
-                      'pt-BR': `Faltam ${shardCost - shardBalance} pérolas`,
-                      vi: `Thiếu ${shardCost - shardBalance} ngọc`,
-                      id: `Kurang ${shardCost - shardBalance} mutiara`,
-                      tr: `${shardCost - shardBalance} inci eksik`,
-                      pl: `Brakuje ${shardCost - shardBalance} pereł`,
-                    })}
-              </Text>
-            </TouchableOpacity>
-          ) : null}
-          <TouchableOpacity
-            accessibilityRole="button"
-            onPress={() => {
-              hapticTap();
-              if (onGotIt) {
-                onGotIt();
-                return;
-              }
-              (onBackHome ?? onClose)();
-            }}
-            activeOpacity={0.7}
-            style={{ paddingVertical: 10, alignItems: 'center', marginTop: 4 }}
-          >
-            <Text style={{ fontSize: f.body, color: t.textMuted }}>
-              {triLang(lang, {
-                ru: 'Позже',
-                uk: 'Пізніше',
-                en: 'Later',
-                es: 'Más tarde',
-                'pt-BR': 'Mais tarde',
-                vi: 'Để sau',
-                id: 'Nanti',
-                tr: 'Daha sonra',
-                pl: 'Później',
-              })}
-            </Text>
-          </TouchableOpacity>
+            {cardBody}
+          </ScrollView>
         </Animated.View>
       </View>
     </Modal>
@@ -800,96 +636,56 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 28,
   },
   card: {
-    alignSelf: 'center',
-    borderRadius: 22,
-    borderWidth: 0,
-    borderColor: 'rgba(245,158,11,0.34)',
-    paddingVertical: 26,
-    paddingHorizontal: 24,
     width: '100%',
-    maxWidth: 360,
+    maxWidth: 400,
+    alignSelf: 'center',
+    borderRadius: 26,
+    borderWidth: 1,
+  },
+  classicCard: {
+    maxHeight: '100%',
+    shadowColor: '#000000',
+    shadowOpacity: 0.35,
+    shadowRadius: 24,
+    shadowOffset: { width: 0, height: 8 },
+    elevation: 12,
+  },
+  hybridCard: {
+    paddingTop: 24,
+    paddingHorizontal: 22,
+    paddingBottom: 22,
     alignItems: 'center',
     gap: 14,
-    shadowOffset: { width: 0, height: 8 },
-    ...noAndroidOutline,
-    overflow: 'hidden',
   },
-  cardGlow: {
-    position: 'absolute',
-    top: 0, left: 0, right: 0,
-    height: 220,
-  },
-  boltIcon: {
-    width: 68,
-    height: 68,
+  scroll: { flexShrink: 1, minHeight: 0, borderRadius: 26 },
+  scrollContent: {
+    paddingTop: 24,
+    paddingHorizontal: 22,
+    paddingBottom: 22,
     alignItems: 'center',
-    justifyContent: 'center',
+    gap: 14,
   },
-  energyHeroIconContent: {
-    width: 64,
-    height: 64,
+  boltCircle: {
+    width: 72,
+    height: 72,
+    borderRadius: 36,
     alignItems: 'center',
     justifyContent: 'center',
   },
   title: { fontWeight: '700', textAlign: 'center' },
-  subtitle: { textAlign: 'center', lineHeight: 22 },
-  closeBtnWrap: {
-    alignSelf: 'stretch',
-    width: '100%',
-    marginTop: 4,
-    borderRadius: 14,
-    overflow: 'hidden',
-  },
-  closeBtn: {
-    paddingVertical: 14,
-    paddingHorizontal: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-    minHeight: 50,
-  },
-  closeBtnText: { fontWeight: '700' },
-  hybridCard: {
-    width: '100%',
-    paddingVertical: 26,
-    paddingHorizontal: 24,
-    alignItems: 'center',
-    gap: 14,
-    overflow: 'hidden',
-  },
-  boltIconHybrid: {
-    width: 68,
-    height: 68,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  hybridCtaWrap: {
-    marginTop: 4,
-    borderRadius: 14,
-    overflow: 'hidden',
-  },
-  hybridCtaFace: {
-    minHeight: 50,
-    borderRadius: 14,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 6,
-    paddingVertical: 14,
-    paddingHorizontal: 16,
-  },
-  hybridCtaText: {
+  body: { textAlign: 'center' },
+  actions: { alignSelf: 'stretch', flexDirection: 'row', gap: 10, marginTop: 8 },
+  action: {
     flex: 1,
-    textAlign: 'center',
-    fontWeight: '700',
-    color: '#1a1206',
-    letterSpacing: 0.5,
-  },
-  hybridLaterBtn: {
-    paddingVertical: 10,
+    minHeight: 48,
+    borderRadius: 24,
+    paddingHorizontal: 12,
+    paddingVertical: 12,
     alignItems: 'center',
-    marginTop: 4,
+    justifyContent: 'center',
   },
+  shardAction: { flex: 0, alignSelf: 'stretch' },
+  actionLabel: { fontWeight: '700', textAlign: 'center' },
 });

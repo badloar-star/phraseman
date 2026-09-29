@@ -9,7 +9,7 @@
  * Исходники турниров сохранены отдельно и не участвуют в этой модели.
  * 2026-09-24, PhraseMan 2.0 (решение владельца D39): таббар
  * «Главная · Обучение · Видео · Сообщество · Настройки». Арена ушла из таббара
- * (консервация, PM-036), Друзья и Лига живут внутри «Сообщества». Внутри
+ * (консервация, PM-036), Друзья живут внутри «Сообщества». Внутри
  * «Сообщества» у разделов свои runtime-владельцы (SUB_RUNTIME_OWNER_IDS), чтобы
  * экран Друзей по-прежнему узнавал себя по runtimeOwnerId === 'friends'.
  * 2026-08-08: таб «Все уроки» возвращён вторым. При этом плитка на главной
@@ -30,7 +30,9 @@ export type PhysicalPageId = (typeof PHYSICAL_PAGE_IDS)[number];
 export type LogicalTabIndex = 0 | 1 | 2 | 3 | 4;
 export type PhysicalPageIndex = 0 | 1 | 2 | 3 | 4;
 /** Разделы внутри вкладки «Сообщество»: владелец выдаётся только видимому разделу. */
-export const SUB_RUNTIME_OWNER_IDS = ['league', 'friends', 'packs'] as const;
+// зачем 'spire': третий раздел «Шпиль» (за замком app/spire_tab_flag.ts) получает собственного
+// владельца, чтобы его таймеры/анимации крутились только пока раздел виден.
+export const SUB_RUNTIME_OWNER_IDS = ['friends', 'spire', 'packs'] as const;
 export type SubRuntimeOwnerId = (typeof SUB_RUNTIME_OWNER_IDS)[number];
 /**
  * Арена законсервирована (PM-036) и ушла из таббара: её экран остался в дереве

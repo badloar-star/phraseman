@@ -1,0 +1,28 @@
+// ═══════════════════════════════════════════════════════════════════════════
+// SpireLockedState.tsx — «Шпиль откроется чуть позже» (второй замок, пакет A).
+//
+// зачем: пока config/spire_v1.enabled выключен, экран не показывает ничего живого и
+// не зовёт сервер. Состояние из брифа (spire_migration_paused): одна честная фраза.
+// ═══════════════════════════════════════════════════════════════════════════
+import React, { memo } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import type { Lang } from '../../constants/i18n';
+import { V2, V2_TYPE } from '../../constants/v2Style';
+import { useV2Palette } from '../v2/useV2Palette';
+import { spireText } from './spire_strings';
+
+function SpireLockedState({ lang }: Readonly<{ lang: Lang }>) {
+  const p = useV2Palette();
+  return (
+    <View style={s.root} testID="spire-locked" accessible accessibilityRole="text" accessibilityLabel={spireText(lang, 'lockedTitle')}>
+      <Text style={[s.title, { color: p.text }]}>{spireText(lang, 'lockedTitle')}</Text>
+    </View>
+  );
+}
+
+const s = StyleSheet.create({
+  root: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: V2.screenPad * 2 },
+  title: { ...V2_TYPE.title, textAlign: 'center' },
+});
+
+export default memo(SpireLockedState);

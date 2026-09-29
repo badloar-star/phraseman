@@ -1,6 +1,7 @@
 # Task packet: ночной перенос дизайна PhraseMan 2.0 Liquid Glass (Настройки, Шпиль, Paywall A/D, таббар)
 
 Governance-ID: TG-127D4157DE37
+Governance-ID: TG-A90889E38080
 Governance-ID: TG-F5DE94AC2969
 Governance-ID: TG-C6147C69A381
 Governance-ID: TG-B7F5AE4FF733

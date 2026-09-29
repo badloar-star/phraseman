@@ -4,6 +4,7 @@ import {
   logicalTabToPhysicalPage,
   physicalPageToLogicalTab,
   physicalPageToRuntimeOwner,
+  SUB_RUNTIME_OWNER_IDS,
 } from '../app/tab_page_model';
 
 describe('Tab page model', () => {
@@ -38,5 +39,11 @@ describe('Tab page model', () => {
     expect(() => logicalTabToPhysicalPage(5)).toThrow(RangeError);
     expect(() => physicalPageToLogicalTab(-1)).toThrow(RangeError);
     expect(() => physicalPageToRuntimeOwner(5)).toThrow(RangeError);
+  });
+
+  // зачем: «Шпиль» (за замком app/spire_tab_flag.ts) — третий раздел «Сообщества» со своим
+  // runtime-владельцем; порядок совпадает с сегментами «Друзья / Шпиль / Наборы».
+  test('lists spire as a community sub-runtime owner between friends and packs', () => {
+    expect(SUB_RUNTIME_OWNER_IDS).toEqual(['friends', 'spire', 'packs']);
   });
 });

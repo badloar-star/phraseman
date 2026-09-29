@@ -12,13 +12,14 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { LinearGradient } from './SafeLinearGradient';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useMessageReceivedCue } from '../hooks/use-message-received-cue';
 import { useIsFocused } from '@react-navigation/native';
 import { useLang } from './LangContext';
 import { usePremium } from './PremiumContext';
 import { useTheme } from './ThemeContext';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import MotionModal from './MotionModal';
 import { hapticTap } from '../hooks/use-haptics';
 import { triLang, type Lang } from '../constants/i18n';
@@ -106,18 +107,6 @@ function inboxText(lang: Lang) {
   };
 }
 
-// hex (#RRGGBB) → rgba(...) с заданной непрозрачностью. Нужен для деликатного
-// оттенка темы поверх фона панели (мягкий «налёт» цвета, не яркая заливка).
-function hexToRgba(hex: string, alpha: number): string {
-  const clean = hex.replace('#', '');
-  if (clean.length !== 6) return `rgba(0,0,0,${alpha})`;
-  const r = parseInt(clean.slice(0, 2), 16);
-  const g = parseInt(clean.slice(2, 4), 16);
-  const b = parseInt(clean.slice(4, 6), 16);
-  if (Number.isNaN(r) || Number.isNaN(g) || Number.isNaN(b)) return `rgba(0,0,0,${alpha})`;
-  return `rgba(${r},${g},${b},${alpha})`;
-}
-
 function formatMessageDate(createdAtMs: number): string {
   if (!createdAtMs) return '';
   const d = new Date(createdAtMs);
@@ -149,7 +138,11 @@ function AppMessagesInbox({
   const runtimeActive = ownerActive ?? isScreenFocused;
   const { lang } = useLang();
   const { hasPremiumAccess } = usePremium();
-  const { f, isDark, themeMode, theme } = useTheme();
+  // зачем: шторка сообщений (макет system.html SYS-10) — Liquid Glass 13 тем; все поверхности
+  // из токенов активной темы, зелёный бренд и цветные рамки убраны.
+  const { f, theme, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  const insets = useStableSafeAreaInsets();
   const copy = inboxText(lang);
   const [messages, setMessages] = useState<AppMessageWithState[]>([]);
   const [unreadCount, setUnreadCount] = useState(0);
@@ -635,49 +628,28 @@ function AppMessagesInbox({
     }
   };
 
-  const chrome = isDark
-    ? {
-      bg: '#111820',
-      panel: '#17202A',
-      card: '#202934',
-      cardStrong: '#263241',
-      readCard: '#1B232D',
-      border: 'rgba(255,255,255,0.10)',
-      text: '#F7F8FB',
-      muted: '#AAB3C2',
-      soft: '#7C8798',
-      panelGradient: ['#1A2430', '#101820'] as const,
-    }
-    : {
-      bg: '#F7F8FB',
-      panel: '#FFFFFF',
-      card: '#F1F4F8',
-      cardStrong: '#E8EDF4',
-      readCard: '#F8FAFC',
-      border: 'rgba(32,37,46,0.12)',
-      text: '#20252E',
-      muted: '#657084',
-      soft: '#8791A2',
-      panelGradient: ['#FFFFFF', '#F4F6FA'] as const,
-    };
-  const vipSurveyAccent = '#64748B';
-  const vipSurveyAccentText = '#FFFFFF';
-  const vipSurveyTint = 'rgba(100,116,139,0.10)';
-  const vipSurveyBorder = 'rgba(100,116,139,0.32)';
-  // Цвет колокольчика — акцент активной темы (золото/коралл/синий и т.д.), как и
-  // прежние раскрашенные иконки. fallback на vipSurveyAccent, если темы вдруг нет.
-  const bellColor = theme?.accent ?? vipSurveyAccent;
-
-  // Деликатный градиент-оттенок под цвет активной темы. Это НЕ заливка фона —
-  // тонкий полупрозрачный слой акцента в верхнем углу панели поверх основного
-  // фона. Низкая непрозрачность специально: фон остаётся фоном и не перетягивает
-  // внимание с самих сообщений. Diagonal — от верхнего левого угла к прозрачному низу.
-  const themeAccent = theme?.accent ?? vipSurveyAccent;
-  const accentTintColors = [
-    hexToRgba(themeAccent, isDark ? 0.16 : 0.12),
-    hexToRgba(themeAccent, isDark ? 0.05 : 0.04),
-    'rgba(0,0,0,0)',
-  ] as const;
+  // Нейтральная палитра окна: строки — тонкий тон поверх непрозрачной основы, без рамок.
+  const chrome = {
+    bg: glass.bg,
+    panel: glass.opaqueSheet,
+    card: glass.selected,
+    cardStrong: glass.selected,
+    readCard: 'transparent',
+    border: glass.line,
+    text: glass.text,
+    muted: glass.secondary,
+    soft: glass.mutedText,
+  };
+  const vipSurveyAccent = glass.cta;
+  const vipSurveyAccentText = glass.ctaInk;
+  const vipSurveyTint = glass.selected;
+  const vipSurveyBorder = glass.line;
+  // Награда (монеты) и «получено» — цвета темы приложения, как и раньше «награда».
+  const rewardColor = theme?.gold ?? glass.text;
+  const successColor = theme?.correct ?? glass.text;
+  // Ошибка/«не нравится» остаётся красной.
+  const dangerColor = theme?.wrong ?? 'red';
+  const bellColor = theme?.accent ?? glass.cta;
 
   const renderEmbeddedSection = () => {
     if (!centerVisible) return null;
@@ -778,7 +750,7 @@ function AppMessagesInbox({
               onPress={undoDismissMessage}
               style={styles.undoButton}
             >
-              <Text style={[styles.undoButtonText, { color: themeAccent }]}>{copy.undo}</Text>
+              <Text style={[styles.undoButtonText, { color: glass.text }]}>{copy.undo}</Text>
             </TouchableOpacity>
           </View>
         ) : null}
@@ -809,7 +781,9 @@ function AppMessagesInbox({
 
       {messages.length === 0 ? (
         <View style={styles.emptyState}>
-          <Ionicons name="mail-open-outline" size={34} color={chrome.soft} />
+          <View accessible={false} style={[styles.emptyTile, { backgroundColor: glass.opaqueControl }]}>
+            <Ionicons name="mail-open-outline" size={26} color={glass.lightTint} />
+          </View>
           <Text style={[styles.emptyTitle, { color: chrome.text }]}>{copy.emptyTitle}</Text>
           <Text style={[styles.emptyBody, { color: chrome.muted }]}>{copy.emptyBody}</Text>
         </View>
@@ -854,19 +828,19 @@ function AppMessagesInbox({
                     </View>
                   ) : message.kind === 'report_reply' ? (
                     <>
-                      <View style={[styles.pollBadge, { borderColor: chrome.border }]}>
+                      <View style={[styles.pollBadge, { backgroundColor: chrome.card }]}>
                         <Ionicons name="chatbox-ellipses-outline" size={11} color={chrome.soft} />
                         <Text style={[styles.pollBadgeText, { color: chrome.soft }]}>{copy.reportReply}</Text>
                       </View>
                       {(message.reportReply?.coins ?? 0) > 0 && !message.reportReply?.claimed ? (
-                        <View style={[styles.pollBadge, { borderColor: 'rgba(99,217,143,0.5)', backgroundColor: 'rgba(99,217,143,0.10)' }]}>
-                          <Ionicons name="diamond-outline" size={11} color={'#63D98F'} />
-                          <Text style={[styles.pollBadgeText, { color: '#63D98F' }]}>+{message.reportReply?.coins}</Text>
+                        <View style={[styles.pollBadge, { backgroundColor: chrome.card }]}>
+                          <Ionicons name="diamond-outline" size={11} color={rewardColor} />
+                          <Text style={[styles.pollBadgeText, { color: rewardColor }]}>+{message.reportReply?.coins}</Text>
                         </View>
                       ) : null}
                     </>
                   ) : message.poll ? (
-                    <View style={[styles.pollBadge, { borderColor: chrome.border }]}>
+                    <View style={[styles.pollBadge, { backgroundColor: chrome.card }]}>
                       <Ionicons name="stats-chart-outline" size={11} color={chrome.soft} />
                       <Text style={[styles.pollBadgeText, { color: chrome.soft }]}>{copy.poll}</Text>
                     </View>
@@ -910,8 +884,8 @@ function AppMessagesInbox({
     return (
       <View style={[styles.pollCard, { backgroundColor: chrome.card, borderColor: chrome.border }]}>
         <View style={styles.pollHeader}>
-          <View style={[styles.pollHeaderIcon, { backgroundColor: isDark ? '#263447' : '#E7EEF8' }]}>
-            <Ionicons name="stats-chart" size={15} color={isDark ? '#93C5FD' : '#2563EB'} />
+          <View style={[styles.pollHeaderIcon, { backgroundColor: glass.opaqueControl }]}>
+            <Ionicons name="stats-chart" size={15} color={glass.lightTint} />
           </View>
           <View style={styles.pollHeaderText}>
             <Text style={[styles.pollLabel, { color: chrome.soft }]}>{copy.poll}</Text>
@@ -923,8 +897,8 @@ function AppMessagesInbox({
             const selectedOption = message.pollOptionId === option.id;
             const count = Math.max(0, poll.counts[option.id] || 0);
             const pct = totalVotes > 0 ? Math.round((count / totalVotes) * 100) : 0;
-            const optionColor = selectedOption ? '#63D98F' : chrome.text;
-            const accent = selectedOption ? '#63D98F' : chrome.soft;
+            const optionColor = chrome.text;
+            const accent = selectedOption ? glass.text : chrome.soft;
             return (
               <TouchableOpacity
                 key={option.id}
@@ -933,8 +907,8 @@ function AppMessagesInbox({
                 style={[
                   styles.pollOption,
                   {
-                    borderColor: selectedOption ? '#63D98F' : chrome.border,
-                    backgroundColor: selectedOption ? 'rgba(99,217,143,0.12)' : (isDark ? '#17202A' : '#FFFFFF'),
+                    borderColor: selectedOption ? glass.cta : chrome.border,
+                    backgroundColor: selectedOption ? glass.selected : glass.opaqueSheet,
                   },
                 ]}
               >
@@ -954,8 +928,8 @@ function AppMessagesInbox({
                   ) : null}
                 </View>
                 {showResults ? (
-                  <View style={[styles.pollTrack, { backgroundColor: isDark ? '#0F1720' : '#E8EEF6' }]}>
-                    <View style={[styles.pollFill, { width: `${pct}%`, backgroundColor: selectedOption ? '#63D98F' : '#93A4B8' }]} />
+                  <View style={[styles.pollTrack, { backgroundColor: glass.line }]}>
+                    <View style={[styles.pollFill, { width: `${pct}%`, backgroundColor: selectedOption ? glass.cta : glass.mutedText }]} />
                   </View>
                 ) : null}
               </TouchableOpacity>
@@ -977,10 +951,10 @@ function AppMessagesInbox({
     const reward = message.reportReply;
     if (!reward || reward.coins <= 0) return null;
     return (
-      <View style={[styles.vipSurveyCard, { backgroundColor: isDark ? '#182131' : '#F8FAFC', borderColor: 'rgba(99,217,143,0.30)' }]}>
+      <View style={[styles.vipSurveyCard, { backgroundColor: chrome.card }]}>
         <View style={styles.vipSurveyCardTop}>
-          <View style={[styles.vipSurveyIcon, { backgroundColor: 'rgba(99,217,143,0.14)' }]}>
-            <Ionicons name={reward.claimed ? 'checkmark-circle' : 'diamond'} size={18} color={'#63D98F'} />
+          <View style={[styles.vipSurveyIcon, { backgroundColor: glass.opaqueControl }]}>
+            <Ionicons name={reward.claimed ? 'checkmark-circle' : 'diamond'} size={18} color={reward.claimed ? successColor : rewardColor} />
           </View>
           <View style={styles.vipSurveyTextWrap}>
             <Text style={[styles.vipSurveyTitle, { color: chrome.text }]}>
@@ -995,10 +969,10 @@ function AppMessagesInbox({
             accessibilityRole="button"
             accessibilityLabel={copy.claim}
             onPress={() => { void claimReportReward(message); }}
-            style={[styles.vipSurveyButton, { backgroundColor: '#63D98F' }]}
+            style={[styles.vipSurveyButton, { backgroundColor: glass.cta }]}
           >
-            <Ionicons name="gift-outline" size={17} color="#07110A" />
-            <Text style={[styles.vipSurveyButtonText, { color: '#07110A' }]}>{copy.claim}</Text>
+            <Ionicons name="gift-outline" size={17} color={glass.ctaInk} />
+            <Text style={[styles.vipSurveyButtonText, { color: glass.ctaInk }]}>{copy.claim}</Text>
           </TouchableOpacity>
         ) : null}
       </View>
@@ -1008,7 +982,7 @@ function AppMessagesInbox({
   const renderVipSurveyCta = (message: AppMessageWithState) => {
     if (message.kind !== 'vip_survey') return null;
     return (
-      <View style={[styles.vipSurveyCard, { backgroundColor: isDark ? '#182131' : '#F8FAFC', borderColor: 'rgba(100,116,139,0.26)' }]}>
+      <View style={[styles.vipSurveyCard, { backgroundColor: chrome.card }]}>
         <View style={styles.vipSurveyCardTop}>
           <View style={[styles.vipSurveyIcon, { backgroundColor: vipSurveyTint }]}>
             <Ionicons name="sparkles" size={18} color={vipSurveyAccent} />
@@ -1068,13 +1042,13 @@ function AppMessagesInbox({
               style={[
                 styles.reactionButton,
                 {
-                  borderColor: selected.reaction === 'like' ? '#63D98F' : chrome.border,
-                  backgroundColor: selected.reaction === 'like' ? 'rgba(99,217,143,0.14)' : chrome.card,
+                  borderColor: selected.reaction === 'like' ? glass.cta : chrome.border,
+                  backgroundColor: selected.reaction === 'like' ? glass.opaqueControl : chrome.card,
                 },
               ]}
             >
-              <Ionicons name={selected.reaction === 'like' ? 'thumbs-up' : 'thumbs-up-outline'} size={18} color={selected.reaction === 'like' ? '#63D98F' : chrome.muted} />
-              <Text style={[styles.reactionText, { color: selected.reaction === 'like' ? '#63D98F' : chrome.muted }]}>{copy.like}</Text>
+              <Ionicons name={selected.reaction === 'like' ? 'thumbs-up' : 'thumbs-up-outline'} size={18} color={selected.reaction === 'like' ? glass.text : chrome.muted} />
+              <Text style={[styles.reactionText, { color: selected.reaction === 'like' ? glass.text : chrome.muted }]}>{copy.like}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.82}
@@ -1082,13 +1056,13 @@ function AppMessagesInbox({
               style={[
                 styles.reactionButton,
                 {
-                  borderColor: selected.reaction === 'dislike' ? '#F87171' : chrome.border,
-                  backgroundColor: selected.reaction === 'dislike' ? 'rgba(248,113,113,0.14)' : chrome.card,
+                  borderColor: selected.reaction === 'dislike' ? dangerColor : chrome.border,
+                  backgroundColor: selected.reaction === 'dislike' ? glass.opaqueControl : chrome.card,
                 },
               ]}
             >
-              <Ionicons name={selected.reaction === 'dislike' ? 'thumbs-down' : 'thumbs-down-outline'} size={18} color={selected.reaction === 'dislike' ? '#F87171' : chrome.muted} />
-              <Text style={[styles.reactionText, { color: selected.reaction === 'dislike' ? '#F87171' : chrome.muted }]}>{copy.dislike}</Text>
+              <Ionicons name={selected.reaction === 'dislike' ? 'thumbs-down' : 'thumbs-down-outline'} size={18} color={selected.reaction === 'dislike' ? dangerColor : chrome.muted} />
+              <Text style={[styles.reactionText, { color: selected.reaction === 'dislike' ? dangerColor : chrome.muted }]}>{copy.dislike}</Text>
             </TouchableOpacity>
           </View>}
         </ScrollView>
@@ -1132,13 +1106,13 @@ function AppMessagesInbox({
                 style={[
                   styles.reactionButton,
                   {
-                    borderColor: selected.reaction === 'like' ? '#63D98F' : chrome.border,
-                    backgroundColor: selected.reaction === 'like' ? 'rgba(99,217,143,0.14)' : chrome.card,
+                    borderColor: selected.reaction === 'like' ? glass.cta : chrome.border,
+                    backgroundColor: selected.reaction === 'like' ? glass.opaqueControl : chrome.card,
                   },
                 ]}
               >
-                <Ionicons name={selected.reaction === 'like' ? 'thumbs-up' : 'thumbs-up-outline'} size={18} color={selected.reaction === 'like' ? '#63D98F' : chrome.muted} />
-                <Text style={[styles.reactionText, { color: selected.reaction === 'like' ? '#63D98F' : chrome.muted }]}>{copy.like}</Text>
+                <Ionicons name={selected.reaction === 'like' ? 'thumbs-up' : 'thumbs-up-outline'} size={18} color={selected.reaction === 'like' ? glass.text : chrome.muted} />
+                <Text style={[styles.reactionText, { color: selected.reaction === 'like' ? glass.text : chrome.muted }]}>{copy.like}</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 activeOpacity={0.82}
@@ -1146,13 +1120,13 @@ function AppMessagesInbox({
                 style={[
                   styles.reactionButton,
                   {
-                    borderColor: selected.reaction === 'dislike' ? '#F87171' : chrome.border,
-                    backgroundColor: selected.reaction === 'dislike' ? 'rgba(248,113,113,0.14)' : chrome.card,
+                    borderColor: selected.reaction === 'dislike' ? dangerColor : chrome.border,
+                    backgroundColor: selected.reaction === 'dislike' ? glass.opaqueControl : chrome.card,
                   },
                 ]}
               >
-                <Ionicons name={selected.reaction === 'dislike' ? 'thumbs-down' : 'thumbs-down-outline'} size={18} color={selected.reaction === 'dislike' ? '#F87171' : chrome.muted} />
-                <Text style={[styles.reactionText, { color: selected.reaction === 'dislike' ? '#F87171' : chrome.muted }]}>{copy.dislike}</Text>
+                <Ionicons name={selected.reaction === 'dislike' ? 'thumbs-down' : 'thumbs-down-outline'} size={18} color={selected.reaction === 'dislike' ? dangerColor : chrome.muted} />
+                <Text style={[styles.reactionText, { color: selected.reaction === 'dislike' ? dangerColor : chrome.muted }]}>{copy.dislike}</Text>
               </TouchableOpacity>
             </View>
           )}
@@ -1237,8 +1211,8 @@ function AppMessagesInbox({
                   ],
                 }}
               >
-                <View style={styles.envelope}>
-                  <View style={styles.envelopeFlap} />
+                <View style={[styles.envelope, { backgroundColor: glass.lightTint, borderColor: glass.glassEdge }]}>
+                  <View style={[styles.envelopeFlap, { borderTopColor: glass.cta }]} />
                   <View style={styles.envelopeShine} />
                 </View>
               </Animated.View>
@@ -1250,25 +1224,21 @@ function AppMessagesInbox({
         <View style={styles.backdrop}>
           <Pressable style={StyleSheet.absoluteFill} onPress={closeInbox} />
         </View>
-        <View pointerEvents="box-none" style={styles.modalWrap}>
-          <View style={styles.panelAnim}>
-            <LinearGradient
-              colors={chrome.panelGradient}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={[styles.panel, { borderColor: chrome.border }]}
+        <View pointerEvents="box-none" style={[styles.modalWrap, { paddingTop: insets.top + 12 }]}>
+          <View accessibilityViewIsModal style={styles.panelAnim}>
+            <View
+              style={[
+                styles.panel,
+                {
+                  backgroundColor: glass.opaqueSheet,
+                  borderColor: glass.glassEdge,
+                  paddingBottom: Math.max(16, insets.bottom + 12),
+                },
+              ]}
             >
-              {/* Деликатный оттенок темы поверх фона панели. Абсолютный слой под
-                  содержимым, не перехватывает нажатия. Гаснет к низу — фон спокойный. */}
-              <LinearGradient
-                pointerEvents="none"
-                colors={accentTintColors}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 0.85, y: 1 }}
-                style={StyleSheet.absoluteFill}
-              />
+              <View accessible={false} style={[styles.grabber, { backgroundColor: glass.glassEdge }]} />
               {selected ? renderDetail() : renderList()}
-            </LinearGradient>
+            </View>
           </View>
         </View>
       </MotionModal>
@@ -1319,8 +1289,8 @@ const styles = StyleSheet.create({
     fontWeight: '900',
   },
   embeddedSectionMeta: {
-    fontSize: 10,
-    lineHeight: 14,
+    fontSize: 11,
+    lineHeight: 15,
     fontWeight: '800',
     textTransform: 'uppercase',
   },
@@ -1428,11 +1398,9 @@ const styles = StyleSheet.create({
   envelope: {
     flex: 1,
     borderRadius: 12,
-    backgroundColor: '#FFFFFF',
-    borderWidth: 2,
-    borderColor: '#E2C36B',
+    borderWidth: 1,
     overflow: 'hidden',
-    shadowColor: '#000',
+    shadowColor: 'black',
     shadowOpacity: 0.3,
     shadowRadius: 12,
     shadowOffset: { width: 0, height: 6 },
@@ -1450,7 +1418,6 @@ const styles = StyleSheet.create({
     borderTopWidth: 50,
     borderLeftColor: 'transparent',
     borderRightColor: 'transparent',
-    borderTopColor: '#F4D785',
   },
   envelopeShine: {
     position: 'absolute',
@@ -1473,8 +1440,6 @@ const styles = StyleSheet.create({
     backgroundColor: HOME_NOTIFICATION_BADGE_COLOR,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 0,
-    borderColor: '#FFF',
   },
   badgeText: {
     color: HOME_NOTIFICATION_BADGE_TEXT_COLOR,
@@ -1485,24 +1450,34 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     backgroundColor: 'rgba(0,0,0,0.56)',
   },
+  // Нижняя шторка (макет SYS-10): прижата к низу, сверху отступ под safe area.
   modalWrap: {
     flex: 1,
-    justifyContent: 'center',
-    paddingHorizontal: 18,
-    paddingVertical: 34,
+    justifyContent: 'flex-end',
   },
   panelAnim: {
     width: '100%',
     maxWidth: 560,
+    maxHeight: '100%',
     alignSelf: 'center',
   },
   panel: {
-    maxHeight: '86%',
+    maxHeight: '100%',
     minHeight: 360,
-    borderRadius: 24,
-    borderWidth: 0,
+    borderTopLeftRadius: 28,
+    borderTopRightRadius: 28,
+    borderWidth: 1,
+    borderBottomWidth: 0,
     overflow: 'hidden',
-    padding: 16,
+    paddingHorizontal: 16,
+    paddingTop: 10,
+  },
+  grabber: {
+    alignSelf: 'center',
+    width: 36,
+    height: 4,
+    borderRadius: 2,
+    marginBottom: 12,
   },
   modalHeader: {
     flexDirection: 'row',
@@ -1512,18 +1487,18 @@ const styles = StyleSheet.create({
     marginBottom: 14,
   },
   modalTitle: {
-    fontWeight: '900',
+    fontWeight: '800',
   },
   modalSub: {
     marginTop: 2,
-    fontSize: 11,
-    fontWeight: '800',
-    textTransform: 'uppercase',
+    fontSize: 14,
+    lineHeight: 19,
+    fontWeight: '600',
   },
   roundIcon: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
@@ -1567,14 +1542,14 @@ const styles = StyleSheet.create({
   messageTitle: {
     flex: 1,
     minWidth: 0,
-    fontSize: 15,
-    lineHeight: 20,
-    fontWeight: '900',
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: '800',
   },
   messageTitleRead: {
-    fontSize: 13,
-    lineHeight: 17,
-    fontWeight: '800',
+    fontSize: 15,
+    lineHeight: 20,
+    fontWeight: '700',
   },
   messageMetaRow: {
     flexDirection: 'row',
@@ -1584,14 +1559,13 @@ const styles = StyleSheet.create({
     marginBottom: 7,
   },
   messageDate: {
-    fontSize: 11,
+    fontSize: 12,
     fontWeight: '800',
   },
   pollBadge: {
     height: 22,
     borderRadius: 11,
     borderWidth: 0,
-    backgroundColor: 'rgba(127,127,127,0.10)',
     paddingHorizontal: 7,
     flexDirection: 'row',
     alignItems: 'center',
@@ -1609,21 +1583,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 4,
-    backgroundColor: 'rgba(100,116,139,0.10)',
   },
   vipSurveyBadgeText: {
-    color: '#64748B',
     fontSize: 10,
     fontWeight: '900',
   },
   messagePreview: {
-    fontSize: 13,
-    lineHeight: 19,
+    fontSize: 14,
+    lineHeight: 20,
     fontWeight: '600',
   },
   messagePreviewRead: {
-    fontSize: 12,
-    lineHeight: 16,
+    fontSize: 13,
+    lineHeight: 18,
     fontWeight: '600',
   },
   messageRowActions: {
@@ -1631,9 +1603,8 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   messageRowCta: {
-    minHeight: 34,
-    borderRadius: 12,
-    backgroundColor: '#475569',
+    minHeight: 44,
+    borderRadius: 22,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -1641,7 +1612,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
   },
   messageRowCtaText: {
-    color: '#FFFFFF',
     fontSize: 12,
     fontWeight: '900',
   },
@@ -1653,14 +1623,21 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     gap: 8,
   },
+  emptyTile: {
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   emptyTitle: {
     marginTop: 8,
-    fontSize: 17,
-    fontWeight: '900',
+    fontSize: 18,
+    fontWeight: '700',
   },
   emptyBody: {
-    fontSize: 13,
-    lineHeight: 19,
+    fontSize: 15,
+    lineHeight: 21,
     textAlign: 'center',
     fontWeight: '600',
   },
@@ -1701,7 +1678,6 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(100,116,139,0.14)',
   },
   vipSurveyTextWrap: {
     flex: 1,
@@ -1720,8 +1696,7 @@ const styles = StyleSheet.create({
   },
   vipSurveyButton: {
     minHeight: 44,
-    borderRadius: 14,
-    backgroundColor: '#475569',
+    borderRadius: 22,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -1729,7 +1704,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
   },
   vipSurveyButtonText: {
-    color: '#FFFFFF',
     fontSize: 13,
     fontWeight: '900',
   },
@@ -1817,8 +1791,8 @@ const styles = StyleSheet.create({
   },
   reactionButton: {
     flex: 1,
-    minHeight: 42,
-    borderRadius: 14,
+    minHeight: 44,
+    borderRadius: 22,
     borderWidth: 1,
     flexDirection: 'row',
     alignItems: 'center',

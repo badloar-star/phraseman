@@ -9,6 +9,7 @@ import { useTheme } from './ThemeContext';
 import { triLang } from '../constants/i18n';
 import FullscreenHybridEntrance from './feedback/FullscreenHybridEntrance';
 import DuoPressable from './DuoPressable';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 
 type Props = {
   message: AppMessageWithState | null;
@@ -23,7 +24,10 @@ type Props = {
 };
 
 function PersonalAdminMessageModal({ message, visible, onAcknowledge, motionVariant = 'classic' }: Props) {
-  const { theme: t, f } = useTheme();
+  // зачем: личное сообщение команды (макет system.html SYS-07) — Liquid Glass 13 тем,
+  // цвета только из токенов активной темы (без зелёного акцента и цветной рамки).
+  const { f, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
   const insets = useStableSafeAreaInsets();
   const [closing, setClosing] = useState(false);
@@ -39,13 +43,19 @@ function PersonalAdminMessageModal({ message, visible, onAcknowledge, motionVari
   }, [closing, message, onAcknowledge]);
 
   const titleSlot = (
-    <Text accessibilityRole="header" style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
+    <Text accessibilityRole="header" style={[styles.title, { color: glass.text, fontSize: f.h2 }]}>
       {text?.title || triLang(lang, { ru: 'Сообщение', uk: 'Повідомлення', en: 'Message', es: 'Mensaje', 'pt-BR': 'Mensagem', vi: 'Tin nhắn', id: 'Pesan', tr: 'Mesaj', pl: 'Wiadomość' })}
     </Text>
   );
 
+  const eyebrowSlot = (
+    <Text style={[styles.eyebrow, { color: glass.secondary, fontSize: f.caption }]}>
+      {triLang(lang, { ru: 'Сообщение', uk: 'Повідомлення', en: 'Message', es: 'Mensaje', 'pt-BR': 'Mensagem', vi: 'Tin nhắn', id: 'Pesan', tr: 'Mesaj', pl: 'Wiadomość' })}
+    </Text>
+  );
+
   const bodySlot = (
-    <Text style={[styles.body, { color: t.textSecond, fontSize: f.body }]}>
+    <Text style={[styles.body, { color: glass.secondary, fontSize: f.body }]}>
       {text?.body || ''}
     </Text>
   );
@@ -56,12 +66,12 @@ function PersonalAdminMessageModal({ message, visible, onAcknowledge, motionVari
       accessibilityLabel={triLang(lang, { ru: 'Закрыть сообщение', uk: 'Закрити повідомлення', en: 'Close message', es: 'Cerrar mensaje', 'pt-BR': 'Fechar mensagem', vi: 'Đóng tin nhắn', id: 'Tutup pesan', tr: 'Mesajı kapat', pl: 'Zamknij wiadomość' })}
       disabled={closing}
       onPress={() => { void close(); }}
-      edgeColor={t.bgSurface2}
-      edgeHeight={4}
+      edgeColor={glass.opaqueControl}
+      edgeHeight={0}
       wrapStyle={styles.buttonWrap}
-      style={[styles.button, { backgroundColor: t.accent }]}
+      style={[styles.button, { backgroundColor: glass.cta }]}
     >
-      <Text style={[styles.buttonText, { color: t.correctText, fontSize: f.bodyLg }]}>{triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}</Text>
+      <Text style={[styles.buttonText, { color: glass.ctaInk, fontSize: f.bodyLg }]}>{triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}</Text>
     </DuoPressable>
   );
 
@@ -76,13 +86,14 @@ function PersonalAdminMessageModal({ message, visible, onAcknowledge, motionVari
       <View style={[styles.root, { paddingBottom: normalizeSafeAreaBottomInset(insets.bottom) }]}>
         <View
           accessibilityViewIsModal
-          style={[styles.card, { backgroundColor: t.bgCard, borderColor: `${t.accent}66` }]}
+          style={[styles.card, { backgroundColor: glass.opaqueSheet, borderColor: glass.glassEdge }]}
         >
           <ScrollView style={{ flexShrink: 1, minHeight: 0 }} keyboardShouldPersistTaps="handled" bounces={false}>
           {isHybrid ? (
-            <FullscreenHybridEntrance visible={visible} bloomColor={t.accent} slots={[titleSlot, bodySlot, ctaSlot]} />
+            <FullscreenHybridEntrance visible={visible} bloomColor={glass.lightTint} slots={[eyebrowSlot, titleSlot, bodySlot, ctaSlot]} />
           ) : (
             <>
+              {eyebrowSlot}
               {titleSlot}
               {bodySlot}
               {ctaSlot}
@@ -107,14 +118,17 @@ const styles = StyleSheet.create({
     maxHeight: '100%',
     width: '100%',
     maxWidth: 440,
-    borderRadius: 20,
+    borderRadius: 26,
     borderWidth: 1,
-    padding: 22,
+    paddingHorizontal: 20,
+    paddingTop: 26,
+    paddingBottom: 20,
   },
+  eyebrow: { fontWeight: '800', textAlign: 'center', letterSpacing: 1.1, textTransform: 'uppercase', marginBottom: 10 },
   title: { fontWeight: '800', textAlign: 'center' },
   body: { marginTop: 12, lineHeight: 23, textAlign: 'center' },
   buttonWrap: { marginTop: 22 },
-  button: { borderRadius: 14, minHeight: 50, paddingHorizontal: 18 },
+  button: { borderRadius: 16, minHeight: 52, paddingHorizontal: 18 },
   buttonText: { fontWeight: '800' },
 });
 

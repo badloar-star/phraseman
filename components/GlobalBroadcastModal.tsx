@@ -2,7 +2,6 @@ import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { memo, useMemo, useState } from 'react';
 import { Linking, Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Image } from 'expo-image';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { useStudyTarget } from './StudyTargetContext';
@@ -17,6 +16,7 @@ import {
   recordReviewPromoClick,
 } from '../app/global_broadcast_modal';
 import { triLang } from '../constants/i18n';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import FullscreenHybridEntrance from './feedback/FullscreenHybridEntrance';
 import DuoPressable from './DuoPressable';
 
@@ -33,7 +33,10 @@ type Props = {
 };
 
 function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'classic' }: Props) {
-  const { theme: t, f, themeMode } = useTheme();
+  // зачем: окно «Сообщение команды» (макет system.html SYS-07) — Liquid Glass 13 тем;
+  // цвет берём из токенов активной темы, а не из зелёного бренд-акцента.
+  const { f, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const insets = useStableSafeAreaInsets();
@@ -85,7 +88,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
       await claimAndDismissGlobalBroadcastModal(payload, studyTarget);
       if (reward) hapticSuccess();
       onClose();
-    })().catch(() => {}).finally(() => {
+    })().catch((e) => { console.warn('[GLOBAL-BROADCAST] claim/dismiss failed', e); }).finally(() => {
       setBusy(false);
     });
   };
@@ -95,12 +98,12 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
     hapticTap();
     setBusy(true);
     const url = getReviewPromoUrl(payload);
-    if (url) void Linking.openURL(url).catch(() => {});
+    if (url) void Linking.openURL(url).catch((e) => { console.warn('[GLOBAL-BROADCAST] openURL failed', e); });
     void (async () => {
       await recordReviewPromoClick(payload);
       await claimAndDismissGlobalBroadcastModal(payload, studyTarget);
       onClose();
-    })().catch(() => {}).finally(() => {
+    })().catch((e) => { console.warn('[GLOBAL-BROADCAST] claim/dismiss failed', e); }).finally(() => {
       setBusy(false);
     });
   };
@@ -133,15 +136,16 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
         <View style={[
           styles.card,
           {
-            backgroundColor: t.bgCard,
-            borderRadius: 20,
-            overflow: 'visible',
+            backgroundColor: glass.opaqueSheet,
+            borderColor: glass.glassEdge,
           },
         ]}>
           <ScrollView style={{ flexShrink: 1, minHeight: 0, width: '100%' }} contentContainerStyle={{ alignItems: 'center' }} keyboardShouldPersistTaps="handled">
-          <Ionicons name="megaphone-outline" size={44} color={t.accent} style={styles.icon} />
-          <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>{title}</Text>
-          <Text style={[styles.body, { color: t.textSecond, fontSize: f.body }]}>{body}</Text>
+          <Text style={[styles.eyebrow, { color: glass.secondary, fontSize: f.caption }]}>
+            {triLang(lang, { ru: 'Сообщение команды', uk: 'Повідомлення команди', en: 'Message from the team', es: 'Mensaje del equipo', 'pt-BR': 'Mensagem da equipe', vi: 'Tin nhắn từ đội ngũ', id: 'Pesan dari tim', tr: 'Ekipten mesaj', pl: 'Wiadomość od zespołu' })}
+          </Text>
+          <Text accessibilityRole="header" style={[styles.title, { color: glass.text, fontSize: f.h2 }]}>{title}</Text>
+          <Text style={[styles.body, { color: glass.secondary, fontSize: f.body }]}>{body}</Text>
 
           {reward && (
             <View style={styles.rewardBlock}>
@@ -150,7 +154,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
               ) : (
                 <Text style={styles.rewardEmoji}>{reward.icon}</Text>
               )}
-              <Text style={[styles.rewardLine, { color: t.accent, fontSize: f.bodyLg }]}>
+              <Text style={[styles.rewardLine, { color: glass.text, fontSize: f.bodyLg }]}>
                 {triLang(lang, {
                   ru: reward.labelRu,
                   uk: reward.labelUk,
@@ -168,7 +172,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
 
           {isReviewPromo && (
             <View style={styles.reviewNote}>
-              <Text style={[styles.reviewNoteText, { color: t.textMuted, fontSize: f.caption }]}>
+              <Text style={[styles.reviewNoteText, { color: glass.secondary, fontSize: f.caption }]}>
                 {triLang(lang, {
                   ru: 'Откроется страница приложения в магазине.',
                   uk: 'Відкриється сторінка застосунку в магазині.',
@@ -187,18 +191,12 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
           <DuoPressable
             disabled={busy}
             onPress={() => { void (isReviewPromo ? openReview() : closeOnce()); }}
-            edgeColor={t.bgSurface2}
-            edgeHeight={4}
+            edgeColor={glass.opaqueControl}
+            edgeHeight={0}
             wrapStyle={styles.btnWrap}
-            style={[
-              styles.btn,
-              {
-                backgroundColor: t.accent,
-                borderRadius: 14,
-              },
-            ]}
+            style={[styles.btn, { backgroundColor: glass.cta }]}
           >
-            <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.bodyLg }}>
+            <Text style={{ color: glass.ctaInk, fontWeight: '800', fontSize: f.bodyLg }}>
               {isReviewPromo && payload
                 ? triLang(lang, {
                   ru: payload.reviewCtaRu,
@@ -227,10 +225,11 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
           {isReviewPromo && (
             <Pressable
               disabled={busy}
+              accessibilityRole="button"
               onPress={() => { void closeOnce(); }}
               style={styles.secondaryBtn}
             >
-              <Text style={{ color: t.textMuted, fontWeight: '600', fontSize: f.body, textAlign: 'center' }}>
+              <Text style={{ color: glass.secondary, fontWeight: '600', fontSize: f.body, textAlign: 'center' }}>
                 {triLang(lang, {
                   ru: 'Позже',
                   uk: 'Пізніше',
@@ -265,15 +264,19 @@ const styles = StyleSheet.create({
     width: '100%',
     maxHeight: '100%',
     maxWidth: 420,
-    borderRadius: 20,
-    borderWidth: 0,
-    paddingHorizontal: 24,
+    borderRadius: 26,
+    borderWidth: 1,
+    paddingHorizontal: 20,
     paddingTop: 24,
     paddingBottom: 22,
     alignItems: 'center',
   },
-  icon: {
-    marginBottom: 6,
+  eyebrow: {
+    textAlign: 'center',
+    fontWeight: '800',
+    letterSpacing: 1.1,
+    textTransform: 'uppercase',
+    marginBottom: 10,
   },
   title: {
     textAlign: 'center',
@@ -315,7 +318,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
   btn: {
-    borderRadius: 14,
+    borderRadius: 16,
     paddingVertical: 15,
     alignItems: 'center',
     minHeight: 52,
@@ -325,7 +328,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     marginTop: 4,
-    minHeight: 40,
+    minHeight: 44,
     justifyContent: 'center',
   },
 });

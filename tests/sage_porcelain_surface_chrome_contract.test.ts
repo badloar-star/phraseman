@@ -23,7 +23,8 @@ describe('Sage Porcelain surface chrome contract', () => {
   it('defines a dedicated Sage Porcelain entry in every surface chrome map', () => {
     const sources: Array<[string, string]> = [
       ['components/settings/settingsSurfaces.ts', 'midnight'],
-      ['app/(tabs)/settings.tsx', 'midnight'],
+      // зачем: локальная карта SETTINGS_SURFACES в settings.tsx удалена при переносе корня Настроек
+      // на Liquid Glass (была мёртвой, цвета берутся из liquidGlassTokens) — проверять её больше нечего.
       ['app/daily_phrase_chrome.ts', 'midnight'],
       ['constants/themedToastChrome.ts', 'midnight'],
       ['constants/weekDotTheme.ts', 'midnight'],
@@ -38,13 +39,11 @@ describe('Sage Porcelain surface chrome contract', () => {
     }
   });
 
-  it('uses the approved page, panel, border, text, and accent roles in both settings maps', () => {
+  it('uses the approved page, panel, border, text, and accent roles in the settings map', () => {
     expect(SETTINGS_SURFACES.sagePorcelain).toEqual({
       panel: '#FCFDF9', chip: '#FCFDF9', border: '#CFD6CE', divider: '#CFD6CE',
       notice: '#E1E5DC', accent: '#315F50', chipOn: '#D1D9D1',
     });
-    const local = sourceEntry('app/(tabs)/settings.tsx', 'midnight');
-    for (const color of ['#FCFDF9', '#CFD6CE', '#E1E5DC', '#D1D9D1', '#315F50']) expect(local).toContain(color);
   });
 
   it('resolves the Sage daily phrase and toast chrome from porcelain roles', () => {

@@ -1,10 +1,9 @@
-import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
   PanResponder,
   Platform,
   StyleSheet,
-  Text,
   View,
   type LayoutChangeEvent,
   type StyleProp,
@@ -14,7 +13,10 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { BlurView } from 'expo-blur';
 import Svg, { Defs, LinearGradient as SvgLinearGradient, RadialGradient, Rect, Stop } from 'react-native-svg';
 import { LinearGradient } from '../SafeLinearGradient';
+import { useTheme } from '../ThemeContext';
 import { hapticTap } from '../../hooks/use-haptics';
+import { alphaHex } from '../../constants/v2Style';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 
 type IconName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -32,17 +34,14 @@ const PAD = 9;
 const CAP_H = V2_TAB_BAR_HEIGHT - PAD * 2;
 const CAP_RADIUS = 18;
 const SIDE_MARGIN = 12;
-const ICON_SIZE = 20;
+// зачем: подписи убраны по просьбе владельца 29.09 — иконка занимает место текста и крупнее (капсула 48dp).
+const ICON_SIZE = 28;
 const HOLD_TO_DRAG_MS = 170;
 const DRAG_SLOP = 8;
-const COLOR = { idle: '#8D8A87', on: '#F6E9DA', hover: '#D5CEC6' } as const;
 // зачем: на Android BlurView без экспериментального режима ничего не размывает,
 // а экспериментальный режим пересчитывается каждый кадр скролла. Поэтому там
 // та же тёмная стеклянная заливка, но плотнее — текст под капсулой не читается
 // (владелец: «прозрачный с затемнением, не насквозь»).
-const GLASS_FILL = Platform.OS === 'ios'
-  ? (['rgba(42,40,38,0.64)', 'rgba(18,17,16,0.76)'] as const)
-  : (['rgba(42,40,38,0.90)', 'rgba(18,17,16,0.94)'] as const);
 const CAP_SPRING = { stiffness: 260, damping: 19, mass: 1, useNativeDriver: true } as const;
 // Слежение за пальцем: быстро, без перелёта — капсула «едет» за ним, а не прыгает.
 const CAP_FOLLOW_SPRING = { stiffness: 700, damping: 48, mass: 0.7, useNativeDriver: true } as const;
@@ -60,17 +59,17 @@ type Props = {
   reduceMotion: boolean;
 };
 
-const BarRim = memo(function BarRim({ width }: { width: number }) {
+const BarRim = memo(function BarRim({ width, color }: { width: number; color: string }) {
   const h = V2_TAB_BAR_HEIGHT;
   return (
     <Svg pointerEvents="none" width={width} height={h} style={StyleSheet.absoluteFill}>
       <Defs>
         <SvgLinearGradient id="v2TabRim" x1="0" y1="0" x2="1" y2="0">
-          <Stop offset="0" stopColor="#FFE2BE" stopOpacity={0.62} />
-          <Stop offset="0.22" stopColor="#FFECD6" stopOpacity={0.24} />
+          <Stop offset="0" stopColor={color} stopOpacity={0.62} />
+          <Stop offset="0.22" stopColor={color} stopOpacity={0.24} />
           <Stop offset="0.55" stopColor="#FFFFFF" stopOpacity={0.1} />
           <Stop offset="0.8" stopColor="#FFFFFF" stopOpacity={0.08} />
-          <Stop offset="1" stopColor="#FFFFFF" stopOpacity={0.24} />
+          <Stop offset="1" stopColor={color} stopOpacity={0.24} />
         </SvgLinearGradient>
       </Defs>
       <Rect x={0.5} y={0.5} width={width - 1} height={h - 1} rx={(h - 1) / 2} fill="none" stroke="url(#v2TabRim)" strokeWidth={1} />
@@ -78,19 +77,19 @@ const BarRim = memo(function BarRim({ width }: { width: number }) {
   );
 });
 
-const CapFill = memo(function CapFill({ width }: { width: number }) {
+const CapFill = memo(function CapFill({ width, color }: { width: number; color: string }) {
   return (
     <Svg width={width} height={CAP_H} style={StyleSheet.absoluteFill}>
       <Defs>
         <RadialGradient id="v2TabCapFill" cx="22%" cy="0%" rx="120%" ry="95%" fx="22%" fy="0%">
-          <Stop offset="0" stopColor="#FFE8CC" stopOpacity={0.32} />
-          <Stop offset="0.55" stopColor="#FFECD6" stopOpacity={0.08} />
+          <Stop offset="0" stopColor={color} stopOpacity={0.32} />
+          <Stop offset="0.55" stopColor={color} stopOpacity={0.08} />
           <Stop offset="1" stopColor="#FFFFFF" stopOpacity={0.03} />
         </RadialGradient>
         <SvgLinearGradient id="v2TabCapRim" x1="0" y1="0" x2="1" y2="1">
-          <Stop offset="0" stopColor="#FFE4C4" stopOpacity={0.8} />
-          <Stop offset="0.5" stopColor="#FFECD6" stopOpacity={0.14} />
-          <Stop offset="1" stopColor="#FFECD6" stopOpacity={0.32} />
+          <Stop offset="0" stopColor={color} stopOpacity={0.8} />
+          <Stop offset="0.5" stopColor={color} stopOpacity={0.14} />
+          <Stop offset="1" stopColor={color} stopOpacity={0.32} />
         </SvgLinearGradient>
       </Defs>
       <Rect x={0} y={0} width={width} height={CAP_H} rx={CAP_RADIUS} fill="url(#v2TabCapFill)" />
@@ -105,6 +104,12 @@ const CapFill = memo(function CapFill({ width }: { width: number }) {
  * отпустил, та вкладка и открывается.
  */
 function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, collapseStyle, reduceMotion }: Props) {
+  const { liquidGlassThemeId } = useTheme();
+  const palette = liquidGlassTokens(liquidGlassThemeId);
+  const glassFill = useMemo(() => Platform.OS === 'ios'
+    ? ([alphaHex(palette.opaqueControl, 0.64), alphaHex(palette.bgBottom, 0.76)] as const)
+    : ([alphaHex(palette.opaqueControl, 0.90), alphaHex(palette.bgBottom, 0.94)] as const),
+  [palette.opaqueControl, palette.bgBottom]);
   const count = items.length;
   const [width, setWidth] = useState(0);
   const slotW = width > 0 ? (width - PAD * 2) / count : 0;
@@ -269,21 +274,21 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
     <Animated.View
       testID="v2-tab-bar"
       onLayout={handleLayout}
-      style={[s.bar, { bottom: bottomOffset }, collapseStyle]}
+      style={[s.bar, { bottom: bottomOffset, backgroundColor: Platform.OS === 'android' ? palette.bgBottom : 'transparent' }, collapseStyle]}
       {...responder.panHandlers}
     >
       <View pointerEvents="none" style={s.clip}>
         {Platform.OS === 'ios' ? <BlurView intensity={22} tint="dark" style={StyleSheet.absoluteFill} /> : null}
-        <LinearGradient colors={GLASS_FILL} style={StyleSheet.absoluteFill} />
+        <LinearGradient colors={glassFill} style={StyleSheet.absoluteFill} />
         <View style={s.innerRim} />
       </View>
-      {width > 0 ? <BarRim width={width} /> : null}
+      {width > 0 ? <BarRim width={width} color={palette.cta} /> : null}
       {slotW > 0 && activeIndex >= 0 ? (
         <Animated.View
           pointerEvents="none"
-          style={[s.cap, { width: slotW, transform: [{ translateX: capX }, { scale: capScale }] }]}
+          style={[s.cap, { width: slotW, shadowColor: palette.cta, transform: [{ translateX: capX }, { scale: capScale }] }]}
         >
-          <CapFill width={slotW} />
+          <CapFill width={slotW} color={palette.cta} />
           <Animated.View style={[s.capBright, { opacity: capBright }]} />
         </Animated.View>
       ) : null}
@@ -291,7 +296,7 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
       <View pointerEvents="none" style={s.row}>
         {items.map((item, i) => {
           const on = i === activeIndex;
-          const color = on ? COLOR.on : hoverIdx === i ? COLOR.hover : COLOR.idle;
+          const color = on ? palette.cta : hoverIdx === i ? palette.secondary : palette.mutedText;
           return (
             <View
               key={item.key}
@@ -304,16 +309,11 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
               accessibilityActions={ACTIVATE_ACTION}
               onAccessibilityAction={() => onSelect(i)}
             >
+              {/* зачем (владелец 29.09): таббар без подписей — только крупные иконки по центру капсулы;
+                  название вкладки остаётся в accessibilityLabel для TalkBack/VoiceOver. */}
               <Animated.View style={pressedIdx === i ? { transform: [{ scale: iconPressScale }] } : null}>
                 <Ionicons name={on ? item.activeIcon : item.icon} size={ICON_SIZE} color={color} />
               </Animated.View>
-              <Text
-                numberOfLines={1}
-                maxFontSizeMultiplier={1.15}
-                style={[s.label, { color, fontWeight: on ? '600' : '500' }]}
-              >
-                {item.label}
-              </Text>
             </View>
           );
         })}
@@ -332,7 +332,7 @@ const s = StyleSheet.create({
     height: V2_TAB_BAR_HEIGHT,
     borderRadius: V2_TAB_BAR_HEIGHT / 2,
     // Android рисует тень elevation только у вида с фоном.
-    backgroundColor: Platform.OS === 'android' ? '#141312' : 'transparent',
+    backgroundColor: 'transparent',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 14 },
     shadowOpacity: 0.55,
@@ -356,13 +356,12 @@ const s = StyleSheet.create({
     left: 0,
     height: CAP_H,
     borderRadius: CAP_RADIUS,
-    shadowColor: '#FFD2A0',
+    shadowColor: '#000000',
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.22,
     shadowRadius: 11,
   },
   capBright: { ...StyleSheet.absoluteFillObject, borderRadius: CAP_RADIUS, backgroundColor: '#FFFFFF' },
   row: { ...StyleSheet.absoluteFillObject, flexDirection: 'row', paddingHorizontal: PAD },
-  tab: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 4 },
-  label: { fontSize: 10.5, lineHeight: 13, letterSpacing: -0.1 },
+  tab: { flex: 1, alignItems: 'center', justifyContent: 'center' },
 });

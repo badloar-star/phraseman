@@ -31,7 +31,7 @@ import {
 import type { SurveyQuestionClient } from '../../app/survey_client';
 import { SURVEY_HYBRID } from '../../constants/motionHybrid';
 import { triLang, type Lang } from '../../constants/i18n';
-import { isLightThemeMode } from '../../constants/theme';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import HybridSheetShell from '../modal_fx/HybridSheetShell';
 import PressableHybrid from '../PressableHybrid';
@@ -40,7 +40,7 @@ import { FlowText } from '../text-integrity/FlowText';
 import SurveyPearlChip from './SurveyPearlChip';
 import SurveyPearlFlight, { type SurveyFlightPoint } from './SurveyPearlFlight';
 import SurveyQuestionTransition from './SurveyQuestionTransition';
-import SurveyRewardPanel, { SURVEY_PURPLE_TONE, type SurveyRewardPanelPhase } from './SurveyRewardPanel';
+import SurveyRewardPanel, { type SurveyRewardPanelPhase } from './SurveyRewardPanel';
 import { useSurveyRewardImpact } from './useSurveyRewardImpact';
 
 const SURVEY_PROGRESS_GAP_PX = 2;
@@ -211,7 +211,9 @@ export default function SurveySheetModal({
   onDurablyReconciled,
   pearlBalance,
 }: SurveySheetModalProps) {
-  const { theme: t } = useTheme();
+  // зачем: Liquid Glass 2.0 — оболочка и цвета опроса берутся из токенов активной из 13 тем.
+  const { liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const copy = useMemo(() => sheetCopy(launch.lang), [launch.lang]);
   // зачем: чип обязан показать число с первого кадра; peek читает память сессии
   // без диска и сети, а живой баланс родителя (если передан) главнее.
@@ -293,7 +295,8 @@ export default function SurveySheetModal({
       onDismissRequested={deactivateActiveFlow}
       closeLabel={copy.close}
       backdropAccessible={false}
-      glowColor={t.accent}
+      glowColor={glass.cta}
+      material="liquid-glass-opaque"
       sheetHeight="86%"
       testID="survey-sheet-shell"
     >
@@ -370,7 +373,8 @@ function SurveySheetContent({
   pearlBalance: number;
   onFollowUp: (followUp: SurveyFollowUp) => void;
 }) {
-  const { theme: t, f } = useTheme();
+  const { f, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const reduceMotion = useReduceMotion();
   const { survey, lang } = launch;
   const copy = useMemo(() => sheetCopy(lang), [lang]);
@@ -599,7 +603,7 @@ function SurveySheetContent({
       style={styles.closeButton}
       contentStyle={styles.closeButtonContent}
     >
-      <Ionicons name="close" size={24} color={t.textPrimary} accessibilityElementsHidden />
+      <Ionicons name="close" size={24} color={glass.text} accessibilityElementsHidden />
     </PressableHybrid>
   );
 
@@ -630,7 +634,7 @@ function SurveySheetContent({
               provenance="authored"
               accessibilityRole="header"
               accessibilityLabel={survey.title}
-              style={[styles.feedbackTitle, { color: t.textPrimary, fontSize: f.h2 }]}
+              style={[styles.feedbackTitle, { color: glass.text, fontSize: f.h2 }]}
             >
               {survey.title}
             </FlowText>
@@ -668,7 +672,7 @@ function SurveySheetContent({
                   style={styles.backButton}
                   contentStyle={styles.backButtonContent}
                 >
-                  <Ionicons name="chevron-back" size={24} color={t.textPrimary} accessibilityElementsHidden />
+                  <Ionicons name="chevron-back" size={24} color={glass.text} accessibilityElementsHidden />
                 </PressableHybrid>
                 <View style={styles.barRight}>
                   <SurveyPearlChip
@@ -686,7 +690,7 @@ function SurveySheetContent({
                 provenance="authored"
                 accessibilityRole="header"
                 accessibilityLabel={survey.title}
-                style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}
+                style={[styles.title, { color: glass.text, fontSize: f.h2 }]}
               >
                 {survey.title}
               </FlowText>
@@ -695,7 +699,7 @@ function SurveySheetContent({
                 <FlowText
                   testID="survey-sheet-subtitle"
                   provenance="authored"
-                  style={[styles.subtitle, { color: t.textSecond, fontSize: f.body }]}
+                  style={[styles.subtitle, { color: glass.secondary, fontSize: f.body }]}
                 >
                   {survey.subtitle}
                 </FlowText>
@@ -708,11 +712,11 @@ function SurveySheetContent({
                 accessibilityRole="progressbar"
                 accessibilityLabel={progressLabel}
                 accessibilityValue={{ min: 1, max: Math.max(total, 1), now: current }}
-                style={[styles.progressCopy, { color: t.textSecond, fontSize: f.label }]}
+                style={[styles.progressCopy, { color: glass.secondary, fontSize: f.label }]}
               >
                 {progressLabel}
               </FlowText>
-              <SurveyProgress current={current} total={total} accent={survey.accentColor || t.accent} track={t.bgSurface2} />
+              <SurveyProgress current={current} total={total} accent={glass.cta} track={glass.opaqueControl} />
 
               <View style={styles.questionRegion}>
                 <SurveyQuestionTransition transitionKey={flow.currentQuestion.id} direction={flow.direction}>
@@ -746,14 +750,14 @@ function SurveySheetContent({
             accessibilityLabel={ctaLabel}
             accessibilityState={{ disabled: ctaDisabled, busy: flow.submitting }}
             accessibilityLiveRegion={flow.submitting ? 'polite' : undefined}
-            style={[styles.cta, { backgroundColor: ctaDisabled ? t.bgSurface2 : t.accent }]}
+            style={[styles.cta, { backgroundColor: ctaDisabled ? glass.opaqueControl : glass.cta }]}
             contentStyle={styles.ctaContent}
           >
-            {flow.submitting ? <ActivityIndicator color={t.correctText} /> : null}
+            {flow.submitting ? <ActivityIndicator color={glass.secondary} /> : null}
             <FlowText
               testID="survey-sheet-cta-label"
               provenance="authored"
-              style={[styles.ctaLabel, { color: ctaDisabled ? t.textMuted : t.correctText, fontSize: f.body }]}
+              style={[styles.ctaLabel, { color: ctaDisabled ? glass.mutedText : glass.ctaInk, fontSize: f.body }]}
             >
               {ctaLabel}
             </FlowText>
@@ -853,11 +857,9 @@ function SurveyQuestionFields({
   inlineRewardAmount: number;
   rewardPillRef: React.RefObject<View | null>;
 }) {
-  const { theme: t, f, themeMode } = useTheme();
+  const { f, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const anySelected = question.options.some((option) => option.id === selectedOption);
-  const lightTheme = isLightThemeMode(themeMode);
-  const purpleAccent = lightTheme ? SURVEY_PURPLE_TONE.accentLight : SURVEY_PURPLE_TONE.accentDark;
-  const onPurpleAccent = lightTheme ? SURVEY_PURPLE_TONE.onAccentLight : SURVEY_PURPLE_TONE.onAccentDark;
   return (
     <View style={styles.questionBody}>
       {!hideQuestionTitle ? (
@@ -867,7 +869,7 @@ function SurveyQuestionFields({
           provenance="authored"
           accessibilityRole="header"
           accessibilityLabel={question.text}
-          style={[styles.questionTitle, { color: t.textPrimary, fontSize: f.body }]}
+          style={[styles.questionTitle, { color: glass.text, fontSize: f.body }]}
         >
           {question.text}
         </FlowText>
@@ -878,12 +880,12 @@ function SurveyQuestionFields({
           value={comment}
           onChangeText={(value) => controller.setComment(question.id, value)}
           placeholder={placeholder}
-          placeholderTextColor={t.textMuted}
+          placeholderTextColor={glass.mutedText}
           editable={!disabled}
           multiline
           maxLength={500}
           accessibilityLabel={question.text}
-          style={[styles.textInput, { color: t.textPrimary, backgroundColor: t.bgSurface2, fontSize: f.body }]}
+          style={[styles.textInput, { color: glass.text, backgroundColor: glass.opaqueControl, borderColor: glass.line, fontSize: f.body }]}
         />
       ) : (
         <View style={styles.options}>
@@ -907,14 +909,14 @@ function SurveyQuestionFields({
                 accessibilityRole="radio"
                 accessibilityLabel={option.label}
                 accessibilityState={{ selected, disabled }}
-                style={[styles.option, { backgroundColor: t.bgSurface2 }]}
+                style={[styles.option, { backgroundColor: glass.opaqueControl }]}
                 contentStyle={styles.optionContent}
               >
                 {selected ? (
                   <View
                     testID={`survey-option-${option.id}-tone`}
                     pointerEvents="none"
-                    style={[styles.optionTone, { backgroundColor: SURVEY_PURPLE_TONE.surfaceOverlay }]}
+                    style={[styles.optionTone, { backgroundColor: glass.selected, borderColor: glass.glassEdge }]}
                   />
                 ) : null}
                 {/* зачем: невыбранные варианты гаснут до 0.42 (макет A), чтобы
@@ -923,7 +925,7 @@ function SurveyQuestionFields({
                   <FlowText
                     testID={`survey-option-${option.id}-label`}
                     provenance="authored"
-                    style={[styles.optionLabel, { color: t.textPrimary, fontSize: f.body }]}
+                    style={[styles.optionLabel, { color: glass.text, fontSize: f.body }]}
                   >
                     {option.label}
                   </FlowText>
@@ -932,14 +934,14 @@ function SurveyQuestionFields({
                       ref={rewardPillRef}
                       testID={`survey-option-${option.id}-reward`}
                       amount={inlineRewardAmount}
-                      accent={purpleAccent}
-                      onAccent={onPurpleAccent}
+                      accent={glass.cta}
+                      onAccent={glass.ctaInk}
                     />
                   ) : null}
                   <Ionicons
                     name={selected ? 'checkmark-circle' : 'radio-button-off'}
                     size={24}
-                    color={selected ? purpleAccent : t.textMuted}
+                    color={selected ? glass.text : glass.mutedText}
                     accessibilityElementsHidden
                   />
                 </View>
@@ -1021,15 +1023,15 @@ const styles = StyleSheet.create({
   options: { gap: 10 },
   option: { minHeight: 56, borderRadius: 18, overflow: 'hidden' },
   optionContent: { minHeight: 56, paddingHorizontal: 16, paddingVertical: 14 },
-  optionTone: { ...StyleSheet.absoluteFillObject },
+  optionTone: { ...StyleSheet.absoluteFillObject, borderRadius: 18, borderWidth: 1 },
   optionInner: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   optionDimmed: { opacity: 0.42 },
   optionLabel: { flex: 1, fontWeight: '700', lineHeight: 22 },
   plusPill: { flexDirection: 'row', alignItems: 'center', gap: 5, height: 28, paddingLeft: 8, paddingRight: 6, borderRadius: 14 },
   plusLabel: { fontWeight: '800', lineHeight: 18, fontVariant: ['tabular-nums'] },
   plusArt: { width: 18, height: 18 },
-  textInput: { minHeight: 120, borderRadius: 16, padding: 16, textAlignVertical: 'top', lineHeight: 23 },
-  cta: { minHeight: 52, borderRadius: 18, marginTop: 8 },
+  textInput: { minHeight: 120, borderRadius: 16, borderWidth: 1, padding: 16, textAlignVertical: 'top', lineHeight: 23 },
+  cta: { minHeight: 52, borderRadius: 26, marginTop: 8 },
   ctaContent: { minHeight: 52, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingHorizontal: 18 },
   ctaLabel: { fontWeight: '700', textAlign: 'center' },
 });

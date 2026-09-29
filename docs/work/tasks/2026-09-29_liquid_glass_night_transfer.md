@@ -6,6 +6,7 @@ Governance-ID: TG-0CCE266A7630
 Governance-ID: TG-EA4E012D23E3
 Governance-ID: TG-705C2FD7F97F
 Governance-ID: TG-FBDED796BC17
+Governance-ID: TG-9715A54E8CA8
 Governance-ID: TG-F5DE94AC2969
 Governance-ID: TG-C6147C69A381
 Governance-ID: TG-B7F5AE4FF733
@@ -46,3 +47,4 @@ Out of scope: Главная и хаб «Карточки» (утвержден�
 Каждый пакет — отдельный коммит; откат — `git revert <sha>` этого пакета. Вкладка «Шпиль» выключается клиентским ключом без релиза. Данные пользователей и права не затрагиваются.
 
 Governance-ID: TG-FBDED796BC17
+Governance-ID: TG-9D3AFFE964E9

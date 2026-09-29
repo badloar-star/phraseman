@@ -6,37 +6,24 @@
  * мёртвой (`accessibilityRole="text"`) и показывала ТОЛЬКО текущую цель —
  * человек не видел, сколько всего осталось и что именно.
  *
- * Каркас (выезд снизу, вуаль, drag-to-dismiss 88px/velocityY 900) намеренно
- * скопирован из DialogWhySheet: жест шторок во всём приложении обязан
- * ощущаться одинаково.
+ * Liquid Glass 2.0 (владелец 2026-09-29, макет dialogs.html C6): каркас —
+ * общая HybridSheetShell (непрозрачная стеклянная основа, жест закрытия,
+ * safe area), цвета — токены активной из 13 тем. Строка задания: номер или
+ * галочка в круге, текст, справа «Выполнено» / «Ещё не выполнено»; внизу
+ * кнопка «Закрыть».
  *
  * Данные локальные (objectives сценария + множество выполненных) — ни сети,
  * ни спиннера: список открывается мгновенно.
- *
- * Токены темы, fontWeight только 400/700, без обводок контейнеров.
  */
-import React, { useCallback, useEffect, useMemo, useRef } from 'react';
-import { Modal, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import React from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
-import Animated, {
-  Easing as REasing,
-  runOnJS,
-  useAnimatedStyle,
-  useReducedMotion,
-  useSharedValue,
-  withSpring,
-  withTiming,
-} from 'react-native-reanimated';
-import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
-import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
-import { hapticTap } from '../../hooks/use-haptics';
 import { useTheme } from '../ThemeContext';
-import TonalSurface from '../TonalSurface';
+import HybridSheetShell from '../modal_fx/HybridSheetShell';
+import PressableHybrid from '../PressableHybrid';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { DialogObjective } from '../../app/ai_dialog_scenarios';
-
-const SHEET_HIDDEN = 420;
 
 interface DialogGoalsSheetProps {
   visible: boolean;
@@ -57,223 +44,145 @@ export default function DialogGoalsSheet({
   objectivesMet,
   testID,
 }: DialogGoalsSheetProps) {
-  const { theme: t, f } = useTheme();
-  const insets = useStableSafeAreaInsets();
-  const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
-  const { height: viewportHeight } = useWindowDimensions();
-  const reduceMotion = useReducedMotion();
-
-  const backdropO = useSharedValue(0);
-  const sheetY = useSharedValue(SHEET_HIDDEN);
-  const dragTranslateY = useSharedValue(0);
-
-  useEffect(() => {
-    if (!visible) return;
-    dragTranslateY.value = 0;
-    if (reduceMotion) {
-      backdropO.value = 1;
-      sheetY.value = 0;
-      return;
-    }
-    backdropO.value = withTiming(1, { duration: 200, easing: REasing.out(REasing.cubic) });
-    sheetY.value = SHEET_HIDDEN;
-    sheetY.value = withTiming(0, { duration: 340, easing: REasing.bezier(0.32, 0.72, 0, 1) });
-  }, [visible, backdropO, sheetY, dragTranslateY, reduceMotion]);
-
-  const handleCloseRef = useRef(onClose);
-  handleCloseRef.current = onClose;
-  const dismissFallbackRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  useEffect(() => () => {
-    if (dismissFallbackRef.current) clearTimeout(dismissFallbackRef.current);
-  }, []);
-
-  const dismissSheet = useCallback(() => {
-    hapticTap();
-    if (reduceMotion) {
-      handleCloseRef.current();
-      return;
-    }
-    backdropO.value = withTiming(0, { duration: 180 });
-    // Страховка: коллбэк Reanimated при отмене приходит с finished=false, и
-    // шторка «зависала открытой» невидимо — JS-таймер закрывает всегда.
-    if (dismissFallbackRef.current) clearTimeout(dismissFallbackRef.current);
-    dismissFallbackRef.current = setTimeout(() => {
-      dismissFallbackRef.current = null;
-      handleCloseRef.current();
-    }, 300);
-    sheetY.value = withTiming(SHEET_HIDDEN, { duration: 220, easing: REasing.out(REasing.cubic) }, (finished) => {
-      if (finished) runOnJS(handleCloseRef.current)();
-    });
-  }, [backdropO, sheetY, reduceMotion]);
-
-  const closeAfterSwipe = useCallback(() => {
-    handleCloseRef.current();
-  }, []);
-
-  const swipeOffDistance = useMemo(() => Math.max(480, viewportHeight * 0.6), [viewportHeight]);
-
-  const panGesture = useMemo(
-    () =>
-      Gesture.Pan()
-        .activeOffsetY(10)
-        .failOffsetX([-32, 32])
-        .onUpdate((e) => {
-          'worklet';
-          const ty = e.translationY;
-          dragTranslateY.value = ty < 0 ? ty * 0.12 : ty;
-        })
-        .onEnd((e) => {
-          'worklet';
-          const shouldClose = dragTranslateY.value > 88 || e.velocityY > 900;
-          if (shouldClose) {
-            dragTranslateY.value = withTiming(swipeOffDistance, { duration: 240 }, (finished) => {
-              if (finished) runOnJS(closeAfterSwipe)();
-            });
-          } else {
-            dragTranslateY.value = withSpring(0, { damping: 22, stiffness: 300 });
-          }
-        }),
-    [closeAfterSwipe, dragTranslateY, swipeOffDistance],
-  );
-
-  const backdropStyle = useAnimatedStyle(() => ({
-    opacity: backdropO.value * (1 - Math.min(Math.max(dragTranslateY.value, 0) / 600, 0.5)),
-  }));
-  const sheetStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: sheetY.value + dragTranslateY.value }],
-  }));
+  const { f, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
 
   const closeLabel = triLang(lang, {
     ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar',
     vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij',
   });
+  const doneLabel = triLang(lang, {
+    ru: 'Выполнено', uk: 'Виконано', en: 'Done', es: 'Hecho', 'pt-BR': 'Concluído',
+    vi: 'Xong', id: 'Selesai', tr: 'Tamamlandı', pl: 'Ukończono',
+  });
+  const notDoneLabel = triLang(lang, {
+    ru: 'Ещё не выполнено', uk: 'Ще не виконано', en: 'Not done yet', es: 'Aún no',
+    'pt-BR': 'Ainda não', vi: 'Chưa xong', id: 'Belum', tr: 'Henüz değil', pl: 'Jeszcze nie',
+  });
 
   const doneCount = objectives.filter((o) => objectivesMet.has(o.id)).length;
 
   return (
-    <Modal visible={visible} transparent animationType="none" statusBarTranslucent onRequestClose={dismissSheet}>
-      <GestureHandlerRootView style={styles.root}>
-        <Pressable style={StyleSheet.absoluteFill} onPress={dismissSheet} accessibilityLabel={closeLabel}>
-          <Animated.View style={[styles.backdrop, backdropStyle]} />
-        </Pressable>
-
-        <View style={styles.avoider} pointerEvents="box-none">
-          <GestureDetector gesture={panGesture}>
-            <Animated.View
-              testID={testID}
-              style={[
-                styles.sheet,
-                { backgroundColor: t.bgCard, paddingBottom: 20 + bottomInset, maxHeight: viewportHeight * 0.82 },
-                sheetStyle,
-              ]}
+    <HybridSheetShell
+      visible={visible}
+      onClose={onClose}
+      closeLabel={closeLabel}
+      testID={testID}
+      material="liquid-glass-opaque"
+    >
+      {({ requestDismiss }) => (
+        <View style={styles.body}>
+          <View style={styles.header}>
+            <Text
+              accessibilityRole="header"
+              style={{ color: glass.text, fontSize: f.h2, fontWeight: '700', flex: 1 }}
+              maxFontSizeMultiplier={1.2}
             >
-              <TonalSurface pointerEvents="none" radius={24} tone="raised" style={StyleSheet.absoluteFillObject} />
-              <View style={styles.grabber} pointerEvents="none">
-                <View style={[styles.grabberPill, { backgroundColor: t.border }]} />
-              </View>
+              {triLang(lang, {
+                ru: 'Задания', uk: 'Завдання', en: 'Goals', es: 'Objetivos',
+                'pt-BR': 'Objetivos', vi: 'Nhiệm vụ', id: 'Tugas', tr: 'Görevler', pl: 'Zadania',
+              })}
+            </Text>
+            <PressableHybrid
+              variant="icon"
+              onPress={requestDismiss}
+              accessibilityLabel={closeLabel}
+              style={styles.closeHit}
+              contentStyle={[styles.closeBtn, { backgroundColor: glass.opaqueControl }]}
+            >
+              <Ionicons name="close" size={20} color={glass.secondary} />
+            </PressableHybrid>
+          </View>
 
-              <View style={styles.header}>
-                <Ionicons name="flag" size={22} color={t.accent} />
-                <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', flex: 1 }} maxFontSizeMultiplier={1.2}>
-                  {triLang(lang, {
-                    ru: 'Задания', uk: 'Завдання', en: 'Goals', es: 'Objetivos',
-                    'pt-BR': 'Objetivos', vi: 'Nhiệm vụ', id: 'Tugas', tr: 'Görevler', pl: 'Zadania',
-                  })}
-                </Text>
-                <Pressable
-                  onPress={dismissSheet}
-                  hitSlop={8}
-                  accessibilityRole="button"
-                  accessibilityLabel={closeLabel}
-                  style={({ pressed }) => [styles.closeBtn, { backgroundColor: t.bgSurface2, opacity: pressed ? 0.7 : 1 }]}
+          {/* Счётчик: сколько закрыто из скольких. */}
+          <Text
+            style={{ color: glass.secondary, fontSize: f.body, fontWeight: '700', marginBottom: 8 }}
+            maxFontSizeMultiplier={1.2}
+          >
+            {`${doneCount} / ${objectives.length}`}
+          </Text>
+
+          <ScrollView
+            style={styles.scroll}
+            contentContainerStyle={styles.scrollContent}
+            showsVerticalScrollIndicator={false}
+          >
+            {/* guard-ok: заданий 4–7 по контракту (ai_dialog_objectives_contract),
+                FlatList на семи строках дороже, чем сам список. */}
+            {objectives.map((objective, index) => {
+              const done = objectivesMet.has(objective.id);
+              const status = done ? doneLabel : notDoneLabel;
+              return (
+                <View
+                  key={objective.id}
+                  style={[styles.row, index > 0 ? { borderTopWidth: 1, borderTopColor: glass.line } : null]}
+                  accessible
+                  accessibilityRole="text"
+                  accessibilityLabel={`${objective.labelRu}. ${status}`}
                 >
-                  <Ionicons name="close" size={20} color={t.textMuted} />
-                </Pressable>
-              </View>
-
-              {/* Счётчик крупно: сколько закрыто из скольких. */}
-              <Text
-                style={{ color: t.textSecond, fontSize: f.body, fontWeight: '700', marginBottom: 12 }}
-                maxFontSizeMultiplier={1.2}
-              >
-                {`${doneCount} / ${objectives.length}`}
-              </Text>
-
-              <ScrollView
-                style={{ flexGrow: 0 }}
-                contentContainerStyle={{ paddingBottom: 4, gap: 8 }}
-                showsVerticalScrollIndicator={false}
-              >
-                {/* guard-ok: заданий 4–7 по контракту (ai_dialog_objectives_contract),
-                    FlatList на семи строках дороже, чем сам список. */}
-                {objectives.map((objective) => {
-                  const done = objectivesMet.has(objective.id);
-                  return (
-                    <View
-                      key={objective.id}
-                      style={[styles.row, { backgroundColor: done ? t.accentBg : t.bgSurface2 }]}
-                      accessibilityRole="text"
-                      accessibilityLabel={`${objective.labelRu}. ${done
-                        ? triLang(lang, {
-                            ru: 'Выполнено', uk: 'Виконано', en: 'Done', es: 'Hecho', 'pt-BR': 'Concluído',
-                            vi: 'Xong', id: 'Selesai', tr: 'Tamamlandı', pl: 'Ukończono',
-                          })
-                        : triLang(lang, {
-                            ru: 'Ещё не выполнено', uk: 'Ще не виконано', en: 'Not done yet', es: 'Aún no',
-                            'pt-BR': 'Ainda não', vi: 'Chưa xong', id: 'Belum', tr: 'Henüz değil', pl: 'Jeszcze nie',
-                          })}`}
-                    >
-                      <Ionicons
-                        name={done ? 'checkmark-circle' : 'ellipse-outline'}
-                        size={22}
-                        color={done ? t.accent : t.textMuted}
-                      />
-                      <Text
-                        style={{
-                          color: done ? t.textSecond : t.textPrimary,
-                          fontSize: f.body,
-                          fontWeight: done ? '400' : '700',
-                          flex: 1,
-                          lineHeight: Math.round(f.body * 1.35),
-                        }}
-                        maxFontSizeMultiplier={1.2}
-                      >
-                        {objective.labelRu}
+                  <View style={[styles.badge, { backgroundColor: done ? glass.cta : glass.opaqueControl }]}>
+                    {done ? (
+                      <Ionicons name="checkmark" size={16} color={glass.ctaInk} />
+                    ) : (
+                      <Text style={{ color: glass.secondary, fontSize: f.sub, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
+                        {index + 1}
                       </Text>
-                    </View>
-                  );
-                })}
-              </ScrollView>
-            </Animated.View>
-          </GestureDetector>
+                    )}
+                  </View>
+                  <View style={styles.rowText}>
+                    <Text
+                      style={{
+                        color: done ? glass.secondary : glass.text,
+                        fontSize: f.body,
+                        fontWeight: done ? '400' : '700',
+                        lineHeight: Math.round(f.body * 1.35),
+                      }}
+                      maxFontSizeMultiplier={1.2}
+                    >
+                      {objective.labelRu}
+                    </Text>
+                    <Text style={{ color: glass.mutedText, fontSize: f.sub, marginTop: 2 }} maxFontSizeMultiplier={1.2}>
+                      {status}
+                    </Text>
+                  </View>
+                </View>
+              );
+            })}
+          </ScrollView>
+
+          <PressableHybrid
+            variant="primary"
+            onPress={requestDismiss}
+            accessibilityLabel={closeLabel}
+            style={styles.ctaHit}
+            contentStyle={[styles.cta, { backgroundColor: glass.cta }]}
+          >
+            <Text style={{ color: glass.ctaInk, fontSize: f.bodyLg, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
+              {closeLabel}
+            </Text>
+          </PressableHybrid>
         </View>
-      </GestureHandlerRootView>
-    </Modal>
+      )}
+    </HybridSheetShell>
   );
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1 },
-  backdrop: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.55)' },
-  avoider: { flex: 1, justifyContent: 'flex-end' },
-  sheet: {
-    borderTopLeftRadius: 24,
-    borderTopRightRadius: 24,
-    paddingHorizontal: 20,
-    paddingTop: 8,
-    overflow: 'hidden',
-  },
-  grabber: { alignItems: 'center', paddingVertical: 6 },
-  grabberPill: { width: 38, height: 4, borderRadius: 2 },
-  header: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 2, marginBottom: 12 },
-  closeBtn: { width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
+  body: { flexShrink: 1, minHeight: 0 },
+  header: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 2, marginBottom: 6 },
+  closeHit: { alignSelf: 'auto', width: 44, height: 44 },
+  closeBtn: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
+  scroll: { flexShrink: 1, flexGrow: 0 },
+  scrollContent: { paddingBottom: 4 },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
-    borderRadius: 16,
-    paddingHorizontal: 16,
     minHeight: 54,
-    paddingVertical: 10,
+    paddingVertical: 11,
   },
+  badge: { width: 28, height: 28, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
+  rowText: { flex: 1 },
+  ctaHit: { marginTop: 18 },
+  cta: { minHeight: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center' },
 });

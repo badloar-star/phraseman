@@ -11,17 +11,16 @@ import {
   Easing,
   KeyboardAvoidingView,
   Linking,
-  Modal,
   Platform,
   Pressable,
 } from 'react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
+import { createAudioPlayer, type AudioPlayer } from 'expo-audio';
+import { File } from 'expo-file-system';
 import { useTheme } from '../components/ThemeContext';
 import { usePremium, useFeatureAccess } from '../components/PremiumContext';
-import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
-import NoEnergyModal from '../components/NoEnergyModal';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
@@ -65,6 +64,7 @@ import {
 import DialogBubbleActions from '../components/dialogs/DialogBubbleActions';
 import DialogWhySheet from '../components/dialogs/DialogWhySheet';
 import DialogGoalsSheet from '../components/dialogs/DialogGoalsSheet';
+import DialogHintModal from '../components/dialogs/DialogHintModal';
 import { triLang, type Lang } from '../constants/i18n';
 import { getLessonData } from './lesson_data_all';
 import { getLessonDialogScenarioId } from './lesson_dialog_scenarios';
@@ -82,6 +82,7 @@ import {
   type PremiumDialogErrorKind,
   type PremiumDialogReviewResponse,
 } from './ai_dialog_client';
+import { buildDialogueCompletionFallback, isCompletionReviewUsable } from './dialogue_completion_debrief';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import DialogVerdictScreen from '../components/DialogVerdictScreen';
 import FeedbackRatingCard from '../components/FeedbackRatingCard';
@@ -111,10 +112,6 @@ import {
 } from './ai_dialog_hint_economy';
 import { useSpeakingAttemptGate } from '../hooks/useSpeakingAttemptGate';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
-import { settleDialogEnergyStart, useMountedInstanceRef } from './ai_dialog_energy_settlement';
-import { registerXP } from './xp_manager';
-import { MAX_DIALOG_XP } from './config';
-import { outcomeXpMultiplier } from './dialog_outcome';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { aiDialogContentAvailableForTarget, aiDialogTargetGateCopy } from './ai_dialog_target_gate';
 import { dialogueLanguageMeta, resolveDialogueStudyTarget } from './dialogue_language_registry';
@@ -128,11 +125,12 @@ import {
   scheduleSpeechStopSettlement,
 } from './speech_recognition_module';
 import { resolveDialogueAsrCapability } from './dialogue_voice_capability';
-import { isSpeakingEnabled } from './remote_flags';
 import { buildSpeakingStartOptions } from './speaking_recognition_options';
 import { TranscriptAccumulator } from './speaking_transcript_accumulator';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
 import AiDialogConsentGate from './ai_dialog_consent_gate';
+import { buildDialogueVoiceAttachment, describeDialogueVoiceMessage, type DialogueVoiceDraft } from './dialogue_voice_message';
+import { claimSpokenAudio, whenSpokenAudioReady, type SpokenAudioClaim } from '../modules/audio/audio_runtime_arbiter';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 /**
@@ -233,6 +231,17 @@ function buildLessonDialogScenario(lessonId: number): DialogScenario | null {
 interface UiMessage {
   role: 'user' | 'assistant';
   text: string;
+  /** Ephemeral local replay; transcript stays internal to the dialogue turn. */
+  voice?: Readonly<{ uri: string }>;
+}
+
+function deleteDialogueVoiceRecording(uri: string): void {
+  try {
+    const file = new File(uri);
+    if (file.exists) file.delete();
+  } catch {
+    // Cache cleanup is best-effort; never let a stale recording break a chat.
+  }
 }
 
 // Полностью локализованная (8 языков) подпись кнопки «Повторить».
@@ -279,23 +288,6 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
   const dialogueTarget = resolveDialogueStudyTarget(studyTarget);
   const dialogueSpeechLocale = dialogueTarget ? dialogueLanguageMeta(dialogueTarget).speechLocale : null;
   const frenchGateCopy = aiDialogTargetGateCopy(lang, studyTarget);
-  // Вход в диалог = 20 ⚡: платим за старт активности.
-  //
-  // зачем ЗДЕСЬ, а не только на брифинге: брифинг показывается лишь при ПЕРВОМ
-  // прохождении сценария (hasSeenAiDialogIntro в DialogsTabContent), дальше
-  // человек попадает прямо сюда — и до аудита 2026-08-23 все повторные диалоги
-  // были бесплатными. Диалог — самая дорогая активность (LLM + TTS), так что
-  // это был и обход экономики, и прямые деньги. Гейт в самой сессии закрывает
-  // заодно и прямые ссылки на /ai_dialog_session.
-  //
-  // Латч живёт на монтирование: родительский маршрут даёт key=scenarioId, то
-  // есть на каждый новый диалог компонент пересоздаётся и платится честно.
-  const { confirmSpendOne: confirmDialogEnergy, acknowledgeSessionStart, energyReady: dialogEnergyReady } = useEnergy();
-  const dialogEnergyIntent = useEnergySessionIntent('ai_dialog', 'direct', feedbackAttemptId);
-  const [dialogNoEnergy, setDialogNoEnergy] = useState(false);
-  const dialogEntryChargedRef = useRef(false);
-  const mountedInstanceRef = useMountedInstanceRef();
-
   const { speak: legacySpeak, stop: stopSpeaking } = useAudio();
   const strictDialogueVoice = useDialogueVoicePlayback(studyTarget);
   const strictPlaybackUnavailable = dialogueTarget !== 'en' && (!strictDialogueVoice.available || strictDialogueVoice.loading);
@@ -306,7 +298,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
     }
     return strictDialogueVoice.speakDialogue(text);
   }, [dialogueSpeechLocale, dialogueTarget, legacySpeak, strictDialogueVoice]);
-  const speechModule = useMemo(() => (isSpeakingEnabled() ? loadSpeechRecognitionModule() : null), []);
+  const speechModule = useMemo(() => loadSpeechRecognitionModule(), []);
   const recordingAudio = useManagedRecordingAudio(() => {
     try { speechModule?.abort(); } catch (e) {
       // native capture already gone
@@ -346,22 +338,6 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
     };
   }, [dialogueTarget, scenario, targetScenario]);
   const dialogueRuntimeOpen = aiDialogGateOpen && promptScenario !== null && presentation !== null;
-
-  useEffect(() => {
-    // energyReady обязателен: до первого чтения из хранилища контекст отдаёт
-    // placeholder (isUnlimited=false, energy=MAX) — списали бы у подписчика.
-    if (!dialogueRuntimeOpen || !dialogEnergyReady || dialogEntryChargedRef.current) return;
-    dialogEntryChargedRef.current = true;
-    void confirmDialogEnergy(dialogEnergyIntent).then((result) => {
-      settleDialogEnergyStart({
-        result,
-        mounted: mountedInstanceRef.current,
-        acknowledge: () => { void acknowledgeSessionStart(dialogEnergyIntent.operationId); },
-        showNoEnergy: () => setDialogNoEnergy(true),
-        navigateBack: () => safeRouterBack(router, '/(tabs)/home' as any),
-      });
-    });
-  }, [acknowledgeSessionStart, confirmDialogEnergy, dialogEnergyIntent, dialogEnergyReady, dialogueRuntimeOpen, mountedInstanceRef, router]);
 
   useEffect(() => {
     if (!accessResolved || !dialogueRuntimeOpen) return;
@@ -567,10 +543,8 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
    * полноэкранный вердикт накрывал её на том же кадре.
    *
    * Разделяем два разных события, которые раньше были одним:
-   *  • `ended` — диалог ОКОНЧЕН. Ставится сразу: блокирует ввод, начисляет XP и
-   *    отметку «Пройдено». Награда НЕ должна зависеть от того, досмотрел ли
-   *    человек анимацию (правило фундамента: «удаляешь показ — не унеси
-   *    награду»).
+   *  • `ended` — диалог ОКОНЧЕН. Ставится сразу: блокирует ввод и сохраняет
+   *    отметку «Пройдено».
    *  • `verdictReady` — вердикт МОЖНО показать. Встаёт через VERDICT_DELAY_MS
    *    или сразу по тапу (нетерпеливого не держим).
    */
@@ -618,6 +592,24 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
   const voiceInputStatusRef = useRef<VoiceInputStatus>('idle');
   voiceInputStatusRef.current = voiceInputStatus;
   const voiceInputListenersRef = useRef<Array<{ remove?: () => void }>>([]);
+  // audioend may arrive after the recognizer's regular end. Keep this listener
+  // separate so the local replay file can still attach to the finished turn.
+  const voiceAudioStartSubRef = useRef<{ remove?: () => void } | null>(null);
+  const voiceAudioEndSubRef = useRef<{ remove?: () => void } | null>(null);
+  const voiceDraftRef = useRef<DialogueVoiceDraft | null>(null);
+  const voiceCaptureTranscriptRef = useRef('');
+  // audiostart gives a deletion handle; only audioend makes it replayable.
+  const voiceCaptureKnownUriRef = useRef<string | null>(null);
+  const voiceCaptureUriRef = useRef<string | null>(null);
+  const voiceCaptureSessionRef = useRef(0);
+  const voiceCaptureTokenRef = useRef(0);
+  const voiceRecordingUrisRef = useRef<Set<string>>(new Set());
+  const voiceMessageUrisRef = useRef<Set<string>>(new Set());
+  const voiceMessagePlayerRef = useRef<AudioPlayer | null>(null);
+  const voiceMessagePlaybackSubRef = useRef<{ remove?: () => void } | null>(null);
+  const voiceMessageClaimRef = useRef<SpokenAudioClaim | null>(null);
+  const voiceMessagePlaybackGenerationRef = useRef(0);
+  const [playingVoiceMessageUri, setPlayingVoiceMessageUri] = useState<string | null>(null);
   const voiceInputMountedRef = useRef(true);
   // Invalidates an in-flight permission/model/start sequence when the finger is
   // released.
@@ -680,10 +672,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
   const [reviewStatus, setReviewStatus] = useState<'idle' | 'loading' | 'ready' | 'error'>('idle');
   const reviewRequestedRef = useRef(false);
 
-  // Полноэкранный финал (редизайн 2026-08-23): реально начисленный XP этого
-  // прохождения (0 при повторе — анти-фарм строка скрыта) и флаг «переписка
-  // показана под вердиктом» (кнопка «Показать переписку» / пилюля «Итоги»).
-  const [xpAwarded, setXpAwarded] = useState(0);
+  // Флаг «переписка показана под вердиктом» (кнопка «Показать переписку» / пилюля «Итоги»).
   const [verdictHidden, setVerdictHidden] = useState(false);
   /**
    * ⛔ ПОЧЕМУ ЛАМПОЧКА «НЕ РАБОТАЛА» — она НЕ СУЩЕСТВОВАЛА (владелец 2026-09-17,
@@ -929,6 +918,84 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
     voiceInputListenersRef.current.forEach((sub) => sub?.remove?.());
     voiceInputListenersRef.current = [];
   }, []);
+  const cleanupVoiceAudioEndListener = useCallback(() => {
+    voiceAudioStartSubRef.current?.remove?.();
+    voiceAudioStartSubRef.current = null;
+    voiceAudioEndSubRef.current?.remove?.();
+    voiceAudioEndSubRef.current = null;
+  }, []);
+  const clearPendingDialogueVoiceRecordings = useCallback(() => {
+    voiceRecordingUrisRef.current.forEach((uri) => {
+      if (voiceMessageUrisRef.current.has(uri)) return;
+      deleteDialogueVoiceRecording(uri);
+      voiceRecordingUrisRef.current.delete(uri);
+    });
+    voiceDraftRef.current = null;
+    voiceCaptureKnownUriRef.current = null;
+    voiceCaptureUriRef.current = null;
+    voiceCaptureTranscriptRef.current = '';
+  }, []);
+  const stopVoiceMessagePlayback = useCallback(() => {
+    voiceMessagePlaybackGenerationRef.current += 1;
+    voiceMessagePlaybackSubRef.current?.remove?.();
+    voiceMessagePlaybackSubRef.current = null;
+    voiceMessageClaimRef.current?.release();
+    voiceMessageClaimRef.current = null;
+    const player = voiceMessagePlayerRef.current;
+    voiceMessagePlayerRef.current = null;
+    try { player?.pause(); } catch { /* native player was already released */ }
+    try { player?.release(); } catch { /* native player was already released */ }
+    if (voiceInputMountedRef.current) setPlayingVoiceMessageUri(null);
+  }, []);
+  const playVoiceMessage = useCallback((uri: string) => {
+    stopVoiceMessagePlayback();
+    const playbackGeneration = voiceMessagePlaybackGenerationRef.current;
+    let claim: SpokenAudioClaim | null = null;
+    claim = claimSpokenAudio(() => {
+      if (voiceMessageClaimRef.current === claim) stopVoiceMessagePlayback();
+    }, 'ai-dialog:voice-message-replay');
+    if (!claim) return;
+    voiceMessageClaimRef.current = claim;
+    void whenSpokenAudioReady(claim).then((audioReady) => {
+      if (
+        !audioReady
+        || !claim?.isCurrent()
+        || !voiceInputMountedRef.current
+        || !runtimeActiveRef.current
+        || playbackGeneration !== voiceMessagePlaybackGenerationRef.current
+      ) {
+        claim?.release();
+        if (voiceMessageClaimRef.current === claim) voiceMessageClaimRef.current = null;
+        return;
+      }
+      let player: AudioPlayer;
+      try {
+        player = createAudioPlayer(uri);
+      } catch {
+        stopVoiceMessagePlayback();
+        return;
+      }
+      if (!claim.isCurrent() || playbackGeneration !== voiceMessagePlaybackGenerationRef.current) {
+        try { player.release(); } catch { /* already released */ }
+        return;
+      }
+      voiceMessagePlayerRef.current = player;
+      voiceMessagePlaybackSubRef.current = player.addListener('playbackStatusUpdate', (status) => {
+        if (
+          voiceMessagePlayerRef.current !== player
+          || playbackGeneration !== voiceMessagePlaybackGenerationRef.current
+        ) return;
+        if (status.didJustFinish) stopVoiceMessagePlayback();
+      });
+      try {
+        player.volume = 1;
+        player.play();
+        setPlayingVoiceMessageUri(uri);
+      } catch {
+        stopVoiceMessagePlayback();
+      }
+    });
+  }, [stopVoiceMessagePlayback]);
   const settleVoiceInput = useCallback(() => {
     if (voiceStopSettlementRef.current != null) clearTimeout(voiceStopSettlementRef.current);
     voiceStopSettlementRef.current = null;
@@ -946,6 +1013,11 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
     if (!accessResolved) return;
     const generation = ++voiceInputGenerationRef.current;
     const session = ++voiceInputSessionRef.current;
+    // Invalidate an older hold before any permission/inventory await. Its late
+    // audio callback can now only delete its own cache file, never feed this hold.
+    const captureToken = ++voiceCaptureTokenRef.current;
+    cleanupVoiceAudioEndListener();
+    clearPendingDialogueVoiceRecordings();
     const isCurrentSession = () =>
       voiceInputMountedRef.current && runtimeActiveRef.current && session === voiceInputSessionRef.current;
     hapticTap();
@@ -1033,6 +1105,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
     }
 
     cleanupVoiceInputListeners();
+    voiceCaptureSessionRef.current = session;
     const acc = new TranscriptAccumulator();
     let latest = '';
     const applyTranscript = (value: string) => {
@@ -1040,6 +1113,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
       const next = value.trim();
       if (!next) return;
       latest = next;
+      voiceCaptureTranscriptRef.current = next;
       if (!voiceInputMountedRef.current) return;
       setInput(next);
       if (lastErrorMessage) {
@@ -1102,8 +1176,12 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
     });
     const endSub = speechModule.addListener('end', () => {
       if (!isCurrentSession()) return;
+      if (voiceCaptureSessionRef.current === session && voiceCaptureUriRef.current && latest) {
+        voiceDraftRef.current = { uri: voiceCaptureUriRef.current, transcript: latest };
+      }
       settleVoiceInput();
-      // Текст остаётся в поле: пользователь проверяет его и отправляет стрелкой.
+      // Текст остаётся в поле: он нужен модели, а при неизменённом черновике
+      // отправка покажет именно аудиопузырь с этой локальной записью.
     });
     const errorSub = speechModule.addListener('error', () => {
       if (!isCurrentSession()) return;
@@ -1115,6 +1193,44 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
       if (!isCurrentSession()) return;
       settleVoiceInput();
     });
+    voiceAudioStartSubRef.current = speechModule.addListener('audiostart', (event: { uri?: unknown }) => {
+      const uri = typeof event?.uri === 'string' && event.uri.length > 0 ? event.uri : null;
+      if (!uri) return;
+      voiceRecordingUrisRef.current.add(uri);
+      if (
+        !voiceInputMountedRef.current
+        || !runtimeActiveRef.current
+        || voiceCaptureSessionRef.current !== session
+        || voiceCaptureTokenRef.current !== captureToken
+      ) {
+        deleteDialogueVoiceRecording(uri);
+        voiceRecordingUrisRef.current.delete(uri);
+        return;
+      }
+      // The file exists now but must not be replayed until audioend completes.
+      voiceCaptureKnownUriRef.current = uri;
+    }) ?? null;
+    voiceAudioEndSubRef.current = speechModule.addListener('audioend', (event: { uri?: unknown }) => {
+      // audioend is legitimately later than end, but never belongs to a later
+      // microphone hold or a backgrounded screen.
+      const uri = typeof event?.uri === 'string' && event.uri.length > 0 ? event.uri : null;
+      if (!uri) return;
+      voiceRecordingUrisRef.current.add(uri);
+      if (
+        !voiceInputMountedRef.current
+        || !runtimeActiveRef.current
+        || voiceCaptureSessionRef.current !== session
+        || voiceCaptureTokenRef.current !== captureToken
+      ) {
+        deleteDialogueVoiceRecording(uri);
+        voiceRecordingUrisRef.current.delete(uri);
+        return;
+      }
+      voiceCaptureKnownUriRef.current = uri;
+      voiceCaptureUriRef.current = uri;
+      const transcript = voiceCaptureTranscriptRef.current;
+      if (transcript) voiceDraftRef.current = { uri, transcript };
+    }) ?? null;
     voiceInputListenersRef.current = [startSub, resultSub, endSub, errorSub, noMatchSub].filter(
       Boolean,
     ) as Array<{ remove?: () => void }>;
@@ -1134,12 +1250,14 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
       if (!isCurrentSession() || generation !== voiceInputGenerationRef.current) return;
       if (!holdPressActiveRef.current) {
         cleanupVoiceInputListeners();
+        cleanupVoiceAudioEndListener();
         restoreLoudPlaybackMode();
         setVoiceInputStatus('idle');
         return;
       }
       if (!dialogueSpeechLocale) {
         cleanupVoiceInputListeners();
+        cleanupVoiceAudioEndListener();
         restoreLoudPlaybackMode();
         setVoiceInputStatus('stalled');
         return;
@@ -1155,8 +1273,9 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
         } catch (e) {
       // сервис мог умереть — не мешаем
       DebugLogger.error('ai_dialog_session:onDevice', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
+        }
         cleanupVoiceInputListeners();
+        cleanupVoiceAudioEndListener();
         if (voiceInputMountedRef.current) {
           setVoiceInputStatus('stalled');
           hapticError();
@@ -1170,8 +1289,9 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
           interimResults: true,
           volumeMeter: false,
           onDevice,
-          // Голосовой ввод не переслушивают — файл записи не нужен, не пишем.
-          persistRecording: false,
+          // Голосовая реплика остаётся воспроизводимым сообщением в этой
+          // переписке; расшифровка используется только для ответа собеседника.
+          persistRecording: true,
           // Зажми-и-говори: держим движок открытым, пока зажата кнопка
           // (иначе Android-endpointer рвёт речь на паузе).
           holdToTalk: true,
@@ -1185,13 +1305,16 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
     } catch {
       clearRecognizerWatchdog();
       cleanupVoiceInputListeners();
+      cleanupVoiceAudioEndListener();
       restoreLoudPlaybackMode();
       // start() кинул — почти всегда транзиентно (сервис занят/умер); даём «Повторить».
       if (isCurrentSession()) setVoiceInputStatus('error');
     }
   }, [
     accessResolved,
+    cleanupVoiceAudioEndListener,
     cleanupVoiceInputListeners,
+    clearPendingDialogueVoiceRecordings,
     clearRecognizerWatchdog,
     ended,
     dialogueSpeechLocale,
@@ -1216,11 +1339,15 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
       voiceInputMountedRef.current = false;
       voiceInputGenerationRef.current += 1;
       voiceInputSessionRef.current += 1;
+      voiceCaptureTokenRef.current += 1;
       holdPressActiveRef.current = false;
       clearRecognizerWatchdog();
       if (voiceStopSettlementRef.current != null) clearTimeout(voiceStopSettlementRef.current);
       voiceStopSettlementRef.current = null;
       cleanupVoiceInputListeners();
+      cleanupVoiceAudioEndListener();
+      stopVoiceMessagePlayback();
+      clearPendingDialogueVoiceRecordings();
       try {
         speechModule?.abort();
       } catch (e) {
@@ -1229,7 +1356,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
     }
       restoreLoudPlaybackMode();
     };
-  }, [cleanupVoiceInputListeners, clearRecognizerWatchdog, restoreLoudPlaybackMode, speechModule]);
+  }, [cleanupVoiceAudioEndListener, cleanupVoiceInputListeners, clearPendingDialogueVoiceRecordings, clearRecognizerWatchdog, restoreLoudPlaybackMode, speechModule, stopVoiceMessagePlayback]);
 
   // зачем: сворачивание приложения НЕ размонтирует экран, поэтому cleanup выше не срабатывает
   // и распознавание продолжало держать микрофон открытым в фоне — большой расход батареи.
@@ -1241,11 +1368,15 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
     if (runtimeActive) return;
     voiceInputGenerationRef.current += 1;
     voiceInputSessionRef.current += 1;
+    voiceCaptureTokenRef.current += 1;
     holdPressActiveRef.current = false;
     clearRecognizerWatchdog();
     if (voiceStopSettlementRef.current != null) clearTimeout(voiceStopSettlementRef.current);
     voiceStopSettlementRef.current = null;
     cleanupVoiceInputListeners();
+    cleanupVoiceAudioEndListener();
+    stopVoiceMessagePlayback();
+    clearPendingDialogueVoiceRecordings();
     try {
       speechModule?.abort();
     } catch (e) {
@@ -1260,7 +1391,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
     }
     restoreLoudPlaybackMode();
     if (voiceInputMountedRef.current) setVoiceInputStatus('idle');
-  }, [runtimeActive, speechModule, clearRecognizerWatchdog, cleanupVoiceInputListeners, restoreLoudPlaybackMode, stopSpeaking]);
+  }, [runtimeActive, speechModule, clearRecognizerWatchdog, cleanupVoiceAudioEndListener, cleanupVoiceInputListeners, clearPendingDialogueVoiceRecordings, restoreLoudPlaybackMode, stopSpeaking, stopVoiceMessagePlayback]);
 
   const enterAnim = useRef(new Animated.Value(0)).current;
   useEffect(() => {
@@ -1276,35 +1407,6 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
   const buildHistory = useCallback((): DialogChatTurn[] => {
     return messages.map((m) => ({ role: m.role, content: m.text }));
   }, [messages]);
-
-  // Начисление XP по исходу (аудит H3: outcomeXpMultiplier раньше был мёртвым кодом).
-  // База MAX_DIALOG_XP × множитель исхода (успех 1 / заглох 0.6 / провал 0.4).
-  // Дедуп по сценарию: «Ещё раз» того же диалога XP повторно НЕ начисляет (анти-фарм).
-  const awardDialogXp = useCallback(
-    async (terminalOutcome: DialogOutcome) => {
-      const mult = outcomeXpMultiplier(terminalOutcome);
-      if (mult <= 0) return;
-      const amount = Math.round(MAX_DIALOG_XP * mult);
-      if (amount <= 0) return;
-      const dedupeKey = `dialog_xp_awarded_${scenario.id}`;
-      try {
-        if (await AsyncStorage.getItem(dedupeKey)) return; // уже начисляли за этот сценарий
-        const userName = (await AsyncStorage.getItem('user_name')) || '';
-        await registerXP(amount, 'dialog_complete', userName, lang, undefined, {
-          eventId: `dialog_complete:${scenario.id}:${terminalOutcome}`,
-          payload: { scenarioId: scenario.id, outcome: terminalOutcome },
-        });
-        await AsyncStorage.setItem(dedupeKey, '1');
-        // Показ «+XP» на финальном экране — только когда начисление реально
-        // произошло (повтор сценария честно молчит, как в контракте салюта).
-        setXpAwarded(amount);
-      } catch (e) {
-      // best-effort: сбой начисления XP не должен ломать показ модала-вердикта
-      DebugLogger.error('ai_dialog_session:userName', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
-    },
-    [scenario.id, lang],
-  );
 
   // Применяет turnState из ответа сервера: настроение, выполненные цели, исход.
   // При терминальном исходе сохраняем реакцию персонажа + советы и завершаем
@@ -1345,11 +1447,9 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
         if (ts.outcome === 'success') {
           void markDialogCompleted(studyTarget, scenario.id);
         }
-        // XP начисляем при любом исходе (больше за успех, меньше за провал/заглох).
-        void awardDialogXp(ts.outcome);
       }
     },
-    [gameEnabled, scenario.id, awardDialogXp, studyTarget],
+    [gameEnabled, scenario.id, studyTarget],
   );
 
   // Игровые поля строим непосредственно перед отправкой: так сервер получает
@@ -1500,11 +1600,27 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
       void trackEvent('ai_dialog_message_sent', { scenarioId: scenario.id, exchangeIndex });
 
       const history = buildHistory();
+      const voiceAttachment = buildDialogueVoiceAttachment(voiceDraftRef.current, trimmed);
+      // The transcript remains in the request/history for the partner's response,
+      // while the learner sees and replays an actual local voice message.
+      voiceDraftRef.current = null;
+      // A late audioend is never allowed to populate a subsequent turn. Keep the
+      // listener only until it can delete a late cache file, then invalidate it.
+      voiceCaptureTokenRef.current += 1;
+      if (voiceAttachment) {
+        voiceMessageUrisRef.current.add(voiceAttachment.uri);
+        voiceCaptureUriRef.current = null;
+        cleanupVoiceAudioEndListener();
+      } else {
+        // The learner edited the ASR draft (or the file never finalized): it is
+        // now a text turn, so remove the abandoned recording immediately.
+        clearPendingDialogueVoiceRecordings();
+      }
       lastSentTextRef.current = trimmed;
       sendStageRef.current = 'stream';
       setLastErrorMessage('');
       setLastErrorKind(null);
-      setMessages((prev) => [...prev, { role: 'user', text: trimmed }]);
+      setMessages((prev) => [...prev, { role: 'user', text: trimmed, voice: voiceAttachment ? { uri: voiceAttachment.uri } : undefined }]);
       setInput('');
       setSending(true);
       resetStreamDraft();
@@ -1619,7 +1735,8 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
         // 'critical' остаётся там, где диалог действительно сломан: провайдер
         // не ответил, стрим оборвался, сеть/таймаут, неизвестный код.
         const isExpectedRefusal =
-          errorKind === 'free_limit'
+          errorKind === 'plus_required'
+          || errorKind === 'free_limit'
           || errorKind === 'premium_limit'
           || errorKind === 'age_restricted';
         // зачем (диагностика 2026-09-22, владелец: «ответ приходит, через
@@ -1643,9 +1760,12 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
         // Ошибка сети/таймаута: НЕ пишем её как реплику персонажа и НЕ списываем
         // бесплатную попытку — показываем системную плашку с кнопкой «Повторить».
         void trackEvent('ai_dialog_send_error', { scenarioId: scenario.id, exchangeIndex });
+        if (errorKind === 'plus_required' && !hasPremiumAccess) {
+          openDialogPaywall();
+          return;
+        }
         if (errorKind === 'free_limit' && !hasPremiumAccess) {
-          // Сервер — источник истины по дневной квоте: 'dialog_free_limit' и
-          // 'dialog_plus_required' одинаково значат «сегодня закрыто».
+          // Сервер — источник истины для месячной квоты сценарных диалогов.
           handleDailyLimitReached(quotaObservationFromDialogError(error));
           return;
         }
@@ -1655,7 +1775,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
         setSending(false);
       }
     },
-    [sending, ended, voiceInputBusy, hasPremiumAccess, accessResolved, dialogAccess, dialogSessionOpen, dailyQuotaGate, handleDailyLimitReached, accountStableId, userExchanges, buildHistory, scenario, promptScenario, lang, studyTarget, buildGameRequestFields, applyAcceptedTurn, applyCoachTurn, pushStreamDelta, resetStreamDraft],
+    [sending, ended, voiceInputBusy, hasPremiumAccess, accessResolved, dialogAccess, dialogSessionOpen, dailyQuotaGate, handleDailyLimitReached, openDialogPaywall, accountStableId, userExchanges, buildHistory, scenario, promptScenario, lang, studyTarget, buildGameRequestFields, applyAcceptedTurn, applyCoachTurn, pushStreamDelta, resetStreamDraft, cleanupVoiceAudioEndListener, clearPendingDialogueVoiceRecordings],
   );
 
   // Голосовой ввод «зажми и продиктуй»: держим кнопку, пока говорим. Отпустил —
@@ -1799,7 +1919,12 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
     } catch (error) {
       resetStreamDraft();
       void trackEvent('ai_dialog_send_error', { scenarioId: scenario.id, retry: true });
-      if (classifyPremiumDialogError(error) === 'free_limit' && !hasPremiumAccess) {
+      const errorKind = classifyPremiumDialogError(error);
+      if (errorKind === 'plus_required' && !hasPremiumAccess) {
+        openDialogPaywall();
+        return;
+      }
+      if (errorKind === 'free_limit' && !hasPremiumAccess) {
         handleDailyLimitReached(quotaObservationFromDialogError(error));
         return;
       }
@@ -1808,7 +1933,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
     } finally {
       setSending(false);
     }
-  }, [sending, ended, hasPremiumAccess, accessResolved, dialogAccess, dialogSessionOpen, dailyQuotaGate, handleDailyLimitReached, accountStableId, messages, scenario, promptScenario, lang, studyTarget, buildGameRequestFields, applyAcceptedTurn, applyCoachTurn, pushStreamDelta, resetStreamDraft]);
+  }, [sending, ended, hasPremiumAccess, accessResolved, dialogAccess, dialogSessionOpen, dailyQuotaGate, handleDailyLimitReached, openDialogPaywall, accountStableId, messages, scenario, promptScenario, lang, studyTarget, buildGameRequestFields, applyAcceptedTurn, applyCoachTurn, pushStreamDelta, resetStreamDraft]);
 
   // Приветствие уже стоит в начальном состоянии. Здесь — только телеметрия старта
   // (один раз на маунт). OpenAI зовём только после первой реплики пользователя.
@@ -1845,6 +1970,21 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
     // Бесплатный диалог уже отмечен использованным на первой реплике — здесь не дублируем.
   }, [ended, scenario.id, studyTarget, userExchanges]);
 
+  // У финального экрана всегда есть честный итог. Пока сервер готовит живой
+  // разбор, fallback уже заякорен на реальных репликах; если вызов упадёт,
+  // мы не оставляем экран пустым и не выдумываем оценку.
+  useEffect(() => {
+    // Итог нужен на каждом экране завершения: даже если человек завершил
+    // переписку до первой своей реплики, честно показываем, что оценивать пока
+    // нечего, вместо пустого блока без реакции собеседника.
+    if (!ended || review) return;
+    const learnerTurns = messages
+      .filter((message) => message.role === 'user')
+      .map((message) => stripMarkers(message.text));
+    setReview(buildDialogueCompletionFallback({ lang, learnerTurns }));
+    setReviewStatus('ready');
+  }, [ended, userExchanges, messages, lang, review]);
+
   // Диалог завершён → один раз запрашиваем финальный разбор фраз ученика.
   // Транскрипт шлём без [[...]]-маркеров: тьютору-ревьюеру они только мешают.
   useEffect(() => {
@@ -1864,6 +2004,9 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
       studyTarget,
     })
       .then((res) => {
+        if (!isCompletionReviewUsable(res)) {
+          throw new Error('dialog_review_missing_grounded_completion_assessment');
+        }
         setReview(res);
         setReviewStatus('ready');
         void trackEvent('ai_dialog_review_shown', {
@@ -1872,8 +2015,9 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
         });
       })
       .catch(() => {
-        // Секция разбора опциональна: при сбое финальный экран живёт как раньше.
-        setReviewStatus('error');
+        // Никакой пустой финальной карточки: fallback выше уже содержит только
+        // факты из этого транскрипта и честно сообщает, что AI-разбор недоступен.
+        setReviewStatus('ready');
         void trackEvent('ai_dialog_review_failed', { scenarioId: scenario.id });
       });
   }, [accessResolved, ended, userExchanges, messages, scenario, promptScenario, lang, studyTarget]);
@@ -2183,7 +2327,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                 alignItems: 'center',
                 justifyContent: 'center',
                 paddingHorizontal: 16,
-                backgroundColor: t.bgCard,
+                backgroundColor: glassFill(t.bgCard, 0.46),
               }}
             >
               <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700' }}>
@@ -2229,7 +2373,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
               width: 36,
               height: 36,
               borderRadius: 18,
-              backgroundColor: t.bgCard,
+              backgroundColor: glassFill(t.bgCard, 0.46),
               marginLeft: 6,
             }}
           />
@@ -2264,7 +2408,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
               paddingHorizontal: 14,
               paddingVertical: 10,
               borderRadius: 16,
-              backgroundColor: t.bgCard,
+              backgroundColor: glassFill(t.bgCard, 0.46),
             }}
             accessibilityRole="button"
             accessibilityLabel={`${triLang(lang, {
@@ -2441,17 +2585,43 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                           ...noAndroidOutline,
                         }}
                       >
-                        <Text
-                          style={{
-                            color: t.correctText,
-                            fontSize: f.bodyLg,
-                            fontWeight: '400',
-                            lineHeight: Math.round(f.bodyLg * 1.4),
-                          }}
-                          maxFontSizeMultiplier={1.2}
-                        >
-                          {m.text}
-                        </Text>
+                        {m.voice ? (
+                          <TouchableOpacity
+                            onPress={() => {
+                              hapticTap();
+                              playVoiceMessage(m.voice!.uri);
+                            }}
+                            activeOpacity={0.8}
+                            accessibilityRole="button"
+                            accessibilityLabel={describeDialogueVoiceMessage(lang).action}
+                            style={{ flexDirection: 'row', alignItems: 'center', gap: 9, minWidth: 168 }}
+                            testID={`ai-dialog-voice-message-${i}`}
+                          >
+                            <View style={{ width: 32, height: 32, borderRadius: 16, backgroundColor: `${t.correctText}2B`, alignItems: 'center', justifyContent: 'center' }}>
+                              <Ionicons name={playingVoiceMessageUri === m.voice.uri ? 'pause' : 'play'} size={17} color={t.correctText} />
+                            </View>
+                            <View style={{ flex: 1, gap: 3 }}>
+                              <Text style={{ color: t.correctText, fontSize: f.label, fontWeight: '800' }} maxFontSizeMultiplier={1.2}>
+                                {describeDialogueVoiceMessage(lang).label}
+                              </Text>
+                              <View style={{ height: 3, borderRadius: 2, backgroundColor: `${t.correctText}52`, overflow: 'hidden' }}>
+                                <View style={{ width: '38%', height: '100%', borderRadius: 2, backgroundColor: t.correctText }} />
+                              </View>
+                            </View>
+                          </TouchableOpacity>
+                        ) : (
+                          <Text
+                            style={{
+                              color: t.correctText,
+                              fontSize: f.bodyLg,
+                              fontWeight: '400',
+                              lineHeight: Math.round(f.bodyLg * 1.4),
+                            }}
+                            maxFontSizeMultiplier={1.2}
+                          >
+                            {m.text}
+                          </Text>
+                        )}
                       </View>
                       {/* Поправка своей реплики: СНАЧАЛА КНОПКА, потом текст
                           (владелец 2026-09-17, по макету: «когда ты отправляешь
@@ -2882,7 +3052,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
             <View style={{ paddingHorizontal: 12, paddingTop: 8, paddingBottom: 12 }}>
               <View
                 style={{
-                  backgroundColor: t.bgCard,
+                  backgroundColor: glassFill(t.bgCard, 0.46),
                   borderRadius: 20,
                   paddingHorizontal: 18,
                   paddingVertical: 16,
@@ -3191,7 +3361,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                 onSubmitEditing={() => send(input)}
                 style={{
                   flex: 1,
-                  backgroundColor: t.bgCard,
+                  backgroundColor: glassFill(t.bgCard, 0.46),
                   borderRadius: 22,
                   paddingHorizontal: 18,
                   paddingVertical: Platform.OS === 'ios' ? 12 : 8,
@@ -3356,7 +3526,6 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
             coachTips={coachTips}
             review={review}
             reviewStatus={reviewStatus}
-            xpAwarded={xpAwarded}
             locked={!hasPremiumAccess}
             neutralClosing={
               gameEnabled && isTerminalOutcome(outcome)
@@ -3530,45 +3699,16 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
           поле ввода ей не место (владелец 2026-09-17: «вставляет русский текст,
           что за дичь»). Простой Modal, а не шторка: одна фраза, тянуть сюда
           жесты и каркас ради неё незачем. */}
-      <Modal
+      {/* [HINT-GLASS-START] Liquid Glass (макет C5): окно вынесено в DialogHintModal,
+          закрытие тапом по фону, текст — шаг сценария (бесплатно, без сети). */}
+      <DialogHintModal
         visible={hintOpen}
-        transparent
-        animationType="fade"
-        statusBarTranslucent
-        onRequestClose={() => setHintOpen(false)}
-      >
-        <Pressable
-          style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.55)', justifyContent: 'center', paddingHorizontal: 28 }}
-          onPress={() => setHintOpen(false)}
-          accessibilityRole="button"
-          accessibilityLabel={triLang(lang, {
-            ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar',
-            vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij',
-          })}
-        >
-          <View style={{ backgroundColor: t.bgCard, borderRadius: 24, padding: 22, gap: 12 }}>
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-              <Ionicons name="bulb" size={22} color={t.accent} />
-              <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
-                {triLang(lang, {
-                  ru: 'Подсказка', uk: 'Підказка', en: 'Hint', es: 'Pista', 'pt-BR': 'Dica',
-                  vi: 'Gợi ý', id: 'Petunjuk', tr: 'İpucu', pl: 'Podpowiedź',
-                })}
-              </Text>
-            </View>
-            {/* Подсказка БЕСПЛАТНА (владелец 2026-09-18: «она бесплатна, там
-                ничего не надо платить»). Текст — шаг сценария из бандла: ни
-                сети, ни модели, ни расходов. Платная механика живёт в «Почему
-                так»: 3 бесплатных в день, дальше руны. */}
-            <Text
-              style={{ color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.45) }}
-              maxFontSizeMultiplier={1.2}
-            >
-              {presentation?.hint ?? ''}
-            </Text>
-          </View>
-        </Pressable>
-      </Modal>
+        onClose={() => setHintOpen(false)}
+        lang={lang}
+        hint={presentation?.hint ?? ''}
+        testID="ai-dialog-hint-modal"
+      />
+      {/* [HINT-GLASS-END] */}
 
       {/* Все задания диалога: открывается тапом по строке целей в шапке. */}
       <DialogGoalsSheet
@@ -3580,12 +3720,6 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
         testID="ai-dialog-goals"
       />
 
-      {/* Не хватило энергии на вход — закрытие уводит с экрана диалога. */}
-      <NoEnergyModal
-        visible={dialogNoEnergy}
-        activity="ai_dialog"
-        onClose={() => { setDialogNoEnergy(false); onBack(); }}
-      />
     </ScreenGradient>
   );
 }
@@ -3599,7 +3733,7 @@ export default function AiDialogSessionRoute() {
   // зачем (аудит 2026-08-23): «Ещё раз» в полноэкранном финале делает
   // router.replace на тот же маршрут с новым/тем же scenarioId — expo-router
   // переиспользует уже смонтированный компонент, а весь игровой state
-  // (mood/objectivesMet/outcome/ended/xpAwarded/verdictHidden/messages/…)
+  // (mood/objectivesMet/outcome/ended/verdictHidden/messages/…)
   // объявлен через useState без привязки к scenario.id и ничем не сбрасывался.
   // Итог: после «Ещё раз» экран мог тут же показать старый вердикт или чужое
   // настроение. key=scenarioId форсирует полный ремаунт — самый безопасный

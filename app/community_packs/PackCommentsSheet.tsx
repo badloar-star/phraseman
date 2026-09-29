@@ -14,24 +14,27 @@
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   ActivityIndicator,
   FlatList,
   Keyboard,
-  KeyboardAvoidingView,
   Modal,
-  Platform,
+  Pressable,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
 import AvatarView from '../../components/AvatarView';
+import HybridSheetShell from '../../components/modal_fx/HybridSheetShell';
+import { useGlassSheetContentMaxHeight } from '../../components/modal_fx/useGlassSheetContentMaxHeight';
 import { useTheme } from '../../components/ThemeContext';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
+import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { USER_AVATAR_AURA_KEY } from '../../constants/customization_storage_keys';
 import { triLang, type Lang } from '../../constants/i18n';
-import type { Theme } from '../../constants/theme';
 import { hapticError, hapticSuccess, hapticTap } from '../../hooks/use-haptics';
 import { emitAppEvent } from '../events';
 import { getCanonicalUserId } from '../user_id_policy';
@@ -128,7 +131,12 @@ function timeAgoLabel(ms: number, lang: Lang): string {
 }
 
 export default function PackCommentsSheet({ visible, packId, packTitle, isPackAuthor, packAuthorStableId, ownedLocally, lang, onClose, highlightCommentId }: Props) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, liquidGlassThemeId } = useTheme();
+  // зачем: Liquid Glass 1 в 1 с макета cards.html #comments — все нейтральные
+  // поверхности/CTA берутся из токенов активной из 13 тем; семантика ошибки (t.wrong) не трогается.
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  const sheetContentMaxHeight = useGlassSheetContentMaxHeight(visible);
+  const menuInsets = useStableSafeAreaInsets();
   const [myUserId, setMyUserId] = useState<string | null>(null);
   // зачем стартовое значение — сразу ownedLocally || isPackAuthor, не false
   // (владелец 17.09.2026, реальный баг «добавил, поле не появилось»): раньше
@@ -533,25 +541,34 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
   const pinnedBadge = triLang(lang, { ru: 'закреплено', uk: 'закріплено', en: 'pinned', es: 'fijado', 'pt-BR': 'fixado', vi: 'đã ghim', id: 'disematkan', tr: 'sabitlendi', pl: 'przypięte' });
   const headerTitle = triLang(lang, { ru: 'Отклик', uk: 'Відгук', en: 'Comments', es: 'Comentarios', 'pt-BR': 'Comentários', vi: 'Phản hồi', id: 'Tanggapan', tr: 'Yorumlar', pl: 'Komentarze' });
 
+  const loadingLabel = triLang(lang, { ru: 'Загрузка комментариев…', uk: 'Завантаження коментарів…', en: 'Loading comments…', es: 'Cargando comentarios…', 'pt-BR': 'Carregando comentários…', vi: 'Đang tải bình luận…', id: 'Memuat komentar…', tr: 'Yorumlar yükleniyor…', pl: 'Ładowanie komentarzy…' });
+  const closeLabel = triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' });
+  const sendLabel = triLang(lang, { ru: 'Отправить', uk: 'Надіслати', en: 'Send', es: 'Enviar', 'pt-BR': 'Enviar', vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij' });
+  const menuBottomPad = 12 + normalizeSafeAreaBottomInset(menuInsets.bottom);
+  const menuRowStyle = { minHeight: 48, flexDirection: 'row' as const, alignItems: 'center' as const, gap: 12, paddingHorizontal: 14, borderRadius: 16 };
+
   const renderItem = useCallback(({ item }: { item: PackComment }) => {
     const mine = item.authorId === myUserId;
     const isHighlighted = highlightId === item.id;
-    const canModerate = isPackAuthor || mine;
+    const reactionChip = (active: boolean) => ({
+      flexDirection: 'row' as const, alignItems: 'center' as const, gap: 5, height: 30, paddingHorizontal: 11, borderRadius: 15,
+      backgroundColor: active ? glass.selected : glass.opaqueControl,
+    });
+    const badge = (label: string) => (
+      <View style={{ backgroundColor: glass.opaqueControl, borderRadius: 8, paddingHorizontal: 8, height: 20, justifyContent: 'center' }}>
+        <Text style={{ color: glass.secondary, fontSize: 11, fontWeight: '700' }}>{label}</Text>
+      </View>
+    );
     return (
       <View
         style={{
           flexDirection: 'row',
-          gap: 11,
-          padding: 12,
+          gap: 12,
+          padding: 10,
           borderRadius: 18,
-          backgroundColor: isHighlighted ? `${t.accent}22` : item.pinned ? t.bgSurface : t.bgCard,
-          marginBottom: 9,
-          opacity: item.status === 'sending' ? 0.55 : 1,
-          shadowColor: isHighlighted ? t.accent : undefined,
-          shadowOpacity: isHighlighted ? 0.4 : 0,
-          shadowRadius: isHighlighted ? 10 : 0,
-          shadowOffset: { width: 0, height: 0 },
-          elevation: isHighlighted ? 3 : 0,
+          backgroundColor: isHighlighted ? glass.selected : 'transparent',
+          marginBottom: 10,
+          opacity: item.status === 'sending' ? 0.6 : 1,
         }}
       >
         {/* зачем свой профиль отдельно от profiles[authorId] (владелец 17.09.2026,
@@ -559,81 +576,75 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
             используем myAvatarProfile — локальный, мгновенный, не ждёт сеть.
             Для чужих — profiles[authorId], догруженный батчем выше (может быть
             ещё не готов на первом кадре; AvatarView без avatar отрисует
-            нейтральную заглушку по умолчанию, не пустоту). level/totalXP
+            нейтральную заглушку по умолчанию, не пустоту). Устаревшие поля
             сознательно НЕ передаём — public_profiles может не содержать
             актуальный уровень (protected projectionAuthority), а выдумывать
             цифру нельзя (см. AvatarView.tsx, жалоба «Издевательство»). */}
-        <View style={{ width: 34, height: 34 }}>
+        <View style={{ width: 36, height: 36 }}>
           <AvatarView
             avatar={(mine ? myAvatarProfile?.avatar : profiles[item.authorId]?.avatar) || undefined}
             auraId={(mine ? myAvatarProfile?.aura : profiles[item.authorId]?.aura) || undefined}
-            size={34}
+            size={36}
             animateAura={false}
           />
         </View>
         <View style={{ flex: 1, minWidth: 0 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7, flexWrap: 'wrap' }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }} numberOfLines={1}>
+            <Text style={{ color: glass.text, fontSize: f.body, fontWeight: '700' }}>
               {item.authorName || '—'}
             </Text>
-            {packAuthorStableId && item.authorId === packAuthorStableId ? (
-              <View style={{ backgroundColor: `${t.gold ?? t.accent}22`, borderRadius: 7, paddingHorizontal: 7, height: 19, justifyContent: 'center' }}>
-                <Text style={{ color: t.gold ?? t.accent, fontSize: 11, fontWeight: '700' }}>{authorBadge}</Text>
-              </View>
-            ) : null}
-            {item.pinned ? (
-              <View style={{ backgroundColor: `${t.accent}22`, borderRadius: 7, paddingHorizontal: 7, height: 19, justifyContent: 'center' }}>
-                <Text style={{ color: t.accent, fontSize: 11, fontWeight: '700' }}>{pinnedBadge}</Text>
-              </View>
-            ) : null}
+            {packAuthorStableId && item.authorId === packAuthorStableId ? badge(authorBadge) : null}
+            {item.pinned ? badge(pinnedBadge) : null}
             {item.status === 'published' ? (
-              <Text style={{ color: t.textGhost, fontSize: 13 }}>{timeAgoLabel(item.createdAtMs, lang)}</Text>
+              <Text style={{ color: glass.mutedText, fontSize: f.caption }}>{timeAgoLabel(item.createdAtMs, lang)}</Text>
             ) : null}
           </View>
-          <Text style={{ color: t.textPrimary, fontSize: f.body, marginTop: 4 }}>{item.text}</Text>
+          <Text style={{ color: glass.text, fontSize: f.body, lineHeight: Math.round(f.body * 1.4), marginTop: 4 }}>{item.text}</Text>
 
           {item.status === 'failed' ? (
-            <View style={{ flexDirection: 'row', gap: 14, marginTop: 8 }}>
-              <TouchableOpacity onPress={() => handleRetry(item)} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
-                <Text style={{ color: t.accent, fontSize: f.caption, fontWeight: '700' }}>
+            <View style={{ flexDirection: 'row', gap: 10, marginTop: 8 }}>
+              <TouchableOpacity
+                onPress={() => handleRetry(item)}
+                accessibilityRole="button"
+                style={{ minHeight: 44, justifyContent: 'center', paddingHorizontal: 16, borderRadius: 22, backgroundColor: glass.opaqueControl }}
+              >
+                <Text style={{ color: glass.text, fontSize: f.caption, fontWeight: '700' }}>
                   {triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Repetir', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Ponów' })}
                 </Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => handleDiscardFailed(item.id)} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
-                <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700' }}>
+              <TouchableOpacity
+                onPress={() => handleDiscardFailed(item.id)}
+                accessibilityRole="button"
+                style={{ minHeight: 44, justifyContent: 'center', paddingHorizontal: 16, borderRadius: 22, backgroundColor: glass.opaqueControl }}
+              >
+                <Text style={{ color: glass.secondary, fontSize: f.caption, fontWeight: '700' }}>
                   {triLang(lang, { ru: 'Удалить', uk: 'Видалити', en: 'Delete', es: 'Eliminar', 'pt-BR': 'Excluir', vi: 'Xóa', id: 'Hapus', tr: 'Sil', pl: 'Usuń' })}
                 </Text>
               </TouchableOpacity>
             </View>
           ) : item.status === 'published' ? (
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 9 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 8 }}>
               <TouchableOpacity
                 onPress={() => handleReaction(item, 'like')}
-                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                hitSlop={{ top: 7, bottom: 7, left: 4, right: 4 }}
                 accessibilityRole="button"
                 accessibilityLabel={triLang(lang, { ru: 'Нравится', uk: 'Подобається', en: 'Like', es: 'Me gusta', 'pt-BR': 'Curtir', vi: 'Thích', id: 'Suka', tr: 'Beğen', pl: 'Lubię to' })}
                 accessibilityState={{ selected: item.myReactions.includes('like') }}
-                style={{
-                  flexDirection: 'row', alignItems: 'center', gap: 5, height: 28, paddingHorizontal: 10, borderRadius: 14,
-                  backgroundColor: item.myReactions.includes('like') ? `${t.accent}22` : t.bgSurface,
-                }}
+                style={reactionChip(item.myReactions.includes('like'))}
               >
-                <Text style={{ fontSize: 14 }}>👍</Text>
-                {item.reactions.like ? <Text style={{ color: item.myReactions.includes('like') ? t.accent : t.textSecond, fontSize: f.caption, fontWeight: '700' }}>{item.reactions.like}</Text> : null}
+                <Ionicons name={item.myReactions.includes('like') ? 'thumbs-up' : 'thumbs-up-outline'} size={16} color={item.myReactions.includes('like') ? glass.text : glass.secondary} />
+                {item.reactions.like ? <Text style={{ color: item.myReactions.includes('like') ? glass.text : glass.secondary, fontSize: f.caption, fontWeight: '700' }}>{item.reactions.like}</Text> : null}
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => handleReaction(item, 'fire')}
-                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                hitSlop={{ top: 7, bottom: 7, left: 4, right: 4 }}
                 accessibilityRole="button"
                 accessibilityLabel={triLang(lang, { ru: 'Огонь', uk: 'Вогонь', en: 'Fire', es: 'Fuego', 'pt-BR': 'Fogo', vi: 'Lửa', id: 'Api', tr: 'Ateş', pl: 'Ogień' })}
                 accessibilityState={{ selected: item.myReactions.includes('fire') }}
-                style={{
-                  flexDirection: 'row', alignItems: 'center', gap: 5, height: 28, paddingHorizontal: 10, borderRadius: 14,
-                  backgroundColor: item.myReactions.includes('fire') ? `${t.accent}22` : t.bgSurface,
-                }}
+                style={reactionChip(item.myReactions.includes('fire'))}
               >
-                <Text style={{ fontSize: 14 }}>🔥</Text>
-                {item.reactions.fire ? <Text style={{ color: item.myReactions.includes('fire') ? t.accent : t.textSecond, fontSize: f.caption, fontWeight: '700' }}>{item.reactions.fire}</Text> : null}
+                <Ionicons name={item.myReactions.includes('fire') ? 'flame' : 'flame-outline'} size={16} color={item.myReactions.includes('fire') ? glass.text : glass.secondary} />
+                {item.reactions.fire ? <Text style={{ color: item.myReactions.includes('fire') ? glass.text : glass.secondary, fontSize: f.caption, fontWeight: '700' }}>{item.reactions.fire}</Text> : null}
               </TouchableOpacity>
               {/* зачем «Ответить» только чужим и только пишущим (владелец
                   17.09.2026): отвечать самому себе бессмысленно, а тому, кто
@@ -643,75 +654,71 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
                 <TouchableOpacity
                   testID={`pack-comment-reply-${item.id}`}
                   onPress={() => handleReply(item)}
-                  hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                  hitSlop={{ top: 7, bottom: 7, left: 4, right: 4 }}
                   accessibilityRole="button"
                   accessibilityLabel={replyLabel}
-                  style={{ height: 28, paddingHorizontal: 10, borderRadius: 14, justifyContent: 'center', backgroundColor: t.bgSurface }}
+                  style={{ height: 30, paddingHorizontal: 11, borderRadius: 15, justifyContent: 'center', backgroundColor: glass.opaqueControl }}
                 >
-                  <Text style={{ color: t.textSecond, fontSize: f.caption, fontWeight: '700' }}>{replyLabel}</Text>
+                  <Text style={{ color: glass.secondary, fontSize: f.caption, fontWeight: '700' }}>{replyLabel}</Text>
                 </TouchableOpacity>
               ) : null}
               <View style={{ flex: 1 }} />
               <TouchableOpacity
                 testID={`pack-comment-more-${item.id}`}
                 onPress={() => setMenuFor(item)}
-                hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                 accessibilityRole="button"
                 accessibilityLabel={triLang(lang, { ru: 'Ещё действия', uk: 'Ще дії', en: 'More actions', es: 'Más acciones', 'pt-BR': 'Mais ações', vi: 'Thêm hành động', id: 'Tindakan lain', tr: 'Diğer işlemler', pl: 'Więcej działań' })}
+                style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center', marginVertical: -7, marginRight: -8 }}
               >
-                <Ionicons name="ellipsis-horizontal" size={18} color={t.textGhost} />
+                <Ionicons name="ellipsis-horizontal" size={18} color={glass.mutedText} />
               </TouchableOpacity>
             </View>
           ) : null}
         </View>
       </View>
     );
-  }, [myUserId, isPackAuthor, packAuthorStableId, t, f, lang, highlightId, handleReaction, handleRetry, handleDiscardFailed, handleReply, canWrite, replyLabel, authorBadge, pinnedBadge, profiles, myAvatarProfile]);
+  }, [myUserId, packAuthorStableId, glass, f, lang, highlightId, handleReaction, handleRetry, handleDiscardFailed, handleReply, canWrite, replyLabel, authorBadge, pinnedBadge, profiles, myAvatarProfile]);
 
   return (
-    <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
-      <TouchableOpacity style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)' }} activeOpacity={1} onPress={onClose}>
-        <View style={{ flex: 1 }} />
-      </TouchableOpacity>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-        style={{ position: 'absolute', left: 0, right: 0, bottom: 0, maxHeight: '82%' }}
-      >
-        <View
-          style={{
-            backgroundColor: t.bgPrimary,
-            borderTopLeftRadius: 26,
-            borderTopRightRadius: 26,
-            paddingTop: 10,
-            paddingHorizontal: 14,
-            paddingBottom: Platform.OS === 'ios' ? 24 : 14,
-            minHeight: 360,
-          }}
-        >
-          <View style={{ width: 36, height: 4, borderRadius: 2, backgroundColor: t.bgSurface2 ?? t.bgSurface, alignSelf: 'center', marginBottom: 10 }} />
-          <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 4, marginBottom: 10 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', flex: 1 }} numberOfLines={1}>
+    <HybridSheetShell
+      visible={visible}
+      onClose={onClose}
+      closeLabel={closeLabel}
+      testID="pack-comments-sheet"
+      material="liquid-glass-opaque"
+      glowColor={glass.cta}
+      backdropAccessible={false}
+    >
+      {({ requestDismiss }) => (
+        <View style={{ maxHeight: sheetContentMaxHeight, minHeight: 0, flexShrink: 1 }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 4, marginBottom: 8 }}>
+            <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 22, fontWeight: '700', flex: 1 }}>
               {headerTitle}{comments.length ? ` · ${comments.length}` : ''}
             </Text>
             <TouchableOpacity
-              onPress={onClose}
-              hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+              onPress={requestDismiss}
               accessibilityRole="button"
-              accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
+              accessibilityLabel={closeLabel}
+              style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}
             >
-              <Ionicons name="close" size={22} color={t.textMuted} />
+              <View style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: glass.opaqueControl, alignItems: 'center', justifyContent: 'center' }}>
+                <Ionicons name="close" size={18} color={glass.text} />
+              </View>
             </TouchableOpacity>
           </View>
 
           {loading ? (
-            <View style={{ paddingVertical: 40, alignItems: 'center' }}>
-              <ActivityIndicator color={t.accent} />
+            <View accessibilityRole="progressbar" accessibilityLabel={loadingLabel} style={{ minHeight: 154, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
+              <ActivityIndicator color={glass.secondary} />
+              <Text style={{ color: glass.secondary, fontSize: f.caption }}>{loadingLabel}</Text>
             </View>
           ) : comments.length === 0 ? (
-            <View style={{ alignItems: 'center', paddingVertical: 28, gap: 8 }}>
-              <Text style={{ fontSize: 36 }}>💬</Text>
-              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{emptyTitle}</Text>
-              <Text style={{ color: t.textMuted, fontSize: f.caption, textAlign: 'center', maxWidth: 260 }}>{emptyBody}</Text>
+            <View style={{ alignItems: 'center', paddingVertical: 28, paddingHorizontal: 20 }}>
+              <View style={{ width: 55, height: 55, borderRadius: 16, backgroundColor: glass.opaqueControl, alignItems: 'center', justifyContent: 'center' }}>
+                <Ionicons name="chatbubble-outline" size={24} color={glass.text} />
+              </View>
+              <Text style={{ color: glass.text, fontSize: 18, fontWeight: '700', marginTop: 16, textAlign: 'center' }}>{emptyTitle}</Text>
+              <Text style={{ color: glass.secondary, fontSize: f.body, marginTop: 6, textAlign: 'center' }}>{emptyBody}</Text>
             </View>
           ) : (
             <FlatList
@@ -719,7 +726,8 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
               data={comments}
               keyExtractor={(item) => item.id}
               renderItem={renderItem}
-              style={{ flexGrow: 0 }}
+              style={{ flexGrow: 0, flexShrink: 1 }}
+              keyboardShouldPersistTaps="handled"
               showsVerticalScrollIndicator={false}
               onScrollToIndexFailed={(info) => {
                 // Переменная высота карточек — FlatList не всегда может измерить
@@ -733,8 +741,8 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
 
           {canWrite ? (
             <View style={{ paddingTop: 12 }}>
-              <View style={{ flexDirection: 'row', gap: 9, alignItems: 'flex-end' }}>
-                <View style={{ flex: 1, backgroundColor: t.bgSurface, borderRadius: 20, paddingHorizontal: 14, paddingVertical: 11, minHeight: 42, justifyContent: 'center' }}>
+              <View style={{ flexDirection: 'row', gap: 10, alignItems: 'flex-end' }}>
+                <View style={{ flex: 1, backgroundColor: glass.opaqueControl, borderRadius: 23, paddingHorizontal: 16, paddingVertical: 11, minHeight: 46, justifyContent: 'center' }}>
                   <TextInput
                     ref={composerRef}
                     value={draft}
@@ -750,11 +758,11 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
                     // handleSend/handleRetry через validatePackComment.
                     onChangeText={setDraft}
                     placeholder={composerPlaceholder}
-                    placeholderTextColor={t.textGhost}
+                    placeholderTextColor={glass.mutedText}
                     maxLength={PACK_COMMENT_MAX_LENGTH}
                     multiline
                     accessibilityLabel={composerPlaceholder}
-                    style={{ color: t.textPrimary, fontSize: f.body, maxHeight: 90 }}
+                    style={{ color: glass.text, fontSize: f.body, maxHeight: 90 }}
                   />
                 </View>
                 <TouchableOpacity
@@ -762,94 +770,89 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
                   disabled={!canSend}
                   onPress={handleSend}
                   accessibilityRole="button"
-                  accessibilityLabel={triLang(lang, { ru: 'Отправить', uk: 'Надіслати', en: 'Send', es: 'Enviar', 'pt-BR': 'Enviar', vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij' })}
+                  accessibilityLabel={sendLabel}
                   accessibilityState={{ disabled: !canSend }}
                   style={{
-                    width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center',
-                    backgroundColor: canSend ? t.accent : (t.bgSurface2 ?? t.bgSurface),
+                    width: 46, height: 46, borderRadius: 23, alignItems: 'center', justifyContent: 'center',
+                    backgroundColor: canSend ? glass.cta : glass.opaqueControl,
                   }}
                 >
-                  <Ionicons name="arrow-up" size={19} color={canSend ? t.correctText : t.textGhost} />
+                  <Ionicons name="arrow-up" size={20} color={canSend ? glass.ctaInk : glass.mutedText} />
                 </TouchableOpacity>
               </View>
               {counter.visible ? (
-                <Text style={{ color: counter.left <= 10 ? (t.gold ?? t.accent) : t.textGhost, fontSize: 12, textAlign: 'right', marginTop: 5, marginRight: 6 }}>
+                <Text style={{ color: counter.left <= 10 ? glass.text : glass.mutedText, fontSize: 12, fontWeight: counter.left <= 10 ? '700' : '400', marginTop: 8, marginLeft: 16 }}>
                   {triLang(lang, { ru: `${counter.left} осталось`, uk: `${counter.left} залишилось`, en: `${counter.left} left`, es: `${counter.left} restantes`, 'pt-BR': `${counter.left} restantes`, vi: `còn ${counter.left}`, id: `${counter.left} tersisa`, tr: `${counter.left} kaldı`, pl: `${counter.left} pozostało` })}
                 </Text>
               ) : null}
             </View>
           ) : null}
-        </View>
-      </KeyboardAvoidingView>
 
-      {/* Меню «···»: закрепить/скрыть — автору набора; удалить — своему; пожаловаться — всем. */}
-      <Modal visible={!!menuFor} transparent animationType="fade" onRequestClose={() => setMenuFor(null)}>
-        <TouchableOpacity style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'flex-end' }} activeOpacity={1} onPress={() => setMenuFor(null)}>
-          <TouchableOpacity activeOpacity={1} onPress={() => {}}>
-            <View style={{ backgroundColor: t.bgCard, borderTopLeftRadius: 24, borderTopRightRadius: 24, padding: 8, paddingBottom: Platform.OS === 'ios' ? 24 : 8 }}>
-              {isPackAuthor && menuFor ? (
-                <TouchableOpacity
-                  onPress={() => handleTogglePin(menuFor)}
-                  style={{ flexDirection: 'row', alignItems: 'center', gap: 12, padding: 14, borderRadius: 18 }}
-                >
-                  <Ionicons name="pin-outline" size={18} color={t.textMuted} style={{ width: 22, textAlign: 'center' }} />
-                  <Text style={{ color: t.textPrimary, fontSize: f.body }}>
-                    {menuFor.pinned
-                      ? triLang(lang, { ru: 'Открепить', uk: 'Відкріпити', en: 'Unpin', es: 'Desanclar', 'pt-BR': 'Desafixar', vi: 'Bỏ ghim', id: 'Lepas sematan', tr: 'Sabitlemeyi kaldır', pl: 'Odepnij' })
-                      : triLang(lang, { ru: 'Закрепить', uk: 'Закріпити', en: 'Pin', es: 'Fijar', 'pt-BR': 'Fixar', vi: 'Ghim', id: 'Sematkan', tr: 'Sabitle', pl: 'Przypnij' })}
-                  </Text>
-                </TouchableOpacity>
-              ) : null}
-              {isPackAuthor && menuFor && menuFor.authorId !== myUserId ? (
-                <TouchableOpacity
-                  onPress={() => handleHideByAuthor(menuFor)}
-                  style={{ flexDirection: 'row', alignItems: 'center', gap: 12, padding: 14, borderRadius: 18 }}
-                >
-                  <Ionicons name="eye-off-outline" size={18} color={t.textMuted} style={{ width: 22, textAlign: 'center' }} />
-                  <Text style={{ color: t.textPrimary, fontSize: f.body }}>
-                    {/* зачем "у всех", не "у себя" (аудит 2026-09-17): скрытие убирает
-                        строку из ленты для ВСЕХ читателей, кроме автора набора и
-                        самого написавшего — прежний текст обещал эффект только на
-                        своём устройстве, что не соответствовало реальному поведению. */}
-                    {triLang(lang, { ru: 'Скрыть у всех', uk: 'Приховати у всіх', en: 'Hide from everyone', es: 'Ocultar para todos', 'pt-BR': 'Ocultar de todos', vi: 'Ẩn với mọi người', id: 'Sembunyikan dari semua', tr: 'Herkesten gizle', pl: 'Ukryj przed wszystkimi' })}
-                  </Text>
-                </TouchableOpacity>
-              ) : null}
-              {menuFor && menuFor.authorId === myUserId ? (
-                <TouchableOpacity
-                  onPress={() => handleDeleteMine(menuFor)}
-                  style={{ flexDirection: 'row', alignItems: 'center', gap: 12, padding: 14, borderRadius: 18 }}
-                >
-                  <Ionicons name="trash-outline" size={18} color={t.textMuted} style={{ width: 22, textAlign: 'center' }} />
-                  <Text style={{ color: t.textPrimary, fontSize: f.body }}>
-                    {triLang(lang, { ru: 'Удалить', uk: 'Видалити', en: 'Delete', es: 'Eliminar', 'pt-BR': 'Excluir', vi: 'Xóa', id: 'Hapus', tr: 'Sil', pl: 'Usuń' })}
-                  </Text>
-                </TouchableOpacity>
-              ) : null}
-              {menuFor && menuFor.authorId !== myUserId ? (
-                <TouchableOpacity
-                  onPress={() => { const c = menuFor; setMenuFor(null); setReportFor(c); }}
-                  style={{ flexDirection: 'row', alignItems: 'center', gap: 12, padding: 14, borderRadius: 18 }}
-                >
-                  <Ionicons name="flag-outline" size={18} color={t.wrong} style={{ width: 22, textAlign: 'center' }} />
-                  <Text style={{ color: t.wrong, fontSize: f.body }}>
-                    {triLang(lang, { ru: 'Пожаловаться', uk: 'Поскаржитися', en: 'Report', es: 'Denunciar', 'pt-BR': 'Denunciar', vi: 'Báo cáo', id: 'Laporkan', tr: 'Şikayet et', pl: 'Zgłoś' })}
-                  </Text>
-                </TouchableOpacity>
-              ) : null}
+          {/* Меню «···»: закрепить/скрыть — автору набора; удалить — своему; пожаловаться — всем. */}
+          <Modal visible={!!menuFor} transparent animationType="fade" statusBarTranslucent onRequestClose={() => setMenuFor(null)}>
+            <View style={{ flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(0,0,0,0.58)' }}>
+              <Pressable accessibilityRole="button" accessibilityLabel={closeLabel} onPress={() => setMenuFor(null)} style={{ flex: 1 }} />
+              <View
+                testID="pack-comment-menu"
+                accessibilityRole="menu"
+                style={{ backgroundColor: glass.opaqueSheet, borderTopLeftRadius: 26, borderTopRightRadius: 26, padding: 10, paddingBottom: menuBottomPad, borderWidth: 1, borderColor: glass.glassEdge, borderBottomWidth: 0 }}
+              >
+                {isPackAuthor && menuFor ? (
+                  <TouchableOpacity accessibilityRole="menuitem" onPress={() => handleTogglePin(menuFor)} style={menuRowStyle}>
+                    <Ionicons name="pin-outline" size={20} color={glass.secondary} style={{ width: 24, textAlign: 'center' }} />
+                    <Text style={{ color: glass.text, fontSize: f.body, fontWeight: '600' }}>
+                      {menuFor.pinned
+                        ? triLang(lang, { ru: 'Открепить', uk: 'Відкріпити', en: 'Unpin', es: 'Desanclar', 'pt-BR': 'Desafixar', vi: 'Bỏ ghim', id: 'Lepas sematan', tr: 'Sabitlemeyi kaldır', pl: 'Odepnij' })
+                        : triLang(lang, { ru: 'Закрепить', uk: 'Закріпити', en: 'Pin', es: 'Fijar', 'pt-BR': 'Fixar', vi: 'Ghim', id: 'Sematkan', tr: 'Sabitle', pl: 'Przypnij' })}
+                    </Text>
+                  </TouchableOpacity>
+                ) : null}
+                {isPackAuthor && menuFor && menuFor.authorId !== myUserId ? (
+                  <TouchableOpacity accessibilityRole="menuitem" onPress={() => handleHideByAuthor(menuFor)} style={menuRowStyle}>
+                    <Ionicons name="eye-off-outline" size={20} color={glass.secondary} style={{ width: 24, textAlign: 'center' }} />
+                    <Text style={{ color: glass.text, fontSize: f.body, fontWeight: '600' }}>
+                      {/* зачем "у всех", не "у себя" (аудит 2026-09-17): скрытие убирает
+                          строку из ленты для ВСЕХ читателей, кроме автора набора и
+                          самого написавшего — прежний текст обещал эффект только на
+                          своём устройстве, что не соответствовало реальному поведению. */}
+                      {triLang(lang, { ru: 'Скрыть у всех', uk: 'Приховати у всіх', en: 'Hide from everyone', es: 'Ocultar para todos', 'pt-BR': 'Ocultar de todos', vi: 'Ẩn với mọi người', id: 'Sembunyikan dari semua', tr: 'Herkesten gizle', pl: 'Ukryj przed wszystkimi' })}
+                    </Text>
+                  </TouchableOpacity>
+                ) : null}
+                {menuFor && menuFor.authorId === myUserId ? (
+                  <TouchableOpacity accessibilityRole="menuitem" onPress={() => handleDeleteMine(menuFor)} style={menuRowStyle}>
+                    <Ionicons name="trash-outline" size={20} color={glass.secondary} style={{ width: 24, textAlign: 'center' }} />
+                    <Text style={{ color: glass.text, fontSize: f.body, fontWeight: '600' }}>
+                      {triLang(lang, { ru: 'Удалить', uk: 'Видалити', en: 'Delete', es: 'Eliminar', 'pt-BR': 'Excluir', vi: 'Xóa', id: 'Hapus', tr: 'Sil', pl: 'Usuń' })}
+                    </Text>
+                  </TouchableOpacity>
+                ) : null}
+                {menuFor && menuFor.authorId !== myUserId ? (
+                  <TouchableOpacity
+                    accessibilityRole="menuitem"
+                    onPress={() => { const c = menuFor; setMenuFor(null); setReportFor(c); }}
+                    style={menuRowStyle}
+                  >
+                    <Ionicons name="flag-outline" size={20} color={t.wrong} style={{ width: 24, textAlign: 'center' }} />
+                    <Text style={{ color: t.wrong, fontSize: f.body, fontWeight: '600' }}>
+                      {triLang(lang, { ru: 'Пожаловаться', uk: 'Поскаржитися', en: 'Report', es: 'Denunciar', 'pt-BR': 'Denunciar', vi: 'Báo cáo', id: 'Laporkan', tr: 'Şikayet et', pl: 'Zgłoś' })}
+                    </Text>
+                  </TouchableOpacity>
+                ) : null}
+              </View>
             </View>
-          </TouchableOpacity>
-        </TouchableOpacity>
-      </Modal>
+          </Modal>
 
-      <ReportCommentModal
-        visible={!!reportFor}
-        packId={packId}
-        packTitle={packTitle}
-        comment={reportFor}
-        lang={lang}
-        onClose={() => setReportFor(null)}
-      />
-    </Modal>
+          <ReportCommentModal
+            visible={!!reportFor}
+            packId={packId}
+            packTitle={packTitle}
+            comment={reportFor}
+            lang={lang}
+            onClose={() => setReportFor(null)}
+          />
+        </View>
+      )}
+    </HybridSheetShell>
   );
 }

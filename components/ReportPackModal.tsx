@@ -26,6 +26,7 @@ import {
   View,
 } from 'react-native';
 import { useTheme } from './ThemeContext';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { hideCommunityPackOnDevice } from '../app/community_packs/communityPackHiddenStorage';
 import type { RuntimeStudyTarget } from '../app/target_storage_keys';
 import { submitPackReport, type PackReportReason } from '../app/user_report';
@@ -49,32 +50,18 @@ interface Props {
   motionVariant?: 'classic' | 'hybrid';
 }
 
-const REASONS_RU: { id: PackReportReason; label: string; sub: string }[] = [
-  { id: 'offensive',         label: 'Образа / ненависть',  sub: 'Оскорбления, дискриминация, hate speech.' },
-  { id: 'sexual',            label: 'Откровенный контент', sub: 'Сексуальный или 18+ контент.' },
-  { id: 'spam',              label: 'Спам / бессмыслица',  sub: 'Реклама, повторы, нерелевантные карточки.' },
-  { id: 'copyright',         label: 'Авторское право',     sub: 'Контент скопирован без разрешения.' },
-  { id: 'wrong_translation', label: 'Неправильный перевод', sub: 'Грубые ошибки, искажение смысла.' },
-  { id: 'other',             label: 'Другое',              sub: 'Не подходит под перечисленные причины.' },
-];
-
-const REASONS_UK: { id: PackReportReason; label: string; sub: string }[] = [
-  { id: 'offensive',         label: 'Образа / ненависть',   sub: 'Образи, дискримінація, hate speech.' },
-  { id: 'sexual',            label: 'Відвертий контент',    sub: 'Сексуальний або 18+ контент.' },
-  { id: 'spam',              label: 'Спам / нісенітниця',   sub: 'Реклама, повтори, нерелевантні картки.' },
-  { id: 'copyright',         label: 'Авторське право',      sub: 'Контент скопійовано без дозволу.' },
-  { id: 'wrong_translation', label: 'Неправильний переклад', sub: 'Грубі помилки, спотворення сенсу.' },
-  { id: 'other',             label: 'Інше',                 sub: 'Не підходить під перелічені причини.' },
-];
-
-const REASONS_ES: { id: PackReportReason; label: string; sub: string }[] = [
-  { id: 'offensive', label: 'Insultos u odio', sub: 'Lenguaje ofensivo, discriminación u odio.' },
-  { id: 'sexual', label: 'Contenido sexual', sub: 'Contenido explícito o solo para adultos.' },
-  { id: 'spam', label: 'Spam', sub: 'Publicidad, repeticiones o tarjetas irrelevantes.' },
-  { id: 'copyright', label: 'Derechos de autor', sub: 'Contenido copiado sin permiso.' },
-  { id: 'wrong_translation', label: 'Traducción incorrecta', sub: 'Errores graves o sentido distorsionado.' },
-  { id: 'other', label: 'Otro', sub: 'No encaja en las categorías anteriores.' },
-];
+// зачем: подписи причин на всех 9 языках (раньше en/pt/vi/id/tr/pl получали русский
+// список); описания под названиями убраны — макет CARD-23 показывает только названия.
+function reasonsFor(lang: Lang): { id: PackReportReason; label: string }[] {
+  return [
+    { id: 'offensive', label: triLang(lang, { ru: 'Образа / ненависть', uk: 'Образа / ненависть', en: 'Insults or hate', es: 'Insultos u odio', 'pt-BR': 'Insulto ou ódio', vi: 'Xúc phạm / thù ghét', id: 'Hinaan / kebencian', tr: 'Hakaret / nefret', pl: 'Obraza / nienawiść' }) },
+    { id: 'sexual', label: triLang(lang, { ru: 'Откровенный контент', uk: 'Відвертий контент', en: 'Explicit content', es: 'Contenido sexual', 'pt-BR': 'Conteúdo explícito', vi: 'Nội dung nhạy cảm', id: 'Konten eksplisit', tr: 'Müstehcen içerik', pl: 'Treści dla dorosłych' }) },
+    { id: 'spam', label: triLang(lang, { ru: 'Спам / бессмыслица', uk: 'Спам / нісенітниця', en: 'Spam or nonsense', es: 'Spam', 'pt-BR': 'Spam ou besteira', vi: 'Spam / vô nghĩa', id: 'Spam / tidak bermakna', tr: 'Spam / anlamsız', pl: 'Spam / bezsens' }) },
+    { id: 'copyright', label: triLang(lang, { ru: 'Авторское право', uk: 'Авторське право', en: 'Copyright', es: 'Derechos de autor', 'pt-BR': 'Direitos autorais', vi: 'Bản quyền', id: 'Hak cipta', tr: 'Telif hakkı', pl: 'Prawa autorskie' }) },
+    { id: 'wrong_translation', label: triLang(lang, { ru: 'Неправильный перевод', uk: 'Неправильний переклад', en: 'Wrong translation', es: 'Traducción incorrecta', 'pt-BR': 'Tradução errada', vi: 'Dịch sai', id: 'Terjemahan salah', tr: 'Yanlış çeviri', pl: 'Błędne tłumaczenie' }) },
+    { id: 'other', label: triLang(lang, { ru: 'Другое', uk: 'Інше', en: 'Other', es: 'Otro', 'pt-BR': 'Outro', vi: 'Khác', id: 'Lainnya', tr: 'Diğer', pl: 'Inne' }) },
+  ];
+}
 
 function ReportPackModal({
   visible,
@@ -87,10 +74,11 @@ function ReportPackModal({
   onPackHiddenOnDevice,
   motionVariant = 'classic',
 }: Props) {
-  const { theme: t, themeMode, f } = useTheme();
+  const { f, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const reduceMotion = useReduceMotion();
   const isHybrid = motionVariant === 'hybrid';
-  const reasons = lang === 'uk' ? REASONS_UK : lang === 'es' ? REASONS_ES : REASONS_RU;
+  const reasons = reasonsFor(lang);
 
   const [selected, setSelected] = useState<PackReportReason | null>(null);
   const [comment, setComment]   = useState('');
@@ -145,15 +133,61 @@ function ReportPackModal({
     }
   };
 
-  const overlayBg = 'rgba(0,0,0,0.55)';
+  const overlayBg = 'rgba(0,0,0,0.58)';
+
+  // зачем: Liquid Glass 1 в 1 с макета cards.html (CARD-23 «Жалоба на набор»):
+  // непрозрачная панель темы, тональные строки причин, светлая нейтральная CTA;
+  // зелёный фирменный цвет и толстые рамки убраны. Логика отправки/скрытия не менялась.
+  const primaryCta = (label: string, onPress: () => void, extra?: { flex?: number; disabled?: boolean; muted?: boolean; testID?: string }) => (
+    <TouchableOpacity
+      testID={extra?.testID}
+      disabled={extra?.disabled}
+      onPress={onPress}
+      accessibilityRole="button"
+      accessibilityState={{ disabled: !!extra?.disabled }}
+      style={{
+        flex: extra?.flex,
+        minHeight: 48,
+        borderRadius: 24,
+        paddingHorizontal: 16,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: extra?.muted ? glass.opaqueControl : glass.cta,
+      }}
+    >
+      <Text style={{ color: extra?.muted ? glass.mutedText : glass.ctaInk, fontWeight: '700', fontSize: f.body, textAlign: 'center' }}>{label}</Text>
+    </TouchableOpacity>
+  );
+  const ghostCta = (label: string, onPress: () => void, extra?: { flex?: number; disabled?: boolean; testID?: string }) => (
+    <TouchableOpacity
+      testID={extra?.testID}
+      disabled={extra?.disabled}
+      onPress={onPress}
+      accessibilityRole="button"
+      accessibilityState={{ disabled: !!extra?.disabled }}
+      style={{
+        flex: extra?.flex,
+        minHeight: 48,
+        borderRadius: 24,
+        paddingHorizontal: 16,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: glass.opaqueControl,
+        opacity: extra?.disabled ? 0.6 : 1,
+      }}
+    >
+      <Text style={{ color: glass.text, fontWeight: '700', fontSize: f.body, textAlign: 'center' }}>{label}</Text>
+    </TouchableOpacity>
+  );
+  const closeText = triLang(lang, { uk: 'Закрити', ru: 'Закрыть', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' });
 
   const panelContent = (
           <View
             style={{
-              backgroundColor: t.bgCard,
-              borderColor: t.border,
-              borderWidth: 0,
-              borderRadius: 18,
+              backgroundColor: glass.opaqueSheet,
+              borderColor: glass.glassEdge,
+              borderWidth: 1,
+              borderRadius: 26,
               padding: 22,
               maxHeight: '85%',
             }}
@@ -161,11 +195,13 @@ function ReportPackModal({
             {done ? (
               <View style={{ alignItems: 'stretch', paddingVertical: 8 }}>
                 {/* зачем: эмодзи в UI запрещены владельцем — иконка набора приложения */}
-                <Ionicons name="checkmark-circle" size={48} color={t.accent} style={{ marginBottom: 6, alignSelf: 'center' }} />
-                <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center' }}>
+                <View style={{ width: 55, height: 55, borderRadius: 16, backgroundColor: glass.opaqueControl, alignItems: 'center', justifyContent: 'center', alignSelf: 'center', marginBottom: 14 }}>
+                  <Ionicons name="checkmark" size={26} color={glass.text} />
+                </View>
+                <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 23, fontWeight: '700', textAlign: 'center' }}>
                   {triLang(lang, { uk: 'Скаргу надіслано', ru: 'Жалоба отправлена', en: 'Report sent', es: 'Denuncia enviada', 'pt-BR': 'Denúncia enviada', vi: 'Đã gửi báo cáo', id: 'Laporan terkirim', tr: 'Şikayet gönderildi', pl: 'Zgłoszenie wysłane' })}
                 </Text>
-                <Text style={{ color: t.textMuted, fontSize: f.body, marginTop: 10, textAlign: 'center', lineHeight: f.body * 1.45 }}>
+                <Text style={{ color: glass.secondary, fontSize: f.body, marginTop: 10, textAlign: 'center', lineHeight: f.body * 1.45 }}>
                   {triLang(lang, {
                     uk: 'Ваша скарга збережена. Ми розглянемо її найближчим часом. Дякуємо, що допомагаєте зробити каталог безпечнішим.',
                     ru: 'Твоя жалоба сохранена. Мы рассмотрим её в ближайшее время. Спасибо, что помогаешь сделать каталог безопаснее.',
@@ -178,53 +214,38 @@ function ReportPackModal({
                     pl: 'Twoje zgłoszenie zostało zapisane. Wkrótce je sprawdzimy. Dziękujemy za pomoc w dbaniu o bezpieczeństwo katalogu.',
                   })}
                 </Text>
-                <TouchableOpacity
-                  disabled={hiding}
-                  onPress={async () => {
-                    try {
-                      hapticTap();
-                      setHiding(true);
-                      void onPackHiddenOnDevice?.(packId);
-                      handleClose();
-                      await hideCommunityPackOnDevice(packId, studyTarget);
-                      await onPackHiddenOnDevice?.(null);
-                      hapticSuccess();
-                    } catch {
-                      hapticError();
-                      await onPackHiddenOnDevice?.(null);
-                    }
-                  }}
-                  style={{
-                    marginTop: 16,
-                    backgroundColor: t.bgSurface,
-                    borderColor: t.border,
-                    borderWidth: 0,
-                    borderRadius: 12,
-                    paddingVertical: 14,
-                    paddingHorizontal: 12,
-                    alignItems: 'center',
-                    opacity: hiding ? 0.6 : 1,
-                  }}
-                >
-                  {false && hiding ? (
-                    <View />
-                  ) : (
-                    <Text style={{ color: t.textPrimary, fontWeight: '800', fontSize: f.body, textAlign: 'center' }}>
-                      {triLang(lang, {
-                        uk: 'Не показувати мені цей набір',
-                        ru: 'Не показывать мне этот набор',
-                        en: "Don't show me this pack again",
-                        es: 'No volver a mostrarme este pack',
-                        'pt-BR': 'Não mostrar este pack novamente',
-                        vi: 'Không hiển thị bộ này nữa',
-                        id: 'Jangan tampilkan pack ini lagi',
-                        tr: 'Bu paketi bir daha gösterme',
-                        pl: 'Nie pokazuj mi już tego pakietu',
-                      })}
-                    </Text>
+                <View style={{ marginTop: 20, gap: 10 }}>
+                  {primaryCta(closeText, handleClose)}
+                  {ghostCta(
+                    triLang(lang, {
+                      uk: 'Не показувати мені цей набір',
+                      ru: 'Не показывать мне этот набор',
+                      en: "Don't show me this pack again",
+                      es: 'No volver a mostrarme este pack',
+                      'pt-BR': 'Não mostrar este pack novamente',
+                      vi: 'Không hiển thị bộ này nữa',
+                      id: 'Jangan tampilkan pack ini lagi',
+                      tr: 'Bu paketi bir daha gösterme',
+                      pl: 'Nie pokazuj mi już tego pakietu',
+                    }),
+                    async () => {
+                      try {
+                        hapticTap();
+                        setHiding(true);
+                        void onPackHiddenOnDevice?.(packId);
+                        handleClose();
+                        await hideCommunityPackOnDevice(packId, studyTarget);
+                        await onPackHiddenOnDevice?.(null);
+                        hapticSuccess();
+                      } catch {
+                        hapticError();
+                        await onPackHiddenOnDevice?.(null);
+                      }
+                    },
+                    { disabled: hiding },
                   )}
-                </TouchableOpacity>
-                <Text style={{ color: t.textGhost, fontSize: 11, marginTop: 8, textAlign: 'center' }}>
+                </View>
+                <Text style={{ color: glass.mutedText, fontSize: f.caption, marginTop: 10, textAlign: 'center' }}>
                   {triLang(lang, {
                     uk: 'Лише на цьому пристрої. Можна скинути, перевстановивши застосунок.',
                     ru: 'Только на этом устройстве. Сброс при удалении приложения.',
@@ -237,28 +258,16 @@ function ReportPackModal({
                     pl: 'Tylko na tym urządzeniu. Resetuje się po usunięciu aplikacji.',
                   })}
                 </Text>
-                <TouchableOpacity
-                  onPress={handleClose}
-                  style={{
-                    marginTop: 12,
-                    backgroundColor: t.accent,
-                    borderRadius: 12,
-                    paddingVertical: 14,
-                    alignItems: 'center',
-                  }}
-                >
-                  <Text style={{ color: t.correctText, fontWeight: '800' }}>
-                    {triLang(lang, { uk: 'Закрити', ru: 'Закрыть', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
-                  </Text>
-                </TouchableOpacity>
               </View>
             ) : throttled ? (
               <View style={{ alignItems: 'center', paddingVertical: 16 }}>
-                <Ionicons name="hourglass-outline" size={48} color={t.textMuted} style={{ marginBottom: 8 }} />
-                <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center' }}>
+                <View style={{ width: 68, height: 68, borderRadius: 23, backgroundColor: glass.opaqueControl, alignItems: 'center', justifyContent: 'center', marginBottom: 15 }}>
+                  <Ionicons name="flag-outline" size={26} color={glass.text} />
+                </View>
+                <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 23, fontWeight: '700', textAlign: 'center' }}>
                   {triLang(lang, { uk: 'Зачекай 30 секунд', ru: 'Подожди 30 секунд', en: 'Wait 30 seconds', es: 'Espera 30 segundos', 'pt-BR': 'Espere 30 segundos', vi: 'Chờ 30 giây', id: 'Tunggu 30 detik', tr: '30 saniye bekle', pl: 'Poczekaj 30 sekund' })}
                 </Text>
-                <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 8, textAlign: 'center' }}>
+                <Text style={{ color: glass.secondary, fontSize: f.body, marginTop: 8, textAlign: 'center' }}>
                   {triLang(lang, {
                     uk: 'Можна надсилати скарги не частіше за раз на 30 с.',
                     ru: 'Можно отправлять жалобы не чаще раза в 30 с.',
@@ -271,31 +280,19 @@ function ReportPackModal({
                     pl: 'Zgłoszenie można wysłać nie częściej niż raz na 30 s.',
                   })}
                 </Text>
-                <TouchableOpacity
-                  onPress={handleClose}
-                  style={{
-                    backgroundColor: t.bgSurface,
-                    borderRadius: 12,
-                    paddingHorizontal: 22,
-                    paddingVertical: 10,
-                    marginTop: 16,
-                    borderWidth: 0,
-                  }}
-                >
-                  {/* зачем (аудит по Библии, 2026-08-26): непереведённое «OK» —
-                      и не глагол (Правило 1), и русский интерфейс показывал
-                      латиницу. Жалоба отправлена, окно закрывается. */}
-                  <Text style={{ color: t.textPrimary, fontWeight: '700' }}>
-                    {triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
-                  </Text>
-                </TouchableOpacity>
+                {/* зачем (аудит по Библии, 2026-08-26): непереведённое «OK» —
+                    и не глагол (Правило 1), и русский интерфейс показывал
+                    латиницу. Жалоба отправлена, окно закрывается. */}
+                <View style={{ alignSelf: 'stretch', marginTop: 18 }}>
+                  {primaryCta(closeText, handleClose)}
+                </View>
               </View>
             ) : (
               <>
-                <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', marginBottom: 6 }}>
+                <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 22, fontWeight: '700', marginBottom: 6 }}>
                   {triLang(lang, { uk: 'Поскаржитися на набір', ru: 'Пожаловаться на набор', en: 'Report the pack', es: 'Reportar el pack', 'pt-BR': 'Denunciar o pack', vi: 'Báo cáo bộ thẻ', id: 'Laporkan pack', tr: 'Paketi şikayet et', pl: 'Zgłoś pakiet' })}
                 </Text>
-                <Text style={{ color: t.textMuted, fontSize: f.caption, marginBottom: 14 }}>
+                <Text style={{ color: glass.secondary, fontSize: f.body, marginBottom: 14 }}>
                   {packTitle}
                 </Text>
 
@@ -310,44 +307,47 @@ function ReportPackModal({
                     return (
                       <TouchableOpacity
                         key={r.id}
+                        accessibilityRole="radio"
+                        accessibilityState={{ selected: active }}
                         onPress={() => { hapticTap(); setSelected(r.id); }}
                         style={{
-                          backgroundColor: active ? `${t.accent}25` : t.bgSurface,
-                          borderColor: active ? t.accent : t.border,
-                          borderWidth: 0,
-                          borderRadius: 12,
-                          padding: 12,
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          gap: 12,
+                          minHeight: 52,
+                          paddingHorizontal: 16,
+                          borderRadius: 16,
                           marginBottom: 8,
+                          backgroundColor: active ? glass.selected : glass.opaqueControl,
                         }}
                       >
-                        <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
+                        <Text style={{ color: glass.text, fontSize: f.body, fontWeight: active ? '700' : '400', flexShrink: 1 }}>
                           {r.label}
                         </Text>
-                        <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>
-                          {r.sub}
-                        </Text>
+                        <View style={{ width: 22, height: 22, borderRadius: 11, alignItems: 'center', justifyContent: 'center', backgroundColor: active ? glass.cta : glass.opaqueSheet }}>
+                          {active ? <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: glass.ctaInk }} /> : null}
+                        </View>
                       </TouchableOpacity>
                     );
                   })}
 
-                  <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 8, marginBottom: 6 }}>
-                    {triLang(lang, {
-                      uk: 'Коментар (необов\'язково):',
-                      ru: 'Комментарий (необязательно):',
-                      en: 'Comment (optional):',
-                      es: 'Comentario (opcional):',
-                      'pt-BR': 'Comentário (opcional):',
-                      vi: 'Bình luận (không bắt buộc):',
-                      id: 'Komentar (opsional):',
-                      tr: 'Yorum (isteğe bağlı):',
-                      pl: 'Komentarz (opcjonalnie):',
-                    })}
-                  </Text>
                   <TextInput
                     value={comment}
                     onChangeText={setComment}
                     multiline
                     maxLength={500}
+                    accessibilityLabel={triLang(lang, {
+                      uk: 'Коментар (необов\'язково)',
+                      ru: 'Комментарий (необязательно)',
+                      en: 'Comment (optional)',
+                      es: 'Comentario (opcional)',
+                      'pt-BR': 'Comentário (opcional)',
+                      vi: 'Bình luận (không bắt buộc)',
+                      id: 'Komentar (opsional)',
+                      tr: 'Yorum (isteğe bağlı)',
+                      pl: 'Komentarz (opcjonalnie)',
+                    })}
                     placeholder={triLang(lang, {
                       uk: 'Опиши проблему...',
                       ru: 'Опиши проблему...',
@@ -359,63 +359,35 @@ function ReportPackModal({
                       tr: 'Sorunu açıkla...',
                       pl: 'Opisz problem...',
                     })}
-                    placeholderTextColor={t.textGhost}
+                    placeholderTextColor={glass.mutedText}
                     style={{
-                      color: t.textPrimary,
-                      backgroundColor: t.bgSurface,
-                      borderColor: t.border,
-                      borderWidth: 0,
-                      borderRadius: 12,
-                      padding: 12,
+                      color: glass.text,
+                      backgroundColor: glass.opaqueControl,
+                      borderRadius: 16,
+                      paddingHorizontal: 16,
+                      paddingVertical: 14,
                       fontSize: f.body,
-                      minHeight: 70,
+                      minHeight: 74,
+                      marginTop: 4,
                       textAlignVertical: 'top',
                     }}
                   />
-                  <Text style={{ color: t.textGhost, fontSize: 11, marginTop: 4, textAlign: 'right' }}>
+                  <Text style={{ color: glass.mutedText, fontSize: f.caption, marginTop: 6, textAlign: 'right' }}>
                     {comment.length}/500
                   </Text>
                 </ScrollView>
 
                 <View style={{ flexDirection: 'row', gap: 10, marginTop: 16 }}>
-                  <TouchableOpacity
-                    onPress={handleClose}
-                    style={{
-                      flex: 1,
-                      backgroundColor: t.bgSurface,
-                      borderColor: t.border,
-                      borderWidth: 0,
-                      borderRadius: 12,
-                      paddingVertical: 14,
-                      alignItems: 'center',
-                    }}
-                  >
-                    <Text style={{ color: t.textPrimary, fontWeight: '700' }}>
-                      {triLang(lang, { uk: 'Скасувати', ru: 'Отмена', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' })}
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    disabled={!selected || loading}
-                    onPress={handleSend}
-                    style={{
-                      flex: 1.4,
-                      backgroundColor: !selected || loading ? t.bgSurface : t.accent,
-                      borderRadius: 12,
-                      paddingVertical: 14,
-                      alignItems: 'center',
-                      borderWidth: 0,
-                      borderColor: !selected || loading ? t.border : t.accent,
-                      opacity: !selected || loading ? 0.65 : 1,
-                    }}
-                  >
-                    {false && loading ? (
-                      <View />
-                    ) : (
-                      <Text style={{ color: !selected ? t.textMuted : t.correctText, fontWeight: '800' }}>
-                        {triLang(lang, { uk: 'Надіслати скаргу', ru: 'Отправить жалобу', en: 'Send report', es: 'Enviar denuncia', 'pt-BR': 'Enviar denúncia', vi: 'Gửi báo cáo', id: 'Kirim laporan', tr: 'Şikayeti gönder', pl: 'Wyślij zgłoszenie' })}
-                      </Text>
-                    )}
-                  </TouchableOpacity>
+                  {ghostCta(
+                    triLang(lang, { uk: 'Скасувати', ru: 'Отмена', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' }),
+                    handleClose,
+                    { flex: 1 },
+                  )}
+                  {primaryCta(
+                    triLang(lang, { uk: 'Надіслати скаргу', ru: 'Отправить жалобу', en: 'Send report', es: 'Enviar denuncia', 'pt-BR': 'Enviar denúncia', vi: 'Gửi báo cáo', id: 'Kirim laporan', tr: 'Şikayeti gönder', pl: 'Wyślij zgłoszenie' }),
+                    handleSend,
+                    { flex: 1.4, disabled: !selected || loading, muted: !selected || loading },
+                  )}
                 </View>
               </>
             )}

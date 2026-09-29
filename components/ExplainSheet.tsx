@@ -2,7 +2,7 @@ import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 /**
  * ExplainSheet — bottom-sheet «Объясни как для 5-летнего» (план 04, Фаза 5).
  *
- * Стиль строго по дому: RN Modal + LinearGradient из ./SafeLinearGradient +
+ * Стиль строго по дому: RN Modal + Liquid Glass (liquidGlassTokens, макет learn.html D10) +
  * useTheme()/useLang() + triLang. Шторка интерактивная (единый стандарт):
  * reanimated + drag-to-dismiss по паттерну RegistrationPromptModal — тяга вниз
  * 1:1, вверх резина ×0.12, закрытие по 88px/velocity 900, подложка слабеет при тяге.
@@ -34,7 +34,6 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import { LinearGradient } from './SafeLinearGradient';
 import SkeletonBlock from './SkeletonShimmer';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -53,7 +52,7 @@ import {
 } from '../app/explain_phrase_request';
 import ExplainReportButton from './ExplainReportButton';
 import { useStudyTarget } from './StudyTargetContext';
-import TonalSurface from './TonalSurface';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import ExplainSheetHybrid from './ExplainSheetHybrid';
 
 interface Props {
@@ -107,7 +106,9 @@ function ExplainSheet({ visible, onClose, phraseEn, phraseMeaning, lang, onResol
 }
 
 function ExplainSheetClassic({ visible, onClose, phraseEn, phraseMeaning, lang, onResolved }: Omit<Props, 'motionVariant'>) {
-  const { theme: t, f } = useTheme();
+  // зачем: в проде рендерится именно classic — Liquid Glass (макет learn.html D10/D10б) живёт здесь.
+  const { f, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const { lang: ctxLang } = useLang();
   const { studyTarget } = useStudyTarget();
   const effLang = lang || ctxLang;
@@ -253,45 +254,36 @@ function ExplainSheetClassic({ visible, onClose, phraseEn, phraseMeaning, lang, 
             style={[
               styles.sheet,
               {
-                backgroundColor: t.bgCard,
-                borderColor: t.border,
-                shadowColor: t.accent,
+                backgroundColor: glass.opaqueSheet,
+                borderColor: glass.glassEdge,
+                shadowColor: glass.bg,
                 paddingBottom: 20 + bottomInset,
               },
               sheetStyle,
             ]}
           >
-          <TonalSurface pointerEvents="none" radius={24} tone="raised" style={StyleSheet.absoluteFillObject} />
-          <LinearGradient
-            colors={[`${t.accent}1F`, 'transparent']}
-            start={{ x: 0.5, y: 0 }}
-            end={{ x: 0.5, y: 0.5 }}
-            style={styles.sheetGlow}
-            pointerEvents="none"
-          />
-
           {/* Грабер + заголовок + крест */}
           <View style={styles.grabber} pointerEvents="none">
-            <View style={[styles.grabberPill, { backgroundColor: t.border }]} />
+            <View style={[styles.grabberPill, { backgroundColor: glass.mutedText }]} />
           </View>
           <View style={styles.header}>
-            <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h3 }]}>
+            <Text style={[styles.title, { color: glass.text, fontSize: f.h3 }]}>
               {title}
             </Text>
             <Pressable
               onPress={dismissSheet}
-              hitSlop={8}
+              hitSlop={4}
               accessibilityRole="button"
               accessibilityLabel={closeLabel}
-              style={({ pressed }) => [styles.closeBtn, { backgroundColor: t.bgSurface2 }, pressed && styles.pressed]}
+              style={({ pressed }) => [styles.closeBtn, { backgroundColor: glass.selected }, pressed && styles.pressed]}
             >
-              <Ionicons name="close" size={20} color={t.textMuted} />
+              <Ionicons name="close" size={20} color={glass.secondary} />
             </Pressable>
           </View>
 
           {/* Сама фраза */}
-          <View style={[styles.phraseBlock, { backgroundColor: t.bgSurface2, borderColor: t.border }]}>
-            <Text style={[styles.phraseText, { color: t.textPrimary, fontSize: f.bodyLg || f.body }]}>
+          <View style={styles.phraseBlock}>
+            <Text style={[styles.phraseText, { color: glass.text, fontSize: f.h3 }]}>
               {phraseEn}
             </Text>
           </View>
@@ -304,24 +296,24 @@ function ExplainSheetClassic({ visible, onClose, phraseEn, phraseMeaning, lang, 
           >
             {display.showSkeleton ? (
               <View style={styles.skeleton}>
-                <Text style={[styles.skeletonText, { color: t.textSecond, fontSize: f.body }]}>
+                <Text style={[styles.skeletonText, { color: glass.secondary, fontSize: f.body }]}>
                   {loadingLineForLang(effLang)}
                 </Text>
-                <SkeletonBlock width="92%" height={14} borderRadius={7} />
-                <SkeletonBlock width="78%" height={14} borderRadius={7} />
-                <SkeletonBlock width="85%" height={14} borderRadius={7} />
-                <SkeletonBlock width="64%" height={14} borderRadius={7} />
+                <SkeletonBlock width="92%" height={14} borderRadius={7} baseColor={glass.selected} />
+                <SkeletonBlock width="78%" height={14} borderRadius={7} baseColor={glass.selected} />
+                <SkeletonBlock width="85%" height={14} borderRadius={7} baseColor={glass.selected} />
+                <SkeletonBlock width="64%" height={14} borderRadius={7} baseColor={glass.selected} />
               </View>
             ) : (
               <>
                 {splitExplainParagraphs(display.text).map((paragraph, pIdx) => (
                   <Text
                     key={`p-${pIdx}`}
-                    style={[styles.bodyText, { color: t.textPrimary, fontSize: f.body }]}
+                    style={[styles.bodyText, { color: glass.text, fontSize: f.body }]}
                   >
                     {splitExplainSegments(paragraph).map((seg, sIdx) => (
                       seg.en ? (
-                        <Text key={`s-${sIdx}`} style={[styles.bodyEn, { color: t.accent }]}>
+                        <Text key={`s-${sIdx}`} style={[styles.bodyEn, { color: glass.text }]}>
                           {seg.text}
                         </Text>
                       ) : (
@@ -336,8 +328,16 @@ function ExplainSheetClassic({ visible, onClose, phraseEn, phraseMeaning, lang, 
 
           {/* Футер: «Непонятно объяснили» */}
           {!display.showSkeleton ? (
-          <View style={[styles.footer, { borderTopColor: t.border }]}>
+          <View style={[styles.footer, { borderTopColor: glass.line }]}>
             <ExplainReportButton phraseEn={phraseEn} lang={effLang} />
+            <Pressable
+              onPress={dismissSheet}
+              accessibilityRole="button"
+              accessibilityLabel={closeLabel}
+              style={({ pressed }) => [styles.closeCta, { backgroundColor: glass.opaqueControl }, pressed && styles.pressed]}
+            >
+              <Text style={[styles.closeCtaLabel, { color: glass.text, fontSize: f.body }]}>{closeLabel}</Text>
+            </Pressable>
           </View>
           ) : null}
           </Animated.View>
@@ -361,9 +361,10 @@ const styles = StyleSheet.create({
   sheet: {
     width: '100%',
     maxHeight: '86%',
-    borderTopLeftRadius: 24,
-    borderTopRightRadius: 24,
-    borderWidth: 0,
+    borderTopLeftRadius: 28,
+    borderTopRightRadius: 28,
+    borderWidth: 1,
+    borderBottomWidth: 0,
     overflow: 'hidden',
     paddingHorizontal: 18,
     paddingTop: 8,
@@ -371,13 +372,6 @@ const styles = StyleSheet.create({
     shadowRadius: 24,
     shadowOffset: { width: 0, height: -8 },
     elevation: 18,
-  },
-  sheetGlow: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    height: 160,
   },
   grabber: {
     alignItems: 'center',
@@ -387,7 +381,7 @@ const styles = StyleSheet.create({
     width: 44,
     height: 5,
     borderRadius: 3,
-    opacity: 0.9,
+    opacity: 0.5,
   },
   header: {
     flexDirection: 'row',
@@ -397,13 +391,13 @@ const styles = StyleSheet.create({
   },
   title: {
     flex: 1,
-    fontWeight: '900',
+    fontWeight: '700',
     lineHeight: 28,
   },
   closeBtn: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -411,29 +405,27 @@ const styles = StyleSheet.create({
     opacity: 0.78,
   },
   phraseBlock: {
-    borderRadius: 16,
-    borderWidth: 0,
-    paddingVertical: 13,
-    paddingHorizontal: 14,
+    paddingVertical: 4,
     marginBottom: 12,
   },
   phraseText: {
-    fontWeight: '800',
-    lineHeight: 26,
+    fontWeight: '700',
+    lineHeight: 28,
   },
   bodyScroll: {
     maxHeight: 400,
+    flexShrink: 1,
   },
   bodyScrollContent: {
     paddingBottom: 8,
   },
   bodyText: {
-    fontWeight: '500',
+    fontWeight: '400',
     lineHeight: 26,
     marginBottom: 12,
   },
   bodyEn: {
-    fontWeight: '800',
+    fontWeight: '700',
   },
   retryBtn: {
     alignSelf: 'center',
@@ -462,6 +454,19 @@ const styles = StyleSheet.create({
     marginTop: 12,
     paddingTop: 10,
     flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  closeCta: {
+    flex: 1,
+    minHeight: 48,
+    borderRadius: 16,
+    alignItems: 'center',
     justifyContent: 'center',
+    paddingHorizontal: 16,
+  },
+  closeCtaLabel: {
+    fontWeight: '700',
+    textAlign: 'center',
   },
 });

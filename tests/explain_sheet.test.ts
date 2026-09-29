@@ -275,7 +275,8 @@ describe('ExplainSheet: рендер тела и слайд-ап в доме', (
     expect(src).toContain('react-native-gesture-handler');
     expect(src).toContain('GestureDetector');
     expect(src).toContain('translateY');
-    expect(src).toContain("from './SafeLinearGradient'");
+    // Liquid Glass (learn.html D10): непрозрачный лист на токенах темы вместо градиентного свечения.
+    expect(src).toContain('liquidGlassTokens(liquidGlassThemeId)');
     // Тяга вниз 1:1, вверх резина ×0.12; закрытие по 88px / velocity 900.
     expect(src).toContain('ty < 0 ? ty * 0.12 : ty');
     expect(src).toContain('> 88');

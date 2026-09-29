@@ -18,12 +18,17 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import {
   ERROR_REPORT_COMMENT_MIN_LEN,
   ERROR_REPORT_FREE_TEXT_CATEGORY,
   submitErrorReport,
 } from '../app/error_report';
+
+export type ReportErrorSubmitOverride = (input: Readonly<{
+  comment: string;
+}>) => Promise<'sent' | 'throttled' | 'invalid_comment' | 'failed'>;
 
 interface Props {
   screen: string;
@@ -40,6 +45,8 @@ interface Props {
   accessibilityLabel?: string;
   testID?: string;
   textColor?: string;
+  /** Typed transport override for a content surface with stronger server semantics. */
+  submitOverride?: ReportErrorSubmitOverride;
 }
 
 type ReportErrorCategory = {
@@ -132,8 +139,11 @@ function ReportErrorButton({
   accessibilityLabel,
   testID,
   textColor,
+  submitOverride,
 }: Props) {
-  const { theme: t, f } = useTheme();
+  // зачем: форма «сообщить об ошибке» (~30 экранов) — Liquid Glass по макету overlays-campaigns OS-ERROR-REPORT-*.
+  const { theme: t, f, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
@@ -173,25 +183,29 @@ function ReportErrorButton({
     void (async () => {
       let result: Awaited<ReturnType<typeof submitErrorReport>> = 'failed';
       try {
-        const nameRaw = await AsyncStorage.getItem('user_name') ?? '';
-        const storedLang = (
-          (await AsyncStorage.getItem('app_lang')) ??
-          (await AsyncStorage.getItem('app_language')) ??
-          'ru'
-        );
-        const langRaw = storedLang === 'uk' || storedLang === 'es' ? storedLang : 'ru';
-        result = await submitErrorReport(
-          {
-            screen,
-            category: ERROR_REPORT_FREE_TEXT_CATEGORY,
-            dataId,
-            dataText: dataText ?? dataId,
-            userAnswer,
-            comment: optimisticComment,
-          },
-          nameRaw,
-          langRaw,
-        );
+        if (submitOverride) {
+          result = await submitOverride({ comment: optimisticComment });
+        } else {
+          const nameRaw = await AsyncStorage.getItem('user_name') ?? '';
+          const storedLang = (
+            (await AsyncStorage.getItem('app_lang')) ??
+            (await AsyncStorage.getItem('app_language')) ??
+            'ru'
+          );
+          const langRaw = storedLang === 'uk' || storedLang === 'es' ? storedLang : 'ru';
+          result = await submitErrorReport(
+            {
+              screen,
+              category: ERROR_REPORT_FREE_TEXT_CATEGORY,
+              dataId,
+              dataText: dataText ?? dataId,
+              userAnswer,
+              comment: optimisticComment,
+            },
+            nameRaw,
+            langRaw,
+          );
+        }
       } catch {
         result = 'failed';
       }
@@ -252,7 +266,7 @@ function ReportErrorButton({
         testID={testID}
         onPress={handleOpen}
         style={[isFlag ? styles.triggerFlag : styles.trigger, style]}
-        hitSlop={isFlag ? { top: 10, bottom: 10, left: 10, right: 10 } : undefined}
+        hitSlop={isFlag ? { top: 14, bottom: 14, left: 14, right: 14 } : { top: 12, bottom: 12, left: 8, right: 8 }}
         accessibilityRole="button"
         accessibilityLabel={a11yLabel}
       >
@@ -260,7 +274,7 @@ function ReportErrorButton({
           <Ionicons name="flag" size={17} color={t.wrong} />
         ) : (
           <Text
-            style={[styles.triggerText, { color: textColor ?? t.textSecond, fontSize: f.sub }]}
+            style={[styles.triggerText, { color: textColor ?? glass.secondary, fontSize: f.sub }]}
             numberOfLines={2}
           >
             {triLang(lang, {
@@ -285,18 +299,20 @@ function ReportErrorButton({
               style={[
                 styles.sheet,
                 {
-                  backgroundColor: t.bgCard,
-                  borderColor: t.border,
+                  backgroundColor: glass.opaqueSheet,
+                  borderColor: glass.glassEdge,
+                  shadowColor: glass.bg,
                   paddingBottom: 36 + bottomInset,
                   maxHeight: '100%',
                 },
               ]}
               onPress={e => e.stopPropagation()}
             >
-              <ScrollView style={{ flexShrink: 1, minHeight: 0 }} contentContainerStyle={{ gap: 12 }} keyboardShouldPersistTaps="handled">
+              <View style={[styles.grabber, { backgroundColor: glass.mutedText }]} />
+              <ScrollView style={{ flexShrink: 1, minHeight: 0 }} contentContainerStyle={{ gap: 12 }} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
               {failed ? (
                 <View style={styles.successBox}>
-                  <Text style={[styles.successTitle, { color: t.textPrimary, fontSize: f.h3 }]}>
+                  <Text style={[styles.successTitle, { color: glass.text, fontSize: f.h3 }]}>
                     {triLang(lang, {
                       ru: 'Не отправилось',
                       uk: 'Не вдалося надіслати',
@@ -309,7 +325,7 @@ function ReportErrorButton({
                       pl: 'Nie udało się wysłać',
                     })}
                   </Text>
-                  <Text style={{ color: t.textSecond, fontSize: f.body, textAlign: 'center' }}>
+                  <Text style={{ color: glass.secondary, fontSize: f.body, textAlign: 'center' }}>
                     {triLang(lang, {
                       ru: 'Проверь интернет и попробуй еще раз.',
                       uk: 'Перевір інтернет і спробуй ще раз.',
@@ -327,16 +343,17 @@ function ReportErrorButton({
                       setFailed(false);
                       setSending(false);
                     }}
-                    style={[styles.btnSend, { backgroundColor: t.accent, marginTop: 8, alignSelf: 'stretch' }]}
+                    style={[styles.btnSend, { backgroundColor: glass.cta, marginTop: 8, alignSelf: 'stretch' }]}
+                    accessibilityRole="button"
                   >
-                    <Text style={{ color: t.correctText, fontWeight: '700', fontSize: f.body }}>
+                    <Text style={{ color: glass.ctaInk, fontWeight: '700', fontSize: f.body }}>
                       {triLang(lang, { ru: 'Попробовать снова', uk: 'Спробувати ще раз', en: 'Try again', es: 'Intentar de nuevo', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
                     </Text>
                   </TouchableOpacity>
                 </View>
               ) : throttled ? (
                 <View style={styles.successBox}>
-                  <Text style={[styles.successTitle, { color: t.textPrimary, fontSize: f.h3 }]}>
+                  <Text style={[styles.successTitle, { color: glass.text, fontSize: f.h3 }]}>
                     {triLang(lang, {
                       ru: 'Подожди минуту',
                       uk: 'Зачекайте хвилину',
@@ -349,7 +366,7 @@ function ReportErrorButton({
                       pl: 'Poczekaj chwilę',
                     })}
                   </Text>
-                  <Text style={{ color: t.textSecond, fontSize: f.body, textAlign: 'center' }}>
+                  <Text style={{ color: glass.secondary, fontSize: f.body, textAlign: 'center' }}>
                     {triLang(lang, {
                       ru: 'Ты уже отправил репорт меньше минуты назад. Попробуй через минуту.',
                       uk: 'Ви вже надіслали репорт менше хвилини тому. Спробуйте за хвилину.',
@@ -364,19 +381,20 @@ function ReportErrorButton({
                   </Text>
                   <TouchableOpacity
                     onPress={() => setVisible(false)}
-                    style={[styles.btnSend, { backgroundColor: t.accent, marginTop: 8, alignSelf: 'stretch' }]}
+                    style={[styles.btnSend, { backgroundColor: glass.cta, marginTop: 8, alignSelf: 'stretch' }]}
+                    accessibilityRole="button"
                   >
-                    <Text style={{ color: t.correctText, fontWeight: '700', fontSize: f.body }}>
+                    <Text style={{ color: glass.ctaInk, fontWeight: '700', fontSize: f.body }}>
                       {triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
                     </Text>
                   </TouchableOpacity>
                 </View>
               ) : sent ? (
                 <View style={styles.successBox}>
-                  <Text style={[styles.successTitle, { color: t.textPrimary, fontSize: f.h3 }]}>
+                  <Text style={[styles.successTitle, { color: glass.text, fontSize: f.h3 }]}>
                     {triLang(lang, { ru: 'Сообщение принято!', uk: 'Повідомлення прийнято!', en: 'Message received!', es: '¡Mensaje recibido!', 'pt-BR': 'Mensagem recebida!', vi: 'Đã nhận báo cáo!', id: 'Laporan diterima!', tr: 'Bildirim alındı!', pl: 'Zgłoszenie przyjęte!' })}
                   </Text>
-                  <Text style={{ color: t.textSecond, fontSize: f.body, textAlign: 'center' }}>
+                  <Text style={{ color: glass.secondary, fontSize: f.body, textAlign: 'center' }}>
                     {triLang(lang, {
                       ru: 'Если ошибка подтвердится — получишь жемчужину.',
                       uk: 'Якщо помилка підтвердиться — отримаєш перлину.',
@@ -391,24 +409,25 @@ function ReportErrorButton({
                   </Text>
                   {sending ? (
                     <View style={styles.optimisticStatus}>
-                      <ActivityIndicator size="small" color={t.textSecond} />
-                      <Text style={{ color: t.textSecond, fontSize: f.caption, fontWeight: '700' }}>
+                      <ActivityIndicator size="small" color={glass.secondary} />
+                      <Text style={{ color: glass.secondary, fontSize: f.caption, fontWeight: '700' }}>
                         {triLang(lang, { ru: 'Отправляем в фоне', uk: 'Надсилаємо у фоні', en: 'Sending in the background', es: 'Enviando en segundo plano', 'pt-BR': 'Enviando em segundo plano', vi: 'Đang gửi trong nền', id: 'Mengirim di latar belakang', tr: 'Arka planda gönderiliyor', pl: 'Wysyłanie w tle' })}
                       </Text>
                     </View>
                   ) : null}
                   <TouchableOpacity
                     onPress={() => setVisible(false)}
-                    style={[styles.btnSend, { backgroundColor: t.accent, marginTop: 8, alignSelf: 'stretch' }]}
+                    style={[styles.btnSend, { backgroundColor: glass.cta, marginTop: 8, alignSelf: 'stretch' }]}
+                    accessibilityRole="button"
                   >
-                    <Text style={{ color: t.correctText, fontWeight: '700', fontSize: f.body }}>
+                    <Text style={{ color: glass.ctaInk, fontWeight: '700', fontSize: f.body }}>
                       {triLang(lang, { ru: 'Готово', uk: 'Готово', en: 'Done', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe' })}
                     </Text>
                   </TouchableOpacity>
                 </View>
               ) : (
                 <>
-                  <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h3 }]}>
+                  <Text style={[styles.title, { color: glass.text, fontSize: f.h3 }]}>
                     {triLang(lang, {
                       ru: 'Нашёл ошибку?',
                       uk: 'Знайшов помилку?',
@@ -421,7 +440,7 @@ function ReportErrorButton({
                       pl: 'Znalazłeś błąd?',
                     })}
                   </Text>
-                  <Text style={[styles.sub, { color: t.textSecond, fontSize: f.sub }]}>
+                  <Text style={[styles.sub, { color: glass.secondary, fontSize: f.sub }]}>
                     {triLang(lang, {
                       ru: 'Опиши, что не так — мы починим.',
                       uk: 'Опиши, що не так — ми виправимо.',
@@ -437,11 +456,11 @@ function ReportErrorButton({
 
                   <TextInput
                     style={[styles.input, {
-                      color: t.textPrimary,
-                      borderColor: commentRequiredError && !commentOk ? t.wrong : t.border,
-                      borderWidth: commentRequiredError && !commentOk ? 2 : 1,
+                      color: glass.text,
+                      // зачем: ошибка валидации — тоном фона и цветом текста ошибки, без толстой/цветной рамки.
+                      borderColor: glass.line,
                       backgroundColor:
-                        commentRequiredError && !commentOk ? `${t.wrong}14` : t.bgSurface,
+                        commentRequiredError && !commentOk ? `${t.wrong}1F` : glass.opaqueControl,
                       fontSize: f.body,
                     }]}
                     placeholder={triLang(lang, {
@@ -455,7 +474,7 @@ function ReportErrorButton({
                       tr: 'Ne oldu?',
                       pl: 'Co się stało?',
                     })}
-                    placeholderTextColor={t.textSecond}
+                    placeholderTextColor={glass.mutedText}
                     value={comment}
                     onChangeText={(text) => {
                       setComment(text);
@@ -482,19 +501,25 @@ function ReportErrorButton({
                   ) : null}
 
                   <View style={styles.row}>
-                    <TouchableOpacity onPress={() => setVisible(false)} style={styles.btnCancel}>
-                      <Text style={{ color: t.textSecond, fontSize: f.body }}>
+                    <TouchableOpacity
+                      onPress={() => setVisible(false)}
+                      style={[styles.btnCancel, { backgroundColor: glass.opaqueControl }]}
+                      accessibilityRole="button"
+                    >
+                      <Text style={{ color: glass.secondary, fontSize: f.body, fontWeight: '700' }}>
                         {triLang(lang, { ru: 'Отмена', uk: 'Скасувати', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' })}
                       </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                       onPress={handleSend}
                       disabled={sending}
-                      style={[styles.btnSend, { backgroundColor: !sending ? t.accent : t.border }]}
+                      accessibilityRole="button"
+                      accessibilityState={{ disabled: sending, busy: sending }}
+                      style={[styles.btnSend, { backgroundColor: glass.cta }, sending && styles.btnBusy]}
                     >
                       <View style={styles.btnSendContent}>
-                        {sending ? <ActivityIndicator size="small" color={t.textPrimary} /> : null}
-                        <Text style={{ color: !sending ? t.correctText : t.textPrimary, fontWeight: '700', fontSize: f.body }}>
+                        {sending ? <ActivityIndicator size="small" color={glass.ctaInk} /> : null}
+                        <Text style={{ color: glass.ctaInk, fontWeight: '700', fontSize: f.body }}>
                           {sending
                             ? triLang(lang, { ru: 'Отправляю...', uk: 'Надсилаю...', en: 'Sending...', es: 'Enviando...', 'pt-BR': 'Enviando...', vi: 'Đang gửi...', id: 'Mengirim...', tr: 'Gönderiliyor...', pl: 'Wysyłanie...' })
                             : triLang(lang, { ru: 'Отправить', uk: 'Надіслати', en: 'Send', es: 'Enviar', 'pt-BR': 'Enviar', vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij' })}
@@ -529,19 +554,27 @@ const styles = StyleSheet.create({
   },
   overlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.55)', justifyContent: 'flex-end' },
   sheet: {
-    borderTopLeftRadius: 24,
-    borderTopRightRadius: 24,
-    borderWidth: 0,
-    padding: 24,
+    borderTopLeftRadius: 28,
+    borderTopRightRadius: 28,
+    borderWidth: 1,
+    borderBottomWidth: 0,
+    paddingHorizontal: 24,
+    paddingTop: 12,
     gap: 12,
+    shadowOpacity: 0.22,
+    shadowRadius: 24,
+    shadowOffset: { width: 0, height: -8 },
+    elevation: 18,
   },
+  grabber: { alignSelf: 'center', width: 44, height: 5, borderRadius: 3, opacity: 0.5, marginBottom: 4 },
   title: { fontWeight: '700', textAlign: 'center' },
   sub: { textAlign: 'center', marginBottom: 4 },
-  input: { borderRadius: 12, padding: 12, minHeight: 150, textAlignVertical: 'top', marginTop: 4 },
+  input: { borderRadius: 14, borderWidth: 1, padding: 12, minHeight: 150, textAlignVertical: 'top', marginTop: 4 },
   inputHint: { marginTop: -4, textAlign: 'right' },
   row: { flexDirection: 'row', gap: 12, marginTop: 8 },
-  btnCancel: { flex: 1, alignItems: 'center', paddingVertical: 14 },
-  btnSend: { flex: 2, alignItems: 'center', paddingVertical: 14, borderRadius: 14 },
+  btnCancel: { flex: 1, minHeight: 48, alignItems: 'center', justifyContent: 'center', borderRadius: 16 },
+  btnSend: { flex: 2, minHeight: 48, alignItems: 'center', justifyContent: 'center', borderRadius: 16 },
+  btnBusy: { opacity: 0.6 },
   btnSendContent: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
   optimisticStatus: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, marginTop: 4 },
   successBox: { alignItems: 'center', paddingVertical: 24, gap: 8 },

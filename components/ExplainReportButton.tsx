@@ -20,6 +20,7 @@ import {
   Modal,
   Platform,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -34,7 +35,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { callSubmitExplainReport } from '../app/explain_phrase_client';
 import { asLang } from '../app/explain_phrase_request';
-import TonalSurface from './TonalSurface';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 
 interface Props {
   /**
@@ -114,7 +115,9 @@ function reasonLabel(key: ReportReasonKey, uiLang: Lang): string {
 }
 
 function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: langProp }: Props) {
-  const { theme: t, f } = useTheme();
+  // зачем: форма жалобы на разбор — Liquid Glass по макету overlays-campaigns OS-EXPLAIN-REPORT-*.
+  const { theme: t, f, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const { lang: ctxLang } = useLang();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
@@ -183,22 +186,31 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: lang
           pl: 'Zgłoś, że wyjaśnienie jest niejasne',
         })}
       >
-        <Ionicons name={sent ? 'checkmark-circle' : 'flag'} size={18} color={sent ? t.accent : t.wrong} />
+        <Ionicons name={sent ? 'checkmark-circle' : 'flag'} size={18} color={sent ? glass.text : t.wrong} />
       </TouchableOpacity>
 
       {/* Мини-форма жалобы: причина + необязательный комментарий */}
       <Modal visible={formOpen} transparent animationType="fade" onRequestClose={() => setFormOpen(false)}>
         <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-          <Pressable style={styles.overlay} onPress={() => setFormOpen(false)}>
+          {/* guard-ok: скрим закрывает форму по тапу вне листа; смысловые элементы внутри. */}
+          <Pressable style={[styles.overlay, { paddingTop: insets.top + 8 }]} onPress={() => setFormOpen(false)} accessible={false}>
+            {/* guard-ok: гасит всплытие тапа из листа в скрим. */}
             <Pressable
+              accessible={false}
               style={[
                 styles.formSheet,
-                { backgroundColor: t.bgCard, borderColor: t.border, paddingBottom: 24 + bottomInset },
+                { backgroundColor: glass.opaqueSheet, borderColor: glass.glassEdge, shadowColor: glass.bg, paddingBottom: 24 + bottomInset },
               ]}
               onPress={(e) => e.stopPropagation()}
             >
-              <TonalSurface pointerEvents="none" radius={24} tone="raised" style={StyleSheet.absoluteFillObject} />
-              <Text style={[styles.formTitle, { color: t.textPrimary, fontSize: f.h3 }]}>
+              <View style={[styles.grabberPill, { backgroundColor: glass.mutedText }]} />
+              <ScrollView
+                style={styles.formScroll}
+                contentContainerStyle={styles.formScrollContent}
+                keyboardShouldPersistTaps="handled"
+                showsVerticalScrollIndicator={false}
+              >
+              <Text style={[styles.formTitle, { color: glass.text, fontSize: f.h3 }]}>
                 {triLang(uiLang, {
                   ru: 'Что именно непонятно?',
                   uk: 'Що саме незрозуміло?',
@@ -225,15 +237,15 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: lang
                     accessibilityState={{ selected }}
                     style={[
                       styles.reasonRow,
-                      { borderColor: selected ? t.accent : t.border, backgroundColor: selected ? `${t.accent}14` : t.bgSurface2 },
+                      { borderColor: selected ? `${glass.cta}66` : glass.line, backgroundColor: selected ? glass.opaqueControl : glass.opaqueCard },
                     ]}
                   >
                     <Ionicons
                       name={selected ? 'radio-button-on' : 'radio-button-off'}
-                      size={18}
-                      color={selected ? t.accent : t.textMuted}
+                      size={20}
+                      color={selected ? glass.text : glass.secondary}
                     />
-                    <Text style={[styles.reasonLabel, { color: t.textPrimary, fontSize: f.body }]} numberOfLines={2}>
+                    <Text style={[styles.reasonLabel, { color: glass.text, fontSize: f.body }]}>
                       {reasonLabel(key, uiLang)}
                     </Text>
                   </Pressable>
@@ -241,7 +253,7 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: lang
               })}
 
               <TextInput
-                style={[styles.input, { color: t.textPrimary, borderColor: t.border, backgroundColor: t.bgSurface, fontSize: f.body }]}
+                style={[styles.input, { color: glass.text, borderColor: glass.line, backgroundColor: glass.opaqueControl, fontSize: f.body }]}
                 placeholder={triLang(uiLang, {
                   ru: 'Расскажи своими словами (необязательно)',
                   uk: 'Розкажи своїми словами (необов’язково)',
@@ -253,7 +265,7 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: lang
                   tr: 'Kendi kelimelerinle anlat (isteğe bağlı)',
                   pl: 'Opisz własnymi słowami (opcjonalnie)',
                 })}
-                placeholderTextColor={t.textSecond}
+                placeholderTextColor={glass.mutedText}
                 value={comment}
                 onChangeText={setComment}
                 multiline
@@ -278,25 +290,33 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: lang
               ) : null}
 
               <View style={styles.row}>
-                <TouchableOpacity onPress={() => setFormOpen(false)} style={styles.btnCancel}>
-                  <Text style={{ color: t.textSecond, fontSize: f.body }}>
+                <TouchableOpacity
+                  onPress={() => setFormOpen(false)}
+                  style={[styles.btn, styles.btnCancel, { backgroundColor: glass.opaqueControl }]}
+                  accessibilityRole="button"
+                >
+                  <Text style={{ color: glass.secondary, fontSize: f.body, fontWeight: '700' }}>
                     {triLang(uiLang, { ru: 'Отмена', uk: 'Скасувати', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' })}
                   </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={handleSend}
                   disabled={sending}
-                  style={[styles.btnSend, { backgroundColor: !sending ? t.accent : t.border }]}
+                  accessibilityRole="button"
+                  accessibilityState={{ disabled: sending, busy: sending }}
+                  style={[styles.btn, styles.btnSend, { backgroundColor: glass.cta }, sending && styles.btnBusy]}
                 >
-                  {sending ? (
-                    <ActivityIndicator size="small" color={t.textPrimary} />
-                  ) : (
-                    <Text style={{ color: t.correctText, fontWeight: '700', fontSize: f.body }}>
-                      {triLang(uiLang, { ru: 'Отправить', uk: 'Надіслати', en: 'Send', es: 'Enviar', 'pt-BR': 'Enviar', vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij' })}
+                  <View style={styles.btnSendContent}>
+                    {sending ? <ActivityIndicator size="small" color={glass.ctaInk} /> : null}
+                    <Text style={{ color: glass.ctaInk, fontWeight: '700', fontSize: f.body }}>
+                      {sending
+                        ? triLang(uiLang, { ru: 'Отправляем…', uk: 'Надсилаємо…', en: 'Sending…', es: 'Enviando…', 'pt-BR': 'Enviando…', vi: 'Đang gửi…', id: 'Mengirim…', tr: 'Gönderiliyor…', pl: 'Wysyłanie…' })
+                        : triLang(uiLang, { ru: 'Отправить', uk: 'Надіслати', en: 'Send', es: 'Enviar', 'pt-BR': 'Enviar', vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij' })}
                     </Text>
-                  )}
+                  </View>
                 </TouchableOpacity>
               </View>
+              </ScrollView>
             </Pressable>
           </Pressable>
         </KeyboardAvoidingView>
@@ -312,8 +332,8 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     alignItems: 'center',
     justifyContent: 'center',
-    minWidth: 32,
-    minHeight: 32,
+    minWidth: 44,
+    minHeight: 44,
     padding: 4,
   },
   triggerMuted: {
@@ -325,25 +345,47 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   formSheet: {
-    borderTopLeftRadius: 24,
-    borderTopRightRadius: 24,
-    borderWidth: 0,
+    maxHeight: '100%',
+    borderTopLeftRadius: 28,
+    borderTopRightRadius: 28,
+    borderWidth: 1,
+    borderBottomWidth: 0,
     overflow: 'hidden',
-    padding: 20,
-    gap: 10,
+    paddingHorizontal: 24,
+    paddingTop: 12,
+    shadowOpacity: 0.22,
+    shadowRadius: 24,
+    shadowOffset: { width: 0, height: -8 },
+    elevation: 18,
+  },
+  grabberPill: {
+    alignSelf: 'center',
+    width: 44,
+    height: 5,
+    borderRadius: 3,
+    opacity: 0.5,
+    marginBottom: 16,
+  },
+  formScroll: {
+    flexShrink: 1,
+    minHeight: 0,
+  },
+  formScrollContent: {
+    gap: 8,
   },
   formTitle: {
-    fontWeight: '800',
+    fontWeight: '700',
     textAlign: 'center',
-    marginBottom: 4,
+    marginBottom: 8,
   },
   reasonRow: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 10,
+    minHeight: 48,
     borderRadius: 14,
-    borderWidth: 0,
-    paddingVertical: 12,
+    borderWidth: 1,
+    paddingVertical: 10,
     paddingHorizontal: 14,
   },
   reasonLabel: {
@@ -351,30 +393,41 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   input: {
-    borderRadius: 12,
-    borderWidth: 0,
+    borderRadius: 14,
+    borderWidth: 1,
     padding: 12,
-    minHeight: 84,
+    minHeight: 96,
     textAlignVertical: 'top',
-    marginTop: 2,
+    marginTop: 4,
   },
   failedHint: {
     textAlign: 'center',
   },
   row: {
     flexDirection: 'row',
-    gap: 12,
-    marginTop: 6,
+    gap: 10,
+    marginTop: 8,
+  },
+  btn: {
+    minHeight: 48,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 16,
+    paddingHorizontal: 12,
   },
   btnCancel: {
     flex: 1,
-    alignItems: 'center',
-    paddingVertical: 14,
   },
   btnSend: {
     flex: 2,
+  },
+  btnBusy: {
+    opacity: 0.6,
+  },
+  btnSendContent: {
+    flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 14,
-    borderRadius: 14,
+    justifyContent: 'center',
+    gap: 8,
   },
 });

@@ -40,9 +40,10 @@ describe('semantic explanation UI contract', () => {
     expect(eli5).not.toContain('BilingualMistakeText');
   });
 
-  it('uses the shared tonal surface for explanation sheets without changing their semantic body rendering', () => {
-    expect(read('components/ExplainSheet.tsx')).toContain('TonalSurface');
+  it('uses one Liquid Glass surface family for explanation sheets without changing their semantic body rendering', () => {
+    // ExplainSheet и ExplainReportButton перенесены на liquidGlassTokens (learn.html D10, overlays-campaigns OS-EXPLAIN-REPORT-*).
+    expect(read('components/ExplainSheet.tsx')).toContain('liquidGlassTokens(liquidGlassThemeId)');
     expect(read('components/MistakeEli5Modal.tsx')).toContain('TonalSurface');
-    expect(read('components/ExplainReportButton.tsx')).toContain('TonalSurface');
+    expect(read('components/ExplainReportButton.tsx')).toContain('liquidGlassTokens(liquidGlassThemeId)');
   });
 });

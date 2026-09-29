@@ -42,11 +42,13 @@ describe('app-message login modal contract', () => {
     expect(overlayCore).toContain("'appMessageModal'");
   });
 
-  test('renders a feathered shine instead of sweeping a solid rectangle', () => {
+  // зачем: Liquid Glass — декоративный бесконечный блик карточки «Что нового»/объявления
+  // удалён вместе с кремовыми hex (ночной перенос 2026-09-29), поэтому проверяем его отсутствие.
+  test('no longer sweeps any decorative shine over the release-notes card', () => {
     const releaseNotesModal = read('components/ReleaseNotesModal.tsx');
 
-    expect(releaseNotesModal).toContain('styles.shineGradient');
-    expect(releaseNotesModal).toContain("'rgba(255, 247, 206, 0)'");
+    expect(releaseNotesModal).not.toContain('styles.shineGradient');
+    expect(releaseNotesModal).not.toContain("'rgba(255, 247, 206, 0)'");
     expect(releaseNotesModal).not.toContain("backgroundColor: '#FFF7CE'");
   });
 });

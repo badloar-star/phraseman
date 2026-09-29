@@ -1,8 +1,10 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import HybridSheetShell from '../modal_fx/HybridSheetShell';
 import { addFlashcard, alignSavedVideoFlashcardsWithChannel, loadFlashcards } from '../../hooks/use-flashcards';
 import { fetchPublishedVideoPhrases } from '../../app/video_phrases_client';
 import { isVideoPhrasesEnabled } from '../../app/remote_flags';
@@ -24,10 +26,17 @@ type YoutubeVideoPhrasesProps = {
 export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sourceTitle, expanded, onToggle, testID }: YoutubeVideoPhrasesProps) {
   const { lang } = useLang();
   const studyTarget = packLanguage;
-  const { theme: t } = useTheme();
+  // зачем: Liquid Glass (макет video.html «Фразы из видео») — все цвета из токенов
+  // активной темы, шторка «Фраза» на HybridSheetShell material="liquid-glass".
+  const { liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const [phrases, setPhrases] = useState<readonly VideoPhrase[]>([]);
   const [savedIds, setSavedIds] = useState<ReadonlySet<string>>(new Set());
   const [selected, setSelected] = useState<VideoPhrase | null>(null);
+  // Держим последнюю открытую фразу, чтобы содержимое шторки не пропадало на время анимации закрытия.
+  const lastSelectedRef = useRef<VideoPhrase | null>(null);
+  if (selected) lastSelectedRef.current = selected;
+  const shown = selected ?? lastSelectedRef.current;
   const [localExpanded, setLocalExpanded] = useState(false);
   const [state, setState] = useState<'loading' | 'ready' | 'error'>('loading');
   const savingIdsRef = useRef(new Set<string>());
@@ -73,8 +82,8 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
   }, [enabled, retryTick, sourceTitle, studyTarget, videoId]);
 
   const copy = useMemo(() => lang === 'ru'
-    ? { title: 'Фразы из видео', error: 'Не удалось загрузить. Нажмите, чтобы повторить', phrase: 'Фраза', translation: 'Перевод', explanation: 'Подробно', save: 'Сохранить фразу', saved: 'Фраза сохранена' }
-    : { title: 'Phrases from this video', error: 'Could not load. Tap to try again', phrase: 'Phrase', translation: 'Translation', explanation: 'Explanation', save: 'Save phrase', saved: 'Phrase saved' }, [lang]);
+    ? { title: 'Фразы из видео', error: 'Не удалось загрузить. Нажмите, чтобы повторить', phrase: 'Фраза', translation: 'Перевод', explanation: 'Подробно', save: 'Сохранить фразу', saved: 'Фраза сохранена', close: 'Закрыть' }
+    : { title: 'Phrases from this video', error: 'Could not load. Tap to try again', phrase: 'Phrase', translation: 'Translation', explanation: 'Explanation', save: 'Save phrase', saved: 'Phrase saved', close: 'Close' }, [lang]);
 
   const save = useCallback(async (phrase: VideoPhrase) => {
     if (savedIds.has(phrase.id) || savingIdsRef.current.has(phrase.id)) return;
@@ -112,13 +121,39 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
   };
 
   if (!enabled) return null;
-  if (state === 'loading') return <View testID={testID ? `${testID}-loading` : 'video-phrases-loading'} style={styles.block}><Text style={[styles.muted, { color: t.textMuted }]}>…</Text></View>;
-  if (state === 'error') return <View testID={testID ? `${testID}-error` : 'video-phrases-error'} style={styles.block}>
-    <Pressable testID={testID ? `${testID}-retry` : 'video-phrases-retry'} accessibilityRole="button" accessibilityLabel={copy.error} onPress={retry} style={({ pressed }) => [styles.retry, { backgroundColor: t.bgSurface, opacity: pressed ? 0.78 : 1 }]}>
-      <Text style={[styles.retryText, { color: t.textMuted }]}>{copy.error}</Text>
-      <Ionicons name="refresh" size={20} color={t.textMuted} />
-    </Pressable>
-  </View>;
+  if (state === 'loading') {
+    // Макет: четыре скелетона по 58dp вместо одинокого «…».
+    return (
+      <View
+        testID={testID ? `${testID}-loading` : 'video-phrases-loading'}
+        style={styles.block}
+        accessible
+        accessibilityRole="progressbar"
+        accessibilityLabel={copy.title}
+        accessibilityState={{ busy: true }}
+      >
+        {[0, 1, 2, 3].map((index) => (
+          <View key={index} style={[styles.skeleton, { backgroundColor: glass.opaqueCard }]} />
+        ))}
+      </View>
+    );
+  }
+  if (state === 'error') {
+    return (
+      <View testID={testID ? `${testID}-error` : 'video-phrases-error'} style={styles.block}>
+        <Pressable
+          testID={testID ? `${testID}-retry` : 'video-phrases-retry'}
+          accessibilityRole="button"
+          accessibilityLabel={copy.error}
+          onPress={retry}
+          style={({ pressed }) => [styles.retry, { backgroundColor: glass.opaqueCard, opacity: pressed ? 0.78 : 1 }]}
+        >
+          <Ionicons name="cloud-offline-outline" size={22} color={glass.secondary} />
+          <Text style={[styles.retryText, { color: glass.secondary }]}>{copy.error}</Text>
+        </Pressable>
+      </View>
+    );
+  }
   if (!phrases.length) return null;
 
   const toggle = () => {
@@ -129,25 +164,100 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
     setLocalExpanded((value) => !value);
   };
 
+  const selectedSaved = shown ? savedIds.has(shown.id) : false;
+
   return <View testID={rootTestID} style={styles.block}>
-    <Pressable testID={toggleTestID} accessibilityRole="button" accessibilityState={{ expanded: isExpanded }} onPress={toggle} style={({ pressed }) => [styles.toggle, { backgroundColor: t.bgSurface, opacity: pressed ? 0.78 : 1 }]}>
-      <Text style={[styles.title, { color: t.textPrimary }]}>{copy.title}</Text>
-      <Ionicons name={isExpanded ? 'chevron-up' : 'chevron-down'} size={21} color={t.textMuted} />
+    <Pressable
+      testID={toggleTestID}
+      accessibilityRole="button"
+      accessibilityState={{ expanded: isExpanded }}
+      onPress={toggle}
+      style={({ pressed }) => [styles.toggle, { backgroundColor: glass.opaqueCard, opacity: pressed ? 0.78 : 1 }]}
+    >
+      <Text style={[styles.title, { color: glass.text }]}>{copy.title}</Text>
+      <Text style={[styles.count, { color: glass.mutedText }]}>{phrases.length}</Text>
+      <Ionicons name={isExpanded ? 'chevron-up' : 'chevron-down'} size={21} color={glass.secondary} />
     </Pressable>
-    {isExpanded && phrases.map((phrase) => <View key={phrase.id} testID={`video-phrase-${phrase.ordinal}`} style={[styles.row, { backgroundColor: t.bgSurface }]}> 
+    {isExpanded && phrases.map((phrase) => <View key={phrase.id} testID={`video-phrase-${phrase.ordinal}`} style={[styles.row, { backgroundColor: glass.opaqueCard }]}>
       <Pressable accessibilityRole="button" accessibilityLabel={`${copy.phrase}: ${phrase.phrase}`} onPress={() => setSelected(phrase)} style={({ pressed }) => [styles.rowCopyPressable, { opacity: pressed ? 0.78 : 1 }]}>
-        <View style={styles.rowCopy}><Text style={[styles.phrase, { color: t.textPrimary }]}>{phrase.phrase}</Text><Text style={[styles.translation, { color: t.textMuted }]}>{phrase.translation}</Text></View>
+        {typeof phrase.startSec === 'number' ? <Text style={[styles.time, { color: glass.mutedText }]}>{formatTimecode(phrase.startSec)}</Text> : null}
+        <View style={styles.rowCopy}><Text style={[styles.phrase, { color: glass.text }]}>{phrase.phrase}</Text><Text style={[styles.translation, { color: glass.secondary }]}>{phrase.translation}</Text></View>
       </Pressable>
-      <View style={styles.rowSave}><SaveToCardsButton label={copy.save} savedLabel={copy.saved} saved={savedIds.has(phrase.id)} pulse={false} onSave={() => void save(phrase)} colors={{ surface: t.bgSurface2, text: t.textPrimary, muted: t.textMuted, accent: t.accent }} testID={`video-phrase-save-${phrase.ordinal}`} /></View>
+      <View style={styles.rowSave}><SaveToCardsButton label={copy.save} savedLabel={copy.saved} saved={savedIds.has(phrase.id)} pulse={false} onSave={() => void save(phrase)} colors={{ surface: glass.opaqueControl, text: glass.text, muted: glass.secondary, accent: glass.lightTint }} testID={`video-phrase-save-${phrase.ordinal}`} /></View>
     </View>)}
-    <Modal visible={!!selected} transparent animationType="slide" onRequestClose={() => setSelected(null)}>
-      <Pressable style={styles.scrim} onPress={() => setSelected(null)}><Pressable style={[styles.sheet, { backgroundColor: t.bgCard }]} onPress={(event) => event.stopPropagation()}>
-        {selected && <ScrollView contentContainerStyle={styles.sheetContent}><Text style={[styles.label, { color: t.textMuted }]}>{copy.phrase}</Text><Text style={[styles.sheetPhrase, { color: t.textPrimary }]}>{selected.phrase}</Text><Text style={[styles.label, { color: t.textMuted }]}>{copy.translation}</Text><Text style={[styles.sheetTranslation, { color: t.textPrimary }]}>{selected.translation}</Text><Text style={[styles.label, { color: t.textMuted }]}>{copy.explanation}</Text><Text style={[styles.explanation, { color: t.textPrimary }]}>{selected.explanation}</Text><View style={styles.sheetAction}><SaveToCardsButton label={copy.save} savedLabel={copy.saved} saved={savedIds.has(selected.id)} pulse={false} onSave={() => void save(selected)} colors={{ surface: t.bgSurface, text: t.textPrimary, muted: t.textMuted, accent: t.accent }} /></View></ScrollView>}
-      </Pressable></Pressable>
-    </Modal>
+    <HybridSheetShell
+      visible={!!selected}
+      onClose={() => setSelected(null)}
+      closeLabel={copy.close}
+      material="liquid-glass"
+      testID="video-phrase-sheet"
+    >
+      {shown ? (
+        <ScrollView style={styles.sheetScroll} contentContainerStyle={styles.sheetContent} showsVerticalScrollIndicator={false}>
+          <Text style={[styles.eyebrow, { color: glass.secondary }]}>
+            {typeof shown.startSec === 'number' ? `${copy.phrase} · ${formatTimecode(shown.startSec)}` : copy.phrase}
+          </Text>
+          <Text accessibilityRole="header" style={[styles.sheetPhrase, { color: glass.text }]}>{shown.phrase}</Text>
+          <View style={[styles.infoCard, { backgroundColor: glass.opaqueControl }]}>
+            <Text style={[styles.label, { color: glass.secondary }]}>{copy.translation}</Text>
+            <Text style={[styles.sheetTranslation, { color: glass.text }]}>{shown.translation}</Text>
+          </View>
+          <View style={[styles.infoCard, { backgroundColor: glass.opaqueControl }]}>
+            <Text style={[styles.label, { color: glass.secondary }]}>{copy.explanation}</Text>
+            <Text style={[styles.explanation, { color: glass.text }]}>{shown.explanation}</Text>
+          </View>
+          <Pressable
+            testID="video-phrase-sheet-save"
+            accessibilityRole="button"
+            accessibilityLabel={selectedSaved ? copy.saved : copy.save}
+            accessibilityState={{ selected: selectedSaved }}
+            onPress={() => void save(shown)}
+            style={({ pressed }) => [
+              styles.sheetCta,
+              { backgroundColor: selectedSaved ? glass.opaqueControl : glass.cta, opacity: pressed ? 0.82 : 1 },
+            ]}
+          >
+            <Ionicons name={selectedSaved ? 'checkmark' : 'bookmark-outline'} size={20} color={selectedSaved ? glass.text : glass.ctaInk} />
+            <Text style={[styles.sheetCtaText, { color: selectedSaved ? glass.text : glass.ctaInk }]}>{selectedSaved ? copy.saved : copy.save}</Text>
+          </Pressable>
+        </ScrollView>
+      ) : null}
+    </HybridSheetShell>
   </View>;
 }
 
+/** m:ss (или h:mm:ss) для таймкода фразы, как в макете «Фраза · 3:26». */
+function formatTimecode(totalSec: number): string {
+  const safe = Math.max(0, Math.floor(totalSec));
+  const h = Math.floor(safe / 3600);
+  const m = Math.floor((safe % 3600) / 60);
+  const sec = String(safe % 60).padStart(2, '0');
+  return h > 0 ? `${h}:${String(m).padStart(2, '0')}:${sec}` : `${m}:${sec}`;
+}
+
 const styles = StyleSheet.create({
-  block: { marginTop: 4, marginBottom: 16 }, toggle: { minHeight: 56, borderRadius: 18, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }, title: { fontSize: 18, fontWeight: '900' }, row: { minHeight: 72, borderRadius: 18, paddingLeft: 16, paddingRight: 8, marginTop: 8, flexDirection: 'row', alignItems: 'center' }, rowCopyPressable: { flex: 1 }, rowCopy: { paddingVertical: 12, paddingRight: 8 }, rowSave: { transform: [{ translateY: 4 }] }, phrase: { fontSize: 16, fontWeight: '800' }, translation: { marginTop: 4, fontSize: 13, fontWeight: '700' }, muted: { fontSize: 13, fontWeight: '700' }, retry: { minHeight: 56, borderRadius: 18, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }, retryText: { flex: 1, paddingRight: 12, fontSize: 15, fontWeight: '800' }, scrim: { flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(0,0,0,.55)' }, sheet: { maxHeight: '82%', borderTopLeftRadius: 28, borderTopRightRadius: 28 }, sheetContent: { padding: 24, paddingBottom: 36 }, label: { fontSize: 12, fontWeight: '800', textTransform: 'uppercase', letterSpacing: 0.6, marginTop: 12 }, sheetPhrase: { fontSize: 24, lineHeight: 31, fontWeight: '900', marginTop: 5 }, sheetTranslation: { fontSize: 18, lineHeight: 25, fontWeight: '800', marginTop: 5 }, explanation: { fontSize: 16, lineHeight: 24, marginTop: 5 }, sheetAction: { marginTop: 20, alignItems: 'center' },
+  block: { marginTop: 4, marginBottom: 16 },
+  toggle: { minHeight: 56, borderRadius: 18, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10 },
+  title: { flex: 1, fontSize: 18, lineHeight: 24, fontWeight: '700' },
+  count: { fontSize: 15, lineHeight: 20, fontWeight: '700' },
+  row: { minHeight: 72, borderRadius: 18, paddingLeft: 16, paddingRight: 8, marginTop: 8, flexDirection: 'row', alignItems: 'center' },
+  rowCopyPressable: { flex: 1, minHeight: 56, flexDirection: 'row', alignItems: 'center', gap: 12 },
+  rowCopy: { flex: 1, paddingVertical: 12, paddingRight: 8 },
+  rowSave: { transform: [{ translateY: 4 }] },
+  time: { minWidth: 40, fontSize: 13, lineHeight: 18, fontWeight: '700' },
+  phrase: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
+  translation: { marginTop: 4, fontSize: 14, lineHeight: 20, fontWeight: '400' },
+  skeleton: { height: 58, borderRadius: 18, marginTop: 8, opacity: 0.7 },
+  retry: { minHeight: 76, borderRadius: 18, paddingHorizontal: 18, paddingVertical: 14, alignItems: 'center', justifyContent: 'center', gap: 8 },
+  retryText: { fontSize: 15, lineHeight: 21, fontWeight: '400', textAlign: 'center' },
+  sheetScroll: { flexShrink: 1 },
+  sheetContent: { paddingTop: 12, paddingBottom: 8 },
+  eyebrow: { fontSize: 12, lineHeight: 16, fontWeight: '700', letterSpacing: 2, textTransform: 'uppercase' },
+  sheetPhrase: { fontSize: 30, lineHeight: 36, fontWeight: '700', marginTop: 6 },
+  infoCard: { borderRadius: 16, padding: 16, marginTop: 12 },
+  label: { fontSize: 12, lineHeight: 16, fontWeight: '700', letterSpacing: 2, textTransform: 'uppercase' },
+  sheetTranslation: { fontSize: 17, lineHeight: 24, fontWeight: '400', marginTop: 8 },
+  explanation: { fontSize: 16, lineHeight: 22, fontWeight: '400', marginTop: 8 },
+  sheetCta: { minHeight: 52, borderRadius: 16, marginTop: 18, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
+  sheetCtaText: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
 });

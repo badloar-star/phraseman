@@ -5,12 +5,16 @@
 // просмотреть глазами, но они всё ещё звучат как живое обращение команды.
 //
 // Тексты — в release_notes_copy.ts (8 локалей). Здесь только вёрстка и движение.
+//
+// зачем (Liquid Glass, ночной перенос 2026-09-29): обычные «Что нового» — шторка
+// HybridSheetShell material="liquid-glass" как ReleaseNotesV2Modal / макет SYS-06;
+// вариант-объявление (AppMessageAnnouncementModal) остаётся центральной карточкой,
+// но на непрозрачной основе и токенах темы, без жёстких hex и бликов.
 // ════════════════════════════════════════════════════════════════════════════
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { memo, useEffect, useMemo, useRef } from 'react';
 import {
   Animated,
-  Easing,
   Platform,
   Modal,
   Pressable,
@@ -21,8 +25,10 @@ import {
 } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from './SafeLinearGradient';
+import HybridSheetShell from './modal_fx/HybridSheetShell';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { hapticTap } from '../hooks/use-haptics';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
@@ -59,36 +65,31 @@ export type ReleaseNotesAnnouncement = {
 };
 
 /**
- * Один пункт списка. Плоский ряд «иконка + текст», без вложенных карточек:
- * карточка в карточке — всегда лишний слой (и запрет владельца на обводки).
- * Золотой и синий тона чередуют главы и помогают быстро найти нужный факт.
+ * Один пункт списка. Плоский ряд «иконка + текст», без вложенных карточек и обводок.
+ * зачем: Liquid Glass (SYS-06) — иконка на нейтральной плитке темы, цвет текста из
+ * токенов, а не из жёстких «золотых/синих» hex; тон главы больше не красит иконку.
  */
 const ReleaseNoteRow = memo(function ReleaseNoteRow({
   item,
   titleSize,
   bodySize,
+  glass,
 }: {
   item: ReleaseNoteItem;
   titleSize: number;
   bodySize: number;
+  glass: ReturnType<typeof liquidGlassTokens>;
 }) {
-  const isGold = item.tone === 'gold';
-  const accent = isGold ? '#F9D77A' : '#8FB4FF';
   return (
     <View style={styles.row}>
-      <View
-        style={[
-          styles.rowIcon,
-          { backgroundColor: isGold ? 'rgba(249,215,122,0.16)' : 'rgba(143,180,255,0.14)' },
-        ]}
-      >
-        <Ionicons name={item.icon} size={17} color={accent} />
+      <View style={[styles.rowIcon, { backgroundColor: glass.opaqueControl }]} accessible={false}>
+        <Ionicons name={item.icon} size={20} color={glass.lightTint} />
       </View>
       <View style={styles.rowText}>
-        <Text style={[styles.rowTitle, { fontSize: titleSize, color: '#FFF4DC' }]}>
+        <Text style={[styles.rowTitle, { fontSize: titleSize, color: glass.text }]}>
           {item.title}
         </Text>
-        <Text style={[styles.rowBody, { fontSize: bodySize, color: '#C2D2E8' }]}>
+        <Text style={[styles.rowBody, { fontSize: bodySize, color: glass.secondary }]}>
           {item.body}
         </Text>
       </View>
@@ -103,7 +104,9 @@ function ReleaseNotesModal({
   showCloseButton = false,
   motionVariant = 'classic',
 }: Props) {
-  const { f } = useTheme();
+  const { f, liquidGlassThemeId } = useTheme();
+  const announcementGlass = liquidGlassTokens(liquidGlassThemeId);
+  const releaseGlass = announcementGlass;
   const { lang } = useLang();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
@@ -112,7 +115,6 @@ function ReleaseNotesModal({
   const reduceMotion = useReduceMotion();
   const isHybrid = motionVariant === 'hybrid';
   const cardAnim = useRef(new Animated.Value(0)).current;
-  const shineAnim = useRef(new Animated.Value(0)).current;
 
   const tx = useMemo(() => pickReleaseNotesTexts(lang), [lang]);
   const displayTx = useMemo(() => {
@@ -133,22 +135,24 @@ function ReleaseNotesModal({
   const captionSize = Math.min(Math.max(f.caption, 13), 15);
   const buttonSize = Math.min(Math.max(f.bodyLg, 17), 20);
 
+  // зачем: обычные «Что нового» теперь идут через HybridSheetShell (своё движение) —
+  // локальная пружина карточки нужна только варианту объявления. Бесконечный блик
+  // (кремовый hex) убран вместе со старой карточкой.
+  const isSheet = !announcement;
   useEffect(() => {
+    if (isSheet) return;
     if (!visible) {
       cardAnim.setValue(0);
-      shineAnim.setValue(0);
       return;
     }
 
     if (reduceMotion) {
-      // Карточка появляется сразу, без пружины и без петель.
+      // Карточка появляется сразу, без пружины.
       cardAnim.setValue(1);
       return;
     }
 
-    // зачем: гибрид «Световод» — карточка settle без отскока (LUM.settle),
-    // без бесконечных петель свечения/блика (те принадлежат только classic —
-    // база гибрида «свет рождает форму», не декоративный дрейф).
+    // зачем: гибрид «Световод» — карточка settle без отскока (LUM.settle).
     const enter = isHybrid
       ? Animated.spring(cardAnim, {
         toValue: 1,
@@ -164,31 +168,9 @@ function ReleaseNotesModal({
         friction: 9,
       });
 
-    if (isHybrid) {
-      enter.start();
-      return () => { enter.stop(); };
-    }
-
-    const shineLoop = Animated.loop(
-      Animated.sequence([
-        Animated.timing(shineAnim, {
-          toValue: 1,
-          duration: 3200,
-          easing: Easing.inOut(Easing.cubic),
-          useNativeDriver: true,
-        }),
-        Animated.delay(6800),
-      ]),
-    );
-
     enter.start();
-    shineLoop.start();
-
-    return () => {
-      enter.stop();
-      shineLoop.stop();
-    };
-  }, [cardAnim, shineAnim, reduceMotion, visible, isHybrid]);
+    return () => { enter.stop(); };
+  }, [cardAnim, isSheet, reduceMotion, visible, isHybrid]);
 
   const closeOnce = () => {
     hapticTap();
@@ -213,21 +195,70 @@ function ReleaseNotesModal({
     ],
   };
 
-  const shineAnimatedStyle = {
-    opacity: shineAnim.interpolate({
-      inputRange: [0, 0.25, 0.55, 1],
-      outputRange: [0, 0.24, 0.08, 0],
-    }),
-    transform: [
-      {
-        translateX: shineAnim.interpolate({
-          inputRange: [0, 1],
-          outputRange: [-260, 260],
-        }),
-      },
-      { rotate: '18deg' },
-    ],
-  };
+  if (isSheet) {
+    return (
+      <HybridSheetShell
+        visible={visible}
+        onClose={onClose}
+        closeLabel={displayTx.close}
+        backdropAccessible={false}
+        material="liquid-glass"
+        testID="release-notes-sheet"
+      >
+        {({ requestDismiss }) => (
+          <>
+            <ScrollView
+              style={styles.sheetScroll}
+              contentContainerStyle={styles.sheetScrollContent}
+              showsVerticalScrollIndicator={false}
+              bounces={false}
+            >
+              <Text style={[styles.eyebrow, { fontSize: captionSize, color: releaseGlass.secondary }]}>
+                {displayTx.pill}
+              </Text>
+              <Text
+                accessibilityRole="header"
+                style={[styles.sheetTitle, { fontSize: titleSize, lineHeight: Math.round(titleSize * 1.22), color: releaseGlass.text }]}
+              >
+                {displayTx.title}
+              </Text>
+              <Text style={[styles.sheetSubtitle, { fontSize: bodySize, color: releaseGlass.secondary }]}>
+                {displayTx.subtitle}
+              </Text>
+              <View style={styles.items}>
+                {displayTx.items.map((item) => (
+                  <ReleaseNoteRow
+                    key={item.title}
+                    item={item}
+                    titleSize={rowTitleSize}
+                    bodySize={bodySize}
+                    glass={releaseGlass}
+                  />
+                ))}
+              </View>
+              <Text style={[styles.footer, { fontSize: captionSize, color: releaseGlass.mutedText }]}>
+                {displayTx.footer}
+              </Text>
+            </ScrollView>
+            <DuoPressable
+              testID="release-notes-cta"
+              onPress={requestDismiss}
+              accessibilityRole="button"
+              accessibilityLabel={displayTx.cta}
+              edgeColor={releaseGlass.opaqueControl}
+              edgeHeight={4}
+              wrapStyle={styles.sheetCtaWrap}
+              style={[styles.btn, { backgroundColor: releaseGlass.cta }]}
+            >
+              <Text style={[styles.btnText, { fontSize: buttonSize, color: releaseGlass.ctaInk }]}>
+                {displayTx.cta}
+              </Text>
+            </DuoPressable>
+          </>
+        )}
+      </HybridSheetShell>
+    );
+  }
 
   return (
     <Modal
@@ -247,32 +278,11 @@ function ReleaseNotesModal({
         <Animated.View
           style={[
             styles.card,
-            announcement ? styles.announcementCard : styles.releaseCard,
+            styles.announcementCard,
             cardAnimatedStyle,
           ]}
         >
-          <LinearGradient
-            colors={['#111722', '#171A24', '#241F13']}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            style={StyleSheet.absoluteFill}
-          />
-          {/* зачем: гибрид «Световод» — свет рождает форму, без бесконечного блика (тот только у classic). */}
-          {isHybrid ? null : (
-            <Animated.View pointerEvents="none" style={[styles.shine, shineAnimatedStyle]}>
-              <LinearGradient
-                colors={[
-                  'rgba(255, 247, 206, 0)',
-                  'rgba(255, 247, 206, 0.42)',
-                  'rgba(255, 247, 206, 0)',
-                ]}
-                locations={[0, 0.5, 1]}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0 }}
-                style={styles.shineGradient}
-              />
-            </Animated.View>
-          )}
+          <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: announcementGlass.opaqueSheet }]} />
 
           {showCloseButton ? (
             <Pressable
@@ -280,17 +290,14 @@ function ReleaseNotesModal({
               accessibilityRole="button"
               accessibilityLabel={displayTx.close}
               hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
-              style={styles.closeButton}
+              style={[styles.closeButton, { backgroundColor: announcementGlass.opaqueControl }]}
             >
-              <Ionicons name="close" size={22} color="#C8D6EA" />
+              <Ionicons name="close" size={22} color={announcementGlass.text} />
             </Pressable>
           ) : null}
 
           {announcement ? (
             <View style={styles.announcementContent}>
-              <Text style={[styles.title, { fontSize: titleSize, color: '#FFF7E3' }]}>
-                {displayTx.title}
-              </Text>
               <ScrollView
                 decelerationRate="fast"
                 style={styles.announcementScroll}
@@ -298,62 +305,54 @@ function ReleaseNotesModal({
                 showsVerticalScrollIndicator
                 bounces
               >
-                <Text style={[styles.announcementBody, { fontSize: bodySize, color: '#C2D2E8' }]}>
+                <View
+                  style={[
+                    styles.announcementStageOuter,
+                    {
+                      backgroundColor: announcementGlass.opaqueControl,
+                      shadowColor: announcementGlass.bg,
+                    },
+                  ]}
+                >
+                  <View style={styles.announcementStage}>
+                    <LinearGradient
+                      pointerEvents="none"
+                      colors={[announcementGlass.selected, announcementGlass.opaqueControl]}
+                      start={{ x: 0.18, y: 0.12 }}
+                      end={{ x: 0.82, y: 0.9 }}
+                      style={StyleSheet.absoluteFill}
+                    />
+                    <LinearGradient
+                      pointerEvents="none"
+                      colors={[announcementGlass.lightTint, 'transparent']}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 0.78, y: 0.72 }}
+                      style={[StyleSheet.absoluteFill, { opacity: 0.14 }]}
+                    />
+                    <View pointerEvents="none" style={styles.announcementStageRim} />
+                    <Ionicons name="chatbubble-ellipses-outline" size={28} color={announcementGlass.lightTint} />
+                  </View>
+                </View>
+                <Text style={[styles.title, { fontSize: titleSize, color: announcementGlass.text }]}>
+                  {displayTx.title}
+                </Text>
+                <Text style={[styles.announcementBody, { fontSize: bodySize, color: announcementGlass.secondary }]}>
                   {announcement.body}
                 </Text>
               </ScrollView>
             </View>
-          ) : (
-            <>
-              <View style={styles.hero}>
-                <View style={styles.releasePill}>
-                  <Ionicons name="rocket-outline" size={14} color={'#F9D77A'} />
-                  <Text style={[styles.releasePillText, { fontSize: captionSize, color: '#F9D77A' }]}>
-                    {displayTx.pill}
-                  </Text>
-                </View>
-                <Text style={[styles.title, { fontSize: titleSize, color: '#FFF7E3' }]}>
-                  {displayTx.title}
-                </Text>
-                <Text style={[styles.subtitle, { fontSize: bodySize, color: '#C8D6EA' }]}>
-                  {displayTx.subtitle}
-                </Text>
-              </View>
-
-              <ScrollView decelerationRate="fast"
-                style={styles.scroll}
-                contentContainerStyle={styles.scrollInner}
-                showsVerticalScrollIndicator
-                bounces
-              >
-                {displayTx.items.map((item) => (
-                  <ReleaseNoteRow
-                    key={item.title}
-                    item={item}
-                    titleSize={rowTitleSize}
-                    bodySize={bodySize}
-                  />
-                ))}
-                <Text style={[styles.footer, { fontSize: captionSize, color: '#93A6C0' }]}>
-                  {displayTx.footer}
-                </Text>
-              </ScrollView>
-            </>
-          )}
+          ) : null}
 
           <DuoPressable
             onPress={closeOnce}
             accessibilityRole="button"
             accessibilityLabel={displayTx.cta}
-            edgeColor="#B9791F"
+            edgeColor={announcementGlass.opaqueControl}
             edgeHeight={4}
             wrapStyle={styles.btnWrap}
-            style={styles.btn}
-            gradientColors={['#FFE08A', '#F7BE4F', '#E99D35']}
-            gradientStart={{ x: 0, y: 0 }}
-            gradientEnd={{ x: 1, y: 1 }}
+            style={[styles.btn, { backgroundColor: announcementGlass.cta }]}
           >
-            <Text style={[styles.btnText, { fontSize: buttonSize, color: '#121826' }]}>
+            <Text style={[styles.btnText, { fontSize: buttonSize, color: announcementGlass.ctaInk }]}>
               {displayTx.cta}
             </Text>
           </DuoPressable>
@@ -371,7 +370,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 18,
-    backgroundColor: 'rgba(3, 7, 18, 0.82)',
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
   },
   card: {
     position: 'relative',
@@ -390,9 +389,6 @@ const styles = StyleSheet.create({
     ...noAndroidOutline,
     overflow: 'hidden',
   },
-  releaseCard: {
-    height: '86%',
-  },
   announcementCard: {
     alignItems: 'stretch',
     paddingTop: 58,
@@ -407,30 +403,41 @@ const styles = StyleSheet.create({
     borderRadius: 22,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.06)',
-  },
-  shine: {
-    position: 'absolute',
-    top: -80,
-    bottom: -80,
-    width: 112,
-  },
-  shineGradient: {
-    flex: 1,
-    width: '100%',
-  },
-  hero: {
-    width: '100%',
-    alignItems: 'center',
-    paddingBottom: 14,
   },
   announcementContent: {
     width: '100%',
     flexShrink: 1,
   },
+  announcementStageOuter: {
+    width: 108,
+    height: 108,
+    alignSelf: 'center',
+    borderRadius: 34,
+    marginBottom: 18,
+    shadowOffset: { width: 0, height: 18 },
+    shadowOpacity: 0.26,
+    shadowRadius: 24,
+    elevation: Platform.OS === 'android' ? 4 : 0,
+  },
+  announcementStage: {
+    width: '100%',
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 34,
+    overflow: 'hidden',
+  },
+  announcementStageRim: {
+    position: 'absolute',
+    top: 1,
+    alignSelf: 'center',
+    width: '72%',
+    height: StyleSheet.hairlineWidth,
+    borderRadius: 999,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+  },
   announcementScroll: {
     width: '100%',
-    maxHeight: 420,
     flexGrow: 0,
     flexShrink: 1,
   },
@@ -438,94 +445,66 @@ const styles = StyleSheet.create({
     paddingBottom: 2,
   },
   announcementBody: {
-    color: '#C2D2E8',
     lineHeight: 23,
-  },
-  releasePill: {
-    minHeight: 28,
-    borderRadius: 14,
-    backgroundColor: 'rgba(249, 215, 122, 0.1)',
-    paddingHorizontal: 11,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 6,
-    marginBottom: 10,
-  },
-  releasePillText: {
-    color: '#F9D77A',
-    fontWeight: '800',
   },
   title: {
     textAlign: 'center',
-    color: '#FFF7E3',
-    fontWeight: '900',
+    fontWeight: '700',
     lineHeight: 29,
     marginBottom: 8,
   },
-  subtitle: {
-    color: '#C8D6EA',
-    textAlign: 'center',
-    lineHeight: 21,
-  },
-  scroll: {
-    alignSelf: 'stretch',
-    flex: 1,
-  },
-  scrollInner: {
-    paddingHorizontal: 2,
-    paddingBottom: 6,
-  },
+  // Sheet (SYS-06 «Что нового»): те же размеры, что у ReleaseNotesV2Modal.
+  sheetScroll: { flexShrink: 1 },
+  sheetScrollContent: { paddingTop: 12, paddingBottom: 8 },
+  eyebrow: { lineHeight: 18, fontWeight: '700', letterSpacing: 2 },
+  sheetTitle: { fontWeight: '700', marginTop: 6 },
+  sheetSubtitle: { lineHeight: 22, marginTop: 8 },
+  items: { marginTop: 18, gap: 14 },
   row: {
     flexDirection: 'row',
     alignItems: 'flex-start',
-    gap: 12,
-    marginBottom: 16,
+    gap: 14,
   },
   rowIcon: {
-    width: 34,
-    height: 34,
-    borderRadius: 17,
+    width: 42,
+    height: 42,
+    borderRadius: 13,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 1,
   },
   rowText: {
     flex: 1,
+    minWidth: 0,
   },
   rowTitle: {
-    color: '#FFF4DC',
-    fontWeight: '800',
-    lineHeight: 21,
-    marginBottom: 3,
+    fontWeight: '700',
+    lineHeight: 22,
   },
   rowBody: {
-    color: '#C2D2E8',
     lineHeight: 21,
+    marginTop: 2,
   },
   footer: {
-    color: '#93A6C0',
     lineHeight: 19,
-    marginTop: 2,
-    marginBottom: 4,
+    marginTop: 16,
+  },
+  sheetCtaWrap: {
+    width: '100%',
+    marginTop: 12,
   },
   btnWrap: {
     width: '100%',
     marginTop: 12,
-    shadowColor: '#F7BE4F',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.24,
-    shadowRadius: 16,
-    elevation: Platform.OS === 'android' ? 3 : 0,
   },
   btn: {
     borderRadius: 16,
-    minHeight: 54,
+    minHeight: 52,
     paddingHorizontal: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   btnText: {
-    color: '#121826',
-    fontWeight: '900',
+    fontWeight: '700',
     textAlign: 'center',
   },
 });

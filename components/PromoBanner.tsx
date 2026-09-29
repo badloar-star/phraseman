@@ -1,6 +1,6 @@
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, Linking, PanResponder, Platform, Pressable, Text, View } from 'react-native';
+import { Animated, Linking, PanResponder, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import Reanimated, {
   cancelAnimation,
   Easing as REasing,
@@ -14,8 +14,10 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLang } from './LangContext';
 import { usePremium } from './PremiumContext';
 import { useTheme } from './ThemeContext';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { triLang, type Lang } from '../constants/i18n';
 import { onAppEvent } from '../app/events';
+import { DebugLogger } from '../app/debug-logger';
 import { animateNextLayoutTransition } from '../app/smooth_layout';
 import { LUM, TOAST } from '../constants/motionHybrid';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
@@ -97,7 +99,10 @@ interface PromoBannerProps {
 export default function PromoBanner({ motionVariant = 'hybrid' }: PromoBannerProps) {
   const { lang } = useLang();
   const { hasPremiumAccess } = usePremium();
-  const { themeMode } = useTheme();
+  // зачем: Liquid Glass (макет OS-GLOBAL-PROMO-*) — плашка на непрозрачной основе темы,
+  // цвета из токенов вместо фиолетовых hex, без нижней обводки.
+  const { liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
   const isHybrid = motionVariant === 'hybrid';
   const reduceMotion = useReduceMotion();
@@ -215,20 +220,14 @@ export default function PromoBanner({ motionVariant = 'hybrid' }: PromoBannerPro
 
   const openUrl = () => {
     if (!hasUrl) return;
-    void Linking.openURL(state.url.trim()).catch(() => {});
+    void Linking.openURL(state.url.trim()).catch((e) => {
+      DebugLogger.error('PromoBanner:openUrl', e instanceof Error ? e : new Error(String(e)), 'warning');
+    });
   };
 
+  // зачем: Text остаётся прямым узлом (как раньше) — baseline text-integrity привязан к этому месту.
   const content = (
-    <Text
-      numberOfLines={2}
-      style={{
-        color: '#f3e8ff',
-        fontSize: 13,
-        lineHeight: 18,
-        fontWeight: '800',
-        textAlign: 'center',
-      }}
-    >
+    <Text numberOfLines={2} style={[styles.message, { color: glass.text }]}>
       {message}
     </Text>
   );
@@ -239,36 +238,28 @@ export default function PromoBanner({ motionVariant = 'hybrid' }: PromoBannerPro
   const banner = (
     <Animated.View
       {...panResponder.panHandlers}
-      style={{
-        transform: [{ translateX }],
-        paddingTop: Math.max(insets.top, 8),
-        paddingBottom: 8,
-        paddingHorizontal: 12,
-        backgroundColor: '#3b1d6e',
-        borderBottomWidth: 1,
-        borderBottomColor: '#5b21b6',
-        zIndex: 20,
-        elevation: 20,
-      }}
+      accessibilityRole="summary"
+      style={[
+        styles.banner,
+        {
+          transform: [{ translateX }],
+          paddingTop: Math.max(insets.top, 8),
+          backgroundColor: glass.opaqueSheet,
+        },
+      ]}
     >
-      <View style={{ minHeight: 44, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+      <View style={styles.row}>
         {hasUrl ? (
           <Pressable
             accessibilityRole="link"
             onPress={openUrl}
-            style={({ pressed }) => ({
-              flex: 1,
-              minHeight: 44,
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: 12,
-              opacity: pressed ? 0.82 : 1,
-            })}
+            style={({ pressed }) => [styles.body, { opacity: pressed ? 0.82 : 1 }]}
           >
             {content}
+            <Ionicons name="chevron-forward" size={18} color={glass.secondary} />
           </Pressable>
         ) : (
-          <View style={{ flex: 1, minHeight: 44, alignItems: 'center', justifyContent: 'center' }}>
+          <View style={styles.body}>
             {content}
           </View>
         )}
@@ -285,18 +276,14 @@ export default function PromoBanner({ motionVariant = 'hybrid' }: PromoBannerPro
             tr: 'Teklifi kapat',
             pl: 'Zamknij ofertę',
           })}
-          hitSlop={10}
+          hitSlop={8}
           onPress={dismiss}
-          style={({ pressed }) => ({
-            width: 40,
-            height: 40,
-            borderRadius: 20,
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: pressed ? 'rgba(255,255,255,0.20)' : 'rgba(255,255,255,0.12)',
-          })}
+          style={({ pressed }) => [
+            styles.close,
+            { backgroundColor: glass.opaqueControl, opacity: pressed ? 0.78 : 1 },
+          ]}
         >
-          <Ionicons name="close" size={20} color={'#f3e8ff'} />
+          <Ionicons name="close" size={20} color={glass.text} />
         </Pressable>
       </View>
     </Animated.View>
@@ -307,3 +294,18 @@ export default function PromoBanner({ motionVariant = 'hybrid' }: PromoBannerPro
   }
   return banner;
 }
+
+const styles = StyleSheet.create({
+  banner: {
+    paddingBottom: 8,
+    paddingHorizontal: 12,
+    borderBottomLeftRadius: 18,
+    borderBottomRightRadius: 18,
+    zIndex: 20,
+    elevation: 20,
+  },
+  row: { minHeight: 46, flexDirection: 'row', alignItems: 'center', gap: 8 },
+  body: { flex: 1, minWidth: 0, minHeight: 46, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, borderRadius: 12, paddingHorizontal: 8, paddingVertical: 6 },
+  message: { flexShrink: 1, fontSize: 13, lineHeight: 18, fontWeight: '700', textAlign: 'center' },
+  close: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
+});

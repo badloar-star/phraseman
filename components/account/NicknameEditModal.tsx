@@ -41,7 +41,6 @@ import {
   warmNameAvailabilityAuth,
   type NameAvailabilityStatus,
 } from '../../app/firestore_leaderboard';
-import { syncMyLeagueMemberProfileNow } from '../../app/firestore_leagues';
 import { patchAppSnapshot } from '../../app/app_snapshot_store';
 import {
   containsBadWord,
@@ -51,6 +50,8 @@ import { hapticTap as doHaptic } from '../../hooks/use-haptics';
 import HybridAlertShell, { CascadeItem } from '../modal_fx/HybridAlertShell';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { LUM } from '../../constants/motionHybrid';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 
 // зачем (владелец, 2026-09-13): «сперва логи». Экран настроек замирал после
 // смены имени, а путь был нем: ни один ранний return не оставлял следа, и нельзя
@@ -90,7 +91,10 @@ export default function NicknameEditModal({
   onNotice,
   motionVariant = 'hybrid',
 }: NicknameEditModalProps) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, liquidGlassThemeId, f } = useTheme();
+  // зачем: окно смены имени — Liquid Glass по макету PRF-19; материал берём из активной темы (13 тем).
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  const insets = useStableSafeAreaInsets();
   const { lang } = useLang();
   const reduceMotion = useReduceMotion();
   const isHybrid = motionVariant === 'hybrid';
@@ -320,7 +324,6 @@ export default function NicknameEditModal({
 
       // Бронь подтверждена — оптимистично показанное имя остаётся.
       traceNick('save:out ok — имя закреплено за аккаунтом');
-      void syncMyLeagueMemberProfileNow();
     } finally {
       savingRef.current = false;
       setSaving(false);
@@ -356,44 +359,90 @@ export default function NicknameEditModal({
     AccessibilityInfo.announceForAccessibility(availabilityMessage);
   }, [availabilityMessage, availabilityStatus, visible]);
 
-  const availabilityColor = availabilityStatus === 'available'
-    ? t.correct
-    : availabilityStatus === 'taken'
-      ? t.wrong
-      : t.textMuted;
+  // зачем: «свободно» — нейтральный текст темы с галочкой (зелёные поверхности/акценты убраны
+  // владельцем); красным остаётся только «занято» — это семантика ошибки, а не декор.
+  const availabilityColor = availabilityStatus === 'taken'
+    ? t.wrong
+    : availabilityStatus === 'available'
+      ? glass.text
+      : glass.secondary;
+  const closeLabel = L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij');
+  const bottomRadius = isHybrid ? 0 : 28;
 
   const panelContent = (
     <View
       style={{
-        width: isHybrid ? '100%' : '80%',
+        width: isHybrid ? '100%' : '88%',
         minWidth: 280,
-        backgroundColor: t.bgCard,
-        borderRadius: 16,
-        padding: 24,
+        maxWidth: 430,
+        backgroundColor: glass.opaqueSheet,
+        borderTopLeftRadius: 28,
+        borderTopRightRadius: 28,
+        borderBottomLeftRadius: bottomRadius,
+        borderBottomRightRadius: bottomRadius,
+        paddingHorizontal: 20,
+        paddingTop: 12,
+        paddingBottom: isHybrid ? Math.max(20, insets.bottom + 12) : 20,
       }}
     >
+      <View style={{ width: 42, height: 4, borderRadius: 2, alignSelf: 'center', marginBottom: 10, backgroundColor: glass.glassEdge }} />
       <CascadeItem delay={isHybrid ? LUM.ladder[2] : 0} reduceMotion={!isHybrid || reduceMotion}>
-        <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '600', marginBottom: 16 }}>
-          {L('Изменить имя', 'Змінити ім\'я', 'Change name', 'Cambiar nombre', 'Alterar nome', 'Đổi tên', 'Ubah nama', 'Adı değiştir', 'Zmień nazwę')}
-        </Text>
+        <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 12 }}>
+          <View style={{ flex: 1, paddingTop: 6 }}>
+            <Text accessibilityRole="header" style={{ color: glass.text, fontSize: f.h2, fontWeight: '700' }}>
+              {L('Изменить имя', 'Змінити ім\'я', 'Change name', 'Cambiar nombre', 'Alterar nome', 'Đổi tên', 'Ubah nama', 'Adı değiştir', 'Zmień nazwę')}
+            </Text>
+            <Text style={{ color: glass.secondary, fontSize: f.caption, marginTop: 4 }}>
+              {L('Ник можно менять раз в 14 дней', 'Нік можна змінювати раз на 14 днів', 'You can change it once every 14 days', 'Puedes cambiarlo una vez cada 14 días', 'Você pode mudar uma vez a cada 14 dias', 'Có thể đổi 14 ngày một lần', 'Bisa diganti sekali tiap 14 hari', '14 günde bir değiştirebilirsin', 'Zmiana raz na 14 dni')}
+            </Text>
+          </View>
+          <TouchableOpacity
+            testID="nickname-close"
+            accessibilityRole="button"
+            accessibilityLabel={closeLabel}
+            activeOpacity={0.7}
+            disabled={saving}
+            accessibilityState={{ disabled: saving }}
+            hitSlop={{ top: 4, right: 4, bottom: 4, left: 4 }}
+            style={{
+              width: 44,
+              height: 44,
+              borderRadius: 22,
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: glass.selected,
+              opacity: saving ? 0.5 : 1,
+            }}
+            onPress={() => { if (saving) return; doHaptic(); close(); }}
+          >
+            <Ionicons name="close" size={18} color={glass.text} />
+          </TouchableOpacity>
+        </View>
       </CascadeItem>
       <CascadeItem delay={isHybrid ? LUM.ladder[2] + 96 : 0} reduceMotion={!isHybrid || reduceMotion}>
+        <Text style={{ color: glass.secondary, fontSize: f.caption, fontWeight: '600', marginTop: 20, marginBottom: 8 }}>
+          {L('Имя профиля', 'Ім\'я профілю', 'Profile name', 'Nombre de perfil', 'Nome do perfil', 'Tên hồ sơ', 'Nama profil', 'Profil adı', 'Nazwa profilu')}
+        </Text>
         <TextInput
           testID="nickname-input"
           accessibilityLabel={L('Имя профиля', 'Ім\'я профілю', 'Profile name', 'Nombre de perfil', 'Nome do perfil', 'Tên hồ sơ', 'Nama profil', 'Profil adı', 'Nazwa profilu')}
           style={{
-            // Поле отделено тоном (bgPrimary на bgCard), без обводки — правило владельца.
-            backgroundColor: t.bgPrimary,
-            color: t.textPrimary,
+            // Поле — плашка контрола темы + тонкая полупрозрачная кромка (как в макете).
+            backgroundColor: glass.opaqueControl,
+            borderWidth: 1, // guard-ok: тонкая (1px) полупрозрачная кромка поля — разрешена для PhraseMan 2.0
+            borderColor: glass.line,
+            color: glass.text,
             fontSize: f.h2,
-            padding: 14,
-            borderRadius: 10,
+            minHeight: 52,
+            paddingHorizontal: 16,
+            paddingVertical: 12,
+            borderRadius: 16,
             marginBottom: 8,
           }}
           value={newName}
           onChangeText={setNewName}
           placeholder={L('Введи имя...', 'Введіть ім\'я...', 'Enter your name...', 'Escribe tu nombre...', 'Digite seu nome...', 'Nhập tên...', 'Masukkan nama...', 'Adını gir...', 'Wpisz imię...')}
-          placeholderTextColor={t.textGhost}
+          placeholderTextColor={glass.mutedText}
           editable={!saving}
           autoFocus={!isHybrid}
           maxLength={20}
@@ -402,7 +451,7 @@ export default function NicknameEditModal({
           blurOnSubmit
         />
         <View
-          style={{ minHeight: 20, marginBottom: 12, flexDirection: 'row', alignItems: 'center', gap: 6 }}
+          style={{ minHeight: 22, marginBottom: 12, flexDirection: 'row', alignItems: 'center', gap: 6 }}
         >
           {availabilityStatus === 'checking' ? (
             <ActivityIndicator size="small" color={availabilityColor} />
@@ -425,55 +474,59 @@ export default function NicknameEditModal({
         </View>
       </CascadeItem>
       <CascadeItem delay={isHybrid ? LUM.ladder[2] + 192 : 0} reduceMotion={!isHybrid || reduceMotion}>
-        <View style={{ flexDirection: 'row', gap: 12 }}>
+        <View style={{ flexDirection: 'row', gap: 10, marginTop: 8 }}>
           <TouchableOpacity
+            accessibilityRole="button"
             activeOpacity={0.7}
             disabled={saving}
+            accessibilityState={{ disabled: saving }}
             style={{
               flex: 1,
-              padding: 12,
-              borderRadius: 10,
+              minHeight: 48,
+              paddingHorizontal: 12,
+              paddingVertical: 12,
+              borderRadius: 24,
               alignItems: 'center',
-              backgroundColor: t.bgSurface,
+              justifyContent: 'center',
+              backgroundColor: glass.selected,
               opacity: saving ? 0.6 : 1,
             }}
             onPress={() => { if (saving) return; doHaptic(); close(); }}
           >
             {/* зачем: text-integrity — лейбл переносится, кнопка растёт по паддингам. */}
-            <FlowText testID="nickname-cancel-label" provenance="authored" style={{ color: t.textMuted, fontSize: f.body }}>
+            <FlowText testID="nickname-cancel-label" provenance="authored" style={{ color: glass.text, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
               {L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
             </FlowText>
           </TouchableOpacity>
           <TouchableOpacity
             testID="nickname-save"
+            accessibilityRole="button"
             activeOpacity={0.8}
             disabled={saveDisabled}
             accessibilityState={{ disabled: saveDisabled }}
             style={{
               flex: 1,
-              padding: 12,
-              borderRadius: 10,
-              backgroundColor: t.accent,
-              alignItems: 'center',
               minHeight: 48,
+              paddingHorizontal: 12,
+              paddingVertical: 12,
+              borderRadius: 24,
+              backgroundColor: glass.cta,
+              alignItems: 'center',
               justifyContent: 'center',
-              opacity: saveDisabled ? 0.72 : 1,
+              opacity: saveDisabled ? 0.5 : 1,
             }}
             onPress={() => { if (saveDisabled) return; doHaptic(); void saveName(); }}
           >
             <View style={{ minHeight: 22, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, maxWidth: '100%' }}>
               {saving ? (
-                <ActivityIndicator size="small" color={t.correctText} />
+                <ActivityIndicator size="small" color={glass.ctaInk} />
               ) : null}
-              {/* Статично уменьшенный кегль вместо динамического сжатия шрифта
-                  (запрещённый паттерн): длинные переводы («Kaydediliyor»,
-                  «Zapisywanie») влезают рядом с индикатором, guard-ok.
-                  text-integrity: без усечения — крайний случай переносится,
-                  кнопка растёт по minHeight. */}
+              {/* text-integrity: без усечения и без сжатия шрифта — длинные переводы
+                  («Kaydediliyor», «Zapisywanie») переносятся, кнопка растёт по minHeight. */}
               <FlowText
                 testID="nickname-save-label"
                 provenance="authored"
-                style={{ color: t.correctText, fontSize: Math.min(f.body, 13), fontWeight: '700', flexShrink: 1 }}
+                style={{ color: glass.ctaInk, fontSize: f.body, fontWeight: '700', flexShrink: 1, textAlign: 'center' }}
               >
                 {saving
                   ? L('Сохраняем', 'Зберігаємо', 'Saving', 'Guardando', 'Salvando', 'Đang lưu', 'Menyimpan', 'Kaydediliyor', 'Zapisywanie')
@@ -493,6 +546,7 @@ export default function NicknameEditModal({
         onRequestClose={close}
         shadowColor="#000000"
         backdropColor="rgba(0,0,0,0.7)"
+        placement="bottom"
         testID="nickname-edit-modal-hybrid"
       >
         {panelContent}

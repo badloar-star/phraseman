@@ -1,5 +1,6 @@
 import React, { memo, useEffect, useState, useCallback, useRef } from 'react';
 import {
+  ActivityIndicator,
   Modal,
   View,
   Text,
@@ -34,8 +35,7 @@ import {
 } from '../app/account_delete_ui_trace';
 import { soundDirector } from '../modules/audio/sound_director';
 import HybridAlertShell from './modal_fx/HybridAlertShell';
-import DuoPressable from './DuoPressable';
-import PressableHybrid from './PressableHybrid';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { TOAST } from '../constants/motionHybrid';
 
@@ -49,6 +49,8 @@ type Props = {
 };
 
 type DeleteAccountCopy = {
+  /** Необязательный английский; без него en повторяет ru (как было). */
+  en?: string;
   ru: string;
   uk: string;
   es: string;
@@ -65,7 +67,8 @@ const ACCOUNT_DELETE_DISMISS_SETTLE_MS = 360;
  * Единое окно подтверждения удаления аккаунта (Настройки, FAQ и т.д.).
  */
 function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'hybrid' }: Props) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, liquidGlassThemeId, f } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
   const isHybrid = motionVariant === 'hybrid';
   const reduceMotion = useReduceMotion();
@@ -94,7 +97,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
   const L = useCallback((copy: DeleteAccountCopy) => triLang(lang, {
     ru: copy.ru,
     uk: copy.uk,
-    en: copy.ru,
+    en: copy.en ?? copy.ru,
     es: copy.es,
     'pt-BR': copy['pt-BR'],
     vi: copy.vi,
@@ -309,165 +312,45 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
     onRequestClose();
   }, [deleting, onRequestClose]);
 
-  // зачем: HybridAlertShell не несёт KeyboardAvoidingView/ScrollView — панель
-  // (форма ввода слова подтверждения) остаётся идентичной classic, меняется
-  // только оболочка (Modal→HybridAlertShell) и CTA-компоненты внизу; сама
-  // логика удаления выше не тронута ни в одной ветке.
-  const panel = (
-    <Reanimated.View style={[isHybrid ? styles.hybridPanelViewport : undefined, isHybrid ? shakeStyle : undefined]}>
-      <KeyboardAvoidingView
-        style={isHybrid ? styles.hybridPanelViewport : styles.classicModalViewport}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      >
-        <View style={[styles.dialog, isHybrid ? styles.hybridPanelViewport : styles.classicDialog, { backgroundColor: t.bgCard }]}>
+  // зачем: окно удаления аккаунта — Liquid Glass по макету PRF-21 (confirm/pending): заголовок,
+  // короткое предупреждение, слово-подтверждение, «Отмена» (тон темы) и «Удалить» (семантика
+  // ошибки — единственный красный элемент). Зелёных поверхностей нет, обводок нет.
+  const dialogBody = (
+    <View style={[styles.dialog, isHybrid ? styles.hybridDialog : styles.classicDialog, { backgroundColor: glass.opaqueSheet }]}>
           <ScrollView
             style={isHybrid ? styles.hybridScrollViewport : undefined}
             decelerationRate="fast"
             keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator={false}
-            contentContainerStyle={{ padding: 24 }}
+            contentContainerStyle={{ paddingHorizontal: 22, paddingTop: 24, paddingBottom: 8 }}
           >
-          <Text style={{ color: t.wrong, fontSize: f.h2, fontWeight: '700', marginBottom: 8 }}>
+          <Text accessibilityRole="header" style={{ color: glass.text, fontSize: f.h2, fontWeight: '700', marginBottom: 10 }}>
             {L({
-              ru: 'Вы уверены?',
-              uk: 'Ви впевнені?',
-              es: '¿Estás seguro?',
-              'pt-BR': 'Tem certeza?',
-              vi: 'Bạn có chắc không?',
-              id: 'Kamu yakin?',
-              tr: 'Emin misin?',
-              pl: 'Czy na pewno?',
+              ru: 'Удалить аккаунт?',
+              uk: 'Видалити акаунт?',
+              en: 'Delete account?',
+              es: '¿Eliminar la cuenta?',
+              'pt-BR': 'Excluir a conta?',
+              vi: 'Xóa tài khoản?',
+              id: 'Hapus akun?',
+              tr: 'Hesap silinsin mi?',
+              pl: 'Usunąć konto?',
             })}
           </Text>
-          {false && (
-            <>
-          <Text style={{ color: t.textSecond, fontSize: f.caption, marginBottom: 14, lineHeight: 20 }}>
+          <Text style={{ color: glass.secondary, fontSize: f.body, lineHeight: f.body * 1.45, marginBottom: 18 }}>
             {L({
-              ru: 'Эти дни нужны, чтобы вернуть аккаунт, если удаление было случайным. Просто войди снова — мы предложим восстановить.',
-              uk: 'Ці дні потрібні, щоб повернути акаунт, якщо видалення було випадковим. Просто увійди знову — ми запропонуємо відновити.',
-              es: 'Esos días sirven para recuperar la cuenta si la eliminaste sin querer. Solo vuelve a entrar y te ofreceremos restaurarla.',
-              'pt-BR': 'Esses dias servem para recuperar a conta se a exclusão foi sem querer. É só entrar de novo e ofereceremos restaurá-la.',
-              vi: 'Những ngày này để bạn lấy lại tài khoản nếu lỡ tay xóa. Chỉ cần đăng nhập lại, chúng tôi sẽ đề nghị khôi phục.',
-              id: 'Hari-hari ini untuk mengembalikan akun jika terhapus tanpa sengaja. Masuk lagi saja, kami akan menawarkan pemulihan.',
-              tr: 'Bu günler, yanlışlıkla sildiysen hesabı geri alman için. Tekrar giriş yap, geri yüklemeyi önereceğiz.',
-              pl: 'Te dni służą odzyskaniu konta, jeśli usunięcie było przypadkowe. Po prostu zaloguj się ponownie — zaproponujemy przywrócenie.',
+              ru: 'Это необратимо: периода восстановления нет. Подписка в App Store или Google Play не отменится автоматически.',
+              uk: 'Це незворотно: періоду відновлення немає. Підписка в App Store або Google Play не скасується автоматично.',
+              en: 'This cannot be undone: there is no recovery period. Your App Store or Google Play subscription will not be canceled automatically.',
+              es: 'Es irreversible: no hay periodo de recuperación. La suscripción de App Store o Google Play no se cancela automáticamente.',
+              'pt-BR': 'É irreversível: não há período de recuperação. A assinatura da App Store ou do Google Play não é cancelada automaticamente.',
+              vi: 'Không thể hoàn tác: không có thời gian khôi phục. Gói đăng ký trên App Store hoặc Google Play sẽ không tự động bị hủy.',
+              id: 'Tidak bisa dibatalkan: tidak ada masa pemulihan. Langganan di App Store atau Google Play tidak dibatalkan otomatis.',
+              tr: 'Bu geri alınamaz: kurtarma süresi yok. App Store veya Google Play aboneliği otomatik olarak iptal edilmez.',
+              pl: 'Tego nie da się cofnąć: nie ma okresu przywracania. Subskrypcja w App Store lub Google Play nie zostanie anulowana automatycznie.',
             })}
           </Text>
-          <Text style={{ color: t.textSecond, fontSize: f.caption, marginBottom: 12, lineHeight: 20 }}>
-            {L({
-              ru: 'Данные на этом телефоне удалятся сразу. Через 14 дней будут удалены или обезличены:',
-              uk: 'Дані на цьому телефоні видаляться одразу. Через 14 днів буде видалено або знеособлено:',
-              es: 'Los datos de este teléfono se borran ya. En 14 días se eliminarán o se desidentificarán:',
-              'pt-BR': 'Os dados neste telefone somem agora. Em 14 dias serão excluídos ou anonimizados:',
-              vi: 'Dữ liệu trên máy này xóa ngay. Sau 14 ngày sẽ được xóa hoặc ẩn danh hóa:',
-              id: 'Data di ponsel ini terhapus sekarang. Dalam 14 hari akan dihapus atau dianonimkan:',
-              tr: 'Bu telefondaki veriler hemen silinir. 14 gün sonra silinecek veya anonimleştirilecek:',
-              pl: 'Dane na tym telefonie znikają od razu. Za 14 dni zostaną usunięte lub zanonimizowane:',
-            })}
-          </Text>
-          {[
-            L({
-              ru: '📊 Весь XP и уровень',
-              uk: '📊 Весь XP та рівень',
-              es: '📊 Todo el XP y el nivel',
-              'pt-BR': '📊 Todo o XP e nível',
-              vi: '📊 Toàn bộ XP và cấp độ',
-              id: '📊 Semua XP dan level',
-              tr: '📊 Tüm XP ve seviye',
-              pl: '📊 Cały XP i poziom',
-            }),
-            L({
-              ru: '🔥 Цепочка и серия',
-              uk: '🔥 Серія днів поспіль',
-              es: '🔥 Racha y días seguidos',
-              'pt-BR': '🔥 Sequência e dias seguidos',
-              vi: '🔥 Chuỗi ngày và số ngày liên tiếp',
-              id: '🔥 Rangkaian dan hari berturut-turut',
-              tr: '🔥 Seri ve aralıksız günler',
-              pl: '🔥 Passa i dni z rzędu',
-            }),
-            L({
-              ru: '📚 Твой путь по всем урокам',
-              uk: '📚 Твій шлях по всіх уроках',
-              es: '📚 Progreso en todas las lecciones',
-              'pt-BR': '📚 Progresso em todas as aulas',
-              vi: '📚 Tiến độ trong tất cả bài học',
-              id: '📚 Progres di semua pelajaran',
-              tr: '📚 Tüm derslerde ilerleme',
-              pl: '📚 Postęp we wszystkich lekcjach',
-            }),
-            L({
-              ru: '🃏 Сохранённые карточки',
-              uk: '🃏 Збережені картки',
-              es: '🃏 Tarjetas guardadas',
-              'pt-BR': '🃏 Cartões salvos',
-              vi: '🃏 Thẻ đã lưu',
-              id: '🃏 Kartu tersimpan',
-              tr: '🃏 Kaydedilen kartlar',
-              pl: '🃏 Zapisane karty',
-            }),
-            L({
-              ru: '🏆 Все достижения и медали',
-              uk: '🏆 Всі досягнення та медалі',
-              es: '🏆 Logros y medallas',
-              'pt-BR': '🏆 Todas as conquistas e medalhas',
-              vi: '🏆 Tất cả thành tích và huy chương',
-              id: '🏆 Semua pencapaian dan medali',
-              tr: '🏆 Tüm başarılar ve madalyalar',
-              pl: '🏆 Wszystkie osiągnięcia i medale',
-            }),
-            L({
-              ru: '🌍 Позиция в лиге и клубе',
-              uk: '🌍 Позиція у лізі та клубі',
-              es: '🌍 Puesto en la liga y en el club',
-              'pt-BR': '🌍 Posição na liga e no clube',
-              vi: '🌍 Vị trí trong giải đấu và câu lạc bộ',
-              id: '🌍 Posisi di liga dan klub',
-              tr: '🌍 Lig ve kulüpteki konum',
-              pl: '🌍 Pozycja w lidze i klubie',
-            }),
-            L({
-              ru: '⚙️ Все настройки',
-              uk: '⚙️ Всі налаштування',
-              es: '⚙️ Todos los ajustes',
-              'pt-BR': '⚙️ Todas as configurações',
-              vi: '⚙️ Tất cả cài đặt',
-              id: '⚙️ Semua pengaturan',
-              tr: '⚙️ Tüm ayarlar',
-              pl: '⚙️ Wszystkie ustawienia',
-            }),
-          ].map((item, i) => (
-            <Text key={i} style={{ color: t.textSecond, fontSize: f.caption, marginBottom: 4, lineHeight: 20 }}>
-              {item}
-            </Text>
-          ))}
-          <Text style={{ color: t.wrong, fontSize: f.caption, fontWeight: '600', marginTop: 10, marginBottom: 16, lineHeight: 20 }}>
-            {L({
-              ru: '⚠️ Удаление аккаунта не отменяет подписку автоматически. Подписку нужно отменить в App Store или Google Play.',
-              uk: '⚠️ Видалення акаунта не скасовує підписку автоматично. Підписку потрібно скасувати в App Store або Google Play.',
-              es: '⚠️ Eliminar la cuenta no cancela la suscripción automáticamente. Debes cancelarla en App Store o Google Play.',
-              'pt-BR': '⚠️ Excluir a conta não cancela a assinatura automaticamente. Você precisa cancelá-la na App Store ou no Google Play.',
-              vi: '⚠️ Xóa tài khoản không tự động hủy gói đăng ký. Bạn cần hủy gói trong App Store hoặc Google Play.',
-              id: '⚠️ Menghapus akun tidak otomatis membatalkan langganan. Kamu harus membatalkannya di App Store atau Google Play.',
-              tr: '⚠️ Hesabı silmek aboneliği otomatik olarak iptal etmez. Aboneliği App Store veya Google Play üzerinden iptal etmen gerekir.',
-              pl: '⚠️ Usunięcie konta nie anuluje automatycznie subskrypcji. Subskrypcję trzeba anulować w App Store albo Google Play.',
-            })}
-          </Text>
-          <Text style={{ color: t.textMuted, fontSize: f.caption, marginBottom: 12, lineHeight: 19 }}>
-            {L({
-              ru: 'После подтверждения данные начнут удаляться, и мы сразу выйдем из старого аккаунта.',
-              uk: 'Після підтвердження дані почнуть видалятися, і ми одразу вийдемо зі старого акаунта.',
-              es: 'Al confirmar, tus datos empezarán a borrarse y saldremos de la cuenta anterior enseguida.',
-              'pt-BR': 'Ao confirmar, seus dados começarão a ser apagados e sairemos da conta antiga na hora.',
-              vi: 'Sau khi xác nhận, dữ liệu bắt đầu được xóa và bạn sẽ thoát tài khoản cũ ngay.',
-              id: 'Setelah dikonfirmasi, datamu mulai dihapus dan kami langsung keluar dari akun lama.',
-              tr: 'Onayladıktan sonra verilerin silinmeye başlar ve eski hesaptan hemen çıkarız.',
-              pl: 'Po potwierdzeniu twoje dane zaczną się usuwać i od razu wylogujemy stare konto.',
-            })}
-          </Text>
-            </>
-          )}
-          <Text style={{ color: t.textPrimary, fontSize: f.caption, marginBottom: 8 }}>
+          <Text style={{ color: glass.secondary, fontSize: f.caption, fontWeight: '600', marginBottom: 8 }}>
             {L({
               ru: 'Введите «УДАЛИТЬ» для подтверждения:',
               uk: 'Введіть «ВИДАЛИТИ» для підтвердження:',
@@ -481,21 +364,24 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
           </Text>
           <TextInput
             testID="delete-account-confirm-input"
+            accessibilityLabel={deleteConfirmWord}
             style={{
-              backgroundColor: t.bgPrimary,
-              color: t.textPrimary,
+              // Поле — плашка контрола темы + тонкая полупрозрачная кромка (как .field в макете).
+              backgroundColor: glass.opaqueControl,
+              color: glass.text,
               fontSize: f.body,
-              padding: 12,
-              borderRadius: 10,
-              borderWidth: 0,
-              borderColor: t.border,
-              marginBottom: 20,
-              outlineStyle: 'none' as any,
+              minHeight: 52,
+              paddingHorizontal: 16,
+              paddingVertical: 12,
+              borderRadius: 16,
+              borderWidth: 1, // guard-ok: тонкая (1px) полупрозрачная кромка — разрешена для PhraseMan 2.0
+              borderColor: glass.line,
+              marginBottom: 16,
             }}
             value={deleteConfirmInput}
             onChangeText={setDeleteConfirmInput}
             placeholder={deleteConfirmWord}
-            placeholderTextColor={t.textGhost}
+            placeholderTextColor={glass.mutedText}
             autoCapitalize="characters"
             autoCorrect={false}
             autoFocus={false}
@@ -513,147 +399,94 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
               нажатие «Удалить» уходило в «Отмена» либо терялось вовсе — кнопка
               выглядела мёртвой. Убираем перехват целиком: пусть каждая кнопка
               получает своё касание сама, как и положено. */}
-          <View
-            style={{ flexDirection: 'row', gap: 12, paddingHorizontal: 24, paddingTop: 12, paddingBottom: 24, borderTopWidth: 1, borderTopColor: t.border, backgroundColor: 'transparent' }}
-          >
-            {isHybrid ? (
-              <PressableHybrid
-                testID="delete-account-cancel"
-                disabled={deleting}
-                hitSlop={8}
-                variant="secondary"
-                style={{ flex: 1 }}
-                contentStyle={{ padding: 12, borderRadius: 10, alignItems: 'center', backgroundColor: 'transparent' }}
-                onPress={handleCancel}
-              >
-                <Text style={{ color: t.textMuted, fontSize: f.body }}>{L({
-                  ru: 'Отмена',
-                  uk: 'Скасувати',
-                  es: 'Cancelar',
-                  'pt-BR': 'Cancelar',
-                  vi: 'Hủy',
-                  id: 'Batal',
-                  tr: 'Vazgeç',
-                  pl: 'Anuluj',
-                })}</Text>
-              </PressableHybrid>
-            ) : (
-              <Pressable
-                testID="delete-account-cancel"
-                disabled={deleting}
-                hitSlop={8}
-                style={({ pressed }) => ({
-                  flex: 1,
-                  padding: 12,
-                  borderRadius: 10,
-                  borderWidth: 0,
-                  borderColor: t.border,
-                  alignItems: 'center',
-                  backgroundColor: 'transparent',
-                  overflow: 'hidden',
-                  opacity: deleting ? 0.45 : pressed ? 0.75 : 1,
-                })}
-                onPress={handleCancel}
-              >
-                <Text style={{ color: t.textMuted, fontSize: f.body }}>{L({
-                  ru: 'Отмена',
-                  uk: 'Скасувати',
-                  es: 'Cancelar',
-                  'pt-BR': 'Cancelar',
-                  vi: 'Hủy',
-                  id: 'Batal',
-                  tr: 'Vazgeç',
-                  pl: 'Anuluj',
-                })}</Text>
-              </Pressable>
-            )}
-            {isHybrid ? (
-              // зачем: приглушённый тон (не яркий t.wrong, а нейтральная поверхность
-              // с красным текстом) — деструктивный паттерн ThemedConfirmModal
-              // (destructive), удар/вес переносится на дрожь при подтверждении,
-              // а не на кричащий цвет кнопки.
-              <DuoPressable
-                testID="delete-account-confirm"
-                hitSlop={8}
-                accessibilityRole="button"
-                accessibilityLabel={L({
-                  ru: 'Удалить', uk: 'Видалити', es: 'Eliminar', 'pt-BR': 'Excluir',
-                  vi: 'Xóa', id: 'Hapus', tr: 'Sil', pl: 'Usuń',
-                })}
-                disabled={!deleteConfirmMatches || deleting}
-                withHaptic={false}
-                edgeColor={deleteConfirmMatches ? `${t.wrong}55` : undefined}
-                edgeHeight={5}
-                wrapStyle={{ flex: 1 }}
-                style={{
-                  minHeight: undefined,
-                  paddingVertical: 12,
-                  borderRadius: 10,
-                  backgroundColor: deleteConfirmMatches ? `${t.wrong}26` : t.bgSurface,
-                  opacity: deleting ? 0.78 : deleteConfirmMatches ? 1 : 0.35,
-                }}
-                onPress={handleConfirmDelete}
-              >
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
-                  <Text style={{ color: t.wrong, fontSize: f.body, fontWeight: '700', opacity: deleting ? 0.72 : 1 }}>
-                    {L({ ru: 'Удалить', uk: 'Видалити', es: 'Eliminar', 'pt-BR': 'Excluir', vi: 'Xóa', id: 'Hapus', tr: 'Sil', pl: 'Usuń' })}
-                  </Text>
-                </View>
-              </DuoPressable>
-            ) : (
-              <Pressable
-                testID="delete-account-confirm"
-                hitSlop={8}
-                accessibilityRole="button"
-                accessibilityLabel={L({
-                  ru: 'Удалить',
-                  uk: 'Видалити',
-                  es: 'Eliminar',
-                  'pt-BR': 'Excluir',
-                  vi: 'Xóa',
-                  id: 'Hapus',
-                  tr: 'Sil',
-                  pl: 'Usuń',
-                })}
-                // зачем: здесь висело ПЯТЬ обработчиков разом — onStartShouldSetResponder
-                // + onResponderRelease + onTouchEnd + onPress + onPressIn. Responder-пара
-                // забирала касание у Pressable, поэтому onPress мог не сработать вовсе,
-                // а onPressIn/onTouchEnd дублировали запуск. Оставляем ОДИН onPress:
-                // повторный вход всё равно закрыт deleteInFlightRef.
-                disabled={!deleteConfirmMatches || deleting}
-                style={({ pressed }) => ({
-                  flex: 1,
-                  padding: 12,
-                  borderRadius: 10,
-                  alignItems: 'center',
-                  backgroundColor: deleteConfirmMatches ? t.wrong : t.bgSurface,
-                  borderWidth: 0,
-                  borderColor: 'transparent',
-                  overflow: 'hidden',
-                  opacity: deleting ? 0.78 : deleteConfirmMatches ? (pressed ? 0.82 : 1) : 0.35,
-                })}
-                onPress={handleConfirmDelete}
-              >
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
-                  <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '700', opacity: deleting ? 0.72 : 1 }}>
-                    {L({
-                      ru: 'Удалить',
-                      uk: 'Видалити',
-                      es: 'Eliminar',
-                      'pt-BR': 'Excluir',
-                      vi: 'Xóa',
-                      id: 'Hapus',
-                      tr: 'Sil',
-                      pl: 'Usuń',
-                    })}
-                  </Text>
-                </View>
-              </Pressable>
-            )}
+          <View style={{ flexDirection: 'row', gap: 10, paddingHorizontal: 22, paddingTop: 8, paddingBottom: 22 }}>
+            <Pressable
+              testID="delete-account-cancel"
+              disabled={deleting}
+              hitSlop={8}
+              accessibilityRole="button"
+              accessibilityState={{ disabled: deleting }}
+              style={({ pressed }) => ({
+                flex: 1,
+                minHeight: 48,
+                paddingHorizontal: 12,
+                paddingVertical: 12,
+                borderRadius: 24,
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: glass.selected,
+                overflow: 'hidden',
+                opacity: deleting ? 0.45 : pressed ? 0.75 : 1,
+              })}
+              onPress={handleCancel}
+            >
+              <Text style={{ color: glass.text, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>{L({
+                ru: 'Отмена',
+                uk: 'Скасувати',
+                es: 'Cancelar',
+                'pt-BR': 'Cancelar',
+                vi: 'Hủy',
+                id: 'Batal',
+                tr: 'Vazgeç',
+                pl: 'Anuluj',
+              })}</Text>
+            </Pressable>
+            {/* зачем: приглушённый деструктивный тон ThemedConfirmModal (t.wrongBg + t.wrong);
+                вес удара несёт дрожь на реальном подтверждении (runDangerShake), а не кричащая
+                заливка. До совпадения слова кнопка недоступна. Одна onPress — повторный вход
+                закрыт deleteInFlightRef. */}
+            <Pressable
+              testID="delete-account-confirm"
+              hitSlop={8}
+              accessibilityRole="button"
+              accessibilityLabel={L({
+                ru: 'Удалить',
+                uk: 'Видалити',
+                es: 'Eliminar',
+                'pt-BR': 'Excluir',
+                vi: 'Xóa',
+                id: 'Hapus',
+                tr: 'Sil',
+                pl: 'Usuń',
+              })}
+              accessibilityState={{ disabled: !deleteConfirmMatches || deleting, busy: deleting }}
+              disabled={!deleteConfirmMatches || deleting}
+              style={({ pressed }) => ({
+                flex: 1,
+                minHeight: 48,
+                paddingHorizontal: 12,
+                paddingVertical: 12,
+                borderRadius: 24,
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: deleteConfirmMatches ? t.wrongBg : glass.opaqueControl,
+                overflow: 'hidden',
+                opacity: deleting ? 0.78 : deleteConfirmMatches ? (pressed ? 0.82 : 1) : 0.45,
+              })}
+              onPress={handleConfirmDelete}
+            >
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+                {deleting ? <ActivityIndicator size="small" color={t.wrong} /> : null}
+                <Text style={{ color: t.wrong, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
+                  {L({ ru: 'Удалить', uk: 'Видалити', es: 'Eliminar', 'pt-BR': 'Excluir', vi: 'Xóa', id: 'Hapus', tr: 'Sil', pl: 'Usuń' })}
+                </Text>
+              </View>
+            </Pressable>
           </View>
-        </View>
-      </KeyboardAvoidingView>
-    </Reanimated.View>
+    </View>
+  );
+
+  const panel = isHybrid ? (
+    // Дрожь на подтверждении живёт на самой панели; растяжки нет — высота по
+    // содержимому, центрирование и клавиатурный отступ берёт на себя шелл.
+    <Reanimated.View style={[styles.hybridPanelViewport, shakeStyle]}>{dialogBody}</Reanimated.View>
+  ) : (
+    <KeyboardAvoidingView
+      style={styles.classicModalViewport}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      {dialogBody}
+    </KeyboardAvoidingView>
   );
 
   if (isHybrid) {
@@ -665,7 +498,8 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
         }}
         shadowColor="#000000"
         testID="delete-account-modal-hybrid"
-        fillAvailableHeight
+        scrollContent={false}
+        avoidKeyboard
       >
         {panel}
       </HybridAlertShell>
@@ -684,13 +518,24 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
 export default memo(DeleteAccountConfirmModal);
 
 const styles = StyleSheet.create({
+  // зачем: владелец 2026-09-22 — «модал на весь экран, должен быть маленький
+  // аккуратный». Раньше здесь стоял flex:1 (шелл получал опт-ин на растяжку)
+  // ради длинного списка удаляемых данных; этот блок давно отключён
+  // ({false && …}), внутри остались заголовок, поле ввода и две кнопки. flex:1
+  // растягивал пустое окно на весь экран. Теперь высота по содержимому,
+  // потолок — экран (maxHeight:'100%'), скролл включается только при
+  // переполнении.
   hybridPanelViewport: {
-    flex: 1,
     width: '100%',
     minHeight: 0,
   },
+  hybridDialog: {
+    width: '100%',
+    maxHeight: '100%',
+  },
   hybridScrollViewport: {
-    flex: 1,
+    flexGrow: 0,
+    flexShrink: 1,
     minHeight: 0,
   },
   classicModalViewport: {
@@ -701,10 +546,8 @@ const styles = StyleSheet.create({
   },
   dialog: {
     maxWidth: 420,
-    borderRadius: 16,
+    borderRadius: 28,
     overflow: 'hidden',
-    borderWidth: 0,
-    borderColor: 'transparent',
   },
   classicDialog: {
     width: '88%',

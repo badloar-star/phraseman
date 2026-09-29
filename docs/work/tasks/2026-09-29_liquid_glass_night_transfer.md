@@ -48,3 +48,5 @@ Out of scope: Главная и хаб «Карточки» (утвержден�
 
 Governance-ID: TG-FBDED796BC17
 Governance-ID: TG-9D3AFFE964E9
+
+Governance-ID: TG-7551F854D7D5

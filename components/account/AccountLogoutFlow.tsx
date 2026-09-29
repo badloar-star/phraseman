@@ -10,7 +10,7 @@
 // (аварийная копия пишется внутри signOutAndWipeForAccountSwitch).
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useEffect, useRef, useState } from 'react';
-import { Modal, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Modal, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../ThemeContext';
 import { useLang } from '../LangContext';
@@ -18,6 +18,7 @@ import { triLang } from '../../constants/i18n';
 import { signOutAndWipeForAccountSwitch } from '../../app/auth_provider';
 import { hapticTap as doHaptic } from '../../hooks/use-haptics';
 import { DebugLogger } from '../../app/debug-logger';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 
 export type LogoutStage = 'idle' | 'confirm' | 'wiping' | 'failed';
 
@@ -29,7 +30,8 @@ interface AccountLogoutFlowProps {
 }
 
 export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }: AccountLogoutFlowProps) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, liquidGlassThemeId, f } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
   const L = (
     ru: string, uk: string, en: string, es: string, ptBr: string,
@@ -130,6 +132,25 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
     onStageChange('failed');
   };
 
+  // зачем: окно выхода — Liquid Glass по макету PRF-20: непрозрачная основа темы, нейтральный CTA,
+  // «Отмена» тоном темы; красный — только у иконки отказа (семантика ошибки). Один нативный
+  // <Modal> на три стадии сохранён (см. комментарий ниже) — меняется лишь содержимое.
+  const cardStyle = {
+    width: '100%' as const,
+    maxWidth: 380,
+    backgroundColor: glass.opaqueSheet,
+    borderRadius: 28,
+    padding: 22,
+  };
+  const buttonStyle = {
+    minHeight: 48,
+    borderRadius: 24,
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    alignItems: 'center' as const,
+    justifyContent: 'center' as const,
+  };
+
   return (
     <>
       {/* ── Подтверждение выхода + лоадер: ОДИН нативный <Modal> ──
@@ -148,23 +169,26 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
           if (stage === 'confirm' || stage === 'failed') onStageChange('idle');
         }}
       >
-        {stage === 'failed' ? (
-          <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 32 }}>
-            <View
-              style={{
-                width: '100%',
-                maxWidth: 300,
-                backgroundColor: t.bgCard,
-                borderRadius: 16,
-                padding: 24,
-                alignItems: 'center',
-              }}
-            >
-              <Ionicons name="alert-circle" size={28} color={t.wrong} />
-              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginTop: 14, textAlign: 'center' }}>
+        {/* зачем 2026-08-02 (владелец: «на маленьких экранах кнопки нет»): карточка
+            центрируется внутри прокрутки — на низком экране кнопки не уходят за границу.
+            Прокрутка теперь общая для всех трёх стадий (крупный шрифт тоже переполняет). */}
+        <ScrollView
+          decelerationRate="fast"
+          style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)' }}
+          contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 20 }}
+          showsVerticalScrollIndicator={false}
+        >
+          {stage === 'failed' ? (
+            <View style={[cardStyle, { alignItems: 'center' }]}>
+              <View
+                style={{ width: 56, height: 56, borderRadius: 28, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.selected }}
+              >
+                <Ionicons name="alert-circle" size={28} color={t.wrong} />
+              </View>
+              <Text accessibilityRole="header" style={{ color: glass.text, fontSize: f.h2, fontWeight: '700', marginTop: 16, textAlign: 'center' }}>
                 {L('Не удалось выйти', 'Не вдалося вийти', "Couldn't sign out", 'No se pudo salir', 'Não foi possível sair', 'Không thể đăng xuất', 'Tidak bisa keluar', 'Çıkış yapılamadı', 'Nie udało się wylogować')}
               </Text>
-              <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: 20, marginTop: 8, textAlign: 'center' }}>
+              <Text style={{ color: glass.secondary, fontSize: f.body, lineHeight: f.body * 1.45, marginTop: 8, textAlign: 'center' }}>
                 {failureText ?? ''}
               </Text>
               <TouchableOpacity
@@ -172,110 +196,83 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
                 accessibilityRole="button"
                 testID="account-logout-failed-close"
                 onPress={() => { doHaptic(); onStageChange('idle'); }}
-                style={{ marginTop: 18, paddingHorizontal: 16, paddingVertical: 10 }}
+                style={[buttonStyle, { alignSelf: 'stretch', marginTop: 22, backgroundColor: glass.cta }]}
               >
-                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
+                <Text style={{ color: glass.ctaInk, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
                   {L('Понятно', 'Зрозуміло', 'OK', 'Entendido', 'Entendi', 'Đã hiểu', 'Mengerti', 'Tamam', 'Rozumiem')}
                 </Text>
               </TouchableOpacity>
             </View>
-          </View>
-        ) : stage === 'wiping' ? (
-          <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 32 }}>
+          ) : stage === 'wiping' ? (
             <View
-              style={{
-                width: '100%',
-                maxWidth: 280,
-                backgroundColor: t.bgCard,
-                borderRadius: 16,
-                padding: 28,
-                alignItems: 'center',
-              }}
+              accessibilityLiveRegion="polite"
+              style={[cardStyle, { maxWidth: 320, paddingVertical: 28, alignItems: 'center' }]}
             >
-              <Ionicons name="shield-checkmark" size={28} color={t.correct} />
-              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginTop: 16, textAlign: 'center' }}>
+              <ActivityIndicator size="large" color={glass.text} />
+              <Text accessibilityRole="header" style={{ color: glass.text, fontSize: f.body, fontWeight: '700', marginTop: 18, textAlign: 'center' }}>
                 {L('Сохраняем прогресс', 'Зберігаємо прогрес', 'Saving progress', 'Guardando progreso', 'Salvando progresso', 'Đang lưu tiến độ', 'Menyimpan progres', 'İlerleme kaydediliyor', 'Zapisywanie postępu')}
               </Text>
-              <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 6, textAlign: 'center' }}>
+              <Text style={{ color: glass.secondary, fontSize: f.sub, marginTop: 6, textAlign: 'center' }}>
                 {L('Не закрывай приложение', 'Не закривай застосунок', 'Don\'t close the app', 'No cierres la app', 'Não feche o app', 'Đừng đóng ứng dụng', 'Jangan tutup aplikasi', 'Uygulamayı kapatma', 'Nie zamykaj aplikacji')}
               </Text>
             </View>
-          </View>
-        ) : (
-        /* зачем 2026-08-02 (владелец: «на маленьких экранах кнопки нет»):
-           карточка подтверждения выхода центрировалась без прокрутки — на
-           низком экране кнопки «Выйти»/«Отмена» уходили за границу. */
-        <ScrollView decelerationRate="fast"
-          style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)' }}
-          contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 20 }}
-          showsVerticalScrollIndicator={false}
-        >
-          <View
-            style={{
-              width: '100%',
-              maxWidth: 380,
-              backgroundColor: t.bgCard,
-              borderRadius: 16,
-              padding: 20,
-            }}
-          >
-            <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginBottom: 12 }}>
-              {L('Выйти из аккаунта?', 'Вийти з акаунту?', 'Sign out?', '¿Cerrar sesión?', 'Sair da conta?', 'Đăng xuất?', 'Keluar dari akun?', 'Hesaptan çıkılsın mı?', 'Wylogować się?')}
-            </Text>
-            <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: 22, marginBottom: 8 }}>
-              {L(
-                'Текущий прогресс останется привязан к аккаунту, под которым ты сейчас вошёл. Чтобы вернуться — войди под ним снова.',
-                "Поточний прогрес залишиться прив\'язаним до акаунту, під яким ти зараз увійшов. Щоб повернутися до нього — увійди тим самим акаунтом знову.",
-                'Your current progress will stay linked to the account you\'re signed in with now. To come back, sign in with it again.',
-                'Tu progreso quedará vinculado a la cuenta con la que iniciaste sesión. Para recuperarlo, vuelve a entrar con la misma cuenta.',
-                'Seu progresso atual ficará vinculado à conta em que você está conectado agora. Para voltar, entre nela novamente.',
-                'Tiến độ hiện tại sẽ gắn với tài khoản bạn đang đăng nhập. Muốn quay lại, hãy đăng nhập lại bằng tài khoản đó.',
-                'Progres saat ini akan tetap terhubung ke akun yang sedang kamu pakai. Untuk kembali, masuk lagi dengan akun yang sama.',
-                'Mevcut ilerlemen şu anda giriş yaptığın hesaba bağlı kalacak. Geri dönmek için aynı hesapla tekrar giriş yap.',
-                'Obecny postęp pozostanie przypisany do konta, na którym jesteś teraz zalogowany. Aby wrócić, zaloguj się na nie ponownie.',
-              )}
-            </Text>
-            <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: 20 }}>
-              {L(
-                'Перед выходом надёжно сохраним прогресс. Если соединение не ответит — отменим выход, чтобы ничего не потерялось.',
-                'Перед виходом надійно збережемо прогрес. Якщо з’єднання не відповість — скасуємо вихід, щоб нічого не загубилося.',
-                'Before signing out we\'ll safely save your progress. If the connection doesn\'t respond, we\'ll cancel the sign-out so nothing is lost.',
-                'Antes de cerrar sesión guardaremos tu progreso de forma segura. Si la conexión no responde, cancelaremos la salida para que no pierdas nada.',
-                'Antes de sair, salvaremos seu progresso com segurança. Se a conexão não responder, cancelaremos a saída para que nada se perca.',
-                'Trước khi đăng xuất, chúng tôi sẽ lưu tiến độ của bạn an toàn. Nếu kết nối không phản hồi, việc đăng xuất sẽ bị hủy để không mất gì.',
-                'Sebelum keluar, progresmu akan disimpan dengan aman. Jika koneksi tidak merespons, keluar dibatalkan agar tidak ada yang hilang.',
-                'Çıkmadan önce ilerlemeni güvenle kaydedeceğiz. Bağlantı yanıt vermezse hiçbir şey kaybolmasın diye çıkışı iptal edeceğiz.',
-                'Przed wylogowaniem bezpiecznie zapiszemy Twój postęp. Jeśli połączenie nie odpowie, anulujemy wylogowanie, aby nic nie przepadło.',
-              )}
-            </Text>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-end', gap: 12, marginTop: 22 }}>
-              <TouchableOpacity
-                activeOpacity={0.8}
-                accessibilityRole="button"
-                onPress={() => onStageChange('idle')}
-                style={{ paddingHorizontal: 10, paddingVertical: 8 }}
-              >
-                <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '700' }}>
-                  {L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
-                </Text>
-              </TouchableOpacity>
+          ) : (
+            <View style={cardStyle}>
+              <Text accessibilityRole="header" style={{ color: glass.text, fontSize: f.h2, fontWeight: '700', marginBottom: 12 }}>
+                {L('Выйти из аккаунта?', 'Вийти з акаунту?', 'Sign out?', '¿Cerrar sesión?', 'Sair da conta?', 'Đăng xuất?', 'Keluar dari akun?', 'Hesaptan çıkılsın mı?', 'Wylogować się?')}
+              </Text>
+              <Text style={{ color: glass.secondary, fontSize: f.body, lineHeight: f.body * 1.45, marginBottom: 10 }}>
+                {L(
+                  'Текущий прогресс останется привязан к аккаунту, под которым ты сейчас вошёл. Чтобы вернуться — войди под ним снова.',
+                  "Поточний прогрес залишиться прив\'язаним до акаунту, під яким ти зараз увійшов. Щоб повернутися до нього — увійди тим самим акаунтом знову.",
+                  'Your current progress will stay linked to the account you\'re signed in with now. To come back, sign in with it again.',
+                  'Tu progreso quedará vinculado a la cuenta con la que iniciaste sesión. Para recuperarlo, vuelve a entrar con la misma cuenta.',
+                  'Seu progresso atual ficará vinculado à conta em que você está conectado agora. Para voltar, entre nela novamente.',
+                  'Tiến độ hiện tại sẽ gắn với tài khoản bạn đang đăng nhập. Muốn quay lại, hãy đăng nhập lại bằng tài khoản đó.',
+                  'Progres saat ini akan tetap terhubung ke akun yang sedang kamu pakai. Untuk kembali, masuk lagi dengan akun yang sama.',
+                  'Mevcut ilerlemen şu anda giriş yaptığın hesaba bağlı kalacak. Geri dönmek için aynı hesapla tekrar giriş yap.',
+                  'Obecny postęp pozostanie przypisany do konta, na którym jesteś teraz zalogowany. Aby wrócić, zaloguj się na nie ponownie.',
+                )}
+              </Text>
+              <Text style={{ color: glass.secondary, fontSize: f.sub, lineHeight: f.sub * 1.45 }}>
+                {L(
+                  'Перед выходом надёжно сохраним прогресс. Если соединение не ответит — отменим выход, чтобы ничего не потерялось.',
+                  'Перед виходом надійно збережемо прогрес. Якщо з’єднання не відповість — скасуємо вихід, щоб нічого не загубилося.',
+                  'Before signing out we\'ll safely save your progress. If the connection doesn\'t respond, we\'ll cancel the sign-out so nothing is lost.',
+                  'Antes de cerrar sesión guardaremos tu progreso de forma segura. Si la conexión no responde, cancelaremos la salida para que no pierdas nada.',
+                  'Antes de sair, salvaremos seu progresso com segurança. Se a conexão não responder, cancelaremos a saída para que nada se perca.',
+                  'Trước khi đăng xuất, chúng tôi sẽ lưu tiến độ của bạn an toàn. Nếu kết nối không phản hồi, việc đăng xuất sẽ bị hủy để không mất gì.',
+                  'Sebelum keluar, progresmu akan disimpan dengan aman. Jika koneksi tidak merespons, keluar dibatalkan agar tidak ada yang hilang.',
+                  'Çıkmadan önce ilerlemeni güvenle kaydedeceğiz. Bağlantı yanıt vermezse hiçbir şey kaybolmasın diye çıkışı iptal edeceğiz.',
+                  'Przed wylogowaniem bezpiecznie zapiszemy Twój postęp. Jeśli połączenie nie odpowie, anulujemy wylogowanie, aby nic nie przepadło.',
+                )}
+              </Text>
 
               <TouchableOpacity
                 activeOpacity={0.8}
                 accessibilityRole="button"
                 testID="account-logout-confirm"
                 onPress={() => { void runLogout(); }}
-                style={{ paddingHorizontal: 10, paddingVertical: 8 }}
+                style={[buttonStyle, { marginTop: 22, backgroundColor: glass.cta }]}
               >
-                <Text style={{ color: t.wrong, fontSize: f.body, fontWeight: '800' }}>
+                <Text style={{ color: glass.ctaInk, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
                   {L('Выйти', 'Вийти', 'Sign out', 'Salir', 'Sair', 'Đăng xuất', 'Keluar', 'Çıkış yap', 'Wyloguj')}
                 </Text>
               </TouchableOpacity>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                accessibilityRole="button"
+                testID="account-logout-cancel"
+                onPress={() => onStageChange('idle')}
+                style={[buttonStyle, { marginTop: 10, backgroundColor: glass.selected }]}
+              >
+                <Text style={{ color: glass.text, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
+                  {L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
+                </Text>
+              </TouchableOpacity>
             </View>
-          </View>
+          )}
         </ScrollView>
-        )}
       </Modal>
     </>
   );

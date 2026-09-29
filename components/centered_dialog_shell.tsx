@@ -11,8 +11,13 @@
  * растит нижний паддинг под клавиатуру. Его трогать нельзя — на нём живут шиты
  * рефералки, поэтому центрированный вариант вынесен в отдельный компонент.
  *
- * Токены темы; без обводок (разделяем тоном); контент скроллится внутри окна,
- * так что появление карточки результата не ломает центрирование.
+ * Токены темы; контент скроллится внутри окна, так что появление карточки
+ * результата не ломает центрирование.
+ *
+ * зачем (владелец 2026-09-29): вид 1 в 1 по макету community.html#COM-04-FIND (`.modal.cf-dialog`):
+ * стеклянная поверхность темы Liquid Glass (13 тем), радиус 26, поля 20, тонкая 1 px полупрозрачная
+ * кромка, заголовок 19/24, «закрыть» — голый крестик 44 dp. Поведение (fade+scale, независимость
+ * от клавиатуры, закрытие по подложке) не менялось.
  */
 import React, { useCallback, useEffect, useRef } from 'react';
 import {
@@ -24,7 +29,6 @@ import {
   View,
   useWindowDimensions,
 } from 'react-native';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import Animated, {
   Easing as REasing,
   runOnJS,
@@ -33,8 +37,8 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { hapticTap } from '../hooks/use-haptics';
-import { useTheme } from './ThemeContext';
-import TonalSurface from './TonalSurface';
+import { LinearGradient } from './SafeLinearGradient';
+import { FriendsRoundButton, useFriendsGlass } from './friends/FriendsGlassKit';
 
 const DIALOG_WIDTH_RATIO = 0.92;
 const DIALOG_MAX_WIDTH = 460;
@@ -58,7 +62,7 @@ export default function CenteredDialogShell({
   testID,
   children,
 }: CenteredDialogShellProps) {
-  const { theme: t, f } = useTheme();
+  const { glass, textScale } = useFriendsGlass();
   const { width: viewportWidth, height: viewportHeight } = useWindowDimensions();
 
   const backdropO = useSharedValue(0);
@@ -110,24 +114,16 @@ export default function CenteredDialogShell({
             accessibilityViewIsModal
             style={[
               styles.dialog,
-              { backgroundColor: t.bgCard, width: dialogWidth, maxHeight: dialogMaxHeight },
+              { backgroundColor: glass.opaqueSheet, borderColor: glass.glassEdge, width: dialogWidth, maxHeight: dialogMaxHeight },
               dialogStyle,
             ]}
           >
-            <TonalSurface pointerEvents="none" radius={24} tone="raised" style={StyleSheet.absoluteFillObject} />
+            <LinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={StyleSheet.absoluteFillObject} />
             <View style={styles.header}>
-              <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '700', flex: 1 }}>
+              <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 19 * textScale, lineHeight: 24 * textScale, fontWeight: '700', flex: 1 }}>
                 {title}
               </Text>
-              <Pressable
-                onPress={dismissDialog}
-                hitSlop={8}
-                accessibilityRole="button"
-                accessibilityLabel={closeLabel}
-                style={({ pressed }) => [styles.closeBtn, { backgroundColor: t.bgSurface2, opacity: pressed ? 0.7 : 1 }]}
-              >
-                <Ionicons name="close" size={20} color={t.textMuted} />
-              </Pressable>
+              <FriendsRoundButton glass={glass} icon="close" bare label={closeLabel} onPress={dismissDialog} size={44} haptic={false} />
             </View>
             {/* зачем: карточка найденного друга заметно растит контент. Скроллим
                 ВНУТРИ окна, чтобы окно осталось по центру и не подстраивалось
@@ -152,7 +148,7 @@ const styles = StyleSheet.create({
   root: { flex: 1 },
   backdrop: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0,0,0,0.55)',
+    backgroundColor: 'rgba(0,0,0,0.6)',
   },
   centerer: {
     flex: 1,
@@ -160,24 +156,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   dialog: {
-    borderRadius: 24,
-    paddingHorizontal: 20,
-    paddingTop: 18,
-    paddingBottom: 18,
+    borderRadius: 26,
+    borderWidth: 1, // guard-ok: тонкая 1 px полупрозрачная кромка стекла, как в макете
+    padding: 20,
     overflow: 'hidden',
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
     gap: 12,
-    marginBottom: 14,
-  },
-  closeBtn: {
-    width: 34,
-    height: 34,
-    borderRadius: 17,
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginTop: -6,
+    marginBottom: 6,
   },
   scroll: {
     flexGrow: 0,

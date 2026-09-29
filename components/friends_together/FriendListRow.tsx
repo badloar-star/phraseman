@@ -2,9 +2,9 @@ import React, { memo } from 'react';
 import { Pressable, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-import AvatarView from '../AvatarView';
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
+import { FriendsCard, FriendsCoin, useFriendsGlass } from '../friends/FriendsGlassKit';
 import { FlowText } from '../text-integrity';
 import { type Lang, triLang } from '../../constants/i18n';
 import type { FriendSocialEvent } from '../../app/friend_social_events';
@@ -13,9 +13,8 @@ import FriendEventMarker from './FriendEventMarker';
 export interface FriendListRowProps {
   friendUid: string;
   friendName: string;
-  avatar: string;
-  totalXp: number;
-  auraId?: string;
+  /** Публичный ранг монеты друга; нет данных — нейтральный кружок с инициалом (зачем: макет COM-04, ранги не выдумываем). */
+  coinRank?: number | null;
   daysTogether: number | null;
   // зачем (аудит скорости 2026-08-22): колбэки принимают friendUid, а не готовое
   // замыкание — так родитель (FriendsTabScreen) передаёт СТАБИЛЬНЫЕ ссылки
@@ -59,16 +58,15 @@ export function formatFriendRelationship(lang: Lang, daysTogether: number | null
 function FriendListRow({
   friendUid,
   friendName,
-  avatar,
-  totalXp,
-  auraId,
+  coinRank = null,
   daysTogether,
   onOpenProfile,
   onOpenDetails,
   event = null,
   onOpenEvent,
 }: FriendListRowProps) {
-  const { theme: t, f } = useTheme();
+  const { theme: t } = useTheme();
+  const { glass, textScale } = useFriendsGlass();
   const { lang } = useLang();
   const relationship = formatFriendRelationship(lang, daysTogether);
   // Локальные обёртки-с-аргументом: сам компонент под memo, поэтому создание
@@ -86,8 +84,11 @@ function FriendListRow({
     vi: `Mở chi tiết tình bạn với ${friendName}`, id: `Buka detail pertemanan dengan ${friendName}`, tr: `${friendName} ile arkadaşlık ayrıntılarını aç`, pl: `Otwórz szczegóły znajomości z ${friendName}`,
   });
 
+  // зачем (владелец 2026-09-29): строка друга 1 в 1 по макету community.html#COM-04 (`person()`):
+  // плашка 64 dp, монета/инициал 44, имя 16/21, подпись 13/18, шеврон. Две зоны нажатия сохранены
+  // (профиль / детали), обе не меньше 44 dp.
   return (
-    <View style={[styles.card, { backgroundColor: t.bgSurface }]}>
+    <FriendsCard glass={glass} style={styles.card}>
       <Pressable
         testID={`friend-row-avatar-${friendUid}`}
         onPress={handleOpenProfile}
@@ -95,8 +96,8 @@ function FriendListRow({
         accessibilityLabel={profileLabel}
         style={styles.avatarTarget}
       >
-        <View style={event ? [styles.eventRing, { shadowColor: event.kind === 'duel_invite' ? t.wrong : t.accent }] : undefined}>
-          <AvatarView avatar={avatar} totalXP={totalXp} auraId={auraId} size={56} animateAura={false} />
+        <View style={event ? [styles.eventRing, { shadowColor: event.kind === 'duel_invite' ? t.wrong : glass.cta }] : undefined}>
+          <FriendsCoin coinRank={coinRank} name={friendName} size={44} glass={glass} />
         </View>
       </Pressable>
       <Pressable
@@ -107,18 +108,18 @@ function FriendListRow({
         style={styles.bodyTarget}
       >
         <View style={styles.identity}>
-          <FlowText testID={`friend-row-name-${friendUid}`} provenance="user" style={[styles.name, { color: t.textPrimary, fontSize: Math.max(16, f.body) }]}>
+          <FlowText testID={`friend-row-name-${friendUid}`} provenance="user" style={[styles.name, { color: glass.text, fontSize: 16 * textScale, lineHeight: 21 * textScale }]}>
             {friendName}
           </FlowText>
-          <FlowText testID={`friend-row-relationship-${friendUid}`} provenance="authored" style={[styles.relationship, { color: t.textSecond, fontSize: Math.max(14, f.sub) }]}>
+          <FlowText testID={`friend-row-relationship-${friendUid}`} provenance="authored" style={[styles.relationship, { color: glass.mutedText, fontSize: 13 * textScale, lineHeight: 18 * textScale }]}>
             {relationship}
           </FlowText>
         </View>
         {event && handleOpenEvent
           ? <FriendEventMarker event={event} onPress={handleOpenEvent} />
-          : <Ionicons name="chevron-forward" size={20} color={t.textMuted} accessible={false} importantForAccessibility="no" />}
+          : <Ionicons name="chevron-forward" size={18} color={glass.secondary} accessible={false} importantForAccessibility="no" />}
       </Pressable>
-    </View>
+    </FriendsCard>
   );
 }
 
@@ -126,16 +127,11 @@ export default memo(FriendListRow);
 
 const styles = {
   card: {
-    minHeight: 84,
-    borderRadius: 18,
     marginBottom: 10,
-    padding: 8,
-    flexDirection: 'row',
-    alignItems: 'center',
   },
   avatarTarget: {
-    width: 68,
-    minHeight: 68,
+    width: 44,
+    minHeight: 44,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -149,7 +145,7 @@ const styles = {
   bodyTarget: {
     flex: 1,
     minWidth: 0,
-    minHeight: 68,
+    minHeight: 44,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,

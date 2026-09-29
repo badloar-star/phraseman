@@ -9,15 +9,23 @@ jest.unmock('react-native');
 
 let mockLang = 'ru';
 
+// зачем (владелец 2026-09-29): строка друга переведена на Liquid Glass — токены берутся из
+// liquidGlassTokens(liquidGlassThemeId), множитель шрифта из FONT_SCALE/uiScale.
 jest.mock('../components/ThemeContext', () => ({
+  FONT_SCALE: { small: 0.9, medium: 1, large: 1.1 },
   useTheme: () => ({
     theme: {
+      wrong: '#ff0000',
+      correct: '#00ff00',
       bgSurface: '#ffffff',
       textPrimary: '#111111',
       textSecond: '#555555',
       textMuted: '#777777',
     },
     f: { body: 15, sub: 13 },
+    fontSize: 'medium',
+    uiScale: 1,
+    liquidGlassThemeId: 'graphite',
   }),
 }));
 
@@ -29,14 +37,10 @@ jest.mock('../constants/i18n', () => ({
   triLang: (lang: string, copy: Record<string, string>) => copy[lang] ?? copy.ru,
 }));
 
-jest.mock('../components/AvatarView', () => {
-  const mockReact = jest.requireActual('react');
-  const { View } = jest.requireActual('react-native');
-  return {
-    __esModule: true,
-    default: () => mockReact.createElement(View, { testID: 'friend-avatar' }),
-  };
-});
+// Кирпичи Liquid Glass тянут PressableHybrid → звук/хаптик; в строке друга они не нажимаются.
+jest.mock('../components/PressableHybrid', () => ({ __esModule: true, default: () => null }));
+jest.mock('../components/friends_together/FriendEventMarker', () => ({ __esModule: true, default: () => null }));
+jest.mock('../components/SafeLinearGradient', () => ({ __esModule: true, default: () => null, LinearGradient: () => null }));
 
 jest.mock('../components/text-integrity', () => {
   const mockReact = jest.requireActual('react');
@@ -66,9 +70,7 @@ function propsFor(daysTogether: number | null) {
   return {
     friendUid: 'friend-1',
     friendName: 'Друг',
-    avatar: '1',
-    totalXp: 2400,
-    auraId: 'aura-1',
+    coinRank: null,
     daysTogether,
     onOpenProfile: jest.fn(),
     onOpenDetails: jest.fn(),
@@ -131,7 +133,11 @@ describe('FriendListRow source contract', () => {
     expect(source).not.toContain('numberOfLines');
     expect(source).toContain('minWidth: 0');
     expect(source).not.toContain('friend-row-actions-');
-    expect(source).toContain('Math.max(16, f.body)');
-    expect(source).toContain('Math.max(14, f.sub)');
+    // Макет community.html#COM-04: имя 16/21, подпись 13/18, зоны нажатия не меньше 44 dp.
+    expect(source).toContain('16 * textScale');
+    expect(source).toContain('13 * textScale');
+    expect(source).toContain('minHeight: 44');
+    expect(source).toContain('useFriendsGlass');
+    expect(source).not.toContain('AvatarView');
   });
 });

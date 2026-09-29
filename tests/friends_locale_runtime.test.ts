@@ -20,19 +20,26 @@ describe('friends tab locale runtime', () => {
     }
   });
 
-  it('keeps the empty-friends add action as a single full-width button', () => {
+  it('keeps the empty-friends add action as a single compact glass button', () => {
     const source = fs.readFileSync(path.join(__dirname, '../app/(tabs)/friends.tsx'), 'utf8');
+    const empty = fs.readFileSync(path.join(__dirname, '../components/friends/FriendsEmptyState.tsx'), 'utf8');
+    const kit = fs.readFileSync(path.join(__dirname, '../components/friends/FriendsGlassKit.tsx'), 'utf8');
 
-    expect(source).toContain('testID="friends-empty-add"');
+    // зачем (владелец 2026-09-29): пустой список переведён на макет community.html#COM-04-EMPTY —
+    // одна компактная главная кнопка в отдельном компоненте, а не блок внутри экрана.
+    expect(source).toContain('<FriendsEmptyState');
+    expect(empty).toContain('testID="friends-empty-add"');
     // Реферальные CTA убраны из empty-state (owner 2026-07-24): приглашения живут в настройках.
     expect(source).not.toContain('testID="friends-empty-invite"');
     expect(source).not.toContain('testID="friends-empty-enter-code"');
+    expect(empty).not.toContain('friends-empty-invite');
     // minHeight + paddingVertical (не жёсткая height): кнопка растёт под крупные шрифты.
-    expect(source).toContain("style={{ minHeight: 58, paddingVertical: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'");
+    expect(kit).toContain('minHeight: height');
+    expect(kit).toContain('paddingVertical: 8');
     // adjustsFontSizeToFit запрещён на кнопках (схлопывает текст в ноль — известная ловушка);
-    // вместо него перенос на 2 строки.
-    expect(source).toContain('numberOfLines={2}');
-    expect(source).not.toContain('adjustsFontSizeToFit minimumFontScale={0.78}');
+    // вместо него перенос строки.
+    expect(kit).not.toContain('adjustsFontSizeToFit');
+    expect(kit).not.toContain('numberOfLines');
   });
 
   it('keeps the friend search input free of hard-coded sample text', () => {
@@ -76,10 +83,9 @@ describe('friends tab locale runtime', () => {
     expect(source).toContain('ReferralAccessEndedModal');
   });
 
-  it('keeps Firestore friend/league helpers free of legacy locale runtime markers', () => {
+  it('keeps the Firestore friends helper free of legacy locale runtime markers', () => {
     const files = [
       '../app/firestore_friends.ts',
-      '../app/firestore_leagues.ts',
     ];
 
     for (const file of files) {

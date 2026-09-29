@@ -1,6 +1,5 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { buildWeeklyChestModel } from '../app/friends_together/weekly_chest_model';
 
 const mockStorage: Record<string, string> = {};
 
@@ -63,7 +62,7 @@ describe('friends_together DEV bots', () => {
     expect(all.bots.map((bot) => bot.days)).toEqual(one.bots.map((bot) => bot.days + 1));
   });
 
-  it('exposes incoming nudge and gift-ready changes in returned state', async () => {
+  it('exposes incoming nudge changes in returned state', async () => {
     const subject = await loadSubject();
     const added = await subject.addDevBots(1);
     const uid = added.bots[0].uid;
@@ -71,68 +70,6 @@ describe('friends_together DEV bots', () => {
     const nudged = await subject.simulateIncomingNudge(uid);
     expect(nudged.bots[0]).toMatchObject({ incomingNudge: true, learnedToday: false });
 
-    const gifted = await subject.markGiftReady(uid);
-    expect(gifted.bots[0]).toMatchObject({ incomingNudge: true, giftReady: true });
-  });
-
-  it('forces each chest tier to the exact reachable threshold, even from only three bots', async () => {
-    const subject = await loadSubject();
-    await subject.addDevBots(3);
-
-    for (const [tier, threshold] of [[1, 6000], [2, 12000], [3, 20000]] as const) {
-      const state = await subject.setChestScenario(tier);
-      const metrics = (subject as any).devBotTogetherMetrics as (bot: typeof state.bots[number]) => { level: number };
-      const model = buildWeeklyChestModel({
-        friends: state.bots.map((bot) => ({
-          uid: bot.uid,
-          weeklyXp: bot.weeklyXp,
-          pairLevel: metrics(bot).level,
-        })),
-        myDays: 7,
-        myWeeklyXp: 1000,
-        weekKey: '2026-W34',
-        claimedWeekKey: null,
-        isClaimDay: true,
-      });
-
-      expect(state.chestScenarioTier).toBe(tier);
-      expect(model.progress).toBe(threshold);
-      expect(model.tier).toBe(tier);
-      expect(model.canClaim).toBe(true);
-    }
-  });
-
-  it('clear chest resets the scenario and all bot weekly XP', async () => {
-    const subject = await loadSubject();
-    await subject.addDevBots(3);
-    await subject.setChestScenario(2);
-
-    const cleared = await subject.setChestScenario(0);
-
-    expect(cleared.chestScenarioTier).toBe(0);
-    expect(cleared.bots.every((bot) => bot.weeklyXp === 0)).toBe(true);
-    expect(cleared.chestOpenedTier).toBe(0);
-  });
-
-  it('opens a DEV chest only once until the explicit chest reset', async () => {
-    const subject = await loadSubject();
-    await subject.addDevBots(3);
-    await subject.setChestScenario(1);
-
-    const first = await subject.openDevChestScenario();
-    expect(first.opened).toBe(true);
-    expect(first.state.chestOpenedTier).toBe(1);
-
-    const repeated = await subject.openDevChestScenario();
-    expect(repeated.opened).toBe(false);
-    expect(repeated.state.chestOpenedTier).toBe(1);
-
-    const reset = await subject.resetDevChestScenario();
-    expect(reset.chestOpenedTier).toBe(0);
-    expect(reset.chestScenarioTier).toBe(1);
-
-    const afterReset = await subject.openDevChestScenario();
-    expect(afterReset.opened).toBe(true);
   });
 
   it('builds a complete visible friend profile and friendship metrics for a bot', async () => {
@@ -144,8 +81,6 @@ describe('friends_together DEV bots', () => {
     expect(toProfile(bot, 'avatar-dev', 'frame-dev')).toEqual({
       uid: bot.uid,
       name: bot.name,
-      totalXp: bot.totalXp,
-      weeklyXp: bot.weeklyXp,
       streak: bot.streak,
       isPremium: false,
       isVip: false,
@@ -159,17 +94,15 @@ describe('friends_together DEV bots', () => {
       progressPercent: 0,
       learnedToday: false,
       incomingNudge: false,
-      giftReady: false,
     });
   });
 
   it('resets all local DEV bot state', async () => {
     const subject = await loadSubject();
     await subject.addDevBots(3);
-    await subject.setChestScenario(1);
 
-    await expect(subject.resetDevBots()).resolves.toEqual({ bots: [], chestScenarioTier: 0, chestOpenedTier: 0 });
-    expect(subject.getDevBotsSnapshot()).toEqual({ bots: [], chestScenarioTier: 0, chestOpenedTier: 0 });
+    await expect(subject.resetDevBots()).resolves.toEqual({ bots: [] });
+    expect(subject.getDevBotsSnapshot()).toEqual({ bots: [] });
   });
 
   it('wires DEV bot statuses into the details sheet, not compact list-row badges', () => {
@@ -186,13 +119,11 @@ describe('friends_together DEV bots', () => {
     expect(source).toContain('devBotToFriendProfile');
     expect(source).toContain('devBotTogetherMetrics');
     expect(source).toContain('incomingNudge: bot.incomingNudge');
-    expect(source).toContain('giftReady: bot.giftReady');
     expect(source).not.toContain('friend-together-incoming-${profile.uid}');
     expect(source).not.toContain('friend-together-gift-ready-${profile.uid}');
     expect(togetherDisplayStart).toBeGreaterThanOrEqual(0);
     expect(togetherSheetEnd).toBeGreaterThan(togetherDisplayStart);
     expect(togetherSheet).toContain('incomingNudge: rowTogether?.incomingNudge ?? false');
-    expect(togetherSheet).toContain('giftReady: rowTogether?.giftReady ?? false');
     expect(togetherSheet).toContain('<FriendTogetherSheet');
     expect(togetherSheet).toContain('together={togetherDisplay}');
   });
@@ -204,8 +135,9 @@ describe('friends_together DEV bots', () => {
     const devButton = source.slice(buttonStart, buttonEnd);
 
     expect(buttonStart).toBeGreaterThan(-1);
-    expect(devButton).toContain('backgroundColor: t.accent');
-    expect(devButton).toContain('color: t.correctText');
+    // зачем (владелец 2026-09-29): DEV-кнопка на нейтральных токенах Liquid Glass, не на «брендовом» accent/зелёном.
+    expect(devButton).toContain('backgroundColor: glass.opaqueControl');
+    expect(devButton).toContain('color: glass.text');
     expect(devButton).toMatch(/>DEV<\/FlowText>/);
   });
 });

@@ -3,6 +3,7 @@
 Governance-ID: TG-127D4157DE37
 Governance-ID: TG-F5DE94AC2969
 Governance-ID: TG-C6147C69A381
+Governance-ID: TG-B7F5AE4FF733
 Status: In progress
 Owner: сессия Claude Code 08393a61 (Sonnet) + исполнители-субагенты
 Related epic/enabler: PhraseMan 2.0 — перенос макетов Liquid Glass (см. HANDOVER_CLAUDE_2026-09-29.md, APP_TRANSFER_TRACKER.md)

@@ -66,10 +66,19 @@ export function scheduleAfterRootNavigationReady(navigate: () => void): Schedule
   };
 }
 
+// зачем: владелец 2026-09-29 — вне онбординга РОВНО два пейвола: A «Классический» и D «Два тарифа».
+// Бакеты B/C/E/F/G эксперимента не удаляем (конфиг/аналитика прежние), но показываем им ближайший
+// из двух: B/E/F → A (планы вертикально), C/G → D (планы горизонтально). Для свёрнутых бакетов
+// experiment_exposure не пишется (вариант вида ≠ вариант назначения) — честнее, чем ложный замер.
+const ACTIVE_ROUTE_FOR_VARIANT: Record<PaywallAbVariant, '/paywall_a' | '/paywall_d'> = {
+  A: '/paywall_a', B: '/paywall_a', C: '/paywall_d', D: '/paywall_d',
+  E: '/paywall_a', F: '/paywall_a', G: '/paywall_d',
+};
+
 export function resolveCurrentPaywallRoute(): PaywallRoute {
   refreshPaywallAbConfigInBackground();
   const { variant } = resolvePaywallAbVariantSync();
-  return PAYWALL_ROUTES[variant];
+  return ACTIVE_ROUTE_FOR_VARIANT[variant];
 }
 
 export function openPremiumPaywall(

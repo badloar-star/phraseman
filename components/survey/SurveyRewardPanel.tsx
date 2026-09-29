@@ -13,13 +13,13 @@ import Reanimated, {
 import { oskolokImageForPackShards } from '../../app/oskolok';
 import { SHARD_REWARDS } from '../../app/shards_system';
 import type { SurveyFollowUp } from '../../app/survey_followups';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { LUM } from '../../constants/motionHybrid';
 import { isLightThemeMode } from '../../constants/theme';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useLang } from '../LangContext';
 import PressableHybrid from '../PressableHybrid';
 import { useTheme } from '../ThemeContext';
-import TonalSurface from '../TonalSurface';
 import { FlowText } from '../text-integrity/FlowText';
 import { useSurveyRewardImpact } from './useSurveyRewardImpact';
 
@@ -91,7 +91,12 @@ export default function SurveyRewardPanel({
   followUps,
   onFollowUp,
 }: SurveyRewardPanelProps) {
-  const { theme: t, f, themeMode } = useTheme();
+  // зачем: владелец 2026-09-29 — Liquid Glass «1 в 1 с макета» (overlays-specialist.html
+  // OS-SURVEY-SUCCESS/-ALREADY-COMPLETED/-RETRYABLE-ERROR): кнопки и плитки — нейтральные токены
+  // активной темы (13 тем), без зелёного/акцентного; семантика награды (фиолетовая галочка) и ошибки
+  // (t.wrong) и перелёт жемчужины остаются как были.
+  const { theme: t, f, themeMode, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
   const reduceMotion = useReduceMotion();
   const isError = phase === 'retryable-error';
@@ -109,11 +114,9 @@ export default function SurveyRewardPanel({
   const supportingMotionStyle = useSupportingEntrance(reduceMotion);
 
   return (
-    <TonalSurface
+    <View
       testID="survey-reward-panel"
       accessibilityLiveRegion={isError ? undefined : 'polite'}
-      radius={24}
-      tone={isError ? 'subtle' : 'raised'}
       style={styles.panel}
     >
       {showGrantedReward ? (
@@ -133,7 +136,7 @@ export default function SurveyRewardPanel({
             testID="survey-reward-amount"
             provenance="authored"
             accessibilityLabel={rewardLabel}
-            style={[styles.rewardAmount, { color: t.textPrimary, fontSize: f.body }]}
+            style={[styles.rewardAmount, { color: glass.text, fontSize: f.body }]}
           >
             {rewardLabel}
           </FlowText>
@@ -151,10 +154,10 @@ export default function SurveyRewardPanel({
               <Ionicons name="checkmark-circle" size={56} color={purpleAccent} accessibilityElementsHidden />
             </View>
           ) : null}
-          <FlowText testID="survey-reward-title" provenance="authored" accessibilityRole="header" style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
+          <FlowText testID="survey-reward-title" provenance="authored" accessibilityRole="header" style={[styles.title, { color: glass.text, fontSize: f.h2 }]}>
             {title}
           </FlowText>
-          <FlowText testID="survey-reward-subtitle" provenance="authored" style={[styles.subtitle, { color: t.textMuted, fontSize: f.body }]}>
+          <FlowText testID="survey-reward-subtitle" provenance="authored" style={[styles.subtitle, { color: glass.secondary, fontSize: f.body }]}>
             {subtitle}
           </FlowText>
 
@@ -163,14 +166,14 @@ export default function SurveyRewardPanel({
               <FlowText testID="survey-reward-error" provenance="authored" accessibilityRole="alert" accessibilityLiveRegion="assertive" style={[styles.error, { color: t.wrong, backgroundColor: t.wrongBg, fontSize: f.body }]}>
                 {error}
               </FlowText>
-              <PressableHybrid testID="survey-retry" accessibilityLabel={labels.retry} onPress={onRetry} withHaptic={false} disabled={retryDisabled} accessibilityState={{ disabled: retryDisabled }} variant="secondary" style={[styles.action, styles.retry, { borderColor: t.wrong, opacity: retryDisabled ? 0.45 : 1 }]} contentStyle={styles.actionContent}>
-                <Ionicons name="refresh" size={20} color={t.textPrimary} accessibilityElementsHidden />
-                <FlowText testID="survey-retry-label" provenance="authored" style={[styles.actionLabel, { color: t.textPrimary, fontSize: f.body }]}>{labels.retry}</FlowText>
+              <PressableHybrid testID="survey-retry" accessibilityLabel={labels.retry} onPress={onRetry} withHaptic={false} disabled={retryDisabled} accessibilityState={{ disabled: retryDisabled }} variant="secondary" style={[styles.action, { backgroundColor: glass.cta, opacity: retryDisabled ? 0.45 : 1 }]} contentStyle={styles.actionContent}>
+                <Ionicons name="refresh" size={20} color={glass.ctaInk} accessibilityElementsHidden />
+                <FlowText testID="survey-retry-label" provenance="authored" style={[styles.actionLabel, { color: glass.ctaInk, fontSize: f.body }]}>{labels.retry}</FlowText>
               </PressableHybrid>
               {!!onBack && (
-                <PressableHybrid testID="survey-back" accessibilityLabel={labels.back} onPress={onBack} withHaptic={false} variant="secondary" style={styles.action} contentStyle={styles.actionContent}>
-                  <Ionicons name="arrow-back" size={20} color={t.textPrimary} accessibilityElementsHidden />
-                  <FlowText testID="survey-back-label" provenance="authored" style={[styles.actionLabel, { color: t.textPrimary, fontSize: f.body }]}>{labels.back}</FlowText>
+                <PressableHybrid testID="survey-back" accessibilityLabel={labels.back} onPress={onBack} withHaptic={false} variant="secondary" style={[styles.action, { backgroundColor: glass.opaqueControl }]} contentStyle={styles.actionContent}>
+                  <Ionicons name="arrow-back" size={20} color={glass.text} accessibilityElementsHidden />
+                  <FlowText testID="survey-back-label" provenance="authored" style={[styles.actionLabel, { color: glass.text, fontSize: f.body }]}>{labels.back}</FlowText>
                 </PressableHybrid>
               )}
             </>
@@ -189,32 +192,32 @@ export default function SurveyRewardPanel({
                   onPress={() => onFollowUp?.(followUp)}
                   withHaptic={false}
                   variant="secondary"
-                  style={[styles.action, { backgroundColor: t.accentBg }]}
+                  style={[styles.action, { backgroundColor: glass.opaqueControl }]}
                   contentStyle={styles.actionContent}
                 >
                   <FlowText
                     testID={`survey-followup-${followUp.key}-label`}
                     provenance="authored"
-                    style={[styles.actionLabel, { color: t.accent, fontSize: f.body }]}
+                    style={[styles.actionLabel, { color: glass.text, fontSize: f.body }]}
                   >
                     {followUp.cta}
                   </FlowText>
                   <Ionicons
                     name={followUp.kind === 'store_review' ? 'star' : 'arrow-forward'}
                     size={20}
-                    color={t.accent}
+                    color={glass.text}
                     accessibilityElementsHidden
                   />
                 </PressableHybrid>
               ))}
-              <PressableHybrid testID="survey-done" accessibilityLabel={labels.done} onPress={onDone} withHaptic={false} variant="primary" style={[styles.action, { backgroundColor: t.accent }]} contentStyle={styles.actionContent}>
-                <FlowText testID="survey-done-label" provenance="authored" style={[styles.actionLabel, { color: t.correctText, fontSize: f.body }]}>{labels.done}</FlowText>
+              <PressableHybrid testID="survey-done" accessibilityLabel={labels.done} onPress={onDone} withHaptic={false} variant="primary" style={[styles.action, { backgroundColor: glass.cta }]} contentStyle={styles.actionContent}>
+                <FlowText testID="survey-done-label" provenance="authored" style={[styles.actionLabel, { color: glass.ctaInk, fontSize: f.body }]}>{labels.done}</FlowText>
               </PressableHybrid>
             </>
           )}
         </View>
       </Reanimated.View>
-    </TonalSurface>
+    </View>
   );
 }
 
@@ -240,7 +243,7 @@ function useSupportingEntrance(reduceMotion: boolean) {
 }
 
 const styles = StyleSheet.create({
-  panel: { alignSelf: 'stretch', borderRadius: 24, borderWidth: 0, padding: 24, gap: 12 },
+  panel: { alignSelf: 'stretch', paddingVertical: 8, gap: 12 },
   hero: { alignItems: 'center', gap: 8 },
   supporting: { alignItems: 'center', gap: 12 },
   iconHalo: { width: 120, minHeight: 120, borderRadius: 60, alignItems: 'center', justifyContent: 'center' },
@@ -249,8 +252,7 @@ const styles = StyleSheet.create({
   title: { fontWeight: '900', lineHeight: 28, textAlign: 'center' },
   subtitle: { fontWeight: '600', lineHeight: 24, textAlign: 'center' },
   error: { alignSelf: 'stretch', borderRadius: 14, padding: 14, fontWeight: '700', lineHeight: 22, textAlign: 'center' },
-  action: { alignSelf: 'stretch', minHeight: 48, borderRadius: 14, overflow: 'hidden' },
+  action: { alignSelf: 'stretch', minHeight: 48, borderRadius: 16, overflow: 'hidden' },
   actionContent: { minHeight: 48, paddingHorizontal: 18, paddingVertical: 12, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 8 },
-  retry: { borderWidth: 0 },
   actionLabel: { fontWeight: '900', textAlign: 'center' },
 });

@@ -46,7 +46,7 @@ test('share is a premium full-width row and close is an accessible icon action',
   expect(share).toContain('accessibilityRole="button"');
   expect(share).toContain('accessibilityLabel=');
   expect(share).toContain('name="share-outline"');
-  expect(share).toContain('color={t.accent}');
+  expect(share).toContain('color={glass.ctaInk}');
 
   expect(closeStart).toBeGreaterThan(0);
   expect(close).toContain('width: 44');

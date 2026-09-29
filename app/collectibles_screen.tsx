@@ -29,6 +29,7 @@ import TapScale from '../components/TapScale';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
@@ -53,7 +54,6 @@ import {
   type CollectiblesOwnedMap,
 } from './collectibles/storage';
 import { ioniconForSetIcon } from './collectibles/set_icons';
-import { isCollectiblesEnabled } from './remote_flags';
 
 const SECRET_GOLD = '#FBBF24';
 
@@ -319,7 +319,8 @@ function CardDetailModal({
   onClose: () => void;
   onNavigate: (next: DetailTarget) => void;
 }) {
-  const { theme: t, f } = useTheme();
+  const { f, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
   const { speak } = useAudio();
   const insets = useStableSafeAreaInsets();
@@ -353,13 +354,20 @@ function CardDetailModal({
     { kind: 'secret', set, card: set.secret },
   ];
   const index = siblings.findIndex((s) => s.card.id === card.id);
+  const hasPrev = index > 0;
+  const hasNext = index < siblings.length - 1;
+  const closeLabel = triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' });
+  const prevLabel = triLang(lang, { ru: 'Предыдущая карточка', uk: 'Попередня картка', en: 'Previous card', es: 'Carta anterior', 'pt-BR': 'Carta anterior', vi: 'Thẻ trước', id: 'Kartu sebelumnya', tr: 'Önceki kart', pl: 'Poprzednia karta' });
+  const nextLabel = triLang(lang, { ru: 'Следующая карточка', uk: 'Наступна картка', en: 'Next card', es: 'Carta siguiente', 'pt-BR': 'Próxima carta', vi: 'Thẻ sau', id: 'Kartu berikutnya', tr: 'Sonraki kart', pl: 'Następna karta' });
+  const listenPhraseLabel = triLang(lang, { ru: 'Прослушать фразу', uk: 'Прослухати фразу', en: 'Listen to the phrase', es: 'Escuchar la frase', 'pt-BR': 'Ouvir a frase', vi: 'Nghe cụm từ', id: 'Dengarkan frasa', tr: 'İfadeyi dinle', pl: 'Posłuchaj frazy' });
+  const listenExampleLabel = triLang(lang, { ru: 'Прослушать пример', uk: 'Прослухати приклад', en: 'Listen to the example', es: 'Escuchar el ejemplo', 'pt-BR': 'Ouvir o exemplo', vi: 'Nghe ví dụ', id: 'Dengarkan contoh', tr: 'Örneği dinle', pl: 'Posłuchaj przykładu' });
 
   const section = (title: string, body: string) => !!body && (
     <View style={{ marginTop: 14 }}>
-      <Text style={{ color: t.textMuted, fontSize: 11, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.8 }}>
+      <Text style={{ color: glass.secondary, fontSize: 11, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.8 }}>
         {title}
       </Text>
-      <Text style={{ color: t.textPrimary, fontSize: f.body, lineHeight: 21, marginTop: 4 }}>
+      <Text style={{ color: glass.text, fontSize: f.body, lineHeight: 21, marginTop: 4 }}>
         {body}
       </Text>
     </View>
@@ -367,38 +375,45 @@ function CardDetailModal({
 
   return (
     <Modal visible transparent animationType="fade" onRequestClose={onClose} statusBarTranslucent>
-      <View style={{ flex: 1, backgroundColor: 'rgba(2,3,6,0.92)' }}>
+      <View style={{ flex: 1, backgroundColor: glass.bg }}>
         <View style={{ flex: 1, paddingTop: insets.top }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 14, paddingTop: 8, paddingBottom: 4 }}>
             <View
+              accessible
+              accessibilityLabel={rarityLabel}
               style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: 6,
                 paddingHorizontal: 10,
-                paddingVertical: 4,
+                paddingVertical: 5,
                 borderRadius: 999,
-                backgroundColor: `${rarityColor}26`,
-                borderWidth: 0,
-                borderColor: `${rarityColor}66`,
+                backgroundColor: glass.opaqueControl,
               }}
             >
-              <Text style={{ color: rarityColor, fontSize: 11.5, fontWeight: '900' }}>{rarityLabel}</Text>
+              <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: rarityColor }} />
+              <Text style={{ color: glass.text, fontSize: 11.5, fontWeight: '900' }}>{rarityLabel}</Text>
             </View>
-            <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700', marginLeft: 10, flex: 1 }} numberOfLines={1}>
+            <Text style={{ color: glass.secondary, fontSize: f.sub, fontWeight: '700', marginLeft: 10, flex: 1 }} numberOfLines={1}>
               {setTitle}
             </Text>
-            <TapScale onPress={onClose} hitSlop={14}>
+            <TapScale
+              onPress={onClose}
+              hitSlop={8}
+              accessibilityRole="button"
+              accessibilityLabel={closeLabel}
+            >
               <View
                 style={{
-                  width: 34,
-                  height: 34,
-                  borderRadius: 17,
-                  backgroundColor: t.bgCard,
-                  borderWidth: 0,
-                  borderColor: t.border,
+                  width: 44,
+                  height: 44,
+                  borderRadius: 22,
+                  backgroundColor: glass.opaqueControl,
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}
               >
-                <Ionicons name="close" size={22} color={t.textPrimary} />
+                <Ionicons name="close" size={22} color={glass.text} accessibilityElementsHidden />
               </View>
             </TapScale>
           </View>
@@ -414,7 +429,7 @@ function CardDetailModal({
               style={{ alignSelf: 'center' }}
               fallback={
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                  <Text style={{ color: rarityColor, fontSize: 52, fontWeight: '900' }}>
+                  <Text style={{ color: glass.text, fontSize: 52, fontWeight: '900' }}>
                     {card.en.slice(0, 1).toUpperCase()}
                   </Text>
                 </View>
@@ -422,7 +437,7 @@ function CardDetailModal({
             />
 
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, marginTop: 16 }}>
-              <Text style={{ color: t.textPrimary, fontSize: f.h1, fontWeight: '900', textAlign: 'center', flexShrink: 1 }}>
+              <Text accessibilityRole="header" style={{ color: glass.text, fontSize: f.h1, fontWeight: '900', textAlign: 'center', flexShrink: 1 }}>
                 {card.en}
               </Text>
               <TapScale
@@ -431,19 +446,21 @@ function CardDetailModal({
                   const en = card.en.trim();
                   if (en) speak(en);
                 }}
-                hitSlop={10}
+                hitSlop={4}
+                accessibilityRole="button"
+                accessibilityLabel={listenPhraseLabel}
               >
-                <View style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: `${rarityColor}26`, alignItems: 'center', justifyContent: 'center' }}>
-                  <Ionicons name="volume-high" size={18} color={rarityColor} />
+                <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: glass.opaqueControl, alignItems: 'center', justifyContent: 'center' }}>
+                  <Ionicons name="volume-high" size={18} color={glass.text} accessibilityElementsHidden />
                 </View>
               </TapScale>
             </View>
             {!!card.ipa && (
-              <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', marginTop: 4 }}>
+              <Text style={{ color: glass.secondary, fontSize: f.sub, textAlign: 'center', marginTop: 4 }}>
                 [{card.ipa}]
               </Text>
             )}
-            <Text style={{ color: t.textSecond, fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginTop: 8 }}>
+            <Text style={{ color: glass.text, fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginTop: 8 }}>
               {cardText.translation}
             </Text>
 
@@ -471,7 +488,7 @@ function CardDetailModal({
             }), cardText.meaning)}
             {!!card.exampleEn && (
               <View style={{ marginTop: 14 }}>
-                <Text style={{ color: t.textMuted, fontSize: 11, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.8 }}>
+                <Text style={{ color: glass.secondary, fontSize: 11, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.8 }}>
                   {triLang(lang, {
                     ru: 'Пример',
                     uk: 'Приклад',
@@ -485,7 +502,7 @@ function CardDetailModal({
                   })}
                 </Text>
                 <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 10, marginTop: 4 }}>
-                  <Text style={{ color: t.textPrimary, fontSize: f.body, lineHeight: 21, fontWeight: '700', flex: 1 }}>
+                  <Text style={{ color: glass.text, fontSize: f.body, lineHeight: 21, fontWeight: '700', flex: 1 }}>
                     {card.exampleEn}
                   </Text>
                   <TapScale
@@ -494,14 +511,16 @@ function CardDetailModal({
                       const ex = card.exampleEn.trim();
                       if (ex) speak(ex);
                     }}
-                    hitSlop={10}
+                    hitSlop={4}
+                    accessibilityRole="button"
+                    accessibilityLabel={listenExampleLabel}
                   >
-                    <View style={{ width: 32, height: 32, borderRadius: 16, backgroundColor: `${rarityColor}26`, alignItems: 'center', justifyContent: 'center', marginTop: 1 }}>
-                      <Ionicons name="volume-high" size={16} color={rarityColor} />
+                    <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: glass.opaqueControl, alignItems: 'center', justifyContent: 'center' }}>
+                      <Ionicons name="volume-high" size={16} color={glass.text} accessibilityElementsHidden />
                     </View>
                   </TapScale>
                 </View>
-                <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: 21, marginTop: 2 }}>
+                <Text style={{ color: glass.secondary, fontSize: f.body, lineHeight: 21, marginTop: 2 }}>
                   {cardText.example}
                 </Text>
               </View>
@@ -524,17 +543,27 @@ function CardDetailModal({
               onPress={() => {
                 if (index > 0) onNavigate(siblings[index - 1]);
               }}
-              hitSlop={10}
+              hitSlop={4}
+              accessibilityRole="button"
+              accessibilityLabel={prevLabel}
+              accessibilityState={{ disabled: !hasPrev }}
             >
-              <Ionicons name="chevron-back-circle" size={34} color={index > 0 ? t.textSecond : `${String(t.textMuted)}55`} />
+              <View style={{ width: 48, height: 48, borderRadius: 24, backgroundColor: glass.opaqueControl, alignItems: 'center', justifyContent: 'center', opacity: hasPrev ? 1 : 0.4 }}>
+                <Ionicons name="chevron-back" size={26} color={glass.text} accessibilityElementsHidden />
+              </View>
             </TapScale>
             <TapScale
               onPress={() => {
                 if (index < siblings.length - 1) onNavigate(siblings[index + 1]);
               }}
-              hitSlop={10}
+              hitSlop={4}
+              accessibilityRole="button"
+              accessibilityLabel={nextLabel}
+              accessibilityState={{ disabled: !hasNext }}
             >
-              <Ionicons name="chevron-forward-circle" size={34} color={index < siblings.length - 1 ? t.textSecond : `${String(t.textMuted)}55`} />
+              <View style={{ width: 48, height: 48, borderRadius: 24, backgroundColor: glass.opaqueControl, alignItems: 'center', justifyContent: 'center', opacity: hasNext ? 1 : 0.4 }}>
+                <Ionicons name="chevron-forward" size={26} color={glass.text} accessibilityElementsHidden />
+              </View>
             </TapScale>
           </View>
         </View>
@@ -545,7 +574,7 @@ function CardDetailModal({
 
 /* ── экран ────────────────────────────────────────────────── */
 export default function CollectiblesScreen() {
-  const collectiblesEnabled = isCollectiblesEnabled();
+  const collectiblesEnabled = true;
 
   const router = useRouter();
   const { lang } = useLang();
@@ -639,7 +668,7 @@ export default function CollectiblesScreen() {
     }
   }, [collectiblesEnabled, router]);
 
-  // Kill-switch из Remote Config (collectibles_enabled, дефолт true).
+  // Доступ к коллекциям определяется локальным продуктовым контрактом.
   if (!collectiblesEnabled) {
     return null;
   }

@@ -5,16 +5,17 @@ import DuoPressable from '../components/DuoPressable';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, BackHandler, Modal, Platform, Pressable, Share, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, BackHandler, Modal, Platform, Pressable, ScrollView, Share, Text, TouchableOpacity, View } from 'react-native';
 import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import BonusXPCard from '../components/BonusXPCard';
 import SoftContextualUpsellCard from '../components/SoftContextualUpsellCard';
 import CollectibleDropModal from '../components/CollectibleDropModal';
 import ContentWrap from '../components/ContentWrap';
+import { glassFill } from '../components/GlassSurface';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { triLang, type Lang } from '../constants/i18n';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useTheme } from '../components/ThemeContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { usePremium } from '../components/PremiumContext';
@@ -27,7 +28,6 @@ import {
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import { LESSON_NAMES_RU, LESSON_NAMES_UK, lessonNamesForLang } from '../constants/lessons';
 import { hapticTap } from '../hooks/use-haptics';
-import { noAndroidOutline } from '../constants/androidGlow';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useSoftUpsellOpportunity } from '../hooks/use_soft_upsell_opportunity';
 import { checkAchievements } from './achievements';
@@ -45,16 +45,14 @@ import { canShowReview, getReviewActiveDays, markReviewPrompted, markReviewRated
 import { openStoreReviewPage } from './store_review';
 import { recordLessonForRepair } from './streak_repair';
 import { addShards, SHARD_REWARDS, type ShardSource } from './shards_system';
-import { normalizeProfileCardLevel, PROFILE_CARD_LEVEL_KEY, profileCardShardMultiplier } from './profile_card_system';
 import { grantLessonFirstCompleteBonus, retryPendingLessonBonusGrants } from './lesson_bonus_grant';
 import { logAppWarning } from './app_health';
 import { formatLessonShardBatchReason } from './shard_earn_ui';
 import { emitAppEvent } from './events';
 import { markLessonFinishedOnce } from './mastery';
 import { getVerifiedPremiumAccessStatus, getVerifiedPremiumStatus } from './premium_guard';
-import { lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
+import { FREE_LESSON_LIMIT, lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
 import { readLegacyFreeLessonCap } from './legacy_free_lesson_access';
-import { getFreeLessonLimit } from './remote_flags';
 import { lessonPurchaseContinuationParams } from './paywall_lesson_continuation';
 import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountGeneration } from './account_generation';
 import type { SoftUpsellCandidate, SoftUpsellStudyTarget } from './soft_upsell_core';
@@ -77,7 +75,6 @@ import { buildCelebrationShareBody } from './celebration_share_messages';
 import { buildLessonShareMessage } from './lesson_share';
 import { syncToCloud } from './cloud_sync';
 import { submitProgressEvent } from './progress_events_client';
-import { finalizeLessonXpMultipliers } from './xp_manager';
 import { getLessonData } from './lesson_data_all';
 import BouncyScrollView from '../components/BouncyScrollView';
 import ResultsSequence from '../components/feedback/ResultsSequence';
@@ -111,86 +108,6 @@ const RESULTS_STARS_BY_TIER: Record<MedalTier, number> = {
 };
 const safeLessonCompleteEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
-
-const MAX_LESSON_MULTIPLIER_PARAM_LENGTH = 512;
-const MAX_LESSON_MULTIPLIER_COUNT = 6;
-type ConfirmedLessonMultiplier = { multiplier: number; xpDelta: number };
-
-const firstRouteParam = (value: unknown): unknown => Array.isArray(value) && typeof value[0] === 'string'
-  ? value[0]
-  : value;
-
-export const parseConfirmedLessonXp = (value: unknown): number => {
-  const numeric = Number(firstRouteParam(value));
-  if (!Number.isFinite(numeric) || numeric <= 0 || numeric > Number.MAX_SAFE_INTEGER) return 0;
-  return Math.floor(numeric);
-};
-
-const normalizeConfirmedLessonMultiplier = (value: unknown): number => {
-  const numeric = Number(value);
-  if (!Number.isFinite(numeric) || numeric <= 1 || numeric > 20) return 1;
-  return Math.round(numeric * 100) / 100;
-};
-
-export const parseConfirmedLessonMultipliers = (value: unknown): ConfirmedLessonMultiplier[] => {
-  const raw = firstRouteParam(value);
-  if (typeof raw === 'string' && raw.length > MAX_LESSON_MULTIPLIER_PARAM_LENGTH) return [];
-  let parsed: unknown = raw;
-  if (typeof raw === 'string') {
-    try {
-      parsed = JSON.parse(raw);
-    } catch {
-      return [];
-    }
-  }
-  if (!Array.isArray(parsed)) return [];
-
-  const consolidated = new Map<number, number>();
-  for (const candidate of parsed) {
-    const multiplierValue = Array.isArray(candidate)
-      ? candidate[0]
-      : (candidate as { multiplier?: unknown } | null)?.multiplier;
-    const deltaValue = Array.isArray(candidate)
-      ? candidate[1]
-      : (candidate as { xpDelta?: unknown } | null)?.xpDelta;
-    const multiplier = normalizeConfirmedLessonMultiplier(multiplierValue);
-    const xpDelta = parseConfirmedLessonXp(deltaValue);
-    if (multiplier <= 1 || xpDelta <= 0) continue;
-    const nextDelta = (consolidated.get(multiplier) ?? 0) + xpDelta;
-    if (nextDelta <= Number.MAX_SAFE_INTEGER) consolidated.set(multiplier, nextDelta);
-  }
-  return [...consolidated.entries()]
-    .sort(([left], [right]) => left - right)
-    .slice(0, MAX_LESSON_MULTIPLIER_COUNT)
-    .map(([multiplier, xpDelta]) => ({ multiplier, xpDelta }));
-};
-
-const formatConfirmedLessonMultiplier = (multiplier: number): string =>
-  Number.isInteger(multiplier)
-    ? String(multiplier)
-    : multiplier.toFixed(2).replace(/0+$/, '').replace(/\.$/, '');
-
-export const deriveConfirmedLessonResults = (input: {
-  finalXp: number;
-  baseXp: number;
-  multipliers: ConfirmedLessonMultiplier[];
-}): { xp: number; rewards?: { multipliers: { label: string; xpDelta: number }[] } } => {
-  const finalXp = parseConfirmedLessonXp(input.finalXp);
-  const baseXp = parseConfirmedLessonXp(input.baseXp);
-  const multipliers = parseConfirmedLessonMultipliers(input.multipliers);
-  const multiplierXp = multipliers.reduce((total, reward) => total + reward.xpDelta, 0);
-  if (baseXp + multiplierXp !== finalXp) return { xp: finalXp };
-  if (multipliers.length === 0) return { xp: baseXp };
-  return {
-    xp: baseXp,
-    rewards: {
-      multipliers: multipliers.map((reward) => ({
-        label: `XP ×${formatConfirmedLessonMultiplier(reward.multiplier)}`,
-        xpDelta: reward.xpDelta,
-      })),
-    },
-  };
-};
 
 type LessonSoftUpsellCopy = { title: string; body: string; ctaLabel: string; dismissLabel: string; dismissAccessibilityLabel: string; dismissAccessibilityHint: string; ctaAccessibilityLabel: string; ctaAccessibilityHint: string };
 
@@ -272,7 +189,7 @@ function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onC
       <Animated.View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'flex-end', opacity: fadeAnim }}>
         <Pressable style={{ flex: 1 }} onPress={handleNo} />
         <View style={{
-          backgroundColor: t.bgCard,
+          backgroundColor: glassFill(t.bgCard, 0.46),
           borderTopLeftRadius: panelRadius,
           borderTopRightRadius: panelRadius,
           padding: 28,
@@ -296,7 +213,7 @@ function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onC
                   style={{
                     flex: 1,
                     minHeight: 52,
-                    backgroundColor: t.bgSurface,
+                    backgroundColor: glassFill(t.bgCard, 0.62),
                     borderRadius: buttonRadius,
                     paddingVertical: 14,
                     paddingHorizontal: 12,
@@ -336,7 +253,6 @@ function ReviewModal({ visible, context, t, f, themeMode, bottomInset, lang, onC
                         lineHeight: f.body * 1.15,
                         textAlign: 'center',
                       }}
-                      numberOfLines={2}
                     >
                       {variant.btnYes}
                     </Text>
@@ -381,13 +297,16 @@ interface Notif {
 }
 
 // ── AchievementNotifModal ─────────────────────────────────────────────────────
-function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonScore, lessonCefr, onDismiss }: {
+function AchievementNotifModal({ notif, lang, f, lessonId, lessonScore, lessonCefr, onDismiss }: {
   notif: Notif; lang: Lang; t: any; f: any; themeMode: string;
   lessonId: number; lessonScore: number; lessonCefr: string;
   onDismiss: () => void;
 }) {
   const opacity   = useRef(new Animated.Value(0)).current;
   const translateY = useRef(new Animated.Value(40)).current;
+  const { liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  const notifInsets = useStableSafeAreaInsets();
 
   useEffect(() => {
     Animated.parallel([
@@ -509,98 +428,108 @@ function AchievementNotifModal({ notif, lang, t, f, themeMode, lessonId, lessonS
       pl: 'Wszystkie lekcje na 5,0 i wszystkie testy zaliczone! Egzamin końcowy jest otwarty.',
     });
   }
+  // зачем: владелец 2026-09-29 — Liquid Glass «1 в 1 с макета» (overlays-specialist.html
+  // OS-ACHIEVEMENT-NOTIF-*): непрозрачная основа из токенов активной темы (13 тем), плитка-иконка,
+  // «Поделиться» вторичной кнопкой, CTA нейтральный (не зелёный), без обводок. Прокрутка — для крупного шрифта.
+  const notifIcon = notif.kind === 'lesson_unlock' ? 'layers-outline' : 'checkmark-circle-outline';
+  const shareLabel = triLang(lang, { ru: 'Поделиться', en: 'Share', uk: 'Поділитися', es: 'Compartir', 'pt-BR': 'Compartilhar', vi: 'Chia sẻ', id: 'Bagikan', tr: 'Paylaş', pl: 'Udostępnij' });
+  const greatLabel = triLang(lang, { ru: 'Отлично!', en: 'Great!', uk: 'Чудово!', es: '¡Genial!', 'pt-BR': 'Ótimo!', vi: 'Tuyệt!', id: 'Bagus!', tr: 'Harika!', pl: 'Świetnie!' });
   return (
     <Animated.View style={{
       position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 999,
       opacity, justifyContent: 'center', alignItems: 'center',
-      backgroundColor: 'rgba(0,0,0,0.65)',
+      backgroundColor: 'rgba(2,3,6,0.72)',
     }}>
-      <Pressable style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} onPress={dismiss} />
+      <Pressable style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} onPress={dismiss} accessibilityRole="button" accessibilityLabel={greatLabel} />
       <Animated.View style={{
         transform: [{ translateY }],
-        backgroundColor: t.bgCard,
-        borderRadius: 28, padding: 28, marginHorizontal: 24,
-        alignItems: 'center', width: '100%', maxWidth: 360,
-        borderWidth: 0, borderColor: t.textSecond + '44',
+        backgroundColor: glass.opaqueSheet,
+        borderRadius: 28,
+        marginHorizontal: 24,
+        marginTop: notifInsets.top,
+        marginBottom: notifInsets.bottom,
+        width: '100%', maxWidth: 360,
+        maxHeight: '86%',
         overflow: 'hidden',
-        shadowColor: '#000', shadowOpacity: 0.4, shadowRadius: 24, ...noAndroidOutline,
       }}>
-        {/* Icon / Image */}
-        {notif.kind === 'medal' && notif.medalTier && MEDAL_IMAGES[notif.medalTier] && (
-          <Image source={MEDAL_IMAGES[notif.medalTier]} style={{ width: 90, height: 90 }} contentFit="contain" />
-        )}
-        {notif.kind === 'lesson_unlock' && (
-          <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: t.accentBg, justifyContent: 'center', alignItems: 'center', marginBottom: 4, borderWidth: 0, borderColor: 'transparent', overflow: 'hidden' }}>
-            <Text style={{ fontSize: 40 }}>🔓</Text>
-          </View>
-        )}
-        {notif.kind === 'level_exam_unlock' && (
-          <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: t.bgSurface, justifyContent: 'center', alignItems: 'center', marginBottom: 4, borderWidth: 0, borderColor: 'transparent', overflow: 'hidden' }}>
-            <Text style={{ fontSize: 40 }}>📋</Text>
-          </View>
-        )}
-        {notif.kind === 'lingman_exam_unlock' && (
-          <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: t.correctBg, justifyContent: 'center', alignItems: 'center', marginBottom: 4, borderWidth: 0, borderColor: 'transparent', overflow: 'hidden' }}>
-            <Text style={{ fontSize: 40 }}>🎓</Text>
-          </View>
-        )}
-
-        {/* Title */}
-        <Text style={{ color: t.textPrimary, fontSize: f.numLg, fontWeight: '900', textAlign: 'center', marginTop: 12 }}>
-          {modalTitle}
-        </Text>
-
-        {/* Subtitle */}
-        {!!modalSub && (
-          <Text style={{ color: t.textMuted, fontSize: f.bodyLg, fontWeight: '500', marginTop: 8, textAlign: 'center', lineHeight: f.bodyLg * 1.4 }}>
-            {modalSub}
-          </Text>
-        )}
-
-        {/* Share button */}
-        <TouchableOpacity
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            gap: 8,
-            marginTop: 18,
-            backgroundColor: t.bgSurface,
-            borderRadius: 14,
-            paddingHorizontal: 18,
-            paddingVertical: 10,
-            borderWidth: 0,
-            borderColor: 'transparent',
-            overflow: 'hidden',
-          }}
-          onPress={async () => {
-            hapticTap();
-            await Share.share({ message: shareMessage() }).catch(() => {});
-          }}
+        <ScrollView
+          bounces={false}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ padding: 28, alignItems: 'center' }}
         >
-          <Ionicons name="share-outline" size={18} color={t.textSecond} />
-          <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '600' }}>
-            {triLang(lang, { ru: 'Поделиться', en: 'Share', uk: 'Поділитися', es: 'Compartir', 'pt-BR': 'Compartilhar', vi: 'Chia sẻ', id: 'Bagikan', tr: 'Paylaş', pl: 'Udostępnij' })}
-          </Text>
-        </TouchableOpacity>
+          {/* Icon / Image */}
+          {notif.kind === 'medal' && notif.medalTier && MEDAL_IMAGES[notif.medalTier] && (
+            <Image source={MEDAL_IMAGES[notif.medalTier]} style={{ width: 90, height: 90 }} contentFit="contain" accessible={false} />
+          )}
+          {notif.kind !== 'medal' && (
+            <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: glass.opaqueControl, justifyContent: 'center', alignItems: 'center', marginBottom: 4 }}>
+              <Ionicons name={notifIcon} size={38} color={glass.text} accessibilityElementsHidden />
+            </View>
+          )}
+          <Text accessibilityElementsHidden importantForAccessibility="no" style={{ color: glass.secondary, fontSize: f.body, letterSpacing: 6, marginTop: 10 }}>✦ ✦ ✦</Text>
 
-        {/* Dismiss */}
-        <TouchableOpacity
-          onPress={() => { hapticTap(); dismiss(); }}
-          style={{
-            marginTop: 14,
-            backgroundColor: t.accent,
-            borderRadius: 16,
-            paddingHorizontal: 40,
-            paddingVertical: 12,
-            borderWidth: 0,
-            borderColor: 'transparent',
-            overflow: 'hidden',
-          }}
-        >
-          <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.bodyLg }}>
-            {triLang(lang, { ru: 'Отлично!', en: 'Great!', uk: 'Чудово!', es: '¡Genial!', 'pt-BR': 'Ótimo!', vi: 'Tuyệt!', id: 'Bagus!', tr: 'Harika!', pl: 'Świetnie!' })}
+          {/* Title */}
+          <Text accessibilityRole="header" style={{ color: glass.text, fontSize: f.numLg, fontWeight: '900', textAlign: 'center', marginTop: 10 }}>
+            {modalTitle}
           </Text>
-        </TouchableOpacity>
+
+          {/* Subtitle */}
+          {!!modalSub && (
+            <Text style={{ color: glass.secondary, fontSize: f.bodyLg, fontWeight: '500', marginTop: 8, textAlign: 'center', lineHeight: f.bodyLg * 1.4 }}>
+              {modalSub}
+            </Text>
+          )}
+
+          {/* Share button */}
+          <TouchableOpacity
+            accessibilityRole="button"
+            accessibilityLabel={shareLabel}
+            activeOpacity={0.8}
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 8,
+              marginTop: 22,
+              minHeight: 48,
+              backgroundColor: glass.opaqueControl,
+              borderRadius: 16,
+              paddingHorizontal: 22,
+              alignSelf: 'stretch',
+            }}
+            onPress={async () => {
+              hapticTap();
+              await Share.share({ message: shareMessage() }).catch(() => {});
+            }}
+          >
+            <Ionicons name="share-outline" size={18} color={glass.text} accessibilityElementsHidden />
+            <Text style={{ color: glass.text, fontSize: f.body, fontWeight: '700' }}>
+              {shareLabel}
+            </Text>
+          </TouchableOpacity>
+
+          {/* Dismiss */}
+          <TouchableOpacity
+            accessibilityRole="button"
+            accessibilityLabel={greatLabel}
+            activeOpacity={0.85}
+            onPress={() => { hapticTap(); dismiss(); }}
+            style={{
+              marginTop: 12,
+              minHeight: 48,
+              alignSelf: 'stretch',
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: glass.cta,
+              borderRadius: 16,
+              paddingHorizontal: 24,
+            }}
+          >
+            <Text style={{ color: glass.ctaInk, fontWeight: '800', fontSize: f.bodyLg }}>
+              {greatLabel}
+            </Text>
+          </TouchableOpacity>
+        </ScrollView>
       </Animated.View>
     </Animated.View>
   );
@@ -622,9 +551,6 @@ export default function LessonComplete() {
   const params = useLocalSearchParams<{
     id: string;
     unlocked?: string;
-    earnedXp?: string | string[];
-    earnedBaseXp?: string | string[];
-    earnedMultipliers?: string | string[];
     completedAttemptId?: string | string[];
     repeatAttemptId?: string | string[];
     passed?: string | string[];
@@ -666,7 +592,9 @@ export default function LessonComplete() {
   // settle() при монтировании. ordinal фиксирован в параметре навигации, а не
   // пересчитывается здесь заново (passCount на lesson1 в этот момент уже мог
   // измениться под новый заход).
-  const runeCompletionOrdinal = Number(firstRouteParam(params.runeCompletionOrdinal)) || 1;
+  // зачем: общий helper firstRouteParam удалён вместе с XP-параметрами маршрута; здесь нужен только для ординала рун
+  const rawRuneOrdinal = params.runeCompletionOrdinal;
+  const runeCompletionOrdinal = Number(Array.isArray(rawRuneOrdinal) ? rawRuneOrdinal[0] : rawRuneOrdinal) || 1;
   const practiceRunes = usePracticeRunes({
     activity: 'lesson',
     sessionKey: `lesson${lessonId}_runes_${studyTarget}`,
@@ -726,33 +654,6 @@ export default function LessonComplete() {
   const [lessonCefr,  setLessonCefr]  = useState<string>('A1');
   const [medalTier, setMedalTier]     = useState<MedalTier>('none');
   const [medalImproved, setMedalImproved] = useState(false);
-  const [showBonus, setShowBonus] = useState(false);
-  const [bonusXP, setBonusXP] = useState(0);
-  const [firstCompletionAward, setFirstCompletionAward] = useState<{
-    baseXp: number;
-    finalXp: number;
-    multiplier: number;
-  } | null>(null);
-  const lessonAnswerXp = parseConfirmedLessonXp(params.earnedXp);
-  const lessonAnswerBaseXp = parseConfirmedLessonXp(params.earnedBaseXp);
-  const earnedMultipliersParam = firstRouteParam(params.earnedMultipliers);
-  const lessonAnswerMultipliers = useMemo(
-    () => parseConfirmedLessonMultipliers(earnedMultipliersParam),
-    [earnedMultipliersParam],
-  );
-  const lessonResults = useMemo(() => {
-    const firstCompletionMultipliers = firstCompletionAward
-      ? [{
-          multiplier: firstCompletionAward.multiplier,
-          xpDelta: Math.max(0, firstCompletionAward.finalXp - firstCompletionAward.baseXp),
-        }]
-      : [];
-    return deriveConfirmedLessonResults({
-      finalXp: lessonAnswerXp + (firstCompletionAward?.finalXp ?? 0),
-      baseXp: lessonAnswerBaseXp + (firstCompletionAward?.baseXp ?? 0),
-      multipliers: [...lessonAnswerMultipliers, ...firstCompletionMultipliers],
-    });
-  }, [firstCompletionAward, lessonAnswerBaseXp, lessonAnswerMultipliers, lessonAnswerXp]);
   const isQualifyingLessonPass = params.passed === '1';
   const [completionXpReady, setCompletionXpReady] = useState(false);
   const [showPremiumBanner, setShowPremiumBanner] = useState(false);
@@ -934,9 +835,7 @@ export default function LessonComplete() {
       };
       const shardKeys: ShardSource[] = [];
 
-      // Бонус первого прохождения (сундук XP + осколки lesson_first).
-      // Модуль сам логирует сбой и ставит выдачу в retry-очередь — раньше
-      // ошибка здесь молча съедала ВСЕ награды экрана (пустой catch).
+      // Бонус первого прохождения выдаёт только локальные руны/осколки.
       const firstBonus = await grantLessonFirstCompleteBonus({ lessonId, studyTarget, lang });
       const softUpsellCandidate = candidateAfterLessonGrant({
         status: firstBonus.status,
@@ -944,19 +843,10 @@ export default function LessonComplete() {
         current: softUpsellIdentityRef.current,
         mounted: softUpsellMountedRef.current,
         accountGenerationCurrent: isCurrentAccountGeneration(grantAccountToken),
-        freeLessonLimit: getFreeLessonLimit(),
+        freeLessonLimit: FREE_LESSON_LIMIT,
       });
       if (softUpsellCandidate) setSoftUpsellCandidates([softUpsellCandidate]);
       if (firstBonus.status === 'granted') {
-        setFirstCompletionAward({
-          baseXp: firstBonus.baseXp,
-          finalXp: firstBonus.finalDelta,
-          multiplier: firstBonus.multiplier,
-        });
-        if (firstBonus.hasBonusWon) {
-          setBonusXP(firstBonus.bonusXP);
-          setShowBonus(true);
-        }
         if (firstBonus.shardsGranted) shardKeys.push('lesson_first');
       }
 
@@ -1046,19 +936,10 @@ export default function LessonComplete() {
 
       if (shardKeys.length > 0) {
         const baseTotal = shardKeys.reduce((acc, k) => acc + (SHARD_REWARDS[k] ?? 0), 0);
-        // Фаза 2: +5% осколков за карточку IV+ — та же per-source формула, что и в
-        // shards_system (бонус уже включён в фактическое начисление; здесь — показ).
-        const shardPerkM = profileCardShardMultiplier(
-          normalizeProfileCardLevel(await AsyncStorage.getItem(PROFILE_CARD_LEVEL_KEY)),
-        );
-        const perkBonusTotal = shardKeys.reduce(
-          (acc, k) => acc + (shardPerkM > 1 ? Math.ceil((SHARD_REWARDS[k] ?? 0) * (shardPerkM - 1)) : 0),
-          0,
-        );
-        const total = baseTotal + perkBonusTotal;
+        const total = baseTotal;
         if (total > 0) {
           const reasonText = formatLessonShardBatchReason(shardKeys, lang);
-          emitAppEvent('shards_earned', { amount: total, ...(perkBonusTotal > 0 ? { bonus: perkBonusTotal } : {}), reasonText });
+          emitAppEvent('shards_earned', { amount: total, reasonText });
         }
       }
 
@@ -1096,7 +977,7 @@ export default function LessonComplete() {
   }, [isQualifyingLessonPass, lang, lessonId, softUpsellStudyTarget, studyTarget]);
 
   useEffect(() => {
-    // Доначисляем бонусы, зависшие из-за прошлых сбоев (сеть/лимит XP).
+    // Доначисляем бонусы, зависшие из-за прошлых сбоев сети.
     // Идемпотентно: guard-ключ + стабильный eventId в леджере.
     void retryPendingLessonBonusGrants();
   }, []);
@@ -1143,9 +1024,6 @@ export default function LessonComplete() {
         }
         return;
       }
-      // Ответы уже получили XP со всеми активными lesson-scoped множителями.
-      // Здесь один раз закрываем их расходные заряды по identity этой попытки.
-      void finalizeLessonXpMultipliers(completionAttemptId).catch(() => {});
       void grantBonus().finally(() => {
         if (!cancelled) setCompletionXpReady(true);
       });
@@ -1219,7 +1097,6 @@ export default function LessonComplete() {
             passed: correct >= 45,
             progress: p,
             cellIndex: p.length,
-            xpDelta: 0,
             attemptId: completionAttemptId,
           },
         }).catch(() => {});
@@ -1453,9 +1330,7 @@ export default function LessonComplete() {
               // зачем (владелец 2026-09-17): в комбо звёзд нет — они часть
               // медали конкретной темы, а комбо тем не присваивает.
               showStars={!isComboCompletion}
-              xp={lessonResults.xp}
               runes={practiceRunes.runes}
-              rewards={lessonResults.rewards}
               title={c.title}
               subtitle={nextLessonUnlockHint}
               badge={medalTier !== 'none' && MEDAL_IMAGES_COMPLETE[medalTier] ? (
@@ -1595,7 +1470,7 @@ export default function LessonComplete() {
           width: 36,
           height: 36,
           borderRadius: 18,
-          backgroundColor: t.bgCard,
+          backgroundColor: glassFill(t.bgCard, 0.46),
           borderWidth: 0,
           borderColor: t.border,
           justifyContent: 'center',
@@ -1646,17 +1521,6 @@ export default function LessonComplete() {
             {c.subtitle(lessonId)}
           </Text>
 
-          {/* Бонус +500 */}
-          <View style={{
-            flexDirection: 'row', alignItems: 'center', gap: 8,
-            backgroundColor: t.correctBg, borderRadius: 14,
-            paddingHorizontal: 18, paddingVertical: 12,
-            borderWidth: 1, borderColor: t.correct, marginBottom: 20,
-            overflow: 'hidden',
-          }}>
-            <Ionicons name="star" size={20} color={t.correct} />
-            <Text style={{ color: t.correct, fontSize: 18, fontWeight: '700' }}>{c.bonus}</Text>
-          </View>
 
           {/* Руны за урок (владелец, 2026-08-27): показываются только если
               накопилось хоть что-то — урок мог быть пройден без рун (старый
@@ -1664,15 +1528,14 @@ export default function LessonComplete() {
           {practiceRunes.runes > 0 && (
             <View style={{
               flexDirection: 'row', alignItems: 'center', gap: 8,
-              backgroundColor: t.bgCard, borderRadius: 14,
+              backgroundColor: glassFill(t.bgCard, 0.46), borderRadius: 14,
               paddingHorizontal: 18, paddingVertical: 12,
               marginBottom: 20, overflow: 'hidden',
             }}>
-              {/* guard-ok: декоративный ассет, смысл несёт число рядом */}
-              <Image
-                source={require('../assets/images/level-spin-rewards/stars_10.webp')}
-                style={{ width: 22, height: 22 }}
-                contentFit="contain"
+              <Ionicons
+                name="star"
+                size={22}
+                color={t.accent}
                 accessible={false}
                 accessibilityElementsHidden
                 importantForAccessibility="no"
@@ -1685,7 +1548,7 @@ export default function LessonComplete() {
 
           {/* Совет отдохнуть */}
           <View style={{
-            backgroundColor: t.bgCard, borderRadius: 14,
+            backgroundColor: glassFill(t.bgCard, 0.46), borderRadius: 14,
             padding: 16, borderWidth: 0, borderColor: t.border,
             width: '100%', marginBottom: 36,
             flexDirection: 'row', alignItems: 'center', gap: 12,
@@ -1809,7 +1672,7 @@ export default function LessonComplete() {
               pressedExternally={repeatOpening}
               wrapStyle={{ opacity: repeatOpening ? 0.72 : 1 }}
               style={{
-                width: '100%', backgroundColor: t.bgCard,
+                width: '100%', backgroundColor: glassFill(t.bgCard, 0.46),
                 borderRadius: 16, padding: 16,
                 borderWidth: 0, borderColor: t.accent,
                 flexDirection: 'row', justifyContent: 'center', gap: 8,
@@ -1881,9 +1744,7 @@ export default function LessonComplete() {
         <View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 999 }}>
           <ResultsSequence
             stars={RESULTS_STARS_BY_TIER[medalTier]}
-            xp={lessonResults.xp}
             runes={practiceRunes.runes}
-            rewards={lessonResults.rewards}
             title={c.title}
             subtitle={c.subtitle(lessonId)}
             badge={medalTier !== 'none' && MEDAL_IMAGES_COMPLETE[medalTier] ? (
@@ -1897,14 +1758,6 @@ export default function LessonComplete() {
             onCtaPrimary={() => setSeqDone(true)}
           />
         </View>
-      )}
-      {showBonus && seqDone && (
-        <BonusXPCard
-          bonusXP={bonusXP}
-          onDismiss={() => setShowBonus(false)}
-          position="center"
-          duration={2000}
-        />
       )}
       <ReviewPromptModal
         visible={showReview}

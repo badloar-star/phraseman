@@ -12,6 +12,7 @@ import { Image as ExpoImage } from 'expo-image';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getPersonalProgressSnapshot, hydratePersonalProgress } from './personal_progress_store';
 import { useTheme } from '../components/ThemeContext';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useLang } from '../components/LangContext';
 import ReportErrorButton from '../components/ReportErrorButton';
 import BouncyScrollView from '../components/BouncyScrollView';
@@ -46,7 +47,6 @@ import { STORE_URL, ENABLE_DEV_TOOLS } from './config';
 import { buildAchievementShareMessage } from './achievement_share';
 import { achievementShelfInitialId } from './achievement_shelf_model';
 import type { RuntimeStudyTarget } from './target_storage_keys';
-import { loadConfirmedLeagueAchievementEvidence } from './league_engine';
 
 const GRID_GAP = 10;
 const GRID_SIDE_PADDING = 36;
@@ -82,47 +82,24 @@ type AchievementGridMetrics = ReturnType<typeof getAchievementGridMetrics>;
 
 interface AchievementStats {
   streak: number;
-  xp: number;
   shards: number;
-  leagueChampion: number;
-  leagueDiamondWeeks: number;
 }
 
 const emptyAchievementStats = (): AchievementStats => ({
   streak: 0,
-  xp: 0,
   shards: 0,
-  leagueChampion: 0,
-  leagueDiamondWeeks: 0,
 });
-
-const readJsonStreak = (raw: string | null, key = 'streak'): number => {
-  try {
-    const parsed = raw ? JSON.parse(raw) : {};
-    return Math.max(0, Math.floor(Number(parsed?.[key]) || 0));
-  } catch { return 0; }
-};
 
 async function loadAchievementStats(): Promise<AchievementStats> {
   try {
     await hydratePersonalProgress();
     const personalProgress = getPersonalProgressSnapshot();
-    const [
-      shardsRaw, leagueChampionRaw, leagueDiamondWeeksRaw,
-    ] = await Promise.all([
-      AsyncStorage.getItem('shards_balance'),
-      AsyncStorage.getItem('achievement_league_champion_count'),
-      AsyncStorage.getItem('achievement_league_diamond_week_streak_v1'),
-    ]);
+    const shardsRaw = await AsyncStorage.getItem('shards_balance');
     const streak = personalProgress.streakCount;
-    const xp = personalProgress.totalXp;
     const shards = parseInt(shardsRaw || '0') || 0;
     return {
       streak,
-      xp,
       shards,
-      leagueChampion: parseInt(leagueChampionRaw || '0') || 0,
-      leagueDiamondWeeks: readJsonStreak(leagueDiamondWeeksRaw),
     };
   } catch { return emptyAchievementStats(); }
 }
@@ -132,17 +109,10 @@ function getAchievementProgress(id: string, stats: AchievementStats): [number, n
     const n = parseInt(id.replace('streak_', ''));
     if (!isNaN(n)) return [Math.min(stats.streak, n), n];
   }
-  if (id.startsWith('xp_')) {
-    const n = parseInt(id.replace('xp_', ''));
-    if (!isNaN(n)) return [Math.min(stats.xp, n), n];
-  }
   if (id.startsWith('shards_')) {
     const n = parseInt(id.replace('shards_', ''));
     if (!isNaN(n)) return [Math.min(stats.shards, n), n];
   }
-  if (id === 'league_champion_5') return [Math.min(stats.leagueChampion, 5), 5];
-  if (id === 'league_champion_10') return [Math.min(stats.leagueChampion, 10), 10];
-  if (id === 'league_diamond_4_weeks') return [Math.min(stats.leagueDiamondWeeks, 4), 4];
   return null;
 }
 
@@ -166,27 +136,14 @@ export const ACHIEVEMENT_ICON: Record<string, any> = {
   streak_200:         'diamond-outline',
   streak_365:         'star',
   streak_500:         'crown',
-  xp_100:             'flash-outline',
-  xp_250:             'flash',
-  xp_500:             'flash',
-  xp_1000:            'star',
-  xp_2500:            'planet-outline',
-  xp_5000:            'star-half',
-  xp_10000:           'infinite',
-  xp_20000:           'planet',
-  xp_50000:           'nuclear',
-  xp_100000:          'trophy',
   comeback:           'rocket',
   shards_100:         'diamond',
-  league_champion:    'trophy',
-  league_diamond:     'diamond',
 };
 
 // ── Цвет категории ────────────────────────────────────────────────────────────
 export const CAT_COLOR: Record<string, string> = {
   streak:  '#FF6B35',
   lessons: '#3B82F6',
-  xp:      '#F59E0B',
   combo:   '#EC4899',
   special: '#10B981',
   medal:   '#E11D48',
@@ -197,7 +154,6 @@ function achievementCategoryColor(cat: string, _themeMode?: string): string {
 const CAT_ICON: Record<string, any> = {
   streak:  'flame',
   lessons: 'book',
-  xp:      'star',
   combo:   'flash',
   special: 'rocket',
   medal:   'diamond',
@@ -205,48 +161,47 @@ const CAT_ICON: Record<string, any> = {
 const CAT_ICON_IMAGE: Record<string, any> = {
   streak:  require('../assets/images/achievement_categories/achievement-category-streak.webp'),
   lessons: require('../assets/images/achievement_categories/achievement-category-lessons.webp'),
-  xp:      require('../assets/images/achievement_categories/achievement-category-xp.webp'),
   combo:   require('../assets/images/achievement_categories/achievement-category-combo.webp'),
   special: require('../assets/images/achievement_categories/achievement-category-special.webp'),
 };
 const CAT_LABEL_RU: Record<string, string> = {
-  streak: 'Цепочка', lessons: 'Уроки', xp: 'Опыт',
+  streak: 'Цепочка', lessons: 'Уроки',
   combo: 'Серии', special: 'Особые', medal: 'Медали',
 };
 const CAT_LABEL_UK: Record<string, string> = {
-  streak: 'Ланцюжок', lessons: 'Уроки', xp: 'Досвід',
+  streak: 'Ланцюжок', lessons: 'Уроки',
   combo: 'Серії', special: 'Особливі', medal: 'Медалі',
 };
 const CAT_LABEL_EN: Record<string, string> = {
-  streak: 'Streak', lessons: 'Lessons', xp: 'XP',
+  streak: 'Streak', lessons: 'Lessons',
   combo: 'Combos', special: 'Special', medal: 'Medals',
 };
 const CAT_LABEL_ES: Record<string, string> = {
-  streak: 'Racha', lessons: 'Lecciones', xp: 'Experiencia',
+  streak: 'Racha', lessons: 'Lecciones',
   combo: 'Series', special: 'Especiales', medal: 'Medallas',
 };
 const CAT_LABEL_PTBR: Record<string, string> = {
-  streak: 'Sequência', lessons: 'Lições', xp: 'Experiência',
+  streak: 'Sequência', lessons: 'Lições',
   combo: 'Séries', special: 'Especiais', medal: 'Medalhas',
 };
 const CAT_LABEL_VI: Record<string, string> = {
-  streak: 'Chuỗi ngày', lessons: 'Bài học', xp: 'Kinh nghiệm',
+  streak: 'Chuỗi ngày', lessons: 'Bài học',
   combo: 'Chuỗi', special: 'Đặc biệt', medal: 'Huy chương',
 };
 const CAT_LABEL_ID: Record<string, string> = {
-  streak: 'Rangkaian', lessons: 'Pelajaran', xp: 'Pengalaman',
+  streak: 'Rangkaian', lessons: 'Pelajaran',
   combo: 'Seri', special: 'Spesial', medal: 'Medali',
 };
 const CAT_LABEL_TR: Record<string, string> = {
-  streak: 'Seri', lessons: 'Dersler', xp: 'Deneyim',
+  streak: 'Seri', lessons: 'Dersler',
   combo: 'Seriler', special: 'Özel', medal: 'Madalyalar',
 };
 const CAT_LABEL_PL: Record<string, string> = {
-  streak: 'Seria', lessons: 'Lekcje', xp: 'Doświadczenie',
+  streak: 'Seria', lessons: 'Lekcje',
   combo: 'Serie', special: 'Specjalne', medal: 'Medale',
 };
 
-const CATEGORIES = ['streak', 'lessons', 'xp', 'combo', 'special', 'medal'] as const;
+const CATEGORIES = ['streak', 'lessons', 'combo', 'special', 'medal'] as const;
 type ShelfCategory = 'all' | Achievement['category'];
 
 function achievementShelfCategoryLabel(category: ShelfCategory, lang: Lang): string {
@@ -613,7 +568,7 @@ export const BadgeShield = memo(BadgeShieldInner);
 
 // ── Модальное окно ────────────────────────────────────────────────────────────
 function AchievementModal({
-  achievement, state, stats, t, f, isDark, themeMode, onClose, revealLockedDetails, studyTarget,
+  achievement, state, stats, f, isDark, onClose, revealLockedDetails, studyTarget,
 }: {
   achievement: Achievement;
   state: AchievementState | undefined;
@@ -626,6 +581,8 @@ function AchievementModal({
   studyTarget: RuntimeStudyTarget;
 }) {
   const { lang } = useLang();
+  const { liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const { width: screenW, height: screenH } = useWindowDimensions();
   const unlocked = !!state?.unlockedAt;
   const color    = achievementCategoryColor(achievement.category);
@@ -651,20 +608,22 @@ function AchievementModal({
   const shareLabel = triLang(lang, { ru: 'Поделиться', uk: 'Поділитися', en: 'Share', es: 'Compartir', 'pt-BR': 'Compartilhar', vi: 'Chia sẻ', id: 'Bagikan', tr: 'Paylaş', pl: 'Udostępnij' });
   const closeLabel = triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' });
 
+  // зачем: владелец 2026-09-29 — Liquid Glass «1 в 1 с макета» (overlays-more.html
+  // OM-ACHIEVEMENT-EARNED / -PROGRESS): непрозрачное досье из токенов активной темы (13 тем), без
+  // градиентов и обводок; цвет категории — только точка/значок/полоса прогресса. Прокрутка — для крупного шрифта.
   return (
     <HybridAlertShell scrollContent={false}
       visible
       onRequestClose={onClose}
-      shadowColor={t.shadowDark}
-      backdropColor="rgba(0,0,0,0.72)"
+      shadowColor="rgba(0,0,0,0.5)"
+      backdropColor="rgba(2,3,6,0.72)"
       testID="achievement-dossier-backdrop"
     >
       <View
         testID="achievement-award-dossier"
         style={{
-          backgroundColor: t.bgCard,
-          borderWidth: StyleSheet.hairlineWidth,
-          borderColor: t.borderHighlight,
+          backgroundColor: glass.opaqueSheet,
+          borderRadius: 28,
           width: '100%',
           maxHeight: modalMaxHeight,
           overflow: 'hidden',
@@ -679,12 +638,11 @@ function AchievementModal({
           onPress={onClose}
           style={{
             position: 'absolute', top: 12, right: 12, zIndex: 3,
-            width: 44, height: 44, borderRadius: 15, backgroundColor: t.bgCard,
-            borderWidth: StyleSheet.hairlineWidth, borderColor: t.borderHighlight,
+            width: 44, height: 44, borderRadius: 22, backgroundColor: glass.opaqueControl,
             alignItems: 'center', justifyContent: 'center',
           }}
         >
-          <Ionicons name="close" size={21} color={t.textPrimary} />
+          <Ionicons name="close" size={21} color={glass.text} />
         </TapScale>
 
         <ScrollView
@@ -693,54 +651,41 @@ function AchievementModal({
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ padding: modalPad, alignItems: 'stretch', gap: 16 }}
         >
-          <LinearGradient
+          <View
             testID="achievement-dossier-hero"
-            colors={[t.bgSurface2, t.bgCard]}
-            start={{ x: 0.1, y: 0 }}
-            end={{ x: 0.9, y: 1 }}
             style={{
               minHeight: 190,
-              borderRadius: 20,
-              borderWidth: StyleSheet.hairlineWidth,
-              borderColor: t.borderHighlight,
+              borderRadius: 22,
+              backgroundColor: glass.opaqueControl,
               alignItems: 'center',
               justifyContent: 'center',
               overflow: 'hidden',
+              marginTop: 40,
             }}
           >
-            <View
-              pointerEvents="none"
-              style={{
-                position: 'absolute', left: 26, right: 26, bottom: 22, height: 10,
-                borderRadius: 5, backgroundColor: t.bgSurface,
-                borderTopWidth: 1, borderTopColor: t.borderHighlight,
-                shadowColor: t.shadowDark, shadowOffset: { width: 0, height: 5 },
-                shadowOpacity: 0.22, shadowRadius: 8, elevation: 3,
-              }}
-            />
             <BadgeShield
               unlocked={unlocked}
               inProgress={!unlocked && showLockedDetails}
               color={color}
               iconName={iconName}
               size={132}
-              maskBg={t.bgSurface2}
+              maskBg={glass.opaqueControl}
               achievementId={achievement.id}
               isDark={isDark}
             />
-          </LinearGradient>
+          </View>
 
           <View style={{ gap: 8 }}>
             {unlocked && state?.unlockedAt && (
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
                 <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: color }} />
-                <Ionicons name="calendar-outline" size={15} color={t.textMuted} />
-                <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '800', flex: 1 }}>
+                <Ionicons name="calendar-outline" size={15} color={glass.secondary} />
+                <Text style={{ color: glass.secondary, fontSize: f.sub, fontWeight: '800', flex: 1 }}>
                   {obtainedLabel} · {formatDate(state.unlockedAt)}
                 </Text>
               </View>
             )}
-            <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', lineHeight: Math.round(f.h2 * 1.08) }}>
+            <Text accessibilityRole="header" style={{ color: glass.text, fontSize: f.h2, fontWeight: '900', lineHeight: Math.round(f.h2 * 1.08) }}>
               {unlocked || showLockedDetails ? name : triLang(lang, {
                 ru: 'Секретное достижение', uk: 'Секретне досягнення', en: 'Secret achievement', es: 'Logro secreto',
                 'pt-BR': 'Conquista secreta', vi: 'Thành tựu bí mật', id: 'Pencapaian rahasia',
@@ -749,7 +694,7 @@ function AchievementModal({
             </Text>
             <Text
               testID="achievement-dossier-description"
-              style={{ color: t.textSecond, fontSize: f.body, fontWeight: '700', lineHeight: Math.round(f.body * 1.5) }}
+              style={{ color: glass.secondary, fontSize: f.body, fontWeight: '700', lineHeight: Math.round(f.body * 1.5) }}
             >
               {unlocked || showLockedDetails ? desc : triLang(lang, {
                 ru: 'Разблокируй, чтобы узнать', uk: 'Розблокуй, щоб дізнатись',
@@ -765,30 +710,29 @@ function AchievementModal({
             <View
               testID="achievement-dossier-condition"
               style={{
-                width: '100%', backgroundColor: t.bgSurface2, borderRadius: 15,
+                width: '100%', backgroundColor: glass.opaqueControl, borderRadius: 16,
                 paddingHorizontal: 14, paddingVertical: 13, gap: 6,
-                borderWidth: StyleSheet.hairlineWidth, borderColor: t.border,
               }}
             >
-              <Text style={{ color: t.accent, fontSize: f.caption, fontWeight: '900', letterSpacing: 0.6, textTransform: 'uppercase' }}>
+              <Text style={{ color: glass.secondary, fontSize: f.caption, fontWeight: '900', letterSpacing: 0.6, textTransform: 'uppercase' }}>
                 {triLang(lang, {
                   ru: 'Как получить', uk: 'Як отримати', en: 'How to get it', es: 'Cómo conseguirlo',
                   'pt-BR': 'Como conseguir', vi: 'Cách nhận', id: 'Cara mendapatkan',
                   tr: 'Nasıl kazanılır', pl: 'Jak zdobyć',
                 })}
               </Text>
-              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800', lineHeight: Math.round(f.body * 1.45) }}>
+              <Text style={{ color: glass.text, fontSize: f.body, fontWeight: '800', lineHeight: Math.round(f.body * 1.45) }}>
                 {condition}
               </Text>
             </View>
           ) : null}
 
           {prog && prog[1] > 0 && (
-            <View style={{ width: '100%', gap: 9, backgroundColor: t.bgSurface2, borderRadius: 15, padding: 14, borderWidth: StyleSheet.hairlineWidth, borderColor: t.border }}>
-              <View style={{ height: 8, backgroundColor: t.bgSurface, borderRadius: 4, overflow: 'hidden' }}>
+            <View style={{ width: '100%', gap: 9, backgroundColor: glass.opaqueControl, borderRadius: 16, padding: 14 }}>
+              <View style={{ height: 8, backgroundColor: glass.line, borderRadius: 4, overflow: 'hidden' }}>
                 <View style={{ height: 8, width: `${progPct}%` as any, backgroundColor: color, borderRadius: 4 }} />
               </View>
-              <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '800', textAlign: 'center' }}>
+              <Text style={{ color: glass.secondary, fontSize: f.sub, fontWeight: '800', textAlign: 'center' }}>
                 {prog[0]} / {prog[1]}
                 {prog[1] - prog[0] > 0 && progPct > 0 && (
                   `  ·  ${triLang(lang, { ru: 'ещё', uk: 'ще', en: 'more', es: 'faltan', 'pt-BR': 'faltam', vi: 'còn', id: 'lagi', tr: 'kaldı', pl: 'jeszcze' })} ${prog[1] - prog[0]}`
@@ -804,8 +748,7 @@ function AchievementModal({
               accessibilityLabel={shareLabel}
               scaleTo={0.97}
               style={{
-                width: '100%', minHeight: 56, backgroundColor: t.bgSurface2, borderRadius: 17,
-                borderWidth: StyleSheet.hairlineWidth, borderColor: t.borderHighlight,
+                width: '100%', minHeight: 56, backgroundColor: glass.cta, borderRadius: 18,
                 paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', gap: 11,
               }}
               onPress={async () => {
@@ -816,13 +759,11 @@ function AchievementModal({
                 }
               }}
             >
-              <View style={{ width: 36, height: 36, borderRadius: 12, backgroundColor: t.accentBg, alignItems: 'center', justifyContent: 'center' }}>
-                <Ionicons name="share-outline" size={19} color={t.accent} />
-              </View>
-              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', flex: 1 }}>
+              <Ionicons name="share-outline" size={20} color={glass.ctaInk} />
+              <Text style={{ color: glass.ctaInk, fontSize: f.body, fontWeight: '900', flex: 1 }}>
                 {shareLabel}
               </Text>
-              <Ionicons name="chevron-forward" size={18} color={t.textMuted} />
+              <Ionicons name="chevron-forward" size={18} color={glass.ctaInk} />
             </TapScale>
           )}
         </ScrollView>
@@ -1024,14 +965,6 @@ export default function AchievementsScreen() {
       // Шаг 2 — тяжёлый пересчёт после первого кадра. Экран уже честный.
       if (cancelled) return;
       try {
-        const leagueHistory = await loadConfirmedLeagueAchievementEvidence().catch((e) => {
-          console.warn('[ACH-BOOT] league evidence failed', e instanceof Error ? e.message : String(e));
-          return [];
-        });
-        console.log('[ACH-BOOT] recheck start', { leagueHistory: leagueHistory.length });
-        if (leagueHistory.length > 0) {
-          await checkAchievements({ type: 'league_history', results: leagueHistory });
-        }
         await checkAchievements({ type: 'backfill', studyTarget });
       } catch (e) {
         console.warn('[ACH-BOOT] recheck failed', e instanceof Error ? e.message : String(e));

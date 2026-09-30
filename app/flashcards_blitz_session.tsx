@@ -15,7 +15,7 @@
 // transform scaleX (НЕ width — принцип 3), origin слева.
 //
 // Финал (таймер 0 / жизни 0) → SessionResultScreen (верно/ошибок/точность
-// + счёт). XP блиц не даёт (безлимитный режим).
+// + счёт). legacy reward блиц не даёт (безлимитный режим).
 //
 // FIX (владелец, 2026-08-13):
 //  • «что даёт счёт?» — личный рекорд (flashcards/blitz_record.ts): побил
@@ -54,7 +54,10 @@ import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import ReportErrorButton from '../components/ReportErrorButton';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import { triLang } from '../constants/i18n';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { PracticeAnswerMark, PracticeBackButton, PracticeHeaderTitle, PracticeRoundIconButton, PracticeTimerPill } from '../components/practice/PracticeChrome';
 import { flashcardContentLang } from './spanish_content_gate';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { SessionResultScreen } from './flashcards/SessionResultScreen';
@@ -84,7 +87,7 @@ import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_captur
 import { isMistakeStudyTargetValue } from '../modules/mistake-practice/contracts';
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { captureAccountGeneration } from './account_generation';
-import { consumeFlashcardTrainingQuota } from './revenue_quota_access';
+import { consumeMonthlyTrainingSession } from './monthly_training_sessions';
 import {
   acknowledgeAndClearFlashcardTrainingPendingGrant,
   abandonFlashcardTrainingPendingGrant,
@@ -104,6 +107,10 @@ import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset'
 const ACCENT = '#FF8A3D';
 const OK = '#40C080';
 const BAD = '#E05050';
+/** Opaque semantic fills preserve answer contrast without relying on a border. */
+const ANSWER_OK_SURFACE = '#185C3A';
+const ANSWER_BAD_SURFACE = '#702B35';
+const ANSWER_STATE_TEXT = '#FFFFFF';
 /** Последние секунды — таймер краснеет, добавляя азарта. */
 const DANGER_SEC = 10;
 
@@ -128,10 +135,30 @@ function shuffleArr<T>(a: readonly T[]): T[] {
 
 const IDLE_BTNS: BtnState[] = ['idle', 'idle', 'idle', 'idle'];
 
+/**
+ * Passive material only: answer events remain owned by the session state below.
+ * A static translucent substrate is deliberate here: five live BlurViews on the
+ * timed interaction path would be an avoidable Android rendering cost.
+ */
+function BlitzGlassSurface({ chrome, sheen = true }: { chrome: ReturnType<typeof liquidGlassTokens>; sheen?: boolean }) {
+  if (!sheen) return null;
+  return (
+    <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+      <LinearGradient
+        colors={[chrome.lightTint, 'transparent']}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0.85, y: 1 }}
+        style={[StyleSheet.absoluteFill, { opacity: 0.08 }]}
+      />
+    </View>
+  );
+}
+
 export default function FlashcardsBlitzSession() {
   const router = useRouter();
-  const { theme: t, f } = useTheme();
-  const { accessResolved } = usePremium();
+  const { theme: t, f, liquidGlassThemeId } = useTheme();
+  const blitzGlass = liquidGlassTokens(liquidGlassThemeId);
+  const { accessResolved, hasPremiumAccess } = usePremium();
   const blitzAccessGranted = accessResolved;
   const blitzAccessGrantedRef = useRef(blitzAccessGranted);
   const blitzAccessEpochRef = useRef(0);
@@ -535,9 +562,10 @@ export default function FlashcardsBlitzSession() {
         return;
       }
       if (pendingRecord.phase === 'prepared') {
-        const quotaResult = await consumeFlashcardTrainingQuota({
+        const quotaResult = await consumeMonthlyTrainingSession({
           token: accountToken,
           accessResolved,
+          hasPremiumAccess,
           receiptId: pendingRecord.receiptId,
           mode: 'blitz',
         });
@@ -562,8 +590,8 @@ export default function FlashcardsBlitzSession() {
           blitzPendingGrantRef.current = null;
           if (!cancelled && quotaResult.status === 'exhausted') {
           markNextNavigationAsReplace();
-          router.replace({ pathname: '/premium_modal', params: {
-            context: 'flashcard_training', source: 'flashcards_blitz_direct',
+          router.replace({ pathname: '/flashcards_training_setup', params: {
+            mode: 'blitz',
           } } as never);
         } else if (!cancelled) {
           setQuotaUnavailable(true);
@@ -631,7 +659,7 @@ export default function FlashcardsBlitzSession() {
       setQuotaUnavailable(true);
     });
     return () => { cancelled = true; };
-  }, [accessResolved, accountToken, blitzAccessGranted, blitzEnergyIntent, feedbackAttemptId, loading, pool, roundId, blitzEnergyUnlimited, confirmBlitzEnergy, contentLang, deckRefs, refundActiveBlitzEnergy, refundBlitzEnergy, router, studyTarget]);
+  }, [accessResolved, hasPremiumAccess, accountToken, blitzAccessGranted, blitzEnergyIntent, feedbackAttemptId, loading, pool, roundId, blitzEnergyUnlimited, confirmBlitzEnergy, contentLang, deckRefs, refundActiveBlitzEnergy, refundBlitzEnergy, router, studyTarget]);
 
   const retryQuotaStart = useCallback(() => {
     blitzChargedRoundRef.current = null;
@@ -1104,23 +1132,19 @@ export default function FlashcardsBlitzSession() {
         <SafeAreaView style={{ flex: 1 }}>
           <ContentWrap>
             <View style={styles.headerRow}>
-              <View style={{ padding: 4 }}>
-                <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
-              </View>
-              <View style={{ alignItems: 'center', gap: 4 }}>
-                <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.body }]}>
-                  {triLang(lang, {
-                    ru: 'Блиц', uk: 'Бліц', en: 'Blitz', es: 'Blitz', 'pt-BR': 'Blitz',
-                    vi: 'Blitz', id: 'Blitz', tr: 'Blitz', pl: 'Blitz',
-                  })}
-                </Text>
-                <SkeletonBlock width={120} height={f.caption} />
-              </View>
+              <PracticeBackButton glass={blitzGlass} color={t.textPrimary} />
+              <PracticeHeaderTitle
+                glass={blitzGlass}
+                title={triLang(lang, {
+                  ru: 'Блиц', uk: 'Бліц', en: 'Blitz', es: 'Blitz', 'pt-BR': 'Blitz',
+                  vi: 'Blitz', id: 'Blitz', tr: 'Blitz', pl: 'Blitz',
+                })}
+              >
+                <View style={{ marginTop: 4 }}><SkeletonBlock width={120} height={f.caption} /></View>
+              </PracticeHeaderTitle>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
                 <SessionAttemptsHud remaining={3} locale={lang} testID="fc-blitz-attempts-loading" />
-                <View style={{ padding: 4 }}>
-                  <Ionicons name="albums-outline" size={20} color={t.textMuted} />
-                </View>
+                <PracticeRoundIconButton glass={blitzGlass} color={blitzGlass.secondary} icon="albums-outline" disabled />
               </View>
             </View>
 
@@ -1155,7 +1179,6 @@ export default function FlashcardsBlitzSession() {
       <SessionResultScreen
         correct={devRunesFake ? devRunesFake.tertiary + 4 : result.summary.correct}
         wrong={devRunesFake ? devRunesFake.tertiary : result.summary.wrong}
-        xpGained={0}
         runesGained={practiceRunes.runes}
         learnLeft={0}
         onRetryWrong={restart}
@@ -1222,23 +1245,20 @@ export default function FlashcardsBlitzSession() {
         <SafeAreaView style={{ flex: 1 }} testID="fc-blitz-unavailable">
           <ContentWrap>
             <View style={styles.headerRow}>
-              <TouchableOpacity onPress={leave} style={{ padding: 4 }} testID="fc-blitz-back">
-                <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
-              </TouchableOpacity>
-              <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.body }]}>
-                {triLang(lang, {
-                  ru: 'Блиц',
-                  uk: 'Бліц',
-                  en: 'Blitz',
-                  es: 'Blitz',
-                  'pt-BR': 'Blitz',
-                  vi: 'Blitz',
-                  id: 'Blitz',
-                  tr: 'Blitz',
-                  pl: 'Blitz',
+              <PracticeBackButton
+                glass={blitzGlass}
+                color={t.textPrimary}
+                onPress={leave}
+                testID="fc-blitz-back"
+                accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
+              />
+              <PracticeHeaderTitle
+                glass={blitzGlass}
+                title={triLang(lang, {
+                  ru: 'Блиц', uk: 'Бліц', en: 'Blitz', es: 'Blitz', 'pt-BR': 'Blitz',
+                  vi: 'Blitz', id: 'Blitz', tr: 'Blitz', pl: 'Blitz',
                 })}
-              </Text>
-              <View style={{ width: 32 }} />
+              />
             </View>
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 14, paddingHorizontal: 32 }}>
               <Ionicons name="flash-outline" size={44} color={t.textGhost} />
@@ -1279,6 +1299,9 @@ export default function FlashcardsBlitzSession() {
   }
 
   const danger = timeLeft <= DANGER_SEC;
+  // зачем: одна подпись «Назад» и название режима для шапки на 9 языках (круглая кнопка макета без текста).
+  const backLabel = triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' });
+  const blitzTitle = triLang(lang, { ru: 'Блиц', uk: 'Бліц', en: 'Blitz', es: 'Blitz', 'pt-BR': 'Blitz', vi: 'Blitz', id: 'Blitz', tr: 'Blitz', pl: 'Blitz' });
   const mm = Math.floor(timeLeft / 60);
   const ss = String(timeLeft % 60).padStart(2, '0');
 
@@ -1302,20 +1325,12 @@ export default function FlashcardsBlitzSession() {
           </View>
           {/* Header: назад · «Блиц · набор» · жизни-сердечки */}
           <View style={styles.headerRow}>
-            <TouchableOpacity onPress={leave} style={{ padding: 4 }} testID="fc-blitz-back">
-              <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
-            </TouchableOpacity>
-            <View style={{ alignItems: 'center', flex: 1, minWidth: 0 }}>
-              <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.body }]}>
-                {triLang(lang, {
-                  ru: 'Блиц', uk: 'Бліц', en: 'Blitz', es: 'Blitz', 'pt-BR': 'Blitz',
-                  vi: 'Blitz', id: 'Blitz', tr: 'Blitz', pl: 'Blitz',
-                })}
-              </Text>
-              <ScrollView horizontal style={{ maxWidth: '100%', flexGrow: 0 }} showsHorizontalScrollIndicator>
-                <Text style={{ color: t.textMuted, fontSize: f.caption }}>{deckTitle}</Text>
+            <PracticeBackButton glass={blitzGlass} color={t.textPrimary} onPress={leave} testID="fc-blitz-back" accessibilityLabel={backLabel} />
+            <PracticeHeaderTitle glass={blitzGlass} title={blitzTitle}>
+              <ScrollView horizontal style={{ maxWidth: '100%', flexGrow: 0 }} showsHorizontalScrollIndicator={false}>
+                <Text style={{ color: blitzGlass.secondary, fontSize: 15, lineHeight: 20, marginTop: 2 }}>{deckTitle}</Text>
               </ScrollView>
-            </View>
+            </PracticeHeaderTitle>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
               <SessionAttemptsHud
                 remaining={attempts.state.remainingAttempts}
@@ -1323,18 +1338,14 @@ export default function FlashcardsBlitzSession() {
                 testID="fc-blitz-attempts"
               />
               {/* §6: выбор и отметка наборов — мультивыбор, как в тренировке и слушании */}
-              <TouchableOpacity
+              <PracticeRoundIconButton
+                glass={blitzGlass}
+                color={blitzGlass.secondary}
+                icon="albums-outline"
                 testID="fc-blitz-pick-decks"
-                accessibilityLabel="qa-fc-blitz-pick-decks"
-                accessible
-                accessibilityRole="button"
-                accessibilityHint={pickDecksLabel}
+                accessibilityLabel={pickDecksLabel}
                 onPress={openDeckPicker}
-                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                style={{ padding: 4 }}
-              >
-                <Ionicons name="albums-outline" size={20} color={t.textMuted} />
-              </TouchableOpacity>
+              />
               {/* зачем: блиц показывает английскую фразу и переводы-дистракторы,
                   то есть контент, в котором бывает ошибка, — а пожаловаться было
                   негде (в свайпе флаг есть, здесь его забыли). Флаг только когда
@@ -1381,17 +1392,12 @@ RU: ${question.card.translation}`}
                 </Reanimated.View>
               ) : null}
             </View>
-            <Text
+            <PracticeTimerPill
               testID="fc-blitz-timer"
-              style={{
-                color: danger ? BAD : t.textPrimary,
-                fontSize: f.h2,
-                fontWeight: '900',
-                fontVariant: ['tabular-nums'],
-              }}
-            >
-              {mm}:{ss}
-            </Text>
+              glass={blitzGlass}
+              color={danger ? BAD : blitzGlass.text}
+              text={`${mm}:${ss}`}
+            />
             <View style={{ minWidth: 90, alignItems: 'flex-end' }}>
               {blitz.streak >= 3 ? (
                 <Reanimated.View
@@ -1407,7 +1413,8 @@ RU: ${question.card.translation}`}
 
           {/* Вопрос + 4 варианта */}
           <ScrollView style={{ flex: 1, minHeight: 0 }} contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 16, paddingVertical: 12, gap: 14, justifyContent: 'center' }} keyboardShouldPersistTaps="handled">
-            <View style={[styles.questionBox, { backgroundColor: t.bgCard }]}>
+            <View style={[styles.questionBox, styles.glassSurface, { backgroundColor: blitzGlass.card }]}>
+              <BlitzGlassSurface chrome={blitzGlass} />
               <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700', marginBottom: 6 }}>
                 {triLang(lang, {
                   ru: 'Выбери перевод', uk: 'Обери переклад', en: 'Choose the translation', es: 'Elige la traducción',
@@ -1428,10 +1435,10 @@ RU: ${question.card.translation}`}
                 const state = btnStates[i];
                 // зачем: без рамки состояние держится ТОЛЬКО заливкой, поэтому
                 // ответ подсвечиваем плотнее (33 вместо 22) — читается так же ясно.
-                let bg = t.bgCard;
+                let bg = blitzGlass.card;
                 let tc = t.textPrimary;
-                if (state === 'correct') { bg = `${OK}33`; tc = OK; }
-                if (state === 'wrong') { bg = `${BAD}33`; tc = BAD; }
+                if (state === 'correct') { bg = ANSWER_OK_SURFACE; tc = ANSWER_STATE_TEXT; }
+                if (state === 'wrong') { bg = ANSWER_BAD_SURFACE; tc = ANSWER_STATE_TEXT; }
                 return (
                   <TouchableOpacity
                     key={`${qIdxRef.current}_${i}`}
@@ -1441,11 +1448,15 @@ RU: ${question.card.translation}`}
                     onPress={() => pick(i)}
                     disabled={locked}
                     activeOpacity={0.75}
-                    style={[styles.optionBtn, { backgroundColor: bg }]}
+                    style={[styles.optionBtn, styles.glassSurface, { backgroundColor: bg }]}
                   >
+                    <BlitzGlassSurface chrome={blitzGlass} sheen={state === 'idle'} />
                     <Text  style={[styles.optionText, { color: tc, fontSize: f.body }]}>
                       {opt}
                     </Text>
+                    {state === 'correct' || state === 'wrong' ? (
+                      <PracticeAnswerMark kind={state} color={ANSWER_STATE_TEXT} />
+                    ) : null}
                   </TouchableOpacity>
                 );
               })}
@@ -1476,7 +1487,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 12,
   },
-  headerTitle: { fontWeight: '700' },
   timerTrack: {
     height: 6,
     borderRadius: 3,
@@ -1507,19 +1517,24 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
   },
   questionBox: {
-    borderRadius: 18,
+    borderRadius: 16,
     paddingVertical: 22,
     paddingHorizontal: 20,
     alignItems: 'center',
     minHeight: 110,
     justifyContent: 'center',
   },
+  glassSurface: {
+    overflow: 'hidden',
+  },
   questionText: { fontWeight: '800', textAlign: 'center' },
   optionBtn: {
     borderRadius: 14,
-    paddingVertical: 14,
-    paddingHorizontal: 16,
+    minHeight: 58,
+    paddingVertical: 12,
+    paddingHorizontal: 40,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   optionText: { fontWeight: '700', textAlign: 'center' },
 });

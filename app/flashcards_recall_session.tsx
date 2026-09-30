@@ -26,10 +26,13 @@ import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import SkeletonBlock from '../components/SkeletonShimmer';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import { usePremium } from '../components/PremiumContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { PracticeBackButton, PracticeHeaderTitle, PracticeRoundIconButton } from '../components/practice/PracticeChrome';
 import { usePracticeRuneFlight } from '../hooks/usePracticeRuneFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
@@ -47,7 +50,7 @@ import {
   resolveFlashcardTrainingPendingGrantAccount,
   type FlashcardTrainingPendingGrantRecord,
 } from './flashcard_training_pending_grant';
-import { consumeFlashcardTrainingQuota } from './revenue_quota_access';
+import { consumeMonthlyTrainingSession } from './monthly_training_sessions';
 import { flashcardContentLang } from './spanish_content_gate';
 import {
   deckRefKey,
@@ -72,6 +75,9 @@ import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { fcHaptic, playSfx } from './flashcards/SoundService';
 
 const MAX_INPUT_LENGTH = 220;
+const FEEDBACK_OK_SURFACE = '#185C3A';
+const FEEDBACK_BAD_SURFACE = '#702B35';
+const FEEDBACK_TEXT = '#FFFFFF';
 
 type RecallFeedback = Readonly<{
   kind: 'correct' | 'typo' | 'wrong';
@@ -92,6 +98,21 @@ function shuffle<T>(items: readonly T[]): T[] {
   return result;
 }
 
+/** Passive material only; text input and answer handlers stay above this layer. */
+function RecallGlassSurface({ chrome, sheen = true }: { chrome: ReturnType<typeof liquidGlassTokens>; sheen?: boolean }) {
+  if (!sheen) return null;
+  return (
+    <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+      <LinearGradient
+        colors={[chrome.lightTint, 'transparent']}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0.85, y: 1 }}
+        style={[StyleSheet.absoluteFill, { opacity: 0.08 }]}
+      />
+    </View>
+  );
+}
+
 export default function FlashcardsRecallSession() {
   const router = useRouter();
   const params = useLocalSearchParams<{
@@ -100,8 +121,9 @@ export default function FlashcardsRecallSession() {
   }>();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
-  const { theme: t, f, statusBarLight } = useTheme();
-  const { accessResolved } = usePremium();
+  const { theme: t, f, statusBarLight, liquidGlassThemeId } = useTheme();
+  const recallGlass = liquidGlassTokens(liquidGlassThemeId);
+  const { accessResolved, hasPremiumAccess } = usePremium();
   const reducedMotion = useReducedMotion();
   const [attemptSessionId] = useState(makeFeedbackAttemptId);
   const accountToken = useMemo(() => captureAccountGeneration(), []);
@@ -315,9 +337,10 @@ export default function FlashcardsRecallSession() {
       }
 
       if (pendingRecord.phase === 'prepared') {
-        const quotaResult = await consumeFlashcardTrainingQuota({
+        const quotaResult = await consumeMonthlyTrainingSession({
           token: accountToken,
           accessResolved,
+          hasPremiumAccess,
           receiptId: pendingRecord.receiptId,
           mode: 'recall',
         });
@@ -343,8 +366,8 @@ export default function FlashcardsRecallSession() {
           if (!cancelled && quotaResult.status === 'exhausted') {
             setLoading(false);
             markNextNavigationAsReplace();
-            router.replace({ pathname: '/premium_modal', params: {
-              context: 'flashcard_training', source: 'flashcards_recall_direct',
+            router.replace({ pathname: '/flashcards_training_setup', params: {
+              mode: 'recall',
             } } as never);
           } else if (!cancelled) {
             setLoadError(true);
@@ -682,21 +705,14 @@ export default function FlashcardsRecallSession() {
         </View>
       </View>
       <View style={styles.headerRow}>
-        <Pressable
-          testID="fc-recall-back"
-          accessibilityRole="button"
-          accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
+        <PracticeBackButton
+          glass={recallGlass}
+          color={t.textPrimary}
           onPress={leave}
-          hitSlop={8}
-          style={({ pressed }) => [styles.headerButton, { opacity: pressed ? 0.65 : 1 }]}
-        >
-          <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
-        </Pressable>
-        <View style={styles.headerCopy}>
-          <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.body }]}>
-            {copy.title}
-          </Text>
-        </View>
+          testID="fc-recall-back"
+          accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
+        />
+        <PracticeHeaderTitle glass={recallGlass} title={copy.title} />
         <View style={styles.headerTools}>
           <SessionAttemptsHud
             remaining={attempts.state.remainingAttempts}
@@ -709,17 +725,15 @@ export default function FlashcardsRecallSession() {
           <Text style={[styles.progressText, { color: t.textMuted, fontSize: f.caption }]} testID="fc-recall-progress">
             {masteredCount}/{totalCards}
           </Text>
-          <Pressable
+          <PracticeRoundIconButton
+            glass={recallGlass}
+            color={recallGlass.secondary}
+            icon="albums-outline"
             testID="fc-recall-pick-decks"
-            accessibilityRole="button"
             accessibilityLabel={triLang(lang, { ru: 'Выбрать наборы', uk: 'Вибрати набори', en: 'Choose packs', es: 'Elegir packs', 'pt-BR': 'Escolher pacotes', vi: 'Chọn bộ thẻ', id: 'Pilih paket', tr: 'Paket seç', pl: 'Wybierz zestawy' })}
             disabled={!interactive}
             onPress={openDeckSetup}
-            hitSlop={8}
-            style={styles.headerButton}
-          >
-            <Ionicons name="albums-outline" size={20} color={t.textMuted} />
-          </Pressable>
+          />
           {interactive && activeCard ? (
             <ReportErrorButton
               screen="flashcards_recall"
@@ -751,7 +765,6 @@ export default function FlashcardsRecallSession() {
       <SessionResultScreen
         correct={result.summary.correct}
         wrong={result.summary.wrong}
-        xpGained={0}
         runesGained={practiceRunes.runes}
         learnLeft={result.learnIds.length}
         onRetryWrong={result.learnIds.length > 0 ? retryWrong : undefined}
@@ -810,7 +823,7 @@ export default function FlashcardsRecallSession() {
     );
   }
 
-  const feedbackColor = feedback?.kind === 'wrong' ? t.wrong : t.correct;
+  const feedbackSurface = feedback?.kind === 'wrong' ? FEEDBACK_BAD_SURFACE : FEEDBACK_OK_SURFACE;
   const attemptsInteractive = attempts.hydrated && attemptsPhase === 'active';
   const canCheck = attemptsInteractive && input.trim().length > 0 && !feedback && !answerRevealed;
   const hintCharacters = Array.from(activeCard.en.trim());
@@ -841,8 +854,9 @@ export default function FlashcardsRecallSession() {
                 runeFlight.originRef.current = node as unknown as View;
               }}
               collapsable={false}
-              style={[styles.focusCard, { backgroundColor: t.bgCard }]}
+              style={[styles.focusCard, styles.glassSurface, { backgroundColor: recallGlass.card }]}
             >
+              <RecallGlassSurface chrome={recallGlass} />
               <View
                 ref={promptRef}
                 collapsable={false}
@@ -898,9 +912,10 @@ export default function FlashcardsRecallSession() {
             {answerRevealed && !feedback ? (
               <Reanimated.View
                 entering={reducedMotion ? undefined : FadeInDown.duration(180)}
-                style={[styles.answerCard, { backgroundColor: t.bgSurface }]}
+                style={[styles.answerCard, styles.glassSurface, { backgroundColor: recallGlass.sheet }]}
                 accessibilityLiveRegion="polite"
               >
+                <RecallGlassSurface chrome={recallGlass} />
                 <Text style={[styles.eyebrow, { color: t.textMuted, fontSize: f.caption }]}>{copy.revealed}</Text>
                 <Text selectable style={[styles.answerText, { color: t.textPrimary, fontSize: f.h2 }]}>{activeCard.en}</Text>
                 <View style={styles.selfGradeRow}>
@@ -931,11 +946,11 @@ export default function FlashcardsRecallSession() {
                 style={[
                   styles.compactInputShell,
                   {
-                    backgroundColor: t.bgSurface,
-                    borderColor: feedback ? feedbackColor : input.trim() ? t.accent : t.border,
+                    backgroundColor: recallGlass.opaqueControl,
                   },
                 ]}
               >
+                <RecallGlassSurface chrome={recallGlass} />
                 <TextInput
                   testID="fc-recall-input"
                   value={input}
@@ -962,20 +977,21 @@ export default function FlashcardsRecallSession() {
             {feedback ? (
               <Reanimated.View
                 entering={reducedMotion ? undefined : FadeInDown.duration(180)}
-                style={[styles.feedbackCard, { backgroundColor: `${feedbackColor}1F` }]}
+                style={[styles.feedbackCard, styles.glassSurface, { backgroundColor: feedbackSurface }]}
                 accessibilityLiveRegion="polite"
               >
+                <RecallGlassSurface chrome={recallGlass} sheen={false} />
                 <Ionicons
                   name={feedback.kind === 'wrong' ? 'close-circle' : 'checkmark-circle'}
                   size={24}
-                  color={feedbackColor}
+                  color={FEEDBACK_TEXT}
                 />
                 <View style={styles.feedbackCopy}>
-                  <Text style={[styles.feedbackTitle, { color: feedbackColor, fontSize: f.bodyLg }]}>
+                  <Text style={[styles.feedbackTitle, { color: FEEDBACK_TEXT, fontSize: f.bodyLg }]}>
                     {feedback.kind === 'correct' ? copy.correct : feedback.kind === 'typo' ? copy.typo : copy.wrong}
                   </Text>
                   {feedback.kind !== 'correct' ? (
-                    <Text selectable style={[styles.feedbackAnswer, { color: t.textPrimary, fontSize: f.body }]}>{feedback.expected}</Text>
+                    <Text selectable style={[styles.feedbackAnswer, { color: FEEDBACK_TEXT, fontSize: f.body }]}>{feedback.expected}</Text>
                   ) : null}
                 </View>
               </Reanimated.View>
@@ -1043,12 +1059,9 @@ const styles = StyleSheet.create({
   safe: { flex: 1, minHeight: 0 },
   runeRow: { minHeight: 42, paddingHorizontal: 16, alignItems: 'flex-end', justifyContent: 'center' },
   headerRow: { minHeight: 52, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center' },
-  headerButton: { width: 36, height: 44, alignItems: 'center', justifyContent: 'center' },
-  headerCopy: { flex: 1, minWidth: 64, alignItems: 'center', paddingHorizontal: 4 },
-  headerTitle: { fontWeight: '900', textAlign: 'center', lineHeight: 20 },
   headerTools: { flexDirection: 'row', alignItems: 'center', gap: 4 },
   progressText: { minWidth: 36, textAlign: 'right', fontWeight: '800', fontVariant: ['tabular-nums'] },
-  progressTrack: { height: 4, marginHorizontal: 16, borderRadius: 999, overflow: 'hidden' },
+  progressTrack: { height: 6, marginHorizontal: 16, borderRadius: 999, overflow: 'hidden' },
   progressFill: { width: '100%', height: '100%', borderRadius: 999, transformOrigin: 'left' },
   scroll: { flex: 1, minHeight: 0 },
   content: { flexGrow: 1, paddingHorizontal: 16, paddingTop: 14, paddingBottom: 28 },
@@ -1057,6 +1070,7 @@ const styles = StyleSheet.create({
   emptyText: { textAlign: 'center', lineHeight: 23 },
   instruction: { marginBottom: 10, fontWeight: '800', textTransform: 'uppercase', letterSpacing: 0.7 },
   focusCard: { minHeight: 220, borderRadius: 24, paddingHorizontal: 20, paddingVertical: 18, justifyContent: 'space-between' },
+  glassSurface: { overflow: 'hidden' },
   focusPrompt: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   eyebrow: { fontWeight: '800', textTransform: 'uppercase', letterSpacing: 0.7 },
   translation: { textAlign: 'center', textAlignVertical: 'center', fontWeight: '900', lineHeight: 34 },
@@ -1066,7 +1080,7 @@ const styles = StyleSheet.create({
   hintButtonText: { fontWeight: '800' },
   guidance: { minHeight: 44, marginTop: 10, borderRadius: 14, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 8 },
   guidanceText: { flex: 1, fontWeight: '700' },
-  compactInputShell: { minHeight: 92, marginTop: 12, borderRadius: 18, borderWidth: 1.5, paddingHorizontal: 16, paddingTop: 12, paddingBottom: 28 },
+  compactInputShell: { minHeight: 92, marginTop: 12, borderRadius: 18, paddingHorizontal: 16, paddingTop: 12, paddingBottom: 28 },
   input: { minHeight: 52, padding: 0, textAlignVertical: 'top', fontWeight: '700', lineHeight: 26 },
   characterCount: { position: 'absolute', right: 14, bottom: 10, fontVariant: ['tabular-nums'] },
   answerCard: { marginTop: 14, borderRadius: 18, padding: 16 },

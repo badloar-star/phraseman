@@ -31,6 +31,7 @@ import { useLang } from '../components/LangContext';
 import { usePremium } from '../components/PremiumContext';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
+import EnergyBar from '../components/EnergyBar';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
 import { PracticeRuneCounter } from '../components/PracticeRuneCounter';
 import { LearningV2RuneFlight } from '../components/LearningV2RuneFlight';
@@ -40,11 +41,14 @@ import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import { SessionResultScreen } from './flashcards/SessionResultScreen';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import { FlowText } from '../components/text-integrity/FlowText';
 import { glassFill } from '../components/GlassSurface';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { PracticeBackButton, PracticeHeaderTitle } from '../components/practice/PracticeChrome';
 import { useAudio, inferExpoSpeechLanguage } from '../hooks/use-audio';
 import { type Flashcard } from '../hooks/use-flashcards';
 import { loadSelectedSavedContour, peekSelectedSavedContour } from './flashcards/saved_language_contour';
@@ -80,6 +84,11 @@ import {
 } from './flashcards_swipe_session';
 import { parseDeckIdList, type FcDeckId } from './flashcards/deck_selection';
 import {
+  canUseLegacySwipeGrantFailOpen,
+  flashcardPendingGrantPreset,
+  persistSpentEnergyOrRefund,
+} from './flashcards/training_entry_policy';
+import {
   FC_DEFAULT_SESSION_SIZE,
   isValidSessionSize,
   setLastPreset,
@@ -88,7 +97,6 @@ import {
 import { peekCustomCardsCache, readCustomCards } from './flashcards/storage';
 import { resolveFlashcardBackText, type CardItem, type FlashcardContentLang } from './flashcards/types';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
-import { withOptionalPersonalPlanSunsetGuard } from '../components/personal_plan_sunset_guard';
 import { flashcardContentLang } from './spanish_content_gate';
 import { getCanonicalUserId } from './user_id_policy';
 import { flashcardsSwipeHintSeenKey, flashcardsSwipeMemoryKey, type RuntimeStudyTarget } from './target_storage_keys';
@@ -99,10 +107,11 @@ import {
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
 import { isMistakeStudyTargetValue } from '../modules/mistake-practice/contracts';
 import { captureAccountGeneration } from './account_generation';
-import { consumeFlashcardTrainingQuota } from './revenue_quota_access';
+import { consumeMonthlyTrainingSession } from './monthly_training_sessions';
 import {
   acknowledgeAndClearFlashcardTrainingPendingGrant,
   abandonFlashcardTrainingPendingGrant,
+  claimFlashcardTrainingPendingGrantStart,
   discardFlashcardTrainingPendingGrant,
   markFlashcardTrainingEnergyCharged,
   markFlashcardTrainingPendingGrantPlayable,
@@ -168,8 +177,9 @@ type SessionStats = {
 };
 
 type FeedbackState = {
-  kind: 'wrong' | 'hint';
+  kind: 'wrong' | 'hint' | 'correct';
   prompt: Prompt;
+  mastered?: boolean;
 };
 
 type CorrectTranslationReminder = {
@@ -177,6 +187,21 @@ type CorrectTranslationReminder = {
   english: string;
   translation: string;
 };
+
+/** Static material keeps the swipe gesture path free of per-card live blur roots. */
+function SwipeTrainingCardGlass({ chrome, sheen = true }: { chrome: ReturnType<typeof liquidGlassTokens>; sheen?: boolean }) {
+  if (!sheen) return null;
+  return (
+    <View pointerEvents="none" style={[StyleSheet.absoluteFill, { borderRadius: 24, overflow: 'hidden' }]}>
+      <LinearGradient
+        colors={[chrome.lightTint, 'transparent']}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0.85, y: 1 }}
+        style={[StyleSheet.absoluteFill, { opacity: 0.08 }]}
+      />
+    </View>
+  );
+}
 
 type CardMemory = {
   correct: number;
@@ -861,6 +886,7 @@ function buildSessionDraft(input: {
   return {
     version: 1,
     savedAt: Date.now(),
+    trainingMode: input.scope.trainingMode,
     sourceIds: input.scope.sourceIds,
     routeSource: input.scope.routeSource,
     routeFilter: input.scope.routeFilter,
@@ -868,7 +894,11 @@ function buildSessionDraft(input: {
     trainingKeys: input.trainingCards.map((card) => card.trainingKey),
     queue: input.queue.map(promptToDraft),
     feedback: input.feedback
-      ? { kind: input.feedback.kind, prompt: promptToDraft(input.feedback.prompt) }
+      ? {
+          kind: input.feedback.kind,
+          prompt: promptToDraft(input.feedback.prompt),
+          ...(typeof input.feedback.mastered === 'boolean' ? { mastered: input.feedback.mastered } : {}),
+        }
       : null,
     stats: input.stats,
     progress: input.progress,
@@ -905,13 +935,24 @@ function restoreSessionDraft(
   return {
     trainingCards: trainingCards as TrainingCard[],
     queue: queue as Prompt[],
-    feedback: draft.feedback && feedbackPrompt ? { kind: draft.feedback.kind, prompt: feedbackPrompt } : null,
+    feedback: draft.feedback && feedbackPrompt
+      ? {
+          kind: draft.feedback.kind,
+          prompt: feedbackPrompt,
+          ...(typeof draft.feedback.mastered === 'boolean' ? { mastered: draft.feedback.mastered } : {}),
+        }
+      : null,
     stats: draft.stats,
     progress,
   };
 }
 
-function FlashcardsSwipeScreen() {
+type FlashcardsSwipeScreenProps = Readonly<{
+  trainingMode?: 'swipe' | 'truefalse';
+}>;
+
+export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwipeScreenProps = {}) {
+  const isTrueFalseSession = trainingMode === 'truefalse';
   const router = useRouter();
   const params = useLocalSearchParams<{
     quick?: string | string[];
@@ -940,9 +981,10 @@ function FlashcardsSwipeScreen() {
   const topSafeInset = Math.max(insets.top, Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0);
   const { width, height } = useWindowDimensions();
   const { lang } = useLang();
-  const { theme: t, statusBarLight, f, ds } = useTheme();
+  const { theme: t, statusBarLight, f, ds, liquidGlassThemeId } = useTheme();
+  const swipeGlass = liquidGlassTokens(liquidGlassThemeId);
   const { studyTarget } = useStudyTarget();
-  const { accessResolved } = usePremium();
+  const { accessResolved, hasPremiumAccess } = usePremium();
   const swipeAccessGranted = accessResolved;
   const swipeAccessGrantedRef = useRef(swipeAccessGranted);
   const swipeAccessEpochRef = useRef(0);
@@ -1098,6 +1140,7 @@ function FlashcardsSwipeScreen() {
   // Синхронный латч оплаты старта (см. комментарий внутри startSession).
   const startChargeInFlightRef = useRef(false);
   const activeSwipeSpentOperationRef = useRef<string | null>(null);
+  const activeSwipeRefundPromiseRef = useRef<Promise<void> | null>(null);
   const activeSwipePendingGrantRef = useRef<{
     account: NonNullable<Awaited<ReturnType<typeof resolveFlashcardTrainingPendingGrantAccount>>>;
     fingerprint: string;
@@ -1109,10 +1152,26 @@ function FlashcardsSwipeScreen() {
     return () => { swipeMountedRef.current = false; };
   }, []);
   const refundActiveSwipeEnergy = useCallback(async (reason: string) => {
+    if (activeSwipeRefundPromiseRef.current) {
+      await activeSwipeRefundPromiseRef.current;
+      return;
+    }
     const operationId = activeSwipeSpentOperationRef.current;
     if (!operationId) return;
-    activeSwipeSpentOperationRef.current = null;
-    await refundSwipeEnergy(operationId, reason);
+    const refundPromise = (async () => {
+      await refundSwipeEnergy(operationId, reason);
+      if (activeSwipeSpentOperationRef.current === operationId) {
+        activeSwipeSpentOperationRef.current = null;
+      }
+    })();
+    activeSwipeRefundPromiseRef.current = refundPromise;
+    try {
+      await refundPromise;
+    } finally {
+      if (activeSwipeRefundPromiseRef.current === refundPromise) {
+        activeSwipeRefundPromiseRef.current = null;
+      }
+    }
   }, [refundSwipeEnergy]);
   const abandonActiveSwipePendingGrant = useCallback(() => {
     const pending = activeSwipePendingGrantRef.current;
@@ -1208,31 +1267,31 @@ function FlashcardsSwipeScreen() {
     void refundActiveSwipeEnergy('access_lost').catch(() => {});
   }, [refundActiveSwipeEnergy, swipeAccessGranted]);
 
-  const openFlashcardsPlusPaywall = useCallback((source: string) => {
-    // replace на пейвол из гейта = всегда mark, иначе экран остаётся в стеке «назад» → петля.
+  const openMonthlyTrainingLimit = useCallback(() => {
     markNextNavigationAsReplace();
     router.replace({
-      pathname: '/premium_modal',
-      params: { context: 'flashcard_training', source },
+      pathname: '/flashcards_training_setup',
+      params: { mode: 'truefalse' },
     } as any);
   }, [router]);
 
   const selectedSourceIdsForDraft = useMemo(() => [...selectedIds].sort(), [selectedIds]);
   const sessionDraftScope = useMemo<FlashcardsSwipeSessionScope>(
     () => ({
+      trainingMode,
       sourceIds: selectedSourceIdsForDraft,
       routeSource: requestedSourceId,
       routeFilter: requestedFilter,
       contentLang: cardContentLang,
     }),
-    [cardContentLang, requestedFilter, requestedSourceId, selectedSourceIdsForDraft],
+    [cardContentLang, requestedFilter, requestedSourceId, selectedSourceIdsForDraft, trainingMode],
   );
   // зачем (владелец, 2026-08-27): sessionKey строится из тех же полей, что и
   // scope черновика — те же наборы карточек, тот же язык контента, но живёт в
   // ОТДЕЛЬНОМ ключе AsyncStorage (usePracticeRunes сам всё персистит), не в
   // FlashcardsSwipeSessionDraft — не трогаем чужую схему диска.
   const runeSessionKey = useMemo(
-    () => `${sessionDraftScope.sourceIds.join('_')}_${sessionDraftScope.contentLang}_${studyTarget}`,
+    () => `${sessionDraftScope.trainingMode}_${sessionDraftScope.sourceIds.join('_')}_${sessionDraftScope.contentLang}_${studyTarget}`,
     [sessionDraftScope, studyTarget],
   );
   const practiceRunes = usePracticeRunes({
@@ -2258,21 +2317,23 @@ function FlashcardsSwipeScreen() {
         contentLang: cardContentLang,
         deckKeys: deckIdsForSwipeSources(selectedSources),
         sessionSize: requestedSessionSize > 0 ? requestedSessionSize : Number.MAX_SAFE_INTEGER,
-        preset: 'trainer',
+        preset: flashcardPendingGrantPreset(isTrueFalseSession),
       };
-      const manifestPayload = JSON.parse(JSON.stringify({
-        sessionCards,
-        info,
-        promptQueue,
-        energyIntent: swipeEnergyIntent,
-      }));
       const prepared = await prepareFlashcardTrainingPendingGrant({
         account: pendingAccount,
         scope: pendingScope,
         manifest: {
           schemaVersion: 'flashcard-training-manifest.v1',
           mode: 'swipe',
-          payload: manifestPayload,
+          payload: {
+            orderedCardIds: sessionCards.map((card) => card.trainingKey),
+            seed: attemptSessionId,
+            promptRecipe: promptQueue.map((prompt) => ({
+              cardId: prompt.card.trainingKey,
+              direction: prompt.isMatch ? 'front_to_back' : 'back_to_front',
+            })),
+            initialCardId: promptQueue[0]!.card.trainingKey,
+          },
         },
         attemptId: attemptSessionId,
         receiptId: `swipe:${attemptSessionId}`,
@@ -2291,25 +2352,71 @@ function FlashcardsSwipeScreen() {
       else return;
 
       const restoredPayload = pendingRecord.manifest.payload as unknown as {
-        sessionCards: TrainingCard[];
-        info: SessionInfo;
-        promptQueue: Prompt[];
-        energyIntent: typeof swipeEnergyIntent;
+        orderedCardIds: string[];
+        promptRecipe?: { cardId: string; direction: 'front_to_back' | 'back_to_front' }[];
       };
-      if (!Array.isArray(restoredPayload.sessionCards) || !Array.isArray(restoredPayload.promptQueue)) {
+      if (!Array.isArray(restoredPayload.orderedCardIds)) {
         throw new Error('pending_grant_manifest_invalid');
       }
+      const cardsByKey = new Map(sessionCards.map((card) => [card.trainingKey, card]));
+      const restoredSessionCards = restoredPayload.orderedCardIds
+        .map((cardId) => cardsByKey.get(cardId))
+        .filter((card): card is TrainingCard => card !== undefined);
+      if (restoredSessionCards.length !== restoredPayload.orderedCardIds.length) {
+        throw new Error('pending_grant_manifest_cards_unavailable');
+      }
+      const fallbackPrompts = new Map(promptQueue.map((prompt) => [prompt.card.trainingKey, prompt]));
+      const restoredPromptQueue = (restoredPayload.promptRecipe ?? []).map((recipe, index) => {
+        const card = cardsByKey.get(recipe.cardId);
+        if (!card) return null;
+        const isMatch = recipe.direction === 'front_to_back';
+        const trueTranslation = answerFor(card);
+        const fallback = fallbackPrompts.get(recipe.cardId);
+        let shownTranslation = isMatch ? trueTranslation : fallback?.shownTranslation ?? '';
+        if (!isMatch && normalizeAnswer(shownTranslation) === normalizeAnswer(trueTranslation)) {
+          const decoy = restoredSessionCards
+            .slice(index + 1)
+            .concat(restoredSessionCards.slice(0, index + 1))
+            .map(answerFor)
+            .find((candidate) => normalizeAnswer(candidate) !== normalizeAnswer(trueTranslation));
+          shownTranslation = decoy ?? '';
+        }
+        if (!shownTranslation) return null;
+        return {
+          id: `${card.trainingKey}:${Date.now()}:${index}`,
+          card,
+          shownTranslation,
+          trueTranslation,
+          isMatch,
+        } satisfies Prompt;
+      });
+      if (
+        restoredPromptQueue.length !== restoredSessionCards.length
+        || restoredPromptQueue.some((prompt) => prompt === null)
+      ) throw new Error('pending_grant_manifest_prompt_unavailable');
+      const claimed = await claimFlashcardTrainingPendingGrantStart(
+        pendingAccount,
+        pendingRecord.fingerprint,
+        pendingRecord.receiptId,
+        `swipe-start:${attemptSessionId}`,
+      );
+      if (claimed.status !== 'claimed' && claimed.status !== 'reused') {
+        throw new Error(`pending_grant_claim_${claimed.status}`);
+      }
+      pendingRecord = claimed.record;
       let energyCharged = pendingRecord.energyState === 'charged';
       if (!energyCharged && pendingRecord.energyState !== 'refunded') {
-        const energyResult = await confirmSwipeEnergy(restoredPayload.energyIntent);
+        const energyResult = await confirmSwipeEnergy(swipeEnergyIntent);
         energyCharged = energyResult === 'spent';
         if (energyCharged) {
           activeSwipeSpentOperationRef.current = pendingRecord.energyOperationId;
-          const marked = await markFlashcardTrainingEnergyCharged(
-            pendingAccount,
-            pendingRecord.fingerprint,
-          );
-          if ('record' in marked) pendingRecord = marked.record;
+          pendingRecord = await persistSpentEnergyOrRefund<FlashcardTrainingPendingGrantRecord>({
+            persistCharged: () => markFlashcardTrainingEnergyCharged(
+              pendingAccount,
+              pendingRecord!.fingerprint,
+            ),
+            refundSpent: () => refundActiveSwipeEnergy('pending_grant_energy_persist_failed'),
+          });
         }
         if (!accessIsCurrent()) {
           if (energyCharged) {
@@ -2336,9 +2443,10 @@ function FlashcardsSwipeScreen() {
       }
 
       if (pendingRecord.phase === 'prepared') {
-        const quotaResult = await consumeFlashcardTrainingQuota({
+        const quotaResult = await consumeMonthlyTrainingSession({
           token: accountToken,
           accessResolved,
+          hasPremiumAccess,
           receiptId: pendingRecord.receiptId,
           mode: 'swipe',
         });
@@ -2349,7 +2457,10 @@ function FlashcardsSwipeScreen() {
             Date.now(),
             quotaResult.resetAt,
           );
-          if ('record' in marked) pendingRecord = marked.record;
+          if (marked.status !== 'quota_committed' && marked.status !== 'playable') {
+            throw new Error(`pending_grant_quota_${marked.status}`);
+          }
+          pendingRecord = marked.record;
         } else {
           if (energyCharged) {
             await abandonFlashcardTrainingPendingGrant(
@@ -2364,7 +2475,7 @@ function FlashcardsSwipeScreen() {
           activeSwipeSpentOperationRef.current = null;
           activeSwipePendingGrantRef.current = null;
         if (quotaResult.status === 'exhausted') {
-          openFlashcardsPlusPaywall('flashcards_training_start');
+          openMonthlyTrainingLimit();
         } else {
           setLoadError(triLang(lang, {
             ru: 'Не удалось проверить лимит тренировки. Попробуйте ещё раз.',
@@ -2390,30 +2501,35 @@ function FlashcardsSwipeScreen() {
         deckIds: deckIdsForSwipeSources(selectedSources),
         size: requestedSessionSize === 0 ? FC_DEFAULT_SESSION_SIZE : requestedSessionSize,
       }).catch(() => {});
-      progressRef.current = Object.fromEntries(
-        restoredPayload.sessionCards.map((card) => [card.trainingKey, emptyProgress()]),
-      );
-      position.setValue({ x: 0, y: 0 });
-      setFeedback(null);
-      setTrainingCards(restoredPayload.sessionCards);
-      setQueue(restoredPayload.promptQueue);
-      setStats(initialStats(restoredPayload.sessionCards.length));
-      setSessionInfo(restoredPayload.info);
-      setAttemptSessionId(makeFeedbackAttemptId());
-      setPhase('play');
-      await markFlashcardTrainingPendingGrantPlayable(
+      const playable = await markFlashcardTrainingPendingGrantPlayable(
         pendingAccount,
         pendingRecord.fingerprint,
       );
+      if (playable.status !== 'playable') {
+        throw new Error(`pending_grant_playable_${playable.status}`);
+      }
+      pendingRecord = playable.record;
       const cleared = await acknowledgeAndClearFlashcardTrainingPendingGrant(
         pendingAccount,
         pendingRecord.fingerprint,
         energyCharged ? acknowledgeSessionStart : async () => true,
       );
-      if (cleared.status === 'cleared') {
-        activeSwipeSpentOperationRef.current = null;
-        activeSwipePendingGrantRef.current = null;
+      if (cleared.status !== 'cleared') {
+        throw new Error(`pending_grant_ack_${cleared.status}`);
       }
+      activeSwipeSpentOperationRef.current = null;
+      activeSwipePendingGrantRef.current = null;
+      progressRef.current = Object.fromEntries(
+        restoredSessionCards.map((card) => [card.trainingKey, emptyProgress()]),
+      );
+      position.setValue({ x: 0, y: 0 });
+      setFeedback(null);
+      setTrainingCards(restoredSessionCards);
+      setQueue(restoredPromptQueue as Prompt[]);
+      setStats(initialStats(restoredSessionCards.length));
+      setSessionInfo(info);
+      setAttemptSessionId(makeFeedbackAttemptId());
+      setPhase('play');
     } catch (error: unknown) {
       const pending = activeSwipePendingGrantRef.current;
       // зачем (владелец, 2026-09-13): немой catch прятал причину отказа входа.
@@ -2423,13 +2539,18 @@ function FlashcardsSwipeScreen() {
         pendingFingerprint: pending?.fingerprint ?? null,
       }));
       if (pending) {
-        await abandonFlashcardTrainingPendingGrant(
+        const abandoned = await abandonFlashcardTrainingPendingGrant(
           pending.account,
           pending.fingerprint,
           refundSwipeEnergy,
           Date.now(),
           'entry_failed',
-        ).catch(() => {});
+        ).catch(() => null);
+        if (abandoned?.status === 'refunded' || abandoned?.status === 'refund_in_progress') {
+          activeSwipeSpentOperationRef.current = null;
+        } else {
+          await refundActiveSwipeEnergy('entry_failed').catch(() => {});
+        }
         await discardFlashcardTrainingPendingGrant(pending.account, pending.fingerprint).catch(() => {});
       } else {
         await refundActiveSwipeEnergy('entry_failed').catch(() => {});
@@ -2442,7 +2563,7 @@ function FlashcardsSwipeScreen() {
        * чека квоты и без списания энергии; отказ инфраструктуры громко в логе.
        */
       const message = error instanceof Error ? error.message : String(error);
-      if (/^pending_grant/.test(message) && swipeLocalStart && swipeMountedRef.current && !swipeExplicitlyAbandonedRef.current && accessIsCurrent()) {
+      if (canUseLegacySwipeGrantFailOpen(message, isTrueFalseSession) && swipeLocalStart && swipeMountedRef.current && !swipeExplicitlyAbandonedRef.current && accessIsCurrent()) {
         activeSwipePendingGrantRef.current = null;
         activeSwipeSpentOperationRef.current = null;
         console.warn('[FC-TRAIN-ENTRY] swipe entry:fail-open — грант недоступен, раунд стартует локально без чека и без списания энергии', JSON.stringify({ reason: message }));
@@ -2466,7 +2587,7 @@ function FlashcardsSwipeScreen() {
       startChargeInFlightRef.current = false;
       if (swipeMountedRef.current) setStarting(false);
     }
-  }, [accessResolved, accountToken, acknowledgeSessionStart, attemptSessionId, buildPromptQueue, buildSessionCards, cardContentLang, confirmSwipeEnergy, lang, openFlashcardsPlusPaywall, position, refundActiveSwipeEnergy, refundSwipeEnergy, requestedSessionSize, selectedSources, starting, studyTarget, swipeEnergyIntent]);
+  }, [accessResolved, hasPremiumAccess, accountToken, acknowledgeSessionStart, answerFor, attemptSessionId, buildPromptQueue, buildSessionCards, cardContentLang, confirmSwipeEnergy, isTrueFalseSession, lang, openMonthlyTrainingLimit, position, refundActiveSwipeEnergy, refundSwipeEnergy, requestedSessionSize, selectedSources, starting, studyTarget, swipeEnergyIntent]);
 
   useEffect(() => {
     if (!swipeAccessGranted) return;
@@ -2842,7 +2963,7 @@ function FlashcardsSwipeScreen() {
   }, []);
 
   const applyAnswer = useCallback(
-    (prompt: Prompt, saysMatch: boolean) => {
+    (prompt: Prompt, saysMatch: boolean, deferCorrectAdvance = false) => {
       if (!swipeAccessGrantedRef.current) return;
       const correct = saysMatch === prompt.isMatch;
       const key = prompt.card.trainingKey;
@@ -2920,8 +3041,12 @@ function FlashcardsSwipeScreen() {
           score: cur.score + scoreAward,
         };
       });
-      if (!saysMatch) {
+      if (!saysMatch && !deferCorrectAdvance) {
         showCorrectTranslationReminder(prompt);
+      }
+      if (deferCorrectAdvance) {
+        setFeedback({ kind: 'correct', prompt, mastered });
+        return;
       }
       if (mastered) {
         setQueue(rest);
@@ -2951,6 +3076,10 @@ function FlashcardsSwipeScreen() {
       // место занимает следующая. Ошибочная остаётся на месте — мягко
       // возвращается из-под пальца и разворачивается разбором.
       const correct = saysMatch === currentPrompt.isMatch;
+      if (isTrueFalseSession) {
+        applyAnswer(currentPrompt, saysMatch, true);
+        return;
+      }
       if (!correct) {
         Animated.spring(position, {
           toValue: { x: 0, y: 0 },
@@ -2965,7 +3094,7 @@ function FlashcardsSwipeScreen() {
       // поэтому преждевременная установка флага заставляла его сразу выйти, и карточка/кнопки «зависали».
       settleCard(saysMatch ? 'right' : 'left', () => applyAnswer(currentPrompt, saysMatch));
     },
-    [applyAnswer, attempts.state.phase, clearCorrectTranslationReminder, currentPrompt, dismissSwipeHint, feedback, position, settleCard, settling, showSwipeHint],
+    [applyAnswer, attempts.state.phase, clearCorrectTranslationReminder, currentPrompt, dismissSwipeHint, feedback, isTrueFalseSession, position, settleCard, settling, showSwipeHint],
   );
 
   const revealCurrent = useCallback(() => {
@@ -2992,13 +3121,18 @@ function FlashcardsSwipeScreen() {
     if (attempts.state.phase !== 'active' || !feedback) return;
     void hapticTap();
     const rest = queue.slice(1);
+    if (isTrueFalseSession && feedback.kind === 'correct' && feedback.mastered) {
+      setQueue(rest);
+      setFeedback(null);
+      return;
+    }
     setQueue(
       insertLater(rest, (insertAt) =>
         makePrompt(feedback.prompt.card, trainingCards, true, adjacentShownNorms(rest, insertAt)),
       ),
     );
     setFeedback(null);
-  }, [attempts.state.phase, feedback, makePrompt, queue, trainingCards]);
+  }, [attempts.state.phase, feedback, isTrueFalseSession, makePrompt, queue, trainingCards]);
 
   const speakCurrentCard = useCallback(() => {
     if (attempts.state.phase !== 'active') return;
@@ -3411,7 +3545,160 @@ function FlashcardsSwipeScreen() {
     </View>
   );
 
+  const renderTrueFalsePlay = () => {
+    if (!currentPrompt) return null;
+    const total = Math.max(1, stats.total);
+    const completedBeforeCurrent = Math.max(
+      0,
+      stats.mastered - (feedback?.kind === 'correct' && feedback.mastered ? 1 : 0),
+    );
+    const currentNumber = Math.min(total, Math.max(1, completedBeforeCurrent + 1));
+    const trueFalseProgress = Math.min(100, Math.round((currentNumber / total) * 100));
+    const selectedMatch = feedback
+      ? (feedback.kind === 'correct' ? currentPrompt.isMatch : !currentPrompt.isMatch)
+      : null;
+    const verdictCorrect = feedback?.kind === 'correct';
+    const title = triLang(lang, {
+      ru: 'Правда / ложь', en: 'True / false', uk: 'Правда / хиба', es: 'Verdadero / falso',
+      'pt-BR': 'Verdadeiro / falso', vi: 'Đúng / sai', id: 'Benar / salah', tr: 'Doğru / yanlış', pl: 'Prawda / fałsz',
+    });
+    const subtitle = triLang(lang, {
+      ru: 'Набор карточек', en: 'Card deck', uk: 'Набір карток', es: 'Mazo de tarjetas',
+      'pt-BR': 'Baralho de cartões', vi: 'Bộ thẻ', id: 'Set kartu', tr: 'Kart destesi', pl: 'Zestaw fiszek',
+    });
+    const question = triLang(lang, {
+      ru: 'Этот перевод подходит?', en: 'Does this translation match?', uk: 'Цей переклад підходить?', es: '¿Coincide esta traducción?',
+      'pt-BR': 'Esta tradução corresponde?', vi: 'Bản dịch này có phù hợp không?', id: 'Apakah terjemahan ini cocok?', tr: 'Bu çeviri eşleşiyor mu?', pl: 'Czy to tłumaczenie pasuje?',
+    });
+    const continueLabel = triLang(lang, {
+      ru: 'Продолжить', en: 'Continue', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar',
+      vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj',
+    });
+    const verdict = verdictCorrect
+      ? triLang(lang, {
+          ru: `Верно — ${currentPrompt.isMatch ? 'перевод совпадает' : 'чужой перевод'}`,
+          en: `Correct — ${currentPrompt.isMatch ? 'the translation matches' : 'it is a different translation'}`,
+          uk: `Правильно — ${currentPrompt.isMatch ? 'переклад збігається' : 'це чужий переклад'}`,
+          es: `Correcto — ${currentPrompt.isMatch ? 'la traducción coincide' : 'es otra traducción'}`,
+          'pt-BR': `Correto — ${currentPrompt.isMatch ? 'a tradução corresponde' : 'é outra tradução'}`,
+          vi: `Đúng — ${currentPrompt.isMatch ? 'bản dịch phù hợp' : 'đây là bản dịch khác'}`,
+          id: `Benar — ${currentPrompt.isMatch ? 'terjemahan cocok' : 'ini terjemahan lain'}`,
+          tr: `Doğru — ${currentPrompt.isMatch ? 'çeviri eşleşiyor' : 'bu farklı bir çeviri'}`,
+          pl: `Dobrze — ${currentPrompt.isMatch ? 'tłumaczenie pasuje' : 'to inne tłumaczenie'}`,
+        })
+      : triLang(lang, {
+          ru: `Неверно. ${text.correctTranslation}: ${currentPrompt.trueTranslation}`,
+          en: `Incorrect. ${text.correctTranslation}: ${currentPrompt.trueTranslation}`,
+          uk: `Неправильно. ${text.correctTranslation}: ${currentPrompt.trueTranslation}`,
+          es: `Incorrecto. ${text.correctTranslation}: ${currentPrompt.trueTranslation}`,
+          'pt-BR': `Incorreto. ${text.correctTranslation}: ${currentPrompt.trueTranslation}`,
+          vi: `Sai. ${text.correctTranslation}: ${currentPrompt.trueTranslation}`,
+          id: `Salah. ${text.correctTranslation}: ${currentPrompt.trueTranslation}`,
+          tr: `Yanlış. ${text.correctTranslation}: ${currentPrompt.trueTranslation}`,
+          pl: `Nieprawidłowo. ${text.correctTranslation}: ${currentPrompt.trueTranslation}`,
+        });
+
+    const answerStyle = (saysMatch: boolean) => {
+      if (!feedback) return { backgroundColor: glassFill(t.bgSurface2, 0.72), opacity: 1 };
+      if (selectedMatch !== saysMatch) return { backgroundColor: glassFill(t.bgSurface2, 0.36), opacity: 0.4 };
+      return {
+        backgroundColor: verdictCorrect ? t.correctBg : t.wrongBg,
+        opacity: 1,
+        shadowColor: verdictCorrect ? t.correct : t.wrong,
+      };
+    };
+
+    return (
+      <View style={[styles.trueFalseRoot, { paddingHorizontal: ds.spacing.lg, paddingBottom: Math.max(14, bottomInset + 10) }]}>
+        <View testID="flashcards-truefalse-header" style={styles.trueFalseHeader}>
+          <PracticeBackButton
+            glass={swipeGlass}
+            color={t.textPrimary}
+            onPress={exitTraining}
+            accessibilityLabel={triLang(lang, { ru: 'Выйти из тренировки', en: 'Exit training', uk: 'Вийти з тренування', es: 'Salir de la práctica', 'pt-BR': 'Sair do treino', vi: 'Thoát luyện tập', id: 'Keluar dari latihan', tr: 'Alıştırmadan çık', pl: 'Wyjdź z treningu' })}
+          />
+          <PracticeHeaderTitle glass={swipeGlass} title={title} subtitle={subtitle} />
+          <EnergyBar ownerActive />
+        </View>
+
+        <View style={styles.trueFalseMetaRow}>
+          <SessionAttemptsHud remaining={attempts.state.remainingAttempts} locale={lang} testID="flashcards-truefalse-attempts-hud" />
+          <View ref={runeFlight.counterRef} collapsable={false}>
+            <PracticeRuneCounter runes={practiceRunes.runes} lang={lang} backgroundColor={t.bgCard} color={t.textPrimary} testID="flashcards-truefalse-practice-runes" />
+          </View>
+        </View>
+
+        <View testID="flashcards-truefalse-progress" style={styles.trueFalseProgressRow}>
+          <View style={[styles.trueFalseProgressTrack, { backgroundColor: t.bgSurface2 }]}>
+            <View style={[styles.trueFalseProgressFill, { width: `${trueFalseProgress}%` as `${number}%`, backgroundColor: t.accent }]} />
+          </View>
+          <Text style={[styles.trueFalseProgressText, { color: t.textMuted, fontSize: f.caption }]}>{currentNumber} / {total}</Text>
+        </View>
+
+        <View ref={runeFlight.originRef} collapsable={false} style={styles.trueFalseBody}>
+          <View testID="flashcards-truefalse-prompt" style={[styles.trueFalseCard, { backgroundColor: swipeGlass.card, shadowColor: t.cardShadow }]}>
+            <SwipeTrainingCardGlass chrome={swipeGlass} sheen={!feedback} />
+            <Text style={[styles.trueFalseQuestion, { color: t.textMuted, fontSize: f.caption }]}>{question}</Text>
+            <FlowText provenance="authored" style={[styles.trueFalseWord, { color: t.textPrimary, fontSize: Math.min(32, f.h1 + 7) }]}>
+              {s(currentPrompt.card.en) || text.brokenCardPhrase}
+            </FlowText>
+            <View style={[styles.trueFalseDivider, { backgroundColor: glassFill(t.textMuted, 0.2) }]} />
+            <FlowText provenance="authored" style={[styles.trueFalseTranslation, { color: t.textSecond, fontSize: Math.min(22, f.bodyLg + 4) }]}>
+              {currentPrompt.shownTranslation}
+            </FlowText>
+          </View>
+
+          <View style={styles.trueFalseAnswers}>
+            <TouchableOpacity
+              testID="flashcards-truefalse-answer-false"
+              onPress={() => answerCurrent(false)}
+              disabled={Boolean(feedback) || attempts.state.phase !== 'active'}
+              accessibilityRole="button"
+              accessibilityLabel={text.mismatchAction}
+              style={[styles.trueFalseAnswer, answerStyle(false)]}
+            >
+              <Ionicons name="close" size={38} color={feedback && selectedMatch === false ? (verdictCorrect ? t.correct : t.wrong) : t.textSecond} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              testID="flashcards-truefalse-answer-true"
+              onPress={() => answerCurrent(true)}
+              disabled={Boolean(feedback) || attempts.state.phase !== 'active'}
+              accessibilityRole="button"
+              accessibilityLabel={text.matchAction}
+              style={[styles.trueFalseAnswer, answerStyle(true)]}
+            >
+              <Ionicons name="checkmark" size={38} color={feedback && selectedMatch === true ? (verdictCorrect ? t.correct : t.wrong) : t.textSecond} />
+            </TouchableOpacity>
+          </View>
+
+          {feedback ? (
+            <View testID="flashcards-truefalse-verdict" accessibilityRole="alert" accessibilityLabel={verdict} style={styles.trueFalseVerdict}>
+              <Ionicons name={verdictCorrect ? 'checkmark-circle' : 'close-circle'} size={22} color={verdictCorrect ? t.correct : t.wrong} />
+              <FlowText provenance="authored" style={[styles.trueFalseVerdictText, { color: verdictCorrect ? t.correct : t.wrong, fontSize: f.body }]}>{verdict}</FlowText>
+            </View>
+          ) : null}
+        </View>
+
+        {feedback ? (
+          <DuoPressable
+            testID="flashcards-truefalse-continue"
+            onPress={continueAfterFeedback}
+            edgeColor={t.accent}
+            style={[styles.trueFalseContinue, { backgroundColor: t.accent }]}
+          >
+            <Text style={[styles.continueText, { color: t.correctText, fontSize: f.body }]}>{continueLabel}</Text>
+          </DuoPressable>
+        ) : null}
+        {attempts.state.phase !== 'active' ? <View pointerEvents="auto" style={styles.attemptsInputBlocker} /> : null}
+        {runeFlight.flight ? (
+          <LearningV2RuneFlight key={runeFlight.flight.key} from={runeFlight.flight.from} to={runeFlight.flight.to} count={runeFlight.flight.count} onDone={runeFlight.clearFlight} />
+        ) : null}
+      </View>
+    );
+  };
+
   const renderPlay = () => {
+    if (isTrueFalseSession) return renderTrueFalsePlay();
     if (!currentPrompt) return null;
     // зачем: trueTranslation уже показан в блоке «правильный перевод» — не дублируем
     // его внутри заметки-примера.
@@ -3443,9 +3730,10 @@ function FlashcardsSwipeScreen() {
           </View>
         </View>
         <View style={[styles.playHeader, isCompactFlashcardsTask && styles.compactPlayHeader]}>
-          <TapScale
+          <PracticeBackButton
+            glass={swipeGlass}
+            color={t.textPrimary}
             onPress={exitTraining}
-            style={[styles.iconButton, isCompactFlashcardsTask && styles.compactIconButton, { backgroundColor: t.bgSurface }]}
             accessibilityLabel={triLang(lang, {
               ru: 'Выйти из тренировки',
               en: 'Exit training',
@@ -3457,9 +3745,7 @@ function FlashcardsSwipeScreen() {
               tr: "Alıştırmadan çık",
               pl: "Wyjdź z treningu",
             })}
-          >
-            <Ionicons name="chevron-back" size={isCompactFlashcardsTask ? 20 : 22} color={t.textPrimary} />
-          </TapScale>
+          />
           <View style={[styles.headerStats, isCompactFlashcardsTask && styles.compactHeaderStats]}>
             <Text style={[styles.headerStatText, { color: t.textPrimary, fontSize: f.caption }]}>
               {isCompactFlashcardsTask ? `${stats.mastered}/${stats.total}` : `${text.mastered}: ${stats.mastered}/${stats.total}`}
@@ -3515,7 +3801,7 @@ function FlashcardsSwipeScreen() {
                 {
                   width: cardWidth,
                   minHeight: cardHeight,
-                  backgroundColor: t.bgSurface2,
+                  backgroundColor: swipeGlass.card,
                 },
                 {
                   // зачем: поза подложки больше не статична — на улёте она доезжает
@@ -3541,7 +3827,9 @@ function FlashcardsSwipeScreen() {
                   ],
                 },
               ]}
-            />
+            >
+              <SwipeTrainingCardGlass chrome={swipeGlass} />
+            </Animated.View>
           ) : null}
           <Animated.View
             key={currentPrompt.id}
@@ -3562,7 +3850,7 @@ function FlashcardsSwipeScreen() {
                 // цвету тени, а не по контуру: мягче и «дороже», сигнал не потерян.
                 backgroundColor: feedback
                   ? (feedback.kind === 'wrong' ? t.wrongBg : t.correctBg)
-                  : t.bgSurface,
+                  : swipeGlass.card,
                 shadowColor: feedback
                   ? (feedback.kind === 'wrong' ? t.wrong : t.gold)
                   : t.cardShadow,
@@ -3574,6 +3862,7 @@ function FlashcardsSwipeScreen() {
               },
             ]}
           >
+            <SwipeTrainingCardGlass chrome={swipeGlass} sheen={!feedback} />
             <Animated.View style={[styles.swipeBadge, styles.noBadge, { opacity: noOpacity, borderColor: 'transparent', backgroundColor: glassFill(t.wrong, 0.14) }]}>
               <Text style={[styles.swipeBadgeText, { color: t.wrong }]}>{text.mismatch}</Text>
             </Animated.View>
@@ -3856,7 +4145,6 @@ function FlashcardsSwipeScreen() {
       <SessionResultScreen
         correct={resultCorrect}
         wrong={resultWrong}
-        xpGained={0}
         runesGained={practiceRunes.runes}
         learnLeft={0}
         onRetryWrong={() => { void startSession(); }}
@@ -4152,6 +4440,129 @@ const styles = StyleSheet.create({
   playWrap: {
     flex: 1,
     paddingTop: 10,
+  },
+  trueFalseRoot: {
+    flex: 1,
+    paddingTop: 10,
+  },
+  trueFalseHeader: {
+    minHeight: 52,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  trueFalseHeaderCopy: {
+    flex: 1,
+    minWidth: 0,
+  },
+  trueFalseTitle: {
+    fontWeight: '900',
+  },
+  trueFalseSubtitle: {
+    marginTop: 2,
+    fontWeight: '700',
+  },
+  trueFalseMetaRow: {
+    minHeight: 44,
+    marginTop: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  trueFalseProgressRow: {
+    marginTop: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  trueFalseProgressTrack: {
+    flex: 1,
+    height: 6,
+    borderRadius: 999,
+    overflow: 'hidden',
+  },
+  trueFalseProgressFill: {
+    height: '100%',
+    borderRadius: 999,
+  },
+  trueFalseProgressText: {
+    minWidth: 42,
+    fontWeight: '800',
+    textAlign: 'right',
+  },
+  trueFalseBody: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingVertical: 18,
+  },
+  trueFalseCard: {
+    minHeight: 258,
+    borderRadius: 26,
+    paddingHorizontal: 26,
+    paddingVertical: 28,
+    justifyContent: 'center',
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.2,
+    shadowRadius: 22,
+    ...noAndroidOutline,
+  },
+  trueFalseQuestion: {
+    fontWeight: '800',
+    textAlign: 'center',
+  },
+  trueFalseWord: {
+    marginTop: 22,
+    fontWeight: '900',
+    lineHeight: 38,
+    textAlign: 'center',
+  },
+  trueFalseDivider: {
+    height: StyleSheet.hairlineWidth,
+    marginVertical: 22,
+  },
+  trueFalseTranslation: {
+    fontWeight: '800',
+    lineHeight: 28,
+    textAlign: 'center',
+  },
+  trueFalseAnswers: {
+    marginTop: 28,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 28,
+  },
+  trueFalseAnswer: {
+    width: 88,
+    height: 88,
+    borderRadius: 44,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowOffset: { width: 0, height: 7 },
+    shadowOpacity: 0.18,
+    shadowRadius: 14,
+    ...noAndroidOutline,
+  },
+  trueFalseVerdict: {
+    minHeight: 46,
+    marginTop: 18,
+    paddingHorizontal: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+  },
+  trueFalseVerdictText: {
+    flexShrink: 1,
+    fontWeight: '900',
+    lineHeight: 22,
+    textAlign: 'center',
+  },
+  trueFalseContinue: {
+    minHeight: 56,
+    borderRadius: 18,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   attemptsInputBlocker: {
     ...StyleSheet.absoluteFillObject,
@@ -4632,4 +5043,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withOptionalPersonalPlanSunsetGuard(FlashcardsSwipeScreen, ['planFlashcardsTask']);
+export default FlashcardsSwipeScreen;

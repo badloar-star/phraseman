@@ -22,7 +22,7 @@
 //
 // Очередь — общее правило раздела (`session_queue`): не сдал → карточка в конец,
 // максимум 2 повтора; чистая логика — flashcards/speaking_session_logic.ts.
-// XP режим не даёт (как слушание/блиц: говорение — надстройка, без двойного счёта).
+// legacy reward режим не даёт (как слушание/блиц: говорение — надстройка, без двойного счёта).
 // Финал → SessionResultScreen (верно/ошибок/точность + «Добить»).
 //
 // Премиум-гейт — как у всех речевых поверхностей: `useFeatureAccess('speaking')`
@@ -35,7 +35,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useKeepAwake } from 'expo-keep-awake';
-import { useTheme } from '../components/ThemeContext';
+import { FONT_SCALE, useTheme } from '../components/ThemeContext';
 import { usePremium } from '../components/PremiumContext';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
@@ -48,8 +48,12 @@ import { SpeakingPanel, buildSpeakingPanelTheme } from '../components/SpeakingPa
 import SpeakingInlineSlot from '../components/SpeakingInlineSlot';
 import SpeakingTaskHint from './flashcards/SpeakingTaskHint';
 import SpeakingInlineResultStars from '../components/SpeakingInlineResultStars';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import { triLang } from '../constants/i18n';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { PracticeBackButton, PracticeHeaderTitle, PracticeRoundIconButton } from '../components/practice/PracticeChrome';
 import { useAudio } from '../hooks/use-audio';
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { flashcardContentLang } from './spanish_content_gate';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { trackEvent } from './analytics';
@@ -110,13 +114,42 @@ import {
   resolveFlashcardTrainingPendingGrantAccount,
   type FlashcardTrainingPendingGrantRecord,
 } from './flashcard_training_pending_grant';
-import { consumeFlashcardTrainingQuota } from './revenue_quota_access';
+import { consumeMonthlyTrainingSession } from './monthly_training_sessions';
 import { makeFeedbackAttemptId } from './feedback_attempt_identity';
 import { DebugLogger } from './debug-logger';
 
 /** Акцент режима (words #4A9EFF / phrases #40C080 / blitz #FF8A3D). */
 const ACCENT = '#22B8A8';
-const CARD_MIN_H = 260;
+const CARD_MIN_H = 200;
+const SPEAKING_CARD_PRESENTATION = Object.freeze({
+  borderRadius: 16,
+  paddingHorizontal: 28,
+  paddingTop: 24,
+  paddingBottom: 22,
+});
+
+type SpeakingGlassTokens = ReturnType<typeof liquidGlassTokens>;
+
+/** Passive material only; score state and actions remain owned by the session. */
+function SpeakingResultSheen({ glass }: { glass: SpeakingGlassTokens }) {
+  return (
+    <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+      <LinearGradient
+        colors={[glass.lightTint, 'transparent']}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0.85, y: 1 }}
+        style={[StyleSheet.absoluteFill, { opacity: 0.08 }]}
+      />
+    </View>
+  );
+}
+
+function retainedSpeakingTranscript(attempt: SpeakingAttempt | null): string | null {
+  if (!attempt || !('transcript' in attempt)) return null;
+  const transcript = (attempt as SpeakingAttempt & { transcript?: unknown }).transcript;
+  if (typeof transcript !== 'string') return null;
+  return transcript.trim().length > 0 ? transcript : null;
+}
 
 /**
  * Эхо эталона после оценки.
@@ -175,15 +208,18 @@ function shuffleArr<T>(a: readonly T[]): T[] {
 type ResultState = { correct: number; wrong: number; learnLeft: number };
 
 const TITLE = {
-  ru: 'Говорить', uk: 'Говорити', es: 'Hablar', 'pt-BR': 'Falar',
+  ru: 'Устно', uk: 'Говорити', en: 'Speaking', es: 'Hablar', 'pt-BR': 'Falar',
   vi: 'Nói', id: 'Bicara', tr: 'Konuş', pl: 'Mów',
 } as const;
 
 // ── Экран ────────────────────────────────────────────────────────────────────
 export default function FlashcardsSpeakingSession() {
   const router = useRouter();
-  const { theme: t, f } = useTheme();
-  const { accessResolved } = usePremium();
+  const { theme: t, f, liquidGlassThemeId, fontSize, uiScale } = useTheme();
+  const insets = useStableSafeAreaInsets();
+  const speakingGlass = liquidGlassTokens(liquidGlassThemeId);
+  const textScale = (FONT_SCALE[fontSize] / FONT_SCALE.medium) * uiScale;
+  const { accessResolved, hasPremiumAccess } = usePremium();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { speak, stop: stopSpeech } = useAudio();
@@ -487,9 +523,10 @@ export default function FlashcardsSpeakingSession() {
       }
 
       if (pendingRecord.phase === 'prepared') {
-        const quotaResult = await consumeFlashcardTrainingQuota({
+        const quotaResult = await consumeMonthlyTrainingSession({
           token: accountToken,
           accessResolved,
+          hasPremiumAccess,
           receiptId: pendingRecord.receiptId,
           mode: 'speaking',
         });
@@ -520,8 +557,8 @@ export default function FlashcardsSpeakingSession() {
           }
           if (!cancelled && quotaResult.status === 'exhausted') {
             markNextNavigationAsReplace();
-            router.replace({ pathname: '/premium_modal', params: {
-              context: 'flashcard_training', source: 'flashcards_speaking_direct',
+            router.replace({ pathname: '/flashcards_training_setup', params: {
+              mode: 'speaking',
             } } as never);
           }
           return;
@@ -1173,6 +1210,10 @@ export default function FlashcardsSpeakingSession() {
         ru: 'Сказано', uk: 'Сказано', en: 'Said', es: 'Dichas', 'pt-BR': 'Ditas',
         vi: 'Đã nói', id: 'Diucapkan', tr: 'Söylenen', pl: 'Powiedziane',
       }),
+      spokenTranscript: triLang(lang, {
+        ru: 'Сказано', uk: 'Сказано', en: 'Spoken', es: 'Dicho', 'pt-BR': 'Falado',
+        vi: 'Đã nói', id: 'Diucapkan', tr: 'Söylenen', pl: 'Powiedziano',
+      }),
     }),
     [lang],
   );
@@ -1199,32 +1240,22 @@ export default function FlashcardsSpeakingSession() {
         </View>
       ) : null}
     <View style={styles.headerRow}>
-      {interactive ? (
-        <TouchableOpacity
-          onPress={leave}
-          style={{ padding: 4 }}
-          testID="fc-speak-back"
-          accessibilityRole="button"
-          accessibilityLabel={labels.back}
-          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-        >
-          <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
-        </TouchableOpacity>
-      ) : (
-        <View style={{ padding: 4 }}>
-          <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
-        </View>
-      )}
-      <View style={{ alignItems: 'center', gap: 2, flex: 1, minWidth: 0 }}>
-        <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.body }]}>{labels.title}</Text>
+      <PracticeBackButton
+        glass={speakingGlass}
+        color={t.textPrimary}
+        onPress={interactive ? leave : undefined}
+        testID={interactive ? 'fc-speak-back' : undefined}
+        accessibilityLabel={labels.back}
+      />
+      <PracticeHeaderTitle glass={speakingGlass} title={labels.title}>
         {interactive ? (
-          <ScrollView horizontal style={{ maxWidth: '100%', flexGrow: 0 }} showsHorizontalScrollIndicator>
-                <Text style={{ color: t.textMuted, fontSize: f.caption }}>{deckTitle}</Text>
-              </ScrollView>
+          <ScrollView horizontal style={{ maxWidth: '100%', flexGrow: 0 }} showsHorizontalScrollIndicator={false}>
+            <Text style={{ color: speakingGlass.secondary, fontSize: 15, lineHeight: 20, marginTop: 2 }}>{deckTitle}</Text>
+          </ScrollView>
         ) : (
-          <SkeletonBlock width={120} height={f.caption} />
+          <View style={{ marginTop: 4 }}><SkeletonBlock width={120} height={f.caption} /></View>
         )}
-      </View>
+      </PracticeHeaderTitle>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
         <SessionAttemptsHud
           remaining={attempts.state.remainingAttempts}
@@ -1238,18 +1269,15 @@ export default function FlashcardsSpeakingSession() {
         ) : (
           <SkeletonBlock width={44} height={f.caption} />
         )}
-        <TouchableOpacity
+        <PracticeRoundIconButton
+          glass={speakingGlass}
+          color={speakingGlass.secondary}
+          icon="albums-outline"
           testID="fc-speak-pick-decks"
           accessibilityLabel={labels.pickDecks}
-          accessible
-          accessibilityRole="button"
           onPress={openDeckPicker}
           disabled={!interactive}
-          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-          style={{ padding: 4 }}
-        >
-          <Ionicons name="albums-outline" size={20} color={t.textMuted} />
-        </TouchableOpacity>
+        />
         {/* зачем: говорение сверяет речь с эталонной фразой card.en — если эталон
             неверен, «попасть» в него нельзя в принципе, и человек застревает.
             Флаг только в живом состоянии: в скелетоне карточки ещё нет. */}
@@ -1340,7 +1368,6 @@ RU: ${card.translation}`}
       <SessionResultScreen
         correct={devRunesFake ? devRunesFake.tertiary + 4 : result.correct}
         wrong={devRunesFake ? devRunesFake.tertiary : result.wrong}
-        xpGained={0}
         runesGained={practiceRunes.runes}
         learnLeft={result.learnLeft}
         onRetryWrong={result.learnLeft > 0 ? onRetryWrong : undefined}
@@ -1385,6 +1412,7 @@ RU: ${card.translation}`}
   const back = task === 'recall' ? card?.en ?? '' : card?.translation ?? '';
   const attempt = session.attempt;
   const band = attempt ? speakingBand(attempt.score, SPEECH_PRONUNCIATION_PASS_THRESHOLD) : null;
+  const spokenTranscript = retainedSpeakingTranscript(attempt);
   /**
    * зачем (владелец, 2026-08-17, скриншот): подпись «Зажми — скажи ещё раз»
    * раньше показывалась и после ЗАЧЁТА (phase==='scored' безусловно) — но там
@@ -1403,7 +1431,15 @@ RU: ${card.translation}`}
 
   return (
     <ScreenGradient>
-      <SafeAreaView style={{ flex: 1 }}>
+      <View
+        style={{
+          flex: 1,
+          paddingTop: insets.top,
+          paddingRight: insets.right,
+          paddingBottom: insets.bottom,
+          paddingLeft: insets.left,
+        }}
+      >
         <ContentWrap>
           {header(true)}
 
@@ -1429,14 +1465,14 @@ RU: ${card.translation}`}
               flipped={flipped}
               onFlip={setFlipped}
               minHeight={CARD_MIN_H}
+              presentation={SPEAKING_CARD_PRESENTATION}
+              t={t}
               disabled={holdActive}
               testID="fc-speak-card"
               renderFront={() => (
                 <View style={styles.cardFace}>
                   <Text
-                    maxFontSizeMultiplier={1.35}
-
-                    style={{ color: t.textPrimary, fontSize: (f.h1 ?? 22) + 2, fontWeight: '700', textAlign: 'center' }}
+                    style={{ color: t.textPrimary, fontSize: 30 * textScale, lineHeight: 36 * textScale, fontWeight: '700', textAlign: 'center' }}
                   >
                     {front}
                   </Text>
@@ -1445,9 +1481,7 @@ RU: ${card.translation}`}
               renderBack={() => (
                 <View style={styles.cardFace}>
                   <Text
-                    maxFontSizeMultiplier={1.35}
-
-                    style={{ color: t.textPrimary, fontSize: (f.h1 ?? 22) + 2, fontWeight: task === 'recall' ? '700' : '500', textAlign: 'center' }}
+                    style={{ color: t.textPrimary, fontSize: 30 * textScale, lineHeight: 36 * textScale, fontWeight: '700', textAlign: 'center' }}
                   >
                     {back}
                   </Text>
@@ -1477,7 +1511,24 @@ RU: ${card.translation}`}
                 onStatusChange={onPanelStatusChange}
               />
             ) : phase === 'scored' && attempt && band ? (
-              <View style={[styles.resultCard, { backgroundColor: t.bgCard }]} testID="fc-speak-attempt-result">
+              <View
+                style={[
+                  styles.resultCard,
+                  { backgroundColor: speakingGlass.opaqueCard, borderColor: speakingGlass.glassEdge },
+                ]}
+                testID="fc-speak-attempt-result"
+              >
+                <SpeakingResultSheen glass={speakingGlass} />
+                {spokenTranscript ? (
+                  <View style={styles.transcriptBlock} testID="fc-speak-transcript">
+                    <Text style={{ color: t.textMuted, fontSize: 12 * textScale, fontWeight: '700', letterSpacing: 3, textTransform: 'uppercase' }}>
+                      {labels.spokenTranscript}
+                    </Text>
+                    <Text style={{ color: t.textPrimary, fontSize: 20 * textScale, lineHeight: 26 * textScale, fontWeight: '600', textAlign: 'center' }}>
+                      {spokenTranscript}
+                    </Text>
+                  </View>
+                ) : null}
                 <SpeakingInlineResultStars result={attempt} theme={panelTheme} testID="fc-speak-stars" />
                 <Text
                   style={{ color: attempt.passed ? t.correct : t.textPrimary, fontSize: f.sub, fontWeight: '800', textAlign: 'center' }}
@@ -1573,7 +1624,7 @@ RU: ${card.translation}`}
               <Ionicons name="play-skip-forward" size={22} color={t.textPrimary} />
             </TouchableOpacity>
             <SpeakHoldButton
-              accent={ACCENT}
+              accent={speakingGlass.cta}
               listening={holdActive}
               disabled={!card}
               sessionAuthorized={quotaSessionAuthorized}
@@ -1597,7 +1648,7 @@ RU: ${card.translation}`}
             </TouchableOpacity>
           </View>
         </ContentWrap>
-      </SafeAreaView>
+      </View>
       {deckPickerSheet}
       <NoEnergyModal visible={noEnergyOpen} onClose={leave} activity="flashcards" />
       {runeFlight.flight && (
@@ -1621,13 +1672,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 12,
   },
-  headerTitle: { fontWeight: '700' },
-  progressTrack: { height: 4, borderRadius: 2, marginHorizontal: 16, overflow: 'hidden' },
-  progressFill: { height: 4, borderRadius: 2 },
+  progressTrack: { height: 6, borderRadius: 4, marginTop: 22, marginHorizontal: 20, overflow: 'hidden' },
+  progressFill: { height: 6, borderRadius: 4 },
   // Отдельная верхняя строка рун уплотнила экран: опускаем карточку ниже,
   // чтобы её верх не заходил на progress bar.
-  cardArea: { flexGrow: 1, justifyContent: 'center', paddingHorizontal: 24, paddingTop: 32 },
-  cardFace: { alignItems: 'center', width: '100%', paddingVertical: 12, gap: 12 },
+  cardArea: { flexGrow: 1, justifyContent: 'center', paddingHorizontal: 20, paddingTop: 34 },
+  cardFace: { alignItems: 'center', width: '100%' },
   spokenRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -1635,14 +1685,17 @@ const styles = StyleSheet.create({
     gap: 5,
     marginTop: 12,
   },
-  inlineSlot: { paddingHorizontal: 24 },
+  inlineSlot: { paddingHorizontal: 20 },
   resultCard: {
-    borderRadius: 18,
-    paddingHorizontal: 14,
-    paddingVertical: 12,
+    borderRadius: 16,
+    borderWidth: 1,
+    paddingHorizontal: 18,
+    paddingVertical: 16,
     alignItems: 'center',
     gap: 8,
+    overflow: 'hidden',
   },
+  transcriptBlock: { width: '100%', alignItems: 'center', gap: 8 },
   resultActions: { flexDirection: 'row', gap: 10, marginTop: 2 },
   resultBtn: {
     flexDirection: 'row',

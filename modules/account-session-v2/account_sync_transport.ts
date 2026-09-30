@@ -35,6 +35,26 @@ export const ACCOUNT_SYNC_CLIENT_ERROR_CONTRACT = Object.freeze({
   retryAfterConsumesAttempt: false as const,
   minFailureSpanMs: ACCOUNT_SYNC_CLIENT_MIN_FAILURE_SPAN_MS,
   attemptsExhaustedRequeue: true as const,
+  /**
+   * Возвратные карантины outbox (requeue). зачем (TG-CF3E51F11C41): кроме потолка
+   * попыток возвратны «кривые квитанции» (сервер мог починиться) и «просрочено по
+   * часам» (часы могли соврать). Повтор просроченной операции безопасен ПРИ
+   * УСЛОВИИ, что её возраст верно оценён правилом двух оценок (ремонт №3,
+   * TG-085BF4F55515: истекает, если обе оценки > 170 сут, или одна > 170 сут, а
+   * вторая отрицательна, то есть доказанно ложна): тогда операция моложе 170 сут,
+   * квитанция (TTL 180 сут) ещё жива и сервер ответит duplicate, а по-настоящему
+   * старая тут же истечёт снова. Оговорка (TEMP): если часы при постановке ушли
+   * вперёд меньше чем на 170 сут и потом исправлены, местная оценка положительна,
+   * но занижена на величину сдвига. Это закрыто сервером (TG-DFA918464DFA):
+   * операция несёт `enqueuedAtServerMs`, и сервер отказывает старше 170 сут по СВОИМ
+   * часам (`rejected operation_expired` → карантин `sync_operation_expired`).
+   * `sync_operation_time_in_future` возвратный: оценка из будущего значит, что
+   * клиент не знал смещения часов; после ответа сервера оценка зажимается сверху.
+   */
+  requeueQuarantineCodes: Object.freeze([
+    'sync_dispatch_attempts_exhausted', 'sync_receipt_invalid_exhausted', 'sync_operation_expired',
+    'sync_operation_time_in_future',
+  ] as const),
 });
 
 export type AccountSyncClientAction = 'quarantine' | 'retry' | 'reauth';
@@ -160,11 +180,16 @@ export function accountSyncBackoffMs(failedAttempts: number, random: () => numbe
   return half + Math.floor(unitRandom(random) * (cap - half));
 }
 
-/** Учёт после ещё одной засчитанной неудачи; первая неудача запускает отсчёт суток. */
+/**
+ * Учёт после ещё одной засчитанной неудачи; первая неудача запускает отсчёт суток.
+ * зачем (TG-CF3E51F11C41, P3): время первой неудачи = min(сохранённое, сейчас).
+ * Метка из «будущего» (часы перевели назад или сменилась поправка сервера) иначе
+ * держала бы отрицательный срок неудач — и потолок не наступал бы никогда.
+ */
 function countFailure(ledger: AccountSyncAttemptLedger, serverNowMs: number): AccountSyncAttemptLedger {
   return Object.freeze({
     failedAttempts: ledger.failedAttempts + 1,
-    firstFailureAtMs: ledger.firstFailureAtMs ?? serverNowMs,
+    firstFailureAtMs: ledger.firstFailureAtMs === null ? serverNowMs : Math.min(ledger.firstFailureAtMs, serverNowMs),
   });
 }
 

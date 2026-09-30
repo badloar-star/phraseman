@@ -1,5 +1,5 @@
 import type { Firestore } from 'firebase-admin/firestore';
-import { AccountsV2ApplyError, docIdFor, opDocIdFor, planBatchReads, validateBatch } from '../accounts_v2_apply_core';
+import { AccountsV2ApplyError, docIdFor, opDocIdFor, planBatchReads, validateClientBatch } from '../accounts_v2_apply_core';
 import { accountsV2EntityPath, accountsV2OpPath } from './firestore_port';
 
 /*
@@ -137,6 +137,8 @@ function lesson(operationId: string, entityId = 'l01', ownerUid = UID): Record<s
       schemaVersion: 1, operationId, entityType: 'lesson_progress', entityId,
       clientSequence: 1, baseRevision: null, payload: { passed: true, score: 80 },
     },
+    // TG-DFA918464DFA: пакет клиента несёт оценку времени постановки.
+    enqueuedAtServerMs: NOW,
   };
 }
 
@@ -228,6 +230,30 @@ describe('accounts_v2_callable: личность', () => {
     expect(fake.touched()).toBe(0);
   });
 
+  // зачем (TG-DFA918464DFA): callable принимает только форму клиента — с оценкой
+  // времени постановки; без неё пакет отклоняется целиком, до Firestore.
+  it('операция без enqueuedAtServerMs — invalid-argument missing_field, Firestore не трогается', async () => {
+    const fake = createFakeFirestore();
+    const { enqueuedAtServerMs: _dropped, ...bare } = lesson('op-1');
+    const result = await codeOf(call(fake.db, batch(bare)));
+    expect(result).toEqual({ code: 'invalid-argument', message: 'missing_field', details: { final: true, code: 'missing_field' } });
+    expect(fake.touched()).toBe(0);
+  });
+
+  it('старая операция — rejected operation_expired в ответе, квитанция не пишется', async () => {
+    const fake = createFakeFirestore();
+    const old = { ...lesson('op-old'), enqueuedAtServerMs: NOW - 171 * 24 * 60 * 60 * 1000 };
+    const response = await call(fake.db, batch(old, lesson('op-1', 'l02')));
+    expect(response).toEqual({
+      receipts: [
+        { operationId: 'op-old', outcome: 'rejected', code: 'operation_expired', serverRevision: 0 },
+        { operationId: 'op-1', outcome: 'applied', serverRevision: 1 },
+      ],
+      serverNowMs: NOW,
+    });
+    expect(fake.committed.has(accountsV2OpPath(UID, opDocIdFor('op-old')))).toBe(false);
+  });
+
   it('uid из custom token, непригодный для пути — failed-precondition до лимита и Firestore', async () => {
     const fake = createFakeFirestore();
     for (const uid of ['a/b', '..', '__x__']) {
@@ -257,7 +283,7 @@ describe('accounts_v2_callable: применение', () => {
     const fake = createFakeFirestore();
     const data = batch(lesson('op-1'), lesson('op-2', 'l02'));
     await call(fake.db, data);
-    const validated = validateBatch(data);
+    const validated = validateClientBatch(data);
     if (!validated.ok) throw new Error('fixture');
     const plan = planBatchReads(validated.batch);
     const expected = [

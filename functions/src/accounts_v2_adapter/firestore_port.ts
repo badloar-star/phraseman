@@ -79,11 +79,19 @@ export const ACCOUNTS_V2_COLLECTIONS = Object.freeze({
  * воскрешение удалённого). Клиентский предел жизни операции в outbox —
  * 170 суток (`ACCOUNT_SYNC_OPERATION_MAX_AGE_MS` в
  * `modules/account-session-v2/account_sync_outbox_records.ts`): старше — в
- * карантин `sync_operation_expired`, а не отправка. Возраст клиент меряет часами
- * с поправкой на `serverNowMs`; возврат из карантина (requeue) сохраняет
+ * карантин `sync_operation_expired`, а не отправка. Возраст клиент меряет двумя
+ * оценками — местными часами и часами с поправкой на `serverNowMs` — и истекает
+ * операция, если обе > 170 суток, или одна > 170, а вторая отрицательна (то есть
+ * доказанно ложна) (TG-085BF4F55515); возврат из карантина (requeue) сохраняет
  * исходное время постановки, срок не продлевается (TG-7CD73967EF61).
  * Запас 10 суток — на расхождение часов и задержку TTL-чистки Firestore.
- * Сторож: accounts_v2_envelope_parity.test.ts читает ОБА числа из исходников и
+ * Сбитые часы клиента закрывает сервер (TG-DFA918464DFA): операция несёт
+ * `enqueuedAtServerMs`, ядро отказывает старше 170 суток по СВОИМ часам
+ * (`operation_expired`), а клиент не шлёт оценку позже первой отправки операции —
+ * после истечения квитанции возраст на сервере ≥ 180 суток. Остаток (TEMP):
+ * сдвиг часов телефона больше запаса 10 суток в момент первой отправки при
+ * устаревшем смещении или перевод часов назад после неё.
+ * Сторож: accounts_v2_timing_parity.test.ts читает ОБА числа из исходников и
  * падает, если предел клиента не строго меньше этого срока.
  */
 export const ACCOUNTS_V2_RECEIPT_TTL_MS = 180 * DAY_MS;
@@ -102,7 +110,10 @@ function pathSegmentOk(segment: string): boolean {
  * особо — такой uid отклоняется, а не «чинится».
  */
 export function accountsV2UidPathSafe(uid: string): boolean {
-  return pathSegmentOk(uid);
+  // зачем (Пакет 4, Ремонт №1 P3-2): под accounts_v2 лежит контейнер квитанций
+  // удаления `_deletion_receipts_v1`. uid с префиксом `_` (Firebase такие не
+  // выдаёт: [A-Za-z0-9]{28}) мог бы писать в чужой служебный контейнер — отказ.
+  return pathSegmentOk(uid) && !uid.startsWith('_');
 }
 
 function assertPathSegment(segment: string, reason: string): void {
@@ -121,7 +132,10 @@ function assertDocId(docId: string): void {
 
 /** Путь к документу под uid: `accounts_v2/{uid}/{collection}/{docId}`. */
 export function accountsV2UserDocPath(uid: string, collection: string, docId: string): string {
-  assertPathSegment(uid, 'uid_not_path_safe');
+  if (!accountsV2UidPathSafe(uid)) {
+    console.warn('[ACCOUNTS-V2] path rejected reason=uid_not_path_safe');
+    throw new Error('accounts_v2_uid_not_path_safe');
+  }
   assertPathSegment(collection, 'collection_not_path_safe');
   assertPathSegment(docId, 'doc_id_not_path_safe');
   return `${ROOT}/${uid}/${collection}/${docId}`;

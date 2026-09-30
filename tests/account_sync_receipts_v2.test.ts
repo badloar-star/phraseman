@@ -67,6 +67,8 @@ describe('account sync v2 receipts: conflict and rejected are final acknowledged
     expect([...ACCOUNT_SYNC_REJECT_CODES]).toEqual([
       'payload_invalid', 'operation_id_reused', 'entity_state_too_large', 'revision_overflow',
       'srs_time_in_future',
+      // TG-DFA918464DFA: отказ по времени постановки операции (часы сервера).
+      'operation_expired', 'operation_time_in_future',
     ]);
   });
 

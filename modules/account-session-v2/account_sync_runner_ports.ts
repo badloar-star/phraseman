@@ -5,7 +5,9 @@ import {
   type AccountSyncBatch,
   type AccountSyncEffect,
 } from './account_sync';
-import type { AccountSyncDispatchState } from './account_sync_outbox_records';
+import { errorKind, type AccountSyncDispatchState } from './account_sync_outbox_records';
+
+const LOG = '[ACCOUNTS-V2-CLIENT]';
 
 /*
  * Account V2 — порты раннера синхронизации и чтение недоверенных ответов портов.
@@ -25,6 +27,8 @@ export type AccountSyncRunnerPorts = Readonly<{
    * Отправка пакета (callable). Бросает ошибку транспорта как есть (FirebaseError:
    * `code`, `details`) — решение по ней принимает раннер (TEMP-контракт сервера).
    * Успех: `{ outcome: 'accepted', receipts, serverNowMs? }`.
+   * На callable уходит `outbox.wireBatch(effect)` (TG-DFA918464DFA): операции с
+   * `enqueuedAtServerMs`, иначе сервер отклонит пакет целиком (missing_field).
    */
   dispatch(effect: DispatchEffect): unknown;
   /**
@@ -78,8 +82,9 @@ export function captureExactRecord(value: unknown, exactKeys: readonly string[])
       captured.set(key as string, descriptor.value);
     }
     return captured;
-  } catch {
+  } catch (error) {
     // Ловушка Proxy при чтении ответа = ответ непригоден; вызывающий уходит в malformed-ветку.
+    console.warn(`${LOG} runner_response_unreadable`, `error=${errorKind(error)}`);
     return null;
   }
 }
@@ -95,8 +100,9 @@ function portKeys(value: unknown): readonly string[] | null {
     if (keys.some((key) => typeof key !== 'string'
       || (!REQUIRED_PORTS.includes(key) && !OPTIONAL_PORTS.includes(key)))) return null;
     return REQUIRED_PORTS.every((key) => keys.includes(key)) ? keys as string[] : null;
-  } catch {
+  } catch (error) {
     // Ловушка Proxy при перечислении портов = порты непригодны.
+    console.warn(`${LOG} runner_ports_unreadable`, `error=${errorKind(error)}`);
     return null;
   }
 }
@@ -145,8 +151,9 @@ export function receiptInvalidReason(raw: unknown, batch: AccountSyncBatch): str
       }
     }
     return 'receipt_other';
-  } catch {
+  } catch (error) {
     // Ловушка Proxy при диагностике — причина неизвестна, но сам отказ уже решён.
+    console.warn(`${LOG} receipt_diagnosis_unreadable`, `error=${errorKind(error)}`);
     return 'receipts_unreadable';
   }
 }

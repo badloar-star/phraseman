@@ -1242,6 +1242,17 @@
       "indexes": []
     },
     {
+      "collectionGroup": "accounts_v2_deletion_receipts",
+      "fieldPath": "expireAt",
+      "ttl": true,
+      "indexes": []
+    },
+    {
+      "collectionGroup": "accounts_v2_deletion_receipts",
+      "fieldPath": "targetSealed",
+      "indexes": []
+    },
+    {
       "collectionGroup": "dialogue_v2_sessions",
       "fieldPath": "expiresAt",
       "ttl": true,

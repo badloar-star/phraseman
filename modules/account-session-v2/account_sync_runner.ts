@@ -21,7 +21,7 @@ import {
   receiptInvalidReason,
   type AccountSyncRunnerPorts,
 } from './account_sync_runner_ports';
-import { snapshotDispatchState, type AccountSyncDispatchState } from './account_sync_outbox_records';
+import { snapshotDispatchState, timeRejectionQuarantineCode, type AccountSyncDispatchState } from './account_sync_outbox_records';
 import {
   ACCOUNT_SYNC_CLIENT_MIN_FAILURE_SPAN_MS,
   decideAccountSyncReceiptFailure,
@@ -100,10 +100,12 @@ const LOG = '[ACCOUNTS-V2-CLIENT]';
 /** Легаси-ответ `{outcome:'rejected'}` — засчитанная неудача с backoff и потолком. */
 const LEGACY_REJECTED: AccountSyncTransportError = Object.freeze({ code: 'legacy_rejected', details: undefined });
 /**
- * Больше этого пауза с диска не бывает (суточный блок сервера + запас). зачем:
- * часы телефона перевели назад на месяц — сохранённая пауза не должна запереть отправку.
+ * Больше этого пауза не бывает — ни с диска, ни в памяти (суточный блок сервера +
+ * запас, 25 ч). зачем: часы телефона перевели назад на месяц или сервер прислал
+ * огромный retryAfterMs — пауза не должна запереть отправку на месяц
+ * (TG-CF3E51F11C41, P3: предел действует и на паузу в памяти).
  */
-const MAX_PERSISTED_PAUSE_MS = ACCOUNT_SYNC_CLIENT_MIN_FAILURE_SPAN_MS + 60 * 60 * 1000;
+const MAX_PAUSE_MS = ACCOUNT_SYNC_CLIENT_MIN_FAILURE_SPAN_MS + 60 * 60 * 1000;
 /** Смещение часов пишется на диск, только если сдвинулось хотя бы на столько. */
 const OFFSET_PERSIST_STEP_MS = 1_000;
 
@@ -125,6 +127,18 @@ function result(
   });
 }
 
+/**
+ * Ключ учёта неудач — голова очереди (первая операция пакета), а не id пакета.
+ * зачем (TG-CF3E51F11C41, P3): состав пакета меняется (новая операция в окне,
+ * перезапуск) — id пакета другой, и счётчик сбрасывался бы, так что потолок не
+ * наступал никогда. Пакет всегда начинается с головы очереди, пока она не уйдёт.
+ * Хранится в поле batchId учёта на диске (формат учёта не меняется).
+ */
+function attemptKeyOf(batch: Readonly<{ operations: readonly AccountSyncOwnedOperation[] }>): string | null {
+  const head = batch.operations[0];
+  return head === undefined ? null : `head:${head.operation.operationId}`;
+}
+
 function reducerFailureCode(error: unknown): AccountSyncInvariantErrorCode {
   return error instanceof AccountSyncInvariantError
     ? error.code : 'account_sync_invalid_input';
@@ -138,9 +152,9 @@ class AccountSyncRunnerImpl implements AccountSyncRunner {
   private readonly random: () => number;
   private flight: Promise<AccountSyncRunnerResult> | null = null;
   private cancelFlight: (() => void) | null = null;
-  // Учёт неудач ТЕКУЩЕГО пакета (TEMP-контракт). Живёт в памяти раннера и, если
-  // даны порты учёта, дублируется на диск (переживает перезапуск, TG-7CD73967EF61).
-  private attemptBatchId: string | null = null;
+  // Учёт неудач ГОЛОВЫ очереди (TEMP-контракт; ключ — attemptKeyOf). Живёт в памяти
+  // раннера и, если даны порты учёта, дублируется на диск (переживает перезапуск).
+  private attemptKey: string | null = null;
   private failedAttempts = 0;
   private firstFailureAtMs: number | null = null;
   private notBeforeMs: number | null = null;
@@ -307,10 +321,20 @@ class AccountSyncRunnerImpl implements AccountSyncRunner {
     return Object.freeze({ failedAttempts: this.failedAttempts, firstFailureAtMs: this.firstFailureAtMs });
   }
 
-  private resetAttempts(batchId: string | null): void {
-    const changed = this.attemptBatchId !== batchId || this.failedAttempts !== 0
+  /** Пауза не дальше MAX_PAUSE_MS от текущих часов; зажатие пишется в лог и на диск. */
+  private boundedPause(notBeforeMs: number | null): number | null {
+    if (notBeforeMs === null) return null;
+    const now = this.now();
+    if (notBeforeMs <= now + MAX_PAUSE_MS) return notBeforeMs;
+    console.warn(`${LOG} dispatch_pause_clamped`, `aheadMs=${notBeforeMs - now}`);
+    this.dispatchDirty = true;
+    return now + MAX_PAUSE_MS;
+  }
+
+  private resetAttempts(key: string | null): void {
+    const changed = this.attemptKey !== key || this.failedAttempts !== 0
       || this.firstFailureAtMs !== null || this.notBeforeMs !== null;
-    this.attemptBatchId = batchId;
+    this.attemptKey = key;
     this.failedAttempts = 0;
     this.firstFailureAtMs = null;
     this.notBeforeMs = null;
@@ -328,7 +352,7 @@ class AccountSyncRunnerImpl implements AccountSyncRunner {
     const write = this.ports.writeDispatchState;
     if (!this.dispatchDirty || write === undefined) return 'ok';
     const snapshot: AccountSyncDispatchState = Object.freeze({
-      batchId: this.attemptBatchId, failedAttempts: this.failedAttempts, firstFailureAtMs: this.firstFailureAtMs,
+      batchId: this.attemptKey, failedAttempts: this.failedAttempts, firstFailureAtMs: this.firstFailureAtMs,
       notBeforeMs: this.notBeforeMs, clockOffsetMs: this.clockOffsetMs,
     });
     const settlement = await observePort(() => write(this.state.fence, snapshot), invalidated);
@@ -347,28 +371,35 @@ class AccountSyncRunnerImpl implements AccountSyncRunner {
   private async hydrateDispatchState(invalidated: Promise<void>): Promise<'ok' | 'invalidated'> {
     const read = this.ports.readDispatchState;
     if (read === undefined) return 'ok';
-    // Прошлая запись не удалась — на диске старое; сначала дописываем память.
-    if (this.dispatchDirty) return this.flushDispatchState(invalidated);
     const settlement = await observePort(() => read(this.state.fence), invalidated);
     if (settlement.kind === 'invalidated') return 'invalidated';
+    const stored = settlement.kind === 'fulfilled' ? snapshotDispatchState(settlement.value) : null;
     if (settlement.kind === 'rejected') {
       console.warn(`${LOG} dispatch_state_read_failed`,
         settlement.error instanceof Error ? settlement.error.name : typeof settlement.error);
-      return 'ok';
-    }
-    const stored = snapshotDispatchState(settlement.value);
-    if (stored === null) {
+    } else if (stored === null) {
       console.warn(`${LOG} dispatch_state_invalid`);
-      return 'ok';
     }
-    this.attemptBatchId = stored.batchId;
+    if (this.dispatchDirty) {
+      // Прошлая запись не удалась — память новее диска, но пауза с диска могла
+      // появиться позже (requeue). зачем (TG-CF3E51F11C41, P3): незаписанный учёт
+      // не затирает паузу requeue — берём более позднюю из двух, затем дописываем.
+      // Пауза requeue пишется со сброшенным счётчиком; пауза прошлых неудач (счётчик
+      // > 0) память уже пережила — её с диска не воскрешаем.
+      if (stored !== null && stored.failedAttempts === 0 && stored.notBeforeMs !== null
+        && (this.notBeforeMs === null || stored.notBeforeMs > this.notBeforeMs)) {
+        console.warn(`${LOG} dispatch_pause_kept_from_disk`, `aheadMs=${stored.notBeforeMs - this.now()}`);
+        this.notBeforeMs = stored.notBeforeMs;
+      }
+      if (this.clockOffsetMs === null && stored !== null) this.clockOffsetMs = stored.clockOffsetMs;
+      this.notBeforeMs = this.boundedPause(this.notBeforeMs);
+      return this.flushDispatchState(invalidated);
+    }
+    if (stored === null) return 'ok';
+    this.attemptKey = stored.batchId;
     this.failedAttempts = stored.failedAttempts;
     this.firstFailureAtMs = stored.firstFailureAtMs;
-    const now = this.now();
-    this.notBeforeMs = stored.notBeforeMs === null ? null : Math.min(stored.notBeforeMs, now + MAX_PERSISTED_PAUSE_MS);
-    if (stored.notBeforeMs !== null && stored.notBeforeMs > now + MAX_PERSISTED_PAUSE_MS) {
-      console.warn(`${LOG} dispatch_pause_clamped`, `aheadMs=${stored.notBeforeMs - now}`);
-    }
+    this.notBeforeMs = this.boundedPause(stored.notBeforeMs);
     if (stored.clockOffsetMs !== null) this.clockOffsetMs = stored.clockOffsetMs;
     this.persistedOffsetMs = stored.clockOffsetMs;
     return 'ok';
@@ -499,13 +530,15 @@ class AccountSyncRunnerImpl implements AccountSyncRunner {
     this.firstFailureAtMs = decision.firstFailureAtMs;
     this.lastErrorCode = decision.errorCode;
     this.dispatchDirty = true;
+    const delayMs = Math.min(decision.delayMs, MAX_PAUSE_MS);
+    if (delayMs < decision.delayMs) console.warn(`${LOG} dispatch_pause_clamped`, `aheadMs=${decision.delayMs}`);
     const report: AccountSyncTransportReport = Object.freeze({
       action: decision.action, failedAttempts: decision.failedAttempts,
-      delayMs: decision.delayMs, errorCode: decision.errorCode,
+      delayMs, errorCode: decision.errorCode,
     });
     this.extras.transport = report;
     console.warn(`${LOG} ${label}`, `action=${decision.action}`, `code=${decision.errorCode}`,
-      `attempts=${decision.failedAttempts}`, `delayMs=${decision.delayMs}`,
+      `attempts=${decision.failedAttempts}`, `delayMs=${delayMs}`,
       `operations=${effect.batch.operations.length}`);
     if (decision.action === 'quarantine' && decision.quarantineCode !== null) {
       this.notBeforeMs = null;
@@ -521,7 +554,7 @@ class AccountSyncRunnerImpl implements AccountSyncRunner {
         quarantineCode: decision.quarantineCode,
       });
     }
-    this.notBeforeMs = decision.delayMs > 0 ? this.now() + decision.delayMs : null;
+    this.notBeforeMs = delayMs > 0 ? this.now() + delayMs : null;
     return onRetry();
   }
 
@@ -530,7 +563,8 @@ class AccountSyncRunnerImpl implements AccountSyncRunner {
     error: AccountSyncTransportError,
     reason: 'transport' | 'rejected',
   ): readonly AccountSyncEffect[] {
-    if (this.attemptBatchId !== effect.batch.batchId) this.resetAttempts(effect.batch.batchId);
+    const key = attemptKeyOf(effect.batch);
+    if (this.attemptKey !== key) this.resetAttempts(key);
     const decision = decideAccountSyncTransportFailure(error, this.ledger(), this.serverNow(), this.random);
     const failed = (failedReason: 'transport' | 'rejected'): readonly AccountSyncEffect[] => this.reduce({
       type: 'DISPATCH_FAILED', expectedFence: effect.expectedFence,
@@ -545,7 +579,8 @@ class AccountSyncRunnerImpl implements AccountSyncRunner {
     attention: () => readonly AccountSyncEffect[],
     reason: string,
   ): readonly AccountSyncEffect[] {
-    if (this.attemptBatchId !== effect.batch.batchId) this.resetAttempts(effect.batch.batchId);
+    const key = attemptKeyOf(effect.batch);
+    if (this.attemptKey !== key) this.resetAttempts(key);
     console.warn(`${LOG} receipt_invalid`, `reason=${reason}`, `operations=${effect.batch.operations.length}`);
     const decision = decideAccountSyncReceiptFailure(this.ledger(), this.serverNow(), this.random);
     return this.applyFailureDecision(effect, decision, attention, attention, 'receipt_failed');
@@ -613,12 +648,12 @@ class AccountSyncRunnerImpl implements AccountSyncRunner {
     }
   }
 
-  /** conflict/rejected подтверждённого пакета — слою разрешения конфликтов (без повтора). */
+  /** conflict/rejected пакета — слою разрешения (без повтора); зачем (TG-DFA918464DFA): отказ по времени — в карантине. */
   private resolutionsOf(confirmation: AccountSyncConfirmation): readonly AccountSyncResolution[] {
     const ack = this.lastAck;
     if (ack === null || ack.batch.batchId !== confirmation.batchId) return EMPTY_RESOLUTIONS;
     const found = ack.receipts.flatMap((receipt, index) => (
-      receipt.outcome === 'conflict' || receipt.outcome === 'rejected'
+      (receipt.outcome === 'conflict' || receipt.outcome === 'rejected') && timeRejectionQuarantineCode(receipt) === null
         ? [Object.freeze({ operation: ack.batch.operations[index], receipt })] : []
     ));
     if (found.length > 0) {
@@ -634,6 +669,8 @@ class AccountSyncRunnerImpl implements AccountSyncRunner {
    */
   private idleGatedResult(): AccountSyncRunnerResult | null {
     if (this.state.phase.tag !== 'idle' || this.notBeforeMs === null) return null;
+    this.notBeforeMs = this.boundedPause(this.notBeforeMs);
+    if (this.notBeforeMs === null) return null;
     const remaining = this.notBeforeMs - this.now();
     if (remaining <= 0) return null;
     return result(this.state, EMPTY_CONFIRMATIONS, null, { ...NO_EXTRAS, transport: Object.freeze({
@@ -646,10 +683,11 @@ class AccountSyncRunnerImpl implements AccountSyncRunner {
   private gatedResult(): AccountSyncRunnerResult | null {
     const phase = this.state.phase;
     if (phase.tag !== 'sync_attention' || phase.retry.stage !== 'dispatch'
-      || phase.retry.batch.batchId !== this.attemptBatchId) return null;
+      || attemptKeyOf(phase.retry.batch) !== this.attemptKey) return null;
     if (this.blockedReport !== null) {
       return result(this.state, EMPTY_CONFIRMATIONS, null, { ...NO_EXTRAS, transport: this.blockedReport });
     }
+    this.notBeforeMs = this.boundedPause(this.notBeforeMs);
     if (this.notBeforeMs === null) return null;
     const remaining = this.notBeforeMs - this.now();
     if (remaining <= 0) return null;

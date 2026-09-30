@@ -501,7 +501,7 @@ describe('P2: SRS re-issue ids are deterministic and later edits win', () => {
     const plan = planAccountSyncSrsReissue({ ...base, rejected: unresolved.operation, receipt: unresolved.receipt,
       laterOperations: [later] });
     expect(plan.map(({ operation }) => operation.operationId)).toEqual(['card-op-1:srs']);
-    await outbox.markResolved(fenceA, 'card-op-1', plan);
+    await outbox.markResolved(fenceA, 'card-op-1', () => plan);
     const queued = await outbox.load(loadEffect(4));
     expect(ids(queued)).toEqual(['card-op-2', 'card-op-1:srs']);
     const fieldsOf = (index: number): string[] => Object.keys(
@@ -545,13 +545,13 @@ describe('P2: conflict and rejected outcomes survive a crash until resolved', ()
     });
     // Крах между постановкой замены и отметкой: та же замена тем же id — дубликат, не вторая копия.
     await restarted.enqueue(plan[0], fenceA);
-    expect(await restarted.markResolved(fenceA, 'card-srs', plan)).toEqual({ outcome: 'resolved', pendingCount: 2 });
-    expect(await restarted.markResolved(fenceA, 'card-srs', plan)).toEqual({ outcome: 'already_resolved', pendingCount: 2 });
+    expect(await restarted.markResolved(fenceA, 'card-srs', () => plan)).toEqual({ outcome: 'resolved', pendingCount: 2 });
+    expect(await restarted.markResolved(fenceA, 'card-srs', () => plan)).toEqual({ outcome: 'already_resolved', pendingCount: 2 });
     expect((await restarted.listUnresolved(fenceA)).map(({ receipt }) => receipt.operationId)).toEqual(['op-conflict']);
-    expect(await restarted.markResolved(fenceA, 'op-conflict', [])).toEqual({ outcome: 'resolved', pendingCount: 2 });
+    expect(await restarted.markResolved(fenceA, 'op-conflict', () => [])).toEqual({ outcome: 'resolved', pendingCount: 2 });
     expect(await restarted.listUnresolved(fenceA)).toEqual([]);
-    expect(await restarted.markResolved(fenceA, 'op-applied', [])).toEqual({ outcome: 'already_resolved', pendingCount: 2 });
-    await expectOutboxCode(() => restarted.markResolved(fenceA, 'op-unknown', []), 'account_sync_outbox_invalid_input');
+    expect(await restarted.markResolved(fenceA, 'op-applied', () => [])).toEqual({ outcome: 'already_resolved', pendingCount: 2 });
+    await expectOutboxCode(() => restarted.markResolved(fenceA, 'op-unknown', () => []), 'account_sync_outbox_invalid_input');
     expect(ids(await restarted.load(loadEffect(5)))).toEqual(['card-srs:rest', 'card-srs:srs']);
   });
 });

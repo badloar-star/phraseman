@@ -1,8 +1,11 @@
 import {
   ACCOUNTS_V2_BATCH_KEYS,
+  ACCOUNTS_V2_CLIENT_OPERATION_KEYS,
   ACCOUNTS_V2_ENTITY_TYPES,
   ACCOUNTS_V2_ENVELOPE_KEYS,
   ACCOUNTS_V2_LIMITS,
+  ACCOUNTS_V2_OPERATION_MAX_AGE_MS,
+  ACCOUNTS_V2_OPERATION_MAX_FUTURE_SKEW_MS,
   ACCOUNTS_V2_OWNED_OPERATION_KEYS,
   ACCOUNTS_V2_SCHEMA_VERSION,
   accountsV2JsonWireBytes,
@@ -15,9 +18,11 @@ import {
   safeInteger,
   stringWireBytes,
   type AccountsV2Batch,
+  type AccountsV2ClientOperation,
   type AccountsV2EntityType,
   type AccountsV2Envelope,
   type AccountsV2OwnedOperation,
+  type AccountsV2RejectCode,
   type AccountsV2ValidationCode,
   type JsonValue,
   type ValidatedBatch,
@@ -189,11 +194,14 @@ function checkSafeInteger(value: unknown, path: string): number {
   return value;
 }
 
+type BatchOrigin = 'server' | 'client';
+
 function validateOwned(
   raw: unknown,
   path: string,
-): Readonly<{ owned: AccountsV2OwnedOperation; bytes: number }> {
-  const wrapper = exactRecord(raw, ACCOUNTS_V2_OWNED_OPERATION_KEYS, path);
+  origin: BatchOrigin,
+): Readonly<{ owned: AccountsV2OwnedOperation | AccountsV2ClientOperation; bytes: number }> {
+  const wrapper = exactRecord(raw, origin === 'client' ? ACCOUNTS_V2_CLIENT_OPERATION_KEYS : ACCOUNTS_V2_OWNED_OPERATION_KEYS, path);
   const ownerUid = wrapper.get('ownerUid');
   if (typeof ownerUid !== 'string') fail('invalid_type', `${path}.ownerUid`);
   if (!identityString(ownerUid)) fail('invalid_value', `${path}.ownerUid`);
@@ -228,7 +236,12 @@ function validateOwned(
     entityId, clientSequence, baseRevision, payload,
   };
   const bytes = objectBaseWireBytes(ACCOUNTS_V2_OWNED_OPERATION_KEYS) + stringWireBytes(ownerUid) + envelopeBytes;
-  return { owned: { ownerUid, operation }, bytes };
+  if (origin === 'server') return { owned: { ownerUid, operation }, bytes };
+  // зачем (TG-DFA918464DFA): байты оценки НЕ входят в лимиты — клиент меряет пакет
+  // без неё (планировщик outbox считает конверты), иначе пограничный пакет клиент
+  // отправил бы, а сервер отклонил навсегда. Оценка — одно число ≤ 16 цифр.
+  const enqueuedAtServerMs = checkSafeInteger(wrapper.get('enqueuedAtServerMs'), `${path}.enqueuedAtServerMs`);
+  return { owned: { ownerUid, operation, enqueuedAtServerMs }, bytes };
 }
 
 /**
@@ -237,6 +250,36 @@ function validateOwned(
  * ядро не читает исходный объект (защита от геттеров/прокси, меняющих ответ).
  */
 export function validateBatch(raw: unknown): AccountsV2ValidateResult {
+  return validateAnyBatch(raw, 'server');
+}
+
+/**
+ * Пакет КЛИЕНТА (callable): каждая операция обязана нести `enqueuedAtServerMs`
+ * (TG-DFA918464DFA). Отсутствие — `missing_field`, весь пакет (как любое
+ * нарушение схемы). Старых версий конверта в реестре нет: схема одна (v1), ядро
+ * не развёрнуто (callable не в index.ts), поэтому «пакета без оценки от старого
+ * клиента» не существует — мягкого чтения не делаем.
+ * зачем отдельная функция: validateBatch — пакеты, собранные самим сервером
+ * (dry-run миграции), у них нет outbox и времени постановки. Поле у двух форм
+ * взаимоисключающее: callable, по ошибке взявший validateBatch, отклонил бы
+ * КАЖДЫЙ пакет клиента (громкий отказ), а не пропустил бы проверку молча.
+ */
+export function validateClientBatch(raw: unknown): AccountsV2ValidateResult {
+  return validateAnyBatch(raw, 'client');
+}
+
+/**
+ * Отказ по времени постановки операции клиента или null (TG-DFA918464DFA).
+ * Возраст = nowMs сервера − оценка; ровно на пределе — ещё можно. Вызывается
+ * applyBatch с ОДНИМ nowMs на пакет, до любых записей.
+ */
+export function operationTimeRejection(enqueuedAtServerMs: number, nowMs: number): AccountsV2RejectCode | null {
+  if (enqueuedAtServerMs - nowMs > ACCOUNTS_V2_OPERATION_MAX_FUTURE_SKEW_MS) return 'operation_time_in_future';
+  if (nowMs - enqueuedAtServerMs > ACCOUNTS_V2_OPERATION_MAX_AGE_MS) return 'operation_expired';
+  return null;
+}
+
+function validateAnyBatch(raw: unknown, origin: BatchOrigin): AccountsV2ValidateResult {
   try {
     const top = exactRecord(raw, ACCOUNTS_V2_BATCH_KEYS, '$');
     const batchId = checkBoundedId(top.get('batchId'), '$.batchId',
@@ -247,10 +290,10 @@ export function validateBatch(raw: unknown): AccountsV2ValidateResult {
     let batchBytes = objectBaseWireBytes(ACCOUNTS_V2_BATCH_KEYS) + stringWireBytes(batchId)
       + 2 + Math.max(0, rows.length - 1);
     const seen = new Set<string>();
-    const operations: AccountsV2OwnedOperation[] = [];
+    const operations: (AccountsV2OwnedOperation | AccountsV2ClientOperation)[] = [];
     rows.forEach((row, index) => {
       const path = `$.operations[${index}]`;
-      const { owned, bytes } = validateOwned(row, path);
+      const { owned, bytes } = validateOwned(row, path, origin);
       if (seen.has(owned.operation.operationId)) {
         fail('duplicate_operation_id', `${path}.operation.operationId`);
       }

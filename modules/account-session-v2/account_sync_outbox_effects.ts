@@ -12,10 +12,13 @@ import {
   MAX_OPERATIONS,
   assertExpectedFence,
   captureExact,
+  errorKind,
   fail,
   safeInteger,
   value,
 } from './account_sync_outbox_records';
+
+const LOG = '[ACCOUNTS-V2-CLIENT]';
 
 /*
  * Account V2 — проверка эффектов, пришедших в outbox (load / ack / карантин).
@@ -67,8 +70,9 @@ export function normalizeAckEffect(
     }).state;
     if (acknowledged.phase.tag !== 'ack_commit_pending') return fail('account_sync_outbox_invalid_input');
     return Object.freeze({ batch: acknowledged.phase.batch, receipts: acknowledged.phase.receipts });
-  } catch {
+  } catch (error) {
     // Эффект не прошёл проверку reducer'а (форма пакета/квитанций) — невалидный вход.
+    console.warn(`${LOG} outbox_ack_effect_invalid`, `error=${errorKind(error)}`);
     return fail('account_sync_outbox_invalid_input');
   }
 }
@@ -96,8 +100,9 @@ export function normalizeQuarantineEffect(
     }).state;
     if (requested.phase.tag !== 'quarantine_pending') return fail('account_sync_outbox_invalid_input');
     return Object.freeze({ batch: requested.phase.batch, quarantineCode: requested.phase.quarantineCode });
-  } catch {
+  } catch (error) {
     // Эффект не прошёл проверку reducer'а — невалидный вход.
+    console.warn(`${LOG} outbox_quarantine_effect_invalid`, `error=${errorKind(error)}`);
     return fail('account_sync_outbox_invalid_input');
   }
 }
@@ -119,4 +124,26 @@ export function snapshotLoadEffect(raw: unknown, boundFence: SessionFence, owner
     maxOperations: MAX_OPERATIONS,
     maxBatchUtf8Bytes: MAX_BATCH_BYTES,
   });
+}
+
+/**
+ * Пакет эффекта отправки (DISPATCH_OUTBOX_BATCH) — для сборки пакета на провод
+ * (outbox.wireBatch, TG-DFA918464DFA). Форма проверяется тем же reducer'ом.
+ */
+export function normalizeDispatchEffect(raw: unknown, boundFence: SessionFence, ownerUid: string): AccountSyncBatch {
+  const fields = captureExact(raw, ['type', 'ownerUid', 'expectedFence', 'attemptEpoch', 'batch']);
+  if (fields === null || value(fields, 'type') !== 'DISPATCH_OUTBOX_BATCH'
+    || value(fields, 'ownerUid') !== ownerUid || !safeInteger(value(fields, 'attemptEpoch'))) {
+    return fail('account_sync_outbox_invalid_input');
+  }
+  assertExpectedFence(value(fields, 'expectedFence'), boundFence, ownerUid);
+  try {
+    const dispatched = reducePacket(ownerUid, boundFence, value(fields, 'batch'));
+    if (dispatched.phase.tag !== 'dispatching') return fail('account_sync_outbox_invalid_input');
+    return dispatched.phase.batch;
+  } catch (error) {
+    // Эффект не прошёл проверку reducer'а — невалидный вход.
+    console.warn(`${LOG} outbox_dispatch_effect_invalid`, `error=${errorKind(error)}`);
+    return fail('account_sync_outbox_invalid_input');
+  }
 }

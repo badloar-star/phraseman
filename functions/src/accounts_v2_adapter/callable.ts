@@ -5,7 +5,7 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import {
   AccountsV2ApplyError,
   resolveCallerUid,
-  validateBatch,
+  validateClientBatch,
   type AccountsV2Receipt,
 } from '../accounts_v2_apply_core';
 import {
@@ -40,7 +40,7 @@ export {
  *
  * зачем: тонкая граница между клиентским outbox и ядром 3S:
  *   auth → resolveCallerUid → uid пригоден для пути → кэш блока инстанса →
- *   validateBatch → «все ownerUid = uid» →
+ *   validateClientBatch → «все ownerUid = uid» →
  *   одна транзакция (tx.get счётчика → decide → getAll плана → applyBatch → записи) →
  *   `{ receipts, serverNowMs }`.
  * TEMP: `accountsV2SyncApply` НЕ подключён к index.ts — подключать только после
@@ -68,12 +68,12 @@ export {
  *                                          |   (лимит частоты, квота Firestore, серия неудач).
  *                                          |   Это ОЖИДАНИЕ: потолок попыток НЕ расходует.
  *   final отсутствует или false — ЛЮБОЙ    | повтор с экспоненциальным backoff + jitter.
- *     код, включая голый HTTP 500 /        |   Клиентский потолок: 5 неудачных попыток одного
- *     `internal` без details (таймаут/OOM  |   пакета → карантин (ACCOUNTS_V2_CLIENT_MAX_ATTEMPTS).
- *     функции), unavailable 'retryable'    |
- *     (gRPC 13/2/1/10/14/4/9, gRPC 3       |
- *     «transaction has expired», без кода, |
- *     accounts_v2_getall_mismatch)         |
+ *     код, включая голый HTTP 500 /        |   Клиентский потолок: И ≥5 неудачных попыток
+ *     `internal` без details (таймаут/OOM  |   одного пакета, И ≥24 ч с первой неудачи →
+ *     функции), unavailable 'retryable'    |   карантин, и он ВОЗВРАТНЫЙ (requeue)
+ *     (gRPC 13/2/1/10/14/4/9, gRPC 3       |   (ACCOUNTS_V2_CLIENT_MAX_ATTEMPTS,
+ *     «transaction has expired», без кода, |   ACCOUNTS_V2_CLIENT_MIN_FAILURE_SPAN_MS,
+ *     accounts_v2_getall_mismatch)         |   requeueQuarantineCodes).
  *
  * Эталон решения клиента — accountsV2ClientAction (errors.ts).
  * «Окончательный» значит: тот же пакет получит тот же ответ; повтор без
@@ -402,7 +402,9 @@ export async function handleAccountsV2Sync(
     console.warn(`[ACCOUNTS-V2] rate_limited_cached uid=${tag} retryAfterMs=${blockedUntil - nowMs}`);
     throw rateLimitedError(blockedUntil - nowMs);
   }
-  const validated = validateBatch(request.data);
+  // зачем (TG-DFA918464DFA): пакет клиента обязан нести оценку времени постановки
+  // каждой операции — по ней ядро отказывает старым (> 170 сут) и «будущим».
+  const validated = validateClientBatch(request.data);
   if (!validated.ok) {
     // path не логируем: он может содержать имена полей payload пользователя.
     console.warn(`[ACCOUNTS-V2] reject reason=invalid_batch code=${validated.code} uid=${tag}`);

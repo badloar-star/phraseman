@@ -35,19 +35,22 @@ import {
   type LoadedEntity,
   type LoadedOp,
 } from './accounts_v2_store';
-import { isIssuedBatch } from './accounts_v2_validate';
+import { isIssuedBatch, operationTimeRejection } from './accounts_v2_validate';
 
 // зачем (ремонт №3, P3): публичный API — поимённо. Реэкспорт «звёздочкой» молча выставлял
 // наружу всё новое из модулей (внутренние помощники, кодек) — граница ядра
 // должна меняться только явной правкой этого списка.
 export {
   ACCOUNTS_V2_BATCH_KEYS,
+  ACCOUNTS_V2_CLIENT_OPERATION_KEYS,
   ACCOUNTS_V2_ENTITY_TYPES,
   ACCOUNTS_V2_ENVELOPE_KEYS,
   ACCOUNTS_V2_INDEX_EXEMPT_FIELDS,
   ACCOUNTS_V2_LIBRARY_MAX_TOMBSTONES,
   ACCOUNTS_V2_LIMITS,
   ACCOUNTS_V2_MAX_ENTITY_STATE_BYTES,
+  ACCOUNTS_V2_OPERATION_MAX_AGE_MS,
+  ACCOUNTS_V2_OPERATION_MAX_FUTURE_SKEW_MS,
   ACCOUNTS_V2_OWNED_OPERATION_KEYS,
   ACCOUNTS_V2_RECEIPT_KEYS,
   ACCOUNTS_V2_RECEIPT_OUTCOMES,
@@ -66,6 +69,7 @@ export type {
   AccountSyncReceipt,
   AccountsV2ApplyErrorCode,
   AccountsV2Batch,
+  AccountsV2ClientOperation,
   AccountsV2ConflictReceipt,
   AccountsV2EntityRecord,
   AccountsV2EntityType,
@@ -96,7 +100,7 @@ export type {
   LibraryTombstone,
   SrsStamp,
 } from './accounts_v2_merge';
-export { resolveCallerUid, validateBatch } from './accounts_v2_validate';
+export { operationTimeRejection, resolveCallerUid, validateBatch, validateClientBatch } from './accounts_v2_validate';
 export type { AccountsV2CallerResult, AccountsV2ValidateResult } from './accounts_v2_validate';
 
 /*
@@ -253,6 +257,23 @@ export type { AccountsV2CallerResult, AccountsV2ValidateResult } from './account
 //     повтор старой операции применится заново как новая (двойное применение
 //     или воскрешение). Лимит частоты вызовов callable на uid — тоже адаптер;
 //   - uid из auth идёт в путь документа как есть (Firebase uid — ASCII ≤ 128).
+// зачем (TG-DFA918464DFA): возраст операции клиента — по часам СЕРВЕРА от оценки
+//   `enqueuedAtServerMs`. Старше ACCOUNTS_V2_OPERATION_MAX_AGE_MS (170 сут) —
+//   `rejected operation_expired`, дальше 10 минут в будущем —
+//   `rejected operation_time_in_future`. Решения:
+//   - ПОШТУЧНО, а не весь пакет: так устроены все отказы по операции (квитанция
+//     rejected{code}); отказ пакетом (HttpsError) не несёт serverNowMs — клиент с
+//     убежавшими часами не узнал бы смещение и отказывал бы себе вечно, а соседние
+//     живые операции ушли бы в карантин вместе со старой;
+//   - прежняя квитанция ВАЖНЕЕ возраста: она доказывает, что операция уже
+//     обработана, повтор получает её (duplicate) — это и есть идемпотентность;
+//   - квитанцию отказа НЕ пишем: отказ зависит от момента прихода, а не от
+//     содержимого. Записанный time_in_future навсегда отказывал бы операции и после
+//     того, как клиент исправит оценку; expired без записи всё равно повторится
+//     (время только растёт). Бонус — ноль записей на отказ;
+//   - оценка не входит в отпечаток (fingerprint): это метаданные доставки, повтор
+//     с уточнённой (зажатой) оценкой — та же операция;
+//   - пакеты сервера (validateBatch, миграция) оценки не несут — проверки нет.
 // зачем (P3, зафиксировано тестом): tombstone карточки с baseRevision из
 //   будущего — conflict без записи, как и любая операция карточки/библиотеки.
 
@@ -440,7 +461,8 @@ export function applyBatch(
   const receipts: AccountsV2Receipt[] = [];
   const opWrites: (readonly [string, AccountsV2OpRecord])[] = [];
   const pendingEntities = new Map<string, PendingEntity>();
-  for (const { operation } of batch.operations) {
+  for (const owned of batch.operations) {
+    const { operation } = owned;
     const { operationId } = operation;
     const print = fingerprint(operation);
     const prior = priorOps.get(operationId) ?? null;
@@ -449,6 +471,14 @@ export function applyBatch(
       continue;
     }
     const docId = docIdFor(operation.entityType, operation.entityId);
+    const enqueuedAt = 'enqueuedAtServerMs' in owned ? owned.enqueuedAtServerMs : null;
+    const timeRejection = enqueuedAt === null ? null : operationTimeRejection(enqueuedAt, nowMs);
+    if (timeRejection !== null && enqueuedAt !== null) {
+      // Без записи квитанции и сущности (см. решение TG-DFA918464DFA выше); в лог — только код и возраст.
+      console.warn('[ACCOUNTS-V2-CORE] operation_time_rejected', `code=${timeRejection}`, `ageMs=${nowMs - enqueuedAt}`);
+      receipts.push(rejected(operationId, timeRejection, entities.get(docId)?.revision ?? 0));
+      continue;
+    }
     const outcome = applyOne(operation, entities.get(docId) ?? null, startRevisions.get(docId) ?? 0, nowMs);
     if (outcome.next !== null) {
       entities.set(docId, { revision: outcome.next.revision, state: outcome.next.state });

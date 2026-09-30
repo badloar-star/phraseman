@@ -1,0 +1,322 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://phraseman.app/schemas/accounts-v2-migration-dry-run.report.v1.json",
+  "title": "Account V2 migration dry-run report (v1)",
+  "description": "Отчёт dry-run миграции одного пользователя в Account V2 (Пакет 5, TG-9B994CA6B1FF; ремонт №1 TG-25FDAF5DA4D9). Только счётчики, пути полей и сумма рун: без значений полей, без uid (только хэш), без самих операций; неизвестные ключи маскируются (<masked>). Источник: functions/src/accounts_v2_migration/dry_run.ts. КОНТРАКТ ИСПОЛНИТЕЛЯ: пакеты переноса применяются ТОЛЬКО при status = ready (applyAllowed = true), при hold — стоп (assertMigrationApplyAllowed). ready ≠ полный перенос: старый users/{uid} НЕЛЬЗЯ чистить, пока pendingDomainCount > 0 — эти поля ещё не имеют домена в Account V2 и живут только в старом документе (assertLegacyCleanupAllowed).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "uidHash",
+    "status",
+    "applyAllowed",
+    "pendingDomainCount",
+    "inventory",
+    "totals",
+    "carried",
+    "dropped",
+    "derived",
+    "held",
+    "informational",
+    "runesToCoins",
+    "conflicts",
+    "operations",
+    "disallowedFieldsCopied"
+  ],
+  "properties": {
+    "schema": {
+      "const": "accounts-v2-migration-dry-run.report.v1"
+    },
+    "uidHash": {
+      "description": "sha256 hex от 'accounts-v2-migration.v1:uid:' + uid. Сам uid в отчёт не попадает.",
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "status": {
+      "description": "ready — нет блокирующих HOLD и конфликтов; hold — есть блокирующие поля (нет решения/неизвестные/битые) или конфликт источников. Исполнитель применяет пакеты только при ready.",
+      "enum": [
+        "ready",
+        "hold"
+      ]
+    },
+    "applyAllowed": {
+      "description": "true тогда и только тогда, когда status = ready. Исполнитель переноса не применяет пакеты при false.",
+      "type": "boolean"
+    },
+    "pendingDomainCount": {
+      "description": "Число полей carry_pending_domain (серия, экзамены, достижения, открытые уроки D121, руны → монеты): владелец решил их переносить, но домена в Account V2 нет. Пока > 0 — старый users/{uid} не чистить.",
+      "$ref": "#/$defs/count"
+    },
+    "inventory": {
+      "description": "Число правил таблицы инвентаря по судьбам (functions/src/accounts_v2_migration/inventory.ts).",
+      "$ref": "#/$defs/dispositionCounts"
+    },
+    "totals": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "carried",
+        "dropped",
+        "derived",
+        "held",
+        "informational"
+      ],
+      "properties": {
+        "carried": {
+          "description": "Число перенесённых сущностей.",
+          "$ref": "#/$defs/count"
+        },
+        "dropped": {
+          "$ref": "#/$defs/count"
+        },
+        "derived": {
+          "$ref": "#/$defs/count"
+        },
+        "held": {
+          "$ref": "#/$defs/count"
+        },
+        "informational": {
+          "$ref": "#/$defs/count"
+        }
+      }
+    },
+    "carried": {
+      "description": "Перенесённые сущности по доменам.",
+      "$ref": "#/$defs/byEntityType"
+    },
+    "dropped": {
+      "description": "Отброшено по решению владельца: у каждой записи есть ссылки на решения D-номерами.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/dropEntry"
+      }
+    },
+    "derived": {
+      "description": "Права Plus: только ссылка на систему покупок, без копии.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/entry"
+      }
+    },
+    "held": {
+      "description": "Блокирующий HOLD: решения нет, поле неизвестно, значение битое, неполные страницы, HOLD всего аккаунта (путь $: owner_mismatch, identity_hidden, anon_merge_pending).",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/entry"
+      }
+    },
+    "informational": {
+      "description": "Информационно, НЕ блокирует перенос: no_v2_domain, carry_pending_domain (владелец решил переносить — серия, экзамены, достижения, открытые уроки D121, руны — но домена в Account V2 ещё нет; путь поля точный; блокирует ЧИСТКУ старых данных), счётчики валют, SRS без карточки.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/entry"
+      }
+    },
+    "runesToCoins": {
+      "description": "Руны → монеты (решения 6 и 10, D03): курс 1:1. Домена монет в Account V2 нет — только сумма, операций начисления нет; поле stars учтено в pendingDomainCount. Звёзды (v2_access_stars) не переносятся (OD10).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rate",
+        "runes",
+        "coins"
+      ],
+      "properties": {
+        "rate": {
+          "const": 1
+        },
+        "runes": {
+          "description": "Сумма users/{uid}.stars.balance (кошелёк рун).",
+          "$ref": "#/$defs/count"
+        },
+        "coins": {
+          "description": "runes × rate.",
+          "$ref": "#/$defs/count"
+        }
+      }
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "path",
+          "count"
+        ],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "pattern": "^[a-z0-9_]+$"
+          },
+          "path": {
+            "$ref": "#/$defs/path"
+          },
+          "count": {
+            "$ref": "#/$defs/positiveCount"
+          }
+        }
+      }
+    },
+    "operations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "count",
+        "batches",
+        "byEntityType",
+        "sha256"
+      ],
+      "properties": {
+        "count": {
+          "$ref": "#/$defs/count"
+        },
+        "batches": {
+          "$ref": "#/$defs/count"
+        },
+        "byEntityType": {
+          "$ref": "#/$defs/byEntityType"
+        },
+        "sha256": {
+          "description": "sha256 канонического JSON всех пакетов (детерминизм повторного прогона).",
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "disallowedFieldsCopied": {
+      "description": "Самопроверка: поля вне разрешённых схем payload в операциях. Ожидается 0.",
+      "$ref": "#/$defs/count"
+    }
+  },
+  "$defs": {
+    "count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "positiveCount": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "path": {
+      "description": "Путь поля без значения: 'progress.<key>', '<rootField>', 'subcollections.<name>', '...[*].<cardField>', '...[official:*]', '$'. uid внутри ключа заменён на <uid>; в неизвестных ключах почта, длинные id и не-ASCII заменены на <masked>.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 512
+    },
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reason",
+        "path",
+        "count"
+      ],
+      "properties": {
+        "reason": {
+          "type": "string",
+          "pattern": "^[a-z0-9_]+$"
+        },
+        "path": {
+          "$ref": "#/$defs/path"
+        },
+        "count": {
+          "$ref": "#/$defs/positiveCount"
+        },
+        "decisions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "description": "D-номер из docs/phraseman-2.0/03_DECISIONS.md или OD-номер решения владельца в чате (docs/work/tasks/account-v2-status-2026-09-30.md).",
+            "type": "string",
+            "pattern": "^(D[0-9]{2,3}|OD[0-9]{1,2})$"
+          }
+        }
+      }
+    },
+    "dropEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reason",
+        "path",
+        "count",
+        "decisions"
+      ],
+      "properties": {
+        "reason": {
+          "type": "string",
+          "pattern": "^[a-z0-9_]+$"
+        },
+        "path": {
+          "$ref": "#/$defs/path"
+        },
+        "count": {
+          "$ref": "#/$defs/positiveCount"
+        },
+        "decisions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "description": "D-номер из docs/phraseman-2.0/03_DECISIONS.md или OD-номер решения владельца в чате (docs/work/tasks/account-v2-status-2026-09-30.md).",
+            "type": "string",
+            "pattern": "^(D[0-9]{2,3}|OD[0-9]{1,2})$"
+          }
+        }
+      }
+    },
+    "byEntityType": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lesson_progress",
+        "flashcard",
+        "library_membership"
+      ],
+      "properties": {
+        "lesson_progress": {
+          "$ref": "#/$defs/count"
+        },
+        "flashcard": {
+          "$ref": "#/$defs/count"
+        },
+        "library_membership": {
+          "$ref": "#/$defs/count"
+        }
+      }
+    },
+    "dispositionCounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "carry",
+        "carry_pending_domain",
+        "drop",
+        "derive",
+        "info",
+        "hold"
+      ],
+      "properties": {
+        "carry": {
+          "$ref": "#/$defs/count"
+        },
+        "carry_pending_domain": {
+          "$ref": "#/$defs/count"
+        },
+        "drop": {
+          "$ref": "#/$defs/count"
+        },
+        "derive": {
+          "$ref": "#/$defs/count"
+        },
+        "info": {
+          "$ref": "#/$defs/count"
+        },
+        "hold": {
+          "$ref": "#/$defs/count"
+        }
+      }
+    }
+  }
+}

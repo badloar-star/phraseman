@@ -57,6 +57,10 @@ describe('client copy of the server decision table', () => {
       retryAfterConsumesAttempt: false,
       minFailureSpanMs: 24 * 60 * 60 * 1000,
       attemptsExhaustedRequeue: true,
+      requeueQuarantineCodes: [
+        'sync_dispatch_attempts_exhausted', 'sync_receipt_invalid_exhausted', 'sync_operation_expired',
+        'sync_operation_time_in_future',
+      ],
     });
   });
 

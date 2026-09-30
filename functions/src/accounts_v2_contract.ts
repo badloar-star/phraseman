@@ -28,6 +28,15 @@ export const ACCOUNTS_V2_ENVELOPE_KEYS = Object.freeze([
   'clientSequence', 'baseRevision', 'payload',
 ] as const);
 export const ACCOUNTS_V2_OWNED_OPERATION_KEYS = Object.freeze(['ownerUid', 'operation'] as const);
+/**
+ * Операция в пакете КЛИЕНТА (callable): рядом с конвертом — оценка времени
+ * постановки в outbox по часам сервера (TG-DFA918464DFA).
+ * зачем: оценка — метаданные доставки, а не содержимое операции. Поэтому она
+ * лежит РЯДОМ с конвертом, а не внутри: конверт (и его отпечаток, и схема v1)
+ * не меняется, повтор с уточнённой оценкой — тот же operationId и duplicate.
+ * Серверные пакеты (миграция) формируются без неё — validateBatch.
+ */
+export const ACCOUNTS_V2_CLIENT_OPERATION_KEYS = Object.freeze(['ownerUid', 'operation', 'enqueuedAtServerMs'] as const);
 export const ACCOUNTS_V2_BATCH_KEYS = Object.freeze(['batchId', 'operations'] as const);
 export const ACCOUNTS_V2_RECEIPT_KEYS = Object.freeze(['operationId', 'outcome', 'serverRevision'] as const);
 /** Все исходы, которые выдаёт сервер. Клиентские исходы обязаны быть подмножеством. */
@@ -39,6 +48,9 @@ export const ACCOUNTS_V2_REJECT_CODES = Object.freeze([
   'payload_invalid', 'operation_id_reused', 'entity_state_too_large', 'revision_overflow',
   // Ремонт №4: время SRS-правки дальше допуска в будущем (часы телефона врут).
   'srs_time_in_future',
+  // TG-DFA918464DFA: операция старше ACCOUNTS_V2_OPERATION_MAX_AGE_MS по часам
+  // сервера / оценка времени постановки дальше допуска в будущем.
+  'operation_expired', 'operation_time_in_future',
 ] as const);
 
 /**
@@ -66,6 +78,29 @@ export const ACCOUNTS_V2_SRS_TIME_KEY = 'updatedAtMs';
  * часы телефона врут. Закрепить значение можно максимум на 10 минут.
  */
 export const ACCOUNTS_V2_SRS_MAX_FUTURE_SKEW_MS = 10 * 60 * 1000;
+
+/**
+ * Предел возраста операции по часам СЕРВЕРА: 170 суток (TG-DFA918464DFA).
+ * зачем: квитанция операции живёт 180 суток (ACCOUNTS_V2_RECEIPT_TTL_MS). Повтор
+ * операции после истечения квитанции применился бы ВТОРОЙ раз как новая. Клиент
+ * держит тот же предел (ACCOUNT_SYNC_OPERATION_MAX_AGE_MS, сверяет сторож
+ * паритета), но меряет своими часами; сбитые вперёд и затем исправленные часы
+ * занижали его оценку. Сервер меряет своими часами от оценки клиента
+ * `enqueuedAtServerMs`: старше предела — окончательный `rejected operation_expired`.
+ * Запас 10 суток до TTL — на задержку TTL-чистки Firestore и погрешность оценки.
+ * TEMP (принято в пакете): оценку ставит клиент — это защита от сбитых часов
+ * честного клиента, а не от атаки; соврав, клиент портит только свои данные.
+ */
+export const ACCOUNTS_V2_OPERATION_MAX_AGE_MS = 170 * 24 * 60 * 60 * 1000;
+
+/**
+ * Допуск «будущего» для оценки времени постановки: 10 минут, как у SRS.
+ * зачем: время постановки не может быть позже прихода. Оценка дальше допуска —
+ * часы телефона (или его поправка) врут, и возраст по ней занижен: окончательный
+ * `rejected operation_time_in_future`. Клиент, узнав смещение из ответа, зажимает
+ * оценку сверху своим «сейчас по серверу» — возвращённая операция проходит.
+ */
+export const ACCOUNTS_V2_OPERATION_MAX_FUTURE_SKEW_MS = 10 * 60 * 1000;
 
 /**
  * Предел числа tombstone библиотеки. Сверх него (и когда состояние не
@@ -116,7 +151,12 @@ export type AccountsV2Envelope = Readonly<{
   payload: JsonValue;
 }>;
 export type AccountsV2OwnedOperation = Readonly<{ ownerUid: string; operation: AccountsV2Envelope }>;
-export type AccountsV2Batch = Readonly<{ batchId: string; operations: readonly AccountsV2OwnedOperation[] }>;
+/** Операция из пакета клиента: с оценкой времени постановки (safe integer ≥ 0, мс по часам сервера). */
+export type AccountsV2ClientOperation = AccountsV2OwnedOperation & Readonly<{ enqueuedAtServerMs: number }>;
+export type AccountsV2Batch = Readonly<{
+  batchId: string;
+  operations: readonly (AccountsV2OwnedOperation | AccountsV2ClientOperation)[];
+}>;
 
 /**
  * Квитанции applied|duplicate. Клиентская `AccountSyncReceipt` знает ещё и

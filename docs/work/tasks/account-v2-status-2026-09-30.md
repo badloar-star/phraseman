@@ -1,6 +1,10 @@
 # Account System V2 — статус Claude-сессии, 2026-09-30
 
-> ПОСЛЕДНЕЕ (TG-831C22D22486, шаг 2): firestore.indexes.json — fieldOverrides: accounts_v2_ops {expireAt ttl:true, operationIdJson, fingerprint} и accounts_v2_entities {stateJson, entityIdJson, lastOperationIdJson} без индексов; сторож rules_guard.test.ts проверяет и это (4 теста). jest src/accounts_v2_ — 368/368, eslint чисто. Не задеплоено. СЛЕДУЮЩИЙ ШАГ: клиентский пакет — modules/account-session-v2/account_sync*.ts: исходы квитанций conflict/rejected{code}, решение по details.final, retryAfterMs не тратит попытку, потолок 5 → карантин, операции одной сущности в один пакет, базу не переписывать, SRS updatedAtMs гибридные часы + serverNowMs, removeItemIds; паритет-сторож сервера обновить.
+> ПОСЛЕДНЕЕ (TG-9B994CA6B1FF): КЛИЕНТСКИЙ ПАКЕТ СИНХРОНИЗАЦИИ ПРИНЯТ. modules/account-session-v2/account_sync*.ts (+ _transport, _clock, _srs_reissue, _batching, _outbox_records, _outbox_effects, _outbox_followups, _runner_ports) выполняет серверный контракт: conflict/rejected окончательные; решение по details.final; карантин только при ≥5 неудачах И ≥24 ч, возвратный (requeue); учёт неудач на диске; операции одной сущности в одном пакете, baseRevision не переписывается; гибридные часы SRS с верхней границей; перевыпуск SRS внутри markResolved; срок жизни 170 сут по двум оценкам (отрицательная = ложная). 3 ревью + 3 ремонта, итог SPEC APPROVE + SEC APPROVE (условие закрыто). Тесты: app 361/361, functions 388/388. Файлы в общем снимке efe19ae9d; firestore.rules с accounts_v2 — d9f615758 (коммиты сессии ef683a).
+> Остаточный риск (TEMP): часы вперёд на 10–170 сут → возможен повтор после TTL квитанций; закрыть серверной проверкой возраста операции.
+> СЛЕДУЮЩИЕ ШАГИ: (1) Пакет 5 — read-only inventory + dry-run миграции (жемчуг/XP dropped); (2) Пакет 4 — протокол удаления аккаунта; (3) серверная проверка возраста операции; (4) лаунчер WAL-кампании на эмуляторе; (5) Пакет 6 — интеграция за выключенным флагом.
+>
+> ПРЕДЫДУЩЕЕ (TG-831C22D22486, шаг 2): firestore.indexes.json — fieldOverrides: accounts_v2_ops {expireAt ttl:true, operationIdJson, fingerprint} и accounts_v2_entities {stateJson, entityIdJson, lastOperationIdJson} без индексов; сторож rules_guard.test.ts проверяет и это (4 теста). jest src/accounts_v2_ — 368/368, eslint чисто. Не задеплоено. СЛЕДУЮЩИЙ ШАГ: клиентский пакет — modules/account-session-v2/account_sync*.ts: исходы квитанций conflict/rejected{code}, решение по details.final, retryAfterMs не тратит попытку, потолок 5 → карантин, операции одной сущности в один пакет, базу не переписывать, SRS updatedAtMs гибридные часы + serverNowMs, removeItemIds; паритет-сторож сервера обновить.
 >
 > ПРЕДЫДУЩЕЕ (правила): правила Firestore — `match /accounts_v2/{document=**}` с `allow read, write: if false` + `collection != 'accounts_v2'` в админском catch-all; сторож functions/src/accounts_v2_adapter/rules_guard.test.ts (3 теста). jest src/accounts_v2_ — 11 suites, 367/367. Правила НЕ задеплоены. Следующий шаг: firestore.indexes.json fieldOverrides (исключить *Json и fingerprint из индексов для групп accounts_v2_entities/accounts_v2_ops) + TTL-политика (записать в документ деплоя), затем клиентский пакет.
 >
@@ -76,3 +80,43 @@ RED: 50 failed / 12 passed из 62 (заглушка, каждая функци�
 TEMP-контракт для клиентского пакета (обязательно до подключения callable): (а) базу ожидающих операций никогда не переписывать, операции одной сущности — в одном пакете, иначе честный conflict и новая осознанная операция; (б) гибридные часы SRS; (в) serverNowMs в ответе адаптера; (г) SRS отдельной операцией при srs_time_in_future; (д) порядок outbox, не подмешивать чужие операции; поддержка исходов conflict/rejected и removeItemIds.
 
 Следующие шаги: правила Firestore V2 + эмулятор-тесты (исходники), Firestore-адаптер порта + callable (без экспорта), клиентский пакет по TEMP-контракту, dry-run миграции (Пакет 5), протокол удаления (Пакет 4), лаунчер WAL-кампании на эмуляторе.
+
+## Решения владельца по миграции (2026-09-30, ответы в чате)
+
+6. Руны и звёзды существующих пользователей: **перенести в монеты** (курс — из документа решений D03, если там есть; иначе спросить владельца).
+7. Заморозка серии: **оставить только для Plus** (бесплатно у подписчиков, у остальных нет).
+8. Переносить кроме уроков и карточек: **серия дней и активные дни; экзамены и сертификаты; достижения и статистика**. «Открытые уроки» владелец не выбрал, но действует прежнее решение D121 («уже открытые уроки при пересчёте не закрываются»).
+9. Память интервальных повторений карточек: **перенести** (время правки берётся из старой записи).
+10. Курс: **1 руна = 1 монета**. Звёзды (v2_access_stars и др.) **не переносить**.
+11. Служебные поля входа (привязка Google/Apple, технические метки firebaseAuthUid/linkedAuth и т.п.) **не переносить** — вход в V2 новый; не блокируют перенос.
+12. Урок на 40–59% без открытого следующего — **не открывать** следующий (перенос ничего не меняет в открытости).
+
+## ИТОГ: Пакет 5 (dry-run миграции) — ПРИНЯТ (SPEC APPROVE + SECURITY APPROVE), 2026-09-30
+
+- Пакеты: account-v2-pkg5-migration-dryrun, account-v2-pkg5-repair1. functions `src/accounts_v2_`: 516/516. tsc/eslint по migration чистые. 11 мутационных проверок.
+- Статус отчёта `ready | hold`; `applyAllowed` только при ready (`assertMigrationApplyAllowed`); чистка старого `users/{uid}` запрещена, пока `pendingDomainCount > 0` (`assertLegacyCleanupAllowed`).
+- Руны → `runesToCoins` 1:1, но домена монет в ядре V2 нет → carry_pending_domain. Серия/экзамены/достижения/доступ к урокам — тоже carry_pending_domain. **Нужен пакет «домены V2: монеты, серия, экзамены, достижения» до реального переноса.**
+- Хвосты P3: (1) ES/DE — если нет `unlocked_lessons` в снимке, урок на 40–59% получит passed:false → ставить HOLD при таком сочетании либо доказать, что у ES/DE нет старых уроков; (2) перенести OD6–OD12 в docs/phraseman-2.0/03_DECISIONS.md; (3) dry_run.ts 780 строк — вынести packBatches/buildReport; (4) заморозка ссылается на D101/D107 вместо OD7. Блокирующие HOLD, оставшиеся по делу: mistakePracticeMergePending, progressServer*/progressMigratedAt.
+- Следующий шаг по списку: **Пакет 4 — протокол удаления аккаунта.**
+
+### Решения владельца по удалению (2026-09-30)
+13. Ключ удаления на телефоне даёт право **узнать этап и дотолкнуть** удаление до конца; данных аккаунта не открывает.
+14. Запись-квитанция «удалён» (только этап, без личных данных) хранится **30 дней**, потом стирается сама (TTL).
+15. Переустановка / потеря ключа: **ничего не показываем**, обычный новый вход; сервер доводит удаление сам; вход той же почтой = новый чистый аккаунт. Уведомлений об удалении не показывать никогда (правило владельца).
+
+## ИТОГ: Пакет 4 (протокол удаления) — ПРИНЯТ (SPEC+SECURITY APPROVE, ремонт №1 APPROVE), 2026-09-30
+
+- Код: functions/src/accounts_v2_deletion/* (receipt, status_authorizer, purge_core, deletion_flow, firestore_ports + тесты), modules/account-session-v2/account_deletion_detach.ts, firestore.indexes.json (TTL квитанций 30 дн). Не подключено, index.ts и account_delete.ts не тронуты. 187/187 functions + 10/10 клиент; 24 мутационные проверки.
+- Этапы квитанции: pending → purging → v2_purged → completed (completed ставит только конвейер). Отзыв pending-квитанции: revokeAccountsV2DeletionReceipt. Ключ — base64url ровно 32 байта (старый hex-ключ из auth_provider.ts:575 НЕ подходит — клиент V2 генерирует новый формат). uid с префиксом `_` отвергаются адаптером.
+- Для Пакета 6: обёртки onCall; выпуск квитанции только в точке невозврата; шаг purgeAccountsV2ForDeletion в конвейере account_delete с курсором; completeAccountsV2DeletionReceipt в конце конвейера; защёлка isDetached, переживающая перезапуск; автоповтор стирания после close_failed; лимит на подбор несуществующих квитанций; P3: saveCursor бросает при 'absent' (отзыв останавливает стирание после текущей порции), отзыв после v2_purged возвращает отдельный результат; эмулятор и деплой TTL.
+- Следующий шаг по списку: **(3) серверная проверка возраста операции** (отказ операций старше 170 сут по часам сервера), затем (4) лаунчер WAL-кампании на эмуляторе, (5) Пакет 6.
+
+## В РАБОТЕ: серверная проверка возраста операции (пакет account-v2-op-age-guard-2026-09-30)
+- Исполнитель прерван перезапуском сессии на середине: частичные правки лежат в errors.ts, firestore_port.ts, envelope_parity.test.ts, новый accounts_v2_op_age.test.ts, outbox*/transport + тесты клиента. Копия до начала — `.tmp_opage_backup/`. Продолжать тем же пакетом; владелец: **не больше 1 агента одновременно**.
+
+## ИТОГ: серверная проверка возраста операции — ПРИНЯТА (SPEC+SECURITY APPROVE, ремонт №1 APPROVE), 2026-09-30
+- Сервер: `operation_expired` (>170 сут) и `operation_time_in_future` (>10 мин), поштучно, без квитанции; повтор с квитанцией отвечает duplicate раньше проверки возраста. `validateClientBatch` в callable (требует enqueuedAtServerMs), `validateBatch` — для dry-run.
+- Клиент: метка постановки + неизменная граница первой отправки (firstSentAtServerMs/LocalAtMs), по две оценки, «младшая правдоподобная»; `createAccountSyncDispatchPort(wireBatch, send)`.
+- Тесты: functions src/accounts_v2_ 644/644 (22 набора), клиент account_sync*_v2 223. Мутации пойманы.
+- TEMP: сдвиг часов >10 сут при первой отправке/переводе назад; сброшенная дата + автоисправление часов до первой отправки → правка в карантине навсегда (починка — монотонные часы, отдельная задача).
+- Следующий шаг: **(4) лаунчер WAL-кампании на эмуляторе**, затем (5) домены V2 (монеты/серия/экзамены/достижения), (6) Пакет 6.

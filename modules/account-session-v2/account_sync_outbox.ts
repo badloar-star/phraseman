@@ -9,6 +9,8 @@ import type {
   AccountSyncBatch,
   AccountSyncEffect,
   AccountSyncOwnedOperation,
+  AccountSyncServerReceipt,
+  AccountSyncWireBatch,
 } from './account_sync';
 import { accountSyncBatchIdFor, planAccountSyncBatch } from './account_sync_batching';
 import {
@@ -18,11 +20,12 @@ import {
 } from './account_sync_outbox_effects';
 import {
   createAccountSyncOutboxFollowups,
+  recordLaterConfirmed,
   updateUnresolvedIndex,
   type AccountSyncOutboxFollowups,
 } from './account_sync_outbox_followups';
+import { createAccountSyncWireBatch, expiredOf, type NowPair, type Scanned } from './account_sync_outbox_time';
 import {
-  ACCOUNT_SYNC_OPERATION_MAX_AGE_MS,
   AccountSyncOutboxError,
   DISPATCH_KEY,
   INITIAL_DISPATCH_STATE,
@@ -55,10 +58,12 @@ import {
   slotJson,
   slotKey,
   snapshotFence,
+  timeRejectionQuarantineCode,
   value,
   type Ack,
   type AccountSyncDispatchState,
   type AccountSyncOutboxQuarantineCode,
+  type EnqueueTimes,
   type Meta,
   type Pending,
   type Quarantined,
@@ -73,7 +78,9 @@ export {
   type AccountSyncOutboxQuarantineCode,
 } from './account_sync_outbox_records';
 export type {
+  AccountSyncOutboxReplacementPlanner,
   AccountSyncOutboxRequeueResult,
+  AccountSyncOutboxResolveContext,
   AccountSyncOutboxResolveResult,
   AccountSyncOutboxUnresolved,
 } from './account_sync_outbox_followups';
@@ -151,11 +158,18 @@ export type AccountSyncOutbox = Readonly<{
   ackCommit(effect: AckEffect): Promise<AccountSyncOutboxAckResult>;
   /** Переносит операции пакета из очереди в карантин (с кодом), одной транзакцией. */
   quarantine(effect: QuarantineEffect): Promise<AccountSyncOutboxQuarantineResult>;
+  /**
+   * Пакет эффекта отправки в форме провода: операции + enqueuedAtServerMs
+   * (TG-DFA918464DFA). Порт dispatch раннера отправляет на callable именно его.
+   */
+  wireBatch(effect: DispatchEffect): Promise<AccountSyncWireBatch>;
 }> & AccountSyncOutboxFollowups;
 
+type DispatchEffect = Extract<AccountSyncEffect, { type: 'DISPATCH_OUTBOX_BATCH' }>;
 type Moved = Readonly<{ sequence: number; operationId: string }>;
-type Leaving = Readonly<{ sequence: number; envelope: AccountSyncOwnedOperation; enqueuedAtMs: number }>;
-type Scanned = Readonly<{ sequence: number; pending: Pending }>;
+type Leaving = Readonly<{ sequence: number; envelope: AccountSyncOwnedOperation }> & EnqueueTimes;
+/** Строка подтверждения пакета: квитанция в ack либо (отказ по времени) карантин. */
+type Settled = Ack & EnqueueTimes;
 
 const EMPTY_OPERATIONS: readonly AccountSyncOwnedOperation[] = Object.freeze([]);
 
@@ -259,9 +273,10 @@ export function createAccountSyncOutbox(
    * меряется по часам, которые телефон может переставить; смещение из ответа
    * сервера это выравнивает. Нет ответа — поправка 0.
    */
-  const serverNowMs = async (transaction: AccountScopeTransaction): Promise<number> => {
+  const nowPair = async (transaction: AccountScopeTransaction): Promise<NowPair> => {
     const offset = (await readDispatch(transaction)).clockOffsetMs ?? 0;
-    return Math.max(0, nowMs() + offset);
+    const localMs = nowMs();
+    return Object.freeze({ localMs, serverMs: Math.max(0, localMs + offset) });
   };
 
   const readSlot = async (transaction: AccountScopeTransaction, sequence: number): Promise<Slot | null> => {
@@ -360,13 +375,14 @@ export function createAccountSyncOutbox(
     rows: readonly Leaving[],
     code: AccountSyncOutboxQuarantineCode,
   ): Promise<Meta> => {
-    const quarantinedAtMs = await serverNowMs(transaction);
+    const quarantinedAtMs = (await nowPair(transaction)).serverMs;
     for (const row of rows) {
       const operationId = row.envelope.operation.operationId;
       await transaction.putRecord({
         key: operationKey('quarantine', operationId),
         value: quarantineJson(ownerUid, {
-          sequence: row.sequence, envelope: row.envelope, code, quarantinedAtMs, enqueuedAtMs: row.enqueuedAtMs,
+          sequence: row.sequence, envelope: row.envelope, code, quarantinedAtMs,
+          enqueuedAtMs: row.enqueuedAtMs, enqueuedLocalAtMs: row.enqueuedLocalAtMs, firstSent: row.firstSent,
         }),
       });
       await transaction.deleteRecord(operationKey('pending', operationId));
@@ -446,7 +462,7 @@ export function createAccountSyncOutbox(
     transaction: AccountScopeTransaction,
     owned: AccountSyncOwnedOperation,
     mutation: AccountSyncLocalMutation | null,
-    keepEnqueuedAtMs?: number,
+    keepEnqueued?: EnqueueTimes,
   ): Promise<AccountSyncOutboxEnqueueResult> => {
     const operationId = owned.operation.operationId;
     const meta = (await readMeta(transaction)) ?? initialMeta(ownerUid);
@@ -482,12 +498,14 @@ export function createAccountSyncOutbox(
     }
     const existingSlot = await transaction.readRecord(slotKey(meta.next));
     if (existingSlot !== null) return fail('account_sync_outbox_corrupt');
-    // requeue сохраняет прежнее время постановки: срок жизни не продлевается.
-    const enqueuedAtMs = keepEnqueuedAtMs ?? await serverNowMs(transaction);
+    // requeue сохраняет прежнее время постановки (обе оценки): срок жизни не продлевается.
+    const now = keepEnqueued === undefined ? await nowPair(transaction) : null;
+    const times: EnqueueTimes = keepEnqueued
+      ?? Object.freeze({ enqueuedAtMs: now?.serverMs ?? 0, enqueuedLocalAtMs: now?.localMs ?? 0, firstSent: null });
     if (mutation !== null) await runLocalMutation(transaction, mutation);
     // зачем: конверт пишется как есть и больше НИКОГДА не меняется (baseRevision
     // не продвигается ни по квитанции, ни по прочитанному состоянию — контракт (а)).
-    const pending = Object.freeze({ sequence: meta.next, envelope: owned, enqueuedAtMs });
+    const pending: Pending = Object.freeze({ sequence: meta.next, envelope: owned, ...times });
     await transaction.putRecord({ key: slotKey(meta.next), value: slotJson(ownerUid, {
       sequence: meta.next, operationId, retired: false,
     }) });
@@ -522,10 +540,10 @@ export function createAccountSyncOutbox(
     return transact((transaction) => stageOperation(transaction, owned, mutation));
   };
 
-  /** Живые операции окна от головы; retired-слоты пропускаются, пропавший слот — порча. */
-  const scanWindow = async (transaction: AccountScopeTransaction, meta: Meta): Promise<readonly Scanned[]> => {
+  /** Живые операции от головы (не больше limit слотов); retired пропускаются, пропавший слот — порча. */
+  const scanLive = async (transaction: AccountScopeTransaction, meta: Meta, limit: number): Promise<readonly Scanned[]> => {
     const scanned: Scanned[] = [];
-    const end = Math.min(meta.next, meta.head + ACCOUNT_SYNC_OUTBOX_SCAN_WINDOW);
+    const end = Math.min(meta.next, meta.head + limit);
     for (let sequence = meta.head; sequence < end; sequence += 1) {
       const slot = await readSlot(transaction, sequence);
       if (slot === null) return fail('account_sync_outbox_corrupt');
@@ -580,18 +598,12 @@ export function createAccountSyncOutbox(
       if (meta === null) return freezeLoad(emptyBatchId(0), EMPTY_OPERATIONS, 0);
       for (let round = 0; round < MAX_EXPIRY_ROUNDS; round += 1) {
         if (meta.pendingCount === 0) return freezeLoad(emptyBatchId(meta.head), EMPTY_OPERATIONS, 0);
-        const scanned = await scanWindow(transaction, meta);
-        const now = await serverNowMs(transaction);
-        // зачем (TG-7CD73967EF61, P3): отрицательный возраст — часы перевели назад
-        // (или поставили операцию с убежавшими часами). Это подозрительно, но НЕ
-        // повод истекать: пишем в лог и считаем операцию живой.
-        const negative = scanned.filter(({ pending }) => pending.enqueuedAtMs > now).length;
-        if (negative > 0) console.warn('[ACCOUNTS-V2-CLIENT] outbox_age_negative', `operations=${negative}`);
-        // зачем: квитанции сервера живут 180 суток; старше предела — карантин, не отправка.
-        const expired = scanned.filter(({ pending }) => now - pending.enqueuedAtMs > ACCOUNT_SYNC_OPERATION_MAX_AGE_MS);
+        const scanned = await scanLive(transaction, meta, ACCOUNT_SYNC_OUTBOX_SCAN_WINDOW);
+        const expired = expiredOf(scanned, await nowPair(transaction));
         if (expired.length === 0) return selectBatch(transaction, effect, meta, scanned);
         meta = await moveToQuarantine(transaction, meta, expired.map(({ sequence, pending }) => Object.freeze({
-          sequence, envelope: pending.envelope, enqueuedAtMs: pending.enqueuedAtMs,
+          sequence, envelope: pending.envelope,
+          enqueuedAtMs: pending.enqueuedAtMs, enqueuedLocalAtMs: pending.enqueuedLocalAtMs, firstSent: pending.firstSent,
         })), 'sync_operation_expired');
         const live = scanned.filter((row) => !expired.includes(row));
         if (live.length > 0) return selectBatch(transaction, effect, meta, live);
@@ -611,7 +623,7 @@ export function createAccountSyncOutbox(
     batch: AccountSyncBatch,
     settled: (operationId: string) => Promise<Readonly<{ sequence: number; matches: boolean }> | null>,
     otherExit: (operationId: string) => Promise<boolean>,
-    build: (sequence: number, envelope: AccountSyncOwnedOperation, index: number, enqueuedAtMs: number) => T,
+    build: (sequence: number, envelope: AccountSyncOwnedOperation, index: number, times: EnqueueTimes) => T,
   ): Promise<Readonly<{ sequences: readonly number[]; rows: readonly T[]; moved: readonly Moved[] }>> => {
     const sequences: number[] = [];
     const rows: T[] = [];
@@ -641,7 +653,9 @@ export function createAccountSyncOutbox(
         return fail('account_sync_outbox_conflict');
       }
       sequences.push(sequence);
-      rows.push(build(sequence, envelope, index, pending.enqueuedAtMs));
+      rows.push(build(sequence, envelope, index, Object.freeze({
+        enqueuedAtMs: pending.enqueuedAtMs, enqueuedLocalAtMs: pending.enqueuedLocalAtMs, firstSent: pending.firstSent,
+      })));
       moved.push(Object.freeze({ sequence, operationId }));
     }
     if (!strictlyIncreasing(sequences) || batch.batchId !== accountSyncBatchIdFor(sequences)) {
@@ -659,35 +673,62 @@ export function createAccountSyncOutbox(
       if (meta === null) return fail('account_sync_outbox_corrupt');
       const receiptFor = new Map(normalized.receipts.map((receipt) => [receipt.operationId, receipt] as const));
       const envelopeFor = new Map(normalized.batch.operations.map((owned) => [owned.operation.operationId, owned] as const));
-      const matched = await matchBatch<Ack>(transaction, meta, normalized.batch, async (operationId) => {
+      // зачем (TG-DFA918464DFA): отказ сервера по времени постановки уходит в возвратный
+      // карантин, а не в ack — повтор после потерянного ответа ищет операцию там же.
+      const timeCode = (operationId: string): AccountSyncOutboxQuarantineCode | null => {
+        const requested: AccountSyncServerReceipt | undefined = receiptFor.get(operationId);
+        return requested === undefined ? null : timeRejectionQuarantineCode(requested);
+      };
+      const matched = await matchBatch<Settled>(transaction, meta, normalized.batch, async (operationId) => {
+        const envelope = envelopeFor.get(operationId);
+        const code = timeCode(operationId);
+        if (code !== null) {
+          const record = await transaction.readRecord(operationKey('quarantine', operationId));
+          if (record === null) return null;
+          const stored = await validateStoredQuarantine(transaction, record.value, meta, operationId);
+          return Object.freeze({ sequence: stored.sequence,
+            matches: envelope !== undefined && stored.code === code && semanticEqual(stored.envelope, envelope) });
+        }
         const record = await transaction.readRecord(operationKey('ack', operationId));
         if (record === null) return null;
         const stored = await validateStoredAck(transaction, record.value, meta, operationId);
         const requested = receiptFor.get(operationId);
-        const envelope = envelopeFor.get(operationId);
         return Object.freeze({
           sequence: stored.sequence,
           matches: requested !== undefined && envelope !== undefined
             && semanticEqual(stored.envelope, envelope) && receiptsCompatible(stored.receipt, requested),
         });
       }, async (operationId) => (
-        await transaction.readRecord(operationKey('quarantine', operationId)) !== null
-      ), (sequence, envelope, index) => Object.freeze({
+        await transaction.readRecord(operationKey(timeCode(operationId) === null ? 'quarantine' : 'ack', operationId)) !== null
+      ), (sequence, envelope, index, times) => Object.freeze({
         sequence, envelope, receipt: normalized.receipts[index],
-        resolved: !receiptNeedsResolution(normalized.receipts[index]),
+        resolved: !receiptNeedsResolution(normalized.receipts[index]), ...times,
       }));
       if (matched.rows.length === 0) return Object.freeze({
         committedOperationIds: freezeIds(expectedIds), remainingPendingCountObserved: meta.pendingCount,
       });
+      const acked: Ack[] = [];
+      const quarantinedAtMs = (await nowPair(transaction)).serverMs;
       for (const row of matched.rows) {
-        await transaction.putRecord({
-          key: operationKey('ack', row.envelope.operation.operationId), value: ackJson(ownerUid, row),
-        });
-        await transaction.deleteRecord(operationKey('pending', row.envelope.operation.operationId));
+        const operationId = row.envelope.operation.operationId;
+        const code = timeRejectionQuarantineCode(row.receipt);
+        await transaction.putRecord(code === null
+          ? { key: operationKey('ack', operationId), value: ackJson(ownerUid, row) }
+          : { key: operationKey('quarantine', operationId), value: quarantineJson(ownerUid, {
+            sequence: row.sequence, envelope: row.envelope, code, quarantinedAtMs,
+            enqueuedAtMs: row.enqueuedAtMs, enqueuedLocalAtMs: row.enqueuedLocalAtMs, firstSent: row.firstSent,
+          }) });
+        await transaction.deleteRecord(operationKey('pending', operationId));
+        if (code === null) acked.push(row);
+        else console.warn('[ACCOUNTS-V2-CLIENT] outbox_quarantined', `code=${code}`, 'reason=server_time_rejection');
       }
       // зачем (TG-7CD73967EF61, P2): conflict/rejected переживают крах — индекс для listUnresolved.
+      const newlyUnresolved = acked.filter((row) => !row.resolved);
+      // зачем (TG-CF3E51F11C41, P2): подтверждённые более поздние правки той же сущности
+      // запоминаются для неразрешённых квитанций — перевыпуск SRS их не затрёт.
+      await recordLaterConfirmed(transaction, ownerUid, acked, newlyUnresolved);
       await updateUnresolvedIndex(transaction, ownerUid,
-        matched.rows.filter((row) => !row.resolved).map((row) => row.envelope.operation.operationId), []);
+        newlyUnresolved.map((row) => row.envelope.operation.operationId), []);
       const nextMeta = await retireAndAdvance(transaction, meta, matched.moved);
       return Object.freeze({
         committedOperationIds: freezeIds(expectedIds), remainingPendingCountObserved: nextMeta.pendingCount,
@@ -713,7 +754,7 @@ export function createAccountSyncOutbox(
         });
       }, async (operationId) => (
         await transaction.readRecord(operationKey('ack', operationId)) !== null
-      ), (sequence, envelope, _index, enqueuedAtMs) => Object.freeze({ sequence, envelope, enqueuedAtMs }));
+      ), (sequence, envelope, _index, times) => Object.freeze({ sequence, envelope, ...times }));
       if (matched.rows.length === 0) return Object.freeze({
         quarantinedOperationIds: freezeIds(expectedIds), remainingPendingCountObserved: meta.pendingCount,
       });
@@ -727,7 +768,9 @@ export function createAccountSyncOutbox(
   const followups = createAccountSyncOutboxFollowups({
     ownerUid, boundFence, transact, readMeta, readDispatch, localNowMs: nowMs,
     validateStoredAck, validateStoredQuarantine,
-    stageOperation: (transaction, owned, enqueuedAtMs) => stageOperation(transaction, owned, null, enqueuedAtMs),
+    stageOperation: (transaction, owned, kept) => stageOperation(transaction, owned, null, kept),
+    scanQueue: (transaction, meta) => scanLive(transaction, meta, Number.MAX_SAFE_INTEGER),
   });
-  return Object.freeze({ enqueue, applyLocalMutation, load, ackCommit, quarantine, ...followups });
+  const wireBatch = createAccountSyncWireBatch({ ownerUid, boundFence, transact, readDispatch, localNowMs: nowMs });
+  return Object.freeze({ enqueue, applyLocalMutation, load, ackCommit, quarantine, wireBatch, ...followups });
 }

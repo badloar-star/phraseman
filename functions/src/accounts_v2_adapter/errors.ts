@@ -55,6 +55,26 @@ export const ACCOUNTS_V2_CLIENT_ERROR_CONTRACT = Object.freeze({
   minFailureSpanMs: ACCOUNTS_V2_CLIENT_MIN_FAILURE_SPAN_MS,
   /** Карантин по потолку возвратный: клиент может вернуть пакет в очередь. */
   attemptsExhaustedRequeue: true as const,
+  /**
+   * Все возвратные коды карантина клиента (requeue). зачем (TG-CF3E51F11C41): кроме
+   * потолка попыток — «кривые квитанции» и «просрочено по часам клиента». Повтор
+   * просроченной операции безопасен при условии, что клиент верно оценил её возраст
+   * правилом двух оценок (TG-085BF4F55515: истекает, если обе оценки > 170 суток,
+   * или одна > 170, а вторая отрицательна, то есть доказанно ложна): тогда
+   * операция моложе 170 суток, квитанция (180 суток) жива, сервер ответит duplicate.
+   * Оговорка про сбитые часы (часы ушли вперёд при постановке и потом исправлены)
+   * закрыта сервером (TG-DFA918464DFA): операция несёт `enqueuedAtServerMs`, и ядро
+   * отказывает старше 170 суток по СВОИМ часам (`rejected operation_expired` →
+   * у клиента `sync_operation_expired`). Остаток (TEMP): оценку ставит клиент —
+   * если и его поправка на сервер была неверна при постановке, возраст занижен.
+   * `sync_operation_time_in_future` (TG-DFA918464DFA) возвратный: оценка из
+   * будущего значит, что клиент ещё не знал смещения часов; ответ с отказом несёт
+   * serverNowMs, и возвращённая операция уходит с оценкой, зажатой сверху.
+   */
+  requeueQuarantineCodes: Object.freeze([
+    'sync_dispatch_attempts_exhausted', 'sync_receipt_invalid_exhausted', 'sync_operation_expired',
+    'sync_operation_time_in_future',
+  ] as const),
 });
 
 export type AccountsV2ClientAction = 'quarantine' | 'retry' | 'reauth';

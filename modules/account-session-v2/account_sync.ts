@@ -23,6 +23,23 @@ export type AccountSyncOwnedOperation = Readonly<{
   ownerUid: string;
   operation: LocalOperationEnvelope;
 }>;
+/**
+ * Операция на проводе (callable): конверт + оценка времени постановки в outbox по
+ * часам сервера — ровно серверная ACCOUNTS_V2_CLIENT_OPERATION_KEYS (сторож паритета).
+ * зачем (TG-DFA918464DFA): сервер отказывает операции старше 170 суток по СВОИМ
+ * часам. Оценка — метаданные доставки: живёт в записи outbox (enqueuedAtMs,
+ * пишется один раз при постановке), а не в конверте — конверт, его сверка и
+ * байты пакета не меняются. Собирает outbox.wireBatch.
+ */
+export type AccountSyncWireOperation = Readonly<{
+  ownerUid: string;
+  operation: LocalOperationEnvelope;
+  enqueuedAtServerMs: number;
+}>;
+export type AccountSyncWireBatch = Readonly<{
+  batchId: string;
+  operations: readonly AccountSyncWireOperation[];
+}>;
 // зачем (TG-831C22D22486, TEMP-контракт сервера): conflict и rejected — ОКОНЧАТЕЛЬНЫЕ
 // подтверждаемые исходы. Операция уходит из outbox вместе с квитанцией (слой
 // разрешения конфликтов читает её там) и НЕ повторяется. Неизвестная форма
@@ -43,6 +60,7 @@ export type AccountSyncServerReceipt = AccountSyncReceipt | AccountSyncRejectedR
 export const ACCOUNT_SYNC_REJECT_CODES = Object.freeze([
   'payload_invalid', 'operation_id_reused', 'entity_state_too_large', 'revision_overflow',
   'srs_time_in_future',
+  'operation_expired', 'operation_time_in_future',
 ] as const);
 export type AccountSyncRejectCode = typeof ACCOUNT_SYNC_REJECT_CODES[number];
 /**

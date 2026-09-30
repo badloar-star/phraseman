@@ -66,13 +66,46 @@ export class AccountSyncOutboxError extends Error {
  * с запасом 10 суток на расхождение часов и задержку TTL-чистки Firestore.
  */
 export const ACCOUNT_SYNC_OPERATION_MAX_AGE_MS = 170 * 24 * 60 * 60 * 1000;
-export type AccountSyncOutboxQuarantineCode = AccountSyncQuarantineCode | 'sync_operation_expired';
+export type AccountSyncOutboxQuarantineCode =
+  | AccountSyncQuarantineCode | 'sync_operation_expired' | 'sync_operation_time_in_future';
+
+/**
+ * Карантин для отказа сервера по времени постановки или null (TG-DFA918464DFA).
+ * зачем: `operation_expired` / `operation_time_in_future` — отказ по моменту
+ * прихода, а не по содержимому: слою разрешения конфликтов тут решать нечего
+ * (перевыпуск не нужен), а сама операция может стать отправляемой (часы
+ * исправлены). Поэтому она уходит не в ack (resolved=false), а в ВОЗВРАТНЫЙ
+ * карантин — как операция, которую outbox сам признал просроченной.
+ */
+export function timeRejectionQuarantineCode(receipt: AccountSyncServerReceipt): AccountSyncOutboxQuarantineCode | null {
+  if (receipt.outcome !== 'rejected') return null;
+  if (receipt.code === 'operation_expired') return 'sync_operation_expired';
+  if (receipt.code === 'operation_time_in_future') return 'sync_operation_time_in_future';
+  return null;
+}
 
 export type Captured = ReadonlyMap<string, unknown>;
 export type Meta = Readonly<{ ownerUid: string; head: number; next: number; pendingCount: number }>;
 /** Слот очереди: живой (операция ждёт) или retired — операция ушла, но выше головы («дыра»). */
 export type Slot = Readonly<{ sequence: number; operationId: string; retired: boolean }>;
-export type Pending = Readonly<{ sequence: number; envelope: AccountSyncOwnedOperation; enqueuedAtMs: number }>;
+/**
+ * Время постановки — ДВЕ оценки (TG-CF3E51F11C41, P1): enqueuedAtMs — часы телефона
+ * с поправкой на сервер, enqueuedLocalAtMs — часы телефона как есть. Операция
+ * истекает, только если по ОБЕИМ оценкам старше предела: сбитые и затем исправленные
+ * часы (или устаревшая поправка) портят одну оценку, но не обе сразу.
+ */
+export type EnqueueTimes = Readonly<{ enqueuedAtMs: number; enqueuedLocalAtMs: number; firstSent: FirstSent | null }>;
+/**
+ * Момент ПЕРВОЙ отправки операции на сервер — тоже двумя часами (TG-DFA918464DFA,
+ * ремонт №1, P2-1): serverMs — часы телефона с поправкой на сервер в тот момент,
+ * localMs — часы телефона как есть. Пишется один раз (outbox.wireBatch) и
+ * переживает карантин и requeue. null — операцию ещё не отправляли.
+ * зачем: квитанция сервера не может появиться раньше первой отправки, поэтому
+ * оценка времени постановки на проводе не бывает позже неё — возраст на сервере
+ * растёт монотонно и после TTL квитанции (180 сут) повтор получает отказ.
+ */
+export type FirstSent = Readonly<{ serverMs: number; localMs: number }>;
+export type Pending = Readonly<{ sequence: number; envelope: AccountSyncOwnedOperation }> & EnqueueTimes;
 /**
  * Квитанция операции. resolved=false — conflict/rejected ещё ждут слоя разрешения
  * (TG-7CD73967EF61, P2: итог переживает крах, его видно через listUnresolved).
@@ -80,11 +113,11 @@ export type Pending = Readonly<{ sequence: number; envelope: AccountSyncOwnedOpe
 export type Ack = Readonly<{
   sequence: number; envelope: AccountSyncOwnedOperation; receipt: AccountSyncServerReceipt; resolved: boolean;
 }>;
-/** enqueuedAtMs — время постановки в очередь: requeue сохраняет срок жизни операции. */
+/** Время постановки (обе оценки) сохраняется: requeue не продлевает срок жизни операции. */
 export type Quarantined = Readonly<{
   sequence: number; envelope: AccountSyncOwnedOperation; code: AccountSyncOutboxQuarantineCode;
-  quarantinedAtMs: number; enqueuedAtMs: number;
-}>;
+  quarantinedAtMs: number;
+}> & EnqueueTimes;
 /**
  * Учёт отправки, который обязан пережить перезапуск (TG-7CD73967EF61, P1/P2):
  * неудачи пакета, время первой неудачи (часы с поправкой на сервер), пауза до
@@ -103,16 +136,33 @@ export const META_KEY = `${PREFIX}meta`;
 export const DISPATCH_KEY = `${PREFIX}dispatch`;
 /** Список operationId квитанций conflict/rejected, ещё не разрешённых (по порядку очереди). */
 export const UNRESOLVED_KEY = `${PREFIX}unresolved`;
+const LATER_PREFIX = `${PREFIX}later:`;
 export const VERSION = 1;
 export const MAX_OPERATIONS = 50;
 export const MAX_BATCH_BYTES = 524288;
 const QUARANTINE_CODES: readonly AccountSyncOutboxQuarantineCode[] = Object.freeze([
   'sync_dispatch_final', 'sync_dispatch_attempts_exhausted', 'sync_receipt_invalid_exhausted',
-  'sync_operation_expired',
+  'sync_operation_expired', 'sync_operation_time_in_future',
 ]);
 
 export function fail(code: AccountSyncOutboxErrorCode): never {
   throw new AccountSyncOutboxError(code);
+}
+
+const LOG = '[ACCOUNTS-V2-CLIENT]';
+
+/**
+ * Вид ошибки для лога: код своих ошибок или имя класса, без текста сообщения.
+ * зачем (TG-CF3E51F11C41, P3): немые catch прятали причину; сама ошибка может быть
+ * Proxy с ловушками, поэтому чтение обёрнуто и никогда не бросает.
+ */
+export function errorKind(error: unknown): string {
+  try {
+    if (error instanceof AccountSyncOutboxError) return error.code;
+    return error instanceof Error ? error.name : typeof error;
+  } catch {
+    return 'unreadable';
+  }
 }
 
 export function safeInteger(value: unknown): value is number {
@@ -135,8 +185,9 @@ export function captureExact(value: unknown, keys: readonly string[]): Captured 
       captured.set(key as string, descriptor.value);
     }
     return captured;
-  } catch {
+  } catch (error) {
     // Ловушка Proxy при чтении формы = форма непригодна; вызывающий вернёт свой код отказа.
+    console.warn(`${LOG} outbox_shape_unreadable`, `error=${errorKind(error)}`);
     return null;
   }
 }
@@ -196,8 +247,9 @@ export function normalizeOperation(raw: unknown, ownerUid: string): AccountSyncO
       return fail('account_sync_outbox_invalid_input');
     }
     return reduced.phase.batch.operations[0];
-  } catch {
-    // Любой отказ проверки конверта = невалидный вход; код ниже однозначен, текст не нужен.
+  } catch (error) {
+    // Любой отказ проверки конверта = невалидный вход; в лог — только вид отказа.
+    console.warn(`${LOG} outbox_operation_invalid`, `error=${errorKind(error)}`);
     return fail('account_sync_outbox_invalid_input');
   }
 }
@@ -205,8 +257,9 @@ export function normalizeOperation(raw: unknown, ownerUid: string): AccountSyncO
 export function normalizeStoredOperation(raw: unknown, ownerUid: string): AccountSyncOwnedOperation {
   try {
     return normalizeOperation(raw, ownerUid);
-  } catch {
+  } catch (error) {
     // Сохранённый конверт не проходит проверку — это порча хранилища, не ввод.
+    console.warn(`${LOG} outbox_stored_operation_corrupt`, `error=${errorKind(error)}`);
     return fail('account_sync_outbox_corrupt');
   }
 }
@@ -263,20 +316,55 @@ export function parseSlot(raw: ScopeJson, ownerUid: string): Slot {
 export function pendingJson(ownerUid: string, pending: Pending): ScopeJson {
   return {
     kind: 'account_sync_outbox_pending', version: VERSION, ownerUid,
-    sequence: pending.sequence, enqueuedAtMs: pending.enqueuedAtMs,
-    envelope: pending.envelope as unknown as ScopeJson,
+    sequence: pending.sequence, enqueuedAtMs: pending.enqueuedAtMs, enqueuedLocalAtMs: pending.enqueuedLocalAtMs,
+    envelope: pending.envelope as unknown as ScopeJson, ...firstSentJson(pending.firstSent),
   };
 }
 
+/** Поля первой отправки пишутся только парой и только когда она была (форма прежних записей не меняется). */
+function firstSentJson(firstSent: FirstSent | null): Record<string, ScopeJson> {
+  return firstSent === null ? {} : { firstSentAtServerMs: firstSent.serverMs, firstSentLocalAtMs: firstSent.localMs };
+}
+
+/**
+ * Форма записи с местным временем постановки или прежняя (без него), с парой
+ * первой отправки или без неё.
+ * зачем (TG-CF3E51F11C41, P1, совместимость): у прежней записи местное время
+ * считается равным enqueuedAtMs — тогда истечение по-прежнему требует ОБЕИХ оценок.
+ * Пара первой отправки (TG-DFA918464DFA) — только обе или ни одной; половина — порча.
+ */
+function captureTimes(
+  raw: unknown,
+  keys: readonly string[],
+): Readonly<{ fields: Captured; local: unknown; firstSent: FirstSent | null }> | null {
+  const sent = captureExact(raw, [...keys, 'enqueuedLocalAtMs', 'firstSentAtServerMs', 'firstSentLocalAtMs']);
+  if (sent !== null) {
+    const serverMs = value(sent, 'firstSentAtServerMs');
+    const localMs = value(sent, 'firstSentLocalAtMs');
+    if (!safeInteger(serverMs) || !safeInteger(localMs)) return null;
+    return Object.freeze({
+      fields: sent, local: value(sent, 'enqueuedLocalAtMs'), firstSent: Object.freeze({ serverMs, localMs }),
+    });
+  }
+  const current = captureExact(raw, [...keys, 'enqueuedLocalAtMs']);
+  if (current !== null) return Object.freeze({ fields: current, local: value(current, 'enqueuedLocalAtMs'), firstSent: null });
+  const legacy = captureExact(raw, keys);
+  return legacy === null ? null : Object.freeze({ fields: legacy, local: value(legacy, 'enqueuedAtMs'), firstSent: null });
+}
+
 export function parsePending(raw: ScopeJson, ownerUid: string): Pending {
-  const fields = captureExact(raw, ['kind', 'version', 'ownerUid', 'sequence', 'enqueuedAtMs', 'envelope']);
-  if (fields === null || value(fields, 'kind') !== 'account_sync_outbox_pending'
+  const captured = captureTimes(raw, ['kind', 'version', 'ownerUid', 'sequence', 'enqueuedAtMs', 'envelope']);
+  if (captured === null) return fail('account_sync_outbox_corrupt');
+  const { fields, local, firstSent } = captured;
+  if (value(fields, 'kind') !== 'account_sync_outbox_pending'
     || value(fields, 'version') !== VERSION || value(fields, 'ownerUid') !== ownerUid
     || !safeInteger(value(fields, 'sequence'))
-    || !safeInteger(value(fields, 'enqueuedAtMs'))) return fail('account_sync_outbox_corrupt');
+    || !safeInteger(value(fields, 'enqueuedAtMs')) || !safeInteger(local)) return fail('account_sync_outbox_corrupt');
   return Object.freeze({
     sequence: value(fields, 'sequence') as number,
     enqueuedAtMs: value(fields, 'enqueuedAtMs') as number,
+    enqueuedLocalAtMs: local,
+    firstSent,
     envelope: normalizeStoredOperation(value(fields, 'envelope'), ownerUid),
   });
 }
@@ -341,18 +429,21 @@ export function quarantineJson(ownerUid: string, record: Quarantined): ScopeJson
     kind: 'account_sync_outbox_quarantine', version: VERSION, ownerUid,
     sequence: record.sequence, envelope: record.envelope as unknown as ScopeJson,
     code: record.code, quarantinedAtMs: record.quarantinedAtMs, enqueuedAtMs: record.enqueuedAtMs,
+    enqueuedLocalAtMs: record.enqueuedLocalAtMs, ...firstSentJson(record.firstSent),
   };
 }
 
 export function parseQuarantine(raw: ScopeJson, ownerUid: string): Quarantined {
-  const fields = captureExact(raw, [
+  const captured = captureTimes(raw, [
     'kind', 'version', 'ownerUid', 'sequence', 'envelope', 'code', 'quarantinedAtMs', 'enqueuedAtMs',
   ]);
-  const code = fields === null ? undefined : value(fields, 'code');
-  if (fields === null || value(fields, 'kind') !== 'account_sync_outbox_quarantine'
+  if (captured === null) return fail('account_sync_outbox_corrupt');
+  const { fields, local, firstSent } = captured;
+  const code = value(fields, 'code');
+  if (value(fields, 'kind') !== 'account_sync_outbox_quarantine'
     || value(fields, 'version') !== VERSION || value(fields, 'ownerUid') !== ownerUid
     || !safeInteger(value(fields, 'sequence')) || !safeInteger(value(fields, 'quarantinedAtMs'))
-    || !safeInteger(value(fields, 'enqueuedAtMs'))
+    || !safeInteger(value(fields, 'enqueuedAtMs')) || !safeInteger(local)
     || typeof code !== 'string' || !QUARANTINE_CODES.includes(code as AccountSyncOutboxQuarantineCode)) {
     return fail('account_sync_outbox_corrupt');
   }
@@ -362,6 +453,8 @@ export function parseQuarantine(raw: ScopeJson, ownerUid: string): Quarantined {
     code: code as AccountSyncOutboxQuarantineCode,
     quarantinedAtMs: value(fields, 'quarantinedAtMs') as number,
     enqueuedAtMs: value(fields, 'enqueuedAtMs') as number,
+    enqueuedLocalAtMs: local,
+    firstSent,
   });
 }
 
@@ -424,6 +517,39 @@ export function parseUnresolved(raw: ScopeJson, ownerUid: string): readonly stri
   const fields = captureExact(raw, ['kind', 'version', 'ownerUid', 'operationIds']);
   const operationIds = fields === null ? undefined : value(fields, 'operationIds');
   if (fields === null || value(fields, 'kind') !== 'account_sync_outbox_unresolved'
+    || value(fields, 'version') !== VERSION || value(fields, 'ownerUid') !== ownerUid
+    || !Array.isArray(operationIds) || operationIds.some((id) => typeof id !== 'string')
+    || new Set(operationIds).size !== operationIds.length) return fail('account_sync_outbox_corrupt');
+  return Object.freeze([...operationIds as string[]]);
+}
+
+/**
+ * Более поздние ПОДТВЕРЖДЁННЫЕ операции той же сущности, пришедшие после
+ * неразрешённой квитанции (ключ — её operationId).
+ * зачем (TG-CF3E51F11C41, P2): подтверждённая правка уже ушла из очереди, найти её
+ * перебором нельзя (слоты ниже головы удалены), а перевыпуск SRS обязан её учесть,
+ * иначе старое значение поля затрёт новое на сервере.
+ */
+/**
+ * Потолок списка later:<id> — 200 последних id.
+ * зачем (TG-085BF4F55515, P3-2): неразрешённая квитанция может висеть долго, а
+ * карточку правят часто — без потолка запись росла бы без предела. Планировщику
+ * SRS нужны лишь самые поздние правки полей, старейшие отбрасываются первыми.
+ */
+export const ACCOUNT_SYNC_LATER_MAX_IDS = 200;
+
+export function laterKey(operationId: string): string {
+  return `${LATER_PREFIX}${JSON.stringify(operationId)}`;
+}
+
+export function laterJson(ownerUid: string, operationIds: readonly string[]): ScopeJson {
+  return { kind: 'account_sync_outbox_later', version: VERSION, ownerUid, operationIds: [...operationIds] };
+}
+
+export function parseLater(raw: ScopeJson, ownerUid: string): readonly string[] {
+  const fields = captureExact(raw, ['kind', 'version', 'ownerUid', 'operationIds']);
+  const operationIds = fields === null ? undefined : value(fields, 'operationIds');
+  if (fields === null || value(fields, 'kind') !== 'account_sync_outbox_later'
     || value(fields, 'version') !== VERSION || value(fields, 'ownerUid') !== ownerUid
     || !Array.isArray(operationIds) || operationIds.some((id) => typeof id !== 'string')
     || new Set(operationIds).size !== operationIds.length) return fail('account_sync_outbox_corrupt');

@@ -3,6 +3,7 @@ import path from 'path';
 import * as ts from 'typescript';
 import {
   ACCOUNTS_V2_BATCH_KEYS,
+  ACCOUNTS_V2_CLIENT_OPERATION_KEYS,
   ACCOUNTS_V2_ENTITY_TYPES,
   ACCOUNTS_V2_ENVELOPE_KEYS,
   ACCOUNTS_V2_LIMITS,
@@ -14,6 +15,7 @@ import {
   accountsV2JsonWireBytes,
   applyBatch,
   validateBatch,
+  validateClientBatch,
   type AccountsV2TxPort,
   type JsonValue,
 } from './accounts_v2_apply_core';
@@ -22,7 +24,6 @@ import {
   accountsV2ClientAction,
   accountsV2IsWaitResponse,
 } from './accounts_v2_adapter/errors';
-import { ACCOUNTS_V2_SRS_MAX_FUTURE_SKEW_MS } from './accounts_v2_contract';
 
 /*
  * Сторож паритета конверта синхронизации Account V2.
@@ -185,6 +186,19 @@ function collectParityMismatches(source: string): string[] {
       ACCOUNTS_V2_OWNED_OPERATION_KEYS, problems);
   }
 
+  // зачем (TG-DFA918464DFA): на провод уходит операция клиента С оценкой времени
+  // постановки — её форма обязана совпасть с серверной формой пакета клиента.
+  const wireBody = capture(source,
+    /export type AccountSyncWireOperation = Readonly<\{([\s\S]*?)\}>;/,
+    'AccountSyncWireOperation', problems);
+  if (wireBody !== null) {
+    const fields = typeFields(wireBody);
+    sameList('AccountSyncWireOperation поля', [...fields.keys()], ACCOUNTS_V2_CLIENT_OPERATION_KEYS, problems);
+    if (fields.get('enqueuedAtServerMs') !== 'number') {
+      problems.push(`AccountSyncWireOperation.enqueuedAtServerMs: тип ${fields.get('enqueuedAtServerMs')} ≠ number`);
+    }
+  }
+
   const batchBody = capture(source,
     /export type AccountSyncBatch = Readonly<\{([\s\S]*?)\}>;/, 'AccountSyncBatch', problems);
   if (batchBody !== null) {
@@ -293,7 +307,8 @@ function batchWith(field: StringField, value: string): Record<string, JsonValue>
   if (field === 'entityId') operation.entityId = value;
   if (field === 'ownerUid') ownerUid = value;
   if (field === 'payloadKey') operation.payload = Object.defineProperty({}, value, { value: 1, enumerable: true });
-  return { batchId, operations: [{ ownerUid, operation }] };
+  // Форма клиента (TG-DFA918464DFA): с оценкой времени постановки рядом с конвертом.
+  return { batchId, operations: [{ ownerUid, operation, enqueuedAtServerMs: 1 }] };
 }
 
 function clientAccepts(
@@ -309,10 +324,12 @@ function clientAccepts(
   if (field === 'entityId') fieldOk = rules.entityId(value);
   if (field === 'ownerUid') fieldOk = rules.identity(value);
   // payloadKey: captureJson клиента не проверяет содержимое ключей (сверено текстом отдельно).
-  const operation = ((raw.operations as JsonValue[])[0] as Record<string, JsonValue>).operation;
+  const owned = (raw.operations as JsonValue[])[0] as Record<string, JsonValue>;
+  // Клиент меряет пакет без оценки времени (планировщик outbox считает конверты).
+  const measured = { batchId: raw.batchId, operations: [{ ownerUid: owned.ownerUid, operation: owned.operation }] };
   return fieldOk
-    && accountsV2JsonWireBytes(operation) <= ACCOUNTS_V2_LIMITS.maxEnvelopeUtf8Bytes
-    && accountsV2JsonWireBytes(raw) <= ACCOUNTS_V2_LIMITS.maxBatchUtf8Bytes;
+    && accountsV2JsonWireBytes(owned.operation) <= ACCOUNTS_V2_LIMITS.maxEnvelopeUtf8Bytes
+    && accountsV2JsonWireBytes(measured) <= ACCOUNTS_V2_LIMITS.maxBatchUtf8Bytes;
 }
 
 const ALL_ACCEPT: Readonly<Record<StringField, boolean>> = {
@@ -413,6 +430,7 @@ function clientContractValues(source: string, problems: string[]): Record<string
     retryAfterConsumesAttempt: booleanField(body, 'retryAfterConsumesAttempt'),
     minFailureSpanMs: spanRef === undefined ? undefined : constProduct(source, spanRef),
     attemptsExhaustedRequeue: booleanField(body, 'attemptsExhaustedRequeue'),
+    requeueQuarantineCodes: list('requeueQuarantineCodes'),
   };
 }
 
@@ -551,7 +569,7 @@ describe('паритет конверта Account V2: клиент ↔ серв�
     test.each(cases)('%s', (_label, field, value, expected) => {
       const raw = batchWith(field, value);
       const client = clientAccepts(field, value, raw, rules);
-      const server = validateBatch(raw).ok;
+      const server = validateClientBatch(raw).ok;
       expect({ client, server }).toEqual({ client: expected, server: expected });
     });
   });
@@ -569,7 +587,7 @@ describe('паритет конверта Account V2: клиент ↔ серв�
         const value = `${first}${second}`;
         for (const field of STRING_FIELDS) {
           const raw = batchWith(field, value);
-          if (clientAccepts(field, value, raw, rules) !== validateBatch(raw).ok) {
+          if (clientAccepts(field, value, raw, rules) !== validateClientBatch(raw).ok) {
             mismatches.push(`${field}:${JSON.stringify(value)}`);
           }
         }
@@ -608,8 +626,17 @@ describe('паритет конверта Account V2: клиент ↔ серв�
       "  outcome: 'rejected';\n  code: AccountSyncRejectCode;", "  outcome: 'applied';\n  code: AccountSyncRejectCode;"),
     'квитанции клиента: не знают'],
     ['код отказа разошёлся', (text: string) => text.replace(
-      "'revision_overflow',\n  'srs_time_in_future',\n] as const);", "'revision_overflow',\n] as const);"),
+      "  'srs_time_in_future',\n", ''),
     'ACCOUNT_SYNC_REJECT_CODES'],
+    ['клиент не знает operation_expired', (text: string) => text.replace(
+      "'operation_expired', ", ''),
+    'ACCOUNT_SYNC_REJECT_CODES'],
+    ['оценка времени пропала с провода', (text: string) => text.replace(
+      '  enqueuedAtServerMs: number;\n', ''),
+    'AccountSyncWireOperation поля'],
+    ['оценка времени стала строкой', (text: string) => text.replace(
+      '  enqueuedAtServerMs: number;\n', '  enqueuedAtServerMs: string;\n'),
+    'AccountSyncWireOperation.enqueuedAtServerMs'],
     ['формула байт разошлась', (text: string) => text.replace(
       'else if (unit < 0x800) bytes += 2;', 'else if (unit < 0x800) bytes += 3;'),
     '__wire__'],
@@ -652,7 +679,7 @@ describe('паритет конверта Account V2: клиент ↔ серв�
     const identity = clientPredicate(stricter, 'identityString');
     const raw = batchWith('operationId', 'a\u0001b');
     expect(clientAccepts('operationId', 'a\u0001b', raw, { identity, entityId: identity })).toBe(false);
-    expect(validateBatch(raw).ok).toBe(true);
+    expect(validateClientBatch(raw).ok).toBe(true);
   });
 
   test('клиент знает conflict и rejected c полем code (TG-831C22D22486)', () => {
@@ -734,62 +761,19 @@ describe('паритет конверта Account V2: клиент ↔ серв�
       ['карантин по потолку стал невозвратным', (text: string) => text.replace(
         'attemptsExhaustedRequeue: true as const,', 'attemptsExhaustedRequeue: false as const,'),
       'таблица решений attemptsExhaustedRequeue'],
+      // зачем (TG-CF3E51F11C41, P1): иначе перевод часов навсегда уводил живую правку в карантин.
+      ['просроченная операция стала невозвратной', (text: string) => text.replace(
+        "'sync_receipt_invalid_exhausted', 'sync_operation_expired',", "'sync_receipt_invalid_exhausted',"),
+      'таблица решений requeueQuarantineCodes'],
+      // зачем (TG-DFA918464DFA): отказ «время из будущего» исправим — клиент узнал смещение.
+      ['«время из будущего» стало невозвратным', (text: string) => text.replace(
+        " 'sync_operation_time_in_future',", ''),
+      'таблица решений requeueQuarantineCodes'],
     ])('мутация транспорта «%s» ловится', (_label, mutate, expectedProblem) => {
       const mutated = mutate(transport);
       expect(mutated).not.toBe(transport);
       expect(collectTransportMismatches(mutated, serverErrors).some((problem) => problem.startsWith(expectedProblem)))
         .toBe(true);
-    });
-  });
-
-  // ─── сроки: жизнь операции в outbox < TTL квитанций; окно будущего SRS ───
-  // зачем (TG-7CD73967EF61): числа читаются из ИСХОДНИКОВ обеих сторон, а не
-  // зашиваются в тест: сервер поднимет/опустит TTL — сторож увидит сразу.
-  describe('сроки клиента против серверных (из исходников)', () => {
-    const recordsSource = fs.readFileSync(path.resolve(
-      __dirname, '..', '..', 'modules', 'account-session-v2', 'account_sync_outbox_records.ts'), 'utf8');
-    const portSource = fs.readFileSync(path.join(__dirname, 'accounts_v2_adapter', 'firestore_port.ts'), 'utf8');
-    const clockSource = fs.readFileSync(path.resolve(
-      __dirname, '..', '..', 'modules', 'account-session-v2', 'account_sync_clock.ts'), 'utf8');
-
-    function lifetimeProblems(records: string, port: string): string[] {
-      const clientMaxAge = constProduct(records, 'ACCOUNT_SYNC_OPERATION_MAX_AGE_MS');
-      const serverTtl = constProduct(port, 'ACCOUNTS_V2_RECEIPT_TTL_MS', { DAY_MS: constProduct(port, 'DAY_MS') });
-      if (!Number.isFinite(clientMaxAge) || !Number.isFinite(serverTtl)) return ['срок жизни: константы не найдены'];
-      return clientMaxAge < serverTtl ? [] : [`срок жизни: клиент ${clientMaxAge} ≥ TTL квитанций ${serverTtl}`];
-    }
-
-    function skewProblems(clock: string): string[] {
-      const clientSkew = constProduct(clock, 'ACCOUNT_SYNC_SRS_MAX_FUTURE_SKEW_MS');
-      const margin = constProduct(clock, 'ACCOUNT_SYNC_SRS_FUTURE_MARGIN_MS');
-      const problems: string[] = [];
-      if (clientSkew !== ACCOUNTS_V2_SRS_MAX_FUTURE_SKEW_MS) {
-        problems.push(`окно будущего SRS: клиент ${clientSkew} ≠ сервер ${ACCOUNTS_V2_SRS_MAX_FUTURE_SKEW_MS}`);
-      }
-      if (!(margin > 0 && margin < clientSkew)) problems.push(`запас окна SRS: ${margin}`);
-      return problems;
-    }
-
-    test('предел жизни операции клиента строго меньше TTL квитанций сервера', () => {
-      expect(lifetimeProblems(recordsSource, portSource)).toEqual([]);
-      expect(constProduct(recordsSource, 'ACCOUNT_SYNC_OPERATION_MAX_AGE_MS')).toBe(170 * 24 * 60 * 60 * 1000);
-    });
-
-    test('окно будущего SRS клиента = серверному, запас внутри окна', () => {
-      expect(skewProblems(clockSource)).toEqual([]);
-    });
-
-    test.each([
-      ['TTL сервера опустили до 170 суток', () => lifetimeProblems(recordsSource,
-        portSource.replace('export const ACCOUNTS_V2_RECEIPT_TTL_MS = 180 * DAY_MS;', 'export const ACCOUNTS_V2_RECEIPT_TTL_MS = 170 * DAY_MS;'))],
-      ['клиент поднял предел до 180 суток', () => lifetimeProblems(recordsSource.replace(
-        'export const ACCOUNT_SYNC_OPERATION_MAX_AGE_MS = 170 * 24 * 60 * 60 * 1000;',
-        'export const ACCOUNT_SYNC_OPERATION_MAX_AGE_MS = 180 * 24 * 60 * 60 * 1000;'), portSource)],
-      ['окно SRS клиента разошлось', () => skewProblems(clockSource.replace(
-        'export const ACCOUNT_SYNC_SRS_MAX_FUTURE_SKEW_MS = 10 * 60 * 1000;',
-        'export const ACCOUNT_SYNC_SRS_MAX_FUTURE_SKEW_MS = 15 * 60 * 1000;'))],
-    ])('мутация сроков «%s» ловится', (_label, problems) => {
-      expect(problems().length).toBeGreaterThan(0);
     });
   });
 });

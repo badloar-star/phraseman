@@ -9,7 +9,8 @@ assert.match(source, /visible = offline && !dismissed/, 'online must remain hidd
 assert.match(source, /if \(g\.dy < -24\)/, 'swipe-up dismissal threshold must remain intact');
 assert.match(source, /useReduceMotion\(\)/, 'reduced-motion guard must remain intact');
 assert.match(source, /liquidGlassTokens/, 'banner must use the active 13-theme material registry');
-assert.match(source, /name="wifi-off"/, 'both variants must use the approved offline icon');
+// 30.09: «wifi-off» нет в наборе Ionicons (пустой глиф + ошибка типов) — заменён на cloud-offline-outline в 05573985e.
+assert.match(source, /name="cloud-offline-outline"/, 'both variants must use the approved offline icon');
 assert.match(source, /en: 'No connection'/, 'English offline text must not fall back to Russian');
 assert.match(source, /<OfflineBannerSurface/, 'classic and hybrid must share visual surface content');
 assert.doesNotMatch(source, /hybridSpine/, 'offline banner must not retain a red status spine');

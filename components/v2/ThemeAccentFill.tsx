@@ -15,8 +15,9 @@ type Props = {
  * зачем: в тёмном «Спокойно» кнопка остаётся ровно прежней — слой не рисуется вовсе.
  */
 export const ThemeAccentFill = memo(function ThemeAccentFill({ glass, radius }: Props) {
-  if (glass.level === 'calm' && !glass.isLight) return null;
-  if (glass.accentGradient.length < 2) return null;
+  const vivid = glass.level === 'accent' || glass.level === 'max';
+  if (!vivid && !glass.isLight) return null;
+  if (!glass.accentGradient || glass.accentGradient.length < 2) return null;
   return (
     <LinearGradient
       pointerEvents="none"

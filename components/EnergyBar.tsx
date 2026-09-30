@@ -82,7 +82,7 @@ function EnergyBar({ ownerActive = true, glass = false }: Props) {
       ? (glass ? lg.bad : COLORS.low)
       // зачем (темы 2.0): в «Акценте/Максимуме» молния в цвете темы; перезаряд (золото) и
       // низкий заряд (красный) — смысловые цвета, темой не красятся.
-      : lg.level !== 'calm' ? lg.accentText : (glass ? lg.text : COLORS.normal);
+      : (lg.level === 'accent' || lg.level === 'max') ? lg.accentText : (glass ? lg.text : COLORS.normal);
   const iconSize = 13;
   // зачем (владелец 2026-09-30, learn.html C4 «−1 энергии при старте: 5 → 4»): в стеклянной
   // пилюле уменьшение энергии видно — цифра проваливается и пружинит обратно (650 мс), как

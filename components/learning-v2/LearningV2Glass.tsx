@@ -175,7 +175,7 @@ export const Lv2Option = memo(function Lv2Option({
   const bad = verdict === 'bad';
   // зачем (темы 2.0): выбор в цвете темы; «верно/ошибка» темой не красятся никогда.
   const bg = ok ? g.goodSoft : bad ? g.badSoft : selected ? g.accentSoft : g.opaqueCard;
-  const edge = ok ? g.goodEdge : bad ? g.badEdge : selected ? (g.level === 'calm' ? g.text : g.accentBorder) : g.glassEdge;
+  const edge = ok ? g.goodEdge : bad ? g.badEdge : selected ? (g.level === 'accent' || g.level === 'max' ? g.accentBorder : g.text) : g.glassEdge;
   const ink = ok ? g.good : bad ? g.bad : g.text;
   return (
     <Pressable

@@ -20,6 +20,9 @@ export type PublicProfileProjectionInput = {
   profileCardTheme?: unknown;
   profileCardMotion?: unknown;
   profileCardPublicFocus?: unknown;
+  /** Визитка «Про» (2026-09-30): куплена ли и какой из 6 стилей выбран. */
+  profileCardPro?: unknown;
+  profileCardStyle?: unknown;
   profileCardLegendNo?: unknown;
   coinRank?: unknown;
   displayHash?: unknown;
@@ -58,6 +61,16 @@ function boundedInt(value: unknown, min: number, max: number, fallback: number):
   return Number.isFinite(number) ? Math.max(min, Math.min(max, number)) : fallback;
 }
 
+// зачем: стили визитки «Про» из макета profile-card-pro.html (A–F). Любое другое
+// значение не проецируется — чужие визитки не должны получить «неизвестный» стиль.
+export const PROFILE_CARD_PRO_STYLES = ['holo', 'obs', 'aura', 'ice', 'space', 'neon'] as const;
+
+function validProfileCardStyle(value: unknown): string | null {
+  return typeof value === 'string' && (PROFILE_CARD_PRO_STYLES as readonly string[]).includes(value)
+    ? value
+    : null;
+}
+
 function validCoinRank(value: unknown): number | null {
   return typeof value === 'number'
     && Number.isSafeInteger(value)
@@ -90,6 +103,9 @@ export function buildAuthoritativePublicProfileProjection(
     profileCardTheme: cleanString(input.profileCardTheme, 40) || 'classic',
     profileCardMotion: cleanString(input.profileCardMotion, 40) || 'still',
     profileCardPublicFocus: cleanString(input.profileCardPublicFocus, 40) || 'words',
+    // Свой текст (profileCardBio) здесь НЕ принимается: он пишется только
+    // profileCardBioSetMine с проверками, а merge:true его не трогает.
+    profileCardPro: input.profileCardPro === true,
     displayHash: cleanString(input.displayHash, 1000),
     updatedAt: nowMs,
     updatedReason: input.reason === 'entitlement_change' ? 'entitlement_change' : 'display_change',
@@ -102,6 +118,8 @@ export function buildAuthoritativePublicProfileProjection(
   if (legendNo > 0) projection.profileCardLegendNo = legendNo;
   const coinRank = validCoinRank(input.coinRank);
   if (coinRank !== null) projection.coinRank = coinRank;
+  const proStyle = projection.profileCardPro === true ? validProfileCardStyle(input.profileCardStyle) : null;
+  if (proStyle !== null) projection.profileCardStyle = proStyle;
   if (input.cardWordsLearned !== undefined) {
     projection.cardWordsLearned = boundedInt(input.cardWordsLearned, 0, 10_000_000, 0);
   }
@@ -169,6 +187,10 @@ export const publicProfileProjectMine = onCall(HOT_CALLABLE_OPTIONS, async (requ
     if (!Object.prototype.hasOwnProperty.call(projection, 'coinRank')) {
       // Invalid/missing local state must never preserve a stale projected rank.
       writePayload.coinRank = admin.firestore.FieldValue.delete();
+    }
+    if (!Object.prototype.hasOwnProperty.call(projection, 'profileCardStyle')) {
+      // Без «Про» (или с неизвестным стилем) стиль у чужих не должен залипнуть.
+      writePayload.profileCardStyle = admin.firestore.FieldValue.delete();
     }
     transaction.set(profileRef, writePayload, { merge: true });
     return {

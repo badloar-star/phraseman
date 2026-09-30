@@ -239,7 +239,13 @@ function buildReportDoc(
       ...base,
       reportedUid,
       reportedName: text(payload.reportedName, 120),
-      reason: enumText(payload.reason, ['offensive_nickname'] as const, 'offensive_nickname'),
+      // зачем (2026-09-30): у визитки «Про» есть свой текст, его видят все —
+      // жалоба на него идёт тем же путём, но с отдельной причиной и снимком текста,
+      // чтобы модератор видел, ЧТО было написано, даже если текст потом сменят.
+      reason: enumText(payload.reason, ['offensive_nickname', 'offensive_profile_text'] as const, 'offensive_nickname'),
+      ...(payload.reason === 'offensive_profile_text'
+        ? { reportedText: text(payload.reportedText, 200) }
+        : {}),
       // зачем: карточка игрока открывается из >5 экранов (друзья, клуб, турнир,
       // главная) — 'profile' покрывает всё, что не leaderboard, вместо
       // молчаливого fallback на 'leaderboard' в админской статистике жалоб.

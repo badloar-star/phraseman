@@ -14294,6 +14294,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     <select id="ur-filter-reason" onchange="filterUserReports()">
       <option value="" data-i18n-es="Todas las razones">Все причины</option>
       <option value="offensive_nickname" data-i18n-es="Nick ofensivo">Оскорб. ник</option>
+      <option value="offensive_profile_text" data-i18n-es="Texto de tarjeta ofensivo">Текст визитки</option>
       <option value="cheating" data-i18n-es="Trampas">Читерство</option>
     </select>
     <button onclick="loadUserReports()" style="background:#2a2a3a;color:#aaa" data-i18n-es="🔄 Actualizar">🔄 Обновить</button>
@@ -30877,6 +30878,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
 
   const UR_REASON_LABELS = {
     offensive_nickname: 'Оскорб. ник',
+    offensive_profile_text: 'Текст визитки',
     cheating: 'Читерство',
   };
 
@@ -32180,6 +32182,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
               <div class="pm-inline-user-holder">${reportedIdentity}</div>
               <span style="margin-left:auto;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#2a1a00;color:#fbbf24">${reasonLabel}</span>
             </div>
+            ${r.reportedText ? `<div style="font-size:13px;color:#ddd;margin-bottom:8px;overflow-wrap:anywhere">«${escapeHtml(String(r.reportedText))}»</div>` : ''}
             <div style="font-size:12px;color:#888;margin-bottom:8px">
               <span style="color:#888">Отправил:</span> <span class="pm-inline-user-holder">${reporterIdentity}</span>
               <span style="color:#666">· ${scr} · ${plat} · ${date}</span>

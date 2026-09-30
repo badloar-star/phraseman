@@ -1048,6 +1048,8 @@ export {
   friendsNudge,
 } from "./friends_together";
 export { publicProfileProjectMine } from "./public_profile_projection";
+// Визитка «Про» (2026-09-30): свой текст до 80 символов — только через сервер.
+export { profileCardBioSetMine } from "./profile_card_bio";
 export { adminActivateTelegramPremiumOrder, adminInspectTelegramPromoCode } from "./telegram_premium_admin";
 
 // Authenticated, server-authoritative one-time onboarding access grant.

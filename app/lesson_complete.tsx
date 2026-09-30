@@ -27,7 +27,6 @@ import {
   parseCombinedLessonTopicsParam,
 } from './combined_lesson_pool';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
-import { LESSON_NAMES_RU, LESSON_NAMES_UK, lessonNamesForLang } from '../constants/lessons';
 import { hapticTap } from '../hooks/use-haptics';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useSoftUpsellOpportunity } from '../hooks/use_soft_upsell_opportunity';
@@ -350,76 +349,36 @@ function AchievementNotifModal({ notif, lang, f, lessonId, lessonScore, lessonCe
       pl: 'Dobra robota! Ucz się dalej angielskiego.',
     });
   } else if (notif.kind === 'lesson_unlock') {
+    // зачем (30.09, «1 в 1 с макета» overlays-specialist.html OS-ACHIEVEMENT-NOTIF-*):
+    // заголовок и подпись ровно как в макете — без эмодзи и без пересказа условий.
     modalTitle = triLang(lang, {
-      ru: '🔓 Урок разблокирован!',
-      en: '🔓 Lesson unlocked!',
-      uk: '🔓 Урок розблоковано!',
-      es: '🔓 ¡Lección desbloqueada!',
-      'pt-BR': '🔓 Lição desbloqueada!',
-      vi: '🔓 Đã mở khóa bài học!',
-      id: '🔓 Pelajaran terbuka!',
-      tr: '🔓 Ders açıldı!',
-      pl: '🔓 Lekcja odblokowana!',
-    });
-    modalSub =
-      notif.unlockedLessonId
-        ? triLang(lang, {
-            ru: `Урок ${notif.unlockedLessonId} «${LESSON_NAMES_RU[notif.unlockedLessonId - 1]}» теперь доступен!`,
-            en: `Lesson ${notif.unlockedLessonId} ("${lessonNamesForLang('en')[notif.unlockedLessonId - 1] ?? ''}") is now available!`,
-            uk: `Урок ${notif.unlockedLessonId} «${LESSON_NAMES_UK[notif.unlockedLessonId - 1]}» тепер доступний!`,
-            es: `¡La Lección ${notif.unlockedLessonId} («${lessonNamesForLang('es')[notif.unlockedLessonId - 1] ?? ''}») ya está disponible!`,
-            'pt-BR': `A Lição ${notif.unlockedLessonId} agora está disponível!`,
-            vi: `Bài ${notif.unlockedLessonId} hiện đã mở!`,
-            id: `Pelajaran ${notif.unlockedLessonId} sekarang tersedia!`,
-            tr: `Ders ${notif.unlockedLessonId} artık açık!`,
-            pl: `Lekcja ${notif.unlockedLessonId} jest już dostępna!`,
-          })
-        : undefined;
-  } else if (notif.kind === 'level_exam_unlock') {
-    modalTitle = triLang(lang, {
-      ru: `📋 Зачёт ${notif.cefrLevel} доступен!`,
-      en: `📋 ${notif.cefrLevel} exam available!`,
-      uk: `📋 Залік ${notif.cefrLevel} доступний!`,
-      es: `📋 ¡Examen ${notif.cefrLevel} disponible!`,
-      'pt-BR': `📋 Avaliação ${notif.cefrLevel} disponível!`,
-      vi: `📋 Bài kiểm tra ${notif.cefrLevel} đã mở!`,
-      id: `📋 Ujian ${notif.cefrLevel} tersedia!`,
-      tr: `📋 ${notif.cefrLevel} sınavı açık!`,
-      pl: `📋 Test ${notif.cefrLevel} jest dostępny!`,
+      ru: 'Новый урок открыт', en: 'New lesson unlocked', uk: 'Новий урок відкрито', es: 'Nueva lección abierta',
+      'pt-BR': 'Nova lição liberada', vi: 'Đã mở bài học mới', id: 'Pelajaran baru terbuka', tr: 'Yeni ders açıldı', pl: 'Nowa lekcja otwarta',
     });
     modalSub = triLang(lang, {
-      ru: `Все уроки уровня ${notif.cefrLevel} пройдены на 4.5+! Теперь можешь сдать зачёт.`,
-      en: `All ${notif.cefrLevel}-level lessons scored 4.5+! You can now take the exam.`,
-      uk: `Всі уроки рівня ${notif.cefrLevel} пройдено на 4.5+! Тепер можеш скласти залік.`,
-      es: `¡Todas las lecciones del nivel ${notif.cefrLevel} con nota 4,5 o más! Ya puedes hacer el examen de nivel.`,
-      'pt-BR': `Todas as lições do nível ${notif.cefrLevel} foram concluídas com 4,5+! Agora você pode fazer a avaliação.`,
-      vi: `Tất cả bài học cấp ${notif.cefrLevel} đã đạt 4,5+! Giờ bạn có thể làm bài kiểm tra.`,
-      id: `Semua pelajaran level ${notif.cefrLevel} selesai dengan 4,5+! Sekarang kamu bisa mengikuti ujian level.`,
-      tr: `${notif.cefrLevel} seviyesindeki tüm dersler 4,5+ ile tamamlandı! Şimdi sınava girebilirsin.`,
-      pl: `Wszystkie lekcje poziomu ${notif.cefrLevel} ukończone na 4,5+! Możesz teraz podejść do testu.`,
+      ru: 'Продолжайте обучение, когда будете готовы.', en: 'Keep learning whenever you are ready.', uk: 'Продовжуйте навчання, коли будете готові.',
+      es: 'Sigue aprendiendo cuando estés listo.', 'pt-BR': 'Continue estudando quando estiver pronto.', vi: 'Tiếp tục học khi bạn sẵn sàng.',
+      id: 'Lanjutkan belajar kapan pun kamu siap.', tr: 'Hazır olduğunda öğrenmeye devam et.', pl: 'Ucz się dalej, kiedy będziesz gotowy.',
+    });
+  } else if (notif.kind === 'level_exam_unlock') {
+    modalTitle = triLang(lang, {
+      ru: 'Экзамен уровня открыт', en: 'Level exam unlocked', uk: 'Іспит рівня відкрито', es: 'Examen de nivel abierto',
+      'pt-BR': 'Exame de nível liberado', vi: 'Đã mở bài thi cấp độ', id: 'Ujian level terbuka', tr: 'Seviye sınavı açıldı', pl: 'Egzamin poziomu otwarty',
+    });
+    modalSub = triLang(lang, {
+      ru: 'Проверьте знания для следующего шага.', en: 'Check your knowledge before the next step.', uk: 'Перевірте знання для наступного кроку.',
+      es: 'Comprueba lo que sabes para el siguiente paso.', 'pt-BR': 'Teste seus conhecimentos para o próximo passo.', vi: 'Kiểm tra kiến thức cho bước tiếp theo.',
+      id: 'Uji pengetahuanmu untuk langkah berikutnya.', tr: 'Bir sonraki adım için bilgini sına.', pl: 'Sprawdź wiedzę przed kolejnym krokiem.',
     });
   } else {
     modalTitle = triLang(lang, {
-      ru: '🎓 Экзамен Лингмана открыт!',
-      en: '🎓 Lingman exam unlocked!',
-      uk: '🎓 Іспит Лінгмана відкрито!',
-      es: '🎓 ¡Examen de Lingman desbloqueado!',
-      'pt-BR': '🎓 Exame Lingman desbloqueado!',
-      vi: '🎓 Đã mở kỳ thi Lingman!',
-      id: '🎓 Ujian Lingman terbuka!',
-      tr: '🎓 Lingman sınavı açıldı!',
-      pl: '🎓 Egzamin Lingmana odblokowany!',
+      ru: 'Экзамен Lingman открыт', en: 'Lingman exam unlocked', uk: 'Іспит Lingman відкрито', es: 'Examen Lingman abierto',
+      'pt-BR': 'Exame Lingman liberado', vi: 'Đã mở bài thi Lingman', id: 'Ujian Lingman terbuka', tr: 'Lingman sınavı açıldı', pl: 'Egzamin Lingman otwarty',
     });
     modalSub = triLang(lang, {
-      ru: 'Все занятия = 5.0 и все зачёты сданы! Финальный экзамен открыт.',
-      en: 'All lessons at 5.0 and every exam passed! The final exam is now open.',
-      uk: 'Всі заняття = 5.0 та всі заліки здано! Фінальний іспит відкрито.',
-      es: '¡Todas las lecciones a 5,0 y todos los exámenes de nivel superados! Examen final abierto.',
-      'pt-BR': 'Todas as lições = 5,0 e todas as avaliações concluídas! O exame final está aberto.',
-      vi: 'Tất cả bài học đạt 5,0 và mọi bài kiểm tra đã hoàn thành! Kỳ thi cuối đã mở.',
-      id: 'Semua pelajaran = 5,0 dan semua ujian level selesai! Ujian akhir terbuka.',
-      tr: 'Tüm dersler 5,0 ve tüm sınavlar tamamlandı! Final sınavı açıldı.',
-      pl: 'Wszystkie lekcje na 5,0 i wszystkie testy zaliczone! Egzamin końcowy jest otwarty.',
+      ru: 'Новый срез знаний доступен в вашем пути.', en: 'A new knowledge check is available on your path.', uk: 'Новий зріз знань доступний у вашому шляху.',
+      es: 'Hay una nueva prueba de conocimientos en tu camino.', 'pt-BR': 'Uma nova avaliação está disponível no seu caminho.', vi: 'Một bài kiểm tra kiến thức mới đã có trên hành trình của bạn.',
+      id: 'Tes pengetahuan baru tersedia di jalurmu.', tr: 'Yolunda yeni bir bilgi ölçümü seni bekliyor.', pl: 'Na Twojej ścieżce czeka nowy sprawdzian wiedzy.',
     });
   }
   // зачем: владелец 2026-09-29 — Liquid Glass «1 в 1 с макета» (overlays-specialist.html

@@ -6,7 +6,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { DebugLogger } from './debug-logger';
-import { isProfileCardProStyle, type ProfileCardProStyle } from './profile_card_styles';
+import { isProfileCardProStyle, PROFILE_CARD_DEFAULT_PRO_STYLE, type ProfileCardProStyle } from './profile_card_styles';
+import { PROFILE_CARD_LEVEL_KEY } from './profile_card_system';
 
 const LOG = '[PROFILE-CARD]';
 
@@ -115,9 +116,33 @@ export function publishProfileCardPro(ownerStableId: string, state: ProfileCardP
 }
 
 /** Прочитать «Про» с диска. Битая запись → null + лог (визитка покажется обычной без выдумки). */
+/**
+ * зачем (владелец 30.09: «Да, всем купившим»): кто покупал уровни СТАРОЙ визитки
+ * (profile_card_level ≥ 1), получает «Про» бесплатно. Стиль — по умолчанию, сменить
+ * можно бесплатно в любой момент. Выдача пишется один раз; дальше обычная запись «Про».
+ */
+async function grantProForLegacyCardBuyer(ownerStableId: string): Promise<ProfileCardProStateV1 | null> {
+  const rawLevel = await AsyncStorage.getItem(PROFILE_CARD_LEVEL_KEY);
+  const level = Math.floor(Number(rawLevel ?? 0));
+  if (!Number.isFinite(level) || level < 1) return null;
+  const granted: ProfileCardProStateV1 = Object.freeze({
+    schemaVersion: 'profile-card-pro.v1' as const,
+    ownerStableId,
+    owned: true,
+    style: PROFILE_CARD_DEFAULT_PRO_STYLE,
+    purchase: null,
+  });
+  await AsyncStorage.setItem(profileCardProStateKey(ownerStableId), JSON.stringify(granted));
+  DebugLogger.info(LOG, `legacy grant: старая визитка уровня ${level} → «Про» ${JSON.stringify({ owner: ownerStableId, style: granted.style })}`);
+  return granted;
+}
+
 export async function readProfileCardPro(ownerStableId: string): Promise<ProfileCardProView | null> {
   try {
-    const state = parseProfileCardProState(await AsyncStorage.getItem(profileCardProStateKey(ownerStableId)), ownerStableId);
+    const raw = await AsyncStorage.getItem(profileCardProStateKey(ownerStableId));
+    const state = raw === null
+      ? (await grantProForLegacyCardBuyer(ownerStableId)) ?? parseProfileCardProState(null, ownerStableId)
+      : parseProfileCardProState(raw, ownerStableId);
     const view = Object.freeze({ owned: state.owned, style: state.style });
     proCache.set(ownerStableId, view); // guard-ok: Map в памяти процесса
     return view;

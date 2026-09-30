@@ -22,7 +22,8 @@ const sequence = read("components/feedback/ResultsSequence.tsx");
 // Поздняя награда: LG-ядро досчитывает до факта после rewardsSettled (count-up на UI-треде).
 assert.match(horizon, /rewardsSettled=\{rewardsSettled \|\| preview\}/u);
 assert.match(sequence, /animateLateRewards\?: boolean/u);
-assert.match(sequence, /lateXpAnimatedRef/u);
+// 30.09: XP удалён — поздняя награда только монетами.
+assert.doesNotMatch(sequence, /lateXpAnimatedRef/u);
 assert.match(sequence, /lateRunesAnimatedRef/u);
 assert.match(sequence, /timelineRewardSnapshotRef/u);
 

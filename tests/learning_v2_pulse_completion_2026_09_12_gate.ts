@@ -30,7 +30,9 @@ assert.match(sequence, /scrollEnabled=\{!orbitMode\}/);
 assert.match(sequence, /testID="results-sequence-pulse-hero"/);
 assert.match(sequence, /testID="results-sequence-pulse-ledger"/);
 assert.match(sequence, /accessibilityLabel=\{skipAnimationA11yLabel\}/);
-assert.match(sequence, /finalXp > 0 \|\| hasRunes/);
+// 30.09: XP удалён — в итоге только монеты; следов XP в анимации быть не должно.
+assert.match(sequence, /finalReward > 0 \|\| hasRunes/);
+assert.doesNotMatch(sequence, /finalXp|lateXpAnimatedRef/);
 assert.match(sequence, /HOME_RUNE_ICON_SOURCE/);
 assert.doesNotMatch(
   sequence,
@@ -52,7 +54,8 @@ assert.doesNotMatch(
 );
 assert.match(player, /const isSessionRepeat = first\(params\.runKind\) === "repeat"/);
 assert.match(player, /const canEarnSessionRunes = !isAuthoringPreview && !isSessionRepeat/);
-assert.match(player, /learningV2SessionBaseXpV1/);
+// 30.09: базовый XP сессии удалён вместе с XP — плеер его не считает.
+assert.doesNotMatch(player, /learningV2SessionBaseXpV1/);
 assert.match(player, /nextLessonAvailable=/);
 assert.match(player, /isPulseLessonAuthored\(lessonOrdinal \+ 1\)/);
 assert.match(result, /nextLessonWip/);

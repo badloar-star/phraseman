@@ -40,12 +40,12 @@ describe('lesson_star_scale (D121 / PM-152)', () => {
     expect(previousLessonScoreOpensNext(1.9, true)).toBe(false);
   });
 
-  it('экзамены на той же процентной шкале, значения прежние', () => {
-    expect(LEVEL_EXAM_UNLOCK_LESSON_PERCENT).toBe(90);
+  it('экзамены на той же процентной шкале; зачёт уровня — от 2★ (D125)', () => {
+    expect(LEVEL_EXAM_UNLOCK_LESSON_PERCENT).toBe(60);
     expect(LINGMAN_EXAM_UNLOCK_LESSON_PERCENT).toBe(100);
     expect(LEVEL_EXAM_PASS_PERCENT).toBe(70);
-    expect(allLessonScoresMeetPercent([4.5, 5, 4.6], LEVEL_EXAM_UNLOCK_LESSON_PERCENT)).toBe(true);
-    expect(allLessonScoresMeetPercent([4.5, 4.4], LEVEL_EXAM_UNLOCK_LESSON_PERCENT)).toBe(false);
+    expect(allLessonScoresMeetPercent([3, 5, 4.6], LEVEL_EXAM_UNLOCK_LESSON_PERCENT)).toBe(true);
+    expect(allLessonScoresMeetPercent([4.5, 2.9], LEVEL_EXAM_UNLOCK_LESSON_PERCENT)).toBe(false);
     expect(lessonScoreMeetsPercent(5, LINGMAN_EXAM_UNLOCK_LESSON_PERCENT)).toBe(true);
     expect(lessonScoreMeetsPercent(4.9, LINGMAN_EXAM_UNLOCK_LESSON_PERCENT)).toBe(false);
   });

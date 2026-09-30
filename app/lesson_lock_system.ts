@@ -20,7 +20,7 @@
  * - D122: уроки до замороженного legacy-потолка (4–8) открыты старым Free.
  *
  * Экзамены (PM-152, пороги в процентах — lesson_star_scale.ts):
- * - Зачёт уровня: все уроки этого уровня ≥ 90% (прежние 4.5).
+ * - Зачёт уровня: все уроки этого уровня на 2★ (≥ 60%, D125 «как на макете»).
  * - Экзамен профессора Лингмана: все уроки = 100% + все зачёты сданы.
  */
 
@@ -453,8 +453,8 @@ export const tryUnlockLevelExam = async (
     const already = await storageGetString(alreadyKey);
     if (storedProgressFlagIsTrue(already)) return null;
 
-    // PM-152: все уроки уровня ≥ 90% по max(best_score, progress) — порог из
-    // единой шкалы lesson_star_scale.ts (значение прежнее: 4.5 из 5).
+    // PM-152/D125: все уроки уровня ≥ 60% (2★) по max(best_score, progress) — порог из
+    // единой шкалы lesson_star_scale.ts (было 90% / 4.5 из 5).
     const [from, to] = COURSE_LEVEL_RANGES[foundLevel as CourseLevel];
     const keys: string[] = [];
     for (let id = from; id <= to; id++) {

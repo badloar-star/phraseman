@@ -31,13 +31,14 @@ export const LESSON_UNLOCK_PERCENT = LESSON_TWO_STARS_PERCENT;
 export const LEGACY_LESSON_UNLOCK_PERCENT = 40;
 
 /**
- * PM-152: пороги экзаменов переведены на ту же процентную шкалу, но их
- * ЗНАЧЕНИЯ сохранены (решение по числам за владельцем, см. отчёт D121):
- * - зачёт уровня открывается, когда все уроки уровня ≥ 90% (прежние 4.5);
- * - экзамен Лингмана — когда все 32 урока = 100% (прежние 5.0);
+ * PM-152: пороги экзаменов на той же процентной шкале:
+ * - зачёт уровня открывается, когда все уроки уровня на 2★ (≥ 60%) —
+ *   владелец 2026-09-30, D125: «60 как на макете» (было 90%, прежние 4.5);
+ *   уже открытый зачёт (level_exam_*_available) не пересчитывается;
+ * - экзамен Лингмана — когда все 32 урока = 100% (прежние 5.0), не менялся;
  * - сам зачёт уровня сдаётся от 70% (level_exam.tsx, PASS_PCT).
  */
-export const LEVEL_EXAM_UNLOCK_LESSON_PERCENT = 90;
+export const LEVEL_EXAM_UNLOCK_LESSON_PERCENT = LESSON_TWO_STARS_PERCENT;
 export const LINGMAN_EXAM_UNLOCK_LESSON_PERCENT = 100;
 export const LEVEL_EXAM_PASS_PERCENT = 70;
 

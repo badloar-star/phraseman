@@ -210,9 +210,15 @@ describe('tryUnlockLevelExam — зачёт уровня', () => {
     expect(store['level_exam_A1_available']).toBe('1');
   });
 
-  it('A1: не все уроки >= 4.5 → зачёт не открывается', async () => {
+  it('A1: все 8 уроков ровно на 2★ (3.0 = 60%) → зачёт доступен (D125)', async () => {
+    for (let i = 1; i <= 8; i++) store[`lesson${i}_best_score`] = '3.0';
+    const level = await tryUnlockLevelExam(2);
+    expect(level).toBe('A1');
+  });
+
+  it('A1: не все уроки на 2★ → зачёт не открывается', async () => {
     for (let i = 1; i <= 7; i++) store[`lesson${i}_best_score`] = '4.5';
-    store['lesson8_best_score'] = '3.0'; // один урок слабее
+    store['lesson8_best_score'] = '2.9'; // один урок ниже 60% (D125)
     const level = await tryUnlockLevelExam(3);
     expect(level).toBeNull();
   });

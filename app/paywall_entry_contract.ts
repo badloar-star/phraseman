@@ -85,6 +85,15 @@ export const PAYWALL_SOURCE_VALUES = [
   'ai_companion_daily_limit',
   // «Работа над ошибками» внутри урока Learning V2.
   'learning_v2',
+  // зачем (30.09): живые точки входа 2.0, которых не было в списке — без них
+  // rejectUnknown превращал кнопку Plus в «закрыть». Диалоги V2 (хаб, сессия,
+  // свободный разговор, память), компаньон диалогов и «нет энергии» в Шпиле.
+  'dialogue_v2_hub',
+  'dialogue_v2_session',
+  'dialogue_v2_freeform',
+  'dialogue_v2_memory',
+  'dialogs_companion',
+  'spire_no_energy',
 ] as const;
 
 export type PaywallSource = (typeof PAYWALL_SOURCE_VALUES)[number];

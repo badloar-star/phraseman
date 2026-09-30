@@ -163,7 +163,8 @@ describe('тексты пейволов не врут после смены пр
     // упомянута намеренно — она объясняет, почему её здесь больше нет.
     expect(copy).not.toMatch(/titleRu: 'Диалоги уровней выше — в Plus'/);
     expect(copy).not.toMatch(/en: 'Higher-level dialogues are in Plus'/);
-    expect(copy).toMatch(/titleRu: 'Остальные диалоги — в Plus'/);
+    // D124 (30.09): сценарии открывает ранг монеты, а не Plus.
+    expect(copy).toMatch(/titleRu: 'Сценарий откроется на ранге монеты'/);
   });
 });
 

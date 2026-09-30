@@ -80,35 +80,21 @@ describe('AI dialogue paywall truth contract', () => {
     }
   });
 
+  // D124 (владелец 30.09): сценарии открывает ТОЛЬКО ранг монеты — Plus их не открывает.
+  // Прежний сторож требовал «Остальные диалоги — в Plus» и охранял уже ложное обещание.
   test.each(['dialog_locked_level'] as const)(
-    '%s says the rest of the catalogue is in Plus and all scenarios are included',
+    '%s says scenarios open with the coin rank and Plus lifts the reply limit',
     (context) => {
       const copy = getPaywallCopy(context);
       const planned = getHeroPlannedCopy(context, 0);
-
-      expect(copy).toEqual({
-        /**
-         * зачем ПЕРЕПИСАНО (аудит 2026-09-14): сторож требовал заголовок
-         * «Диалоги уровней выше — в Plus» — и тем самым ОХРАНЯЛ ЛОЖЬ. После
-         * перехода на белый список трёх сценариев закрыт и `first_meeting`
-         * (A1, тот же уровень, что открытый `coffee`), то есть «уровнем выше»
-         * он не является. Чинить надо было текст, а не подгонять реальность
-         * под сторожа (правило проекта: сторож, охраняющий ложь, чинится).
-         */
-        titleRu: 'Остальные диалоги — в Plus',
-        titleUk: 'Решта діалогів — у Plus',
-        titleEs: 'Los demás diálogos están en Plus',
-        subtitleRu:
-          'Все сценарии диалогов входят в Plus. Практикуй ситуации из уроков и жизни, отвечай своими словами и получай подсказки по ходу разговора.',
-        subtitleUk:
-          'Усі сценарії діалогів входять у Plus. Практикуй ситуації з уроків і життя, відповідай своїми словами та отримуй підказки під час розмови.',
-        subtitleEs:
-          'Todos los escenarios de diálogo están incluidos en Plus. Practica situaciones de las lecciones y de la vida real, responde con tus propias palabras y recibe ayuda durante la conversación.',
-      });
-      expect(planned.title.en).toBe('The rest of the dialogues are in Plus');
-      expect(planned.subtitle.en).toBe(
-        'All dialogue scenarios are included in Plus. Practice lesson-based and real-life situations, respond in your own words, and get guidance as you talk.',
-      );
+      expect(copy.titleRu).toBe('Сценарий откроется на ранге монеты');
+      expect(copy.subtitleRu).toContain('рангом монеты');
+      expect(copy.subtitleRu).toContain('Plus снимает месячный лимит ответов');
+      expect(planned.title.en).toBe('The scenario opens with your coin rank');
+      const all = JSON.stringify({ copy, planned }).toLocaleLowerCase();
+      for (const lie of ['все остальные', 'все сценарии', 'all the others', 'all dialogue scenarios']) {
+        expect(all).not.toContain(lie);
+      }
     },
   );
 
@@ -116,12 +102,12 @@ describe('AI dialogue paywall truth contract', () => {
     '%s describes actual dialogue benefits without free or unlimited claims',
     (context) => {
       expect(CONTEXT_BENEFITS[context]?.map((benefit) => benefit.ru)).toEqual([
-        'Все сценарии по урокам и жизненным ситуациям',
+        'Ответы в диалогах без месячного лимита',
         'Свободные ответы своими словами',
         'Подсказки и разбор реплик во время практики',
       ]);
       expect(CONTEXT_BENEFITS[context]?.map((benefit) => benefit.en)).toEqual([
-        'Every lesson-based and real-life scenario',
+        'Dialogue replies with no monthly limit',
         'Open responses in your own words',
         'Guidance and feedback on your replies as you practice',
       ]);

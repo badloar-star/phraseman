@@ -810,15 +810,16 @@ function DialogsTabContentBody({
         <TouchableOpacity
           accessibilityRole="button"
           accessibilityLabel={triLang(lang, {
-            ru: 'Открыть все диалоги с Plus',
-            uk: 'Відкрити всі діалоги з Plus',
-            en: 'Unlock all dialogues with Plus',
-            es: 'Abrir todos los diálogos con Plus',
-            'pt-BR': 'Abrir todos os diálogos com Plus',
-            vi: 'Mở tất cả hội thoại với Plus',
-            id: 'Buka semua dialog dengan Plus',
-            tr: 'Tüm diyalogları Plus ile aç',
-            pl: 'Otwórz wszystkie dialogi z Plus',
+            // D124 (30.09): Plus не открывает сценарии (их открывает ранг) — только снимает лимит.
+            ru: 'Plus снимает лимит ответов',
+            uk: 'Plus знімає ліміт відповідей',
+            en: 'Plus removes the reply limit',
+            es: 'Plus quita el límite de respuestas',
+            'pt-BR': 'O Plus remove o limite de respostas',
+            vi: 'Plus bỏ giới hạn lượt trả lời',
+            id: 'Plus menghapus batas balasan',
+            tr: 'Plus yanıt sınırını kaldırır',
+            pl: 'Plus znosi limit odpowiedzi',
           })}
           activeOpacity={0.88}
           onPress={() => {

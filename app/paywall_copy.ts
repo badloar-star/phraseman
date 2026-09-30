@@ -371,15 +371,14 @@ PAYWALL_COPY.dialog_analysis = {
 // «уровней выше» на сценарии своего уровня. Теперь заголовок говорит правду:
 // бесплатны три сценария, остальной каталог в Plus.
 PAYWALL_COPY.dialog_locked_level = {
-  // зачем (владелец, 2026-09-22): «Остальные диалоги» читалось как «всё, кроме
-  // того, что ты хотел», хотя человек нажал на конкретный сценарий. Абстрактные
-  // «ситуации из уроков и жизни» заменены живым перечнем.
-  titleRu: 'Этот сценарий в подписке',
-  titleUk: 'Цей сценарій у передплаті',
-  titleEs: 'Este escenario está en la suscripción',
-  subtitleRu: 'С ним открываются все остальные — переговоры, аренда квартиры, приём у врача, знакомство. И вместе с диалогами весь курс, тренировки и разбор ошибок.',
-  subtitleUk: 'Разом із ним відкриваються всі інші — перемовини, оренда квартири, прийом у лікаря, знайомство. І разом із діалогами увесь курс, тренування та розбір помилок.',
-  subtitleEs: 'Con él se abren todos los demás: negociaciones, alquiler de piso, visita al médico, conocer a alguien. Y junto a los diálogos, el curso completo, los entrenamientos y el repaso de errores.',
+  // зачем (D124, владелец 30.09): сценарии открываются ТОЛЬКО рангом монеты, Plus их
+  // не открывает. Прежнее «с ним открываются все остальные» стало ложью.
+  titleRu: 'Сценарий откроется на ранге монеты',
+  titleUk: 'Сценарій відкриється на ранзі монети',
+  titleEs: 'El escenario se abre con el rango de la moneda',
+  subtitleRu: 'Диалоги открываются рангом монеты — монеты копятся на уроках. Plus снимает месячный лимит ответов и открывает весь курс, тренировки и разбор ошибок.',
+  subtitleUk: 'Діалоги відкриваються рангом монети — монети накопичуються на уроках. Plus знімає місячний ліміт відповідей і відкриває весь курс, тренування та розбір помилок.',
+  subtitleEs: 'Los diálogos se abren con el rango de la moneda; las monedas se ganan en las lecciones. Plus quita el límite mensual de respuestas y abre el curso completo, los entrenamientos y el repaso de errores.',
 };
 
 // зачем (владелец, 2026-09-22): из пяти входов ЧЕТЫРЕ — прямые
@@ -724,22 +723,22 @@ PAYWALL_PLANNED_COPY.dialog_analysis = {
 };
 
 PAYWALL_PLANNED_COPY.dialog_locked_level = {
+  // D124 (30.09): сценарий открывает ранг монеты, Plus — лимит ответов и курс.
   title: {
-    // Аудит 2026-09-14: «уровней выше» стало ложью (закрыт и A1-сценарий).
-    en: 'This scenario is in the subscription',
-    'pt-BR': 'Este cenário está na assinatura',
-    vi: 'Kịch bản này nằm trong gói đăng ký',
-    id: 'Skenario ini ada di langganan',
-    tr: 'Bu senaryo abonelikte',
-    pl: 'Ten scenariusz jest w subskrypcji',
+    en: 'The scenario opens with your coin rank',
+    'pt-BR': 'O cenário abre com o nível da moeda',
+    vi: 'Kịch bản mở theo hạng đồng xu',
+    id: 'Skenario terbuka dengan peringkat koin',
+    tr: 'Senaryo jeton rütbesiyle açılır',
+    pl: 'Scenariusz otwiera się z rangą monety',
   },
   subtitle: {
-    en: 'All the others open with it — negotiations, renting a flat, a doctor’s appointment, meeting someone. And along with the dialogues, the whole course, training and mistake review.',
-    'pt-BR': 'Com ele abrem todos os outros — negociações, alugar um apartamento, consulta médica, conhecer alguém. E junto com os diálogos, o curso inteiro, os treinos e a revisão de erros.',
-    vi: 'Cùng với nó là tất cả kịch bản khác — đàm phán, thuê nhà, đi khám bệnh, làm quen. Và kèm theo hội thoại là trọn khóa học, luyện tập và phần xem lại lỗi.',
-    id: 'Bersamanya terbuka semua yang lain — negosiasi, menyewa apartemen, periksa ke dokter, berkenalan. Dan bersama dialog, seluruh kursus, latihan, serta pembahasan kesalahan.',
-    tr: 'Onunla birlikte diğerleri de açılır — müzakereler, ev kiralama, doktor randevusu, tanışma. Ve diyaloglarla beraber kursun tamamı, antrenmanlar ve hata çözümlemesi.',
-    pl: 'Razem z nim otwierają się wszystkie pozostałe — negocjacje, wynajem mieszkania, wizyta u lekarza, poznawanie kogoś. A wraz z dialogami cały kurs, treningi i przerabianie błędów.',
+    en: 'Dialogues open with your coin rank — you earn coins in lessons. Plus removes the monthly reply limit and opens the whole course, training and mistake review.',
+    'pt-BR': 'Os diálogos abrem com o nível da moeda — as moedas vêm das lições. O Plus tira o limite mensal de respostas e abre o curso inteiro, os treinos e a revisão de erros.',
+    vi: 'Hội thoại mở theo hạng đồng xu — xu kiếm được từ bài học. Plus bỏ giới hạn trả lời hằng tháng và mở toàn bộ khóa học, luyện tập và xem lại lỗi.',
+    id: 'Dialog terbuka dengan peringkat koin — koin didapat dari pelajaran. Plus menghapus batas balasan bulanan dan membuka seluruh kursus, latihan, dan pembahasan kesalahan.',
+    tr: 'Diyaloglar jeton rütbesiyle açılır — jetonlar derslerde kazanılır. Plus aylık yanıt sınırını kaldırır ve tüm kursu, antrenmanları ve hata incelemesini açar.',
+    pl: 'Dialogi otwierają się z rangą monety — monety zdobywasz na lekcjach. Plus znosi miesięczny limit odpowiedzi i otwiera cały kurs, treningi i analizę błędów.',
   },
 };
 
@@ -1032,7 +1031,7 @@ CONTEXT_BENEFITS.speaking = [
 ];
 
 CONTEXT_BENEFITS.dialog_limit = [
-  { ru: 'Все сценарии по урокам и жизненным ситуациям', uk: 'Усі сценарії за уроками та життєвими ситуаціями', en: 'Every lesson-based and real-life scenario', es: 'Todos los escenarios de lecciones y de la vida real', 'pt-BR': 'Todos os cenários de lições e da vida real', vi: 'Mọi kịch bản từ bài học và đời thực', id: 'Semua skenario dari pelajaran dan kehidupan nyata', tr: 'Derslerden ve gerçek hayattan tüm senaryolar', pl: 'Wszystkie scenariusze z lekcji i życia' },
+  { ru: 'Ответы в диалогах без месячного лимита', uk: 'Відповіді в діалогах без місячного ліміту', en: 'Dialogue replies with no monthly limit', es: 'Respuestas en diálogos sin límite mensual', 'pt-BR': 'Respostas nos diálogos sem limite mensal', vi: 'Trả lời trong hội thoại không giới hạn theo tháng', id: 'Balasan dialog tanpa batas bulanan', tr: 'Diyaloglarda aylık sınırsız yanıt', pl: 'Odpowiedzi w dialogach bez limitu miesięcznego' },
   { ru: 'Свободные ответы своими словами', uk: 'Вільні відповіді своїми словами', en: 'Open responses in your own words', es: 'Respuestas abiertas con tus propias palabras', 'pt-BR': 'Respostas livres com suas próprias palavras', vi: 'Tự do trả lời bằng lời của bạn', id: 'Jawaban bebas dengan kata-katamu sendiri', tr: 'Kendi sözlerinle özgürce yanıt verme', pl: 'Swobodne odpowiedzi własnymi słowami' },
   { ru: 'Подсказки и разбор реплик во время практики', uk: 'Підказки та розбір реплік під час практики', en: 'Guidance and feedback on your replies as you practice', es: 'Ayuda y análisis de tus respuestas durante la práctica', 'pt-BR': 'Dicas e análise das suas respostas durante a prática', vi: 'Gợi ý và phân tích câu trả lời trong lúc luyện tập', id: 'Petunjuk dan ulasan jawaban selama latihan', tr: 'Pratik sırasında yanıtların için ipuçları ve geri bildirim', pl: 'Podpowiedzi i analiza wypowiedzi podczas ćwiczeń' },
 ];
@@ -1076,7 +1075,7 @@ CONTEXT_BENEFITS.dialog_analysis = [
 ];
 
 CONTEXT_BENEFITS.dialog_locked_level = [
-  { ru: 'Все сценарии по урокам и жизненным ситуациям', uk: 'Усі сценарії за уроками та життєвими ситуаціями', en: 'Every lesson-based and real-life scenario', es: 'Todos los escenarios de lecciones y de la vida real', 'pt-BR': 'Todos os cenários de lições e da vida real', vi: 'Mọi kịch bản từ bài học và đời thực', id: 'Semua skenario dari pelajaran dan kehidupan nyata', tr: 'Derslerden ve gerçek hayattan tüm senaryolar', pl: 'Wszystkie scenariusze z lekcji i życia' },
+  { ru: 'Ответы в диалогах без месячного лимита', uk: 'Відповіді в діалогах без місячного ліміту', en: 'Dialogue replies with no monthly limit', es: 'Respuestas en diálogos sin límite mensual', 'pt-BR': 'Respostas nos diálogos sem limite mensal', vi: 'Trả lời trong hội thoại không giới hạn theo tháng', id: 'Balasan dialog tanpa batas bulanan', tr: 'Diyaloglarda aylık sınırsız yanıt', pl: 'Odpowiedzi w dialogach bez limitu miesięcznego' },
   { ru: 'Свободные ответы своими словами', uk: 'Вільні відповіді своїми словами', en: 'Open responses in your own words', es: 'Respuestas abiertas con tus propias palabras', 'pt-BR': 'Respostas livres com suas próprias palavras', vi: 'Tự do trả lời bằng lời của bạn', id: 'Jawaban bebas dengan kata-katamu sendiri', tr: 'Kendi sözlerinle özgürce yanıt verme', pl: 'Swobodne odpowiedzi własnymi słowami' },
   { ru: 'Подсказки и разбор реплик во время практики', uk: 'Підказки та розбір реплік під час практики', en: 'Guidance and feedback on your replies as you practice', es: 'Ayuda y análisis de tus respuestas durante la práctica', 'pt-BR': 'Dicas e análise das suas respostas durante a prática', vi: 'Gợi ý và phân tích câu trả lời trong lúc luyện tập', id: 'Petunjuk dan ulasan jawaban selama latihan', tr: 'Pratik sırasında yanıtların için ipuçları ve geri bildirim', pl: 'Podpowiedzi i analiza wypowiedzi podczas ćwiczeń' },
 ];
@@ -1183,7 +1182,7 @@ CONTEXT_BENEFITS_PLANNED.speaking = [
 ];
 
 CONTEXT_BENEFITS_PLANNED.dialog_limit = [
-  { 'pt-BR': 'Todos os cenários de lições e da vida real', vi: 'Mọi kịch bản từ bài học và đời thực', id: 'Semua skenario dari pelajaran dan kehidupan nyata', tr: 'Derslerden ve gerçek hayattan tüm senaryolar', pl: 'Wszystkie scenariusze z lekcji i życia' },
+  { 'pt-BR': 'Respostas nos diálogos sem limite mensal', vi: 'Trả lời trong hội thoại không giới hạn theo tháng', id: 'Balasan dialog tanpa batas bulanan', tr: 'Diyaloglarda aylık sınırsız yanıt', pl: 'Odpowiedzi w dialogach bez limitu miesięcznego' },
   { 'pt-BR': 'Respostas livres com suas próprias palavras', vi: 'Tự do trả lời bằng lời của bạn', id: 'Jawaban bebas dengan kata-katamu sendiri', tr: 'Kendi sözlerinle özgürce yanıt verme', pl: 'Swobodne odpowiedzi własnymi słowami' },
   { 'pt-BR': 'Dicas e análise das suas respostas durante a prática', vi: 'Gợi ý và phân tích câu trả lời trong lúc luyện tập', id: 'Petunjuk dan ulasan jawaban selama latihan', tr: 'Pratik sırasında yanıtların için ipuçları ve geri bildirim', pl: 'Podpowiedzi i analiza wypowiedzi podczas ćwiczeń' },
 ];
@@ -1225,7 +1224,7 @@ CONTEXT_BENEFITS_PLANNED.dialog_analysis = [
 ];
 
 CONTEXT_BENEFITS_PLANNED.dialog_locked_level = [
-  { 'pt-BR': 'Todos os cenários de lições e da vida real', vi: 'Mọi kịch bản từ bài học và đời thực', id: 'Semua skenario dari pelajaran dan kehidupan nyata', tr: 'Derslerden ve gerçek hayattan tüm senaryolar', pl: 'Wszystkie scenariusze z lekcji i życia' },
+  { 'pt-BR': 'Respostas nos diálogos sem limite mensal', vi: 'Trả lời trong hội thoại không giới hạn theo tháng', id: 'Balasan dialog tanpa batas bulanan', tr: 'Diyaloglarda aylık sınırsız yanıt', pl: 'Odpowiedzi w dialogach bez limitu miesięcznego' },
   { 'pt-BR': 'Respostas livres com suas próprias palavras', vi: 'Tự do trả lời bằng lời của bạn', id: 'Jawaban bebas dengan kata-katamu sendiri', tr: 'Kendi sözlerinle özgürce yanıt verme', pl: 'Swobodne odpowiedzi własnymi słowami' },
   { 'pt-BR': 'Dicas e análise das suas respostas durante a prática', vi: 'Gợi ý và phân tích câu trả lời trong lúc luyện tập', id: 'Petunjuk dan ulasan jawaban selama latihan', tr: 'Pratik sırasında yanıtların için ipuçları ve geri bildirim', pl: 'Podpowiedzi i analiza wypowiedzi podczas ćwiczeń' },
 ];

@@ -53,7 +53,8 @@ describe('flashcard pack language adapter', () => {
 
   it('rejects unsupported pack languages instead of silently changing them', () => {
     const payload = {
-      packLanguage: 'it',
+      // D130: 'it' допустим — недопустимый пример теперь 'pt'.
+      packLanguage: 'pt',
       title: 'Italiano',
       description: 'Unsupported',
       cards: cardsWith({ en: 'Ciao', ru: 'Привет' }),

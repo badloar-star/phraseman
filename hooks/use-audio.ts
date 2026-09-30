@@ -118,6 +118,8 @@ export function inferExpoSpeechLanguage(
   if (nLat >= 1 && nCyr === 0) {
     if (contentLangHint === 'fr') return 'fr-FR';
     if (contentLangHint === 'de') return 'de-DE';
+    // D130 (30.09): итальянские наборы карточек — итальянский голос, а не английский.
+    if (contentLangHint === 'it') return 'it-IT';
     return contentLangHint === 'es' ? 'es-ES' : 'en-US';
   }
   return 'en-US';
@@ -130,6 +132,7 @@ export function speechLocaleToShortLabel(locale: string): string {
   if (x.startsWith('es')) return 'ES';
   if (x.startsWith('fr')) return 'FR';
   if (x.startsWith('de')) return 'DE';
+  if (x.startsWith('it')) return 'IT';
   return 'EN';
 }
 

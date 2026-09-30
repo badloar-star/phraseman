@@ -11,7 +11,8 @@
  * одинаковыми.
  */
 
-export const COMMUNITY_STUDY_PACK_LANGUAGES = ['en', 'fr', 'de', 'es'] as const;
+// D130 (30.09): итальянский — язык набора.
+export const COMMUNITY_STUDY_PACK_LANGUAGES = ['en', 'fr', 'de', 'es', 'it'] as const;
 export type CommunityStudyPackLanguage = (typeof COMMUNITY_STUDY_PACK_LANGUAGES)[number];
 
 export const COMMUNITY_NO_PACK_LANGUAGE = 'none' as const;

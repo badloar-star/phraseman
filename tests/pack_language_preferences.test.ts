@@ -18,7 +18,8 @@ describe('pack language preferences', () => {
   });
 
   it('normalizes missing and invalid preference to null for caller defaulting', async () => {
-    await AsyncStorage.setItem(PACK_LANGUAGE_PREFERENCE_KEY, 'it');
+    // D130 (30.09): 'it' стал допустимым языком набора — пример недопустимого теперь 'pt'.
+    await AsyncStorage.setItem(PACK_LANGUAGE_PREFERENCE_KEY, 'pt');
 
     expect(await getStoredPackLanguage()).toBeNull();
   });

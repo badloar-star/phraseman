@@ -1,7 +1,8 @@
 import type { Lang } from '../../constants/i18n';
 
 /** Languages a pack can be studied in (and that the catalog can filter by). */
-export type StudyPackLanguage = 'en' | 'fr' | 'de' | 'es';
+// зачем (D130, владелец 30.09): итальянский — язык набора в карточках.
+export type StudyPackLanguage = 'en' | 'fr' | 'de' | 'es' | 'it';
 
 /**
  * зачем (D127, владелец 2026-09-30): наборы «без языка» — столицы, формулы,
@@ -36,7 +37,7 @@ export type NormalizedPackCardText = {
 };
 
 /** Study languages only — used by language filters and the saved-card contour. */
-export const PACK_LANGUAGES: readonly StudyPackLanguage[] = ['en', 'fr', 'de', 'es'];
+export const PACK_LANGUAGES: readonly StudyPackLanguage[] = ['en', 'fr', 'de', 'es', 'it'];
 
 /** Everything an author may pick when creating a pack, including «Без языка». */
 export const PACK_LANGUAGE_CHOICES: readonly PackLanguage[] = [...PACK_LANGUAGES, NO_PACK_LANGUAGE];
@@ -46,6 +47,7 @@ export const PACK_LANGUAGE_META: Readonly<Record<PackLanguage, PackLanguageMeta>
   fr: { code: 'fr', nativeName: 'Français', shortName: 'FR', flagGlyph: '🇫🇷' },
   de: { code: 'de', nativeName: 'Deutsch', shortName: 'DE', flagGlyph: '🇩🇪' },
   es: { code: 'es', nativeName: 'Español', shortName: 'ES', flagGlyph: '🇪🇸' },
+  it: { code: 'it', nativeName: 'Italiano', shortName: 'IT', flagGlyph: '🇮🇹' },
   // Нейтральный значок вместо флага: у набора нет страны и языка.
   none: { code: 'none', nativeName: 'Без языка', shortName: '—', flagGlyph: '🌐' },
 };

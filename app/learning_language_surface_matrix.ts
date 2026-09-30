@@ -10,6 +10,8 @@ export const LEARNING_LANGUAGE_SURFACES = [
   'videos',
   'flashcards',
   'diagnostic_and_exam',
+  // зачем D133 (владелец 2026-09-30): Шпиль — отдельный раздел таблицы «язык × раздел».
+  'spire',
 ] as const;
 export type LearningLanguageSurface = (typeof LEARNING_LANGUAGE_SURFACES)[number];
 

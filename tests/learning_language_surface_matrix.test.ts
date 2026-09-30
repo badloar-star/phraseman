@@ -16,6 +16,7 @@ assert.deepEqual(LEARNING_LANGUAGE_SURFACES, [
   'videos',
   'flashcards',
   'diagnostic_and_exam',
+  'spire',
 ]);
 assert.deepEqual(requiredLearningLanguageSurfaces(), LEARNING_LANGUAGE_SURFACES);
 

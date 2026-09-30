@@ -925,6 +925,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const [homeV2VideoStatus, setHomeV2VideoStatus] = useState<'loading' | 'ready' | 'error'>(() => (
         homeVideoRailUsesCatalog(studyTarget) && peekHomeVideoRailForTarget(studyTarget) ? 'ready' : 'loading'
     ));
+    // зачем D132: канала на языке изучения нет → лента скрыта целиком (кэш процесса
+    // даёт ответ уже на первом кадре при повторном заходе).
+    const [homeV2VideoNoChannel, setHomeV2VideoNoChannel] = useState(() => (
+        homeVideoRailUsesCatalog(studyTarget) && peekHomeVideoRailForTarget(studyTarget)?.source === 'no_channel_for_target'
+    ));
     const latestVideoIdRef = useRef<string | null>(null);
     // зачем (владелец 2026-09-14/15): плитка «Мои ошибки» больше не подменяет
     // «Продолжить урок» — вход в раздел живёт кнопкой у заголовка «Сегодня».
@@ -1279,8 +1284,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         const peek = homeVideoRailUsesCatalog(studyTarget) ? peekHomeVideoRailForTarget(studyTarget) : null;
         setHomeV2Videos(peek?.videos ?? []);
         setHomeV2VideoStatus(peek ? 'ready' : 'loading');
+        setHomeV2VideoNoChannel(peek?.source === 'no_channel_for_target');
     }, [studyTarget]);
-    // зачем D130: лента Главной для итальянского — канал каталога с тегом 'it'.
+    // зачем D130/D132: лента Главной для es/fr/de/it — канал каталога с тегом языка.
     useEffect(() => {
         if (!homeRuntimeActive || !isVideoButtonEnabled()) return undefined;
         if (!homeVideoRailUsesCatalog(studyTarget) || !homeVideosVisible) return undefined;
@@ -1290,6 +1296,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 if (!alive) return;
                 setHomeV2Videos(rail.videos);
                 setHomeV2VideoStatus('ready');
+                setHomeV2VideoNoChannel(rail.source === 'no_channel_for_target');
             })
             .catch((error: unknown) => {
                 console.warn('[LANG-SURFACE] home_rail:catch → error', { studyTarget, error: error instanceof Error ? error.message : String(error) }); // guard-ok: лог в catch обязателен
@@ -2989,6 +2996,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // Карточка ошибок живёт и без последнего урока: разбирать есть что даже
         // тому, кто ни одного урока не открыл (ошибки копятся и в карточках).
         // зачем D129: «Продолжить урок» — это курс; без курса для языка плашку урока не рисуем.
+        // зачем D134: плашка «Мои ошибки» — для любого языка, если ошибки есть (без условия курса).
         const priorityCardVisible = (lastLesson !== null && homeLearnVisible) || priorityCardShowsMistakes;
         const priorityCardTitle = priorityCardShowsMistakes
             ? triLang(lang, {
@@ -3641,7 +3649,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             ) : null}
             <View style={{ gap: 4 }}>
               {homeV2Tiles.length > 0 ? <HomeV2FeatureTiles tiles={homeV2Tiles} /> : null}
-              {isVideoButtonEnabled() && homeVideosVisible ? (
+              {isVideoButtonEnabled() && homeVideosVisible && !homeV2VideoNoChannel ? (
                 <HomeV2VideoRail
                   videos={homeV2Videos}
                   status={homeV2VideoStatus}

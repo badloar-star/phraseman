@@ -7,23 +7,21 @@ import type { LearningLanguageSurface } from './learning_language_surface_matrix
 import { isLearningSurfaceReady } from './learning_language_surface_readiness';
 
 /**
- * Шпиль не входит в таблицу разделов: его пул заданий собран для en/es/fr/de
- * (functions/src/spire_multilingual_pool.ts), для it контента нет. Решение владельца
- * о Шпиле по языкам ещё не принято — это открытый вопрос (отчёт D129/D130).
+ * Каждый тип задания читает клетку таблицы готовности — своих списков языков нет.
+ * зачем D133: Шпиль — раздел таблицы (en/es/fr/de включён, it нет).
+ * зачем D134: задание дня «Мои ошибки» — только для языков с курсом (раздел lessons);
+ * плашка ошибок на Главной от этого не зависит и видна для любого языка.
  */
-const SPIRE_TASK_TARGETS: readonly LearningLanguageTarget[] = Object.freeze(['en', 'es', 'fr', 'de']);
-
-/** «Мои ошибки» копятся из курса — без курса разбирать нечего. */
-export const TODAY_TASK_KIND_SURFACE: Readonly<Record<Exclude<TodayTaskKind, 'spire_steps'>, LearningLanguageSurface>> = Object.freeze({
+export const TODAY_TASK_KIND_SURFACE: Readonly<Record<TodayTaskKind, LearningLanguageSurface>> = Object.freeze({
   lesson: 'lessons',
   dialog: 'dialogues',
   cards: 'flashcards',
   video: 'videos',
   mistakes: 'lessons',
+  spire_steps: 'spire',
 });
 
 export function isTodayTaskKindAvailableForTarget(kind: TodayTaskKind, target: LearningLanguageTarget): boolean {
-  if (kind === 'spire_steps') return SPIRE_TASK_TARGETS.includes(target);
   const surface = TODAY_TASK_KIND_SURFACE[kind];
   return surface ? isLearningSurfaceReady(target, surface) : false;
 }

@@ -19,6 +19,7 @@ import {
   isLearnTabVisibleForTarget,
   listLearningSurfaceReadinessCells,
 } from '../app/learning_language_surface_readiness';
+import { isTodayTaskKindAvailableForTarget } from '../app/today_task_surface_filter';
 
 const DECISIONS_PATH = path.join(__dirname, '..', 'docs', 'phraseman-2.0', '03_DECISIONS.md');
 
@@ -29,11 +30,11 @@ function askOwner(target: string, surface: string): string {
 
 // Снимок решений владельца. Менять ТОЛЬКО вместе с новой строкой в 03_DECISIONS.md.
 const OWNER_APPROVED_SNAPSHOT: Record<string, Record<string, string>> = {
-  en: { lessons: 'ready', learning_v2: 'ready', daily_phrase: 'ready', dialogues: 'ready', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'ready' },
-  es: { lessons: 'hidden', learning_v2: 'hidden', daily_phrase: 'hidden', dialogues: 'ready', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'hidden' },
-  fr: { lessons: 'hidden', learning_v2: 'hidden', daily_phrase: 'ready', dialogues: 'ready', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'hidden' },
-  de: { lessons: 'hidden', learning_v2: 'hidden', daily_phrase: 'hidden', dialogues: 'ready', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'hidden' },
-  it: { lessons: 'hidden', learning_v2: 'hidden', daily_phrase: 'hidden', dialogues: 'hidden', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'hidden' },
+  en: { lessons: 'ready', learning_v2: 'ready', daily_phrase: 'ready', dialogues: 'ready', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'ready', spire: 'ready' },
+  es: { lessons: 'hidden', learning_v2: 'hidden', daily_phrase: 'hidden', dialogues: 'ready', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'hidden', spire: 'ready' },
+  fr: { lessons: 'hidden', learning_v2: 'hidden', daily_phrase: 'ready', dialogues: 'ready', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'hidden', spire: 'ready' },
+  de: { lessons: 'hidden', learning_v2: 'hidden', daily_phrase: 'hidden', dialogues: 'ready', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'hidden', spire: 'ready' },
+  it: { lessons: 'hidden', learning_v2: 'hidden', daily_phrase: 'hidden', dialogues: 'hidden', arena: 'hidden', videos: 'ready', flashcards: 'ready', diagnostic_and_exam: 'hidden', spire: 'hidden' },
 };
 
 describe('D129 guard: language × surface readiness', () => {
@@ -72,5 +73,12 @@ describe('D129 guard: language × surface readiness', () => {
 
   test('the course (Learn tab + Lessons tile) is English-only (D129)', () => {
     expect(LEARNING_LANGUAGE_TARGETS.filter(isLearnTabVisibleForTarget)).toEqual(['en']);
+  });
+
+  // зачем D133/D134: задания дня читают клетки таблицы, а не свои списки языков.
+  test('daily tasks follow the table: spire (D133) and mistakes only with the course (D134)', () => {
+    expect(LEARNING_LANGUAGE_TARGETS.filter((t) => isTodayTaskKindAvailableForTarget('spire_steps', t))).toEqual(['en', 'es', 'fr', 'de']);
+    expect(LEARNING_LANGUAGE_TARGETS.filter((t) => isTodayTaskKindAvailableForTarget('mistakes', t))).toEqual(['en']);
+    expect(LEARNING_LANGUAGE_TARGETS.filter((t) => isTodayTaskKindAvailableForTarget('cards', t))).toEqual([...LEARNING_LANGUAGE_TARGETS]);
   });
 });

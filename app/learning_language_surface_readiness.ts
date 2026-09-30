@@ -39,7 +39,10 @@ const hidden = (decidedBy: string): LearningSurfaceReadinessCell => Object.freez
  * - dialogues — es/fr/de выпущены владельцем 2026-09-20 (dialogue_language_activation.ts);
  *   для it раздела нет (D130).
  * - arena — удалена в 2.0 (D83), скрыта у всех.
- * - videos / flashcards — открыты у всех по D129/D130.
+ * - videos — D132: лента Главной берёт канал на языке изучения из каталога YouTube,
+ *   канала нет → лента скрыта (английский канал другим языкам не подставляем).
+ * - flashcards — открыты у всех по D129/D130.
+ * - spire — D133: пул заданий есть для en/es/fr/de, для it нет.
  */
 export const LEARNING_LANGUAGE_SURFACE_READINESS: Readonly<
   Record<LearningLanguageTarget, Readonly<Record<LearningLanguageSurface, LearningSurfaceReadinessCell>>>
@@ -50,9 +53,10 @@ export const LEARNING_LANGUAGE_SURFACE_READINESS: Readonly<
     daily_phrase: ready('D129'),
     dialogues: ready('D129'),
     arena: hidden('D83'),
-    videos: ready('D129'),
+    videos: ready('D132'),
     flashcards: ready('D129'),
     diagnostic_and_exam: ready('D129'),
+    spire: ready('D133'),
   }),
   es: Object.freeze({
     lessons: hidden('D129'),
@@ -60,9 +64,10 @@ export const LEARNING_LANGUAGE_SURFACE_READINESS: Readonly<
     daily_phrase: hidden('D129'),
     dialogues: ready('D129'),
     arena: hidden('D83'),
-    videos: ready('D129'),
+    videos: ready('D132'),
     flashcards: ready('D129'),
     diagnostic_and_exam: hidden('D129'),
+    spire: ready('D133'),
   }),
   fr: Object.freeze({
     lessons: hidden('D129'),
@@ -70,9 +75,10 @@ export const LEARNING_LANGUAGE_SURFACE_READINESS: Readonly<
     daily_phrase: ready('D129'),
     dialogues: ready('D129'),
     arena: hidden('D83'),
-    videos: ready('D129'),
+    videos: ready('D132'),
     flashcards: ready('D129'),
     diagnostic_and_exam: hidden('D129'),
+    spire: ready('D133'),
   }),
   de: Object.freeze({
     lessons: hidden('D129'),
@@ -80,9 +86,10 @@ export const LEARNING_LANGUAGE_SURFACE_READINESS: Readonly<
     daily_phrase: hidden('D129'),
     dialogues: ready('D129'),
     arena: hidden('D83'),
-    videos: ready('D129'),
+    videos: ready('D132'),
     flashcards: ready('D129'),
     diagnostic_and_exam: hidden('D129'),
+    spire: ready('D133'),
   }),
   it: Object.freeze({
     lessons: hidden('D130'),
@@ -93,6 +100,7 @@ export const LEARNING_LANGUAGE_SURFACE_READINESS: Readonly<
     videos: ready('D130'),
     flashcards: ready('D130'),
     diagnostic_and_exam: hidden('D130'),
+    spire: hidden('D133'),
   }),
 });
 

@@ -1,11 +1,11 @@
 // ═══════════════════════════════════════════════════════════════════════════
 // home_video_rail_source.ts — какие видео показывает лента на Главной для языка.
 //
-// зачем D130 (владелец 2026-09-30): для итальянского на Главной — раздел видео.
-// Прежняя лента читала RSS одного английского канала (lingman_youtube.ts). Для
-// итальянского берём канал из каталога YouTube, у которого languageTags содержит
-// 'it' (resolveVideoChannelForStudyTarget, без подмены английским).
-// Остальные языки пока идут прежним путём — см. вопрос владельцу в отчёте D129.
+// зачем D130/D132 (владелец 2026-09-30): лента Главной — канал на языке изучения из
+// каталога YouTube по тегу языка (resolveVideoChannelForStudyTarget). Канала нет →
+// лента скрыта. Английский канал другим языкам НЕ подставляем. Английский остаётся
+// на прежней RSS-ленте своего канала Professor Lingman (lingman_youtube.ts): там же
+// пины из «Пульта» и счётчик непросмотренных.
 //
 // Firebase-экономия: манифест + корень + канал + ≤8 роликов, результат держим в
 // памяти процесса 6 часов — повторные заходы на Главную не читают Firestore.
@@ -17,7 +17,7 @@ import { resolveVideoChannelForStudyTarget } from './video_language_contour';
 import type { YoutubeVideoSnapshot } from '../shared/youtube_catalog_contract';
 
 /** Языки, чья лента на Главной идёт из каталога по languageTags (а не из RSS). */
-export const HOME_VIDEO_CATALOG_TARGETS: readonly LearningLanguageTarget[] = Object.freeze(['it']);
+export const HOME_VIDEO_CATALOG_TARGETS: readonly LearningLanguageTarget[] = Object.freeze(['es', 'fr', 'de', 'it']);
 
 const RAIL_TTL_MS = 6 * 60 * 60_000;
 const RAIL_LIMIT = 8;
@@ -66,8 +66,8 @@ export async function loadHomeVideoRailForTarget(target: LearningLanguageTarget)
   const manifest = await client.fetchYoutubeCatalogManifest();
   const channel = resolveVideoChannelForStudyTarget(manifest.channels, target);
   if (!channel) {
-    // Ранний выход: в каталоге нет канала с тегом языка. Английским НЕ подменяем.
-    console.warn('[LANG-SURFACE] home_rail:no_channel_for_target → empty', {
+    // Ранний выход: в каталоге нет канала с тегом языка. Английским НЕ подменяем (D132).
+    console.warn('[LANG-SURFACE] home_rail:no_channel_for_target → hidden', {
       target,
       channels: manifest.channels.map((item) => ({ id: item.id, tags: item.languageTags })),
     });

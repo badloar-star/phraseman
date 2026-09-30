@@ -45,7 +45,8 @@ const PROTECTED_AST = {
   closeRoute: '6d7a6a0c82b725533242526425d52a4bcce58cd845b65eada3365dcec1e11906',
   requestRouteDismiss: '596fd2e28a6749d5e87869261215edf33bea573c5c77d9c8e1ddbdf3b3d34b6f',
   identityPending: '981a6704e0b1c66e6175bcd1d37fbecb0dc6a3aed7f0d14f197116b3dda23f21',
-  fallbackMessages: '1024bda30ea811099eedce22663dba4245d21ba38b26d97eac2c47b70c5d68ad',
+  // зачем (30.09): чистка типов 05573985e — testID на подписи и снятое явное allowFontScaling; тексты сообщений прежние.
+  fallbackMessages: '355cb191c96b3131f5abab06afbeb6603260fcae4ad6c5b8b3062d80f842d8cc',
   fallbackClose: '51e89556dce9ce90627bb8a14cceb9a6f6a475cc5d6dd1eb15d40c1fb247d4c7',
   sharedSheet: '2bf422a86200e6edc2338c714f533c6f28bbe9063e13cbc8442406df2fe0a30c',
   effects: [
@@ -300,7 +301,9 @@ test('actual unavailable route renders the approved bounded geometry, stable saf
     assert.equal(node.props.numberOfLines, undefined);
     assert.equal(node.props.adjustsFontSizeToFit, undefined);
     assert.equal(node.props.maxFontSizeMultiplier, undefined);
-    assert.equal(node.props.allowFontScaling, true);
+    // 30.09: явное allowFontScaling={true} снято чисткой типов (05573985e) — по умолчанию и так true;
+    // суть сторожа — масштаб шрифта НЕ запрещён.
+    assert.notEqual(node.props.allowFontScaling, false);
   }
   assert.match(source, /FONT_SCALE\[fontSize\]\s*\/\s*FONT_SCALE\.medium\s*\*\s*uiScale/);
   assert.doesNotMatch(source, /SafeAreaView|BlurView|paddingTop:\s*170|adjustsFontSizeToFit|maxFontSizeMultiplier|numberOfLines/);

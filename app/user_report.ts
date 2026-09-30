@@ -7,7 +7,9 @@ import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_ke
 const THROTTLE_KEY = 'last_user_report_ts';
 const THROTTLE_MS = 30_000;
 
-export type UserReportReason = 'offensive_nickname';
+// зачем (2026-09-30): у визитки «Про» есть свой текст — на него жалуются отдельной
+// причиной, со снимком текста (reportedText), чтобы модератор видел, что было написано.
+export type UserReportReason = 'offensive_nickname' | 'offensive_profile_text';
 
 let reportThrottleCacheTs = 0;
 
@@ -34,6 +36,8 @@ export const submitUserReport = async (params: {
   reportedName: string;
   reason: UserReportReason;
   screen: 'leaderboard' | 'profile';
+  /** Снимок текста визитки — только для причины offensive_profile_text. */
+  reportedText?: string;
 }): Promise<'sent' | 'throttled' | 'failed'> => {
   const now = Date.now();
   if (await isReportThrottled(now)) return 'throttled';
@@ -48,6 +52,9 @@ export const submitUserReport = async (params: {
       reportedUid: params.reportedUid,
       reportedName: params.reportedName,
       reason: params.reason,
+      ...(params.reason === 'offensive_profile_text' && params.reportedText
+        ? { reportedText: params.reportedText.slice(0, 200) }
+        : {}),
       screen: params.screen,
       reporterName: reporterName ?? 'unknown',
       platform: Platform.OS,

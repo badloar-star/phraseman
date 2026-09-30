@@ -29,7 +29,8 @@ describe('quiet Firebase refresh policy', () => {
   test('all friends UI consumers use the shared account store', () => {
     for (const file of [
       'app/(tabs)/friends.tsx',
-      'components/PlayerProfileModal.tsx',
+      // Друзья визитки живут в хуке после переноса макета (2026-09-30).
+      'components/profile-card/usePlayerProfileSocial.ts',
     ]) {
       expect(source(file)).not.toContain('subscribeToFriends(');
       expect(source(file)).toContain('friends_account_store');

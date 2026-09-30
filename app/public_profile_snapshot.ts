@@ -12,6 +12,7 @@ import { accountScopeKey } from './account_scope_key';
 import { DebugLogger } from './debug-logger';
 import { readCoinRank } from './coin_rank_state_v1';
 import { isValidCoinRank } from './coin_rank_table_v1';
+import { readProfileCardProForProjection } from './profile_card_pro_state_v1';
 
 export const PUBLIC_PROFILE_SNAPSHOT_CACHE_KEY = 'public_profile_snapshot_v1';
 type PublicProfileReason = 'display_change' | 'entitlement_change';
@@ -197,6 +198,11 @@ async function syncPublicProfileSnapshotUnsafe(
   const localCoinRank = await readCoinRank(coinRankOwner);
   if (!isCurrentAccountGeneration(accountToken, coinRankOwner)) return;
   const coinRankPayload = isValidCoinRank(localCoinRank) ? { coinRank: localCoinRank } : {};
+  // зачем (D114): визитка «Про» и её стиль видны другим игрокам — проецируем флаг и
+  // стиль из локального права (куплено за монеты этого аккаунта). Свой текст сюда
+  // не входит: он пишется только profileCardBioSetMine с серверными проверками.
+  const profileCardProPayload = await readProfileCardProForProjection(coinRankOwner);
+  if (!isCurrentAccountGeneration(accountToken, coinRankOwner)) return;
   // Блоки статистики уровней II+ («Выучено»/«Путь») — денормализуем в публичный
   // профиль из локального lifetime-кэша, чтобы ЧУЖИЕ карточки могли их показать.
   // Кэш освежается экраном статистики и модалом собственной карточки; если его ещё
@@ -217,6 +223,7 @@ async function syncPublicProfileSnapshotUnsafe(
     frame,
     aura,
     ...coinRankPayload,
+    ...profileCardProPayload,
     ...cardStatsPayload,
   });
 
@@ -248,6 +255,7 @@ async function syncPublicProfileSnapshotUnsafe(
     frame,
     aura,
     ...coinRankPayload,
+    ...profileCardProPayload,
     ...cardStatsPayload,
     displayHash,
   };

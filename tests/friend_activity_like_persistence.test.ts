@@ -24,7 +24,9 @@ describe('persistent friend activity likes', () => {
   test('restores every liked post and contains no global daily-limit rollback', () => {
     const root = join(__dirname, '..');
     const friends = readFileSync(join(root, 'app/(tabs)/friends.tsx'), 'utf8');
-    const profile = readFileSync(join(root, 'components/PlayerProfileModal.tsx'), 'utf8');
+    // Логика лайка визитки вынесена из PlayerProfileModal в хук (перенос макета 2026-09-30).
+    const profile = readFileSync(join(root, 'components/PlayerProfileModal.tsx'), 'utf8')
+      + readFileSync(join(root, 'components/profile-card/usePlayerProfileSocial.ts'), 'utf8');
     const server = readFileSync(join(root, 'functions/src/friend_activity_likes.ts'), 'utf8');
     const synthetic = readFileSync(join(root, 'app/synthetic_activity_likes.ts'), 'utf8');
 

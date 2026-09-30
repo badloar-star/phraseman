@@ -225,7 +225,6 @@ const BASELINE: Record<string, number> = {
   'components/ExamResultPreviewAdminModal.tsx': 1,
   'components/ForceUpdateGate.tsx': 1,
   'components/LangContext.tsx': 3,
-  'components/PlayerProfileModal.tsx': 3,
   'components/PremiumContext.tsx': 23,
   'components/RegistrationPromptModal.tsx': 4,
   'components/ReportReplyHomeBanner.tsx': 1,

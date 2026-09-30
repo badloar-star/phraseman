@@ -5,7 +5,13 @@ import test from 'node:test';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const SOURCE = fs.readFileSync(path.join(ROOT, 'components', 'PlayerProfileModal.tsx'), 'utf8');
+const MODAL = fs.readFileSync(path.join(ROOT, 'components', 'PlayerProfileModal.tsx'), 'utf8');
+// Визитка 2.0 (перенос макета profile-card-pro.html, 2026-09-30): соц. логика и тело
+// визитки вынесены в components/profile-card/* — контракт читает их вместе.
+const PARTS = ['usePlayerProfileSocial.ts', 'ProfileCardBody.tsx', 'ProfileCardFooter.tsx']
+  .map((file) => fs.readFileSync(path.join(ROOT, 'components', 'profile-card', file), 'utf8'))
+  .join(String.fromCharCode(10));
+const SOURCE = [MODAL, PARTS].join(String.fromCharCode(10));
 
 test('player profile uses real rank art with a neutral unknown state and no legacy avatar render', () => {
   assert.match(SOURCE, /resolvePlayerProfileVisibleRank/);
@@ -18,10 +24,11 @@ test('player profile uses real rank art with a neutral unknown state and no lega
   assert.doesNotMatch(SOURCE, /<PremiumAvatarHalo\b/);
 });
 
-test('player profile is the approved opaque Liquid Glass sheet with both safe areas', () => {
+test('player card is the approved floating card (profile-card-pro.html) with both safe areas', () => {
   assert.match(SOURCE, /normalizeSafeAreaBottomInset\(insets\.bottom\)/);
   assert.match(SOURCE, /topInset/);
-  assert.match(SOURCE, /backgroundColor:\s*g\.opaqueSheet/);
+  // Визитка не зависит от темы: у каждого вида своя палитра из макета.
+  assert.match(MODAL, /backgroundColor:\s*tokens\.bg/);
   assert.match(SOURCE, /testID="player-profile-modal-sheet"/);
 });
 
@@ -65,5 +72,6 @@ test('player profile removes the retired XP, aura, profile-card and energy-perk 
 test('technical rank naming is not shown to users', () => {
   assert.ok(!SOURCE.includes('Монетный ранг'));
   assert.ok(!SOURCE.includes('coin rank'));
-  assert.ok(SOURCE.includes('Ранг игрока'));
+  // Ранг = титул (D93): «Эрудит · ранг 10», как в макете.
+  assert.match(SOURCE, /profileCardRankLabel/);
 });

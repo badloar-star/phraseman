@@ -606,7 +606,8 @@ export type RuneSpendExactResultV1 = Readonly<{
   accountGeneration: number;
   /** Что купили: `dialog` — доступ к сценарию, `pack` — набор карточек и т.д. */
   /** `coin_rank` — повышение ранга монеты (PM-075, app/coin_rank_upgrade_v1.ts). */
-  kind: 'dialog' | 'dialog_hint' | 'mistake_explain' | 'card_pack' | 'coin_rank';
+  /** `profile_card_pro` — визитка «Про» за 10 000 монет (D114, app/profile_card_pro_v1.ts). */
+  kind: 'dialog' | 'dialog_hint' | 'mistake_explain' | 'card_pack' | 'coin_rank' | 'profile_card_pro';
   /** Id товара внутри вида: сценарий, набор. Для разовых — стабильный маркер. */
   subjectId: string;
   runeDelta: number;
@@ -617,7 +618,7 @@ export type RuneSpendExactResultV1 = Readonly<{
   requestFingerprint: string;
 }>;
 
-const RUNE_SPEND_KINDS = ['dialog', 'dialog_hint', 'mistake_explain', 'card_pack', 'coin_rank'] as const;
+const RUNE_SPEND_KINDS = ['dialog', 'dialog_hint', 'mistake_explain', 'card_pack', 'coin_rank', 'profile_card_pro'] as const;
 const RUNE_SPEND_SUBJECT_ID = /^[A-Za-z0-9_.:-]{1,200}$/;
 
 export function parseRuneSpendExactResult(input: unknown): RuneSpendExactResultV1 | null {

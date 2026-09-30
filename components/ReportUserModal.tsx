@@ -4,7 +4,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { FlowText } from './text-integrity/FlowText';
 import { useTheme } from './ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette'; // зачем: окно жалобы на токенах стекла (overlays «Жалоба на ник»)
-import { submitUserReport } from '../app/user_report';
+import { submitUserReport, type UserReportReason } from '../app/user_report';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { triLang, type Lang } from '../constants/i18n';
 import { emitAppEvent } from '../app/events';
@@ -19,17 +19,27 @@ interface Props {
   screen: 'leaderboard' | 'profile';
   lang: Lang;
   onClose: () => void;
+  /**
+   * Свой текст визитки «Про» (2026-09-30). Непустой — в окне появляется выбор причины:
+   * ник или «неприемлемый текст визитки»; снимок текста уходит вместе с жалобой.
+   */
+  reportedProfileText?: string;
   /** Production default — hybrid; explicit `classic` is the rollback/QA path. */
   motionVariant?: 'classic' | 'hybrid';
 }
 
-function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onClose, motionVariant = 'hybrid' }: Props) {
+function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onClose, motionVariant = 'hybrid', reportedProfileText = '' }: Props) {
   const { theme: t, f, liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const reduceMotion = useReduceMotion();
   const isHybrid = motionVariant === 'hybrid';
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
+  const hasProfileText = reportedProfileText.trim().length > 0;
+  const [reason, setReason] = useState<UserReportReason>('offensive_nickname');
+  useEffect(() => {
+    if (visible) setReason('offensive_nickname');
+  }, [visible]);
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -80,6 +90,39 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
       tr: 'İptal',
       pl: 'Anuluj',
     }),
+    titlePlayer: triLang(lang, {
+      ru: 'Пожаловаться на игрока?',
+      uk: 'Поскаржитися на гравця?',
+      en: 'Report the player?',
+      es: '¿Denunciar al jugador?',
+      'pt-BR': 'Denunciar o jogador?',
+      vi: 'Báo cáo người chơi?',
+      id: 'Laporkan pemain?',
+      tr: 'Oyuncuyu şikayet et?',
+      pl: 'Zgłosić gracza?',
+    }),
+    reasonNick: triLang(lang, {
+      ru: 'Ник',
+      uk: 'Нік',
+      en: 'Nickname',
+      es: 'Apodo',
+      'pt-BR': 'Apelido',
+      vi: 'Biệt danh',
+      id: 'Nama panggilan',
+      tr: 'Takma ad',
+      pl: 'Nick',
+    }),
+    reasonText: triLang(lang, {
+      ru: 'Неприемлемый текст визитки',
+      uk: 'Неприйнятний текст візитки',
+      en: 'Inappropriate card text',
+      es: 'Texto de tarjeta inapropiado',
+      'pt-BR': 'Texto do cartão impróprio',
+      vi: 'Nội dung thẻ không phù hợp',
+      id: 'Teks kartu tidak pantas',
+      tr: 'Uygunsuz kart metni',
+      pl: 'Nieodpowiedni tekst wizytówki',
+    }),
     send: triLang(lang, {
       ru: 'Отправить',
       uk: 'Надіслати',
@@ -104,7 +147,14 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
         setDone(false);
         handleClose();
       }, 1400);
-      const result = await submitUserReport({ reportedUid, reportedName, reason: 'offensive_nickname', screen });
+      const chosen: UserReportReason = hasProfileText ? reason : 'offensive_nickname';
+      const result = await submitUserReport({
+        reportedUid,
+        reportedName,
+        reason: chosen,
+        screen,
+        ...(chosen === 'offensive_profile_text' ? { reportedText: reportedProfileText.trim() } : {}),
+      });
       if (result === 'failed') throw new Error('report_failed');
     } catch {
       setLoading(false);
@@ -156,11 +206,38 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
                 alignSelf: 'stretch',
               }}
             >
-              {tx.title}
+              {hasProfileText ? tx.titlePlayer : tx.title}
             </FlowText>
-            <FlowText testID="report-user-name" provenance="user" style={{ color: glass.secondary, fontSize: f.body, marginBottom: 20, textAlign: 'center' }}>
+            <FlowText testID="report-user-name" provenance="user" style={{ color: glass.secondary, fontSize: f.body, marginBottom: hasProfileText ? 12 : 20, textAlign: 'center' }}>
               {reportedName}
             </FlowText>
+            {hasProfileText ? (
+              <View style={{ alignSelf: 'stretch', gap: 8, marginBottom: 16 }}>
+                {([['offensive_nickname', tx.reasonNick], ['offensive_profile_text', tx.reasonText]] as const).map(([value, label]) => {
+                  const on = reason === value;
+                  return (
+                    <TouchableOpacity
+                      key={value}
+                      testID={`report-user-reason-${value}`}
+                      accessibilityRole="radio"
+                      accessibilityState={{ selected: on }}
+                      onPress={() => { hapticTap(); setReason(value); }}
+                      style={{
+                        minHeight: 44, borderRadius: 14, paddingHorizontal: 14, paddingVertical: 10, justifyContent: 'center',
+                        backgroundColor: on ? glass.selected : 'transparent',
+                      }}
+                    >
+                      <Text style={{ color: on ? glass.text : glass.secondary, fontSize: f.body, fontWeight: on ? '700' : '500' }}>{label}</Text>
+                      {value === 'offensive_profile_text' && on ? (
+                        <FlowText testID="report-user-profile-text" provenance="user" style={{ color: glass.secondary, fontSize: f.body, marginTop: 4 }}>
+                          {`«${reportedProfileText.trim()}»`}
+                        </FlowText>
+                      ) : null}
+                    </TouchableOpacity>
+                  );
+                })}
+              </View>
+            ) : null}
           </CascadeItem>
           <CascadeItem delay={isHybrid ? LUM.ladder[2] + 96 : 0} reduceMotion={!isHybrid || reduceMotion}>
             <View style={{ flexDirection: 'row', gap: 10, width: '100%' }}>

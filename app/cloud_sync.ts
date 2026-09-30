@@ -647,6 +647,10 @@ const ACCOUNT_LOCAL_KEY_PREFIXES = [
   // зачем (PM-075/076): ранг монеты куплен за монеты этого аккаунта и пишется одним
   // multiSet с тратой — обязан путешествовать и стираться вместе с рунным кошельком.
   'coin_rank_v1:',
+  // зачем (D114): визитка «Про» куплена за монеты этого аккаунта и пишется одним
+  // multiSet с тратой; кэш своего текста визитки — тоже данные этого аккаунта.
+  'profile_card_pro_v1:',
+  'profile_card_bio_cache_v1:',
 ] as const;
 
 export function isAccountLocalJournalStorageKey(key: string): boolean {

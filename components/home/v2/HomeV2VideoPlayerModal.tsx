@@ -9,12 +9,16 @@ import { triLang } from '../../../constants/i18n';
 import { V2 } from '../../../constants/v2Style';
 
 type Props = {
-  video: LingmanYoutubeVideo;
+  /** Плееру нужны только id и заголовок — набор из видео (D131) передаёт их без полной карточки ролика. */
+  video: Pick<LingmanYoutubeVideo, 'id' | 'title'>;
   onClose: () => void;
+  /** D131: открыть ролик на секунде фразы; нет → с начала, как раньше. */
+  startSec?: number;
+  testID?: string;
 };
 
 /** Keep the autoplaying player visible and inside both device safe areas. */
-export default function HomeV2VideoPlayerModal({ video, onClose }: Props) {
+export default function HomeV2VideoPlayerModal({ video, onClose, startSec, testID = 'home-v2-video-player' }: Props) {
   const insets = useStableSafeAreaInsets();
   const { width, height } = useWindowDimensions();
   const { lang } = useLang();
@@ -24,7 +28,7 @@ export default function HomeV2VideoPlayerModal({ video, onClose }: Props) {
   return (
     <Modal visible transparent animationType="fade" statusBarTranslucent navigationBarTranslucent onRequestClose={onClose}>
       <View
-        testID="home-v2-video-player"
+        testID={testID}
         accessibilityViewIsModal
         style={[s.screen, { paddingTop: insets.top + 12, paddingBottom: insets.bottom + 12 }]}
       >
@@ -36,6 +40,7 @@ export default function HomeV2VideoPlayerModal({ video, onClose }: Props) {
             active
             onClose={onClose}
             presentation="preview"
+            startSec={startSec}
           />
         </View>
       </View>

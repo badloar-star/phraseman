@@ -55,6 +55,8 @@ type YoutubeInlinePlayerProps = {
   onClose?: () => void;
   autoPlay?: boolean;
   presentation?: 'card' | 'preview';
+  /** D131: открыть ролик сразу на этой секунде (момент фразы набора из видео). */
+  startSec?: number;
 };
 
 /**
@@ -68,6 +70,7 @@ export default function YoutubeInlinePlayer({
   onClose,
   autoPlay = true,
   presentation = 'card',
+  startSec,
 }: YoutubeInlinePlayerProps) {
   const { lang } = useLang();
   const { theme: t, isDark, themeMode } = useTheme();
@@ -109,8 +112,8 @@ export default function YoutubeInlinePlayer({
   }), [lang]);
 
   const playerHtml = useMemo(
-    () => buildLingmanEmbedHtml(videoId, { autoplay: autoPlay }),
-    [autoPlay, videoId],
+    () => buildLingmanEmbedHtml(videoId, { autoplay: autoPlay, startSec }),
+    [autoPlay, startSec, videoId],
   );
   const retry = useCallback(() => {
     hapticTap();
@@ -166,7 +169,7 @@ export default function YoutubeInlinePlayer({
     <View style={[styles.playerWrap, presentation === 'preview' ? styles.previewPlayerWrap : styles.cardPlayerWrap]}>
       {!playerError ? (
         <WebView
-          key={`${videoId}:${playerKey}`}
+          key={`${videoId}:${startSec ?? 0}:${playerKey}`}
           testID="lingman-player-webview"
           source={{ html: playerHtml, baseUrl: LINGMAN_YOUTUBE_EMBED_BASE_URL }}
           originWhitelist={LINGMAN_WEBVIEW_ORIGIN_WHITELIST}

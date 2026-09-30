@@ -29,6 +29,7 @@ import { packLanguageHasVoice } from './pack_languages';
 import FlashcardDetailsBody from './FlashcardDetailsBody';
 import { buildLegacyFlipFaceStyles, useFcCrossfadeFlip } from './PhraseCard';
 import WordStrengthDots from './WordStrengthDots';
+import { formatVideoMoment } from './video_moment';
 import type { WordStrength } from './word_strength';
 import { CardItem, CategoryId, cardHasDetails, resolveFlashcardBackText, type FlashcardContentLang } from './types';
 
@@ -151,6 +152,13 @@ type Props = {
   onDeleteFromDetails?: ((item: CardItem, itemIdx: number) => void) | null;
   /** E13: «сила слова» из проекции ошибок; null/undefined — точки не рисуем. */
   strength?: WordStrength | null;
+  /**
+   * D131/PM-288: набор из видео — открыть ролик на секунде фразы.
+   * null/undefined (обычный набор, раздел закрыт) — кнопки момента нет вовсе.
+   */
+  onOpenVideoMoment?: ((item: CardItem) => void) | null;
+  /** Подпись кнопки момента для экранного диктора (язык интерфейса). */
+  videoMomentLabel?: string;
 };
 
 function FlashcardListItemImpl({
@@ -190,6 +198,8 @@ function FlashcardListItemImpl({
   editLabel,
   onDeleteFromDetails = null,
   strength = null,
+  onOpenVideoMoment = null,
+  videoMomentLabel,
 }: Props) {
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
@@ -569,6 +579,17 @@ function FlashcardListItemImpl({
 
   // зачем (D127): у карточки набора «без языка» кнопок звука нет совсем — нечего произносить.
   const voiceHidden = !packLanguageHasVoice(item.packLanguage);
+  // зачем: D131 — кнопка «к моменту ролика» есть ТОЛЬКО у фразы с таймкодом в
+  // наборе из видео. Без транскрипта фраза выглядит как обычная карточка.
+  const videoMomentSec = onOpenVideoMoment && typeof item.videoStartSec === 'number' ? item.videoStartSec : null;
+  const openVideoMoment = useCallback(() => {
+    if (!onOpenVideoMoment) {
+      console.warn(`[VIDEO-SEEK] тап по моменту ${item.id}: обработчика нет`);
+      return;
+    }
+    void hapticLightImpact();
+    onOpenVideoMoment(item);
+  }, [item, onOpenVideoMoment]);
 
   const speakFront = useCallback(() => {
     // зачем: D128 — лицевая сторона звучит клипом OpenAI языка карточки.
@@ -1088,6 +1109,26 @@ function FlashcardListItemImpl({
             )}
           </View> : null}
 
+          {videoMomentSec !== null && !savedGlass ? (
+            <View
+              onStartShouldSetResponder={() => true}
+              style={[styles.videoMomentWrap, voiceSpeakOnRight ? { left: 8 } : { right: 8 }]}
+            >
+              <TouchableOpacity
+                testID={`fc-video-moment-${item.id}`}
+                onPress={openVideoMoment}
+                activeOpacity={0.6}
+                accessibilityRole="button"
+                accessibilityLabel={`${videoMomentLabel ?? 'Play video'} ${formatVideoMoment(videoMomentSec)}`}
+                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                style={[styles.videoMomentChip, { backgroundColor: `${t.bgSurface}F0`, borderColor: t.border }]}
+              >
+                <Ionicons name="play" size={12} color={t.accent} />
+                <Text style={[styles.videoMomentText, { color: t.accent }]}>{formatVideoMoment(videoMomentSec)}</Text>
+              </TouchableOpacity>
+            </View>
+          ) : null}
+
           {hasDetails && !savedGlass && (
             <View
               onStartShouldSetResponder={() => true}
@@ -1209,6 +1250,9 @@ const styles = StyleSheet.create({
   savedTranslation: { fontSize: 12, lineHeight: 16, marginTop: 2 },
   savedActions: { alignSelf: 'stretch', justifyContent: 'space-between', alignItems: 'center' },
   savedAction: { width: 31, height: 31, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
+  videoMomentWrap: { position: 'absolute', top: 8, zIndex: 5 },
+  videoMomentChip: { height: 30, borderRadius: 15, borderWidth: 1, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', gap: 4 },
+  videoMomentText: { fontSize: 12, lineHeight: 16, fontWeight: '700', fontVariant: ['tabular-nums'] },
 });
 
 const FlashcardListItem = React.memo(FlashcardListItemImpl);

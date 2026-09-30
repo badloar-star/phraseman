@@ -133,6 +133,9 @@ type Props = {
   selectionRemaining?: number;
   onCreatePack?: () => void;
   onDeleteSelected?: () => void;
+  /** D131/PM-288: набор из видео — фраза с таймкодом открывает ролик на своей секунде. */
+  onOpenVideoMoment?: ((item: CardItem) => void) | null;
+  videoMomentLabel?: string;
 };
 
 export default function CollectionListView({
@@ -178,6 +181,8 @@ export default function CollectionListView({
   selectionRemaining,
   onCreatePack,
   onDeleteSelected,
+  onOpenVideoMoment = null,
+  videoMomentLabel,
 }: Props) {
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
@@ -511,6 +516,8 @@ export default function CollectionListView({
           Platform.OS === 'web' && deletable ? handleDeleteCard : null
         }
         strength={strengthForCard ? strengthForCard(item.en) : null}
+        onOpenVideoMoment={onOpenVideoMoment}
+        videoMomentLabel={videoMomentLabel}
       />
     );
     /** Swipe-влево = удалить (custom + saved, native). Web/фолбэк — long-press и кнопка в деталях. */
@@ -569,6 +576,8 @@ export default function CollectionListView({
     editLabel,
     renderSwipeDeleteAction,
     strengthForCard,
+    onOpenVideoMoment,
+    videoMomentLabel,
     selectionMode,
     selectedIds,
     onToggleSelection,

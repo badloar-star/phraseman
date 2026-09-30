@@ -13,6 +13,7 @@ import { storageStudyTarget, type RuntimeStudyTarget } from '../target_storage_k
 import type { StudyTarget } from '../study_target';
 import { isPackLanguage, normalizePackCardTexts, normalizePackLanguage, PACK_LANGUAGE_CHOICES, type PackLanguage } from '../flashcards/pack_languages';
 import { DebugLogger } from '../debug-logger';
+import { cardVideoStartSecFromRaw } from '../flashcards/video_moment';
 
 function num(v: unknown, d = 0): number {
   const n = typeof v === 'number' ? v : Number(v);
@@ -501,11 +502,15 @@ export function communityPackCardsToCardItems(packId: string, cards: unknown, pa
     };
     const hasSourceLocale = Object.values(sourceLocales).some((text) => !!String(text ?? '').trim());
     if (!id || !en || (!ru && !es && !hasSourceLocale)) continue;
+    // зачем: D131 — таймкод фразы набора из видео едет тем же чтением документа
+    // набора; без этой строки поле терялось бы в маппере («данных не дали»).
+    const videoStartSec = cardVideoStartSecFromRaw(c.videoStartSec, `${packId}_${id}`);
     const item = {
       id: `${packId}_${id}`,
       en,
       packLanguage: normalizePackLanguage(packLanguage),
       origin: c.origin && typeof c.origin === 'object' ? c.origin : undefined,
+      ...(videoStartSec === undefined ? {} : { videoStartSec }),
       sourceLocales,
       description: note || undefined,
       categoryId: 'custom',

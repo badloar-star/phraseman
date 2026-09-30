@@ -68,6 +68,8 @@ import {
 } from './flashcards/tabbar_state';
 import CommunityPackSocialBar from './community_packs/CommunityPackSocialBar';
 import PackVideoHero from './flashcards/PackVideoHero';
+import HomeV2VideoPlayerModal from '../components/home/v2/HomeV2VideoPlayerModal';
+import { packSupportsVideoMoments, resolveVideoMoment, type VideoMoment } from './flashcards/video_moment';
 import PackCommentsSheet from './community_packs/PackCommentsSheet';
 import ReportPackModal from '../components/ReportPackModal';
 import { packTitleForInterface } from './flashcards/marketplace';
@@ -645,6 +647,30 @@ export default function FlashcardsScreen() {
     bgSurface: t.bgSurface,
   });
 
+  /**
+   * D131/PM-288: тап по фразе набора из видео открывает ролик на её секунде.
+   *
+   * зачем модалка поверх экрана, а не переход: «назад» обязан вернуть в тот же
+   * набор на ту же позицию прокрутки — экран набора не размонтируется, список
+   * остаётся как был. Открытие — локальный setState на том же тапе (плеер
+   * грузится внутри своей рамки, без спиннера на весь экран).
+   * Без таймкода/ролика/готовности видеораздела (D129) обработчика нет —
+   * кнопка момента не рисуется вовсе.
+   */
+  const [videoMoment, setVideoMoment] = useState<VideoMoment | null>(null);
+  const videoMomentPack = packDeeplink && packSupportsVideoMoments(currentMarketPack) ? currentMarketPack : null;
+  const openVideoMoment = useCallback((card: CardItem) => {
+    const moment = resolveVideoMoment(videoMomentPack, card);
+    if (!moment) return;
+    DebugLogger.info('[VIDEO-SEEK]', `набор ${videoMomentPack?.id ?? '?'}: открываю ${moment.videoId} на ${moment.startSec}s (карточка ${moment.cardId})`);
+    setVideoMoment(moment);
+  }, [videoMomentPack]);
+  const closeVideoMoment = useCallback(() => setVideoMoment(null), []);
+  const videoMomentLabel = triLang(lang, {
+    ru: 'Смотреть в видео', uk: 'Дивитися у відео', en: 'Watch in the video', es: 'Ver en el vídeo',
+    'pt-BR': 'Ver no vídeo', vi: 'Xem trong video', id: 'Tonton di video', tr: 'Videoda izle', pl: 'Zobacz w filmie',
+  });
+
   // ── Category / data / pack: filter + позиция ───────────────────────────────
   const persistProgressRef = useRef<(idx: number) => void>(() => {});
   persistProgressRef.current = (index: number) => {
@@ -1200,6 +1226,8 @@ export default function FlashcardsScreen() {
             selectionRemaining={remainingCardsToMinimum(selectedCardIds)}
             onCreatePack={openCreatePackFromSelection}
             onDeleteSelected={confirmDeleteSelected}
+            onOpenVideoMoment={videoMomentPack ? openVideoMoment : null}
+            videoMomentLabel={videoMomentLabel}
           />
         )}
 
@@ -1244,6 +1272,16 @@ export default function FlashcardsScreen() {
       {/* Жалоба на чужой набор прямо с его страницы. «Не показывать» скрывает
           набор на устройстве — тогда уходим назад, чтобы не остаться на
           экране только что скрытого набора. */}
+      {/* D131: ролик набора на секунде фразы; закрытие возвращает в тот же набор. */}
+      {videoMoment ? (
+        <HomeV2VideoPlayerModal
+          testID="pack-video-moment-player"
+          video={{ id: videoMoment.videoId, title: videoMoment.title }}
+          startSec={videoMoment.startSec}
+          onClose={closeVideoMoment}
+        />
+      ) : null}
+
       {packReportOpen && currentMarketPack ? (
         <ReportPackModal
           visible

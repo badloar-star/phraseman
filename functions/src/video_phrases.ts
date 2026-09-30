@@ -129,6 +129,14 @@ export function buildVideoPackDoc(args: Readonly<{
     /** Объяснение → шеврон подробностей на карточке (решение владельца). */
     description: phrase.explanation,
     origin: { source: 'video', sourceId: id, sourceTitle: videoTitle || id },
+    /**
+     * зачем: D131 (PM-288) — тап по фразе в наборе из видео открывает ролик на
+     * её секунде. Таймкод уже есть у фразы (транскрипт в «Видео-студии» →
+     * черновик → публикация), но раньше терялся ровно здесь. Кладём в карточку,
+     * чтобы клиент получил его тем же чтением документа набора, без запроса к
+     * `video_phrase_sets`. Нет таймкода — нет поля, и фраза не нажимается.
+     */
+    ...(typeof phrase.startSec === 'number' ? { videoStartSec: phrase.startSec } : {}),
   }));
 
   return {

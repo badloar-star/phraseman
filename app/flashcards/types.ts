@@ -75,6 +75,12 @@ export interface CardItem {
   // зачем: StudyTarget расширен до en|fr|es|de; узкое 'en'|'fr' ломало присвоение из Flashcard.
   studyTarget?: StudyTarget;
   origin?: { source?: string; sourceId?: string; sourceTitle?: string };
+  /**
+   * Секунда ролика, где звучит фраза (набор из видео, D131/PM-288).
+   * Есть только у карточек набора с загруженным транскриптом; нет → фраза
+   * не открывает ролик и не выглядит нажимаемой.
+   */
+  videoStartSec?: number;
   /** Independent language contour; legacy cards without it are English. */
   packLanguage?: PackLanguage;
   /** Additive rich community/content-factory schema. Legacy clients ignore these fields. */

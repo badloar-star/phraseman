@@ -527,7 +527,7 @@ export type LingmanPlayerBridgeMessage = {
 /** Единый маркер моста — по нему RN отличает свои сообщения от чужих. */
 export const LINGMAN_PLAYER_BRIDGE_SOURCE = 'lingman-player';
 
-export function buildLingmanEmbedHtml(videoId: string, options: { autoplay?: boolean } = {}): string {
+export function buildLingmanEmbedHtml(videoId: string, options: { autoplay?: boolean; startSec?: number } = {}): string {
   const baseOrigin = LINGMAN_YOUTUBE_EMBED_BASE_URL.replace(/\/$/, '');
   const playerParams = new URLSearchParams({
     playsinline: '1',
@@ -537,6 +537,12 @@ export function buildLingmanEmbedHtml(videoId: string, options: { autoplay?: boo
     widget_referrer: LINGMAN_YOUTUBE_EMBED_BASE_URL,
   });
   if (options.autoplay) playerParams.set('autoplay', '1');
+  // зачем: D131 — набор из видео открывает ролик сразу на моменте фразы.
+  // YouTube принимает в `start` только целые секунды; 0/мусор → с начала.
+  const start = typeof options.startSec === 'number' && Number.isFinite(options.startSec) && options.startSec > 0
+    ? Math.floor(options.startSec)
+    : 0;
+  if (start > 0) playerParams.set('start', String(start));
   const embedUrl = `https://www.youtube.com/embed/${encodeURIComponent(videoId)}?${playerParams.toString()}`;
   // зачем (владелец 2026-09-02): ускорение энергии считается только пока видео
   // РЕАЛЬНО играет, поэтому нужен честный сигнал play/pause. Берём его из

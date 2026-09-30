@@ -122,6 +122,15 @@ describe('lingman_youtube', () => {
     expect(html).toContain('allow="autoplay; accelerometer;');
   });
 
+  it('D131: opens the embed at the phrase second (whole seconds only)', () => {
+    expect(buildLingmanEmbedHtml('X7L3Xg3qITo', { autoplay: true, startSec: 83.7 })).toContain('start=83');
+    // 0, negative and garbage start from the beginning — no `start` param at all.
+    expect(buildLingmanEmbedHtml('X7L3Xg3qITo', { startSec: 0 })).not.toContain('start=');
+    expect(buildLingmanEmbedHtml('X7L3Xg3qITo', { startSec: -5 })).not.toContain('start=');
+    expect(buildLingmanEmbedHtml('X7L3Xg3qITo', { startSec: Number.NaN })).not.toContain('start=');
+    expect(buildLingmanEmbedHtml('X7L3Xg3qITo')).not.toContain('start=');
+  });
+
   it('counts unread videos relative to the last opened latest video', () => {
     const videos = [
       { id: 'latest' },

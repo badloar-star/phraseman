@@ -73,6 +73,23 @@ describe('video pack document', () => {
     expect(cards).toHaveLength(2);
   });
 
+  it('D131: таймкод фразы доезжает до карточки набора как videoStartSec', () => {
+    const timed = [
+      { ...phrases[0], startSec: 12.5 },
+      phrases[1],
+    ];
+    const cards = build({ phrases: timed }).cards as Record<string, unknown>[];
+    expect(cards[0]).toMatchObject({ id: 'p1', videoStartSec: 12.5 });
+    // Без транскрипта поля нет вовсе — клиент не рисует кнопку «к моменту».
+    expect(cards[1]).not.toHaveProperty('videoStartSec');
+    for (const card of build().cards as Record<string, unknown>[]) expect(card).not.toHaveProperty('videoStartSec');
+  });
+
+  it('D131: секунда 0 — тоже таймкод (фраза в самом начале ролика)', () => {
+    const cards = build({ phrases: [{ ...phrases[0], startSec: 0 }] }).cards as Record<string, unknown>[];
+    expect(cards[0].videoStartSec).toBe(0);
+  });
+
   it('перепубликация не обнуляет лайки и добавления уже живущего набора', () => {
     // keepSocial=true — счётчиков в документе быть не должно, иначе merge их сотрёт.
     expect(build({ keepSocial: true })).not.toHaveProperty('likesCount');

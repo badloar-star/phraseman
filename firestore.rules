@@ -1090,6 +1090,29 @@ service cloud.firestore {
         allow read, write: if false;
       }
 
+      // Dialogue V2 memory and resumable Plus threads are server-owned private
+      // state. Clients (including browser-admin credentials) must use audited
+      // callables; Firebase Admin SDK writes bypass these rules.
+      match /dialogue_v2_memory/{sharedId} {
+        allow get, list, create, update, delete: if false;
+
+        match /threads/{threadId} {
+          allow get, list, create, update, delete: if false;
+        }
+      }
+
+      // Plus freeform keeps one small, structured memory document per language.
+      // It never contains raw turns and remains callable/Admin-SDK only.
+      match /dialogue_v2_freeform_memory/{studyTarget} {
+        allow get, list, create, update, delete: if false;
+      }
+
+      // The optional prepared-voice UTC-day reservation is deny-only,
+      // server-owned state. No client callable is currently exposed.
+      match /dialogue_v2_bot_voice_claims/{claimId} {
+        allow read, write: if false;
+      }
+
       // Сохранённые карточки владельца, вынесенные из документа users/{userId}.
       //
       // зачем: progress.flashcards_v1 хранил весь список карточек одной JSON-строкой
@@ -1409,8 +1432,8 @@ service cloud.firestore {
         allow write: if false;
       }
       match /arena_v2_receipts/{matchId} {
-        // xpBreakdown is private owner-visible settlement evidence. It is
-        // authored only by the Arena transaction and never exposed publicly.
+        // Settlement receipts are private to their owner and authored only by
+        // the Arena transaction; no public collection exposes them.
         allow read: if userDocOwnerMatchesAuth(userId);
         allow write: if false;
       }
@@ -1779,8 +1802,14 @@ service cloud.firestore {
 
     // â”€â”€ Error reports (Ð±Ð°Ð³-Ñ€ÐµÐ¿Ð¾Ñ€Ñ‚Ñ‹) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /error_reports/{docId} {
-      allow create: if isAdmin();
-      allow read, update, delete: if isAdmin();
+      allow read: if isAdmin();
+      allow create: if isAdmin()
+        && (!request.resource.data.keys().hasAny(['contentScope']) || request.resource.data.contentScope != 'spire');
+      allow update: if isAdmin()
+        && (!resource.data.keys().hasAny(['contentScope']) || resource.data.contentScope != 'spire')
+        && (!request.resource.data.keys().hasAny(['contentScope']) || request.resource.data.contentScope != 'spire');
+      allow delete: if isAdmin()
+        && (!resource.data.keys().hasAny(['contentScope']) || resource.data.contentScope != 'spire');
     }
 
     match /app_errors/{docId} {
@@ -1950,6 +1979,23 @@ service cloud.firestore {
       allow write: if false;
     }
 
+    // Per-language Spire quarantine is mutated only by audited callables.
+    // The legacy browser-admin catch-all below explicitly excludes these docs;
+    // Firestore overlapping matches are OR-combined, so this deny alone is not enough.
+    match /config/{spireFlagsDocId} {
+      allow read: if isAdmin() && spireFlagsDocId.matches('spire_task_flags_(es|fr|de)');
+      allow write: if false;
+    }
+    match /spire_task_report_receipts/{receiptId} {
+      allow read, write: if false;
+    }
+    match /spire_task_report_reservations/{reservationId} {
+      allow read, write: if false;
+    }
+    match /spire_task_incidents/{incidentId} {
+      allow read, write: if false;
+    }
+
     // Published home hints are a server-authored content snapshot. Signed-in
     // clients may read only the public snapshot; drafts, history and writes
     // stay behind the admin callable / Admin SDK.
@@ -2073,7 +2119,7 @@ service cloud.firestore {
       allow create: if request.auth != null
         && request.resource.data.keys().hasOnly(['step', 'variant', 'context', 'plan', 'obColor', 'price', 'day', 'ts', 'uidh', 'dev', 'expireAt'])
         && request.resource.data.step in ['shown', 'cta_click', 'trial_started', 'purchase_completed', 'purchase_failed', 'purchase_cancelled', 'restore_completed', 'close']
-        && request.resource.data.variant in ['v1', 'v2', 'A', 'B', 'C', 'D', 'E', 'F', 'G']
+        && request.resource.data.variant in ['v1', 'v2', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'PLUS']
         && request.resource.data.context is string
         && request.resource.data.context.size() <= 40
         && (request.resource.data.plan == null || request.resource.data.plan in ['monthly', 'yearly', 'lifetime'])
@@ -3191,9 +3237,19 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    // зачем (Account V2, 2026-09-30): данные синхронизации аккаунта V2 лежат
+    // JSON-строками с отпечатками операций; читать и писать их может только
+    // сервер (Admin SDK, callable accountsV2SyncApply). Ни клиент, ни браузерная
+    // админка не должны трогать их напрямую — ручная правка ломает инварианты
+    // ревизий и отпечатков. Явный deny + исключение в админском catch-all ниже.
+    match /accounts_v2/{document=**} {
+      allow read, write: if false;
+    }
+
     match /{collection}/{document=**} {
       allow read, write: if isAdmin()
         && collection != 'users'
+        && collection != 'accounts_v2'
         && collection != 'account_deletion_tombstones'
         && collection != 'account_deletion_auth_markers'
         && collection != 'account_deletion_credential_receipts'
@@ -3221,6 +3277,11 @@ service cloud.firestore {
         && collection != 'admin_gift_certificate_batch_operations'
         && collection != 'gift_certificate_archive'
         && collection != 'admin_user_briefs_rate_limits'
+        // Raw Dialogue V2 session context is callable/Admin-SDK only. This
+        // exclusion is required because overlapping matches are OR-combined.
+        && collection != 'dialogue_v2_sessions'
+        && collection != 'dialogue_v2_session_terminals'
+        && collection != 'dialogue_v2_freeform_sessions'
         && !isServerOwnedFeedbackRoot(collection)
         && !isRetiredArenaRoot(collection)
         && !isServerOwnedAgentRoot(collection)
@@ -3235,6 +3296,11 @@ service cloud.firestore {
         && collection != 'jarvis_learning_cohorts'
         && collection != 'jarvis_growth_daily'
         && collection != 'jarvis_quality_daily'
+        && collection != 'spire_task_report_receipts'
+        && collection != 'spire_task_report_reservations'
+        && collection != 'spire_task_incidents'
+        && collection != 'error_reports'
+        && !(collection == 'config' && document.matches('spire_task_flags_(es|fr|de)'))
         && collection != 'economy'
         && collection != 'youtube_catalog'
         && collection != 'youtube_catalog_snapshots'
@@ -3820,6 +3886,22 @@ service cloud.firestore {
       allow read, write: if false;
     }
     match /arena_v2_match_private/{matchId} {
+      allow read, write: if false;
+    }
+    // Dialogue V2 operational transcripts are short-lived, server-owned
+    // private state. Clients receive only bounded callable projections.
+    match /dialogue_v2_sessions/{sessionId} {
+      allow read, write: if false;
+    }
+    // Terminal claims and replay receipts are server-only and may contain a
+    // bounded generated assessment (never the raw transcript).
+    match /dialogue_v2_session_terminals/{sessionId} {
+      allow read, write: if false;
+    }
+    // Plus freeform sessions use a separate bounded server-only ledger. Raw
+    // turns and opaque owner bindings are never exposed to app or browser-admin
+    // Firestore clients; access can only be projected by future callables.
+    match /dialogue_v2_freeform_sessions/{sessionId} {
       allow read, write: if false;
     }
     // Expansion coordination and sealed content are callable-only. These

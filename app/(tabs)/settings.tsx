@@ -120,15 +120,20 @@ type PlusAccessDetail = {
 const SHOW_SOUND_SETTINGS = false;
 
 // зачем: собственные имена языков изучения узнаваемы при любом языке интерфейса (как в StudyLanguagePicker);
-// флаг есть только у релизного английского — для остальных плашка получает нейтральную иконку.
+// зачем D129/D130: флаги теперь есть у всех пяти языков (итальянский и немецкий — 2026-09-30).
 const STUDY_TARGET_NATIVE_NAME: Record<StudyTarget, string> = {
   en: 'English',
   es: 'Español',
   fr: 'Français',
   de: 'Deutsch',
+  it: 'Italiano',
 };
 const STUDY_TARGET_FLAG: Partial<Record<StudyTarget, number>> = {
   en: require('../../assets/images/language_flags/language_en.webp'),
+  es: require('../../assets/images/language_flags/language_es_dev.webp'),
+  fr: require('../../assets/images/language_flags/language_fr_dev.webp'),
+  de: require('../../assets/images/language_flags/language_de.webp'),
+  it: require('../../assets/images/language_flags/language_it.webp'),
 };
 
 export default function SettingsMain() {

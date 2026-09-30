@@ -95,8 +95,10 @@ describe('clean onboarding study-target and order contract', () => {
     expect(source).toContain('setDevStudyTargetLang(target, lang)');
     expect(source).toContain("setDevStudyTargetLang('en', lang)");
     expect(source).toContain("prefetchAndRecordStudyTargetServerPack('fr', lang)");
-    expect(source).toContain("id: 'en'");
-    expect(source).toContain("id: 'fr'");
+    // зачем D129 (владелец 2026-09-30): пять языков в порядке «фр, исп, англ, нем, итал».
+    const order = ['fr', 'es', 'en', 'de', 'it'].map((id) => source.indexOf(`languageOption('${id}', `));
+    order.forEach((position) => expect(position).toBeGreaterThan(-1));
+    expect([...order].sort((a, b) => a - b)).toEqual(order);
     expect(source).not.toContain("require('../assets/images/onboarding/");
     expect(source).not.toContain('ONBOARDING_STUDY_TARGET_ICONS');
   });

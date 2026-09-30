@@ -47,6 +47,9 @@ const FLAG_ART: Partial<Record<PackLanguage, number>> = {
   en: require('../../assets/images/language_flags/language_en.webp'),
   fr: require('../../assets/images/language_flags/language_fr_dev.webp'),
   es: require('../../assets/images/language_flags/language_es_dev.webp'),
+  // зачем D130: флаги итальянского и немецкого в стиле готовых (2026-09-30).
+  de: require('../../assets/images/language_flags/language_de.webp'),
+  it: require('../../assets/images/language_flags/language_it.webp'),
 };
 
 // зачем: флаг — растровый там, где есть арт (как в макете); для остальных языков — код в плашке, а не эмодзи.

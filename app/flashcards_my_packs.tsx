@@ -107,6 +107,9 @@ const PACK_FLAG_ART: Partial<Record<PackLanguage, number>> = {
   en: require('../assets/images/language_flags/language_en.webp'),
   fr: require('../assets/images/language_flags/language_fr_dev.webp'),
   es: require('../assets/images/language_flags/language_es_dev.webp'),
+  // зачем D130: флаги итальянского и немецкого в стиле готовых (2026-09-30).
+  de: require('../assets/images/language_flags/language_de.webp'),
+  it: require('../assets/images/language_flags/language_it.webp'),
 };
 
 function MyPacksGlass({ tint, edge }: { tint: string; edge: string }) {

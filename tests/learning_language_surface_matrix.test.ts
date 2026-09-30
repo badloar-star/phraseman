@@ -5,7 +5,8 @@ import {
   requiredLearningLanguageSurfaces,
 } from '../app/learning_language_surface_matrix';
 
-assert.deepEqual(LEARNING_LANGUAGE_TARGETS, ['en', 'es', 'fr', 'de']);
+// зачем D130: итальянский добавлен владельцем 2026-09-30.
+assert.deepEqual(LEARNING_LANGUAGE_TARGETS, ['en', 'es', 'fr', 'de', 'it']);
 assert.deepEqual(LEARNING_LANGUAGE_SURFACES, [
   'lessons',
   'learning_v2',

@@ -124,6 +124,9 @@ const APP_ICON_SOURCE = require('../assets/images/icon.webp');
 const ONBOARDING_ASSETS = {
   languageEn: require('../assets/images/language_flags/language_en.webp'),
   languageFr: require('../assets/images/language_flags/language_fr_dev.webp'),
+  languageEs: require('../assets/images/language_flags/language_es_dev.webp'),
+  languageDe: require('../assets/images/language_flags/language_de.webp'),
+  languageIt: require('../assets/images/language_flags/language_it.webp'),
 };
 
 export type OnboardingProps = {
@@ -244,9 +247,22 @@ const DISCOVERY_OPTIONS: Option<DiscoverySource>[] = [
   { id: 'other', title: 'Другое', icon: 'ellipsis-horizontal-circle-outline' },
 ];
 
-const LANGUAGE_OPTIONS: (Option<StudyTarget> & { code: string; native: string })[] = [
-  { id: 'en', code: 'EN', native: 'Английский', title: 'Английский', icon: 'chatbubbles-outline', asset: ONBOARDING_ASSETS.languageEn },
-  { id: 'fr', code: 'FR', native: 'Французский', title: 'Французский', icon: 'cafe-outline', asset: ONBOARDING_ASSETS.languageFr },
+// зачем D129 (владелец 2026-09-30): пять языков в порядке владельца — «французский,
+// испанский, английский, немецкий, итальянский». Какие разделы откроются для языка,
+// решает таблица app/learning_language_surface_readiness.ts, а не этот список.
+type LanguageOption = Option<StudyTarget> & { code: string; native: string };
+
+// Подпись карточки и название языка — одна строка (раньше дублировались native/title).
+function languageOption(id: StudyTarget, title: string, icon: LanguageOption['icon'], asset: LanguageOption['asset']): LanguageOption {
+  return { id, code: id.toUpperCase(), native: title, title, icon, asset };
+}
+
+const LANGUAGE_OPTIONS: LanguageOption[] = [
+  languageOption('fr', 'Французский', 'cafe-outline', ONBOARDING_ASSETS.languageFr),
+  languageOption('es', 'Испанский', 'sunny-outline', ONBOARDING_ASSETS.languageEs),
+  languageOption('en', 'Английский', 'chatbubbles-outline', ONBOARDING_ASSETS.languageEn),
+  languageOption('de', 'Немецкий', 'train-outline', ONBOARDING_ASSETS.languageDe),
+  languageOption('it', 'Итальянский', 'pizza-outline', ONBOARDING_ASSETS.languageIt),
 ];
 
 const LEVEL_OPTIONS: Option<LevelChoice>[] = [
@@ -268,9 +284,12 @@ function normalizedStoredStep(value: string | null): CleanOnboardingStep | null 
   return null;
 }
 
+// Все пять названий — прилагательные на «-ий»: винительный = название строчными,
+// родительный — та же основа на «-ого» («испанский» → «испанского»).
 function targetLabel(target: StudyTarget, form: 'subject' | 'accusative' = 'subject'): string {
-  if (target === 'fr') return form === 'accusative' ? 'французский' : 'французского';
-  return form === 'accusative' ? 'английский' : 'английского';
+  const title = LANGUAGE_OPTIONS.find((item) => item.id === target)?.title ?? LANGUAGE_OPTIONS[2]!.title;
+  const accusative = title.toLowerCase();
+  return form === 'accusative' ? accusative : accusative.replace(/ий$/, 'ого');
 }
 
 function levelToCurrentLevel(level: LevelChoice): CurrentLevel {
@@ -2500,7 +2519,7 @@ function CleanOnboarding({
         if (!active) return;
         const map = new Map(rows);
         const savedTarget = SHOW_ONBOARDING_LANGUAGE_STEP ? map.get(ONBOARDING_REQUESTED_STUDY_TARGET_KEY) : 'en';
-        if (savedTarget === 'en' || savedTarget === 'fr') setStudyTarget(savedTarget);
+        if (LANGUAGE_OPTIONS.some((item) => item.id === savedTarget)) setStudyTarget(savedTarget as StudyTarget);
         const savedLevel = map.get(PLAN_LEVEL_KEY);
         if (LEVEL_OPTIONS.some((item) => item.id === savedLevel)) setLevel(savedLevel as LevelChoice);
         const savedSource = map.get(DISCOVERY_SOURCE_KEY);

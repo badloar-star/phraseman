@@ -30,6 +30,7 @@ const STUDY_TARGET_NATIVE_NAME: Record<StudyTarget, string> = {
   es: 'Español',
   fr: 'Français',
   de: 'Deutsch',
+  it: 'Italiano',
 };
 
 function switchedLanguageToastCopy(target: StudyTarget) {
@@ -46,14 +47,17 @@ function switchedLanguageToastCopy(target: StudyTarget) {
   } as const;
 }
 
-/** Качественные иконки языков (512×512, те же, что в онбординге). */
-const RELEASE_LANGUAGE_FLAG_ASSETS: Record<'en', ImageSourcePropType> = {
+/** Флаги языков (512×320, те же, что в онбординге). зачем D129/D130: флаг есть у всех пяти. */
+const RELEASE_LANGUAGE_FLAG_ASSETS: Record<StudyTarget, ImageSourcePropType> = {
   en: require('../../assets/images/language_flags/language_en.webp'),
+  es: require('../../assets/images/language_flags/language_es_dev.webp'),
+  fr: require('../../assets/images/language_flags/language_fr_dev.webp'),
+  de: require('../../assets/images/language_flags/language_de.webp'),
+  it: require('../../assets/images/language_flags/language_it.webp'),
 };
 
 function languageFlagAssetFor(code: StudyTarget): ImageSourcePropType | undefined {
-  if (code === 'en') return RELEASE_LANGUAGE_FLAG_ASSETS.en;
-  return undefined;
+  return RELEASE_LANGUAGE_FLAG_ASSETS[code];
 }
 
 const CARD_WIDTH = 90;

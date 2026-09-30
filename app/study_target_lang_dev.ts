@@ -47,12 +47,14 @@ const SOURCE_UI_STUDY_TARGET_LABELS: Record<StudyTargetSourceUiLang, Record<Stud
     es: 'Испанский',
     fr: 'Французский',
     de: 'Немецкий',
+    it: 'Итальянский',
   },
   uk: {
     en: 'Англійська',
     es: 'Іспанська',
     fr: 'Французька',
     de: 'Німецька',
+    it: 'Італійська',
   },
 };
 

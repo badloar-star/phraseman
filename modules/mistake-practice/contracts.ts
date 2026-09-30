@@ -13,7 +13,8 @@
  * чем держать копию под сторожем. Расхождение ловит
  * mistake_study_target_languages_contract.test.ts.
  */
-export const MISTAKE_STUDY_TARGETS = ['en', 'es', 'fr', 'de'] as const;
+// зачем D130: итальянский — пятый язык обучения (карточки копят ошибки и на нём).
+export const MISTAKE_STUDY_TARGETS = ['en', 'es', 'fr', 'de', 'it'] as const;
 
 export type MistakeStudyTarget = (typeof MISTAKE_STUDY_TARGETS)[number];
 

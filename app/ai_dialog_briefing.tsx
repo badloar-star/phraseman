@@ -20,6 +20,7 @@ import { dialogScenarioRankAccess, isScenarioUnlockedForAccount } from './ai_dia
 import { useMyCoinRank } from '../hooks/use_my_coin_rank';
 import { getScenarioById } from './ai_dialog_scenarios';
 import { dialogueScenarioPresentation } from './dialogue_scenario_presentation';
+import { resolveDialogueStudyTarget } from './dialogue_language_registry';
 import {
   aiDialogContentAvailableForTarget,
   aiDialogTargetGateCopy,
@@ -256,6 +257,13 @@ function AiDialogBriefingBody() {
   }
 
   if (!scenario) return <MissingDialogueScreen />;
+  // зачем D130: итальянский (и любой язык без диалогов) сюда не доходит — плитки нет;
+  // если всё же пришёл по старой ссылке, показываем «нет диалога», а не английский.
+  const dialogueTarget = resolveDialogueStudyTarget(studyTarget);
+  if (!dialogueTarget) {
+    console.warn('[LANG-SURFACE] ai_dialog_briefing:unsupported_target → missing', { studyTarget });
+    return <MissingDialogueScreen />;
+  }
 
   if (!scenarioUnlocked) {
     // D124: сценарий закрыт рангом. Экран-задание рисовать нельзя (мигнула бы
@@ -313,7 +321,7 @@ function AiDialogBriefingBody() {
     <>
       <AiDialogBriefingScreen
         scenario={scenario}
-        studyTarget={studyTarget}
+        studyTarget={dialogueTarget}
         onBack={goBack}
         onStart={openSession}
         // Режим покупки — только когда сценарий платный и ещё не куплен.

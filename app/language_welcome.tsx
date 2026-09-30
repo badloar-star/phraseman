@@ -65,12 +65,14 @@ const FLAG_ASSETS: Partial<Record<StudyTargetLang, ImageSourcePropType>> = {
   en: require('../assets/images/language_flags/language_en.webp'),
   fr: require('../assets/images/language_flags/language_fr_dev.webp'),
   es: require('../assets/images/language_flags/language_es_dev.webp'),
+  de: require('../assets/images/language_flags/language_de.webp'),
+  it: require('../assets/images/language_flags/language_it.webp'),
 };
 
 /** Название языка в винительной форме для вопросов («Зачем тебе …?»). */
 const LANGUAGE_ACCUSATIVE: Record<'ru' | 'uk', Record<StudyTargetLang, string>> = {
-  ru: { en: 'английский', fr: 'французский', es: 'испанский', de: 'немецкий' },
-  uk: { en: 'англійська', fr: 'французька', es: 'іспанська', de: 'німецька' },
+  ru: { en: 'английский', fr: 'французский', es: 'испанский', de: 'немецкий', it: 'итальянский' },
+  uk: { en: 'англійська', fr: 'французька', es: 'іспанська', de: 'німецька', it: 'італійська' },
 };
 
 /**

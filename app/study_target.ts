@@ -3,6 +3,7 @@ import {
   LEARNING_LANGUAGE_CONTOURS,
   LEARNING_LANGUAGE_TARGETS,
   isLearningLanguageTarget,
+  type LearningLanguageSpeechLocale,
   type LearningLanguageTarget,
 } from './learning_language_contour';
 
@@ -47,7 +48,7 @@ export const STUDY_TARGET_META = Object.freeze(
   ),
 ) as Readonly<Record<StudyTarget, {
   code: StudyTarget;
-  ttsLocale: 'en-US' | 'es-ES' | 'fr-FR' | 'de-DE';
+  ttsLocale: LearningLanguageSpeechLocale;
   sourceLocales: typeof SOURCE_LOCALES;
 }>>;
 
@@ -72,7 +73,7 @@ export function defaultStudyTarget(): typeof DEFAULT_STUDY_TARGET {
   return DEFAULT_STUDY_TARGET;
 }
 
-export function ttsLocaleForProductionStudyTarget(studyTarget: ProductionStudyTarget): 'en-US' | 'es-ES' | 'fr-FR' | 'de-DE' {
+export function ttsLocaleForProductionStudyTarget(studyTarget: ProductionStudyTarget): LearningLanguageSpeechLocale {
   return STUDY_TARGET_META[studyTarget].ttsLocale;
 }
 

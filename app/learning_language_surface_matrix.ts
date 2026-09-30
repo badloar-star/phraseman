@@ -1,5 +1,5 @@
-export const LEARNING_LANGUAGE_TARGETS = ['en', 'es', 'fr', 'de'] as const;
-export type LearningLanguageTarget = (typeof LEARNING_LANGUAGE_TARGETS)[number];
+// зачем D129: один список языков на всё приложение — берём из контура, не дублируем.
+export { LEARNING_LANGUAGE_TARGETS, type LearningLanguageTarget } from './learning_language_contour';
 
 export const LEARNING_LANGUAGE_SURFACES = [
   'lessons',

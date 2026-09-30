@@ -6,8 +6,9 @@
 // и понижении принимает только сервер). Крестик закрывает карточку навсегда для
 // этой недели. Глаголы в настоящем времени — род игрока не угадываем.
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { memo } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { memo, useEffect, useRef } from 'react';
+import { Animated, StyleSheet, Text, View } from 'react-native';
+import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import type { Lang } from '../../constants/i18n';
 import type { SpireWeekResultView } from '../../app/spire/spire_week_result_client';
@@ -37,9 +38,23 @@ export function spireWeekResultLines(lang: Lang, r: SpireWeekResultView): Readon
 function SpireWeekResultCard({ lang, result, myCoinRank, onClose }: Props) {
   const p = useSpirePalette();
   const { title, sub } = spireWeekResultLines(lang, result);
+  // зачем (макет community.html COM-SPIRE-WEEK, anim-pop): монета «выпрыгивает» один раз
+  // при появлении карточки. Нативный драйвер, без цикла; «уменьшить движение» — сразу на месте.
+  const reduceMotion = useReduceMotion();
+  const pop = useRef(new Animated.Value(reduceMotion ? 1 : 0)).current;
+  useEffect(() => {
+    if (reduceMotion) { pop.setValue(1); return; }
+    Animated.spring(pop, { toValue: 1, stiffness: 240, damping: 14, mass: 0.9, useNativeDriver: true }).start();
+  }, [pop, reduceMotion]);
+  const popStyle = {
+    opacity: pop.interpolate({ inputRange: [0, 0.4, 1], outputRange: [0, 1, 1] }),
+    transform: [{ scale: pop.interpolate({ inputRange: [0, 1], outputRange: [0.55, 1] }) }],
+  };
   return (
     <View style={[s.card, { backgroundColor: p.cardRaised }]} accessible={false} testID="spire-week-result">
-      {myCoinRank !== null ? <AvatarView avatar="" coinRank={myCoinRank} size={52} /> : <View style={[s.dot, { backgroundColor: p.control }]} />}
+      <Animated.View style={popStyle} testID="spire-week-result-pop">
+        {myCoinRank !== null ? <AvatarView avatar="" coinRank={myCoinRank} size={52} /> : <View style={[s.dot, { backgroundColor: p.control }]} />}
+      </Animated.View>
       <View style={s.text} accessible accessibilityLabel={`${spireGameText(lang, 'weekResult')}. ${title}. ${sub}`}>
         <Text style={[s.over, { color: p.textSecondary }]}>{spireGameText(lang, 'weekResult').toUpperCase()}</Text>
         <Text style={[s.title, { color: p.text }]}>{title}</Text>

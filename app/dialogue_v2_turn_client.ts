@@ -64,6 +64,24 @@ export class DialogueV2TextTurnUnavailableError extends Error {
   }
 }
 
+/**
+ * D123: тихий суточный потолок Plus (300 ответов/сутки на сервере). Отдельный
+ * класс, чтобы экран показал спокойное «продолжим завтра», а не «нет связи»:
+ * повтор тут не поможет, а мысль «сломался интернет» — ложная.
+ */
+export class DialogueV2PlusDailyCapError extends DialogueV2TextTurnUnavailableError {
+  constructor() {
+    super('plus_daily_cap');
+    this.name = 'DialogueV2PlusDailyCapError';
+  }
+}
+
+function isPlusDailyCapError(error: unknown): boolean {
+  const code = String((error as { code?: unknown })?.code ?? '');
+  const message = String((error as { message?: unknown })?.message ?? '');
+  return message.includes('plus_daily_cap') || (code.includes('resource-exhausted') && message.includes('plus_daily_cap'));
+}
+
 type PlainRecord = Record<string, unknown>;
 
 function plainRecord(value: unknown): PlainRecord | null {
@@ -231,7 +249,13 @@ export async function sendDialogueV2TextTurn(
     );
     const response = await callable(request);
     return safeResponse(response.data, request);
-  } catch {
+  } catch (error) {
+    // Немой catch запрещён: код и сообщение отказа видны в логе, наружу — нейтральная ошибка.
+    console.warn('[DIALOGUE-V2-TURN] send:catch', JSON.stringify({
+      code: String((error as { code?: unknown })?.code ?? '').slice(0, 60),
+      reason: String((error as { message?: unknown })?.message ?? error).slice(0, 120),
+    }));
+    if (isPlusDailyCapError(error)) throw new DialogueV2PlusDailyCapError();
     throw new DialogueV2TextTurnUnavailableError();
   }
 }

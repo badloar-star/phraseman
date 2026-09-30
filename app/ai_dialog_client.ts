@@ -159,7 +159,9 @@ export function classifyPremiumDialogError(error: unknown): PremiumDialogErrorKi
 
   if (text.includes('dialog_plus_required')) return 'plus_required';
   if (text.includes('dialog_free_limit')) return 'free_limit';
-  if (text.includes('dialog_premium_cap')) return 'premium_limit';
+  // зачем (D123): тихий суточный потолок Plus (300 ответов) — тот же спокойный
+  // «продолжим завтра», что и прежний кап; проверяем ДО общего resource-exhausted.
+  if (text.includes('dialog_premium_cap') || text.includes('plus_daily_cap')) return 'premium_limit';
   // Глобальный бюджет ИИ иссяк (на всех сразу) — сервер шлёт resource-exhausted
   // с сообщением 'explain_global_budget'. ВАЖНО: проверяем ДО общего
   // resource-exhausted, иначе это ошибочно уедет в 'rate_limited'.
@@ -218,16 +220,18 @@ export function getPremiumDialogErrorMessage(
         pl: 'Dialogi są dostępne w Plus. Otwórz Plus, aby zacząć rozmowę.',
       });
     case 'premium_limit':
+      // зачем (D123): у Plus на экране «безлимит», а серверный потолок тихий —
+      // поэтому без слова «лимит»: спокойно зовём продолжить завтра.
       return triLang(lang, {
-        ru: 'Лимит диалогов на сегодня исчерпан. Попробуй завтра.',
-        uk: 'Ліміт діалогів на сьогодні вичерпано. Спробуй завтра.',
-        en: "Today's dialogue limit is used up. Try again tomorrow.",
-        es: 'Se agotó el límite de diálogos de hoy. Inténtalo mañana.',
-        'pt-BR': 'O limite de diálogos de hoje acabou. Tente amanhã.',
-        vi: 'Bạn đã hết giới hạn đối thoại hôm nay. Hãy thử lại vào ngày mai.',
-        id: 'Batas dialog hari ini sudah habis. Coba lagi besok.',
-        tr: 'Bugünkü diyalog limiti doldu. Yarın tekrar dene.',
-        pl: 'Dzisiejszy limit dialogów został wyczerpany. Spróbuj jutro.',
+        ru: 'На сегодня разговоров достаточно. Продолжим завтра.',
+        uk: 'На сьогодні розмов досить. Продовжимо завтра.',
+        en: "That's enough talking for today. Let's continue tomorrow.",
+        es: 'Por hoy ya hemos hablado bastante. Seguimos mañana.',
+        'pt-BR': 'Por hoje já conversamos bastante. Continuamos amanhã.',
+        vi: 'Hôm nay trò chuyện vậy là đủ rồi. Mai mình nói tiếp nhé.',
+        id: 'Untuk hari ini sudah cukup mengobrol. Kita lanjut besok.',
+        tr: 'Bugünlük bu kadar sohbet yeter. Yarın devam ederiz.',
+        pl: 'Na dziś wystarczy rozmów. Kontynuujemy jutro.',
       });
     case 'global_budget':
       return triLang(lang, {

@@ -12,6 +12,11 @@ import {
   nextDialogueV2TurnQuotaReservation,
   nextDialogQuotaConsumption,
   nextDialogQuotaRelease,
+  nextPlusDailyReplyConsumption,
+  PLUS_DIALOG_DAILY_CAP_REASON,
+  PLUS_DIALOG_DAILY_REPLY_CAP,
+  PLUS_DIALOG_DAY_COUNT_FIELD,
+  PLUS_DIALOG_DAY_KEY_FIELD,
 } from './dialog_quota_contract';
 import { dialogueReplyAccessDecision } from './dialogue_reply_access_contract';
 import { resolveRemoteBool, resolveRemoteBools, aiGloballyDisabled } from './remote_gates';
@@ -272,7 +277,7 @@ export async function enforceMonthlyQuota(
   isPremium: boolean,
   monthlyCap: number,
 ): Promise<DialogQuotaReservation> {
-  if (isPremium) return unlimitedDialogQuotaReservation();
+  if (isPremium) return enforcePlusDailyReplyCap(authUid, stableUid);
   const db = admin.firestore();
   const now = Date.now();
   const ref = db.collection(QUOTA_COLLECTION).doc(docId('quota', authUid, stableUid));
@@ -312,6 +317,47 @@ export async function enforceMonthlyQuota(
     );
   }
   return Object.freeze({ ...result.observation, consumed: true });
+}
+
+/**
+ * D123: тихий суточный потолок Plus (300 ответов за UTC-сутки).
+ * Пишет два поля в тот же документ квоты; месячную квоту Free не трогает.
+ * Резерв остаётся consumed:false — откат месячной квоты Free для Plus не нужен,
+ * а упавший ответ засчитывается в потолок (это защита от злоупотреблений, не счёт).
+ */
+async function enforcePlusDailyReplyCap(
+  authUid: string,
+  stableUid: string,
+  cap: number = PLUS_DIALOG_DAILY_REPLY_CAP,
+): Promise<DialogQuotaReservation> {
+  const db = admin.firestore();
+  const now = Date.now();
+  const ref = db.collection(QUOTA_COLLECTION).doc(docId('quota', authUid, stableUid));
+  const next = await db.runTransaction(async (tx) => {
+    const data = (await tx.get(ref)).data() ?? {};
+    const consumption = nextPlusDailyReplyConsumption(data, now, cap);
+    if (!consumption.exhausted) {
+      tx.set(ref, {
+        authUid,
+        stableUid,
+        [PLUS_DIALOG_DAY_KEY_FIELD]: consumption.dayKey,
+        [PLUS_DIALOG_DAY_COUNT_FIELD]: consumption.count,
+        updatedAtMs: now,
+      }, { merge: true });
+    }
+    return consumption;
+  });
+  if (next.exhausted) {
+    // Без uid в логе: только причина и числа, чтобы владелец видел срабатывания потолка.
+    console.warn('premium_dialog rejected', {
+      reason: PLUS_DIALOG_DAILY_CAP_REASON,
+      isPremium: true,
+      dayKey: next.dayKey,
+      cap: next.cap,
+    });
+    throw new HttpsError('resource-exhausted', PLUS_DIALOG_DAILY_CAP_REASON);
+  }
+  return unlimitedDialogQuotaReservation(now);
 }
 
 /** Backward-compatible export for older server modules during rollout. */
@@ -355,12 +401,25 @@ export async function enforceDialogueV2TurnMonthlyQuota(
         resetAtMs: document.resetAtMs,
         quotaVersion: document.quotaVersion,
       }),
+      // зачем (D123): суточный счётчик Plus едет в той же записи, без лишних операций.
+      ...(isPremium && document[PLUS_DIALOG_DAY_KEY_FIELD] !== undefined ? {
+        [PLUS_DIALOG_DAY_KEY_FIELD]: document[PLUS_DIALOG_DAY_KEY_FIELD],
+        [PLUS_DIALOG_DAY_COUNT_FIELD]: document[PLUS_DIALOG_DAY_COUNT_FIELD],
+      } : {}),
       [DIALOGUE_V2_TURN_QUOTA_RECEIPTS_FIELD]:
         document[DIALOGUE_V2_TURN_QUOTA_RECEIPTS_FIELD],
       updatedAtMs: now,
     }, { merge: true });
     return next;
   });
+  if (result.plusDailyCapReached) {
+    console.warn('premium_dialog rejected', {
+      reason: PLUS_DIALOG_DAILY_CAP_REASON,
+      isPremium: true,
+      path: 'dialogue_v2_turn',
+    });
+    throw new HttpsError('resource-exhausted', PLUS_DIALOG_DAILY_CAP_REASON);
+  }
   if (result.exhausted) {
     throw new HttpsError(
       'resource-exhausted',

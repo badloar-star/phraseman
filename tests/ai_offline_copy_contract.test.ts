@@ -164,6 +164,10 @@ describe('dialog error mapping — глобальный бюджет vs rate-lim
     expect(free).toContain('Plus');
     expect(free).not.toContain('Пробный диалог');
     const premium = getPremiumDialogErrorMessage({ message: 'dialog_premium_cap' }, { lang: 'ru' });
-    expect(premium).toContain('Лимит диалогов');
+    // D123: у Plus на экране «безлимит», поэтому тихий потолок говорит без слова «лимит».
+    expect(premium).toContain('Продолжим завтра');
+    expect(premium).not.toMatch(/лимит/i);
+    expect(classifyPremiumDialogError({ code: 'functions/resource-exhausted', message: 'plus_daily_cap' }))
+      .toBe('premium_limit');
   });
 });

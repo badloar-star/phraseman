@@ -9,7 +9,11 @@ import {
   type DialogueV2CatalogueReleaseEnvelope,
   type DialogueV2CatalogueStudyTarget,
 } from './dialogue_v2_catalogue_client';
-import { sendDialogueV2TextTurn, startDialogueV2TextSession } from './dialogue_v2_turn_client';
+import {
+  DialogueV2PlusDailyCapError,
+  sendDialogueV2TextTurn,
+  startDialogueV2TextSession,
+} from './dialogue_v2_turn_client';
 import { resolveCurrentDialogueV2PreparedBotVoice } from './dialogue_v2_prepared_bot_voice_runtime';
 import { triLang } from '../constants/i18n';
 import { useMyCoinRank } from '../hooks/use_my_coin_rank';
@@ -57,6 +61,8 @@ function labelsFor(lang: ReturnType<typeof useLang>['lang']) {
     voiceRecording: triLang(lang, { ru: 'Говори… отпусти, когда закончишь', uk: 'Говори… відпусти, коли закінчиш', en: 'Speak… release when done', es: 'Habla… suelta al terminar', 'pt-BR': 'Fale… solte ao terminar', vi: 'Hãy nói… thả ra khi xong', id: 'Bicara… lepaskan jika selesai', tr: 'Konuş… bitince bırak', pl: 'Mów… puść, gdy skończysz', fr: 'Parle… relâche à la fin', de: 'Sprich… loslassen, wenn fertig' }),
     discardVoice: triLang(lang, { ru: 'Удалить запись', uk: 'Видалити запис', en: 'Discard recording', es: 'Descartar grabación', 'pt-BR': 'Descartar gravação', vi: 'Bỏ bản ghi', id: 'Buang rekaman', tr: 'Kaydı sil', pl: 'Odrzuć nagranie', fr: 'Supprimer l’enregistrement', de: 'Aufnahme verwerfen' }),
     turnError: triLang(lang, { ru: 'Не удалось связаться с сервером. Проверь интернет-соединение и попробуй ещё раз.', uk: 'Не вдалося зв’язатися із сервером. Перевір інтернет-з’єднання і спробуй ще раз.', en: 'Could not reach the server. Check your connection and try again.', es: 'No se pudo conectar con el servidor. Revisa tu conexión e inténtalo de nuevo.', 'pt-BR': 'Não foi possível falar com o servidor. Verifique a conexão e tente de novo.', vi: 'Không kết nối được máy chủ. Kiểm tra mạng và thử lại.', id: 'Tidak dapat terhubung ke server. Periksa koneksi lalu coba lagi.', tr: 'Sunucuya ulaşılamadı. Bağlantını kontrol edip tekrar dene.', pl: 'Nie udało się połączyć z serwerem. Sprawdź internet i spróbuj ponownie.', fr: 'Impossible de joindre le serveur. Vérifie ta connexion et réessaie.', de: 'Server nicht erreichbar. Prüfe die Verbindung und versuche es erneut.' }),
+    // зачем (D123): у Plus на экране «безлимит»; тихий серверный потолок говорит спокойно, без слова «лимит».
+    plusDailyCap: triLang(lang, { ru: 'На сегодня разговоров достаточно. Продолжим завтра.', uk: 'На сьогодні розмов досить. Продовжимо завтра.', en: "That's enough talking for today. Let's continue tomorrow.", es: 'Por hoy ya hemos hablado bastante. Seguimos mañana.', 'pt-BR': 'Por hoje já conversamos bastante. Continuamos amanhã.', vi: 'Hôm nay trò chuyện vậy là đủ rồi. Mai mình nói tiếp nhé.', id: 'Untuk hari ini sudah cukup mengobrol. Kita lanjut besok.', tr: 'Bugünlük bu kadar sohbet yeter. Yarın devam ederiz.', pl: 'Na dziś wystarczy rozmów. Kontynuujemy jutro.', fr: 'Assez discuté pour aujourd’hui. On continue demain.', de: 'Für heute ist genug geredet. Morgen geht es weiter.' }),
     retry: triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Ponów', fr: 'Réessayer', de: 'Erneut versuchen' }),
     tasks: triLang(lang, { ru: 'Задания', uk: 'Завдання', en: 'Goals', es: 'Objetivos', 'pt-BR': 'Objetivos', vi: 'Nhiệm vụ', id: 'Tugas', tr: 'Görevler', pl: 'Zadania', fr: 'Objectifs', de: 'Aufgaben' }),
     exitTitle: triLang(lang, { ru: 'Выйти из диалога?', uk: 'Вийти з діалогу?', en: 'Leave the dialogue?', es: '¿Salir del diálogo?', 'pt-BR': 'Sair do diálogo?', vi: 'Thoát hội thoại?', id: 'Keluar dari dialog?', tr: 'Diyalogdan çıkılsın mı?', pl: 'Wyjść z dialogu?', fr: 'Quitter le dialogue ?', de: 'Dialog verlassen?' }),
@@ -87,6 +93,7 @@ function SessionContent() {
   const [draft, setDraft] = useState('');
   const [sending, setSending] = useState(false);
   const [turnUnavailable, setTurnUnavailable] = useState(false);
+  const [plusDailyCapReached, setPlusDailyCapReached] = useState(false);
   const [serverSession, setServerSession] = useState<Readonly<{ sessionId: string; expiresAtMs: number }> | null>(null);
   const [serverSessionState, setServerSessionState] = useState<ServerSessionState>('idle');
   const pendingTurnRef = useRef<Readonly<{ turnId: string; userMessage: string }> | null>(null);
@@ -202,7 +209,14 @@ function SessionContent() {
         }))]));
       }
       pendingTurnRef.current = null;
-    } catch {
+    } catch (error) {
+      // D123: потолок Plus — не «нет связи»; причина идёт в лог, экран говорит спокойно.
+      const capReached = error instanceof DialogueV2PlusDailyCapError;
+      console.warn('[DIALOGUE-V2-TURN] run:failed', JSON.stringify({
+        reason: capReached ? 'plus_daily_cap' : String((error as Error)?.message ?? error).slice(0, 120),
+        scenarioId,
+      }));
+      setPlusDailyCapReached(capReached);
       setTurnUnavailable(true);
     } finally {
       setSending(false);
@@ -241,6 +255,7 @@ function SessionContent() {
     if (!pending || !serverSession || sending || turnStartingRef.current) return;
     turnStartingRef.current = true;
     setTurnUnavailable(false);
+    setPlusDailyCapReached(false);
     void runPendingTurn(pending);
   };
 
@@ -290,10 +305,11 @@ function SessionContent() {
       playingVoiceUri={voice.playingVoiceUri}
       playingPreparedBotVoiceMessageId={preparedBotVoice.playingMessageId}
       interfaceLang={lang}
-      labels={labels}
+      labels={plusDailyCapReached ? { ...labels, turnError: labels.plusDailyCap } : labels}
       objectives={model.objectives}
       turnError={turnUnavailable}
-      retryDisabled={sending || !pendingTurnRef.current}
+      /* D123: на потолке повтор сегодня не поможет — кнопку «Повторить» гасим. */
+      retryDisabled={sending || !pendingTurnRef.current || plusDailyCapReached}
       onRetry={retry}
       onBack={() => router.back()}
       onChangeDraft={setDraft}

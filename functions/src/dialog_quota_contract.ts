@@ -161,6 +161,44 @@ export function nextDialogQuotaRelease(
   });
 }
 
+/**
+ * D123 (владелец 2026-09-30): безлимит Plus в Диалогах получает ТИХИЙ серверный
+ * потолок — 300 ответов за UTC-сутки против злоупотреблений. На экране по-прежнему
+ * «безлимит»; клиент узнаёт о потолке только по коду отказа.
+ *
+ * зачем именно так: счётчик живёт в ТОМ ЖЕ документе квоты (premium_dialog_quotas),
+ * что и месячная квота Free, — в двух полях с ключом суток. Новых коллекций и
+ * документов нет; Free-путь не делает ни одного лишнего чтения. Для Plus в старом
+ * пути это одна транзакция (1 чтение + 1 запись) на ответ, в Dialogue V2 — ноль
+ * лишних операций: транзакция квитанций хода там уже есть.
+ */
+export const PLUS_DIALOG_DAILY_REPLY_CAP = 300;
+export const PLUS_DIALOG_DAILY_CAP_REASON = 'plus_daily_cap';
+export const PLUS_DIALOG_DAY_KEY_FIELD = 'plusReplyDayKey';
+export const PLUS_DIALOG_DAY_COUNT_FIELD = 'plusReplyDayCount';
+
+export function utcDayKey(nowMs: number): string {
+  const now = new Date(nowMs);
+  return `${now.getUTCFullYear()}-${String(now.getUTCMonth() + 1).padStart(2, '0')}-${String(now.getUTCDate()).padStart(2, '0')}`;
+}
+
+/**
+ * Следующее состояние суточного счётчика Plus. Новые сутки обнуляют счётчик;
+ * исчерпанный потолок не двигает счётчик (повтор отказа ничего не пишет сверх).
+ */
+export function nextPlusDailyReplyConsumption(
+  current: Readonly<Record<string, unknown>>,
+  nowMs: number,
+  capInput: number = PLUS_DIALOG_DAILY_REPLY_CAP,
+): Readonly<{ exhausted: boolean; dayKey: string; count: number; cap: number }> {
+  const dayKey = utcDayKey(nowMs);
+  const cap = safeNonNegative(capInput);
+  const sameDay = current[PLUS_DIALOG_DAY_KEY_FIELD] === dayKey;
+  const used = sameDay ? safeNonNegative(current[PLUS_DIALOG_DAY_COUNT_FIELD]) : 0;
+  const exhausted = used >= cap;
+  return Object.freeze({ exhausted, dayKey, count: exhausted ? used : used + 1, cap });
+}
+
 export const DIALOGUE_V2_TURN_QUOTA_RECEIPTS_FIELD = 'dialogueV2TurnQuotaReceiptsV1';
 const DIALOGUE_V2_TURN_QUOTA_RECEIPT_TTL_MS = 25 * 60 * 60 * 1_000;
 const DIALOGUE_V2_TURN_QUOTA_MAX_RECEIPTS = 1_600;
@@ -254,8 +292,11 @@ export function nextDialogueV2TurnQuotaReservation(
   isPremium: boolean,
   turnKey: string,
   nextResetAtMs: (nowMs: number) => number,
+  plusDailyCap: number = PLUS_DIALOG_DAILY_REPLY_CAP,
 ): Readonly<{
   exhausted: boolean;
+  /** D123: отказ из-за суточного потолка Plus, а не месячной квоты Free. */
+  plusDailyCapReached: boolean;
   replayed: boolean;
   reservation: DialogueV2TurnQuotaReservation;
   document: Readonly<Record<string, unknown>>;
@@ -272,6 +313,7 @@ export function nextDialogueV2TurnQuotaReservation(
   if (existing?.state === 'reserved') {
     return Object.freeze({
       exhausted: false,
+      plusDailyCapReached: false,
       replayed: true,
       reservation: receiptReservation(existing),
       document: Object.freeze({
@@ -296,7 +338,11 @@ export function nextDialogueV2TurnQuotaReservation(
       quotaVersion: Math.max(1, safeNonNegative(current.quotaVersion)),
       consumed: false,
     });
-  const exhausted = quota?.exhausted === true;
+  // зачем (D123): повтор того же хода (replay выше) потолок не тратит — считаем
+  // только новый ход Plus.
+  const plus = isPremium ? nextPlusDailyReplyConsumption(current, nowMs, plusDailyCap) : null;
+  const plusDailyCapReached = plus?.exhausted === true;
+  const exhausted = quota?.exhausted === true || plusDailyCapReached;
   const receipt = Object.freeze({
     key: turnKey,
     state: 'reserved' as const,
@@ -318,11 +364,15 @@ export function nextDialogueV2TurnQuotaReservation(
       resetAtMs: quota.resetAtMs,
       quotaVersion: quota.quotaVersion,
     } : {}),
+    ...(plus && !plus.exhausted ? {
+      [PLUS_DIALOG_DAY_KEY_FIELD]: plus.dayKey,
+      [PLUS_DIALOG_DAY_COUNT_FIELD]: plus.count,
+    } : {}),
     [DIALOGUE_V2_TURN_QUOTA_RECEIPTS_FIELD]: exhausted
       ? retained
       : [...retained, receipt],
   });
-  return Object.freeze({ exhausted, replayed: false, reservation, document });
+  return Object.freeze({ exhausted, plusDailyCapReached, replayed: false, reservation, document });
 }
 
 export function nextDialogueV2TurnQuotaRelease(

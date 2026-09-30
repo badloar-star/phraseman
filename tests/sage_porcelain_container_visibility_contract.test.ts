@@ -17,19 +17,14 @@ describe('Sage Porcelain container visibility', () => {
 
   it('uses the central light-theme classifier for shared and direct modal surfaces', () => {
     const glassSurface = source('components', 'GlassSurface.tsx');
-    const profile = source('components', 'PlayerProfileModal.tsx');
     const account = source('app', 'account_details.tsx');
 
     expect(glassSurface).toContain("import { isLightThemeMode } from '../constants/theme';");
     expect(glassSurface).not.toMatch(/function isLightThemeMode\(/);
-    expect(profile).toContain('prestigeActive || !isLightThemeMode(themeMode)');
-    expect(account).toContain('const isLightTheme = isLightThemeMode(themeMode);');
+    // 30.09: экран аккаунта на токенах Liquid Glass активной темы (PRF-02), без ручного light-классификатора.
+    expect(account).toContain('liquidGlassTokens(liquidGlassThemeId)');
   });
 
-  it('uses Sage semantic foregrounds for light profile metadata and active XP', () => {
-    const profile = source('components', 'PlayerProfileModal.tsx');
-
-    expect(profile).toContain("const activeMultiplierColor = isLightThemeMode(themeMode) ? t.accent : '#35D07F';");
-    expect(profile).toContain('color: multipliers.total > 1 ? activeMultiplierColor : t.textMuted');
-  });
+  // 30.09: визитка 2.0 переписана на токенах Liquid Glass, XP и множители удалены —
+  // проверки старой раскладки визитки сняты.
 });

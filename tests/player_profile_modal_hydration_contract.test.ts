@@ -7,10 +7,10 @@ const source = fs.readFileSync(
 );
 
 describe('PlayerProfileModal post-PM-055 hydration', () => {
-  it('does not read XP multiplier state while preserving deferred profile hydration', () => {
+  // 30.09: визитка 2.0 без множителей XP (XP удалён); отложенная гидрация больше не нужна.
+  it('does not read XP multiplier state', () => {
     expect(source).not.toContain('getCurrentMultiplierBreakdown');
     expect(source).not.toContain('peekLastMultiplierBreakdown');
     expect(source).not.toContain('MultiplierBreakdown');
-    expect(source).toContain('InteractionManager.runAfterInteractions');
   });
 });

@@ -54,3 +54,25 @@ Privacy (`privacy_policy_en.json`):
 2. Правка всех 4 JSON + `legal/*` + `privacy.html` / `terms.html` синхронно; обновить дату «Last updated».
 3. Прогон `terms_retired_word_scan` и расширенного скана (Shards, Arena, tournament, gift, voice tutor) — ноль вхождений.
 4. Store-декларации (PM-250): App Privacy / Data safety — убрать голосовые данные, если голоса больше нет.
+
+## Дополнение D128 (2026-09-30): озвучка карточек через OpenAI TTS
+
+Текущий §11 перечисляет генерацию ответов и объяснений, но НЕ озвучку текстов, созданных
+пользователями. До релиза (вместе с остальными правками черновика) добавить в §11
+`privacy_policy_*.json` и `privacy.html`:
+
+> **Card audio.** To give flashcards natural pronunciation in the correct language, the text of
+> cards in official sets and in community sets that you choose to publish (after moderator
+> approval) is sent to an AI text-to-speech provider (OpenAI) to generate audio. Only the card
+> text and its language are sent — no account identifiers, email, or profile data. The generated
+> audio is stored with the published set and played to learners. Private sets that you do not
+> publish are not sent for voicing.
+
+RU-версия: «Озвучка карточек. Чтобы карточки звучали естественно и на нужном языке, текст карточек
+официальных наборов и тех пользовательских наборов, которые вы публикуете (после одобрения
+модератором), отправляется AI-сервису синтеза речи (OpenAI). Передаются только текст карточки и её
+язык — без идентификаторов аккаунта, почты и данных профиля. Готовое аудио хранится вместе с
+опубликованным набором. Приватные неопубликованные наборы на озвучку не отправляются.»
+
+Store-декларации (PM-250): OpenAI уже указан как обработчик для AI-функций; отметить категорию
+«User content — used for app functionality» для опубликованных наборов.

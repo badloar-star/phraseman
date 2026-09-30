@@ -104,13 +104,10 @@ describe('Admin D2 review truth and server-boundary contract', () => {
     expect(source).toMatch(/неполный|не заверш[её]н|лимит/i);
   });
 
-  test('clubs, archive, cancellation surveys, and nav cache only after complete success', () => {
-    const clubs = block('window.loadClubsData = async function', 'const LEAGUE_CHEST_ARCHIVE_PAGE');
-    const archive = block('window.loadLeagueChestArchive = async function', 'function streakMult');
+  // зачем: D54 — раздел «Лиги» и архив корон удалены из админки 2.0, их проверки сняты.
+  test('cancellation surveys and nav cache only after complete success', () => {
     const cancel = block('window.loadCancelSurveys = async function', '/**');
     const nav = block('window.loadAdminNavLayout = async function', 'function decodeAdminMojibake');
-    expect(clubs).toContain('if (!truncated) window._clubsLoaded = true');
-    expect(archive).toContain('if (!truncated) _leagueChestArchiveLoaded = true');
     expect(cancel).toContain('if (!truncated) window._cancelSurveysLoaded = true');
     expect(nav.indexOf('window._adminNavLayoutLoaded = true')).toBeGreaterThan(nav.indexOf('await getAdminGetAdminConfigWorkspaceCallable'));
     expect(nav).toContain('window._adminNavLayoutLoaded = false');

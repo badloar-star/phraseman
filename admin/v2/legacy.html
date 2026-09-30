@@ -137,7 +137,6 @@
     tr.club-league-row.is-selected { background: rgba(108, 71, 255, 0.1) !important; }
     tr.bulk-row-selected td { background: rgba(124,92,252,0.08) !important; }
     tr.club-league-row:hover { background: rgba(255,255,255,0.03); }
-    @media (max-width: 900px) { #clubs-wrap { grid-template-columns: 1fr !important; } }
 
     /* Stats row */
     .stats { display: flex; gap: 10px; padding: 16px 24px; flex-wrap: wrap; }
@@ -3223,8 +3222,7 @@ body[data-admin-skin="onboarding"] #uid-lookup {
       color: var(--admin-text) !important;
       border: 1px solid var(--admin-border) !important;
     }
-    body[data-admin-skin="onboarding"] #tab-daily-phrases,
-    body[data-admin-skin="onboarding"] #tab-clubs {
+    body[data-admin-skin="onboarding"] #tab-daily-phrases {
       color: var(--admin-faint);
       font-size: 11px;
       line-height: 1.35;
@@ -4694,7 +4692,7 @@ body[data-admin-skin="onboarding"] #uid-lookup {
       /* ── Fixed multi-column grids → single column ── */
       .app-msg-shell, .app-msg-grid, .app-msg-poll-toolbar, .app-msg-poll-options,
       .app-msg-card, .review-promo-store-row, .review-promo-lang-row,
-      .dp-form-grid, .dp-row, .pg-grid, #clubs-wrap,
+      .dp-form-grid, .dp-row, .pg-grid,
       body[data-admin-skin="onboarding"] .app-msg-shell,
       body[data-admin-skin="onboarding"] #tab-app-messages .app-msg-shell,
       body[data-admin-skin="onboarding"] .admin-overview-hero,
@@ -10124,26 +10122,12 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         tr: 'geçerli: —',
         pl: 'bieżący: —',
       },
-      'Datos de league_groups: minigrupos (hasta 20 personas) por leagueId 0…11. El número en la insignia indica cuántos grupos (documentos) de esa liga hay en el periodo elegido. Haz clic en un grupo para ver la lista de miembros.': {
-        'pt-BR': 'Dados de league_groups: minigrupos (até 20 pessoas) por leagueId 0…11. O número no selo indica quantos grupos (documentos) dessa liga existem no período escolhido. Clique em um grupo para ver a lista de membros.',
-        vi: 'Dữ liệu từ league_groups: nhóm nhỏ (tối đa 20 người) theo leagueId 0…11. Số trên huy hiệu cho biết có bao nhiêu nhóm (tài liệu) của giải đó trong giai đoạn đã chọn. Nhấp vào một nhóm để xem danh sách thành viên.',
-        id: 'Data dari league_groups: minigrup (hingga 20 orang) per leagueId 0…11. Angka pada badge menunjukkan berapa banyak grup (dokumen) liga tersebut pada periode yang dipilih. Klik grup untuk melihat daftar anggota.',
-        tr: 'league_groups verileri: leagueId 0…11 için mini gruplar (en fazla 20 kişi). Rozetteki sayı, seçilen dönemde o ligden kaç grup (belge) olduğunu gösterir. Üye listesini görmek için bir gruba tıklayın.',
-        pl: 'Dane z league_groups: minigrupy (do 20 osób) według leagueId 0…11. Liczba na plakietce pokazuje, ile grup (dokumentów) tej ligi istnieje w wybranym okresie. Kliknij grupę, aby zobaczyć listę członków.',
-      },
       'Datos de': {
         'pt-BR': 'Dados de',
         vi: 'Dữ liệu từ',
         id: 'Data dari',
         tr: 'Veriler:',
         pl: 'Dane z',
-      },
-      league_groups: {
-        'pt-BR': 'league_groups',
-        vi: 'league_groups',
-        id: 'league_groups',
-        tr: 'league_groups',
-        pl: 'league_groups',
       },
       'minigrupos (hasta 20 personas) por': {
         'pt-BR': 'minigrupos (até 20 pessoas) por',
@@ -11470,7 +11454,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         'daily-phrases': 'community',
         'daily-polls': 'community',
         'home-hints': 'content',
-        clubs: 'community',
         'push-notify': 'community',
       };
       document.querySelectorAll('.tab').forEach(tab => {
@@ -12002,15 +11985,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   <div class="tab" onclick="switchTab('ops-log')" data-i18n-es="Log ops">Ops log</div>
   <div class="tab" onclick="switchTab('community-packs')" data-i18n-es="Comunidad">Community</div>
   <div class="tab" onclick="switchTab('card-packs')" data-i18n-es="Packs de tarjetas">Card packs</div>
-  <!-- зачем 2026-08-24: вкладки турниров ВЕРНУТЫ. 23.08 их убрали потому, что
-       32 из 33 турнирных функций были удалены с сервера и клик отвечал бы
-       «функция не найдена». Сегодня проверено: на сервере снова 31 турнирная
-       функция, вся админская часть и игровая (tournamentJoin/Finalize/
-       ClaimReward) отвечают 403 (авторизация), а не отсутствием. Причина
-       скрытия отпала — без этих строк раздел существовал, но попасть в него из
-       меню было нельзя. -->
-  <div class="tab" onclick="switchTab('tournaments')" title="Задания турниров: генерация, проверка, публикация, расписание" style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.35);color:#fbbf24;font-weight:700">🏆 Турниры</div>
-  <div class="tab" onclick="switchTab('tournament-pool')" title="Полный пул одобренных заданий внутри единой админки">🗂️ Пул турниров</div>
   <div class="tab" onclick="switchTab('referrals')" data-i18n-es="Referidos">Referrals</div>
   <div class="tab" onclick="switchTab('app-health')" data-i18n-es="Salud de la app">App Health</div>
   <div class="tab" onclick="switchTab('max-ops')" title="Сводная серверная диагностика звонков MAX без содержимого разговоров">Здоровье MAX</div>
@@ -16012,42 +15986,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   </div>
 </div>
 
-<!-- CLUBS (league_groups) TAB -->
-<div id="tab-clubs" class="reports-tab pm-v4-page" data-pm-v4-section="clubs">
-  <div class="pm-v4-section-header" data-pm-v4-header="clubs"><div class="pm-v4-section-heading"><h2 class="pm-v4-section-title">Лиги</h2><div class="pm-v4-section-sub">Группы, короны и недельные бонусы.</div></div></div>
-
-  <div class="reports-toolbar" style="flex-wrap:wrap;align-items:center;gap:12px">
-    <label style="font-size:13px;color:#aaa;display:flex;align-items:center;gap:8px;cursor:pointer">
-      <span data-i18n-es="Semana">Неделя</span>
-      <select id="clubs-week-filter" onchange="onClubsWeekFilterChange()" style="background:#1f1f2e;border:1px solid #3a3a4a;color:#e0e0e0;border-radius:8px;padding:6px 10px;font-size:13px">
-        <option value="all" data-i18n-es="Todas las semanas">Все недели</option>
-        <option value="current" selected data-i18n-es="Semana actual">Текущая неделя</option>
-      </select>
-    </label>
-    <span style="font-size:12px;color:#666" data-i18n-es="actual: —">текущая: <code id="clubs-cur-week" style="color:#a78bfa">—</code></span>
-    <button type="button" onclick="loadClubsData(true)" data-i18n-es="🔄 Actualizar" style="background:#2a2a3a;color:#aaa">🔄 Обновить</button>
-    <span class="reports-count" id="clubs-status"></span>
-  </div>
-  <p data-i18n-es="Datos de league_groups: minigrupos (hasta 20 personas) por leagueId 0…11. El número en la insignia indica cuántos grupos (documentos) de esa liga hay en el periodo elegido. Haz clic en un grupo para ver la lista de miembros." style="padding:0 24px 12px;font-size:13px;color:#888;max-width:960px;line-height:1.5">
-    <span data-i18n-es="Datos de">Данные из</span> <code style="color:#a78bfa" data-i18n-es="league_groups">league_groups</code>: <span data-i18n-es="minigrupos (hasta 20 personas) por">мини-группы (до 20 чел.) по</span> <code data-i18n-es="leagueId">leagueId</code> 0…11.
-    <span data-i18n-es="El número en la insignia indica cuántos">Число в бейдже = сколько</span> <strong data-i18n-es="grupos">групп</strong> <span data-i18n-es="(documentos) de esa liga hay en el periodo elegido. Haz clic en un grupo para ver la lista de miembros.">(документов) с этой лигой за выбранный период. Клик по группе — список участников.</span>
-  </p>
-  <div id="clubs-wrap" style="display:grid;grid-template-columns:minmax(280px,400px) minmax(0,1fr);gap:16px;padding:0 24px 32px;align-items:start">
-    <div id="clubs-left" class="reports-empty" data-i18n-es="⏳ Abre la pestaña: cargando." style="text-align:left;max-width:none">⏳ Откройте вкладку — загрузка.</div>
-    <div id="clubs-right" data-i18n-es="Elige una liga a la izquierda." style="min-width:0;color:#888;font-size:13px">Выберите лигу слева.</div>
-  </div>
-  <div style="padding:0 24px 36px">
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 10px">
-      <div>
-        <h3 data-i18n-es="Archivo de coronas y bonus de liga" style="margin:0;color:#e8e8e8;font-size:16px">Архив корон и бонуса лиги</h3>
-        <div data-i18n-es="Quién recibió la corona semanal y qué equipos completaron el objetivo de bonus de liga." style="color:#777;font-size:12px;margin-top:4px">Кто получил корону недели и какие команды закрыли цель бонуса лиги.</div>
-      </div>
-      <button type="button" onclick="loadLeagueChestArchive(true)" data-i18n-es="↻ Archivo" style="background:#1a2a3a;border:1px solid #14305c;color:#60a5fa">↻ Архив</button>
-    </div>
-    <div id="league-chest-archive" class="reports-empty" data-i18n-es="Abre la pestaña de ligas: el archivo se cargará automáticamente." style="text-align:left;max-width:none">Откройте вкладку лиг — архив загрузится автоматически.</div>
-  </div>
-</div>
-
 <!-- CARD PACKS TAB -->
 <div id="tab-card-packs" class="reports-tab pm-v4-page" data-pm-v4-section="card-packs">
   <div class="pm-v4-section-header" data-pm-v4-header="card-packs"><div class="pm-v4-section-heading"><h2 class="pm-v4-section-title">Наборы карточек</h2><div class="pm-v4-section-sub">Маркет наборов и статусы публикации.</div></div></div>
@@ -16312,190 +16250,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   </div>
 </div>
 <!-- /SPIRE MULTILINGUAL CONTENT CONTROL -->
-
-<!-- TOURNAMENTS TAB -->
-<!-- Владелец управляет режимом «Турниры» отсюда: проверить каждое задание,
-     опубликовать одобренные, увидеть готовность раундов и включить слоты. Публикация только вручную:
-     ни одно задание не уходит игрокам без явного «Опубликовать». -->
-<div id="tab-tournament-pool" class="reports-tab pm-v4-page pm-v9-embedded-page" data-pm-v4-section="tournament-pool">
-  <div class="pm-v4-section-header" data-pm-v4-header="tournament-pool"><div class="pm-v4-section-heading"><h2 class="pm-v4-section-title">Пул турниров</h2></div></div>
-  <div class="pm-v9-embedded-status" id="pm-v9-tournament-pool-status" role="status">Раздел загрузится при открытии.</div>
-  <div class="pm-v9-embedded-shell"><iframe id="pm-v9-tournament-pool-frame" data-src="tournament_pool.html" title="Пул турниров PhraseMan" loading="lazy"></iframe></div>
-</div>
-
-<div id="tab-tournaments" class="reports-tab pm-v4-page" data-pm-v4-section="tournaments">
-  <div class="pm-v4-section-header" data-pm-v4-header="tournaments"><div class="pm-v4-section-heading"><h2 class="pm-v4-section-title">Турниры</h2><div class="pm-v4-section-sub">Пул заданий, ревью, расписание и ручная сборка.</div></div></div>
-
-  <div style="padding:4px 0 16px;max-width:1080px">
-    <h2 style="margin:0 0 8px;font-size:22px;font-weight:800;color:#fafafa">🏆 Турниры</h2>
-    <p style="margin:0;font-size:13px;color:#9ca3af;line-height:1.5">
-      Вопросы придумывает ИИ специально для соревнования. Автопроверка отсеивает технически неверные задания,
-      затем решение человека определяет, что можно добавить в игру.
-    </p>
-  </div>
-
-  <!-- Готовность текущего опубликованного режима. v11 ниже живой пул не меняет. -->
-  <div style="font-size:12px;font-weight:800;color:#cbd5e1;margin:0 0 7px">Текущий живой пул</div>
-  <div id="tn-stats" style="margin-bottom:18px"></div>
-
-  <!-- Шаг 1: безопасная проверка кандидатов v11. Здесь нет активации пула. -->
-  <div id="tn-v11-review-card" style="background:#12121a;border:1px solid #2a2a3a;border-radius:12px;padding:16px 18px;margin-bottom:16px;max-width:1080px">
-    <style>
-      #tn-v11-review-card .tn-v11-action { min-height:44px; transition:border-color .15s ease,opacity .15s ease; }
-      #tn-v11-review-card .tn-v11-action:focus-visible { outline:3px solid #93c5fd; outline-offset:2px; }
-      #tn-v11-review-card .tn-v11-action:disabled { cursor:not-allowed; opacity:.55; }
-      #tn-v11-review-card.tn-v11-ready { border-color:#4ade80; }
-      @media (prefers-reduced-motion: reduce) { #tn-v11-review-card .tn-v11-action { transition:none; } }
-    </style>
-    <div style="display:flex;gap:12px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap">
-      <div>
-        <div style="font-size:15px;font-weight:800;color:#fafafa;margin-bottom:4px">Проверка качества v11</div>
-        <p style="margin:0 0 12px;max-width:760px;font-size:12px;color:#9ca3af;line-height:1.55">
-          Сначала проверьте объём и недоборы, затем запустите ограниченные пакеты двойной семантической проверки.
-          Задание можно безопасно продолжить после перезагрузки страницы. Не переключает живой пул и не публикует задания игрокам.
-        </p>
-      </div>
-      <span style="border:1px solid #3f3f4f;border-radius:999px;padding:5px 9px;font-size:11px;color:#cbd5e1">v11 · черновой контур</span>
-    </div>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
-      <button id="tn-v11-dry-run" class="tn-v11-action" type="button" onclick="tnFillPool(true)"
-        title="Проверить объём и недоборы без запуска проверки и без записи"
-        style="background:#1a2a3a;border:1px solid #2a4a6a;color:#bfdbfe;padding:9px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">Проверить план</button>
-      <button id="tn-v11-run" class="tn-v11-action" data-tn-v11-primary="true" type="button" onclick="tnFillPool(false)"
-        title="Запустить или возобновить ограниченную проверку v11; живой пул не изменится"
-        style="background:#7c3aed;border:1px solid #8b5cf6;color:#fff;padding:9px 20px;border-radius:8px;cursor:pointer;font-weight:800;font-size:14px">Начать / продолжить проверку v11</button>
-      <span id="tn-fill-status" role="status" aria-live="polite" style="font-size:13px;color:#cbd5e1"></span>
-    </div>
-    <div id="tn-fill-result" aria-live="polite" style="margin-top:14px"></div>
-  </div>
-
-  <!-- зачем 2026-08-24: карточка генератора вернута. Коммит 815fc4b45 (27.07)
-       убрал старую пакетную панель 10/20/30 — владелец забраковал её как
-       однотипную — но новую кнопку в разметку так и не добавил. Функция
-       tnAiTournament и callable adminGenerateTournamentAi всё это время были живы,
-       но вызвать их из админки было нечем: весь месяц генератор был недоступен.
-       Поля те же, что читает клиент и принимает сервер: level, topicHint, dryRun. -->
-  <div style="background:#12121a;border-radius:12px;padding:16px 18px;margin-bottom:16px;max-width:1080px">
-    <div style="font-size:15px;font-weight:800;color:#fafafa;margin-bottom:4px">🤖 Генератор турнира</div>
-    <p style="margin:0 0 12px;max-width:760px;font-size:12px;color:#9ca3af;line-height:1.55">
-      ИИ собирает турнир целиком — разные типы заданий и сложности за один запуск.
-      Всё попадает «На проверку» и без вашего одобрения в игру не уходит. Сборка занимает до минуты.
-    </p>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
-      <select id="tn-ai-level" aria-label="Уровень сложности турнира" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px;min-height:44px">
-        <option value="A1">A1 — новичок</option>
-        <option value="A2" selected>A2 — базовый</option>
-        <option value="B1">B1 — средний</option>
-        <option value="B2">B2 — уверенный</option>
-        <option value="C1">C1 — продвинутый</option>
-        <option value="C2">C2 — свободный</option>
-      </select>
-      <input type="text" id="tn-ai-topic" maxlength="120" placeholder="Тема (необязательно): аэропорт, собеседование…" aria-label="Тема заданий"
-        style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e0e0e0;padding:7px 12px;font-size:13px;min-width:260px;min-height:44px" />
-      <button type="button" onclick="tnAiTournament(true)" title="Собрать и показать турнир, ничего не сохраняя"
-        style="background:#1a2a3a;border:1px solid #2a4a6a;color:#93c5fd;padding:9px 16px;min-height:44px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">👁 Посмотреть</button>
-      <button type="button" onclick="tnAiTournament(false)" title="Собрать турнир и положить задания на проверку"
-        style="background:#7c3aed;border:1px solid #8b5cf6;color:#fff;padding:9px 20px;min-height:44px;border-radius:8px;cursor:pointer;font-weight:800;font-size:14px">🤖 Собрать турнир</button>
-      <span id="tn-ai-status" role="status" aria-live="polite" style="font-size:13px;color:#cbd5e1"></span>
-    </div>
-    <div id="tn-ai-result" aria-live="polite" style="margin-top:14px"></div>
-  </div>
-
-  <!-- зачем 2026-07-27: владелец просил ОТДЕЛЬНЫЙ вход в пул одобренных
-       заданий — тех, что реально попадают в игру. Раньше это был неприметный
-       пункт фильтра, и было непонятно, что уже играет, а что ждёт проверки. -->
-  <div onclick="tnOpenApprovedPool()" style="background:linear-gradient(135deg,#0d2818,#12121a);border-radius:12px;padding:16px 18px;margin-bottom:16px;max-width:1080px;cursor:pointer">
-    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
-      <div style="font-size:28px">🎮</div>
-      <div style="flex:1;min-width:220px">
-        <div style="font-size:15px;font-weight:800;color:#4ade80;margin-bottom:3px">Задания в игре</div>
-        <div style="font-size:12px;color:#9ca3af;line-height:1.5">
-          Одобренные задания, из которых собираются турниры. Для каждой комнаты набор
-          берётся случайно: чем больше здесь заданий, тем разнообразнее игра.
-        </div>
-      </div>
-      <div style="text-align:right">
-        <div id="tn-approved-count" style="font-size:26px;font-weight:900;color:#4ade80;line-height:1">—</div>
-        <div style="font-size:11px;color:#6b7280">в игре</div>
-      </div>
-      <div style="font-size:22px;color:#4ade80">›</div>
-    </div>
-  </div>
-
-  <!-- Шаг 2: проверка -->
-  <div style="background:#12121a;border-radius:12px;padding:16px 18px;margin-bottom:16px;max-width:1080px">
-    <div style="font-size:15px;font-weight:800;color:#fafafa;margin-bottom:12px">Шаг 2 — Автопроверка и решение человека</div>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px">
-      <select id="tn-status" onchange="tnLoadTasks(true)" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
-        <option value="awaiting_approval">Ждут решения человека</option>
-        <option value="draft">Все черновики</option>
-        <option value="published">В игре</option>
-        <option value="">Все</option>
-      </select>
-      <select id="tn-difficulty" onchange="tnLoadTasks(true)" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
-        <option value="0">Любая сложность</option>
-        <option value="1">Лёгкие</option>
-        <option value="2">Средние</option>
-        <option value="3">Сложные</option>
-      </select>
-      <button type="button" onclick="tnLoadTasks(true)"
-        style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">🔄 Обновить</button>
-      <span style="flex:1"></span>
-      <button type="button" id="tn-publish" onclick="tnPublishVisible()" title="Одобрить выбранные задания вручную после пройденной автопроверки и добавить их в игровой пул. Отменить можно снятием задания с публикации." aria-label="Одобрить выбранные задания вручную и добавить в игру"
-        style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">Одобрить и добавить в игру</button>
-      <span class="reports-count" id="tn-count"></span>
-    </div>
-    <!-- зачем: владелец просил папки — «зайти, просмотреть каждое удобно и
-         выбрать что делать». Папка = тип вопроса; сервер уже умеет фильтровать
-         по режиму, поэтому переключение стоит одно чтение страницы. -->
-    <div id="tn-folders" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px"></div>
-    <div id="tn-folder-actions" style="margin-bottom:12px"></div>
-    <div id="tn-list"><div class="reports-empty">Открой вкладку для загрузки.</div></div>
-    <div id="tn-more" style="margin-top:12px"></div>
-  </div>
-
-  <!-- Шаг 2.5: собрать турнир вручную -->
-  <div style="background:#12121a;border-radius:12px;padding:16px 18px;margin-bottom:16px;max-width:1080px">
-    <div style="font-size:15px;font-weight:800;color:#fafafa;margin-bottom:4px">🎯 Собрать турнир вручную</div>
-    <p style="margin:0 0 12px;font-size:12px;color:#9ca3af;line-height:1.5">
-      Выберите слот и дату, отметьте вопросы галочками в списке выше и добавьте их в нужный раунд.
-      Раунды без набора соберутся случайно, как обычно. Работают только опубликованные вопросы.
-    </p>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px">
-      <select id="tn-cur-slot" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
-        <option value="daily_1200">Слот 12:00</option>
-        <option value="daily_1900">Слот 19:00</option>
-        <option value="daily_2100">Слот 21:00</option>
-      </select>
-      <input type="date" id="tn-cur-date" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e0e0e0;padding:7px 12px;font-size:13px" />
-      <button type="button" onclick="tnCuratedLoad()"
-        style="background:#1a2a3a;border:1px solid #2a4a6a;color:#93c5fd;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">Открыть набор</button>
-      <span style="flex:1"></span>
-      <select id="tn-cur-round" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
-        <option value="1">Раунд 1</option>
-        <option value="2">Раунд 2</option>
-        <option value="3">Раунд 3</option>
-        <option value="4">Раунд 4</option>
-      </select>
-      <button type="button" onclick="tnCuratedAdd()" title="Добавить отмеченные галочками вопросы из списка выше в выбранный раунд"
-        style="background:#4338ca;border:1px solid #6366f1;color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">➕ Отмеченные в раунд</button>
-    </div>
-    <div id="tn-cur-box"><div class="reports-empty">Выберите слот и дату, затем «Открыть набор».</div></div>
-    <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
-      <button type="button" onclick="tnCuratedSave()"
-        style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">💾 Сохранить набор</button>
-      <button type="button" onclick="tnCuratedClear()"
-        style="background:#3a1a1a;border:1px solid #5a2a2a;color:#fca5a5;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">🗑 Снять набор</button>
-      <span id="tn-cur-status" style="font-size:13px;color:#9ca3af;align-self:center"></span>
-    </div>
-  </div>
-
-  <!-- Шаг 3: расписание -->
-  <div style="background:#12121a;border-radius:12px;padding:16px 18px;max-width:1080px">
-    <div style="font-size:15px;font-weight:800;color:#fafafa;margin-bottom:12px">Шаг 3 — расписание турниров</div>
-    <div id="tn-schedule"><div class="reports-empty">Открой вкладку для загрузки.</div></div>
-  </div>
-</div>
 
 <!-- REFERRALS TAB -->
 <div id="tab-referrals" class="reports-tab pm-v4-page" data-pm-v4-section="referrals">
@@ -18891,8 +18645,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     return _fnAdminGetAlertDiagnostics;
   }
   function getAdminTestAlertsCallable() { return getAdminSensitiveControlCallable('adminTestAlerts'); }
-  function getAdminResetLeaguePointsCallable() { return getAdminSensitiveControlCallable('adminResetLeaguePoints'); }
-  function getAdminMoveLeagueUserCallable() { return getAdminSensitiveControlCallable('adminMoveLeagueUser'); }
   let _fnAdminRevokeReferralAttribution = null;
   function getAdminRevokeReferralAttributionCallable() {
     if (!_fnAdminRevokeReferralAttribution) {
@@ -19111,7 +18863,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
 
   const ADMIN_DEFAULT_TAB = 'control-panel';
   const ADMIN_REQUIRED_FIRST_TAB = 'max-feedback';
-  const ADMIN_TAB_KEYS = ['max-feedback','control-panel','jarvis','jarvis-plans','product-charter','onboarding-screens','onboarding-sources','safety-flags','age-consent','compliance-radar','soc2-readiness','daily-digest','diagnostics','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','max-ops','warm-instances','users','testers','beta-testers','site-admin','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','surveys','review-promo','referrals','app-messages','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','daily-polls','arena-content','push-notify','clubs','tournaments','tournament-pool','archive','audit','ops-log','remote-config','youtube-catalog','video-phrases','paywall-ab','v2-generator','alerts','access-management'];
+  const ADMIN_TAB_KEYS = ['max-feedback','control-panel','jarvis','jarvis-plans','product-charter','onboarding-screens','onboarding-sources','safety-flags','age-consent','compliance-radar','soc2-readiness','daily-digest','diagnostics','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','max-ops','warm-instances','users','testers','beta-testers','site-admin','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','surveys','review-promo','referrals','app-messages','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','daily-polls','arena-content','push-notify','archive','audit','ops-log','remote-config','youtube-catalog','video-phrases','paywall-ab','v2-generator','alerts','access-management'];
 
   function isAdminSwitchableTab(tab) {
     return ADMIN_TAB_KEYS.includes(tab);
@@ -20347,561 +20099,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     return '—';
   }
 
-
-  // ── Клубы / league_groups (админ) ───────────────────────────────────────────
-  const CLUB_DEFS_RU = [
-    // Имена лиг: должны соответствовать LEAGUES в app/league_engine.ts (поле nameRU).
-    { id: 0,  name: 'Медная лига' },
-    { id: 1,  name: 'Бронзовая лига' },
-    { id: 2,  name: 'Серебряная лига' },
-    { id: 3,  name: 'Золотая лига' },
-    { id: 4,  name: 'Платиновая лига' },
-    { id: 5,  name: 'Изумрудная лига' },
-    { id: 6,  name: 'Сапфировая лига' },
-    { id: 7,  name: 'Рубиновая лига' },
-    { id: 8,  name: 'Алмазная лига' },
-    { id: 9,  name: 'Лига Чёрного Алмаза' },
-    { id: 10, name: 'Эфирная лига' },
-    { id: 11, name: 'Высшая лига' },
-  ];
-  function adminGetWeekId() {
-    const d = new Date();
-    const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-    const day = date.getUTCDay() || 7;
-    date.setUTCDate(date.getUTCDate() + 4 - day);
-    const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
-    const week = Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
-    return `${date.getUTCFullYear()}-W${String(week).padStart(2, '0')}`;
-  }
-  let _leagueGroupsCache = null;
-  window._clubsLoaded = false;
-  window._clubsSelLeagueId = null;
-  window._clubsSelGroupId = null;
-  function filterClubsLeagueGroupRows() {
-    const wk = document.getElementById('clubs-week-filter')?.value || 'current';
-    const cur = adminGetWeekId();
-    if (!_leagueGroupsCache) return [];
-    if (wk === 'all') return _leagueGroupsCache;
-    return _leagueGroupsCache.filter(r => r.weekId === cur);
-  }
-  function isVisibleClubMember(member) {
-    return !member || typeof member !== 'object' || member.identityHidden !== true;
-  }
-  function visibleClubMemberEntries(members) {
-    const source = members && typeof members === 'object' ? members : {};
-    return Object.keys(source).map(uid => {
-      const member = source[uid] && typeof source[uid] === 'object' ? source[uid] : {};
-      return { uid, member };
-    }).filter(({ member }) => isVisibleClubMember(member));
-  }
-  function countVisibleClubMembers(members) {
-    return visibleClubMemberEntries(members).length;
-  }
-  function countHiddenClubMembers(members) {
-    const source = members && typeof members === 'object' ? members : {};
-    return Object.values(source).filter(member => member && typeof member === 'object' && member.identityHidden === true).length;
-  }
-  function renderClubsPanel() {
-    const weeksEl = document.getElementById('clubs-cur-week');
-    if (weeksEl) weeksEl.textContent = adminGetWeekId();
-    const left = document.getElementById('clubs-left');
-    const right = document.getElementById('clubs-right');
-    if (!left || !right) return;
-    if (!_leagueGroupsCache) {
-      left.className = 'reports-empty';
-      left.style.textAlign = 'left';
-      left.innerHTML = '⏳ Нет данных. Нажмите «Обновить».';
-      return;
-    }
-    left.className = '';
-    const rows = filterClubsLeagueGroupRows();
-    const byLeague = new Map();
-    for (const c of CLUB_DEFS_RU) byLeague.set(c.id, []);
-    for (const r of rows) {
-      if (r.leagueId >= 0 && r.leagueId <= 11) {
-        if (!byLeague.has(r.leagueId)) byLeague.set(r.leagueId, []);
-        byLeague.get(r.leagueId).push(r);
-      }
-    }
-    const selL = window._clubsSelLeagueId;
-    const trs = CLUB_DEFS_RU.map(c => {
-      const list = byLeague.get(c.id) || [];
-      const cnt = list.length;
-      const isSel = selL === c.id;
-      return `<tr class="club-league-row${isSel ? ' is-selected' : ''}" data-lid="${c.id}" style="cursor:pointer">
-        <td style="padding:10px 10px 10px 14px;border-bottom:1px solid #2a2a3a;color:#888;font-weight:600">${c.id}</td>
-        <td style="padding:10px 12px;border-bottom:1px solid #2a2a3a;font-weight:600;color:#e8e8e8">${escapeHtml(c.name)}</td>
-        <td style="padding:10px 14px 10px 10px;border-bottom:1px solid #2a2a3a;text-align:right;white-space:nowrap">
-          <span title="Число документов league_groups с этим leagueId" style="background:#1a1a2e;border:1px solid #3a3a5a;border-radius:999px;padding:4px 12px;font-size:12px;font-weight:800;color:#a78bfa">${cnt}</span>
-        </td>
-      </tr>`;
-    }).join('');
-    left.innerHTML = `
-      <div style="font-size:10px;color:#666;margin:0 0 8px 0;text-transform:uppercase;letter-spacing:0.4px">Лига (leagueId) · бейдж = число мини-групп</div>
-      <table style="width:100%;border-collapse:collapse;background:#1a1a24;border:1px solid #2a2a3a;border-radius:10px;overflow:hidden">
-        <thead><tr><th style="text-align:left;padding:8px 14px;font-size:11px;color:#666">#</th><th style="text-align:left;padding:8px 10px;font-size:11px;color:#666">Лига</th><th style="text-align:right;padding:8px 14px;font-size:11px;color:#666">Групп</th></tr></thead>
-        <tbody>${trs}</tbody>
-      </table>
-    `;
-    left.querySelectorAll('tr.club-league-row').forEach(tr => {
-      tr.addEventListener('click', () => {
-        window._clubsSelLeagueId = parseInt(tr.getAttribute('data-lid') || '0', 10);
-        window._clubsSelGroupId = null;
-        renderClubsPanel();
-      });
-    });
-    if (selL == null || (selL < 0 || selL > 11)) {
-      right.innerHTML = '<div style="color:#666;line-height:1.5">Выберите лигу в таблице слева. Справа появятся все мини-группы за выбранный период и список участников выбранной группы.</div>';
-      return;
-    }
-    const groupList = (byLeague.get(selL) || []).sort((a, b) => {
-      const wb = (b.weekId || '').toString();
-      const wa = (a.weekId || '').toString();
-      if (wb !== wa) return wb.localeCompare(wa);
-      return a.id.localeCompare(b.id);
-    });
-    const gRows = groupList.map(g => {
-      const m = g.realCount;
-      const gsel = window._clubsSelGroupId === g.id;
-      return `<tr class="club-group-row" data-gid="${escapeHtml(g.id)}" style="cursor:pointer;background:${gsel ? 'rgba(108,71,255,0.12)' : 'transparent'}">
-        <td style="padding:8px 10px;border-bottom:1px solid #2a2a3a;font-size:11px;font-family:ui-monospace,monospace;word-break:break-all">${escapeHtml(g.id)}</td>
-        <td style="padding:8px 10px;border-bottom:1px solid #2a2a3a">${escapeHtml(g.weekId || '—')}</td>
-        <td style="padding:8px 10px;border-bottom:1px solid #2a2a3a;text-align:right;font-weight:700;color:#4ade80">${m}</td>
-      </tr>`;
-    }).join('');
-    const gid = window._clubsSelGroupId;
-    let membersHtml = '<div style="padding:20px 0 8px 0;font-size:11px;color:#666;text-transform:uppercase">Участники</div><div style="color:#666;font-size:13px">Кликните по группе в списке выше.</div>';
-    if (gid) {
-      const gr = groupList.find(x => x.id === gid);
-      if (gr) {
-        const entries = visibleClubMemberEntries(gr.members)
-          .map(({ uid, member }) => ({ uid, m: member }))
-          .sort((a, b) => toSafeNumber(b.m.points, 0) - toSafeNumber(a.m.points, 0) || a.uid.localeCompare(b.uid));
-        const mrows = entries.map(({ uid, m: m0 }) => {
-          const name = m0.name != null ? String(m0.name) : '—';
-          const pts = m0.points != null && m0.points !== '' ? m0.points : '—';
-          const isBot = m0.isBot === true || m0.botId;
-          return `<tr>
-            <td style="padding:6px 10px;border-bottom:1px solid #1e1e28">${escapeHtml(name)}${isBot ? ' <span style="font-size:10px;color:#888">(bot)</span>' : ''}</td>
-            <td style="padding:6px 10px;border-bottom:1px solid #1e1e28;font-size:11px;word-break:break-all">${escapeHtml(uid)}</td>
-            <td style="text-align:center;padding:6px 4px;border-bottom:1px solid #1e1e28;white-space:nowrap">
-              <button type="button" class="btn-club-user" data-uid="${escapeHtml(uid)}" style="background:#2a1a3a;border:1px solid #4a2a5a;color:#c084fc;border-radius:6px;padding:3px 8px;font-size:11px;cursor:pointer;font-weight:600" title="Открыть в профиле (users)">Профиль</button>
-              ${!isBot ? `<button type="button" onclick="leagueResetPoints('${escapeHtml(gid)}','${escapeHtml(uid)}')" style="background:#2a1a00;border:1px solid #5a3a00;color:#fbbf24;border-radius:6px;padding:3px 8px;font-size:10px;cursor:pointer;margin-left:4px" title="Обнулить очки">0 очк.</button>
-              <button type="button" onclick="leagueMoveUser('${escapeHtml(gid)}','${escapeHtml(uid)}','${escapeHtml(name)}')" style="background:#1a1a3a;border:1px solid #3a3a6a;color:#a78bfa;border-radius:6px;padding:3px 8px;font-size:10px;cursor:pointer;margin-left:4px" title="Переместить в другую лигу">↗ Лига</button>` : ''}
-            </td>
-            <td style="padding:6px 10px;border-bottom:1px solid #1e1e28;text-align:right">${escapeHtml(String(pts))}</td>
-          </tr>`;
-        }).join('');
-        membersHtml = `
-          <div style="padding:20px 0 8px 0;display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap">
-            <div style="font-size:11px;color:#666;text-transform:uppercase;letter-spacing:0.3px">Участники</div>
-            <div style="font-size:12px;font-weight:700;color:#a78bfa">Всего: ${entries.length}</div>
-          </div>
-          <div style="overflow-x:auto">
-            <table style="width:100%;border-collapse:collapse;background:#13131a;border:1px solid #2a2a3a;border-radius:8px;overflow:hidden">
-              <thead><tr><th style="text-align:left;padding:6px 10px;font-size:10px;color:#666">Имя</th><th style="text-align:left;padding:6px 10px;font-size:10px;color:#666">uid</th><th style="padding:6px 4px;font-size:10px;color:#666"> </th><th style="text-align:right;padding:6px 10px;font-size:10px;color:#666">Очк. недели</th></tr></thead>
-              <tbody>${mrows}</tbody>
-            </table>
-          </div>
-        `;
-      }
-    }
-    right.innerHTML = `
-      <div style="font-size:10px;color:#666;margin:0 0 8px 0;text-transform:uppercase;letter-spacing:0.4px">Мини-группы (${groupList.length})</div>
-      <div style="overflow-x:auto;max-height:40vh;overflow-y:auto">
-        <table style="width:100%;min-width:420px;border-collapse:collapse;background:#1a1a24;border:1px solid #2a2a3a;border-radius:10px">
-          <thead><tr><th style="text-align:left;padding:8px 10px;font-size:11px;color:#666">ID группы</th><th style="text-align:left;padding:8px 10px;font-size:11px;color:#666">weekId</th><th style="text-align:right;padding:8px 10px;font-size:11px;color:#666">Участн.</th></tr></thead>
-          <tbody>${gRows || '<tr><td colspan=3 style="padding:20px;text-align:center;color:#666">Нет групп за период</td></tr>'}</tbody>
-        </table>
-      </div>
-      ${membersHtml}
-    `;
-    right.querySelectorAll('tr.club-group-row').forEach(tr => {
-      tr.addEventListener('click', () => {
-        window._clubsSelGroupId = tr.getAttribute('data-gid') || null;
-        renderClubsPanel();
-      });
-    });
-    right.querySelectorAll('button.btn-club-user').forEach(b => {
-      b.addEventListener('click', ev => {
-        ev.stopPropagation();
-        const uid = b.getAttribute('data-uid');
-        if (uid) void loadUserToCacheAndOpen(uid);
-      });
-    });
-  }
-  window.onClubsWeekFilterChange = function onClubsWeekFilterChange() {
-    window._clubsSelLeagueId = null;
-    window._clubsSelGroupId = null;
-    if (_leagueGroupsCache) renderClubsPanel();
-  };
-
-  function applyCleanClubsChrome() {
-    const tab = document.getElementById('tab-clubs');
-    if (!tab) return;
-    const refresh = tab.querySelector('button[onclick*="loadClubsData(true)"]');
-    if (refresh) {
-      refresh.textContent = 'Refresh';
-      refresh.setAttribute('data-i18n-es', 'Refresh');
-    }
-    const archive = tab.querySelector('button[onclick*="loadLeagueChestArchive(true)"]');
-    if (archive) {
-      archive.textContent = 'Load archive';
-      archive.setAttribute('data-i18n-es', 'Load archive');
-    }
-    const weekLabel = tab.querySelector('.reports-toolbar label span');
-    if (weekLabel) weekLabel.textContent = 'Week';
-    const weekSelect = document.getElementById('clubs-week-filter');
-    if (weekSelect) {
-      const all = weekSelect.querySelector('option[value="all"]');
-      const cur = weekSelect.querySelector('option[value="current"]');
-      if (all) all.textContent = 'All weeks';
-      if (cur) cur.textContent = 'Current week';
-    }
-    const note = tab.querySelector('p');
-    if (note) {
-      note.innerHTML = 'Source: <code>league_groups</code>. Mini groups by league, week, member count, and weekly points. Select a league, then a group to inspect members.';
-    }
-    const title = tab.querySelector('h3');
-    if (title) title.textContent = 'League chest archive';
-    const desc = title?.parentElement?.querySelector('div[data-i18n-es]');
-    if (desc) desc.textContent = 'Weekly crown winners and teams that completed the league bonus goal.';
-  }
-
-  function cleanClubLeagueName(id) {
-    const n = Math.floor(Number(id));
-    return CLUB_DEFS_RU.find((league) => league.id === n)?.name || `Лига ${id ?? '-'}`;
-  }
-
-  function cleanClubMemberName(member) {
-    if (!member || typeof member !== 'object') return '-';
-    return member.name != null && String(member.name).trim() ? String(member.name) : '-';
-  }
-
-  window.renderClubsPanel = renderClubsPanel = function renderClubsPanel() {
-    applyCleanClubsChrome();
-    const weeksEl = document.getElementById('clubs-cur-week');
-    if (weeksEl) weeksEl.textContent = adminGetWeekId();
-    const left = document.getElementById('clubs-left');
-    const right = document.getElementById('clubs-right');
-    if (!left || !right) return;
-    if (!_leagueGroupsCache) {
-      left.className = 'reports-empty';
-      left.innerHTML = 'No club data loaded yet. Press Refresh to read league_groups.';
-      right.innerHTML = 'Select a league after loading data.';
-      return;
-    }
-    left.className = '';
-    right.className = '';
-    const rows = filterClubsLeagueGroupRows();
-    const byLeague = new Map();
-    for (let i = 0; i <= 11; i += 1) byLeague.set(i, []);
-    for (const row of rows) {
-      if (row.leagueId >= 0 && row.leagueId <= 11) {
-        if (!byLeague.has(row.leagueId)) byLeague.set(row.leagueId, []);
-        byLeague.get(row.leagueId).push(row);
-      }
-    }
-    const selectedLeague = window._clubsSelLeagueId;
-    const leagueRows = Array.from({ length: 12 }, (_, id) => {
-      const list = byLeague.get(id) || [];
-      const selected = selectedLeague === id;
-      const members = list.reduce((n, g) => n + toSafeNumber(g.realCount, 0), 0);
-      return `<tr class="club-league-row${selected ? ' is-selected' : ''}" data-lid="${id}">
-        <td><div class="club-name">${escapeHtml(cleanClubLeagueName(id))}</div><div class="club-meta">leagueId ${id}</div></td>
-        <td style="text-align:right"><span class="club-count-pill">${list.length}</span></td>
-        <td style="text-align:right">${members}</td>
-      </tr>`;
-    }).join('');
-    left.innerHTML = `
-      <div class="club-panel-title">Leagues</div>
-      <table class="club-clean-table">
-        <thead><tr><th>League</th><th style="text-align:right">Groups</th><th style="text-align:right">Members</th></tr></thead>
-        <tbody>${leagueRows}</tbody>
-      </table>
-    `;
-    left.querySelectorAll('tr.club-league-row').forEach((tr) => {
-      tr.addEventListener('click', () => {
-        window._clubsSelLeagueId = parseInt(tr.getAttribute('data-lid') || '0', 10);
-        window._clubsSelGroupId = null;
-        renderClubsPanel();
-      });
-    });
-    if (selectedLeague == null || selectedLeague < 0 || selectedLeague > 11) {
-      right.innerHTML = '<div class="club-panel-title">Groups</div><div class="reports-empty">Select a league to view mini groups and members.</div>';
-      return;
-    }
-    const groupList = (byLeague.get(selectedLeague) || []).sort((a, b) => {
-      const wb = String(b.weekId || '');
-      const wa = String(a.weekId || '');
-      if (wb !== wa) return wb.localeCompare(wa);
-      return String(a.id || '').localeCompare(String(b.id || ''));
-    });
-    const groupRows = groupList.map((group) => {
-      const selected = window._clubsSelGroupId === group.id;
-      return `<tr class="club-group-row${selected ? ' is-selected' : ''}" data-gid="${escapeHtml(group.id)}">
-        <td><div class="club-name">${escapeHtml(group.weekId || '-')}</div><div class="club-meta">${escapeHtml(group.id || '-')}</div></td>
-        <td style="text-align:right"><span class="club-count-pill">${toSafeNumber(group.realCount, 0)}</span></td>
-      </tr>`;
-    }).join('');
-    const selectedGroupId = window._clubsSelGroupId;
-    let membersHtml = '<div class="club-panel-title" style="margin-top:14px">Members</div><div class="reports-empty">Select a group to view members.</div>';
-    if (selectedGroupId) {
-      const group = groupList.find((x) => x.id === selectedGroupId);
-      if (group) {
-        const entries = visibleClubMemberEntries(group.members)
-          .sort((a, b) => toSafeNumber(b.member.points, 0) - toSafeNumber(a.member.points, 0) || a.uid.localeCompare(b.uid));
-        const memberRows = entries.map(({ uid, member }) => {
-          const name = cleanClubMemberName(member);
-          const points = member.points != null && member.points !== '' ? String(member.points) : '-';
-          const isBot = member.isBot === true || member.botId;
-          return `<tr>
-            <td><div class="club-name">${escapeHtml(name)}${isBot ? ' <span class="club-meta">(bot)</span>' : ''}</div><div class="club-meta">${escapeHtml(uid)}</div></td>
-            <td><div class="club-action-stack">
-              <button type="button" class="btn-club-user" data-uid="${escapeHtml(uid)}">Profile</button>
-              ${!isBot ? `<button type="button" class="btn-club-reset" data-gid="${escapeHtml(group.id)}" data-uid="${escapeHtml(uid)}">Reset points</button>
-              <button type="button" class="btn-club-move" data-gid="${escapeHtml(group.id)}" data-uid="${escapeHtml(uid)}" data-name="${escapeHtml(name)}">Move league</button>` : ''}
-            </div></td>
-            <td style="text-align:right"><span class="club-count-pill">${escapeHtml(points)}</span></td>
-          </tr>`;
-        }).join('');
-        membersHtml = `
-          <div class="club-panel-title" style="margin-top:14px">Members (${entries.length})</div>
-          <div style="overflow-x:auto">
-            <table class="club-clean-table">
-              <thead><tr><th>Member</th><th>Actions</th><th style="text-align:right">Points</th></tr></thead>
-              <tbody>${memberRows || '<tr><td colspan="3">No members in this group.</td></tr>'}</tbody>
-            </table>
-          </div>
-        `;
-      }
-    }
-    right.innerHTML = `
-      <div class="club-panel-title">${escapeHtml(cleanClubLeagueName(selectedLeague))} groups (${groupList.length})</div>
-      <div style="overflow-x:auto;max-height:40vh;overflow-y:auto">
-        <table class="club-clean-table">
-          <thead><tr><th>Group</th><th style="text-align:right">Members</th></tr></thead>
-          <tbody>${groupRows || '<tr><td colspan="2">No groups for this week filter.</td></tr>'}</tbody>
-        </table>
-      </div>
-      ${membersHtml}
-    `;
-    right.querySelectorAll('tr.club-group-row').forEach((tr) => {
-      tr.addEventListener('click', () => {
-        window._clubsSelGroupId = tr.getAttribute('data-gid') || null;
-        renderClubsPanel();
-      });
-    });
-    right.querySelectorAll('button.btn-club-user').forEach((btn) => {
-      btn.addEventListener('click', (event) => {
-        event.stopPropagation();
-        const uid = btn.getAttribute('data-uid');
-        if (uid) void loadUserToCacheAndOpen(uid);
-      });
-    });
-    right.querySelectorAll('button.btn-club-reset').forEach((btn) => {
-      btn.addEventListener('click', (event) => {
-        event.stopPropagation();
-        const gid = btn.getAttribute('data-gid');
-        const uid = btn.getAttribute('data-uid');
-        if (gid && uid) void leagueResetPoints(gid, uid);
-      });
-    });
-    right.querySelectorAll('button.btn-club-move').forEach((btn) => {
-      btn.addEventListener('click', (event) => {
-        event.stopPropagation();
-        const gid = btn.getAttribute('data-gid');
-        const uid = btn.getAttribute('data-uid');
-        const name = btn.getAttribute('data-name') || '';
-        if (gid && uid) void leagueMoveUser(gid, uid, name);
-      });
-    });
-  };
-
-  const CLUBS_PAGE = 400;
-  window._clubsSourceHealth = { state:'idle', complete:false, truncated:false };
-  window.loadClubsData = async function loadClubsData(force) {
-    // Leagues are retired. Keep the old tab shell inert and never read
-    // league_groups from the live admin surface.
-    const retiredStatus = document.getElementById('clubs-status');
-    const retiredWrap = document.getElementById('clubs-wrap');
-    if (retiredStatus) retiredStatus.textContent = 'Leagues retired';
-    if (retiredWrap) retiredWrap.innerHTML = '<div class="reports-empty">Leagues are retired.</div>';
-    window._clubsLoaded = false;
-    window._clubsSourceHealth = { state:'retired', complete:true, truncated:false };
-    return;
-    applyCleanClubsChrome();
-    const status = document.getElementById('clubs-status');
-    const wrap = document.getElementById('clubs-wrap');
-    if (status) status.textContent = 'Loading clubs...';
-    window._clubsLoaded = false;
-    window._clubsSourceHealth = { state:'loading', complete:false, truncated:false };
-    if (force) {
-      _leagueGroupsCache = null;
-      window._clubsLoaded = false;
-    }
-    const currentWeek = document.getElementById('clubs-cur-week');
-    if (currentWeek) currentWeek.textContent = adminGetWeekId();
-    try {
-      const snap = await getDocs(query(collection(db, 'league_groups'), orderBy('weekId', 'desc'), limit(CLUBS_PAGE + 1)));
-      const truncated = snap.docs.length > CLUBS_PAGE;
-      const visibleDocs = snap.docs.slice(0, CLUBS_PAGE);
-      _leagueGroupsCache = visibleDocs.map((docSnap) => {
-        const data = docSnap.data() || {};
-        const members = data.members && typeof data.members === 'object' ? data.members : {};
-        return {
-          id: docSnap.id,
-          leagueId: typeof data.leagueId === 'number' ? data.leagueId : -1,
-          weekId: data.weekId != null ? String(data.weekId) : '',
-          members,
-          realCount: countVisibleClubMembers(members),
-          hiddenCount: countHiddenClubMembers(members),
-        };
-      });
-      if (!truncated) window._clubsLoaded = true;
-      window._clubsSourceHealth = { state:truncated?'partial':'ready', complete:!truncated, truncated };
-      let orphanCount = 0;
-      let hiddenCount = 0;
-      for (const group of _leagueGroupsCache) {
-        if (group.leagueId < 0 || group.leagueId > 11) orphanCount += 1;
-        hiddenCount += toSafeNumber(group.hiddenCount, 0);
-      }
-      const filtered = filterClubsLeagueGroupRows().length;
-      const mode = document.getElementById('clubs-week-filter')?.value === 'all' ? 'all weeks' : adminGetWeekId();
-      if (status) status.textContent = `Groups shown: ${visibleDocs.length} · filter: ${filtered}/${visibleDocs.length} · ${mode}${truncated ? ' · показана ограниченная выборка; старые группы здесь не ищутся' : ''}${orphanCount ? ` · outside 0-11: ${orphanCount}` : ''}${hiddenCount ? ` · hidden tails: ${hiddenCount}` : ''}`;
-      window._clubsSelLeagueId = null;
-      window._clubsSelGroupId = null;
-      renderClubsPanel();
-      showToast('Clubs loaded');
-      if (typeof window.loadLeagueChestArchive === 'function') {
-        void window.loadLeagueChestArchive(force);
-      }
-    } catch (error) {
-      window._clubsLoaded = false;
-      window._clubsSourceHealth = { state:'error', complete:false, truncated:false };
-      if (status) status.textContent = 'Clubs error';
-      const left = document.getElementById('clubs-left');
-      if (left) {
-        left.className = 'reports-empty';
-        left.innerHTML = `Could not read <code>league_groups</code>.<br><span style="color:#f87171">${escapeHtml(error.message || String(error))}</span><br><span class="club-meta">Check Firestore rules and admin auth.</span>`;
-      }
-      if (wrap) wrap.scrollIntoView({ block: 'start', inline: 'nearest' });
-    }
-  };
-
-  const LEAGUE_CHEST_ARCHIVE_PAGE = 500;
-  let _leagueChestArchiveLoaded = false;
-  window._leagueChestArchiveSourceHealth = { state:'idle', complete:false, truncated:false };
-  function leagueChestGoalAdmin(leagueId) {
-    return 200000 + Math.max(0, Math.floor(Number(leagueId) || 0)) * 20000;
-  }
-  function leagueChestFmtNum(n) {
-    const v = Number(n);
-    return Number.isFinite(v) ? Math.round(v).toLocaleString(ADMIN_DATE_LOCALE) : '—';
-  }
-  function leagueChestFmtDate(ms) {
-    const v = Number(ms);
-    return Number.isFinite(v) && v > 0 ? new Date(v).toLocaleString(ADMIN_DATE_LOCALE) : '—';
-  }
-  function leagueChestFmtDuration(ms) {
-    const v = Number(ms);
-    if (!Number.isFinite(v) || v < 0) return '—';
-    const totalMin = Math.round(v / 60000);
-    const d = Math.floor(totalMin / 1440);
-    const h = Math.floor((totalMin % 1440) / 60);
-    const m = totalMin % 60;
-    if (d > 0) return `${d}д ${h}ч`;
-    if (h > 0) return `${h}ч ${m}м`;
-    return `${m}м`;
-  }
-  function leagueNameAdmin(leagueId) {
-    const hit = CLUB_DEFS_RU.find(x => x.id === Math.floor(Number(leagueId) || 0));
-    return hit ? hit.name : `Лига ${leagueId ?? '—'}`;
-  }
-  function renderLeagueChestArchive(events, crowns, truncated) {
-    const el = document.getElementById('league-chest-archive');
-    if (!el) return;
-    el.className = '';
-    const eventRows = events.slice().sort((a, b) =>
-      String(b.weekId || '').localeCompare(String(a.weekId || '')) ||
-      toSafeNumber(b.firstReachedAt || b.updatedAt, 0) - toSafeNumber(a.firstReachedAt || a.updatedAt, 0)
-    ).map(e => {
-      const goal = toSafeNumber(e.goal, leagueChestGoalAdmin(e.leagueId));
-      const points = toSafeNumber(e.roomPoints, 0);
-      const pct = goal > 0 ? Math.round(points / goal * 100) : 0;
-      const speed = e.completedInMs != null ? e.completedInMs : null;
-      return `<tr>
-        <td style="padding:8px 10px;border-bottom:1px solid #1e1e28;font-weight:700;color:#a78bfa">${escapeHtml(e.weekId || '—')}</td>
-        <td style="padding:8px 10px;border-bottom:1px solid #1e1e28"><div>${escapeHtml(leagueNameAdmin(e.leagueId))}</div><div class="uid-small">${escapeHtml(e.groupId || e.id || '—')}</div></td>
-        <td style="padding:8px 10px;border-bottom:1px solid #1e1e28"><div class="name">${escapeHtml(e.name || '—')}</div><div class="uid-small">${escapeHtml(e.uid || '—')}</div></td>
-        <td style="padding:8px 10px;border-bottom:1px solid #1e1e28;text-align:right;color:#4ade80;font-weight:800">${leagueChestFmtNum(points)} / ${leagueChestFmtNum(goal)}<div class="uid-small">${pct}% · ${leagueChestFmtNum(e.memberCount || 0)} уч.</div></td>
-        <td style="padding:8px 10px;border-bottom:1px solid #1e1e28;text-align:right">${escapeHtml(leagueChestFmtDuration(speed))}<div class="uid-small">${escapeHtml(leagueChestFmtDate(e.firstReachedAt || e.updatedAt))}</div></td>
-      </tr>`;
-    }).join('');
-    const crownRows = crowns.slice().sort((a, b) =>
-      String(b.weekId || '').localeCompare(String(a.weekId || '')) ||
-      toSafeNumber(b.updatedAt || b.expiresAt, 0) - toSafeNumber(a.updatedAt || a.expiresAt, 0)
-    ).map(c => `<tr>
-      <td style="padding:8px 10px;border-bottom:1px solid #1e1e28;font-weight:700;color:#a78bfa">${escapeHtml(c.weekId || '—')}</td>
-      <td style="padding:8px 10px;border-bottom:1px solid #1e1e28">${escapeHtml(leagueNameAdmin(c.leagueId))}<div class="uid-small">${escapeHtml(c.groupId || '—')}</div></td>
-      <td style="padding:8px 10px;border-bottom:1px solid #1e1e28"><div class="name">${escapeHtml(c.name || '—')}</div><div class="uid-small">${escapeHtml(c.uid || '—')}</div></td>
-      <td style="padding:8px 10px;border-bottom:1px solid #1e1e28;text-align:right">${escapeHtml(leagueChestFmtDate(c.expiresAt))}</td>
-    </tr>`).join('');
-    el.innerHTML = `${truncated ? '<div class="pm-v9-source-notice">Показана ограниченная выборка последних записей; более старый архив здесь не ищется.</div>' : ''}
-      <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(320px,0.9fr);gap:14px;align-items:start">
-        <div style="background:#13131c;border:1px solid #2a2a3a;border-radius:12px;overflow:hidden">
-          <div style="padding:12px 14px;border-bottom:1px solid #2a2a3a;font-weight:800;color:#e8e8e8">Команды, закрывшие бонус (${events.length})</div>
-          <div style="overflow:auto;max-height:460px">
-            <table style="width:100%;min-width:760px;border-collapse:collapse">
-              <thead><tr><th style="text-align:left;padding:8px 10px;font-size:10px;color:#666">Неделя</th><th style="text-align:left;padding:8px 10px;font-size:10px;color:#666">Команда</th><th style="text-align:left;padding:8px 10px;font-size:10px;color:#666">Корона</th><th style="text-align:right;padding:8px 10px;font-size:10px;color:#666">Прогресс</th><th style="text-align:right;padding:8px 10px;font-size:10px;color:#666">Скорость</th></tr></thead>
-              <tbody>${eventRows || '<tr><td colspan="5" style="padding:24px;text-align:center;color:#666">Пока нет закрытых целей</td></tr>'}</tbody>
-            </table>
-          </div>
-        </div>
-        <div style="background:#13131c;border:1px solid #2a2a3a;border-radius:12px;overflow:hidden">
-          <div style="padding:12px 14px;border-bottom:1px solid #2a2a3a;font-weight:800;color:#e8e8e8">Короны недели (${crowns.length})</div>
-          <div style="overflow:auto;max-height:460px">
-            <table style="width:100%;min-width:440px;border-collapse:collapse">
-              <thead><tr><th style="text-align:left;padding:8px 10px;font-size:10px;color:#666">Неделя</th><th style="text-align:left;padding:8px 10px;font-size:10px;color:#666">Лига</th><th style="text-align:left;padding:8px 10px;font-size:10px;color:#666">Игрок</th><th style="text-align:right;padding:8px 10px;font-size:10px;color:#666">До</th></tr></thead>
-              <tbody>${crownRows || '<tr><td colspan="4" style="padding:24px;text-align:center;color:#666">Пока нет корон</td></tr>'}</tbody>
-            </table>
-          </div>
-        </div>
-      </div>`;
-  }
-  window.loadLeagueChestArchive = async function loadLeagueChestArchive(force) {
-    // Season/league chest history is retired; do not query legacy collections.
-    const retiredEl = document.getElementById('league-chest-archive');
-    if (!retiredEl) return;
-    retiredEl.className = 'reports-empty';
-    retiredEl.style.textAlign = 'left';
-    retiredEl.innerHTML = 'Season and league rewards are retired.';
-    _leagueChestArchiveLoaded = false;
-    window._leagueChestArchiveSourceHealth = { state:'retired', complete:true, truncated:false };
-    return;
-    if (_leagueChestArchiveLoaded && !force) return;
-    el.className = 'reports-empty';
-    el.style.textAlign = 'left';
-    el.innerHTML = '⏳ Загрузка архива корон и бонуса лиги...';
-    _leagueChestArchiveLoaded = false;
-    window._leagueChestArchiveSourceHealth = { state:'loading', complete:false, truncated:false };
-    try {
-      const [eventsSnap, crownsSnap] = await Promise.all([
-        getDocs(query(collection(db, 'league_chest_events'), orderBy('weekId', 'desc'), limit(LEAGUE_CHEST_ARCHIVE_PAGE + 1))),
-        getDocs(query(collection(db, 'league_crowns'), orderBy('weekId', 'desc'), limit(LEAGUE_CHEST_ARCHIVE_PAGE + 1))),
-      ]);
-      const truncated = eventsSnap.docs.length > LEAGUE_CHEST_ARCHIVE_PAGE || crownsSnap.docs.length > LEAGUE_CHEST_ARCHIVE_PAGE;
-      const events = eventsSnap.docs.slice(0, LEAGUE_CHEST_ARCHIVE_PAGE).map(d => ({ id: d.id, ...(d.data() || {}) }));
-      const crowns = crownsSnap.docs.slice(0, LEAGUE_CHEST_ARCHIVE_PAGE).map(d => ({ id: d.id, ...(d.data() || {}) }));
-      if (!truncated) _leagueChestArchiveLoaded = true;
-      window._leagueChestArchiveSourceHealth = { state:truncated?'partial':'ready', complete:!truncated, truncated };
-      renderLeagueChestArchive(events, crowns, truncated);
-    } catch (e) {
-      _leagueChestArchiveLoaded = false;
-      window._leagueChestArchiveSourceHealth = { state:'error', complete:false, truncated:false };
-      el.innerHTML = `Не удалось загрузить архив <code>league_chest_events</code>/<code>league_crowns</code>.<br><span style="color:#f87171">${escapeHtml(e.message || String(e))}</span>`;
-    }
-  };
 
   function streakMult(s) { return s>=30?1.8:s>=14?1.6:s>=7?1.4:s>=3?1.2:1; }
   function lessonDiffMult(lessonNum) { if(!lessonNum||lessonNum<1) return 1; return 1+(lessonNum-1)*0.05; }
@@ -24173,11 +23370,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     if (tab === 'product-charter' && !window._productCharterLoaded && typeof window.loadProductCharter === 'function') {
       void window.loadProductCharter(false);
     }
-    // зачем: при открытии вкладки сразу показываем готовность режима и очередь
-    // проверки — владельцу не нужно жать «Обновить», чтобы увидеть состояние.
-    if (tab === 'tournaments' && !window._tournamentsLoaded && typeof window.tnOpenTab === 'function') {
-      void window.tnOpenTab();
-    }
     if (tab === 'arena-content' && typeof window.loadArenaContentStatus === 'function') {
       void window.loadArenaContentStatus(false);
     }
@@ -24282,9 +23474,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     }
     if (tab === 'alerts' && typeof window.loadAlertsConfig === 'function' && !window._alertsLoaded) {
       void window.loadAlertsConfig(false);
-    }
-    if (tab === 'clubs' && !window._clubsLoaded && typeof window.loadClubsData === 'function') {
-      void window.loadClubsData(false);
     }
     if (tab === 'referrals' && typeof window.loadReferralsData === 'function') {
       void window.loadReferralsData(false, false);
@@ -25349,7 +24538,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     'daily-phrases': 'Фразы дня',
     'daily-polls': 'Опрос дня',
     'arena-content': 'Контент Spire',
-    clubs: 'Клубы',
     referrals: 'Рефералы',
     'app-health': 'Состояние приложения',
     'max-ops': 'Здоровье MAX',
@@ -25438,7 +24626,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     'daily-polls': 'chart',
     'arena-content': 'target',
     'push-notify': 'bell',
-    clubs: 'trophy',
     archive: 'archive',
     audit: 'clipboard',
     'ops-log': 'terminal',
@@ -25512,8 +24699,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     'community-packs': 'community',
     'card-packs': 'community',
     'push-notify': 'community',
-    clubs: 'community',
-    tournaments: 'community',
     archive: 'system',
     audit: 'system',
     'ops-log': 'system',
@@ -50812,64 +49997,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     try{if(!window.PMSafeOps?.run)return execute({operationId:createAdminCommandId('bulk_ban_batch'),retryTargets:null});return await window.PMSafeOps.run({contractKey:'users.bulk_ban',title:'Массовая блокировка',target:`${uids.length} пользователей`,before:{selected:uids},after:{banned:true},reason,skipPreview:true,reversible:false,execute,validate:(data)=>data?.ok===true||data?.partial===true});}catch(e){showToast('Массовая блокировка не завершена: '+(e?.message||e),'err');}
   };
 
-  // ── LEAGUE MANAGEMENT ─────────────────────────────────────────────────────────
-  window.leagueResetPoints = async function(groupId, uid) {
-    const ok = await showConfirmModal({ title: 'Обнулить очки недели?', desc: `UID: ${uid}\nГруппа: ${groupId}`, confirmLabel: 'Обнулить', danger: true });
-    if (!ok) return;
-    try {
-      const response = await getAdminResetLeaguePointsCallable()({
-        groupId,
-        uid,
-        reason: 'Reset current-week league points after admin review',
-        requestId: createAdminCommandId('league_reset_request'),
-        idempotencyKey: createAdminCommandId('league_reset_operation'),
-      });
-      if (!response || !response.data || response.data.ok !== true || response.data.groupId !== groupId || response.data.uid !== uid || response.data.points !== 0) {
-        throw new Error('Server did not confirm league points reset');
-      }
-      const cached = window._leagueGroupsCache?.find(g => g.id === groupId);
-      if (cached?.members?.[uid]) cached.members[uid].points = 0;
-      logAction('league_reset_points', groupId, { uid });
-      showToast('✅ Очки обнулены');
-      if (typeof window.renderClubsPanel === 'function') renderClubsPanel();
-    } catch(e) { showToast('Ошибка: ' + e.message, 'err'); }
-  };
-
-  window.leagueMoveUser = async function(groupId, uid, name) {
-    const CLUB_NAMES = ['Медная лига','Бронзовая лига','Серебряная лига','Золотая лига','Платиновая лига','Изумрудная лига','Сапфировая лига','Рубиновая лига','Алмазная лига','Лига Чёрного Алмаза','Эфирная лига','Высшая лига'];
-    const leagueNames = CLUB_NAMES.map((n,i) => `${i}=${n}`).join(', ');
-    const targetLeagueStr = await showInputModal({ title: `↗ Переместить ${name} в лигу`, desc: leagueNames, defaultVal: '', confirmLabel: 'Переместить' });
-    if (targetLeagueStr === null) return;
-    const targetLeague = parseInt(String(targetLeagueStr).trim(), 10);
-    if (isNaN(targetLeague) || targetLeague < 0 || targetLeague > 11) { showToast('Неверный номер лиги (0–11)', 'err'); return; }
-    const leagueName = CLUB_NAMES[targetLeague] || String(targetLeague);
-    const ok = await showConfirmModal({ title: `Переместить в «${leagueName}»?`, desc: `Юзер будет добавлен в группу лиги ${targetLeague} прямо сейчас.`, confirmLabel: 'Переместить', danger: false });
-    if (!ok) return;
-    try {
-      const response = await getAdminMoveLeagueUserCallable()({
-        groupId,
-        uid,
-        targetLeague,
-        reason: 'Move user between current-week league groups after admin review',
-        requestId: createAdminCommandId('league_move_request'),
-        idempotencyKey: createAdminCommandId('league_move_operation'),
-      });
-      if (!response || !response.data || response.data.ok !== true || response.data.uid !== uid || !response.data.targetGroupId || response.data.targetLeague !== targetLeague || !response.data.member) {
-        throw new Error('Server did not confirm league move');
-      }
-      const targetGroupId = response.data.targetGroupId;
-      const memberData = response.data.member;
-      const oldCached = window._leagueGroupsCache?.find(g => g.id === groupId);
-      if (oldCached?.members) { delete oldCached.members[uid]; oldCached.realCount = countVisibleClubMembers(oldCached.members); oldCached.hiddenCount = countHiddenClubMembers(oldCached.members); }
-      const newCached = window._leagueGroupsCache?.find(g => g.id === targetGroupId);
-      if (newCached?.members) { newCached.members[uid] = memberData; newCached.realCount = countVisibleClubMembers(newCached.members); newCached.hiddenCount = countHiddenClubMembers(newCached.members); }
-      else if (window._leagueGroupsCache) window._leagueGroupsCache.push({ id: targetGroupId, leagueId: targetLeague, weekId: String(currentWeekId), members: { [uid]: memberData }, realCount: 1, hiddenCount: 0 });
-      logAction('league_move_user', groupId, { uid, targetLeague, targetGroupId });
-      showToast(`✅ ${name} → ${leagueName}`);
-      if (typeof window.renderClubsPanel === 'function') renderClubsPanel();
-    } catch(e) { showToast('Ошибка: ' + e.message, 'err'); }
-  };
-
   function enableLocalAdminVisualTest() {
     if (!isLocalAdminVisualTestMode()) return;
     showAdminAuthenticatedShell();
@@ -50886,982 +50013,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   }
 
   enableLocalAdminVisualTest();
-
-  // ═══════════════════════════════════════════════════════════════════════
-  // ТУРНИРЫ — генерация заданий, проверка, публикация, расписание.
-  //
-  // Задания создаются ИИ и НИКОГДА не уходят игрокам сами:
-  // сначала «На проверке», публикация — только явным
-  // нажатием. Экономия Firestore: список идёт страницами по 25, статистика
-  // считается серверными агрегатами, повторный вход во вкладку не
-  // перезапрашивает данные (флаг _tournamentsLoaded).
-  // ═══════════════════════════════════════════════════════════════════════
-  let _fnTnList = null, _fnTnMutate = null;
-  let _fnTnStats = null, _fnTnGetSchedule = null, _fnTnSetSchedule = null;
-  let _fnTnAiGenerate = null, _fnTnEdit = null, _fnTnCurGet = null, _fnTnCurSet = null;
-  const tnFn = (cached, name) => cached || httpsCallable(functionsUs, name);
-
-  let _tnCursor = '';
-  let _tnItems = [];
-  /** Черновик кураторского набора: раунд → список taskId. */
-  let _tnCurated = { 1: [], 2: [], 3: [], 4: [] };
-
-  /** Режимы, которые разрешено собирать, публиковать и запускать сейчас. */
-  const TN_ACTIVE_MODE_LABEL = Object.freeze({
-    guess_phrase: 'Живая ситуация',
-    fill_gap: 'Пропущенное слово',
-    find_oddity: 'Так не говорят',
-    translate_build: 'Собери фразу',
-    speed_match: 'Пары на скорость',
-  });
-  /** Retired документы доступны только для аудита и не рекламируют старые режимы. */
-  const TN_RETIRED_MODES = new Set(['time_attack', 'listen_choose', 'sound_contrast', 'listen_build']);
-  const tnModeLabel = (mode) => TN_ACTIVE_MODE_LABEL[mode]
-    || (TN_RETIRED_MODES.has(mode) ? 'Архивное задание · не создаётся' : mode);
-  const TN_DIFF_LABEL = { 1: 'Лёгкое', 2: 'Среднее', 3: 'Сложное' };
-
-  function tnError(e) {
-    const code = e && (e.message || e.code) ? String(e.message || e.code) : 'unknown';
-    if (code.includes('tournament_pool_too_small')) {
-      const have = code.split(':').pop();
-      return `Заданий в игре слишком мало (${have}). Опубликуй хотя бы 50, потом включай слоты.`;
-    }
-    if (code.includes('permission-denied')) return 'Недостаточно прав для этого действия.';
-    return code;
-  }
-
-  /**
-   * зачем: escapeHtml админки не экранирует одинарную кавычку, а taskId
-   * вставляется в onclick='...'. Сервер и так пропускает только
-   * [A-Za-z0-9._:-] (ID_RE), но локальный фильтр закрывает латентную XSS,
-   * если правило id когда-нибудь ослабят.
-   */
-  const tnSafeId = (id) => String(id ?? '').replace(/[^A-Za-z0-9._:-]/g, '');
-
-  /** Карточка одного задания: показываем правильный ответ — это экран проверки. */
-  function tnRenderTask(task) {
-    const p = task.payload || {};
-    const mode = tnModeLabel(task.mode);
-    const diff = TN_DIFF_LABEL[task.difficulty] || task.difficulty;
-    let body = '';
-
-    if (task.mode === 'guess_phrase') {
-      const opts = Array.isArray(p.options) ? p.options : [];
-      body = `<div style="font-size:15px;font-weight:700;color:#fafafa;margin-bottom:8px">${escapeHtml(p.phrase)}</div>`
-        + opts.map((o, i) => {
-          const ok = i === p.correctIndex;
-          return `<div style="font-size:13px;padding:3px 0;color:${ok ? '#4ade80' : '#9ca3af'}">${ok ? '✓' : '&nbsp;&nbsp;'} ${escapeHtml(o)}</div>`;
-        }).join('');
-    } else if (task.mode === 'fill_gap' || task.mode === 'find_oddity') {
-      // зачем: новые типы хранятся в том же choice-контракте (phrase + 4
-      // опции + индекс верного), но раньше рендер их не знал — карточка
-      // выходила пустой, виден был только режим и сложность.
-      const opts = Array.isArray(p.options) ? p.options : [];
-      body = `<div style="font-size:15px;font-weight:700;color:#fafafa;margin-bottom:8px">${escapeHtml(p.phrase)}</div>`
-        + opts.map((o, i) => {
-          const ok = i === p.correctIndex;
-          // У «так не говорят» верный ответ — ОШИБОЧНАЯ фраза: помечаем иначе,
-          // чтобы ревьюер не принял подсветку за «правильный английский».
-          const mark = ok ? (task.mode === 'find_oddity' ? '✗' : '✓') : '&nbsp;&nbsp;';
-          const color = ok ? (task.mode === 'find_oddity' ? '#fca5a5' : '#4ade80') : '#9ca3af';
-          return `<div style="font-size:13px;padding:3px 0;color:${color}">${mark} ${escapeHtml(o)}</div>`;
-        }).join('');
-    } else if (task.mode === 'listen_choose' || task.mode === 'sound_contrast') {
-      // зачем 2026-07-27: аудио-режимы. Ревьюер обязан УСЛЫШАТЬ озвучку —
-      // на глаз нельзя проверить, различимы ли варианты на слух. Плеер прямо
-      // в карточке; у черновика озвучки ещё нет (делается при публикации).
-      const opts = Array.isArray(p.options) ? p.options : [];
-      const audio = String(p.audioUri || '');
-      body = audio
-        ? `<audio controls preload="none" src="${escapeHtml(audio)}" style="width:100%;height:32px;margin-bottom:8px"></audio>`
-        : `<div style="font-size:12px;color:#fbbf24;background:rgba(251,191,36,0.1);border-radius:6px;padding:6px 9px;margin-bottom:8px">Архивное задание без доступной записи</div>`;
-      body += `<div style="font-size:13px;color:#9ca3af;margin-bottom:6px">Прозвучит: <b style="color:#fafafa">${escapeHtml(p.phrase || '')}</b></div>`;
-      body += opts.map((o, i) => {
-        const ok = i === p.correctIndex;
-        return `<div style="font-size:13px;padding:3px 0;color:${ok ? '#4ade80' : '#9ca3af'}">${ok ? '✓' : '&nbsp;&nbsp;'} ${escapeHtml(o)}</div>`;
-      }).join('');
-    } else if (task.mode === 'listen_build') {
-      const bank = Array.isArray(p.wordBank) ? p.wordBank : [];
-      const correct = Array.isArray(p.correctTokens) ? p.correctTokens : [];
-      const audio = String(p.audioUri || '');
-      body = audio
-        ? `<audio controls preload="none" src="${escapeHtml(audio)}" style="width:100%;height:32px;margin-bottom:8px"></audio>`
-        : `<div style="font-size:12px;color:#fbbf24;background:rgba(251,191,36,0.1);border-radius:6px;padding:6px 9px;margin-bottom:8px">Архивное задание без доступной записи</div>`;
-      body += `<div style="font-size:15px;font-weight:700;color:#fafafa;margin-bottom:8px">${escapeHtml(p.phrase || '')}</div>`;
-      body += `<div style="font-size:13px;color:#9ca3af;margin-bottom:6px">Чипы: ${bank.map((w) => {
-        // Дистрактор (нет в правильном ответе) подсвечен — видно ловушку.
-        const isDecoy = !correct.includes(w);
-        const bg = isDecoy ? 'rgba(251,191,36,0.14)' : '#1a1a24';
-        const color = isDecoy ? '#fbbf24' : '#e5e7eb';
-        return `<span style="background:${bg};color:${color};border-radius:5px;padding:2px 7px;margin:0 3px 4px 0;display:inline-block">${escapeHtml(w)}</span>`;
-      }).join('')}</div>`;
-      body += `<div style="font-size:13px;color:#4ade80">Ответ: ${escapeHtml(correct.join(' '))}</div>`;
-    } else if (task.mode === 'translate_build') {
-      const bank = Array.isArray(p.wordBank) ? p.wordBank : [];
-      body = `<div style="font-size:15px;font-weight:700;color:#fafafa;margin-bottom:8px">${escapeHtml(p.phrase)}</div>`
-        + `<div style="font-size:13px;color:#9ca3af;margin-bottom:6px">Слова: ${bank.map(w => `<span style="background:#1a1a24;border-radius:5px;padding:2px 7px;margin:0 3px 4px 0;display:inline-block">${escapeHtml(w)}</span>`).join('')}</div>`
-        + `<div style="font-size:13px;color:#4ade80">✓ ${escapeHtml(p.correctAnswer || '')}</div>`;
-    } else if (task.mode === 'time_attack') {
-      const items = Array.isArray(p.items) ? p.items : [];
-      body = `<div style="font-size:15px;font-weight:700;color:#fafafa;margin-bottom:8px">${escapeHtml(p.prompt)}</div>`
-        + items.map(it => {
-          const opts = Array.isArray(it.options) ? it.options : [];
-          return `<div style="font-size:13px;padding:2px 0;color:#9ca3af">${escapeHtml(it.prompt)} → <span style="color:#4ade80">${escapeHtml(opts[it.correctIndex] || '')}</span></div>`;
-        }).join('');
-    }
-
-    const badge = task.verified
-      ? '<span style="background:rgba(74,222,128,0.14);color:#4ade80;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700">В игре</span>'
-      : '<span style="background:rgba(251,191,36,0.14);color:#fbbf24;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700">На проверке</span>';
-    const invalid = task.valid === false
-      ? '<span style="background:rgba(248,113,113,0.14);color:#fca5a5;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700;margin-left:6px">Битое</span>'
-      : '';
-    const publishable = task.valid !== false && task.lifecycle === 'awaiting_approval' && task.aiVerdict === 'approved';
-    const lifecycleLabel = task.lifecycle === 'awaiting_approval'
-      ? '<span style="background:rgba(251,191,36,0.14);color:#fbbf24;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700">Ждёт решения человека</span>'
-      : task.lifecycle === 'published'
-        ? '<span style="background:rgba(74,222,128,0.14);color:#4ade80;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700">В игре</span>'
-        : '';
-    const aiCheck = task.aiVerdict === 'approved'
-      ? '<span style="background:rgba(139,92,246,0.16);color:#c4b5fd;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700">Автопроверка: пройдена</span>'
-      : '';
-    const aiReason = task.aiReason
-      ? `<div style="margin-top:6px;font-size:12px;color:#9ca3af;line-height:1.5" title="${escapeHtml(task.aiReason)}" aria-label="Причина проверки ИИ: ${escapeHtml(task.aiReason)}">${escapeHtml(task.aiReason)}</div>`
-      : '';
-    // Раздельные пулы: откуда пришёл вопрос.
-    const src = task.source === 'ai'
-      ? '<span style="background:rgba(139,92,246,0.16);color:#c4b5fd;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700">🤖 ИИ</span>'
-      : '';
-    // Заметка редактору от ИИ: почему верен ответ и в чём ловушки.
-    const meta = task.aiMeta && (task.aiMeta.scenario || task.aiMeta.ruleNote)
-      ? `<div style="margin-top:8px;font-size:12px;color:#8b8fa3;line-height:1.5">${task.aiMeta.scenario ? `🎬 ${escapeHtml(task.aiMeta.scenario)} · ` : ''}${escapeHtml(task.aiMeta.ruleNote || '')}</div>`
-      : '';
-
-    const sid = tnSafeId(task.taskId);
-    return `<div style="background:#15151f;border-radius:10px;padding:14px 16px;margin-bottom:10px" id="tn-card-${sid}">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
-        ${publishable ? `<input type="checkbox" class="tn-pick" value="${sid}" checked style="width:16px;height:16px;cursor:pointer" aria-label="Выбрать задание для публикации" />` : '<span style="font-size:11px;color:#6b7280">Нельзя опубликовать</span>'}
-        <span style="font-size:12px;color:#6b7280">${escapeHtml(mode)} · ${escapeHtml(String(diff))}</span>
-        <span style="flex:1"></span>${src}${lifecycleLabel}${aiCheck}${badge}${invalid}
-        <button type="button" onclick="tnEditStart('${sid}')" title="Изменить вопрос"
-          style="background:#1a1a24;border:1px solid #2a2a3a;color:#cbd5e1;padding:4px 10px;border-radius:7px;cursor:pointer;font-size:12px">✏️</button>
-        <button type="button" onclick="tnRegenTask('${sid}')" title="Заменить новым вопросом от ИИ"
-          style="background:#241a2e;border:1px solid #3a2a4a;color:#c4b5fd;padding:4px 10px;border-radius:7px;cursor:pointer;font-size:12px">✨</button>
-        <button type="button" onclick="tnDeleteTask('${sid}')" title="Удалить вопрос из пула"
-          style="background:#2a1518;border:1px solid #4a2a2e;color:#fca5a5;padding:4px 10px;border-radius:7px;cursor:pointer;font-size:12px">🗑</button>
-      </div>
-      <div class="tn-card-body">${body}${meta}${aiReason}</div>
-    </div>`;
-  }
-
-  // ── Папки вопросов по типу ──────────────────────────────────────────────
-  // зачем: владелец просил раздел, где все задания сгруппированы, чтобы зайти,
-  // просмотреть каждое и решить — заменить, перегенерировать или удалить.
-
-  const TN_FOLDERS = [
-    { mode: '', name: 'Все вопросы' },
-    // Только пять режимов, утверждённых владельцем для новых турниров.
-    // Старые документы остаются доступными через «Все вопросы» для аудита,
-    // но не получают отдельной папки и не могут снова попасть в новый пул.
-    { mode: 'guess_phrase', name: 'Живая ситуация' },
-    { mode: 'fill_gap', name: 'Пропущенное слово' },
-    { mode: 'find_oddity', name: 'Так не говорят' },
-    { mode: 'translate_build', name: 'Собери фразу' },
-    { mode: 'speed_match', name: 'Пары на скорость' },
-  ];
-  let _tnFolder = '';
-  let _fnTnBulk = null, _fnTnRegen = null;
-
-  function tnRenderFolders(counts) {
-    const box = document.getElementById('tn-folders');
-    if (!box) return;
-    box.innerHTML = TN_FOLDERS.map((folder) => {
-      const active = folder.mode === _tnFolder;
-      const count = folder.mode ? (counts?.[folder.mode] ?? 0) : (counts?.__all ?? 0);
-      const folderName = escapeHtml(folder.name);
-      return `<button type="button" onclick="tnOpenFolder('${folder.mode}')"
-        title="Открыть: ${folderName}" data-tooltip="Открыть пул «${folderName}»" aria-label="Открыть пул ${folderName}"
-        style="min-height:44px;background:${active ? '#2a2a3a' : '#15151f'};border-radius:9px;color:${active ? '#fafafa' : '#9ca3af'};padding:9px 14px;cursor:pointer;font-weight:${active ? '800' : '600'};font-size:13px">
-        ${folderName} <span style="color:${active ? '#c4b5fd' : '#6b7280'}">${count}</span>
-      </button>`;
-    }).join('');
-
-    // Массовые действия — только внутри конкретной папки, не по «Все».
-    const actions = document.getElementById('tn-folder-actions');
-    if (!actions) return;
-    actions.innerHTML = _tnFolder
-      ? `<button type="button" onclick="tnFolderBulk('publish')" title="Опубликовать все проверенные задания этой папки"
-           data-tooltip="Опубликовать проверенные задания" aria-label="Опубликовать всю папку"
-           style="min-height:44px;background:#1a3a2a;border-radius:8px;color:#4ade80;padding:7px 14px;cursor:pointer;font-weight:700;font-size:13px;margin-right:8px">Опубликовать всю папку</button>
-         <button type="button" onclick="tnFolderBulk('delete')" title="Безвозвратно удалить все задания этой папки"
-           data-tooltip="Удалить задания без возможности восстановления" aria-label="Удалить всю папку"
-           style="min-height:44px;background:#2a1518;border-radius:8px;color:#fca5a5;padding:7px 14px;cursor:pointer;font-weight:700;font-size:13px">Удалить всю папку</button>`
-      : '';
-  }
-
-  /**
-   * зачем 2026-07-27: владелец — «клик по папке должен открывать ОТДЕЛЬНУЮ
-   * СТРАНИЦУ с фул пулом и удобным управлением всего». Внутри админки список
-   * тонул под панелями генерации, а фильтр «На проверке» показывал пусто при
-   * полном пуле. Открываем новую вкладку: можно держать несколько пулов
-   * рядом и сравнивать, а админка не теряет место.
-   */
-  window.tnOpenFolder = function tnOpenFolder(mode) {
-    if (typeof window.pmV9OpenTournamentPool === 'function') return window.pmV9OpenTournamentPool(mode);
-    window.switchTab?.('tournament-pool');
-  };
-
-  let _tnFolderCounts = null;
-
-  /** Массовое действие по папке: страницами, пока сервер не скажет «всё». */
-  window.tnFolderBulk = async function tnFolderBulk(action) {
-    if (!_tnFolder) return;
-    const folder = TN_FOLDERS.find((entry) => entry.mode === _tnFolder);
-    const status = document.getElementById('tn-status')?.value ?? 'draft';
-    const what = action === 'publish' ? 'Опубликовать' : 'УДАЛИТЬ';
-    if (!confirm(`${what} все задания папки «${folder?.name || _tnFolder}»?` +
-      (action === 'delete' ? ' Это необратимо.' : ''))) return;
-    try {
-      _fnTnBulk = tnFn(_fnTnBulk, 'adminBulkTournamentFolder');
-      let total = 0, rejected = 0;
-      for (let guard = 0; guard < 30; guard += 1) {
-        const res = await _fnTnBulk({ mode: _tnFolder, action, status });
-        total += Number(res?.data?.affected || 0);
-        rejected += Number(res?.data?.rejected || 0);
-        if (!res?.data?.hasMore) break;
-      }
-      showToast(`Готово: ${total}` + (rejected ? `, отклонено битых: ${rejected}` : ''), 'ok');
-      await window.tnLoadTasks(true);
-      await window.tnLoadStats();
-    } catch (e) {
-      showToast('Не удалось: ' + tnError(e), 'err');
-    }
-  };
-
-  /** Перегенерировать один вопрос через ИИ: тот же тип и сложность. */
-  window.tnRegenTask = async function tnRegenTask(rawTaskId) {
-    const taskId = tnSafeId(rawTaskId);
-    if (!confirm('Заменить этот вопрос новым от ИИ? Старый будет удалён, новый ляжет на проверку.')) return;
-    const card = document.getElementById(`tn-card-${taskId}`);
-    if (card) card.style.opacity = '0.5';
-    try {
-      _fnTnRegen = tnFn(_fnTnRegen, 'adminRegenerateTournamentTask');
-      await _fnTnRegen({ taskId });
-      showToast('Вопрос заменён — новый на проверке', 'ok');
-      await window.tnLoadTasks(true);
-      await window.tnLoadStats();
-    } catch (e) {
-      if (card) card.style.opacity = '1';
-      showToast('Не удалось заменить: ' + tnError(e), 'err');
-    }
-  };
-
-  window.tnLoadTasks = async function tnLoadTasks(reset) {
-    const list = document.getElementById('tn-list');
-    if (!list) return;
-    if (reset) { _tnCursor = ''; _tnItems = []; list.innerHTML = '<div class="reports-empty">Загружаю…</div>'; }
-    try {
-      _fnTnList = tnFn(_fnTnList, 'adminListTournamentTasks');
-      const status = document.getElementById('tn-status')?.value ?? 'awaiting_approval';
-      const difficulty = Number(document.getElementById('tn-difficulty')?.value || 0);
-      // зачем: фильтр пулов убран — турниры играют только на вопросах ИИ,
-      // выбирать не из чего. Сервер сам отдаёт нужный пул.
-      const payload = { limit: 25, status, cursor: _tnCursor };
-      if (status === 'awaiting_approval') { payload.status = 'draft'; payload.lifecycle = 'awaiting_approval'; }
-      if (difficulty) payload.difficulty = difficulty;
-      // Папка = режим; пустая папка «Все» фильтр не шлёт.
-      if (_tnFolder) payload.mode = _tnFolder;
-
-      const res = await _fnTnList(payload);
-      const data = res?.data || {};
-      _tnItems = _tnItems.concat(data.items || []);
-      _tnCursor = data.nextCursor || '';
-
-      list.innerHTML = _tnItems.length
-        ? _tnItems.map(tnRenderTask).join('')
-        : '<div class="reports-empty">Пока пусто. Собери задания в шаге 1.</div>';
-      const count = document.getElementById('tn-count');
-      if (count) count.textContent = `Показано: ${_tnItems.length}`;
-      const publish = document.getElementById('tn-publish');
-      if (publish) publish.disabled = !_tnItems.some(task => task.valid !== false && task.lifecycle === 'awaiting_approval' && task.aiVerdict === 'approved');
-      const more = document.getElementById('tn-more');
-      if (more) {
-        more.innerHTML = _tnCursor
-          ? '<button type="button" onclick="tnLoadTasks(false)" style="background:#1a1a24;border:1px solid #2a2a3a;color:#cbd5e1;padding:8px 16px;border-radius:8px;cursor:pointer;font-size:13px">Показать ещё</button>'
-          : '';
-      }
-    } catch (e) {
-      list.innerHTML = `<div class="reports-empty" style="color:#fca5a5">Ошибка: ${escapeHtml(tnError(e))}</div>`;
-    }
-  };
-
-  window.tnPublishVisible = async function tnPublishVisible() {
-    // зачем: только список ревью (#tn-list) — карточки-примеры в панелях
-    // генерации тоже несут чекбоксы, и глобальный селектор пытался бы
-    // публиковать id из dry-run примеров, которых нет в базе.
-    const eligible = new Set(_tnItems.filter(task => task.valid !== false && task.lifecycle === 'awaiting_approval' && task.aiVerdict === 'approved').map(task => tnSafeId(task.taskId)));
-    const picked = Array.from(document.querySelectorAll('#tn-list .tn-pick:checked')).map(el => el.value).filter(id => eligible.has(id));
-    if (!picked.length) { showToast('Нечего публиковать: отметь задания галочками.', 'warn'); return; }
-    if (!confirm(`Опубликовать ${picked.length} заданий? Они станут доступны игрокам.`)) return;
-    try {
-      _fnTnMutate = tnFn(_fnTnMutate, 'adminMutateTournamentTasks');
-      const res = await _fnTnMutate({ taskIds: picked, action: 'publish' });
-      const data = res?.data || {};
-      const rejected = Array.isArray(data.rejected) ? data.rejected.length : 0;
-      showToast(`Опубликовано: ${data.affected ?? 0}${rejected ? `, отклонено битых: ${rejected}` : ''}`, 'ok');
-      await window.tnLoadTasks(true);
-      await window.tnLoadStats();
-    } catch (e) {
-      showToast('Не удалось опубликовать: ' + tnError(e), 'err');
-    }
-  };
-
-  window.tnLoadStats = async function tnLoadStats() {
-    const box = document.getElementById('tn-stats');
-    if (!box) return;
-    try {
-      _fnTnStats = tnFn(_fnTnStats, 'adminTournamentPoolStats');
-      const res = await _fnTnStats({});
-      const d = res?.data || {};
-      // Счётчик на карточке «Задания в игре»: владелец видит объём пула,
-      // не открывая список. Чем больше — тем разнообразнее турниры.
-      const approvedBox = document.getElementById('tn-approved-count');
-      if (approvedBox) approvedBox.textContent = String(d.published ?? 0);
-      // Счётчики папок: сколько вопросов каждого типа лежит в пуле.
-      _tnFolderCounts = { ...(d.byMode || {}), __all: Number(d.published || 0) + Number(d.drafts || 0) };
-      tnRenderFolders(_tnFolderCounts);
-      const rounds = Array.isArray(d.rounds) ? d.rounds : [];
-
-      const ready = d.poolReady
-        ? '<span style="color:#4ade80;font-weight:800">Можно запускать</span>'
-        : '<span style="color:#fbbf24;font-weight:800">Заданий пока мало</span>';
-
-      const cards = rounds.map(r => {
-        const ok = r.ready;
-        return `<div style="background:#15151f;border-radius:10px;padding:12px 14px;min-width:150px">
-          <div style="font-size:12px;color:#6b7280;margin-bottom:4px">Раунд ${r.round}</div>
-          <div style="font-size:20px;font-weight:800;color:${ok ? '#4ade80' : '#fbbf24'}">${r.available}</div>
-        </div>`;
-      }).join('');
-
-      box.innerHTML = `<div style="background:#12121a;border-radius:12px;padding:16px 18px;max-width:1080px">
-        <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px">
-          <span style="font-size:15px;font-weight:800;color:#fafafa">Готовность режима</span>
-          <span style="flex:1"></span>${ready}
-        </div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px">${cards}</div>
-        <div style="font-size:13px;color:#9ca3af;margin-bottom:10px">
-          В игре: <strong style="color:#4ade80">${d.published ?? 0}</strong> ·
-          На проверке: <strong style="color:#fbbf24">${d.drafts ?? 0}</strong>
-        </div>
-        ${(() => {
-          // Турниры играют только на одобренных вопросах ИИ.
-          const ai = (d.sources || {}).ai || { total: 0, published: 0, drafts: 0 };
-          return `<div style="background:#15151f;border-radius:10px;padding:12px 14px;max-width:360px">
-            <div style="font-size:12px;color:#6b7280;margin-bottom:6px">🤖 Вопросы от ИИ</div>
-            <div style="font-size:13px;color:#9ca3af">В игре: <strong style="color:#c4b5fd">${ai.published}</strong> · На проверке: <strong style="color:#fbbf24">${ai.drafts}</strong> · Всего: ${ai.total}</div>
-          </div>`;
-        })()}
-      </div>`;
-    } catch (e) {
-      box.innerHTML = `<div class="reports-empty" style="color:#fca5a5">Ошибка: ${escapeHtml(tnError(e))}</div>`;
-    }
-  };
-
-  window.tnPreviewAllDay = function tnPreviewAllDay(input) {
-    const enabled = input?.checked === true;
-    const status = document.getElementById('tn-all-day-status');
-    if (status) {
-      status.textContent = enabled ? 'Активно весь день' : 'По расписанию';
-      status.style.background = enabled ? '#4ade80' : '#27272f';
-      status.style.color = enabled ? '#07110A' : '#cbd5e1';
-    }
-    document.querySelectorAll('.tn-slot, .tn-slot-time').forEach((control) => {
-      control.disabled = enabled;
-      if (control.classList?.contains('tn-slot')) {
-        control.style.cursor = enabled ? 'not-allowed' : 'pointer';
-      }
-    });
-  };
-
-  window.tnLoadSchedule = async function tnLoadSchedule() {
-    const box = document.getElementById('tn-schedule');
-    if (!box) return;
-    try {
-      _fnTnGetSchedule = tnFn(_fnTnGetSchedule, 'adminGetTournamentSchedule');
-      const res = await _fnTnGetSchedule({});
-      const d = res?.data || {};
-      // зачем: формат слота обязан совпадать с TournamentSlotConfig на сервере
-      // (slotId/localTime/timezone/ticketsRequired/enabled). Версия с
-      // hour+minute уже один раз откатывала сюда сама собой (регрессия найдена
-      // аудитом 2026-07-25) — сервер такие слоты молча отбрасывал, в UI было
-      // «undefined:undefined», а расписание не запускало ни одного турнира.
-      const slots = Array.isArray(d.slots) && d.slots.length ? d.slots : [
-        { slotId: 'daily_1200', localTime: '12:00', ticketsRequired: 1, enabled: false },
-        { slotId: 'daily_1900', localTime: '19:00', ticketsRequired: 1, enabled: false },
-        { slotId: 'daily_2100', localTime: '21:00', ticketsRequired: 1, enabled: false },
-      ];
-      const allDayEnabled = d.allDayEnabled === true;
-      const allDayControl = `<div style="background:#15151f;border-radius:8px;padding:14px 16px;margin-bottom:12px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
-        <div style="flex:1;min-width:240px">
-          <div style="font-size:14px;font-weight:800;color:#f8fafc;margin-bottom:4px">Активно весь день</div>
-          <div id="tn-all-day-help" style="font-size:12.5px;line-height:1.5;color:#9ca3af">Игроки смогут начать турнир в любое время. Таймер пропадёт, кнопка «Играть» будет доступна весь день. Обновление приложения не нужно; после выключения вернётся сохранённое расписание.</div>
-        </div>
-        <label title="Включает турниры для всех игроков на весь день. Применяется с сервера; отменяется этим же переключателем и сохранением расписания." style="display:flex;align-items:center;gap:10px;min-height:44px;cursor:pointer;user-select:none">
-          <input type="checkbox" id="tn-all-day" aria-describedby="tn-all-day-help" onchange="tnPreviewAllDay(this)" ${allDayEnabled ? 'checked' : ''} style="width:20px;height:20px;cursor:pointer" />
-          <span id="tn-all-day-status" style="border-radius:999px;padding:5px 10px;font-size:12px;font-weight:800;background:${allDayEnabled ? '#4ade80' : '#27272f'};color:${allDayEnabled ? '#07110A' : '#cbd5e1'}">${allDayEnabled ? 'Активно весь день' : 'По расписанию'}</span>
-        </label>
-      </div>`;
-
-      box.innerHTML = allDayControl + slots.map((s) => {
-        const time = /^\d{2}:\d{2}$/.test(String(s.localTime || '')) ? s.localTime : '12:00';
-        const tickets = Number(s.ticketsRequired) > 0 ? Number(s.ticketsRequired) : 1;
-        return `<div style="display:flex;align-items:center;gap:14px;padding:10px 0">
-          <input type="checkbox" class="tn-slot" data-slot="${escapeHtml(s.slotId)}" data-tickets="${tickets}" ${s.enabled ? 'checked' : ''} ${allDayEnabled ? 'disabled' : ''} aria-label="Включить турнир ${escapeHtml(time)}" style="width:18px;height:18px;cursor:${allDayEnabled ? 'not-allowed' : 'pointer'}" />
-          <input type="time" class="tn-slot-time" data-slot="${escapeHtml(s.slotId)}" value="${escapeHtml(time)}" ${allDayEnabled ? 'disabled' : ''} aria-label="Время турнира ${escapeHtml(s.slotId)}" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#fafafa;padding:6px 10px;font-size:15px;font-weight:700" />
-          <span style="font-size:13px;color:#6b7280">вход ${tickets} 🎟</span>
-          <span style="font-size:13px;color:${allDayEnabled ? '#9ca3af' : (s.enabled ? '#4ade80' : '#6b7280')}">${allDayEnabled ? 'Вернётся после выключения режима на весь день' : (s.enabled ? 'Турнир идёт' : 'Выключен')}</span>
-        </div>`;
-      }).join('')
-        + `<div style="margin-top:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-            <button type="button" onclick="tnSaveSchedule()" title="Сохранит выбранный режим для всех игроков. Изменение применяется без обновления приложения; отменить можно здесь же." style="background:#4338ca;border:1px solid #6366f1;color:#fff;padding:10px 16px;min-height:44px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">Сохранить расписание</button>
-            <span style="font-size:12px;color:#6b7280">Время московское</span>
-            <span style="font-size:12px;color:#9ca3af">Тестовые турниры доступны только в специальных сборках и не включаются из админки.</span>
-          </div>`;
-    } catch (e) {
-      box.innerHTML = `<div class="reports-empty" style="color:#fca5a5">Ошибка: ${escapeHtml(tnError(e))}</div>`;
-    }
-  };
-
-  window.tnSaveSchedule = async function tnSaveSchedule() {
-    // Время берём из поля рядом с галочкой: формат HH:MM — тот же, что читает
-    // планировщик комнат. Таймзона одна на все слоты (московская).
-    const times = new Map(
-      Array.from(document.querySelectorAll('.tn-slot-time'))
-        .map(el => [el.getAttribute('data-slot'), String(el.value || '').trim()]),
-    );
-    const slots = Array.from(document.querySelectorAll('.tn-slot')).map(el => {
-      const slotId = el.getAttribute('data-slot');
-      return {
-        slotId,
-        localTime: times.get(slotId) || '12:00',
-        timezone: 'Europe/Moscow',
-        ticketsRequired: Number(el.getAttribute('data-tickets')) || 1,
-        enabled: el.checked,
-      };
-    });
-    const badTime = slots.find(s => !/^\d{2}:\d{2}$/.test(s.localTime));
-    if (badTime) { showToast('Время слота указано неверно — нужен формат ЧЧ:ММ', 'warn'); return; }
-
-    const allDayEnabled = document.getElementById('tn-all-day')?.checked === true;
-    const turningOn = allDayEnabled || slots.some(s => s.enabled);
-    const confirmation = allDayEnabled
-      ? 'Включить турниры для всех игроков на весь день? Таймер пропадёт, а кнопка «Играть» станет доступна в любое время.'
-      : 'Сохранить обычное расписание турниров для живых игроков?';
-    if (turningOn && !confirm(confirmation)) return;
-    try {
-      _fnTnSetSchedule = tnFn(_fnTnSetSchedule, 'adminSetTournamentSchedule');
-      await _fnTnSetSchedule({ slots, timezone: 'Europe/Moscow', freeWeeklyEntry: true, ticketGemValue: 5, allDayEnabled });
-      if (typeof logAction === 'function') {
-        void logAction('tournament_schedule_update', 'tournamentSchedule/config', {
-          allDayEnabled,
-          enabledSlots: slots.filter(s => s.enabled).map(s => s.slotId),
-        });
-      }
-      showToast(allDayEnabled ? 'Турниры активны весь день' : 'Расписание сохранено', 'ok');
-      await window.tnLoadSchedule();
-    } catch (e) {
-      showToast('Не удалось сохранить: ' + tnError(e), 'err');
-    }
-  };
-
-  // ── ИИ-генерация ────────────────────────────────────────────────────────
-  /**
-   * зачем: владелец просил, чтобы генерация выдавала СРАЗУ готовый турнир, а не
-   * пачку однотипных вопросов: «1 фулл готовый турнир, все раунды, и для
-   * каждого режима своё». Один вызов = 4 раунда × 6 заданий, четыре типа
-   * вопросов, каждый ложится в свой раздел пула по режиму.
-   */
-  /**
-   * Вход в пул одобренных заданий.
-   *
-   * зачем: владелец просил отдельную кнопку — «пул одобренных заданий, которые
-   * уже будут попадать в игру». Фильтр «В игре» существовал, но был неприметным
-   * пунктом выпадашки: непонятно, что реально играет, а что ждёт проверки.
-   */
-  window.tnOpenApprovedPool = function tnOpenApprovedPool() {
-    // Полный пул открывается внутри единой админки.
-    if (typeof window.pmV9OpenTournamentPool === 'function') return window.pmV9OpenTournamentPool('');
-    window.switchTab?.('tournament-pool');
-    return;
-    // eslint-disable-next-line no-unreachable
-    const status = document.getElementById('tn-status');
-    if (status) status.value = 'published';
-    const diff = document.getElementById('tn-difficulty');
-    if (diff) diff.value = '0';
-    if (typeof tnLoadTasks === 'function') tnLoadTasks(true);
-    // Прокручиваем к списку: иначе клик по карточке выглядит как «ничего
-    // не произошло» — таблица ниже экрана.
-    const list = document.getElementById('tn-list') || document.getElementById('tn-count');
-    if (list && list.scrollIntoView) list.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
-
-  /**
-   * Resumable v11 semantic review. This surface can inspect and build the
-   * server-only bundle, but it never activates that bundle for live rooms.
-   */
-  const TN_V11_POOL_VERSION = 'tpool_20260808_v11';
-  const TN_V11_JOB_STORAGE_KEY = 'phraseman_tournament_v11_job_id';
-  let _fnTnFill = null;
-  let _tnV11InFlight = false;
-
-  function tnV11StoredJobId() {
-    try { return localStorage.getItem(TN_V11_JOB_STORAGE_KEY) || ''; } catch (_error) { return ''; }
-  }
-
-  function tnV11RememberJob(data) {
-    if (!data || typeof data.jobId !== 'string' || !data.jobId) return;
-    try { localStorage.setItem(TN_V11_JOB_STORAGE_KEY, data.jobId); } catch (_error) { /* storage is optional */ }
-  }
-
-  function tnV11PageStillActive() {
-    const tab = document.getElementById('tab-tournaments');
-    return document.visibilityState !== 'hidden' && !!tab && getComputedStyle(tab).display !== 'none';
-  }
-
-  function tnV11Yield() {
-    return new Promise((resolve) => setTimeout(resolve, 80));
-  }
-
-  function tnV11SetBusy(busy, dryRun) {
-    const buttons = [document.getElementById('tn-v11-dry-run'), document.getElementById('tn-v11-run')].filter(Boolean);
-    buttons.forEach((button) => {
-      if (!button.dataset.defaultText) button.dataset.defaultText = button.textContent;
-      button.disabled = busy;
-      button.setAttribute('aria-busy', busy ? 'true' : 'false');
-      button.textContent = busy
-        ? (dryRun ? 'Проверяю план…' : 'Проверяю пакет…')
-        : button.dataset.defaultText;
-    });
-  }
-
-  function tnV11Number(value) {
-    return Number.isFinite(Number(value)) ? Number(value) : 0;
-  }
-
-  function tnV11Render(data) {
-    const card = document.getElementById('tn-v11-review-card');
-    const status = document.getElementById('tn-fill-status');
-    const result = document.getElementById('tn-fill-result');
-    if (!result || !data) return;
-
-    const cursor = tnV11Number(data.cursor);
-    const total = tnV11Number(data.totalCandidates);
-    const cells = data.cells && typeof data.cells === 'object' ? data.cells : {};
-    const cellRows = Object.entries(cells).sort(([a], [b]) => a.localeCompare(b)).map(([cell, counts]) => {
-      const safeCounts = counts && typeof counts === 'object' ? counts : {};
-      const details = Object.entries(safeCounts).map(([key, value]) => `${escapeHtml(key)}: ${tnV11Number(value)}`).join(' · ');
-      return `<div style="padding:5px 0;border-bottom:1px solid #232332;font-size:12px;color:#cbd5e1"><strong>${escapeHtml(cell)}</strong><span style="color:#9ca3af"> · ${details}</span></div>`;
-    }).join('') || '<div style="font-size:12px;color:#9ca3af">Ячейки пока не рассчитаны.</div>';
-
-    const shortages = Array.isArray(data.shortages) ? data.shortages : [];
-    const shortageCopy = shortages.length
-      ? `<div style="margin-top:10px;color:#fbbf24;font-size:12px"><strong>Недобор:</strong> ${shortages.map(escapeHtml).join(', ')}</div>`
-      : '<div style="margin-top:10px;color:#cbd5e1;font-size:12px"><strong>Недобор:</strong> не обнаружен.</div>';
-
-    let nextAction = 'Нажмите «Начать / продолжить проверку v11».';
-    let stateCopy = 'План рассчитан без запуска проверки и без записи.';
-    let stateColor = '#93c5fd';
-    const exactReady = data.action !== 'dry_run'
-      && data.state === 'ready'
-      && data.continuation !== true
-      && data.paused !== true
-      && data.blocked !== true
-      && data.shortage !== true;
-    if (exactReady) {
-      stateCopy = 'Готово: все глобальные проверки v11 пройдены. Живой пул не переключён.';
-      nextAction = 'Следующее действие: отдельная ручная, hash-pinned миграция после решения владельца.';
-      stateColor = '#4ade80';
-    } else if (data.continuation && data.state !== 'paused') {
-      stateCopy = 'Проверка идёт последовательными ограниченными пакетами. Прогресс сохранён.';
-      nextAction = 'Следующее действие: дождаться завершения или вернуться позже и продолжить тот же job.';
-      stateColor = '#c4b5fd';
-    } else if (data.state === 'paused') {
-      stateCopy = 'Пауза: сервер сохранил прогресс и не потеряет уже полученные результаты.';
-      nextAction = 'Следующее действие: устранить причину паузы и нажать продолжение.';
-      stateColor = '#fbbf24';
-    } else if (data.state === 'blocked') {
-      stateCopy = data.shortage
-        ? 'Заблокировано: кандидатов недостаточно для обязательных квот.'
-        : 'Заблокировано: сервер остановил работу на обязательной проверке.';
-      nextAction = 'Следующее действие: исправить указанный недобор или blocker; повторный клик продолжит тот же job.';
-      stateColor = '#fbbf24';
-    }
-
-    if (card) card.classList.toggle('tn-v11-ready', exactReady);
-    if (status) status.textContent = `${cursor} из ${total} кандидатов`;
-    result.innerHTML = `
-      <div style="border:1px solid #2a2a3a;border-radius:10px;padding:12px;background:#0d0d14">
-        <div style="font-size:13px;font-weight:800;color:${stateColor};margin-bottom:9px">${escapeHtml(stateCopy)}</div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:8px">
-          <div style="font-size:12px;color:#cbd5e1">Обработано: <strong>${tnV11Number(data.processed)}</strong></div>
-          <div style="font-size:12px;color:#cbd5e1">Одобрено: <strong>${tnV11Number(data.approved)}</strong></div>
-          <div style="font-size:12px;color:#cbd5e1">Отклонено: <strong>${tnV11Number(data.rejected)}</strong></div>
-          <div style="font-size:12px;color:#cbd5e1">Карантин: <strong>${tnV11Number(data.quarantined)}</strong></div>
-          <div style="font-size:12px;color:#cbd5e1">Из кэша: <strong>${tnV11Number(data.cacheHits)}</strong></div>
-          <div style="font-size:12px;color:#cbd5e1">Запросов к проверке: <strong>${tnV11Number(data.providerAttempts)}</strong></div>
-          <div style="font-size:12px;color:#cbd5e1">Повторных попыток: <strong>${tnV11Number(data.transientRetries)}</strong></div>
-        </div>
-        <div style="margin-top:10px;font-size:12px;color:#9ca3af">Бюджет контролируется сервером; эта страница не обходит лимит. Job: ${escapeHtml(data.jobId || 'ещё не создан')}</div>
-        ${shortageCopy}
-        <details style="margin-top:10px"><summary style="cursor:pointer;color:#cbd5e1;font-size:12px">Прогресс по режимам и сложностям</summary><div style="margin-top:6px">${cellRows}</div></details>
-        <div style="margin-top:10px;font-size:12px;color:#cbd5e1"><strong>Следующее действие:</strong> ${escapeHtml(nextAction.replace(/^Следующее действие:\s*/u, ''))}</div>
-      </div>`;
-  }
-
-  window.tnFillPool = async function tnFillPool(dryRun) {
-    if (_tnV11InFlight) return;
-    _tnV11InFlight = true;
-    const status = document.getElementById('tn-fill-status');
-    const result = document.getElementById('tn-fill-result');
-    tnV11SetBusy(true, dryRun === true);
-    if (status) status.textContent = dryRun ? 'Проверяю план без записи…' : 'Запускаю ограниченный пакет…';
-    if (result) result.innerHTML = '';
-    try {
-      _fnTnFill = tnFn(_fnTnFill, 'adminFillTournamentPool');
-      if (dryRun === true) {
-        const response = await _fnTnFill({
-          action: 'dry_run',
-          dryRun: true,
-          poolVersion: TN_V11_POOL_VERSION,
-        });
-        tnV11Render(response?.data || {});
-        return;
-      }
-
-      let response = await _fnTnFill({
-        action: 'run_batch',
-        jobId: tnV11StoredJobId() || undefined,
-        maxCandidates: 4,
-        poolVersion: TN_V11_POOL_VERSION,
-      });
-      let data = response?.data || {};
-      tnV11RememberJob(data);
-      tnV11Render(data);
-      while (data.continuation && !data.paused && !data.blocked && tnV11PageStillActive()) {
-        await tnV11Yield();
-        response = await _fnTnFill({
-          action: 'run_batch',
-          jobId: data.jobId || tnV11StoredJobId(),
-          maxCandidates: 4,
-          poolVersion: TN_V11_POOL_VERSION,
-        });
-        data = response?.data || {};
-        tnV11RememberJob(data);
-        tnV11Render(data);
-      }
-    } catch (e) {
-      if (status) status.textContent = 'Проверка остановлена';
-      if (result) result.innerHTML = `<div role="alert" style="font-size:13px;color:#f87171">Ошибка: ${escapeHtml(tnError(e))}. Сохранённый job можно продолжить повторным нажатием.</div>`;
-    } finally {
-      _tnV11InFlight = false;
-      tnV11SetBusy(false, dryRun === true);
-    }
-  };
-
-  let _fnTnAiTournament = null;
-  // зачем: сборка идёт до минуты и стоит денег — каждый запуск это платные
-  // запросы к OpenAI и списание дневного лимита. Без замка нетерпеливый второй
-  // клик молча сжигал бы бюджет второй раз. Кнопки гаснут сразу, до ответа
-  // сервера, чтобы отклик был мгновенным.
-  let _tnAiInFlight = false;
-  function tnAiSetBusy(busy) {
-    document.querySelectorAll('button[onclick^="tnAiTournament"]').forEach((btn) => {
-      btn.disabled = busy;
-      btn.style.opacity = busy ? '0.55' : '';
-      btn.style.cursor = busy ? 'not-allowed' : 'pointer';
-    });
-  }
-  window.tnAiTournament = async function tnAiTournament(dryRun) {
-    if (_tnAiInFlight) return;
-    _tnAiInFlight = true;
-    tnAiSetBusy(true);
-    const status = document.getElementById('tn-ai-status');
-    const result = document.getElementById('tn-ai-result');
-    if (status) status.textContent = dryRun ? 'Собираю турнир…' : 'Собираю турнир, это до минуты…';
-    if (result) result.innerHTML = '';
-    try {
-      _fnTnAiTournament = tnFn(_fnTnAiTournament, 'adminGenerateTournamentAi');
-      const payload = { level: document.getElementById('tn-ai-level')?.value || 'A2', dryRun: dryRun === true };
-      const topic = (document.getElementById('tn-ai-topic')?.value || '').trim();
-      if (topic) payload.topicHint = topic;
-
-      const res = await _fnTnAiTournament(payload);
-      const data = res?.data || {};
-      if (status) status.textContent = '';
-
-      // Раскладка по режимам: владелец сразу видит, что турнир разнообразный.
-      const byMode = data.byMode || {};
-      const modeRows = Object.keys(byMode).map((mode) =>
-        `<span style="background:#1a1a24;border-radius:7px;padding:3px 9px;margin-right:6px;font-size:12px;color:#cbd5e1">${escapeHtml(TN_ACTIVE_MODE_LABEL[mode] || mode)}: <strong style="color:#c4b5fd">${byMode[mode]}</strong></span>`
-      ).join('');
-
-      const head = dryRun
-        ? `Турнир собран: <strong style="color:#fafafa">${data.produced ?? 0}</strong> из ${data.planned ?? 24} заданий. Ничего не сохранено.`
-        : `Готово: <strong style="color:#4ade80">${data.written ?? 0}</strong> заданий на проверке (из ${data.planned ?? 24}).`;
-
-      const reasons = Array.isArray(data.rejected) && data.rejected.length
-        ? `<div style="color:#9ca3af;margin-top:6px;font-size:12px">Отсеяно контролем качества: ${escapeHtml(data.rejected.slice(0, 8).join(', '))}</div>`
-        : '';
-      const samples = Array.isArray(data.samples) && data.samples.length
-        ? `<div style="margin-top:12px">${data.samples.map(tnRenderTask).join('')}</div>` : '';
-
-      if (result) {
-        result.innerHTML = `<div style="font-size:13px;color:#9ca3af;line-height:1.6">${head}</div>`
-          + (modeRows ? `<div style="margin-top:8px">${modeRows}</div>` : '') + reasons + samples;
-      }
-      if (!dryRun) { await window.tnLoadTasks(true); await window.tnLoadStats(); }
-    } catch (e) {
-      if (status) status.textContent = '';
-      const code = tnError(e);
-      const nice = code.includes('tournament_ai_daily_cap')
-        ? 'Дневной лимит генераций исчерпан. Попробуйте завтра.'
-        : 'Ошибка: ' + code;
-      if (result) result.innerHTML = `<div style="font-size:13px;color:#fca5a5">${escapeHtml(nice)}</div>`;
-    } finally {
-      _tnAiInFlight = false;
-      tnAiSetBusy(false);
-    }
-  };
-
-  // зачем: старая пакетная генерация (10/20/30 однотипных вопросов) убрана —
-  // владелец забраковал её как однотипную. Турнир теперь собирается целиком
-  // одной кнопкой: window.tnAiTournament выше. Серверная callable осталась
-  // задеплоенной, но из интерфейса не вызывается.
-
-  window.tnEditStart = function tnEditStart(rawTaskId) {
-    // Тот же фильтр, что при отрисовке: id в разметке всегда «чистый».
-    const taskId = tnSafeId(rawTaskId);
-    const task = _tnItems.find((t) => t.taskId === taskId);
-    const card = document.getElementById(`tn-card-${taskId}`);
-    if (!task || !card) return;
-    const body = card.querySelector('.tn-card-body');
-    if (!body) return;
-    const p = task.payload || {};
-
-    if (task.mode === 'guess_phrase') {
-      const opts = Array.isArray(p.options) ? p.options : ['', '', '', ''];
-      body.innerHTML = `
-        <div style="font-size:12px;color:#6b7280;margin-bottom:4px">Английская фраза</div>
-        ${tnInput(`tn-e-phrase-${taskId}`, p.phrase || '')}
-        <div style="font-size:12px;color:#6b7280;margin:6px 0 4px">Варианты (отметьте правильный)</div>
-        ${opts.map((o, i) => `<div style="display:flex;gap:8px;align-items:center">
-          <input type="radio" name="tn-e-correct-${taskId}" value="${i}" ${i === p.correctIndex ? 'checked' : ''} style="cursor:pointer" />
-          ${tnInput(`tn-e-opt-${taskId}-${i}`, o, 'calc(100% - 30px)')}
-        </div>`).join('')}
-        <div style="display:flex;gap:10px;margin-top:8px;align-items:center">
-          <select id="tn-e-diff-${taskId}" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:6px 10px;font-size:13px">
-            ${[1, 2, 3].map((d) => `<option value="${d}" ${d === task.difficulty ? 'selected' : ''}>${TN_DIFF_LABEL[d]}</option>`).join('')}
-          </select>
-          <button type="button" onclick="tnEditSave('${taskId}')" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:7px 14px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">💾 Сохранить</button>
-          <button type="button" onclick="tnLoadTasks(true)" style="background:#1a1a24;border:1px solid #2a2a3a;color:#9ca3af;padding:7px 14px;border-radius:8px;cursor:pointer;font-size:13px">Отмена</button>
-        </div>`;
-    } else {
-      // Редкие форматы правим как JSON — форма на каждый формат тут не окупается.
-      body.innerHTML = `
-        <div style="font-size:12px;color:#6b7280;margin-bottom:4px">Данные задания (JSON)</div>
-        <textarea id="tn-e-json-${taskId}" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e0e0e0;padding:10px 12px;font-size:12px;width:100%;box-sizing:border-box;min-height:140px;font-family:monospace">${escapeHtml(JSON.stringify(p, null, 2))}</textarea>
-        <div style="display:flex;gap:10px;margin-top:8px">
-          <button type="button" onclick="tnEditSave('${taskId}')" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:7px 14px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">💾 Сохранить</button>
-          <button type="button" onclick="tnLoadTasks(true)" style="background:#1a1a24;border:1px solid #2a2a3a;color:#9ca3af;padding:7px 14px;border-radius:8px;cursor:pointer;font-size:13px">Отмена</button>
-        </div>`;
-    }
-  };
-
-  window.tnEditSave = async function tnEditSave(taskId) {
-    const task = _tnItems.find((t) => t.taskId === taskId);
-    if (!task) return;
-    let payload;
-    let difficulty = task.difficulty;
-
-    if (task.mode === 'guess_phrase') {
-      const phrase = (document.getElementById(`tn-e-phrase-${taskId}`)?.value || '').trim();
-      const options = [0, 1, 2, 3].map((i) => (document.getElementById(`tn-e-opt-${taskId}-${i}`)?.value || '').trim());
-      const correctIndex = Number(document.querySelector(`input[name="tn-e-correct-${taskId}"]:checked`)?.value ?? -1);
-      difficulty = Number(document.getElementById(`tn-e-diff-${taskId}`)?.value || task.difficulty);
-      if (!phrase || options.some((o) => !o) || correctIndex < 0) {
-        showToast('Заполни фразу, все 4 варианта и отметь правильный.', 'warn');
-        return;
-      }
-      payload = { phrase, options, correctIndex, correctAnswer: options[correctIndex] };
-    } else {
-      try {
-        payload = JSON.parse(document.getElementById(`tn-e-json-${taskId}`)?.value || '');
-      } catch {
-        showToast('JSON не разбирается — проверь кавычки и запятые.', 'warn');
-        return;
-      }
-    }
-
-    try {
-      _fnTnEdit = tnFn(_fnTnEdit, 'adminEditTournamentTask');
-      await _fnTnEdit({ taskId, payload, difficulty });
-      showToast('Вопрос сохранён', 'ok');
-      await window.tnLoadTasks(true);
-    } catch (e) {
-      const code = tnError(e);
-      showToast(code.includes('tournament_edit_contract')
-        ? 'Правка не прошла контроль качества: ' + code.split(':').pop()
-        : 'Не удалось сохранить: ' + code, 'err');
-    }
-  };
-
-  window.tnDeleteTask = async function tnDeleteTask(taskId) {
-    if (!confirm('Удалить этот вопрос из пула насовсем?')) return;
-    try {
-      _fnTnMutate = tnFn(_fnTnMutate, 'adminMutateTournamentTasks');
-      await _fnTnMutate({ taskIds: [taskId], action: 'delete' });
-      showToast('Вопрос удалён', 'ok');
-      await window.tnLoadTasks(true);
-      await window.tnLoadStats();
-    } catch (e) {
-      showToast('Не удалось удалить: ' + tnError(e), 'err');
-    }
-  };
-
-  // ── Кураторский набор: ручной отбор заданий на конкретный турнир ────────
-  function tnCuratedRender() {
-    const box = document.getElementById('tn-cur-box');
-    if (!box) return;
-    const total = [1, 2, 3, 4].reduce((n, r) => n + _tnCurated[r].length, 0);
-    if (!total) {
-      box.innerHTML = '<div class="reports-empty">Набор пуст — раунды соберутся случайно. Отметьте вопросы галочками выше и добавьте в раунд.</div>';
-      return;
-    }
-    box.innerHTML = [1, 2, 3, 4].map((r) => {
-      const ids = _tnCurated[r];
-      if (!ids.length) return `<div style="font-size:13px;color:#6b7280;padding:4px 0">Раунд ${r}: случайная выборка</div>`;
-      const chips = ids.map((id) => {
-        const task = _tnItems.find((t) => t.taskId === id);
-        const label = task && task.payload && task.payload.phrase ? String(task.payload.phrase).slice(0, 40) : id.slice(0, 18);
-        return `<span style="background:#1a1a24;border-radius:6px;padding:3px 8px;margin:0 6px 6px 0;display:inline-block;font-size:12px;color:#cbd5e1">${escapeHtml(label)}
-          <span onclick="tnCuratedRemove(${r}, '${tnSafeId(id)}')" style="color:#fca5a5;cursor:pointer;margin-left:4px" title="Убрать из раунда">✕</span></span>`;
-      }).join('');
-      return `<div style="padding:6px 0"><div style="font-size:13px;font-weight:700;color:#fafafa;margin-bottom:6px">Раунд ${r} — ${ids.length} шт.</div>${chips}</div>`;
-    }).join('');
-  }
-
-  window.tnCuratedRemove = function tnCuratedRemove(round, taskId) {
-    _tnCurated[round] = _tnCurated[round].filter((id) => id !== taskId);
-    tnCuratedRender();
-  };
-
-  window.tnCuratedAdd = function tnCuratedAdd() {
-    const round = Number(document.getElementById('tn-cur-round')?.value || 1);
-    // зачем: тот же принцип, что в tnPublishVisible — набор собирается только
-    // из списка ревью, а не из карточек-примеров панелей генерации.
-    const picked = Array.from(document.querySelectorAll('#tn-list .tn-pick:checked')).map((el) => el.value);
-    if (!picked.length) { showToast('Отметь вопросы галочками в списке выше.', 'warn'); return; }
-    const merged = Array.from(new Set([..._tnCurated[round], ...picked]));
-    if (merged.length > 8) { showToast('В раунде может быть не больше 8 вопросов.', 'warn'); return; }
-    _tnCurated[round] = merged;
-    tnCuratedRender();
-  };
-
-  window.tnCuratedLoad = async function tnCuratedLoad() {
-    const status = document.getElementById('tn-cur-status');
-    const dateKey = document.getElementById('tn-cur-date')?.value || '';
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(dateKey)) { showToast('Выбери дату турнира.', 'warn'); return; }
-    if (status) status.textContent = 'Загружаю набор…';
-    try {
-      _fnTnCurGet = tnFn(_fnTnCurGet, 'adminGetTournamentCurated');
-      const res = await _fnTnCurGet({
-        slotId: document.getElementById('tn-cur-slot')?.value || 'daily_1900',
-        timezone: 'Europe/Moscow',
-        dateKey,
-      });
-      const d = res?.data || {};
-      _tnCurated = { 1: [], 2: [], 3: [], 4: [] };
-      (Array.isArray(d.rounds) ? d.rounds : []).forEach((r) => {
-        if (r && r.roundNo >= 1 && r.roundNo <= 4) _tnCurated[r.roundNo] = Array.isArray(r.taskIds) ? r.taskIds : [];
-      });
-      if (status) status.textContent = d.exists ? 'Набор загружен.' : 'Набора ещё нет — соберите новый.';
-      tnCuratedRender();
-    } catch (e) {
-      if (status) status.textContent = '';
-      showToast('Не удалось открыть набор: ' + tnError(e), 'err');
-    }
-  };
-
-  window.tnCuratedSave = async function tnCuratedSave() {
-    const status = document.getElementById('tn-cur-status');
-    const dateKey = document.getElementById('tn-cur-date')?.value || '';
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(dateKey)) { showToast('Выбери дату турнира.', 'warn'); return; }
-    const rounds = [1, 2, 3, 4]
-      .filter((r) => _tnCurated[r].length > 0)
-      .map((r) => ({ roundNo: r, taskIds: _tnCurated[r] }));
-    if (!rounds.length) { showToast('Набор пуст. Чтобы снять набор, жми «Снять набор».', 'warn'); return; }
-    if (status) status.textContent = 'Сохраняю…';
-    try {
-      _fnTnCurSet = tnFn(_fnTnCurSet, 'adminSetTournamentCurated');
-      const res = await _fnTnCurSet({
-        slotId: document.getElementById('tn-cur-slot')?.value || 'daily_1900',
-        timezone: 'Europe/Moscow',
-        dateKey,
-        rounds,
-      });
-      const d = res?.data || {};
-      if (d.ok === false && Array.isArray(d.rejected)) {
-        if (status) status.textContent = '';
-        showToast(`Не сохранено: ${d.rejected.length} вопросов не опубликованы или удалены.`, 'err');
-        return;
-      }
-      if (status) status.textContent = 'Набор сохранён — турнир соберётся из этих вопросов.';
-      showToast('Кураторский набор сохранён', 'ok');
-    } catch (e) {
-      if (status) status.textContent = '';
-      showToast('Не удалось сохранить набор: ' + tnError(e), 'err');
-    }
-  };
-
-  window.tnCuratedClear = async function tnCuratedClear() {
-    const dateKey = document.getElementById('tn-cur-date')?.value || '';
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(dateKey)) { showToast('Выбери дату турнира.', 'warn'); return; }
-    if (!confirm('Снять кураторский набор? Турнир соберётся случайно.')) return;
-    try {
-      _fnTnCurSet = tnFn(_fnTnCurSet, 'adminSetTournamentCurated');
-      await _fnTnCurSet({
-        slotId: document.getElementById('tn-cur-slot')?.value || 'daily_1900',
-        timezone: 'Europe/Moscow',
-        dateKey,
-        rounds: [],
-      });
-      _tnCurated = { 1: [], 2: [], 3: [], 4: [] };
-      tnCuratedRender();
-      showToast('Набор снят', 'ok');
-    } catch (e) {
-      showToast('Не удалось снять набор: ' + tnError(e), 'err');
-    }
-  };
-
-  window.tnOpenTab = async function tnOpenTab() {
-    window._tournamentsLoaded = false;
-    // Дата по умолчанию для ручной сборки — завтра (сегодняшние слоты обычно уже прошли).
-    const dateInput = document.getElementById('tn-cur-date');
-    if (dateInput && !dateInput.value) {
-      const tomorrow = new Date(Date.now() + 24 * 60 * 60 * 1000);
-      dateInput.value = tomorrow.toISOString().slice(0, 10);
-    }
-    try {
-      await Promise.all([window.tnLoadStats(), window.tnLoadTasks(true), window.tnLoadSchedule()]);
-      window._tournamentsLoaded = true;
-    } catch (error) {
-      window._tournamentsLoaded = false;
-      showToast('Не удалось загрузить турниры: ' + tnError(error), 'err');
-      throw error;
-    }
-  };
-
 
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -52948,7 +51099,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     'referrals':'Рефералы','app-messages':'Сообщения пользователям',
     'ugc-purchases':'Покупки наборов','refunds':'Центр возвратов','community-packs':'Наборы сообщества',
     'card-packs':'Наборы карточек','daily-phrases':'Фразы дня','daily-polls':'Опрос дня','arena-content':'Контент Spire','push-notify':'Push-уведомления',
-    'clubs':'Лиги','tournaments':'Турниры','tournament-pool':'Пул турниров','archive':'Архив','audit':'Журнал аудита',
+    'archive':'Архив','audit':'Журнал аудита',
     'ops-log':'Журнал операций','remote-config':'Remote Config','youtube-catalog':'YouTube-каталог',
     'paywall-ab':'A/B paywall','v2-generator':'Генератор Learning V2',
     'alerts':'Telegram-алерты','access-management':'Управление доступом',
@@ -54110,9 +52261,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     'daily-phrases': async () => { const row = await pmV5SafeCall('loadDailyPhrases', true); window.renderFrenchDailyPhrasesAdmin?.(); return row; },
     'arena-content': () => pmV5SafeCall('loadArenaContentStatus', true),
     'push-notify': () => pmV5SafeCall('loadPushJobs'),
-    'clubs': () => pmV5SafeCall('loadClubsData', true),
-    'tournaments': () => pmV5SafeCall('tnOpenTab'),
-    'tournament-pool': () => pmV5SafeCall('pmV9LoadEmbeddedSection', 'tournament-pool'),
     'archive': () => pmV5SafeCall('loadArchive'),
     'audit': () => pmV5SafeCall('loadAuditLog'),
     'ops-log': () => pmV5SafeCall('loadOpsLog', true),
@@ -54250,7 +52398,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     'loadSupportInbox','loadUserIdeas','loadExplainReports','loadExplainCache','loadCompassAdmin',
     'loadBanList','loadPremiumData','loadVipData','loadPlusRadarData','loadPromoRedemptions','loadGiftCertificates',
     'loadCancelSurveys','loadVipSurveyResponses','loadUgcPurchases','loadRefunds','loadArchive','loadAuditLog',
-    'loadAppHealth','loadOpsLog','refreshCommunityPacksCurrent','loadClubsData','loadCardPacks','loadDailyPhrases',
+    'loadAppHealth','loadOpsLog','refreshCommunityPacksCurrent','loadCardPacks','loadDailyPhrases',
     'tnLoadTasks','loadOnboardingScreens','pmRefreshOnboardingAnalytics','loadOnboardingSources','loadProductAnalytics',
     'loadSubscriptionAnalytics','loadRevenueAnalytics','loadOpenAiBudgetDashboard','loadOpenAiDialogQuotaConfig',
   ]);
@@ -54740,7 +52888,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   if (window.__pmAllSectionsV4Ready) return;
   window.__pmAllSectionsV4Ready = true;
 
-  const SECTION_META = {"control-panel":{"title":"Пульт управления","description":"Живые настройки приложения без релиза."},"jarvis":{"title":"Око Саурона","description":"Автопроверка качества, денег, контента и инфраструктуры."},"jarvis-plans":{"title":"Планы Ока Саурона","description":"Все находки и планы Ока Саурона в одном журнале."},"overview":{"title":"Обзор","description":"Ключевые показатели и быстрые переходы к проблемным зонам."},"mod-queue":{"title":"Очередь модерации","description":"Единая очередь открытых обращений и приоритетов."},"users":{"title":"Пользователи","description":"Профили, прогресс, доступы и действия с аккаунтами."},"testers":{"title":"Телеграм-оплаты","description":"Заказы, коды активации и ручная выдача доступа."},"beta-testers":{"title":"Бета-тестеры","description":"Участники тестирования, ауры, Plus и энергия — внутри единой админки."},"site-admin":{"title":"Сайт и веб-оплаты","description":"Заказы Stripe/PayPal, цены и веб-воронка — внутри единой админки."},"reports":{"title":"Ошибки контента","description":"Репорты, фильтры, статусы и массовые действия."},"remote-config":{"title":"Remote Config","description":"Лимиты, экономика и конфигурация без релиза."},"youtube-catalog":{"title":"YouTube-каталог","description":"Каналы, плейлисты и настройки премьер."},"surveys":{"title":"Опросы за осколки","description":"Опросы, ответы и управление публикацией."},"paywall-ab":{"title":"A/B paywall","description":"Варианты экрана оплаты, аудитория и результаты."},"v2-generator":{"title":"Генератор Learning V2","description":"Генерация, проверка и публикация уроков."},"alerts":{"title":"Telegram-алерты","description":"Правила и маршрутизация уведомлений."},"app-messages":{"title":"Сообщения пользователям","description":"Inbox-сообщения, опросы, статистика и история."},"website-inbox":{"title":"Сайт: обращения","description":"Сообщения с сайта Knowly и статусы обработки."},"emails":{"title":"Имейлы","description":"Единый список адресов и массовые рассылки."},"user-reports":{"title":"Жалобы на пользователей","description":"Очередь жалоб и решения модерации."},"safety-flags":{"title":"Сигналы безопасности","description":"Риски, категории и обработка сигналов."},"product-charter":{"title":"Продуктовая хартия","description":"Правила продукта, ревью и история изменений."},"age-consent":{"title":"Возраст и согласие","description":"Возрастные требования и согласия пользователей."},"compliance-radar":{"title":"Комплаенс","description":"Проверки соответствия и открытые риски."},"daily-digest":{"title":"Дайджест владельца","description":"Изменения, сравнения и продуктовые выводы."},"gmail-support":{"title":"Gmail-поддержка","description":"Письма, черновики и автоматические ответы."},"ideas":{"title":"Идеи пользователей","description":"Идеи, решения и приоритеты."},"explain-reports":{"title":"Жалобы на объяснения","description":"Проблемные объяснения и статус разбора."},"explain-cache":{"title":"Кэш объяснений","description":"Сгенерированные объяснения и очистка кэша."},"compass":{"title":"Компас","description":"Операционные переключатели и статус направлений."},"ban-list":{"title":"Бан-лист","description":"Блокировки, причины, поиск и восстановление доступа."},"premium":{"title":"Реальный Plus","description":"Подписки RevenueCat и фильтры доступа."},"vip":{"title":"Admin Plus","description":"Ручные доступы и сроки действия."},"plus-radar":{"title":"Диагностика Plus","description":"Конфликты, дубли и устаревшие флаги."},"promo-codes":{"title":"Промокоды","description":"Создание, выдача и история промокодов."},"gift-certificates":{"title":"Подарочные сертификаты","description":"Одноразовые сертификаты, отправка и активации."},"cancel-surveys":{"title":"Причины отмены","description":"Причины отмены подписки и комментарии."},"review-promo":{"title":"Опрос Plus","description":"Управление опросом и результатами."},"ugc-purchases":{"title":"Покупки наборов","description":"Покупатели, продавцы, осколки и возвраты."},"refunds":{"title":"Центр возвратов","description":"Возвраты UGC и RevenueCat в одном журнале."},"archive":{"title":"Архив","description":"Закрытые жалобы и обращения."},"audit":{"title":"Журнал аудита","description":"Кто, когда и какое действие выполнил."},"app-health":{"title":"Состояние приложения","description":"Ошибки, предупреждения и состояние функций."},"ops-log":{"title":"Журнал операций","description":"Операционные события и технические результаты."},"community-packs":{"title":"Наборы сообщества","description":"Заявки, опубликованные наборы и жалобы."},"clubs":{"title":"Лиги","description":"Группы, короны и недельные бонусы."},"card-packs":{"title":"Наборы карточек","description":"Маркет наборов и статусы публикации."},"daily-phrases":{"title":"Фразы дня","description":"Очередь, редактор и публикация."},"tournaments":{"title":"Турниры","description":"Пул заданий, ревью, расписание и ручная сборка."},"tournament-pool":{"title":"Пул турниров","description":"Одобренные задания и распределение по режимам внутри единой админки."},"referrals":{"title":"Рефералы","description":"Приглашения, покупки, награды и аналитика."},"push-notify":{"title":"Push-уведомления","description":"Точечные, сегментные и запланированные отправки."},"onboarding-screens":{"title":"Онбординг","description":"Экраны, поведение и прохождение новых пользователей."},"onboarding-sources":{"title":"Источники онбординга","description":"Откуда пользователи узнали о приложении."},"analytics":{"title":"Доход и аналитика","description":"Подписки, магазин, paywall и продуктовые события."},"openai-budget":{"title":"Бюджет OpenAI","description":"Расходы по моделям, функциям и периодам."},"access-management":{"title":"Управление доступом","description":"Администраторы, роли, права по разделам и настройки анимаций."}};
+  const SECTION_META = {"control-panel":{"title":"Пульт управления","description":"Живые настройки приложения без релиза."},"jarvis":{"title":"Око Саурона","description":"Автопроверка качества, денег, контента и инфраструктуры."},"jarvis-plans":{"title":"Планы Ока Саурона","description":"Все находки и планы Ока Саурона в одном журнале."},"overview":{"title":"Обзор","description":"Ключевые показатели и быстрые переходы к проблемным зонам."},"mod-queue":{"title":"Очередь модерации","description":"Единая очередь открытых обращений и приоритетов."},"users":{"title":"Пользователи","description":"Профили, прогресс, доступы и действия с аккаунтами."},"testers":{"title":"Телеграм-оплаты","description":"Заказы, коды активации и ручная выдача доступа."},"beta-testers":{"title":"Бета-тестеры","description":"Участники тестирования, ауры, Plus и энергия — внутри единой админки."},"site-admin":{"title":"Сайт и веб-оплаты","description":"Заказы Stripe/PayPal, цены и веб-воронка — внутри единой админки."},"reports":{"title":"Ошибки контента","description":"Репорты, фильтры, статусы и массовые действия."},"remote-config":{"title":"Remote Config","description":"Лимиты, экономика и конфигурация без релиза."},"youtube-catalog":{"title":"YouTube-каталог","description":"Каналы, плейлисты и настройки премьер."},"surveys":{"title":"Опросы за осколки","description":"Опросы, ответы и управление публикацией."},"paywall-ab":{"title":"A/B paywall","description":"Варианты экрана оплаты, аудитория и результаты."},"v2-generator":{"title":"Генератор Learning V2","description":"Генерация, проверка и публикация уроков."},"alerts":{"title":"Telegram-алерты","description":"Правила и маршрутизация уведомлений."},"app-messages":{"title":"Сообщения пользователям","description":"Inbox-сообщения, опросы, статистика и история."},"website-inbox":{"title":"Сайт: обращения","description":"Сообщения с сайта Knowly и статусы обработки."},"emails":{"title":"Имейлы","description":"Единый список адресов и массовые рассылки."},"user-reports":{"title":"Жалобы на пользователей","description":"Очередь жалоб и решения модерации."},"safety-flags":{"title":"Сигналы безопасности","description":"Риски, категории и обработка сигналов."},"product-charter":{"title":"Продуктовая хартия","description":"Правила продукта, ревью и история изменений."},"age-consent":{"title":"Возраст и согласие","description":"Возрастные требования и согласия пользователей."},"compliance-radar":{"title":"Комплаенс","description":"Проверки соответствия и открытые риски."},"daily-digest":{"title":"Дайджест владельца","description":"Изменения, сравнения и продуктовые выводы."},"gmail-support":{"title":"Gmail-поддержка","description":"Письма, черновики и автоматические ответы."},"ideas":{"title":"Идеи пользователей","description":"Идеи, решения и приоритеты."},"explain-reports":{"title":"Жалобы на объяснения","description":"Проблемные объяснения и статус разбора."},"explain-cache":{"title":"Кэш объяснений","description":"Сгенерированные объяснения и очистка кэша."},"compass":{"title":"Компас","description":"Операционные переключатели и статус направлений."},"ban-list":{"title":"Бан-лист","description":"Блокировки, причины, поиск и восстановление доступа."},"premium":{"title":"Реальный Plus","description":"Подписки RevenueCat и фильтры доступа."},"vip":{"title":"Admin Plus","description":"Ручные доступы и сроки действия."},"plus-radar":{"title":"Диагностика Plus","description":"Конфликты, дубли и устаревшие флаги."},"promo-codes":{"title":"Промокоды","description":"Создание, выдача и история промокодов."},"gift-certificates":{"title":"Подарочные сертификаты","description":"Одноразовые сертификаты, отправка и активации."},"cancel-surveys":{"title":"Причины отмены","description":"Причины отмены подписки и комментарии."},"review-promo":{"title":"Опрос Plus","description":"Управление опросом и результатами."},"ugc-purchases":{"title":"Покупки наборов","description":"Покупатели, продавцы, осколки и возвраты."},"refunds":{"title":"Центр возвратов","description":"Возвраты UGC и RevenueCat в одном журнале."},"archive":{"title":"Архив","description":"Закрытые жалобы и обращения."},"audit":{"title":"Журнал аудита","description":"Кто, когда и какое действие выполнил."},"app-health":{"title":"Состояние приложения","description":"Ошибки, предупреждения и состояние функций."},"ops-log":{"title":"Журнал операций","description":"Операционные события и технические результаты."},"community-packs":{"title":"Наборы сообщества","description":"Заявки, опубликованные наборы и жалобы."},"card-packs":{"title":"Наборы карточек","description":"Маркет наборов и статусы публикации."},"daily-phrases":{"title":"Фразы дня","description":"Очередь, редактор и публикация."},"referrals":{"title":"Рефералы","description":"Приглашения, покупки, награды и аналитика."},"push-notify":{"title":"Push-уведомления","description":"Точечные, сегментные и запланированные отправки."},"onboarding-screens":{"title":"Онбординг","description":"Экраны, поведение и прохождение новых пользователей."},"onboarding-sources":{"title":"Источники онбординга","description":"Откуда пользователи узнали о приложении."},"analytics":{"title":"Доход и аналитика","description":"Подписки, магазин, paywall и продуктовые события."},"openai-budget":{"title":"Бюджет OpenAI","description":"Расходы по моделям, функциям и периодам."},"access-management":{"title":"Управление доступом","description":"Администраторы, роли, права по разделам и настройки анимаций."}};
   const UI_TRANSLATIONS = {"Overview":"Обзор","Analytics":"Аналитика","Reports":"Ошибки контента","Support (site)":"Сайт: обращения","User reports":"Жалобы на пользователей","Explain reports":"Жалобы на объяснения","Explain cache":"Кэш объяснений","Ban list":"Бан-лист","Plus Radar":"Диагностика Plus","Cancel surveys":"Причины отмены","UGC purchases":"Покупки UGC","Refunds":"Возвраты","Archive":"Архив","Audit log":"Журнал аудита","Ops log":"Журнал операций","Community":"Сообщество","Card packs":"Наборы карточек","Clubs":"Лиги","Referrals":"Рефералы","App Health":"Состояние приложения","Push notifications":"Push-уведомления","Push":"Push","OpenAI budget":"Бюджет OpenAI","Refresh":"Обновить","Loading...":"Загрузка…","Loading…":"Загрузка…","Waiting for Firestore data...":"Ожидание данных Firestore…","Waiting for Cloud Function data...":"Ожидание серверных данных…","All platforms":"Все платформы","All languages":"Все языки","All plans":"Все тарифы","All themes":"Все темы","All accounts":"Все аккаунты","All versions":"Все версии","All cases":"Все случаи","Critical only":"Только критические","All reasons":"Все причины","All severity":"Все уровни","All statuses":"Все статусы","All features":"Все функции","All users":"Все пользователи","All":"Все","Any":"Любой","Users":"Пользователи","User":"Пользователь","Title":"Заголовок","Text":"Текст","Language":"Язык","Platform":"Платформа","Theme":"Тема","Total":"Всего","Period":"Период","From":"С","To":"По","Previous":"Назад","Next":"Далее","Save":"Сохранить","Send":"Отправить","Schedule":"Расписание","Selected":"Выбрано","Sort by XP":"Сортировать по XP","Sort by name":"Сортировать по имени","Sort by streak":"Сортировать по серии","Sort by lessons":"Сортировать по урокам","Sort by version":"Сортировать по версии","Sort by date":"Сортировать по дате","Russian":"Русский","Ukrainian":"Украинский","Free":"Бесплатные","Registered":"Зарегистрированные","Anonymous":"Анонимные","Hide duplicates":"Скрыть дубли","Duplicates":"Дубли","Email list":"Список email","Grant shards":"Выдать осколки","Grant Plus":"Выдать Plus","Ban users":"Заблокировать","Clear selection":"Снять выделение","Progress Streak Lessons":"Прогресс · серия · уроки","Streak":"Серия","Lessons":"Уроки","Account Shards":"Аккаунт · осколки","Shards":"Осколки","Download CSV":"Скачать CSV","CSV":"CSV","Real Plus + admin Plus":"Real Plus + Admin Plus","Same identity or email":"Совпадает профиль или email","Same name with access":"Совпадает имя и доступ","Stale premium flag":"Устаревший premium-флаг","Manual store fields":"Ручные поля магазина","Inactive admin Plus fields":"Неактивные поля Admin Plus","Too expensive":"Слишком дорого","Not enough content":"Мало контента","Technical issues":"Технические проблемы","Found better app":"Нашёл лучшее приложение","Rarely using":"Редко использует","Other":"Другое","Open tab or press Refresh.":"Откройте раздел или нажмите «Обновить».","Last 1h":"1 час","Last 6h":"6 часов","Last 24h":"24 часа","Last 7d":"7 дней","Open":"Открыто","Reviewed":"Проверено","Fixed":"Исправлено","Known issue":"Известная проблема","Copy AI report":"Копировать отчёт ИИ","Copy raw JSON":"Копировать JSON","Load activity":"Загрузить активность","Activity is lazy-loaded to save Firestore reads.":"Активность загружается только по запросу.","Open App Health to load diagnostics.":"Откройте раздел для загрузки диагностики.","⬇ Load more (older)":"⬇ Загрузить ещё","Published":"Опубликован","Unpublished":"Снят с публикации","Draft":"Черновик","Preview French rows":"Предпросмотр французских строк","Create French draft":"Создать французский черновик","Check French approval":"Проверить французское утверждение","Rollback French draft":"Откатить французский черновик","By UID":"По пользователю","Segment":"Сегмент","Reactivation":"Реактивация","User UID":"Пользователь","Click action (optional)":"Действие по нажатию","Send segment":"Отправить сегменту","Inactive >= days":"Неактивен минимум, дней","Inactive <= days ago":"Неактивен не более, дней","Send reactivation":"Отправить реактивацию","Date and time":"Дата и время","Audience":"Аудитория","Inactive 7+ days":"Неактивные 7+ дней","Статистика загрузится автоматически при открытии раздела.":"Статистика загрузится при открытии раздела.","Source answers":"Ответы об источнике","Unique users":"Уникальные пользователи","Top source":"Главный источник","Sources":"Источники","Paywall analytics":"Аналитика paywall","Custom":"Свой период","Bar width":"Ширина столбцов","Compact":"Компактно","Normal":"Обычно","Wide":"Широко","Analytics opens with a safe dashboard shell first. Live data loads when this tab opens.":"Данные загружаются после открытия раздела.","Paywall views":"Показы paywall","Paywall purchases":"Покупки из paywall","Plus events":"События Plus","Shards purchases":"Покупки осколков","Settings paywall":"Paywall в настройках","Automatic paywall":"Автоматический paywall","Onboarding paywall":"Paywall онбординга","1 day":"1 день","7 days":"7 дней","28 days":"28 дней","30 days":"30 дней","90 days":"90 дней","180 days":"180 дней","Daily":"По дням","Weekly":"По неделям","Reset zoom":"Сбросить масштаб","Save model":"Сохранить модель","Theo model config is loading...":"Настройки модели Theo загружаются…","Free tier replies/day":"Ответов Free в день","Plus tier replies/day":"Ответов Plus в день","Save quota":"Сохранить лимиты","Reload quota":"Перечитать лимиты","Theo quota config is loading...":"Лимиты Theo загружаются…","OpenAI estimated month loads when this tab is active.":"Расчёт загружается при открытии раздела.","OpenAI estimated month":"Оценка OpenAI за месяц","Selected period":"Выбранный период","Paid calls":"Платные вызовы","Tokens":"Токены","Feature costs":"Расходы по функциям","Model costs":"Расходы по моделям","Avg XP":"Средний XP","AVG XP":"Средний XP","Average XP":"Средний XP","Avg streak":"Средняя серия","AVG STREAK":"Средняя серия","Average streak":"Средняя серия","Avg shards":"Средние осколки","AVG SHARDS":"Средние осколки","Average shards":"Средние осколки","days":"дн.","Days":"Дни","Search name or UID":"Поиск по нику или #nameIndex","Search by name or UID":"Поиск по нику или #nameIndex","Search name, email or UID":"Поиск по нику, email или #nameIndex","Search":"Поиск","Status":"Статус","Actions":"Действия","Date":"Дата","Name":"Имя","Email":"Email","Version":"Версия","Country":"Страна","Source":"Источник","Created":"Создано","Updated":"Обновлено","Active":"Активен","Inactive":"Неактивен","Enabled":"Включено","Disabled":"Выключено","Completed":"Завершено","Pending":"Ожидает","Failed":"Ошибка","Success":"Успешно","Error":"Ошибка","Copy":"Копировать","Close":"Закрыть","Cancel":"Отмена","Delete":"Удалить","Edit":"Изменить","Create":"Создать","Publish":"Опубликовать","Unpublish":"Снять с публикации","Details":"Подробнее","More":"Ещё","Settings":"Настройки","Management":"Управление","No data":"Нет данных","No results":"Ничего не найдено","Unknown":"Неизвестно","Никнейм или UID":"Никнейм или #nameIndex","UID или никнейм":"#nameIndex или никнейм","Selected:":"Выбрано:","Progress":"Прогресс","App":"Приложение","Account":"Аккаунт","Find user":"Найти пользователя","Revenue":"Доход","Push composer":"Push-редактор","Loaded user records in this admin session.":"Профили, загруженные в текущей сессии.","Limited":"Ограничено","Paywall and RevenueCat data status.":"Статус paywall и данных RevenueCat.","Moderation":"Модерация","Queues":"Очереди","Reports, user reports, and ban list.":"Ошибки контента, жалобы и блокировки.","Delivery":"Доставка","Ready":"Готово","Push jobs, app messages, and daily content.":"Push-задачи, сообщения и ежедневный контент.","Visits today":"Посещения сегодня","Unique sessions on knowlyapps.com today (UTC).":"Уникальные сессии knowlyapps.com сегодня (UTC).","Total visits":"Посещения за всё время","All-time unique sessions since tracking started.":"Уникальные сессии с начала отслеживания.","iOS store clicks today":"Переходы в App Store сегодня","App Store badge clicks today — clicks, not installs.":"Нажатия на App Store сегодня, не установки.","iOS store clicks total":"Переходы в App Store всего","All-time App Store badge clicks — clicks, not installs.":"Все нажатия на App Store, не установки.","Android store clicks today":"Переходы в Google Play сегодня","Google Play badge clicks today — clicks, not installs.":"Нажатия на Google Play сегодня, не установки.","Android store clicks total":"Переходы в Google Play всего","All-time Google Play badge clicks — clicks, not installs.":"Все нажатия на Google Play, не установки.","Daily trend":"Динамика по дням","Hover a point for the exact day. Scroll to zoom, drag to pan.":"Наведите для точного значения. Колесо — масштаб, перетаскивание — обзор.","Visits":"Посещения","Purchases":"Покупки","Check app health first":"Сначала проверьте состояние приложения","Recent activity, health events, archive, audit, and ops diagnostics.":"Активность, ошибки, архив, аудит и журнал операций.","Review incoming reports":"Разберите новые жалобы","Content reports and user reports are the highest-risk human queue.":"Ошибки контента и жалобы пользователей требуют ручной проверки.","Inspect revenue funnel":"Проверьте воронку дохода","Paywall views, purchases, RevenueCat events, and shards purchases.":"Показы paywall, покупки, RevenueCat и покупки осколков.","Quick admin actions":"Быстрые действия администратора","Admin status summary":"Сводка состояния админки","Site traffic":"Трафик сайта","Granularity":"Детализация","Admin worklist":"Рабочая очередь администратора","Show duplicate names with different UIDs":"Показать одинаковые ники у разных аккаунтов","Copy or download the email list":"Копировать или скачать список email","Select all":"Выбрать всё","Sort by semantic app version":"Сортировать по версии приложения","Source:":"Источник:","Search uid, name, text...":"Поиск по нику, #nameIndex или тексту…","Server-side estimate from billing logs. Cache hits are not billed, so they do not appear here.":"Серверная оценка по журналу биллинга. Попадания в кэш не тарифицируются и не отображаются.","Revenue, conversion, and shard-purchase signals from consented product events and server-owned RevenueCat records.":"Доход, конверсия и покупки осколков по разрешённым продуктовым событиям и серверным данным RevenueCat.","Choose the onboarding source date window":"Выбрать период источников онбординга","Filter onboarding source events by platform":"Фильтровать источники по платформе","Reload onboarding source statistics":"Обновить статистику источников","Reload revenue analytics":"Обновить аналитику дохода","Revenue analytics filters":"Фильтры аналитики дохода","Revenue date window":"Период аналитики дохода","First UTC day":"Первый день UTC","Last UTC day":"Последний день UTC","Revenue platform":"Платформа дохода","App message delivery surface":"Место показа сообщения","Settings message slot":"Позиция сообщения в настройках","Settings message control percent":"Доля показа сообщения","App message format":"Формат сообщения","App message status":"Статус сообщения","App message audience":"Аудитория сообщения","App message priority":"Приоритет сообщения","App message retention days":"Срок хранения сообщения","App message title":"Заголовок сообщения","App message body":"Текст сообщения","App message poll question":"Вопрос опроса","App message poll option count":"Количество вариантов ответа","App health period":"Период состояния приложения","App health severity filter":"Фильтр важности","App health status filter":"Фильтр статуса","App health feature filter":"Фильтр функции","Search app health events":"Поиск событий состояния приложения","Search audit log by UID, email, or details":"Поиск в аудите по #nameIndex, email или деталям","Copy for Claude":"Копировать для Claude","Job history":"История заданий","Enter UID...":"Введите никнейм или #nameIndex…","Push target user UID":"Получатель push","Notification title...":"Заголовок уведомления…","Notification text...":"Текст уведомления…","Push title for UID mode":"Заголовок точечного push","Push message text for UID mode":"Текст точечного push","Push click action for UID mode":"Действие точечного push","Push segment language":"Язык сегмента push","Push segment premium status":"Статус Plus сегмента","Push segment minimum streak":"Минимальная серия сегмента","Push title for segment mode":"Заголовок push для сегмента","Push message text for segment mode":"Текст push для сегмента","Push click action for segment mode":"Действие push для сегмента","Push reactivation minimum inactive days":"Минимум дней неактивности","Push reactivation maximum inactive days":"Максимум дней неактивности","We miss you":"Мы скучаем","Come back and continue your streak.":"Возвращайтесь и продолжайте свою серию.","Push title for reactivation mode":"Заголовок push для реактивации","Push message text for reactivation mode":"Текст push для реактивации","Push click action for reactivation mode":"Действие push для реактивации","Scheduled push date and time":"Дата и время запланированного push","Scheduled push audience":"Аудитория запланированного push","Scheduled push title":"Заголовок запланированного push","Scheduled push message text":"Текст запланированного push","Scheduled push click action":"Действие запланированного push","Theo model":"Модель Theo"};
   SECTION_META['max-ops'] = { title:'Здоровье MAX', description:'Надёжность звонка, разбора и памяти по приватным серверным агрегатам.' };
   SECTION_META['max-feedback'] = { title:'Оценки', description:'Точные оценки, распределение звёзд и комментарии со всех экранов завершения.' };
@@ -55816,7 +53964,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     'app-health': [['Обзор',[1,2]],['Активность',[3,4]],['События',[5,6,7,8]]],
     'community-packs': [['Заявки',[1,2]],['Наборы',[3]],['Жалобы',[4]]],
     'daily-phrases': [['Очередь',[1,2,4,5]],['French gate',[3]]],
-    'tournaments': [['Пул',[1,2,3,4,5]],['Сборка',[6]],['Расписание',[7]]],
     'openai-budget': [['Расходы',[1,4,5,6]],['Theo',[2,3]]],
     'referrals': [['Приглашения',[1,2,3,4,5,6,7]],['Аналитика',[8]]]
   };
@@ -55995,7 +54142,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     const map = {
       'beta-testers': ['pm-v9-beta-testers-frame','pm-v9-beta-testers-status'],
       'site-admin': ['pm-v9-site-admin-frame','pm-v9-site-admin-status'],
-      'tournament-pool': ['pm-v9-tournament-pool-frame','pm-v9-tournament-pool-status'],
     };
     const pair = map[key];
     if (!pair) return Promise.resolve({status:'unsupported',source:key});
@@ -56043,22 +54189,6 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     });
   }
   window.pmV9LoadEmbeddedSection = loadEmbeddedSection;
-  window.pmV9OpenTournamentPool = function(mode = '') {
-    const frame = document.getElementById('pm-v9-tournament-pool-frame');
-    const query = String(mode || '').trim() ? ('?mode=' + encodeURIComponent(String(mode).trim())) : '';
-    const wanted = 'tournament_pool.html' + query;
-    if (frame && frame.dataset.src !== wanted) {
-      frame.dataset.src = wanted;
-      frame.removeAttribute('src');
-      delete frame.dataset.loaded;
-    }
-    if (typeof window.switchTab === 'function') {
-      window.switchTab('tournament-pool');
-      return Promise.resolve({status:'fresh',source:'tournament-pool',message:'Пул открыт внутри админки'});
-    }
-    return loadEmbeddedSection('tournament-pool');
-  };
-
   function planStatusLabel(status){
     return ({open:'Открыто',accepted:'Принято, проверяем',resolved:'Сработало',vanished:'Ушло само',archived:'Архив'})[status] || status || 'Открыто';
   }
@@ -56185,14 +54315,13 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     setTheme(currentTheme(), false);
     ensureThemeButton(); wrapToast(); observeErrors(); queueLayoutHeal();
     const hash = String(location.hash || '').replace(/^#/,'');
-    // зачем 2026-08-24: 'tournament-pool' возвращён вместе с вкладками — его
-    // функции снова на сервере (проверено: отвечают 403, а не отсутствием),
-    // поэтому прямая ссылка #tournament-pool больше не ведёт в раздел с ошибкой.
-    if (hash === 'beta-testers' || hash === 'site-admin' || hash === 'tournament-pool') { try { window.switchTab?.(hash,{replaceHash:true}); } catch (_) {} }
+    // зачем: встроенные разделы открываются по прямой ссылке #beta-testers / #site-admin.
+    // Пул турниров удалён вместе с Ареной (D74/D78/D83) — его ссылка больше не обрабатывается.
+    if (hash === 'beta-testers' || hash === 'site-admin') { try { window.switchTab?.(hash,{replaceHash:true}); } catch (_) {} }
   }
   document.addEventListener('pm:section-opened',(event) => {
     const tab = event.detail?.tab;
-    if (tab === 'beta-testers' || tab === 'site-admin' || tab === 'tournament-pool') void loadEmbeddedSection(tab);
+    if (tab === 'beta-testers' || tab === 'site-admin') void loadEmbeddedSection(tab);
     normaliseErrorText(document.getElementById('tab-'+tab) || document.body);
     queueLayoutHeal();
   });
@@ -56248,8 +54377,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     'user.delete': {label:'Удаление аккаунта',section:'users',permission:'administrator',reason:true,idempotency:true,revision:false,reversible:false,kind:'destructive'},
     'push.send': {label:'Отправка Push',section:'push-notify',permission:'edit',reason:true,idempotency:true,revision:false,reversible:false,kind:'campaign'},
     'broadcast.send': {label:'Глобальная рассылка',section:'reports',permission:'edit',reason:true,idempotency:true,revision:false,reversible:false,kind:'campaign'},
-    'promo.delete': {label:'Удаление промокода',section:'promo-codes',permission:'edit',reason:true,idempotency:true,revision:true,reversible:false,kind:'destructive'},
-    'league.move': {label:'Перемещение в лиге',section:'clubs',permission:'edit',reason:true,idempotency:true,revision:false,reversible:false,kind:'moderation'}
+    'promo.delete': {label:'Удаление промокода',section:'promo-codes',permission:'edit',reason:true,idempotency:true,revision:true,reversible:false,kind:'destructive'}
   });
 
   const state = {
@@ -56683,7 +54811,7 @@ html[data-pm-theme="light"] #pm-phase3-overview-tabs{background:#f7f8fa!importan
     const list=document.getElementById('pm-phase3-inbox-list');if(!list)return;const q=state.inboxSearch.trim().toLowerCase();const rows=state.inboxItems.filter((row)=>(state.inboxFilter==='all'||row.type===state.inboxFilter)&&(!q||`${row.title} ${row.detail} ${row.provenance}`.toLowerCase().includes(q)));const count=document.getElementById('pm-phase3-inbox-count');if(count)count.textContent=String(rows.length);list.replaceChildren();if(!rows.length){list.append(el('div','pm-phase3-empty','В уже загруженных источниках подходящих элементов нет. Откройте нужный исходный раздел, чтобы загрузить его ограниченную страницу.'));return;}rows.forEach((row)=>{const item=el('article','pm-phase3-inbox-item');item.append(el('span','pm-phase3-inbox-kind',row.icon||'•'));const main=el('div');main.append(el('div','pm-phase3-inbox-title',row.title),el('div','pm-phase3-inbox-meta',`${row.detail}${row.at?` · ${formatTime(row.at)}`:''}`));const prov=el('div','pm-phase3-provenance',row.provenance);prov.dataset.pmPhase3Provenance=row.section;main.append(prov);const open=el('button','', 'Открыть');open.type='button';open.addEventListener('click',()=>{if(typeof row.jump==='function')row.jump();else section(row.section);});item.append(main,open);list.append(item);});
   }
 
-  const GROUPS={work:new Set(['overview','daily-digest','mod-queue','app-health','website-inbox','gmail-support','reports','user-reports','safety-flags','audit','ops-log']),people:new Set(['users','testers','beta-testers','ban-list','access-management','referrals','surveys']),content:new Set(['product-charter','onboarding-screens','onboarding-sources','ideas','max-feedback','app-messages','community-packs','card-packs','daily-phrases','daily-polls','arena-content','youtube-catalog','v2-generator','review-promo','clubs','tournaments','tournament-pool']),revenue:new Set(['analytics','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','ugc-purchases','refunds','paywall-ab','openai-budget']),system:new Set(['control-panel','jarvis','jarvis-plans','max-ops','remote-config','alerts','archive','site-admin','compass','age-consent','compliance-radar','explain-reports','explain-cache'])};
+  const GROUPS={work:new Set(['overview','daily-digest','mod-queue','app-health','website-inbox','gmail-support','reports','user-reports','safety-flags','audit','ops-log']),people:new Set(['users','testers','beta-testers','ban-list','access-management','referrals','surveys']),content:new Set(['product-charter','onboarding-screens','onboarding-sources','ideas','max-feedback','app-messages','community-packs','card-packs','daily-phrases','daily-polls','arena-content','youtube-catalog','v2-generator','review-promo']),revenue:new Set(['analytics','premium','vip','plus-radar','promo-codes','gift-certificates','cancel-surveys','ugc-purchases','refunds','paywall-ab','openai-budget']),system:new Set(['control-panel','jarvis','jarvis-plans','max-ops','remote-config','alerts','archive','site-admin','compass','age-consent','compliance-radar','explain-reports','explain-cache'])};
   function tabKey(node){const oc=node?.getAttribute?.('onclick')||'';const m=oc.match(/switchTab\(['"]([^'"]+)/);if(m)return m[1];if(node?.dataset?.tab)return node.dataset.tab;const id=String(node?.id||'');return id.replace(/^admin-nav-/,'').replace(/^tab-/,'');}
   function applyNavGroup(group){state.navGroup=GROUPS[group]?group:'all';document.querySelectorAll('#pm-phase3-nav-groups button').forEach((btn)=>btn.classList.toggle('is-active',btn.dataset.group===state.navGroup));document.querySelectorAll('.tabs .tab').forEach((node)=>{const key=tabKey(node);const hide=state.navGroup!=='all'&&!GROUPS[state.navGroup]?.has(key);node.dataset.pmPhase3GroupHidden=hide?'true':'false';});}
   function installQuickNavigation(){

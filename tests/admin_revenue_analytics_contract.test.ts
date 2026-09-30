@@ -508,12 +508,13 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('#ar-detail-panel');
   });
 
-  it('unifies daily phrases and clubs sections', () => {
+  // зачем: D54 — раздел «Лиги» (clubs/league_groups) удалён из админки 2.0; проверки клубов сняты,
+  // сторожим, что он не вернулся.
+  it('unifies daily phrases section and keeps retired clubs out', () => {
+    expect(adminHtml).not.toContain('id="tab-clubs"');
+    expect(adminHtml).not.toContain('window.loadClubsData');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-daily-phrases');
-    expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-clubs');
     expect(adminHtml).toContain('id="dp-summary"');
-    expect(adminHtml).toContain('id="clubs-wrap"');
-    expect(adminHtml).toContain('id="league-chest-archive"');
     expect(adminHtml).not.toContain("switchTab('personal-training')");
     expect(adminHtml).not.toContain("'personal-training': 'Personal Training'");
     expect(adminHtml).not.toContain('tab-personal-training');
@@ -522,17 +523,7 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).not.toContain('PERSONAL_TRAININGS_MANIFEST');
     expect(adminHtml).not.toContain('pt-summary');
     expect(adminHtml).not.toContain('pt-card');
-    expect(adminHtml).toContain('applyCleanClubsChrome');
     expect(adminHtml).toContain('club-clean-table');
-    expect(adminHtml).toContain('club-count-pill');
-    expect(adminHtml).toContain('Source: <code>league_groups</code>. Mini groups by league');
-    expect(adminHtml).toContain('Loading clubs...');
-    expect(adminHtml).toContain('Select a league to view mini groups and members.');
-    expect(adminHtml).toContain('Move league');
-    expect(adminHtml).toContain('function isVisibleClubMember(member)');
-    expect(adminHtml).toContain('function visibleClubMemberEntries(members)');
-    expect(adminHtml).toContain('realCount: countVisibleClubMembers(members)');
-    expect(adminHtml).toContain('hidden tails');
     expect(adminHtml).not.toContain('realCount: Object.keys(members).length');
     expect(adminHtml).not.toContain('Object.keys(group.members || {}).map');
     expect(adminHtml).toContain('applyCleanDailyPhrasesChrome');
@@ -550,8 +541,6 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('Seed daily phrases bundle?');
     expect(countOccurrences(adminHtml, 'window.renderDailyPhrases = function renderDailyPhrases()')).toBe(1);
     expect(adminHtml.lastIndexOf('<div class="label">Future queue</div>')).toBeGreaterThan(adminHtml.lastIndexOf('window.renderDailyPhrases = function renderDailyPhrases()'));
-    expect(adminHtml.lastIndexOf('window.renderClubsPanel = renderClubsPanel = function renderClubsPanel()')).toBeGreaterThan(adminHtml.indexOf('function renderClubsPanel()'));
-    expect(adminHtml.lastIndexOf('Loading clubs...')).toBeGreaterThan(adminHtml.lastIndexOf('window.loadClubsData = async function loadClubsData(force)'));
     expect(countOccurrences(adminHtml, 'window.openDailyPhraseEditor = function openDailyPhraseEditor(id)')).toBe(1);
     expect(adminHtml.lastIndexOf('English is required')).toBeGreaterThan(adminHtml.lastIndexOf('window.saveDailyPhraseEditor = async function saveDailyPhraseEditor()'));
   });

@@ -31,17 +31,10 @@ function expectLoadedOnlyAfterRead(source: string, flag: string): void {
 }
 
 describe('Admin D2 bounded and truthful loader contract', () => {
-  test('clubs and its archive use ordered cap sentinels and sample-safe copy', () => {
-    const clubs = block('window.loadClubsData = async function', 'let _leagueChestArchiveLoaded');
-    const archive = block('window.loadLeagueChestArchive = async function', 'function streakMult');
-    expect(html).toContain('const CLUBS_PAGE =');
-    expect(clubs).toContain("orderBy('weekId', 'desc')");
-    expect(clubs).toContain('limit(CLUBS_PAGE + 1)');
-    expect(clubs).toContain('window._clubsSourceHealth');
-    expect(clubs).toContain('snap.docs.slice(0, CLUBS_PAGE)');
-    expect(archive).toContain("orderBy('weekId', 'desc')");
-    expect(archive).toContain('limit(LEAGUE_CHEST_ARCHIVE_PAGE + 1)');
-    expect(archive).toContain('window._leagueChestArchiveSourceHealth');
+  // зачем: D54 — Лиги удалены в 2.0, раздел «Лиги» и его архив корон вырезаны из админки.
+  test('retired leagues section is gone from the admin', () => {
+    expect(html).not.toContain('window.loadClubsData');
+    expect(html).not.toContain('window.loadLeagueChestArchive');
     expect(html).toContain('показана ограниченная выборка');
   });
 
@@ -170,7 +163,7 @@ describe('Admin D2 bounded and truthful loader contract', () => {
       ['window.loadOnboardingScreens = async function', 'window.previewOnboardingScreens', '_onboardingScreensLoaded'],
       ['window.loadOnboardingFunnel = async function', 'window.loadOnboardingExits', '_onboardingFunnelLoaded'],
       ['window.loadRevenueAnalytics = async function', 'const ADMIN_BADGE_CACHE_MS', '_revenueAnalyticsLoaded'],
-      ['window.tnOpenTab = async function', '</script>', 'window._tournamentsLoaded'],
+      // зачем: D74/D78/D83 — вкладка «Турниры» удалена вместе с Ареной.
     ];
     for (const [start, end, flag] of cases) expectLoadedOnlyAfterRead(block(start, end), flag);
   });

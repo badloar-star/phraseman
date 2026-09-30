@@ -35,8 +35,7 @@ describe("live admin sensitive write handlers", () => {
     toggleAppMessageActive: windowHandler("toggleAppMessageActive"),
     deleteAppMessage: windowHandler("deleteAppMessage"),
     cleanupExpiredAppMessages: windowHandler("cleanupExpiredAppMessages"),
-    leagueResetPoints: windowHandler("leagueResetPoints"),
-    leagueMoveUser: windowHandler("leagueMoveUser"),
+    // зачем: D54 — ручное управление лигами (сброс очков, перенос) удалено вместе с Лигами.
   };
 
   test.each(Object.entries(handlers))(
@@ -76,10 +75,6 @@ describe("live admin sensitive write handlers", () => {
     expect(handlers.cleanupExpiredAppMessages).toContain(
       "getAdminCleanupExpiredAppMessagesCallable",
     );
-    expect(handlers.leagueResetPoints).toContain(
-      "getAdminResetLeaguePointsCallable",
-    );
-    expect(handlers.leagueMoveUser).toContain("getAdminMoveLeagueUserCallable");
   });
 
   test("alert testing does not submit or persist client-side alert configuration", () => {

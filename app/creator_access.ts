@@ -30,7 +30,7 @@ export type CreatorAction = 'card' | 'pack';
  */
 export function shouldGateCreator(hasPremiumAccess: boolean): boolean {
   // Creation is available to Free users in 2.0; quota enforcement happens at
-  // the write boundary (50 cards / 3 packs for Free, 1,500 cards / unlimited packs for Plus).
+  // the write boundary (50 cards / 3 packs for Free; Plus is unlimited — D118).
   void hasPremiumAccess;
   return false;
 }

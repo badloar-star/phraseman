@@ -21,13 +21,16 @@ const editorSource = read('app', 'flashcards_card_editor.tsx');
 const packCreateSource = read('app', 'community_pack_create.tsx');
 
 describe('creator access (own cards and own packs are a subscription feature)', () => {
-  it('opens the creator for any paid subscription and closes it for free users', () => {
-    // Plus / Pro / Max приходят в приложение одним признаком «есть премиум»
-    // (Max тоже считается premium), поэтому одна проверка накрывает все три тира.
-    // Гейт делегирован shouldGateFeature — тому же механизму, что у остальных
-    // фич: тумблер «Премиум/Фри» в админ-пульте и Weekly Boon работают сразу.
-    expect(gateSource).toContain("import { shouldGateFeature } from './feature_gates';");
-    expect(gateSource).toContain("return shouldGateFeature('flashcards', hasPremiumAccess);");
+  // зачем (PhraseMan 2.0, D118 и квоты «Мастерской»): создание открыто всем — Free
+  // ограничен квотой на записи (50 карточек / 3 набора), у Plus лимита нет. Экранный
+  // пейвол на создание больше не показывается; прежнее правило «только по подписке»
+  // (2026-08-24) отменено. Гейт-функция и связки экранов оставлены как точка
+  // возврата, поэтому остальные проверки ниже по-прежнему сторожат их форму.
+  it('opens the creator for everyone in 2.0 — quotas are enforced at the write boundary', () => {
+    const { shouldGateCreator } = require('../app/creator_access') as typeof import('../app/creator_access');
+    expect(shouldGateCreator(false)).toBe(false);
+    expect(shouldGateCreator(true)).toBe(false);
+    expect(gateSource).not.toContain('shouldGateFeature');
   });
 
   it('reuses existing paywall contexts instead of inventing new ones', () => {

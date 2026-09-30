@@ -25,9 +25,14 @@ describe('home header composition', () => {
     expect(headerEnd).toBeGreaterThan(headerStart);
     const header = source.slice(headerStart, headerEnd);
 
-    expect(header).toContain('<LingmanVideosButton ownerActive={homeRuntimeActive} />');
+    // зачем (Главная 2.0, утверждена владельцем 2026-09-30): вход в видео в хедере —
+    // своя кнопка «Видеоуроки» (testID home-header-videos) вместо LingmanVideosButton;
+    // колокольчик остаётся (PM-038 отменён) и получает ещё обработчики ответа на жалобу.
+    expect(header).toContain('testID="home-header-videos"');
     expect(header).not.toContain('CommunityChatHubButton');
-    expect(header).toContain('<NotificationCenterButton isHomeTabActive={homeRuntimeActive} homeFocusTick={focusTick} />');
+    expect(header).toContain('<NotificationCenterButton');
+    expect(header).toContain('isHomeTabActive={homeRuntimeActive}');
+    expect(header).toContain('homeFocusTick={focusTick}');
   });
 
   it('no longer carries the pearl balance in the header itself', () => {

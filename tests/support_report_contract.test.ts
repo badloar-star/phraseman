@@ -16,7 +16,8 @@ describe('in-app support report contract', () => {
     const screen = read('app/support_report.tsx');
     expect(screen).toContain("screen: 'settings_support'");
     expect(screen).toContain("dataId: 'settings_support_request'");
-    expect(screen).toContain('awardSubmissionXp: false');
+    // зачем (PhraseMan 2.0): XP удалён — флага награды за отправку больше нет.
+    expect(screen).not.toContain('awardSubmissionXp');
     expect(screen).toContain('очень приятный бонус');
     expect(screen).not.toMatch(/ник|nickname|данные аккаунта|версия добавляется автоматически/i);
     expect(screen).not.toContain('Повторная отправка не создаст дубль во время обработки.');
@@ -82,9 +83,9 @@ describe('in-app support report contract', () => {
     expect(banner).toContain('onOpen(selected)');
   });
 
-  it('keeps XP for old report callers but lets support opt out explicitly', () => {
+  // зачем (PhraseMan 2.0): XP удалён целиком; отправка отчёта больше ничего не начисляет.
+  it('no longer awards XP for report submission', () => {
     const source = read('app/error_report.ts');
-    expect(source).toContain('awardSubmissionXp?: boolean');
-    expect(source).toContain('options.awardSubmissionXp !== false');
+    expect(source).not.toContain('awardSubmissionXp');
   });
 });

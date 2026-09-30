@@ -23,12 +23,12 @@ describe('dialogue server language isolation source contract', () => {
   it('validates send and stream targets before quota consumption', () => {
     const send = endpointBody(source('premium_dialog.ts'), 'premiumDialogSend');
     expect(send.indexOf('resolveDialogueTargetBeforeWarmup(')).toBeLessThan(
-      send.indexOf('enforceDailyQuota('),
+      send.indexOf('enforceMonthlyQuota('),
     );
 
     const stream = endpointBody(source('premium_dialog_stream.ts'), 'premiumDialogStream');
     expect(stream.indexOf('resolveDialogueTargetBeforeWarmup(')).toBeLessThan(
-      stream.indexOf('enforceDailyQuota('),
+      stream.indexOf('enforceMonthlyQuota('),
     );
   });
 

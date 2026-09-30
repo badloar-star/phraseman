@@ -6,7 +6,14 @@ import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolvePremiumAccess } from './premium_status';
 import { resolveConfiguredDialogModel, resolveConfiguredDialogQuota, modelSupportsJsonObject } from './openai_dialog_model_config';
-import { nextDialogQuotaConsumption, nextDialogQuotaRelease } from './dialog_quota_contract';
+import {
+  DIALOGUE_V2_TURN_QUOTA_RECEIPTS_FIELD,
+  nextDialogueV2TurnQuotaRelease,
+  nextDialogueV2TurnQuotaReservation,
+  nextDialogQuotaConsumption,
+  nextDialogQuotaRelease,
+} from './dialog_quota_contract';
+import { dialogueReplyAccessDecision } from './dialogue_reply_access_contract';
 import { resolveRemoteBool, resolveRemoteBools, aiGloballyDisabled } from './remote_gates';
 import { LANGUAGE_CONTRACT_VERSION, assertAiOutputLanguage, resolveAiOutputLang } from './ai_language_contract';
 import {
@@ -199,6 +206,27 @@ export function startOfNextUtcDay(nowMs: number): number {
   return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate() + 1, 0, 0, 0, 0);
 }
 
+export function startOfNextUtcMonth(nowMs: number): number {
+  const d = new Date(nowMs);
+  return Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 1, 0, 0, 0, 0);
+}
+
+export type DialogQuotaReservation = Readonly<{
+  remainingQuota: number;
+  resetAtMs: number;
+  quotaVersion: number;
+  consumed: boolean;
+}>;
+
+export function unlimitedDialogQuotaReservation(nowMs = Date.now()): DialogQuotaReservation {
+  return Object.freeze({
+    remainingQuota: 0,
+    resetAtMs: startOfNextUtcMonth(nowMs),
+    quotaVersion: 1,
+    consumed: false,
+  });
+}
+
 /**
  * Часовой лимит вызовов. `scope` — область окна: 'dlg' (реплики диалога, дефолт)
  * или 'tr' (переводы).
@@ -225,8 +253,8 @@ export async function enforceRateLimit(
       throw new HttpsError('resource-exhausted', 'dialog_rate_limited');
     }
     tx.set(ref, {
-      authUid,
-      stableUid,
+      authUid: authUid,
+      stableUid: stableUid,
       windowStartMs: sameWindow ? windowStartMs : now,
       count: sameWindow ? count + 1 : 1,
       updatedAtMs: now,
@@ -238,25 +266,31 @@ export async function enforceRateLimit(
  * Daily quota — SERVER is the source of truth (client gate is bypassable).
  * Returns remaining quota after consuming one.
  */
-export async function enforceDailyQuota(
+export async function enforceMonthlyQuota(
   authUid: string,
   stableUid: string,
   isPremium: boolean,
-  dailyCap: number,
-): Promise<Readonly<{ remainingQuota: number; resetAtMs: number; quotaVersion: number }>> {
+  monthlyCap: number,
+): Promise<DialogQuotaReservation> {
+  if (isPremium) return unlimitedDialogQuotaReservation();
   const db = admin.firestore();
   const now = Date.now();
   const ref = db.collection(QUOTA_COLLECTION).doc(docId('quota', authUid, stableUid));
   const result = await db.runTransaction(async (tx) => {
     const data = (await tx.get(ref)).data() ?? {};
-    const next = nextDialogQuotaConsumption(data, now, dailyCap, startOfNextUtcDay);
+    const next = nextDialogQuotaConsumption(data, now, monthlyCap, startOfNextUtcMonth);
     tx.set(ref, {
       authUid: authUid,
       stableUid: stableUid,
       isPremium,
-      dailyCap,
+      quotaPeriod: next.quotaPeriod,
+      periodKey: next.periodKey,
+      monthlyCap: next.monthlyCap,
+      monthlyCount: next.monthlyCount,
+      extraCapThisMonth: next.extraCapThisMonth,
+      dailyCap: next.monthlyCap,
       extraCapToday: next.extraCapToday,
-      quotaTier: isPremium ? 'premium' : 'free',
+      quotaTier: 'free',
       dailyCount: next.dailyCount,
       resetAtMs: next.resetAtMs,
       quotaVersion: next.quotaVersion,
@@ -266,21 +300,78 @@ export async function enforceDailyQuota(
   });
   if (result.exhausted) {
     console.warn('premium_dialog rejected', {
-      reason: isPremium ? 'dialog_premium_cap' : 'dialog_free_limit',
-      isPremium,
-      dailyCap,
+      reason: 'dialog_free_limit',
+      isPremium: false,
+      monthlyCap,
       extraCapToday: result.extraCapToday,
     });
     throw new HttpsError(
       'resource-exhausted',
-      isPremium ? 'dialog_premium_cap' : 'dialog_free_limit',
+      'dialog_free_limit',
       result.observation,
     );
   }
-  return result.observation;
+  return Object.freeze({ ...result.observation, consumed: true });
 }
 
-export async function releaseDailyQuota(
+/** Backward-compatible export for older server modules during rollout. */
+export const enforceDailyQuota = enforceMonthlyQuota;
+
+export async function enforceDialogueV2TurnMonthlyQuota(
+  authUid: string,
+  stableUid: string,
+  isPremium: boolean,
+  monthlyCap: number,
+  turnKey: string,
+): Promise<DialogQuotaReservation> {
+  const db = admin.firestore();
+  const now = Date.now();
+  const ref = db.collection(QUOTA_COLLECTION).doc(docId('quota', authUid, stableUid));
+  const result = await db.runTransaction(async (tx) => {
+    const data = (await tx.get(ref)).data() ?? {};
+    const next = nextDialogueV2TurnQuotaReservation(
+      data,
+      now,
+      monthlyCap,
+      isPremium,
+      turnKey,
+      startOfNextUtcMonth,
+    );
+    const document = next.document;
+    tx.set(ref, {
+      authUid: authUid,
+      stableUid: stableUid,
+      isPremium,
+      ...(isPremium ? {} : {
+        quotaPeriod: document.quotaPeriod,
+        periodKey: document.periodKey,
+        monthlyCap: document.monthlyCap,
+        monthlyCount: document.monthlyCount,
+        extraCapThisMonth: document.extraCapThisMonth,
+        dailyCap: document.dailyCap,
+        dailyCount: document.dailyCount,
+        extraCapToday: document.extraCapToday,
+        quotaTier: 'free',
+        resetAtMs: document.resetAtMs,
+        quotaVersion: document.quotaVersion,
+      }),
+      [DIALOGUE_V2_TURN_QUOTA_RECEIPTS_FIELD]:
+        document[DIALOGUE_V2_TURN_QUOTA_RECEIPTS_FIELD],
+      updatedAtMs: now,
+    }, { merge: true });
+    return next;
+  });
+  if (result.exhausted) {
+    throw new HttpsError(
+      'resource-exhausted',
+      'dialog_free_limit',
+      result.reservation,
+    );
+  }
+  return result.reservation;
+}
+
+export async function releaseMonthlyQuota(
   authUid: string,
   stableUid: string,
   expectedResetAtMs: number,
@@ -292,12 +383,39 @@ export async function releaseDailyQuota(
     const next = nextDialogQuotaRelease(data, expectedResetAtMs);
     if (!next) return;
     tx.set(ref, {
+      monthlyCount: next.monthlyCount,
       dailyCount: next.dailyCount,
       quotaVersion: next.quotaVersion,
       updatedAtMs: Date.now(),
     }, { merge: true });
   });
 }
+
+export async function releaseDialogueV2TurnMonthlyQuota(
+  authUid: string,
+  stableUid: string,
+  expectedResetAtMs: number,
+  turnKey: string,
+): Promise<void> {
+  const db = admin.firestore();
+  const ref = db.collection(QUOTA_COLLECTION).doc(docId('quota', authUid, stableUid));
+  await db.runTransaction(async (tx) => {
+    const data = (await tx.get(ref)).data() ?? {};
+    const next = nextDialogueV2TurnQuotaRelease(data, turnKey, expectedResetAtMs);
+    if (!next) return;
+    tx.set(ref, {
+      monthlyCount: next.document.monthlyCount,
+      dailyCount: next.document.dailyCount,
+      quotaVersion: next.document.quotaVersion,
+      [DIALOGUE_V2_TURN_QUOTA_RECEIPTS_FIELD]:
+        next.document[DIALOGUE_V2_TURN_QUOTA_RECEIPTS_FIELD],
+      updatedAtMs: Date.now(),
+    }, { merge: true });
+  });
+}
+
+/** Backward-compatible export for rollback builds. */
+export const releaseDailyQuota = releaseMonthlyQuota;
 
 const DIALOG_LEARNER_LANG_NAME: Record<string, string> = {
   ru: 'Russian',
@@ -947,11 +1065,15 @@ export const premiumDialogSend = onCall({
   // не обходил Plus-гейт и не создавал лишних лимитных записей.
   // Зависит от stableUid — поэтому отдельным шагом, а не в Promise.all выше.
   const isPremium = await resolvePremiumAccess(db, stableUid, Date.now(), authUid);
+  if (dialogueReplyAccessDecision(mode, isPremium) === 'plus_required') {
+    console.warn('premium_dialog rejected', { reason: 'dialog_plus_required', mode });
+    throw new HttpsError('permission-denied', 'dialog_plus_required');
+  }
   // зачем (владелец, 2026-09-13): gate_ai_dialog_premium=true теперь значит
   // «обычный аккаунт ограничен дневным капом бесплатных реплик» (freeDailyReplies,
   // конфиг Пульта), а не полный отказ — как у карточек в Epic 2A. Полный отказ
   // остаётся ТОЛЬКО когда админ выставил freeDailyReplies=0: тогда Plus обязателен.
-  if (!isPremium && aiDialogGatedByPremium && dialogQuota.freeDailyReplies <= 0) {
+  if (!isPremium && aiDialogGatedByPremium && dialogQuota.freeMonthlyReplies <= 0) {
     console.warn('premium_dialog rejected', {
       reason: 'dialog_plus_required',
       authUidHash: identityFingerprint(authUid),
@@ -966,13 +1088,13 @@ export const premiumDialogSend = onCall({
   // зачем: сохраняем прежнее поведение отказов — если сработал часовой лимит, а
   // квота успела списаться, возвращаем её обратно, иначе реплика «сгорала» бы
   // впустую при rate-limit.
-  const quotaPromise = enforceDailyQuota(
+  const quotaPromise = enforceMonthlyQuota(
     authUid,
     stableUid,
     isPremium,
     // Premium получает premium-кап. Режим «Фри» из админ-пульта сохраняет отдельный
     // бюджетный cap, но не выдаёт premium-квоту.
-    isPremium ? dialogQuota.premiumDailyReplies : dialogQuota.freeDailyReplies,
+    dialogQuota.freeMonthlyReplies,
   );
   const [rateResult, quotaResult] = await Promise.allSettled([
     enforceRateLimit(authUid, stableUid),
@@ -982,8 +1104,8 @@ export const premiumDialogSend = onCall({
   if (rateResult.status === 'rejected') {
     // Квота списалась, а лимит отказал → откатываем списание, чтобы отказ по
     // частоте не съедал дневную реплику пользователя.
-    if (quotaResult.status === 'fulfilled') {
-      await releaseDailyQuota(authUid, stableUid, quotaResult.value.resetAtMs).catch((releaseError) => {
+    if (quotaResult.status === 'fulfilled' && quotaResult.value.consumed) {
+      await releaseMonthlyQuota(authUid, stableUid, quotaResult.value.resetAtMs).catch((releaseError) => {
         console.error('premium_dialog quota release failed after rate limit', {
           releaseError: String((releaseError as Error)?.message ?? releaseError).slice(0, 300),
         });
@@ -1197,7 +1319,9 @@ export const premiumDialogSend = onCall({
   } catch (error) {
     // И Plus, и админский режим «Фри» используют дневную квоту; сбой провайдера
     // не должен съедать её.
-    const rollback = releaseDailyQuota(authUid, stableUid, quotaObservation.resetAtMs);
+    const rollback = quotaObservation.consumed
+      ? releaseMonthlyQuota(authUid, stableUid, quotaObservation.resetAtMs)
+      : Promise.resolve();
     await rollback.catch((releaseError) => {
       console.error('premium_dialog quota release failed', {
         reason: error instanceof HttpsError ? error.message : 'provider_exception',

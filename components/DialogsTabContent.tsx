@@ -1,10 +1,9 @@
-import { getPersonalProgressSnapshot, hydratePersonalProgress } from '../app/personal_progress_store';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
+import { useGlassAlert } from '../hooks/use-glass-alert'; // зачем: стеклянное окно вместо нативного Alert (overlays-runtime «French AI-dialog gate»)
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
-  Alert,
   Animated,
   type NativeScrollEvent,
   type NativeSyntheticEvent,
@@ -21,7 +20,6 @@ import { getCompletedDialogIds } from '../app/dialogs_progress';
 import { getOwnedDialogIds } from '../app/ai_dialog_ownership';
 import { DebugLogger } from '../app/debug-logger';
 import { dialogueScenarioPresentation } from '../app/dialogue_scenario_presentation';
-import DialogueTargetBoundary from './dialogs/DialogueTargetBoundary';
 import {
   DIALOG_SCENARIO_GROUPS,
   dialogScenarioGroupLabel,
@@ -43,23 +41,22 @@ import {
   type DialogSceneTheme,
 } from '../constants/dialogSceneThemes';
 import { triLang, type Lang } from '../constants/i18n';
-import { getLevelFromXP } from '../constants/theme';
 import { hapticTap } from '../hooks/use-haptics';
 import DialogScenarioTile from './DialogScenarioTile';
-import TutorHubPoster from './dialogs/TutorHubPoster';
-import { readTutorLessonTrace } from '../app/tutor_lesson_local_state';
-import { isTextTutorEnabled, hasRemoteConfigSnapshotApplied } from '../app/remote_flags';
-import DialogQuotaBadge from './DialogQuotaBadge';
+import DialogQuotaBadge, { formatAiDialogQuotaResetDate } from './DialogQuotaBadge';
 import { useLang } from './LangContext';
 import { useFeatureAccess, usePremium } from './PremiumContext';
 import { captureAccountGeneration } from '../app/account_generation';
-import { readAiDialogDailyQuota, type AiDialogDailyQuotaState } from '../app/ai_dialog_daily_quota';
+import { readAiDialogMonthlyQuota, type AiDialogMonthlyQuotaState } from '../app/ai_dialog_daily_quota';
 import type { PremiumContext } from '../app/premium_context';
-import { REVENUE_DAILY_LIMITS } from '../app/revenue_daily_limits';
+import { REVENUE_MONTHLY_LIMITS } from '../app/revenue_daily_limits';
 import { useStudyTarget } from './StudyTargetContext';
 import { useTheme } from './ThemeContext';
 
 import { noAndroidOutline } from '../constants/androidGlow';
+import { V2 } from '../constants/v2Style';
+import { DialogueV2CatalogueContainer } from './dialogs/DialogueV2CatalogueContainer';
+import { useV2Palette } from './v2/useV2Palette';
 // зачем (v2, 2026-08-23): владелец задал эталон — раздел «Статистика»: всё
 // крупное, никаких мелких плиток/подписей. Полки карточек 128px заменены
 // стопкой полноширинных карточек-миров с разворотом (паттерн стрик-карты).
@@ -69,6 +66,12 @@ type ScenarioStatus = 'done' | 'available' | 'locked';
 // зачем через globalThis, а не голый `__DEV__`: голая ссылка падает в jest
 // (см. память project_dev_guard_bare_dev_global_jest).
 const IS_DEV_RUNTIME: boolean = (globalThis as { __DEV__?: boolean }).__DEV__ === true;
+
+// зачем (D111): граница месяца есть только у известного серверного состояния
+// ('allowed'/'exhausted'); у 'unknown'/'unavailable' её нет — дату не выдумываем.
+function quotaResetAtMs(quota: AiDialogMonthlyQuotaState | null): number | null {
+  return quota && (quota.status === 'allowed' || quota.status === 'exhausted') ? quota.resetAtMs : null;
+}
 
 // Мир каталога: три группы курса + «Ситуации». Каталог — стопка крупных
 // карточек-миров (эталон владельца — раздел «Статистика»), разворот по тапу.
@@ -127,11 +130,38 @@ function dialogLockedLabel(scenario: DialogScenario, lang: Lang): string {
   });
 }
 
-export default function DialogsTabContent(props: DialogsTabContentProps) {
-  const { studyTarget } = useStudyTarget();
-  return <DialogueTargetBoundary target={studyTarget}><DialogsTabContentBody {...props} /></DialogueTargetBoundary>;
+export default function DialogsTabContent({
+  headerSlot,
+  bottomPadding = 34,
+  topPadding = 0,
+  onScroll,
+}: DialogsTabContentProps) {
+  const router = useRouter();
+  const palette = useV2Palette();
+
+  return (
+    <Animated.ScrollView
+      style={{ flex: 1, backgroundColor: palette.bg }}
+      contentContainerStyle={{ paddingTop: topPadding, paddingBottom: bottomPadding }}
+      onScroll={onScroll}
+      scrollEventThrottle={16}
+    >
+      {headerSlot}
+      <View style={{ paddingHorizontal: V2.screenPad }}>
+        <DialogueV2CatalogueContainer
+          onPressItem={(item) => router.push({
+            pathname: '/dialogue_v2_briefing',
+            params: { scenarioId: item.id },
+          } as never)}
+        />
+      </View>
+    </Animated.ScrollView>
+  );
 }
 
+// Legacy implementation is retained temporarily for dirty-workspace safety;
+// the exported product surface above no longer renders it.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function DialogsTabContentBody({
   headerSlot,
   bottomPadding = 34,
@@ -149,54 +179,22 @@ function DialogsTabContentBody({
   const impressionFiredRef = useRef(false);
   const activeRef = useRef(active);
   const completedDirtyRef = useRef(false);
-  const xpDirtyRef = useRef(false);
-  const refreshGenerationRef = useRef(0);
   const completedGenerationRef = useRef(0);
   activeRef.current = active;
   const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
   const frenchGateCopy = aiDialogTargetGateCopy(lang, studyTarget);
+  const { showGlassAlert, node: glassAlertNode } = useGlassAlert();
 
-  const [accountLevel, setAccountLevel] = useState(1);
   const [unlockedLessons, setUnlockedLessons] = useState<number[]>(
     () => getLessonsTabInitialState(studyTarget)?.persistedUnlocked ?? [],
   );
-  // Завершённые сценарии (локальный прогресс) — для отметки «Пройдено»,
-  // счётчиков X/N в мирах и звания на афише Макса.
+  // Завершённые сценарии (локальный прогресс) — для отметки «Пройдено»
+  // и счётчиков X/N в мирах.
   const [completedIds, setCompletedIds] = useState<Set<string>>(() => new Set());
   // Сценарии, купленные за руны (владелец 2026-09-17: руны покупают ЯЗЫК).
   // Локальное чтение, 0 чтений Firestore: владение живёт на телефоне, облако
   // лишь догоняет его фоном (см. app/ai_dialog_ownership.ts).
   const [ownedIds, setOwnedIds] = useState<Set<string>>(() => new Set());
-  // Подпись афиши Макса: тема, которую он назвал следующей в прошлом уроке.
-  // Локальный слепок, 0 чтений Firestore (см. app/tutor_lesson_local_state.ts).
-  const [tutorNextTopic, setTutorNextTopic] = useState('');
-  // Флаг раздела «Урок с Максом». Зеркалит серверный гейт: без него афиша вела
-  // бы человека в экран, который тут же откажет. Меняется живьём из «Пульта»,
-  // поэтому подписка, а не разовое чтение.
-  const [tutorEnabled, setTutorEnabled] = useState(() => isTextTutorEnabled());
-  useEffect(() => {
-    const sub = onAppEvent('remote_config_changed', () => {
-      const next = isTextTutorEnabled();
-      console.log('[DIALOG-HUB] flag:changed', JSON.stringify({ gate_ai_text_tutor: next }));
-      setTutorEnabled(next);
-    });
-    return () => sub.remove();
-  }, []);
-
-  // зачем трасса: «в разделе ничего нет» — афишу режет одно из двух условий, и
-  // без печати ЗНАЧЕНИЙ (а не голого true/false) непонятно, какое именно:
-  // языковой гейт раздела или флаг «Пульта». Печатаем при каждом заходе.
-  useEffect(() => {
-    if (!active) return;
-    console.log('[DIALOG-HUB] poster:gate', JSON.stringify({
-      aiDialogGateOpen,
-      studyTarget,
-      tutorEnabled,
-      remoteSnapshotApplied: hasRemoteConfigSnapshotApplied(),
-      posterVisible: aiDialogGateOpen && tutorEnabled,
-    }));
-  }, [active, aiDialogGateOpen, studyTarget, tutorEnabled]);
-
   // Раскрытый мир. При входе на экран все разделы свёрнуты — раскрытие только
   // ручное, по тапу (эталонный паттерн разворота карточки).
   const [openWorld, setOpenWorld] = useState<WorldKey | null>(null);
@@ -246,34 +244,10 @@ function DialogsTabContentBody({
     return () => sub.remove();
   }, [refreshCompleted]);
 
-  const refreshAccountLevel = useCallback(async () => {
-    if (!activeRef.current) {
-      xpDirtyRef.current = true;
-      return;
-    }
-    xpDirtyRef.current = false;
-    const generation = ++refreshGenerationRef.current;
-    await hydratePersonalProgress().catch(() => null);
-    if (!activeRef.current || generation !== refreshGenerationRef.current) return;
-    const totalXP = getPersonalProgressSnapshot().totalXp;
-    setAccountLevel(getLevelFromXP(totalXP));
-  }, []);
-
-  useEffect(() => {
-    const xpChanged = onAppEvent('xp_changed', () => { void refreshAccountLevel(); });
-    const xpUpdated = onAppEvent('xp_updated', () => { void refreshAccountLevel(); });
-    return () => {
-      xpChanged.remove();
-      xpUpdated.remove();
-    };
-  }, [refreshAccountLevel]);
-
   useEffect(() => {
     if (!active) return;
-    // One active pass covers initial hydration and all hidden dirty events.
     refreshCompleted();
-    void refreshAccountLevel();
-  }, [active, refreshAccountLevel, refreshCompleted]);
+  }, [active, refreshCompleted]);
 
   /**
    * Будим спящий инстанс диалога, как только человек вошёл в раздел.
@@ -318,43 +292,45 @@ function DialogsTabContentBody({
   const reachedLevel = useMemo(() => reachedCourseLevel(unlockedLessons), [unlockedLessons]);
   const hasLockedCourseLevels = !dialogAccess;
   // зачем (владелец, 2026-09-13): dialogAccess=false больше не «замок на всё», а
-  // «дневной лимит действует». Каталог закрывает сценарии только когда сегодня
-  // сервер уже сказал «0» (зеркало ai_dialog_daily_quota.ts); иначе сценарий
+  // «месячный лимит действует». Каталог закрывает сценарии только когда сервер
+  // уже сказал «0» до границы следующего месяца; иначе сценарий
   // достигнутого уровня открыт, а уровни выше — по-прежнему за Plus.
   // зачем (владелец 2026-09-14): раньше хранился только флаг «исчерпано», и
-  // карточка апселла показывала пейвол «Дневной лимит исчерпан» ВСЕГДА — даже
-  // когда потрачена 1 реплика из 10. Теперь держим всё состояние квоты: по нему
+  // карточка апселла показывала пейвол «Лимит исчерпан» ВСЕГДА. Теперь держим
+  // всё серверное состояние календарного месяца: по нему
   // и выбирается ЧЕСТНЫЙ пейвол, и рисуется остаток на карточке.
-  const [quota, setQuota] = useState<AiDialogDailyQuotaState | null>(null);
+  const [quota, setQuota] = useState<AiDialogMonthlyQuotaState | null>(null);
   useEffect(() => {
     if (!accessResolved || hasPremiumAccess) {
       setQuota(null);
       return;
     }
     let cancelled = false;
-    void readAiDialogDailyQuota(studyTarget, captureAccountGeneration().stableId).then((state) => {
+    void readAiDialogMonthlyQuota(studyTarget, captureAccountGeneration().stableId).then((state) => {
       if (cancelled) return;
       if (IS_DEV_RUNTIME) console.log('[DIALOG-PAYWALL] quota:read', JSON.stringify(state));
       setQuota(state);
     });
     return () => { cancelled = true; };
   }, [accessResolved, hasPremiumAccess, studyTarget]);
-  const dailyLimitExhausted = !hasPremiumAccess && quota?.status === 'exhausted';
-  const dialogsOpenToday = !dailyLimitExhausted;
+  const monthlyLimitExhausted = !hasPremiumAccess && quota?.status === 'exhausted';
+  const dialogsOpenThisMonth = !monthlyLimitExhausted;
   /**
    * зачем: пейвол обязан называть ПРИЧИНУ, по которой человек сюда попал.
-   * Лимит реально исчерпан → «Дневной лимит исчерпан». Лимит цел → причина
+   * Месячный лимит реально исчерпан → `dialog_limit`. Лимит цел → причина
    * другая: закрыты сценарии уровней выше, это `dialog_locked_level`.
    */
-  const upsellContext: PremiumContext = dailyLimitExhausted ? 'dialog_limit' : 'dialog_locked_level';
-  const quotaLimit = quota?.limit ?? REVENUE_DAILY_LIMITS.ai_dialog_replies;
-  const repliesLeftToday = !hasPremiumAccess
+  const upsellContext: PremiumContext = monthlyLimitExhausted ? 'dialog_limit' : 'dialog_locked_level';
+  const quotaLimit = quota?.limit ?? REVENUE_MONTHLY_LIMITS.ai_dialog_replies;
+  const repliesLeftThisMonth = !hasPremiumAccess
     ? quota?.status === 'allowed'
       ? quota.remaining
-      : dailyLimitExhausted
+      : monthlyLimitExhausted
         ? 0
         : quotaLimit
     : null;
+  const quotaResetAt = quotaResetAtMs(quota);
+  const quotaResetDate = formatAiDialogQuotaResetDate(quotaResetAt, lang);
   const accent = t.accent;
 
   const openScenarioDestination = useCallback(
@@ -374,15 +350,15 @@ function DialogsTabContentBody({
       if (!accessResolved) return;
       hapticTap();
       if (!aiDialogGateOpen) {
-        Alert.alert(frenchGateCopy.title, frenchGateCopy.body, [{ text: frenchGateCopy.action }]);
+        showGlassAlert(frenchGateCopy.title, frenchGateCopy.body, [{ text: frenchGateCopy.action }]);
         return;
       }
-      if (!dialogsOpenToday) {
+      if (!dialogsOpenThisMonth) {
         void trackAiDialogEvent('ai_dialog_locked_scenario_tapped', {
           scenarioId: scenario.id,
           cefr: scenario.cefr,
           reachedLevel,
-          reason: 'daily_limit',
+          reason: 'monthly_limit',
         });
         void trackAiDialogEvent('paywall_shown', { context: 'dialog_limit', source: 'dialogs_catalogue' });
         router.push({ pathname: '/premium_modal', params: { context: 'dialog_limit', source: 'dialogs_catalogue' } } as never);
@@ -418,7 +394,7 @@ function DialogsTabContentBody({
       }
       void openScenarioDestination(scenario, forceBriefing);
     },
-    [accessResolved, aiDialogGateOpen, dialogAccess, ownedIds, dialogsOpenToday, frenchGateCopy, openScenarioDestination, reachedLevel, router],
+    [accessResolved, aiDialogGateOpen, dialogAccess, ownedIds, dialogsOpenThisMonth, frenchGateCopy, showGlassAlert, openScenarioDestination, reachedLevel, router],
   );
 
   const openChallengeScenario = useCallback(
@@ -426,13 +402,13 @@ function DialogsTabContentBody({
       if (!accessResolved) return;
       hapticTap();
       if (!aiDialogGateOpen) {
-        Alert.alert(frenchGateCopy.title, frenchGateCopy.body, [{ text: frenchGateCopy.action }]);
+        showGlassAlert(frenchGateCopy.title, frenchGateCopy.body, [{ text: frenchGateCopy.action }]);
         return;
       }
-      if (!dialogsOpenToday) {
+      if (!dialogsOpenThisMonth) {
         void trackAiDialogEvent('ai_dialog_locked_scenario_tapped', {
           scenarioId: scenario.id,
-          reason: 'daily_limit',
+          reason: 'monthly_limit',
         });
         void trackAiDialogEvent('paywall_shown', { context: 'dialog_limit', source: 'dialogs_catalogue' });
         router.push({ pathname: '/premium_modal', params: { context: 'dialog_limit', source: 'dialogs_catalogue' } } as never);
@@ -450,8 +426,6 @@ function DialogsTabContentBody({
       if (!unlocked) {
         void trackAiDialogEvent('ai_dialog_locked_scenario_tapped', {
           scenarioId: scenario.id,
-          requiredLevel: scenario.requiredAccountLevel ?? 1,
-          accountLevel,
           reason: 'plus_only_scenario',
         });
         void trackAiDialogEvent('paywall_shown', { context: 'dialog_locked_level', source: 'dialogs_catalogue' });
@@ -460,7 +434,7 @@ function DialogsTabContentBody({
       }
       void openScenarioDestination(scenario, forceBriefing);
     },
-    [accessResolved, accountLevel, aiDialogGateOpen, dialogAccess, dialogsOpenToday, frenchGateCopy, lang, openScenarioDestination, router],
+    [accessResolved, aiDialogGateOpen, dialogAccess, dialogsOpenThisMonth, frenchGateCopy, showGlassAlert, openScenarioDestination, router],
   );
 
   // ── View-model каталога ────────────────────────────────────────────────────
@@ -478,7 +452,7 @@ function DialogsTabContentBody({
           // не откроет.
           const unlocked = isScenarioUnlockedForAccount(scenario.id, dialogAccess, ownedIds);
           const done = completedIds.has(scenario.id);
-          const status: ScenarioStatus = !dialogsOpenToday || !unlocked ? 'locked' : done ? 'done' : 'available';
+          const status: ScenarioStatus = !dialogsOpenThisMonth || !unlocked ? 'locked' : done ? 'done' : 'available';
           return {
             scenario,
             status,
@@ -492,7 +466,7 @@ function DialogsTabContentBody({
         const doneCount = scenarios.filter((s) => s.status === 'done').length;
         return { group, scene, scenarios, doneCount };
       }),
-    [dialogAccess, dialogsOpenToday, completedIds, ownedIds, lang, openCourseScenario],
+    [dialogAccess, dialogsOpenThisMonth, completedIds, ownedIds, lang, openCourseScenario],
   );
 
   const challengeVMs = useMemo<ScenarioVM[]>(
@@ -503,7 +477,7 @@ function DialogsTabContentBody({
         // их больше не открывает. Тап считает ровно это же правило.
         const unlocked = isScenarioUnlockedForAccount(scenario.id, dialogAccess, ownedIds);
         const done = completedIds.has(scenario.id);
-        const status: ScenarioStatus = !dialogsOpenToday || !unlocked ? 'locked' : done ? 'done' : 'available';
+        const status: ScenarioStatus = !dialogsOpenThisMonth || !unlocked ? 'locked' : done ? 'done' : 'available';
         return {
           scenario,
           status,
@@ -524,39 +498,8 @@ function DialogsTabContentBody({
           onLongPress: () => openChallengeScenario(scenario, true),
         };
       }),
-    [dialogAccess, completedIds, ownedIds, dialogsOpenToday, lang, openChallengeScenario],
+    [dialogAccess, completedIds, ownedIds, dialogsOpenThisMonth, lang, openChallengeScenario],
   );
-
-  // След прошлого урока с Максом читаем один раз на вход в раздел — это чтение
-  // AsyncStorage, а не сети; активной вкладке оно не мешает.
-  useEffect(() => {
-    if (!active) return;
-    let cancelled = false;
-    void readTutorLessonTrace(studyTarget).then((trace) => {
-      if (!cancelled) setTutorNextTopic(trace?.nextTopic ?? '');
-    });
-    return () => { cancelled = true; };
-  }, [active, studyTarget]);
-
-  /**
-   * Старт урока с Максом. Урок — такой же расход дневной квоты, как диалог,
-   * поэтому исчерпанный лимит ведёт на пейвол с честной причиной, а не открывает
-   * экран, который тут же откажет. Языковой гейт тот же, что у сцен.
-   */
-  const openTutorLesson = useCallback(() => {
-    if (!accessResolved) return;
-    if (!aiDialogGateOpen) {
-      Alert.alert(frenchGateCopy.title, frenchGateCopy.body, [{ text: frenchGateCopy.action }]);
-      return;
-    }
-    if (!dialogsOpenToday) {
-      void trackAiDialogEvent('paywall_shown', { context: 'dialog_limit', source: 'dialogs_tutor_poster' });
-      router.push({ pathname: '/premium_modal', params: { context: 'dialog_limit', source: 'dialogs_tutor_poster' } } as never);
-      return;
-    }
-    void trackAiDialogEvent('ai_dialog_tutor_lesson_opened', { hasTrace: tutorNextTopic.length > 0 });
-    router.push('/ai_dialog_tutor_session' as never);
-  }, [accessResolved, aiDialogGateOpen, dialogsOpenToday, frenchGateCopy, router, tutorNextTopic]);
 
   // зачем: владелец просил заходить в «Диалоги» с полностью свёрнутыми
   // разделами — раньше мир героя («Каждый день») раскрывался сам, и экран
@@ -737,14 +680,105 @@ function DialogsTabContentBody({
       contentContainerStyle={{ paddingTop: topPadding, paddingBottom: bottomPadding }}
     >
       {headerSlot}
+      {glassAlertNode}
 
       {!hasPremiumAccess && (
         <DialogQuotaBadge
           lang={lang}
-          remaining={repliesLeftToday ?? quotaLimit}
+          remaining={repliesLeftThisMonth ?? quotaLimit}
           limit={quotaLimit}
-          testID="dialogs-catalogue-daily-quota"
+          resetAtMs={quotaResetAt}
+          variant="monthly"
+          testID="dialogs-catalogue-monthly-quota"
         />
+      )}
+
+      {aiDialogGateOpen && (
+        <TouchableOpacity
+          accessibilityRole="button"
+          accessibilityLabel={triLang(lang, {
+            ru: 'Открыть свободный разговор', uk: 'Відкрити вільну розмову', en: 'Open free conversation',
+            es: 'Abrir conversación libre', 'pt-BR': 'Abrir conversa livre', vi: 'Mở cuộc trò chuyện tự do',
+            id: 'Buka percakapan bebas', tr: 'Serbest konuşmayı aç', pl: 'Otwórz swobodną rozmowę',
+          })}
+          accessibilityHint={!hasPremiumAccess ? triLang(lang, {
+            ru: 'Доступно в Plus. Откроется экран Plus.', uk: 'Доступно в Plus. Відкриється екран Plus.',
+            en: 'Available with Plus. Opens the Plus screen.', es: 'Disponible con Plus. Abre la pantalla Plus.',
+            'pt-BR': 'Disponível com Plus. Abre a tela Plus.', vi: 'Có trong Plus. Mở màn hình Plus.',
+            id: 'Tersedia dengan Plus. Membuka layar Plus.', tr: 'Plus ile kullanılabilir. Plus ekranını açar.',
+            pl: 'Dostępne w Plus. Otwiera ekran Plus.',
+          }) : undefined}
+          activeOpacity={0.88}
+          onPress={() => {
+            if (!accessResolved) return;
+            hapticTap();
+            if (!hasPremiumAccess) {
+              void trackAiDialogEvent('paywall_shown', { context: 'dialog_limit', source: 'dialogs_companion' });
+              router.push({ pathname: '/premium_modal', params: { context: 'dialog_limit', source: 'dialogs_companion' } } as never);
+              return;
+            }
+            // зачем без отдельного события: ai_companion_opened никогда не было в
+            // реестре аналитики и его никто не читает (админка/функции). Вход в
+            // свободный разговор уже считает сам экран: ai_dialog_started c
+            // scenarioId='companion' (ai_companion_session.tsx).
+            router.push({ pathname: '/ai_companion_session' } as never);
+          }}
+          style={{
+            marginTop: 14,
+            marginHorizontal: 16,
+            borderRadius: 22,
+            backgroundColor: t.bgCard,
+            overflow: 'hidden',
+            padding: 16,
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: 13,
+          }}
+        >
+          <LinearGradient
+            pointerEvents="none"
+            colors={[t.accent + '1F', 'transparent']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
+          />
+          <View
+            style={{
+              width: 52,
+              height: 52,
+              borderRadius: 18,
+              backgroundColor: t.accentBg,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Ionicons name="chatbubble-ellipses-outline" size={24} color={t.accent} />
+          </View>
+          <View style={{ flex: 1, minWidth: 0 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7 }}>
+              <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '800', flexShrink: 1 }}>
+                {triLang(lang, {
+                  ru: 'Свободный разговор', uk: 'Вільна розмова', en: 'Free conversation', es: 'Conversación libre',
+                  'pt-BR': 'Conversa livre', vi: 'Trò chuyện tự do', id: 'Percakapan bebas', tr: 'Serbest konuşma', pl: 'Swobodna rozmowa',
+                })}
+              </Text>
+              <View style={{ borderRadius: 8, paddingHorizontal: 6, paddingVertical: 2, backgroundColor: t.accent }}>
+                <Text style={{ color: t.correctText, fontSize: 10, fontWeight: '900' }}>PLUS</Text>
+              </View>
+            </View>
+            <Text
+              style={{ color: t.textMuted, fontSize: f.sub, marginTop: 3, lineHeight: Math.round(f.sub * 1.4) }}
+              maxFontSizeMultiplier={1.15}
+            >
+              {triLang(lang, {
+                ru: 'Практика без сценария', uk: 'Практика без сценарію', en: 'Practice without a set scenario',
+                es: 'Practica sin un escenario fijo', 'pt-BR': 'Pratique sem um cenário fixo', vi: 'Luyện tập không theo kịch bản cố định',
+                id: 'Berlatih tanpa skenario tetap', tr: 'Sabit bir senaryo olmadan pratik yap', pl: 'Ćwicz bez ustalonego scenariusza',
+              })}
+            </Text>
+          </View>
+          <Ionicons name={hasPremiumAccess ? 'chevron-forward' : 'lock-closed-outline'} size={20} color={t.textSecond} />
+        </TouchableOpacity>
       )}
 
       {!aiDialogGateOpen && (
@@ -785,38 +819,6 @@ function DialogsTabContentBody({
         </View>
       )}
 
-      {/* зачем (владелец 2026-09-14, утверждённый хаб «вариант Б»): «не заказать
-          кофе, а именно начать урок, и он начинается сразу с тутором, пусть его
-          зовут Макс». Афиша заняла место сцены-героя: сцена не потерялась, она
-          первая в списке групп ниже. Звание — кольцо в правом верхнем углу
-          афиши с пульсирующей прозрачностью, тоже решение владельца. */}
-      {aiDialogGateOpen && tutorEnabled && (
-        <View style={{ paddingHorizontal: 16, marginTop: 14 }}>
-          <TutorHubPoster
-            lang={lang}
-            completedCount={completedIds.size}
-            memoryHint={
-              tutorNextTopic
-                ? triLang(lang, {
-                    ru: `В прошлый раз договорились: ${tutorNextTopic}`,
-                    uk: `Минулого разу домовилися: ${tutorNextTopic}`,
-                    en: `Last time you agreed on: ${tutorNextTopic}`,
-                    es: `La última vez acordaron: ${tutorNextTopic}`,
-                    'pt-BR': `Da última vez combinaram: ${tutorNextTopic}`,
-                    vi: `Lần trước đã hẹn: ${tutorNextTopic}`,
-                    id: `Terakhir kali disepakati: ${tutorNextTopic}`,
-                    tr: `Geçen sefer kararlaştırdınız: ${tutorNextTopic}`,
-                    pl: `Ostatnio umówiliście się na: ${tutorNextTopic}`,
-                  })
-                : ''
-            }
-            tabVisible={active}
-            onStart={openTutorLesson}
-            testID="dialogs-tutor-poster"
-          />
-        </View>
-      )}
-
       {/* Миры курса: три группы крупными карточками с разворотом. */}
       {aiDialogGateOpen && courseGroupVMs.map(({ group, scene, scenarios, doneCount }) =>
         renderWorldCard(group.category, dialogScenarioGroupLabel(group, lang), scene, scenarios, doneCount),
@@ -853,7 +855,7 @@ function DialogsTabContentBody({
             // зачем: контекст выбирается по ФАКТУ (см. upsellContext), иначе
             // человек с 9 целыми репликами читал «Дневной лимит исчерпан».
             if (IS_DEV_RUNTIME) {
-              console.log('[DIALOG-PAYWALL] upsell:tap', JSON.stringify({ upsellContext, quotaStatus: quota?.status ?? 'none', repliesLeftToday }));
+              console.log('[DIALOG-PAYWALL] upsell:tap', JSON.stringify({ upsellContext, quotaStatus: quota?.status ?? 'none', repliesLeftThisMonth }));
             }
             void trackAiDialogEvent('paywall_shown', { context: upsellContext, source: 'dialogs_catalogue' });
             router.push({ pathname: '/premium_modal', params: { context: upsellContext, source: 'dialogs_catalogue' } } as never);
@@ -894,12 +896,24 @@ function DialogsTabContentBody({
               {/* зачем новый текст (владелец 2026-09-17, макет экономики рун):
                   старый «Все диалоги входят в Plus» стал ЛОЖЬЮ. Роли валют
                   разошлись: РУНЫ дают доступ (какие диалоги существуют), а
-                  Plus — ОБЪЁМ (сколько реплик в день). Обещать доступ за Plus
+                  Plus — ОБЪЁМ реплик. Обещать доступ за Plus
                   значит продавать одно и то же двумя валютами. */}
-              {triLang(lang, {
+              {/* зачем (D111): при исчерпании человек должен сразу понять ПРИЧИНУ
+                  и выход — «ответы месяца закончились, продолжить с Plus». */}
+              {monthlyLimitExhausted ? triLang(lang, {
+                ru: 'Ответы месяца закончились — продолжи с Plus',
+                uk: 'Відповіді місяця закінчилися — продовж із Plus',
+                en: "This month's replies are used up — continue with Plus",
+                es: 'Se acabaron las respuestas del mes: sigue con Plus',
+                'pt-BR': 'As respostas do mês acabaram: continue com o Plus',
+                vi: 'Đã hết lượt trả lời tháng này — tiếp tục với Plus',
+                id: 'Balasan bulan ini habis — lanjutkan dengan Plus',
+                tr: 'Bu ayın yanıtları bitti — Plus ile devam et',
+                pl: 'Odpowiedzi w tym miesiącu się skończyły — kontynuuj z Plus',
+              }) : triLang(lang, {
                 ru: 'Plus снимает лимит реплик',
                 uk: 'Plus знімає ліміт реплік',
-                en: 'Plus removes the daily reply limit',
+                en: 'Plus removes the monthly reply limit',
                 es: 'Plus quita el límite de respuestas',
                 'pt-BR': 'O Plus remove o limite de respostas',
                 vi: 'Plus bỏ giới hạn lượt trả lời',
@@ -912,21 +926,19 @@ function DialogsTabContentBody({
               style={{ color: t.textMuted, fontSize: f.sub, marginTop: 3, lineHeight: Math.round(f.sub * 1.4) }}
               maxFontSizeMultiplier={1.15}
             >
-              {/* зачем (владелец 2026-09-14): вместо общей расшифровки — ФАКТ
-                  дня. Пока реплики есть, человек читает сколько осталось, и
-                  «лимит исчерпан» его больше не застаёт врасплох. Число уже
-                  лежит в локальном зеркале квоты — 0 чтений Firestore. */}
-              {repliesLeftToday != null
+              {/* Серверная граница календарного месяца показывается как есть:
+                  клиент не вычисляет и не придумывает дату сброса. */}
+              {repliesLeftThisMonth != null
                 ? triLang(lang, {
-                    ru: `Сегодня осталось ${repliesLeftToday} из ${quotaLimit} реплик. Сами диалоги открываются за руны.`,
-                    uk: `Сьогодні лишилося ${repliesLeftToday} з ${quotaLimit} реплік. Самі діалоги відкриваються за руни.`,
-                    en: `${repliesLeftToday} of ${quotaLimit} replies left today. Dialogues themselves unlock with runes.`,
-                    es: `Hoy te quedan ${repliesLeftToday} de ${quotaLimit} respuestas. Los diálogos se abren con runas.`,
-                    'pt-BR': `Restam ${repliesLeftToday} de ${quotaLimit} respostas hoje. Os diálogos abrem com runas.`,
-                    vi: `Hôm nay còn ${repliesLeftToday}/${quotaLimit} lượt trả lời. Hội thoại mở bằng rune.`,
-                    id: `Hari ini sisa ${repliesLeftToday} dari ${quotaLimit} balasan. Dialog dibuka dengan rune.`,
-                    tr: `Bugün ${quotaLimit} yanıttan ${repliesLeftToday} tanesi kaldı. Diyaloglar rünle açılır.`,
-                    pl: `Dziś zostało ${repliesLeftToday} z ${quotaLimit} odpowiedzi. Same dialogi otwierasz runami.`,
+                    ru: `В этом календарном месяце осталось ${repliesLeftThisMonth} из ${quotaLimit} реплик.${quotaResetDate ? ` Сброс — ${quotaResetDate}.` : ''}`,
+                    uk: `У цьому календарному місяці залишилося ${repliesLeftThisMonth} з ${quotaLimit} реплік.${quotaResetDate ? ` Скидання — ${quotaResetDate}.` : ''}`,
+                    en: `${repliesLeftThisMonth} of ${quotaLimit} replies remain this calendar month.${quotaResetDate ? ` Reset: ${quotaResetDate}.` : ''}`,
+                    es: `Quedan ${repliesLeftThisMonth} de ${quotaLimit} respuestas este mes natural.${quotaResetDate ? ` Reinicio: ${quotaResetDate}.` : ''}`,
+                    'pt-BR': `Restam ${repliesLeftThisMonth} de ${quotaLimit} respostas neste mês civil.${quotaResetDate ? ` Reinício: ${quotaResetDate}.` : ''}`,
+                    vi: `Còn ${repliesLeftThisMonth}/${quotaLimit} lượt trả lời trong tháng dương lịch này.${quotaResetDate ? ` Đặt lại: ${quotaResetDate}.` : ''}`,
+                    id: `Tersisa ${repliesLeftThisMonth} dari ${quotaLimit} balasan untuk bulan kalender ini.${quotaResetDate ? ` Reset: ${quotaResetDate}.` : ''}`,
+                    tr: `Bu takvim ayında ${quotaLimit} yanıttan ${repliesLeftThisMonth} tanesi kaldı.${quotaResetDate ? ` Sıfırlanma: ${quotaResetDate}.` : ''}`,
+                    pl: `W tym miesiącu kalendarzowym zostało ${repliesLeftThisMonth} z ${quotaLimit} odpowiedzi.${quotaResetDate ? ` Reset: ${quotaResetDate}.` : ''}`,
                   })
                 : triLang(lang, {
                     ru: 'Открой сценарии по урокам и жизненные ситуации для разговорной практики.',

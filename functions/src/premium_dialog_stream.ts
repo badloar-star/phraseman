@@ -33,11 +33,11 @@ import {
   assertDialogReplyMatchesTarget,
   buildCompanionSystemPrompt,
   buildScenarioSystemPrompt,
-  enforceDailyQuota,
+  enforceMonthlyQuota,
   enforceRateLimit,
   isGameMode,
   parseGameEnvelope,
-  releaseDailyQuota,
+  releaseMonthlyQuota,
   sanitizeGameStateForRequest,
   sanitizeHistory,
   sanitizeMemory,
@@ -51,6 +51,7 @@ import {
   type DialogCoachEnvelope,
   type PremiumDialogRequest,
 } from './premium_dialog';
+import { dialogueReplyAccessDecision } from './dialogue_reply_access_contract';
 import {
   DIALOG_REPEAT_RETRY_INSTRUCTION,
   DialogRepeatedReplyError,
@@ -295,6 +296,14 @@ export const premiumDialogStream = onRequest({
   timer.mark('prechecksMs');
   const { stableUid, isPremium } = identity;
 
+  // The open-ended companion is a Plus entitlement. Reject a direct Free
+  // request before starting either limiter: otherwise the rejected request can
+  // still reserve a monthly reply (and touch the hourly rate-limit document).
+  if (dialogueReplyAccessDecision(mode, isPremium) === 'plus_required') {
+    res.status(403).json({ error: 'dialog_plus_required' });
+    return;
+  }
+
   if (gates.aiOff) {
     res.status(503).json({ error: 'ai_globally_disabled' });
     return;
@@ -302,7 +311,7 @@ export const premiumDialogStream = onRequest({
 
   // Тот же смысл гейта, что в premium_dialog.ts: cap бесплатных реплик, полный
   // отказ только при freeDailyReplies=0 (админ-выключатель).
-  if (!isPremium && gates.gatedByPremium && dialogQuota.freeDailyReplies <= 0) {
+  if (!isPremium && gates.gatedByPremium && dialogQuota.freeMonthlyReplies <= 0) {
     res.status(403).json({ error: 'dialog_plus_required' });
     return;
   }
@@ -310,18 +319,18 @@ export const premiumDialogStream = onRequest({
   // Часовой лимит и дневная квота живут в РАЗНЫХ документах — идут параллельно.
   const [rateResult, quotaResult] = await Promise.allSettled([
     enforceRateLimit(authUid, stableUid),
-    enforceDailyQuota(
+    enforceMonthlyQuota(
       authUid,
       stableUid,
       isPremium,
-      isPremium ? dialogQuota.premiumDailyReplies : dialogQuota.freeDailyReplies,
+      dialogQuota.freeMonthlyReplies,
     ),
   ]);
   timer.mark('limitsMs');
   if (rateResult.status === 'rejected') {
     // Квота уже списалась — возвращаем: отказ по частоте не должен её съедать.
-    if (quotaResult.status === 'fulfilled') {
-      await releaseDailyQuota(authUid, stableUid, quotaResult.value.resetAtMs).catch((e) => {
+    if (quotaResult.status === 'fulfilled' && quotaResult.value.consumed) {
+      await releaseMonthlyQuota(authUid, stableUid, quotaResult.value.resetAtMs).catch((e) => {
         console.warn('[DIALOG-LAT] stream: releaseDailyQuota after rate-limit failed', {
           reason: String((e as Error)?.message ?? e).slice(0, 120),
         });
@@ -341,6 +350,7 @@ export const premiumDialogStream = onRequest({
     });
     return;
   }
+
   const quotaObservation = quotaResult.value;
   const remaining = quotaObservation.remainingQuota;
 
@@ -403,7 +413,10 @@ export const premiumDialogStream = onRequest({
 
   const failStream = async (code: string): Promise<void> => {
     // Сбой провайдера не должен съедать дневную реплику — как и в callable.
-    await releaseDailyQuota(authUid, stableUid, quotaObservation.resetAtMs).catch((e) => {
+    const release = quotaObservation.consumed
+      ? releaseMonthlyQuota(authUid, stableUid, quotaObservation.resetAtMs)
+      : Promise.resolve();
+    await release.catch((e) => {
       console.warn('[DIALOG-LAT] stream: releaseDailyQuota after failure failed', {
         reason: String((e as Error)?.message ?? e).slice(0, 120),
       });

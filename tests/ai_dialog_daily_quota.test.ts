@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
-  AI_DIALOG_DAILY_QUOTA_PREFIX,
+  AI_DIALOG_MONTHLY_QUOTA_PREFIX,
   aiDialogDailyQuotaStorageKey,
   parseAiDialogQuotaObservation,
   quotaObservationFromDialogError,
@@ -10,14 +10,17 @@ import {
 } from '../app/ai_dialog_daily_quota';
 import { REVENUE_DAILY_LIMITS } from '../app/revenue_daily_limits';
 
-const RESET = Date.UTC(2026, 8, 14, 0, 0, 0, 0);
+// D111: имена *Daily* — deprecated-алиасы месячной модели; сервер присылает
+// границу календарного месяца UTC, зеркало лежит под ключом v3.
+
+const RESET = Date.UTC(2026, 9, 1, 0, 0, 0, 0);
 const BEFORE_RESET = RESET - 1;
 const AFTER_RESET = RESET;
 
 describe('ai_dialog_daily_quota — account-global authoritative mirror', () => {
   beforeEach(async () => {
     const keys = await AsyncStorage.getAllKeys();
-    await AsyncStorage.multiRemove(keys.filter((key) => key.startsWith('ai_dialog_daily_quota:')));
+    await AsyncStorage.multiRemove(keys.filter((key) => (key.startsWith('ai_dialog_daily_quota:') || key.startsWith('ai_dialog_monthly_quota:'))));
   });
 
   test('without an authoritative server observation the account quota is unknown', async () => {
@@ -28,10 +31,10 @@ describe('ai_dialog_daily_quota — account-global authoritative mirror', () => 
     expect(await readAiDialogDailyQuota('en', null, BEFORE_RESET)).toMatchObject({ status: 'unknown' });
   });
 
-  test('EN, ES, FR and DE share one account-global v2 key and allowance', async () => {
+  test('EN, ES, FR and DE share one account-global monthly v3 key and allowance', async () => {
     const keys = ['en', 'es', 'fr', 'de'].map((target) => aiDialogDailyQuotaStorageKey(target, 'uid-a'));
     expect(new Set(keys).size).toBe(1);
-    expect(keys[0]).toBe(`${AI_DIALOG_DAILY_QUOTA_PREFIX}${encodeURIComponent('uid-a')}`);
+    expect(keys[0]).toBe(`${AI_DIALOG_MONTHLY_QUOTA_PREFIX}${encodeURIComponent('uid-a')}`);
 
     await recordAiDialogDailyQuotaFromServer('es', 'uid-a', {
       remainingQuota: 2,

@@ -36,7 +36,8 @@ describe('AI dialogue paywall truth contract', () => {
       dialoguesCatalogue.indexOf('const upsellContext') + 200,
     );
 
-    expect(decision).toContain("dailyLimitExhausted ? 'dialog_limit' : 'dialog_locked_level'");
+    // D111: лимит месячный — имя состояния monthlyLimitExhausted.
+    expect(decision).toContain("monthlyLimitExhausted ? 'dialog_limit' : 'dialog_locked_level'");
     /**
      * Источник истины про ЛИМИТ — состояние квоты, а не «нет Plus».
      *
@@ -48,15 +49,18 @@ describe('AI dialogue paywall truth contract', () => {
      * решение опирается на статус квоты, — не дословную форму строки.
      */
     expect(dialoguesCatalogue).toMatch(
-      /const dailyLimitExhausted =[^;]*quota\?\.status === 'exhausted'/,
+      /const monthlyLimitExhausted =[^;]*quota\?\.status === 'exhausted'/,
     );
   });
 
-  test('a scenario tap blames the daily limit only inside the exhausted branch', () => {
-    // Вне ветки !dialogsOpenToday контекст 'dialog_limit' появляться не должен.
-    const limitMentions = dialoguesCatalogue.split("context: 'dialog_limit'").length - 1;
-    const exhaustedBranches = dialoguesCatalogue.split('if (!dialogsOpenToday) {').length - 1;
-    expect(limitMentions).toBe(exhaustedBranches * 2); // trackAiDialogEvent + router.push
+  test('a scenario tap blames the monthly limit only inside the exhausted branch', () => {
+    // Вне ветки !dialogsOpenThisMonth контекст 'dialog_limit' у сценариев
+    // появляться не должен. Карточка «Свободный разговор» (только Plus) — отдельный
+    // вход со своим source и в счёт сценариев не идёт.
+    const scenarioLimitMentions = dialoguesCatalogue.split("context: 'dialog_limit', source: 'dialogs_catalogue'").length - 1;
+    const exhaustedBranches = dialoguesCatalogue.split('if (!dialogsOpenThisMonth) {').length - 1;
+    expect(exhaustedBranches).toBeGreaterThan(0);
+    expect(scenarioLimitMentions).toBe(exhaustedBranches * 2); // trackAiDialogEvent + router.push
   });
 
   test('dialog_limit states the daily limit of a regular account and that Plus removes it', () => {

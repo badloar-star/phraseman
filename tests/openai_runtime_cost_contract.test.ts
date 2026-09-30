@@ -145,15 +145,16 @@ describe("OpenAI runtime cost controls", () => {
       "resolveConfiguredDialogModel(db, process.env.OPENAI_DIALOG_MODEL),",
     );
     expect(premiumDialog).toContain("resolveConfiguredDialogQuota(db),");
-    expect(premiumDialog).toContain("dialogQuota.freeDailyReplies");
-    expect(premiumDialog).toContain("dialogQuota.premiumDailyReplies");
+    // D111: Free = месячный кап (30), Plus без лимита.
+    expect(premiumDialog).toContain("dialogQuota.freeMonthlyReplies");
+    expect(premiumDialog).toContain("if (isPremium) return unlimitedDialogQuotaReservation();");
     expect(premiumDialog).toContain("model: dialogModel");
     expect(premiumDialog).toContain("modelSupportsJsonObject(dialogModel)");
     expect(modelConfig).toContain("const MODEL_DEFAULT = 'gpt-4o-mini'");
     expect(modelConfig).toContain("ALLOWED_DIALOG_MODELS");
     expect(modelConfig).toContain("'gpt-4.1-nano': false");
-    expect(modelConfig).toContain("DIALOG_FREE_DAILY_REPLIES_DEFAULT = 10");
-    expect(modelConfig).toContain("DIALOG_PREMIUM_DAILY_REPLIES_DEFAULT = 200");
+    expect(modelConfig).toContain("DIALOG_FREE_MONTHLY_REPLIES_DEFAULT = 30");
+    expect(modelConfig).toContain("plusUnlimited: true");
     expect(modelConfig).toContain("admin_runtime_config");
     expect(modelConfig).toContain("openAiDialogModelConfig");
     expect(modelConfig).toContain("openAiDialogQuotaConfig");

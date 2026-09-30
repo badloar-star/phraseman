@@ -21,9 +21,9 @@
  * генерируется один раз на тап и переживает ретраи/перезапуски; повтор с тем
  * же fingerprint возвращает ту же квитанцию, а конфликт отклоняется.
  *
- * Прибавка живёт в поле extraCapToday документа premium_dialog_quotas —
- * ровно там же, где enforceDailyQuota хранит dailyCount/resetAtMs. Один
- * документ, одна точка сброса на новый день (см. premium_dialog.ts).
+ * Прибавка живёт в поле extraCapThisMonth документа premium_dialog_quotas.
+ * Legacy-поля extraCapToday/dailyCount пишутся зеркально для rollback, но
+ * resetAtMs указывает на начало следующего UTC-месяца (см. premium_dialog.ts).
  *
  * App Check не включаем — запломбирован владельцем (callable_options.ts,
  * APP_CHECK_SEALED_BY_OWNER_2026_08_17).
@@ -31,7 +31,7 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
-import { QUOTA_COLLECTION, docId, startOfNextUtcDay } from './premium_dialog';
+import { QUOTA_COLLECTION, docId, startOfNextUtcMonth } from './premium_dialog';
 import {
   currentDialogQuotaObservation,
   hasValidDialogExtraRepliesOperationFingerprint,
@@ -102,11 +102,16 @@ export async function materializeDialogExtraRepliesPurchase(input: Readonly<{
         || storedOperation.requestFingerprint !== operation.requestFingerprint) {
         throw new HttpsError('already-exists', 'dialog_extra_replies_request_conflict');
       }
-      const currentQuota = currentDialogQuotaObservation(quotaSnap.data() ?? {}, now, startOfNextUtcDay);
+      const currentQuota = currentDialogQuotaObservation(quotaSnap.data() ?? {}, now, startOfNextUtcMonth);
       if (currentQuota.normalizedFreshDay) {
         tx.set(quotaRef, {
           authUid: input.authUid,
           stableUid,
+          quotaPeriod: currentQuota.quotaPeriod,
+          periodKey: currentQuota.periodKey,
+          monthlyCap: currentQuota.monthlyCap,
+          monthlyCount: currentQuota.monthlyCount,
+          extraCapThisMonth: currentQuota.extraCapThisMonth,
           dailyCap: currentQuota.dailyCap,
           dailyCount: currentQuota.dailyCount,
           extraCapToday: currentQuota.extraCapToday,
@@ -127,11 +132,16 @@ export async function materializeDialogExtraRepliesPurchase(input: Readonly<{
     }
 
     const quotaData = quotaSnap.data() ?? {};
-    const nextQuota = nextDialogQuotaAfterPurchase(quotaData, now, startOfNextUtcDay);
+    const nextQuota = nextDialogQuotaAfterPurchase(quotaData, now, startOfNextUtcMonth);
 
     tx.set(quotaRef, {
       authUid: input.authUid,
       stableUid,
+      quotaPeriod: nextQuota.quotaPeriod,
+      periodKey: nextQuota.periodKey,
+      monthlyCap: nextQuota.monthlyCap,
+      monthlyCount: nextQuota.monthlyCount,
+      extraCapThisMonth: nextQuota.extraCapThisMonth,
       dailyCap: nextQuota.dailyCap,
       dailyCount: nextQuota.dailyCount,
       extraCapToday: nextQuota.extraCapToday,

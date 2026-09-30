@@ -1,6 +1,7 @@
 import type { DialogExtraRepliesOperationV1 } from './dialog_extra_replies_contract';
 import { dialogExtraRepliesOperationFingerprint } from './dialog_extra_replies_contract';
 import { materializeDialogExtraRepliesPurchase } from './ai_dialog_extra_replies';
+import { QUOTA_COLLECTION, docId } from './premium_dialog';
 
 type Stored = Record<string, unknown>;
 
@@ -112,7 +113,7 @@ test('transaction first-create persists the exact operation and only materialize
     requestFingerprint: exact.requestFingerprint,
     repliesGranted: 10,
     priceRunes: 300,
-    quota: { remainingQuota: 20, quotaVersion: 1 },
+    quota: { remainingQuota: 40, quotaVersion: 1 },
   });
   expect(db.creates).toEqual([expect.objectContaining({
     path: `users/account-a/reward_claims/dialog_extra_replies_${REQUEST_ID}`,
@@ -120,7 +121,11 @@ test('transaction first-create persists the exact operation and only materialize
   })]);
   expect(db.sets).toHaveLength(1);
   expect(db.sets[0]).toMatchObject({
-    value: { dailyCount: 0, extraCapToday: 10, quotaVersion: 1 },
+    value: {
+      quotaPeriod: 'calendar_month', periodKey: '2026-09', monthlyCap: 30,
+      monthlyCount: 0, extraCapThisMonth: 10,
+      dailyCount: 0, extraCapToday: 10, quotaVersion: 1,
+    },
     merge: true,
   });
   expect(db.reads).toHaveLength(3);
@@ -147,6 +152,51 @@ test('transaction exact replay returns the same receipt without a second grant',
   });
   expect(db.creates).toEqual([]);
   expect(db.sets).toEqual([]);
+});
+
+test('transaction replay normalizes an active legacy grant into both monthly and rollback fields', async () => {
+  const db = seededDb();
+  const exact = operation();
+  db.documents.set(`users/account-a/reward_claims/dialog_extra_replies_${REQUEST_ID}`, {
+    operation: exact,
+  });
+  const quotaPath = `${QUOTA_COLLECTION}/${docId('quota', 'auth-a', 'account-a')}`;
+  db.documents.set(quotaPath, {
+    dailyCap: 10,
+    dailyCount: 12,
+    extraCapToday: 10,
+    resetAtMs: NOW + 12 * 60 * 60 * 1000,
+    quotaVersion: 7,
+  });
+
+  await expect(materializeDialogExtraRepliesPurchase({
+    db: db as unknown as FirebaseFirestore.Firestore,
+    authUid: 'auth-a',
+    data: { stableId: 'account-a', operation: exact },
+    nowMs: NOW,
+  })).resolves.toMatchObject({
+    ok: true,
+    alreadyPurchased: true,
+    quota: { remainingQuota: 28, quotaVersion: 8 },
+  });
+  expect(db.creates).toEqual([]);
+  expect(db.sets).toHaveLength(1);
+  expect(db.sets[0]).toMatchObject({
+    path: quotaPath,
+    value: {
+      quotaPeriod: 'calendar_month',
+      periodKey: '2026-09',
+      monthlyCap: 30,
+      monthlyCount: 10,
+      extraCapThisMonth: 8,
+      dailyCap: 30,
+      dailyCount: 10,
+      extraCapToday: 8,
+      resetAtMs: Date.UTC(2026, 9, 1),
+      quotaVersion: 8,
+    },
+    merge: true,
+  });
 });
 
 test('transaction rejects an idempotency conflict without materializing quota', async () => {

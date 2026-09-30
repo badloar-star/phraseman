@@ -7,11 +7,14 @@
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { REVENUE_DAILY_LIMITS } from './revenue_daily_limits';
+import { REVENUE_MONTHLY_LIMITS } from './revenue_daily_limits';
 import { resolveDialogueStudyTarget } from './dialogue_language_registry';
 import { withStorageLock } from './storage_mutex';
 
-export const AI_DIALOG_DAILY_QUOTA_PREFIX = 'ai_dialog_daily_quota:v2:';
+export const AI_DIALOG_MONTHLY_QUOTA_PREFIX = 'ai_dialog_monthly_quota:v3:';
+export const AI_DIALOG_LEGACY_DAILY_QUOTA_PREFIX = 'ai_dialog_daily_quota:v2:';
+/** @deprecated Rollback-build compatibility. New writes use the monthly v3 key. */
+export const AI_DIALOG_DAILY_QUOTA_PREFIX = AI_DIALOG_LEGACY_DAILY_QUOTA_PREFIX;
 
 export type AiDialogQuotaObservation = Readonly<{
   remainingQuota: number;
@@ -19,8 +22,9 @@ export type AiDialogQuotaObservation = Readonly<{
   quotaVersion: number;
 }>;
 
-export type AiDialogDailyQuotaMirror = Readonly<{
-  schemaVersion: 2;
+export type AiDialogMonthlyQuotaMirror = Readonly<{
+  schemaVersion: 3;
+  quotaPeriod: 'calendar_month';
   remaining: number;
   limit: number;
   resetAtMs: number;
@@ -28,7 +32,7 @@ export type AiDialogDailyQuotaMirror = Readonly<{
   updatedAtMs: number;
 }>;
 
-export type AiDialogDailyQuotaState =
+export type AiDialogMonthlyQuotaState =
   | Readonly<{ status: 'unavailable'; limit: number }>
   | Readonly<{ status: 'unknown'; limit: number }>
   | Readonly<{ status: 'allowed'; remaining: number; limit: number; resetAtMs: number; quotaVersion: number }>
@@ -39,8 +43,26 @@ function validStableUid(stableUid: string): boolean {
 }
 
 export function aiDialogDailyQuotaStorageKey(studyTarget: unknown, stableUid: string): string | null {
+  return aiDialogMonthlyQuotaStorageKey(studyTarget, stableUid);
+}
+
+export function aiDialogMonthlyQuotaStorageKey(studyTarget: unknown, stableUid: string): string | null {
   if (!resolveDialogueStudyTarget(studyTarget) || !validStableUid(stableUid)) return null;
-  return `${AI_DIALOG_DAILY_QUOTA_PREFIX}${encodeURIComponent(stableUid.trim())}`;
+  return `${AI_DIALOG_MONTHLY_QUOTA_PREFIX}${encodeURIComponent(stableUid.trim())}`;
+}
+
+function legacyDailyQuotaStorageKey(studyTarget: unknown, stableUid: string): string | null {
+  if (!resolveDialogueStudyTarget(studyTarget) || !validStableUid(stableUid)) return null;
+  return `${AI_DIALOG_LEGACY_DAILY_QUOTA_PREFIX}${encodeURIComponent(stableUid.trim())}`;
+}
+
+function isUtcCalendarMonthBoundary(resetAtMs: number): boolean {
+  const reset = new Date(resetAtMs);
+  return reset.getUTCDate() === 1
+    && reset.getUTCHours() === 0
+    && reset.getUTCMinutes() === 0
+    && reset.getUTCSeconds() === 0
+    && reset.getUTCMilliseconds() === 0;
 }
 
 export function parseAiDialogQuotaObservation(value: unknown): AiDialogQuotaObservation | null {
@@ -51,6 +73,7 @@ export function parseAiDialogQuotaObservation(value: unknown): AiDialogQuotaObse
   const quotaVersion = row.quotaVersion;
   if (typeof remainingQuota !== 'number' || !Number.isSafeInteger(remainingQuota) || remainingQuota < 0
     || typeof resetAtMs !== 'number' || !Number.isSafeInteger(resetAtMs) || resetAtMs <= 0
+    || !isUtcCalendarMonthBoundary(resetAtMs)
     || typeof quotaVersion !== 'number' || !Number.isSafeInteger(quotaVersion) || quotaVersion < 1) return null;
   return Object.freeze({ remainingQuota, resetAtMs, quotaVersion });
 }
@@ -63,11 +86,15 @@ export function quotaObservationFromDialogError(error: unknown): AiDialogQuotaOb
     ?? parseAiDialogQuotaObservation(row.nativeError?.details);
 }
 
-function parseMirror(raw: string | null): AiDialogDailyQuotaMirror | null {
+function monthlyLimitForRemaining(remaining: number): number {
+  return Math.max(REVENUE_MONTHLY_LIMITS.ai_dialog_replies, remaining);
+}
+
+function parseMonthlyMirror(raw: string | null): AiDialogMonthlyQuotaMirror | null {
   if (!raw) return null;
   try {
-    const parsed = JSON.parse(raw) as Partial<AiDialogDailyQuotaMirror> | null;
-    if (!parsed || parsed.schemaVersion !== 2) return null;
+    const parsed = JSON.parse(raw) as Partial<AiDialogMonthlyQuotaMirror> | null;
+    if (!parsed || parsed.schemaVersion !== 3 || parsed.quotaPeriod !== 'calendar_month') return null;
     const observation = parseAiDialogQuotaObservation({
       remainingQuota: parsed.remaining,
       resetAtMs: parsed.resetAtMs,
@@ -75,9 +102,13 @@ function parseMirror(raw: string | null): AiDialogDailyQuotaMirror | null {
     });
     if (!observation) return null;
     return Object.freeze({
-      schemaVersion: 2,
+      schemaVersion: 3,
+      quotaPeriod: 'calendar_month',
       remaining: observation.remainingQuota,
-      limit: Math.max(1, Math.floor(Number(parsed.limit) || REVENUE_DAILY_LIMITS.ai_dialog_replies)),
+      limit: Math.max(
+        monthlyLimitForRemaining(observation.remainingQuota),
+        Math.floor(Number(parsed.limit) || 0),
+      ),
       resetAtMs: observation.resetAtMs,
       quotaVersion: observation.quotaVersion,
       updatedAtMs: Math.max(0, Math.floor(Number(parsed.updatedAtMs) || 0)),
@@ -88,19 +119,51 @@ function parseMirror(raw: string | null): AiDialogDailyQuotaMirror | null {
   }
 }
 
-export async function readAiDialogDailyQuota(
+function parseLegacyMonthlyCompatibleMirror(raw: string | null): AiDialogMonthlyQuotaMirror | null {
+  if (!raw) return null;
+  try {
+    const parsed = JSON.parse(raw) as Record<string, unknown> | null;
+    if (!parsed || parsed.schemaVersion !== 2) return null;
+    const observation = parseAiDialogQuotaObservation({
+      remainingQuota: parsed.remaining,
+      resetAtMs: parsed.resetAtMs,
+      quotaVersion: parsed.quotaVersion,
+    });
+    if (!observation) return null;
+    return Object.freeze({
+      schemaVersion: 3,
+      quotaPeriod: 'calendar_month',
+      remaining: observation.remainingQuota,
+      limit: monthlyLimitForRemaining(observation.remainingQuota),
+      resetAtMs: observation.resetAtMs,
+      quotaVersion: observation.quotaVersion,
+      updatedAtMs: Math.max(0, Math.floor(Number(parsed.updatedAtMs) || 0)),
+    });
+  } catch {
+    return null;
+  }
+}
+
+export async function readAiDialogMonthlyQuota(
   studyTarget: unknown,
   stableUid: string | null,
   nowMs: number = Date.now(),
-): Promise<AiDialogDailyQuotaState> {
-  const limit = REVENUE_DAILY_LIMITS.ai_dialog_replies;
+): Promise<AiDialogMonthlyQuotaState> {
+  const limit = REVENUE_MONTHLY_LIMITS.ai_dialog_replies;
   if (!resolveDialogueStudyTarget(studyTarget)) return { status: 'unavailable', limit };
   if (!stableUid) return { status: 'unknown', limit };
-  const storageKey = aiDialogDailyQuotaStorageKey(studyTarget, stableUid);
+  const storageKey = aiDialogMonthlyQuotaStorageKey(studyTarget, stableUid);
   if (!storageKey) return { status: 'unknown', limit };
   try {
     return await withStorageLock(async () => {
-      const mirror = parseMirror(await AsyncStorage.getItem(storageKey));
+      let mirror = parseMonthlyMirror(await AsyncStorage.getItem(storageKey));
+      if (!mirror) {
+        const legacyKey = legacyDailyQuotaStorageKey(studyTarget, stableUid);
+        mirror = parseLegacyMonthlyCompatibleMirror(
+          legacyKey ? await AsyncStorage.getItem(legacyKey) : null,
+        );
+        if (mirror) await AsyncStorage.setItem(storageKey, JSON.stringify(mirror));
+      }
       if (!mirror || nowMs >= mirror.resetAtMs) return { status: 'unknown', limit } as const;
       if (mirror.remaining <= 0) {
         return {
@@ -119,24 +182,25 @@ export async function readAiDialogDailyQuota(
   }
 }
 
-export async function recordAiDialogDailyQuotaFromServer(
+export async function recordAiDialogMonthlyQuotaFromServer(
   studyTarget: unknown,
   stableUid: string | null,
   value: unknown,
   nowMs: number = Date.now(),
 ): Promise<void> {
   if (!resolveDialogueStudyTarget(studyTarget) || !stableUid) return;
-  const storageKey = aiDialogDailyQuotaStorageKey(studyTarget, stableUid);
+  const storageKey = aiDialogMonthlyQuotaStorageKey(studyTarget, stableUid);
   const observation = parseAiDialogQuotaObservation(value);
   if (!storageKey || !observation) return;
   try {
     await withStorageLock(async () => {
-      const current = parseMirror(await AsyncStorage.getItem(storageKey));
+      const current = parseMonthlyMirror(await AsyncStorage.getItem(storageKey));
       if (current && current.quotaVersion >= observation.quotaVersion) return;
-      const mirror: AiDialogDailyQuotaMirror = Object.freeze({
-        schemaVersion: 2,
+      const mirror: AiDialogMonthlyQuotaMirror = Object.freeze({
+        schemaVersion: 3,
+        quotaPeriod: 'calendar_month',
         remaining: observation.remainingQuota,
-        limit: REVENUE_DAILY_LIMITS.ai_dialog_replies,
+        limit: monthlyLimitForRemaining(observation.remainingQuota),
         resetAtMs: observation.resetAtMs,
         quotaVersion: observation.quotaVersion,
         updatedAtMs: nowMs,
@@ -148,14 +212,21 @@ export async function recordAiDialogDailyQuotaFromServer(
   }
 }
 
-export async function markAiDialogDailyQuotaExhausted(
+export async function markAiDialogMonthlyQuotaExhausted(
   studyTarget: unknown,
   stableUid: string | null,
   observation?: unknown,
   nowMs: number = Date.now(),
 ): Promise<void> {
-  await recordAiDialogDailyQuotaFromServer(studyTarget, stableUid, observation, nowMs);
+  await recordAiDialogMonthlyQuotaFromServer(studyTarget, stableUid, observation, nowMs);
 }
+
+/** @deprecated Compatibility exports while call sites move to monthly naming. */
+export type AiDialogDailyQuotaMirror = AiDialogMonthlyQuotaMirror;
+export type AiDialogDailyQuotaState = AiDialogMonthlyQuotaState;
+export const readAiDialogDailyQuota = readAiDialogMonthlyQuota;
+export const recordAiDialogDailyQuotaFromServer = recordAiDialogMonthlyQuotaFromServer;
+export const markAiDialogDailyQuotaExhausted = markAiDialogMonthlyQuotaExhausted;
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }

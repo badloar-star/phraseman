@@ -28,7 +28,7 @@ import { glassFill } from '../components/GlassSurface';
 import ReportErrorButton from '../components/ReportErrorButton';
 import AiTypingBubble from '../components/AiTypingBubble';
 import SpeakingQuotaDots from '../components/SpeakingQuotaDots';
-import DialogQuotaBadge from '../components/DialogQuotaBadge';
+import DialogQuotaBadge, { formatAiDialogQuotaResetDate } from '../components/DialogQuotaBadge';
 import { callPremiumDialogStream, warmPremiumDialogStream, DialogStreamError } from './ai_dialog_stream_client';
 import { DIALOG_TRANSLATE_PREFETCH_ENABLED } from './ai_dialog_flags';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -93,7 +93,7 @@ import { markDialogCompleted } from './dialogs_progress';
 import { trackEvent } from './analytics';
 import { captureAccountGeneration } from './account_generation';
 import { markAiDialogDailyQuotaExhausted, parseAiDialogQuotaObservation, quotaObservationFromDialogError, readAiDialogDailyQuota, recordAiDialogDailyQuotaFromServer, type AiDialogQuotaObservation } from './ai_dialog_daily_quota';
-import { REVENUE_DAILY_LIMITS } from './revenue_daily_limits';
+import { REVENUE_MONTHLY_LIMITS } from './revenue_daily_limits';
 import {
   buyDialogExtraRepliesLocally,
   makeDialogExtraRepliesRequestId,
@@ -277,10 +277,15 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
   const [dailyQuotaGate, setDailyQuotaGate] = useState<'checking' | 'open' | 'exhausted'>('checking');
   const dialogSessionOpen = hasPremiumAccess || dailyQuotaGate === 'open';
   const [dailyQuotaRemaining, setDailyQuotaRemaining] = useState<number | null>(null);
-  // зачем тип number явно: REVENUE_DAILY_LIMITS заморожен `as const`, и без
-  // аннотации состояние сужалось до литерала 10 — серверный лимит (сервер
+  // зачем тип number явно: REVENUE_MONTHLY_LIMITS заморожен `as const`, и без
+  // аннотации состояние сужалось до литерала — серверный лимит (сервер
   // авторитетен и может дать другое число) в него не записывался вообще.
-  const [dailyQuotaLimit, setDailyQuotaLimit] = useState<number>(REVENUE_DAILY_LIMITS.ai_dialog_replies);
+  // D111: лимит МЕСЯЧНЫЙ (30 ответов в календарный месяц UTC); имена *daily*
+  // оставлены, чтобы не переписывать экран целиком.
+  const [dailyQuotaLimit, setDailyQuotaLimit] = useState<number>(REVENUE_MONTHLY_LIMITS.ai_dialog_replies);
+  // Граница месяца от сервера (1-е число 00:00 UTC); null — ещё не знаем.
+  const [quotaResetAtMs, setQuotaResetAtMs] = useState<number | null>(null);
+  const quotaResetDate = formatAiDialogQuotaResetDate(quotaResetAtMs, lang);
   const accountStableId = captureAccountGeneration().stableId;
   const voiceInputGate = useSpeakingAttemptGate({ context: 'ai_voice_input', source: 'ai_dialog_voice_input' });
   const router = useRouter();
@@ -358,6 +363,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
       console.log('[DIALOG-QUOTA] entry:gate', JSON.stringify({ status: state.status, limit: state.limit, stableId: accountStableId }));
       setDailyQuotaLimit(state.limit);
       setDailyQuotaRemaining(state.status === 'allowed' || state.status === 'exhausted' ? state.remaining : state.limit);
+      setQuotaResetAtMs(state.status === 'allowed' || state.status === 'exhausted' ? state.resetAtMs : null);
       if (state.status === 'unknown' || state.status === 'allowed') {
         setDailyQuotaGate('open');
         return;
@@ -376,7 +382,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
   }, [accessResolved, accountStableId, dialogueRuntimeOpen, hasPremiumAccess, router, scenario.id, studyTarget]);
 
   /**
-   * Сервер ответил «дневной лимит исчерпан».
+   * Сервер ответил «месячный лимит исчерпан» (D111).
    *
    * зачем (владелец 2026-09-14, утверждённый макет «Стена Free», вариант А):
    * раньше человека МГНОВЕННО выбрасывало на пейвол — разговор исчезал с
@@ -388,13 +394,44 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
   const handleDailyLimitReached = useCallback((observation?: AiDialogQuotaObservation | null) => {
     void markAiDialogDailyQuotaExhausted(studyTarget, accountStableId, observation);
     setDailyQuotaRemaining(0);
+    if (observation) setQuotaResetAtMs(observation.resetAtMs);
     setDailyQuotaGate('exhausted');
-    void trackEvent('ai_dialog_limit_hit', { scenarioId: scenario.id, reason: 'daily_limit' });
+    void trackEvent('ai_dialog_limit_hit', { scenarioId: scenario.id, reason: 'monthly_limit' });
     DebugLogger.info('[DIALOG-WALL] daily limit reached', JSON.stringify({
       scenarioId: scenario.id,
       stableId: accountStableId,
     }));
   }, [accountStableId, scenario.id, studyTarget]);
+
+  /**
+   * Optimistic UI (D111): остаток месяца уменьшается в кадре отправки, до
+   * ответа сервера. Ответ сервера затем ставит авторитетное число (сверка),
+   * отказ, который не засчитал реплику, возвращает единицу (откат).
+   * Токен — защита от гонки: откат старой отправки не трогает счётчик, если
+   * после неё уже была новая отправка (её значение свежее).
+   */
+  const quotaSpendTokenRef = useRef(0);
+  const spendQuotaOptimistically = useCallback((source: 'send' | 'retry') => {
+    const token = ++quotaSpendTokenRef.current;
+    const applied = !hasPremiumAccess;
+    if (applied) {
+      setDailyQuotaRemaining((prev) => (prev == null ? prev : Math.max(0, prev - 1)));
+    }
+    if ((globalThis as { __DEV__?: boolean }).__DEV__ === true) {
+      console.log('[DIALOG-QUOTA] optimistic:spend', JSON.stringify({ source, applied, token }));
+    }
+    return {
+      rollback: (reason: string) => {
+        if (!applied) return;
+        if (quotaSpendTokenRef.current !== token) {
+          console.warn('[DIALOG-QUOTA] optimistic:rollback skipped (newer send)', JSON.stringify({ source, reason, token }));
+          return;
+        }
+        setDailyQuotaRemaining((prev) => (prev == null ? prev : prev + 1));
+        console.warn('[DIALOG-QUOTA] optimistic:rollback', JSON.stringify({ source, reason, token }));
+      },
+    };
+  }, [hasPremiumAccess]);
 
   /**
    * Докупка +10 реплик за 300 рун (владелец, 2026-09-17). Баланс читается
@@ -1623,6 +1660,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
       setMessages((prev) => [...prev, { role: 'user', text: trimmed, voice: voiceAttachment ? { uri: voiceAttachment.uri } : undefined }]);
       setInput('');
       setSending(true);
+      const quotaSpend = spendQuotaOptimistically('send');
       resetStreamDraft();
       const payload = {
         mode: 'scenario' as const,
@@ -1711,8 +1749,12 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
         if (!hasPremiumAccess) {
           const quotaObservation = parseAiDialogQuotaObservation(res);
           if (quotaObservation) {
+            // Сверка оптимистичного списания с сервером: сервер авторитетен.
             setDailyQuotaRemaining(quotaObservation.remainingQuota);
+            setQuotaResetAtMs(quotaObservation.resetAtMs);
             void recordAiDialogDailyQuotaFromServer(studyTarget, accountStableId, quotaObservation);
+          } else {
+            console.warn('[DIALOG-QUOTA] send:ok without quota observation → keep optimistic value');
           }
         }
         // Игровое состояние хода (настроение/цели/исход). Безопасно при отсутствии.
@@ -1761,6 +1803,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
         // бесплатную попытку — показываем системную плашку с кнопкой «Повторить».
         void trackEvent('ai_dialog_send_error', { scenarioId: scenario.id, exchangeIndex });
         if (errorKind === 'plus_required' && !hasPremiumAccess) {
+          quotaSpend.rollback(errorKind);
           openDialogPaywall();
           return;
         }
@@ -1769,13 +1812,16 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
           handleDailyLimitReached(quotaObservationFromDialogError(error));
           return;
         }
+        // Сервер не засчитал ответ (сеть, провайдер, таймаут) — реплика
+        // не списана, возвращаем оптимистично снятую единицу.
+        quotaSpend.rollback(errorKind);
         setLastErrorKind(errorKind);
         setLastErrorMessage(getPremiumDialogErrorMessage(error, { hasPremiumAccess, lang }));
       } finally {
         setSending(false);
       }
     },
-    [sending, ended, voiceInputBusy, hasPremiumAccess, accessResolved, dialogAccess, dialogSessionOpen, dailyQuotaGate, handleDailyLimitReached, openDialogPaywall, accountStableId, userExchanges, buildHistory, scenario, promptScenario, lang, studyTarget, buildGameRequestFields, applyAcceptedTurn, applyCoachTurn, pushStreamDelta, resetStreamDraft, cleanupVoiceAudioEndListener, clearPendingDialogueVoiceRecordings],
+    [sending, ended, voiceInputBusy, hasPremiumAccess, accessResolved, dialogAccess, dialogSessionOpen, dailyQuotaGate, handleDailyLimitReached, openDialogPaywall, accountStableId, userExchanges, buildHistory, scenario, promptScenario, lang, studyTarget, buildGameRequestFields, applyAcceptedTurn, applyCoachTurn, pushStreamDelta, resetStreamDraft, cleanupVoiceAudioEndListener, clearPendingDialogueVoiceRecordings, spendQuotaOptimistically],
   );
 
   // Голосовой ввод «зажми и продиктуй»: держим кнопку, пока говорим. Отпустил —
@@ -1843,6 +1889,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
     setLastErrorKind(null);
     setSending(true);
     resetStreamDraft();
+    const quotaSpend = spendQuotaOptimistically('retry');
     const payload = {
       mode: 'scenario' as const,
       userText: trimmed,
@@ -1912,7 +1959,10 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
         const quotaObservation = parseAiDialogQuotaObservation(res);
         if (quotaObservation) {
           setDailyQuotaRemaining(quotaObservation.remainingQuota);
+          setQuotaResetAtMs(quotaObservation.resetAtMs);
           void recordAiDialogDailyQuotaFromServer(studyTarget, accountStableId, quotaObservation);
+        } else {
+          console.warn('[DIALOG-QUOTA] retry:ok without quota observation → keep optimistic value');
         }
       }
       applyAcceptedTurn(res, exchangeIndex);
@@ -1921,6 +1971,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
       void trackEvent('ai_dialog_send_error', { scenarioId: scenario.id, retry: true });
       const errorKind = classifyPremiumDialogError(error);
       if (errorKind === 'plus_required' && !hasPremiumAccess) {
+        quotaSpend.rollback(errorKind);
         openDialogPaywall();
         return;
       }
@@ -1928,12 +1979,13 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
         handleDailyLimitReached(quotaObservationFromDialogError(error));
         return;
       }
+      quotaSpend.rollback(errorKind);
       setLastErrorKind(classifyPremiumDialogError(error));
       setLastErrorMessage(getPremiumDialogErrorMessage(error, { hasPremiumAccess, lang }));
     } finally {
       setSending(false);
     }
-  }, [sending, ended, hasPremiumAccess, accessResolved, dialogAccess, dialogSessionOpen, dailyQuotaGate, handleDailyLimitReached, openDialogPaywall, accountStableId, messages, scenario, promptScenario, lang, studyTarget, buildGameRequestFields, applyAcceptedTurn, applyCoachTurn, pushStreamDelta, resetStreamDraft]);
+  }, [sending, ended, hasPremiumAccess, accessResolved, dialogAccess, dialogSessionOpen, dailyQuotaGate, handleDailyLimitReached, openDialogPaywall, accountStableId, messages, scenario, promptScenario, lang, studyTarget, buildGameRequestFields, applyAcceptedTurn, applyCoachTurn, pushStreamDelta, resetStreamDraft, spendQuotaOptimistically]);
 
   // Приветствие уже стоит в начальном состоянии. Здесь — только телеметрия старта
   // (один раз на маунт). OpenAI зовём только после первой реплики пользователя.
@@ -2357,6 +2409,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
               lang={lang}
               remaining={dailyQuotaRemaining ?? dailyQuotaLimit}
               limit={dailyQuotaLimit}
+              resetAtMs={quotaResetAtMs}
               testID="ai-dialog-daily-quota"
             />
           ) : null}
@@ -3046,7 +3099,7 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
           {/* Стена Free: реплики на сегодня закончились.
               зачем (владелец 2026-09-14, макет, вариант А): карточка встаёт НА
               МЕСТО поля ввода. Разговор виден, разбор доступен бесплатно, место
-              сохранено — завтра поле вернётся само. Не модалка и не выброс на
+              сохранено — с новым месяцем поле вернётся само. Не модалка и не выброс на
               пейвол: тот открывается только по явному тапу. */}
           {!ended && !hasPremiumAccess && dailyQuotaGate === 'exhausted' && (
             <View style={{ paddingHorizontal: 12, paddingTop: 8, paddingBottom: 12 }}>
@@ -3065,15 +3118,15 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                   maxFontSizeMultiplier={1.2}
                 >
                   {triLang(lang, {
-                    ru: 'На сегодня всё',
-                    uk: 'На сьогодні все',
-                    en: "That's it for today",
-                    es: 'Por hoy es todo',
-                    'pt-BR': 'Por hoje é isso',
-                    vi: 'Hôm nay tạm dừng nhé',
-                    id: 'Cukup untuk hari ini',
-                    tr: 'Bugünlük bu kadar',
-                    pl: 'Na dziś to tyle',
+                    ru: 'Ответы месяца закончились',
+                    uk: 'Відповіді місяця закінчилися',
+                    en: "This month's replies are used up",
+                    es: 'Se acabaron las respuestas del mes',
+                    'pt-BR': 'As respostas do mês acabaram',
+                    vi: 'Đã hết lượt trả lời tháng này',
+                    id: 'Balasan bulan ini habis',
+                    tr: 'Bu ayın yanıtları bitti',
+                    pl: 'Odpowiedzi w tym miesiącu się skończyły',
                   })}
                 </Text>
                 <Text
@@ -3085,16 +3138,28 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                   }}
                   maxFontSizeMultiplier={1.2}
                 >
-                  {triLang(lang, {
-                    ru: `Завтра снова ${dailyQuotaLimit} реплик. Разговор сохранён: вернёшься на это же место.`,
-                    uk: `Завтра знову ${dailyQuotaLimit} реплік. Розмову збережено: повернешся на це саме місце.`,
-                    en: `Tomorrow you get ${dailyQuotaLimit} lines again. The conversation is saved: you'll come back to this spot.`,
-                    es: `Mañana tendrás otra vez ${dailyQuotaLimit} frases. La conversación está guardada: volverás a este punto.`,
-                    'pt-BR': `Amanhã você tem de novo ${dailyQuotaLimit} falas. A conversa está salva: você volta neste ponto.`,
-                    vi: `Ngày mai bạn lại có ${dailyQuotaLimit} lượt. Cuộc trò chuyện đã được lưu: bạn sẽ quay lại đúng chỗ này.`,
-                    id: `Besok kamu dapat ${dailyQuotaLimit} balasan lagi. Percakapan tersimpan: kamu kembali ke titik ini.`,
-                    tr: `Yarın yine ${dailyQuotaLimit} replik alacaksın. Sohbet kaydedildi: aynı yerden devam edersin.`,
-                    pl: `Jutro znowu ${dailyQuotaLimit} wypowiedzi. Rozmowa jest zapisana: wrócisz w to samo miejsce.`,
+                  {/* D111: лимит месячный — «завтра» было бы ложью. Дата сброса
+                      только серверная; неизвестна — говорим «в следующем месяце». */}
+                  {quotaResetDate ? triLang(lang, {
+                    ru: `Новые ${dailyQuotaLimit} — ${quotaResetDate}. Разговор сохранён: вернёшься на это же место.`,
+                    uk: `Нові ${dailyQuotaLimit} — ${quotaResetDate}. Розмову збережено: повернешся на це саме місце.`,
+                    en: `${dailyQuotaLimit} new replies on ${quotaResetDate}. The conversation is saved: you'll come back to this spot.`,
+                    es: `${dailyQuotaLimit} respuestas nuevas el ${quotaResetDate}. La conversación está guardada: volverás a este punto.`,
+                    'pt-BR': `${dailyQuotaLimit} respostas novas em ${quotaResetDate}. A conversa está salva: você volta neste ponto.`,
+                    vi: `${dailyQuotaLimit} lượt mới vào ${quotaResetDate}. Cuộc trò chuyện đã được lưu: bạn sẽ quay lại đúng chỗ này.`,
+                    id: `${dailyQuotaLimit} balasan baru pada ${quotaResetDate}. Percakapan tersimpan: kamu kembali ke titik ini.`,
+                    tr: `${quotaResetDate} tarihinde ${dailyQuotaLimit} yeni yanıt. Sohbet kaydedildi: aynı yerden devam edersin.`,
+                    pl: `${dailyQuotaLimit} nowych odpowiedzi ${quotaResetDate}. Rozmowa jest zapisana: wrócisz w to samo miejsce.`,
+                  }) : triLang(lang, {
+                    ru: `В следующем месяце снова ${dailyQuotaLimit}. Разговор сохранён: вернёшься на это же место.`,
+                    uk: `Наступного місяця знову ${dailyQuotaLimit}. Розмову збережено: повернешся на це саме місце.`,
+                    en: `${dailyQuotaLimit} again next month. The conversation is saved: you'll come back to this spot.`,
+                    es: `El mes que viene, otra vez ${dailyQuotaLimit}. La conversación está guardada: volverás a este punto.`,
+                    'pt-BR': `No mês que vem, de novo ${dailyQuotaLimit}. A conversa está salva: você volta neste ponto.`,
+                    vi: `Tháng sau lại có ${dailyQuotaLimit} lượt. Cuộc trò chuyện đã được lưu: bạn sẽ quay lại đúng chỗ này.`,
+                    id: `Bulan depan dapat ${dailyQuotaLimit} lagi. Percakapan tersimpan: kamu kembali ke titik ini.`,
+                    tr: `Gelecek ay yine ${dailyQuotaLimit}. Sohbet kaydedildi: aynı yerden devam edersin.`,
+                    pl: `W przyszłym miesiącu znowu ${dailyQuotaLimit}. Rozmowa jest zapisana: wrócisz w to samo miejsce.`,
                   })}
                 </Text>
                 {/* Докупка реплик за руны (владелец 2026-09-17, макет вариант Б):
@@ -3186,15 +3251,15 @@ function AiDialogSession({ scenario }: { scenario: DialogScenario }) {
                     activeOpacity={0.86}
                     accessibilityRole="button"
                     accessibilityLabel={triLang(lang, {
-                      ru: 'Открыть Plus: разговоры без дневного лимита',
-                      uk: 'Відкрити Plus: розмови без денного ліміту',
-                      en: 'Open Plus: conversations without a daily limit',
-                      es: 'Abrir Plus: conversaciones sin límite diario',
-                      'pt-BR': 'Abrir Plus: conversas sem limite diário',
-                      vi: 'Mở Plus: trò chuyện không giới hạn mỗi ngày',
-                      id: 'Buka Plus: percakapan tanpa batas harian',
-                      tr: 'Plus’ı aç: günlük limitsiz sohbet',
-                      pl: 'Otwórz Plus: rozmowy bez dziennego limitu',
+                      ru: 'Открыть Plus: разговоры без месячного лимита',
+                      uk: 'Відкрити Plus: розмови без місячного ліміту',
+                      en: 'Open Plus: conversations without a monthly limit',
+                      es: 'Abrir Plus: conversaciones sin límite mensual',
+                      'pt-BR': 'Abrir Plus: conversas sem limite mensal',
+                      vi: 'Mở Plus: trò chuyện không giới hạn mỗi tháng',
+                      id: 'Buka Plus: percakapan tanpa batas bulanan',
+                      tr: 'Plus’ı aç: aylık limitsiz sohbet',
+                      pl: 'Otwórz Plus: rozmowy bez miesięcznego limitu',
                     })}
                     style={{
                       flex: 1,

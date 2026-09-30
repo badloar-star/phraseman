@@ -27,11 +27,14 @@ describe('AI dialog extra replies economics contract', () => {
     expect(fnIndex).toMatch(/export \{ aiDialogBuyExtraReplies \} from ['"]\.\/ai_dialog_extra_replies['"]/);
   });
 
-  it('enforceDailyQuota actually reads extraCapToday written by the purchase', () => {
+  // D111: квота месячная; докупка живёт в extraCapThisMonth (extraCapToday —
+  // зеркальное legacy-поле для отката) и реально расширяет месячный кап.
+  it('enforceMonthlyQuota actually reads the extra cap written by the purchase', () => {
     expect(server).toMatch(/QUOTA_COLLECTION/);
-    expect(premiumDialog).toMatch(/extraCapToday/);
+    expect(server).toContain('extraCapThisMonth');
+    expect(premiumDialog).toMatch(/extraCapThisMonth/);
     expect(premiumDialog).toContain('nextDialogQuotaConsumption');
-    expect(quotaContract).toMatch(/effectiveCap\s*=\s*dailyCap\s*\+\s*extraCapToday/);
+    expect(quotaContract).toMatch(/effectiveCap\s*=\s*monthlyCap\s*\+\s*normalized\.extraCapThisMonth/);
   });
 
   it('purchase persists the immutable client operation and never performs a second rune debit', () => {

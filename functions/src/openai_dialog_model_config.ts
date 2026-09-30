@@ -16,8 +16,10 @@ const MODEL_DEFAULT = 'gpt-4o-mini';
 // ценности), Plus 100→200 (кап 100 приводил к жалобам активных подписчиков,
 // при 4o-mini одна реплика стоит ~$0.0003, то есть даже полный расход 200
 // реплик/день ≈ $0.06 — на порядок дешевле подписки).
-export const DIALOG_FREE_DAILY_REPLIES_DEFAULT = 10;
-export const DIALOG_PREMIUM_DAILY_REPLIES_DEFAULT = 200;
+export const DIALOG_FREE_MONTHLY_REPLIES_DEFAULT = 30;
+export const DIALOG_ROLLBACK_PLUS_REPLIES = 10000;
+export const DIALOG_FREE_DAILY_REPLIES_DEFAULT = DIALOG_FREE_MONTHLY_REPLIES_DEFAULT;
+export const DIALOG_PREMIUM_DAILY_REPLIES_DEFAULT = DIALOG_ROLLBACK_PLUS_REPLIES;
 const DIALOG_DAILY_REPLIES_MAX = 10000;
 
 export const ALLOWED_DIALOG_MODELS = [
@@ -52,6 +54,8 @@ export function modelSupportsJsonObject(model: string): boolean {
 }
 
 export interface DialogQuotaConfig {
+  freeMonthlyReplies: number;
+  plusUnlimited: true;
   freeDailyReplies: number;
   premiumDailyReplies: number;
 }
@@ -79,11 +83,13 @@ function normalizeDailyReplies(value: unknown): number | null {
 }
 
 function quotaFromData(data: FirebaseFirestore.DocumentData | undefined): DialogQuotaConfig {
+  const freeMonthlyReplies = normalizeDailyReplies(data?.freeMonthlyReplies)
+    ?? DIALOG_FREE_MONTHLY_REPLIES_DEFAULT;
   return {
-    freeDailyReplies:
-      normalizeDailyReplies(data?.freeDailyReplies) ?? DIALOG_FREE_DAILY_REPLIES_DEFAULT,
-    premiumDailyReplies:
-      normalizeDailyReplies(data?.premiumDailyReplies) ?? DIALOG_PREMIUM_DAILY_REPLIES_DEFAULT,
+    freeMonthlyReplies,
+    plusUnlimited: true,
+    freeDailyReplies: freeMonthlyReplies,
+    premiumDailyReplies: DIALOG_ROLLBACK_PLUS_REPLIES,
   };
 }
 
@@ -202,9 +208,11 @@ export const openAiDialogQuotaConfig = onCall({ region: REGION, enforceAppCheck:
 
   if (action === 'set') {
     const current = quotaFromData((await ref.get()).data());
-    const freeDailyReplies = request.data?.freeDailyReplies == null
-      ? current.freeDailyReplies
-      : normalizeDailyReplies(request.data.freeDailyReplies);
+    const requestedFree = request.data?.freeMonthlyReplies ?? request.data?.freeDailyReplies;
+    const freeMonthlyReplies = requestedFree == null
+      ? current.freeMonthlyReplies
+      : normalizeDailyReplies(requestedFree);
+    const freeDailyReplies = freeMonthlyReplies;
     const premiumDailyReplies = request.data?.premiumDailyReplies == null
       ? current.premiumDailyReplies
       : normalizeDailyReplies(request.data.premiumDailyReplies);
@@ -214,6 +222,9 @@ export const openAiDialogQuotaConfig = onCall({ region: REGION, enforceAppCheck:
     }
 
     await ref.set({
+      quotaPeriod: 'calendar_month',
+      freeMonthlyReplies,
+      plusUnlimited: true,
       freeDailyReplies,
       premiumDailyReplies,
       defaultFreeDailyReplies: DIALOG_FREE_DAILY_REPLIES_DEFAULT,
@@ -234,7 +245,9 @@ export const openAiDialogQuotaConfig = onCall({ region: REGION, enforceAppCheck:
 
   return {
     ok: true,
+    quotaPeriod: 'calendar_month',
     ...activeQuota,
+    defaultFreeMonthlyReplies: DIALOG_FREE_MONTHLY_REPLIES_DEFAULT,
     defaultFreeDailyReplies: DIALOG_FREE_DAILY_REPLIES_DEFAULT,
     defaultPremiumDailyReplies: DIALOG_PREMIUM_DAILY_REPLIES_DEFAULT,
     maxDailyReplies: DIALOG_DAILY_REPLIES_MAX,

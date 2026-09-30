@@ -63,9 +63,9 @@ test('rejects every one-field mutation of the signed server operation', () => {
   }
 });
 
-test('fresh-day purchase clears yesterday dailyCount and starts one new +10 grant', () => {
+test('new-month purchase starts one +10 current-month compatibility grant', () => {
   const now = Date.UTC(2026, 8, 20, 1);
-  const nextReset = Date.UTC(2026, 8, 21);
+  const nextReset = Date.UTC(2026, 9, 1);
   expect(nextDialogQuotaAfterPurchase({
     dailyCap: 10,
     dailyCount: 10,
@@ -73,21 +73,40 @@ test('fresh-day purchase clears yesterday dailyCount and starts one new +10 gran
     resetAtMs: now - 1,
     quotaVersion: 7,
   }, now, () => nextReset)).toEqual({
-    dailyCap: 10,
+    quotaPeriod: 'calendar_month',
+    periodKey: '2026-09',
+    monthlyCap: 30,
+    monthlyCount: 0,
+    extraCapThisMonth: 10,
+    dailyCap: 30,
     dailyCount: 0,
     extraCapToday: 10,
     resetAtMs: nextReset,
     quotaVersion: 8,
-    observation: { remainingQuota: 20, resetAtMs: nextReset, quotaVersion: 8 },
+    observation: { remainingQuota: 40, resetAtMs: nextReset, quotaVersion: 8 },
   });
 });
 
-test('same-day purchase preserves usage and adds exactly ten', () => {
+test('same-month compatibility purchase preserves usage and adds exactly ten', () => {
   const now = Date.UTC(2026, 8, 20, 1);
-  const resetAtMs = Date.UTC(2026, 8, 21);
+  const resetAtMs = Date.UTC(2026, 9, 1);
   expect(nextDialogQuotaAfterPurchase({
-    dailyCap: 10, dailyCount: 10, extraCapToday: 0, resetAtMs, quotaVersion: 2,
+    quotaPeriod: 'calendar_month', periodKey: '2026-09', monthlyCap: 30,
+    monthlyCount: 30, extraCapThisMonth: 0, resetAtMs, quotaVersion: 2,
   }, now, () => 0).observation).toEqual({
     remainingQuota: 10, resetAtMs, quotaVersion: 3,
+  });
+});
+
+test('active legacy paid balance survives migration before the compatibility grant is added', () => {
+  const now = Date.UTC(2026, 8, 20, 1);
+  const resetAtMs = Date.UTC(2026, 9, 1);
+  expect(nextDialogQuotaAfterPurchase({
+    dailyCap: 10, dailyCount: 12, extraCapToday: 10,
+    resetAtMs: Date.UTC(2026, 8, 21), quotaVersion: 2,
+  }, now, () => resetAtMs)).toMatchObject({
+    monthlyCount: 10,
+    extraCapThisMonth: 18,
+    observation: { remainingQuota: 38, resetAtMs, quotaVersion: 3 },
   });
 });

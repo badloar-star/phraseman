@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto';
+import { currentDialogMonthlyQuota } from './dialog_quota_contract';
 
 const REQUEST_ID_RE = /^[A-Za-z0-9_-]{16,80}$/;
 const OWNER_ID_RE = /^[^/]{1,160}$/;
@@ -91,6 +92,11 @@ export function nextDialogQuotaAfterPurchase(
   nowMs: number,
   nextResetAtMs: (nowMs: number) => number,
 ): Readonly<{
+  quotaPeriod: 'calendar_month';
+  periodKey: string;
+  monthlyCap: number;
+  monthlyCount: number;
+  extraCapThisMonth: number;
   dailyCap: number;
   dailyCount: number;
   extraCapToday: number;
@@ -98,23 +104,23 @@ export function nextDialogQuotaAfterPurchase(
   quotaVersion: number;
   observation: DialogQuotaObservationV1;
 }> {
-  const previousResetAtMs = safeNonNegative(current.resetAtMs);
-  const fresh = nowMs >= previousResetAtMs;
-  const dailyCap = Number.isSafeInteger(current.dailyCap) && Number(current.dailyCap) > 0
-    ? Number(current.dailyCap) : 10;
-  const dailyCount = fresh ? 0 : safeNonNegative(current.dailyCount);
-  const extraCapToday = (fresh ? 0 : safeNonNegative(current.extraCapToday)) + 10;
-  const resetAtMs = fresh ? nextResetAtMs(nowMs) : previousResetAtMs;
+  const normalized = currentDialogMonthlyQuota(current, nowMs, nextResetAtMs);
+  const extraCapThisMonth = normalized.extraCapThisMonth + 10;
   const quotaVersion = safeNonNegative(current.quotaVersion) + 1;
   return Object.freeze({
-    dailyCap,
-    dailyCount,
-    extraCapToday,
-    resetAtMs,
+    quotaPeriod: 'calendar_month' as const,
+    periodKey: normalized.periodKey,
+    monthlyCap: normalized.monthlyCap,
+    monthlyCount: normalized.monthlyCount,
+    extraCapThisMonth,
+    dailyCap: normalized.monthlyCap,
+    dailyCount: normalized.monthlyCount,
+    extraCapToday: extraCapThisMonth,
+    resetAtMs: normalized.resetAtMs,
     quotaVersion,
     observation: Object.freeze({
-      remainingQuota: Math.max(0, dailyCap + extraCapToday - dailyCount),
-      resetAtMs,
+      remainingQuota: Math.max(0, normalized.monthlyCap + extraCapThisMonth - normalized.monthlyCount),
+      resetAtMs: normalized.resetAtMs,
       quotaVersion,
     }),
   });
@@ -125,6 +131,11 @@ export function currentDialogQuotaObservation(
   nowMs: number,
   nextResetAtMs: (nowMs: number) => number,
 ): Readonly<{
+  quotaPeriod: 'calendar_month';
+  periodKey: string;
+  monthlyCap: number;
+  monthlyCount: number;
+  extraCapThisMonth: number;
   dailyCap: number;
   dailyCount: number;
   extraCapToday: number;
@@ -133,24 +144,27 @@ export function currentDialogQuotaObservation(
   normalizedFreshDay: boolean;
   observation: DialogQuotaObservationV1;
 }> {
-  const previousResetAtMs = safeNonNegative(current.resetAtMs);
-  const normalizedFreshDay = nowMs >= previousResetAtMs;
-  const dailyCap = Number.isSafeInteger(current.dailyCap) && Number(current.dailyCap) > 0
-    ? Number(current.dailyCap) : 10;
-  const dailyCount = normalizedFreshDay ? 0 : safeNonNegative(current.dailyCount);
-  const extraCapToday = normalizedFreshDay ? 0 : safeNonNegative(current.extraCapToday);
-  const resetAtMs = normalizedFreshDay ? nextResetAtMs(nowMs) : previousResetAtMs;
+  const normalized = currentDialogMonthlyQuota(current, nowMs, nextResetAtMs);
+  const previouslyCurrent = current.quotaPeriod === 'calendar_month'
+    && current.periodKey === normalized.periodKey
+    && nowMs < safeNonNegative(current.resetAtMs);
+  const normalizedFreshDay = !previouslyCurrent;
   const quotaVersion = safeNonNegative(current.quotaVersion) + (normalizedFreshDay ? 1 : 0);
   return Object.freeze({
-    dailyCap,
-    dailyCount,
-    extraCapToday,
-    resetAtMs,
+    quotaPeriod: 'calendar_month' as const,
+    periodKey: normalized.periodKey,
+    monthlyCap: normalized.monthlyCap,
+    monthlyCount: normalized.monthlyCount,
+    extraCapThisMonth: normalized.extraCapThisMonth,
+    dailyCap: normalized.monthlyCap,
+    dailyCount: normalized.monthlyCount,
+    extraCapToday: normalized.extraCapThisMonth,
+    resetAtMs: normalized.resetAtMs,
     quotaVersion,
     normalizedFreshDay,
     observation: Object.freeze({
-      remainingQuota: Math.max(0, dailyCap + extraCapToday - dailyCount),
-      resetAtMs,
+      remainingQuota: Math.max(0, normalized.monthlyCap + normalized.extraCapThisMonth - normalized.monthlyCount),
+      resetAtMs: normalized.resetAtMs,
       quotaVersion,
     }),
   });

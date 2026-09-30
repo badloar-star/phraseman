@@ -11,6 +11,15 @@
  * remote-флагом и entitlement, здесь только константы.
  */
 
+/** Calendar-month limits. Kept separate so daily surfaces cannot silently
+ * reinterpret a monthly allowance as a per-day entitlement. */
+export const REVENUE_MONTHLY_LIMITS = Object.freeze({
+  /** Free AI dialogue replies per UTC calendar month. Server owns enforcement. */
+  ai_dialog_replies: 30,
+} as const);
+
+export type RevenueMonthlyLimitKey = keyof typeof REVENUE_MONTHLY_LIMITS;
+
 export const REVENUE_DAILY_LIMITS = Object.freeze({
   /** Старты карточных тренировок (Swipe/Blitz/Recall/Speaking) в сутки. */
   flashcard_training_starts: 3,
@@ -29,12 +38,8 @@ export const REVENUE_DAILY_LIMITS = Object.freeze({
    *
    * Возвращать лимит только по прямой команде владельца.
    */
-  /**
-   * Реплики ИИ-диалога в сутки. Сервер — источник истины
-   * (functions/src/openai_dialog_model_config.ts: DIALOG_FREE_DAILY_REPLIES_DEFAULT),
-   * клиент держит зеркало для входа без сети и текста пейвола.
-   */
-  ai_dialog_replies: 10,
+  /** @deprecated Compatibility for callers migrating to REVENUE_MONTHLY_LIMITS. */
+  ai_dialog_replies: REVENUE_MONTHLY_LIMITS.ai_dialog_replies,
   /**
    * Сессии «Работы над ошибками» в сутки у обычного аккаунта.
    * зачем (владелец 2026-09-14): раздел перестал быть «только Plus» - одна
@@ -52,7 +57,14 @@ export const REVENUE_DAY_PASS_EXTRA = Object.freeze({
   speaking_attempts: 3,
 } as const);
 
-/** Цена дневного пропуска в жемчужинах (стартовая гипотеза из аудита 7.5). */
+// зачем: D70/D78 — покупка дневного пропуска за жемчуг (quota_day_pass.ts) и его цена
+// удалены. Уже купленные пропуска читает revenue_daily_quota.ts по ключу периода.
+/**
+ * @deprecated D70/D78: мёртвая константа, НЕ использовать. Оставлена только потому,
+ * что удаление quota_day_pass.ts ещё не закоммичено, а закоммиченный HEAD его
+ * импортирует (коммит D111 не должен ломать сборку HEAD). Удалить вместе с
+ * коммитом удаления app/quota_day_pass.ts.
+ */
 export const REVENUE_DAY_PASS_PRICE_PEARLS = Object.freeze({
   flashcard_training_starts: 15,
   speaking_attempts: 20,

@@ -51,6 +51,7 @@ import { isLessonFinishedOnce } from './mastery';
 import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from './premium_guard';
 import { isAlwaysOpenLesson } from './main_course_access';
 import {
+  BRONZE_UNLOCK_SCORE,
   lessonPaywallContext,
   requiresPremiumForLesson,
 } from './monetization_policy';
@@ -601,7 +602,8 @@ function LessonMenu() {
             prevScore = effectiveLessonStarScore(prevBestRaw, savedProg).score;
           }
 
-          if (prevScore >= 2.5) {
+          // зачем (D71, владелец 30.09): следующий урок открывается от 2★, порог — одна константа ядра.
+          if (prevScore >= BRONZE_UNLOCK_SCORE) {
             const { unlockLesson } = await import('./lesson_lock_system');
             await unlockLesson(lessonId, studyTarget);
             unlocked = true;

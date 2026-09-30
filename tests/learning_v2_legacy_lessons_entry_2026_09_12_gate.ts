@@ -142,7 +142,9 @@ assert.match(
 const newLessonsChipBlock = legacyBranch.slice(
   legacyBranch.indexOf('testID="legacy-lessons-open-new-lessons"'),
 );
-assert.match(newLessonsChipBlock, /width: 52/);
+// зачем (владелец 2026-09-30, learn.html 2.0): кнопки ряда стали круглыми 44×44, как `.rb`
+// макета (раньше квадратные 52×44). Размер у всех кнопок ряда по-прежнему один.
+assert.match(newLessonsChipBlock, /width: 44/);
 assert.match(newLessonsChipBlock, /height: 44/);
 // зачем: подпись у «Новых уроков» отменена владельцем 2026-09-17 («кнопка
 // должна быть такого же размера») — текст не влезал в 52pt без ужатия шрифта,

@@ -1,5 +1,6 @@
 import { isFeaturePremiumGated } from './feature_gates';
 import { isAlwaysOpenLesson, isMainCourseLesson } from './main_course_access';
+import { LESSON_UNLOCK_SCORE, previousLessonScoreOpensNext } from './lesson_star_scale';
 
 /**
  * Owner 2026-09-20: lessons 1–3 carry NO paywall — Free may reach them without
@@ -20,9 +21,12 @@ export const FREE_LESSON_LIMIT = 3;
  * Всё остальное зарабатывается или покупается.
  */
 export const UNCONDITIONALLY_OPEN_LESSON_LIMIT = 1;
-// зачем (D71, владелец 2026-09-30): следующий урок открывается от 2 звёзд, а не от бронзы 2.5.
-// Имя константы сохранено ради совместимости импортов; медаль «бронза» (medal_utils) остаётся 2.5.
-export const BRONZE_UNLOCK_SCORE = 2;
+// зачем (D121, владелец 2026-09-30): следующий урок открывается от 2★ = 60% правильных,
+// то есть от оценки 3.0 из 5 (было 2 = 40% по D71). Значение берётся из единой шкалы
+// lesson_star_scale.ts. Имя константы сохранено ради совместимости импортов; медаль
+// «бронза» (medal_utils) остаётся 2.5. Уже открытые уроки не закрываются —
+// см. previousLessonScoreOpensNext (grandfathering по сохранённому списку открытых).
+export const BRONZE_UNLOCK_SCORE = LESSON_UNLOCK_SCORE;
 const PREMIUM_SECTION_STARTERS = new Set([1, 9, 19, 29]);
 
 export type LessonAccessState =
@@ -63,9 +67,14 @@ export function isLegacyLessonGrandfatheredOpen(
 
 export function requiresPremiumForLesson(
   lessonId: number,
-  _legacyFreeLessonCap?: number,
+  legacyFreeLessonCap?: number,
 ): boolean {
   if (!Number.isFinite(lessonId) || lessonId < 1) return false;
+  // зачем (D122, владелец 2026-09-30): кому раньше бесплатно были открыты уроки 4–8,
+  // тем доступ сохраняется. Потолок приходит ТОЛЬКО из сохранённого значения
+  // legacy_free_lesson_cap (миграция legacy_free_lesson_access.ts замораживает его
+  // один раз); новым аккаунтам он равен 3, поэтому новым ничего не дарится.
+  if (isLegacyLessonGrandfatheredOpen(lessonId, legacyFreeLessonCap)) return false;
   if (isMainCourseLesson(lessonId)) return lessonId > FREE_LESSON_LIMIT;
   return !isFreeLesson(lessonId);
 }
@@ -89,9 +98,10 @@ export function isPremiumSectionStarterLesson(lessonId: number): boolean {
 }
 
 /**
- * Free list projection. Old progress, persisted unlocks, exams and a legacy
- * cap are intentionally ignored; only the Free sample and exact durable pearl
- * grants survive.
+ * Free list projection. Old progress and exams are intentionally ignored; only
+ * the Free sample, exact durable pearl grants and the frozen legacy cap (D122)
+ * survive. Persisted unlocks are used only to grandfather lessons 2–3 opened
+ * under the pre-D121 threshold.
  */
 export function buildSequentialFreeLessonUnlocks(params: {
   scores: readonly number[];
@@ -113,11 +123,19 @@ export function buildSequentialFreeLessonUnlocks(params: {
   for (let i = 0; i < Math.min(UNCONDITIONALLY_OPEN_LESSON_LIMIT, lessonCount); i++) {
     unlocked[i] = true;
   }
+  const persisted = new Set(params.persistedUnlocked ?? []);
   for (let i = UNCONDITIONALLY_OPEN_LESSON_LIMIT; i < Math.min(FREE_LESSON_LIMIT, lessonCount); i++) {
-    if ((params.scores[i - 1] ?? 0) >= BRONZE_UNLOCK_SCORE) unlocked[i] = true;
+    // зачем (D121): 2★ = 60%; урок, уже открытый по старому порогу, не закрываем.
+    if (previousLessonScoreOpensNext(params.scores[i - 1] ?? 0, persisted.has(i + 1))) unlocked[i] = true;
   }
   for (const lessonId of params.purchasedLessons ?? []) {
     if (lessonId >= 1 && lessonId <= lessonCount) unlocked[lessonId - 1] = true;
+  }
+  // зачем (D122): уроки до замороженного legacy-потолка (4–8) были бесплатно
+  // открыты раньше — возвращаем их. Для новых аккаунтов потолок = 3, цикл пуст.
+  const legacyCap = normalizedLegacyFreeLessonCap(params.legacyFreeLessonCap);
+  if (legacyCap > FREE_LESSON_LIMIT) {
+    for (let i = 0; i < Math.min(legacyCap, lessonCount); i++) unlocked[i] = true;
   }
 
   return unlocked;
@@ -128,11 +146,14 @@ export function buildSequentialFreeLessonUnlocks(params: {
 export function buildPremiumLessonUnlocks(params: {
   scores: readonly number[];
   purchasedLessons?: readonly number[];
+  persistedUnlocked?: readonly number[];
+  legacyFreeLessonCap?: number;
   lessonCount?: number;
 }): boolean[] {
   const lessonCount = params.lessonCount ?? 32;
   const unlocked = new Array(Math.max(lessonCount, 0)).fill(false);
   const purchased = new Set(params.purchasedLessons ?? []);
+  const persisted = new Set(params.persistedUnlocked ?? []);
   for (let i = 0; i < lessonCount; i++) {
     const lessonId = i + 1;
     // зачем: у Plus снят пейвол, но не замок прогресса. Безусловно открыт
@@ -140,7 +161,10 @@ export function buildPremiumLessonUnlocks(params: {
     unlocked[i] = isUnconditionallyOpenLesson(lessonId)
       || isPremiumSectionStarterLesson(lessonId)
       || purchased.has(lessonId)
-      || (i > 0 && (params.scores[i - 1] ?? 0) >= BRONZE_UNLOCK_SCORE);
+      // зачем (D122): уроки до замороженного legacy-потолка были открыты и раньше.
+      || isLegacyLessonGrandfatheredOpen(lessonId, params.legacyFreeLessonCap)
+      // зачем (D121): 2★ = 60%; урок, уже открытый по старому порогу, не закрываем.
+      || (i > 0 && previousLessonScoreOpensNext(params.scores[i - 1] ?? 0, persisted.has(lessonId)));
   }
   return unlocked;
 }
@@ -171,6 +195,7 @@ export function resolveLessonAccess(params: {
     purchased = false,
     devMode = false,
     noLimits = false,
+    legacyFreeLessonCap,
   } = params;
   // зачем (владелец 2026-09-20): раньше здесь стоял isFreeSampleLesson — уроки
   // 2 и 3 возвращали 'available' выше проверки прогресса и открывались сами.
@@ -190,7 +215,8 @@ export function resolveLessonAccess(params: {
   if (noLimits) return 'available';
   // Exact pearl grants are permanent entitlements and outrank subscription.
   if (purchased) return 'available';
-  if (requiresPremiumForLesson(lessonId) && !isPremium && !devMode) return 'premium_required';
+  // зачем (D122): legacy-потолок снова снимает пейвол с уроков 4–8 у старых пользователей.
+  if (requiresPremiumForLesson(lessonId, legacyFreeLessonCap) && !isPremium && !devMode) return 'premium_required';
   return unlocked ? 'available' : 'progress_required';
 }
 

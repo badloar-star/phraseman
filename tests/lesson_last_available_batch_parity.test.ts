@@ -78,8 +78,15 @@ describe('resolveLastAvailableLessonId — паритет с прежним ци
     expect(await resolveLastAvailableLessonId(32, undefined, true)).toBe(29);
   });
 
-  it('Plus удерживает урок, открытый бронзой предыдущего', async () => {
+  it('Plus удерживает урок, открытый 2★ предыдущего (D121: 60%)', async () => {
+    mockStore[lessonBestScoreKey(9)] = '3';
+    expect(await resolveLastAvailableLessonId(10, undefined, true)).toBe(10);
+  });
+
+  it('D121: Plus не теряет урок, открытый по старому порогу и сохранённый в списке', async () => {
     mockStore[lessonBestScoreKey(9)] = '2.5';
+    expect(await resolveLastAvailableLessonId(10, undefined, true)).toBe(9);
+    mockStore[unlockedLessonsKey()] = JSON.stringify([10]);
     expect(await resolveLastAvailableLessonId(10, undefined, true)).toBe(10);
   });
 

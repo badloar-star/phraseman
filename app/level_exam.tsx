@@ -51,6 +51,7 @@ import { soundDirector } from '../modules/audio/sound_director';
 import LevelExamV2 from '../components/level-exam/LevelExamV2';
 import { DebugLogger } from './debug-logger';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { LEVEL_EXAM_PASS_PERCENT } from './lesson_star_scale';
 import { PracticeCta, PracticeStatePanel } from '../components/practice/PracticeStates';
 import {
   ExamFooter, ExamHeader, ExamHero, ExamKvCard, ExamOption, ExamQuietButton, ExamStatRow,
@@ -507,7 +508,9 @@ const LEVEL_LABELS: Record<string, { ru: string; uk: string; es: string; en: str
   B2: { ru: 'Зачёт B2', uk: 'Залік B2', es: 'Examen de nivel B2', en: 'B2 Exam', 'pt-BR': 'Teste de nível B2', vi: 'Bài kiểm tra trình độ B2', id: 'Ujian level B2', tr: 'B2 seviye sınavı', pl: 'Test poziomu B2' },
 };
 
-const PASS_PCT = 70; // минимум % для сдачи
+// зачем (PM-152): порог сдачи зачёта живёт в общей шкале рядом с порогами уроков;
+// значение прежнее (70%). Сохранённый passed='1' не пересчитывается — сданное остаётся сданным.
+const PASS_PCT = LEVEL_EXAM_PASS_PERCENT; // минимум % для сдачи
 
 /** Премиальный тон интро-экрана зачёта (как «дорогой» тёмный макет). */
 const LX = {

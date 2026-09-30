@@ -27,7 +27,7 @@ describe('monetization_policy: первые три урока free, осталь
 
   // ВНИМАНИЕ: до 2026-09-20 этот тест требовал 'available' для уроков 2 и 3 —
   // т.е. охранял ОТМЕНЁННОЕ правило. Владелец 2026-09-20: безусловен только
-  // урок 1; 2 и 3 без пейвола, но за бронзой ★2.5 или за 100 жемчужин.
+  // урок 1; 2 и 3 без пейвола, но за 2★ (D121: 60%) или за 100 жемчужин.
   it('безусловно открыт только урок 1', () => {
     expect(resolveLessonAccess({ lessonId: 1, unlocked: false, isPremium: false })).toBe('available');
     expect(resolveLessonAccess({ lessonId: 2, unlocked: false, isPremium: false })).toBe('progress_required');
@@ -56,10 +56,25 @@ describe('monetization_policy: первые три урока free, осталь
     expect(buildSequentialFreeLessonUnlocks({ scores: [], lessonCount: 4 })).toEqual([true, false, false, false]);
   });
 
-  it('free-список открывает урок 2 только бронзой на первом', () => {
-    expect(buildSequentialFreeLessonUnlocks({ scores: [2.4], lessonCount: 3 })).toEqual([true, false, false]);
-    expect(buildSequentialFreeLessonUnlocks({ scores: [2.5], lessonCount: 3 })).toEqual([true, true, false]);
-    expect(buildSequentialFreeLessonUnlocks({ scores: [2.5, 2.5], lessonCount: 3 })).toEqual([true, true, true]);
+  // D121: 2★ = 60% правильных = оценка 3 из 5 (было 2 = 40%).
+  it('free-список открывает урок 2 только от 2★ (60%) на первом', () => {
+    expect(buildSequentialFreeLessonUnlocks({ scores: [2.9], lessonCount: 3 })).toEqual([true, false, false]);
+    expect(buildSequentialFreeLessonUnlocks({ scores: [2.5], lessonCount: 3 })).toEqual([true, false, false]);
+    expect(buildSequentialFreeLessonUnlocks({ scores: [3], lessonCount: 3 })).toEqual([true, true, false]);
+    expect(buildSequentialFreeLessonUnlocks({ scores: [3, 3], lessonCount: 3 })).toEqual([true, true, true]);
+  });
+
+  it('D121: урок, уже открытый по старому порогу, не закрывается', () => {
+    // Урок 2 лежит в сохранённом списке, на первом 2.5 (50%) — открыт по старому правилу.
+    expect(buildSequentialFreeLessonUnlocks({ scores: [2.5], persistedUnlocked: [2], lessonCount: 3 }))
+      .toEqual([true, true, false]);
+    // Запись без оценки старого порога (≥40%) доступа не даёт.
+    expect(buildSequentialFreeLessonUnlocks({ scores: [1.5], persistedUnlocked: [2], lessonCount: 3 }))
+      .toEqual([true, false, false]);
+    const plusScores = new Array(32).fill(0);
+    plusScores[9] = 2;
+    expect(buildPremiumLessonUnlocks({ scores: plusScores, persistedUnlocked: [11] })[10]).toBe(true);
+    expect(buildPremiumLessonUnlocks({ scores: plusScores })[10]).toBe(false);
   });
 
   it('купленный за жемчужины урок 3 открывается без бронзы, но НЕ тянет соседей', () => {
@@ -77,16 +92,16 @@ describe('monetization_policy: первые три урока free, осталь
 
   it('у Plus уроки 2–3 тоже требуют бронзы', () => {
     const scores = new Array(32).fill(0);
-    scores[0] = 2.5;
+    scores[0] = 3;
     const unlocked = buildPremiumLessonUnlocks({ scores });
-    expect(unlocked[1]).toBe(true);  // урок 2 после бронзы на первом
+    expect(unlocked[1]).toBe(true);  // урок 2 после 2★ на первом
     expect(unlocked[2]).toBe(false); // урок 3 ещё рано
   });
 
   it('Plus открывает остальные уроки только бронзой на предыдущем', () => {
     const scores = new Array(32).fill(0);
-    scores[8] = 2.5;
-    scores[18] = 2.4;
+    scores[8] = 3;
+    scores[18] = 2.9;
     const unlocked = buildPremiumLessonUnlocks({ scores });
     expect(unlocked[9]).toBe(true); // урок 10 после бронзы на 9-м
     expect(unlocked[19]).toBe(false); // урок 20 ещё рано
@@ -104,7 +119,6 @@ describe('monetization_policy: первые три урока free, осталь
       persistedUnlocked: [4, 9, 19, 29],
       purchasedLessons: [5, 20],
       passedExams: { A1: true, A2: true, B1: true },
-      legacyFreeLessonCap: 8,
     });
     expect(withOldProgress.slice(0, 3)).toEqual([true, true, true]);
     expect(withOldProgress[3]).toBe(false);
@@ -147,11 +161,29 @@ describe('monetization_policy: первые три урока free, осталь
     ).toBe('premium_required');
   });
 
-  it('legacy-потолок больше не отменяет Plus-пейвол', () => {
+  // D122 (владелец 2026-09-30): кому уроки 4–8 были бесплатны, тем доступ сохраняется.
+  // До D122 этот тест требовал premium_required для урока 6 legacy-пользователя.
+  it('legacy-потолок сохраняет бесплатный доступ старым пользователям (D122)', () => {
     expect(hasLegacyFreeLessonAccess(6, 6)).toBe(true);
     expect(hasLegacyFreeLessonAccess(7, 6)).toBe(false);
     expect(isLegacyLessonGrandfatheredOpen(6, 6)).toBe(true);
     expect(isLegacyLessonGrandfatheredOpen(2, 3)).toBe(false);
-    expect(resolveLessonAccess({ lessonId: 6, unlocked: true, isPremium: false, legacyFreeLessonCap: 6 })).toBe('premium_required');
+    expect(requiresPremiumForLesson(6, 6)).toBe(false);
+    expect(requiresPremiumForLesson(7, 6)).toBe(true);
+    expect(resolveLessonAccess({ lessonId: 6, unlocked: true, isPremium: false, legacyFreeLessonCap: 6 })).toBe('available');
+    expect(resolveLessonAccess({ lessonId: 7, unlocked: true, isPremium: false, legacyFreeLessonCap: 6 })).toBe('premium_required');
+    const list = buildSequentialFreeLessonUnlocks({ scores: [], legacyFreeLessonCap: 6, lessonCount: 8 });
+    expect(list).toEqual([true, true, true, true, true, true, false, false]);
+  });
+
+  it('новый аккаунт (потолок 3 или нет потолка) получает ровно 3 бесплатных урока (D122)', () => {
+    for (const cap of [undefined, 3, 2, Number.NaN]) {
+      expect(requiresPremiumForLesson(4, cap)).toBe(true);
+      expect(resolveLessonAccess({ lessonId: 4, unlocked: true, isPremium: false, legacyFreeLessonCap: cap })).toBe('premium_required');
+      expect(buildSequentialFreeLessonUnlocks({ scores: [], legacyFreeLessonCap: cap, lessonCount: 5 }))
+        .toEqual([true, false, false, false, false]);
+    }
+    // Потолок никогда не выходит за 8.
+    expect(requiresPremiumForLesson(9, 99)).toBe(true);
   });
 });

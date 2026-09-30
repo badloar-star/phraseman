@@ -50,6 +50,10 @@ import {
   requiresPremiumForLesson,
   resolveLessonAccess,
 } from "../monetization_policy";
+import {
+  LEVEL_EXAM_UNLOCK_LESSON_PERCENT,
+  allLessonScoresMeetPercent,
+} from "../lesson_star_scale";
 import { openPremiumPaywall } from "../paywall_navigation";
 import { lessonPurchaseContinuationParams } from "../paywall_lesson_continuation";
 import { HOME_BACK_FALLBACK, safeRouterBack } from "../navigation_back";
@@ -3899,7 +3903,17 @@ export default function LessonsTab({
     for (const [lvl, res] of Object.entries(examResults)) {
       if (res?.passed) passedExams[lvl] = true;
     }
-    if (isPremium) return buildPremiumLessonUnlocks({ scores, purchasedLessons, lessonCount: u.length });
+    // зачем (D121/D122): Plus-проекция тоже получает сохранённый список открытых
+    // (grandfathering уроков, открытых по старому порогу 40%) и legacy-потолок.
+    if (isPremium) {
+      return buildPremiumLessonUnlocks({
+        scores,
+        purchasedLessons,
+        persistedUnlocked,
+        legacyFreeLessonCap: effectiveLegacyFreeLessonCap,
+        lessonCount: u.length,
+      });
+    }
     return buildSequentialFreeLessonUnlocks({
       scores,
       persistedUnlocked,
@@ -4249,7 +4263,12 @@ export default function LessonsTab({
           : lvl === "B1"
             ? [19, 28]
             : [29, 32];
-    const scoreReady = scores.slice(from - 1, to).every((s) => s >= 4.5);
+    // PM-152: порог зачёта из единой процентной шкалы (90%, прежние 4.5) — тот же,
+    // что в tryUnlockLevelExam, чтобы карточка и реальный гейт не расходились.
+    const scoreReady = allLessonScoresMeetPercent(
+      scores.slice(from - 1, to),
+      LEVEL_EXAM_UNLOCK_LESSON_PERCENT,
+    );
     const examLevel = lvl as CourseLevel;
     const examLevelIdx = getCourseLevelIndex(examLevel);
     const premiumExamAvailable =
@@ -4352,9 +4371,9 @@ export default function LessonsTab({
                   tr: `Önce ${prevExamLevel} sınavı`,
                   pl: `Najpierw egzamin ${prevExamLevel}`,
                 })
-              // зачем: макет пишет «на 2★», но проверка scoreReady выше всё ещё требует 4.5
-              // (90 %, выше порога 2★ по D36). Пока правило не сменили, честно называем
-              // реальный порог, иначе человек наберёт 2★ и упрётся в закрытый экзамен.
+              // зачем: макет пишет «на 2★», но проверка scoreReady выше требует 90%
+              // (LEVEL_EXAM_UNLOCK_LESSON_PERCENT, выше 2★ = 60% по D121). Число порога
+              // зачёта — открытый вопрос владельцу (PM-152); пока честно называем реальный.
               : triLang(lang, {
                   ru: `Заверши все уроки ${lvl} на 4.5+`,
                   en: `Complete all ${lvl} lessons with 4.5+`,

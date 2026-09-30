@@ -7,18 +7,21 @@
  *
  * Правила доступа, сверху вниз:
  * - Урок 1 — единственный безусловно открытый.
- * - Уроки 2–3 — без пейвола (Free их видит), но ТРЕБУЮТ бронзы ★2.5 на
+ * - Уроки 2–3 — без пейвола (Free их видит), но ТРЕБУЮТ 2★ (60%, D121) на
  *   предыдущем или покупки за 100 жемчужин (владелец 2026-09-20).
  *   НЕ возвращать им безусловный доступ — именно так замок уже был мёртв.
  * - Урок куплен за 100 жемчужин — открыт навсегда (исторические покупки,
  *   app/lessons_pearl_unlock_storage.ts; сама покупка удалена D70/D78).
  *   Покупка открывает РОВНО один урок и НЕ считается его прохождением.
  * - Для активного Plus уроки 1, 9, 19, 29 доступны сразу.
- * - Остальные Plus-уроки требуют бронзу на предыдущем (score >= 2.5).
+ * - Остальные Plus-уроки требуют 2★ на предыдущем (D121: от 60%, оценка 3.0).
+ * - D121 grandfathering: урок, уже лежащий в unlocked_lessons и открытый по
+ *   старому порогу (≥40%), не закрывается (previousLessonScoreOpensNext).
+ * - D122: уроки до замороженного legacy-потолка (4–8) открыты старым Free.
  *
- * Прочее без изменений:
- * - Зачёт уровня: все уроки этого уровня >= 4.5.
- * - Экзамен профессора Лингмана: все уроки = 5.0 + все зачёты сданы.
+ * Экзамены (PM-152, пороги в процентах — lesson_star_scale.ts):
+ * - Зачёт уровня: все уроки этого уровня ≥ 90% (прежние 4.5).
+ * - Экзамен профессора Лингмана: все уроки = 100% + все зачёты сданы.
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -27,8 +30,16 @@ import { storageGet, storageSet, storageGetString, storageSetString } from '../l
 import { withStorageLock } from './storage_mutex';
 import { effectiveLessonStarScore } from './lesson_star_score';
 import {
+  LEVEL_EXAM_UNLOCK_LESSON_PERCENT,
+  LINGMAN_EXAM_UNLOCK_LESSON_PERCENT,
+  LEGACY_LESSON_UNLOCK_SCORE,
+  lessonScoreMeetsPercent,
+  previousLessonScoreOpensNext,
+} from './lesson_star_scale';
+import {
   BRONZE_UNLOCK_SCORE,
   isFreeSampleLesson,
+  isLegacyLessonGrandfatheredOpen,
   isPremiumSectionStarterLesson,
   isUnconditionallyOpenLesson,
   requiresPremiumForLesson,
@@ -44,6 +55,7 @@ import {
   normalizeCourseLevel,
 } from './course_levels';
 import {
+  legacyFreeLessonCapKey,
   lessonBestScoreKey,
   lessonPassCountKey,
   lessonProgressKey,
@@ -116,7 +128,7 @@ export const shouldAnnounceNextLessonUnlock = (
   hasPremiumAccess: boolean,
 ): boolean => reportedUnlocked && canUnlockNextLessonAfterCompletion(currentLessonId, hasPremiumAccess);
 
-/** Разблокирует следующий урок если score >= 2.5 (бронза) и тариф разрешает. */
+/** Разблокирует следующий урок если score ≥ 2★ (D121: 60%) и тариф разрешает. */
 export const tryUnlockNextLesson = async (
   currentLessonId: number,
   score: number,
@@ -124,7 +136,9 @@ export const tryUnlockNextLesson = async (
   hasPremiumAccess = false,
 ): Promise<boolean> => {
   if (!canUnlockNextLessonAfterCompletion(currentLessonId, hasPremiumAccess)) return false;
-  if (score >= BRONZE_UNLOCK_SCORE) {
+  // зачем (D121): новые открытия — только от 2★ = 60% (сравнение в процентах, без
+  // потерь на дробях вроде 27/45×5).
+  if (previousLessonScoreOpensNext(score)) {
     const nextLessonId = currentLessonId + 1;
     const alreadyUnlocked = await isLessonUnlocked(nextLessonId, studyTarget);
     if (!alreadyUnlocked) {
@@ -142,21 +156,38 @@ export const isLessonUnlockedByEarnedProgress = async (
   if (isAlwaysOpenLesson(lessonId) || isUnconditionallyOpenLesson(lessonId)) return true;
   if (!isMainCourseLesson(lessonId)) return false;
 
-  // Exact pearl entitlement remains accessible after Plus expires. Old score,
-  // persisted unlock and legacy-cap evidence must not widen the Free sample.
+  // Exact pearl entitlement remains accessible after Plus expires. Old score
+  // must not widen the Free sample.
   if ((await readPurchasedLessons(studyTarget)).includes(lessonId)) return true;
 
-  // зачем (владелец 2026-09-20): уроки 2–3 без пейвола, но заперты прогрессом.
-  // Раньше они возвращали true первой строкой — бронза не проверялась вообще.
-  // Дальше трёх Free не пускаем: там пейвол, его решает другой слой.
-  if (!isFreeSampleLesson(lessonId)) return false;
   const prevLessonId = lessonId - 1;
   try {
-    const [prevBestRaw, prevProgressRaw] = await AsyncStorage.multiGet([
+    const store = new Map(await AsyncStorage.multiGet([
+      legacyFreeLessonCapKey(studyTarget),
+      unlockedLessonsKey(studyTarget),
       lessonBestScoreKey(prevLessonId, studyTarget),
       lessonProgressKey(prevLessonId, studyTarget),
-    ]);
-    return effectiveLessonStarScore(prevBestRaw[1], prevProgressRaw[1]).score >= BRONZE_UNLOCK_SCORE;
+    ]));
+    // зачем (D122): уроки 4–8, бесплатно открытые старому Free, остаются открытыми.
+    // Потолок читается только из сохранённого значения миграции; у новых он 3.
+    const legacyCap = parseLegacyFreeLessonCap(store.get(legacyFreeLessonCapKey(studyTarget)));
+    if (isLegacyLessonGrandfatheredOpen(lessonId, legacyCap)) {
+      console.log('[LESSON-LOCK] earned:legacy_cap_open', JSON.stringify({ lessonId, legacyCap }));
+      return true;
+    }
+    // зачем (владелец 2026-09-20): уроки 2–3 без пейвола, но заперты прогрессом.
+    // Раньше они возвращали true первой строкой — порог не проверялся вообще.
+    // Дальше трёх Free не пускаем: там пейвол, его решает другой слой.
+    if (!isFreeSampleLesson(lessonId)) return false;
+    const prevScore = effectiveLessonStarScore(
+      store.get(lessonBestScoreKey(prevLessonId, studyTarget)) ?? null,
+      store.get(lessonProgressKey(prevLessonId, studyTarget)) ?? null,
+    ).score;
+    // зачем (D121): 2★ = 60%; уже открытый по старому порогу урок не закрываем.
+    return previousLessonScoreOpensNext(
+      prevScore,
+      safeNumberList(store.get(unlockedLessonsKey(studyTarget)) ?? null).includes(lessonId),
+    );
   } catch (e) {
     // Немой catch запрещён: не смогли прочитать — fail-closed, урок закрыт.
     DebugLogger.error(
@@ -179,9 +210,10 @@ export const isLessonUnlockedByEarnedProgress = async (
  * ~90 последовательных операций.
  *
  * Здесь всё нужное берётся одним multiGet, а решение считается в памяти.
- * Логика доступа учитывает текущий тариф: Free всегда получает 1–3 и точные
- * жемчужные покупки; Plus дополнительно получает старты 9/19/29, а остальные
- * уроки — после бронзы ★2.5 на непосредственном предыдущем уроке.
+ * Логика доступа учитывает текущий тариф: Free получает урок 1, уроки 2–3 по
+ * 2★ (D121), точные жемчужные покупки и legacy-потолок (D122); Plus
+ * дополнительно получает старты 9/19/29, а остальные уроки — после 2★ на
+ * непосредственном предыдущем уроке (с grandfathering уже открытых).
  *
  * Отличие намеренное: побочная запись unlockLesson здесь НЕ делается. Это
  * чтение для кнопки «Урок» на Главной, а не место выдачи доступа — реальный
@@ -196,7 +228,11 @@ export const resolveLastAvailableLessonId = async (
   let lessonId = Math.min(32, Math.max(1, Math.floor(requestedLessonId)));
   if (lessonId === 1) return 1;
 
-  const keys: string[] = [purchasedLessonsKey(studyTarget)];
+  const keys: string[] = [
+    purchasedLessonsKey(studyTarget),
+    unlockedLessonsKey(studyTarget),
+    legacyFreeLessonCapKey(studyTarget),
+  ];
   for (let id = 1; id <= lessonId; id++) {
     keys.push(lessonBestScoreKey(id, studyTarget), lessonProgressKey(id, studyTarget));
   }
@@ -216,11 +252,15 @@ export const resolveLastAvailableLessonId = async (
   }
 
   const purchased = new Set(safeNumberList(store.get(purchasedLessonsKey(studyTarget)) ?? null));
+  const persistedUnlocked = new Set(safeNumberList(store.get(unlockedLessonsKey(studyTarget)) ?? null));
+  const legacyCap = parseLegacyFreeLessonCap(store.get(legacyFreeLessonCapKey(studyTarget)));
   const isAvailable = (id: number): boolean => {
     // зачем (владелец 2026-09-20): безусловен только урок 1. Уроки 2–3
-    // без пейвола, но требуют бронзы на предыдущем — проверка ниже общая.
+    // без пейвола, но требуют 2★ на предыдущем — проверка ниже общая.
     if (isUnconditionallyOpenLesson(id)) return true;
     if (purchased.has(id)) return true;
+    // зачем (D122): legacy-потолок старого Free — та же проекция, что в списке.
+    if (isLegacyLessonGrandfatheredOpen(id, legacyCap)) return true;
     if (!isPremium && !isFreeSampleLesson(id)) return false;
     if (isPremium && isPremiumSectionStarterLesson(id)) return true;
     const prevId = id - 1;
@@ -228,7 +268,8 @@ export const resolveLastAvailableLessonId = async (
       store.get(lessonBestScoreKey(prevId, studyTarget)) ?? null,
       store.get(lessonProgressKey(prevId, studyTarget)) ?? null,
     );
-    return score >= BRONZE_UNLOCK_SCORE;
+    // зачем (D121): 2★ = 60% с grandfathering уже открытых уроков.
+    return previousLessonScoreOpensNext(score, persistedUnlocked.has(id));
   };
 
   while (lessonId > 1 && !isAvailable(lessonId)) {
@@ -236,6 +277,17 @@ export const resolveLastAvailableLessonId = async (
   }
   return lessonId;
 };
+
+/**
+ * Сырое значение legacy_free_lesson_cap → число. Нормализацию (3..8) делает
+ * isLegacyLessonGrandfatheredOpen; отсутствующий ключ даёт undefined → потолка нет.
+ * зачем (D122): модуль миграции сюда не тянем — хватит числа из того же ключа.
+ */
+function parseLegacyFreeLessonCap(raw: string | null | undefined): number | undefined {
+  if (raw === null || raw === undefined || raw.trim() === '') return undefined;
+  const parsed = Number(raw);
+  return Number.isFinite(parsed) ? parsed : undefined;
+}
 
 function safeNumberList(raw: string | null): number[] {
   if (!raw) return [];
@@ -328,11 +380,27 @@ export const isLessonUnlockedByPremiumCourse = async (
   if (isPremiumSectionStarterLesson(lessonId)) return true;
   if (!isMainCourseLesson(lessonId)) return false;
   const prevLessonId = lessonId - 1;
-  const [prevBestRaw, prevProgressRaw] = await AsyncStorage.multiGet([
+  const store = new Map(await AsyncStorage.multiGet([
+    unlockedLessonsKey(studyTarget),
+    legacyFreeLessonCapKey(studyTarget),
     lessonBestScoreKey(prevLessonId, studyTarget),
     lessonProgressKey(prevLessonId, studyTarget),
-  ]);
-  return effectiveLessonStarScore(prevBestRaw[1], prevProgressRaw[1]).score >= BRONZE_UNLOCK_SCORE;
+  ]));
+  const legacyCap = parseLegacyFreeLessonCap(store.get(legacyFreeLessonCapKey(studyTarget)));
+  if (isLegacyLessonGrandfatheredOpen(lessonId, legacyCap)) return true;
+  const prevScore = effectiveLessonStarScore(
+    store.get(lessonBestScoreKey(prevLessonId, studyTarget)) ?? null,
+    store.get(lessonProgressKey(prevLessonId, studyTarget)) ?? null,
+  ).score;
+  // зачем (D121): 2★ = 60% с grandfathering уже открытых уроков.
+  const opened = previousLessonScoreOpensNext(
+    prevScore,
+    safeNumberList(store.get(unlockedLessonsKey(studyTarget)) ?? null).includes(lessonId),
+  );
+  if (!opened) {
+    console.log('[LESSON-LOCK] premium:progress_required', JSON.stringify({ lessonId, prevLessonId, prevScore }));
+  }
+  return opened;
 };
 
 export const getLessonLockInfo = async (lessonId: number, studyTarget?: RuntimeStudyTarget) => {
@@ -347,14 +415,16 @@ export const getLockMessageText = (info: Awaited<ReturnType<typeof getLessonLock
   const n = info.prevLessonId;
   const byLang: Record<string, string> = {
     ru: 'Ещё рано',
-    // зачем (D71): порог открытия — 2 звезды; текст берёт число из той же константы.
-    uk: `Пройди урок ${n} з оцінкою >= ${BRONZE_UNLOCK_SCORE}, щоб розблокувати цей урок`,
-    es: `Completa la lección ${n} con una puntuación de al menos ${BRONZE_UNLOCK_SCORE} para desbloquear esta lección`,
-    'pt-BR': `Conclua a lição ${n} com nota de pelo menos ${BRONZE_UNLOCK_SCORE} para desbloquear esta lição`,
-    vi: `Hoàn thành bài ${n} với điểm từ ${BRONZE_UNLOCK_SCORE} trở lên để mở khóa bài này`,
-    id: `Selesaikan pelajaran ${n} dengan nilai minimal ${BRONZE_UNLOCK_SCORE} untuk membuka pelajaran ini`,
-    tr: `Bu dersi açmak için ${n}. dersi en az ${BRONZE_UNLOCK_SCORE} puanla tamamla`,
-    pl: `Ukończ lekcję ${n} z wynikiem co najmniej ${BRONZE_UNLOCK_SCORE}, aby odblokować tę lekcję`,
+    // зачем (D121): порог открытия — 2★ = 60% (оценка 3); текст берёт число из той же константы.
+    // Формулировка «на 2★» — та же, что в модале списка уроков (lessons.tsx), чтобы
+    // человек не видел два разных порога (оценку 3 и звёзды) для одного правила.
+    uk: `Пройди урок ${n} на 2★, щоб розблокувати цей урок`,
+    es: `Completa la lección ${n} con 2★ para desbloquear esta lección`,
+    'pt-BR': `Conclua a lição ${n} com 2★ para desbloquear esta lição`,
+    vi: `Hoàn thành bài ${n} với 2★ để mở khóa bài này`,
+    id: `Selesaikan pelajaran ${n} dengan 2★ untuk membuka pelajaran ini`,
+    tr: `Bu dersi açmak için ${n}. dersi 2★ ile tamamla`,
+    pl: `Ukończ lekcję ${n} na 2★, aby odblokować tę lekcję`,
   };
   return byLang[lang] ?? byLang.ru;
 };
@@ -363,7 +433,7 @@ export const getLockMessageText = (info: Awaited<ReturnType<typeof getLessonLock
 
 /**
  * Возвращает название уровня (A1/A2/B1/B2) если зачёт этого уровня был ТОЛЬКО ЧТО разблокирован
- * (т.е. все уроки уровня впервые достигли >= 4.5).
+ * (т.е. все уроки уровня впервые достигли ≥ LEVEL_EXAM_UNLOCK_LESSON_PERCENT).
  * Иначе возвращает null.
  */
 export const tryUnlockLevelExam = async (
@@ -383,7 +453,8 @@ export const tryUnlockLevelExam = async (
     const already = await storageGetString(alreadyKey);
     if (storedProgressFlagIsTrue(already)) return null;
 
-    // Все уроки уровня >= 4.5 по max(best_score, progress) — см. lesson_star_score
+    // PM-152: все уроки уровня ≥ 90% по max(best_score, progress) — порог из
+    // единой шкалы lesson_star_scale.ts (значение прежнее: 4.5 из 5).
     const [from, to] = COURSE_LEVEL_RANGES[foundLevel as CourseLevel];
     const keys: string[] = [];
     for (let id = from; id <= to; id++) {
@@ -396,7 +467,7 @@ export const tryUnlockLevelExam = async (
         map[lessonBestScoreKey(id, studyTarget)],
         map[lessonProgressKey(id, studyTarget)],
       );
-      if (score < 4.5) {
+      if (!lessonScoreMeetsPercent(score, LEVEL_EXAM_UNLOCK_LESSON_PERCENT)) {
         allReady = false;
         break;
       }
@@ -415,7 +486,7 @@ export const tryUnlockLevelExam = async (
 
 /**
  * Возвращает true если экзамен Лингмана был ТОЛЬКО ЧТО разблокирован:
- * все 32 урока = 5.0 И все 4 зачёта сданы (level_exam_X_passed = '1').
+ * все 32 урока = 100% (оценка 5.0) И все 4 зачёта сданы (level_exam_X_passed = '1').
  */
 export const tryUnlockLingmanExam = async (studyTarget?: RuntimeStudyTarget): Promise<boolean> => {
   try {
@@ -434,7 +505,7 @@ export const tryUnlockLingmanExam = async (studyTarget?: RuntimeStudyTarget): Pr
         lessonMap[lessonBestScoreKey(i, studyTarget)],
         lessonMap[lessonProgressKey(i, studyTarget)],
       );
-      if (score < 5.0) {
+      if (!lessonScoreMeetsPercent(score, LINGMAN_EXAM_UNLOCK_LESSON_PERCENT)) {
         allPerfect = false;
         break;
       }
@@ -462,7 +533,12 @@ export const recomputeEarnedUnlocks = async (studyTarget?: RuntimeStudyTarget): 
     // зачем (владелец 2026-09-20): уроки 2–3 больше не дарятся проекцией
     // после истечения Plus — их зарабатывают или покупают. Заработанный
     // прогресс сам пересчитается из best_score в isLessonUnlockedByEarnedProgress.
-    const freeProjection = Array.from(new Set([1, ...purchased]))
+    // зачем (D121): записи об уже открытых уроках 2–3 сохраняем — по ним
+    // previousLessonScoreOpensNext не закрывает урок, открытый по старому порогу.
+    // Сами по себе они доступа не дают (нужна ещё оценка ≥40% на предыдущем).
+    const previous = (await storageGet<number[]>(unlockedLessonsKey(studyTarget))) ?? [];
+    const keptFreeSample = previous.filter((id) => isFreeSampleLesson(id));
+    const freeProjection = Array.from(new Set([1, ...keptFreeSample, ...purchased]))
       .filter(isMainCourseLesson)
       .sort((a, b) => a - b);
     await storageSet(unlockedLessonsKey(studyTarget), freeProjection);
@@ -477,7 +553,7 @@ export const recomputeEarnedUnlocks = async (studyTarget?: RuntimeStudyTarget): 
  * зачёта). Пересчитывает `unlocked_lessons` СТРОГО ПО ПРАВИЛАМ ИГРЫ:
  *
  *   • Урок 1 — всегда открыт.
- *   • Урок 2..8  — открыт если предыдущий ★2.5+.
+ *   • Урок 2..8  — открыт если предыдущий прошёл порог (см. ниже).
  *   • Урок 9     — открыт ТОЛЬКО если сдан зачёт A1 (`level_exam_A1_passed='1'`).
  *   • Урок 10..18 — открыт если предыдущий ★2.5+ И урок 9 открыт.
  *   • Урок 19    — открыт если сдан зачёт A2.
@@ -490,8 +566,14 @@ export const recomputeEarnedUnlocks = async (studyTarget?: RuntimeStudyTarget): 
  *   • НЕ учитывает tester_no_limits / DEV_MODE (это runtime override).
  *   • НЕ учитывает had_premium_ever (после lapse премиума урок 19 закрывается).
  *
- * Также проставляет минимальный best_score=2.5 предыдущему уроку, если он 0,
+ * Также проставляет минимальный best_score предыдущему уроку, если он ниже,
  * чтобы новая UI-формула в (tabs)/lessons.tsx не закрывала уже открытые уроки.
+ *
+ * зачем (D121): починка ВОССТАНАВЛИВАЕТ открытое раньше, поэтому считает по
+ * СТАРОМУ порогу (LEGACY_LESSON_UNLOCK_SCORE = 40%), а не по новому 60%.
+ * Иначе первый запуск после восстановления из облака переписал бы
+ * unlocked_lessons по 60% и закрыл уроки, открытые по старому правилу.
+ * Grandfathering в previousLessonScoreOpensNext держится ровно на этом списке.
  *
  * Идемпотентно: помечаем флагом `lesson_unlock_repair_v3` и больше не запускаем.
  */
@@ -532,7 +614,7 @@ export const repairLessonUnlocksAfterRestore = async (studyTarget?: RuntimeStudy
       if      (num === 9)  u[i] = a1Passed;
       else if (num === 19) u[i] = a2Passed;
       else if (num === 29) u[i] = b1Passed;
-      else                 u[i] = u[i - 1] && scores[i - 1] >= BRONZE_UNLOCK_SCORE;
+      else                 u[i] = u[i - 1] && scores[i - 1] >= LEGACY_LESSON_UNLOCK_SCORE;
     }
     const earned = u.reduce<number[]>((acc, ok, i) => {
       if (ok) acc.push(i + 1);
@@ -554,8 +636,8 @@ export const repairLessonUnlocksAfterRestore = async (studyTarget?: RuntimeStudy
         map[lessonBestScoreKey(prevId, studyTarget)],
         map[lessonProgressKey(prevId, studyTarget)],
       );
-      if (score < BRONZE_UNLOCK_SCORE) {
-        fixes.push([lessonBestScoreKey(prevId, studyTarget), String(BRONZE_UNLOCK_SCORE)]);
+      if (score < LEGACY_LESSON_UNLOCK_SCORE) {
+        fixes.push([lessonBestScoreKey(prevId, studyTarget), String(LEGACY_LESSON_UNLOCK_SCORE)]);
       }
     }
     if (fixes.length > 0) {
@@ -582,7 +664,7 @@ export const isLingmanExamAvailable = async (studyTarget?: RuntimeStudyTarget): 
         lessonMap[lessonBestScoreKey(i, studyTarget)],
         lessonMap[lessonProgressKey(i, studyTarget)],
       );
-      if (score < 5.0) return false;
+      if (!lessonScoreMeetsPercent(score, LINGMAN_EXAM_UNLOCK_LESSON_PERCENT)) return false;
     }
 
     const examKeys = ['A1', 'A2', 'B1', 'B2'].map(lvl => levelExamKey(lvl, 'passed', studyTarget));

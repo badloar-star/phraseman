@@ -68,8 +68,8 @@ describe('isLessonUnlocked', () => {
 // ─── tryUnlockNextLesson ──────────────────────────────────────────────────────
 
 describe('tryUnlockNextLesson', () => {
-  it('score >= 2.5 открывает следующий урок', async () => {
-    const result = await tryUnlockNextLesson(1, 2.5);
+  it('score >= 3 (2★ = 60%, D121) открывает следующий урок', async () => {
+    const result = await tryUnlockNextLesson(1, 3);
     expect(result).toBe(true);
     expect(await isLessonUnlocked(2)).toBe(true);
   });
@@ -103,13 +103,13 @@ describe('tryUnlockNextLesson', () => {
     expect(await isLessonUnlocked(6)).toBe(true);
   });
 
-  it('score = 2.5 (бронза минимум) открывает следующий урок внутри уровня', async () => {
-    await tryUnlockNextLesson(7, 2.5, undefined, true);
+  it('score = 3 (2★ минимум, D121) открывает следующий урок внутри уровня', async () => {
+    await tryUnlockNextLesson(7, 3, undefined, true);
     expect(await isLessonUnlocked(8)).toBe(true);
   });
 
-  it('последний урок уровня не открывает следующий уровень по 2.5', async () => {
-    await tryUnlockNextLesson(8, 2.5);
+  it('последний урок уровня не открывает следующий уровень по 2★', async () => {
+    await tryUnlockNextLesson(8, 3);
     expect(await isLessonUnlocked(9)).toBe(false);
 
     await tryUnlockNextLesson(18, 5.0);
@@ -144,10 +144,10 @@ describe('isLessonUnlockedByEarnedProgress', () => {
   });
 
   it('бронза открывает следующий бесплатный урок по одному', async () => {
-    store.lesson1_best_score = '2.5';
+    store.lesson1_best_score = '3';
     expect(await isLessonUnlockedByEarnedProgress(2)).toBe(true);
     expect(await isLessonUnlockedByEarnedProgress(3)).toBe(false);
-    store.lesson2_best_score = '2.5';
+    store.lesson2_best_score = '3';
     expect(await isLessonUnlockedByEarnedProgress(3)).toBe(true);
   });
 
@@ -161,6 +161,36 @@ describe('isLessonUnlockedByEarnedProgress', () => {
     store.lesson3_best_score = '5';
     store.lesson4_best_score = '5';
     expect(await isLessonUnlockedByEarnedProgress(4)).toBe(false);
+  });
+
+  // D121: 2★ = 60%; урок, открытый по старому порогу (≥40%) и сохранённый, не закрывается.
+  it('D121: уже открытый по старому порогу урок 2 не закрывается, новый — нет', async () => {
+    store.lesson1_best_score = '2.5';
+    expect(await isLessonUnlockedByEarnedProgress(2)).toBe(false);
+    await unlockLesson(2);
+    expect(await isLessonUnlockedByEarnedProgress(2)).toBe(true);
+  });
+
+  it('D121: repair после восстановления считает по старому порогу и ничего не закрывает', async () => {
+    store.lesson1_best_score = '2.5';
+    store.lesson2_best_score = '2';
+    await repairLessonUnlocksAfterRestore();
+    expect(await isLessonUnlocked(2)).toBe(true);
+    expect(await isLessonUnlocked(3)).toBe(true);
+    expect(await isLessonUnlockedByEarnedProgress(3)).toBe(true);
+  });
+
+  it('D121: истечение Plus не стирает запись об открытом уроке 2', async () => {
+    store.lesson1_best_score = '2.5';
+    await unlockLesson(2);
+    await recomputeEarnedUnlocks();
+    expect(await isLessonUnlockedByEarnedProgress(2)).toBe(true);
+  });
+
+  it('D122: legacy-потолок 6 открывает уроки 4–6 без Plus, но не 7', async () => {
+    store.legacy_free_lesson_cap_v1 = '6';
+    expect(await isLessonUnlockedByEarnedProgress(6)).toBe(true);
+    expect(await isLessonUnlockedByEarnedProgress(7)).toBe(false);
   });
 
   it('точная жемчужная покупка открывает урок после окончания Plus', async () => {
@@ -213,12 +243,12 @@ describe('getLessonLockInfo', () => {
     const info = await getLessonLockInfo(4);
     expect(info.isUnlocked).toBe(false);
     expect(info.prevLessonId).toBe(3);
-    expect(info.requiredScore).toBe(2); // зачем: D71 — порог открытия 2 звезды
+    expect(info.requiredScore).toBe(3); // зачем: D121 — порог открытия 2★ = 60% = оценка 3
   });
 
   it('урок 2 закрыт без бронзы и открывается с ней', async () => {
     expect((await getLessonLockInfo(2)).isUnlocked).toBe(false);
-    store.lesson1_best_score = '2.5';
+    store.lesson1_best_score = '3';
     expect((await getLessonLockInfo(2)).isUnlocked).toBe(true);
   });
 });
@@ -240,14 +270,14 @@ describe('getLockMessageText', () => {
     const info = await getLessonLockInfo(7);
     const text = getLockMessageText(info, 'es');
     expect(text).toContain('6');
-    expect(text).toMatch(/al menos 2 /); // зачем: D71 — порог 2
+    expect(text).toMatch(/con 2★/); // зачем: D121 — порог называется звёздами, как в списке уроков
   });
 });
 
 // ─── Сценарные тесты ──────────────────────────────────────────────────────────
 
 describe('Полный сценарий прохождения уровня A1', () => {
-  it('уроки 1-8 открываются последовательно при score >= 2.5', async () => {
+  it('уроки 1-8 открываются последовательно при score >= 3 (2★)', async () => {
     // Урок 1 открыт по умолчанию
     expect(await isLessonUnlocked(1)).toBe(true);
 
@@ -286,12 +316,12 @@ describe('Premium-доступ по последовательному прог�
   });
 
   it('у Plus урок 2 открывается бронзой на первом', async () => {
-    store.lesson1_best_score = '2.5';
+    store.lesson1_best_score = '3';
     expect(await isLessonUnlockedByPremiumCourse(2)).toBe(true);
   });
 
   it('бронза на предыдущем уроке открывает следующий Plus-урок', async () => {
-    store.lesson9_best_score = '2.5';
+    store.lesson9_best_score = '3';
     expect(await isLessonUnlockedByPremiumCourse(10)).toBe(true);
     expect(await isLessonUnlockedByPremiumCourse(11)).toBe(false);
   });
@@ -341,7 +371,7 @@ describe('Граничные случаи', () => {
   });
 
   it('Plus после урока 3 записывает и анонсирует unlock урока 4', async () => {
-    const result = await tryUnlockNextLesson(3, 2.5, undefined, true);
+    const result = await tryUnlockNextLesson(3, 3, undefined, true);
     expect(result).toBe(true);
     expect(canUnlockNextLessonAfterCompletion(3, true)).toBe(true);
     expect(shouldAnnounceNextLessonUnlock(3, result, true)).toBe(true);

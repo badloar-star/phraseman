@@ -66,8 +66,8 @@ describe('owner 2026-09-20: Free получает 3 урока, дальше н�
     }
   });
 
-  it('бронза ★2.5 на первом уроке открывает второй без Plus', async () => {
-    await AsyncStorage.setItem(lessonBestScoreKey(1), '2.5');
+  it('2★ (D121: 60% = оценка 3) на первом уроке открывает второй без Plus', async () => {
+    await AsyncStorage.setItem(lessonBestScoreKey(1), '3');
     expect(await isLessonUnlockedByEarnedProgress(2)).toBe(true);
     expect(await resolveLessonRuntimeGate(2)).toBe('available');
     // Урок 3 всё ещё закрыт — покупка/бронза открывают РОВНО один урок.

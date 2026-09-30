@@ -42,6 +42,7 @@ import {
   // getLockMessageText больше не нужен: его читал удалённый модал блокировки
   // этого экрана. Причину замка теперь называет модал в списке уроков.
   isLessonUnlockedByPremiumCourse,
+  isLessonUnlocked,
 } from './lesson_lock_system';
 import { effectiveLessonStarScore } from './lesson_star_score';
 import { perfScreenMount } from './perf-monitor';
@@ -51,10 +52,10 @@ import { isLessonFinishedOnce } from './mastery';
 import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from './premium_guard';
 import { isAlwaysOpenLesson } from './main_course_access';
 import {
-  BRONZE_UNLOCK_SCORE,
   lessonPaywallContext,
   requiresPremiumForLesson,
 } from './monetization_policy';
+import { lessonStarCountFromPercent, previousLessonScoreOpensNext } from './lesson_star_scale';
 import { lessonPurchaseContinuationParams } from './paywall_lesson_continuation';
 // getPreviousCourseLevel больше не нужен: его читала удалённая заглушка «Ещё рано».
 import { getCourseLevelForLesson } from './course_levels';
@@ -119,12 +120,10 @@ function lessonMenuCacheKey(lessonId: number, studyTarget?: RuntimeStudyTarget):
 
 const emptyProgress = () => new Array(50).fill('empty');
 
-/** D36: 1★ below 60%, 2★ from 60–84%, 3★ from 85%. */
+/** D36/D121: 1★ below 60%, 2★ from 60–84%, 3★ from 85% — one shared scale. */
 export function lessonMenuStarCountFromPercent(scorePercent: number): 0 | 1 | 2 | 3 {
-  if (!Number.isFinite(scorePercent) || scorePercent < 0 || scorePercent > 100) return 0;
-  if (scorePercent >= 85) return 3;
-  if (scorePercent >= 60) return 2;
-  return 1;
+  // зачем (D121): порог открытия урока и 2★ обязаны быть одним числом — берём шкалу из общего модуля.
+  return lessonStarCountFromPercent(scorePercent);
 }
 
 /** Project the canonical persisted 0…5 lesson score through the D36 percent scale. */
@@ -602,8 +601,10 @@ function LessonMenu() {
             prevScore = effectiveLessonStarScore(prevBestRaw, savedProg).score;
           }
 
-          // зачем (D71, владелец 30.09): следующий урок открывается от 2★, порог — одна константа ядра.
-          if (prevScore >= BRONZE_UNLOCK_SCORE) {
+          // зачем (D121, владелец 30.09): следующий урок открывается от 2★ = 60%; уже
+          // открытый по старому порогу (в unlocked_lessons) не закрываем — общий помощник.
+          const alreadyPersisted = await isLessonUnlocked(lessonId, studyTarget);
+          if (previousLessonScoreOpensNext(prevScore, alreadyPersisted)) {
             const { unlockLesson } = await import('./lesson_lock_system');
             await unlockLesson(lessonId, studyTarget);
             unlocked = true;

@@ -79,15 +79,15 @@ describe('unlockLesson', () => {
 });
 
 describe('tryUnlockNextLesson', () => {
-  it('unlocks next lesson when score >= 2.5', async () => {
+  it('unlocks next lesson when score >= 3 (2★ = 60%, D121)', async () => {
     mockGetItem.mockResolvedValue(null); // next lesson not unlocked yet
     const result = await tryUnlockNextLesson(5, 3.0, undefined, true);
     expect(result).toBe(true);
     expect(mockSetItem).toHaveBeenCalled();
   });
 
-  it('does not unlock when score < 2 (D71)', async () => {
-    const result = await tryUnlockNextLesson(5, 1.9, undefined, true);
+  it('does not unlock when score < 3 (D121: 2.9 = 58%)', async () => {
+    const result = await tryUnlockNextLesson(5, 2.9, undefined, true);
     expect(result).toBe(false);
     expect(mockSetItem).not.toHaveBeenCalled();
   });
@@ -103,9 +103,9 @@ describe('tryUnlockNextLesson', () => {
     expect(result).toBe(false);
   });
 
-  it('unlocks with minimum passing score 2.5', async () => {
+  it('unlocks with minimum passing score 3 (D121)', async () => {
     mockGetItem.mockResolvedValue(null);
-    const result = await tryUnlockNextLesson(1, 2.5);
+    const result = await tryUnlockNextLesson(1, 3);
     expect(result).toBe(true);
   });
 });
@@ -116,7 +116,7 @@ describe('getLessonLockInfo', () => {
     const info = await getLessonLockInfo(5);
     expect(info.isUnlocked).toBe(false);
     expect(info.prevLessonId).toBe(4);
-    expect(info.requiredScore).toBe(2); // зачем: D71 — порог открытия 2 звезды
+    expect(info.requiredScore).toBe(3); // зачем: D121 — порог открытия 2★ = 60% = оценка 3
   });
 });
 
@@ -131,7 +131,7 @@ describe('getLockMessageText', () => {
   it('returns Ukrainian message', () => {
     const msg = getLockMessageText(info, 'uk');
     expect(msg).toContain('3');
-    expect(msg).toContain('>= 2,');
+    expect(msg).toContain('на 2★'); // зачем: D121 — порог называется звёздами
   });
 });
 

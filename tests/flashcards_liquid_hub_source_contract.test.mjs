@@ -19,7 +19,7 @@ const DEPENDENCY_HASHES = {
   'app/community_packs/packAuthorNames.ts': '101a068d8ec4e6fe9bc1dfb430c6da9695458b59391d7bf18012932ad7e70c45',
   'app/community_packs/localAuthorPacks.ts': '0e29c9c4020533521ea6aaab723579163de4f919d5b94c91f808fb7543b47147',
   'app/community_packs/CommunityPackSocialBar.tsx': 'c05a2d6665d8f9b5a68d773f047c77cf8b1daa8c380e63daef4f525de87972cc',
-  'constants/liquidGlassThemePalette.ts': 'f68c0b49811df11b752f34a0b524e4bcbecf17b355b19877137df2ad25dca99f',
+  'constants/liquidGlassThemePalette.ts': '310804f71c92049bca92e155b2e16d2f25e77dc18e1d699ad9925b66c88b9b5d',
   'app/flashcards/packMarketplaceIcons.ts': '4d7d168a867514b096dc3a5541503db4759e68a2359020cb02cf695316f78b11',
   'hooks/useFlashcardTrainingQuotaPreview.ts': 'c4b61412f1e7530bf202e6c1f5053007875f763e28f12a18aebc27424bf6f0aa',
   'app/flashcards/training_entry.ts': '7bae7128ede11dfce800bb0f9f22f5d9a61ba195009346fb98a7b24b3c9d9a85',
@@ -89,12 +89,22 @@ function byId(tree, testID) {
   return node;
 }
 
-function actualThemeRegistry() {
-  const source = readFileSync(join(process.cwd(), 'constants', 'liquidGlassThemePalette.ts'), 'utf8');
+// зачем (темы 2.0): палитра импортирует соседние модули constants/ (цветовые помощники,
+// уровни цвета) — загружаем их тем же транспилятором, остальное (типы) — пустой объект.
+function loadConstantsModule(name, cache = new Map()) {
+  if (cache.has(name)) return cache.get(name);
+  const source = readFileSync(join(process.cwd(), 'constants', `${name}.ts`), 'utf8');
   const code = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText;
   const module = { exports: {} };
-  new Function('require', 'module', 'exports', code)(() => ({}), module, module.exports);
+  cache.set(name, module.exports);
+  const localRequire = (id) => (/^\.\/liquidGlass/.test(id) ? loadConstantsModule(id.slice(2), cache) : {});
+  new Function('require', 'module', 'exports', code)(localRequire, module, module.exports);
+  cache.set(name, module.exports);
   return module.exports;
+}
+
+function actualThemeRegistry() {
+  return loadConstantsModule('liquidGlassThemePalette');
 }
 
 function createRenderHarness(source, expose, { themeId = 'graphite' } = {}) {
@@ -708,10 +718,7 @@ test('hub, community rows and training sheet follow all live Plus themes', () =>
 });
 
 test('approved graphite, lavender and marine tokens remain distinct materials', () => {
-  const source = readFileSync(join(process.cwd(), 'constants', 'liquidGlassThemePalette.ts'), 'utf8');
-  const code = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS } }).outputText;
-  const exports = {};
-  new Function('exports', code)(exports);
+  const exports = loadConstantsModule('liquidGlassThemePalette');
   const [graphite, lavender, marine] = ['graphite', 'lavender', 'marine'].map(exports.liquidGlassTokens);
   assert.equal(new Set([graphite.card, lavender.card, marine.card]).size, 3);
   assert.equal(new Set([graphite.bg, lavender.bg, marine.bg]).size, 3);

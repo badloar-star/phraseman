@@ -161,3 +161,10 @@ test('the active variant drives argument-less lookups (ThemeProvider registers i
   }
   assert.equal(liquidGlassTokens('graphite').bg, '#0C0D10');
 });
+
+test('a non-variant second argument (Array.map index) resolves to the active variant', () => {
+  const [a, b] = ['graphite', 'marine'].map(liquidGlassTokens);
+  assert.equal(a, liquidGlassTokens('graphite'));
+  assert.equal(b, liquidGlassTokens('marine'));
+  assert.equal(liquidGlassTokens('marine', { level: 'bogus', appearance: 'sepia' }), liquidGlassTokens('marine'));
+});

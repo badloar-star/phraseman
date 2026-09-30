@@ -3,6 +3,8 @@ import { alpha, oklchToHex } from './liquidGlassColor';
 import {
   DEFAULT_LIQUID_GLASS_VARIANT,
   buildLiquidGlassVariant,
+  resolveLiquidGlassAppearance,
+  resolveLiquidGlassColorLevel,
   type LiquidGlassAccentRoles,
   type LiquidGlassBaseTokens,
   type LiquidGlassVariant,
@@ -85,7 +87,12 @@ export function getActiveLiquidGlassVariant(): LiquidGlassVariant {
 }
 
 /** Unknown or retired names safely return graphite. Without `variant` the active one is used. */
-export function liquidGlassTokens(id: unknown, variant: LiquidGlassVariant = activeVariant): GlassTokens {
+export function liquidGlassTokens(id: unknown, requested: LiquidGlassVariant = activeVariant): GlassTokens {
+  // зачем: вызов вида ids.map(liquidGlassTokens) передаёт индекс вторым аргументом —
+  // всё, что не вариант, трактуем как активный вариант, а не как «неизвестный уровень».
+  const variant = requested && typeof requested === 'object'
+    ? { level: resolveLiquidGlassColorLevel(requested.level), appearance: resolveLiquidGlassAppearance(requested.appearance) }
+    : activeVariant;
   const themeId: LiquidGlassThemeId = typeof id === 'string' && Object.prototype.hasOwnProperty.call(TOKEN_REGISTRY, id)
     ? id as LiquidGlassThemeId
     : 'graphite';

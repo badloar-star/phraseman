@@ -4,11 +4,16 @@ import TapScale from '../components/TapScale';
 import { isLightThemeMode } from '../constants/theme';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { View, Text, TouchableOpacity, Modal, Pressable, ScrollView, StyleSheet, InteractionManager, Animated } from 'react-native';
-import { Image } from 'expo-image';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { V2IconButton, V2InfoCard, V2Row, V2ScreenHeader } from '../components/v2/V2Kit';
-import { useV2Palette } from '../components/v2/useV2Palette';
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import {
+  LessonMenuHeader,
+  LessonMenuRoundButton,
+  LessonMenuRow,
+  LessonMenuSummary,
+  LessonMenuTip,
+} from '../components/lessons/LessonMenuGlass';
 import { V2 } from '../constants/v2Style';
 import { useRouter, useLocalSearchParams, useFocusEffect } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -28,11 +33,9 @@ import { hapticTap } from '../hooks/use-haptics';
 import fk from './feedback/feedback_kit';
 import { LESSONS_WITH_WORDS, WORD_COUNT_BY_LESSON, WORD_KEYS_BY_LESSON } from './lesson_words';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
-import { withOptionalPersonalPlanSunsetGuard } from '../components/personal_plan_sunset_guard';
 import { LESSONS_WITH_IRREGULAR_VERBS, IRREGULAR_VERB_COUNT_BY_LESSON, IRREGULAR_VERBS_BY_LESSON } from './irregular_verbs_data';
 import { getLessonPrepositionPack, hasLessonPrepositionDrillForTarget } from './lesson_prepositions';
 import CircularProgress from '../components/CircularProgress';
-import { getMedalTier, loadMedalInfo, getEarnedDots } from './medal_utils';
 import {
   isLessonUnlockedByEarnedProgress,
   getLessonLockInfo,
@@ -56,6 +59,7 @@ import { lessonPurchaseContinuationParams } from './paywall_lesson_continuation'
 import { getCourseLevelForLesson } from './course_levels';
 import { getLessonScreenPrimed, primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import GoldBevel from '../components/GoldBevel';
 import { lessonCefrLabelForStudyTarget, lessonNamesForStudyTarget } from './lesson_titles_for_study_target';
 import { frenchLessonRuntimeAvailableForTarget } from './french_content_source_gate';
@@ -70,28 +74,18 @@ import {
   lastOpenedLessonKey,
   irregularVerbsGlobalKey,
   lessonBestScoreKey,
-  lessonPassCountKey,
   lessonPrepositionProgressKey,
   lessonProgressKey,
   lessonTheorySectionsSeenKey,
-  lessonTheoryXpClaimedKey,
   lessonWordsKey,
   storageStudyTarget,
   type RuntimeStudyTarget,
 } from './target_storage_keys';
 import { DebugLogger } from './debug-logger';
 
-// Medal images
-const MEDAL_IMAGES: Record<string, any> = {
-  bronze:  require('../assets/images/levels/bronza.webp'),
-  silver:  require('../assets/images/levels/serebro.webp'),
-  gold:    require('../assets/images/levels/zoloto.webp'),
-  ruby:    require('../assets/images/levels/rubin.webp'),
-  emerald: require('../assets/images/levels/izumrud.webp'),
-  diamond: require('../assets/images/levels/almaz.webp'),
-};
 type LessonMenuCache = {
   score: number;
+  scoreKnown: boolean;
   progress: number;
   progressArr: string[];
   wordsLearned: number;
@@ -99,7 +93,6 @@ type LessonMenuCache = {
   prepositionAnswered: number;
   prepositionTotal: number;
   theoryProgressPct: number;
-  passCount: number;
 };
 
 const lessonMenuCacheById: Record<string, LessonMenuCache> = {};
@@ -124,6 +117,26 @@ function lessonMenuCacheKey(lessonId: number, studyTarget?: RuntimeStudyTarget):
 }
 
 const emptyProgress = () => new Array(50).fill('empty');
+
+/** D36: 1★ below 60%, 2★ from 60–84%, 3★ from 85%. */
+export function lessonMenuStarCountFromPercent(scorePercent: number): 0 | 1 | 2 | 3 {
+  if (!Number.isFinite(scorePercent) || scorePercent < 0 || scorePercent > 100) return 0;
+  if (scorePercent >= 85) return 3;
+  if (scorePercent >= 60) return 2;
+  return 1;
+}
+
+/** Project the canonical persisted 0…5 lesson score through the D36 percent scale. */
+export function lessonMenuStarCount(score: number): 0 | 1 | 2 | 3 {
+  if (!Number.isFinite(score) || score < 0 || score > 5) return 0;
+  return lessonMenuStarCountFromPercent(score * 20);
+}
+
+function parseStoredLessonScore(raw: string | null | undefined): number | null {
+  if (raw === null || raw === undefined || raw.trim() === '') return null;
+  const parsed = Number(raw);
+  return Number.isFinite(parsed) && parsed >= 0 && parsed <= 5 ? parsed : null;
+}
 
 function countAnsweredProgress(progressArr: string[]): number {
   return progressArr.filter(x => x === 'correct' || x === 'replay_correct' || x === 'wrong').length;
@@ -172,7 +185,8 @@ function freshestProgressRaw(
 function parseProgress(
   progressRaw: string | null,
   bestScoreRaw?: string | null,
-): Pick<LessonMenuCache, 'score' | 'progress' | 'progressArr'> {
+): Pick<LessonMenuCache, 'score' | 'scoreKnown' | 'progress' | 'progressArr'> {
+  const storedScore = parseStoredLessonScore(bestScoreRaw);
   try {
     if (progressRaw) {
       const progressArr: string[] = JSON.parse(progressRaw);
@@ -180,6 +194,7 @@ function parseProgress(
       const { score, correctCount } = effectiveLessonStarScore(bestScoreRaw, progressRaw);
       return {
         score,
+        scoreKnown: storedScore !== null || countAnsweredProgress(progressArr) > 0,
         progress: Math.min(correctCount, denominator),
         progressArr: progressArr.length === 50 ? progressArr : emptyProgress(),
       };
@@ -188,8 +203,12 @@ function parseProgress(
       // keep defaults
       DebugLogger.error('lesson_menu:denominator', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
-  const bestScore = parseFloat(bestScoreRaw ?? '0') || 0;
-  return { score: bestScore, progress: 0, progressArr: emptyProgress() };
+  return {
+    score: storedScore ?? 0,
+    scoreKnown: storedScore !== null,
+    progress: 0,
+    progressArr: emptyProgress(),
+  };
 }
 
 function parseWordsLearned(lessonId: number, wordsRaw: string | null): number {
@@ -235,8 +254,7 @@ function parsePrepositionAnswered(
   }
 }
 
-function parseTheoryMenuProgress(progressRaw: string | null, claimedRaw: string | null): number {
-  const claimed = claimedRaw === '1' || claimedRaw === 'true';
+function parseTheoryMenuProgress(progressRaw: string | null): number {
   const seenProgress = parseTheorySeenProgress(progressRaw);
   if (seenProgress.total > 0 || seenProgress.drillTotal > 0) {
     return theoryOverallProgressPct(
@@ -246,7 +264,7 @@ function parseTheoryMenuProgress(progressRaw: string | null, claimedRaw: string 
       seenProgress.drillTotal,
     );
   }
-  return claimed ? 100 : 0;
+  return 0;
 }
 
 export async function prefetchLessonMenuCache(
@@ -260,19 +278,14 @@ export async function prefetchLessonMenuCache(
     const wordsKey = lessonWordsKey(id, studyTarget);
     const irregularKey = irregularVerbsGlobalKey(studyTarget);
     const prepositionProgressKey = lessonPrepositionProgressKey(id, studyTarget);
-    const theoryClaimedKey = lessonTheoryXpClaimedKey(id, studyTarget);
     const theorySectionsKey = lessonTheorySectionsSeenKey(id, studyTarget);
-    const [entries, medalInfo] = await Promise.all([
-      AsyncStorage.multiGet([
-        progressKey,
-        bestScoreKey,
-        wordsKey,
-        irregularKey,
-        prepositionProgressKey,
-        theoryClaimedKey,
-        theorySectionsKey,
-      ]),
-      loadMedalInfo(id, studyTarget),
+    const entries = await AsyncStorage.multiGet([
+      progressKey,
+      bestScoreKey,
+      wordsKey,
+      irregularKey,
+      prepositionProgressKey,
+      theorySectionsKey,
     ]);
     const map = Object.fromEntries(entries) as Record<string, string | null>;
     const prep = parsePrepositionAnswered(id, map[prepositionProgressKey] ?? null, studyTarget);
@@ -282,8 +295,7 @@ export async function prefetchLessonMenuCache(
       irregularLearned: parseIrregularLearned(id, map[irregularKey] ?? null),
       prepositionAnswered: prep.answered,
       prepositionTotal: prep.total,
-      theoryProgressPct: parseTheoryMenuProgress(map[theorySectionsKey] ?? null, map[theoryClaimedKey] ?? null),
-      passCount: medalInfo.passCount,
+      theoryProgressPct: parseTheoryMenuProgress(map[theorySectionsKey] ?? null),
     };
   } catch (e) {
       // prefetch should never block navigation
@@ -297,7 +309,9 @@ export async function prefetchLessonMenuCache(
 function LessonMenu() {
   useEffect(() => { perfScreenMount('lesson_menu'); }, []);
   const router = useRouter();
-  const { theme:t, f, themeMode } = useTheme();
+  const { theme:t, f, themeMode, liquidGlassThemeId } = useTheme();
+  const lessonMenuGlass = liquidGlassTokens(liquidGlassThemeId);
+  const insets = useStableSafeAreaInsets();
   const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onBouncyScroll } = useBouncy();
   const bouncyStyle = useBouncyStyle(bouncyStretch);
   // зачем: стаб isLightTheme=false оставлял sagePorcelain средне-насыщенные
@@ -370,7 +384,6 @@ function LessonMenu() {
 });
   const lessonName = lessonNames[lessonId - 1] || defaultLessonTitle;
   const lessonCefrLabel = lessonCefrLabelForStudyTarget(lessonId, studyTarget);
-  const v2p = useV2Palette();
   const cachedMenu = lessonMenuCacheById[lessonMenuCacheKey(lessonId, studyTarget)];
   const frenchAuxiliarySourceGated = storageStudyTarget(studyTarget) === 'fr';
   const frenchLessonSourceGated = !frenchLessonRuntimeAvailableForTarget(studyTarget, lessonId);
@@ -380,15 +393,15 @@ function LessonMenu() {
   const prepositionSourceGated = frenchAuxiliarySourceGated && englishHasPrepositionDrill && !targetHasPrepositionDrill;
 
   const [score,setScore] = useState(cachedMenu?.score ?? 0);
+  const [scoreKnown, setScoreKnown] = useState(cachedMenu?.scoreKnown ?? false);
   const [progress,setProgress] = useState(cachedMenu?.progress ?? 0);
   const [, setProgressArr] = useState<string[]>(cachedMenu?.progressArr ?? emptyProgress());
   const [wordsLearned, setWordsLearned] = useState(cachedMenu?.wordsLearned ?? 0);
   const [irregularLearned, setIrregularLearned] = useState(cachedMenu?.irregularLearned ?? 0);
   const [prepositionAnswered, setPrepositionAnswered] = useState(cachedMenu?.prepositionAnswered ?? 0);
   const [prepositionTotal, setPrepositionTotal] = useState(cachedMenu?.prepositionTotal ?? 0);
-  // Кольцо теории отражает открытые разделы; старый XP-флаг нужен только как fallback.
+  // Кольцо теории отражает открытые разделы и выполненные задания.
   const [theoryProgressPct, setTheoryProgressPct] = useState(cachedMenu?.theoryProgressPct ?? 0);
-  const [passCount, setPassCount] = useState(cachedMenu?.passCount ?? 0);
   const [dataLoaded, setDataLoaded] = useState(Boolean(cachedMenu));
   const [soonOpen, setSoonOpen] = useState<null | 'frenchLesson' | 'frenchTheory' | 'vocab' | 'verbs' | 'prepositions'>(null);
 
@@ -625,7 +638,6 @@ function LessonMenu() {
     const wordsKey = lessonWordsKey(lessonId, studyTarget);
     const irregularKey = irregularVerbsGlobalKey(studyTarget);
     const prepositionProgressKey = lessonPrepositionProgressKey(lessonId, studyTarget);
-    const theoryClaimedKey = lessonTheoryXpClaimedKey(lessonId, studyTarget);
     const theorySectionsKey = lessonTheorySectionsSeenKey(lessonId, studyTarget);
     AsyncStorage.multiGet([
       progressKey,
@@ -645,16 +657,20 @@ function LessonMenu() {
           const denominator = Math.min(p.length, 50);
           const { score: effectiveScore, correctCount } = effectiveLessonStarScore(bestRaw, saved);
           setScore(effectiveScore);
+          setScoreKnown(parseStoredLessonScore(bestRaw) !== null || countAnsweredProgress(p) > 0);
           setProgress(Math.min(correctCount, denominator));
           setProgressArrQuiet(p.length === 50 ? p : emptyProgress());
         } else {
-          setScore(parseFloat(bestRaw ?? '0') || 0); setProgress(0);
+          const storedScore = parseStoredLessonScore(bestRaw);
+          setScore(storedScore ?? 0); setScoreKnown(storedScore !== null); setProgress(0);
           setProgressArrQuiet(emptyProgress());
         }
-      } catch { setScore(parseFloat(bestRaw ?? '0') || 0); setProgress(0); setProgressArrQuiet(emptyProgress()); }
+      } catch {
+        const storedScore = parseStoredLessonScore(bestRaw);
+        setScore(storedScore ?? 0); setScoreKnown(storedScore !== null); setProgress(0); setProgressArrQuiet(emptyProgress());
+      }
       setDataLoaded(true);
     });
-    loadMedalInfo(lessonId, studyTarget).then(info => setPassCount(info.passCount));
     AsyncStorage.getItem(wordsKey).then(saved => {
       try {
         if (!saved) { setWordsLearned(0); return; }
@@ -693,10 +709,9 @@ function LessonMenu() {
       setPrepositionAnswered(prep.answered);
       setPrepositionTotal(prep.total);
     });
-    AsyncStorage.multiGet([theoryClaimedKey, theorySectionsKey])
-      .then(entries => {
-        const map = Object.fromEntries(entries) as Record<string, string | null>;
-        setTheoryProgressPct(parseTheoryMenuProgress(map[theorySectionsKey] ?? null, map[theoryClaimedKey] ?? null));
+    AsyncStorage.getItem(theorySectionsKey)
+      .then(progressRaw => {
+        setTheoryProgressPct(parseTheoryMenuProgress(progressRaw));
       })
       .catch(() => setTheoryProgressPct(0));
   }, [lessonId, studyTarget]);
@@ -710,6 +725,7 @@ function LessonMenu() {
     const warm = lessonMenuCacheById[lessonMenuCacheKey(lessonId, studyTarget)];
     if (warm) {
       setScore(warm.score);
+      setScoreKnown(warm.scoreKnown);
       setProgress(warm.progress);
       setProgressArr(warm.progressArr);
       setWordsLearned(warm.wordsLearned);
@@ -717,9 +733,9 @@ function LessonMenu() {
       setPrepositionAnswered(warm.prepositionAnswered);
       setPrepositionTotal(warm.prepositionTotal);
       setTheoryProgressPct(warm.theoryProgressPct);
-      setPassCount(warm.passCount);
       setDataLoaded(true);
     } else {
+      setScoreKnown(false);
       setDataLoaded(false);
     }
   }, [lessonId, studyTarget]);
@@ -838,9 +854,9 @@ function LessonMenu() {
   pl: 'Ta lekcja jest w przygotowaniu. Wkrótce będzie dostępna.',
 })
         : showReplayCta
-        ? `${progress} / 50  ★ ${score.toFixed(1)}`
+        ? `${progress} / 50  ·  ${lessonMenuStarCount(score)} / 3 ★`
         : isStarted
-          ? `${progress} / 50  ★ ${score.toFixed(1)}`
+          ? `${progress} / 50  ·  ${lessonMenuStarCount(score)} / 3 ★`
           : '',
       icon: frenchLessonSourceGated
         ? 'shield-checkmark-outline'
@@ -1156,15 +1172,21 @@ function LessonMenu() {
   // источник «прыжков» при входе в урок). Разметка не зависит от uiReady: имя урока,
   // плитки и хедер известны синхронно, поэтому рисуем финальный кадр сразу.
   // зачем (2.0, владелец 24.09): меню урока в новом стиле — ТОЛЬКО прежнее
-  // содержимое (номер урока с уровнем, название, медали и счёт, пункты, подсказка),
+  // содержимое (номер урока с уровнем, название, прогресс и звёзды, пункты, подсказка),
   // ничего нового из референсов не добавлено. Логика пунктов (menuItems) не тронута.
   return (
-    <ScreenGradient>
-    <SafeAreaView style={{ flex: 1 }} edges={['top', 'left', 'right']}>
+    <ScreenGradient forceFullBleed>
+    <LinearGradient
+      pointerEvents="none"
+      colors={[lessonMenuGlass.bgTop, lessonMenuGlass.bg, lessonMenuGlass.bgBottom]}
+      style={StyleSheet.absoluteFill}
+    />
+    <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top', 'left', 'right']}>
       <ContentWrap>
       <Reanimated.View style={[{ flex: 1 }, bouncyStyle]}>
       <View style={{ paddingHorizontal: V2.screenPad, paddingTop: 6, paddingBottom: 8 }}>
-        <V2ScreenHeader
+        <LessonMenuHeader
+          glass={lessonMenuGlass}
           testID="lesson-menu"
           title={`${triLang(lang, { ru: 'Урок', uk: 'Урок', en: 'Lesson', es: 'Lección', 'pt-BR': 'Lição', vi: 'Bài', id: 'Pelajaran', tr: 'Ders', pl: 'Lekcja' })} ${lessonId}`}
           subtitle={lessonCefrLabel}
@@ -1176,8 +1198,34 @@ function LessonMenu() {
           backLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
           right={(
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-            <EnergyBar size={30} />
-            <V2IconButton
+            {menuEnergyReady ? (
+              <EnergyBar size={30} />
+            ) : (
+              <View
+                testID="lesson-menu-energy-loading"
+                accessibilityLabel={triLang(lang, {
+                  ru: 'Энергия загружается',
+                  uk: 'Енергія завантажується',
+                  en: 'Energy is loading',
+                  es: 'La energía se está cargando',
+                  'pt-BR': 'A energia está carregando',
+                  vi: 'Đang tải năng lượng',
+                  id: 'Energi sedang dimuat',
+                  tr: 'Enerji yükleniyor',
+                  pl: 'Energia jest ładowana',
+                })}
+                style={{
+                  width: 88,
+                  height: 30,
+                  borderRadius: 15,
+                  borderWidth: 1,
+                  borderColor: lessonMenuGlass.glassEdge,
+                  backgroundColor: lessonMenuGlass.opaqueControl,
+                }}
+              />
+            )}
+            <LessonMenuRoundButton
+              glass={lessonMenuGlass}
               icon="settings-outline"
               testID="lesson-menu-settings"
               accessibilityLabel={triLang(lang, { ru: 'Настройки обучения', uk: 'Налаштування навчання', en: 'Learning settings', es: 'Ajustes de aprendizaje', 'pt-BR': 'Configurações de estudo', vi: 'Cài đặt học', id: 'Pengaturan belajar', tr: 'Öğrenme ayarları', pl: 'Ustawienia nauki' })}
@@ -1189,31 +1237,40 @@ function LessonMenu() {
       </View>
 
       <BouncyWrap>
-      <ScrollView decelerationRate="fast" bounces alwaysBounceVertical overScrollMode="always" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: V2.screenPad, paddingBottom: 32, gap: 14 }} onScroll={onBouncyScroll} scrollEventThrottle={16}>
-        {/* Название урока, медали и счёт — как было, в новом стиле. */}
-        <Text accessibilityRole="header" style={{ color: v2p.text, fontSize: 26, lineHeight: 31, fontWeight: '800', letterSpacing: -0.4, marginTop: 4 }}>{lessonName}</Text>
+      <ScrollView decelerationRate="fast" bounces alwaysBounceVertical overScrollMode="always" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: V2.screenPad, paddingBottom: Math.max(32, insets.bottom + 16), gap: 14 }} onScroll={onBouncyScroll} scrollEventThrottle={16}>
+        {/* Реальный прогресс урока: 0–3 звезды, без старых медалей и десятичной оценки. */}
+        <Text accessibilityRole="header" style={{ color: lessonMenuGlass.text, fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.4, marginTop: 12 }}>{lessonName}</Text>
         {(() => {
-          const earnedDots = getEarnedDots(getMedalTier(score), passCount);
-          if (earnedDots.length === 0 && progress <= 0) return null;
+          if (progress <= 0 && !scoreKnown) return null;
+          const earnedStars = lessonMenuStarCount(score);
           return (
-            <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 8 }}>
-              {earnedDots.map((dot, i) => (
-                <Image key={i} source={MEDAL_IMAGES[dot]} style={{ width: 44, height: 44 }} contentFit="contain" />
-              ))}
-              {progress > 0 ? (
-                <Text style={{ color: v2p.textSecondary, fontSize: 15, fontWeight: '500', marginLeft: 4 }}>{`${progress}/50  ★ ${score.toFixed(1)}`}</Text>
-              ) : null}
-            </View>
+            <LessonMenuSummary
+              glass={lessonMenuGlass}
+              testID="lesson-menu-star-summary"
+              accessibilityLabel={triLang(lang, {
+                ru: `${progress} из 50, ${earnedStars} из 3 звёзд`,
+                uk: `${progress} із 50, ${earnedStars} із 3 зірок`,
+                en: `${progress} of 50, ${earnedStars} of 3 stars`,
+                es: `${progress} de 50, ${earnedStars} de 3 estrellas`,
+                'pt-BR': `${progress} de 50, ${earnedStars} de 3 estrelas`,
+                vi: `${progress} trên 50, ${earnedStars} trên 3 sao`,
+                id: `${progress} dari 50, ${earnedStars} dari 3 bintang`,
+                tr: `50 üzerinden ${progress}, 3 yıldızdan ${earnedStars}`,
+                pl: `${progress} z 50, ${earnedStars} z 3 gwiazdek`,
+              })}
+              progress={progress}
+              earnedStars={earnedStars}
+              showStars={scoreKnown}
+            />
           );
         })()}
 
-        {menuItems.filter(item => !item.hidden).map((item, index) => (
-          <V2Row
+        {menuItems.filter(item => !item.hidden).map(item => (
+          <LessonMenuRow
             key={item.testID}
+            glass={lessonMenuGlass}
             testID={item.testID}
-            seed={index + 1}
             icon={item.icon}
-            iconShape="circle"
             title={item.label}
             subtitle={item.sub || undefined}
             dimmed={item.unavailable}
@@ -1230,11 +1287,11 @@ function LessonMenu() {
         {/* зачем: подсказка перед уроком — «Небольшой совет» референса. */}
         {lessonPrepHintVisible && canShowLessonPrepHint && !isLessonLocked ? (
           <View testID="lesson-menu-prep-hint">
-            <V2InfoCard
+            <LessonMenuTip
+              glass={lessonMenuGlass}
               icon="bulb-outline"
               title={triLang(lang, { ru: 'Небольшой совет', uk: 'Невелика порада', en: 'A quick tip', es: 'Un consejo', 'pt-BR': 'Uma dica', vi: 'Mẹo nhỏ', id: 'Tips singkat', tr: 'Küçük bir ipucu', pl: 'Mała wskazówka' })}
               body={lessonPrepHintText}
-              seed={3}
             />
           </View>
         ) : null}
@@ -1341,4 +1398,4 @@ function LessonMenu() {
   );
 }
 
-export default withOptionalPersonalPlanSunsetGuard(LessonMenu, ['planTask']);
+export default LessonMenu;

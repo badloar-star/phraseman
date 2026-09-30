@@ -104,7 +104,8 @@ describe('lesson intro screens (es locale fields)', () => {
     expect(source).toContain('<RichIntroLineView');
     expect(richSource).toContain('const semanticLineBg');
     expect(richSource).toContain('styles.richLineStripe');
-    expect(source).toContain('styles.exampleNote');
+    // зачем: примечание примера рисует вынесенная строка макета C2 (LessonIntroExampleRow)
+    expect(source).toContain('LessonIntroExampleRow');
     expect(source).not.toContain("line.type === 'tip'\n              ? `${t.gold}14`");
     expect(source).not.toContain('color: t.gold, fontSize: f.caption');
   });
@@ -137,8 +138,8 @@ describe('lesson intro screens (es locale fields)', () => {
     const headerSource = source.slice(headerStart, headerEnd);
 
     expect(headerSource.indexOf('testID="lesson-intro-back"')).toBeGreaterThanOrEqual(0);
-    expect(headerSource.indexOf('styles.headerPill')).toBeGreaterThanOrEqual(0);
-    expect(headerSource.indexOf('testID="lesson-intro-back"')).toBeLessThan(headerSource.indexOf('styles.headerPill'));
+    expect(headerSource.indexOf('styles.headerCopy')).toBeGreaterThanOrEqual(0);
+    expect(headerSource.indexOf('testID="lesson-intro-back"')).toBeLessThan(headerSource.indexOf('styles.headerCopy'));
   });
 
   it('names the final intro CTA as training because it starts the practice flow', () => {

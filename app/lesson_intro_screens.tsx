@@ -9,15 +9,16 @@ import {
   StyleSheet,
   ScrollView,
   Easing,
+  Platform,
   useWindowDimensions,
   type LayoutChangeEvent,
 } from 'react-native';
 import { LinearGradient } from '../components/SafeLinearGradient';
+import { BlurView } from 'expo-blur';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme, getVolumetricShadow } from '../components/ThemeContext';
-import { isLightThemeMode } from '../constants/theme';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import ScreenGradient from '../components/ScreenGradient';
@@ -32,6 +33,9 @@ import { MOTION_SCALE } from '../constants/motion';
 import type { LessonIntroExample, LessonIntroScreen, LessonIntroBlockKind } from './lesson_data_types';
 import type { StudyTargetLang } from './study_target_lang_dev';
 import { useStudyTarget } from '../components/StudyTargetContext';
+import EnergyBar from '../components/EnergyBar';
+import { useEnergy } from '../components/EnergyContext';
+import { lessonNamesForStudyTarget } from './lesson_titles_for_study_target';
 import BouncyScrollView from '../components/BouncyScrollView';
 import ReportErrorButton from '../components/ReportErrorButton';
 import {
@@ -54,10 +58,11 @@ import {
   plannedExampleMeta,
   legacyExampleMeta,
   lessonLevelLabel,
-  levelColor,
 } from '../components/lesson_intro_rich';
 
 import { noAndroidOutline } from '../constants/androidGlow';
+import { LessonIntroExampleRow, introExampleEnStyle } from '../components/lessons/LessonIntroGlass';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 interface LessonIntroScreensProps {
   introScreens: LessonIntroScreen[];
   lessonId: number;
@@ -76,6 +81,17 @@ const INTRO_HEADER_TOP_GAP = 8;
 // + воздух до первой карточки.
 const INTRO_HEADER_FALLBACK_HEIGHT = 56;
 const INTRO_FIRST_CARD_GAP = 16;
+
+/** Contrast follows the rendered Liquid Glass surface, not a legacy theme mode. */
+function isLiquidGlassLight(hex: string): boolean {
+  const value = hex.replace('#', '').slice(0, 6);
+  if (!/^[0-9A-Fa-f]{6}$/.test(value)) return false;
+  const channels = [0, 2, 4].map(offset => parseInt(value.slice(offset, offset + 2), 16) / 255);
+  const linear = channels.map(channel => channel <= 0.04045
+    ? channel / 12.92
+    : ((channel + 0.055) / 1.055) ** 2.4);
+  return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2] > 0.5;
+}
 /**
  * Очень мягкая «expo-out» кривая (a-la Material expressive / iOS spring без bounce).
  * Сильно тормозит к концу — глаз видит долгое, дорогое появление.
@@ -94,6 +110,7 @@ interface IntroBlockCardProps {
   t: any;
   themeMode: any;
   f: any;
+  glass: ReturnType<typeof liquidGlassTokens>;
   onLayout: (index: number, y: number) => void;
   onRevealComplete?: (index: number) => void;
   footer?: React.ReactNode;
@@ -109,6 +126,7 @@ function IntroBlockCard({
   t,
   themeMode,
   f,
+  glass,
   onLayout,
   onRevealComplete,
   footer,
@@ -120,11 +138,13 @@ function IntroBlockCard({
 
   const kind: LessonIntroBlockKind = richKindToLegacyKind(data.kind) ?? KIND_BY_INDEX[index] ?? 'tip';
   const km = KIND_MAP[kind];
-  const accent = km.color(t);
+  // зачем: макет C1–C3 — нейтральный стеклянный блок; цветные акценты по видам блоков (полоса,
+  // заливка иконки, рамка примеров) ушли, выделения в тексте берут основной тон темы.
+  const accent = glass.text;
   // зачем: был мёртвый стаб `= false` — формула «Do / Does + хто + дія?» и
   // остальные rich-тона (formula/code) всегда красились «под тёмный фон»
   // (#C4B5FD и т.п.), из-за чего в «Нефрите» текст не читался на светлой карточке.
-  const isLight = isLightThemeMode(themeMode);
+  const isLight = isLiquidGlassLight(glass.bg);
 
   const defaultTitle = defaultKindTitle(km, lang, studyTarget);
   const localizedTitle = richTitle(data, lang, studyTarget);
@@ -202,13 +222,11 @@ function IntroBlockCard({
     return null;
   }
 
-  // Цветовая полупрозрачная подложка под иконкой
-  const iconBg = `${accent}28`;
-  const iconBorder = `${accent}55`;
-  const titleColor = accent;
-  const cardBg = false ? '#FFFFFF' : t.bgCard;
-  const stripeBg = `${accent}99`;
-  const cardRadius = 18;
+  const cardBg = glass.card;
+  const cardRadius = 20;
+  // Android keeps a bounded number of live blur roots while later cards retain
+  // the same translucent tint, edge, and sheen layers below.
+  const enableLiveBlur = Platform.OS !== 'android' || index < 3;
 
   return (
     <Animated.View
@@ -226,14 +244,28 @@ function IntroBlockCard({
           {
             backgroundColor: cardBg,
             borderRadius: cardRadius,
-            borderColor: t.borderHighlight,
+            borderColor: glass.glassEdge,
             ...getVolumetricShadow(themeMode, t, 2),
           },
         ]}
       >
-        {/* Цветная вертикальная полоса слева */}
-        <View style={[styles.stripe, { backgroundColor: stripeBg }]} />
-
+        {enableLiveBlur ? (
+          <BlurView
+            pointerEvents="none"
+            intensity={Platform.OS === 'android' ? 8 : 12}
+            blurReductionFactor={4}
+            experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'}
+            tint="systemUltraThinMaterialDark"
+            style={StyleSheet.absoluteFill}
+          />
+        ) : null}
+        <LinearGradient
+          pointerEvents="none"
+          colors={[glass.lightTint, 'transparent']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={styles.glassSheen}
+        />
         <View style={styles.cardInner}>
           {/* Заголовок: иконка + caps-метка */}
           <View style={styles.cardHeader}>
@@ -241,22 +273,24 @@ function IntroBlockCard({
               style={[
                 styles.iconCircle,
                 {
-                  backgroundColor: iconBg,
-                  borderColor: iconBorder,
-                  borderRadius: 18,
+                  backgroundColor: glass.opaqueControl,
+                  width: 44,
+                  height: 44,
+                  borderRadius: 22,
                   transform: [{ scale: iconScale }],
-                  shadowColor: accent,
                 },
               ]}
             >
-              <Ionicons name={km.icon} size={20} color={accent} />
+              <Ionicons name={km.icon} size={20} color={glass.text} />
             </Animated.View>
             <Text
               style={[
                 styles.cardTitle,
                 {
-                  color: titleColor,
-                  fontSize: f.caption,
+                  color: glass.text,
+                  fontSize: 18,
+                  lineHeight: 23,
+                  fontWeight: '700',
                 },
               ]}
             >
@@ -268,7 +302,7 @@ function IntroBlockCard({
           {rich ? (
             <View style={styles.richBody}>
               {!!subtitle && (
-                <Text style={[styles.richSubtitle, { color: t.textMuted, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.45) }]}>
+                <Text style={[styles.richSubtitle, { color: glass.secondary, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.45) }]}>
                   {subtitle}
                 </Text>
               )}
@@ -290,9 +324,9 @@ function IntroBlockCard({
               style={[
                 styles.cardBody,
                 {
-                  color: t.textPrimary,
-                  fontSize: f.bodyLg,
-                  lineHeight: Math.round(f.bodyLg * 1.5),
+                  color: glass.text,
+                  fontSize: 16,
+                  lineHeight: 23,
                 },
               ]}
             />
@@ -300,16 +334,7 @@ function IntroBlockCard({
 
           {/* Опциональные примеры */}
           {!!data.examples?.length && (
-            <View
-              style={[
-                styles.exampleBox,
-                {
-                  borderColor: `${accent}33`,
-                  backgroundColor: isLight ? '#FFFFFF80' : '#00000022',
-                  borderRadius: 12,
-                },
-              ]}
-            >
+            <View style={styles.exampleBox}>
               {data.examples.map((ex, i) => {
                 const richExample = isRichExample(ex);
                 const { primary, secondary } = richExample
@@ -329,44 +354,25 @@ function IntroBlockCard({
                     : legacyExampleMeta(ex, 'note', lang, studyTarget)
                   : undefined;
                 return (
-                <View key={i} style={[styles.exampleRow, i > 0 && { marginTop: 6 }]}>
-                  {!!label && (
-                    <Text style={[styles.exampleTR, { color: t.textMuted, fontSize: f.caption, marginBottom: 2 }]}>
-                      {label}
-                    </Text>
-                  )}
-                  {richExample ? (
-                    <RichTextParts
-                      parts={ex.en}
-                      t={t}
-                      accent={accent}
-                      isLight={isLight}
-                      style={[styles.exampleEN, { color: t.correct, fontSize: f.body }]}
-                    />
-                  ) : (
-                    <Text
-                      style={[
-                        styles.exampleEN,
-                        { color: t.correct, fontSize: f.body },
-                      ]}
-                    >
-                      {primary}
-                    </Text>
-                  )}
-                  <Text
-                    style={[
-                      styles.exampleTR,
-                      { color: t.textMuted, fontSize: f.sub },
-                    ]}
-                  >
-                    {secondary}
-                  </Text>
-                  {!!note && (
-                    <Text style={[styles.exampleNote, { color: t.textMuted, fontSize: f.caption, lineHeight: Math.round(f.caption * 1.35), marginTop: 3 }]}>
-                      {note}
-                    </Text>
-                  )}
-                </View>
+                  <LessonIntroExampleRow
+                    key={i}
+                    glass={glass}
+                    first={i === 0}
+                    label={label}
+                    note={note}
+                    translation={secondary}
+                    english={richExample ? (
+                      <RichTextParts
+                        parts={ex.en}
+                        t={t}
+                        accent={accent}
+                        isLight={isLight}
+                        style={[styles.exampleEN, introExampleEnStyle(glass)]}
+                      />
+                    ) : (
+                      <Text style={[styles.exampleEN, introExampleEnStyle(glass)]}>{primary}</Text>
+                    )}
+                  />
                 );
               })}
             </View>
@@ -387,14 +393,14 @@ export default function LessonIntroScreens({
   showEnergyCost = false,
 }: LessonIntroScreensProps) {
   const lessonIntroRuntimeActive = useRuntimeActive();
-  const { theme: t, f, themeMode } = useTheme();
+  const { theme: t, f, themeMode, liquidGlassThemeId } = useTheme();
+  const introGlass = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
+  const { energyReady: introEnergyReady } = useEnergy();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { height: screenH } = useWindowDimensions();
-  // зачем: см. комментарий у isLight в IntroBlockCard — тот же мёртвый стаб.
-  const isLight = isLightThemeMode(themeMode);
 
   const totalBlocks = introScreens.length;
   const [revealedCount, setRevealedCount] = useState(1); // первый блок виден сразу
@@ -604,7 +610,8 @@ export default function LessonIntroScreens({
     (currentScreen ? richTitle(currentScreen, lang, studyTarget) : undefined) ??
     defaultKindTitle(KIND_MAP[currentKind], lang, studyTarget);
   const lvlLabel = lessonLevelLabel(lessonId);
-  const lvlColor = levelColor(lessonId, isLight);
+  // зачем: макет C1 — под «Урок N» стоит название урока; уровень остаётся запасным подзаголовком.
+  const headerSubtitle = lessonNamesForStudyTarget(lang, studyTarget)[lessonId - 1] || lvlLabel;
   const introHeaderTop = insets.top + INTRO_HEADER_TOP_GAP;
   // Низ хедера = safe-area + зазор + измеренная высота. Контент скролла начинается ниже,
   // плюс воздух до первой карточки.
@@ -652,24 +659,23 @@ export default function LessonIntroScreens({
           testID="lesson-intro-start"
           accessibilityLabel={startLabel}
           onPress={handleStart}
-          gradientColors={[`${t.accent}`, `${t.correct}`]}
+          gradientColors={[introGlass.cta, introGlass.cta]}
           gradientStart={{ x: 0, y: 0 }}
           gradientEnd={{ x: 1, y: 1 }}
-          edgeColor={t.correct}
+          edgeColor={introGlass.cta}
           style={[
             styles.ctaBtn,
             {
-              borderRadius: 18,
+              borderRadius: 26,
               borderWidth: 0,
-              borderColor: t.borderHighlight,
             },
           ]}
         >
-          <Text style={[styles.ctaText, { color: t.correctText, fontSize: f.bodyLg }]}>
+          <Text style={[styles.ctaText, { color: introGlass.ctaInk, fontSize: 17, lineHeight: 22 }]}>
             {startLabel}
           </Text>
           <View style={styles.ctaIconWrap}>
-            <Ionicons name="arrow-forward" size={18} color={t.correctText} />
+            <Ionicons name="arrow-forward" size={20} color={introGlass.ctaInk} />
           </View>
         </DuoPressable>
         {/* зачем (PM-086): ценник энергии на кнопке убран — сам расход энергии не менялся. */}
@@ -678,9 +684,14 @@ export default function LessonIntroScreens({
   );
 
   return (
-    <ScreenGradient>
+    <ScreenGradient forceFullBleed>
+      <LinearGradient
+        pointerEvents="none"
+        colors={[introGlass.bgTop, introGlass.bg, introGlass.bgBottom]}
+        style={StyleSheet.absoluteFill}
+      />
       <LessonArtBackdrop variant="intro" />
-      <SafeAreaView style={{ flex: 1 }} edges={['bottom']}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['bottom']}>
         {/* Затемняющий верхний край (общий компонент, Telegram-стиль): карточки
             при скролле уходят в тень у статус-бара, а не обрезаются резко.
             Высота = safe-area + хедер. */}
@@ -720,54 +731,56 @@ export default function LessonIntroScreens({
             style={[
               styles.skipBtn,
               {
-                backgroundColor: t.bgCard,
-                borderColor: t.borderHighlight,
-                borderRadius: 18,
-                overflow: 'visible',
+                backgroundColor: introGlass.opaqueControl,
+                borderColor: introGlass.glassEdge,
+                borderRadius: 22,
+                overflow: 'hidden',
               },
             ]}
           >
-            <Ionicons name="chevron-back" size={20} color={t.textMuted} />
+            <Ionicons name="chevron-back" size={20} color={introGlass.text} />
           </TapScale>
 
-          <View style={styles.headerRight}>
-            <View
-              style={[
-                styles.headerPill,
-                {
-                  backgroundColor: t.bgCard,
-                  borderColor: t.borderHighlight,
-                  borderRadius: 20,
-                  overflow: 'visible',
-                  ...getVolumetricShadow(themeMode, t, 1),
-                },
-              ]}
-            >
-              <Text style={[styles.headerText, { color: t.textPrimary, fontSize: f.caption }]} numberOfLines={1}>
-                {headerLabel}
-              </Text>
-              <View style={[styles.headerDot, { backgroundColor: t.textMuted }]} />
-              <Text style={[styles.headerText, { color: lvlColor, fontSize: f.caption }]} numberOfLines={1}>
-                {lvlLabel}
-              </Text>
-            </View>
-
-            <ReportErrorButton
-              variant="icon-flag"
-              screen="lesson_intro"
-              dataId={`lesson_intro_${lessonId ?? 'unknown'}_slide_${currentIndex ?? 0}`}
-              dataText={currentSlideTitle}
-              accessibilityLabel="Сообщить об ошибке в объяснении"
-              testID="lesson-intro-report"
-              style={[
-                styles.reportFlag,
-                {
-                  backgroundColor: t.bgCard,
-                  borderColor: t.borderHighlight,
-                },
-              ]}
-            />
+          <View style={styles.headerCopy}>
+            <Text accessibilityRole="header" style={[styles.headerTitle, { color: introGlass.text }]}>
+              {headerLabel}
+            </Text>
+            <Text style={[styles.headerSubtitle, { color: introGlass.secondary }]}>
+              {headerSubtitle}
+            </Text>
           </View>
+
+          {introEnergyReady ? (
+            <EnergyBar size={30} />
+          ) : (
+            <View
+              testID="lesson-intro-energy-loading"
+              style={{
+                width: 88,
+                height: 30,
+                borderRadius: 15,
+                borderWidth: StyleSheet.hairlineWidth,
+                borderColor: introGlass.glassEdge,
+                backgroundColor: introGlass.opaqueControl,
+              }}
+            />
+          )}
+
+          <ReportErrorButton
+            variant="icon-flag"
+            screen="lesson_intro"
+            dataId={`lesson_intro_${lessonId ?? 'unknown'}_slide_${currentIndex ?? 0}`}
+            dataText={currentSlideTitle}
+            accessibilityLabel="Сообщить об ошибке в объяснении"
+            testID="lesson-intro-report"
+            style={[
+              styles.reportFlag,
+              {
+                backgroundColor: introGlass.opaqueControl,
+                borderColor: introGlass.glassEdge,
+              },
+            ]}
+          />
         </Animated.View>
 
         {/* Скроллируемый список карточек.
@@ -799,7 +812,6 @@ export default function LessonIntroScreens({
               style={styles.tapMat}
             >
               {introScreens.slice(0, totalBlocks).map((block, i) => {
-                const isLastBlock = i === totalBlocks - 1;
                 return (
                   <IntroBlockCard
                     key={`${lessonId}-${i}`}
@@ -812,11 +824,14 @@ export default function LessonIntroScreens({
                     t={t}
                     themeMode={themeMode}
                     f={f}
+                    glass={introGlass}
                     onLayout={handleBlockLayout}
-                    footer={isLastBlock && ctaReady ? startCta : null}
                   />
                 );
               })}
+
+              {/* зачем: макет C2 — «Начать тренировку →» стоит под карточками, а не внутри последней. */}
+              {ctaReady ? startCta : null}
 
               {/* Подсказка-плашка: визуальная только. Тап обрабатывает родительский Pressable. */}
               {!allRevealed && (
@@ -836,24 +851,19 @@ export default function LessonIntroScreens({
                     },
                   ]}
                 >
-                  <Animated.View
-                    style={{
-                      marginRight: 8,
-                      transform: [
-                        {
-                          translateY: hintBob.interpolate({
-                            inputRange: [0, 1],
-                            outputRange: [0, 3],
-                          }),
-                        },
-                      ],
-                    }}
+                  <Animated.Text
+                    style={[
+                      styles.tapHint,
+                      {
+                        color: introGlass.mutedText,
+                        fontSize: 14,
+                        lineHeight: 19,
+                        transform: [{ translateY: hintBob.interpolate({ inputRange: [0, 1], outputRange: [0, 4] }) }],
+                      },
+                    ]}
                   >
-                    <Ionicons name="finger-print-outline" size={16} color={t.textGhost} />
-                  </Animated.View>
-                  <Text style={[styles.tapHint, { color: t.textGhost, fontSize: f.caption }]}>
                     {tapHintLabel}
-                  </Text>
+                  </Animated.Text>
                 </Animated.View>
               )}
 
@@ -877,55 +887,40 @@ const styles = StyleSheet.create({
     elevation: 10,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    gap: 14,
     paddingHorizontal: 18,
     paddingTop: 8,
     paddingBottom: 12,
   },
-  headerRight: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-    flexShrink: 1,
-    justifyContent: 'flex-end',
+  headerCopy: {
+    flex: 1,
+    minWidth: 0,
   },
-  headerPill: {
-    position: 'relative',
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-    maxWidth: '78%',
-    paddingHorizontal: 14,
-    paddingVertical: 7,
-    borderRadius: 20,
-    borderWidth: 0,
+  headerTitle: {
+    fontSize: 20,
+    lineHeight: 25,
+    fontWeight: '700',
+  },
+  headerSubtitle: {
+    fontSize: 15,
+    lineHeight: 20,
+    marginTop: 2,
   },
   reportFlag: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 0,
-  },
-  headerText: {
-    fontWeight: '800',
-    letterSpacing: 1.1,
-    textTransform: 'uppercase',
-  },
-  headerDot: {
-    width: 3,
-    height: 3,
-    borderRadius: 2,
-    opacity: 0.7,
+    borderWidth: StyleSheet.hairlineWidth,
   },
   skipBtn: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 0,
+    borderWidth: StyleSheet.hairlineWidth,
   },
   scrollContent: {
     paddingHorizontal: 18,
@@ -939,41 +934,37 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 18,
     overflow: 'hidden',
-    borderWidth: 0,
+    borderWidth: StyleSheet.hairlineWidth,
     flexDirection: 'row',
   },
-  stripe: {
-    width: 4,
+  glassSheen: {
+    ...StyleSheet.absoluteFillObject,
+    opacity: 0.12,
   },
   cardInner: {
     flex: 1,
-    paddingVertical: 18,
+    paddingTop: 18,
     paddingHorizontal: 18,
+    paddingBottom: 20,
   },
   cardHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 12,
-    gap: 10,
+    marginBottom: 14,
+    gap: 14,
   },
   iconCircle: {
     position: 'relative',
-    width: 36,
-    height: 36,
-    borderRadius: 18,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 0,
     overflow: 'hidden',
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.35,
-    shadowRadius: 10,
     ...noAndroidOutline,
   },
   cardTitle: {
-    fontWeight: '800',
-    letterSpacing: 1.0,
-    textTransform: 'uppercase',
     flex: 1,
   },
   cardBody: {
@@ -988,44 +979,25 @@ const styles = StyleSheet.create({
   },
   exampleBox: {
     position: 'relative',
-    marginTop: 14,
-    borderRadius: 12,
-    borderWidth: 0,
-    padding: 12,
-    overflow: 'hidden',
-  },
-  exampleRow: {
-    flexDirection: 'column',
   },
   exampleEN: {
-    fontWeight: '700',
-    letterSpacing: 0.2,
-  },
-  exampleTR: {
-    marginTop: 1,
-    fontWeight: '500',
-    fontStyle: 'italic',
-  },
-  exampleNote: {
-    fontStyle: 'normal',
-    fontWeight: '600',
+    letterSpacing: 0,
   },
   tapHintRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 18,
+    marginTop: 22,
     marginBottom: 8,
     paddingHorizontal: 14,
     paddingVertical: 8,
   },
   tapHint: {
     textAlign: 'center',
-    fontStyle: 'italic',
-    fontWeight: '500',
+    fontWeight: '600',
   },
   ctaInlineWrap: {
-    marginTop: 18,
+    marginTop: 22,
     width: '100%',
   },
   ctaBtn: {
@@ -1034,26 +1006,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 12,
-    paddingVertical: 16,
-    paddingHorizontal: 22,
-    borderRadius: 18,
+    minHeight: 52,
+    paddingHorizontal: 56,
+    borderRadius: 26,
     borderWidth: 0,
     overflow: 'hidden',
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.45,
-    shadowRadius: 16,
     ...noAndroidOutline,
   },
   ctaText: {
-    fontWeight: '800',
-    letterSpacing: 0.4,
+    fontWeight: '700',
+    textAlign: 'center',
   },
   ctaIconWrap: {
-    width: 26,
-    height: 26,
-    borderRadius: 13,
+    position: 'absolute',
+    right: 22,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(255,255,255,0.18)',
   },
 });

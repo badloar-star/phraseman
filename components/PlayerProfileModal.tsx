@@ -112,6 +112,7 @@ type BodyProps = {
   onBackdropPress: () => void;
   onClose: () => void;
   onFriendRequestToast: (message: string, toastType?: 'error' | 'info') => void;
+  backInterceptRef?: React.MutableRefObject<(() => boolean) | null>;
 };
 
 function PlayerProfileModalBody({
@@ -122,6 +123,7 @@ function PlayerProfileModalBody({
   onBackdropPress,
   onClose,
   onFriendRequestToast,
+  backInterceptRef,
 }: BodyProps) {
   const { lang } = useLang();
   const L = lang as Lang;
@@ -145,6 +147,17 @@ function PlayerProfileModalBody({
   // ── Своя визитка: ранг, баланс, «Про», свой текст (components/profile-card/useSelfProfileCard) ──
   const self = useSelfProfileCard(isMe, L, onFriendRequestToast);
   const { myPro, myProOwned, sheet, setSheet, visibleCeremony } = self;
+  // зачем (30.09): системный «Назад» сначала закрывает открытую шторку (покупка/стиль/текст),
+  // и только потом — всю визитку. Шторка живёт здесь, «Назад» ловит внешний <Modal>.
+  useEffect(() => {
+    if (!backInterceptRef) return undefined;
+    backInterceptRef.current = () => {
+      if (sheet === 'none') return false;
+      setSheet('none');
+      return true;
+    };
+    return () => { backInterceptRef.current = null; };
+  }, [backInterceptRef, setSheet, sheet]);
 
   // ── Чужая визитка: «Про», стиль, свой текст из public_profiles ──
   const targetUid = player.friendUid || player.uid || '';
@@ -512,6 +525,11 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
   const handleClose = useCallback(() => {
     onClose();
   }, [onClose]);
+  const backInterceptRef = useRef<(() => boolean) | null>(null);
+  const handleHardwareBack = useCallback(() => {
+    if (backInterceptRef.current?.()) return;
+    onClose();
+  }, [onClose]);
 
   const showFriendRequestToast = useCallback(
     (message: string, toastType: 'error' | 'info' = 'info') => {
@@ -526,7 +544,7 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
       visible={modalOpen}
       transparent
       animationType="none"
-      onRequestClose={handleClose}
+      onRequestClose={handleHardwareBack}
       hardwareAccelerated
       statusBarTranslucent
       navigationBarTranslucent
@@ -541,6 +559,7 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
             onBackdropPress={handleClose}
             onClose={handleClose}
             onFriendRequestToast={showFriendRequestToast}
+            backInterceptRef={backInterceptRef}
           />
           <InGameToast
             message={friendToast}

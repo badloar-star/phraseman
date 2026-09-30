@@ -5,7 +5,8 @@ import type { SessionSource } from './session_shard_from_source_v1';
 
 const clone=<T,>(v:T):T=>JSON.parse(JSON.stringify(v))as T;
 const rewrite=<T,>(v:T):T=>{const p:readonly(readonly[string,string])[]=[['e02-s07','e02-s09'],['necessary','possible'],['Necessary','Possible'],['angry','tall'],['Angry','Tall'],['scared','short'],['Scared','Short']];const visit=(x:unknown):unknown=>typeof x==='string'?p.reduce((s,[a,b])=>s.replaceAll(a,b),x):Array.isArray(x)?x.map(visit):x&&typeof x==='object'?Object.fromEntries(Object.entries(x as Record<string,unknown>).map(([k,y])=>[k,visit(y)])):x;return visit(v)as T};
-const source=rewrite(clone(EPISODE_02_SESSION_07_SOURCE))as SessionSource&{requiredSessionOrdinal:number;generationInputFingerprint:string;canDoOutcomeId:string;introPages:any[];retrievalVocabulary?:readonly any[]};
+const source=rewrite(clone(EPISODE_02_SESSION_07_SOURCE))as unknown as Omit<SessionSource,'introPages'|'retrievalVocabulary'>&{requiredSessionOrdinal:number;generationInputFingerprint:string;canDoOutcomeId:string;introPages:any[];retrievalVocabulary?:readonly any[]};
+// зачем: Omit вместо пересечения — иначе any[] сталкивается с кортежем из трёх страниц интро в SessionSource.
 source.requiredSessionOrdinal=9;source.generationInputFingerprint='full-b1-exact-question-possible-e02-s09-v1';source.canDoOutcomeId='obj-en-present-be-yes-no-question';
 source.retrievalVocabulary=[...(source.retrievalVocabulary??[]),EPISODE_02_SESSION_05_SOURCE.newVocabulary?.[0],EPISODE_02_SESSION_06_SOURCE.newVocabulary?.[0]].filter(Boolean);
 source.introPages=source.introPages.map((page:any,index:number)=>{
@@ -27,7 +28,7 @@ for (const index of [1, 2]) {
   page.question.choices = choices.map((value) => Object.fromEntries(locales.map((locale) => [locale, value])));
   page.question.explanation.ru = `${choices[0]} — правильно, потому что is стоит перед it.`;
   page.question.explanation.uk = `${choices[0]} — правильно, тому що is стоїть перед it.`;
-  const localized: any = {
+  const localized: Record<string, readonly [string, string]> = {
     es: [`${choices[0]} Es una pregunta con is antes de it.`, `${choices[0]} es correcta porque is va antes de it.`],
     'pt-BR': [`${choices[0]} É uma pergunta com is antes de it.`, `${choices[0]} está correta porque is vem antes de it.`],
     vi: [`${choices[0]} Đây là câu hỏi có is đứng trước it.`, `${choices[0]} đúng vì is đứng trước it.`],
@@ -40,4 +41,4 @@ for (const index of [1, 2]) {
     page.question.explanation[locale] = explanation;
   }
 }
-export const EPISODE_02_SESSION_09_SOURCE:SessionSource=Object.freeze(source);
+export const EPISODE_02_SESSION_09_SOURCE:SessionSource=Object.freeze(source) as unknown as SessionSource;

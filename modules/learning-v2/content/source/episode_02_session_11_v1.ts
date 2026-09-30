@@ -1,12 +1,12 @@
 import { EPISODE_02_SESSION_10_SOURCE } from './episode_02_session_10_v1';
-import type { SessionSource } from './session_shard_from_source_v1';
+import type { SessionSource, SessionSourceDeepMutableV1, SessionVocabularySourceV1 } from './session_shard_from_source_v1';
 const source=JSON.parse(JSON.stringify(EPISODE_02_SESSION_10_SOURCE))as SessionSource&{requiredSessionOrdinal:number;generationInputFingerprint:string};
 const visit=(x:unknown):unknown=>typeof x==='string'?x.replaceAll('e02-s10','e02-s11').replaceAll('impossible','urgent').replaceAll('Impossible','Urgent'):Array.isArray(x)?x.map(visit):x&&typeof x==='object'?Object.fromEntries(Object.entries(x as Record<string,unknown>).map(([k,v])=>[k,visit(v)])):x;
 const rewritten=visit(source)as typeof source;rewritten.requiredSessionOrdinal=11;rewritten.generationInputFingerprint='full-b1-exact-diagnostic-urgent-e02-s11-v1';
 // Session 11 is a new lexical sense, not a string replacement.  Keep the
 // inherited mode geometry, but author the urgent card and its diagnostics in
 // every learner locale from scratch.
-const urgent = rewritten.newVocabulary?.[0];
+const urgent = rewritten.newVocabulary?.[0] as SessionSourceDeepMutableV1<SessionVocabularySourceV1> | undefined;
 if (!urgent) throw new Error('episode_02_session_11_urgent_card_missing');
 urgent.meaning={
   ru:'срочный: требующий немедленного внимания', uk:'терміновий: такий, що потребує негайної уваги',

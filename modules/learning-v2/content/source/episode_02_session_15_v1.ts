@@ -1,5 +1,5 @@
 import { EPISODE_02_SESSION_14_SOURCE } from './episode_02_session_14_v1';
-import type { SessionSource } from './session_shard_from_source_v1';
+import type { SessionSource, SessionSourceDeepMutableV1, SessionVocabularySourceV1 } from './session_shard_from_source_v1';
 
 const clone = <T,>(value: T): T => JSON.parse(JSON.stringify(value)) as T;
 const rewrite = <T,>(value: T): T => {
@@ -17,7 +17,7 @@ const source = rewrite(clone(EPISODE_02_SESSION_14_SOURCE)) as SessionSource & {
 source.requiredSessionOrdinal = 15;
 source.generationInputFingerprint = 'full-b1-exact-diagnostic-silent-e02-s15-v1';
 
-const silent = source.newVocabulary?.[0];
+const silent = source.newVocabulary?.[0] as SessionSourceDeepMutableV1<SessionVocabularySourceV1> | undefined;
 if (!silent) throw new Error('episode_02_session_15_silent_card_missing');
 silent.meaning = {
   ru: 'тихий: без звука или шума', uk: 'тихий: без звуку або шуму',

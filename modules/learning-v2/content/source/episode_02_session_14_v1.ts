@@ -1,5 +1,5 @@
 import { EPISODE_02_SESSION_13_SOURCE } from './episode_02_session_13_v1';
-import type { SessionSource } from './session_shard_from_source_v1';
+import type { SessionSource, SessionSourceDeepMutableV1, SessionVocabularySourceV1 } from './session_shard_from_source_v1';
 
 const clone = <T,>(value: T): T => JSON.parse(JSON.stringify(value)) as T;
 const rewrite = <T,>(value: T): T => {
@@ -17,7 +17,7 @@ const source = rewrite(clone(EPISODE_02_SESSION_13_SOURCE)) as SessionSource & {
 source.requiredSessionOrdinal = 14;
 source.generationInputFingerprint = 'full-b1-exact-diagnostic-obvious-e02-s14-v1';
 
-const obvious = source.newVocabulary?.[0];
+const obvious = source.newVocabulary?.[0] as SessionSourceDeepMutableV1<SessionVocabularySourceV1> | undefined;
 if (!obvious) throw new Error('episode_02_session_14_obvious_card_missing');
 obvious.meaning = {
   ru: 'очевидный: легко понять или заметить', uk: 'очевидний: легко зрозуміти або помітити',

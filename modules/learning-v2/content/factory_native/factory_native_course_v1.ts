@@ -18,7 +18,7 @@ import {
 import type { LearningV2CourseSessionWordEncounterPresentationV1 } from "../../runtime/course_session_word_encounter_presentation_v1";
 import {
   materializeLearningV2CourseSessionEvaluatorCapsuleChildV1,
-  type LearningV2CourseSessionEvaluatorCapsuleEntryV1,
+  type LearningV2CourseSessionEvaluatorCapsuleInputV1,
 } from "../../runtime/course_session_evaluator_capsule_child_v1";
 import type { LearningV2ModeNativePayloadV1 } from "../../contracts/mode_native_payload_v1";
 import { hashCanonicalBody, sha256Utf8 } from "../../policies/decision_registry";
@@ -124,7 +124,7 @@ function bodyRuns(text: string) {
     cursor = index + match[0].length;
   }
   if (cursor < text.length) runs.push({ text: text.slice(cursor), semantic: "explanation" });
-  return Object.freeze(runs.length ? runs.map(Object.freeze) : [Object.freeze({ text, semantic: "explanation" as const })]);
+  return Object.freeze(runs.length ? runs.map((run) => Object.freeze(run)) : [Object.freeze({ text, semantic: "explanation" as const })]);
 }
 
 function localizedRuns(value: unknown) {
@@ -527,7 +527,7 @@ export function materializeFactoryNativeLearningV2SessionV1(input: Readonly<{
     : interactions.length >= 18 ? "rapid" as const : "standard" as const;
   const learnerChild = materializeLearningV2CourseSessionLearnerChildV1({ courseSessionId, targetLanguage: "en", interactionProfile, interactions });
 
-  const evaluatorEntries: LearningV2CourseSessionEvaluatorCapsuleEntryV1[] = [];
+  const evaluatorEntries: LearningV2CourseSessionEvaluatorCapsuleInputV1[] = [];
   const auxiliaryEntries: LearningV2CourseSessionAuxiliaryEntryV1[] = [];
   introChild.pages.forEach((page, pageIndex) => {
     const correctIndex = row.introCorrectChoiceIndexes[pageIndex]!;

@@ -119,9 +119,11 @@ export function buildLearningV2StaticOwnerReviewSessionFromSourceV1(
   sessionOrdinal: number,
   status: Lesson1AuthoringStatusV1,
   source: SessionSource,
+  // зачем: превью уроков 2 и 3 отличаются от урока 1 только литералами lessonOrdinal/lessonId/releaseId —
+  // узкий литерал 1 не пускал их в общий сборщик; остальная форма остаётся точной.
   buildPreview: (
     locale: LearningV2StaticOwnerReviewInterfaceLocaleV1,
-  ) => ReturnType<typeof buildLearningV2AuthoringDevicePreviewV1>,
+  ) => Omit<ReturnType<typeof buildLearningV2AuthoringDevicePreviewV1>, "lessonOrdinal" | "lessonId" | "releaseId"> & { readonly lessonOrdinal: number; readonly lessonId: string; readonly releaseId: string },
 ): LearningV2StaticOwnerReviewSessionV1 {
   const previews = Object.fromEntries(
     LEARNING_V2_STATIC_OWNER_REVIEW_INTERFACE_LOCALES_V1.map((locale) => [

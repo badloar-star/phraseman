@@ -1,5 +1,5 @@
 import { EPISODE_02_SESSION_11_SOURCE } from './episode_02_session_11_v1';
-import type { SessionSource } from './session_shard_from_source_v1';
+import type { SessionSource, SessionSourceDeepMutableV1, SessionVocabularySourceV1 } from './session_shard_from_source_v1';
 
 const clone = <T,>(value: T): T => JSON.parse(JSON.stringify(value)) as T;
 const rewrite = <T,>(value: T): T => {
@@ -23,7 +23,7 @@ const source = rewrite(clone(EPISODE_02_SESSION_11_SOURCE)) as SessionSource & {
 source.requiredSessionOrdinal = 12;
 source.generationInputFingerprint = 'full-b1-exact-guided-private-e02-s12-v1';
 
-const privateWord = source.newVocabulary?.[0];
+const privateWord = source.newVocabulary?.[0] as SessionSourceDeepMutableV1<SessionVocabularySourceV1> | undefined;
 if (!privateWord) throw new Error('episode_02_session_12_private_card_missing');
 privateWord.meaning = {
   ru: 'личный: предназначенный не для всех', uk: 'приватний: призначений не для всіх',

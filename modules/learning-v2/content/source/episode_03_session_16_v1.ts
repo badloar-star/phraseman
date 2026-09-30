@@ -64,7 +64,7 @@ export const EPISODE_03_SESSION_16_SOURCE: SessionSource = Object.freeze({
   sessionKindOverride: "checkpoint", distractorAuthorship: "manual",
   reviewConstructIds: ["wh_questions", "indefinite_article", "definite_article"], newVocabularyExceptionReason: "checkpoint_retrieval_only",
   title: CHECKPOINT_TITLE, summary: CHECKPOINT_SUMMARY, learningGoal: CHECKPOINT_GOAL,
-  introPages: CHECKPOINT_INTRO, newVocabulary: [], phrases: EPISODE_03_SESSION_16_PHRASES_V2,
+  introPages: CHECKPOINT_INTRO as SessionSource["introPages"], newVocabulary: [], phrases: EPISODE_03_SESSION_16_PHRASES_V2,
   modeNativePlanId: LESSON3_SESSION_16_MODE_NATIVE_PLAN_ID_V1,
   modeNativePractice: rebuiltCheckpointPractice,
 });

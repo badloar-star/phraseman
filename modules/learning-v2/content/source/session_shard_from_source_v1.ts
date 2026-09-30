@@ -186,6 +186,12 @@ export interface SessionVocabularyContactSourceV1 {
  * standalone word can never be passed through the pipeline as a one-word
  * phrase merely to satisfy a stage label.
  */
+/**
+ * зачем: контент уроков 2–3 клонирует источник через JSON и правит копию (слово, подсказки, дистракторы);
+ * readonly-тип источника это запрещал. Глубоко изменяемый вид даёт править клон, не ослабляя сам SessionSource.
+ */
+export type SessionSourceDeepMutableV1<T> = { -readonly [K in keyof T]: SessionSourceDeepMutableV1<T[K]> };
+
 export interface SessionVocabularySourceV1 {
   readonly id: string;
   readonly target: string;

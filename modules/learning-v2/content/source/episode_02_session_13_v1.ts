@@ -1,5 +1,5 @@
 import { EPISODE_02_SESSION_12_SOURCE } from './episode_02_session_12_v1';
-import type { SessionSource } from './session_shard_from_source_v1';
+import type { SessionSource, SessionSourceDeepMutableV1, SessionVocabularySourceV1 } from './session_shard_from_source_v1';
 
 const copy = <T,>(value: T): T => JSON.parse(JSON.stringify(value)) as T;
 const replace = <T,>(value: T): T => {
@@ -17,7 +17,7 @@ const source = replace(copy(EPISODE_02_SESSION_12_SOURCE)) as SessionSource & {
 source.requiredSessionOrdinal = 13;
 source.generationInputFingerprint = 'full-b1-exact-diagnostic-public-e02-s13-v1';
 
-const publicWord = source.newVocabulary?.[0];
+const publicWord = source.newVocabulary?.[0] as SessionSourceDeepMutableV1<SessionVocabularySourceV1> | undefined;
 if (!publicWord) throw new Error('episode_02_session_13_public_card_missing');
 publicWord.meaning = {
   ru: 'публичный: открытый для всех', uk: 'публічний: відкритий для всіх',

@@ -29,6 +29,7 @@ import DuoPressable from './DuoPressable';
 import PressableHybrid from './PressableHybrid';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette'; // зачем: опрос VIP на токенах стекла (макет overlays-specialist OS-VIP-SURVEY-*)
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { triLang } from '../constants/i18n';
@@ -58,7 +59,8 @@ type Props = {
 
 function VipSurveyModal({ visible, messageId, onClose, onCompleted, motionVariant = 'hybrid' }: Props) {
   const { lang } = useLang();
-  const { f, isDark } = useTheme();
+  const { f, liquidGlassThemeId } = useTheme();
+  const g = useMemo(() => liquidGlassTokens(liquidGlassThemeId), [liquidGlassThemeId]);
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { height: windowHeight } = useWindowDimensions();
@@ -231,12 +233,10 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted, motionVarian
       }),
     [answers],
   );
-  const chrome = isDark
-    ? { panel: '#131A24', card: '#1D2633', border: 'rgba(148,163,184,0.24)', text: '#F8FAFC', muted: '#B7C0CC', soft: '#8A97A8' }
-    : { panel: '#F8FAFC', card: '#FFFFFF', border: 'rgba(71,85,105,0.18)', text: '#1E293B', muted: '#64748B', soft: '#94A3B8' };
-  const accent = isDark
-    ? { main: '#94A3B8', strong: '#CBD5E1', tint: 'rgba(148,163,184,0.16)', text: '#E2E8F0' }
-    : { main: '#64748B', strong: '#475569', tint: 'rgba(100,116,139,0.12)', text: '#334155' };
+  // зачем: вся палитра окна берётся из токенов стекла выбранной темы (13 тем), а не из захардкоженного
+  // серо-синего slate; смысл полей chrome/accent прежний — меняется только источник цвета.
+  const chrome = { panel: g.opaqueSheet, card: g.opaqueControl, border: g.glassEdge, text: g.text, muted: g.secondary, soft: g.mutedText };
+  const accent = { main: g.text, strong: g.cta, tint: g.selected, text: g.text };
 
   const setAnswer = (questionId: string, optionId: string) => {
     hapticTap();
@@ -363,7 +363,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted, motionVarian
           { opacity: busy || !canGoNext ? 0.55 : 1, backgroundColor: accent.strong },
         ]}
       >
-        <Text style={styles.primaryButtonText}>
+        <Text style={[styles.primaryButtonText, { color: g.ctaInk }]}>
           {busy ? copy.saving : isCompleteStep ? copy.finish : copy.next}
         </Text>
       </DuoPressable>
@@ -390,7 +390,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted, motionVarian
             classic-путь остаётся тем же деревом без обёртки. */}
         <Reanimated.View style={isHybrid ? hybridPanelStyle : undefined}>
         <LinearGradient
-          colors={isDark ? ['#182131', '#0F172A'] : ['#FFFFFF', '#F1F5F9']}
+          colors={[g.opaqueSheet, g.opaqueCard]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           testID="vip-survey-modal"
@@ -403,7 +403,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted, motionVarian
         >
           {confirmExit ? (
             <View style={styles.confirmExitWrap}>
-              <View style={styles.surveyIcon}>
+              <View style={[styles.surveyIcon, { backgroundColor: g.opaqueControl }]}>
                 <Ionicons name="alert-circle" size={22} color={accent.main} />
               </View>
               <Text style={[styles.title, { color: chrome.text, fontSize: Math.min(Math.max(22, f.h2), 28) }]}>
@@ -419,7 +419,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted, motionVarian
                 }}
                 style={[styles.primaryButton, { marginTop: 0, backgroundColor: accent.strong }]}
               >
-                <Text style={styles.primaryButtonText}>{copy.exitLeave}</Text>
+                <Text style={[styles.primaryButtonText, { color: g.ctaInk }]}>{copy.exitLeave}</Text>
               </Pressable>
               <Pressable
                 testID="vip-survey-exit-stay"
@@ -443,7 +443,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted, motionVarian
               disabled={step <= 0 || busy}
               accessibilityLabel={copy.back}
               onPress={goBack}
-              style={[styles.roundButton, { opacity: step <= 0 ? 0.35 : 1, backgroundColor: chrome.card }]}
+              style={[styles.roundButton, { opacity: step <= 0 ? 0.35 : 1, backgroundColor: chrome.card, borderColor: chrome.border }]}
             >
               <Ionicons name="chevron-back" size={21} color={chrome.text} />
             </PressableHybrid>
@@ -451,7 +451,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted, motionVarian
               <Text style={[styles.progressText, { color: chrome.muted }]}>
                 {Math.min(step + 1, VIP_SURVEY_QUESTIONS.length + 1)} / {VIP_SURVEY_QUESTIONS.length + 1}
               </Text>
-              <View style={[styles.progressTrack, { backgroundColor: isDark ? '#253244' : '#E2E8F0' }]}>
+              <View style={[styles.progressTrack, { backgroundColor: g.opaqueControl }]}>
                 <View
                   style={[
                     styles.progressFill,
@@ -492,7 +492,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted, motionVarian
                     <Text style={[styles.introBody, { color: chrome.muted, fontSize: Math.min(f.body, 15) }]}>{copy.introBody}</Text>
                   </View>
                 ) : null}
-                <View style={styles.surveyIcon}>
+                <View style={[styles.surveyIcon, { backgroundColor: g.opaqueControl }]}>
                   <Ionicons name="chatbubbles" size={22} color={accent.main} />
                 </View>
                 <Text style={[styles.title, { color: chrome.text, fontSize: Math.min(Math.max(22, f.h2), 28) }]}>
@@ -551,7 +551,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted, motionVarian
               </>
             ) : (
               <>
-                <View style={styles.surveyIcon}>
+                <View style={[styles.surveyIcon, { backgroundColor: g.opaqueControl }]}>
                   <Ionicons name="sparkles" size={22} color={accent.main} />
                 </View>
                 <Text style={[styles.title, { color: chrome.text, fontSize: Math.min(Math.max(23, f.h2), 28) }]}>{copy.completedTitle}</Text>
@@ -559,7 +559,10 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted, motionVarian
               </>
             )}
 
-            {error ? <Text style={styles.errorText}>{error}</Text> : null}
+            {error ? <View accessibilityRole="alert" style={[styles.errorPlate, { backgroundColor: g.opaqueControl, borderColor: g.glassEdge }]}>
+              <Ionicons name="alert-circle-outline" size={20} color={g.text} />
+              <Text style={[styles.errorText, { color: g.text }]}>{error}</Text>
+            </View> : null}
             {inputControlVisible ? renderPrimaryButton(true) : null}
           </ScrollView>
 
@@ -588,7 +591,7 @@ const styles = StyleSheet.create({
     maxHeight: '92%',
     alignSelf: 'center',
     borderRadius: 22,
-    borderWidth: 0,
+    borderWidth: 1,
     padding: 16,
     overflow: 'hidden',
   },
@@ -605,10 +608,10 @@ const styles = StyleSheet.create({
     flexShrink: 1,
   },
   roundButton: {
-    width: 38,
-    height: 38,
-    borderRadius: 19,
-    borderWidth: 0,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -629,7 +632,6 @@ const styles = StyleSheet.create({
   progressFill: {
     height: '100%',
     borderRadius: 999,
-    backgroundColor: '#64748B',
   },
   content: {
     paddingTop: 20,
@@ -640,7 +642,7 @@ const styles = StyleSheet.create({
   },
   introCard: {
     borderRadius: 14,
-    borderWidth: 0,
+    borderWidth: 1,
     padding: 12,
     marginBottom: 12,
   },
@@ -660,7 +662,6 @@ const styles = StyleSheet.create({
     borderRadius: 22,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(100,116,139,0.14)',
     marginBottom: 12,
   },
   title: {
@@ -674,7 +675,7 @@ const styles = StyleSheet.create({
   optionButton: {
     minHeight: 52,
     borderRadius: 15,
-    borderWidth: 0,
+    borderWidth: 1,
     paddingHorizontal: 13,
     paddingVertical: 12,
     flexDirection: 'row',
@@ -691,7 +692,7 @@ const styles = StyleSheet.create({
   commentBox: {
     minHeight: 110,
     borderRadius: 16,
-    borderWidth: 0,
+    borderWidth: 1,
     marginTop: 14,
     padding: 12,
   },
@@ -713,12 +714,20 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginBottom: 14,
   },
-  errorText: {
-    color: '#EF4444',
-    fontSize: 12,
-    fontWeight: '800',
-    lineHeight: 18,
+  errorPlate: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 10,
     marginTop: 12,
+    padding: 12,
+    borderRadius: 14,
+    borderWidth: 1,
+  },
+  errorText: {
+    flex: 1,
+    fontSize: 13,
+    fontWeight: '700',
+    lineHeight: 19,
   },
   primaryButton: {
     minHeight: 52,
@@ -727,13 +736,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 14,
-    backgroundColor: '#475569',
   },
   primaryButtonInScroll: {
     marginTop: 16,
   },
   primaryButtonText: {
-    color: '#FFFFFF',
     fontSize: 15,
     fontWeight: '900',
     textAlign: 'center',
@@ -747,7 +754,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     marginTop: 4,
-    minHeight: 40,
+    minHeight: 44,
     justifyContent: 'center',
   },
 });

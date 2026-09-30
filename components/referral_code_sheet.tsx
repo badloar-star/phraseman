@@ -7,7 +7,7 @@
  * идемпотентность и валидация — внутри referral_bootstrap).
  */
 import React, { useCallback, useEffect, useState } from 'react';
-import { ActivityIndicator, Text, TextInput, TouchableOpacity } from 'react-native';
+import { ActivityIndicator, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from './ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette'; // зачем: шит «Код от друга» на токенах стекла (overlays-more, ReferralCodeSheet)
@@ -174,7 +174,7 @@ interface ReferralCodeSheetProps {
 }
 
 export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeSheetProps) {
-  const { theme: t, f, liquidGlassThemeId } = useTheme();
+  const { f, liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
   const L = makeL(lang as Lang);
@@ -287,12 +287,18 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
         </Text>
       </TouchableOpacity>
       {feedback && (
-        <Text
+        // зачем: макет overlays-campaigns (OS-ONB-REFERRAL-*): результат — стеклянная плашка со значком
+        // (галочка/крестик), а не красный/зелёный текст; цвет берём из токенов темы.
+        <View
           testID="referral-code-sheet-feedback"
-          style={{ color: feedback.kind === 'ok' ? glass.text : t.wrong, fontSize: f.sub ?? 13, lineHeight: 20, fontWeight: '700', marginTop: 10 }}
+          accessibilityRole="alert"
+          style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 10, marginTop: 10, padding: 12, borderRadius: 14, backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }}
         >
-          {feedback.text}
-        </Text>
+          <Ionicons name={feedback.kind === 'ok' ? 'checkmark-circle-outline' : 'close-circle-outline'} size={20} color={glass.text} />
+          <Text style={{ flex: 1, color: glass.text, fontSize: f.sub ?? 13, lineHeight: 20, fontWeight: '700' }}>
+            {feedback.text}
+          </Text>
+        </View>
       )}
       {friendRequested && (
         <Text

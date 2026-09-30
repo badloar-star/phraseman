@@ -15,16 +15,20 @@
 // жалобы и претензии ревью Apple/Google.
 //
 // Источник истины — ТОЛЬКО стор (getStorePromoPricing над данными RevenueCat).
-// Никаких флагов в админке: включили скидку в App Store Connect / Play Console —
-// плашка появилась, выключили — исчезла. Рассинхрону «написано ≠ списано»
-// взяться неоткуда, потому что второго источника цены не существует.
+// Плашка fail closed: появляется только для одного промо-цикла с тем же billing period,
+// после которого сразу идёт обычная цена. Промежуточные цены, другой period,
+// несколько циклов или неполные timing-данные скрывают промо, пока UI не умеет
+// честно расписать всю цепочку списаний.
 //
 // Инварианты Perf Bible соблюдены через PaywallMotion: только transform/opacity
 // на UI-треде, лупы гейтятся фокусом экрана, reduce-motion отдаёт статичный кадр.
 // ════════════════════════════════════════════════════════════════════════════
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { BlurView } from 'expo-blur';
+import { LinearGradient } from '../SafeLinearGradient';
+import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 
 import { triLang, type Lang } from '../../constants/i18n';
 import { PaywallBadgePop } from './PaywallMotion';
@@ -39,9 +43,14 @@ export function promoBadgeLabel(lang: Lang, percent: number): string {
   });
 }
 
-export default function PaywallPromoBanner({ lang, chrome, promo, delay = 0 }: {
+type PromoGlassTokens = ReturnType<typeof liquidGlassTokens>;
+
+export default function PaywallPromoBanner({ lang, chrome, promo, delay = 0, glass }: {
   lang: Lang;
   chrome: PaywallChrome;
+  /** зачем: пейвол A/D на Liquid Glass (макет PW-PROMO) — баннер рисуется стеклом из токенов темы;
+   *  без glass (онбординг-пейвол) прежний тональный вид не меняется. */
+  glass?: PromoGlassTokens;
   /** Промо выбранного плана из стора; null — плашки нет вовсе. */
   promo: StorePromoPricing | null;
   /** Задержка появления, мс — подстраивается под каскад входа пейвола. */
@@ -80,7 +89,10 @@ export default function PaywallPromoBanner({ lang, chrome, promo, delay = 0 }: {
     <PaywallBadgePop
       pulse
       delay={delay}
-      style={[S.wrap, {
+      style={glass ? [S.wrap, S.glassWrap, {
+        backgroundColor: glass.card,
+        borderColor: glass.glassEdge,
+      }] : [S.wrap, {
         backgroundColor: `${tc.heroAccent}1F`,
         // Свечение вместо обводки: блок обязан вести взглядом, а не спорить с
         // карточками планов. На макете при `14` он читался тише соседей.
@@ -91,6 +103,11 @@ export default function PaywallPromoBanner({ lang, chrome, promo, delay = 0 }: {
         elevation: 4,
       }]}
     >
+      {glass ? <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+        {Platform.OS === 'ios' ? <BlurView intensity={22} tint="dark" style={StyleSheet.absoluteFill} /> : null}
+        <LinearGradient colors={[`${glass.lightTint.slice(0, 7)}24`, `${glass.lightTint.slice(0, 7)}08`, 'transparent']}
+          style={S.glassSheen} />
+      </View> : null}
       <View
         testID="paywall-promo-banner"
         accessible
@@ -99,8 +116,8 @@ export default function PaywallPromoBanner({ lang, chrome, promo, delay = 0 }: {
         accessibilityLabel={`${title}. ${promo.promoPriceString} ${afterLine}`}
         style={S.row}
       >
-        <View style={[S.badge, { backgroundColor: tc.savingsBadgeBg }]}>
-          <Text style={[S.badgeText, { color: tc.savingsBadgeText }]} maxFontSizeMultiplier={1.6}>
+        <View style={[S.badge, { backgroundColor: glass ? glass.cta : tc.savingsBadgeBg }]}>
+          <Text style={[S.badgeText, { color: glass ? glass.ctaInk : tc.savingsBadgeText }]} maxFontSizeMultiplier={1.6}>
             {promoBadgeLabel(lang, promo.discountPercent)}
           </Text>
         </View>
@@ -112,14 +129,14 @@ export default function PaywallPromoBanner({ lang, chrome, promo, delay = 0 }: {
                 шрифт раньше упирались в многоточие; priceRow переносит строку. */}
             <Text
               testID="paywall-promo-price"
-              style={[S.promoPrice, { color: tc.urgencyCurrentPriceText }]}
+              style={[S.promoPrice, { color: glass ? glass.text : tc.urgencyCurrentPriceText }]}
               maxFontSizeMultiplier={1.5}
             >
               {promo.promoPriceString}
             </Text>
             <Text
               testID="paywall-promo-standard"
-              style={[S.standardPrice, { color: tc.urgencyStrikethroughColor }]}
+              style={[S.standardPrice, { color: glass ? glass.secondary : tc.urgencyStrikethroughColor }]}
               maxFontSizeMultiplier={1.5}
             >
               {promo.standardPriceString}
@@ -131,14 +148,14 @@ export default function PaywallPromoBanner({ lang, chrome, promo, delay = 0 }: {
               видно целиком — это не украшение, а то, за что человек платит. */}
           <Text
             testID="paywall-promo-after"
-            style={[S.afterPrice, { color: tc.urgencyLabelText }]}
+            style={[S.afterPrice, { color: glass ? glass.secondary : tc.urgencyLabelText }]}
             maxFontSizeMultiplier={1.5}
           >
             {afterLine}
           </Text>
         </View>
 
-        <Ionicons name="sparkles" size={17} color={tc.heroAccent} />
+        <Ionicons name="sparkles" size={17} color={glass ? glass.secondary : tc.heroAccent} />
       </View>
     </PaywallBadgePop>
   );
@@ -150,6 +167,9 @@ const S = StyleSheet.create({
   wrap: { borderRadius: 18, paddingHorizontal: 14, paddingVertical: 13, marginBottom: 12 },
   // зачем: при переносе цен блок растёт вниз — бейдж и иконка должны держаться
   // верхней строки, а не «уезжать» в середину выросшего блока.
+  // зачем: стеклянный вид — 1px полупрозрачная кромка (разрешена для 2.0), без цветного свечения.
+  glassWrap: { borderWidth: 1, borderRadius: 22, overflow: 'hidden', shadowOpacity: 0, elevation: 0 },
+  glassSheen: { position: 'absolute', top: 0, left: 0, right: 0, height: 74 },
   row: { flexDirection: 'row', alignItems: 'flex-start', gap: 10 },
   badge: { flexShrink: 0, borderRadius: 999, paddingHorizontal: 10, paddingVertical: 5 },
   badgeText: { fontSize: 14, fontWeight: '900', letterSpacing: 0.2 },

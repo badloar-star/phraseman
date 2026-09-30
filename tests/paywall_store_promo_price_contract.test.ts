@@ -29,6 +29,18 @@ describe('скидка стора доезжает до пейвола чест�
     expect(hook).toContain('selectedPromo');
   });
 
+  it('промо привязано к платформе и проверенной iOS eligibility', () => {
+    const promoBlock = hook.slice(hook.indexOf('const storePromo'), hook.indexOf('const perDayLabel'));
+    expect(promoBlock).toContain('Platform.OS');
+    expect(promoBlock).toContain('introEligibility');
+    expect(promoBlock).toContain("?? 'unknown'");
+  });
+
+  it('чекаут остаётся purchasePackage того же выбранного пакета', () => {
+    expect(hook).toContain('Purchases.purchasePackage(pkg)');
+    expect(hook).not.toContain('Purchases.purchaseSubscriptionOption(');
+  });
+
   it('источник цены — только стор: никаких флагов и хардкодов процента', () => {
     // Второй источник истины = рассинхрон «написано ≠ списано». Процент скидки
     // обязан приходить из данных стора, а не из константы в коде.
@@ -62,8 +74,8 @@ describe('скидка стора доезжает до пейвола чест�
 
   it('плашка соблюдает запреты владельца по дизайну', () => {
     const banner = read('components', 'paywall', 'PaywallPromoBanner.tsx');
-    // Контейнеры не обводим — разделяем тоном (правило владельца).
-    expect(banner).not.toMatch(/borderWidth\s*:/u);
+    // Толстых/цветных рамок нет; в стекле 2.0 разрешена только тонкая полупрозрачная кромка в 1 px (правило владельца).
+    expect(banner).not.toMatch(/borderWidth\s*:\s*([2-9]|\d{2,})/u);
     expect(banner).not.toMatch(/adjustsFontSizeToFit/u);
   });
 

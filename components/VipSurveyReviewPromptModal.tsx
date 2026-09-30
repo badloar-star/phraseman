@@ -4,6 +4,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette'; // зачем: окно отзыва после VIP-опроса на токенах стекла (макет overlays-specialist)
 import { hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { triLang } from '../constants/i18n';
@@ -25,7 +26,8 @@ type Props = {
 
 function VipSurveyReviewPromptModal({ visible, onClose, motionVariant = 'classic' }: Props) {
   const { lang } = useLang();
-  const { theme: t, f, isDark, themeMode } = useTheme();
+  const { f, liquidGlassThemeId } = useTheme();
+  const g = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const isHybrid = motionVariant === 'hybrid';
@@ -72,7 +74,7 @@ function VipSurveyReviewPromptModal({ visible, onClose, motionVariant = 'classic
   // (TouchableOpacity → DuoPressable/PressableHybrid под гибридом), см.
   // паттерн ThemedConfirmModal.
   const cardBody = (
-    <View testID="vip-survey-review-prompt" style={[styles.card, { paddingBottom: Math.max(22, bottomInset + 14), backgroundColor: t.bgCard, borderColor: t.border, borderRadius: 22, overflow: 'hidden' }]}>
+    <View testID="vip-survey-review-prompt" style={[styles.card, { paddingBottom: Math.max(22, bottomInset + 14), backgroundColor: g.opaqueSheet, borderColor: g.glassEdge, borderRadius: 22, overflow: 'hidden' }]}>
       {isHybrid ? (
         <PressableHybrid
           variant="icon"
@@ -80,9 +82,9 @@ function VipSurveyReviewPromptModal({ visible, onClose, motionVariant = 'classic
           testID="vip-survey-review-close"
           accessibilityRole="button"
           accessibilityLabel={closeLabel}
-          style={[styles.closeButton, { backgroundColor: isDark ? '#17202A' : '#EEF2F7', borderRadius: 17, overflow: 'hidden' }]}
+          style={[styles.closeButton, { backgroundColor: g.opaqueControl, borderColor: g.glassEdge, borderRadius: 22, overflow: 'hidden' }]}
         >
-          <Ionicons name="close" size={20} color={t.textPrimary} />
+          <Ionicons name="close" size={20} color={g.text} />
         </PressableHybrid>
       ) : (
         <TouchableOpacity
@@ -91,19 +93,19 @@ function VipSurveyReviewPromptModal({ visible, onClose, motionVariant = 'classic
           accessibilityRole="button"
           accessibilityLabel={closeLabel}
           onPress={close}
-          style={[styles.closeButton, { backgroundColor: isDark ? '#17202A' : '#EEF2F7', borderRadius: 17, overflow: 'hidden' }]}
+          style={[styles.closeButton, { backgroundColor: g.opaqueControl, borderColor: g.glassEdge, borderRadius: 22, overflow: 'hidden' }]}
         >
-          <Ionicons name="close" size={20} color={t.textPrimary} />
+          <Ionicons name="close" size={20} color={g.text} />
         </TouchableOpacity>
       )}
 
       <CascadeItem delay={isHybrid ? LUM.ladder[1] : 0} reduceMotion={!isHybrid || reduceMotion}>
-        <View style={[styles.iconWrap, { backgroundColor: 'rgba(34,197,94,0.14)', borderRadius: 29, borderWidth: 0, borderColor: 'transparent', overflow: 'hidden' }]}>
-          <Ionicons name="star" size={28} color={'#22C55E'} />
+        <View style={[styles.iconWrap, { backgroundColor: g.opaqueControl, borderRadius: 29, overflow: 'hidden' }]}>
+          <Ionicons name="star" size={28} color={g.text} />
         </View>
       </CascadeItem>
       <CascadeItem delay={isHybrid ? LUM.ladder[2] : 0} reduceMotion={!isHybrid || reduceMotion}>
-        <Text style={[styles.title, { color: t.textPrimary, fontSize: Math.max(22, f.h2) }]}>
+        <Text style={[styles.title, { color: g.text, fontSize: Math.max(22, f.h2) }]}>
           {triLang(lang, {
             ru: 'Твой Plus активирован',
             uk: 'Твій Plus активовано',
@@ -118,7 +120,7 @@ function VipSurveyReviewPromptModal({ visible, onClose, motionVariant = 'classic
         </Text>
       </CascadeItem>
       <CascadeItem delay={isHybrid ? LUM.ladder[2] + 96 : 0} reduceMotion={!isHybrid || reduceMotion}>
-        <Text style={[styles.body, { color: t.textMuted, fontSize: f.body }]}>
+        <Text style={[styles.body, { color: g.secondary, fontSize: f.body }]}>
           {triLang(lang, {
             ru: 'Хочешь поделиться впечатлением о Phraseman? Честный отзыв поможет другим людям понять, чего ждать от приложения.',
             uk: 'Хочеш поділитися враженням про Phraseman? Чесний відгук допоможе іншим людям зрозуміти, чого чекати від застосунку.',
@@ -138,12 +140,12 @@ function VipSurveyReviewPromptModal({ visible, onClose, motionVariant = 'classic
             testID="vip-survey-review-write"
             accessibilityRole="button"
             onPress={openReview}
-            edgeColor="#0F7A32"
+            edgeColor={g.glassEdge}
             edgeHeight={5}
-            style={[styles.primaryButtonHybridFace, { backgroundColor: '#16A34A' }]}
+            style={[styles.primaryButtonHybridFace, { backgroundColor: g.cta }]}
           >
-            <Ionicons name="create-outline" size={19} color={t.correctText} />
-            <Text style={[styles.primaryText, { fontSize: f.body, color: t.correctText }]}>
+            <Ionicons name="create-outline" size={19} color={g.ctaInk} />
+            <Text style={[styles.primaryText, { fontSize: f.body, color: g.ctaInk }]}>
               {triLang(lang, { ru: 'Написать отзыв', uk: 'Написати відгук', en: 'Write a review', es: 'Escribir reseña', 'pt-BR': 'Escrever avaliação', vi: 'Viết đánh giá', id: 'Tulis ulasan', tr: 'Değerlendirme yaz', pl: 'Napisz recenzję' })}
             </Text>
           </DuoPressable>
@@ -153,10 +155,10 @@ function VipSurveyReviewPromptModal({ visible, onClose, motionVariant = 'classic
             activeOpacity={0.88}
             accessibilityRole="button"
             onPress={openReview}
-            style={[styles.primaryButton, { backgroundColor: '#16A34A', borderRadius: 16, borderWidth: 0, borderColor: 'transparent', overflow: 'hidden' }]}
+            style={[styles.primaryButton, { backgroundColor: g.cta, borderRadius: 16, overflow: 'hidden' }]}
           >
-            <Ionicons name="create-outline" size={19} color={t.correctText} />
-            <Text style={[styles.primaryText, { fontSize: f.body, color: t.correctText }]}>
+            <Ionicons name="create-outline" size={19} color={g.ctaInk} />
+            <Text style={[styles.primaryText, { fontSize: f.body, color: g.ctaInk }]}>
               {triLang(lang, { ru: 'Написать отзыв', uk: 'Написати відгук', en: 'Write a review', es: 'Escribir reseña', 'pt-BR': 'Escrever avaliação', vi: 'Viết đánh giá', id: 'Tulis ulasan', tr: 'Değerlendirme yaz', pl: 'Napisz recenzję' })}
             </Text>
           </TouchableOpacity>
@@ -173,7 +175,7 @@ function VipSurveyReviewPromptModal({ visible, onClose, motionVariant = 'classic
             style={styles.laterButton}
             contentStyle={{ alignItems: 'center', justifyContent: 'center' }}
           >
-            <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '600', textAlign: 'center' }}>
+            <Text style={{ color: g.secondary, fontSize: f.body, fontWeight: '600', textAlign: 'center' }}>
               {laterLabel}
             </Text>
           </PressableHybrid>
@@ -186,7 +188,7 @@ function VipSurveyReviewPromptModal({ visible, onClose, motionVariant = 'classic
             onPress={close}
             style={styles.laterButton}
           >
-            <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '600', textAlign: 'center' }}>
+            <Text style={{ color: g.secondary, fontSize: f.body, fontWeight: '600', textAlign: 'center' }}>
               {laterLabel}
             </Text>
           </TouchableOpacity>
@@ -235,7 +237,7 @@ const styles = StyleSheet.create({
     maxWidth: 520,
     alignSelf: 'center',
     borderRadius: 22,
-    borderWidth: 0,
+    borderWidth: 1,
     padding: 22,
     paddingTop: 24,
     alignItems: 'center',
@@ -244,10 +246,10 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 12,
     right: 12,
-    width: 34,
-    height: 34,
-    borderRadius: 17,
-    borderWidth: 0,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -275,7 +277,6 @@ const styles = StyleSheet.create({
   primaryButton: {
     minHeight: 50,
     borderRadius: 16,
-    backgroundColor: '#16A34A',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -295,7 +296,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
   },
   primaryText: {
-    color: '#FFFFFF',
     fontWeight: '900',
   },
   laterButton: {
@@ -303,7 +303,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     marginTop: 4,
-    minHeight: 40,
+    minHeight: 44,
     justifyContent: 'center',
   },
 });

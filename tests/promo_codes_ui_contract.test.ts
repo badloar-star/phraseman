@@ -39,7 +39,8 @@ describe('promo codes UI/admin contract', () => {
     expect(entry).toContain("emitAppEvent('vip_activated')");
     expect(entry).toContain("emitAppEvent('premium_access_changed', { active: true, source: 'vip' })");
     expect(entry).toContain('<VipCelebrationModal');
-    expect(entry).toContain('TonalSurface');
+    // зачем: экран промокода перенесён на токены стекла (Liquid Glass), TonalSurface заменён стеклянной карточкой
+    expect(entry).toContain('liquidGlassTokens(liquidGlassThemeId)');
     expect(entry).toContain('ActivityIndicator size="small"');
     expect(entry).toContain('Активируем…');
     expect(entry).toContain("['vip_plan', params.rewardKind === 'lifetime' ? 'promo_lifetime' : 'promo']");

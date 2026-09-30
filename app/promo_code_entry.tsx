@@ -25,7 +25,7 @@ import { invalidatePremiumCache } from './premium_guard';
 import { emitAppEvent } from './events';
 import { consumeVipCelebration } from './vip_celebration_state';
 import VipCelebrationModal from '../components/VipCelebrationModal';
-import TonalSurface from '../components/TonalSurface';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette'; // зачем: экран промокода на токенах стекла (макет overlays-campaigns OS-ONB-PROMO-*)
 import { captureAccountGeneration, isCurrentAccountGeneration, type AccountGenerationToken } from './account_generation';
 import { writeVipSnapshotForAccount } from './premium_vip_storage';
 import { ensureAnonUser } from './cloud_sync';
@@ -200,7 +200,8 @@ export async function redeemPromoCodeWithPersist(rawCode: string): Promise<{
 
 export default function PromoCodeEntryScreen() {
   const router = useRouter();
-  const { theme: t, f } = useTheme();
+  const { f, liquidGlassThemeId } = useTheme();
+  const g = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
   const L = makeL(lang as Lang);
   // Диплинк со страницы «спасибо» после веб-оплаты: phraseman://promo_code_entry?code=WEB-…
@@ -295,18 +296,18 @@ export default function PromoCodeEntryScreen() {
             contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 34 }}
           >
 
-            <TonalSurface tone="subtle" radius={24} style={{ padding: 20, gap: 16 }}>
+            <View style={{ padding: 20, gap: 16, borderRadius: 24, backgroundColor: g.opaqueCard, borderWidth: 1, borderColor: g.glassEdge, overflow: 'hidden' }}>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
-                <View style={{ width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: `${t.accent}22` }}>
-                  <Ionicons name="gift-outline" size={22} color={t.accent} />
+                <View style={{ width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: g.opaqueControl }}>
+                  <Ionicons name="gift-outline" size={22} color={g.text} />
                 </View>
                 <View style={{ flex: 1 }}>
-                  <Text style={{ color: t.textPrimary, fontSize: f.h3 ?? 20, lineHeight: 26, fontWeight: '900' }}>
+                  <Text style={{ color: g.text, fontSize: f.h3 ?? 20, lineHeight: 26, fontWeight: '800' }}>
                 {L('Есть промокод?', 'Є промокод?', 'Have a promo code?', '¿Tienes un código?', 'Tem um código?', 'Có mã khuyến mãi?', 'Punya kode promo?', 'Promo kodun var mı?', 'Masz kod promocyjny?')}
                   </Text>
                 </View>
               </View>
-              <Text style={{ color: t.textSecond, fontSize: f.body ?? 16, lineHeight: 23, fontWeight: '600' }}>
+              <Text style={{ color: g.secondary, fontSize: f.body ?? 16, lineHeight: 23, fontWeight: '600' }}>
                 {L(
                   'Введи промокод, чтобы получить Plus-подписку.',
                   'Введи промокод, щоб отримати Plus-підписку.',
@@ -328,11 +329,11 @@ export default function PromoCodeEntryScreen() {
                 returnKeyType="done"
                 onSubmitEditing={() => { if (canSubmit) void submit(); }}
                 placeholder={L('Введите промокод', 'Введіть промокод', 'Enter the promo code', 'Introduce el código', 'Digite o código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')}
-                placeholderTextColor={t.textMuted}
+                placeholderTextColor={g.mutedText}
                 style={{
                   minHeight: 56, borderRadius: 16, paddingHorizontal: 16,
-                  backgroundColor: t.bgSurface, color: t.textPrimary,
-                  borderWidth: 1, borderColor: inputValid ? t.accent : t.border,
+                  backgroundColor: g.opaqueControl, color: g.text,
+                  borderWidth: 1, borderColor: inputValid ? g.lightTint : g.glassEdge,
                   fontSize: f.body ?? 16, fontWeight: '900', letterSpacing: 1,
                 }}
               />
@@ -346,31 +347,35 @@ export default function PromoCodeEntryScreen() {
                 style={{
                   minHeight: 56, borderRadius: 16,
                   alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 8,
-                  backgroundColor: (inputValid || busy) ? t.accent : t.bgCard,
-                  borderWidth: inputValid || busy ? 0 : 1,
-                  borderColor: t.border,
+                  backgroundColor: (inputValid || busy) ? g.cta : g.selected,
+                  opacity: (inputValid || busy) ? 1 : 0.55,
                 }}
               >
                 {busy ? (
-                  <ActivityIndicator size="small" color={t.correctText} />
+                  <ActivityIndicator size="small" color={g.ctaInk} />
                 ) : (
-                  <Ionicons name="checkmark-circle-outline" size={20} color={inputValid ? t.correctText : t.textMuted} />
+                  <Ionicons name="checkmark-circle-outline" size={20} color={inputValid ? g.ctaInk : g.mutedText} />
                 )}
-                <Text style={{ color: inputValid ? t.correctText : t.textSecond, fontSize: f.body ?? 16, fontWeight: '900' }}>
+                <Text style={{ color: inputValid ? g.ctaInk : g.mutedText, fontSize: f.body ?? 16, fontWeight: '800' }}>
                   {busy
                     ? L('Активируем…', 'Активуємо…', 'Activating…', 'Activando…', 'Ativando…', 'Đang kích hoạt…', 'Mengaktifkan…', 'Etkinleştiriliyor…', 'Aktywujemy…')
                     : L('Активировать', 'Активувати', 'Activate', 'Activar', 'Ativar', 'Kích hoạt', 'Aktifkan', 'Etkinleştir', 'Aktywuj')}
                 </Text>
               </TouchableOpacity>
               {feedback && (
-                <Text
+                // зачем: макет OS-ONB-PROMO-*: итог проверки — стеклянная плашка со значком, не цветной текст.
+                <View
                   testID="promo-code-feedback"
-                  style={{ color: feedback.kind === 'ok' ? t.correct : t.wrong, fontSize: f.sub ?? 13, lineHeight: 20, fontWeight: '800' }}
+                  accessibilityRole="alert"
+                  style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 10, padding: 12, borderRadius: 14, backgroundColor: g.opaqueControl, borderWidth: 1, borderColor: g.glassEdge }}
                 >
-                  {feedback.text}
-                </Text>
+                  <Ionicons name={feedback.kind === 'ok' ? 'checkmark-circle-outline' : 'close-circle-outline'} size={20} color={g.text} />
+                  <Text style={{ flex: 1, color: g.text, fontSize: f.sub ?? 13, lineHeight: 20, fontWeight: '700' }}>
+                    {feedback.text}
+                  </Text>
+                </View>
               )}
-            </TonalSurface>
+            </View>
           </ScrollView>
         </KeyboardAvoidingView>
         <VipCelebrationModal visible={celebrationVisible} onClose={closeCelebration} promoCode={celebrationCode} />

@@ -237,7 +237,7 @@ export default function PaywallLiquidGlass({
         {context ? <PaywallGlyphCapsule ctx={context} chrome={legalChrome} /> : null}
         <Text style={S.title}>{activeTitle}</Text>
       </View>
-      {purchase.selectedPromo ? <PaywallPromoBanner lang={lang} chrome={legalChrome} promo={purchase.selectedPromo} /> : null}
+      {purchase.selectedPromo ? <PaywallPromoBanner lang={lang} chrome={legalChrome} promo={purchase.selectedPromo} glass={g} /> : null}
       {state === 'ready'
         ? <ActiveOfferBody variant={variant} purchase={purchase} lang={lang} chrome={legalChrome} selectedPrice={selectedPrice} period={period} />
         : <StatusPanel state={state} copy={copy} />}

@@ -12,10 +12,11 @@ import SoftContextualUpsellCard from '../components/SoftContextualUpsellCard';
 import CollectibleDropModal from '../components/CollectibleDropModal';
 import ContentWrap from '../components/ContentWrap';
 import { glassFill } from '../components/GlassSurface';
+import { ResultsGlassBackButton } from '../components/results/ResultsGlass';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { triLang, type Lang } from '../constants/i18n';
-import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useTheme } from '../components/ThemeContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { usePremium } from '../components/PremiumContext';
@@ -539,7 +540,7 @@ export default function LessonComplete() {
   const lessonCompleteRuntimeActive = useRuntimeActive();
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
-  const { theme: t, f, themeMode } = useTheme();
+  const { theme: t, f, themeMode, liquidGlassThemeId } = useTheme();
   const { s, lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const softUpsellStudyTarget: SoftUpsellStudyTarget = studyTarget === 'fr' ? 'fr' : 'en';
@@ -1382,6 +1383,7 @@ export default function LessonComplete() {
                     vi: 'Đánh giá', id: 'Penilaian', tr: 'Puan', pl: 'Ocena',
                   })}
                   testID="lesson-complete-feedback"
+                  presentation="liquid-glass-rate"
                 />
                 ) : null}
                 </View>
@@ -1414,25 +1416,14 @@ export default function LessonComplete() {
     return (
       <ScreenGradient>
         <SafeAreaView testID="lesson-complete-loading" style={{ flex: 1 }}>
-          <TapScale
-            accessibilityRole="button"
-            accessibilityLabel={triLang(lang, { ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
-            onPress={goBackFromComplete}
-            style={{
-              position: 'absolute',
-              top: Math.max(16, insets.top + 8),
-              left: 20,
-              zIndex: 10,
-              width: 40,
-              height: 40,
-              borderRadius: 20,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: t.bgSurface,
-            }}
-          >
-            <Ionicons name="arrow-back" size={22} color={t.textPrimary} />
-          </TapScale>
+          {/* зачем (владелец 2026-09-30): «назад» 44 dp в стиле макета results.html; логика выхода прежняя. */}
+          <View style={{ position: 'absolute', top: Math.max(16, insets.top + 8), left: 20, zIndex: 10 }}>
+            <ResultsGlassBackButton
+              glass={liquidGlassTokens(liquidGlassThemeId)}
+              accessibilityLabel={triLang(lang, { ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
+              onPress={goBackFromComplete}
+            />
+          </View>
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 32 }}>
             <Text style={{ color: t.textSecond, fontSize: 16, textAlign: 'center' }}>
               {triLang(lang, {

@@ -82,14 +82,14 @@ export default function LevelExamResult({ lang, attemptId, result, rewardState, 
             <View style={[styles.heroIcon, { backgroundColor: heroBackground }]}> 
               <Ionicons name={result.passed ? 'trophy' : 'refresh'} size={34} color={heroColor} />
             </View>
-            <Text accessibilityRole="header" style={{ color: t.textPrimary, fontSize: f.h1, fontFamily: ds.fontFamily, fontWeight: '900', textAlign: 'center' }}>
+            <Text accessibilityRole="header" style={{ color: t.textPrimary, fontSize: f.h1, fontFamily: ds.fontFamily, fontWeight: '700', textAlign: 'center' }}>
               {copy.title}
             </Text>
             <Text style={{ color: heroColor, fontSize: f.numLg * 1.7, fontFamily: ds.fontFamily, fontWeight: '900' }}>
               {result.score}/{result.total}
             </Text>
             <Text style={{ color: t.textMuted, fontSize: f.caption, fontFamily: ds.fontFamily, fontWeight: '700' }}>
-              {copy.scoreLabel} · {result.pct}% · +{result.baseXp} XP
+              {copy.scoreLabel} · {result.pct}%
             </Text>
           </Animated.View>
 
@@ -162,11 +162,13 @@ const styles = StyleSheet.create({
   safeArea: { flex: 1 },
   content: { paddingBottom: 36 },
   hero: { alignItems: 'center', gap: 8, paddingVertical: 12 },
-  heroIcon: { width: 64, height: 64, borderRadius: 32, alignItems: 'center', justifyContent: 'center' },
+  // зачем: плитка 61×61 radius 16 из макета results.html (RES-09) вместо круга 64.
+  heroIcon: { width: 61, height: 61, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
   skillLabel: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 },
   skillTrack: { height: 8, borderRadius: 4, overflow: 'hidden' },
   skillFill: { height: '100%', borderRadius: 4 },
   lessonRow: { minHeight: 42, flexDirection: 'row', alignItems: 'center', gap: 9 },
   reward: { flexDirection: 'row', alignItems: 'center', gap: 10 },
-  primaryButton: { borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
+  // зачем: pill-кнопка макета (.cta radius 24).
+  primaryButton: { borderRadius: 24, alignItems: 'center', justifyContent: 'center' },
 });

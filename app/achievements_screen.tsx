@@ -26,6 +26,7 @@ import type { AchievementCategoryOption } from '../components/achievements/Achie
 import HybridAlertShell from '../components/modal_fx/HybridAlertShell';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { glassFill } from '../components/GlassSurface';
+import { ResultsGlassBackButton, ResultsGlassCountPill, ResultsGlassEmptyState } from '../components/results/ResultsGlass';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { safeRouterBack } from './navigation_back';
@@ -899,7 +900,8 @@ const AccordionSection = memo(function AccordionSection({
 // ── Главный экран ─────────────────────────────────────────────────────────────
 export default function AchievementsScreen() {
   const router          = useRouter();
-  const { theme: t, f, isDark, themeMode } = useTheme();
+  const { theme: t, f, isDark, themeMode, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const { lang }        = useLang();
   const { studyTarget } = useStudyTarget();
   const { width: screenW } = useWindowDimensions();
@@ -1207,27 +1209,24 @@ export default function AchievementsScreen() {
 
         {/* Хедер */}
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14 }}>
-          <TapScale
+          {/* зачем (владелец 2026-09-30): круглая кнопка «назад» 44 dp по макету results.html RES-ACH. */}
+          <ResultsGlassBackButton
+            glass={glass}
             testID="achievements-back"
             accessibilityLabel={triLang(lang, {
               ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar',
               vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
             })}
             onPress={() => safeRouterBack(router)}
-            style={{ flexShrink: 0 }}
-          >
-            <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
-          </TapScale>
-          <View style={{ flex: 1, marginLeft: 8, minWidth: 0 }}>
+          />
+          <View style={{ flex: 1, marginLeft: 14, minWidth: 0 }}>
             <Text
               numberOfLines={1}
               style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', lineHeight: Math.round(f.h2 * 1.15) }}
             >
               {triLang(lang, { ru: 'Достижения', uk: 'Досягнення', en: 'Achievements', es: 'Logros', 'pt-BR': 'Conquistas', vi: 'Thành tựu', id: 'Pencapaian', tr: 'Başarılar', pl: 'Osiągnięcia' })}
             </Text>
-            <Text numberOfLines={1} style={{ color: t.textMuted, fontSize: f.sub }}>
-              {visibleCountLabel}
-            </Text>
+            {/* Подпись-расшифровка под названием убрана (правило владельца); счёт — в пилюле справа, полная форма — в a11y. */}
           </View>
           {ENABLE_DEV_TOOLS && (
             <TouchableOpacity
@@ -1261,11 +1260,7 @@ export default function AchievementsScreen() {
               </Text>
             </TouchableOpacity>
           )}
-          <View style={{ backgroundColor: t.bgCard, borderRadius: 10, paddingHorizontal: 10, paddingVertical: 5, flexShrink: 0 }}>
-            <Text numberOfLines={1} style={{ color: t.textSecond, fontWeight: '800', fontSize: Math.max(12, Math.min(f.body, 15)) }}>
-              {headerCountLabel}
-            </Text>
-          </View>
+          <ResultsGlassCountPill glass={glass} label={headerCountLabel} accessibilityLabel={visibleCountLabel} testID="achievements-count" />
         </View>
 
         <ScrollView decelerationRate="fast"
@@ -1297,12 +1292,13 @@ export default function AchievementsScreen() {
               renderDetail={renderShelfDetail}
             />
           ) : (
-            <View style={{ paddingVertical: 48, alignItems: 'center', gap: 10 }}>
-              <Ionicons name="trophy-outline" size={42} color={t.textGhost} />
-              <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
-                {triLang(lang, { ru: 'Здесь будут твои награды. Занимайся — и полка постепенно заполнится.', uk: 'Тут будуть твої нагороди. Займайся — і полиця поступово заповниться.', en: 'Your rewards will appear here. Keep practising and the shelf will gradually fill up.', es: 'Aquí estarán tus recompensas. Sigue practicando y la estantería se irá llenando.', 'pt-BR': 'Suas recompensas aparecerão aqui. Continue praticando e a prateleira vai se encher.', vi: 'Phần thưởng của bạn sẽ xuất hiện ở đây. Cứ luyện tập, chiếc kệ sẽ dần đầy lên.', id: 'Hadiahmu akan muncul di sini. Terus berlatih, rak ini akan terisi sedikit demi sedikit.', tr: 'Ödüllerin burada görünecek. Çalışmaya devam et, rafın yavaş yavaş dolsun.', pl: 'Tutaj pojawią się twoje nagrody. Ćwicz, a półka stopniowo się zapełni.' })}
-              </Text>
-            </View>
+            <ResultsGlassEmptyState
+              glass={glass}
+              testID="achievements-empty"
+              icon="trophy-outline"
+              title={triLang(lang, { ru: 'Полка пока пуста', uk: 'Полиця поки порожня', en: 'The shelf is empty for now', es: 'La estantería está vacía por ahora', 'pt-BR': 'A prateleira ainda está vazia', vi: 'Kệ vẫn đang trống', id: 'Rak masih kosong', tr: 'Raf şimdilik boş', pl: 'Półka jest jeszcze pusta' })}
+              body={triLang(lang, { ru: 'Здесь будут твои награды. Занимайся — и полка постепенно заполнится.', uk: 'Тут будуть твої нагороди. Займайся — і полиця поступово заповниться.', en: 'Your rewards will appear here. Keep practising and the shelf will gradually fill up.', es: 'Aquí estarán tus recompensas. Sigue practicando y la estantería se irá llenando.', 'pt-BR': 'Suas recompensas aparecerão aqui. Continue praticando e a prateleira vai se encher.', vi: 'Phần thưởng của bạn sẽ xuất hiện ở đây. Cứ luyện tập, chiếc kệ sẽ dần đầy lên.', id: 'Hadiahmu akan muncul di sini. Terus berlatih, rak ini akan terisi sedikit demi sedikit.', tr: 'Ödüllerin burada görünecek. Çalışmaya devam et, rafın yavaş yavaş dolsun.', pl: 'Tutaj pojawią się twoje nagrody. Ćwicz, a półka stopniowo się zapełni.' })}
+            />
           )}
 
           <View style={{ alignItems: 'center', paddingVertical: 20 }}>

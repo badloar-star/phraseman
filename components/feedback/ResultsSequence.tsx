@@ -2,13 +2,13 @@
  * ResultsSequence — полноэкранная секвенция наград (спек §2 ResultsSequence, §2.1, AC 6/10).
  *
  * Таймлайн: медаль/бейдж (spring + haptic) → звёзды по одной
- * (fk.milestone('star1..3')) → XP-каунтер ~900мс (fk.tick троттлинг ≥70мс) →
+ * (fk.milestone('star1..3')) → legacy reward-каунтер ~900мс (fk.tick троттлинг ≥70мс) →
  * конфетти → финальный reward-sound → CTA slide-up. Тап пропускает к финальному
  * состоянию. CTA активны максимум с 3000мс (спек §2.1: не блокировать дольше 3с).
  * intensity 'quiet' — без конфетти (для экзаменов/диагностики: тихо, без грозы).
  *
  * Perf Bible §2.1: монтируется только на финальном экране, всё на UI-треде,
- * конфетти конечное (ConfettiBurst), XP-таймер чистится на unmount/скип, ноль
+ * конфетти конечное (ConfettiBurst), legacy reward-таймер чистится на unmount/скип, ноль
  * фоновых циклов. Цвета из useTheme; тексты/бейдж/подписи CTA — через props.
  */
 import React, {
@@ -57,7 +57,7 @@ export type ResultsIntensity = 'quiet' | 'milestone' | 'major';
 export type ResultsSequenceRewards = {
   activeGift?: { label: string };
   multiplier?: { label: string };
-  multipliers?: { label: string; xpDelta: number }[];
+  multipliers?: { label: string; delta: number }[];
 };
 
 export type ResultsSequenceSpinReward = Readonly<{
@@ -67,7 +67,7 @@ export type ResultsSequenceSpinReward = Readonly<{
 
 type NormalizedMultiplierReward = Readonly<{
   label: string;
-  xpDelta: number;
+  delta: number;
 }>;
 
 const MAX_RESULTS_MULTIPLIERS = 8;
@@ -80,13 +80,13 @@ export function getResultsSequenceMultiplierSignature(
   const normalized = Array.isArray(multipliers)
     ? multipliers.slice(0, MAX_RESULTS_MULTIPLIERS).flatMap((reward) => {
         const label = String(reward?.label ?? '').trim().slice(0, 80);
-        const xpDelta = Number.isFinite(reward?.xpDelta)
-          ? Math.max(0, Math.round(reward.xpDelta))
+        const delta = Number.isFinite(reward?.delta)
+          ? Math.max(0, Math.round(reward.delta))
           : 0;
-        return label ? [{ label, xpDelta }] : [];
+        return label ? [{ label, delta }] : [];
       })
     : legacyMultiplierLabel
-      ? [{ label: legacyMultiplierLabel.slice(0, 80), xpDelta: 0 }]
+      ? [{ label: legacyMultiplierLabel.slice(0, 80), delta: 0 }]
       : [];
   return JSON.stringify(normalized);
 }
@@ -102,11 +102,10 @@ function multiplierRewardsFromSignature(signature: string): readonly NormalizedM
 export interface ResultsSequenceProps {
   /** Число звёзд 0-3. */
   stars: number;
-  /** XP-only surfaces hide the whole star row instead of presenting zero stars. */
+  /** legacy reward-only surfaces hide the whole star row instead of presenting zero stars. */
   showStars?: boolean;
   /** Completion mark is meaningful in lessons, but Arena already states the outcome. */
   showFinaleMark?: boolean;
-  xp: number;
   /**
    * Руны, заработанные в сессии (владелец, 2026-08-27). Опционально — экраны
    * без копилки практики (курс V2 без учебных активностей, Арена) просто не
@@ -131,15 +130,14 @@ export interface ResultsSequenceProps {
   summaryMetrics?: readonly Readonly<{ value: string; label: string }>[];
   /** Restarts the reward choreography without remounting the feedback form. */
   replayKey?: string | number;
-  /** Lets locally committed XP/runes join an already-mounted result without replaying its stars. */
+  /** Lets locally committed legacy reward/runes join an already-mounted result without replaying its stars. */
   animateLateRewards?: boolean;
   /** Authoritative screen-level motion preference, available before async system lookup settles. */
   reducedMotion?: boolean;
   /** Bottom safe-area inset for non-scrolling, full-screen result layouts. */
   bottomInset?: number;
-  /** True only after the local XP/rune completion transaction has settled. */
+  /** True only after the local legacy reward/rune completion transaction has settled. */
   rewardsSettled?: boolean;
-  xpLabel?: string;
   runesLabel?: string;
   runesAccessibilityLabel?: string;
   onCtaPrimary: () => void;
@@ -159,7 +157,7 @@ export interface ResultsSequenceProps {
 
 // Таймлайн (мс).
 const T_BADGE = 0;
-const RESULTS_XP_COUNT_DURATION_MS = 1000;
+const RESULTS_REWARD_COUNT_DURATION_MS = 1000;
 const LATE_REWARD_COUNT_DURATION_MS = 460;
 const CTA_HARD_UNLOCK = 3000; // спек §2.1: CTA доступны не позже 3с
 const REWARD_PILL_SLOT_HEIGHT = 50;
@@ -167,15 +165,15 @@ const SPIN_REWARD_SLOT_HEIGHT = 86;
 const RESULTS_SEQUENCE_SOUND_OPTIONS = { scope: 'results-sequence' } as const;
 const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
 
-const ResultsXpValue = memo(function ResultsXpValue({
+const ResultsRewardValue = memo(function ResultsRewardValue({
   progress,
-  xpWidth,
+  valueWidth,
   color,
   accessibilityLabel,
   compact = false,
 }: {
   progress: SharedValue<number>;
-  xpWidth: number;
+  valueWidth: number;
   color: string;
   accessibilityLabel: string;
   compact?: boolean;
@@ -190,7 +188,7 @@ const ResultsXpValue = memo(function ResultsXpValue({
       animatedProps={animatedProps as never}
       editable={false}
       pointerEvents="none"
-      style={[compact ? styles.pulseRewardValue : styles.xpValue, { color, width: xpWidth }]}
+      style={[compact ? styles.pulseRewardValue : styles.rewardValue, { color, width: valueWidth }]}
     />
   );
 });
@@ -251,7 +249,6 @@ export function ResultsSequence({
   stars,
   showStars = true,
   showFinaleMark = true,
-  xp,
   runes,
   title,
   subtitle,
@@ -267,7 +264,6 @@ export function ResultsSequence({
   reducedMotion,
   bottomInset = 0,
   rewardsSettled = true,
-  xpLabel = 'XP',
   runesLabel = 'RUNES',
   runesAccessibilityLabel,
   onCtaPrimary,
@@ -298,26 +294,18 @@ export function ResultsSequence({
   const runesValue = Math.max(0, Math.round(Number(runes) || 0));
   const timelineRewardSnapshotRef = useRef({
     replayKey,
-    xp,
     runes: runesValue,
   });
   if (!Object.is(timelineRewardSnapshotRef.current.replayKey, replayKey)) {
-    timelineRewardSnapshotRef.current = { replayKey, xp, runes: runesValue };
+    timelineRewardSnapshotRef.current = { replayKey, runes: runesValue };
   }
-  const timelineXp = animateLateRewards
-    ? timelineRewardSnapshotRef.current.xp
-    : xp;
+  // legacy reward is retired in PhraseMan 2.0; legacy prop is kept only for receipt compatibility.
+  const timelineReward = 0;
   const timelineRunesValue = animateLateRewards
     ? timelineRewardSnapshotRef.current.runes
     : runesValue;
-  const finalXp = xp + multiplierRewards.reduce(
-    (total, reward) => total + reward.xpDelta,
-    0,
-  );
-  const timelineFinalXp = timelineXp + multiplierRewards.reduce(
-    (total, reward) => total + reward.xpDelta,
-    0,
-  );
+  const finalReward = 0;
+  const timelineFinalReward = 0;
   const motionPlan = useMemo(
     () => getResultsSequenceMotionPlan(intensity, effectiveReducedMotion),
     [intensity, effectiveReducedMotion],
@@ -336,7 +324,7 @@ export function ResultsSequence({
     [activeGiftLabel, legacyMultiplierLabel, multiplierRewards.length, showStars, spinReward?.receiptId, timelineHasRunes],
   );
   const presentationFinaleAtMs = useMemo(() => {
-    const hasTimelineReward = timelineXp > 0 || timelineHasRunes;
+    const hasTimelineReward = timelineReward > 0 || timelineHasRunes;
     const hasExtraReward = Boolean(
       activeGiftLabel || spinReward?.receiptId || multiplierRewards.length > 0,
     );
@@ -352,7 +340,7 @@ export function ResultsSequence({
     multiplierRewards.length,
     spinReward?.receiptId,
     timelineHasRunes,
-    timelineXp,
+    timelineReward,
   ]);
 
   const clampedStars = Math.max(0, Math.min(3, Math.floor(stars)));
@@ -365,11 +353,11 @@ export function ResultsSequence({
   const star1 = useSharedValue(initiallySettled ? 1 : 0);
   const star2 = useSharedValue(initiallySettled ? 1 : 0);
   const ctaSV = useSharedValue(initiallySettled ? 1 : 0);
-  const xpProgress = useSharedValue(initiallySettled ? finalXp : 0);
-  const xpRevealSV = useSharedValue(initiallySettled && finalXp > 0 ? 1 : 0);
+  const rewardProgress = useSharedValue(initiallySettled ? finalReward : 0);
+  const rewardRevealSV = useSharedValue(initiallySettled && finalReward > 0 ? 1 : 0);
   // зачем (владелец, 2026-08-27): руны — параллельный трек той же формы, что
-  // XP (свой shared value для count-up, своя видимость), но со звуком строго
-  // после того, как звук XP закончился (см. results_sequence_motion_plan.ts).
+  // legacy reward (свой shared value для count-up, своя видимость), но со звуком строго
+  // после того, как звук legacy reward закончился (см. results_sequence_motion_plan.ts).
   const runesProgress = useSharedValue(initiallySettled ? runesValue : 0);
   const runesRevealSV = useSharedValue(initiallySettled && runesValue > 0 ? 1 : 0);
   const finaleSV = useSharedValue(initiallySettled ? 1 : 0);
@@ -378,10 +366,10 @@ export function ResultsSequence({
   const rewardSlotCount = (activeGiftLabel ? 1 : 0) + multiplierRewards.length;
   const rewardStackHeight = rewardSlotCount * REWARD_PILL_SLOT_HEIGHT
     + (spinReward?.receiptId ? SPIN_REWARD_SLOT_HEIGHT : 0);
-  const xpWidth = Math.max(84, String(Math.max(xp, finalXp)).length * 32 + 20);
+  const valueWidth = Math.max(84, String(finalReward).length * 32 + 20);
   const runesWidth = Math.max(84, String(runesValue).length * 32 + 20);
 
-  const [xpVisible, setXpVisible] = useState(initiallySettled && finalXp > 0);
+  const [rewardVisible, setRewardVisible] = useState(initiallySettled && finalReward > 0);
   const [runesVisible, setRunesVisible] = useState(initiallySettled && runesValue > 0);
   const [showConfetti, setShowConfetti] = useState(false);
   const [ctaReady, setCtaReady] = useState(initiallySettled);
@@ -401,7 +389,7 @@ export function ResultsSequence({
   const timeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const skippedRef = useRef(false);
   const forcedUnlockedRef = useRef(initiallySettled);
-  const lateXpAnimatedRef = useRef(timelineXp > 0);
+  const lateRewardAnimatedRef = useRef(timelineReward > 0);
   const lateRunesAnimatedRef = useRef(timelineRunesValue > 0);
   const rewardSequenceCursorEndsAtRef = useRef(0);
   const lateDetailsTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -451,14 +439,14 @@ export function ResultsSequence({
     badgeSV.value = withTiming(1, { duration: 120 });
     starSVs.forEach((sv) => (sv.value = withTiming(1, { duration: 120 })));
     ctaSV.value = withTiming(1, { duration: 160 });
-    xpProgress.value = finalXp > 0 ? finalXp : 0;
-    xpRevealSV.value = withTiming(1, { duration: 120 });
+    rewardProgress.value = finalReward > 0 ? finalReward : 0;
+    rewardRevealSV.value = withTiming(1, { duration: 120 });
     runesProgress.value = runesValue;
     runesRevealSV.value = withTiming(1, { duration: 120 });
     finaleSV.value = withTiming(1, { duration: 120 });
     detailsSV.value = withTiming(1, { duration: 120 });
     setDetailsReady(true);
-    setXpVisible(finalXp > 0);
+    setRewardVisible(finalReward > 0);
     setRunesVisible(runesValue > 0);
     setActiveGiftVisible(Boolean(activeGiftLabel));
     setVisibleMultiplierCount(multiplierRewards.length);
@@ -466,15 +454,15 @@ export function ResultsSequence({
     setSpinRewardStatic(Boolean(spinReward?.receiptId));
     if (intensity !== 'quiet' && !effectiveReducedMotion) setShowConfetti(true);
     setCtaReady(true);
-  }, [activeGiftLabel, badgeSV, starSVs, ctaSV, xpProgress, xpRevealSV, runesProgress, runesRevealSV, runesValue, finaleSV, detailsSV, finalXp, multiplierRewards.length, spinReward?.receiptId, intensity, effectiveReducedMotion, clearAllTimers, handleCtaPrimary]);
+  }, [activeGiftLabel, badgeSV, starSVs, ctaSV, rewardProgress, rewardRevealSV, runesProgress, runesRevealSV, runesValue, finaleSV, detailsSV, finalReward, multiplierRewards.length, spinReward?.receiptId, intensity, effectiveReducedMotion, clearAllTimers, handleCtaPrimary]);
 
   useEffect(() => {
     clearAllTimers();
     cancelAnimation(badgeSV);
     starSVs.forEach((sv) => cancelAnimation(sv));
     cancelAnimation(ctaSV);
-    cancelAnimation(xpProgress);
-    cancelAnimation(xpRevealSV);
+    cancelAnimation(rewardProgress);
+    cancelAnimation(rewardRevealSV);
     cancelAnimation(runesProgress);
     cancelAnimation(runesRevealSV);
     cancelAnimation(finaleSV);
@@ -484,13 +472,13 @@ export function ResultsSequence({
     badgeSV.value = 0;
     starSVs.forEach((sv) => { sv.value = 0; });
     ctaSV.value = 0;
-    xpProgress.value = 0;
-    xpRevealSV.value = 0;
+    rewardProgress.value = 0;
+    rewardRevealSV.value = 0;
     runesProgress.value = 0;
     runesRevealSV.value = 0;
     finaleSV.value = 0;
     detailsSV.value = 0;
-    setXpVisible(false);
+    setRewardVisible(false);
     setRunesVisible(false);
     setShowConfetti(false);
     setCtaReady(false);
@@ -501,7 +489,7 @@ export function ResultsSequence({
     setFinaleVisible(false);
     setDetailsReady(false);
     sequenceMountedAtRef.current = Date.now();
-    lateXpAnimatedRef.current = timelineXp > 0;
+    lateRewardAnimatedRef.current = timelineReward > 0;
     lateRunesAnimatedRef.current = timelineRunesValue > 0;
     rewardSequenceCursorEndsAtRef.current = 0;
 
@@ -514,13 +502,13 @@ export function ResultsSequence({
       badgeSV.value = 1;
       starSVs.forEach((sv) => { sv.value = 1; });
       ctaSV.value = 1;
-      xpProgress.value = timelineFinalXp > 0 ? timelineFinalXp : 0;
-      xpRevealSV.value = 1;
+      rewardProgress.value = timelineFinalReward > 0 ? timelineFinalReward : 0;
+      rewardRevealSV.value = 1;
       runesProgress.value = timelineRunesValue;
       runesRevealSV.value = 1;
       finaleSV.value = 1;
       detailsSV.value = 1;
-      setXpVisible(timelineFinalXp > 0);
+      setRewardVisible(timelineFinalReward > 0);
       setRunesVisible(timelineRunesValue > 0);
       setActiveGiftVisible(Boolean(activeGiftLabel));
       setVisibleMultiplierCount(multiplierRewards.length);
@@ -534,8 +522,8 @@ export function ResultsSequence({
         cancelAnimation(badgeSV);
         starSVs.forEach((sv) => cancelAnimation(sv));
         cancelAnimation(ctaSV);
-        cancelAnimation(xpProgress);
-        cancelAnimation(xpRevealSV);
+        cancelAnimation(rewardProgress);
+        cancelAnimation(rewardRevealSV);
         cancelAnimation(runesProgress);
         cancelAnimation(runesRevealSV);
         cancelAnimation(finaleSV);
@@ -567,43 +555,43 @@ export function ResultsSequence({
       }
     }
 
-    // XP-каунтер идёт на UI thread; звук старта и первое видимое состояние
+    // legacy reward-каунтер идёт на UI thread; звук старта и первое видимое состояние
     // запускаются одним событием, а не независимыми таймерами.
-    if (timelineXp > 0) {
+    if (timelineReward > 0) {
       push(() => {
-        setXpVisible(true);
-        xpRevealSV.value = withSpring(1, { damping: 14, stiffness: 200, mass: 0.6 });
-        fk.xpCounterStart(RESULTS_SEQUENCE_SOUND_OPTIONS);
-      }, audioPlan.xpStartAtMs);
-      audioPlan.xpTickAtMs.forEach((at) => push(() => {
-        xpProgress.value = withTiming(timelineXp, { duration: RESULTS_XP_COUNT_DURATION_MS });
+        setRewardVisible(true);
+        rewardRevealSV.value = withSpring(1, { damping: 14, stiffness: 200, mass: 0.6 });
+        fk.rewardCounterStart(RESULTS_SEQUENCE_SOUND_OPTIONS);
+      }, audioPlan.rewardStartAtMs);
+      audioPlan.rewardTickAtMs.forEach((at) => push(() => {
+        rewardProgress.value = withTiming(timelineReward, { duration: RESULTS_REWARD_COUNT_DURATION_MS });
         fk.tick(RESULTS_SEQUENCE_SOUND_OPTIONS);
       }, at));
       push(() => {
-        xpProgress.value = timelineXp;
-        fk.xpCounterComplete(RESULTS_SEQUENCE_SOUND_OPTIONS);
+        rewardProgress.value = timelineReward;
+        fk.rewardCounterComplete(RESULTS_SEQUENCE_SOUND_OPTIONS);
         if (!timelineHasRunes && motionPlan.confettiCount > 0) setShowConfetti(true);
-      }, audioPlan.xpCompleteAtMs);
+      }, audioPlan.rewardCompleteAtMs);
     }
 
-    // Руны — тот же приём, что XP выше, но начинается только после того, как
-    // звук XP закончился целиком (владелец, 2026-08-27: «анимация начисления
+    // Руны — тот же приём, что legacy reward выше, но начинается только после того, как
+    // звук legacy reward закончился целиком (владелец, 2026-08-27: «анимация начисления
     // рун точно такая же, как в Learning V2», встроена в общую секвенцию, а
     // не отдельным всплывающим тостом).
     if (timelineHasRunes && audioPlan.runesStartAtMs !== undefined) {
       push(() => {
         setRunesVisible(true);
         runesRevealSV.value = withSpring(1, { damping: 14, stiffness: 200, mass: 0.6 });
-        fk.xpCounterStart(RESULTS_SEQUENCE_SOUND_OPTIONS);
+        fk.rewardCounterStart(RESULTS_SEQUENCE_SOUND_OPTIONS);
       }, audioPlan.runesStartAtMs);
       (audioPlan.runesTickAtMs ?? []).forEach((at) => push(() => {
-        runesProgress.value = withTiming(timelineRunesValue, { duration: RESULTS_XP_COUNT_DURATION_MS });
+        runesProgress.value = withTiming(timelineRunesValue, { duration: RESULTS_REWARD_COUNT_DURATION_MS });
         fk.tick(RESULTS_SEQUENCE_SOUND_OPTIONS);
       }, at));
       if (audioPlan.runesCompleteAtMs !== undefined) {
         push(() => {
           runesProgress.value = timelineRunesValue;
-          fk.xpCounterComplete(RESULTS_SEQUENCE_SOUND_OPTIONS);
+          fk.rewardCounterComplete(RESULTS_SEQUENCE_SOUND_OPTIONS);
           if (motionPlan.confettiCount > 0) setShowConfetti(true);
         }, audioPlan.runesCompleteAtMs);
       }
@@ -622,12 +610,10 @@ export function ResultsSequence({
       }, audioPlan.spinRewardAtMs);
     }
     audioPlan.multiplierUpgradeAtMsList.forEach((at, index) => {
-      const multiplierXpTotal = timelineXp + multiplierRewards
-        .slice(0, index + 1)
-        .reduce((total, reward) => total + reward.xpDelta, 0);
+      const multiplierRewardTotal = 0;
       push(() => {
         setVisibleMultiplierCount(index + 1);
-        xpProgress.value = withTiming(multiplierXpTotal, { duration: 420 });
+        rewardProgress.value = withTiming(multiplierRewardTotal, { duration: 420 });
         fk.resultsReward('multiplierUpgrade', RESULTS_SEQUENCE_SOUND_OPTIONS);
       }, at);
     });
@@ -646,8 +632,8 @@ export function ResultsSequence({
       cancelAnimation(badgeSV);
       starSVs.forEach((sv) => cancelAnimation(sv));
       cancelAnimation(ctaSV);
-      cancelAnimation(xpProgress);
-      cancelAnimation(xpRevealSV);
+      cancelAnimation(rewardProgress);
+      cancelAnimation(rewardRevealSV);
       cancelAnimation(runesProgress);
       cancelAnimation(runesRevealSV);
       cancelAnimation(finaleSV);
@@ -664,8 +650,8 @@ export function ResultsSequence({
     presentationFinaleAtMs,
     activeGiftLabel,
     starSVs,
-    timelineXp,
-    timelineFinalXp,
+    timelineReward,
+    timelineFinalReward,
     multiplierRewardsSignature,
     multiplierRewards,
     showStars,
@@ -675,27 +661,21 @@ export function ResultsSequence({
     runesProgress,
     runesRevealSV,
     timelineRunesValue,
-    xpProgress,
-    xpRevealSV,
+    rewardProgress,
+    rewardRevealSV,
     finaleSV,
     detailsSV,
   ]);
 
   useEffect(() => {
     if (!animateLateRewards) return;
-    const pendingXp = xp > timelineXp && !lateXpAnimatedRef.current;
+    // Retired reward receipts must never re-enter the UI.
     const pendingRunes = runesValue > timelineRunesValue
       && !lateRunesAnimatedRef.current;
-    if (!pendingXp && !pendingRunes) return;
-    if (pendingXp) lateXpAnimatedRef.current = true;
+    if (!pendingRunes) return;
     if (pendingRunes) lateRunesAnimatedRef.current = true;
 
     if (skippedRef.current || forcedUnlockedRef.current || motionPlan.immediate) {
-      if (pendingXp) {
-        xpProgress.value = finalXp;
-        xpRevealSV.value = 1;
-        setXpVisible(finalXp > 0);
-      }
       if (pendingRunes) {
         runesProgress.value = runesValue;
         runesRevealSV.value = 1;
@@ -712,33 +692,13 @@ export function ResultsSequence({
       rewardSequenceCursorEndsAtRef.current - Date.now() + 120,
     );
 
-    if (pendingXp) {
-      schedule(() => {
-        setXpVisible(true);
-        xpProgress.value = 0;
-        xpRevealSV.value = withSpring(1, { damping: 14, stiffness: 200, mass: 0.6 });
-        xpProgress.value = withTiming(finalXp, { duration: LATE_REWARD_COUNT_DURATION_MS });
-        fk.xpCounterStart(RESULTS_SEQUENCE_SOUND_OPTIONS);
-      }, cursorMs);
-      schedule(
-        () => fk.tick(RESULTS_SEQUENCE_SOUND_OPTIONS),
-        cursorMs + Math.round(LATE_REWARD_COUNT_DURATION_MS * 0.45),
-      );
-      cursorMs += LATE_REWARD_COUNT_DURATION_MS;
-      schedule(() => {
-        xpProgress.value = finalXp;
-        fk.xpCounterComplete(RESULTS_SEQUENCE_SOUND_OPTIONS);
-      }, cursorMs);
-      cursorMs += 120;
-    }
-
     if (pendingRunes) {
       schedule(() => {
         setRunesVisible(true);
         runesProgress.value = 0;
         runesRevealSV.value = withSpring(1, { damping: 14, stiffness: 200, mass: 0.6 });
         runesProgress.value = withTiming(runesValue, { duration: LATE_REWARD_COUNT_DURATION_MS });
-        fk.xpCounterStart(RESULTS_SEQUENCE_SOUND_OPTIONS);
+        fk.rewardCounterStart(RESULTS_SEQUENCE_SOUND_OPTIONS);
       }, cursorMs);
       schedule(
         () => fk.tick(RESULTS_SEQUENCE_SOUND_OPTIONS),
@@ -747,7 +707,7 @@ export function ResultsSequence({
       cursorMs += LATE_REWARD_COUNT_DURATION_MS;
       schedule(() => {
         runesProgress.value = runesValue;
-        fk.xpCounterComplete(RESULTS_SEQUENCE_SOUND_OPTIONS);
+        fk.rewardCounterComplete(RESULTS_SEQUENCE_SOUND_OPTIONS);
         if (motionPlan.confettiCount > 0) setShowConfetti(true);
       }, cursorMs);
     }
@@ -755,25 +715,24 @@ export function ResultsSequence({
     rewardSequenceCursorEndsAtRef.current = Date.now() + cursorMs;
   }, [
     animateLateRewards,
-    finalXp,
+    finalReward,
     motionPlan,
     runesProgress,
     runesRevealSV,
     runesValue,
     timelineRunesValue,
-    timelineXp,
-    xp,
-    xpProgress,
-    xpRevealSV,
+    timelineReward,
+    rewardProgress,
+    rewardRevealSV,
   ]);
 
   useEffect(() => {
     if (forcedUnlockedRef.current) {
-      xpProgress.value = finalXp;
-      xpRevealSV.value = finalXp > 0 ? 1 : 0;
+      rewardProgress.value = finalReward;
+      rewardRevealSV.value = finalReward > 0 ? 1 : 0;
       runesProgress.value = runesValue;
       runesRevealSV.value = runesValue > 0 ? 1 : 0;
-      setXpVisible(finalXp > 0);
+      setRewardVisible(finalReward > 0);
       setRunesVisible(runesValue > 0);
       return;
     }
@@ -798,12 +757,12 @@ export function ResultsSequence({
       if (revealPlan.mode === 'hard-settle') forcedUnlockedRef.current = true;
       badgeSV.value = 1;
       starSVs.forEach((sv) => { sv.value = 1; });
-      xpProgress.value = finalXp;
-      xpRevealSV.value = 1;
+      rewardProgress.value = finalReward;
+      rewardRevealSV.value = 1;
       runesProgress.value = runesValue;
       runesRevealSV.value = 1;
       finaleSV.value = 1;
-      setXpVisible(finalXp > 0);
+      setRewardVisible(finalReward > 0);
       setRunesVisible(runesValue > 0);
       setFinaleVisible(true);
       setActiveGiftVisible(Boolean(activeGiftLabel));
@@ -842,7 +801,7 @@ export function ResultsSequence({
     badgeSV,
     ctaSV,
     detailsSV,
-    finalXp,
+    finalReward,
     finaleSV,
     motionPlan.immediate,
     multiplierRewards.length,
@@ -852,8 +811,8 @@ export function ResultsSequence({
     runesValue,
     spinReward?.receiptId,
     starSVs,
-    xpProgress,
-    xpRevealSV,
+    rewardProgress,
+    rewardRevealSV,
   ]);
 
   const badgeStyle = useAnimatedStyle(() => ({
@@ -867,11 +826,11 @@ export function ResultsSequence({
     opacity: ctaSV.value,
     transform: [{ translateY: interpolate(ctaSV.value, [0, 1], [26, 0]) }],
   }));
-  const xpRevealStyle = useAnimatedStyle(() => ({
-    opacity: xpRevealSV.value,
+  const rewardRevealStyle = useAnimatedStyle(() => ({
+    opacity: rewardRevealSV.value,
     transform: [
-      { translateY: interpolate(xpRevealSV.value, [0, 1], [16, 0]) },
-      { scale: interpolate(xpRevealSV.value, [0, 1], [0.9, 1]) },
+      { translateY: interpolate(rewardRevealSV.value, [0, 1], [16, 0]) },
+      { scale: interpolate(rewardRevealSV.value, [0, 1], [0.9, 1]) },
     ],
   }));
   const runesRevealStyle = useAnimatedStyle(() => ({
@@ -970,27 +929,7 @@ export function ResultsSequence({
             testID="results-sequence-pulse-ledger"
             style={[styles.pulseLedger, orbitMode ? styles.orbitLedger : null, { backgroundColor: t.bgSurface2 }]}
           >
-            {finalXp > 0 || hasRunes ? <View style={styles.pulseRewardGrid}>
-              {finalXp > 0 ? <Animated.View
-                style={[
-                  styles.pulseRewardCard,
-                  orbitMode ? styles.orbitRewardCard : null,
-                  { backgroundColor: t.bgCard },
-                  finalXp > 0 ? xpRevealStyle : null,
-                ]}
-              >
-                <Text style={[styles.pulseRewardLabel, { color: t.textMuted }]}>{xpLabel}</Text>
-                <View style={styles.pulseRewardValueRow}>
-                  <Text style={[styles.pulseRewardPlus, { color: t.gold }]}>+</Text>
-                  <ResultsXpValue
-                    progress={xpProgress}
-                    xpWidth={Math.max(48, String(finalXp).length * 19 + 16)}
-                    color={t.gold}
-                    accessibilityLabel={`${finalXp} XP`}
-                    compact
-                  />
-                </View>
-              </Animated.View> : null}
+            {finalReward > 0 || hasRunes ? <View style={styles.pulseRewardGrid}>
               {hasRunes ? <Animated.View
                 style={[
                   styles.pulseRewardCard,
@@ -1009,9 +948,9 @@ export function ResultsSequence({
                     accessibilityElementsHidden
                     importantForAccessibility="no"
                   />
-                  <ResultsXpValue
+                  <ResultsRewardValue
                     progress={runesProgress}
-                    xpWidth={Math.max(48, String(runesValue).length * 19 + 16)}
+                    valueWidth={Math.max(48, String(runesValue).length * 19 + 16)}
                     color={t.gold}
                     accessibilityLabel={runesAccessibilityLabel ?? `${runesValue} ${runesLabel}`}
                     compact
@@ -1095,29 +1034,17 @@ export function ResultsSequence({
           </View>
         ) : null}
 
-        <Text style={[styles.title, { color: t.textPrimary }]}>{title}</Text>
+        <Text style={[styles.title, styles.glassDefaultTitle, { color: t.textPrimary }]}>{title}</Text>
         {subtitle ? (
           <Text style={[styles.subtitle, { color: t.textMuted }]}>{subtitle}</Text>
         ) : null}
 
-        {xpVisible ? (
-          <Animated.View style={[styles.xpRow, xpRevealStyle]}>
-            <Text style={[styles.xpPlus, { color: t.gold }]}>+</Text>
-            <ResultsXpValue
-              progress={xpProgress}
-              xpWidth={xpWidth}
-              color={t.gold}
-              accessibilityLabel={`${finalXp} XP`}
-            />
-            <Text style={[styles.xpUnit, { color: t.gold }]}>XP</Text>
-          </Animated.View>
-        ) : null}
         {runesVisible ? (
-          <Animated.View style={[styles.xpRow, runesRevealStyle]}>
-            <Text style={[styles.xpPlus, { color: t.gold }]}>+</Text>
-            <ResultsXpValue
+          <Animated.View style={[styles.rewardRow, runesRevealStyle]}>
+            <Text style={[styles.rewardPlus, { color: t.gold }]}>+</Text>
+            <ResultsRewardValue
               progress={runesProgress}
-              xpWidth={runesWidth}
+              valueWidth={runesWidth}
               color={t.gold}
               accessibilityLabel={`${runesValue} рун`}
             />
@@ -1199,7 +1126,7 @@ export function ResultsSequence({
           activeOpacity={0.9}
           disabled={!ctaReady}
           onPress={handleCtaPrimary}
-          style={[styles.ctaPrimary, { backgroundColor: t.accent }]}
+          style={[styles.ctaPrimary, pulseMode ? null : styles.glassDefaultCta, { backgroundColor: t.accent }]}
           accessibilityRole="button"
         >
           <Text style={[styles.ctaPrimaryText, { color: t.correctText }]}>
@@ -1299,9 +1226,9 @@ const styles = StyleSheet.create({
   orbitStar: { fontSize: 34, lineHeight: 38 },
   title: { fontSize: 28, fontWeight: '900', textAlign: 'center', letterSpacing: 0.3 },
   subtitle: { fontSize: 15, fontWeight: '600', textAlign: 'center', marginTop: 8, lineHeight: 21 },
-  xpRow: { flexDirection: 'row', alignItems: 'flex-end', marginTop: 20 },
-  xpPlus: { fontSize: 22, fontWeight: '900', marginBottom: 5 },
-  xpValue: { minWidth: 84, height: 58, padding: 0, fontSize: 50, fontWeight: '900', lineHeight: 54, marginHorizontal: 2, textAlign: 'center' },
+  rewardRow: { flexDirection: 'row', alignItems: 'flex-end', marginTop: 20 },
+  rewardPlus: { fontSize: 22, fontWeight: '900', marginBottom: 5 },
+  rewardValue: { minWidth: 84, height: 58, padding: 0, fontSize: 50, fontWeight: '900', lineHeight: 54, marginHorizontal: 2, textAlign: 'center' },
   xpUnit: { fontSize: 18, fontWeight: '800', marginBottom: 6, marginLeft: 4 },
   runesAsset: { width: 28, height: 28, marginBottom: 8, marginLeft: 4 },
   rewardStack: { alignItems: 'center' },
@@ -1321,6 +1248,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  // зачем: заголовок 30/700 и pill-кнопка radius 24 из макета results.html (RES-09); только default-раскладка.
+  glassDefaultTitle: { fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.4 },
+  glassDefaultCta: { minHeight: 52, height: undefined, borderRadius: 24 },
   ctaPrimaryText: { fontSize: 17, fontWeight: '900', letterSpacing: 0.3 },
   ctaSecondary: { minHeight: 48, alignItems: 'center', justifyContent: 'center' },
   ctaSecondaryText: { fontSize: 15, fontWeight: '700' },

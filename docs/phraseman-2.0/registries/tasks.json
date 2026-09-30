@@ -11228,13 +11228,17 @@
         "id": "PM-222-A1",
         "text": "Сначала stop producers/drain, затем отключение consumers",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "План: evidence/PM-222_cron_retirement_plan.md §2 — producers останавливает релиз 2.0, drain-окно, затем деплой удаления 7 кронов; исполнение после релиза (D91)"
+        ]
       },
       {
         "id": "PM-222-A2",
         "text": "восстановление покупок и удаление аккаунта продолжают работать",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "evidence/PM-222_cron_retirement_plan.md §3 — удаление аккаунта, RevenueCat-вебхук, restore, premiumExpiry остаются живыми экспортами; сверить при деплое"
+        ]
       }
     ],
     "depends_on": [],

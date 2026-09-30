@@ -20,7 +20,8 @@ const LOCALES = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
 const THEMES = ['graphite', 'polar', 'slate', 'ink', 'lavender', 'iris', 'rose', 'terracotta', 'taupe', 'olive', 'sage', 'eucalyptus', 'marine'];
 const PROTECTED_FILES = new Map([
   ['app/flashcards/DeckSelectionTile.tsx', '66045ca246c71271aabfe658c06ab51db20d5de9dfd386ca4525ee4804374a4e'],
-  ['components/v2/V2Kit.tsx', '7c06e9047f8d39f6e5001593d1b148c37e873b31e4b365ccb20c9342b37ec108'],
+  // зачем (30.09): темы 2.0 — ссылка раздела в цвете темы (p.link, 0c6d2549f); в «Спокойно» = textSecondary.
+  ['components/v2/V2Kit.tsx', 'd5568332a1efe80d3e311be53c8b93b3abceae48cf45f79186662471bc34a9db'],
   ['components/v2/V2Pressable.tsx', '109ed9abd8f4f9cad448dad5ea3cac1c0ea7f058f86d8e6dae571ba807a37a83'],
 ]);
 const PROTECTED_RUNTIME = {

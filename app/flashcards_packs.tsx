@@ -407,7 +407,9 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
 
   return (
     <ScreenGradient entranceOffsetY={reduceMotion || embedded ? undefined : (parallaxY as unknown as Animated.Value)}>
-      <LinearGradient pointerEvents="none" colors={[g.bgTop, g.bg, g.bgBottom]} style={StyleSheet.absoluteFill} />
+      {/* зачем (эмулятор 30.09): внутри «Сообщества» свой градиент начинался под переключателем
+          и давал ступеньку тона; фон рисует вкладка, как у встроенных «Друзей». */}
+      {embedded ? null : <LinearGradient pointerEvents="none" colors={[g.bgTop, g.bg, g.bgBottom]} style={StyleSheet.absoluteFill} />}
       <SafeAreaView
         style={[styles.safe, { backgroundColor: 'transparent' }]}
         edges={embedded ? ['left', 'right'] : ['top', 'left', 'right']}

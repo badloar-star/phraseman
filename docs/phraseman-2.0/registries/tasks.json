@@ -625,14 +625,18 @@
       {
         "id": "PM-014-A1",
         "text": "Документировано, какой уровень открывает диалоги после удаления XP",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "D124 + a1f7514f2: сценарий открывается монетным рангом; уровни V1 сопоставлены рангам V2 (legacyDialogScenarioRankRequired в app/ai_dialog_level_lock.ts), V2 — rankRequired в каталоге (shared/dialogue_v2_access_contract.ts decideDialogueV2ScenarioAccess)"
+        ]
       },
       {
         "id": "PM-014-A2",
         "text": "Plus не обходит ранговый доступ без нового явного решения",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "D124 OWNER_FINAL: Plus не открывает сценарии без ранга; тест dialogue_v2_access_contract «does not make a purchase or subscription an alternative unlock path»"
+        ]
       }
     ],
     "depends_on": [],

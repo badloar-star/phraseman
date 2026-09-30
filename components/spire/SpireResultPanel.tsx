@@ -1,0 +1,138 @@
+// ═══════════════════════════════════════════════════════════════════════════
+// SpireResultPanel.tsx — итог ступени / этажа / вершины на сцене башни (макет §7–8).
+//
+// зачем (фундамент владельца «празднование живёт на своём экране, фактом»): панель
+// снизу поверх башни, маркер в это время уже едет на новый этаж (SpireTower сам
+// анимирует смену этажа). Итог хранится только в памяти экрана — никаких очередей
+// «показать потом». Суммы монет — из config/spire_v1 (сервер начисляет их тем же
+// правилом при досылке отчёта: spire_coins.ts), здесь ничего не придумываем.
+// «Выше» сразу стартует следующую ступень, «Ещё раз» даёт новый набор из 10 заданий.
+// ═══════════════════════════════════════════════════════════════════════════
+import React, { memo } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import type { Lang } from '../../constants/i18n';
+import type { SpireCoinsConfig } from '../../modules/spire/config_contract';
+import type { SpireStepOutcome } from '../../app/spire/use_spire_game';
+import AvatarView from '../AvatarView';
+import V2Pressable from '../v2/V2Pressable';
+import { useSpirePalette } from './useSpirePalette';
+import { spireText } from './spire_strings';
+import { spireClock, spireGameText } from './spire_game_strings';
+import { SPIRE_FLOOR_COUNT, spireFloorCoinsOf, spireIsGuard, spireStepsIn } from './spire_tower_model';
+
+type Props = Readonly<{
+  lang: Lang;
+  outcome: SpireStepOutcome;
+  coins: SpireCoinsConfig;
+  myCoinRank: number | null;
+  myPlace: number | null;
+  busy: boolean;
+  onHigher: () => void;
+  onLater: () => void;
+}>;
+
+function CoinPill({ amount, rank }: Readonly<{ amount: number; rank: number | null }>) {
+  const p = useSpirePalette();
+  return (
+    <View style={[s.pill, { backgroundColor: p.control }]}>
+      {rank !== null ? <AvatarView avatar="" coinRank={rank} size={22} /> : <Ionicons name="ellipse" size={18} color={p.textSecondary} />}
+      <Text style={[s.pillText, { color: p.text }]}>{`+${amount}`}</Text>
+    </View>
+  );
+}
+
+type View_ = Readonly<{ over: string; overBad: boolean; title: string; sub: string; pills: readonly number[]; cta: string; ctaUp: boolean; ghost: string | null }>;
+
+function describe(lang: Lang, o: SpireStepOutcome, coins: SpireCoinsConfig, place: number | null): View_ {
+  const floorNow = Math.min(o.local.floor, SPIRE_FLOOR_COUNT);
+  if (o.kind === 'failed' || o.kind === 'save_failed') {
+    const title = o.kind === 'save_failed' ? spireGameText(lang, 'saveFailed')
+      : o.failReason === 'timeout' ? spireGameText(lang, 'failTimeout')
+        : o.failReason === 'backed_out' ? spireGameText(lang, 'failBack') : spireGameText(lang, 'failHearts');
+    return {
+      over: spireGameText(lang, 'stepFailed'), overBad: true, title,
+      sub: spireGameText(lang, 'failSub', { n: o.floorBefore }), pills: [],
+      cta: spireGameText(lang, 'again'), ctaUp: false, ghost: spireGameText(lang, 'later'),
+    };
+  }
+  if (o.kind === 'summit') {
+    return {
+      over: spireText(lang, 'summit'), overBad: false, title: spireGameText(lang, 'onFloorN', { n: SPIRE_FLOOR_COUNT }),
+      sub: spireGameText(lang, 'summitSub', { s: o.local.stepsCleared, p: place ?? '—' }),
+      pills: [spireFloorCoinsOf(SPIRE_FLOOR_COUNT, coins), coins.summitBonus],
+      cta: spireGameText(lang, 'aboveCloudsCta'), ctaUp: true, ghost: null,
+    };
+  }
+  if (o.kind === 'floor') {
+    const next = o.local.floor;
+    const guardNext = spireIsGuard(next);
+    return {
+      over: spireGameText(lang, 'floorCleared', { n: o.floorBefore }), overBad: false,
+      title: guardNext ? spireGameText(lang, 'guardAhead') : spireGameText(lang, 'floorAhead', { n: next }),
+      sub: guardNext
+        ? spireGameText(lang, 'guardSub', { n: next, m: coins.guardianMultiplier })
+        : `${spireStepsIn(next)} ${spireText(lang, 'steps')} · ${spireFloorCoinsOf(next, coins)} ${spireText(lang, 'coinsPerFloor')}`,
+      pills: [coins.perStep, spireFloorCoinsOf(o.floorBefore, coins)],
+      cta: spireGameText(lang, 'higher'), ctaUp: true, ghost: null,
+    };
+  }
+  const errors = o.errors === 0 ? spireGameText(lang, 'noErrors') : spireGameText(lang, 'errorsN', { n: o.errors });
+  const progress = spireGameText(lang, 'onFloorProgress', { k: o.local.stepInFloor, n: spireStepsIn(floorNow) });
+  return {
+    over: spireGameText(lang, 'stepPassed'), overBad: false, title: spireGameText(lang, 'oneHigher'),
+    sub: `${spireClock(o.usedMs)} / ${spireClock(o.budgetMs)} · ${errors} · ${progress}`,
+    pills: [coins.perStep], cta: spireGameText(lang, 'higher'), ctaUp: true, ghost: null,
+  };
+}
+
+function SpireResultPanel({ lang, outcome, coins, myCoinRank, myPlace, busy, onHigher, onLater }: Props) {
+  const p = useSpirePalette();
+  const v = describe(lang, outcome, coins, myPlace);
+  return (
+    <View style={[s.panel, { backgroundColor: p.card, borderColor: p.hairline }]} accessibilityLiveRegion="polite" testID={`spire-result-${outcome.kind}`}>{/* guard-ok: hairline 1px 2.0 */}
+      <Text style={[s.over, { color: v.overBad ? p.wrong : p.textSecondary }]}>{v.over.toUpperCase()}</Text>
+      <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{v.title}</Text>
+      <Text style={[s.sub, { color: p.textSecondary }]}>{v.sub}</Text>
+      {v.pills.length > 0 ? (
+        <View style={s.pills}>
+          {v.pills.map((amount, i) => <CoinPill key={`c${i}-${amount}`} amount={amount} rank={myCoinRank} />)}
+        </View>
+      ) : null}
+      <V2Pressable
+        onPress={onHigher}
+        disabled={busy}
+        accessibilityRole="button"
+        accessibilityLabel={v.cta}
+        accessibilityState={{ disabled: busy, busy }}
+        style={[s.cta, { backgroundColor: p.cta, opacity: busy ? 0.6 : 1 }]}
+        testID="spire-result-cta"
+      >
+        <Text style={[s.ctaText, { color: p.ctaText }]}>{v.cta}</Text>
+        {v.ctaUp ? <Ionicons name="arrow-up" size={20} color={p.ctaText} /> : null}
+      </V2Pressable>
+      {v.ghost ? (
+        <V2Pressable onPress={onLater} accessibilityRole="button" style={s.ghost} testID="spire-result-later">
+          <Text style={[s.ctaText, { color: p.text }]}>{v.ghost}</Text>
+        </V2Pressable>
+      ) : null}
+    </View>
+  );
+}
+
+const s = StyleSheet.create({
+  // Тонкая кромка панели, как .panel макета (hairline 2.0 разрешён).
+  panel: { borderRadius: 24, borderWidth: 1, // guard-ok: hairline 1px, исключение PhraseMan 2.0
+ paddingHorizontal: 20, paddingTop: 18, paddingBottom: 16 },
+  over: { fontSize: 13, fontWeight: '700', letterSpacing: 2, textAlign: 'center' },
+  title: { fontSize: 24, lineHeight: 30, fontWeight: '700', textAlign: 'center', marginTop: 8 },
+  sub: { fontSize: 15, lineHeight: 20, textAlign: 'center', marginTop: 6 },
+  pills: { flexDirection: 'row', justifyContent: 'center', gap: 10, marginTop: 14 },
+  pill: { height: 36, borderRadius: 18, paddingLeft: 7, paddingRight: 14, flexDirection: 'row', alignItems: 'center', gap: 8 },
+  pillText: { fontSize: 16, fontWeight: '700' },
+  cta: { marginTop: 18, minHeight: 56, borderRadius: 28, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
+  ghost: { marginTop: 8, minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center' },
+  ctaText: { fontSize: 17, fontWeight: '700' },
+});
+
+export default memo(SpireResultPanel);

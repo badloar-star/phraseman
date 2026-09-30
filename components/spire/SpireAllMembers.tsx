@@ -5,6 +5,8 @@
 // зоны — не константа 5, а SPIRE_ZONE_RATIO (15%) от размера комнаты, как у правил
 // сервера (spireLiveZoneSize); понижение забирает и всех с нулём ступеней (TOWER §4.5).
 // Ранга монеты у участников в данных комнаты нет — вместо монеты кружок с инициалом.
+// Пакет B (30.09): строки — живая комната недели (живые + боты формулой + свои локальные
+// ступени); шапка своя, без обрезки текста в одну строку (подпись «камень · N человек»).
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useMemo } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -12,7 +14,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import type { Lang } from '../../constants/i18n';
 import { V2 } from '../../constants/v2Style';
 import { SPIRE_ZONE_RATIO } from '../../modules/spire/residents';
-import { V2ScreenHeader } from '../v2/V2Kit';
+import V2Pressable from '../v2/V2Pressable';
 import { useSpirePalette } from './useSpirePalette';
 import { SpireInitial } from './SpirePodium';
 import { spireText } from './spire_strings';
@@ -30,9 +32,9 @@ export function spireZonesFor(sorted: readonly SpireMemberRow[]): readonly Zone[
   });
 }
 
-type Props = Readonly<{ lang: Lang; members: readonly SpireMemberRow[]; onBack: () => void }>;
+type Props = Readonly<{ lang: Lang; members: readonly SpireMemberRow[]; subtitle?: string; onBack: () => void }>;
 
-function SpireAllMembers({ lang, members, onBack }: Props) {
+function SpireAllMembers({ lang, members, subtitle, onBack }: Props) {
   const p = useSpirePalette();
   const { rows, zones } = useMemo(() => {
     const sorted = [...members].sort((a, b) => b.steps - a.steps);
@@ -73,7 +75,13 @@ function SpireAllMembers({ lang, members, onBack }: Props) {
   return (
     <View style={s.root} testID="spire-all-screen">
       <View style={s.header}>
-        <V2ScreenHeader title={spireText(lang, 'allMembers')} onBack={onBack} backLabel={spireText(lang, 'back')} />
+        <V2Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel={spireText(lang, 'back')} style={[s.back, { backgroundColor: p.control }]} testID="spire-all-back">
+          <Ionicons name="chevron-back" size={20} color={p.text} />
+        </V2Pressable>
+        <View style={s.headText}>
+          <Text accessibilityRole="header" style={[s.headTitle, { color: p.text }]}>{spireText(lang, 'allMembers')}</Text>
+          {subtitle ? <Text style={[s.headSub, { color: p.textSecondary }]}>{subtitle}</Text> : null}
+        </View>
       </View>
       <ScrollView contentContainerStyle={s.content} showsVerticalScrollIndicator={false}>
         {renderZone('up', spireText(lang, 'zoneUp'), p.correct)}
@@ -86,7 +94,11 @@ function SpireAllMembers({ lang, members, onBack }: Props) {
 
 const s = StyleSheet.create({
   root: { flex: 1 },
-  header: { paddingHorizontal: V2.screenPad, paddingTop: 12 },
+  header: { paddingHorizontal: V2.screenPad, paddingTop: 12, flexDirection: 'row', alignItems: 'center', gap: 18 },
+  back: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
+  headText: { flex: 1, minWidth: 0 },
+  headTitle: { fontSize: 26, lineHeight: 30, fontWeight: '700', letterSpacing: -0.3 },
+  headSub: { fontSize: 15, lineHeight: 19, marginTop: 2 },
   content: { paddingHorizontal: V2.screenPad, paddingBottom: 40 },
   zone: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 22, marginBottom: 10, marginHorizontal: 2 },
   zoneText: { fontSize: 13, fontWeight: '700', letterSpacing: 2 },

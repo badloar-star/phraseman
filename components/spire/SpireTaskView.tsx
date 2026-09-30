@@ -1,0 +1,201 @@
+// ═══════════════════════════════════════════════════════════════════════════
+// SpireTaskView.tsx — одно задание ступени: выбор / сборка / пары (макет §4–5).
+//
+// зачем: пакет недели несёт три вида ответа (spire_pack_contract.ts, §4.4):
+//   • choice — фраза и 4 варианта (угадай перевод / вставь слово / найди лишнее);
+//   • translate — собери перевод из банка слов (готово, когда слов столько, сколько нужно);
+//   • match / timeattack — несколько пунктов, у каждого свои варианты (пары).
+// Вердикт считает раннер по отпечаткам, здесь только ввод и подсветка:
+// «верно» — тон correct, «неверно» — тон wrong, верный вариант после ошибки — correct.
+// Все варианты — полноширинные плиты ≥56dp; текст переносится, не обрезается.
+// ═══════════════════════════════════════════════════════════════════════════
+import React, { memo, useCallback, useMemo, useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import type { Lang } from '../../constants/i18n';
+import type { SpirePackTask } from '../../modules/spire/pack_plan';
+import type { SpireFeedback } from '../../app/spire/use_spire_step_runner';
+import V2Pressable from '../v2/V2Pressable';
+import { lv2Alpha } from '../learning-v2/LearningV2Glass';
+import { useSpirePalette } from './useSpirePalette';
+import { spireGameText, type SpireGameStringKey } from './spire_game_strings';
+
+type Props = Readonly<{
+  lang: Lang;
+  task: SpirePackTask;
+  feedback: SpireFeedback | null;
+  disabled: boolean;
+  onChoice: (index: number) => void;
+  onTokens: (tokens: readonly string[]) => void;
+  onItems: (selections: readonly number[]) => void;
+}>;
+
+const PROMPT_KEY: Record<string, SpireGameStringKey> = {
+  guess_phrase: 'promptGuess',
+  fill_gap: 'promptGap',
+  find_oddity: 'promptOdd',
+  translate_build: 'promptBuild',
+  speed_match: 'promptMatch',
+};
+
+function strings(value: unknown): string[] {
+  return Array.isArray(value) ? value.map((v) => (typeof v === 'string' ? v : '')) : [];
+}
+
+type Tone = 'idle' | 'ok' | 'no';
+
+function Option({ label, tone, disabled, onPress, testID }: Readonly<{ label: string; tone: Tone; disabled: boolean; onPress: () => void; testID: string }>) {
+  const p = useSpirePalette();
+  const bg = tone === 'ok' ? lv2Alpha(p.correct, 0.22) : tone === 'no' ? lv2Alpha(p.wrong, 0.22) : p.card;
+  return (
+    <V2Pressable
+      onPress={onPress}
+      disabled={disabled}
+      accessibilityRole="button"
+      accessibilityLabel={label}
+      accessibilityState={{ disabled, selected: tone !== 'idle' }}
+      style={[s.opt, { backgroundColor: bg }]}
+      testID={testID}
+    >
+      <Text style={[s.optText, { color: p.text }]}>{label}</Text>
+    </V2Pressable>
+  );
+}
+
+function ChoiceTask({ task, feedback, disabled, onChoice }: Props) {
+  const options = useMemo(() => strings(task.payload.options), [task]);
+  const toneOf = (i: number): Tone => {
+    if (!feedback) return 'idle';
+    if (feedback.picked === i) return feedback.ok ? 'ok' : 'no';
+    if (!feedback.ok && feedback.correctIndex === i) return 'ok';
+    return 'idle';
+  };
+  return (
+    <View style={s.stack}>
+      {options.map((label, i) => (
+        <Option key={`${task.taskId}:${i}`} label={label} tone={toneOf(i)} disabled={disabled} onPress={() => onChoice(i)} testID={`spire-opt-${i}`} />
+      ))}
+    </View>
+  );
+}
+
+function BuildTask({ task, feedback, disabled, onTokens }: Props) {
+  const p = useSpirePalette();
+  const bank = useMemo(() => strings(task.payload.wordBank), [task]);
+  const need = Math.max(1, Number(task.payload.correctTokenCount) || 1);
+  const [picked, setPicked] = useState<readonly number[]>([]);
+  const add = useCallback((i: number) => {
+    if (disabled || picked.includes(i)) return;
+    const next = [...picked, i];
+    setPicked(next);
+    if (next.length === need) onTokens(next.map((k) => bank[k]));
+  }, [bank, disabled, need, onTokens, picked]);
+  const remove = useCallback((i: number) => {
+    if (disabled) return;
+    setPicked((cur) => cur.filter((k) => k !== i));
+  }, [disabled]);
+  const answerBg = feedback ? lv2Alpha(feedback.ok ? p.correct : p.wrong, 0.18) : p.card;
+  return (
+    <View style={s.stack}>
+      <View style={[s.answer, { backgroundColor: answerBg }]} accessibilityLabel={picked.map((k) => bank[k]).join(' ')}>
+        {picked.map((k) => (
+          <V2Pressable key={`a${k}`} onPress={() => remove(k)} disabled={disabled} accessibilityRole="button" accessibilityLabel={bank[k]} style={[s.token, { backgroundColor: p.cardRaised }]}>
+            <Text style={[s.tokenText, { color: p.text }]}>{bank[k]}</Text>
+          </V2Pressable>
+        ))}
+      </View>
+      <View style={s.bank}>
+        {bank.map((word, i) => {
+          const used = picked.includes(i);
+          return (
+            <V2Pressable
+              key={`b${i}`}
+              onPress={() => add(i)}
+              disabled={disabled || used}
+              accessibilityRole="button"
+              accessibilityLabel={word}
+              accessibilityState={{ disabled: disabled || used }}
+              style={[s.token, { backgroundColor: p.control, opacity: used ? 0.3 : 1 }]}
+              testID={`spire-word-${i}`}
+            >
+              <Text style={[s.tokenText, { color: p.text }]}>{word}</Text>
+            </V2Pressable>
+          );
+        })}
+      </View>
+    </View>
+  );
+}
+
+function ItemsTask({ task, feedback, disabled, onItems }: Props) {
+  const p = useSpirePalette();
+  const items = useMemo(() => (Array.isArray(task.payload.items) ? task.payload.items as Record<string, unknown>[] : []), [task]);
+  const [chosen, setChosen] = useState<readonly number[]>([]);
+  const index = Math.min(chosen.length, Math.max(0, items.length - 1));
+  const item = items[index];
+  const options = strings(item?.options);
+  const pick = useCallback((i: number) => {
+    if (disabled) return;
+    const next = [...chosen, i];
+    setChosen(next);
+    if (next.length >= items.length) onItems(next);
+  }, [chosen, disabled, items.length, onItems]);
+  const toneOf = (i: number): Tone => {
+    if (!feedback || chosen.length < items.length) return 'idle';
+    if (chosen[index] === i) return feedback.ok ? 'ok' : 'no';
+    return 'idle';
+  };
+  return (
+    <View style={s.stack}>
+      <View style={[s.itemHead, { backgroundColor: p.cardRaised }]}>
+        <Text style={[s.itemPrompt, { color: p.text }]}>{typeof item?.prompt === 'string' ? item.prompt : '—'}</Text>
+        <Text style={[s.itemCount, { color: p.textSecondary }]}>{`${Math.min(chosen.length + 1, items.length)} / ${items.length}`}</Text>
+      </View>
+      {options.map((label, i) => (
+        <Option key={`${task.taskId}:${index}:${i}`} label={label} tone={toneOf(i)} disabled={disabled} onPress={() => pick(i)} testID={`spire-item-opt-${i}`} />
+      ))}
+    </View>
+  );
+}
+
+function SpireTaskView(props: Props) {
+  const p = useSpirePalette();
+  const { lang, task } = props;
+  const promptKey = PROMPT_KEY[task.mode] ?? 'promptGuess';
+  const phrase = typeof task.payload.phrase === 'string' ? task.payload.phrase
+    : typeof task.payload.prompt === 'string' ? task.payload.prompt : '';
+  const body = task.kind === 'translate' || task.kind === 'dictate'
+    ? <BuildTask {...props} />
+    : task.kind === 'match' || task.kind === 'timeattack'
+      ? <ItemsTask {...props} />
+      : <ChoiceTask {...props} />;
+  return (
+    <View testID="spire-task">
+      <Text style={[s.overline, { color: p.textSecondary }]}>{spireGameText(lang, promptKey).toUpperCase()}</Text>
+      {phrase && task.kind !== 'match' && task.kind !== 'timeattack' ? (
+        <View style={[s.question, { backgroundColor: p.cardRaised }]}>
+          <Text accessibilityRole="header" style={[s.phrase, { color: p.text }]}>{phrase}</Text>
+        </View>
+      ) : null}
+      <View style={s.body}>{body}</View>
+    </View>
+  );
+}
+
+const s = StyleSheet.create({
+  overline: { fontSize: 13, fontWeight: '700', letterSpacing: 1.5, marginTop: 28, marginHorizontal: 2 },
+  question: { marginTop: 14, minHeight: 72, borderRadius: 18, paddingHorizontal: 18, paddingVertical: 16, justifyContent: 'center' },
+  phrase: { fontSize: 22, lineHeight: 28, fontWeight: '700' },
+  body: { marginTop: 18 },
+  stack: { gap: 12 },
+  opt: { minHeight: 56, borderRadius: 16, paddingHorizontal: 18, paddingVertical: 14, justifyContent: 'center' },
+  optText: { fontSize: 17, lineHeight: 22, fontWeight: '600' },
+  answer: { minHeight: 64, borderRadius: 16, padding: 10, flexDirection: 'row', flexWrap: 'wrap', gap: 8, alignItems: 'center' },
+  bank: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
+  token: { minHeight: 44, borderRadius: 12, paddingHorizontal: 14, justifyContent: 'center' },
+  tokenText: { fontSize: 17, fontWeight: '600' },
+  itemHead: { minHeight: 60, borderRadius: 16, paddingHorizontal: 18, paddingVertical: 12, flexDirection: 'row', alignItems: 'center', gap: 12 },
+  itemPrompt: { flex: 1, fontSize: 19, lineHeight: 24, fontWeight: '700' },
+  itemCount: { fontSize: 15, fontWeight: '600' },
+});
+
+export default memo(SpireTaskView);

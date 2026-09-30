@@ -220,5 +220,10 @@ export function submitSpireVoiceVerdict(
 /** После показа правильного ответа (T20) — переход к следующему заданию. */
 export function advanceAfterReveal(state: SpireStepState): SpireStepState {
   if (state.phase !== 'revealing') return state;
+  // зачем (пакет D, найдено при подключении экрана): ошибка на ПОСЛЕДНЕМ задании
+  // при живых сердцах уводила в 'revealing' с taskIndex=10, а отсюда — в 'active'
+  // без задания: ступень зависала до таймаута и засчитывалась провалом. По T6
+  // ступень роняют только 3 ошибки, значит 10 ответов с сердцами — пройдена.
+  if (state.taskIndex >= SPIRE_STEP_TASK_COUNT) return { ...state, phase: 'passed' };
   return { ...state, phase: 'active' };
 }

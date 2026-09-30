@@ -23,9 +23,9 @@
 export const SPIRE_ROOM_SIZE = 30;
 
 /**
- * Префикс uid бота — ТОТ ЖЕ, что у жителей лиги. зачем: клиент уже умеет
+ * Префикс uid бота — ТОТ ЖЕ, что у жителей Шпиля. зачем: клиент уже умеет
  * гасить заявки в друзья и профиль для `res_*` (app/synthetic_friend_requests.ts,
- * app/league_engine.ts) — бот Шпиля ведёт себя так же, ничего нового не
+ * app/spire engine.ts) — бот Шпиля ведёт себя так же, ничего нового не
  * раскрывая (T26).
  */
 export const SPIRE_RESIDENT_UID_PREFIX = 'res_';
@@ -218,7 +218,7 @@ export function spireResidentRawState(
  * комнате из 29 ботов может повышаться, как в лиге: боты считаются в общем
  * числе для определения зоны, но сами не получают повышение/награду».
  * Поэтому база процента — вся видимая комната (живые + добивка ботами до 30),
- * как getLeagueResultZoneSize в league_finalize_cron.ts считал от total с
+ * как getLeagueResultZoneSize в spire finalize job.ts считал от total с
  * жителями; а заполняют зону только живые — ранги считаются среди живых
  * (spireResidentBounds здесь, итог недели spire_finalize_core.ts). В полной
  * комнате это 15% от 30 = 5 мест. Пока живых нет — зон нет.
@@ -241,7 +241,7 @@ export type SpireResidentBounds = Readonly<{
 /**
  * Коридор, в котором бот не касается ни одной зоны.
  *
- * Зоны — строго по правилам §4.5 (сторож guard_league_demotion), но на живых:
+ * Зоны — строго по правилам §4.5 (сторож guard_rank_decay), но на живых:
  * повышение — ранг ≤ зоны и ≥1 ступени; понижение — нижняя зона и ВСЕ с нулём,
  * но только если хоть кто-то из живых играл.
  */
@@ -345,7 +345,7 @@ export function spireResidentUid(slot: number): string {
   return `${SPIRE_RESIDENT_UID_PREFIX}${String(slot).padStart(2, '0')}`;
 }
 
-/** Бот ли это — по префиксу uid, как у жителей лиги (app/league_engine.ts). */
+/** Бот ли это — по префиксу uid, как у жителей Шпиля (app/spire engine.ts). */
 export function isSpireResidentUid(uid: string): boolean {
   return typeof uid === 'string' && uid.startsWith(SPIRE_RESIDENT_UID_PREFIX);
 }

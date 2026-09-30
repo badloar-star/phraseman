@@ -412,10 +412,36 @@ export async function playPhraseByText(
 ): Promise<boolean> {
   const url = getPlayablePhraseAudioUrl(text);
   if (!url) return false;
+  return playResolvedClip(normalizePhraseAudioKey(text), url, cb, false);
+}
+
+/**
+ * D128: клип OpenAI для карточки по готовой ссылке (app/flashcards/card_tts_audio.ts).
+ *
+ * зачем requireCached: у карточки клипа может НЕ быть (набор ещё не озвучен).
+ * Стримить такой URL нельзя — плеер упал бы по watchdog через секунды тишины.
+ * Поэтому играем только то, что реально скачалось (404 → false сразу), и
+ * вызывающая сторона мгновенно уходит в голос устройства нужного языка.
+ * Кэш общий с фразами: повторный тап — с диска, без сети.
+ */
+export async function playCardClipUrl(
+  cacheKey: string,
+  url: string,
+  cb?: PlayCallbacks,
+): Promise<boolean> {
+  if (!cacheKey || !url) return false;
+  return playResolvedClip(cacheKey, url, cb, true);
+}
+
+async function playResolvedClip(
+  key: string,
+  url: string,
+  cb: PlayCallbacks | undefined,
+  requireCached: boolean,
+): Promise<boolean> {
   const voicePolicyToken = voicePlaybackPolicy.captureStart();
   if (voicePolicyToken === null) return false;
 
-  const key = normalizePhraseAudioKey(text);
   // Claim this playback: stop whatever was playing and capture the new token.
   stopPhraseAudio();
   const myGeneration = playGeneration;
@@ -424,6 +450,10 @@ export async function playPhraseByText(
   // Prefer the on-disk cached file; if caching failed, stream from the URL once.
   const cachedUri = await getCachedOrDownload(key, url);
   if (superseded() || !voicePlaybackPolicy.canStart(voicePolicyToken)) return true;
+  if (!cachedUri && requireCached) {
+    console.log('[CARD-TTS] clip:not_cached — фолбэк на голос устройства', JSON.stringify({ key, net: getNetStatus() }));
+    return false;
+  }
   // зачем: последний рубеж перед стримом с URL. Отдаём фразу системному TTS
   // только при подтверждённом офлайне; на 'unknown' пробуем сыграть клип.
   if (!cachedUri && getNetStatus() === 'offline') return false;

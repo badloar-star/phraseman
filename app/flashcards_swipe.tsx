@@ -3242,7 +3242,8 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     // предзаписанный «echo»-клип, из-за чего озвучка звучала «странно» (голос
     // движка по умолчанию). Даём speak() самому взять settings.speechVoiceId и
     // при наличии — качественный клип.
-    audio.speak(textToSpeak, undefined, { language: inferExpoSpeechLanguage(textToSpeak, currentPrompt?.card.packLanguage) });
+    // зачем: D128 — клип OpenAI языка карточки, без подмены чужим голосом устройства.
+    audio.speak(textToSpeak, undefined, { language: inferExpoSpeechLanguage(textToSpeak, currentPrompt?.card.packLanguage), cardAudio: true });
   }, [attempts.state.phase, audio, currentPrompt?.card.en, currentPrompt?.card.packLanguage]);
 
   const resetSwipeAfterSessionRuneForfeit = useCallback(() => {

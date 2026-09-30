@@ -679,7 +679,8 @@ export default function FlashcardsSpeakingSession() {
   const speakCard = useCallback(
     (c: DeckCard | null) => {
       if (!c) return;
-      speak(c.en, undefined, { language: 'en-US' });
+      // зачем: D128 — эталон карточки клипом OpenAI (английский: echo, как корпус фраз).
+      speak(c.en, undefined, { language: 'en-US', cardAudio: true });
     },
     [speak],
   );
@@ -726,6 +727,7 @@ export default function FlashcardsSpeakingSession() {
         fcSpeakTrace('echo:speak', { cardId: c.id, text: c.en, fallbackMs, generation });
         speak(c.en, undefined, {
           language: 'en-US',
+          cardAudio: true,
           onStart: () => fcSpeakTrace('echo:started', { cardId: c.id, generation }),
           onDone: () => settle('done'),
           onStopped: () => settle('stopped'),

@@ -571,7 +571,8 @@ function FlashcardListItemImpl({
   const voiceHidden = !packLanguageHasVoice(item.packLanguage);
 
   const speakFront = useCallback(() => {
-    onSpeak(voiceTextFront, { language: frontSpeakLocale });
+    // зачем: D128 — лицевая сторона звучит клипом OpenAI языка карточки.
+    onSpeak(voiceTextFront, { language: frontSpeakLocale, cardAudio: true });
   }, [frontSpeakLocale, onSpeak, voiceTextFront]);
   const speakBack = useCallback(() => {
     onSpeak(voiceTextBack, { language: backSpeakLocale });

@@ -390,7 +390,8 @@ export default function CollectionDeckView({
 
   const backText = card ? resolveFlashcardBackText(card, cardContentLang) : '';
   const speakFront = useCallback(() => {
-    if (card) onSpeak(card.en, { language: inferExpoSpeechLanguage(card.en, card.packLanguage) });
+    // зачем: D128 — лицевая сторона звучит клипом OpenAI языка карточки.
+    if (card) onSpeak(card.en, { language: inferExpoSpeechLanguage(card.en, card.packLanguage), cardAudio: true });
   }, [card, onSpeak]);
   const speakBack = useCallback(() => {
     if (backText) onSpeak(backText, { language: inferExpoSpeechLanguage(backText, cardContentLang) });

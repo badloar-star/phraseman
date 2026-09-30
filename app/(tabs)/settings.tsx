@@ -1716,9 +1716,47 @@ export default function SettingsMain() {
                     return;
                   }
                   if (!res.ok) {
-                    showInfoAlert(
-                      L('Выход не прошёл. Попробуй снова.', 'Не вдалося вийти', 'Sign out failed. Try again.', 'No se pudo cerrar sesión', 'Não foi possível sair', 'Không thể đăng xuất', 'Tidak dapat keluar', 'Çıkış yapılamadı', 'Nie udało się wylogować'),
-                      L('Неизвестная ошибка. Попробуй ещё раз.', 'Невідома помилка. Спробуй ще раз.', 'Unknown error. Try again.', 'Error desconocido. Inténtalo de nuevo.', 'Erro desconhecido. Tente novamente.', 'Lỗi không xác định. Hãy thử lại.', 'Error tidak dikenal. Coba lagi.', 'Bilinmeyen hata. Tekrar dene.', 'Nieznany błąd. Spróbuj ponownie.'),
+                    // зачем (макет overlays-runtime.html OR-ACCOUNT-SWITCH-*): два исхода вместо
+                    // общего «Выход не прошёл». До маркера — «Повторить»; после — только перезапуск.
+                    const recovery = res.reason === 'recovery_required' || res.reason === 'wipe_failed';
+                    console.warn('[ACC-MUT] settings:switch_failed_kind', { reason: res.reason, kind: recovery ? 'recovery' : 'precommit' });
+                    if (recovery) {
+                      showGlassAlert(
+                        L('Нужно завершить смену аккаунта', 'Потрібно завершити зміну акаунту', 'Finish the account switch', 'Hay que terminar el cambio de cuenta', 'É preciso concluir a troca de conta', 'Cần hoàn tất việc đổi tài khoản', 'Selesaikan pergantian akun', 'Hesap değişimini tamamlaman gerekiyor', 'Trzeba dokończyć zmianę konta'),
+                        L(
+                          'Защитный маркер уже мог быть записан. Перезапусти приложение, чтобы продолжить восстановление состояния.',
+                          'Захисний маркер уже міг бути записаний. Перезапусти застосунок, щоб продовжити відновлення стану.',
+                          'A safety marker may already have been written. Restart the app to continue restoring the state.',
+                          'Puede que ya se haya guardado un marcador de seguridad. Reinicia la app para continuar la recuperación.',
+                          'Um marcador de segurança pode já ter sido gravado. Reinicie o app para continuar a recuperação.',
+                          'Dấu an toàn có thể đã được ghi. Hãy khởi động lại ứng dụng để tiếp tục khôi phục.',
+                          'Penanda pengaman mungkin sudah tertulis. Mulai ulang aplikasi untuk melanjutkan pemulihan.',
+                          'Güvenlik işareti yazılmış olabilir. Kurtarmaya devam etmek için uygulamayı yeniden başlat.',
+                          'Znacznik bezpieczeństwa mógł już zostać zapisany. Uruchom aplikację ponownie, aby dokończyć przywracanie.',
+                        ),
+                        [{ text: L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij') }],
+                        { delayMs: 360 },
+                      );
+                      return;
+                    }
+                    showGlassAlert(
+                      L('Смена аккаунта не началась', 'Зміна акаунту не почалася', "The account switch didn't start", 'El cambio de cuenta no empezó', 'A troca de conta não começou', 'Việc đổi tài khoản chưa bắt đầu', 'Pergantian akun belum dimulai', 'Hesap değişimi başlamadı', 'Zmiana konta się nie rozpoczęła'),
+                      L(
+                        'Защитная проверка остановила смену до записи маркера. Аккаунт и локальные данные не изменены.',
+                        'Захисна перевірка зупинила зміну до запису маркера. Акаунт і локальні дані не змінено.',
+                        'A safety check stopped the switch before the marker was written. Your account and local data are unchanged.',
+                        'Una comprobación de seguridad detuvo el cambio antes de guardar el marcador. Tu cuenta y tus datos no cambiaron.',
+                        'Uma verificação de segurança parou a troca antes de gravar o marcador. Sua conta e seus dados não mudaram.',
+                        'Kiểm tra an toàn đã dừng việc đổi trước khi ghi dấu. Tài khoản và dữ liệu trên máy không thay đổi.',
+                        'Pemeriksaan keamanan menghentikan pergantian sebelum penanda ditulis. Akun dan data lokal tidak berubah.',
+                        'Güvenlik kontrolü değişimi işaret yazılmadan durdurdu. Hesabın ve yerel verilerin değişmedi.',
+                        'Kontrola bezpieczeństwa zatrzymała zmianę przed zapisaniem znacznika. Konto i dane lokalne są bez zmian.',
+                      ),
+                      [
+                        { text: L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij'), style: 'cancel' },
+                        { text: L('Повторить', 'Повторити', 'Retry', 'Reintentar', 'Tentar de novo', 'Thử lại', 'Coba lagi', 'Tekrar dene', 'Ponów'), onPress: () => setSwitchAccountStage('confirm') },
+                      ],
+                      { delayMs: 360 },
                     );
                     return;
                   }

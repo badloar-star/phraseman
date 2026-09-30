@@ -38,7 +38,8 @@ test('settings/lingman/dialogs: стеклянный хук и его узел �
 test('settings: те же обработчики — очистка кеша и «Сменить без сохранения»', () => {
   assert.ok(files.settings.includes('clearAppCaches()'));
   assert.equal((files.settings.match(/onPress: runForcedAccountSwitchWithoutSaving/g) ?? []).length, 3);
-  assert.equal((files.settings.match(/delayMs: 360/g) ?? []).length, 3);
+  // 30.09: +2 окна отказа смены аккаунта (OR-ACCOUNT-SWITCH-PRECOMMIT-REJECTED / RECOVERY-REQUIRED).
+  assert.equal((files.settings.match(/delayMs: 360/g) ?? []).length, 5);
 });
 
 test('lingman: кнопка «Settings» по-прежнему открывает системные настройки уведомлений', () => {

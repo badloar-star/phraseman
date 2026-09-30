@@ -68,7 +68,10 @@ test('AccountLogoutFlow: один нативный Modal на три стади�
   for (const id of ['account-logout-confirm', 'account-logout-failed-close']) {
     assert.ok(logout.includes(`"${id}"`), `testID ${id}`);
   }
-  assert.ok(logout.includes('t.wrong'), 'отказ — семантический цвет ошибки');
+  // 30.09 (макет overlays-runtime.html OR-ACCOUNT-SWITCH-*): отказ — нейтральный замок, два исхода.
+  assert.ok(logout.includes('name="lock-closed"'), 'отказ — значок замка из макета');
+  assert.ok(logout.includes('"account-logout-failed-retry"'), 'повтор только до маркера');
+  assert.ok(logout.includes("forced.reason === 'recovery_required'"), 'после маркера — без слепого повтора');
   assert.ok(/minHeight:\s*(?:4[4-9]|[5-9]\d)/.test(logout), 'область нажатия >= 44dp');
 });
 

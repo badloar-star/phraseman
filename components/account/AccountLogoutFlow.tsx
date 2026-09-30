@@ -30,7 +30,7 @@ interface AccountLogoutFlowProps {
 }
 
 export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }: AccountLogoutFlowProps) {
-  const { theme: t, liquidGlassThemeId, f } = useTheme();
+  const { liquidGlassThemeId, f } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
   const L = (
@@ -52,6 +52,10 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
   // Зазор в 360 мс проблему не решал — он лечил симптом, а не второй present.
   // Теперь нативный модал ОДИН на весь флоу, меняется только его содержимое.
   const [failureText, setFailureText] = useState<string | null>(null);
+  // зачем (макет overlays-runtime.html OR-ACCOUNT-SWITCH-*): два разных отказа.
+  // 'precommit' — защита остановила смену ДО маркера: ничего не изменено, повтор безопасен.
+  // 'recovery' — маркер уже мог быть записан: слепой повтор запрещён, только перезапуск.
+  const [failureKind, setFailureKind] = useState<'precommit' | 'recovery'>('precommit');
 
   // зачем (владелец, 2026-08-31): экран ставит стадию 'wiping' сразу по тапу,
   // без окна подтверждения — здесь ловим её и запускаем выход один раз.
@@ -118,17 +122,32 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
     // отказе, а сообщение пыталось презентоваться отдельным нативным модалом
     // поверх закрывающегося. Отсюда «ничего не происходит, а потом всё висит».
     // Теперь сообщение живёт в том же окне: показываем причину и даём выход.
-    setFailureText(L(
-      'Не удалось выйти. Перезапусти приложение и попробуй снова.',
-      'Не вдалося вийти. Перезапусти застосунок і спробуй знову.',
-      "Couldn't sign out. Restart the app and try again.",
-      'No se pudo salir. Reinicia la aplicación e inténtalo de nuevo.',
-      'Não foi possível sair. Reinicie o app e tente novamente.',
-      'Không thể đăng xuất. Hãy khởi động lại ứng dụng và thử lại.',
-      'Tidak bisa keluar. Mulai ulang aplikasi lalu coba lagi.',
-      'Çıkış yapılamadı. Uygulamayı yeniden başlatıp tekrar dene.',
-      'Nie udało się wylogować. Uruchom aplikację ponownie i spróbuj jeszcze raz.',
-    ));
+    const recovery = forced.reason === 'recovery_required' || forced.reason === 'wipe_failed';
+    console.warn('[ACC-MUT] ui:logout_failed_kind', { reason: forced.reason, kind: recovery ? 'recovery' : 'precommit' });
+    setFailureKind(recovery ? 'recovery' : 'precommit');
+    setFailureText(recovery
+      ? L(
+        'Защитный маркер уже мог быть записан. Перезапусти приложение, чтобы продолжить восстановление состояния.',
+        'Захисний маркер уже міг бути записаний. Перезапусти застосунок, щоб продовжити відновлення стану.',
+        'A safety marker may already have been written. Restart the app to continue restoring the state.',
+        'Puede que ya se haya guardado un marcador de seguridad. Reinicia la app para continuar la recuperación.',
+        'Um marcador de segurança pode já ter sido gravado. Reinicie o app para continuar a recuperação.',
+        'Dấu an toàn có thể đã được ghi. Hãy khởi động lại ứng dụng để tiếp tục khôi phục.',
+        'Penanda pengaman mungkin sudah tertulis. Mulai ulang aplikasi untuk melanjutkan pemulihan.',
+        'Güvenlik işareti yazılmış olabilir. Kurtarmaya devam etmek için uygulamayı yeniden başlat.',
+        'Znacznik bezpieczeństwa mógł już zostać zapisany. Uruchom aplikację ponownie, aby dokończyć przywracanie.',
+      )
+      : L(
+        'Защитная проверка остановила смену до записи маркера. Аккаунт и локальные данные не изменены.',
+        'Захисна перевірка зупинила зміну до запису маркера. Акаунт і локальні дані не змінено.',
+        'A safety check stopped the switch before the marker was written. Your account and local data are unchanged.',
+        'Una comprobación de seguridad detuvo el cambio antes de guardar el marcador. Tu cuenta y tus datos no cambiaron.',
+        'Uma verificação de segurança parou a troca antes de gravar o marcador. Sua conta e seus dados não mudaram.',
+        'Kiểm tra an toàn đã dừng việc đổi trước khi ghi dấu. Tài khoản và dữ liệu trên máy không thay đổi.',
+        'Pemeriksaan keamanan menghentikan pergantian sebelum penanda ditulis. Akun dan data lokal tidak berubah.',
+        'Güvenlik kontrolü değişimi işaret yazılmadan durdurdu. Hesabın ve yerel verilerin değişmedi.',
+        'Kontrola bezpieczeństwa zatrzymała zmianę przed zapisaniem znacznika. Konto i dane lokalne są bez zmian.',
+      ));
     onStageChange('failed');
   };
 
@@ -183,25 +202,42 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
               <View
                 style={{ width: 56, height: 56, borderRadius: 28, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.selected }}
               >
-                <Ionicons name="alert-circle" size={28} color={t.wrong} />
+                <Ionicons name="lock-closed" size={26} color={glass.text} />
               </View>
               <Text accessibilityRole="header" style={{ color: glass.text, fontSize: f.h2, fontWeight: '700', marginTop: 16, textAlign: 'center' }}>
-                {L('Не удалось выйти', 'Не вдалося вийти', "Couldn't sign out", 'No se pudo salir', 'Não foi possível sair', 'Không thể đăng xuất', 'Tidak bisa keluar', 'Çıkış yapılamadı', 'Nie udało się wylogować')}
+                {failureKind === 'recovery'
+                  ? L('Нужно завершить смену аккаунта', 'Потрібно завершити зміну акаунту', 'Finish the account switch', 'Hay que terminar el cambio de cuenta', 'É preciso concluir a troca de conta', 'Cần hoàn tất việc đổi tài khoản', 'Selesaikan pergantian akun', 'Hesap değişimini tamamlaman gerekiyor', 'Trzeba dokończyć zmianę konta')
+                  : L('Смена аккаунта не началась', 'Зміна акаунту не почалася', "The account switch didn't start", 'El cambio de cuenta no empezó', 'A troca de conta não começou', 'Việc đổi tài khoản chưa bắt đầu', 'Pergantian akun belum dimulai', 'Hesap değişimi başlamadı', 'Zmiana konta się nie rozpoczęła')}
               </Text>
               <Text style={{ color: glass.secondary, fontSize: f.body, lineHeight: f.body * 1.45, marginTop: 8, textAlign: 'center' }}>
                 {failureText ?? ''}
               </Text>
-              <TouchableOpacity
-                activeOpacity={0.8}
-                accessibilityRole="button"
-                testID="account-logout-failed-close"
-                onPress={() => { doHaptic(); onStageChange('idle'); }}
-                style={[buttonStyle, { alignSelf: 'stretch', marginTop: 22, backgroundColor: glass.cta }]}
-              >
-                <Text style={{ color: glass.ctaInk, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
-                  {L('Понятно', 'Зрозуміло', 'OK', 'Entendido', 'Entendi', 'Đã hiểu', 'Mengerti', 'Tamam', 'Rozumiem')}
-                </Text>
-              </TouchableOpacity>
+              <View style={{ alignSelf: 'stretch', flexDirection: 'row', gap: 10, marginTop: 22 }}>
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  accessibilityRole="button"
+                  testID="account-logout-failed-close"
+                  onPress={() => { doHaptic(); onStageChange('idle'); }}
+                  style={[buttonStyle, { flex: 1, backgroundColor: failureKind === 'recovery' ? glass.cta : glass.opaqueControl }]}
+                >
+                  <Text style={{ color: failureKind === 'recovery' ? glass.ctaInk : glass.text, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
+                    {L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij')}
+                  </Text>
+                </TouchableOpacity>
+                {failureKind === 'precommit' ? (
+                  <TouchableOpacity
+                    activeOpacity={0.8}
+                    accessibilityRole="button"
+                    testID="account-logout-failed-retry"
+                    onPress={() => { void runLogout(); }}
+                    style={[buttonStyle, { flex: 1, backgroundColor: glass.cta }]}
+                  >
+                    <Text style={{ color: glass.ctaInk, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
+                      {L('Повторить', 'Повторити', 'Retry', 'Reintentar', 'Tentar de novo', 'Thử lại', 'Coba lagi', 'Tekrar dene', 'Ponów')}
+                    </Text>
+                  </TouchableOpacity>
+                ) : null}
+              </View>
             </View>
           ) : stage === 'wiping' ? (
             <View

@@ -206,14 +206,15 @@ export async function saveFlashcardsSwipeSessionDraft(
   draft: FlashcardsSwipeSessionDraft,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<void> {
-  await AsyncStorage.setItem(
-    flashcardsSwipeSessionDraftKey(studyTarget),
-    JSON.stringify({
-      ...draft,
-      sourceIds: normalizeSourceIds(draft.sourceIds),
-      trainingKeys: cleanStringList(draft.trainingKeys),
-    }),
-  );
+  const startedAt = Date.now();
+  const payload = JSON.stringify({
+    ...draft,
+    sourceIds: normalizeSourceIds(draft.sourceIds),
+    trainingKeys: cleanStringList(draft.trainingKeys),
+  });
+  // зачем: ВРЕМЕННО [SWIPE-BLANK] — размер и цена сериализации черновика на каждый ответ.
+  if (__DEV__) console.log(`[SWIPE-BLANK] draft-stringify ${JSON.stringify({ bytes: payload.length, ms: Date.now() - startedAt, queueLen: draft.queue.length })}`);
+  await AsyncStorage.setItem(flashcardsSwipeSessionDraftKey(studyTarget), payload);
 }
 
 export async function loadFlashcardsSwipeSessionDraft(

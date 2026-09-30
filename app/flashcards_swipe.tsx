@@ -127,6 +127,22 @@ import { useSessionAttempts } from '../hooks/useSessionAttempts';
 import { useSessionAttemptAutoReset } from '../hooks/useSessionAttemptAutoReset';
 
 import { noAndroidOutline } from '../constants/androidGlow';
+import { DebugLogger } from './debug-logger';
+
+// зачем (жалоба ученика 2026-09-30, «пустая карточка, отвечаю вслепую, сгорают руны»):
+// ВРЕМЕННАЯ трассировка [SWIPE-BLANK]. Гипотеза: запоздалый ответ нативной анимации
+// улёта перезаписывает JS-значения прозрачности/сдвига ПОСЛЕ сброса в useLayoutEffect —
+// новая карточка остаётся прозрачной, видна только пустая подложка. Логи покажут,
+// каким путём завершился улёт, какие значения были до/после сброса и «ожили» ли они.
+// После подтверждения и починки — убрать всё, кроме лога STALE (он ловит регресс).
+const swipeBlankTrace = (event: string, data: Record<string, unknown>) => {
+  if (__DEV__) console.log(`[SWIPE-BLANK] ${event} ${JSON.stringify(data)}`);
+};
+const readAnimatedJs = (value: Animated.Value): number => {
+  // Приватное API только для диагностики: JS-сторона значения, из которой рендер берёт стиль.
+  const getter = (value as unknown as { __getValue?: () => number }).__getValue;
+  return typeof getter === 'function' ? Math.round(getter.call(value) * 1000) / 1000 : NaN;
+};
 type SourceKind = 'saved' | 'custom' | 'official' | 'community';
 type Phase = 'select' | 'play';
 
@@ -2732,6 +2748,11 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
    * гонку, ещё живой fade иначе снова запишет opacity 0 новой карточке.
    */
   useLayoutEffect(() => {
+    const before = {
+      opacity: readAnimatedJs(flyOpacity),
+      x: readAnimatedJs(position.x),
+      rise: readAnimatedJs(riseAnim),
+    };
     position.stopAnimation();
     position.setValue({ x: 0, y: 0 });
     flyOpacity.stopAnimation();
@@ -2741,6 +2762,22 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     // поднявшаяся подложка отскакивает вниз поверх новой карточки.
     riseAnim.stopAnimation();
     riseAnim.setValue(0);
+    const promptId = currentPrompt?.id ?? null;
+    swipeBlankTrace('reset', { promptId, cardEpoch, before, enEmpty: currentPrompt ? !s(currentPrompt.card.en) : null, shownEmpty: currentPrompt ? !s(currentPrompt.shownTranslation) : null });
+    if (!promptId) return;
+    // зачем: проверяем, не перезаписал ли запоздалый колбэк нативной анимации сброшенные
+    // значения. Непустой STALE = карточка невидима для человека (подтверждение гипотезы).
+    const checks = [120, 700].map((delayMs) => setTimeout(() => {
+      const now = { opacity: readAnimatedJs(flyOpacity), x: readAnimatedJs(position.x), rise: readAnimatedJs(riseAnim) };
+      const stale = now.opacity < 0.99 || Math.abs(now.x) > 1 || now.rise > 0.01;
+      if (stale && !settlingRef.current) {
+        DebugLogger.error('flashcards_swipe:SWIPE-BLANK-STALE', new Error(`promptId=${promptId} epoch=${cardEpoch} after=${delayMs}ms opacity=${now.opacity} x=${now.x} rise=${now.rise}`), 'warning');
+      } else {
+        swipeBlankTrace('check-ok', { promptId, cardEpoch, delayMs, now, settling: settlingRef.current });
+      }
+    }, delayMs));
+    return () => checks.forEach(clearTimeout);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cardEpoch, currentPrompt?.id, flyOpacity, position, riseAnim]);
   const done = devJumpToFinale || (phase === 'play' && !currentPrompt && stats.total > 0);
 
@@ -2765,6 +2802,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       return;
     }
 
+    const draftStartedAt = Date.now();
     const draft = buildSessionDraft({
       scope: sessionDraftScope,
       trainingCards,
@@ -2773,7 +2811,10 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       stats,
       progress: progressRef.current,
     });
-    void saveFlashcardsSwipeSessionDraft(draft, studyTarget).catch(() => {});
+    // зачем: черновик со всей очередью (1000+ карточек) пишется на КАЖДЫЙ ответ — меряем,
+    // сколько это занимает JS-поток: долгая блокировка делает гонку анимации вероятнее.
+    swipeBlankTrace('draft-build', { queueLen: queue.length, ms: Date.now() - draftStartedAt });
+    void saveFlashcardsSwipeSessionDraft(draft, studyTarget).catch((error) => DebugLogger.error('flashcards_swipe:draft-save', error, 'warning'));
   }, [done, feedback, phase, queue, sessionDraftScope, stats, studyTarget, swipeAccessGranted, trainingCards]);
 
   // зачем: показываем подсказку один раз — при первом реальном входе в play-фазу
@@ -2891,9 +2932,16 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       // тогда settlingRef навсегда остался бы true и все следующие свайпы/кнопки
       // блокировались бы (юзер «застревает на первой карточке»).
       let done = false;
-      const finish = () => {
-        if (done) return;
+      const settleStartedAt = Date.now();
+      swipeBlankTrace('settle-start', { direction, opacityJs: readAnimatedJs(flyOpacity) });
+      const finish = (via: 'anim' | 'guard') => {
+        if (done) {
+          swipeBlankTrace('settle-finish-duplicate', { via, elapsedMs: Date.now() - settleStartedAt });
+          return;
+        }
         done = true;
+        // зачем: путь 'guard' = нативный колбэк опоздал; его значения прилетят ПОСЛЕ сброса.
+        swipeBlankTrace('settle-finish', { via, elapsedMs: Date.now() - settleStartedAt, opacityJs: readAnimatedJs(flyOpacity), xJs: readAnimatedJs(position.x) });
         if (settleGuardRef.current) {
           clearTimeout(settleGuardRef.current);
           settleGuardRef.current = null;
@@ -2916,7 +2964,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       // ИСХОДНЫЕ 190мс отзывчивости: форма движения из макета, тайминг — свой.
       // Отзывчивость важнее буквального соответствия эталону.
       const flyMs = reduceMotionRef.current ? 110 : 190;
-      settleGuardRef.current = setTimeout(finish, flyMs + 260);
+      settleGuardRef.current = setTimeout(() => finish('guard'), flyMs + 260);
       Animated.parallel([
         Animated.timing(position, {
           toValue: {
@@ -2948,7 +2996,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         // раунд-трипа на UI-поток, и всё это время ввод оставался заблокирован
         // (settlingRef) — «свайп не срабатывает». Синхронизацию значения делает
         // useLayoutEffect новой карточки, поэтому продвигаемся сразу.
-        finish();
+        finish('anim');
       });
     },
     [flyOpacity, position, riseAnim, width],
@@ -3077,6 +3125,8 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       // место занимает следующая. Ошибочная остаётся на месте — мягко
       // возвращается из-под пальца и разворачивается разбором.
       const correct = saysMatch === currentPrompt.isMatch;
+      // зачем: opacityJs < 1 здесь = человек отвечает на невидимую карточку (вслепую).
+      swipeBlankTrace('answer', { promptId: currentPrompt.id, saysMatch, correct, remaining: attempts.state.remainingAttempts, opacityJs: readAnimatedJs(flyOpacity), xJs: readAnimatedJs(position.x) });
       if (isTrueFalseSession) {
         applyAnswer(currentPrompt, saysMatch, true);
         return;
@@ -3095,7 +3145,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       // поэтому преждевременная установка флага заставляла его сразу выйти, и карточка/кнопки «зависали».
       settleCard(saysMatch ? 'right' : 'left', () => applyAnswer(currentPrompt, saysMatch));
     },
-    [applyAnswer, attempts.state.phase, clearCorrectTranslationReminder, currentPrompt, dismissSwipeHint, feedback, isTrueFalseSession, position, settleCard, settling, showSwipeHint],
+    [applyAnswer, attempts.state.phase, attempts.state.remainingAttempts, clearCorrectTranslationReminder, currentPrompt, dismissSwipeHint, feedback, flyOpacity, isTrueFalseSession, position, settleCard, settling, showSwipeHint],
   );
 
   const revealCurrent = useCallback(() => {

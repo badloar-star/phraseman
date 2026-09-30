@@ -21,6 +21,7 @@
 import { type Flashcard } from '../../hooks/use-flashcards';
 import { loadSelectedSavedContour } from './saved_language_contour';
 import { listCustomCards } from './custom_cards_store';
+import { NO_PACK_LANGUAGE, normalizePackLanguage, packLanguageHasVoice, type PackLanguage } from './pack_languages';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { resolveFlashcardBackText, type CardItem, type FlashcardContentLang } from './types';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
@@ -39,6 +40,8 @@ export type DeckCard = {
   es?: string;
   /** cards-2.1: из какой колоды пришла карточка (мультивыбор — источник ошибки на карточку). */
   source?: MistakeSource;
+  /** D127: язык набора карточки; 'none' — «без языка», такую карточку не озвучиваем. */
+  packLanguage?: PackLanguage;
 };
 
 /** Разобранный параметр ?deck= words-сессии. */
@@ -112,6 +115,14 @@ export function mistakeSourceForDecks(decks: readonly DeckRef[]): MistakeSource 
 
 const cleanText = (s: unknown): string => (typeof s === 'string' ? s.trim() : '');
 
+/**
+ * D127: поле кладём ТОЛЬКО для «без языка» — у обычных карточек форма DeckCard
+ * не меняется (манифесты тренировок и снимки остаются байт-в-байт прежними).
+ */
+function silentPackLanguage(value: unknown): { packLanguage?: PackLanguage } {
+  return normalizePackLanguage(value) === NO_PACK_LANGUAGE ? { packLanguage: NO_PACK_LANGUAGE } : {};
+}
+
 /** Сохранённые карточки (flashcards_v1) → карточки deck-сессии. Пустой EN/перевод отсеиваются. */
 export function deckCardsFromSaved(cards: readonly Flashcard[], lang: FlashcardContentLang): DeckCard[] {
   const out: DeckCard[] = [];
@@ -123,7 +134,7 @@ export function deckCardsFromSaved(cards: readonly Flashcard[], lang: FlashcardC
       lang,
     );
     if (!translation) continue;
-    out.push({ id: c.id, en, translation, ru: cleanText(c.ru), uk: cleanText(c.uk) || undefined, es: cleanText(c.es) || undefined });
+    out.push({ id: c.id, en, translation, ru: cleanText(c.ru), uk: cleanText(c.uk) || undefined, es: cleanText(c.es) || undefined, ...silentPackLanguage(c.packLanguage) });
   }
   return out;
 }
@@ -136,7 +147,19 @@ export function deckCardsFromCardItems(cards: readonly CardItem[], lang: Flashca
     if (!en || !c.id) continue;
     const translation = resolveFlashcardBackText(c, lang);
     if (!translation) continue;
-    out.push({ id: c.id, en, translation, ru: cleanText(c.ru), uk: cleanText(c.uk) || undefined, es: cleanText(c.es) || undefined });
+    out.push({ id: c.id, en, translation, ru: cleanText(c.ru), uk: cleanText(c.uk) || undefined, es: cleanText(c.es) || undefined, ...silentPackLanguage(c.packLanguage) });
+  }
+  return out;
+}
+
+/**
+ * D127: карточки, которые можно озвучить. Режим «Устно» без звука и без языка
+ * распознавания бессмыслен, поэтому карточки наборов «без языка» в него не идут.
+ */
+export function voicedDeckCards(cards: readonly DeckCard[]): DeckCard[] {
+  const out = cards.filter((card) => packLanguageHasVoice(card.packLanguage));
+  if (out.length !== cards.length) {
+    console.log(`[PACK-LANG] speaking:skip карточек без языка=${cards.length - out.length} из ${cards.length}`);
   }
   return out;
 }

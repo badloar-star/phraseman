@@ -78,6 +78,8 @@ export type DeckSheetOption = DeckCountable & {
   /** Стабильная ревизия обложки для тёплого кэша. */
   coverRevision?: string;
   sourceKind: 'saved' | 'custom' | 'pack';
+  /** D127: 'none' — набор «без языка»; режимы со звуком его не предлагают. */
+  packLanguage?: 'none';
 };
 
 type Props = {

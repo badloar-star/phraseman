@@ -25,6 +25,7 @@ import { getHintFlag, setHintFlag } from './hint_flags';
 import type { Theme } from '../../constants/theme';
 import { computeHeightScale } from '../../constants/layout-scale';
 import { inferExpoSpeechLanguage, type SpeakOpts } from '../../hooks/use-audio';
+import { packLanguageHasVoice } from './pack_languages';
 import FlashcardDetailsBody from './FlashcardDetailsBody';
 import { buildLegacyFlipFaceStyles, useFcCrossfadeFlip } from './PhraseCard';
 import WordStrengthDots from './WordStrengthDots';
@@ -566,6 +567,9 @@ function FlashcardListItemImpl({
   // язык и так очевиден из самой фразы, пометка только шумела. Локали озвучки
   // (frontSpeakLocale/backSpeakLocale) остаются: их читает кнопка звука.
 
+  // зачем (D127): у карточки набора «без языка» кнопок звука нет совсем — нечего произносить.
+  const voiceHidden = !packLanguageHasVoice(item.packLanguage);
+
   const speakFront = useCallback(() => {
     onSpeak(voiceTextFront, { language: frontSpeakLocale });
   }, [frontSpeakLocale, onSpeak, voiceTextFront]);
@@ -772,9 +776,9 @@ function FlashcardListItemImpl({
                     {strength ? <WordStrengthDots strength={strength} t={t} testID={`fc-strength-${item.id}`} /> : null}
                   </ScrollView>
                   <View style={styles.savedActions}>
-                    <TouchableOpacity testID={`fc-saved-row-play-${item.id}`} accessibilityRole="button" accessibilityLabel={voiceLabel} disabled={voiceDisabled} onPress={speakFront} style={[styles.savedAction, { backgroundColor: g.opaqueControl }]}>
+                    {voiceHidden ? null : <TouchableOpacity testID={`fc-saved-row-play-${item.id}`} accessibilityRole="button" accessibilityLabel={voiceLabel} disabled={voiceDisabled} onPress={speakFront} style={[styles.savedAction, { backgroundColor: g.opaqueControl }]}>
                       <Ionicons name="play" size={17} color={g.lightTint} />
-                    </TouchableOpacity>
+                    </TouchableOpacity>}
                     {canDeleteThis ? <TouchableOpacity testID={`fc-saved-row-menu-${item.id}`} accessibilityRole="button" accessibilityLabel={deleteLabel} onPress={() => onOpenDelete(item.id)} style={styles.savedAction}>
                       <Ionicons name="ellipsis-horizontal" size={19} color={g.secondary} />
                     </TouchableOpacity> : null}
@@ -983,7 +987,7 @@ function FlashcardListItemImpl({
             </Animated.View>
           ) : null}
 
-          {!savedGlass ? <View
+          {!savedGlass && !voiceHidden ? <View
             onStartShouldSetResponder={() => true}
             style={
               voiceSpeakOnRight

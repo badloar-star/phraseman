@@ -21,7 +21,7 @@ import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { compactDeckCountLabel } from '../lib/flashcards/compact_deck_count_label';
 import { canStartBlitz } from './flashcards/blitz_logic';
 import { trainingSetupExplanation } from './flashcards/training_setup_explanation';
-import { loadFcDeckOptions, peekFcDeckOptions, sameDeckOptions } from './flashcards/deck_options';
+import { hideDecksWithoutVoice, loadFcDeckOptions, peekFcDeckOptions, sameDeckOptions } from './flashcards/deck_options';
 import type { DeckSheetOption } from './flashcards/DeckPickerSheet';
 import DeckSelectionTile from './flashcards/DeckSelectionTile';
 import {
@@ -149,10 +149,12 @@ export default function FlashcardsTrainingSetupScreen() {
    * первый кадр берём из тёплого снимка, если он есть, — тогда список виден сразу
    * и не сменяется со спиннера. Снимка нет (первый заход) — честно грузим.
    */
-  const warmDecks = useMemo(
-    () => (mode ? peekFcDeckOptions(presetModeFor(mode), lang, studyTarget) : null),
-    [lang, mode, studyTarget],
-  );
+  const warmDecks = useMemo(() => {
+    if (!mode) return null;
+    const warm = peekFcDeckOptions(presetModeFor(mode), lang, studyTarget);
+    // зачем (D127): «Устно» не предлагает наборы «без языка» — ни в первом кадре, ни после загрузки.
+    return warm ? hideDecksWithoutVoice(warm, presetModeFor(mode)) : null;
+  }, [lang, mode, studyTarget]);
   const [loadState, setLoadState] = useState<LoadState>(
     () => (warmDecks && warmDecks.length > 0 ? 'ready' : 'loading'),
   );
@@ -276,7 +278,7 @@ export default function FlashcardsTrainingSetupScreen() {
         loadFcDeckOptions(presetMode, lang, studyTarget),
         getLastPreset(presetMode).catch(() => null),
       ]);
-      const eligible = loaded.filter((deck) => deck.count > 0);
+      const eligible = hideDecksWithoutVoice(loaded, presetMode).filter((deck) => deck.count > 0);
       const eligibleIds = new Set(eligible.map((deck) => deck.deckId));
       const restored = presetDeckIds(preset).filter((deckId) => eligibleIds.has(deckId));
       const fallback = eligible.find((deck) => deck.deckId === 'saved') ?? eligible[0];

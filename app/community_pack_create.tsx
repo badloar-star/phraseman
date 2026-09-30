@@ -72,6 +72,7 @@ import BouncyScrollView from '../components/BouncyScrollView';
 import PackLanguagePicker from './flashcards/PackLanguagePicker';
 import {
   normalizePackCardTexts,
+  NO_PACK_LANGUAGE,
   normalizePackLanguage,
   type PackLanguage,
 } from './flashcards/pack_languages';
@@ -1109,10 +1110,13 @@ export default function CommunityPackCreateScreen() {
                     {L('Язык набора', 'Мова набору', 'Pack language', 'Idioma del pack', 'Idioma do pacote', 'Ngôn ngữ bộ thẻ', 'Bahasa paket', 'Paket dili', 'Język pakietu')}
                   </Text>
                   <Text style={{ color: g.secondary, fontSize: 13, lineHeight: 18, marginTop: 2 }}>
-                    {L('Карточки будут показаны в выбранном разделе языка.', 'Картки будуть показані у вибраному мовному розділі.', 'Cards will appear in the selected language section.', 'Las tarjetas aparecerán en el idioma elegido.', 'Os cartões aparecerão no idioma escolhido.', 'Thẻ sẽ xuất hiện trong mục ngôn ngữ đã chọn.', 'Kartu akan muncul di bagian bahasa yang dipilih.', 'Kartlar seçilen dil bölümünde görünür.', 'Karty pojawią się w wybranej sekcji językowej.')}
+                    {/* зачем (D127): «Без языка» меняет поведение набора — объясняем, что он без озвучки и виден при любом языке. */}
+                    {packLanguage === NO_PACK_LANGUAGE
+                      ? L('Без озвучки. Набор виден при любом языке.', 'Без озвучення. Набір видно за будь-якої мови.', 'No audio. The pack shows up for every language.', 'Sin audio. El pack aparece en cualquier idioma.', 'Sem áudio. O pacote aparece em qualquer idioma.', 'Không có âm thanh. Bộ thẻ hiện ở mọi ngôn ngữ.', 'Tanpa audio. Paket muncul di semua bahasa.', 'Seslendirme yok. Paket her dilde görünür.', 'Bez dźwięku. Pakiet widać przy każdym języku.')
+                      : L('Карточки будут показаны в выбранном разделе языка.', 'Картки будуть показані у вибраному мовному розділі.', 'Cards will appear in the selected language section.', 'Las tarjetas aparecerán en el idioma elegido.', 'Os cartões aparecerão no idioma escolhido.', 'Thẻ sẽ xuất hiện trong mục ngôn ngữ đã chọn.', 'Kartu akan muncul di bagian bahasa yang dipilih.', 'Kartlar seçilen dil bölümünde görünür.', 'Karty pojawią się w wybranej sekcji językowej.')}
                   </Text>
                 </View>
-                <PackLanguagePicker lang={lang} t={t} value={packLanguage} onChange={setPackLanguage} liquidGlass />
+                <PackLanguagePicker lang={lang} t={t} value={packLanguage} onChange={setPackLanguage} allowNone liquidGlass />
               </CardsGlassSurface>
 
               <TouchableOpacity

@@ -10,7 +10,7 @@
  */
 import { triLang, type Lang } from '../../constants/i18n';
 import type { FlashcardMarketPack } from '../flashcards/marketplace';
-import { normalizePackLanguage, type PackLanguage } from '../flashcards/pack_languages';
+import { packMatchesLanguageFilter, type PackLanguage } from '../flashcards/pack_languages';
 import { sortPacksBySocial } from './packSocial';
 
 /** Сортировка каталога сообщества (§ фильтр, замечание владельца). */
@@ -22,7 +22,8 @@ export function filterPacksByLanguage(
   packs: readonly FlashcardMarketPack[],
   language: PackLanguage,
 ): FlashcardMarketPack[] {
-  return packs.filter((pack) => normalizePackLanguage(pack.packLanguage ?? pack.studyTarget) === language);
+  // зачем (D127): набор «без языка» не привязан к изучаемому языку — виден при любом фильтре.
+  return packs.filter((pack) => packMatchesLanguageFilter(pack.packLanguage ?? pack.studyTarget, language));
 }
 
 /**

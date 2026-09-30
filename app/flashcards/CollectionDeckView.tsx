@@ -34,6 +34,7 @@ import { FC_SPRING, FC_SWIPE } from '../../constants/flashcards_motion';
 import PressableHybrid from '../../components/PressableHybrid';
 import { useTheme } from '../../components/ThemeContext';
 import { inferExpoSpeechLanguage, type SpeakOpts } from '../../hooks/use-audio';
+import { packLanguageHasVoice, packLanguageMeta } from './pack_languages';
 import PhraseCard, { useFcReduceMotion, type PhraseCardPackTheme } from './PhraseCard';
 import { isLowPowerEffective } from './low_power';
 import type { WordStrength } from './word_strength';
@@ -394,6 +395,8 @@ export default function CollectionDeckView({
   const speakBack = useCallback(() => {
     if (backText) onSpeak(backText, { language: inferExpoSpeechLanguage(backText, cardContentLang) });
   }, [backText, cardContentLang, onSpeak]);
+  // зачем (D127): набор «без языка» не озвучивается — кнопки звука на карточке не рисуем.
+  const cardHasVoice = card ? packLanguageHasVoice(card.packLanguage) : true;
 
   /**
    * FIX (владелец, 2026-08-16) «сначала Ничего не найдено, потом Нет карточек»:
@@ -474,15 +477,15 @@ export default function CollectionDeckView({
           translation={backText}
           flipped={flipped}
           onFlip={handleFlip}
-          onSpeakFront={speakFront}
-          onSpeakBack={speakBack}
+          onSpeakFront={cardHasVoice ? speakFront : undefined}
+          onSpeakBack={cardHasVoice ? speakBack : undefined}
           packTheme={packCardTheme}
           t={t}
           f={f}
           minHeight={cardMinHeight}
           testID="fc-deck-card"
           strength={strengthForCard ? strengthForCard(card.en) : null}
-          edgeLabels={{ front: String(card.packLanguage ?? 'en').toUpperCase(), back: String(cardContentLang).toUpperCase() }}
+          edgeLabels={{ front: packLanguageMeta(card.packLanguage).shortName, back: String(cardContentLang).toUpperCase() }}
         />
         {renderTopCardAction ? (
           <View

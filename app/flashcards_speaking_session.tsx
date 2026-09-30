@@ -69,7 +69,7 @@ import { fcHaptic, playSfx } from './flashcards/SoundService';
 import { estimateSpeechDurationMs } from './flashcards/audioSession';
 import { voicePlaybackPolicy } from '../modules/audio/voice_playback_policy';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
-import { deckRefKey, loadDeckCardsMulti, parseDeckParams, type DeckCard, type DeckRef } from './flashcards/deck_sources';
+import { deckRefKey, loadDeckCardsMulti, parseDeckParams, voicedDeckCards, type DeckCard, type DeckRef } from './flashcards/deck_sources';
 import { isValidSessionSize, FC_DEFAULT_SESSION_SIZE, getLastPreset, presetDeckIds, type FcModePreset } from './flashcards/mode_prefs';
 import { deckRouteParam, decksCountLabel, SOLO_DECK_ID } from './flashcards/deck_selection';
 import {
@@ -432,7 +432,8 @@ export default function FlashcardsSpeakingSession() {
       ]);
       if (cancelled) return;
       const prefs = parseSpeakingPrefs(rawPrefs);
-      const cards = shuffleArr(loadedPool).slice(0, sessionSize);
+      // зачем (D127): наборы «без языка» не озвучиваются — в «Устно» им не место.
+      const cards = shuffleArr(voicedDeckCards(loadedPool)).slice(0, sessionSize);
       speakingLocalStart = () => {
         finishedRef.current = false;
         quotaUnavailableRef.current = false;

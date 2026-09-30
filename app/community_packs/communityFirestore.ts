@@ -11,7 +11,7 @@ import { getCanonicalUserId } from '../user_id_policy';
 import { UGC_CARD_THEME_DEFAULT_ID } from './ugcCardThemePresets';
 import { storageStudyTarget, type RuntimeStudyTarget } from '../target_storage_keys';
 import type { StudyTarget } from '../study_target';
-import { isPackLanguage, normalizePackCardTexts, normalizePackLanguage, type PackLanguage } from '../flashcards/pack_languages';
+import { isPackLanguage, normalizePackCardTexts, normalizePackLanguage, PACK_LANGUAGE_CHOICES, type PackLanguage } from '../flashcards/pack_languages';
 import { DebugLogger } from '../debug-logger';
 
 function num(v: unknown, d = 0): number {
@@ -321,7 +321,9 @@ export async function loadPublishedCommunityMarketPacks(
   }
   try {
     // Limit each language independently; a busy EN catalog must not starve FR/DE/ES.
-    const languageSnapshots = await Promise.all((['en', 'fr', 'de', 'es'] as const).map(language => firestore()
+    // зачем (D127): «Без языка» — отдельная корзина, иначе такие наборы тонули бы
+    // в общем limit(80) и не доходили до витрины. +1 запрос раз в 6 часов (кэш).
+    const languageSnapshots = await Promise.all(PACK_LANGUAGE_CHOICES.map(language => firestore()
       .collection(COMMUNITY_PACKS_COLLECTION)
       .where('listingStatus', 'in', ['published', 'update_pending'])
       .where('packLanguage', '==', language)
@@ -337,7 +339,7 @@ export async function loadPublishedCommunityMarketPacks(
       .map((d) => mapCommunityPackDocToMarket(d.id, d.data() as Record<string, unknown>, { studyTarget }))
       .filter(Boolean) as FlashcardMarketPack[];
     list.sort(sortCommunityMarketPacksBySocial);
-    const out = (['en', 'fr', 'de', 'es'] as const).flatMap(language => list.filter(pack => normalizePackLanguage(pack.packLanguage) === language).slice(0, 40));
+    const out = PACK_LANGUAGE_CHOICES.flatMap(language => list.filter(pack => normalizePackLanguage(pack.packLanguage) === language).slice(0, 40));
     if (generation !== catalogGeneration) {
       if (__DEV__) console.log('[PACKS-FIRSTFRAME] load ABORT reason=catalog-invalidated key=%s', cacheKey);
       return [];

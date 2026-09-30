@@ -31,7 +31,8 @@ import {
 } from '../community_packs/localAuthorPacks';
 import { storageStudyTarget } from '../target_storage_keys';
 import type { DeckSheetOption } from './DeckPickerSheet';
-import { loadDeckCards, type DeckRef } from './deck_sources';
+import { loadDeckCards, type DeckCard, type DeckRef } from './deck_sources';
+import { NO_PACK_LANGUAGE, normalizePackLanguage } from './pack_languages';
 import {
   bundledPacksForOwned,
   derivePackCodeName,
@@ -257,6 +258,19 @@ export function peekAvailableFcCardCount(
 }
 
 /** Совпадают ли списки по составу — чтобы не менять ссылку и не перерисовывать зря. */
+/**
+ * D127: режим «Устно» (произнести вслух) без звука и без языка распознавания
+ * бессмыслен — наборы «без языка» в нём не предлагаем.
+ */
+export function hideDecksWithoutVoice(decks: readonly DeckSheetOption[], mode: FcPresetMode): DeckSheetOption[] {
+  if (mode !== 'speaking') return decks as DeckSheetOption[];
+  const out = decks.filter((deck) => deck.packLanguage !== NO_PACK_LANGUAGE);
+  if (out.length !== decks.length) {
+    console.log(`[PACK-LANG] deck:hide mode=${mode} скрыто наборов без языка=${decks.length - out.length}`);
+  }
+  return out;
+}
+
 export function sameDeckOptions(a: DeckSheetOption[], b: DeckSheetOption[]): boolean {
   if (a === b) return true;
   if (a.length !== b.length) return false;
@@ -269,6 +283,7 @@ export function sameDeckOptions(a: DeckSheetOption[], b: DeckSheetOption[]): boo
       || x.title !== y.title
       || x.sourceKind !== y.sourceKind
       || x.coverRevision !== y.coverRevision
+      || x.packLanguage !== y.packLanguage
     ) return false;
   }
   return true;
@@ -427,10 +442,20 @@ export async function loadFcDeckOptions(
   }
   const packDecks = await Promise.all(
     packIds.map(async (packId) => {
-      const cards = await loadDeckCards({ kind: 'pack', packId }, cl, studyTarget).catch(() => []);
+      const loadedCards = await loadDeckCards({ kind: 'pack', packId }, cl, studyTarget).catch((error: unknown) => {
+        console.warn(`[FC-DECKS] pack:${packId} карточки не загрузились —`, error instanceof Error ? error.message : String(error));
+        return [] as DeckCard[];
+      });
+      const cards = loadedCards;
       /** Набор без доступных на устройстве карточек в списке не нужен. */
       if (cards.length === 0) return null;
       const pack = catalogById.get(packId);
+      /**
+       * зачем (D127): помечаем набор «без языка», а НЕ выкидываем его здесь —
+       * снимок списка общий для всех режимов (см. deckOptionsCacheKey). Режим
+       * «Устно» прячет такие наборы сам (hideDecksWithoutVoice).
+       */
+      const silent = normalizePackLanguage(pack?.packLanguage ?? cards[0]?.packLanguage) === NO_PACK_LANGUAGE;
       const coverImage = pack ? packTileImageForPack(pack) : bundledPackTilePng(packId);
       const coverRevision = pack ? packTileArtRevision(pack) : packId;
       return {
@@ -447,6 +472,7 @@ export async function loadFcDeckOptions(
         coverImage,
         coverRevision,
         sourceKind: 'pack',
+        ...(silent ? { packLanguage: NO_PACK_LANGUAGE } : {}),
       } satisfies DeckSheetOption;
     }),
   );

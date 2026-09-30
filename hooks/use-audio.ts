@@ -91,10 +91,19 @@ function retrySpeechWithoutVoice(
   }
 }
 
+/**
+ * ISO 639-2 «no linguistic content». зачем (D127): карточки набора «без языка»
+ * (столицы, формулы) не озвучиваются. Один маркер из inferExpoSpeechLanguage
+ * глушит ВСЕ места озвучки карточек сразу — в т.ч. экраны, которые сами не
+ * знают про такие наборы. speak() с этим языком выходит молча (с логом).
+ */
+export const SILENT_SPEECH_LANGUAGE = 'zxx';
+
 export function inferExpoSpeechLanguage(
   text: string,
   contentLangHint?: string,
 ): string {
+  if (contentLangHint === 'none') return SILENT_SPEECH_LANGUAGE;
   const s = text.trim();
   if (!s) return 'en-US';
   if (UK_MARKERS.test(s)) return 'uk-UA';
@@ -166,6 +175,10 @@ export function useAudio() {
   const speak = useCallback((text: string, rate?: number, opts?: SpeakOpts) => {
     const normalized = text?.trim();
     if (!normalized) return;
+    if (opts?.language?.trim().toLowerCase() === SILENT_SPEECH_LANGUAGE) {
+      console.log(`[PACK-LANG] speak:skip language="${SILENT_SPEECH_LANGUAGE}" — карточка набора без языка не озвучивается`);
+      return;
+    }
     const voicePolicyToken = voicePlaybackPolicy.captureStart();
     if (voicePolicyToken === null) return;
 

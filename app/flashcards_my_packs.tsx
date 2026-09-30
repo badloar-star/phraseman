@@ -80,7 +80,7 @@ import { stageOwnedPackCardsForNavigation } from './flashcards/useCollectionData
 import { getCanonicalUserId } from './user_id_policy';
 import { type RuntimeStudyTarget } from './target_storage_keys';
 import PackLanguagePicker from './flashcards/PackLanguagePicker';
-import { defaultPackLanguageForStudyTarget, normalizePackLanguage, type PackLanguage } from './flashcards/pack_languages';
+import { defaultPackLanguageForStudyTarget, NO_PACK_LANGUAGE, noPackLanguageLabel, normalizePackLanguage, PACK_LANGUAGE_META, type PackLanguage } from './flashcards/pack_languages';
 import { publishMyPacksCount } from './flashcards/myPacksCountCache';
 import { getStoredPackLanguage, setStoredPackLanguage, subscribePackLanguage } from './flashcards/pack_language_preferences';
 import { filterPacksByLanguage } from './community_packs/communityCatalogFilter';
@@ -781,7 +781,13 @@ export default function FlashcardsMyPacksScreen() {
                 backgroundColor: g.sheet, borderWidth: 1, borderColor: g.glassEdge,
               }}
             >
-              {flagArt ? <Image source={flagArt} style={{ width: 18, height: 12, borderRadius: 2 }} contentFit="cover" /> : <Text style={{ fontSize: 10, lineHeight: 13, fontWeight: '800', color: g.text }}>DE</Text>}
+              {/* зачем (D127): набор «без языка» помечаем нейтральным значком и подписью, а не выдуманным флагом. */}
+              {packLang === NO_PACK_LANGUAGE ? (
+                <View testID={`fc-my-packs-pack-nolang-${pack.id}`} style={{ flexDirection: 'row', alignItems: 'center', gap: 3, maxWidth: tileW - 16 }}>
+                  <Ionicons name="globe-outline" size={11} color={g.text} />
+                  <Text numberOfLines={1} style={{ flexShrink: 1, fontSize: 9, lineHeight: 12, fontWeight: '700', color: g.text }}>{noPackLanguageLabel(lang)}</Text>
+                </View>
+              ) : flagArt ? <Image source={flagArt} style={{ width: 18, height: 12, borderRadius: 2 }} contentFit="cover" /> : <Text style={{ fontSize: 10, lineHeight: 13, fontWeight: '800', color: g.text }}>{PACK_LANGUAGE_META[packLang].shortName}</Text>}
             </View>
             </TouchableOpacity>
             {editable ? (

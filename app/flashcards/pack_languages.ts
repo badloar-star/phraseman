@@ -1,6 +1,17 @@
 import type { Lang } from '../../constants/i18n';
 
-export type PackLanguage = 'en' | 'fr' | 'de' | 'es';
+/** Languages a pack can be studied in (and that the catalog can filter by). */
+export type StudyPackLanguage = 'en' | 'fr' | 'de' | 'es';
+
+/**
+ * зачем (D127, владелец 2026-09-30): наборы «без языка» — столицы, формулы,
+ * термины. У них нет изучаемого языка, поэтому их нельзя озвучивать и нельзя
+ * прятать фильтром по языку. 'none' появляется ТОЛЬКО при явном выборе автора;
+ * старые наборы без поля по-прежнему считаются английскими.
+ */
+export type PackLanguage = StudyPackLanguage | 'none';
+
+export const NO_PACK_LANGUAGE = 'none' as const;
 
 export type PackLanguageMeta = {
   code: PackLanguage;
@@ -24,31 +35,73 @@ export type NormalizedPackCardText = {
   translationText: string;
 };
 
-export const PACK_LANGUAGES: readonly PackLanguage[] = ['en', 'fr', 'de', 'es'];
+/** Study languages only — used by language filters and the saved-card contour. */
+export const PACK_LANGUAGES: readonly StudyPackLanguage[] = ['en', 'fr', 'de', 'es'];
+
+/** Everything an author may pick when creating a pack, including «Без языка». */
+export const PACK_LANGUAGE_CHOICES: readonly PackLanguage[] = [...PACK_LANGUAGES, NO_PACK_LANGUAGE];
 
 export const PACK_LANGUAGE_META: Readonly<Record<PackLanguage, PackLanguageMeta>> = {
   en: { code: 'en', nativeName: 'English', shortName: 'EN', flagGlyph: '🇬🇧' },
   fr: { code: 'fr', nativeName: 'Français', shortName: 'FR', flagGlyph: '🇫🇷' },
   de: { code: 'de', nativeName: 'Deutsch', shortName: 'DE', flagGlyph: '🇩🇪' },
   es: { code: 'es', nativeName: 'Español', shortName: 'ES', flagGlyph: '🇪🇸' },
+  // Нейтральный значок вместо флага: у набора нет страны и языка.
+  none: { code: 'none', nativeName: 'Без языка', shortName: '—', flagGlyph: '🌐' },
 };
 
 export function isPackLanguage(value: unknown): value is PackLanguage {
-  return typeof value === 'string' && PACK_LANGUAGES.includes(value as PackLanguage);
+  return typeof value === 'string' && PACK_LANGUAGE_CHOICES.includes(value as PackLanguage);
 }
 
-/** Legacy packs used studyTarget or no target at all; both are English by default. */
+export function isStudyPackLanguage(value: unknown): value is StudyPackLanguage {
+  return typeof value === 'string' && PACK_LANGUAGES.includes(value as StudyPackLanguage);
+}
+
+/**
+ * Legacy packs used studyTarget or no target at all; both are English by default.
+ * 'none' survives only when it was stored explicitly — a StudyTarget is never 'none'.
+ */
 export function normalizePackLanguage(value: unknown): PackLanguage {
   return isPackLanguage(value) ? value : 'en';
 }
 
 /** The pack catalog may expose the four pack languages without widening StudyTarget. */
-export function defaultPackLanguageForStudyTarget(value: unknown): PackLanguage {
-  return isPackLanguage(value) ? value : 'en';
+export function defaultPackLanguageForStudyTarget(value: unknown): StudyPackLanguage {
+  return isStudyPackLanguage(value) ? value : 'en';
 }
 
-export function packLanguageLabel(language: PackLanguage): string {
-  return PACK_LANGUAGE_META[normalizePackLanguage(language)].nativeName;
+/** A «Без языка» pack is never voiced: no TTS, no audio prefetch, no speaking mode. */
+export function packLanguageHasVoice(language: unknown): boolean {
+  return normalizePackLanguage(language) !== NO_PACK_LANGUAGE;
+}
+
+/**
+ * Catalog/collection language filter. A pack without a language is not tied to
+ * any study language, so it stays visible whichever language is selected.
+ */
+export function packMatchesLanguageFilter(packLanguage: unknown, selected: PackLanguage): boolean {
+  const language = normalizePackLanguage(packLanguage);
+  return language === NO_PACK_LANGUAGE || language === normalizePackLanguage(selected);
+}
+
+/** «Без языка» in the 9 interface languages. */
+export function noPackLanguageLabel(lang?: Lang): string {
+  if (lang === 'uk') return 'Без мови';
+  if (lang === 'en') return 'No language';
+  if (lang === 'es') return 'Sin idioma';
+  if (lang === 'pt-BR') return 'Sem idioma';
+  if (lang === 'vi') return 'Không có ngôn ngữ';
+  if (lang === 'id') return 'Tanpa bahasa';
+  if (lang === 'tr') return 'Dilsiz';
+  if (lang === 'pl') return 'Bez języka';
+  return 'Без языка';
+}
+
+export function packLanguageLabel(language: PackLanguage, lang?: Lang): string {
+  const normalized = normalizePackLanguage(language);
+  if (normalized === NO_PACK_LANGUAGE) return noPackLanguageLabel(lang);
+  return PACK_LANGUAGE_META[normalized].nativeName;
 }
 
 export function packLanguageMeta(language: unknown): PackLanguageMeta {
@@ -66,7 +119,7 @@ export function filterCardsByPackLanguage<T extends { packLanguage?: unknown }>(
   cards: readonly T[],
   language: PackLanguage,
 ): T[] {
-  return cards.filter((card) => normalizePackLanguage(card.packLanguage) === language);
+  return cards.filter((card) => packMatchesLanguageFilter(card.packLanguage, language));
 }
 
 function nonEmptyText(value: unknown): string | undefined {

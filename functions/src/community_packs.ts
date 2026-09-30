@@ -11,6 +11,7 @@ import { ACCOUNT_DELETE_AUTH_MARKERS, ACCOUNT_DELETE_TOMBSTONES } from './accoun
 import { applyFlashcardRegistryDocumentMutation, planFlashcardRegistryPackMutation } from './content_factory/flashcard_registry_mutations';
 import { resolvePremiumAccess } from './premium_status';
 import { requireGlobalBroadcastPublicAuthority } from './global_broadcast_public_schema';
+import { isCommunityPackLanguage, normalizeCommunityPackLanguage, type CommunityPackLanguage } from './community_pack_language';
 
 const COMMUNITY_PACKS = 'community_packs';
 const COMMUNITY_SUBMISSIONS = 'community_pack_submissions';
@@ -79,7 +80,7 @@ const UGC_CARD_THEME_KEYS = new Set([
 
 type SubmissionPayload = {
   studyTarget?: 'en' | 'fr';
-  packLanguage?: 'en' | 'fr' | 'de' | 'es';
+  packLanguage?: CommunityPackLanguage;
   title?: string;
   description?: string;
   sourceLang?: 'ru' | 'uk' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl';
@@ -139,14 +140,11 @@ function normalizeCommunityPackStudyTarget(raw: unknown): CommunityStudyTarget {
   return raw === 'fr' ? 'fr' : 'en';
 }
 
-function normalizeCommunityPackLanguage(raw: unknown): 'en' | 'fr' | 'de' | 'es' {
-  return raw === 'fr' || raw === 'de' || raw === 'es' ? raw : 'en';
-}
-
 function requireMatchingPackStudyTarget(requested: unknown, pack: Record<string, unknown>): CommunityStudyTarget {
   const requestStudyTarget = normalizeCommunityPackStudyTarget(requested);
   const packStudyTarget = normalizeCommunityPackStudyTarget(pack.studyTarget);
-  const independentPackLanguage = ['en', 'fr', 'de', 'es'].includes(String(pack.packLanguage ?? ''));
+  // зачем (D127): 'none' тоже независим от цели изучения — набор без языка виден всем.
+  const independentPackLanguage = isCommunityPackLanguage(pack.packLanguage);
   if (requestStudyTarget !== packStudyTarget && !independentPackLanguage) {
     throw new HttpsError('failed-precondition', 'Pack study target mismatch');
   }

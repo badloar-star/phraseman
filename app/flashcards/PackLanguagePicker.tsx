@@ -19,7 +19,9 @@ import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { LUM } from '../../constants/motionHybrid';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import {
+  NO_PACK_LANGUAGE,
   PACK_LANGUAGES,
+  PACK_LANGUAGE_CHOICES,
   PACK_LANGUAGE_META,
   packLanguageLabel,
   packLanguagePickerHint,
@@ -32,6 +34,11 @@ type Props = {
   value: PackLanguage;
   onChange: (language: PackLanguage) => void;
   disabled?: boolean;
+  /**
+   * зачем (D127): «Без языка» — выбор АВТОРА набора. В фильтрах по изучаемому
+   * языку его нет: такие наборы и так видны при любом выбранном языке.
+   */
+  allowNone?: boolean;
   /** зачем: оставлен для совместимости вызовов — окно теперь всегда Liquid Glass. */
   liquidGlass?: boolean;
 };
@@ -44,12 +51,15 @@ const FLAG_ART: Partial<Record<PackLanguage, number>> = {
 
 // зачем: флаг — растровый там, где есть арт (как в макете); для остальных языков — код в плашке, а не эмодзи.
 function FlagMark({ code, width, height, color }: { code: PackLanguage; width: number; height: number; color: string }) {
+  // Нейтральный значок вместо флага: у набора «без языка» нет страны (D127).
+  if (code === NO_PACK_LANGUAGE) return <Ionicons name="globe-outline" size={height + 2} color={color} style={{ width, textAlign: 'center' }} />;
   const art = FLAG_ART[code];
   if (art) return <Image source={art} style={{ width, height, borderRadius: 3 }} contentFit="cover" />;
   return <Text style={{ width, fontSize: 12, fontWeight: '800', color, textAlign: 'center' }}>{PACK_LANGUAGE_META[code].shortName}</Text>;
 }
 
-export default function PackLanguagePicker({ lang, t, value, onChange, disabled = false }: Props) {
+export default function PackLanguagePicker({ lang, t, value, onChange, disabled = false, allowNone = false }: Props) {
+  const options = allowNone ? PACK_LANGUAGE_CHOICES : PACK_LANGUAGES;
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
   const [visible, setVisible] = useState(false);
@@ -86,7 +96,7 @@ export default function PackLanguagePicker({ lang, t, value, onChange, disabled 
       <Pressable
         testID="pack-language-picker"
         accessibilityRole="button"
-        accessibilityLabel={`${packLanguagePickerHint(lang)}: ${packLanguageLabel(value)}`}
+        accessibilityLabel={`${packLanguagePickerHint(lang)}: ${packLanguageLabel(value, lang)}`}
         accessibilityState={{ expanded: visible, disabled }}
         disabled={disabled}
         onPress={open}
@@ -97,7 +107,9 @@ export default function PackLanguagePicker({ lang, t, value, onChange, disabled 
         }]}
       >
         <FlagMark code={value} width={24} height={16} color={g.text} />
-        <Text style={[styles.code, { color: g.text }]}>{PACK_LANGUAGE_META[value].shortName}</Text>
+        {value === NO_PACK_LANGUAGE ? null : (
+          <Text style={[styles.code, { color: g.text }]}>{PACK_LANGUAGE_META[value].shortName}</Text>
+        )}
         <Ionicons name="chevron-down" size={14} color={g.secondary} />
       </Pressable>
 
@@ -122,14 +134,14 @@ export default function PackLanguagePicker({ lang, t, value, onChange, disabled 
               scale: progress.interpolate({ inputRange: [0, 1], outputRange: [0.98, 1] }),
             }],
           }]}>
-            {PACK_LANGUAGES.map((code) => {
+            {options.map((code) => {
               const item = PACK_LANGUAGE_META[code];
               const selected = item.code === value;
               return (
                 <Pressable
                   key={item.code}
                   accessibilityRole="button"
-                  accessibilityLabel={packLanguageLabel(item.code)}
+                  accessibilityLabel={packLanguageLabel(item.code, lang)}
                   accessibilityState={{ selected }}
                   onPress={() => {
                     onChange(item.code);
@@ -140,7 +152,7 @@ export default function PackLanguagePicker({ lang, t, value, onChange, disabled 
                   }]}
                 >
                   <FlagMark code={item.code} width={26} height={17} color={g.text} />
-                  <Text style={[styles.optionText, { color: g.text }]}>{item.nativeName}</Text>
+                  <Text style={[styles.optionText, { color: g.text }]}>{packLanguageLabel(item.code, lang)}</Text>
                   {selected ? <Ionicons name="checkmark" size={18} color={g.text} /> : null}
                 </Pressable>
               );

@@ -1597,3 +1597,10 @@
   Q3 Surveys about XP/Arena with routes to deleted screens — leave / archive (reversible) / delete.
   Q4 Report reward D109 (coins 300/600/1000) — server still spins/runes/pearls: implement now (no deploy) or post-release.
   Q5 Old avatars in admin lists + «Студия персонажа» (D108) — leave / remove studio + neutral initials.
+2026-10-01 — Registry batch 3 audit (15 logic tasks): 10 criteria accepted (659936ab6), PM-078 → review. Executor fixing PM-192-A2, PM-193, PM-194-A1, PM-197-A2, PM-199-A2, PM-200-A1 (allowlist doc), PM-203-A2 (audio guard), PM-213 (late-response probe), PM-229-A1 (critical silent catches), PM-183-A2 (dead card shard boost). Admin test sweep: 58 files, no new failures from the 2.0 cleanup; stale guards fixed (8e64c08aa).
+2026-10-01 — OPEN OWNER QUESTIONS (batch 3, not decided):
+  Q6 «Уровень дружбы» modal (components/friends_together/FriendLevelUpModal.tsx, chest sound) — keep or remove (UI → Design).
+  Q7 PM-230-A1: coins and coin rank are client-authoritative by D66 (local-first) — accept (criterion superseded) or add server verification.
+  Q8 D18 main TTS path (open) — confirm «OpenAI clip of the card language, device voice only on exact match» (D128) as the single path.
+  Q9 PM-080: approved list of coin sources (D104 reports/mailings/collection bonuses, D105 roulette, D109 reports, practiceRuneGrant) — confirm; server videoWatchRunesClaim export to remove after release.
+  Q10 PM-200: practice reminders allowlist — which reminders stay.

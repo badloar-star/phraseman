@@ -1,5 +1,5 @@
 import React, { memo, useRef } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
 
@@ -25,7 +25,11 @@ export const ThemeGlassSmoke = memo(function ThemeGlassSmoke({ glass }: Props) {
   const [a, b] = glass.cardSmoke;
   const id = idRef.current;
   return (
-    <Svg pointerEvents="none" width="100%" height="100%" style={StyleSheet.absoluteFill}>
+    // зачем (проверка в эмуляторе 30.09): у карточек есть padding, а width="100%" у Svg считался от
+    // области БЕЗ отступов — дымка ложилась прямоугольником с жёсткими краями, не доходя до правого
+    // и нижнего края. Обёртка absoluteFill без отступов даёт Svg полный размер карточки.
+    <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+    <Svg width="100%" height="100%">
       <Defs>
         <RadialGradient id={`${id}a`} cx="0%" cy="0%" rx="95%" ry="120%" fx="0%" fy="0%">
           <Stop offset="0" stopColor={solid(a)} stopOpacity={opacityOf(a)} />
@@ -39,5 +43,6 @@ export const ThemeGlassSmoke = memo(function ThemeGlassSmoke({ glass }: Props) {
       <Rect x="0" y="0" width="100%" height="100%" fill={`url(#${id}a)`} />
       <Rect x="0" y="0" width="100%" height="100%" fill={`url(#${id}b)`} />
     </Svg>
+    </View>
   );
 });

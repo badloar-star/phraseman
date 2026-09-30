@@ -159,3 +159,22 @@ test('rows are accessible, at least 44 dp, and the switch does not swallow its o
   assert.match(body, /minHeight:\s*44/);
   assert.match(body, /accessibilityRole="header"/);
 });
+
+// зачем: PM-197-A2 — Настройки 2.0 не возвращают снесённые/законсервированные разделы.
+// Арена и Лиги удалены (D83/D74), раздел MAX запломбирован (2026-09-04), спины и
+// подарки уровней живут в своих местах, а не в корне Настроек. Паттерны намеренно
+// узкие (пути, импорты, имена модулей): реферальная рулетка и строка «Подарок за
+// приглашения» — рабочая функция Настроек и под запрет НЕ попадает.
+test('root settings do not revive retired sections: MAX voice/tutor, spins, level gifts, arena, leagues', () => {
+  const retired = {
+    'MAX voice / tutor': /max_voice|voice_minutes|max_subscription|voiceMinute|voice_tutor|ai_voice_call|gate_ai_voice_call/i,
+    'level spins': /level_spin|lesson_spin|spin_gift|spin_credit|spin_chance/i,
+    'level gifts': /level_gift|daily_journey_gift|gift_access|energy_gift|theme_gift_pool/i,
+    arena: /modules\/arena|from\s+['"][^'"]*arena|pathname:\s*['"]\/arena|push\(['"]\/arena/i,
+    leagues: /from\s+['"][^'"]*league|pathname:\s*['"]\/leagues?\b|push\(['"]\/leagues?\b|league_/i,
+  };
+  for (const [name, pattern] of Object.entries(retired)) {
+    assert.doesNotMatch(source, pattern, `settings.tsx revived retired section: ${name}`);
+    assert.doesNotMatch(rows, pattern, `SettingsGlassRows.tsx revived retired section: ${name}`);
+  }
+});

@@ -32,9 +32,15 @@ describe('clean onboarding study-target and order contract', () => {
     ].forEach((step) => expect(source).toContain(step));
 
     expect(source).toContain('CLEAN_ONBOARDING_ORDER');
-    expect(source).toContain('const SHOW_ONBOARDING_LANGUAGE_STEP = false');
-    // Блок языка выключается целиком (выбор + уровень), одним рубильником.
-    expect(source).toContain("...(SHOW_ONBOARDING_LANGUAGE_STEP ? (['language', 'level'] as const) : [])");
+    // D126 (владелец 2026-09-30): экран выбора языка включён, уровень — нет.
+    // Рубильники раздельные, чтобы уровень не вернулся «прицепом» к языку.
+    expect(source).toContain('const SHOW_ONBOARDING_LANGUAGE_STEP = true');
+    expect(source).toContain('const SHOW_ONBOARDING_LEVEL_STEP = false');
+    expect(source).toContain("...(SHOW_ONBOARDING_LANGUAGE_STEP ? (['language'] as const) : [])");
+    expect(source).toContain("...(SHOW_ONBOARDING_LEVEL_STEP ? (['level'] as const) : [])");
+    expect(source).toContain(
+      'resolveEnabledOnboardingOrder(remoteEnabledSteps, SHOW_ONBOARDING_LANGUAGE_STEP, SHOW_ONBOARDING_LEVEL_STEP)',
+    );
     expect(source).not.toContain("| 'goal'");
     expect(source).not.toContain("| 'minutes'");
     expect(source).not.toContain("| 'plusBenefits'");
@@ -56,7 +62,19 @@ describe('clean onboarding study-target and order contract', () => {
     expect(source).toContain('signInWithProvider(provider)');
   });
 
-  it('captures source and defaults to English while the language block is hidden', () => {
+  it('D126: English is the default before the language choice, the choice overrides it', () => {
+    // «Начать» и «Создать аккаунт» фиксируют английский безусловно — экран языка
+    // может быть выключен в админке, и тогда дефолт обязан остаться английским.
+    expect(source).toContain('void ensureEnglishStudyTarget();');
+    expect(source).not.toContain('if (!SHOW_ONBOARDING_LANGUAGE_STEP) void ensureEnglishStudyTarget()');
+    // Выбор карточки сразу пишет таргет обучения.
+    expect(source).toContain('onPress={() => { void chooseStudyTarget(item.id); }}');
+    expect(source).toContain('[ONBOARDING_REQUESTED_STUDY_TARGET_KEY, target]');
+    // Отказы записи не глотаются молча.
+    expect(source).toContain('ONBOARDING-LANG:');
+  });
+
+  it('captures source and keeps the language picker assets', () => {
     expect(source).toContain('DISCOVERY_OPTIONS');
     expect(source).toContain('onboarding_source_select');
     // Маркетинговая атрибуция обязана дойти до Firestore и админки.

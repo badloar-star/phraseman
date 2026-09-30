@@ -112,6 +112,7 @@ import {
   type AuthProviderId,
 } from '../app/auth_provider';
 import { fetchAccountDeleteStatus, restoreDeletedAccount } from '../app/account_delete_restore_client';
+import { reportSwallowed, swallowError } from '../app/debug-logger';
 
 const WELCOME_LOGO_SOURCE = require('../assets/images/flow_clean_202607/logo_cutout.webp');
 // Иконка приложения — плитка слева в карточке пуша макета телефона (Bevel, кадры 7/10).
@@ -171,7 +172,11 @@ async function withOnboardingAuthSlowNotice<T>(task: Promise<T>, onSlow: () => v
     clearTimeout(timer);
   }
 }
-const SHOW_ONBOARDING_LANGUAGE_STEP = false;
+// зачем: D126 (владелец 2026-09-30) — «только включаем экран с выбором языка, он
+// уже есть», остальной онбординг не трогается. Поэтому рубильник разделён: выбор
+// языка включён, экран уровня остаётся выключенным (после языка сразу уведомления).
+const SHOW_ONBOARDING_LANGUAGE_STEP = true;
+const SHOW_ONBOARDING_LEVEL_STEP = false;
 // Флоу ровно по скриншотам Bevel (владелец, 2026-08-17): welcome → privacy (сейф:
 // вход и «данные не передаются») → niceToMeet (приветствие по имени) → promise
 // (график на весь экран) → improve → source → блок языка (выключен, пока язык
@@ -192,7 +197,8 @@ export const CLEAN_ONBOARDING_ORDER: readonly CleanOnboardingStep[] = [
   'promise',
   'improve',
   'source',
-  ...(SHOW_ONBOARDING_LANGUAGE_STEP ? (['language', 'level'] as const) : []),
+  ...(SHOW_ONBOARDING_LANGUAGE_STEP ? (['language'] as const) : []),
+  ...(SHOW_ONBOARDING_LEVEL_STEP ? (['level'] as const) : []),
   'notifications',
   'name',
   'trialReminder',
@@ -254,8 +260,10 @@ const LEVEL_OPTIONS: Option<LevelChoice>[] = [
 function normalizedStoredStep(value: string | null): CleanOnboardingStep | null {
   if (value === 'start') return 'welcome';
   if (value === 'aha') return 'promise';
-  // Блок языка выключен → сохранённый шаг блока едет на его соседа справа.
-  if (!SHOW_ONBOARDING_LANGUAGE_STEP && (value === 'language' || value === 'level')) return 'notifications';
+  // Выключенный в коде экран → сохранённый шаг едет на соседа справа (D126:
+  // уровень выключен отдельно от языка).
+  if (!SHOW_ONBOARDING_LANGUAGE_STEP && value === 'language') return 'notifications';
+  if (!SHOW_ONBOARDING_LEVEL_STEP && value === 'level') return 'notifications';
   if ((CLEAN_ONBOARDING_ORDER as readonly string[]).includes(value ?? '')) return value as CleanOnboardingStep;
   return null;
 }
@@ -2386,7 +2394,7 @@ function CleanOnboarding({
   });
 
   const enabledOrder = useMemo(
-    () => resolveEnabledOnboardingOrder(remoteEnabledSteps, SHOW_ONBOARDING_LANGUAGE_STEP),
+    () => resolveEnabledOnboardingOrder(remoteEnabledSteps, SHOW_ONBOARDING_LANGUAGE_STEP, SHOW_ONBOARDING_LEVEL_STEP),
     [remoteEnabledSteps],
   );
 
@@ -2702,25 +2710,32 @@ function CleanOnboarding({
     setAuthMode(false);
     setAuthError(null);
     // Этот путь минует кнопку «Начать», где фиксируется английский, — фиксируем здесь.
-    if (!SHOW_ONBOARDING_LANGUAGE_STEP) void ensureEnglishStudyTarget();
+    // зачем: D126 — дефолт всегда английский, экран языка дальше его перезапишет.
+    void ensureEnglishStudyTarget();
     // Аккаунт только что создан и привязан — путь тот же, что после входа на
     // сейфе: приветствие по имени, дальше штатный онбординг.
     go('niceToMeet');
   }, [ensureEnglishStudyTarget, go]);
 
+  // зачем: D126 — экран выбора языка включён; выбор сразу пишет таргет обучения
+  // (Optimistic UI: карточка выделяется мгновенно, запись догоняет фоном).
+  // Каждый проглоченный отказ логируется с префиксом [ONBOARDING-LANG].
   const chooseStudyTarget = useCallback(async (target: StudyTarget) => {
     setStudyTarget(target);
     await AsyncStorage.multiSet([
       [ONBOARDING_REQUESTED_STUDY_TARGET_KEY, target],
       ['study_target_v1', target],
-    ]).catch(() => {});
-    await setStoredStudyTarget(target, lang).catch(() => target);
+    ]).catch(swallowError(`ONBOARDING-LANG:requested_target_write_${target}`));
+    await setStoredStudyTarget(target, lang).catch((error: unknown) => {
+      reportSwallowed(`ONBOARDING-LANG:set_stored_study_target_${target}`, error);
+      return target;
+    });
     if (ENABLE_DEV_STUDY_TARGET_LANG) {
-      await setDevStudyTargetLang(target, lang).catch(() => {});
+      await setDevStudyTargetLang(target, lang).catch(swallowError(`ONBOARDING-LANG:dev_target_write_${target}`));
       emitDevStudyTargetChanged();
     }
     if (target === 'fr') {
-      void prefetchAndRecordStudyTargetServerPack('fr', lang).catch(() => {});
+      void prefetchAndRecordStudyTargetServerPack('fr', lang).catch(swallowError('ONBOARDING-LANG:fr_server_pack_prefetch'));
     }
   }, [lang]);
 
@@ -3211,9 +3226,10 @@ function CleanOnboarding({
               <PrimaryButton
                 label="Начать"
                 onPress={() => {
-                  // Английский — единственный язык, пока блок выбора выключен:
-                  // фиксируем таргет здесь (раньше это делал экран источника).
-                  if (!SHOW_ONBOARDING_LANGUAGE_STEP) void ensureEnglishStudyTarget();
+                  // зачем: D126 — английский остаётся дефолтом, если человек ничего
+                  // не выберет (или экран языка выключен в админке). Фиксируем его
+                  // здесь всегда; экран выбора языка дальше перезапишет таргет.
+                  void ensureEnglishStudyTarget();
                   go('privacy');
                 }}
                 testID="onboarding-start"
@@ -3305,8 +3321,8 @@ function CleanOnboarding({
       plainTitle
       titleStyle={styles.questionTitle}
       onBack={back}
-      // Просим 'language': при выключенном блоке языка resolve сам уведёт на
-      // ближайший включённый шаг (notifications).
+      // Просим 'language': если экран языка выключен (в коде или в админке),
+      // resolve сам уведёт на ближайший включённый шаг (notifications).
       footer={<PrimaryButton label="Продолжить" onPress={() => go('language')} disabled={!source} testID="onboarding-source-continue" />}
     >
       <View style={styles.optionList}>
@@ -3328,6 +3344,8 @@ function CleanOnboarding({
       step="language"
       title="Какой язык учим?"
       onBack={back}
+      // зачем: D126 — просим 'level', но он выключен (SHOW_ONBOARDING_LEVEL_STEP),
+      // и resolve уводит на следующий включённый шаг — уведомления.
       footer={<PrimaryButton label="Выбрать язык" onPress={() => go('level')} testID="onboarding-language-continue" />}
     >
       <View style={styles.optionList}>

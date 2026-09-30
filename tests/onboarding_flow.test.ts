@@ -89,6 +89,38 @@ describe('configurable onboarding flow', () => {
     ]);
   });
 
+  it('D126: language step on, level step off — language is followed by notifications', () => {
+    const remote = parseEnabledOnboardingSteps(null); // пусто = всё включено
+    const order = resolveEnabledOnboardingOrder(remote, true, false);
+    expect(order).toContain('language');
+    expect(order).not.toContain('level');
+    expect(order.slice(order.indexOf('source'), order.indexOf('notifications') + 1)).toEqual([
+      'source',
+      'language',
+      'notifications',
+    ]);
+    // «Выбрать язык» просит 'level' → уводит на уведомления.
+    expect(resolveOnboardingStep(order, 'level', 'current-or-forward')).toBe('notifications');
+    expect(resolveOnboardingStep(order, 'language', 'forward')).toBe('notifications');
+    // Назад с уведомлений — на язык, с языка — на источник.
+    expect(resolveOnboardingStep(order, 'notifications', 'backward')).toBe('language');
+    expect(resolveOnboardingStep(order, 'language', 'backward')).toBe('source');
+    // Прогресс: язык стоит сразу перед уведомлениями, всего шагов на один меньше, чем с уровнем.
+    const withLevel = resolveEnabledOnboardingOrder(remote, true, true);
+    expect(getOnboardingProgress(order, 'notifications').progress)
+      .toBe(getOnboardingProgress(order, 'language').progress + 1);
+    expect(getOnboardingProgress(order, 'language').total).toBe(getOnboardingProgress(withLevel, 'language').total - 1);
+  });
+
+  it('D126: a saved admin list without the language id keeps the step hidden (reported to owner)', () => {
+    // Язык НЕ входит в ONBOARDING_STEPS_DEFAULT_ON: старый опубликованный список
+    // без 'language' держит экран выключенным до переключения галочки в админке.
+    const legacySaved = parseEnabledOnboardingSteps(JSON.stringify(['welcome', 'source', 'notifications', 'name']));
+    expect(resolveEnabledOnboardingOrder(legacySaved, true, false)).not.toContain('language');
+    const marked = parseEnabledOnboardingSteps(JSON.stringify(['welcome', 'source', 'language', 'name', ONBOARDING_STEPS_CATALOG_MARK]));
+    expect(resolveEnabledOnboardingOrder(marked, true, false)).toEqual(['welcome', 'source', 'language', 'name']);
+  });
+
   it('forces the full local catalog only for the explicit QA runtime', () => {
     const remote = ['welcome', 'name'] as OnboardingStepId[];
 

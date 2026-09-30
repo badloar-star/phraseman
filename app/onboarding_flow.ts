@@ -56,8 +56,8 @@ export const ONBOARDING_STEP_CATALOG: readonly {
   { id: 'promise', label: 'Обещание результата', description: 'Анимированный график роста на весь экран.' },
   { id: 'improve', label: 'Помоги улучшить', description: 'Зачем нужна анонимная статистика — перед вопросом об источнике.' },
   { id: 'source', label: 'Источник', description: 'Откуда пользователь узнал о приложении.' },
-  { id: 'language', label: 'Язык', description: 'Выбор изучаемого языка (выключен, пока язык один).' },
-  { id: 'level', label: 'Уровень', description: 'Уровень выбранного языка (блок языка).' },
+  { id: 'language', label: 'Язык', description: 'Выбор изучаемого языка (включён в коде по D126).' },
+  { id: 'level', label: 'Уровень', description: 'Уровень выбранного языка (выключен в коде).' },
   { id: 'notifications', label: 'Уведомления', description: 'Предложение включить уведомления с макетом пуша.' },
   {
     id: 'name',
@@ -119,15 +119,18 @@ export function parseEnabledOnboardingSteps(raw: string | null | undefined): Onb
 export function resolveEnabledOnboardingOrder(
   remotelyEnabled: readonly OnboardingStepId[],
   showLanguageStep: boolean,
+  // зачем: D126 (владелец 2026-09-30) — «только включаем экран с выбором языка»,
+  // уровень остаётся выключенным. Раньше один рубильник глушил оба экрана;
+  // теперь уровень — отдельный. Дефолт = showLanguageStep, чтобы старые вызовы
+  // с двумя аргументами вели себя как прежде (блок целиком).
+  showLevelStep: boolean = showLanguageStep,
 ): OnboardingStepId[] {
   const enabled = new Set(remotelyEnabled);
   enabled.add(MANDATORY_ONBOARDING_STEP);
-  // Блок языка целиком (выбор + уровень): продукт ещё не добавил вторые языки,
-  // поэтому локальный рубильник глушит оба экрана независимо от админки.
-  if (!showLanguageStep) {
-    enabled.delete('language');
-    enabled.delete('level');
-  }
+  // Локальные рубильники сильнее админки: выключенный в коде экран не
+  // показывается, даже если в remote_config он включён.
+  if (!showLanguageStep) enabled.delete('language');
+  if (!showLevelStep) enabled.delete('level');
   return ALL_STEP_IDS.filter((id) => enabled.has(id));
 }
 

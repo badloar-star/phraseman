@@ -216,7 +216,7 @@ const BASELINE: Record<string, number> = {
   'components/AddToFlashcard.tsx': 1,
   'components/AiLimitUpsellCard.tsx': 1,
   'components/BillingIssueToastHost.tsx': 5,
-  'components/CleanOnboarding.tsx': 30,
+  'components/CleanOnboarding.tsx': 27, // D126: 3 немых catch выбора языка теперь логируют причину
   'components/DailyPhraseCard.tsx': 6,
   'components/DialogsTabContent.tsx': 1,
   'components/EnergyContext.tsx': 2,

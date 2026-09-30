@@ -195,7 +195,8 @@ function hashProtectedRuntimeElements() {
 test('keeps the quota, attempt, hold, TTS, flight, and result runtime AST unchanged', () => {
   assert.deepEqual(hashProtectedRuntimeAst(), {
     count: 33,
-    hash: '076516f28c0523cf4aaefe94ed584a508689bdac4892be92e1792769c45842b9',
+    // зачем (30.09): D127 — «Устно» отсеивает карточки «без языка» (voicedDeckCards, 2acba6874); квоты/попытки/TTS не менялись.
+    hash: 'f93c937a5d23f8688c1286fef3f26d8bc0e9a77841202f0c0d3e9e521a84cfd0',
   });
   assert.equal(
     hashProtectedRuntimeElements(),

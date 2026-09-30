@@ -1,6 +1,7 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import * as Crypto from 'expo-crypto';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { Linking } from 'react-native';
 
 import AiDialogConsentGate from './ai_dialog_consent_gate';
 import { buildDialogueV2BriefingModel, type DialogueV2BriefingModel } from './dialogue_v2_briefing_model';
@@ -9,25 +10,37 @@ import {
   type DialogueV2CatalogueReleaseEnvelope,
   type DialogueV2CatalogueStudyTarget,
 } from './dialogue_v2_catalogue_client';
+import { startDialogueV2TextSession } from './dialogue_v2_turn_client';
 import {
-  DialogueV2PlusDailyCapError,
-  sendDialogueV2TextTurn,
-  startDialogueV2TextSession,
-} from './dialogue_v2_turn_client';
+  DialogueV2TurnFailureError,
+  sendDialogueV2CoachedTextTurn,
+  type DialogueV2CoachedTurnResponse,
+  type DialogueV2TurnFailureReason,
+} from './dialogue_v2_turn_coaching_client';
+import { dialogueV2SessionCoachingLabels } from './dialogue_v2_session_coaching_labels';
 import { resolveCurrentDialogueV2PreparedBotVoice } from './dialogue_v2_prepared_bot_voice_runtime';
 import { triLang } from '../constants/i18n';
 import { useMyCoinRank } from '../hooks/use_my_coin_rank';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
+import { usePremium } from '../components/PremiumContext';
+import { dialogueMoodLabel } from '../components/dialogs/glass/DialogueGlassSessionParts';
+import {
+  DIALOGUE_V2_FREE_MONTHLY_REPLIES,
+  useDialogueV2SessionCoaching,
+} from '../hooks/use_dialogue_v2_session_coaching';
 import { DialogueGlassGate, useDialogueGlass } from '../components/dialogs/glass/DialogueGlassKit';
 import { useDialogueV2VoiceMessage } from '../hooks/use_dialogue_v2_voice_message';
 import { useDialogueV2PreparedBotVoicePlayback } from '../hooks/use_dialogue_v2_prepared_bot_voice_playback';
 import {
   DialogueV2SessionScreen,
+  type DialogueV2SessionBottom,
   type DialogueV2SessionMessage,
 } from '../components/dialogs/DialogueV2SessionScreen';
 
 const V2_TARGETS = new Set(['en', 'es', 'fr', 'de']);
+const INTERFACE_LANGS = new Set(['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl', 'fr', 'de']);
+const RATE_LIMIT_COOLDOWN_MS = 12_000;
 
 type SessionState =
   | Readonly<{ kind: 'loading' }>
@@ -79,43 +92,63 @@ async function secureTurnId(): Promise<string> {
   return `d2t_${Array.from(bytes, (byte) => byte.toString(16).padStart(2, '0')).join('')}`;
 }
 
+function interfaceLangFor(lang: string): string {
+  return INTERFACE_LANGS.has(lang) ? lang : 'en';
+}
+
+type TurnFailureView = Readonly<{ reason: DialogueV2TurnFailureReason }>;
+
 function SessionContent() {
   const params = useLocalSearchParams<{ scenarioId?: string | string[] }>();
   const router = useRouter();
   const { studyTarget } = useStudyTarget();
   const localCoinRank = useMyCoinRank();
   const { lang } = useLang();
+  const { accessResolved, hasPremiumAccess } = usePremium();
   const glass = useDialogueGlass();
   const labels = useMemo(() => labelsFor(lang), [lang]);
+  const coachingLabels = useMemo(() => dialogueV2SessionCoachingLabels(lang), [lang]);
   const scenarioId = validScenarioId(params.scenarioId) ? params.scenarioId : null;
   const [state, setState] = useState<SessionState>({ kind: 'loading' });
   const [messages, setMessages] = useState<readonly DialogueV2SessionMessage[]>([]);
   const [draft, setDraft] = useState('');
   const [sending, setSending] = useState(false);
-  const [turnUnavailable, setTurnUnavailable] = useState(false);
-  const [plusDailyCapReached, setPlusDailyCapReached] = useState(false);
+  const [turnFailure, setTurnFailure] = useState<TurnFailureView | null>(null);
+  const [rateLimitCooling, setRateLimitCooling] = useState(false);
+  const [paused, setPaused] = useState(false);
   const [serverSession, setServerSession] = useState<Readonly<{ sessionId: string; expiresAtMs: number }> | null>(null);
   const [serverSessionState, setServerSessionState] = useState<ServerSessionState>('idle');
-  const pendingTurnRef = useRef<Readonly<{ turnId: string; userMessage: string }> | null>(null);
+  const pendingTurnRef = useRef<Readonly<{ turnId: string; userMessage: string; learnerId: string }> | null>(null);
   const turnStartingRef = useRef(false);
+  // зачем: Free-лимиты включаются только когда доступ точно известен как Free — Plus не должен
+  // увидеть стену или счётчик из-за медленной проверки подписки.
+  const freeTier = accessResolved && !hasPremiumAccess;
+  const coaching = useDialogueV2SessionCoaching({
+    studyTarget: supportedTarget(studyTarget) ? studyTarget : null,
+    sessionId: serverSession?.sessionId ?? null,
+    freeTier,
+  });
 
   useEffect(() => {
     if (!scenarioId || !supportedTarget(studyTarget)) {
+      console.warn('[DIALOGUE-V2] session:load → invalid route data', { scenarioId, studyTarget });
       setState({ kind: 'unavailable' });
       return undefined;
     }
     let active = true;
     setMessages([]);
     setDraft('');
-    setTurnUnavailable(false);
+    setTurnFailure(null);
     setServerSession(null);
     setServerSessionState('idle');
     pendingTurnRef.current = null;
     setState({ kind: 'loading' });
     void fetchReleasedDialogueV2Catalogue(studyTarget).then((envelope) => {
       if (!active) return;
+      if (!envelope) console.warn('[DIALOGUE-V2] session:load → catalogue empty', { scenarioId, studyTarget });
       setState(envelope ? { kind: 'available', envelope } : { kind: 'unavailable' });
-    }).catch(() => {
+    }).catch((error: unknown) => {
+      console.warn('[DIALOGUE-V2] session:load → catalogue failed', error instanceof Error ? error.message : String(error));
       if (active) setState({ kind: 'unavailable' });
     });
     return () => { active = false; };
@@ -154,70 +187,111 @@ function SessionContent() {
     void startDialogueV2TextSession({ studyTarget, scenarioId }).then((started) => {
       if (!active) return;
       if (!started) {
+        console.warn('[DIALOGUE-V2] session:start → server returned no session', { scenarioId });
         setServerSessionState('unavailable');
         return;
       }
       setServerSession(started);
       setServerSessionState('ready');
-    }).catch(() => {
+    }).catch((error: unknown) => {
+      console.warn('[DIALOGUE-V2] session:start → failed', error instanceof Error ? error.message : String(error));
       if (active) setServerSessionState('unavailable');
     });
     return () => { active = false; };
   }, [model, scenarioId, studyTarget]);
 
-  const runPendingTurn = async (pending: Readonly<{ turnId: string; userMessage: string }>) => {
-    if (!serverSession || !scenarioId || !supportedTarget(studyTarget)) return;
+  // зачем (C19): «слишком много сообщений» — без «Повторить», пока не остынет; потом повтор можно.
+  useEffect(() => {
+    if (!rateLimitCooling) return undefined;
+    const timer = setTimeout(() => setRateLimitCooling(false), RATE_LIMIT_COOLDOWN_MS);
+    return () => clearTimeout(timer);
+  }, [rateLimitCooling]);
+
+  const appendReplies = async (
+    result: Extract<DialogueV2CoachedTurnResponse, { kind: 'reply' }>,
+    pending: Readonly<{ turnId: string; learnerId: string }>,
+    session: Readonly<{ sessionId: string }>,
+    target: DialogueV2CatalogueStudyTarget,
+    scenario: string,
+  ) => {
+    const names = new Map(model?.participants.map((participant) => [participant.id, participant.displayName]));
+    const selection = result.preparedBotVoiceSelection;
+    const selectedIndex = selection?.replyIndex;
+    const selectedReply = selectedIndex === undefined ? undefined : result.replies[selectedIndex];
+    const resolvedPreparedBotVoice = selection && selectedIndex !== undefined && selectedReply
+      ? await resolveCurrentDialogueV2PreparedBotVoice({
+        nowMs: Date.now(),
+        serverSelection: selection,
+        response: {
+          sessionId: session.sessionId,
+          turnId: pending.turnId,
+          replyIndex: selectedIndex,
+          studyTarget: target,
+          scenarioId: scenario,
+          personaId: selectedReply.personaId,
+          text: selectedReply.text,
+        },
+      }).catch((error: unknown) => {
+        console.warn('[DIALOGUE-V2] turn:voice → prepared voice unavailable', error instanceof Error ? error.message : String(error));
+        return null;
+      })
+      : null;
+    const coached = result.coaching;
+    setMessages((current) => Object.freeze([
+      ...current.map((message) => (
+        message.id === pending.learnerId && message.author === 'learner' && coached?.betterPhrasing
+          ? Object.freeze({ ...message, betterPhrasing: coached.betterPhrasing })
+          : message
+      )),
+      ...result.replies.map((reply, index) => Object.freeze({
+        id: `persona_${current.length + index + 1}`,
+        author: 'persona' as const,
+        authorLabel: names.get(reply.personaId),
+        text: reply.text,
+        ...(coached?.replyTranslations?.[index] ? { translation: coached.replyTranslations[index] } : {}),
+        ...(coached?.replyExplanations?.[index] ? { explanation: coached.replyExplanations[index] } : {}),
+        ...(resolvedPreparedBotVoice && index === selectedIndex
+          ? { preparedBotVoice: resolvedPreparedBotVoice }
+          : {}),
+      })),
+    ]));
+    coaching.applyCoaching(coached);
+    coaching.applyQuota(result.quota);
+  };
+
+  const runPendingTurn = async (pending: Readonly<{ turnId: string; userMessage: string; learnerId: string }>) => {
+    if (!serverSession || !scenarioId || !supportedTarget(studyTarget)) {
+      console.warn('[DIALOGUE-V2] turn:run → skipped, session not ready', { hasSession: !!serverSession, scenarioId });
+      return;
+    }
     setSending(true);
     try {
-      const result = await sendDialogueV2TextTurn({
+      const result = await sendDialogueV2CoachedTextTurn({
         sessionId: serverSession.sessionId,
         turnId: pending.turnId,
         studyTarget,
         scenarioId,
         userMessage: pending.userMessage,
+        interfaceLang: interfaceLangFor(lang),
       });
-      if (!result) throw new Error('turn_unavailable');
       if (result.kind === 'reply') {
-        const names = new Map(model?.participants.map((participant) => [participant.id, participant.displayName]));
-        const selectedIndex = result.preparedBotVoiceSelection?.replyIndex;
-        const selectedReply = selectedIndex === undefined ? undefined : result.replies[selectedIndex];
-        const resolvedPreparedBotVoice = result.preparedBotVoiceSelection
-          && selectedIndex !== undefined
-          && selectedReply
-          ? await resolveCurrentDialogueV2PreparedBotVoice({
-            nowMs: Date.now(),
-            serverSelection: result.preparedBotVoiceSelection,
-            response: {
-              sessionId: serverSession.sessionId,
-              turnId: pending.turnId,
-              replyIndex: selectedIndex,
-              studyTarget,
-              scenarioId,
-              personaId: selectedReply.personaId,
-              text: selectedReply.text,
-            },
-          }).catch(() => null)
-          : null;
-        setMessages((current) => Object.freeze([...current, ...result.replies.map((reply, index) => Object.freeze({
-          id: `persona_${current.length + index + 1}`,
-          author: 'persona' as const,
-          authorLabel: names.get(reply.personaId),
-          text: reply.text,
-          ...(resolvedPreparedBotVoice && index === selectedIndex
-            ? { preparedBotVoice: resolvedPreparedBotVoice }
-            : {}),
-        }))]));
+        await appendReplies(result, pending, serverSession, studyTarget, scenarioId);
       }
       pendingTurnRef.current = null;
-    } catch (error) {
-      // D123: потолок Plus — не «нет связи»; причина идёт в лог, экран говорит спокойно.
-      const capReached = error instanceof DialogueV2PlusDailyCapError;
-      console.warn('[DIALOGUE-V2-TURN] run:failed', JSON.stringify({
-        reason: capReached ? 'plus_daily_cap' : String((error as Error)?.message ?? error).slice(0, 120),
-        scenarioId,
-      }));
-      setPlusDailyCapReached(capReached);
-      setTurnUnavailable(true);
+    } catch (error: unknown) {
+      const reason: DialogueV2TurnFailureReason = error instanceof DialogueV2TurnFailureError ? error.reason : 'network';
+      console.warn('[DIALOGUE-V2] turn:run → failed', { reason, scenarioId });
+      if (reason === 'quota_exhausted') {
+        // Откат оптимистичного пузыря: сервер ход не принял, ответа на него не будет.
+        setMessages((current) => Object.freeze(current.filter((message) => message.id !== pending.learnerId)));
+        pendingTurnRef.current = null;
+        coaching.markExhausted(error instanceof DialogueV2TurnFailureError ? error.quotaObservation : null);
+      } else if (reason === 'paused') {
+        setPaused(true);
+      } else {
+        if (reason === 'rate_limited') setRateLimitCooling(true);
+        setTurnFailure(Object.freeze({ reason }));
+      }
     } finally {
       setSending(false);
       turnStartingRef.current = false;
@@ -228,37 +302,82 @@ function SessionContent() {
     const userMessage = draft.trim();
     if (!model?.unlocked || !serverSession || !scenarioId || !supportedTarget(studyTarget)
       || sending || turnStartingRef.current || voice.status !== 'idle'
+      || coaching.quotaExhausted || coaching.ended
       || userMessage.length < 1 || userMessage.length > 2_000) return;
     turnStartingRef.current = true;
     let pending = pendingTurnRef.current;
     try {
       if (!pending) {
-        pending = Object.freeze({ turnId: await secureTurnId(), userMessage });
+        const learnerId = `learner_${messages.length + 1}`;
+        pending = Object.freeze({ turnId: await secureTurnId(), userMessage, learnerId });
         pendingTurnRef.current = pending;
         const voiceAttachment = voice.takeVoiceAttachment(userMessage);
-        const userId = `learner_${messages.length + 1}`;
         setDraft('');
+        voice.clearFailure?.();
         setMessages((current) => Object.freeze([...current, Object.freeze({
-            id: userId, author: 'learner' as const, text: userMessage,
-            ...(voiceAttachment ? { voice: { uri: voiceAttachment.uri } } : {}),
+          id: learnerId, author: 'learner' as const, text: userMessage,
+          ...(voiceAttachment ? { voice: { uri: voiceAttachment.uri } } : {}),
         })]));
       }
       await runPendingTurn(pending);
-    } catch {
-      setTurnUnavailable(true);
+    } catch (error: unknown) {
+      console.warn('[DIALOGUE-V2] turn:send → failed before transport', error instanceof Error ? error.message : String(error));
+      setTurnFailure(Object.freeze({ reason: 'network' }));
       turnStartingRef.current = false;
     }
   };
 
   const retry = () => {
     const pending = pendingTurnRef.current;
-    if (!pending || !serverSession || sending || turnStartingRef.current) return;
+    if (!pending || !serverSession || sending || turnStartingRef.current) {
+      console.warn('[DIALOGUE-V2] turn:retry → ignored', { hasPending: !!pending, sending });
+      return;
+    }
     turnStartingRef.current = true;
-    setTurnUnavailable(false);
-    setPlusDailyCapReached(false);
+    setTurnFailure(null);
     void runPendingTurn(pending);
   };
 
+  const openSummary = (endedBy: 'bot' | 'manual' | 'limit') => {
+    if (!serverSession || !scenarioId) {
+      console.warn('[DIALOGUE-V2] summary:open → no session', { scenarioId });
+      return;
+    }
+    const learnerTurns = messages.filter((message) => message.author === 'learner').length;
+    const route = {
+      pathname: '/dialogue_v2_completion' as never,
+      params: {
+        sessionId: serverSession.sessionId,
+        scenarioId,
+        endedBy,
+        learnerTurns: String(learnerTurns),
+        ...(coaching.mood ? { mood: coaching.mood } : {}),
+      },
+    };
+    if (endedBy === 'manual') {
+      router.replace(route);
+      return;
+    }
+    // зачем (C24/C38): к итогу — поверх переписки; «назад» с итога вернёт ленту с пилюлей «Итоги».
+    coaching.markSummarySeen();
+    router.push(route);
+  };
+
+  if (paused) {
+    if (typeof __DEV__ !== 'undefined' && __DEV__) console.warn('[DIALOGUE-V2] session:render → paused gate', { scenarioId });
+    return (
+      <DialogueGlassGate
+        glass={glass}
+        testID="dialogue-v2-session-paused"
+        backLabel={labels.back}
+        onBack={() => router.back()}
+        icon="cloud-offline-outline"
+        title={coachingLabels.pausedTitle}
+        message={coachingLabels.pausedMessage}
+        action={{ label: labels.back, onPress: () => router.back() }}
+      />
+    );
+  }
   if (state.kind === 'loading' || (model?.unlocked === true && serverSessionState !== 'unavailable' && !serverSession)) {
     return (
       <DialogueGlassGate
@@ -273,15 +392,13 @@ function SessionContent() {
   }
   if (!model || !model.unlocked || serverSessionState === 'unavailable' || !serverSession) {
     // зачем: ранний выход без лога делал «недоступно» немым (правило «сперва логи»).
-    if (typeof __DEV__ !== 'undefined' && __DEV__) {
-      console.warn('[DIALOG-V2-SESSION] unavailable', {
-        scenarioId,
-        stateKind: state.kind,
-        hasModel: !!model,
-        unlocked: model?.unlocked ?? null,
-        serverSessionState,
-      });
-    }
+    if (typeof __DEV__ !== 'undefined' && __DEV__) console.warn('[DIALOGUE-V2] session:render → unavailable gate', {
+      scenarioId,
+      stateKind: state.kind,
+      hasModel: !!model,
+      unlocked: model?.unlocked ?? null,
+      serverSessionState,
+    });
     return (
       <DialogueGlassGate
         glass={glass}
@@ -294,6 +411,41 @@ function SessionContent() {
       />
     );
   }
+
+  const objectiveIndex = coaching.activeObjectiveId
+    ? Math.max(0, model.objectives.findIndex((objective) => objective.id === coaching.activeObjectiveId))
+    : 0;
+  const currentObjective = model.objectives[objectiveIndex] ?? null;
+  const whyMessage = coaching.whyMessageId
+    ? messages.find((message) => message.id === coaching.whyMessageId && message.author === 'persona')
+    : undefined;
+  const failureReason = turnFailure?.reason ?? null;
+  const turnErrorMessage = failureReason === 'service'
+    ? coachingLabels.serviceError
+    : failureReason === 'rate_limited'
+      ? coachingLabels.rateLimited
+      : failureReason === 'plus_daily_cap' ? labels.plusDailyCap : labels.turnError;
+  const bottom: DialogueV2SessionBottom = coaching.ended
+    ? (coaching.summarySeen ? 'summary' : 'ended')
+    : coaching.quotaExhausted ? 'wall' : 'input';
+  const voiceFailure = voice.failure === 'not_heard'
+    ? { text: coachingLabels.voiceNotHeard, actionLabel: labels.retry, onAction: voice.clearFailure }
+    : voice.failure === 'permission_denied'
+      ? {
+        text: coachingLabels.voiceDenied,
+        actionLabel: coachingLabels.openSettings,
+        onAction: () => {
+          Linking.openSettings().catch((error: unknown) => {
+            console.warn('[DIALOGUE-V2] voice:settings → open failed', error instanceof Error ? error.message : String(error));
+          });
+        },
+      }
+      : voice.failure === 'unavailable' ? { text: coachingLabels.voiceUnavailable } : null;
+  const openPlus = () => router.push({
+    pathname: '/premium_modal',
+    params: { context: 'dialog_limit', source: 'dialogue_v2_session' },
+  } as never);
+
   return (
     <DialogueV2SessionScreen
       title={model.title}
@@ -305,11 +457,42 @@ function SessionContent() {
       playingVoiceUri={voice.playingVoiceUri}
       playingPreparedBotVoiceMessageId={preparedBotVoice.playingMessageId}
       interfaceLang={lang}
-      labels={plusDailyCapReached ? { ...labels, turnError: labels.plusDailyCap } : labels}
+      labels={labels}
+      coachingLabels={coachingLabels}
       objectives={model.objectives}
-      turnError={turnUnavailable}
-      /* D123: на потолке повтор сегодня не поможет — кнопку «Повторить» гасим. */
-      retryDisabled={sending || !pendingTurnRef.current || plusDailyCapReached}
+      headerMood={coaching.mood ? { mood: coaching.mood, label: dialogueMoodLabel(lang, coaching.mood) } : null}
+      quotaPill={coaching.quotaView ? {
+        text: `${coaching.quotaView.remaining}/${coaching.quotaView.total}`,
+        accessibilityLabel: coachingLabels.quotaA11y(coaching.quotaView.remaining, coaching.quotaView.total),
+      } : null}
+      goal={currentObjective ? {
+        kicker: coachingLabels.goalKicker(objectiveIndex + 1, model.objectives.length),
+        label: currentObjective.label,
+      } : null}
+      hintText={coaching.hint ?? currentObjective?.label ?? null}
+      translatedIds={coaching.translatedIds}
+      onToggleTranslation={coaching.toggleTranslation}
+      whyTarget={whyMessage && whyMessage.explanation ? {
+        messageId: whyMessage.id,
+        quote: whyMessage.text,
+        note: whyMessage.explanation,
+        translation: whyMessage.translation ?? '',
+        plusGate: coaching.whyGate,
+      } : null}
+      onOpenWhy={coaching.openWhy}
+      onCloseWhy={coaching.closeWhy}
+      fixOpenIds={coaching.fixOpenIds}
+      onOpenFix={coaching.openFix}
+      bottom={bottom}
+      onOpenSummary={() => openSummary(bottom === 'wall' ? 'limit' : 'bot')}
+      onOpenPlus={openPlus}
+      limitWallMessage={coachingLabels.wallMessage(DIALOGUE_V2_FREE_MONTHLY_REPLIES)}
+      voiceFailure={voiceFailure}
+      turnError={turnFailure !== null}
+      turnErrorMessage={turnErrorMessage}
+      /* D123: на потолке Plus повтор сегодня не поможет; C19: при частоте — после остывания. */
+      retryAvailable={failureReason !== 'rate_limited' || !rateLimitCooling}
+      retryDisabled={sending || !pendingTurnRef.current || failureReason === 'plus_daily_cap'}
       onRetry={retry}
       onBack={() => router.back()}
       onChangeDraft={setDraft}
@@ -319,10 +502,7 @@ function SessionContent() {
       onDiscardVoice={voice.discard}
       onPlayVoice={voice.play}
       onPlayPreparedBotVoice={preparedBotVoice.play}
-      onComplete={() => router.replace({
-        pathname: '/dialogue_v2_completion' as never,
-        params: { sessionId: serverSession.sessionId, scenarioId },
-      })}
+      onComplete={() => openSummary('manual')}
     />
   );
 }

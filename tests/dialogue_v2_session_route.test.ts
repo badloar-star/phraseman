@@ -10,6 +10,8 @@ const mockSendTurn = jest.fn();
 const mockParams = jest.fn();
 const mockBack = jest.fn();
 const mockReplace = jest.fn();
+const mockPush = jest.fn();
+const mockUsePremium = jest.fn();
 const mockUseStudyTarget = jest.fn();
 const mockUseMyCoinRank = jest.fn();
 const mockUseLang = jest.fn();
@@ -25,10 +27,11 @@ const mockPlayPreparedBotVoice = jest.fn();
 
 jest.mock('react-native', () => ({
   View: 'View', Text: 'Text', Pressable: 'Pressable', Platform: { OS: 'ios' }, StyleSheet: { flatten: (style: unknown) => style },
+  Linking: { openSettings: jest.fn(async () => undefined) },
 }));
 jest.mock('expo-router', () => ({
   useLocalSearchParams: () => mockParams(),
-  useRouter: () => ({ back: mockBack, replace: mockReplace }),
+  useRouter: () => ({ back: mockBack, replace: mockReplace, push: mockPush }),
 }));
 jest.mock('../app/dialogue_v2_catalogue_client', () => ({
   fetchReleasedDialogueV2Catalogue: (...args: unknown[]) => mockFetchCatalogue(...args),
@@ -38,7 +41,30 @@ jest.mock('../app/dialogue_v2_briefing_model', () => ({
 }));
 jest.mock('../app/dialogue_v2_turn_client', () => ({
   startDialogueV2TextSession: (...args: unknown[]) => mockStartSession(...args),
-  sendDialogueV2TextTurn: (...args: unknown[]) => mockSendTurn(...args),
+}));
+// зачем (D112): ход идёт через клиент разбора — с языком интерфейса и причинами отказа.
+jest.mock('../app/dialogue_v2_turn_coaching_client', () => {
+  class DialogueV2TurnFailureError extends Error {
+    constructor(readonly reason: string, readonly quotaObservation: unknown = null) {
+      super(reason);
+    }
+  }
+  return {
+    DialogueV2TurnFailureError,
+    sendDialogueV2CoachedTextTurn: (...args: unknown[]) => mockSendTurn(...args),
+  };
+});
+jest.mock('../components/PremiumContext', () => ({ usePremium: () => mockUsePremium() }));
+jest.mock('../components/dialogs/glass/DialogueGlassSessionParts', () => ({
+  dialogueMoodLabel: (_lang: string, mood: string) => `mood:${mood}`,
+}));
+jest.mock('../app/ai_dialog_daily_quota', () => ({
+  readAiDialogMonthlyQuota: jest.fn(async () => ({ status: 'unknown', limit: 30 })),
+  recordAiDialogMonthlyQuotaFromServer: jest.fn(async () => undefined),
+  markAiDialogMonthlyQuotaExhausted: jest.fn(async () => undefined),
+}));
+jest.mock('../app/account_generation', () => ({
+  captureAccountGeneration: () => ({ generation: 1, stableId: 'stable-user', phase: 'active' }),
 }));
 jest.mock('../app/ai_dialog_consent_gate', () => ({
   __esModule: true,
@@ -98,10 +124,14 @@ describe('Dialogue V2 session route', () => {
     mockBuildModel.mockReturnValue(model);
     mockCrypto.__reset();
     mockStartSession.mockResolvedValue({ ok: true, sessionId: `d2s_${'a'.repeat(32)}`, expiresAtMs: Date.UTC(2026, 9, 1) });
+    mockUsePremium.mockReturnValue({ accessResolved: true, hasPremiumAccess: false });
     mockSendTurn.mockResolvedValue({
-      ok: true, kind: 'reply',
+      kind: 'reply',
       replies: [{ personaId: 'host', text: 'Guten Tag!' }],
-      quota: { period: 'calendar_month', remaining: 29, resetAtMs: Date.UTC(2026, 9, 1) },
+      replayed: false,
+      preparedBotVoiceSelection: null,
+      quota: { remaining: 29, resetAtMs: Date.UTC(2026, 9, 1), quotaVersion: 3 },
+      coaching: null,
     });
     mockTakeVoiceAttachment.mockReturnValue(null);
     mockUseVoice.mockReturnValue({
@@ -151,7 +181,7 @@ describe('Dialogue V2 session route', () => {
     expect(mockSendTurn).toHaveBeenCalledWith(expect.objectContaining({
       sessionId: `d2s_${'a'.repeat(32)}`,
       turnId: expect.stringMatching(/^d2t_[a-f0-9]{36}$/),
-      studyTarget: 'de', scenarioId: 'work_01', userMessage: 'Guten Tag!',
+      studyTarget: 'de', scenarioId: 'work_01', userMessage: 'Guten Tag!', interfaceLang: 'ru',
     }));
     await waitFor(() => expect(mockScreen.mock.calls.at(-1)[0].messages).toEqual([
       { id: 'learner_1', author: 'learner', text: 'Guten Tag!' },
@@ -178,7 +208,7 @@ describe('Dialogue V2 session route', () => {
     expect(mockSendTurn).toHaveBeenCalledWith({
       sessionId: `d2s_${'a'.repeat(32)}`,
       turnId: expect.stringMatching(/^d2t_[a-f0-9]{36}$/),
-      studyTarget: 'de', scenarioId: 'work_01', userMessage: 'Guten Tag!',
+      studyTarget: 'de', scenarioId: 'work_01', userMessage: 'Guten Tag!', interfaceLang: 'ru',
     });
     await waitFor(() => expect(mockScreen.mock.calls.at(-1)[0].messages[0]).toEqual({
       id: 'learner_1', author: 'learner', text: 'Guten Tag!',
@@ -215,7 +245,7 @@ describe('Dialogue V2 session route', () => {
     await act(async () => { mockScreen.mock.calls.at(-1)[0].onComplete(); });
     expect(mockReplace).toHaveBeenCalledWith({
       pathname: '/dialogue_v2_completion',
-      params: { sessionId: `d2s_${'a'.repeat(32)}`, scenarioId: 'work_01' },
+      params: { sessionId: `d2s_${'a'.repeat(32)}`, scenarioId: 'work_01', endedBy: 'manual', learnerTurns: '0' },
     });
   });
 
@@ -245,7 +275,7 @@ describe('Dialogue V2 session route', () => {
 
   it('retries the same pending turn without creating another session', async () => {
     mockSendTurn.mockRejectedValueOnce(new Error('temporary')).mockResolvedValueOnce({
-      ok: true, kind: 'silence', replies: [], replayed: false,
+      kind: 'silence', replayed: false,
     });
     const screen = await render(h(DialogueV2SessionRoute));
     await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
@@ -278,5 +308,114 @@ describe('Dialogue V2 session route', () => {
 
     await act(async () => { resolveBytes(Uint8Array.from({ length: 18 }, () => 7)); });
     await waitFor(() => expect(mockSendTurn).toHaveBeenCalledTimes(1));
+  });
+
+  it('shows the turn coaching: translation, why, better phrasing, mood and the monthly remainder (D111/D112)', async () => {
+    mockSendTurn.mockResolvedValueOnce({
+      kind: 'reply',
+      replies: [{ personaId: 'host', text: 'Welche Größe?' }],
+      replayed: false,
+      preparedBotVoiceSelection: null,
+      quota: { remaining: 12, resetAtMs: Date.UTC(2026, 9, 1), quotaVersion: 4 },
+      coaching: {
+        replyTranslations: ['Какой размер?'],
+        replyExplanations: ['Короткий вопрос о размере.'],
+        betterPhrasing: 'Ich hätte gern einen Kaffee.',
+        hint: 'Назови размер.',
+        mood: 'smile',
+        activeObjectiveId: 'goal_1',
+        dialogueEnded: false,
+      },
+    });
+    await render(h(DialogueV2SessionRoute));
+    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Kaffee.'); });
+    await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
+
+    await waitFor(() => expect(mockScreen.mock.calls.at(-1)[0].messages).toEqual([
+      { id: 'learner_1', author: 'learner', text: 'Kaffee.', betterPhrasing: 'Ich hätte gern einen Kaffee.' },
+      {
+        id: 'persona_2', author: 'persona', authorLabel: 'Анна', text: 'Welche Größe?',
+        translation: 'Какой размер?', explanation: 'Короткий вопрос о размере.',
+      },
+    ]));
+    const props = mockScreen.mock.calls.at(-1)[0];
+    expect(props.headerMood).toEqual({ mood: 'smile', label: 'mood:smile' });
+    expect(props.quotaPill.text).toBe('12/30');
+    expect(props.hintText).toBe('Назови размер.');
+    expect(props.goal.label).toBe('Поздороваться.');
+    expect(props.bottom).toBe('input');
+
+    await act(async () => { props.onToggleTranslation('persona_2'); });
+    expect(mockScreen.mock.calls.at(-1)[0].translatedIds.has('persona_2')).toBe(true);
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onOpenWhy('persona_2'); });
+    expect(mockScreen.mock.calls.at(-1)[0].whyTarget).toEqual(expect.objectContaining({
+      messageId: 'persona_2', note: 'Короткий вопрос о размере.', translation: 'Какой размер?',
+    }));
+  });
+
+  it('rolls back the optimistic bubble and shows the monthly wall when the free quota is exhausted', async () => {
+    const { DialogueV2TurnFailureError } = jest.requireMock('../app/dialogue_v2_turn_coaching_client') as {
+      DialogueV2TurnFailureError: new (reason: string, observation?: unknown) => Error;
+    };
+    mockSendTurn.mockRejectedValueOnce(new DialogueV2TurnFailureError('quota_exhausted', null));
+    await render(h(DialogueV2SessionRoute));
+    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Hallo'); });
+    await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
+
+    await waitFor(() => expect(mockScreen.mock.calls.at(-1)[0].bottom).toBe('wall'));
+    expect(mockScreen.mock.calls.at(-1)[0].messages).toEqual([]);
+    expect(mockScreen.mock.calls.at(-1)[0].turnError).toBe(false);
+  });
+
+  it('closes the scene when the persona ends it and opens the summary over the chat', async () => {
+    mockSendTurn.mockResolvedValueOnce({
+      kind: 'reply',
+      replies: [{ personaId: 'host', text: 'Tschüss!' }],
+      replayed: false,
+      preparedBotVoiceSelection: null,
+      quota: null,
+      coaching: {
+        replyTranslations: null, replyExplanations: null, betterPhrasing: null, hint: null,
+        mood: 'happy', activeObjectiveId: null, dialogueEnded: true,
+      },
+    });
+    await render(h(DialogueV2SessionRoute));
+    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Danke!'); });
+    await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
+    await waitFor(() => expect(mockScreen.mock.calls.at(-1)[0].bottom).toBe('ended'));
+
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onOpenSummary(); });
+    expect(mockPush).toHaveBeenCalledWith({
+      pathname: '/dialogue_v2_completion',
+      params: {
+        sessionId: `d2s_${'a'.repeat(32)}`, scenarioId: 'work_01', endedBy: 'bot', learnerTurns: '1', mood: 'happy',
+      },
+    });
+    expect(mockScreen.mock.calls.at(-1)[0].bottom).toBe('summary');
+  });
+
+  it('shows the paused gate when the server reports the dialogue section switched off', async () => {
+    const { DialogueV2TurnFailureError } = jest.requireMock('../app/dialogue_v2_turn_coaching_client') as {
+      DialogueV2TurnFailureError: new (reason: string) => Error;
+    };
+    mockSendTurn.mockRejectedValueOnce(new DialogueV2TurnFailureError('paused'));
+    const screen = await render(h(DialogueV2SessionRoute));
+    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Hallo'); });
+    await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
+    await expect(screen.findByTestId('dialogue-v2-session-paused')).resolves.toBeTruthy();
+  });
+
+  it('hides the monthly remainder and why-limit for Plus', async () => {
+    mockUsePremium.mockReturnValue({ accessResolved: true, hasPremiumAccess: true });
+    await render(h(DialogueV2SessionRoute));
+    await waitFor(() => expect(mockScreen).toHaveBeenCalledTimes(1));
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Hallo'); });
+    await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
+    await waitFor(() => expect(mockScreen.mock.calls.at(-1)[0].messages).toHaveLength(2));
+    expect(mockScreen.mock.calls.at(-1)[0].quotaPill).toBeNull();
   });
 });

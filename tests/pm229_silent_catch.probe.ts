@@ -81,7 +81,6 @@ const BASELINE: Record<string, number> = {
   'app/debug-logger.ts': 7,
   'app/diagnostic_test.tsx': 2,
   'app/dialogue_v2_prepared_bot_voice_runtime.ts': 1,
-  'app/dialogue_v2_session.tsx': 1,
   'app/economy/client_shard_operation_ledger.ts': 16,
   'app/economy/external_shard_event_sync.ts': 2,
   'app/error_report.ts': 3,

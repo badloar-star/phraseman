@@ -55,6 +55,22 @@ interface DialogWhySheetProps {
     denied: 'no_runes' | 'error' | null;
     onUnlock: () => void;
   } | null;
+  /**
+   * зачем (владелец 2026-09-30, макет dialogs.html C7/C8, V2-сессия): в 2.0 руны убраны —
+   * вместо кнопки с ценой «Открыть Plus». Разбор уже пришёл с репликой (D112), поэтому
+   * замок только решает, показывать ли его сегодня. Передаётся ТОЛЬКО из V2-сессии;
+   * старая сессия продолжает жить на `gate`. Нет обоих — шторка открыта (Plus/тьютор).
+   */
+  plusGate?: {
+    /** Эта реплика раскрыта (бесплатной за сегодня). */
+    revealed: boolean;
+    freeLeft: number;
+    freePerDay: number;
+    exhaustedText: string;
+    leftText: string;
+    openPlusLabel: string;
+    onOpenPlus: () => void;
+  } | null;
   testID?: string;
 }
 
@@ -65,6 +81,7 @@ export default function DialogWhySheet({
   quote,
   coach,
   gate = null,
+  plusGate = null,
   testID,
 }: DialogWhySheetProps) {
   const { theme: t, f, liquidGlassThemeId } = useTheme();
@@ -200,7 +217,31 @@ export default function DialogWhySheet({
               </>
             ) : null}
 
-            {(!gate || gate.revealed) && coach.note ? (
+            {plusGate && !plusGate.revealed ? (
+              <>
+                <Text
+                  testID="dialogue-v2-why-exhausted"
+                  style={{ color: glass.secondary, fontSize: f.body, lineHeight: Math.round(f.body * 1.45), marginTop: 22 }}
+                  maxFontSizeMultiplier={1.2}
+                >
+                  {plusGate.exhaustedText}
+                </Text>
+                <PressableHybrid
+                  variant="primary"
+                  onPress={plusGate.onOpenPlus}
+                  accessibilityLabel={plusGate.openPlusLabel}
+                  style={styles.unlockHit}
+                  contentStyle={[styles.unlockBtn, { backgroundColor: glass.cta }]}
+                  testID="dialogue-v2-why-open-plus"
+                >
+                  <Text style={{ color: glass.ctaInk, fontSize: f.bodyLg, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
+                    {plusGate.openPlusLabel}
+                  </Text>
+                </PressableHybrid>
+              </>
+            ) : null}
+
+            {(!gate || gate.revealed) && coach.note && (!plusGate || plusGate.revealed) ? (
               <>
                 <Text style={[styles.kicker, { color: glass.secondary, fontSize: f.label }]} maxFontSizeMultiplier={1.2}>
                   {explainLabel}
@@ -214,7 +255,7 @@ export default function DialogWhySheet({
               </>
             ) : null}
 
-            {(!gate || gate.revealed) && coach.translation ? (
+            {(!gate || gate.revealed) && coach.translation && (!plusGate || plusGate.revealed) ? (
               <>
                 <Text style={[styles.kicker, { color: glass.secondary, fontSize: f.label }]} maxFontSizeMultiplier={1.2}>
                   {triLang(lang, {
@@ -235,6 +276,15 @@ export default function DialogWhySheet({
                 шторки), а не подпись-расшифровка заголовка. Нет `gate` (режим
                 тьютора, оплаты там нет) → строки нет: счётчик соврал бы.
                 Кончились → строку заменяет экран с ценой выше. */}
+            {plusGate && plusGate.revealed ? (
+              <Text
+                style={{ color: glass.mutedText, fontSize: f.sub, textAlign: 'center', marginTop: 22 }}
+                maxFontSizeMultiplier={1.2}
+              >
+                {plusGate.leftText}
+              </Text>
+            ) : null}
+
             {gate && gate.freeLeft > 0 ? (
               <Text
                 style={{ color: glass.mutedText, fontSize: f.sub, textAlign: 'center', marginTop: 22 }}

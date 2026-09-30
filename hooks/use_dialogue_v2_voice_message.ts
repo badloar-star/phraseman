@@ -29,6 +29,12 @@ import { useRuntimeActive } from './use_runtime_active';
 
 export type DialogueV2VoiceStatus = 'idle' | 'starting' | 'recording';
 
+/**
+ * зачем (макет dialogs.html C14/C15): почему голос не дал текста — видимая причина под
+ * строкой ввода вместо молчаливого возврата в покой. null — последняя попытка без сбоя.
+ */
+export type DialogueV2VoiceFailure = 'not_heard' | 'permission_denied' | 'unavailable' | null;
+
 export type UseDialogueV2VoiceMessageInput = Readonly<{
   studyTarget: DialogueStudyTarget;
   promptText: string;
@@ -38,6 +44,8 @@ export type UseDialogueV2VoiceMessageInput = Readonly<{
 
 export type DialogueV2VoiceMessageController = Readonly<{
   status: DialogueV2VoiceStatus;
+  failure: DialogueV2VoiceFailure;
+  clearFailure: () => void;
   voiceDraft: DialogueVoiceDraft | null;
   playingVoiceUri: string | null;
   start: () => Promise<void>;
@@ -104,6 +112,14 @@ export function useDialogueV2VoiceMessage({
   const statusRef = useRef<DialogueV2VoiceStatus>('idle');
 
   const [status, setStatus] = useState<DialogueV2VoiceStatus>('idle');
+  const [failure, setFailure] = useState<DialogueV2VoiceFailure>(null);
+  const reportFailure = useCallback((next: Exclude<DialogueV2VoiceFailure, null>, detail: string) => {
+    console.warn('[DIALOGUE-V2] voice:failure', { failure: next, detail });
+    if (mountedRef.current) setFailure(next);
+  }, []);
+  const clearFailure = useCallback(() => {
+    if (mountedRef.current) setFailure(null);
+  }, []);
   const [voiceDraft, setVoiceDraft] = useState<DialogueVoiceDraft | null>(null);
   const [playingVoiceUri, setPlayingVoiceUri] = useState<string | null>(null);
 
@@ -196,7 +212,11 @@ export function useDialogueV2VoiceMessage({
     if (disabledRef.current || !runtimeActiveRef.current || !speechModule) return;
     invalidateCapture();
     cleanupPendingVoiceRecordings();
-    if (!isSpeechRecognitionAvailable(speechModule)) return;
+    clearFailure();
+    if (!isSpeechRecognitionAvailable(speechModule)) {
+      reportFailure('unavailable', 'recognition_unavailable');
+      return;
+    }
 
     const session = voiceInputSessionRef.current + 1;
     const startGeneration = voiceStartGenerationRef.current + 1;
@@ -224,12 +244,15 @@ export function useDialogueV2VoiceMessage({
       && startGeneration === voiceStartGenerationRef.current
       && voiceHoldActiveRef.current;
     if (!startIsCurrent() || !capability.available) {
+      if (startIsCurrent() && !capability.available) reportFailure('unavailable', 'asr_locale_unavailable');
       invalidateCapture();
       return;
     }
 
     const permission = await requestSpeechPermissionForHold(speechModule);
     if (!startIsCurrent() || permission !== 'granted') {
+      // 'granted_after_prompt' — не сбой: после системного окна нужно новое удержание.
+      if (permission === 'denied') reportFailure('permission_denied', 'speech_permission_denied');
       invalidateCapture();
       return;
     }
@@ -266,9 +289,14 @@ export function useDialogueV2VoiceMessage({
       const uri = voiceCaptureUriRef.current;
       const transcript = voiceCaptureTranscriptRef.current;
       if (uri && transcript) updateVoiceDraft(Object.freeze({ uri, transcript }));
+      if (!transcript) reportFailure('not_heard', 'end_without_transcript');
     });
-    const errorSub = speechModule.addListener('error', () => {
-      if (captureIsCurrent()) releaseVoiceRecording();
+    const errorSub = speechModule.addListener('error', (event: unknown) => {
+      if (!captureIsCurrent()) return;
+      releaseVoiceRecording();
+      const code = String((event as { error?: unknown } | null)?.error ?? 'unknown').slice(0, 40);
+      if (code === 'not-allowed') reportFailure('permission_denied', code);
+      else if (!voiceCaptureTranscriptRef.current) reportFailure('not_heard', code);
     });
     const audioStartSub = speechModule.addListener('audiostart', (event: { uri?: unknown }) => {
       const uri = trackRecordingUri(event.uri);
@@ -313,10 +341,13 @@ export function useDialogueV2VoiceMessage({
         freeSpeech: true,
         serviceId: inventory?.serviceId,
       }));
-    } catch {
+    } catch (error: unknown) {
+      reportFailure('unavailable', error instanceof Error ? error.message.slice(0, 80) : 'start_threw');
       invalidateCapture();
     }
   }, [
+    clearFailure,
+    reportFailure,
     cleanupPendingVoiceRecordings,
     deleteIfUnowned,
     invalidateCapture,
@@ -414,6 +445,8 @@ export function useDialogueV2VoiceMessage({
 
   return Object.freeze({
     status,
+    failure,
+    clearFailure,
     voiceDraft,
     playingVoiceUri,
     start,

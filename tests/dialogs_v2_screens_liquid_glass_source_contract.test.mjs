@@ -55,8 +55,11 @@ test('session C*: header .dh with «⋯» menu, no divider line, bubbles/typing/
   // Пузырь «Вы» — светлый нейтральный (lightTint), чужой — стекло с 1px кромкой.
   assert.match(chat, /glass\.lightTint/);
   assert.match(chat, /borderWidth: 1, \/\/ guard-ok/);
-  // Настроения, квоты, энергии в ответах V2 нет — не рисуем (чек-лист dialogs.html, класс «в»).
-  assert.doesNotMatch(session, /mood|quota|energy/i);
+  // D111/D112 (владелец 2026-09-30): настроение и месячный остаток теперь приходят с сервера и
+  // рисуются; энергии в V2-диалогах решения нет — её по-прежнему не рисуем.
+  assert.doesNotMatch(session, /energy/i);
+  assert.match(session, /headerMood/);
+  assert.match(session, /quotaPill/);
 });
 
 test('session C6/C23: «Задания» sheet lists briefing goals without statuses; exit asks for confirmation', () => {
@@ -71,7 +74,7 @@ test('session C6/C23: «Задания» sheet lists briefing goals without stat
   assert.match(session, /<ThemedConfirmModal/);
   assert.match(session, /onPress=\{requestBack\}/);
   assert.match(session, /hardwareBackPress/);
-  assert.match(session, /if \(hasConversation\) setExitOpen\(true\);\s*else onBack\(\);/);
+  assert.match(session, /if \(hasConversation && bottom !== 'summary'\) setExitOpen\(true\);\s*else onBack\(\);/);
   for (const key of ['tasks', 'exitTitle', 'exitMessage', 'exitStay', 'exitLeave']) {
     assert.ok(sessionRoute.includes(`${key}: triLang(lang, { ru:`), key);
   }
@@ -80,7 +83,9 @@ test('session C6/C23: «Задания» sheet lists briefing goals without stat
 });
 
 test('session route: network error is an inline system plate with retry, unavailable is a gate', () => {
-  assert.match(sessionRoute, /turnError=\{turnUnavailable/);
+  assert.match(sessionRoute, /turnError=\{turnFailure !== null\}/);
+  // C19/C33: причины отказа — сервис, частота, пауза раздела; пауза — гейт, а не плашка.
+  assert.match(sessionRoute, /testID="dialogue-v2-session-paused"/);
   assert.match(session, /<DialogueGlassSysError/);
   assert.match(sessionRoute, /<DialogueGlassGate/);
   assert.match(sessionRoute, /testID="dialogue-v2-session-unavailable"/);

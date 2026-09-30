@@ -27,8 +27,8 @@ describe('DialogueV2SessionScreen', () => {
 
     expect(source).toContain('message.voice');
     expect(source).toContain('testID={`dialogue-v2-voice-message-${message.id}`}');
-    expect(source).toContain('onPlayVoice(message.voice.uri)');
-    expect(source).toContain("name={playingVoiceUri === message.voice.uri ? 'pause' : 'play'}");
+    expect(source).toContain('onPlayVoice(voiceUri)');
+    expect(source).toContain("name={playingVoiceUri === voiceUri ? 'pause' : 'play'}");
     expect(source).toContain('onPressIn={onStartVoice}');
     expect(source).toContain('onPressOut={onStopVoice}');
     expect(source).toContain('voiceDraft');

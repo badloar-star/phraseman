@@ -9,16 +9,17 @@ describe('Dialogue V2 local voice-message surface contract', () => {
   test('keeps the recorded audio local while the existing text-turn transport receives the transcript', () => {
     expect(session).toContain('useDialogueV2VoiceMessage');
     expect(session).toContain('takeVoiceAttachment');
-    expect(session).toContain('sendDialogueV2TextTurn');
+    // D112: ход идёт через клиент разбора (тот же callable, плюс язык интерфейса).
+    expect(session).toContain('sendDialogueV2CoachedTextTurn');
     expect(session).not.toMatch(/expo-audio|expo-file-system|SpeechRecognition|persistRecording/u);
-    expect(session).not.toMatch(/voice:\s*\{\s*uri:[^}]*\}[\s\S]{0,300}sendDialogueV2TextTurn/u);
+    expect(session).not.toMatch(/voice:\s*\{\s*uri:[^}]*\}[\s\S]{0,300}sendDialogueV2CoachedTextTurn/u);
   });
 
   test('renders a replayable voice bubble instead of rendering the transcript in the chat', () => {
     expect(screen).toContain("voice?: Readonly<{ uri: string }>");
     expect(screen).toContain('onPlayVoice');
     expect(screen).toContain('describeDialogueVoiceMessage');
-    expect(screen).toContain("message.voice ? (");
+    expect(screen).toContain("voiceUri ? (");
   });
 
   test('exposes push-to-talk controls only through the existing V2 session screen', () => {

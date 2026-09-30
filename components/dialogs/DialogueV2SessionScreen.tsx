@@ -7,6 +7,8 @@ import { PressableScale } from '../feedback/PressableScale';
 import { describeDialogueVoiceMessage } from '../../app/dialogue_voice_message';
 import type { DialogueVoiceDraft } from '../../app/dialogue_voice_message';
 import type { DialogueV2VoiceStatus } from '../../hooks/use_dialogue_v2_voice_message';
+import type { DialogueV2CoachingMood } from '../../app/dialogue_v2_turn_coaching_client';
+import type { DialogueV2SessionCoachingLabels } from '../../app/dialogue_v2_session_coaching_labels';
 import type { Lang } from '../../constants/i18n';
 import {
   DialogueGlassBackButton,
@@ -23,17 +25,28 @@ import {
   dialogueGlassFieldStyle,
   dialogueGlassRoundButtonStyle,
 } from './glass/DialogueGlassChat';
+import {
+  DialogueGlassBetterPhrasing,
+  DialogueGlassEndVeil,
+  DialogueGlassGoalCard,
+  DialogueGlassLimitWall,
+  DialogueGlassMoodFace,
+  DialogueGlassQuotaPill,
+  DialogueGlassReplyAction,
+  DialogueGlassSummaryPill,
+} from './glass/DialogueGlassSessionParts';
 import { DialogueGlassMenuSheet } from './glass/DialogueGlassMenuSheet';
 import DialogGoalsSheet from './DialogGoalsSheet';
+import DialogHintModal from './DialogHintModal';
+import DialogWhySheet from './DialogWhySheet';
 import ThemedConfirmModal from '../ThemedConfirmModal';
 
-// зачем (владелец 2026-09-30): сессия V2 «1 в 1» по макету dialogs.html C1–C18 (Liquid Glass):
-// шапка `.dh` (круглая «‹», название сцены + «Диалог», квадратная «⋯» со шторкой «Завершить»),
-// реплики с мини-аватаром и подписью, светлый пузырь «Вы», живые точки «печатает», системная
-// плашка ошибки с «Повторить» прямо в ленте и строка ввода «микрофон · поле · ↑» с подсказкой
-// состояния голоса. Плюс (C6, C23): шторка «Задания» (список из брифинга, БЕЗ статусов — сервер
-// V2 не сообщает, что закрыто) и подтверждение выхода. Настроения, «Цель N из 5», квоты и
-// энергии в ответах V2 нет — их не рисуем (см. чек-лист dialogs.html).
+// зачем (владелец 2026-09-30): сессия V2 «1 в 1» по макету dialogs.html C1–C24 (Liquid Glass):
+// шапка `.dh` (круглая «‹», название сцены + настроение собеседника, пилюля месячного остатка
+// ответов у Free (D111), квадратная «⋯»), карточка «Цель N из M» с «Подсказкой», реплики с
+// «Перевод»/«Почему так» (C3/C7) и «Лучше так» под своей (C9), плашки ошибок по причине (C18/C19),
+// стена лимита на месте ввода (C21), вуаль «к итогу» и пилюля «Итоги» (C24). Разбор приходит
+// вместе с репликой (D112) — ни одна кнопка не ждёт сети. Энергии в V2 нет (решения нет).
 
 type DialogueV2SessionMessageBase = Readonly<{
   id: string;
@@ -47,6 +60,10 @@ export type DialogueV2SessionMessage = DialogueV2SessionMessageBase & (
     /** Local-only recording; its transcript remains available only to the turn transport. */
     voice?: Readonly<{ uri: string }>;
     preparedBotVoice?: never;
+    /** «Лучше так» из разбора следующего хода (D112). */
+    betterPhrasing?: string;
+    translation?: never;
+    explanation?: never;
   }>
   | Readonly<{
     author: 'persona';
@@ -57,6 +74,11 @@ export type DialogueV2SessionMessage = DialogueV2SessionMessageBase & (
       preparedResponseId: string;
       replyTextSha256: string;
     }>;
+    betterPhrasing?: never;
+    /** Перевод реплики на язык интерфейса (D112). */
+    translation?: string;
+    /** «Почему так» — разбор реплики на языке интерфейса (D112). */
+    explanation?: string;
   }>
 );
 
@@ -65,7 +87,7 @@ export type DialogueV2SessionLabels = Readonly<{
   placeholder: string;
   send: string;
   complete: string;
-  /** Короткая подпись под названием сцены (`.dh .su`). */
+  /** Короткая подпись под названием сцены (`.dh .su`), пока настроения нет. */
   subtitle: string;
   /** Кнопка «⋯» и заголовок её шторки. */
   more: string;
@@ -85,6 +107,21 @@ export type DialogueV2SessionLabels = Readonly<{
   exitLeave: string;
 }>;
 
+export type DialogueV2SessionBottom = 'input' | 'wall' | 'ended' | 'summary';
+
+export type DialogueV2WhyTarget = Readonly<{
+  messageId: string;
+  quote: string;
+  note: string;
+  translation: string;
+  /** null — Plus: шторка открыта без счётчика. */
+  plusGate: Readonly<{
+    revealed: boolean;
+    freeLeft: number;
+    freePerDay: number;
+  }> | null;
+}>;
+
 export type DialogueV2SessionScreenProps = Readonly<{
   title: string;
   messages: readonly DialogueV2SessionMessage[];
@@ -96,11 +133,38 @@ export type DialogueV2SessionScreenProps = Readonly<{
   playingPreparedBotVoiceMessageId: string | null;
   interfaceLang: Lang;
   labels: DialogueV2SessionLabels;
+  coachingLabels?: DialogueV2SessionCoachingLabels;
   /** Задания сцены из брифинга (только подписи; статусов выполнения в V2 нет). */
   objectives: readonly Readonly<{ id: string; label: string }>[];
-  /** Последний ход не дошёл: плашка «Повторить» в ленте (C18), разговор остаётся на экране. */
+  /** Настроение собеседника из последнего хода; null — ещё не известно. */
+  headerMood?: Readonly<{ mood: DialogueV2CoachingMood; label: string }> | null;
+  /** Месячный остаток ответов у Free (D111); null — Plus или остаток ещё не известен. */
+  quotaPill?: Readonly<{ text: string; accessibilityLabel: string }> | null;
+  /** Текущее задание сцены; null — все выполнены. */
+  goal?: Readonly<{ kicker: string; label: string }> | null;
+  /** Текст окна «Подсказка». */
+  hintText?: string | null;
+  translatedIds?: ReadonlySet<string>;
+  onToggleTranslation?: (messageId: string) => void;
+  whyTarget?: DialogueV2WhyTarget | null;
+  onOpenWhy?: (messageId: string) => void;
+  onCloseWhy?: () => void;
+  fixOpenIds?: ReadonlySet<string>;
+  onOpenFix?: (messageId: string) => void;
+  bottom?: DialogueV2SessionBottom;
+  onOpenSummary?: () => void;
+  onOpenPlus?: () => void;
+  /** Текст стены месячного лимита (C21, D111). */
+  limitWallMessage?: string;
+  /** Причина, почему голос не дал текста (C14/C15), и действие рядом. */
+  voiceFailure?: Readonly<{ text: string; actionLabel?: string; onAction?: () => void }> | null;
+  /** Последний ход не дошёл: плашка в ленте (C18/C19), разговор остаётся на экране. */
   turnError: boolean;
+  /** Текст плашки; по умолчанию labels.turnError. */
+  turnErrorMessage?: string;
   retryDisabled: boolean;
+  /** false — плашка без «Повторить» (C19 «слишком много сообщений»). */
+  retryAvailable?: boolean;
   onRetry: () => void;
   onBack: () => void;
   onChangeDraft: (value: string) => void;
@@ -112,6 +176,8 @@ export type DialogueV2SessionScreenProps = Readonly<{
   onPlayPreparedBotVoice: (messageId: string) => void;
   onComplete: () => void;
 }>;
+
+const EMPTY_SET: ReadonlySet<string> = new Set<string>();
 
 /** Design 2.0 text-chat surface; session authority lives in the route, not here. */
 export function DialogueV2SessionScreen({
@@ -125,9 +191,28 @@ export function DialogueV2SessionScreen({
   playingPreparedBotVoiceMessageId,
   interfaceLang,
   labels,
+  coachingLabels,
   objectives,
+  headerMood = null,
+  quotaPill = null,
+  goal = null,
+  hintText = null,
+  translatedIds = EMPTY_SET,
+  onToggleTranslation,
+  whyTarget = null,
+  onOpenWhy,
+  onCloseWhy,
+  fixOpenIds = EMPTY_SET,
+  onOpenFix,
+  bottom = 'input',
+  onOpenSummary,
+  onOpenPlus,
+  limitWallMessage,
+  voiceFailure = null,
   turnError,
+  turnErrorMessage,
   retryDisabled,
+  retryAvailable = true,
   onRetry,
   onBack,
   onChangeDraft,
@@ -142,7 +227,9 @@ export function DialogueV2SessionScreen({
   const glass = useDialogueGlass();
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [goalsOpen, setGoalsOpen] = React.useState(false);
+  const [hintOpen, setHintOpen] = React.useState(false);
   const [exitOpen, setExitOpen] = React.useState(false);
+  const scrollRef = React.useRef<ScrollView>(null);
   const voiceBusy = voiceStatus !== 'idle';
   // зачем: пока висит плашка ошибки, путь один — «Повторить» (раньше экран целиком
   // заменялся плашкой, и новое сообщение отправить было нельзя; поведение то же).
@@ -150,7 +237,7 @@ export function DialogueV2SessionScreen({
   const completeDisabled = sending || voiceBusy || messages.length === 0;
   const voiceHint = voiceStatus === 'recording'
     ? labels.voiceRecording
-    : voiceStatus === 'starting' ? labels.voiceStarting : labels.voiceIdle;
+    : voiceStatus === 'starting' ? labels.voiceStarting : voiceFailure?.text ?? labels.voiceIdle;
   const voiceCopy = describeDialogueVoiceMessage(interfaceLang);
   const goalRows = React.useMemo(
     () => objectives.map((objective) => ({ id: objective.id, labelRu: objective.label })),
@@ -161,17 +248,23 @@ export function DialogueV2SessionScreen({
   // выход идёт через подтверждение, чтобы случайный тап/жест не стирал разговор.
   const hasConversation = messages.length > 0;
   const requestBack = React.useCallback(() => {
-    if (hasConversation) setExitOpen(true);
+    if (hasConversation && bottom !== 'summary') setExitOpen(true);
     else onBack();
-  }, [hasConversation, onBack]);
+  }, [bottom, hasConversation, onBack]);
   React.useEffect(() => {
-    if (!hasConversation) return undefined;
+    if (!hasConversation || bottom === 'summary') return undefined;
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
       setExitOpen(true);
       return true;
     });
     return () => sub.remove();
-  }, [hasConversation]);
+  }, [bottom, hasConversation]);
+
+  const openGoals = React.useCallback(() => setGoalsOpen(true), []);
+  const openHint = React.useCallback(() => setHintOpen(true), []);
+  const scrollToEnd = React.useCallback(() => {
+    scrollRef.current?.scrollToEnd({ animated: true });
+  }, []);
 
   return (
     <KeyboardAvoidingView
@@ -183,154 +276,287 @@ export function DialogueV2SessionScreen({
       <SafeAreaView style={{ flex: 1 }} edges={['top', 'bottom']}>
         <View
           testID="dialogue-v2-session-header"
-          style={{ paddingHorizontal: 14, paddingTop: 2, paddingBottom: 12, flexDirection: 'row', alignItems: 'center', gap: 8, backgroundColor: glass.bg }}
+          style={{ paddingHorizontal: 14, paddingTop: 2, paddingBottom: 12, backgroundColor: glass.bg }}
         >
-          <DialogueGlassBackButton glass={glass} onPress={requestBack} accessibilityLabel={labels.back} />
-          <View style={{ flex: 1, minWidth: 0, marginLeft: 4 }}>
-            <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: glass.text, fontSize: 20, lineHeight: 24, fontWeight: '700', letterSpacing: -0.2 }}>
-              {title}
-            </Text>
-            <Text maxFontSizeMultiplier={1.3} style={{ color: glass.secondary, fontSize: 15, lineHeight: 19, marginTop: 2 }}>
-              {labels.subtitle}
-            </Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+            <DialogueGlassBackButton glass={glass} onPress={requestBack} accessibilityLabel={labels.back} />
+            <View style={{ flex: 1, minWidth: 0, marginLeft: 4 }}>
+              <Text numberOfLines={1} accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: glass.text, fontSize: 20, lineHeight: 24, fontWeight: '700', letterSpacing: -0.2 }}>
+                {title}
+              </Text>
+              <View
+                testID="dialogue-v2-session-mood"
+                style={{ flexDirection: 'row', alignItems: 'center', gap: 7, marginTop: 2 }}
+                accessible
+                accessibilityLabel={headerMood?.label ?? labels.subtitle}
+              >
+                {headerMood ? <DialogueGlassMoodFace mood={headerMood.mood} color={glass.secondary} /> : null}
+                <Text numberOfLines={1} maxFontSizeMultiplier={1.3} style={{ color: glass.secondary, fontSize: 15, lineHeight: 19 }}>
+                  {headerMood?.label ?? labels.subtitle}
+                </Text>
+              </View>
+            </View>
+            {quotaPill ? (
+              <DialogueGlassQuotaPill
+                glass={glass}
+                testID="dialogue-v2-session-quota"
+                text={quotaPill.text}
+                accessibilityLabel={quotaPill.accessibilityLabel}
+              />
+            ) : null}
+            <DialogueGlassSquareButton
+              glass={glass}
+              testID="dialogue-v2-session-more"
+              accessibilityLabel={labels.more}
+              onPress={() => setMenuOpen(true)}
+            >
+              <Ionicons name="ellipsis-horizontal" size={18} color={glass.text} />
+            </DialogueGlassSquareButton>
           </View>
-          <DialogueGlassSquareButton
-            glass={glass}
-            testID="dialogue-v2-session-more"
-            accessibilityLabel={labels.more}
-            onPress={() => setMenuOpen(true)}
-          >
-            <Ionicons name="ellipsis-horizontal" size={18} color={glass.text} />
-          </DialogueGlassSquareButton>
+          {goal && coachingLabels && bottom === 'input' ? (
+            <DialogueGlassGoalCard
+              glass={glass}
+              testID="dialogue-v2-session-goal"
+              kicker={goal.kicker}
+              label={goal.label}
+              hintLabel={coachingLabels.hint}
+              onOpen={openGoals}
+              onHint={openHint}
+            />
+          ) : null}
         </View>
 
         <ScrollView
+          ref={scrollRef}
           style={{ flex: 1 }}
           contentContainerStyle={{ paddingHorizontal: 14, paddingBottom: 24 }}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
+          onContentSizeChange={scrollToEnd}
         >
-          {messages.map((message) => {
-            const learner = message.author === 'learner';
-            const author = learner ? 'learner' : 'persona';
-            const ink = dialogueGlassBubbleInk(glass, author);
-            const botVoicePlaying = playingPreparedBotVoiceMessageId === message.id;
-            // зачем: внутри колбэка onPress сужение message.voice теряется — берём uri заранее.
-            const voiceUri = message.voice?.uri;
-            return (
-              <DialogueGlassBubble
-                key={message.id}
+          {/* зачем (C24): после финальной реплики тап по ленте ведёт к итогу. */}
+          {/* guard-ok: лента ограничена потолком хода сессии на сервере (≤ 64 хода), виртуализация не нужна. */}
+          <Pressable
+            disabled={bottom !== 'ended' || !onOpenSummary}
+            onPress={onOpenSummary}
+            accessible={false} // guard-ok: слой-тап без своей роли; доступный путь — надпись вуали ниже
+            accessibilityState={{ disabled: bottom !== 'ended' }}
+          >
+            {messages.map((message) => {
+              const learner = message.author === 'learner';
+              const author = learner ? 'learner' : 'persona';
+              const ink = dialogueGlassBubbleInk(glass, author);
+              const botVoicePlaying = playingPreparedBotVoiceMessageId === message.id;
+              // зачем: внутри колбэка onPress сужение message.voice теряется — берём uri заранее.
+              const voiceUri = message.voice?.uri;
+              const translated = !learner && !!message.translation && translatedIds.has(message.id);
+              const personaActions = !learner && coachingLabels ? (
+                <>
+                  {message.preparedBotVoice ? (
+                    <PressableScale
+                      onPress={() => onPlayPreparedBotVoice(message.id)}
+                      variant="flat"
+                      accessibilityRole="button"
+                      accessibilityLabel={voiceCopy.action}
+                      accessibilityState={{ selected: botVoicePlaying }}
+                      hitSlop={4}
+                      testID={`dialogue-v2-prepared-bot-voice-${message.id}`}
+                      style={dialogueGlassActionStyle(glass, botVoicePlaying)}
+                    >
+                      <Ionicons name={botVoicePlaying ? 'pause' : 'volume-medium-outline'} size={18} color={botVoicePlaying ? glass.ctaInk : glass.text} />
+                    </PressableScale>
+                  ) : null}
+                  {message.translation && onToggleTranslation ? (
+                    <DialogueGlassReplyAction
+                      glass={glass}
+                      testID={`dialogue-v2-translate-${message.id}`}
+                      icon="language-outline"
+                      label={translated ? coachingLabels.hideTranslation : coachingLabels.translate}
+                      active={translated}
+                      onPress={() => onToggleTranslation(message.id)}
+                    />
+                  ) : null}
+                  {message.explanation && onOpenWhy ? (
+                    <DialogueGlassReplyAction
+                      glass={glass}
+                      testID={`dialogue-v2-why-${message.id}`}
+                      icon="bulb-outline"
+                      label={coachingLabels.why}
+                      onPress={() => onOpenWhy(message.id)}
+                    />
+                  ) : null}
+                </>
+              ) : message.preparedBotVoice ? (
+                <PressableScale
+                  onPress={() => onPlayPreparedBotVoice(message.id)}
+                  variant="flat"
+                  accessibilityRole="button"
+                  accessibilityLabel={voiceCopy.action}
+                  accessibilityState={{ selected: botVoicePlaying }}
+                  hitSlop={4}
+                  testID={`dialogue-v2-prepared-bot-voice-${message.id}`}
+                  style={dialogueGlassActionStyle(glass, botVoicePlaying)}
+                >
+                  <Ionicons name={botVoicePlaying ? 'pause' : 'volume-medium-outline'} size={18} color={botVoicePlaying ? glass.ctaInk : glass.text} />
+                </PressableScale>
+              ) : undefined;
+              const learnerActions = learner && message.betterPhrasing && coachingLabels && onOpenFix ? (
+                <DialogueGlassBetterPhrasing
+                  glass={glass}
+                  testID={`dialogue-v2-better-${message.id}`}
+                  label={coachingLabels.better}
+                  phrasing={message.betterPhrasing}
+                  open={fixOpenIds.has(message.id)}
+                  onOpen={() => onOpenFix(message.id)}
+                />
+              ) : undefined;
+              const hasPersonaActions = !learner && (!!message.preparedBotVoice
+                || (!!coachingLabels && (!!message.translation || !!message.explanation)));
+              return (
+                <DialogueGlassBubble
+                  key={message.id}
+                  glass={glass}
+                  author={author}
+                  avatar={!learner}
+                  who={learner ? labels.you : message.authorLabel}
+                  actions={learner ? learnerActions : hasPersonaActions ? personaActions : undefined}
+                >
+                  {voiceUri ? (
+                    <PressableScale
+                      onPress={() => onPlayVoice(voiceUri)}
+                      variant="flat"
+                      accessibilityRole="button"
+                      accessibilityLabel={voiceCopy.action}
+                      testID={`dialogue-v2-voice-message-${message.id}`}
+                      style={{ minHeight: 36, flexDirection: 'row', alignItems: 'center', gap: 8 }}
+                    >
+                      <Ionicons name={playingVoiceUri === voiceUri ? 'pause' : 'play'} size={18} color={ink} />
+                      <DialogueGlassBubbleText glass={glass} author={author}>{voiceCopy.label}</DialogueGlassBubbleText>
+                    </PressableScale>
+                  ) : translated ? (
+                    <Text
+                      testID={`dialogue-v2-translation-${message.id}`}
+                      maxFontSizeMultiplier={1.5}
+                      style={{ fontSize: 17, lineHeight: 24, fontStyle: 'italic', fontWeight: '400', color: glass.secondary }}
+                    >
+                      {message.translation}
+                    </Text>
+                  ) : (
+                    <DialogueGlassBubbleText glass={glass} author={author}>{message.text}</DialogueGlassBubbleText>
+                  )}
+                </DialogueGlassBubble>
+              );
+            })}
+            {sending ? <DialogueGlassTyping glass={glass} avatar testID="dialogue-v2-session-typing" /> : null}
+            {turnError && !sending ? (
+              <DialogueGlassSysError
                 glass={glass}
-                author={author}
-                avatar={!learner}
-                who={learner ? labels.you : message.authorLabel}
-                actions={message.preparedBotVoice ? (
-                  <PressableScale
-                    onPress={() => onPlayPreparedBotVoice(message.id)}
-                    variant="flat"
-                    accessibilityRole="button"
-                    accessibilityLabel={voiceCopy.action}
-                    accessibilityState={{ selected: botVoicePlaying }}
-                    hitSlop={4}
-                    testID={`dialogue-v2-prepared-bot-voice-${message.id}`}
-                    style={dialogueGlassActionStyle(glass, botVoicePlaying)}
-                  >
-                    <Ionicons name={botVoicePlaying ? 'pause' : 'volume-medium-outline'} size={18} color={botVoicePlaying ? glass.ctaInk : glass.text} />
-                  </PressableScale>
-                ) : undefined}
-              >
-                {voiceUri ? (
-                  <PressableScale
-                    onPress={() => onPlayVoice(voiceUri)}
-                    variant="flat"
-                    accessibilityRole="button"
-                    accessibilityLabel={voiceCopy.action}
-                    testID={`dialogue-v2-voice-message-${message.id}`}
-                    style={{ minHeight: 36, flexDirection: 'row', alignItems: 'center', gap: 8 }}
-                  >
-                    <Ionicons name={playingVoiceUri === voiceUri ? 'pause' : 'play'} size={18} color={ink} />
-                    <DialogueGlassBubbleText glass={glass} author={author}>{voiceCopy.label}</DialogueGlassBubbleText>
-                  </PressableScale>
-                ) : (
-                  <DialogueGlassBubbleText glass={glass} author={author}>{message.text}</DialogueGlassBubbleText>
-                )}
-              </DialogueGlassBubble>
-            );
-          })}
-          {sending ? <DialogueGlassTyping glass={glass} avatar testID="dialogue-v2-session-typing" /> : null}
-          {turnError && !sending ? (
-            <DialogueGlassSysError
-              glass={glass}
-              testID="dialogue-v2-session-turn-error"
-              message={labels.turnError}
-              retryLabel={labels.retry}
-              onRetry={onRetry}
-              retryDisabled={retryDisabled}
-            />
-          ) : null}
+                testID="dialogue-v2-session-turn-error"
+                message={turnErrorMessage ?? labels.turnError}
+                retryLabel={retryAvailable ? labels.retry : undefined}
+                onRetry={retryAvailable ? onRetry : undefined}
+                retryDisabled={retryDisabled}
+              />
+            ) : null}
+          </Pressable>
         </ScrollView>
 
-        <View style={{ paddingHorizontal: 14, paddingTop: 14, paddingBottom: 8, backgroundColor: glass.bg }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-            <Pressable
-              onPressIn={onStartVoice}
-              onPressOut={onStopVoice}
-              disabled={sending}
-              accessibilityRole="button"
-              accessibilityLabel={voiceBusy ? labels.voiceRecording : labels.voiceIdle}
-              accessibilityState={{ disabled: sending, selected: voiceBusy }}
-              testID="dialogue-v2-voice-input"
-              style={[dialogueGlassRoundButtonStyle(glass, voiceStatus === 'recording'), { opacity: sending ? 0.55 : 1 }]}
-            >
-              {voiceStatus === 'starting' ? (
-                <ActivityIndicator color={glass.text} />
-              ) : (
-                <Ionicons name="mic-outline" size={24} color={voiceStatus === 'recording' ? glass.ctaInk : glass.text} />
-              )}
-            </Pressable>
-            <TextInput
-              value={draft}
-              onChangeText={onChangeDraft}
-              editable={!sending && !voiceBusy}
-              placeholder={labels.placeholder}
-              placeholderTextColor={glass.mutedText}
-              accessibilityLabel={labels.placeholder}
-              maxFontSizeMultiplier={1.4}
-              style={[dialogueGlassFieldStyle(glass), { color: glass.text, fontSize: 16 }]}
-            />
-            {voiceDraft ? (
+        {bottom === 'wall' && coachingLabels && onOpenSummary && onOpenPlus ? (
+          <DialogueGlassLimitWall
+            glass={glass}
+            testID="dialogue-v2-session-limit-wall"
+            title={coachingLabels.wallTitle}
+            message={limitWallMessage ?? coachingLabels.wallTitle}
+            secondaryLabel={coachingLabels.wallReview}
+            onSecondary={onOpenSummary}
+            primaryLabel={coachingLabels.wallPlus}
+            onPrimary={onOpenPlus}
+          />
+        ) : null}
+        {bottom === 'ended' && coachingLabels && onOpenSummary ? (
+          <DialogueGlassEndVeil glass={glass} testID="dialogue-v2-session-end-veil" text={coachingLabels.endVeil} onPress={onOpenSummary} />
+        ) : null}
+        {bottom === 'summary' && coachingLabels && onOpenSummary ? (
+          <DialogueGlassSummaryPill glass={glass} testID="dialogue-v2-session-summary-pill" label={coachingLabels.summary} onPress={onOpenSummary} />
+        ) : null}
+        {bottom === 'input' ? (
+          <View style={{ paddingHorizontal: 14, paddingTop: 14, paddingBottom: 8, backgroundColor: glass.bg }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+              <Pressable
+                onPressIn={onStartVoice}
+                onPressOut={onStopVoice}
+                disabled={sending} // guard-ok: accessibilityState ниже
+                accessibilityRole="button"
+                accessibilityLabel={voiceBusy ? labels.voiceRecording : labels.voiceIdle}
+                accessibilityState={{ disabled: sending, selected: voiceBusy }}
+                testID="dialogue-v2-voice-input"
+                style={[dialogueGlassRoundButtonStyle(glass, voiceStatus === 'recording'), { opacity: sending ? 0.55 : 1 }]}
+              >
+                {voiceStatus === 'starting' ? (
+                  <ActivityIndicator color={glass.text} />
+                ) : (
+                  <Ionicons name="mic-outline" size={24} color={voiceStatus === 'recording' ? glass.ctaInk : glass.text} />
+                )}
+              </Pressable>
+              <TextInput
+                value={draft}
+                onChangeText={onChangeDraft}
+                editable={!sending && !voiceBusy}
+                placeholder={labels.placeholder}
+                placeholderTextColor={glass.mutedText}
+                accessibilityLabel={labels.placeholder}
+                maxFontSizeMultiplier={1.4}
+                style={[dialogueGlassFieldStyle(glass), { color: glass.text, fontSize: 16 }]}
+              />
+              {voiceDraft ? (
+                <PressableScale
+                  onPress={onDiscardVoice}
+                  disabled={sending || voiceBusy}
+                  variant="flat"
+                  accessibilityRole="button"
+                  accessibilityLabel={labels.discardVoice}
+                  accessibilityState={{ disabled: sending || voiceBusy }}
+                  style={[dialogueGlassRoundButtonStyle(glass, false), { opacity: sending || voiceBusy ? 0.55 : 1 }]}
+                >
+                  <Ionicons name="trash-outline" size={20} color={glass.text} />
+                </PressableScale>
+              ) : null}
               <PressableScale
-                onPress={onDiscardVoice}
-                disabled={sending || voiceBusy}
+                onPress={onSend}
+                disabled={sending || !canSend}
                 variant="flat"
                 accessibilityRole="button"
-                accessibilityLabel={labels.discardVoice}
-                accessibilityState={{ disabled: sending || voiceBusy }}
-                style={[dialogueGlassRoundButtonStyle(glass, false), { opacity: sending || voiceBusy ? 0.55 : 1 }]}
+                accessibilityLabel={labels.send}
+                accessibilityState={{ disabled: sending || !canSend }}
+                style={dialogueGlassRoundButtonStyle(glass, !sending && canSend)}
               >
-                <Ionicons name="trash-outline" size={20} color={glass.text} />
+                <Ionicons name="arrow-up" size={24} color={!sending && canSend ? glass.ctaInk : glass.mutedText} />
               </PressableScale>
-            ) : null}
-            <PressableScale
-              onPress={onSend}
-              disabled={sending || !canSend}
-              variant="flat"
-              accessibilityRole="button"
-              accessibilityLabel={labels.send}
-              accessibilityState={{ disabled: sending || !canSend }}
-              style={dialogueGlassRoundButtonStyle(glass, !sending && canSend)}
-            >
-              <Ionicons name="arrow-up" size={24} color={!sending && canSend ? glass.ctaInk : glass.mutedText} />
-            </PressableScale>
+            </View>
+            <View style={{ marginTop: 12, minHeight: 20, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 14 }}>
+              <Text
+                testID="dialogue-v2-session-voice-hint"
+                maxFontSizeMultiplier={1.3}
+                style={{ textAlign: 'center', fontSize: 15, lineHeight: 20, fontWeight: '600', color: voiceBusy ? glass.text : glass.secondary, flexShrink: 1 }}
+              >
+                {voiceHint}
+              </Text>
+              {!voiceBusy && voiceFailure?.actionLabel && voiceFailure.onAction ? (
+                <Pressable
+                  testID="dialogue-v2-session-voice-action"
+                  onPress={voiceFailure.onAction}
+                  accessibilityRole="button"
+                  accessibilityLabel={voiceFailure.actionLabel}
+                  hitSlop={10}
+                >
+                  <Text maxFontSizeMultiplier={1.3} style={{ fontSize: 15, lineHeight: 20, fontWeight: '600', color: glass.text }}>
+                    {voiceFailure.actionLabel}
+                  </Text>
+                </Pressable>
+              ) : null}
+            </View>
           </View>
-          <Text
-            testID="dialogue-v2-session-voice-hint"
-            maxFontSizeMultiplier={1.3}
-            style={{ marginTop: 12, minHeight: 20, textAlign: 'center', fontSize: 15, lineHeight: 20, fontWeight: '600', color: voiceBusy ? glass.text : glass.secondary }}
-          >
-            {voiceHint}
-          </Text>
-        </View>
+        ) : null}
       </SafeAreaView>
 
       <DialogueGlassMenuSheet
@@ -343,7 +569,7 @@ export function DialogueV2SessionScreen({
         completeDisabled={completeDisabled}
         onComplete={onComplete}
         tasksLabel={goalRows.length > 0 ? labels.tasks : undefined}
-        onOpenTasks={goalRows.length > 0 ? () => setGoalsOpen(true) : undefined}
+        onOpenTasks={goalRows.length > 0 ? openGoals : undefined}
       />
       <DialogGoalsSheet
         visible={goalsOpen}
@@ -354,6 +580,34 @@ export function DialogueV2SessionScreen({
         showStatus={false}
         testID="dialogue-v2-session-goals"
       />
+      {hintText ? (
+        <DialogHintModal
+          visible={hintOpen}
+          onClose={() => setHintOpen(false)}
+          lang={interfaceLang}
+          hint={hintText}
+          testID="dialogue-v2-session-hint"
+        />
+      ) : null}
+      {whyTarget && coachingLabels && onCloseWhy ? (
+        <DialogWhySheet
+          visible
+          onClose={onCloseWhy}
+          lang={interfaceLang}
+          quote={whyTarget.quote}
+          coach={{ note: whyTarget.note, translation: whyTarget.translation, suggestions: [], userFix: null }}
+          plusGate={whyTarget.plusGate ? {
+            revealed: whyTarget.plusGate.revealed,
+            freeLeft: whyTarget.plusGate.freeLeft,
+            freePerDay: whyTarget.plusGate.freePerDay,
+            exhaustedText: coachingLabels.whyExhausted,
+            leftText: coachingLabels.whyLeft(whyTarget.plusGate.freeLeft, whyTarget.plusGate.freePerDay),
+            openPlusLabel: coachingLabels.openPlus,
+            onOpenPlus: () => { onCloseWhy(); onOpenPlus?.(); },
+          } : null}
+          testID="dialogue-v2-session-why"
+        />
+      ) : null}
       <ThemedConfirmModal
         visible={exitOpen}
         title={labels.exitTitle}

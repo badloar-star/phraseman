@@ -415,7 +415,7 @@ export default function SettingsNotifications() {
                 contentStyle={{ minHeight: 64, borderRadius: 14, paddingVertical: 12, paddingHorizontal: 14, gap: 10, flexDirection: 'row', alignItems: 'center', backgroundColor: t.wrongBg ?? glass.opaqueCard, borderWidth: 1, borderColor: glass.glassEdge }}
               >
                 <Ionicons name="notifications-off" size={18} color={t.wrong ?? t.textPrimary} />
-                <FlowText provenance="authored" style={{ color: t.wrong ?? t.textPrimary, fontSize: 13, flex: 1, lineHeight: 18 }}>
+                <FlowText testID="notif-permission-denied-label" provenance="authored" style={{ color: t.wrong ?? t.textPrimary, fontSize: 13, flex: 1, lineHeight: 18 }}>
                   {permissionLabel}
                 </FlowText>
               </PressableHybrid>
@@ -425,10 +425,10 @@ export default function SettingsNotifications() {
               <LinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
               <Ionicons name="chatbubble-outline" size={20} color={glass.lightTint} />
               <View style={{ flex: 1, minWidth: 0 }}>
-                <FlowText provenance="authored" style={{ color: t.textPrimary, fontSize: 15, lineHeight: 20, fontWeight: '700' }}>
+                <FlowText testID="notif-master-label" provenance="authored" style={{ color: t.textPrimary, fontSize: 15, lineHeight: 20, fontWeight: '700' }}>
                   {masterLabel}
                 </FlowText>
-                <FlowText provenance="authored" style={{ color: t.textMuted, fontSize: 14, lineHeight: 20, marginTop: 2 }}>
+                <FlowText testID="notif-master-hint" provenance="authored" style={{ color: t.textMuted, fontSize: 14, lineHeight: 20, marginTop: 2 }}>
                   {masterHint}
                 </FlowText>
               </View>
@@ -455,9 +455,9 @@ export default function SettingsNotifications() {
                 >
                   <LinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
                   <RowIcon name="time-outline" glass={glass} />
-                  <FlowText provenance="authored" style={{ color: t.textPrimary, fontSize: 16, lineHeight: 21, fontWeight: '700', flex: 1, minWidth: 0 }}>{timeLabel}</FlowText>
+                  <FlowText testID="notif-time-label" provenance="authored" style={{ color: t.textPrimary, fontSize: 16, lineHeight: 21, fontWeight: '700', flex: 1, minWidth: 0 }}>{timeLabel}</FlowText>
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginLeft: 8 }}>
-                    <FlowText provenance="authored" style={{ color: glass.secondary, fontSize: 14, lineHeight: 19, fontWeight: '400' }}>{pad(hour)}:{pad(minute)}</FlowText>
+                    <FlowText testID="notif-time-value" provenance="authored" style={{ color: glass.secondary, fontSize: 14, lineHeight: 19, fontWeight: '400' }}>{pad(hour)}:{pad(minute)}</FlowText>
                     <Ionicons name="chevron-forward" size={20} color={t.textMuted} />
                   </View>
                 </PressableHybrid>

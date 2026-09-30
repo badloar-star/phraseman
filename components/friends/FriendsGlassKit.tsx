@@ -92,7 +92,7 @@ export function FriendsCoin({ coinRank, name, size, glass }: {
 /** `.section-title`: 19/24, жирный. */
 export function FriendsSectionTitle({ glass, textScale, children }: { glass: FriendsGlass; textScale: number; children: React.ReactNode }) {
   return (
-    <FlowText provenance="authored" accessibilityRole="header" style={{ flexShrink: 1, color: glass.text, fontSize: 19 * textScale, lineHeight: 24 * textScale, fontWeight: '700' }}>
+    <FlowText testID="friends-section-title" provenance="authored" accessibilityRole="header" style={{ flexShrink: 1, color: glass.text, fontSize: 19 * textScale, lineHeight: 24 * textScale, fontWeight: '700' }}>
       {children}
     </FlowText>
   );
@@ -148,7 +148,7 @@ export function FriendsGlassButton({ glass, textScale, label, onPress, variant =
         <LinearGradient pointerEvents="none" colors={[glass.lightTint, glass.cta, glass.cta]} style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0 }} />
       ) : null}
       {icon ? <Ionicons name={icon} size={18} color={ink} /> : null}
-      <FlowText provenance="authored" style={{ flexShrink: 1, textAlign: 'center', color: ink, fontSize: (compact ? 16 : 17) * textScale, lineHeight: (compact ? 21 : 22) * textScale, fontWeight: compact ? '600' : '700', includeFontPadding: false }}>
+      <FlowText testID="friends-button-label" provenance="authored" style={{ flexShrink: 1, textAlign: 'center', color: ink, fontSize: (compact ? 16 : 17) * textScale, lineHeight: (compact ? 21 : 22) * textScale, fontWeight: compact ? '600' : '700', includeFontPadding: false }}>
         {label}
       </FlowText>
     </PressableHybrid>

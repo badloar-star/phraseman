@@ -50,7 +50,7 @@ function FriendsRequestCard({ profile, onAccept, onDecline }: {
         <View style={{ flex: 1, minWidth: 0 }}>
           {profile.isPremium || profile.isVip
             ? <PremiumGoldUserName text={profile.name} fontSize={nameSize} />
-            : <FlowText provenance="user" style={{ color: glass.text, fontSize: nameSize, lineHeight: 21 * textScale, fontWeight: '700' }}>{profile.name}</FlowText>}
+            : <FlowText testID="friends-request-name" provenance="user" style={{ color: glass.text, fontSize: nameSize, lineHeight: 21 * textScale, fontWeight: '700' }}>{profile.name}</FlowText>}
           <Text style={{ /* guard-ok: короткая подпись по макету 2.0 */ color: glass.mutedText, fontSize: 13 * textScale, lineHeight: 18 * textScale, marginTop: 2 }}>{wants}</Text>
         </View>
       </View>

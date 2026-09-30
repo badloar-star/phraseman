@@ -209,8 +209,8 @@ function MistakeEli5ModalClassic({ visible, onClose, lang, state, text }: Omit<P
               styles.sheet,
               {
                 backgroundColor: glassFill(t.bgCard, 0.46),
-                borderColor: glass.stroke,
-                shadowColor: glass.glow,
+                borderColor: glass.glassEdge,
+                shadowColor: glass.selected,
                 paddingBottom: 20 + bottomInset,
               },
               sheetStyle,
@@ -226,7 +226,7 @@ function MistakeEli5ModalClassic({ visible, onClose, lang, state, text }: Omit<P
           />
 
           <View style={styles.grabber} pointerEvents="none">
-            <View style={[styles.grabberPill, { backgroundColor: glass.stroke }]} />
+            <View style={[styles.grabberPill, { backgroundColor: glass.glassEdge }]} />
           </View>
           <View style={styles.header}>
             <View style={styles.titleRow}>

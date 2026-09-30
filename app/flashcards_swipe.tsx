@@ -3650,11 +3650,11 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
           <View testID="flashcards-truefalse-prompt" style={[styles.trueFalseCard, { backgroundColor: swipeGlass.opaqueCard, borderColor: swipeGlass.line }]}>
             <SwipeTrainingCardGlass chrome={swipeGlass} sheen={!feedback} />
             <Text style={[styles.trueFalseQuestion, { color: swipeGlass.secondary }]}>{question}</Text>
-            <FlowText provenance="authored" style={[styles.trueFalseWord, { color: t.textPrimary, fontSize: Math.max(32, f.h1 + 7), lineHeight: Math.max(38, Math.round((f.h1 + 7) * 1.2)) }]}>
+            <FlowText testID="true-false-word" provenance="authored" style={[styles.trueFalseWord, { color: t.textPrimary, fontSize: Math.max(32, f.h1 + 7), lineHeight: Math.max(38, Math.round((f.h1 + 7) * 1.2)) }]}>
               {s(currentPrompt.card.en) || text.brokenCardPhrase}
             </FlowText>
             <View style={[styles.trueFalseDivider, { backgroundColor: swipeGlass.line }]} />
-            <FlowText provenance="authored" style={[styles.trueFalseTranslation, { color: t.textPrimary, fontSize: Math.max(22, f.bodyLg + 4), lineHeight: Math.max(28, Math.round((f.bodyLg + 4) * 1.28)) }]}>
+            <FlowText testID="true-false-translation" provenance="authored" style={[styles.trueFalseTranslation, { color: t.textPrimary, fontSize: Math.max(22, f.bodyLg + 4), lineHeight: Math.max(28, Math.round((f.bodyLg + 4) * 1.28)) }]}>
               {currentPrompt.shownTranslation}
             </FlowText>
           </View>
@@ -3685,7 +3685,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
           {feedback ? (
             <View testID="flashcards-truefalse-verdict" accessibilityRole="alert" accessibilityLabel={verdict} style={styles.trueFalseVerdict}>
               <Ionicons name={verdictCorrect ? 'checkmark' : 'close'} size={20} color={verdictCorrect ? t.correct : t.wrong} />
-              <FlowText provenance="authored" style={[styles.trueFalseVerdictText, { color: verdictCorrect ? t.correct : t.wrong }]}>{verdict}</FlowText>
+              <FlowText testID="true-false-verdict" provenance="authored" style={[styles.trueFalseVerdictText, { color: verdictCorrect ? t.correct : t.wrong }]}>{verdict}</FlowText>
             </View>
           ) : null}
         </View>

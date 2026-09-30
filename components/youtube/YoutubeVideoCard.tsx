@@ -42,7 +42,7 @@ export default function YoutubeVideoCard({ video, onWatch, highlighted = false, 
           </>
         )}
       </View>
-      <View style={[styles.body, compactLayout && styles.bodyCompact, inlinePlayer && styles.bodyPlaying]}>
+      <View style={[styles.body, compactLayout && styles.bodyCompact, !!inlinePlayer && styles.bodyPlaying]}>
         {!!stateLabel && <View style={[styles.state, { backgroundColor: g.selected }]}><Ionicons name={video.state === 'live' ? 'radio' : 'time-outline'} size={13} color={g.text} /><Text style={[styles.stateText, { color: g.text }]}>{stateLabel}</Text></View>}
         <Text style={[styles.title, compactLayout && styles.titleCompact, { color: g.text }]}>{video.title}</Text>
         {!!(video.publishedAt || views) && <Text style={[styles.meta, { color: g.secondary }]}>{video.publishedAt ? formatLingmanVideoDate(video.publishedAt) : ''}{views ? `${video.publishedAt ? ' · ' : ''}${views}` : ''}</Text>}

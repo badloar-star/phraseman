@@ -215,6 +215,8 @@ export function DialogueV2SessionScreen({
             const author = learner ? 'learner' : 'persona';
             const ink = dialogueGlassBubbleInk(glass, author);
             const botVoicePlaying = playingPreparedBotVoiceMessageId === message.id;
+            // зачем: внутри колбэка onPress сужение message.voice теряется — берём uri заранее.
+            const voiceUri = message.voice?.uri;
             return (
               <DialogueGlassBubble
                 key={message.id}
@@ -237,16 +239,16 @@ export function DialogueV2SessionScreen({
                   </PressableScale>
                 ) : undefined}
               >
-                {message.voice ? (
+                {voiceUri ? (
                   <PressableScale
-                    onPress={() => onPlayVoice(message.voice.uri)}
+                    onPress={() => onPlayVoice(voiceUri)}
                     variant="flat"
                     accessibilityRole="button"
                     accessibilityLabel={voiceCopy.action}
                     testID={`dialogue-v2-voice-message-${message.id}`}
                     style={{ minHeight: 36, flexDirection: 'row', alignItems: 'center', gap: 8 }}
                   >
-                    <Ionicons name={playingVoiceUri === message.voice.uri ? 'pause' : 'play'} size={18} color={ink} />
+                    <Ionicons name={playingVoiceUri === voiceUri ? 'pause' : 'play'} size={18} color={ink} />
                     <DialogueGlassBubbleText glass={glass} author={author}>{voiceCopy.label}</DialogueGlassBubbleText>
                   </PressableScale>
                 ) : (

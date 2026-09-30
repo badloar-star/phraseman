@@ -9,7 +9,10 @@ export type LearningV2ModeAudioReferenceV1 = Readonly<{
 export type LearningV2ModeChoiceFeedbackV1 = Readonly<{
   responseId: string;
   correct: boolean;
-  testedDimension: string;
+  // зачем: метаданные автора, которые рантайм не читает и не проверяет (validateLearningV2ModeNativePayloadV1
+  // смотрит только верхний уровень). Контент уроков 2 и 3 пишется без него — сделали необязательным
+  // вместо выдумывания значений в сотнях записей.
+  testedDimension?: string;
   feedbackByLocale: LearningV2Localized<string>;
 }>;
 

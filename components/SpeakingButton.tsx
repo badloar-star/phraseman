@@ -7,7 +7,6 @@ import PlusBadge from './PlusBadge';
 import SpeakingQuotaDots from './SpeakingQuotaDots';
 import SpeakingPanel, { buildSpeakingPanelTheme } from './SpeakingPanel';
 import { useTheme } from './ThemeContext';
-import { isSpeakingEnabled } from '../app/remote_flags';
 import { hapticTap } from '../hooks/use-haptics';
 
 /**
@@ -102,10 +101,8 @@ export function SpeakingButton({
   }, [inlineHold]);
 
   if (!cleaned) return null;
-  // Remote kill-switch: ops can disable speaking app-wide (e.g. a recognizer
-  // regression) without a release. Default is ON, so this only hides the entry
-  // point when explicitly flipped off in Remote Config.
-  if (!isSpeakingEnabled()) return null;
+  // зачем: удалённый флаг speaking_enabled снят в 2.0 (PROGRESS.md, «Speaking authority
+  // cleanup»); доступность речи локальная, кнопка больше не гасится удалённо.
 
   const label = SPEAKING_LABELS[lang] ?? SPEAKING_LABELS.ru;
   const a11y = SPEAKING_A11Y[lang] ?? SPEAKING_A11Y.ru;

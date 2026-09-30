@@ -31,10 +31,11 @@ export type QuestTaskCardProps = Readonly<{
 }>;
 
 /** Иконка вида награды. Ассеты общие с шапкой и кошельками — один источник. */
+// зачем: energy_full не входит в QuestRewardKind (quests_client отбрасывает такие награды при разборе) —
+// ветки под него были недостижимы и не проходили проверку типов.
 export function questRewardIcon(kind: QuestReward['kind'], themeMode: Parameters<typeof themeUiAsset>[0]) {
   switch (kind) {
     case 'runes': return themeUiAsset(themeMode, 'rune');
-    case 'energy_full': return null;
     case 'freeze': return themeUiAsset(themeMode, 'streakIce');
     default: return null;
   }
@@ -155,9 +156,7 @@ function QuestTaskCard({ quest, onOpen }: QuestTaskCardProps) {
               const icon = questRewardIcon(reward.kind, themeMode);
               return (
                 <View key={`${reward.kind}-${index}`} style={styles.rewardChip}>
-                  {reward.kind === 'energy_full' ? (
-                    <Ionicons name="flash-outline" size={REWARD_ICON} color="#9187FF" accessible={false} />
-                  ) : icon ? (
+                  {icon ? (
                     <Image source={icon} style={styles.rewardIcon} contentFit="contain" accessible={false} />
                   ) : (
                     <Ionicons name="star" size={REWARD_ICON} color={t.accent} accessible={false} />

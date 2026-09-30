@@ -284,7 +284,6 @@ function UnavailableSurvey({
             testID="survey-fallback-title"
             provenance="authored"
             accessibilityRole="header"
-            allowFontScaling={true}
             style={{ color: colors.text, fontSize: scaled(34), lineHeight: scaled(40), fontWeight: '700', marginTop: 10 }}
           >
             {title}
@@ -333,8 +332,7 @@ function UnavailableSurvey({
                 <FlowText
                   testID="survey-fallback-heading"
                   provenance="authored"
-                  allowFontScaling={true}
-                  style={{ color: colors.text, fontSize: scaled(20), lineHeight: scaled(26), fontWeight: '700', textAlign: 'center', marginTop: 17 }}
+                        style={{ color: colors.text, fontSize: scaled(20), lineHeight: scaled(26), fontWeight: '700', textAlign: 'center', marginTop: 17 }}
                 >
                   {heading}
                 </FlowText>
@@ -342,8 +340,7 @@ function UnavailableSurvey({
                   <FlowText
                     testID="survey-fallback-body"
                     provenance="authored"
-                    allowFontScaling={true}
-                    style={{ color: colors.secondary, fontSize: scaled(14), lineHeight: scaled(20), fontWeight: '400', textAlign: 'center', maxWidth: 280, marginTop: 7 }}
+                            style={{ color: colors.secondary, fontSize: scaled(14), lineHeight: scaled(20), fontWeight: '400', textAlign: 'center', maxWidth: 280, marginTop: 7 }}
                   >
                     {body}
                   </FlowText>
@@ -361,7 +358,7 @@ function UnavailableSurvey({
                 style={{ minWidth: 88, marginTop: 20 }}
                 contentStyle={{ minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20, backgroundColor: colors.cta }}
               >
-                <FlowText provenance="authored" allowFontScaling={true} style={{ color: colors.ctaInk, fontWeight: '700', fontSize: scaled(17), lineHeight: scaled(22) }}>
+                <FlowText testID="survey-cta-label" provenance="authored" style={{ color: colors.ctaInk, fontWeight: '700', fontSize: scaled(17), lineHeight: scaled(22) }}>
                   OK
                 </FlowText>
               </PressableHybrid>

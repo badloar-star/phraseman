@@ -498,7 +498,8 @@ function TabScaffold({
   const firstContentReadyEmittedRef = useRef(false);
   const activeBarTabIdx = TAB_BAR_TABS.findIndex((tab) => tab.logicalIdx === visualIdx);
   const tabBarItems = useMemo<V2TabBarItem[]>(
-    () => TAB_BAR_TABS.map((tab) => ({ key: tab.key, label: triLang(lang, tab.label), icon: tab.icon, activeIcon: tab.active })),
+    // зачем: TabLabelCopy содержит Partial-локали, поэтому triLang типизирован как string|undefined; ru всегда есть.
+    () => TAB_BAR_TABS.map((tab) => ({ key: tab.key, label: triLang(lang, tab.label) ?? tab.label.ru, icon: tab.icon, activeIcon: tab.active })),
     [lang],
   );
   const handleTabBarSelect = useCallback((barIndex: number) => {

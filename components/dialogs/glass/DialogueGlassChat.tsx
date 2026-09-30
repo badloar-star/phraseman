@@ -1,5 +1,5 @@
 import React from 'react';
-import { AccessibilityInfo, Animated, Easing, StyleSheet, Text, View, type ViewStyle } from 'react-native';
+import { AccessibilityInfo, Animated, Easing, StyleSheet, Text, View, type TextStyle, type ViewStyle } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import type { DialogueGlass } from './DialogueGlassKit';
@@ -110,7 +110,8 @@ export function dialogueGlassRoundButtonStyle(glass: DialogueGlass, live: boolea
 }
 
 /** Поле ввода `.ibar .fld` — 52, радиус 26. */
-export function dialogueGlassFieldStyle(glass: DialogueGlass): ViewStyle {
+// зачем: стиль идёт в TextInput, а не в View — ViewStyle.userSelect (string) не совместим с TextStyle.
+export function dialogueGlassFieldStyle(glass: DialogueGlass): TextStyle {
   return {
     flex: 1,
     minWidth: 0,

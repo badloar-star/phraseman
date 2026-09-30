@@ -10,7 +10,8 @@ const ROOT = resolve(process.cwd());
 const OUTPUT_DIR = resolve(ROOT, "output/pdf/learning-v2-course-continuation-pack-2026-08-28");
 const TEMP_DIR = resolve(ROOT, "tmp/pdfs/learning-v2-course-continuation-pack");
 const FINGERPRINT = LEARNING_V2_ENGLISH_COURSE_BLUEPRINT_V1.blueprintFingerprint;
-const OWNER_APPROVAL = LEARNING_V2_ENGLISH_COURSE_BLUEPRINT_V1.ownerApproval;
+// зачем: v1-план теперь SUPERSEDED (литерал), а сравнение с "APPROVED" осталось для истории — расширяем до string.
+const OWNER_APPROVAL: string = LEARNING_V2_ENGLISH_COURSE_BLUEPRINT_V1.ownerApproval;
 const OWNER_STATUS_LABEL =
   OWNER_APPROVAL === "APPROVED"
     ? "Owner-approved fingerprint · recorded 2026-08-30"

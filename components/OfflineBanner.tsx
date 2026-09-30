@@ -77,7 +77,7 @@ function OfflineBannerSurface({
         <View style={[styles.surfaceSheen, { backgroundColor: edge }]} />
       </View>
       <View style={styles.surfaceRow}>
-        <Ionicons name="wifi-off" size={18} color={textColor} />
+        <Ionicons name="cloud-offline-outline" size={18} color={textColor} />
         <Text style={[styles.surfaceText, { color: textColor }]}>{offlineText}</Text>
       </View>
     </View>

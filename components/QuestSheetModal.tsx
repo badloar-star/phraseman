@@ -62,11 +62,6 @@ function rewardLabel(reward: QuestReward, lang: Parameters<typeof triLang>[0]): 
         ru: plural('день Plus', 'дня Plus', 'дней Plus'), uk: 'днів Plus', en: 'days of Plus',
         es: 'días de Plus', 'pt-BR': 'dias de Plus', vi: 'ngày Plus', id: 'hari Plus', tr: 'gün Plus', pl: 'dni Plus',
       });
-    case 'energy_full':
-      return triLang(lang, {
-        ru: 'полная энергия', uk: 'повна енергія', en: 'full energy',
-        es: 'energía completa', 'pt-BR': 'energia cheia', vi: 'đầy năng lượng', id: 'energi penuh', tr: 'tam enerji', pl: 'pełna energia',
-      });
     case 'freeze':
       return triLang(lang, {
         ru: plural('заморозка', 'заморозки', 'заморозок'), uk: 'заморожень', en: 'streak freezes',

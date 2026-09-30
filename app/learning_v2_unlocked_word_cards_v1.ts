@@ -28,7 +28,7 @@ export function projectLearningV2UnlockedWordsToCardsV1(args: {
         uk: meaning.uk,
         es: meaning.es,
         sourceLocales,
-        transcription: encounter.transcription,
+        transcription: encounter.transcription ?? undefined, // зачем: в источнике null, а CardItem.transcription — string|undefined
         categoryId: "saved",
         isSystem: false,
         source: "learning_v2_word_encounter",

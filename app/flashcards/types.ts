@@ -1,5 +1,6 @@
 // Flashcards domain model shared across screen, constants, selectors and storage.
 import type { HeisenbergSourceLocale, SourceLocale } from '../source_locales';
+import type { StudyTarget } from '../study_target';
 import type { PackLanguage } from './pack_languages';
 type PlannedFlashcardContentLang = Exclude<HeisenbergSourceLocale, 'es'>;
 
@@ -63,13 +64,16 @@ export interface CardItem {
   /** User-authored note (custom cards) — e.g. mnemonics, context */
   description?: string;
   transcription?: string;
+  /** Версия движка транскрипции, которым посчитано `transcription` (см. app/transcription.ts). */
+  transcriptionEngineVersion?: number;
   categoryId: CategoryId;
   isSystem: boolean;
   source?: string;
   sourceId?: string;
   sourceTitle?: string;
   /** Physical saved-card store, independent from the selected pack language. */
-  studyTarget?: 'en' | 'fr';
+  // зачем: StudyTarget расширен до en|fr|es|de; узкое 'en'|'fr' ломало присвоение из Flashcard.
+  studyTarget?: StudyTarget;
   origin?: { source?: string; sourceId?: string; sourceTitle?: string };
   /** Independent language contour; legacy cards without it are English. */
   packLanguage?: PackLanguage;

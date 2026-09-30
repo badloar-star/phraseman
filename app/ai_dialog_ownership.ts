@@ -53,6 +53,9 @@ import { withStorageLock, withStorageLockDeadline } from './storage_mutex';
 
 const REGION = 'us-central1';
 
+/** PM-140: прямая покупка сценариев за руны выведена из работы. */
+const DIRECT_RUNE_PURCHASE_RETIRED: boolean = true;
+
 /** Ключ владения. Своя запись, не смешивается с прогрессом прохождения. */
 export function dialogOwnershipStorageKey(studyTarget: unknown, stableId: string): string | null {
   if (!stableId) return null;
@@ -140,7 +143,9 @@ export async function buyDialogAccessLocally(
 ): Promise<DialogPurchaseResult> {
   // PM-140: direct rune purchases are retired. Dialogue access is determined
   // by the coin-rank gate; legacy purchase receipts remain readable only.
-  return { ok: false, reason: 'rank_access_only' };
+  // зачем: возврат стоит под флагом, а не голым `return` — иначе TS считает остаток
+  // функции недостижимым, снимает сужение типов и даёт 14 ложных ошибок; поведение то же.
+  if (DIRECT_RUNE_PURCHASE_RETIRED) return { ok: false, reason: 'rank_access_only' };
   const target = resolveDialogueStudyTarget(studyTarget);
   if (!target) {
     console.log(`[RUNES-BUY] denied invalid_target raw=${String(studyTarget)}`); // guard-ok: ранний выход обязан логироваться и в релизе
@@ -304,7 +309,8 @@ export async function syncDialogPurchases(
   token: AccountGenerationToken,
 ): Promise<void> {
   // PM-140: no new or queued direct-purchase writes are synchronized.
-  return;
+  // зачем: флаг вместо голого `return` — см. buyDialogAccessLocally.
+  if (DIRECT_RUNE_PURCHASE_RETIRED) return;
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
   const target = resolveDialogueStudyTarget(studyTarget);
   if (!target) return;

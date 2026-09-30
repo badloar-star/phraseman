@@ -400,9 +400,15 @@ async function garbageCollectOrphanManifests(
   for (const key of orphanKeys) await AsyncStorage.removeItem(key);
 }
 
+// зачем: раздельные члены объединения — чтобы `gc.status !== 'collected'` сужал тип для вызывающего.
+type OrphanGcResult =
+  | Readonly<{ status: 'collected' }>
+  | Readonly<{ status: 'stale_account' }>
+  | Readonly<{ status: 'unavailable'; reason: string }>;
+
 async function garbageCollectOrphanManifestsSerialized(
   account: FlashcardTrainingPendingGrantAccount,
-): Promise<Readonly<{ status: 'collected' | 'stale_account' }> | Readonly<{ status: 'unavailable'; reason: string }>> {
+): Promise<OrphanGcResult> {
   const result = await mutateJournal(account, async (journal) => {
     await garbageCollectOrphanManifests(
       account,
@@ -410,7 +416,7 @@ async function garbageCollectOrphanManifestsSerialized(
     );
     return { result: { status: 'collected' } as const };
   });
-  return result as Awaited<ReturnType<typeof garbageCollectOrphanManifestsSerialized>>;
+  return result as OrphanGcResult;
 }
 
 function stableDigest(value: string): string {
@@ -588,10 +594,13 @@ function encodeJournal(journal: PendingGrantJournal): string | null {
   return utf8ByteLength(encoded) <= MAX_JOURNAL_BYTES ? encoded : null;
 }
 
-async function mutateJournal<T>(
+// зачем: параметр типа берём от ВСЕГО объекта-исхода (R), а не от поля result —
+// у мутаций несколько return с разными формами result, и вывод T по первому из них
+// давал ~20 ошибок «unknown» / «не совместимо». Поведение не меняется.
+async function mutateJournal<R extends Readonly<{ result: unknown; next?: PendingGrantJournal }>>(
   account: FlashcardTrainingPendingGrantAccount,
-  mutation: (journal: PendingGrantJournal) => Promise<Readonly<{ result: T; next?: PendingGrantJournal }>>,
-): Promise<T | Readonly<{ status: 'stale_account' }> | Readonly<{ status: 'unavailable'; reason: 'corrupt' | 'storage_limit' | 'storage_error' }>> {
+  mutation: (journal: PendingGrantJournal) => Promise<R>,
+): Promise<R['result'] | Readonly<{ status: 'stale_account' }> | Readonly<{ status: 'unavailable'; reason: 'corrupt' | 'storage_limit' | 'storage_error' }>> {
   if (!validAccount(account)) return { status: 'stale_account' };
   try {
     return await withAccountTransitionLock(async () => withStorageLock(async () => {
@@ -851,7 +860,7 @@ export function markFlashcardTrainingEnergyCharged(
   fingerprint: string,
   nowMs = Date.now(),
 ): Promise<EnergyChargeResult> {
-  return mutateJournal<EnergyChargeMutationResult>(account, async (journal) => {
+  return mutateJournal(account, async (journal) => {
     const index = journal.records.findIndex((record) => record.fingerprint === fingerprint);
     if (index < 0) return { result: { status: 'missing' } as const };
     const current = journal.records[index];
@@ -871,10 +880,19 @@ export function markFlashcardTrainingEnergyCharged(
   });
 }
 
+// зачем: каждый статус — отдельный член объединения, иначе TS не сужает `removal.status === 'changed'`
+// и вызывающие не могут вернуть остаток как результат своей функции (~6 ошибок типов).
+type RemoveRecordResult =
+  | Readonly<{ status: 'removed' }>
+  | Readonly<{ status: 'missing' }>
+  | Readonly<{ status: 'stale_account' }>
+  | Readonly<{ status: 'changed' }>
+  | Readonly<{ status: 'unavailable'; reason: string }>;
+
 async function removeRecord(
   account: FlashcardTrainingPendingGrantAccount,
   expected: FlashcardTrainingPendingGrantRecord,
-): Promise<Readonly<{ status: 'removed' | 'missing' | 'stale_account' | 'changed' }> | Readonly<{ status: 'unavailable'; reason: string }>> {
+): Promise<RemoveRecordResult> {
   const result = await mutateJournal(account, async (journal) => {
     const current = journal.records.find((record) => record.fingerprint === expected.fingerprint);
     if (!current) return { result: { status: 'missing' } as const };
@@ -894,7 +912,7 @@ async function removeRecord(
     };
   });
   if (result.status === 'removed') forgetClaimDeadline(expected);
-  return result as Awaited<ReturnType<typeof removeRecord>>;
+  return result as RemoveRecordResult;
 }
 
 export async function discardFlashcardTrainingPendingGrant(
@@ -1264,9 +1282,11 @@ export async function acknowledgeAndClearFlashcardTrainingPendingGrant(
   const authoritative = await readEnergySessionStartStatus(found.record.energyOperationId, account.runtimeToken)
     .catch(() => ({ status: 'unavailable' as const, reason: 'read_failed' }));
   if (authoritative.status !== 'acknowledged') {
-    return authoritative.status === 'unavailable' || authoritative.status === 'stale_account'
-      ? authoritative
-      : { status: 'ack_failed' };
+    // зачем: разбор по статусам отдельно — у EnergySessionStartStatus первый член несёт целый набор
+    // статусов, и «authoritative» целиком не подходит под наш результат.
+    if (authoritative.status === 'unavailable') return authoritative;
+    if (authoritative.status === 'stale_account') return { status: 'stale_account' };
+    return { status: 'ack_failed' };
   }
   const removal = await removeRecord(account, found.record);
   if (removal.status === 'removed' || removal.status === 'missing') return { status: 'cleared' };

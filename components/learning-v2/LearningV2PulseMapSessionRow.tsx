@@ -1,4 +1,4 @@
-import Ionicons from '@expo/vector-icons/build/vendor/react-native-vector-icons/Ionicons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useCallback } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';

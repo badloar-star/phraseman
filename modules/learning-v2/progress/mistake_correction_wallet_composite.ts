@@ -13,6 +13,7 @@ import {
 import type { OwnerRepositoryWalletCreditAuthorityInput } from './owner_repository';
 import { parseWalletAppliedReceipt } from './wallet_reducer';
 import { applySuperSundayRuneMultiplier } from '../../economy/super_sunday_runes';
+import type { LearningLanguageTarget } from '../../../app/learning_language_contour';
 
 export interface MistakeCorrectionWalletCompositeV1 {
   readonly schemaVersion: 'mistake-correction-wallet-composite.v1';
@@ -20,7 +21,8 @@ export interface MistakeCorrectionWalletCompositeV1 {
   readonly rewardKey: string;
   readonly mistakeId: string;
   readonly cycleId: string;
-  readonly studyTarget: 'en' | 'fr';
+  // зачем: StudyTarget расширен до en|fr|es|de; узкий тип отклонял награду за исправление ошибок для es/de.
+  readonly studyTarget: LearningLanguageTarget;
   readonly correctionEventId: string;
   readonly correctionEventFingerprint: string;
   /** Absent only on legacy candidates sealed before Super Sunday support. */
@@ -87,7 +89,8 @@ export function parseMistakeCorrectionWalletComposite(
     typeof detached.rewardKey !== 'string' ||
     typeof detached.mistakeId !== 'string' || !MISTAKE.test(detached.mistakeId) ||
     typeof detached.cycleId !== 'string' || !CYCLE.test(detached.cycleId) ||
-    (detached.studyTarget !== 'en' && detached.studyTarget !== 'fr') ||
+    (detached.studyTarget !== 'en' && detached.studyTarget !== 'fr' &&
+      detached.studyTarget !== 'es' && detached.studyTarget !== 'de') ||
     typeof detached.correctionEventId !== 'string' || !EVENT.test(detached.correctionEventId) ||
     typeof detached.correctionEventFingerprint !== 'string' || !HASH.test(detached.correctionEventFingerprint) ||
     (detached.earnedAtMs !== undefined &&

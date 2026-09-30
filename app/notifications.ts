@@ -467,6 +467,7 @@ async function claimImmediateNotificationSlot(
 }
 
 // ── Запланировать ежедневное уведомление ─────────────────────────────────────
+const DAILY_REMINDER_RETIRED: boolean = true;
 export const scheduleDailyReminder = async (
   hour: number = 19,
   minute: number = 0,
@@ -475,7 +476,9 @@ export const scheduleDailyReminder = async (
 ): Promise<void> => {
   // Retired notification export remains inert for old callers until their UI and
   // notification metadata are physically removed.
-  return;
+  // зачем: флаг вместо голого `return` — иначе TS считает остаток недостижимым, теряет
+  // сужение типов (prevPerDayRaw) и ломает проверку типов; поведение то же (функция инертна).
+  if (DAILY_REMINDER_RETIRED) return;
 
   try {
     const N = await getNotifications();

@@ -1,4 +1,4 @@
-import Ionicons from '@expo/vector-icons/build/vendor/react-native-vector-icons/Ionicons';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { BlurView } from 'expo-blur';
 import React, { memo } from 'react';
 import { LinearGradient } from './SafeLinearGradient';

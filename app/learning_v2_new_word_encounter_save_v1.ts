@@ -82,7 +82,7 @@ function materializeCard(
       tr: meanings.tr,
       pl: meanings.pl,
     },
-    transcription: encounter.transcription,
+    transcription: encounter.transcription ?? undefined, // зачем: в источнике null, а CardItem.transcription — string|undefined
     description: encounter.playfulMeaningByLocale[interfaceLocale],
     categoryId: "custom" as const,
     isSystem: false,

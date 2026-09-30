@@ -416,8 +416,11 @@ function encodeJson(value: ScopeJson): string {
     return Object.is(value, -0) ? '-0' : stringifyJsonPrimitive(value);
   }
   if (Array.isArray(value)) return `[${value.map(encodeJson).join(',')}]`;
-  const entries = Object.keys(value).sort().map((key) => (
-    `${stringifyJsonPrimitive(key)}:${encodeJson(value[key] as ScopeJson)}`
+  // зачем: Array.isArray не сужает readonly-массивы, поэтому value здесь всё ещё «массив | объект»;
+  // явно берём объектную ветку, чтобы индексировать по строковому ключу.
+  const record = value as Readonly<{ [key: string]: ScopeJson }>;
+  const entries = Object.keys(record).sort().map((key) => (
+    `${stringifyJsonPrimitive(key)}:${encodeJson(record[key] as ScopeJson)}`
   ));
   return `{${entries.join(',')}}`;
 }

@@ -46,7 +46,7 @@ export default function FriendsFoundCard({ profile, onAdd, onClose, isAdding }: 
         <View style={{ flex: 1, minWidth: 0 }}>
           {profile.isPremium || profile.isVip
             ? <PremiumGoldUserName text={profile.name} fontSize={nameSize} />
-            : <FlowText provenance="user" style={{ color: glass.text, fontSize: nameSize, lineHeight: 22 * textScale, fontWeight: '700' }}>{profile.name}</FlowText>}
+            : <FlowText testID="friends-found-name" provenance="user" style={{ color: glass.text, fontSize: nameSize, lineHeight: 22 * textScale, fontWeight: '700' }}>{profile.name}</FlowText>}
           {profile.streak > 0 ? (
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginTop: 2 }}>
               <StreakChainIcon themeMode={themeMode} streakDays={profile.streak} size={15} />

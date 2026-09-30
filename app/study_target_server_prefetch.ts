@@ -8,7 +8,7 @@ import {
 } from './french_target_remote_registration';
 
 export type StudyTargetServerPrefetchResult =
-  | { state: 'not_required'; studyTarget: 'en' }
+  | { state: 'not_required'; studyTarget: Exclude<StudyTarget, 'fr'> }
   | { state: 'blocked'; studyTarget: 'fr'; sourceLocale: FrenchTargetSourceLocale | null; reason: 'french_server_pack_activation_required' | 'unsupported_source_locale' }
   | { state: 'ready'; studyTarget: 'fr'; sourceLocale: FrenchTargetSourceLocale; cacheDirUris: string[] }
   | { state: 'error'; studyTarget: 'fr'; sourceLocale: FrenchTargetSourceLocale; reason: 'remote_loader_failed' };
@@ -52,7 +52,9 @@ export async function prefetchStudyTargetServerPack(
   sourceLocale: unknown,
   options: StudyTargetServerPrefetchOptions = {},
 ): Promise<StudyTargetServerPrefetchResult> {
-  if (studyTarget === 'en') {
+  // зачем: серверный пакет бывает только у французского. StudyTarget расширен до en|fr|es|de
+  // (learning_language_contour), а prefetch сюда для es/de не готовит ничего — «не требуется».
+  if (studyTarget !== 'fr') {
     return { state: 'not_required', studyTarget };
   }
 

@@ -16,7 +16,6 @@ import {
   type SpeechRecognitionModule,
 } from '../../app/speech_recognition_module';
 import { buildSpeakingStartOptions } from '../../app/speaking_recognition_options';
-import { isSpeakingEnabled } from '../../app/remote_flags';
 import { speakingMatchedFlags, speakingTargetTokens } from '../../app/speaking_word_match';
 import { buildSpokenWordReport, type SpokenWordEntry } from '../../app/speaking_word_report';
 import { hapticSuccess, hapticTap, hapticWarning } from '../../hooks/use-haptics';
@@ -308,10 +307,8 @@ export default function SpeechBeat({ scenario, lang, onDone, playSay }: SpeechBe
     pressActiveRef.current = true;
     const generation = ++captureGenerationRef.current;
     setStatus('requesting');
-    if (!isSpeakingEnabled()) {
-      goFallback('disabled');
-      return;
-    }
+    // зачем: удалённый флаг speaking_enabled снят в 2.0 (PROGRESS.md, «Speaking authority cleanup»);
+    // доступность речи — локальная, поэтому проверка флага здесь больше не нужна.
     const speech = speechRef.current ?? loadSpeechRecognitionModule();
     speechRef.current = speech;
     if (!speech || !isSpeechRecognitionAvailable(speech)) {

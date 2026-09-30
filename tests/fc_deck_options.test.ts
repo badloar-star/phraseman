@@ -12,7 +12,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { saveFlashcards, type Flashcard } from '../hooks/use-flashcards';
 import { __resetCustomCardsStoreForTests, upsertCustomCard } from '../app/flashcards/custom_cards_store';
 import { addCommunityOwnedPackId } from '../app/community_packs/communityOwnedStorage';
-import { saveBuiltMarketplaceCardsCache } from '../app/flashcards/marketplace';
 import {
   __resetDeckOptionsWarmCacheForTests,
   countAvailableFcCards,
@@ -125,13 +124,12 @@ describe('loadFcDeckOptions', () => {
       titleUk: 'Розмовна англійська',
       titleEs: 'Inglés conversacional',
     });
-    await saveBuiltMarketplaceCardsCache(
-      [communityPackId],
-      [{
-        id: 'cc1', en: 'hello', ru: 'привет', uk: 'привіт',
-        categoryId: 'custom', isSystem: false, sourceId: `DEV:${communityPackId}`,
-      } as CardItem],
-    );
+    // 30.09: офлайн-кэш маркета выключен (официальные наборы сняты — flashcardsOfficialPacksAvailableForTarget = false);
+    // живой путь набора сообщества — его локальная копия карточек (fc_community_pack_cards_v1:<id>).
+    await AsyncStorage.setItem(`fc_community_pack_cards_v1:${communityPackId}`, JSON.stringify([{
+      id: 'cc1', en: 'hello', ru: 'привет', uk: 'привіт',
+      categoryId: 'custom', isSystem: false, sourceId: `DEV:${communityPackId}`,
+    } as CardItem]));
 
     const decks = await loadFcDeckOptions('trainer', 'ru');
     const deck = decks.find((d) => d.deckId === `pack:${communityPackId}`);
@@ -140,8 +138,10 @@ describe('loadFcDeckOptions', () => {
     expect(deck?.title).toBe('Разговорный английский');
     expect(deck?.title).not.toBe(communityPackId);
     expect(deck?.title).not.toMatch(/^[A-Za-z0-9]{15,}$/);
-    expect(deck?.coverRevision).toBe('community_06_forest_rune');
-    expect(deck?.coverImage).toBeDefined();
+    // Без записи каталога версия обложки = id набора (deck_options: pack ? packTileArtRevision(pack) : packId); сама обложка есть.
+    expect(deck?.coverRevision).toBe(communityPackId);
+    // 2.0: картинки наборов сняты (packMarketplaceIcons: «Pack art is retired») — обложки нет.
+    expect(deck?.coverImage).toBeUndefined();
 
     /** Изоляция: community owned-id/title и built-cards cache не должны утекать в другие тесты. */
     await (AsyncStorage as unknown as { __reset: () => void }).__reset();
@@ -150,13 +150,12 @@ describe('loadFcDeckOptions', () => {
   it('community-набор без сохранённого названия показывает читаемый код, а не сырой id', async () => {
     const communityPackId = 'ZZ9anotherRawFirestoreDocId';
     await addCommunityOwnedPackId(communityPackId);
-    await saveBuiltMarketplaceCardsCache(
-      [communityPackId],
-      [{
-        id: 'cc2', en: 'bye', ru: 'пока', uk: 'бувай',
-        categoryId: 'custom', isSystem: false, sourceId: `DEV:${communityPackId}`,
-      } as CardItem],
-    );
+    // 30.09: офлайн-кэш маркета выключен (официальные наборы сняты — flashcardsOfficialPacksAvailableForTarget = false);
+    // живой путь набора сообщества — его локальная копия карточек (fc_community_pack_cards_v1:<id>).
+    await AsyncStorage.setItem(`fc_community_pack_cards_v1:${communityPackId}`, JSON.stringify([{
+      id: 'cc2', en: 'bye', ru: 'пока', uk: 'бувай',
+      categoryId: 'custom', isSystem: false, sourceId: `DEV:${communityPackId}`,
+    } as CardItem]));
 
     const decks = await loadFcDeckOptions('trainer', 'ru');
     const deck = decks.find((d) => d.deckId === `pack:${communityPackId}`);

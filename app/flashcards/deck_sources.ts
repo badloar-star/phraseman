@@ -280,7 +280,10 @@ async function loadPackDeckCards(
     return deckCardsFromCardItems(communityCards, lang);
   }
 
-  const cache = await loadBuiltMarketplaceCardsCache(studyTarget, lang).catch(() => null);
+  const cache = await loadBuiltMarketplaceCardsCache(studyTarget, lang).catch((error: unknown) => {
+    console.warn(`[FC-DECKS] pack:${packId} офлайн-кэш маркета не прочитался —`, error instanceof Error ? error.message : String(error));
+    return null;
+  });
   if (cache) {
     const packCards = cache.cards.filter((c) => c.sourceId === `DEV:${packId}`);
     return deckCardsFromCardItems(packCards, lang);

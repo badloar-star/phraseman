@@ -27,16 +27,22 @@ export function registerYoutubeSeekHandler(videoId: string, handler: SeekHandler
   };
 }
 
+/** Есть ли сейчас открытый плеер этого ролика (без побочных эффектов). */
+export function hasYoutubeSeekHandler(videoId: string): boolean {
+  return seekHandlers.has(videoId);
+}
+
 /** true — плеер этого ролика открыт и получил команду; false — плеера нет. */
 export function requestYoutubeSeek(videoId: string, seconds: number): boolean {
   const handler = seekHandlers.get(videoId);
+  console.log(`[VIDEO-SEEK] запрос ${videoId} → ${seconds}s, обработчик ${handler ? 'найден' : 'НЕ найден'}`);
   if (handler) {
     pendingSeek = null;
     handler(seconds);
     return true;
   }
   pendingSeek = { videoId, seconds, atMs: Date.now() };
-  if (__DEV__) console.log(`[VIDEO-SEEK] плеера ${videoId} нет — перемотка на ${seconds}s отложена до его открытия`);
+  console.log(`[VIDEO-SEEK] плеера ${videoId} нет — перемотка на ${seconds}s отложена до его открытия`);
   return false;
 }
 
@@ -46,7 +52,7 @@ export function takePendingYoutubeSeek(videoId: string): number | null {
   if (!pending || pending.videoId !== videoId) return null;
   pendingSeek = null;
   if (Date.now() - pending.atMs > PENDING_TTL_MS) {
-    if (__DEV__) console.log(`[VIDEO-SEEK] отложенная перемотка ${videoId} устарела — пропущена`);
+    console.log(`[VIDEO-SEEK] отложенная перемотка ${videoId} устарела — пропущена`);
     return null;
   }
   return pending.seconds;

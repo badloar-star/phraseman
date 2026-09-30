@@ -587,6 +587,24 @@ export function buildLingmanEmbedHtml(videoId: string, options: { autoplay?: boo
             /* мост недоступен — плеер обязан продолжать играть, ускорение просто не начислится */
           }
         }
+        // зачем (перемотка по фразе): RN узнаёт, что плеер готов принимать seekTo.
+        function postReady() {
+          try {
+            window.ReactNativeWebView && window.ReactNativeWebView.postMessage(JSON.stringify({
+              source: '${LINGMAN_PLAYER_BRIDGE_SOURCE}',
+              type: 'ready'
+            }));
+          } catch (e) { /* мост недоступен — очередь перемотки просто не применится */ }
+        }
+        // Вызывается из RN через injectJavaScript: перемотать и играть дальше.
+        window.__lingmanSeek = function (sec) {
+          try {
+            if (!player || typeof player.seekTo !== 'function') return false;
+            player.seekTo(sec, true);
+            if (typeof player.playVideo === 'function') player.playVideo();
+            return true;
+          } catch (e) { return false; }
+        };
         function stopSamples() {
           if (sampleTimer !== null) clearInterval(sampleTimer);
           sampleTimer = null;
@@ -599,6 +617,7 @@ export function buildLingmanEmbedHtml(videoId: string, options: { autoplay?: boo
           try {
             player = new window.YT.Player('lingman-player', {
               events: {
+                onReady: function () { postReady(); },
                 onStateChange: function (event) {
                   var state = event && typeof event.data === 'number' ? event.data : -1;
                   var playing = state === window.YT.PlayerState.PLAYING;

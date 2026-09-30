@@ -13,6 +13,12 @@ import { SaveToCardsButton } from '../SaveToCardsButton';
 import { normalizePackLanguage, type PackLanguage } from '../../app/flashcards/pack_languages';
 import { DebugLogger } from '../../app/debug-logger';
 import { hapticTap } from '../../hooks/use-haptics';
+import {
+  activePhraseIndex,
+  hasYoutubeSeekHandler,
+  requestYoutubeSeek,
+  subscribeYoutubePosition,
+} from '../../app/youtube_player_seek_bus';
 
 type YoutubeVideoPhrasesProps = {
   videoId: string;
@@ -45,6 +51,8 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
   // счётчик — единственный способ перезапустить загрузку, не уходя с экрана.
   const [retryTick, setRetryTick] = useState(0);
   const isExpanded = expanded ?? localExpanded;
+  // зачем (владелец 2026-09-25): подсвечиваем фразу, которая звучит сейчас.
+  const [activeIndex, setActiveIndex] = useState(-1);
   const rootTestID = testID ?? 'video-phrases';
   const toggleTestID = testID ? `${testID}-toggle` : 'video-phrases-toggle';
 
@@ -80,6 +88,30 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
     });
     return () => { active = false; };
   }, [enabled, retryTick, sourceTitle, studyTarget, videoId]);
+
+  // Позиция приходит раз в секунду и только пока видео играет (канал плеера).
+  // setState с тем же индексом не перерисовывает список. Подписка только у
+  // развёрнутого списка с таймкодами.
+  useEffect(() => {
+    if (!isExpanded) return undefined;
+    const starts = phrases.map((phrase) => phrase.startSec ?? undefined);
+    if (!starts.some((value) => typeof value === 'number')) return undefined;
+    return subscribeYoutubePosition(videoId, (positionSec) => setActiveIndex(activePhraseIndex(starts, positionSec)));
+  }, [isExpanded, phrases, videoId]);
+
+  const onPhrasePress = useCallback((phrase: VideoPhrase, index: number) => {
+    const start = phrase.startSec;
+    if (typeof start === 'number' && hasYoutubeSeekHandler(videoId)) {
+      void hapticTap();
+      // Optimistic UI: подсветка меняется на том же тапе, не дожидаясь плеера.
+      setActiveIndex(index);
+      const delivered = requestYoutubeSeek(videoId, start);
+      console.log(`[VIDEO-SEEK] тап по фразе ${phrase.id} ${start}s доставлен=${String(delivered)}`);
+      return;
+    }
+    console.log(`[VIDEO-SEEK] тап по фразе ${phrase.id}: ${typeof start === 'number' ? 'плеер закрыт' : 'нет таймкода'} — открываю карточку фразы`);
+    setSelected(phrase);
+  }, [videoId]);
 
   const copy = useMemo(() => lang === 'ru'
     ? { title: 'Фразы из видео', error: 'Не удалось загрузить. Нажмите, чтобы повторить', phrase: 'Фраза', translation: 'Перевод', explanation: 'Подробно', save: 'Сохранить фразу', saved: 'Фраза сохранена', close: 'Закрыть' }
@@ -178,8 +210,8 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
       <Text style={[styles.count, { color: glass.mutedText }]}>{phrases.length}</Text>
       <Ionicons name={isExpanded ? 'chevron-up' : 'chevron-down'} size={21} color={glass.secondary} />
     </Pressable>
-    {isExpanded && phrases.map((phrase) => <View key={phrase.id} testID={`video-phrase-${phrase.ordinal}`} style={[styles.row, { backgroundColor: glass.opaqueCard }]}>
-      <Pressable accessibilityRole="button" accessibilityLabel={`${copy.phrase}: ${phrase.phrase}`} onPress={() => setSelected(phrase)} style={({ pressed }) => [styles.rowCopyPressable, { opacity: pressed ? 0.78 : 1 }]}>
+    {isExpanded && phrases.map((phrase, index) => <View key={phrase.id} testID={`video-phrase-${phrase.ordinal}`} style={[styles.row, { backgroundColor: index === activeIndex ? glass.opaqueControl : glass.opaqueCard }]}>
+      <Pressable accessibilityRole="button" accessibilityLabel={`${copy.phrase}: ${phrase.phrase}`} onPress={() => onPhrasePress(phrase, index)} onLongPress={() => setSelected(phrase)} accessibilityState={{ selected: index === activeIndex }} style={({ pressed }) => [styles.rowCopyPressable, { opacity: pressed ? 0.78 : 1 }]}>
         {typeof phrase.startSec === 'number' ? <Text style={[styles.time, { color: glass.mutedText }]}>{formatTimecode(phrase.startSec)}</Text> : null}
         <View style={styles.rowCopy}><Text style={[styles.phrase, { color: glass.text }]}>{phrase.phrase}</Text><Text style={[styles.translation, { color: glass.secondary }]}>{phrase.translation}</Text></View>
       </Pressable>

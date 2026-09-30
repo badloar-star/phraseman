@@ -1,5 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import type { WebViewMessageEvent } from 'react-native-webview';
 import WebView from 'react-native-webview';
@@ -9,6 +9,8 @@ import {
   LINGMAN_YOUTUBE_EMBED_BASE_URL,
 } from '../../app/lingman_youtube';
 import { getLingmanYoutubeChrome } from '../../app/lingman_youtube_chrome';
+import { publishYoutubePosition, registerYoutubeSeekHandler, takePendingYoutubeSeek } from '../../app/youtube_player_seek_bus';
+import { createYoutubeSeekController } from '../../app/youtube_seek_controller';
 import { triLang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useVideoWatchEnergyBoost } from '../../hooks/use_video_watch_energy_boost';
@@ -76,6 +78,7 @@ export default function YoutubeInlinePlayer({
   const { theme: t, isDark, themeMode } = useTheme();
   const [playerError, setPlayerError] = useState(false);
   const [playerKey, setPlayerKey] = useState(0);
+  const webViewRef = useRef<WebView>(null);
   const chrome = getLingmanYoutubeChrome(t, isDark, themeMode);
   // зачем (PM-116): бейджи-обещания «энергия быстрее»/«руны за просмотр» убраны
   // из плеера — начисление (логика) остаётся не тронутым, это PM-115. Хук
@@ -94,6 +97,35 @@ export default function YoutubeInlinePlayer({
   }, [playerKey, setPlaying, videoId]);
   // Размонтирование плеера закрывает отсчёт при любом пути ухода.
   useEffect(() => () => setPlaying(false), [setPlaying]);
+
+  // зачем (владелец 2026-09-25): тап по фразе под плеером перематывает ролик.
+  // Контроллер держит очередь до «плеер готов»; обработчик на шине живёт, пока
+  // плеер смонтирован и активен (размонтирование снимает его — без утечки).
+  const seekController = useMemo(() => createYoutubeSeekController(
+    videoId,
+    (seconds) => {
+      const view = webViewRef.current;
+      if (!view) {
+        console.warn(`[VIDEO-SEEK] ${videoId} WebView ещё не смонтирован — ${seconds}s потеряна`);
+        return;
+      }
+      view.injectJavaScript(`(function(){try{window.__lingmanSeek&&window.__lingmanSeek(${Number(seconds)});}catch(e){}})();true;`);
+    },
+    () => takePendingYoutubeSeek(videoId),
+  ), [videoId]);
+  useEffect(() => {
+    if (!active) return undefined;
+    console.log(`[VIDEO-SEEK] ${videoId} плеер зарегистрировал обработчик`);
+    const unregister = registerYoutubeSeekHandler(videoId, seekController.requestSeek);
+    return () => {
+      unregister();
+      console.log(`[VIDEO-SEEK] ${videoId} обработчик снят`);
+    };
+  }, [active, seekController, videoId]);
+  // Новый WebView (повтор после ошибки) снова ждёт готовности.
+  useEffect(() => {
+    seekController.reset();
+  }, [active, playerKey, seekController]);
 
   const copy = useMemo(() => ({
     close: triLang(lang, { ru: 'Закрыть видео', uk: 'Закрити відео', en: 'Close video', es: 'Cerrar vídeo', 'pt-BR': 'Fechar vídeo', vi: 'Đóng video', id: 'Tutup video', tr: 'Videoyu kapat', pl: 'Zamknij wideo' }),
@@ -145,12 +177,20 @@ export default function YoutubeInlinePlayer({
         positionMs?: unknown;
       };
       // Чужие сообщения (сам YouTube шлёт свои) молча игнорируем — но только их.
-      if (parsed?.source !== LINGMAN_PLAYER_BRIDGE_SOURCE || parsed?.type !== 'playback') return;
+      if (parsed?.source !== LINGMAN_PLAYER_BRIDGE_SOURCE) return;
+      if (parsed.type === 'ready') {
+        seekController.markReady();
+        return;
+      }
+      if (parsed.type !== 'playback') return;
       const positionMs = Number(parsed.positionMs);
       if (!Number.isFinite(positionMs) || positionMs < 0) {
         setPlaying(false);
         return;
       }
+      // Позиция для подсветки текущей фразы: канал уже шлёт пробы раз в секунду
+      // и только пока видео играет — отдельного опроса не заводим.
+      publishYoutubePosition(videoId, positionMs / 1000);
       reportPlaybackSample({
         sourceId: videoId,
         playing: parsed.playing === true,
@@ -161,7 +201,7 @@ export default function YoutubeInlinePlayer({
       // причину: без неё поломка моста однажды тихо остановит начисление.
       if (__DEV__) console.log(`[VIDEO-ENERGY] bridge: unparsable message=${raw.slice(0, 64)}`);
     }
-  }, [reportPlaybackSample, setPlaying, videoId]);
+  }, [reportPlaybackSample, seekController, setPlaying, videoId]);
 
   if (!active) return null;
 
@@ -169,6 +209,7 @@ export default function YoutubeInlinePlayer({
     <View style={[styles.playerWrap, presentation === 'preview' ? styles.previewPlayerWrap : styles.cardPlayerWrap]}>
       {!playerError ? (
         <WebView
+          ref={webViewRef}
           key={`${videoId}:${startSec ?? 0}:${playerKey}`}
           testID="lingman-player-webview"
           source={{ html: playerHtml, baseUrl: LINGMAN_YOUTUBE_EMBED_BASE_URL }}

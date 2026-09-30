@@ -39,6 +39,11 @@ import {
   modelSupportsJsonObject,
   resolveConfiguredDialogModel,
 } from './openai_dialog_model_config';
+import {
+  recordDialogueV2Billing,
+  reportDialogueV2Usage,
+  type DialogueV2UsageReporter,
+} from './dialogue_v2_usage_billing';
 import { resolvePremiumAccess } from './premium_status';
 import { aiGloballyDisabled } from './remote_gates';
 
@@ -294,6 +299,8 @@ export type DialogueV2CompletionProviderRuntime = Readonly<{
   resolveApiKey(): string;
   resolveModel(): Promise<string>;
   fetchImpl(input: string, init?: RequestInit): Promise<Pick<Response, 'ok' | 'json'>>;
+  /** PM-231 (A3): отчёт о токенах оплаченного ответа (только числа и модель). */
+  onUsage?: DialogueV2UsageReporter;
 }>;
 
 function safeCompletionTranscript(value: unknown): readonly Readonly<{
@@ -397,7 +404,10 @@ export function createDialogueV2CompletionAssessmentGenerator(
           signal: abort.signal,
         }));
         if (!response.ok) throw new Error('completion_provider_failed');
-        const content = providerContent(await beforeDeadline(response.json()));
+        const payload = await beforeDeadline(response.json());
+        // зачем: PM-231 (A3) — итог занятия платил OpenAI без строки биллинга; отчёт не бросает.
+        await reportDialogueV2Usage(runtime.onUsage, payload, model, 'v2_complete');
+        const content = providerContent(payload);
         if (!content) throw new Error('completion_provider_failed');
         return content;
       } finally {
@@ -465,6 +475,7 @@ function productionDependencies(): HandlerDependencies {
                 process.env.OPENAI_DIALOG_MODEL,
               ),
               fetchImpl: (url, init) => fetch(url, init),
+              onUsage: (usage) => recordDialogueV2Billing({ mode: 'v2_complete', usage, authUid }, db),
             })(input);
             return generatedRaw;
           },

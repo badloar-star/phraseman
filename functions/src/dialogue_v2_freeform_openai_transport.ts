@@ -8,6 +8,10 @@ import type {
   DialogueV2FreeformTextProducerMessage,
   DialogueV2FreeformTextProducerRequest,
 } from './dialogue_v2_freeform_text_provider';
+import {
+  reportDialogueV2Usage,
+  type DialogueV2UsageReporter,
+} from './dialogue_v2_usage_billing';
 
 const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
 const PROVIDER_MAX_TOKENS = 500;
@@ -37,6 +41,8 @@ export type DialogueV2FreeformOpenAiTransportConfiguration = Readonly<{
   resolveModel(): Promise<string>;
   fetchImpl: DialogueV2FreeformProviderFetch;
   timeoutMs?: number;
+  /** PM-231 (A3): отчёт о токенах оплаченного ответа (только числа и модель). */
+  onUsage?: DialogueV2UsageReporter;
 }>;
 
 type ProviderMessage = Readonly<{
@@ -158,6 +164,7 @@ export function createDialogueV2FreeformOpenAiTransport(
   const resolveModel = configuration.resolveModel;
   const fetchImpl = configuration.fetchImpl;
   const timeoutMs = safeDeadline(configuration.timeoutMs);
+  const onUsage = typeof configuration.onUsage === 'function' ? configuration.onUsage : undefined;
 
   return async (request): Promise<unknown> => {
     if (!enabled || !timeoutMs
@@ -201,7 +208,11 @@ export function createDialogueV2FreeformOpenAiTransport(
         signal: abortController.signal,
       }));
       if (!response.ok) throw fixedFailure();
-      const content = providerContent(await beforeDeadline(response.json()));
+      const payload = await beforeDeadline(response.json());
+      // зачем: PM-231 (A3) — токены оплачены с этого момента, даже если форма
+      // ответа дальше не пройдёт. Отчёт не бросает и не роняет ход.
+      await reportDialogueV2Usage(onUsage, payload, model, 'v2_freeform');
+      const content = providerContent(payload);
       if (!content) throw fixedFailure();
       return content;
     } catch {

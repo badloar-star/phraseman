@@ -1,3 +1,4 @@
+import { AsyncLocalStorage } from 'node:async_hooks';
 import { createHmac, randomBytes } from 'node:crypto';
 import { types as nodeTypes } from 'node:util';
 import * as admin from 'firebase-admin';
@@ -36,6 +37,10 @@ import {
 } from './dialogue_v2_freeform_memory';
 import { DIALOGUE_V2_SESSION_HMAC_KEY } from './dialogue_v2_session_production_runtime';
 import { resolveConfiguredDialogModel } from './openai_dialog_model_config';
+import { recordDialogueV2Billing } from './dialogue_v2_usage_billing';
+
+/** PM-231 (A3): uid текущего хода для биллинга общего на модуль транспорта. */
+const freeformBillingContext = new AsyncLocalStorage<Readonly<{ authUid: string }>>();
 
 const runAuthorizedSessionTransaction =
   runDialogueV2FreeformProductionAuthorizationTransaction;
@@ -54,6 +59,15 @@ const freeformOpenAiTransport = buildFreeformOpenAiTransport({
     process.env.OPENAI_DIALOG_MODEL,
   ),
   fetchImpl: (input, init) => fetch(input, init),
+  // зачем: PM-231 (A3) — freeform-ход платил OpenAI без строки биллинга.
+  // Сбой записи логируется внутри и ход не роняет.
+  onUsage: async (usage) => {
+    const context = freeformBillingContext.getStore();
+    if (!context) {
+      console.warn('[AI-BILLING] dialogue_v2 freeform usage without turn context', { model: usage.model });
+    }
+    await recordDialogueV2Billing({ mode: 'v2_freeform', usage, authUid: context?.authUid });
+  },
 });
 const produceFreeformAssistant = createDialogueV2FreeformServerTextProducer({
   enabled: true,
@@ -466,7 +480,7 @@ function productionDependencies(): DialogueV2FreeformSessionTurnDependencies {
         bindingInput.actor.authUid,
         bindingInput.actor.stableAccountId,
       ]);
-      return createDialogueV2FreeformAtomicSessionTurner({
+      const turner = createDialogueV2FreeformAtomicSessionTurner({
         db,
         nowMs: Date.now,
         generateClaimToken: () => `d2fc_${randomBytes(24).toString('base64url')}`,
@@ -484,7 +498,13 @@ function productionDependencies(): DialogueV2FreeformSessionTurnDependencies {
           }, readerAuthUid, studyTarget)
         ),
         produceAssistant: produceFreeformAssistant,
-      })(authUid, input);
+      });
+      // PM-231 (A3): транспорт общий на модуль и не знает uid — отдаём его через
+      // контекст асинхронного вызова только на время этого хода.
+      return freeformBillingContext.run(
+        Object.freeze({ authUid }),
+        () => turner(authUid, input),
+      );
     },
   });
 }

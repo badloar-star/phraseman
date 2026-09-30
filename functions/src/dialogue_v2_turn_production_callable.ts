@@ -9,6 +9,11 @@ import { resolveStableUidForAuth } from './auth_identity';
 import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { assertDialogueStudyLanguage } from './dialogue_ai_language_contract';
 import {
+  recordDialogueV2Billing,
+  reportDialogueV2Usage,
+  type DialogueV2UsageReporter,
+} from './dialogue_v2_usage_billing';
+import {
   loadDialogueV2CompletionReleaseCandidate,
   type DialogueV2CompletionReleaseRepository,
 } from './dialogue_v2_completion_release_source';
@@ -177,6 +182,8 @@ export type DialogueV2ProviderRuntime = Readonly<{
   resolveModel(): Promise<string>;
   nowMs?(): number;
   fetchImpl: ProviderFetch;
+  /** PM-231 (A3): отчёт о токенах оплаченного ответа (только числа и модель). */
+  onUsage?: DialogueV2UsageReporter;
 }>;
 
 type MonthlyQuotaEnforcer = (
@@ -408,8 +415,11 @@ export function createDialogueV2ProviderGenerator(
         signal: abortController.signal,
       }));
       if (!response.ok) throw new Error('provider_http_failure');
+      const payload = await beforeDeadline(response.json());
+      // зачем: PM-231 (A3) — токены оплачены с этого момента; отчёт не бросает.
+      await reportDialogueV2Usage(runtime.onUsage, payload, configuration.model, 'v2_text');
       const content = providerContent(
-        await beforeDeadline(response.json()),
+        payload,
         coachingRequested ? PROVIDER_MAX_COACHING_CONTENT_LENGTH : PROVIDER_MAX_CONTENT_LENGTH,
       );
       if (!content) throw new Error('provider_shape_failure');
@@ -444,9 +454,12 @@ function releaseRepository(
 
 function productionDependencies(
   quotaTurn?: Readonly<{ sessionId: string; turnId: string }>,
+  billingStableUid?: string,
 ): DialogueV2TextTurnDependencies {
   const database = (): FirebaseFirestore.Firestore => admin.firestore();
   const generateReply = createDialogueV2ProviderGenerator({
+    // зачем: PM-231 (A3) — text-ход V2 платил OpenAI без строки биллинга.
+    onUsage: (usage) => recordDialogueV2Billing({ mode: 'v2_text', usage, stableUid: billingStableUid }),
     resolveApiKey: () => String(
       OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY || '',
     ).trim(),
@@ -764,7 +777,7 @@ function productionSessionRuntime(): DialogueV2SessionTurnRuntime {
   );
   return Object.freeze({
     resolveStableAccountId: baseDependencies.resolveStableAccountId,
-    createCoreDependencies: (_stableAccountId, turn) => productionDependencies(turn),
+    createCoreDependencies: (stableAccountId, turn) => productionDependencies(turn, stableAccountId),
     runSessionTurn: (actor, request, produceAssistant) => (
       createProductionDialogueV2SessionLedger(admin.firestore())
         .runTurn(actor, request, produceAssistant)

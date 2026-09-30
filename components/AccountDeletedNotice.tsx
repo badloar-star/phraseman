@@ -16,6 +16,8 @@ import { Animated, Easing, StyleSheet, View } from 'react-native';
 import { FlowText } from './text-integrity/FlowText';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { useTheme } from './ThemeContext';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { ACCOUNT_DELETED_NOTICE_DURATION_MS } from '../app/account_deleted_notice';
 
 /** Тайминги: быстрый вход, спокойный уход — экспоненциальный ease-out, без bounce. */
@@ -31,7 +33,12 @@ type Props = {
   light?: boolean;
 };
 
-function AccountDeletedNotice({ message, onDone, light = false }: Props) {
+function AccountDeletedNotice({ message, onDone }: Props) {
+  // зачем (profile.html «cleanup complete receipt»): плашка — непрозрачная плита токена стекла активной
+  // темы с текстом токена; читается одинаково на тёмном и светлом онбординге, поэтому вариант `light`
+  // больше не меняет цвета (проп оставлен в типе ради совместимости вызова).
+  const { liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
   const reduceMotion = useReduceMotion();
   const anim = useRef(new Animated.Value(0)).current;
@@ -100,10 +107,10 @@ function AccountDeletedNotice({ message, onDone, light = false }: Props) {
         },
       ]}
     >
-      <View style={[styles.pill, light && styles.pillLight]}>
+      <View style={[styles.pill, { backgroundColor: glass.opaqueSheet }]}>
         {/* зачем: text-integrity — длинная локаль переносится, пилюля растёт
             по паддингам; усечение numberOfLines запрещено. */}
-        <FlowText testID="account-deleted-notice-text" provenance="authored" style={[styles.text, light && styles.textLight]}>
+        <FlowText testID="account-deleted-notice-text" provenance="authored" style={[styles.text, { color: glass.text }]}>
           {message}
         </FlowText>
       </View>
@@ -122,24 +129,15 @@ const styles = StyleSheet.create({
   },
   pill: {
     // Разделение тоном, без обводки (правило владельца).
-    backgroundColor: 'rgba(255,255,255,0.13)',
     paddingHorizontal: 18,
     paddingVertical: 12,
     borderRadius: 999,
   },
-  pillLight: {
-    backgroundColor: 'rgba(19,31,56,0.10)',
-  },
   text: {
-    // #E8ECF5 на фоне онбординга даёт контраст заметно выше 4.5:1.
-    color: '#E8ECF5',
     fontSize: 15,
     lineHeight: 21,
     fontWeight: '700',
     textAlign: 'center',
-  },
-  textLight: {
-    color: '#101828',
   },
 });
 

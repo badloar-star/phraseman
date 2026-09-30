@@ -11,7 +11,8 @@ import {
 import { useLang } from '../components/LangContext';
 import { PressableScale } from '../components/feedback/PressableScale';
 import { useStudyTarget } from '../components/StudyTargetContext';
-import { useV2Palette } from '../components/v2/useV2Palette';
+import { useTheme } from '../components/ThemeContext';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { triLang } from '../constants/i18n';
 import { V2, V2_TYPE } from '../constants/v2Style';
 
@@ -30,7 +31,15 @@ export default function DialogueV2CompletionRoute() {
   const router = useRouter();
   const { studyTarget } = useStudyTarget();
   const { lang } = useLang();
-  const palette = useV2Palette();
+  // зачем (practice.html «Завершение → Диалог»): итог диалога на токенах Liquid Glass активной темы,
+  // а не на V2-палитре. Имена полей сохранены, чтобы разметка ниже не менялась; только цвета.
+  const { liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  const palette = useMemo(() => ({
+    bg: glass.bg, glassRaised: glass.opaqueCard, stroke: glass.glassEdge, text: glass.text,
+    textSecondary: glass.secondary, textMuted: glass.mutedText, cta: glass.cta, ctaText: glass.ctaInk,
+    control: glass.opaqueControl, divider: glass.line,
+  }), [glass]);
   const [state, setState] = useState<State>({ kind: 'loading' });
   const sessionId = typeof params.sessionId === 'string' && SESSION_RE.test(params.sessionId)
     ? params.sessionId
@@ -156,7 +165,7 @@ export default function DialogueV2CompletionRoute() {
               <Text style={{ color: palette.textMuted, ...V2_TYPE.overline }}>{review.speakerName}</Text>
               <Text style={{ color: palette.text, ...V2_TYPE.body }}>{review.assessment}</Text>
               {review.evidence.length > 0 ? review.evidence.map((item, index) => (
-                <View key={`${item.learnerTurn}-${index}`} style={{ borderLeftWidth: 2, borderLeftColor: palette.stroke, paddingLeft: V2.gapTight, gap: 2 }}>
+                <View key={`${item.learnerTurn}-${index}`} style={{ borderLeftWidth: 1, borderLeftColor: palette.stroke, paddingLeft: V2.gapTight, gap: 2 }}>
                   <Text style={{ color: palette.textSecondary, ...V2_TYPE.body }}>“{item.learnerTurn}”</Text>
                   <Text style={{ color: palette.textMuted, ...V2_TYPE.caption }}>{item.note}</Text>
                 </View>

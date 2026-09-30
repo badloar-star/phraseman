@@ -11,7 +11,7 @@ describe('Dialogue V2 completion route', () => {
     expect(source).toContain('review.tip');
     expect(source).toContain('dialogue-v2-completion-retry');
     expect(source).toContain('selectionRef');
-    expect(source).toContain('useV2Palette');
+    expect(source).toContain('liquidGlassTokens');
     expect(source).toContain('V2_TYPE');
     expect(source).not.toContain('history:');
     expect(source).not.toContain('provider');

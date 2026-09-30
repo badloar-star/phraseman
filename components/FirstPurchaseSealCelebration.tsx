@@ -46,6 +46,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { PEARL_ICONS } from '../app/coin_icons';
 import { useTheme } from './ThemeContext';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { hapticSuccess } from '../hooks/use-haptics';
 import { playCelebrationSceneSound } from '../modules/audio/celebrationScenePlayer';
@@ -115,7 +116,10 @@ function FirstPurchaseSealCelebrationImpl({
   ctaLabel,
   onDone,
 }: FirstPurchaseSealCelebrationProps) {
-  const { theme: t, themeMode } = useTheme();
+  const { themeMode, liquidGlassThemeId } = useTheme();
+  // зачем (coins.html «первая покупка · подтверждена магазином»): экран празднования на токенах стекла
+  // активной темы (фон, текст, CTA); хореография, звук и хаптик не менялись.
+  const g = liquidGlassTokens(liquidGlassThemeId);
   const reduceMotion = useReduceMotion();
 
   /**
@@ -127,7 +131,7 @@ function FirstPurchaseSealCelebrationImpl({
    * жемчуга» пришлось бы подбирать под каждую тему вручную — там и появляются
    * сочетания, которые выглядят чужими.
    */
-  const accent = t.accent;
+  const accent = g.cta;
   const coinSource = kind === 'lesson'
     ? (PEARL_ICONS[themeMode] ?? PEARL_ICONS.indigo)
     : HOME_RUNE_ICON_SOURCE;
@@ -274,7 +278,7 @@ function FirstPurchaseSealCelebrationImpl({
   return (
     <Modal visible transparent animationType="fade" onRequestClose={onDone}>
       {/* Тон и глубина вместо обводок — запрет владельца на рамки контейнеров. */}
-      <View style={[styles.root, { backgroundColor: t.bgPrimary }]}>
+      <View style={[styles.root, { backgroundColor: g.bg }]}>
         <View style={styles.stage}>
           <View style={styles.sealArea}>
             <Animated.View
@@ -302,9 +306,9 @@ function FirstPurchaseSealCelebrationImpl({
             {/* Заголовок самодостаточен: подписи-расшифровки мелким шрифтом
                 под названием запрещены, поэтому вторая строка — это факт
                 («что именно куплено»), а не пояснение к заголовку. */}
-            <Text style={[styles.title, { color: t.textPrimary }]}>{title}</Text>
-            <Text style={[styles.subject, { color: accent }]}>{subjectTitle}</Text>
-            <Text style={[styles.subtitle, { color: t.textMuted }]}>
+            <Text style={[styles.title, { color: g.text }]}>{title}</Text>
+            <Text style={[styles.subject, { color: g.secondary }]}>{subjectTitle}</Text>
+            <Text style={[styles.subtitle, { color: g.secondary }]}>
               {subtitle}
             </Text>
           </Animated.View>
@@ -323,7 +327,7 @@ function FirstPurchaseSealCelebrationImpl({
             >
               {/* Текст на залитой CTA — всегда correctText, белый хардкодить
                   нельзя: на светлых темах он был бы нечитаем. */}
-              <Text style={[styles.ctaText, { color: t.correctText }]}>
+              <Text style={[styles.ctaText, { color: g.ctaInk }]}>
                 {ctaLabel}
               </Text>
             </Pressable>
@@ -353,7 +357,7 @@ const styles = StyleSheet.create({
   subject: { fontSize: 17, fontWeight: '700', textAlign: 'center', marginTop: 6 },
   subtitle: { fontSize: 15, textAlign: 'center', marginTop: 8, opacity: 0.72 },
   ctaWrap: { marginTop: 22 },
-  cta: { paddingVertical: 14, paddingHorizontal: 30, borderRadius: 16 },
+  cta: { minHeight: 52, justifyContent: 'center', paddingHorizontal: 30, borderRadius: 26 },
   ctaPressed: { transform: [{ scale: 0.97 }] },
   ctaText: { fontSize: 16, fontWeight: '800' },
 });

@@ -11,12 +11,12 @@ import AvatarView from '../AvatarView';
 import type { Lang } from '../../constants/i18n';
 import { V2 } from '../../constants/v2Style';
 import { spireTierName } from '../../modules/spire/tier_names';
-import { useV2Palette } from '../v2/useV2Palette';
+import { useSpirePalette } from './useSpirePalette';
 import { spireText } from './spire_strings';
 import type { SpireFriendChip } from './spire_room_types';
 
 function SpireFriendsRow({ lang, friends }: Readonly<{ lang: Lang; friends: readonly SpireFriendChip[] }>) {
-  const p = useV2Palette();
+  const p = useSpirePalette();
   if (friends.length === 0) return null;
   return (
     <View testID="spire-friends">
@@ -27,7 +27,7 @@ function SpireFriendsRow({ lang, friends }: Readonly<{ lang: Lang; friends: read
           return (
             <View key={f.uid} style={[s.chip, { backgroundColor: p.control }]} accessible accessibilityLabel={`${f.name}, ${stone}`}>
               {f.coinRank !== null ? <AvatarView avatar="" coinRank={f.coinRank} size={30} /> : <View style={s.dot} />}
-              <Text numberOfLines={1} style={[s.name, { color: p.text }]}>{f.name}</Text>
+              <Text style={[s.name, { color: p.text }]}>{f.name}</Text>
               <Text style={[s.stone, { color: p.textSecondary }]}>{stone}</Text>
             </View>
           );

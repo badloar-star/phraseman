@@ -34,7 +34,8 @@ import { useLang } from '../LangContext';
 import { usePremium } from '../PremiumContext';
 import { useStudyTarget } from '../StudyTargetContext';
 import V2Pressable from '../v2/V2Pressable';
-import { useV2Palette } from '../v2/useV2Palette';
+import { useSpirePalette } from './useSpirePalette';
+import { lv2Alpha } from '../learning-v2/LearningV2Glass';
 import SpireAllMembers from './SpireAllMembers';
 import SpireFloorInfo from './SpireFloorInfo';
 import SpireFriendsRow from './SpireFriendsRow';
@@ -76,7 +77,7 @@ async function readCurrentLocalWeek(lang: SpireLang): Promise<SpireWeekLocal | n
 
 export default function SpireHomeScreen() {
   const { lang } = useLang();
-  const p = useV2Palette();
+  const p = useSpirePalette();
   const { studyTarget } = useStudyTarget();
   const { runtimeOwnerId } = useTabNav();
   const { hasPremiumAccess } = usePremium();
@@ -162,7 +163,7 @@ export default function SpireHomeScreen() {
             <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{spireText(lang, 'title')}</Text>
             <Text style={[s.subtitle, { color: p.textSecondary }]}>{subtitle}</Text>
           </View>
-          {hasPremiumAccess ? null : <EnergyBar ownerActive={runtimeOwnerId === 'spire'} />}
+          {hasPremiumAccess ? null : <EnergyBar ownerActive={runtimeOwnerId === 'spire'} glass />}
         </View>
         <View style={s.towerWrap}>
           <SpireTower lang={lang} myFloor={myFloor} selected={shownFloor} onSelect={onSelect} myCoinRank={myCoinRank} />
@@ -172,7 +173,7 @@ export default function SpireHomeScreen() {
         <SpirePodium lang={lang} members={members} onOpenAll={openAll} />
       </ScrollView>
       <View pointerEvents="box-none" style={[s.dock, { bottom: bottomPad - 24 }]}>
-        <LinearGradient pointerEvents="none" colors={['rgba(12,12,13,0)', 'rgba(12,12,13,0.96)']} style={s.scrim} />
+        <LinearGradient pointerEvents="none" colors={[lv2Alpha(p.bg, 0), lv2Alpha(p.bg, 0.96)]} style={s.scrim} />
         <V2Pressable
           disabled={!climbEnabled}
           accessibilityLabel={spireText(lang, 'climb')}

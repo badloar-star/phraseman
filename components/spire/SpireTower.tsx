@@ -11,7 +11,7 @@ import { Animated, Easing, ScrollView, StyleSheet, View, type LayoutChangeEvent 
 import AvatarView from '../AvatarView';
 import type { Lang } from '../../constants/i18n';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
-import { useV2Palette } from '../v2/useV2Palette';
+import { useSpirePalette } from './useSpirePalette';
 import SpireTowerSvg from './SpireTowerSvg';
 import { spireText } from './spire_strings';
 import { SPIRE_FLOOR_COUNT, SPIRE_TOWER_GEOM, SPIRE_TW, spireMarkerXY } from './spire_tower_model';
@@ -35,7 +35,7 @@ function markerTarget(floor: number, scale: number): Readonly<{ x: number; y: nu
 }
 
 function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank }: Props) {
-  const p = useV2Palette();
+  const p = useSpirePalette();
   const reduceMotion = useReduceMotion();
   const scrollRef = useRef<ScrollView>(null);
   const [width, setWidth] = useState(0);
@@ -91,7 +91,7 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank }: Props) {
 
   return (
     <View
-      style={[s.window, { backgroundColor: '#131315', borderColor: p.hairline }]}
+      style={[s.window, { backgroundColor: p.card, borderColor: p.hairline }]}
       onLayout={onLayout}
       accessible
       accessibilityRole="adjustable"

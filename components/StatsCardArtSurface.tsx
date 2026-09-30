@@ -9,6 +9,7 @@ import { LinearGradient } from './SafeLinearGradient';
 import type { ThemeMode } from '../constants/theme';
 import { OLIVE_GRADIENTS, OLIVE_RICH, oliveShadow } from '../constants/oliveTheme';
 import { useTheme } from './ThemeContext';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 
 export type StatsCardArtName =
   | 'streak'
@@ -158,8 +159,19 @@ function StatsCardArtSurface({
   style,
   testID,
 }: StatsCardArtSurfaceProps) {
-  const { themeMode: activeThemeMode } = useTheme();
+  const { themeMode: activeThemeMode, liquidGlassThemeId } = useTheme();
   const resolvedThemeMode = themeMode ?? activeThemeMode;
+  // зачем (results.html «Серия и статистика», владелец 2026-09-30): на теме стекла карточка — плоская
+  // плита токена opaqueCard (без цветных наложений, свечения и кромки). Золотая/оливковая легаси-ветка
+  // ниже остаётся для тем, где isGoldTheme/olive заданы явно.
+  if (!isGoldTheme && resolvedThemeMode !== 'olive') {
+    const glass = liquidGlassTokens(liquidGlassThemeId);
+    return (
+      <View testID={testID} style={[{ backgroundColor: glass.opaqueCard, overflow: 'hidden' }, style, { borderWidth: 0, shadowOpacity: 0, elevation: 0 }]}>
+        {children}
+      </View>
+    );
+  }
   return (
     <View
       testID={testID}

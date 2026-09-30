@@ -8,11 +8,11 @@ import React, { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import type { Lang } from '../../constants/i18n';
 import { V2, V2_TYPE } from '../../constants/v2Style';
-import { useV2Palette } from '../v2/useV2Palette';
+import { useSpirePalette } from './useSpirePalette';
 import { spireText } from './spire_strings';
 
 function SpireLockedState({ lang }: Readonly<{ lang: Lang }>) {
-  const p = useV2Palette();
+  const p = useSpirePalette();
   return (
     <View style={s.root} testID="spire-locked" accessible accessibilityRole="text" accessibilityLabel={spireText(lang, 'lockedTitle')}>
       <Text style={[s.title, { color: p.text }]}>{spireText(lang, 'lockedTitle')}</Text>

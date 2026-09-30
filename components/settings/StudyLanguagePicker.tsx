@@ -14,6 +14,8 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import { openPremiumPaywall } from '../../app/paywall_navigation';
 import { usePremium } from '../PremiumContext';
+import { useTheme } from '../ThemeContext';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { studyTargetsForSourceLocale, type StudyTarget } from '../../app/study_target';
 import { LEARNING_LANGUAGE_CONTOURS } from '../../app/learning_language_contour';
 import type { Lang } from '../../constants/i18n';
@@ -91,6 +93,11 @@ export default function StudyLanguagePicker({
 }: StudyLanguagePickerProps) {
   const router = useRouter();
   const { hasPremiumAccess } = usePremium();
+  // зачем (profile.html «выбор языка изучения · шторка», владелец 2026-09-30): плитки языков на токенах
+  // стекла темы — выбранная светлее и с тонкой кромкой, остальные плоским тоном; palette из настроек
+  // остаётся в пропсах для совместимости вызова, цвета берём из темы. Логика выбора/пейвола не менялась.
+  const { liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const [startedLanguages, setStartedLanguages] = useState<readonly StudyTarget[]>([activeTarget]);
   const [startedLanguagesResolved, setStartedLanguagesResolved] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -180,9 +187,9 @@ export default function StudyLanguagePicker({
               paddingVertical: 7,
               paddingHorizontal: 6,
               borderRadius: 16,
-              borderWidth: 0,
-              borderColor: active ? palette.borderOn : palette.borderOff,
-              backgroundColor: active ? palette.surfaceOn : palette.surfaceOff,
+              borderWidth: active ? 1 : 0, // guard-ok: 1 px кромка выбранной плитки
+              borderColor: glass.glassEdge,
+              backgroundColor: active ? glass.opaqueControl : glass.opaqueCard,
             }}
           >
             <View
@@ -193,7 +200,7 @@ export default function StudyLanguagePicker({
                 overflow: 'hidden',
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: 'rgba(255,255,255,0.10)',
+                backgroundColor: glass.line,
                 marginBottom: 6,
               }}
             >
@@ -211,12 +218,12 @@ export default function StudyLanguagePicker({
                     width: 18,
                     height: 18,
                     borderRadius: 9,
-                    backgroundColor: palette.badge,
+                    backgroundColor: glass.cta,
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}
                 >
-                  <Ionicons name="checkmark" size={12} color="#07111F" />
+                  <Ionicons name="checkmark" size={12} color={glass.ctaInk} />
                 </View>
               ) : null}
               {locked ? (
@@ -228,12 +235,12 @@ export default function StudyLanguagePicker({
                     width: 18,
                     height: 18,
                     borderRadius: 9,
-                    backgroundColor: palette.surfaceOn,
+                    backgroundColor: glass.opaqueControl,
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}
                 >
-                  <Ionicons name="lock-closed" size={11} color={palette.textOn} />
+                  <Ionicons name="lock-closed" size={11} color={glass.text} />
                 </View>
               ) : null}
             </View>
@@ -242,9 +249,8 @@ export default function StudyLanguagePicker({
                 сильно варьируется по локалям («Español» vs «日本語»); вместо
                 сжатия — перенос на 2 строки, tile под ним уже с запасом. */}
             <Text
-              numberOfLines={2}
               style={{
-                color: active ? palette.textOn : palette.textOff,
+                color: active ? glass.text : glass.secondary,
                 width: '100%',
                 fontSize: Math.max(9, labelFontSize - 2),
                 lineHeight: Math.max(11, labelFontSize + 1),

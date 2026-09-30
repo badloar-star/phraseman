@@ -3621,7 +3621,8 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
             accessibilityLabel={triLang(lang, { ru: 'Выйти из тренировки', en: 'Exit training', uk: 'Вийти з тренування', es: 'Salir de la práctica', 'pt-BR': 'Sair do treino', vi: 'Thoát luyện tập', id: 'Keluar dari latihan', tr: 'Alıştırmadan çık', pl: 'Wyjdź z treningu' })}
           />
           <PracticeHeaderTitle glass={swipeGlass} title={title} subtitle={subtitle} />
-          <EnergyBar ownerActive />
+          {/* зачем (practice.html «Энергия»): пилюля энергии на плите стекла, без фиолетового */}
+          <EnergyBar ownerActive glass />
         </View>
 
         <View style={styles.trueFalseMetaRow}>

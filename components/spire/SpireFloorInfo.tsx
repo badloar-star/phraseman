@@ -11,7 +11,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import type { Lang } from '../../constants/i18n';
 import { V2_TYPE } from '../../constants/v2Style';
 import type { SpireCoinsConfig } from '../../modules/spire/config_contract';
-import { useV2Palette } from '../v2/useV2Palette';
+import { useSpirePalette } from './useSpirePalette';
 import { spireText } from './spire_strings';
 import { spireFloorCoinsOf, spireIsGuard, spireIsSummit, spireStepsIn } from './spire_tower_model';
 
@@ -47,7 +47,7 @@ export function spireFloorSubtitle(lang: Lang, floor: number, myFloor: number | 
 }
 
 function SpireFloorInfo({ lang, floor, myFloor, stepInFloor, coins }: Props) {
-  const p = useV2Palette();
+  const p = useSpirePalette();
   return (
     <View
       style={[s.card, { backgroundColor: p.cardRaised, borderColor: p.hairline }]}

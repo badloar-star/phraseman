@@ -13,7 +13,7 @@ import type { Lang } from '../../constants/i18n';
 import { V2 } from '../../constants/v2Style';
 import { SPIRE_ZONE_RATIO } from '../../modules/spire/residents';
 import { V2ScreenHeader } from '../v2/V2Kit';
-import { useV2Palette } from '../v2/useV2Palette';
+import { useSpirePalette } from './useSpirePalette';
 import { SpireInitial } from './SpirePodium';
 import { spireText } from './spire_strings';
 import type { SpireMemberRow } from './spire_room_types';
@@ -33,7 +33,7 @@ export function spireZonesFor(sorted: readonly SpireMemberRow[]): readonly Zone[
 type Props = Readonly<{ lang: Lang; members: readonly SpireMemberRow[]; onBack: () => void }>;
 
 function SpireAllMembers({ lang, members, onBack }: Props) {
-  const p = useV2Palette();
+  const p = useSpirePalette();
   const { rows, zones } = useMemo(() => {
     const sorted = [...members].sort((a, b) => b.steps - a.steps);
     return { rows: sorted, zones: spireZonesFor(sorted) };
@@ -58,7 +58,7 @@ function SpireAllMembers({ lang, members, onBack }: Props) {
             <Text style={[s.place, { color: p.textSecondary }]}>{i + 1}</Text>
             <SpireInitial name={m.name} size={40} />
             <View style={s.nameWrap}>
-              <Text numberOfLines={1} style={[s.name, { color: p.text }]}>{m.name}</Text>
+              <Text style={[s.name, { color: p.text }]}>{m.name}</Text>
               {m.isMe ? <View style={[s.you, { backgroundColor: p.cta }]}><Text style={[s.youText, { color: p.ctaText }]}>{spireText(lang, 'you')}</Text></View> : null}
             </View>
             {zone === 'up' ? <Ionicons name="arrow-up" size={16} color={p.correct} /> : null}

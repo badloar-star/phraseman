@@ -7265,7 +7265,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -7274,8 +7274,10 @@
       {
         "id": "PM-141-A1",
         "text": "Free/Plus одинаково проходят условие ранга",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "D124, a1f7514f2: старые и новые диалоги открываются только монетным рангом (isScenarioUnlockedForAccount → decideDialogueV2ScenarioAccess), Plus не открывает сценарии"
+        ]
       },
       {
         "id": "PM-141-A2",
@@ -7460,7 +7462,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -7477,8 +7479,10 @@
       {
         "id": "PM-145-A2",
         "text": "политика расходов утверждена отдельно",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "D123 (OWNER_FINAL): тихий серверный потолок Plus 300 ответов/сутки, 44e0ae6c4; Free 30/мес — D111"
+        ]
       }
     ],
     "depends_on": [],
@@ -7564,8 +7568,10 @@
       {
         "id": "PM-147-A1",
         "text": "Права существующих покупателей сохранены",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "da298f561 (D122): legacy_free_lesson_cap_v1 снова открывает уроки 4–8 старым Free; новые аккаунты — 3; тесты legacy_free_lesson_access/monetization_policy"
+        ]
       },
       {
         "id": "PM-147-A2",
@@ -7816,7 +7822,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -7825,14 +7831,18 @@
       {
         "id": "PM-152-A1",
         "text": "Доступ к следующему разделу детерминирован",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "da298f561+e9fb1e924: пороги экзаменов через единую шкалу app/lesson_star_scale.ts (зачёт уровня от 2★/60% — D125, Лингман 100%, сдача 70%); lesson_lock_system 47/47"
+        ]
       },
       {
         "id": "PM-152-A2",
         "text": "старые лучшие результаты мигрированы без понижения подтверждённых прав",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "da298f561: сохранённые level_exam_*_available/passed не пересчитываются; открытые уроки держатся по legacy 40% (previousLessonScoreOpensNext), restore не закрывает"
+        ]
       }
     ],
     "depends_on": [

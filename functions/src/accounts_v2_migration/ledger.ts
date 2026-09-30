@@ -8,7 +8,7 @@
  * инвентаря печатаются точно — владелец должен видеть, какое поле ждёт домен.
  */
 
-export type Bucket = 'dropped' | 'derived' | 'held' | 'informational';
+export type Bucket = 'carried' | 'dropped' | 'derived' | 'held' | 'informational' | 'keptInPlace';
 export type ReportEntry = Readonly<{ reason: string; path: string; count: number; decisions?: readonly string[] }>;
 export type ConflictEntry = Readonly<{ kind: string; path: string; count: number }>;
 

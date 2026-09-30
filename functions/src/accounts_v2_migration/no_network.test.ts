@@ -28,9 +28,10 @@ function importsOf(file: string): string[] {
 
 const CORE_CLOSURE: Readonly<Record<string, readonly string[]>> = {
   'accounts_v2_migration/dry_run.ts': ['../accounts_v2_contract', '../accounts_v2_merge', '../accounts_v2_validate', './inventory',
-    './ledger', './srs_memory', 'crypto'],
+    './ledger', './report', './srs_memory', 'crypto'],
   'accounts_v2_migration/inventory.ts': [],
   'accounts_v2_migration/ledger.ts': [],
+  'accounts_v2_migration/report.ts': ['../accounts_v2_contract', '../accounts_v2_merge', './inventory', './ledger', 'crypto'],
   'accounts_v2_migration/srs_memory.ts': ['../accounts_v2_contract'],
   'accounts_v2_contract.ts': ['crypto'],
   'accounts_v2_merge.ts': ['./accounts_v2_contract'],

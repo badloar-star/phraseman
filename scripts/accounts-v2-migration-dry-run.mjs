@@ -16,7 +16,9 @@
  * Коды выхода: 0 — отчёт записан; 2 — неверные аргументы/вход; 1 — прочая ошибка.
  * КОНТРАКТ: применять пакеты можно ТОЛЬКО при status=ready (applyAllowed=true), при hold —
  * стоп (assertMigrationApplyAllowed). ready ≠ полный перенос: старый users/{uid} НЕ чистить,
- * пока pendingDomainCount > 0 (assertLegacyCleanupAllowed в dry_run.ts).
+ * пока pendingDomainCount > 0 (assertLegacyCleanupAllowed в dry_run.ts). Удалять можно ТОЛЬКО пути из
+ * legacyCleanupPaths(report) (белый список; drop без живых читателей — сейчас пусто). keep_in_place (монеты, серия, экзамены,
+ * достижения, открытые уроки), carried_and_kept (оценки уроков, карточки) и Plus — никогда.
  */
 import { readFileSync, statSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
@@ -78,10 +80,17 @@ async function main() {
     + ` operations=${report.operations.count} batches=${report.operations.batches}`
     + ` carried=${report.totals.carried} dropped=${report.totals.dropped} derived=${report.totals.derived}`
     + ` held=${report.totals.held} informational=${report.totals.informational}`
-    + ` pendingDomainCount=${report.pendingDomainCount}`
+    + ` pendingDomainCount=${report.pendingDomainCount} keptInPlaceCount=${report.keptInPlaceCount} carriedAndKeptCount=${report.carriedAndKeptCount}`
     + ` runesToCoins.runes=${report.runesToCoins.runes} runesToCoins.coins=${report.runesToCoins.coins} (rate ${report.runesToCoins.rate})`);
   if (!report.applyAllowed) console.log(`${LOG} apply NOT allowed: status=${report.status}`);
   // зачем (P2-б): ready ≠ полный перенос — поля без домена V2 живут только в старом документе.
+  if (report.keptInPlaceCount > 0) {
+    console.log(`${LOG} kept in place (never cleaned): ${report.keptInPlaceCount} field(s) stay in 2.0 stores`);
+  }
+  if (report.applyAllowed && report.pendingDomainCount === 0) {
+    // зачем (ремонт №2): печатаем число, а не сами пути — исполнитель чистки берёт их из legacyCleanupPaths(report).
+    console.log(`${LOG} legacy cleanup candidates: ${core.legacyCleanupPaths(report).length} path(s)`);
+  }
   if (report.pendingDomainCount > 0) {
     console.log(`${LOG} legacy cleanup NOT allowed: ${report.pendingDomainCount} field(s) wait for a V2 domain — do not clean users/{uid}`);
   }

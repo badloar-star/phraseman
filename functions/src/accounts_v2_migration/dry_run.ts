@@ -20,11 +20,10 @@ import {
   classifyProgressKey,
   classifyRootField,
   classifySubcollection,
-  inventorySummary,
   type Classification,
-  type Disposition,
 } from './inventory';
-import { Ledger, compare, pathKey, type ConflictEntry, type ReportEntry } from './ledger';
+import { Ledger, compare, pathKey } from './ledger';
+import { MIGRATION_REPORT_SCHEMA, buildReport, fieldPath, type MigrationReport } from './report';
 import { editTimeInFuture, parseTrainingKey, srsFromMemoryRow, validEditTime } from './srs_memory';
 
 /*
@@ -50,7 +49,6 @@ import { editTimeInFuture, parseTrainingKey, srsFromMemoryRow, validEditTime } f
  */
 
 export const MIGRATION_EXPORT_FORMAT = 'phraseman-legacy-user-export.v1';
-export const MIGRATION_REPORT_SCHEMA = 'accounts-v2-migration-dry-run.report.v1';
 const OPERATION_NAMESPACE = 'accounts-v2-migration.v1';
 const LESSON_MAX_SCORE = 5;
 // зачем (D121 в обе стороны, доработка после ревью P2-а): passed повторяет
@@ -60,12 +58,18 @@ const LESSON_MAX_SCORE = 5;
 const LESSON_UNLOCK_PERCENT = 60;
 const LEGACY_LESSON_UNLOCK_PERCENT = 40;
 const PERCENT_EPSILON = 1e-6;
+// зачем (ремонт №2, хвост P3): у ES/DE список открытых уроков мог не попасть в снимок —
+// без него 40–59% нельзя ни открыть, ни закрыть доказуемо → HOLD, а не тихий passed:false.
+const TARGETS_REQUIRING_UNLOCK_LIST: ReadonlySet<string> = new Set(['es', 'de']);
+// зачем (P3 ревью): `[` и `]` — разметка путей отчёта (`[*]`, `[official:*]`); ключ с ними неоднозначен → HOLD.
+const AMBIGUOUS_KEY = /[[\]]/;
 const LIBRARY_CHUNK = 500;
 const MAX_UID_LENGTH = 128;
 const INPUT_KEYS = ['format', 'uid', 'user', 'subcollections'] as const;
 const PAGE_KEYS = ['target', 'index', 'count', 'cards', 'updatedAt'] as const;
 const CARD_FIELD_SET: ReadonlySet<string> = new Set(SAVED_CARD_FIELDS);
 const SRS_FIELD_SET: ReadonlySet<string> = new Set(SRS_CARD_FIELDS);
+export { MIGRATION_REPORT_SCHEMA };
 const PAGE_ID_DIGITS = 4;
 const LOG = '[ACCOUNTS-V2-MIGRATION]';
 
@@ -84,31 +88,20 @@ export class MigrationInputError extends Error {
 }
 
 export type { ConflictEntry, ReportEntry } from './ledger';
-export type MigrationStatus = 'ready' | 'hold';
-/** Руны → монеты по курсу владельца (решение 10: 1:1). Домена монет в Account V2 нет — только сумма. */
-export const RUNES_TO_COINS_RATE = 1;
-export type RunesToCoins = Readonly<{ rate: number; runes: number; coins: number }>;
-export type MigrationReport = Readonly<{
-  schema: typeof MIGRATION_REPORT_SCHEMA;
-  uidHash: string;
-  status: MigrationStatus;
-  applyAllowed: boolean;
-  /** Сколько полей ждут домена Account V2 (carry_pending_domain). Пока > 0 — старый users/{uid} НЕ чистить. */
-  pendingDomainCount: number;
-  inventory: Readonly<Record<Disposition, number>>;
-  totals: Readonly<{ carried: number; dropped: number; derived: number; held: number; informational: number }>;
-  carried: Readonly<Record<AccountsV2EntityType, number>>;
-  dropped: readonly ReportEntry[];
-  derived: readonly ReportEntry[];
-  held: readonly ReportEntry[];
-  informational: readonly ReportEntry[];
-  runesToCoins: RunesToCoins;
-  conflicts: readonly ConflictEntry[];
-  operations: Readonly<{
-    count: number; batches: number; byEntityType: Readonly<Record<AccountsV2EntityType, number>>; sha256: string;
-  }>;
-  disallowedFieldsCopied: number;
-}>;
+// зачем (ревью №3, P3): *ForLookup с произвольной таблицей обходят удержание — наружу не отдаём, только report.ts и тесты.
+export {
+  RUNES_TO_COINS_RATE,
+  assertLegacyCleanupAllowed,
+  assertMigrationApplyAllowed,
+  fieldPath,
+  isCleanupAllowedPath,
+  isKeepInPlacePath,
+  legacyCleanupPaths,
+  type InventoryLookup,
+  type MigrationReport,
+  type MigrationStatus,
+  type RunesToCoins,
+} from './report';
 export type MigrationDryRunResult = Readonly<{
   operations: Readonly<Record<AccountsV2EntityType, readonly AccountsV2Envelope[]>>;
   batches: readonly ValidatedBatch[];
@@ -124,6 +117,8 @@ type Doc = Readonly<{ id: unknown; data: unknown }>;
 type Input = Readonly<{ uid: string; user: PlainObject | null; subcollections: ReadonlyMap<string, readonly unknown[]> }>;
 type Candidate = Readonly<{
   entityType: AccountsV2EntityType; entityId: string; chunk: number; payload: JsonValue; sourcePath: string;
+  /** Доп. источники (память SRS), которые переносятся вместе с этой операцией. */
+  extraSources?: readonly Readonly<{ reason: string; path: string }>[];
 }>;
 type Decoded = Readonly<{ ok: true; value: unknown }> | Readonly<{ ok: false }>;
 type Source = Readonly<{ value: unknown; path: string }>;
@@ -356,7 +351,7 @@ function resolveCards(sources: ReadonlyMap<string, CardSources>, pages: Readonly
 
 // ─── SRS-память (решение владельца 9) ──────────────────────────────────────
 
-type SrsPick = Readonly<{ srs: JsonObject; time: number }>;
+type SrsPick = Readonly<{ srs: JsonObject; time: number; path: string }>;
 
 function withSrs(candidate: Candidate, pick: SrsPick | undefined): Candidate {
   if (pick === undefined) return candidate;
@@ -365,7 +360,9 @@ function withSrs(candidate: Candidate, pick: SrsPick | undefined): Candidate {
   const embeddedTime = isPlainObject(embedded) ? embedded.updatedAtMs : undefined;
   // зачем: при двух источниках побеждает более свежая правка — то же правило, что LWW ядра.
   if (validEditTime(embeddedTime) && embeddedTime >= pick.time) return candidate;
-  return { ...candidate, payload: { op: payload.op, fields: { ...payload.fields, srs: pick.srs } } };
+  // зачем (ремонт №2): путь памяти SRS считается перенесённым только вместе с принятой операцией карточки.
+  const extraSources = [...(candidate.extraSources ?? []), { reason: 'flashcard_srs', path: pick.path }];
+  return { ...candidate, payload: { op: payload.op, fields: { ...payload.fields, srs: pick.srs } }, extraSources };
 }
 
 function mergeSrsMemory(source: Source, target: string, cards: readonly Candidate[], ctx: Context): readonly Candidate[] {
@@ -404,7 +401,7 @@ function mergeSrsMemory(source: Source, target: string, cards: readonly Candidat
       ctx.ledger.add('informational', 'srs_card_absent', `${source.path}[${parsed.source}:*]`);
       continue;
     }
-    picks.set(entityId, { srs: row.srs, time: row.updatedAtMs });
+    picks.set(entityId, { srs: row.srs, time: row.updatedAtMs, path: source.path });
   }
   return cards.map((candidate) => withSrs(candidate, picks.get(candidate.entityId)));
 }
@@ -438,6 +435,15 @@ function lessonCandidate(entry: LessonScore, unlocked: ReadonlySet<number> | und
   if (typeof score !== 'number' || !Number.isFinite(score) || score < 0 || score > LESSON_MAX_SCORE) {
     ledger.add('held', 'malformed_value', entry.path);
     return null;
+  }
+  if (unlocked === undefined && TARGETS_REQUIRING_UNLOCK_LIST.has(entry.target)
+    && scoreMeetsPercent(score, LEGACY_LESSON_UNLOCK_PERCENT) && !scoreMeetsPercent(score, LESSON_UNLOCK_PERCENT)) {
+    ledger.add('held', 'lesson_unlock_unprovable', entry.path);
+    return null;
+  }
+  if (unlocked === undefined && scoreMeetsPercent(score, LEGACY_LESSON_UNLOCK_PERCENT) && !scoreMeetsPercent(score, LESSON_UNLOCK_PERCENT)) {
+    // зачем (P3 ревью): EN/FR — не молча: passed:false, но с отметкой, что списка открытых нет.
+    ledger.add('informational', 'lesson_unlock_list_absent', entry.path);
   }
   // зачем (D121, P2-а): старый порог 40% засчитывается только за уже открытый следующий урок.
   const nextAlreadyUnlocked = unlocked !== undefined && unlocked.has(entry.lessonId + 1);
@@ -478,16 +484,15 @@ function balanceOf(raw: unknown): number | null {
 }
 
 function recordRunes(found: Classification, value: unknown, path: string, ctx: Context): void {
-  // зачем (решения 6 и 10, D03): курс 1:1 известен, но домена монет в Account V2 нет —
-  // сумма в отчёт и carry_pending_domain (блокирует чистку старого users/{uid}); операций нет.
+  // зачем (решения 6, 10 и решение Fable): руны → монеты 1:1 = переименование в серверном
+  // леджере; баланс остаётся на месте (keep_in_place), сумма — информационно; операций нет.
   const amount = balanceOf(value);
   if (amount === null) {
     ctx.ledger.add('held', 'malformed_value', path);
     return;
   }
-  if (amount === 0) return;
   ctx.runes.total += amount;
-  ctx.ledger.add('informational', found.reason, path, found.decisions);
+  ctx.ledger.add('keptInPlace', found.reason, path, found.decisions);
 }
 
 function record(found: Classification, value: unknown, path: string, ctx: Context, count = 1): void {
@@ -495,6 +500,7 @@ function record(found: Classification, value: unknown, path: string, ctx: Contex
   if (found.ruleId === 'r.runes_balance') recordRunes(found, value, path, ctx);
   else if (found.disposition === 'drop') ledger.add('dropped', found.reason, path, found.decisions, count);
   else if (found.disposition === 'derive') ledger.add('derived', found.reason, path, found.decisions, count);
+  else if (found.disposition === 'keep_in_place') ledger.add('keptInPlace', found.reason, path, found.decisions, count);
   else if (found.disposition === 'info' || found.disposition === 'carry_pending_domain') {
     ledger.add('informational', found.reason, path, found.decisions, count);
   } else if (found.disposition === 'hold') ledger.add('held', found.reason, path, found.decisions, count);
@@ -504,6 +510,10 @@ function record(found: Classification, value: unknown, path: string, ctx: Contex
 function scanProgress(progress: PlainObject, ctx: Context, out: Candidate[], cards: Map<string, CardSources>): void {
   const lessons: LessonScan = { scores: [], unlocked: new Map() };
   for (const key of sortedKeys(progress)) {
+    if (AMBIGUOUS_KEY.test(key)) {
+      ctx.ledger.add('held', 'ambiguous_key', `progress.${pathKey(key, ctx.uid, false)}`);
+      continue;
+    }
     const found = classifyProgressKey(key);
     const path = `progress.${pathKey(key, ctx.uid, found.ruleId !== null)}`;
     const value = progress[key];
@@ -549,6 +559,10 @@ function scanUser(input: Input, ctx: Context, out: Candidate[]): void {
   if (user !== null) {
     for (const key of sortedKeys(user)) {
       if (key === 'progress') continue;
+      if (AMBIGUOUS_KEY.test(key)) {
+        ctx.ledger.add('held', 'ambiguous_key', pathKey(key, ctx.uid, false));
+        continue;
+      }
       const found = classifyRootField(key);
       record(found, user[key], pathKey(key, ctx.uid, found.ruleId !== null), ctx);
     }
@@ -559,6 +573,10 @@ function scanUser(input: Input, ctx: Context, out: Candidate[]): void {
   let pages: ReadonlyMap<string, PageSet> = new Map();
   for (const [name, docs] of input.subcollections) {
     if (docs.length === 0) continue;
+    if (AMBIGUOUS_KEY.test(name)) {
+      ctx.ledger.add('held', 'ambiguous_key', `subcollections.${pathKey(name, ctx.uid, false)}`, [], docs.length);
+      continue;
+    }
     const found = classifySubcollection(name);
     if (found.ruleId === 's.flashcard_pages') pages = readPages(docs);
     else record(found, undefined, `subcollections.${pathKey(name, ctx.uid, found.ruleId !== null)}`, ctx, docs.length);
@@ -598,6 +616,7 @@ function admitOperations(uid: string, candidates: readonly Candidate[], ledger: 
       const reason = single.code === 'envelope_too_large' || single.code === 'batch_too_large'
         ? 'envelope_too_large' : `envelope_${single.code}`;
       ledger.add('held', reason, candidate.sourcePath);
+      for (const extra of candidate.extraSources ?? []) ledger.add('held', reason, extra.path);
       rejected.add(entityKey);
       groups.delete(entityKey);
       return;
@@ -647,105 +666,18 @@ function packBatches(uid: string, groups: readonly AccountsV2OwnedOperation[][],
   });
 }
 
-// ─── отчёт ─────────────────────────────────────────────────────────────────
-
-function emptyByType(): Record<AccountsV2EntityType, number> {
-  return { lesson_progress: 0, flashcard: 0, library_membership: 0 };
-}
-
-function disallowedFields(envelope: AccountsV2Envelope): number {
-  const payload = envelope.payload as Readonly<Record<string, JsonValue>>;
-  const allowed = envelope.entityType === 'lesson_progress' ? ['passed', 'score']
-    : envelope.entityType === 'library_membership' ? ['itemIds'] : ['op', 'fields'];
-  let count = Object.keys(payload).filter((key) => !allowed.includes(key)).length;
-  if (envelope.entityType === 'flashcard') {
-    const fields = payload.fields as Readonly<Record<string, JsonValue>>;
-    count += Object.keys(fields).filter((key) => !CARD_FIELD_SET.has(key) && !SRS_FIELD_SET.has(key)).length;
-  }
-  return count;
-}
-
-function sumCounts(entries: readonly ReportEntry[]): number {
-  return entries.reduce((total, entry) => total + entry.count, 0);
-}
-
-function statusOf(held: readonly ReportEntry[], conflicts: readonly ConflictEntry[]): MigrationStatus {
-  // зачем (решение 10): курс рун известен (1:1), статус needs_owner_rate снят — блокирует только HOLD/конфликт.
-  return held.length > 0 || conflicts.length > 0 ? 'hold' : 'ready';
-}
-
-function buildReport(uidHash: string, ledger: Ledger, batches: readonly ValidatedBatch[], runes: Runes): MigrationReport {
-  const envelopes = batches.flatMap((batch) => batch.operations.map(({ operation }) => operation));
-  const byEntityType = emptyByType();
-  const carried = emptyByType();
-  const seen = new Set<string>();
-  for (const envelope of envelopes) {
-    byEntityType[envelope.entityType] += 1;
-    const key = JSON.stringify([envelope.entityType, envelope.entityId]);
-    if (!seen.has(key)) {
-      seen.add(key);
-      carried[envelope.entityType] += 1;
-    }
-  }
-  const dropped = ledger.list('dropped');
-  const derived = ledger.list('derived');
-  const held = ledger.list('held');
-  const informational = ledger.list('informational');
-  const conflicts = ledger.conflicts();
-  const status = statusOf(held, conflicts);
-  return {
-    schema: MIGRATION_REPORT_SCHEMA,
-    uidHash,
-    status,
-    applyAllowed: status === 'ready',
-    pendingDomainCount: sumCounts(informational.filter((entry) => entry.reason === 'carry_pending_domain')),
-    inventory: inventorySummary(),
-    totals: {
-      carried: seen.size, dropped: sumCounts(dropped), derived: sumCounts(derived), held: sumCounts(held),
-      informational: sumCounts(informational),
-    },
-    carried,
-    dropped,
-    derived,
-    held,
-    informational,
-    runesToCoins: { rate: RUNES_TO_COINS_RATE, runes: runes.total, coins: runes.total * RUNES_TO_COINS_RATE },
-    conflicts,
-    operations: {
-      count: envelopes.length, batches: batches.length, byEntityType,
-      sha256: sha256Hex(canonicalJson(batches as unknown as JsonValue)),
-    },
-    disallowedFieldsCopied: envelopes.reduce((total, envelope) => total + disallowedFields(envelope), 0),
-  };
-}
-
 /**
- * Контракт исполнителя переноса: пакеты dry-run применяются ТОЛЬКО при
- * status === 'ready'. hold — есть блокирующие поля/конфликты. ready ≠ полный
- * перенос: чистку старого users/{uid} решает assertLegacyCleanupAllowed.
+ * Источники реально выданных операций → корзина carried (базовый путь поля).
+ * зачем (ремонт №2): чистка легаси удаляет «перенесённое» только по этим путям;
+ * операция, не попавшая в пакет, путь не освобождает.
  */
-export function assertMigrationApplyAllowed(report: Pick<MigrationReport, 'status' | 'applyAllowed'>): void {
-  if (report.status !== 'ready' || report.applyAllowed !== true) {
-    console.warn(LOG, 'apply forbidden by report status', report.status);
-    throw new Error(`accounts_v2_migration_apply_forbidden:${report.status}`);
-  }
-}
-
-/**
- * Контракт чистки старых данных (доработка после ревью, P2-б): `ready` ≠ полный
- * перенос. Поля carry_pending_domain (серия, экзамены, достижения, открытые
- * уроки…) пока живут ТОЛЬКО в старом users/{uid}; чистить его можно лишь при
- * status === 'ready' и pendingDomainCount === 0.
- */
-export function assertLegacyCleanupAllowed(report: Pick<MigrationReport, 'status' | 'applyAllowed' | 'pendingDomainCount'>): void {
-  if (report.status !== 'ready' || report.applyAllowed !== true) {
-    console.warn(LOG, 'legacy cleanup forbidden by report status', report.status);
-    throw new Error(`accounts_v2_migration_cleanup_forbidden:${report.status}`);
-  }
-  if (report.pendingDomainCount !== 0) {
-    // зачем: иначе чистка удалила бы данные, у которых ещё нет дома в Account V2.
-    console.warn(LOG, 'legacy cleanup forbidden: fields wait for a V2 domain', report.pendingDomainCount);
-    throw new Error(`accounts_v2_migration_cleanup_forbidden:pending_domain:${report.pendingDomainCount}`);
+function recordCarriedSources(candidates: readonly Candidate[], batches: readonly ValidatedBatch[], ledger: Ledger): void {
+  const issued = new Set(batches.flatMap((batch) => batch.operations.map(({ operation }) => (
+    JSON.stringify([operation.entityType, operation.entityId, operation.clientSequence])))));
+  for (const candidate of candidates) {
+    if (!issued.has(JSON.stringify([candidate.entityType, candidate.entityId, candidate.chunk + 1]))) continue;
+    ledger.add('carried', candidate.entityType, fieldPath(candidate.sourcePath));
+    for (const extra of candidate.extraSources ?? []) ledger.add('carried', extra.reason, fieldPath(extra.path));
   }
 }
 
@@ -766,15 +698,16 @@ export function runMigrationDryRun(snapshot: unknown, options: MigrationDryRunOp
     return {
       operations: { lesson_progress: [], flashcard: [], library_membership: [] },
       batches: [],
-      report: buildReport(uidHash, ctx.ledger, [], ctx.runes),
+      report: buildReport(uidHash, ctx.ledger, [], ctx.runes.total),
     };
   }
   const candidates: Candidate[] = [];
   scanUser(input, ctx, candidates);
   const batches = packBatches(input.uid, admitOperations(input.uid, candidates, ctx.ledger), ctx.ledger);
+  recordCarriedSources(candidates, batches, ctx.ledger);
   const operations: Record<AccountsV2EntityType, AccountsV2Envelope[]> = { lesson_progress: [], flashcard: [], library_membership: [] };
   for (const batch of batches) {
     for (const { operation } of batch.operations) operations[operation.entityType].push(operation);
   }
-  return { operations, batches, report: buildReport(uidHash, ctx.ledger, batches, ctx.runes) };
+  return { operations, batches, report: buildReport(uidHash, ctx.ledger, batches, ctx.runes.total) };
 }

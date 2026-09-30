@@ -22,7 +22,7 @@ describe('accounts_v2_migration inventory — структура таблицы'
   it('у каждого правила допустимая судьба, уникальный id и причина', () => {
     const ids = new Set<string>();
     for (const rule of MIGRATION_INVENTORY) {
-      expect(['carry', 'carry_pending_domain', 'drop', 'derive', 'hold', 'info']).toContain(rule.disposition);
+      expect(['carry', 'carry_pending_domain', 'keep_in_place', 'drop', 'derive', 'hold', 'info']).toContain(rule.disposition);
       expect(ids.has(rule.id)).toBe(false);
       ids.add(rule.id);
       expect(rule.reason).toMatch(/^[a-z0-9_]+$/);
@@ -98,8 +98,10 @@ describe('accounts_v2_migration inventory — экономика отброше�
     expect(classifySubcollection('arena_v2_star_ledger').disposition).toBe('drop');
   });
 
-  it('руны → монеты 1:1 (решение 10): домена монет нет → carry_pending_domain; звёзды → drop OD10', () => {
-    expect(classifyRootField('stars')).toMatchObject({ disposition: 'carry_pending_domain', decisions: ['D03', 'OD10'] });
+  it('руны → монеты 1:1: остаются в леджере монет (keep_in_place, решение Fable); звёзды → drop OD10', () => {
+    expect(classifyRootField('stars')).toMatchObject({
+      disposition: 'keep_in_place', reason: 'coins_ledger_authoritative', decisions: ['D03', 'OD10'],
+    });
     for (const key of ['v2_access_stars', 'v2_access_stars_updated_at_ms']) {
       expect(classifyRootField(key)).toMatchObject({ disposition: 'drop', decisions: ['OD10'] });
     }
@@ -162,17 +164,21 @@ describe('accounts_v2_migration inventory — перенос, Plus и неизв
     expect(classifyProgressKey('flashcards_swipe_session_draft_v1').disposition).toBe('info');
   });
 
-  it('серия, активные дни, экзамены, достижения, статистика → carry_pending_domain (решение 8)', () => {
+  it('серия, активные дни, экзамены, достижения, статистика → keep_in_place (OD8, решение Fable)', () => {
     for (const key of ['streak_count', 'active_days_v1', 'premium_free_freeze_used', 'level_exam_A1_pct', 'lingman_certificate_v1',
       'achievements_state', 'user_stats_v1', 'daily_stats']) {
-      expect(classifyProgressKey(key).disposition).toBe('carry_pending_domain');
+      expect(classifyProgressKey(key)).toMatchObject({ disposition: 'keep_in_place', reason: 'kept_in_v2_store', decisions: ['OD8'] });
     }
   });
 
-  it('открытые уроки → carry_pending_domain со ссылкой D121 (не закрываются)', () => {
+  it('открытые уроки → keep_in_place со ссылкой D121 (не закрываются, не удаляются)', () => {
     const result = classifyProgressKey('unlocked_lessons');
-    expect(result.disposition).toBe('carry_pending_domain');
+    expect(result.disposition).toBe('keep_in_place');
     expect(result.decisions).toContain('D121');
+  });
+
+  it('carry_pending_domain в таблице не осталось: всё решённое — keep_in_place', () => {
+    expect(MIGRATION_INVENTORY.filter((rule) => rule.disposition === 'carry_pending_domain')).toEqual([]);
   });
 
   it('no_v2_domain — информационная судьба, не блокирующий hold', () => {

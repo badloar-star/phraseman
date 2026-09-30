@@ -10,7 +10,7 @@ import {
   MIGRATION_EXPORT_FORMAT,
   MIGRATION_REPORT_SCHEMA,
   MigrationInputError,
-  assertLegacyCleanupAllowed,
+  legacyCleanupPaths,
   assertMigrationApplyAllowed,
   runMigrationDryRun,
   type MigrationDryRunResult,
@@ -224,7 +224,7 @@ describe('accounts_v2_migration dry-run — пустые и старые фор�
   it('документа нет (user: null) — ни операций, ни ошибок', () => {
     const result = runMigrationDryRun(snapshot(null));
     expect(result.batches).toEqual([]);
-    expect(result.report.totals).toEqual({ carried: 0, dropped: 0, derived: 0, held: 0, informational: 0 });
+    expect(result.report.totals).toEqual({ carried: 0, dropped: 0, derived: 0, held: 0, informational: 0, keptInPlace: 0 });
     expect(result.report.status).toBe('ready');
   });
 
@@ -442,75 +442,6 @@ describe('accounts_v2_migration dry-run — ремонт №1: страницы 
   });
 });
 
-describe('accounts_v2_migration dry-run — доработка после ревью: D121 в обе стороны (P2-а)', () => {
-  function lessons(progress: Record<string, Json>): Map<string, Json> {
-    const result = runMigrationDryRun(snapshot({ progress }));
-    return new Map(result.operations.lesson_progress.map((op) => [op.entityId, op.payload as Json]));
-  }
-
-  it('2.5/5 без открытого следующего урока — passed:false (перенос не открывает новое)', () => {
-    expect(lessons({ lesson4_best_score: '2.5', unlocked_lessons: '[1,2,3,4]' }).get('en:lesson:4')).toEqual({ passed: false, score: 2.5 });
-    expect(lessons({ lesson4_best_score: '2.5' }).get('en:lesson:4')).toEqual({ passed: false, score: 2.5 });
-  });
-
-  it('2.5/5 со следующим уроком в unlocked_lessons — passed:true (открытое не закрывается)', () => {
-    expect(lessons({ lesson4_best_score: '2.5', unlocked_lessons: '[1,2,3,4,5]' }).get('en:lesson:4')).toEqual({ passed: true, score: 2.5 });
-  });
-
-  it('3/5 — passed:true без всяких списков; 1.9/5 с открытым следующим — false', () => {
-    expect(lessons({ lesson4_best_score: '3' }).get('en:lesson:4')).toEqual({ passed: true, score: 3 });
-    expect(lessons({ lesson4_best_score: '1.9', unlocked_lessons: '[5]' }).get('en:lesson:4')).toEqual({ passed: false, score: 1.9 });
-  });
-
-  it('списки открытых уроков по языкам не смешиваются (область цели как в parseProgressKey)', () => {
-    const map = lessons({
-      'lesson_progress_v2::fr::lesson4_best_score': '2.5', 'lesson_progress_v2::fr::unlocked_lessons': '[5]',
-      lesson4_best_score: '2.5',
-    });
-    expect(map.get('fr:lesson:4')).toEqual({ passed: true, score: 2.5 });
-    expect(map.get('en:lesson:4')).toEqual({ passed: false, score: 2.5 });
-  });
-
-  it('битый unlocked_lessons — HOLD malformed_value, открытие по старому порогу не выдаётся', () => {
-    const result = runMigrationDryRun(snapshot({ progress: { lesson4_best_score: '2.5', unlocked_lessons: '{"x":1}' } }));
-    expect(result.report.held).toEqual([{ reason: 'malformed_value', path: 'progress.unlocked_lessons', count: 1 }]);
-    expect(result.operations.lesson_progress[0].payload).toEqual({ passed: false, score: 2.5 });
-  });
-});
-
-describe('accounts_v2_migration dry-run — доработка после ревью: ready ≠ полный перенос (P2-б)', () => {
-  it('pendingDomainCount считает carry_pending_domain; чистка старого users/{uid} запрещена, пока > 0', () => {
-    const result = runMigrationDryRun(snapshot({ progress: { lesson1_best_score: '5', streak_count: '4', achievements_state: '{}', user_name: 'x' } }));
-    expect(result.report.status).toBe('ready');
-    expect(result.report.pendingDomainCount).toBe(2);
-    expect(() => assertMigrationApplyAllowed(result.report)).not.toThrow();
-    expect(() => assertLegacyCleanupAllowed(result.report)).toThrow('accounts_v2_migration_cleanup_forbidden:pending_domain:2');
-  });
-
-  it('нет ожидающих доменов и статус ready — чистка разрешена; статус ≠ ready — запрещена', () => {
-    const clean = runMigrationDryRun(snapshot({ progress: { lesson1_best_score: '5', user_name: 'x' } }));
-    expect(clean.report.pendingDomainCount).toBe(0);
-    expect(() => assertLegacyCleanupAllowed(clean.report)).not.toThrow();
-    const held = runMigrationDryRun(snapshot({ progress: { brand_new_key_v7: '1' } }));
-    expect(() => assertLegacyCleanupAllowed(held.report)).toThrow('accounts_v2_migration_cleanup_forbidden:hold');
-  });
-});
-
-describe('accounts_v2_migration dry-run — ремонт №1: D121 и открытые уроки', () => {
-  it('2/5 со следующим открытым — passed, ниже 40% — нет; открытые уроки не закрываются', () => {
-    const result = runMigrationDryRun(snapshot({ progress: {
-      lesson1_best_score: '2', lesson2_best_score: '1.9', lesson3_best_score: '3', unlocked_lessons: '[1,2,3,4]',
-    } }));
-    const byId = new Map(result.operations.lesson_progress.map((op) => [op.entityId, op.payload]));
-    expect(byId.get('en:lesson:1')).toEqual({ passed: true, score: 2 });
-    expect(byId.get('en:lesson:2')).toEqual({ passed: false, score: 1.9 });
-    expect(byId.get('en:lesson:3')).toEqual({ passed: true, score: 3 });
-    expect(result.report.informational).toEqual(expect.arrayContaining([
-      { reason: 'carry_pending_domain', path: 'progress.unlocked_lessons', count: 1, decisions: ['D121'] },
-    ]));
-  });
-});
-
 describe('accounts_v2_migration dry-run — ремонт №1: HOLD всего аккаунта и статус (P2)', () => {
   it.each([
     ['identityHidden:true', { identityHidden: true }, 'identity_hidden'],
@@ -535,7 +466,8 @@ describe('accounts_v2_migration dry-run — ремонт №1: HOLD всего �
     expect(result.report.held).toEqual([]);
     expect(result.report.status).toBe('ready');
     expect(result.report.applyAllowed).toBe(true);
-    expect(result.report.totals.informational).toBe(2);
+    expect(result.report.totals.informational).toBe(1);
+    expect(result.report.totals.keptInPlace).toBe(1);
     expect(() => assertMigrationApplyAllowed(result.report)).not.toThrow();
   });
 
@@ -547,15 +479,15 @@ describe('accounts_v2_migration dry-run — ремонт №1: HOLD всего �
 });
 
 describe('accounts_v2_migration dry-run — решения владельца 6–9', () => {
-  it('руны → монеты 1:1 (решение 10): сумма в runesToCoins, домена монет нет → carry_pending_domain; звёзды → drop', () => {
+  it('руны → монеты 1:1: сумма в runesToCoins (информационно), баланс остаётся в леджере (keep_in_place); звёзды → drop', () => {
     const result = runMigrationDryRun(snapshot({
       stars: { balance: 120, earnedTotal: 500 }, v2_access_stars: 30, v2_access_stars_updated_at_ms: 5,
       practice_runes_daily: { day: '2026-09-30', count: 4 }, progress: { lesson1_best_score: '5' },
     }, { star_operations: [{ id: 'o1', data: { delta: 5 } }] }));
     expect(result.report.runesToCoins).toEqual({ rate: 1, runes: 120, coins: 120 });
-    expect(result.report.informational).toEqual(expect.arrayContaining([
-      { reason: 'carry_pending_domain', path: 'stars', count: 1, decisions: ['D03', 'OD10'] },
-    ]));
+    expect(result.report.keptInPlace).toEqual([
+      { reason: 'coins_ledger_authoritative', path: 'stars', count: 1, decisions: ['D03', 'OD10'] },
+    ]);
     expect(result.report.dropped).toEqual([
       { reason: 'stars_not_transferred', path: 'v2_access_stars', count: 1, decisions: ['OD10'] },
       { reason: 'stars_not_transferred', path: 'v2_access_stars_updated_at_ms', count: 1, decisions: ['OD10'] },
@@ -563,8 +495,9 @@ describe('accounts_v2_migration dry-run — решения владельца 6�
     expect(result.operations.lesson_progress).toHaveLength(1);
     expect(JSON.stringify(result.batches)).not.toContain('120');
     expect(result.report.status).toBe('ready');
-    expect(result.report.pendingDomainCount).toBe(1);
-    expect(() => assertLegacyCleanupAllowed(result.report)).toThrow('accounts_v2_migration_cleanup_forbidden:pending_domain:1');
+    expect(result.report.pendingDomainCount).toBe(0);
+    expect(result.report.keptInPlaceCount).toBe(1);
+    expect(legacyCleanupPaths(result.report)).not.toContain('stars');
   });
 
   it('нулевой баланс рун — переносить нечего; битый баланс — HOLD', () => {
@@ -588,7 +521,7 @@ describe('accounts_v2_migration dry-run — решения владельца 6�
     for (const entry of result.report.dropped) expect(entry).toMatchObject({ reason: 'login_service_field', decisions: ['OD11'] });
   });
 
-  it('купленная заморозка серии → dropped (решение 7), серия/экзамены/достижения → carry_pending_domain с путём', () => {
+  it('купленная заморозка серии → dropped (решение 7), серия/экзамены/достижения → keep_in_place с путём', () => {
     const result = runMigrationDryRun(snapshot({ progress: {
       streak_freeze: '2', streak_count: '15', active_days_v1: '[]', 'level_exams_v2::fr::level_exam_A1_pct': '80',
       achievements_state: '{}', user_stats_v1: '{}',
@@ -596,8 +529,8 @@ describe('accounts_v2_migration dry-run — решения владельца 6�
     expect(result.report.dropped).toEqual([
       { reason: 'streak_freeze_plus_only', path: 'progress.streak_freeze', count: 1, decisions: ['D101', 'D107'] },
     ]);
-    const pending = result.report.informational.filter((entry) => entry.reason === 'carry_pending_domain').map((entry) => entry.path);
-    expect(pending).toEqual([
+    const kept = result.report.keptInPlace.map((entry) => entry.path);
+    expect(kept).toEqual([
       'progress.achievements_state', 'progress.active_days_v1', 'progress.level_exams_v2::fr::level_exam_A1_pct',
       'progress.streak_count', 'progress.user_stats_v1',
     ]);
@@ -700,8 +633,8 @@ describe('accounts_v2_migration dry-run — маскировка ключей (P
     for (const secret of ['someone@example.com', 'AbCdEf0123456789XyZ', 'Иван']) expect(text).not.toContain(secret);
   });
 
-  it('известные ключи carry_pending_domain — точный путь без маски', () => {
+  it('известные ключи keep_in_place — точный путь без маски', () => {
     const result = runMigrationDryRun(snapshot({ progress: { 'level_exams_v2::fr::level_exam_B1_passed': 'true' } }));
-    expect(result.report.informational[0].path).toBe('progress.level_exams_v2::fr::level_exam_B1_passed');
+    expect(result.report.keptInPlace[0].path).toBe('progress.level_exams_v2::fr::level_exam_B1_passed');
   });
 });

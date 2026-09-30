@@ -4,9 +4,12 @@
  * зачем: миграция не имеет права «додумывать». Каждое поле старого документа
  * users/{uid} (корень, progress.*, подколлекции) получает одну судьбу:
  *   carry  — переносится в домен Account V2 (урок / карточка / библиотека);
- *   carry_pending_domain — владелец решил переносить (решение 8, D121; руны →
- *            монеты 1:1 по решению 10), но домена в Account V2 ещё нет:
- *            информационно, с точным путём поля, новую схему ядра НЕ выдумываем;
+ *   keep_in_place — остаётся в действующем хранилище 2.0 (решение Fable за
+ *            владельца «домены вне ядра V2»): монеты/руны, серия, экзамены,
+ *            достижения/статистика, открытые уроки. Не переносится и НИКОГДА
+ *            не удаляется чисткой легаси (allowlist, report.ts → isKeepInPlacePath);
+ *   carry_pending_domain — нет домена И нет решения: блокирует чистку
+ *            (сейчас только SRS карточек наборов сообщества);
  *   drop   — отбрасывается ТОЛЬКО по записанному решению владельца: D-номер
  *            (docs/phraseman-2.0/03_DECISIONS.md) или OD-номер решения в чате
  *            (docs/work/tasks/account-v2-status-2026-09-30.md, «Решения владельца по миграции»);
@@ -21,14 +24,44 @@
  * (поля users/{uid}), functions/src/account_delete.ts (подколлекции).
  */
 
-export type Disposition = 'carry' | 'carry_pending_domain' | 'drop' | 'derive' | 'info' | 'hold';
+export type Disposition = 'carry' | 'keep_in_place' | 'carry_pending_domain' | 'drop' | 'derive' | 'info' | 'hold';
 export const DISPOSITIONS: readonly Disposition[] = Object.freeze([
-  'carry', 'carry_pending_domain', 'drop', 'derive', 'info', 'hold',
+  'carry', 'keep_in_place', 'carry_pending_domain', 'drop', 'derive', 'info', 'hold',
 ] as const);
 export type InventoryScope = 'root' | 'progress' | 'subcollection';
 export type MigrationDomain = 'lesson_progress' | 'flashcard' | 'library_membership';
 
 type Matcher = Readonly<{ exact?: readonly string[]; pattern?: RegExp }>;
+
+/**
+ * Пометка «перенесено, но в легаси остаётся» (ремонт после ревью, P2).
+ * зачем: 2.0 до подключения клиента Account V2 (Пакет 6) читает перенесённые поля
+ * из СТАРОГО места — оценки уроков (lesson_lock_system, медали, экзамены,
+ * legacy_free_lesson_access), карточки/наборы/память свайпов (cloud_sync restore,
+ * target_storage_keys), права Plus (premium*, access_projection). Удалить их =
+ * закрыть уроки/экзамены и потерять карточки и Plus на новом устройстве.
+ * Безопасный вариант по умолчанию: ВСЕ carry — carried_and_kept, ВСЕ derive —
+ * derived_and_kept; чистка удаляет только drop. Снять пометку можно только
+ * после переключения чтения 2.0 на Account V2.
+ */
+export type LegacyRetention = 'carried_and_kept' | 'derived_and_kept' | 'dropped_but_read';
+
+/**
+ * Отброшенное (drop), которое ещё ЧИТАЕТ живой код (ремонт №2 после повторного ревью, P2).
+ * зачем: drop = «не переносить в Account V2», а не «стереть». Эти правила чистка
+ * не трогает; список держит сторож cleanup_readers_guard.test.ts (поиск по app/,
+ * components/, hooks/, modules/, functions/src): нашёлся читатель без пометки — красный,
+ * пометка без читателя — тоже красный.
+ */
+// Проверено сторожем 2026-09-30: читатели — app/cloud_sync.ts (SYNC_KEYS всех полей progress ниже),
+// app/(tabs)/home.tsx, app/shards_system.ts, app/cache_reset.ts, app/target_storage_keys.ts,
+// functions/src/auth_identity.ts, auth_merge.ts, account_delete.ts, app/auth_provider.ts,
+// app/(tabs)/settings.tsx, app/community_packs/packAuthorNames.ts и др.
+const DROPPED_BUT_READ: ReadonlySet<string> = new Set<string>([
+  'p.official_packs', 'p.xp_level', 'p.league', 'p.arena', 'p.pearls', 'p.spins_gifts_boosts', 'p.cosmetics', 'p.streak_freeze',
+  'r.pearls', 'r.spins_gifts', 'r.stars_balance', 'r.login_service',
+  's.pearls', 's.level_spins', 's.arena',
+]);
 
 export type InventoryRule = Readonly<{
   id: string;
@@ -38,6 +71,8 @@ export type InventoryRule = Readonly<{
   reason: string;
   decisions: readonly string[];
   domain?: MigrationDomain;
+  /** Остаётся ли поле в старом users/{uid} после переноса (чистка его не удаляет). */
+  retention?: LegacyRetention;
   note: string;
 }>;
 
@@ -47,6 +82,7 @@ export type Classification = Readonly<{
   reason: string;
   decisions: readonly string[];
   domain?: MigrationDomain;
+  retention?: LegacyRetention;
 }>;
 
 export type ProgressClassification = Classification & Readonly<{
@@ -90,8 +126,11 @@ function rule(
   id: string, scope: InventoryScope, match: Matcher, disposition: Disposition, reason: string,
   decisions: readonly string[], note: string, domain?: MigrationDomain,
 ): InventoryRule {
+  const retention: LegacyRetention | undefined = disposition === 'carry' ? 'carried_and_kept'
+    : disposition === 'derive' ? 'derived_and_kept'
+      : disposition === 'drop' && DROPPED_BUT_READ.has(id) ? 'dropped_but_read' : undefined;
   return Object.freeze({
-    id, scope, match: Object.freeze(match), disposition, reason, decisions: Object.freeze([...decisions]), note, domain,
+    id, scope, match: Object.freeze(match), disposition, reason, decisions: Object.freeze([...decisions]), note, domain, retention,
   });
 }
 
@@ -143,18 +182,18 @@ const PROGRESS_RULES: readonly InventoryRule[] = [
       'referral_vip_last_source', 'promo_vip_last_code', 'achievement_access_plus_paid_v1', 'achievement_access_pro_paid_v1'],
     pattern: /^(premium_rc_|vip_)/,
   }, 'derive', 'plus_entitlement_reference', [], PLUS_NOTE),
-  // carry_pending_domain — решение владельца 8 и D121: переносить, но домена в Account V2 пока нет
-  rule('p.lesson_access', 'progress', { exact: ['unlocked_lessons'] }, 'carry_pending_domain', 'carry_pending_domain', ['D121'],
-    'D121: уже открытые уроки не закрываются. Домена доступа в Account V2 нет — перенос ждёт домен.'),
+  // keep_in_place — решение 8 + решение Fable за владельца: остаются в хранилищах 2.0, не удаляются
+  rule('p.lesson_access', 'progress', { exact: ['unlocked_lessons'] }, 'keep_in_place', 'kept_in_v2_store', ['D121', 'OD8'],
+    'D121: уже открытые уроки не закрываются. Список остаётся в действующем хранилище 2.0 (решение Fable), чисткой не удаляется.'),
   rule('p.streak_days', 'progress', {
     exact: ['streak_count', 'last_active_date', 'streak_last_date', 'active_days_v1', 'premium_free_freeze_used'],
-  }, 'carry_pending_domain', 'carry_pending_domain', [], 'Решение владельца 8: серия и активные дни (и счётчик бесплатной заморозки Plus).'),
-  rule('p.exams', 'progress', { pattern: /^(level_exam_|lingman_|diagnostic_last)/ }, 'carry_pending_domain', 'carry_pending_domain', [],
-    'Решение владельца 8: экзамены, сертификаты, диагностика.'),
+  }, 'keep_in_place', 'kept_in_v2_store', ['OD8'], 'Решение владельца 8: серия и активные дни остаются в хранилище 2.0.'),
+  rule('p.exams', 'progress', { pattern: /^(level_exam_|lingman_|diagnostic_last)/ }, 'keep_in_place', 'kept_in_v2_store', ['OD8'],
+    'Решение владельца 8: экзамены, сертификаты, диагностика остаются в хранилище 2.0.'),
   rule('p.achievements_stats', 'progress', {
     exact: ['achievements_state', 'daily_stats', 'user_stats_v1', 'stats_daily_breakdown_v1', 'helpful_error_reports_confirmed_v1'],
     pattern: /^(achievement_|phraseman_foreground_)/,
-  }, 'carry_pending_domain', 'carry_pending_domain', [], 'Решение владельца 8: достижения и статистика.'),
+  }, 'keep_in_place', 'kept_in_v2_store', ['OD8'], 'Решение владельца 8: достижения и статистика остаются в хранилище 2.0.'),
   // hold — поле известно, решения по переносу нет (блокирует)
   rule('p.lesson_extras', 'progress', {
     pattern: /^lesson\d{1,4}_(pass_count|progress|listening_progress|words|theory_sections_seen.*|cellIndex|last_completed_at_v1|bonus_granted|preposition_progress.*|perfect_passes.*|pass_live)$/,
@@ -195,8 +234,8 @@ const ROOT_RULES: readonly InventoryRule[] = [
   // зачем (решения владельца 6 и 10, D03): руны → монеты по курсу 1:1. Домена монет в
   // ядре Account V2 нет (ACCOUNTS_V2_ENTITY_TYPES: урок/карточка/библиотека) — сумма
   // идёт в отчёт (runesToCoins), поле ждёт домен; операций начисления не строим.
-  rule('r.runes_balance', 'root', { exact: ['stars'] }, 'carry_pending_domain', 'carry_pending_domain', ['D03', 'OD10'],
-    'Кошелёк рун (users/{uid}.stars.balance, журнал рун = stars_ledger) → монеты 1:1; домена монет в Account V2 нет.'),
+  rule('r.runes_balance', 'root', { exact: ['stars'] }, 'keep_in_place', 'coins_ledger_authoritative', ['D03', 'OD10'],
+    'Кошелёк рун (users/{uid}.stars.balance, stars_ledger) остаётся серверным леджером монет: руны → монеты 1:1 = переименование.'),
   rule('r.stars_balance', 'root', { exact: ['v2_access_stars', 'v2_access_stars_updated_at_ms'] }, 'drop', 'stars_not_transferred', ['OD10'],
     'Решение владельца 10 (2026-09-30): звёзды (v2_access_stars и метки) не переносятся.'),
   rule('r.currency_counters', 'root', {
@@ -253,7 +292,7 @@ function classifyWith(rules: readonly InventoryRule[], key: string): Classificat
   if (found === undefined) return UNKNOWN;
   return {
     ruleId: found.id, disposition: found.disposition, reason: found.reason, decisions: found.decisions,
-    domain: found.domain,
+    domain: found.domain, retention: found.retention,
   };
 }
 

@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://phraseman.app/schemas/accounts-v2-migration-dry-run.report.v1.json",
   "title": "Account V2 migration dry-run report (v1)",
-  "description": "Отчёт dry-run миграции одного пользователя в Account V2 (Пакет 5, TG-9B994CA6B1FF; ремонт №1 TG-25FDAF5DA4D9). Только счётчики, пути полей и сумма рун: без значений полей, без uid (только хэш), без самих операций; неизвестные ключи маскируются (<masked>). Источник: functions/src/accounts_v2_migration/dry_run.ts. КОНТРАКТ ИСПОЛНИТЕЛЯ: пакеты переноса применяются ТОЛЬКО при status = ready (applyAllowed = true), при hold — стоп (assertMigrationApplyAllowed). ready ≠ полный перенос: старый users/{uid} НЕЛЬЗЯ чистить, пока pendingDomainCount > 0 — эти поля ещё не имеют домена в Account V2 и живут только в старом документе (assertLegacyCleanupAllowed).",
+  "description": "Отчёт dry-run миграции одного пользователя в Account V2 (Пакет 5, TG-9B994CA6B1FF; ремонты TG-25FDAF5DA4D9, TG-E857848A6B86). Только счётчики, пути полей и сумма рун: без значений полей, без uid (только хэш), без самих операций; неизвестные ключи маскируются (<masked>). Источник: functions/src/accounts_v2_migration/dry_run.ts, report.ts. КОНТРАКТ ИСПОЛНИТЕЛЯ ПЕРЕНОСА: пакеты применяются ТОЛЬКО при status = ready (applyAllowed = true), при hold — стоп (assertMigrationApplyAllowed). КОНТРАКТ ЧИСТКИ: ready ≠ полный перенос; старый users/{uid} НЕЛЬЗЯ чистить, пока pendingDomainCount > 0 (assertLegacyCleanupAllowed); удалять можно ТОЛЬКО пути из legacyCleanupPaths(report): белый список — ровно одно поле, которое таблица инвентаря заново классифицирует как carry|derive|drop без пометки «остаётся в легаси». Отброшенное (drop) значит «не переносить», а не «удалить»: удалять можно только drop без живых читателей. Сейчас список пуст — перенесённое (carried_and_kept), Plus (derived_and_kept) и все отброшенные поля, включая поля входа (dropped_but_read), читает действующий код; сторож cleanup_readers_guard.test.ts. Пути с «…», <uid> или <masked> не удаляются никогда. keep_in_place (монеты/руны, серия, экзамены, достижения/статистика, открытые уроки) остаются в хранилищах 2.0 и НИКОГДА не удаляются (решение Fable за владельца).",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -11,13 +11,17 @@
     "status",
     "applyAllowed",
     "pendingDomainCount",
+    "keptInPlaceCount",
+    "carriedAndKeptCount",
     "inventory",
     "totals",
     "carried",
+    "carriedSources",
     "dropped",
     "derived",
     "held",
     "informational",
+    "keptInPlace",
     "runesToCoins",
     "conflicts",
     "operations",
@@ -44,7 +48,15 @@
       "type": "boolean"
     },
     "pendingDomainCount": {
-      "description": "Число полей carry_pending_domain (серия, экзамены, достижения, открытые уроки D121, руны → монеты): владелец решил их переносить, но домена в Account V2 нет. Пока > 0 — старый users/{uid} не чистить.",
+      "description": "Число полей carry_pending_domain — нет домена в Account V2 И нет решения (сейчас: SRS карточек наборов сообщества). Пока > 0 — старый users/{uid} не чистить. keep_in_place сюда НЕ входит.",
+      "$ref": "#/$defs/count"
+    },
+    "keptInPlaceCount": {
+      "description": "Число полей keep_in_place: остаются в действующих хранилищах 2.0, не переносятся и не удаляются чисткой.",
+      "$ref": "#/$defs/count"
+    },
+    "carriedAndKeptCount": {
+      "description": "Сколько перенесённых источников (carriedSources) остаются в старом users/{uid}: 2.0 читает их оттуда (оценки уроков — замки и экзамены; карточки, наборы, память свайпов — cloud_sync). Чистка их не удаляет.",
       "$ref": "#/$defs/count"
     },
     "inventory": {
@@ -59,7 +71,8 @@
         "dropped",
         "derived",
         "held",
-        "informational"
+        "informational",
+        "keptInPlace"
       ],
       "properties": {
         "carried": {
@@ -77,12 +90,22 @@
         },
         "informational": {
           "$ref": "#/$defs/count"
+        },
+        "keptInPlace": {
+          "$ref": "#/$defs/count"
         }
       }
     },
     "carried": {
       "description": "Перенесённые сущности по доменам.",
       "$ref": "#/$defs/byEntityType"
+    },
+    "carriedSources": {
+      "description": "Базовые пути полей, из которых выданы операции переноса (reason — тип сущности или flashcard_srs). Только эти пути чистка считает «перенесёнными».",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/entry"
+      }
     },
     "dropped": {
       "description": "Отброшено по решению владельца: у каждой записи есть ссылки на решения D-номерами.",
@@ -99,21 +122,28 @@
       }
     },
     "held": {
-      "description": "Блокирующий HOLD: решения нет, поле неизвестно, значение битое, неполные страницы, HOLD всего аккаунта (путь $: owner_mismatch, identity_hidden, anon_merge_pending).",
+      "description": "Блокирующий HOLD: решения нет, поле неизвестно, значение битое, неполные страницы, ES/DE 40–59% без списка открытых уроков (lesson_unlock_unprovable), ключ со скобками (ambiguous_key), HOLD всего аккаунта (путь $: owner_mismatch, identity_hidden, anon_merge_pending).",
       "type": "array",
       "items": {
         "$ref": "#/$defs/entry"
       }
     },
     "informational": {
-      "description": "Информационно, НЕ блокирует перенос: no_v2_domain, carry_pending_domain (владелец решил переносить — серия, экзамены, достижения, открытые уроки D121, руны — но домена в Account V2 ещё нет; путь поля точный; блокирует ЧИСТКУ старых данных), счётчики валют, SRS без карточки.",
+      "description": "Информационно, НЕ блокирует перенос: no_v2_domain, carry_pending_domain (нет домена и решения — блокирует ЧИСТКУ), счётчики валют, SRS без карточки. EN/FR 40–59% без списка открытых уроков — lesson_unlock_list_absent.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/entry"
+      }
+    },
+    "keptInPlace": {
+      "description": "keep_in_place: coins_ledger_authoritative (руны = монеты 1:1 в серверном леджере), kept_in_v2_store (серия, экзамены, достижения/статистика, открытые уроки D121). Allowlist «не трогать» для чистки.",
       "type": "array",
       "items": {
         "$ref": "#/$defs/entry"
       }
     },
     "runesToCoins": {
-      "description": "Руны → монеты (решения 6 и 10, D03): курс 1:1. Домена монет в Account V2 нет — только сумма, операций начисления нет; поле stars учтено в pendingDomainCount. Звёзды (v2_access_stars) не переносятся (OD10).",
+      "description": "Руны → монеты (решения 6 и 10, D03): курс 1:1 = переименование в серверном леджере, баланс остаётся на месте (keep_in_place). Только сумма, операций нет. Звёзды (v2_access_stars) не переносятся (OD10).",
       "type": "object",
       "additionalProperties": false,
       "required": [
@@ -291,6 +321,7 @@
       "additionalProperties": false,
       "required": [
         "carry",
+        "keep_in_place",
         "carry_pending_domain",
         "drop",
         "derive",
@@ -299,6 +330,9 @@
       ],
       "properties": {
         "carry": {
+          "$ref": "#/$defs/count"
+        },
+        "keep_in_place": {
           "$ref": "#/$defs/count"
         },
         "carry_pending_domain": {

@@ -1,8 +1,11 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { ScrollView, StyleSheet, Text, View, type StyleProp, type ViewStyle } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import Animated, { Easing, useAnimatedStyle, useSharedValue, withDelay, withTiming } from "react-native-reanimated";
 import { lv2Alpha, lv2CardStyle, lv2NodePaint, useLv2Glass } from "./LearningV2Glass";
 import PressableHybrid from "../PressableHybrid";
+import LearningV2MapNode from "../LearningV2MapNode";
+import LearningV2RuneFlight, { type LearningV2RuneFlightPoint } from "../LearningV2RuneFlight";
 import { triLang, type Lang } from "../../constants/i18n";
 import {
   buildLearningV2CourseAccordionMapFromPreparedProgressV1,
@@ -41,6 +44,8 @@ interface Props {
   onSessionCompleted?: (point: { x: number; y: number }) => void;
   navigationControl?: React.ReactNode;
   headerAccessory?: React.ReactNode;
+  /** Куда летят монеты с пройденного узла (чип баланса в шапке). Нет — начало headerAccessory. */
+  coinTargetRef?: React.RefObject<View | null>;
   renderLessonCard?: (props: {
     readonly title: string;
     readonly ordinal: number;
@@ -54,6 +59,42 @@ interface Props {
 
 type SessionRow = Extract<LearningV2CourseAccordionRowV1, { kind: "session" }>;
 
+const REVEAL_EASE = Easing.bezier(0.23, 1, 0.32, 1);
+/** Монет в полёте с узла — как в макете (три монеты по дуге 620 мс, каскад 90 мс). */
+const NODE_FLIGHT_COINS = 3;
+const NODE_SIZE = 64;
+
+/**
+ * Раскрытие карты (learning-v2.html, анимация «Раскрытие карты»): элемент поднимается на 6 px
+ * из почти полной видимости (.88) за 150 мс, каскадом по индексу. Меняются только
+ * opacity/transform — первый кадр уже в финальной геометрии, ничего не прыгает.
+ * play=false (reduceMotion или повторный показ) — сразу финальный кадр.
+ */
+function Lv2Reveal({ index, play, style, children }: Readonly<{
+  index: number;
+  play: boolean;
+  style?: StyleProp<ViewStyle>;
+  children: React.ReactNode;
+}>) {
+  const playOnMount = useRef(play).current;
+  const progress = useSharedValue(playOnMount ? 0 : 1);
+  useEffect(() => {
+    if (!playOnMount) return;
+    progress.value = withDelay(
+      60 + Math.min(index, 6) * 24,
+      withTiming(1, { duration: 150, easing: REVEAL_EASE }),
+    );
+  }, [index, playOnMount, progress]);
+  const revealStyle = useAnimatedStyle(() => ({
+    opacity: 0.88 + progress.value * 0.12,
+    transform: [
+      { translateY: (1 - progress.value) * 6 },
+      { scale: 0.985 + progress.value * 0.015 },
+    ],
+  }));
+  return <Animated.View style={[style, revealStyle]}>{children}</Animated.View>;
+}
+
 function currentLessonOrdinal(currentSessionId: string | null): number {
   const match = /^lesson-(\d+):session:\d+$/.exec(currentSessionId ?? "");
   return match ? Number(match[1]) : 1;
@@ -63,6 +104,37 @@ export default function LearningV2ChaptersCourse(props: Props) {
   // зачем (learning-v2.html, вариант «Главы»): карточки глав, узлы и «Все уроки» — на токенах
   // Liquid Glass активной темы; логика выбора урока и глав осталась прежней.
   const g = useLv2Glass();
+  // зачем (владелец 2026-09-30, learning-v2.html «Анимации — живые»): у боевой карты «Главы»
+  // появились вступительное раскрытие (один раз за жизнь экрана, как у карты А) и прохождение
+  // узла: узел садится (1.08 → 1), следующий «выстреливает» (.7 → 1.1 → 1) с гало, монеты летят
+  // с узла в чип баланса. Узлы рисует общий LearningV2MapNode — та же механика, что у карты А.
+  const [introReveal] = useState(() => !props.reducedMotion);
+  const [coinFlight, setCoinFlight] = useState<Readonly<{
+    key: number;
+    from: LearningV2RuneFlightPoint;
+    to: LearningV2RuneFlightPoint;
+  }> | null>(null);
+  const flightSeqRef = useRef(0);
+  const headerAccessoryRef = useRef<View>(null);
+  const { coinTargetRef, onSessionCompleted, reducedMotion } = props;
+  const handleNodeCompleted = useCallback((from: LearningV2RuneFlightPoint) => {
+    onSessionCompleted?.(from);
+    if (reducedMotion) return;
+    const target = coinTargetRef?.current ?? headerAccessoryRef.current;
+    if (!target) {
+      if (__DEV__) console.log("[LV2-MAP-FLIGHT] skip: no_target");
+      return;
+    }
+    target.measureInWindow((x, y, w, h) => {
+      if (w <= 0 || h <= 0) {
+        if (__DEV__) console.log("[LV2-MAP-FLIGHT] skip: target_not_laid_out", JSON.stringify({ w, h }));
+        return;
+      }
+      flightSeqRef.current += 1;
+      setCoinFlight({ key: flightSeqRef.current, from, to: { x: x + Math.min(w / 2, 18), y: y + h / 2 } });
+    });
+  }, [coinTargetRef, onSessionCompleted, reducedMotion]);
+  const clearCoinFlight = useCallback(() => setCoinFlight(null), []);
   const [allLessonsOpen, setAllLessonsOpen] = useState(false);
   const [expandedChapter, setExpandedChapter] = useState<number | null>(null);
   const canonicalCurrentLessonOrdinal = currentLessonOrdinal(props.currentSessionId);
@@ -139,10 +211,10 @@ export default function LearningV2ChaptersCourse(props: Props) {
     <View style={styles.header}>
       {props.navigationControl}
       <View style={styles.titleBlock}><Text style={[styles.lessonKicker, { color: g.secondary }]}>{triLang(props.lang, { ru: `Урок ${selectedLessonOrdinal}`, en: `Lesson ${selectedLessonOrdinal}`, uk: `Урок ${selectedLessonOrdinal}`, es: `Lección ${selectedLessonOrdinal}`, "pt-BR": `Lição ${selectedLessonOrdinal}`, vi: `Bài ${selectedLessonOrdinal}`, id: `Pelajaran ${selectedLessonOrdinal}`, tr: `Ders ${selectedLessonOrdinal}`, pl: `Lekcja ${selectedLessonOrdinal}` })}</Text><Text style={[styles.headerTitle, { color: g.text }]}>{currentLessonTitle}</Text></View>
-      {props.headerAccessory}
+      <View ref={headerAccessoryRef} collapsable={false}>{props.headerAccessory}</View>
     </View>
     <ScrollView contentContainerStyle={[styles.list, { paddingBottom: props.bottomPadding }]}>
-      {chapterRows.map((chapter) => {
+      {chapterRows.map((chapter, chapterIndex) => {
         const chapterSessions = sessionRows.filter((row) => row.chapterOrdinal === chapter.chapterOrdinal);
         const completedCount = chapterSessions.filter((row) => row.state === "completed").length;
         const isExpanded = expandedChapter === chapter.chapterOrdinal;
@@ -152,14 +224,14 @@ export default function LearningV2ChaptersCourse(props: Props) {
         const firstOrdinal = chapterSessions[0]?.sessionOrdinal ?? (chapter.chapterOrdinal - 1) * 8 + 1;
         const lastOrdinal = chapterSessions[chapterSessions.length - 1]?.sessionOrdinal ?? chapter.chapterOrdinal * 8;
         const sessionsWord = triLang(props.lang, { ru: "Занятия", en: "Sessions", uk: "Заняття", es: "Sesiones", "pt-BR": "Sessões", vi: "Phiên", id: "Sesi", tr: "Oturumlar", pl: "Sesje" });
-        return <View key={chapter.id} style={[styles.chapter, lv2CardStyle(g, 22)]}>
+        return <Lv2Reveal key={chapter.id} index={chapterIndex} play={introReveal} style={[styles.chapter, lv2CardStyle(g, 22)]}>
           <PressableHybrid variant="card" testID={`learning-v2-chapter-${chapter.chapterOrdinal}`} accessibilityLabel={`${triLang(props.lang, { ru: "Глава", en: "Chapter", uk: "Розділ", es: "Capítulo", "pt-BR": "Capítulo", vi: "Chương", id: "Bab", tr: "Bölüm", pl: "Rozdział" })} ${chapter.chapterOrdinal}`} onPress={() => toggleChapter(chapter.chapterOrdinal)} style={styles.chapterPress} contentStyle={styles.chapterPressContent}>
             <View style={[styles.chapterTile, { backgroundColor: g.opaqueControl }]}><Ionicons name={chapterState === "done" ? "checkmark" : chapterState === "locked" ? "lock-closed" : "trophy-outline"} size={24} color={chapterState === "locked" ? g.mutedText : g.text} /></View>
             <View style={styles.chapterCopy}><Text style={[styles.chapterTitle, { color: g.text }]}>{triLang(props.lang, { ru: "Глава", en: "Chapter", uk: "Розділ", es: "Capítulo", "pt-BR": "Capítulo", vi: "Chương", id: "Bab", tr: "Bölüm", pl: "Rozdział" })} {chapter.chapterOrdinal}</Text><Text style={[styles.chapterSub, { color: g.secondary }]}>{sessionsWord} {firstOrdinal}–{lastOrdinal}</Text></View>
             <Text style={[styles.chapterFrac, { color: g.secondary }]}><Text style={{ color: g.text, fontWeight: "700" }}>{completedCount}</Text>/8</Text>
             <Ionicons name={isExpanded ? "chevron-up" : "chevron-down"} size={20} color={g.secondary} />
           </PressableHybrid>
-          {isExpanded ? <View style={styles.sessions}>{chapterSessions.map((row) => {
+          {isExpanded ? <View style={styles.sessions}>{chapterSessions.map((row, sessionIndex) => {
             const hasMaterial = props.isSessionMaterialAvailable?.(row.lessonOrdinal, row.sessionOrdinal) ?? true;
             const isCheckpoint = row.role === "chapter_checkpoint";
             const isExam = row.role === "final_exam";
@@ -167,22 +239,47 @@ export default function LearningV2ChaptersCourse(props: Props) {
             const paint = lv2NodePaint(g, row.state, available);
             const icon = !hasMaterial ? "construct-outline" : row.state === "completed" ? "checkmark" : isCheckpoint || isExam ? "trophy" : row.state === "locked" ? "lock-closed" : available ? "play" : "lock-closed";
             const stars = row.state === "completed" ? Math.max(1, props.stars[row.id] ?? 1) : 0;
-            return <PressableHybrid key={row.id} variant="card" testID={`learning-v2-chapter-session-${row.sessionOrdinal}`} accessibilityLabel={`${row.sessionOrdinal}`} accessibilityState={{ disabled: !hasMaterial }} disabled={!hasMaterial} onPress={hasMaterial ? () => onSessionPress(row.lessonOrdinal, row.sessionOrdinal, row.state) : undefined} style={[styles.session, { opacity: hasMaterial ? 1 : 0.62 }]} contentStyle={styles.sessionContent}>
-              <View style={styles.nodeWrap}>
-                <View style={[styles.nodePlate, { backgroundColor: paint.face }]}><View style={styles.nodePlateShade} /></View>
-                <View style={[styles.nodeFace, { backgroundColor: paint.face }]}>
-                  <Ionicons name={icon} size={24} color={paint.ink} />
-                  <Text style={[styles.nodeNumber, { color: paint.ink }]}>{row.sessionOrdinal}</Text>
-                </View>
-                {stars > 0 ? <View style={[styles.nodeStars, { backgroundColor: g.opaqueControl, borderColor: g.glassEdge }]}>{[0, 1, 2].map((starIndex) => <Ionicons key={starIndex} name="star" size={11} color={starIndex < stars ? g.text : lv2Alpha(g.text, 0.2)} />)}</View> : null}
-              </View>
+            return <View key={row.id} style={[styles.session, { opacity: hasMaterial ? 1 : 0.62 }]}>
+              <Lv2Reveal index={sessionIndex} play={!props.reducedMotion} style={styles.nodeWrap}>
+                <LearningV2MapNode
+                  testID={`learning-v2-chapter-session-${row.sessionOrdinal}`}
+                  state={row.state}
+                  width={NODE_SIZE}
+                  height={NODE_SIZE}
+                  radius={NODE_SIZE / 2}
+                  faceColor={paint.face}
+                  haloColor={row.state === "current" && available ? g.text : undefined}
+                  accessible={available}
+                  active={props.active}
+                  reduceMotion={props.reducedMotion}
+                  accessibilityLabel={`${row.sessionOrdinal}`}
+                  onPress={hasMaterial ? () => onSessionPress(row.lessonOrdinal, row.sessionOrdinal, row.state) : undefined}
+                  disabled={!hasMaterial}
+                  onCompletedTransition={handleNodeCompleted}
+                >
+                  <View style={styles.nodeInner}>
+                    <Ionicons name={icon} size={24} color={paint.ink} />
+                    <Text style={[styles.nodeNumber, { color: paint.ink }]}>{row.sessionOrdinal}</Text>
+                  </View>
+                </LearningV2MapNode>
+                {stars > 0 ? <View pointerEvents="none" style={[styles.nodeStars, { backgroundColor: g.opaqueControl, borderColor: g.glassEdge }]}>{[0, 1, 2].map((starIndex) => <Ionicons key={starIndex} name="star" size={11} color={starIndex < stars ? g.text : lv2Alpha(g.text, 0.2)} />)}</View> : null}
+              </Lv2Reveal>
               <Text style={[styles.sessionLabel, { color: row.state === "current" ? g.text : g.secondary, fontWeight: row.state === "current" ? "800" : "700" }]}>{triLang(props.lang, { ru: `Сессия ${row.sessionOrdinal}`, en: `Session ${row.sessionOrdinal}`, uk: `Сесія ${row.sessionOrdinal}`, es: `Sesión ${row.sessionOrdinal}`, "pt-BR": `Sessão ${row.sessionOrdinal}`, vi: `Phiên ${row.sessionOrdinal}`, id: `Sesi ${row.sessionOrdinal}`, tr: `Oturum ${row.sessionOrdinal}`, pl: `Sesja ${row.sessionOrdinal}` })}</Text>
-            </PressableHybrid>;
+            </View>;
           })}</View> : <View style={[styles.chapterTrack, { backgroundColor: g.opaqueControl }]}><View style={[styles.chapterTrackFill, { backgroundColor: g.cta, width: `${Math.round(completedCount / 8 * 100)}%` }]} /></View>}
-        </View>;
+        </Lv2Reveal>;
       })}
       <PressableHybrid variant="card" testID="learning-v2-all-lessons" accessibilityLabel={triLang(props.lang, { ru: "Все уроки", en: "All lessons", uk: "Усі уроки", es: "Todas las lecciones", "pt-BR": "Todas as lições", vi: "Tất cả bài học", id: "Semua pelajaran", tr: "Tüm dersler", pl: "Wszystkie lekcje" })} onPress={() => setAllLessonsOpen(true)} style={[styles.allLessons, { backgroundColor: g.opaqueControl }]} contentStyle={styles.allLessonsContent}><Ionicons name="list-outline" size={20} color={g.text} /><Text style={[styles.allLessonsText, { color: g.text }]}>{triLang(props.lang, { ru: "Все уроки", en: "All lessons", uk: "Усі уроки", es: "Todas las lecciones", "pt-BR": "Todas as lições", vi: "Tất cả bài học", id: "Semua pelajaran", tr: "Tüm dersler", pl: "Wszystkie lekcje" })}</Text></PressableHybrid>
     </ScrollView>
+    {coinFlight ? (
+      <LearningV2RuneFlight
+        key={coinFlight.key}
+        from={coinFlight.from}
+        to={coinFlight.to}
+        count={NODE_FLIGHT_COINS}
+        onDone={clearCoinFlight}
+      />
+    ) : null}
   </View>;
 }
 
@@ -199,12 +296,9 @@ const styles = StyleSheet.create({
   chapterTrack: { height: 7, borderRadius: 4, marginTop: 2, marginBottom: 14, marginHorizontal: 20, overflow: "hidden" },
   chapterTrackFill: { height: "100%", borderRadius: 4 },
   sessions: { paddingHorizontal: 6, paddingBottom: 10, paddingTop: 6, flexDirection: "row", flexWrap: "wrap", rowGap: 18 },
-  session: { width: "25%", alignItems: "center" },
-  sessionContent: { minHeight: 96, paddingHorizontal: 2, alignItems: "center", justifyContent: "flex-start", gap: 8 },
+  session: { width: "25%", minHeight: 96, paddingHorizontal: 2, alignItems: "center", justifyContent: "flex-start", gap: 8 },
   nodeWrap: { width: 64, height: 70, alignItems: "center" },
-  nodePlate: { position: "absolute", left: 0, right: 0, top: 6, height: 64, borderRadius: 32, overflow: "hidden" },
-  nodePlateShade: { flex: 1, backgroundColor: "rgba(0,0,0,0.32)" },
-  nodeFace: { width: 64, height: 64, borderRadius: 32, alignItems: "center", justifyContent: "center", gap: 1 },
+  nodeInner: { alignItems: "center", justifyContent: "center", gap: 1 },
   nodeNumber: { fontSize: 12, lineHeight: 15, fontWeight: "700" },
   nodeStars: { position: "absolute", bottom: -10, minHeight: 20, paddingHorizontal: 6, borderRadius: 10, borderWidth: StyleSheet.hairlineWidth, flexDirection: "row", alignItems: "center", gap: 1 },
   sessionLabel: { width: 82, fontSize: 11, lineHeight: 14, textAlign: "center", marginTop: 10 },

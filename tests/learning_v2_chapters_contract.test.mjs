@@ -68,7 +68,9 @@ assert.match(
 );
 assert.match(
   source,
-  /accessibilityState=\{\{ disabled: !hasMaterial \}\} disabled=\{!hasMaterial\}/,
+  // зачем (2026-09-30): узел теперь общий LearningV2MapNode (анимация прохождения узла);
+  // он сам ставит accessibilityState.disabled из того же пропа disabled.
+  /disabled=\{!hasMaterial\}/,
   "the pressable primitive must receive the same disabled state exposed to assistive technology",
 );
 

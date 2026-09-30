@@ -2363,6 +2363,7 @@ export default function LessonsTab({
     >
   >(() => boot?.examResults ?? {});
   const scrollRef = useRef<any>(null);
+  const learningV2CoinTargetRefHolder = useRef<View>(null);
   const {
     GestureWrap: BouncyWrap,
     stretch: bouncyStretch,
@@ -4645,6 +4646,9 @@ export default function LessonsTab({
       />
     </PressableHybrid>
   ) : null;
+  // зачем (learning-v2.html «Прохождение узла + полёт монет»): монеты с пройденного узла карты
+  // «Главы» летят ровно в этот чип баланса.
+  const learningV2CoinTargetRef = learningV2CoinTargetRefHolder;
   const learningV2ResourceHud = <View testID="learning-v2-resource-hud" style={{ flexDirection: "row", alignItems: "center", gap: 7, flexShrink: 0 }}>
               {learningV2DevUnlockControl}
               {/* зачем (владелец 2026-09-21): «верни кнопку словаря в хедере».
@@ -4714,6 +4718,7 @@ export default function LessonsTab({
                 </PressableHybrid>
               ) : null}
               <View
+                ref={learningV2CoinTargetRef}
                 collapsable={false}
                 style={{ backgroundColor: t.bgCard, borderRadius: 999, paddingHorizontal: 7 }}
               >
@@ -5112,6 +5117,7 @@ export default function LessonsTab({
               scopeKey={learningV2ProjectionScopeKey}
               topPadding={headerTopPad}
               headerAccessory={learningV2ResourceHud}
+              coinTargetRef={learningV2CoinTargetRef}
               navigationControl={
                 <PressableHybrid
                   testID="learning-v2-back-home"

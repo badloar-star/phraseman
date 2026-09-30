@@ -51,7 +51,10 @@ interface Props {
   active: boolean;
   reduceMotion: boolean;
   accessibilityLabel: string;
-  onPress: () => void;
+  /** Нет — узел не нажимается вовсе (например, у занятия ещё нет материала). */
+  onPress?: () => void;
+  /** Узел полностью выключен: ни отказа, ни обработчика, для экранного диктора — disabled. */
+  disabled?: boolean;
   /** Центр узла в оконных координатах в момент перехода next/current → completed
    *  — старт полёта звёзд в баланс (сцена A5, выбор владельца «чип в шапке»). */
   onCompletedTransition?: (point: { x: number; y: number }) => void;
@@ -267,6 +270,7 @@ export const LearningV2MapNode = memo(function LearningV2MapNode({
   reduceMotion,
   accessibilityLabel,
   onPress,
+  disabled = false,
   onCompletedTransition,
   style,
   testID,
@@ -299,7 +303,7 @@ export const LearningV2MapNode = memo(function LearningV2MapNode({
       hapticTap();
       pressHandlersRef.current?.denial();
     }
-    onPress();
+    onPress?.();
   };
 
   const halo = showHalo ? (
@@ -317,7 +321,8 @@ export const LearningV2MapNode = memo(function LearningV2MapNode({
       collapsable={false}
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel}
-      accessibilityState={{ disabled: !accessible }}
+      accessibilityState={{ disabled: !accessible || disabled }}
+      disabled={disabled}
       hitSlop={6}
       onPressIn={pressIn}
       onPressOut={pressOut}

@@ -98,3 +98,18 @@ test("итог занятия: LG-ядро HorizonResultGlass по макету 
   assert.match(core, /reducedMotion/u);
   assert.doesNotMatch(core, /AsyncStorage/u, "празднование не durable");
 });
+
+test("боевая карта «Главы»: раскрытие карты и прохождение узла с полётом монет", () => {
+  const map = read("components/learning-v2/LearningV2ChaptersCourse.tsx");
+  // Узел — общий LearningV2MapNode: посадка 1.08 → 1, выстрел следующего .7 → 1.1 → 1, гало.
+  assert.match(map, /<LearningV2MapNode/u);
+  assert.match(map, /onCompletedTransition=\{handleNodeCompleted\}/u);
+  // Монеты летят с узла в чип баланса (три монеты, как в макете).
+  assert.match(map, /<LearningV2RuneFlight/u);
+  assert.match(map, /const NODE_FLIGHT_COINS = 3/u);
+  // Раскрытие: 6 px подъём, 150 мс, каскад; только один раз за жизнь экрана и не при reduceMotion.
+  assert.match(map, /function Lv2Reveal/u);
+  assert.match(map, /const \[introReveal\] = useState\(\(\) => !props\.reducedMotion\)/u);
+  const lessons = read("app/(tabs)/lessons.tsx");
+  assert.match(lessons, /coinTargetRef=\{learningV2CoinTargetRef\}/u);
+});

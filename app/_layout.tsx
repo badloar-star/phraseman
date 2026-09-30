@@ -419,6 +419,9 @@ const POST_ONBOARDING_GOLD_BRIDGE_CTA = ['#FFF0B5', '#E2A923'] as const;
 const POST_ONBOARDING_GOLD_BRIDGE_TEXT = '#3F2C08';
 
 
+/** Сколько ждём, пока expo-router сам откроет тёплую ссылку, прежде чем открыть её вручную. */
+const WARM_DEEP_LINK_SELF_OPEN_WAIT_MS = 400;
+
 function normalizeWarmDeepLink(url: string): string | null {
   const normalized = redirectSystemPath({ path: url, initial: false });
   return normalized && normalized !== '/' ? normalized : null;
@@ -920,6 +923,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const pathname = usePathname();
   const pathnameRef = useRef(pathname);
   pathnameRef.current = pathname;
+  const warmDeepLinkTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const coldExamBestPctRestoreOptions = useMemo(() => ({
     canPublishExamBestPctOverlay: () => {
       const currentPath = pathnameRef.current;
@@ -1351,11 +1355,36 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       return;
     }
 
-    if (__DEV__) {
-      console.log("[V2-PAGE] deeplink:push", JSON.stringify({ target }));
-    }
-    router.push(target as Href);
+    // зачем (эмулятор 30.09): expo-router САМ открывает тёплую ссылку через
+    // redirectSystemPath, а этот слушатель открывал её второй раз — в стеке
+    // лежали две копии экрана. Первое «назад» снимало копию и выглядело
+    // мёртвым, а у неизвестной ссылки нижняя заглушка +not-found оставалась
+    // пустым экраном навсегда. Путь в этот момент ещё старый (замер: push шёл
+    // при currentPath=/home), поэтому ждём и открываем сами, только если
+    // навигация ссылку не открыла (онбординг, неготовый корень).
+    const targetPath = target.split(/[?#]/)[0]?.replace(/\/$/, '') || '';
+    // Таймер в ref, а не в cleanup эффекта: setPendingWarmDeepLink(null) выше
+    // сразу перезапускает эффект, и cleanup снял бы ожидание до срабатывания.
+    if (warmDeepLinkTimerRef.current) clearTimeout(warmDeepLinkTimerRef.current);
+    warmDeepLinkTimerRef.current = setTimeout(() => {
+      warmDeepLinkTimerRef.current = null;
+      const currentPath = pathnameRef.current?.replace(/\/$/, '') || '';
+      if (targetPath && targetPath === currentPath) {
+        if (__DEV__) {
+          console.log("[V2-PAGE] deeplink:skip_already_open", JSON.stringify({ target, currentPath }));
+        }
+        return;
+      }
+      if (__DEV__) {
+        console.log("[V2-PAGE] deeplink:push", JSON.stringify({ target, currentPath }));
+      }
+      router.push(target as Href);
+    }, WARM_DEEP_LINK_SELF_OPEN_WAIT_MS);
   }, [isBanned, pendingWarmDeepLink, ready, rootNavigationReady, router, showOnboarding]);
+
+  useEffect(() => () => {
+    if (warmDeepLinkTimerRef.current) clearTimeout(warmDeepLinkTimerRef.current);
+  }, []);
 
   useEffect(() => {
     if (!ready || !rootNavigationReady || effectiveShowOnboarding || isBanned || !isRootIndexRoute) return;

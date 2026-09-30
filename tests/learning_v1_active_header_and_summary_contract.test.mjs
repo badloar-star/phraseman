@@ -47,8 +47,17 @@ test('lesson menu projects the stored score to 0–3 stars and removes decimal a
   const compiled = ts.transpileModule(source.slice(functionStart, functionEnd), {
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 },
   }).outputText;
+  // зачем (30.09): меню урока больше не держит свои пороги — зовёт общую шкалу
+  // lessonStarCountFromPercent (D36/D121). Вырезанный кусок без импорта падал
+  // ReferenceError; подкладываем НАСТОЯЩУЮ шкалу, чтобы проверять реальные пороги.
+  const scaleModule = { exports: {} };
+  Function('module', 'exports', ts.transpileModule(read('app/lesson_star_scale.ts'), {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020, jsx: ts.JsxEmit.React },
+  }).outputText)(scaleModule, scaleModule.exports);
   const module = { exports: {} };
-  Function('module', 'exports', compiled)(module, module.exports);
+  Function('module', 'exports', 'lessonStarCountFromPercent', compiled)(
+    module, module.exports, scaleModule.exports.lessonStarCountFromPercent,
+  );
   const starCountFromPercent = module.exports.lessonMenuStarCountFromPercent;
   const starCount = module.exports.lessonMenuStarCount;
   assert.equal(starCountFromPercent(59), 1, '59% must project to 1 star');

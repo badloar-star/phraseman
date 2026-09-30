@@ -27,6 +27,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import StatsPremiumBlur from '../components/StatsPremiumBlur';
 import ActivityHeatmap365 from '../components/ActivityHeatmap365';
 import { StreakChainIcon } from '../components/StreakChainIcon';
+import StreakStagesModal from '../components/streak/StreakStagesModal';
 import { hapticTap } from '../hooks/use-haptics';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { commitPremiumFreeFreeze } from './economy/premium_free_freeze';
@@ -1337,6 +1338,8 @@ function StreakHeroCard({
     onFreezeStreak,
 }: StreakHeroCardProps) {
     const tone = 'streak' as const;
+    // зачем (макет results.html RES-08): тап по огню открывает «Стадии серии».
+    const [stagesOpen, setStagesOpen] = useState(false);
     // BUG 4: вся карточка — от главного акцента темы (единый hue).
     const accent = isGoldTheme ? GOLD_RICH.champagne : t.accent;
     const cardRadius = statsSurfaceRadius(themeMode, isGoldTheme ? 16 : 22);
@@ -1368,9 +1371,15 @@ function StreakHeroCard({
             {isGoldTheme ? <GoldBevel radius={16} intensity="normal" /> : null}
             <Pressable testID="stats-primary-series" onPress={onToggleSeries} style={({ pressed }) => [pressed && { opacity: 0.92 }]}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
-                    <View style={{ width: 62, height: 62, borderRadius: 20, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? GOLD_RICH.wash : accentTint(t.accent) }}>
+                    <Pressable
+                      testID="stats-streak-stages-open"
+                      accessibilityRole="button"
+                      accessibilityLabel={triLang(lang, { ru: 'Стадии серии', uk: 'Стадії серії', en: 'Streak stages', es: 'Etapas de la racha', 'pt-BR': 'Etapas da sequência', vi: 'Các giai đoạn chuỗi', id: 'Tahap rangkaian', tr: 'Seri aşamaları', pl: 'Etapy serii' })}
+                      onPress={() => setStagesOpen(true)}
+                      style={({ pressed }) => [{ width: 62, height: 62, borderRadius: 20, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? GOLD_RICH.wash : accentTint(t.accent) }, pressed && { opacity: 0.85 }]}
+                    >
                         <StreakChainIcon themeMode={themeMode} frozen={freezeActive} streakDays={totalStreak} size={46} inactive={!freezeActive && totalStreak <= 0} />
-                    </View>
+                    </Pressable>
                     <View style={{ flex: 1, minWidth: 0 }}>
                         <Text style={{ color: t.textPrimary, fontSize: f.numLg + 16, fontWeight: '900', lineHeight: (f.numLg + 16) * 1.05 }}>{totalStreak}</Text>
                         <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700', marginTop: 2 }}>{streakCaption}</Text>
@@ -1424,6 +1433,7 @@ function StreakHeroCard({
                     ) : null}
                 </Reanimated.View>
             ) : null}
+            <StreakStagesModal visible={stagesOpen} currentDays={totalStreak} onClose={() => setStagesOpen(false)} />
         </StatsCardArtSurface>
     );
 }

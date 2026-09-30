@@ -108,6 +108,18 @@ function StepBody({ lang, session, uid, studyTarget, showEnergy, onFinish, onAbo
               </Text>
             ) : null}
             {fb.mistakeSaved ? <Text style={[s.hintSub, { color: p.textSecondary }]}>{spireGameText(lang, 'mistakeSaved')}</Text> : null}
+            {/* зачем (владелец 30.09): ответ висит до «Дальше», таймер в это время стоит. */}
+            <V2Pressable
+              onPress={runner.continueAfterReveal}
+              disabled={runner.exitOpen}
+              accessibilityRole="button"
+              accessibilityLabel={spireGameText(lang, 'onward')}
+              style={[s.onward, { backgroundColor: p.cta }]}
+              testID="spire-step-continue"
+            >
+              <Text style={[s.onwardText, { color: p.ctaText }]}>{spireGameText(lang, 'onward')}</Text>
+              <Ionicons name="arrow-forward" size={18} color={p.ctaText} />
+            </V2Pressable>
           </View>
         ) : null}
         <Text style={[s.footer, { color: p.textSecondary }]}>{`${counter} / ${SPIRE_STEP_TASK_COUNT}`}</Text>
@@ -143,6 +155,8 @@ const s = StyleSheet.create({
   hintText: { fontSize: 16, lineHeight: 22 },
   hintBold: { fontWeight: '700' },
   hintSub: { fontSize: 14, lineHeight: 19 },
+  onward: { marginTop: 10, minHeight: 48, borderRadius: 24, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
+  onwardText: { fontSize: 17, fontWeight: '700' },
   footer: { marginTop: 22, textAlign: 'center', fontSize: 15, fontWeight: '600' },
 });
 

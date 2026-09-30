@@ -30,6 +30,7 @@ const S = {
   promptOdd: ['Найди лишнее', 'Знайди зайве', 'Find the odd one out', 'Encuentra la intrusa', 'Encontre o intruso', 'Tìm từ khác loại', 'Temukan yang berbeda', 'Farklı olanı bul', 'Znajdź niepasujące'],
   promptBuild: ['Собери перевод', 'Склади переклад', 'Build the translation', 'Arma la traducción', 'Monte a tradução', 'Ghép bản dịch', 'Susun terjemahan', 'Çeviriyi oluştur', 'Ułóż tłumaczenie'],
   promptMatch: ['Найди пары', 'Знайди пари', 'Match the pairs', 'Une las parejas', 'Ligue os pares', 'Nối các cặp', 'Cocokkan pasangan', 'Eşleri bul', 'Połącz pary'],
+  onward: ['Дальше', 'Далі', 'Continue', 'Continuar', 'Continuar', 'Tiếp tục', 'Lanjut', 'Devam', 'Dalej'],
   correctIs: ['Правильно:', 'Правильно:', 'Correct:', 'Correcto:', 'Correto:', 'Đáp án:', 'Benar:', 'Doğrusu:', 'Poprawnie:'],
   mistakeSaved: ['Ошибка сохранена в «Мои ошибки»', 'Помилку збережено в «Мої помилки»', 'Saved to “My mistakes”', 'Guardado en «Mis errores»', 'Salvo em “Meus erros”', 'Đã lưu vào “Lỗi của tôi”', 'Disimpan di “Kesalahanku”', '“Hatalarım”a kaydedildi', 'Zapisano w „Moje błędy”'],
   exitTitle: ['Выйти из ступени?', 'Вийти зі сходинки?', 'Leave the step?', '¿Salir del escalón?', 'Sair do degrau?', 'Rời bậc này?', 'Keluar dari anak tangga?', 'Basamaktan çıkılsın mı?', 'Opuścić stopień?'],

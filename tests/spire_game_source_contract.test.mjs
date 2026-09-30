@@ -139,3 +139,21 @@ test('pure modules stay pure and every new file stays small', () => {
     assert.ok(src.split('\n').length <= 400, `${name} is longer than 400 lines`);
   }
 });
+
+test('owner 30.09: the correct answer stays until «Дальше», the timer is stopped meanwhile', () => {
+  assert.ok(!runner.includes('SPIRE_STEP_REVEAL_MS'), 'no auto-advance after an error');
+  assert.ok(runner.includes('const continueAfterReveal = useCallback'), 'explicit continue');
+  assert.ok(runner.includes("if (cur.phase !== 'active' || exitOpenRef.current) return;"), 'timer ticks only in the active phase');
+  const step = read('components/spire/SpireStepScreen.tsx');
+  assert.ok(step.includes('onPress={runner.continueAfterReveal}'), '«Дальше» button');
+  assert.match(step, /onward: \{[^}]*minHeight: (4[4-9]|[5-9]\d)/, '«Дальше» is at least 44dp tall');
+});
+
+test('owner 30.09: rivals on the tower and «who is on this floor» come from the cached room only', () => {
+  const tower = read('components/spire/SpireTower.tsx');
+  const info = read('components/spire/SpireFloorInfo.tsx');
+  assert.ok(home.includes('spireRivalsByFloor(game.rows)'), 'rivals are derived from the cached room rows');
+  assert.ok(tower.includes('RivalsLayer') && tower.includes('`+${extra}`'), 'up to two rivals and «+N» left of the floor');
+  assert.ok(info.includes('testID="spire-floor-who"'), 'floor card shows who is on it');
+  for (const src of [tower, info]) assert.ok(!/firestore|spireSync|fetch\(/.test(src), 'no reads for rivals');
+});

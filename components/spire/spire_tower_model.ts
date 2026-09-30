@@ -89,3 +89,34 @@ export const SPIRE_TOWER_GEOM: SpireTowerGeom = buildGeom();
 export function spireMarkerXY(fl: SpireFloorGeom): Readonly<{ x: number; y: number }> {
   return { x: fl.x0 + fl.w + 34, y: fl.y + fl.h / 2 + 2 };
 }
+
+/**
+ * Этаж, на котором стоит игрок с N пройденными ступенями (floorOf макета).
+ * 0 ступеней → этаж 1; после вершины (135) → 16 «над облаками».
+ */
+export function spireFloorOfSteps(steps: number): number {
+  const n = Math.max(0, Math.trunc(steps) || 0);
+  for (let f = 1; f <= SPIRE_FLOOR_COUNT; f += 1) if (n < spireCumulativeSteps(f)) return f;
+  return SPIRE_FLOOR_COUNT + 1;
+}
+
+export type SpireRival = Readonly<{ uid: string; name: string }>;
+
+/**
+ * Соперники по этажам (onFloor макета): все строки комнаты, кроме своей, разложены
+ * по этажу их ступеней. зачем (владелец 30.09): «соперники слева от башни» и «кто на
+ * этом этаже» — из уже закэшированной комнаты, без новых чтений.
+ */
+export function spireRivalsByFloor(
+  rows: readonly Readonly<{ uid: string; name: string; steps: number; isMe: boolean }>[] | null,
+): ReadonlyMap<number, readonly SpireRival[]> {
+  const map = new Map<number, SpireRival[]>();
+  for (const r of rows ?? []) {
+    if (r.isMe) continue;
+    const f = Math.min(spireFloorOfSteps(r.steps), SPIRE_FLOOR_COUNT);
+    const list = map.get(f) ?? [];
+    list.push({ uid: r.uid, name: r.name });
+    map.set(f, list);
+  }
+  return map;
+}

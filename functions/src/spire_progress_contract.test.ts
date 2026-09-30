@@ -99,7 +99,7 @@ describe('spireEvaluateBatch', () => {
     expect(out.acceptedPassed).toBe(1);
   });
 
-  test('прошлая неделя, будущее время и пересечение ступеней отвергаются', () => {
+  test('прошлая неделя и будущее время отвергаются; «наехавшая» по времени ступень принимается (владелец 30.09: сервер только синхронизирует)', () => {
     const out = spireEvaluateBatch(input([
       report(1, { weekKey: '2026-W38' }),
       report(2, { completedAtMs: NOW + 10 * 60_000 }),
@@ -110,7 +110,8 @@ describe('spireEvaluateBatch', () => {
     expect(byId.r1).toMatchObject({ verdict: 'rejected', reason: 'stale_week' });
     expect(byId.r2).toMatchObject({ verdict: 'rejected', reason: 'clock_ahead' });
     expect(byId.r3).toMatchObject({ verdict: 'accepted' });
-    expect(byId.r4).toMatchObject({ verdict: 'rejected', reason: 'overlap' });
+    expect(byId.r4).toMatchObject({ verdict: 'accepted', outcome: 'passed' });
+    expect(out.acceptedPassed).toBe(2);
   });
 
   test('О-275-3: отчёт из старой недели за 5 мин до полуночи — принят (окно 10 мин), за 20 мин — отклонён', () => {

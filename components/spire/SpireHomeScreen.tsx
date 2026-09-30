@@ -55,7 +55,7 @@ import SpireWeekResultCard from './SpireWeekResultCard';
 import type { SpireMemberRow } from './spire_room_types';
 import { spireText, spireTimeLeftText } from './spire_strings';
 import { spireGameText } from './spire_game_strings';
-import { SPIRE_FLOOR_COUNT, spireCurrentWeekKey, spireTimeLeft } from './spire_tower_model';
+import { SPIRE_FLOOR_COUNT, spireCurrentWeekKey, spireRivalsByFloor, spireTimeLeft } from './spire_tower_model';
 
 const LOG = '[SPIRE]';
 const DASH = '—';
@@ -178,6 +178,8 @@ export default function SpireHomeScreen() {
     [game.rows],
   );
   const offline = game.roomLoad?.status === 'offline';
+  // Соперники по этажам — из уже закэшированной комнаты (0 новых чтений).
+  const rivals = useMemo(() => spireRivalsByFloor(game.rows), [game.rows]);
   const allSubtitle = `${game.tier !== null ? spireTierName(game.tier, lang) : DASH} · ${spireGameText(lang, 'peopleN', { n: members?.length ?? 0 })} · ${spireGameText(lang, 'rankedBySteps')}`;
 
   if (config === null) return <View style={s.root} testID="spire-loading" />;
@@ -217,9 +219,9 @@ export default function SpireHomeScreen() {
           <SpireWeekResultCard lang={lang} result={game.weekResult} myCoinRank={myCoinRank} onClose={game.dismissWeekResult} />
         ) : null}
         <View style={s.towerWrap}>
-          <SpireTower lang={lang} myFloor={myFloor} selected={shownFloor} onSelect={onSelect} myCoinRank={myCoinRank} />
+          <SpireTower lang={lang} myFloor={myFloor} selected={shownFloor} onSelect={onSelect} myCoinRank={myCoinRank} rivalsByFloor={rivals} dimRivals={offline} />
         </View>
-        <SpireFloorInfo lang={lang} floor={shownFloor} myFloor={myFloor} stepInFloor={week ? week.stepInFloor : null} coins={config.coins} />
+        <SpireFloorInfo lang={lang} floor={shownFloor} myFloor={myFloor} stepInFloor={week ? week.stepInFloor : null} coins={config.coins} others={rivals.get(shownFloor)} />
         {/* Нет сети: свой маркер живой, чужие цифры приглушены (макет §11). */}
         <View style={offline ? s.dim : null}>
           <SpireFriendsRow lang={lang} friends={game.friends} />

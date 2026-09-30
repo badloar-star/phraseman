@@ -7,8 +7,8 @@
 //     первое задание так и не показалось (экран закрылся, упал) — возврат (refundOne);
 //   • 10 заданий, ОБЩИЙ таймер на ступень, 3 сердца — чистый редьюсер step_machine;
 //     вердикт мгновенный, без сети (отпечатки ответов из пакета недели);
-//   • ошибка: таймер стоит, показан правильный ответ, через SPIRE_STEP_REVEAL_MS
-//     следующее задание; сворачивание/звонок — пауза, «назад» — шторка, выход = провал.
+//   • ошибка: таймер стоит, показан правильный ответ до кнопки «Дальше» (владелец 30.09);
+//     сворачивание/звонок — пауза, «назад» — шторка, выход = провал.
 // Таймер тикает по реальной разнице часов раз в 250 мс, но перерисовывается
 // ТОЛЬКО кольцо (подписка clock), а не весь экран — без setState в каждом кадре.
 // ═══════════════════════════════════════════════════════════════════════════
@@ -20,7 +20,6 @@ import { spireRevealChoiceIndex, spireRevealItemIndexes, spireRevealTokens } fro
 import type { SpireStepPick } from '../../modules/spire/pack_plan';
 import { spireReportFromStepState, type SpireLang, type SpireStepReport } from '../../modules/spire/report_queue';
 import {
-  SPIRE_STEP_REVEAL_MS,
   advanceAfterReveal,
   backOutSpireStep,
   createSpireStepState,
@@ -208,22 +207,29 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
     return () => clearInterval(id);
   }, [phase, clock, commit, finish]);
 
-  // Показ правильного ответа закончился → следующее задание (или финал).
-  // Если в этот момент приложение свёрнуто — ждём возврата (см. п.5), не теряем шаг.
-  const scheduleAdvance = useCallback(() => {
-    later(() => {
-      const cur = stateRef.current;
-      if (cur.phase === 'failed' || cur.phase === 'passed') { setFeedback(null); finish(cur); return; }
-      if (cur.phase !== 'revealing') {
-        DebugLogger.info(LOG, `step: показ ответа закончился в фазе ${cur.phase} — продолжим после возврата`);
-        return;
-      }
-      const next = advanceAfterReveal(cur);
-      commit(next);
+  // «Дальше» после ошибки → следующее задание (или финал).
+  // зачем (владелец 30.09): правильный ответ висит, пока человек сам не нажмёт
+  // «Дальше» (вместо автоперехода через 1,2 с) — таймер всё это время стоит
+  // (тикает только фаза 'active'). Если нажали, пока приложение на паузе, — ждём.
+  const continueAfterReveal = useCallback(() => {
+    const cur = stateRef.current;
+    if (cur.phase === 'failed' || cur.phase === 'passed') {
+      DebugLogger.info(LOG, `step: «Дальше» после последней ошибки — финал (${cur.phase})`);
       setFeedback(null);
-      if (next.phase === 'passed') finish(next);
-    }, SPIRE_STEP_REVEAL_MS);
-  }, [commit, finish, later]);
+      finish(cur);
+      return;
+    }
+    if (cur.phase !== 'revealing') {
+      DebugLogger.info(LOG, `step: «Дальше» в фазе ${cur.phase} — игнорируем`);
+      return;
+    }
+    lastTickRef.current = Date.now();
+    const next = advanceAfterReveal(cur);
+    DebugLogger.info(LOG, `step: «Дальше» → фаза ${next.phase}, задание ${next.taskIndex + 1}`);
+    commit(next);
+    setFeedback(null);
+    if (next.phase === 'passed') finish(next);
+  }, [commit, finish]);
 
   // ── 5. Сворачивание / звонок — пауза, возврат — продолжение (T18) ──
   useEffect(() => {
@@ -235,7 +241,6 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
           const resumed = resumeSpireStep(cur);
           DebugLogger.info(LOG, `step: вернулись — продолжаем с той же точки бюджета (фаза ${resumed.phase})`);
           commit(resumed);
-          if (resumed.phase === 'revealing') scheduleAdvance();
         }
       } else if (cur.phase === 'active' || cur.phase === 'revealing') {
         DebugLogger.info(LOG, `step: приложение ушло в ${next} — пауза`);
@@ -243,7 +248,7 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
       }
     });
     return () => sub.remove();
-  }, [commit, scheduleAdvance]);
+  }, [commit]);
 
   // ── 6. Ответ ──
   const afterAnswer = useCallback((next: SpireStepState, fb: SpireFeedback, given: string, correct: string | readonly string[] | null) => {
@@ -257,8 +262,8 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
     const task = pick.tasks[fb.taskIndex];
     void spireCaptureMistake({ studyTarget: inputRef.current.studyTarget, attemptKey: `${inputRef.current.runId}:${fb.taskIndex}`, task, correct, given })
       .then((saved) => setFeedback((cur) => (cur && cur.taskIndex === fb.taskIndex && !cur.ok ? { ...cur, mistakeSaved: saved } : cur)));
-    scheduleAdvance();
-  }, [commit, finish, later, pick.tasks, scheduleAdvance]);
+    // Правильный ответ висит до «Дальше» (continueAfterReveal), автоперехода нет.
+  }, [commit, finish, later, pick.tasks]);
 
   const canAnswer = () => phase === 'playing' && stateRef.current.phase === 'active' && feedback === null && !exitOpen;
 
@@ -324,9 +329,8 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
       const resumed = resumeSpireStep(cur);
       DebugLogger.info(LOG, `step: шторка закрыта — снимаем паузу (фаза ${resumed.phase})`);
       commit(resumed);
-      if (resumed.phase === 'revealing') scheduleAdvance();
     }
-  }, [commit, scheduleAdvance]);
+  }, [commit]);
   const confirmExit = useCallback(() => {
     setExitOpen(false);
     const cur = stateRef.current;
@@ -345,7 +349,7 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
 
   return {
     phase, state, clock, feedback, exitOpen, displayTaskIndex,
-    submitChoice, submitTokens, submitItems, requestExit, cancelExit, confirmExit,
+    submitChoice, submitTokens, submitItems, requestExit, cancelExit, confirmExit, continueAfterReveal,
   };
 }
 

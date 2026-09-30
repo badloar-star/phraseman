@@ -138,3 +138,22 @@ describe('spire room rows', () => {
     expect(rows.find((r) => r.isMe)?.steps).toBe(2);
   });
 });
+
+describe('spire rivals by floor (cached room only)', () => {
+  it('maps steps to floors like the mockup and skips me', () => {
+    const { spireFloorOfSteps, spireRivalsByFloor } = jest.requireActual('../components/spire/spire_tower_model');
+    expect(spireFloorOfSteps(0)).toBe(1);
+    expect(spireFloorOfSteps(4)).toBe(1);
+    expect(spireFloorOfSteps(5)).toBe(2);
+    expect(spireFloorOfSteps(25)).toBe(4);
+    expect(spireFloorOfSteps(135)).toBe(16);
+    const map = spireRivalsByFloor([
+      { uid: 'a', name: 'A', steps: 25, isMe: false },
+      { uid: 'b', name: 'B', steps: 20, isMe: false },
+      { uid: 'me', name: 'Me', steps: 25, isMe: true },
+      { uid: 'c', name: 'C', steps: 500, isMe: false },
+    ]);
+    expect(map.get(4)?.map((r: { uid: string }) => r.uid)).toEqual(['a', 'b']);
+    expect(map.get(15)?.map((r: { uid: string }) => r.uid)).toEqual(['c']);
+  });
+});

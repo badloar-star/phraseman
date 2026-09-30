@@ -12,7 +12,6 @@
  * авторитетен всегда, сервер синхронизирует его в общий рейтинг комнаты, не
  * откатывает. Остаются только проверки ЦЕЛОСТНОСТИ данных (не правды):
  *   • отпечаток пакета недели совпадает с ожидаемым (`pack_mismatch`/`pack_unknown`);
- *   • ступени идут друг за другом во времени, не пересекаются (`overlap`);
  *   • не из будущего (`clock_ahead`) и не из прошлой недели (`stale_week`);
  *   • шпиль отчёта совпадает со шпилем комнаты (`tier_mismatch`);
  *   • форма отчёта корректна (`malformed`).
@@ -47,8 +46,6 @@ export type SpireLang = typeof SPIRE_LANGS[number];
 export const SPIRE_REPORT_MAX_BATCH = 60;
 /** Часы телефона могут спешить; больше двух минут «из будущего» — отказ. */
 export const SPIRE_CLOCK_SKEW_MS = 2 * 60_000;
-/** Две соседние ступени могут «наехать» на секунду из-за округления таймера. */
-export const SPIRE_STEP_OVERLAP_TOLERANCE_MS = 1_000;
 /** Верх для длительности одной ступени: бюджет этажа 1 ≈ 2 мин, пауза таймер не тратит. */
 export const SPIRE_STEP_MAX_DURATION_MS = 30 * 60_000;
 /**
@@ -112,8 +109,7 @@ export type SpireReportRejectReason =
   | 'clock_ahead'
   | 'pack_unknown'
   | 'pack_mismatch'
-  | 'tier_mismatch'
-  | 'overlap';
+  | 'tier_mismatch';
 
 export type SpireReportVerdict =
   | Readonly<{ reportId: string; verdict: 'accepted'; outcome: SpireStepOutcome }>
@@ -316,12 +312,12 @@ export function spireEvaluateBatch(input: SpireEvaluateInput): SpireBatchEvaluat
       reject('pack_mismatch');
       continue;
     }
-    const startedAtMs = report.completedAtMs - report.durationMs;
-    if (record.lastCompletedAtMs > 0 && startedAtMs < record.lastCompletedAtMs - SPIRE_STEP_OVERLAP_TOLERANCE_MS) {
-      // Ступень «началась» раньше, чем закончилась предыдущая — две сразу не играют.
-      reject('overlap');
-      continue;
-    }
+    // зачем (владелец 30.09, дословно: «убери сервер! сервер только для синхронизации
+    // уже полученного!»): прежний отказ 'overlap' судил по ВРЕМЕНИ, не «наехала» ли
+    // ступень на предыдущую, — тот же класс, что снятые 'too_fast'/'rate_limited'.
+    // Засчитанная на телефоне ступень принимается. Повтор той же ступени по-прежнему
+    // гасится якорем lastCompletedAtMs (verdict 'duplicate'), а монеты — ключом
+    // операции журнала по номеру ступени (spire_coins.ts), дважды не начисляются.
 
     if (report.outcome === 'failed') {
       // Провал не даёт очков, поэтому минимум времени к нему не применяется:

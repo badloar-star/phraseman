@@ -1,8 +1,3 @@
-import {
-  getFreeLessonLimit,
-  getFreeLessonsExtra,
-  getPremiumLessonsExtra,
-} from './remote_flags';
 import { isFeaturePremiumGated } from './feature_gates';
 import { isAlwaysOpenLesson, isMainCourseLesson } from './main_course_access';
 
@@ -25,7 +20,9 @@ export const FREE_LESSON_LIMIT = 3;
  * Всё остальное зарабатывается или покупается.
  */
 export const UNCONDITIONALLY_OPEN_LESSON_LIMIT = 1;
-export const BRONZE_UNLOCK_SCORE = 2.5;
+// зачем (D71, владелец 2026-09-30): следующий урок открывается от 2 звёзд, а не от бронзы 2.5.
+// Имя константы сохранено ради совместимости импортов; медаль «бронза» (medal_utils) остаётся 2.5.
+export const BRONZE_UNLOCK_SCORE = 2;
 const PREMIUM_SECTION_STARTERS = new Set([1, 9, 19, 29]);
 
 export type LessonAccessState =
@@ -34,17 +31,13 @@ export type LessonAccessState =
   | 'progress_required';
 
 /**
- * The main course is deliberately fail-closed: remote/legacy unlocks cannot
- * widen the three-lesson Free sample. Non-course content keeps its existing
- * remote-flag policy.
+ * The main course is deliberately fail-closed: the three-lesson Free sample
+ * is a local product contract.
  */
 export function isFreeLesson(lessonId: number): boolean {
   if (!Number.isFinite(lessonId) || lessonId < 1) return false;
   if (isMainCourseLesson(lessonId)) return lessonId <= FREE_LESSON_LIMIT;
-  if (!isFeaturePremiumGated('lessons')) return true;
-  if (getPremiumLessonsExtra().has(lessonId)) return false;
-  if (getFreeLessonsExtra().has(lessonId)) return true;
-  return lessonId <= getFreeLessonLimit();
+  return !isFeaturePremiumGated('lessons') || lessonId <= FREE_LESSON_LIMIT;
 }
 
 function normalizedLegacyFreeLessonCap(legacyFreeLessonCap?: number): number {

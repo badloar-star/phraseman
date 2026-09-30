@@ -14,6 +14,11 @@ jest.mock('../app/shards_system', () => ({
   semanticShardOperationId: jest.fn(),
 }));
 
+// зачем (PM-148): покупка урока за жемчуг выключена флагом. Этот набор сохраняет проверки денежной
+// границы спящего пути (Plus-граница, идемпотентность, откат), поэтому включает флаг только здесь;
+// отказ при выключенном флаге проверяет tests/lessons_pearl_unlock_retired.test.ts.
+jest.mock('../app/lessons_pearl_unlock_flag', () => ({ LESSON_PEARL_UNLOCK_ENABLED: true }));
+
 jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
 jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
 jest.mock('../app/lesson_lock_system', () => ({

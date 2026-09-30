@@ -86,8 +86,8 @@ describe('tryUnlockNextLesson', () => {
     expect(mockSetItem).toHaveBeenCalled();
   });
 
-  it('does not unlock when score < 2.5', async () => {
-    const result = await tryUnlockNextLesson(5, 2.0, undefined, true);
+  it('does not unlock when score < 2 (D71)', async () => {
+    const result = await tryUnlockNextLesson(5, 1.9, undefined, true);
     expect(result).toBe(false);
     expect(mockSetItem).not.toHaveBeenCalled();
   });
@@ -116,7 +116,7 @@ describe('getLessonLockInfo', () => {
     const info = await getLessonLockInfo(5);
     expect(info.isUnlocked).toBe(false);
     expect(info.prevLessonId).toBe(4);
-    expect(info.requiredScore).toBe(2.5);
+    expect(info.requiredScore).toBe(2); // зачем: D71 — порог открытия 2 звезды
   });
 });
 
@@ -131,7 +131,7 @@ describe('getLockMessageText', () => {
   it('returns Ukrainian message', () => {
     const msg = getLockMessageText(info, 'uk');
     expect(msg).toContain('3');
-    expect(msg).toContain('2.5');
+    expect(msg).toContain('>= 2,');
   });
 });
 

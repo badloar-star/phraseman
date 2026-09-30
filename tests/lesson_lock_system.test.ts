@@ -74,8 +74,8 @@ describe('tryUnlockNextLesson', () => {
     expect(await isLessonUnlocked(2)).toBe(true);
   });
 
-  it('score < 2.5 не открывает следующий урок', async () => {
-    const result = await tryUnlockNextLesson(1, 2.4);
+  it('score < 2 не открывает следующий урок (D71)', async () => {
+    const result = await tryUnlockNextLesson(1, 1.9);
     expect(result).toBe(false);
     expect(await isLessonUnlocked(2)).toBe(false);
   });
@@ -152,7 +152,7 @@ describe('isLessonUnlockedByEarnedProgress', () => {
   });
 
   it('оценка ниже бронзы не открывает второй урок', async () => {
-    store.lesson1_best_score = '2.4';
+    store.lesson1_best_score = '1.9';
     expect(await isLessonUnlockedByEarnedProgress(2)).toBe(false);
   });
 
@@ -213,7 +213,7 @@ describe('getLessonLockInfo', () => {
     const info = await getLessonLockInfo(4);
     expect(info.isUnlocked).toBe(false);
     expect(info.prevLessonId).toBe(3);
-    expect(info.requiredScore).toBe(2.5);
+    expect(info.requiredScore).toBe(2); // зачем: D71 — порог открытия 2 звезды
   });
 
   it('урок 2 закрыт без бронзы и открывается с ней', async () => {
@@ -240,7 +240,7 @@ describe('getLockMessageText', () => {
     const info = await getLessonLockInfo(7);
     const text = getLockMessageText(info, 'es');
     expect(text).toContain('6');
-    expect(text).toMatch(/2[,.]5|2,5/);
+    expect(text).toMatch(/al menos 2 /); // зачем: D71 — порог 2
   });
 });
 
@@ -354,8 +354,8 @@ describe('Граничные случаи', () => {
     expect(shouldAnnounceNextLessonUnlock(3, true, false)).toBe(false);
   });
 
-  it('score 2.49 не открывает урок', async () => {
-    await tryUnlockNextLesson(3, 2.49, undefined, true);
+  it('score 1.99 не открывает урок (D71)', async () => {
+    await tryUnlockNextLesson(3, 1.99, undefined, true);
     expect(await isLessonUnlocked(4)).toBe(false);
   });
 

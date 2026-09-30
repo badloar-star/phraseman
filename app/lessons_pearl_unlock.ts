@@ -33,6 +33,7 @@ import { captureAccountGeneration, isCurrentAccountGeneration } from './account_
 // Чтение списка и имя ключа живут в лёгком модуле без зависимости от экономики —
 // его импортируют проверки доступа, которые грузит Главная.
 import { purchasedLessonsKey } from './lessons_pearl_unlock_storage';
+import { LESSON_PEARL_UNLOCK_ENABLED } from './lessons_pearl_unlock_flag';
 
 export {
   PURCHASED_LESSONS_KEY_PREFIX,
@@ -56,7 +57,9 @@ export type LessonPearlUnlockFailReason =
   | 'premium_required'
   | 'insufficient_shards'
   | 'stale_account'
-  | 'persist_failed';
+  | 'persist_failed'
+  // зачем: PM-148 — покупка урока за жемчуг выведена из эксплуатации (см. lessons_pearl_unlock_flag).
+  | 'retired';
 
 export type LessonPearlUnlockResult =
   | Readonly<{ ok: true; spent: number; lessonId: number; alreadyOwned: boolean }>
@@ -76,6 +79,13 @@ export async function buyLessonWithPearls(params: Readonly<{
   const { lessonId, studyTarget } = params;
   const target = storageStudyTarget(studyTarget);
   if (IS_DEV_RUNTIME) console.log('[LESSON-UNLOCK] buy:in', JSON.stringify({ lessonId, target, price: LESSON_PEARL_UNLOCK_PRICE }));
+
+  // зачем (PM-148): новых покупок за жемчуг нет. Отказ стоит ДО проверки Plus и ДО любого дебета,
+  // поэтому прямой вызов ядра (мимо UI) тоже ничего не спишет. Исторические unlocks не затронуты.
+  if (!LESSON_PEARL_UNLOCK_ENABLED) {
+    console.warn('[LESSON-UNLOCK] buy:out retired', JSON.stringify({ lessonId, target }));
+    return { ok: false, reason: 'retired' };
+  }
 
   if (!isMainCourseLesson(lessonId)) {
     console.warn('[LESSON-UNLOCK] buy:out invalid_lesson', JSON.stringify({ lessonId }));

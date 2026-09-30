@@ -346,13 +346,14 @@ export const getLockMessageText = (info: Awaited<ReturnType<typeof getLessonLock
   const n = info.prevLessonId;
   const byLang: Record<string, string> = {
     ru: 'Ещё рано',
-    uk: `Пройди урок ${n} з оцінкою >= 2.5, щоб розблокувати цей урок`,
-    es: `Completa la lección ${n} con una puntuación de al menos 2,5 para desbloquear esta lección`,
-    'pt-BR': `Conclua a lição ${n} com nota de pelo menos 2,5 para desbloquear esta lição`,
-    vi: `Hoàn thành bài ${n} với điểm từ 2,5 trở lên để mở khóa bài này`,
-    id: `Selesaikan pelajaran ${n} dengan nilai minimal 2,5 untuk membuka pelajaran ini`,
-    tr: `Bu dersi açmak için ${n}. dersi en az 2,5 puanla tamamla`,
-    pl: `Ukończ lekcję ${n} z wynikiem co najmniej 2,5, aby odblokować tę lekcję`,
+    // зачем (D71): порог открытия — 2 звезды; текст берёт число из той же константы.
+    uk: `Пройди урок ${n} з оцінкою >= ${BRONZE_UNLOCK_SCORE}, щоб розблокувати цей урок`,
+    es: `Completa la lección ${n} con una puntuación de al menos ${BRONZE_UNLOCK_SCORE} para desbloquear esta lección`,
+    'pt-BR': `Conclua a lição ${n} com nota de pelo menos ${BRONZE_UNLOCK_SCORE} para desbloquear esta lição`,
+    vi: `Hoàn thành bài ${n} với điểm từ ${BRONZE_UNLOCK_SCORE} trở lên để mở khóa bài này`,
+    id: `Selesaikan pelajaran ${n} dengan nilai minimal ${BRONZE_UNLOCK_SCORE} untuk membuka pelajaran ini`,
+    tr: `Bu dersi açmak için ${n}. dersi en az ${BRONZE_UNLOCK_SCORE} puanla tamamla`,
+    pl: `Ukończ lekcję ${n} z wynikiem co najmniej ${BRONZE_UNLOCK_SCORE}, aby odblokować tę lekcję`,
   };
   return byLang[lang] ?? byLang.ru;
 };
@@ -530,7 +531,7 @@ export const repairLessonUnlocksAfterRestore = async (studyTarget?: RuntimeStudy
       if      (num === 9)  u[i] = a1Passed;
       else if (num === 19) u[i] = a2Passed;
       else if (num === 29) u[i] = b1Passed;
-      else                 u[i] = u[i - 1] && scores[i - 1] >= 2.5;
+      else                 u[i] = u[i - 1] && scores[i - 1] >= BRONZE_UNLOCK_SCORE;
     }
     const earned = u.reduce<number[]>((acc, ok, i) => {
       if (ok) acc.push(i + 1);
@@ -552,8 +553,8 @@ export const repairLessonUnlocksAfterRestore = async (studyTarget?: RuntimeStudy
         map[lessonBestScoreKey(prevId, studyTarget)],
         map[lessonProgressKey(prevId, studyTarget)],
       );
-      if (score < 2.5) {
-        fixes.push([lessonBestScoreKey(prevId, studyTarget), '2.5']);
+      if (score < BRONZE_UNLOCK_SCORE) {
+        fixes.push([lessonBestScoreKey(prevId, studyTarget), String(BRONZE_UNLOCK_SCORE)]);
       }
     }
     if (fixes.length > 0) {

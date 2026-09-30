@@ -1119,6 +1119,12 @@ export { adminListMistakeExplanationCache } from "./admin_explain_cache";
 export { accountDeleteStatusMine, accountDeleteRestoreMine } from "./account_delete_restore";
 // ИИ-аудитор покрытия удаления: смотрит карту базы, ничего не удаляет.
 export { adminAuditAccountDeleteCoverage } from "./account_delete_ai_audit";
+// зачем (Account V2, Пакет 6A): синхронизация аккаунта V2 и статус удаления по
+// ключу. Экспортированы, но ВЫКЛЮЧЕНЫ серверным флагом config/accounts_v2
+// (syncEnabled / deletionPurgeEnabled, по умолчанию false): деплой ничего не
+// меняет для людей. Включает только владелец — после Пакета 6B и проверки.
+export { accountsV2SyncApply } from "./accounts_v2_adapter/callable";
+export { accountsV2DeletionStatus } from "./accounts_v2_deletion/status_callable";
 // зачем (владелец, 2026-08-23): кнопка публикации курса в админке
 // (admin/v2/legacy.html) зовёт adminPublishAuthoredLearningV2Course — это
 // доставка контента без OTA: опубликовал, и приложение видит новый материал.

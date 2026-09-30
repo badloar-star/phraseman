@@ -542,6 +542,11 @@ export async function processAccountDeletionJob(
       authUid: admin.firestore.FieldValue.delete(),
       stableUid: admin.firestore.FieldValue.delete(),
       identityClosure: admin.firestore.FieldValue.delete(),
+      // зачем (Account V2, Пакет 6A, ремонт №1 P3-2): курсор стирания V2 несёт
+      // uid в открытом виде, заготовка — запечатанную цель; после завершения
+      // удаления им в записи задачи (живёт 30 дней для аудита) не место.
+      accountsV2PurgeCursor: admin.firestore.FieldValue.delete(),
+      accountsV2DeletionReceipt: admin.firestore.FieldValue.delete(),
       ...stats,
     }, { merge: true });
     batch.set(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(claimed.stableUid), {

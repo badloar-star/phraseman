@@ -739,3 +739,51 @@ describe('accounts_v2_callable: вытеснение кэшей инстанса
     expect(ACCOUNTS_V2_BLOCK_CACHE_MAX).toBe(10_000);
   });
 });
+
+describe('accounts_v2_callable: серверный флаг (Пакет 6A)', () => {
+  const flagsOf = (value: { ok: boolean; syncEnabled: boolean }) => ({
+    read: jest.fn(async () => ({ ok: value.ok, flags: { syncEnabled: value.syncEnabled, deletionPurgeEnabled: false, everEnabled: value.syncEnabled } })),
+  });
+
+  it('флаг выключен — окончательный accounts_v2_disabled, Firestore данных не трогается', async () => {
+    const fake = createFakeFirestore();
+    const flags = flagsOf({ ok: true, syncEnabled: false });
+    const result = await codeOf(callable.handleAccountsV2SyncGated(fake.db, { auth: { uid: UID }, data: batch(lesson('op-1')) }, flags, deps()));
+    expect(result).toEqual({
+      code: 'failed-precondition',
+      message: 'accounts_v2_disabled',
+      details: { final: true, code: 'accounts_v2_disabled' },
+    });
+    expect(fake.touched()).toBe(0);
+    expect(flags.read).toHaveBeenCalledTimes(1);
+    expect(allLogs()).toContain('reason=accounts_v2_disabled');
+  });
+
+  it('флаг выключен — отказ раньше auth (даже без входа ноль чтений данных)', async () => {
+    const fake = createFakeFirestore();
+    const result = await codeOf(callable.handleAccountsV2SyncGated(
+      fake.db, { auth: undefined, data: null }, flagsOf({ ok: true, syncEnabled: false }), deps(),
+    ));
+    expect(result.message).toBe('accounts_v2_disabled');
+    expect(fake.touched()).toBe(0);
+  });
+
+  it('флаг не прочитан — повторяемая ошибка, ноль чтений данных', async () => {
+    const fake = createFakeFirestore();
+    const result = await codeOf(callable.handleAccountsV2SyncGated(
+      fake.db, { auth: { uid: UID }, data: batch(lesson('op-1')) }, flagsOf({ ok: false, syncEnabled: true }), deps(),
+    ));
+    expect(result).toEqual({ code: 'unavailable', message: 'retryable', details: { final: false } });
+    expect(fake.touched()).toBe(0);
+  });
+
+  it('флаг включён — обычное применение', async () => {
+    const fake = createFakeFirestore();
+    const response = await callable.handleAccountsV2SyncGated(
+      fake.db, { auth: { uid: UID }, data: batch(lesson('op-1')) }, flagsOf({ ok: true, syncEnabled: true }), deps(),
+    );
+    expect(response.serverNowMs).toBe(NOW);
+    expect(response.receipts).toHaveLength(1);
+    expect(fake.touched()).toBeGreaterThan(0);
+  });
+});

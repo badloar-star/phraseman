@@ -7,6 +7,7 @@ import {
   issueDeletionReceipt,
   readDeletionStatus,
   revokeDeletionReceipt,
+  type DeletionProbe,
   type DeletionReceiptStore,
   type DeletionStatusResult,
 } from './deletion_flow';
@@ -151,7 +152,7 @@ export function revokeAccountsV2DeletionReceipt(db: Firestore, receiptId: string
 export async function accountsV2DeletionStatusForCallable(
   db: Firestore,
   data: unknown,
-  options: Readonly<{ nudge?: boolean; maxCommits?: number; nowMs?: number }> = {},
+  options: Readonly<{ nudge?: boolean; maxCommits?: number; nowMs?: number; probe?: DeletionProbe }> = {},
 ): Promise<DeletionStatusResult> {
   const nowMs = options.nowMs ?? Date.now();
   const nudge = options.nudge === true
@@ -160,7 +161,7 @@ export async function accountsV2DeletionStatusForCallable(
     )
     : undefined;
   try {
-    return await readDeletionStatus(createFirestoreDeletionReceiptStore(db), data, nowMs, { nudge });
+    return await readDeletionStatus(createFirestoreDeletionReceiptStore(db), data, nowMs, { nudge, probe: options.probe });
   } catch (error) {
     if (error instanceof AccountsV2DeletionError) {
       if (error.code === 'rate_limited') throw new HttpsError('resource-exhausted', 'account_v2_deletion_status_rate_limited');

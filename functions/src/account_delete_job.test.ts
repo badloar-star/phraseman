@@ -288,6 +288,21 @@ describe('account deletion job worker', () => {
     expect(read()).not.toHaveProperty('stableUid');
   });
 
+  it('Account V2 (ремонт №1 P3-2): по завершении из задачи уходят курсор с uid и заготовка квитанции', async () => {
+    const { db, read } = makeDbStub({
+      ...queuedJob(),
+      accountsV2PurgeCursor: { uid: 'auth-456', collection: 'accounts_v2_ops', afterDocId: 'x' },
+      accountsV2DeletionReceipt: { receiptId: 'r'.repeat(64), record: {} },
+    });
+    const execute = jest.fn(async () => ({ docsDeleted: 1, docsUpdated: 0, queriesRun: 0, authDeleted: true }));
+
+    await processAccountDeletionJob(db, 'job-1', execute, 2_000);
+
+    expect(read()).toMatchObject({ status: 'completed' });
+    expect(read()).not.toHaveProperty('accountsV2PurgeCursor');
+    expect(read()).not.toHaveProperty('accountsV2DeletionReceipt');
+  });
+
   it('fails closed without executing when a queued job closure omits an immutable root', async () => {
     const { db } = makeDbStub({
       ...queuedJob(),

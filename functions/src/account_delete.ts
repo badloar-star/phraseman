@@ -24,6 +24,19 @@ import {
   FRIEND_REQUESTS_SENT_INDEX,
   FRIEND_REQUESTS_SENT_MARKER_ID,
 } from '../../shared/friend_requests_index_contract';
+// зачем (Account V2, Пакет 6A): стирание accounts_v2/** и квитанция удаления V2
+// встроены в этот конвейер четырьмя вызовами; логика — в accounts_v2_deletion/pipeline.ts,
+// всё за флагом config/accounts_v2.deletionPurgeEnabled (по умолчанию выключен).
+import {
+  beginAccountsV2DeletionAtPointOfNoReturn,
+  completeAccountsV2DeletionAtEnd,
+  prepareAccountsV2DeletionAtEnqueue,
+  purgeAccountsV2DeletionStage,
+  revokeAccountsV2DeletionOnRollback,
+  type AccountsV2DeletionPipelineDeps,
+  type AccountsV2EnqueueOutcome,
+} from './accounts_v2_deletion/pipeline';
+import { createFirestoreAccountsV2DeletionDeps } from './accounts_v2_deletion/pipeline_firestore';
 
 const REGION = 'us-central1';
 const DELETE_BATCH_LIMIT = 100;
@@ -33,6 +46,9 @@ const MAX_ID_LEN = 180;
 const MAX_ACCOUNT_DELETE_IDENTITIES = 64;
 const ACCOUNT_DELETE_RECEIPT_MAX_ATTEMPTS = 64;
 const ACCOUNT_DELETE_RECEIPT_RATE_WINDOW_MS = 60_000;
+// зачем (Пакет 6A): шаг стирания V2 обязан отдать управление с запасом на
+// надгробие, удаление Auth и диагностику — иначе таймаут оборвёт конвейер посреди.
+const ACCOUNTS_V2_PURGE_RESERVE_MS = 90_000;
 
 const ACCOUNT_DELETE_OPTIONS = {
   region: REGION,
@@ -1519,6 +1535,7 @@ export async function executeAccountDeletion(
   authUid: string,
   closureCutoffMs = Date.now(),
   frozenIdentityClosure?: readonly string[],
+  accountsV2Deps: AccountsV2DeletionPipelineDeps = createFirestoreAccountsV2DeletionDeps(db),
 ): Promise<DeleteStats> {
   const stats: DeleteStats = { docsDeleted: 0, docsUpdated: 0, queriesRun: 0, authDeleted: false };
   // Queued deletion consumes the closure frozen before credential release. It
@@ -1536,9 +1553,27 @@ export async function executeAccountDeletion(
   // чтобы закрыть удаление. Защиты здесь не было ни одной строки.
   // Пломба стоит в ядре, а не в точках входа: дверей к удалению две
   // (accountDeleteMine и очередь accountDeleteEnqueue), ядро одно.
-  await assertAccountIsNotSealedFromDeletion(authUid, ctx, stats);
+  try {
+    await assertAccountIsNotSealedFromDeletion(authUid, ctx, stats);
+  } catch (sealError) {
+    // зачем (Пакет 6A): пломба сработала на ПОВТОРЕ задачи (claim admin выдан
+    // между попытками) — удаление откатывается, а квитанция V2 могла быть
+    // опубликована прошлой попыткой; ключ не должен дотолкнуть стирание живого
+    // аккаунта. Отзыв не бросает (логирует сам); исходная ошибка — как была.
+    if (sealError instanceof HttpsError && sealError.message === 'owner_account_delete_sealed') {
+      const revoked = await revokeAccountsV2DeletionOnRollback(accountsV2Deps, { jobId: accountDeleteJobId(authUid) });
+      accountDeleteLog(ctx, 'accounts_v2_rollback', stats, { revoke: revoked });
+    }
+    throw sealError;
+  }
 
   try {
+    // зачем (Пакет 6A): точка невозврата — пломба пройдена, дальше только
+    // необратимые стадии; здесь и только здесь публикуется квитанция V2.
+    // Флаг выключен → одно чтение флага (кэш инстанса), больше ничего.
+    const accountsV2 = await runDeleteStage(ctx, stats, 'accounts_v2_receipt', () => (
+      beginAccountsV2DeletionAtPointOfNoReturn(accountsV2Deps, { jobId: accountDeleteJobId(authUid) })
+    ));
     await runDeleteStage(ctx, stats, 'permanent_denials', () => persistPermanentDeletionDenials(db, identities));
     const emails = [...new Set((await Promise.all(
       identities.map((identity) => getEmailsForDeletion(db, authUid, identity)),
@@ -1610,6 +1645,17 @@ export async function executeAccountDeletion(
     await runDeleteStage(ctx, stats, 'merge_identity_records', () => (
       deleteMergeIdentityRecords(db, identities, ctx, stats)
     ));
+    // зачем (Пакет 6A): данные Account V2 (accounts_v2/{uid}/**) стираются для
+    // КАЖДОЙ личности замыкания — ещё один идемпотентный шаг. Не уложился в
+    // остаток таймаута → курсор в задачу и ошибка стадии: задача повторится
+    // с курсора. Флаг выключен → шаг пропускается с логом.
+    await runDeleteStage(ctx, stats, 'accounts_v2_purge', async () => {
+      const purged = await purgeAccountsV2DeletionStage(accountsV2Deps, accountsV2, {
+        uids: identities,
+        deadlineMs: ctx.startedAtMs + ACCOUNT_DELETE_TIMEOUT_SECONDS * 1000 - ACCOUNTS_V2_PURGE_RESERVE_MS,
+      });
+      stats.docsDeleted += purged.deletedDocs;
+    });
     await closeDeleteWriter(ctx);
     await runDeleteStage(ctx, stats, 'tombstone', () => markAccountDeletionTombstone(db, stableUid, authUid, stats));
 
@@ -1621,6 +1667,11 @@ export async function executeAccountDeletion(
         throw new HttpsError('internal', 'auth_delete_failed');
       }
     }
+
+    // зачем (Пакет 6A): «completed» ставит ТОЛЬКО конец конвейера — после
+    // полного удаления. Не бросает: данные уже стёрты, сбой лишь в логе.
+    const accountsV2Complete = await completeAccountsV2DeletionAtEnd(accountsV2Deps, accountsV2);
+    accountDeleteLog(ctx, 'accounts_v2_receipt_complete', stats, { result: accountsV2Complete });
 
     accountDeleteLog(ctx, 'done', stats);
     // зачем: диагностика в Firestore — единственный след, который владелец
@@ -1796,6 +1847,9 @@ export async function enqueueAndReleaseAuthenticatedAccount(
     resolveClosure?: typeof resolveAccountDeleteIdentityClosure;
     deleteUser?: (uid: string) => Promise<unknown>;
     publishCredentialSafe?: (operationId: string) => Promise<void>;
+    /** Пакет 6A: ключ удаления Account V2 от телефона (undefined — старый клиент). */
+    accountsV2Credential?: unknown;
+    prepareAccountsV2?: (jobId: string, authUid: string, credential: unknown) => Promise<AccountsV2EnqueueOutcome>;
   } = {},
 ) {
   const proof = cleanCredentialProof(rawProof);
@@ -1825,6 +1879,17 @@ export async function enqueueAndReleaseAuthenticatedAccount(
     receipt,
     identityClosure,
   );
+  // зачем (Пакет 6A): ключ V2 сохраняется в задаче лишь ЗАГОТОВКОЙ квитанции —
+  // опубликует её воркер в точке невозврата (после grace). Старый клиент ключа
+  // не шлёт → ноль лишних чтений. Подготовка никогда не бросает: сбой V2 не
+  // имеет права сорвать старое удаление.
+  if (deps.accountsV2Credential !== undefined && result.status !== 'completed') {
+    const prepare = deps.prepareAccountsV2 ?? ((jobId: string, uid: string, credential: unknown) => (
+      prepareAccountsV2DeletionAtEnqueue(createFirestoreAccountsV2DeletionDeps(db), { jobId, authUid: uid, credential })
+    ));
+    const outcome = await prepare(result.jobId, authUid, deps.accountsV2Credential);
+    console.log(JSON.stringify({ event: 'account_delete_accounts_v2_enqueue', outcome }));
+  }
   try {
     await (deps.deleteUser ?? ((uid: string) => admin.auth().deleteUser(uid)))(authUid);
   } catch (error: any) {
@@ -1959,6 +2024,8 @@ export const accountDeleteEnqueue = onCall({
       operationId: request.data?.operationId,
       capability: request.data?.capability,
     },
+    // зачем (Пакет 6A): новый клиент (6B) шлёт ключ V2 отдельным полем; старый — нет.
+    { accountsV2Credential: request.data?.accountsV2Deletion },
   );
   return result;
 });

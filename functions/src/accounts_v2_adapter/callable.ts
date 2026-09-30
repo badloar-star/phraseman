@@ -16,6 +16,7 @@ import {
   type AccountsV2TxGuard,
 } from './firestore_port';
 import { HOT_CALLABLE_OPTIONS } from '../callable_options';
+import { accountsV2FlagsReader, type AccountsV2FlagsReader } from '../accounts_v2_flags';
 import {
   AccountsV2RateLimited,
   finalError,
@@ -23,6 +24,7 @@ import {
   mapAccountsV2Error,
   rateLimitedError,
   reauthError,
+  retryableError,
 } from './errors';
 
 export {
@@ -43,9 +45,10 @@ export {
  *   validateClientBatch → «все ownerUid = uid» →
  *   одна транзакция (tx.get счётчика → decide → getAll плана → applyBatch → записи) →
  *   `{ receipts, serverNowMs }`.
- * TEMP: `accountsV2SyncApply` НЕ подключён к index.ts — подключать только после
- *   клиентского пакета (исходы conflict/rejected, TEMP-контракт (а)–(д) ядра),
- *   правил Firestore для accounts_v2/** и политик TTL/исключений индексов.
+ * Пакет 6A: `accountsV2SyncApply` экспортирован из index.ts, но закрыт серверным
+ *   флагом config/accounts_v2.syncEnabled (выкл по умолчанию). Включает только
+ *   владелец — после клиентского пакета 6B (исходы conflict/rejected,
+ *   TEMP-контракт (а)–(д) ядра) и проверки на трёх аккаунтах.
  * App Check запломбирован владельцем (2026-08-17): опции — HOT_CALLABLE_OPTIONS
  *   проекта (enforceAppCheck = ENFORCE_APP_CHECK = false).
  *
@@ -431,7 +434,40 @@ export async function handleAccountsV2Sync(
 }
 
 /**
- * Callable. TEMP: НЕ экспортируется из index.ts (см. шапку) — деплой её не создаёт.
+ * Пакет 6A (TG-29D525D1B798): ворота серверного флага `config/accounts_v2.syncEnabled`.
+ *
+ * зачем: callable экспортируется из index.ts, но деплой ничего не меняет, пока
+ * владелец не включит флаг. Проверка — ПЕРВЫМ шагом, до auth и разбора пакета:
+ * выключено → окончательный failed-precondition `accounts_v2_disabled`, ноль
+ * чтений/записей данных (сам флаг — один документ, кэш инстанса ≤ 5 мин).
+ * Сбой чтения флага → повторяемая ошибка (не «выкл» молча и не «вкл» вслепую).
+ * TEMP-контракт для Пакета 6B: клиент обязан отличать код `accounts_v2_disabled`
+ * от прочих окончательных отказов и НЕ класть пакет в карантин — просто не слать
+ * до следующего входа (сервер выключен целиком, а не отверг этот пакет).
  */
-export const accountsV2SyncApply = onCall(HOT_CALLABLE_OPTIONS, (request) =>
-  handleAccountsV2Sync(admin.firestore(), { auth: request.auth ?? null, data: request.data }));
+export async function handleAccountsV2SyncGated(
+  db: Firestore,
+  request: AccountsV2SyncRequest,
+  flags: AccountsV2FlagsReader,
+  deps: AccountsV2SyncDeps = DEFAULT_DEPS,
+): Promise<AccountsV2SyncResponse> {
+  const read = await flags.read();
+  if (!read.ok) {
+    console.warn('[ACCOUNTS-V2] reject reason=flag_unavailable reads=0');
+    throw retryableError();
+  }
+  if (!read.flags.syncEnabled) {
+    console.warn(`[ACCOUNTS-V2] reject reason=accounts_v2_disabled auth=${request.auth ? 'present' : 'missing'} reads=0`);
+    throw finalError('failed-precondition', 'accounts_v2_disabled');
+  }
+  return handleAccountsV2Sync(db, request, deps);
+}
+
+/**
+ * Callable. Экспортируется из index.ts (Пакет 6A), но выключена флагом
+ * `config/accounts_v2.syncEnabled` (по умолчанию выкл) — см. handleAccountsV2SyncGated.
+ */
+export const accountsV2SyncApply = onCall(HOT_CALLABLE_OPTIONS, (request) => {
+  const db = admin.firestore();
+  return handleAccountsV2SyncGated(db, { auth: request.auth ?? null, data: request.data }, accountsV2FlagsReader(db));
+});

@@ -1,6 +1,10 @@
 import {
   AccountsV2DeletionError,
   completeDeletionReceipt,
+  createDeletionProbeLimiter,
+  isPreparedDeletionReceipt,
+  prepareDeletionReceipt,
+  publishPreparedDeletionReceipt,
   issueDeletionReceipt,
   readDeletionStatus,
   revokeDeletionReceipt,
@@ -252,12 +256,19 @@ describe('Ремонт №1 P2-2: отзыв pending-квитанции серв
     expect(await revokeDeletionReceipt(store, receiptId)).toBe('absent');
   });
 
-  test('отзыв после толчка (purging/v2_purged) тоже удаляет', async () => {
+  test('отзыв после толчка удаляет; после v2_purged — отдельный результат (Пакет 6A)', async () => {
     const store = memoryStore();
     const { receiptId } = await issueDeletionReceipt(store, OLD_UID, CRED, NOW);
     await readDeletionStatus(store, REQ, NOW + 1, { nudge: recordingNudge([{ done: true, cursor: null }]) });
-    expect(await revokeDeletionReceipt(store, receiptId)).toBe('revoked');
+    expect(await revokeDeletionReceipt(store, receiptId)).toBe('revoked_after_v2_purge');
     expect(store.docs.size).toBe(0);
+
+    const second = memoryStore();
+    await issueDeletionReceipt(second, OLD_UID, CRED, NOW);
+    await readDeletionStatus(second, REQ, NOW + 1, {
+      nudge: recordingNudge([{ done: false, cursor: { collection: 'accounts_v2_ops', afterDocId: 'a' } }]),
+    });
+    expect(await revokeDeletionReceipt(second, receiptId)).toBe('revoked');
   });
 
   test('завершённую квитанцию отозвать нельзя: удаление уже необратимо', async () => {
@@ -266,5 +277,120 @@ describe('Ремонт №1 P2-2: отзыв pending-квитанции серв
     await completeDeletionReceipt(store, receiptId, NOW);
     expect(await revokeDeletionReceipt(store, receiptId)).toBe('completed');
     expect(await readDeletionStatus(store, REQ, NOW + 1)).toEqual({ stage: 'completed' });
+  });
+});
+
+describe('Пакет 6A: отзыв посреди стирания останавливает его после текущей порции', () => {
+  test('saveCursor при отозванной квитанции бросает — следующая порция не стирается', async () => {
+    const store = memoryStore();
+    const { receiptId } = await issueDeletionReceipt(store, OLD_UID, CRED, NOW);
+    let chunksAfterRevoke = 0;
+    const nudge: DeletionNudge = async (_uid, _cursor, onProgress) => {
+      await onProgress({ collection: 'accounts_v2_entities', afterDocId: 'a' });
+      await revokeDeletionReceipt(store, receiptId);
+      await onProgress({ collection: 'accounts_v2_entities', afterDocId: 'b' });
+      chunksAfterRevoke += 1;
+      return { done: true, cursor: null };
+    };
+    await expectCode(readDeletionStatus(store, REQ, NOW + 1, { nudge }), 'denied');
+    expect(chunksAfterRevoke).toBe(0);
+    expect(store.docs.size).toBe(0);
+  });
+});
+
+describe('Пакет 6A: заготовка квитанции и публикация в точке невозврата', () => {
+  test('заготовка без uid/секрета; до публикации ключ ничего не даёт', async () => {
+    const store = memoryStore();
+    const prepared = prepareDeletionReceipt(OLD_UID, CRED, NOW);
+    expect(prepared.receiptId).toBe(RECEIPT_ID);
+    expect(isPreparedDeletionReceipt(JSON.parse(JSON.stringify(prepared)))).toBe(true);
+    const json = JSON.stringify(prepared);
+    expect(json).not.toContain(OLD_UID);
+    expect(json).not.toContain(CRED.capability);
+    await expectCode(readDeletionStatus(store, REQ, NOW), 'denied');
+    expect(store.reads).toBe(1);
+  });
+
+  test('публикация: сроки от момента публикации, повтор идемпотентен, чужой ключ — конфликт', async () => {
+    const store = memoryStore();
+    const later = NOW + 14 * DAY;
+    const prepared = prepareDeletionReceipt(OLD_UID, CRED, NOW);
+    expect(await publishPreparedDeletionReceipt(store, prepared, later)).toEqual({ receiptId: RECEIPT_ID, stage: 'accepted' });
+    const stored = store.docs.get(RECEIPT_ID) as Record<string, number>;
+    expect(stored.createdAtMs).toBe(later);
+    expect(stored.expireAtMs).toBe(later + 90 * DAY);
+    expect(await publishPreparedDeletionReceipt(store, prepared, later + 5)).toEqual({ receiptId: RECEIPT_ID, stage: 'accepted' });
+    const other = prepareDeletionReceipt(OLD_UID, { operationId: CRED.operationId, capability: key(9) }, NOW);
+    await expectCode(publishPreparedDeletionReceipt(store, other, later), 'conflict');
+    expect(await readDeletionStatus(store, REQ, later + 1)).toEqual({ stage: 'accepted' });
+  });
+
+  test('битая заготовка не проходит проверку формы', () => {
+    const prepared = prepareDeletionReceipt(OLD_UID, CRED, NOW);
+    expect(isPreparedDeletionReceipt({ ...prepared, receiptId: 'x' })).toBe(false);
+    expect(isPreparedDeletionReceipt({ ...prepared, record: { ...prepared.record, stage: 'completed' } })).toBe(false);
+    expect(isPreparedDeletionReceipt(null)).toBe(false);
+    expect(() => prepareDeletionReceipt(OLD_UID, { operationId: 'short', capability: 'x' }, NOW)).toThrow();
+  });
+});
+
+describe('Пакет 6A: лимит подбора несуществующих квитанций', () => {
+  const miss = (seed: number) => ({ purpose: ACCOUNTS_V2_DELETION_PURPOSE, operationId: `op-missing-${String(seed).padStart(8, '0')}`, capability: key(seed + 2) });
+
+  test('после 10 промахов вызывающего — отказ без чтения; другой вызывающий не задет', async () => {
+    const store = memoryStore();
+    const limiter = createDeletionProbeLimiter();
+    for (let index = 0; index < 10; index += 1) {
+      await expectCode(readDeletionStatus(store, miss(index), NOW, { probe: { limiter, keys: ['caller-a'] } }), 'denied');
+    }
+    const reads = store.reads;
+    await expectCode(readDeletionStatus(store, miss(99), NOW, { probe: { limiter, keys: ['caller-a'] } }), 'rate_limited');
+    expect(store.reads).toBe(reads);
+    await expectCode(readDeletionStatus(store, miss(98), NOW, { probe: { limiter, keys: ['caller-b'] } }), 'denied');
+    // окно истекло — снова можно
+    await expectCode(readDeletionStatus(store, miss(97), NOW + 60_000, { probe: { limiter, keys: ['caller-a'] } }), 'denied');
+  });
+
+  test('общий потолок режет только уже промахнувшихся; законный без промахов проходит (P3-3)', async () => {
+    const store = memoryStore();
+    const limiter = createDeletionProbeLimiter({ windowMs: 60_000, maxMissesPerKey: 100, maxMissesGlobal: 3, maxMissesHard: 1000, maxKeys: 10 });
+    for (let index = 0; index < 3; index += 1) {
+      await expectCode(readDeletionStatus(store, miss(index), NOW, { probe: { limiter, keys: [`k${index}`] } }), 'denied');
+    }
+    const reads = store.reads;
+    await expectCode(readDeletionStatus(store, miss(50), NOW, { probe: { limiter, keys: ['k0'] } }), 'rate_limited');
+    expect(store.reads).toBe(reads);
+    await issueDeletionReceipt(store, OLD_UID, CRED, NOW);
+    expect(await readDeletionStatus(store, REQ, NOW + 1, { probe: { limiter, keys: ['fresh'] } })).toEqual({ stage: 'accepted' });
+  });
+
+  test('перебор с разных адресов одной сети упирается в ключ сети', async () => {
+    const store = memoryStore();
+    const limiter = createDeletionProbeLimiter({ windowMs: 60_000, maxMissesPerKey: 3, maxMissesGlobal: 1000, maxMissesHard: 1000, maxKeys: 100 });
+    for (let index = 0; index < 3; index += 1) {
+      await expectCode(readDeletionStatus(store, miss(index), NOW, { probe: { limiter, keys: [`ip${index}`, 'net'] } }), 'denied');
+    }
+    await expectCode(readDeletionStatus(store, miss(9), NOW, { probe: { limiter, keys: ['ip9', 'net'] } }), 'rate_limited');
+  });
+
+  test('существующая квитанция промахом не считается (её лимит — в самой квитанции)', async () => {
+    const store = memoryStore();
+    const limiter = createDeletionProbeLimiter({ windowMs: 60_000, maxMissesPerKey: 1, maxMissesGlobal: 1, maxMissesHard: 1, maxKeys: 10 });
+    await issueDeletionReceipt(store, OLD_UID, CRED, NOW);
+    for (let index = 0; index < 3; index += 1) {
+      expect(await readDeletionStatus(store, REQ, NOW + index, { probe: { limiter, keys: ['owner'] } })).toEqual({ stage: 'accepted' });
+    }
+  });
+  test('ремонт №2 (P2): жёсткий потолок держит поток новых ключей (подделанный адрес на каждый запрос)', async () => {
+    const store = memoryStore();
+    const limiter = createDeletionProbeLimiter({ windowMs: 60_000, maxMissesPerKey: 10, maxMissesGlobal: 3, maxMissesHard: 5, maxKeys: 100 });
+    for (let index = 0; index < 5; index += 1) {
+      await expectCode(readDeletionStatus(store, miss(index), NOW, { probe: { limiter, keys: [`random-${index}`] } }), 'denied');
+    }
+    const reads = store.reads;
+    await expectCode(readDeletionStatus(store, miss(77), NOW, { probe: { limiter, keys: ['random-new'] } }), 'rate_limited');
+    expect(store.reads).toBe(reads);
+    // окно прошло — законные снова проходят
+    await expectCode(readDeletionStatus(store, miss(78), NOW + 60_000, { probe: { limiter, keys: ['legit'] } }), 'denied');
   });
 });

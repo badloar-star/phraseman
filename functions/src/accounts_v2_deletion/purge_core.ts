@@ -28,6 +28,19 @@ export const ACCOUNTS_V2_PURGE_MAX_WRITES_PER_COMMIT = 450;
  */
 export const ACCOUNTS_V2_PURGE_DEFAULT_MAX_COMMITS = 200;
 
+/**
+ * Пакет 6A (хвост P3 Пакета 4): бюджет коммитов задаёт обёртка под свой таймаут.
+ * зачем: консервативная оценка ОДНОГО коммита (запрос id порции + батч из 450
+ * удалений) — 1,5 с. Запас остаётся у вызывающего (он передаёт уже урезанный
+ * остаток времени). 0 — времени нет: вызывающий ставит паузу и повторяет позже.
+ */
+export const ACCOUNTS_V2_PURGE_MS_PER_COMMIT_ESTIMATE = 1_500;
+
+export function accountsV2PurgeMaxCommitsForBudget(remainingMs: number): number {
+  if (!Number.isFinite(remainingMs) || remainingMs <= 0) return 0;
+  return Math.min(ACCOUNTS_V2_PURGE_DEFAULT_MAX_COMMITS, Math.floor(remainingMs / ACCOUNTS_V2_PURGE_MS_PER_COMMIT_ESTIMATE));
+}
+
 export type AccountsV2PurgeCursor = DeletionPurgeCursor;
 
 export interface AccountsV2PurgePort {

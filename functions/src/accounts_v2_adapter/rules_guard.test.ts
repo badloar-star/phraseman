@@ -40,4 +40,16 @@ describe('Account V2 firestore rules guard', () => {
     expect(allows.length).toBeGreaterThan(0);
     for (const block of allows) expect(block).not.toMatch(/allow [a-z, ]+: if (?!false)/);
   });
+  test('Пакет 6A: config/accounts_v2 — только админ, клиентам ни чтения ни записи', () => {
+    expect(rules).toMatch(/match \/config\/accounts_v2 \{\s*allow read, write: if isAdmin\(\);\s*\}/);
+    // Ни одно правило не открывает config/{doc} всем вошедшим целиком (иначе флаг читался бы клиентом).
+    expect(rules).not.toMatch(/match \/config\/\{[A-Za-z]+\}\s*\{\s*allow read: if request\.auth != null;/);
+  });
+
+  test('Ремонт №1 (P3-6): комментарий Spire остался при своём match', () => {
+    const lines = rules.slice(0, rules.indexOf('match /config/{spireFlagsDocId}')).trimEnd().split(/\r?\n/);
+    const before = lines.slice(-3).join(' ');
+    expect(before).toContain('Firestore overlapping matches are OR-combined');
+    expect(before).not.toContain('accounts_v2');
+  });
 });

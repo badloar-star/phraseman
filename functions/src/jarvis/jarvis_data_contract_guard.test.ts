@@ -413,9 +413,15 @@ const ISOLATED_COLLECTION_CONTRACTS = [
   },
   {
     collection: 'account_deletion_jobs',
-    writer: 'functions/src/account_delete_job.ts',
-    authority: 'server-only deletion work queue; frozen identityClosure/version/hash/cutoff are privacy-control fields and never Jarvis metrics',
-    fields: ['identityClosure', 'identityClosureVersion', 'identityClosureHash', 'closureCutoffMs'],
+    writer: 'functions/src/account_delete_job.ts + functions/src/accounts_v2_deletion/pipeline.ts',
+    authority: 'server-only deletion work queue; frozen identityClosure/version/hash/cutoff and the Account V2 prepared receipt/purge cursor (Package 6A) are privacy-control fields and never Jarvis metrics',
+    fields: ['identityClosure', 'identityClosureVersion', 'identityClosureHash', 'closureCutoffMs', 'accountsV2DeletionReceipt', 'accountsV2PurgeCursor'],
+  },
+  {
+    collection: 'config',
+    writer: 'owner via admin (config/accounts_v2), read by functions/src/accounts_v2_flags.ts',
+    authority: 'server-only Account V2 enable flags (syncEnabled/deletionPurgeEnabled) and sticky everEnabled marker; rollout switch, not a Jarvis metric',
+    fields: ['syncEnabled', 'deletionPurgeEnabled', 'everEnabled'],
   },
   {
     collection: 'account_deletion_credential_receipts',

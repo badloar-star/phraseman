@@ -1979,6 +1979,14 @@ service cloud.firestore {
       allow write: if false;
     }
 
+    // зачем (Account V2, Пакет 6A): флаг включения V2 { syncEnabled,
+    // deletionPurgeEnabled, everEnabled } читает только сервер (Admin SDK).
+    // Клиенты его не читают и не пишут; менять может только админ (владелец
+    // включает после Пакета 6B). Явный блок — намерение не держится на catch-all.
+    match /config/accounts_v2 {
+      allow read, write: if isAdmin();
+    }
+
     // Per-language Spire quarantine is mutated only by audited callables.
     // The legacy browser-admin catch-all below explicitly excludes these docs;
     // Firestore overlapping matches are OR-combined, so this deny alone is not enough.

@@ -7,8 +7,10 @@ const detail = readFileSync(new URL('../app/mistake_detail.tsx', import.meta.url
 
 test('active mistake list and detail use Liquid Glass without text truncation', () => {
   for (const source of [list, detail]) {
-    assert.match(source, /import \{ glassFill \} from '\.\.\/components\/GlassSurface';/);
-    assert.match(source, /glassFill\(t\.bgCard, 0\.46\)/);
+    // 30.09 (2.0): стекло непрозрачное (память владельца «стекло 2.0 = непрозрачное»),
+    // экраны ошибок переведены на useLv2Glass + g.opaque* (efe19ae9d); полупрозрачный glassFill снят.
+    assert.match(source, /useLv2Glass\(\)/);
+    assert.match(source, /g\.opaque(Card|Control|Sheet)/);
     assert.doesNotMatch(source, /numberOfLines/);
   }
 });

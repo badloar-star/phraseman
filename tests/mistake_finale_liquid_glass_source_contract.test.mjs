@@ -6,14 +6,17 @@ const finale = readFileSync(new URL('../components/mistake-practice/MistakeSessi
 const verdict = readFileSync(new URL('../components/mistake-practice/MistakeVerdictPanel.tsx', import.meta.url), 'utf8');
 
 test('mistake finale uses translucent Liquid Glass rows without changing rewards or actions', () => {
-  assert.match(finale, /import \{ glassFill \} from '\.\.\/GlassSurface';/);
-  assert.ok((finale.match(/glassFill\(t\.bgCard, 0\.46\)/g) ?? []).length >= 2);
+  // 30.09 (2.0): стекло непрозрачное (память владельца «стекло 2.0 = непрозрачное»),
+  // экраны ошибок переведены на useLv2Glass + g.opaque* (efe19ae9d); полупрозрачный glassFill снят.
+  assert.match(finale, /useLv2Glass\(\)/);
+  assert.ok((finale.match(/g\.opaque(Card|Control|Sheet)/g) ?? []).length >= 2);
   assert.match(finale, /onPress=\{onDone\}/);
   assert.match(finale, /onPress=\{onMore\}/);
 });
 
 test('mistake verdict keeps its success and error semantics while its explanation uses glass', () => {
-  assert.match(verdict, /import \{ glassFill \} from '\.\.\/GlassSurface';/);
-  assert.match(verdict, /backgroundColor: glassFill\(t\.bgCard, 0\.46\)/);
-  assert.match(verdict, /correct \? t\.correctBg : t\.wrongBg/);
+  assert.match(verdict, /useLv2Glass\(\)/);
+  assert.match(verdict, /backgroundColor: g\.opaque(Card|Control|Sheet)/);
+  // 2.0: семантика «верно/неверно» — токены LV2 (goodFill/badFill), не старые t.correctBg/t.wrongBg.
+  assert.match(verdict, /correct \? g\.goodFill : g\.badFill/);
 });

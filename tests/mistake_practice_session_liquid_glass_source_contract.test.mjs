@@ -5,8 +5,10 @@ import test from 'node:test';
 const source = readFileSync(new URL('../app/mistake_practice_session.tsx', import.meta.url), 'utf8');
 
 test('mistake practice keeps real answer flows while structural surfaces use Liquid Glass', () => {
-  assert.match(source, /import \{ glassFill \} from '\.\.\/components\/GlassSurface';/);
-  assert.match(source, /backgroundColor: glassFill\(t\.bgCard, 0\.46\)/);
+  // 30.09 (2.0): стекло непрозрачное (память владельца «стекло 2.0 = непрозрачное»),
+  // экраны ошибок переведены на useLv2Glass + g.opaque* (efe19ae9d); полупрозрачный glassFill снят.
+  assert.match(source, /useLv2Glass\(\)/);
+  assert.match(source, /backgroundColor: g\.opaque(Card|Control|Sheet)/);
   assert.match(source, /onPress=\{\(\) => void submitVerdict\(/);
   assert.match(source, /<MistakeVerdictPanel/);
   assert.match(source, /<MistakeSessionFinale/);

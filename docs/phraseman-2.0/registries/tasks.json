@@ -4058,7 +4058,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -4067,20 +4067,26 @@
       {
         "id": "PM-078-A1",
         "text": "Не показывать успешный новый ранг без подтверждения",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "coin_rank_upgrade_v1.ts:139-150 публикация только после multiSet; coin_rank_upgrade.test.ts:151, coin_rank_ceremony_once.probe"
+        ]
       },
       {
         "id": "PM-078-A2",
         "text": "повтор операции не списывает снова",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "operationId coin_rank:to_N + expectedFromRank + замки; coin_rank_upgrade.test.ts:115,130"
+        ]
       },
       {
         "id": "PM-078-A3",
         "text": "ответы старого аккаунта игнорируются",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "проверка поколения аккаунта до и под замком; coin_rank_upgrade.test.ts:179, coin_rank_upgrade_guard_behavior.test.ts"
+        ]
       }
     ],
     "depends_on": [],
@@ -8724,8 +8730,10 @@
       {
         "id": "PM-170-A1",
         "text": "Привет и добавление друзей не зависят от удаляемых reward сервисов",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "friends_together.ts:9 без наград, claim retired; пробы friend_gift_server_retirement, friend_gifts_without_xp_quests"
+        ]
       },
       {
         "id": "PM-170-A2",
@@ -9396,8 +9404,10 @@
       {
         "id": "PM-183-A1",
         "text": "Визитка не увеличивает запас энергии",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "app/energy_contract.ts:56-58 profileCardEnergyCapacity всегда 5; tests/energy_contract.test.ts"
+        ]
       },
       {
         "id": "PM-183-A2",
@@ -9836,8 +9846,10 @@
       {
         "id": "PM-192-A1",
         "text": "Не говорится «ошибка произношения», если система не измеряла произношение",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "фасет pronunciation пишется только после оценённой речевой попытки: app/flashcards_speaking_session.tsx:937"
+        ]
       },
       {
         "id": "PM-192-A2",
@@ -9936,8 +9948,10 @@
       {
         "id": "PM-194-A2",
         "text": "успешный повтор обновляет состояние по понятному правилу",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "modules/mistake-practice/projection.ts:237-275 — «исправлено» после 3 разных дней и 2 режимов, ошибка сбрасывает; tests/mistake_practice_projection.test.ts"
+        ]
       }
     ],
     "depends_on": [],
@@ -9983,8 +9997,10 @@
       {
         "id": "PM-195-A2",
         "text": "фильтрация предсказуема и не требует полного серверного скана",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "фильтры ready/all/corrected локальные (app/mistakes_list.tsx:82-84), журнал по studyTarget, без серверного скана"
+        ]
       }
     ],
     "depends_on": [],
@@ -10078,8 +10094,10 @@
       {
         "id": "PM-197-A1",
         "text": "Каждый пункт ведёт к рабочей возможности",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "все пункты app/(tabs)/settings.tsx ведут на существующие маршруты; контракт settings_root_liquid_glass_source_contract"
+        ]
       },
       {
         "id": "PM-197-A2",
@@ -10181,8 +10199,10 @@
       {
         "id": "PM-199-A1",
         "text": "Очищаются восстанавливаемые файлы, не auth/прогресс/наборы/entitlements/незавершённые записи",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "app/cache_reset.ts:32-84 белый список восстанавливаемых ключей; tests/cache_reset_contract.test.ts"
+        ]
       },
       {
         "id": "PM-199-A2",

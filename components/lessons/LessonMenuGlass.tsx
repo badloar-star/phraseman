@@ -18,6 +18,12 @@ type IconName = React.ComponentProps<typeof Ionicons>['name'];
 const ROW_MIN_HEIGHT = 76;
 const DIMMED_OPACITY = 0.55;
 
+// зачем (эмулятор 30.09): значки строк меню — как в «Настройках»: в «Акценте/Максимуме»
+// яркий цвет темы, в «Спокойно» — прежний нейтральный.
+function rowIconColor(glass: LessonMenuGlassTokens): string {
+  return glass.level === 'accent' || glass.level === 'max' ? glass.accentBright : glass.text;
+}
+
 function cardStyle(glass: LessonMenuGlassTokens, radius: number) {
   return {
     borderRadius: radius,
@@ -167,7 +173,7 @@ export function LessonMenuRow({
           backgroundColor: glass.opaqueControl,
         }}
       >
-        <Ionicons name={icon} size={22} color={glass.text} />
+        <Ionicons name={icon} size={22} color={rowIconColor(glass)} />
       </View>
       <View style={{ flex: 1, minWidth: 0 }}>
         <Text style={{ color: glass.text, fontSize: 17, lineHeight: 22, fontWeight: '700' }}>{title}</Text>
@@ -215,7 +221,7 @@ export function LessonMenuTip({
           backgroundColor: glass.opaqueControl,
         }}
       >
-        <Ionicons name={icon} size={24} color={glass.text} />
+        <Ionicons name={icon} size={24} color={rowIconColor(glass)} />
       </View>
       <View style={{ flex: 1, minWidth: 0 }}>
         <Text style={{ color: glass.text, fontSize: 16, lineHeight: 21, fontWeight: '700' }}>{title}</Text>

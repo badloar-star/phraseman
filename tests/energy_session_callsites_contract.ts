@@ -7,10 +7,6 @@ const read = (file: string): string => fs.readFileSync(path.join(root, file), 'u
 
 const productionFiles = [
   'app/ai_dialog_session.tsx',
-  'app/arena_friend_duel.tsx',
-  'app/arena_invite.tsx',
-  'app/arena_matchmaking.tsx',
-  'app/arena_today.tsx',
   'app/diagnostic_test.tsx',
   'app/exam.tsx',
   'app/flashcards_blitz_session.tsx',

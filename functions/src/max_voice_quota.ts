@@ -863,7 +863,7 @@ export async function settleVoiceSession(db: Firestore, args: VoiceSettleArgs): 
     const data = ((await tx.get(ref)).data() ?? {}) as Record<string, unknown>;
     const reservedSec = Math.max(0, Math.floor(num(data.reservedSec)));
     if (str(data.activeSessionId) !== str(args.sessionId) || reservedSec <= 0) {
-      // Тот же немой выход, что прятал сиротский резерв в settleVoiceSessionWithXp
+      // Тот же немой выход, что прятал сиротский резерв в snapshot settlement
       // (владелец 2026-09-02). Этот путь зовёт watchdog — именно он подбирает
       // сироту через час, и его молчание делало утечку невидимой.
       console.warn('[MAX-SETTLE] skipped: not the active reservation (settleVoiceSession)', {
@@ -934,7 +934,7 @@ export interface VoiceSettleSnapshot {
   data: Record<string, unknown>;
 }
 
-export interface VoiceSettleWithXpArgs extends VoiceSettleArgs {
+export interface VoiceSettleSnapshotArgs extends VoiceSettleArgs {
   /**
    * Считает фактические секунды сессии ИЗ СНИМКА дока (серверные часы разговора).
    * Раньше вызывающий читал док отдельным get() и передавал готовое число —
@@ -942,45 +942,33 @@ export interface VoiceSettleWithXpArgs extends VoiceSettleArgs {
    * сюда. Обязана быть чистой; если не задана, берётся args.actualSec.
    */
   resolveActualSec?: (quotaData: Record<string, unknown>) => number;
-  /**
-   * Считает XP этой сессии из ФАКТИЧЕСКИ списанных секунд и снимка дока.
-   * Вызывается ВНУТРИ транзакции, поэтому обязана быть чистой (никаких
-   * обращений к БД/сети) — иначе транзакция станет недетерминированной
-   * при ретрае Firestore.
-   */
-  computeXp: (chargedSec: number, quotaData: Record<string, unknown>) => number;
-  /** UTC-ключ дня для дневного XP-кэпа (вычисляет вызывающий: quota не знает про utcDayKey). */
-  xpDayKey: string;
-  xpDailyCap: number;
 }
 
-export interface VoiceSettleWithXpResult extends VoiceSettleResult {
-  /** Фактически начисленный XP (0, если дневной кэп уже выбран). */
-  xpAwarded: number;
+export interface VoiceSettleSnapshotResult extends VoiceSettleResult {
   /** Снимок дока ДО записи — заменяет отдельный quotaRef.get() у вызывающего. */
   snapshot: Record<string, unknown>;
 }
 
 /**
- * Сеттлмент + дневной XP + снимок дока ОДНОЙ транзакцией.
+ * Сеттлмент + дневной usage + снимок дока ОДНОЙ транзакцией.
  *
  * зачем (P1-13, 2026-08-23): maxVoiceSessionEnd делал три последовательных
  * обращения к ОДНОМУ документу voice_call_quotas — get() ради снимка, затем
- * транзакция settle, затем транзакция начисления XP. Три раунд-трипа на каждый
+ * транзакция settle, затем транзакция записи usage. Три раунд-трипа на каждый
  * звонок; при этом между ними документ мог измениться (watchdog, второй end),
- * то есть XP начислялся уже по другому состоянию, чем то, что прочитал снимок.
+ * то есть usage записывался уже по другому состоянию, чем то, что прочитал снимок.
  *
  * Здесь всё читается один раз и пишется одним `tx.set`: дешевле на 2 раунд-трипа
  * и честнее по гонкам. `settleVoiceSession` НЕ трогаем — её отдельно зовёт
- * watchdog, которому XP не нужен.
+ * watchdog, которому отдельная награда не нужна.
  *
- * Идемпотентность прежняя: чужой/закрытый sessionId → no-op, XP не начисляется
- * (иначе двойной end давал бы XP дважды).
+ * Идемпотентность прежняя: чужой/закрытый sessionId → no-op, повторная награда не начисляется
+ * (иначе двойной end давал бы usage дважды).
  */
-export async function settleVoiceSessionWithXp(
+export async function settleVoiceSessionWithSnapshot(
   db: Firestore,
-  args: VoiceSettleWithXpArgs,
-): Promise<VoiceSettleWithXpResult> {
+  args: VoiceSettleSnapshotArgs,
+): Promise<VoiceSettleSnapshotResult> {
   const now = args.nowMs ?? Date.now();
   const ref = db.collection(VOICE_QUOTA_COLLECTION).doc(voiceQuotaDocId(args.stableUid));
   return db.runTransaction(async (tx) => {
@@ -998,7 +986,7 @@ export async function settleVoiceSessionWithXp(
         reservedSec,
         accessType: str(data.accessType) || null,
       });
-      return { chargedSec: 0, refundedSec: 0, alreadySettled: true, xpAwarded: 0, snapshot: data };
+      return { chargedSec: 0, refundedSec: 0, alreadySettled: true, snapshot: data };
     }
     const win = normalizeWindows(data, now);
     const actualSec = args.resolveActualSec ? args.resolveActualSec(data) : num(args.actualSec);
@@ -1014,15 +1002,6 @@ export async function settleVoiceSessionWithXp(
       ? Math.min(reservationTotalSec, consumedBeforeSec + currentSegmentChargedSec)
       : currentSegmentChargedSec;
     const refundedSec = reservationTotalSec - chargedSec;
-
-    // Дневной XP-кэп применяется к НАКОПЛЕННОМУ за день, не к одной сессии,
-    // иначе N сессий в день давали бы N×cap.
-    const cap = Math.max(0, Math.floor(args.xpDailyCap));
-    const alreadyToday = str(data.xpDayKey) === args.xpDayKey
-      ? Math.max(0, Math.floor(num(data.xpAwardedToday)))
-      : 0;
-    const sessionXp = Math.max(0, Math.floor(args.computeXp(chargedSec, data)));
-    const xpAwarded = Math.max(0, Math.min(sessionXp, cap - alreadyToday));
 
     if (isPaidMinutes) {
       await settleVoiceMinuteWalletInTransaction(tx, db, {
@@ -1070,12 +1049,10 @@ export async function settleVoiceSessionWithXp(
       lastSettledSessionId: args.sessionId,
       lastSettledAtMs: now,
       lastEndReason: str(args.endReason).slice(0, 40) || 'completed',
-      xpDayKey: args.xpDayKey,
-      xpAwardedToday: alreadyToday + xpAwarded,
       updatedAtMs: now,
     }, { merge: true });
 
-    return { chargedSec, refundedSec, alreadySettled: false, xpAwarded, snapshot: data };
+    return { chargedSec, refundedSec, alreadySettled: false, snapshot: data };
   });
 }
 

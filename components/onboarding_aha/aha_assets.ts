@@ -1,19 +1,7 @@
 // Реестр бандл-ассетов АХ-сцены. Metro резолвит require только с литеральным
 // путём — поэтому явные мапы, без динамических путей.
 
-import type { ImageSourcePropType } from 'react-native';
-
 import type { AhaScenarioId } from './aha_types';
-
-/** Фоновые иллюстрации сцен (webp 1080x1620, «Полночь»-палитра). */
-export const AHA_BACKGROUNDS: Record<AhaScenarioId, ImageSourcePropType> = {
-  travel: require('../../assets/images/onboarding_aha/bg_travel.webp'),
-  work: require('../../assets/images/onboarding_aha/bg_work.webp'),
-  media: require('../../assets/images/onboarding_aha/bg_media.webp'),
-  people: require('../../assets/images/onboarding_aha/bg_people.webp'),
-  everyday: require('../../assets/images/onboarding_aha/bg_everyday.webp'),
-  self: require('../../assets/images/onboarding_aha/bg_self.webp'),
-};
 
 /** Реплика собеседника (бит 1). */
 export const AHA_VOICE_HEAR: Record<AhaScenarioId, number> = {

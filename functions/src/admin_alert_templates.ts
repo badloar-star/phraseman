@@ -104,6 +104,7 @@ export const ADMIN_ALERT_TEMPLATES: Readonly<Record<AdminAlertType, AdminAlertTe
   cancelReason: { emoji: '🗣', hero: 'ПОЧЕМУ ОТМЕНИЛИ', mood: 'warn', zones: HUMAN_FIRST },
   appMessageDigest: { emoji: '👍', hero: 'РЕАКЦИИ НА СООБЩЕНИЕ', mood: 'digest', zones: NUMBERS_FIRST },
   cardPackDigest: { emoji: '🃏', hero: 'КАРТОЧКИ ЗА СУТКИ', mood: 'digest', zones: NUMBERS_FIRST },
+  customCardMilestone: { emoji: '📝', hero: '1 500 КАРТОЧЕК', mood: 'celebrate', zones: NUMBERS_FIRST },
 
   // ── ОПЕРАЦИИ: состояние системы ──
   cronHealth: {

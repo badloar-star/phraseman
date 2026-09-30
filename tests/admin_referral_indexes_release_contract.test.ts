@@ -26,6 +26,15 @@ describe('referral dashboard indexes and release profile', () => {
         { fieldPath: 'prizePearls', order: 'ASCENDING' },
       ],
     }));
+    // зачем: D100 — статистика рулетки считает монетные призы Pro (prizeKind+prizeCoins).
+    expect(config.indexes).toContainEqual(expect.objectContaining({
+      collectionGroup: 'referral_spins',
+      queryScope: 'COLLECTION_GROUP',
+      fields: [
+        { fieldPath: 'prizeKind', order: 'ASCENDING' },
+        { fieldPath: 'prizeCoins', order: 'ASCENDING' },
+      ],
+    }));
   });
 
   test('receipt reads are capped with a sentinel and surface integrity health', () => {

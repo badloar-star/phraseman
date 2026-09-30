@@ -76,7 +76,7 @@ describe('admin user profile read contracts', () => {
   it('projects an allowlisted summary and never returns push tokens or raw progress', () => {
     const summary = buildUserProfileSummary('stable-1', {
       progress: {
-        user_name: 'Alice', user_total_xp: '1250', streak_count: '9', premium_plan: 'annual',
+        user_name: 'Alice', streak_count: '9', premium_plan: 'annual',
         app_lang: 'ru', app_version: '2.4.0', device_platform: 'ios', unlocked_lessons: '[1,2,3]',
         secret_inside_progress: 'must-not-leak',
       },
@@ -89,7 +89,7 @@ describe('admin user profile read contracts', () => {
     });
 
     expect(summary).toMatchObject({
-      uid: 'stable-1', name: 'Alice', xp: 1250, streak: 9, premiumPlan: 'annual',
+      uid: 'stable-1', name: 'Alice', streak: 9, premiumPlan: 'annual',
       language: 'ru', appVersion: '2.4.0', platform: 'ios', lessonsCompleted: 3, shards: null,
       auth: { provider: 'google', email: 'Alice@example.com' },
     });
@@ -120,10 +120,12 @@ describe('admin user profile read contracts', () => {
     expect(canonicalize([
       { id: 'paid', priceShards: 999, price: 777, acquisitionSource: 'paid_community_sale' },
       { id: 'gift', priceShards: 999, price: 777, acquisitionSource: 'weekly_boon_gift' },
+      { id: 'voucher', priceShards: 999, price: 777, acquisitionSource: 'pack_gift_voucher' },
       { id: 'legacy', priceShards: 123 },
     ])).toEqual([
       { id: 'paid', priceShards: 10, price: 10, acquisitionSource: 'paid_community_sale' },
       { id: 'gift', priceShards: 0, price: 0, acquisitionSource: 'weekly_boon_gift' },
+      { id: 'voucher', priceShards: 0, price: 0, acquisitionSource: 'pack_gift_voucher' },
       { id: 'legacy', priceShards: 10, price: 10, acquisitionSource: 'paid_community_sale' },
     ]);
   });
@@ -149,7 +151,6 @@ describe('admin user profile read contracts', () => {
     const dailyStats = Object.fromEntries(Array.from({ length: 40 }, (_, index) => [`2026-06-${String(index + 1).padStart(2, '0')}`, index]));
     dailyStats['not-a-date'] = { secret: 'drop' } as unknown as number;
     const learning = buildLearningSnapshot({
-      user_total_xp: '100',
       streak_count: '4',
       daily_stats: JSON.stringify(dailyStats),
       phraseman_foreground_daily_ms_v1: JSON.stringify({ '2026-07-01': 60000, bad: 'secret' }),

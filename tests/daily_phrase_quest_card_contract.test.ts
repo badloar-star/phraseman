@@ -44,8 +44,8 @@ describe('DailyPhraseCard quest contract', () => {
     expect(source).toContain('{(showQuestExplanation || !hasValidQuest) && (');
   });
 
-  it('awards XP only through the quest helper and shakes on a wrong answer', () => {
-    expect(source).toContain('awardDailyPhraseQuestXpOnce');
+  it('records an answer locally and shakes on a wrong answer', () => {
+    expect(source).toContain('markDailyPhraseQuestAnswered');
     expect(source).toContain('runWrongAnswerShake');
     expect(source).toContain('Animated.sequence');
   });
@@ -55,9 +55,6 @@ describe('DailyPhraseCard quest contract', () => {
     expect(source).toContain('runCorrectAnswerAnimation');
     expect(source).toContain('successOverlay');
     expect(source).toContain('questResultPill');
-    expect(source.indexOf('setQuestXpDelta(DAILY_PHRASE_QUEST_XP)')).toBeLessThan(
-      source.indexOf('runCorrectAnswerAnimation()'),
-    );
   });
 
   it('skips the quiz after any daily phrase answer was already recorded', () => {

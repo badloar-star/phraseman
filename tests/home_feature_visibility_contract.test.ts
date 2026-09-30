@@ -8,15 +8,10 @@ function read(relativePath: string): string {
 }
 
 describe('home feature visibility', () => {
-  it('keeps the league row in Today for every resolved league state', () => {
+  it('does not restore the retired league chest row in Today', () => {
     const source = read('app/(tabs)/home.tsx');
-
-    expect(source).toContain('const nextHomeLeagueChest = buildHomeLeagueChest(');
-    expect(source).toContain('getMyLeagueWeekRunes()');
-    expect(source).toContain('withMyLivePoints(');
-    expect(source).not.toContain('setHomeLeagueChest((prev) => prev);');
-    expect(source).not.toContain('shouldShowLeagueRace');
-    expect(source).toContain('homeLeagueChest ?? peekHomeScreenHydration(studyTarget)?.homeLeagueChest ?? null');
+    expect(source).not.toContain('buildHomeLeagueChest');
+    expect(source).not.toContain('homeLeagueChest');
   });
 
   it('keeps the video icon visible by default and avoids badge loading when disabled', () => {

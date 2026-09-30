@@ -43,7 +43,6 @@ import {
   lessonSessionKey,
   lessonWordsShardsGrantedKey,
   lessonTheorySectionsSeenKey,
-  lessonTheoryXpClaimedKey,
   lessonTopicShardGrantedKey,
   lessonUnlockRepairKey,
   lessonWordsKey,
@@ -101,7 +100,6 @@ describe('target storage key contract', () => {
     expect(() => assertTargetKey('diagnosis_training_free_access_v1')).toThrow(/Raw target-sensitive key/);
     expect(() => assertTargetKey('resolved_personal_trainings_v1')).toThrow(/Raw target-sensitive key/);
     expect(() => assertTargetKey('pos_mastery_v1')).toThrow(/Raw target-sensitive key/);
-    expect(() => assertTargetKey('theory_xp_claimed_1')).toThrow(/Raw target-sensitive key/);
     expect(() => assertTargetKey('theory_sections_seen_1')).toThrow(/Raw target-sensitive key/);
     expect(() => assertTargetKey('lesson1_best_score')).toThrow(/Raw target-sensitive key/);
     expect(() => assertTargetKey('lesson1_pass_count')).toThrow(/Raw target-sensitive key/);
@@ -157,7 +155,6 @@ describe('target storage key contract', () => {
     expect(() => assertTargetKey('daily_stats')).not.toThrow();
     expect(() => assertTargetKey('achievements_state')).not.toThrow();
     expect(assertTargetKey(targetKey('flashcards' as TargetKeyDomain, 'fr'))).toBe('flashcards_v2::fr');
-    expect(assertTargetKey(lessonTheoryXpClaimedKey(1, 'fr'))).toBe('lesson_rewards_v2::fr::theory_xp_claimed_1');
     expect(assertTargetKey(lessonTheorySectionsSeenKey(1, 'fr'))).toBe('lesson_progress_v2::fr::theory_sections_seen_1');
     expect(assertTargetKey(levelExamKey('A1', 'passed', 'fr'))).toBe('level_exams_v2::fr::level_exam_A1_passed');
   });
@@ -208,7 +205,6 @@ describe('target storage key contract', () => {
     expect(diagnosticOpenFlagKey('fr')).toBe('level_exams_v2::fr::open_diagnostic');
     expect(lessonTheorySectionsSeenKey(1, 'en')).toBe('theory_sections_seen_1');
     expect(lessonTheorySectionsSeenKey(1, 'fr')).toBe('lesson_progress_v2::fr::theory_sections_seen_1');
-    expect(lessonTheoryXpClaimedKey(1, 'fr')).toBe('lesson_rewards_v2::fr::theory_xp_claimed_1');
     expect(lessonBonusGrantedKey(1, 'fr')).toBe('lesson_rewards_v2::fr::lesson1_bonus_granted');
     expect(lessonPerfectMilestoneKey(5, 'fr')).toBe('lesson_rewards_v2::fr::shards_5perfect_milestone_5');
     expect(lessonTopicShardGrantedKey('A1', 'fr')).toBe('lesson_rewards_v2::fr::shards_topic_A1_granted');

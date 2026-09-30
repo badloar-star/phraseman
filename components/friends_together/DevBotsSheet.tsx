@@ -19,10 +19,7 @@ export interface DevBotsSheetProps {
   onAddBots: (count: number) => void;
   onAdvanceAll: () => void;
   onAdvanceOne: (uid: string) => void;
-  onChestTier: (tier: 0 | 1 | 2 | 3) => void;
   onIncomingNudge: (uid: string) => void;
-  onGiftReady: (uid: string) => void;
-  onResetChest: () => void;
   onReset: () => void;
 }
 
@@ -39,7 +36,7 @@ function Row({ label, icon, onPress, tone = 'default', testID }: { label: string
 }
 
 function DevBotsSheet({
-  visible, onClose, bots, onAddBots, onAdvanceAll, onAdvanceOne, onChestTier, onIncomingNudge, onGiftReady, onResetChest, onReset,
+  visible, onClose, bots, onAddBots, onAdvanceAll, onAdvanceOne, onIncomingNudge, onReset,
 }: DevBotsSheetProps) {
   const { theme: t, f, ds } = useTheme();
 
@@ -61,12 +58,6 @@ function DevBotsSheet({
         <Row testID="dev-bots-advance-all" label="All bots did today's lesson" icon="checkmark-done-outline" onPress={onAdvanceAll} />
         <Row testID="dev-bots-reset" label="Reset all bots" icon="trash-outline" tone="danger" onPress={onReset} />
 
-        <Text style={[styles.eyebrow, { color: t.textSecond, fontFamily: ds.fontFamily, marginTop: 16 }]}>Weekly chest</Text>
-        <Row testID="dev-bots-chest-1" label="Force tier I (6,000)" icon="gift-outline" onPress={() => onChestTier(1)} />
-        <Row testID="dev-bots-chest-2" label="Force tier II (12,000)" icon="gift-outline" onPress={() => onChestTier(2)} />
-        <Row testID="dev-bots-chest-3" label="Force tier III (20,000)" icon="gift-outline" onPress={() => onChestTier(3)} />
-        <Row testID="dev-bots-chest-reset" label="Сбросить сундук" icon="refresh-outline" onPress={onResetChest} />
-        <Row testID="dev-bots-chest-clear" label="Clear chest progress" icon="close-circle-outline" onPress={() => onChestTier(0)} />
 
         {bots.length > 0 && (
           <>
@@ -74,12 +65,11 @@ function DevBotsSheet({
             {bots.map((b) => (
               <View key={b.uid} testID={`dev-bot-card-${b.uid}`} style={[styles.botCard, { backgroundColor: t.bgSurface }]}>
                 <Text style={{ color: t.textPrimary, fontSize: f.body ?? 14, fontFamily: ds.fontFamily, fontWeight: '700' }}>
-                  {b.name} · {b.days}d · {b.weeklyXp} XP
+                  {b.name} · {b.days}d
                 </Text>
                 <View style={styles.statuses}>
                   {b.learnedToday && <Text testID={`dev-bot-today-${b.uid}`} style={[styles.status, { color: t.correct, backgroundColor: t.correctBg }]}>Today</Text>}
                   {b.incomingNudge && <Text testID={`dev-bot-incoming-${b.uid}`} style={[styles.status, { color: t.gold, backgroundColor: t.goldBg }]}>Incoming nudge</Text>}
-                  {b.giftReady && <Text testID={`dev-bot-gift-${b.uid}`} style={[styles.status, { color: t.correct, backgroundColor: t.correctBg }]}>Gift ready</Text>}
                 </View>
                 <View style={styles.botActs}>
                   <TapScale onPress={() => onAdvanceOne(b.uid)} style={[styles.chip, { backgroundColor: t.accentBg }]} accessibilityLabel={`${b.name}: +1 day`}>
@@ -87,9 +77,6 @@ function DevBotsSheet({
                   </TapScale>
                   <TapScale onPress={() => onIncomingNudge(b.uid)} style={[styles.chip, { backgroundColor: t.goldBg }]} accessibilityLabel={`${b.name}: nudges me`}>
                     <Text style={{ color: t.gold, fontSize: f.caption ?? 12, fontFamily: ds.fontFamily, fontWeight: '700' }}>Nudges me</Text>
-                  </TapScale>
-                  <TapScale onPress={() => onGiftReady(b.uid)} style={[styles.chip, { backgroundColor: t.correctBg }]} accessibilityLabel={`${b.name}: gift ready`}>
-                    <Text style={{ color: t.correct, fontSize: f.caption ?? 12, fontFamily: ds.fontFamily, fontWeight: '700' }}>Gift ready</Text>
                   </TapScale>
                 </View>
               </View>

@@ -3,6 +3,7 @@ import React, { useCallback, useRef } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import type { SoftUpsellOpportunity } from '../app/soft_upsell_core';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import TonalSurface from './TonalSurface';
 import { useTheme } from './ThemeContext';
 
@@ -25,7 +26,8 @@ export default function SoftContextualUpsellCard({
   title, body, ctaLabel, dismissLabel, dismissAccessibilityLabel, dismissAccessibilityHint,
   ctaAccessibilityLabel, ctaAccessibilityHint, onImpression, onDismiss, onCta,
 }: Props) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const reportedRef = useRef(false);
   const impressionInFlightRef = useRef<Promise<void> | null>(null);
   const handleLayout = useCallback((event: { nativeEvent: { layout: { width: number; height: number } } }) => {
@@ -44,10 +46,10 @@ export default function SoftContextualUpsellCard({
       accessibilityLabel={`${title}. ${body}`}
       onLayout={handleLayout}
       radius={16}
-      style={styles.card}
+      style={[styles.card, { borderColor: glass.glassEdge }]}
     >
       <View style={styles.headingRow}>
-        <Ionicons name="sparkles-outline" size={22} color={t.textPrimary} />
+        <Ionicons name="sparkles-outline" size={22} color={glass.cta} />
         <Text style={[styles.title, { color: t.textPrimary, fontSize: f.body }]}>{title}</Text>
       </View>
       <Text style={[styles.body, { color: t.textMuted, fontSize: f.caption }]}>{body}</Text>
@@ -67,10 +69,10 @@ export default function SoftContextualUpsellCard({
           accessibilityLabel={ctaAccessibilityLabel}
           accessibilityHint={ctaAccessibilityHint}
           onPress={() => { void onCta(); }}
-          style={({ pressed }) => [styles.cta, { backgroundColor: t.accent, opacity: pressed ? 0.82 : 1 }]}
+          style={({ pressed }) => [styles.cta, { backgroundColor: glass.cta, opacity: pressed ? 0.82 : 1 }]}
         >
-          <Text style={[styles.ctaText, { color: t.correctText, fontSize: f.label }]}>{ctaLabel}</Text>
-          <Ionicons name="arrow-forward" size={19} color={t.correctText} />
+          <Text style={[styles.ctaText, { color: glass.ctaInk, fontSize: f.label }]}>{ctaLabel}</Text>
+          <Ionicons name="arrow-forward" size={19} color={glass.ctaInk} />
         </Pressable>
       </View>
     </TonalSurface>
@@ -78,7 +80,7 @@ export default function SoftContextualUpsellCard({
 }
 
 const styles = StyleSheet.create({
-  card: { borderRadius: 16, borderWidth: 0, gap: 10, padding: 16 },
+  card: { borderRadius: 16, borderWidth: 1, gap: 10, padding: 16 },
   headingRow: { alignItems: 'center', flexDirection: 'row', gap: 9 },
   title: { flex: 1, fontWeight: '800' },
   body: { lineHeight: 20 },

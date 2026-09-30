@@ -25,13 +25,14 @@ describe('streak freeze active state', () => {
     await expect(readStreakFreezeActive()).resolves.toBe(false);
   });
 
-  it('does not let an old freeze record block repair eligibility', async () => {
+  // зачем: D107 — починки серии уроком больше нет: даже «идеальный» кандидат не получает её.
+  it('never offers lesson repair (D107)', async () => {
     await AsyncStorage.multiSet([
       ['last_active_date', '2026-05-17'],
       ['streak_count', '37'],
       ['streak_freeze', JSON.stringify({ active: true, date: '2026-05-18' })],
     ]);
 
-    await expect(isRepairEligible()).resolves.toBe(true);
+    await expect(isRepairEligible()).resolves.toBe(false);
   });
 });

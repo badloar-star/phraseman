@@ -32,7 +32,6 @@ import {
 import { captureAccountGeneration } from '../app/account_generation';
 import { showVideoWatchRunesInGlobalBalance } from '../app/level_spin_star_grants';
 import { DebugLogger } from '../app/debug-logger';
-import { applySuperSundayRuneMultiplier } from '../modules/economy/super_sunday_runes';
 
 /**
  * Один flush на точный шаг начисления: число обновляется раз в 36 секунд, а
@@ -207,7 +206,7 @@ export function useVideoWatchEnergyBoost(videoId: string): VideoWatchEnergyBoost
         runeSessionRef.current.token,
         {
           alreadyShownRunes: runesShownInGlobalRef.current,
-          earnedRunes: applySuperSundayRuneMultiplier(baseEarned, Date.now()),
+          earnedRunes: baseEarned,
         },
       );
       const willReport = runeProgressPendingMsRef.current >= 5_000;
@@ -264,7 +263,7 @@ export function useVideoWatchEnergyBoost(videoId: string): VideoWatchEnergyBoost
     baseUnclaimedMinutes * VIDEO_WATCH_RUNES_PER_MINUTE,
     Math.max(0, VIDEO_WATCH_RUNES_DAILY_CAP - grantedToday),
   );
-  const runesEarned = applySuperSundayRuneMultiplier(baseRunesEarned, Date.now());
+  const runesEarned = baseRunesEarned;
   const [secondsToNextRune, setSecondsToNextRune] = useState(60);
 
   useEffect(() => {

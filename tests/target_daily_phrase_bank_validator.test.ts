@@ -1,7 +1,7 @@
 import { validateTargetDailyPhraseBank } from '../scripts/validate_target_daily_phrase_bank.mjs';
 
 const row = (id: number) => ({
-  id: `es-daily-${id}`,
+  id: `es-${String(id).padStart(3, '0')}`,
   order: id,
   studyTarget: 'es',
   sourceLocale: 'ru',

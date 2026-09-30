@@ -2,7 +2,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import firestore from '@react-native-firebase/firestore';
 import * as Crypto from 'expo-crypto';
 
-import { getLevelFromXP } from '../constants/theme';
 import { isUnreadableDatabaseFailure, openPhoneStateDatabase, recreatePhoneStateDatabaseAfterUnreadable } from '../modules/phone-state/database';
 import { withKeyedExclusiveTransaction } from '../modules/phone-state/keyed_exclusive_transaction';
 import { migratePhoneStateSchema } from '../modules/phone-state/schema';
@@ -216,17 +215,12 @@ function progressJournal(session: RuntimeSession): PersonalProgressJournal {
 async function importCoreProgressOnce(session: RuntimeSession): Promise<void> {
   if (await session.store.readProjection('progress')) return;
   const rows = new Map(await AsyncStorage.multiGet([
-    'user_total_xp',
-    'weekly_xp',
     'streak_count',
     'streak_last_date',
     'unlocked_lessons',
   ]));
   const lastDate = rows.get('streak_last_date');
   const projection: PersonalProgressProjection = Object.freeze({
-    totalXp: positiveNumber(rows.get('user_total_xp') ?? null),
-    level: 1,
-    weeklyXp: positiveNumber(rows.get('weekly_xp') ?? null),
     activityDates: Object.freeze(
       typeof lastDate === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(lastDate) ? [lastDate] : [],
     ),
@@ -339,14 +333,13 @@ async function openRuntimeSession(
     const deviceId = await ensureDeviceId(database);
     const localDatabase = adaptExpoSqliteDatabase(database);
     const registry = createReducerRegistry([
-      createPersonalProgressReducer(getLevelFromXP),
+      createPersonalProgressReducer(),
       createProgressRegistersReducer(),
       createPreferencesReducer(),
       createCardsReducer(),
       createPracticeReducer(),
       createEconomyReducer(),
       createLearningV2Reducer(),
-      opaqueReducer('xp'),
       opaqueReducer('lesson_completion'),
       opaqueReducer('exam_completion'),
     ] as const);
@@ -558,12 +551,6 @@ export function installPhoneStateProductionRuntime(): void {
         random: Math.random,
         setTimer: (callback, delayMs) => setTimeout(callback, delayMs),
         clearTimer: (timer) => clearTimeout(timer),
-        drainExternalIntents: async () => {
-          const { resumePendingFriendGiftSends } = await import('./friend_gift_outbox');
-          const result = await resumePendingFriendGiftSends();
-          if (result.pending > 0) throw new Error('network_friend_gift_pending');
-          return Object.freeze({ hasMore: false });
-        },
       });
       session.setSyncTrigger((reason) => coordinator.trigger(reason));
       configurePhoneStateBackgroundSyncBridge(() => coordinator.trigger('sealed_segment'));

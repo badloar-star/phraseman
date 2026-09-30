@@ -2,8 +2,7 @@ import { buildStatsLearningInsights, formatCompactDuration } from '../app/stats_
 
 const daysWithFourteenDailyRows = Array.from({ length: 14 }, (_, index) => ({
   date: `2026-07-${String(index + 1).padStart(2, '0')}`,
-  xp: index < 7 ? (index === 0 ? 20 : 120) : (index === 7 ? 80 : 140),
-  foregroundMs: 30 * 60_000,
+  foregroundMs: (index === 0 ? 20 : index === 7 ? 40 : 30) * 60_000,
   active: index !== 6,
 }));
 
@@ -17,8 +16,10 @@ describe('stats learning insights', () => {
   it('compares current week with the preceding seven days', () => {
     const insights = buildStatsLearningInsights(daysWithFourteenDailyRows);
 
-    expect(insights.weekComparison.currentXp).toBe(920);
-    expect(insights.weekComparison.previousXp).toBe(740);
+    expect(insights.weekComparison.currentMinutes).toBe(220);
+    expect(insights.weekComparison.previousMinutes).toBe(200);
+    expect(insights.bestWeek.minutes).toBe(220);
+    expect(insights).not.toHaveProperty('speed');
   });
 
   it('returns an unavailable best-time insight without hourly observations', () => {

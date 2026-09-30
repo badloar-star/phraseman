@@ -10,15 +10,15 @@
 //   Показать план: "15 мин/день → B1 через 60 дней". Повышает retention.
 //   Сложность: средняя. Приоритет: высокий (делать до/после релиза).
 //
-// [БУСТЕРЫ] — x2 XP на 30 минут
-//   Пользователь смотрит рекламу или тратит монеты — получает буст XP.
+// [БУСТЕРЫ] — x2 legacy reward на 30 минут
+//   Пользователь смотрит рекламу или тратит монеты — получает буст legacy reward.
 //   Показывать предложение после завершения урока или в экране статистики.
 //   Сложность: средняя. Приоритет: высокий (монетизация).
 //
-// [МОНЕТЫ] — отдельная валюта вместо трат XP
-//   Сейчас XP используется в пари — конфликт роста и траты.
+// [МОНЕТЫ] — отдельная валюта вместо трат legacy reward
+//   Сейчас legacy reward используется в пари — конфликт роста и траты.
 //   Монеты фармятся отдельно (за уроки, серии), тратятся на бустеры/страховку цепочки.
-//   XP только растёт, монеты — расходуемые.
+//   legacy reward только растёт, монеты — расходуемые.
 //   Сложность: большой рефакторинг экономики. Делать после релиза.
 //
 // [ЖИЗНИ] — 5 ошибок → пауза или платишь
@@ -116,7 +116,6 @@ export const ENABLE_TOURNAMENTS: false = false;
  * живой эффект и свой новый блок информации (см. app/profile_card_system.ts).
  *
  * Выключать — только осознанным решением владельца: менять на false вместе с
- * tests/profile_card_upgrade_dev_gate.test.ts (контракт фиксирует `= true`). Улучшение
  * выполняется внутри PlayerProfileModal; отдельного маршрута для карточки больше нет.
  */
 export const ENABLE_PROFILE_CARD = true;
@@ -274,20 +273,11 @@ export const KNOWLY_LEGAL_TERMS_URL = 'https://knowlyapps.com/legal/terms/';
 // This remote manifest lets already installed builds discover a newer store release.
 export const UPDATE_CHECK_URL = 'https://raw.githubusercontent.com/badloar-star/phraseman-version/main/version.json';
 
-// ── Разовый бонус осколков за волну релиза — ОТКЛЮЧЁН (0 = никогда не показывать).
-// android.versionCode / ios.buildNumber для справки синхронизировали с волнами, когда фича была активна.
-// ВНИМАНИЕ перед повторным включением (VERSION>0, SHARDS>0): production-хоста
-// на cold-start сейчас НЕТ. Без подключения
-// модалки к арбитру (слот в OVERLAY_PRIORITY + useOverlayVisible) бонус начислится «втихую»
-// или не покажется. Сначала верни хост, потом поднимай версию (аудит #11).
-export const RELEASE_WAVE_BONUS_VERSION = 0;
-export const RELEASE_WAVE_BONUS_SHARDS = 0;
+// зачем: D70/D78 — разовый бонус жемчуга за волну релиза удалён целиком
+// (app/release_wave_bonus.ts и константы RELEASE_WAVE_BONUS_*).
 
 // Минимальный балл для разблокировки следующего урока
 export const MIN_LESSON_SCORE = 4.5;
-
-// Максимум XP за один диалог
-export const MAX_DIALOG_XP = 10;
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }

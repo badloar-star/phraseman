@@ -37,7 +37,7 @@ function contentRefreshKeys(): string[] {
  * Delivers rewritten lesson content safely to existing accounts.
  *
  * We only clear transient presentation/session keys that can pin a user to an
- * old lesson order or hide new intro/theory screens. Progress, XP, scores,
+ * old lesson order or hide new intro/theory screens. Progress, legacy reward, scores,
  * unlocked lessons, words, purchases, VIP, shards, streaks and achievements stay intact.
  */
 export async function applyContentDeliveryMigration(): Promise<boolean> {

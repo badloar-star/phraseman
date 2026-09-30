@@ -120,19 +120,6 @@ describe('packTitleForInterface', () => {
 });
 
 describe('packHubLabelForInterface', () => {
-  it('uses compact localized labels for official storefront tiles', () => {
-    const prepIn = BUNDLED_MARKETPLACE_PACKS.find((pack) => pack.id === 'official_prep_in_en');
-    const darkLogic = BUNDLED_MARKETPLACE_PACKS.find((pack) => pack.id === 'official_dark_logic_en');
-    expect(prepIn).toBeTruthy();
-    expect(darkLogic).toBeTruthy();
-
-    expect(packHubLabelForInterface(prepIn!, 'ru')).toBe('Предлог IN');
-    expect(packHubLabelForInterface(prepIn!, 'uk')).toBe('Прийменник IN');
-    expect(packHubLabelForInterface(prepIn!, 'es')).toBe('Preposicion IN');
-    expect(packHubLabelForInterface(darkLogic!, 'ru')).toBe('Темная логика');
-    expect(packHubLabelForInterface(darkLogic!, 'pl')).toBe('Mroczna logika');
-  });
-
   it('keeps community tiles on their localized title and unknown official tiles on codeName', () => {
     const communityPack = basePack({
       isCommunityUgc: true,

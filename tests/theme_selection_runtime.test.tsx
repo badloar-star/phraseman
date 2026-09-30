@@ -37,9 +37,6 @@ jest.mock('../app/events', () => ({
   onAppEvent: jest.fn(() => ({ remove: jest.fn() })),
 }));
 
-jest.mock('../app/services/league_chest_rewards', () => ({
-  hasLeagueGoldThemeReward: jest.fn(async () => false),
-}));
 
 jest.mock('../app/oskolok', () => ({
   setOskolokThemeMode: jest.fn(),

@@ -14,8 +14,6 @@ const FRIEND_PROFILES_CACHE_TTL_MS = 30 * 24 * 60 * 60 * 1000;
 export interface FriendsTabProfileWarm {
   uid: string;
   name: string;
-  totalXp: number;
-  weeklyXp: number;
   streak: number;
   isPremium: boolean;
   avatar: string;

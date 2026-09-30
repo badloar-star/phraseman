@@ -13,14 +13,6 @@ jest.mock('expo-image', () => {
   };
 });
 
-jest.mock('../components/AvatarAura', () => {
-  const ReactModule = jest.requireActual('react');
-  const { View: NativeView } = jest.requireActual('react-native');
-  return function MockAvatarAura(props: { children: React.ReactNode }) {
-    return ReactModule.createElement(NativeView, { testID: 'avatar-aura' }, props.children);
-  };
-});
-
 jest.mock('../components/LevelBadge', () => {
   const ReactModule = jest.requireActual('react');
   const { View: NativeView } = jest.requireActual('react-native');
@@ -37,14 +29,6 @@ jest.mock('../components/LevelAvatarMaterialOverlay', () => {
   };
 });
 
-jest.mock('../components/CustomAvatarBadge', () => {
-  const ReactModule = jest.requireActual('react');
-  const { View: NativeView } = jest.requireActual('react-native');
-  return function MockCustomAvatarBadge() {
-    return ReactModule.createElement(NativeView, { testID: 'custom-avatar-badge' });
-  };
-});
-
 describe('AvatarView v2 fallback chain', () => {
   const avatarV2 = {
     schemaVersion: 1 as const,
@@ -57,13 +41,15 @@ describe('AvatarView v2 fallback chain', () => {
 
   it('prefers a ready v2 portrait and falls back to legacy when it errors', async () => {
     const view = await render(
-      <AvatarView avatar="custom:custom-gen-01:ember:black" avatarV2={avatarV2} />,
+      <AvatarView avatar="custom:custom-gen-01:ember:black" avatarV2={avatarV2} auraId="aura-ember" />,
     );
 
     expect(view.getByTestId('avatar-v2-image').props.source).toEqual({ uri: avatarV2.portraitUrl });
     await fireEvent(view.getByTestId('avatar-v2-image'), 'error');
-    expect(view.getByTestId('custom-avatar-badge')).toBeTruthy();
-    expect(view.getAllByTestId('avatar-aura')).toHaveLength(1);
+    // зачем: D108 — купленный аватар и аура больше не рисуются: только базовый аватар.
+    expect(view.queryByTestId('avatar-v2-image')).toBeNull();
+    expect(view.queryByTestId('custom-avatar-badge')).toBeNull();
+    expect(view.queryByTestId('avatar-aura')).toBeNull();
   });
 
   it('falls back from a failed ready portrait to the owner local DNA stage', async () => {

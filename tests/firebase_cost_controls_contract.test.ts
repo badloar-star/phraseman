@@ -63,33 +63,21 @@ describe("Firebase cost controls", () => {
     expect(friendsSource).not.toContain("collection('referral_codes')");
   });
 
-  it("keeps Friends referral and quest cloud reads cached, single-flight, and TTL-gated", () => {
+  it("keeps Friends referral cloud reads cached, single-flight, and TTL-gated", () => {
     const friendsScreenSource = read("app/(tabs)/friends.tsx");
     const referralVipSource = read("app/referral_vip.ts");
     const referralCloudSource = read("app/referral_cloud.ts");
-    const friendQuestsSource = read("app/friend_quests.ts");
     const serverReferralSource = read("functions/src/referral.ts");
-    const serverFriendGiftsSource = read("functions/src/friend_gifts.ts");
 
     expect(friendsScreenSource).toContain(
       "FRIENDS_REFERRAL_REFRESH_TTL_MS = 15 * 60 * 1000",
     );
-    expect(friendsScreenSource).toContain(
-      "FRIENDS_QUEST_REFRESH_TTL_MS = 2 * 60 * 1000",
-    );
     expect(friendsScreenSource).toContain("referralRefreshInFlightRef");
-    expect(friendsScreenSource).toContain("friendQuestRefreshInFlightRef");
     expect(friendsScreenSource).toContain(
       "getClaimableReferralState({ force: options.force })",
     );
     expect(friendsScreenSource).toContain(
-      "getActiveFriendQuest({ force: options.force })",
-    );
-    expect(friendsScreenSource).toContain(
       "referralInvitesKey(prev) === referralInvitesKey(state.invites)",
-    );
-    expect(friendsScreenSource).toContain(
-      "friendQuestKey(prev) === friendQuestKey(next)",
     );
 
     expect(referralVipSource).toContain(
@@ -101,13 +89,6 @@ describe("Firebase cost controls", () => {
     );
     expect(referralCloudSource).toContain("force: options.force === true");
 
-    expect(friendQuestsSource).toContain(
-      "FRIEND_QUEST_STATUS_CACHE_TTL_MS = 60 * 1000",
-    );
-    expect(friendQuestsSource).toContain("friendQuestStatusInFlight");
-    expect(friendQuestsSource).toContain("invalidateActiveFriendQuestCache");
-    expect(friendQuestsSource).toContain("force: options.force === true");
-
     expect(serverReferralSource).toContain(
       "LIST_MY_INVITES_SERVER_CACHE_TTL_MS = 60_000",
     );
@@ -116,15 +97,6 @@ describe("Firebase cost controls", () => {
       "const force = request.data?.force === true",
     );
 
-    expect(serverFriendGiftsSource).toContain(
-      "FRIEND_GET_ACTIVE_QUEST_SERVER_CACHE_TTL_MS = 30_000",
-    );
-    expect(serverFriendGiftsSource).toContain(
-      "friendGetActiveQuestServerCache",
-    );
-    expect(serverFriendGiftsSource).toContain(
-      "const force = request.data?.force === true",
-    );
   });
 
   it("keeps new web and admin/background cost controls cheap by default", () => {
@@ -171,7 +143,6 @@ describe("Firebase cost controls", () => {
   it("does not push XP or premium changes through the removed global leaderboard callables", () => {
     const indexSource = read("functions/src/index.ts");
     const packageJson = read("functions/package.json");
-    const xpSource = read("app/xp_manager.ts");
     const layoutSource = read("app/_layout.tsx");
     const surveySource = read("app/vip_survey.ts");
     const publicProfileSource = read("app/public_profile_snapshot.ts");
@@ -181,7 +152,6 @@ describe("Firebase cost controls", () => {
       expect(packageJson).not.toContain(`functions:${name}`);
     }
 
-    expect(xpSource).not.toContain("pushMyScore(");
     expect(layoutSource).not.toContain("updateMyPremiumInLeaderboard");
     expect(layoutSource).not.toContain("updateMyVipInLeaderboard");
     expect(surveySource).not.toContain("updateMyVipInLeaderboard");
@@ -190,7 +160,6 @@ describe("Firebase cost controls", () => {
   });
 
   it("uses a throttled public profile snapshot instead of the old leaderboard write path", () => {
-    const xpSource = read("app/xp_manager.ts");
     const layoutSource = read("app/_layout.tsx");
     const rulesSource = read("firestore.rules");
     const publicProfileSource = read("app/public_profile_snapshot.ts");
@@ -199,16 +168,11 @@ describe("Firebase cost controls", () => {
       "PUBLIC_PROFILE_SNAPSHOT_CACHE_KEY = 'public_profile_snapshot_v1'",
     );
     expect(publicProfileSource).toContain(
-      "PUBLIC_PROFILE_XP_TTL_MS = 24 * 60 * 60 * 1000",
-    );
-    expect(publicProfileSource).toContain(
       "collection('public_profiles').doc(stableId).set",
     );
     expect(publicProfileSource).not.toContain("collection('arena_profiles')");
     expect(publicProfileSource).toContain("displayHash");
-    expect(xpSource).toMatch(
-      /syncPublicProfileSnapshot\(\{[\s\S]*?reason: 'daily_xp'/,
-    );
+    expect(publicProfileSource).not.toContain("daily_xp");
     // зачем (D57/PM-063): app/avatar_select.tsx удалён целиком — с ним ушёл
     // единственный вызывающий с reason: 'display_change' (смена аватара/ауры
     // больше нигде не происходит), проверка этой конкретной причины снята.
@@ -331,17 +295,13 @@ describe("Firebase cost controls", () => {
     expect(indexes).toContain('"fieldPath": "scheduledDate"');
   });
 
-  it("keeps hot progress and league callables from repairing identity links on every call", () => {
+  it("keeps hot progress from repairing identity links on every call", () => {
     const identitySource = read("functions/src/auth_identity.ts");
     const progressSource = read("functions/src/progress_events.ts");
-    const leagueSource = read("functions/src/league_groups.ts");
 
     expect(identitySource).toContain("repairLinks?: boolean");
     expect(identitySource).toContain("options?.repairLinks !== false");
     expect(progressSource).toContain("repairLinks: false");
-    expect(
-      (leagueSource.match(/repairLinks: false/g) ?? []).length,
-    ).toBeGreaterThanOrEqual(4);
   });
 
   it("keeps referral qualification tied to verified premium purchase instead of lesson progress", () => {

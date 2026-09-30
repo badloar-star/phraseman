@@ -9,6 +9,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
+import { useLv2Glass } from '../components/learning-v2/LearningV2Glass';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { mistakeFacetLabel } from './mistake_facet_copy';
@@ -46,7 +47,8 @@ const FILTERS: readonly Filter[] = ['ready', 'all', 'corrected'];
 export default function MistakesListScreen() {
   const router = useRouter();
   const params = useLocalSearchParams<{ filter?: string }>();
-  const { theme: t, f } = useTheme();
+  const { f } = useTheme();
+  const g = useLv2Glass();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const copy = useMemo(() => copyFor(lang), [lang]);
@@ -97,47 +99,47 @@ export default function MistakesListScreen() {
         accessibilityRole="button"
         accessibilityLabel={`${item.phrase}${item.meaning ? `, ${item.meaning}` : ''}`}
         onPress={() => openOne(item)}
-        style={({ pressed }) => [styles.row, { backgroundColor: t.bgCard, opacity: pressed ? 0.86 : 1 }]}
+        style={({ pressed }) => [styles.row, { backgroundColor: g.opaqueCard, opacity: pressed ? 0.86 : 1 }]}
       >
-        <View style={[styles.count, { backgroundColor: corrected ? t.correctBg : t.wrongBg }]}>
+        <View style={[styles.count, { backgroundColor: corrected ? g.goodFill : g.badFill }]}>
           {corrected
-            ? <Ionicons name="checkmark" size={18} color={t.correct} />
-            : <Text style={[styles.countText, { color: t.wrong, fontSize: f.body }]}>×{item.captureCount}</Text>}
+            ? <Ionicons name="checkmark" size={18} color={g.good} />
+            : <Text style={[styles.countText, { color: g.bad, fontSize: f.body }]}>×{item.captureCount}</Text>}
         </View>
         <View style={{ flex: 1, minWidth: 0, gap: 3 }}>
-          <Text style={[styles.phrase, { color: t.textPrimary, fontSize: f.body }]} numberOfLines={2}>{item.phrase}</Text>
-          <Text style={[styles.meaning, { color: t.textMuted, fontSize: f.sub }]} numberOfLines={1}>
+          <Text style={[styles.phrase, { color: g.text, fontSize: f.body }]}>{item.phrase}</Text>
+          <Text style={[styles.meaning, { color: g.secondary, fontSize: f.sub }]}>
             {[item.meaning, corrected ? copy.fixed : mistakeFacetLabel(lang, item.facet)].filter(Boolean).join(' · ')}
           </Text>
           {!corrected ? (
             <View style={styles.dots}>
               {[0, 1, 2].map((index) => (
-                <View key={`day-${index}`} style={[styles.dot, { backgroundColor: index < item.qualifyingDays ? t.accent : t.bgSurface2 }]} />
+                <View key={`day-${index}`} style={[styles.dot, { backgroundColor: index < item.qualifyingDays ? g.cta : g.opaqueControl }]} />
               ))}
             </View>
           ) : null}
         </View>
-        <Ionicons name="chevron-forward" size={20} color={t.textMuted} />
+        <Ionicons name="chevron-forward" size={20} color={g.secondary} />
       </Pressable>
     );
-  }, [copy.fixed, f.body, f.sub, lang, openOne, t]);
+  }, [copy.fixed, f.body, f.sub, lang, openOne, g]);
 
   return (
     <ScreenGradient>
       <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
         <View style={styles.header}>
-          <Pressable accessibilityRole="button" accessibilityLabel={copy.back} hitSlop={10} onPress={() => safeRouterBack(router, '/mistakes_hub' as never)} style={[styles.iconButton, { backgroundColor: t.bgCard }]}>
-            <Ionicons name="chevron-back" size={24} color={t.textPrimary} />
+          <Pressable accessibilityRole="button" accessibilityLabel={copy.back} hitSlop={10} onPress={() => safeRouterBack(router, '/mistakes_hub' as never)} style={[styles.iconButton, { backgroundColor: g.opaqueCard }]}>
+            <Ionicons name="chevron-back" size={24} color={g.text} />
           </Pressable>
-          <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h3 }]} numberOfLines={1}>{copy.title}</Text>
+          <Text style={[styles.title, { color: g.text, fontSize: f.h3 }]}>{copy.title}</Text>
         </View>
-        <View style={[styles.segment, { backgroundColor: t.bgCard }]}>
+        <View style={[styles.segment, { backgroundColor: g.opaqueCard }]}>
           {FILTERS.map((id) => {
             const on = id === filter;
             const count = items ? items.filter((item) => id === 'ready' ? item.ready : id === 'corrected' ? item.status === 'corrected' : item.status === 'active').length : null;
             return (
-              <Pressable key={id} testID={`mistakes-list-filter-${id}`} accessibilityRole="tab" accessibilityState={{ selected: on }} onPress={() => { hapticTap(); setFilter(id); }} style={[styles.segmentItem, on && { backgroundColor: t.bgSurface2 }]}>
-                <Text style={{ color: on ? t.textPrimary : t.textMuted, fontSize: f.sub, fontWeight: '800' }} numberOfLines={1}>
+              <Pressable key={id} testID={`mistakes-list-filter-${id}`} accessibilityRole="tab" accessibilityState={{ selected: on }} onPress={() => { hapticTap(); setFilter(id); }} style={[styles.segmentItem, on && { backgroundColor: g.opaqueControl }]}>
+                <Text style={{ color: on ? g.text : g.secondary, fontSize: f.sub, fontWeight: '800', textAlign: 'center' }}>
                   {copy[id]}{count !== null ? ` ${count}` : ''}
                 </Text>
               </Pressable>
@@ -159,8 +161,8 @@ export default function MistakesListScreen() {
             windowSize={7}
             ListHeaderComponent={filter === 'corrected' ? <MistakeTitleShelf lang={lang} rewards={rewards} /> : null}
             ListEmptyComponent={
-              <View style={[styles.emptyBox, { backgroundColor: t.bgCard }]}>
-                <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '700' }}>{copy.empty}</Text>
+              <View style={[styles.emptyBox, { backgroundColor: g.opaqueCard }]}>
+                <Text style={{ color: g.secondary, fontSize: f.body, fontWeight: '700' }}>{copy.empty}</Text>
               </View>
             }
           />
@@ -173,10 +175,10 @@ export default function MistakesListScreen() {
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: 'transparent' },
   header: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 16, paddingTop: 6, paddingBottom: 8 },
-  iconButton: { width: 40, height: 40, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
+  iconButton: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   title: { flex: 1, fontWeight: '900', letterSpacing: -0.4 },
   segment: { flexDirection: 'row', gap: 6, padding: 5, borderRadius: 18, marginHorizontal: 16, marginBottom: 10 },
-  segmentItem: { flex: 1, height: 40, borderRadius: 14, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 6 },
+  segmentItem: { flex: 1, minHeight: 40, borderRadius: 14, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 6, paddingVertical: 6 },
   list: { paddingHorizontal: 16, paddingBottom: 40, gap: 8 },
   row: { minHeight: 78, borderRadius: 18, paddingHorizontal: 14, paddingVertical: 12, flexDirection: 'row', alignItems: 'center', gap: 12 },
   count: { width: 40, height: 40, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },

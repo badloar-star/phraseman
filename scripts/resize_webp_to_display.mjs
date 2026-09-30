@@ -44,8 +44,6 @@ sharp.cache(false);
 const TARGETS = [
   // Личный план: taskImage 48dp (prod) / 104dp (dev-экран) → 312px, берём 320.
   { dir: 'assets/images/personal_plan_tasks_fit/', targetPx: 320 },
-  // Огонёк дружбы: FriendsChestCard 92dp → 276px, берём 288.
-  { dir: 'assets/images/friends-shared-flame/', targetPx: 288 },
   // Аватары уровней (dalle): плитки 40dp, с запасом на профиль/карточку — 256.
   { dir: 'assets/images/levels/generated-v5-dalle/', targetPx: 256 },
   // Медали уроков: 128dp в lessons.tsx → 384.

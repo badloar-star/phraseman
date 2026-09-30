@@ -132,8 +132,6 @@ export interface MaxVoiceConfig {
   maxFallbackRepliesDaily: number;
   audioBackchannelsEnabled: boolean;
   interimSelfCaptions: boolean;
-  xpRatePerSpeechMin: number;
-  xpDailyCap: number;
 }
 
 export const MAX_VOICE_CONFIG_DEFAULTS: MaxVoiceConfig = {
@@ -225,8 +223,6 @@ export const MAX_VOICE_CONFIG_DEFAULTS: MaxVoiceConfig = {
   maxFallbackRepliesDaily: 300,
   audioBackchannelsEnabled: false,
   interimSelfCaptions: false,
-  xpRatePerSpeechMin: 10,
-  xpDailyCap: 300,
 };
 
 // ── Кламп-хелперы ───────────────────────────────────────────────────────────
@@ -373,8 +369,6 @@ export function clampMaxVoiceConfig(raw: unknown): MaxVoiceConfig {
     maxFallbackRepliesDaily: clampInt(r.maxFallbackRepliesDaily, 0, 100_000, d.maxFallbackRepliesDaily),
     audioBackchannelsEnabled: coerceBool(r.audioBackchannelsEnabled, d.audioBackchannelsEnabled),
     interimSelfCaptions: coerceBool(r.interimSelfCaptions, d.interimSelfCaptions),
-    xpRatePerSpeechMin: clampInt(r.xpRatePerSpeechMin, 0, 100, d.xpRatePerSpeechMin),
-    xpDailyCap: clampInt(r.xpDailyCap, 0, 100_000, d.xpDailyCap),
   };
 }
 

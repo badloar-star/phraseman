@@ -31,16 +31,6 @@ export const STREAK_WEEK_ROW_TR = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'P
 export const STREAK_WEEK_ROW_PL = ['Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'Sb', 'Nd'] as const;
 export const STREAK_WEEK_ROW_EN = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] as const;
 
-export const STREAK_WAGER_TIER_DAYS_RU = ['7 дней', '14 дней', '21 день', '30 дней', '50 дней', '100 дней'] as const;
-export const STREAK_WAGER_TIER_DAYS_UK = ['7 днів', '14 днів', '21 день', '30 днів', '50 днів', '100 днів'] as const;
-export const STREAK_WAGER_TIER_DAYS_ES = ['7 días', '14 días', '21 días', '30 días', '50 días', '100 días'] as const;
-export const STREAK_WAGER_TIER_DAYS_PT_BR = ['7 dias', '14 dias', '21 dias', '30 dias', '50 dias', '100 dias'] as const;
-export const STREAK_WAGER_TIER_DAYS_VI = ['7 ngày', '14 ngày', '21 ngày', '30 ngày', '50 ngày', '100 ngày'] as const;
-export const STREAK_WAGER_TIER_DAYS_ID = ['7 hari', '14 hari', '21 hari', '30 hari', '50 hari', '100 hari'] as const;
-export const STREAK_WAGER_TIER_DAYS_TR = ['7 gün', '14 gün', '21 gün', '30 gün', '50 gün', '100 gün'] as const;
-export const STREAK_WAGER_TIER_DAYS_PL = ['7 dni', '14 dni', '21 dni', '30 dni', '50 dni', '100 dni'] as const;
-export const STREAK_WAGER_TIER_DAYS_EN = ['7 days', '14 days', '21 days', '30 days', '50 days', '100 days'] as const;
-
 const STREAK_WEEKLY_TIME_MINUTES_HINT_BY_LANG: StagedStreakCopy<string> = {
   ru: 'Сумма минут за 7 дней.',
   uk: 'Сума хвилин за 7 днів.',
@@ -77,32 +67,6 @@ const STREAK_WEEKLY_TIME_HOURS_MINUTES_HINT_BY_LANG: StagedStreakCopy<string> = 
   en: 'Total time for 7 days.',
 };
 
-const STREAK_WEEKLY_EXPERIENCE_LABEL_BY_LANG: StagedStreakCopy<string> = {
-  ru: 'Опыт',
-  uk: 'Досвід',
-  es: 'XP',
-  'pt-BR': 'XP',
-  vi: 'XP',
-  id: 'XP',
-  tr: 'XP',
-  pl: 'XP',
-  en: 'XP',
-};
-
-const STREAK_WEEKLY_EXPERIENCE_HINT_BY_LANG: StagedStreakCopy<string> = {
-  ru: 'Сумма опыта за последние 7 дней.',
-  uk: 'Сума досвіду за останні 7 днів.',
-  es: 'XP total de los últimos 7 días.',
-  'pt-BR': 'XP total dos últimos 7 dias.',
-  vi: 'Tổng XP trong 7 ngày qua.',
-  id: 'Total XP 7 hari terakhir.',
-  tr: 'Son 7 günün toplam XP’si.',
-  pl: 'Łączne XP z ostatnich 7 dni.',
-  en: 'Total XP for the last 7 days.',
-};
-
-export type StreakWagerTierIndex = 0 | 1 | 2 | 3 | 4 | 5;
-
 const STREAK_CAL_WDAYS_BY_LANG: StagedStreakCopy<readonly string[]> = {
   ru: STREAK_CAL_WDAYS_RU,
   uk: STREAK_CAL_WDAYS_UK,
@@ -127,18 +91,6 @@ const STREAK_WEEK_ROW_BY_LANG: StagedStreakCopy<readonly string[]> = {
   en: STREAK_WEEK_ROW_EN,
 };
 
-const STREAK_WAGER_TIER_DAYS_BY_LANG: StagedStreakCopy<readonly string[]> = {
-  ru: STREAK_WAGER_TIER_DAYS_RU,
-  uk: STREAK_WAGER_TIER_DAYS_UK,
-  es: STREAK_WAGER_TIER_DAYS_ES,
-  'pt-BR': STREAK_WAGER_TIER_DAYS_PT_BR,
-  vi: STREAK_WAGER_TIER_DAYS_VI,
-  id: STREAK_WAGER_TIER_DAYS_ID,
-  tr: STREAK_WAGER_TIER_DAYS_TR,
-  pl: STREAK_WAGER_TIER_DAYS_PL,
-  en: STREAK_WAGER_TIER_DAYS_EN,
-};
-
 export function streakCalendarShortWeekdays(
   lang: Lang,
   reportScreensRussianOnly: boolean,
@@ -149,12 +101,6 @@ export function streakCalendarShortWeekdays(
 
 export function streakWeekRowShort(lang: Lang): readonly string[] {
   return STREAK_WEEK_ROW_BY_LANG[lang];
-}
-
-/** Подпись срока тира ставки на цепочку (индекс 0..5 по WAGER_TIERS). */
-export function streakWagerTierDaysLabel(lang: Lang, tierIdx: number): string {
-  const i = Math.max(0, Math.min(5, Math.floor(tierIdx))) as StreakWagerTierIndex;
-  return STREAK_WAGER_TIER_DAYS_BY_LANG[lang][i];
 }
 
 export function streakWeeklyTimeTotalHint(lang: Lang, minutes: number): string {
@@ -171,14 +117,6 @@ export function streakWeeklyTimeTotalHint(lang: Lang, minutes: number): string {
   }
 
   return STREAK_WEEKLY_TIME_MINUTES_HINT_BY_LANG[lang];
-}
-
-export function streakWeeklyExperienceLabel(lang: Lang): string {
-  return STREAK_WEEKLY_EXPERIENCE_LABEL_BY_LANG[lang];
-}
-
-export function streakWeeklyExperienceHint(lang: Lang): string {
-  return STREAK_WEEKLY_EXPERIENCE_HINT_BY_LANG[lang];
 }
 
 const STREAK_CHART_SCRUB_HINT_BY_LANG: StagedStreakCopy<string> = {

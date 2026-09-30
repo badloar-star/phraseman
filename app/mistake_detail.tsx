@@ -11,6 +11,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
+import { useLv2Glass } from '../components/learning-v2/LearningV2Glass';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { useMistakePracticeStartGate } from '../hooks/useMistakePracticeStartGate';
@@ -40,7 +41,7 @@ const copyFor = (lang: Lang) => triLang(lang, {
 });
 
 function ListenButton({ audioRef, label }: Readonly<{ audioRef: string; label: string }>) {
-  const { theme: t } = useTheme();
+  const g = useLv2Glass();
   const player = useAudioPlayer({ uri: audioRef });
   // зачем (аудит карты владения звуком, 2026-09-15): плеер играл МИМО общего
   // владения аудиотрактом — не глушился записью микрофона, не уважал тумблер
@@ -53,9 +54,9 @@ function ListenButton({ audioRef, label }: Readonly<{ audioRef: string; label: s
       accessibilityLabel={label}
       hitSlop={8}
       onPress={() => { hapticTap(); void managedPlayer.playFromStart(); }}
-      style={[styles.iconButton, { backgroundColor: t.bgCard }]}
+      style={[styles.iconButton, { backgroundColor: g.opaqueCard }]}
     >
-      <Ionicons name="volume-high" size={22} color={t.textPrimary} />
+      <Ionicons name="volume-high" size={22} color={g.text} />
     </Pressable>
   );
 }
@@ -68,7 +69,8 @@ const timelineTone = (kind: MistakeTimelineEntry['kind']): 'bad' | 'good' | 'gol
 export default function MistakeDetailScreen() {
   const router = useRouter();
   const params = useLocalSearchParams<{ mistakeId?: string }>();
-  const { theme: t, f } = useTheme();
+  const { f } = useTheme();
+  const g = useLv2Glass();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const copy = useMemo(() => copyFor(lang), [lang]);
@@ -113,8 +115,8 @@ export default function MistakeDetailScreen() {
     <ScreenGradient>
       <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
         <View style={styles.header}>
-          <Pressable accessibilityRole="button" accessibilityLabel={copy.back} hitSlop={10} onPress={() => safeRouterBack(router, '/mistakes_list' as never)} style={[styles.iconButton, { backgroundColor: t.bgCard }]}>
-            <Ionicons name="chevron-back" size={24} color={t.textPrimary} />
+          <Pressable accessibilityRole="button" accessibilityLabel={copy.back} hitSlop={10} onPress={() => safeRouterBack(router, '/mistakes_list' as never)} style={[styles.iconButton, { backgroundColor: g.opaqueCard }]}>
+            <Ionicons name="chevron-back" size={24} color={g.text} />
           </Pressable>
           <View style={{ flex: 1 }} />
           {loaded && detail.audioRef ? <ListenButton audioRef={detail.audioRef} label={copy.listen} /> : null}
@@ -122,8 +124,8 @@ export default function MistakeDetailScreen() {
 
         <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
           {detail === 'missing' ? (
-            <View style={[styles.card, { backgroundColor: t.bgCard }]}>
-              <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '700' }}>{copy.noData}</Text>
+            <View style={[styles.card, { backgroundColor: g.opaqueCard }]}>
+              <Text style={{ color: g.secondary, fontSize: f.body, fontWeight: '700' }}>{copy.noData}</Text>
             </View>
           ) : !loaded ? (
             <View style={{ gap: 12 }}>
@@ -135,54 +137,54 @@ export default function MistakeDetailScreen() {
           ) : (
             <>
               <View style={styles.hero}>
-                <Text style={[styles.phrase, { color: t.textPrimary, fontSize: f.h2 }]}>{detail.phrase}</Text>
+                <Text style={[styles.phrase, { color: g.text, fontSize: f.h2 }]}>{detail.phrase}</Text>
                 {detail.meaning ? (
-                  <Text style={[styles.meaning, { color: t.textMuted, fontSize: f.bodyLg }]}>{detail.meaning}</Text>
+                  <Text style={[styles.meaning, { color: g.secondary, fontSize: f.bodyLg }]}>{detail.meaning}</Text>
                 ) : null}
                 <View style={styles.tagRow}>
-                  <View style={[styles.tag, { backgroundColor: t.wrongBg }]}>
-                    <Text style={[styles.tagText, { color: t.wrong, fontSize: f.label }]}>{mistakeFacetLabel(lang, detail.facet)}</Text>
+                  <View style={[styles.tag, { backgroundColor: g.badFill }]}>
+                    <Text style={[styles.tagText, { color: g.bad, fontSize: f.label }]}>{mistakeFacetLabel(lang, detail.facet)}</Text>
                   </View>
                   {detail.sourceGroup ? (
-                    <View style={[styles.tag, { backgroundColor: t.bgSurface2 }]}>
-                      <Text style={[styles.tagText, { color: t.textPrimary, fontSize: f.label }]}>{mistakeSourceLabel(lang, detail.sourceGroup)}</Text>
+                    <View style={[styles.tag, { backgroundColor: g.opaqueControl }]}>
+                      <Text style={[styles.tagText, { color: g.text, fontSize: f.label }]}>{mistakeSourceLabel(lang, detail.sourceGroup)}</Text>
                     </View>
                   ) : null}
-                  <View style={[styles.tag, { backgroundColor: t.bgSurface2 }]}>
-                    <Text style={[styles.tagText, { color: t.textPrimary, fontSize: f.label }]}>×{detail.captureCount}</Text>
+                  <View style={[styles.tag, { backgroundColor: g.opaqueControl }]}>
+                    <Text style={[styles.tagText, { color: g.text, fontSize: f.label }]}>×{detail.captureCount}</Text>
                   </View>
                 </View>
               </View>
 
               {/* Сколько осталось: правило «3 дня в 2 режимах» словами и полосами. */}
-              <View style={[styles.card, { backgroundColor: t.bgCard }]}>
+              <View style={[styles.card, { backgroundColor: g.opaqueCard }]}>
                 <View style={styles.progressRow}>
-                  <Text style={[styles.cardTitle, { color: t.textPrimary, fontSize: f.bodyLg, flex: 1 }]}>
+                  <Text style={[styles.cardTitle, { color: g.text, fontSize: f.bodyLg, flex: 1 }]}>
                     {detail.status === 'corrected' ? copy.fixed : copy.toFix}
                   </Text>
                   {detail.status !== 'corrected' ? (
-                    <Text style={[styles.progressNum, { color: t.accent }]}>
-                      {detail.qualifyingDays}<Text style={{ color: t.textMuted, fontSize: f.body }}>/3</Text>
+                    <Text style={[styles.progressNum, { color: g.cta }]}>
+                      {detail.qualifyingDays}<Text style={{ color: g.secondary, fontSize: f.body }}>/3</Text>
                     </Text>
                   ) : null}
                 </View>
                 <View style={styles.chainSteps}>
                   {[0, 1, 2].map((index) => (
-                    <View key={`step-${index}`} style={[styles.chainStep, { backgroundColor: index < detail.qualifyingDays ? t.accent : t.bgSurface2 }]} />
+                    <View key={`step-${index}`} style={[styles.chainStep, { backgroundColor: index < detail.qualifyingDays ? g.cta : g.opaqueControl }]} />
                   ))}
                 </View>
                 {detail.status !== 'corrected' && detail.qualifyingDays > 0 && detail.qualifyingModes < 2 ? (
-                  <Text style={[styles.hint, { color: t.textMuted, fontSize: f.sub }]}>{copy.needMode}</Text>
+                  <Text style={[styles.hint, { color: g.secondary, fontSize: f.sub }]}>{copy.needMode}</Text>
                 ) : null}
               </View>
 
-              <View style={[styles.card, { backgroundColor: t.bgCard }]}>
-                <Text style={[styles.cardTitle, { color: t.textPrimary, fontSize: f.bodyLg }]}>{copy.history}</Text>
+              <View style={[styles.card, { backgroundColor: g.opaqueCard }]}>
+                <Text style={[styles.cardTitle, { color: g.text, fontSize: f.bodyLg }]}>{copy.history}</Text>
                 <View style={styles.timeline}>
                   {detail.timeline.map((event, index) => {
                     const tone = timelineTone(event.kind);
-                    const color = tone === 'bad' ? t.wrong : tone === 'good' ? t.accent : tone === 'gold' ? t.gold : t.textMuted;
-                    const background = tone === 'bad' ? t.wrongBg : tone === 'good' ? t.accentBg : tone === 'gold' ? t.goldBg : t.bgSurface2;
+                    const color = tone === 'bad' ? g.bad : tone === 'good' ? g.good : tone === 'gold' ? g.text : g.secondary;
+                    const background = tone === 'bad' ? g.badFill : tone === 'good' ? g.goodFill : tone === 'gold' ? g.opaqueControl : g.opaqueControl;
                     const label = event.kind === 'captured' ? copy.captured
                       : event.kind === 'practice_right' ? (event.independent ? copy.rightSelf : copy.right)
                         : event.kind === 'practice_wrong' ? copy.wrong
@@ -197,10 +199,10 @@ export default function MistakeDetailScreen() {
                             color={color}
                           />
                         </View>
-                        <Text style={[styles.timelineText, { color: t.textPrimary, fontSize: f.sub }]} numberOfLines={1}>
+                        <Text style={[styles.timelineText, { color: g.text, fontSize: f.sub }]}>
                           {label}{event.sourceGroup ? ` · ${mistakeSourceLabel(lang, event.sourceGroup)}` : ''}
                         </Text>
-                        <Text style={[styles.timelineDate, { color: t.textMuted, fontSize: f.sub }]}>{dateOf(event.atMs)}</Text>
+                        <Text style={[styles.timelineDate, { color: g.secondary, fontSize: f.sub }]}>{dateOf(event.atMs)}</Text>
                       </View>
                     );
                   })}
@@ -208,15 +210,15 @@ export default function MistakeDetailScreen() {
               </View>
 
               {detail.solvedNeighbours.length > 0 ? (
-                <View style={[styles.card, { backgroundColor: t.bgCard }]}>
-                  <Text style={[styles.cardTitle, { color: t.textPrimary, fontSize: f.bodyLg }]}>{copy.solved}</Text>
+                <View style={[styles.card, { backgroundColor: g.opaqueCard }]}>
+                  <Text style={[styles.cardTitle, { color: g.text, fontSize: f.bodyLg }]}>{copy.solved}</Text>
                   <View style={{ gap: 8 }}>
                     {detail.solvedNeighbours.map((neighbour) => (
                       <View key={neighbour.phrase} style={styles.neighbourRow}>
-                        <View style={[styles.neighbourMark, { backgroundColor: t.correctBg }]}>
-                          <Ionicons name="checkmark" size={16} color={t.correct} />
+                        <View style={[styles.neighbourMark, { backgroundColor: g.goodFill }]}>
+                          <Ionicons name="checkmark" size={16} color={g.good} />
                         </View>
-                        <Text style={[styles.neighbourText, { color: t.textPrimary, fontSize: f.body }]} numberOfLines={1}>{neighbour.phrase}</Text>
+                        <Text style={[styles.neighbourText, { color: g.text, fontSize: f.body }]}>{neighbour.phrase}</Text>
                       </View>
                     ))}
                   </View>
@@ -236,10 +238,10 @@ export default function MistakeDetailScreen() {
               onPress={practise}
               style={({ pressed }) => [
                 styles.primary,
-                { backgroundColor: detail.ready ? t.accent : t.bgSurface2, transform: [{ scale: pressed ? 0.98 : 1 }] },
+                { backgroundColor: detail.ready ? g.cta : g.opaqueControl, transform: [{ scale: pressed ? 0.98 : 1 }] },
               ]}
             >
-              <Text style={{ color: detail.ready ? t.correctText : t.textGhost, fontSize: f.body, fontWeight: '800' }}>
+              <Text style={{ color: detail.ready ? g.ctaInk : g.mutedText, fontSize: f.body, fontWeight: '800' }}>
                 {detail.ready ? copy.practise : copy.notReady}
               </Text>
             </Pressable>
@@ -253,7 +255,7 @@ export default function MistakeDetailScreen() {
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: 'transparent' },
   header: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingTop: 6, paddingBottom: 4 },
-  iconButton: { width: 40, height: 40, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
+  iconButton: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   content: { paddingHorizontal: 16, paddingTop: 8, paddingBottom: 130, gap: 12 },
   hero: { gap: 8, paddingHorizontal: 2 },
   phrase: { fontWeight: '900', letterSpacing: -0.6, lineHeight: 36 },
@@ -269,13 +271,13 @@ const styles = StyleSheet.create({
   chainStep: { flex: 1, height: 10, borderRadius: 5 },
   hint: { fontWeight: '700', lineHeight: 21 },
   timeline: { gap: 10 },
-  timelineRow: { flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: 28 },
+  timelineRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 10, minHeight: 28 },
   timelineDot: { width: 26, height: 26, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
-  timelineText: { flex: 1, fontWeight: '700' },
-  timelineDate: { fontWeight: '800', fontVariant: ['tabular-nums'] },
+  timelineText: { flex: 1, flexShrink: 1, fontWeight: '700' },
+  timelineDate: { fontWeight: '800', fontVariant: ['tabular-nums'], alignSelf: 'center' },
   neighbourRow: { flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: 36 },
   neighbourMark: { width: 28, height: 28, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
-  neighbourText: { flex: 1, fontWeight: '800' },
+  neighbourText: { flex: 1, flexShrink: 1, fontWeight: '800' },
   dock: { position: 'absolute', left: 16, right: 16, bottom: 22 },
   primary: { minHeight: 56, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
 });

@@ -40,10 +40,10 @@ describe('statistics tonal hierarchy contract', () => {
     const heatmap = fs.readFileSync(path.join(ROOT, 'components', 'ActivityHeatmap365.tsx'), 'utf8');
     const lifetimeTotals = screen.slice(screen.indexOf('function LifetimeTotalsBlock'), screen.indexOf('const LIFETIME_PATH_DEV_CHART_KINDS'));
 
-    expect(screen).toContain('statsPageField');
+    expect(screen).toContain('statsGlass.bg');
     expect(screen).not.toContain("import ScreenGradient from '../components/ScreenGradient'");
     expect(screen).not.toContain('<ScreenGradient');
-    expect(screen).toContain('<View style={{ flex: 1, backgroundColor: statsPageField(themeMode) }}>');
+    expect(screen).toContain('<View style={{ flex: 1, backgroundColor: statsGlass.bg }}>');
     const backdropIndex = screen.indexOf('<StatsArtBackdrop />');
     const safeAreaIndex = screen.indexOf('<SafeAreaView testID="screen-streak-stats"');
     expect(backdropIndex).toBeGreaterThan(-1);
@@ -80,7 +80,7 @@ describe('statistics tonal hierarchy contract', () => {
     expect(giftAction).not.toContain('borderWidth: 1');
     expect(giftAction).not.toContain('borderColor:');
     expect(giftAction).toContain('statsCardGradient(t)');
-    expect(giftAction).toContain("statsGlowStyle(themeMode, 'streak')");
+    expect(giftAction).not.toContain('statsGlowStyle');
   });
 
   it('gives statistics cards semantic tonal gradients without realtime blur', () => {

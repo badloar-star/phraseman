@@ -435,42 +435,6 @@ function readInt(value: unknown, fallback = 0): number {
   return Number.isFinite(parsed) ? parsed : fallback;
 }
 
-/**
- * Сезонный билет турнира (Season Pass, kind tournament_ticket) — читает и
- * проверяет `progress.season_tournament_ticket_v1`, написанное
- * seasonRedeemConsumable (functions/src/season_pass.ts). До этой функции
- * поле писалось, но нигде не читалось — билет выдавался и физически терялся.
- *
- * зачем 2026-08-04 (владелец: «когда юзер получит билет то у него появится
- * ассет... и его следующий турнир вход будет бесплатным для него, но в банк
- * добавится с него 5 жемчужин всё равно»): нужен персональный флаг, отдельный
- * от общего недельного freeEntryAvailable — план владельца зафиксирован в
- * docs/plans/2026-08-03-season-pass-gift-catalog.ru.md §1.7.
- */
-/**
- * Разобранный сезонный билет турнира, только если он реально активен.
- * Экспортируется — tournament_weekly_payout.ts переиспользует для витрины
- * (тот же документ users/{uid} читается им в той же транзакции банка).
- */
-export function parseActiveTournamentTicket(user: Row): { expiresAt: number } | null {
-  const raw = user.progress && typeof user.progress === 'object'
-    ? (user.progress as Row).season_tournament_ticket_v1
-    : undefined;
-  if (typeof raw !== 'string' || !raw) return null;
-  try {
-    const parsed = JSON.parse(raw) as { usesLeft?: unknown; expiresAt?: unknown };
-    const expiresAt = readInt(parsed.expiresAt, 0);
-    if (readInt(parsed.usesLeft, 0) > 0 && expiresAt > Date.now()) return { expiresAt };
-    return null;
-  } catch {
-    return null;
-  }
-}
-
-function readActiveTournamentTicket(user: Row): boolean {
-  return parseActiveTournamentTicket(user) !== null;
-}
-
 function timestampMs(value: unknown): number {
   if (value && typeof value === 'object' && 'toMillis' in value && typeof (value as { toMillis?: unknown }).toMillis === 'function') {
     return (value as { toMillis: () => number }).toMillis();
@@ -1647,7 +1611,7 @@ export async function tournamentJoinTransaction(
   const botMetadataRef = roomRef.collection(TOURNAMENT_TASK_SECRETS_SUBCOLLECTION)
     .doc(BOT_SIMULATION_METADATA_DOC);
   // зачем 2026-07-27: в users/{uid} ника нет — настоящее имя и аватар живут в
-  // leaderboard/{uid} (туда их пишет онбординг и синк XP). Без этого документа
+  // leaderboard/{uid} (туда их пишет онбординг и синк прогресса). Без этого документа
   // турнир подставлял заглушку 'Player', и она уезжала в недельный рейтинг,
   // где её видели все. Читаем в ТОЙ ЖЕ транзакции — лишнего запроса нет.
   const leaderboardRef = db.collection('leaderboard').doc(stableUid);
@@ -1771,17 +1735,6 @@ export async function tournamentJoinTransaction(
     // ноль дополнительных чтений в транзакции.
     const freeEntryAvailable = admissionMode === 'scheduled'
       && sanitizeString(user.tournament_free_entry_week_id, 32) !== weekId;
-    // зачем 2026-08-04 (владелец: «когда юзер получит билет, следующий вход
-    // будет бесплатным для него, но в банк добавится с него 5 жемчужин всё
-    // равно»): сезонный билет (Season Pass, tournament_ticket) — ОТДЕЛЬНЫЙ от
-    // недельного freeEntryAvailable флаг. Проверяется только если недельный
-    // бесплатный вход уже потрачен — иначе игрок сжигал бы редкий подарок там,
-    // где и так ничего не платил. usesTicket гасится ниже в ЭТОЙ ЖЕ транзакции
-    // (readActiveTournamentTicket выше — та же атомарность, что и у
-    // freeEntryAvailable, повторный клик не даёт два бесплатных входа).
-    const usesTicket = admissionMode === 'scheduled'
-      && !freeEntryAvailable
-      && readActiveTournamentTicket(user);
     // Competition confirms the admission fact and fixed debit. Personal-wallet
     // affordability belongs to the migrated client journal; a concurrent or
     // cross-device admission may create debt but can never be server-rejected
@@ -1812,7 +1765,6 @@ export async function tournamentJoinTransaction(
         joinAttemptId,
         // зачем 2026-08-04: банк получил contribution, но эти жемчужины не
         // были списаны у игрока — leave-транзакция не должна их "возвращать".
-        ...(usesTicket ? { seasonTicketUsed: true } : {}),
       },
     };
     let joinPlan: ReturnType<typeof planTournamentHumanLobbyJoin>;
@@ -1862,20 +1814,14 @@ export async function tournamentJoinTransaction(
     // сколько уйдёт призёрам и сколько в недельный банк. Бесплатный вход
     // недели жемчужины не трогает, только ставит маркер использования.
     //
-    // зачем 2026-08-04 (владелец): сезонный билет (usesTicket) точно так же
-    // не списывает shards у игрока, но НЕ ставит недельный маркер
-    // tournament_free_entry_week_id — это отдельная, персональная льгота,
-    // billet гасится своим собственным полем. Банк при этом получает свои
-    // 5 жемчужин (contribution выше не зависит от usesTicket).
     if (admissionMode === 'scheduled') {
       tx.set(userRef, {
         ...(freeEntryAvailable ? { tournament_free_entry_week_id: weekId } : {}),
-        ...(usesTicket ? { 'progress.season_tournament_ticket_v1': admin.firestore.FieldValue.delete() } : {}),
         tournament_last_slot_key: slotKey,
         tournament_last_slot_room_id: room.roomId,
         updatedAt: nowMs,
       }, { merge: true });
-      if (!freeEntryAvailable && !usesTicket && entryGems > 0) appendExternalEconomyEvent(tx, userRef, {
+      if (!freeEntryAvailable && entryGems > 0) appendExternalEconomyEvent(tx, userRef, {
         source: 'tournament_entry', eventId: joinAttemptId, ownerStableId: stableUid,
         delta: -entryGems, reason: 'tournament_entry', kind: 'competition_tournament_entry',
         subjectId: room.roomId, payload: { roomId: room.roomId, weekId, joinAttemptId }, createdAtMs: nowMs,
@@ -1983,13 +1929,7 @@ export async function tournamentLeaveTransaction(
     const testMode = isTournamentTestRoom(room);
     const frozenEconomy = tournamentEconomySnapshotForMode(room.economySnapshot, testMode);
     const recordedContribution = Math.max(0, readInt(player.entry?.bankContributionGems, 0));
-    // зачем 2026-08-04 (владелец, Season Pass tournament_ticket): банк получил
-    // полный взнос при входе по билету (bankContributionGems = entryGems), но
-    // игрок эти жемчужины никогда не платил — возвращать ему нечего. Обычный
-    // платный вход (seasonTicketUsed не установлен) продолжает работать как
-    // раньше.
-    const enteredWithSeasonTicket = player.entry?.seasonTicketUsed === true;
-    const refundedGems = frozenEconomy.entryGems === 0 || enteredWithSeasonTicket
+    const refundedGems = frozenEconomy.entryGems === 0
       ? 0
       : Math.min(recordedContribution, frozenEconomy.entryGems);
     const potGems = Math.max(0, readGemBalance(roomSnap.data()?.potGems) - refundedGems);
@@ -2023,9 +1963,6 @@ export async function tournamentLeaveTransaction(
     // он вышел до старта), а не попытка точно восстановить удалённое поле.
     tx.set(userRef, {
       ...(usedFreeEntry ? { tournament_free_entry_week_id: admin.firestore.FieldValue.delete() } : {}),
-      ...(enteredWithSeasonTicket
-        ? { 'progress.season_tournament_ticket_v1': JSON.stringify({ usesLeft: 1, expiresAt: nowMs + 72 * 60 * 60 * 1000 }) }
-        : {}),
       ...(clearsSlotMarker
         ? {
           tournament_last_slot_key: admin.firestore.FieldValue.delete(),
@@ -3764,7 +3701,6 @@ export async function tournamentFinalizeTransaction(
       // Всё берётся из уже прочитанных документов: лишних чтений ноль.
       const profileAvatar = sanitizeString(user.user_avatar, 16);
       const profileFrame = sanitizeString(user.user_avatar_frame, 24);
-      const profileXp = Math.max(0, readInt((user.progress as Record<string, unknown> | undefined)?.total_xp, 0));
       const rewardGems = Math.max(0, Math.trunc(effect.reward.gems));
       const rewardTickets = Math.max(0, Math.trunc(effect.reward.tickets));
       const rewardTitleId = sanitizeString(effect.reward.titleId, 60);
@@ -3775,9 +3711,7 @@ export async function tournamentFinalizeTransaction(
         // Профиль для карточки. Пустые поля не пишем — не засоряем документ.
         ...(profileAvatar ? { profileAvatar } : {}),
         ...(profileFrame ? { frame: profileFrame } : {}),
-        ...(profileXp > 0 ? { totalXp: profileXp } : {}),
         hotStreak,
-        points: Math.max(0, readInt(season.points, 0)) + effect.seasonPoints,
         // зачем: владелец хочет в лобби реальный счёт звёзд игрока за неделю,
         // а не очки места (points) — они остаются отдельно для сортировки
         // таблицы и расчёта призов.
@@ -3826,7 +3760,6 @@ export async function tournamentFinalizeTransaction(
         uid: effect.playerId,
         roomId,
         place: effect.place,
-        seasonPoints: effect.seasonPoints,
         reward: effect.reward,
         claimed: true,
         claimedAtMs: nowMs,

@@ -412,8 +412,8 @@ export async function pruneExpiredPushTokens(expiredUids: string[]): Promise<voi
 // ── I/O: главный прогон cron ────────────────────────────────────────────────────
 /**
  * Сканирует users/, отбирает кандидатов, шлёт push и проставляет lastReEngagePushAt
- * (чтобы не слать повторно в пределах cooldown). Cursor-pagination по образцу
- * reset_weekly_xp.ts. Возвращает сводку для логов.
+  * (чтобы не слать повторно в пределах cooldown). Использует cursor-pagination
+  * и возвращает сводку для логов.
  */
 export async function runReEngagePush(now: number = Date.now()): Promise<{
   scanned: number;

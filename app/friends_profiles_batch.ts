@@ -33,15 +33,15 @@ function callable<TReq, TRes>(name: string) {
 export interface FriendProfileBatchRecord {
   uid: string;
   displayName: string;
-  totalXp: number;
   level: number;
   avatar: string;
   frame: string;
   aura: string;
   profileCardLevel: number;
+  /** Публичный ранг 0..19; null/undefined = сервер не отдал подтверждённое значение. */
+  coinRank?: number | null;
   /** null = сервер не знает цепочку. Карточка тогда не рисует «0», а прячет строку. */
   streak: number | null;
-  leagueId: number;
   isPremium: boolean;
   isVip: boolean;
   isLifetime: boolean;
@@ -52,8 +52,7 @@ export interface FriendProfileBatchRecord {
   lastActiveDate?: string | null;
   /** Кодированные активные дни друга — вход для together_days.daysTogether. */
   activeDays?: { anchor: string; bits: string } | null;
-  /** XP друга за ТЕКУЩУЮ неделю лиг (0, если сервер не отдал или неделя не совпала). */
-  weeklyXp?: number;
+  /** legacy reward друга за ТЕКУЩУЮ неделю лиг (0, если сервер не отдал или неделя не совпала). */
   /** Настройки пуша «Позвать» друга — null, если сервер не знает/друг не настраивал. */
   friendsPush?: { enabled: boolean; tz: number } | null;
   // ── Шпиль (TOWER.md §4.5, PM-282): «Друзья на этой неделе». Едет тем же

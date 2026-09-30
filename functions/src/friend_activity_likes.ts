@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { buildUserNotification, userNotificationRef } from './user_notifications';
-import { sendExpoPush, type FriendGiftPushTransport } from './friend_gifts';
+import { sendExpoPush, type ExpoPushTransport } from './expo_push';
 
 const REGION = 'us-central1';
 const MAX_ID_LEN = 160;
@@ -242,8 +242,6 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
 
     const eventLikeCount = parseCount(eventData.activityLikeCount) + 1;
     const totalLikeCount = parseCount(statsSnap.data()?.total) + 1;
-    const eventType = cleanId(eventData.type);
-    const leagueGroupId = cleanDocId(eventData.groupId);
     const senderName = resolveSenderName(senderData, (request.data as Record<string, unknown>)?.senderDisplayName);
     const notificationId = likeNotificationId(receiptId);
 
@@ -302,14 +300,6 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
       }, now),
     );
 
-    if (eventType === 'league_group_boost' && leagueGroupId && eventId.startsWith('league_group_boost_')) {
-      tx.set(db.collection('league_groups').doc(leagueGroupId), {
-        groupBoost: {
-          likeCount: eventLikeCount,
-        },
-        updatedAt: now,
-      }, { merge: true });
-    }
 
     return {
       ok: true,
@@ -340,7 +330,7 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: ENFO
         actorStableUid: senderStableId,
         nav: 'friends',
       },
-    ).then((transport: FriendGiftPushTransport) => {
+    ).then((transport: ExpoPushTransport) => {
       if (transport !== 'sent' && transport !== 'skipped') {
         console.warn('friend_activity_like_push_failed', { transport });
       }
@@ -419,8 +409,6 @@ export const friendUnlikeActivity = onCall({ region: REGION, enforceAppCheck: EN
 
     const eventLikeCount = Math.max(0, parseCount(eventData.activityLikeCount) - 1);
     const totalLikeCount = Math.max(0, parseCount(statsSnap.data()?.total) - 1);
-    const eventType = cleanId(eventData.type);
-    const leagueGroupId = cleanDocId(eventData.groupId);
 
     if (!isProfileLike && eventSnap?.exists) {
       tx.set(eventRef, {
@@ -440,14 +428,6 @@ export const friendUnlikeActivity = onCall({ region: REGION, enforceAppCheck: EN
     // A delivered high-five is historical recipient state. Turning off the sender-side
     // toggle adjusts counters but must not erase the receiver event or bell entry.
 
-    if (eventType === 'league_group_boost' && leagueGroupId && eventId.startsWith('league_group_boost_')) {
-      tx.set(db.collection('league_groups').doc(leagueGroupId), {
-        groupBoost: {
-          likeCount: eventLikeCount,
-        },
-        updatedAt: now,
-      }, { merge: true });
-    }
 
     return {
       ok: true,

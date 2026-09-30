@@ -92,20 +92,19 @@ describe('SessionAttemptsRecoveryModal', () => {
     expect(labels).toEqual([
       'Использовать подарок',
       'Восстановить · 25 рун',
-      'Начать заново · −1',
+      'Начать заново',
       'Завершить сессию',
     ]);
 
     await fireEvent.press(view.getByLabelText('Использовать подарок'));
     await fireEvent.press(view.getByLabelText('Восстановить · 25 рун'));
-    await fireEvent.press(view.getByLabelText('Начать заново · −1'));
+    await fireEvent.press(view.getByLabelText('Начать заново'));
     await fireEvent.press(view.getByLabelText('Завершить сессию'));
     expect(onUseGift).toHaveBeenCalledTimes(1);
     expect(onSpendRunes).toHaveBeenCalledTimes(1);
     expect(onRestartWithEnergy).toHaveBeenCalledTimes(1);
     expect(onEndSession).toHaveBeenCalledTimes(1);
-    expect(view.getByTestId('session-attempts-restart-energy-asset')).toBeTruthy();
-    expect(view.getByText(/−1/)).toBeTruthy();
+    expect(view.queryByTestId('session-attempts-restart-energy-asset')).toBeNull();
   });
 
   test('removes the gift action without leaving a gap and only disables unaffordable runes', async () => {

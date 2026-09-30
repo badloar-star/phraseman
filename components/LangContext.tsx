@@ -21,7 +21,6 @@ const RU = {
     streakDays: 'дней подряд',
     continueBtn: 'Продолжить',
     startBtn: 'Начать',
-    leagueLabel: 'Клуб недели',
     testBtn: 'Тест знаний',
     testSub: 'Узнай уровень',
     examBtn: 'Финальный экзамен',
@@ -55,21 +54,12 @@ const RU = {
   lessonComplete: {
     title: 'Урок завершён!',
     subtitle: (n: number) => `Урок ${n} пройден на 100%`,
-    bonus: '+500 XP',
     rest: 'Сделай небольшой перерыв — ты заслужил.',
     nextLesson: 'Следующий урок',
     repeatLesson: 'Повторить урок',
     shareResult: 'Поделиться результатом',
     backHome: 'На главную',
   },
-  leagues: [
-    { name: 'Искатель',    min: 0 },
-    { name: 'Знаток',      min: 100 },
-    { name: 'Эрудит',      min: 300 },
-    { name: 'Оратор',      min: 700 },
-    { name: 'Острое перо', min: 1500 },
-    { name: 'Профессор',   min: 3000 },
-  ],
   settings: {
     title: 'Настройки', profile: 'Профиль',
     name: 'Имя / никнейм', nameSub: (n: string) => n || 'Не задано',
@@ -94,12 +84,13 @@ const RU = {
     hintsAfterAnswerSub: 'Показывать карточки с объяснением после каждого ответа',
   },
   words: {
+    plusPoints: (n: number) => `+${n}`,
+    points: (n: number) => `+${n}`,
     title: (n: number) => `${n}. Словарь`,
     training: 'Тренировка', wordList: 'Список слов',
     listStartTraining: 'Начать тренировку',
     allLearned: 'Все слова выучены!',
     learnedOf: (a: number, b: number) => `${a} / ${b} выучено`,
-    plusPoints: (n: number) => `+${n} опыта`,
   },
   verbs: {
     title: (n: number) => `${n}. Формы глаголов`,
@@ -123,7 +114,6 @@ const RU = {
     again: 'Пройти ещё раз',
     backHome: 'На главную',
     timeUp: 'Время вышло — вопрос пропущен',
-    points: (n: number) => `+${n} опыта`,
     unlockedTitle: 'Рекомендация по старту',
     unlockedRec:
       'Тест показал примерный уровень. Начни с подходящих тем в курсе или повтори базу, если хочешь закрепить материал.',
@@ -158,7 +148,6 @@ const UK: typeof RU = {
     streakDays: 'днів поспіль',
     continueBtn: 'Продовжити',
     startBtn: 'Почати',
-    leagueLabel: 'Клуб тижня',
     testBtn: 'Тест знань',
     testSub: 'Дізнайся рівень',
     examBtn: 'Фінальний іспит',
@@ -187,21 +176,12 @@ const UK: typeof RU = {
   lessonComplete: {
     title: 'Урок завершено!',
     subtitle: (n: number) => `Урок ${n} пройдено на 100%`,
-    bonus: '+500 XP',
     rest: 'Зроби невелику перерву — ти заслужив.',
     nextLesson: 'Наступний урок',
     repeatLesson: 'Пройти знову',
     shareResult: 'Поділитися результатом',
     backHome: 'На головну',
   },
-  leagues: [
-    { name: 'Шукач',       min: 0 },
-    { name: 'Знавець',     min: 100 },
-    { name: 'Ерудит',      min: 300 },
-    { name: 'Оратор',      min: 700 },
-    { name: 'Гостре перо', min: 1500 },
-    { name: 'Професор',    min: 3000 },
-  ],
   settings: {
     title: 'Налаштування', profile: 'Профіль',
     name: 'Ім\'я / нікнейм', nameSub: (n: string) => n || 'Не вказано',
@@ -226,12 +206,13 @@ const UK: typeof RU = {
     hintsAfterAnswerSub: 'Показувати картки з поясненням після кожної відповіді',
   },
   words: {
+    plusPoints: (n: number) => `+${n}`,
+    points: (n: number) => `+${n}`,
     title: (n: number) => `${n}. Словник`,
     training: 'Тренування', wordList: 'Список слів',
     listStartTraining: 'Почати тренування',
     allLearned: 'Всі слова вивчено!',
     learnedOf: (a: number, b: number) => `${a} / ${b} вивчено`,
-    plusPoints: (n: number) => `+${n} досвіду`,
   },
   verbs: {
     title: (n: number) => `${n}. Форми дієслів`,
@@ -255,7 +236,6 @@ const UK: typeof RU = {
     again: 'Пройти ще раз',
     backHome: 'На головну',
     timeUp: 'Час вийшов — питання пропущено',
-    points: (n: number) => `+${n} досвіду`,
     unlockedTitle: 'Рекомендація для старту',
     unlockedRec:
       'Тест показав орієнтовний рівень. Почни з відповідних тем у курсі або повтори базу, якщо хочеш закріпити матеріал.',
@@ -290,7 +270,6 @@ const ES: typeof RU = {
     streakDays: 'días seguidos',
     continueBtn: 'Continuar',
     startBtn: 'Empezar',
-    leagueLabel: 'Club semanal',
     testBtn: 'Test de conocimientos',
     testSub: 'Descubre tu nivel',
     examBtn: 'Examen final',
@@ -319,21 +298,12 @@ const ES: typeof RU = {
   lessonComplete: {
     title: '¡Lección completada!',
     subtitle: (n: number) => `Has completado la lección ${n} al 100 %`,
-    bonus: '+500 XP',
     rest: 'Tómate un descanso: te lo mereces.',
     nextLesson: 'Siguiente lección',
     repeatLesson: 'Repetir lección',
     shareResult: 'Compartir resultado',
     backHome: 'Volver al inicio',
   },
-  leagues: [
-    { name: 'Explorador',    min: 0 },
-    { name: 'Experto',       min: 100 },
-    { name: 'Erudito',       min: 300 },
-    { name: 'Orador',        min: 700 },
-    { name: 'Pluma de oro',  min: 1500 },
-    { name: 'Profesor',      min: 3000 },
-  ],
   settings: {
     title: 'Ajustes', profile: 'Perfil',
     name: 'Nombre / apodo público', nameSub: (n: string) => n || 'No indicado',
@@ -358,12 +328,13 @@ const ES: typeof RU = {
     hintsAfterAnswerSub: 'Mostrar tarjetas con explicación tras cada respuesta.',
   },
   words: {
+    plusPoints: (n: number) => `+${n}`,
+    points: (n: number) => `+${n}`,
     title: (n: number) => `${n}. Vocabulario`,
     training: 'Práctica', wordList: 'Lista de palabras',
     listStartTraining: 'Empieza a practicar',
     allLearned: '¡Has aprendido todas las palabras!',
     learnedOf: (a: number, b: number) => `${a} / ${b} aprendidas`,
-    plusPoints: (n: number) => `+${n} XP`,
   },
   verbs: {
     title: (n: number) => `${n}. Formas verbales`,
@@ -387,7 +358,6 @@ const ES: typeof RU = {
     again: 'Repetir diagnóstico',
     backHome: 'Volver al inicio',
     timeUp: 'Tiempo agotado: pregunta omitida',
-    points: (n: number) => `+${n} XP`,
     unlockedTitle: 'Recomendacion de inicio',
     unlockedRec:
       'El test muestra un nivel aproximado. Empieza con los temas adecuados del curso o repasa la base si quieres reforzarla.',
@@ -426,7 +396,6 @@ const PT_BR: typeof RU = {
     streakDays: 'dias seguidos',
     continueBtn: 'Continuar',
     startBtn: 'Começar',
-    leagueLabel: 'Clube da semana',
     testBtn: 'Teste de conhecimento',
     testSub: 'Descubra seu nível',
     examBtn: 'Exame final',
@@ -455,21 +424,12 @@ const PT_BR: typeof RU = {
   lessonComplete: {
     title: 'Lição concluída!',
     subtitle: (n: number) => `Lição ${n} concluída 100%`,
-    bonus: '+500 XP',
     rest: 'Faça uma pequena pausa — você merece.',
     nextLesson: 'Próxima lição',
     repeatLesson: 'Repetir lição',
     shareResult: 'Compartilhar resultado',
     backHome: 'Voltar ao início',
   },
-  leagues: [
-    { name: 'Explorador', min: 0 },
-    { name: 'Conhecedor', min: 100 },
-    { name: 'Erudito', min: 300 },
-    { name: 'Orador', min: 700 },
-    { name: 'Pena afiada', min: 1500 },
-    { name: 'Professor', min: 3000 },
-  ],
   settings: {
     title: 'Configurações', profile: 'Perfil',
     name: 'Nome / apelido', nameSub: (n: string) => n || 'Não definido',
@@ -494,12 +454,13 @@ const PT_BR: typeof RU = {
     hintsAfterAnswerSub: 'Mostrar cartões com explicação depois de cada resposta',
   },
   words: {
+    plusPoints: (n: number) => `+${n}`,
+    points: (n: number) => `+${n}`,
     title: (n: number) => `${n}. Vocabulário`,
     training: 'Treino', wordList: 'Lista de palavras',
     listStartTraining: 'Começar treino',
     allLearned: 'Todas as palavras foram aprendidas!',
     learnedOf: (a: number, b: number) => `${a} / ${b} aprendidas`,
-    plusPoints: (n: number) => `+${n} XP`,
   },
   verbs: {
     title: (n: number) => `${n}. Formas verbais`,
@@ -523,7 +484,6 @@ const PT_BR: typeof RU = {
     again: 'Fazer de novo',
     backHome: 'Voltar ao início',
     timeUp: 'O tempo acabou — pergunta pulada',
-    points: (n: number) => `+${n} XP`,
     unlockedTitle: 'Recomendação de início',
     unlockedRec:
       'O teste mostrou um nível aproximado. Comece pelos temas adequados do curso ou revise a base se quiser reforçar o conteúdo.',
@@ -558,7 +518,6 @@ const VI: typeof RU = {
     streakDays: 'ngày liên tiếp',
     continueBtn: 'Tiếp tục',
     startBtn: 'Bắt đầu',
-    leagueLabel: 'Câu lạc bộ tuần',
     testBtn: 'Kiểm tra kiến thức',
     testSub: 'Biết trình độ của bạn',
     examBtn: 'Bài kiểm tra cuối',
@@ -587,21 +546,12 @@ const VI: typeof RU = {
   lessonComplete: {
     title: 'Đã hoàn thành bài học!',
     subtitle: (n: number) => `Bạn đã hoàn thành 100% bài ${n}`,
-    bonus: '+500 XP',
     rest: 'Nghỉ một chút đi — bạn xứng đáng.',
     nextLesson: 'Bài tiếp theo',
     repeatLesson: 'Làm lại bài học',
     shareResult: 'Chia sẻ kết quả',
     backHome: 'Về trang chủ',
   },
-  leagues: [
-    { name: 'Người khám phá', min: 0 },
-    { name: 'Người hiểu biết', min: 100 },
-    { name: 'Học giả', min: 300 },
-    { name: 'Diễn giả', min: 700 },
-    { name: 'Ngòi bút sắc', min: 1500 },
-    { name: 'Giáo sư', min: 3000 },
-  ],
   settings: {
     title: 'Cài đặt', profile: 'Hồ sơ',
     name: 'Tên / biệt danh', nameSub: (n: string) => n || 'Chưa đặt',
@@ -626,12 +576,13 @@ const VI: typeof RU = {
     hintsAfterAnswerSub: 'Hiển thị thẻ giải thích sau mỗi câu trả lời',
   },
   words: {
+    plusPoints: (n: number) => `+${n}`,
+    points: (n: number) => `+${n}`,
     title: (n: number) => `${n}. Từ vựng`,
     training: 'Luyện tập', wordList: 'Danh sách từ',
     listStartTraining: 'Bắt đầu luyện tập',
     allLearned: 'Đã học hết các từ!',
     learnedOf: (a: number, b: number) => `${a} / ${b} đã học`,
-    plusPoints: (n: number) => `+${n} XP`,
   },
   verbs: {
     title: (n: number) => `${n}. Dạng động từ`,
@@ -655,7 +606,6 @@ const VI: typeof RU = {
     again: 'Làm lại',
     backHome: 'Về trang chủ',
     timeUp: 'Hết giờ — câu hỏi bị bỏ qua',
-    points: (n: number) => `+${n} XP`,
     unlockedTitle: 'Gợi ý bắt đầu',
     unlockedRec:
       'Bài kiểm tra cho thấy trình độ gần đúng. Hãy bắt đầu với chủ đề phù hợp trong khóa học hoặc ôn lại nền tảng nếu muốn củng cố.',
@@ -690,7 +640,6 @@ const ID: typeof RU = {
     streakDays: 'hari beruntun',
     continueBtn: 'Lanjutkan',
     startBtn: 'Mulai',
-    leagueLabel: 'Klub minggu ini',
     testBtn: 'Tes pengetahuan',
     testSub: 'Cari tahu levelmu',
     examBtn: 'Ujian akhir',
@@ -719,21 +668,12 @@ const ID: typeof RU = {
   lessonComplete: {
     title: 'Pelajaran selesai!',
     subtitle: (n: number) => `Pelajaran ${n} selesai 100%`,
-    bonus: '+500 XP',
     rest: 'Istirahat sebentar — kamu pantas mendapatkannya.',
     nextLesson: 'Pelajaran berikutnya',
     repeatLesson: 'Ulangi pelajaran',
     shareResult: 'Bagikan hasil',
     backHome: 'Ke beranda',
   },
-  leagues: [
-    { name: 'Pencari', min: 0 },
-    { name: 'Ahli', min: 100 },
-    { name: 'Cendekia', min: 300 },
-    { name: 'Orator', min: 700 },
-    { name: 'Pena tajam', min: 1500 },
-    { name: 'Profesor', min: 3000 },
-  ],
   settings: {
     title: 'Pengaturan', profile: 'Profil',
     name: 'Nama / nama panggilan', nameSub: (n: string) => n || 'Belum diatur',
@@ -758,12 +698,13 @@ const ID: typeof RU = {
     hintsAfterAnswerSub: 'Tampilkan kartu penjelasan setelah setiap jawaban',
   },
   words: {
+    plusPoints: (n: number) => `+${n}`,
+    points: (n: number) => `+${n}`,
     title: (n: number) => `${n}. Kosakata`,
     training: 'Latihan', wordList: 'Daftar kata',
     listStartTraining: 'Mulai latihan',
     allLearned: 'Semua kata sudah dipelajari!',
     learnedOf: (a: number, b: number) => `${a} / ${b} dipelajari`,
-    plusPoints: (n: number) => `+${n} XP`,
   },
   verbs: {
     title: (n: number) => `${n}. Bentuk kata kerja`,
@@ -787,7 +728,6 @@ const ID: typeof RU = {
     again: 'Coba lagi',
     backHome: 'Ke beranda',
     timeUp: 'Waktu habis — pertanyaan dilewati',
-    points: (n: number) => `+${n} XP`,
     unlockedTitle: 'Rekomendasi awal',
     unlockedRec:
       'Tes menunjukkan level perkiraan. Mulailah dari topik yang sesuai di kursus atau ulangi dasar jika ingin memperkuat materi.',
@@ -822,7 +762,6 @@ const TR: typeof RU = {
     streakDays: 'gün üst üste',
     continueBtn: 'Devam et',
     startBtn: 'Başla',
-    leagueLabel: 'Haftanın kulübü',
     testBtn: 'Bilgi testi',
     testSub: 'Seviyeni öğren',
     examBtn: 'Final sınavı',
@@ -851,21 +790,12 @@ const TR: typeof RU = {
   lessonComplete: {
     title: 'Ders tamamlandı!',
     subtitle: (n: number) => `Ders ${n} %100 tamamlandı`,
-    bonus: '+500 XP',
     rest: 'Kısa bir mola ver — hak ettin.',
     nextLesson: 'Sonraki ders',
     repeatLesson: 'Dersi tekrar et',
     shareResult: 'Sonucu paylaş',
     backHome: 'Ana sayfaya dön',
   },
-  leagues: [
-    { name: 'Arayıcı', min: 0 },
-    { name: 'Uzman', min: 100 },
-    { name: 'Bilgin', min: 300 },
-    { name: 'Hatip', min: 700 },
-    { name: 'Keskin kalem', min: 1500 },
-    { name: 'Profesör', min: 3000 },
-  ],
   settings: {
     title: 'Ayarlar', profile: 'Profil',
     name: 'Ad / takma ad', nameSub: (n: string) => n || 'Ayarlanmadı',
@@ -890,12 +820,13 @@ const TR: typeof RU = {
     hintsAfterAnswerSub: 'Her cevaptan sonra açıklama kartlarını göster',
   },
   words: {
+    plusPoints: (n: number) => `+${n}`,
+    points: (n: number) => `+${n}`,
     title: (n: number) => `${n}. Sözlük`,
     training: 'Alıştırma', wordList: 'Kelime listesi',
     listStartTraining: 'Alıştırmayı başlat',
     allLearned: 'Tüm kelimeler öğrenildi!',
     learnedOf: (a: number, b: number) => `${a} / ${b} öğrenildi`,
-    plusPoints: (n: number) => `+${n} XP`,
   },
   verbs: {
     title: (n: number) => `${n}. Fiil biçimleri`,
@@ -919,7 +850,6 @@ const TR: typeof RU = {
     again: 'Tekrar yap',
     backHome: 'Ana sayfaya dön',
     timeUp: 'Süre doldu — soru atlandı',
-    points: (n: number) => `+${n} XP`,
     unlockedTitle: 'Başlangıç önerisi',
     unlockedRec:
       'Test yaklaşık seviyeni gösterdi. Kurstaki uygun konulardan başla veya temeli güçlendirmek istersen tekrar yap.',
@@ -954,7 +884,6 @@ const PL: typeof RU = {
     streakDays: 'dni z rzędu',
     continueBtn: 'Kontynuuj',
     startBtn: 'Zacznij',
-    leagueLabel: 'Klub tygodnia',
     testBtn: 'Test wiedzy',
     testSub: 'Poznaj swój poziom',
     examBtn: 'Egzamin końcowy',
@@ -983,21 +912,12 @@ const PL: typeof RU = {
   lessonComplete: {
     title: 'Lekcja zakończona!',
     subtitle: (n: number) => `Lekcja ${n} ukończona w 100%`,
-    bonus: '+500 XP',
     rest: 'Zrób krótką przerwę — zasłużyłeś.',
     nextLesson: 'Następna lekcja',
     repeatLesson: 'Powtórz lekcję',
     shareResult: 'Udostępnij wynik',
     backHome: 'Na główną',
   },
-  leagues: [
-    { name: 'Poszukiwacz', min: 0 },
-    { name: 'Znawca', min: 100 },
-    { name: 'Erudyta', min: 300 },
-    { name: 'Mówca', min: 700 },
-    { name: 'Ostre pióro', min: 1500 },
-    { name: 'Profesor', min: 3000 },
-  ],
   settings: {
     title: 'Ustawienia', profile: 'Profil',
     name: 'Imię / nick', nameSub: (n: string) => n || 'Nie ustawiono',
@@ -1022,12 +942,13 @@ const PL: typeof RU = {
     hintsAfterAnswerSub: 'Pokazuj karty z wyjaśnieniem po każdej odpowiedzi',
   },
   words: {
+    plusPoints: (n: number) => `+${n}`,
+    points: (n: number) => `+${n}`,
     title: (n: number) => `${n}. Słownik`,
     training: 'Trening', wordList: 'Lista słów',
     listStartTraining: 'Rozpocznij trening',
     allLearned: 'Wszystkie słowa nauczone!',
     learnedOf: (a: number, b: number) => `${a} / ${b} nauczono`,
-    plusPoints: (n: number) => `+${n} XP`,
   },
   verbs: {
     title: (n: number) => `${n}. Formy czasowników`,
@@ -1051,7 +972,6 @@ const PL: typeof RU = {
     again: 'Zrób jeszcze raz',
     backHome: 'Na główną',
     timeUp: 'Czas minął — pytanie pominięte',
-    points: (n: number) => `+${n} XP`,
     unlockedTitle: 'Rekomendacja startu',
     unlockedRec:
       'Test pokazał przybliżony poziom. Zacznij od odpowiednich tematów w kursie albo powtórz podstawy, jeśli chcesz je utrwalić.',
@@ -1086,7 +1006,6 @@ const EN: typeof RU = {
     streakDays: 'days in a row',
     continueBtn: 'Continue',
     startBtn: 'Start',
-    leagueLabel: 'Weekly club',
     testBtn: 'Knowledge test',
     testSub: 'Find your level',
     examBtn: 'Final exam',
@@ -1115,21 +1034,12 @@ const EN: typeof RU = {
   lessonComplete: {
     title: 'Lesson complete!',
     subtitle: (n: number) => `Lesson ${n} completed 100%`,
-    bonus: '+500 XP',
     rest: 'Take a short break — you earned it.',
     nextLesson: 'Next lesson',
     repeatLesson: 'Repeat lesson',
     shareResult: 'Share result',
     backHome: 'Back home',
   },
-  leagues: [
-    { name: 'Seeker',    min: 0 },
-    { name: 'Expert',      min: 100 },
-    { name: 'Scholar',      min: 300 },
-    { name: 'Speaker',      min: 700 },
-    { name: 'Sharp Pen', min: 1500 },
-    { name: 'Professor',   min: 3000 },
-  ],
   settings: {
     title: 'Settings', profile: 'Profile',
     name: 'Name / nickname', nameSub: (n: string) => n || 'Not set',
@@ -1154,12 +1064,13 @@ const EN: typeof RU = {
     hintsAfterAnswerSub: 'Show explanation cards after each answer',
   },
   words: {
+    plusPoints: (n: number) => `+${n}`,
+    points: (n: number) => `+${n}`,
     title: (n: number) => `${n}. Vocabulary`,
     training: 'Practice', wordList: 'Word list',
     listStartTraining: 'Start practice',
     allLearned: 'All words learned!',
     learnedOf: (a: number, b: number) => `${a} / ${b} learned`,
-    plusPoints: (n: number) => `+${n} XP`,
   },
   verbs: {
     title: (n: number) => `${n}. Verb forms`,
@@ -1183,7 +1094,6 @@ const EN: typeof RU = {
     again: 'Try again',
     backHome: 'Back home',
     timeUp: 'Time’s up — question skipped',
-    points: (n: number) => `+${n} XP`,
     unlockedTitle: 'Starting recommendation',
     unlockedRec:
       'The test showed your approximate level. Start with the matching topics in the course, or review the basics if you want to reinforce them.',
@@ -1344,16 +1254,3 @@ export const LangProvider = ({ children }: { children: React.ReactNode }) => {
 export const useLang = () => useContext(LangContext);
 
 // ─── УТИЛИТЫ ────────────────────────────────────────────────────────────────
-export const getLeague = (points: number, lang: Lang = 'ru') => {
-  const pack = stringsForLang(lang);
-  const leagues = [...pack.leagues].reverse();
-  return leagues.find(l => points >= l.min) || pack.leagues[0];
-};
-
-export const getNextLeague = (points: number, lang: Lang = 'ru') => {
-  const pack = stringsForLang(lang);
-  const leagues = pack.leagues;
-  const current = getLeague(points, lang);
-  const idx = leagues.findIndex(l => l.name === current.name);
-  return leagues[idx + 1] || null;
-};

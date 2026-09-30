@@ -18,10 +18,10 @@ import {
   requireAdminAppCheck,
 } from './callable_options';
 import { createAuditRecord } from './admin/audit_contract';
-import { appendExternalEconomyEvent } from './external_economy_events';
 import { hasPermission, roleFromAdminToken } from './admin/permissions';
 import { hasAdminRole, type AdminRole } from './admin/roles';
 import {
+  REFERRAL_SPIN_PRIZE_COINS,
   REFERRAL_SPIN_PRIZE_DAYS,
   REFERRAL_SPIN_PRIZE_PEARLS,
   referralSpinWeightsFromData,
@@ -185,6 +185,7 @@ export type ReferralDashboardSpinReceipt = Readonly<{
   prizeDays?: number;
   prizeKind?: string;
   prizePearls?: number;
+  prizeCoins?: number;
   createdAt?: unknown;
   createdAtMs?: unknown;
 }>;
@@ -204,8 +205,10 @@ export type ReferralDashboardRow = Readonly<{
     | Readonly<{
       state: 'spun';
       prizeDays: number;
-      prizeKind: 'days' | 'pearls';
+      // 'pearls' — только исторические спины до D100; новые Pro-призы — 'coins'.
+      prizeKind: 'days' | 'pearls' | 'coins';
       prizePearls: number;
+      prizeCoins: number;
       createdAtMs: number;
     }>;
 }>;
@@ -274,8 +277,9 @@ function spinReceiptFromData(data: ReferralDashboardSpinReceipt): ReferralDashbo
     creditId: String(data.creditId ?? ''),
     creditSource: String(data.creditSource ?? ''),
     prizeDays: Math.max(0, Math.floor(Number(data.prizeDays) || 0)),
-    prizeKind: data.prizeKind === 'pearls' ? 'pearls' : 'days',
+    prizeKind: data.prizeKind === 'pearls' || data.prizeKind === 'coins' ? data.prizeKind : 'days',
     prizePearls: Math.max(0, Math.floor(Number(data.prizePearls) || 0)),
+    prizeCoins: Math.max(0, Math.floor(Number(data.prizeCoins) || 0)),
     createdAtMs: tsToMs(data.createdAt) || tsToMs(data.createdAtMs),
   };
 }
@@ -302,7 +306,9 @@ export function projectReferralDashboardRow(input: Readonly<{
     ))
     .map(spinReceiptFromData)
     .sort((a, b) => tsToMs(b.createdAtMs) - tsToMs(a.createdAtMs))[0];
-  const prizeKind: 'days' | 'pearls' = receipt?.prizeKind === 'pearls' ? 'pearls' : 'days';
+  const prizeKind: 'days' | 'pearls' | 'coins' = receipt?.prizeKind === 'pearls' || receipt?.prizeKind === 'coins'
+    ? receipt.prizeKind
+    : 'days';
 
   return {
     referrerStableId,
@@ -324,6 +330,7 @@ export function projectReferralDashboardRow(input: Readonly<{
         prizeDays: Math.max(0, Math.floor(Number(receipt.prizeDays) || 0)),
         prizeKind,
         prizePearls: Math.max(0, Math.floor(Number(receipt.prizePearls) || 0)),
+        prizeCoins: Math.max(0, Math.floor(Number(receipt.prizeCoins) || 0)),
         createdAtMs: tsToMs(receipt.createdAtMs),
       }
       : { state: 'not_spun' },
@@ -428,6 +435,7 @@ type ReferralRevokeOutcome =
   | 'spin_credit_missing_retained'
   | 'vip_retained'
   | 'legacy_shards_reversed'
+  | 'legacy_shards_retired'
   | 'legacy_shards_partially_reversed'
   | 'legacy_reward_retained';
 
@@ -691,55 +699,19 @@ export const adminRevokeReferralAttribution = onCall(ADMIN_SENSITIVE_WRITE_OPTIO
       rewardOutcome = 'legacy_reward_retained';
       retainedReward = true;
     } else if (classification.rewardMode === 'legacy_shards') {
-      const sameUser = referrerStableId === refereeStableId;
-      // The attribution receipt, not a stale server balance projection, fixes
-      // the reversal amount. Client debt is allowed and repaid by later credit.
-      refereeShardsReversed = classification.refereeShardBonus;
-      referrerShardsReversed = classification.referrerShardBonus;
-
-      const refereeRef = db.collection(USERS).doc(refereeStableId);
-      const totalRefereeDebit = refereeShardsReversed + (sameUser ? referrerShardsReversed : 0);
-      if (totalRefereeDebit > 0) appendExternalEconomyEvent(tx, refereeRef, {
-        source: 'admin_referral_revoke', eventId: `${operationRef.id}:referee`, ownerStableId: refereeStableId,
-        delta: -totalRefereeDebit, reason: 'admin_referral_revoke', kind: 'admin_referral_reversal',
-        subjectId: operationRef.id, payload: { role: 'referee' }, createdAtMs: nowMs,
-      });
-      if (!sameUser && referrerShardsReversed > 0 && referrerRef) appendExternalEconomyEvent(tx, referrerRef, {
-        source: 'admin_referral_revoke', eventId: `${operationRef.id}:referrer`, ownerStableId: referrerStableId,
-        delta: -referrerShardsReversed, reason: 'admin_referral_revoke', kind: 'admin_referral_reversal',
-        subjectId: operationRef.id, payload: { role: 'referrer' }, createdAtMs: nowMs,
-      });
-      if (refereeShardsReversed > 0) {
-        tx.create(refereeRef.collection('shard_log').doc(`${operationRef.id}_referee`), {
-          ts: nowIso,
-          createdAt: admin.firestore.FieldValue.serverTimestamp(),
-          type: 'spend',
-          amount: refereeShardsReversed,
-          reason: 'admin_referral_revoke',
-          actorUid,
-          targetUid: refereeStableId,
-          attributionId: refereeStableId,
-          operationId: operationRef.id,
-        });
-      }
-      if (referrerShardsReversed > 0 && referrerRef) {
-        tx.create(referrerRef.collection('shard_log').doc(`${operationRef.id}_referrer`), {
-          ts: nowIso,
-          createdAt: admin.firestore.FieldValue.serverTimestamp(),
-          type: 'spend',
-          amount: referrerShardsReversed,
-          reason: 'admin_referral_revoke',
-          actorUid,
-          targetUid: referrerStableId,
-          attributionId: refereeStableId,
-          operationId: operationRef.id,
-        });
-      }
-      const requestedShardReversal = classification.refereeShardBonus
-        + classification.referrerShardBonus;
-      const actualShardReversal = refereeShardsReversed + referrerShardsReversed;
-      rewardOutcome = 'legacy_shards_reversed';
-      retainedReward = actualShardReversal < requestedShardReversal;
+      // зачем: D70 — жемчуг удалён вместе с остатками, списывать старый
+      // реферальный бонус жемчугом больше нечего: ни события внешней экономии,
+      // ни shard_log. Отзыв приглашения записывается, суммы остаются нулевыми.
+      console.log(JSON.stringify({
+        event: 'admin_referral_revoke_legacy_shards_retired',
+        operationId: operationRef.id,
+        refereeStableId,
+        referrerStableId,
+        refereeShardBonus: classification.refereeShardBonus,
+        referrerShardBonus: classification.referrerShardBonus,
+      }));
+      rewardOutcome = 'legacy_shards_retired';
+      retainedReward = false;
     }
 
     const result = {
@@ -969,15 +941,27 @@ export const adminGetReferralDashboard = onCall(CALLABLE_BASE, async (request) =
   const byPrize: Record<string, number> = {};
   const prizeCounts = await Promise.all(REFERRAL_SPIN_PRIZE_DAYS.map(async (days, index) => {
     const pearls = REFERRAL_SPIN_PRIZE_PEARLS[index] ?? 0;
-    const [allAtIndex, pearlCount] = await Promise.all([
+    // зачем: D100 — новые призы Pro идут монетами (prizeKind='coins', prizeCoins);
+    // жемчужные строки остаются для истории спинов до D100.
+    const coins = REFERRAL_SPIN_PRIZE_COINS[index] ?? 0;
+    const [allAtIndex, pearlCount, coinCount] = await Promise.all([
       countOf(spinsCol.where('prizeDays', '==', days)),
       countOf(spinsCol.where('prizeKind', '==', 'pearls').where('prizePearls', '==', pearls)),
+      countOf(spinsCol.where('prizeKind', '==', 'coins').where('prizeCoins', '==', coins)),
     ]);
-    return { days, pearls, dayCount: Math.max(0, allAtIndex - pearlCount), pearlCount };
+    return {
+      days,
+      pearls,
+      coins,
+      dayCount: Math.max(0, allAtIndex - pearlCount - coinCount),
+      pearlCount,
+      coinCount,
+    };
   }));
   for (const count of prizeCounts) {
     if (count.dayCount > 0) byPrize[`days:${count.days}`] = count.dayCount;
     if (count.pearlCount > 0) byPrize[`pearls:${count.pearls}`] = count.pearlCount;
+    if (count.coinCount > 0) byPrize[`coins:${count.coins}`] = count.coinCount;
   }
   const knownPrizeCount = Object.values(byPrize).reduce((sum, count) => sum + count, 0);
   const purchaseCountLoaded = rows.filter((row) => row.plusPurchased).length;

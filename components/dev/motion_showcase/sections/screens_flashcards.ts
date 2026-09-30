@@ -2,7 +2,7 @@
 // зачем: каждый пункт запускает РЕАЛЬНУЮ поверхность приложения (не бутафорию).
 // Шард пополняется независимо от других (мультиагентная параллель без конфликтов).
 // Полный список — все flashcards*.tsx маршруты app/ (по export default function) + pack_opening.
-// coin_exchange.tsx НЕ про карточки (обмен монет/звёзд) — не включён.
+// coin_exchange.tsx удалён (D70/D78) — биржа жемчуга снята.
 // flashcards_swipe_session.ts и flashcards_target_gate.ts — не экраны (логика/мёртвый шим
 // __FlashcardsTargetGateRouteShim возвращает null) — не включены.
 import type { ShowcaseSection } from '../types';

@@ -8,7 +8,6 @@ import {
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { emitAppEvent } from './events';
 import { enqueueLevelSpinStarGrant } from './level_spin_star_grants';
-import { commitConfirmedExternalShardEvent } from './shards_system';
 import { getCanonicalUserId } from './user_id_policy';
 import { DebugLogger } from './debug-logger';
 
@@ -36,7 +35,6 @@ type PendingClaim = {
   messageId: string;
   rewardBundle: ReportRewardBundle;
   serverConfirmed: boolean;
-  pearlsCredited: boolean;
   runesCredited: boolean;
   spinsCredited: boolean;
   updatedAtMs: number;
@@ -84,7 +82,6 @@ function normalizePendingClaim(value: unknown): PendingClaim | null {
       messageId,
       rewardBundle: normalizeReportRewardBundle(input.rewardBundle),
       serverConfirmed: input.serverConfirmed === true,
-      pearlsCredited: input.pearlsCredited === true,
       runesCredited: input.runesCredited === true,
       spinsCredited: input.spinsCredited === true,
       updatedAtMs: Math.max(0, Math.trunc(Number(input.updatedAtMs) || 0)),
@@ -171,7 +168,7 @@ async function creditRunes(messageId: string, bundle: ReportRewardBundle, token:
 }
 
 /**
- * Replays the non-pearl part of an immutable server reward event. The cloud
+ * Replays the rune part of an immutable (historic) server reward event. The cloud
  * external-event synchronizer calls this before writing its applied marker, so
  * a crash or reinstall can retry the exact rune/spin grants without duplication.
  */
@@ -221,22 +218,14 @@ async function processClaim(claim: PendingClaim, token: AccountGenerationToken, 
     current = { ...current, serverConfirmed: true, updatedAtMs: Date.now() };
     await upsertPending(owner, current);
   }
-  if (!current.pearlsCredited && current.rewardBundle.pearls > 0) {
-    const result = await commitConfirmedExternalShardEvent({
-      source: 'report_reply',
-      eventId: current.messageId,
-      delta: current.rewardBundle.pearls,
-      expectedOwnerStableId: owner,
-      reason: 'report_reward_bundle_claim',
-      grant: {
-        kind: 'confirmed_report_reward_bundle',
-        subjectId: current.messageId,
-        payload: { messageId: current.messageId, rewardBundle: current.rewardBundle },
-      },
-    });
-    if (result.status !== 'applied' && result.status !== 'already-applied') throw new Error('report_reward_pearls_failed');
-    current = { ...current, pearlsCredited: true, updatedAtMs: Date.now() };
-    await upsertPending(owner, current);
+  // зачем: D70/D104 — жемчужная часть набора (pearls) больше не начисляется;
+  // монетная часть набора — runes ниже (300/600/1000). Поле pearls остаётся в
+  // схеме только ради точного сравнения с уже отправленными сообщениями.
+  if (current.rewardBundle.pearls > 0) {
+    DebugLogger.info(
+      'report_reward_bundle:pearls_retired',
+      `[REPORT-REWARD] op=${current.messageId} pearls=${current.rewardBundle.pearls} action=not_credited reason=D70_D104`,
+    );
   }
   if (!current.runesCredited && current.rewardBundle.runes > 0) {
     await creditRunes(current.messageId, current.rewardBundle, token);
@@ -281,7 +270,6 @@ export async function claimReportRewardBundle(
     messageId: cleanMessageId,
     rewardBundle,
     serverConfirmed: false,
-    pearlsCredited: false,
     runesCredited: rewardBundle.runes === 0,
     spinsCredited: rewardBundle.spins === 0,
     updatedAtMs: Date.now(),

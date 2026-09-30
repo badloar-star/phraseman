@@ -10,10 +10,7 @@ const sourceFiles = [
   'app/home_menu_icons.ts',
   'app/image_preload.ts',
   'components/ReferralInviteBannerArt.tsx',
-  'constants/generatedThemeIconAssets.ts',
-  'constants/socialIconAssets.ts',
   'constants/streakIconAssets.ts',
-  'constants/weeklyCompassIcons.ts',
 ];
 
 function collectRemovedThemeAssets(directory: string, relative = ''): string[] {

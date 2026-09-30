@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "dialogue-v2-locale-draft.v1",
+  "status": "draft_not_releaseable",
+  "sourceScenarioId": "social_10",
+  "sourceLedger": { "path": "dialogue_v2_authoring_ru.json", "revision": "v1" },
+  "targets": {
+    "en": {
+      "content": { "title": "Message after a meeting", "briefing": "You are chatting in the Social world. Your task is to write after a meeting. Do not end the conversation in one message: follow the steps and react to your chat partner.", "completionTone": "natural, with follow-up questions" },
+      "personas": [{ "id": "mila", "displayName": "Mila", "styleNote": "She warmly keeps the conversation going and asks natural follow-up questions." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Thank them for the meeting" }, { "id": "objective_02", "label": "Mention one specific moment" }, { "id": "objective_03", "label": "Express an emotion" }, { "id": "objective_04", "label": "Suggest doing it again" }, { "id": "objective_05", "label": "Give a convenient time frame" }, { "id": "objective_06", "label": "Reply to their suggestion" }, { "id": "objective_07", "label": "Close the chat" }
+      ]
+    },
+    "es": {
+      "content": { "title": "Escribir después de una cita", "briefing": "Estás chateando en el mundo «Social». Tu tarea es escribir después de una cita. No cierres la conversación con un solo mensaje: sigue los pasos y responde a tu interlocutora.", "completionTone": "natural, con preguntas de seguimiento" },
+      "personas": [{ "id": "mila", "displayName": "Mila", "styleNote": "Mantiene la conversación con calidez y hace preguntas de seguimiento naturales." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Agradecer la cita" }, { "id": "objective_02", "label": "Mencionar un momento concreto" }, { "id": "objective_03", "label": "Expresar una emoción" }, { "id": "objective_04", "label": "Proponer repetirlo" }, { "id": "objective_05", "label": "Dar un plazo conveniente" }, { "id": "objective_06", "label": "Responder a su propuesta" }, { "id": "objective_07", "label": "Cerrar el chat" }
+      ]
+    },
+    "fr": {
+      "content": { "title": "Écrire après un rendez-vous", "briefing": "Tu échanges des messages dans le monde «Social». Ton objectif est d'écrire après un rendez-vous. Ne termine pas la conversation en un seul message : suis les étapes et réponds à ton interlocutrice.", "completionTone": "naturel, avec des questions de suivi" },
+      "personas": [{ "id": "mila", "displayName": "Mila", "styleNote": "Elle relance chaleureusement la conversation et pose des questions de suivi naturelles." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Remercier pour le rendez-vous" }, { "id": "objective_02", "label": "Évoquer un moment précis" }, { "id": "objective_03", "label": "Exprimer une émotion" }, { "id": "objective_04", "label": "Proposer de recommencer" }, { "id": "objective_05", "label": "Donner un délai qui convient" }, { "id": "objective_06", "label": "Répondre à sa proposition" }, { "id": "objective_07", "label": "Clore le chat" }
+      ]
+    },
+    "de": {
+      "content": { "title": "Nach einem Treffen schreiben", "briefing": "Du schreibst im Bereich „Social“. Deine Aufgabe: Nach einem Treffen schreiben. Beende das Gespräch nicht mit nur einer Nachricht: Gehe die Schritte durch und reagiere auf deine Gesprächspartnerin.", "completionTone": "natürlich, mit Rückfragen" },
+      "personas": [{ "id": "mila", "displayName": "Mila", "styleNote": "Sie nimmt das Gespräch herzlich auf und stellt natürliche Rückfragen." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Für das Treffen danken" }, { "id": "objective_02", "label": "Einen konkreten Moment erwähnen" }, { "id": "objective_03", "label": "Ein Gefühl ausdrücken" }, { "id": "objective_04", "label": "Vorschlagen, es zu wiederholen" }, { "id": "objective_05", "label": "Einen passenden Zeitraum nennen" }, { "id": "objective_06", "label": "Auf ihren Vorschlag antworten" }, { "id": "objective_07", "label": "Den Chat abschließen" }
+      ]
+    }
+  }
+}

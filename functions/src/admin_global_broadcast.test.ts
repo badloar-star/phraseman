@@ -19,7 +19,7 @@ import {
 describe('admin global broadcast contracts', () => {
   test('normalizes a bounded publish command and fills missing translations from Russian', () => {
     const input = normalizeGlobalBroadcastPublishInput({
-      rewardType: 'shards',
+      rewardType: 'coins',
       rewardAmount: 25,
       titles: { ru: 'ÐÐ¾Ð´Ð°ÑÐ¾Ðº', uk: 'ÐÐ¾Ð´Ð°ÑÑÐ½Ð¾Ðº' },
       messages: { ru: 'Ð¡Ð¿Ð°ÑÐ¸Ð±Ð¾, ÑÑÐ¾ ÑÑÐ¸ÑÐµÑÑ Ñ Ð½Ð°Ð¼Ð¸.', uk: 'ÐÑÐºÑÑÐ¼Ð¾, ÑÐ¾ Ð½Ð°Ð²ÑÐ°ÑÑÐµÑÑ Ð· Ð½Ð°Ð¼Ð¸.' },
@@ -29,7 +29,7 @@ describe('admin global broadcast contracts', () => {
     });
 
     expect(input).toMatchObject({
-      rewardType: 'shards',
+      rewardType: 'coins',
       rewardAmount: 25,
       reason: 'ÐÐ¾Ð¼Ð¿ÐµÐ½ÑÐ°ÑÐ¸Ñ Ð¿Ð¾ÑÐ»Ðµ Ð¿Ð¾Ð´ÑÐ²ÐµÑÐ¶Ð´ÐµÐ½Ð½Ð¾Ð³Ð¾ ÑÐ±Ð¾Ñ',
       idempotencyKey: 'broadcast-publish-1',
@@ -61,25 +61,23 @@ describe('admin global broadcast contracts', () => {
 
     expect(() => normalizeGlobalBroadcastPublishInput({ ...valid, rewardType: 'cash' })).toThrow(HttpsError);
     expect(() => normalizeGlobalBroadcastPublishInput({ ...valid, rewardType: 'arena_extra_5' })).toThrow(HttpsError);
-    expect(() => normalizeGlobalBroadcastPublishInput({ ...valid, rewardType: 'shards', rewardAmount: 1001 })).toThrow(HttpsError);
+    // зачем: D104 — жемчуг в рассылках снят, награда монетами в пределах одной операции журнала.
+    expect(() => normalizeGlobalBroadcastPublishInput({ ...valid, rewardType: 'shards', rewardAmount: 10 })).toThrow(HttpsError);
+    expect(() => normalizeGlobalBroadcastPublishInput({ ...valid, rewardType: 'coins', rewardAmount: 5001 })).toThrow(HttpsError);
     expect(() => normalizeGlobalBroadcastPublishInput({ ...valid, titles: { ru: '' } })).toThrow(HttpsError);
     expect(() => normalizeGlobalBroadcastPublishInput({ ...valid, idempotencyKey: '../reuse' })).toThrow(HttpsError);
   });
 
-  test('forces rewardAmount to zero for fixed rewards and keeps fingerprints stable across retry time', () => {
-    const input = normalizeGlobalBroadcastPublishInput({
-      rewardType: 'xp_boost_2x_24h',
-      rewardAmount: 999,
-      titles: { ru: 'Ð£ÑÐºÐ¾ÑÐµÐ½Ð¸Ðµ' },
-      messages: { ru: 'ÐÐ°Ð±ÐµÑÐ¸ÑÐµ Ð´Ð²Ð¾Ð¹Ð½Ð¾Ð¹ Ð¾Ð¿ÑÑ.' },
-      reason: 'ÐÐ¾Ð´Ð°ÑÐ¾Ðº Ð°ÐºÑÐ¸Ð²Ð½ÑÐ¼ ÑÑÐµÐ½Ð¸ÐºÐ°Ð¼',
-      idempotencyKey: 'broadcast-publish-2',
-      requestId: 'request-2',
-    });
-
-    expect(input.rewardAmount).toBe(0);
-    expect(globalBroadcastFingerprint('publish', input)).toBe(globalBroadcastFingerprint('publish', input));
-  });
+  test.each(['xp_boost_2x_24h', 'xp_boost_2x_48h', 'chain_shield_1', 'chain_shield_3', 'club_boost_free', 'wager_discount_25'])(
+    'rejects retired broadcast reward %s', (rewardType) => {
+      expect(() => normalizeGlobalBroadcastPublishInput({
+        rewardType, rewardAmount: 0,
+        titles: { ru: 'Сообщение' }, messages: { ru: 'Текст' },
+        reason: 'Операционное сообщение', idempotencyKey: 'broadcast-publish-2', requestId: 'request-2',
+      })).toThrow(HttpsError);
+      expect(projectGlobalBroadcastRow('old-broadcast', { rewardType, rewardAmount: 30 }).rewardType).toBe('none');
+    },
+  );
 
   test('fingerprints operator-authored payload but ignores retry-time derived translation variance', () => {
     const base = {
@@ -191,12 +189,13 @@ describe('admin global broadcast contracts', () => {
 
   test('future broadcast documents contain only public app payload', () => {
     const input = normalizeGlobalBroadcastPublishInput({
-      rewardType: 'shards', rewardAmount: 10,
+      rewardType: 'coins', rewardAmount: 10,
       titles: { ru: 'Публичный заголовок' }, messages: { ru: 'Публичный текст' },
       reason: 'Проверенная публичная рассылка', idempotencyKey: 'public-doc-1', requestId: 'public-request-1',
     });
     const row = buildGlobalBroadcastPublicDocument(input, 1_800_000_000_000);
-    expect(row).toMatchObject({ publicPayloadSchemaVersion: 1, publicPayloadValidatedV1: true, active: true, rewardType: 'shards', rewardAmount: 10, titleRu: 'Публичный заголовок' });
+    expect(row).toMatchObject({ publicPayloadSchemaVersion: 1, publicPayloadValidatedV1: true, active: true, rewardType: 'coins', rewardAmount: 10, titleRu: 'Публичный заголовок' });
+    expect(row).not.toHaveProperty('shards');
     expect(forbiddenGlobalBroadcastMetadataKeys(row)).toEqual([]);
     expect(Object.keys(row)).not.toEqual(expect.arrayContaining([
       'createdBy', 'createdByUid', 'createdByRole', 'adminOperationId',

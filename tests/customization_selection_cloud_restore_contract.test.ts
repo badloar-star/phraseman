@@ -32,13 +32,4 @@ describe('customization selection cloud restore authority', () => {
     expect(guard).toBeLessThan(resolve);
     expect(source.slice(resolve, resolve + 250)).toContain('token: vipGeneration');
   });
-
-  test('level-gift auto-equip threads its existing non-recursive account lease', () => {
-    const levelGift = fs.readFileSync(path.join(__dirname, '..', 'app', 'level_gift_system.ts'), 'utf8');
-    const call = levelGift.indexOf('await commitExternalAuraSelectionOccurrence({');
-    const callBody = levelGift.slice(call, call + 500);
-
-    expect(call).toBeGreaterThan(-1);
-    expect(callBody).toContain('inheritedLease: opts?.accountTransitionLockLease');
-  });
 });

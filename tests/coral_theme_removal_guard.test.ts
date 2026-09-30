@@ -47,7 +47,6 @@ describe('removed Coral theme regression guard', () => {
       .sort();
 
     expect(filesWithCoral).toEqual([
-      'app/flashcards/cardBackCatalog.ts',
       'components/ThemeContext.tsx',
       'constants/avatar_auras.ts',
       'constants/custom_avatars.ts',

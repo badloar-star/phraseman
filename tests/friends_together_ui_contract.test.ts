@@ -15,10 +15,8 @@ const FRIENDS_TAB_FILE = path.join(process.cwd(), 'app/(tabs)/friends.tsx');
 const SETTINGS_FILE = path.join(process.cwd(), 'app/settings_notifications.tsx');
 
 const COMPONENT_FILES = [
-  'FriendsChestCard.tsx',
   'FriendTogetherSheet.tsx',
   'FriendLevelUpModal.tsx',
-  'FriendsChestModal.tsx',
   'FriendListRow.tsx',
 ];
 
@@ -74,20 +72,12 @@ describe('friends_together UI contract', () => {
     }
   });
 
-  test('celebration modals (level-up, chest) use useRewardImpactHybrid and useReduceMotion is present in the shared engine', () => {
+  test('level-up modal uses the shared reward-impact engine', () => {
     const levelUp = readComponent('FriendLevelUpModal.tsx');
-    const chest = readComponent('FriendsChestModal.tsx');
     expect(levelUp).toContain('useRewardImpactHybrid');
-    expect(chest).toContain('useRewardImpactHybrid');
-    // useRewardImpactHybrid сам гейтит reduceMotion внутри (components/celebration/
-    // use_reward_impact_hybrid.ts) — компоненты-потребители не обязаны звать
-    // useReduceMotion повторно, но FriendsChestCard анимирует локально (idle rock)
-    // и обязан гейтить сам.
-    const chestCard = readComponent('FriendsChestCard.tsx');
-    expect(chestCard).toContain('useReduceMotion');
   });
 
-  test('use_reward_impact_hybrid engine itself gates on useReduceMotion (shared by both celebration modals)', () => {
+  test('use_reward_impact_hybrid engine itself gates on useReduceMotion', () => {
     const engine = fs.readFileSync(
       path.join(process.cwd(), 'components/celebration/use_reward_impact_hybrid.ts'),
       'utf8',
@@ -109,10 +99,8 @@ describe('friends_together UI contract', () => {
 
   test('friends.tsx imports the new components', () => {
     const source = fs.readFileSync(FRIENDS_TAB_FILE, 'utf8');
-    expect(source).toContain("from '../../components/friends_together/FriendsChestCard'");
     expect(source).toContain("from '../../components/friends_together/FriendTogetherSheet'");
     expect(source).toContain("from '../../components/friends_together/FriendLevelUpModal'");
-    expect(source).toContain("from '../../components/friends_together/FriendsChestModal'");
   });
 
   test('settings_notifications.tsx has a "Друзья" toggle bound to prefs.categories.friends', () => {

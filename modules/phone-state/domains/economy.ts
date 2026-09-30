@@ -308,15 +308,23 @@ export async function hasValidDialogExtraRepliesRuneOperationFingerprint(
   return requestFingerprint === await dialogExtraRepliesRuneOperationFingerprint(payload);
 }
 
+// зачем (PM-055/PM-088, владелец: «исторические квитанции только читай»): XP/энергия/щиты/банки больше не
+// выпадают, но уже совершённые списания −300 рун с такими призами лежат в кошельке навсегда. Если парсер
+// их отвергнет, весь кошелёк рун читается как corrupt. Эти ID принимаются ТОЛЬКО для разбора истории;
+// новый каталог их не содержит, поэтому выдать их заново нельзя.
+const RETIRED_PAID_LEVEL_SPIN_GIFTS = [
+  'xp_250', 'xp_500', 'xp_1000', 'xp_3000', 'xp_5000', 'xp_10000', 'xp_25000', 'xp_50000',
+  'energy_full', 'energy_plus2', 'energy_plus3', 'chain_shield_1', 'chain_shield_3',
+  'xp_bank_150', 'xp_bank_300', 'xp_bank_600', 'xp_bank_1500', 'xp_2x_24h', 'xp_2x_48h',
+] as const;
+
 const PAID_LEVEL_SPIN_GIFTS_V6 = new Set<string>([
-  'xp_250', 'xp_500', 'xp_1000', 'xp_3000', 'xp_5000',
+  ...RETIRED_PAID_LEVEL_SPIN_GIFTS,
   'pearls_5', 'pearls_10', 'pearls_20',
   'stars_10', 'stars_20', 'stars_50',
-  'energy_full', 'energy_plus2', 'hint_1', 'hint_3', 'chain_shield_1', 'attempt_restore_all',
-  'xp_bank_150', 'xp_bank_300', 'xp_2x_24h',
-  'xp_10000', 'xp_25000', 'pearls_50', 'pearls_100', 'stars_100', 'stars_250',
-  'energy_plus3', 'xp_bank_600', 'xp_2x_48h',
-  'xp_50000', 'pearls_250', 'pearls_500', 'stars_500', 'stars_1000',
+  'hint_1', 'hint_3', 'attempt_restore_all',
+  'pearls_50', 'pearls_100', 'stars_100', 'stars_250',
+  'pearls_250', 'pearls_500', 'stars_500', 'stars_1000',
   'plus_days_3', 'plus_days_7', 'cosmetic_avatar_aura', 'cosmetic_theme', 'cosmetic_avatar_common',
 ]);
 
@@ -324,7 +332,6 @@ const PAID_LEVEL_SPIN_GIFTS_V6 = new Set<string>([
 // тот же каталог, поэтому его допуск расширяется вместе с каталожной версией.
 const PAID_LEVEL_SPIN_GIFTS_V7 = new Set<string>([
   ...PAID_LEVEL_SPIN_GIFTS_V6,
-  'chain_shield_3', 'xp_bank_1500',
   'pearls_1000', 'stars_2000',
   'plus_days_14', 'plus_days_30',
 ]);

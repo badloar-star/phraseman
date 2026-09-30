@@ -17,7 +17,9 @@ type FakeSnap = {
 };
 
 const docs = new Map<string, DocData>();
+const storageObjects = new Map<string, { bytes: Buffer; metadata: DocData }>();
 let autoId = 0;
+let storageDownloadCalls = 0;
 
 function deepMerge(target: DocData, source: DocData): DocData {
   const result = { ...target };
@@ -138,7 +140,24 @@ jest.mock('firebase-admin', () => {
     serverTimestamp: () => ({ __op: 'serverTimestamp' }),
     increment: (value: number) => ({ __op: 'increment', value }),
   };
-  return { firestore };
+  const storage = jest.fn(() => ({
+    bucket: () => ({
+      file: (path: string) => ({
+        getMetadata: async () => {
+          const object = storageObjects.get(path);
+          if (!object) throw new Error('not found');
+          return [{ size: String(object.bytes.byteLength), metadata: object.metadata }];
+        },
+        download: async () => {
+          storageDownloadCalls += 1;
+          const object = storageObjects.get(path);
+          if (!object) throw new Error('not found');
+          return [object.bytes];
+        },
+      }),
+    }),
+  }));
+  return { firestore, storage };
 });
 
 function reportDocs(collection: string): DocData[] {
@@ -154,7 +173,9 @@ beforeEach(() => {
   jest.resetModules();
   jest.useFakeTimers().setSystemTime(new Date('2026-05-24T12:00:00.000Z'));
   docs.clear();
+  storageObjects.clear();
   autoId = 0;
+  storageDownloadCalls = 0;
   docs.set('users/stable-reporter', { firebaseAuthUid: 'auth-reporter' });
 });
 
@@ -163,6 +184,203 @@ afterEach(() => {
 });
 
 describe('submitClientReport', () => {
+  test('verifies exact published-pack membership and atomically quarantines the first reported Spire task', async () => {
+    jest.setSystemTime(new Date('2026-09-28T12:00:00.000Z'));
+    const packBody = {
+      schema: 'spire-pack-v1', weekId: '2026-W40', lang: 'es', tier: 2,
+      floors: [{ floor: 1, steps: [{ step: 1, sets: [{ tasks: [{
+        taskId: 'arena-es-fill_gap-1-0000', mode: 'fill_gap', kind: 'choice', difficulty: 1, payload: {},
+      }] }] }] }],
+    };
+    const { spirePackHash } = require('./spire_pack_contract');
+    const packHash = spirePackHash(packBody);
+    const pack = { ...packBody, packHash };
+    storageObjects.set('spire_packs/es/2/2026-W40.json', {
+      bytes: Buffer.from(JSON.stringify(pack), 'utf8'), metadata: { packHash },
+    });
+    const request = {
+      kind: 'spire_task_report', expectedStableUid: 'stable-reporter', idempotencyKey: 'spire-report-1',
+      payload: {
+        taskId: 'arena-es-fill_gap-1-0000', studyTarget: 'es', weekId: '2026-W40', tier: 2, packHash,
+        floor: 1, step: 1, setIndex: 0, taskIndex: 0, reason: 'В вариантах два правильных ответа',
+      },
+    };
+
+    const first = await callSubmitClientReport(request);
+    const retry = await callSubmitClientReport(request);
+
+    expect(retry).toEqual(first);
+    expect(reportDocs('error_reports')).toHaveLength(1);
+    expect(reportDocs('error_reports')[0]).toMatchObject({
+      contentScope: 'spire', spireTaskId: 'arena-es-fill_gap-1-0000', spireLang: 'es',
+      spireQuarantineState: 'quarantined', status: 'new', category: 'spire_task_report',
+    });
+    const flags = docs.get('config/spire_task_flags_es');
+    expect(flags).toMatchObject({
+      schemaVersion: 'spire-task-flags-v1', studyTarget: 'es',
+      flagged: {
+        'arena-es-fill_gap-1-0000': {
+          taskId: 'arena-es-fill_gap-1-0000',
+          reason: 'Жалоба игрока',
+          flaggedByUid: 'server:client-report',
+        },
+      },
+    });
+    expect(JSON.stringify(flags)).not.toContain('stable-reporter');
+    expect(Object.keys(flags ?? {})).toEqual(['schemaVersion', 'studyTarget', 'flagged']);
+    expect(reportDocs('spire_task_report_receipts')).toHaveLength(1);
+    expect(reportDocs('spire_task_incidents')).toHaveLength(1);
+    expect(reportDocs('spire_task_incidents')[0]).toMatchObject({
+      state: 'quarantined', revision: 1, reportCount: 1, latestReportId: first.id,
+    });
+    expect(collectionDocs('client_report_rate_limits')[0]?.data).toMatchObject({ count: 1 });
+    expect(storageDownloadCalls).toBe(1);
+  });
+
+  test('rejects finalized replay when the same idempotency key carries a different canonical payload', async () => {
+    jest.setSystemTime(new Date('2026-09-28T12:00:00.000Z'));
+    const packBody = {
+      schema: 'spire-pack-v1', weekId: '2026-W40', lang: 'es', tier: 2,
+      floors: [{ floor: 1, steps: [{ step: 1, sets: [{ tasks: [{
+        taskId: 'arena-es-fill_gap-1-0000', mode: 'fill_gap', kind: 'choice', difficulty: 1, payload: {},
+      }] }] }] }],
+    };
+    const { spirePackHash } = require('./spire_pack_contract');
+    const packHash = spirePackHash(packBody);
+    storageObjects.set('spire_packs/es/2/2026-W40.json', {
+      bytes: Buffer.from(JSON.stringify({ ...packBody, packHash }), 'utf8'), metadata: { packHash },
+    });
+    const base = {
+      taskId: 'arena-es-fill_gap-1-0000', studyTarget: 'es', weekId: '2026-W40', tier: 2, packHash,
+      floor: 1, step: 1, setIndex: 0, taskIndex: 0, reason: 'Первое описание',
+    };
+    await callSubmitClientReport({ kind: 'spire_task_report', idempotencyKey: 'same-key', payload: base });
+    await expect(callSubmitClientReport({
+      kind: 'spire_task_report', idempotencyKey: 'same-key', payload: { ...base, reason: 'Другое описание' },
+    })).rejects.toMatchObject({ code: 'already-exists', message: 'spire_task_report_idempotency_mismatch' });
+    expect(reportDocs('error_reports')).toHaveLength(1);
+    expect(reportDocs('spire_task_report_receipts')[0]).toMatchObject({ requestFingerprint: expect.any(String) });
+    expect(storageDownloadCalls).toBe(1);
+  });
+
+  test('rejects a forged Spire task location without writing a report or quarantine', async () => {
+    jest.setSystemTime(new Date('2026-09-28T12:00:00.000Z'));
+    const packBody = {
+      schema: 'spire-pack-v1', weekId: '2026-W40', lang: 'fr', tier: 0,
+      floors: [{ floor: 1, steps: [{ step: 1, sets: [{ tasks: [{ taskId: 'arena-fr-fill_gap-1-0000' }] }] }] }],
+    };
+    const { spirePackHash } = require('./spire_pack_contract');
+    const packHash = spirePackHash(packBody);
+    const pack = { ...packBody, packHash };
+    storageObjects.set('spire_packs/fr/0/2026-W40.json', {
+      bytes: Buffer.from(JSON.stringify(pack), 'utf8'), metadata: { packHash },
+    });
+    await expect(callSubmitClientReport({
+      kind: 'spire_task_report', idempotencyKey: 'forged-1',
+      payload: {
+        taskId: 'arena-fr-fill_gap-1-9999', studyTarget: 'fr', weekId: '2026-W40', tier: 0, packHash,
+        floor: 1, step: 1, setIndex: 0, taskIndex: 0, reason: 'Подмена',
+      },
+    })).rejects.toMatchObject({ code: 'failed-precondition', message: 'spire_task_report_pack_mismatch' });
+    expect(reportDocs('error_reports')).toHaveLength(0);
+    expect(docs.has('config/spire_task_flags_fr')).toBe(false);
+    expect(collectionDocs('client_report_rate_limits')[0]?.data).toMatchObject({ count: 1 });
+  });
+
+  test('counts each new invalid Spire attempt before Storage but retries one reservation without another count', async () => {
+    jest.setSystemTime(new Date('2026-09-28T12:00:00.000Z'));
+    const payload = {
+      taskId: 'arena-fr-fill_gap-1-0000', studyTarget: 'fr', weekId: '2026-W40', tier: 0,
+      packHash: 'sp1_missing12345678', floor: 1, step: 1, setIndex: 0, taskIndex: 0, reason: 'Ошибка',
+    };
+    await expect(callSubmitClientReport({ kind: 'spire_task_report', idempotencyKey: 'invalid-1', payload }))
+      .rejects.toMatchObject({ code: 'failed-precondition' });
+    await expect(callSubmitClientReport({ kind: 'spire_task_report', idempotencyKey: 'invalid-1', payload }))
+      .rejects.toMatchObject({ code: 'failed-precondition' });
+    await expect(callSubmitClientReport({ kind: 'spire_task_report', idempotencyKey: 'invalid-2', payload }))
+      .rejects.toMatchObject({ code: 'failed-precondition' });
+    expect(collectionDocs('client_report_rate_limits')[0]?.data).toMatchObject({ count: 2 });
+    expect(reportDocs('spire_task_report_reservations')).toHaveLength(2);
+  });
+
+  test('rejects a stale restored-pack replay before downloading the old Storage object', async () => {
+    jest.setSystemTime(new Date('2026-09-28T12:00:00.000Z'));
+    const taskId = 'arena-es-fill_gap-1-0000';
+    const oldBody = {
+      schema: 'spire-pack-v1', weekId: '2026-W39', lang: 'es', tier: 2,
+      floors: [{ floor: 1, steps: [{ step: 1, sets: [{ tasks: [{
+        taskId, mode: 'fill_gap', kind: 'choice', difficulty: 1, payload: {},
+      }] }] }] }],
+    };
+    const { spirePackHash } = require('./spire_pack_contract');
+    const oldHash = spirePackHash(oldBody);
+    storageObjects.set('spire_packs/es/2/2026-W39.json', {
+      bytes: Buffer.from(JSON.stringify({ ...oldBody, packHash: oldHash }), 'utf8'), metadata: { packHash: oldHash },
+    });
+    const restoredIncident = {
+      schemaVersion: 'spire-task-incident-v1', studyTarget: 'es', taskId, state: 'restored',
+      quarantineOwner: 'incident', manualHoldActive: false,
+      revision: 2, reportCount: 1, firstReportedAtMs: 1, latestReportedAtMs: 2,
+      latestReportId: 'old-report', latestWeekId: '2026-W39', latestTier: 2,
+      latestPackHash: oldHash, latestReason: 'Исправлено', latestMode: 'fill_gap',
+      latestDifficulty: 1, updatedAtMs: 3,
+    };
+    docs.set(`spire_task_incidents/es__${taskId}`, restoredIncident);
+    await expect(callSubmitClientReport({
+      kind: 'spire_task_report', idempotencyKey: 'stale-after-restore',
+      payload: {
+        taskId, studyTarget: 'es', weekId: '2026-W39', tier: 2,
+        packHash: oldHash, floor: 1, step: 1, setIndex: 0, taskIndex: 0,
+        reason: 'Старая жалоба',
+      },
+    })).rejects.toMatchObject({ code: 'failed-precondition', message: 'spire_task_report_week_not_current' });
+    expect(storageDownloadCalls).toBe(0);
+    expect(collectionDocs('client_report_rate_limits')[0]?.data).toMatchObject({ count: 1 });
+    expect(docs.get(`spire_task_incidents/es__${taskId}`)).toEqual(restoredIncident);
+    expect(docs.has('config/spire_task_flags_es')).toBe(false);
+  });
+
+  test('damaged strict v1 flags reject finalization without changing the damaged document', async () => {
+    jest.setSystemTime(new Date('2026-09-28T12:00:00.000Z'));
+    const packBody = {
+      schema: 'spire-pack-v1', weekId: '2026-W40', lang: 'es', tier: 2,
+      floors: [{ floor: 1, steps: [{ step: 1, sets: [{ tasks: [{
+        taskId: 'arena-es-fill_gap-1-0000', mode: 'fill_gap', kind: 'choice', difficulty: 1, payload: {},
+      }] }] }] }],
+    };
+    const { spirePackHash } = require('./spire_pack_contract');
+    const packHash = spirePackHash(packBody);
+    storageObjects.set('spire_packs/es/2/2026-W40.json', {
+      bytes: Buffer.from(JSON.stringify({ ...packBody, packHash }), 'utf8'), metadata: { packHash },
+    });
+    const damaged = {
+      schemaVersion: 'spire-task-flags-v1', studyTarget: 'es',
+      flagged: { bad: { taskId: 'different', reason: 'x', flaggedAtMs: 1, flaggedByUid: 'admin' } },
+    };
+    docs.set('config/spire_task_flags_es', damaged);
+    await expect(callSubmitClientReport({
+      kind: 'spire_task_report', idempotencyKey: 'damaged-flags',
+      payload: {
+        taskId: 'arena-es-fill_gap-1-0000', studyTarget: 'es', weekId: '2026-W40', tier: 2, packHash,
+        floor: 1, step: 1, setIndex: 0, taskIndex: 0, reason: 'Ошибка',
+      },
+    })).rejects.toThrow('spire_task_flags_invalid');
+    expect(docs.get('config/spire_task_flags_es')).toEqual(damaged);
+    expect(reportDocs('error_reports')).toHaveLength(0);
+  });
+
+  test('requires a durable idempotency key for every Spire quarantine report', async () => {
+    await expect(callSubmitClientReport({
+      kind: 'spire_task_report',
+      payload: {
+        taskId: 'arena-es-fill_gap-1-0000', studyTarget: 'es', weekId: '2026-W40', tier: 2,
+        packHash: 'sp1_abcdefghijklmnopqrstuvwxyz123456', floor: 1, step: 1, setIndex: 0, taskIndex: 0,
+        reason: 'Ошибка',
+      },
+    })).rejects.toMatchObject({ code: 'invalid-argument', message: 'spire_task_report_idempotency_required' });
+    expect(reportDocs('error_reports')).toHaveLength(0);
+  });
+
   test('writes user reports with the authenticated stable uid instead of spoofed payload ids', async () => {
     const result = await callSubmitClientReport({
       kind: 'user_report',

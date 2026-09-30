@@ -16,13 +16,15 @@ describe('friend nudge navigation', () => {
     expect(button).toContain('socialEventId: nav.eventId');
   });
 
-  it('routes social push taps to the same exact friend event and duel invite', () => {
+  it('routes social push taps to the exact friend event and retired duel pushes home', () => {
     const notifications = fs.readFileSync(path.join(root, 'app', 'notifications.ts'), 'utf8');
     expect(notifications).toContain("case 'friend_nudge':");
     expect(notifications).toContain("case 'activity_like':");
     expect(notifications).toContain('focusFriend: actorStableUid');
     expect(notifications).toContain('socialEventId: eventId');
     expect(notifications).toContain("case 'arena_friend_invite':");
-    expect(notifications).toContain("pathname: '/arena_invite'");
+    // зачем: D83 — Арена удалена; старое приглашение в дуэль ведёт на Главную.
+    expect(notifications).not.toContain("pathname: '/arena_invite'");
+    expect(notifications.slice(notifications.indexOf("case 'arena_friend_expired':"), notifications.indexOf("case 'arena_friend_expired':") + 400)).toContain('navTabHome()');
   });
 });

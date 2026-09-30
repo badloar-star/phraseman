@@ -2,7 +2,6 @@ import type { Lang } from '../constants/i18n';
 
 export type InsightDailyRow = {
   date: string;
-  xp: number;
   foregroundMs: number;
   active: boolean;
 };
@@ -10,9 +9,8 @@ export type InsightDailyRow = {
 export type StatsLearningInsights = {
   rhythm: InsightDailyRow[];
   regularity: { activeDays: number; totalDays: number; ratio: number };
-  weekComparison: { currentXp: number; previousXp: number; currentMinutes: number; previousMinutes: number };
-  bestWeek: { xp: number; startDate: string | null; endDate: string | null };
-  speed: Array<{ date: string; xpPerMinute: number | null }>;
+  weekComparison: { currentMinutes: number; previousMinutes: number };
+  bestWeek: { minutes: number; startDate: string | null; endDate: string | null };
   bestTime: { status: 'unavailable' };
 };
 
@@ -41,7 +39,6 @@ export function buildStatsLearningInsights(inputRows: readonly InsightDailyRow[]
     .filter((row) => typeof row.date === 'string' && row.date.length > 0)
     .map((row) => ({
       ...row,
-      xp: Math.floor(safeNumber(row.xp)),
       foregroundMs: Math.floor(safeNumber(row.foregroundMs)),
       active: row.active === true,
     }))
@@ -50,12 +47,12 @@ export function buildStatsLearningInsights(inputRows: readonly InsightDailyRow[]
   const previousWeek = rows.slice(Math.max(0, rows.length - WEEK_DAYS * 2), Math.max(0, rows.length - WEEK_DAYS));
   const activeDays = rhythm.filter((row) => row.active).length;
 
-  let bestWeek: StatsLearningInsights['bestWeek'] = { xp: 0, startDate: null, endDate: null };
+  let bestWeek: StatsLearningInsights['bestWeek'] = { minutes: 0, startDate: null, endDate: null };
   for (let start = 0; start < rows.length; start += 1) {
     const window = rows.slice(start, start + WEEK_DAYS);
-    const xp = sum(window, (row) => row.xp);
-    if (xp > bestWeek.xp) {
-      bestWeek = { xp, startDate: window[0]?.date ?? null, endDate: window.at(-1)?.date ?? null };
+    const minutes = Math.floor(sum(window, (row) => row.foregroundMs) / 60_000);
+    if (minutes > bestWeek.minutes) {
+      bestWeek = { minutes, startDate: window[0]?.date ?? null, endDate: window.at(-1)?.date ?? null };
     }
   }
 
@@ -63,16 +60,10 @@ export function buildStatsLearningInsights(inputRows: readonly InsightDailyRow[]
     rhythm,
     regularity: { activeDays, totalDays: WEEK_DAYS, ratio: activeDays / WEEK_DAYS },
     weekComparison: {
-      currentXp: sum(rhythm, (row) => row.xp),
-      previousXp: sum(previousWeek, (row) => row.xp),
       currentMinutes: Math.floor(sum(rhythm, (row) => row.foregroundMs) / 60_000),
       previousMinutes: Math.floor(sum(previousWeek, (row) => row.foregroundMs) / 60_000),
     },
     bestWeek,
-    speed: rhythm.map((row) => ({
-      date: row.date,
-      xpPerMinute: row.foregroundMs > 0 ? Math.round((row.xp / (row.foregroundMs / 60_000)) * 10) / 10 : null,
-    })),
     bestTime: { status: 'unavailable' },
   };
 }

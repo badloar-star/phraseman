@@ -299,7 +299,7 @@ export async function deletePackComment(
       // (`allow create: if false`), что сорвали публикацию отклика и pack_adds.
       const packSnap = await tx.get(packRef(packId));
       if (!packSnap?.exists) throw new Error('pack_missing');
-      // guard-ok: increment(-1) здесь — счётчик ОТКЛИКОВ, не валюта и не XP.
+      // guard-ok: increment(-1) здесь — счётчик ОТКЛИКОВ, не валюта и не legacy reward.
       // Понижение законно: человек удаляет свой отклик, и число должно упасть.
       // От накрутки вниз защищают правила: дельта ограничена ±1, значение >= 0,
       // а удалить чужой отклик правило не даёт (authorId == auth.uid).

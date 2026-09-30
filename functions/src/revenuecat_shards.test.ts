@@ -356,7 +356,7 @@ describe('RevenueCat premium lineage transaction contract', () => {
   it('uses canonical lineage reduction and never invents durable premium identity or time', () => {
     const premiumHandler = source.slice(
       source.indexOf('export async function applyVerifiedPremiumSubscriptionEvent('),
-      source.indexOf('async function handleShardPurchaseEvent'),
+      source.indexOf('// ── TRANSFER: anonymous'),
     );
     expect(premiumHandler).toMatch(/normalizePremiumLineageEvent\(event/);
     expect(premiumHandler).toContain('applyPremiumLineageEvent');
@@ -368,7 +368,7 @@ describe('RevenueCat premium lineage transaction contract', () => {
   it('checks receipt and deletion denial before lineage/projection writes and never creates a missing user', () => {
     const premiumHandler = source.slice(
       source.indexOf('export async function applyVerifiedPremiumSubscriptionEvent('),
-      source.indexOf('async function handleShardPurchaseEvent'),
+      source.indexOf('// ── TRANSFER: anonymous'),
     );
     expect(premiumHandler).toContain('db.collection(ACCOUNT_DELETE_TOMBSTONES)');
     expect(premiumHandler).toContain('db.collection(ACCOUNT_DELETE_AUTH_MARKERS)');
@@ -384,7 +384,7 @@ describe('RevenueCat premium lineage transaction contract', () => {
   it('keeps the webhook handler as a thin status/body-compatible wrapper', () => {
     const handler = source.slice(
       source.indexOf('async function handlePremiumSubscriptionEvent('),
-      source.indexOf('async function handleShardPurchaseEvent'),
+      source.indexOf('// ── TRANSFER: anonymous'),
     );
     expect(handler).toContain('applyVerifiedPremiumSubscriptionEvent(');
     expect(handler).toContain('res.status(outcome.statusCode).json(outcome.body)');
@@ -420,7 +420,7 @@ describe('RevenueCat premium lineage transaction contract', () => {
   it('keeps the original owner on duplicate receipts and qualifies only after the Premium transaction', () => {
     const premiumHandler = source.slice(
       source.indexOf('export async function applyVerifiedPremiumSubscriptionEvent('),
-      source.indexOf('async function handleShardPurchaseEvent'),
+      source.indexOf('// ── TRANSFER: anonymous'),
     );
     expect(premiumHandler).toContain("uid: cleanId(processedSnap.data()?.uid)");
     expect(premiumHandler.indexOf('await qualifyReferralFromVerifiedPremiumOutcome(db, out)'))
@@ -467,31 +467,6 @@ describe('RevenueCat premium lineage transaction contract', () => {
     } finally {
       (admin.firestore as jest.Mock).mockRestore();
     }
-  });
-});
-
-describe('RevenueCat shard purchase never silently drops paid pearls', () => {
-  const source = fs.readFileSync(path.join(process.cwd(), 'src', 'revenuecat_shards.ts'), 'utf8');
-  const shardHandler = source.slice(
-    source.indexOf('async function handleShardPurchaseEvent'),
-    source.indexOf('async function handleShardRefundReversedEvent'),
-  );
-
-  // зачем: инцидент 2026-08-16 — покупатель оплатил пакет «80 + 12 бонусных»
-  // и не получил ничего. Владелец разбирался по письму от самого покупателя.
-  // Причина: при неразрешённом владельце ветка отвечала RevenueCat 200 OK,
-  // провайдер считал доставку успешной и НИКОГДА не повторял событие. Деньги
-  // списаны, жемчужин нет, следов в Firestore нет. Ровно такую же ситуацию
-  // премиум-ветка уже обрабатывает правильно — пишет denial-квитанцию.
-  it('retries every unresolved owner outcome instead of answering 200 OK', () => {
-    // 'missing' и 'ambiguous' одинаково означают «мы пока не знаем, кому
-    // начислить» — оба обязаны попасть под retry, иначе оплата теряется.
-    expect(shardHandler).not.toContain("retryable: match.status === 'missing'");
-    expect(shardHandler).toContain("retryable: true");
-  });
-
-  it('leaves a denial receipt so an unresolved paid purchase is visible to the owner', () => {
-    expect(shardHandler).toContain("revenuecat_shard_denials");
   });
 });
 
@@ -728,17 +703,6 @@ describe('RevenueCat paid voice-minute journal', () => {
   });
 });
 
-describe('RevenueCat shard refund durable identity', () => {
-  it('rejects missing immutable event identity/time instead of using a Date.now idempotency key', () => {
-    const source = fs.readFileSync(path.join(process.cwd(), 'src', 'revenuecat_shards.ts'), 'utf8');
-    const refund = source.slice(source.indexOf('async function handleShardRefundEvent'), source.indexOf('export function transferTargetIds'));
-    expect(refund).toContain('const eventId = cleanId(event.id);');
-    expect(refund).toContain('const refundEventTimeMs = eventMs(event.event_timestamp_ms);');
-    expect(refund).toContain('if (!originalTxId || !eventId || refundEventTimeMs === null)');
-    expect(refund).not.toContain('Date.now()}`');
-  });
-});
-
 // ── TRANSFER: anonymous → stable_id (scenario #13) ────────────────────────────
 describe('RevenueCat webhook TRANSFER (anonymous → stable id)', () => {
   it('prefers stable recipients and lists donors', () => {
@@ -909,40 +873,27 @@ describe('RevenueCat webhook TRANSFER (anonymous → stable id)', () => {
   });
 });
 
-describe('Оплаченные жемчужины при неизвестном владельце — поведение, а не текст', () => {
-  // зачем этот блок отдельно от проверок исходника выше (2026-08-16): те
-  // тесты читают ТЕКСТ функции и остаются зелёными, даже если логика
-  // сломана. Для оплаченной покупки этого мало — инцидент как раз в том,
-  // что деньги списаны, а начисления нет и следов нет.
-
+// зачем: D103 (владелец, 2026-09-30) — пакеты жемчуга за реальные деньги больше
+// не начисляются и возвраты по ним не списываются. Покупка снятого товара обязана
+// оставить алерт владельцу (деньги списаны), а не пройти молча.
+describe('D103: retired pearl packs are never credited', () => {
   function setup() {
     const admin = require('firebase-admin');
     if (!admin.apps.length) admin.initializeApp({ projectId: 'demo-test' });
     const writes: Array<{ collection: string; id: string; data: any }> = [];
-    const ref = (collection: string, id: string) => ({
-      collection,
-      id,
-      // Никого не находим: ни пользователя, ни маркеров удаления —
-      // это и есть «владелец не разрешён».
-      get: async () => ({ exists: false, data: () => undefined }),
-    });
     const db: any = {
       collection: (collection: string) => ({
-        doc: (id: string) => ref(collection, id),
-        where: () => ({ limit: () => ({ get: async () => ({ empty: true, docs: [] }) }) }),
-      }),
-      runTransaction: async (work: (tx: any) => Promise<unknown>) => work({
-        get: (documentRef: any) => documentRef.get(),
-        set: (documentRef: any, data: any) => writes.push({
-          collection: documentRef.collection, id: documentRef.id, data,
+        doc: (id: string) => ({
+          collection,
+          id,
+          set: async (data: any) => { writes.push({ collection, id, data }); },
+          get: async () => ({ exists: false, data: () => undefined }),
         }),
       }),
-      getAll: async () => [],
+      runTransaction: async () => { throw new Error('no transaction expected for retired pearl packs'); },
     };
-    const realFieldValue = admin.firestore.FieldValue;
     const fsMock: any = jest.spyOn(admin, 'firestore').mockReturnValue(db);
-    fsMock.FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
-    (admin.firestore as any).FieldValue = realFieldValue ?? { serverTimestamp: () => 'ts' };
+    fsMock.FieldValue = admin.firestore.FieldValue ?? { serverTimestamp: () => 'ts' };
     const res: any = { statusCode: 0, body: null };
     res.status = (code: number) => { res.statusCode = code; return res; };
     res.json = (body: any) => { res.body = body; return res; };
@@ -951,63 +902,51 @@ describe('Оплаченные жемчужины при неизвестном 
   }
 
   const EVENT = {
-    id: 'evt-shards-unresolved',
+    id: 'evt-shards-retired',
     type: 'NON_RENEWING_PURCHASE',
     app_id: 'app.phraseman',
     environment: 'PRODUCTION',
     store: 'APP_STORE',
-    transaction_id: 'tx-unresolved',
-    original_transaction_id: 'tx-unresolved',
-    product_id: 'shards_pack_80',
+    transaction_id: 'tx-retired',
+    original_transaction_id: 'tx-retired',
+    product_id: 'phraseman_shards_80',
     event_timestamp_ms: 3_000_000,
     purchased_at_ms: 3_000_000,
-    app_user_id: '$RCAnonymousID:nobody',
+    app_user_id: 'stable-user',
   } as any;
 
-  const PACK = { packId: 'pack_80', shards: 80 };
-
-  it('отвечает 503, чтобы провайдер повторил, а не считал доставку успешной', async () => {
-    // зачем именно 503: на 200 OK RevenueCat закрывает событие НАВСЕГДА.
-    // Оплата остаётся у нас, жемчужины — нигде.
-    const { admin, res } = setup();
-    try {
-      await __revenueCatWebhookTestHooks.handleShardPurchaseEvent(
-        EVENT, 'NON_RENEWING_PURCHASE', 'shards_pack_80', PACK, res,
-      );
-      expect(res.statusCode).toBe(503);
-      expect(res.body).toMatchObject({ ok: false, granted: false });
-    } finally {
-      (admin.firestore as jest.Mock).mockRestore();
-    }
-  });
-
-  it('оставляет квитанцию, чтобы потерянная оплата была видна владельцу', async () => {
-    // зачем: без записи инцидент виден только из письма покупателя —
-    // ровно так владелец о нём и узнал.
+  it('answers 200 ignored and writes no economy event for a purchase, but raises an owner alert', async () => {
     const { admin, writes, res } = setup();
     try {
-      await __revenueCatWebhookTestHooks.handleShardPurchaseEvent(
-        EVENT, 'NON_RENEWING_PURCHASE', 'shards_pack_80', PACK, res,
+      await __revenueCatWebhookTestHooks.handleRetiredShardProductEvent(
+        EVENT, 'NON_RENEWING_PURCHASE', 'phraseman_shards_80', res,
       );
-      const denial = writes.find((w) => w.collection === 'revenuecat_shard_denials');
-      expect(denial).toBeDefined();
-      expect(denial!.data).toMatchObject({ shards: 80, packId: 'pack_80' });
-    } finally {
-      (admin.firestore as jest.Mock).mockRestore();
-    }
-  });
-
-  it('никому не начисляет жемчужины, пока владелец не известен', async () => {
-    // зачем: «начислить хоть кому-нибудь» хуже потери — это выдача денег
-    // постороннему человеку.
-    const { admin, writes, res } = setup();
-    try {
-      await __revenueCatWebhookTestHooks.handleShardPurchaseEvent(
-        EVENT, 'NON_RENEWING_PURCHASE', 'shards_pack_80', PACK, res,
-      );
+      expect(res.statusCode).toBe(200);
+      expect(res.body).toMatchObject({ ok: true, ignored: 'shards_retired_d103' });
       expect(writes.some((w) => w.collection === 'external_economy_events')).toBe(false);
+      expect(writes.some((w) => w.collection === 'app_errors')).toBe(true);
     } finally {
       (admin.firestore as jest.Mock).mockRestore();
     }
+  });
+
+  it.each(['REFUND', 'REFUND_REVERSED'])('ignores %s without any write', async (eventType) => {
+    const { admin, writes, res } = setup();
+    try {
+      await __revenueCatWebhookTestHooks.handleRetiredShardProductEvent(
+        { ...EVENT, type: eventType }, eventType, 'phraseman_shards_80', res,
+      );
+      expect(res.statusCode).toBe(200);
+      expect(writes).toEqual([]);
+    } finally {
+      (admin.firestore as jest.Mock).mockRestore();
+    }
+  });
+
+  it('keeps no pearl crediting code in the webhook', () => {
+    const source = fs.readFileSync(path.join(process.cwd(), 'src', 'revenuecat_shards.ts'), 'utf8');
+    expect(source).not.toContain('appendExternalEconomyEvent');
+    expect(source).not.toContain('async function handleShardPurchaseEvent');
+    expect(source).not.toContain("collection('shard_log')");
   });
 });

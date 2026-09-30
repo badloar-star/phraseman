@@ -76,13 +76,11 @@ describe('home counters: real numbers on the first frame', () => {
     // зачем (аудит 2026-08-25): прогрев считал потолок из голого ключа
     // `user_total_xp`, а readDynMax берёт XP из personal_progress_store — у
     // когорты phone_state это РАЗНЫЕ числа, и знаменатель шкалы «X/Y» прыгал
-    // после load(). Интервал восстановления так же обязан учитывать ускорители
-    // (сундук лиги, turbo_regen), иначе число подскакивает вверх.
+    // после load(). Интервал восстановления должен совпадать с EnergyContext.
     expect(cache).toContain("import('./personal_progress_store')");
     expect(cache).toContain('getPersonalProgressSnapshot().totalXp');
     expect(cache).not.toContain("getItem('user_total_xp')");
-    expect(cache).toContain('readLeagueChestEnergyOverrideMs');
-    expect(cache).toContain('readBoonEnergyOverrideMs');
+    expect(cache).toContain('getRecoveryIntervalMs');
   });
 
   it('forgets a cached energy charge when the account owner changes', () => {

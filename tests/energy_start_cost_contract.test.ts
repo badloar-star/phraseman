@@ -96,20 +96,24 @@ describe('numeric energy v2 contract', () => {
     expect(bar).toContain('if (hasPremiumAccess) return null');
   });
 
-  it('keeps the original compact anchored energy tooltip contract', () => {
+  it('keeps one compact anchored liquid-glass energy popover', () => {
     const bar = read('components/EnergyBar.tsx');
     const popover = read('components/energy/EnergyInfoPopover.tsx');
+    const popoverLayout = read('components/energy/energy_info_popover_layout.ts');
     expect(bar).toContain('measureInWindow');
     expect(bar).toContain('anchor={popoverAnchor}');
-    expect(popover).toContain('const POPOVER_WIDTH = 220');
-    expect(popover).toContain("backgroundColor: '#1C1C1E'");
-    expect(popover).toContain('energyArrowLeft');
+    expect(bar).toContain('const popoverEligible = !hasPremiumAccess && focused && ownerActive');
+    expect(bar).toContain('visible={popoverVisible}');
+    expect(popoverLayout).toContain('MAX_POPOVER_WIDTH = 220');
+    expect(popover).toContain('backgroundColor: glass.opaqueCard');
+    expect(popover).toContain('borderColor: glass.glassEdge');
+    expect(popover).toContain('layout.arrowLeft');
     expect(popover).toContain('1 энергия каждые');
     expect(popover).toContain("ru: 'Через'");
-    expect(popover).toContain('При просмотре видео энергия восстанавливается в 10 раз быстрее');
+    expect(popover).toContain("ru: 'запас полон'");
     expect(popover).not.toContain('100 энергии в час');
-    expect(popover).not.toContain("ru: 'Следующая единица'");
-    expect(popover).not.toContain("ru: 'Полный заряд'");
+    expect(popover).not.toContain('10 раз быстрее');
+    expect(popover).not.toContain('Подарок +');
   });
 
   // зачем (PM-086, владелец 2026-09-24): EnergyCostBadge удалён — гейт
@@ -142,7 +146,6 @@ describe('numeric energy v2 contract', () => {
     for (const file of [
       'app/flashcards_training_setup.tsx',
       'app/learning-v2/lesson/[id].tsx',
-      'components/arena/ArenaModeSheet.tsx',
       'components/level-exam/LevelExamIntro.tsx',
       'components/AiDialogBriefingScreen.tsx',
     ]) {
@@ -167,9 +170,6 @@ describe('numeric energy v2 contract', () => {
 
   it('keeps synchronous double-tap latches on network-backed paid taps', () => {
     for (const { file, latch } of [
-      { file: 'app/arena_today.tsx', latch: 'startChargeInFlightRef' },
-      { file: 'app/arena_friend_duel.tsx', latch: 'chargeInFlightRef' },
-      { file: 'app/arena_invite.tsx', latch: 'chargeInFlightRef' },
       { file: 'app/flashcards_swipe.tsx', latch: 'startChargeInFlightRef' },
       { file: 'app/diagnostic_test.tsx', latch: 'diagnosticChargeInFlightRef' },
     ]) {

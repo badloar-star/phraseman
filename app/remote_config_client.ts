@@ -15,24 +15,18 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { emitAppEvent } from './events';
-import {
-  registerInteractiveNetworkQuietParticipant,
-  withBackgroundNetworkLease,
-} from './interactive_network_quiet';
+import { withBackgroundNetworkLease } from './interactive_network_quiet';
 import { applyRemoteConfigSnapshot } from './remote_flags';
-import { runtimeAppStateStore } from './runtime_app_state_store';
 import { DebugLogger } from './debug-logger';
 
 const REMOTE_CONFIG_COLLECTION = 'remote_config';
 const REMOTE_CONFIG_DOC = 'app';
 const REMOTE_CONFIG_CACHE_KEY = 'remote_config_cache_v1';
-const REMOTE_CONFIG_LIVE_REFRESH_MS = 5 * 60_000;
-const REMOTE_CONFIG_FAILURE_BACKOFF_MS = [5 * 60_000, 15 * 60_000, 60 * 60_000] as const;
 const REMOTE_CONFIG_MAX_CACHE_BYTES = 64 * 1024;
 const REMOTE_CONFIG_MAX_KEYS_PER_SECTION = 256;
 const REMOTE_CONFIG_MAX_KEY_LENGTH = 100;
 const REMOTE_CONFIG_MAX_TEXT_LENGTH = 4_096;
-const REMOTE_CONFIG_NUMBER_ARRAY_KEYS = new Set(['friends_level_thresholds', 'friends_chest_tiers']);
+const REMOTE_CONFIG_NUMBER_ARRAY_KEYS = new Set(['friends_level_thresholds']);
 
 type RawConfig = {
   numbers?: Record<string, unknown>;
@@ -188,9 +182,12 @@ export async function loadRemoteConfig(): Promise<void> {
   return loading;
 }
 
-const hasRemoteRefreshDemand = (): boolean => explicitRefreshDemand > 0 || (
-  liveSubscriberCount > 0 && liveAppActive && !livePausedForInteractiveSession
-);
+// зачем: PM-212/PM-210 — живой 5-минутный опрос Remote Config снят (подписчиков
+// больше нет: subscribeRemoteConfig() — заглушка). Вместе с ним ушли модульная
+// подписка на AppState и участник «тихой сети», которые при ИМПОРТЕ файла
+// вешались навсегда и держали мёртвый таймер-цикл. Остался только разовый
+// loadRemoteConfig() при старте: сеть идёт лишь пока есть явный спрос.
+const hasRemoteRefreshDemand = (): boolean => explicitRefreshDemand > 0;
 
 async function readRemoteConfigFromNetwork(): Promise<RawConfig | null> {
   return withBackgroundNetworkLease('remote_config.load', async (lease) => {
@@ -201,60 +198,25 @@ async function readRemoteConfigFromNetwork(): Promise<RawConfig | null> {
     const db = factory();
     lease.assertCurrent();
     // Recheck after the dynamic import and immediately before the native call.
-    // A removed final subscriber must not start a read merely because its timer
-    // callback had already entered this function.
-    if (!hasRemoteRefreshDemand()) return null;
+    if (!hasRemoteRefreshDemand()) {
+      DebugLogger.warn('[REMOTE-CONFIG]', 'network read skipped: no explicit demand');
+      return null;
+    }
     // Do not Promise.race a native Firestore read: a JS timeout would detach
     // still-live native traffic from the interactive-session fence.
     const snap = await db.collection(REMOTE_CONFIG_COLLECTION).doc(REMOTE_CONFIG_DOC).get();
     lease.assertCurrent();
-    if (!hasRemoteRefreshDemand()) return null;
+    if (!hasRemoteRefreshDemand()) {
+      DebugLogger.warn('[REMOTE-CONFIG]', 'network result dropped: demand ended');
+      return null;
+    }
     return snap.exists ? snap.data() ?? {} : null;
   });
 }
 
-/**
- * Live refresh: keeps flags in sync while the app is open. RN Firebase's
- * onSnapshot unsubscribe is a void bridge command and cannot prove that its
- * native stream has physically stopped. A foreground-only five-minute one-shot refresh
- * preserves live admin updates while making every native read an exact,
- * non-abandoning network lease. Returns an unsubscribe handle.
- */
-let liveSubscriberCount = 0;
-let livePausedForInteractiveSession = false;
-let liveAppActive = runtimeAppStateStore.getSnapshot();
-let liveRefreshTimer: ReturnType<typeof setTimeout> | null = null;
-let liveRefreshPromise: Promise<void> | null = null;
-let liveRefreshPromiseGeneration = -1;
-let liveRefreshPendingAfterInFlight = false;
 let sharedNetworkRefreshPromise: Promise<RawConfig | null> | null = null;
 let startupLoadPromise: Promise<void> | null = null;
 let explicitRefreshDemand = 0;
-let liveFailureCount = 0;
-let liveGeneration = 0;
-
-const stopLiveRefreshTimer = (): void => {
-  if (liveRefreshTimer !== null) clearTimeout(liveRefreshTimer);
-  liveRefreshTimer = null;
-};
-
-const scheduleNextLiveRefresh = (): void => {
-  stopLiveRefreshTimer();
-  if (livePausedForInteractiveSession || !liveAppActive || liveSubscriberCount === 0) return;
-  const baseDelay = liveFailureCount === 0
-    ? REMOTE_CONFIG_LIVE_REFRESH_MS
-    : REMOTE_CONFIG_FAILURE_BACKOFF_MS[Math.min(
-      liveFailureCount - 1,
-      REMOTE_CONFIG_FAILURE_BACKOFF_MS.length - 1,
-    )]!;
-  const delay = baseDelay + Math.floor(Math.random() * Math.max(1, baseDelay * 0.1));
-  const ticket = liveGeneration;
-  liveRefreshTimer = setTimeout(() => {
-    liveRefreshTimer = null;
-    if (ticket !== liveGeneration) return;
-    void startLiveRefresh();
-  }, delay);
-};
 
 const refreshRemoteConfigFromNetwork = (): Promise<RawConfig | null> => {
   if (sharedNetworkRefreshPromise) return sharedNetworkRefreshPromise;
@@ -268,92 +230,11 @@ const refreshRemoteConfigFromNetwork = (): Promise<RawConfig | null> => {
   return refresh;
 };
 
-const startLiveRefresh = (): Promise<void> => {
-  if (livePausedForInteractiveSession || !liveAppActive || liveSubscriberCount === 0) {
-    return Promise.resolve();
-  }
-  if (liveRefreshPromise) {
-    if (liveRefreshPromiseGeneration !== liveGeneration) {
-      liveRefreshPendingAfterInFlight = true;
-    }
-    return liveRefreshPromise;
-  }
-  stopLiveRefreshTimer();
-  const ticket = liveGeneration;
-  liveRefreshPendingAfterInFlight = false;
-  const source = startupLoadPromise ?? refreshRemoteConfigFromNetwork().then(() => undefined);
-  const refresh = source.then(() => {
-    if (ticket === liveGeneration) liveFailureCount = 0;
-  }).catch(() => {
-    // Cache/defaults remain and the next bounded refresh retries.
-    if (ticket === liveGeneration) liveFailureCount = Math.min(
-      liveFailureCount + 1,
-      REMOTE_CONFIG_FAILURE_BACKOFF_MS.length,
-    );
-  }).finally(() => {
-    if (liveRefreshPromise === refresh) liveRefreshPromise = null;
-    liveRefreshPromiseGeneration = -1;
-    if (liveRefreshPendingAfterInFlight && hasRemoteRefreshDemand()) {
-      liveRefreshPendingAfterInFlight = false;
-      void startLiveRefresh();
-    } else if (ticket === liveGeneration) {
-      scheduleNextLiveRefresh();
-    }
-  });
-  liveRefreshPromise = refresh;
-  liveRefreshPromiseGeneration = ticket;
-  return refresh;
-};
-
-registerInteractiveNetworkQuietParticipant('remote_config.poll', {
-  quiesce: async () => {
-    liveGeneration += 1;
-    const ticket = liveGeneration;
-    livePausedForInteractiveSession = true;
-    liveRefreshPendingAfterInFlight = false;
-    stopLiveRefreshTimer();
-    if (liveRefreshPromise) await liveRefreshPromise;
-    if (ticket === liveGeneration && livePausedForInteractiveSession) {
-      stopLiveRefreshTimer();
-    }
-  },
-  resume: () => {
-    liveGeneration += 1;
-    livePausedForInteractiveSession = false;
-    void startLiveRefresh();
-  },
-});
-
 export function subscribeRemoteConfig(): { remove: () => void } {
-  let disposed = false;
-  liveSubscriberCount += 1;
-  void startLiveRefresh();
-
-  return {
-    remove: () => {
-      if (disposed) return;
-      disposed = true;
-      liveSubscriberCount = Math.max(0, liveSubscriberCount - 1);
-      if (liveSubscriberCount === 0) {
-        liveGeneration += 1;
-        liveRefreshPendingAfterInFlight = false;
-        stopLiveRefreshTimer();
-      }
-    },
-  };
+  // Retained only for source compatibility. Persistent Remote Config polling
+  // is retired; startup uses the one-shot loadRemoteConfig() path instead.
+  return { remove: () => {} };
 }
-
-runtimeAppStateStore.subscribe(() => {
-  const active = runtimeAppStateStore.getSnapshot();
-  if (liveAppActive === active) return;
-  liveAppActive = active;
-  liveGeneration += 1;
-  if (!active) {
-    liveRefreshPendingAfterInFlight = false;
-    stopLiveRefreshTimer();
-  }
-  else void startLiveRefresh();
-});
 
 /* expo-router route shim. */
 export default function __RouteShim() {

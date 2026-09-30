@@ -4,7 +4,7 @@ import { createRoot, type Root } from 'test-renderer';
 let mockDev = true, mockActive = true, mockReplay = true;
 const mockDismiss = jest.fn();
 jest.mock('../components/AiConsentSheetModal', () => 'ConsentSheet');
-jest.mock('../components/feature_intro/DialogueComicStage', () => 'Comic');
+jest.mock('../components/feature_intro/DialogueConsentChatReplay', () => 'ConsentReplay');
 jest.mock('../app/feature_intro_dev_replay', () => ({ useDevFeatureIntroReplay: () => mockDev }));
 jest.mock('../hooks/use_runtime_active', () => ({ useRuntimeActive: () => mockActive }));
 jest.mock('../hooks/use_feature_intro', () => ({ useFeatureIntro: (_: string, enabled: boolean) => ({ visible: enabled && mockReplay, dismiss: mockDismiss }) }));

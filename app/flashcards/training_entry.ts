@@ -13,7 +13,7 @@ export type CardsTrainingRoute = {
   pathname:
     | '/flashcards_blitz_session'
     | '/flashcards_speaking_session'
-    | '/flashcards_swipe'
+    | '/flashcards_truefalse_session'
     | '/flashcards_recall_session';
   params: Record<string, string>;
 };
@@ -46,7 +46,7 @@ export function buildCardsTrainingRoute(
   if (mode === 'recall') {
     return { pathname: '/flashcards_recall_session', params: { deck, size: 'all' } };
   }
-  return { pathname: '/flashcards_swipe', params: { deck, quick: '1' } };
+  return { pathname: '/flashcards_truefalse_session', params: { deck, quick: '1' } };
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

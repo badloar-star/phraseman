@@ -6,8 +6,11 @@ import {
 import { storageStudyTarget } from "./target_storage_keys";
 import {
   listCustomCards,
+  FREE_CUSTOM_CARD_LIMIT,
+  PLUS_CUSTOM_CARD_LIMIT,
   updateCustomCards,
 } from "./flashcards/custom_cards_store";
+import { getVerifiedPremiumAccessStatus } from "./premium_guard";
 import type { CardItem } from "./flashcards/types";
 import type { LearningV2InterfaceLocale } from "../modules/learning-v2/content/generator_course_contract";
 import type { LearningV2CourseSessionWordEncounterPresentationV1 } from "../modules/learning-v2/runtime/course_session_word_encounter_presentation_v1";
@@ -99,6 +102,8 @@ export async function saveLearningV2NewWordEncounterToCardsV1(
     if (!isCurrentAccountGeneration(generation)) return "stale" as const;
     const card = materializeCard(input.encounter, input.interfaceLocale);
     let added = false;
+    const hasPremiumAccess = await getVerifiedPremiumAccessStatus().catch(() => false);
+    const cardLimit = hasPremiumAccess ? PLUS_CUSTOM_CARD_LIMIT : FREE_CUSTOM_CARD_LIMIT;
     await updateCustomCards((cards) => {
       if (
         cards.some(
@@ -107,6 +112,7 @@ export async function saveLearningV2NewWordEncounterToCardsV1(
         )
       )
         return cards;
+      if (cards.length >= cardLimit) return cards;
       added = true;
       return [...cards, card];
     }, encounterStudyTarget(input.encounter));

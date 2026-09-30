@@ -6,7 +6,7 @@ Voice/AI engineering owns session orchestration; Safety and Privacy approve cons
 
 ## Source of truth
 
-Client consent starts at [ai_dialog_consent.ts](../../../app/ai_dialog_consent.ts). Server privacy and behavior are guarded by [max_voice_privacy_contract.test.ts](../../../functions/src/max_voice_privacy_contract.test.ts) and [max_voice_client_server_contract.test.ts](../../../functions/src/max_voice_client_server_contract.test.ts).
+Client consent starts at [ai_dialog_consent.ts](../../../app/ai_dialog_consent.ts). Server privacy and behavior are guarded by [max_voice_privacy_contract.test.ts](../../../functions/src/max_voice_privacy_contract.test.ts); the retired XP settlement contract test is no longer part of the release suite.
 
 ## Authority
 

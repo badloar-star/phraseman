@@ -16,9 +16,8 @@ function briefing(overrides: Partial<StatsInsightsBriefing> = {}): StatsInsights
     lang: 'ru',
     studyTarget: 'en',
     balance: { score: 44, isWarmup: false, active7: 4, avgMinutes: 21 },
-    rhythm: { active7: 4, xp7: 320, minutes7: 84, bestDay: 'среда' },
+    rhythm: { active7: 4, minutes7: 84, bestDay: 'среда' },
     year: { activeDays: 40, currentStreak: 5, longestStreak: 9, bestMonth: 'май', goalPct: 12 },
-    percentiles: { totalXp: 72, week: 51, daily7: null },
     lifetime: { words: 120, phrases: 18, daysActive: 12 },
     weakCategories: [],
     ...overrides,
@@ -37,6 +36,9 @@ describe('stats insights client copy', () => {
     expect(notes.balance).not.toMatch(/баланс|балл/i);
     expect(notes.lifetime).toContain('138 слов/фраз');
     expect(notes.lifetime).not.toMatch(/квиз|арен/i);
+    expect(notes.rhythm).toContain('84 мин');
+    expect(notes.rhythm).not.toContain('XP');
+    expect('percentiles' in notes).toBe(false);
   });
 
   it('drops stale cached balance notes with internal score wording', async () => {
@@ -45,7 +47,6 @@ describe('stats insights client copy', () => {
         balance: 'У вас 44 балла за баланс. Это начало.',
         rhythm: 'На этой неделе 4 дня практики.',
         year: '',
-        percentiles: '',
         lifetime: '',
       },
       generatedAtMs: 1,
@@ -61,13 +62,25 @@ describe('stats insights client copy', () => {
     }
   });
 
+  it('does not show XP wording from an old cached rhythm note', async () => {
+    await AsyncStorage.setItem(statsInsightsStorageKey('en'), JSON.stringify({
+      notes: { balance: '4 дня занятий', rhythm: 'За неделю 320 XP', year: '', lifetime: '' },
+      generatedAtMs: 1,
+      nextAllowedAtMs: 999999,
+      lang: 'ru',
+    }));
+
+    const state = await getStatsInsightsState('en');
+    expect(state.kind).toBe('cached');
+    if (state.kind === 'cached') expect(state.notes.rhythm).toBe('');
+  });
+
   it('refreshes the practice note when cached wording was filtered out', async () => {
     await AsyncStorage.setItem(statsInsightsStorageKey('en'), JSON.stringify({
       notes: {
         balance: 'У вас 44 балла за баланс. Это начало.',
         rhythm: 'На этой неделе 4 дня практики.',
         year: '',
-        percentiles: '',
         lifetime: '',
       },
       generatedAtMs: 1,
@@ -94,7 +107,6 @@ describe('stats insights client copy', () => {
         balance: 'За 7 дней у тебя 4 активных дн.',
         rhythm: 'На этой неделе 4 дня практики.',
         year: '',
-        percentiles: '',
         lifetime: '',
       },
       generatedAtMs: 1,
@@ -108,7 +120,7 @@ describe('stats insights client copy', () => {
     const state = await generateStatsInsights({
       briefing: briefing({
         lang: 'uk',
-        rhythm: { active7: 4, xp7: 320, minutes7: 84, bestDay: 'середа' },
+        rhythm: { active7: 4, minutes7: 84, bestDay: 'середа' },
         year: { activeDays: 40, currentStreak: 5, longestStreak: 9, bestMonth: 'травень', goalPct: 12 },
       }),
       isPremium: true,

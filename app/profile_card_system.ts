@@ -1,19 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getApp } from '@react-native-firebase/app';
-import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
-import { emitAppEvent } from './events';
-import { commitShardCompositeOperation, getShardsBalance } from './shards_system';
-import { semanticShardOperationId } from './economy/client_shard_semantic_id';
-import { getStableId } from './stable_id';
-import {
-  captureAccountGeneration,
-  isCurrentAccountGeneration,
-  withAccountTransitionLock,
-} from './account_generation';
-import { DebugLogger } from './debug-logger';
 import { PROFILE_CARD_ENERGY_MAX_LEVEL } from './energy_contract';
 
 export const PROFILE_CARD_LEVEL_KEY = 'profile_card_level';
+/** Owner decision PM-185: cosmetic profile-card upgrade price, in coins. */
+export const PROFILE_CARD_UPGRADE_PRICE_COINS = 10_000 as const;
 export const PROFILE_CARD_THEME_KEY = 'profile_card_theme';
 export const PROFILE_CARD_MOTION_KEY = 'profile_card_motion';
 export const PROFILE_CARD_PUBLIC_FOCUS_KEY = 'profile_card_public_focus';
@@ -30,23 +20,11 @@ export const PROFILE_CARD_UPGRADE_COST = 200;
 
 export type ProfileCardLevel = 0 | 1 | 2 | 3 | 4 | 5;
 
-// Фаза 1 бонусов карточки (ТЗ 2026-07-19): постоянный XP-буст +2% для уровня II+.
-// Аддитивный вклад (cardM - 1) в общую формулу множителя в xp_manager; бонус
-// кумулятивен — любой уровень II…V даёт одни и те же ×1.02, с уровнем не растёт.
-// ВНИМАНИЕ: xp_manager НЕ импортирует этот модуль (цикл через shards_system/events)
-// — значение там продублировано литералом со ссылкой на эту константу.
-export const PROFILE_CARD_XP_BOOST = 1.02;
-
-/** XP-множитель бонуса карточки: уровень II+ → PROFILE_CARD_XP_BOOST, иначе 1. */
-export function profileCardXpMultiplier(level: ProfileCardLevel): number {
-  return level >= 2 ? PROFILE_CARD_XP_BOOST : 1;
-}
-
 // Фаза 2 бонусов карточки (ТЗ 2026-07-19): +5% осколков (×1.05) со всех
 // ЗАРАБОТАННЫХ начислений для уровня IV+ (кумулятивно IV…V, с уровнем не растёт).
 // Только заработок: траты, покупки за реальные деньги (RevenueCat) и серверные
 // компенсации/начисления бонус не получают. shards_system НЕ импортирует этот
-// модуль (анти-цикл, как и xp_manager) — значение там продублировано литералом
+// модуль (анти-цикл) — значение там продублировано литералом
 // со ссылкой на эту константу.
 export const PROFILE_CARD_SHARD_BOOST = 1.05;
 
@@ -486,138 +464,24 @@ export async function getProfileCardSnapshot(): Promise<ProfileCardSnapshot> {
   }
 }
 
-async function applyProfileCardLevelLocally(next: ProfileCardLevel): Promise<void> {
-  const theme = themeForProfileCardLevel(next);
-  await AsyncStorage.multiSet([
-    [PROFILE_CARD_LEVEL_KEY, String(next)],
-    [PROFILE_CARD_THEME_KEY, theme],
-    [PROFILE_CARD_MOTION_KEY, 'none'],
-    [PROFILE_CARD_PUBLIC_FOCUS_KEY, 'balanced'],
-  ]);
-}
-
-function emitProfileCardUpgraded(balance: number): void {
-  emitAppEvent('shards_balance_updated', { balance, op: 'spend', reason: 'profile_card_upgrade' });
-  emitAppEvent('xp_changed');
-  // The level is already durable when this fires. EnergyProvider reloads the
-  // same account and exposes the new +10 permanent-capacity slot immediately.
-  emitAppEvent('energy_reload');
-}
-
 export async function upgradeProfileCardLevel(): Promise<
   | { ok: true; level: ProfileCardLevel; balance: number; legendNo?: number }
   | { ok: false; reason: 'max' | 'insufficient' | 'spend_failed' | 'cloud_error'; need?: number; balance?: number }
 > {
-  const operationToken = captureAccountGeneration();
-  const operationOwnerStableId = operationToken.stableId;
-  const isOperationCurrent = (): boolean => Boolean(
-    operationOwnerStableId
-    && isCurrentAccountGeneration(operationToken, operationOwnerStableId)
-  );
-  if (!isOperationCurrent()) return { ok: false, reason: 'spend_failed' };
-  const current = await getProfileCardLevel();
-  if (!isOperationCurrent()) return { ok: false, reason: 'spend_failed' };
-  const next = getNextProfileCardLevel(current);
-  if (next === null) return { ok: false, reason: 'max' };
-
-  const def = getProfileCardLevelDef(next);
-  const theme = themeForProfileCardLevel(next);
-  const purchase = await commitShardCompositeOperation({
-    amount: def.cost,
-    reason: 'profile_card_upgrade',
-    operationId: await semanticShardOperationId('profile_card_level', String(next)),
-    grant: {
-      kind: 'profile_card_level',
-      subjectId: String(next),
-      payload: { previousLevel: current, level: next, theme },
-    },
-    localWrites: [
-      [PROFILE_CARD_LEVEL_KEY, String(next)],
-      [PROFILE_CARD_THEME_KEY, theme],
-      [PROFILE_CARD_MOTION_KEY, 'none'],
-      [PROFILE_CARD_PUBLIC_FOCUS_KEY, 'balanced'],
-    ],
-  });
-  return withAccountTransitionLock(async () => {
-    if (!isOperationCurrent()) return { ok: false, reason: 'spend_failed' } as const;
-    if (purchase.status === 'insufficient') {
-      return {
-        ok: false,
-        reason: 'insufficient',
-        need: Math.max(0, def.cost - purchase.balance),
-        balance: purchase.balance,
-      } as const;
-    }
-    if (purchase.status === 'failed') {
-      return { ok: false, reason: 'spend_failed', balance: await getShardsBalance() } as const;
-    }
-    emitProfileCardUpgraded(purchase.balanceAfter);
-    // Public profile metadata is a projection only. Failure must never revoke
-    // the locally durable level or refund/rewrite the personal balance.
-    void (async () => {
-      try {
-        if (!isOperationCurrent()) return;
-        const stableId = await getStableId();
-        if (stableId !== operationOwnerStableId || !isOperationCurrent()) return;
-        const call = httpsCallable<
-          { stableId: string; expectedLevel: number },
-          { ok: boolean; level?: number; legendNo?: number }
-        >(getFunctions(getApp(), 'us-central1'), 'profileCardUpgrade');
-        const response = await call({ stableId, expectedLevel: current });
-        if (!isOperationCurrent()) return;
-        if (response.data.legendNo && next === 5) {
-          await AsyncStorage.setItem(PROFILE_CARD_LEGEND_NO_KEY, String(response.data.legendNo));
-          emitAppEvent('xp_changed');
-        }
-      } catch (e) {
-      // Best-effort storage projection; a later idempotent call can repair it.
-      DebugLogger.error('profile_card_system:response', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
-    })();
-    return { ok: true, level: next, balance: purchase.balanceAfter } as const;
-  });
-}
-
-const PROFILE_CARD_ROMANS: Record<ProfileCardLevel, string> = {
-  0: '0', 1: 'I', 2: 'II', 3: 'III', 4: 'IV', 5: 'V',
-};
-
-export function profileCardLevelRoman(level: ProfileCardLevel): string {
-  return PROFILE_CARD_ROMANS[level] ?? '0';
+  // Legacy profile-card levels are retired. Historical values remain readable,
+  // but no new level, shard spend, or entitlement may be created.
+  return { ok: false, reason: 'max' };
 }
 
 export async function devGrantProfileCardLevel(): Promise<ProfileCardSnapshot> {
-  if (!__DEV__) return getProfileCardSnapshot();
-  const current = await getProfileCardLevel();
-  const next = getNextProfileCardLevel(current);
-  if (next === null) return getProfileCardSnapshot();
-  await applyProfileCardLevelLocally(next);
-  emitAppEvent('xp_changed');
-  emitAppEvent('energy_reload');
   return getProfileCardSnapshot();
 }
 
 export async function devLowerProfileCardLevel(): Promise<ProfileCardSnapshot> {
-  if (!__DEV__) return getProfileCardSnapshot();
-  const current = await getProfileCardLevel();
-  if (current <= 0) return getProfileCardSnapshot();
-  await applyProfileCardLevelLocally((current - 1) as ProfileCardLevel);
-  emitAppEvent('xp_changed');
-  emitAppEvent('energy_reload');
   return getProfileCardSnapshot();
 }
 
 export async function devResetProfileCard(): Promise<ProfileCardSnapshot> {
-  if (!__DEV__) return getProfileCardSnapshot();
-  await applyProfileCardLevelLocally(0);
-  try {
-    await AsyncStorage.removeItem(PROFILE_CARD_LEGEND_NO_KEY);
-  } catch (e) {
-      // dev-only cleanup
-      DebugLogger.error('profile_card_system:devResetProfileCard', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
-  emitAppEvent('xp_changed');
-  emitAppEvent('energy_reload');
   return getProfileCardSnapshot();
 }
 

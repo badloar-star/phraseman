@@ -97,14 +97,12 @@ test('gift recovery consumes exactly one permanent gift and grants attempts once
   await creditAttemptRestoreGiftFromSpin({
     token, spinRequestId: 'spinrequestrecovery001', lane: 'base', createdAtMs: 10,
   });
-  expect(emitAppEvent).toHaveBeenCalledWith('level_gift_inventory_changed');
   await expect(readAttemptRestoreGiftCount(token)).resolves.toBe(1);
   (emitAppEvent as jest.Mock).mockClear();
 
   const state = exhaustedState('dictionary-1');
   const first = await commitSessionAttemptRecovery({ source: 'gift', token, sessionState: state });
   expect(first).toMatchObject({ duplicate: false, source: 'gift', attemptsState: { remainingAttempts: 3 } });
-  expect(emitAppEvent).toHaveBeenCalledWith('level_gift_inventory_changed');
   await expect(readAttemptRestoreGiftCount(token)).resolves.toBe(0);
   await expect(commitSessionAttemptRecovery({ source: 'gift', token, sessionState: state }))
     .resolves.toMatchObject({ duplicate: true, receiptId: first.receiptId });

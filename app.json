@@ -29,20 +29,15 @@
         "assets/images/achievements/shards_100.webp",
         "assets/images/avatars/*",
         "assets/images/energy/*",
-        "assets/images/flashcard_backs/*",
-        "assets/images/header_glyphs/*",
         "assets/images/home_menu/**/*",
         "assets/images/league/league_crown.webp",
         "assets/images/levels/league-v6-icons/*.webp",
-        "assets/images/levels/generated-v5-dalle/*.webp",
         "assets/images/levels/*.webp",
         "assets/images/lesson_intro/*",
-        "assets/images/settings/**/*",
         "assets/images/currency/*",
         "assets/images/splash-icon.png",
         "assets/images/streak_overlays/*.webp",
-        "assets/images/theo/*",
-        "assets/images/tournament/themes/**/*.webp"
+        "assets/images/theo/*"
       ]
     },
     "android": {
@@ -105,9 +100,6 @@
       ],
       "googleServicesFile": "./GoogleService-Info.plist",
       "entitlements": {
-        "com.apple.security.application-groups": [
-          "group.app.phraseman.widget"
-        ],
         "com.apple.developer.devicecheck.appattest-environment": "production"
       },
       "infoPlist": {
@@ -228,9 +220,7 @@
       "./plugins/withAsyncStorageCapacity",
       "./plugins/withAndroidSplashWindowBackground",
       "./plugins/withIosFirebaseEarlyConfigure",
-      "./plugins/withAndroidDailyPhraseWidget",
       "@bacons/apple-targets",
-      "./plugins/withIosDailyPhraseWidgetAppGroup",
       "./plugins/withIosFirebaseFunctionsSwift63Workaround",
       "./plugins/withIosFirebaseCrashlyticsUpload",
       "./plugins/with_async_storage_db_size.js"

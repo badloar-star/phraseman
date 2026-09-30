@@ -25,23 +25,6 @@ export function isPhoneStateCutoverEnabled(stableUid: string | null): boolean {
   );
 }
 
-export async function tryGrantXpThroughPhoneState(
-  stableUid: string | null,
-  input: Parameters<PersonalProgressApi['grantXp']>[0],
-): Promise<Awaited<ReturnType<PersonalProgressApi['grantXp']>> | null> {
-  const api = progressApi;
-  if (!api || !isPhoneStateCutoverEnabled(stableUid)) return null;
-  try {
-    const committed = await api.grantXp(input);
-    publishPersonalProgressProjection(await api.read(), 'phone_state');
-    return committed;
-  } catch {
-    // The caller continues through the existing durable local compatibility
-    // path. Storage/sync failures are background diagnostics, never UI errors.
-    return null;
-  }
-}
-
 export async function trySubmitProgressThroughPhoneState(
   stableUid: string | null,
   input: Readonly<{

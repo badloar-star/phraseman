@@ -1,10 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { __cloudSyncTestHooks } from '../app/cloud_sync';
-import {
-  commitPlanXpTask,
-  reservePlanXpTask,
-} from '../app/personal_plan_xp_ledger';
 
 const {
   applyPersonalPlanRestorePairs,
@@ -111,29 +107,6 @@ describe('personal plan client-authoritative cloud restore merge', () => {
     expect(merged['plan-a::task-1'].correctIds).toEqual(expect.arrayContaining(['a', 'b', 'c']));
   });
 
-  it('unions XP task receipts without replacing an applied local receipt with pending cloud data', () => {
-    const local = JSON.stringify({
-      'plan-a': {
-        xp: 6,
-        phrases: 2,
-        taskIds: { 'task-1': { xp: 6, phrases: 2, status: 'applied', eventId: 'event-local' } },
-      },
-    });
-    const cloud = JSON.stringify({
-      'plan-a': {
-        xp: 0,
-        phrases: 0,
-        taskIds: { 'task-1': { xp: 6, phrases: 2, status: 'pending', eventId: 'event-local' } },
-      },
-    });
-
-    const merged = JSON.parse(mergePersonalPlanRestoreValue(
-      'personal_plan_xp_ledger_v1', cloud, local,
-    ));
-    expect(merged['plan-a']).toMatchObject({ xp: 6, phrases: 2 });
-    expect(merged['plan-a'].taskIds['task-1']).toMatchObject({ status: 'applied' });
-  });
-
   it('merges remote plan progress even when higher local XP selects the sticky restore branch', async () => {
     await AsyncStorage.multiSet([
       ['user_total_xp', '200'],
@@ -158,44 +131,4 @@ describe('personal plan client-authoritative cloud restore merge', () => {
       }));
   });
 
-  it('serializes cloud ledger merge with an in-flight pending-to-applied transition', async () => {
-    await reservePlanXpTask('plan-a', 'local-task', 6, 2, 'event-local');
-    const setItem = AsyncStorage.setItem as jest.MockedFunction<typeof AsyncStorage.setItem>;
-    const original = setItem.getMockImplementation();
-    let releaseCommit!: () => void;
-    let markCommitStarted!: () => void;
-    const commitStarted = new Promise<void>((resolve) => { markCommitStarted = resolve; });
-    const commitBlocked = new Promise<void>((resolve) => { releaseCommit = resolve; });
-    setItem.mockImplementation(async (key, value) => {
-      if (key === 'personal_plan_xp_ledger_v1' && String(value).includes('"status":"applied"')) {
-        markCommitStarted();
-        await commitBlocked;
-      }
-      if (original) await original(key, value);
-    });
-
-    const commit = commitPlanXpTask('plan-a', 'local-task');
-    await commitStarted;
-    const restore = applyPersonalPlanRestorePairs([[
-      'personal_plan_xp_ledger_v1',
-      JSON.stringify({
-        'plan-a': {
-          xp: 6,
-          phrases: 1,
-          taskIds: {
-            'remote-task': { xp: 6, phrases: 1, status: 'applied', eventId: 'event-remote' },
-          },
-        },
-      }),
-    ]]);
-    releaseCommit();
-    await Promise.all([commit, restore]);
-
-    const ledger = JSON.parse(String(await AsyncStorage.getItem('personal_plan_xp_ledger_v1')));
-    expect(ledger['plan-a']).toMatchObject({ xp: 12, phrases: 3 });
-    expect(ledger['plan-a'].taskIds).toEqual(expect.objectContaining({
-      'local-task': expect.objectContaining({ status: 'applied' }),
-      'remote-task': expect.objectContaining({ status: 'applied' }),
-    }));
-  });
 });

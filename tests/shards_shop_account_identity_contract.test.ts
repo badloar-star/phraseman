@@ -5,6 +5,7 @@ const root = process.cwd();
 const shop = fs.readFileSync(path.join(root, 'app', 'shards_shop.tsx'), 'utf8');
 const pending = fs.readFileSync(path.join(root, 'app', 'shards_pending_grants.ts'), 'utf8');
 const auth = fs.readFileSync(path.join(root, 'app', 'auth_provider.ts'), 'utf8');
+const layout = fs.readFileSync(path.join(root, 'app', '_layout.tsx'), 'utf8');
 
 describe('shards store purchase account boundary', () => {
   // PM-057 (PhraseMan 2.0, D28): покупка жемчуга за реальные деньги убрана.
@@ -12,14 +13,11 @@ describe('shards store purchase account boundary', () => {
   // запись pending-журнала) — это отменённое правило. Новый контракт: клиент
   // НЕ открывает системный диалог магазина для жемчуга, но старые оплаченные
   // покупки по-прежнему дотягиваются (resumePendingShardGrants) — PM-057-A2.
-  it('never starts a real-money pearl purchase, but still resumes already paid grants', () => {
-    const buy = shop.slice(shop.indexOf('const buyPack = useCallback'), shop.indexOf('const promptBuyCardPack'));
-    expect(buy).toContain('const operationAccount = captureAccountGeneration();');
-    expect(buy).toContain('[PM-057] shards_shop:buyPack_blocked_release');
+  it('retires the shop route while startup still resumes already paid grants', () => {
+    expect(shop).toContain('<Redirect href="/flashcards_my_packs" />');
     expect(shop).not.toContain('Purchases.purchasePackage');
     expect(shop).not.toContain('recordPendingShardGrant(');
-    expect(shop).not.toContain('loadShardsShopPackagesMap');
-    expect(shop).toContain('resumePendingShardGrants(resumeAccount)');
+    expect(layout).toContain('resumePendingShardGrants(resumeAccount)');
   });
 
   it('uses only stable-id-scoped v2 journals and never adopts ownerless v1', () => {

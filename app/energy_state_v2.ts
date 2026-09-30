@@ -172,6 +172,16 @@ export function coerceEnergyStateV2(value: unknown, nowMs: number): EnergyStateV
     // становится полным запасом 5 — никто не теряет доступ к занятию при
     // обновлении и никто не остаётся выше потолка. Значения 0..5 со старой
     // шкалы читаются как есть (не больше того, что уже было на диске).
+    // зачем (D98, PM-089): это и есть однократная миграция «запас > 5 → 5».
+    // Результат записывается обратно (readAndRecoverState), поэтому повторный
+    // запуск видит уже 5 и сюда не попадает — миграция идемпотентна. Лог
+    // обязателен: без него «энергия стала 5» после обновления не отличить от
+    // обычного долива.
+    if (Number.isFinite(current) && current > ENERGY_PERMANENT_CAPACITY_LIMIT) {
+      console.warn(`[ENERGY-CAP] D98 migration: stored=${current} > cap=${ENERGY_PERMANENT_CAPACITY_LIMIT} -> ${ENERGY_BASE_CAPACITY}`);
+    } else {
+      console.warn(`[ENERGY-CAP] invalid v2 energy payload (current=${String(record.current)}) -> full ${ENERGY_BASE_CAPACITY}`);
+    }
     return createFullEnergyState(nowMs);
   }
 

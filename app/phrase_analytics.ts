@@ -37,7 +37,6 @@ export interface WordCategoryStat {
   exactMistakeCount: number;
   recentMistakeCount: number;
   masteryLevel: number;
-  masteryXp: number;
   masteryStreak: number;
   practiceCorrect: number;
   practiceWrong: number;
@@ -728,7 +727,6 @@ export async function computePhraseAnalytics(
           exactMistakeCount,
           recentMistakeCount,
           masteryLevel: mastery?.level ?? 1,
-          masteryXp: mastery?.xp ?? 0,
           masteryStreak: mastery?.streak ?? 0,
           practiceCorrect: mastery?.correct ?? 0,
           practiceWrong: mastery?.wrong ?? 0,

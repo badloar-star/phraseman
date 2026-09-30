@@ -3,7 +3,6 @@ import {
   getAppSnapshot,
   patchAppSnapshotFromAuthoritativeCloudProgress,
   patchAppSnapshot,
-  patchAppSnapshotCustomizationSelection,
   pruneBoundedRecord,
   resolveHydratedProfileName,
   resetAppSnapshotForAccountSwitch,
@@ -28,8 +27,6 @@ describe('app snapshot store contract', () => {
       name: 'Ada',
       avatar: '1',
       frame: '',
-      totalXp: 120,
-      level: 2,
       premiumActive: false,
       vipActive: false,
     };
@@ -51,8 +48,6 @@ describe('app snapshot store contract', () => {
       name: 'Old name',
       avatar: '1',
       frame: '',
-      totalXp: 120,
-      level: 2,
       premiumActive: false,
       vipActive: false,
     };
@@ -86,8 +81,6 @@ describe('app snapshot store contract', () => {
       name: 'Old name',
       avatar: '1',
       frame: '',
-      totalXp: 120,
-      level: 2,
       premiumActive: false,
       vipActive: false,
     };
@@ -119,8 +112,6 @@ describe('app snapshot store contract', () => {
         name: 'New name',
         avatar: '1',
         frame: '',
-        totalXp: 120,
-        level: 2,
         premiumActive: false,
         vipActive: false,
       },
@@ -130,29 +121,18 @@ describe('app snapshot store contract', () => {
     expect(resolveHydratedProfileName(400, 'Newest storage name')).toBe('Newest storage name');
   });
 
-  it('hydrates validated server-authoritative XP and streak without local persistence', () => {
+  it('hydrates validated server-authoritative identity and streak without local persistence', () => {
     patchAppSnapshotFromAuthoritativeCloudProgress({
       progressServerAuthoritative: true,
       progress: {
         user_name: 'Vitalii',
         user_avatar: '44',
         user_avatar_frame: 'neural',
-        user_total_xp: '564776',
-        user_level: '50',
         streak_count: '93',
       },
     }, 500);
 
     expect(getAppSnapshot()).toMatchObject({
-      profile: {
-        source: 'live',
-        updatedAt: 500,
-        name: 'Vitalii',
-        avatar: '44',
-        frame: 'neural',
-        totalXp: 564776,
-        level: 50,
-      },
       progress: {
         source: 'live',
         updatedAt: 500,
@@ -166,7 +146,6 @@ describe('app snapshot store contract', () => {
       progressServerAuthoritative: true,
       progress: {
         user_name: 'Vitalii',
-        user_total_xp: '564776',
         streak_count: '93',
       },
     }, 500);
@@ -178,8 +157,6 @@ describe('app snapshot store contract', () => {
         name: 'Vitalii',
         avatar: '1',
         frame: '',
-        totalXp: 0,
-        level: 1,
         premiumActive: true,
         vipActive: false,
       },
@@ -193,7 +170,7 @@ describe('app snapshot store contract', () => {
     });
 
     expect(getAppSnapshot()).toMatchObject({
-      profile: { source: 'live', totalXp: 564776, level: 50, premiumActive: true },
+      profile: { source: 'storage', premiumActive: true },
       progress: { source: 'live', streak: 93, shards: 882 },
     });
   });
@@ -210,12 +187,10 @@ describe('app snapshot store contract', () => {
     expect(getAppSnapshot()).toEqual({});
   });
 
-  it('rejects authoritative XP and streak outside backend-safe bounds', () => {
+  it('rejects malformed authoritative streak outside backend-safe bounds', () => {
     const invalidProgressRows = [
-      { user_total_xp: '1000000001', streak_count: '93' },
-      { user_total_xp: '564776', streak_count: '100001' },
-      { user_total_xp: String(Number.MAX_SAFE_INTEGER + 1), streak_count: '93' },
-      { user_total_xp: '564776.5', streak_count: '93' },
+      { streak_count: '100001' },
+      { streak_count: '-4' },
     ];
 
     for (const progress of invalidProgressRows) {
@@ -262,7 +237,7 @@ describe('app snapshot store contract', () => {
     patchAppSnapshot({
       profile: {
         source: 'storage', updatedAt: 100, name: 'Ada', avatar: '18', frame: '',
-        totalXp: 1250, level: 18, premiumActive: false, vipActive: false,
+        premiumActive: false, vipActive: false,
         avatarDNA: {
           schemaVersion: 1, ownerStableId: 'u1', accountGeneration: 4,
           confirmedDNA: dna, lastConfirmedDNA: dna, manifestVersion: 1,
@@ -272,15 +247,9 @@ describe('app snapshot store contract', () => {
       customization: {
         source: 'storage',
         updatedAt: 100,
-        activeAvatar: 'custom:custom-gen-41:aurora:white',
-        storedAuraSelection: 'aura-ember',
-        totalXp: 1250,
+        activeAvatar: '18',
         level: 18,
         shards: 77,
-        ownedAvatars: { 'custom-gen-41': 'aurora:white' },
-        ownedAuras: { 'aura-ember': true },
-        giftedAvatarId: null,
-        giftedAuraId: null,
         avatarDNA: {
           schemaVersion: 1, ownerStableId: 'u1', accountGeneration: 4,
           confirmedDNA: dna, lastConfirmedDNA: dna, manifestVersion: 1,
@@ -315,81 +284,15 @@ describe('app snapshot store contract', () => {
       source: 'storage' as const,
       updatedAt: 600,
       activeAvatar: '18',
-      storedAuraSelection: null,
-      totalXp: 900,
       level: 4,
       shards: 7,
-      ownedAvatars: {},
-      ownedAuras: {},
-      giftedAvatarId: null,
-      giftedAuraId: null,
       avatarDNA,
     };
 
     patchAppSnapshot({ customization });
 
-    expect(getAppSnapshot().profile).toMatchObject({
-      source: 'live',
-      totalXp: 900,
-      avatarDNA,
-    });
-    expect(getAppSnapshot().customization?.avatarDNA).toBe(
-      getAppSnapshot().profile?.avatarDNA,
-    );
+    expect(getAppSnapshot().profile).toBeUndefined();
+    expect(getAppSnapshot().customization?.avatarDNA).toEqual(avatarDNA);
   });
 
-  it('publishes avatar and aura choices to the visible profile immediately and can roll them back', () => {
-    patchAppSnapshot({
-      profile: {
-        source: 'storage',
-        updatedAt: 100,
-        name: 'Ada',
-        avatar: '18',
-        frame: 'frame-18',
-        aura: 'aura-ember',
-        totalXp: 1250,
-        level: 18,
-        premiumActive: false,
-        vipActive: false,
-      },
-    });
-    const previous = {
-      source: 'storage' as const,
-      updatedAt: 100,
-      activeAvatar: '18',
-      storedAuraSelection: 'aura-ember',
-      totalXp: 1250,
-      level: 18,
-      shards: 77,
-      ownedAvatars: {},
-      ownedAuras: {},
-      giftedAvatarId: null,
-      giftedAuraId: null,
-    };
-
-    patchAppSnapshotCustomizationSelection({
-      ...previous,
-      source: 'local',
-      updatedAt: 200,
-      activeAvatar: 'custom:custom-gen-41:aurora:white',
-      storedAuraSelection: 'aura-ember',
-    });
-    expect(getAppSnapshot()).toMatchObject({
-      profile: {
-        source: 'local',
-        avatar: 'custom:custom-gen-41:aurora:white',
-        aura: 'aura-ember',
-      },
-      customization: {
-        activeAvatar: 'custom:custom-gen-41:aurora:white',
-        storedAuraSelection: 'aura-ember',
-      },
-    });
-
-    patchAppSnapshotCustomizationSelection(previous);
-    expect(getAppSnapshot()).toMatchObject({
-      profile: { source: 'local', avatar: '18', aura: 'aura-ember' },
-      customization: { activeAvatar: '18', storedAuraSelection: 'aura-ember' },
-    });
-  });
 });

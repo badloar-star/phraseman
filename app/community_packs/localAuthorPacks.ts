@@ -21,9 +21,19 @@ import { derivePackCodeName } from '../flashcards/marketplace';
 import { communityPackCardsToCardItems } from './communityFirestore';
 import type { CommunityPackCardPayload, CommunityPackSubmissionPayload } from './schema';
 import { normalizePackLanguage, type PackLanguage } from '../flashcards/pack_languages';
-import { captureAccountGeneration, isCurrentAccountGeneration, withAccountTransitionLock } from '../account_generation';
+import { captureAccountGeneration, isCurrentAccountGeneration, withAccountTransitionLock, type AccountGenerationToken } from '../account_generation';
+import { accountScopeKey } from '../account_scope_key';
+import { BoundedScopeCache, parseStrictArrayJson } from '../flashcards/myPacksDataIntegrity';
 
 export const LOCAL_AUTHOR_PACK_ID_PREFIX = 'local_pack_';
+export const FREE_AUTHOR_PACK_LIMIT = 3;
+
+const warmPacksByKey = new BoundedScopeCache<LocalAuthorPack[]>(20);
+
+function warmPacksKey(studyTarget: RuntimeStudyTarget, token: AccountGenerationToken): string | null {
+  const scope = accountScopeKey(token);
+  return scope ? `${scope}|storage:${flashcardsLocalAuthorPacksKey(studyTarget)}` : null;
+}
 
 export type LocalAuthorPack = {
   v: 1;
@@ -31,7 +41,6 @@ export type LocalAuthorPack = {
   title: string;
   description: string;
   cardThemeKey: string;
-  cardBackKey: string;
   cards: CommunityPackCardPayload[];
   /** Independent language of the phrases in this pack; legacy local packs are English. */
   packLanguage?: PackLanguage;
@@ -59,26 +68,48 @@ export function isLocalAuthorPackId(id: string | null | undefined): boolean {
   return typeof id === 'string' && id.startsWith(LOCAL_AUTHOR_PACK_ID_PREFIX);
 }
 
-function parsePacks(raw: string | null): LocalAuthorPack[] {
-  if (!raw) return [];
+function parsePacks(raw: string | null): LocalAuthorPacksForTargetResult {
+  const parsed = parseStrictArrayJson(
+    raw,
+    (value): value is LocalAuthorPack => Boolean(
+      value
+      && typeof value === 'object'
+      && typeof (value as LocalAuthorPack).id === 'string'
+      && Array.isArray((value as LocalAuthorPack).cards),
+    ),
+  );
+  return { packs: parsed.items, status: parsed.status };
+}
+
+type LocalAuthorPacksForTargetResult = {
+  packs: LocalAuthorPack[];
+  status: 'ready' | 'stale';
+};
+
+async function readPacksForTargetResult(
+  studyTarget?: RuntimeStudyTarget,
+  token: AccountGenerationToken = captureAccountGeneration(),
+): Promise<LocalAuthorPacksForTargetResult> {
+  const key = flashcardsLocalAuthorPacksKey(studyTarget);
+  const cacheKey = warmPacksKey(studyTarget, token);
+  if (!cacheKey || !isCurrentAccountGeneration(token)) return { packs: [], status: 'stale' };
   try {
-    const parsed = JSON.parse(raw) as unknown;
-    if (!Array.isArray(parsed)) return [];
-    return parsed.filter(
-      (p): p is LocalAuthorPack =>
-        !!p && typeof p === 'object' && typeof (p as LocalAuthorPack).id === 'string' && Array.isArray((p as LocalAuthorPack).cards),
-    );
+    const parsed = parsePacks(await AsyncStorage.getItem(key));
+    if (!isCurrentAccountGeneration(token)) return { packs: [], status: 'stale' };
+    if (parsed.status === 'ready') {
+      warmPacksByKey.set(cacheKey, parsed.packs);
+      return parsed;
+    }
+    return { packs: warmPacksByKey.get(cacheKey) ?? [], status: 'stale' };
   } catch {
-    return [];
+    return isCurrentAccountGeneration(token)
+      ? { packs: warmPacksByKey.get(cacheKey) ?? [], status: 'stale' }
+      : { packs: [], status: 'stale' };
   }
 }
 
 async function readPacksForTarget(studyTarget?: RuntimeStudyTarget): Promise<LocalAuthorPack[]> {
-  try {
-    return parsePacks(await AsyncStorage.getItem(flashcardsLocalAuthorPacksKey(studyTarget)));
-  } catch {
-    return [];
-  }
+  return (await readPacksForTargetResult(studyTarget)).packs;
 }
 
 /**
@@ -93,11 +124,33 @@ async function readPacksForTarget(studyTarget?: RuntimeStudyTarget): Promise<Loc
  * Перебираем канонический список языков курса, чтобы пятый язык не потребовал
  * править это место снова.
  */
-export async function loadLocalAuthorPacks(_studyTarget?: RuntimeStudyTarget): Promise<LocalAuthorPack[]> {
-  const token = captureAccountGeneration();
+export type LocalAuthorPacksLoadResult = {
+  packs: LocalAuthorPack[];
+  status: 'ready' | 'stale';
+};
+
+export async function loadLocalAuthorPacksResult(
+  _studyTarget?: RuntimeStudyTarget,
+  accountToken: AccountGenerationToken = captureAccountGeneration(),
+): Promise<LocalAuthorPacksLoadResult> {
+  const token = accountToken;
+  if (!accountScopeKey(token) || !isCurrentAccountGeneration(token)) {
+    return { packs: [], status: 'stale' };
+  }
   const lists = await Promise.all(LEARNING_LANGUAGE_TARGETS.map(async studyTarget =>
-    (await readPacksForTarget(studyTarget)).map(pack => ({ ...pack, studyTarget }))));
-  return isCurrentAccountGeneration(token) ? lists.flat() : [];
+    readPacksForTargetResult(studyTarget, token)));
+  if (!isCurrentAccountGeneration(token)) return { packs: [], status: 'stale' };
+  return {
+    packs: lists.flatMap((result, index) => result.packs.map(pack => ({
+      ...pack,
+      studyTarget: LEARNING_LANGUAGE_TARGETS[index],
+    }))),
+    status: lists.every((result) => result.status === 'ready') ? 'ready' : 'stale',
+  };
+}
+
+export async function loadLocalAuthorPacks(_studyTarget?: RuntimeStudyTarget): Promise<LocalAuthorPack[]> {
+  return (await loadLocalAuthorPacksResult(_studyTarget)).packs;
 }
 
 let localPackWrites: Promise<unknown> = Promise.resolve();
@@ -113,23 +166,33 @@ function serializePackWrite<T>(operation: () => Promise<T>): Promise<T> {
 }
 
 async function writePacks(packs: LocalAuthorPack[], studyTarget?: RuntimeStudyTarget): Promise<void> {
-  await AsyncStorage.setItem(flashcardsLocalAuthorPacksKey(studyTarget), JSON.stringify(packs));
+  const key = flashcardsLocalAuthorPacksKey(studyTarget);
+  await AsyncStorage.setItem(key, JSON.stringify(packs));
+  const token = captureAccountGeneration();
+  const cacheKey = warmPacksKey(studyTarget, token);
+  if (cacheKey && isCurrentAccountGeneration(token)) warmPacksByKey.set(cacheKey, packs);
 }
 
 /** Сохранить/обновить набор на устройстве. Возвращает id локальной копии. */
 export async function saveLocalAuthorPack(
   payload: CommunityPackSubmissionPayload,
-  opts?: { packId?: string; authorStableId?: string; studyTarget?: RuntimeStudyTarget; cloudPackId?: string },
+  opts?: { packId?: string; authorStableId?: string; studyTarget?: RuntimeStudyTarget; cloudPackId?: string; isPremium?: boolean },
 ): Promise<string> {
   return serializePackWrite(async () => {
   const now = Date.now();
   const previous = (await loadLocalAuthorPacks()).find(pack => pack.id === opts?.packId);
   const target = previous?.studyTarget ?? storageStudyTarget(opts?.studyTarget);
   const list = await readPacksForTarget(target);
+  // Лимит считается по аккаунту, а не по языковому ключу: иначе Free мог
+  // обойти правило 3 наборов, создав по три набора в каждом языке курса.
+  const accountPacks = await loadLocalAuthorPacks();
   const id = opts?.packId && opts.packId.trim().length > 0
     ? opts.packId.trim()
     : `${LOCAL_AUTHOR_PACK_ID_PREFIX}${now}_${++localPackSequence}`;
   const existing = list.find((p) => p.id === id);
+  if (!existing && opts?.isPremium !== true && accountPacks.length >= FREE_AUTHOR_PACK_LIMIT) {
+    throw new Error('free_author_pack_limit_reached');
+  }
   const next: LocalAuthorPack = {
     ...existing,
     v: 1,
@@ -137,7 +200,6 @@ export async function saveLocalAuthorPack(
     title: payload.title.trim(),
     description: payload.description.trim(),
     cardThemeKey: payload.cardThemeKey ?? existing?.cardThemeKey ?? '',
-    cardBackKey: payload.cardBackKey ?? existing?.cardBackKey ?? '',
     cards: payload.cards,
     packLanguage: normalizePackLanguage(payload.packLanguage ?? payload.studyTarget ?? existing?.packLanguage),
     isPublic: payload.publishToCommunity !== false,
@@ -221,7 +283,6 @@ export function localAuthorPackToMarketPack(
     packLanguage: normalizePackLanguage(pack.packLanguage),
     listingStatus: 'local_only',
     ugcCardThemeKey: pack.cardThemeKey,
-    ugcCardBackKey: pack.cardBackKey,
     updatedAt: new Date(pack.updatedAt).toISOString(),
   };
 }

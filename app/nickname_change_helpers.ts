@@ -19,8 +19,7 @@ export function containsBadWord(value: string): boolean {
 }
 
 /**
- * Переименовать локальные упоминания старого ника (кэши лидербордов и лиги),
- * чтобы после смены имени старое не «просвечивало» в закэшированных списках.
+ * Переименовать локальные упоминания старого ника в оставшемся кэше.
  */
 export async function updateLocalNameReferences(fromName: string, toName: string): Promise<void> {
   try {
@@ -34,42 +33,6 @@ export async function updateLocalNameReferences(fromName: string, toName: string
     DebugLogger.error('nickname_change_helpers:leaderboard', error, 'warning');
   }
 
-  try {
-    const wlb = await AsyncStorage.getItem('week_leaderboard');
-    if (wlb) {
-      const arr = JSON.parse(wlb);
-      const updated = arr.map((e: { name?: string }) => (e.name === fromName ? { ...e, name: toName } : e));
-      await AsyncStorage.setItem('week_leaderboard', JSON.stringify(updated));
-    }
-  } catch (error) {
-    DebugLogger.error('nickname_change_helpers:weekLeaderboard', error, 'warning');
-  }
-
-  try {
-    const ls = await AsyncStorage.getItem('league_state_v3');
-    if (ls) {
-      const state = JSON.parse(ls);
-      if (state.group) {
-        state.group = state.group.map((m: { isMe?: boolean }) => (m.isMe ? { ...m, name: toName } : m));
-        await AsyncStorage.setItem('league_state_v3', JSON.stringify(state));
-      }
-    }
-  } catch (error) {
-    DebugLogger.error('nickname_change_helpers:leagueState', error, 'warning');
-  }
-
-  try {
-    const lrp = await AsyncStorage.getItem('league_result_pending');
-    if (lrp) {
-      const result = JSON.parse(lrp);
-      if (result.group) {
-        result.group = result.group.map((m: { isMe?: boolean }) => (m.isMe ? { ...m, name: toName } : m));
-        await AsyncStorage.setItem('league_result_pending', JSON.stringify(result));
-      }
-    }
-  } catch (error) {
-    DebugLogger.error('nickname_change_helpers:leagueResultPending', error, 'warning');
-  }
 }
 
 /** Фоновая синхронизация ника в профиле арены (best-effort, ошибки только в лог). */

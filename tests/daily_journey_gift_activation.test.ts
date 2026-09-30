@@ -148,19 +148,11 @@ it.each(rewardCases)('maps $kind amount $amount exactly and activates only on cl
       occurrenceFingerprint: committed.occurrence.payloadFingerprint,
     }, token);
     expect(applyGift).not.toHaveBeenCalled();
+  } else if (reward.kind === 'energy_full' || reward.kind === 'energy_plus') {
+    // PM-088: legacy energy receipts close successfully without changing cap/rate.
+    expect(applyGift).not.toHaveBeenCalled();
   } else {
-    const expectedGiftId = reward.kind === 'energy_full'
-      ? 'energy_full'
-      : `energy_plus${reward.amount}`;
-    expect(applyGift).toHaveBeenCalledTimes(1);
-    (applyGift as jest.Mock).mock.calls.forEach(([gift, _name, _current, _max, _set, options]) => {
-      expect(gift.id).toBe(expectedGiftId);
-      expect(options).toEqual(expect.objectContaining({
-        localOnly: true,
-        accountToken: token,
-        deferEffectReceiptConfirmation: true,
-      }));
-    });
+    throw new Error(`unexpected daily journey reward kind: ${reward.kind}`);
   }
   expect(await readDailyJourneyGiftClaimState(operationId, token)).toBe('claimed');
 });

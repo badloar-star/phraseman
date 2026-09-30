@@ -7,7 +7,6 @@ jest.unmock('react-native');
 
 const mockBack = jest.fn();
 const mockSubmitSurvey: jest.Mock = jest.fn();
-const mockCommitEvent: jest.Mock = jest.fn(() => Promise.resolve({ status: 'applied' }));
 const mockMarkDone: jest.Mock = jest.fn(() => Promise.resolve());
 const mockBeginCache: jest.Mock = jest.fn(() => 17);
 const mockCommitCache: jest.Mock = jest.fn();
@@ -26,10 +25,7 @@ jest.mock('expo-router', () => ({
 }));
 jest.mock('../app/navigation_back', () => ({ safeRouterBack: () => mockBack() }));
 jest.mock('../app/survey_client', () => ({ submitSurvey: (...args: unknown[]) => mockSubmitSurvey(...args) }));
-jest.mock('../app/shards_system', () => ({
-  commitConfirmedExternalShardEvent: (...args: unknown[]) => mockCommitEvent(...args),
-  SHARD_REWARDS: { survey_completed: 1 },
-}));
+// зачем: PM-058/D70 — жемчуг за опрос удалён; экран не зовёт экономику вовсе.
 jest.mock('../app/survey_completion_marker', () => ({ markSurveyOfferDone: (...args: unknown[]) => mockMarkDone(...args) }));
 jest.mock('../app/survey_offer_cache', () => ({
   beginSurveyOfferRequest: (...args: unknown[]) => mockBeginCache(...args),
@@ -209,7 +205,6 @@ beforeEach(() => {
     stop: jest.fn(),
     reset: jest.fn(),
   } as never);
-  mockCommitEvent.mockResolvedValue({ status: 'applied' });
   mockMarkDone.mockResolvedValue(true);
   mockCommitCache.mockReturnValue(true);
 });
@@ -234,18 +229,6 @@ test('ordinary unmount still reconciles same-generation durable state without pr
   });
   jest.runOnlyPendingTimers();
 
-  expect(mockCommitEvent).toHaveBeenCalledWith({
-    expectedOwnerStableId: 'account-a',
-    source: 'shard_survey',
-    eventId: 'survey-a',
-    delta: 1,
-    reason: 'survey_completed',
-    grant: {
-      kind: 'survey_reward',
-      subjectId: 'survey-a',
-      payload: { surveyId: 'survey-a' },
-    },
-  });
   expect(mockMarkDone).toHaveBeenCalledWith(expect.objectContaining({ stableId: 'account-a', dayKey: '2099-01-01' }));
   expect(mockCommitCache).toHaveBeenCalled();
   expect(mockEmit).not.toHaveBeenCalled();
@@ -400,28 +383,6 @@ test('account switch before account A resolves suppresses every local effect', a
     await Promise.resolve();
   });
 
-  expect(mockCommitEvent).not.toHaveBeenCalled();
-  expect(mockMarkDone).not.toHaveBeenCalled();
-  expect(mockCommitCache).not.toHaveBeenCalled();
-  expect(mockEmit).not.toHaveBeenCalled();
-  expect(mockBack).not.toHaveBeenCalled();
-  expect(view.queryByTestId('reward-phase')).toBeNull();
-  expect(view.queryByTestId('compat-survey-sheet')).toBeNull();
-  await fireEvent.press(view.getByTestId('compat-native-dismiss'));
-  expect(mockBack).toHaveBeenCalledTimes(1);
-  await view.unmount();
-});
-
-test('account switch while the immutable event is pending stops marker, cache, and presentation', async () => {
-  const event = deferred<{ status: 'applied' }>();
-  mockSubmitSurvey.mockResolvedValue({ reward: 1, eventId: 'survey-a' });
-  mockCommitEvent.mockReturnValue(event.promise);
-  const view = await submitMounted();
-  await act(async () => { await Promise.resolve(); });
-  expect(mockCommitEvent).toHaveBeenCalled();
-  await act(async () => { beginAccountGeneration('account-b'); });
-  await act(async () => event.resolve({ status: 'applied' }));
-
   expect(mockMarkDone).not.toHaveBeenCalled();
   expect(mockCommitCache).not.toHaveBeenCalled();
   expect(mockEmit).not.toHaveBeenCalled();
@@ -444,17 +405,8 @@ test('reward zero reconciles completion without a shards event or positive rewar
   expect(mockEmit).not.toHaveBeenCalledWith('shards_earned', expect.anything());
 });
 
-test('event or marker failure stays retryable and never records false completion', async () => {
-  mockSubmitSurvey.mockResolvedValue({ reward: 1, eventId: 'survey-a' });
-  mockCommitEvent.mockResolvedValueOnce({ status: 'failed' });
-  const eventFailure = await submitMounted();
-  await act(async () => { await Promise.resolve(); });
-  expect(mockMarkDone).not.toHaveBeenCalled();
-  expect(mockCommitCache).not.toHaveBeenCalled();
-  expect(eventFailure.getByTestId('reward-phase').props.children).toBe('retryable-error');
-  await eventFailure.unmount();
-
-  mockCommitEvent.mockResolvedValue({ status: 'applied' });
+test('marker failure stays retryable and never records false completion', async () => {
+  mockSubmitSurvey.mockResolvedValue({ reward: 0, eventId: 'survey-a' });
   mockMarkDone.mockRejectedValueOnce(new Error('storage failed'));
   const markerFailure = await submitMounted();
   await act(async () => { await Promise.resolve(); await Promise.resolve(); });
@@ -467,20 +419,19 @@ test('cache commit failure never presents success or emits a reward event', asyn
   mockCommitCache.mockReturnValue(false);
   const view = await submitMounted();
   await act(async () => { await Promise.resolve(); await Promise.resolve(); });
-  expect(mockCommitEvent).toHaveBeenCalled();
   expect(mockMarkDone).toHaveBeenCalled();
   expect(view.getByTestId('reward-phase').props.children).toBe('retryable-error');
   expect(mockEmit).not.toHaveBeenCalledWith('shards_earned', expect.anything());
 });
 
-test('already-applied immutable event still completes marker and cache without retry loop', async () => {
+test('a legacy positive server reward is not credited but still completes marker and cache', async () => {
   mockSubmitSurvey.mockResolvedValue({ reward: 1, eventId: 'survey-a' });
-  mockCommitEvent.mockResolvedValue({ status: 'already-applied' });
   const view = await submitMounted();
   await act(async () => { await Promise.resolve(); await Promise.resolve(); });
   expect(mockMarkDone).toHaveBeenCalled();
   expect(mockCommitCache).toHaveBeenCalled();
   expect(view.getByTestId('reward-phase').props.children).toBe('reconciled');
+  expect(mockEmit).not.toHaveBeenCalledWith('shards_earned', expect.anything());
 });
 
 test('repeated final presses create only one active request', async () => {

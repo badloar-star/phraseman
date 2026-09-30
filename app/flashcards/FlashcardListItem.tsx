@@ -1,10 +1,14 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { BlurView } from 'expo-blur';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useTheme } from '../../components/ThemeContext';
+import { FlowText } from '../../components/text-integrity/FlowText';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { hapticLightImpact, hapticMediumImpact } from '../../hooks/use-haptics';
 import { DEV_CONTENT_UNLOCK } from '../config';
 import { useEffectivePlatformOS } from '../platform_ui_preview';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, Easing, ScrollView, StyleSheet, Text, TouchableOpacity, View, useWindowDimensions, type LayoutChangeEvent } from 'react-native';
+import { Animated, Easing, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View, useWindowDimensions, type LayoutChangeEvent } from 'react-native';
 import Reanimated, {
   cancelAnimation,
   Easing as REasing,
@@ -25,10 +29,8 @@ import FlashcardDetailsBody from './FlashcardDetailsBody';
 import { buildLegacyFlipFaceStyles, useFcCrossfadeFlip } from './PhraseCard';
 import WordStrengthDots from './WordStrengthDots';
 import type { WordStrength } from './word_strength';
-import { OFFICIAL_MODERN_ABBREV_EN_ID } from './bundles/packIds';
 import { CardItem, CategoryId, cardHasDetails, resolveFlashcardBackText, type FlashcardContentLang } from './types';
 
-const MODERN_ABBREV_DEV = `DEV:${OFFICIAL_MODERN_ABBREV_EN_ID}`;
 
 /** Розбір «абревіатура — пояснення» для EN-шифра (поля `abbrev` / `expansion` або з рядка `en`). */
 function splitAbbrevMarketplaceEn(
@@ -96,6 +98,7 @@ type Props = {
   itemIdx: number;
   lang: FlashcardContentLang;
   activeCat: CategoryId;
+  savedCollectionSurface?: boolean;
   deletingId: string | null;
   longPressedId: string | null;
   t: Theme;
@@ -154,6 +157,7 @@ function FlashcardListItemImpl({
   itemIdx,
   lang,
   activeCat,
+  savedCollectionSurface = false,
   deletingId,
   longPressedId,
   t,
@@ -186,6 +190,8 @@ function FlashcardListItemImpl({
   onDeleteFromDetails = null,
   strength = null,
 }: Props) {
+  const { liquidGlassThemeId } = useTheme();
+  const g = liquidGlassTokens(liquidGlassThemeId);
   const effectiveOs = useEffectivePlatformOS();
   const tr = resolveFlashcardBackText(item, lang);
   /** Saved cards retain `DEV:<packId>` as their provenance; expose that provenance as a human label. */
@@ -195,7 +201,7 @@ function FlashcardListItemImpl({
   // (buildSourceLabel) жива и нужна: по ней идёт ПОИСК в CollectionListView и
   // её показывает конструктор набора сообщества. Удалена только отрисовка тут.
   const showDevPackCornerBadge = DEV_CONTENT_UNLOCK && isMarketplaceBundleCard;
-  const isModernAbbrevCard = item.sourceId === MODERN_ABBREV_DEV;
+  const isModernAbbrevCard = false;
   const parsedAbbrevEn = useMemo(
     () => splitAbbrevMarketplaceEn(item.en, item.abbrevEn, item.expansionEn),
     [item.en, item.abbrevEn, item.expansionEn],
@@ -205,6 +211,7 @@ function FlashcardListItemImpl({
   /** У «Збережені» кнопка озвучки справа (як раніше); в інших вкладках — зліва, щоб не перекривати фразу. */
   const voiceSpeakOnRight = activeCat === 'saved';
   const usePackFace = !!packCardTheme && isMarketplaceBundleCard;
+  const savedGlass = savedCollectionSurface && !usePackFace;
   /**
    * Фокус-строка через SharedValue (перф-пакет E2): расфокус peek-строк пака
    * анимируется на UI-потоке; скролл не дергает setState родителя.
@@ -260,8 +267,8 @@ function FlashcardListItemImpl({
    * FLASHCARD_LIST_ITEM_CARD_STYLE: его же использует Learning V2.
    */
   const cardFacePadStyle = useMemo(
-    () => ({ padding: Math.max(14, Math.round(22 * cardScale)) }),
-    [cardScale],
+    () => ({ padding: savedGlass ? 8 : Math.max(14, Math.round(22 * cardScale)) }),
+    [cardScale, savedGlass],
   );
   /** Backup height if layout measure fails (should be rare) */
   const expandSectionMax = Math.min(Math.round(winH * 0.92), 4000);
@@ -602,9 +609,9 @@ function FlashcardListItemImpl({
               }}
             >
               <Ionicons name="pencil-outline" size={16} color={t.accent} />
-              <Text style={{ color: t.accent, fontSize: f.sub, fontWeight: '700' }} numberOfLines={1}>
+              <FlowText testID={`fc-details-edit-label-${item.id}`} provenance="authored" style={{ color: t.accent, fontSize: f.sub, fontWeight: '700', flexShrink: 1, textAlign: 'center' }}>
                 {editLabel}
-              </Text>
+              </FlowText>
             </TouchableOpacity>
           )}
           {onDeleteFromDetails && (
@@ -628,9 +635,9 @@ function FlashcardListItemImpl({
               }}
             >
               <Ionicons name="trash-outline" size={16} color={t.wrong} />
-              <Text style={{ color: t.wrong, fontSize: f.sub, fontWeight: '700' }} numberOfLines={1}>
+              <FlowText testID={`fc-details-delete-label-${item.id}`} provenance="authored" style={{ color: t.wrong, fontSize: f.sub, fontWeight: '700', flexShrink: 1, textAlign: 'center' }}>
                 {deleteLabel}
-              </Text>
+              </FlowText>
             </TouchableOpacity>
           )}
         </View>
@@ -670,14 +677,16 @@ function FlashcardListItemImpl({
           <TouchableOpacity
             activeOpacity={0.92}
             onPressIn={() => {
-              if (flipOnPressIn && !isLongPressed) onFlipCard(item.id);
+              if (flipOnPressIn && !savedGlass && !isLongPressed) onFlipCard(item.id);
             }}
             onPress={() => {
               if (isLongPressed) {
                 onCloseDelete();
                 return;
               }
-              if (!flipOnPressIn) onFlipCard(item.id);
+              if (savedGlass && hasDetails) {
+                toggleDetails();
+              } else if (!flipOnPressIn) onFlipCard(item.id);
             }}
             onLongPress={() => {
               if (isLongPressed) {
@@ -706,7 +715,8 @@ function FlashcardListItemImpl({
                   { overflow: 'hidden' },
                   usePackFace
                     ? { backgroundColor: 'transparent', borderWidth: 0 }
-                    : { backgroundColor: t.bgCard, borderColor: t.border },
+                    : savedGlass ? { backgroundColor: g.card, borderColor: g.glassEdge }
+                      : { backgroundColor: t.bgCard, borderColor: t.border },
                 ]}
               >
               {usePackFace && packCardTheme && (
@@ -721,6 +731,12 @@ function FlashcardListItemImpl({
                 />
               )}
               {!usePackFace && (
+                savedGlass ? <>
+                  <BlurView pointerEvents="none" intensity={Platform.OS === 'android' ? 12 : 16} blurReductionFactor={3}
+                    experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'} tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
+                  <LinearGradient pointerEvents="none" colors={[g.selected, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
+                  <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 1, right: 1, height: 1, backgroundColor: g.glassEdge }} />
+                </> :
                 <LinearGradient
                   pointerEvents="none"
                   colors={t.cardGradient}
@@ -746,20 +762,34 @@ function FlashcardListItemImpl({
                   <Text style={{ color: t.accent, fontSize: 10, fontWeight: '800', letterSpacing: 0.4 }}>DEV PACK</Text>
                 </View>
               )}
-              <View
-                style={{
-                  height: frontTextMaxH,
-                  width: '100%',
-                  justifyContent: 'center',
-                  paddingHorizontal: 8,
-                  paddingVertical: 6,
-                }}
+              {savedGlass ? (
+                <View style={styles.savedCompactRow}>
+                  <Text testID={`fc-saved-row-number-${item.id}`} style={[styles.savedNumber, { color: g.secondary }]}>{itemIdx + 1}</Text>
+                  <ScrollView nestedScrollEnabled showsVerticalScrollIndicator={false} style={styles.savedTextScroll} contentContainerStyle={styles.savedTextContent}>
+                    <FlowText testID={`fc-saved-row-word-${item.id}`} provenance="external" style={[styles.savedWord, { color: g.text }]}>{item.en}</FlowText>
+                    {item.transcription?.trim() ? <FlowText testID={`fc-saved-row-ipa-${item.id}`} provenance="external" style={[styles.savedIpa, { color: g.secondary }]}>{item.transcription.trim()}</FlowText> : null}
+                    <FlowText testID={`fc-saved-row-translation-${item.id}`} provenance="external" style={[styles.savedTranslation, { color: g.secondary }]}>{tr}</FlowText>
+                    {strength ? <WordStrengthDots strength={strength} t={t} testID={`fc-strength-${item.id}`} /> : null}
+                  </ScrollView>
+                  <View style={styles.savedActions}>
+                    <TouchableOpacity testID={`fc-saved-row-play-${item.id}`} accessibilityRole="button" accessibilityLabel={voiceLabel} disabled={voiceDisabled} onPress={speakFront} style={[styles.savedAction, { backgroundColor: g.opaqueControl }]}>
+                      <Ionicons name="play" size={17} color={g.lightTint} />
+                    </TouchableOpacity>
+                    {canDeleteThis ? <TouchableOpacity testID={`fc-saved-row-menu-${item.id}`} accessibilityRole="button" accessibilityLabel={deleteLabel} onPress={() => onOpenDelete(item.id)} style={styles.savedAction}>
+                      <Ionicons name="ellipsis-horizontal" size={19} color={g.secondary} />
+                    </TouchableOpacity> : null}
+                  </View>
+                </View>
+              ) : <ScrollView nestedScrollEnabled showsVerticalScrollIndicator
+                style={{ maxHeight: frontTextMaxH, width: '100%' }}
+                contentContainerStyle={{ minHeight: frontTextMaxH, justifyContent: 'center', paddingHorizontal: 8, paddingVertical: 6 }}
               >
                 {isModernAbbrevCard ? (
                   <>
-                    <Text
+                    <FlowText
+                      testID={`fc-card-abbrev-head-${item.id}`}
+                      provenance="external"
                       maxFontSizeMultiplier={1.35}
-                      numberOfLines={2}
                       style={{
                         color: t.textPrimary,
                         fontSize: cardFont(f.h1 + 4, 18),
@@ -770,11 +800,12 @@ function FlashcardListItemImpl({
                       }}
                     >
                       {parsedAbbrevEn.head}
-                    </Text>
+                    </FlowText>
                     {parsedAbbrevEn.rest ? (
-                      <Text
+                      <FlowText
+                        testID={`fc-card-abbrev-rest-${item.id}`}
+                        provenance="external"
                         maxFontSizeMultiplier={1.35}
-                        numberOfLines={3}
                         style={{
                           color: t.textMuted,
                           fontSize: cardFont(f.body, 12),
@@ -785,14 +816,15 @@ function FlashcardListItemImpl({
                         }}
                       >
                         {parsedAbbrevEn.rest}
-                      </Text>
+                      </FlowText>
                     ) : null}
                   </>
                 ) : (
                   <>
-                    <Text
+                    <FlowText
+                      testID={`fc-card-front-text-${item.id}`}
+                      provenance="external"
                       maxFontSizeMultiplier={1.35}
-                      numberOfLines={item.transcription?.trim() ? 4 : 6}
                       style={{
                         color: t.textPrimary,
                         fontSize: cardFont(f.h1 + 2, 17),
@@ -802,11 +834,12 @@ function FlashcardListItemImpl({
                       }}
                     >
                       {item.en}
-                    </Text>
+                    </FlowText>
                     {item.transcription?.trim() ? (
-                      <Text
+                      <FlowText
+                        testID={`fc-card-transcription-${item.id}`}
+                        provenance="external"
                         maxFontSizeMultiplier={1.35}
-                        numberOfLines={4}
                         style={{
                           color: t.textMuted,
                           fontSize: cardFont(f.sub, 11),
@@ -818,11 +851,11 @@ function FlashcardListItemImpl({
                         }}
                       >
                         {item.transcription.trim()}
-                      </Text>
+                      </FlowText>
                     ) : null}
                   </>
                 )}
-              </View>
+              </ScrollView>}
               </Reanimated.View>
             </Animated.View>
 
@@ -840,7 +873,8 @@ function FlashcardListItemImpl({
                   { overflow: 'hidden' },
                   usePackFace
                     ? { backgroundColor: 'transparent', borderWidth: 0 }
-                    : { backgroundColor: t.bgSurface, borderColor: `${t.accent}80` },
+                    : savedGlass ? { backgroundColor: g.card, borderColor: g.glassEdge }
+                      : { backgroundColor: t.bgSurface, borderColor: `${t.accent}80` },
                 ]}
               >
               {usePackFace && packCardTheme && (
@@ -855,6 +889,12 @@ function FlashcardListItemImpl({
                 />
               )}
               {!usePackFace && (
+                savedGlass ? <>
+                  <BlurView pointerEvents="none" intensity={Platform.OS === 'android' ? 12 : 16} blurReductionFactor={3}
+                    experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'} tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
+                  <LinearGradient pointerEvents="none" colors={[g.selected, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
+                  <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 1, right: 1, height: 1, backgroundColor: g.glassEdge }} />
+                </> :
                 <LinearGradient
                   pointerEvents="none"
                   colors={[t.cardGradient[1], t.cardGradient[0]]}
@@ -934,7 +974,7 @@ function FlashcardListItemImpl({
           </TouchableOpacity>
 
           {/* E13: точки силы слова из проекции ошибок — только на лице. */}
-          {strength ? (
+          {strength && !savedGlass ? (
             <Animated.View
               pointerEvents="none"
               style={{ position: 'absolute', bottom: 12, left: 14, zIndex: 5, opacity: cFrontOp }}
@@ -943,7 +983,7 @@ function FlashcardListItemImpl({
             </Animated.View>
           ) : null}
 
-          <View
+          {!savedGlass ? <View
             onStartShouldSetResponder={() => true}
             style={
               voiceSpeakOnRight
@@ -1041,9 +1081,9 @@ function FlashcardListItemImpl({
                 </TouchableOpacity>
               </Animated.View>
             )}
-          </View>
+          </View> : null}
 
-          {hasDetails && (
+          {hasDetails && !savedGlass && (
             <View
               onStartShouldSetResponder={() => true}
               style={{ position: 'absolute', bottom: 8, left: 0, right: 0, zIndex: 6, alignItems: 'center' }}
@@ -1080,8 +1120,8 @@ function FlashcardListItemImpl({
             renderToHardwareTextureAndroid={effectiveOs === 'android'}
             style={[
               {
-                backgroundColor: t.bgSurface,
-                borderColor: t.border,
+                backgroundColor: savedGlass ? g.card : t.bgSurface,
+                borderColor: savedGlass ? g.glassEdge : t.border,
                 borderLeftWidth: 1,
                 borderRightWidth: 1,
                 borderBottomWidth: 1,
@@ -1153,6 +1193,18 @@ function FlashcardListItemImpl({
     </Animated.View>
   );
 }
+
+const styles = StyleSheet.create({
+  savedCompactRow: { flex: 1, width: '100%', flexDirection: 'row', alignItems: 'center', gap: 10 },
+  savedNumber: { width: 19, alignSelf: 'flex-start', marginTop: 8, fontSize: 13, lineHeight: 18, fontWeight: '700' },
+  savedTextScroll: { flex: 1, maxHeight: 94 },
+  savedTextContent: { justifyContent: 'center', paddingVertical: 4 },
+  savedWord: { fontSize: 17, lineHeight: 21, fontWeight: '700' },
+  savedIpa: { fontSize: 12, lineHeight: 16, marginTop: 1 },
+  savedTranslation: { fontSize: 12, lineHeight: 16, marginTop: 2 },
+  savedActions: { alignSelf: 'stretch', justifyContent: 'space-between', alignItems: 'center' },
+  savedAction: { width: 31, height: 31, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
+});
 
 const FlashcardListItem = React.memo(FlashcardListItemImpl);
 

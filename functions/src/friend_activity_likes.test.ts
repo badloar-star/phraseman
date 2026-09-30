@@ -161,7 +161,7 @@ jest.mock('firebase-admin', () => ({
   firestore: jest.fn(() => buildDb()),
 }));
 
-jest.mock('./friend_gifts', () => ({
+jest.mock('./expo_push', () => ({
   sendExpoPush: jest.fn(async () => 'sent'),
 }));
 
@@ -390,11 +390,11 @@ describe('friendLikeActivity', () => {
 
   test('sends the approved high-five push after the durable notification exists', async () => {
     docs.set('users/target', { displayName: 'Target', expoPushToken: 'ExponentPushToken[target]' });
-    const { sendExpoPush } = require('./friend_gifts') as { sendExpoPush: jest.Mock };
+    const { sendExpoPush } = require('./expo_push') as { sendExpoPush: jest.Mock };
 
     await callProfileLike();
 
-    expect(docs.get(likeNotificationPath('target', '__profile__'))).toMatchObject({
+    expect(docs.get(likeNotificationPath('target', 'like.profile'))).toMatchObject({
       type: 'activity_like',
       text: 'Пятюня на удачу уже здесь.',
       nav: expect.objectContaining({ kind: 'friend_event', action: 'high_five' }),
@@ -405,45 +405,6 @@ describe('friendLikeActivity', () => {
       'Пятюня получена.',
       expect.objectContaining({ type: 'activity_like', actorStableUid: 'sender' }),
     );
-  });
-
-  test('mirrors league group boost event likes into the league group document', async () => {
-    const boostEventId = 'league_group_boost_2026-20_group-1_1000';
-    docs.set(`users/target/my_events/${boostEventId}`, {
-      uid: 'target',
-      type: 'league_group_boost',
-      groupId: 'group-1',
-      activityLikeCount: 2,
-      ts: Date.now() - 1000,
-    });
-    docs.set('league_groups/group-1', {
-      weekId: '2026-20',
-      groupBoost: {
-        buyerUid: 'target',
-        likeEventId: boostEventId,
-        likeCount: 2,
-        multiplier: 2,
-      },
-    });
-
-    const result = await callLike({ eventId: boostEventId });
-
-    expect(result).toMatchObject({
-      ok: true,
-      eventId: boostEventId,
-      activityLikeCount: 3,
-    });
-    expect(docs.get(`users/target/my_events/${boostEventId}`)).toMatchObject({
-      activityLikeCount: 3,
-    });
-    expect(docs.get('league_groups/group-1')).toMatchObject({
-      groupBoost: {
-        buyerUid: 'target',
-        likeEventId: boostEventId,
-        likeCount: 3,
-        multiplier: 2,
-      },
-    });
   });
 
   test('rejects self likes before any writes', async () => {
@@ -500,27 +461,27 @@ describe('friendLikeActivity profile-mode (user card)', () => {
       ok: true,
       date: '2026-05-14',
       targetUid: 'target',
-      eventId: '__profile__',
+      eventId: 'like.profile',
       activityLikeCount: 1,
       targetActivityLikeTotal: 1,
     });
     expect(docs.get('users/target/activity_like_stats/summary')).toMatchObject({
       total: 1,
       lastFromUid: 'sender',
-      lastEventId: '__profile__',
+      lastEventId: 'like.profile',
     });
-    expect(docs.get(sentLikePath('target', '__profile__'))).toMatchObject({
+    expect(docs.get(sentLikePath('target', 'like.profile'))).toMatchObject({
       targetUid: 'target',
-      eventId: '__profile__',
+      eventId: 'like.profile',
       kind: 'profile',
     });
-    expect(docs.get(receivedLikePath('target', '__profile__'))).toMatchObject({
+    expect(docs.get(receivedLikePath('target', 'like.profile'))).toMatchObject({
       fromUid: 'sender',
       fromName: 'Sender Name',
       kind: 'profile',
     });
     // Profile likes never touch a my_events doc.
-    expect(docs.get('users/target/my_events/__profile__')).toBeUndefined();
+    expect(docs.get('users/target/my_events/like.profile')).toBeUndefined();
   });
 
   test('does not increment the event counter for a profile like', async () => {
@@ -553,7 +514,7 @@ describe('friendLikeActivity profile-mode (user card)', () => {
       code: 'failed-precondition',
       message: 'Self activity likes are not allowed',
     });
-    expect(docs.get(sentLikePath('sender', '__profile__'))).toBeUndefined();
+    expect(docs.get(sentLikePath('sender', 'like.profile'))).toBeUndefined();
   });
 });
 
@@ -561,8 +522,8 @@ describe('friendUnlikeActivity (toggle off)', () => {
   test('turns off the sender toggle without erasing the delivered high-five history', async () => {
     await callProfileLike();
     expect(docs.get('users/target/activity_like_stats/summary')).toMatchObject({ total: 1 });
-    const deliveredHistory = docs.get(receivedLikePath('target', '__profile__'));
-    const deliveredNotification = docs.get(likeNotificationPath('target', '__profile__'));
+    const deliveredHistory = docs.get(receivedLikePath('target', 'like.profile'));
+    const deliveredNotification = docs.get(likeNotificationPath('target', 'like.profile'));
 
     const result = await callUnlike();
 
@@ -570,13 +531,13 @@ describe('friendUnlikeActivity (toggle off)', () => {
       ok: true,
       removed: true,
       targetUid: 'target',
-      eventId: '__profile__',
+      eventId: 'like.profile',
       targetActivityLikeTotal: 0,
     });
     expect(docs.get('users/target/activity_like_stats/summary')).toMatchObject({ total: 0 });
-    expect(docs.get(sentLikePath('target', '__profile__'))).toBeUndefined();
-    expect(docs.get(receivedLikePath('target', '__profile__'))).toEqual(deliveredHistory);
-    expect(docs.get(likeNotificationPath('target', '__profile__'))).toEqual(deliveredNotification);
+    expect(docs.get(sentLikePath('target', 'like.profile'))).toBeUndefined();
+    expect(docs.get(receivedLikePath('target', 'like.profile'))).toEqual(deliveredHistory);
+    expect(docs.get(likeNotificationPath('target', 'like.profile'))).toEqual(deliveredNotification);
   });
 
   test('can like a different user after unliking without any daily quota', async () => {
@@ -600,7 +561,7 @@ describe('friendUnlikeActivity (toggle off)', () => {
     const result = await callUnlike({ targetStableId: 'target2' });
     expect(result).toMatchObject({ removed: false });
     // Original like untouched.
-    expect(docs.get(sentLikePath('target', '__profile__'))).toMatchObject({ targetUid: 'target' });
+    expect(docs.get(sentLikePath('target', 'like.profile'))).toMatchObject({ targetUid: 'target' });
     expect(docs.get('users/target/activity_like_stats/summary')).toMatchObject({ total: 1 });
   });
 

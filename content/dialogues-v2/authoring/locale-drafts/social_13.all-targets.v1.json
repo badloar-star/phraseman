@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "dialogue-v2-locale-draft.v1",
+  "status": "draft_not_releaseable",
+  "sourceScenarioId": "social_13",
+  "sourceLedger": { "path": "dialogue_v2_authoring_ru.json", "revision": "v1" },
+  "targets": {
+    "en": {
+      "content": { "title": "Clear up a small misunderstanding", "briefing": "You are chatting in the Social world. Your task is to clear up a small misunderstanding. Do not end the conversation in one message: follow the steps and react to both participants.", "completionTone": "confidently, with reasons" },
+      "personas": [{ "id": "mila", "displayName": "Mila", "styleNote": "She warmly keeps the conversation going and asks natural follow-up questions." }, { "id": "zoe", "displayName": "Zoe", "styleNote": "She chats lightly and sometimes uses a gentle joke to help you sound more natural." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Refer calmly to the message" }, { "id": "objective_02", "label": "Say you understood it differently" }, { "id": "objective_03", "label": "Ask what was meant" }, { "id": "objective_04", "label": "Own your part of the confusion" }, { "id": "objective_05", "label": "Suggest clear wording" }, { "id": "objective_06", "label": "Check you understood each other" }, { "id": "objective_07", "label": "Restore a friendly tone" }
+      ]
+    },
+    "es": {
+      "content": { "title": "Resolver un pequeño malentendido", "briefing": "Estás chateando en el mundo «Social». Tu tarea es resolver un pequeño malentendido. No cierres la conversación con un solo mensaje: sigue los pasos y responde a las dos personas.", "completionTone": "con seguridad y explicando las razones" },
+      "personas": [{ "id": "mila", "displayName": "Mila", "styleNote": "Mantiene la conversación con calidez y hace preguntas de seguimiento naturales." }, { "id": "zoe", "displayName": "Zoe", "styleNote": "Habla con ligereza y a veces usa una broma suave para ayudarte a sonar más natural." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Referirte al mensaje con calma" }, { "id": "objective_02", "label": "Decir que lo entendiste de otra forma" }, { "id": "objective_03", "label": "Preguntar qué se quería decir" }, { "id": "objective_04", "label": "Reconocer tu parte de la confusión" }, { "id": "objective_05", "label": "Proponer una frase clara" }, { "id": "objective_06", "label": "Comprobar que os entendisteis" }, { "id": "objective_07", "label": "Recuperar un tono amistoso" }
+      ]
+    },
+    "fr": {
+      "content": { "title": "Dissiper un petit malentendu", "briefing": "Tu échanges des messages dans le monde «Social». Ton objectif est de dissiper un petit malentendu. Ne termine pas la conversation en un seul message : suis les étapes et réponds aux deux personnes.", "completionTone": "avec assurance et en expliquant les raisons" },
+      "personas": [{ "id": "mila", "displayName": "Mila", "styleNote": "Elle relance chaleureusement la conversation et pose des questions de suivi naturelles." }, { "id": "zoe", "displayName": "Zoé", "styleNote": "Elle discute avec légèreté et glisse parfois une petite blague pour t'aider à parler plus naturellement." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Revenir calmement au message" }, { "id": "objective_02", "label": "Dire que tu l'as compris autrement" }, { "id": "objective_03", "label": "Demander ce qui était voulu" }, { "id": "objective_04", "label": "Reconnaître ta part de confusion" }, { "id": "objective_05", "label": "Proposer une formulation claire" }, { "id": "objective_06", "label": "Vérifier que vous vous comprenez" }, { "id": "objective_07", "label": "Retrouver un ton amical" }
+      ]
+    },
+    "de": {
+      "content": { "title": "Ein kleines Missverständnis klären", "briefing": "Du schreibst im Bereich „Social“. Deine Aufgabe: Ein kleines Missverständnis klären. Beende das Gespräch nicht mit nur einer Nachricht: Gehe die Schritte durch und reagiere auf beide Teilnehmende.", "completionTone": "sicher und mit Begründungen" },
+      "personas": [{ "id": "mila", "displayName": "Mila", "styleNote": "Sie nimmt das Gespräch herzlich auf und stellt natürliche Rückfragen." }, { "id": "zoe", "displayName": "Zoe", "styleNote": "Sie schreibt locker und hilft dir manchmal mit einem kleinen Witz, natürlicher zu klingen." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Dich ruhig auf die Nachricht beziehen" }, { "id": "objective_02", "label": "Sagen, dass du sie anders verstanden hast" }, { "id": "objective_03", "label": "Nach der Absicht fragen" }, { "id": "objective_04", "label": "Deinen Anteil an der Verwirrung anerkennen" }, { "id": "objective_05", "label": "Eine klare Formulierung vorschlagen" }, { "id": "objective_06", "label": "Prüfen, ob ihr euch versteht" }, { "id": "objective_07", "label": "Zum freundlichen Ton zurückkehren" }
+      ]
+    }
+  }
+}

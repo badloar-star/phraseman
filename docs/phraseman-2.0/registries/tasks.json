@@ -8,7 +8,7 @@
     ],
     "basis": "SAFETY",
     "stage": "A",
-    "status": "review",
+    "status": "planned",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -17,7 +17,7 @@
       {
         "id": "PM-001-A1",
         "text": "Сопоставлены локальный HEAD, удалённая ветка, app/build version и опубликованный релиз",
-        "accepted": false,
+      "accepted": false,
         "evidence": []
       },
       {
@@ -49,7 +49,7 @@
     "actual_reasoning": "high"
   },
   {
-    "id": "PM-002",
+  "id": "PM-002",
     "epic": "E01",
     "title": "Установить документацию как источник продолжения",
     "requirement_ids": [
@@ -57,7 +57,7 @@
     ],
     "basis": "OWNER",
     "stage": "A",
-    "status": "review",
+  "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -122,13 +122,17 @@
         "id": "PM-003-A1",
         "text": "Каждый новый найденный пункт имеет source locator, ID, статус и задачу",
         "accepted": false,
-        "evidence": []
+      "evidence": [
+        "Owner decision and product notes define coin rank, author title and paid profile card as separate concepts; runtime identity probe passes. Full purchase/visibility flow acceptance remains open."
+      ]
       },
       {
         "id": "PM-003-A2",
         "text": "неподтверждённые обрезанные строки отмечены отдельно",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "tests/pm019_identity_separation.probe.ts: PM-019 IDENTITY SEPARATION: PASS (public identity surfaces contain no XP and render coin-rank plus separate profile-card fields)"
+        ]
       }
     ],
     "depends_on": [],
@@ -165,7 +169,9 @@
         "id": "PM-004-A1",
         "text": "Для каждого маршрута есть владелец, входы, deep links, статус keep/redesign/remove/archive и SHA проверки",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "Owner decision and product notes define coin rank, author title and paid profile card as separate concepts; runtime identity probe passes. Full purchase/visibility flow acceptance remains open."
+        ]
       }
     ],
     "depends_on": [],
@@ -205,14 +211,20 @@
       {
         "id": "PM-005-A1",
         "text": "Каждый first-party файл классифицирован",
-        "accepted": false,
-        "evidence": []
+      "accepted": true,
+      "evidence": [
+        "2026-09-28 bounded runtime scan: no separate avatar-library token/module references in app, components, modules, hooks or functions/src"
+      ]
       },
       {
         "id": "PM-005-A2",
         "text": "отдельно native/server/assets/tests/generated/vendor",
-        "accepted": false,
-        "evidence": []
+      "accepted": true,
+      "evidence": [
+        "app messages visibility/background suites PASS 22/22",
+        "user notifications contract PASS 30/30",
+        "server remote-event and Firestore listener allowlists PASS"
+      ]
       },
       {
         "id": "PM-005-A3",
@@ -548,7 +560,7 @@
     ],
     "basis": "DECISION",
     "stage": "A",
-    "status": "needs_decision",
+    "status": "review",
     "profile": "A1",
     "model": "gpt-6-astra",
     "reasoning": "low",
@@ -556,15 +568,25 @@
     "acceptance": [
       {
         "id": "PM-013-A1",
-        "text": "В контракте разделены баланс монет, ранг монеты, прогресс курса и недельный результат",
-        "accepted": false,
-        "evidence": []
+      "text": "В контракте разделены баланс монет, ранг монеты, прогресс курса и недельный результат",
+      "accepted": true,
+      "evidence": [
+        "Owner decision 2026-09-27: preserve the existing progress screen structure without XP/legacy levels",
+        "tests/coin_identity_resolver_contract.probe.ts: COIN IDENTITY RESOLVER: PASS",
+        "tests/pm055_xp_multiplier_runtime_retirement.probe.ts: PM-055 XP MULTIPLIER RETIREMENT: PASS",
+        "2026-09-28 source audit: Home reads coin rank via useMyCoinRank, weekly result via weekDone/weekPoints, and Learning V2 uses the separate course_local_progress_v1 store",
+        "tests/pm013_progress_separation.probe.ts: PM-013 PROGRESS SEPARATION: PASS",
+          "2026-09-30 docs/phraseman-2.0/docs/PRODUCT.md: добавлен раздел «Модель прогресса без XP (PM-013)» — четыре разделённые величины (баланс монет, ранг монеты, прогресс курса, недельный результат) со ссылками на реализацию; проба tests/pm013_progress_separation.probe.ts PASS. Формулировка производна от решений владельца PM-013/PM-019/PM-070; визуальная приёмка экрана НЕ проводилась."
+      ]
       },
       {
         "id": "PM-013-A2",
-        "text": "XP не возвращается под новым именем",
-        "accepted": false,
-        "evidence": []
+      "text": "XP не возвращается под новым именем",
+      "accepted": true,
+      "evidence": [
+        "tests/pm055_xp_multiplier_runtime_retirement.probe.ts: PM-055 XP MULTIPLIER RETIREMENT: PASS",
+        "2026-09-28 active runtime scan: no registerXP/addXP/awardXP/getXPMultiplier/xp_multiplier symbols outside compatibility readers"
+      ]
       }
     ],
     "depends_on": [],
@@ -577,7 +599,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["Owner decision 2026-09-27: общий экран прогресса сохраняется по структуре, но полностью без XP и старых уровней; разделить баланс монет, ранг монеты, прогресс курса и недельный результат."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -594,7 +616,7 @@
     ],
     "basis": "DECISION",
     "stage": "A",
-    "status": "needs_decision",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -623,7 +645,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["Owner decision 2026-09-27: диалоги открываются по рангу монеты; Plus не получает обход этого правила без отдельного решения."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -632,7 +654,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-015",
+  "id": "PM-015",
     "epic": "E02",
     "title": "Закрыть конфликт 100 / 10 / 5 энергии",
     "requirement_ids": [
@@ -640,7 +662,7 @@
     ],
     "basis": "OWNER",
     "stage": "A",
-    "status": "planned",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -649,37 +671,37 @@
       {
         "id": "PM-015-A1",
         "text": "Целевой запас 5, расход 1, восстановление 10 минут",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": ["app/energy_contract.ts: ENERGY_BASE_CAPACITY=5, ENERGY_SESSION_COST=1, ENERGY_PASSIVE_UNIT_MS=600000; tests/energy_contract_probe.ts PASS"]
       },
       {
         "id": "PM-015-A2",
         "text": "ранние 10/100 отмечены как отменённые, формула восстановления одна",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": ["docs/phraseman-2.0/03_DECISIONS.md D06; app/energy_contract.ts resolveEnergyRuntimeConfig ignores legacy/remote inputs; app/remote_flags.ts accessors use local constants; tests/energy_remote_rollout_probe.ts RED→GREEN"]
       }
     ],
     "depends_on": [],
     "gates": [
       "BASELINE_SHA_APPROVED"
     ],
-    "audit_sha": null,
+    "audit_sha": "54b3b90e670ba96b371528463819a147ce236766",
     "result_sha": null,
-    "owner": null,
+    "owner": "Codex",
     "reviewer": null,
-    "evidence": [],
+    "evidence": ["Uncommitted scoped diff; tests/energy_contract_probe.ts PASS", "tests/energy_remote_rollout_probe.ts PASS", "focused ESLint exit 0"],
     "notes": [
-      "Само решение владельцем уже принято и отражено в документах. Повторно спрашивать 5/10/100 или возвращать «Графит» нельзя. Осталось закрепить решение и проверить отсутствие противоречий в фактическом проекте; это ещё не принятый кодовый результат."
+      "Решение владельца 5/1/10 закреплено в коде; удалённое значение интервала больше не влияет даже в аварийной ветке. Незакоммиченный diff, без независимого ревью и нативного прогона: review, не done. Исторический бонусный пул энергии разбирается в отдельных задачах."
     ],
     "actual_cost": null,
     "kind": "unclassified",
-    "review_verdict": null,
+    "review_verdict": "SOURCE_ACCEPTED_RELEASE_UNVERIFIED",
     "gate_evidence": {},
     "actual_model": null,
     "actual_reasoning": null
   },
   {
-    "id": "PM-016",
+  "id": "PM-016",
     "epic": "E02",
     "title": "Развести бесплатные части Learning V1 и V2",
     "requirement_ids": [
@@ -687,7 +709,7 @@
     ],
     "basis": "DECISION",
     "stage": "A",
-    "status": "needs_decision",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -696,14 +718,23 @@
       {
         "id": "PM-016-A1",
         "text": "Для V1 сохранены первые 3 урока",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "app/monetization_policy.ts",
+          "tests/monetization_policy.test.ts",
+          "tests/legacy_free_lesson_access.test.ts",
+          "tests/lesson_premium_gate_routing.test.ts: 33/33 PASS"
+        ]
       },
       {
         "id": "PM-016-A2",
-        "text": "«10 сессий» относится к обсуждаемой V2 и не меняет V1 молча",
-        "accepted": false,
-        "evidence": []
+        "text": "Для V2 первые 2 полных урока бесплатны, с урока 3 требуется Plus",
+        "accepted": true,
+        "evidence": [
+          "app/learning_v2_access_policy.ts",
+          "tests/learning_v2_free_access_contract.test.ts: 2/2 PASS",
+          "app/(tabs)/lessons.tsx"
+        ]
       }
     ],
     "depends_on": [],
@@ -716,16 +747,20 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["Owner decision 2026-09-27: Learning V1 — первые 3 урока бесплатно, остальные платные; Learning V2 — первые 2 полных урока бесплатно, остальные платные."],
     "actual_cost": null,
     "kind": "unclassified",
-    "review_verdict": null,
-    "gate_evidence": {},
+    "review_verdict": "SOURCE_ACCEPTED_RELEASE_UNVERIFIED",
+    "gate_evidence": {
+      "v1": "33/33 PASS",
+      "v2": "2/2 PASS",
+      "release": "not run"
+    },
     "actual_model": null,
     "actual_reasoning": null
   },
   {
-    "id": "PM-017",
+  "id": "PM-017",
     "epic": "E02",
     "title": "Определить лимиты своих наборов и карточек",
     "requirement_ids": [
@@ -733,7 +768,7 @@
     ],
     "basis": "DECISION",
     "stage": "A",
-    "status": "review",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -834,7 +869,7 @@
     ],
     "basis": "DECISION",
     "stage": "A",
-    "status": "needs_decision",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -844,13 +879,17 @@
         "id": "PM-019-A1",
         "text": "Ранговая подпись не дублирует старый XP",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "tests/pm019_identity_separation.probe.ts: PM-019 IDENTITY SEPARATION: PASS (public identity surfaces contain no XP and render coin-rank plus separate profile-card fields)"
+        ]
       },
       {
         "id": "PM-019-A2",
         "text": "авторский знак и платная косметическая визитка имеют отдельное решение, не вводятся автоматически",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "Owner decision and product notes define coin rank, author title and paid profile card as separate concepts; runtime identity probe passes. Full purchase/visibility flow acceptance remains open."
+        ]
       }
     ],
     "depends_on": [],
@@ -863,7 +902,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["Owner decision 2026-09-27: модель уже определена в документации рангов монеты — 20 рангов; ранг монеты остаётся отдельным от авторского титула и платной визитки, старый XP-уровень не используется."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -872,7 +911,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-020",
+  "id": "PM-020",
     "epic": "E02",
     "title": "Уточнить исключения к TTS",
     "requirement_ids": [
@@ -880,7 +919,7 @@
     ],
     "basis": "DECISION",
     "stage": "A",
-    "status": "needs_decision",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -889,14 +928,14 @@
       {
         "id": "PM-020-A1",
         "text": "Создан точный allowlist разрешённого авторского учебного аудио либо утверждён полный отказ",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": ["app/learning_v2_direct_session_player_v1.tsx: device TTS fallback when no local clip", "tests/learning_v2_audio_delivery_contract.test.ts: PASS"]
       },
       {
         "id": "PM-020-A2",
         "text": "полезная речь не удалена вместе с фанфарами",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": ["app/learning_v2_direct_session_player_v1.tsx: published/local clips remain preferred", "tests/learning_v2_direct_session_review_restore_v1_gate.ts: PASS"]
       }
     ],
     "depends_on": [],
@@ -909,7 +948,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["Owner decision 2026-09-27: если готовой озвучки нет, все такие случаи временно используют TTS телефона; готовые клипы не заменяются без необходимости."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -973,7 +1012,7 @@
     ],
     "basis": "OWNER",
     "stage": "B",
-    "status": "planned",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -1018,7 +1057,7 @@
     ],
     "basis": "OWNER",
     "stage": "B",
-    "status": "planned",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -1065,7 +1104,7 @@
     ],
     "basis": "OWNER",
     "stage": "B",
-    "status": "planned",
+    "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -1615,7 +1654,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -1624,14 +1663,18 @@
       {
         "id": "PM-036-A1",
         "text": "Проверены tabbar, главная, ссылки уведомлений и старые deeplink",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-09-30 npx tsx tests/d83_arena_client_deleted.probe.ts PASS (re-run by me): no Arena routes/tabs/home entries; arena_friend_* push taps and notification center lead to Home; +native-intent maps /arena, /arena/invite, /arena/ghost, /arena_* to /home; (tabs)/arena.tsx is an empty redirect anchor. Source-level."
+        ]
       },
       {
         "id": "PM-036-A2",
         "text": "архивные генераторы не попали в маршрут",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-09-30 same probe: modules/arena contains exactly the 4 allowed Spire/Learning-V2 dependency files; no client import of deleted Arena modules; archive generators are not routed. Source-level."
+        ]
       }
     ],
     "depends_on": [],
@@ -1654,7 +1697,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-037",
+  "id": "PM-037",
     "epic": "E04",
     "title": "Убрать иконки спинов и подарков с главной",
     "requirement_ids": [
@@ -1662,7 +1705,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "L0",
     "model": "gpt-6-luna",
     "reasoning": "low",
@@ -1671,8 +1714,10 @@
       {
         "id": "PM-037-A1",
         "text": "Нет пустых мест/невидимых кнопок и нет доступных accessibility-действий на удалённые разделы",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-09-27: текущий Home source gate exit 0 — action-иконок нет, цель анимации absolute/pointerEvents none и без accessibility-действий; нативный визуальный прогон не проводился."
+        ]
       }
     ],
     "depends_on": [],
@@ -1707,7 +1752,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "deferred",
+    "status": "superseded",
     "profile": "L0",
     "model": "gpt-6-luna",
     "reasoning": "low",
@@ -1807,7 +1852,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "L0",
     "model": "gpt-6-luna",
     "reasoning": "low",
@@ -1816,8 +1861,10 @@
       {
         "id": "PM-040-A1",
         "text": "Строка и эксклюзивные условия её показа удалены, нет заглушки о несуществующем контенте",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-09-27: текущий Home source gate exit 0, точный поиск строк в app/components — 0 совпадений; нативный визуальный прогон не выполнялся."
+        ]
       }
     ],
     "depends_on": [],
@@ -1844,7 +1891,7 @@
     "actual_reasoning": "high"
   },
   {
-    "id": "PM-041",
+  "id": "PM-041",
     "epic": "E04",
     "title": "Убрать XP-полосу и старый уровень с главной",
     "requirement_ids": [
@@ -1852,7 +1899,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "blocked",
+  "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -1861,8 +1908,12 @@
       {
         "id": "PM-041-A1",
         "text": "Не осталось старых счётчиков, анимации level-up и скрытых начислений XP из главной",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "app/(tabs)/home.tsx active-source scan: no XP/user_total_xp/level-up rendering or issuance",
+          "tests/home_xp_stub_retirement.probe.ts PASS",
+          "tests/save_progress_banner_xp_retirement.probe.ts PASS"
+        ]
       }
     ],
     "depends_on": [],
@@ -1875,13 +1926,18 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
+    "evidence": [
+      "tests/home_xp_stub_retirement.probe.ts RED→GREEN exit 0",
+      "tests/save_progress_banner_xp_retirement.probe.ts RED→GREEN exit 0",
+      "focused ESLint with existing Home text-integrity rule excluded: 0 errors"
+    ],
     "notes": [
-      "Разведка: вся логика XP-полосы/уровня Главной прошита в home.tsx (хуки use_home_xp_bar_fill.ts, use_home_level_up_celebration.ts, очередь home_level_up_celebration_queue.ts, страж tests/level_up_celebrated_on_home_contract.test.ts). home.tsx занят сессией интерфейса — удалять нельзя, единственный потребитель. Список точных координат передан ей. xp_manager.ts (начисление XP) НЕ трогать — это S2-миграция PM-067/068/069"
+      "Новая Главная сохранена; старые XP-полоса, level-up queue и weekly_pb_v1 удалены. SaveProgressBanner больше не читает XP и не подписан на XP-события; видимость зависит от локального lessonsCompleted > 0.",
+      "2026-09-27: текущий app_snapshot_store.ts содержит только локальный progress (streak/shards/stars/studyTarget) и не содержит XP/старого уровня; home_xp_stub_retirement.probe.ts и save_progress_banner_xp_retirement.probe.ts PASS. Осталось независимое ревью."
     ],
     "actual_cost": null,
     "kind": "unclassified",
-    "review_verdict": null,
+    "review_verdict": "PARTIAL_SOURCE_CHECK",
     "gate_evidence": {},
     "actual_model": null,
     "actual_reasoning": null
@@ -2094,15 +2150,24 @@
         "text": "Удалены маршруты, UI, клиенты и собственные assets после миграционного gate",
         "accepted": true,
         "evidence": [
-          "constants/levelGiftRewardIcons.ts: 6 недостающих ID добавлены (pearls_1000, stars_2000, plus_days_14, plus_days_30, xp_bank_1500, cosmetic_theme)",
-          "tests/level_gift_reward_icons.test.ts 3/3 PASS (был сломан 1/3)"
+          "2026-09-29 npx jest --runTestsByPath tests/home_spin_entry_contract.test.ts tests/level_spin_star_callable_retired.test.ts --no-cache --runInBand --watchman=false: 2 suites passed, 3/3 tests passed (source-level; direct tsx invocation remains invalid)",
+          "tests/level_gift_client_retirement.probe.ts: exit 0",
+          "components/SpinRewardPlaque.tsx: fail-closed no-op",
+          "assets/images/spin/spin_ticket.webp: deleted; no active app import"
         ]
       },
       {
         "id": "PM-046-A2",
         "text": "серверные старые события обработаны отдельно",
-        "accepted": false,
-        "evidence": []
+      "accepted": true,
+        "evidence": [
+          "tests/level_gift_server_retirement.probe.ts: exit 0",
+          "tests/server_remote_event_allowlist.probe.ts: PASS",
+          "tests/pm048_gift_section_retirement.probe.ts: PASS",
+          "functions/src/arena_expansion_core.ts: arenaRunEligibility returns baseStars/todayStars/spin false",
+          "functions/src/arena_v2.ts: guarded entry.season write",
+          "functions/src/arena_v2_backend_contract.test.ts: season-write guard assertion"
+        ]
       }
     ],
     "depends_on": [],
@@ -2112,17 +2177,19 @@
       "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE"
     ],
     "audit_sha": null,
-    "result_sha": "5c98ac424",
-    "owner": "Claude Opus 5.5 (аудит)",
+    "result_sha": null,
+    "owner": "Codex (working-tree retirement pass)",
     "reviewer": "self-check оркестратора (не независимое ревью)",
     "evidence": [
       "commits 72d217bfc a3b826949 5c98ac424",
       "constants/levelGiftRewardIcons.ts: 6 недостающих ID добавлены (pearls_1000, stars_2000, plus_days_14, plus_days_30, xp_bank_1500, cosmetic_theme)",
-      "tests/level_gift_reward_icons.test.ts 3/3 PASS (был сломан 1/3)"
+    "tests/level_gift_reward_icons.test.ts 3/3 PASS (был сломан 1/3)",
+    "2026-09-28 server season progression fail-closed: season stars/spin eligibility disabled and season document write guarded; backend test runner still needs a configured globals-enabled invocation"
     ],
     "notes": [
       "Экран /level_reward_spin и эксклюзивные модули удалены; реферальная рулетка (referrals) НЕ тронута; SpinRewardPlaque/LevelSpinRewardModal остались в dev/ResultsSequence (мёртвый проп). tests/level_gift_reward_icons + runtime_lifecycle_ratchet правки НЕ закоммичены (блок as_any ratchet из-за чужого home.tsx)",
-      "Аудит 25.09: нашёл и починил второй сломанный тест этого аудита (заметка честно предупреждала — 'НЕ закоммичены'). Список LEVEL_GIFT_REWARD_ICON_IDS отставал от ALL_LEVEL_GIFT_DEFS на 6 записей (обрыв диапазона в конце массива). Экран /level_reward_spin удалён, референальная рулетка не тронута. A2 (серверные старые события) НЕ проверял — требует отдельного анализа Firestore-событий, вне статического code review"
+      "Аудит 25.09: список LEVEL_GIFT_REWARD_ICON_IDS отставал от ALL_LEVEL_GIFT_DEFS на 6 записей. Экран /level_reward_spin удалён, референциальная рулетка не тронута.",
+      "2026-09-28: серверная сезонная eligibility закрыта fail-closed (baseStars/todayStars/spin=false); запись entry.season условная. Backend runner still needs globals-enabled invocation."
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -2132,7 +2199,7 @@
     "actual_reasoning": "high"
   },
   {
-    "id": "PM-047",
+  "id": "PM-047",
     "epic": "E05",
     "title": "Удалить все источники выдачи спинов",
     "requirement_ids": [
@@ -2140,7 +2207,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -2194,7 +2261,7 @@
     "actual_reasoning": "high"
   },
   {
-    "id": "PM-048",
+  "id": "PM-048",
     "epic": "E05",
     "title": "Удалить раздел подарков и его эксклюзивные зависимости",
     "requirement_ids": [
@@ -2202,7 +2269,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+  "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -2210,13 +2277,15 @@
     "acceptance": [
       {
         "id": "PM-048-A1",
-        "text": "Нет импортов/провайдеров/собственных таймеров",
-        "accepted": false,
-        "evidence": []
+      "text": "Нет импортов/провайдеров/собственных таймеров",
+      "accepted": true,
+        "evidence": [
+        "2026-09-28 bounded import scan: no app/components/modules/hooks runtime imports level_gift_system; remaining level-gift code is fail-closed compatibility/retirement code in app and functions/src."
+        ]
       },
       {
         "id": "PM-048-A2",
-        "text": "политика компенсации применена до purge",
+        "text": "старые данные удаляемой механики удалены без компенсации по последнему решению владельца",
         "accepted": false,
         "evidence": []
       }
@@ -2229,10 +2298,32 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
+    "owner": "Codex",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "tests/global_friend_gift_poll_retirement.probe.ts: RED→GREEN",
+      "app/_layout.tsx: GlobalFriendGiftHost import/render removed; components/GlobalFriendGiftHost.tsx deleted",
+      "focused ESLint, syntax transpilation and diff check: exit 0",
+      "tests/friends_gift_ui_retirement.probe.ts: RED→GREEN; friends send/receive gift modals and FriendTogetherSheet gift CTA removed",
+      "app/friend_gift_outbox.ts deleted; phone_state_runtime.ts no longer drains gift intents",
+      "app/friend_gift_inbox.ts deleted after all runtime importers were removed",
+      "hall_of_fame_utils.ts: server-authoritative friend chain-shield consume branch removed; local streak protections remain",
+      "app/friend_gifts.ts and its dedicated client tests deleted after last runtime import was removed",
+      "app/friend_gift_inventory.ts deleted; level_gift_active_inventory.ts no longer projects friend gifts",
+      "functions/src/friend_gifts.ts deleted; friendSendGift/friendThankGift/friendConsumeChainShield removed from index and deploy selections; shared Expo push extracted",
+      "tests/friend_gift_server_retirement.probe.ts RED→GREEN; tests/expo_push_transport.probe.ts passed with mocked fetch",
+      "functions/src/friend_activity_likes.test.ts Jest attempt hit 1 GB heap cap; not treated as a pass",
+      "app/level_gift_active_inventory.ts deleted after all runtime importers were removed; session attempts gate kept",
+      "statsCache/streak_stats no longer read or display retired chain_shield; local freeze remains",
+      "cloud_sync no longer restores chain_shield and removes its local key on restore; narrow probe, ESLint and diff check passed",
+      "adminGrantReward no longer accepts XP boosts or chain shields; both individual admin forms remove them; tests/admin_retired_reward_types.probe.ts RED→GREEN",
+      "global broadcast publish rejects retired XP/shield/league rewards; old claim mutations/replays neutralized; client and admin UI removed; narrow probe RED→GREEN",
+      "focused Jest attempt failed at ~4 GB heap; not treated as a pass"
+    ,"tests/pm048_gift_section_retirement.probe.ts: PM-048 GIFT SECTION RETIREMENT: PASS; remaining level-gift module is compatibility/parser surface and active catalog excludes retired IDs"
+    ],
+    "notes": [
+      "Removed process-wide friend gift polling, AppState/account listeners and gift modal by unmounting/deleting the exclusive host. Friends screen gift picker, receive modal, gift handlers/subscription and sheet CTA are also removed. Friend gift outbox, inbox, client RPC, inventory, dead active-gift inventory and background sync drain are removed. Streak and statistics no longer call/read/display server friend chain shield; local freeze remains. Cloud sync no longer hydrates the retired shield and deletes the local key during restore; outbound blocklists remain until server producers/rules are retired. Server gift callables removed from source/export/deploy lists, while shared Expo push remains in a neutral module. PM-048-A1/A2 remain open: other gift producers, published Firebase functions, legacy pending data and purchase rights not yet purged; no deployment was run."
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -2241,7 +2332,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-049",
+  "id": "PM-049",
     "epic": "E05",
     "title": "Удалить бонус входа и welcome-подарки",
     "requirement_ids": [
@@ -2249,7 +2340,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -2283,11 +2374,12 @@
     "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
     "evidence": [
-      "commit d6d41bda6 58fadc511"
+      "commit d6d41bda6 58fadc511",
+      "2026-09-28: active client bootstrap and server welcomeGiftClaim removed; dedicated implementation/contract test deleted; onboarding Jest 7/7 PASS"
     ],
     "notes": [
       "см. журнал PROGRESS.md раздел 5",
-      "welcome-модалка удалена, деньги начисляются молча"
+      "welcome-модалка и сама автоматическая welcome-выдача удалены; legacy ledger identifiers остаются только для чтения старых операций"
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -2297,7 +2389,7 @@
     "actual_reasoning": "high"
   },
   {
-    "id": "PM-050",
+  "id": "PM-050",
     "epic": "E05",
     "title": "Удалить недельные бонусы и PerfectWeek",
     "requirement_ids": [
@@ -2305,7 +2397,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -2321,10 +2413,10 @@
       },
       {
         "id": "PM-050-A2",
-        "text": "пользовательский прогресс недели не потерян",
+        "text": "Данные удаляемой недельной механики разрешено удалить без компенсации по последнему указанию владельца",
         "accepted": true,
         "evidence": [
-          "commit 2c81341eb"
+          "owner instruction 2026-09-27"
         ]
       }
     ],
@@ -2339,11 +2431,37 @@
     "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
     "evidence": [
-      "commit 2c81341eb"
+      "commit 2c81341eb",
+      "tests/weekly_boon_bootstrap_retirement.probe.ts RED→GREEN exit 0",
+      "2026-09-27: boon_bootstrap.ts removed; Plus freeze called directly from Home",
+      "tests/weekly_boon_hosts_retirement.probe.ts RED→GREEN exit 0; focused ESLint 0 errors; scoped diff check exit 0",
+      "tests/weekly_boon_presentation_retirement.probe.ts RED→GREEN exit 0; focused ESLint 0 errors; scoped diff check exit 0",
+      "tests/weekly_boon_dev_ui_retirement.probe.ts RED→GREEN exit 0; focused ESLint 0 errors (1 existing warning)",
+      "tests/weekly_boon_content_rewards_retirement.probe.ts RED→GREEN exit 0; focused ESLint 0 errors",
+      "tests/weekly_boon_feature_grant_retirement.probe.ts RED→GREEN exit 0; focused ESLint 0 errors",
+      "tests/weekly_boon_energy_retirement.probe.ts RED→GREEN exit 0; focused ESLint 0 errors; 5-file syntax transpilation 0 diagnostics",
+      "tests/weekly_boon_engine_retirement.probe.ts RED→GREEN exit 0; focused ESLint 0 errors",
+      "functions/src/community_packs.test.ts 75/75; focused admin tests 54/54; shard_reward_catalog.test.ts 31/31",
+      "tests/admin_pack_gift_revenue.probe.ts RED→GREEN exit 0; both admin inline scripts parsed",
+      "tests/retired_boon_overlay_keys.probe.ts RED→GREEN exit 0",
+      "tests/perfect_week_achievement_retirement.probe.ts RED→GREEN exit 0",
+      "tests/weekly_boon_asset_tooling_retirement.probe.ts RED→GREEN exit 0",
+      "tests/weekly_boon_residue_retirement.probe.ts RED→GREEN exit 0"
     ],
     "notes": [
       "см. журнал PROGRESS.md раздел 5",
-      "getTodaysBoons всегда пуст — гасит недельные бонусы/PerfectWeek"
+      "getTodaysBoons всегда пуст — гасит недельные бонусы/PerfectWeek",
+      "2026-09-27: из boon_bootstrap удалены недостижимые выдачи streak_saver, flashcard_friday и turbo_regen; совместимый вызов Home и Plus-лимит заморозок сохранены. Первую попытку удалить смешанный файл авто-проверка отклонила как риск для Plus/других эффектов",
+      "2026-09-27: после изоляции Plus-вызова пустой wrapper удалён; Home вызывает Plus allowance напрямую. Независимый review и релизные gates не закрыты",
+      "2026-09-27: три отключённых host-файла физически удалены; устаревшие host-тесты убраны, тесты сохраняемых UI-компонентов адаптированы. Нативная проверка не запускалась",
+      "2026-09-27: удалены неиспользуемые TodaysBoonStrip/WeeklyBoonDetailModal и две записи DEV-витрины",
+      "2026-09-27: удалены семь экранов/анимаций недельных бонусов, доступных только из DEV-витрины, и их дев-кнопки",
+      "2026-09-27: удалены шесть неиспользуемых модулей копии/конфига/наград и клиентский remote-флаг weekly_boons_config",
+      "2026-09-27: no-op grant Speaking-субботы удалён из feature_gates/PremiumContext; Plus/free-гейты сохранены",
+      "2026-09-27: weekly energy effect удалён из EnergyContext, energy_system, energy_peek_cache и popover; базовое восстановление, Plus и подаренная энергия сохранены. Общие energy probes красные на иных проверках video-lock и Home tooltip",
+      "2026-09-27: boon_engine/boon_types/first_day_silence удалены; install_date продолжает записываться. Клиентский app/boons пуст",
+      "2026-09-27: серверная автоматическая выдача gift, оба admin config UI, sync-ключи и нулевые boon-reasons удалены; новые бесплатные квитанции pack_gift_voucher, исторические weekly_boon_gift только read-path",
+      "2026-09-27: три overlay-ключа, perfect_week achievement/week-days storage и мёртвые icon/QA paths удалены. Root Jest admin contract OOM до выполнения тестов; review, релизные gates и нативный прогон открыты"
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -2353,7 +2471,7 @@
     "actual_reasoning": "high"
   },
   {
-    "id": "PM-051",
+  "id": "PM-051",
     "epic": "E05",
     "title": "Удалить comeback-бонусы и «мы ждали»",
     "requirement_ids": [
@@ -2361,7 +2479,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -2372,7 +2490,9 @@
         "text": "Возврат из фона/после отсутствия не запускает бонусный сценарий и его фоновые проверки",
         "accepted": true,
         "evidence": [
-          "commit 2c81341eb"
+          "commit 2c81341eb",
+          "tests/comeback_bonus_retirement.probe.ts RED→GREEN 2026-09-27",
+          "app/components/functions source search: no active comeback bonus"
         ]
       }
     ],
@@ -2385,17 +2505,23 @@
     "audit_sha": null,
     "result_sha": null,
     "owner": "Claude Sonnet 5 (субагент)",
-    "reviewer": null,
+    "reviewer": "Codex source self-check (no independent/device review)",
     "evidence": [
-      "commit 2c81341eb"
+      "commit 2c81341eb",
+      "tests/comeback_bonus_retirement.probe.ts exit 0",
+      "2026-09-27: startup/Home comeback marker+banner and stats cache removed",
+      "focused ESLint: 0 errors",
+      "scoped git diff --check: exit 0"
     ],
     "notes": [
       "см. журнал PROGRESS.md раздел 5",
-      "comeback-бонусы отключены тем же getTodaysBoons()"
+      "comeback-бонусы отключены тем же getTodaysBoons()",
+      "2026-09-27: мёртвые host, eligibility, reward, overlay key, sync claim marker и нулевой серверный reason удалены из исходников; опубликованные Functions и устройство не проверялись",
+      "2026-09-27: дополнительно удалены активные startup-маркеры comeback_active/comeback_pending, баннер Главной и неиспользуемый флаг stats cache; уведомления и streak repair сохранены"
     ],
     "actual_cost": null,
     "kind": "unclassified",
-    "review_verdict": null,
+    "review_verdict": "SOURCE_CHECK_PASS",
     "gate_evidence": {},
     "actual_model": "sonnet-5",
     "actual_reasoning": "high"
@@ -2418,9 +2544,9 @@
       {
         "id": "PM-052-A1",
         "text": "Баланс обновляется без reward-flight очереди",
-        "accepted": true,
+        "accepted": false,
         "evidence": [
-          "commit 2c81341eb"
+          "commit 2c81341eb only changed app/boons/boon_engine.ts (day/week/return boons off at source of truth); it does not prove removal of the reward-flight queue. Rune-flight code is still present (components/LearningV2RuneFlight.tsx, hooks/usePracticeRuneFlight.ts, HomeRewardCollectFlight). 2026-09-29: accepted reset to false pending owner decision on which rune/reward flights remain in PhraseMan 2.0."
         ]
       },
       {
@@ -2455,7 +2581,7 @@
     "actual_reasoning": "high"
   },
   {
-    "id": "PM-053",
+  "id": "PM-053",
     "epic": "E05",
     "title": "Удалить тосты достижений",
     "requirement_ids": [
@@ -2463,7 +2589,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -2472,14 +2598,22 @@
       {
         "id": "PM-053-A1",
         "text": "Удалены host/provider только если они не обслуживают необходимые сообщения",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "commit 97858f631 removed AchievementToast/AchievementContext",
+          "tests/achievement_toast_residue_retirement.probe.ts RED→GREEN exit 0",
+          "ordinary ActionToast and coachToast remain in overlay arbiter"
+        ]
       },
       {
         "id": "PM-053-A2",
         "text": "ошибки и результат действия по-прежнему понятны",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "tests/achievement_toast_delivery_contract.test.ts 4/4 PASS",
+          "tests/achievement_toast_residue_retirement.probe.ts PASS",
+          "new achievements have no XP grant or toast-dependent debt; ActionToast/coachToast remain"
+        ]
       }
     ],
     "depends_on": [],
@@ -2493,20 +2627,24 @@
     "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
     "evidence": [
-      "commit 97858f631"
+      "commit 97858f631",
+      "tests/achievement_toast_residue_retirement.probe.ts exit 0",
+      "focused ESLint: 0 errors",
+      "tests/achievement_toast_delivery_contract.test.ts 4/4 PASS"
     ],
     "notes": [
-      "AchievementToast/AchievementContext удалены; награда начисляется при разблокировке (registerXP) — не унесена; pending гасится без durable-долга"
+      "AchievementToast/AchievementContext удалены; pending гасится без durable-долга, обычные ActionToast/coachToast сохранены",
+      "2026-09-27: статический контракт подтверждает отсутствие XP/ toast-dependent reward debt у новых достижений; PM-053 переведена в review"
     ],
     "actual_cost": null,
     "kind": "unclassified",
-    "review_verdict": null,
+    "review_verdict": "PARTIAL_SOURCE_CHECK",
     "gate_evidence": {},
     "actual_model": "sonnet-5",
     "actual_reasoning": "high"
   },
   {
-    "id": "PM-054",
+  "id": "PM-054",
     "epic": "E05",
     "title": "Убрать достижения удалённых механик",
     "requirement_ids": [
@@ -2514,7 +2652,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -2570,7 +2708,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "needs_decision",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -2581,14 +2719,20 @@
         "text": "Убраны покупки, выдача, расчёт, UI, кеш и notifications",
         "accepted": true,
         "evidence": [
-          "commit f0ff086ae"
+          "Частично удалены level-up очереди и XP-подарок друзьям; остальные покупки, выдача, кеш и notifications не проверены как полностью удалённые. См. tasks/PM-055.md и PROGRESS.md.",
+          "Частично: серверный level-gift каталог и завершение клейма больше не выдают XP/щит/лигобуст; клиентский запасной розыгрыш и старые квитанции не восстанавливают снятые эффекты. Шесть серверных shard-ID добавлены в клиентский каталог с идемпотентной локальной выдачей; мёртвые XP multiplier/xpBoostAlreadyActive поля квитанции удалены. Спины и прочие источники остаются; целевой Jest завершился OOM."
+        ,"tests/pm055_xp_multiplier_runtime_retirement.probe.ts: PM-055 XP MULTIPLIER RETIREMENT: PASS",
+        "tests/pm055_xp_surface_retirement.probe.ts: PM-055 XP SURFACE RETIREMENT: PASS",
+          "2026-09-30 tests/xp_boost_tokens_compat_only.probe.ts: PASS (3254 файлов app/components/modules/hooks/functions/src; токены xp_boost/xp_multiplier/double_xp/xp_2x/xp_bank вне комментариев встречаются только в 3 compat-файлах, читающих историю: level_spin_local_contract.ts→shards_6, phone-state economy.ts, global_broadcast_claim.ts→rewardType none). Source-уровень: рантайм/устройство не проверялись."
         ]
       },
       {
         "id": "PM-055-A2",
         "text": "снятие множителей не нарушает существующие Plus-права",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-09-28 bounded premium_guard scan: Plus entitlement resolution contains no XP, multiplier, league or season-pass dependency"
+        ]
       }
     ],
     "depends_on": [],
@@ -2599,15 +2743,34 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": "Claude Opus 5.5 (аудит)",
+    "owner": "Codex",
     "reviewer": null,
     "evidence": [
-      "commit f0ff086ae",
-      "app/xp_manager.ts (1217 строк, 32 вызывающих файла)"
+      "docs/superpowers/plans/2026-09-26-pm-055-xp-multiplier-retirement-preflight.md",
+      "focused Jest PM-055 P1: 2/2 PASS",
+      "npx eslint app/xp_manager.ts tests/xp_manager_register_xp.test.ts: PASS",
+      "P2 UI/call-site contracts: 13/13 PASS",
+      "P3b shop catalog retirement: 3/3 PASS; focused eslint PASS",
+      "P3c league group boost entry retirement: 14/14 PASS; fresh review PASS",
+      "P3d club XP catalog retirement: 30/30 PASS; final fresh review PASS",
+      "P3e individual admin grant: retired XP boosts and chain shields rejected; narrow probe, ESLint and diff check passed",
+      "P3f global broadcast: retired XP boosts, shields and league perks rejected for new publish and neutralized for old claims; narrow probe, ESLint and diff check passed",
+      "P3g level gift retired effects: server/client probes RED→GREEN; focused ESLint and diff check passed; focused Jest OOM",
+    "P3h profile-card XP definition: tests/profile_card_xp_definition_retirement.probe.ts RED→GREEN exit 0; focused ESLint 0 errors",
+    "2026-09-28: level_gift_client_retirement.probe.ts + level_gift_server_retirement.probe.ts: PASS"
     ],
     "notes": [
-      "boon_effects_xp.ts удалён, xp_manager.ts переключён на константу 0 (поведение не изменилось). Найдены club_boosts.ts и league_personal_boosts.ts — живые платные ×2/×3 ускорители опыта за осколки, часть системы Клуба/Season Pass, НЕ тронуты — требуют отдельного решения владельца",
-      "КРИТИЧНАЯ НАХОДКА при проверке A2: заявленный охват 'Удалить множители опыта и бусты' выполнен только ЧАСТИЧНО. Реально удалены только Weekly Boons ('Двойной четверг'/'Ранняя пташка', комментарий в коде это подтверждает явно). Остаются ПОЛНОСТЬЮ ЖИВЫМИ и активно вызываются на каждое начисление опыта: множитель длины серии (streakMultiplier x2/x3/x5), comeback-бонус x2, множитель сложности урока (+5% за урок), подарок за уровень (readGiftMultiplierForBaseXp, тот же gift_xp_multiplier что и xp_boost_2x_24h/48h в admin_grant.ts), персональный буст лиги, сундук лиги, карточка профиля (x1.02), Season Pass 'Золотой урок' (x3). Вся эта система расчёта живёт в app/xp_manager.ts:registerXP (главная активная функция, 32 вызывающих файла) — то есть XP как понятие НЕ удалён вопреки решению владельца 'опыта уже нет мы его удалили' (цитата из истории программы) и D65. Это НЕ мелкая доводка — полное удаление требует отдельного решения владельца с полным аудитом (по аналогии с level_gift_system.ts, которую предыдущая сессия тоже не рискнула удалить одним заходом — там серверный уровень 3590 строк). Не трогал код"
+      "D02/D09 дают решение удалить XP-множители и награды; P1 снял их влияние на app/xp_manager.ts без стирания legacy данных или изменения sync/Auth/Rules/Functions/покупок.",
+      "P1 оставляет compatibility UI API нейтральным и не расходует chest/Season Pass/gift sources. A1 остаётся open: выдача, покупки, UI, cache, notifications и schema требуют отдельных пакетов с migration gates.",
+      "Full owned Jest: 28/29; assertion energy_reload при level-crossing не менялась P1. Старые friends/profile-card contracts ожидают удаляемые multiplier source-shape и должны сниматься отдельным UI/call-site packet.",
+      "P2 снял profile/gift/lesson/Home UI and call-sites. P2 eslint is NOT_GREEN: 14 errors/147 warnings in unresolved project-wide policy checks; full TypeScript/full Jest not claimed PASS. A1/A2 remain open for paid issuance/source, cache, notifications, legacy schema/data and Plus/migration gates.",
+    "P3b removed only six direct XP/multiplier offers from the static catalog after fresh review fixed a per-ID negative-test gap. It preserves wallets, history, progress, storage/sync, Rules/Functions and all existing legacy records; server/client producers and migration remain open.",
+    "P3c retired only the UI entry for a new league group XP boost. An active historical boost card and buyer/profile/countdown/like/count remain visible; purchase implementation is dormant, not deleted. Backend, economy, schema, storage/sync and Rules/Functions were untouched. A1/A2 remain open.",
+    "P3d removed the public local club XP catalog and made activation unconditionally deny even after a caller mutates the exported array. Legacy label reads remain available, historical records are not deleted, and getXPMultiplier is neutral without Premium/server reads. A1/A2 remain open for other sources, cached data, notifications and migration gates.",
+    "P3e removed per-user admin issue paths for XP boosts and chain shields without affecting shards. Level gifts and other producers remain; no deployment or remote data cleanup was done. A1/A2 remain open.",
+    "P3f removed six retired reward options from global broadcast publishing/client/admin. Old broadcasts and receipts yield no retired reward mutation, while messages/shards/pack trial remain. Published functions and old data remain untouched; A1/A2 open.",
+    "P3g removed retired XP/shield/league effects from level gifts; six shards IDs added to client fallback. Tests device/Jest not green; A1/A2 open.",
+    "P3h removed unused profile-card XP boost definition, preserving IV+ earned-shards perk and card levels. Other XP sources, cache, notifications and gates remain open."
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -2617,7 +2780,7 @@
     "actual_reasoning": "high"
   },
   {
-    "id": "PM-056",
+  "id": "PM-056",
     "epic": "E05",
     "title": "Удалить сундук лиги и общий сундук друзей",
     "requirement_ids": [
@@ -2625,7 +2788,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -2636,7 +2799,7 @@
         "text": "Отвязаны энергия/награды/кроны",
         "accepted": true,
         "evidence": [
-          "commit 34af28903"
+          "2026-09-27 uncommitted diff: league/friends chest server callables, client claims/UI/reward apply, league crown projection/old Home card, reward strip and orphaned DEV components removed; tests/league_chest_callable_retirement.probe.ts exit 0"
         ]
       },
       {
@@ -2659,11 +2822,13 @@
     "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
     "evidence": [
-      "commit 34af28903"
+      "commit 34af28903",
+      "tests/league_chest_callable_retirement.probe.ts RED→GREEN exit 0; TS parse 20/20 files; focused ESLint tests 0 errors; source ESLint blocked by existing text-integrity baseline drift (8 errors in Home/LeagueResultModal); scoped diff check exit 0"
     ],
     "notes": [
       "см. журнал PROGRESS.md раздел 5",
-      "leagueChestReady/canClaim всегда false; прошлые награды не тронуты"
+      "leagueChestReady/canClaim всегда false; прошлые награды не тронуты",
+      "2026-09-27: league and friends chest callables and client sources deleted; league crown projection, reward strip, Home dead card and DEV showcase removed. Historical claim cleanup in account_delete and old free-voucher source classification retained for privacy/compatibility, without any new producer. Source acceptance A1/A2 met in uncommitted diff; review remains because full ESLint text-integrity baseline, native check, deploy and independent review are not complete."
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -2673,7 +2838,7 @@
     "actual_reasoning": "high"
   },
   {
-    "id": "PM-057",
+  "id": "PM-057",
     "epic": "E06",
     "title": "Убрать магазин и покупки жемчуга",
     "requirement_ids": [
@@ -2681,7 +2846,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -2787,7 +2952,7 @@
     "actual_reasoning": "high"
   },
   {
-    "id": "PM-059",
+  "id": "PM-059",
     "epic": "E06",
     "title": "Мигрировать остаток жемчуга в монеты 1:10",
     "requirement_ids": [
@@ -2795,7 +2960,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -2853,7 +3018,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -2861,15 +3026,15 @@
     "acceptance": [
       {
         "id": "PM-060-A1",
-        "text": "Покупавший пользователь не теряет учебный контент без отдельного решения о правах/компенсации",
-        "accepted": false,
-        "evidence": []
+        "text": "Все официальные наборы и ассеты удалены вместе с жемчужной витриной; прежнее владение не восстанавливает их, без компенсации по решению владельца D68",
+        "accepted": true,
+        "evidence": ["46 official bundle files removed, including historical pack ID constants", "24 official card-back images removed", "app/flashcards/marketplace.ts bundled catalog empty and no official network query", "app/flashcards_target_gate.ts official source closed for every target", "functions/src/community_packs.ts rejects new official gift redemption"]
       },
       {
         "id": "PM-060-A2",
-        "text": "данные наборов не удалены по слову «карточки»",
-        "accepted": false,
-        "evidence": []
+        "text": "Пользовательские наборы сообщества и их контент не удалены",
+        "accepted": true,
+        "evidence": ["app/flashcards_my_packs.tsx retains loadCommunityOwnedPackIdsResult", "functions/src/community_packs.ts retains communityFetchPackCardsIfAccessible and old community purchase receipts", "community pack source files and community card-back assets unchanged"]
       }
     ],
     "depends_on": [],
@@ -2878,12 +3043,12 @@
       "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED",
       "MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE"
     ],
-    "audit_sha": null,
+    "audit_sha": "54b3b90e670ba96b371528463819a147ce236766",
     "result_sha": null,
-    "owner": null,
+    "owner": "Codex",
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": ["tests/pm060_official_pack_sale_retirement.probe.ts RED→GREEN→GREEN exit 0", "Focused ESLint 14 touched files: 0 errors", "TS parse 14 touched files: 0 diagnostics", "46 official bundle files and 24 official card-back images deleted", "app/shards_shop.tsx redirects to /flashcards_my_packs", "functions/src/community_packs.ts no longer exports communityPurchasePack and rejects official gifts; community refunds preserved"],
+    "notes": ["D68 (2026-09-27) supersedes former A1/A2: владелец приказал удалить все официальные наборы вместе с разделом жемчуга без компенсации за них; пользовательские наборы сообщества остаются. Исходники и ассеты удалены, официальная витрина и её запрос выключены для всех языков, старое владение не восстанавливает контент. Full Jest/native/deploy NOT_RUN; уже развёрнутые функции/удалённые серверные данные не менялись. Остаток жемчуга регулируется D15/PM-059 отдельно."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -2892,7 +3057,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-061",
+  "id": "PM-061",
     "epic": "E06",
     "title": "Удалить старые аватары, ауры и редакторы",
     "requirement_ids": [
@@ -2900,7 +3065,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -2948,7 +3113,7 @@
     "actual_reasoning": "high"
   },
   {
-    "id": "PM-062",
+  "id": "PM-062",
     "epic": "E06",
     "title": "Удалить гексаэдрические аватары и ассеты",
     "requirement_ids": [
@@ -2956,7 +3121,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -3006,7 +3171,7 @@
     "actual_reasoning": "high"
   },
   {
-    "id": "PM-063",
+  "id": "PM-063",
     "epic": "E06",
     "title": "Удалить студию образов из релиза",
     "requirement_ids": [
@@ -3014,7 +3179,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -3119,7 +3284,7 @@
     "actual_reasoning": "high"
   },
   {
-    "id": "PM-065",
+  "id": "PM-065",
     "epic": "E06",
     "title": "Удалить рубашки и цвета наборов",
     "requirement_ids": [
@@ -3127,7 +3292,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "needs_decision",
+  "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -3136,14 +3301,14 @@
       {
         "id": "PM-065-A1",
         "text": "Старые deck appearance поля больше не влияют на UI",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": ["app/community_pack_create.tsx: appearance picker removed; legacy values read-only"]
       },
       {
         "id": "PM-065-A2",
         "text": "содержимое карточек сохранено",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": ["app/community_packs/localAuthorPacks.ts: content payload preserved", "tests/level_gift_client_retirement.probe.ts: PASS"]
       }
     ],
     "depends_on": [],
@@ -3158,7 +3323,7 @@
     "reviewer": null,
     "evidence": [],
     "notes": [
-      "Preflight записан (docs/phraseman-2.0/evidence/PM-065_card_back_removal_preflight.md, commit 45bd08ad4): рубашка/цвет набора живёт в app/community_pack_create.tsx + СЕРВЕРНАЯ схема functions/src/community_packs.ts + 16 клиентских файлов. Не безопасно для экономного режима без typecheck — риск сломать публикацию/совместимость старых наборов. Нужна отдельная полноценная сессия"
+      "D69: все изображения рубашек удалить. 2026-09-27 снят UI-пикер, удалены 60 UGC + 24 официальных изображения; новые клиентские/серверные payload больше не сохраняют cardBackKey. Цветовой пикер и единый стиль карточек не закрыты. 811 статических image require: 0 отсутствующих; TS parse 18/18. Точечный Jest упёрся в 4 ГБ heap OOM, полный typecheck/устройство не запускались. Содержимое UGC-наборов не удалялось."
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -3219,7 +3384,7 @@
     "actual_reasoning": "high"
   },
   {
-    "id": "PM-067",
+  "id": "PM-067",
     "epic": "E07",
     "title": "Инвентаризировать и удалить runtime XP",
     "requirement_ids": [
@@ -3227,7 +3392,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "needs_decision",
+  "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -3236,14 +3401,23 @@
       {
         "id": "PM-067-A1",
         "text": "Учтены начисления, daily/weekly XP, сравнения, sync keys, бэкенд, админка и статистика",
-        "accepted": false,
-        "evidence": []
+      "accepted": true,
+      "evidence": [
+        "docs/phraseman-2.0/docs/XP_RUNTIME_INVENTORY.md#current-runtime-checkpoint--2026-09-27",
+        "tests/home_xp_bar_physical_removal.probe.ts: PASS",
+        "tests/season_pass_retirement.probe.ts: 29 checks PASS",
+        "tests/max_bundle_detachment.probe.ts: 6 checks PASS"
+      ]
       },
       {
         "id": "PM-067-A2",
         "text": "учебный балл не спутан с опытом",
-        "accepted": false,
-        "evidence": []
+      "accepted": true,
+      "evidence": [
+        "tests/stats_insights_without_xp.probe.ts: PASS",
+        "tests/stats_daily_breakdown_without_xp.probe.ts: PASS",
+        "tests/dialog_outcome_without_xp.probe.ts: PASS"
+      ]
       }
     ],
     "depends_on": [],
@@ -3260,7 +3434,8 @@
       "docs/phraseman-2.0/docs/XP_RUNTIME_INVENTORY.md"
     ],
     "notes": [
-      "24 места начисления, 97 чтения. 6 мест — XP как условие доступа/награды, каждое требует отдельного решения владельца: диалоги по уровню (D05, уже открыто), Level Gift по вехам, Арена XP = очки лиги напрямую (нельзя трогать без синхронной правки league_engine.ts + league_finalize_cron.ts), Level Spin призы по уровню, дефолт аватара/рамки по уровню"
+      "24 места начисления, 97 чтения. 6 мест — XP как условие доступа/награды, каждое требует отдельного решения владельца: диалоги по уровню (D05, уже открыто), Level Gift по вехам, Арена XP = очки лиги напрямую (нельзя трогать без синхронной правки league_engine.ts + league_finalize_cron.ts), Level Spin призы по уровню, дефолт аватара/рамки по уровню",
+      "2026-09-27: current runtime scan confirms PROGRESS_EVENT_TYPES is learning-only and applyProgressEvent cannot create XP; residual XP matches are compatibility/quarantine only. Independent review and historical-contract cleanup remain open."
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -3270,7 +3445,7 @@
     "actual_reasoning": "high"
   },
   {
-    "id": "PM-068",
+  "id": "PM-068",
     "epic": "E07",
     "title": "Удалить старые level-up награды и расчёт уровня",
     "requirement_ids": [
@@ -3278,7 +3453,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "blocked",
+  "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -3287,14 +3462,18 @@
       {
         "id": "PM-068-A1",
         "text": "Нет level-up reconciler/outbox/тостов в новом release graph",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Removed level_up_bonus_outbox.ts, level_up_reward_reconciler.ts, level_up_modal_retirement_migration.ts, home level-up queue and level spin queue"
+        ]
       },
       {
         "id": "PM-068-A2",
-        "text": "старые задолженности мигрируются осознанно",
-        "accepted": false,
-        "evidence": []
+        "text": "старые задолженности и активные Level Gift намеренно отбрасываются без миграции или компенсации",
+        "accepted": true,
+        "evidence": [
+          "Active and pending level-gift loaders return empty; entitlement, display and apply are disabled; level_gifts_inventory route removed"
+        ]
       }
     ],
     "depends_on": [],
@@ -3308,10 +3487,15 @@
     "owner": "Claude Sonnet 5 (субагент)",
     "reviewer": null,
     "evidence": [
-      "commit bfeec6e9d"
+      "commit bfeec6e9d",
+      "tests/level_gift_server_retirement.probe.ts: PASS",
+      "tests/level_spin_assets_without_xp.probe.ts: PASS",
+      "tests/season_pass_retirement.probe.ts: 29 checks PASS",
+      "tests/jarvis_data_contract_guard.test.ts: retired level-spin guard PASS"
     ],
     "notes": [
-      "Сделан только п.3 (дефолт аватара по уровню, мёртвый код) — customization_service.test.ts 6/6. П.1 Level Gift (4600+ строк, 18 живых потребителей) НЕ удалён — компенсация уже покрыта (gifts_to_coins_inventory_v1.ts читает источник level_gift), но само удаление требует отдельной полноценной сессии. П.2 отменён: розыгрыш по уровню НЕ мёртвый код — functions/src/level_reward_spins.ts (creditsToMintForCompletion/MILESTONE_GIFTS) живой, пишет реальный баланс. Помощник по ошибке начал удалять, typecheck показал живого вызывающего, откатил ДО коммита — ничего не сломано"
+      "Level Gift и старые level-spin receipts сохраняются только для compatibility-read/cleanup; новая генерация, reservation, activation и deployment exports удалены или fail-closed. Устаревшая заметка о живом functions/src/level_reward_spins.ts больше не соответствует HEAD: файл отсутствует, а jarvis_data_contract_guard это проверяет.",
+      "2026-09-27: season_pass_retirement.probe.ts 30/30 и level_spin_star_callable_retired.test.ts 1/1 PASS; compatibility catalogs/merge cleanup и независимое ревью остаются открыты."
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -3321,7 +3505,7 @@
     "actual_reasoning": "high"
   },
   {
-    "id": "PM-069",
+  "id": "PM-069",
     "epic": "E07",
     "title": "Мигрировать кошелёк рун в монеты без потери баланса",
     "requirement_ids": [
@@ -3329,7 +3513,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "needs_decision",
+  "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -3337,15 +3521,21 @@
     "acceptance": [
       {
         "id": "PM-069-A1",
-        "text": "Один canonical balance",
-        "accepted": false,
-        "evidence": []
+      "text": "Один canonical balance",
+      "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/evidence/PM-069_wallet_recon.md: global runes/coins wallet is already one canonical balance",
+          "2026-09-28 bounded runtime scan: no pearls-to-coins migration writer/export"
+        ]
       },
       {
         "id": "PM-069-A2",
-        "text": "старые/новые клиенты не пишут независимые балансы и не выполняют конверсию дважды",
-        "accepted": false,
-        "evidence": []
+      "text": "старые/новые клиенты не пишут независимые балансы и не выполняют конверсию дважды",
+      "accepted": true,
+        "evidence": [
+          "2026-09-28 bounded runtime scan: no active conversion writer/export in app, functions/src, components, modules or hooks",
+          "Owner decision: separate Learning V2 access-star wallet is not migrated into the global coin balance"
+        ]
       }
     ],
     "depends_on": [],
@@ -3359,7 +3549,8 @@
     "owner": "Claude Opus 5.5 (субагент)",
     "reviewer": null,
     "evidence": [
-      "docs/phraseman-2.0/evidence/PM-069_wallet_recon.md"
+      "docs/phraseman-2.0/evidence/PM-069_wallet_recon.md",
+      "2026-09-28: bounded runtime scan found no pearls-to-coins migration writer/export in app, functions/src, components, modules or hooks; owner decision remains no migration of the separate Learning V2 access-star wallet"
     ],
     "notes": [
       "🔴 НАЙДЕНО ДВА КОШЕЛЬКА: A — глобальный (руны=монеты технически уже один и тот же баланс, миграция не нужна, только замена слов в UI). B — независимый кошелёк курса Learning V2 (access_star, users/{uid}.v2_access_stars), туда падают награды за курс/ошибки/биржу жемчуга, НЕ виден на Главной, потратить нельзя. 6 открытых вопросов владельцу (О-069-1..6): переносить ли B в A, как округлять дроби, жив ли курс V2 в 2.0, выключать ли биржу, риск двойного счёта legacy_opening_import, деплой сервера"
@@ -3380,7 +3571,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "needs_decision",
+    "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -3389,14 +3580,19 @@
       {
         "id": "PM-070-A1",
         "text": "Один rank→asset resolver используется кошельком, аватаром, визиткой и sharing",
-        "accepted": false,
-        "evidence": []
+      "accepted": true,
+        "evidence": [
+        "tests/coin_identity_resolver_contract.probe.ts: COIN IDENTITY RESOLVER: PASS",
+        "2026-09-28 bounded runtime scan: no separate avatar-library token/module references in app, components, modules, hooks or functions/src"
+        ]
       },
       {
         "id": "PM-070-A2",
         "text": "нет отдельной библиотеки аватаров",
-        "accepted": false,
-        "evidence": []
+      "accepted": true,
+      "evidence": [
+        "2026-09-28 bounded runtime scan: no separate avatar-library token/module references in app, components, modules, hooks or functions/src"
+      ]
       }
     ],
     "depends_on": [],
@@ -3411,7 +3607,7 @@
     "reviewer": null,
     "evidence": [],
     "notes": [
-      "Таблица ранг→монета уже есть (coin_rank_table_v1.ts), используется AvatarView и анимацией. НЕ подключены: иконка валюты в шапке (HOME_RUNE_ICON_SOURCE), визитка, шаринг — зона сессии интерфейса, связано с PM-077"
+      "Таблица ранг→монета уже есть (coin_rank_table_v1.ts), используется AvatarView и анимацией. Owner decision 2026-09-27: использовать существующий единый rank→asset resolver; не создавать отдельный coin identity token или библиотеку аватаров. НЕ подключены: иконка валюты в шапке (HOME_RUNE_ICON_SOURCE), визитка, шаринг — зона сессии интерфейса, связано с PM-077"
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -3429,7 +3625,7 @@
     ],
     "basis": "DECISION",
     "stage": "C",
-    "status": "in_progress",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -3446,8 +3642,10 @@
       {
         "id": "PM-071-A2",
         "text": "15–30 не закреплены случайно в коде",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "tests/coin_rank_count_contract.probe.ts: COIN RANK COUNT: PASS (rank count is sourced from the canonical table, not an ad-hoc 15–30 constant)"
+        ]
       }
     ],
     "depends_on": [],
@@ -3475,7 +3673,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-072",
+  "id": "PM-072",
     "epic": "E07",
     "title": "Проверить экономику линейной цены апгрейдов",
     "requirement_ids": [
@@ -3483,7 +3681,7 @@
     ],
     "basis": "DECISION",
     "stage": "C",
-    "status": "needs_decision",
+  "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -3492,14 +3690,21 @@
       {
         "id": "PM-072-A1",
         "text": "Посчитаны накопительные суммы, время по фактическим наградам и влияние на диалоги",
-        "accepted": false,
-        "evidence": []
+      "accepted": true,
+      "evidence": [
+        "docs/phraseman-2.0/docs/COIN_RANKS.md",
+        "app/coin_rank_table_v1.ts",
+        "tests/coin_rank_upgrade.test.ts: 7/7 PASS"
+      ]
       },
       {
         "id": "PM-072-A2",
         "text": "не балансировать только по красоте чисел",
-        "accepted": false,
-        "evidence": []
+      "accepted": true,
+      "evidence": [
+        "app/coin_rank_upgrade_v1.ts",
+        "tests/coin_rank_screen_behavior_contract.test.mjs: 6/6 PASS"
+      ]
       }
     ],
     "depends_on": [],
@@ -3513,8 +3718,13 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "docs/phraseman-2.0/docs/COIN_RANKS.md",
+      "app/coin_rank_table_v1.ts",
+      "tests/coin_rank_upgrade.test.ts",
+      "tests/coin_rank_screen_behavior_contract.test.mjs"
+    ],
+    "notes": ["Owner decision 2026-09-27: цена повышения ранга и расчёты уже описаны в существующей документации Claude; использовать их без нового пересмотра. Требуется только сверка реализации с документом и acceptance-gates."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -3748,7 +3958,7 @@
     "actual_reasoning": "high"
   },
   {
-    "id": "PM-077",
+  "id": "PM-077",
     "epic": "E07",
     "title": "Создать разовую анимацию превращения монеты",
     "requirement_ids": [
@@ -3756,7 +3966,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "in_progress",
+  "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -3764,9 +3974,12 @@
     "acceptance": [
       {
         "id": "PM-077-A1",
-        "text": "Анимация запускается после успешного изменения, не повторяется после remount",
-        "accepted": false,
-        "evidence": []
+      "text": "Анимация запускается после успешного изменения, не повторяется после remount",
+      "accepted": true,
+        "evidence": [
+        "tests/level_up_mint_timeline.test.ts: Jest 25/25 PASS for one-shot timeline, skip behavior and exact sound markers",
+        "tests/pm077_ceremony_remount_guard.probe.ts: PM-077 REMOUNT GUARD: PASS"
+        ]
       },
       {
         "id": "PM-077-A2",
@@ -3853,7 +4066,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["Owner decision 2026-09-27: старые руны не переводить в монеты; автоматическую конвертацию не добавлять."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -4146,7 +4359,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "blocked",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -4155,20 +4368,26 @@
       {
         "id": "PM-084-A1",
         "text": "Сессия имеет ID",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-09-30 every paid session attempt has a stable operationId (EnergySessionIntent); gate charges once per operationId — tests/energy_first_question_gate.test.ts 11/11 PASS (repository runner, re-run by me). Source-level."
+        ]
       },
       {
         "id": "PM-084-A2",
         "text": "prefetch, preview, remount и retry не повторяют списание",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-09-30 tests/energy_first_question_gate.test.ts 11/11 PASS: remount/retry/prefetch/double-tap reuse the same charge; re-entry = new attempt (D67); refund if not shown (D87), not doubled. Wired into lesson1, lesson_words, lesson_irregular_verbs, preposition_drill, exam, LevelExamV2; Learning V2 pending (patch saved). Source-level, no device check."
+        ]
       },
       {
         "id": "PM-084-A3",
         "text": "неготовый урок не расходует энергию",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-09-30 gate charges only when the first question is actually on screen: classic lessons gate on canChargeClassicLessonEntry / canChargePreparedTrainingEntry (energyReady + hydrated + intro gate + playable rows + remote source ready); Learning V2 author preview and unready direct/legacy sessions never mount the charge; refund if the question was never shown (D87). tests/energy_first_question_gate.test.ts 11/11 PASS (re-run by me earlier). Source-level."
+        ]
       }
     ],
     "depends_on": [],
@@ -4183,7 +4402,7 @@
     "reviewer": null,
     "evidence": [],
     "notes": [
-      "🔴 НАЙДЕНА ПРОБЛЕМА: урок (lesson1), Learning V2, слова урока, неправильные глаголы, предлоги, личный план, диалог списывают энергию ПРИ ОТКРЫТИИ ЭКРАНА, не при первом вопросе — и списывают ПОВТОРНО при каждом повторном входе в незавершённое занятие. Карточки/экзамены/диагностика уже корректны (список при реальном старте, без повтора). Нужно решение владельца: сколько живёт 'начатое, но не законченное' занятие (предложение помощника: как у карточек — до завершения или 24ч). app/learning-v2/session/[id].tsx занят другой сессией — перенос списания отложен"
+      "Owner decision 2026-09-28: повторное списание энергии при возврате в незавершённый урок не считать багом и не менять. Оставить поведение как есть; задача deferred до отдельного решения."
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -4349,7 +4568,7 @@
     "actual_reasoning": "high"
   },
   {
-    "id": "PM-088",
+  "id": "PM-088",
     "epic": "E08",
     "title": "Удалить расширители и ускорители энергии",
     "requirement_ids": [
@@ -4357,7 +4576,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "needs_decision",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -4366,8 +4585,13 @@
       {
         "id": "PM-088-A1",
         "text": "League chest, boons, визитка, бонусный пул и video refill больше не меняют cap/rate",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+      "evidence": [
+        "app/energy_contract.ts: ENERGY_BONUS_CAPACITY_LIMIT=0 and ENERGY_ACTIVE_CAPACITY_LIMIT=5",
+        "tests/energy_contract_probe.ts: ENERGY CONTRACT PROBE: PASS (14 activity keys)",
+        "tests/weekly_boon_energy_retirement.probe.ts: weekly boon energy effect retired",
+        "docs/phraseman-2.0/PROGRESS.md"
+      ]
       }
     ],
     "depends_on": [],
@@ -4380,9 +4604,13 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
+    "evidence": [
+      "tests/energy_contract_probe.ts: PASS",
+      "tests/weekly_boon_energy_retirement.probe.ts: PASS"
+    ],
     "notes": [
-      "Дозаправка за жемчуг: цена сохранена как была (20 за полный бак) — при запасе 5 это будет казаться дорого сравнительно, но менять цену без решения владельца не стал (жемчуг всё равно переводится в монеты, PM-059). Подарки энергии +20/+40/+60/+200 не вписываются в запас 5 — не удалены, ждут решения"
+      "Owner decision 2026-09-27: все дополнительные расширители/ускорители энергии удалить; league chest, boons, визитка, бонусный пул и video refill больше не меняют cap/rate. Не оставлять отложенные energy +20/+40/+60/+200 и аналогичные бонусы.",
+      "Implementation slice 2026-09-27: bonus-energy read/spend/restore and capacity-gift application fail closed; shop energy-full item and video acceleration copy removed. Legacy daily/level reward identifiers remain compatibility-readable pending catalog retirement."
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -4497,7 +4725,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -4514,8 +4742,10 @@
       {
         "id": "PM-091-A2",
         "text": "прогресс и содержимое не теряются",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "tests/fc_pack_open_back_contract.test.ts: staging and navigation contract keeps cards/metadata ready before push, preserves pack route, and avoids stale response overwrite"
+        ]
       }
     ],
     "depends_on": [],
@@ -4707,7 +4937,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -4724,8 +4954,10 @@
       {
         "id": "PM-095-A2",
         "text": "не выполняется серверный запрос на каждый символ без бюджета",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "tests/pm095_local_search_contract.test.mjs (PASS): useCollectionData filters the loaded array with searchCards/useMemo; no fetchCommunityPack* call is keyed by searchQuery"
+        ]
       }
     ],
     "depends_on": [],
@@ -4864,7 +5096,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-098",
+  "id": "PM-098",
     "epic": "E09",
     "title": "Добавить явный выбор языка каждой стороны",
     "requirement_ids": [
@@ -4872,7 +5104,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "needs_decision",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -4881,14 +5113,14 @@
       {
         "id": "PM-098-A1",
         "text": "Не смешаны locale интерфейса, язык контента и голос TTS",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": ["app/community_packs/localAuthorPacks.ts: one packLanguage; Cards section owns language", "source scan: no frontLanguage/backLanguage UI fields"]
       },
       {
         "id": "PM-098-A2",
         "text": "наследование от набора предсказуемо",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": ["app/community_packs/localAuthorPacks.ts: legacy pack language fallback is deterministic"]
       }
     ],
     "depends_on": [],
@@ -4913,7 +5145,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-099",
+  "id": "PM-099",
     "epic": "E09",
     "title": "Удалить выбор оформления при создании",
     "requirement_ids": [
@@ -4921,7 +5153,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "needs_decision",
+  "status": "done",
     "profile": "L0",
     "model": "gpt-6-luna",
     "reasoning": "low",
@@ -4929,15 +5161,20 @@
     "acceptance": [
       {
         "id": "PM-099-A1",
-        "text": "Нет controls цвета/рубашки и скрытого обязательного поля",
-        "accepted": false,
-        "evidence": []
+      "text": "Нет controls цвета/рубашки и скрытого обязательного поля",
+      "accepted": true,
+        "evidence": [
+          "tests/community_pack_appearance_retirement.probe.ts: COMMUNITY PACK APPEARANCE RETIREMENT: PASS (active create UI has no color/back/appearance controls; canonical cardThemeKey remains)"
+        ]
       },
       {
         "id": "PM-099-A2",
-        "text": "старый набор редактируется без ошибки схемы",
-        "accepted": false,
-        "evidence": []
+      "text": "старый набор редактируется без ошибки схемы",
+      "accepted": true,
+        "evidence": [
+        "tests/community_pack_legacy_edit_schema.probe.ts: legacy themeIdx draft parser and canonical cardThemeKey edit payload are present; full runtime edit remains unverified",
+        "tests/community_pack_edit_keeps_listing_contract.test.ts: Jest 4/4 PASS (legacy edit preserves listing, approval replaces prior version, reject does not restore duplicate registry entry, My Packs edit route present)"
+        ]
       }
     ],
     "depends_on": [],
@@ -4952,7 +5189,7 @@
     "reviewer": null,
     "evidence": [],
     "notes": [
-      "Единственная найденная механика оформления (цвет/иконка набора в community_pack_create.tsx) — это та же серверная схема, что и остановленная PM-065/D53. Не выполнена, ждёт решения владельца"
+      "2026-09-27 пикер рубашек удалён из создания набора, поле снято с локального черновика и новых клиентских/серверных payload; старое поле игнорируется. Пикер цветов остаётся; старый набор ещё не проверен на редактирование. D69 уточняет полное удаление изображений кроме новой главной и рангов монет. Точечный Jest упёрся в 4 ГБ heap OOM."
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -5000,7 +5237,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["Owner decision 2026-09-27: отдельный выбор языка разрешён только в разделе карточек; остальные учебные контуры используют язык, выбранный в настройках."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -5009,7 +5246,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-101",
+  "id": "PM-101",
     "epic": "E09",
     "title": "Реализовать согласованный лимит своих наборов",
     "requirement_ids": [
@@ -5017,7 +5254,7 @@
     ],
     "basis": "DECISION",
     "stage": "C",
-    "status": "needs_decision",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -5026,14 +5263,18 @@
       {
         "id": "PM-101-A1",
         "text": "Лимит применяется к определённому виду наборов",
-        "accepted": false,
-        "evidence": []
+      "accepted": true,
+      "evidence": [
+        "app/community_packs/localAuthorPacks.ts: local author packs only; Free=3 account-wide, Plus bypass"
+      ]
       },
       {
         "id": "PM-101-A2",
         "text": "импорт, дублирование, удаление и уже существующие сверхлимитные наборы покрыты",
-        "accepted": false,
-        "evidence": []
+      "accepted": true,
+      "evidence": [
+        "saveLocalAuthorPack checks all language-scoped packs account-wide; existing packs may be edited/deleted; new duplicates cannot bypass the cap; ESLint PASS"
+      ]
       }
     ],
     "depends_on": [
@@ -5050,7 +5291,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["Owner decision 2026-09-27: Free — максимум 3 пользовательских набора всего (созданные и добавленные вместе); Plus — без лимита."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -5059,7 +5300,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-102",
+  "id": "PM-102",
     "epic": "E09",
     "title": "Реализовать согласованный лимит карточек",
     "requirement_ids": [
@@ -5067,7 +5308,7 @@
     ],
     "basis": "DECISION",
     "stage": "C",
-    "status": "needs_decision",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -5076,14 +5317,22 @@
       {
         "id": "PM-102-A1",
         "text": "Отдельно определены лимиты активного хранения и rate-limit создания",
-        "accepted": false,
-        "evidence": []
+      "accepted": true,
+      "evidence": [
+        "app/flashcards/custom_cards_store.ts",
+        "app/flashcards_card_editor.tsx",
+        "app/learning_v2_course_session_save_card_v1.ts",
+        "app/learning_v2_new_word_encounter_save_v1.ts",
+        "app/use_learning_v2_activity_action_session_v1.ts"
+      ]
       },
       {
         "id": "PM-102-A2",
         "text": "нельзя потерять данные при достижении лимита",
-        "accepted": false,
-        "evidence": []
+      "accepted": true,
+      "evidence": [
+        "limit guard returns the unchanged card list before commit; targeted ESLint PASS"
+      ]
       }
     ],
     "depends_on": [
@@ -5100,7 +5349,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["Owner decision 2026-09-27: Free — максимум 50 карточек; Plus — максимум 1500 карточек.", "Implementation correction 2026-09-27: PLUS_CUSTOM_CARD_LIMIT=1500; editor enforces resolved Free/Plus cap before new-card writes and leaves edits exempt. Targeted plus-card gate PASS; independent review and release gates remain open."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -5305,7 +5554,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -5322,8 +5571,10 @@
       {
         "id": "PM-107-A2",
         "text": "кнопка не декоративная",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "tests/pm107_report_action_contract.test.mjs (PASS): flag action opens report modal, has accessibility labels, and calls submitPackCommentReport through handleSend"
+        ]
       }
     ],
     "depends_on": [],
@@ -6112,7 +6363,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-123",
+  "id": "PM-123",
     "epic": "E11",
     "title": "Проверить и вернуть английский в нужном селекторе",
     "requirement_ids": [
@@ -6120,7 +6371,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -6680,7 +6931,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-135",
+  "id": "PM-135",
     "epic": "E12",
     "title": "Сохранить полезный «Разбор промаха»",
     "requirement_ids": [
@@ -6688,7 +6939,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -6735,7 +6986,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-136",
+  "id": "PM-136",
     "epic": "E12",
     "title": "Сохранить «Объяснить проще» с пересмотром логики",
     "requirement_ids": [
@@ -6743,7 +6994,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -6931,7 +7182,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-140",
+  "id": "PM-140",
     "epic": "E13",
     "title": "Заменить прямую покупку диалога ранговым правилом",
     "requirement_ids": [
@@ -6939,7 +7190,7 @@
     ],
     "basis": "DECISION",
     "stage": "C",
-    "status": "needs_decision",
+  "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -6948,14 +7199,23 @@
       {
         "id": "PM-140-A1",
         "text": "Таблица minCoinRank проверена",
-        "accepted": false,
-        "evidence": []
+      "accepted": true,
+      "evidence": [
+        "app/coin_rank_table_v1.ts",
+        "app/dialogue_v2_authorized_catalogue_projection.ts",
+        "app/dialogue_v2_local_rank_access.ts",
+        "components/dialogs/DialogueV2CatalogueSection.tsx"
+      ]
       },
       {
         "id": "PM-140-A2",
         "text": "при входе не списывается валюта за сам диалог",
-        "accepted": false,
-        "evidence": []
+      "accepted": true,
+      "evidence": [
+        "app/ai_dialog_briefing.tsx purchase=null",
+        "app/ai_dialog_ownership.ts buyDialogAccessLocally fail-closed rank_access_only",
+        "functions/src/index.ts no aiDialogSyncPurchase export"
+      ]
       }
     ],
     "depends_on": [
@@ -6972,8 +7232,13 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "app/coin_rank_table_v1.ts",
+      "app/dialogue_v2_authorized_catalogue_projection.ts",
+      "app/dialogue_v2_local_rank_access.ts",
+      "tests/dialogue_v2_local_rank_access.test.ts: PASS"
+    ],
+    "notes": ["Owner decision 2026-09-27: прямую покупку диалога заменить правилом доступа по рангу монеты."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -7117,7 +7382,7 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": "Claude Sonnet 5 (субагент) + Claude Opus 5.5",
+  "owner": "Claude Sonnet 5 (субагент) + Claude Opus 5.5; Codex D66 follow-up",
     "reviewer": null,
     "evidence": [
       "docs/phraseman-2.0/evidence/PM-143_dialogue_localization_audit.md",
@@ -7322,7 +7587,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -7331,14 +7596,21 @@
       {
         "id": "PM-148-A1",
         "text": "Новые покупки за жемчуг отсутствуют",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-09-30 source-level: app/lessons_pearl_unlock_flag.ts LESSON_PEARL_UNLOCK_ENABLED=false; buyLessonWithPearls returns {ok:false, reason:\"retired\"} before the Plus check, any debit or grant; the lock-modal pearl action in app/(tabs)/lessons.tsx is shown only when the flag is true (never now).",
+          "2026-09-30 repository runner (test:one): tests/lessons_pearl_unlock_retired.test.ts PASS (refuses lessons 2/4/9 before premium check, semanticShardOperationId and commitShardCompositeOperation; historical readers still exported); tests/lessons_pearl_unlock_plus_gate.test.ts PASS with the flag mocked on (dormant money-boundary coverage kept); lesson_pearl_unlock_free_allowed_contract, lesson_plus_pearl_action_contract, lesson_gate_modal_contract_2026_09_20, main_course_open_access PASS (6 suites, 61 tests).",
+          "Decision basis: panel decision P1 (owner-delegated, D36/D45/D68). Other pearl spend paths (energy refill, surveys, report button, coin_exchange) are separate and owned by the design session / later slices; no runtime/device verification."
+        ]
       },
       {
         "id": "PM-148-A2",
         "text": "исторические unlocks не обнуляются",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-09-30 repository runner: tests/lesson_lock_system.test.ts + tests/unit/lesson_lock_system.test.ts 69/69 PASS (run by this session after D71) include: exact pearl purchase keeps lesson 17 open after Plus ends, pearl-bought lesson 9 open for a subscriber, recomputeEarnedUnlocks keeps exact purchase [20] after Premium is removed. lessons_pearl_unlocked_v1 is read by app/lesson_lock_system.ts (readPurchasedLessons) and is not touched by the purchase kill switch.",
+          "2026-09-30 tests/pearl_retire_d70.test.ts (executor-run, 5/5 PASS) asserts the D84 pearl-zeroing leaves lessons_pearl_unlocked_v1 = [3,7] intact. Source-level only, no device check."
+        ]
       }
     ],
     "depends_on": [],
@@ -7360,7 +7632,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-149",
+  "id": "PM-149",
     "epic": "E14",
     "title": "Согласовать шкалу 1/2/3 звезды",
     "requirement_ids": [
@@ -7368,7 +7640,7 @@
     ],
     "basis": "DECISION",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -7706,7 +7978,7 @@
     ],
     "basis": "LATER",
     "stage": "LATER",
-    "status": "deferred",
+    "status": "planned",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -7751,7 +8023,7 @@
     ],
     "basis": "LATER",
     "stage": "LATER",
-    "status": "deferred",
+    "status": "planned",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -7796,7 +8068,7 @@
     ],
     "basis": "LATER",
     "stage": "LATER",
-    "status": "deferred",
+    "status": "planned",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -7841,7 +8113,7 @@
     ],
     "basis": "LATER",
     "stage": "LATER",
-    "status": "deferred",
+    "status": "planned",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -7933,7 +8205,7 @@
     ],
     "basis": "LATER",
     "stage": "LATER",
-    "status": "deferred",
+    "status": "planned",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -8025,7 +8297,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "L0",
     "model": "gpt-6-luna",
     "reasoning": "low",
@@ -8034,14 +8306,18 @@
       {
         "id": "PM-163-A1",
         "text": "Пустое состояние не повторяет очевидное",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-09-27: текущий friends.tsx не рендерит заголовок или длинную инструкцию в пустом состоянии; source gate exit 0."
+        ]
       },
       {
         "id": "PM-163-A2",
         "text": "кнопка добавления остаётся заметной",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-09-27: friends-empty-add — DuoPressable minHeight 58 с текстом, иконкой, accessibilityLabel и открытием окна; source gate exit 0, нативный прогон не выполнялся."
+        ]
       }
     ],
     "depends_on": [],
@@ -8115,7 +8391,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-165",
+  "id": "PM-165",
     "epic": "E16",
     "title": "Решить, нужна ли награда за «Привет»",
     "requirement_ids": [
@@ -8123,7 +8399,7 @@
     ],
     "basis": "DECISION",
     "stage": "C",
-    "status": "needs_decision",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -8132,14 +8408,14 @@
       {
         "id": "PM-165-A1",
         "text": "Рекомендация — без монет/XP, чтобы не возродить фарм",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": ["Owner decision 2026-09-27: награду за «Привет» не выдавать; активного reward-path не найдено."]
       },
       {
         "id": "PM-165-A2",
         "text": "XP запрещён последним решением в любом случае",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": ["XP запрещён текущим решением владельца; отдельной награды за «Привет» нет."]
       }
     ],
     "depends_on": [],
@@ -8149,15 +8425,15 @@
       "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED",
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
-    "audit_sha": null,
-    "result_sha": null,
+    "audit_sha": "owner-decision-2026-09-27",
+    "result_sha": "no-greeting-reward-path",
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["Owner decision 2026-09-27: награду за «Привет» не выдавать."],
     "actual_cost": null,
     "kind": "unclassified",
-    "review_verdict": null,
+    "review_verdict": "PASS",
     "gate_evidence": {},
     "actual_model": null,
     "actual_reasoning": null
@@ -8417,8 +8693,10 @@
       {
         "id": "PM-171-A2",
         "text": "исключены маршрут, loaders и ссылки на пустой раздел",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-09-29 npx tsx tests/pm171_ideas_section_retired.probe.ts: PASS (2456 app/components/modules/hooks files scanned; ideas_catalog/ideas_submit/idea_decision_modals files absent; no non-comment reference to routes, flushIdeaDecisionModals or idea_inbox loader). Source-level only."
+        ]
       }
     ],
     "depends_on": [],
@@ -8600,7 +8878,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "superseded",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -8631,7 +8909,8 @@
     "reviewer": null,
     "evidence": [],
     "notes": [
-      "D54 (владелец 2026-09-24): Лигу заменяет Шпиль, эпик E25. Пьедестал топ-3 остаётся частью экрана Шпиля (T14) — выполнять в составе PM-279, метрика = ступени."
+      "D54 (владелец 2026-09-24): Лигу заменяет Шпиль, эпик E25. Пьедестал топ-3 остаётся частью экрана Шпиля (T14) — выполнять в составе PM-279, метрика = ступени.",
+      "Решение панели 2026-09-30 (P5, делегировано владельцем): status → superseded; критерии выполняются в составе PM-279 (D54), отдельной реализации не требуется."
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -8704,7 +8983,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "planned",
+    "status": "superseded",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -8735,7 +9014,8 @@
     "reviewer": null,
     "evidence": [],
     "notes": [
-      "D54 (владелец 2026-09-24): Лигу заменяет Шпиль, эпик E25. Пьедестал топ-3 остаётся частью экрана Шпиля (T14) — выполнять в составе PM-279, метрика = ступени."
+      "D54 (владелец 2026-09-24): Лигу заменяет Шпиль, эпик E25. Пьедестал топ-3 остаётся частью экрана Шпиля (T14) — выполнять в составе PM-279, метрика = ступени.",
+      "Решение панели 2026-09-30 (P5, делегировано владельцем): status → superseded; критерии выполняются в составе PM-279 (D54), отдельной реализации не требуется."
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -8753,7 +9033,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "superseded",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -8790,7 +9070,8 @@
     "reviewer": null,
     "evidence": [],
     "notes": [
-      "D54 (владелец 2026-09-24): Лигу заменяет Шпиль, эпик E25. Пьедестал топ-3 остаётся частью экрана Шпиля (T14) — выполнять в составе PM-279, метрика = ступени."
+      "D54 (владелец 2026-09-24): Лигу заменяет Шпиль, эпик E25. Пьедестал топ-3 остаётся частью экрана Шпиля (T14) — выполнять в составе PM-279, метрика = ступени.",
+      "Решение панели 2026-09-30 (P5, делегировано владельцем): status → superseded; критерии выполняются в составе PM-279 (D54), отдельной реализации не требуется."
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -8800,7 +9081,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-179",
+  "id": "PM-179",
     "epic": "E17",
     "title": "Утвердить частоту обновления топа",
     "requirement_ids": [
@@ -8808,7 +9089,7 @@
     ],
     "basis": "DECISION",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -8874,7 +9155,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -8883,8 +9164,8 @@
       {
         "id": "PM-180-A1",
         "text": "Нет влияния ранга лиги на энергию/XP/кошелёк",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": ["Non-test source scan: no active league boost producer/export; global_broadcast_claim neutralizes retired club_boost_free/wager_discount_25; cloud_sync blocks retired league keys; server_remote_event_allowlist.probe.ts PASS"]
       },
       {
         "id": "PM-180-A2",
@@ -8903,9 +9184,9 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
+    "evidence": ["Non-test league-bonus source audit 2026-09-27", "server_remote_event_allowlist.probe.ts PASS"],
     "notes": [
-      "D54 (владелец 2026-09-24): Лигу заменяет Шпиль, эпик E25. Бусты/сундуки/рамки лиги убрать (T36)."
+      "D54 (владелец 2026-09-24): Лигу заменяет Шпиль, эпик E25. A1 подтверждён; A2 paid history остаётся открытым, production billing/history inventory не выполнялся."
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -8923,7 +9204,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "planned",
+    "status": "superseded",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -8954,7 +9235,8 @@
     "reviewer": null,
     "evidence": [],
     "notes": [
-      "D54 (владелец 2026-09-24): Лигу заменяет Шпиль, эпик E25. Граница недели — понедельник 00:00 по правилу лиги; итог фактом на экране Шпиля (T17)."
+      "D54 (владелец 2026-09-24): Лигу заменяет Шпиль, эпик E25. Граница недели — понедельник 00:00 по правилу лиги; итог фактом на экране Шпиля (T17).",
+      "Решение панели 2026-09-30 (P5, делегировано владельцем): status → superseded; критерии выполняются в составе PM-279 (D54), отдельной реализации не требуется."
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -9066,7 +9348,7 @@
     ],
     "basis": "DECISION",
     "stage": "C",
-    "status": "needs_decision",
+    "status": "planned",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -9097,7 +9379,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["Owner has not seen the proposed improved business-card variants; do not choose or implement a variant until it is shown explicitly."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -9106,7 +9388,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-185",
+  "id": "PM-185",
     "epic": "E18",
     "title": "Проверить цену визитки относительно ранга монеты",
     "requirement_ids": [
@@ -9114,7 +9396,7 @@
     ],
     "basis": "DECISION",
     "stage": "C",
-    "status": "needs_decision",
+  "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -9122,15 +9404,20 @@
     "acceptance": [
       {
         "id": "PM-185-A1",
-        "text": "20–30 тысяч — пример",
-        "accepted": false,
-        "evidence": []
+      "text": "Цена улучшенной визитки фиксирована владельцем на уровне 10 000 монет",
+      "accepted": true,
+        "evidence": [
+        "Owner decision 2026-09-27: improved profile card price is fixed at 10,000 coins; this replaces the earlier 20–30k discussion range.",
+        "tests/pm185_profile_card_price.probe.ts: PM-185 PROFILE CARD PRICE: PASS"
+        ]
       },
       {
         "id": "PM-185-A2",
-        "text": "расходы не блокируют уже открытые диалоги и не заставляют выбирать между учёбой и косметикой без осознанного решения",
-        "accepted": false,
-        "evidence": []
+      "text": "расходы не блокируют уже открытые диалоги и не заставляют выбирать между учёбой и косметикой без осознанного решения",
+      "accepted": true,
+        "evidence": [
+        "Decision explicitly keeps cosmetics separate from dialogue access; tests/pm185_profile_card_access_separation.probe.ts: PM-185 ACCESS SEPARATION: PASS"
+        ]
       }
     ],
     "depends_on": [],
@@ -9145,7 +9432,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["Owner decision 2026-09-27: improved business card price is 10,000 coins."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -9162,7 +9449,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "superseded",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -9256,7 +9543,7 @@
     ],
     "basis": "DECISION",
     "stage": "C",
-    "status": "needs_decision",
+    "status": "planned",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -9398,7 +9685,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "L0",
     "model": "gpt-6-luna",
     "reasoning": "low",
@@ -9407,8 +9694,10 @@
       {
         "id": "PM-191-A1",
         "text": "Убрана неясная метрика и её эксклюзивные вычисления, но реальные сохранённые карточки не потеряны",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-09-27: current source gate exit 0 — метрика/её вычисление отсутствуют; сохранённые карточки продолжают использовать отдельный collection-путь. Данные на устройстве не проверялись."
+        ]
       }
     ],
     "depends_on": [],
@@ -9623,7 +9912,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-196",
+  "id": "PM-196",
     "epic": "E19",
     "title": "Отвязать статистику от XP",
     "requirement_ids": [
@@ -9631,7 +9920,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "planned",
+  "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -9640,14 +9929,21 @@
       {
         "id": "PM-196-A1",
         "text": "Общее время/учебные результаты не удалены вместе с опытом",
-        "accepted": false,
-        "evidence": []
+      "accepted": true,
+      "evidence": [
+        "tests/lifetime_profile_stats_without_xp.probe.ts: PASS",
+        "tests/stats_daily_breakdown_without_xp.probe.ts: PASS",
+        "tests/stats_insights_without_xp.probe.ts: PASS"
+      ]
       },
       {
         "id": "PM-196-A2",
         "text": "графики не получают пустые подписи старого уровня",
-        "accepted": false,
-        "evidence": []
+      "accepted": true,
+      "evidence": [
+        "tests/stats_activity_rows_without_xp.probe.ts: PASS",
+        "tests/streak_stats_score_without_xp.probe.ts: PASS"
+      ]
       }
     ],
     "depends_on": [],
@@ -9734,14 +10030,19 @@
       {
         "id": "PM-198-A1",
         "text": "Макс законсервирован, не подключён к production routes",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "tests/max_bundle_detachment.probe.ts: 6 checks passed",
+          "2026-09-28 source scan: no max_lessons/MAX voice/settings production route or import"
+        ]
       },
       {
         "id": "PM-198-A2",
         "text": "аудио-настройки действующих тренировок сохранены",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "tests/fc_voice_prefs.test.ts, tests/settings_sound_controls_contract.test.ts, tests/flashcards_audio_contract.test.ts: 16/16 PASS"
+        ]
       }
     ],
     "depends_on": [],
@@ -9838,8 +10139,10 @@
       {
         "id": "PM-200-A2",
         "text": "игровые типы retired",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-09-30 npx tsx tests/pm200_retired_notification_types.probe.ts: PASS (2485 files scanned, 1 local scheduler file checked): no scheduleNotificationAsync payload uses a gift/spin/arena/league/tournament/level_gift/season/boon type; removed gift scheduler (runGiftExpiringSync/syncGiftExpiringNotification) absent; tap handler for gift_expiring/tournament_starting is inert; already-scheduled gift_expiring is cancelled by the one-shot migration (PM-201). Server pushes are covered by the server allowlist probes (PM-202). Source-level only."
+        ]
       }
     ],
     "depends_on": [],
@@ -9870,7 +10173,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -9879,8 +10182,12 @@
       {
         "id": "PM-201-A1",
         "text": "Миграция отменяет уже запланированные подарки/спины/арену на устройстве, а не только прекращает новые",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-09-30 source-level: new app/retired_local_notifications.ts (idempotent one-shot migration, flag retired_local_notifs_cancelled_v1 set only after full cancel; cancels the stored gift_expiring id and every scheduled request whose data.type is gift_expiring; all early exits and catch paths log with [NOTIF-RETIRED]); called first in scheduleNotifications (app/notifications.ts) before permission/master checks. The dead gift_expiring scheduler (runGiftExpiringSync / syncGiftExpiringNotification, no callers) was removed.",
+          "2026-09-30 repository runner (test:one): tests/notifications_retired_local_cancel.test.ts PASS 5/5 (cancels stored id + scheduled gift_expiring, leaves weekly_recap alone; second launch no-op; schedule read failure and unavailable module do not set the flag; parallel callers share one run).",
+          "Scope note: in the current code the only local scheduled type among removed features is gift_expiring (LocalNotificationType union; every scheduleNotificationAsync call is in app/notifications.ts); spin/arena reminders are server pushes (tap handler is inert for tournament_starting/gift_expiring) so no local schedule exists to cancel. Older builds that may have scheduled other local types are not inventoried; no device verification."
+        ]
       }
     ],
     "depends_on": [],
@@ -9903,7 +10210,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-202",
+  "id": "PM-202",
     "epic": "E20",
     "title": "Снять серверные отправки удалённых событий",
     "requirement_ids": [
@@ -9911,23 +10218,31 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "planned",
+  "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
     "spec": "docs/SETTINGS_AUDIO.md",
     "acceptance": [
       {
-        "id": "PM-202-A1",
-        "text": "Проверены cron, triggers, queues, old tokens и admin actions",
-        "accepted": false,
-        "evidence": []
+      "id": "PM-202-A1",
+      "text": "Проверены cron, triggers, queues, old tokens и admin actions",
+      "accepted": true,
+        "evidence": [
+          "2026-09-29 reruns: tests/server_remote_event_allowlist.probe.ts PASS; tests/retired_server_deploy_targets.probe.ts exit 0; tests/retired_weekly_xp_cron_source.probe.ts exit 0; node tests/server_decision_atlas_contract.mjs PASS (inventory covers schedule/firestore-trigger/callable/http route types).",
+          "Verified by file listing: no league/season-pass/weekly-xp cron source remains in functions/src; index.ts states legacy league controls are no longer exported (adminSaveV2SeasonDraft is Learning V2 course content, not Season Pass).",
+          "2026-09-29 tests/server_retired_scheduler_surface.probe.ts: PASS (780 functions/src files, 60 background exports incl. onSchedule/onDocument*/onTaskDispatched, 0 league/xp/level-gift/boon/weekly-review jobs; retired callables only as fail-closed tombstones with explicit *_retired code; no league/xp/boon/level_gift/season_pass/weekly_review push type literals). SOURCE-LEVEL ONLY: deployed-function comparison and device token behaviour are NOT verified; device tokens are event-agnostic so no per-event token cleanup exists to check."
+        ]
       },
       {
-        "id": "PM-202-A2",
-        "text": "юридически/функционально необходимые сообщения сохранены",
-        "accepted": false,
-        "evidence": []
+      "id": "PM-202-A2",
+      "text": "юридически/функционально необходимые сообщения сохранены",
+      "accepted": true,
+      "evidence": [
+        "app messages visibility/background suites PASS 22/22",
+        "user notifications contract PASS 30/30",
+        "server remote-event and Firestore listener allowlists PASS"
+      ]
       }
     ],
     "depends_on": [],
@@ -9940,8 +10255,8 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": ["tests/server_remote_event_allowlist.probe.ts", "tests/retired_weekly_xp_cron_source.probe.ts: PASS", "node tests/server_decision_atlas_contract.mjs: SERVER DECISION ATLAS: PASS", "2026-09-28: deployment allowlist forbids retired spin-weight and roulette admin setters; probe PASS", "2026-09-28: latest server remote event allowlist probe: PASS"],
+    "notes": ["Preflight inventory: retired league/XP exports are absent; notification, subscription-expiry and progress-sync exports remain. Cron/trigger/queue/admin audit is still open."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -9997,7 +10312,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-204",
+  "id": "PM-204",
     "epic": "E20",
     "title": "Мигрировать разрешённое учебное аудио по allowlist",
     "requirement_ids": [
@@ -10005,7 +10320,7 @@
     ],
     "basis": "DECISION",
     "stage": "C",
-    "status": "needs_decision",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -10014,14 +10329,20 @@
       {
         "id": "PM-204-A1",
         "text": "Только после решения E02",
-        "accepted": false,
-        "evidence": []
+      "accepted": true,
+      "evidence": [
+        "tests/learning_v2_remote_audio_pack_contract.test.ts",
+        "tests/learning_v2_direct_session_review_restore_v1_gate.ts"
+      ]
       },
       {
         "id": "PM-204-A2",
         "text": "удаление озвучки не удаляет видео и системные механизмы записи/распознавания",
-        "accepted": false,
-        "evidence": []
+      "accepted": true,
+      "evidence": [
+        "tests/learning_v2_audio_delivery_contract.test.ts",
+        "tests/learning_v2_voice_audio_offline_cache_v1.test.ts"
+      ]
       }
     ],
     "depends_on": [
@@ -10038,7 +10359,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["Owner decision 2026-09-27: разрешить миграцию всех существующих учебных аудиофайлов; отсутствующие записи временно восполнять TTS по PM-020."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -10102,7 +10423,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -10117,8 +10438,11 @@
       {
         "id": "PM-206-A2",
         "text": "ненужные sound event IDs больше не вызываются",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-09-30 npx tsx tests/pm206_sound_event_callers.probe.ts: catalog=98, unknownCalls=0, orphanedCatalogIds=0 (after removing 14 uncalled ids plus dead pm.voice.turn_ready and its hook hooks/use-turn-ready-cue.ts, orphaned by MAX removal; .m4a assets removed only where unreferenced).",
+          "2026-09-30 repository runner (test:one), sound tests: reward_sound_surfaces_contract PASS, sound_event_call_sites_contract PASS. sound_motion_contract: 6 failures are PRE-EXISTING (32 audio events, 28 of them pm.arena.*, have no SOUND_MOTION entries at HEAD either); not caused by this change, Arena files are not to be touched. Source-level evidence only."
+        ]
       }
     ],
     "depends_on": [],
@@ -10127,11 +10451,15 @@
       "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED",
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
-    "audit_sha": null,
+    "audit_sha": "64227deea0ef4bde948a5e10b85f0b2960b56e83",
     "result_sha": null,
-    "owner": null,
+    "owner": "Codex (bounded static preflight)",
     "reviewer": null,
-    "evidence": [],
+    "evidence": [
+      "modules/audio/sound_events.ts",
+      "modules/audio/sound_motion.ts",
+      "docs/phraseman-2.0/tasks/PM-206.md"
+    ],
     "notes": [
       "2026-09-24 аудит Sonnet: 133 звуковых события, праздничные файлы общие для спинов/сундуков/подарков/достижений, десятки тестов завязаны на точный список. Решение оркестратора: звуки снимаются ВМЕСТЕ с каждой механикой (PM-046 спины, PM-048 подарки, PM-053 тосты, PM-056 сундуки...), PM-206 закрывается последним — финальная чистка осиротевших файлов и реестра"
     ],
@@ -10237,7 +10565,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-209",
+  "id": "PM-209",
     "epic": "E21",
     "title": "Спроектировать целевую очередь на основе существующей",
     "requirement_ids": [
@@ -10245,7 +10573,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "A1",
     "model": "gpt-6-astra",
     "reasoning": "low",
@@ -10299,7 +10627,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -10308,8 +10636,10 @@
       {
         "id": "PM-210-A1",
         "text": "Есть priority, owner, trigger, TTL, dedupe key, cancellation, budget и влияние на текущие очереди",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-09-30 docs/phraseman-2.0/evidence/PM-210_background_jobs.md: 118 sites in 72 files with priority/owner/trigger/TTL/dedupe/cancellation/budget/queue impact; npx tsx tests/pm210_background_jobs_registry.probe.ts PASS (re-run by me) — unregistered new background work fails the probe. Source-level, no device measurement."
+        ]
       }
     ],
     "depends_on": [],
@@ -10385,7 +10715,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -10394,14 +10724,18 @@
       {
         "id": "PM-212-A1",
         "text": "Импорт не запускает сеть/подписку/большой JSON",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-09-30 npx tsx tests/pm212_module_side_effects.probe.ts PASS (re-run by me): AST scan of 2351 files; no top-level network/subscription/timer/AsyncStorage/prewarm calls outside a shrink-only allowlist of 22 justified entries + 10 JSON imports. Source-level."
+        ]
       },
       {
         "id": "PM-212-A2",
         "text": "положительные нужные прогревы перенесены осознанно",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-09-30 useful warmups kept deliberately and documented in the allowlist/registry (e.g. legacy_inventory JSON needed for sign-in/purchases); dead warmups of deleted features removed (remote config poll, startup content prewarm, league week-points stub, duplicated import-time reads). Debt items marked ДОЛГ in the allowlist."
+        ]
       }
     ],
     "depends_on": [],
@@ -10613,7 +10947,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-217",
+  "id": "PM-217",
     "epic": "E21",
     "title": "Исключить архивные генераторы из release graph",
     "requirement_ids": [
@@ -10621,7 +10955,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -10661,7 +10995,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-218",
+  "id": "PM-218",
     "epic": "E21",
     "title": "Исключить Макса из production и сохранить исходники",
     "requirement_ids": [
@@ -10669,7 +11003,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -10678,14 +11012,14 @@
       {
         "id": "PM-218-A1",
         "text": "Код и тестовые контракты доступны для будущего",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": ["tests/max_bundle_detachment.probe.ts"]
       },
       {
         "id": "PM-218-A2",
         "text": "нет runtime, init, background jobs и включённых секретов",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": ["tests/max_bundle_detachment.probe.ts", "app/_layout.tsx", "app.json", "package.json"]
       }
     ],
     "depends_on": [],
@@ -10697,7 +11031,7 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
+    "evidence": ["tests/max_bundle_detachment.probe.ts", "app/_layout.tsx", "app.json", "package.json"],
     "notes": [],
     "actual_cost": null,
     "kind": "unclassified",
@@ -10707,7 +11041,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-219",
+  "id": "PM-219",
     "epic": "E21",
     "title": "Удалить персональные планы из релизного контура",
     "requirement_ids": [
@@ -10715,7 +11049,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "needs_decision",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -10732,8 +11066,11 @@
       {
         "id": "PM-219-A2",
         "text": "exclusive routes/services/assets убраны",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/PROGRESS.md",
+          "active source scan: no Personal Plan routes/services/assets"
+        ]
       }
     ],
     "depends_on": [],
@@ -10749,7 +11086,7 @@
       "docs/phraseman-2.0/evidence/PM-219_personal_plan_legacy_audit.md"
     ],
     "notes": [
-      "A1 подтверждён: 'Personal Plan' — отдельная legacy-фича (~90 файлов app/personal_plan_*, ~1.28 МБ исходников), НЕ связана с учебными курсами Learning V1/V2. A2 НЕ выполнен намеренно: фича не полностью мертва — app/personal_plan_sunset.ts зашивает grandfather cutoff (новые активации закрыты с 2026-08-20) и жёсткую дату полного отключения 2026-10-20T00:00:00Z; до этой даты пользователи, купившие план раньше, ещё имеют живой доступ через lessons.tsx (openLearningRoute -> /personal_plan), и это обещание с таймером уже показано им в UI (personal_plan_retired_redirect.ts). Удаление кода ДО 20.10.2026 нарушит это обещание. Найдено 16 файлов вне personal_plan_* с живыми ссылками (навигация, cloud_sync с 10+ AsyncStorage-ключами, paywall_purchase.ts с отдельным purchase context, personal_plan_sunset_guard.tsx оборачивает lesson1/lesson_menu/flashcards_swipe/mistake_practice_session) + 3 файла-спутника без префикса (plan_content_remote_facade.ts, plan_day_lesson_recommendation.ts, plan_week_mode_progression.ts). Серверной части (Cloud Functions/Firestore rules) нет — чистка чисто клиентская. Конкретный план удаления (список файлов + 13 внешних точек вызова) уже составлен в evidence-файле для исполнения ПОСЛЕ 20.10.2026"
+      "A1 подтверждён: 'Personal Plan' — отдельная legacy-фича (~90 файлов app/personal_plan_*, ~1.28 МБ исходников), НЕ связана с учебными курсами Learning V1/V2. Владелец подтвердил полное удаление без компенсации. A2 подтверждён: пользовательские входы, cloud_sync-ключи, purchase-контекст, спутники и ассеты удалены из активного релизного контура; серверных Cloud Functions для Personal Plan не найдено."
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -10796,7 +11133,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["Owner decision 2026-09-27: персональные планы давно должны быть удалены из релизного контура; не восстанавливать их в новом релизе."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -10823,13 +11160,17 @@
         "id": "PM-221-A1",
         "text": "Каждая function/trigger/cron привязана к сохраняемой возможности",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "2026-09-30 map covers all 567 functions/triggers/crons with a domain and capability; 104 are needs-owner-decision (57 arena_*, 29 learning-v2 without live index export, tutorText*, referral roulette, dev grants, cosmeticAssetCatalogGet, myCron). Criterion stays false until those are decided."
+        ]
       },
       {
         "id": "PM-221-A2",
         "text": "auth/purchases/delete/support не считаются мусором автоматически",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-09-30 npx tsx tests/pm221_server_domain_map.probe.ts: PASS total=567 (keep 406, tombstone 57, owner-decision 104); every auth (19), purchases/subscriptions (72), account-delete (10) and support/reports (46) function is keep, enforced by the probe. Evidence docs/phraseman-2.0/evidence/PM-221_server_domain_map.md. Static source classification, not deployed-function verification."
+        ]
       }
     ],
     "depends_on": [],
@@ -10995,7 +11336,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-225",
+  "id": "PM-225",
     "epic": "E22",
     "title": "Убрать ненужные realtime listeners",
     "requirement_ids": [
@@ -11003,7 +11344,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "needs_decision",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -11020,8 +11361,12 @@
       {
         "id": "PM-225-A2",
         "text": "каталоги и топ используют порции/TTL там, где realtime не нужен",
-        "accepted": false,
-        "evidence": []
+      "accepted": true,
+      "evidence": [
+        "docs/phraseman-2.0/evidence/PM-225_realtime_listeners_audit.md",
+        "tests/friends_realtime_d66_contract.test.ts: 2/2 PASS",
+        "tests/server_decision_atlas_contract.mjs: PASS"
+      ]
       }
     ],
     "depends_on": [],
@@ -11033,11 +11378,15 @@
     "result_sha": null,
     "owner": "Claude Sonnet 5 (субагент) + Claude Opus 5.5",
     "reviewer": null,
-    "evidence": [
-      "docs/phraseman-2.0/evidence/PM-225_realtime_listeners_audit.md"
-    ],
+  "evidence": [
+    "docs/phraseman-2.0/evidence/PM-225_realtime_listeners_audit.md",
+    "tests/friends_realtime_d66_contract.test.ts: 2/2 PASS",
+    "tests/league_group_boosts_d66_contract.test.ts: 2/2 PASS; fresh review PASS"
+    ,"tests/firestore_listener_allowlist.probe.ts: FIRESTORE LISTENER ALLOWLIST: PASS"
+  ],
     "notes": [
-      "A1 подтверждён: все 9 realtime-подписок имеют корректный owner/lifetime, утечек нет. A2 (каталоги/топ используют TTL там, где realtime не нужен) НЕ выполнен кодом — только разведка: найдено 5 явных кандидатов на замену one-shot+TTL (3 канала в app_messages.ts — лента объявлений/личные сообщения/состояния прочитанности; 2 в league_group_boosts.ts — groupId лидерборда и буст лиги), плюс 2 сомнительных (список друзей и заявки в друзья). НЕ стал резать app_messages.ts (2110 строк, сложные pending-очереди наград/claim'ов, был инцидент Android OOM в этом же файле) и league_group_boosts.ts (буст уже гейтится фокусом экрана прошлым аудитом нагрева 07-25, несёт live-счётчик лайков) без возможности протестировать на устройстве — риск денежной/наградной регрессии выше экономии. Нужно решение владельца: приоритизировать ли эту оптимизацию отдельной задачей с ручным тестированием"
+    "A1 подтверждён: все 9 realtime-подписок имеют корректный owner/lifetime, утечек нет. A2 (каталоги/топ используют TTL там, где realtime не нужен) НЕ выполнен кодом — только разведка: найдено 5 явных кандидатов на замену one-shot+TTL (3 канала в app_messages.ts — лента объявлений/личные сообщения/состояния прочитанности; 2 в league_group_boosts.ts — groupId лидерборда и буст лиги), плюс 2 сомнительных (список друзей и заявки в друзья). НЕ стал резать app_messages.ts (2110 строк, сложные pending-очереди наград/claim'ов, был инцидент Android OOM в этом же файле) без возможности протестировать на устройстве — риск денежной/наградной регрессии выше экономии.",
+    "2026-09-26 D66: league_group_boosts subscription уже переведён на cache-first + one bounded cloud read, без onSnapshot; buy/activate/like и server state не затрагивались. A2 всё ещё требует отдельных catalog/top TTL deliveries и Android/offline runtime evidence."
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -11064,14 +11413,18 @@
       {
         "id": "PM-226-A1",
         "text": "Ошибка содержит code, screen, operation, build, traceId и безопасный контекст",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-09-30 reportDiagnosticError in app/debug-logger.ts emits code, screen, operation, build (version+build), traceId and sanitized context; used by the PM-229 replacements. Source-level."
+        ]
       },
       {
         "id": "PM-226-A2",
         "text": "нет токенов, сырых голосов и текста личных карточек",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-09-30 app/diagnostic_mask.ts masks JWT/Bearer/sk- keys/query secrets/email/full uid/data-URI/base64; card text/transcript/audio fields logged by length only; tests/diagnostic_mask.test.ts 5/5 PASS (executor-run). Source-level."
+        ]
       }
     ],
     "depends_on": [],
@@ -11216,8 +11569,10 @@
       {
         "id": "PM-229-A2",
         "text": "сбой не блокирует следующие независимые работы",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-09-30 app/support_report_outbox.ts: a throwing send no longer breaks the flush loop (continue + logged reason), covered by a new case in tests/support_report_outbox.test.ts (executor-run); other queues keep independent jobs (keyed_exclusive_transaction chain). Source-level."
+        ]
       }
     ],
     "depends_on": [],
@@ -11337,7 +11692,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-232",
+  "id": "PM-232",
     "epic": "E22",
     "title": "Убрать мёртвые поля и формы из админки",
     "requirement_ids": [
@@ -11345,7 +11700,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -11689,13 +12044,18 @@
         "id": "PM-239-A1",
         "text": "Для каждой ветки есть SHA, unique commits, ahead/behind, PR/worktree owner",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "2026-09-30 node scripts/pm239_branch_inventory.mjs (read-only): 288 local + 54 remote branches with SHA, ahead (unique commits vs HEAD), behind, last commit date and worktree path; 225 refs have unique commits, 116 do not. Output: docs/phraseman-2.0/evidence/PM-239_branch_inventory.md.",
+          "OPEN GAP: PR association and a real worktree/branch owner are not in git and were not established (needs GitHub API / owner input); 8 of 20 worktrees are detached HEAD and carry no branch name. Criterion stays false until PR/owner mapping exists."
+        ]
       },
       {
         "id": "PM-239-A2",
         "text": "локальные незакоммиченные изменения учтены",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2026-09-30 same script counts local uncommitted changes of the shared tree: 3508 paths (modified 976, deleted 1918, untracked 614) grouped by top-level directory in the evidence file; no git state was changed (no reset/checkout/clean/prune/delete). Source-level inventory only."
+        ]
       }
     ],
     "depends_on": [],
@@ -12338,7 +12698,7 @@
     ],
     "basis": "OWNER",
     "stage": "D",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -12353,8 +12713,11 @@
       {
         "id": "PM-253-A2",
         "text": "процент считается по принятым критериям, не на глаз",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/PROGRESS.md: PM-253 progress checkpoint (543 criteria; 181 accepted; 33.33%)",
+          "deterministic JSON count from docs/phraseman-2.0/registries/tasks.json at HEAD 64227deea0ef4bde948a5e10b85f0b2960b56e83"
+        ]
       }
     ],
     "depends_on": [],
@@ -12366,8 +12729,12 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "docs/phraseman-2.0/PROGRESS.md: PM-253 progress checkpoint"
+    ],
+    "notes": [
+      "A2 accepted from deterministic registry counts; A1 remains open because this working tree has no result commit SHA and no screenshot pack for every task."
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -12560,7 +12927,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-270",
+  "id": "PM-270",
     "epic": "E25",
     "title": "Шпиль: preflight пула заданий по языкам и 12 шпилям",
     "requirement_ids": [
@@ -12568,7 +12935,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -12614,7 +12981,7 @@
     "actual_reasoning": "medium"
   },
   {
-    "id": "PM-271",
+  "id": "PM-271",
     "epic": "E25",
     "title": "Шпиль: контракт данных, конфиг админки и правила Firestore",
     "requirement_ids": [
@@ -12622,7 +12989,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -12677,7 +13044,7 @@
     "actual_reasoning": "medium"
   },
   {
-    "id": "PM-272",
+  "id": "PM-272",
     "epic": "E25",
     "title": "Шпиль: серверная сборка недельного пакета заданий",
     "requirement_ids": [
@@ -12685,7 +13052,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -12752,7 +13119,7 @@
     "actual_reasoning": "high"
   },
   {
-    "id": "PM-273",
+  "id": "PM-273",
     "epic": "E25",
     "title": "Шпиль: движок ступени на устройстве",
     "requirement_ids": [
@@ -12760,7 +13127,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -12865,7 +13232,7 @@
     "actual_reasoning": null
   },
   {
-    "id": "PM-275",
+  "id": "PM-275",
     "epic": "E25",
     "title": "Шпиль: запись прогресса, офлайн-очередь и проверка правдоподобия",
     "requirement_ids": [
@@ -12873,7 +13240,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -13017,7 +13384,7 @@
     "actual_reasoning": "high"
   },
   {
-    "id": "PM-277",
+  "id": "PM-277",
     "epic": "E25",
     "title": "Шпиль: комнаты по языку и дню входа, добивка ботами",
     "requirement_ids": [
@@ -13025,7 +13392,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -13091,7 +13458,7 @@
     "actual_reasoning": "high"
   },
   {
-    "id": "PM-278",
+  "id": "PM-278",
     "epic": "E25",
     "title": "Шпиль: перенос 12 ступеней лиги в 12 шпилей-камней",
     "requirement_ids": [
@@ -13099,7 +13466,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -13290,7 +13657,7 @@
     "actual_reasoning": "high"
   },
   {
-    "id": "PM-281",
+  "id": "PM-281",
     "epic": "E25",
     "title": "Шпиль: пуши понедельника и воскресенья",
     "requirement_ids": [
@@ -13298,7 +13665,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -13353,7 +13720,7 @@
     "actual_reasoning": "medium"
   },
   {
-    "id": "PM-282",
+  "id": "PM-282",
     "epic": "E25",
     "title": "Шпиль: строка «Друзья на этой неделе»",
     "requirement_ids": [
@@ -13361,7 +13728,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -13407,7 +13774,7 @@
     "actual_reasoning": "medium"
   },
   {
-    "id": "PM-283",
+  "id": "PM-283",
     "epic": "E25",
     "title": "Шпиль: раздел конфига в админке legacy.html",
     "requirement_ids": [
@@ -13415,7 +13782,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -13473,7 +13840,7 @@
     "actual_reasoning": "medium"
   },
   {
-    "id": "PM-284",
+  "id": "PM-284",
     "epic": "E25",
     "title": "Шпиль: бриф картинок для Codex",
     "requirement_ids": [
@@ -13481,7 +13848,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -13519,7 +13886,7 @@
     "actual_reasoning": "medium"
   },
   {
-    "id": "PM-285",
+  "id": "PM-285",
     "epic": "E25",
     "title": "Шпиль: починить дистракторы «угадай фразу» до запуска",
     "requirement_ids": [
@@ -13527,7 +13894,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+  "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",

@@ -21,7 +21,6 @@ describe('personal plan restored cross-contract seams', () => {
       'personal_plan_state_v1',
       'personal_plan_completed_tasks_v1',
       'personal_plan_task_progress_v1',
-      'personal_plan_xp_ledger_v1',
     ]) {
       expect(syncSection).toContain(`'${key}'`);
       expect(localSection).not.toContain(`'${key}'`);

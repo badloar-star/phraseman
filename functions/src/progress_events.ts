@@ -3,11 +3,9 @@ import { createHash } from 'crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
-import { getLevelFromXP } from './xp_levels';
 import { applyLessonScoreSample, type LessonScoreStats } from './jarvis/content_lesson_stats';
 import { extractLessonScoreSample, lessonStatsDocId, shouldRecordLessonScore } from './jarvis/content_lesson_stats_write';
 import { commitPreparedLearningMetrics, prepareLearningCompletionMetrics } from './jarvis/learning_metrics';
-import { applyLevelSpinMinting, LEVEL_SPIN_PROTOCOL, type LevelExamSpinLevel } from './level_reward_spins';
 
 export type ProgressMap = Record<string, unknown>;
 
@@ -16,11 +14,6 @@ export const PROGRESS_EVENT_TYPES = [
   'lesson_complete',
   'dialog_complete',
   'exam_complete',
-  'achievement_reward',
-  'level_up_bonus',
-  'daily_login_bonus',
-  'daily_phrase_quest',
-  'bonus_chest',
   'vocabulary_learned',
   'verb_learned',
   'preposition_drill_answer',
@@ -28,13 +21,6 @@ export const PROGRESS_EVENT_TYPES = [
   'mistake_practice_answer',
   'diagnostic_test',
   'plan_task_complete',
-  'wager_win',
-  // зачем (аудит MAX 2026-08-30): XP голосового урока считал ТОЛЬКО сервер
-  // (maxVoiceSessionEnd → billing.xpAwarded), а клиенту начислить его было
-  // нечем — источника в контракте не существовало, и платный урок не двигал
-  // ни уровень, ни серию. Значение приходит уже посчитанным и капнутым
-  // сервером MAX (дневной кэп xpDailyCap там же), клиент передаёт его как есть.
-  'max_voice',
 ] as const;
 
 export type ProgressEventType = typeof PROGRESS_EVENT_TYPES[number];
@@ -46,7 +32,6 @@ export type ProgressEventInput = {
   clientCreatedAt?: number;
   appVersion?: string;
   platform?: string;
-  levelSpinProtocol?: typeof LEVEL_SPIN_PROTOCOL;
   payload: Record<string, unknown>;
 };
 
@@ -56,49 +41,15 @@ export type ProgressEventResult = {
   eventId: string;
   type: ProgressEventType;
   duplicate: boolean;
-  xpDelta: number;
-  totalXp: number;
-  level: number;
   streakCount: number;
   activeDate: string;
-  weekKey: string;
-  weekXp: number;
-  levelSpinsMinted?: number;
-  levelSpinMintedCredits?: { id: string; level: number; kind: 'standard' | 'milestone' }[];
-  levelSpinBalance?: number;
 };
-
-export function examSpinCompletionForEvent(
-  event: ProgressEventInput,
-  progressBefore: ProgressMap,
-): { level: LevelExamSpinLevel; firstPass: boolean } | undefined {
-  const blueprintVersion = Number(event.payload.blueprintVersion);
-  if (event.type !== 'exam_complete' || ![2, 3].includes(blueprintVersion)) return undefined;
-  const level = String(event.payload.level ?? '').toUpperCase() as LevelExamSpinLevel;
-  const score = Number(event.payload.score);
-  const total = Number(event.payload.total);
-  const target = String(event.payload.studyTarget ?? 'en').toLowerCase();
-  if (!['A1', 'A2', 'B1', 'B2'].includes(level)
-    || target !== 'en'
-    || !Number.isInteger(score)
-    || total !== 30
-    || score < 21
-    || score > total) return undefined;
-  const alreadyPassed = boolish(progressBefore[`level_exam_${level}_passed`]);
-  return { level, firstPass: !alreadyPassed };
-}
 
 type ApplyResult = Omit<ProgressEventResult, 'stableUid' | 'duplicate'> & {
   progressPatch: ProgressMap;
 };
 
 export type ProgressServerState = {
-  totalXp: number;
-  level: number;
-  weekKey: string;
-  weekStart: string;
-  weekXp: number;
-  weekPoints: number;
   streakCount: number;
   lastActiveDate: string;
 };
@@ -106,8 +57,6 @@ export type ProgressServerState = {
 export type MigrationProvenance = {
   source: 'client_snapshot_v1';
   quarantinedSensitiveKeys: string[];
-  beforeXp: number;
-  acceptedXp: number;
   appVersion: string | null;
 };
 
@@ -124,11 +73,6 @@ const FINGERPRINT_EXCLUDED_PAYLOAD_KEYS = new Set<string>([
 ]);
 
 const SERVER_OWNED_PROGRESS_KEYS = new Set([
-  'user_total_xp',
-  'user_prev_xp',
-  'user_level',
-  'weekly_xp',
-  'weekly_xp_period_start',
   'week_points',
   'week_points_v2',
   'streak_count',
@@ -136,67 +80,6 @@ const SERVER_OWNED_PROGRESS_KEYS = new Set([
   'streak_last_date',
   'unlocked_lessons',
 ]);
-
-const EVENT_XP_CAP: Record<ProgressEventType, number> = {
-  lesson_answer: 100,
-  lesson_complete: 8000,
-  dialog_complete: 1000,
-  exam_complete: 12000,
-  achievement_reward: 5000,
-  level_up_bonus: 100,
-  daily_login_bonus: 500,
-  daily_phrase_quest: 500,
-  bonus_chest: 5000,
-  vocabulary_learned: 150,
-  verb_learned: 150,
-  preposition_drill_answer: 150,
-  preposition_drill_perfect: 1500,
-  mistake_practice_answer: 150,
-  diagnostic_test: 2500,
-  plan_task_complete: 1500,
-  wager_win: 20000,
-  // Дневной потолок MAX-звонков (xpDailyCap в max_voice_config, дефолт 300)
-  // применён на сервере MAX ещё до клиента; здесь — потолок ОДНОГО события
-  // от подделанного xpDelta, той же величины.
-  max_voice: 300,
-};
-
-/**
- * зачем: суточные потолки XP (ECON-2: GLOBAL_DAILY_XP_CAP = 25 000 и EVENT_DAILY_XP_CAP по каждому
- * источнику) сняты по решению владельца 2026-07-26. Они срезали XP только на сервере, а клиент
- * пишет user_total_xp локально без каких-либо суточных лимитов и при зеркалировании берёт
- * Math.max(local, server) — то есть срезанное серверное значение всегда проигрывало локальному.
- * Потолки не мешали фарму, но навсегда расщепляли баланс телефона и сервера: активный игрок видел
- * у себя одно число, сервер хранил другое, и сойтись они уже не могли. Активная игра наказывалась,
- * античит-эффекта не давалось. От подделанного xpDelta в запросе защищает оставшийся EVENT_XP_CAP
- * (потолок на одно событие), от бесконечных попыток экзамена — EXAM_DAILY_ATTEMPT_LIMIT, от
- * неограниченных вызовов функции — DAILY_EVENT_LIMIT. Счётчики sourceXp/totalXp в
- * progress_daily_counters продолжают писаться — они нужны админ-аналитике и дают возможность
- * вернуть потолок, не меняя схему данных.
- */
-
-/**
- * ECON-3: суточный лимит попыток экзамена. XP начисляется за каждую попытку, осколок — только за
- * первую, поэтому без лимита экзамен становится бесплатным бесконечным фармом XP. После лимита
- * exam_complete принимается (прогресс/проценты пишутся), но XP не начисляется.
- */
-const EXAM_DAILY_ATTEMPT_LIMIT = 5;
-
-/**
- * ECON-11: минимальный процент экзамена, при котором начисляется XP. Ниже порога спам-клик не
- * вознаграждается (раньше пол Math.max(10, …) давал XP даже за 1%).
- */
-const EXAM_MIN_XP_PCT = 25;
-
-/**
- * Серверный авторитетный пересчёт XP за экзамен (ECON-11). Клиентский examXp игнорируется: сервер
- * считает по фактическому проценту, без нижнего пола за провал.
- */
-function serverExamXp(pct: number, passed: boolean): number {
-  if (pct < EXAM_MIN_XP_PCT) return 0;
-  if (passed) return 50 + Math.round(pct / 2);
-  return Math.round(pct / 4);
-}
 
 function cleanString(value: unknown, max = 160): string {
   return typeof value === 'string' ? value.trim().slice(0, max) : '';
@@ -283,15 +166,6 @@ export function getWeekStartIso(dateKey: string): string {
   return isoDateUtc(monday);
 }
 
-function readWeekPoints(progress: ProgressMap, weekKey: string): number {
-  try {
-    const parsed = JSON.parse(String(progress.week_points_v2 ?? '{}')) as { weekKey?: unknown; points?: unknown };
-    return parsed.weekKey === weekKey ? Math.max(0, Number(parsed.points ?? 0) || 0) : 0;
-  } catch {
-    return 0;
-  }
-}
-
 export function buildProgressBaseline(
   progress: ProgressMap,
   rawShadow: unknown,
@@ -300,18 +174,6 @@ export function buildProgressBaseline(
   const shadow = rawShadow && typeof rawShadow === 'object' && !Array.isArray(rawShadow)
     ? rawShadow as Partial<ProgressServerState>
     : {};
-  const serverDate = isoDateUtc(now);
-  const weekKey = getWeekKey(serverDate);
-  const weekStart = getWeekStartIso(serverDate);
-  const totalXp = Math.max(0, readInt(progress.user_total_xp, 0), readInt(shadow.totalXp, 0));
-  const progressWeekXp = cleanString(progress.weekly_xp_period_start, 10) === weekStart
-    ? Math.max(0, readInt(progress.weekly_xp, 0))
-    : 0;
-  const shadowWeekXp = shadow.weekStart === weekStart ? Math.max(0, readInt(shadow.weekXp, 0)) : 0;
-  const weekXp = Math.max(progressWeekXp, shadowWeekXp);
-  const shadowWeekPoints = shadow.weekKey === weekKey ? Math.max(0, Number(shadow.weekPoints) || 0) : 0;
-  const weekPoints = Math.max(readWeekPoints(progress, weekKey), shadowWeekPoints, weekXp);
-
   const progressLast = cleanString(progress.last_active_date ?? progress.streak_last_date, 10);
   const shadowLast = cleanString(shadow.lastActiveDate, 10);
   const progressStreak = Math.max(0, readInt(progress.streak_count, 0));
@@ -322,7 +184,7 @@ export function buildProgressBaseline(
     lastActiveDate = shadowLast;
     // зачем (владелец, 2026-08-28: «у меня 137 дней цепочка, а не 93»): теневое
     // состояние обновляют и пути, которые НЕ ведут стрик (награда за друга,
-    // арена — они пишут progressServerState со своим totalXp и свежей датой,
+    // арена — они пишут progressServerState со свежей датой,
     // унося устаревший streakCount). Раньше его счётчик брался вслепую вместе с
     // датой, и честная цепочка обрезалась до отставшего снимка.
     //
@@ -342,36 +204,19 @@ export function buildProgressBaseline(
 
   const baseline: ProgressMap = {
     ...progress,
-    user_total_xp: String(totalXp),
-    user_level: String(getLevelFromXP(totalXp)),
-    weekly_xp: String(weekXp),
-    weekly_xp_period_start: weekStart,
-    week_points: String(Math.round(weekPoints)),
-    week_points_v2: JSON.stringify({ weekKey, points: weekPoints }),
     streak_count: String(streakCount),
   };
   if (lastActiveDate) {
     baseline.last_active_date = lastActiveDate;
     baseline.streak_last_date = lastActiveDate;
   }
+  void now;
   return baseline;
 }
 
 export function progressServerStateFromProgress(progress: ProgressMap, now: Date): ProgressServerState {
-  const serverDate = isoDateUtc(now);
-  const weekKey = getWeekKey(serverDate);
-  const weekStart = getWeekStartIso(serverDate);
-  const totalXp = Math.max(0, readInt(progress.user_total_xp, 0));
-  const weekXp = cleanString(progress.weekly_xp_period_start, 10) === weekStart
-    ? Math.max(0, readInt(progress.weekly_xp, 0))
-    : 0;
+  void now;
   return {
-    totalXp,
-    level: getLevelFromXP(totalXp),
-    weekKey,
-    weekStart,
-    weekXp,
-    weekPoints: Math.max(weekXp, readWeekPoints(progress, weekKey)),
     streakCount: Math.max(0, readInt(progress.streak_count, 0)),
     lastActiveDate: cleanString(progress.last_active_date ?? progress.streak_last_date, 10),
   };
@@ -379,12 +224,6 @@ export function progressServerStateFromProgress(progress: ProgressMap, now: Date
 
 export function authoritativeProgressPatch(state: ProgressServerState): ProgressMap {
   const patch: ProgressMap = {
-    user_total_xp: String(state.totalXp),
-    user_level: String(state.level),
-    weekly_xp: String(state.weekXp),
-    weekly_xp_period_start: state.weekStart,
-    week_points: String(Math.round(state.weekPoints)),
-    week_points_v2: JSON.stringify({ weekKey: state.weekKey, points: state.weekPoints }),
     streak_count: String(state.streakCount),
   };
   if (state.lastActiveDate) {
@@ -392,56 +231,6 @@ export function authoritativeProgressPatch(state: ProgressServerState): Progress
     patch.streak_last_date = state.lastActiveDate;
   }
   return patch;
-}
-
-async function projectProgressToCurrentLeague(
-  db: admin.firestore.Firestore,
-  stableUid: string,
-  result: ProgressEventResult,
-): Promise<void> {
-  const leaderboardRef = db.collection('leaderboard').doc(stableUid);
-  const leaderboardSnap = await leaderboardRef.get();
-  const leaderboard = leaderboardSnap.data() ?? {};
-  const groupId = cleanString(leaderboard.groupId, 180);
-  if (!groupId || cleanString(leaderboard.groupWeekId, 16) !== result.weekKey) return;
-
-  const groupRef = db.collection('league_groups').doc(groupId);
-  await db.runTransaction(async (tx) => {
-    const [freshLeaderboardSnap, groupSnap] = await Promise.all([
-      tx.get(leaderboardRef),
-      tx.get(groupRef),
-    ]);
-    const freshLeaderboard = freshLeaderboardSnap.data() ?? {};
-    const group = groupSnap.data() ?? {};
-    if (
-      !groupSnap.exists
-      || cleanString(group.weekId, 16) !== result.weekKey
-      || cleanString(freshLeaderboard.groupId, 180) !== groupId
-      || cleanString(freshLeaderboard.groupWeekId, 16) !== result.weekKey
-    ) return;
-
-    const members = { ...(group.members ?? {}) } as Record<string, Record<string, unknown>>;
-    const existingMember = members[stableUid] ?? {};
-    const existingPoints = Math.max(0, readInt(existingMember.points, 0));
-    const existingLeaderboardPoints = freshLeaderboard.weekKey === result.weekKey
-      ? Math.max(0, readInt(freshLeaderboard.weekPoints, 0))
-      : 0;
-    const weekPoints = Math.max(existingPoints, existingLeaderboardPoints, result.weekXp);
-    members[stableUid] = {
-      ...existingMember,
-      uid: stableUid,
-      points: weekPoints,
-      streak: result.streakCount,
-      totalXp: result.totalXp,
-    };
-    tx.set(groupRef, { members, updatedAt: Date.now() }, { merge: true });
-    tx.set(leaderboardRef, {
-      weekKey: result.weekKey,
-      weekPoints,
-      streak: result.streakCount,
-      points: result.totalXp,
-    }, { merge: true });
-  });
 }
 
 export function resolveClientDateKey(raw: unknown, now: Date): string {
@@ -491,7 +280,6 @@ export function normalizeProgressEvent(raw: unknown): ProgressEventInput {
     clientCreatedAt: readInt(data.clientCreatedAt, 0) || undefined,
     appVersion: cleanString(data.appVersion, 32) || undefined,
     platform: cleanString(data.platform, 32) || undefined,
-    levelSpinProtocol: data.levelSpinProtocol === LEVEL_SPIN_PROTOCOL ? LEVEL_SPIN_PROTOCOL : undefined,
     payload,
   };
 }
@@ -551,26 +339,6 @@ export function candidateHasSameProgressSemantics(
   } catch {
     return false;
   }
-}
-
-export function readLegacyLevelUpBonusClaim(
-  candidate: Record<string, unknown> | undefined,
-  level: number,
-): 'unclaimed' | 'claimed' | 'corrupt' {
-  if (!candidate) return 'unclaimed';
-  const payload = candidate.payload && typeof candidate.payload === 'object' && !Array.isArray(candidate.payload)
-    ? candidate.payload as Record<string, unknown>
-    : {};
-  const result = candidate.result && typeof candidate.result === 'object' && !Array.isArray(candidate.result)
-    ? candidate.result as Record<string, unknown>
-    : {};
-  return candidate.eventId === `level_up:${level}:bonus`
-    && candidate.type === 'level_up_bonus'
-    && Number(payload.level) === level
-    && Number(payload.xpDelta ?? payload.amount ?? payload.baseXp) === 100
-    && Number(result.xpDelta) === 100
-    ? 'claimed'
-    : 'corrupt';
 }
 
 export function fingerprintProgressEvent(event: ProgressEventInput): string {
@@ -674,70 +442,13 @@ function setUnlocked(progress: ProgressMap, patch: ProgressMap, lessonId: number
  * Контекст одного дня для серверных лимитов (ECON-3). Передаётся из транзакции, где читается
  * progress_daily_counters/{day}. Чистая функция остаётся тестируемой.
  *
- * зачем: суточные потолки XP сняты (см. комментарий у EVENT_XP_CAP), поэтому на начисление здесь
- * влияет только examAttemptsToday. sourceXpToday/totalXpToday остаются в типе и продолжают
- * писаться в счётчики — их читает админ-аналитика, и по ним можно вернуть потолок без миграции.
+ * Контекст хранит только факты попыток экзамена, необходимые для учебной
+ * статистики.
  */
 export type ProgressDailyContext = {
-  /** Уже начисленный сегодня XP по каждому источнику. Аналитика; на начисление не влияет. */
-  sourceXpToday?: Partial<Record<ProgressEventType, number>>;
-  /** Сколько попыток экзамена уже зачтено сегодня (любого уровня). Ограничивает XP за экзамен. */
+  /** Сколько попыток экзамена уже зачтено сегодня. */
   examAttemptsToday?: number;
-  /** Суммарный XP за сегодня. Аналитика; на начисление не влияет. */
-  totalXpToday?: number;
-  /** Server-only transaction evidence that this deterministic level bonus was already consumed. */
-  levelUpBonusAlreadyClaimed?: boolean;
 };
-
-function xpFromPayload(event: ProgressEventInput, daily: ProgressDailyContext | undefined, progress: ProgressMap): number {
-  const payload = event.payload;
-  let requested = 0;
-
-  if (event.type === 'level_up_bonus') {
-    if (daily?.levelUpBonusAlreadyClaimed) return 0;
-    const level = Number(payload.level);
-    const amount = Number(payload.xpDelta ?? payload.amount ?? payload.baseXp);
-    if (!Number.isInteger(level) || level < 2 || level > 60) {
-      throw new HttpsError('invalid-argument', 'level_up_bonus_level_invalid');
-    }
-    if (!Number.isInteger(amount) || amount !== 100) {
-      throw new HttpsError('invalid-argument', 'level_up_bonus_amount_invalid');
-    }
-    const authoritativeLevel = getLevelFromXP(Math.max(0, Number(progress.user_total_xp ?? 0) || 0));
-    if (authoritativeLevel < level) {
-      throw new HttpsError('failed-precondition', 'level_up_bonus_level_not_reached');
-    }
-    requested = 100;
-  } else if (event.type === 'exam_complete') {
-    const level = cleanString(payload.level ?? payload.examLevel, 12).toLowerCase();
-    const attemptsSoFar = Math.max(0, daily?.examAttemptsToday ?? 0);
-    if (level === 'final') {
-      requested = clampInt(
-        payload.xpDelta ?? payload.finalXp ?? payload.amount ?? payload.baseXp,
-        0,
-        EVENT_XP_CAP.exam_complete,
-      );
-    } else {
-      if (attemptsSoFar >= EXAM_DAILY_ATTEMPT_LIMIT) return 0;
-      const pct = clampInt(payload.pct ?? payload.percent ?? payload.scorePct, 0, 100);
-      const passed = boolish(payload.passed) || pct >= 70;
-      requested = Math.max(0, Math.min(EVENT_XP_CAP.exam_complete, serverExamXp(pct, passed)));
-    }
-  } else {
-    requested = clampInt(
-      payload.xpDelta ?? payload.finalXp ?? payload.amount ?? payload.baseXp,
-      0,
-      EVENT_XP_CAP[event.type],
-    );
-  }
-
-  // зачем: здесь суточные потолки срезали уже честно заработанный XP. Сервер отдавал урезанный
-  // total, клиент при зеркалировании брал Math.max(local, server) и оставался со своим большим
-  // числом — потолок не ограничивал игрока, а только разводил два баланса навсегда. Оставляем
-  // единственную проверку, которая защищает от подделки: потолок на одно событие (EVENT_XP_CAP)
-  // применён выше при clampInt.
-  return Math.max(0, requested);
-}
 
 function applyDailyStreak(progress: ProgressMap, patch: ProgressMap, activeDate: string): number {
   const last = cleanString(progress.last_active_date ?? progress.streak_last_date, 10);
@@ -869,42 +580,13 @@ export function applyProgressEvent(
 ): ApplyResult {
   const activeDate = resolveClientDateKey(event.clientLocalDate, now);
   const serverDate = isoDateUtc(now);
-  const weekKey = getWeekKey(serverDate);
-  const weekStart = getWeekStartIso(serverDate);
   const patch: ProgressMap = {};
+  // Persist only structural learning progress and the streak below.
+  void daily;
 
-  const previousTotal = Math.max(0, readInt(progress.user_total_xp, 0));
-  const xpDelta = xpFromPayload(event, daily, progress);
-  const totalXp = previousTotal + xpDelta;
-  const level = getLevelFromXP(totalXp);
-  const previousWeeklyStart = cleanString(progress.weekly_xp_period_start, 10);
-  const previousWeeklyXp = previousWeeklyStart === weekStart ? Math.max(0, readInt(progress.weekly_xp, 0)) : 0;
-  const weekXp = previousWeeklyXp + xpDelta;
-
-  if (xpDelta > 0) {
-    patch.user_prev_xp = String(previousTotal);
-    patch.user_total_xp = String(totalXp);
-    patch.user_level = String(level);
-    patch.weekly_xp = String(weekXp);
-    patch.weekly_xp_period_start = weekStart;
-
-    const previousWeekPoints = (() => {
-      try {
-        const parsed = JSON.parse(String(progress.week_points_v2 ?? '{}')) as { weekKey?: string; points?: number };
-        return parsed.weekKey === weekKey ? Math.max(0, Number(parsed.points ?? 0) || 0) : 0;
-      } catch {
-        return 0;
-      }
-    })();
-    const nextWeekPoints = Math.round((previousWeekPoints + xpDelta) * 10) / 10;
-    patch.week_points = String(Math.round(nextWeekPoints));
-    patch.week_points_v2 = JSON.stringify({ weekKey, points: nextWeekPoints });
-  }
-
-  const progressWithClientStreak = xpDelta > 0
-    ? applyClientStreakEvidence(progress, patch, event, activeDate)
-    : progress;
-  const streakCount = xpDelta > 0 ? applyDailyStreak(progressWithClientStreak, patch, activeDate) : Math.max(0, readInt(progress.streak_count, 0));
+  // Streak is learning progress and remains synchronized for real activity.
+  const progressWithClientStreak = applyClientStreakEvidence(progress, patch, event, activeDate);
+  const streakCount = applyDailyStreak(progressWithClientStreak, patch, activeDate);
 
   if (event.type === 'lesson_complete') {
     applyLessonFields(progress, patch, event);
@@ -916,21 +598,14 @@ export function applyProgressEvent(
     ok: true,
     eventId: event.eventId,
     type: event.type,
-    xpDelta,
-    totalXp,
-    level,
     streakCount,
     activeDate,
-    weekKey,
-    weekXp,
     progressPatch: patch,
   };
 }
 
 export function buildMigrationPatch(snapshot: ProgressMap, existing: ProgressMap, now: Date = new Date()): ProgressMap {
-  const patch: ProgressMap = {
-    user_level: String(getLevelFromXP(Math.max(0, readInt(existing.user_total_xp, 0)))),
-  };
+  const patch: ProgressMap = {};
   Object.keys(snapshot).forEach((key) => {
     if (/^(?:lesson_progress_v2::fr::)?lesson\d+_cellIndex$/.test(key)) {
       const incoming = clampInt(snapshot[key], 0, 100_000);
@@ -967,15 +642,11 @@ export function getMigrationQuarantinedSensitiveKeys(snapshot: ProgressMap): str
 
 export function buildMigrationProvenance(
   snapshot: ProgressMap,
-  beforeXp: number,
-  acceptedXp: number,
   appVersion: unknown,
 ): MigrationProvenance {
   return {
     source: 'client_snapshot_v1',
     quarantinedSensitiveKeys: getMigrationQuarantinedSensitiveKeys(snapshot),
-    beforeXp: Math.max(0, Math.trunc(beforeXp)),
-    acceptedXp: Math.max(0, Math.trunc(acceptedXp)),
     appVersion: cleanString(appVersion, 32) || null,
   };
 }
@@ -1029,19 +700,9 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
   const now = new Date();
   const todayKey = isoDateUtc(now);
   const dailyCounterRef = userRef.collection('progress_daily_counters').doc(todayKey);
-  const bonusLevel = event.type === 'level_up_bonus' ? Number(event.payload.level) : 0;
-  const levelUpBonusClaimRef = event.type === 'level_up_bonus'
-    && Number.isInteger(bonusLevel)
-    && bonusLevel >= 2
-    && bonusLevel <= 60
-    ? userRef.collection('level_up_bonus_claims').doc(`level_bonus_v1_${String(bonusLevel).padStart(3, '0')}`)
-    : null;
-  const legacyLevelUpBonusRef = levelUpBonusClaimRef
-    ? userRef.collection('progress_events').doc(safeDocId(`level_up:${bonusLevel}:bonus`))
-    : null;
   // зачем: департамент «Контент» Джарвиса (владелец 2026-08-02) — дешёвый
-  // агрегат среднего балла по уроку. Пишется в той же транзакции, что уже
-  // начисляет XP — одна дополнительная запись документа на событие, без
+  // агрегат среднего балла по уроку. Пишется в той же транзакции обработки
+  // события — одна дополнительная запись документа, без
   // отдельного чтения всей истории и без нового collectionGroup-скана.
   const recordLessonScore = shouldRecordLessonScore(event);
   const lessonScoreSample = recordLessonScore ? extractLessonScoreSample(event) : null;
@@ -1050,16 +711,14 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
     : null;
 
   const result = await db.runTransaction(async (tx) => {
-    const [userSnap, ledgerSnap, counterSnap, lessonStatsSnap, levelUpBonusClaimSnap, legacyLevelUpBonusSnap] = await Promise.all([
+    const [userSnap, ledgerSnap, counterSnap, lessonStatsSnap] = await Promise.all([
       tx.get(userRef),
       tx.get(ledgerRef),
       tx.get(dailyCounterRef),
       lessonStatsRef ? tx.get(lessonStatsRef) : Promise.resolve(null),
-      levelUpBonusClaimRef ? tx.get(levelUpBonusClaimRef) : Promise.resolve(null),
-      legacyLevelUpBonusRef ? tx.get(legacyLevelUpBonusRef) : Promise.resolve(null),
     ]);
-    if (!userSnap.exists || userSnap.data()?.identityHidden === true || userSnap.data()?.levelSpinMergePending === true) {
-      throw new HttpsError('failed-precondition', 'level_spin_identity_transition_pending');
+    if (!userSnap.exists || userSnap.data()?.identityHidden === true) {
+      throw new HttpsError('failed-precondition', 'user_progress_unavailable');
     }
     if (ledgerSnap.exists) {
       const result = ledgerSnap.data()?.result as ProgressEventResult | undefined;
@@ -1082,79 +741,42 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
       if (result) return { ...result, duplicate: true };
       throw new HttpsError('aborted', 'progress_event_ledger_corrupt');
     }
-    const legacyBonusClaimState = readLegacyLevelUpBonusClaim(
-      legacyLevelUpBonusSnap?.exists ? legacyLevelUpBonusSnap.data() : undefined,
-      bonusLevel,
-    );
-    if (legacyBonusClaimState === 'corrupt') {
-      throw new HttpsError('aborted', 'level_up_bonus_legacy_ledger_corrupt');
-    }
     const counterData = counterSnap.data() ?? {};
     const dailyCount = (counterData.count as number | undefined) ?? 0;
     if (dailyCount >= DAILY_EVENT_LIMIT) {
       throw new HttpsError('resource-exhausted', 'daily_progress_event_limit_reached');
     }
 
-    // ECON-2/3/11: серверные суточные лимиты. Читаем уже накопленные сегодня значения, считаем XP с
-    // их учётом, затем записываем обновлённые счётчики в той же транзакции (идемпотентно с ledger).
-    const sourceXpToday = (counterData.sourceXp as Partial<Record<ProgressEventType, number>> | undefined) ?? {};
+    // Серверные суточные лимиты: читаем накопленные сегодня значения и затем
+    // записываем обновлённые счётчики в той же транзакции (идемпотентно с ledger).
     const examAttemptsToday = (counterData.examAttempts as number | undefined) ?? 0;
-    const totalXpToday = Math.max(0, Number(counterData.totalXp ?? 0) || 0);
 
     const rawProgress = getProgress(userSnap.data());
     const progress = buildProgressBaseline(rawProgress, userSnap.data()?.progressServerState, now);
     const applied = applyProgressEvent(progress, event, now, {
-      sourceXpToday,
       examAttemptsToday,
-      totalXpToday,
-      levelUpBonusAlreadyClaimed: levelUpBonusClaimSnap?.exists === true
-        || legacyBonusClaimState === 'claimed',
     });
     const learningMetrics = await prepareLearningCompletionMetrics({
       db,
       tx,
       stableUid,
       eventType: event.type,
-      completionApplied: event.type !== 'plan_task_complete' || applied.xpDelta > 0,
+      completionApplied: true,
       occurredAt: now,
       fields: {
         increment: (value) => admin.firestore.FieldValue.increment(value),
         serverTimestamp: () => admin.firestore.FieldValue.serverTimestamp(),
       },
     });
-    const levelSpinMint = await applyLevelSpinMinting({
-      db,
-      tx,
-      stableUid,
-      authUid,
-      userRef,
-      userData: (userSnap.data() ?? {}) as Record<string, unknown>,
-      progressBefore: progress,
-      beforeLevel: getLevelFromXP(Math.max(0, Number(progress.user_total_xp ?? 0) || 0)),
-      afterLevel: applied.level,
-      protocol: event.levelSpinProtocol,
-      earnedAtMs: now.getTime(),
-      examCompletion: examSpinCompletionForEvent(event, progress),
-    });
     commitPreparedLearningMetrics(tx, learningMetrics);
-    const mergedProgress = {
-      ...progress,
-      ...applied.progressPatch,
-      level_reward_spin_balance: String(levelSpinMint.balance),
-    };
+    const mergedProgress = { ...progress, ...applied.progressPatch };
     const progressServerState = progressServerStateFromProgress(mergedProgress, now);
     const progressPatch = { ...applied.progressPatch, ...authoritativeProgressPatch(progressServerState) };
 
     const counterPatch: Record<string, unknown> = {
       count: dailyCount + 1,
-      totalXp: totalXpToday + applied.xpDelta,
       updatedAt: admin.firestore.FieldValue.serverTimestamp(),
     };
-    // Вложенный sourceXp нельзя дописывать через {merge:true} с точечным ключом (создаст литеральное
-    // поле "sourceXp.x"), поэтому собираем объект sourceXp целиком с FieldValue.increment.
-    if (applied.xpDelta > 0) {
-      counterPatch.sourceXp = { [event.type]: admin.firestore.FieldValue.increment(applied.xpDelta) };
-    }
     // Считаем только попытки уровневых зачётов (a1..c2) — финальный экзамен разовый и под лимит не идёт.
     if (event.type === 'exam_complete') {
       const examLevel = cleanString(event.payload.level ?? event.payload.examLevel, 12).toLowerCase();
@@ -1173,30 +795,14 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       });
     }
-    if (levelUpBonusClaimRef && levelUpBonusClaimSnap?.exists !== true && applied.xpDelta === 100) {
-      tx.create(levelUpBonusClaimRef, {
-        level: bonusLevel,
-        eventId: event.eventId,
-        amount: 100,
-        claimedAt: admin.firestore.FieldValue.serverTimestamp(),
-      });
-    }
     const result: ProgressEventResult = {
       ok: true,
       stableUid,
       eventId: applied.eventId,
       type: applied.type,
       duplicate: false,
-      xpDelta: applied.xpDelta,
-      totalXp: applied.totalXp,
-      level: applied.level,
       streakCount: applied.streakCount,
       activeDate: applied.activeDate,
-      weekKey: applied.weekKey,
-      weekXp: applied.weekXp,
-      levelSpinsMinted: levelSpinMint.minted,
-      levelSpinMintedCredits: levelSpinMint.mintedCredits,
-      levelSpinBalance: levelSpinMint.balance,
     };
 
     tx.set(userRef, {
@@ -1205,7 +811,6 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
         ...progressServerState,
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       },
-      levelSpinServerState: levelSpinMint.state,
       firebaseAuthUid: authUid,
       progressServerAuthoritative: true,
       progressServerCutoverAt: admin.firestore.FieldValue.serverTimestamp(),
@@ -1223,15 +828,10 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
       clientCreatedAt: event.clientCreatedAt ?? null,
       appVersion: event.appVersion ?? null,
       platform: event.platform ?? null,
-      levelSpinProtocol: event.levelSpinProtocol ?? null,
       result,
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
     });
     return result;
-  });
-
-  await projectProgressToCurrentLeague(db, stableUid, result).catch((e) => {
-    console.warn('[progress_events] league projection failed', e);
   });
 
   return result;

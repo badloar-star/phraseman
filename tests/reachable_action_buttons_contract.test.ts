@@ -39,12 +39,10 @@ const KNOWN_DEBT: readonly string[] = [
   'components/ReportErrorButton.tsx',
   'components/SpeakingPanel.tsx',
   'components/VerbLetterBank.tsx',
-  'components/customization/AvatarEditorSheet.tsx',
   'components/onboarding_aha/AhaScene.tsx',
   'components/onboarding_aha/SpeechBeat.tsx',
   'components/paywall/PaywallCtaBlock.tsx',
   'components/roulette_win_modal.tsx',
-  'components/BoonChestModal.tsx',
 ];
 
 function walk(dir: string, out: string[] = []): string[] {

@@ -26,7 +26,6 @@ import ScreenGradient from '../components/ScreenGradient';
 import { checkAchievements } from './achievements';
 import { saveExamProgress, type MedalTier } from './medal_utils';
 import { getPremiumCourseLevel, markPremiumCourseLevelReached, unlockLesson } from './lesson_lock_system';
-import { addShards, awardOneTime } from './shards_system';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import GoldBevel from '../components/GoldBevel';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
@@ -904,17 +903,7 @@ export default function LevelExam() {
           await markPremiumCourseLevelReached(nextLevel, studyTarget);
           await unlockLesson(getFirstLessonForLevel(nextLevel), studyTarget);
         }
-        // +1 осколок за сдачу — только ПЕРВЫЙ раз на уровень (иначе пересдача фармила осколки).
-        const quizShardKey = `level_exam_quiz_shard_${studyTarget}_${lvl}`;
-        const quizShardClaimed = await AsyncStorage.getItem(quizShardKey);
-        if (quizShardClaimed !== '1') {
-          await addShards('lesson_quiz_passed', {
-            eventId: `level-exam:${studyTarget}:${lvl}:first-pass`,
-            localWrites: [[quizShardKey, '1']],
-          }).catch(() => 0);
-        }
       }
-      if (pct >= 90) awardOneTime('exam_excellent').catch(() => {});
       const { newTier, prevTier, newPassCount } = await saveExamProgress(lvl, pct, studyTarget);
       setExamMedalTier(newTier);
       setExamPassCount(newPassCount);

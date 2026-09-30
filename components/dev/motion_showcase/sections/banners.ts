@@ -57,11 +57,11 @@ export const SECTION: ShowcaseSection = {
       id: 'banner-save-progress',
       title: cs('banner_save_progress_title'),
       // зачем: shouldShow() читает реальные AsyncStorage/auth — условия
-      // (XP >= 1000, не привязан, не дисмиссено 7 дней) либо выполняются на
+      // (урок завершён, не привязан, не дисмиссено 7 дней) либо выполняются на
       // текущем устройстве, либо нет. Ничего не мутирует при монтировании.
       detail: cs('banner_save_progress_detail'),
       kind: 'render',
-      render: () => React.createElement(SaveProgressBanner, { ownerActive: true }),
+      render: () => React.createElement(SaveProgressBanner, { ownerActive: true, hasSavedLearningProgress: true }),
     },
     {
       id: 'banner-save-progress-hybrid',
@@ -69,7 +69,7 @@ export const SECTION: ShowcaseSection = {
       title: cs('banner_save_progress_hybrid_title'),
       detail: cs('banner_save_progress_detail'),
       kind: 'render',
-      render: () => React.createElement(SaveProgressBanner, { ownerActive: true, motionVariant: 'hybrid' }),
+      render: () => React.createElement(SaveProgressBanner, { ownerActive: true, hasSavedLearningProgress: true, motionVariant: 'hybrid' }),
     },
     {
       id: 'banner-rank-change',

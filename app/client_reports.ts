@@ -9,12 +9,13 @@ export type ClientReportKind =
   | 'arena_opponent_report'
   | 'community_pack_report'
   | 'error_report'
+  | 'spire_task_report'
   | 'app_error'
   | 'app_activity'
   | 'subscription_cancel_survey'
   | 'review_promo_claim';
 
-type SubmitClientReportResult = {
+export type SubmitClientReportResult = {
   ok: boolean;
   id?: string;
   collection?: string;

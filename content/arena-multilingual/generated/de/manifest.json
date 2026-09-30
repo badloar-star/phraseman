@@ -2,7 +2,7 @@
   "schemaVersion": "arena-multilingual-pool-manifest-v1",
   "studyTarget": "de",
   "verdict": "BLOCK",
-  "blockReason": "independent_review_and_admin_publication_required;lexical_facts_pending_native_review",
+  "blockReason": "independent_review_and_admin_publication_required;lexical_facts_pending_native_review;cefr_not_claimed",
   "releaseEligible": false,
   "requiredTaskCount": 4000,
   "generatedTaskCount": 4000,
@@ -24,11 +24,12 @@
     "translate_build:3": 400
   },
   "evidencePackSha256": "b61aa9ada90f5319b94c582a067e71c4bf6ec27461c6679fa1eab2866fe602a4",
-  "tasksSha256": "588cc6de80c05f0d621f43d55371f38d9bbcc774b3c387bb21bdf12329f86d8a",
-  "semanticLedgerSha256": "9681387856bea5ecb34545455a346a25db1a55f7cca3ee3629d7306b1ab86c55",
+  "tasksSha256": "470fc1537e04164a2b16bc77532a312449a5c77903185b747d6e749764be690f",
+  "semanticLedgerSha256": "c32a33bcc974c3cc7cb550677f4bc82e0b0d964e080a0899a7e4c03afdfe0b1d",
   "coverage": {
     "provenFactCount": 12,
     "lexicalFactInventoryStatus": "pending_native_review",
+    "cefrEvidenceStatus": "not_claimed",
     "sourceFactIds": [
       "de-gehen-gehe",
       "de-gehen-gehen",
@@ -51,16 +52,17 @@
     "choiceModes": "one_grammatical_and_three_invalid_same_frame",
     "findOddity": "three_agree_one_mismatch",
     "translateBuild": "one_same_pos_decoy_and_tokenization_proof",
-    "speedMatch": "six_pair_bijection_with_independent_ordinal_groups",
-    "maxSpeedMatchPairSurfaceReuse": 3,
-    "learnerSurfaceUniqueness": "metadata_excluded",
+    "speedMatch": "six_short_pairs_from_hash_bound_lexical_inventory",
+    "maxSpeedMatchPairSurfaceReuse": 24,
+    "learnerSurfaceUniqueness": "player_visible_fields_only",
     "taskFields": [
       "studyTarget",
-      "cefrBand",
+      "difficulty",
+      "difficultyProfile",
       "semanticSignature",
       "sourceFactIds",
       "distractorReasons"
     ]
   },
-  "manifestSha256": "ddb703bfcbc881dce628dc15b325db158d41133a594f378615339c923b2244cf"
+  "manifestSha256": "11e27c8258f987956eee6b3103bad84321b9c9d2a2c6489b2f86740ff27b2def"
 }

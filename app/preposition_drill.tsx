@@ -14,6 +14,7 @@ import { PracticeCta, PracticeQuestionCard, PracticeStatePanel } from '../compon
 import { useTheme } from '../components/ThemeContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
+import { useFirstQuestionEnergyGate } from '../hooks/useFirstQuestionEnergyGate';
 import { canChargePreparedTrainingEntry } from './energy_contract';
 import EnergyBar from '../components/EnergyBar';
 import NoEnergyModal from '../components/NoEnergyModal';
@@ -29,11 +30,10 @@ import VictoryBurst from '../components/feedback/VictoryBurst';
 import { prepDrillDoneTitle, prepDrillDoneSubtitle } from './feedback/feedback_i18n';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { getLessonPrepositionPack } from './lesson_prepositions';
-import { addShards } from './shards_system';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundary';
 import { loadSettings } from './settings_edu';
-import { lessonPrepositionProgressKey, prepositionDrillPerfectKey } from './target_storage_keys';
+import { lessonPrepositionProgressKey } from './target_storage_keys';
 import {
   frenchVocabularyGateCopy,
   vocabularyContentAvailableForTarget,
@@ -115,7 +115,6 @@ function PrepositionDrillScreen() {
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
 
   // Perfect-bonus is granted once per lesson on the first clean pass
-  const perfectAwardedRef = useRef(false);
 
   const activeItems = useMemo(() => {
     if (!pack) return [];
@@ -129,32 +128,25 @@ function PrepositionDrillScreen() {
   const accuracy = total > 0 ? Math.round((correctCount / total) * 100) : 0;
 
   // ── Энергия: 1 ⚡ только за доступное начатое упражнение ────────────────
-  const { confirmSpendOne, acknowledgeSessionStart, energyReady } = useEnergy();
+  const { energyReady } = useEnergy();
   const drillEnergyIntent = useEnergySessionIntent('preposition_drill', String(lessonId));
-  const confirmSpendOneRef = useRef(confirmSpendOne);
-  useEffect(() => { confirmSpendOneRef.current = confirmSpendOne; }, [confirmSpendOne]);
 
   const [noEnergyModalOpen, setNoEnergyModalOpen] = useState(false);
 
   // Ждём заряд и прогресс: завершённый/пустой урок не является новым занятием.
-  // зачем: ref-латч, а не деп на energy — после списания баланс падает, и эффект
-  // с депами на energy списал бы второй раз.
-  const drillEntryChargedRef = useRef(false);
-  useEffect(() => {
-    if (!canChargePreparedTrainingEntry({
+  // зачем: D72/D87/PM-084 — единый гейт первого вопроса. Латч по operationId
+  // внутри гейта: смена баланса после списания второй раз не спишет, уход до
+  // показа первого задания вернёт энергию.
+  useFirstQuestionEnergyGate({
+    intent: drillEnergyIntent,
+    screen: 'preposition_drill',
+    firstQuestionVisible: canChargePreparedTrainingEntry({
       energyReady,
       hasPlayableItems: !frenchPrepositionBlocked && progressReadyForKey === progressKey && Boolean(item),
-    }) || drillEntryChargedRef.current) return;
-    drillEntryChargedRef.current = true;
-    let active = true;
-    void confirmSpendOneRef.current(drillEnergyIntent).then(result => {
-      if (!active) return;
-      if (result === 'spent') void acknowledgeSessionStart(drillEnergyIntent.operationId);
-      if (result === 'insufficient') setNoEnergyModalOpen(true);
-      if (result === 'cancelled') safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
-    });
-    return () => { active = false; };
-  }, [acknowledgeSessionStart, drillEnergyIntent, energyReady, frenchPrepositionBlocked, item, lessonId, progressKey, progressReadyForKey, router]);
+    }),
+    onInsufficient: () => setNoEnergyModalOpen(true),
+    onCancelled: () => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any),
+  });
 
   const onCloseEnergyModal = useCallback(() => {
     setNoEnergyModalOpen(false);
@@ -169,7 +161,6 @@ function PrepositionDrillScreen() {
     setReviewMode(false);
     setSelected(null);
     setIsCorrect(false);
-    perfectAwardedRef.current = false;
     AsyncStorage.getItem(progressKey).then(raw => {
       try {
         const saved: PrepositionProgress = raw
@@ -199,30 +190,6 @@ function PrepositionDrillScreen() {
     const payload: PrepositionProgress = { answeredIds: nextAnswered, wrongIds: nextWrong };
     AsyncStorage.setItem(progressKey, JSON.stringify(payload)).catch(() => {});
   };
-
-  // Award the shard perfect-pass bonus exactly once per lesson, when the FIRST pass
-  // (not the review pass) finishes with zero wrong answers.
-  useEffect(() => {
-    if (perfectAwardedRef.current) return;
-    if (!done) return;
-    if (reviewMode) return;
-    if (total === 0) return;
-    if (wrongIds.length > 0) return;
-    perfectAwardedRef.current = true;
-    (async () => {
-      const key = prepositionDrillPerfectKey(lessonId, studyTarget);
-      try {
-        const already = await AsyncStorage.getItem(key);
-        if (already) return;
-        await addShards('preposition_drill_perfect', {
-          eventId: `preposition:${studyTarget}:${lessonId}:perfect`,
-          localWrites: [[key, '1']],
-        }).catch(() => {});
-      } catch {
-        perfectAwardedRef.current = false;
-      }
-    })();
-  }, [done, reviewMode, total, wrongIds.length, lessonId, lang, studyTarget]);
 
   // [FeedbackKit] Мини-победа на финал прогона — один раз при первом достижении
   // конца (guard victoryFiredRef). Показываем и на обычном прогоне, и на review;
@@ -304,7 +271,7 @@ function PrepositionDrillScreen() {
         onPress={() => { fk.tap(); backToLesson(); }}
       />
       <PracticeHeaderTitle glass={glass} title={title} subtitle={subtitle} />
-      <EnergyBar size={30} />
+      <EnergyBar size={30} glass />
     </View>
   );
 

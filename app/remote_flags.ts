@@ -1,8 +1,8 @@
 // ═══════════════════════════════════════════════════════════════════════════
 // remote_flags.ts — Remote Config layer (admin-tunable runtime knobs)
 //
-// Single source of truth for every value we want to change WITHOUT a release:
-// free-tier limits, energy economy, and the paywall variant
+// Single source of truth for release-independent subscription/content/update
+// controls. Core gameplay economy stays local and is not remotely tunable.
 // split. Resolution order (highest priority first):
 //
 //   1. Firestore override   (admin/v2/legacy.html → remote_config/* → cached foreground polling)
@@ -20,34 +20,19 @@ import {
   type OnboardingStepId,
 } from './onboarding_flow';
 import type { SoftUpsellTrigger } from './soft_upsell_core';
-import { DebugLogger } from './debug-logger';
-import { resolveEnergyRuntimeConfig } from './energy_contract';
 
 export type RemoteNumberKey =
-  | 'free_lesson_limit'
-  | 'max_energy'
-  | 'energy_recovery_interval_ms'
   | 'onboarding_ab_welcome_pct'
   | 'onboarding_ab_builder_pct'
   | 'paywall_v2_pct'
-  | 'league_xp_promotion_threshold'
-  | 'league_sync_min_delta'
-  | 'league_sync_min_interval_ms'
-  | 'league_sync_force_interval_ms'
-  | 'league_startup_registration_interval_ms'
   | 'auth_link_cache_ttl_ms'
-  | 'avatar_dna_rollout_pct'
   | 'phone_state_cutover_percent'
-  // Экономика (вынесено из хардкодов для крутки баланса без релиза):
-  // стоимость заморозки серии в осколках (было FREEZE_COST_SHARDS=10 в home.tsx).
-  | 'streak_freeze_cost_shards';
+  ;
 
 export type RemoteBoolKey =
-  | 'numeric_energy_v2'
   // Онбординг: kill-switch кнопки «Пропустить» (владелец может выключить без
   // релиза, если увидит просадку показов пейвола) и приветственной шторки.
   | 'onboarding_skip_enabled'
-  | 'onboarding_welcome_sheet_enabled'
   | 'weekly_review_ai_v2_enabled'
   | 'soft_upsell_first_lesson_enabled'
   | 'soft_upsell_free_lessons_complete_enabled'
@@ -55,25 +40,11 @@ export type RemoteBoolKey =
   | 'soft_upsell_second_ai_dialogue_enabled'
   | 'soft_upsell_streak_enabled'
   | 'referral_enabled'
-  | 'avatar_dna_enabled'
   | 'phone_state_shadow_enabled'
   | 'phone_state_sync_enabled'
   | 'phone_state_emergency_stop'
-  // Мастер-флаг «Рулетка Plus + реферальная программа». Живёт в numbers
-  // (remote_config/app.numbers.referral_roulette_enabled) — туда его пишут
-  // adminSetReferralRouletteEnabled и скрипты; сервер читает тот же ключ.
-  // Дефолт true (kill-switch). Подхватывается из numbers в applyRemoteConfigSnapshot.
-  | 'referral_roulette_enabled'
-  | 'referral_roulette_emergency_stop'
-  | 'speaking_enabled'
-  | 'collectibles_enabled'
   | 'support_diagnostics_enabled'
-  | 'league_xp_promotion_enabled'
-  | 'league_startup_registration_enabled'
   | 'lifetime_button_enabled'
-  | 'explain_enabled'
-  | 'ideas_enabled'
-  | 'ai_global_disable'
   | 'maintenance_banner'
   | 'maintenance_block'
   // Боты-соперники в Арене (бот-фолбэк при пустой очереди). Дефолт TRUE =
@@ -81,18 +52,6 @@ export type RemoteBoolKey =
   // живьём — тогда матчатся только реальные игроки друг с другом, а при пустой
   // очереди соперник не подставляется. Включение возвращает ботов обратно.
   | 'paywall_reviews_enabled'
-  // Урок с Максом в «Диалогах» (текстовый тутор на каркасе MAX).
-  //
-  // Дефолт FALSE по прямому решению владельца 2026-09-15: «покаубери Макса из
-  // раздела вообще пусть его пока не будет он не доделан». Раздел скрыт
-  // целиком: афиши нет, единственный вход в урок закрыт вместе с ней.
-  //
-  // Это НЕ та же ситуация, что утром того же дня, когда дефолт FALSE оставил
-  // раздел пустым по недосмотру. Сейчас скрытие — сама задача, а не побочный
-  // эффект. Код урока намеренно НЕ удалён: он рабочий и ждёт доделки.
-  //
-  // Включать обратно ТОЛЬКО по явной команде владельца — как и раздел MAX.
-  | 'gate_ai_text_tutor'
   // Принудительное обновление (force-update). Дефолт FALSE = выключено (страховка
   // от случайной блокировки всех). Когда true И версия приложения < min_app_version
   // — ForceUpdateGate показывает полноэкранный блок «обнови приложение». Версия и
@@ -124,8 +83,6 @@ export type RemoteBoolKey =
   | 'gate_lessons_premium'
   | 'gate_speaking_premium'
   | 'gate_ai_dialog_premium'
-  | 'gate_personal_plan_premium'
-  | 'gate_ai_voice_call'
   | 'gate_stats_premium'
   | 'gate_flashcards_premium'
   | 'gate_themes_premium'
@@ -155,15 +112,7 @@ export type RemoteBoolKey =
   // выданный подарок НЕ отбирается — активные докатывают свои 72ч, их модалы не
   // трогаются (гейт стоит только в точке ВЫДАЧИ). Включение возвращает подарок
   // будущим новичкам. Гейт в app/intro_full_access.ts.
-  | 'intro_full_access_enabled'
-  // D51/D53 (владелец 2026-09-24): рубильник миграции «Подарки и спины → монеты».
-  // Дефолт TRUE = kill-switch: false в remote_config/app.bools останавливает
-  // НОВЫЕ прогоны; уже прошедшие не трогает, зачисленное не забирается.
-  | 'gifts_to_coins_enabled'
-  // PM-059 (D15, владелец 2026-09-24): рубильник миграции «остаток жемчуга →
-  // монеты 1:10». Дефолт TRUE = kill-switch: false останавливает только НОВЫЕ
-  // прогоны; начатый (жемчуг уже списан) доводится монетами при любом флаге.
-  | 'pearls_to_coins_enabled';
+;
 
 /** Строковые ключи (тексты), управляемые из админки. Сейчас — режим обслуживания. */
 export type RemoteTextKey =
@@ -175,17 +124,7 @@ export type RemoteTextKey =
   | 'compass_voice_fallback_ru'
   | 'compass_voice_fallback_uk'
   | 'compass_voice_fallback_es'
-  // Поурочные исключения поверх порога free_lesson_limit (управляются из «Пульта»).
-  // JSON-массивы id уроков (1..32). free_lessons_extra — уроки, открытые БЕСПЛАТНО
-  // сверх порога; premium_lessons_extra — уроки, ЗАКРЫТЫЕ под премиум, даже если они
   // ниже порога. Пусто/невалидно = только порог. premium_* имеет приоритет над free_*.
-  | 'free_lessons_extra'
-  | 'premium_lessons_extra'
-  // Weekly Boons: расписание «бонусов дня недели» и их вкл/выкл. JSON-объект
-  // { schedule: {weekday: BoonId | BoonId[]}, enabled: {...}, modifiersEnabled: {...} }.
-  // Пусто/невалидно = встроенный дефолт (см. boons/boon_config.ts). Парсится
-  // защищённо: мусор тихо отбрасывается, приложение не падает.
-  | 'weekly_boons_config'
   // Force-update: минимальная допустимая версия приложения (semver "1.2.3"). Когда
   // force_update_enabled=true и текущая версия < этой — показываем блок. Пусто =
   // блок не показывается даже при включённом флаге (защита от пустого значения).
@@ -254,33 +193,19 @@ export type RemoteTextKey =
   | 'onboarding_enabled_steps_v1';
 
 const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
-  free_lesson_limit: 3,
   // зачем (PM-081, D06): запас энергии ровно 5, пульт его не меняет.
-  max_energy: 5,
   // PM-083 (BIBLE «+1 за 10 минут»; D06): 0→5 занимает 50 минут.
-  energy_recovery_interval_ms: 10 * 60 * 1000,
   onboarding_ab_welcome_pct: 0,
   onboarding_ab_builder_pct: 0,
   paywall_v2_pct: 100,
-  league_xp_promotion_threshold: 1000,
-  league_sync_min_delta: 75,
-  league_sync_min_interval_ms: 15 * 60 * 1000,
-  league_sync_force_interval_ms: 6 * 60 * 60 * 1000,
-  league_startup_registration_interval_ms: 24 * 60 * 60 * 1000,
   auth_link_cache_ttl_ms: 7 * 24 * 60 * 60 * 1000,
-  avatar_dna_rollout_pct: 0,
   phone_state_cutover_percent: 0,
-  streak_freeze_cost_shards: 10,
 };
 
 const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
-  // Numeric energy ships enabled. A remote false remains an emergency UI
-  // kill-switch for builds that have not migrated their local payload yet.
-  numeric_energy_v2: true,
   // Дефолт true = kill-switch семантика: фича едет с релизом, админка может
   // выключить её мгновенно (кнопка «Пропустить» бьёт по показам пейвола).
   onboarding_skip_enabled: true,
-  onboarding_welcome_sheet_enabled: true,
   // Global client kill-switch only. Server owns percentage rollout by canonical stableUid.
   weekly_review_ai_v2_enabled: true,
   // Verified lesson-completion soft upsells ship enabled; Remote Config remains the kill switch.
@@ -295,7 +220,6 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   referral_enabled: true,
   // Безопасный sell-switch: новый редактор невидим до явного включения и
   // отдельного поэтапного процента. Старый экран Студии при этом не меняется.
-  avatar_dna_enabled: false,
   // PhoneState remains fully dormant until each capability is explicitly
   // enabled after shadow verification. These are sell-switches, never defaults.
   phone_state_shadow_enabled: false,
@@ -305,20 +229,13 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   phone_state_emergency_stop: true,
   // Рулетка+рефералка: дефолт true (kill-switch). Ключ лежит в numbers
   // (boolean), подхват — спец-веткой в applyRemoteConfigSnapshot ниже.
-  referral_roulette_enabled: true,
   // Отдельный hard stop. Отсутствие ключа безопасно сохраняет рабочее состояние.
-  referral_roulette_emergency_stop: false,
-  speaking_enabled: true,
   // «Сокровищница»: дефолт true = kill-switch семантика (фича едет с релизом,
   // админка может экстренно выключить).
-  collectibles_enabled: true,
   // Privacy-safe local breadcrumbs. false disables recording and report attachment.
   support_diagnostics_enabled: true,
-  league_xp_promotion_enabled: false,
-  league_startup_registration_enabled: true,
-  // Кнопка Phraseman Pro (lifetime) на пейволах. Дефолт FALSE с 2026-08-24 —
-  // прямое решение владельца: подписку Pro убрать полностью, её место на витрине
-  // занимает тариф MAX. Это ИМЕННО скрытие продажи, а не отзыв доступа:
+  // Кнопка Phraseman Pro (lifetime) на пейволах. Это скрытие продажи, а не
+  // отзыв доступа:
   // уже купившие Pro сохраняют полный доступ навсегда, потому что премиум держится
   // на entitlement RevenueCat, а не на видимости этой кнопки (см. premium_guard).
   // Код покупки lifetime намеренно оставлен рабочим — Pro можно вернуть одним
@@ -331,13 +248,11 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // с релизом во ВСЕХ сборках, не завязана на env-профиль EAS — раньше дефолт был
   // FALSE и фича пропадала в dev/preview-сборках без EXPO_PUBLIC_EXPLAIN_ENABLED).
   // Firestore-override (админ «Пульт») может экстренно выключить её у всех живьём.
-  explain_enabled: true,
   // Раздел «Идеи» (пользователь присылает идею → год полного доступа при одобрении).
   // Дефолт FALSE = sell-switch: это акция с дорогой наградой (год премиума), поэтому
   // раздел скрыт, пока админ намеренно не включит его в «Пульте». Выключение прячет
   // раздел у всех живьём (onSnapshot), без релиза — уже поданные идеи в админ-очереди
   // остаются, и адмін может их закрыть.
-  ideas_enabled: false,
   // ai_global_disable — ГЛАВНЫЙ рубильник ВСЕГО ИИ (Компас, «объясни», разбор
   // ошибок, диалоги, комментарий дня). Дефолт FALSE = ИИ
   // работает как сейчас. Админ ставит TRUE в «Пульте» → у всех живьём (onSnapshot):
@@ -345,7 +260,6 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   //  • фоновые/авто-вызовы просто не запускаются — юзер ничего не видит.
   // Это НАД-флаг: перекрывает compass_enabled/explain_enabled и т.д. Сервер тоже
   // уважает его (aiGloballyDisabled в functions) — клиентский гейт нельзя обойти.
-  ai_global_disable: false,
   // Режим обслуживания (управляется из «Пульта»). Дефолт FALSE — приложение
   // работает. banner = мягкая плашка сверху; block = жёсткий полноэкранный
   // блок-экран. Включается у всех живьём (onSnapshot), без релиза.
@@ -355,7 +269,6 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // ставит false в «Пульте» → бот-фолбэк отключается у всех живьём (onSnapshot),
   // остаётся только реальный матчмейкинг; true возвращает ботов.
   paywall_reviews_enabled: true,
-  gate_ai_text_tutor: false,
   // Force-update: дефолт FALSE = выключено (страховка). true + версия < min →
   // полноэкранный блок «обнови приложение». Включается из «Пульта» живьём.
   force_update_enabled: false,
@@ -373,12 +286,6 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   gate_lessons_premium: true,
   gate_speaking_premium: true,
   gate_ai_dialog_premium: true,
-  gate_personal_plan_premium: true,
-  // MAX voice: здесь семантика не «премиум-замок», а kill switch фичи целиком.
-  // зачем: владелец 2026-08-16 — «звонок должен работать всегда без исключений,
-  // единственный гейт будет пейвол». Дефолт TRUE = линия открыта без записи в
-  // «Пульте»; выключает только явный false оттуда. Потребитель: app/max_voice_flags.ts.
-  gate_ai_voice_call: true,
   gate_stats_premium: true,
   gate_flashcards_premium: true,
   gate_themes_premium: true,
@@ -395,11 +302,6 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // Админ может явно включить его в «Пульте»; при false
   // новые юзеры больше НЕ получают подарок/модал живьём (onSnapshot), без релиза.
   // Уже выданные подарки не отбираются (гейт только в точке выдачи).
-  intro_full_access_enabled: false,
-  // зачем (D51): миграция едет включённой, флаг — аварийный стоп без релиза.
-  gifts_to_coins_enabled: true,
-  // зачем (PM-059): миграция жемчуга едет включённой, флаг — аварийный стоп без релиза.
-  pearls_to_coins_enabled: true,
 };
 
 const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
@@ -409,9 +311,6 @@ const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
   compass_voice_fallback_ru: '',
   compass_voice_fallback_uk: '',
   compass_voice_fallback_es: '',
-  free_lessons_extra: '',
-  premium_lessons_extra: '',
-  weekly_boons_config: '',
   min_app_version: '',
   store_url_ios: '',
   store_url_android: '',
@@ -449,23 +348,13 @@ const DEFAULT_TEXTS: Record<RemoteTextKey, string> = {
 
 // Reasonable guard rails so a fat-fingered admin value can't brick the app.
 const NUMBER_BOUNDS: Record<RemoteNumberKey, { min: number; max: number }> = {
-  free_lesson_limit: { min: 1, max: 32 },
   // Product invariant (PM-081, D06/D07): capacity is exactly 5, no bonuses.
-  max_energy: { min: 5, max: 5 },
   // PM-083 (D06): интервал фиксирован — пульт не ускоряет и не замедляет.
-  energy_recovery_interval_ms: { min: 10 * 60 * 1000, max: 10 * 60 * 1000 },
   onboarding_ab_welcome_pct: { min: 0, max: 100 },
   onboarding_ab_builder_pct: { min: 0, max: 100 },
   paywall_v2_pct: { min: 0, max: 100 },
-  league_xp_promotion_threshold: { min: 1, max: 1000000 },
-  league_sync_min_delta: { min: 0, max: 1000000 },
-  league_sync_min_interval_ms: { min: 10_000, max: 24 * 60 * 60 * 1000 },
-  league_sync_force_interval_ms: { min: 60_000, max: 7 * 24 * 60 * 60 * 1000 },
-  league_startup_registration_interval_ms: { min: 60_000, max: 7 * 24 * 60 * 60 * 1000 },
   auth_link_cache_ttl_ms: { min: 60_000, max: 30 * 24 * 60 * 60 * 1000 },
-  avatar_dna_rollout_pct: { min: 0, max: 100 },
   phone_state_cutover_percent: { min: 0, max: 100 },
-  streak_freeze_cost_shards: { min: 0, max: 9999 },
 };
 
 const ENV_NUMBER_KEYS: Partial<Record<RemoteNumberKey, string | undefined>> = {
@@ -537,27 +426,50 @@ export function applyRemoteConfigSnapshot(snapshot: {
   bools?: Partial<Record<string, unknown>>;
   texts?: Partial<Record<string, unknown>>;
 }): string {
+  // Server authority is intentionally limited to sync, updates, video,
+  // promo/payment, and premium entitlement. All other product decisions stay
+  // local even if legacy keys are still present in an old Firestore document.
+  const allowedNumbers = new Set<RemoteNumberKey>([
+    'auth_link_cache_ttl_ms', 'phone_state_cutover_percent', 'paywall_v2_pct',
+  ]);
+  const allowedBools = new Set<RemoteBoolKey>([
+    'phone_state_shadow_enabled', 'phone_state_sync_enabled', 'phone_state_emergency_stop',
+    'force_update_enabled', 'manual_update_enabled', 'video_button_enabled', 'video_phrases_enabled',
+    'promo_banner_enabled', 'promo_codes_enabled', 'discount_offer_banner_enabled',
+    'lifetime_button_enabled', 'paywall_reviews_enabled',
+    'gate_lessons_premium', 'gate_speaking_premium', 'gate_ai_dialog_premium', 'gate_stats_premium',
+    'gate_flashcards_premium', 'gate_themes_premium', 'gate_avatar_auras_premium', 'gate_mastery_premium',
+    'gate_energy_premium', 'gate_arena_premium', 'gate_mistake_practice_premium', 'gate_extra_languages_premium',
+  ]);
+  const allowedTexts = new Set<RemoteTextKey>([
+    'min_app_version', 'store_url_ios', 'store_url_android', 'manual_update_campaign_id',
+    'manual_update_mode', 'manual_update_target_build', 'manual_update_platform',
+    'manual_update_title_ru', 'manual_update_title_uk', 'manual_update_title_es',
+    'manual_update_body_ru', 'manual_update_body_uk', 'manual_update_body_es',
+    'manual_update_cta_ru', 'manual_update_cta_uk', 'manual_update_cta_es',
+    'promo_banner_text_ru', 'promo_banner_text_uk', 'promo_banner_text_es', 'promo_banner_url',
+    'promo_banner_until', 'promo_banner_campaign_id', 'promo_banner_audience', 'promo_banner_platform',
+    'discount_offer_badge_percent', 'youtube_channel_id', 'youtube_channel_handle',
+    'youtube_channel_name', 'youtube_channel_url', 'youtube_pinned_videos',
+  ]);
   const nextNumbers: Partial<Record<RemoteNumberKey, number>> = {};
   const nextBools: Partial<Record<RemoteBoolKey, boolean>> = {};
   const nextTexts: Partial<Record<RemoteTextKey, string>> = {};
 
   for (const key of Object.keys(DEFAULT_NUMBERS) as RemoteNumberKey[]) {
+    if (!allowedNumbers.has(key)) continue;
     const raw = snapshot.numbers?.[key];
     if (typeof raw === 'number' && Number.isFinite(raw)) {
       nextNumbers[key] = clampNumber(key, raw);
     }
   }
   for (const key of Object.keys(DEFAULT_FLAGS) as RemoteBoolKey[]) {
+    if (!allowedBools.has(key)) continue;
     const raw = snapshot.bools?.[key];
     if (typeof raw === 'boolean') nextBools[key] = raw;
   }
-  // Мастер-флаг рулетки живёт в numbers (boolean) — подхватываем отдельно,
-  // чтобы сервер и админка писали один и тот же ключ.
-  const rouletteRaw = snapshot.numbers?.referral_roulette_enabled;
-  if (typeof rouletteRaw === 'boolean') nextBools.referral_roulette_enabled = rouletteRaw;
-  const rouletteEmergencyRaw = snapshot.numbers?.referral_roulette_emergency_stop;
-  if (typeof rouletteEmergencyRaw === 'boolean') nextBools.referral_roulette_emergency_stop = rouletteEmergencyRaw;
   for (const key of Object.keys(DEFAULT_TEXTS) as RemoteTextKey[]) {
+    if (!allowedTexts.has(key)) continue;
     const raw = snapshot.texts?.[key];
     if (typeof raw === 'string') nextTexts[key] = raw;
   }
@@ -569,6 +481,8 @@ export function applyRemoteConfigSnapshot(snapshot: {
     for (const [k, raw] of Object.entries(snapshot.numbers)) {
       if (!k.endsWith(ROLLOUT_SUFFIX)) continue;
       if (k in DEFAULT_NUMBERS) continue; // обычный числовой ключ — не rollout
+      const baseFlag = k.slice(0, -ROLLOUT_SUFFIX.length) as RemoteBoolKey;
+      if (!allowedBools.has(baseFlag)) continue;
       if (typeof raw === 'number' && Number.isFinite(raw)) {
         nextRollouts[k] = Math.max(0, Math.min(100, raw));
       }
@@ -650,54 +564,25 @@ export function hasRemoteConfigSnapshotApplied(): boolean {
 
 // ── Convenience accessors (typed, self-documenting call sites) ──────────────
 
-export const getFreeLessonLimit = () => getRemoteNumber('free_lesson_limit');
-export const isNumericEnergyV2Enabled = () => getRemoteBool('numeric_energy_v2');
-const getResolvedEnergyRuntimeConfig = () => resolveEnergyRuntimeConfig(
-  isNumericEnergyV2Enabled(),
-  getRemoteNumber('max_energy'),
-  getRemoteNumber('energy_recovery_interval_ms'),
-);
-export const getMaxEnergy = () => getResolvedEnergyRuntimeConfig().maxEnergy;
-export const getEnergyRecoveryIntervalMs = () => getResolvedEnergyRuntimeConfig().recoveryIntervalMs;
-export const getPaywallV2Pct = () => getRemoteNumber('paywall_v2_pct');
-export const getLeagueXpPromotionThreshold = () => getRemoteNumber('league_xp_promotion_threshold');
-export const getLeagueSyncMinDelta = () => getRemoteNumber('league_sync_min_delta');
-export const getLeagueSyncMinIntervalMs = () => getRemoteNumber('league_sync_min_interval_ms');
-export const getLeagueSyncForceIntervalMs = () => getRemoteNumber('league_sync_force_interval_ms');
-export const getLeagueStartupRegistrationIntervalMs = () => getRemoteNumber('league_startup_registration_interval_ms');
+export const getPaywallV2Pct = () => 100;
 export const getAuthLinkCacheTtlMs = () => getRemoteNumber('auth_link_cache_ttl_ms');
 /** Стоимость заморозки серии в осколках (было FREEZE_COST_SHARDS=10). Дефолт 10. */
-export const getStreakFreezeCostShards = () => getRemoteNumber('streak_freeze_cost_shards');
-export const isReferralEnabled = () => getRemoteBool('referral_enabled');
-export const isAvatarDNAEnabled = (stableId: string | null): boolean => (
-  getRemoteBool('avatar_dna_enabled')
-  && Boolean(stableId)
-  && isInRolloutBucket(stableId as string, 'avatar-dna-v1', getRemoteNumber('avatar_dna_rollout_pct'))
-);
-export const isReferralRouletteEnabled = () => getRemoteBool('referral_roulette_enabled');
-export const isReferralRouletteEmergencyStopped = () => getRemoteBool('referral_roulette_emergency_stop');
-
-const SOFT_UPSELL_FLAG_BY_TRIGGER: Record<SoftUpsellTrigger, RemoteBoolKey> = {
-  first_lesson: 'soft_upsell_first_lesson_enabled',
-  free_lessons_complete: 'soft_upsell_free_lessons_complete_enabled',
-  weekly_review: 'soft_upsell_weekly_review_enabled',
-  second_ai_dialogue: 'soft_upsell_second_ai_dialogue_enabled',
-  streak_milestone: 'soft_upsell_streak_enabled',
-};
+export const isReferralEnabled = () => true;
+export const isReferralRouletteEnabled = () => true;
+export const isReferralRouletteEmergencyStopped = () => false;
 
 export function getSoftUpsellEnabledByTrigger(): Record<SoftUpsellTrigger, boolean> {
-  return Object.fromEntries(
-    Object.entries(SOFT_UPSELL_FLAG_BY_TRIGGER).map(([trigger, flag]) => [trigger, getRemoteBool(flag)]),
-  ) as Record<SoftUpsellTrigger, boolean>;
+  return {
+    first_lesson: true,
+    free_lessons_complete: true,
+    weekly_review: false,
+    second_ai_dialogue: false,
+    streak_milestone: false,
+  };
 }
-export const isSpeakingEnabled = () => getRemoteBool('speaking_enabled');
-export const isCollectiblesEnabled = () => getRemoteBool('collectibles_enabled');
-export const isSupportDiagnosticsEnabled = () => getRemoteBool('support_diagnostics_enabled');
+export const isSupportDiagnosticsEnabled = () => false;
 /** Боты-соперники в Арене (бот-фолбэк при пустой очереди). Дефолт true. */
-export const isPaywallReviewsEnabled = () => getRemoteBool('paywall_reviews_enabled');
-/** Урок с Максом в «Диалогах». Дефолт false — открывает владелец в «Пульте». */
-export const isTextTutorEnabled = () => getRemoteBool('gate_ai_text_tutor');
-
+export const isPaywallReviewsEnabled = () => true;
 // ── Force-update (минимальная версия) ───────────────────────────────────────
 /** Включён ли force-update. Дефолт false. */
 export const isForceUpdateEnabled = () => getRemoteBool('force_update_enabled');
@@ -846,7 +731,7 @@ export const getYoutubePinnedVideosRaw = () => getRemoteText('youtube_pinned_vid
 
 // ── Промо-баннер (акция) ─────────────────────────────────────────────────────
 /** Включён ли промо-баннер. Дефолт false. */
-export const isPromoBannerEnabled = () => getRemoteBool('promo_banner_enabled');
+export const isPromoBannerEnabled = () => false;
 /** Раздел «Промокод» в настройках + серверная активация. Дефолт false. */
 export const isPromoCodesEnabled = () => getRemoteBool('promo_codes_enabled');
 /** Ссылка по тапу на баннер (необяз.). */
@@ -861,7 +746,7 @@ export const getPromoBannerPlatform = () => getRemoteText('promo_banner_platform
 
 // ── Угловой/хедерный бейдж скидки (Главная) ─────────────────────────────────
 /** Включён ли бейдж скидки в хедере Главной. Дефолт false. */
-export const isDiscountOfferBadgeEnabled = () => getRemoteBool('discount_offer_banner_enabled');
+export const isDiscountOfferBadgeEnabled = () => false;
 /**
  * Готовая подпись бейджа, например "−50%". Парсит только целое число 1..99 из
  * discount_offer_badge_percent; любой мусор/пусто/диапазон вне 1..99 → ''
@@ -957,32 +842,22 @@ export function shouldShowPromoBanner(params: {
   return true;
 }
 
-export const isLeagueXpPromotionEnabled = () => getRemoteBool('league_xp_promotion_enabled');
-export const isLeagueStartupRegistrationEnabled = () => getRemoteBool('league_startup_registration_enabled');
-// зачем: league_realtime_members_enabled удалён целиком (тип+дефолт+хелпер) —
-// realtime-подписка на участников лиги снесена (subscribeToLeagueGroupMembers,
-// 2026-07-25), мёртвый kill-switch в «Пульте» лишь вводил бы в заблуждение.
-// Старый ключ в Firestore-доке безопасно игнорируется циклом по DEFAULT_FLAGS.
 /** Phraseman Pro показывается как раскрываемая разовая покупка. Дефолт true. */
 export const isLifetimeButtonEnabled = () => getRemoteBool('lifetime_button_enabled');
 /** Раздел «Идеи» в настройках (год премиума за идею). Дефолт false — sell-switch. */
-export const isIdeasEnabled = () => getRemoteBool('ideas_enabled');
 /**
  * Подарок «3 дня полного доступа» новым юзерам (72ч intro). Дефолт false:
  * новые юзеры не получают ни подарок, ни приветственный модал. Включение из
  * «Пульта» действует только на будущие выдачи; уже выданные подарки не отбираются.
  * Гейт применяется в app/intro_full_access.ts (точка выдачи).
  */
-export const isIntroFullAccessEnabled = () => getRemoteBool('intro_full_access_enabled');
-
 /**
  * Глобальный рубильник всего ИИ. TRUE = весь ИИ выключен (ручные вызовы → забавная
  * заглушка, фоновые → тихо no-op). Это НАД-флаг: все ИИ-геттеры ниже уважают его.
  */
-export const isAiGloballyDisabled = () => getRemoteBool('ai_global_disable');
 /** Режим обслуживания: мягкий баннер / жёсткий блок-экран. */
-export const isMaintenanceBanner = () => getRemoteBool('maintenance_banner');
-export const isMaintenanceBlock = () => getRemoteBool('maintenance_block');
+export const isMaintenanceBanner = () => false;
+export const isMaintenanceBlock = () => false;
 export const getMaintenanceCampaignId = () => getRemoteText('maintenance_campaign_id');
 
 // ── Премиум-гейты фич ───────────────────────────────────────────────────────
@@ -992,7 +867,6 @@ export const getMaintenanceCampaignId = () => getRemoteText('maintenance_campaig
 export const isLessonsPremiumGated = () => getRemoteBool('gate_lessons_premium');
 export const isSpeakingPremiumGated = () => getRemoteBool('gate_speaking_premium');
 export const isAiDialogPremiumGated = () => getRemoteBool('gate_ai_dialog_premium');
-export const isPersonalPlanPremiumGated = () => getRemoteBool('gate_personal_plan_premium');
 export const isStatsPremiumGated = () => getRemoteBool('gate_stats_premium');
 export const isFlashcardsPremiumGated = () => getRemoteBool('gate_flashcards_premium');
 export const isThemesPremiumGated = () => getRemoteBool('gate_themes_premium');
@@ -1000,35 +874,6 @@ export const isAvatarAurasPremiumGated = () => getRemoteBool('gate_avatar_auras_
 export const isMasteryPremiumGated = () => getRemoteBool('gate_mastery_premium');
 export const isEnergyPremiumGated = () => getRemoteBool('gate_energy_premium');
 
-/** Поурочные исключения: набор id уроков, открытых бесплатно сверх порога. */
-export const getFreeLessonsExtra = () => parseLessonIdList(getRemoteText('free_lessons_extra'));
-/** Поурочные исключения: набор id уроков, закрытых под премиум вопреки порогу. */
-export const getPremiumLessonsExtra = () => parseLessonIdList(getRemoteText('premium_lessons_extra'));
-
-/** Сырой JSON-конфиг недельных бонусов из «Пульта» (парсится в boons/boon_config.ts). */
-export const getWeeklyBoonsConfigRaw = (): string => getRemoteText('weekly_boons_config');
-
-/**
- * Парсит JSON-строку вида "[3,5,9]" в Set валидных id уроков (1..32). Любой мусор
- * (не-массив, не-числа, вне диапазона, дубли) тихо отбрасывается — конфиг от админа
- * не должен ронять приложение.
- */
-function parseLessonIdList(raw: string): ReadonlySet<number> {
-  const out = new Set<number>();
-  if (!raw) return out;
-  try {
-    const arr = JSON.parse(raw);
-    if (!Array.isArray(arr)) return out;
-    for (const v of arr) {
-      const n = Math.trunc(Number(v));
-      if (Number.isFinite(n) && n >= 1 && n <= 32) out.add(n);
-    }
-  } catch (e) {
-      // невалидный JSON — порог без исключений
-      DebugLogger.error('remote_flags:n', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
-  return out;
-}
 /** Локализованный текст режима обслуживания (ru/uk/es; пусто = дефолт компонента). */
 export function getMaintenanceText(lang: string): string {
   const l = String(lang || '').toLowerCase();

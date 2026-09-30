@@ -6,7 +6,6 @@ import * as admin from "firebase-admin";
 import { withCronHeartbeat } from './cron_heartbeat';
 export { soc2ReadinessCollectorCron } from './soc2_readiness_collector';
 import * as functions from "firebase-functions/v2";
-import { getLevelFromXP } from "./xp_levels";
 // зачем: импорт надгробий Help Board снят вместе с их экспортом
 // (владелец, 2026-09-02) — см. комментарий ниже по файлу.
 
@@ -20,15 +19,11 @@ admin.initializeApp();
 // дефолт Cloud Run (до 1000 инстансов на функцию), поэтому суммарный потолок CPU
 // по региону выбирался целиком и новые ревизии падали на healthcheck.
 // Потолок общий и мягкий: функции, у которых есть свой maxInstances/minInstances
-// (включая тёплые auth_identity и maxVoiceMint), сохраняют своё значение —
+// (включая тёплый auth_identity), сохраняют своё значение —
 // глобальные опции действуют только там, где своё не задано.
 functions.setGlobalOptions({ maxInstances: 10 });
 
 // These imports must come AFTER initializeApp() — use require to control order
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { resetWeeklyXp } = require("./reset_weekly_xp");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { computeLeaderboardStats } = require("./compute_leaderboard_stats");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { runReEngagePush } = require("./re_engage_push") as {
   runReEngagePush: (now?: number) => Promise<{
@@ -77,13 +72,6 @@ const { JARVIS_TELEGRAM_CONFIG } =
   };
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
-  leagueJoinOrUpdateGroup,
-  leagueUpdateMyMember,
-  leagueSyncMyBoost,
-  leagueActivateGroupBoost,
-} = require("./league_groups");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const {
   authEnsureStableLink,
   authStampAnonOwnership,
   authRecoveryHint,
@@ -119,14 +107,11 @@ const {
 } = require("./account_delete_worker");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
-  leaderboardUpdateDailyAnalytics,
   nameCheckAvailability,
   nameGenerateAndReserve,
   nameReserve,
   nameReleaseMine,
 } = require("./leaderboard");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { leagueChestClaim } = require("./league_chest");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { friendEnsureMyCode } = require("./friend_codes");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -136,14 +121,6 @@ const {
   friendLikeActivity,
   friendUnlikeActivity,
 } = require("./friend_activity_likes");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const {
-  friendSendGift,
-  friendThankGift,
-  friendConsumeChainShield,
-  friendGetActiveQuest,
-  friendClaimQuestReward,
-} = require("./friend_gifts");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   cleanupExpiredAppMessages,
@@ -176,35 +153,43 @@ const {
 } = require("./premium_dialog");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { premiumDialogReview } = require("./premium_dialog_review");
+// Server-authorized structured memory read for released Dialogue V2 scenarios.
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { dialogueV2MemoryResume } = require("./dialogue_v2_memory_resume_callable");
+// Plus-only owner view/clear boundary for one released Dialogue V2 language.
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const {
+  dialogueV2MemoryView,
+  dialogueV2MemoryClear,
+} = require("./dialogue_v2_memory_management_callable");
+// Learner-safe, manifest-pinned Dialogue V2 catalogue for one study target.
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { dialogueV2Catalogue } = require("./dialogue_v2_catalogue_callable");
+// Server-authorized Dialogue V2 text turn. The callable accepts only opaque
+// session/turn ids, immutable selection and learner message; all personas,
+// retained turns and policy stay server-owned.
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { dialogueV2TextTurn } = require("./dialogue_v2_turn_production_callable");
+const { dialogueV2SessionStart } = require("./dialogue_v2_session_start_callable");
+const { dialogueV2FreeformSessionStart } = require("./dialogue_v2_freeform_session_start_callable");
+const { dialogueV2FreeformSessionTurn } = require("./dialogue_v2_freeform_session_turn_callable");
+const { dialogueV2FreeformPreparedBotVoiceResolve } = require("./dialogue_v2_freeform_prepared_bot_voice_callable");
+// Server-owned terminal claim, debrief and structured-memory commit for V2.
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { dialogueV2SessionComplete } = require("./dialogue_v2_session_complete_callable");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { premiumDialogStream } = require("./premium_dialog_stream");
-// Текстовый урок с Максом. НЕ имеет отношения к запломбированному голосовому
-// разделу MAX: переиспользует только его предметные модули (каталог целей,
-// память ученика), без WebRTC, минут и watchdog. Флаг gate_ai_text_tutor
-// выключен по умолчанию — раздел не появится у людей без решения владельца.
+// Dialogue V2 text tutoring uses ordinary dialogue modules; the sealed voice feature is not bundled.
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { tutorTextTurn } = require("./tutor_text_turn");
 // Темы на выбор при входе в урок: чистая выборка из каталога целей, БЕЗ
 // обращения к модели — человек видит выбор сразу, не дожидаясь генерации.
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { tutorTextTopics } = require("./tutor_text_topics");
-// Text-tutor privacy controls live in the default codebase. The sealed MAX
-// codebase remains untouched and exports no voice-memory endpoints.
+// Dialogue privacy controls remain in the default codebase; no voice-memory endpoints are exported.
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const {
-  tutorTextGetMemory,
-  tutorTextUpdateMemory,
-  tutorTextDeleteMemoryItem,
-  tutorTextClearMemory,
-} = require("./tutor_text_memory_controls");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { maxVoiceConfigAdmin } = require("./max_voice_config");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { adminWarmInstanceGauge } = require("./warm_instance_gauge");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { weeklyReviewGenerate } = require("./weekly_review");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { statsInsightsGenerate } = require("./stats_insights");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { explainPhrase } = require("./explain_phrase");
 const { explainChoice } = require("./explain_choice");
@@ -238,24 +223,13 @@ const {
   adminDeleteQuest,
   adminListQuests,
 } = require("./quests");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { shardsApplyDelta } = require("./shards_apply_delta");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-// зачем: железное правило владельца — дев-начисление ВСЕГДА идёт на сервер и
-// работает для ЛЮБОГО аккаунта. В проде путь мёртв: серверный рубильник
-// remote_config/app.numbers.dev_shards_grant_enabled по умолчанию выключен.
-const { devShardsGrant } = require("./dev_shards_grant");
-// DEV Hub: фиксированный server-confirmed grant 5 000 рун через единый stars_ledger.
-const { devRunesGrant } = require("./dev_runes_grant");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const {
-  getCoinExchangeQuote,
-  getCoinExchangeHistory,
-  exchangeCoinsForStars,
-  adminSetCoinExchangeRate,
-  recalcCoinExchangeRate,
-  adminGetCoinExchangeCenter,
-} = require("./coin_exchange");
+// зачем: D70/D78 — shardsApplyDelta (отключённая заглушка записи жемчуга) удалена.
+// зачем: D78 (владелец, 2026-09-30) — dev-выдачи devShardsGrant/devRunesGrant/
+// referralDevGrantSpin удалены из кода целиком (реализация, экспорт, клиент).
+// зачем: D70/D78 — биржа «жемчуг → звёзды» (getCoinExchangeQuote/History,
+// exchangeCoinsForStars, adminSetCoinExchangeRate, recalcCoinExchangeRate,
+// adminGetCoinExchangeCenter) удалена целиком: тратила жемчуг, которого больше нет.
+// Функции на сервере снимает деплой владельца.
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   getLearningV2AccountBinding,
@@ -266,12 +240,6 @@ const { grantMistakeCorrectionReward } = require("./mistake_practice_wallet_rewa
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { mistakePracticeSyncEvents } = require("./mistake_practice_event_sync");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const {
-  authorizeLearningV2CourseUnlock,
-  resolveLearningV2CourseUnlockReceipt,
-} = require("./learning_v2_course_unlock");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { profileCardUpgrade } = require("./profile_card_upgrade");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   submitUserIdea,
@@ -294,10 +262,6 @@ const {
   adminAlertOnUserIdeaReport,
 } = require("./user_idea_reports");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const {
-  submitMaxVoiceFeedback,
-  adminListMaxVoiceFeedback,
-} = require("./max_voice_feedback");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   submitFeedbackEntry,
@@ -307,10 +271,6 @@ const {
 const { adminSummarizeFeedback } = require("./feedback_summary");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { adminGetFeedbackStats } = require("./feedback_admin_stats");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { leagueFinalizeCron } = require("./league_finalize_cron");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { leagueResidentsTickCron } = require("./league_residents_cron");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   notifyOnFriendRequestCreated,
@@ -344,10 +304,6 @@ const {
   adminAlertOnConfigWritten,
 } = require("./admin_alerts");
 
-exports.leagueJoinOrUpdateGroup = leagueJoinOrUpdateGroup;
-exports.leagueUpdateMyMember = leagueUpdateMyMember;
-exports.leagueSyncMyBoost = leagueSyncMyBoost;
-exports.leagueActivateGroupBoost = leagueActivateGroupBoost;
 exports.authEnsureStableLink = authEnsureStableLink;
 exports.authStampAnonOwnership = authStampAnonOwnership;
 // зачем (этап 4): аккаунт выдаёт сервер, а не телефон — см. account_claim.ts.
@@ -371,12 +327,10 @@ exports.accountDeleteEnqueue = accountDeleteEnqueue;
 exports.accountDeleteCredentialStatus = accountDeleteCredentialStatus;
 exports.accountDeleteWorker = accountDeleteWorker;
 exports.accountDeleteRetryCron = accountDeleteRetryCron;
-exports.leaderboardUpdateDailyAnalytics = leaderboardUpdateDailyAnalytics;
 exports.nameCheckAvailability = nameCheckAvailability;
 exports.nameGenerateAndReserve = nameGenerateAndReserve;
 exports.nameReserve = nameReserve;
 exports.nameReleaseMine = nameReleaseMine;
-exports.leagueChestClaim = leagueChestClaim;
 // ⛔ Надгробия Help Board и Compass сняты с деплоя (владелец, 2026-09-02).
 // зачем: они ставились 2026-07-16, чтобы старые клиенты получали внятный отказ
 // вместо ошибки соединения. Задачу свою отработали: за 30 дней у всех десяти
@@ -389,11 +343,6 @@ exports.friendEnsureMyCode = friendEnsureMyCode;
 exports.friendLookupUser = friendLookupUser;
 exports.friendLikeActivity = friendLikeActivity;
 exports.friendUnlikeActivity = friendUnlikeActivity;
-exports.friendSendGift = friendSendGift;
-exports.friendThankGift = friendThankGift;
-exports.friendConsumeChainShield = friendConsumeChainShield;
-exports.friendGetActiveQuest = friendGetActiveQuest;
-exports.friendClaimQuestReward = friendClaimQuestReward;
 exports.onAppMessageReactionWritten = onAppMessageReactionWritten;
 exports.onAppMessagePollVoteWritten = onAppMessagePollVoteWritten;
 exports.onAppMessageStateWritten = onAppMessageStateWritten;
@@ -414,20 +363,20 @@ exports.referralListMyInvites = referralListMyInvites;
 exports.premiumDialogSend = premiumDialogSend;
 exports.premiumDialogTranslate = premiumDialogTranslate;
 exports.premiumDialogReview = premiumDialogReview;
+exports.dialogueV2MemoryResume = dialogueV2MemoryResume;
+exports.dialogueV2MemoryView = dialogueV2MemoryView;
+exports.dialogueV2MemoryClear = dialogueV2MemoryClear;
+exports.dialogueV2Catalogue = dialogueV2Catalogue;
+exports.dialogueV2TextTurn = dialogueV2TextTurn;
+exports.dialogueV2SessionStart = dialogueV2SessionStart;
+exports.dialogueV2FreeformSessionStart = dialogueV2FreeformSessionStart;
+exports.dialogueV2FreeformSessionTurn = dialogueV2FreeformSessionTurn;
+exports.dialogueV2FreeformPreparedBotVoiceResolve = dialogueV2FreeformPreparedBotVoiceResolve;
+exports.dialogueV2SessionComplete = dialogueV2SessionComplete;
 // Стриминговый диалог (SSE): первое слово ответа видно почти сразу.
 exports.premiumDialogStream = premiumDialogStream;
-// Текстовый урок с Максом (каркас MAX без голоса), за флагом gate_ai_text_tutor.
-exports.tutorTextTurn = tutorTextTurn;
-exports.tutorTextTopics = tutorTextTopics;
-exports.tutorTextGetMemory = tutorTextGetMemory;
-exports.tutorTextUpdateMemory = tutorTextUpdateMemory;
-exports.tutorTextDeleteMemoryItem = tutorTextDeleteMemoryItem;
-exports.tutorTextClearMemory = tutorTextClearMemory;
-exports.maxVoiceConfigAdmin = maxVoiceConfigAdmin;
 // зачем: шкала «когда можно отключать тёплый инстанс» в Пульте админки (2026-08-22).
 exports.adminWarmInstanceGauge = adminWarmInstanceGauge;
-exports.weeklyReviewGenerate = weeklyReviewGenerate;
-exports.statsInsightsGenerate = statsInsightsGenerate;
 exports.explainPhrase = explainPhrase;
 exports.explainChoice = explainChoice;
 exports.notifyOnFriendRequestCreated = notifyOnFriendRequestCreated;
@@ -466,24 +415,11 @@ exports.adminListQuests = adminListQuests;
 exports.getActiveShardSurvey = getActiveShardSurvey;
 exports.adminWriteShardSurvey = adminWriteShardSurvey;
 exports.adminDeleteShardSurvey = adminDeleteShardSurvey;
-exports.shardsApplyDelta = shardsApplyDelta;
-exports.devShardsGrant = devShardsGrant;
-exports.devRunesGrant = devRunesGrant;
-exports.getCoinExchangeQuote = getCoinExchangeQuote;
-exports.getCoinExchangeHistory = getCoinExchangeHistory;
-exports.exchangeCoinsForStars = exchangeCoinsForStars;
-exports.adminSetCoinExchangeRate = adminSetCoinExchangeRate;
-exports.recalcCoinExchangeRate = recalcCoinExchangeRate;
-exports.adminGetCoinExchangeCenter = adminGetCoinExchangeCenter;
 exports.resolveLearningV2WalletRewardReceipt =
   resolveLearningV2WalletRewardReceipt;
 exports.getLearningV2AccountBinding = getLearningV2AccountBinding;
 exports.grantMistakeCorrectionReward = grantMistakeCorrectionReward;
 exports.mistakePracticeSyncEvents = mistakePracticeSyncEvents;
-exports.authorizeLearningV2CourseUnlock = authorizeLearningV2CourseUnlock;
-exports.resolveLearningV2CourseUnlockReceipt =
-  resolveLearningV2CourseUnlockReceipt;
-exports.profileCardUpgrade = profileCardUpgrade;
 exports.submitUserIdea = submitUserIdea;
 exports.updateUserIdea = updateUserIdea;
 exports.listPublicUserIdeas = listPublicUserIdeas;
@@ -498,41 +434,10 @@ exports.adminSetIdeaSubmissionRestriction = adminSetIdeaSubmissionRestriction;
 exports.adminListUserIdeas = adminListUserIdeas;
 exports.adminDecideUserIdea = adminDecideUserIdea;
 exports.adminDraftIdeaDecision = adminDraftIdeaDecision;
-exports.submitMaxVoiceFeedback = submitMaxVoiceFeedback;
-exports.adminListMaxVoiceFeedback = adminListMaxVoiceFeedback;
 exports.submitFeedbackEntry = submitFeedbackEntry;
 exports.adminListFeedbackEntries = adminListFeedbackEntries;
 exports.adminSummarizeFeedback = adminSummarizeFeedback;
 exports.adminGetFeedbackStats = adminGetFeedbackStats;
-exports.leagueFinalizeCron = leagueFinalizeCron;
-// Жители лиг: раз в 6 часов растёт их опыт/уровень/аватар (владелец 2026-08-04).
-exports.leagueResidentsTickCron = leagueResidentsTickCron;
-
-// ─── Leaderboard percentile stats cron ──────────────────────────────────────
-// Runs daily. Computes p1-p99 thresholds for XP, streak and recent activity.
-// and writes them to leaderboard_stats/global for all clients to read.
-// memory: 1GiB + timeout 540s — крон агрегирует перцентили, держа в памяти XP/streak/time
-// всех eligible-юзеров (полный скан users + leaderboard постранично). На дефолтных 256MiB
-// падал OOM ежедневно (perсentile-статистика переставала обновляться).
-export const computeLeaderboardStatsCron = functions.scheduler.onSchedule(
-  {
-    schedule: "0 3 * * *",
-    timeZone: "UTC",
-    memory: "1GiB",
-    timeoutSeconds: 540,
-  },
-  withCronHeartbeat('computeLeaderboardStatsCron', async () => {
-    await computeLeaderboardStats();
-  }));
-
-// ─── Weekly XP reset cron (XP-02) ────────────────────────────────────────────
-// Runs every Monday 00:00 UTC. Zeroes progress.weekly_xp for ALL users without
-// touching progress.user_total_xp. Cron expression '0 0 * * 1' = at 00:00 on Monday.
-export const resetWeeklyXpCron = functions.scheduler.onSchedule(
-  { schedule: "0 0 * * 1", timeZone: "UTC" },
-  withCronHeartbeat('resetWeeklyXpCron', async () => {
-    await resetWeeklyXp();
-  }));
 
 export const cleanupExpiredAppMessagesCron = functions.scheduler.onSchedule(
   { schedule: "0 4 * * *", timeZone: "UTC" },
@@ -552,26 +457,6 @@ export const cleanupExpiredAppMessagesCron = functions.scheduler.onSchedule(
  * по индексу: кандидаты берутся из памяти учителя (where nextTopic != ''),
  * а не обходом коллекции users.
  */
-// ⛔ ЗАКОНСЕРВИРОВАН вместе с разделом MAX (владелец 2026-09-04). Крон ходил
-// РАЗ В ЧАС (~720 запусков/мес) и слал пуши «вернись к уроку с МАКСом» — про
-// раздел, который теперь закрыт. Не возвращать без прямой команды владельца:
-// см. CLAUDE.md → «РАЗДЕЛ MAX ЗАКОНСЕРВИРОВАН» и сторож
-// tests/max_section_sealed_contract.test.ts.
-/* export const maxLessonReminderCron = functions.scheduler.onSchedule(
-  { schedule: "5 * * * *", timeZone: "UTC" },
-  withCronHeartbeat('maxLessonReminderCron', async () => {
-    const { runLessonReminderPush } = await import("./max_lesson_reminder_push");
-    const summary = await runLessonReminderPush();
-    if (summary.candidates > 0 || summary.sent > 0) {
-      console.log("maxLessonReminderCron", JSON.stringify(summary));
-    }
-    if (summary.failedChunks > 0) {
-      console.error(
-        `maxLessonReminderCron: ${summary.failedChunks} chunk(s) failed — ` +
-          `sent ${summary.sent}/${summary.eligible} eligible.`,
-      );
-    }
-  })); */
 
 export const reEngagePushCron = functions.scheduler.onSchedule(
   { schedule: "0 10 * * *", timeZone: "UTC" },
@@ -711,15 +596,10 @@ export {
   communityAdminModeratePack,
   communityAuthorRemovePack,
   communityFetchPackCardsIfAccessible,
-  communityPurchasePack,
-  adminRefundCommunityPackPurchase,
   communityRedeemPackGiftVoucher,
   flashcardPackGiftRedeem,
   flashcardPackGiftGrantGlobalBroadcast,
   flashcardPackGiftSyncState,
-  levelGiftReserve,
-  levelGiftActivatePackGift,
-  levelSpinActivatePackGift,
   communityListSellerInbox,
   communityMarkSellerInboxSeen,
 } from "./community_packs";
@@ -735,7 +615,6 @@ export { premiumExpiryCron } from "./premium_expiry_cron";
 
 // ── Авто-перенос VIP, выданного в осиротевший stable-документ, на canonical ───
 
-export { friendSendGift } from "./friend_gifts";
 
 // ── ИИ-дайджест «что случилось за сутки» для владельца (admin-only, по кнопке) ─
 export {
@@ -783,7 +662,8 @@ export {
 } from "./report_replies";
 
 // ── Admin grant (типизированные награды из админки) ───────────────────────────
-export { adminGrantReward, adminSetShardBalance } from "./admin_grant";
+// зачем: D70/D86 — корректировка баланса жемчуга удалена; выдача наград — монетами.
+export { adminGrantReward } from "./admin_grant";
 export { adminGrantVoiceMinutes } from "./admin_voice_minutes";
 export { adminGrantAccess, adminSetUserBan } from "./admin_access_controls";
 export {
@@ -818,13 +698,6 @@ export { adminSubscriptionAnalytics } from "./admin_subscription_analytics";
 export { adminMonthlyDecisionPack } from "./admin_monthly_decision_pack";
 export { adminGetAnalyticsSnapshot } from "./admin_analytics";
 export { adminGetRevenueCatOverviewMetrics } from "./admin_revenuecat_overview";
-// зачем: 2026-08-23 — боевые функции MAX (12 шт.) переехали в отдельную
-// кодбазу functions-max: старт этой кодбасы грузит 240 функций (370 МБ,
-// 2.2 с), а MAX-кодбаза — только свои 12 (78 МБ, 0.44 с). Админские
-// maxVoiceConfigAdmin и adminGetMaxVoiceOpsDashboard остались здесь, рядом
-// с остальной админкой. Правки в functions/src/max_voice_* попадают в обе
-// сборки: functions-max компилирует те же исходники (rootDir "..").
-export { adminGetMaxVoiceOpsDashboard } from "./max_voice_ops_dashboard";
 export { adminListShardRefunds } from "./admin_shard_refunds";
 export { adminGetAnalyticsTrends } from "./admin_analytics_trends";
 export { adminGetDirectorDigest } from "./admin_director_digest";
@@ -917,10 +790,6 @@ export {
   adminTestAlerts,
 } from "./admin_config_controls";
 export {
-  adminResetLeaguePoints,
-  adminMoveLeagueUser,
-} from "./admin_league_controls";
-export {
   adminListGlobalBroadcasts,
   adminPublishGlobalBroadcast,
   adminDeactivateGlobalBroadcast,
@@ -940,6 +809,7 @@ export {
   adminParseVideoPhraseDocument,
   adminBackfillVideoPacks,
 } from "./video_phrases";
+export { adminAlignVideoPhraseTranscript } from "./video_phrase_timing";
 export {
   adminCreateContentStage,
   adminControlContentStage,
@@ -1024,7 +894,7 @@ export { revenueCatPremiumReconcileMine } from "./revenuecat_reconcile";
 export { voiceMinuteWalletMine } from "./voice_minutes_api";
 // ⛔ СНЯТА С ДЕПЛОЯ (владелец 2026-09-04: «выключай»). Дев-выдача начисляла
 // ПЛАТНЫЕ минуты бесплатно ЛЮБОМУ вошедшему пользователю (до 600 мин на
-// аккаунт), пока в config/max_voice стоял voiceMinuteDevGrantEnabled: true.
+// аккаунт), пока был включён временный DEV-grant голосовых минут.
 // Флаг снят в базу (false), функция удалена с прода — две линии защиты.
 // Раздел MAX законсервирован, тестировать покупку минут больше нечем и незачем:
 // см. CLAUDE.md → «РАЗДЕЛ MAX ЗАКОНСЕРВИРОВАН».
@@ -1080,8 +950,9 @@ export { webActivationReminderCron } from "./web_activation_reminders";
 // Проверено перед снятием: приложение 1.6.15 не зовёт их ни разу;
 // tournamentClaimReward — 0 вызовов за 60 дней (терять нечего);
 // tournamentWeeklyBankInfo стучал только клиент 1.6.7 и УЖЕ получал 401.
-// Модули ./tournaments и ./tournament_* НЕ удалены с диска намеренно: Арена
-// импортирует tournament_core и tournament_pool_publication (arena_v2.ts:16,59).
+// Модули ./tournaments и ./tournament_* НЕ удалены с диска намеренно: пул
+// заданий Шпиля импортирует tournament_core и tournament_pool_publication
+// (зачем: D78 — серверная Арена удалена, потребителем пула остался Шпиль).
 // Возврат = отдельное задание владельца, не попутная правка.
 
 // Управление конфигом Арены из админки. Без документа arena_v2_config/current
@@ -1094,19 +965,24 @@ export { adminSpireConfigGet, adminSpireConfigSet } from "./admin_spire_config";
 // публикуются без проверки носителем, значит ошибки первыми увидят игроки;
 // снятое задание попадает в config/spire_task_flags_{lang}, сборщик
 // недельного пакета (PM-272) обязан исключать эти id.
-export { adminSpireTaskFlagList, adminSpireTaskFlagAdd, adminSpireTaskFlagRemove } from "./admin_spire_task_flag";
+export {
+  adminSpireTaskFlagList,
+  adminSpireTaskFlagAdd,
+  adminSpireTaskFlagRemove,
+  adminSpireTaskReportList,
+  adminSpireTaskIncidentStates,
+  adminSpireTaskIncidentSetState,
+} from "./admin_spire_task_flag";
 // Шпиль: приём пачки отчётов о ступенях (PM-275, TOWER_CONTRACT.md §5) —
 // одна запись progress.spire_week_v1 на пачку, проверка правдоподобия по config/spire_v1.
 export { spireReportSteps } from "./spire_progress";
 // Шпиль: комнаты по 30 на язык и день входа (PM-277, T15/T24); боты — формула
 // spire_residents.ts без чтений/записей и без крона (D56).
 export { spireJoinRoom } from "./spire_groups";
-// Шпиль: перенос мест лиги в шпили (PM-278) — сам перенос идёт внутри
-// spireJoinRoom при первом входе; здесь только выключатель и откат для админки.
-export { adminSpireLeagueMigrationSetMode, adminSpireLeagueMigrationRollback } from "./admin_spire_league_migration";
+// Legacy league migration controls are retired and are no longer exported.
 // Шпиль: недельный итог (PM-276, TOWER.md §4.7) — место по ступеням, переход
 // между шпилями, сумма монет за место/повышение (выплата — PM-280). Свой крон,
-// не leagueFinalizeCron: комнаты в spire_groups, файлы лиги под замком.
+
 export { spireFinalizeCron } from "./spire_finalize_cron";
 // Шпиль: пакет недели (PM-272, TOWER_CONTRACT.md §4) — файл в Storage
 // spire_packs/{lang}/{tier}/{weekId}.json, packHash в customMetadata (его читает
@@ -1126,73 +1002,14 @@ export {
   adminArenaPublicationActivate,
   adminArenaPublicationRollback,
 } from "./admin_arena_publication";
-// Arena V2 is a separate server-authoritative duel runtime. It reuses only
-// reviewed Tournament task publications; Tournament release gates, rooms and
-// economy remain untouched.
-export {
-  arenaV2Home,
-  arenaV2FindMatch,
-  // Сведение со стороны сервера в момент входа в очередь. Не крон: реагирует
-  // на событие. Без него пара возникала только когда чей-то телефон
-  // переспросит — раз в 15 секунд и лишь на видимом экране.
-  arenaV2OnQueueWrite,
-  arenaV2QueueCancel,
-  arenaV2QuickBotFallback,
-  arenaV2RankedBotFallback,
-  arenaV2MatchAccept,
-  arenaV2MatchDecline,
-  // Дуэль v3: план выдаётся одним вызовом, отчёт принимается одним вызовом.
-  // Пошаговые arenaV2SubmitAnswer/SubmitSpeedAttempt остаются ради матчей,
-  // начатых старой сборкой; новые матчи через них не идут.
-  arenaV2MatchPlan,
-  arenaV2MatchFinish,
-  arenaV2MatchSettle,
-  arenaV2SubmitAnswer,
-  arenaV2SubmitSpeedAttempt,
-  arenaV2SyncMatch,
-  arenaV2Forfeit,
-  arenaV2ReleaseStaleMatch,
-  arenaV2InviteCreate,
-  arenaV2InviteAccept,
-  arenaV2InviteDecline,
-  arenaV2InviteCancel,
-  arenaV2InviteReady,
-  arenaV2InviteStatus,
-  arenaV2DevFriendBotCreate,
-  arenaV2FriendsBoard,
-  arenaV2SeasonClaim,
-  arenaV2CleanupHourly,
-} from "./arena_v2";
-// Arena Expansion layers Today, review/mastery, asynchronous social play and
-// a spendable cosmetic wallet on top of the V2 authority boundary. Every
-// surface remains independently fail-closed in arena_v2_config/current.
-export {
-  arenaExpansionHome,
-  arenaTodayStart,
-  arenaTodaySubmitAnswer,
-  arenaTodaySubmitSpeedAttempt,
-  arenaTodaySync,
-  arenaMatchLabGet,
-  arenaGhostCreate,
-  arenaGhostAccept,
-  arenaGhostStatus,
-  arenaGhostDecline,
-  arenaRivalPropose,
-  arenaRivalAccept,
-  arenaRivalNext,
-  arenaRivalLeave,
-  arenaRivalMute,
-  arenaPartnerInvite,
-  arenaPartnerAccept,
-  arenaPartnerPause,
-  arenaPartnerPreferences,
-  arenaPartnerNudge,
-  arenaPartnerRemove,
-  arenaPartnerClaimSpotlight,
-  arenaStarStore,
-  arenaStarPurchase,
-  arenaStarEquip,
-} from "./arena_expansion";
+// ⛔ D78 (владелец, 2026-09-30): СЕРВЕРНАЯ АРЕНА УДАЛЕНА ИЗ КОДА.
+// зачем: D74/D78 — в 2.0 Арену заменяет Шпиль; владелец: «удаляем, не отключаем».
+// Реализация (arena_v2.ts, arena_expansion.ts), надгробия D74 (arena_retired.ts),
+// кроны и триггеры Арены удалены целиком — следующий деплой снимет их с прода.
+// Остались ТОЛЬКО админские функции пула выше (adminArenaConfig*/Content*/
+// Publication*): они ведут arena_v2_config/current.targetPublications и
+// публикации заданий, которые читает сборщик пакетов Шпиля (spire_pack_build.ts).
+// Ратчет: tests/d74_arena_server_retired.probe.ts.
 // ⛔ Раздел «Турниры» в админке снят с деплоя вместе с остальными турнирными
 // функциями (владелец, 2026-09-02). Вкладки турниров в admin/v2/legacy.html
 // перестанут отвечать — это ожидаемо, режим выключен с 2026-08-10.
@@ -1207,19 +1024,14 @@ export {
 export { finalizeLearningV2DelayedCandidate } from "./learning_v2_delayed_callable";
 export { finalizeLearningV2AccessPurchase } from "./learning_v2_access_production_callable";
 
-// Server-backed cosmetic inventory: client availability manifest plus guarded
-// admin controls for removing an item from sale or returning it without a release.
-export {
-  cosmeticAssetCatalogGet,
-  adminGetCosmeticAssetArchive,
-  adminSetCosmeticAssetSaleStatus,
-} from "./cosmetic_asset_archive";
+// зачем: D108 — архив косметики (cosmeticAssetCatalogGet, adminGetCosmeticAssetArchive,
+// adminSetCosmeticAssetSaleStatus) удалён вместе с аурами и кастомными аватарами.
 
-// ── Рулетка Plus (спин-кредиты → дни VIP) и claim qualified-приглашений в прокруты ──
+// ── Рулетка Plus (спин-кредиты → дни Plus; Pro — монеты, D100) и claim qualified-приглашений ──
+// зачем: D80/D99 (владелец, 2026-09-30) — рулетку ВЕРНУТЬ после PM-202. Dev-выдача
+// спина (referralDevGrantSpin) НЕ возвращается — D78/D81.
 export { referralSpin } from "./referral_spin";
 export { referralClaimSpin } from "./referral_claim_spin";
-// DEV-кнопка «+1 прокрут» (гейт remote_config, лимит 10/сутки) — только для тестовых сборок.
-export { referralDevGrantSpin } from "./referral_dev_grant";
 
 // ── Fan-out ленты активности друзей (users/{uid}/my_events → users/{friendUid}/feed) ──
 
@@ -1227,11 +1039,10 @@ export { referralDevGrantSpin } from "./referral_dev_grant";
 export { friendsGetProfiles } from "./friends_profiles";
 
 // ── «Вместе» (docs/plans/2026-08-16-friends-together-implementation.ru.md) ──
-// Веха уровня дружбы, сундук недели, «Позвать» — вкладка Друзья, за флагом
+// Веха уровня дружбы и «Позвать» — вкладка Друзья, за флагом
 // friends_together_enabled на клиенте.
 export {
   friendsTogetherClaimLevel,
-  friendsClaimWeeklyChest,
   friendsNudge,
 } from "./friends_together";
 export { publicProfileProjectMine } from "./public_profile_projection";
@@ -1239,8 +1050,6 @@ export { adminActivateTelegramPremiumOrder, adminInspectTelegramPromoCode } from
 
 // Authenticated, server-authoritative one-time onboarding access grant.
 export { introFullAccessClaim } from "./gift_access";
-// Стартовый подарок новичку: +300 рун одной выдачей на аккаунт (welcome-модалка).
-export { welcomeGiftClaim } from "./welcome_gift";
 // Руны за просмотр видео для Plus/Pro: 3 базовые руны за полную минуту,
 // одним вызовом в конце просмотра, потолок 600 в сутки.
 export { videoWatchRunesClaim } from "./video_watch_runes";
@@ -1250,36 +1059,14 @@ export { aiDialogBuyExtraReplies } from "./ai_dialog_extra_replies";
 // Синхронизация покупок диалогов за руны (5 000 / 10 000). Сервер НЕ решает,
 // а догоняет: телефон авторитетен, здесь только журнал траты и сохранение
 // владения, чтобы переустановка приложения не потеряла купленное.
-export { aiDialogSyncPurchase } from "./ai_dialog_sync_purchase";
 // зачем (владелец 2026-09-21): руны с покупки набора получает АВТОР набора,
 // а не приложение. См. community_pack_rune_sale.ts.
 export { communitySyncPackRuneSale } from "./community_pack_rune_sale";
 export { globalBroadcastClaim } from "./global_broadcast_claim";
 export { globalBroadcastListActive } from "./global_broadcast_public";
-export {
-  levelRewardSpinStatus,
-  levelRewardSpinClaim,
-  levelRewardSpinAcknowledge,
-  levelRewardSpinDelivery,
-} from "./level_reward_spins";
-export { levelRewardSpinEnrollV1 } from "./level_spin_enrollment";
-export { levelSpinStarGrant } from "./level_spin_star_grant";
-// зачем (D51/D53, владелец 2026-09-24): строка-итог миграции «Подарки → монеты»
-// для контроля в админке. Требует деплоя с согласия владельца.
-export { giftsToCoinsMigrationReport } from "./gifts_to_coins_report";
-// PM-059 (D15): строка-итог миграции «жемчуг → монеты 1:10». ⚠️ Деплой — только с согласия владельца.
-export { pearlsToCoinsMigrationReport } from "./pearls_to_coins_report";
 // зачем (владелец, 2026-08-27): руны за семь учебных активностей — урок,
 // словарь, неправильные глаголы, блиц, тренировка, отработка ошибок, голос.
 export { practiceRuneGrant } from "./practice_rune_grant";
-
-// ── Season Pass: клеймы, расходники, щит другу, покупка платной дорожки ──
-export {
-  seasonClaimReward,
-  seasonRedeemConsumable,
-  seasonSendFriendShield,
-  seasonBuyPass,
-} from "./season_pass";
 
 // ── Админ-callables раздела «Рефералы» (гейт custom claim admin) ──
 export {
@@ -1288,6 +1075,7 @@ export {
   adminGetReferralDashboard,
   adminSpinStats,
   adminSpinLogs,
+  // зачем: D80/D99 — веса и soft/emergency-управление рулеткой снова в админке.
   adminSetSpinWeights,
   adminSetReferralRouletteEnabled,
   adminSetReferralRouletteEmergencyStop,
@@ -1340,6 +1128,7 @@ export {
   adminAlertRecoveryCron,
   adminGetAlertDiagnostics,
 } from "./admin_alert_dispatcher";
+export { customCardMilestoneNotify } from "./custom_card_milestone";
 export {
   adminAlertOnReferralAttributionWrite,
   adminAlertOnBanWrite,

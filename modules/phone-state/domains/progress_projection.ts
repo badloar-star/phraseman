@@ -1,7 +1,4 @@
 export type PersonalProgressProjection = Readonly<{
-  totalXp: number;
-  level: number;
-  weeklyXp: number;
   activityDates: readonly string[];
   streakCount: number;
   completedLessons: readonly string[];
@@ -22,14 +19,6 @@ export type PersonalProgressCommand =
     projection: PersonalProgressProjection;
   }>
   | Readonly<{
-    kind: 'grant_xp';
-    eventId: string;
-    amount: number;
-    source: string;
-    activityDate: string;
-    exactResult: unknown;
-  }>
-  | Readonly<{
     kind: 'complete_lesson';
     eventId: string;
     lessonId: string;
@@ -41,8 +30,6 @@ export type PersonalProgressCommand =
     examId: string;
     bestPct: number;
   }>;
-
-const DATE = /^\d{4}-\d{2}-\d{2}$/;
 
 function sortedUnique(values: readonly string[]): readonly string[] {
   return Object.freeze([...new Set(values)].sort((left, right) => left.localeCompare(right)));
@@ -90,9 +77,6 @@ function freezeProjection(value: PersonalProgressProjection): PersonalProgressPr
 export function emptyPersonalProgressState(): PersonalProgressState {
   return Object.freeze({
     projection: freezeProjection({
-      totalXp: 0,
-      level: 1,
-      weeklyXp: 0,
       activityDates: [],
       streakCount: 0,
       completedLessons: [],
@@ -115,7 +99,6 @@ function validPct(value: unknown): value is number {
 export function applyPersonalProgressCommand(
   state: PersonalProgressState,
   command: PersonalProgressCommand,
-  levelForXp: (totalXp: number) => number,
 ): Readonly<{ state: PersonalProgressState; duplicate: boolean }> {
   if (!validId(command.eventId)) throw new Error('phone_state_progress_input_invalid');
   if (state.appliedEventIds.includes(command.eventId)) {
@@ -126,55 +109,21 @@ export function applyPersonalProgressCommand(
   if (command.kind === 'opening_import') {
     const imported = command.projection;
     if (
-      !Number.isSafeInteger(imported.totalXp)
-      || imported.totalXp < 0
-      || !Number.isSafeInteger(imported.weeklyXp)
-      || imported.weeklyXp < 0
-      || !Array.isArray(imported.activityDates)
+      !Array.isArray(imported.activityDates)
       || !Array.isArray(imported.completedLessons)
       || !Array.isArray(imported.passedExams)
       || !Array.isArray(imported.unlockedLessons)
     ) {
       throw new Error('phone_state_progress_input_invalid');
     }
-    const totalXp = Math.max(previous.totalXp, imported.totalXp);
     const activityDates = sortedUnique([...previous.activityDates, ...imported.activityDates]);
     next = freezeProjection({
-      totalXp,
-      level: levelForXp(totalXp),
-      weeklyXp: Math.max(previous.weeklyXp, imported.weeklyXp),
       activityDates,
       streakCount: Math.max(previous.streakCount, imported.streakCount, streakCount(activityDates)),
       completedLessons: sortedUnique([...previous.completedLessons, ...imported.completedLessons]),
       passedExams: sortedUnique([...previous.passedExams, ...imported.passedExams]),
       unlockedLessons: sortedUnique([...previous.unlockedLessons, ...imported.unlockedLessons]),
       bestResults: sortedBestResults({ ...previous.bestResults, ...imported.bestResults }),
-    });
-  } else if (command.kind === 'grant_xp') {
-    if (
-      !Number.isSafeInteger(command.amount)
-      || command.amount <= 0
-      || command.amount > 1_000_000
-      || !validId(command.source)
-      || !DATE.test(command.activityDate)
-    ) {
-      throw new Error('phone_state_progress_input_invalid');
-    }
-    const totalXp = previous.totalXp + command.amount;
-    const weeklyXp = previous.weeklyXp + command.amount;
-    if (!Number.isSafeInteger(totalXp) || !Number.isSafeInteger(weeklyXp)) {
-      throw new Error('phone_state_progress_input_invalid');
-    }
-    const activityDates = sortedUnique([...previous.activityDates, command.activityDate]);
-    const level = levelForXp(totalXp);
-    if (!Number.isSafeInteger(level) || level < 1) throw new Error('phone_state_progress_input_invalid');
-    next = freezeProjection({
-      ...previous,
-      totalXp,
-      weeklyXp,
-      level,
-      activityDates,
-      streakCount: streakCount(activityDates),
     });
   } else if (command.kind === 'complete_lesson') {
     if (!validId(command.lessonId) || (command.bestPct !== undefined && !validPct(command.bestPct))) {
@@ -190,6 +139,20 @@ export function applyPersonalProgressCommand(
       completedLessons: sortedUnique([...previous.completedLessons, command.lessonId]),
       unlockedLessons: sortedUnique([...previous.unlockedLessons, command.lessonId]),
       bestResults,
+    });
+  } else if ((command as { kind?: unknown }).kind === 'grant_xp') {
+    // зачем (владелец 2026-09-30: «всё, что связано с выдачей опыта, вычистить»): XP больше не существует.
+    // Старое событие grant_xp с устройства на прежней версии не начисляет ничего — берём из него ТОЛЬКО
+    // дату активности, чтобы серия дней не занизилась, а событие не уходило в карантин синхронизации.
+    const activityDate = (command as { activityDate?: unknown }).activityDate;
+    if (typeof activityDate !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(activityDate)) {
+      throw new Error('phone_state_progress_input_invalid');
+    }
+    const activityDates = sortedUnique([...previous.activityDates, activityDate]);
+    next = freezeProjection({
+      ...previous,
+      activityDates,
+      streakCount: Math.max(previous.streakCount, streakCount(activityDates)),
     });
   } else {
     if (!validId(command.examId) || !validPct(command.bestPct)) {

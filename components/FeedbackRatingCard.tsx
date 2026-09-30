@@ -1,11 +1,11 @@
 // Переиспользуемый блок «оценка звёздами + текстовый отзыв» для экранов
-// завершения (урок / словарь / диалог / арена). Вынесен из max_voice_review.tsx
-// (владелец 2026-08-23, звонок MAX) в общий компонент — владелец 2026-08-25:
+// завершения (урок / словарь / диалог / арена).
+// Общая карточка используется на всех поддерживаемых экранах.
 // «такой же блок нужен везде: уроки, словарь, диалог, арена блиц или рейтинг».
 //
 // Optimistic UI: тап «Отправить» сразу показывает «Спасибо», отзыв уходит в
 // локальную очередь (feedback_outbox) и досылается сетью фоном — тот же
-// паттерн, что и у звонка MAX. Показ троттлится раздельно по разделу
+// Показ троттлится раздельно по разделу
 // (feedback_prompt_throttle, не чаще раза в неделю) — гейт решает вызывающий
 // экран (см. shouldPromptFeedback), сам компонент рендерится безусловно.
 import React, { useEffect, useState } from 'react';
@@ -13,7 +13,8 @@ import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-nativ
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { glassFill } from './GlassSurface';
-import { useTheme } from './ThemeContext';
+import { FONT_SCALE, useTheme } from './ThemeContext';
+import { LinearGradient } from './SafeLinearGradient';
 import { hapticTap } from '../hooks/use-haptics';
 import { trackEvent } from '../app/analytics';
 import { getStableId } from '../app/stable_id';
@@ -24,6 +25,7 @@ import {
 } from '../app/feedback_client';
 import { enqueueFeedbackEntry, flushFeedbackOutbox } from '../app/feedback_outbox';
 import { type Lang } from '../constants/i18n';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { DebugLogger } from '../app/debug-logger';
 
 export interface FeedbackRatingCardProps {
@@ -40,7 +42,7 @@ export interface FeedbackRatingCardProps {
   thanksLabel: string;
   ratingA11yLabel: string;
   testID?: string;
-  presentation?: 'default' | 'compact-stars';
+  presentation?: 'default' | 'compact-stars' | 'liquid-glass-rate';
 }
 
 export default function FeedbackRatingCard({
@@ -57,7 +59,7 @@ export default function FeedbackRatingCard({
   testID = 'feedback-rating-card',
   presentation = 'default',
 }: FeedbackRatingCardProps) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, liquidGlassThemeId, fontSize, uiScale } = useTheme();
   const [text, setText] = useState('');
   const [rating, setRating] = useState(0);
   // зачем (владелец 2026-08-26): «убери этот текст и галочку — никаких
@@ -70,7 +72,9 @@ export default function FeedbackRatingCard({
   // Политике конфиденциальности, а не отдельной галочкой в каждой карточке.
   const aiSummaryConsent = true;
   const [state, setState] = useState<'idle' | 'sent'>('idle');
+  const [expanded, setExpanded] = useState(false);
   const compactStars = presentation === 'compact-stars';
+  const liquidGlassRate = presentation === 'liquid-glass-rate';
 
 
   const flushPendingFeedback = async (): Promise<void> => {
@@ -120,6 +124,158 @@ export default function FeedbackRatingCard({
       DebugLogger.error('FeedbackRatingCard:persisted', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   };
+
+  if (liquidGlassRate) {
+    const glass = liquidGlassTokens(liquidGlassThemeId);
+    const textScale = (FONT_SCALE[fontSize] / FONT_SCALE.medium) * uiScale;
+    const sendDisabled = text.trim() === '' && rating === 0;
+    const liquidBodyVisible = expanded || state === 'sent';
+    return (
+      <View
+        testID={testID}
+        style={[
+          styles.liquidCard,
+          { backgroundColor: glass.opaqueCard, borderColor: glass.glassEdge },
+        ]}
+      >
+        <LinearGradient
+          pointerEvents="none"
+          testID={`${testID}-sheen`}
+          colors={[glass.lightTint, 'transparent']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 0.9, y: 1 }}
+          style={[StyleSheet.absoluteFill, styles.liquidSheen]}
+        />
+        <TouchableOpacity
+          testID={`${testID}-header`}
+          accessibilityRole="button"
+          accessibilityLabel={title}
+          accessibilityState={{ expanded: liquidBodyVisible, disabled: state === 'sent' }}
+          disabled={state === 'sent'}
+          onPress={() => { hapticTap(); setExpanded(current => !current); }}
+          style={styles.liquidHeader}
+        >
+          <Text
+            testID={`${testID}-title`}
+            style={[
+              styles.liquidTitle,
+              { color: glass.text, fontSize: 17 * textScale, lineHeight: 22 * textScale },
+            ]}
+            maxFontSizeMultiplier={undefined}
+          >
+            {title}
+          </Text>
+          <Ionicons
+            name={liquidBodyVisible ? 'chevron-up' : 'chevron-down'}
+            size={20}
+            color={glass.secondary}
+          />
+        </TouchableOpacity>
+
+        {liquidBodyVisible ? state === 'sent' ? (
+          <View style={styles.liquidSentRow}>
+            <Ionicons name="checkmark-circle" size={20} color={t.correct} />
+            <Text
+              testID={`${testID}-thanks`}
+              accessibilityLiveRegion="polite"
+              style={[
+                styles.liquidThanks,
+                { color: t.correct, fontSize: 16 * textScale, lineHeight: 22 * textScale },
+              ]}
+              maxFontSizeMultiplier={undefined}
+            >
+              {thanksLabel}
+            </Text>
+          </View>
+        ) : (
+          <>
+            <View
+              testID={`${testID}-rating`}
+              accessibilityRole="radiogroup"
+              accessibilityLabel={ratingA11yLabel}
+              style={styles.liquidRatingRow}
+            >
+              {[1, 2, 3, 4, 5].map((star) => (
+                <TouchableOpacity
+                  key={`star-${star}`}
+                  testID={`${testID}-star-${star}`}
+                  accessibilityRole="radio"
+                  accessibilityState={{ selected: rating === star }}
+                  accessibilityLabel={`${ratingA11yLabel} ${star}`}
+                  onPress={() => { hapticTap(); setRating(star); }}
+                  style={styles.liquidStarButton}
+                >
+                  <Ionicons
+                    name={rating >= star ? 'star' : 'star-outline'}
+                    size={34}
+                    color={rating >= star ? t.gold : glass.mutedText}
+                  />
+                </TouchableOpacity>
+              ))}
+            </View>
+            <TextInput
+              testID={`${testID}-input`}
+              accessibilityLabel={title}
+              value={text}
+              onChangeText={setText}
+              placeholder={placeholder}
+              placeholderTextColor={glass.mutedText}
+              multiline
+              maxLength={2000}
+              maxFontSizeMultiplier={undefined}
+              style={[
+                styles.liquidInput,
+                {
+                  color: glass.text,
+                  fontSize: 16 * textScale,
+                  lineHeight: 22 * textScale,
+                  backgroundColor: glass.opaqueControl,
+                  borderColor: glass.glassEdge,
+                },
+              ]}
+            />
+            <TouchableOpacity
+              testID={`${testID}-send`}
+              accessibilityRole="button"
+              accessibilityLabel={sendLabel}
+              accessibilityState={{ disabled: sendDisabled }}
+              disabled={sendDisabled}
+              onPress={() => { void sendFeedback(); }}
+              style={styles.liquidSendTarget}
+            >
+              <View
+                testID={`${testID}-send-visual`}
+                style={[
+                  styles.liquidSendVisual,
+                  { backgroundColor: sendDisabled ? glass.opaqueControl : glass.cta },
+                ]}
+              >
+                <Text
+                  testID={`${testID}-send-label`}
+                  style={[
+                    styles.liquidSendLabel,
+                    {
+                      color: sendDisabled ? glass.mutedText : glass.ctaInk,
+                      fontSize: 16 * textScale,
+                      lineHeight: 22 * textScale,
+                    },
+                  ]}
+                  maxFontSizeMultiplier={undefined}
+                >
+                  {sendLabel}
+                </Text>
+                <Ionicons
+                  name="send"
+                  size={16}
+                  color={sendDisabled ? glass.mutedText : glass.ctaInk}
+                />
+              </View>
+            </TouchableOpacity>
+          </>
+        ) : null}
+      </View>
+    );
+  }
 
   const card = {
     backgroundColor: glassFill(t.bgSurface, 0.48),
@@ -215,6 +371,78 @@ export default function FeedbackRatingCard({
 }
 
 const styles = StyleSheet.create({
+  liquidCard: {
+    position: 'relative',
+    overflow: 'hidden',
+    borderRadius: 16,
+    borderWidth: 1,
+    paddingVertical: 15,
+    paddingHorizontal: 16,
+  },
+  liquidSheen: { opacity: 0.08 },
+  liquidHeader: {
+    minHeight: 44,
+    marginVertical: -11,
+    paddingVertical: 11,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
+  liquidTitle: { flex: 1, minWidth: 0, flexShrink: 1, fontWeight: '700' },
+  liquidRatingRow: {
+    width: '100%',
+    maxWidth: 260,
+    alignSelf: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    rowGap: 4,
+    marginTop: 12,
+  },
+  liquidStarButton: {
+    minWidth: 44,
+    minHeight: 44,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  liquidInput: {
+    minHeight: 56,
+    borderRadius: 12,
+    borderWidth: 1,
+    paddingHorizontal: 14,
+    paddingTop: 12,
+    paddingBottom: 12,
+    marginTop: 16,
+    fontWeight: '600',
+    textAlignVertical: 'top',
+  },
+  liquidSendTarget: {
+    minHeight: 44,
+    maxWidth: '100%',
+    alignSelf: 'flex-end',
+    justifyContent: 'center',
+    marginTop: 10,
+  },
+  liquidSendVisual: {
+    minHeight: 42,
+    maxWidth: '100%',
+    borderRadius: 21,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 7,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+  },
+  liquidSendLabel: { minWidth: 0, flexShrink: 1, fontWeight: '600', textAlign: 'center' },
+  liquidSentRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    gap: 8,
+    marginTop: 12,
+  },
+  liquidThanks: { minWidth: 0, flexShrink: 1, fontWeight: '700' },
   ratingRow: { flexDirection: 'row', justifyContent: 'center', gap: 6, marginTop: 12 },
   compactRatingRow: { gap: 2, marginTop: 2 },
   starButton: { width: 44, height: 44, alignItems: 'center', justifyContent: 'center' },

@@ -40,8 +40,8 @@ export function canonicalizeCommunityPurchaseRows(rows: readonly Row[]): Row[] {
   return rows.map((row) => {
     const acquisitionSource = row.acquisitionSource === 'weekly_boon_gift'
       ? 'weekly_boon_gift'
-      : 'paid_community_sale';
-    const price = acquisitionSource === 'weekly_boon_gift' ? 0 : COMMUNITY_PACK_FIXED_PRICE_SHARDS;
+      : row.acquisitionSource === 'pack_gift_voucher' ? 'pack_gift_voucher' : 'paid_community_sale';
+    const price = acquisitionSource === 'paid_community_sale' ? COMMUNITY_PACK_FIXED_PRICE_SHARDS : 0;
     return { ...row, acquisitionSource, priceShards: price, price };
   });
 }
@@ -90,7 +90,6 @@ function boundedDailyMap(value: unknown, objectNumberKey = ''): Readonly<Record<
 }
 
 export interface LearningSnapshot {
-  readonly xp: number;
   readonly streak: number;
   readonly streakLastDate: string | null;
   readonly placementLevel: string | null;
@@ -100,7 +99,6 @@ export interface LearningSnapshot {
 
 export function buildLearningSnapshot(progress: Row): LearningSnapshot {
   return Object.freeze({
-    xp: finiteNumber(progress.user_total_xp),
     streak: finiteNumber(progress.streak_count),
     streakLastDate: text(progress.streak_last_date, 40) || null,
     placementLevel: text(progress.placement_level, 40) || null,
@@ -164,7 +162,6 @@ export function buildUserProfileSummary(uid: string, user: Row): Row {
   return Object.freeze({
     uid,
     name: text(progress.user_name, 120) || `User ${uid.slice(0, 8)}`,
-    xp: finiteNumber(progress.user_total_xp),
     streak: finiteNumber(progress.streak_count),
     streakLastDate: text(progress.streak_last_date, 40) || null,
     premiumPlan: text(progress.premium_plan, 40) || null,
@@ -253,7 +250,6 @@ function searchSummary(summary: Row, matchReasons: readonly string[], identityRe
     uid: summary.uid,
     name: summary.name,
     email: isRecord(summary.auth) ? summary.auth.email ?? null : null,
-    xp: summary.xp,
     streak: summary.streak,
     premiumPlan: summary.premiumPlan,
     language: summary.language,
@@ -529,7 +525,7 @@ export const adminGetUserProfile = onCall(
     };
 
     const sources = {
-      leaderboard: directSource('leaderboard', leaderboardSnap, ['id', 'name', 'points', 'weekPoints', 'streak', 'daily7xp', 'daily7time_ms', 'updatedAt', 'dailyAnalyticsUpdatedAt']),
+      leaderboard: directSource('leaderboard', leaderboardSnap, ['id', 'name', 'points', 'weekPoints', 'streak', 'updatedAt', 'dailyAnalyticsUpdatedAt']),
       percentileStats: directSource('leaderboard_stats', statsSnap, ['totalUsers', 'updatedAt']),
       errorReports: adapterSource('error_reports', errorReports, ['id', 'screen', 'category', 'status', 'fixed', 'dataId', 'comment', 'createdAt'], ['screen', 'category', 'status', 'dataId', 'comment']),
       reportsAgainst: adapterSource('user_reports_against', reportsAgainst, ['id', 'reporterUid', 'reporterName', 'reason', 'category', 'status', 'createdAt'], ['reporterName', 'reason', 'category', 'status']),

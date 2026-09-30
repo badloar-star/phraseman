@@ -21,12 +21,7 @@ export function validateProfileName(raw: string): NameValidationError | null {
 }
 
 export async function syncNameAcrossLocalCaches(oldName: string, newName: string): Promise<void> {
-  await Promise.all([
-    updateLeaderboardName(oldName, newName),
-    updateWeekLeaderboardName(oldName, newName),
-    updateLeagueStateName(newName),
-    updateLeaguePendingResultName(newName),
-  ]);
+  await updateLeaderboardName(oldName, newName);
 }
 
 async function updateLeaderboardName(oldName: string, newName: string): Promise<void> {
@@ -35,32 +30,6 @@ async function updateLeaderboardName(oldName: string, newName: string): Promise<
   const arr = JSON.parse(raw);
   const updated = arr.map((e: any) => (e.name === oldName ? { ...e, name: newName } : e));
   await AsyncStorage.setItem('leaderboard', JSON.stringify(updated));
-}
-
-async function updateWeekLeaderboardName(oldName: string, newName: string): Promise<void> {
-  const raw = await AsyncStorage.getItem('week_leaderboard');
-  if (!raw) return;
-  const arr = JSON.parse(raw);
-  const updated = arr.map((e: any) => (e.name === oldName ? { ...e, name: newName } : e));
-  await AsyncStorage.setItem('week_leaderboard', JSON.stringify(updated));
-}
-
-async function updateLeagueStateName(newName: string): Promise<void> {
-  const raw = await AsyncStorage.getItem('league_state_v3');
-  if (!raw) return;
-  const state = JSON.parse(raw);
-  if (!state.group) return;
-  state.group = state.group.map((m: any) => (m.isMe ? { ...m, name: newName } : m));
-  await AsyncStorage.setItem('league_state_v3', JSON.stringify(state));
-}
-
-async function updateLeaguePendingResultName(newName: string): Promise<void> {
-  const raw = await AsyncStorage.getItem('league_result_pending');
-  if (!raw) return;
-  const result = JSON.parse(raw);
-  if (!result.group) return;
-  result.group = result.group.map((m: any) => (m.isMe ? { ...m, name: newName } : m));
-  await AsyncStorage.setItem('league_result_pending', JSON.stringify(result));
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

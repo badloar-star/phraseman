@@ -29,8 +29,7 @@ describe('account deletion RevenueCat permanent denial Phase 2 (RED)', () => {
     // the verified event reducer can be tested without an Express response.
     ['premium', 'export async function applyVerifiedPremiumSubscriptionEvent'],
     ['transfer', 'async function handleTransferEvent'],
-    ['shard purchase', 'async function handleShardPurchaseEvent'],
-    ['shard refund', 'async function handleShardRefundEvent'],
+    // D103: обработчики покупки/возврата жемчуга удалены — пользователей не меняют.
   ])('checks permanent denial before any %s user mutation or final receipt', (_label, marker) => {
     const start = webhookSource.indexOf(marker);
     const nextHandler = webhookSource.indexOf('\nasync function ', start + marker.length);

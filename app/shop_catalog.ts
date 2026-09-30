@@ -8,19 +8,8 @@ import { triLang, type Lang } from '../constants/i18n';
  * что цены и состав — предмет решений владельца, а не вёрстки. Здесь его правят,
  * не трогая экран, и отсюда же его увидит будущая серверная доставка контента.
  *
- * ЦЕНЫ. Руна зарабатывается и должна ощущаться весомее покупаемой жемчужины,
- * поэтому в рунах всё стоит дороже (решение владельца 24.08). Соответствие
- * живущим в коде механикам и фактический курс к жемчужной цене:
- *   • «Опыт ×2 · 1 час»    ← LEAGUE_PERSONAL_BOOSTS x2_30m/x2_1h
- *   • «Клубный буст ×2»    ← LEAGUE_GROUP_BOOST_COST_SHARDS (50 жемчужин → 100 рун, ×2)
- *   • «Полная энергия»     ← energyRefillShardCost      (до 5 жемчужин → 50 рун)
- *   • «Щит серии»          ← streak_freeze_cost_shards  (10 жемчужин → 90 рун, ×9)
- *
- * зачем эта таблица (аудит экономики 2026-08-24): единый множитель «вдвое»
- * держится только на клубном бусте — дешёвые товары в рунах намеренно дороже,
- * иначе бесплатно заработанные руны обесценили бы покупку жемчужин. Владелец
- * подтвердил расхождение как ЗАДУМАННОЕ. Не «выравнивать» эти цены под ×2,
- * приняв разнобой за ошибку: правило звучит «дороже», а не «ровно вдвое».
+ * ЦЕНЫ. Руна зарабатывается и должна ощущаться весомее покупаемой жемчужины;
+ * состав каталога содержит только действующие спины, косметику, наборы и Plus.
  *
  * Подсказки в витрину НЕ выведены — прямое указание владельца.
  *
@@ -39,11 +28,11 @@ export type ShopCopy = Readonly<{
 
 export const shopText = (lang: Lang, copy: ShopCopy): string => triLang(lang, copy);
 
-export type ShopCategoryId = 'all' | 'boost' | 'spin' | 'look' | 'cards' | 'pearls';
+export type ShopCategoryId = 'all' | 'spin' | 'look' | 'cards' | 'pearls';
 
 export type ShopCurrency = 'runes' | 'pearls';
 
-export type ShopItemTone = 'xp' | 'shield' | 'energy' | 'spin' | 'theme' | 'cards' | 'plus' | 'aura';
+export type ShopItemTone = 'spin' | 'theme' | 'cards' | 'plus' | 'aura';
 
 export type ShopItem = Readonly<{
   id: string;
@@ -72,10 +61,6 @@ export const SHOP_CATEGORIES: readonly ShopCategory[] = Object.freeze([
   {
     id: 'all', icon: 'grid-outline',
     title: { ru: 'Всё', uk: 'Усе', es: 'Todo', 'pt-BR': 'Tudo', vi: 'Tất cả', id: 'Semua', tr: 'Tümü', pl: 'Wszystko' },
-  },
-  {
-    id: 'boost', icon: 'flash-outline',
-    title: { ru: 'Усиления', uk: 'Підсилення', es: 'Mejoras', 'pt-BR': 'Reforços', vi: 'Tăng cường', id: 'Penguat', tr: 'Güçlendirmeler', pl: 'Wzmocnienia' },
   },
   {
     id: 'spin', icon: 'disc-outline',
@@ -109,62 +94,12 @@ const AURA_POOL: readonly ShopCopy[] = Object.freeze([
 ]);
 
 export const SHOP_ITEMS: readonly ShopItem[] = Object.freeze([
-  // ── За руны: усиления прогресса ────────────────────────────────
-  {
-    id: 'xp-x2-1h', category: 'boost', currency: 'runes', price: 60,
-    tone: 'xp', icon: 'flash-outline',
-    title: { ru: 'Опыт ×2 · час', uk: 'Досвід ×2 · година', es: 'XP ×2 · 1 hora', 'pt-BR': 'XP ×2 · 1 hora', vi: 'XP ×2 · 1 giờ', id: 'XP ×2 · 1 jam', tr: 'XP ×2 · 1 saat', pl: 'XP ×2 · godzina' },
-    detail: { ru: 'Весь опыт за уроки, тренировки и Арену удваивается на 60 минут.', uk: 'Увесь досвід за уроки, тренування та Арену подвоюється на 60 хвилин.', es: 'Todo el XP de lecciones, práctica y Arena se duplica durante 60 minutos.', 'pt-BR': 'Todo o XP de lições, treinos e Arena dobra por 60 minutos.', vi: 'Mọi XP từ bài học, luyện tập và Đấu trường nhân đôi trong 60 phút.', id: 'Semua XP dari pelajaran, latihan, dan Arena berlipat ganda selama 60 menit.', tr: 'Dersler, pratik ve Arena’dan gelen tüm XP 60 dakika boyunca ikiye katlanır.', pl: 'Całe XP z lekcji, ćwiczeń i Areny podwaja się na 60 minut.' },
-  },
-  {
-    id: 'xp-x2-2h', category: 'boost', currency: 'runes', price: 90,
-    tone: 'xp', icon: 'flash-outline',
-    title: { ru: 'Опыт ×2 · 2 часа', uk: 'Досвід ×2 · 2 години', es: 'XP ×2 · 2 horas', 'pt-BR': 'XP ×2 · 2 horas', vi: 'XP ×2 · 2 giờ', id: 'XP ×2 · 2 jam', tr: 'XP ×2 · 2 saat', pl: 'XP ×2 · 2 godziny' },
-    detail: { ru: 'Тот же множитель, вдвое дольше. Выгоднее часового.', uk: 'Той самий множник, удвічі довше. Вигідніше за годинний.', es: 'El mismo multiplicador, el doble de tiempo. Sale mejor que el de una hora.', 'pt-BR': 'O mesmo multiplicador, o dobro do tempo. Mais vantajoso que o de uma hora.', vi: 'Cùng hệ số, thời gian gấp đôi. Lợi hơn gói một giờ.', id: 'Pengali yang sama, dua kali lebih lama. Lebih hemat dari yang satu jam.', tr: 'Aynı çarpan, iki kat süre. Bir saatlikten daha avantajlı.', pl: 'Ten sam mnożnik, dwa razy dłużej. Korzystniej niż godzinny.' },
-  },
-  {
-    id: 'xp-x3-15m', category: 'boost', currency: 'runes', price: 80,
-    tone: 'xp', icon: 'flame-outline',
-    title: { ru: 'Опыт ×3 · 15 мин', uk: 'Досвід ×3 · 15 хв', es: 'XP ×3 · 15 min', 'pt-BR': 'XP ×3 · 15 min', vi: 'XP ×3 · 15 phút', id: 'XP ×3 · 15 mnt', tr: 'XP ×3 · 15 dk', pl: 'XP ×3 · 15 min' },
-    detail: { ru: 'Короткий рывок — успей закрыть неделю лиги.', uk: 'Короткий ривок — устигни закрити тиждень ліги.', es: 'Un empujón corto: cierra la semana de liga a tiempo.', 'pt-BR': 'Um impulso curto: feche a semana da liga a tempo.', vi: 'Bứt tốc ngắn — kịp khép lại tuần giải đấu.', id: 'Dorongan singkat — tutup pekan liga tepat waktu.', tr: 'Kısa bir atak — lig haftasını zamanında kapat.', pl: 'Krótki zryw — zdąż zamknąć tydzień ligi.' },
-  },
-  {
-    id: 'streak-shield', category: 'boost', currency: 'runes', price: 90,
-    tone: 'shield', icon: 'shield-checkmark-outline',
-    title: { ru: 'Щит серии', uk: 'Щит серії', es: 'Escudo de racha', 'pt-BR': 'Escudo de sequência', vi: 'Khiên chuỗi ngày', id: 'Perisai rangkaian', tr: 'Seri kalkanı', pl: 'Tarcza serii' },
-    detail: { ru: 'Пропущенный день не обнулит серию. Сработает сам.', uk: 'Пропущений день не обнулить серію. Спрацює сам.', es: 'Un día perdido no reiniciará tu racha. Se activa solo.', 'pt-BR': 'Um dia perdido não zera sua sequência. Ativa sozinho.', vi: 'Một ngày bỏ lỡ không làm mất chuỗi. Tự động kích hoạt.', id: 'Sehari terlewat tidak menghapus rangkaian. Aktif otomatis.', tr: 'Kaçırılan bir gün seriyi sıfırlamaz. Kendi kendine devreye girer.', pl: 'Opuszczony dzień nie wyzeruje serii. Zadziała sam.' },
-  },
-  {
-    id: 'energy-full', category: 'boost', currency: 'runes', price: 50,
-    tone: 'energy', icon: 'battery-charging-outline',
-    title: { ru: 'Полная энергия', uk: 'Повна енергія', es: 'Energía llena', 'pt-BR': 'Energia cheia', vi: 'Đầy năng lượng', id: 'Energi penuh', tr: 'Tam enerji', pl: 'Pełna energia' },
-    detail: { ru: 'Мгновенно заполняет шкалу — не ждать полчаса.', uk: 'Миттєво заповнює шкалу — не чекати півгодини.', es: 'Llena la barra al instante: sin esperar media hora.', 'pt-BR': 'Enche a barra na hora: sem esperar meia hora.', vi: 'Làm đầy thanh ngay lập tức — khỏi chờ nửa tiếng.', id: 'Mengisi bilah seketika — tanpa menunggu setengah jam.', tr: 'Çubuğu anında doldurur — yarım saat beklemek yok.', pl: 'Natychmiast wypełnia pasek — bez czekania pół godziny.' },
-  },
-  {
-    id: 'club-boost', category: 'boost', currency: 'runes', price: 100,
-    tone: 'xp', icon: 'people-outline', badge: 'hot',
-    title: { ru: 'Клубный буст ×2', uk: 'Клубний буст ×2', es: 'Impulso de club ×2', 'pt-BR': 'Impulso do clube ×2', vi: 'Tăng tốc câu lạc bộ ×2', id: 'Penguat klub ×2', tr: 'Kulüp güçlendirmesi ×2', pl: 'Boost klubu ×2' },
-    detail: { ru: 'Множитель на всю комнату лиги. Спасибо скажут все.', uk: 'Множник на всю кімнату ліги. Подякують усі.', es: 'Multiplicador para toda la sala de liga. Todos lo agradecerán.', 'pt-BR': 'Multiplicador para toda a sala da liga. Todos vão agradecer.', vi: 'Hệ số cho cả phòng giải đấu. Ai cũng sẽ cảm ơn.', id: 'Pengali untuk seluruh ruang liga. Semua akan berterima kasih.', tr: 'Tüm lig odası için çarpan. Herkes teşekkür eder.', pl: 'Mnożnik dla całego pokoju ligi. Wszyscy podziękują.' },
-  },
-  {
-    id: 'xp-bank-600', category: 'boost', currency: 'runes', price: 120,
-    tone: 'xp', icon: 'wallet-outline',
-    title: { ru: 'Банк опыта · 600', uk: 'Банк досвіду · 600', es: 'Banco de XP · 600', 'pt-BR': 'Banco de XP · 600', vi: 'Kho XP · 600', id: 'Bank XP · 600', tr: 'XP bankası · 600', pl: 'Bank XP · 600' },
-    detail: { ru: 'Разовая выдача 600 опыта прямо сейчас.', uk: 'Разова видача 600 досвіду просто зараз.', es: 'Entrega única de 600 XP ahora mismo.', 'pt-BR': 'Entrega única de 600 XP agora mesmo.', vi: 'Nhận ngay 600 XP một lần.', id: 'Pemberian sekali 600 XP sekarang juga.', tr: 'Şimdi tek seferde 600 XP.', pl: 'Jednorazowe 600 XP od razu.' },
-  },
-  {
-    id: 'xp-x2-eod', category: 'boost', currency: 'runes', price: 180,
-    tone: 'xp', icon: 'moon-outline', badge: 'best',
-    title: { ru: 'Опыт ×2 до ночи', uk: 'Досвід ×2 до ночі', es: 'XP ×2 hasta medianoche', 'pt-BR': 'XP ×2 até a meia-noite', vi: 'XP ×2 đến nửa đêm', id: 'XP ×2 sampai tengah malam', tr: 'Gece yarısına kadar XP ×2', pl: 'XP ×2 do północy' },
-    detail: { ru: 'Множитель работает до полуночи по твоему времени.', uk: 'Множник працює до опівночі за твоїм часом.', es: 'El multiplicador dura hasta la medianoche en tu horario.', 'pt-BR': 'O multiplicador vale até a meia-noite no seu horário.', vi: 'Hệ số hoạt động đến nửa đêm theo giờ của bạn.', id: 'Pengali berlaku sampai tengah malam waktu kamu.', tr: 'Çarpan senin saatinle gece yarısına kadar geçerli.', pl: 'Mnożnik działa do północy twojego czasu.' },
-  },
-
   // ── За жемчуг: спины ───────────────────────────────────────────
   {
     id: 'spin-1', category: 'spin', currency: 'pearls', price: 40,
     tone: 'spin', icon: 'disc-outline',
     title: { ru: 'Спин рулетки', uk: 'Спін рулетки', es: 'Giro de ruleta', 'pt-BR': 'Giro da roleta', vi: 'Lượt quay', id: 'Putaran roda', tr: 'Çark çevirme', pl: 'Losowanie' },
-    detail: { ru: 'Один прокрут: опыт, жемчуг, руны, косметика или дни Plus.', uk: 'Один прокрут: досвід, перлини, руни, косметика або дні Plus.', es: 'Un giro: XP, perlas, runas, cosméticos o días de Plus.', 'pt-BR': 'Um giro: XP, pérolas, runas, cosméticos ou dias de Plus.', vi: 'Một lượt quay: XP, ngọc trai, rune, trang trí hoặc ngày Plus.', id: 'Satu putaran: XP, mutiara, rune, kosmetik, atau hari Plus.', tr: 'Bir çevirme: XP, inci, rün, kozmetik ya da Plus günleri.', pl: 'Jedno losowanie: XP, perły, runy, kosmetyki lub dni Plus.' },
+    detail: { ru: 'Один прокрут: жемчуг, руны, косметика или дни Plus.', uk: 'Один прокрут: перлини, руни, косметика або дні Plus.', es: 'Un giro: perlas, runas, cosméticos o días de Plus.', 'pt-BR': 'Um giro: pérolas, runas, cosméticos ou dias de Plus.', vi: 'Một lượt quay: ngọc trai, rune, trang trí hoặc ngày Plus.', id: 'Satu putaran: mutiara, rune, kosmetik, atau hari Plus.', tr: 'Bir çevirme: inci, rün, kozmetik ya da Plus günleri.', pl: 'Jedno losowanie: perły, runy, kosmetyki lub dni Plus.' },
   },
   {
     id: 'spin-3', category: 'spin', currency: 'pearls', price: 100,

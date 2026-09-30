@@ -1,0 +1,1128 @@
+{
+  "schemaVersion": "daily-phrase-prior-accepted-manifest-v1",
+  "studyTarget": "de",
+  "sourceLocale": "ru",
+  "surface": "daily_phrase",
+  "editorialStatus": "EDITORIAL_CONTINUITY_ACCEPTED",
+  "releaseTrusted": false,
+  "activationApproved": false,
+  "acceptedCount": 150,
+  "acceptedThrough": "de-150",
+  "acceptedRowIds": [
+    "de-001",
+    "de-002",
+    "de-003",
+    "de-004",
+    "de-005",
+    "de-006",
+    "de-007",
+    "de-008",
+    "de-009",
+    "de-010",
+    "de-011",
+    "de-012",
+    "de-013",
+    "de-014",
+    "de-015",
+    "de-016",
+    "de-017",
+    "de-018",
+    "de-019",
+    "de-020",
+    "de-021",
+    "de-022",
+    "de-023",
+    "de-024",
+    "de-025",
+    "de-026",
+    "de-027",
+    "de-028",
+    "de-029",
+    "de-030",
+    "de-031",
+    "de-032",
+    "de-033",
+    "de-034",
+    "de-035",
+    "de-036",
+    "de-037",
+    "de-038",
+    "de-039",
+    "de-040",
+    "de-041",
+    "de-042",
+    "de-043",
+    "de-044",
+    "de-045",
+    "de-046",
+    "de-047",
+    "de-048",
+    "de-049",
+    "de-050",
+    "de-051",
+    "de-052",
+    "de-053",
+    "de-054",
+    "de-055",
+    "de-056",
+    "de-057",
+    "de-058",
+    "de-059",
+    "de-060",
+    "de-061",
+    "de-062",
+    "de-063",
+    "de-064",
+    "de-065",
+    "de-066",
+    "de-067",
+    "de-068",
+    "de-069",
+    "de-070",
+    "de-071",
+    "de-072",
+    "de-073",
+    "de-074",
+    "de-075",
+    "de-076",
+    "de-077",
+    "de-078",
+    "de-079",
+    "de-080",
+    "de-081",
+    "de-082",
+    "de-083",
+    "de-084",
+    "de-085",
+    "de-086",
+    "de-087",
+    "de-088",
+    "de-089",
+    "de-090",
+    "de-091",
+    "de-092",
+    "de-093",
+    "de-094",
+    "de-095",
+    "de-096",
+    "de-097",
+    "de-098",
+    "de-099",
+    "de-100",
+    "de-101",
+    "de-102",
+    "de-103",
+    "de-104",
+    "de-105",
+    "de-106",
+    "de-107",
+    "de-108",
+    "de-109",
+    "de-110",
+    "de-111",
+    "de-112",
+    "de-113",
+    "de-114",
+    "de-115",
+    "de-116",
+    "de-117",
+    "de-118",
+    "de-119",
+    "de-120",
+    "de-121",
+    "de-122",
+    "de-123",
+    "de-124",
+    "de-125",
+    "de-126",
+    "de-127",
+    "de-128",
+    "de-129",
+    "de-130",
+    "de-131",
+    "de-132",
+    "de-133",
+    "de-134",
+    "de-135",
+    "de-136",
+    "de-137",
+    "de-138",
+    "de-139",
+    "de-140",
+    "de-141",
+    "de-142",
+    "de-143",
+    "de-144",
+    "de-145",
+    "de-146",
+    "de-147",
+    "de-148",
+    "de-149",
+    "de-150"
+  ],
+  "acceptedRows": [
+    {
+      "id": "de-001",
+      "rowSha256": "592007C161E645EA4538C47D7527351F4E1536EB504A1A4728B301466799C89A"
+    },
+    {
+      "id": "de-002",
+      "rowSha256": "6151743295D8D50D6564473F939FC217BDBBCF45224B5B7BD817824A822E4578"
+    },
+    {
+      "id": "de-003",
+      "rowSha256": "960A0D55D812D3E98D15D0991249234DFAC0B7D49E368910C91430CB001156C9"
+    },
+    {
+      "id": "de-004",
+      "rowSha256": "E890414589E1732F8864944CDF317701E30C32FD20758CF2568D85DD5B11D8DF"
+    },
+    {
+      "id": "de-005",
+      "rowSha256": "9ACB27C3ADA5B0DC377ACE8AC14757EADCE7E879019671774971D602EBAC2497"
+    },
+    {
+      "id": "de-006",
+      "rowSha256": "F61AAADDD21B3FF0CABDA41BB55A1CAEC0CFB6A5E99274CDA2E47B6E5C618D69"
+    },
+    {
+      "id": "de-007",
+      "rowSha256": "12F1CC0FDE961525F23321D67A45CD68303922056D7B986C0E62E92DC71FF674"
+    },
+    {
+      "id": "de-008",
+      "rowSha256": "0815966BD6124045156E5F4547CE91F615C5087EB1B1E73E4A9F43804581B614"
+    },
+    {
+      "id": "de-009",
+      "rowSha256": "A134251D615100AE763F840F6DBC2A6FAED6A8041F7957D4588C714126D49328"
+    },
+    {
+      "id": "de-010",
+      "rowSha256": "1B586F0A33340061C595D668F2CE7599847C2023C5F364E51FB277C0622858CA"
+    },
+    {
+      "id": "de-011",
+      "rowSha256": "5C7661DE07AC6928BB16090304D3A02666A5150C86081769D9A7595CCDCCEAFD"
+    },
+    {
+      "id": "de-012",
+      "rowSha256": "2C7C924F481C9187C16B16D9E6B07CA1F16154BD17F733AFFB13A88D34DDD544"
+    },
+    {
+      "id": "de-013",
+      "rowSha256": "BE06AEA4F60FD1AF073733034FE84AC506AAB56329A823E7CD7CAF6ED68521C0"
+    },
+    {
+      "id": "de-014",
+      "rowSha256": "3FE7EFA8E56590B29DAEDE6426FD3F016377EF0522F026877E9BDE463834A797"
+    },
+    {
+      "id": "de-015",
+      "rowSha256": "0B1B11DB6BC311FABEDA3E7953C581E60FCD51971D412A6D68773026DB243774"
+    },
+    {
+      "id": "de-016",
+      "rowSha256": "2AD3AB561EF2E88D1FC9FF549BEB60D202EC01F77D8E21B3957EDD63F00103C4"
+    },
+    {
+      "id": "de-017",
+      "rowSha256": "E68B8BB4416E6F8A76941CEA1D50909B341121D570A36B65351194F69ADAEC0F"
+    },
+    {
+      "id": "de-018",
+      "rowSha256": "FC8849E5F6288A92B9D05FCD68C2CFF5F4AF77F0B1B1C2049A38D8D3922FA993"
+    },
+    {
+      "id": "de-019",
+      "rowSha256": "7DB85D93A50DC6F77E00E5817F419F031040A83A770E7DFEE62474324BE8C9E6"
+    },
+    {
+      "id": "de-020",
+      "rowSha256": "9CE0871163CB1365A622DD70904AC7C4B9C04E3FFDA08B5E7A013F2E3FA49CB9"
+    },
+    {
+      "id": "de-021",
+      "rowSha256": "EBCF2C5FBD1F4EF9A5ED724A713975DB2081E425850A2000349B2AF98D652A34"
+    },
+    {
+      "id": "de-022",
+      "rowSha256": "F820C2B899069D96E992977AB1B2498F63D94FBE2479837C75E44846540396CE"
+    },
+    {
+      "id": "de-023",
+      "rowSha256": "3D2EF62A1D38D023CEA2575A579DCC74B1CDF8723C1FF11E55AB288F4131D13E"
+    },
+    {
+      "id": "de-024",
+      "rowSha256": "CBD6432718E3ABD3634825FBE9B4B827956A6FF34CBE6261F94D9700E0AB9D96"
+    },
+    {
+      "id": "de-025",
+      "rowSha256": "C68755357DFC4CE203B489BDFB0A9121B20CD2303F337B636523C465CB5B2C7C"
+    },
+    {
+      "id": "de-026",
+      "rowSha256": "79C51821755141459D7E83FE03708C49B4C063628EEF4F7317B2EF0CFC0E3966"
+    },
+    {
+      "id": "de-027",
+      "rowSha256": "1200757C80E04C0284C4095E6DB8FB84EA00EE5FEC76E6B55387658E2D652C7B"
+    },
+    {
+      "id": "de-028",
+      "rowSha256": "884F4A2B0CFFF0E4DDAF4DBA32D4217458729126C2B88CBE5CDBAA8611F697BA"
+    },
+    {
+      "id": "de-029",
+      "rowSha256": "51BC0B4ABF4B78E20AC2A8EAFD1E759001A7F34A554DC0CA4A935E70EF86FC81"
+    },
+    {
+      "id": "de-030",
+      "rowSha256": "82A2A4DB276B7E91C621E65863E8C05B4240E22240A35E5B21B7B56F27025E93"
+    },
+    {
+      "id": "de-031",
+      "rowSha256": "7A8E04DBCFD072F1CB9A26158DAB3492138DA994C9809C0F6E4B8C4A7A247BB8"
+    },
+    {
+      "id": "de-032",
+      "rowSha256": "ADD54E46D802E8BC6C9B1C0ED9DE6D64AA5152F375DF11FC727C7A9340AE67DA"
+    },
+    {
+      "id": "de-033",
+      "rowSha256": "484C8F045FC1FE086C092569E086F4E85A1D640EC65A8F356D6F474F359EE9A3"
+    },
+    {
+      "id": "de-034",
+      "rowSha256": "DAA73E06DB80AC2AA727D906A3770F785C4E16C72FCAFB21FB75FED29A5D6538"
+    },
+    {
+      "id": "de-035",
+      "rowSha256": "AD8763774669090F3C9951A8A42BFE06402B72E9B8F7C58EFC4B1885F0DC574B"
+    },
+    {
+      "id": "de-036",
+      "rowSha256": "6C77B61A4F8C5D448ED938E8ACFFCB34F8A0318B62C34C337071ED1F8E85F789"
+    },
+    {
+      "id": "de-037",
+      "rowSha256": "8F651FCD4B185170A4D666F9F49B09D1A768F245752210B5685D83AAEA9E58D8"
+    },
+    {
+      "id": "de-038",
+      "rowSha256": "5B7B79AD5E4549C101F59C0CA818A7954213D2F21D6053260F63421F03101646"
+    },
+    {
+      "id": "de-039",
+      "rowSha256": "ED79D0D998C26F89A73E5CB907DF3A0F4E06DF06B4B81CE2BFF0A928E5DE7E5A"
+    },
+    {
+      "id": "de-040",
+      "rowSha256": "537C3F103E80AD1E2F4A93C49AE9AADA41B80495D151BF3E81A8E3DBFE886640"
+    },
+    {
+      "id": "de-041",
+      "rowSha256": "02D3138D396430723EEA19ED311D65DD958152B33EE67AA2ADE78C2BB3D936F6"
+    },
+    {
+      "id": "de-042",
+      "rowSha256": "CF718DAA924485F678D0810E5007A4C39171743B004EF37406D89018284EA4AB"
+    },
+    {
+      "id": "de-043",
+      "rowSha256": "787FDAD3402E68D8C2C50EB7B21DDC0246B8860D520996DFA7B8F13F9C18396B"
+    },
+    {
+      "id": "de-044",
+      "rowSha256": "88918C33FFF05628A3300DA37CF799AE092144BD7A897A13E2638F55BA7D03B4"
+    },
+    {
+      "id": "de-045",
+      "rowSha256": "43FBE606A6A836DDD5692947D7CDED9F1AEF6070BDF1213FE91157C4CB19E84F"
+    },
+    {
+      "id": "de-046",
+      "rowSha256": "DE12FBE13161466E8FBFE5D292E1F983F30D2406D3A36BB7ACAAD4F1EDF080FA"
+    },
+    {
+      "id": "de-047",
+      "rowSha256": "E687C4D0AF79E60A43A82352C7F10D63D00305EA828F490DA73ADB2325559DFC"
+    },
+    {
+      "id": "de-048",
+      "rowSha256": "7468EEA88DD229573FF9D453A58CC9D441BED04386D417163C937F42AF735C3A"
+    },
+    {
+      "id": "de-049",
+      "rowSha256": "3564EFF959E9C6B86C1E3E017FCEB6623BB8E38A7A8DFFD38EF20A18CEDFB093"
+    },
+    {
+      "id": "de-050",
+      "rowSha256": "46556809FAF1E51F5184CEDFE5AE63EF4694E6A8727BF016D5623BDD1072D351"
+    },
+    {
+      "id": "de-051",
+      "rowSha256": "5B6F9C67E933182924598DEE64FB902E2F2F0F32FDB4C81B573A0B228007C7CB"
+    },
+    {
+      "id": "de-052",
+      "rowSha256": "6417E62160C332ACEB5405F5020E2DFE14FCF01CF9054F91ABF5C542E2CEAB7A"
+    },
+    {
+      "id": "de-053",
+      "rowSha256": "6CD8AB6844E673128D31FA598F42E69DEDC3C79F1DBD46C345C31BF9F9B56075"
+    },
+    {
+      "id": "de-054",
+      "rowSha256": "6538BD66FD3DD076A23C116272720A4B07814C76633AF81982098A224343D3D8"
+    },
+    {
+      "id": "de-055",
+      "rowSha256": "D9280135FB1BA7C9FDC47E0E23487636CF54EB090174743C518D848B5A060FC9"
+    },
+    {
+      "id": "de-056",
+      "rowSha256": "5E7DAAE0CFA40D899C74837DC25DC60012BD463A0579B7D4B4803B41CBF9D914"
+    },
+    {
+      "id": "de-057",
+      "rowSha256": "777EB5A8D0CADF4648355F62C9B0574A31865DF3128AA7DF8F4294752B9A6127"
+    },
+    {
+      "id": "de-058",
+      "rowSha256": "C523E2D91D3B3350742AF7868391B9BF30ADA1EDA8E3ED13020AFADE5137CA56"
+    },
+    {
+      "id": "de-059",
+      "rowSha256": "E061E9DEE0501DE8BBFA1ECA3CBF18F4C7E40A9E16EF742017BB6A99F7750484"
+    },
+    {
+      "id": "de-060",
+      "rowSha256": "9C0D3097EEEF8C56E4C36344BC826F639BB03AE1D82420763D834F4DC4430927"
+    },
+    {
+      "id": "de-061",
+      "rowSha256": "070DA2BD033035AAD2B4BA9E69AD2D7F78A668FB52BEF659D000502060F4CF80"
+    },
+    {
+      "id": "de-062",
+      "rowSha256": "06734145FCCB50DEADBAEC7C007F9C2F016C896003A157F7FA16D50B24455951"
+    },
+    {
+      "id": "de-063",
+      "rowSha256": "973D393B6A6FC3A09DA3C0673BEBAAC87A4A1C2B5A71F3BF0C705AAC6FD917E1"
+    },
+    {
+      "id": "de-064",
+      "rowSha256": "C3D752249ABAE1AECC423EF845C0CC70D14E6A79F916192D26E6C2F53FFC4780"
+    },
+    {
+      "id": "de-065",
+      "rowSha256": "3708CB5B311EE318CF48A3CC7524CFD21E66B6117474245DDF2D6ABC2DC02628"
+    },
+    {
+      "id": "de-066",
+      "rowSha256": "2E846DF2BC121910FA7A1C5ABB98A74A330D006FE3F4C03A272C3CDDC636DDDC"
+    },
+    {
+      "id": "de-067",
+      "rowSha256": "027302611364332BBC86894FFE626A8C244FA924FDAD5493D5BEC3687DF90F49"
+    },
+    {
+      "id": "de-068",
+      "rowSha256": "526E5D0BC8B2B56BA9A9C123CCD760CD6A2D9E5F45A3B65A447AEA85A5297EBE"
+    },
+    {
+      "id": "de-069",
+      "rowSha256": "8CB5DCA36427096F8FFBC26401EF74801CDEB1FE1B5DB784255C6CDE8958F877"
+    },
+    {
+      "id": "de-070",
+      "rowSha256": "DCB38E247734DE8918F1CE920834087CD8DBC57D248C67FA3136219AF25D3B81"
+    },
+    {
+      "id": "de-071",
+      "rowSha256": "9A8FE3FD6D928031F7AD8B425927B7AFF7F60EF980845882C8E9C32DAD6ADBE9"
+    },
+    {
+      "id": "de-072",
+      "rowSha256": "3549D3D4744A22BB5053D27B2F3A738317E905187BC02A7EC31E0B767DB94F89"
+    },
+    {
+      "id": "de-073",
+      "rowSha256": "C62A6FEB95B36D5E4A93E41841C580E4A89E36246A4931148CB5C1003FC6471E"
+    },
+    {
+      "id": "de-074",
+      "rowSha256": "076A210F261B3F81B3B88B1847C157E79A5912AE2A6AD636283D4D2F94839452"
+    },
+    {
+      "id": "de-075",
+      "rowSha256": "5342C4B4194243289522652D20F552154DC24131D8AA023B4B2637B2FB86D401"
+    },
+    {
+      "id": "de-076",
+      "rowSha256": "563060FF2A85E59349F1B736DD023A4C7015DE39E04E7F108EB417218D29D8D3"
+    },
+    {
+      "id": "de-077",
+      "rowSha256": "0C3A24A957A2F4A7B4ADDD54B185110001747D967A3E2D9189F549048904A1B4"
+    },
+    {
+      "id": "de-078",
+      "rowSha256": "B4C09DEF77D9774A389FE69486393FAE00F69223584FB18886A3E74F7D273195"
+    },
+    {
+      "id": "de-079",
+      "rowSha256": "4D6C23CF15B48191715ED1CDE0E62A5F483586C9A13CA7EE17F9DA24467CFCCA"
+    },
+    {
+      "id": "de-080",
+      "rowSha256": "2EEA22E5D427043B0F7388D0AA59A82636C05201F40441B28E5C44479BF12758"
+    },
+    {
+      "id": "de-081",
+      "rowSha256": "1B16FB22EE9AAD20DF33A5387D0DC6CBEDB050C215371A33A26E7086226C83AC"
+    },
+    {
+      "id": "de-082",
+      "rowSha256": "9EB6A117FDB2111BDCBB6EC8A828B5F9376FEEE5550B793E59CB21C389DDC7CE"
+    },
+    {
+      "id": "de-083",
+      "rowSha256": "99F0A770FE2ED5B7768E1D8631A6AA3E5C3082DC8B478AE66A46B8967B8CC8FB"
+    },
+    {
+      "id": "de-084",
+      "rowSha256": "730064216157138946A10C62C94707A051DABEA467ACDAC5CF0BCDC9FAC1B8EB"
+    },
+    {
+      "id": "de-085",
+      "rowSha256": "E99D3898E361001377257FB644147C43A1A7C0CFCAA5370382B471B314793B68"
+    },
+    {
+      "id": "de-086",
+      "rowSha256": "FEB7B06B4527203F3ACFEF8AF1D4DD6698541B9FA1EC59EE9F9A6DE04B9E7095"
+    },
+    {
+      "id": "de-087",
+      "rowSha256": "4EF3E18AB68555207C368B959DF5D837E99A2E74F9A49C12D2C7F1ABC47DF91A"
+    },
+    {
+      "id": "de-088",
+      "rowSha256": "AE2C7CE5423ED62340FB346A87F93DAA51C43B953CD696DE5606AC45F03FF99D"
+    },
+    {
+      "id": "de-089",
+      "rowSha256": "D2378A299458CEF621F8A66DCC81E431D6E30D367A63F12280AB8619D3FBBCFB"
+    },
+    {
+      "id": "de-090",
+      "rowSha256": "1A91805EEF31F23EE4454EB91ADB66F7A0B613D20CFBCD65F1FE0AA069C0999D"
+    },
+    {
+      "id": "de-091",
+      "rowSha256": "43EE9C5548FAAB58B63A815E89D444816A3AA3328824059F92BF7D3B5BD4422D"
+    },
+    {
+      "id": "de-092",
+      "rowSha256": "3563BF4B0B1BBB7C34296176487C56AE6FC3C16F5BD52880174014563AB08A57"
+    },
+    {
+      "id": "de-093",
+      "rowSha256": "AB1B0C8457E419AC8F548598935BD3C7E5581D6FB522409BA99E59526C61E39B"
+    },
+    {
+      "id": "de-094",
+      "rowSha256": "16E586D1DDDFC885FEF66A66EAE78B13544233A9E5B50C8F8F6FFA89CA1A17B4"
+    },
+    {
+      "id": "de-095",
+      "rowSha256": "E638D43BD7F758681E5ABC5F0DB5E119DC6ED04ED780F00AED8032722628143C"
+    },
+    {
+      "id": "de-096",
+      "rowSha256": "4C7934CFDE8666F536FBFF95962B292DE0EF5C1F41A99E5834B14A5EA08ADCE6"
+    },
+    {
+      "id": "de-097",
+      "rowSha256": "F183AF95D8A491CAEEEDB531A2E8A389F238AE3F3EF2E056C7776812F7A24516"
+    },
+    {
+      "id": "de-098",
+      "rowSha256": "B3060B736366DB043F18C151D89BA906815C8206B9BD12DC605F8E981AE169BD"
+    },
+    {
+      "id": "de-099",
+      "rowSha256": "44365B766317C42D553A7AC41FB38D47BB4626558180E42B2D9E43E34DD1747D"
+    },
+    {
+      "id": "de-100",
+      "rowSha256": "27BBC92AAEBF4B810EB2523AE5D69856C052C286128E62E93A8691B7DB7B89C0"
+    },
+    {
+      "id": "de-101",
+      "rowSha256": "21963846803A55309AF524D75E43D1C4E53F14C6E1967168F0ADCD593C447CA3"
+    },
+    {
+      "id": "de-102",
+      "rowSha256": "25896916548676F3DF0EB008BDE6544ADF48119A39BABD6AC66ED5959217DDF9"
+    },
+    {
+      "id": "de-103",
+      "rowSha256": "3FBCB69FA7811763659DF0FBC8B695A2A66405F1E7C2554DC00C917169C1CAEA"
+    },
+    {
+      "id": "de-104",
+      "rowSha256": "5DF24336CD787A40F190EA34FEC6EE94BC7792123B2A6D168B6ADB36DB874574"
+    },
+    {
+      "id": "de-105",
+      "rowSha256": "8B188872AFB99D5938FFC6798F249C8476CB9987C963F250EBD07A3CCA36810D"
+    },
+    {
+      "id": "de-106",
+      "rowSha256": "21A017333E78978B6FCB92AF4AFB33E911576D48456C3A0607FB4258F89BD4D5"
+    },
+    {
+      "id": "de-107",
+      "rowSha256": "05EEBCEB14C178D668E8A0EBC2676E69B06229EE5C7CEDB10FC32186559A2BAB"
+    },
+    {
+      "id": "de-108",
+      "rowSha256": "78C82A3D761BC4488B185DC761FF64E64504F2DF7128C779ECE143069A3A80BB"
+    },
+    {
+      "id": "de-109",
+      "rowSha256": "24CAB6278683258738A85DF8B245E4D0145893B18CB9EEE8656D79C374547F6E"
+    },
+    {
+      "id": "de-110",
+      "rowSha256": "7DC1D651E09EE797E6000CE9D8A1F6247A2E277DA4CC8F9D5EC7BA7664A6B9F3"
+    },
+    {
+      "id": "de-111",
+      "rowSha256": "5484BC7E9042B121102850968B72B439A72EF20E2678C21DE81B3673C16FEF2C"
+    },
+    {
+      "id": "de-112",
+      "rowSha256": "2C4947D94A72744E94B88EE0D304C8B162F0033728B2E4AD14E23C6A10857648"
+    },
+    {
+      "id": "de-113",
+      "rowSha256": "A9661C79C384408FD66DD39259DE8599CDD8D763B9594ED27F3861207B4A2DFE"
+    },
+    {
+      "id": "de-114",
+      "rowSha256": "D422B047EB9F91D629C1FE950E936A9BADF29323D0A7CC82BE2F17F7E41ACEE4"
+    },
+    {
+      "id": "de-115",
+      "rowSha256": "7EA8A6C0E65ECC5642F1EA70ECDE1289B3EBAC4DAD2AB87C895A338CC499AD07"
+    },
+    {
+      "id": "de-116",
+      "rowSha256": "EFBE6BE2AF398BC227400C80C1E4368872FC78618BA5C3354E0F442337FE6706"
+    },
+    {
+      "id": "de-117",
+      "rowSha256": "1BF2DF2238237462B4E6EAE7C5B11800CABDC678510A63CBA7853754778982BC"
+    },
+    {
+      "id": "de-118",
+      "rowSha256": "47C8031D3ED4ABF7DE8A6409E0E1A05A83CF46B410BB7806E1FE06DC5500FC04"
+    },
+    {
+      "id": "de-119",
+      "rowSha256": "775814FB6DFE927705F9304197F76CA40D1898D821DA9D4950E123FDBAF0F29A"
+    },
+    {
+      "id": "de-120",
+      "rowSha256": "BB5535115BC9F2B7032F272E147EA923EFBD1997BF648421914AB999A9F11EEE"
+    },
+    {
+      "id": "de-121",
+      "rowSha256": "DFFE8E7DA96E573CA4B90AA4FF4D7D7B407B22242CA484959FDC9866A0D5E9DF"
+    },
+    {
+      "id": "de-122",
+      "rowSha256": "83F602341357EC1D6B35269B540BDCF9C1497674F178AE266C3E69A47D51650F"
+    },
+    {
+      "id": "de-123",
+      "rowSha256": "B3BFE6D4C125D0708AA8D4563379ECA758528DFCB9F39907A34BC95748D0177C"
+    },
+    {
+      "id": "de-124",
+      "rowSha256": "6ECDA0DBFDAA749242265446F313569A6A62F53846F4F6B788200622A44AAB24"
+    },
+    {
+      "id": "de-125",
+      "rowSha256": "71E77D5A6B4C9F4EB0591BE61CA219D122457E523CECA03942F3A4E3A02C7FB8"
+    },
+    {
+      "id": "de-126",
+      "rowSha256": "70FFE8B406AEC67A4158EBAA3F4AC8F5474E9C0E5F55E5D27D0D864894E5EC3B"
+    },
+    {
+      "id": "de-127",
+      "rowSha256": "BFF2EB267B0F7A3E4454A9E1520CA2E17E0214C74953AF29AE5849E8E681A54A"
+    },
+    {
+      "id": "de-128",
+      "rowSha256": "2BA8D9FDF68B2342B5C866037167D0A3DD3C05E748675097F6E9512FEB4BC593"
+    },
+    {
+      "id": "de-129",
+      "rowSha256": "5FC3C3ED484C0F28FCFD921177E8DD0037EF34C8D4F52F9981BCD625FC8FF8A9"
+    },
+    {
+      "id": "de-130",
+      "rowSha256": "0F76A5D6A1138AE059379BE61EE67BDC8EB0322A3AB747D3FA99866692952B47"
+    },
+    {
+      "id": "de-131",
+      "rowSha256": "9251827D87B25CC376AB3030C554319984654EBE5EA3EA0E3C4CBD8658285FED"
+    },
+    {
+      "id": "de-132",
+      "rowSha256": "B00881E2AF9A9AEB36C9C7B992CDF8B9A8187A13EA47584792D2933F453CE50E"
+    },
+    {
+      "id": "de-133",
+      "rowSha256": "102AD1C159BEDAF1E1F363AD601B675B7C9370F90550F62DA3717B10313476F8"
+    },
+    {
+      "id": "de-134",
+      "rowSha256": "DC73E8F4663D7D07836FB5E84BA83E67D30514C93BF540D39CBF1C9E5B0361A6"
+    },
+    {
+      "id": "de-135",
+      "rowSha256": "55E3319C37BEF76B49C880BE2079F2C5815BDFD3325E833F9A1C7A488F389CC6"
+    },
+    {
+      "id": "de-136",
+      "rowSha256": "5DE0DDE2CC258F9D0D8BFB721CA93B1AC82B683AF73F4E879395F0BEACF082E3"
+    },
+    {
+      "id": "de-137",
+      "rowSha256": "3CAF7663FCF8E2D8EDEFF2FCBCC518E1583D8899BE2FD055D0BF58901F94D462"
+    },
+    {
+      "id": "de-138",
+      "rowSha256": "5241ECCA4DCB9DD544262062B831DB2EA11D86E702153E7F57A81676C97C2D8C"
+    },
+    {
+      "id": "de-139",
+      "rowSha256": "1C281440228B86E8328FD6D95D444EB7B8697A54E21DBD54D96D1955CA7B1620"
+    },
+    {
+      "id": "de-140",
+      "rowSha256": "2FCE7363BA3444107004EE646E97A9FC1C5C9B09ED8DBB114694672EAFFEB78C"
+    },
+    {
+      "id": "de-141",
+      "rowSha256": "EFD6045D5CCE3BF0F873CF9619F2B760DA512A9F5490D4F9B1F1986879B99B60"
+    },
+    {
+      "id": "de-142",
+      "rowSha256": "D2C30EA30B0F338B75B34465A7F9624E0FDCF3B52F7003AA40FC5A638E1380B4"
+    },
+    {
+      "id": "de-143",
+      "rowSha256": "A777E04F69E5D96782C5BDAAEE1CA218C6F42276DB9B010E9B5736C2AF30C49B"
+    },
+    {
+      "id": "de-144",
+      "rowSha256": "9F540E02F5F29A3E390FD9DEF754D821468A3D9723B87C2FD2A0BBC0B29DE1EB"
+    },
+    {
+      "id": "de-145",
+      "rowSha256": "C2705641F4736E54E4F5E03B3BDCE04A03C3617B380515DBC08E8BC580AA52AE"
+    },
+    {
+      "id": "de-146",
+      "rowSha256": "75145D019DBA65A7939377B247910C1E7F61A68FC1572A0611CD78AF03935887"
+    },
+    {
+      "id": "de-147",
+      "rowSha256": "0CE1107041232237A212511DB319574C49FAC7B9C34B07E751B82D58843D3508"
+    },
+    {
+      "id": "de-148",
+      "rowSha256": "0D31351396C85B814717F51C7FE34D3852B098511375A3BCD4B3FD22252AAB87"
+    },
+    {
+      "id": "de-149",
+      "rowSha256": "D9AC24FD04A9B0122D80B1D2E2B746615D10A5849378FC3A20FC6A194BB28A9F"
+    },
+    {
+      "id": "de-150",
+      "rowSha256": "96EF249D64BF7F465AF27ACB5895A43B60034EA543CFBFBD26A2311068340DDF"
+    }
+  ],
+  "authorityArtifacts": {
+    "bank": {
+      "path": "content/daily-phrases/de/source-bank.json",
+      "sha256": "05153C2B8E40FA7372665CF37CF14D85586592AF1EB7137471F5F31D99ED778F"
+    },
+    "sourceEvidence": {
+      "path": "content/daily-phrases/de/authoritative-source-ledger.json",
+      "sha256": "EDE69EF733832883FD2C0C471667BC8713D66E96C59E6FF76921C0C932AD30A1"
+    },
+    "sourceLinkage": {
+      "path": "content/daily-phrases/de/source-ledger.json",
+      "sha256": "316C888FFE1E501CCD2D65262579D191C42BF018D723046F32C137B943CC5560"
+    },
+    "englishBaseline": {
+      "path": "admin/daily_phrases_seed.json",
+      "sha256": "A2A744254CEA2080EA44326335DF573AE828D465AC721F696B1E1F2235873321"
+    },
+    "styleContract": {
+      "path": "content/daily-phrases/quality/STYLE_CONTRACT.md",
+      "sha256": "1170D74F22F036DCDC919AF5E7DE17ED1AF47A0E70CD562B56DF95BAFB527812"
+    }
+  },
+  "authoringPackets": [
+    {
+      "path": "content/daily-phrases/de/authoring/de-001-005.json",
+      "sha256": "63B14DFB37A801F270805BB4E06AC3717B63ABE432D1AD427488D2F294D202B6",
+      "rowIds": [
+        "de-001",
+        "de-002",
+        "de-003",
+        "de-004",
+        "de-005"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-006-010.json",
+      "sha256": "300D343C6B5DE55156FB23AD5FCB41E13B3D9C5D38CB7374E55748EE36CE3808",
+      "rowIds": [
+        "de-006",
+        "de-007",
+        "de-008",
+        "de-009",
+        "de-010"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-011-015.json",
+      "sha256": "9CFB23C305832FCA949BC7EEA9146F4ED588377070C13F04D658714A2E35AE72",
+      "rowIds": [
+        "de-011",
+        "de-012",
+        "de-013",
+        "de-014",
+        "de-015"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-016-020.json",
+      "sha256": "C3CF14879427525972E30ABD3DDE6124E3667429FA683939769423B0662BA34A",
+      "rowIds": [
+        "de-016",
+        "de-017",
+        "de-018",
+        "de-019",
+        "de-020"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-021-025.json",
+      "sha256": "D20C12A502DB0B06F7B48E386C8EC19C785E022596FABF90AF401BD3B948A3B7",
+      "rowIds": [
+        "de-021",
+        "de-022",
+        "de-023",
+        "de-024",
+        "de-025"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-026-030.json",
+      "sha256": "B97C4499CCE69AA000CCDD07DD389DCD2D6FDF900D64BE2BDAD6199F518C07D5",
+      "rowIds": [
+        "de-026",
+        "de-027",
+        "de-028",
+        "de-029",
+        "de-030"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-031-035.json",
+      "sha256": "C135AFA84BDAE843FEDC7A085AFD18E3C3B7088B107BD25E4ABC4008EB81C629",
+      "rowIds": [
+        "de-031",
+        "de-032",
+        "de-033",
+        "de-034",
+        "de-035"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-036-040.json",
+      "sha256": "9C340312EDE220C59F311A6CB692EC5761352BB0DA3787068DEB96F6FEB98289",
+      "rowIds": [
+        "de-036",
+        "de-037",
+        "de-038",
+        "de-039",
+        "de-040"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-041-045.json",
+      "sha256": "9137C840E4328DA4359669DE74D667B5DF79DEBA33686398F60334E974C5780F",
+      "rowIds": [
+        "de-041",
+        "de-042",
+        "de-043",
+        "de-044",
+        "de-045"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-046-050.json",
+      "sha256": "8A810E0B693FFAFC84C96F4A277808B810A9E8E2274FB7BA59352FB7B7F95B10",
+      "rowIds": [
+        "de-046",
+        "de-047",
+        "de-048",
+        "de-049",
+        "de-050"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-051-055.json",
+      "sha256": "49B53E0C0A7481CAFD6F5106873EE3B87F9F60027DEB0EB1DCE17D912C452D4E",
+      "rowIds": [
+        "de-051",
+        "de-052",
+        "de-053",
+        "de-054",
+        "de-055"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-056-060.json",
+      "sha256": "A27E02466A2AAEED9AC9F5773B8CB8B4EEC2B6B1F3D7DD9B9C4A886DBF855083",
+      "rowIds": [
+        "de-056",
+        "de-057",
+        "de-058",
+        "de-059",
+        "de-060"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-061-065.json",
+      "sha256": "BF8244323CA8853BED88C52793643FE7FC66719B6C826B676B0AAEFE1930A1D1",
+      "rowIds": [
+        "de-061",
+        "de-062",
+        "de-063",
+        "de-064",
+        "de-065"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-066-070.json",
+      "sha256": "9C0FF52C74ADAD5271D94017C5CF40CF621B88C6CDBC993CDCCD1C6511B37378",
+      "rowIds": [
+        "de-066",
+        "de-067",
+        "de-068",
+        "de-069",
+        "de-070"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-071-075.json",
+      "sha256": "1420CDF78E1814732C06173BBBAB3E0C0E7D8F7E4852FD642DBE0D6E56B54B9E",
+      "rowIds": [
+        "de-071",
+        "de-072",
+        "de-073",
+        "de-074",
+        "de-075"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-076-080.json",
+      "sha256": "EAF79BAD93A5DF7EAA522D97E2162DFB45DC53FB99C7641DB1FBC0155CC5DB55",
+      "rowIds": [
+        "de-076",
+        "de-077",
+        "de-078",
+        "de-079",
+        "de-080"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-081-085.json",
+      "sha256": "912338D49E417AA280D9FAF42BBF5C8B8D3F47B185158A4EBD89099B2D470A1E",
+      "rowIds": [
+        "de-081",
+        "de-082",
+        "de-083",
+        "de-084",
+        "de-085"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-086-090.json",
+      "sha256": "F46E3614989F287F69D8DB62AECD138D2A38669496A2DFCCFE70AE412DE34D58",
+      "rowIds": [
+        "de-086",
+        "de-087",
+        "de-088",
+        "de-089",
+        "de-090"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-091-095.json",
+      "sha256": "C455363947B2387BAD6E13677D6CB59E518DA948F2FA9590AB3D08EB6DC6253A",
+      "rowIds": [
+        "de-091",
+        "de-092",
+        "de-093",
+        "de-094",
+        "de-095"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-096-100.json",
+      "sha256": "7F9FE4D5DD89ABD2488AB9EBA62E2AC1A0DB08AD8D8A1C9DB811455E2CF9D2B9",
+      "rowIds": [
+        "de-096",
+        "de-097",
+        "de-098",
+        "de-099",
+        "de-100"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-101-105.json",
+      "sha256": "F6CDF9816BF55555FE2436D1AECC5323D0275313279179B7636FCF8368256E85",
+      "rowIds": [
+        "de-101",
+        "de-102",
+        "de-103",
+        "de-104",
+        "de-105"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-106-110.json",
+      "sha256": "7F319DC7F5CC5AB4BC6647B22E07C20354B41B880A1F20CC5A6CFD96C3AC57B4",
+      "rowIds": [
+        "de-106",
+        "de-107",
+        "de-108",
+        "de-109",
+        "de-110"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-111-115.json",
+      "sha256": "8E43C06BF9356F5A8FC82FF460E0621CF6C36CD2842ECB95C3FBBE4AC3AB9F46",
+      "rowIds": [
+        "de-111",
+        "de-112",
+        "de-113",
+        "de-114",
+        "de-115"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-116-120.json",
+      "sha256": "D4AA60656269474F3528DAE7CB547067E3369FDB0EC0F23B4B57DDE829A79000",
+      "rowIds": [
+        "de-116",
+        "de-117",
+        "de-118",
+        "de-119",
+        "de-120"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-121-125.json",
+      "sha256": "821A4AB2AAFEBA4487970961D3BADA2F640835F6A4FD88F8ACB02BCD64F979E5",
+      "rowIds": [
+        "de-121",
+        "de-122",
+        "de-123",
+        "de-124",
+        "de-125"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-126-130.json",
+      "sha256": "9BAC0DD190C8D9747D11DD3DDEB6473277A2EEDCCD5C973B948187A7AFB60030",
+      "rowIds": [
+        "de-126",
+        "de-127",
+        "de-128",
+        "de-129",
+        "de-130"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-131-135.json",
+      "sha256": "AF5F7F7B7DDE50F942012E0A3BF3AB1A923813F453087DCBF0AC72814356BD80",
+      "rowIds": [
+        "de-131",
+        "de-132",
+        "de-133",
+        "de-134",
+        "de-135"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-136-140.json",
+      "sha256": "035386106F20921858181208F67F0BDF56CBD59B43BC1BD1E1467993EC31F9F3",
+      "rowIds": [
+        "de-136",
+        "de-137",
+        "de-138",
+        "de-139",
+        "de-140"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/de/authoring/de-141-150.json",
+      "sha256": "EE47C08A19A99B85B8EC1AE1B692E993EC89FC0276AA7AD801367B32ED79B01D",
+      "rowIds": [
+        "de-141",
+        "de-142",
+        "de-143",
+        "de-144",
+        "de-145",
+        "de-146",
+        "de-147",
+        "de-148",
+        "de-149",
+        "de-150"
+      ]
+    }
+  ],
+  "deterministicGates": {
+    "sourceLink": "PASS",
+    "style": "PASS",
+    "quiz": "PASS",
+    "structural": "PASS"
+  },
+  "independentEditorialReview": {
+    "verdict": "ACCEPT",
+    "findings": [],
+    "reviewedAt": "2026-09-28T08:21:23.8593374Z",
+    "reviewerIndependence": true,
+    "reviewerIdentity": "/root/rereview_de_141_150",
+    "releaseTrusted": false
+  },
+  "releaseBoundary": "Editorial continuity only; not a trusted release receipt and not activation approval."
+}

@@ -12,22 +12,21 @@ describe('report reward bundle client contract', () => {
     expect(source).toContain("critical: Object.freeze({ version: 1, severity: 'critical', spins: 3, runes: 1000, pearls: 10 })");
     expect(source).toContain("PENDING_KEY_PREFIX = 'report_reward_bundle_claims_v1:'");
     expect(source).toContain('serverConfirmed: boolean');
-    expect(source).toContain('pearlsCredited: boolean');
+    // зачем: D70/D104 — жемчужная часть набора больше не начисляется.
+    expect(source).not.toContain('pearlsCredited');
     expect(source).toContain('runesCredited: boolean');
     expect(source).toContain('spinsCredited: boolean');
     expect(source).toContain('resumePendingReportRewardBundleClaims');
   });
 
-  it('credits each lane idempotently only after the server confirms the immutable bundle', () => {
+  it('credits coins (runes) only after the server confirms the immutable bundle and never pearls', () => {
     const source = read('app/report_reward_bundle.ts');
     const server = source.indexOf('const server = await callClaim');
-    const pearls = source.indexOf('await commitConfirmedExternalShardEvent', server);
     const runes = source.indexOf('await creditRunes', server);
     expect(server).toBeGreaterThanOrEqual(0);
-    expect(pearls).toBeGreaterThan(server);
-    expect(runes).toBeGreaterThan(pearls);
-    expect(source).toContain("source: 'report_reply'");
-    expect(source).toContain("reason: 'report_reward_bundle_claim'");
+    expect(runes).toBeGreaterThan(server);
+    expect(source).not.toContain('commitConfirmedExternalShardEvent');
+    expect(source).toContain('[REPORT-REWARD]');
   });
 
   // PM-047 (владелец): спин убран как механика — grantLocalReportRewardSpins

@@ -145,6 +145,7 @@ import {
 import { adaptLearningV2DirectSessionIntroV1 } from "./learning_v2_direct_session_intro_adapter_v1";
 import { resolvePreparedLearningV2FactoryWordAudioV1 } from "./learning_v2_lesson_audio_pack_v1";
 import LearningV2SessionIntro from "./learning_v2_session_intro";
+import { LearningV2FirstQuestionShownReporter } from "../hooks/learningV2FirstQuestionEnergy";
 import { learningV2CheckpointCopy } from "./learning_v2_checkpoint_copy";
 import {
   learningV2CourseSessionIdV1,
@@ -2653,6 +2654,8 @@ export default function LearningV2DirectSessionPlayerV1() {
 
   return (
     <View style={[styles.screen, { backgroundColor: g.bg }]}>
+      {/* зачем: D72 — сюда доходим только когда первое задание на экране → сигнал гейту энергии. */}
+      <LearningV2FirstQuestionShownReporter />
       <View style={[styles.header, { paddingTop: insets.top + 10 }]}>
         <Pressable
           testID="learning-v2-session-close"

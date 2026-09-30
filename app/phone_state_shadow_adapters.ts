@@ -54,40 +54,6 @@ async function appendShadow(
   }
 }
 
-export function recordShadowXpGrant(input: Readonly<{
-  eventId: string;
-  amount: number;
-  resultingTotalXp: number;
-  source: string;
-  lessonId?: string | number | null;
-  payload?: Readonly<Record<string, unknown>>;
-  createdAtMs?: number;
-}>): Promise<PhoneStateShadowDisposition> {
-  const eventId = input.eventId.trim();
-  if (!eventId || !Number.isFinite(input.amount) || !Number.isFinite(input.resultingTotalXp)) {
-    return Promise.resolve(Object.freeze({ kind: 'unsupported' }));
-  }
-  const createdAtMs = input.createdAtMs ?? Date.now();
-  return appendShadow(`xp:${eventId}`, (scope) => Object.freeze({
-    schemaVersion: 1,
-    stableUid: scope.stableUid,
-    accountGeneration: scope.accountGeneration,
-    deviceId: scope.deviceId,
-    domain: 'xp',
-    kind: 'grant',
-    entityId: eventId,
-    payload: Object.freeze({
-      eventId,
-      amount: input.amount,
-      source: input.source,
-      lessonId: input.lessonId ?? null,
-      ...(input.payload ?? {}),
-    }),
-    exactResult: Object.freeze({ totalXp: input.resultingTotalXp }),
-    createdAtMs,
-  }));
-}
-
 export function recordShadowProgressEvent(input: Readonly<{
   eventId: string;
   type: string;

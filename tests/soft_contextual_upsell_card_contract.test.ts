@@ -51,7 +51,7 @@ it('has no modal, portal, router, emoji, or animation and enforces touch/contras
   expect(source).toMatch(/TonalSurface/);
   expect(source).toMatch(/minHeight:\s*44/);
   expect(source).toMatch(/minWidth:\s*44/);
-  expect(source).toMatch(/t\.correctText/);
+  expect(source).toMatch(/glass\.ctaInk/);
   expect(source).toMatch(/accessibilityHint/);
   expect(source).toMatch(/flexWrap:\s*'wrap'/);
   expect(source).not.toMatch(/["']Dismiss["']|["']Closes this suggestion["']|["']Opens premium options["']/);

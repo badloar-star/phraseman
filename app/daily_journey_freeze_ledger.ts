@@ -579,28 +579,5 @@ export async function readDailyJourneyFreezeProjection(
   ));
 }
 
-export async function readEffectiveStreakProtection(
-  token: AccountGenerationToken = captureAccountGeneration(),
-): Promise<{
-  serverShieldDays: number;
-  dailyJourneyFreezeCount: number;
-  totalProtectionCount: number;
-}> {
-  const projection = await accountAwait(token, () => readDailyJourneyFreezeProjection(token));
-  const serverRaw = await accountAwait(token, () => AsyncStorage.getItem('chain_shield'));
-  let serverShieldDays = 0;
-  try {
-    const server = serverRaw ? JSON.parse(serverRaw) as { daysLeft?: unknown } : null;
-    serverShieldDays = Math.max(0, Math.floor(Number(server?.daysLeft) || 0));
-  } catch {
-    serverShieldDays = 0;
-  }
-  return Object.freeze({
-    serverShieldDays,
-    dailyJourneyFreezeCount: projection.remainingCount,
-    totalProtectionCount: serverShieldDays + projection.remainingCount,
-  });
-}
-
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "dialogue-v2-locale-draft.v1",
+  "status": "draft_not_releaseable",
+  "sourceScenarioId": "social_07",
+  "sourceLedger": { "path": "dialogue_v2_authoring_ru.json", "revision": "v1" },
+  "targets": {
+    "en": {
+      "content": { "title": "Agree on a time and place", "briefing": "You are chatting in the Social world. Your task is to agree on a time and place to meet. Do not end the conversation in one message: follow the steps and respond to your chat partner.", "completionTone": "natural, with follow-up questions" },
+      "personas": [{ "id": "mila", "displayName": "Mila", "styleNote": "She warmly keeps the conversation going and asks natural follow-up questions." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Suggest meeting" }, { "id": "objective_02", "label": "Name two possible times" }, { "id": "objective_03", "label": "Ask about availability" }, { "id": "objective_04", "label": "Agree on a place" }, { "id": "objective_05", "label": "Ask how to recognise each other" }, { "id": "objective_06", "label": "Confirm the plan" }, { "id": "objective_07", "label": "Say goodbye" }
+      ]
+    },
+    "es": {
+      "content": { "title": "Acordar la hora y el lugar", "briefing": "Estás chateando en el mundo «Social». Tu tarea es acordar una hora y un lugar para quedar. No cierres la conversación con un solo mensaje: sigue los pasos y responde a tu interlocutora.", "completionTone": "natural, con preguntas de seguimiento" },
+      "personas": [{ "id": "mila", "displayName": "Mila", "styleNote": "Mantiene la conversación con calidez y hace preguntas de seguimiento naturales." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Proponer quedar" }, { "id": "objective_02", "label": "Dar dos horas posibles" }, { "id": "objective_03", "label": "Preguntar por la disponibilidad" }, { "id": "objective_04", "label": "Acordar el lugar" }, { "id": "objective_05", "label": "Preguntar cómo reconocerse" }, { "id": "objective_06", "label": "Confirmar el plan" }, { "id": "objective_07", "label": "Despedirte" }
+      ]
+    },
+    "fr": {
+      "content": { "title": "Se mettre d'accord sur l'heure et le lieu", "briefing": "Tu échanges des messages dans le monde «Social». Ton objectif est de convenir d'une heure et d'un lieu de rendez-vous. Ne termine pas la conversation en un seul message : suis les étapes et réponds à ton interlocutrice.", "completionTone": "naturel, avec des questions de suivi" },
+      "personas": [{ "id": "mila", "displayName": "Mila", "styleNote": "Elle relance chaleureusement la conversation et pose des questions de suivi naturelles." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Proposer de se voir" }, { "id": "objective_02", "label": "Donner deux créneaux" }, { "id": "objective_03", "label": "Demander les disponibilités" }, { "id": "objective_04", "label": "Choisir le lieu" }, { "id": "objective_05", "label": "Demander comment se reconnaître" }, { "id": "objective_06", "label": "Confirmer le plan" }, { "id": "objective_07", "label": "Dire au revoir" }
+      ]
+    },
+    "de": {
+      "content": { "title": "Zeit und Ort vereinbaren", "briefing": "Du schreibst im Bereich „Social“. Deine Aufgabe: Zeit und Ort für ein Treffen vereinbaren. Beende das Gespräch nicht mit nur einer Nachricht: Gehe die Schritte durch und reagiere auf deine Gesprächspartnerin.", "completionTone": "natürlich, mit Rückfragen" },
+      "personas": [{ "id": "mila", "displayName": "Mila", "styleNote": "Sie nimmt das Gespräch herzlich auf und stellt natürliche Rückfragen." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Ein Treffen vorschlagen" }, { "id": "objective_02", "label": "Zwei mögliche Zeiten nennen" }, { "id": "objective_03", "label": "Nach Verfügbarkeit fragen" }, { "id": "objective_04", "label": "Einen Ort vereinbaren" }, { "id": "objective_05", "label": "Fragen, wie ihr euch erkennt" }, { "id": "objective_06", "label": "Den Plan bestätigen" }, { "id": "objective_07", "label": "Sich verabschieden" }
+      ]
+    }
+  }
+}

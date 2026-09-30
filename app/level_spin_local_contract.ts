@@ -1,4 +1,4 @@
-import { ALL_LEVEL_GIFT_DEFS, type GiftDef } from './level_gift_system';
+import type { GiftDef } from './level_gift_system';
 import { isLocalSpinReceiptCreditId } from './level_spin_credit_ids';
 import { LEVEL_SPIN_REWARD_CATALOG } from './level_spin_reward_catalog';
 import {
@@ -159,9 +159,24 @@ export function mergeLocalSpinJournal(
 }
 
 function giftById(giftId: string): GiftDef {
-  const gift = ALL_LEVEL_GIFT_DEFS.find((candidate) => candidate.id === giftId);
-  if (!gift) throw new Error(`local_spin_catalog_mismatch:${giftId}`);
-  return { ...gift, choices: gift.choices?.map((choice) => ({ ...choice })) };
+  // Spin receipts are self-contained; do not import the retired level-gift
+  // catalog just to render a historical receipt. Legacy IDs are normalized
+  // before this point, and current IDs receive a neutral local presentation.
+  if (!giftId || typeof giftId !== 'string') throw new Error(`local_spin_catalog_mismatch:${giftId}`);
+  return {
+    id: giftId,
+    rarity: 'common',
+    icon: '◈',
+    titleRU: giftId,
+    titleUK: giftId,
+    titleEN: giftId,
+    titleES: giftId,
+    descRU: '',
+    descUK: '',
+    descEN: '',
+    descES: '',
+    weight: 1,
+  };
 }
 
 const LEGACY_V1_SPIN_REWARD_IDS = new Set<string>([
@@ -171,6 +186,24 @@ const LEGACY_V1_SPIN_REWARD_IDS = new Set<string>([
   'cosmetic_avatar_common', 'xp_2x_48h', 'energy_plus3', 'xp_bank_600',
 ]);
 
+// legacy reward was retired in 2.0. Historical signed receipts remain readable, but
+// recovery must close them as shards instead of recreating an legacy reward inventory item.
+const LEGACY_XP_SPIN_REWARD_IDS = new Set([
+  // зачем: подписанные квитанции v2–v7 могут нести любой из прежних xp_* призов; без них разбор падал
+  // с local_spin_receipt_invalid раньше, чем срабатывала замена на shards_6 (невыданный спин пропадал).
+  'xp_100', 'xp_250', 'xp_500', 'xp_1000', 'xp_3000', 'xp_5000', 'xp_10000', 'xp_25000', 'xp_50000',
+  'xp_bank_150', 'xp_bank_300', 'xp_bank_600',
+  'xp_2x_24h', 'xp_2x_48h', 'xp_bank_1500',
+  'chain_shield_1', 'chain_shield_3',
+]);
+const LEGACY_ENERGY_SPIN_REWARD_IDS = new Set(['energy_full', 'energy_plus1', 'energy_plus2', 'energy_plus3']);
+
+function canonicalLocalSpinGiftId(giftId: string): string {
+  return LEGACY_XP_SPIN_REWARD_IDS.has(giftId) || LEGACY_ENERGY_SPIN_REWARD_IDS.has(giftId)
+    ? 'shards_6'
+    : giftId;
+}
+
 const SPIN_REWARD_INTRO_CATALOG_VERSION: Readonly<Partial<Record<string, 3 | 4 | 5 | 6 | 7>>> = {
   cosmetic_avatar_aura: 3,
   cosmetic_theme: 4,
@@ -178,8 +211,8 @@ const SPIN_REWARD_INTRO_CATALOG_VERSION: Readonly<Partial<Record<string, 3 | 4 |
   attempt_restore_all: 6,
   // v7 (2026-08-29): шесть ценных призов. Квитанция, подписанная старой
   // версией каталога, не может выдать награду, которой в той версии не было.
-  chain_shield_3: 7,
   xp_bank_1500: 7,
+  chain_shield_3: 7,
   pearls_1000: 7,
   stars_2000: 7,
   plus_days_14: 7,
@@ -190,7 +223,9 @@ const SPIN_REWARD_INTRO_CATALOG_VERSION: Readonly<Partial<Record<string, 3 | 4 |
 export function isLocalSpinGiftAllowedForCatalogVersion(giftId: string, catalogVersion: number): boolean {
   if (catalogVersion === 1) return LEGACY_V1_SPIN_REWARD_IDS.has(giftId);
   if (!Number.isInteger(catalogVersion) || catalogVersion < 2 || catalogVersion > 7) return false;
-  if (!LEVEL_SPIN_REWARD_CATALOG.some((entry) => entry.id === giftId)) return false;
+  // Ретайренные призы читаются только как история (закрываются shards_6) и есть лишь в каталоге своей версии.
+  const retired = LEGACY_XP_SPIN_REWARD_IDS.has(giftId) || LEGACY_ENERGY_SPIN_REWARD_IDS.has(giftId);
+  if (!retired && !LEVEL_SPIN_REWARD_CATALOG.some((entry) => entry.id === giftId)) return false;
   return catalogVersion >= (SPIN_REWARD_INTRO_CATALOG_VERSION[giftId] ?? 2);
 }
 
@@ -232,7 +267,12 @@ export function localLevelSpinReceiptToInventory(receipt: LocalLevelSpinReceipt)
     || !isLocalSpinGiftAllowedForCatalogVersion(receipt.baseGiftId, receipt.catalogVersion)) {
     throw new Error('local_spin_receipt_invalid');
   }
-  return { kind: 'single', level: receipt.level, receivedAtMs: receipt.createdAtMs, gift: giftById(receipt.baseGiftId) };
+  return {
+    kind: 'single',
+    level: receipt.level,
+    receivedAtMs: receipt.createdAtMs,
+    gift: giftById(canonicalLocalSpinGiftId(receipt.baseGiftId)),
+  };
 }
 
 export function isRecoverableLocalLevelSpinReceipt(

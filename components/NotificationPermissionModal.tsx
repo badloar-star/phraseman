@@ -1,10 +1,14 @@
 import React, { memo } from 'react';
-import { Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Modal, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from './ThemeContext';
 import type { Lang } from '../constants/i18n';
 import { triLang } from '../constants/i18n';
 import NotificationPermissionModalHybrid from './NotificationPermissionModalHybrid';
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { BlurView } from 'expo-blur';
+import { LinearGradient } from './SafeLinearGradient';
 
 type Props = {
   visible: boolean;
@@ -36,7 +40,9 @@ function NotificationPermissionModal({
   cancelLabel,
   motionVariant = 'hybrid',
 }: Props) {
-  const { theme: t, f, themeMode } = useTheme();
+  const { theme: t, f, liquidGlassThemeId } = useTheme();
+  const insets = useStableSafeAreaInsets();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
 
   const resolvedTitle =
     title ??
@@ -51,19 +57,7 @@ function NotificationPermissionModal({
       tr: 'Hatırlatıcılar açılsın mı?',
       pl: 'Włączyć przypomnienia?',
     });
-  const resolvedBody =
-    body ??
-    triLang(lang, {
-      ru: 'Мы напомним в нужное время, чтобы ты не терял цепочку и быстрее рос в уровне.',
-      uk: 'Ми нагадаємо в потрібний час, щоб ти не втрачав стрік і швидше ріс у рівні.',
-      en: "We'll remind you at the right time so you keep your streak and level up faster.",
-      es: 'Te avisaremos en el momento adecuado para que no pierdas la racha y sigas subiendo de nivel.',
-      'pt-BR': 'Vamos lembrar você no momento certo para não perder a sequência e subir de nível mais rápido.',
-      vi: 'Chúng tôi sẽ nhắc đúng lúc để bạn không mất chuỗi và lên cấp nhanh hơn.',
-      id: 'Kami akan mengingatkan di waktu yang tepat agar streak tidak putus dan levelmu naik lebih cepat.',
-      tr: 'Serini kaybetmemen ve daha hızlı seviye atlaman için doğru zamanda hatırlatacağız.',
-      pl: 'Przypomnimy we właściwym momencie, żeby nie stracić serii i szybciej awansować.',
-    });
+  const resolvedBody = body ?? '';
   const resolvedPoints =
     points ??
     triLang(lang, {
@@ -86,7 +80,7 @@ function NotificationPermissionModal({
   const resolvedCancelLabel =
     cancelLabel ??
     triLang(lang, {
-      ru: 'Позже', uk: 'Пізніше', en: 'Later', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti saja', tr: 'Daha sonra', pl: 'Później',
+      ru: 'Не сейчас', uk: 'Не зараз', en: 'Not now', es: 'Ahora no', 'pt-BR': 'Agora não', vi: 'Không phải bây giờ', id: 'Jangan sekarang', tr: 'Şimdi değil', pl: 'Nie teraz',
     });
 
   if (motionVariant === 'hybrid') {
@@ -105,17 +99,16 @@ function NotificationPermissionModal({
   }
 
   return (
-    <Modal visible={visible} transparent animationType="fade" onRequestClose={onCancel}>
-      {/* зачем 2026-08-02 (владелец: «на маленьких экранах кнопки нет»):
-          карточка центрировалась во весь рост без прокрутки — на низком экране
-          обрезалась вместе с кнопками «Разрешить»/«Не сейчас». */}
-      <ScrollView decelerationRate="fast"
-        style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.72)' }}
-        contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 20 }}
-        showsVerticalScrollIndicator={false}
-      >
-        <View style={{ width: '100%', maxWidth: 390, backgroundColor: t.bgCard, borderRadius: 18, borderWidth: 0, borderColor: t.border, padding: 20, overflow: 'hidden' }}>
-          <View style={{ alignItems: 'center', marginBottom: 10 }}>
+    <Modal visible={visible} transparent animationType="fade" statusBarTranslucent navigationBarTranslucent onRequestClose={onCancel}>
+      <TouchableOpacity activeOpacity={1} onPress={onCancel} style={[styles.backdrop, { paddingTop: Math.max(20, insets.top + 12), paddingBottom: Math.max(20, insets.bottom + 12) }]}>
+        <TouchableOpacity activeOpacity={1} onPress={(event) => event.stopPropagation()} style={[styles.card, { backgroundColor: glass.sheet, paddingBottom: Math.max(18, insets.bottom + 12) }]}>
+          <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+            <BlurView intensity={Platform.OS === 'android' ? 12 : 16} blurReductionFactor={3} experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'} tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
+            <View style={[StyleSheet.absoluteFill, { backgroundColor: glass.sheet }]} />
+            <LinearGradient colors={[glass.selected, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
+          </View>
+          <ScrollView testID="notification-permission-scroll-content" style={styles.scrollContent} contentContainerStyle={styles.scrollContentInner} showsVerticalScrollIndicator={false} bounces={false}>
+            <View style={{ alignItems: 'center', marginBottom: 10 }}>
             <View style={{ width: 54, height: 54, borderRadius: 27, backgroundColor: t.accentBg, alignItems: 'center', justifyContent: 'center', borderWidth: 0, borderColor: `${t.accent}55`, overflow: 'hidden' }}>
               <Ionicons name="notifications-outline" size={26} color={t.accent} />
             </View>
@@ -124,9 +117,7 @@ function NotificationPermissionModal({
           <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center' }}>
             {resolvedTitle}
           </Text>
-          <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: 22, marginTop: 10, textAlign: 'center' }}>
-            {resolvedBody}
-          </Text>
+          {resolvedBody ? <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: 22, marginTop: 10, textAlign: 'center' }}>{resolvedBody}</Text> : null}
 
           <View style={{ marginTop: 14, gap: 8 }}>
             {resolvedPoints.map((p) => (
@@ -137,45 +128,32 @@ function NotificationPermissionModal({
             ))}
           </View>
 
-          {/* Единый стандарт: primary на всю ширину, под ней — центрированная текстовая «Позже». */}
-          <View style={{ marginTop: 20 }}>
-            <TouchableOpacity onPress={onConfirm} activeOpacity={0.85} style={{ width: '100%', backgroundColor: t.accent, borderRadius: 12, paddingVertical: 12, alignItems: 'center', borderWidth: 0, borderColor: 'transparent', overflow: 'hidden' }}>
+          </ScrollView>
+          {/* Fixed actions remain reachable while supplied runtime copy scrolls. */}
+          <View style={styles.footer}>
+            <TouchableOpacity testID="notification-permission-confirm" onPress={onConfirm} activeOpacity={0.85} style={{ width: '100%', backgroundColor: t.accent, borderRadius: 12, paddingVertical: 12, alignItems: 'center', borderWidth: 0, borderColor: 'transparent', overflow: 'hidden' }}>
               <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.body }}>
-                {confirmLabel ??
-                  triLang(lang, {
-                    ru: 'Включить',
-                    uk: 'Увімкнути',
-                    en: 'Turn on',
-                    es: 'Activar',
-                    'pt-BR': 'Ativar',
-                    vi: 'Bật',
-                    id: 'Aktifkan',
-                    tr: 'Aç',
-                    pl: 'Włącz',
-                  })}
+                {resolvedConfirmLabel}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={onCancel} activeOpacity={0.7} style={{ alignSelf: 'center', paddingVertical: 10, paddingHorizontal: 20, marginTop: 4, minHeight: 40, justifyContent: 'center' }}>
               <Text style={{ color: t.textMuted, fontWeight: '600', fontSize: f.body, textAlign: 'center' }}>
-                {cancelLabel ??
-                  triLang(lang, {
-                    ru: 'Позже',
-                    uk: 'Пізніше',
-                    en: 'Later',
-                    es: 'Más tarde',
-                    'pt-BR': 'Mais tarde',
-                    vi: 'Để sau',
-                    id: 'Nanti saja',
-                    tr: 'Daha sonra',
-                    pl: 'Później',
-                  })}
+                {resolvedCancelLabel}
               </Text>
             </TouchableOpacity>
           </View>
-        </View>
-      </ScrollView>
+        </TouchableOpacity>
+      </TouchableOpacity>
     </Modal>
   );
 }
 
 export default memo(NotificationPermissionModal);
+
+const styles = StyleSheet.create({
+  backdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.72)', alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20 },
+  card: { width: '100%', maxWidth: 390, maxHeight: '100%', borderRadius: 18, paddingHorizontal: 20, paddingTop: 20, overflow: 'hidden' },
+  scrollContent: { width: '100%', flexShrink: 1, minHeight: 0 },
+  scrollContentInner: { paddingBottom: 14 },
+  footer: { width: '100%', marginTop: 6 },
+});

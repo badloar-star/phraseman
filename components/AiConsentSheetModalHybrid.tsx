@@ -21,6 +21,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { LUM, PRESS } from '../constants/motionHybrid';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { hapticTap } from '../hooks/use-haptics';
 import { noAndroidOutline } from '../constants/androidGlow';
 import HybridSheetShell from './modal_fx/HybridSheetShell';
@@ -71,7 +72,8 @@ function CascadeItem({ index, style, children }: { index: number; style?: object
 }
 
 function AcceptButton({ label, onPress, testID }: { label: string; onPress: () => void; testID: string }) {
-  const { theme: t, f } = useTheme();
+  const { liquidGlassThemeId, f } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const reduceMotion = useReduceMotion();
   const scale = useSharedValue(1);
 
@@ -96,16 +98,17 @@ function AcceptButton({ label, onPress, testID }: { label: string; onPress: () =
         onPress={onPress}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
-        style={[styles.primaryBtn, { backgroundColor: t.accent, shadowColor: t.accent }]}
+        style={[styles.primaryBtn, { backgroundColor: glass.cta, shadowColor: glass.lightTint }]}
       >
-        <Text style={[styles.primaryBtnText, { color: t.correctText, fontSize: f.bodyLg }]}>{label}</Text>
+        <Text style={[styles.primaryBtnText, { color: glass.ctaInk, fontSize: f.bodyLg }]}>{label}</Text>
       </Pressable>
     </Animated.View>
   );
 }
 
 function AiConsentSheetModalHybrid({ visible, title, body, illustration, introduction, acceptLabel, declineLabel, onAccept, onDecline, testIdPrefix }: Props) {
-  const { theme: t, f } = useTheme();
+  const { liquidGlassThemeId, f } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
 
   const handleAccept = useCallback(() => {
     onAccept();
@@ -117,7 +120,13 @@ function AiConsentSheetModalHybrid({ visible, title, body, illustration, introdu
   }, [onDecline]);
 
   return (
-    <HybridSheetShell visible={visible} onClose={onDecline} closeLabel={declineLabel} testID={`${testIdPrefix}-sheet`}>
+    <HybridSheetShell
+      visible={visible}
+      onClose={onDecline}
+      closeLabel={declineLabel}
+      testID={`${testIdPrefix}-sheet`}
+      material="liquid-glass"
+    >
       <ScrollView style={{ flexShrink: 1 }} showsVerticalScrollIndicator>
       {illustration}
       <CascadeItem index={0} style={styles.badgeRow}>
@@ -125,15 +134,15 @@ function AiConsentSheetModalHybrid({ visible, title, body, illustration, introdu
       </CascadeItem>
 
       <CascadeItem index={1}>
-        <Text accessibilityRole="header" style={[styles.title, { color: t.textPrimary, fontSize: f.h3 }]}>{title}</Text>
+        <Text accessibilityRole="header" style={[styles.title, { color: glass.text, fontSize: f.h3 }]}>{title}</Text>
       </CascadeItem>
 
       <CascadeItem index={2}>
-        {introduction ? <Text style={[styles.body, { color: t.textPrimary, fontSize: f.body, lineHeight: f.body * 1.5 }]}>{introduction}</Text> : null}
+        {introduction ? <Text style={[styles.body, { color: glass.text, fontSize: f.body, lineHeight: f.body * 1.5 }]}>{introduction}</Text> : null}
       </CascadeItem>
       </ScrollView>
       {/* Disclosure stays beside the consent actions, not below a scroll fold. */}
-      <Text style={[styles.body, { color: t.textSecond, fontSize: f.body }]}>{body}</Text>
+      <Text style={[styles.body, { color: glass.secondary, fontSize: f.body }]}>{body}</Text>
 
       <CascadeItem index={3} style={styles.footer}>
         <AcceptButton label={acceptLabel} onPress={handleAccept} testID={`${testIdPrefix}-accept`} />
@@ -144,7 +153,7 @@ function AiConsentSheetModalHybrid({ visible, title, body, illustration, introdu
           onPress={handleDecline}
           style={styles.secondaryBtn}
         >
-          <Text style={[styles.secondaryBtnText, { color: t.textMuted, fontSize: f.body }]}>{declineLabel}</Text>
+          <Text style={[styles.secondaryBtnText, { color: glass.secondary, fontSize: f.body }]}>{declineLabel}</Text>
         </Pressable>
       </CascadeItem>
     </HybridSheetShell>

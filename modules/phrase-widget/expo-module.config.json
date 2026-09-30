@@ -1,9 +1,0 @@
-{
-  "platforms": ["ios", "android"],
-  "ios": {
-    "modules": ["PhraseWidgetModule"]
-  },
-  "android": {
-    "modules": ["app.phraseman.phrasewidget.PhraseWidgetModule"]
-  }
-}

@@ -16,9 +16,7 @@ const NON_AUTHORITATIVE_BOOT_KEYS = new Set<string>([
   'study_languages_started_v1',
   'language_profile_v1::en',
   'language_profile_v1::fr',
-  'xp_migration_v2',
   'week_points_migrated_v1',
-  'xp_level_restore_250_to_400_v1',
 ]);
 
 type LocalAccountStorage = {

@@ -1,7 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import {
-  ARENA_CONFIG_EXPANSION_FLAGS,
   ARENA_CONFIG_FLAGS,
   arenaBuildConfigDoc,
 } from '../functions/src/arena_config_contract';
@@ -104,51 +103,15 @@ describe('страница не даёт выстрелить в ногу', () =
   });
 });
 
-/**
- * Страница конфига обязана уметь всё, что проверяет сервер.
- *
- * Иначе получается тихая ловушка: сервер закрывает раздел по флагу, которого
- * на странице нет, и владелец видит выключенный раздел без единого способа
- * его включить — кроме ручной правки документа в консоли Firestore, которую
- * он запретил (D-01). Так и было: сервер смотрел семь переключателей
- * расширения, страница знала четыре.
- */
-describe('Arena config page covers every server gate', () => {
-  const page = fs.readFileSync(path.join(ROOT, 'admin/v2/legacy.html'), 'utf8');
-  const expansion = fs.readFileSync(path.join(ROOT, 'functions/src/arena_expansion.ts'), 'utf8');
-
-  /**
-   * Флаги, по которым сервер решает доступность разделов расширения.
-   *
-   * Берутся только те, что читаются ИЗ КОНФИГА (`config.arenaXEnabled`).
-   * Простой поиск по имени сюда же притаскивал `arenaPartnerNudgesEnabled` —
-   * а это настройка самого игрока в его документе, оператору она не
-   * принадлежит. Ложная тревога в такой проверке хуже пропуска: по ней в
-   * операторскую страницу добавляют чужую ручку.
-   */
-  function serverFlags(): readonly string[] {
-    const matches = expansion.match(/config\.(arena[A-Za-z0-9]*Enabled)/g) ?? [];
-    return [...new Set(matches.map((raw) => raw.split('.')[1] as string))];
-  }
-
-  test('разбор нашёл флаги сервера', () => {
-    expect(serverFlags().length).toBeGreaterThanOrEqual(6);
-  });
-
-  test('каждый флаг расширения остаётся в серверном договоре', () => {
-    const missing: string[] = [];
-    for (const flag of serverFlags()) {
-      if (!ARENA_CONFIG_EXPANSION_FLAGS.includes(flag as never)) missing.push(`${flag}: нет в договоре`);
-    }
-    expect(missing).toEqual([]);
-  });
-
+// зачем: D78 — серверная Арена (arena_expansion.ts) удалена, серверных гейтов
+// расширения больше нет; сверка страницы с ними снята. Сборка конфига
+// (arena_config_contract) осталась — её ведёт админка пула Шпиля.
+describe('Arena config page build contract', () => {
   test('версии магазина и соперничеств подставляет сборка, а не живая форма', () => {
     // Опечатка в такой строке даёт отказ, неотличимый от «раздел выключен».
     const doc = arenaBuildConfigDoc({});
     expect(doc.arenaCosmeticCatalogVersion).toBe('arena-cosmetics.v1');
     expect(doc.arenaRivalRuntimeVersion).toBe('arena-rival.v1');
-    expect(expansion).toContain("config.arenaRivalRuntimeVersion !== 'arena-rival.v1'");
     expect(arenaMarkup).not.toContain('arenaCosmeticCatalogVersion');
     expect(arenaMarkup).not.toContain('arenaRivalRuntimeVersion');
   });

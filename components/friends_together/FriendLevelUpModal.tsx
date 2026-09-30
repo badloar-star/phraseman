@@ -26,12 +26,9 @@ export interface FriendLevelUpModalProps {
   visible: boolean;
   friendName: string;
   friendAvatar: string;
-  friendTotalXp: number;
   friendAura?: string;
   myAvatar: string;
-  myTotalXp: number;
   level: number;
-  bonusPercent: number;
   starsGranted: number;
   claimBusy?: boolean;
   onClaim: () => void;
@@ -41,12 +38,9 @@ function FriendLevelUpModal({
   visible,
   friendName,
   friendAvatar,
-  friendTotalXp,
   friendAura,
   myAvatar,
-  myTotalXp,
   level,
-  bonusPercent,
   starsGranted,
   claimBusy = false,
   onClaim,
@@ -83,17 +77,6 @@ function FriendLevelUpModal({
     `Ty i ${friendName} — ${levelName}`,
   );
   const claimLabel = L('Забрать', 'Забрати', 'Claim', 'Reclamar', 'Resgatar', 'Nhận', 'Ambil', 'Al', 'Odbierz');
-  const xpRewardLabel = L(
-    `+${bonusPercent}% опыта вместе`,
-    `+${bonusPercent}% досвіду разом`,
-    `+${bonusPercent}% XP together`,
-    `+${bonusPercent}% XP juntos`,
-    `+${bonusPercent}% XP juntos`,
-    `+${bonusPercent}% XP cùng nhau`,
-    `+${bonusPercent}% XP bersama`,
-    `+%${bonusPercent} birlikte XP`,
-    `+${bonusPercent}% XP razem`,
-  );
   const starsLabel = `+${starsGranted}`;
 
   return (
@@ -126,15 +109,11 @@ function FriendLevelUpModal({
 
             <Reanimated.View style={impact.styles.rows}>
               <View style={styles.pairRow}>
-                <AvatarView avatar={myAvatar} totalXP={myTotalXp} size={56} />
+                <AvatarView avatar={myAvatar} size={56} />
                 <View style={[styles.link, { backgroundColor: isGold ? t.gold : t.accent }]} />
-                <AvatarView avatar={friendAvatar} totalXP={friendTotalXp} size={56} auraId={friendAura} />
+                <AvatarView avatar={friendAvatar} size={56} auraId={friendAura} />
               </View>
               <View style={styles.rewardsRow}>
-                <View style={[styles.rewardChip, { backgroundColor: t.accentBg }]}>
-                  <Ionicons name="flash" size={16} color={t.accent} />
-                  <Text style={[styles.rewardText, { color: t.accent, fontSize: f.sub }]}>{xpRewardLabel}</Text>
-                </View>
                 {starsGranted > 0 && (
                   <View style={[styles.rewardChip, { backgroundColor: t.goldBg }]}>
                     <RuneGlyph size={16} color={t.gold} />
@@ -190,7 +169,7 @@ const styles = StyleSheet.create({
     paddingBottom: 22,
     alignItems: 'center',
     overflow: 'hidden',
-    // guard-ok: тот же радиус тени, что в BoonChestHybrid.tsx/CollectibleDropModal —
+    // guard-ok: тот же радиус тени, что в CollectibleDropModal —
     // единый язык celebration-карточек семьи, не отдельная новая дорогая тень.
     shadowOpacity: 0.4,
     shadowRadius: 30,

@@ -42,12 +42,11 @@ const source = `import React from 'react';import {createRoot} from 'react-dom/cl
 import {ArenaScreen} from './components/arena/ArenaScreen';
 import {ArenaQuestion} from './components/arena/ArenaQuestion';
 import HybridAlertShell from './components/modal_fx/HybridAlertShell';
-import BoonActivatedHybrid from './components/celebration/BoonActivatedHybrid';
 import ResponsiveModalScrollView from './components/ResponsiveModalScrollView';
 import PhraseCardSizer from './app/flashcards/PhraseCardSizer';
 const root=createRoot(document.getElementById('root'));
 window.mount=(mode)=>{window.submitted=0;if(mode==='sizer'){root.render(<View style={{width:'100%'}}><PhraseCardSizer minHeight={120} front={<Text>Short phrase</Text>} back={<Text testID="long-translation" style={{fontSize:22}}>{'Длинный перевод фразы. '.repeat(70)}</Text>}/></View>);return;}const task={taskId:'test-'+mode,mode:mode==='builder'?'translate_build':mode==='matching'?'speed_match':'guess_phrase',payload:{prompt:'Выберите правильный перевод длинной фразы, чтобы продолжить задание.',options:['Первый длинный вариант ответа на вопрос','Второй длинный вариант ответа на вопрос','Третий длинный вариант ответа на вопрос','Последний длинный вариант ответа на вопрос'],wordBank:['I','would','like','to','book','a','comfortable','room','for','tomorrow'],items:[{prompt:'reception'},{prompt:'map'},{prompt:'longer'},{prompt:'butter'}],rightOptions:['масло','ресепшн','карта','длиннее']}};
-root.render(mode==='classic'?<ResponsiveModalScrollView><View style={{width:'100%',maxWidth:370,padding:24}}><Text style={{fontSize:22}}>{'Подробное сообщение. '.repeat(100)}</Text><button onClick={()=>window.submitted++}>Завершить</button></View></ResponsiveModalScrollView>:mode==='reward'?<BoonActivatedHybrid visible kicker="Награда" title="Ваш бонус активирован" subtitle={'Подробное описание полученной награды. '.repeat(20)} ctaLabel="Завершить" onClose={()=>window.submitted++}/> :mode==='alert'?<HybridAlertShell visible onRequestClose={()=>{}}><View style={{padding:24,backgroundColor:'#333'}}><Text style={{fontSize:22,color:'white'}}>{'Очень длинное сообщение, которое должно оставаться доступным. '.repeat(30)}</Text><button onClick={()=>window.submitted++}>Завершить</button></View></HybridAlertShell>:
+root.render(mode==='classic'?<ResponsiveModalScrollView><View style={{width:'100%',maxWidth:370,padding:24}}><Text style={{fontSize:22}}>{'Подробное сообщение. '.repeat(100)}</Text><button onClick={()=>window.submitted++}>Завершить</button></View></ResponsiveModalScrollView>:mode==='alert'?<HybridAlertShell visible onRequestClose={()=>{}}><View style={{padding:24,backgroundColor:'#333'}}><Text style={{fontSize:22,color:'white'}}>{'Очень длинное сообщение, которое должно оставаться доступным. '.repeat(30)}</Text><button onClick={()=>window.submitted++}>Завершить</button></View></HybridAlertShell>:
 <ArenaScreen title="Арена" subtitle="5 / 8" scroll={false} allowShortViewportScroll><View style={{minHeight:72,backgroundColor:'#334'}}><Text>Ты 8 vs 9 Соперник</Text></View><View style={{height:10}}/><View style={{flex:1,justifyContent:'center',gap:10}}><View style={{height:62,width:62,backgroundColor:'#665'}}/><ArenaQuestion task={task} locked={false} submitLabel="Ответить" onSubmit={()=>window.submitted++} onSpeedAttempt={async()=>true}/></View></ArenaScreen>);};`;
 const bundle=await build({stdin:{contents:source,resolveDir:root,loader:'jsx'},bundle:true,write:false,platform:'browser',format:'iife',define:{'process.env.NODE_ENV':'"test"','__DEV__':'false'},plugins:[stubPlugin],logLevel:'silent'});
 const browser=await chromium.launch({headless:true,channel:'msedge'});
@@ -55,7 +54,7 @@ const rows=[];
 try {
   for (const [width,height] of (process.env.RESPONSIVE_QUICK ? [[320,568]] : [[320,480],[320,568],[360,640],[375,667],[390,844],[568,320],[768,1024],[1024,768]])) {
     for(const fontScale of (process.env.RESPONSIVE_QUICK ? [1] : [1,1.5,2])){
-    for(const mode of (process.env.RESPONSIVE_MODES?.split(',') ?? ['choices','builder','matching','alert','reward','classic','sizer'])){
+    for(const mode of (process.env.RESPONSIVE_MODES?.split(',') ?? ['choices','builder','matching','alert','classic','sizer'])){
       const page=await browser.newPage({viewport:{width,height}});
       const errors=[];page.on('pageerror',e=>errors.push(e.message));
       await page.setContent('<style>html,body,#root{margin:0;width:100%;height:100%;overflow:hidden}#root{display:flex;flex-direction:column}*{box-sizing:border-box}</style><div id="root"></div>');
@@ -83,7 +82,7 @@ try {
           await page.setViewportSize(height/fontScale<420?{width:390,height:1000*fontScale}:{width:568,height:320});
           await button.click({timeout:2000});
           if(await page.evaluate(()=>window.submitted)!==1)throw Error('submit handler not delivered');
-        }else if(mode==='alert'||mode==='reward'||mode==='classic'){
+        }else if(mode==='alert'||mode==='classic'){
           await page.getByRole('button',{name:'Завершить'}).click({timeout:2000});
           if(await page.evaluate(()=>window.submitted)!==1)throw Error('alert handler not delivered');
         }else{

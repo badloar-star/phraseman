@@ -11,12 +11,21 @@
 /** Призы рулетки в днях VIP. Индекс массива = prizeIndex на клиенте. */
 export const REFERRAL_SPIN_PRIZE_DAYS: readonly number[] = [1, 7, 30, 90, 180, 365];
 /**
- * зачем: владелец (2026-07-26) — у Pro (lifetime) дни Plus бессмысленны,
- * вместо них те же prizeIndex дают жемчужины (номиналы согласованы владельцем).
- * Начисляет клиентская claim-транзакция (shards_system.claimReferralSpinPearls),
- * сервер лишь фиксирует prizeKind/prizePearls в логе спина и ответе.
+ * ИСТОРИЯ: до D100 Pro (lifetime) получал жемчуг по этим номиналам. Новых
+ * жемчужных призов нет (D70 — жемчуг удалён); таблица нужна только админской
+ * статистике, чтобы старые записи спинов (prizeKind='pearls') считались верно.
  */
 export const REFERRAL_SPIN_PRIZE_PEARLS: readonly number[] = [10, 25, 70, 150, 350, 800];
+/**
+ * зачем: D100 (владелец, 2026-09-30) — у Pro (lifetime) дни Plus бессмысленны,
+ * вместо жемчуга тот же prizeIndex даёт МОНЕТЫ (монеты = рунный кошелёк, журнал
+ * stars_ledger). Начисляет САМ сервер в транзакции спина (reason 'referral_spin',
+ * opId `referral_spin:<spinRequestId>` — идемпотентно), ответ несёт снапшот
+ * stars/starsSeq, который телефон вливает через mergeLevelSpinServerStars.
+ * Номиналы ВРЕМЕННЫЕ (владелец сумм не назвал) — ×10 от прежнего жемчуга с
+ * потолком STAR_OP_MAX_ABS_DELTA=5000 у джекпота; поменять можно только здесь.
+ */
+export const REFERRAL_SPIN_PRIZE_COINS: readonly number[] = [100, 250, 700, 1500, 3500, 5000];
 /** Дефолтные веса (%), если в «Пульте» мусор/отсутствует. Сумма = 100. */
 export const REFERRAL_SPIN_DEFAULT_WEIGHTS: readonly number[] = [55, 30, 11.5, 2.9, 0.55, 0.05];
 

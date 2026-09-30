@@ -27,8 +27,9 @@ describe('RevenueCat Telegram alert source', () => {
     expect(paidOrderAlertFromWrite('web', 'o1', before, after, NOW_MS)).toEqual(paidOrderAlertFromWrite('web', 'o1', before, after, NOW_MS + 60000));
     expect(paidOrderAlertFromWrite('web', 'o1', before, after, NOW_MS)?.occurredAtMs).toBe(NOW_MS - 5000);
   });
-  test('does not present a free weekly boon as a paid community purchase', () => {
+  test('does not present legacy or current free gifts as paid community purchases', () => {
     expect(communityPackAlertFromWrite('gift1', null, {status: 'completed', acquisitionSource: 'weekly_boon_gift', priceShards: 0, createdAt: NOW_MS}, NOW_MS)).toBeNull();
+    expect(communityPackAlertFromWrite('gift2', null, {status: 'completed', acquisitionSource: 'pack_gift_voucher', priceShards: 0, createdAt: NOW_MS}, NOW_MS)).toBeNull();
   });
   test.each([
     ['INITIAL_PURCHASE', 'TRIAL', 'trialStart'],

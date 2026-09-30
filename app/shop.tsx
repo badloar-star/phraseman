@@ -18,10 +18,10 @@ import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import { FlowText } from '../components/text-integrity/FlowText';
 import { onAppEvent } from './events';
 import { peekRunesBalance, subscribeRunesBalance } from './runes_system';
 import { peekLastKnownShardsBalance } from './shards_system';
-import { soundDirector } from '../modules/audio/sound_director';
 import { RUNE_GLYPH_PRIMARY } from '../constants/runes';
 import {
   SHOP_CATEGORIES,
@@ -35,9 +35,8 @@ import {
 /**
  * shop.tsx — магазин: две валюты, товары по три в ряд, фильтр-док снизу.
  *
- * зачем (владелец, 24.08): руны зарабатываются в уроках и лигах и тратятся на
- * усиления прогресса, жемчуг покупается за деньги и уходит на спины, косметику
- * и наборы. Разделение ролей защищает обе валюты от обесценивания.
+ * зачем (владелец, 24.08): осколки зарабатываются в учебных активностях и тратятся на
+ * жемчуг покупается за деньги и уходит на спины, косметику и наборы.
  *
  * ВРЕМЕННО: другого входа в магазин в приложении нет — только пункт в DEV-центре
  * (`components/dev/devToolRegistry.ts`, секция `shop`). Когда экран примут,
@@ -150,9 +149,6 @@ const CATEGORY_LABEL = {
 
 /** Медальоны товаров: тон задаёт категорию, обводок нет — только перелив. */
 const MEDAL_TONES: Record<ShopItem['tone'], readonly [string, string, string]> = {
-  xp: ['#4b3ea8', '#241d52', '#C7BDFF'],
-  shield: ['#1d6b45', '#0d3623', '#7CE8AC'],
-  energy: ['#8a6a12', '#443105', '#FFD666'],
   spin: ['#7C5CE0', '#3A2678', '#DCD0FF'],
   theme: ['#b0562b', '#4d2413', '#FFC7A6'],
   cards: ['#2f5fb0', '#16294f', '#B7D0FF'],
@@ -209,12 +205,13 @@ function ShopTile({ item, onPress }: TileProps) {
         <Ionicons name={item.icon} size={25} color={glyph} />
         <View style={[styles.medalShade, { backgroundColor: to }]} />
       </View>
-      <Text
-        numberOfLines={2}
+      <FlowText
+        testID={`shop-item-title-${item.id}`}
+        provenance="authored"
         style={[styles.tileTitle, { color: t.textPrimary, fontSize: f.caption }]}
       >
         {shopText(lang, item.title)}
-      </Text>
+      </FlowText>
       <View style={styles.priceRow}>
         <CurrencyMark currency={item.currency} size={12} color={priceColor} />
         <Text style={[styles.priceText, { color: priceColor, fontSize: f.body }]}>
@@ -371,7 +368,7 @@ export default function ShopScreen() {
             testID={`shop-wallet-${currency}`}
             accessibilityRole="button"
             accessibilityLabel={`${triLang(lang, CURRENCY_GENITIVE[currency])}: ${currency === 'runes' ? runes : pearls}`}
-            onPress={() => setCategory(currency === 'runes' ? 'boost' : 'pearls')}
+            onPress={() => setCategory(currency === 'runes' ? 'all' : 'pearls')}
             style={({ pressed }) => [
               styles.wallet,
               { backgroundColor: t.bgSurface, transform: [{ scale: pressed ? 0.975 : 1 }] },
@@ -487,8 +484,9 @@ export default function ShopScreen() {
                   <View style={[styles.dockRowIcon, { backgroundColor: selected ? t.accentBg : t.bgSurface }]}>
                     <Ionicons name={cat.icon} size={18} color={selected ? t.accent : t.textMuted} />
                   </View>
-                  <Text
-                    numberOfLines={1}
+                  <FlowText
+                    testID={`shop-category-${cat.id}`}
+                    provenance="authored"
                     style={[styles.dockRowLabel, {
                       color: t.textPrimary,
                       fontSize: f.body,
@@ -496,7 +494,7 @@ export default function ShopScreen() {
                     }]}
                   >
                     {shopText(lang, cat.title)}
-                  </Text>
+                  </FlowText>
                   {selected ? (
                     <Ionicons name="checkmark" size={19} color={t.accent} />
                   ) : (

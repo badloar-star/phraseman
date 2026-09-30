@@ -7,21 +7,9 @@ import type { ShowcaseSection } from '../types';
 import { emitAppEvent } from '../../../../app/events';
 import IntroFullAccessModal from '../../../IntroFullAccessModal';
 import NoEnergyModal from '../../../NoEnergyModal';
-import StreakReviveModal from '../../../StreakReviveModal';
 import CardPackShardPaywallModal from '../../../../app/flashcards/CardPackShardPaywallModal';
-import type { StreakReviveOffer } from '../../../../app/streak_revive';
 import type { FlashcardMarketPack } from '../../../../app/flashcards/marketplace';
 import { cs } from '../showcase_copy';
-
-// зачем: демо-оффер для StreakReviveModal — не пишет в AsyncStorage/Firestore,
-// только пропс превью; onRevived/onClose ничего не мутируют.
-const DEMO_STREAK_REVIVE_OFFER: StreakReviveOffer = {
-  lostStreak: 14,
-  missedDays: 1,
-  lostAt: 1_755_000_000_000,
-  expiresAt: 1_755_000_000_000 + 24 * 3_600_000,
-  costShards: 30,
-};
 
 // зачем: демо-набор для CardPackShardPaywallModal — статичный объект, без чтения
 // реального каталога/баланса; onConfirmPurchase/onGoToShards — пустые колбэки.
@@ -128,7 +116,7 @@ export const SECTION: ShowcaseSection = {
       kind: 'route',
       route: '/premium_modal',
     },
-    // зачем: празднование покупки (Plus/Pro/VIP/MAX/промокод) переехало в
+    // зачем: празднование покупки и активации промокода переехало в
     // отдельный шард — sections/purchase_celebration.tsx (владелец 2026-08-25:
     // не мог найти пять строк среди пейволов).
     {
@@ -137,22 +125,6 @@ export const SECTION: ShowcaseSection = {
       detail: cs('real_modal'),
       kind: 'render',
       render: ({ visible, onClose }) => <NoEnergyModal visible={visible} onClose={onClose} activity="classic_lesson" />,
-    },
-    {
-      id: 'streak_revive_modal',
-      title: cs('streak_revive_modal_title'),
-      detail: cs('streak_revive_modal_detail'),
-      kind: 'render',
-      render: ({ visible, onClose }) => (
-        <StreakReviveModal visible={visible} offer={DEMO_STREAK_REVIVE_OFFER} onClose={onClose} onRevived={() => {}} />
-      ),
-    },
-    {
-      id: 'streak_revive_offer_event',
-      title: cs('streak_revive_offer_event_title'),
-      detail: cs('real_event'),
-      kind: 'event',
-      fire: () => emitAppEvent('streak_revive_offer', { lostStreak: 14, missedDays: 1 }),
     },
     {
       id: 'card_pack_shard_paywall_confirm',

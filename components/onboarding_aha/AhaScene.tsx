@@ -270,7 +270,7 @@ export function AhaScene({ goal, lang, onDone, onSkip }: AhaSceneProps) {
   return (
     <View style={styles.root}>
       <View style={StyleSheet.absoluteFill} pointerEvents="none">
-        <SceneBackdrop scenarioId={scenario.id} active={beat !== 'payoff'} />
+        <SceneBackdrop />
       </View>
       <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
         <Animated.View style={[styles.beatContainer, transitionStyle]}>{beatContent}</Animated.View>

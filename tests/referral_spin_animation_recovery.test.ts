@@ -9,7 +9,8 @@ const ARC = fs.readFileSync(path.join(ROOT, 'components', 'prize_arc.tsx'), 'utf
 function onSpinSlice(): string {
   return REFERRALS.slice(
     REFERRALS.indexOf('const onSpin = useCallback(async () => {'),
-    REFERRALS.indexOf('// DEV: кнопка «+1 ключ»'),
+    // зачем: D78/D81 — DEV-кнопка удалена; конец onSpin — закрытие модалки выигрыша.
+    REFERRALS.indexOf('const closeWinAndStartCelebration = useCallback(() => {'),
   );
 }
 
@@ -91,42 +92,44 @@ describe('referral reward animation recovery', () => {
     expect(REFERRALS).not.toContain('await preloadRoulettePrizeImages().catch(() => {});');
   });
 
-  it('uses the same server-winning path in DEV after a test key is issued', () => {
-    expect(REFERRALS).toContain("setMessage('DEV: ключ добавлен — нажми «Получить приз», чтобы увидеть серверный выигрыш.');");
-    expect(REFERRALS).toContain('const grantedSpins = Math.max(1, res.spinsTotal);');
-    expect(REFERRALS).toContain('const devGrantedCreditsFloorRef = useRef(0);');
-    expect(REFERRALS).toContain('devGrantedCreditsFloorRef.current = Math.max(devGrantedCreditsFloorRef.current, grantedSpins);');
-    expect(REFERRALS).toContain('setSpinCredits((current) => Math.max(current, grantedSpins));');
-    expect(REFERRALS).not.toContain('void load({ force: true }).catch(() => {});');
+  // зачем: D78/D81 (владелец, 2026-09-30) — DEV-выдача ключа удалена навсегда и НЕ
+  // возвращается вместе с рулеткой (D99); серверный путь спина остаётся прежним.
+  it('keeps the dev key grant removed while the server-winning path stays', () => {
+    expect(REFERRALS).not.toContain('devGrantReferralSpin');
+    expect(REFERRALS).not.toContain('referrals-roulette-dev-grant');
+    expect(CLIENT).not.toContain('devGrantReferralSpin');
+    expect(CLIENT).not.toContain('referralDevGrantSpin');
     expect(CLIENT).toContain('const spinCreditMutationEpochByScope = new Map<string, number>();');
     expect(CLIENT).toContain('await cacheClaimedSpinCredits(stableId, res.data.spinsTotal, requestEpoch);');
     expect(CLIENT).toContain('beginSpinCreditMutation(stableId);');
     expect(REFERRALS).toContain('const outcome = await spinReferralRoulette();');
-    expect(REFERRALS).toContain('setWin({ prizeIndex: outcome.prizeIndex, prizeDays: outcome.prizeDays, vipUntil: outcome.vipUntil, prizeKind: outcome.prizeKind, prizePearls: outcome.prizePearls });');
+    expect(REFERRALS).toContain('setWin({ prizeIndex: outcome.prizeIndex, prizeDays: outcome.prizeDays, vipUntil: outcome.vipUntil, prizeKind: outcome.prizeKind, prizeCoins: outcome.prizeCoins });');
   });
 
-  // зачем: владелец (2026-07-26) — Pro (lifetime) получает жемчужины вместо дней:
-  // сервер помечает prizeKind='pearls', клиент начисляет идемпотентной claim-
-  // транзакцией по spinRequestId и НЕ трогает vip_* (нет «Plus активирован»).
-  it('credits Pro pearls through an idempotent claim keyed by spinRequestId', () => {
+  // зачем: D100 (владелец, 2026-09-30) — Pro (lifetime) получает МОНЕТЫ вместо дней
+  // (раньше жемчуг, удалён D70). Сервер сам начисляет их в журнал кошелька
+  // идемпотентно по spinRequestId и НЕ трогает vip_*; клиент лишь вливает снапшот.
+  it('credits Pro coins on the server ledger, idempotent by spinRequestId', () => {
     const onSpin = onSpinSlice();
     const CLIENT_PRIZES = fs.readFileSync(path.join(ROOT, 'app', 'roulette_prizes.ts'), 'utf8');
-    const SHARDS = fs.readFileSync(path.join(ROOT, 'app', 'shards_system.ts'), 'utf8');
     const SPIN_FN = fs.readFileSync(path.join(ROOT, 'functions', 'src', 'referral_spin.ts'), 'utf8');
     const SPIN_LOGIC = fs.readFileSync(path.join(ROOT, 'functions', 'src', 'referral_spin_logic.ts'), 'utf8');
 
-    // Лестница согласована владельцем и зеркалится клиент↔сервер.
-    expect(SPIN_LOGIC).toContain('REFERRAL_SPIN_PRIZE_PEARLS: readonly number[] = [10, 25, 70, 150, 350, 800]');
-    expect(CLIENT_PRIZES).toContain('ROULETTE_PRIZE_PEARLS: readonly number[] = [10, 25, 70, 150, 350, 800]');
-    // Сервер: Pro определяется по progress.premium_plan, vip_* пишутся только для days.
+    // Лестница зеркалится клиент↔сервер.
+    expect(SPIN_LOGIC).toContain('REFERRAL_SPIN_PRIZE_COINS: readonly number[] = [100, 250, 700, 1500, 3500, 5000]');
+    expect(CLIENT_PRIZES).toContain('ROULETTE_PRIZE_COINS: readonly number[] = [100, 250, 700, 1500, 3500, 5000]');
+    // Сервер: Pro по progress.premium_plan, vip_* только для days, монеты — журнал stars.
     expect(SPIN_FN).toContain("=== 'lifetime'");
-    expect(SPIN_FN).toContain("...(prizeKind === 'days' ? {");
-    expect(SPIN_FN).toContain('prizePearls');
-    // Клиент: начисление стартует после server ok и идемпотентно по spinRequestId.
-    expect(onSpin).toContain("if (outcome.prizeKind === 'pearls')");
-    expect(onSpin).toContain('claimReferralSpinPearls(outcome.spinRequestId, outcome.prizePearls)');
-    expect(SHARDS).toContain('const claimId = `referral_spin_${requestId}`;');
-    expect(SHARDS).toContain("shards_updated_reason: 'referral_spin'");
+    expect(SPIN_FN).toContain("= prizeKind === 'days' ? {");
+    expect(SPIN_FN).toContain("reason: 'referral_spin'");
+    expect(SPIN_FN).toContain('referralSpinCoinOpId(spinRequestId)');
+    expect(SPIN_FN).toContain('commitStarOperations(tx, coinsPrepared)');
+    expect(SPIN_FN).not.toContain('appendExternalEconomyEvent');
+    expect(SPIN_FN).not.toContain('prizePearls');
+    // Клиент: жемчуг не начисляется, снапшот монет вливается в кошелёк телефона.
+    expect(onSpin).not.toContain('claimReferralSpinPearls');
+    expect(CLIENT).toContain('mergeLevelSpinServerStars(token, {');
+    expect(CLIENT).toContain("if (outcome.prizeKind === 'coins')");
   });
 
   it('keeps reward cards bright and shows a disabled claim button when no keys remain', () => {

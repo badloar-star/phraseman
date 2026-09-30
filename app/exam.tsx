@@ -28,13 +28,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
 import { useEnergy } from '../components/EnergyContext';
 import { createEnergySessionIntent, type EnergySessionIntent } from './energy_session_operation_ledger';
+import { useFirstQuestionEnergyGate } from '../hooks/useFirstQuestionEnergyGate';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import ScreenGradient from '../components/ScreenGradient';
 import GradientProgressBar from '../components/GradientProgressBar';
 import { useTheme } from '../components/ThemeContext';
 import { screenTextOnGradient } from '../constants/theme';
-import { awardOneTime } from './shards_system';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ClozeGapText from '../components/ClozeGapText';
 import { safeRouterBack } from './navigation_back';
@@ -398,7 +398,7 @@ export default function ExamScreen() {
     tr: string,
     pl: string,
   ) => triLang(lang as any, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl });
-  const { confirmSpendAmount, acknowledgeSessionStart, energy, bonusEnergy } = useEnergy();
+  const { energy, bonusEnergy, isUnlimited } = useEnergy();
   const [noEnergy, setNoEnergy] = useState(false);
   // Блокировка двойного тапа по «Начать тест»: спендим энергию ровно один раз, см. H12.
   const [examStarting, setExamStarting] = useState(false);
@@ -471,7 +471,12 @@ export default function ExamScreen() {
   const countdownRemainingMsRef = useRef(3 * 650);
   const countdownDeadlineRef = useRef(0);
   const examAttemptIdRef = useRef<string>(makeExamAttemptId());
-  const pendingExamEnergyIntentRef = useRef<EnergySessionIntent | null>(null);
+  // зачем: D72/D67 — одна попытка экзамена = один operationId. Новый «Начать
+  // тест» создаёт новую попытку, повтор/remount той же попытки не спишет дважды.
+  const [examEnergyIntent, setExamEnergyIntent] = useState<EnergySessionIntent>(
+    () => createEnergySessionIntent('exam', studyTarget, examAttemptIdRef.current),
+  );
+  const examEnergyGate = useFirstQuestionEnergyGate({ intent: examEnergyIntent, screen: 'exam' });
   const examStartCommitInFlightRef = useRef(false);
   const countdownAnim = useRef(new Animated.Value(1)).current;
 
@@ -564,20 +569,33 @@ export default function ExamScreen() {
     if (examStartCommitInFlightRef.current) return;
     examStartCommitInFlightRef.current = true;
     try {
-      // All content checks and countdown work are already complete. Make the
-      // paid transition the final async step, then expose the first question
-      // immediately so no technical work can consume energy without play.
+      // зачем: D72 — энергия списывается в момент показа первого вопроса, т.е.
+      // здесь, после отсчёта, а не на кнопке «Начать тест». Списание — последний
+      // async-шаг; после него вопрос открывается синхронно.
+      const energyResult = await examEnergyGate.charge();
+      if (energyResult === 'cancelled') {
+        setPhase('intro');
+        return;
+      }
+      if (energyResult === 'insufficient') {
+        void trackFeatureBlocked('exam', 'start', 'no_energy', { energy, bonusEnergy, required: LINGMAN_EXAM_ENERGY }, 'exam');
+        setNoEnergy(true);
+        setPhase('intro');
+        return;
+      }
       setTotalTimeLeft(TOTAL_EXAM_SECONDS);
       examDeadlineRef.current = Date.now() + TOTAL_EXAM_SECONDS * 1000;
       setPhase('quiz');
+      // зачем: D87 — до этой строки уход/падение вернёт энергию, после — нет.
+      examEnergyGate.markShown();
       void trackFeatureStart('exam', 'start', { questions: questions.length }, 'exam');
       soundDirector.request('pm.exam.begin', {
         scope: 'exam',
         dedupeKey: examAttemptIdRef.current,
       });
     } catch (error) {
-      // spendAmount reports expected storage failures as a boolean. This catch
-      // covers an unexpected exception before the visible quiz transition.
+      // Неожиданное исключение до показа вопроса: вопрос не показан → возврат (D87).
+      examEnergyGate.refundNotShown('exam_first_question_commit_failed');
       setPhase('intro');
       void trackFeatureError('exam', 'start', error, {
         attemptId: examAttemptIdRef.current,
@@ -585,7 +603,7 @@ export default function ExamScreen() {
     } finally {
       examStartCommitInFlightRef.current = false;
     }
-  }, [questions.length]);
+  }, [bonusEnergy, energy, examEnergyGate, questions.length]);
 
   useEffect(() => {
     if (phase !== 'countdown') {
@@ -671,22 +689,18 @@ export default function ExamScreen() {
       }, 'exam');
       return;
     }
+    // Предпроверка без списания: не гоняем отсчёт, если энергии заведомо нет.
+    if (!isUnlimited && energy + bonusEnergy < LINGMAN_EXAM_ENERGY) {
+      void trackFeatureBlocked('exam', 'start', 'no_energy', { energy, bonusEnergy, required: LINGMAN_EXAM_ENERGY }, 'exam');
+      setNoEnergy(true);
+      return;
+    }
     setExamStarting(true);
     try {
+      // зачем: D67 — каждое «Начать тест» = новая попытка со своим operationId;
+      // само списание — в commitExamFirstQuestion (D72).
       examAttemptIdRef.current = makeExamAttemptId();
-      const energyIntent = pendingExamEnergyIntentRef.current
-        ?? createEnergySessionIntent('exam', studyTarget, examAttemptIdRef.current);
-      pendingExamEnergyIntentRef.current = energyIntent;
-      const energyResult = await confirmSpendAmount(LINGMAN_EXAM_ENERGY, energyIntent);
-      if (energyResult === 'cancelled') { pendingExamEnergyIntentRef.current = null; return; }
-      if (energyResult === 'insufficient') {
-        pendingExamEnergyIntentRef.current = null;
-        void trackFeatureBlocked('exam', 'start', 'no_energy', { energy, bonusEnergy, required: LINGMAN_EXAM_ENERGY }, 'exam');
-        setNoEnergy(true);
-        return;
-      }
-      if (energyResult === 'spent') void acknowledgeSessionStart(energyIntent.operationId);
-      pendingExamEnergyIntentRef.current = null;
+      setExamEnergyIntent(createEnergySessionIntent('exam', studyTarget, examAttemptIdRef.current));
       setIdx(0);
       setChoices(Array(questions.length).fill(null));
       setFlagged(Array(questions.length).fill(false));
@@ -731,7 +745,6 @@ export default function ExamScreen() {
           }).catch(() => {});
         });
       }
-    if (p >= 90) awardOneTime('exam_excellent').catch(() => {});
     checkAchievements({ type: 'exam', pct: p, studyTarget }).catch(() => {});
     let storedName = '';
     try {

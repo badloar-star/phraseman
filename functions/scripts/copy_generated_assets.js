@@ -77,15 +77,20 @@ const multilingualLibTo = path.resolve(__dirname, '..', 'lib', 'functions', 'src
 let multilingualCopied = 0;
 for (const lang of multilingualLangs) {
   const jsonlPath = path.resolve(__dirname, '..', '..', 'content', 'arena-multilingual', 'generated', lang, 'tasks.jsonl');
-  if (!fs.existsSync(jsonlPath)) {
-    console.warn(`[assets] content/arena-multilingual/generated/${lang}/tasks.jsonl отсутствует — es/de/fr Шпиля недоступен для ${lang}`);
-    continue;
+  const manifestPath = path.resolve(__dirname, '..', '..', 'content', 'arena-multilingual', 'generated', lang, 'manifest.json');
+  if (!fs.existsSync(jsonlPath) || !fs.existsSync(manifestPath)) {
+    for (const destination of [multilingualSrcTo, multilingualLibTo]) {
+      const stale = path.join(destination, `spire_multilingual_${lang}.json`);
+      if (fs.existsSync(stale)) fs.rmSync(stale);
+    }
+    throw new Error(`[assets] обязательный источник Шпиля отсутствует: content/arena-multilingual/generated/${lang}/tasks.jsonl или manifest.json`);
   }
   const rows = fs.readFileSync(jsonlPath, 'utf8')
     .split('\n')
     .filter((line) => line.trim())
     .map((line) => JSON.parse(line));
-  const json = JSON.stringify(rows);
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+  const json = JSON.stringify({ schemaVersion: 'spire-multilingual-bundle-v1', manifest, rows });
   for (const to of [multilingualSrcTo, multilingualLibTo]) {
     fs.mkdirSync(to, { recursive: true });
     fs.writeFileSync(path.join(to, `spire_multilingual_${lang}.json`), json);

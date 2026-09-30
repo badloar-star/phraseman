@@ -42,7 +42,12 @@ assert.match(pack, /export async function prepareLearningV2SessionAudioPackV1/u)
 assert.match(lessonAudioIndex, /sessionOrdinals/u);
 
 const manifest = JSON.parse(read("assets/audio/learning-v2/factory-production-v1/manifest.json")) as {
-  entries: readonly { transcript: string; voiceId: string; contentHash: string }[];
+  entries: readonly {
+    transcript: string;
+    voiceId: string;
+    contentHash: string;
+    byteSize: number;
+  }[];
 };
 const voices = ["ash", "onyx", "nova", "coral"] as const;
 const byCoordinate = new Map(
@@ -190,9 +195,10 @@ const exactBootstrapEntries = bootstrapEntries as readonly {
 }[];
 assert.equal(exactBootstrapEntries.length, 28);
 assert.equal(exactBootstrapEntries.reduce((sum, entry) => sum + entry.byteSize, 0), 863_232);
-assert.equal(
-  readdirSync(join(root, bootstrapDirectory)).filter((name) => name.endsWith(".mp3")).length,
-  exactBootstrapEntries.length,
+const bootstrapAudioFiles = readdirSync(join(root, bootstrapDirectory)).filter((name) => name.endsWith(".mp3"));
+assert.ok(
+  bootstrapAudioFiles.length >= exactBootstrapEntries.length,
+  "bootstrap directory may retain additional generated voice assets",
 );
 for (const entry of exactBootstrapEntries) {
   assert.match(

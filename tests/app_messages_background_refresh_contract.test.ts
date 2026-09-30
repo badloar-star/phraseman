@@ -35,7 +35,7 @@ describe('app messages background refresh contract', () => {
     expect(inboxSource).not.toContain('subscribeUserAppMessages');
     expect(inboxSource).toContain('BADGE_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 12 * 60 * 60_000');
     expect(pollBlock).toContain('readCachedAppMessagesSnapshot()');
-    expect(pollBlock).toContain('minIntervalMs: BADGE_FOREGROUND_REFRESH_MIN_INTERVAL_MS');
+    expect(pollBlock).toMatch(/minIntervalMs:\s*(?:effectiveVisible \? 0 : )?BADGE_FOREGROUND_REFRESH_MIN_INTERVAL_MS/);
     expect(pollBlock.indexOf('readCachedAppMessagesSnapshot()')).toBeLessThan(
       pollBlock.indexOf('refreshAppMessagesSnapshotOnce({'),
     );

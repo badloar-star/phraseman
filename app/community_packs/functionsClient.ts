@@ -12,7 +12,6 @@ import type { LearningLanguageTarget } from '../learning_language_contour';
 
 /** Callable v2 задеплоєні в us-central1 (як у admin getFunctions(..., 'us-central1')). */
 const FUNCTIONS_REGION = 'us-central1';
-const communityPurchaseInFlight = new Map<string, Promise<CommunityPurchaseResponse>>();
 const communityGiftRedeemInFlight = new Map<string, Promise<CommunityGiftRedeemResponse>>();
 
 export function isCommunityPacksCloudEnabled(): boolean {
@@ -33,7 +32,7 @@ async function callFunction<TReq, TRes>(name: string, data: TReq): Promise<TRes>
     // зачем (аудит 2026-08-29): сообщество не писало отказы никуда — покупка
     // пака могла молча падать. Денежные имена — critical (доезжают до
     // app_errors), остальное — warning (локальный журнал + support-бандл).
-    const irreversible = name === 'communityPurchasePack' || name === 'communityRedeemPackGiftVoucher';
+    const irreversible = name === 'communityRedeemPackGiftVoucher';
     DebugLogger.error(
       `community:${name}`,
       error instanceof Error ? error : new Error(String(error)),
@@ -51,25 +50,6 @@ export async function callCommunitySubmitPackForReview(data: {
   replacePending?: boolean;
 }): Promise<{ submissionId: string }> {
   const result = await callFunction<typeof data, { submissionId: string }>('communitySubmitPackForReview', data);
-  // зачем: задание «создай набор и поделись с сообществом» засчитывается по
-  // ОТПРАВКЕ на ревью (решение владельца 2026-08-31) — момент под контролем
-  // человека. Точка здесь одна на все пути отправки (редактор и экран набора),
-  // иначе один из путей молча не засчитывался бы.
-  //
-  // Импорт ЛЕНИВЫЙ намеренно: статический втягивал quests_client в цепочку
-  // загрузки экономики (cloud_sync → … → level_spin_star_grants) и порождал
-  // require-циклы, а они дают неинициализированные значения на старте.
-  void (async () => {
-    try {
-      const { reportQuestProgress } = await import('../quests_client');
-      await reportQuestProgress({
-        kind: 'community_pack_submit',
-        eventId: `pack_${result.submissionId}`,
-      });
-    } catch (error) {
-      DebugLogger.warn('community_packs:quest_report_failed', String(error));
-    }
-  })();
   return result;
 }
 
@@ -79,40 +59,6 @@ export async function callCommunityAuthorRemovePack(data: {
   submissionKey?: string;
 }): Promise<{ ok: boolean }> {
   return callFunction<typeof data, { ok: boolean }>('communityAuthorRemovePack', data);
-}
-
-/**
- * Cards 2.1 §1.2/§1.3: в КАТАЛОГЕ наборов покупки больше нет — набор добавляется
- * бесплатно через `communityPackActions.addCommunityPackToLibrary`, а `priceShards`
- * в ответе — легаси-поле, которое клиент игнорирует. Сам callable оставлен только
- * для легаси-пути «Магазина осколков» (`purchaseCommunityPack.ts`).
- */
-export type CommunityPurchaseResponse = {
-  alreadyOwned?: boolean;
-  priceShards?: number;
-  authorNetShards?: number;
-  buyerBalanceAfter?: number;
-  shardsUpdatedAtMs?: number;
-  purchaseId?: string;
-  studyTarget?: LearningLanguageTarget;
-};
-
-export async function callCommunityPurchasePack(data: {
-  buyerStableId: string;
-  packId: string;
-  studyTarget?: LearningLanguageTarget;
-  buyerDisplayName: string;
-}): Promise<CommunityPurchaseResponse> {
-  const key = communityPurchaseRequestKey(data);
-  const existing = communityPurchaseInFlight.get(key);
-  if (existing) return existing;
-
-  const request = callFunction<typeof data, CommunityPurchaseResponse>('communityPurchasePack', data)
-    .finally(() => {
-      communityPurchaseInFlight.delete(key);
-    });
-  communityPurchaseInFlight.set(key, request);
-  return request;
 }
 
 export type CommunityGiftRedeemResponse = {
@@ -163,76 +109,6 @@ export async function callFlashcardPackGiftGrantGlobalBroadcast(data: {
   );
 }
 
-export type LevelGiftReservationResponse = {
-  reservationId: string;
-  giftId: string;
-  allowedPackId?: string;
-  displayed?: boolean;
-  claimed?: boolean;
-  replayed?: boolean;
-};
-
-export async function callLevelGiftReserve(data: {
-  stableId: string;
-  level: number;
-  lane: 'f2p' | 'premium';
-  studyTarget?: LearningLanguageTarget;
-}): Promise<LevelGiftReservationResponse> {
-  return callFunction<typeof data, LevelGiftReservationResponse>('levelGiftReserve', data);
-}
-
-export type LevelGiftReservationActionStatus =
-  | 'acquired'
-  | 'already_displayed'
-  | 'busy'
-  | 'claimed'
-  | 'already_claimed'
-  | 'released';
-
-export async function callLevelGiftReservationAction(data: {
-  stableId: string;
-  level: number;
-  lane: 'f2p' | 'premium';
-  studyTarget?: LearningLanguageTarget;
-  reservationId: string;
-  action: 'display' | 'begin_claim' | 'complete_claim' | 'release_claim';
-  giftId?: string;
-  claimToken?: string;
-}): Promise<{ status: LevelGiftReservationActionStatus; leaseUntil?: number; chainShield?: string; giftXpMultiplier?: string; clubGiftFreeBoostCount?: number }> {
-  return callFunction<typeof data, { status: LevelGiftReservationActionStatus; leaseUntil?: number; chainShield?: string; giftXpMultiplier?: string; clubGiftFreeBoostCount?: number }>(
-    'levelGiftReserve',
-    data,
-  );
-}
-
-export type LevelSpinDeliveryActionStatus = 'acquired' | 'claimed' | 'already_claimed' | 'busy' | 'released' | 'expired';
-
-export async function callLevelSpinDeliveryAction(data: {
-  stableId: string;
-  requestId: string;
-  lane: 'base' | 'premium';
-  action: 'begin_delivery' | 'complete_delivery' | 'release_delivery';
-  deliveryToken: string;
-  selectedGiftId?: string;
-}): Promise<{ status: LevelSpinDeliveryActionStatus; giftId?: string; leaseUntil?: number }> {
-  return callFunction<typeof data, { status: LevelSpinDeliveryActionStatus; giftId?: string; leaseUntil?: number }>(
-    'levelRewardSpinDelivery',
-    data,
-  );
-}
-
-export async function callLevelSpinActivatePackGift(data: {
-  stableId: string;
-  requestId: string;
-  lane: 'base' | 'premium';
-  deliveryToken: string;
-}): Promise<{ voucherId: string; expiresAt: number; allowedPackId?: string; replayed?: boolean }> {
-  return callFunction<
-    typeof data,
-    { voucherId: string; expiresAt: number; allowedPackId?: string; replayed?: boolean }
-  >('levelSpinActivatePackGift', data);
-}
-
 export type LevelSpinStarMaterializationAck = Readonly<{
   materialized: true;
   operationId: string;
@@ -253,36 +129,12 @@ export async function callLevelSpinStarComposite(
   );
 }
 
-export async function callLevelGiftActivatePackGift(data: {
-  stableId: string;
-  reservationId: string;
-}): Promise<{ voucherId: string; expiresAt: number; allowedPackId?: string; replayed?: boolean }> {
-  return callFunction<
-    typeof data,
-    { voucherId: string; expiresAt: number; allowedPackId?: string; replayed?: boolean }
-  >('levelGiftActivatePackGift', data);
-}
-
 export async function callCommunityRedeemPackGiftVoucher(data: {
   buyerStableId: string;
   packId: string;
   studyTarget?: LearningLanguageTarget;
 }): Promise<CommunityGiftRedeemResponse> {
   return callFlashcardPackGiftRedeem({ ...data, packType: 'community' });
-}
-
-function communityPurchaseRequestKey(data: {
-  buyerStableId: string;
-  packId: string;
-  studyTarget?: LearningLanguageTarget;
-  buyerDisplayName: string;
-}): string {
-  return JSON.stringify({
-    buyerStableId: data.buyerStableId,
-    packId: data.packId,
-    studyTarget: data.studyTarget ?? 'en',
-    buyerDisplayName: data.buyerDisplayName,
-  });
 }
 
 export type CommunitySellerInboxEvent = {

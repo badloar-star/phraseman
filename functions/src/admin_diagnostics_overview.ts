@@ -39,7 +39,7 @@ const RESTORES_LIMIT = 20;
  * определение onSchedule, и дублировать его в каждом прогоне — лишняя запись.
  * Недельных кронов единицы, и их состав меняется реже, чем расписания.
  */
-const WEEKLY_CRON_NAMES = new Set(['leagueFinalizeCron', 'spireFinalizeCron']);
+const WEEKLY_CRON_NAMES = new Set(['spireFinalizeCron']);
 
 /** Порог «крон молчит» для обычных (не недельных) расписаний. */
 const SILENT_AFTER_MS = 26 * 60 * 60 * 1000;

@@ -4,7 +4,6 @@ import {
   type FriendEntry,
   type SubscribeFriendsSnapshotMeta,
 } from './firestore_friend_requests';
-import type { IncomingFriendGift } from './friend_gift_inbox';
 
 type FriendsListener = (
   rows: FriendEntry[],
@@ -22,9 +21,6 @@ type StoreDependencies = Readonly<{
 export type FriendsAccountStore = Readonly<{
   getSnapshot(): Readonly<{ rows: readonly FriendEntry[]; meta?: SubscribeFriendsSnapshotMeta }>;
   subscribe(listener: FriendsListener): () => void;
-  publishIncomingGifts(gifts: readonly IncomingFriendGift[]): void;
-  takeIncomingGifts(): readonly IncomingFriendGift[];
-  subscribeIncomingGifts(listener: () => void): () => void;
 }>;
 
 export function createFriendsAccountStore(dependencies: StoreDependencies): FriendsAccountStore {
@@ -32,9 +28,7 @@ export function createFriendsAccountStore(dependencies: StoreDependencies): Frie
   let meta: SubscribeFriendsSnapshotMeta | undefined;
   let detach: (() => void) | null = null;
   let repairInFlight = false;
-  let incomingGifts: readonly IncomingFriendGift[] = [];
   const listeners = new Set<FriendsListener>();
-  const giftListeners = new Set<() => void>();
 
   const start = (): void => {
     if (detach || listeners.size === 0) return;
@@ -75,21 +69,6 @@ export function createFriendsAccountStore(dependencies: StoreDependencies): Frie
           meta = undefined;
         }
       };
-    },
-    publishIncomingGifts(gifts: readonly IncomingFriendGift[]) {
-      if (gifts.length === 0) return;
-      incomingGifts = Object.freeze([...incomingGifts, ...gifts]);
-      for (const listener of giftListeners) listener();
-    },
-    takeIncomingGifts() {
-      const current = incomingGifts;
-      incomingGifts = [];
-      return current;
-    },
-    subscribeIncomingGifts(listener: () => void) {
-      giftListeners.add(listener);
-      if (incomingGifts.length > 0) listener();
-      return () => giftListeners.delete(listener);
     },
   });
 }

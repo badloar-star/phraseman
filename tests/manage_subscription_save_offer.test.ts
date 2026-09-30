@@ -14,8 +14,8 @@ import {
   type SaveOfferProgress,
 } from '../app/manage_subscription_save_offer';
 
-const PROGRESS: SaveOfferProgress = { streak: 12, totalXP: 3400, lessonsCompleted: 7 };
-const EMPTY: SaveOfferProgress = { streak: 0, totalXP: 0, lessonsCompleted: 0 };
+const PROGRESS: SaveOfferProgress = { streak: 12, lessonsCompleted: 7 };
+const EMPTY: SaveOfferProgress = { streak: 0, lessonsCompleted: 0 };
 
 describe('hasMeaningfulProgress', () => {
   it('пустой прогресс не показываем', () => {
@@ -24,9 +24,8 @@ describe('hasMeaningfulProgress', () => {
   });
 
   it('любое ненулевое достижение считается', () => {
-    expect(hasMeaningfulProgress({ streak: 1, totalXP: 0, lessonsCompleted: 0 })).toBe(true);
-    expect(hasMeaningfulProgress({ streak: 0, totalXP: 50, lessonsCompleted: 0 })).toBe(true);
-    expect(hasMeaningfulProgress({ streak: 0, totalXP: 0, lessonsCompleted: 3 })).toBe(true);
+    expect(hasMeaningfulProgress({ streak: 1, lessonsCompleted: 0 })).toBe(true);
+    expect(hasMeaningfulProgress({ streak: 0, lessonsCompleted: 3 })).toBe(true);
   });
 });
 

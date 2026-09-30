@@ -32,7 +32,6 @@ export const ASSET_SPECS = Object.freeze([
   // (звук+вибрация) удалён из приложения целиком (владелец: «убрать полностью»).
 
   asset('pm.voice.record_ready', 'voice', 'pm_voice_record_ready_tactile_b_v1'),
-  asset('pm.voice.turn_ready', 'voice', 'm_voice_turn_ready_tactile_b_v1'),
   asset('pm.voice.no_speech', 'voice', 'pm_voice_no_speech_glass_a_v1'),
 
   asset('pm.complete.micro', 'completion', 'pm_complete_micro_glass_a_v1'),
@@ -56,19 +55,10 @@ export const ASSET_SPECS = Object.freeze([
 
   asset('pm.reward.small', 'reward', 'pm_reward_small_glass_a_v1.wav_Create_a_0.72-secon_variation4.wav'),
   asset('pm.reward.collectible', 'reward', 'pm_reward_collectible_glass_a_v1'),
-  asset('pm.reward.achievement', 'reward', 'pm_reward_achievement_glass_a_v1'),
-  asset('pm.reward.level_up', 'reward', 'pm_reward_level_up_air_c_v1'),
   asset('pm.reward.chest_open', 'reward', 'pm_reward_chest_open_air_c_v1'),
   asset('pm.reward.premium_open', 'reward', 'pm_reward_premium_open_glass_a_v1'),
-  asset('pm.reward.premium_finale', 'reward', 'pm_reward_premium_finale_air_c_v1'),
-  asset('pm.reward.vip_open', 'reward', 'pm_reward_vip_open_glass_a_v1.wav_Create_a_1.55-se_variation3.wav'),
-  missing('pm.reward.vip_finale', 'reward'),
 
-  asset('pm.league.promoted', 'league', 'pm_league_promoted_air_c_v1'),
-  asset('pm.league.demoted', 'league', 'pm_league_demoted_air_c_v1'),
   asset('pm.social.gift_received', 'social', 'pm_social_gift_received_glass_a_v1'),
-  asset('pm.social.friend_request', 'social', 'pm_social_friend_request_glass_a_v1'),
-  asset('pm.social.quest_complete', 'social', 'pm_social_quest_complete_glass_a_v1'),
 ]);
 
 function walkFiles(directory) {

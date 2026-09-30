@@ -21,6 +21,8 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from '../app/debug-logger';
+import { stableInitialWindowMetrics } from '../app/stable_safe_area_metrics';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 
 interface State {
   hasError: boolean;
@@ -33,52 +35,61 @@ interface Props {
   children: React.ReactNode;
 }
 
+const GRAPHITE = liquidGlassTokens('graphite');
+const FALLBACK_INSETS = stableInitialWindowMetrics.insets;
+
 const TEXTS = {
   ru: {
     title: 'Что-то пошло не так',
-    body: 'Приложение столкнулось с неожиданной ошибкой. Мы автоматически отправили отчёт. Попробуй продолжить или перезапусти Phraseman.',
+    body: 'Попробуй открыть экран ещё раз.',
     retry: 'Попробовать снова',
     debugTitle: 'Технические детали:',
   },
   uk: {
     title: 'Щось пішло не так',
-    body: 'Застосунок зіткнувся з несподіваною помилкою. Звіт надіслано автоматично. Спробуй продовжити або перезапусти Phraseman.',
+    body: 'Спробуй відкрити екран ще раз.',
     retry: 'Спробувати знову',
     debugTitle: 'Технічні деталі:',
   },
+  en: {
+    title: 'Something went wrong',
+    body: 'Try opening the screen again.',
+    retry: 'Try again',
+    debugTitle: 'Technical details:',
+  },
   es: {
     title: 'Algo salió mal',
-    body: 'La app encontró un error inesperado. Ya enviamos el informe automáticamente. Intenta continuar o reinicia Phraseman.',
+    body: 'Intenta abrir la pantalla de nuevo.',
     retry: 'Intentar de nuevo',
     debugTitle: 'Detalles técnicos:',
   },
   'pt-BR': {
     title: 'Algo deu errado',
-    body: 'O app encontrou um erro inesperado. Enviamos o relatório automaticamente. Tente continuar ou reinicie o Phraseman.',
+    body: 'Tente abrir a tela novamente.',
     retry: 'Tentar novamente',
     debugTitle: 'Detalhes técnicos:',
   },
   vi: {
     title: 'Đã xảy ra lỗi',
-    body: 'Ứng dụng gặp lỗi bất ngờ. Báo cáo đã được gửi tự động. Hãy thử tiếp tục hoặc khởi động lại Phraseman.',
+    body: 'Hãy thử mở lại màn hình.',
     retry: 'Thử lại',
     debugTitle: 'Chi tiết kỹ thuật:',
   },
   'id': {
     title: 'Terjadi kesalahan',
-    body: 'Aplikasi mengalami kesalahan tak terduga. Laporan sudah dikirim otomatis. Coba lanjutkan atau mulai ulang Phraseman.',
+    body: 'Coba buka layar lagi.',
     retry: 'Coba lagi',
     debugTitle: 'Detail teknis:',
   },
   tr: {
     title: 'Bir şeyler ters gitti',
-    body: 'Uygulama beklenmeyen bir hatayla karşılaştı. Raporu otomatik olarak gönderdik. Devam etmeyi dene veya Phraseman uygulamasını yeniden başlat.',
+    body: 'Ekranı yeniden açmayı dene.',
     retry: 'Tekrar dene',
     debugTitle: 'Teknik ayrıntılar:',
   },
   pl: {
     title: 'Coś poszło nie tak',
-    body: 'Aplikacja napotkała nieoczekiwany błąd. Raport został wysłany automatycznie. Spróbuj kontynuować albo uruchom Phraseman ponownie.',
+    body: 'Spróbuj ponownie otworzyć ekran.',
     retry: 'Spróbuj ponownie',
     debugTitle: 'Szczegóły techniczne:',
   },
@@ -150,13 +161,35 @@ export default class ErrorBoundary extends React.Component<Props, State> {
     const showStack = __DEV__ && this.state.error;
 
     return (
-      <View style={styles.container}>
-        <View style={styles.card}>
-          <Text style={styles.emoji}>⚠️</Text>
-          <Text style={styles.title}>{tx.title}</Text>
-          <Text style={styles.body}>{tx.body}</Text>
+      <ScrollView
+        testID="error-boundary-scroll"
+        style={styles.container}
+        contentContainerStyle={styles.content}
+        showsVerticalScrollIndicator={false}
+        bounces={false}
+      >
+        <View style={styles.stage}>
+          <View
+            testID="error-boundary-warning-art"
+            style={styles.warningArt}
+            accessible={false}
+            importantForAccessibility="no-hide-descendants"
+          >
+            <Text style={styles.warningMark}>×</Text>
+          </View>
+          <Text accessibilityRole="header" style={styles.title}>{tx.title}</Text>
+          <Text
+            accessibilityRole="alert"
+            accessibilityLiveRegion="assertive"
+            accessibilityLabel={`${tx.title}. ${tx.body}`}
+            style={styles.body}
+          >
+            {tx.body}
+          </Text>
 
           <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={tx.retry}
             style={({ pressed }) => [styles.retryBtn, pressed && { opacity: 0.85 }]}
             onPress={this.handleRetry}
           >
@@ -164,7 +197,12 @@ export default class ErrorBoundary extends React.Component<Props, State> {
           </Pressable>
 
           {showStack ? (
-            <ScrollView decelerationRate="fast" style={styles.debugBox} contentContainerStyle={{ paddingVertical: 8 }}>
+            <ScrollView
+              decelerationRate="fast"
+              style={styles.debugBox}
+              contentContainerStyle={{ paddingVertical: 10 }}
+              nestedScrollEnabled
+            >
               <Text style={styles.debugTitle}>{tx.debugTitle}</Text>
               <Text style={styles.debugText} selectable>
                 {this.state.error?.name}: {this.state.error?.message}
@@ -177,7 +215,7 @@ export default class ErrorBoundary extends React.Component<Props, State> {
             </ScrollView>
           ) : null}
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -185,56 +223,75 @@ export default class ErrorBoundary extends React.Component<Props, State> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#06141B',
+    backgroundColor: GRAPHITE.bg,
+  },
+  content: {
+    flexGrow: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 24,
+    paddingTop: Math.max(24, FALLBACK_INSETS.top),
+    paddingBottom: Math.max(24, FALLBACK_INSETS.bottom),
+    paddingLeft: Math.max(24, FALLBACK_INSETS.left),
+    paddingRight: Math.max(24, FALLBACK_INSETS.right),
   },
-  card: {
+  stage: {
     width: '100%',
     maxWidth: 480,
-    backgroundColor: '#0F1F26',
-    borderRadius: 20,
-    borderWidth: 0,
-    borderColor: '#1F3540',
-    padding: 28,
     alignItems: 'center',
   },
-  emoji: {
-    fontSize: 56,
-    marginBottom: 12,
+  warningArt: {
+    width: 60,
+    height: 60,
+    borderRadius: 20,
+    backgroundColor: GRAPHITE.opaqueCard,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 18,
+  },
+  warningMark: {
+    color: GRAPHITE.lightTint,
+    fontSize: 38,
+    lineHeight: 40,
+    fontWeight: '500',
   },
   title: {
-    color: '#FFFFFF',
-    fontSize: 22,
+    color: GRAPHITE.text,
+    fontSize: 24,
+    lineHeight: 30,
     fontWeight: '700',
     textAlign: 'center',
-    marginBottom: 12,
+    marginBottom: 8,
   },
   body: {
-    color: '#9AA9B2',
+    color: GRAPHITE.secondary,
     fontSize: 15,
     lineHeight: 22,
     textAlign: 'center',
-    marginBottom: 24,
+    maxWidth: 440,
+    marginBottom: 22,
   },
   retryBtn: {
     width: '100%',
-    backgroundColor: '#C8FF00',
-    paddingVertical: 16,
-    borderRadius: 14,
+    maxWidth: 320,
+    minHeight: 52,
+    backgroundColor: GRAPHITE.cta,
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    borderRadius: 26,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   retryText: {
-    color: '#1A2400',
-    fontSize: 17,
+    color: GRAPHITE.ctaInk,
+    fontSize: 16,
     fontWeight: '700',
+    textAlign: 'center',
   },
   debugBox: {
     width: '100%',
     marginTop: 18,
     maxHeight: 220,
-    backgroundColor: '#000000',
+    backgroundColor: GRAPHITE.opaqueCard,
     borderRadius: 12,
     paddingHorizontal: 12,
   },
@@ -251,7 +308,7 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
   debugStack: {
-    color: '#9AA9B2',
+    color: GRAPHITE.mutedText,
     fontSize: 10,
     fontFamily: Platform.select({ ios: 'Menlo', android: 'monospace', default: 'monospace' }),
     lineHeight: 14,

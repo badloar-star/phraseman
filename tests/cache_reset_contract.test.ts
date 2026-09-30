@@ -37,6 +37,7 @@ const FORBIDDEN_SUBSTRINGS = [
   // Пользователь уже увидел «отправлено»: очистка кеша не имеет права стереть
   // ещё не доставленное обращение из фоновой очереди.
   'support_report_outbox_v1',
+  'spire_task_report_outbox_v1',
 ];
 
 describe('cache_reset: границы очистки', () => {

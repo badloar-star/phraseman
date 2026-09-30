@@ -3,6 +3,7 @@ import { AppState } from 'react-native';
 import type { PhoneStateScope } from '../modules/phone-state/account_secret';
 import type { PhoneStateSyncCoordinator } from '../modules/phone-state/sync_coordinator';
 
+import { swallowError } from './debug-logger';
 export type PhoneStateLifecycleNetInfo = Readonly<{
   addEventListener: (
     listener: (state: Readonly<{
@@ -123,10 +124,7 @@ export function ensurePhoneStateSyncLifecycleInstalled(
   };
   void runtime.coordinator.restore()
     .then(() => runtime.coordinator.trigger('hydrated'))
-    .catch(() => {
-      // Retry state remains durable; lifecycle installation must never surface
-      // a boot error to the user.
-    });
+    .catch(swallowError('phone_state_sync_lifecycle:ensurePhoneStateSyncLifecycleInstalled'));
 
   return () => {
     if (installedStableUid !== identity.stableUid) return;

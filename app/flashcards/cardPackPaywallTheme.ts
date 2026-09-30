@@ -4,13 +4,6 @@ import {
   UGC_CARD_THEME_IDS,
 } from "../community_packs/ugcCardThemePresets";
 import type { FlashcardMarketPack, FlashcardPackCategory } from "./marketplace";
-import {
-  OFFICIAL_DARK_LOGIC_EN_ID,
-  OFFICIAL_NEGOTIATOR_EN_ID,
-  OFFICIAL_PEAKY_BLINDERS_EN_ID,
-  OFFICIAL_ROYAL_TEA_EN_ID,
-  OFFICIAL_WILD_WEST_EN_ID,
-} from "./bundles/packIds";
 
 /**
  * Декор paywall прив\'язаний до **глобальної теми** (`ThemeMode`):
@@ -405,64 +398,6 @@ function categoryTweak(
   }
 }
 
-/** Вбудовані Victoria-паки: легкий акцент поверх категорії. */
-function packOverride(
-  base: CardPackPaywallTheme,
-  packId: string,
-  _mode: ThemeMode,
-): CardPackPaywallTheme {
-  const g = [...base.outerGlow] as [string, string, string];
-  switch (packId) {
-    case OFFICIAL_PEAKY_BLINDERS_EN_ID:
-      g[0] = fadeRgba("rgba(80,50,40,0.5)", 1);
-      g[1] = fadeRgba("rgba(30,24,20,0.45)", 1);
-      g[2] = fadeRgba("rgba(20,12,8,0.55)", 1);
-      return m(base, {
-        outerGlow: g,
-        borderAccent: fadeRgba("rgba(200,60,50,0.32)", 1),
-        priceBorder: fadeRgba("rgba(160,50,40,0.28)", 1),
-      });
-    case OFFICIAL_ROYAL_TEA_EN_ID:
-      g[0] = fadeRgba("rgba(120,90,55,0.45)", 1);
-      g[1] = fadeRgba("rgba(70,55,40,0.4)", 1);
-      g[2] = fadeRgba("rgba(40,32,24,0.5)", 1);
-      return m(base, {
-        outerGlow: g,
-        borderAccent: fadeRgba("rgba(210,170,90,0.35)", 1),
-        priceBorder: fadeRgba("rgba(180,140,70,0.3)", 1),
-      });
-    case OFFICIAL_WILD_WEST_EN_ID:
-      g[0] = fadeRgba("rgba(180,120,60,0.42)", 1);
-      g[1] = fadeRgba("rgba(90,65,40,0.4)", 1);
-      g[2] = fadeRgba("rgba(45,35,22,0.52)", 1);
-      return m(base, {
-        outerGlow: g,
-        borderAccent: fadeRgba("rgba(200,150,80,0.32)", 1),
-        priceBorder: fadeRgba("rgba(160,110,55,0.28)", 1),
-      });
-    case OFFICIAL_DARK_LOGIC_EN_ID:
-      g[0] = fadeRgba("rgba(100,50,120,0.4)", 1);
-      g[1] = fadeRgba("rgba(40,20,50,0.45)", 1);
-      g[2] = fadeRgba("rgba(15,8,20,0.55)", 1);
-      return m(base, {
-        outerGlow: g,
-        borderAccent: fadeRgba("rgba(180,90,200,0.3)", 1),
-        priceBorder: fadeRgba("rgba(140,70,160,0.26)", 1),
-      });
-    case OFFICIAL_NEGOTIATOR_EN_ID:
-      g[0] = fadeRgba("rgba(55,75,95,0.45)", 1);
-      g[1] = fadeRgba("rgba(35,45,58,0.42)", 1);
-      g[2] = fadeRgba("rgba(20,28,40,0.52)", 1);
-      return m(base, {
-        outerGlow: g,
-        borderAccent: fadeRgba("rgba(100,140,180,0.32)", 1),
-        priceBorder: fadeRgba("rgba(80,120,160,0.28)", 1),
-      });
-    default:
-      return base;
-  }
-}
-
 /**
  * @param isLight — ocean / sakura: послабити сяйво на світлому фоні картки
  */
@@ -472,8 +407,7 @@ export function getCardPackPaywallTheme(
 ): CardPackPaywallTheme {
   const shell = SHELL[opts.themeMode] ?? SHELL.dark;
   if (opts.themeMode === "sagePorcelain") return shell;
-  let t = categoryTweak(shell, pack.category);
-  t = packOverride(t, pack.id, opts.themeMode);
+  const t = categoryTweak(shell, pack.category);
   if (opts.isLight) return forLightShell(t, opts.themeMode);
   return t;
 }

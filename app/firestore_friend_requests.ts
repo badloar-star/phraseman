@@ -31,6 +31,23 @@ export interface FriendRequestEntry {
   createdAt: number;
 }
 
+export const FRIENDS_REALTIME_REPLACEMENT_TTL_MS = 60_000;
+
+type FriendsReadCache = {
+  scopeKey: string;
+  rows: FriendEntry[];
+  expiresAt: number;
+};
+
+type IncomingRequestsReadCache = {
+  scopeKey: string;
+  rows: FriendRequestEntry[];
+  expiresAt: number;
+};
+
+let friendReadCache: FriendsReadCache | null = null;
+let incomingRequestsReadCache: IncomingRequestsReadCache | null = null;
+
 // ── Firestore accessor (same pattern as firestore_friends.ts) ──────────────
 
 const getFirestore = () => {
@@ -157,6 +174,12 @@ let friendRequestViewerAuthLinkSuccess: {
 
 function friendRequestViewerAuthScopeKey(stableId: string): string {
   return `${stableId}:${String(getAuthUserId() ?? '').trim()}`;
+}
+
+function invalidateFriendReadCaches(stableId: string): void {
+  const prefix = `${stableId}:`;
+  if (friendReadCache?.scopeKey.startsWith(prefix)) friendReadCache = null;
+  if (incomingRequestsReadCache?.scopeKey.startsWith(prefix)) incomingRequestsReadCache = null;
 }
 
 function prepareFriendRequestViewerAuthLink(stableId: string): Promise<boolean> {
@@ -487,6 +510,7 @@ export async function acceptFriendRequest(fromUid: string): Promise<void> {
 
   try {
     await batch.commit();
+    invalidateFriendReadCaches(myUid);
   } catch (e) {
     logFriendsHealth('friends:accept_request_failed', e, { action: 'accept_friend_request', myUid, fromUid });
     throw e;
@@ -542,12 +566,13 @@ export async function declineFriendRequest(fromUid: string): Promise<void> {
   }
 
   try {
-    await db
-      .collection('users')
-      .doc(myUid)
-      .collection('friend_requests')
-      .doc(fromUid)
-      .delete();
+      await db
+        .collection('users')
+        .doc(myUid)
+        .collection('friend_requests')
+        .doc(fromUid)
+        .delete();
+      invalidateFriendReadCaches(myUid);
   } catch (e) {
     logFriendsHealth('friends:decline_request_failed', e, { action: 'decline_friend_request', myUid, fromUid });
     throw e;
@@ -604,6 +629,7 @@ export async function deleteFriend(friendUid: string): Promise<void> {
 
   try {
     await batch.commit();
+    invalidateFriendReadCaches(myUid);
   } catch (e) {
     logFriendsHealth('friends:delete_friend_failed', e, { action: 'delete_friend', myUid, friendUid });
     throw e;
@@ -638,15 +664,15 @@ export async function ensureFriendRequestViewerAuthLink(stableId?: string): Prom
 
 // ── subscribeToFriends ─────────────────────────────────────────────────────
 
-/** Второй аргумент `subscribeToFriends`: снимок с устройства до ответа сервера (`fromCache: true`). */
+/** Второй аргумент `subscribeToFriends`: ответ доступен только из локального кэша Firestore (`fromCache: true`). */
 export type SubscribeFriendsSnapshotMeta = { fromCache: boolean };
 
 /**
- * Real-time listener for the current user\'s friends collection.
+ * One-shot read for the current user's friends collection.
  *
- * Returns an unsubscribe function. The callback receives the full array of
- * FriendEntry on every snapshot update.
- * `meta.fromCache === true` — данные только с локального кеша Firestore (первый колбэк может быть пустым, затем придёт сервер).
+ * Returns a cancellation function. The callback receives one full array per
+ * foreground visit, or the same account-scoped response while its TTL is live.
+ * `meta.fromCache === true` means Firestore only had an offline cache.
  * If UID is unavailable (Expo Go, CLOUD_SYNC_ENABLED=false), callback([])
  * is called immediately and a no-op unsubscribe is returned.
  */
@@ -655,7 +681,6 @@ export function subscribeToFriends(
   onError?: (err: Error) => void,
 ): () => void {
   let cancelled = false;
-  let unsubscribe: (() => void) | null = null;
 
   ensureAnonUser()
     .then(async myUid => {
@@ -666,6 +691,11 @@ export function subscribeToFriends(
         callback([], { fromCache: true });
         return;
       }
+      const cachedScopeKey = friendRequestViewerAuthScopeKey(myUid);
+      if (friendReadCache?.scopeKey === cachedScopeKey && friendReadCache.expiresAt > Date.now()) {
+        callback([...friendReadCache.rows], { fromCache: false });
+        return;
+      }
       const authLinkReady = await ensureFriendRequestViewerAuthLink(myUid);
       if (cancelled || !authLinkReady) return;
       const db = getFirestore();
@@ -673,60 +703,51 @@ export function subscribeToFriends(
         callback([], { fromCache: true });
         return;
       }
-      unsubscribe = db
+      const snap = await db
         .collection('users')
         .doc(myUid)
         .collection('friends')
-        // зачем (аудит скорости 2026-08-22): collection-onSnapshot без limit —
-        // тот же класс, что ронял Android с OutOfMemoryError в app_messages
-        // (см. AGENTS.md → Firestore Thread-Leak Invariant: collection-листенеры
-        // ВСЕГДА с limit()). 500 — заведомо выше реального числа друзей,
-        // страхует только патологический рост коллекции.
+        // 500 выше реального числа друзей и ограничивает цену одного refresh.
         .limit(500)
-        .onSnapshot(
-          (snap: {
-            docs: Array<{ id: string; data: () => Record<string, unknown> }>;
-            metadata?: { fromCache?: boolean };
-          }) => {
-            if (cancelled) return;
-            const fromCache = snap.metadata?.fromCache === true;
-            const friends: FriendEntry[] = snap.docs.map(doc => ({
-              displayName: cleanFriendRequestDisplayName(doc.data().displayName) || undefined,
-              uid: doc.id,
-              createdAt: (doc.data().createdAt as number) ?? 0,
-            }));
-            callback(friends, { fromCache });
-          },
-          (err: Error) => {
-            logFriendsHealth('friends:subscribe_friends_failed', err, { action: 'subscribe_friends' });
-            onError?.(err);
-          },
-        );
+        .get() as {
+          docs: { id: string; data: () => Record<string, unknown> }[];
+          metadata?: { fromCache?: boolean };
+        };
+      if (cancelled) return;
+      const friends: FriendEntry[] = snap.docs.map(doc => ({
+        displayName: cleanFriendRequestDisplayName(doc.data().displayName) || undefined,
+        uid: doc.id,
+        createdAt: (doc.data().createdAt as number) ?? 0,
+      }));
+      friendReadCache = {
+        scopeKey: friendRequestViewerAuthScopeKey(myUid),
+        rows: friends,
+        expiresAt: Date.now() + FRIENDS_REALTIME_REPLACEMENT_TTL_MS,
+      };
+      callback(friends, { fromCache: snap.metadata?.fromCache === true });
     })
     .catch((err: unknown) => {
-      logFriendsHealth('friends:subscribe_friends_setup_failed', err, { action: 'subscribe_friends' });
+      logFriendsHealth('friends:read_friends_failed', err, { action: 'read_friends' });
       onError?.(err instanceof Error ? err : new Error(String(err)));
     });
 
   return () => {
     cancelled = true;
-    unsubscribe?.();
   };
 }
 
 // ── subscribeToIncomingRequests ────────────────────────────────────────────
 
 /**
- * Real-time listener for incoming pending requests.
- * Firestore filters by status before snapshots reach JS, so accepted/declined
- * history does not grow the work done on every update.
+ * One-shot read for incoming pending requests. Firestore filters by status
+ * before rows reach JS, while the account-scoped TTL avoids repeated reads on
+ * tab switches.
  */
 export function subscribeToIncomingRequests(
   callback: (requests: FriendRequestEntry[]) => void,
   onError?: (err: Error) => void,
 ): () => void {
   let cancelled = false;
-  let unsubscribe: (() => void) | null = null;
 
   ensureAnonUser()
     .then(async myUid => {
@@ -735,6 +756,11 @@ export function subscribeToIncomingRequests(
         callback([]);
         return;
       }
+      const cachedScopeKey = friendRequestViewerAuthScopeKey(myUid);
+      if (incomingRequestsReadCache?.scopeKey === cachedScopeKey && incomingRequestsReadCache.expiresAt > Date.now()) {
+        callback([...incomingRequestsReadCache.rows]);
+        return;
+      }
       const authLinkReady = await ensureFriendRequestViewerAuthLink(myUid);
       if (cancelled || !authLinkReady) return;
       const db = getFirestore();
@@ -742,49 +768,44 @@ export function subscribeToIncomingRequests(
         callback([]);
         return;
       }
-      unsubscribe = db
+      const snap = await db
         .collection('users')
         .doc(myUid)
         .collection('friend_requests')
         .where('status', '==', 'pending')
-        // зачем (аудит скорости 2026-08-22): предел на размер снапшота — where
-        // фильтрует историю, но не ограничивает рост числа pending-заявок;
-        // инвариант «collection-листенеры ВСЕГДА с limit()» (AGENTS.md).
+        // Ограничивает цену одного refresh при патологическом росте заявок.
         .limit(200)
-        .onSnapshot(
-          (snap: { docs: Array<{ id: string; data: () => Record<string, unknown> }> }) => {
-            if (cancelled) return;
-            const requests: FriendRequestEntry[] = snap.docs
-              .map(doc => {
-                const data = doc.data();
-                const st = data.status as string | undefined;
-                const fromName = cleanFriendRequestDisplayName(data.fromName);
-                return {
-                  fromUid: doc.id,
-                  fromName: fromName || undefined,
-                  status: 'pending' as const,
-                  createdAt: (data.createdAt as number) ?? 0,
-                  _rawStatus: st,
-                };
-              })
-              .filter(r => r._rawStatus === 'pending')
-              .map(({ fromUid, fromName, status, createdAt }) => ({ fromUid, ...(fromName ? { fromName } : {}), status, createdAt }));
-            callback(requests);
-          },
-          (err: Error) => {
-            logFriendsHealth('friends:subscribe_incoming_requests_failed', err, { action: 'subscribe_incoming_requests' });
-            onError?.(err);
-          },
-        );
+        .get() as { docs: { id: string; data: () => Record<string, unknown> }[] };
+      if (cancelled) return;
+      const requests: FriendRequestEntry[] = snap.docs
+        .map(doc => {
+          const data = doc.data();
+          const st = data.status as string | undefined;
+          const fromName = cleanFriendRequestDisplayName(data.fromName);
+          return {
+            fromUid: doc.id,
+            fromName: fromName || undefined,
+            status: 'pending' as const,
+            createdAt: (data.createdAt as number) ?? 0,
+            _rawStatus: st,
+          };
+        })
+        .filter(r => r._rawStatus === 'pending')
+        .map(({ fromUid, fromName, status, createdAt }) => ({ fromUid, ...(fromName ? { fromName } : {}), status, createdAt }));
+      incomingRequestsReadCache = {
+        scopeKey: friendRequestViewerAuthScopeKey(myUid),
+        rows: requests,
+        expiresAt: Date.now() + FRIENDS_REALTIME_REPLACEMENT_TTL_MS,
+      };
+      callback(requests);
     })
     .catch((err: unknown) => {
-      logFriendsHealth('friends:subscribe_incoming_requests_setup_failed', err, { action: 'subscribe_incoming_requests' });
+      logFriendsHealth('friends:read_incoming_requests_failed', err, { action: 'read_incoming_requests' });
       onError?.(err instanceof Error ? err : new Error(String(err)));
     });
 
   return () => {
     cancelled = true;
-    unsubscribe?.();
   };
 }
 

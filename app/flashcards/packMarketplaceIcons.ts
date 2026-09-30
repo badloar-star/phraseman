@@ -1,30 +1,25 @@
 import type { ImageSourcePropType } from 'react-native';
-import { cardBackFanImage, cardBackFanImageForPack, normalizeUgcCardBackKey } from './cardBackCatalog';
 import type { FlashcardMarketPack } from './marketplace';
 
-type PackTileArtFields = Pick<FlashcardMarketPack, 'id' | 'isCommunityUgc' | 'ugcCardBackKey'>;
+type PackTileArtFields = Pick<FlashcardMarketPack, 'id'>;
 
-export function bundledPackTilePng(packId: string): ImageSourcePropType | undefined {
-  return cardBackFanImage(packId);
+export function bundledPackTilePng(_packId: string): ImageSourcePropType | undefined {
+  return undefined;
 }
 
 export function packTileImageForPack(
-  pack: PackTileArtFields,
+  _pack: PackTileArtFields,
 ): ImageSourcePropType | undefined {
-  return cardBackFanImageForPack(pack);
+  return undefined;
 }
 
 /**
  * Stable revision for memoized pack lists.
  *
- * A UGC pack keeps the same id when its author changes the selected cover. Lists
- * that compared only ids therefore retained the old pack object and made most
- * cover choices look as if they had not applied. Keep the resolved art id in the
- * revision so a saved cover change invalidates those UI caches immediately.
+ * Pack art is retired; id is sufficient for stable list identity.
  */
 export function packTileArtRevision(pack: PackTileArtFields): string {
-  const artId = pack.isCommunityUgc ? normalizeUgcCardBackKey(pack.ugcCardBackKey) : pack.id;
-  return `${pack.id}:${artId}`;
+  return pack.id;
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

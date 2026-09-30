@@ -128,12 +128,8 @@ export {
 } from '../functions/src/admin_global_broadcast';
 export {
   adminGrantReward,
-  adminSetShardBalance,
 } from '../functions/src/admin_grant';
-export {
-  adminResetLeaguePoints,
-  adminMoveLeagueUser,
-} from '../functions/src/admin_league_controls';
+// зачем: admin_league_controls удалён вместе с лигами — экспорт ломал сборку functions-admin
 export { adminMonthlyDecisionPack } from '../functions/src/admin_monthly_decision_pack';
 export { adminListOpsLog } from '../functions/src/admin_ops_log';
 export {
@@ -222,11 +218,9 @@ export {
   adminCreateV2GenerationPlan,
   adminQueueV2GenerationPlan,
 } from '../functions/src/admin_v2_generation';
-export {
-  adminSetCoinExchangeRate,
-  adminGetCoinExchangeCenter,
-} from '../functions/src/coin_exchange';
-export { adminRefundCommunityPackPurchase } from '../functions/src/community_packs';
+// зачем: D70/D78 — биржа жемчуга (adminSetCoinExchangeRate/adminGetCoinExchangeCenter)
+// удалена вместе с жемчугом; снятие функций на сервере — деплой владельца.
+// зачем: D110 — adminRefundCommunityPackPurchase удалён (решение владельца).
 export { adminRunContentGenerationUnit } from '../functions/src/content_factory_worker';
 export {
   adminPreviewLearningV2CourseWave,
@@ -242,10 +236,7 @@ export {
   adminPrepareV2OwnerEpisodeDraft,
 } from '../functions/src/content_factory/v2_owner_generator_workspace_v1';
 export { adminRunContentStage } from '../functions/src/content_stage_worker';
-export {
-  adminGetCosmeticAssetArchive,
-  adminSetCosmeticAssetSaleStatus,
-} from '../functions/src/cosmetic_asset_archive';
+// зачем: D108 — админ-архив косметики удалён вместе с аурами и кастомными аватарами.
 export {
   jarvisGetQualitySnapshot,
   jarvisGetMoneySnapshot,

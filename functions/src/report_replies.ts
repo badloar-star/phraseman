@@ -22,9 +22,7 @@ import { resolveStableUidForAuth } from './auth_identity';
 import { resolveIsLifetimePlan } from './premium_status';
 import { openAiChat } from './explain/explain_provider';
 import { buildUserNotification, userNotificationRef } from './user_notifications';
-import { getLevelFromXP } from './xp_levels';
 import { hasClaimedPermission, type AdminPermission } from './admin/permissions';
-import { appendExternalEconomyEvent } from './external_economy_events';
 
 const REGION = 'us-central1';
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
@@ -39,7 +37,7 @@ const HELPFUL_REPORTS_CONFIRMED_KEY = 'helpful_error_reports_confirmed_v1';
  * транзакции, что и инкремент счётчика — чтобы рейтинг на борде всегда совпадал с
  * progress.helpful_error_reports_confirmed_v1. Приватные users/{uid} читать нельзя
  * (rules), поэтому имя/аватар/премиум берём из публичного leaderboard/{uid} —
- * ровно те же поля, что рисует Зал славы, чтобы UI борда совпадал с лигой.
+ * Имя и оформление берём из публичного профиля и исходного репорта.
  */
 const TOP_HELPERS_COLLECTION = 'top_helpers';
 
@@ -52,11 +50,7 @@ interface TopHelperProjection {
   isVip?: boolean;
   isLifetime?: boolean;
   profileCardLevel?: number;
-  /** Настоящий игровой уровень (не флаг карточки). Рисуется на аватарке борда. */
-  gameLevel?: number;
   profileCardTheme?: string;
-  leagueCrownExpiresAt?: number;
-  leagueCrownCount?: number;
 }
 
 function firstNonEmptyString(...vals: unknown[]): string {
@@ -72,18 +66,13 @@ function firstNonEmptyString(...vals: unknown[]): string {
  * ИСТОЧНИКИ ПРОФИЛЯ (аудит 2026-07-04):
  *   1) users/{uid}.progress.user_* — первичный, но у многих активных юзеров ПУСТ
  *      (имя/уровень живут только в AsyncStorage на устройстве, на сервер не синкаются).
- *   2) leaderboard/{uid} — вторичная проекция; ПРОПУСКАЕТ юзеров без имени/с xp<50.
- *   3) error_reports/{id} (репорт, за который юзер попал в хелперы) — САМЫЙ НАДЁЖНЫЙ:
- *      клиент кладёт userName/userLevel/userXP/userPremium прямо в документ репорта.
- * Без источника (3) реальные юзеры («Стелла» ур.50 и т.п.) показывались как «—» ур.1.
- *
- * ВАЖНО про уровень: progress.profile_card_level / leaderboard.profileCardLevel — это
- * ФЛАГ карточки (0..1), НЕ игровой уровень. Настоящий уровень (gameLevel) берём из
- * progress.user_level → getLevelFromXP(report.userXP) → report.userLevel.
+ *   2) leaderboard/{uid} — вторичная публичная проекция.
+ *   3) error_reports/{id} — имя и оформление, приложенные к исходному репорту.
+ * Старый игровой уровень и лиговые короны в публичную проекцию не копируем.
  *
  * @param lb     leaderboard/{uid} (может отсутствовать)
  * @param prog   users/{uid}.progress
- * @param report документ репорта с полями userName/userLevel/userXP/userPremium
+ * @param report документ репорта с полями публичного профиля
  */
 function readLeaderboardProjection(
   lb: FirebaseFirestore.DocumentData | undefined,
@@ -97,32 +86,18 @@ function readLeaderboardProjection(
   const avatar = firstNonEmptyString(p.user_avatar, d.avatar, r.userAvatar);
   const aura = firstNonEmptyString(p.user_avatar_aura, d.aura, r.userAvatarAura);
   const frame = firstNonEmptyString(p.user_avatar_frame, d.frame, r.userAvatarFrame);
-  // Настоящий игровой уровень: progress.user_level → getLevelFromXP(report.userXP) → report.userLevel.
-  const reportXp = Math.floor(Number(r.userXP) || 0);
-  const gameLevel = Math.max(
-    0,
-    Math.floor(Number(p.user_level) || 0)
-      || (reportXp > 0 ? getLevelFromXP(reportXp) : 0)
-      || Math.floor(Number(r.userLevel) || 0),
-  );
   const proj: TopHelperProjection = {
     isPremium: !!d.isPremium || !!r.userPremium,
     isVip: !!d.isVip,
     isLifetime: !!d.isLifetime,
     profileCardLevel: Math.max(0, Math.floor(Number(d.profileCardLevel) || 0)),
   };
-  if (gameLevel > 0) proj.gameLevel = gameLevel;
   if (name) proj.displayName = name.slice(0, 60);
   if (avatar) proj.avatar = avatar.slice(0, 64);
   if (aura) proj.aura = aura.slice(0, 64);
   if (frame) proj.frame = frame.slice(0, 64);
   const theme = firstNonEmptyString(d.profileCardTheme, p.profile_card_theme);
   if (theme) proj.profileCardTheme = theme.slice(0, 64);
-  const crownCount = Math.max(0, Math.floor(Number(d.leagueCrownCount) || 0));
-  if (crownCount > 0) proj.leagueCrownCount = crownCount;
-  if (Number(d.leagueCrownExpiresAt) > 0) {
-    proj.leagueCrownExpiresAt = Math.floor(Number(d.leagueCrownExpiresAt));
-  }
   return proj;
 }
 
@@ -358,9 +333,7 @@ export const adminReplyToReport = onCall(
     const notificationRef = userNotificationRef(db, uid, `report_reply_${messageRef.id}`);
     const auditRef = db.collection('admin_log').doc();
     const helperRef = db.collection(TOP_HELPERS_COLLECTION).doc(uid);
-    // Публичный профиль для проекции борда из 3 источников (см. readLeaderboardProjection):
-    // users.progress → leaderboard → САМ РЕПОРТ (userName/userLevel/userXP). Репорт —
-    // самый надёжный источник имени/уровня для хелпера. Читаем ДО транзакции параллельно.
+    // Публичное имя и оформление хелпера из трёх источников; читаем до транзакции.
     const [leaderboardSnap, userProfileSnap, reportProfileSnap] = await Promise.all([
       db.collection('leaderboard').doc(uid).get(),
       userRef.get(),
@@ -479,8 +452,9 @@ export const adminReplyToReport = onCall(
  * data: { messageId: string }
  *
  * Транзакция: проверить своё сообщение (kind report_reply, reward>0, !claimed) →
- * claimed:true + immutable external economy fact + audit log. Личный баланс
- * сервер не читает и не пишет. Повторный вызов возвращает тот же receipt.
+ * claimed:true. Жемчуг не начисляется (D70/D104); монеты набора начисляет
+ * клиент. Личный баланс сервер не читает и не пишет. Повторный вызов
+ * возвращает тот же receipt.
  */
 export const claimReportReward = onCall(
   { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
@@ -519,28 +493,18 @@ export const claimReportReward = onCall(
           updatedAt: nowMs,
         });
       }
-      appendExternalEconomyEvent(tx, userRef, {
-        source: 'report_reply',
-        eventId: messageId,
-        ownerStableId: stableUid,
-        delta: rewardBundle.pearls,
-        reason: 'report_reward_bundle_claim',
-        kind: 'confirmed_report_reward_bundle',
-        subjectId: messageId,
-        payload: { messageId, rewardBundle },
-        createdAtMs: nowMs,
-      });
-
-      const shardLogRef = userRef.collection('shard_log').doc();
-      tx.set(shardLogRef, {
-        ts: nowIso,
-        type: 'earn',
-        amount: rewardBundle.pearls,
-        reason: 'report_reward_bundle_claim',
-        authority: 'external_event',
+      // зачем: D70/D104 — жемчужная часть набора (pearls) больше не начисляется:
+      // ни события внешней экономии, ни shard_log. Монеты набора (runes 300/600/1000)
+      // начисляет телефон по подтверждённому клейму (app/report_reward_bundle.ts).
+      console.log(JSON.stringify({
+        event: 'report_reward_claimed',
+        stableUid,
         messageId,
-        rewardBundle,
-      });
+        severity: rewardBundle.severity,
+        runes: rewardBundle.runes,
+        pearlsRetired: rewardBundle.pearls,
+        claimedAt: nowIso,
+      }));
 
       return reportRewardClaimReceipt(messageId, rewardBundle, false);
     });

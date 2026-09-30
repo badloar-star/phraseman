@@ -24,6 +24,7 @@ import { triLang } from '../constants/i18n';
 import type { QuestKind, QuestReward, QuestSnapshot } from '../app/quests_client';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette'; // зачем: окно задания «Сегодня» на токенах стекла (макет overlays-specialist OS-QUEST-*)
 import DuoPressable from './DuoPressable';
 import { questRewardIcon } from './QuestTaskCard';
 
@@ -116,7 +117,8 @@ function formatTimeLeft(msLeft: number, lang: Parameters<typeof triLang>[0]): st
 function QuestSheetModal({
   quest, visible, busy = false, errorRu = null, onClose, onOpenTarget, onClaim,
 }: QuestSheetModalProps) {
-  const { theme: t, f, themeMode } = useTheme();
+  const { f, themeMode, liquidGlassThemeId } = useTheme();
+  const g = useMemo(() => liquidGlassTokens(liquidGlassThemeId), [liquidGlassThemeId]);
   const { lang } = useLang();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
@@ -160,7 +162,6 @@ function QuestSheetModal({
       case 'minutes': return triLang(lang, { ru: 'мин', uk: 'хв', en: 'min', es: 'min', 'pt-BR': 'min', vi: 'phút', id: 'mnt', tr: 'dk', pl: 'min' });
       case 'runes': return triLang(lang, { ru: 'рун', uk: 'рун', en: 'runes', es: 'runas', 'pt-BR': 'runas', vi: 'rune', id: 'rune', tr: 'rün', pl: 'run' });
       case 'days': return triLang(lang, { ru: 'дн', uk: 'дн', en: 'd', es: 'd', 'pt-BR': 'd', vi: 'ngày', id: 'hari', tr: 'gün', pl: 'dni' });
-      case 'xp': return 'XP';
       default: return '';
     }
   }, [lang, quest]);
@@ -198,10 +199,10 @@ function QuestSheetModal({
         <Animated.View
           style={[
             styles.sheet,
-            { backgroundColor: t.bgCard, opacity: rise, transform: [{ translateY }] },
+            { backgroundColor: g.opaqueSheet, borderColor: g.glassEdge, opacity: rise, transform: [{ translateY }] },
           ]}
         >
-          <View style={[styles.grabber, { backgroundColor: t.bgSurface2 }]} />
+          <View style={[styles.grabber, { backgroundColor: g.glassEdge }]} />
 
           <ScrollView
             style={styles.scroll}
@@ -210,41 +211,41 @@ function QuestSheetModal({
             bounces={false}
           >
             <View style={styles.header}>
-              <View style={[styles.headerIcon, { backgroundColor: ready ? t.accent : t.bgSurface }]}>
-                <Ionicons name={ready ? 'gift' : 'flag'} size={28} color={ready ? t.correctText : t.accent} accessible={false} />
+              <View style={[styles.headerIcon, { backgroundColor: ready ? g.cta : g.opaqueControl }]}>
+                <Ionicons name={ready ? 'gift' : 'flag'} size={28} color={ready ? g.ctaInk : g.text} accessible={false} />
               </View>
               {quest.expiresAtMs > 0 && !claimed ? (
-                <View style={[styles.timeChip, { backgroundColor: t.bgSurface }]}>
-                  <Ionicons name="time-outline" size={15} color={msLeft <= 3_600_000 ? t.accent : t.textMuted} accessible={false} />
-                  <Text style={[styles.timeText, { color: msLeft <= 3_600_000 ? t.accent : t.textMuted, fontSize: f.label }]}>
+                <View style={[styles.timeChip, { backgroundColor: g.opaqueControl, borderColor: g.glassEdge }]}>
+                  <Ionicons name="time-outline" size={15} color={msLeft <= 3_600_000 ? g.text : g.secondary} accessible={false} />
+                  <Text style={[styles.timeText, { color: msLeft <= 3_600_000 ? g.text : g.secondary, fontSize: f.label }]}>
                     {formatTimeLeft(msLeft, lang)}
                   </Text>
                 </View>
               ) : null}
             </View>
 
-            <Text testID="quest-sheet-title" style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
+            <Text testID="quest-sheet-title" style={[styles.title, { color: g.text, fontSize: f.h2 }]}>
               {quest.title}
             </Text>
-            <Text testID="quest-sheet-body" style={[styles.body, { color: t.textSecond, fontSize: f.body }]}>
+            <Text testID="quest-sheet-body" style={[styles.body, { color: g.secondary, fontSize: f.body }]}>
               {quest.body}
             </Text>
 
             {quest.target > 1 && !claimed ? (
               <View style={styles.progressBlock}>
                 <View style={styles.progressRow}>
-                  <Text style={[styles.progressValue, { color: t.textPrimary, fontSize: f.bodyLg }]}>
+                  <Text style={[styles.progressValue, { color: g.text, fontSize: f.bodyLg }]}>
                     {`${quest.progress} / ${quest.target}${unitSuffix ? ` ${unitSuffix}` : ''}`}
                   </Text>
-                  <Text style={[styles.progressPct, { color: t.textMuted, fontSize: f.label }]}>{`${progressPct}%`}</Text>
+                  <Text style={[styles.progressPct, { color: g.secondary, fontSize: f.label }]}>{`${progressPct}%`}</Text>
                 </View>
-                <View style={[styles.track, { backgroundColor: t.bgSurface2 }]}>
-                  <View style={[styles.fill, { width: `${progressPct}%`, backgroundColor: t.accent }]} />
+                <View style={[styles.track, { backgroundColor: g.opaqueControl }]}>
+                  <View style={[styles.fill, { width: `${progressPct}%`, backgroundColor: g.cta }]} />
                 </View>
               </View>
             ) : null}
 
-            <Text style={[styles.rewardsHeading, { color: t.textMuted, fontSize: f.label }]}>
+            <Text style={[styles.rewardsHeading, { color: g.secondary, fontSize: f.label }]}>
               {triLang(lang, {
                 ru: 'Что получишь', uk: 'Що отримаєш', en: 'What you get',
                 es: 'Lo que recibirás', 'pt-BR': 'O que você recebe', vi: 'Bạn sẽ nhận',
@@ -267,19 +268,19 @@ function QuestSheetModal({
                 return (
                   <View
                     key={`${reward.kind}-${index}`}
-                    style={[styles.rewardCard, { backgroundColor: t.bgSurface }]}
+                    style={[styles.rewardCard, { backgroundColor: g.opaqueControl, borderColor: g.glassEdge }]}
                     accessible
                     accessibilityLabel={`${reward.amount} ${rewardLabel(reward, lang)}`}
                   >
                     {icon ? (
                       <Image source={icon} style={styles.rewardArt} contentFit="contain" accessible={false} />
                     ) : (
-                      <Ionicons name="star" size={34} color={t.accent} accessible={false} />
+                      <Ionicons name="star" size={34} color={g.text} accessible={false} />
                     )}
-                    <Text style={[styles.rewardAmount, { color: t.textPrimary, fontSize: f.bodyLg }]}>
+                    <Text style={[styles.rewardAmount, { color: g.text, fontSize: f.bodyLg }]}>
                       {reward.kind === 'plus_days' ? `${reward.amount}` : `+${reward.amount}`}
                     </Text>
-                    <Text style={[styles.rewardName, { color: t.textMuted, fontSize: f.caption }]} numberOfLines={2}>
+                    <Text style={[styles.rewardName, { color: g.secondary, fontSize: f.caption }]}>
                       {rewardLabel(reward, lang)}
                     </Text>
                   </View>
@@ -288,18 +289,18 @@ function QuestSheetModal({
             </View>
 
             {errorRu ? (
-              <View style={[styles.errorBox, { backgroundColor: t.bgSurface }]}>
-                <Ionicons name="alert-circle" size={18} color={t.accent} accessible={false} />
-                <Text style={[styles.errorText, { color: t.textPrimary, fontSize: f.label }]}>{errorRu}</Text>
+              <View accessibilityRole="alert" style={[styles.errorBox, { backgroundColor: g.opaqueControl, borderColor: g.glassEdge }]}>
+                <Ionicons name="alert-circle-outline" size={18} color={g.text} accessible={false} />
+                <Text style={[styles.errorText, { color: g.text, fontSize: f.label }]}>{errorRu}</Text>
               </View>
             ) : null}
           </ScrollView>
 
           <View style={styles.footer}>
             {claimed ? (
-              <View style={[styles.doneRow, { backgroundColor: t.bgSurface }]}>
-                <Ionicons name="checkmark-circle" size={20} color={t.accent} accessible={false} />
-                <Text style={[styles.doneText, { color: t.textPrimary, fontSize: f.body }]}>
+              <View style={[styles.doneRow, { backgroundColor: g.opaqueControl, borderColor: g.glassEdge }]}>
+                <Ionicons name="checkmark-circle-outline" size={20} color={g.text} accessible={false} />
+                <Text style={[styles.doneText, { color: g.text, fontSize: f.body }]}>
                   {triLang(lang, {
                     ru: 'Награда получена', uk: 'Нагороду отримано', en: 'Reward claimed',
                     es: 'Recompensa recibida', 'pt-BR': 'Recompensa recebida', vi: 'Đã nhận thưởng',
@@ -308,9 +309,9 @@ function QuestSheetModal({
                 </Text>
               </View>
             ) : expired ? (
-              <View style={[styles.doneRow, { backgroundColor: t.bgSurface }]}>
-                <Ionicons name="time-outline" size={20} color={t.textMuted} accessible={false} />
-                <Text style={[styles.doneText, { color: t.textMuted, fontSize: f.body }]}>
+              <View style={[styles.doneRow, { backgroundColor: g.opaqueControl, borderColor: g.glassEdge }]}>
+                <Ionicons name="time-outline" size={20} color={g.secondary} accessible={false} />
+                <Text style={[styles.doneText, { color: g.secondary, fontSize: f.body }]}>
                   {triLang(lang, {
                     ru: 'Срок вышел', uk: 'Термін вийшов', en: 'The deadline passed',
                     es: 'El plazo terminó', 'pt-BR': 'O prazo acabou', vi: 'Đã hết hạn',
@@ -323,12 +324,12 @@ function QuestSheetModal({
                 testID={ready ? 'quest-claim-button' : 'quest-open-target-button'}
                 disabled={busy}
                 onPress={ready ? handleClaim : handleOpenTarget}
-                edgeColor={t.bgSurface2}
+                edgeColor={g.glassEdge}
                 edgeHeight={4}
                 wrapStyle={styles.btnWrap}
-                style={[styles.btn, { backgroundColor: t.accent, borderRadius: 14 }]}
+                style={[styles.btn, { backgroundColor: g.cta, borderRadius: 14 }]}
               >
-                <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.bodyLg }}>
+                <Text style={{ color: g.ctaInk, fontWeight: '800', fontSize: f.bodyLg }}>
                   {ready
                     ? triLang(lang, {
                       ru: 'Забрать награду', uk: 'Забрати нагороду', en: 'Claim reward',
@@ -349,7 +350,7 @@ function QuestSheetModal({
 const styles = StyleSheet.create({
   root: { flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(0,0,0,0.62)' },
   sheet: {
-    borderTopLeftRadius: 26, borderTopRightRadius: 26,
+    borderTopLeftRadius: 26, borderTopRightRadius: 26, borderWidth: 1, borderBottomWidth: 0,
     paddingTop: 10, paddingHorizontal: 20, paddingBottom: 16,
     maxHeight: '86%',
   },
@@ -358,7 +359,7 @@ const styles = StyleSheet.create({
   scrollContent: { paddingBottom: 8 },
   header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 },
   headerIcon: { width: 56, height: 56, borderRadius: 28, alignItems: 'center', justifyContent: 'center' },
-  timeChip: { flexDirection: 'row', alignItems: 'center', gap: 5, paddingHorizontal: 10, paddingVertical: 6, borderRadius: 12 },
+  timeChip: { flexDirection: 'row', alignItems: 'center', gap: 5, paddingHorizontal: 10, paddingVertical: 6, borderRadius: 12, borderWidth: 1 },
   timeText: { fontWeight: '800', fontVariant: ['tabular-nums'] /* guard-ok: обратный отсчёт */ },
   title: { fontWeight: '900', lineHeight: 30, marginBottom: 8 },
   body: { lineHeight: 23, marginBottom: 18 },
@@ -372,18 +373,18 @@ const styles = StyleSheet.create({
   rewardsRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
   rewardCard: {
     minWidth: 96, flexGrow: 1, flexBasis: 96,
-    borderRadius: 18, paddingVertical: 14, paddingHorizontal: 10,
+    borderRadius: 18, paddingVertical: 14, paddingHorizontal: 10, borderWidth: 1,
     alignItems: 'center', gap: 4,
   },
   rewardArt: { width: 38, height: 38 },
   rewardAmount: { fontWeight: '900', fontVariant: ['tabular-nums'] /* guard-ok: величина награды */ },
   rewardName: { fontWeight: '600', textAlign: 'center' },
-  errorBox: { flexDirection: 'row', alignItems: 'center', gap: 8, borderRadius: 14, padding: 12, marginTop: 16 },
+  errorBox: { flexDirection: 'row', alignItems: 'center', gap: 8, borderRadius: 14, padding: 12, marginTop: 16, borderWidth: 1 },
   errorText: { flex: 1, fontWeight: '700', lineHeight: 19 },
   footer: { paddingTop: 16 },
   btnWrap: { width: '100%' },
   btn: { minHeight: 54, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18 },
-  doneRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, minHeight: 54, borderRadius: 14 },
+  doneRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, minHeight: 54, borderRadius: 14, borderWidth: 1 },
   doneText: { fontWeight: '800' },
 });
 

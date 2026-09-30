@@ -42,13 +42,15 @@ describe('Revenue VNext flashcard training quota wiring', () => {
     expect(source).not.toContain('consumeFlashcardTrainingQuota');
   });
 
-  test('shared quota exhaustion uses the flashcard-training paywall context for Speaking too', () => {
+  test('monthly quota exhaustion disables Hub entry without reviving a purchase gate', () => {
     const hub = read('app/flashcards/FlashcardsHubScreen.tsx');
     const speaking = read('app/flashcards_speaking_session.tsx');
-    expect(hub).toContain("openTrainingPaywall('flashcard_training', 'flashcards_hub_speaking')");
-    expect(hub).not.toContain("openTrainingPaywall('speaking', 'flashcards_hub_speaking')");
-    expect(speaking).toContain("context: 'flashcard_training', source: 'flashcards_speaking_direct'");
-    expect(speaking).not.toContain("context: 'speaking', source: 'flashcards_speaking_direct'");
+    expect(hub).toContain('MonthlyTrainingSessionIndicator');
+    expect(hub).toContain('disabled={trainingLocked || !trainingEntryReady}');
+    expect(hub).not.toContain('openTrainingPaywall(');
+    expect(speaking).toContain("quotaResult.status === 'exhausted'");
+    expect(speaking).toContain("pathname: '/flashcards_training_setup'");
+    expect(speaking).not.toContain('premium_modal');
   });
 
   test('quota-authorized Flashcard Speaking bypasses only the nested microphone gate', () => {

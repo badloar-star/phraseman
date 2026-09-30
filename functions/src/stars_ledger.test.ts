@@ -319,13 +319,13 @@ describe('единый журнал звёзд', () => {
 
   it('кладёт опыт в ту же запись документа игрока', async () => {
     const { world } = await run(
-      undefined, [op()], ctx({ xpDelta: 110, xpTotalAfter: 5_110 }), [],
+      undefined, [op()], ctx(), [],
       { progress: { user_total_xp: '5110' } },
     );
     expect(world.writes.sets).toHaveLength(1);
     expect(world.writes.sets[0].data.stars).toBeDefined();
     expect(world.writes.sets[0].data.progress).toBeDefined();
-    expect(world.writes.creates[0].data.xpDelta).toBe(110);
+    expect(world.writes.creates[0].data.xpDelta).toBeUndefined();
   });
 
   /**

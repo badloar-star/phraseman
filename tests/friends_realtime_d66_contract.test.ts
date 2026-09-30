@@ -1,0 +1,43 @@
+import fs from 'fs';
+import path from 'path';
+
+const root = path.resolve(__dirname, '..');
+
+function source(): string {
+  return fs.readFileSync(path.join(root, 'app', 'firestore_friend_requests.ts'), 'utf8');
+}
+
+function exportedBlock(input: string, name: string, nextName: string): string {
+  const start = input.indexOf(`export function ${name}`);
+  const end = input.indexOf(nextName, start);
+  expect(start).toBeGreaterThanOrEqual(0);
+  expect(end).toBeGreaterThan(start);
+  return input.slice(start, end);
+}
+
+describe('D66 friends realtime contract', () => {
+  it('uses bounded one-shot reads for friends and pending requests', () => {
+    const input = source();
+    const friends = exportedBlock(input, 'subscribeToFriends', '// ── subscribeToIncomingRequests');
+    const requests = exportedBlock(input, 'subscribeToIncomingRequests', '// ── cleanupStaleFriendData');
+
+    expect(friends).toContain('.limit(500)');
+    expect(friends).toContain('.get()');
+    expect(friends).not.toContain('.onSnapshot(');
+    expect(requests).toContain(".where('status', '==', 'pending')");
+    expect(requests).toContain('.limit(200)');
+    expect(requests).toContain('.get()');
+    expect(requests).not.toContain('.onSnapshot(');
+  });
+
+  it('keeps one-shot results account-scoped, TTL-bound, and cancellable', () => {
+    const input = source();
+    const friends = exportedBlock(input, 'subscribeToFriends', '// ── subscribeToIncomingRequests');
+    const requests = exportedBlock(input, 'subscribeToIncomingRequests', '// ── cleanupStaleFriendData');
+
+    expect(input).toContain('export const FRIENDS_REALTIME_REPLACEMENT_TTL_MS = 60_000');
+    expect(input).toContain('friendReadCache');
+    expect(friends).toContain('if (cancelled) return;');
+    expect(requests).toContain('if (cancelled) return;');
+  });
+});

@@ -1,4 +1,5 @@
 import {
+  ACCOUNT_DELETE_USER_TREE_NAMESPACES,
   ARENA_EXPANSION_USER_SUBCOLLECTIONS,
   __accountDeleteTestHooks,
   executeAccountDeletion,
@@ -447,6 +448,53 @@ describe('accountDelete query plan', () => {
       expect(deletedPaths.indexOf(path)).toBeGreaterThanOrEqual(0);
       expect(deletedPaths.indexOf(path)).toBeLessThan(rootIndex);
     }
+  });
+
+  it('recursively deletes every Dialogue V2 memory document owned by either account identity', async () => {
+    expect(ACCOUNT_DELETE_USER_TREE_NAMESPACES).toContain('dialogue_v2_memory');
+    expect(ACCOUNT_DELETE_USER_TREE_NAMESPACES).toContain('dialogue_v2_freeform_memory');
+    expect(ACCOUNT_DELETE_USER_TREE_NAMESPACES).toContain('dialogue_v2_bot_voice_claims');
+    const storedPaths = new Set([
+      'users/stable-123',
+      'users/stable-123/dialogue_v2_memory/d2m_shared',
+      'users/stable-123/dialogue_v2_memory/d2m_shared/threads/d2t_social',
+      'users/stable-123/dialogue_v2_freeform_memory/en',
+      'users/stable-123/dialogue_v2_bot_voice_claims/completion_hash',
+      'users/auth-456/dialogue_v2_memory/d2m_legacy_alias',
+      'users/auth-456/dialogue_v2_freeform_memory/fr',
+      'users/auth-456/dialogue_v2_bot_voice_claims/turn_hash',
+      'users/other-account/dialogue_v2_memory/d2m_other',
+      'users/other-account/dialogue_v2_freeform_memory/de',
+      'users/other-account/dialogue_v2_bot_voice_claims/completion_other',
+    ]);
+    const deleteDb = {
+      doc: (path: string) => ({ path }),
+      collection: (collection: string) => ({
+        doc: (id: string) => ({ path: `${collection}/${id}` }),
+      }),
+      recursiveDelete: async (ref: { path: string }) => {
+        for (const path of [...storedPaths]) {
+          if (path === ref.path || path.startsWith(`${ref.path}/`)) storedPaths.delete(path);
+        }
+      },
+    };
+    const ctx = {
+      db: deleteDb,
+      writer: { flush: jest.fn(async () => {}) },
+      seen: new Set<string>(),
+      runId: 'delete-dialogue-v2-memory', stableUidHash: 'a', authUidHash: 'b',
+      startedAtMs: 0, closureCutoffMs: 0, lastProgressLogDocs: 0, writerClosed: false,
+    };
+
+    await deleteDirectDocs(deleteDb as any, 'stable-123', 'auth-456', ctx as any);
+
+    expect([...storedPaths].filter((path) => path.startsWith('users/stable-123/'))).toEqual([]);
+    expect([...storedPaths].filter((path) => path.startsWith('users/auth-456/'))).toEqual([]);
+    expect(storedPaths).toContain('users/other-account/dialogue_v2_memory/d2m_other');
+    expect(storedPaths).toContain('users/other-account/dialogue_v2_freeform_memory/de');
+    expect(storedPaths).toContain(
+      'users/other-account/dialogue_v2_bot_voice_claims/completion_other',
+    );
   });
 
   it('audits every recursively deleted Arena Expansion user namespace', () => {

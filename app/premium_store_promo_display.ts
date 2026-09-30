@@ -3,6 +3,7 @@
  * или платный introductory на iOS. Используется только для честной подписи на пейволле.
  */
 import type { PurchasesPackage } from 'react-native-purchases';
+import type { TrialEligibility } from './paywall_trial_info';
 
 export type StorePromoPricing = {
   /** Округлённый процент выгоды относительно стандартной фазы */
@@ -11,6 +12,11 @@ export type StorePromoPricing = {
   standardPriceString: string;
   /** Цена при промо (первая платная фаза) */
   promoPriceString: string;
+};
+
+export type StorePromoPricingContext = {
+  platform: string;
+  iosEligibility?: TrialEligibility;
 };
 
 function isZeroMicros(micros: unknown): boolean {
@@ -58,48 +64,55 @@ function paidPromoChainFromPhases(phases: any[]): { first: { micros: number; for
   return { first, last };
 }
 
-function androidSubscriptionOptions(product: any): any[] {
-  const out: any[] = [];
-  const seen = new Set<string>();
-  const push = (o: any) => {
-    if (!o) return;
-    const id = String(o.id ?? o.offerToken ?? '');
-    if (id && seen.has(id)) return;
-    if (id) seen.add(id);
-    out.push(o);
+function promoFromAndroidDefaultOption(product: any): StorePromoPricing | null {
+  // purchasePackage(productPackage) buys RevenueCat's defaultOption. Other
+  // subscriptionOptions are merely catalog alternatives and must never drive
+  // the price shown unless checkout explicitly purchases that exact option.
+  const phases = product.defaultOption?.pricingPhases;
+  const productPeriod = typeof product.subscriptionPeriod === 'string'
+    ? product.subscriptionPeriod.trim().toUpperCase()
+    : '';
+  // The current UI can truthfully describe only one discounted billing cycle
+  // followed immediately by the regular recurring phase at the same cadence.
+  // Free trials, intermediate prices, multi-cycle intros, or missing timing
+  // metadata need a richer disclosure UI; until then they fail closed.
+  if (!Array.isArray(phases) || phases.length !== 2 || !productPeriod) return null;
+  const [introPhase, regularPhase] = phases;
+  const introPeriod = typeof introPhase?.billingPeriod?.iso8601 === 'string'
+    ? introPhase.billingPeriod.iso8601.trim().toUpperCase()
+    : '';
+  const regularPeriod = typeof regularPhase?.billingPeriod?.iso8601 === 'string'
+    ? regularPhase.billingPeriod.iso8601.trim().toUpperCase()
+    : '';
+  if (
+    introPeriod !== productPeriod
+    || regularPeriod !== productPeriod
+    || introPhase?.billingCycleCount !== 1
+    || introPhase?.recurrenceMode !== 2
+    || regularPhase?.billingCycleCount !== null
+    || regularPhase?.recurrenceMode !== 1
+  ) return null;
+  const chain = paidPromoChainFromPhases(phases);
+  if (!chain) return null;
+  const pct = Math.round(100 - (chain.first.micros / chain.last.micros) * 100);
+  if (pct < 5 || pct > 92) return null;
+  return {
+    discountPercent: pct,
+    standardPriceString: chain.last.formatted ?? String(product.priceString ?? ''),
+    promoPriceString: chain.first.formatted ?? String(product.priceString ?? ''),
   };
-  push(product.defaultSubscriptionOption);
-  push(product.defaultOption);
-  if (Array.isArray(product.subscriptionOptions)) {
-    for (const o of product.subscriptionOptions) push(o);
-  }
-  return out;
-}
-
-function promoFromSubscriptionPhases(product: any): StorePromoPricing | null {
-  let best: StorePromoPricing | null = null;
-  let bestGap = 0;
-  for (const opt of androidSubscriptionOptions(product)) {
-    const phases = opt.pricingPhases ?? opt.phases ?? [];
-    const chain = paidPromoChainFromPhases(phases);
-    if (!chain) continue;
-    const gap = chain.last.micros - chain.first.micros;
-    if (gap <= bestGap) continue;
-    bestGap = gap;
-    const pct = Math.round(100 - (chain.first.micros / chain.last.micros) * 100);
-    if (pct < 5 || pct > 92) continue;
-    best = {
-      discountPercent: pct,
-      standardPriceString: chain.last.formatted ?? String(product.priceString ?? ''),
-      promoPriceString: chain.first.formatted ?? String(product.priceString ?? ''),
-    };
-  }
-  return best;
 }
 
 function promoFromIosPaidIntro(product: any): StorePromoPricing | null {
   const ip = product.introPrice;
   if (ip == null) return null;
+  const productPeriod = typeof product.subscriptionPeriod === 'string'
+    ? product.subscriptionPeriod.trim().toUpperCase()
+    : '';
+  const introPeriod = typeof ip.period === 'string' ? ip.period.trim().toUpperCase() : '';
+  // The shell labels the promo with the selected plan period and says the
+  // standard price follows next. That is truthful only for one matching cycle.
+  if (!productPeriod || introPeriod !== productPeriod || ip.cycles !== 1) return null;
   const regular = typeof product.price === 'number' ? product.price : NaN;
   let introNum = typeof ip.price === 'number' ? ip.price : NaN;
   if (!Number.isFinite(introNum) && typeof ip.priceString === 'string') {
@@ -118,16 +131,21 @@ function promoFromIosPaidIntro(product: any): StorePromoPricing | null {
 }
 
 /**
- * Если магазин отдал несколько платных фаз (промо → база) или платный introductory на iOS —
- * возвращаем процент и строки цен для UI.
+ * Returns a promo only when it is proven to match the existing checkout:
+ * Android's purchasePackage default option, or an iOS introductory price for
+ * which RevenueCat confirmed the current store account is eligible.
  */
-export function getStorePromoPricing(product: PurchasesPackage['product'] | undefined): StorePromoPricing | null {
+export function getStorePromoPricing(
+  product: PurchasesPackage['product'] | undefined,
+  context: StorePromoPricingContext,
+): StorePromoPricing | null {
   if (!product) return null;
   const p = product as any;
-  const fromPhases = promoFromSubscriptionPhases(p);
-  if (fromPhases) return fromPhases;
-  const fromIos = promoFromIosPaidIntro(p);
-  return fromIos;
+  if (context.platform === 'android') return promoFromAndroidDefaultOption(p);
+  if (context.platform === 'ios' && context.iosEligibility === 'eligible') {
+    return promoFromIosPaidIntro(p);
+  }
+  return null;
 }
 
 /* expo-router route shim */

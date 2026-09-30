@@ -12,14 +12,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser, ensureStableAuthLinkForStableId, waitForAnonAuth } from './cloud_sync';
 import { getAuthUserId, getCanonicalUserId } from './user_id_policy';
-import { normalizeAvatarAuraId } from '../constants/avatar_auras';
 import {
   normalizeProfileCardLevel,
   normalizeProfileCardMotion,
   normalizeProfileCardPublicFocus,
   normalizeProfileCardTheme,
 } from './profile_card_system';
-import type { LeagueCrown } from './services/league_chest_rewards';
 import { DebugLogger } from './debug-logger';
 
 function isJestRuntime(): boolean {
@@ -55,15 +53,12 @@ export interface RemoteLeaderEntry {
   weekPoints?: number;
   weekKey?: string;
   streak?: number;
-  leagueId?: number;
   isPremium?: boolean;
   isVip?: boolean;
   profileCardLevel?: number;
   profileCardTheme?: string;
   profileCardMotion?: string;
   profileCardPublicFocus?: string;
-  leagueCrown?: LeagueCrown;
-  daily7xp?: number;
   daily7time_ms?: number;
 }
 
@@ -423,8 +418,6 @@ export async function fetchGlobalLeaderboard(): Promise<RemoteLeaderEntry[]> {
   try {
     const mapDoc = (doc: any): RemoteLeaderEntry => {
       const data = doc.data();
-      const leagueCrownCount = Math.max(0, Math.floor(Number(data.leagueCrownCount) || 0));
-      const hasLeagueCrown = leagueCrownCount > 0 || data.leagueCrownActive === true || Number(data.leagueCrownExpiresAt) > Date.now();
       return {
         uid: doc.id,
         name: data.name ?? '',
@@ -432,30 +425,16 @@ export async function fetchGlobalLeaderboard(): Promise<RemoteLeaderEntry[]> {
         lang: data.lang ?? 'ru',
         avatar: data.avatar ?? undefined,
         frame: data.frame ?? undefined,
-        aura: normalizeAvatarAuraId(data.aura) ?? undefined,
+        // зачем: D108 — ауры удалены: чужую ауру из документа не читаем и не рисуем.
         weekPoints: data.weekPoints ?? 0,
         weekKey: data.weekKey ?? '',
         streak: data.streak ?? undefined,
-        leagueId: data.leagueId ?? undefined,
         isPremium: data.isPremium ?? false,
         isVip: data.isVip ?? false,
         profileCardLevel: normalizeProfileCardLevel(data.profileCardLevel),
         profileCardTheme: normalizeProfileCardTheme(data.profileCardTheme),
         profileCardMotion: normalizeProfileCardMotion(data.profileCardMotion),
         profileCardPublicFocus: normalizeProfileCardPublicFocus(data.profileCardPublicFocus),
-        leagueCrown: hasLeagueCrown
-          ? {
-              uid: doc.id,
-              name: data.name ?? '',
-              weekId: String(data.leagueCrownWeekId ?? ''),
-              groupId: String(data.leagueCrownGroupId ?? ''),
-              leagueId: Math.max(0, Math.floor(Number(data.leagueId) || 0)),
-              expiresAt: Number(data.leagueCrownExpiresAt),
-              crownCount: Math.max(1, leagueCrownCount),
-              aura: 'league_chest_crown',
-            }
-          : undefined,
-        daily7xp: typeof data.daily7xp === 'number' ? data.daily7xp : undefined,
         daily7time_ms: typeof data.daily7time_ms === 'number' ? data.daily7time_ms : undefined,
       };
     };
@@ -493,7 +472,7 @@ export async function fetchGlobalLeaderboard(): Promise<RemoteLeaderEntry[]> {
   }
 }
 
-// ── Получить глобальный ранг пользователя (сколько людей с XP > моего) ───────
+// ── Получить глобальный ранг пользователя (сколько людей с legacy reward > моего) ───────
 export async function fetchMyGlobalRank(myPoints: number): Promise<number | null> {
   if (!CLOUD_SYNC_ENABLED || myPoints <= 0) return null;
   const db = getFirestore();
@@ -541,7 +520,7 @@ export async function deleteMyLeaderboardEntry(): Promise<void> {
 //
 // Источники имени (в порядке приоритета):
 //   1. leaderboard/{uid}.nameLower — самый достоверный, всегда нормализован.
-//   2. AsyncStorage.user_name — если юзер прошёл онбординг, но ещё не получил XP.
+//   2. AsyncStorage.user_name — если юзер прошёл онбординг, но ещё не получил legacy reward.
 //
 // ВАЖНО: вызывать ДО deleteMyLeaderboardEntry/deleteCloudData — иначе оба
 // источника будут уже стёрты.

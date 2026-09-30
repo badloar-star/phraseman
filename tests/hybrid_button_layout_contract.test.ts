@@ -65,48 +65,4 @@ describe("hybrid button layout contract", () => {
     expect(offenders).toEqual([]);
   });
 
-  test("Season Pass claim actions share width, face height, and edge reservation", () => {
-    const source = fs.readFileSync(
-      path.join(ROOT, "components/SeasonRewardInfoModal.tsx"),
-      "utf8",
-    );
-    const later =
-      source.match(
-        /<PressableHybrid[\s\S]*?testID="season-reward-info-later"[\s\S]*?>/,
-      )?.[0] ?? "";
-    const claim =
-      source.match(
-        /<DuoPressable[\s\S]*?testID="season-reward-info-claim"[\s\S]*?>/,
-      )?.[0] ?? "";
-
-    expect(source).toContain("PRESS.edgeHeight.compact");
-    expect(later).toMatch(
-      /style=\{\{\s*flex:\s*1,\s*paddingBottom:\s*PRESS\.edgeHeight\.compact/,
-    );
-    expect(later).toMatch(
-      /contentStyle=\{\{[\s\S]*?minHeight:\s*ds\.buttonHeight/,
-    );
-    expect(later).toMatch(/contentStyle=\{\{[\s\S]*?alignItems:\s*'center'/);
-    expect(later).toMatch(
-      /contentStyle=\{\{[\s\S]*?justifyContent:\s*'center'/,
-    );
-
-    expect(claim).toContain("wrapStyle={{ flex: 1 }}");
-    expect(claim).toContain("edgeHeight={PRESS.edgeHeight.compact}");
-    expect(claim).toMatch(/style=\{\{[\s\S]*?minHeight:\s*ds\.buttonHeight/);
-    expect(claim).not.toMatch(/style=\{\{[\s\S]*?\bflex:\s*1/);
-  });
-
-  test("flashcard completion actions reserve the same keycap edge depth", () => {
-    const source = fs.readFileSync(
-      path.join(ROOT, "app/flashcards_swipe.tsx"),
-      "utf8",
-    );
-    const start = source.indexOf("<View style={[styles.doneButtons");
-    const end = source.indexOf("</View>", start);
-    const actions = source.slice(start, end);
-
-    expect(actions).toContain("edgeHeight={PRESS.edgeHeight.default}");
-    expect(actions).toContain("paddingBottom: PRESS.edgeHeight.default");
-  });
 });

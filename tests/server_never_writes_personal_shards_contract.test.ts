@@ -1,4 +1,5 @@
 import {
+  existsSync,
   mkdirSync,
   mkdtempSync,
   readFileSync,
@@ -50,8 +51,7 @@ const forbiddenPersonalReadPatterns = [
 ] as const;
 
 const competitiveFiles = [
-  'arena_v2.ts',
-  'arena_expansion.ts',
+  // зачем: D78 — arena_v2.ts и arena_expansion.ts удалены вместе с серверной Ареной.
   'tournaments.ts',
   'tournament_weekly_payout.ts',
 ] as const;
@@ -70,9 +70,8 @@ describe('Economy Constitution: server never owns the personal pearl balance', (
       }
     }
     expect(violations).toEqual([]);
-    const generic = readFileSync(join(functionsRoot, 'shards_apply_delta.ts'), 'utf8');
-    expect(generic).toContain("throw new HttpsError('failed-precondition', 'personal_balance_is_client_owned')");
-    expect(generic).not.toContain("collection('users').doc(uid)");
+    // зачем: D70/D78 — заглушка shards_apply_delta удалена целиком: писателя баланса жемчуга нет вовсе.
+    expect(existsSync(join(functionsRoot, 'shards_apply_delta.ts'))).toBe(false);
     const astGuard = spawnSync(process.execPath, [authorityGuard, '--tree', functionsRoot], { encoding: 'utf8' });
     expect({ status: astGuard.status, stderr: astGuard.stderr }).toEqual({ status: 0, stderr: '' });
   });
@@ -132,9 +131,6 @@ describe('Economy Constitution: server never owns the personal pearl balance', (
   });
 
   test('every competitive pearl delta is an immutable external fact', () => {
-    const arena = readFileSync(join(functionsRoot, 'arena_v2.ts'), 'utf8');
-    expect(arena).toContain("source: 'arena_v2_season'");
-    expect(arena).not.toContain("source: 'arena_v2_spin'");
     const tournaments = readFileSync(join(functionsRoot, 'tournaments.ts'), 'utf8');
     for (const source of [
       'tournament_entry', 'tournament_lobby_leave', 'tournament_cancel', 'tournament_prize',

@@ -13,8 +13,8 @@ import {
 
 import { MOTION_DURATION } from '../constants/motion';
 import { triLang, type Lang } from '../constants/i18n';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { hapticTap } from '../hooks/use-haptics';
-import { LinearGradient } from './SafeLinearGradient';
 import { useTheme } from './ThemeContext';
 import TonalSurface from './TonalSurface';
 
@@ -34,7 +34,8 @@ export default function AiLimitUpsellCard({
   paywallSource,
   testID,
 }: AiLimitUpsellCardProps) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const router = useRouter();
   const opacity = useRef(new Animated.Value(0)).current;
   const translateY = useRef(new Animated.Value(14)).current;
@@ -118,15 +119,15 @@ export default function AiLimitUpsellCard({
   }, [opacity, reduceMotion, scale, translateX, translateY]);
 
   const ctaLabel = triLang(lang, {
-    ru: 'Открыть полный доступ',
-    uk: 'Отримати повний доступ',
-    en: 'Get full access',
-    es: 'Obtener acceso completo',
-    'pt-BR': 'Obter acesso completo',
-    vi: 'Mở toàn quyền truy cập',
-    id: 'Dapatkan akses penuh',
-    tr: 'Tam erişim al',
-    pl: 'Uzyskaj pełny dostęp',
+    ru: 'Посмотреть Plus',
+    uk: 'Переглянути Plus',
+    en: 'Explore Plus',
+    es: 'Ver Plus',
+    'pt-BR': 'Conhecer o Plus',
+    vi: 'Xem Plus',
+    id: 'Lihat Plus',
+    tr: 'Plus’a göz at',
+    pl: 'Zobacz Plus',
   });
 
   return (
@@ -135,25 +136,16 @@ export default function AiLimitUpsellCard({
       style={[
         styles.animatedShell,
         {
-          borderColor: t.accent + '66',
           opacity,
-          shadowColor: t.accent,
+          shadowColor: glass.bg,
           transform: [{ translateY }, { translateX }, { scale }],
         },
       ]}
     >
-      <TonalSurface radius={10} tone="raised" style={styles.card}>
-        <LinearGradient
-          colors={[t.accent, '#FFD66B', '#79D6FF']}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
-          style={styles.topRule}
-          pointerEvents="none"
-        />
-
+      <TonalSurface radius={16} tone="raised" style={[styles.card, { borderColor: glass.glassEdge }]}>
         <View style={styles.row}>
-          <View style={[styles.iconWrap, { backgroundColor: t.textPrimary }]}>
-            <Ionicons name="flash" size={18} color={t.bgCard} />
+          <View style={[styles.iconWrap, { backgroundColor: glass.selected }]}>
+            <Ionicons name="flash" size={18} color={glass.cta} />
           </View>
           <Text style={[styles.title, { color: t.textPrimary, fontSize: f.bodyLg || f.body }]}>
             {title}
@@ -170,14 +162,14 @@ export default function AiLimitUpsellCard({
           }}
           style={({ pressed }) => [
             styles.cta,
-            { backgroundColor: t.accent },
+            { backgroundColor: glass.cta },
             pressed && styles.pressed,
           ]}
         >
-          <Ionicons name="lock-open-outline" size={17} color={t.correctText} />
-          <Text style={[styles.ctaLabel, { color: t.correctText, fontSize: f.label }]} numberOfLines={1}>
+          <Text style={[styles.ctaLabel, { color: glass.ctaInk, fontSize: f.label }]}>
             {ctaLabel}
           </Text>
+          <Ionicons name="arrow-forward" size={17} color={glass.ctaInk} />
         </Pressable>
       </TonalSurface>
     </Animated.View>
@@ -186,24 +178,17 @@ export default function AiLimitUpsellCard({
 
 const styles = StyleSheet.create({
   animatedShell: {
-    borderWidth: 0,
-    elevation: 6,
+    elevation: 3,
     shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.16,
-    shadowRadius: 18,
+    shadowOpacity: 0.12,
+    shadowRadius: 16,
   },
   card: {
-    borderRadius: 10,
-    gap: 12,
+    borderRadius: 16,
+    borderWidth: 1,
+    gap: 14,
     overflow: 'hidden',
-    padding: 12,
-  },
-  topRule: {
-    height: 4,
-    left: 0,
-    position: 'absolute',
-    right: 0,
-    top: 0,
+    padding: 16,
   },
   row: {
     alignItems: 'center',
@@ -213,28 +198,30 @@ const styles = StyleSheet.create({
   },
   iconWrap: {
     alignItems: 'center',
-    borderRadius: 9,
-    height: 34,
+    borderRadius: 11,
+    height: 36,
     justifyContent: 'center',
-    width: 34,
+    width: 36,
   },
   title: {
     flex: 1,
-    fontWeight: '900',
-    lineHeight: 22,
+    fontWeight: '800',
+    lineHeight: 23,
   },
   cta: {
     alignItems: 'center',
     alignSelf: 'stretch',
-    borderRadius: 8,
+    borderRadius: 12,
     flexDirection: 'row',
     gap: 8,
     justifyContent: 'center',
-    minHeight: 44,
-    paddingHorizontal: 12,
+    minHeight: 48,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
   },
   ctaLabel: {
-    fontWeight: '900',
+    flexShrink: 1,
+    fontWeight: '800',
   },
   pressed: {
     opacity: 0.82,

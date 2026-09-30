@@ -1,11 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { reportSwallowed } from './debug-logger';
 export const ONBOARDING_NOTIFICATION_CHOICE_KEY = 'onboarding_trial_reminder_choice_v1';
 
 export type OnboardingNotificationChoice = 'allow' | 'skip' | 'blocked';
 
 export async function readOnboardingNotificationChoice(): Promise<OnboardingNotificationChoice | null> {
-  const stored = await AsyncStorage.getItem(ONBOARDING_NOTIFICATION_CHOICE_KEY).catch(() => null);
+  const stored = await AsyncStorage.getItem(ONBOARDING_NOTIFICATION_CHOICE_KEY).catch((error: unknown) => { reportSwallowed('onboarding_notification_choice:readOnboardingNotificationChoice', error); return null; });
   return stored === 'allow' || stored === 'skip' || stored === 'blocked' ? stored : null;
 }
 

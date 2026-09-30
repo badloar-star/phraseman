@@ -6,7 +6,7 @@ const source = readFileSync(join(process.cwd(), 'app', '(tabs)', 'lessons.tsx'),
 /**
  * Имя файла историческое («Plus-only»). Правило владельца 22.09 отменило
  * «только для Plus»: жемчуг работает и у Free — на уроках без пейвола.
- * Границу держит ядро (lessons_pearl_unlock.ts), UI её не дублирует.
+ * Ядро покупки (lessons_pearl_unlock.ts) удалено D70/D78.
  * Подробный сторож нового правила — lesson_pearl_unlock_free_allowed_contract.
  */
 describe('Plus-only lesson pearl purchase contract', () => {

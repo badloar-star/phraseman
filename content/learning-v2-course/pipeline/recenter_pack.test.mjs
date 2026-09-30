@@ -7,6 +7,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 import { buildRecenterPack } from "./recenter_pack.mjs";
+import { validateRecenterReceipt } from "./recenter_receipt.mjs";
 
 const hash = (value) => crypto.createHash("sha256").update(value).digest("hex");
 const digest = (value) => `sha256:${hash(value)}`;
@@ -283,6 +284,93 @@ test("pack reads source bytes at invocation and records normalized content evide
     const second = buildRecenterPack({ ...fx.input, manifest: updatedManifest });
     assert.notEqual(second.instructionSetDigest, first.instructionSetDigest);
     assert.equal(second.sources[0].content, "instruction-v2");
+  } finally {
+    fs.rmSync(fx.root, { recursive: true, force: true });
+  }
+});
+
+test("clear lesson opening owner verdict bytes invalidate pack identity and PRE_AUTHOR receipt", () => {
+  const fx = fixture();
+  try {
+    const sourcePath = "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md";
+    const ownerVerdictPath = path.join(
+      fx.input.roots.repoRoot,
+      "content/learning-v2-course/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md",
+    );
+    fs.mkdirSync(path.dirname(ownerVerdictPath), { recursive: true });
+    fs.writeFileSync(ownerVerdictPath, "# Owner opening verdict\nopening-v1", "utf8");
+
+    const manifest = structuredClone(fx.manifest);
+    manifest.sourceDocuments[0] = {
+      sourcePath,
+      sha256: hash("# Owner opening verdict\nopening-v1"),
+    };
+    manifest.requirements[0] = {
+      ...manifest.requirements[0],
+      sourcePath,
+      sourceSection: "# Owner opening verdict",
+    };
+    const first = buildRecenterPack({ ...fx.input, manifest });
+    const processEpoch = "7dc288c8-2619-40bd-b954-4a8977a7cdbf";
+    const receipt = {
+      schemaVersion: "learning-v2-recenter-receipt.v1",
+      phase: "PRE_AUTHOR",
+      status: "ON_TRACK",
+      targetLanguage: "de",
+      sessionId: first.sessionId,
+      processEpoch,
+      packDigest: first.packDigest,
+      instructionSetDigest: first.instructionSetDigest,
+      blueprintFingerprint: first.blueprintFingerprint,
+      packetFingerprint: first.packetFingerprint,
+      previousReleasedRangeDigest: first.previousReleasedRangeDigest,
+      preReceiptDigest: null,
+      authoredRuDigest: null,
+      authoredUkDigest: null,
+      releaseAttemptId: null,
+      releaseFingerprint: null,
+      releaseManifestFingerprint: null,
+      mockupFingerprint: null,
+      mockupManifestFingerprint: null,
+      postReceiptDigest: null,
+      contentJudgeBundleDigest: null,
+      releaseAttemptHistoryDigest: null,
+      requirementResults: [{
+        requirementId: "DE-TEST-001",
+        verdict: "PASS",
+        evidence: [{
+          path: first.sources[0].path,
+          sha256: first.sources[0].sha256,
+          section: "# Owner opening verdict",
+          fact: "The opening contract was read from exact bytes.",
+        }],
+        authorDirective: "Keep the session opening clear and scene-bound.",
+        notApplicableReason: null,
+      }],
+      mustFix: [],
+    };
+    assert.deepEqual(validateRecenterReceipt({
+      receipt,
+      pack: first,
+      expectedPhase: "PRE_AUTHOR",
+      processEpoch,
+    }), []);
+
+    fs.writeFileSync(ownerVerdictPath, "# Owner opening verdict\nopening-v2", "utf8");
+    const updatedManifest = structuredClone(manifest);
+    updatedManifest.sourceDocuments[0].sha256 = hash("# Owner opening verdict\nopening-v2");
+    const second = buildRecenterPack({ ...fx.input, manifest: updatedManifest });
+    assert.notEqual(second.instructionSetDigest, first.instructionSetDigest);
+    assert.notEqual(second.packDigest, first.packDigest);
+    const issues = validateRecenterReceipt({
+      receipt,
+      pack: second,
+      expectedPhase: "PRE_AUTHOR",
+      processEpoch,
+    }).join("\n");
+    assert.match(issues, /pack_digest_stale/u);
+    assert.match(issues, /instruction_set_digest_stale/u);
+    assert.match(issues, /evidence_digest_stale:DE-TEST-001:0/u);
   } finally {
     fs.rmSync(fx.root, { recursive: true, force: true });
   }

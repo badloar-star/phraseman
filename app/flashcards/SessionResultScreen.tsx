@@ -2,7 +2,7 @@
  * cards-2.0 (E5): единый экран результата сессии (§3.10 мастер-плана).
  * Встраиваемый компонент (НЕ роут): сессии рендерят его вместо своего done-блока.
  *
- * Показывает «верно / ошибок / точность» и XP (общая механика приложения).
+ * Показывает «верно / ошибок / точность».
  * CTA: «Добить: Ещё учу (N)» (второй раунд по ошибочным) + «Готово».
  */
 import React, { useEffect, useRef, useState } from 'react';
@@ -10,36 +10,59 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
+  useWindowDimensions,
   View,
 } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useTheme } from '../../components/ThemeContext';
+import { FONT_SCALE, useTheme } from '../../components/ThemeContext';
 import { themeUiAsset } from '../theme_ui_assets';
 import { useLang } from '../../components/LangContext';
 import ScreenGradient from '../../components/ScreenGradient';
 import ContentWrap from '../../components/ContentWrap';
-import XpGainBadge from '../../components/XpGainBadge';
+import PressableHybrid from '../../components/PressableHybrid';
+import { LinearGradient } from '../../components/SafeLinearGradient';
 import { AnimatedCountUpText } from '../../components/AnimatedCountUpText';
 import FeedbackRatingCard from '../../components/FeedbackRatingCard';
-import { buttonForegroundForBackground } from '../../constants/color_contrast';
 import { triLang } from '../../constants/i18n';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { useScreen } from '../../hooks/use-screen';
 import { shouldPromptFeedback, markFeedbackPrompted } from '../feedback_prompt_throttle';
+import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { fcHaptic, playSfx } from './SoundService';
 import { LearningV2RuneFlight } from '../../components/LearningV2RuneFlight';
 import { usePracticeRuneFlight } from '../../hooks/usePracticeRuneFlight';
 
 // ── Экран результата ──────────────────────────────────────────────────────────
 
+type ResultGlassTokens = ReturnType<typeof liquidGlassTokens>;
+
+function ResultSurfaceSheen({ glass, testID }: Readonly<{ glass: ResultGlassTokens; testID: string }>) {
+  return (
+    <LinearGradient
+      pointerEvents="none"
+      testID={testID}
+      colors={[glass.lightTint, 'transparent']}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 0.9, y: 1 }}
+      style={[StyleSheet.absoluteFill, styles.surfaceSheen]}
+    />
+  );
+}
+
+function shouldStackResultStats(availableWidth: number, nativeFontScale: number, preferenceScale: number): boolean {
+  const layoutScale = Math.max(1, nativeFontScale * preferenceScale);
+  return availableWidth < 312 * layoutScale;
+}
+
 function ResultRuneAward({ amount, testID }: Readonly<{ amount: number; testID: string }>) {
-  const { theme: t, f, themeMode } = useTheme();
+  const { theme: t, themeMode, fontSize, uiScale } = useTheme();
   const { lang } = useLang();
   const runeFlight = usePracticeRuneFlight();
   const [originReady, setOriginReady] = useState(false);
   const [targetReady, setTargetReady] = useState(false);
   const playedRef = useRef(false);
+  const textScale = (FONT_SCALE[fontSize] / FONT_SCALE.medium) * uiScale;
 
   useEffect(() => {
     if (amount <= 0 || !originReady || !targetReady || playedRef.current) return undefined;
@@ -61,10 +84,7 @@ function ResultRuneAward({ amount, testID }: Readonly<{ amount: number; testID: 
           es: `Runas ganadas: ${amount}`, 'pt-BR': `Runas ganhas: ${amount}`, vi: `Rune nhận được: ${amount}`,
           id: `Rune diperoleh: ${amount}`, tr: `Kazanılan rün: ${amount}`, pl: `Zdobyte runy: ${amount}`,
         })}
-        style={[
-          styles.runeAward,
-          { backgroundColor: t.bgCard },
-        ]}
+        style={styles.runeAward}
       >
         <Image
           source={themeUiAsset(themeMode, 'rune')}
@@ -74,10 +94,10 @@ function ResultRuneAward({ amount, testID }: Readonly<{ amount: number; testID: 
           accessibilityElementsHidden
           importantForAccessibility="no"
         />
-        <Text accessible={false} style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>+</Text>
+        <Text accessible={false} style={{ color: t.textPrimary, fontSize: 34 * textScale, lineHeight: 40 * textScale, fontWeight: '700' }}>+</Text>
         <AnimatedCountUpText
           value={amount}
-          style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700', minWidth: 24 }}
+          style={{ color: t.textPrimary, fontSize: 34 * textScale, lineHeight: 40 * textScale, fontWeight: '700', minWidth: 24 }}
           accessible={false}
           importantForAccessibility="no-hide-descendants"
         />
@@ -107,8 +127,6 @@ export type SessionResultScreenProps = {
   correct: number;
   /** Ошибок. */
   wrong: number;
-  /** Начисленный XP (итог сессии). */
-  xpGained: number;
   /**
    * Руны, заработанные в сессии (владелец, 2026-08-27). Опционален и не
    * влияет на существующие вызовы без него; все активные режимы карточек
@@ -145,7 +163,6 @@ export type SessionResultScreenProps = {
 function SessionResultScreenImpl({
   correct,
   wrong,
-  xpGained,
   runesGained = 0,
   learnLeft,
   onRetryWrong,
@@ -156,12 +173,17 @@ function SessionResultScreenImpl({
   feedback,
   testID = 'fc-session-result',
 }: SessionResultScreenProps) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, liquidGlassThemeId, fontSize, uiScale } = useTheme();
   const { lang } = useLang();
+  const insets = useStableSafeAreaInsets();
+  const { width, fontScale: nativeFontScale } = useWindowDimensions();
+  const { contentMaxW } = useScreen();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  const textScale = (FONT_SCALE[fontSize] / FONT_SCALE.medium) * uiScale;
+  const safeWindowWidth = Math.max(0, width - insets.left - insets.right);
+  const availableStatsWidth = Math.max(0, Math.min(contentMaxW, safeWindowWidth) - 40);
+  const stackStats = shouldStackResultStats(availableStatsWidth, nativeFontScale, textScale);
   const accent = accentColor ?? t.accent;
-  const ctaTextColor = accentColor
-    ? buttonForegroundForBackground(accent)
-    : t.correctText;
 
   const total = correct + wrong;
   const accuracyPct = total > 0 ? Math.round((correct / total) * 100) : 0;
@@ -189,7 +211,16 @@ function SessionResultScreenImpl({
 
   return (
     <ScreenGradient>
-      <SafeAreaView style={{ flex: 1 }}>
+      <View
+        testID={`${testID}-safe-frame`}
+        style={{
+          flex: 1,
+          paddingTop: insets.top,
+          paddingRight: insets.right,
+          paddingBottom: insets.bottom,
+          paddingLeft: insets.left,
+        }}
+      >
         <ContentWrap>
           <ScrollView decelerationRate="fast"
             style={styles.scroll}
@@ -199,8 +230,35 @@ function SessionResultScreenImpl({
             keyboardShouldPersistTaps="handled"
           >
           <View style={styles.container} testID={testID}>
+            <PressableHybrid
+              accessibilityLabel={triLang(lang, {
+                ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar',
+                vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij',
+              })}
+              testID={`${testID}-close`}
+              variant="icon"
+              withHaptic={false}
+              withSound={false}
+              onPress={() => {
+                fcHaptic('tap');
+                onDone();
+              }}
+              style={styles.closeTarget}
+              contentStyle={[
+                styles.closeVisual,
+                { backgroundColor: glass.opaqueControl, borderColor: glass.glassEdge },
+              ]}
+            >
+              <Ionicons name="close" size={20} color={t.textPrimary} />
+            </PressableHybrid>
             <View style={styles.centerBlock}>
-              <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
+              <Text
+                testID={`${testID}-title`}
+                style={[
+                  styles.title,
+                  { color: t.textPrimary, fontSize: 30 * textScale, lineHeight: 36 * textScale },
+                ]}
+              >
                 {triLang(lang, {
                   ru: 'Тренировка завершена', uk: 'Тренування завершено', en: 'Practice complete', es: 'Práctica terminada',
                   'pt-BR': 'Prática concluída', vi: 'Đã hoàn thành luyện tập', id: 'Latihan selesai', tr: 'Alıştırma tamamlandı', pl: 'Ćwiczenie ukończone',
@@ -213,68 +271,76 @@ function SessionResultScreenImpl({
                   testID={`${testID}-score`}
                   style={[styles.scorePill, { backgroundColor: `${accent}1A`, borderColor: `${accent}66` }]}
                 >
-                  <Text style={{ color: accent, fontSize: f.body, fontWeight: '900', letterSpacing: 0.4 }}>
+                  <Text style={{ color: accent, fontSize: 15 * textScale, lineHeight: 20 * textScale, fontWeight: '700', letterSpacing: 0.4, textAlign: 'center' }}>
                     {scoreText}
                   </Text>
                 </View>
               ) : null}
 
               {/* Единый счёт для всех активных режимов карточек. */}
-              <View style={[styles.statsCard, { backgroundColor: t.bgCard, borderColor: t.border }]}>
+              <View
+                testID={`${testID}-stats`}
+                style={[
+                  styles.statsCard,
+                  stackStats && styles.statsCardStacked,
+                  { backgroundColor: glass.opaqueCard, borderColor: glass.glassEdge },
+                ]}
+              >
+                <ResultSurfaceSheen glass={glass} testID={`${testID}-stats-sheen`} />
                 <>
                   <View
                     accessible
                     accessibilityLabel={`${correct} ${triLang(lang, { ru: 'верно', uk: 'вірно', en: 'correct', es: 'correcto', 'pt-BR': 'correto', vi: 'đúng', id: 'benar', tr: 'doğru', pl: 'poprawnie' })}`}
-                    style={styles.stat}
+                    style={[styles.stat, stackStats && styles.statStacked]}
                   >
                     <AnimatedCountUpText
                       value={correct}
-                      style={{ color: t.correct, fontSize: f.numLg, fontWeight: '900' }}
+                      style={{ color: t.correct, fontSize: 30 * textScale, lineHeight: 34 * textScale, fontWeight: '700', textAlign: 'center' }}
                       accessible={false}
                       importantForAccessibility="no-hide-descendants"
                     />
-                    <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
+                    <Text style={{ color: t.textMuted, fontSize: 13 * textScale, lineHeight: 18 * textScale, fontWeight: '700', textAlign: 'center' }}>
                       {triLang(lang, {
                         ru: 'верно', uk: 'вірно', en: 'correct', es: 'correcto',
                         'pt-BR': 'correto', vi: 'đúng', id: 'benar', tr: 'doğru', pl: 'poprawnie',
                       })}
                     </Text>
                   </View>
-                  <View style={[styles.statDivider, { backgroundColor: t.border }]} />
+                  <View style={[styles.statDivider, stackStats && styles.statDividerStacked, { backgroundColor: glass.glassEdge }]} />
                   <View
                     accessible
                     accessibilityLabel={`${wrong} ${triLang(lang, { ru: 'ошибок', uk: 'помилок', en: 'mistakes', es: 'errores', 'pt-BR': 'erros', vi: 'lỗi', id: 'kesalahan', tr: 'hata', pl: 'błędów' })}`}
-                    style={styles.stat}
+                    style={[styles.stat, stackStats && styles.statStacked]}
                   >
                     <AnimatedCountUpText
                       value={wrong}
-                      style={{ color: t.wrong, fontSize: f.numLg, fontWeight: '900' }}
+                      style={{ color: t.wrong, fontSize: 30 * textScale, lineHeight: 34 * textScale, fontWeight: '700', textAlign: 'center' }}
                       accessible={false}
                       importantForAccessibility="no-hide-descendants"
                     />
-                    <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
+                    <Text style={{ color: t.textMuted, fontSize: 13 * textScale, lineHeight: 18 * textScale, fontWeight: '700', textAlign: 'center' }}>
                       {triLang(lang, {
                         ru: 'ошибок', uk: 'помилок', en: 'mistakes', es: 'errores',
                         'pt-BR': 'erros', vi: 'lỗi', id: 'kesalahan', tr: 'hata', pl: 'błędów',
                       })}
                     </Text>
                   </View>
-                  <View style={[styles.statDivider, { backgroundColor: t.border }]} />
+                  <View style={[styles.statDivider, stackStats && styles.statDividerStacked, { backgroundColor: glass.glassEdge }]} />
                   <View
                     accessible
                     accessibilityLabel={`${accuracyPct}% ${triLang(lang, { ru: 'точность', uk: 'точність', en: 'accuracy', es: 'precisión', 'pt-BR': 'precisão', vi: 'độ chính xác', id: 'akurasi', tr: 'doğruluk', pl: 'dokładność' })}`}
-                    style={styles.stat}
+                    style={[styles.stat, stackStats && styles.statStacked]}
                   >
-                    <View accessible={false} style={{ flexDirection: 'row', alignItems: 'baseline' }}>
+                    <View accessible={false} style={{ flexDirection: 'row', alignItems: 'baseline', flexShrink: 1 }}>
                       <AnimatedCountUpText
                         value={accuracyPct}
-                        style={{ color: t.textPrimary, fontSize: f.numLg, fontWeight: '900' }}
+                        style={{ color: t.textPrimary, fontSize: 30 * textScale, lineHeight: 34 * textScale, fontWeight: '700', textAlign: 'center' }}
                         accessible={false}
                         importantForAccessibility="no-hide-descendants"
                       />
-                      <Text accessible={false} style={{ color: t.textPrimary, fontSize: f.numLg, fontWeight: '900' }}>%</Text>
+                      <Text accessible={false} style={{ color: t.textPrimary, fontSize: 30 * textScale, lineHeight: 34 * textScale, fontWeight: '700' }}>%</Text>
                     </View>
-                    <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
+                    <Text style={{ color: t.textMuted, fontSize: 13 * textScale, lineHeight: 18 * textScale, fontWeight: '700', textAlign: 'center' }}>
                       {triLang(lang, {
                         ru: 'точность', uk: 'точність', en: 'accuracy', es: 'precisión',
                         'pt-BR': 'precisão', vi: 'độ chính xác', id: 'akurasi', tr: 'doğruluk', pl: 'dokładność',
@@ -283,13 +349,6 @@ function SessionResultScreenImpl({
                   </View>
                 </>
               </View>
-
-              {/* XP */}
-              {xpGained > 0 ? (
-                <View style={{ marginTop: 18, alignItems: 'center' }}>
-                  <XpGainBadge amount={xpGained} visible />
-                </View>
-              ) : null}
 
               {/* Руны: единое итоговое начисление для активных режимов карточек. */}
               {runesGained > 0 ? <ResultRuneAward amount={runesGained} testID={testID} /> : null}
@@ -322,6 +381,7 @@ function SessionResultScreenImpl({
                       vi: 'Đánh giá', id: 'Penilaian', tr: 'Puan', pl: 'Ocena',
                     })}
                     testID={`${testID}-feedback`}
+                    presentation="liquid-glass-rate"
                   />
                 </View>
               ) : null}
@@ -329,19 +389,43 @@ function SessionResultScreenImpl({
 
             {/* CTA */}
             <View style={styles.ctaBlock}>
+              <PressableHybrid
+                accessibilityRole="button"
+                variant="primary"
+                withHaptic={false}
+                withSound={false}
+                onPress={() => {
+                  fcHaptic('tap');
+                  onDone();
+                }}
+                testID={`${testID}-done`}
+                style={styles.actionTarget}
+                contentStyle={[styles.doneBtn, { backgroundColor: glass.cta }]}
+              >
+                <Text style={{ color: glass.ctaInk, fontSize: 17 * textScale, lineHeight: 22 * textScale, fontWeight: '700', textAlign: 'center', flexShrink: 1 }}>
+                  {triLang(lang, {
+                    ru: 'Готово', uk: 'Готово', en: 'Done', es: 'Listo',
+                    'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe',
+                  })}
+                </Text>
+              </PressableHybrid>
               {onRetryWrong && (learnLeft > 0 || retryLabel) ? (
                 <View style={styles.retryWrap}>
-                  <TouchableOpacity
+                  <PressableHybrid
                     accessibilityRole="button"
+                    variant="secondary"
+                    withHaptic={false}
+                    withSound={false}
                     onPress={() => {
                       fcHaptic('tap');
                       onRetryWrong();
                     }}
                     testID={`${testID}-retry`}
-                    style={[styles.retryBtn, { borderColor: accent, backgroundColor: `${accent}14` }]}
+                    style={styles.actionTarget}
+                    contentStyle={styles.retryBtn}
                   >
                     <Ionicons name="refresh" size={18} color={accent} />
-                    <Text style={{ color: accent, fontSize: f.body, fontWeight: '800' }}>
+                    <Text style={{ color: accent, fontSize: 16 * textScale, lineHeight: 22 * textScale, fontWeight: '700', textAlign: 'center', flexShrink: 1 }}>
                       {retryLabel ??
                         triLang(lang, {
                           ru: `Добить: Ещё учу (${learnLeft})`,
@@ -355,30 +439,14 @@ function SessionResultScreenImpl({
                           pl: `Dokończ: Jeszcze się uczę (${learnLeft})`,
                         })}
                     </Text>
-                  </TouchableOpacity>
+                  </PressableHybrid>
                 </View>
               ) : null}
-              <TouchableOpacity
-                accessibilityRole="button"
-                onPress={() => {
-                  fcHaptic('tap');
-                  onDone();
-                }}
-                testID={`${testID}-done`}
-                style={[styles.doneBtn, { backgroundColor: accent }]}
-              >
-                <Text style={{ color: ctaTextColor, fontSize: f.body, fontWeight: '800' }}>
-                  {triLang(lang, {
-                    ru: 'Готово', uk: 'Готово', en: 'Done', es: 'Listo',
-                    'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe',
-                  })}
-                </Text>
-              </TouchableOpacity>
             </View>
           </View>
           </ScrollView>
         </ContentWrap>
-      </SafeAreaView>
+      </View>
     </ScreenGradient>
   );
 }
@@ -386,26 +454,36 @@ function SessionResultScreenImpl({
 const styles = StyleSheet.create({
   scroll: { flex: 1 },
   scrollContent: { flexGrow: 1 },
-  container: { flexGrow: 1, paddingHorizontal: 24, paddingBottom: 24 },
-  centerBlock: { flexGrow: 1, flexShrink: 0, alignItems: 'center', justifyContent: 'center' },
-  title: { fontWeight: '800', textAlign: 'center', marginBottom: 18 },
+  container: { flexGrow: 1, paddingHorizontal: 20, paddingBottom: 20 },
+  closeTarget: { width: 48, height: 48, justifyContent: 'flex-end', alignSelf: 'flex-start' },
+  closeVisual: {
+    width: 42,
+    height: 42,
+    borderRadius: 21,
+    borderWidth: 1,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  centerBlock: { alignItems: 'center' },
+  title: { width: '100%', minWidth: 0, flexShrink: 1, fontWeight: '700', textAlign: 'center', marginTop: 18 },
   scorePill: {
     borderRadius: 999,
     borderWidth: 1,
     paddingHorizontal: 16,
     paddingVertical: 6,
-    marginBottom: 12,
+    marginTop: 12,
   },
   runeAward: {
-    marginTop: 18,
+    marginTop: 12,
+    minHeight: 54,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
-    borderRadius: 12,
-    paddingHorizontal: 16,
-    paddingVertical: 10,
+    justifyContent: 'center',
+    gap: 14,
+    paddingHorizontal: 12,
   },
-  runeAsset: { width: 20, height: 20 },
+  runeAsset: { width: 44, height: 44 },
   rewardFlightOrigin: {
     position: 'absolute',
     left: '50%',
@@ -417,29 +495,37 @@ const styles = StyleSheet.create({
   },
   statsCard: {
     flexDirection: 'row',
-    borderRadius: 18,
-    borderWidth: StyleSheet.hairlineWidth,
+    borderRadius: 16,
+    borderWidth: 1,
     overflow: 'hidden',
     width: '100%',
-    marginTop: 14,
+    marginTop: 20,
   },
-  stat: { flex: 1, alignItems: 'center', paddingVertical: 16, gap: 4 },
+  statsCardStacked: { flexDirection: 'column' },
+  surfaceSheen: { opacity: 0.08 },
+  stat: { flex: 1, minWidth: 0, alignItems: 'center', justifyContent: 'center', paddingVertical: 15, paddingHorizontal: 4, gap: 4 },
+  statStacked: { flex: 0, width: '100%' },
   statDivider: { width: StyleSheet.hairlineWidth },
-  ctaBlock: { gap: 10 },
+  statDividerStacked: { width: '100%', height: StyleSheet.hairlineWidth },
+  ctaBlock: { gap: 14, marginTop: 16 },
+  actionTarget: { minWidth: 0 },
   retryWrap: { position: 'relative', overflow: 'visible' },
   retryBtn: {
+    minHeight: 48,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     gap: 8,
-    borderRadius: 16,
-    borderWidth: 1.5,
-    paddingVertical: 14,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
   },
   doneBtn: {
-    borderRadius: 16,
-    paddingVertical: 15,
+    minHeight: 52,
+    borderRadius: 26,
     alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 12,
   },
 });
 

@@ -25,9 +25,9 @@ describe('Olive stats, update and settings chrome', () => {
   it('uses dedicated static Olive palettes outside cosmic/default mappings', () => {
     const update = read('components/UpdateModal.tsx');
     const settings = read('components/settings/SettingsGroup.tsx');
-    expect(update).toContain('const OLIVE_PALETTE');
-    expect(update).toContain("themeMode === 'olive' ? OLIVE_PALETTE");
-    expect(update).toContain("primaryText: '#07110A'");
+    expect(update).toContain("import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';");
+    expect(update).toContain('const { liquidGlassThemeId } = useTheme();');
+    expect(update).toContain('const glass = liquidGlassTokens(liquidGlassThemeId);');
     expect(settings).toContain('const SETTINGS_TILE_OLIVE');
     expect(settings).toContain("themeMode === 'olive'");
     expect(settings).toContain("color={themeMode === 'olive' ? OLIVE_RICH.ivory : '#FFFFFF'}");

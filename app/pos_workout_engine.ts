@@ -34,7 +34,7 @@ export interface PosWorkoutProfile {
 
 export interface PosMasteryEntry {
   category: WordCategory;
-  xp: number;
+  practiceScore: number;
   level: number;
   correct: number;
   wrong: number;
@@ -45,7 +45,7 @@ export interface PosMasteryEntry {
 
 export interface PosMasteryReward {
   category: WordCategory;
-  xpDelta: number;
+  practiceScoreDelta: number;
   previousLevel: number;
   entry: PosMasteryEntry;
   leveledUp: boolean;
@@ -87,7 +87,7 @@ export interface TrainerCategoryLike {
   arenaQuestion?: { correct?: string; rule?: string };
 }
 
-const POS_LEVEL_XP = 120;
+const POS_LEVEL_SCORE = 120;
 
 const POS_DRILL_OPTIONS: Partial<Record<Exclude<WordCategory, 'other'>, string[]>> = {
   syntax: ['give it to me', 'give me the book', 'send it to her', 'buy it for me'],
@@ -685,8 +685,8 @@ const PROFILES: Record<Exclude<WordCategory, 'other'>, PosWorkoutProfile> = {
   },
 };
 
-function levelFromXp(xp: number): number {
-  return Math.max(1, Math.floor(xp / POS_LEVEL_XP) + 1);
+function levelFromPracticeScore(score: number): number {
+  return Math.max(1, Math.floor(score / POS_LEVEL_SCORE) + 1);
 }
 
 function masteryKey(category: WordCategory): WordCategory {
@@ -821,7 +821,7 @@ export async function recordPosWorkoutResult(
   const now = Date.now();
   const previous = items[key] ?? {
     category,
-    xp: 0,
+    practiceScore: 0,
     level: 1,
     correct: 0,
     wrong: 0,
@@ -829,13 +829,16 @@ export async function recordPosWorkoutResult(
     bestStreak: 0,
     lastPracticed: now,
   };
+  const previousPracticeScore = Number.isFinite(previous.practiceScore)
+    ? Math.max(0, Math.floor(previous.practiceScore))
+    : 0;
   const previousLevel = previous.level;
-  const xpDelta = correct ? 16 : 6;
+  const practiceScoreDelta = correct ? 16 : 6;
   const streak = correct ? previous.streak + 1 : 0;
   const next: PosMasteryEntry = {
     ...previous,
-    xp: previous.xp + xpDelta,
-    level: levelFromXp(previous.xp + xpDelta),
+    practiceScore: previousPracticeScore + practiceScoreDelta,
+    level: levelFromPracticeScore(previousPracticeScore + practiceScoreDelta),
     correct: previous.correct + (correct ? 1 : 0),
     wrong: previous.wrong + (correct ? 0 : 1),
     streak,
@@ -846,7 +849,7 @@ export async function recordPosWorkoutResult(
   await saveMastery(items, studyTarget);
   return {
     category,
-    xpDelta,
+    practiceScoreDelta,
     previousLevel,
     entry: next,
     leveledUp: next.level > previousLevel,
@@ -861,7 +864,7 @@ export async function getPosMasterySnapshot(studyTarget?: RuntimeStudyTarget): P
       return items[key];
     })
     .filter((entry): entry is PosMasteryEntry => Boolean(entry))
-    .sort((a, b) => b.level - a.level || b.xp - a.xp || b.lastPracticed - a.lastPracticed);
+    .sort((a, b) => b.level - a.level || b.practiceScore - a.practiceScore || b.lastPracticed - a.lastPracticed);
   return snapshot;
 }
 

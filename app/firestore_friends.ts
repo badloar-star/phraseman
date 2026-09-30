@@ -74,7 +74,6 @@ export type InviteCodeLookupSource = 'friend_code_index' | 'legacy_friend_code' 
 /** Публичный профиль, который сервер возвращает сразу при поиске по нику (из users.progress). */
 export type LookupUserProfile = {
   name?: string;
-  totalXp?: number;
   level?: number;
   avatar?: string;
   frame?: string;
@@ -516,7 +515,6 @@ export async function lookupUserByNickname(query: string): Promise<InviteCodeLoo
           uid: string;
           source?: 'name_index';
           name?: string;
-          totalXp?: number;
           level?: number;
           avatar?: string;
           frame?: string;
@@ -546,7 +544,6 @@ export async function lookupUserByNickname(query: string): Promise<InviteCodeLoo
         typeof v === 'string' ? v.normalize('NFKC').trim().slice(0, max) : '';
       const profile: LookupUserProfile = {
         ...(name ? { name } : {}),
-        totalXp: num(u?.totalXp),
         level: num(u?.level),
         avatar: strf(u?.avatar, 64),
         frame: strf(u?.frame, 64),

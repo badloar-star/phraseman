@@ -9,7 +9,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Reanimated, { FadeInDown } from 'react-native-reanimated';
 
@@ -20,6 +20,7 @@ import { sceneThemeFor } from '../constants/dialogSceneThemes';
 import { noAndroidOutline } from '../constants/androidGlow';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
+import { glassFill } from './GlassSurface';
 import ScreenGradient from './ScreenGradient';
 import PressableScale from './feedback/PressableScale';
 import { triLang } from '../constants/i18n';
@@ -190,7 +191,7 @@ export default function AiDialogBriefingScreen({
             {briefingBody ? (
               <Reanimated.View
                 entering={enterAt(90)}
-                style={{ padding: ds.spacing.lg, borderRadius: ds.radius.xl, backgroundColor: t.bgCard, overflow: 'hidden' }}
+                style={{ padding: ds.spacing.lg, borderRadius: ds.radius.xl, backgroundColor: glassFill(t.bgCard, 0.46), overflow: 'hidden' }}
               >
                 <LinearGradient
                   pointerEvents="none"
@@ -207,7 +208,7 @@ export default function AiDialogBriefingScreen({
               <>
                 <Reanimated.View
                   entering={enterAt(90)}
-                  style={{ gap: ds.spacing.sm, padding: ds.spacing.lg, borderRadius: ds.radius.xl, backgroundColor: t.bgCard, overflow: 'hidden' }}
+                  style={{ gap: ds.spacing.sm, padding: ds.spacing.lg, borderRadius: ds.radius.xl, backgroundColor: glassFill(t.bgCard, 0.46), overflow: 'hidden' }}
                 >
                   <LinearGradient
                     pointerEvents="none"
@@ -229,7 +230,7 @@ export default function AiDialogBriefingScreen({
 
                 <Reanimated.View
                   entering={enterAt(160)}
-                  style={{ gap: ds.spacing.sm, padding: ds.spacing.lg, borderRadius: ds.radius.xl, backgroundColor: t.bgSurface }}
+                  style={{ gap: ds.spacing.sm, padding: ds.spacing.lg, borderRadius: ds.radius.xl, backgroundColor: glassFill(t.bgCard, 0.62) }}
                 >
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7 }}>
                     <Ionicons name="chatbubble-ellipses-outline" size={14} color={t.textMuted} />
@@ -244,7 +245,11 @@ export default function AiDialogBriefingScreen({
               </>
             )}
 
-            <Reanimated.View entering={enterAt(220)} style={{ position: 'relative' }}>
+          </Reanimated.View>
+        </ScrollView>
+
+        {/* CTA stays above the bottom safe area while the scenario itself scrolls. */}
+        <Reanimated.View entering={enterAt(220)} style={styles.fixedFooter}>
               {/* зачем (PM-086): ценник энергии на кнопке убран — сам расход энергии не менялся. */}
               {purchase ? (
                 <>
@@ -340,10 +345,16 @@ export default function AiDialogBriefingScreen({
                   <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '700' }}>{copy.start}</Text>
                 </PressableScale>
               )}
-            </Reanimated.View>
-          </Reanimated.View>
-        </ScrollView>
+        </Reanimated.View>
       </SafeAreaView>
     </ScreenGradient>
   );
 }
+
+const styles = StyleSheet.create({
+  fixedFooter: {
+    paddingHorizontal: 20,
+    paddingTop: 12,
+    paddingBottom: 12,
+  },
+});

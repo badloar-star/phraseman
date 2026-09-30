@@ -26,7 +26,6 @@ const BUNDLED_COMPATIBILITY_SURFACES = [
   'lesson',
   'lesson_intro',
   'quiz',
-  'plan_content',
 ] as const satisfies readonly CoursePackSurface[];
 
 function makeBundledCompatibilityEntry(

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "dialogue-v2-locale-draft.v1",
+  "status": "draft_not_releaseable",
+  "sourceScenarioId": "social_11",
+  "sourceLedger": { "path": "dialogue_v2_authoring_ru.json", "revision": "v1" },
+  "targets": {
+    "en": {
+      "content": { "title": "Bring a group plan together", "briefing": "You are chatting in the Social world. Your task is to bring plans together in a group. Do not end the conversation in one message: follow the steps and react to both participants.", "completionTone": "confidently, with reasons" },
+      "personas": [{ "id": "zoe", "displayName": "Zoe", "styleNote": "She chats lightly and sometimes uses a gentle joke to help you sound more natural." }, { "id": "denis", "displayName": "Denis", "styleNote": "He does not rush, reads details carefully, and replies without unnecessary noise." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Greet the group" }, { "id": "objective_02", "label": "State the shared goal" }, { "id": "objective_03", "label": "Offer a first option" }, { "id": "objective_04", "label": "Ask about each person's limits" }, { "id": "objective_05", "label": "Compare two answers" }, { "id": "objective_06", "label": "Suggest a compromise" }, { "id": "objective_07", "label": "Ask for explicit confirmation" }, { "id": "objective_08", "label": "Record the final plan" }
+      ]
+    },
+    "es": {
+      "content": { "title": "Organizar planes en un grupo", "briefing": "Estás chateando en el mundo «Social». Tu tarea es organizar unos planes en grupo. No cierres la conversación con un solo mensaje: sigue los pasos y responde a las dos personas.", "completionTone": "con seguridad y explicando las razones" },
+      "personas": [{ "id": "zoe", "displayName": "Zoe", "styleNote": "Habla con ligereza y a veces usa una broma suave para ayudarte a sonar más natural." }, { "id": "denis", "displayName": "Denis", "styleNote": "No tiene prisa, lee los detalles con atención y responde sin ruido innecesario." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Saludar al grupo" }, { "id": "objective_02", "label": "Formular el objetivo común" }, { "id": "objective_03", "label": "Proponer una primera opción" }, { "id": "objective_04", "label": "Preguntar los límites de cada persona" }, { "id": "objective_05", "label": "Comparar dos respuestas" }, { "id": "objective_06", "label": "Proponer un compromiso" }, { "id": "objective_07", "label": "Pedir una confirmación explícita" }, { "id": "objective_08", "label": "Dejar el plan por escrito" }
+      ]
+    },
+    "fr": {
+      "content": { "title": "Mettre au point un plan de groupe", "briefing": "Tu échanges des messages dans le monde «Social». Ton objectif est de mettre au point un plan dans un groupe. Ne termine pas la conversation en un seul message : suis les étapes et réponds aux deux personnes.", "completionTone": "avec assurance et en expliquant les raisons" },
+      "personas": [{ "id": "zoe", "displayName": "Zoé", "styleNote": "Elle discute avec légèreté et glisse parfois une petite blague pour t'aider à parler plus naturellement." }, { "id": "denis", "displayName": "Denis", "styleNote": "Il ne se presse pas, lit les détails attentivement et répond sans bruit inutile." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Saluer le groupe" }, { "id": "objective_02", "label": "Formuler l'objectif commun" }, { "id": "objective_03", "label": "Proposer une première option" }, { "id": "objective_04", "label": "Demander les contraintes de chacun" }, { "id": "objective_05", "label": "Comparer deux réponses" }, { "id": "objective_06", "label": "Proposer un compromis" }, { "id": "objective_07", "label": "Demander une confirmation explicite" }, { "id": "objective_08", "label": "Fixer le plan final" }
+      ]
+    },
+    "de": {
+      "content": { "title": "Pläne in einer Gruppe zusammenführen", "briefing": "Du schreibst im Bereich „Social“. Deine Aufgabe: Pläne in einer Gruppe zusammenführen. Beende das Gespräch nicht mit nur einer Nachricht: Gehe die Schritte durch und reagiere auf beide Teilnehmende.", "completionTone": "sicher und mit Begründungen" },
+      "personas": [{ "id": "zoe", "displayName": "Zoe", "styleNote": "Sie schreibt locker und hilft dir manchmal mit einem kleinen Witz, natürlicher zu klingen." }, { "id": "denis", "displayName": "Denis", "styleNote": "Er lässt sich Zeit, liest Details aufmerksam und antwortet ohne unnötiges Gerede." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Die Gruppe begrüßen" }, { "id": "objective_02", "label": "Das gemeinsame Ziel formulieren" }, { "id": "objective_03", "label": "Eine erste Option vorschlagen" }, { "id": "objective_04", "label": "Nach den Grenzen aller fragen" }, { "id": "objective_05", "label": "Zwei Antworten vergleichen" }, { "id": "objective_06", "label": "Einen Kompromiss vorschlagen" }, { "id": "objective_07", "label": "Um eine klare Bestätigung bitten" }, { "id": "objective_08", "label": "Den Plan festhalten" }
+      ]
+    }
+  }
+}

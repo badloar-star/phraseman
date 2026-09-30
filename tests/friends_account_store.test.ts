@@ -33,13 +33,4 @@ describe('friends account store', () => {
     expect(detach).toHaveBeenCalledTimes(1);
   });
 
-  test('gift inbox projection is cached until a consumer takes it', () => {
-    const store = createFriendsAccountStore({ listen: () => () => {} });
-    const gift = { giftId: 'shield', fromUid: 'friend-1' } as any;
-
-    store.publishIncomingGifts([gift]);
-
-    expect(store.takeIncomingGifts()).toEqual([gift]);
-    expect(store.takeIncomingGifts()).toEqual([]);
-  });
 });

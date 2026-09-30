@@ -13,12 +13,13 @@ import * as Crypto from 'expo-crypto';
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
-import { captureAccountGeneration } from './account_generation';
+import { captureAccountGeneration, type AccountGenerationToken } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
 import { getCanonicalUserId } from './user_id_policy';
 import { isReferralCloudEnabled } from './referral_flags';
 import { isReferralRouletteEmergencyStopped } from './remote_flags';
 import { DebugLogger } from './debug-logger';
+import { mergeLevelSpinServerStars } from './level_spin_star_grants';
 
 const REGION = 'us-central1';
 const SPIN_CREDITS_CACHE_KEY = 'referral_spin_credits_v1';
@@ -79,7 +80,7 @@ async function cacheSpinCredits(stableId: string, rawValue: number): Promise<num
   return value;
 }
 
-/** An old claim response must never erase a newer DEV grant/spin cache. */
+/** An old claim response must never erase a newer spin cache. */
 async function cacheClaimedSpinCredits(stableId: string, rawValue: number, requestEpoch: number): Promise<number> {
   if (currentSpinCreditMutationEpoch(stableId) !== requestEpoch) {
     return readCachedSpinCreditsForStableId(stableId);
@@ -117,12 +118,19 @@ export type SpinResult = {
   ok?: boolean;
   prizeIndex: number;
   prizeDays: number;
-  /** зачем: владелец (2026-07-26) — Pro (lifetime) выигрывает жемчужины вместо дней. */
-  prizeKind?: 'days' | 'pearls';
-  prizePearls?: number;
+  /**
+   * зачем: D100 (владелец, 2026-09-30) — Pro (lifetime) выигрывает МОНЕТЫ вместо
+   * дней (раньше жемчуг, удалён D70). Монеты начисляет сервер в журнал кошелька.
+   */
+  prizeKind?: 'days' | 'coins';
+  prizeCoins?: number;
   spinsLeft: number;
   vipUntil: number;
   idempotent?: boolean;
+  /** Снапшот монетного кошелька после начисления (только для prizeKind='coins'). */
+  stars?: number;
+  starsEarnedTotal?: number;
+  starsSeq?: number;
 };
 
 export type SpinOutcome =
@@ -130,11 +138,11 @@ export type SpinOutcome =
     ok: true;
     prizeIndex: number;
     prizeDays: number;
-    prizeKind: 'days' | 'pearls';
-    prizePearls: number;
+    prizeKind: 'days' | 'coins';
+    prizeCoins: number;
     spinsLeft: number;
     vipUntil: number;
-    /** Идентификатор спина — им же идемпотентно начисляются жемчужины Pro. */
+    /** Идентификатор спина (идемпотентность повтора на сервере). */
     spinRequestId: string;
   }
   | { ok: false; reason: 'disabled' | 'no_user' | 'no_spins' | 'link_required' | 'error'; code?: string };
@@ -161,6 +169,39 @@ async function newSpinRequestId(): Promise<string> {
   bytes[8] = (bytes[8] & 0x3f) | 0x80;
   const hex = [...bytes].map((b) => b.toString(16).padStart(2, '0')).join('');
   return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+}
+
+const SPIN_LOG = '[REFERRAL-SPIN]';
+
+function spinTrace(event: string, data: Record<string, unknown>): void {
+  DebugLogger.info(SPIN_LOG, `${event} ${JSON.stringify(data)}`);
+}
+
+/**
+ * D100: вливает серверный снапшот монетного кошелька (stars/starsSeq из ответа
+ * referralSpin) в локальный кошелёк телефона. Канал — тот же, что у видео-рун и
+ * наград «Вместе»: применяется только более новый starsSeq, поэтому повтор
+ * ответа не удвоит монеты. Не бросает: сбой лишь откладывает показ до следующего
+ * снапшота (PhoneState pull), монеты на сервере уже начислены.
+ */
+async function mergeReferralSpinCoins(token: AccountGenerationToken, data: SpinResult): Promise<void> {
+  const stars = Number(data.stars);
+  const earned = Number(data.starsEarnedTotal);
+  const seq = Number(data.starsSeq);
+  if (!Number.isSafeInteger(seq) || seq < 0) {
+    spinTrace('coins_merge_skipped', { reason: 'no_stars_seq', starsSeq: data.starsSeq ?? null });
+    return;
+  }
+  try {
+    const visible = await mergeLevelSpinServerStars(token, {
+      ...(Number.isFinite(stars) ? { stars: Math.max(0, Math.trunc(stars)) } : {}),
+      ...(Number.isFinite(earned) ? { starsEarnedTotal: Math.max(0, Math.trunc(earned)) } : {}),
+      starsSeq: seq,
+    });
+    spinTrace('coins_merged', { prizeCoins: data.prizeCoins ?? 0, serverSeq: seq, visibleBalance: visible.balance });
+  } catch (e) {
+    spinTrace('coins_merge_failed', { reason: e instanceof Error ? e.message : String(e), serverSeq: seq });
+  }
 }
 
 // ── Claim: qualified-приглашения → прокруты ──────────────────────────────────
@@ -212,6 +253,7 @@ export async function spinReferralRoulette(): Promise<SpinOutcome> {
   const stableId = await getCanonicalUserId();
   if (!stableId) return { ok: false, reason: 'no_user' };
   beginSpinCreditMutation(stableId);
+  const spinAccount = captureAccountGeneration();
 
   const spinRequestId = await newSpinRequestId();
   let lastError: unknown = null;
@@ -223,13 +265,27 @@ export async function spinReferralRoulette(): Promise<SpinOutcome> {
         ok: true as const,
         prizeIndex: Math.max(0, Math.floor(data.prizeIndex ?? 0)),
         prizeDays: Math.max(0, Math.floor(data.prizeDays ?? 0)),
-        prizeKind: data.prizeKind === 'pearls' ? 'pearls' as const : 'days' as const,
-        prizePearls: Math.max(0, Math.floor(data.prizePearls ?? 0)),
+        prizeKind: data.prizeKind === 'coins' ? 'coins' as const : 'days' as const,
+        prizeCoins: Math.max(0, Math.floor(data.prizeCoins ?? 0)),
         spinsLeft: Math.max(0, Math.floor(data.spinsLeft ?? 0)),
         vipUntil: Math.max(0, Math.floor(data.vipUntil ?? 0)),
         spinRequestId,
       };
+      spinTrace('spin_ok', {
+        attempt,
+        prizeIndex: outcome.prizeIndex,
+        prizeKind: outcome.prizeKind,
+        prizeCoins: outcome.prizeCoins,
+        spinsLeft: outcome.spinsLeft,
+        idempotent: data.idempotent === true,
+        starsSeq: data.starsSeq ?? null,
+      });
       await cacheSpinCredits(stableId, outcome.spinsLeft);
+      if (outcome.prizeKind === 'coins') {
+        // Монеты уже в серверном журнале; вливаем снапшот в кошелёк телефона фоном —
+        // экран не ждёт, счётчик монет обновится сам (publishProjection).
+        void mergeReferralSpinCoins(spinAccount, data);
+      }
       return outcome;
     } catch (e) {
       const code = callableErrorCode(e);
@@ -237,13 +293,16 @@ export async function spinReferralRoulette(): Promise<SpinOutcome> {
         // Флаг мог выключиться уже после открытия экрана: это отдельное состояние,
         // не «закончились прокруты». Остальные бизнес-ошибки различаем по message.
         const msg = e && typeof e === 'object' && 'message' in e ? String((e as { message: string }).message) : '';
+        spinTrace('spin_failed_precondition', { attempt, message: msg });
         if (msg.includes('REFERRAL_ROULETTE_EMERGENCY_STOP')) return { ok: false, reason: 'disabled', code };
         return { ok: false, reason: msg.includes('LINK_ACCOUNT_REQUIRED') ? 'link_required' : 'no_spins', code };
       }
       if (code === 'unauthenticated' || code === 'permission-denied' || code === 'invalid-argument') {
+        spinTrace('spin_rejected', { attempt, code });
         return { ok: false, reason: 'error', code: code ?? 'unknown' };
       }
       // Сетевая/неизвестная — повтор с ТЕМ ЖЕ spinRequestId.
+      spinTrace('spin_retryable_error', { attempt, code });
       lastError = e;
     }
   }
@@ -251,37 +310,8 @@ export async function spinReferralRoulette(): Promise<SpinOutcome> {
   return { ok: false, reason: 'error', code: callableErrorCode(lastError) ?? 'network' };
 }
 
-// ── DEV: +1 прокрут (кнопка видна только в dev-сборке; гейт — на сервере) ──
-
-export type DevGrantOutcome =
-  | { ok: true; spinsTotal: number }
-  | { ok: false; reason: 'disabled' | 'no_user' | 'error'; code?: string };
-
-/**
- * DEV-выдача +1 спин-кредита (functions/src/referral_dev_grant.ts).
- * Серверный гейт remote_config/app.numbers.referral_dev_grant_enabled.
- */
-export async function devGrantReferralSpin(): Promise<DevGrantOutcome> {
-  if (!isReferralCloudEnabled()) return { ok: false, reason: 'error', code: 'cloud_disabled' };
-  const stableId = await getCanonicalUserId();
-  if (!stableId) return { ok: false, reason: 'no_user' };
-  beginSpinCreditMutation(stableId);
-  try {
-    await initFirebaseAppCheckIfAvailable().catch(() => {});
-    const fn = callable<{ stableId: string }, { ok?: boolean; spinsTotal: number }>('referralDevGrantSpin');
-    const res = await fn({ stableId });
-    const spinsTotal = Math.max(0, Math.floor(Number(res.data?.spinsTotal ?? 0)));
-    await cacheSpinCredits(stableId, spinsTotal);
-    return { ok: true, spinsTotal };
-  } catch (e) {
-    const code = callableErrorCode(e);
-    const msg = e && typeof e === 'object' && 'message' in e ? String((e as { message: string }).message) : '';
-    if (code === 'failed-precondition') {
-      if (msg.includes('DEV_GRANT_DISABLED')) return { ok: false, reason: 'disabled', code };
-    }
-    return { ok: false, reason: 'error', code: code ?? 'unknown' };
-  }
-}
+// зачем: D78/D81 (владелец, 2026-09-30) — DEV-выдача ключа («+1 прокрут») удалена
+// навсегда и НЕ возвращается вместе с рулеткой (D99).
 
 /* expo-router route shim */
 export default function __RouteShim() { return null; }

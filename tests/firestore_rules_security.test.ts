@@ -401,6 +401,44 @@ ${indent}}`,
     );
   });
 
+  test("Spire quarantine state is readable only by admins and never browser-writable", () => {
+    const blocks = exactRootMatchBlocks("config/{spireFlagsDocId}");
+    expect(blocks).toHaveLength(1);
+    expect(activeAllowLines(blocks[0])).toEqual([
+      "allow read: if isAdmin() && spireFlagsDocId.matches('spire_task_flags_(es|fr|de)');",
+      "allow write: if false;",
+    ]);
+
+    const receiptBlocks = exactRootMatchBlocks("spire_task_report_receipts/{receiptId}");
+    expect(receiptBlocks).toHaveLength(1);
+    expect(activeAllowLines(receiptBlocks[0])).toEqual([
+      "allow read, write: if false;",
+    ]);
+    for (const path of [
+      'spire_task_report_reservations/{reservationId}',
+      'spire_task_incidents/{incidentId}',
+    ]) {
+      const serverOnly = exactRootMatchBlocks(path);
+      expect(serverOnly).toHaveLength(1);
+      expect(activeAllowLines(serverOnly[0])).toEqual(['allow read, write: if false;']);
+    }
+
+    const errorReports = exactRootMatchBlocks('error_reports/{docId}');
+    expect(errorReports).toHaveLength(1);
+    expect(errorReports[0]).toContain("resource.data.contentScope != 'spire'");
+    expect(errorReports[0]).toContain("request.resource.data.contentScope != 'spire'");
+
+    const catchAll = exactRootMatchBlocks("{collection}/{document=**}");
+    expect(catchAll).toHaveLength(1);
+    expect(catchAll[0]).toContain("collection != 'spire_task_report_receipts'");
+    expect(catchAll[0]).toContain("collection != 'spire_task_report_reservations'");
+    expect(catchAll[0]).toContain("collection != 'spire_task_incidents'");
+    expect(catchAll[0]).toContain("collection != 'error_reports'");
+    expect(catchAll[0]).toContain(
+      "!(collection == 'config' && document.matches('spire_task_flags_(es|fr|de)'))",
+    );
+  });
+
   test('public profile projections are server-owned', () => {
     const blocks = exactRootMatchBlocks('public_profiles/{userId}');
     expect(blocks).toHaveLength(1);
@@ -767,50 +805,6 @@ ${indent}}`,
     );
     expect(cardPacksBlock![0]).not.toContain(
       "allow write: if request.auth != null;",
-    );
-  });
-
-  test("league_groups uses Cloud Functions for writes and keeps client reads only", () => {
-    const leagueGroupsBlock = rules.match(
-      /match \/league_groups\/\{groupId\} \{[\s\S]*?\n    \}/,
-    );
-    expect(leagueGroupsBlock).not.toBeNull();
-    expect(leagueGroupsBlock![0]).toContain(
-      "allow read: if request.auth != null;",
-    );
-    expect(leagueGroupsBlock![0]).toContain(
-      "allow create, update, delete: if isAdmin();",
-    );
-    expect(leagueGroupsBlock![0]).not.toContain(
-      "allow write: if request.auth != null;",
-    );
-    expect(leagueGroupsBlock![0]).not.toContain(
-      "request.resource.data.diff(resource.data)",
-    );
-    expect(leagueGroupsBlock![0]).not.toContain(
-      "allow read, write: if request.auth != null;",
-    );
-  });
-
-  test("league_groups write path is exported through callable functions", () => {
-    const functionsIndex = readFileSync(
-      path.join(process.cwd(), "functions/src/index.ts"),
-      "utf8",
-    );
-    // зачем: важно, что модуль подключён через require, а не стиль кавычек —
-    // Prettier в functions/ ставит двойные, и жёсткая строка ломала контракт.
-    expect(functionsIndex).toMatch(/require\(['"]\.\/league_groups['"]\);/);
-    expect(functionsIndex).toMatch(
-      /leagueJoinOrUpdateGroup,\s*leagueUpdateMyMember,\s*leagueSyncMyBoost[\s\S]*?=\s*require\(['"]\.\/league_groups['"]\);/,
-    );
-    expect(functionsIndex).toContain(
-      "exports.leagueJoinOrUpdateGroup = leagueJoinOrUpdateGroup;",
-    );
-    expect(functionsIndex).toContain(
-      "exports.leagueUpdateMyMember = leagueUpdateMyMember;",
-    );
-    expect(functionsIndex).toContain(
-      "exports.leagueSyncMyBoost = leagueSyncMyBoost;",
     );
   });
 

@@ -31,6 +31,7 @@ import { soundDirector } from '../modules/audio/sound_director';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import type { SoundEventId } from '../modules/audio/sound_events';
 import { actionToastToneLabel, resolveActionToastActionLabel, resolveActionToastMessage } from './action_toast_copy';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 
 type ToastPayload = {
   type: ToastType;
@@ -90,6 +91,21 @@ const TOAST_TONES: Record<ToastType, ToastTone> = {
   warning: { icon: 'warning', label: actionToastToneLabel('warning') },
   reward: { icon: 'gift', label: actionToastToneLabel('reward') },
 };
+
+/** Local-only passive chrome: actions keep their legacy color and touch contract. */
+function actionToastGlassChrome(glass: ReturnType<typeof liquidGlassTokens>) {
+  return {
+    cardColors: [glass.card, glass.sheet, glass.bgBottom] as [string, string, string],
+    accent: glass.cta,
+    accentSoft: glass.selected,
+    border: glass.glassEdge,
+    title: glass.text,
+    body: glass.secondary,
+    closeBg: glass.selected,
+    shadowColor: glass.bg,
+    radius: 18,
+  };
+}
 
 /**
  * зачем: гибрид «Световод + Чекан» (макет .motion-mockups/phraseman-hybrid.html,
@@ -236,7 +252,7 @@ function toastKey(p: ToastPayload): string {
 
 function ActionToast() {
   const { lang } = useLang();
-  const { theme: t, themeMode } = useTheme();
+  const { theme: t, themeMode, liquidGlassThemeId } = useTheme();
   const bottomOffset = useGlobalBottomOverlayOffset();
   const [toast, setToast] = useState<ToastPayload | null>(null);
   const [overlayWanted, setOverlayWanted] = useState(false);
@@ -464,7 +480,9 @@ function ActionToast() {
   const message = resolveActionToastMessage(toast, lang);
   const tone = TOAST_TONES[toast.type];
   const toneLabel = tone.label[lang] ?? tone.label.ru;
-  const chrome = themedToastChrome(themeMode, t);
+  const actionToastGlass = liquidGlassTokens(liquidGlassThemeId);
+  const actionToastLegacyChrome = themedToastChrome(themeMode, t);
+  const chrome = actionToastGlassChrome(actionToastGlass);
   const isHybrid = toast.motionVariant !== 'classic';
   // Действие есть только у классической карточки: гибридная — чисто
   // декоративная и отдельного места под кнопку не имеет.
@@ -548,13 +566,13 @@ function ActionToast() {
               style={({ pressed }) => [
                 styles.actionButton,
                 {
-                  backgroundColor: chrome.closeBg,
+                  backgroundColor: actionToastLegacyChrome.closeBg,
                   transform: [{ scale: pressed ? 0.94 : 1 }],
                 },
               ]}
               testID="action-toast-action"
             >
-              <Text style={[styles.actionLabel, { color: chrome.accent }]}>{actionLabel}</Text>
+              <Text style={[styles.actionLabel, { color: actionToastLegacyChrome.accent }]}>{actionLabel}</Text>
             </Pressable>
           ) : null}
         </LinearGradient>

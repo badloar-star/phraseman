@@ -7,21 +7,14 @@ import {
   nextThreshold,
   bonusPercentForLevel,
   starsForLevel,
-  weeklyChestProgress,
-  weeklyChestTopContributors,
-  chestTierForProgress,
-  chestClaimBlockReason,
-  chestRewardMultiplier,
   isQuietHours,
   nudgeLimitBlockReason,
   friendsTogetherConfigFromNumbers,
   starsForLevelRange,
   shiftDayKey,
   FRIENDSHIP_LEVEL_THRESHOLDS,
-  CHEST_TIERS,
   MAX_ACTIVE_DAYS_WINDOW,
   type ActiveDaysState,
-  type ChestFriendContribution,
 } from './friends_together_core';
 
 describe('friends_together_core: active days codec', () => {
@@ -129,12 +122,12 @@ describe('friends_together_core: levels', () => {
     expect(nextThreshold(100)).toBeNull();
   });
 
-  test('bonusPercentForLevel: 0,5,5,10,15 for levels 1..5', () => {
+  test('legacy XP bonus is retired for all friendship levels', () => {
     expect(bonusPercentForLevel(1)).toBe(0);
-    expect(bonusPercentForLevel(2)).toBe(5);
-    expect(bonusPercentForLevel(3)).toBe(5);
-    expect(bonusPercentForLevel(4)).toBe(10);
-    expect(bonusPercentForLevel(5)).toBe(15);
+    expect(bonusPercentForLevel(2)).toBe(0);
+    expect(bonusPercentForLevel(3)).toBe(0);
+    expect(bonusPercentForLevel(4)).toBe(0);
+    expect(bonusPercentForLevel(5)).toBe(0);
   });
 
   test('starsForLevel: 0 for level 1, then 5/10/20/50', () => {
@@ -164,107 +157,6 @@ describe('friends_together_core: cumulative milestone rewards', () => {
   test('does not award an already claimed or lower level again', () => {
     expect(starsForLevelRange(5, 5)).toBe(0);
     expect(starsForLevelRange(5, 3)).toBe(0);
-  });
-});
-
-describe('friends_together_core: weekly chest progress', () => {
-  test('uses the configured referral boost multiplier instead of a hardcoded x2', () => {
-    expect(weeklyChestProgress([
-      { friendUid: 'boosted', pairLevel: 2, weeklyXp: 500, boosted: true },
-    ], 2000, 10, 2, 3)).toBe(1500);
-  });
-  function contrib(uid: string, pairLevel: number, weeklyXp: number, boosted = false): ChestFriendContribution {
-    return { friendUid: uid, pairLevel, weeklyXp, boosted };
-  }
-
-  test('only friends with pairLevel >= 2 count', () => {
-    const friends = [contrib('a', 1, 5000), contrib('b', 2, 1000)];
-    expect(weeklyChestProgress(friends)).toBe(1000);
-  });
-
-  test('each friend is capped at CHEST_CAP_PER_FRIEND (2000) before summing', () => {
-    const friends = [contrib('a', 2, 10000), contrib('b', 2, 500)];
-    expect(weeklyChestProgress(friends)).toBe(2000 + 500);
-  });
-
-  test('boost doubles a friend contribution BEFORE the cap semantics (cap applies to raw xp first)', () => {
-    // capped(10000) = 2000, then *2 (boost) = 4000
-    const friends = [contrib('a', 2, 10000, true)];
-    expect(weeklyChestProgress(friends)).toBe(4000);
-  });
-
-  test('boost on a small value still doubles after cap (cap > value, no clamp)', () => {
-    const friends = [contrib('a', 2, 300, true)];
-    expect(weeklyChestProgress(friends)).toBe(600);
-  });
-
-  test('only top-N (10) friends by contribution count toward the sum', () => {
-    const friends = Array.from({ length: 15 }, (_, i) => contrib(`f${i}`, 2, 100 * (i + 1)));
-    // Contributions: 100..1500. Top 10 = 600..1500 = sum of 600+700+...+1500
-    const top10Sum = [600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500].reduce((s, v) => s + v, 0);
-    expect(weeklyChestProgress(friends)).toBe(top10Sum);
-  });
-
-  test('weeklyChestTopContributors returns sorted top-N with contribution values', () => {
-    const friends = [contrib('low', 2, 100), contrib('high', 2, 900), contrib('mid', 2, 500)];
-    const top = weeklyChestTopContributors(friends, 2);
-    expect(top).toEqual([
-      { friendUid: 'high', contribution: 900 },
-      { friendUid: 'mid', contribution: 500 },
-    ]);
-  });
-
-  test('empty friends list → 0 progress', () => {
-    expect(weeklyChestProgress([])).toBe(0);
-  });
-
-  test('custom cap/topN/minPairLevel parameters override defaults', () => {
-    const friends = [contrib('a', 3, 100), contrib('b', 1, 999999)];
-    expect(weeklyChestProgress(friends, 50, 1, 3)).toBe(50); // capped at 50, only pairLevel>=3 counted
-  });
-
-  test('chestTierForProgress: [6000,12000,20000] tiers', () => {
-    expect(chestTierForProgress(0)).toBe(0);
-    expect(chestTierForProgress(5999)).toBe(0);
-    expect(chestTierForProgress(6000)).toBe(1);
-    expect(chestTierForProgress(11999)).toBe(1);
-    expect(chestTierForProgress(12000)).toBe(2);
-    expect(chestTierForProgress(19999)).toBe(2);
-    expect(chestTierForProgress(20000)).toBe(3);
-    expect(chestTierForProgress(999999)).toBe(3);
-  });
-
-  test('CHEST_TIERS default export matches spec [6000,12000,20000]', () => {
-    expect(CHEST_TIERS).toEqual([6000, 12000, 20000]);
-  });
-});
-
-describe('friends_together_core: chest claim conditions', () => {
-  test('blocks on own_days when myDaysThisWeek < 5', () => {
-    expect(chestClaimBlockReason({ myDaysThisWeek: 4, myWeeklyXp: 5000, tier: 2 })).toBe('own_days');
-  });
-
-  test('blocks on own_xp when myWeeklyXp < 1000', () => {
-    expect(chestClaimBlockReason({ myDaysThisWeek: 5, myWeeklyXp: 999, tier: 2 })).toBe('own_xp');
-  });
-
-  test('blocks on tier_zero when tier is 0', () => {
-    expect(chestClaimBlockReason({ myDaysThisWeek: 7, myWeeklyXp: 5000, tier: 0 })).toBe('tier_zero');
-  });
-
-  test('null (claimable) when all conditions pass', () => {
-    expect(chestClaimBlockReason({ myDaysThisWeek: 5, myWeeklyXp: 1000, tier: 1 })).toBeNull();
-  });
-
-  test('own_days checked before own_xp before tier_zero (priority order)', () => {
-    expect(chestClaimBlockReason({ myDaysThisWeek: 0, myWeeklyXp: 0, tier: 0 })).toBe('own_days');
-  });
-
-  test('chestRewardMultiplier: 5→1, 6→1.25, 7→1.5', () => {
-    expect(chestRewardMultiplier(5)).toBe(1);
-    expect(chestRewardMultiplier(6)).toBe(1.25);
-    expect(chestRewardMultiplier(7)).toBe(1.5);
-    expect(chestRewardMultiplier(4)).toBe(1); // below min still returns base (gate is chestClaimBlockReason's job)
   });
 });
 
@@ -379,9 +271,6 @@ describe('friends_together_core: remote_config overlay (friendsTogetherConfigFro
   test('undefined/empty numbers → all defaults', () => {
     const cfg = friendsTogetherConfigFromNumbers(undefined);
     expect(cfg.levelThresholds).toEqual(FRIENDSHIP_LEVEL_THRESHOLDS);
-    expect(cfg.chestTiers).toEqual(CHEST_TIERS);
-    expect(cfg.chestCapPerFriend).toBe(2000);
-    expect(cfg.chestTopN).toBe(10);
     expect(cfg.nudgeMaxPerFriendPerDay).toBe(1);
     expect(cfg.nudgeMaxSenderPerDay).toBe(5);
     expect(cfg.nudgeMaxReceiverPerDay).toBe(3);
@@ -389,30 +278,16 @@ describe('friends_together_core: remote_config overlay (friendsTogetherConfigFro
 
   test('valid overrides are applied and clamped', () => {
     const cfg = friendsTogetherConfigFromNumbers({
-      friends_chest_cap_per_friend: 500,
-      friends_chest_top_n: 3,
       friends_nudge_max_sender_day: 10,
-      friends_chest_tiers: [1000, 2000, 3000],
     });
-    expect(cfg.chestCapPerFriend).toBe(500);
-    expect(cfg.chestTopN).toBe(3);
     expect(cfg.nudgeMaxSenderPerDay).toBe(10);
-    expect(cfg.chestTiers).toEqual([1000, 2000, 3000]);
   });
 
   test('garbage values fall back to defaults per-field (never throws)', () => {
     const cfg = friendsTogetherConfigFromNumbers({
-      friends_chest_cap_per_friend: 'not-a-number',
-      friends_chest_tiers: 'also-garbage',
       friends_level_thresholds: [1, 'nope', 3],
     } as unknown as Record<string, unknown>);
-    expect(cfg.chestCapPerFriend).toBe(2000);
-    expect(cfg.chestTiers).toEqual(CHEST_TIERS);
     expect(cfg.levelThresholds).toEqual(FRIENDSHIP_LEVEL_THRESHOLDS);
   });
 
-  test('out-of-range values are clamped, not rejected wholesale', () => {
-    const cfg = friendsTogetherConfigFromNumbers({ friends_chest_top_n: 99999 });
-    expect(cfg.chestTopN).toBe(100); // callable itself reads at most 100 friends
-  });
 });

@@ -5,7 +5,7 @@ import { getCanonicalUserId } from './user_id_policy';
 import { submitClientReport } from './client_reports';
 import { isAnalyticsConsentGranted } from './analytics_consent';
 import { recordSupportDiagnostic } from './support_diagnostics';
-import { DebugLogger } from './debug-logger';
+import { DebugLogger, reportSwallowed, swallowError } from './debug-logger';
 
 type ActivityValue = string | number | boolean | null | undefined;
 
@@ -74,7 +74,7 @@ function cleanTags(tags: AppActivityMeta['tags']) {
 
 async function readActivityQueueFromStorage(): Promise<Array<Record<string, unknown>>> {
   try {
-    const raw = await AsyncStorage.getItem(QUEUE_KEY).catch(() => null);
+    const raw = await AsyncStorage.getItem(QUEUE_KEY).catch((error: unknown) => { reportSwallowed('app_activity:readActivityQueueFromStorage', error); return null; });
     const parsed = raw ? JSON.parse(raw) : [];
     return Array.isArray(parsed)
       ? parsed.filter((item): item is Record<string, unknown> => item != null && typeof item === 'object')
@@ -90,7 +90,7 @@ async function queueLocal(record: Record<string, unknown>) {
   }
   activityQueueCache.push(record);
   if (activityQueueCache.length > MAX_QUEUE) activityQueueCache.splice(0, activityQueueCache.length - MAX_QUEUE);
-  await AsyncStorage.setItem(QUEUE_KEY, JSON.stringify(activityQueueCache)).catch(() => {});
+  await AsyncStorage.setItem(QUEUE_KEY, JSON.stringify(activityQueueCache)).catch(swallowError('app_activity:queueLocal'));
 }
 
 export async function trackActivity(action: string, meta: AppActivityMeta = {}) {
@@ -112,8 +112,8 @@ export async function trackActivity(action: string, meta: AppActivityMeta = {}) 
       && (isErrorTrace || isAnalyticsConsentGranted());
     if (!LOCAL_ACTIVITY_QUEUE_ENABLED && !canWriteToFirestore) return;
 
-    const uid = await getCanonicalUserId().catch(() => null);
-    const userName = await AsyncStorage.getItem('user_name').catch(() => null);
+    const uid = await getCanonicalUserId().catch((error: unknown) => { reportSwallowed('app_activity:trackActivity', error); return null; });
+    const userName = await AsyncStorage.getItem('user_name').catch((error: unknown) => { reportSwallowed('app_activity:trackActivity', error); return null; });
     const appVersion = Constants.expoConfig?.version ?? Constants.nativeAppVersion ?? 'unknown';
     const buildNumber = Constants.nativeBuildVersion ?? 'unknown';
     const record = {
@@ -146,7 +146,7 @@ export async function trackActivity(action: string, meta: AppActivityMeta = {}) 
     // НЕ пишем в облако без согласия на аналитику. Трейсы ОШИБОК (result:'error')
     // оставляем — это строго необходимая диагностика стабильности (как Crashlytics),
     // согласия не требует.
-    await submitClientReport('app_activity', record).catch(() => {});
+    await submitClientReport('app_activity', record).catch(swallowError('app_activity:trackActivity'));
   } catch (e) {
       // Activity logging must never affect product behavior.
       DebugLogger.error('app_activity:record', e instanceof Error ? e : new Error(String(e)), 'warning');
@@ -209,7 +209,7 @@ export async function trackFeatureError(
         tags,
       }),
     )
-    .catch(() => {});
+    .catch(swallowError('app_activity:trackFeatureError'));
 }
 
 export async function getActivityQueue(): Promise<Array<Record<string, unknown>>> {

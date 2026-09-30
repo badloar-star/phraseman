@@ -69,7 +69,8 @@ describe('Gustav French vocabulary target gate', () => {
     expect(source).toContain("storageStudyTarget(studyTarget) === 'fr'");
     expect(source).toContain('if (isFrenchLessonWords) return prioritizeQaFocusWords(frenchRemoteWords ?? [], qaFocusWords)');
     expect(source).toContain('lessonWordsKey(lessonId, studyTarget)');
-    expect(source).toContain('lessonWordsShardsGrantedKey(lessonId, studyTarget)');
+    // зачем: D70 — жемчуг за раздел слов удалён вместе с ключом-отметкой выдачи.
+    expect(source).not.toContain('lessonWordsShardsGrantedKey');
     expect(source).toContain('shouldBlockLessonAccess(lessonId, studyTarget)');
     // зачем: запись ошибок переписана — logMistake/recordWordMistake заменены
     // захватом через mistake_practice_capture. Тест сторожил старые имена и
@@ -91,7 +92,8 @@ describe('Gustav French vocabulary target gate', () => {
     expect(source).toContain("vocabularyContentAvailableForTarget(studyTarget, 'irregular_verbs')");
     expect(source).toContain('FrenchIrregularVerbsUnavailable');
     expect(source).toContain('irregularVerbsGlobalKey(studyTarget)');
-    expect(source).toContain('lessonIrregularShardsGrantedKey(lessonId ?? 0, studyTarget)');
+    // зачем: D70 — жемчуг за раздел глаголов удалён вместе с ключом-отметкой выдачи.
+    expect(source).not.toContain('lessonIrregularShardsGrantedKey');
     expect(source).toContain('shouldBlockLessonAccess(lessonId, studyTarget)');
     // та же переписанная система для неправильных глаголов
     expect(source).toContain('captureCurrentAccountObjectiveAttempt');
@@ -111,7 +113,8 @@ describe('Gustav French vocabulary target gate', () => {
     expect(source).toContain("vocabularyContentAvailableForTarget(studyTarget, 'preposition_drill')");
     expect(source).toContain('FrenchPrepositionDrillUnavailable');
     expect(source).toContain('lessonPrepositionProgressKey(lessonId, studyTarget)');
-    expect(source).toContain('prepositionDrillPerfectKey(lessonId, studyTarget)');
+    // зачем: D70 — жемчуг за идеальный прогон предлогов удалён вместе с отметкой выдачи.
+    expect(source).not.toContain('prepositionDrillPerfectKey');
     expect(source).toContain('shouldBlockLessonAccess(lessonId, studyTarget)');
     expect(source).toContain('getLessonPrepositionPack(lessonId, studyTarget)');
     expect(source).toContain('preposition-drill-french-source-gate-back');

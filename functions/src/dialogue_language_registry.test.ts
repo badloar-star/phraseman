@@ -15,6 +15,6 @@ describe('server dialogue language registry', () => {
 
   it('fails closed for an unknown target', () => {
     expect(resolveDialogueStudyTarget('it')).toBeNull();
-    expect(resolveDialogueStudyTarget()).toBeNull();
+    expect(resolveDialogueStudyTarget(undefined)).toBeNull();
   });
 });

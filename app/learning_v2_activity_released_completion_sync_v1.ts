@@ -23,6 +23,7 @@ import type { LearningV2ActivityReleasedSessionCompletionV1 } from "../modules/l
 import type { ProgressAccountScope } from "../modules/learning-v2/progress/progress_store";
 import { hashCanonicalBody } from "../modules/learning-v2/policies/decision_registry";
 
+import { reportSwallowed } from './debug-logger';
 const REGION = "us-central1";
 const CALLABLE_NAME = "submitLearningV2ActivityReleasedCompletionV1";
 const HASH_RE = /^[a-f0-9]{64}$/u;
@@ -105,7 +106,7 @@ async function callServer(
   return withBackgroundNetworkLease(
     "learning-v2.activity-released-completion-sync",
     async (lease) => {
-      await initFirebaseAppCheckIfAvailable().catch(() => false);
+      await initFirebaseAppCheckIfAvailable().catch((error: unknown) => { reportSwallowed('learning_v2_activity_released_completion_sync_v1:callServer', error); return false; });
       lease.assertCurrent();
       const callable = httpsCallable<
         { completion: LearningV2ActivityReleasedSessionCompletionV1 },

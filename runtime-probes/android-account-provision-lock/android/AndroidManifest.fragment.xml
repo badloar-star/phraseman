@@ -1,0 +1,9 @@
+<activity
+    android:name=".AccountV2ProbeActivity"
+    android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|uiMode"
+    android:exported="false"
+    android:launchMode="singleTask"
+    android:process=":account_v2_probe"
+    android:screenOrientation="unspecified"
+    android:theme="@style/AppTheme"
+    android:windowSoftInputMode="adjustResize" />

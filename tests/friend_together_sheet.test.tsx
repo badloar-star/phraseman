@@ -71,8 +71,8 @@ function props(overrides: Record<string, unknown> = {}) {
   return {
     visible: true, onClose: jest.fn(), friendName: 'Друг', friendUid: 'friend-1', friendAvatar: 'friend', friendTotalXp: 900, myAvatar: 'me', myTotalXp: 1200,
     streak: 7, highFived: false,
-    together: { days: 14, level: 2, progressPercent: 66, nextLevelName: 'Напарники', nudged: false, learnedToday: false, incomingNudge: true, giftReady: true },
-    onNudge: jest.fn(), onGift: jest.fn(), onHighFive: jest.fn(), onDelete: jest.fn(),
+    together: { days: 14, level: 2, progressPercent: 66, nextLevelName: 'Напарники', nudged: false, learnedToday: false, incomingNudge: true },
+    onNudge: jest.fn(), onHighFive: jest.fn(), onDelete: jest.fn(),
     ...overrides,
   };
 }
@@ -97,7 +97,7 @@ describe('FriendTogetherSheet', () => {
     expect(screen.getByTestId('friend-together-sheet-status-nudge')).toBeTruthy();
     expect(mockShellProps.backdropAccessible).toBe(false);
 
-    for (const id of ['nudge', 'gift', 'high-five', 'delete']) {
+    for (const id of ['nudge', 'high-five', 'delete']) {
       const action = screen.getByTestId(`friend-together-sheet-${id}`);
       const actionStyle = StyleSheet.flatten(action.props.style);
       expect(actionStyle.minHeight).toBeGreaterThanOrEqual(52);
@@ -109,7 +109,6 @@ describe('FriendTogetherSheet', () => {
     expect(StyleSheet.flatten(screen.getByTestId('friend-together-sheet-nudge-label').props.style).color).toBe('#07110A');
 
     expect(value.onNudge).toHaveBeenCalledWith();
-    expect(value.onGift).toHaveBeenCalledWith(mockRequestDismiss);
     expect(value.onHighFive).toHaveBeenCalledWith();
     expect(value.onDelete).toHaveBeenCalledWith(mockRequestDismiss);
     await user.press(screen.getByTestId('friend-together-sheet-close'));
@@ -122,13 +121,13 @@ describe('FriendTogetherSheet', () => {
     expect(screen.queryByTestId('friend-together-sheet-progress')).toBeNull();
     expect(screen.queryByTestId('friend-together-sheet-nudge')).toBeNull();
     expect(screen.queryByTestId('friend-together-sheet-together-hero')).toBeNull();
-    expect(screen.getByTestId('friend-together-sheet-gift')).toBeTruthy();
+    expect(screen.queryByTestId('friend-together-sheet-gift')).toBeNull();
     expect(screen.getByTestId('friend-together-sheet-high-five')).toBeTruthy();
     expect(screen.getByTestId('friend-together-sheet-delete')).toBeTruthy();
   });
 
   test('disables nudge with a distinct already-studied-today label', async () => {
-    const value = props({ together: { days: 14, level: 2, progressPercent: 66, nextLevelName: 'Напарники', nudged: false, learnedToday: true, incomingNudge: false, giftReady: false } });
+    const value = props({ together: { days: 14, level: 2, progressPercent: 66, nextLevelName: 'Напарники', nudged: false, learnedToday: true, incomingNudge: false } });
     const screen = await render(<FriendTogetherSheet {...value} />);
     const action = screen.getByTestId('friend-together-sheet-nudge');
     expect(action.props.accessibilityState.disabled).toBe(true);
@@ -141,7 +140,7 @@ describe('FriendTogetherSheet', () => {
   });
 
   test('keeps a nudged action disabled and does not invoke its callback', async () => {
-    const value = props({ together: { days: 14, level: 2, progressPercent: 66, nextLevelName: 'Напарники', nudged: true, learnedToday: false, incomingNudge: false, giftReady: false } });
+    const value = props({ together: { days: 14, level: 2, progressPercent: 66, nextLevelName: 'Напарники', nudged: true, learnedToday: false, incomingNudge: false } });
     const screen = await render(<FriendTogetherSheet {...value} />);
     const action = screen.getByTestId('friend-together-sheet-nudge');
     expect(action.props.accessibilityLabel).toBe('Уже приглашены сегодня');
@@ -175,7 +174,7 @@ describe('FriendTogetherSheet', () => {
   });
 
   test('exposes clamped progress semantics', async () => {
-    const screen = await render(<FriendTogetherSheet {...props({ together: { days: 14, level: 2, progressPercent: 140, nextLevelName: 'Напарники', nudged: false, learnedToday: false, incomingNudge: false, giftReady: false } })} />);
+    const screen = await render(<FriendTogetherSheet {...props({ together: { days: 14, level: 2, progressPercent: 140, nextLevelName: 'Напарники', nudged: false, learnedToday: false, incomingNudge: false } })} />);
     const progress = screen.getByTestId('friend-together-sheet-progress');
     expect(progress.props.accessibilityRole).toBe('progressbar');
     expect(progress.props.accessibilityValue).toEqual({ min: 0, max: 100, now: 100 });

@@ -16,12 +16,12 @@
 //
 // Правила роста (решения владельца 2026-08-04):
 //   • все стартуют с 0 опыта и 1 уровня от общей эпохи запуска фичи;
-//   • каждые 6 часов прибавка 10..800 XP, но с шансом 50% — ноль (персонаж
+//   • каждые 6 часов прибавка 10..800 score, но с шансом 50% — ноль (персонаж
 //     «не заходил»);
 //   • уровень и аватар растут пропорционально опыту по ШТАТНОЙ формуле игры —
 //     никаких отдельных шкал, иначе снова разъедется с живыми.
 //
-// Владелец сначала просил 10..6000 XP за тик. Расчёт показал, что при таком
+// Владелец сначала просил 10..6000 score за тик. Расчёт показал, что при таком
 // темпе ВСЕ персонажи упираются в максимальный 50 уровень за ~2 месяца и
 // становятся одинаковыми — комната опять выглядит мёртвой, только наоборот.
 // После этого владелец сам выбрал 10..800 с шансом 50% на ноль: 50 уровень
@@ -125,7 +125,7 @@ export const RESIDENT_TICK_MS = 60 * 60 * 1000;
 // сосед набирал больше живого игрока, и комнату было не догнать. Новые
 // значения дают сутки 14..1431 при медиане ~185, то есть пол и потолок
 // владельца выдержаны без искусственного обрезания: диапазон получается сам,
-// из тиков, поэтому residentXpGainedBetween по-прежнему честно суммирует
+// из тиков, поэтому residentScoreGainedBetween по-прежнему честно суммирует
 // произвольный интервал и не требует клампа по суткам.
 export const RESIDENT_TICK_MIN_RUNES = 2;
 export const RESIDENT_TICK_MAX_RUNES = 40;
@@ -241,7 +241,7 @@ export function residentTicksElapsed(nowMs: number, index = 0): number {
  * ≤28 персонажей в комнате это незаметно, а зато формула остаётся честной
  * (каждый тик реально свой) и совпадает байт-в-байт с клиентской копией.
  */
-export function residentTotalXpAt(index: number, nowMs: number): number {
+export function residentScoreAt(index: number, nowMs: number): number {
   const { generation, signupMs } = residentGeneration(index, nowMs);
   if (nowMs <= signupMs) return 0;
   const ticks = Math.floor((nowMs - signupMs) / RESIDENT_TICK_MS);
@@ -255,7 +255,7 @@ export function residentTotalXpAt(index: number, nowMs: number): number {
 }
 
 /** Прирост опыта персонажа за последние N миллисекунд (вклад в цель недели). */
-export function residentXpGainedBetween(index: number, fromMs: number, toMs: number): number {
+export function residentScoreGainedBetween(index: number, fromMs: number, toMs: number): number {
   if (toMs <= fromMs) return 0;
   const from = residentGeneration(index, fromMs);
   const to = residentGeneration(index, toMs);
@@ -263,7 +263,7 @@ export function residentXpGainedBetween(index: number, fromMs: number, toMs: num
   // персонажа считать нельзя — иначе недельные очки ушли бы в минус. Берём
   // весь опыт нового персонажа с момента его регистрации.
   if (from.generation !== to.generation) {
-    return residentTotalXpAt(index, toMs);
+    return residentScoreAt(index, toMs);
   }
   const seed = index * 64 + to.generation;
   const fromTick = Math.max(0, Math.floor((fromMs - to.signupMs) / RESIDENT_TICK_MS));
@@ -281,19 +281,19 @@ export function residentXpGainedBetween(index: number, fromMs: number, toMs: num
 // обман станет виден в первой же комнате. Значения продублированы, потому что
 // functions/ и app/ не делят код; страж synthetic_residents_contract.test.ts
 // ломает сборку, если константы разъедутся.
-const XP_BASE = 400;
-const XP_EXP = 1.82;
+const SCORE_BASE = 400;
+const SCORE_EXP = 1.82;
 
-function totalXpForLevel(level: number): number {
+function scoreForRank(level: number): number {
   if (level <= 1) return 0;
-  return Math.round(XP_BASE * Math.pow(level - 1, XP_EXP));
+  return Math.round(SCORE_BASE * Math.pow(level - 1, SCORE_EXP));
 }
 
 /** Уровень персонажа по его опыту, с потолком RESIDENT_MAX_LEVEL. */
-export function residentLevelFromXp(totalXp: number): number {
-  if (totalXp <= 0) return 1;
+export function residentRankFromScore(score: number): number {
+  if (score <= 0) return 1;
   let level = 1;
-  while (level < RESIDENT_MAX_LEVEL && totalXpForLevel(level + 1) <= totalXp) {
+  while (level < RESIDENT_MAX_LEVEL && scoreForRank(level + 1) <= score) {
     level++;
   }
   return level;
@@ -458,22 +458,22 @@ export function residentStreakAt(index: number, nowMs: number, signupMs: number)
  * зачем (владелец 2026-08-04): «лайк боту не сохранялся, сделай чтобы
  * сохранялся навсегда и число росло всегда как у живых». У живого игрока
  * счётчик лайков в базе растёт медленно и никогда не падает; персонаж обязан
- * выглядеть так же. Формула привязана к totalXp (как streak — к signupMs):
+ * выглядеть так же. Формула привязана к score (как streak — к signupMs):
  * растущая величина, которая никогда не убывает и не «телепортируется», плюс
  * у ветеранов заметно больше поклонников, чем у вчерашних новичков.
  */
-export function residentBaseLikes(totalXp: number): number {
-  // ~1 лайк за каждые 3000 XP, с лёгким разбросом от хэша — иначе все
+export function residentBaseLikes(score: number): number {
+  // ~1 лайк за каждые 3000 score, с лёгким разбросом от хэша — иначе все
   // персонажи одного уровня показывали бы ОДНО И ТО ЖЕ число.
-  return Math.floor(totalXp / 3000);
+  return Math.floor(score / 3000);
 }
 
 export type ResidentProfile = {
   /** Индекс в корпусе — постоянная личность персонажа. */
   index: number;
   name: string;
-  totalXp: number;
-  level: number;
+  score: number;
+  rank: number;
   avatar: string;
   streak: number;
   /** Базовое число лайков — до того, что добавит сам игрок локально. */
@@ -483,18 +483,18 @@ export type ResidentProfile = {
 /** Полный профиль персонажа на момент nowMs — единая точка сборки. */
 export function residentProfileAt(index: number, nowMs: number): ResidentProfile {
   const { generation, signupMs } = residentGeneration(index, nowMs);
-  const totalXp = residentTotalXpAt(index, nowMs);
-  const level = residentLevelFromXp(totalXp);
+  const score = residentScoreAt(index, nowMs);
+  const rank = residentRankFromScore(score);
   return {
     index,
     name: residentName(index, nowMs),
-    totalXp,
-    level,
-    avatar: residentAvatar(level),
+    score,
+    rank,
+    avatar: residentAvatar(rank),
     // Серия тоже своя у каждого поколения — иначе новый персонаж унаследовал бы
     // чужой стрик и это не сошлось бы с его нулевым опытом. signupMs текущего
     // поколения не даёт серии оказаться длиннее жизни персонажа.
     streak: residentStreakAt(index * 64 + generation, nowMs, signupMs),
-    baseLikes: residentBaseLikes(totalXp),
+    baseLikes: residentBaseLikes(score),
   };
 }

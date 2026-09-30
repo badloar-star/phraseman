@@ -20,17 +20,15 @@ const commandMeta = {
 };
 
 describe('protected admin user operations', () => {
-  it('accepts only the three supported profile fields with bounded values', () => {
+  it('accepts only supported profile fields with bounded values', () => {
     expect(normalizeAdminProfileFieldCommand({ uid: 'stable-user', field: 'user_name', value: 'New Name', ...commandMeta }))
       .toMatchObject({ field: 'user_name', value: 'New Name' });
-    expect(normalizeAdminProfileFieldCommand({ uid: 'stable-user', field: 'user_total_xp', value: 42, ...commandMeta }))
-      .toMatchObject({ field: 'user_total_xp', value: 42 });
     expect(normalizeAdminProfileFieldCommand({ uid: 'stable-user', field: 'streak_count', value: 7, ...commandMeta }))
       .toMatchObject({ field: 'streak_count', value: 7 });
     for (const input of [
       { uid: 'stable-user', field: 'premium_plan', value: 'annual', ...commandMeta },
       { uid: 'stable-user', field: 'shards', value: 1, ...commandMeta },
-      { uid: 'stable-user', field: 'user_total_xp', value: -1, ...commandMeta },
+      { uid: 'stable-user', field: 'user_total_xp', value: 42, ...commandMeta },
       { uid: 'stable-user', field: 'streak_count', value: 1.5, ...commandMeta },
       { uid: 'stable-user', field: 'user_name', value: '', ...commandMeta },
       { uid: 'stable-user', field: 'user_name', value: 'Name', ...commandMeta, reason: '' },

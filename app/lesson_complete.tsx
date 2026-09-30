@@ -44,12 +44,8 @@ import {
 } from './lesson_lock_system';
 import { canShowReview, getReviewActiveDays, markReviewPrompted, markReviewRated, getReviewVariant, ReviewContext, ReviewVariant } from './review_utils';
 import { openStoreReviewPage } from './store_review';
-import { recordLessonForRepair } from './streak_repair';
-import { addShards, SHARD_REWARDS, type ShardSource } from './shards_system';
 import { grantLessonFirstCompleteBonus, retryPendingLessonBonusGrants } from './lesson_bonus_grant';
 import { logAppWarning } from './app_health';
-import { formatLessonShardBatchReason } from './shard_earn_ui';
-import { emitAppEvent } from './events';
 import { markLessonFinishedOnce } from './mastery';
 import { getVerifiedPremiumAccessStatus, getVerifiedPremiumStatus } from './premium_guard';
 import { FREE_LESSON_LIMIT, lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
@@ -67,7 +63,6 @@ import {
 import { primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 import { makeLessonServerAttemptId, normalizeLessonServerAttemptId } from './lesson_attempt_identity';
 import { prefetchLessonMenuCache } from './lesson_menu';
-import { COURSE_LEVEL_RANGES, getCourseLevelForLesson } from './course_levels';
 import RegistrationPromptModal from '../components/RegistrationPromptModal';
 import ReviewPromptModal from '../components/ReviewPromptModal';
 import { useOverlayVisible } from '../components/OverlayArbiter';
@@ -85,10 +80,8 @@ import { shouldPromptFeedback, markFeedbackPrompted } from './feedback_prompt_th
 import { phraseHasStudyTargetContent } from './phrase_target_utils';
 import { frenchStudyActive } from './spanish_content_gate';
 import {
-  lessonPerfectMilestoneKey,
   lessonProgressKey,
   lessonSessionKey,
-  lessonTopicShardGrantedKey,
 } from './target_storage_keys';
 import { DebugLogger } from './debug-logger';
 
@@ -834,9 +827,7 @@ export default function LessonComplete() {
         lessonId,
         studyTarget: softUpsellStudyTarget,
       };
-      const shardKeys: ShardSource[] = [];
-
-      // Бонус первого прохождения выдаёт только локальные руны/осколки.
+      // зачем: D70 — жемчуг за урок (0 штук) удалён; здесь только отметка первого прохождения.
       const firstBonus = await grantLessonFirstCompleteBonus({ lessonId, studyTarget, lang });
       const softUpsellCandidate = candidateAfterLessonGrant({
         status: firstBonus.status,
@@ -847,9 +838,6 @@ export default function LessonComplete() {
         freeLessonLimit: FREE_LESSON_LIMIT,
       });
       if (softUpsellCandidate) setSoftUpsellCandidates([softUpsellCandidate]);
-      if (firstBonus.status === 'granted') {
-        if (firstBonus.shardsGranted) shardKeys.push('lesson_first');
-      }
 
       try {
       // [ACHIEVEMENT] Считаем сколько уроков завершено + проверяем идеальность
@@ -874,13 +862,6 @@ export default function LessonComplete() {
     }
       }
       checkAchievements({ type: 'lesson_complete', lessonCount, wasPerfect, perfectCount, lessonId, studyTarget }).catch(() => {});
-      if (wasPerfect) {
-        const nP = await addShards('lesson_perfect', {
-          eventId: `lesson:${studyTarget}:${lessonId}:perfect`,
-          suppressEarnEvent: true,
-        });
-        if (nP > 0) shardKeys.push('lesson_perfect');
-      }
       const activeDays = wasPerfect ? await getReviewActiveDays() : 0;
       const eligible = wasPerfect && await canShowReview({
         trigger: 'perfect_lesson',
@@ -891,64 +872,7 @@ export default function LessonComplete() {
         setReviewContext('perfect_lesson');
         pendingReview.current = true;
       }
-// [SHARDS] 5 уроков подряд без ошибок
-      if (perfectCount > 0 && perfectCount % 5 === 0) {
-          const perfKey = lessonPerfectMilestoneKey(perfectCount, studyTarget);
-        const alreadyPerfect = await AsyncStorage.getItem(perfKey);
-        if (!alreadyPerfect) {
-          const n5 = await addShards('lessons_5_perfect', {
-            eventId: `perfect-milestone:${studyTarget}:${perfectCount}`,
-            localWrites: [[perfKey, '1']],
-            suppressEarnEvent: true,
-          });
-          if (n5 > 0) {
-            shardKeys.push('lessons_5_perfect');
-          }
-        }
-      }
-
-      // [SHARDS] Все уроки темы пройдены (CEFR группа: A1=1-8, A2=9-18, B1=19-28, B2=29-32)
-      const currentCefr = getCourseLevelForLesson(lessonId);
-      const [rangeStart, rangeEnd] = COURSE_LEVEL_RANGES[currentCefr];
-      let topicAllDone = true;
-      for (let i = rangeStart; i <= rangeEnd; i++) {
-        try {
-          const saved = await AsyncStorage.getItem(lessonProgressKey(i, studyTarget));
-          if (!saved) { topicAllDone = false; break; }
-          const p: string[] = JSON.parse(saved);
-          const correct = p.filter(x => x === 'correct' || x === 'replay_correct').length;
-          if (correct < 45) { topicAllDone = false; break; }
-        } catch { topicAllDone = false; break; }
-      }
-      if (topicAllDone) {
-        const topicKey = lessonTopicShardGrantedKey(currentCefr, studyTarget);
-        const alreadyTopic = await AsyncStorage.getItem(topicKey);
-        if (!alreadyTopic) {
-          const nT = await addShards('topic_completed', {
-            eventId: `topic:${studyTarget}:${currentCefr}:completed`,
-            localWrites: [[topicKey, '1']],
-            suppressEarnEvent: true,
-          });
-          if (nT > 0) {
-            shardKeys.push('topic_completed');
-          }
-        }
-      }
-
-      if (shardKeys.length > 0) {
-        const baseTotal = shardKeys.reduce((acc, k) => acc + (SHARD_REWARDS[k] ?? 0), 0);
-        const total = baseTotal;
-        if (total > 0) {
-          const reasonText = formatLessonShardBatchReason(shardKeys, lang);
-          emitAppEvent('shards_earned', { amount: total, reasonText });
-        }
-      }
-
-      // [STREAK REPAIR] Засчитываем урок в прогресс починки цепочки
-      const repair = await recordLessonForRepair();
-      if (repair.nowRepaired) {
-        checkAchievements({ type: 'streak_repair' }).catch(() => {});
-      }
+      // зачем: D107 — починка серии уроком удалена; спасает серию только заморозка Plus.
 
       // D+1 персональное уведомление — только после первого урока
       if (lessonId === 1) {

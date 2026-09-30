@@ -22,9 +22,6 @@ import { isCoreAchievementArt } from './achievementCoreArt';
 export const ACHIEVEMENT_IMAGE: Readonly<Record<string, ImageSourcePropType>> = {
   streak_3:                         require('../assets/images/achievements/streak_3.webp'),
   streak_7:                         require('../assets/images/achievements/streak_7.webp'),
-  xp_100:                           require('../assets/images/achievements/xp_100.webp'),
-  xp_250:                           require('../assets/images/achievements/xp_250.webp'),
-  xp_500:                           require('../assets/images/achievements/xp_500.webp'),
   comeback:                         require('../assets/images/legacy-achievements/comeback.webp'),
   shards_100:                       require('../assets/images/achievements/shards_100.webp'),
 };

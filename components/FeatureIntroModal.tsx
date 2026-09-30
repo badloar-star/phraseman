@@ -21,8 +21,10 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import HybridSheetShell from './modal_fx/HybridSheetShell';
 import DuoPressable from './DuoPressable';
 import PressableHybrid from './PressableHybrid';
+import { LinearGradient } from './SafeLinearGradient';
 import { useTheme } from './ThemeContext';
 import { LUM } from '../constants/motionHybrid';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import type { FeatureIntroIconName } from '../app/feature_intro_registry';
 import FeatureIntroStage, { type FeatureIntroFamily } from './feature_intro/FeatureIntroStage';
@@ -80,7 +82,8 @@ function CascadeItem({ index, style, children }: { index: number; style?: object
 
 /** Круг с иконкой фичи: settle без отскока, без задержки (первый узел световода). */
 function IconStage({ icon }: { icon: FeatureIntroIconName }) {
-  const { theme: t } = useTheme();
+  const { liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const reduceMotion = useReduceMotion();
   const scale = useSharedValue(reduceMotion ? 1 : 0.6);
   const opacity = useSharedValue(reduceMotion ? 1 : 0);
@@ -105,8 +108,36 @@ function IconStage({ icon }: { icon: FeatureIntroIconName }) {
   }));
 
   return (
-    <Animated.View style={[styles.iconCircle, { backgroundColor: `${t.accent}1F` }, style]}>
-      <Ionicons name={icon} size={34} color={t.accent} />
+    <Animated.View style={[
+      styles.iconStageOuter,
+      {
+        backgroundColor: glass.opaqueControl,
+        shadowColor: glass.bg,
+        shadowOpacity: 0.28,
+        shadowRadius: 18,
+        shadowOffset: { width: 0, height: 12 },
+        elevation: 6,
+      },
+      style,
+    ]}>
+      <View style={styles.iconCircle}>
+        <LinearGradient
+          pointerEvents="none"
+          colors={[glass.selected, glass.opaqueControl]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 0.85, y: 1 }}
+          style={StyleSheet.absoluteFill}
+        />
+        <LinearGradient
+          pointerEvents="none"
+          colors={[glass.lightTint, 'transparent']}
+          start={{ x: 0.15, y: 0.05 }}
+          end={{ x: 0.8, y: 0.78 }}
+          style={[StyleSheet.absoluteFill, { opacity: 0.16 }]}
+        />
+        <View pointerEvents="none" style={styles.stageRim} />
+        <Ionicons name={icon} size={28} color={glass.cta} />
+      </View>
     </Animated.View>
   );
 }
@@ -121,14 +152,16 @@ function FeatureIntroModal({
   onDone,
   onLater,
   family,
-  art = 'league',
+  art = 'arena',
   secondaryLabel,
   hideSecondary = false,
   onSecondary,
   onDismissed,
   testIdPrefix = 'feature-intro',
 }: Props) {
-  const { theme: t, f } = useTheme();
+  const { f, liquidGlassThemeId } = useTheme();
+  // зачем: FeatureIntro — только поверхность/палитра стекла (макет overlays), тексты и логика не тронуты.
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const pendingAction = useRef<(() => void) | null>(null);
   const dismissRequested = useRef(false);
   const requestAction = (action: () => void, requestDismiss: () => void) => {
@@ -155,17 +188,18 @@ function FeatureIntroModal({
       onDismissRequested={() => { dismissRequested.current = true; }}
       closeLabel={laterLabel}
       testID={`${testIdPrefix}-sheet`}
+      material="liquid-glass-opaque"
     >
       {({ requestDismiss }) => <>
       <ScrollView style={{ flexShrink: 1 }} contentContainerStyle={{ paddingBottom: 4 }} bounces={false}>
         {family ? <FeatureIntroStage family={family} art={art} /> : <View style={styles.iconRow}><IconStage icon={icon} /></View>}
 
       <CascadeItem index={1}>
-        <Text accessibilityRole="header" style={[styles.title, { color: t.textPrimary, fontSize: family ? f.h1 * 1.3 : f.h3, lineHeight: (family ? f.h1 * 1.3 : f.h3) * 1.2 }]}>{title}</Text>
+        <Text accessibilityRole="header" style={[styles.title, { color: glass.text, fontSize: family ? f.h1 * 1.3 : f.h3, lineHeight: (family ? f.h1 * 1.3 : f.h3) * 1.2 }]}>{title}</Text>
       </CascadeItem>
 
       <CascadeItem index={2}>
-        <Text style={[styles.body, { color: t.textSecond, fontSize: f.body, lineHeight: f.body * 1.5 }]}>{body}</Text>
+        <Text style={[styles.body, { color: glass.secondary, fontSize: f.body, lineHeight: f.body * 1.5 }]}>{body}</Text>
       </CascadeItem>
       </ScrollView>
 
@@ -174,11 +208,11 @@ function FeatureIntroModal({
           testID={`${testIdPrefix}-cta`}
           accessibilityLabel={ctaLabel}
           onPress={() => requestAction(onDone, requestDismiss)}
-          edgeColor={t.bgSurface2}
+          edgeColor={glass.glassEdge}
           edgeHeight={4}
-          style={[styles.primaryFace, { backgroundColor: t.accent, borderRadius: family === 'orbit' ? 30 : 18 }]}
+          style={[styles.primaryFace, { backgroundColor: glass.cta, borderRadius: family === 'orbit' ? 30 : 18 }]}
         >
-          <Text style={[styles.primaryText, { color: t.correctText, fontSize: f.bodyLg }]}>{ctaLabel}</Text>
+          <Text style={[styles.primaryText, { color: glass.ctaInk, fontSize: f.bodyLg }]}>{ctaLabel}</Text>
         </DuoPressable>
         {!hideSecondary ? <PressableHybrid
           variant="secondary"
@@ -188,7 +222,7 @@ function FeatureIntroModal({
         >
           <Text
             testID={`${testIdPrefix}-later`}
-            style={[styles.secondaryText, { color: t.textMuted, fontSize: f.body }]}
+            style={[styles.secondaryText, { color: glass.secondary, fontSize: f.body }]}
           >
             {secondaryLabel ?? laterLabel}
           </Text>
@@ -206,12 +240,27 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 4,
   },
+  iconStageOuter: {
+    width: 108,
+    height: 108,
+    borderRadius: 34,
+  },
   iconCircle: {
-    width: 72,
-    height: 72,
-    borderRadius: 36,
+    width: '100%',
+    height: '100%',
+    borderRadius: 34,
+    overflow: 'hidden',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  stageRim: {
+    position: 'absolute',
+    top: 1,
+    alignSelf: 'center',
+    width: '72%',
+    height: StyleSheet.hairlineWidth,
+    borderRadius: 999,
+    backgroundColor: 'rgba(255,255,255,0.2)',
   },
   title: {
     marginTop: 14,

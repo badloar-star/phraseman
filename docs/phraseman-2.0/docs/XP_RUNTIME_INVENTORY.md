@@ -180,3 +180,23 @@ PM-068 (или его декомпозиция) не должен начинат
 (диалоги) и не даст решение по разделу 4 (Level Gift / Level Spin / Арена→Лига / достижения-каскад)
 — это прямо совпадает с обязательными gate'ами PM-067:
 `DOMAIN_AUDIT_AND_IMPACT_ACCEPTED`, `MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE`.
+
+## Current runtime checkpoint — 2026-09-27
+
+Этот исторический инвентарь сохранён как traceability-артефакт, но его список
+активных модулей устарел после PM-067/068 retirement. В текущем дереве отсутствуют
+`app/xp_manager.ts`, `app/league_engine.ts`, `functions/src/level_spin_enrollment.ts`
+и `functions/src/league_finalize_cron.ts`; `PROGRESS_EVENT_TYPES` содержит только
+учебные события, а runtime scan не нашёл активных `grant/award XP` вызовов.
+Оставшиеся XP-идентификаторы находятся в compatibility/quarantine allowlist для
+чтения и закрытия старых квитанций без выдачи.
+
+## Current runtime checkpoint — 2026-09-27 (follow-up)
+
+Source scan for `registerXP`, `grantXP`, `xpDelta`, and active XP-field assignments
+returned no non-test producer matches in `app`, `modules`, `components`, or
+`functions/src`. Retirement probes `quest_xp_retirement.probe.ts`,
+`release_wave_without_xp.probe.ts`, `level_spin_assets_without_xp.probe.ts`, and
+`level_gift_client_retirement.probe.ts` completed without failure. This confirms
+absence of active XP grants in the scanned runtime; historical compatibility reads
+and test fixtures remain intentionally out of scope.

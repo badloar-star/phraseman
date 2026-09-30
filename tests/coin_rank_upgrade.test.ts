@@ -13,6 +13,8 @@ import { __resetCoinRankCacheForTests, coinRankStateKey, peekCoinRank } from '..
 import { upgradeCoinRank } from '../app/coin_rank_upgrade_v1';
 import { enqueueLevelSpinStarGrant, readUnifiedLevelSpinStars } from '../app/level_spin_star_grants';
 
+const mockSyncPublicProfileSnapshot = jest.fn<Promise<void>, [Record<string, unknown>, unknown]>(async () => undefined);
+
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/phone_state_economy_bridge', () => ({
   commitPhoneStateNonMonetaryEconomyGrant: jest.fn(),
@@ -20,6 +22,9 @@ jest.mock('../app/phone_state_economy_bridge', () => ({
 }));
 jest.mock('../app/community_packs/functionsClient', () => ({ callLevelSpinStarComposite: jest.fn() }));
 jest.mock('../app/app_snapshot_store', () => ({ getAppSnapshot: jest.fn(), patchAppSnapshot: jest.fn() }));
+jest.mock('../app/public_profile_snapshot', () => ({
+  syncPublicProfileSnapshot: (input: Record<string, unknown>, token: unknown) => mockSyncPublicProfileSnapshot(input, token),
+}));
 
 const OWNER = 'owner-rank';
 const storage: Record<string, string> = {};
@@ -50,7 +55,7 @@ async function seedCoins(giftIds: string[]): Promise<void> {
   const token = captureAccountGeneration();
   for (const [index, giftId] of giftIds.entries()) {
     await enqueueLevelSpinStarGrant({
-      token, requestId: `coin_rank_seed_${String(index).padStart(4, '0')}`, lane: 'base', giftId, promotionEligibility: 'gameplay',
+      token, requestId: `coin_rank_seed_${String(index).padStart(4, '0')}`, lane: 'base', giftId, promotionEligibility: 'excluded_compensation',
     }, { syncNow: false });
   }
 }
@@ -154,6 +159,21 @@ test('сбой записи: ничего не списано и не подня
   await expect(upgradeCoinRank({ token, expectedFromRank: 0, nowMs: later() })).resolves.toMatchObject({ ok: true, status: 'upgraded' });
   expect(await balance()).toBe(0);
   expect(storedRank()).toBe(1);
+});
+
+test('успешное повышение запускает best-effort публичную проекцию и не зависит от её сбоя', async () => {
+  await seedCoins(['stars_1000']);
+  const token = captureAccountGeneration();
+  mockSyncPublicProfileSnapshot.mockRejectedValueOnce(new Error('projection_offline'));
+
+  await expect(upgradeCoinRank({ token, expectedFromRank: 0, nowMs: later() }))
+    .resolves.toMatchObject({ ok: true, status: 'upgraded', toRank: 1 });
+
+  expect(storedRank()).toBe(1);
+  expect(mockSyncPublicProfileSnapshot).toHaveBeenCalledWith(
+    { reason: 'display_change' },
+    token,
+  );
 });
 
 test('смена аккаунта: токен старого владельца ничего не списывает', async () => {

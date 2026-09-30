@@ -1,5 +1,4 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import bundledManifest from './bundles/bundled_marketplace_manifest.json';
 import { emitAppEvent } from '../events';
 import { flashcardsPackTrialGiftKey, type RuntimeStudyTarget } from '../target_storage_keys';
 import {
@@ -182,10 +181,8 @@ export function getPackTrialHoursLeft(expiresAt: number): number {
   return Math.max(0, Math.ceil((expiresAt - Date.now()) / 3600000));
 }
 
-function randomPackId(seed?: string): string {
-  const packs = (bundledManifest as { packs: { id: string }[] }).packs;
-  const ids = packs.length > 0 ? packs.map((pack) => pack.id) : ['official_peaky_blinders_en'];
-  return seed ? (ids[hash32(seed) % ids.length] ?? ids[0]) : ids[Math.floor(Math.random() * ids.length)];
+function randomPackId(_seed?: string): string {
+  return '';
 }
 
 function localIdFor(voucherId?: string, occurrenceId?: string): string {
@@ -215,23 +212,16 @@ export async function setRandomPackGiftTrial48h(
   const token = captureAccountGeneration();
   const expiresAt = Math.max(0, Math.floor(Number(expiresAtOverride) || 0)) || Date.now() + 48 * 60 * 60 * 1000;
   if (Date.now() >= expiresAt) return null;
+  const packId = randomPackId(voucherId ?? occurrenceId);
+  if (!packId) return null;
   return upsertVoucher({
     localVoucherId: localIdFor(voucherId, occurrenceId),
-    packId: randomPackId(voucherId ?? occurrenceId),
+    packId,
     expiresAt,
     ...(voucherId ? { voucherId } : {}),
     ...(occurrenceId ? { occurrenceId } : {}),
     ...(source ? { source } : {}),
   }, token);
-}
-
-function hash32(seed: string): number {
-  let h = 2166136261;
-  for (let i = 0; i < seed.length; i += 1) {
-    h ^= seed.charCodeAt(i);
-    h = Math.imul(h, 16777619);
-  }
-  return h >>> 0;
 }
 
 export async function setPackGiftTrial48hOnce(
@@ -258,9 +248,11 @@ export async function setPackGiftTrial48hOnce(
     }
     const expiresAt = Math.max(0, Math.floor(Number(expiresAtOverride) || 0)) || Date.now() + 48 * 60 * 60 * 1000;
     if (Date.now() >= expiresAt) return null;
+    const packId = randomPackId(safeKey);
+    if (!packId) return null;
     const item: PackTrialState = {
       localVoucherId: localIdFor(voucherId, occurrenceId ?? idempotencyKey),
-      packId: randomPackId(safeKey),
+      packId,
       expiresAt,
       idempotencyKey,
       ...(voucherId ? { voucherId } : {}),
@@ -278,7 +270,7 @@ export async function setPackGiftTrial48hOnce(
 }
 
 const SERVER_GIFT_SOURCES = new Set([
-  'global_broadcast', 'league_chest', 'level_gift', 'server_grant', 'weekly_boon',
+  'global_broadcast', 'server_grant',
 ]);
 
 function isServerBackedVoucher(item: PackTrialState): boolean {
@@ -307,7 +299,8 @@ export async function reconcilePackGiftTrials(
         ...item,
         localVoucherId: localIdFor(item.voucherId, item.occurrenceId),
         packId: randomPackId(item.voucherId ?? item.occurrenceId),
-      }));
+      }))
+      .filter((item) => item.packId.length > 0);
     const incomingIds = new Set(incoming.map((item) => item.localVoucherId));
     const retained = current.filter((item) => {
       if (incomingIds.has(item.localVoucherId)) return true;

@@ -177,7 +177,7 @@ export function planSummaryFromAnswers(answers: Record<string, unknown> | null):
       },
       {
         emoji: '🛡️',
-        bold: painQuit ? 'Серия и лиги против «брошу»' : 'Умные повторения против забывания',
+        bold: painQuit ? 'Серия и короткие шаги против «брошу»' : 'Умные повторения против забывания',
         rest: 'механики, ради которых возвращаются каждый день',
       },
     ],

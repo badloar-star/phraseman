@@ -50,6 +50,173 @@ function workspaceSnapshot(db: FirebaseFirestore.Firestore, id: string) {
   return db.collection(ROOT).doc(id);
 }
 
+/* ══════════════ НАБОР КАРТОЧЕК ИЗ ФРАЗ РОЛИКА ══════════════ */
+
+const COMMUNITY_PACKS = 'community_packs';
+/** Детерминированный id: повторная публикация ОБНОВЛЯЕТ набор, а не плодит копии. */
+const videoPackId = (id: string) => `video_${id}`;
+
+/** Языки наборов — ровно те же, что в `app/flashcards/pack_languages.ts`. */
+const PACK_LANGUAGES = ['en', 'fr', 'de', 'es'] as const;
+type PackLanguageCode = (typeof PACK_LANGUAGES)[number];
+
+/**
+ * Приметы языка по самим фразам: буквы и частые служебные слова.
+ *
+ * зачем угадывать, а не брать язык канала: связь «канал → язык» живёт только в
+ * манифесте каталога YouTube, а ролик может быть добавлен ссылкой и не
+ * принадлежать ни одному каналу оттуда. Фразы же есть всегда — это самый
+ * надёжный доступный признак.
+ *
+ * Сомнение трактуем в пользу английского: он и был бы значением по умолчанию,
+ * а ошибка в сторону английского не прячет набор от большинства.
+ */
+function detectPackLanguage(phrases: readonly VideoPhrase[]): PackLanguageCode {
+  const sample = phrases.slice(0, 40).map((p) => p.phrase).join(' ').toLowerCase();
+  if (!sample.trim()) return 'en';
+  const score: Record<PackLanguageCode, number> = { en: 0, fr: 0, de: 0, es: 0 };
+  // Диакритика — сильный признак, служебные слова — подтверждающий.
+  if (/[àâçéèêëîïôûùü]/.test(sample)) score.fr += 3;
+  if (/[äöüß]/.test(sample)) score.de += 3;
+  if (/[áéíóúñ¿¡]/.test(sample)) score.es += 3;
+  const has = (re: RegExp, lang: PackLanguageCode, weight = 1) => { if (re.test(sample)) score[lang] += weight; };
+  /**
+   * Слова НЕ должны пересекаться между языками, иначе счёт становится ничьёй и
+   * решает случайный порядок перебора. Поэтому «la» (общее для fr и es) и
+   * «ist/est» (de/fr) в списках отсутствуют.
+   */
+  has(/\b(the|is|are|you|and|to|of|it)\b/, 'en', 2);
+  has(/\b(le|les|des|une|vous|dans|pour|avec|c'est)\b/, 'fr', 2);
+  has(/\b(der|die|das|und|nicht|ein|mit|ich)\b/, 'de', 2);
+  has(/\b(el|los|las|una|que|para|con|por|muy)\b/, 'es', 2);
+  let best: PackLanguageCode = 'en';
+  for (const code of PACK_LANGUAGES) if (score[code] > score[best]) best = code;
+  return score[best] > 0 ? best : 'en';
+}
+
+/**
+ * Документ набора из фраз ролика — ЧИСТАЯ функция, без Firestore.
+ *
+ * зачем отдельно от записи: именно здесь живут значения, ошибка в которых
+ * ломает раздел молча и целиком — `category` не из списка, пустой `titleRu`
+ * (маппер каталога отбрасывает такой набор), `listingStatus`, `packLanguage`,
+ * `videoId`. Проверять это на моках Firestore бессмысленно: мок ответит «ок»
+ * на любой мусор. Чистую функцию можно сверить с контрактом напрямую.
+ */
+export function buildVideoPackDoc(args: Readonly<{
+  videoId: string;
+  phrases: readonly VideoPhrase[];
+  sourceName: string;
+  actorUid: string;
+  nowMs: number;
+  keepSocial: boolean;
+}>): Record<string, unknown> {
+  const { videoId: id, phrases, sourceName, actorUid, nowMs, keepSocial } = args;
+  const videoTitle = String(sourceName ?? '').trim().slice(0, 240);
+  /** Маппер каталога отбрасывает набор с пустым titleRu — запасное имя обязательно. */
+  const title = videoTitle || 'Фразы из видео';
+  const detectedLanguage = detectPackLanguage(phrases);
+  const cards = phrases.map((phrase) => ({
+    id: `p${phrase.ordinal}`,
+    en: phrase.phrase,
+    targetText: phrase.phrase,
+    translationText: phrase.translation,
+    ru: phrase.translation,
+    /** Объяснение → шеврон подробностей на карточке (решение владельца). */
+    description: phrase.explanation,
+    origin: { source: 'video', sourceId: id, sourceTitle: videoTitle || id },
+  }));
+
+  return {
+    title,
+    titleRu: title,
+    titleUk: title,
+    titleEs: title,
+    description: '',
+    descriptionRu: '',
+    descriptionUk: '',
+    descriptionEs: '',
+    /** Только из списка FlashcardPackCategory: business|travel|daily|exam|slang|verbs. */
+    category: 'daily',
+    cards,
+    cardCount: cards.length,
+    /**
+     * Язык определяется по самим фразам: выбор языка на экране «Из видео»
+     * фильтрует наборы именно по нему. Жёсткий 'en' прятал бы французские и
+     * немецкие ролики от их зрителей.
+     */
+    packLanguage: detectedLanguage,
+    studyTarget: detectedLanguage,
+    /** Связь с роликом — по ней клиент отбирает раздел «Из видео». */
+    videoId: id,
+    videoTitle,
+    /** Длительности в данных фраз нет — бейдж времени не рисуем (0 = нет бейджа). */
+    videoDurationSec: 0,
+    status: 'published',
+    listingStatus: 'published',
+    priceRunes: 0,
+    authorStableId: `video:${id}`,
+    publishedAtMs: nowMs,
+    publishedBy: actorUid,
+    updatedAt: nowMs,
+    /** Перепубликация НЕ обнуляет лайки и добавления уже живущего набора. */
+    ...(keepSocial ? {} : { likesCount: 0, addedCount: 0, salesCount: 0 }),
+  };
+}
+
+/**
+ * Собрать/обновить набор карточек из опубликованных фраз ролика.
+ *
+ * Решение владельца 2026-09-23: набор создаётся АВТОМАТИЧЕСКИ при публикации
+ * фраз, и это ОБЫЧНЫЙ документ `community_packs` плюс поле `videoId` — тогда
+ * лайки, «Добавить себе», тренировка, витрина и топ работают без единой строки
+ * нового кода. Отдельная сущность потребовала бы второй копии социального слоя.
+ *
+ * `explanation` фразы кладётся в `description` карточки: именно это поле даёт
+ * шеврон подробностей (`cardHasDetails`), тот самый механизм наборов за жемчуг,
+ * на который указал владелец.
+ *
+ * Функция НЕ бросает наружу: публикация фраз не должна падать из-за набора.
+ * Каждый отказ логируется с причиной — немой catch запрещён.
+ */
+async function syncVideoPack(
+  db: FirebaseFirestore.Firestore,
+  args: Readonly<{ videoId: string; phrases: readonly VideoPhrase[]; sourceName: string; actorUid: string; nowMs: number }>,
+): Promise<{ ok: boolean; reason?: string }> {
+  const { videoId: id, phrases, sourceName, actorUid, nowMs } = args;
+  try {
+    if (phrases.length === 0) {
+      console.warn(`[VIDEO-PACK] набор не создан: у ролика ${id} ноль фраз`);
+      return { ok: false, reason: 'no_phrases' };
+    }
+
+    /**
+     * Заголовок берём из `sourceName` версии — его ввёл админ при создании
+     * черновика, и это обязательное поле (`source_name_required`).
+     *
+     * зачем НЕ из каталога роликов: ролики лежат в снимке
+     * `youtube_catalog_snapshots/{version}/channels/{id}/videos/{id}`, то есть
+     * искать пришлось бы обходом всех каналов. Хуже того, ролик может вообще не
+     * быть из каталога — админка позволяет вставить ссылку на любое видео.
+     * `sourceName` есть всегда и не требует ни одного лишнего чтения.
+     */
+    const packRef = db.collection(COMMUNITY_PACKS).doc(videoPackId(id));
+    const existing = await packRef.get();
+    /** Лайки и добавления существующего набора переживают перепубликацию. */
+    const keepSocial = existing.exists;
+    const payload = buildVideoPackDoc({ videoId: id, phrases, sourceName, actorUid, nowMs, keepSocial });
+    const title = String(payload.titleRu);
+
+    await packRef.set(payload, { merge: true });
+
+    console.log(`[VIDEO-PACK] набор ${videoPackId(id)} сохранён: карточек ${payload.cardCount}, язык=${payload.packLanguage}, заголовок="${title}", обновление=${keepSocial}`);
+    return { ok: true };
+  } catch (error) {
+    console.error(`[VIDEO-PACK] набор для ролика ${id} НЕ сохранён: ${String(error)}`);
+    return { ok: false, reason: 'write_failed' };
+  }
+}
+
 type VideoPhraseSetStatus = 'none' | 'draft' | 'published' | 'published_with_draft';
 
 export function publishedRootPatch(args: Readonly<{
@@ -239,6 +406,11 @@ export const adminPublishVideoPhrases = onCall({ region: REGION, enforceAppCheck
   const db = admin.firestore();
   const root = workspaceSnapshot(db, id);
   const version = root.collection('versions').doc(selectedVersion);
+  /** Фразы, попавшие в публикацию: нужны для сборки набора ПОСЛЕ транзакции. */
+  let publishedPhrases: readonly VideoPhrase[] = [];
+  let publishedAtMs = Date.now();
+  /** Имя источника из версии — оно же станет заголовком набора. */
+  let publishedSourceName = '';
   await db.runTransaction(async (tx) => {
     const snapshot = await tx.get(version);
     if (!snapshot.exists || snapshot.data()?.status !== 'draft') throw new HttpsError('failed-precondition', 'draft_version_required');
@@ -250,8 +422,28 @@ export const adminPublishVideoPhrases = onCall({ region: REGION, enforceAppCheck
     tx.set(version, { status: 'published', publishedAtMs: now, publishedBy: actor.uid, phrases }, { merge: true });
     if (previousVersion && previousVersion !== selectedVersion) tx.set(root.collection('versions').doc(previousVersion), { status: 'archived', archivedAtMs: now }, { merge: true });
     tx.set(root, publishedRootPatch({ videoId: id, versionId: selectedVersion, phraseCount: phrases.length, actorUid: actor.uid, nowMs: now }), { merge: true });
+    publishedPhrases = phrases;
+    publishedAtMs = now;
+    publishedSourceName = String(data.sourceName ?? '').trim();
   });
-  return { ok: true, videoId: id, activeVersion: selectedVersion };
+
+  /**
+   * Набор карточек собирается ПОСЛЕ транзакции и НЕ внутри неё.
+   *
+   * зачем именно так: внутри транзакции пришлось бы читать метаданные ролика
+   * тем же tx, и любой сбой отката снёс бы саму публикацию фраз. Публикация —
+   * главное действие админа, она обязана пройти. Набор не собрался — фразы всё
+   * равно опубликованы, а причина записана в лог и вернулась вызывающему.
+   */
+  const pack = await syncVideoPack(db, {
+    videoId: id,
+    phrases: publishedPhrases,
+    sourceName: publishedSourceName,
+    actorUid: actor.uid,
+    nowMs: publishedAtMs,
+  });
+
+  return { ok: true, videoId: id, activeVersion: selectedVersion, packCreated: pack.ok, packReason: pack.reason ?? null };
 });
 
 export const adminParseVideoPhraseDocument = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, secrets: [OPENAI_API_KEY], timeoutSeconds: 120 }, async (request) => {
@@ -275,4 +467,88 @@ export const adminParseVideoPhraseDocument = onCall({ region: REGION, enforceApp
   return { ok: true, videoId: id, sourceName: String(request.data?.sourceName ?? 'Документ').trim().slice(0, 240), phrases };
 });
 
-export const __videoPhrasesTestHooks = { publishedRootPatch };
+/**
+ * Разовая сборка наборов по УЖЕ опубликованным фразам роликов.
+ *
+ * зачем она вообще нужна (провал 2026-09-23): создание набора стояло ТОЛЬКО
+ * внутри `adminPublishVideoPhrases`, то есть срабатывало лишь при новом нажатии
+ * «Опубликовать». У роликов, опубликованных раньше, набора не появлялось
+ * никогда — раздел «Из видео» был пуст при полной базе фраз. Ровно тот класс
+ * бага, что уже ловили: «механизм есть, а данных не дали».
+ *
+ * Идемпотентна: id набора детерминирован (`video_{videoId}`), повторный прогон
+ * обновляет тот же документ, а `keepSocial` бережёт лайки и добавления.
+ * Ничего не удаляет.
+ */
+export const adminBackfillVideoPacks = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 540 }, async (request) => {
+  const actor = requireAdmin(request, 'content.publish');
+  const db = admin.firestore();
+  const now = Date.now();
+
+  /** Страницами, а не всей коллекцией разом: чтений меньше и память предсказуема. */
+  const PAGE = 100;
+  let cursor: FirebaseFirestore.QueryDocumentSnapshot | null = null;
+  let scanned = 0;
+  let created = 0;
+  const skipped: { videoId: string; reason: string }[] = [];
+
+  for (;;) {
+    let query = db.collection(ROOT).orderBy(admin.firestore.FieldPath.documentId()).limit(PAGE);
+    if (cursor) query = query.startAfter(cursor);
+    const page = await query.get();
+    if (page.empty) break;
+
+    for (const doc of page.docs) {
+      scanned += 1;
+      const id = doc.id;
+      const activeVersion = String(doc.data()?.activeVersion ?? '').trim();
+      if (!activeVersion) {
+        // Каждый пропуск обязан называть причину: пустой результат должен
+        // объяснять себя сам, иначе «почему ничего не создалось» ищут кругами.
+        skipped.push({ videoId: id, reason: 'no_active_version' });
+        continue;
+      }
+      try {
+        const versionSnap = await doc.ref.collection('versions').doc(activeVersion).get();
+        if (!versionSnap.exists) {
+          skipped.push({ videoId: id, reason: 'version_missing' });
+          continue;
+        }
+        const data = versionSnap.data() ?? {};
+        if (data.status !== 'published') {
+          skipped.push({ videoId: id, reason: `status_${String(data.status ?? 'none')}` });
+          continue;
+        }
+        let phrases: readonly VideoPhrase[];
+        try {
+          phrases = normalizeVideoPhraseList(id, data.phrases);
+        } catch (error) {
+          skipped.push({ videoId: id, reason: 'phrases_invalid' });
+          console.warn(`[VIDEO-PACK] backfill ${id}: фразы не прошли контракт — ${String(error)}`);
+          continue;
+        }
+        const res = await syncVideoPack(db, {
+          videoId: id,
+          phrases,
+          sourceName: String(data.sourceName ?? '').trim(),
+          actorUid: actor.uid,
+          nowMs: now,
+        });
+        if (res.ok) created += 1;
+        else skipped.push({ videoId: id, reason: res.reason ?? 'sync_failed' });
+      } catch (error) {
+        // Один битый ролик не должен обрывать весь прогон.
+        skipped.push({ videoId: id, reason: 'read_failed' });
+        console.warn(`[VIDEO-PACK] backfill ${id}: чтение версии отказало — ${String(error)}`);
+      }
+    }
+
+    if (page.docs.length < PAGE) break;
+    cursor = page.docs[page.docs.length - 1];
+  }
+
+  console.log(`[VIDEO-PACK] backfill завершён: просмотрено ${scanned}, создано/обновлено ${created}, пропущено ${skipped.length}`);
+  return { ok: true, scanned, created, skipped: skipped.slice(0, 50), skippedTotal: skipped.length };
+});
+
+export const __videoPhrasesTestHooks = { publishedRootPatch, buildVideoPackDoc, detectPackLanguage };

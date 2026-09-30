@@ -9,14 +9,19 @@ import {
 } from '@/modules/audio/sound_settings';
 
 const MISSING_EVENTS: SoundEventId[] = [
-  'pm.reward.vip_finale',
   // зачем 2026-08-30 (раунд 5): владелец подключил 6 звуков Арены
   // (search_start, search_loop, countdown_go, result_draw, rank_up,
   // rank_down) — они ушли из этого списка. Остальные 19 отвергнуты
   // словами «ни один — не надо их вообще»: события остаются немыми
   // НАВСЕГДА, файлы не генерировать (star_land — не отмечен, ждёт
   // отдельного решения). Директор молча пропускает события без источника.
+  // зачем: D83 — клиентская Арена удалена, 9 подключённых файлов сняты из
+  // бандла; теперь немы ВСЕ 28 событий Арены (порядок = порядок объявления).
+  'pm.arena.search_start',
+  'pm.arena.search_loop',
   'pm.arena.opponent_found',
+  'pm.arena.countdown_tick',
+  'pm.arena.countdown_go',
   'pm.arena.task_in',
   'pm.arena.option_tap',
   'pm.arena.answer_correct',
@@ -31,10 +36,15 @@ const MISSING_EVENTS: SoundEventId[] = [
   'pm.arena.pair_match',
   'pm.arena.pair_miss',
   'pm.arena.pair_clear',
+  'pm.arena.result_win',
+  'pm.arena.result_loss',
+  'pm.arena.result_draw',
   'pm.arena.star_fly',
   'pm.arena.star_land',
   'pm.arena.goal_complete',
   'pm.arena.reward_unlock',
+  'pm.arena.rank_up',
+  'pm.arena.rank_down',
 ];
 
 describe('semantic sound event catalog', () => {
@@ -48,8 +58,9 @@ describe('semantic sound event catalog', () => {
     // файлы. После полного retirement коллекционных предметов и всех звуков
     // paywall-контуров каталог содержит 134 / 114; Daily Journey добавляет
     // ровно один intro-cue: 135 / 115.
-    expect(ids).toHaveLength(133);
-    expect(enabled).toHaveLength(113);
+    expect(ids).toHaveLength(120);
+    // D83: −9 файлов Арены (стали немыми).
+    expect(enabled).toHaveLength(91);
     expect(disabled).toEqual(MISSING_EVENTS);
     enabled.forEach((id) => expect(SOUND_EVENTS[id].source).toBeTruthy());
   });
@@ -74,12 +85,6 @@ describe('semantic sound event catalog', () => {
       priority: 95,
       platform: 'ios',
     });
-    expect(SOUND_EVENTS['pm.reward.vip_finale']).toMatchObject({
-      source: null,
-      volume: 0.64,
-      priority: 97,
-    });
-
     Object.values(SOUND_EVENTS).forEach((definition) => {
       expect(definition.volume).toBeGreaterThan(0);
       expect(definition.volume).toBeLessThanOrEqual(1);
@@ -124,7 +129,7 @@ describe('semantic sound event catalog', () => {
 describe('sound settings bridge', () => {
   test('publishes uiSounds and voiceOut changes synchronously', () => {
     const original = getUserSettingsSnapshot();
-    const seen: Array<{ effectsEnabled: boolean; voiceEnabled: boolean }> = [];
+    const seen: { effectsEnabled: boolean; voiceEnabled: boolean }[] = [];
     const unsubscribe = subscribeSoundSettings(() => seen.push(getSoundSettingsSnapshot()));
 
     applyUserSettingsNow({ ...original, uiSounds: false, voiceOut: false });

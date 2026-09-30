@@ -9,8 +9,8 @@ const source = fs.readFileSync(
 
 assert.match(
   source,
-  /cardArea:\s*\{[^}]*justifyContent:\s*'center'[^}]*paddingTop:\s*32[^}]*\}/,
-  'speaking card area must keep 32 px of top padding below the progress bar',
+  /cardArea:\s*\{[^}]*justifyContent:\s*'center'[^}]*paddingTop:\s*34[^}]*\}/,
+  'speaking card area must keep the approved 34 px of top padding below the progress bar',
 );
 
 console.log('PASS fc speaking card stays below progress');

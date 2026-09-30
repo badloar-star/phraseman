@@ -211,29 +211,24 @@ describe('тайминг и геометрия волны', () => {
 });
 
 describe('дев-кнопка: порядок режимов', () => {
-  it('шесть режимов ровно в том порядке, который задал владелец', () => {
-    // Дословно: всё → руны+жемчуг → руны → жемчуг → опыт → опыт+руны.
-    // Порядок — требование владельца, а не деталь реализации: перестановка
-    // сломала бы привычку «третье нажатие показывает руны».
+  it('показывает только действующие валютные волны без XP', () => {
     const shape = HOME_REWARD_DEMO_MODES.map((mode) => ({
       runes: mode.runes > 0,
       shards: mode.shards > 0,
-      xp: mode.xp,
     }));
 
     expect(shape).toEqual([
-      { runes: true, shards: true, xp: true },
-      { runes: true, shards: true, xp: false },
-      { runes: true, shards: false, xp: false },
-      { runes: false, shards: true, xp: false },
-      { runes: false, shards: false, xp: true },
-      { runes: true, shards: false, xp: true },
+      { runes: true, shards: true },
+      { runes: true, shards: false },
+      { runes: false, shards: true },
     ]);
   });
 
   it('каждый режим что-то показывает и подписан', () => {
     for (const mode of HOME_REWARD_DEMO_MODES) {
-      expect(mode.runes > 0 || mode.shards > 0 || mode.xp).toBe(true);
+      expect(mode.runes > 0 || mode.shards > 0).toBe(true);
+      expect(mode).not.toHaveProperty('xp');
+      expect(mode).not.toHaveProperty('levelUps');
       expect(mode.label.length).toBeGreaterThan(0);
     }
   });

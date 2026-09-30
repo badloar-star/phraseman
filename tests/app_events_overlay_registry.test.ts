@@ -9,7 +9,6 @@ const SOURCE_EXTENSIONS = new Set(['.ts', '.tsx']);
 const INTENTIONAL_EMIT_ONLY_EVENTS = new Set([
   // User/owner review required before removal. These are documented in CLASS_REGISTRY_EVENTS_TOASTS.md.
   'bug_hunt_eligible_check',
-  'energy_purchased_shards',
   'lesson_replay_started',
   'season_pass_plus_changed',
 ]);
@@ -31,8 +30,6 @@ const INTENTIONAL_DIRECT_EVENT_LISTENERS = new Set([
   'vip_activated @ components/EnergyContext.tsx',
   'vip_deactivated @ components/EnergyContext.tsx',
   'xp_changed @ app/(tabs)/home.tsx',
-  'xp_changed @ components/SaveProgressBanner.tsx',
-  'xp_updated @ components/SaveProgressBanner.tsx',
   'account_deleted @ components/SaveProgressBanner.tsx',
 ]);
 

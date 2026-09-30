@@ -2,7 +2,7 @@
 // auth_provider.ts — Регистрация/вход через Google и Apple провайдеры.
 //
 // Архитектура identity (см. также CLAUDE.md инвариант "Единый идентификатор"):
-//   1. stable_id (UUID) — primary key для users/*, leaderboard/*, league_groups/*.
+//   1. stable_id (UUID) — primary key для users/* и разрешённых progress/social records.
 //   2. Firebase Auth uid — анонимный токен для Firestore Rules (request.auth).
 //   3. Provider link (Google/Apple) — якорь для восстановления stable_id
 //      на новом устройстве. Хранится в auth_links/{providerUid}.
@@ -12,7 +12,7 @@
 //   • Получаем providerUid (sub из id token).
 //   • Lookup auth_links/{providerUid}:
 //       - есть и stable_id == local: просто update lastSignInAt.
-//       - есть и stable_id != local: AUTO-MERGE по XP (выбираем тот у кого XP больше)
+//       - есть и stable_id != local: AUTO-MERGE по legacy reward (выбираем тот у кого legacy reward больше)
 //         + swap локального stable_id если нужно + restoreFromCloud.
 //       - нет: create auth_links → пишем linkedAuth в users/{stable_id}.
 //
@@ -124,8 +124,6 @@ import { logEvent, recordError } from './firebase';
 import { logAppError } from './app_health';
 import { emitAppEvent } from './events';
 import { persistPortableProgressRegister } from './phone_state_progress_register_bridge';
-import { clearMaxFinalizeOutbox } from './max_voice_finalize_outbox';
-import { clearMaxVoiceReviewReceipts } from './max_voice_finalize_client';
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -272,6 +270,19 @@ const getAuth = () => {
     return null;
   }
 };
+
+/** Actual native Firebase Auth readiness signal for account-bound background work. */
+export function subscribeFirebaseAuthUid(listener: (authUid: string | null) => void): () => void {
+  const auth = getAuth();
+  if (!auth || typeof auth.onAuthStateChanged !== 'function') {
+    listener(null);
+    return () => undefined;
+  }
+  return auth.onAuthStateChanged((user: { uid?: string } | null) => {
+    const uid = String(user?.uid ?? '').trim();
+    listener(uid || null);
+  });
+}
 
 const getFirestore = () => {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
@@ -737,9 +748,6 @@ async function executePostDeleteLocalWipe(
     const phoneStateRetired = await retirePhoneStateForDeletion(stableId);
     traceAccountDeleteLocal(`phone_state_retired=${phoneStateRetired ? 1 : 0}`);
     if (!phoneStateRetired) return false;
-    if (stableId) await clearMaxFinalizeOutbox(stableId);
-    if (stableId) await clearMaxVoiceReviewReceipts(stableId);
-    traceAccountDeleteLocal('outboxes_cleared');
     await wipeLocalAccountData();
     traceAccountDeleteLocal('account_data_wiped');
     const finishSettingsMutation = beginSettingsStorageMutation();
@@ -2266,7 +2274,7 @@ async function runSignInWithProviderWhileOwningHandoffLease(
     tokenRefreshError = e;
   });
 
-  // 3. Lookup auth_links → link OR auto-merge by XP
+  // 3. Lookup auth_links → link OR auto-merge by legacy reward
   let localStableId = await getStableId();
   const now = Date.now();
   const devicePlatform: 'ios' | 'android' | 'web' =
@@ -2390,7 +2398,7 @@ async function runSignInWithProviderWhileOwningHandoffLease(
       // A previous interrupted provider switch can leave local progress under a
       // stable id owned by an obsolete anonymous Firebase uid. That identity
       // cannot be reclaimed safely, so rotate only the anchor and keep the local
-      // progress. This restores league/social access without merging foreign data.
+      // progress. This restores social access without merging foreign data.
       try {
         await quiesceSyncBeforeStableIdSwap();
         await beginEntitlementSafeAccountTransition();
@@ -2512,7 +2520,7 @@ async function runSignInWithProviderWhileOwningHandoffLease(
       // корректно и переносит премиум-блок целиком от «сильной» стороны.
       //
       // Merge удаётся, только когда сервер может доказать владение ОБОИМИ аккаунтами
-      // (XP-merge ветка: и local, и remote привязаны к этому auth uid). В ветке
+      // (legacy reward-merge ветка: и local, и remote привязаны к этому auth uid). В ветке
       // «провайдер уже привязан к remote» (returning user / новое устройство) локальный
       // анонимный аккаунт НЕ принадлежит новому uid — merge тогда вернёт null. Это НЕ
       // ошибка: деградируем до простого свапа на remote (прежнее поведение), а не рвём
@@ -2596,7 +2604,7 @@ async function runSignInWithProviderWhileOwningHandoffLease(
   }
 
   if (outcome.kind === 'merged_keep_local') {
-    // Local выиграл по XP/владению. РАНЬШЕ тут НЕ звался серверный merge (только в
+    // Local выиграл по legacy reward/владению. РАНЬШЕ тут НЕ звался серверный merge (только в
     // merged_swap_to_remote) → premium/VIP/admin-grant/intro из REMOTE-аккаунта молча
     // терялись: store-премиум спасал RC restore, но VIP-реферал/админ-грант (живут
     // только в Firestore progress) пропадали (аудит платёжки 2026-06-21, P1).
@@ -3737,13 +3745,6 @@ export async function signOutCurrentProvider(): Promise<void> {
   // Сбрасываем PostHog-идентичность, чтобы события следующего юзера не приписались прошлому
   // (no-op, если PostHog выключен).
   void import('./posthog_client').then(({ resetPostHog }) => resetPostHog()).catch(() => {});
-  const maxPrivateAccountKey = await getStableId().catch(() => null);
-  if (maxPrivateAccountKey) {
-    await Promise.all([
-      clearMaxFinalizeOutbox(maxPrivateAccountKey),
-      clearMaxVoiceReviewReceipts(maxPrivateAccountKey),
-    ]).catch(() => {});
-  }
   if (!CLOUD_SYNC_ENABLED) return;
   // Google: revoke session чтобы при следующем signIn показался picker аккаунтов
   try {
@@ -3773,33 +3774,6 @@ export async function signOutCurrentProvider(): Promise<void> {
   // никогда не вызывается заново — а currentUser уже null. Любые последующие
   // Firestore writes падают с PERMISSION_DENIED до перезапуска приложения.
   try { resetAnonAuthCacheForSignOut(); } catch (e) {
-      // ignore
-      DebugLogger.error('auth_provider:auth', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
-  // зачем: signOutCurrentProvider — единственная точка, через которую проходят
-  // ВСЕ пути выхода (явный logout, смена аккаунта, account-delete, recovery-
-  // mismatch), включая те, что не доходят до wipeLocalAccountData. Сбрасываем
-  // здесь же — иначе на recovery-пути (rejectRecoveryProviderMismatch) кэш
-  // множителей предыдущего провайдера мог пережить signOut и утечь в
-  // PlayerProfileModal следующего вошедшего аккаунта.
-  try {
-    const { resetMultiplierBreakdownCache } = await import('./xp_manager');
-    resetMultiplierBreakdownCache();
-  } catch (e) {
-      // ignore
-      DebugLogger.error('auth_provider:auth', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
-  // зачем: cachedLeagueStateSnapshot в league_open_cache_policy.ts — module-scope
-  // кэш БЕЗ привязки к uid (см. clearCachedLeagueStateSnapshot). При смене
-  // аккаунта на общем девайсе/QA БЕЗ полного рестарта приложения
-  // getCachedLeagueStateSync() синхронно отдавал ранг/группу/участников лиги
-  // ПРЕДЫДУЩЕГО пользователя следующему вошедшему — утечка чужих данных лиги.
-  // signOutCurrentProvider — та же единственная точка всех путей выхода, что и
-  // для resetMultiplierBreakdownCache выше, поэтому сбрасываем здесь же.
-  try {
-    const { clearCachedLeagueStateSnapshot } = await import('./league_open_cache_policy');
-    clearCachedLeagueStateSnapshot();
-  } catch (e) {
       // ignore
       DebugLogger.error('auth_provider:auth', e instanceof Error ? e : new Error(String(e)), 'warning');
     }

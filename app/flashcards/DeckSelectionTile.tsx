@@ -12,6 +12,7 @@ import Reanimated, {
 
 import { FC_TIMING, fcStaggerDelay } from '../../constants/flashcards_motion';
 import type { Theme } from '../../constants/theme';
+import { LinearGradient } from '../../components/SafeLinearGradient';
 import { AdaptiveLabel } from '../../components/text-integrity/AdaptiveLabel';
 import type { FcDeckId } from './mode_prefs';
 import { fcHaptic } from './SoundService';
@@ -26,6 +27,20 @@ type Props = {
   t: Theme;
   f: { body: number; sub: number; caption: number };
   testIDPrefix?: string;
+  /** Opt-in compact row used only by the active Liquid Glass deck picker. */
+  presentation?: 'compact-liquid-glass';
+  liquidGlass?: Readonly<{
+    opaqueControl: string;
+    glassEdge: string;
+    selected: string;
+    cta: string;
+    ctaInk: string;
+    text: string;
+    secondary: string;
+    line: string;
+  }>;
+  textScale?: number;
+  countLabel?: string;
 };
 
 const ENTER_SPRING = { damping: 20, stiffness: 240, mass: 0.8 } as const;
@@ -40,6 +55,10 @@ export default function DeckSelectionTile({
   t,
   f,
   testIDPrefix = 'fc-deck-option',
+  presentation,
+  liquidGlass,
+  textScale = 1,
+  countLabel,
 }: Props) {
   const { width: viewportWidth } = useWindowDimensions();
   const disabled = deck.count <= 0;
@@ -76,6 +95,84 @@ export default function DeckSelectionTile({
     opacity: check.value,
     transform: [{ scale: 0.68 + check.value * 0.32 }],
   }));
+
+  if (presentation === 'compact-liquid-glass' && liquidGlass && countLabel) {
+    return (
+      <Reanimated.View style={[styles.wrapper, enterStyle]}>
+        <Pressable
+          testID={`${testIDPrefix}-${deck.deckId}`}
+          accessibilityRole="checkbox"
+          accessibilityLabel={`${deck.title}. ${countLabel}`}
+          accessibilityState={{ checked: selected, disabled }}
+          disabled={disabled}
+          onPress={() => {
+            fcHaptic('tap');
+            onToggle(deck.deckId);
+          }}
+          style={({ pressed }) => [
+            styles.compactRow,
+            {
+              borderBottomColor: liquidGlass.line,
+              opacity: disabled ? 0.42 : pressed ? 0.82 : 1,
+            },
+          ]}
+        >
+          <View
+            testID={`${testIDPrefix}-cover-${deck.deckId}`}
+            style={[
+              styles.compactCover,
+              { backgroundColor: liquidGlass.opaqueControl, borderColor: liquidGlass.glassEdge },
+            ]}
+          >
+            <LinearGradient
+              pointerEvents="none"
+              colors={[liquidGlass.selected, 'transparent']}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 0.8, y: 1 }}
+              style={StyleSheet.absoluteFill}
+            />
+            <Ionicons name="layers-outline" size={24} color={liquidGlass.secondary} />
+          </View>
+
+          <View style={styles.compactTextCol}>
+            <Text
+              testID={`${testIDPrefix}-title-${deck.deckId}`}
+              style={[
+                styles.compactTitle,
+                { color: liquidGlass.text, fontSize: 16 * textScale, lineHeight: 22 * textScale },
+              ]}
+            >
+              {deck.title}
+            </Text>
+            <Text
+              testID={`${testIDPrefix}-count-${deck.deckId}`}
+              style={[
+                styles.compactCount,
+                { color: liquidGlass.secondary, fontSize: 14 * textScale, lineHeight: 20 * textScale },
+              ]}
+            >
+              {countLabel}
+            </Text>
+          </View>
+
+          <View
+            testID={`${testIDPrefix}-checkbox-${deck.deckId}`}
+            style={[
+              styles.compactCheckbox,
+              {
+                borderColor: selected ? liquidGlass.cta : liquidGlass.glassEdge,
+                backgroundColor: selected ? liquidGlass.cta : 'transparent',
+              },
+            ]}
+          >
+            <Reanimated.View style={checkStyle}>
+              <Ionicons name="checkmark" size={16} color={liquidGlass.ctaInk} />
+            </Reanimated.View>
+          </View>
+        </Pressable>
+      </Reanimated.View>
+    );
+  }
 
   return (
     <Reanimated.View style={[styles.wrapper, enterStyle]}>
@@ -205,4 +302,35 @@ const styles = StyleSheet.create({
   },
   countText: { fontWeight: '800', fontVariant: ['tabular-nums'] },
   title: { fontWeight: '800' },
+  compactRow: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 14,
+    paddingVertical: 10,
+    paddingHorizontal: 4,
+    borderBottomWidth: 1,
+  },
+  compactCover: {
+    width: 52,
+    height: 52,
+    borderRadius: 10,
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    flexShrink: 0,
+  },
+  compactTextCol: { flex: 1, minWidth: 0 },
+  compactTitle: { fontWeight: '700' },
+  compactCount: { fontWeight: '400' },
+  compactCheckbox: {
+    width: 24,
+    height: 24,
+    borderRadius: 7,
+    borderWidth: 1.5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+  },
 });

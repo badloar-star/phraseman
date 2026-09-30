@@ -7,7 +7,6 @@ import {
 
 const callable = jest.fn();
 const httpsCallable = jest.fn(() => callable);
-const commitConfirmedExternalShardEvent = jest.fn(async (_event?: unknown) => ({ status: 'applied' }));
 const enqueueLevelSpinStarGrant = jest.fn(async (_grant?: unknown, _options?: unknown) => undefined);
 const emitAppEvent = jest.fn();
 // PM-047 (владелец): grantLocalReportRewardSpins больше не импортируется из
@@ -20,8 +19,9 @@ jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/config', () => ({ IS_EXPO_GO: false, CLOUD_SYNC_ENABLED: true }));
 jest.mock('../app/events', () => ({ emitAppEvent }));
 jest.mock('../app/level_spin_star_grants', () => ({ enqueueLevelSpinStarGrant }));
-jest.mock('../app/local_level_spins', () => ({}));
-jest.mock('../app/shards_system', () => ({ commitConfirmedExternalShardEvent }));
+// зачем: D70/D104 — жемчужная часть набора больше не начисляется; модуль экономики
+// жемчуга не должен даже импортироваться.
+jest.mock('../app/shards_system', () => { throw new Error('report_reward_bundle must not import shards_system'); });
 jest.mock('../app/user_id_policy', () => ({
   getCanonicalUserId: jest.fn(async () => currentUid),
 }));
@@ -58,23 +58,16 @@ beforeEach(() => {
   callable.mockResolvedValue({
     data: { rewardBundle: REPORT_REWARD_TIERS.minor, alreadyClaimed: false },
   });
-  commitConfirmedExternalShardEvent.mockResolvedValue({ status: 'applied' });
   enqueueLevelSpinStarGrant.mockResolvedValue(undefined);
 });
 
-it('delivers pearls and all rune lanes, and retires the spins portion without crediting it', async () => {
+it('delivers all rune (coin) lanes, never pearls, and retires the spins portion without crediting it', async () => {
   await expect(claimReportRewardBundle('reply-1', REPORT_REWARD_TIERS.minor)).resolves.toEqual({
     status: 'claimed',
     rewardBundle: REPORT_REWARD_TIERS.minor,
   });
 
   expect(callable).toHaveBeenCalledWith({ messageId: 'reply-1' });
-  expect(commitConfirmedExternalShardEvent).toHaveBeenCalledWith(expect.objectContaining({
-    source: 'report_reply',
-    eventId: 'reply-1',
-    delta: 1,
-    expectedOwnerStableId: 'account-a',
-  }));
   expect(enqueueLevelSpinStarGrant.mock.calls.map(([grant]) => grant)).toEqual([
     expect.objectContaining({ requestId: 'report_reward_reply-1', lane: 'base', giftId: 'stars_250' }),
     expect.objectContaining({ requestId: 'report_reward_reply-1', lane: 'premium', giftId: 'stars_50' }),
@@ -84,17 +77,15 @@ it('delivers pearls and all rune lanes, and retires the spins portion without cr
   expect(Object.keys(storage)).toHaveLength(0);
 });
 
-it('resumes after a rune failure without calling the server or crediting pearls twice', async () => {
+it('resumes after a rune failure without calling the server twice', async () => {
   enqueueLevelSpinStarGrant.mockRejectedValueOnce(new Error('temporary rune failure'));
 
   await expect(claimReportRewardBundle('reply-retry', REPORT_REWARD_TIERS.minor))
     .rejects.toThrow('temporary rune failure');
   expect(callable).toHaveBeenCalledTimes(1);
-  expect(commitConfirmedExternalShardEvent).toHaveBeenCalledTimes(1);
 
   await expect(resumePendingReportRewardBundleClaims()).resolves.toEqual({ resolved: 1, pending: 0 });
   expect(callable).toHaveBeenCalledTimes(1);
-  expect(commitConfirmedExternalShardEvent).toHaveBeenCalledTimes(1);
   expect(Object.keys(storage)).toHaveLength(0);
 });
 
@@ -114,7 +105,6 @@ it('never credits account A after the server responds to a claim while account B
   resolveCallable({ data: { rewardBundle: REPORT_REWARD_TIERS.minor, alreadyClaimed: false } });
 
   await expect(claim).rejects.toThrow('report_reward_account_changed');
-  expect(commitConfirmedExternalShardEvent).not.toHaveBeenCalled();
   expect(enqueueLevelSpinStarGrant).not.toHaveBeenCalled();
   expect(Object.keys(storage)).toEqual(['report_reward_bundle_claims_v1:account-a']);
 });

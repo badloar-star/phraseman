@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="midnight">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Плашка «Мои ошибки» на Главной · 5 вариантов</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<style>
+/* ============================================================
+   Плашка «Мои ошибки» в приоритетном слоте Главной.
+   Сейчас: полоса minHeight 72, radius 20, marginHorizontal 8,
+   картинка-слот 92×72, название по центру весом 800, справа
+   голый счётчик цветом t.wrong. Пульс 3400→1400 мс.
+   Варианты меняют ТОЛЬКО эту плашку, размер слота не растёт.
+   Законы владельца: без обводок, без подписей мелким шрифтом
+   под названием, без adjustsFontSizeToFit, всё крупно.
+   ============================================================ */
+body{background:#06070E;font-family:var(--font);color:var(--text);margin:0;padding:40px 24px 80px}
+.lede{max-width:1180px;margin:0 auto 34px}
+.lede h1{font-size:var(--fs-title);font-weight:900;letter-spacing:-.8px;margin:0 0 12px}
+.lede p{color:var(--muted);font-size:var(--fs-body);line-height:1.62;max-width:74ch;margin:0}
+.wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:34px}
+
+/* контекст Главной: сверху обрезок полосы опыта, снизу «Задание» */
+.ctx{width:390px;background:linear-gradient(180deg,var(--bg-a),var(--bg-b));border-radius:26px;padding:14px 0 16px;flex:0 0 auto}
+.ghosty{margin:0 8px;border-radius:20px;background:var(--card);opacity:.34}
+.gh1{height:52px;margin-bottom:12px}
+.gh2{height:66px;margin-top:12px}
+
+.case{display:flex;gap:28px;align-items:flex-start}
+.txt{flex:1;padding-top:6px;min-width:0}
+.txt .n{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:10px;background:var(--elev2);color:var(--accent);font-size:14px;font-weight:900;margin-right:10px;vertical-align:middle}
+.txt h2{display:inline;font-size:var(--fs-section);font-weight:900;letter-spacing:-.5px}
+.txt p{color:var(--muted);font-size:var(--fs-body);line-height:1.6;margin:12px 0 0 38px;max-width:52ch}
+.txt .why{color:var(--ghost);font-size:var(--fs-label);line-height:1.55;margin:9px 0 0 38px;max-width:52ch}
+
+/* ── общая основа плашки (как в коде) ── */
+.slot{margin:0 8px;border-radius:20px;overflow:hidden;background:linear-gradient(135deg,var(--elev),var(--card))}
+.bar{display:flex;align-items:center;gap:12px;padding:8px 16px;min-height:72px;box-sizing:border-box}
+.art{width:92px;height:72px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.art svg{width:76px;height:76px}
+.mid{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ttl{font-size:15px;font-weight:800;text-align:center;line-height:1.25}
+.cnt{min-width:30px;text-align:right;font-size:13px;font-weight:700;color:var(--danger);font-variant-numeric:tabular-nums;flex:0 0 auto}
+.tag{font-size:13px;font-weight:900;font-variant-numeric:tabular-nums}
+
+/* 1 · пилюля-счётчик */
+.pill{height:30px;min-width:30px;padding:0 11px;border-radius:15px;background:var(--danger-soft);color:var(--danger);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;font-variant-numeric:tabular-nums;flex:0 0 auto}
+.pulse{animation:pl 1900ms var(--ease-out) infinite}
+@keyframes pl{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.07);opacity:.9}}
+
+/* 2 · очередь точками */
+.dots{display:flex;gap:4px;margin-top:7px;justify-content:center}
+.dots i{width:7px;height:7px;border-radius:4px;background:var(--danger);opacity:.85}
+.dots i.dim{background:var(--ghost);opacity:.5}
+.mid.l{align-items:flex-start}
+.mid.l .ttl{text-align:left}
+
+/* 3 · левая марка вместо картинки */
+.mark{width:56px;height:56px;border-radius:19px;background:var(--danger-soft);display:flex;align-items:center;justify-content:center;flex:0 0 auto;margin-left:10px}
+.mark b{font-size:24px;font-weight:900;color:var(--danger);letter-spacing:-1px;font-variant-numeric:tabular-nums;line-height:1}
+.act{height:38px;padding:0 16px;border-radius:13px;background:var(--accent);color:var(--accent-ink);font-size:14px;font-weight:900;display:flex;align-items:center;flex:0 0 auto}
+
+/* 4 · полоса заполнения */
+.fillbar{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,color-mix(in oklab,var(--danger) 26%,transparent),transparent);pointer-events:none}
+.rel{position:relative}
+.sub{font-size:13px;font-weight:800;color:var(--danger);margin-top:5px}
+
+/* 5 · две половины */
+.split{display:flex;align-items:stretch;min-height:72px}
+.half{flex:1;display:flex;align-items:center;gap:11px;padding:10px 14px;min-width:0}
+.half.b{background:color-mix(in oklab,var(--danger) 11%,transparent);flex:0 0 132px;flex-direction:column;justify-content:center;gap:2px;padding:10px 12px}
+.half.b b{font-size:26px;font-weight:900;color:var(--danger);letter-spacing:-1px;line-height:1;font-variant-numeric:tabular-nums}
+.half.b span{font-size:12px;font-weight:800;color:var(--muted)}
+.half .ttl2{font-size:15px;font-weight:800;line-height:1.25;min-width:0}
+
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="lede">
+  <h1>Плашка «Мои ошибки» на Главной — 5 вариантов</h1>
+  <p>Это та самая полоса в приоритетном слоте, которая подменяет «Продолжить урок». Размер слота не меняется (высота 72, радиус 20, отступы 8) — чтобы соседи на Главной не дёргались. Сверху и снизу показаны призраки соседних блоков для контекста. Сейчас там: картинка, название по центру и голое красное число справа.</p>
+</div>
+
+<div class="wrap">
+
+<!-- ───── 1 ───── -->
+<div class="case">
+  <div class="ctx">
+    <div class="ghosty gh1"></div>
+    <div class="slot"><div class="bar">
+      <div class="art">
+        <svg viewBox="0 0 76 76" fill="none">
+          <circle cx="38" cy="38" r="26" stroke="var(--danger)" stroke-width="3" opacity=".42"/>
+          <path d="M38 24v18" stroke="var(--danger)" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="38" cy="52" r="3.2" fill="var(--danger)"/>
+        </svg>
+      </div>
+      <div class="mid"><div class="ttl">Мои ошибки</div></div>
+      <div class="pill pulse">23</div>
+    </div></div>
+    <div class="ghosty gh2"></div>
+  </div>
+  <div class="txt">
+    <span class="n">1</span><h2>Счётчик-пилюля</h2>
+    <p>Самая близкая к нынешней. Голое красное число заменяет пилюля с фоном — она читается как «столько ждёт», а не как случайная цифра, и держит пульс аккуратно.</p>
+    <div class="why">Минимальная правка: меняется только правый угол. Риск сломать что-то — почти нулевой.</div>
+  </div>
+</div>
+
+<!-- ───── 2 ───── -->
+<div class="case">
+  <div class="ctx">
+    <div class="ghosty gh1"></div>
+    <div class="slot"><div class="bar">
+      <div class="art">
+        <svg viewBox="0 0 76 76" fill="none">
+          <rect x="16" y="22" width="44" height="12" rx="6" fill="var(--danger)" opacity=".85"/>
+          <rect x="16" y="40" width="30" height="12" rx="6" fill="var(--danger)" opacity=".45"/>
+          <rect x="16" y="58" width="18" height="8" rx="4" fill="var(--ghost)" opacity=".5"/>
+        </svg>
+      </div>
+      <div class="mid l">
+        <div class="ttl">Мои ошибки</div>
+        <div class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i class="dim"></i><i class="dim"></i></div>
+      </div>
+      <div class="pill">23</div>
+    </div></div>
+    <div class="ghosty gh2"></div>
+  </div>
+  <div class="txt">
+    <span class="n">2</span><h2>Очередь точками</h2>
+    <p>Под названием — ряд точек: сколько ошибок ждёт разбора. Число говорит «сколько», точки показывают «много ли это» одним взглядом, без чтения.</p>
+    <div class="why">Название уходит влево — это не подпись-расшифровка, а сам показатель, так что запрет владельца не нарушается.</div>
+  </div>
+</div>
+
+<!-- ───── 3 ───── -->
+<div class="case">
+  <div class="ctx">
+    <div class="ghosty gh1"></div>
+    <div class="slot"><div class="bar" style="gap:14px">
+      <div class="mark"><b>23</b></div>
+      <div class="mid l"><div class="ttl">Мои ошибки</div></div>
+      <div class="act">Разобрать</div>
+    </div></div>
+    <div class="ghosty gh2"></div>
+  </div>
+  <div class="txt">
+    <span class="n">3</span><h2>Число вместо картинки</h2>
+    <p>Картинка уступает место самому числу — оно и есть суть плашки. Справа появляется явное действие «Разобрать», и плашка перестаёт быть просто ярлыком.</p>
+    <div class="why">Самый громкий вариант: число видно с любого расстояния. Но теряется рисунок, который держит ряд Главной единым по стилю.</div>
+  </div>
+</div>
+
+<!-- ───── 4 ───── -->
+<div class="case">
+  <div class="ctx">
+    <div class="ghosty gh1"></div>
+    <div class="slot rel">
+      <div class="fillbar" style="width:38%"></div>
+      <div class="bar">
+        <div class="art">
+          <svg viewBox="0 0 76 76" fill="none">
+            <path d="M38 14l22 10v16c0 13-9 21-22 26-13-5-22-13-22-26V24z" stroke="var(--danger)" stroke-width="3" opacity=".5"/>
+            <path d="M30 38l6 7 12-14" stroke="var(--accent)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="mid l">
+          <div class="ttl">Мои ошибки</div>
+          <div class="sub">41 исправлено · 23 ждут</div>
+        </div>
+        <div class="pill">23</div>
+      </div>
+    </div>
+    <div class="ghosty gh2"></div>
+  </div>
+  <div class="txt">
+    <span class="n">4</span><h2>Полоса прогресса</h2>
+    <p>Фон плашки залит на столько, сколько ошибок уже исправлено. Человек видит не только долг, но и что работа движется — это сильно меняет желание зайти.</p>
+    <div class="why">Строка «41 исправлено · 23 ждут» — равноправные цифры, а не расшифровка названия. Заливка живёт в фоне и ничего не двигает.</div>
+  </div>
+</div>
+
+<!-- ───── 5 ───── -->
+<div class="case">
+  <div class="ctx">
+    <div class="ghosty gh1"></div>
+    <div class="slot"><div class="split">
+      <div class="half b"><b>23</b><span>ждут разбора</span></div>
+      <div class="half">
+        <div class="ttl2">Мои ошибки</div>
+      </div>
+      <div class="art" style="width:78px">
+        <svg viewBox="0 0 76 76" fill="none" style="width:64px;height:64px">
+          <circle cx="38" cy="38" r="24" stroke="var(--danger)" stroke-width="3" opacity=".4"/>
+          <path d="M28 38l7 8 14-16" stroke="var(--danger)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div></div>
+    <div class="ghosty gh2"></div>
+  </div>
+  <div class="txt">
+    <span class="n">5</span><h2>Две половины</h2>
+    <p>Слева цветной блок с числом и подписью «ждут разбора», справа название. Плашка сразу отличается от «Продолжить урок» — видно, что это другое дело, а не тот же урок.</p>
+    <div class="why">«ждут разбора» стоит под числом, а не под названием — это единица измерения, а не подпись-расшифровка.</div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

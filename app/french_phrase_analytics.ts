@@ -70,7 +70,6 @@ function categoryStat(
     exactMistakeCount: count,
     recentMistakeCount: count,
     masteryLevel: 0,
-    masteryXp: 0,
     masteryStreak: 0,
     practiceCorrect: 0,
     practiceWrong: 0,

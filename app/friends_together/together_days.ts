@@ -150,8 +150,8 @@ export function daysTogether(a: ActiveDays | null | undefined, b: ActiveDays | n
 // ── Уровни дружбы ─────────────────────────────────────────────────────────
 export const LEVEL_THRESHOLDS: readonly number[] = [0, 3, 10, 30, 100];
 export const LEVEL_NAMES: readonly string[] = ['', 'Знакомые', 'Приятели', 'Друзья', 'Близкие', 'Лучшие'];
-/** Бонус к опыту в общий день (в процентах), по уровню (индекс = level). */
-export const BONUS_PERCENT_BY_LEVEL: readonly number[] = [0, 0, 5, 5, 10, 15];
+/** Friendship milestones now grant stars only. */
+export const BONUS_PERCENT_BY_LEVEL: readonly number[] = [0, 0, 0, 0, 0, 0];
 /** Звёзды за взятие вехи уровня (индекс = level). */
 export const STAR_REWARD_BY_LEVEL: readonly number[] = [0, 0, 5, 10, 20, 50];
 
@@ -172,7 +172,7 @@ export function nextThreshold(level: number, thresholds: readonly number[] = LEV
   return thresholds[idx];
 }
 
-/** Бонус к XP (%) за уровень дружбы; уровень 1 (Знакомые) бонуса не даёт. */
+/** Бонус к legacy reward (%) за уровень дружбы; уровень 1 (Знакомые) бонуса не даёт. */
 export function bonusPercentForLevel(level: number): number {
   const idx = Math.max(0, Math.min(BONUS_PERCENT_BY_LEVEL.length - 1, Math.floor(level)));
   return BONUS_PERCENT_BY_LEVEL[idx] ?? 0;

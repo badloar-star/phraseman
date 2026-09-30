@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { DebugLogger } from './debug-logger';
+import { DebugLogger, reportSwallowed } from './debug-logger';
 import { getApp } from "@react-native-firebase/app";
 import { getFunctions, httpsCallable } from "@react-native-firebase/functions";
 import {
@@ -98,7 +98,7 @@ async function callServer(
   return withBackgroundNetworkLease(
     "learning-v2.course-session-completed-sync",
     async (lease) => {
-      await initFirebaseAppCheckIfAvailable().catch(() => false);
+      await initFirebaseAppCheckIfAvailable().catch((error: unknown) => { reportSwallowed('learning_v2_course_session_completed_sync_v1:callServer', error); return false; });
       lease.assertCurrent();
       const callable = httpsCallable<
         { completion: LearningV2CourseSessionCompletedSummaryV1 },

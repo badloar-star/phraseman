@@ -9,7 +9,6 @@ import { readPackCommentsCount } from './packComments';
 import { callCommunityFetchPackCardsIfAccessible, isCommunityPacksCloudEnabled } from './functionsClient';
 import { getCanonicalUserId } from '../user_id_policy';
 import { UGC_CARD_THEME_DEFAULT_ID } from './ugcCardThemePresets';
-import { normalizeUgcCardBackKey } from '../flashcards/cardBackCatalog';
 import { storageStudyTarget, type RuntimeStudyTarget } from '../target_storage_keys';
 import type { StudyTarget } from '../study_target';
 import { isPackLanguage, normalizePackCardTexts, normalizePackLanguage, type PackLanguage } from '../flashcards/pack_languages';
@@ -18,6 +17,29 @@ import { DebugLogger } from '../debug-logger';
 function num(v: unknown, d = 0): number {
   const n = typeof v === 'number' ? v : Number(v);
   return Number.isFinite(n) ? Math.floor(n) : d;
+}
+
+/** Тот же формат, что у фраз роликов (`shared/video_phrases_contract.ts`). */
+const VIDEO_ID_RE = /^[0-9A-Za-z_-]{11}$/;
+
+/**
+ * Идентификатор ролика из документа набора — или undefined.
+ *
+ * зачем ПРОВЕРКА ФОРМАТА, а не просто String(): по этому значению строится
+ * ссылка на YouTube и адрес превью. Мусор в поле превратился бы в битую
+ * картинку у КАЖДОЙ строки списка и в открытие постороннего адреса по тапу.
+ * Не прошло проверку — набор ведёт себя как обычный, без блока видео.
+ */
+function videoIdOrUndefined(value: unknown): string | undefined {
+  const raw = String(value ?? '').trim();
+  if (!raw) return undefined;
+  if (!VIDEO_ID_RE.test(raw)) {
+    // зачем лог, а не тихий выход: немой отказ здесь = «набор из видео не
+    // показывает видео», и причину было бы не найти (правило «сперва логи»).
+    DebugLogger.warn('[VIDEO-PACK]', `videoId отброшен: не формат YouTube, значение="${raw}"`);
+    return undefined;
+  }
+  return raw;
 }
 
 export type MapCommunityPackDocOptions = {
@@ -131,7 +153,20 @@ export function mapCommunityPackDocToMarket(
     listingStatus: st,
     isPendingUpdateReview: st === 'update_pending' || st === 'admin_revision_required',
     ugcCardThemeKey: String(data.cardThemeKey ?? '').trim() || undefined,
-    ugcCardBackKey: normalizeUgcCardBackKey(String(data.cardBackKey ?? '').trim()),
+    /**
+     * Связь с роликом YouTube (набор из видео).
+     *
+     * зачем ЧИТАТЬ ЗДЕСЬ, а не только объявить поле в типе: ровно на этой строке
+     * уже терялась цена в рунах — тип её знал, документ её нёс, а маппер молчал,
+     * и каталог всегда видел 0 («механизм есть, а данных не дали»). Без этих трёх
+     * строк список «Из видео» был бы ПУСТЫМ при полной базе: фильтр ищет videoId,
+     * которого в объекте набора нет.
+     *
+     * Поля нет у обычных наборов — тогда undefined, и блок видео просто не рисуется.
+     */
+    videoId: videoIdOrUndefined(data.videoId),
+    videoTitle: String(data.videoTitle ?? '').trim() || undefined,
+    videoDurationSec: Math.max(0, num(data.videoDurationSec)) || undefined,
     isOfficial: false,
     isCommunityUgc: true,
     updatedAt: typeof data.updatedAt === 'number' ? new Date(data.updatedAt).toISOString() : new Date().toISOString(),
@@ -193,6 +228,75 @@ export function peekPublishedCommunityMarketPacks(
   }
   if (__DEV__) console.log('[PACKS-FIRSTFRAME] peek HIT key=%s packs=%d ageMs=%d', key, _communityCatalogCache.packs.length, ageMs);
   return _communityCatalogCache.packs;
+}
+
+/* ═══════════ НАБОРЫ ИЗ ВИДЕО ═══════════ */
+
+/** Отдельный снимок раздела «Из видео» — у него своя выдача, не общий лимит. */
+let _videoCatalogCache: { key: string; at: number; packs: FlashcardMarketPack[] } | null = null;
+
+/** Сколько наборов из видео тянем за раз. Лента листается, всё сразу не нужно. */
+const VIDEO_PACKS_LIMIT = 60;
+
+export function peekVideoMarketPacks(studyTarget?: RuntimeStudyTarget): FlashcardMarketPack[] | null {
+  const key = String(studyTarget ?? 'default');
+  if (!_videoCatalogCache || _videoCatalogCache.key !== key) return null;
+  return Date.now() - _videoCatalogCache.at <= COMMUNITY_CATALOG_TTL_MS ? _videoCatalogCache.packs : null;
+}
+
+/**
+ * Наборы, собранные из роликов.
+ *
+ * зачем ОТДЕЛЬНЫЙ запрос, а не фильтр общего каталога (это НЕ дубль загрузчика):
+ * общая выдача берёт `limit(40)` на язык и сортирует по лайкам. Наборы из видео
+ * конкурировали бы в ней с наборами сообщества за те же 40 мест — при полном
+ * каталоге раздел «Из видео» оказался бы ПУСТЫМ при заполненной базе. Ровно тот
+ * класс бага, что уже ловили: «механизм есть, а данных не дали».
+ * `where('videoId', '!=', null)` даёт разделу собственные места.
+ *
+ * Стоимость: один запрос на вход в раздел, результат живёт в кэше тот же TTL,
+ * что и каталог сообщества. Фоновых таймеров нет.
+ */
+export async function loadVideoMarketPacks(
+  studyTarget?: RuntimeStudyTarget,
+  opts?: { forceRemote?: boolean },
+): Promise<FlashcardMarketPack[]> {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
+    DebugLogger.warn('[VIDEO-PACK]', 'каталог не читается: облако выключено (Expo Go или CLOUD_SYNC_ENABLED=false)');
+    return [];
+  }
+  const cacheKey = String(studyTarget ?? 'default');
+  if (!opts?.forceRemote) {
+    const warm = peekVideoMarketPacks(studyTarget);
+    if (warm) return warm;
+  }
+  try {
+    const snap = await firestore()
+      .collection(COMMUNITY_PACKS_COLLECTION)
+      .where('listingStatus', '==', 'published')
+      .where('videoId', '!=', null)
+      .limit(VIDEO_PACKS_LIMIT)
+      .get();
+    const list = snap.docs
+      .map((d) => mapCommunityPackDocToMarket(d.id, d.data() as Record<string, unknown>, { studyTarget }))
+      .filter(Boolean) as FlashcardMarketPack[];
+    /** Порядок — общий для всего приложения: лайки → добавления → свежесть. */
+    const out = list.filter((pack) => !!pack.videoId).sort(comparePacksBySocial);
+    _videoCatalogCache = { key: cacheKey, at: Date.now(), packs: out };
+    DebugLogger.info('[VIDEO-PACK]', `каталог из сети: документов ${snap.docs.length}, с videoId ${out.length}`);
+    return out;
+  } catch (error) {
+    // зачем не немой catch: пустой раздел при полной базе — это как раз тот
+    // отказ, который ищут кругами. Здесь же видно и причину (часто — индекс).
+    DebugLogger.error('[VIDEO-PACK]:loadVideoMarketPacks', error, 'warning');
+    // Уже показанный непустой снимок оставляем на экране при кратком сетевом
+    // отказе. Но отсутствие пригодного снимка НЕ равно пустому каталогу:
+    // вызывающий экран должен получить reject и показать «Повторить».
+    if (_videoCatalogCache?.key === cacheKey && _videoCatalogCache.packs.length > 0) {
+      return _videoCatalogCache.packs;
+    }
+    throw error;
+  }
 }
 
 export async function loadPublishedCommunityMarketPacks(
@@ -281,7 +385,6 @@ export type CommunityPackEditorSnapshot = {
   title: string;
   description: string;
   cardThemeKey: string;
-  cardBackKey: string;
   /** Цена набора в рунах (0 — бесплатный). */
   priceRunes?: number;
   cards: {
@@ -353,7 +456,6 @@ export async function fetchCommunityPackForAuthorEdit(
       title: String(d.titleRu ?? d.titleUk ?? d.titleEs ?? d.titlePtBr ?? d.titleVi ?? d.titleId ?? d.titleTr ?? d.titlePl ?? '').trim(),
       description: String(d.descriptionRu ?? d.descriptionUk ?? d.descriptionEs ?? d.descriptionPtBr ?? d.descriptionVi ?? d.descriptionId ?? d.descriptionTr ?? d.descriptionPl ?? '').trim(),
       cardThemeKey: String(d.cardThemeKey ?? UGC_CARD_THEME_DEFAULT_ID).trim() || UGC_CARD_THEME_DEFAULT_ID,
-      cardBackKey: normalizeUgcCardBackKey(String(d.cardBackKey ?? '').trim()),
       // зачем (владелец 2026-09-21): без этого автор платного набора открывал
       // правку с ценой 0 и обнулял её, сам того не зная.
       priceRunes: Math.max(0, Math.floor(Number(d.priceRunes ?? 0))) || 0,

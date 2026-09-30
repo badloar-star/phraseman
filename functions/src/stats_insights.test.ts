@@ -81,9 +81,9 @@ describe('stats_insights sanitizeBriefing', () => {
       lang: 'zz',
       studyTarget: 'xx',
       balance: { score: 9999, isWarmup: 'yes', active7: 99, avgMinutes: -5 },
-      rhythm: { active7: 50, xp7: -1, minutes7: 1e12, bestDay: 'x'.repeat(200) },
+      rhythm: { active7: 50, minutes7: 1e12, bestDay: 'x'.repeat(200) },
       year: { activeDays: 9999, currentStreak: -3, longestStreak: 1e9, bestMonth: 'y'.repeat(200), goalPct: 500 },
-      percentiles: { totalXp: 999, week: -10, daily7: 'abc' },
+      percentiles: { streak: -10, daily7time: 'abc' },
       lifetime: { words: -1, phrases: 1e12, quizzes: 5, arenaWins: 2, daysActive: 9 },
       weakCategories: Array.from({ length: 20 }, () => ({ label: 'z'.repeat(200), pct: 999 })),
     };
@@ -96,18 +96,17 @@ describe('stats_insights sanitizeBriefing', () => {
     expect(clean.rhythm.active7).toBeLessThanOrEqual(7);
     expect(clean.rhythm.bestDay.length).toBeLessThanOrEqual(24);
     expect(clean.year.goalPct).toBeLessThanOrEqual(100);
-    expect(clean.percentiles.daily7).toBeNull(); // non-numeric → null
-    expect(clean.percentiles.week).toBe(0);      // clamped to >= 0
+    expect(clean.percentiles.daily7time).toBeNull(); // non-numeric → null
+    expect(clean.percentiles.streak).toBe(0);        // clamped to >= 0
     expect(clean.lifetime).toEqual({ words: 0, phrases: 100000000, daysActive: 9 });
     expect(clean.weakCategories.length).toBeLessThanOrEqual(3);
     expect(clean.weakCategories[0].label.length).toBeLessThanOrEqual(80);
   });
 
   it('preserves a valid null percentile (hidden metric)', () => {
-    const clean = sanitizeBriefing({ percentiles: { totalXp: 80, week: null, daily7: null } });
-    expect(clean.percentiles.totalXp).toBe(80);
-    expect(clean.percentiles.week).toBeNull();
-    expect(clean.percentiles.daily7).toBeNull();
+    const clean = sanitizeBriefing({ percentiles: { streak: 80, daily7time: null } });
+    expect(clean.percentiles.streak).toBe(80);
+    expect(clean.percentiles.daily7time).toBeNull();
   });
 
   it('handles completely empty input without throwing', () => {

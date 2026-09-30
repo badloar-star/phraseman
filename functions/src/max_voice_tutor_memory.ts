@@ -948,8 +948,8 @@ export const TUTOR_APP_DIGEST_FALLBACK = `WHAT THE APP OFFERS (so you can advise
 - Trainer (flashcards): spaced repetition of the learner's weak words and phrases.
 - Dialogs: text role-play scenes with an AI partner (cafe, hotel, doctor, etc.).
 - Calls with you: this daily voice lesson.
-- Streak: a daily streak of activity; XP for lessons, trainer and speaking; pearls (in-app currency) for rewards.
-- Friends and league: weekly league with friends; you may mention it, never push it.`;
+- Streak: a daily streak of activity; pearls (in-app currency) for current rewards.
+- Friends: social activity with friends; you may mention current friend features, never invent retired competitive systems.`;
 
 const CHARTER_CACHE_TTL_MS = 60 * 60 * 1000;
 const CHARTER_SECTIONS_FOR_TUTOR = ['learning', 'navigation', 'currencies', 'disabled'] as const;

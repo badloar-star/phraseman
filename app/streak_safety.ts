@@ -67,7 +67,7 @@ export function mergeStreakByActivityDate(
     // когда второе устройство (переустановка, новый телефон, откатившийся кэш)
     // отмечалось сегодня со стриком 1. Контракт владельца — «поздний синк не
     // откатывает значения» (tests/owner_direction_runtime_contract.test.ts),
-    // XP и week_points уже сливаются максимумом.
+    // legacy reward и week_points уже сливаются максимумом.
     //
     // Максимум применим ТОЛЬКО когда даты соседние (разрыв в один день): тогда
     // свежая сторона — продолжение той же цепочки, и её меньшее значение
@@ -88,7 +88,6 @@ export function mergeStreakByActivityDate(
 
 function hasDevSeedFingerprint(data: ProgressMap): boolean {
   let score = 0;
-  if (parseIntSafe(data.user_total_xp) === 100000) score += 1;
   if (parseIntSafe(data.shards_balance) === 100) score += 1;
   try {
     const login = JSON.parse(String(data.login_bonus_v1 ?? '{}'));
@@ -162,7 +161,6 @@ export function normalizeDevSeededStreakValue(streak: number, data: ProgressMap,
 export async function repairDevSeededStreakInStorage(): Promise<number | null> {
   const keys = [
     'streak_count',
-    'user_total_xp',
     'login_bonus_v1',
     'shards_balance',
     'daily_stats',

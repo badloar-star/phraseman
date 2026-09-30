@@ -66,7 +66,7 @@ const localCommitEntryFor = (envelope: ReturnType<typeof envelopeFor>) => {
     })}`,
     sessionId: envelope.localSessionId,
     status: "completed",
-    awarded: { xp: 0, shards: 0 },
+    awarded: { shards: 0 },
   } as const;
   const body = {
     schemaVersion: "learning-v2-required-session-local-commit-entry.v1" as const,
@@ -533,7 +533,7 @@ describe("required-session local completion journal", () => {
       })}`,
       sessionId: foreignEnvelope.localSessionId,
       status: "completed",
-      awarded: { xp: 0, shards: 0 },
+      awarded: { shards: 0 },
     } as const;
     const entryBody = {
       schemaVersion: "learning-v2-required-session-local-commit-entry.v1",

@@ -1,0 +1,636 @@
+{
+  "schemaVersion": "daily-phrase-independent-editorial-review-v1",
+  "verdict": "ACCEPT",
+  "acceptedCount": 176,
+  "reviewedAt": "2026-09-27T17:12:15.5363768Z",
+  "reviewerIdentity": "independent-review-chain:/root/review_fr_001_035_prior_acceptance+/root/review_fr_036_040_semantic_quiz+/root/judge_taste_fr_036_040+/root/verify_fr_040_continuity_after_source45+/root/review_fr_041_045_semantic_quiz+/root/judge_taste_fr_041_045+/root/audit_fr_manifest_and_collision+/root/audit_fr_manifest_and_collision:fr050-retarget+/root/review_fr046_050_spec_final+/root/judge_taste_fr046_050_final+/root/verify_fr050_after_source55+/root/guardian_fr051_055+/root/judge_taste_fr051_055+/root/review_fr056_060_semantic+/root/judge_taste_fr056_060+/root/review_fr061_065_semantic+/root/judge_taste_fr061_065+/root/review_fr066_070_semantic+/root/judge_taste_fr066_070+/root/review_fr066_070_semantic:fr071-075+/root/judge_taste_fr066_070:fr071-075+deterministic-continuity-gate:source80+/root/review_fr066_070_semantic:fr076-080+/root/judge_taste_fr066_070:fr076-080+deterministic-continuity-gate:source85+/root/review_fr066_070_semantic:fr081-085+/root/judge_taste_fr066_070:fr081-085+deterministic-continuity-gate:source90+/root/review_fr066_070_semantic:fr086-090+/root/judge_taste_fr066_070:fr086-090+deterministic-continuity-gate:source95+/root/review_fr066_070_semantic:fr091-095+/root/judge_taste_fr066_070:fr091-095+deterministic-continuity-gate:source100+/root/review_fr066_070_semantic:fr096-100+/root/judge_taste_fr066_070:fr096-100+deterministic-continuity-gate:source105+/root/review_fr066_070_semantic:fr101-105+/root/judge_taste_fr066_070:fr101-105+deterministic-continuity-gate:source110+/root/review_fr066_070_semantic:fr106-110+/root/judge_taste_fr066_070:fr106-110+deterministic-continuity-gate:source115+/root/review_fr066_070_semantic:fr111-115+/root/judge_taste_fr066_070:fr111-115+deterministic-continuity-gate:source120+/root/review_fr066_070_semantic:fr116-120+/root/judge_taste_fr066_070:fr116-120+deterministic-continuity-gate:source125+/root/review_fr066_070_semantic:fr121-125+/root/judge_taste_fr066_070:fr121-125+deterministic-continuity-gate:source130+/root/review_fr066_070_semantic:fr126-130+/root/judge_taste_fr066_070:fr126-130+deterministic-continuity-gate:source135+/root/review_fr066_070_semantic:fr131-135+/root/judge_taste_fr066_070:fr131-135+deterministic-continuity-gate:source140+/root/review_fr066_070_semantic:fr136-140+/root/judge_taste_fr066_070:fr136-140+deterministic-continuity-gate:source145+/root/review_fr066_070_semantic:fr141-145+/root/judge_taste_fr066_070:fr141-145+deterministic-continuity-gate:source150+/root/review_fr066_070_semantic:fr146-150+/root/judge_taste_fr066_070:fr146-150+deterministic-continuity-gate:source155+deterministic-continuity-gate:pending151-155+/root/review_fr066_070_semantic:fr171-176+/root/judge_taste_fr066_070:fr171-176",
+  "reviewerIndependence": true,
+  "releaseTrusted": false,
+  "activationReadinessClaimed": false,
+  "scope": "Independent editorial acceptance for the complete French candidate bank fr-001..fr-176; not release, signature, activation, or production approval.",
+  "independentReviewChain": [
+    {
+      "scope": "fr-001..fr-035",
+      "reviewerIdentity": "/root/review_fr_001_035_prior_acceptance",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-036..fr-040 semantic/localization/quiz/source",
+      "reviewerIdentity": "/root/review_fr_036_040_semantic_quiz",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-036..fr-040 English-parity taste/style",
+      "reviewerIdentity": "/root/judge_taste_fr_036_040",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-001..fr-040 continuity after append-only source-ledger extension to fr-045",
+      "reviewerIdentity": "/root/verify_fr_040_continuity_after_source45",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-041..fr-045 semantic/localization/quiz/source",
+      "reviewerIdentity": "/root/review_fr_041_045_semantic_quiz",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-041..fr-045 English-parity taste/style",
+      "reviewerIdentity": "/root/judge_taste_fr_041_045",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-001..fr-045 continuity after append-only source-ledger extension to fr-050",
+      "reviewerIdentity": "/root/audit_fr_manifest_and_collision",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-001..fr-045 continuity after fr-050 source-safe retarget",
+      "reviewerIdentity": "/root/audit_fr_manifest_and_collision",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-046..fr-050 semantic/localization/quiz/source",
+      "reviewerIdentity": "/root/review_fr046_050_spec_final",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-046..fr-050 English-parity taste/style",
+      "reviewerIdentity": "/root/judge_taste_fr046_050_final",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-001..fr-050 continuity after source extension and pending authoring through fr-055",
+      "reviewerIdentity": "/root/verify_fr050_after_source55",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-051..fr-055 semantic/localization/quiz/source",
+      "reviewerIdentity": "/root/guardian_fr051_055",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-051..fr-055 English-parity taste/style",
+      "reviewerIdentity": "/root/judge_taste_fr051_055",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-001..fr-055 continuity after source extension and fr-057 duplicate override through source 60",
+      "reviewerIdentity": "/root/verify_fr050_after_source55",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-056..fr-060 semantic/localization/quiz/source",
+      "reviewerIdentity": "/root/review_fr056_060_semantic",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-056..fr-060 English-parity taste/style",
+      "reviewerIdentity": "/root/judge_taste_fr056_060",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-061..fr-065 semantic/localization/quiz/source",
+      "reviewerIdentity": "/root/review_fr061_065_semantic",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-061..fr-065 English-parity taste/style",
+      "reviewerIdentity": "/root/judge_taste_fr061_065",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-066..fr-070 semantic/localization/quiz/source",
+      "reviewerIdentity": "/root/review_fr066_070_semantic",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-066..fr-070 English-parity taste/style",
+      "reviewerIdentity": "/root/judge_taste_fr066_070",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-071..fr-075 semantic/localization/quiz/source",
+      "reviewerIdentity": "/root/review_fr066_070_semantic",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-071..fr-075 English-parity taste/style",
+      "reviewerIdentity": "/root/judge_taste_fr066_070",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-076..fr-080 semantic/localization/quiz/source",
+      "reviewerIdentity": "/root/review_fr066_070_semantic",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-076..fr-080 English-parity taste/style",
+      "reviewerIdentity": "/root/judge_taste_fr066_070",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-081..fr-085 semantic/localization/quiz/source",
+      "reviewerIdentity": "/root/review_fr066_070_semantic",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-081..fr-085 English-parity taste/style",
+      "reviewerIdentity": "/root/judge_taste_fr066_070",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-086..fr-090 semantic/localization/quiz/source",
+      "reviewerIdentity": "/root/review_fr066_070_semantic",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-086..fr-090 English-parity taste/style",
+      "reviewerIdentity": "/root/judge_taste_fr066_070",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-091..fr-095 semantic/localization/quiz/source",
+      "reviewerIdentity": "/root/review_fr066_070_semantic",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-091..fr-095 English-parity taste/style",
+      "reviewerIdentity": "/root/judge_taste_fr066_070",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-096..fr-100 semantic/localization/quiz/source",
+      "reviewerIdentity": "/root/review_fr066_070_semantic",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-096..fr-100 English-parity taste/style",
+      "reviewerIdentity": "/root/judge_taste_fr066_070",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-101..fr-105 semantic/localization/quiz/source",
+      "reviewerIdentity": "/root/review_fr066_070_semantic",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-101..fr-105 English-parity taste/style",
+      "reviewerIdentity": "/root/judge_taste_fr066_070",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-106..fr-110 semantic/localization/quiz/source",
+      "reviewerIdentity": "/root/review_fr066_070_semantic",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-106..fr-110 English-parity taste/style",
+      "reviewerIdentity": "/root/judge_taste_fr066_070",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-111..fr-115 semantic/localization/quiz/source",
+      "reviewerIdentity": "/root/review_fr066_070_semantic",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-111..fr-115 English-parity taste/style",
+      "reviewerIdentity": "/root/judge_taste_fr066_070",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-116..fr-120 semantic/localization/quiz/source",
+      "reviewerIdentity": "/root/review_fr066_070_semantic",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-116..fr-120 English-parity taste/style",
+      "reviewerIdentity": "/root/judge_taste_fr066_070",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-121..fr-125 semantic/localization/quiz/source",
+      "reviewerIdentity": "/root/review_fr066_070_semantic",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-121..fr-125 English-parity taste/style",
+      "reviewerIdentity": "/root/judge_taste_fr066_070",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-126..fr-130 semantic/localization/quiz/source",
+      "reviewerIdentity": "/root/review_fr066_070_semantic",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-126..fr-130 English-parity taste/style",
+      "reviewerIdentity": "/root/judge_taste_fr066_070",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-131..fr-135 semantic/localization/quiz/source",
+      "reviewerIdentity": "/root/review_fr066_070_semantic",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-131..fr-135 English-parity taste/style",
+      "reviewerIdentity": "/root/judge_taste_fr066_070",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-136..fr-140 semantic/localization/quiz/source",
+      "reviewerIdentity": "/root/review_fr066_070_semantic",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-136..fr-140 English-parity taste/style",
+      "reviewerIdentity": "/root/judge_taste_fr066_070",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-141..fr-145 semantic/localization/quiz/source",
+      "reviewerIdentity": "/root/review_fr066_070_semantic",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-141..fr-145 English-parity taste/style",
+      "reviewerIdentity": "/root/judge_taste_fr066_070",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-146..fr-150 semantic/localization/quiz/source",
+      "reviewerIdentity": "/root/review_fr066_070_semantic",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-146..fr-150 English-parity taste/style",
+      "reviewerIdentity": "/root/judge_taste_fr066_070",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-151..fr-155 semantic/localization/quiz/source",
+      "reviewerIdentity": "/root/review_fr066_070_semantic",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-151..fr-155 English-parity taste/style",
+      "reviewerIdentity": "/root/judge_taste_fr066_070",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-156..fr-160 semantic/localization/quiz/source",
+      "reviewerIdentity": "/root/review_fr066_070_semantic",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-156..fr-160 English-parity taste/style",
+      "reviewerIdentity": "/root/judge_taste_fr066_070",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-161..fr-165 semantic/localization/quiz/source",
+      "reviewerIdentity": "/root/review_fr066_070_semantic",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-161..fr-165 English-parity taste/style",
+      "reviewerIdentity": "/root/judge_taste_fr066_070",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-166..fr-170 semantic/localization/quiz/source",
+      "reviewerIdentity": "/root/review_fr066_070_semantic",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-166..fr-170 English-parity taste/style",
+      "reviewerIdentity": "/root/judge_taste_fr066_070",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-171..fr-176 semantic/localization/quiz/source",
+      "reviewerIdentity": "/root/review_fr066_070_semantic",
+      "verdict": "ACCEPT"
+    },
+    {
+      "scope": "fr-171..fr-176 English-parity taste/style",
+      "reviewerIdentity": "/root/judge_taste_fr066_070",
+      "verdict": "ACCEPT"
+    }
+  ],
+  "findings": {
+    "P0": [],
+    "P1": [],
+    "P2": [],
+    "P3": []
+  },
+  "hashesSha256": {
+    "sourceBank": "d97ef2d4cd78dc320e83217273bf6a064c25188a3aa647d040816dc3bf186da8",
+    "authoritativeLedger": "b8d5afee5fe01d6db65291dd6010eb311454da025bdd539e1c20dd7fd3078e75",
+    "sourceLedger": "5db5f4f6675075f1d787c441753d98b403b8f6c772b9a610839723d5e6810464",
+    "englishBaseline": "a2a744254cea2080ea44326335df573ae828d465ac721f696b1e1f2235873321",
+    "styleContract": "1170d74f22f036dcdc919af5e7de17ed1af47a0e70cd562b56df95bafb527812",
+    "authoringPackets": {
+      "fr-001-005": "2580b269a150f8714133c2223b34accc4b9c728657b0fa8e8ea9e8d4ccd18d4f",
+      "fr-006-010": "b12b37a674a5a2d38ef58899e4f1adf9c08f7d1ad8137fe841fd2fb40da33872",
+      "fr-011-015": "161bdbcc00fc5d1eebd523067c347cca97c3e48956c5d6c938b7dd48d9c7e84f",
+      "fr-016-020": "b055f6985b49261953845803e649dff8d0b039b18f524afc91c0ab4ed23d5a90",
+      "fr-021-025": "fff65f020280ff963655a34ef03cf788622c9a72a5cb5946515e2fcce0fc8f5b",
+      "fr-026-030": "e45930c2d901f1a75b34847e98f8a089eb6c3795ad22af0c5c14a94650ed8330",
+      "fr-031-035": "4804b5bfafae842f5f685ff7cc80396fd325cdb6c31fff0045196eed209bb8a0",
+      "fr-036-040": "ea9e017b10410a53a6176fe78d971274ab2aee439230564bccae930e7dff4ce7",
+      "fr-041-045": "8b407d635c1bca23a073880f32f2e9a695cc42cbe9f0c9bfcfe0bc2edef2b4a0",
+      "fr-046-050": "4dceef2021cc535583e416d09210dc0c24a32089db4ef80867c90b8226d002a8",
+      "fr-051-055": "af4cf2637fd715abf3e850ee7b4e0af3a78360fcb76f776eeecda8bfda9d47e4",
+      "fr-056-060": "0d81aaa5cd9c99fe4b783e39af00ee260170f5f811dfce3e2e47a3d78c7aa6e2",
+      "fr-061-065": "116d7f21618e8fbd8dbc66d06afc943d408bb17604204e333997a26465855c52",
+      "fr-066-070": "43c8ef94b9c4daa8c3f7e32584a6a8b72270e3e58a123c79e112c426eadca1f8",
+      "fr-071-075": "89cc293840730bfa6fd1e22409e2b70cc4d7ad6ae9d2bec47ad8a3249999b146",
+      "fr-076-080": "658bda11d2a78b1754f5d9c0c3eead8f253f0d81c6a83075a3a0627b6a893a8f",
+      "fr-081-085": "fcb025f0707355926c434ab01d5ffa8becc1eaf138967930839296b6353904bb",
+      "fr-086-090": "235edbe32ac6ab0c10be68e22b26f930d09b88f881189926788a5883a1b264b6",
+      "fr-091-095": "2d005f8f7fa4782e1259a562c82f97c5e7b070fb2830bcd33d9805acaa69f4cf",
+      "fr-096-100": "6fd8ca8e1d95a719ac29bcefe603dbbc7917d4c487322b0fb95643504ed37197",
+      "fr-101-105": "69c27285fdcb273690fb0fb3d8ef159359f1258e91a82220d4ee37c8babec8c4",
+      "fr-106-110": "46a4f801cf0bb52744203c2dd3208700266c3981fae5068fd8e547692be9e019",
+      "fr-111-115": "d011d46b54bf1b6b7b832350372b3b78c26a634ee91d1bfdae40632ba1562f5f",
+      "fr-116-120": "48c71cf607fa934521551943039f080d31de61fc5e210b5b2ad79a383c9d8a3a",
+      "fr-121-125": "b77bf0fc45591eb169ead73fe9d874ce4abadb13fce0a2a3c5e37e7c9df12a9e",
+      "fr-126-130": "b726ec850f25cdf1f6cf819bc51a3b883cadfea64a3a40d66ab016a7d74ebd37",
+      "fr-131-135": "c4590f2613b2d45ec7c83d07cd71496c7b385ee6b8c5ef89167bf971243850b0",
+      "fr-136-140": "b65b4e89c9bfacb4e39e7f96be0715c524f7af601b48e33a86e2f46e21426556",
+      "fr-141-145": "6bec204aebc4b60f0a3420b1472a954c72441593920d9fe614dfec752c45e361",
+      "fr-146-150": "aeb75148518bb7ea260d190472b64fbf5273cf092f70f00b0b13e9e214fe1a16",
+      "fr-151-155": "3e4b8c96dade26c7b8515e2c9d68cb8196d9af374d1d8a85f56595ba21e43604",
+      "fr-156-160": "47f0825db31248c17546d3a3938d1d7bae77d60e5f23f059d0b1234fb8b7bb5b",
+      "fr-161-165": "b1e9067f33f7c2caceee5efd0443f054a3526ffd527759a3b5fc462cd2ec5fb3",
+      "fr-166-170": "ee7b1c58699567d7a67a198a903d29d2907371999b91042b82302089d9267294",
+      "fr-171-176": "b60d3558e6eb127d1ee71403735bbf08d98e216c6e4bde6b9f9479e5e367962a"
+    }
+  },
+  "deterministicGates": {
+    "sourceLink": {
+      "status": "PASS",
+      "checked": 176,
+      "issues": 0
+    },
+    "style": {
+      "status": "PASS",
+      "checked": 176,
+      "issues": 0
+    },
+    "quiz": {
+      "status": "PASS",
+      "checked": 176,
+      "issues": 0
+    },
+    "subsetStructural": {
+      "status": "STRUCTURAL_PASS",
+      "checked": 176,
+      "errors": 0
+    },
+    "focusedContractTests": {
+      "status": "PASS",
+      "passed": 86,
+      "failed": 0
+    },
+    "quizGateUnitTests": {
+      "status": "PASS",
+      "passed": 25,
+      "failed": 0
+    }
+  },
+  "perPacketGates": {
+    "fr-001-005": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-006-010": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-011-015": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-016-020": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-021-025": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-026-030": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-031-035": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-036-040": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-041-045": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-046-050": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-051-055": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-056-060": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-061-065": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-066-070": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-071-075": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-076-080": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-081-085": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-086-090": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-091-095": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-096-100": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-101-105": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-106-110": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-111-115": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-116-120": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-121-125": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-126-130": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-131-135": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-136-140": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-141-145": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-146-150": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-151-155": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-156-160": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-161-165": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-166-170": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" },
+    "fr-171-176": { "sourceLink": "PASS", "style": "PASS", "quiz": "PASS", "structural": "STRUCTURAL_PASS" }
+  },
+  "authoringPacketPaths": [
+    "content/daily-phrases/fr/authoring/fr-001-005.json",
+    "content/daily-phrases/fr/authoring/fr-006-010.json",
+    "content/daily-phrases/fr/authoring/fr-011-015.json",
+    "content/daily-phrases/fr/authoring/fr-016-020.json",
+    "content/daily-phrases/fr/authoring/fr-021-025.json",
+    "content/daily-phrases/fr/authoring/fr-026-030.json",
+    "content/daily-phrases/fr/authoring/fr-031-035.json",
+    "content/daily-phrases/fr/authoring/fr-036-040.json",
+    "content/daily-phrases/fr/authoring/fr-041-045.json",
+    "content/daily-phrases/fr/authoring/fr-046-050.json",
+    "content/daily-phrases/fr/authoring/fr-051-055.json",
+    "content/daily-phrases/fr/authoring/fr-056-060.json",
+    "content/daily-phrases/fr/authoring/fr-061-065.json",
+    "content/daily-phrases/fr/authoring/fr-066-070.json",
+    "content/daily-phrases/fr/authoring/fr-071-075.json",
+    "content/daily-phrases/fr/authoring/fr-076-080.json",
+    "content/daily-phrases/fr/authoring/fr-081-085.json",
+    "content/daily-phrases/fr/authoring/fr-086-090.json",
+    "content/daily-phrases/fr/authoring/fr-091-095.json",
+    "content/daily-phrases/fr/authoring/fr-096-100.json",
+    "content/daily-phrases/fr/authoring/fr-101-105.json",
+    "content/daily-phrases/fr/authoring/fr-106-110.json",
+    "content/daily-phrases/fr/authoring/fr-111-115.json",
+    "content/daily-phrases/fr/authoring/fr-116-120.json",
+    "content/daily-phrases/fr/authoring/fr-121-125.json",
+    "content/daily-phrases/fr/authoring/fr-126-130.json",
+    "content/daily-phrases/fr/authoring/fr-131-135.json",
+    "content/daily-phrases/fr/authoring/fr-136-140.json",
+    "content/daily-phrases/fr/authoring/fr-141-145.json",
+    "content/daily-phrases/fr/authoring/fr-146-150.json",
+    "content/daily-phrases/fr/authoring/fr-151-155.json",
+    "content/daily-phrases/fr/authoring/fr-156-160.json",
+    "content/daily-phrases/fr/authoring/fr-161-165.json",
+    "content/daily-phrases/fr/authoring/fr-166-170.json",
+    "content/daily-phrases/fr/authoring/fr-171-176.json"
+  ],
+  "evidence": {
+    "sourceLinkage": "fr-001..fr-176 matched authoritative ledger rows 0..175 and source-ledger mappings exactly.",
+    "packetParity": "All 176 packet rows matched every packet-supplied bank field; no mismatch in any of thirty-five packets.",
+    "englishBaselineCardsInspected": [
+      "11 Break a leg",
+      "27 A blessing in disguise",
+      "43 Spill the beans",
+      "59 Rule of thumb",
+      "75 Play it by ear",
+      "91 Cry wolf",
+      "107 Cry your eyes out",
+      "123 Take a rain check",
+      "139 The straw that broke the camel's back",
+      "155 Get a handle on something",
+      "171 Be on the ball",
+      "186 Put something on ice"
+    ],
+    "crossRowChecks": "No duplicate distractor text or cross-row distractor IDs in either locale across fr-001..fr-135; no substantive near-duplicate meaning pair found. Explicit source-backed overrides remove the original fr-057/fr-159, fr-066/fr-105, fr-067/fr-011, fr-073/fr-019, fr-077/fr-085, fr-079 unsupported-sense, fr-080/fr-059/fr-081 and fr-111/fr-001 collisions; fr-063/fr-064 remain distinct, fr-077 remains distinct from fr-085, fr-088 remains distinct from fr-020, fr-094 remains the diagnostic opposite of fr-095, fr-097 remains distinct from fr-098, fr-099 remains distinct from fr-100, fr-101 remains distinct from fr-091, fr-103 remains distinct from fr-050, fr-105 all-out effort remains distinct from fr-020/fr-088 simple help, fr-107 exhausted resources remains distinct from fr-109 critical financial position, fr-110 optimism remains a separate positive outlook, fr-113 a full rage episode remains diagnostic against fr-009 reactive offense and fr-098 irascible temperament, fr-116 invented complication remains distinct from fr-006 detailed analysis and fr-034 fault-finding, fr-117 overall factual correction remains distinct from fr-090 precise disambiguation, fr-119/fr-120 form a diagnostic cause-versus-relieve social-awkwardness pair, fr-121 directed cold hostility remains distinct from fr-119 room-wide awkwardness, fr-122 loss of illusions remains distinct from fr-115 visible dejection, fr-123 preserves life-threatening escape, fr-124 preserves foresight and intention-reading, and fr-125 active resilience remains distinct from fr-111 patient endurance; fr-126 sustained subsistence struggle remains distinct from fr-109 deficit state, fr-127 useful monetary contribution remains distinct from fr-020 practical labor and fr-128 waste, fr-128 waste remains opposite to useful contribution, fr-129 general opulence remains distinct from fr-130 exceptional value or merit, and fr-130 value remains independent of monetary price or owner wealth; the source-backed fr-132 override removes the fr-132/fr-133 cunning collision, fr-131 future luck remains distinct from immediate joy, fr-132 gentle peaceful temperament remains distinct from fearful obedience, fr-133 strategic ruse remains distinct from fr-083 completed deception, fr-134 complete silence remains distinct from fr-056 deliberate nonresponse and fr-103 emotion-choked speech, and fr-135 prolonged standing wait remains distinct from fr-002 no-show behavior.",
+    "fr036To040TasteReview": "Independent English-parity taste rereview ACCEPT on final hashes with P0-P3 all empty.",
+    "fr038HistoricalBoundary": "legacyDraft is explicitly marked SUPERSEDED_HISTORICAL_RECORD_ONLY while current sourceEvidence remains larousse:artichaut.",
+    "sourceExtensionBridge": "Independent verifiers confirmed each accepted prefix survived append-only source expansion: 40/40 through source 45, 45/45 through source 50, and 50/50 with all 10 packet projections through source 55. New links fr-051..fr-055 point exactly to authority rows 50..54; activation remains closed. A fresh continuity audit also confirmed all 45 earlier accepted row hashes after fr-050 was source-safely retargeted from the superseded historical phrase to Avoir un chat dans la gorge.",
+    "fr050RetargetBridge": "The independent continuity audit verified the explicit override lineage, larousse:chat authority row, canonical linkage, blank SOURCE_SCAFFOLD_HOLD reset, 176/176 unique targets, and zero activation change before rebinding the accepted prefix.",
+    "fr041To045IndependentReview": "Two fresh independent reviewers accepted the repaired final hashes with P0-P3 all empty; all five prior taste findings and all semantic/quiz findings were closed.",
+    "fr041To045Metrics": "RU/UK narratives remain within 50-70 words with guardian-pinned sentence counts, target positions, and question distribution; aggregate fr-001..fr-045 source/style/quiz/structural gates pass.",
+    "fr046To050IndependentReview": "Two fresh independent reviewers accepted the final hashes with P0-P3 all empty; semantic, localization, quiz, source and English-parity taste checks all passed.",
+    "fr046To050Metrics": "RU/UK narratives remain within 50-70 words with varied sentence counts, target positions, and question distribution; batch and aggregate fr-001..fr-050 source/style/quiz/structural gates pass.",
+    "fr051To055IndependentReview": "Final semantic and English-parity taste reviewers accepted the repaired packet on exact hashes with P0-P3 all empty. One semantic repair cycle removed an ineluctable/almost-inevitable mismatch and polished two Russian collocations.",
+    "fr051To055Metrics": "All ten RU/UK narratives remain within 50-70 words with nonuniform sentence counts, target positions, and question distribution; exact packet source/style/quiz/structural gates pass.",
+    "source60Continuity": "Independent verification confirmed 55/55 prior packet-to-bank projections, 60/60 source links, 176/176 unique selected targets, exact links fr-056..fr-060, explicit fr-057 duplicate-removal lineage, and closed activation.",
+    "fr056To060IndependentReview": "Fresh semantic and English-parity taste reviewers accepted the exact final packet hashes with P0-P3 all empty and no repair cycle.",
+    "fr056To060Metrics": "All ten RU/UK narratives remain within the 50-70-word contract with nonuniform sentence counts, target positions, and question distribution; exact source/style/quiz/structural gates pass.",
+    "fr061To065IndependentReview": "Fresh semantic and English-parity taste reviewers accepted the final repaired packet with P0-P3 all empty. One taste repair cycle corrected three localized phrasing or scene-coherence defects.",
+    "fr061To065Metrics": "All ten RU/UK narratives pass the exact style contract after the gate first rejected uniform Ukrainian pacing and a weak closing; source/quiz/structural gates also pass.",
+    "fr066To070IndependentReview": "Fresh semantic and English-parity taste reviewers accepted the final exact hashes with P0-P3 all empty after two focused repair-and-rereview cycles removed unnatural surprise/joy framing, one Ukrainian calque, and one ambiguous Russian referent.",
+    "fr066To070Metrics": "All ten RU/UK narratives pass exact source/style/quiz/structural gates with varied sentence counts and target positions; the five meanings remain collision-bounded against later French rows.",
+    "source75Continuity": "The pre-extension accepted manifest was evaluated immediately after the source-only expansion from 70 to 75. Its only findings were the three expected whole-artifact SHA mismatches; all 70 accepted row hashes, fourteen packet projections, exact gates, closure fields, and source links remained valid.",
+    "fr071To075IndependentReview": "Fresh semantic and English-parity taste reviewers accepted the repaired final packet on exact hashes with P0-P3 all empty. One combined repair cycle corrected an unnatural Russian opening, a grotesque literal-feedback collocation, an implausible literal distractor, and obligation framing that distorted a confused state.",
+    "fr071To075Metrics": "All ten RU/UK narratives pass the exact style contract with varied pacing and target placement; exact source/style/quiz/structural gates pass, packet-bank parity is exact, and activation remains closed.",
+    "source80Continuity": "Immediately after the append-only source expansion from 75 to 80, the prior manifest reported only the three expected whole-artifact SHA mismatches. All 75 accepted row hashes, fifteen packet projections, replayed gates, closure fields, and source links remained exact before rebinding.",
+    "fr076To080IndependentReview": "Fresh semantic and English-parity taste reviewers accepted the repaired final packet on exact hashes with P0-P3 all empty. One combined repair cycle corrected French example casing and punctuation, removed distractor-shaped exposition, restored natural agency, and strengthened RU/UK endings.",
+    "fr076To080Metrics": "All ten RU/UK narratives pass the exact style contract with varied sentence counts, target positions, scenes and endings; source/style/quiz/structural gates pass, packet-bank parity is exact, and activation remains closed.",
+    "source85Continuity": "Immediately after extending source evidence and linkage from 80 to 85, the prior manifest reported only the two expected sourceEvidence/sourceLinkage SHA mismatches. The bank hash, all 80 accepted row hashes, sixteen packet projections, replayed gates and closure fields remained exact before rebinding.",
+    "fr081To085IndependentReview": "Fresh semantic and English-parity taste reviewers accepted the repaired final packet on exact hashes with P0-P3 all empty. One combined repair cycle removed distractor-shaped rebuttals, repaired an awkward Ukrainian scene, and restored the authoritative radical-change threshold.",
+    "fr081To085Metrics": "All ten RU/UK narratives pass the exact style contract with varied target placement, concrete scenes and vivid endings; source/style/quiz/structural gates pass, packet-bank parity is exact, and activation remains closed.",
+    "source90Continuity": "Immediately after extending source evidence and linkage from 85 to 90, the accepted manifest reported exactly the two expected sourceEvidence/sourceLinkage SHA mismatches. The bank hash, all 85 accepted row hashes, seventeen packet projections, replayed gates and closure fields remained exact before rebinding.",
+    "fr086To090IndependentReview": "Fresh semantic and English-parity taste reviewers accepted the final repaired packet on exact hashes with P0-P2 empty. Two review cycles corrected three localized collocations and made the Latin i literal distractor exact; the supporting gate now permits only a single quoted i inside literal-reading distractor text and rejects the same Latin glyph elsewhere.",
+    "fr086To090Metrics": "All ten RU/UK narratives pass source/style/quiz/structural gates with exact packet-bank parity, varied scenes and memorable endings. Quiz-gate unit tests pass 25/25, prior continuity is exact, and activation remains closed.",
+    "fr171FutureBoundaryWatch": "When fr-171 Prêter main-forte is authored, require a stronger or more formal coming-to-someone’s-aid/reinforcement boundary from fr-088 Donner un coup de main.",
+    "source95Continuity": "Immediately after extending source evidence and linkage from 90 to 95, the accepted manifest reported exactly the two expected sourceEvidence/sourceLinkage SHA mismatches. The bank hash, all 90 accepted row hashes, eighteen packet projections, replayed gates and closure fields remained exact before rebinding.",
+    "fr091To095IndependentReview": "Fresh semantic and English-parity taste reviewers accepted the repaired final packet on exact hashes with P0-P3 all empty. One repair cycle removed a tautological literal bridge, an unsupported repetition narrowing, and a weak Ukrainian closing.",
+    "fr091To095Metrics": "All ten RU/UK narratives pass exact source/style/quiz/structural gates with varied pacing, target placement and endings; packet-bank parity, prior continuity and closed activation are exact.",
+    "source100Continuity": "Immediately after extending source evidence and linkage from 95 to 100, the accepted manifest reported exactly the two expected sourceEvidence/sourceLinkage SHA mismatches. The bank hash, all 95 accepted row hashes, nineteen packet projections, replayed gates and closure fields remained exact before rebinding.",
+    "fr096To100IndependentReview": "Fresh semantic and English-parity taste reviewers accepted the repaired final packet on exact hashes with P0-P3 all empty. One combined repair cycle corrected an ambiguous French example, two unnatural target integrations, distractor-shaped exposition, a Russian collocation, and literal distractor precision.",
+    "fr096To100Metrics": "All ten RU/UK narratives pass exact source/style/quiz/structural gates with varied pacing, concrete scenes and memorable endings; packet-bank parity, source boundaries, prior continuity and closed activation are exact.",
+    "source105Continuity": "Immediately after extending source evidence and linkage from 100 to 105, the accepted manifest reported exactly the two expected sourceEvidence/sourceLinkage SHA mismatches. The bank hash, all 100 accepted row hashes, twenty packet projections, replayed gates and closure fields remained exact before rebinding.",
+    "fr101To105IndependentReview": "Fresh semantic and English-parity taste reviewers accepted the repaired final packet on exact hashes with P0-P3 all empty. One combined repair cycle removed definition-shaped framing, corrected two mixed-language target integrations, repaired an unclear scene image, and replaced calqued emotional-speech phrasing.",
+    "fr101To105Metrics": "All ten RU/UK narratives pass exact source/style/quiz/structural gates within the 50-70-word contract, with varied pacing, target placement and endings; packet-bank parity, prior continuity and closed activation are exact.",
+    "source110Continuity": "Immediately after extending source evidence and linkage from 105 to 110, the accepted manifest reported exactly the two expected sourceEvidence/sourceLinkage SHA mismatches. The bank hash, all 105 accepted row hashes, twenty-one packet projections, replayed gates and closure fields remained exact before rebinding.",
+    "fr106To110IndependentReview": "Fresh semantic and English-parity taste reviewers accepted the repaired final packet on exact hashes with P0-P3 all empty. One combined repair cycle removed a potentially correct distractor, replaced definition-shaped framing, repaired awkward RU/UK target integration, and restored a coherent narrative closing.",
+    "fr106To110Metrics": "All ten RU/UK narratives pass exact source/style/quiz/structural gates within the 50-70-word contract, with varied pacing, target placement and endings; packet-bank parity, prior continuity and closed activation are exact.",
+    "source115Continuity": "Immediately after extending source evidence and linkage from 110 to 115 and source-safely retargeting pending fr-111 away from the hard semantic duplicate of fr-001, the accepted manifest reported exactly the three expected whole-artifact SHA mismatches. All 110 accepted row hashes, twenty-two packet projections, replayed gates and closure fields remained exact before rebinding.",
+    "fr111To115IndependentReview": "Fresh semantic and English-parity taste reviewers accepted the final repaired packet on exact hashes with P0-P3 all empty. Two combined review cycles corrected two inexact literal distractors, established a diagnostic full-rage boundary from reactive offense, removed translated RU/UK anger phrasing, made the authorization example natural, and polished the dejected-face bridges.",
+    "fr111To115Metrics": "All ten RU/UK narratives pass exact source/style/quiz/structural gates within the 50-70-word contract, with varied pacing, target placement and endings; packet-bank parity, prior continuity, target uniqueness and closed activation are exact.",
+    "source120Continuity": "Immediately after extending source evidence and linkage from 115 to 120, the accepted manifest reported exactly the two expected sourceEvidence/sourceLinkage SHA mismatches. The bank hash, all 115 accepted row hashes, twenty-three packet projections, replayed gates and closure fields remained exact before rebinding.",
+    "fr116To120IndependentReview": "Fresh semantic and English-parity taste reviewers accepted the repaired final packet on exact hashes with P0-P3 all empty. One combined repair cycle removed RU/UK calques, repaired mixed-language target integration and agency, made the French example idiomatic, and restored exact literal distractors.",
+    "fr116To120Metrics": "All ten RU/UK narratives pass exact source/style/quiz/structural gates within the 50-70-word contract, with varied pacing, target placement and endings; packet-bank parity, prior continuity, target uniqueness and closed activation are exact.",
+    "source125Continuity": "Immediately after extending source evidence and linkage from 120 to 125, the accepted manifest reported exactly the two expected sourceEvidence/sourceLinkage SHA mismatches. The bank hash, all 120 accepted row hashes, twenty-four packet projections, replayed gates and closure fields remained exact before rebinding.",
+    "fr121To125IndependentReview": "Fresh semantic and English-parity taste reviewers accepted the repaired final packet on exact hashes with P0-P3 all empty. One combined repair cycle corrected an unnatural Ukrainian mixed-language integration and replaced a definition-shaped French example with living usage.",
+    "fr121To125Metrics": "All ten RU/UK narratives pass exact source/style/quiz/structural gates within the 50-70-word contract, with varied pacing, target placement and endings; packet-bank parity, prior continuity, target uniqueness and closed activation are exact.",
+    "source130Continuity": "Immediately after extending source evidence and linkage from 125 to 130 and source-safely canonicalizing pending fr-127 from Mettre la main au portefeuille to the Larousse-attested Mettre la main à la poche, the accepted manifest reported exactly the three expected whole-artifact SHA mismatches. All 125 accepted row hashes, twenty-five packet projections, replayed gates and closure fields remained exact before rebinding.",
+    "fr126To130IndependentReview": "Fresh semantic and English-parity taste reviewers accepted the final repaired packet on exact hashes with P0-P3 all empty. Two repair-and-rereview cycles corrected Ukrainian scene causality, removed stative ability-modal calques, restored exact literal distractors and embedded the final target as a motivated part of both scenes rather than a dry dictionary label.",
+    "fr126To130Metrics": "All ten RU/UK narratives pass exact source/style/quiz/structural gates within the 50-70-word contract, with varied pacing, target placement and endings; packet-bank parity, canonical override lineage, prior continuity, target uniqueness and closed activation are exact.",
+    "source135Continuity": "Immediately after extending source evidence and linkage from 130 to 135 and source-safely retargeting pending fr-132 away from the hard semantic duplicate of fr-133 to the Le Robert-attested Doux comme un agneau, the accepted manifest reported exactly the three expected whole-artifact SHA mismatches. All 130 accepted row hashes, twenty-six packet projections, replayed gates and closure fields remained exact before rebinding.",
+    "fr131To135IndependentReview": "Fresh semantic and English-parity taste reviewers accepted the final repaired packet on exact hashes with P0-P3 all empty. Two repair-and-rereview cycles removed calqued future-luck wording, repaired a causally incoherent ruse scene, made literal distractors native, and polished two Ukrainian narrative gestures.",
+    "fr131To135Metrics": "All ten RU/UK narratives pass exact source/style/quiz/structural gates within the 50-70-word contract, with varied pacing, target placement and endings; packet-bank parity, fr-132 collision override lineage, prior continuity, target uniqueness and closed activation are exact.",
+    "source140Continuity": "Immediately after extending source evidence and linkage from 135 to 140, the accepted manifest reported exactly the two expected sourceEvidence/sourceLinkage SHA mismatches. The bank hash, all 135 accepted row hashes, twenty-seven packet projections, replayed gates and closure fields remained exact before rebinding.",
+    "fr136To140IndependentReview": "Fresh semantic and English-parity taste reviewers accepted the repaired final packet on exact hashes with P0-P3 all empty. One combined repair-and-rereview cycle removed a bureaucratic meaning gloss, repaired Russian and Ukrainian collocations, preserved the authoritative silent reciprocal fixed gaze, and restored native scene phrasing.",
+    "fr136To140Metrics": "All ten RU/UK narratives pass exact source/style/quiz/structural gates within the 50-70-word contract, with varied target placement, concrete scenes and memorable endings; packet-bank parity, source linkage, prior continuity, target uniqueness and closed activation are exact.",
+    "fr136To140Boundaries": "fr-136 high-handed angry indignation remains distinct from fr-009 sudden offense and fr-113 full rage; fr-137 direct resolute confrontation remains distinct from generic help or effort; fr-138 reciprocal fixed irritated silent gaze remains distinct from fr-134 plain silence and fr-119 awkward silence; fr-139 broad recognizability does not entail admiration or influence; fr-140 conformist alignment with the majority or stronger side remains distinct from independent agreement.",
+    "source145Continuity": "Immediately after extending source evidence and linkage from 140 to 145 and source-safely canonicalizing pending fr-145 to the Larousse-attested proper-name capitalization, the accepted manifest reported exactly the three expected whole-artifact SHA mismatches. All 140 accepted row hashes, twenty-eight packet projections, replayed gates and closure fields remained exact before rebinding.",
+    "fr141To145IndependentReview": "Fresh semantic and English-parity taste reviewers accepted the final repaired packet on exact hashes with P0-P3 all empty. Three repair-and-rereview cycles corrected a Ukrainian mixed-language integration, turned a dry polysemy aside into lived action, narrowed physical strength to its exact source scope, and repaired the ostrich-role literal bridge.",
+    "fr141To145Metrics": "All ten RU/UK narratives pass exact source/style/quiz/structural gates within the 50-70-word contract, with varied target placement, concrete scenes and memorable endings; packet-bank parity, canonical capitalization lineage, prior continuity, target uniqueness and closed activation are exact.",
+    "fr141To145Boundaries": "fr-141 requires extreme crowding in a full place; fr-142 preserves both affront-without-protest and gullibility senses while remaining distinct from generic patience; fr-143 denies a danger rather than merely ignoring a harmless request; fr-144 denotes great physical strength only; fr-145 denotes abundant tears and retains the Maria Magdalene cultural image rather than a pastry reading.",
+    "source150Continuity": "Immediately after extending source evidence and linkage from 145 to 150, the accepted manifest reported exactly the three expected whole-artifact SHA mismatches. All 145 accepted row hashes, twenty-nine packet projections, replayed gates and closure fields remained exact before rebinding.",
+    "source155Continuity": "The initial source expansion from 150 to 155 exposed Larousse's actual malaise-or-fainting scope for the legacy fr-155 target; a fresh independent reviewer then identified its hard collision with accepted fr-008 before acceptance, so that initial pending selection was superseded rather than narrowed deceptively.",
+    "fr151To155PendingContinuity": "After the still-pending fr-151..fr-155 packet was repaired and fr-155 was source-safely retargeted to Avoir un coup de barre, the accepted manifest reported exactly the three expected whole-artifact SHA mismatches. All 150 accepted row hashes, thirty accepted packet projections, replayed gates and closed activation remained exact before rebinding; this is continuity evidence only and does not accept the new packet.",
+    "fr155RetargetBoundary": "The explicit fr-155 selection override retires Tourner de l’œil because its authoritative fainting sense collides with fr-008. The new Larousse-backed target Avoir un coup de barre denotes sudden temporary fatigue and remains distinct from fr-107's exhausted-resources or end-of-strength state.",
+    "fr146To150IndependentReview": "Fresh semantic and English-parity taste reviewers accepted the repaired final packet on exact hashes with P0-P3 all empty. One combined repair-and-rereview cycle removed an unnatural Ukrainian duration calque and corrected the causal description of cigarette smoke without turning the health-aware ending into a medical claim.",
+    "fr146To150Metrics": "All ten RU/UK narratives pass exact source/style/quiz/structural gates within the 50-70-word contract, with varied target placement, concrete scenes and memorable endings; packet-bank parity, prior continuity, target uniqueness and closed activation are exact.",
+    "fr146To150Boundaries": "fr-146 denotes an extremely simple task rather than a naïve person; fr-147 requires excessive duration plus boredom; fr-148 denotes deep sleep rather than merely worry-free rest; fr-149 requires actually eating a lot rather than hunger alone; fr-150 denotes heavy tobacco smoking rather than firefighter smoke or anger.",
+    "source160Continuity": "Immediately after extending source evidence and linkage from 155 to 160, the accepted manifest reported exactly the three expected whole-artifact SHA mismatches. All 155 accepted row hashes, thirty-one packet projections, replayed gates and closure fields remained exact before rebinding; an independent collision audit kept all five pending targets with strict boundaries for the ear and foresight pairs.",
+    "source165Continuity": "Immediately after extending authoritative source evidence and linkage from 160 to 165, the accepted manifest reported exactly the three expected whole-artifact SHA mismatches. All 160 accepted row hashes, thirty-two packet projections, replayed gates and closure fields remained exact before rebinding; a fresh collision audit kept all five pending targets and pinned their distinctions from forced departure, control, generic failure, exact visual measurement and trait-level laziness.",
+    "source170Continuity": "Immediately after extending authoritative source evidence and linkage from 165 to 170 and source-safely canonicalizing pending fr-169 to the Larousse-attested negative-polarity form Ne pas lever le petit doigt, the accepted manifest reported exactly the three expected whole-artifact SHA mismatches. All 165 accepted row hashes, thirty-three packet projections, replayed gates and closure fields remained exact before rebinding; a fresh collision audit pinned distinct boundaries for three neighboring help expressions and for inactivity versus refusal to help.",
+    "source176Continuity": "Immediately after completing authoritative source evidence and linkage from 170 to 176 and replacing pending fr-171 with the non-colliding Le Robert expression Se faire la main, the accepted manifest reported exactly the three expected whole-artifact SHA mismatches. All 170 accepted row hashes, thirty-four packet projections, replayed gates and closure fields remained exact before rebinding; source and linkage now cover 176 of 176 unique targets while activation remains closed.",
+    "fr166To170PendingContinuity": "After applying the still-pending fr-166..fr-170 authoring packet, all four focused source, style, quiz and structural gates passed. The accepted manifest remains bound only through fr-165; rebinding its whole-bank hash records continuity without accepting the new rows, whose independent semantic and English-parity taste reviews are still required.",
+    "fr171To176PendingContinuity": "After applying the still-pending fr-171..fr-176 authoring packet, all four focused source, style, quiz and structural gates passed. The accepted manifest remains bound only through fr-170; rebinding its whole-bank hash records continuity without accepting the new rows, whose independent semantic and English-parity taste reviews are still required.",
+    "fr161To165PendingContinuity": "After applying the still-pending fr-161..fr-165 authoring packet, all four focused source, style, quiz and structural gates passed. The accepted manifest remains bound only through fr-160; rebinding its whole-bank hash records continuity without accepting the new rows, whose independent semantic and English-parity taste reviews are still required.",
+    "fr156To160PendingContinuity": "After applying the still-pending fr-156..fr-160 authoring packet, all four focused source, style, quiz and structural gates passed. The accepted manifest remains bound only through fr-155; rebinding its whole-bank hash records continuity without accepting the new rows, whose independent semantic and English-parity taste reviews are still required.",
+    "fr151To155IndependentReview": "Fresh semantic and English-parity taste reviewers accepted the final repaired packet on exact hashes with P0-P3 all empty. Three review cycles removed mirrored locale scenes and translated collocations, restored native French contextual use and both fr-153 source senses, and replaced the fr-155 fainting duplicate with a source-backed non-colliding target.",
+    "fr151To155Metrics": "All ten RU/UK narratives pass exact source/style/quiz/structural gates within the 50-70-word contract, with independent locale scenes, varied target placement and memorable endings; packet-bank parity, prior continuity, 176-target uniqueness and closed activation are exact.",
+    "fr151To155Boundaries": "fr-151 requires frequent gross swearing rather than one outburst; fr-152 requires first rank plus high regard rather than fame alone; fr-153 preserves rapid hierarchy advancement and excessive haste while remaining distinct from fr-154's apprehensive decision; fr-154 requires deciding on something difficult or new; retargeted fr-155 denotes sudden temporary fatigue and remains distinct from fr-107's complete exhaustion.",
+    "fr156To160IndependentReview": "Fresh semantic and English-parity taste reviewers accepted the final repaired packet on exact hashes with P0-P3 all empty. One combined repair-and-rereview cycle replaced four mixed-language infinitive labels with natural French utterances, removed a product-meta quiz reference, and repaired a calqued Russian literal bridge.",
+    "fr156To160Metrics": "All ten RU/UK narratives pass exact source/style/quiz/structural gates within the 50-70-word contract, with independent locale scenes, varied target placement and memorable endings; packet-bank parity, prior continuity, 176-target uniqueness and closed activation are exact.",
+    "fr156To160Boundaries": "fr-156 denotes exclusive attachment to one person; fr-157 requires prolonged resistance followed by eventual consent; fr-158 requires favorable hearing and taking words into account rather than merely catching sound; fr-159 denotes perceptive flair for good opportunities rather than generic prediction; fr-160 denotes lack of foresight and future consequence awareness.",
+    "fr161To165IndependentReview": "Fresh semantic and English-parity taste reviewers accepted the final repaired packet on exact hashes with P0-P3 all empty. Two combined repair-and-rereview cycles removed RU/UK pleonasms and case errors, repaired a causally contradictory ending, and turned the difficult nose-sight literal into one concise living image instead of repeated explanation.",
+    "fr161To165Metrics": "All ten RU/UK narratives pass exact source/style/quiz/structural gates within the 50-70-word contract, with independent locale scenes, varied target placement and memorable endings; packet-bank parity, prior continuity, 176-target uniqueness and closed activation are exact.",
+    "fr161To165Boundaries": "fr-161 is ordinary going outside rather than departure or flight; fr-162 combines excessive curiosity with indiscreet meddling rather than control; fr-163 requires a desired object to escape after seeming within reach; fr-164 is an approximate first estimate rather than exact visual measurement; fr-165 is current possibly forced inactivity rather than trait-level laziness.",
+    "fr166To170IndependentReview": "Fresh semantic and English-parity taste reviewers accepted the final repaired packet on exact hashes with P0-P3 all empty. One focused repair-and-rereview cycle integrated the limited-help boundary naturally, repaired one logically inverted ending, preserved varied pacing and corrected a Ukrainian scene chronology.",
+    "fr166To170Metrics": "All ten RU/UK narratives pass exact source/style/quiz/structural gates within the English-parity narrative contract, with independent locale scenes, varied pacing and memorable endings; packet-bank parity, prior continuity, 176-target uniqueness and closed activation are exact.",
+    "fr166To170Boundaries": "fr-166 is a small targeted boost rather than hands-on work, active participation or general aid; fr-167 is imminence without a completed result; fr-168 is bitter regret over one's own act, decision or omission; fr-169 requires expected action or help plus voluntary zero effort rather than current idleness, trait laziness or inability; fr-170 requires relinquishing and transferring control rather than delegating one task.",
+    "fr171To176IndependentReview": "Fresh semantic and English-parity taste reviewers accepted the final repaired packet on identical exact hashes with P0-P3 all empty. Three repair-and-rereview cycles removed dry meaning bridges, unsupported duration language, calqued weapon collocations and one audible Ukrainian repetition while preserving independent scenes and warm English-parity prose.",
+    "fr171To176Metrics": "All twelve RU/UK narratives pass exact source/style/quiz/structural gates within the English-parity narrative contract; packet-bank parity, prior continuity, 176-target uniqueness and closed activation are exact.",
+    "fr171To176Boundaries": "fr-171 is skill acquisition through practice rather than generic help; fr-172 is active bracing and endurance rather than passive acceptance; fr-173 is threatening readiness rather than a completed attack; fr-174 is strictly being very well armed rather than generic preparedness; fr-175 is visibly radiating joie de vivre rather than one isolated success; fr-176 is voluntary frank and trusting conversation rather than a forced exhaustive confession."
+  },
+  "perBatch": {
+    "fr-001-005": "Accepted: RU/UK narratives, meanings, examples, locale independence, and diagnostic distractors.",
+    "fr-006-010": "Accepted: careful analysis versus pointless detail, dizziness versus unconsciousness, and quiet hurt versus anger remain explicit.",
+    "fr-011-015": "Accepted: distraction, panic, judgment, flight, and ambition remain distinct despite clustered body imagery.",
+    "fr-016-020": "Accepted: the repaired fr-018 literal distractors are natural, diagnostic, unique, and remove the packet-level answer-length run without weakening meaning.",
+    "fr-021-025": "Accepted: surrender, workload, faster work, full confession, and evasive speech are accurately separated.",
+    "fr-026-030": "Accepted: acceleration, failure, skillful escape, offering an opening, and reversed sequencing remain source-aligned.",
+    "fr-031-035": "Accepted: impossibility, caution, premature certainty, fault-finding, and being in one's element remain distinct.",
+    "fr-036-040": "Accepted after two repair-and-rereview cycles: priority, insulting mental-state judgment, romantic inconstancy, useless-role assessment, and one-action/two-goal meaning remain accurate, natural, and distinct.",
+    "fr-041-045": "Accepted after combined taste and semantic repair: vitality, a plan falling through, being in difficulty, modest financial improvement, and an unconnected topic jump remain source-accurate, natural, diagnostic, and mutually distinct.",
+    "fr-046-050": "Accepted after final two-stage review: suspicion from a clue, strikingly high cost, intuition, ineluctable failure, and sudden throat obstruction or hoarseness remain vivid, source-accurate, diagnostic, and mutually distinct.",
+    "fr-051-055": "Accepted after one repair-and-rereview cycle: an ineluctable bad outcome, uncovering a hidden affair, robust health plus vigilance, carefree safe sleep, and effortful sound-catching remain source-accurate, vivid, diagnostic, and collision-bounded.",
+    "fr-056-060": "Accepted on first final review: deliberate non-response, precise visual measurement, personal control, a possibly voluntary or abrupt exit, and furtive departure or business failure remain source-accurate, vivid, diagnostic, and mutually distinct.",
+    "fr-061-065": "Accepted after one taste repair cycle: finding a suitable match, unseen manipulation, worsening an existing quarrel, triggering a conflict, and absence of urgency remain vivid, localized, diagnostic, and sharply separated.",
+    "fr-066-070": "Accepted after two focused repair cycles: helpless or annoyed eye-raising, surprise at an unforeseen event, achieving the impossible, visual dazzling after a strong blow, and peak joy remain source-accurate, natural, diagnostic, and mutually distinct.",
+    "fr-071-075": "Accepted after one combined repair-and-rereview cycle: heavy rain, better times after hardship, banal small talk, being soaked through, and mental confusion remain source-accurate, vivid, diagnostic, and collision-bounded.",
+    "fr-076-080": "Accepted after one combined repair-and-rereview cycle: favourable momentum, directed effort toward a goal, independent management, acceptance of an unknown outcome, and safe arrival remain source-accurate, vivid, diagnostic, and mutually distinct.",
+    "fr-081-085": "Accepted after one combined repair-and-rereview cycle: voluntary departure, demonstrated reliability, deception, unconventional originality, and radical reorientation remain source-accurate, vivid, diagnostic, and mutually distinct.",
+    "fr-086-090": "Accepted after two focused repair-and-rereview cycles: existing interpersonal tension, gardening talent, ordinary practical help, prevailing in a dispute, and precise disambiguation remain source-accurate, vivid, diagnostic, and mutually distinct.",
+    "fr-091-095": "Accepted after one repair-and-rereview cycle: moving beyond the past, inferring unstated meaning, speaking without being heard, interrupting another speaker, and taking the floor remain source-accurate, vivid, diagnostic, and mutually distinct.",
+    "fr-096-100": "Accepted after one combined repair-and-rereview cycle: thinking before speaking, temporary raw nerves, an irascible or impetuous temperament, preserving dignity, and losing prestige remain source-accurate, vivid, diagnostic, and sharply separated.",
+    "fr-101-105": "Accepted after one combined repair-and-rereview cycle: discarding an old system, seizing a timely opportunity, emotion-choked speech, externally constrained action, and all-out effort remain source-accurate, vivid, diagnostic, and collision-bounded.",
+    "fr-106-110": "Accepted after one combined taste repair cycle: anxious worrying, complete exhaustion of resources, openly surfacing a concealed issue, a critical financial position, and an optimistic outlook remain source-accurate, vivid, diagnostic, and mutually distinct.",
+    "fr-111-115": "Accepted after two combined repair-and-rereview cycles: patient endurance of an unchangeable difficulty, forced laughter, a full rage episode, authorization to act, and visible dejection remain source-accurate, naturally localized, vivid, diagnostic, and collision-bounded.",
+    "fr-116-120": "Accepted after one combined repair-and-rereview cycle: needless complication, setting the record straight, inside involvement, causing social awkwardness, and relieving social awkwardness remain source-accurate, naturally localized, vivid, diagnostic, and mutually distinct.",
+    "fr-121-125": "Accepted after one combined repair-and-rereview cycle: directed cold hostility, painful loss of illusions, survival of mortal danger, foresight or reading intentions, and resilient adaptation to adversity remain source-accurate, naturally localized, vivid, diagnostic, and collision-bounded.",
+    "fr-126-130": "Accepted after two repair-and-rereview cycles: sustained subsistence struggle, useful monetary contribution, wasteful spending, great personal wealth and exceptional value or merit remain source-accurate, naturally localized, vivid, diagnostic, and sharply separated.",
+    "fr-131-135": "Accepted after two repair-and-rereview cycles: bringing future luck, gentle peaceful temperament, strategic cunning, complete silence, and prolonged standing wait remain source-accurate, naturally localized, vivid, diagnostic, and sharply separated.",
+    "fr-136-140": "Accepted after one combined repair-and-rereview cycle: high-handed anger, resolute confrontation of difficulty, a reciprocal fixed irritated silent gaze, broad recognizability, and conformist alignment remain source-accurate, naturally localized, vivid, diagnostic, and sharply separated.",
+    "fr-141-145": "Accepted after three repair-and-rereview cycles: extreme crowding, affront-swallowing plus gullibility, denial of danger, great physical strength, and abundant tears remain source-accurate, naturally localized, vivid, diagnostic, and sharply separated.",
+    "fr-146-150": "Accepted after one combined repair-and-rereview cycle: extreme simplicity, excessive boring duration, deep sleep, voracious eating and heavy tobacco smoking remain source-accurate, naturally localized, vivid, diagnostic, and sharply separated.",
+    "fr-151-155": "Accepted after three review-and-repair cycles: frequent gross swearing, first rank with high regard, excessive haste, an apprehensive decisive step, and sudden temporary fatigue remain source-accurate, independently localized, vivid, diagnostic, and sharply separated.",
+    "fr-156-160": "Accepted after one combined repair-and-rereview cycle: exclusive attachment, delayed consent after resistance, favorable hearing, opportunity flair and lack of foresight remain source-accurate, independently localized, vivid, diagnostic, and sharply separated.",
+    "fr-161-165": "Accepted after two repair-and-rereview cycles: going outside, indiscreet meddling, a nearly attained object escaping, approximate first estimation and present inactivity remain source-accurate, independently localized, vivid, diagnostic, and sharply separated.",
+    "fr-166-170": "Accepted after one focused repair-and-rereview cycle: a limited boost, imminence without result, bitter self-regret, refusal to make any effort and transfer of control remain source-accurate, independently localized, vivid, diagnostic, and sharply separated.",
+    "fr-171-176": "Accepted after three focused repair-and-rereview cycles: practice-based skill acquisition, active endurance, threatening readiness, heavy armament, visible joie de vivre and voluntary open-hearted speech remain source-accurate, independently localized, warm, diagnostic, and sharply separated."
+  },
+  "residualUnverifiedNonRequiredSurfaces": [
+    "No French candidate rows remain outside this editorial audit.",
+    "Official dictionary evidence for the latest accepted source rows was checked; this remains editorial evidence rather than release approval.",
+    "No release receipts, signatures, trust-root verification, runtime activation, or production UI behavior were reviewed.",
+    "The overall French bank remains closed with activationApproved=false."
+  ]
+}

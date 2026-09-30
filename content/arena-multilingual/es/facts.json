@@ -14,18 +14,18 @@
     { "id": "rae-tener", "label": "Diccionario de la lengua española: tener", "url": "https://dle.rae.es/tener" }
   ],
   "facts": [
-    { "id": "es-ser-soy", "lemma": "ser", "target": "soy", "sourceRu": "я есть", "pos": "verb", "grammar": "presente_1sg", "sourceIds": ["rae-ser"] },
-    { "id": "es-ser-eres", "lemma": "ser", "target": "eres", "sourceRu": "ты есть", "pos": "verb", "grammar": "presente_2sg", "sourceIds": ["rae-ser"] },
-    { "id": "es-ser-es", "lemma": "ser", "target": "es", "sourceRu": "он есть", "pos": "verb", "grammar": "presente_3sg", "sourceIds": ["rae-ser"] },
-    { "id": "es-ser-somos", "lemma": "ser", "target": "somos", "sourceRu": "мы есть", "pos": "verb", "grammar": "presente_1pl", "sourceIds": ["rae-ser"] },
+    { "id": "es-ser-soy", "lemma": "ser", "target": "soy", "sourceRu": "я являюсь", "pos": "verb", "grammar": "presente_1sg", "sourceIds": ["rae-ser"] },
+    { "id": "es-ser-eres", "lemma": "ser", "target": "eres", "sourceRu": "ты являешься", "pos": "verb", "grammar": "presente_2sg", "sourceIds": ["rae-ser"] },
+    { "id": "es-ser-es", "lemma": "ser", "target": "es", "sourceRu": "он является", "pos": "verb", "grammar": "presente_3sg", "sourceIds": ["rae-ser"] },
+    { "id": "es-ser-somos", "lemma": "ser", "target": "somos", "sourceRu": "мы являемся", "pos": "verb", "grammar": "presente_1pl", "sourceIds": ["rae-ser"] },
     { "id": "es-estar-estoy", "lemma": "estar", "target": "estoy", "sourceRu": "я нахожусь", "pos": "verb", "grammar": "presente_1sg", "sourceIds": ["rae-estar"] },
     { "id": "es-estar-estas", "lemma": "estar", "target": "estás", "sourceRu": "ты находишься", "pos": "verb", "grammar": "presente_2sg", "sourceIds": ["rae-estar"] },
     { "id": "es-estar-esta", "lemma": "estar", "target": "está", "sourceRu": "он находится", "pos": "verb", "grammar": "presente_3sg", "sourceIds": ["rae-estar"] },
     { "id": "es-estar-estamos", "lemma": "estar", "target": "estamos", "sourceRu": "мы находимся", "pos": "verb", "grammar": "presente_1pl", "sourceIds": ["rae-estar"] },
-    { "id": "es-tener-tengo", "lemma": "tener", "target": "tengo", "sourceRu": "я имею", "pos": "verb", "grammar": "presente_1sg", "sourceIds": ["rae-tener"] },
-    { "id": "es-tener-tienes", "lemma": "tener", "target": "tienes", "sourceRu": "ты имеешь", "pos": "verb", "grammar": "presente_2sg", "sourceIds": ["rae-tener"] },
-    { "id": "es-tener-tiene", "lemma": "tener", "target": "tiene", "sourceRu": "он имеет", "pos": "verb", "grammar": "presente_3sg", "sourceIds": ["rae-tener"] },
-    { "id": "es-tener-tenemos", "lemma": "tener", "target": "tenemos", "sourceRu": "мы имеем", "pos": "verb", "grammar": "presente_1pl", "sourceIds": ["rae-tener"] }
+    { "id": "es-tener-tengo", "lemma": "tener", "target": "tengo", "sourceRu": "у меня есть", "pos": "verb", "grammar": "presente_1sg", "sourceIds": ["rae-tener"] },
+    { "id": "es-tener-tienes", "lemma": "tener", "target": "tienes", "sourceRu": "у тебя есть", "pos": "verb", "grammar": "presente_2sg", "sourceIds": ["rae-tener"] },
+    { "id": "es-tener-tiene", "lemma": "tener", "target": "tiene", "sourceRu": "у него есть", "pos": "verb", "grammar": "presente_3sg", "sourceIds": ["rae-tener"] },
+    { "id": "es-tener-tenemos", "lemma": "tener", "target": "tenemos", "sourceRu": "у нас есть", "pos": "verb", "grammar": "presente_1pl", "sourceIds": ["rae-tener"] }
   ],
   "familyDefinitions": {
     "guess_phrase": { "evidence": "four_minimal_twins_with_grammar_matrix", "requires": ["options:4", "grammarMatrix", "distractorReasons"] },

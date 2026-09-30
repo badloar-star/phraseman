@@ -1,21 +1,12 @@
 // ════════════════════════════════════════════════════════════════════════════
-// lesson_bonus_grant.ts — выдача бонуса первого прохождения урока + retry.
-//
-// Раньше вся выдача жила в lesson_complete.tsx под одним пустым catch: любая
-// ошибка (сеть, суточный лимит XP, исключение) молча съедала бонусный XP и
-// осколки — без повтора и следа в телеметрии. Теперь неудачная выдача
-// помечается pending и повторяется при следующем заходе на экран завершения
-// любого урока. Повтор идемпотентен:
-//   • registerXP несёт стабильный eventId — серверный леджер отсекает дубль;
-//   • lessonBonusGrantedKey ставится ТОЛЬКО после подтверждённой выдачи XP.
+// lesson_bonus_grant.ts — отметка первого прохождения урока + retry.
+// Повтор идемпотентен через lessonBonusGrantedKey.
+// зачем: D70 — жемчуг за первое прохождение (и так 0) удалён; сама отметка
+// нужна экрану завершения (мягкий апселл по статусу 'granted').
 // ════════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { Lang } from '../constants/i18n';
-import { calculateRewardWithBonus } from './variable_reward_system';
-import { registerXP } from './xp_manager';
-import { grantLocalLessonCompletionSpin } from './local_level_spins';
-import { addShards } from './shards_system';
 import { lessonBonusGrantedKey, type RuntimeStudyTarget } from './target_storage_keys';
 import { logAppWarning } from './app_health';
 import {
@@ -29,7 +20,6 @@ import { DebugLogger } from './debug-logger';
 
 const PENDING_KEY = 'lesson_bonus_pending_v1';
 const PENDING_MAX_ENTRIES = 32;
-const BONUS_BASE_XP = 500;
 
 function accountOperationKey(token: AccountGenerationToken): string | null {
   return accountScopeKey(token);
@@ -39,29 +29,17 @@ function isAccountOperationCurrent(token: AccountGenerationToken): boolean {
   return isCurrentAccountGeneration(token);
 }
 
-const safeEventPart = (value: unknown, max = 60): string =>
-  String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
-
 export type LessonBonusGrantParams = {
   lessonId: number;
   studyTarget?: RuntimeStudyTarget;
   lang: Lang;
-  userName?: string;
-  /** true на retry-пути: без карточки бонуса, XP-событие без анимации сундука. */
+  /** true на retry-пути: выдача без отдельного toast. */
   silent?: boolean;
 };
 
 export type LessonBonusGrantOutcome =
   | { status: 'already_granted' }
-  | {
-      status: 'granted';
-      hasBonusWon: boolean;
-      bonusXP: number;
-      baseXp: number;
-      finalDelta: number;
-      multiplier: number;
-      shardsGranted: boolean;
-    }
+  | { status: 'granted' }
   | { status: 'failed' };
 
 type PendingEntry = {
@@ -129,12 +107,12 @@ async function clearPending(
 }
 
 // Живой путь (экран завершения) и retry могут стартовать одновременно для
-// одного урока — сериализуем, чтобы XP не задвоился локально до леджера.
+// одного урока — сериализуем, чтобы не задвоить локальную выдачу.
 const inFlight = new Map<string, Promise<LessonBonusGrantOutcome>>();
 const IN_FLIGHT_MAX_ENTRIES = 32;
 
 /**
- * Выдаёт бонус первого прохождения урока (сундук XP + осколки lesson_first).
+ * Отмечает первое прохождение урока.
  * Никогда не бросает. При неудаче помечает выдачу pending для повтора.
  */
 export function grantLessonFirstCompleteBonus(
@@ -168,7 +146,7 @@ async function doGrantLessonFirstCompleteBonus(
   params: LessonBonusGrantParams,
   accountToken: AccountGenerationToken,
 ): Promise<LessonBonusGrantOutcome> {
-  const { lessonId, studyTarget, lang, userName, silent } = params;
+  const { lessonId, studyTarget, lang, silent } = params;
   const guardKey = lessonBonusGrantedKey(lessonId, studyTarget);
   try {
     const already = await AsyncStorage.getItem(guardKey);
@@ -180,74 +158,22 @@ async function doGrantLessonFirstCompleteBonus(
       return { status: 'already_granted' };
     }
 
-    const name = userName ?? ((await AsyncStorage.getItem('user_name')) || '');
     if (!isAccountOperationCurrent(accountToken)) return { status: 'failed' };
-    const reward = calculateRewardWithBonus(BONUS_BASE_XP);
-    const xpResult = await registerXP(reward.totalXP, 'bonus_chest', name, lang, lessonId, {
-      // eventId стабилен между попытками — леджер progress_events отсекает дубль.
-      eventId: [
-        'bonus_chest',
-        'lesson',
-        safeEventPart(studyTarget),
-        String(lessonId),
-        'first_complete',
-      ].join(':'),
-      payload: {
-        surface: silent ? 'lesson_bonus_retry' : 'lesson_complete',
-        studyTarget,
-        lessonId,
-        baseBonus: BONUS_BASE_XP,
-        totalReward: reward.totalXP,
-        hasBonusWon: reward.hasBonusWon,
-        bonusXP: reward.bonusXP,
-      },
-      accountToken,
+
+    // зачем: D70 — раньше отметку писала выдача жемчуга за первый урок (0 штук);
+    // теперь пишем её сами под тем же замком смены аккаунта.
+    let marked = false;
+    await withAccountTransitionLock(async () => {
+      if (!isAccountOperationCurrent(accountToken)) return;
+      await AsyncStorage.setItem(guardKey, '1');
+      marked = true;
     });
-    if (!isAccountOperationCurrent(accountToken)) return { status: 'failed' };
-    const finalDelta = Math.max(0, Math.round(xpResult.finalDelta || 0));
-    if (finalDelta <= 0) {
-      throw new Error('lesson_bonus_xp_not_confirmed');
+    if (!marked || !isAccountOperationCurrent(accountToken)) {
+      DebugLogger.warn('LESSON-BONUS', `mark skipped: account changed lesson=${lessonId} silent=${!!silent}`);
+      return { status: 'failed' };
     }
-    // зачем (аудит 2026-09-17): спин — второстепенная награда урока, и его
-    // сбой НЕ должен уносить XP и осколки. loadLocalState бросает
-    // `local_spin_state_corrupt` на повреждённом состоянии спинов: без этого
-    // catch исключение летело в общий обработчик, урок помечался failed и
-    // уходил в retry, где упирался в тот же битый файл — бонус зависал
-    // навсегда, хотя XP на сервере уже начислен. Повторная выдача спина
-    // безопасна: она идемпотентна по issuedCreditIds.
-    // Ошибку не глушим молча (запрет немого catch) — пишем причину.
-    try {
-      await grantLocalLessonCompletionSpin(lessonId, studyTarget, accountToken);
-    } catch (spinError) {
-      logAppWarning('lesson_bonus:spin_grant_failed', spinError, {
-        tags: { lessonId, studyTarget: String(studyTarget ?? 'legacy') },
-      });
-    }
-    if (!isAccountOperationCurrent(accountToken)) return { status: 'failed' };
-
-    // Осколки за первое прохождение: на живом пути earn-событие подавляется
-    // (экран агрегирует batch-тост сам), на retry — стандартное событие.
-    const nFirst = await addShards(
-      'lesson_first',
-      {
-        eventId: `lesson:${studyTarget}:${lessonId}:first-complete`,
-        localWrites: [[guardKey, '1']],
-        suppressEarnEvent: !silent,
-      },
-    );
-    if (!isAccountOperationCurrent(accountToken)) return { status: 'failed' };
-
-    if (!isAccountOperationCurrent(accountToken)) return { status: 'failed' };
     await clearPending(lessonId, studyTarget, accountToken).catch(() => {});
-    return {
-      status: 'granted',
-      hasBonusWon: reward.hasBonusWon,
-      bonusXP: reward.bonusXP,
-      baseXp: reward.totalXP,
-      finalDelta,
-      multiplier: xpResult.multiplier,
-      shardsGranted: nFirst > 0,
-    };
+    return { status: 'granted' };
   } catch (e) {
     logAppWarning('lesson_bonus:grant_failed', e, {
       tags: { lessonId, studyTarget: String(studyTarget ?? 'legacy'), silent: !!silent },
@@ -260,7 +186,7 @@ async function doGrantLessonFirstCompleteBonus(
 }
 
 /**
- * Повторяет отложенные выдачи (после сбоя сети/лимита). Вызывается при
+ * Повторяет отложенные выдачи (после сбоя хранилища). Вызывается при
  * следующем заходе на экран завершения урока. Никогда не бросает.
  */
 export async function retryPendingLessonBonusGrants(): Promise<number> {

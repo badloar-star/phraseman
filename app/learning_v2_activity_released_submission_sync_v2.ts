@@ -28,6 +28,7 @@ import {
 } from "../modules/learning-v2/progress/server_wallet_reward_receipt";
 import { commitLearningV2ServerWalletReward } from "./learning_v2_owner_repository_runtime";
 
+import { reportSwallowed } from './debug-logger';
 const REGION = "us-central1";
 const CALLABLE_NAME = "submitLearningV2ActivityReleasedSessionV2";
 const HASH_RE = /^[a-f0-9]{64}$/u;
@@ -134,7 +135,7 @@ async function callServer(
   return withBackgroundNetworkLease(
     "learning-v2.activity-released-submission-sync",
     async (lease) => {
-      await initFirebaseAppCheckIfAvailable().catch(() => false);
+      await initFirebaseAppCheckIfAvailable().catch((error: unknown) => { reportSwallowed('learning_v2_activity_released_submission_sync_v2:callServer', error); return false; });
       lease.assertCurrent();
       const callable = httpsCallable<
         { submission: LearningV2ActivityReleasedSessionSubmissionV2 },

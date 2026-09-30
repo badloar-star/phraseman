@@ -149,7 +149,6 @@ const TARGET_STORAGE_HELPERS = new Set([
   'lessonPrepositionProgressKey',
   'lessonProgressKey',
   'lessonSessionKey',
-  'lessonTheoryXpClaimedKey',
   'lessonTopicShardGrantedKey',
   'lessonUnlockRepairKey',
   'lessonWordsKey',
@@ -215,7 +214,6 @@ const REVIEWED_GLOBAL_DYNAMIC_STORAGE_SOURCES = [
   /^app\/release_wave_bonus\.ts$/,
   /^app\/review_utils\.ts$/,
   /^app\/stable_id\.ts$/,
-  /^app\/services\/league_chest_rewards\.ts$/,
   /^app\/shards_system\.ts$/,
   /^components\/ThemeContext\.tsx$/,
 ] as const;
@@ -363,7 +361,6 @@ const REVIEWED_TARGET_SENSITIVE_LITERAL_KEYS = new Set([
   'dialogs_completed_ids_v1',
   // Daily-phrase quest learning progress (answered phrase / earned quest XP).
   'daily_phrase_quest_answered_v1',
-  'daily_phrase_quest_xp_awarded_v1',
 ]);
 
 // Reviewed target-sensitive LEARNING-STATE key patterns (per-target progress).
@@ -419,11 +416,7 @@ const REVIEWED_GLOBAL_LITERAL_KEYS_POST_BASELINE = new Set([
   // not learning content) — reclassified out of the generic 'mistake' learning
   // heuristic because it stores only a usage tally.
   'ai_mistake_explain_session_v1',
-  // Energy / boon / reward mechanics (product-global).
-  'boon_activated_shown_v1',
-  'boon_comeback_granted_v1',
-  'boon_mystery_monday_claimed_v1',
-  'boon_perfect_week_claimed_v1',
+  // Reward mechanics (product-global).
   'pending_shard_grants_v1',
   // Referral / clipboard / invites (account-level product mechanics).
   'pending_referral_source',

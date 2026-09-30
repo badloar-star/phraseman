@@ -55,30 +55,12 @@ describe('Super Sunday live earn source wiring', () => {
     );
   });
 
-  it('finalizes every server-owned Arena and Friends rune award before receipts', () => {
-    const arena = read('functions/src/arena_v2.ts');
-    const expansion = read('functions/src/arena_expansion.ts');
+  it('finalizes every server-owned Friends rune award before receipts', () => {
+    // зачем: D78 — серверная Арена (arena_v2.ts/arena_expansion.ts) удалена; её рунные награды больше не начисляются.
     const friends = read('functions/src/friends_together.ts');
 
-    expect(arena).toContain('applySuperSundayRuneMultiplier(baseStarsEarned, now)');
-    expect(arena).toContain('applySuperSundayRuneMultiplier(baseMasteryWalletAward, now)');
-    expect(expansion).toContain('applySuperSundayRuneMultiplier(baseTodayEarned, now)');
-    expect(expansion).toContain('applySuperSundayRuneMultiplier(baseMasteryWalletAward, now)');
-    expect(expansion).toContain('applySuperSundayRuneMultiplier(award.walletStars, now)');
     expect(friends).toContain('applySuperSundayRuneMultiplier(baseStars, now)');
     expect(friends).toContain('applySuperSundayRuneMultiplier(baseStarsAwarded, now)');
-
-    expect(arena).toContain('delta: starsEarned');
-    expect(arena).toContain('delta: masteryWalletAward');
-    expect(arena).toContain('masteryStarsEarned: masteryWalletAward');
-    expect(arena).toContain('dailyStarsCredited: dailyStarsBefore + settle.baseStarsEarned');
-    expect(arena).toContain('+ settle.baseMasteryWalletAward');
-
-    expect(expansion).toContain('delta: todayEarned');
-    expect(expansion).toContain('delta: masteryWalletAward');
-    expect(expansion).toContain('starsEarned: partnerRunesAwarded');
-    expect(expansion).toContain('delta: partnerRunesAwarded');
-    expect(expansion).toContain('+ baseMasteryWalletAward');
 
     expect(friends).toContain('delta: stars');
     expect(friends).toContain('delta: starsAwarded');

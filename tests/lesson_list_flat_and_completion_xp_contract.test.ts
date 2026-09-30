@@ -4,7 +4,7 @@ import path from 'path';
 const root = path.resolve(__dirname, '..');
 const read = (...parts: string[]) => fs.readFileSync(path.join(root, ...parts), 'utf8');
 
-describe('lesson list and completion XP contracts', () => {
+describe('lesson list and completion contracts', () => {
   it('keeps the complete lesson path permanently visible in one flat list', () => {
     const source = read('app', '(tabs)', 'lessons.tsx');
 
@@ -15,22 +15,7 @@ describe('lesson list and completion XP contracts', () => {
     expect(source).not.toContain("kind: 'chapter'");
   });
 
-  it('passes this lesson’s awarded answer XP plus first-completion XP to animated results', () => {
-    const source = read('app', 'lesson_complete.tsx');
-    const bonusGrant = read('app', 'lesson_bonus_grant.ts');
-
-    expect(source).toContain('deriveConfirmedLessonResults');
-    expect(source).toContain('xp={lessonResults.xp}');
-    expect(source).toContain('rewards={lessonResults.rewards}');
-    expect(source).toContain('<ResultsSequence');
-    expect(source).not.toContain('xp={bonusXP}');
-    expect(bonusGrant).toContain('const finalDelta = Math.max(0, Math.round(xpResult.finalDelta || 0));');
-    expect(bonusGrant).toContain('baseXp: reward.totalXP');
-    expect(bonusGrant).toContain('multiplier: xpResult.multiplier');
-    expect(source).toContain('setFirstCompletionAward({');
-  });
-
-  it('grants first-completion XP only after lesson1 passes the lesson', () => {
+  it('grants first-completion pearls only after lesson1 passes the lesson', () => {
     const lesson = read('app', 'lesson1.tsx');
     const completion = read('app', 'lesson_complete.tsx');
 

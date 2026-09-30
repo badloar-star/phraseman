@@ -34,8 +34,8 @@ const extractIncludes = (section: unknown): string[][] => {
   ));
 };
 
-test('PhoneStateStore ships expo-sqlite with SQLCipher enabled', () => {
-  expect(pkg.dependencies['expo-sqlite']).toBe('~16.0.10');
+test('PhoneStateStore ships exact expo-sqlite 16.0.10 with SQLCipher enabled', () => {
+  expect(pkg.dependencies['expo-sqlite']).toBe('16.0.10');
   const config = buildConfig({ config: {} });
   const sqlitePlugins = config.plugins.filter((plugin: unknown) => (
     Array.isArray(plugin) ? plugin[0] === 'expo-sqlite' : plugin === 'expo-sqlite'
@@ -63,4 +63,24 @@ test('Android backup whitelist excludes encrypted PhoneState databases', () => {
   const extractionSections = dataExtractionRules['data-extraction-rules'] as Record<string, unknown>;
   expect(extractIncludes(extractionSections['cloud-backup'])).toEqual(allowedAndroidBackupIncludes);
   expect(extractIncludes(extractionSections['device-transfer'])).toEqual(allowedAndroidBackupIncludes);
+});
+
+test('Android Account V2 stays credential-protected and outside the backup whitelist', () => {
+  const manifest = parseXml(read('android/app/src/main/AndroidManifest.xml'));
+  const application = (manifest.manifest as Record<string, unknown>)
+    .application as Record<string, unknown>;
+
+  expect(application['@_android:fullBackupContent']).toBe('@xml/backup_rules');
+  expect(application['@_android:dataExtractionRules']).toBe('@xml/data_extraction_rules');
+  expect(application).not.toHaveProperty('@_android:defaultToDeviceProtectedStorage');
+  expect(application).not.toHaveProperty('@_android:directBootAware');
+
+  for (const relativePath of [
+    'android/app/src/main/res/xml/backup_rules.xml',
+    'android/app/src/main/res/xml/data_extraction_rules.xml',
+  ]) {
+    const rules = read(relativePath);
+    expect(rules).not.toMatch(/domain=["'](?:device_)?root["']/u);
+    expect(rules).not.toMatch(/path=["'][^"']*(?:SQLite|accounts-v2)[^"']*["']/iu);
+  }
 });

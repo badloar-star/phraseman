@@ -5,7 +5,7 @@ export type LegacyMirrorStorage = Readonly<{
   setItem(key: string, value: string): Promise<void>;
 }>;
 
-export type LegacyPersonalProgressScalarKey = 'user_total_xp' | 'streak_count';
+export type LegacyPersonalProgressScalarKey = 'streak_count';
 
 const activeMirrorStorages = new WeakSet<object>();
 
@@ -14,7 +14,6 @@ export function isLegacyMirrorWriteActive(storage: LegacyMirrorStorage): boolean
 }
 
 function projectionField(row: LegacyInventoryRow): string {
-  if (row.key === 'user_total_xp') return 'total';
   if (row.key === 'unlocked_lessons') return 'unlocked';
   return row.key;
 }
@@ -114,7 +113,7 @@ export async function persistLegacyPersonalProgressScalar(
   value: number,
 ): Promise<void> {
   if (
-    (key !== 'user_total_xp' && key !== 'streak_count')
+    key !== 'streak_count'
     || !Number.isSafeInteger(value)
     || value < 0
   ) {

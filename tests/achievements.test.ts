@@ -3,9 +3,6 @@ import fs from 'fs';
 import path from 'path';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-jest.mock('../app/xp_manager', () => ({
-  registerXP: jest.fn(async () => ({ finalDelta: 0 })),
-}));
 
 jest.mock('../app/events', () => ({
   emitAppEvent: jest.fn(),

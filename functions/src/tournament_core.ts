@@ -24,8 +24,8 @@ import { REDDIT_BOT_NAMES } from './tournament_reddit_bot_names';
 // что тот же персонаж показывает в лиге (владелец 2026-08-04).
 import {
   residentAvatar,
-  residentLevelFromXp,
-  residentTotalXpAt,
+  residentRankFromScore,
+  residentScoreAt,
 } from './synthetic_residents';
 
 // ── Коллекции ───────────────────────────────────────────────────────────────
@@ -548,16 +548,6 @@ export type TournamentEntryProvenance = {
   weekId: string;
   /** One immutable debit/refund identity. Changes only after leave + rejoin. */
   joinAttemptId?: string;
-  /**
-   * зачем 2026-08-04 (владелец: Season Pass tournament_ticket — «вход
-   * бесплатный для игрока, но в банк добавится 5 жемчужин всё равно»):
-   * bankContributionGems тут ПОЛНАЯ цена (банк получает свою долю), но эти
-   * жемчужины не были списаны у игрока — их нельзя возвращать при выходе
-   * из лобби, как обычный refund. Опционально, отсутствует у старых записей
-   * и у обычных платных/бесплатных недельных входов — там refund работает
-   * как раньше (см. tournamentLeaveTransaction).
-   */
-  seasonTicketUsed?: boolean;
 };
 
 export type TournamentRoundResult = {
@@ -2419,7 +2409,6 @@ export type TournamentFinalizationPlan = {
   playerEffects: Array<{
     playerId: string;
     place: number;
-    seasonPoints: number;
     /** Настоящие звёзды, набранные игроком в этом турнире (player.score) — для честного счётчика в лобби, отдельно от очков места. */
     roundStars: number;
     tournamentsPlayed: 1;
@@ -2510,7 +2499,6 @@ export function planTournamentFinalization(
     return {
       playerId: player.id,
       place,
-      seasonPoints: forfeited ? TOURNAMENT_SEASON_POINTS.participation : seasonPointsForPlace(place),
       roundStars: Math.max(0, player.score),
       tournamentsPlayed: 1 as const,
       won: !forfeited && place === 1,
@@ -3080,21 +3068,7 @@ export function computePlacements(players: TournamentPlayer[]): {
 
 // ── Сезон (§8) ──────────────────────────────────────────────────────────────
 
-export const TOURNAMENT_SEASON_POINTS = Object.freeze({
-  place1: 25,
-  place2: 15,
-  place3: 10,
-  participation: 2,
-});
-
-export function seasonPointsForPlace(place: number): number {
-  if (place === 1) return TOURNAMENT_SEASON_POINTS.place1;
-  if (place === 2) return TOURNAMENT_SEASON_POINTS.place2;
-  if (place === 3) return TOURNAMENT_SEASON_POINTS.place3;
-  return TOURNAMENT_SEASON_POINTS.participation;
-}
-
-/** ISO-неделя (та же формула, что currentWeekId в league_chest.ts). */
+/** ISO-неделя для турнирного периода. */
 export function tournamentWeekId(nowMs: number = Date.now()): string {
   const d = new Date(nowMs);
   const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
@@ -3136,7 +3110,7 @@ export const TOURNAMENT_FALLBACK_NAME = 'Player';
  * Ник для комнаты и недельного рейтинга.
  *
  * зачем 2026-07-27: имя искали ТОЛЬКО в users/{uid}, а настоящий ник живёт в
- * leaderboard/{uid} (туда пишет онбординг и синк XP). Поля не совпадали, и в
+ * leaderboard/{uid} (туда пишет онбординг и синк прогресса). Поля не совпадали, и в
  * рейтинг уезжала заглушка «Player» — её видели ВСЕ игроки таблицы сезона.
  * Порядок источников зафиксирован здесь и покрыт тестами, чтобы приоритет
  * нельзя было поменять случайной правкой внутри транзакции.
@@ -3339,7 +3313,7 @@ function botAvatarVisual(
   rand();
   const avatarEmoji = usesShopAvatar
     ? `custom:custom-gen-${String(41 + Math.floor(rand() * 22)).padStart(2, '0')}:${BOT_AVATAR_GRADIENTS[Math.floor(rand() * BOT_AVATAR_GRADIENTS.length)]}:${rand() < 0.5 ? 'black' : 'white'}`
-    : residentAvatar(residentLevelFromXp(residentTotalXpAt(index, nowMs)));
+    : residentAvatar(residentRankFromScore(residentScoreAt(index, nowMs)));
   const avatarAura = rand() < 0.05
     ? BOT_AVATAR_AURAS[Math.floor(rand() * BOT_AVATAR_AURAS.length)]
     : undefined;

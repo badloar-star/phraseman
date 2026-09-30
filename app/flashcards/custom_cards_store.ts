@@ -19,6 +19,18 @@ import {
 // иначе смена языка в рантайме не подхватывается и всё уходит в английское
 // хранилище (протечка языков, найдено 2026-09-05).
 import type { CardItem } from './types';
+import { CUSTOM_CARD_OWNER_ALERT_MILESTONE } from './custom_card_access';
+import {
+  captureCustomCardMilestoneOwner,
+  observeCustomCardMilestone,
+  type CustomCardMilestoneOwner,
+} from './custom_card_milestone';
+
+export {
+  CUSTOM_CARD_OWNER_ALERT_MILESTONE,
+  FREE_CUSTOM_CARD_LIMIT,
+  PLUS_CUSTOM_CARD_LIMIT,
+} from './custom_card_access';
 
 /** In-memory кэш последнего закоммиченного состояния, отдельно на каждый язык. */
 let cacheByTarget: Partial<Record<StudyTarget, CardItem[]>> = {};
@@ -61,13 +73,23 @@ async function loadFromDisk(target: StudyTarget): Promise<CardItem[]> {
   return cards;
 }
 
-async function commit(previous: CardItem[], cards: CardItem[], target: StudyTarget): Promise<void> {
+async function commit(
+  previous: CardItem[],
+  cards: CardItem[],
+  target: StudyTarget,
+  milestoneOwner: CustomCardMilestoneOwner,
+): Promise<void> {
   // Encrypted local state commits first; AsyncStorage is a compatibility mirror.
   // If the new store is locally unavailable, the existing durable mirror keeps
   // the user's action and the next opening import retries silently.
   await commitPhoneStateCustomCards(previous, cards).catch(() => undefined);
   await AsyncStorage.setItem(customFlashcardsKey(target), JSON.stringify(cards));
   cacheByTarget[target] = cards;
+  // Saving is already durable. Owner telemetry is deliberately detached and
+  // fail-open: offline/auth/Telegram failures can never become a card error.
+  if (cards.length >= CUSTOM_CARD_OWNER_ALERT_MILESTONE && cards.length >= previous.length) {
+    void observeCustomCardMilestone(cards.length, target, milestoneOwner).catch(() => undefined);
+  }
 }
 
 /**
@@ -79,11 +101,14 @@ export function updateCustomCards(
   studyTarget?: RuntimeStudyTarget,
 ): Promise<CardItem[]> {
   const target = storageStudyTarget(studyTarget);
+  // Capture before any awaited disk work: if an account switch happens during
+  // the save, the old library count must never be attributed to the new owner.
+  const milestoneOwner = captureCustomCardMilestoneOwner();
   return withWriteLock(target, async () => {
     const current = await loadFromDisk(target);
     const next = mutator(current);
     if (next !== current) {
-      await commit(current, next, target);
+      await commit(current, next, target, milestoneOwner);
     }
     return next;
   });
@@ -92,8 +117,15 @@ export function updateCustomCards(
 /** Список кастомных карточек (копия массива). Идёт через очередь — видит все начатые записи. */
 export function listCustomCards(studyTarget?: RuntimeStudyTarget): Promise<CardItem[]> {
   const target = storageStudyTarget(studyTarget);
+  const milestoneOwner = captureCustomCardMilestoneOwner();
   return withWriteLock(target, async () => {
     const cards = await loadFromDisk(target);
+    // Also covers eligible libraries restored from cloud or created by an
+    // older build: opening/reading the library schedules the same idempotent
+    // account+language milestone without blocking the read.
+    if (cards.length >= CUSTOM_CARD_OWNER_ALERT_MILESTONE) {
+      void observeCustomCardMilestone(cards.length, target, milestoneOwner).catch(() => undefined);
+    }
     return [...cards];
   });
 }

@@ -7,7 +7,6 @@ describe('stats practice balance warmup', () => {
     expect(shouldUsePracticeWarmup({
       active7: 1,
       totalStreak: 1,
-      xp7: 385,
       minutes7: 16,
     })).toBe(true);
   });
@@ -16,7 +15,6 @@ describe('stats practice balance warmup', () => {
     expect(shouldUsePracticeWarmup({
       active7: 2,
       totalStreak: 2,
-      xp7: 620,
       minutes7: 24,
     })).toBe(true);
   });
@@ -25,7 +23,6 @@ describe('stats practice balance warmup', () => {
     expect(shouldUsePracticeWarmup({
       active7: 3,
       totalStreak: 3,
-      xp7: 900,
       minutes7: 35,
     })).toBe(false);
   });
@@ -34,7 +31,6 @@ describe('stats practice balance warmup', () => {
     expect(shouldUsePracticeWarmup({
       active7: 0,
       totalStreak: 0,
-      xp7: 0,
       minutes7: 0,
     })).toBe(false);
   });

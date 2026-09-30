@@ -113,14 +113,11 @@ export const SECTION: ShowcaseSection = {
     { id: 'streak-stats', title: cs('streak_stats_title'), kind: 'route', route: '/streak_stats', detail: cs('real_screen') },
     { id: 'phrase-analytics', title: cs('phrase_analytics_title'), kind: 'route', route: '/phrase_analytics_screen', detail: cs('real_screen') },
     { id: 'shards-shop', title: cs('shards_shop_title'), kind: 'route', route: '/shards_shop', detail: cs('real_screen') },
-    { id: 'coin-exchange', title: cs('coin_exchange_title'), kind: 'route', route: '/coin_exchange', detail: cs('real_screen') },
+    // зачем (D70/D78): пункт /coin_exchange удалён из дев-витрины вместе с экраном биржи.
     // зачем (D57/PM-062): пункт /avatar_select удалён из дев-витрины вместе с экраном.
     { id: 'collectibles-screen', title: cs('collectibles_screen_title'), kind: 'route', route: '/collectibles_screen', detail: cs('real_screen') },
     { id: 'achievements-screen', title: cs('achievements_screen_title'), kind: 'route', route: '/achievements_screen', detail: cs('real_screen') },
-    { id: 'level-gifts-inventory', title: cs('level_gifts_inventory_title'), kind: 'route', route: '/level_gifts_inventory', detail: cs('real_screen') },
     // зачем (PM-046, владелец): пункт /level_reward_spin удалён из дев-витрины вместе с экраном.
-    { id: 'season-pass', title: cs('season_pass_title'), kind: 'route', route: '/season_pass', detail: cs('real_screen') },
-    { id: 'club-screen', title: cs('club_screen_title'), kind: 'route', route: '/club_screen', detail: cs('real_screen') },
     { id: 'referrals', title: cs('referrals_invite_title'), kind: 'route', route: '/referrals', detail: cs('real_screen') },
     { id: 'manage-subscription', title: cs('manage_subscription_title'), kind: 'route', route: '/manage_subscription', detail: cs('real_screen') },
     { id: 'promo-code-entry', title: cs('promo_code_entry_title'), kind: 'route', route: '/promo_code_entry', detail: cs('real_screen') },

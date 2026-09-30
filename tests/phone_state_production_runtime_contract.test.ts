@@ -37,13 +37,11 @@ describe('PhoneState production runtime wiring', () => {
     expect(runtime).not.toMatch(/DELETE FROM operations|DROP TABLE operations/);
   });
 
-  test('friend gift external intents use the shared coordinator instead of a second connectivity poller', () => {
+  test('retired friend gift intents do not run through production background sync', () => {
     const runtime = read('app/phone_state_runtime.ts');
-    const layout = read('app/_layout.tsx');
-    expect(runtime).toContain('drainExternalIntents');
-    expect(runtime).toContain('resumePendingFriendGiftSends');
+    expect(runtime).not.toContain('resumePendingFriendGiftSends');
+    expect(runtime).not.toContain('friend_gift_outbox');
     expect(runtime).toContain('configurePhoneStateBackgroundSyncBridge');
-    expect(layout).not.toContain("import('./friend_gift_outbox')");
   });
 
   test('a successful remote pull hydrates Spin stars in the same guarded account generation', () => {

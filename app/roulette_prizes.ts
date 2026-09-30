@@ -16,7 +16,7 @@ import { Asset } from 'expo-asset';
 import { triLang, type Lang } from '../constants/i18n';
 
 export interface RoulettePrize {
-  /** Индекс = prizeIndex в ответе referralSpin. */
+  /** Legacy display mapping retained only for old cached receipts; no new spins are issued. */
   index: number;
   /** Дней VIP. */
   days: number;
@@ -63,17 +63,18 @@ export const ROULETTE_PRIZES: readonly RoulettePrize[] = [
 ];
 
 /**
- * зачем: владелец (2026-07-26) — у Pro (lifetime) вместо дней Plus те же
- * prizeIndex дают жемчужины. Номиналы согласованы владельцем; СТРОГО зеркало
- * functions/src/referral_spin_logic.ts (REFERRAL_SPIN_PRIZE_PEARLS).
+ * зачем: D100 (владелец, 2026-09-30) — у Pro (lifetime) вместо дней Plus те же
+ * prizeIndex дают МОНЕТЫ (раньше жемчуг, удалён D70). СТРОГО зеркало
+ * functions/src/referral_spin_logic.ts (REFERRAL_SPIN_PRIZE_COINS); сумма в
+ * модалке берётся из ответа сервера, таблица здесь — для подписей/проверок.
  */
-export const ROULETTE_PRIZE_PEARLS: readonly number[] = [10, 25, 70, 150, 350, 800];
+export const ROULETTE_PRIZE_COINS: readonly number[] = [100, 250, 700, 1500, 3500, 5000];
 
-/** «N жемчужин» на 8 языках (для номиналов лестницы формы совпадают). */
-export function roulettePearlsLabel(amount: number, lang: Lang): string {
+/** «N монет» на 9 языках (все номиналы лестницы кратны 10 — форма одна). */
+export function rouletteCoinsLabel(amount: number, lang: Lang): string {
   const unit = triLang(lang, {
-    ru: 'жемчужин', uk: 'перлин', en: 'pearls', es: 'perlas', 'pt-BR': 'pérolas',
-    vi: 'ngọc trai', id: 'mutiara', tr: 'inci', pl: 'pereł',
+    ru: 'монет', uk: 'монет', en: 'coins', es: 'monedas', 'pt-BR': 'moedas',
+    vi: 'xu', id: 'koin', tr: 'jeton', pl: 'monet',
   });
   return `${Math.max(0, Math.floor(Number(amount) || 0))} ${unit}`;
 }

@@ -4,8 +4,6 @@ import path from 'path';
 const onboarding = fs.readFileSync(path.join(process.cwd(), 'components', 'CleanOnboarding.tsx'), 'utf8');
 const flags = fs.readFileSync(path.join(process.cwd(), 'app', 'remote_flags.ts'), 'utf8');
 const legacy = fs.readFileSync(path.join(process.cwd(), 'admin', 'legacy.html'), 'utf8');
-const rootLayout = fs.readFileSync(path.join(process.cwd(), 'app', '_layout.tsx'), 'utf8');
-const welcomeGift = fs.readFileSync(path.join(process.cwd(), 'app', 'welcome_gift.ts'), 'utf8');
 
 // зачем: владелец (2026-07-26) — «Пропустить» на каждом экране кроме оплаты.
 // Фича обязана оставаться выключаемой из админки без релиза, а «Пропустить» —
@@ -40,41 +38,9 @@ describe('Onboarding skip link', () => {
   });
 });
 
-// зачем (PM-049, D09/S51 владельца, 2026-09-24): «бонус входа» больше не
-// прерывает первый вход праздничной модалкой — WelcomeGiftModal,
-// OnboardingWelcomeHost и onboarding_welcome_state.ts удалены целиком.
-// Контракт сторожит то, что осталось: деньги (+100 жемчужин, +300 рун)
-// НЕ пропали — welcome_gift.ts начисляет их молча, вызванный напрямую из
-// bootstrap _layout.tsx, без модалки/флага/хоста.
-describe('Welcome gift keeps crediting silently after the ceremony was removed', () => {
-  it('onboarding no longer raises any pending flag or renders the ceremony', () => {
-    expect(onboarding).not.toContain('WelcomeGiftModal');
-    expect(onboarding).not.toContain('markOnboardingWelcomePending');
-    expect(onboarding).not.toContain('welcomeSheetEnabled');
-  });
-
-  it('layout grants the gift directly on bootstrap, not through a host/modal', () => {
-    expect(rootLayout).not.toContain('<OnboardingWelcomeHost />');
-    expect(rootLayout).not.toContain('raiseWelcomeGiftForExistingUserIfEligible');
-    expect(rootLayout).toContain('void ensureWelcomeGiftGranted();');
-    expect(rootLayout).toContain("import { ensureWelcomeGiftGranted } from './welcome_gift';");
-  });
-
-  it('grant amounts and per-account idempotency are unchanged', () => {
-    expect(welcomeGift).toContain('export const WELCOME_GIFT_PEARLS = 100;');
-    expect(welcomeGift).toContain('export const WELCOME_GIFT_RUNES = 300;');
-    expect(welcomeGift).toContain('export async function ensureWelcomeGiftGranted(): Promise<void>');
-  });
-
-  it('admin kill switch for the removed ceremony/grant still exists as a flag (harmless if unused elsewhere)', () => {
-    expect(flags).toContain("| 'onboarding_welcome_sheet_enabled'");
-  });
-});
-
 describe('Admin controls for onboarding behaviour', () => {
   it('exposes both kill switches in the working admin panel', () => {
     expect(legacy).toContain("saveOnboardingBehaviourFlag('onboarding_skip_enabled'");
-    expect(legacy).toContain("saveOnboardingBehaviourFlag('onboarding_welcome_sheet_enabled'");
     expect(legacy).toContain('window.saveControlPanelBool(key, next)');
   });
 

@@ -1,0 +1,3894 @@
+{
+  "schemaVersion": "dialogue-v2-authoring-ledger.v1",
+  "status": "authoring_only_not_releaseable",
+  "sourceLocale": "ru",
+  "immutablePolicy": "Do not expose to learners until every target-language packet and review receipt is present.",
+  "titleReconciliation": [
+    {
+      "scenarioId": "social_05",
+      "expectedCefr": "A1",
+      "authoredCefr": "A1",
+      "expectedTitle": "Поздравить и задать простой вопрос",
+      "authoredTitle": "Поздравить и задать вопрос"
+    },
+    {
+      "scenarioId": "work_16",
+      "expectedCefr": "B2",
+      "authoredCefr": "B2",
+      "expectedTitle": "Согласовать приоритеты",
+      "authoredTitle": "Согласовать приоритеты при нехватке ресурсов"
+    },
+    {
+      "scenarioId": "travel_01",
+      "expectedCefr": "A1",
+      "authoredCefr": "A1",
+      "expectedTitle": "Написать хозяину жилья: я приехал",
+      "authoredTitle": "Написать хозяину жилья «я приехал»"
+    },
+    {
+      "scenarioId": "travel_04",
+      "expectedCefr": "A1",
+      "authoredCefr": "A1",
+      "expectedTitle": "Заказать трансфер",
+      "authoredTitle": "Заказать трансфер сообщением"
+    },
+    {
+      "scenarioId": "travel_11",
+      "expectedCefr": "B1",
+      "authoredCefr": "B1",
+      "expectedTitle": "Решить проблему с жильём",
+      "authoredTitle": "Решить проблему с жильём через поддержку"
+    },
+    {
+      "scenarioId": "travel_14",
+      "expectedCefr": "B2",
+      "authoredCefr": "B2",
+      "expectedTitle": "Объяснить претензию сервису",
+      "authoredTitle": "Объяснить претензию сервису с фактами"
+    },
+    {
+      "scenarioId": "travel_16",
+      "expectedCefr": "B2",
+      "authoredCefr": "B2",
+      "expectedTitle": "Отстоять решение по бронированию",
+      "authoredTitle": "Отстоять корректное решение при ошибке бронирования"
+    },
+    {
+      "scenarioId": "travel_18",
+      "expectedCefr": "C1",
+      "authoredCefr": "C1",
+      "expectedTitle": "Разрешить ситуацию гость—хозяин—сервис",
+      "authoredTitle": "Разрешить ситуацию «гость—хозяин—сервис»"
+    }
+  ],
+  "worlds": [
+    {
+      "id": "social",
+      "titleRu": "Общение",
+      "scenarios": [
+        {
+          "id": "social_01",
+          "rankRequired": 1,
+          "cefr": "A1",
+          "titleRu": "Поздороваться после знакомства",
+          "briefingRu": "Ты переписываешься в мире «Общение». Задача: Поздороваться после знакомства. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "коротко, ясно и доброжелательно",
+          "personas": [
+            {
+              "id": "mila",
+              "displayNameRu": "Мила",
+              "replyStyle": "warm",
+              "styleNoteRu": "Тепло подхватывает разговор и задаёт живые уточняющие вопросы.",
+              "mood": "open",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "начать с приветствия"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать себя"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "сказать, где вы познакомились"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "задать один простой вопрос"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "ответить на встречный вопрос"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "дружелюбно завершить чат."
+            }
+          ]
+        },
+        {
+          "id": "social_02",
+          "rankRequired": 2,
+          "cefr": "A1",
+          "titleRu": "Перенести встречу",
+          "briefingRu": "Ты переписываешься в мире «Общение». Задача: Перенести встречу. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "коротко, ясно и доброжелательно",
+          "personas": [
+            {
+              "id": "zoe",
+              "displayNameRu": "Зоя",
+              "replyStyle": "playful",
+              "styleNoteRu": "Общается легко, иногда с мягкой шуткой помогает сказать естественнее.",
+              "mood": "energetic",
+              "correctionStyle": "playful_gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "поздороваться"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "напомнить о планах"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "сказать, что время не подходит"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "предложить один новый вариант"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "спросить, подходит ли он"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "подтвердить финальное время."
+            }
+          ]
+        },
+        {
+          "id": "social_03",
+          "rankRequired": 3,
+          "cefr": "A1",
+          "titleRu": "Спросить, как добраться",
+          "briefingRu": "Ты переписываешься в мире «Общение». Задача: Спросить, как добраться. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "коротко, ясно и доброжелательно",
+          "personas": [
+            {
+              "id": "denis",
+              "displayNameRu": "Денис",
+              "replyStyle": "calm",
+              "styleNoteRu": "Не торопится, внимательно читает детали и отвечает без лишнего шума.",
+              "mood": "measured",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "начать вежливо"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать место"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "спросить маршрут"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "уточнить вид транспорта"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "попросить повторить непонятное"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "поблагодарить."
+            }
+          ]
+        },
+        {
+          "id": "social_04",
+          "rankRequired": 4,
+          "cefr": "A1",
+          "titleRu": "Поблагодарить за помощь",
+          "briefingRu": "Ты переписываешься в мире «Общение». Задача: Поблагодарить за помощь. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "коротко, ясно и доброжелательно",
+          "personas": [
+            {
+              "id": "mila",
+              "displayNameRu": "Мила",
+              "replyStyle": "warm",
+              "styleNoteRu": "Тепло подхватывает разговор и задаёт живые уточняющие вопросы.",
+              "mood": "open",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "обратиться по имени"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать помощь"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "выразить благодарность"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "сказать, чем это помогло"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "ответить на реакцию"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "попрощаться."
+            }
+          ]
+        },
+        {
+          "id": "social_05",
+          "rankRequired": 5,
+          "cefr": "A1",
+          "titleRu": "Поздравить и задать простой вопрос",
+          "authoringTitleRu": "Поздравить и задать вопрос",
+          "briefingRu": "Ты переписываешься в мире «Общение». Задача: Поздравить и задать вопрос. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "коротко, ясно и доброжелательно",
+          "personas": [
+            {
+              "id": "zoe",
+              "displayNameRu": "Зоя",
+              "replyStyle": "playful",
+              "styleNoteRu": "Общается легко, иногда с мягкой шуткой помогает сказать естественнее.",
+              "mood": "energetic",
+              "correctionStyle": "playful_gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "начать приветствием"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "поздравить"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "назвать повод"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "добавить короткое пожелание"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "задать вопрос о событии"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "завершить тёплой фразой."
+            }
+          ]
+        },
+        {
+          "id": "social_06",
+          "rankRequired": 6,
+          "cefr": "A2",
+          "titleRu": "Познакомиться в чате по интересу",
+          "briefingRu": "Ты переписываешься в мире «Общение». Задача: Познакомиться в чате по интересу. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "естественно и с уточняющими вопросами",
+          "personas": [
+            {
+              "id": "denis",
+              "displayNameRu": "Денис",
+              "replyStyle": "calm",
+              "styleNoteRu": "Не торопится, внимательно читает детали и отвечает без лишнего шума.",
+              "mood": "measured",
+              "correctionStyle": "gentle"
+            },
+            {
+              "id": "mila",
+              "displayNameRu": "Мила",
+              "replyStyle": "warm",
+              "styleNoteRu": "Тепло подхватывает разговор и задаёт живые уточняющие вопросы.",
+              "mood": "open",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "представиться"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "сослаться на общий интерес"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "рассказать о своём опыте"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "спросить опыт собеседника"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "отреагировать на ответ"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "предложить продолжить разговор"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "закрыть тему естественно."
+            }
+          ]
+        },
+        {
+          "id": "social_07",
+          "rankRequired": 7,
+          "cefr": "A2",
+          "titleRu": "Договориться о времени и месте",
+          "briefingRu": "Ты переписываешься в мире «Общение». Задача: Договориться о времени и месте. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "естественно и с уточняющими вопросами",
+          "personas": [
+            {
+              "id": "mila",
+              "displayNameRu": "Мила",
+              "replyStyle": "warm",
+              "styleNoteRu": "Тепло подхватывает разговор и задаёт живые уточняющие вопросы.",
+              "mood": "open",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "предложить встречу"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать два времени"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "спросить о доступности"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "согласовать место"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "уточнить, как узнать друг друга"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "подтвердить план"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "попрощаться."
+            }
+          ]
+        },
+        {
+          "id": "social_08",
+          "rankRequired": 8,
+          "cefr": "A2",
+          "titleRu": "Позвать на событие",
+          "briefingRu": "Ты переписываешься в мире «Общение». Задача: Позвать на событие. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "естественно и с уточняющими вопросами",
+          "personas": [
+            {
+              "id": "zoe",
+              "displayNameRu": "Зоя",
+              "replyStyle": "playful",
+              "styleNoteRu": "Общается легко, иногда с мягкой шуткой помогает сказать естественнее.",
+              "mood": "energetic",
+              "correctionStyle": "playful_gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "начать неформально"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать событие"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "сказать дату и время"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "объяснить, почему зовёшь"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "спросить, сможет ли человек"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "ответить на сомнение"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "договориться о следующем шаге."
+            }
+          ]
+        },
+        {
+          "id": "social_09",
+          "rankRequired": 9,
+          "cefr": "A2",
+          "titleRu": "Вежливо отменить планы",
+          "briefingRu": "Ты переписываешься в мире «Общение». Задача: Вежливо отменить планы. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "естественно и с уточняющими вопросами",
+          "personas": [
+            {
+              "id": "denis",
+              "displayNameRu": "Денис",
+              "replyStyle": "calm",
+              "styleNoteRu": "Не торопится, внимательно читает детали и отвечает без лишнего шума.",
+              "mood": "measured",
+              "correctionStyle": "gentle"
+            },
+            {
+              "id": "mila",
+              "displayNameRu": "Мила",
+              "replyStyle": "warm",
+              "styleNoteRu": "Тепло подхватывает разговор и задаёт живые уточняющие вопросы.",
+              "mood": "open",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "обратиться лично"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "извиниться"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "коротко объяснить причину"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "показать, что встреча важна"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "предложить альтернативу"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "ответить на реакцию"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "поблагодарить за понимание."
+            }
+          ]
+        },
+        {
+          "id": "social_10",
+          "rankRequired": 10,
+          "cefr": "A2",
+          "titleRu": "Написать после встречи",
+          "briefingRu": "Ты переписываешься в мире «Общение». Задача: Написать после встречи. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "естественно и с уточняющими вопросами",
+          "personas": [
+            {
+              "id": "mila",
+              "displayNameRu": "Мила",
+              "replyStyle": "warm",
+              "styleNoteRu": "Тепло подхватывает разговор и задаёт живые уточняющие вопросы.",
+              "mood": "open",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "поблагодарить за встречу"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "упомянуть конкретный момент"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "выразить эмоцию"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "предложить повторить"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "дать удобный срок"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "ответить на предложение собеседника"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "закрыть чат."
+            }
+          ]
+        },
+        {
+          "id": "social_11",
+          "rankRequired": 11,
+          "cefr": "B1",
+          "titleRu": "Собрать планы в группе",
+          "briefingRu": "Ты переписываешься в мире «Общение». Задача: Собрать планы в группе. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "уверенно, с объяснением причин",
+          "personas": [
+            {
+              "id": "zoe",
+              "displayNameRu": "Зоя",
+              "replyStyle": "playful",
+              "styleNoteRu": "Общается легко, иногда с мягкой шуткой помогает сказать естественнее.",
+              "mood": "energetic",
+              "correctionStyle": "playful_gentle"
+            },
+            {
+              "id": "denis",
+              "displayNameRu": "Денис",
+              "replyStyle": "calm",
+              "styleNoteRu": "Не торопится, внимательно читает детали и отвечает без лишнего шума.",
+              "mood": "measured",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "поздороваться с группой"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "сформулировать цель"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "предложить первый вариант"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "спросить ограничения каждого"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "сопоставить два ответа"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "предложить компромисс"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "попросить явное подтверждение"
+            },
+            {
+              "id": "objective_08",
+              "labelRu": "зафиксировать план."
+            }
+          ]
+        },
+        {
+          "id": "social_12",
+          "rankRequired": 12,
+          "cefr": "B1",
+          "titleRu": "Поддержать друга",
+          "briefingRu": "Ты переписываешься в мире «Общение». Задача: Поддержать друга. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "уверенно, с объяснением причин",
+          "personas": [
+            {
+              "id": "denis",
+              "displayNameRu": "Денис",
+              "replyStyle": "calm",
+              "styleNoteRu": "Не торопится, внимательно читает детали и отвечает без лишнего шума.",
+              "mood": "measured",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "заметить настроение"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "спросить, хочет ли он говорить"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "выслушать без совета"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "уточнить потребность"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "предложить конкретную помощь"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "не давить при отказе"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "договориться, когда написать снова."
+            }
+          ]
+        },
+        {
+          "id": "social_13",
+          "rankRequired": 13,
+          "cefr": "B1",
+          "titleRu": "Снять лёгкое недопонимание",
+          "briefingRu": "Ты переписываешься в мире «Общение». Задача: Снять лёгкое недопонимание. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "уверенно, с объяснением причин",
+          "personas": [
+            {
+              "id": "mila",
+              "displayNameRu": "Мила",
+              "replyStyle": "warm",
+              "styleNoteRu": "Тепло подхватывает разговор и задаёт живые уточняющие вопросы.",
+              "mood": "open",
+              "correctionStyle": "gentle"
+            },
+            {
+              "id": "zoe",
+              "displayNameRu": "Зоя",
+              "replyStyle": "playful",
+              "styleNoteRu": "Общается легко, иногда с мягкой шуткой помогает сказать естественнее.",
+              "mood": "energetic",
+              "correctionStyle": "playful_gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "спокойно сослаться на сообщение"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "сказать, что понял иначе"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "переспросить намерение"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "признать свою часть путаницы"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "предложить ясную формулировку"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "проверить, что вас поняли"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "вернуть дружелюбный тон."
+            }
+          ]
+        },
+        {
+          "id": "social_14",
+          "rankRequired": 14,
+          "cefr": "B2",
+          "titleRu": "Мягко отказать",
+          "briefingRu": "Ты переписываешься в мире «Общение». Задача: Мягко отказать. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "тактично, аргументированно и по делу",
+          "personas": [
+            {
+              "id": "zoe",
+              "displayNameRu": "Зоя",
+              "replyStyle": "playful",
+              "styleNoteRu": "Общается легко, иногда с мягкой шуткой помогает сказать естественнее.",
+              "mood": "energetic",
+              "correctionStyle": "playful_gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "поблагодарить за приглашение"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "обозначить, что решение непростое"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "отказаться прямо, но уважительно"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "дать достаточную причину без лишних деталей"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "признать ценность предложения"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "предложить подходящую альтернативу"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "сохранить возможность будущего контакта."
+            }
+          ]
+        },
+        {
+          "id": "social_15",
+          "rankRequired": 15,
+          "cefr": "B2",
+          "titleRu": "Обсудить ожидания в группе",
+          "briefingRu": "Ты переписываешься в мире «Общение». Задача: Обсудить ожидания в группе. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "тактично, аргументированно и по делу",
+          "personas": [
+            {
+              "id": "denis",
+              "displayNameRu": "Денис",
+              "replyStyle": "calm",
+              "styleNoteRu": "Не торопится, внимательно читает детали и отвечает без лишнего шума.",
+              "mood": "measured",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "назвать общую тему"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "попросить каждого обозначить ожидание"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "перефразировать две разные позиции"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "выявить общую часть"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "назвать разногласие без обвинения"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "предложить правило"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "собрать согласие"
+            },
+            {
+              "id": "objective_08",
+              "labelRu": "закрепить договорённость."
+            }
+          ]
+        },
+        {
+          "id": "social_16",
+          "rankRequired": 16,
+          "cefr": "B2",
+          "titleRu": "Дать деликатную обратную связь",
+          "briefingRu": "Ты переписываешься в мире «Общение». Задача: Дать деликатную обратную связь. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "тактично, аргументированно и по делу",
+          "personas": [
+            {
+              "id": "mila",
+              "displayNameRu": "Мила",
+              "replyStyle": "warm",
+              "styleNoteRu": "Тепло подхватывает разговор и задаёт живые уточняющие вопросы.",
+              "mood": "open",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "запросить удобный момент"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать наблюдаемый факт"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "описать влияние"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "спросить точку зрения человека"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "предложить конкретное изменение"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "признать сильную сторону"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "договориться о проверке результата."
+            }
+          ]
+        },
+        {
+          "id": "social_17",
+          "rankRequired": 17,
+          "cefr": "C1",
+          "titleRu": "Обозначить личную границу",
+          "briefingRu": "Ты переписываешься в мире «Общение». Задача: Обозначить личную границу. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "гибко, дипломатично и с учётом позиции собеседника",
+          "personas": [
+            {
+              "id": "zoe",
+              "displayNameRu": "Зоя",
+              "replyStyle": "playful",
+              "styleNoteRu": "Общается легко, иногда с мягкой шуткой помогает сказать естественнее.",
+              "mood": "energetic",
+              "correctionStyle": "playful_gentle"
+            },
+            {
+              "id": "denis",
+              "displayNameRu": "Денис",
+              "replyStyle": "calm",
+              "styleNoteRu": "Не торопится, внимательно читает детали и отвечает без лишнего шума.",
+              "mood": "measured",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "начать уважительно"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать повторяющуюся ситуацию"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "объяснить своё ощущение без обвинения"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "сформулировать границу"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "назвать приемлемую альтернативу"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "ответить на несогласие"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "подтвердить важность отношений."
+            }
+          ]
+        },
+        {
+          "id": "social_18",
+          "rankRequired": 18,
+          "cefr": "C1",
+          "titleRu": "Восстановить доверие",
+          "briefingRu": "Ты переписываешься в мире «Общение». Задача: Восстановить доверие. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "гибко, дипломатично и с учётом позиции собеседника",
+          "personas": [
+            {
+              "id": "denis",
+              "displayNameRu": "Денис",
+              "replyStyle": "calm",
+              "styleNoteRu": "Не торопится, внимательно читает детали и отвечает без лишнего шума.",
+              "mood": "measured",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "признать конкретную ошибку"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "не оправдываться"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "показать понимание последствий"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "извиниться ясно"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "спросить, что помогло бы исправить ситуацию"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "предложить реалистичный шаг"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "принять право собеседника не ответить сразу"
+            },
+            {
+              "id": "objective_08",
+              "labelRu": "зафиксировать дальнейший контакт."
+            }
+          ]
+        },
+        {
+          "id": "social_19",
+          "rankRequired": 19,
+          "cefr": "C2",
+          "titleRu": "Урегулировать тонкий конфликт в группе",
+          "briefingRu": "Ты переписываешься в мире «Общение». Задача: Урегулировать тонкий конфликт в группе. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "точно, тонко и с уважением к разным интересам",
+          "personas": [
+            {
+              "id": "mila",
+              "displayNameRu": "Мила",
+              "replyStyle": "warm",
+              "styleNoteRu": "Тепло подхватывает разговор и задаёт живые уточняющие вопросы.",
+              "mood": "open",
+              "correctionStyle": "gentle"
+            },
+            {
+              "id": "zoe",
+              "displayNameRu": "Зоя",
+              "replyStyle": "playful",
+              "styleNoteRu": "Общается легко, иногда с мягкой шуткой помогает сказать естественнее.",
+              "mood": "energetic",
+              "correctionStyle": "playful_gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "нейтрально резюмировать конфликт"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "отделить факты от интерпретаций"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "дать слово каждой позиции"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "назвать скрытое общее намерение"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "предложить варианты компромисса"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "проверить риски каждого"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "сформулировать решение без победителя"
+            },
+            {
+              "id": "objective_08",
+              "labelRu": "закрепить ответственность и срок."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "work",
+      "titleRu": "Дела",
+      "scenarios": [
+        {
+          "id": "work_01",
+          "rankRequired": 1,
+          "cefr": "A1",
+          "titleRu": "Представиться коллеге",
+          "briefingRu": "Ты переписываешься в мире «Дела». Задача: Представиться коллеге. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "коротко, ясно и доброжелательно",
+          "personas": [
+            {
+              "id": "marina",
+              "displayNameRu": "Марина",
+              "replyStyle": "direct",
+              "styleNoteRu": "Ценит сроки, конкретику и сразу просит назвать следующий шаг.",
+              "mood": "focused",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "поздороваться"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать себя"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "назвать команду или роль"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "сказать, чем занимаешься сегодня"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "задать простой рабочий вопрос"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "поблагодарить и завершить."
+            }
+          ]
+        },
+        {
+          "id": "work_02",
+          "rankRequired": 2,
+          "cefr": "A1",
+          "titleRu": "Спросить файл",
+          "briefingRu": "Ты переписываешься в мире «Дела». Задача: Спросить файл. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "коротко, ясно и доброжелательно",
+          "personas": [
+            {
+              "id": "oleg",
+              "displayNameRu": "Олег",
+              "replyStyle": "formal",
+              "styleNoteRu": "Держит деловой тон, проверяет договорённости и фиксирует решения.",
+              "mood": "measured",
+              "correctionStyle": "none"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "обратиться по имени"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать нужный файл"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "объяснить простую цель"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "спросить, где он находится"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "уточнить срок"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "поблагодарить."
+            }
+          ]
+        },
+        {
+          "id": "work_03",
+          "rankRequired": 3,
+          "cefr": "A1",
+          "titleRu": "Подтвердить время созвона",
+          "briefingRu": "Ты переписываешься в мире «Дела». Задача: Подтвердить время созвона. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "коротко, ясно и доброжелательно",
+          "personas": [
+            {
+              "id": "sam",
+              "displayNameRu": "Сэм",
+              "replyStyle": "calm",
+              "styleNoteRu": "Снимает напряжение, но не даёт разговору уйти от главной задачи.",
+              "mood": "focused",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "сослаться на встречу"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать день"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "назвать время и часовой пояс"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "спросить подтверждение"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "отправить ссылку или попросить её"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "завершить делово."
+            }
+          ]
+        },
+        {
+          "id": "work_04",
+          "rankRequired": 4,
+          "cefr": "A1",
+          "titleRu": "Написать, что опаздываешь",
+          "briefingRu": "Ты переписываешься в мире «Дела». Задача: Написать, что опаздываешь. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "коротко, ясно и доброжелательно",
+          "personas": [
+            {
+              "id": "marina",
+              "displayNameRu": "Марина",
+              "replyStyle": "direct",
+              "styleNoteRu": "Ценит сроки, конкретику и сразу просит назвать следующий шаг.",
+              "mood": "focused",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "предупредить сразу"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "извиниться"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "назвать новый ориентир"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "предложить начать без тебя или подождать"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "спросить, что удобнее"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "поблагодарить."
+            }
+          ]
+        },
+        {
+          "id": "work_05",
+          "rankRequired": 5,
+          "cefr": "A1",
+          "titleRu": "Поблагодарить за инструкцию",
+          "briefingRu": "Ты переписываешься в мире «Дела». Задача: Поблагодарить за инструкцию. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "коротко, ясно и доброжелательно",
+          "personas": [
+            {
+              "id": "oleg",
+              "displayNameRu": "Олег",
+              "replyStyle": "formal",
+              "styleNoteRu": "Держит деловой тон, проверяет договорённости и фиксирует решения.",
+              "mood": "measured",
+              "correctionStyle": "none"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "назвать инструкцию"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "поблагодарить"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "сказать, что уже понял"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "уточнить один шаг"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "подтвердить следующее действие"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "закрыть сообщение."
+            }
+          ]
+        },
+        {
+          "id": "work_06",
+          "rankRequired": 6,
+          "cefr": "A2",
+          "titleRu": "Уточнить простую задачу",
+          "briefingRu": "Ты переписываешься в мире «Дела». Задача: Уточнить простую задачу. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "естественно и с уточняющими вопросами",
+          "personas": [
+            {
+              "id": "sam",
+              "displayNameRu": "Сэм",
+              "replyStyle": "calm",
+              "styleNoteRu": "Снимает напряжение, но не даёт разговору уйти от главной задачи.",
+              "mood": "focused",
+              "correctionStyle": "gentle"
+            },
+            {
+              "id": "marina",
+              "displayNameRu": "Марина",
+              "replyStyle": "direct",
+              "styleNoteRu": "Ценит сроки, конкретику и сразу просит назвать следующий шаг.",
+              "mood": "focused",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "сослаться на задачу"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "сказать, что понял"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "задать вопрос о результате"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "спросить о сроке"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "уточнить формат"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "повторить план своими словами"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "подтвердить старт."
+            }
+          ]
+        },
+        {
+          "id": "work_07",
+          "rankRequired": 7,
+          "cefr": "A2",
+          "titleRu": "Попросить перенести дедлайн",
+          "briefingRu": "Ты переписываешься в мире «Дела». Задача: Попросить перенести дедлайн. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "естественно и с уточняющими вопросами",
+          "personas": [
+            {
+              "id": "marina",
+              "displayNameRu": "Марина",
+              "replyStyle": "direct",
+              "styleNoteRu": "Ценит сроки, конкретику и сразу просит назвать следующий шаг.",
+              "mood": "focused",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "предупредить заранее"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать текущий статус"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "объяснить препятствие"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "назвать реалистичный срок"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "предложить промежуточный результат"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "спросить согласие"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "поблагодарить."
+            }
+          ]
+        },
+        {
+          "id": "work_08",
+          "rankRequired": 8,
+          "cefr": "A2",
+          "titleRu": "Сообщить короткий статус",
+          "briefingRu": "Ты переписываешься в мире «Дела». Задача: Сообщить короткий статус. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "естественно и с уточняющими вопросами",
+          "personas": [
+            {
+              "id": "oleg",
+              "displayNameRu": "Олег",
+              "replyStyle": "formal",
+              "styleNoteRu": "Держит деловой тон, проверяет договорённости и фиксирует решения.",
+              "mood": "measured",
+              "correctionStyle": "none"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "назвать задачу"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "сказать, что сделано"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "назвать следующий шаг"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "отметить блокер"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "попросить нужную помощь"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "назвать следующий апдейт"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "закончить ясно."
+            }
+          ]
+        },
+        {
+          "id": "work_09",
+          "rankRequired": 9,
+          "cefr": "A2",
+          "titleRu": "Запросить доступ",
+          "briefingRu": "Ты переписываешься в мире «Дела». Задача: Запросить доступ. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "естественно и с уточняющими вопросами",
+          "personas": [
+            {
+              "id": "sam",
+              "displayNameRu": "Сэм",
+              "replyStyle": "calm",
+              "styleNoteRu": "Снимает напряжение, но не даёт разговору уйти от главной задачи.",
+              "mood": "focused",
+              "correctionStyle": "gentle"
+            },
+            {
+              "id": "marina",
+              "displayNameRu": "Марина",
+              "replyStyle": "direct",
+              "styleNoteRu": "Ценит сроки, конкретику и сразу просит назвать следующий шаг.",
+              "mood": "focused",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "назвать систему"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "объяснить рабочую причину"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "попросить конкретный уровень доступа"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "указать срок"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "спросить, кому написать"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "подтвердить получение"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "поблагодарить."
+            }
+          ]
+        },
+        {
+          "id": "work_10",
+          "rankRequired": 10,
+          "cefr": "A2",
+          "titleRu": "Написать после первого рабочего дня",
+          "briefingRu": "Ты переписываешься в мире «Дела». Задача: Написать после первого рабочего дня. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "естественно и с уточняющими вопросами",
+          "personas": [
+            {
+              "id": "marina",
+              "displayNameRu": "Марина",
+              "replyStyle": "direct",
+              "styleNoteRu": "Ценит сроки, конкретику и сразу просит назвать следующий шаг.",
+              "mood": "focused",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "поблагодарить команду"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать, что было полезно"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "рассказать о первом результате"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "задать один вопрос"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "подтвердить задачу на завтра"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "попрощаться профессионально."
+            }
+          ]
+        },
+        {
+          "id": "work_11",
+          "rankRequired": 11,
+          "cefr": "B1",
+          "titleRu": "Согласовать следующий шаг в команде",
+          "briefingRu": "Ты переписываешься в мире «Дела». Задача: Согласовать следующий шаг в команде. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "уверенно, с объяснением причин",
+          "personas": [
+            {
+              "id": "oleg",
+              "displayNameRu": "Олег",
+              "replyStyle": "formal",
+              "styleNoteRu": "Держит деловой тон, проверяет договорённости и фиксирует решения.",
+              "mood": "measured",
+              "correctionStyle": "none"
+            },
+            {
+              "id": "sam",
+              "displayNameRu": "Сэм",
+              "replyStyle": "calm",
+              "styleNoteRu": "Снимает напряжение, но не даёт разговору уйти от главной задачи.",
+              "mood": "focused",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "кратко резюмировать тред"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать незакрытый вопрос"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "предложить следующий шаг"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "назначить владельца"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "спросить об ограничениях"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "согласовать дату"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "зафиксировать итог."
+            }
+          ]
+        },
+        {
+          "id": "work_12",
+          "rankRequired": 12,
+          "cefr": "B1",
+          "titleRu": "Объяснить проблему и предложить решение",
+          "briefingRu": "Ты переписываешься в мире «Дела». Задача: Объяснить проблему и предложить решение. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "уверенно, с объяснением причин",
+          "personas": [
+            {
+              "id": "sam",
+              "displayNameRu": "Сэм",
+              "replyStyle": "calm",
+              "styleNoteRu": "Снимает напряжение, но не даёт разговору уйти от главной задачи.",
+              "mood": "focused",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "обозначить проблему"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "дать нужный контекст"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "показать влияние"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "предложить два решения"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "сравнить их"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "запросить выбор"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "подтвердить действие."
+            }
+          ]
+        },
+        {
+          "id": "work_13",
+          "rankRequired": 13,
+          "cefr": "B1",
+          "titleRu": "Собрать доступность для встречи",
+          "briefingRu": "Ты переписываешься в мире «Дела». Задача: Собрать доступность для встречи. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "уверенно, с объяснением причин",
+          "personas": [
+            {
+              "id": "marina",
+              "displayNameRu": "Марина",
+              "replyStyle": "direct",
+              "styleNoteRu": "Ценит сроки, конкретику и сразу просит назвать следующий шаг.",
+              "mood": "focused",
+              "correctionStyle": "gentle"
+            },
+            {
+              "id": "oleg",
+              "displayNameRu": "Олег",
+              "replyStyle": "formal",
+              "styleNoteRu": "Держит деловой тон, проверяет договорённости и фиксирует решения.",
+              "mood": "measured",
+              "correctionStyle": "none"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "назвать цель встречи"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "предложить три слота"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "попросить ответ в одном формате"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "уточнить часовые пояса"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "обработать конфликт"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "выбрать слот"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "отправить подтверждение."
+            }
+          ]
+        },
+        {
+          "id": "work_14",
+          "rankRequired": 14,
+          "cefr": "B2",
+          "titleRu": "Защитить реалистичный срок",
+          "briefingRu": "Ты переписываешься в мире «Дела». Задача: Защитить реалистичный срок. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "тактично, аргументированно и по делу",
+          "personas": [
+            {
+              "id": "oleg",
+              "displayNameRu": "Олег",
+              "replyStyle": "formal",
+              "styleNoteRu": "Держит деловой тон, проверяет договорённости и фиксирует решения.",
+              "mood": "measured",
+              "correctionStyle": "none"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "признать срочность"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать объём"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "объяснить зависимость"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "показать риск поспешного срока"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "предложить поэтапный вариант"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "обсудить компромисс"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "зафиксировать согласованный срок."
+            }
+          ]
+        },
+        {
+          "id": "work_15",
+          "rankRequired": 15,
+          "cefr": "B2",
+          "titleRu": "Дать конструктивный review",
+          "briefingRu": "Ты переписываешься в мире «Дела». Задача: Дать конструктивный review. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "тактично, аргументированно и по делу",
+          "personas": [
+            {
+              "id": "sam",
+              "displayNameRu": "Сэм",
+              "replyStyle": "calm",
+              "styleNoteRu": "Снимает напряжение, но не даёт разговору уйти от главной задачи.",
+              "mood": "focused",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "начать с сильной стороны"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать конкретный фрагмент"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "объяснить проблему"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "описать влияние на пользователя или команду"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "предложить улучшение"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "спросить мнение автора"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "договориться о следующей версии."
+            }
+          ]
+        },
+        {
+          "id": "work_16",
+          "rankRequired": 16,
+          "cefr": "B2",
+          "titleRu": "Согласовать приоритеты",
+          "authoringTitleRu": "Согласовать приоритеты при нехватке ресурсов",
+          "briefingRu": "Ты переписываешься в мире «Дела». Задача: Согласовать приоритеты при нехватке ресурсов. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "тактично, аргументированно и по делу",
+          "personas": [
+            {
+              "id": "marina",
+              "displayNameRu": "Марина",
+              "replyStyle": "direct",
+              "styleNoteRu": "Ценит сроки, конкретику и сразу просит назвать следующий шаг.",
+              "mood": "focused",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "назвать ограничение"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "перечислить варианты"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "прояснить ценность каждого"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "запросить критерий выбора"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "предложить порядок"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "обозначить, что откладывается"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "получить согласие"
+            },
+            {
+              "id": "objective_08",
+              "labelRu": "сформулировать решение."
+            }
+          ]
+        },
+        {
+          "id": "work_17",
+          "rankRequired": 17,
+          "cefr": "C1",
+          "titleRu": "Дипломатично возразить решению",
+          "briefingRu": "Ты переписываешься в мире «Дела». Задача: Дипломатично возразить решению. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "гибко, дипломатично и с учётом позиции собеседника",
+          "personas": [
+            {
+              "id": "oleg",
+              "displayNameRu": "Олег",
+              "replyStyle": "formal",
+              "styleNoteRu": "Держит деловой тон, проверяет договорённости и фиксирует решения.",
+              "mood": "measured",
+              "correctionStyle": "none"
+            },
+            {
+              "id": "sam",
+              "displayNameRu": "Сэм",
+              "replyStyle": "calm",
+              "styleNoteRu": "Снимает напряжение, но не даёт разговору уйти от главной задачи.",
+              "mood": "focused",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "признать цель решения"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "сформулировать оговорку"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "привести доказательство"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "назвать риск"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "предложить альтернативу"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "ответить на контраргумент"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "сохранить совместный тон."
+            }
+          ]
+        },
+        {
+          "id": "work_18",
+          "rankRequired": 18,
+          "cefr": "C1",
+          "titleRu": "Снять риск между командами",
+          "briefingRu": "Ты переписываешься в мире «Дела». Задача: Снять риск между командами. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "гибко, дипломатично и с учётом позиции собеседника",
+          "personas": [
+            {
+              "id": "sam",
+              "displayNameRu": "Сэм",
+              "replyStyle": "calm",
+              "styleNoteRu": "Снимает напряжение, но не даёт разговору уйти от главной задачи.",
+              "mood": "focused",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "собрать позиции"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "отделить ответственность от вины"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "сформулировать общий риск"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "предложить временную защиту"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "распределить владельцев"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "обозначить эскалацию"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "закрепить дату проверки."
+            }
+          ]
+        },
+        {
+          "id": "work_19",
+          "rankRequired": 19,
+          "cefr": "C2",
+          "titleRu": "Провести сложные переговоры в треде",
+          "briefingRu": "Ты переписываешься в мире «Дела». Задача: Провести сложные переговоры в треде. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "точно, тонко и с уважением к разным интересам",
+          "personas": [
+            {
+              "id": "marina",
+              "displayNameRu": "Марина",
+              "replyStyle": "direct",
+              "styleNoteRu": "Ценит сроки, конкретику и сразу просит назвать следующий шаг.",
+              "mood": "focused",
+              "correctionStyle": "gentle"
+            },
+            {
+              "id": "oleg",
+              "displayNameRu": "Олег",
+              "replyStyle": "formal",
+              "styleNoteRu": "Держит деловой тон, проверяет договорённости и фиксирует решения.",
+              "mood": "measured",
+              "correctionStyle": "none"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "открыть контекстом"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать интересы сторон"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "зафиксировать неоспоримые факты"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "предложить рамку компромисса"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "уточнить условия"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "обработать возражения"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "сформулировать финальное соглашение"
+            },
+            {
+              "id": "objective_08",
+              "labelRu": "закрепить действия и критерий успеха."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "travel",
+      "titleRu": "Поездки",
+      "scenarios": [
+        {
+          "id": "travel_01",
+          "rankRequired": 1,
+          "cefr": "A1",
+          "titleRu": "Написать хозяину жилья: я приехал",
+          "authoringTitleRu": "Написать хозяину жилья «я приехал»",
+          "briefingRu": "Ты переписываешься в мире «Поездки». Задача: Написать хозяину жилья «я приехал». Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "коротко, ясно и доброжелательно",
+          "personas": [
+            {
+              "id": "lea",
+              "displayNameRu": "Лея",
+              "replyStyle": "warm",
+              "styleNoteRu": "Помогает сориентироваться и доброжелательно уточняет недостающие детали.",
+              "mood": "helpful",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "поздороваться"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать себя"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "сказать, что приехал"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "назвать время"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "спросить, что делать дальше"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "поблагодарить."
+            }
+          ]
+        },
+        {
+          "id": "travel_02",
+          "rankRequired": 2,
+          "cefr": "A1",
+          "titleRu": "Спросить код от двери",
+          "briefingRu": "Ты переписываешься в мире «Поездки». Задача: Спросить код от двери. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "коротко, ясно и доброжелательно",
+          "personas": [
+            {
+              "id": "niko",
+              "displayNameRu": "Нико",
+              "replyStyle": "direct",
+              "styleNoteRu": "Быстро собирает факты, предлагает варианты и просит выбрать один.",
+              "mood": "focused",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "обратиться вежливо"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать адрес или бронь"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "спросить код"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "уточнить, когда он будет доступен"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "попросить повторить цифры"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "подтвердить получение."
+            }
+          ]
+        },
+        {
+          "id": "travel_03",
+          "rankRequired": 3,
+          "cefr": "A1",
+          "titleRu": "Уточнить время заселения",
+          "briefingRu": "Ты переписываешься в мире «Поездки». Задача: Уточнить время заселения. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "коротко, ясно и доброжелательно",
+          "personas": [
+            {
+              "id": "clara",
+              "displayNameRu": "Клара",
+              "replyStyle": "formal",
+              "styleNoteRu": "Следует правилам сервиса и вежливо объясняет, что можно сделать дальше.",
+              "mood": "measured",
+              "correctionStyle": "none"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "назвать дату"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "спросить время"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "сказать своё время приезда"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "спросить о раннем/позднем варианте"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "ответить на условие"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "подтвердить план."
+            }
+          ]
+        },
+        {
+          "id": "travel_04",
+          "rankRequired": 4,
+          "cefr": "A1",
+          "titleRu": "Заказать трансфер",
+          "authoringTitleRu": "Заказать трансфер сообщением",
+          "briefingRu": "Ты переписываешься в мире «Поездки». Задача: Заказать трансфер сообщением. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "коротко, ясно и доброжелательно",
+          "personas": [
+            {
+              "id": "lea",
+              "displayNameRu": "Лея",
+              "replyStyle": "warm",
+              "styleNoteRu": "Помогает сориентироваться и доброжелательно уточняет недостающие детали.",
+              "mood": "helpful",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "назвать точку отправления"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать время"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "указать число людей"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "спросить цену"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "подтвердить заказ"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "спросить, как узнать водителя."
+            }
+          ]
+        },
+        {
+          "id": "travel_05",
+          "rankRequired": 5,
+          "cefr": "A1",
+          "titleRu": "Поблагодарить за подсказку",
+          "briefingRu": "Ты переписываешься в мире «Поездки». Задача: Поблагодарить за подсказку. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "коротко, ясно и доброжелательно",
+          "personas": [
+            {
+              "id": "niko",
+              "displayNameRu": "Нико",
+              "replyStyle": "direct",
+              "styleNoteRu": "Быстро собирает факты, предлагает варианты и просит выбрать один.",
+              "mood": "focused",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "назвать подсказку"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "поблагодарить"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "сказать, что она помогла"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "задать короткий следующий вопрос"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "ответить на совет"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "попрощаться."
+            }
+          ]
+        },
+        {
+          "id": "travel_06",
+          "rankRequired": 6,
+          "cefr": "A2",
+          "titleRu": "Уточнить маршрут в чате",
+          "briefingRu": "Ты переписываешься в мире «Поездки». Задача: Уточнить маршрут в чате. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "естественно и с уточняющими вопросами",
+          "personas": [
+            {
+              "id": "clara",
+              "displayNameRu": "Клара",
+              "replyStyle": "formal",
+              "styleNoteRu": "Следует правилам сервиса и вежливо объясняет, что можно сделать дальше.",
+              "mood": "measured",
+              "correctionStyle": "none"
+            },
+            {
+              "id": "lea",
+              "displayNameRu": "Лея",
+              "replyStyle": "warm",
+              "styleNoteRu": "Помогает сориентироваться и доброжелательно уточняет недостающие детали.",
+              "mood": "helpful",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "назвать пункт назначения"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "сказать старт"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "спросить лучший транспорт"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "уточнить пересадку"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "спросить о времени в пути"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "повторить маршрут"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "поблагодарить."
+            }
+          ]
+        },
+        {
+          "id": "travel_07",
+          "rankRequired": 7,
+          "cefr": "A2",
+          "titleRu": "Подтвердить бронь",
+          "briefingRu": "Ты переписываешься в мире «Поездки». Задача: Подтвердить бронь. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "естественно и с уточняющими вопросами",
+          "personas": [
+            {
+              "id": "lea",
+              "displayNameRu": "Лея",
+              "replyStyle": "warm",
+              "styleNoteRu": "Помогает сориентироваться и доброжелательно уточняет недостающие детали.",
+              "mood": "helpful",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "назвать номер брони"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "подтвердить даты"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "подтвердить число гостей"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "уточнить включённую услугу"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "спросить о следующем шаге"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "подтвердить ответ"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "завершить."
+            }
+          ]
+        },
+        {
+          "id": "travel_08",
+          "rankRequired": 8,
+          "cefr": "A2",
+          "titleRu": "Написать о задержке",
+          "briefingRu": "Ты переписываешься в мире «Поездки». Задача: Написать о задержке. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "естественно и с уточняющими вопросами",
+          "personas": [
+            {
+              "id": "niko",
+              "displayNameRu": "Нико",
+              "replyStyle": "direct",
+              "styleNoteRu": "Быстро собирает факты, предлагает варианты и просит выбрать один.",
+              "mood": "focused",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "сообщить о задержке"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать причину"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "дать новый ориентир"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "извиниться"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "спросить, возможен ли поздний приезд"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "согласовать действие"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "поблагодарить."
+            }
+          ]
+        },
+        {
+          "id": "travel_09",
+          "rankRequired": 9,
+          "cefr": "A2",
+          "titleRu": "Спросить, где оставить багаж",
+          "briefingRu": "Ты переписываешься в мире «Поездки». Задача: Спросить, где оставить багаж. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "естественно и с уточняющими вопросами",
+          "personas": [
+            {
+              "id": "clara",
+              "displayNameRu": "Клара",
+              "replyStyle": "formal",
+              "styleNoteRu": "Следует правилам сервиса и вежливо объясняет, что можно сделать дальше.",
+              "mood": "measured",
+              "correctionStyle": "none"
+            },
+            {
+              "id": "lea",
+              "displayNameRu": "Лея",
+              "replyStyle": "warm",
+              "styleNoteRu": "Помогает сориентироваться и доброжелательно уточняет недостающие детали.",
+              "mood": "helpful",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "представиться"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать время"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "спросить про багаж"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "уточнить адрес"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "спросить часы доступа"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "подтвердить инструкцию"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "поблагодарить."
+            }
+          ]
+        },
+        {
+          "id": "travel_10",
+          "rankRequired": 10,
+          "cefr": "A2",
+          "titleRu": "Договориться о времени встречи",
+          "briefingRu": "Ты переписываешься в мире «Поездки». Задача: Договориться о времени встречи. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "естественно и с уточняющими вопросами",
+          "personas": [
+            {
+              "id": "lea",
+              "displayNameRu": "Лея",
+              "replyStyle": "warm",
+              "styleNoteRu": "Помогает сориентироваться и доброжелательно уточняет недостающие детали.",
+              "mood": "helpful",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "предложить место"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать два времени"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "учесть дорогу собеседника"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "согласовать вариант"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "уточнить точку встречи"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "обменяться приметой"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "подтвердить."
+            }
+          ]
+        },
+        {
+          "id": "travel_11",
+          "rankRequired": 11,
+          "cefr": "B1",
+          "titleRu": "Решить проблему с жильём",
+          "authoringTitleRu": "Решить проблему с жильём через поддержку",
+          "briefingRu": "Ты переписываешься в мире «Поездки». Задача: Решить проблему с жильём через поддержку. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "уверенно, с объяснением причин",
+          "personas": [
+            {
+              "id": "niko",
+              "displayNameRu": "Нико",
+              "replyStyle": "direct",
+              "styleNoteRu": "Быстро собирает факты, предлагает варианты и просит выбрать один.",
+              "mood": "focused",
+              "correctionStyle": "gentle"
+            },
+            {
+              "id": "clara",
+              "displayNameRu": "Клара",
+              "replyStyle": "formal",
+              "styleNoteRu": "Следует правилам сервиса и вежливо объясняет, что можно сделать дальше.",
+              "mood": "measured",
+              "correctionStyle": "none"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "обозначить проблему"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "дать номер брони"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "описать факты"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "назвать желаемое решение"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "ответить на уточнение"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "предложить разумную альтернативу"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "зафиксировать обещанный срок."
+            }
+          ]
+        },
+        {
+          "id": "travel_12",
+          "rankRequired": 12,
+          "cefr": "B1",
+          "titleRu": "Скоординировать группу в поездке",
+          "briefingRu": "Ты переписываешься в мире «Поездки». Задача: Скоординировать группу в поездке. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "уверенно, с объяснением причин",
+          "personas": [
+            {
+              "id": "clara",
+              "displayNameRu": "Клара",
+              "replyStyle": "formal",
+              "styleNoteRu": "Следует правилам сервиса и вежливо объясняет, что можно сделать дальше.",
+              "mood": "measured",
+              "correctionStyle": "none"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "назвать общую цель"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "собрать местоположение участников"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "спросить ограничения"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "предложить маршрут"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "обработать опоздание"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "согласовать точку"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "подтвердить, кто что делает"
+            },
+            {
+              "id": "objective_08",
+              "labelRu": "закрыть план."
+            }
+          ]
+        },
+        {
+          "id": "travel_13",
+          "rankRequired": 13,
+          "cefr": "B1",
+          "titleRu": "Запросить изменение бронирования",
+          "briefingRu": "Ты переписываешься в мире «Поездки». Задача: Запросить изменение бронирования. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "уверенно, с объяснением причин",
+          "personas": [
+            {
+              "id": "lea",
+              "displayNameRu": "Лея",
+              "replyStyle": "warm",
+              "styleNoteRu": "Помогает сориентироваться и доброжелательно уточняет недостающие детали.",
+              "mood": "helpful",
+              "correctionStyle": "gentle"
+            },
+            {
+              "id": "niko",
+              "displayNameRu": "Нико",
+              "replyStyle": "direct",
+              "styleNoteRu": "Быстро собирает факты, предлагает варианты и просит выбрать один.",
+              "mood": "focused",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "назвать исходную бронь"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "объяснить изменение"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "назвать новые даты"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "спросить доступность"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "уточнить разницу в цене"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "выбрать вариант"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "подтвердить изменение."
+            }
+          ]
+        },
+        {
+          "id": "travel_14",
+          "rankRequired": 14,
+          "cefr": "B2",
+          "titleRu": "Объяснить претензию сервису",
+          "authoringTitleRu": "Объяснить претензию сервису с фактами",
+          "briefingRu": "Ты переписываешься в мире «Поездки». Задача: Объяснить претензию сервису с фактами. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "тактично, аргументированно и по делу",
+          "personas": [
+            {
+              "id": "niko",
+              "displayNameRu": "Нико",
+              "replyStyle": "direct",
+              "styleNoteRu": "Быстро собирает факты, предлагает варианты и просит выбрать один.",
+              "mood": "focused",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "задать деловой тон"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать услугу и дату"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "изложить последовательность событий"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "приложить/описать доказательство"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "назвать ожидаемое решение"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "ответить на шаблонный ответ"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "запросить срок рассмотрения."
+            }
+          ]
+        },
+        {
+          "id": "travel_15",
+          "rankRequired": 15,
+          "cefr": "B2",
+          "titleRu": "Согласовать альтернативный маршрут",
+          "briefingRu": "Ты переписываешься в мире «Поездки». Задача: Согласовать альтернативный маршрут. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "тактично, аргументированно и по делу",
+          "personas": [
+            {
+              "id": "clara",
+              "displayNameRu": "Клара",
+              "replyStyle": "formal",
+              "styleNoteRu": "Следует правилам сервиса и вежливо объясняет, что можно сделать дальше.",
+              "mood": "measured",
+              "correctionStyle": "none"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "описать сбой"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать ограничения"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "сравнить варианты"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "спросить о предпочтениях группы"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "назвать компромисс"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "распределить билеты/действия"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "подтвердить маршрут."
+            }
+          ]
+        },
+        {
+          "id": "travel_16",
+          "rankRequired": 16,
+          "cefr": "B2",
+          "titleRu": "Отстоять решение по бронированию",
+          "authoringTitleRu": "Отстоять корректное решение при ошибке бронирования",
+          "briefingRu": "Ты переписываешься в мире «Поездки». Задача: Отстоять корректное решение при ошибке бронирования. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "тактично, аргументированно и по делу",
+          "personas": [
+            {
+              "id": "lea",
+              "displayNameRu": "Лея",
+              "replyStyle": "warm",
+              "styleNoteRu": "Помогает сориентироваться и доброжелательно уточняет недостающие детали.",
+              "mood": "helpful",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "признать позицию сервиса"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "сослаться на подтверждение"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "объяснить расхождение"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "попросить проверить запись"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "предложить возможный выход"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "вежливо эскалировать при необходимости"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "закрепить решение письменно."
+            }
+          ]
+        },
+        {
+          "id": "travel_17",
+          "rankRequired": 17,
+          "cefr": "C1",
+          "titleRu": "Договориться о компенсации",
+          "briefingRu": "Ты переписываешься в мире «Поездки». Задача: Договориться о компенсации. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "гибко, дипломатично и с учётом позиции собеседника",
+          "personas": [
+            {
+              "id": "niko",
+              "displayNameRu": "Нико",
+              "replyStyle": "direct",
+              "styleNoteRu": "Быстро собирает факты, предлагает варианты и просит выбрать один.",
+              "mood": "focused",
+              "correctionStyle": "gentle"
+            },
+            {
+              "id": "clara",
+              "displayNameRu": "Клара",
+              "replyStyle": "formal",
+              "styleNoteRu": "Следует правилам сервиса и вежливо объясняет, что можно сделать дальше.",
+              "mood": "measured",
+              "correctionStyle": "none"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "кратко резюмировать нарушение"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать фактические последствия"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "сослаться на условия"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "запросить соразмерную компенсацию"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "обосновать её"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "обсудить контрпредложение"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "подтвердить итог и срок."
+            }
+          ]
+        },
+        {
+          "id": "travel_18",
+          "rankRequired": 18,
+          "cefr": "C1",
+          "titleRu": "Разрешить ситуацию гость—хозяин—сервис",
+          "authoringTitleRu": "Разрешить ситуацию «гость—хозяин—сервис»",
+          "briefingRu": "Ты переписываешься в мире «Поездки». Задача: Разрешить ситуацию «гость—хозяин—сервис». Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "гибко, дипломатично и с учётом позиции собеседника",
+          "personas": [
+            {
+              "id": "clara",
+              "displayNameRu": "Клара",
+              "replyStyle": "formal",
+              "styleNoteRu": "Следует правилам сервиса и вежливо объясняет, что можно сделать дальше.",
+              "mood": "measured",
+              "correctionStyle": "none"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "разложить версии сторон"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "прояснить факты"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "снять эмоциональные формулировки"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "назвать срочную потребность"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "предложить временное решение"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "распределить постоянное решение"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "зафиксировать подтверждение всех сторон."
+            }
+          ]
+        },
+        {
+          "id": "travel_19",
+          "rankRequired": 19,
+          "cefr": "C2",
+          "titleRu": "Вести многосторонний тред при сбое поездки",
+          "briefingRu": "Ты переписываешься в мире «Поездки». Задача: Вести многосторонний тред при сбое поездки. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "точно, тонко и с уважением к разным интересам",
+          "personas": [
+            {
+              "id": "lea",
+              "displayNameRu": "Лея",
+              "replyStyle": "warm",
+              "styleNoteRu": "Помогает сориентироваться и доброжелательно уточняет недостающие детали.",
+              "mood": "helpful",
+              "correctionStyle": "gentle"
+            },
+            {
+              "id": "niko",
+              "displayNameRu": "Нико",
+              "replyStyle": "direct",
+              "styleNoteRu": "Быстро собирает факты, предлагает варианты и просит выбрать один.",
+              "mood": "focused",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "дать краткий статус"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать критические ограничения"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "разделить срочные и вторичные действия"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "запросить решения участников"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "сравнить последствия вариантов"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "предложить приоритет"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "подтвердить новую логистику"
+            },
+            {
+              "id": "objective_08",
+              "labelRu": "назначить следующий апдейт."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "everyday",
+      "titleRu": "Повседневное",
+      "scenarios": [
+        {
+          "id": "everyday_01",
+          "rankRequired": 1,
+          "cefr": "A1",
+          "titleRu": "Спросить совет",
+          "briefingRu": "Ты переписываешься в мире «Повседневное». Задача: Спросить совет. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "коротко, ясно и доброжелательно",
+          "personas": [
+            {
+              "id": "ira",
+              "displayNameRu": "Ира",
+              "replyStyle": "playful",
+              "styleNoteRu": "Пишет непринуждённо, поддерживает ритм и мягко замечает удачные фразы.",
+              "mood": "energetic",
+              "correctionStyle": "playful_gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "поздороваться"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать тему"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "задать простой вопрос"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "попросить один вариант"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "ответить на совет"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "поблагодарить."
+            }
+          ]
+        },
+        {
+          "id": "everyday_02",
+          "rankRequired": 2,
+          "cefr": "A1",
+          "titleRu": "Напомнить о вещи",
+          "briefingRu": "Ты переписываешься в мире «Повседневное». Задача: Напомнить о вещи. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "коротко, ясно и доброжелательно",
+          "personas": [
+            {
+              "id": "nikita",
+              "displayNameRu": "Никита",
+              "replyStyle": "calm",
+              "styleNoteRu": "Отвечает спокойно, замечает бытовые детали и не нагнетает ситуацию.",
+              "mood": "measured",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "обратиться по имени"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "напомнить о вещи"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "сказать, где она"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "спросить, когда удобно забрать"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "договориться о времени"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "закончить дружелюбно."
+            }
+          ]
+        },
+        {
+          "id": "everyday_03",
+          "rankRequired": 3,
+          "cefr": "A1",
+          "titleRu": "Поздравить с событием",
+          "briefingRu": "Ты переписываешься в мире «Повседневное». Задача: Поздравить с событием. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "коротко, ясно и доброжелательно",
+          "personas": [
+            {
+              "id": "vera",
+              "displayNameRu": "Вера",
+              "replyStyle": "warm",
+              "styleNoteRu": "Помогает договориться и сохраняет дружелюбный тон даже при разногласии.",
+              "mood": "helpful",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "начать тепло"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать повод"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "выразить радость"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "добавить пожелание"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "спросить о планах"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "попрощаться."
+            }
+          ]
+        },
+        {
+          "id": "everyday_04",
+          "rankRequired": 4,
+          "cefr": "A1",
+          "titleRu": "Спросить, свободен ли человек",
+          "briefingRu": "Ты переписываешься в мире «Повседневное». Задача: Спросить, свободен ли человек. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "коротко, ясно и доброжелательно",
+          "personas": [
+            {
+              "id": "ira",
+              "displayNameRu": "Ира",
+              "replyStyle": "playful",
+              "styleNoteRu": "Пишет непринуждённо, поддерживает ритм и мягко замечает удачные фразы.",
+              "mood": "energetic",
+              "correctionStyle": "playful_gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "поздороваться"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "спросить о времени"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "назвать причину"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "предложить короткий формат"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "принять «нет»"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "договориться написать позже."
+            }
+          ]
+        },
+        {
+          "id": "everyday_05",
+          "rankRequired": 5,
+          "cefr": "A1",
+          "titleRu": "Написать короткое извинение",
+          "briefingRu": "Ты переписываешься в мире «Повседневное». Задача: Написать короткое извинение. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "коротко, ясно и доброжелательно",
+          "personas": [
+            {
+              "id": "nikita",
+              "displayNameRu": "Никита",
+              "replyStyle": "calm",
+              "styleNoteRu": "Отвечает спокойно, замечает бытовые детали и не нагнетает ситуацию.",
+              "mood": "measured",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "обратиться лично"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать поступок"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "извиниться"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "признать неудобство"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "предложить исправление"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "завершить без давления."
+            }
+          ]
+        },
+        {
+          "id": "everyday_06",
+          "rankRequired": 6,
+          "cefr": "A2",
+          "titleRu": "Попросить небольшую помощь",
+          "briefingRu": "Ты переписываешься в мире «Повседневное». Задача: Попросить небольшую помощь. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "естественно и с уточняющими вопросами",
+          "personas": [
+            {
+              "id": "vera",
+              "displayNameRu": "Вера",
+              "replyStyle": "warm",
+              "styleNoteRu": "Помогает договориться и сохраняет дружелюбный тон даже при разногласии.",
+              "mood": "helpful",
+              "correctionStyle": "gentle"
+            },
+            {
+              "id": "ira",
+              "displayNameRu": "Ира",
+              "replyStyle": "playful",
+              "styleNoteRu": "Пишет непринуждённо, поддерживает ритм и мягко замечает удачные фразы.",
+              "mood": "energetic",
+              "correctionStyle": "playful_gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "спросить, удобно ли сейчас"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать просьбу"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "дать контекст"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "сказать, сколько это займёт"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "предложить альтернативу"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "принять ответ"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "поблагодарить."
+            }
+          ]
+        },
+        {
+          "id": "everyday_07",
+          "rankRequired": 7,
+          "cefr": "A2",
+          "titleRu": "Договориться присмотреть за питомцем",
+          "briefingRu": "Ты переписываешься в мире «Повседневное». Задача: Договориться присмотреть за питомцем. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "естественно и с уточняющими вопросами",
+          "personas": [
+            {
+              "id": "ira",
+              "displayNameRu": "Ира",
+              "replyStyle": "playful",
+              "styleNoteRu": "Пишет непринуждённо, поддерживает ритм и мягко замечает удачные фразы.",
+              "mood": "energetic",
+              "correctionStyle": "playful_gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "описать даты"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "спросить о возможности"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "назвать простые обязанности"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "ответить на вопрос"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "согласовать ключи/время"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "предложить помощь взамен"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "подтвердить план."
+            }
+          ]
+        },
+        {
+          "id": "everyday_08",
+          "rankRequired": 8,
+          "cefr": "A2",
+          "titleRu": "Выбрать подарок в групповом чате",
+          "briefingRu": "Ты переписываешься в мире «Повседневное». Задача: Выбрать подарок в групповом чате. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "естественно и с уточняющими вопросами",
+          "personas": [
+            {
+              "id": "nikita",
+              "displayNameRu": "Никита",
+              "replyStyle": "calm",
+              "styleNoteRu": "Отвечает спокойно, замечает бытовые детали и не нагнетает ситуацию.",
+              "mood": "measured",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "назвать повод"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "предложить бюджет"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "попросить идеи"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "отреагировать на варианты"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "сравнить два варианта"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "собрать голоса"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "назначить покупку."
+            }
+          ]
+        },
+        {
+          "id": "everyday_09",
+          "rankRequired": 9,
+          "cefr": "A2",
+          "titleRu": "Уточнить детали доставки",
+          "briefingRu": "Ты переписываешься в мире «Повседневное». Задача: Уточнить детали доставки. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "естественно и с уточняющими вопросами",
+          "personas": [
+            {
+              "id": "vera",
+              "displayNameRu": "Вера",
+              "replyStyle": "warm",
+              "styleNoteRu": "Помогает договориться и сохраняет дружелюбный тон даже при разногласии.",
+              "mood": "helpful",
+              "correctionStyle": "gentle"
+            },
+            {
+              "id": "ira",
+              "displayNameRu": "Ира",
+              "replyStyle": "playful",
+              "styleNoteRu": "Пишет непринуждённо, поддерживает ритм и мягко замечает удачные фразы.",
+              "mood": "energetic",
+              "correctionStyle": "playful_gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "назвать заказ"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "спросить дату"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "уточнить адрес"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "описать удобный способ связи"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "спросить об изменении"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "подтвердить инструкцию"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "поблагодарить."
+            }
+          ]
+        },
+        {
+          "id": "everyday_10",
+          "rankRequired": 10,
+          "cefr": "A2",
+          "titleRu": "Поблагодарить после помощи",
+          "briefingRu": "Ты переписываешься в мире «Повседневное». Задача: Поблагодарить после помощи. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "естественно и с уточняющими вопросами",
+          "personas": [
+            {
+              "id": "ira",
+              "displayNameRu": "Ира",
+              "replyStyle": "playful",
+              "styleNoteRu": "Пишет непринуждённо, поддерживает ритм и мягко замечает удачные фразы.",
+              "mood": "energetic",
+              "correctionStyle": "playful_gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "назвать помощь"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "выразить благодарность"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "сказать результат"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "добавить личную реакцию"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "предложить ответную услугу"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "ответить на скромную реакцию"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "попрощаться."
+            }
+          ]
+        },
+        {
+          "id": "everyday_11",
+          "rankRequired": 11,
+          "cefr": "B1",
+          "titleRu": "Организовать общий план на выходные",
+          "briefingRu": "Ты переписываешься в мире «Повседневное». Задача: Организовать общий план на выходные. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "уверенно, с объяснением причин",
+          "personas": [
+            {
+              "id": "nikita",
+              "displayNameRu": "Никита",
+              "replyStyle": "calm",
+              "styleNoteRu": "Отвечает спокойно, замечает бытовые детали и не нагнетает ситуацию.",
+              "mood": "measured",
+              "correctionStyle": "gentle"
+            },
+            {
+              "id": "vera",
+              "displayNameRu": "Вера",
+              "replyStyle": "warm",
+              "styleNoteRu": "Помогает договориться и сохраняет дружелюбный тон даже при разногласии.",
+              "mood": "helpful",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "предложить идею"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать условия"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "собрать доступность"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "спросить предпочтения"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "учесть ограничение"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "предложить финальный план"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "разделить мелкие задачи"
+            },
+            {
+              "id": "objective_08",
+              "labelRu": "подтвердить."
+            }
+          ]
+        },
+        {
+          "id": "everyday_12",
+          "rankRequired": 12,
+          "cefr": "B1",
+          "titleRu": "Сравнить варианты и принять решение",
+          "briefingRu": "Ты переписываешься в мире «Повседневное». Задача: Сравнить варианты и принять решение. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "уверенно, с объяснением причин",
+          "personas": [
+            {
+              "id": "vera",
+              "displayNameRu": "Вера",
+              "replyStyle": "warm",
+              "styleNoteRu": "Помогает договориться и сохраняет дружелюбный тон даже при разногласии.",
+              "mood": "helpful",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "назвать цель"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "перечислить варианты"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "запросить критерии"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "оценить плюсы и минусы"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "предложить выбор"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "обработать сомнение"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "договориться о действии."
+            }
+          ]
+        },
+        {
+          "id": "everyday_13",
+          "rankRequired": 13,
+          "cefr": "B1",
+          "titleRu": "Объяснить проблему соседу или сервису",
+          "briefingRu": "Ты переписываешься в мире «Повседневное». Задача: Объяснить проблему соседу или сервису. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "уверенно, с объяснением причин",
+          "personas": [
+            {
+              "id": "ira",
+              "displayNameRu": "Ира",
+              "replyStyle": "playful",
+              "styleNoteRu": "Пишет непринуждённо, поддерживает ритм и мягко замечает удачные фразы.",
+              "mood": "energetic",
+              "correctionStyle": "playful_gentle"
+            },
+            {
+              "id": "nikita",
+              "displayNameRu": "Никита",
+              "replyStyle": "calm",
+              "styleNoteRu": "Отвечает спокойно, замечает бытовые детали и не нагнетает ситуацию.",
+              "mood": "measured",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "начать уважительно"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "описать повторяющийся факт"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "сказать, как это влияет"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "спросить возможную причину"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "предложить решение"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "договориться о проверке"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "поблагодарить."
+            }
+          ]
+        },
+        {
+          "id": "everyday_14",
+          "rankRequired": 14,
+          "cefr": "B2",
+          "titleRu": "Обсудить общие правила",
+          "briefingRu": "Ты переписываешься в мире «Повседневное». Задача: Обсудить общие правила. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "тактично, аргументированно и по делу",
+          "personas": [
+            {
+              "id": "nikita",
+              "displayNameRu": "Никита",
+              "replyStyle": "calm",
+              "styleNoteRu": "Отвечает спокойно, замечает бытовые детали и не нагнетает ситуацию.",
+              "mood": "measured",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "назвать причину разговора"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "предложить правило"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "объяснить пользу"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "спросить о неудобствах"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "изменить формулировку с учётом ответа"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "согласовать исключения"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "зафиксировать договорённость."
+            }
+          ]
+        },
+        {
+          "id": "everyday_15",
+          "rankRequired": 15,
+          "cefr": "B2",
+          "titleRu": "Урегулировать неудобство без обвинений",
+          "briefingRu": "Ты переписываешься в мире «Повседневное». Задача: Урегулировать неудобство без обвинений. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "тактично, аргументированно и по делу",
+          "personas": [
+            {
+              "id": "vera",
+              "displayNameRu": "Вера",
+              "replyStyle": "warm",
+              "styleNoteRu": "Помогает договориться и сохраняет дружелюбный тон даже при разногласии.",
+              "mood": "helpful",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "описать ситуацию нейтрально"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "сказать о влиянии на себя"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "спросить точку зрения"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "признать возможное недоразумение"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "предложить решение"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "обсудить альтернативу"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "завершить уважительно."
+            }
+          ]
+        },
+        {
+          "id": "everyday_16",
+          "rankRequired": 16,
+          "cefr": "B2",
+          "titleRu": "Убедить группу выбрать разумный вариант",
+          "briefingRu": "Ты переписываешься в мире «Повседневное». Задача: Убедить группу выбрать разумный вариант. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "тактично, аргументированно и по делу",
+          "personas": [
+            {
+              "id": "ira",
+              "displayNameRu": "Ира",
+              "replyStyle": "playful",
+              "styleNoteRu": "Пишет непринуждённо, поддерживает ритм и мягко замечает удачные фразы.",
+              "mood": "energetic",
+              "correctionStyle": "playful_gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "признать другие идеи"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "сформулировать критерии"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "привести аргумент"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "ответить на два возражения"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "предложить компромисс"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "попросить решение"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "подтвердить следующий шаг."
+            }
+          ]
+        },
+        {
+          "id": "everyday_17",
+          "rankRequired": 17,
+          "cefr": "C1",
+          "titleRu": "Провести чувствительный разговор о границах",
+          "briefingRu": "Ты переписываешься в мире «Повседневное». Задача: Провести чувствительный разговор о границах. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "гибко, дипломатично и с учётом позиции собеседника",
+          "personas": [
+            {
+              "id": "nikita",
+              "displayNameRu": "Никита",
+              "replyStyle": "calm",
+              "styleNoteRu": "Отвечает спокойно, замечает бытовые детали и не нагнетает ситуацию.",
+              "mood": "measured",
+              "correctionStyle": "gentle"
+            },
+            {
+              "id": "vera",
+              "displayNameRu": "Вера",
+              "replyStyle": "warm",
+              "styleNoteRu": "Помогает договориться и сохраняет дружелюбный тон даже при разногласии.",
+              "mood": "helpful",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "запросить пространство для разговора"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "назвать ситуацию точно"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "описать переживание без обвинения"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "сформулировать границу"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "объяснить, что поддержит отношения"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "выслушать ответ"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "договориться о новом паттерне."
+            }
+          ]
+        },
+        {
+          "id": "everyday_18",
+          "rankRequired": 18,
+          "cefr": "C1",
+          "titleRu": "Разобрать противоречивую информацию",
+          "briefingRu": "Ты переписываешься в мире «Повседневное». Задача: Разобрать противоречивую информацию. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "гибко, дипломатично и с учётом позиции собеседника",
+          "personas": [
+            {
+              "id": "vera",
+              "displayNameRu": "Вера",
+              "replyStyle": "warm",
+              "styleNoteRu": "Помогает договориться и сохраняет дружелюбный тон даже при разногласии.",
+              "mood": "helpful",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "отделить факты от слухов"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "указать, где версии расходятся"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "запросить источник"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "признать неопределённость"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "предложить безопасное временное действие"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "определить, что проверять"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "согласовать, когда вернуться к вопросу."
+            }
+          ]
+        },
+        {
+          "id": "everyday_19",
+          "rankRequired": 19,
+          "cefr": "C2",
+          "titleRu": "Посредничать в личном групповом конфликте",
+          "briefingRu": "Ты переписываешься в мире «Повседневное». Задача: Посредничать в личном групповом конфликте. Не закрывай разговор одним сообщением: пройди шаги и реагируй на ответы собеседника.",
+          "completionToneRu": "точно, тонко и с уважением к разным интересам",
+          "personas": [
+            {
+              "id": "ira",
+              "displayNameRu": "Ира",
+              "replyStyle": "playful",
+              "styleNoteRu": "Пишет непринуждённо, поддерживает ритм и мягко замечает удачные фразы.",
+              "mood": "energetic",
+              "correctionStyle": "playful_gentle"
+            },
+            {
+              "id": "nikita",
+              "displayNameRu": "Никита",
+              "replyStyle": "calm",
+              "styleNoteRu": "Отвечает спокойно, замечает бытовые детали и не нагнетает ситуацию.",
+              "mood": "measured",
+              "correctionStyle": "gentle"
+            }
+          ],
+          "objectives": [
+            {
+              "id": "objective_01",
+              "labelRu": "установить правила тона"
+            },
+            {
+              "id": "objective_02",
+              "labelRu": "дать каждой стороне изложить позицию"
+            },
+            {
+              "id": "objective_03",
+              "labelRu": "резюмировать без оценки"
+            },
+            {
+              "id": "objective_04",
+              "labelRu": "назвать общий интерес"
+            },
+            {
+              "id": "objective_05",
+              "labelRu": "выявить минимальные требования"
+            },
+            {
+              "id": "objective_06",
+              "labelRu": "предложить выполнимый компромисс"
+            },
+            {
+              "id": "objective_07",
+              "labelRu": "подтвердить согласие каждой стороны"
+            },
+            {
+              "id": "objective_08",
+              "labelRu": "зафиксировать действия и способ вернуться к теме."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

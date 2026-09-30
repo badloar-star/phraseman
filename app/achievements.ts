@@ -1,8 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getPersonalProgressSnapshot, hydratePersonalProgress } from './personal_progress_store';
 import type { Lang } from '../constants/i18n';
-import { getLevelFromXP } from '../constants/theme';
-import { ACHIEVEMENT_ES } from './achievements_es_locale';
 import {
   ACHIEVEMENT_CATALOG_V2,
   type AchievementDefinitionV2,
@@ -15,8 +13,6 @@ import {
   loadFoundationProgress,
   reduceFoundationActiveDateHistory,
   reduceFoundationActiveDay,
-  reduceFoundationLeagueResult,
-  reduceFoundationLegacyCounters,
   reduceFoundationShardBalance,
   updateFoundationProgress,
   type AchievementFoundationProgressV2,
@@ -24,7 +20,6 @@ import {
 import { getForegroundUsageMs } from './foreground_usage_ms';
 import { decodeActiveDays } from './friends_together/together_days';
 import { peekCurrentAccountCreatedAtMs } from './account_created_at';
-import { registerXP } from './xp_manager';
 import { emitAppEvent } from './events';
 import { withStorageLock } from './storage_mutex';
 import {
@@ -41,17 +36,14 @@ import {
 } from './target_storage_keys';
 import { DebugLogger } from './debug-logger';
 
-const safeAchievementEventPart = (value: unknown, max = 60): string =>
-  String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
-
 /**
  * Достижения: ru/uk здесь; es — achievements_es_locale.ts.
  *
  * Качество текстов проверяем по 10 правилам:
  * 1. Соответствие коду — условие разблокировки = checkAchievements + источники событий.
  * 2. Без ложных деталей — не обещаем то, чего триггер не проверяет.
- * 3. Ясные числа — пороги дней, XP, уроков, % как в коде.
- * 4. Различие метрик — «цепочка активности (опыт)» ≠ «вход в приложение подряд».
+ * 3. Ясные числа — пороги дней, уроков, % как в коде.
+ * 4. Различие метрик — «цепочка активности» ≠ «вход в приложение подряд».
  * 5. Единый стиль — короткое имя + одно предложение «что сделать».
  * 6. Пары RU/UK — тот же смысл, естественная грамматика.
  * 7. Секреты — не раскрывать условие лишнего до получения (где задумано).
@@ -80,32 +72,32 @@ type PlannedAchievementField = 'name' | 'description';
 
 const ACHIEVEMENT_PLANNED_COPY: Partial<Record<string, PlannedAchievementCopy>> = {
   streak_3: {
-    'pt-BR': { name: 'Primeiros três', description: 'Ganhe XP no app por 3 dias seguidos na sequência de atividade.' },
-    vi: { name: 'Ba ngày đầu tiên', description: 'Nhận XP trong ứng dụng 3 ngày liên tiếp trong chuỗi hoạt động.' },
-    id: { name: 'Tiga pertama', description: 'Dapatkan XP di aplikasi selama 3 hari berturut-turut dalam streak aktivitas.' },
-    tr: { name: 'İlk üç', description: 'Etkinlik serisinde 3 gün üst üste uygulamada XP kazan.' },
-    pl: { name: 'Pierwsze trzy', description: 'Zdobywaj XP w aplikacji przez 3 dni z rzędu w serii aktywności.' },
+    'pt-BR': { name: 'Primeiros três', description: 'Ganhe progress no app por 3 dias seguidos na sequência de atividade.' },
+    vi: { name: 'Ba ngày đầu tiên', description: 'Nhận progress trong ứng dụng 3 ngày liên tiếp trong chuỗi hoạt động.' },
+    id: { name: 'Tiga pertama', description: 'Dapatkan progress di aplikasi selama 3 hari berturut-turut dalam streak aktivitas.' },
+    tr: { name: 'İlk üç', description: 'Etkinlik serisinde 3 gün üst üste uygulamada progress kazan.' },
+    pl: { name: 'Pierwsze trzy', description: 'Zdobywaj progress w aplikacji przez 3 dni z rzędu w serii aktywności.' },
   },
   streak_7: {
-    'pt-BR': { name: 'Uma semana seguida', description: '7 dias seguidos com XP; congelamento, reparo ou escudo podem preservar a sequência.' },
-    vi: { name: 'Một tuần liên tiếp', description: '7 ngày liên tiếp có XP; đóng băng, sửa chuỗi hoặc khiên có thể giữ chuỗi.' },
-    id: { name: 'Seminggu berturut-turut', description: '7 hari berturut-turut dengan XP; freeze, perbaikan, atau shield bisa menjaga streak.' },
-    tr: { name: 'Bir hafta üst üste', description: 'XP kazanılan 7 gün üst üste; dondurma, onarım veya kalkan seriyi koruyabilir.' },
-    pl: { name: 'Tydzień z rzędu', description: '7 dni z rzędu ze zdobytym XP; zamrożenie, naprawa lub tarcza mogą ochronić serię.' },
+    'pt-BR': { name: 'Uma semana seguida', description: '7 dias seguidos com progress; congelamento, reparo ou escudo podem preservar a sequência.' },
+    vi: { name: 'Một tuần liên tiếp', description: '7 ngày liên tiếp có progress; đóng băng, sửa chuỗi hoặc khiên có thể giữ chuỗi.' },
+    id: { name: 'Seminggu berturut-turut', description: '7 hari berturut-turut dengan progress; freeze, perbaikan, atau shield bisa menjaga streak.' },
+    tr: { name: 'Bir hafta üst üste', description: 'progress kazanılan 7 gün üst üste; dondurma, onarım veya kalkan seriyi koruyabilir.' },
+    pl: { name: 'Tydzień z rzędu', description: '7 dni z rzędu ze zdobytym progress; zamrożenie, naprawa lub tarcza mogą ochronić serię.' },
   },
   streak_14: {
-    'pt-BR': { name: 'Duas semanas', description: '14 dias seguidos com XP; isso não é o mesmo que entrar todos os dias.' },
-    vi: { name: 'Hai tuần', description: '14 ngày liên tiếp có XP; khác với việc chỉ đăng nhập hằng ngày.' },
-    id: { name: 'Dua minggu', description: '14 hari berturut-turut dengan XP; ini berbeda dari login harian.' },
-    tr: { name: 'İki hafta', description: 'XP kazanılan 14 gün üst üste; bu günlük giriş yapmakla aynı şey değildir.' },
-    pl: { name: 'Dwa tygodnie', description: '14 dni z rzędu ze zdobytym XP; to nie to samo co codzienne logowanie.' },
+    'pt-BR': { name: 'Duas semanas', description: '14 dias seguidos com progress; isso não é o mesmo que entrar todos os dias.' },
+    vi: { name: 'Hai tuần', description: '14 ngày liên tiếp có progress; khác với việc chỉ đăng nhập hằng ngày.' },
+    id: { name: 'Dua minggu', description: '14 hari berturut-turut dengan progress; ini berbeda dari login harian.' },
+    tr: { name: 'İki hafta', description: 'progress kazanılan 14 gün üst üste; bu günlük giriş yapmakla aynı şey değildir.' },
+    pl: { name: 'Dwa tygodnie', description: '14 dni z rzędu ze zdobytym progress; to nie to samo co codzienne logowanie.' },
   },
   streak_30: {
-    'pt-BR': { name: 'Um mês firme', description: 'Ganhe XP pelo menos uma vez por dia durante 30 dias seguidos.' },
-    vi: { name: 'Một tháng bền bỉ', description: 'Nhận XP ít nhất một lần mỗi ngày trong 30 ngày liên tiếp.' },
-    id: { name: 'Sebulan konsisten', description: 'Dapatkan XP setidaknya sekali sehari selama 30 hari berturut-turut.' },
-    tr: { name: 'Bir ay ayakta', description: '30 gün üst üste her gün en az bir kez XP kazan.' },
-    pl: { name: 'Miesiąc w rytmie', description: 'Zdobywaj XP co najmniej raz dziennie przez 30 dni z rzędu.' },
+    'pt-BR': { name: 'Um mês firme', description: 'Ganhe progress pelo menos uma vez por dia durante 30 dias seguidos.' },
+    vi: { name: 'Một tháng bền bỉ', description: 'Nhận progress ít nhất một lần mỗi ngày trong 30 ngày liên tiếp.' },
+    id: { name: 'Sebulan konsisten', description: 'Dapatkan progress setidaknya sekali sehari selama 30 hari berturut-turut.' },
+    tr: { name: 'Bir ay ayakta', description: '30 gün üst üste her gün en az bir kez progress kazan.' },
+    pl: { name: 'Miesiąc w rytmie', description: 'Zdobywaj progress co najmniej raz dziennie przez 30 dni z rzędu.' },
   },
   streak_60: {
     'pt-BR': { name: 'Dois meses', description: 'Mantenha a sequência de atividade por 60 dias seguidos.' },
@@ -122,11 +114,11 @@ const ACHIEVEMENT_PLANNED_COPY: Partial<Record<string, PlannedAchievementCopy>> 
     pl: { name: 'Sto dni', description: '100 dni z rzędu bez pustych dni w serii.' },
   },
   streak_200: {
-    'pt-BR': { name: 'Duzentos dias', description: '200 dias seguidos com XP diário.' },
-    vi: { name: 'Hai trăm ngày', description: '200 ngày liên tiếp có XP mỗi ngày.' },
-    id: { name: 'Dua ratus hari', description: '200 hari berturut-turut dengan XP harian.' },
-    tr: { name: 'İki yüz gün', description: 'Günlük XP ile 200 gün üst üste devam et.' },
-    pl: { name: 'Dwieście dni', description: '200 dni z rzędu z codziennym XP.' },
+    'pt-BR': { name: 'Duzentos dias', description: '200 dias seguidos com progress diário.' },
+    vi: { name: 'Hai trăm ngày', description: '200 ngày liên tiếp có progress mỗi ngày.' },
+    id: { name: 'Dua ratus hari', description: '200 hari berturut-turut dengan progress harian.' },
+    tr: { name: 'İki yüz gün', description: 'Günlük progress ile 200 gün üst üste devam et.' },
+    pl: { name: 'Dwieście dni', description: '200 dni z rzędu z codziennym progress.' },
   },
   streak_365: {
     'pt-BR': { name: 'Um ano inteiro', description: 'Mantenha a sequência por 365 dias seguidos, como no contador.' },
@@ -136,32 +128,18 @@ const ACHIEVEMENT_PLANNED_COPY: Partial<Record<string, PlannedAchievementCopy>> 
     pl: { name: 'Cały rok', description: 'Utrzymaj serię przez 365 dni z rzędu, tak jak pokazuje licznik.' },
   },
   streak_500: {
-    'pt-BR': { name: '500 dias', description: '500 dias seguidos com XP: uma persistência rara.' },
-    vi: { name: '500 ngày', description: '500 ngày liên tiếp có XP: sự bền bỉ hiếm có.' },
-    id: { name: '500 hari', description: '500 hari berturut-turut dengan XP: ketekunan yang langka.' },
-    tr: { name: '500 gün', description: 'XP ile 500 gün üst üste: nadir bir kararlılık.' },
-    pl: { name: '500 dni', description: '500 dni z rzędu ze zdobytym XP: rzadka wytrwałość.' },
-  },
-  streak_repair: {
-    'pt-BR': { name: 'Fênix', description: 'Use o reparo após exatamente um dia perdido e conclua uma lição no mesmo dia.' },
-    vi: { name: 'Phượng hoàng', description: 'Dùng sửa chuỗi sau đúng một ngày bỏ lỡ và hoàn thành bài học trong cùng ngày.' },
-    id: { name: 'Phoenix', description: 'Gunakan perbaikan setelah tepat satu hari terlewat dan selesaikan pelajaran di hari yang sama.' },
-    tr: { name: 'Anka kuşu', description: 'Tam bir günü kaçırdıktan sonra onarımı kullan ve aynı gün bir dersi bitir.' },
-    pl: { name: 'Feniks', description: 'Użyj naprawy po dokładnie jednym opuszczonym dniu i ukończ lekcję tego samego dnia.' },
-  },
-  perfect_week: {
-    'pt-BR': { name: 'Semana perfeita', description: 'Ganhe XP todos os dias, de segunda a domingo, na mesma semana do calendário.' },
-    vi: { name: 'Tuần hoàn hảo', description: 'Nhận XP mỗi ngày từ thứ Hai đến Chủ nhật trong cùng một tuần lịch.' },
-    id: { name: 'Minggu sempurna', description: 'Dapatkan XP setiap hari dari Senin sampai Minggu dalam satu minggu kalender.' },
-    tr: { name: 'Kusursuz hafta', description: 'Aynı takvim haftasında pazartesiden pazara her gün XP kazan.' },
-    pl: { name: 'Idealny tydzień', description: 'Zdobywaj XP codziennie od poniedziałku do niedzieli w jednym tygodniu kalendarzowym.' },
+    'pt-BR': { name: '500 dias', description: '500 dias seguidos com progress: uma persistência rara.' },
+    vi: { name: '500 ngày', description: '500 ngày liên tiếp có progress: sự bền bỉ hiếm có.' },
+    id: { name: '500 hari', description: '500 hari berturut-turut dengan progress: ketekunan yang langka.' },
+    tr: { name: '500 gün', description: 'progress ile 500 gün üst üste: nadir bir kararlılık.' },
+    pl: { name: '500 dni', description: '500 dni z rzędu ze zdobytym progress: rzadka wytrwałość.' },
   },
   streak_150: {
-    'pt-BR': { name: 'Cento e cinquenta', description: '150 dias seguidos com XP, sem nenhum dia vazio.' },
-    vi: { name: 'Một trăm năm mươi', description: '150 ngày liên tiếp có XP, không có ngày trống.' },
-    id: { name: 'Seratus lima puluh', description: '150 hari berturut-turut dengan XP, tanpa hari kosong.' },
-    tr: { name: 'Yüz elli', description: 'Boş gün olmadan 150 gün üst üste XP kazan.' },
-    pl: { name: 'Sto pięćdziesiąt', description: '150 dni z rzędu ze zdobytym XP, bez pustego dnia.' },
+    'pt-BR': { name: 'Cento e cinquenta', description: '150 dias seguidos com progress, sem nenhum dia vazio.' },
+    vi: { name: 'Một trăm năm mươi', description: '150 ngày liên tiếp có progress, không có ngày trống.' },
+    id: { name: 'Seratus lima puluh', description: '150 hari berturut-turut dengan progress, tanpa hari kosong.' },
+    tr: { name: 'Yüz elli', description: 'Boş gün olmadan 150 gün üst üste progress kazan.' },
+    pl: { name: 'Sto pięćdziesiąt', description: '150 dni z rzędu ze zdobytym progress, bez pustego dnia.' },
   },
   streak_250: {
     'pt-BR': { name: 'Um quarto de milhar', description: 'Mantenha a sequência de atividade por 250 dias seguidos.' },
@@ -171,11 +149,11 @@ const ACHIEVEMENT_PLANNED_COPY: Partial<Record<string, PlannedAchievementCopy>> 
     pl: { name: 'Ćwierć tysiąca', description: 'Utrzymaj serię aktywności przez 250 dni z rzędu.' },
   },
   streak_750: {
-    'pt-BR': { name: '750 dias', description: '750 dias seguidos com XP diário.' },
-    vi: { name: '750 ngày', description: '750 ngày liên tiếp có XP mỗi ngày.' },
-    id: { name: '750 hari', description: '750 hari berturut-turut dengan XP harian.' },
-    tr: { name: '750 gün', description: 'Günlük XP ile 750 gün üst üste devam et.' },
-    pl: { name: '750 dni', description: '750 dni z rzędu z codziennym XP.' },
+    'pt-BR': { name: '750 dias', description: '750 dias seguidos com progress diário.' },
+    vi: { name: '750 ngày', description: '750 ngày liên tiếp có progress mỗi ngày.' },
+    id: { name: '750 hari', description: '750 hari berturut-turut dengan progress harian.' },
+    tr: { name: '750 gün', description: 'Günlük progress ile 750 gün üst üste devam et.' },
+    pl: { name: '750 dni', description: '750 dni z rzędu z codziennym progress.' },
   },
   streak_1000: {
     'pt-BR': { name: 'Mil dias', description: 'Mantenha a sequência de atividade por 1000 dias seguidos.' },
@@ -192,25 +170,25 @@ const ACHIEVEMENT_PLANNED_COPY: Partial<Record<string, PlannedAchievementCopy>> 
     pl: { name: 'Czysty rok', description: '365 dni serii bez naprawy ani zamrożenia w tym okresie.' },
   },
   perfect_month: {
-    'pt-BR': { name: 'Mês sem vazio', description: 'Ganhe XP todos os dias de um mesmo mês do calendário.' },
-    vi: { name: 'Tháng không bỏ trống', description: 'Nhận XP mỗi ngày trong cùng một tháng lịch.' },
-    id: { name: 'Sebulan tanpa kosong', description: 'Dapatkan XP setiap hari dalam satu bulan kalender.' },
-    tr: { name: 'Boşluksuz ay', description: 'Aynı takvim ayında her gün XP kazan.' },
-    pl: { name: 'Miesiąc bez pustki', description: 'Zdobywaj XP każdego dnia jednego miesiąca kalendarzowego.' },
+    'pt-BR': { name: 'Mês sem vazio', description: 'Ganhe progress todos os dias de um mesmo mês do calendário.' },
+    vi: { name: 'Tháng không bỏ trống', description: 'Nhận progress mỗi ngày trong cùng một tháng lịch.' },
+    id: { name: 'Sebulan tanpa kosong', description: 'Dapatkan progress setiap hari dalam satu bulan kalender.' },
+    tr: { name: 'Boşluksuz ay', description: 'Aynı takvim ayında her gün progress kazan.' },
+    pl: { name: 'Miesiąc bez pustki', description: 'Zdobywaj progress każdego dnia jednego miesiąca kalendarzowego.' },
   },
   night_week: {
-    'pt-BR': { name: 'Turno da noite', description: 'Ganhe XP à noite por 7 dias seguidos: das 23:00 às 5:00.' },
-    vi: { name: 'Ca đêm', description: 'Nhận XP ban đêm 7 ngày liên tiếp: từ 23:00 đến 5:00.' },
-    id: { name: 'Shift malam', description: 'Dapatkan XP malam hari selama 7 hari berturut-turut: pukul 23.00-05.00.' },
-    tr: { name: 'Gece vardiyası', description: '7 gün üst üste gece XP kazan: 23:00 ile 5:00 arasında.' },
-    pl: { name: 'Nocna zmiana', description: 'Zdobywaj XP nocą przez 7 dni z rzędu: od 23:00 do 5:00.' },
+    'pt-BR': { name: 'Turno da noite', description: 'Ganhe progress à noite por 7 dias seguidos: das 23:00 às 5:00.' },
+    vi: { name: 'Ca đêm', description: 'Nhận progress ban đêm 7 ngày liên tiếp: từ 23:00 đến 5:00.' },
+    id: { name: 'Shift malam', description: 'Dapatkan progress malam hari selama 7 hari berturut-turut: pukul 23.00-05.00.' },
+    tr: { name: 'Gece vardiyası', description: '7 gün üst üste gece progress kazan: 23:00 ile 5:00 arasında.' },
+    pl: { name: 'Nocna zmiana', description: 'Zdobywaj progress nocą przez 7 dni z rzędu: od 23:00 do 5:00.' },
   },
   early_week: {
-    'pt-BR': { name: 'Modo cedo', description: 'Ganhe XP pela manhã por 7 dias seguidos: das 5:00 às 7:00.' },
-    vi: { name: 'Chế độ dậy sớm', description: 'Nhận XP buổi sáng 7 ngày liên tiếp: từ 5:00 đến 7:00.' },
-    id: { name: 'Mode pagi', description: 'Dapatkan XP pagi hari selama 7 hari berturut-turut: pukul 05.00-07.00.' },
-    tr: { name: 'Erken mod', description: '7 gün üst üste sabah XP kazan: 5:00 ile 7:00 arasında.' },
-    pl: { name: 'Tryb poranny', description: 'Zdobywaj XP rano przez 7 dni z rzędu: od 5:00 do 7:00.' },
+    'pt-BR': { name: 'Modo cedo', description: 'Ganhe progress pela manhã por 7 dias seguidos: das 5:00 às 7:00.' },
+    vi: { name: 'Chế độ dậy sớm', description: 'Nhận progress buổi sáng 7 ngày liên tiếp: từ 5:00 đến 7:00.' },
+    id: { name: 'Mode pagi', description: 'Dapatkan progress pagi hari selama 7 hari berturut-turut: pukul 05.00-07.00.' },
+    tr: { name: 'Erken mod', description: '7 gün üst üste sabah progress kazan: 5:00 ile 7:00 arasında.' },
+    pl: { name: 'Tryb poranny', description: 'Zdobywaj progress rano przez 7 dni z rzędu: od 5:00 do 7:00.' },
   },
   lesson_1: {
     'pt-BR': { name: 'Primeiro passo', description: 'Conclua uma lição: conta quando houver 45 ou mais respostas certas.' },
@@ -331,139 +309,6 @@ const ACHIEVEMENT_PLANNED_COPY: Partial<Record<string, PlannedAchievementCopy>> 
     tr: { name: 'Mutlak II', description: '32 dersin tamamı en az 2 kez kusursuz tamamlandı.' },
     pl: { name: 'Absolut II', description: 'Wszystkie 32 lekcje ukończone idealnie co najmniej 2 razy.' },
   },
-  xp_100: {
-    'pt-BR': { name: 'Primeira centena', description: 'Acumule 100 XP no contador de experiência total.' },
-    vi: { name: 'Một trăm đầu tiên', description: 'Tích lũy 100 XP trong bộ đếm tổng kinh nghiệm.' },
-    id: { name: 'Seratus pertama', description: 'Kumpulkan 100 XP di penghitung total pengalaman.' },
-    tr: { name: 'İlk yüz', description: 'Toplam deneyim sayacında 100 XP biriktir.' },
-    pl: { name: 'Pierwsza setka', description: 'Zbierz 100 XP na liczniku całkowitego doświadczenia.' },
-  },
-  xp_250: {
-    'pt-BR': { name: '250 de XP', description: '250 XP no total, independentemente de como você ganhou.' },
-    vi: { name: '250 XP', description: '250 XP tổng cộng, không tính bạn kiếm được bằng cách nào.' },
-    id: { name: '250 XP', description: '250 XP total, tanpa memperhitungkan cara mendapatkannya.' },
-    tr: { name: '250 XP', description: 'Nasıl kazandığından bağımsız olarak toplam 250 XP.' },
-    pl: { name: '250 XP', description: '250 XP łącznie, bez względu na to, jak zostały zdobyte.' },
-  },
-  xp_500: {
-    'pt-BR': { name: 'Quinhentos', description: '500 XP no contador geral.' },
-    vi: { name: 'Năm trăm', description: '500 XP trên bộ đếm tổng.' },
-    id: { name: 'Lima ratus', description: '500 XP di penghitung umum.' },
-    tr: { name: 'Beş yüz', description: 'Genel sayaçta 500 XP.' },
-    pl: { name: 'Pięćset', description: '500 XP na głównym liczniku.' },
-  },
-  xp_1000: {
-    'pt-BR': { name: 'Mil XP', description: '1.000 XP no total.' },
-    vi: { name: 'Một nghìn XP', description: 'Tổng cộng 1.000 XP.' },
-    id: { name: 'Seribu XP', description: 'Total 1.000 XP.' },
-    tr: { name: 'Bin XP', description: 'Toplam 1.000 XP.' },
-    pl: { name: 'Tysiąc XP', description: 'Łącznie 1 000 XP.' },
-  },
-  xp_2500: {
-    'pt-BR': { name: '2.500 de XP', description: '2.500 XP no total.' },
-    vi: { name: '2.500 XP', description: 'Tổng cộng 2.500 XP.' },
-    id: { name: '2.500 XP', description: 'Total 2.500 XP.' },
-    tr: { name: '2.500 XP', description: 'Toplam 2.500 XP.' },
-    pl: { name: '2 500 XP', description: 'Łącznie 2 500 XP.' },
-  },
-  xp_5000: {
-    'pt-BR': { name: 'Cinco mil', description: '5.000 XP no total.' },
-    vi: { name: 'Năm nghìn', description: 'Tổng cộng 5.000 XP.' },
-    id: { name: 'Lima ribu', description: 'Total 5.000 XP.' },
-    tr: { name: 'Beş bin', description: 'Toplam 5.000 XP.' },
-    pl: { name: 'Pięć tysięcy', description: 'Łącznie 5 000 XP.' },
-  },
-  xp_10000: {
-    'pt-BR': { name: 'Dez mil', description: '10.000 XP no total.' },
-    vi: { name: 'Mười nghìn', description: 'Tổng cộng 10.000 XP.' },
-    id: { name: 'Sepuluh ribu', description: 'Total 10.000 XP.' },
-    tr: { name: 'On bin', description: 'Toplam 10.000 XP.' },
-    pl: { name: 'Dziesięć tysięcy', description: 'Łącznie 10 000 XP.' },
-  },
-  xp_20000: {
-    'pt-BR': { name: 'Vinte mil', description: '20.000 XP no total.' },
-    vi: { name: 'Hai mươi nghìn', description: 'Tổng cộng 20.000 XP.' },
-    id: { name: 'Dua puluh ribu', description: 'Total 20.000 XP.' },
-    tr: { name: 'Yirmi bin', description: 'Toplam 20.000 XP.' },
-    pl: { name: 'Dwadzieścia tysięcy', description: 'Łącznie 20 000 XP.' },
-  },
-  xp_50000: {
-    'pt-BR': { name: 'Cinquenta mil', description: '50.000 XP no total.' },
-    vi: { name: 'Năm mươi nghìn', description: 'Tổng cộng 50.000 XP.' },
-    id: { name: 'Lima puluh ribu', description: 'Total 50.000 XP.' },
-    tr: { name: 'Elli bin', description: 'Toplam 50.000 XP.' },
-    pl: { name: 'Pięćdziesiąt tysięcy', description: 'Łącznie 50 000 XP.' },
-  },
-  xp_75000: {
-    'pt-BR': { name: '75K e sem parar', description: '75.000 XP no total. O caminho para seis dígitos está aberto.' },
-    vi: { name: '75K và chưa dừng lại', description: 'Tổng cộng 75.000 XP. Con đường đến sáu chữ số đã mở.' },
-    id: { name: '75K dan terus lanjut', description: 'Total 75.000 XP. Jalan menuju enam digit terbuka.' },
-    tr: { name: '75K ve durmak yok', description: 'Toplam 75.000 XP. Altı haneye giden yol açıldı.' },
-    pl: { name: '75K i dalej', description: 'Łącznie 75 000 XP. Droga do sześciu cyfr jest otwarta.' },
-  },
-  xp_100000: {
-    'pt-BR': { name: 'Lenda', description: '100.000 XP no total.' },
-    vi: { name: 'Huyền thoại', description: 'Tổng cộng 100.000 XP.' },
-    id: { name: 'Legenda', description: 'Total 100.000 XP.' },
-    tr: { name: 'Efsane', description: 'Toplam 100.000 XP.' },
-    pl: { name: 'Legenda', description: 'Łącznie 100 000 XP.' },
-  },
-  xp_150000: {
-    'pt-BR': { name: '150K de XP', description: 'Acumule 150.000 XP no total.' },
-    vi: { name: '150K XP', description: 'Tích lũy tổng cộng 150.000 XP.' },
-    id: { name: '150K XP', description: 'Kumpulkan total 150.000 XP.' },
-    tr: { name: '150K XP', description: 'Toplam 150.000 XP biriktir.' },
-    pl: { name: '150K XP', description: 'Zbierz łącznie 150 000 XP.' },
-  },
-  xp_250000: {
-    'pt-BR': { name: 'Um quarto de milhão', description: 'Acumule 250.000 XP no total.' },
-    vi: { name: 'Một phần tư triệu', description: 'Tích lũy tổng cộng 250.000 XP.' },
-    id: { name: 'Seperempat juta', description: 'Kumpulkan total 250.000 XP.' },
-    tr: { name: 'Çeyrek milyon', description: 'Toplam 250.000 XP biriktir.' },
-    pl: { name: 'Ćwierć miliona', description: 'Zbierz łącznie 250 000 XP.' },
-  },
-  xp_500000: {
-    'pt-BR': { name: 'Meio milhão', description: 'Acumule 500.000 XP no total.' },
-    vi: { name: 'Nửa triệu', description: 'Tích lũy tổng cộng 500.000 XP.' },
-    id: { name: 'Setengah juta', description: 'Kumpulkan total 500.000 XP.' },
-    tr: { name: 'Yarım milyon', description: 'Toplam 500.000 XP biriktir.' },
-    pl: { name: 'Pół miliona', description: 'Zbierz łącznie 500 000 XP.' },
-  },
-  xp_750000: {
-    'pt-BR': { name: 'Três quartos', description: 'Acumule 750.000 XP no total.' },
-    vi: { name: 'Ba phần tư', description: 'Tích lũy tổng cộng 750.000 XP.' },
-    id: { name: 'Tiga perempat', description: 'Kumpulkan total 750.000 XP.' },
-    tr: { name: 'Üç çeyrek', description: 'Toplam 750.000 XP biriktir.' },
-    pl: { name: 'Trzy czwarte', description: 'Zbierz łącznie 750 000 XP.' },
-  },
-  xp_1000000: {
-    'pt-BR': { name: 'Milionário de XP', description: 'Acumule 1.000.000 XP no total.' },
-    vi: { name: 'Triệu phú XP', description: 'Tích lũy tổng cộng 1.000.000 XP.' },
-    id: { name: 'Jutawan XP', description: 'Kumpulkan total 1.000.000 XP.' },
-    tr: { name: 'XP milyoneri', description: 'Toplam 1.000.000 XP biriktir.' },
-    pl: { name: 'Milioner XP', description: 'Zbierz łącznie 1 000 000 XP.' },
-  },
-  xp_2000000: {
-    'pt-BR': { name: 'Dois milhões', description: 'Acumule 2.000.000 XP no total.' },
-    vi: { name: 'Hai triệu', description: 'Tích lũy tổng cộng 2.000.000 XP.' },
-    id: { name: 'Dua juta', description: 'Kumpulkan total 2.000.000 XP.' },
-    tr: { name: 'İki milyon', description: 'Toplam 2.000.000 XP biriktir.' },
-    pl: { name: 'Dwa miliony', description: 'Zbierz łącznie 2 000 000 XP.' },
-  },
-  weekly_xp_5000: {
-    'pt-BR': { name: 'Semana de 5K', description: 'Ganhe 5.000 XP em uma única semana do calendário.' },
-    vi: { name: 'Tuần 5K', description: 'Nhận 5.000 XP trong một tuần lịch.' },
-    id: { name: 'Minggu 5K', description: 'Dapatkan 5.000 XP dalam satu minggu kalender.' },
-    tr: { name: '5K haftası', description: 'Tek bir takvim haftasında 5.000 XP kazan.' },
-    pl: { name: 'Tydzień na 5K', description: 'Zdobądź 5 000 XP w jednym tygodniu kalendarzowym.' },
-  },
-  weekly_xp_10000: {
-    'pt-BR': { name: 'Semana de 10K', description: 'Ganhe 10.000 XP em uma única semana do calendário.' },
-    vi: { name: 'Tuần 10K', description: 'Nhận 10.000 XP trong một tuần lịch.' },
-    id: { name: 'Minggu 10K', description: 'Dapatkan 10.000 XP dalam satu minggu kalender.' },
-    tr: { name: '10K haftası', description: 'Tek bir takvim haftasında 10.000 XP kazan.' },
-    pl: { name: 'Tydzień na 10K', description: 'Zdobądź 10 000 XP w jednym tygodniu kalendarzowym.' },
-  },
   wager_win: {
     'pt-BR': { name: 'Arriscou e venceu', description: 'Ganhe uma aposta de sequência: mantenha a série até o fim sem cair abaixo do nível inicial.' },
     vi: { name: 'Mạo hiểm và thắng', description: 'Thắng cược chuỗi: giữ chuỗi đến hết hạn mà không xuống dưới mức lúc đặt cược.' },
@@ -486,11 +331,11 @@ const ACHIEVEMENT_PLANNED_COPY: Partial<Record<string, PlannedAchievementCopy>> 
     pl: { name: 'Zimna ręka', description: 'Wygraj łącznie 10 zakładów o serię.' },
   },
   personal_best: {
-    'pt-BR': { name: 'Melhor semana', description: 'Bata seu recorde de XP semanal em uma semana do calendário.' },
-    vi: { name: 'Tuần tốt nhất', description: 'Phá kỷ lục XP theo tuần lịch của bạn.' },
-    id: { name: 'Minggu terbaik', description: 'Pecahkan rekor XP mingguanmu dalam satu minggu kalender.' },
-    tr: { name: 'En iyi hafta', description: 'Bir takvim haftasındaki haftalık XP rekorunu kır.' },
-    pl: { name: 'Najlepszy tydzień', description: 'Pobij swój rekord tygodniowego XP w tygodniu kalendarzowym.' },
+    'pt-BR': { name: 'Melhor semana', description: 'Bata seu recorde de progress semanal em uma semana do calendário.' },
+    vi: { name: 'Tuần tốt nhất', description: 'Phá kỷ lục progress theo tuần lịch của bạn.' },
+    id: { name: 'Minggu terbaik', description: 'Pecahkan rekor progress mingguanmu dalam satu minggu kalender.' },
+    tr: { name: 'En iyi hafta', description: 'Bir takvim haftasındaki haftalık progress rekorunu kır.' },
+    pl: { name: 'Najlepszy tydzień', description: 'Pobij swój rekord tygodniowego progress w tygodniu kalendarzowym.' },
   },
   level_50: {
     'pt-BR': { name: 'Nível 50', description: 'Alcance o nível 50. Você já não é iniciante; é uma lenda.' },
@@ -654,18 +499,18 @@ const ACHIEVEMENT_PLANNED_COPY: Partial<Record<string, PlannedAchievementCopy>> 
     pl: { name: 'Diagnoza gotowa', description: 'Ukończ test diagnostyczny poziomu do końca.' },
   },
   night_owl: {
-    'pt-BR': { name: 'Coruja noturna', description: 'Ganhe XP no app das 23:00 às 5:00 no horário local.' },
-    vi: { name: 'Cú đêm', description: 'Nhận XP trong ứng dụng từ 23:00 đến 5:00 theo giờ địa phương.' },
-    id: { name: 'Burung malam', description: 'Dapatkan XP di aplikasi antara pukul 23.00 dan 05.00 waktu setempat.' },
-    tr: { name: 'Gece kuşu', description: 'Yerel saate göre 23:00 ile 5:00 arasında uygulamada XP kazan.' },
-    pl: { name: 'Nocny marek', description: 'Zdobądź XP w aplikacji między 23:00 a 5:00 czasu lokalnego.' },
+    'pt-BR': { name: 'Coruja noturna', description: 'Ganhe progress no app das 23:00 às 5:00 no horário local.' },
+    vi: { name: 'Cú đêm', description: 'Nhận progress trong ứng dụng từ 23:00 đến 5:00 theo giờ địa phương.' },
+    id: { name: 'Burung malam', description: 'Dapatkan progress di aplikasi antara pukul 23.00 dan 05.00 waktu setempat.' },
+    tr: { name: 'Gece kuşu', description: 'Yerel saate göre 23:00 ile 5:00 arasında uygulamada progress kazan.' },
+    pl: { name: 'Nocny marek', description: 'Zdobądź progress w aplikacji między 23:00 a 5:00 czasu lokalnego.' },
   },
   early_bird: {
-    'pt-BR': { name: 'Madrugador', description: 'Ganhe XP entre 5:00 e 7:00 no horário local.' },
-    vi: { name: 'Chim dậy sớm', description: 'Nhận XP từ 5:00 đến 7:00 theo giờ địa phương.' },
-    id: { name: 'Bangun pagi', description: 'Dapatkan XP antara pukul 05.00 dan 07.00 waktu setempat.' },
-    tr: { name: 'Erkenci', description: 'Yerel saate göre 5:00 ile 7:00 arasında XP kazan.' },
-    pl: { name: 'Ranny ptaszek', description: 'Zdobądź XP między 5:00 a 7:00 czasu lokalnego.' },
+    'pt-BR': { name: 'Madrugador', description: 'Ganhe progress entre 5:00 e 7:00 no horário local.' },
+    vi: { name: 'Chim dậy sớm', description: 'Nhận progress từ 5:00 đến 7:00 theo giờ địa phương.' },
+    id: { name: 'Bangun pagi', description: 'Dapatkan progress antara pukul 05.00 dan 07.00 waktu setempat.' },
+    tr: { name: 'Erkenci', description: 'Yerel saate göre 5:00 ile 7:00 arasında progress kazan.' },
+    pl: { name: 'Ranny ptaszek', description: 'Zdobądź progress między 5:00 a 7:00 czasu lokalnego.' },
   },
   exam_first: {
     'pt-BR': { name: 'Exame aprovado', description: 'Passe no exame após uma lição pelo menos uma vez.' },
@@ -788,7 +633,7 @@ const ACHIEVEMENT_NAME_PICKERS: Record<Lang, AchievementLocalePicker> = {
   // (см. app/source_locales.ts) — фолбэк на RU, как остальные picker'ы на
   // недостающие переводы.
   en: (achievement) => achievement.nameRu,
-  es: (achievement) => achievement.nameEs ?? ACHIEVEMENT_ES[achievement.id]?.nameEs,
+  es: (achievement) => achievement.nameEs,
   'pt-BR': (achievement) => plannedAchievementCopy(achievement, 'pt-BR', 'name'),
   vi: (achievement) => plannedAchievementCopy(achievement, 'vi', 'name'),
   id: (achievement) => plannedAchievementCopy(achievement, 'id', 'name'),
@@ -800,7 +645,7 @@ const ACHIEVEMENT_DESC_PICKERS: Record<Lang, AchievementLocalePicker> = {
   ru: (achievement) => achievement.descRu,
   uk: (achievement) => achievement.descUk,
   en: (achievement) => achievement.descRu,
-  es: (achievement) => achievement.descEs ?? ACHIEVEMENT_ES[achievement.id]?.descEs,
+  es: (achievement) => achievement.descEs,
   'pt-BR': (achievement) => plannedAchievementCopy(achievement, 'pt-BR', 'description'),
   vi: (achievement) => plannedAchievementCopy(achievement, 'vi', 'description'),
   id: (achievement) => plannedAchievementCopy(achievement, 'id', 'description'),
@@ -927,6 +772,8 @@ export function achievementConditionForLang(a: Achievement, lang: Lang): string 
 
 // Список достижений пополняется без миграции: новые id подхватываются loadAchievementStates().
 
+// progress-era achievement definitions remain only in historical locale/compatibility
+// data below; the shipped catalog is exclusively the current Shards/rank catalog.
 export const ALL_ACHIEVEMENTS: Achievement[] = [...ACHIEVEMENT_CATALOG_V2];
 
 // AsyncStorage
@@ -1005,19 +852,6 @@ const loadAchievementStatesFromKey = async (
         if (n.notified !== s.notified || n.shardClaimed !== s.shardClaimed) normalizedDirty = true;
         return n;
       });
-      // One-time semantic-preserving rename: the old league_diamond award meant
-      // reaching Diamond and maps exactly to the new immutable reached-league ID.
-      // Other deleted IDs are intentionally not repurposed.
-      const legacyDiamond = normalized.find((state) => state.id === 'league_diamond');
-      if (
-        legacyDiamond
-        && legacyDiamond.unlockedAt !== null
-        && ids.has('league_reached_diamond')
-        && !normalized.some((state) => state.id === 'league_reached_diamond')
-      ) {
-        normalized.push({ ...legacyDiamond, id: 'league_reached_diamond' });
-        normalizedDirty = true;
-      }
       let next = normalized.filter(s => ids.has(s.id));
       const hadObsolete = next.length !== normalized.length;
       const knownIds = new Set(next.map(s => s.id));
@@ -1273,14 +1107,6 @@ const bumpConsecutiveWeekStreak = async (key: string, accountToken: AccountGener
   ) ? nextStreak : 0;
 };
 
-const readConsecutiveDayStreakValue = async (key: string): Promise<number> => {
-  try {
-    const raw = await AsyncStorage.getItem(key);
-    const parsed = raw ? JSON.parse(raw) : {};
-    return Math.max(0, Math.floor(parsed?.streak ?? 0));
-  } catch { return 0; }
-};
-
 const bumpMonthlyActivityDays = async (
   key: string,
   accountToken: AccountGenerationToken,
@@ -1343,10 +1169,10 @@ const ACHIEVEMENT_BACKFILL_KEY = 'achievements_progress_backfill_v4';
 const WAGER_WIN_COUNT_KEY = 'achievement_wager_win_count';
 
 const readStoredCounter = async (key: string): Promise<number> => {
-  if (key === 'user_total_xp' || key === 'streak_count') {
+  if (key === 'streak_count') {
     await hydratePersonalProgress();
     const progress = getPersonalProgressSnapshot();
-    return key === 'user_total_xp' ? progress.totalXp : progress.streakCount;
+    return progress.streakCount;
   }
   return parseInt((await AsyncStorage.getItem(key)) ?? '0', 10) || 0;
 };
@@ -1404,7 +1230,6 @@ const markStreakSafetyUsed = async (accountToken: AccountGenerationToken): Promi
 
 export type AchievementEvent =
   | { type: 'streak';         streak:    number }
-  | { type: 'xp';             totalXP:   number }
   | { type: 'lesson_complete'; lessonCount: number; wasPerfect?: boolean; perfectCount?: number; lessonId?: number; studyTarget?: RuntimeStudyTarget }
   | { type: 'lesson_perfect_pass'; lessonId: number; passCount: number; studyTarget?: RuntimeStudyTarget }
   | { type: 'combo';          count: number; studyTarget?: RuntimeStudyTarget }
@@ -1412,8 +1237,6 @@ export type AchievementEvent =
   | { type: 'comeback' }
   | { type: 'wager_win' }
   | { type: 'personal_best' }
-  | { type: 'streak_repair' }
-  | { type: 'perfect_week' }
   | { type: 'diagnosis'; studyTarget?: RuntimeStudyTarget }
   | { type: 'time_of_day' }
   | { type: 'backfill'; studyTarget?: RuntimeStudyTarget }
@@ -1427,30 +1250,6 @@ export type AchievementEvent =
   | { type: 'foreground_usage'; totalMs: number }
   | { type: 'active_day'; activeDate: string; previousActiveDate?: string | null }
   | { type: 'shards_spent'; amount: number }
-  | {
-      type: 'league_result';
-      weekId?: string;
-      points?: number;
-      prevLeagueId?: number;
-      myRank: number;
-      totalInGroup: number;
-      promoted?: boolean;
-      newLeagueId?: number;
-      confirmed?: boolean;
-    }
-  | {
-      type: 'league_history';
-      results: Array<{
-        weekId: string;
-        points: number;
-        prevLeagueId: number;
-        newLeagueId: number;
-        myRank: number;
-        totalInGroup: number;
-        confirmed: true;
-      }>;
-    }
-  | { type: 'league_boost'; multiplier: number }
   | { type: 'gem'; level: string; gem: 'ruby' | 'emerald' | 'diamond'; studyTarget?: RuntimeStudyTarget }
   // ── Новые события ────────────────────────────────────────────────────────
   | { type: 'friend_added';   totalFriends: number }
@@ -1469,14 +1268,10 @@ export type AchievementEvent =
 // больше не должны ни читать прогресс, ни писать achievement-счётчики.
 const FOUNDATION_ACHIEVEMENT_EVENT_TYPES: ReadonlySet<AchievementEvent['type']> = new Set([
   'streak',
-  'xp',
   'backfill',
   'shards',
   'foreground_usage',
   'active_day',
-  'league_result',
-  'league_history',
-  'streak_repair',
   'streak_freeze_used',
 ]);
 
@@ -1600,29 +1395,6 @@ const reduceFoundationEventProgress = async (
       token,
     );
   }
-  if (event.type === 'league_result') {
-    return updateFoundationProgress(
-      (current) => reduceFoundationLeagueResult(current, {
-        weekId: event.weekId ?? '',
-        points: event.points ?? 0,
-        prevLeagueId: event.prevLeagueId ?? event.newLeagueId ?? 0,
-        newLeagueId: event.newLeagueId ?? event.prevLeagueId ?? 0,
-        myRank: event.myRank,
-        totalInGroup: event.totalInGroup,
-        confirmed: event.confirmed === true,
-      }),
-      token,
-    );
-  }
-  if (event.type === 'league_history') {
-    return updateFoundationProgress(
-      (current) => event.results.slice(0, 1_000).reduce(
-        (state, evidence) => reduceFoundationLeagueResult(state, evidence),
-        current,
-      ),
-      token,
-    );
-  }
   if (event.type === 'active_day') {
     return updateFoundationProgress(
       (current) => reduceFoundationActiveDay(
@@ -1634,17 +1406,10 @@ const reduceFoundationEventProgress = async (
     );
   }
   if (event.type === 'backfill') {
-    const [championCount, diamondPlusWeeks, activeDates] = await Promise.all([
-      readStoredCounter('achievement_league_champion_count'),
-      readConsecutiveDayStreakValue('achievement_league_diamond_week_streak_v1'),
-      readLifetimeActiveDateHistory(),
-    ]);
+    const activeDates = await readLifetimeActiveDateHistory();
     if (!isCurrentAccountGeneration(token)) return loadFoundationProgress(token);
     return updateFoundationProgress(
-      (current) => reduceFoundationActiveDateHistory(
-        reduceFoundationLegacyCounters(current, { championCount, diamondPlusWeeks }),
-        activeDates,
-      ),
+      (current) => reduceFoundationActiveDateHistory(current, activeDates),
       token,
     );
   }
@@ -1653,39 +1418,25 @@ const reduceFoundationEventProgress = async (
 
 const evaluateFoundationSnapshot = async (
   event: AchievementEvent,
-  states: readonly AchievementState[],
   progress: AchievementFoundationProgressV2,
   accountToken: AccountGenerationToken,
 ): Promise<string[]> => {
-  const [storedStreak, storedXp, foregroundMs, activeDaysTotal, paidPairs] = await Promise.all([
+  const [storedStreak, foregroundMs, activeDaysTotal, paidPairs] = await Promise.all([
     readStoredCounter('streak_count'),
-    readStoredCounter('user_total_xp'),
     getForegroundUsageMs(),
     readActiveDaysTotal(),
     AsyncStorage.multiGet([ACHIEVEMENT_ACCESS_PLUS_PAID_KEY, ACHIEVEMENT_ACCESS_PRO_PAID_KEY]),
   ]);
   const streakDays = event.type === 'streak' ? Math.max(storedStreak, event.streak) : storedStreak;
-  const totalXpBeforeAchievementRewards = event.type === 'xp'
-    ? Math.max(storedXp, event.totalXP)
-    : storedXp;
   const cleanStreakDays = await readCleanStreakDays(streakDays, accountToken);
   const createdAtMs = peekCurrentAccountCreatedAtMs();
   const accountAgeDays = createdAtMs === null
     ? 0
     : Math.max(0, Math.floor((Date.now() - createdAtMs) / 86_400_000));
-  const unlockedBeforeBatch = new Set(
-    states.filter((state) => state.unlockedAt !== null).map((state) => state.id),
-  );
-
   return evaluateFoundationAchievements({
     streakDays,
     cleanStreakDays,
-    totalXpBeforeAchievementRewards,
     maxEligibleShardBalance: progress.maxEligibleShardBalance,
-    reachedLeagueIds: progress.reachedLeagueIds,
-    championCount: Math.max(progress.legacyChampionCount, progress.championWeeks.length),
-    championLeagueIds: progress.championLeagueIds,
-    diamondPlusConsecutiveWeeks: progress.diamondPlusConsecutiveWeeks,
     foregroundMs: event.type === 'foreground_usage'
       ? Math.max(foregroundMs, Math.max(0, Math.floor(event.totalMs)))
       : foregroundMs,
@@ -1696,7 +1447,6 @@ const evaluateFoundationSnapshot = async (
     activeDaysTotal: Math.max(activeDaysTotal, progress.activeDates.length),
     accountAgeDays,
     comebackQualified: progress.comeback?.qualified === true,
-    unlockedBeforeBatch,
   });
 };
 
@@ -1726,15 +1476,16 @@ export const checkAchievements = async (
     // зачем: владелец на новом аккаунте увидел лавину тостов. Backfill — это НЕ достижение
     // «прямо сейчас», а сверка уже накопленного локального состояния (пройденные уроки,
     // сохранённые карточки, счётчики тренажёра). Раньше его разблокировки шли в общий поток
-    // и вываливались тостами по 3.8с штука. Теперь помечаем их notified сразу: XP за них
-    // начисляется как обычно, на экране достижений они видны, но празднования не устраивают.
+    // и вываливались тостами по 3.8с штука. Теперь помечаем их notified сразу:
+    // на экране достижений они видны, но празднования не устраивают.
     const backfilledIds = new Set<string>();
     const backfillUnlock = (id: string) => {
       const before = justUnlocked.length;
       u(id);
       if (justUnlocked.length > before) backfilledIds.add(id);
     };
-    if (event.type === 'streak_freeze_used' || event.type === 'streak_repair') {
+    // зачем: D107 — починки серии больше нет; «чистую» серию прерывает только заморозка Plus.
+    if (event.type === 'streak_freeze_used') {
       await markStreakSafetyUsed(operationToken);
       if (!isCurrentAccountGeneration(operationToken)) return [];
     }
@@ -1743,11 +1494,9 @@ export const checkAchievements = async (
     if (!isCurrentAccountGeneration(operationToken)) return [];
     const progress = await reduceFoundationEventProgress(event, operationToken);
     if (!isCurrentAccountGeneration(operationToken)) return [];
-    const eligibleIds = await evaluateFoundationSnapshot(event, states, progress, operationToken);
+    const eligibleIds = await evaluateFoundationSnapshot(event, progress, operationToken);
     if (!isCurrentAccountGeneration(operationToken)) return [];
-    const silentBackfill = event.type === 'backfill'
-      || event.type === 'league_history'
-      || backfillMarker !== '1';
+    const silentBackfill = event.type === 'backfill' || backfillMarker !== '1';
     for (const id of eligibleIds) {
       if (silentBackfill) backfillUnlock(id);
       else u(id);
@@ -1794,39 +1543,11 @@ export const checkAchievements = async (
       if (!isCurrentAccountGeneration(operationToken)) return [];
       emitAppEvent('achievement_unlocked');
 
-      const userName = await AsyncStorage.getItem('user_name').catch(() => null);
-      if (!isCurrentAccountGeneration(operationToken)) return [];
-      const lang = (await AsyncStorage.getItem('app_lang').catch(() => null))
-        || (await AsyncStorage.getItem('user_lang').catch(() => null));
-      if (!isCurrentAccountGeneration(operationToken)) return [];
-      const safeUser = userName || 'Player';
-      const safeLang = (lang as 'ru' | 'uk') || 'ru';
-      for (const ach of justUnlocked) {
-        if (ach.xp > 0) {
-          const xpAmt = ach.xp;
-          // Нельзя await registerXP отсюда: вызывающий registerXP (урок/задание) уже держит xp-lock —
-          // вложенный await навсегда висит на цепочке _xpLock (мертвая блокировка, «Забрать» крутится).
-          setTimeout(() => {
-            void registerXP(xpAmt, 'achievement_reward', safeUser, safeLang, undefined, {
-              eventId: [
-                'achievement',
-                safeAchievementEventPart(ach.id, 80),
-                'reward',
-              ].join(':'),
-              payload: {
-                achievementId: ach.id,
-                nameRu: ach.nameRu,
-              },
-              accountToken: operationToken,
-            }).catch(() => {});
-          }, 0);
-        }
-      }
     }
     return justUnlocked;
   } catch (error) {
     // зачем (аудит 2026-08-26): раньше здесь стояло глухое `catch { return [] }`.
-    // Любая опечатка внутри 116 строк выдачи гасила достижения и XP У ВСЕХ молча —
+    // Любая опечатка внутри 116 строк выдачи гасила достижения и progress У ВСЕХ молча —
     // снаружи это неотличимо от «нечего разблокировать». Теперь отказ виден.
     // Импорт ленивый: файл на горячем пути, а debug-logger тянет app_health.
     void import('./debug-logger')

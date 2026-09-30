@@ -189,7 +189,6 @@ export async function runMaxVoiceWatchdogOnce(db: Firestore, nowMs: number = Dat
               cefr: null,
               trialVariant: null,
               clientSpeechSec: 0,
-              xpAwarded: 0,
               sessionStartedAtMs: voiceSessionClockStartMs(data),
               nowMs,
             });

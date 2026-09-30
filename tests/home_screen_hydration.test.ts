@@ -3,7 +3,6 @@ import {
   patchHomeScreenHydration,
   peekHomeScreenHydration,
   rememberHomeScreenHydration,
-  resolveHomeStorageStats,
   resolveHomeProfileVisuals,
   type HomeScreenHydration,
 } from '../app/home_screen_hydration';
@@ -15,27 +14,11 @@ import {
   captureAccountGeneration,
 } from '../app/account_generation';
 
-it('uses authoritative in-memory stats when SQLite values are absent or stale', () => {
-  expect(resolveHomeStorageStats({
-    storedTotalXp: null,
-    storedStreak: null,
-    profile: { source: 'live', totalXp: 564776 },
-    progress: { source: 'live', streak: 93 },
-  })).toEqual({ totalXp: 564776, streak: 93 });
-
-  expect(resolveHomeStorageStats({
-    storedTotalXp: '0',
-    storedStreak: '0',
-    profile: { source: 'live', totalXp: 564776 },
-    progress: { source: 'live', streak: 93 },
-  })).toEqual({ totalXp: 564776, streak: 93 });
-});
-
 const base: HomeScreenHydration = {
-  userName: 'A', totalXP: 1, streak: 1, displayStreak: 1, weekDone: [], weekPoints: 0,
+  userName: 'A', streak: 1, displayStreak: 1, weekDone: [], weekPoints: 0,
   shardsBalance: 0, lessonsCompleted: 0, freezeActive: false, premiumFreezeUsed: false,
-  totalXPMulti: 1, userAvatar: '', userAvatarAura: null, userFrame: '', lastLessonId: null,
-  lastLessonProgress: 0, lastLessonScore: '0', homeLeagueChest: null,
+  userAvatar: '', userAvatarAura: null, userFrame: '', lastLessonId: null,
+  lastLessonProgress: 0, lastLessonScore: '0',
 };
 
 beforeEach(() => {
@@ -43,11 +26,6 @@ beforeEach(() => {
   __resetHomeScreenHydrationForTests();
 });
 
-it('patches the cached home league snapshot after async league refresh', () => {
-  rememberHomeScreenHydration(base, 'en');
-  patchHomeScreenHydration({ homeLeagueChest: { leagueName: 'Silver', progress: 215_000, goal: 220_000, myContribution: 1, leaderName: 'A', leaderPoints: 1 } }, 'en');
-  expect(peekHomeScreenHydration('en')?.homeLeagueChest?.progress).toBe(215_000);
-});
 
 it('keeps an uninitialized boot snapshot only until account adoption', () => {
   rememberHomeScreenHydration(base, 'en');
@@ -95,26 +73,19 @@ it('rejects a late Home write captured before an account switch', () => {
 
 it('hydrates first-frame profile visuals from cached home state before async storage', () => {
   const visuals = resolveHomeProfileVisuals({
-    hydration: { ...base, totalXP: 50_000, userAvatar: 'custom-avatar', userAvatarAura: 'aura-ember', userFrame: 'gold' },
-    snapshot: { totalXp: 1, avatar: 'wrong-avatar', frame: 'wrong-frame', aura: 'aura-mint' },
+    hydration: { ...base, userAvatar: 'custom-avatar', userAvatarAura: 'aura-ember', userFrame: 'gold' },
+    snapshot: { avatar: 'wrong-avatar', frame: 'wrong-frame', aura: 'aura-mint' },
   });
-  expect(visuals).toMatchObject({ avatar: 'custom-avatar', frame: 'gold', aura: 'aura-ember' });
+  // зачем: D108 — ауры удалены: Главная всегда получает «без ауры».
+  expect(visuals).toMatchObject({ avatar: 'custom-avatar', frame: 'gold', aura: null });
 });
 
 it('hydrates first-frame profile visuals from app snapshot when home cache is absent', () => {
   const visuals = resolveHomeProfileVisuals({
     hydration: null,
-    snapshot: { totalXp: 50_000, avatar: 'snapshot-avatar', frame: 'snapshot-frame', aura: 'aura-mint' },
+    snapshot: { avatar: 'snapshot-avatar', frame: 'snapshot-frame', aura: 'aura-mint' },
   });
-  expect(visuals).toMatchObject({ avatar: 'snapshot-avatar', frame: 'snapshot-frame', aura: 'aura-mint' });
-});
-
-it('does not treat bootstrap avatar 1 as a real first-frame profile choice for high XP', () => {
-  const visuals = resolveHomeProfileVisuals({
-    hydration: null,
-    snapshot: { totalXp: 50_000, avatar: '1', frame: '' },
-  });
-  expect(visuals.avatar).not.toBe('1');
+  expect(visuals).toMatchObject({ avatar: 'snapshot-avatar', frame: 'snapshot-frame', aura: null });
 });
 
 it('applies authoritative cloud stats after local Home hydration has already finished', () => {
@@ -130,7 +101,6 @@ it('applies authoritative cloud stats after local Home hydration has already fin
 it('keeps delayed app snapshot hydration wired to home profile visuals', () => {
   const source = require('fs').readFileSync(require('path').join(__dirname, '..', 'app/(tabs)/home.tsx'), 'utf8');
   expect(source).toContain('shouldApplyHomeSnapshotToStats(homeStatsLoadedOnce, profile?.source, progress?.source)');
-  expect(source).toContain("profile.source === 'live' || (totalXP === 0 && profile.totalXp > 0)");
   expect(source).toContain("progress.source === 'live' || (streak === 0 && progress.streak > 0)");
   expect(source).toContain('const visuals = resolveHomeProfileVisuals({ snapshot: profile });');
   expect(source).toContain('setUserAvatar((current) => current === visuals.avatar ? current : visuals.avatar);');

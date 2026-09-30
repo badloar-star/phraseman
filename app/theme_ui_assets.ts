@@ -4,9 +4,7 @@ import type { ThemeMode } from '../constants/theme';
 
 const SHARED = {
   rune: require('../assets/images/level-spin-rewards/stars_10.webp'),
-  spinTicket: require('../assets/images/spin/spin_ticket.webp'),
   streakIce: require('../assets/images/streak_overlays/streak-freeze-ice.webp'),
-  leagueCrown: require('../assets/images/league/league_crown.webp'),
 } satisfies Record<string, ImageSourcePropType>;
 
 export type ThemeUiAssetKey = keyof typeof SHARED;

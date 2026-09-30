@@ -71,10 +71,9 @@
 | `components/HomeTheoAdvisorCard.tsx` | tests/owner_direction_runtime_contract.test.ts:161 — контракт на 1 setInterval (typewriter). Прямого импорта в компонентах не нашли → возможна динамическая загрузка/регистрация. Не удалять до выяснения точки монтирования. |
 | `components/adaptiveBackgroundAssets.generated.ts` | adaptiveBackgroundAssets.ts:4 (статический импорт) + tests/adaptive_background_assets.test.ts:17. **НО** родитель adaptiveBackgroundAssets.ts сам мёртв (раздел 1) → живёт только за счёт мёртвого родителя + теста. Удалять ВСЮ связку вместе (см. раздел 5). |
 | `components/FlatTopHexFill.tsx` | components/LessonHexProgress.tsx:3 + JSX 63-72. **НО** LessonHexProgress сам мёртв (раздел 1) → живёт только за счёт мёртвого родителя. Часть hex-кластера на удаление (см. раздел 5). |
-| `modules/phrase-widget/constants.ts` | транзитивно через index.ts → app/widget_bridge.ts:28 → app/_layout.tsx:125. Критическая точка синхронизации JS↔native (iOS Swift / Android Kotlin Glance widget). **НЕ удалять.** |
 
 > ⚠️ Важная оговорка по «alive» в этом разделе. Тут смешаны два разных «живых»:
-> - **По-настоящему живые:** `modules/phrase-widget/constants.ts`, `HomeTheoAdvisorCard.tsx` (вероятно). Вычёркиваем из удаления.
+> - **По-настоящему живые:** `HomeTheoAdvisorCard.tsx` (вероятно). Вычёркиваем из удаления.
 > - **«Живые» только за счёт мёртвого/тестового окружения:** `ActiveBoostBar.tsx` (только контракт-тест), `adaptiveBackgroundAssets.generated.ts` (мёртвый родитель + тест), `FlatTopHexFill.tsx` (мёртвый родитель). Это **псевдо-живые** — реально удаляемы, но только вместе со своим кластером/тестом. Первый аудит верно пометил их alive по факту наличия импорта, но не учёл, что импортёр сам труп.
 
 ---
@@ -162,7 +161,7 @@ Compat-слой над react-native. Удалять пару вместе, пр�
 |-----------|--------|------------|
 | ✅ Подтверждено DEAD (safe удалять) | **25** | из них 4 удерживаются контракт-тестами → удалять синхронно с тестом |
 | ⚠️ UNCERTAIN (ручная проверка) | **6** | MistakeEli5Modal, ScreenArtBackdrop, ShardsEarnedModal, use-color-scheme.ts, icon-symbol.tsx, icon-symbol.ios.tsx |
-| ❌ ALIVE — реально живой, вычеркнуть | **2** | modules/phrase-widget/constants.ts, HomeTheoAdvisorCard.tsx |
+| ❌ ALIVE — реально живой, вычеркнуть | **1** | HomeTheoAdvisorCard.tsx |
 | ❌ ALIVE — псевдо-живой (живёт за счёт мёртвого родителя/теста) | **3** | ActiveBoostBar.tsx, FlatTopHexFill.tsx, adaptiveBackgroundAssets.generated.ts → удаляемы в составе кластера |
 | **Итого** | **36** | |
 
@@ -192,7 +191,7 @@ Compat-слой над react-native. Удалять пару вместе, пр�
 2. Удалить **кластеры целиком**: A (2 файла), B (4 файла), C (.ts+.generated+тест), D (папка modal_fx).
 3. Удалить **2 пакета**: `ts-fsrs`, `@gorhom/bottom-sheet` (+ `@gorhom/portal`).
 4. **Руками проверить** 6 uncertain-файлов + 2 uncertain-пакета перед любым удалением.
-5. **НЕ трогать** живое: phrase-widget/constants.ts, HomeTheoAdvisorCard, lottie-react-native, @react-navigation/*.
+5. **НЕ трогать** живое: HomeTheoAdvisorCard, lottie-react-native, @react-navigation/*.
 
 ---
 

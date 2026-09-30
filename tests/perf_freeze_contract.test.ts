@@ -36,12 +36,11 @@ describe('perf freeze contract', () => {
 
   it('allows freezeOnBlur:false only for the realtime allowlist', () => {
     const source = read('app/_layout.tsx');
-    // Экраны, которым разрешено НЕ замораживаться: экзамен и server-authoritative
-    // live-экраны Arena V2 (arena_match, arena_today — оба несут серверный дедлайн,
-    // см. комментарии рядом с их <Stack.Screen> в _layout.tsx). У Arena
-    // listener/timer ownership дополнительно гейтится focus + AppState внутри экрана.
+    // Экраны, которым разрешено НЕ замораживаться: экзамен.
+    // зачем: D83 — клиентская Арена удалена, её live-экраны (arena_match,
+    // arena_today) ушли из исключений вместе с маршрутами.
     // Добавление нового исключения = осознанное решение хозяина: расширь список и объясни зачем.
-    const allowed = ['exam', 'arena_match', 'arena_today'];
+    const allowed = ['exam'];
     const offenders = source
       .split(/\r?\n/)
       .filter((line) => line.includes('freezeOnBlur: false'))
@@ -82,14 +81,8 @@ describe('perf freeze contract', () => {
     const legacyAllowlist = new Set([
       'components/PremiumCelebrationModal.tsx', // модалка, unmount on close
       'app/flashcards/CardPackShardPaywallModal.tsx', // модалка, unmount on close
-      // зачем (аудит скорости 2026-08-22): оба используются ТОЛЬКО в app/arena_match.tsx —
-      // единственном push-экране (кроме exam) в explicit freezeOnBlur:false allowlist
-      // выше. Экран размонтируется целиком при выходе (не premount-таб), поэтому
-      // withRepeat(-1) не может пережить фокус: гейт useIsScreenFocused/AppState
-      // здесь избыточен, а не забыт. ArenaTimerRing — боевой таймер ответа, ему
-      // ЗАПРЕЩЕНО останавливаться на паузе (та же логика, что и у tournament_round).
-      'components/arena/ArenaTimerRing.tsx',
-      'components/arena/ArenaComboMeter.tsx',
+      // зачем: D83 — ArenaTimerRing/ArenaComboMeter удалены вместе с Ареной, их
+      // исключения сняты (allowlist только сужается).
     ]);
     const dirs = ['app', 'components', 'hooks'];
     const files = dirs.flatMap((d) => walk(path.join(ROOT, d)));
@@ -145,8 +138,8 @@ describe('perf freeze contract', () => {
   });
 
   it('binds Friends and Settings network ownership to named runtime owners, not retired tab positions', () => {
-    const arena = read('app/(tabs)/arena.tsx');
-    expect(arena).toMatch(/runtimeOwnerId === ['"]arena['"]/);
+    // зачем: D83 — (tabs)/arena.tsx стал пустым якорем старого URL, владельца
+    // рантайма у него больше нет.
 
     const friends = read('app/(tabs)/friends.tsx');
     expect(friends).toMatch(/runtimeOwnerId === ['"]friends['"]/);
@@ -176,21 +169,11 @@ describe('perf freeze contract', () => {
     expect(offenders).toEqual([]);
   });
 
-  it('pauses countdown and refresh timers after their push screen loses foreground ownership', () => {
-    // freezeOnBlur stops rendering only; a JS interval survives unless the
-    // screen itself passes foreground ownership to the timer.  These screens
-    // stay on the native stack while users browse elsewhere.
-
+  it('does not mount countdown or refresh timers on the retired shop route', () => {
     const shardsShop = read('app/shards_shop.tsx');
-    expect(shardsShop).toContain("import { useRuntimeActive } from '../hooks/use_runtime_active'");
-    expect(shardsShop).toContain('const shardsShopRuntimeActive = useRuntimeActive();');
-    const trialRefreshEffectStart = shardsShop.indexOf('if (!shardsShopRuntimeActive || packTrialHours == null || packTrialHours <= 0) return;');
-    const trialRefreshEffect = shardsShop.slice(
-      trialRefreshEffectStart,
-      shardsShop.indexOf("useEffect(() => {\n    const sub = onAppEvent('pack_trial_gift_set'", trialRefreshEffectStart),
-    );
-    expect(trialRefreshEffect).toContain('if (!shardsShopRuntimeActive || packTrialHours == null || packTrialHours <= 0) return;');
-    expect(trialRefreshEffect).toContain('[packTrialHours, refreshPackTrial, shardsShopRuntimeActive]');
+    expect(shardsShop).toContain('<Redirect href="/flashcards_my_packs" />');
+    expect(shardsShop).not.toContain('setInterval(');
+    expect(shardsShop).not.toContain('onSnapshot(');
   });
 
   it('coalesces Home refresh events while another tab owns the runtime', () => {

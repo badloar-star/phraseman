@@ -83,7 +83,6 @@ interface StatsInsightsBriefing {
   };
   rhythm: {
     active7: number;
-    xp7: number;
     minutes7: number;
     bestDay: string;        // localized short weekday or ''
   };
@@ -95,9 +94,8 @@ interface StatsInsightsBriefing {
     goalPct: number;        // 0..100 toward yearly goal
   };
   percentiles: {
-    totalXp: number | null;       // % of users beaten, or null if hidden
-    week: number | null;
-    daily7: number | null;
+    streak: number | null;
+    daily7time: number | null;
   };
   lifetime: {
     words: number;
@@ -182,7 +180,6 @@ function sanitizeBriefing(raw: unknown): StatsInsightsBriefing {
     },
     rhythm: {
       active7: clampInt(r.active7, 0, 7),
-      xp7: clampInt(r.xp7, 0, 100000000),
       minutes7: clampInt(r.minutes7, 0, 1000000),
       bestDay: text(r.bestDay, 24),
     },
@@ -194,9 +191,8 @@ function sanitizeBriefing(raw: unknown): StatsInsightsBriefing {
       goalPct: clampInt(y.goalPct, 0, 100),
     },
     percentiles: {
-      totalXp: clampPercentOrNull(p.totalXp),
-      week: clampPercentOrNull(p.week),
-      daily7: clampPercentOrNull(p.daily7),
+      streak: clampPercentOrNull(p.streak),
+      daily7time: clampPercentOrNull(p.daily7time),
     },
     lifetime: {
       words: clampInt(l.words, 0, 100000000),
@@ -412,8 +408,8 @@ ABSOLUTE RULES:
 - You receive a JSON briefing of ALREADY-COMPUTED numbers. Describe ONLY what is in it.
 - NEVER invent numbers, streaks, words, categories, or facts not present in the briefing.
 - Each note is 1–2 short sentences, each sentence ≤10 words, plain words. Be specific: refer to the actual numbers for that block.
-- Never expose internal product metrics or labels to the learner: do not mention numeric ratings, points, scoring labels, or the internal block name as a learner-visible rating. Speak in plain human words, not jargon — avoid "percentile", "XP", "daily7"; say e.g. the ${langName} for "you are ahead of most".
-- Do NOT claim that effort (streak, time, XP) causes language knowledge. Use effort only for warm acknowledgement.
+- Never expose internal product metrics or labels to the learner: do not mention numeric ratings, points, scoring labels, or the internal block name as a learner-visible rating. Speak in plain human words, not jargon — say e.g. the ${langName} for "you are ahead of most".
+- Do NOT claim that effort (streak or time) causes language knowledge. Use effort only for warm acknowledgement.
 - Always frame as what the learner HAS or can gain, never as loss. Loss-framing (e.g. the ${langName} for "don't lose your streak") is allowed ONLY in the "year" note AND only when currentStreak >= 7. For shorter streaks use pure encouragement. Never create false urgency (the ${langName} for "hurry, today only").
 - WORD CHOICE: never say the ${langName} word for "statistics" to the learner — say "your results" (in Russian: «твои результаты», NOT «статистика»). Prefer "phrase" over "word"; "series" for streak, never "lesson". Avoid filler words (the ${langName} equivalents of «просто», «также», «кстати», «в принципе», «на самом деле»).
 - Address the learner informally, as "ты" — use the informal second person of ${langName} (ты/tú/du/tu, NEVER the polite "вы"/usted/Sie/vous form). Talk like a friend who is on their side.
@@ -422,9 +418,9 @@ ABSOLUTE RULES:
 
 THE FIVE BLOCKS (write a note for each):
 - "balance": learner-facing practice consistency card. Use active7 days and avgMinutes per active day. If isWarmup is true, say there is not enough practice yet for a fair pattern. Do NOT mention the score, points, or the internal word "balance".
-- "rhythm": this week — active7/7 days, xp7 XP, minutes7 minutes, best day. Comment on the weekly pattern.
+- "rhythm": this week — active7/7 days, minutes7 minutes, best day. Comment on the weekly pattern.
 - "year": activeDays active days this year, currentStreak / longestStreak, bestMonth, goalPct% toward the yearly goal. Comment on the long-term picture.
-- "percentiles": how the learner ranks vs others (totalXp%, week%, daily7% — each may be null/absent). If all null, give a neutral encouraging line about focusing on their own pace. Otherwise highlight the best ranking.
+- "percentiles": how the learner ranks vs others (streak% and daily practice time%; each may be null/absent). If all null, give a neutral encouraging line about focusing on their own pace. Otherwise highlight the best ranking.
 - "lifetime": all-time totals — words, phrases, daysActive. Celebrate the biggest non-zero number; if mostly zero, encourage a first milestone.
 
 If weakCategories is non-empty, you MAY weave ONE concrete "what to pull up" suggestion (the category label) into the "balance" or "rhythm" note. Never suggest a topic that is not in weakCategories.

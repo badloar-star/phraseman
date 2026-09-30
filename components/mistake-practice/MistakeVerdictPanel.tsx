@@ -6,6 +6,7 @@ import SkeletonBlock from '../SkeletonShimmer';
 import { triLang, type Lang } from '../../constants/i18n';
 import { buildMistakeAnswerDiff, type MistakeDiffSegment } from '../../app/mistake_answer_diff';
 import { useTheme } from '../ThemeContext';
+import { useLv2Glass } from '../learning-v2/LearningV2Glass';
 
 /**
  * Панель вердикта раздела ошибок (макет промаха А, утверждён 2026-09-14).
@@ -63,15 +64,16 @@ const copyFor = (lang: Lang) => triLang(lang, {
 });
 
 function DiffLine({ label, segments, muted }: Readonly<{ label: string; segments: readonly MistakeDiffSegment[]; muted: boolean }>) {
-  const { theme: t, f } = useTheme();
+  const { f } = useTheme();
+  const g = useLv2Glass();
   return (
     <View style={styles.diffLine}>
-      <Text style={[styles.diffLabel, { color: t.textMuted, fontSize: f.caption }]}>{label}</Text>
+      <Text style={[styles.diffLabel, { color: g.secondary, fontSize: f.caption }]}>{label}</Text>
       <View style={styles.diffWords}>
         {segments.map((segment, index) => {
           if (segment.tone === 'gap') {
             // Плашка на месте пропущенного слова: видно, где именно дырка.
-            return <View key={`gap-${index}`} style={[styles.gap, { backgroundColor: t.wrongBg }]} />;
+            return <View key={`gap-${index}`} style={[styles.gap, { backgroundColor: g.badFill }]} />;
           }
           const highlight = segment.tone === 'wrong' || segment.tone === 'right';
           return (
@@ -79,8 +81,8 @@ function DiffLine({ label, segments, muted }: Readonly<{ label: string; segments
               key={`${segment.text}-${index}`}
               style={[
                 styles.diffWord,
-                { fontSize: f.body, color: highlight ? (segment.tone === 'wrong' ? t.wrong : t.accent) : muted ? t.textMuted : t.textPrimary },
-                segment.tone === 'right' ? { backgroundColor: t.accentBg } : null,
+                { fontSize: f.body, color: highlight ? (segment.tone === 'wrong' ? g.bad : g.cta) : muted ? g.secondary : g.text },
+                segment.tone === 'right' ? { backgroundColor: g.opaqueControl } : null,
               ]}
             >
               {segment.text}
@@ -95,7 +97,8 @@ function DiffLine({ label, segments, muted }: Readonly<{ label: string; segments
 function MistakeVerdictPanel({
   lang, correct, userAnswer, correctAnswer, explanation, explanationLoading, chain, stopForToday, onExplainSimpler,
 }: Props) {
-  const { theme: t, f } = useTheme();
+  const { f } = useTheme();
+  const g = useLv2Glass();
   const copy = useMemo(() => copyFor(lang), [lang]);
   const diff = useMemo(
     () => (correct ? null : buildMistakeAnswerDiff({ userAnswer, correctAnswer })),
@@ -113,11 +116,11 @@ function MistakeVerdictPanel({
   return (
     <View
       testID="mistake-verdict-panel"
-      style={[styles.panel, { backgroundColor: correct ? t.correctBg : t.wrongBg }]}
+      style={[styles.panel, { backgroundColor: correct ? g.goodFill : g.badFill }]}
     >
       <View style={styles.headingRow}>
-        <Ionicons name={correct ? 'checkmark-circle' : 'close-circle'} size={26} color={correct ? t.correct : t.wrong} />
-        <Text style={[styles.heading, { color: correct ? t.correct : t.wrong, fontSize: f.body }]}>{heading}</Text>
+        <Ionicons name={correct ? 'checkmark-circle' : 'close-circle'} size={26} color={correct ? g.good : g.bad} />
+        <Text style={[styles.heading, { color: correct ? g.good : g.bad, fontSize: f.body }]}>{heading}</Text>
       </View>
 
       {!correct && diff ? (
@@ -128,18 +131,18 @@ function MistakeVerdictPanel({
       ) : null}
 
       {!correct ? (
-        <View style={[styles.why, { backgroundColor: t.bgCard }]}>
+        <View style={[styles.why, { backgroundColor: g.opaqueCard }]}>
           <View style={styles.whyHead}>
-            <Ionicons name="bulb-outline" size={18} color={t.accent} />
-            <Text style={[styles.whyTitle, { color: t.textPrimary, fontSize: f.sub }]}>{copy.why}</Text>
+            <Ionicons name="bulb-outline" size={18} color={g.cta} />
+            <Text style={[styles.whyTitle, { color: g.text, fontSize: f.sub }]}>{copy.why}</Text>
           </View>
           {explanation ? (
-            <Text testID="mistake-verdict-explanation" style={[styles.whyBody, { color: t.textPrimary, fontSize: f.body }]}>{explanation}</Text>
+            <Text testID="mistake-verdict-explanation" style={[styles.whyBody, { color: g.text, fontSize: f.body }]}>{explanation}</Text>
           ) : explanationLoading ? (
             <View style={styles.whySkeleton}>
               <SkeletonBlock width="92%" height={14} borderRadius={7} />
               <SkeletonBlock width="78%" height={14} borderRadius={7} />
-              <Text style={[styles.whyWait, { color: t.textMuted, fontSize: f.caption }]}>{copy.thinking}</Text>
+              <Text style={[styles.whyWait, { color: g.secondary, fontSize: f.caption }]}>{copy.thinking}</Text>
             </View>
           ) : null}
           {explanation && onExplainSimpler ? (
@@ -148,9 +151,9 @@ function MistakeVerdictPanel({
               accessibilityRole="button"
               hitSlop={8}
               onPress={onExplainSimpler}
-              style={({ pressed }) => [styles.simpler, { backgroundColor: t.bgSurface2, opacity: pressed ? 0.82 : 1 }]}
+              style={({ pressed }) => [styles.simpler, { backgroundColor: g.opaqueControl, opacity: pressed ? 0.82 : 1 }]}
             >
-              <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800' }}>{copy.simpler}</Text>
+              <Text style={{ color: g.text, fontSize: f.sub, fontWeight: '800' }}>{copy.simpler}</Text>
             </Pressable>
           ) : null}
         </View>
@@ -168,13 +171,13 @@ function MistakeVerdictPanel({
                   key={`chain-${index}`}
                   style={[
                     styles.chainStep,
-                    { backgroundColor: filled ? (gaining ? t.gold : t.accent) : t.bgSurface2 },
+                    { backgroundColor: filled ? (gaining ? g.text : g.cta) : g.opaqueControl },
                   ]}
                 />
               );
             })}
           </View>
-          <Text style={[styles.chainText, { color: t.textPrimary, fontSize: f.sub }]}>
+          <Text style={[styles.chainText, { color: g.text, fontSize: f.sub }]}>
             {chain.corrected
               ? copy.done
               // Правило: 3 дня И 2 разных режима. Говорим ровно то, чего не хватает.
@@ -188,7 +191,7 @@ function MistakeVerdictPanel({
       ) : null}
 
       {stopForToday ? (
-        <Text style={[styles.stop, { color: t.textMuted, fontSize: f.sub }]}>{copy.stop}</Text>
+        <Text style={[styles.stop, { color: g.secondary, fontSize: f.sub }]}>{copy.stop}</Text>
       ) : null}
     </View>
   );

@@ -22,14 +22,14 @@ describe('screen wall-clock ownership', () => {
     expect(source).toContain('lastPublishedAt !== null && nextNow - lastPublishedAt < cadenceMs');
   });
 
-  it('uses the shared visible clock for leaderboard and boost countdowns', () => {
+  it('keeps the leaderboard clock visible-only and leaves retired XP boost timers unmounted', () => {
     const leaderboard = read('app/arena_leaderboard.tsx');
     const streak = read('app/streak_stats.tsx');
     expect(leaderboard).not.toContain('setInterval(() => setNowTs');
     expect(leaderboard).toContain('useVisibleWallClock(leaderboardRuntimeActive, 60_000)');
     expect(streak).not.toContain('setInterval(updateBoostCountdowns');
     expect(streak).toContain('const statsRuntimeActive = useRuntimeActive()');
-    expect(streak).toContain('const boostNow = useVisibleWallClock(');
-    expect(streak).toContain('clubBoostExpiresAt - boostNow');
+    expect(streak).not.toContain('useVisibleWallClock(');
+    expect(streak).not.toContain('updateBoostCountdowns');
   });
 });

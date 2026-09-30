@@ -24,7 +24,6 @@ type NavigationSection =
   | 'arena'
   | 'friends'
   | 'settings'
-  | 'league'
   | 'stats';
 
 type RouteRole = 'root' | 'child' | 'portal' | 'transient' | 'unknown';
@@ -70,8 +69,6 @@ const SECTION_ROOTS: ReadonlyMap<string, NavigationSection> = new Map([
   ['/settings', 'settings'],
   ['/(tabs)/settings', 'settings'],
 
-  ['/league_screen', 'league'],
-  ['/club_screen', 'league'],
   ['/streak_stats', 'stats'],
 ]);
 
@@ -87,18 +84,14 @@ const CONTEXTUAL_PORTAL_PATHS: ReadonlySet<string> = new Set([
   '/paywall_e',
   '/paywall_f',
   '/paywall_g',
-  '/max_paywall',
   '/manage_subscription',
   '/shards_shop',
-  '/coin_exchange',
+  // зачем: D70/D78 — экран /coin_exchange (биржа жемчуга) удалён целиком.
   // зачем: /avatar_select и /avatar_dna_studio удалены (D57/PM-062) — записи убраны.
   '/shop',
   '/runes_wallet',
   '/collectibles_screen',
   '/achievements_screen',
-  '/level_gifts_inventory',
-  // зачем (PM-046, владелец): /level_reward_spin удалён — спин убран как механика.
-  '/season_pass',
   '/referrals',
   '/promo_code_entry',
   '/settings_edu',
@@ -124,7 +117,6 @@ const PAYWALL_BASE_PATHS: ReadonlySet<string> = new Set([
   '/paywall_e',
   '/paywall_f',
   '/paywall_g',
-  '/max_paywall',
 ]);
 
 // Одноразовые экраны: попасть на них можно ТОЛЬКО через подготовку на экране
@@ -160,6 +152,7 @@ const SCREEN_OWNED_ANDROID_BACK_PATHS: ReadonlySet<string> = new Set([
   '/flashcards_my_packs',
   '/flashcards_packs',
   '/flashcards_swipe',
+  '/flashcards_truefalse_session',
   '/lesson1',
   '/lesson_complete',
   '/lesson_words',
@@ -247,15 +240,6 @@ function basePath(path: string): string {
 }
 
 function fixedChildSection(pathname: string): NavigationSection | null {
-  // MAX — самостоятельная поверхность главной. Даже старый deeplink или
-  // сохранённый стек из «Диалогов» не должен возвращать звонок в тот раздел.
-  if (
-    pathname === '/max_call_prestart'
-    || pathname === '/max_call_session'
-    || pathname === '/max_voice_review'
-    || pathname === '/max_memory_settings'
-  ) return 'home';
-
   if (
     pathname.startsWith('/learning-v2/')
     || pathname.startsWith('/learning_v2_')
@@ -265,7 +249,6 @@ function fixedChildSection(pathname: string): NavigationSection | null {
     || pathname === '/diagnostic_test'
     || pathname === '/exam'
     || pathname === '/level_exam'
-    || pathname.startsWith('/personal_plan')
   ) return 'lessons';
 
   if (
@@ -319,13 +302,8 @@ function sourceSectionHint(href: string): NavigationSection | null {
   if (/settings/.test(hint)) return 'settings';
   if (/mistake|practice|diagnos/.test(hint)) return 'practice';
   if (/flash|card|pack/.test(hint)) return 'flashcards';
-  if (/max_call|max_voice/.test(hint)) return 'home';
   if (/lesson|dialog/.test(hint)) return 'lessons';
-  // зачем 2026-08-23: раздел «турниры» выключен и заархивирован. Подсказка
-  // season принадлежит ЖИВЫМ экранам сезонного пропуска Арены
-  // (season_pass.tsx, arena_season_pass.tsx) — иначе они остались бы без
-  // раздела и возврат уводил бы на общий запасной путь.
-  if (/arena|season/.test(hint)) return 'arena';
+  if (/arena/.test(hint)) return 'arena';
   if (/friend|referral/.test(hint)) return 'friends';
   if (/streak|stats/.test(hint)) return 'stats';
   if (/home|afterwin|winback/.test(hint)) return 'home';

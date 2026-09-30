@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "dialogue-v2-locale-draft.v1",
+  "status": "draft_not_releaseable",
+  "sourceScenarioId": "social_06",
+  "sourceLedger": { "path": "dialogue_v2_authoring_ru.json", "revision": "v1" },
+  "targets": {
+    "en": {
+      "content": { "title": "Meet people in an interest chat", "briefing": "You are chatting in the Social world. Your task is to meet people in a chat built around a shared interest. Do not end the conversation in one message: follow the steps and respond to both participants.", "completionTone": "natural, with follow-up questions" },
+      "personas": [
+        { "id": "denis", "displayName": "Denis", "styleNote": "He does not rush, reads details carefully, and replies without unnecessary noise." },
+        { "id": "mila", "displayName": "Mila", "styleNote": "She warmly keeps the conversation going and asks natural follow-up questions." }
+      ],
+      "objectives": [
+        { "id": "objective_01", "label": "Introduce yourself" }, { "id": "objective_02", "label": "Mention your shared interest" }, { "id": "objective_03", "label": "Describe your own experience" }, { "id": "objective_04", "label": "Ask about their experience" }, { "id": "objective_05", "label": "React to an answer" }, { "id": "objective_06", "label": "Suggest continuing the chat" }, { "id": "objective_07", "label": "Close the topic naturally" }
+      ]
+    },
+    "es": {
+      "content": { "title": "Conocerse en un chat de intereses", "briefing": "Estás chateando en el mundo «Social». Tu tarea es conocer gente en un chat sobre un interés común. No cierres la conversación con un solo mensaje: sigue los pasos y responde a las dos personas.", "completionTone": "natural, con preguntas de seguimiento" },
+      "personas": [
+        { "id": "denis", "displayName": "Denis", "styleNote": "No tiene prisa, lee los detalles con atención y responde sin ruido innecesario." },
+        { "id": "mila", "displayName": "Mila", "styleNote": "Mantiene la conversación con calidez y hace preguntas de seguimiento naturales." }
+      ],
+      "objectives": [
+        { "id": "objective_01", "label": "Presentarte" }, { "id": "objective_02", "label": "Mencionar el interés común" }, { "id": "objective_03", "label": "Contar tu experiencia" }, { "id": "objective_04", "label": "Preguntar por su experiencia" }, { "id": "objective_05", "label": "Reaccionar a una respuesta" }, { "id": "objective_06", "label": "Proponer seguir hablando" }, { "id": "objective_07", "label": "Cerrar el tema con naturalidad" }
+      ]
+    },
+    "fr": {
+      "content": { "title": "Faire connaissance dans un chat d'intérêt", "briefing": "Tu échanges des messages dans le monde «Social». Ton objectif est de faire connaissance dans un chat autour d'un intérêt commun. Ne termine pas la conversation en un seul message : suis les étapes et réponds aux deux personnes.", "completionTone": "naturel, avec des questions de suivi" },
+      "personas": [
+        { "id": "denis", "displayName": "Denis", "styleNote": "Il ne se presse pas, lit les détails attentivement et répond sans bruit inutile." },
+        { "id": "mila", "displayName": "Mila", "styleNote": "Elle relance chaleureusement la conversation et pose des questions de suivi naturelles." }
+      ],
+      "objectives": [
+        { "id": "objective_01", "label": "Te présenter" }, { "id": "objective_02", "label": "Évoquer votre intérêt commun" }, { "id": "objective_03", "label": "Parler de ton expérience" }, { "id": "objective_04", "label": "Demander leur expérience" }, { "id": "objective_05", "label": "Réagir à une réponse" }, { "id": "objective_06", "label": "Proposer de continuer la discussion" }, { "id": "objective_07", "label": "Clore le sujet naturellement" }
+      ]
+    },
+    "de": {
+      "content": { "title": "In einem Interessenchat kennenlernen", "briefing": "Du schreibst im Bereich „Social“. Deine Aufgabe: Menschen in einem Chat mit gemeinsamen Interessen kennenlernen. Beende das Gespräch nicht mit nur einer Nachricht: Gehe die Schritte durch und reagiere auf beide Teilnehmende.", "completionTone": "natürlich, mit Rückfragen" },
+      "personas": [
+        { "id": "denis", "displayName": "Denis", "styleNote": "Er lässt sich Zeit, liest Details aufmerksam und antwortet ohne unnötiges Gerede." },
+        { "id": "mila", "displayName": "Mila", "styleNote": "Sie nimmt das Gespräch herzlich auf und stellt natürliche Rückfragen." }
+      ],
+      "objectives": [
+        { "id": "objective_01", "label": "Dich vorstellen" }, { "id": "objective_02", "label": "Das gemeinsame Interesse nennen" }, { "id": "objective_03", "label": "Von deiner Erfahrung erzählen" }, { "id": "objective_04", "label": "Nach ihrer Erfahrung fragen" }, { "id": "objective_05", "label": "Auf eine Antwort reagieren" }, { "id": "objective_06", "label": "Vorschlagen, weiterzuschreiben" }, { "id": "objective_07", "label": "Das Thema natürlich abschließen" }
+      ]
+    }
+  }
+}

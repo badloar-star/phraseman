@@ -13,7 +13,7 @@ import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { isCurrentAccountGeneration, type AccountGenerationToken } from './account_generation';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { DebugLogger } from './debug-logger';
+import { DebugLogger, reportSwallowed, swallowError } from './debug-logger';
 import { mergeLevelSpinServerStars } from './level_spin_star_grants';
 
 const REGION = 'us-central1';
@@ -139,7 +139,7 @@ async function serializeAccountOperation<T>(stableId: string, work: () => Promis
   const next = new Promise<void>((resolve) => { release = resolve; });
   const tail = prior.then(() => next, () => next);
   accountTails.set(stableId, tail);
-  await prior.catch(() => {});
+  await prior.catch(swallowError('video_watch_runes_client:serializeAccountOperation'));
   try {
     return await work();
   } finally {
@@ -178,7 +178,7 @@ async function flushPendingProgressUnlocked(
   stableId: string,
 ): Promise<{ ok: boolean; reason: string; verifiedMs?: number }> {
   const key = pendingProgressKey(stableId);
-  const pending = parsePendingProgress(await AsyncStorage.getItem(key).catch(() => null));
+  const pending = parsePendingProgress(await AsyncStorage.getItem(key).catch((error: unknown) => { reportSwallowed('video_watch_runes_client:flushPendingProgressUnlocked', error); return null; }));
   if (!pending) return { ok: true, reason: 'nothing_pending' };
   if (!isCurrentAccountGeneration(token, stableId)) {
     trace('progress_blocked', { reason: 'account_changed_before_progress', sessionId: pending.sessionId });
@@ -186,7 +186,7 @@ async function flushPendingProgressUnlocked(
   }
   const progressStartedMs = Date.now();
   try {
-    await initFirebaseAppCheckIfAvailable().catch(() => {});
+    await initFirebaseAppCheckIfAvailable().catch(swallowError('video_watch_runes_client:flushPendingProgressUnlocked'));
     const response = await callable()({
       stableId,
       action: 'progress',
@@ -211,7 +211,7 @@ async function flushPendingProgressUnlocked(
       trace('progress_blocked', { reason: 'account_changed_after_progress', sessionId: pending.sessionId });
       return { ok: false, reason: 'account_changed_after_progress' };
     }
-    const stillPending = parsePendingProgress(await AsyncStorage.getItem(key).catch(() => null));
+    const stillPending = parsePendingProgress(await AsyncStorage.getItem(key).catch((error: unknown) => { reportSwallowed('video_watch_runes_client:flushPendingProgressUnlocked', error); return null; }));
     if (stillPending?.requestId === pending.requestId) {
       await AsyncStorage.setItem(
         progressCursorKey(stableId),
@@ -224,7 +224,7 @@ async function flushPendingProgressUnlocked(
     const code = String((error as { code?: unknown })?.code ?? '');
     const dropped = code.includes('failed-precondition') || code.includes('permission-denied');
     if (dropped) {
-      await AsyncStorage.removeItem(key).catch(() => {});
+      await AsyncStorage.removeItem(key).catch(swallowError('video_watch_runes_client:flushPendingProgressUnlocked'));
     }
     // `dropped: true` = этот отрезок просмотра выброшен НАВСЕГДА. Без лога такая
     // потеря времени была полностью невидимой.
@@ -258,7 +258,7 @@ export async function reportVideoWatchRuneProgress(
     const flushed = await flushPendingProgressUnlocked(token, stableId);
     if (!flushed.ok) return flushed;
     const cursor = parseProgressCursor(
-      await AsyncStorage.getItem(progressCursorKey(stableId)).catch(() => null),
+      await AsyncStorage.getItem(progressCursorKey(stableId)).catch((error: unknown) => { reportSwallowed('video_watch_runes_client:reportVideoWatchRuneProgress', error); return null; }),
       sessionId,
     );
     const pending: PendingProgress = {
@@ -276,7 +276,7 @@ async function flushPendingClaimUnlocked(
   token: AccountGenerationToken,
   stableId: string,
 ): Promise<VideoWatchClaimResult> {
-  const pending = parsePendingClaim(await AsyncStorage.getItem(pendingClaimKey(stableId)).catch(() => null));
+  const pending = parsePendingClaim(await AsyncStorage.getItem(pendingClaimKey(stableId)).catch((error: unknown) => { reportSwallowed('video_watch_runes_client:flushPendingClaimUnlocked', error); return null; }));
   if (!pending) {
     trace('claim_blocked', { reason: 'nothing_pending', stableId });
     return { ok: false, reason: 'nothing_pending' };
@@ -288,7 +288,7 @@ async function flushPendingClaimUnlocked(
 
   const claimStartedMs = Date.now();
   try {
-    await initFirebaseAppCheckIfAvailable().catch(() => {});
+    await initFirebaseAppCheckIfAvailable().catch(swallowError('video_watch_runes_client:flushPendingClaimUnlocked'));
     const response = await callable()({
       stableId,
       action: 'claim',
@@ -316,10 +316,10 @@ async function flushPendingClaimUnlocked(
     await mergeAuthoritativeStars(token, response.data);
     // Remove only the exact immutable batch that just received confirmation.
     const stillPending = parsePendingClaim(
-      await AsyncStorage.getItem(pendingClaimKey(stableId)).catch(() => null),
+      await AsyncStorage.getItem(pendingClaimKey(stableId)).catch((error: unknown) => { reportSwallowed('video_watch_runes_client:flushPendingClaimUnlocked', error); return null; }),
     );
     if (stillPending?.sessionId === pending.sessionId && stillPending.requestId === pending.requestId) {
-      await AsyncStorage.removeItem(pendingClaimKey(stableId)).catch(() => {});
+      await AsyncStorage.removeItem(pendingClaimKey(stableId)).catch(swallowError('video_watch_runes_client:flushPendingClaimUnlocked'));
     }
     return {
       ok: true,
@@ -331,7 +331,7 @@ async function flushPendingClaimUnlocked(
     const code = String((error as { code?: unknown })?.code ?? '');
     const dropped = code.includes('permission-denied') || code.includes('failed-precondition');
     if (dropped) {
-      await AsyncStorage.removeItem(pendingClaimKey(stableId)).catch(() => {});
+      await AsyncStorage.removeItem(pendingClaimKey(stableId)).catch(swallowError('video_watch_runes_client:flushPendingClaimUnlocked'));
     }
     // `dropped: true` = весь сеанс просмотра выброшен без начисления.
     trace('claim_threw', {
@@ -368,10 +368,10 @@ async function recoverPendingVideoWatchRuneSessionUnlocked(
   stableId: string,
 ): Promise<{ ok: true } | { ok: false; reason: string }> {
   const storedProgress = parsePendingProgress(
-    await AsyncStorage.getItem(pendingProgressKey(stableId)).catch(() => null),
+    await AsyncStorage.getItem(pendingProgressKey(stableId)).catch((error: unknown) => { reportSwallowed('video_watch_runes_client:recoverPendingVideoWatchRuneSessionUnlocked', error); return null; }),
   );
   let storedClaim = parsePendingClaim(
-    await AsyncStorage.getItem(pendingClaimKey(stableId)).catch(() => null),
+    await AsyncStorage.getItem(pendingClaimKey(stableId)).catch((error: unknown) => { reportSwallowed('video_watch_runes_client:recoverPendingVideoWatchRuneSessionUnlocked', error); return null; }),
   );
   if (storedProgress && storedClaim && storedProgress.sessionId !== storedClaim.sessionId) {
     return { ok: false, reason: 'pending_session_conflict' };
@@ -395,7 +395,7 @@ async function recoverPendingVideoWatchRuneSessionUnlocked(
 /**
  * зачем (PM-115, владелец): «убрать начисление рун и энергии за просмотр
  * видео». Раздаём отказ ДО любого сетевого вызова — сигнатура/тип возврата
- * сохранены (по образцу local_level_spins.ts после PM-047), чтобы
+ * сохранены по прежнему контракту, чтобы
  * hooks/use_video_watch_energy_boost.ts не требовал правки: без sessionId
  * cleanup-ветка хука никогда не вызывает claimVideoWatchRuneSession, поэтому
  * серверный callable videoWatchRunesClaim (functions/src/video_watch_runes.ts)
@@ -418,7 +418,7 @@ export async function claimVideoWatchRuneSession(
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return { ok: false, reason: 'cloud_disabled' };
   if (!ID_RE.test(sessionId)) return { ok: false, reason: 'invalid_session_id' };
   return serializeAccountOperation(stableId, async () => {
-    let existing = parsePendingClaim(await AsyncStorage.getItem(pendingClaimKey(stableId)).catch(() => null));
+    let existing = parsePendingClaim(await AsyncStorage.getItem(pendingClaimKey(stableId)).catch((error: unknown) => { reportSwallowed('video_watch_runes_client:claimVideoWatchRuneSession', error); return null; }));
     if (existing && existing.sessionId !== sessionId) {
       const recovered = await recoverPendingVideoWatchRuneSessionUnlocked(token, stableId);
       if (!recovered.ok) return recovered;

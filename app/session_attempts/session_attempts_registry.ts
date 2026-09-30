@@ -4,6 +4,7 @@ export const SESSION_ATTEMPT_ROUTES = Object.freeze([
   '/lesson_irregular_verbs',
   '/mistake_practice_session',
   '/flashcards_swipe',
+  '/flashcards_truefalse_session',
   '/flashcards_blitz_session',
   '/flashcards_speaking_session',
   '/learning_v2_direct_session_player_v1',
@@ -48,6 +49,11 @@ export const SESSION_ATTEMPT_ROUTE_ENTRIES: readonly SessionAttemptRouteEntry[] 
     route: '/flashcards_swipe',
     spendsEnergy: true,
     integrationTest: 'tests/fc_swipe_attempts_integration.test.tsx',
+  }),
+  Object.freeze({
+    route: '/flashcards_truefalse_session',
+    spendsEnergy: true,
+    integrationTest: 'tests/flashcards_truefalse_critical_entry_gate.ts',
   }),
   Object.freeze({
     route: '/flashcards_blitz_session',

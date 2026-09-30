@@ -34,16 +34,16 @@ export function dailyJourneyRuneArtRewardId(amount: number): DailyJourneyRuneArt
 }
 
 const RAW_REWARDS: readonly (readonly [DailyJourneyRewardKind, number])[] = [
-  ['pearls', 10], ['runes', 100], ['energy_full', 1], ['spins', 1], ['freeze', 1],
-  ['pearls', 20], ['runes', 200], ['energy_plus', 2], ['spins', 2], ['runes', 500],
-  ['pearls', 20], ['runes', 200], ['energy_plus', 2], ['spins', 1], ['freeze', 1],
-  ['pearls', 50], ['runes', 300], ['energy_full', 1], ['spins', 2], ['runes', 600],
-  ['pearls', 50], ['runes', 300], ['energy_plus', 3], ['spins', 2], ['freeze', 1],
-  ['pearls', 100], ['runes', 400], ['energy_full', 1], ['spins', 3], ['runes', 700],
-  ['pearls', 100], ['runes', 400], ['energy_plus', 3], ['spins', 2], ['freeze', 2],
-  ['pearls', 150], ['runes', 500], ['energy_full', 1], ['spins', 3], ['runes', 800],
-  ['pearls', 150], ['runes', 500], ['energy_plus', 3], ['spins', 3], ['freeze', 2],
-  ['pearls', 250], ['runes', 750], ['energy_full', 1], ['spins', 5], ['runes', 1000],
+  ['pearls', 10], ['runes', 100], ['freeze', 1], ['spins', 1], ['freeze', 1],
+  ['pearls', 20], ['runes', 200], ['freeze', 2], ['spins', 2], ['runes', 500],
+  ['pearls', 20], ['runes', 200], ['freeze', 2], ['spins', 1], ['freeze', 1],
+  ['pearls', 50], ['runes', 300], ['freeze', 1], ['spins', 2], ['runes', 600],
+  ['pearls', 50], ['runes', 300], ['freeze', 3], ['spins', 2], ['freeze', 1],
+  ['pearls', 100], ['runes', 400], ['freeze', 1], ['spins', 3], ['runes', 700],
+  ['pearls', 100], ['runes', 400], ['freeze', 3], ['spins', 2], ['freeze', 2],
+  ['pearls', 150], ['runes', 500], ['freeze', 1], ['spins', 3], ['runes', 800],
+  ['pearls', 150], ['runes', 500], ['freeze', 3], ['spins', 3], ['freeze', 2],
+  ['pearls', 250], ['runes', 750], ['freeze', 1], ['spins', 5], ['runes', 1000],
 ];
 
 export const DAILY_JOURNEY_REWARDS: readonly DailyJourneyReward[] = Object.freeze(

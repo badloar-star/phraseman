@@ -25,6 +25,114 @@ const load = () => loadRequirementManifest(manifestFile, {
   desktopCodexRoot,
 });
 
+const openingSourcePath = "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md";
+const openingRequirementRows = [
+  {
+    id: "DE-OPENING-001",
+    sourcePath: openingSourcePath,
+    sourceSection: "Сцена сессии сразу ориентирует.",
+    phase: ["PRE_AUTHOR", "POST_AUTHOR"],
+    applicability: "always",
+    severity: "HOLD",
+    assertion: "PRE_AUTHOR фиксирует конкретную сцену и первые две ориентирующие фразы; POST_AUTHOR доказывает по exact RU+UK bytes, что ученик без догадок понимает место, участников или предметы и ближайшую практическую задачу, а урок не начинается с правила или описания конвейера.",
+    family: "owner_judgements",
+  },
+  {
+    id: "DE-OPENING-002",
+    sourcePath: openingSourcePath,
+    sourceSection: "Первое интро продолжает эту сцену.",
+    phase: ["PRE_AUTHOR", "POST_AUTHOR"],
+    applicability: "always",
+    severity: "HOLD",
+    assertion: "PRE_AUTHOR связывает первое интро с planned scene; POST_AUTHOR доказывает по exact RU+UK bytes, что новое немецкое слово показано вместе с понятным значением и сразу применено в той же конкретной сцене без универсальной подмены.",
+    family: "owner_judgements",
+  },
+  {
+    id: "DE-OPENING-003",
+    sourcePath: openingSourcePath,
+    sourceSection: "Польза фразы видна до разбора ловушки.",
+    phase: ["PRE_AUTHOR", "POST_AUTHOR"],
+    applicability: "always",
+    severity: "HOLD",
+    assertion: "PRE_AUTHOR планирует практическую причину произнести фразу до разбора; POST_AUTHOR доказывает по exact RU+UK bytes, что эта причина ясна раньше форм, звуков, порядка слов и диагностических ловушек.",
+    family: "owner_judgements",
+  },
+  {
+    id: "DE-OPENING-004",
+    sourcePath: openingSourcePath,
+    sourceSection: "Один проход без догадок.",
+    phase: ["PRE_AUTHOR", "POST_AUTHOR"],
+    applicability: "always",
+    severity: "HOLD",
+    assertion: "PRE_AUTHOR проектирует вход для одного чтения; POST_AUTHOR доказывает по exact RU+UK bytes, что обычный новичок может назвать сцену, задачу и нужную фразу без перечитывания, достраивания истории или знания грамматического термина.",
+    family: "owner_judgements",
+  },
+  {
+    id: "DE-OPENING-005",
+    sourcePath: openingSourcePath,
+    sourceSection: "Живой, спокойный голос.",
+    phase: ["PRE_AUTHOR", "POST_AUTHOR"],
+    applicability: "always",
+    severity: "HOLD",
+    assertion: "PRE_AUTHOR задаёт конкретный, тёплый и спокойный голос; POST_AUTHOR доказывает по exact RU+UK bytes отсутствие канцелярита и создание живого вайба точной ситуацией и деталью, а не приклеенной шуткой или театральностью.",
+    family: "owner_judgements",
+  },
+  {
+    id: "DE-OPENING-006",
+    sourcePath: openingSourcePath,
+    sourceSection: "Три интро образуют один вход в урок.",
+    phase: ["PRE_AUTHOR", "POST_AUTHOR"],
+    applicability: "always",
+    severity: "HOLD",
+    assertion: "PRE_AUTHOR связывает три intro targets одним местом, предметом и целью; POST_AUTHOR доказывает по exact RU+UK bytes, что страницы выполняют разные функции без повторной переориентации ученика.",
+    family: "owner_judgements",
+  },
+  {
+    id: "DE-OPENING-007",
+    sourcePath: openingSourcePath,
+    sourceSection: "## Независимая проверка",
+    phase: ["PRE_AUTHOR"],
+    applicability: "always",
+    severity: "HOLD",
+    assertion: "Свежий PRE_AUTHOR guardian до authoring независимо проверяет, что planned scene и три intro targets способны дать понятный вход в exact session; незакрытая проверка означает HOLD.",
+    family: "owner_judgements",
+  },
+  {
+    id: "DE-OPENING-008",
+    sourcePath: openingSourcePath,
+    sourceSection: "## Независимая проверка",
+    phase: ["POST_AUTHOR"],
+    applicability: "always",
+    severity: "HOLD",
+    assertion: "POST_AUTHOR проверяет только доступные exact RU+UK authored bytes на выполнение шести opening-правил и не утверждает, что последующие reader или progression judges уже запускались либо прошли.",
+    family: "owner_judgements",
+  },
+  {
+    id: "DE-OPENING-009",
+    sourcePath: openingSourcePath,
+    sourceSection: "## Независимая проверка",
+    phase: ["RELEASE_PROJECTION"],
+    applicability: "always",
+    severity: "HOLD",
+    assertion: "RELEASE_PROJECTION проверяет доступный current contentJudgeBundle с PASS-квитанциями judge_reader и judge_progression и отклоняет прежние PASS после любого изменения owner-verdict hash; это evidence release attempt, а не обещание будущей проверки.",
+    family: "owner_judgements",
+  },
+];
+
+function openingContractIssues(manifest) {
+  const actualRows = manifest.requirements.filter((item) => item.sourcePath === openingSourcePath);
+  return openingRequirementRows.flatMap((expected) => {
+    const actual = actualRows.find((item) => item.id === expected.id);
+    return JSON.stringify(actual) === JSON.stringify(expected)
+      ? []
+      : [`opening_requirement_mismatch:${expected.id}`];
+  }).concat(
+    actualRows.length === openingRequirementRows.length
+      ? []
+      : [`opening_requirement_count_mismatch:${actualRows.length}`],
+  );
+}
+
 test("German requirement manifest is complete, explicit, and hash-current", () => {
   const manifest = load();
   assert.deepEqual(validateRequirementManifest(manifest, {
@@ -119,11 +227,36 @@ test("mandatory German authorities are content-addressed and every source has a 
     "factory/pipeline/prompts/judge_recenter_pre.md",
     "factory/pipeline/prompts/judge_recenter_post.md",
     "factory/pipeline/prompts/judge_recenter_release.md",
+    "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md",
   ]) assert.ok(sourcePaths.has(required), `missing_authority_source:${required}`);
 
   const usedPaths = new Set(manifest.requirements.map((item) => item.sourcePath));
   for (const sourcePath of sourcePaths) {
     assert.ok(usedPaths.has(sourcePath), `source_without_requirement:${sourcePath}`);
+  }
+});
+
+test("clear lesson opening owner verdict has exact phase-safe semantic rows", () => {
+  const manifest = load();
+
+  assert.ok(
+    manifest.sourceDocuments.some((item) => item.sourcePath === openingSourcePath),
+    `missing_authority_source:${openingSourcePath}`,
+  );
+  assert.deepEqual(openingContractIssues(manifest), []);
+});
+
+test("every clear-opening semantic row fails closed on a plausible non-empty mutation", () => {
+  const manifest = load();
+  for (const expected of openingRequirementRows) {
+    const broken = structuredClone(manifest);
+    const row = broken.requirements.find((item) => item.id === expected.id);
+    row.assertion = `${row.assertion} Будущие проверки считаются уже пройденными.`;
+    assert.deepEqual(
+      openingContractIssues(broken),
+      [`opening_requirement_mismatch:${expected.id}`],
+      expected.id,
+    );
   }
 });
 

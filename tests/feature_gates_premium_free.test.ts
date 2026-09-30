@@ -44,24 +44,23 @@ describe('feature_gates', () => {
     }
   });
 
-  it('flips to free when the admin sets gate_<feature>_premium=false', () => {
+  it('keeps the local premium contract independent of remote config', () => {
     mockBools['gate_speaking_premium'] = false;
-    expect(isFeaturePremiumGated('speaking')).toBe(false);
-    expect(isFeatureFreeForEveryone('speaking')).toBe(true);
-    // другие фичи не затронуты
+    expect(isFeaturePremiumGated('speaking')).toBe(true);
+    expect(isFeatureFreeForEveryone('speaking')).toBe(false);
     expect(isFeaturePremiumGated('stats')).toBe(true);
   });
 
   it('shouldGateFeature: premium user never gated; free user gated only while premium-locked', () => {
     expect(shouldGateFeature('stats', true)).toBe(false); // премиум — всегда доступ
     expect(shouldGateFeature('stats', false)).toBe(true); // фри + замок → пейвол
-    mockBools['gate_stats_premium'] = false; // админ → «Фри»
-    expect(shouldGateFeature('stats', false)).toBe(false); // замок снят
+    mockBools['gate_stats_premium'] = false;
+    expect(shouldGateFeature('stats', false)).toBe(true);
   });
 
   it('does not age-block app features after onboarding', () => {
     mockBools['gate_ai_dialog_premium'] = false;
-    expect(isFeatureFreeForEveryone('ai_dialog')).toBe(true);
+    expect(isFeatureFreeForEveryone('ai_dialog')).toBe(false);
     expect(isFeatureBlockedForAge('ai_dialog')).toBe(false);
     expect(isFeatureBlockedForAge('lessons')).toBe(false);
   });
@@ -99,12 +98,12 @@ describe('lesson gate with overrides', () => {
     expect(isFreeLesson(3)).toBe(true);
   });
 
-  it('preserves the admin feature gate for non-course lesson content', () => {
+  it('keeps non-course lesson content premium under the local contract', () => {
     expect(isFreeLesson(33)).toBe(false);
     expect(requiresPremiumForLesson(33)).toBe(true);
     mockBools['gate_lessons_premium'] = false;
-    expect(isFreeLesson(33)).toBe(true);
-    expect(requiresPremiumForLesson(33)).toBe(false);
+    expect(isFreeLesson(33)).toBe(false);
+    expect(requiresPremiumForLesson(33)).toBe(true);
   });
 
   it('ignores out-of-range / invalid lesson ids safely', () => {

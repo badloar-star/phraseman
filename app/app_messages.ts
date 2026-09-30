@@ -1645,49 +1645,49 @@ export function subscribeUserAppMessages(
     if (lifetime.isDisposed()) return;
 
     const db = firestoreFactory();
-    const unsubscribeMessages = db
-      .collection(APP_MESSAGES_COLLECTION)
-      .orderBy('createdAtMs', 'desc')
-      .limit(APP_MESSAGES_BACKGROUND_FETCH_LIMIT)
-      .onSnapshot(
-        (snap: any) => {
-          if (lifetime.isDisposed()) return;
-          messages = (snap.docs || []).map((docSnap: any) =>
-            normalizeAppMessage(docSnap.id, docSnap.data?.() ?? {}),
-          );
-          emit();
-        },
-        (error: unknown) => {
-          if (lifetime.isDisposed()) return;
-          onError?.(error);
-        },
-      );
-    lifetime.adopt(unsubscribeMessages);
+    // Global announcements do not require a realtime stream. Fetch a bounded
+    // page on startup and refresh periodically while this owner is alive.
+    const refreshMessages = async (): Promise<void> => {
+      try {
+        const snap = await db.collection(APP_MESSAGES_COLLECTION)
+          .orderBy('createdAtMs', 'desc')
+          .limit(APP_MESSAGES_BACKGROUND_FETCH_LIMIT)
+          .get();
+        if (lifetime.isDisposed()) return;
+        messages = (snap.docs || []).map((docSnap: any) =>
+          normalizeAppMessage(docSnap.id, docSnap.data?.() ?? {}),
+        );
+        emit();
+      } catch (error) {
+        if (!lifetime.isDisposed()) onError?.(error);
+      }
+    };
+    void refreshMessages();
+    const messagesRefreshTimer = setInterval(() => { void refreshMessages(); }, 5 * 60 * 1000);
+    lifetime.adopt(() => clearInterval(messagesRefreshTimer));
 
-    const unsubscribeUserMessages = db
-      .collection('users')
-      .doc(uid)
-      .collection(USER_MESSAGES_COLLECTION)
-      .orderBy('createdAtMs', 'desc')
-      .limit(APP_MESSAGES_BACKGROUND_FETCH_LIMIT)
-      .onSnapshot(
-        (snap: any) => {
-          if (lifetime.isDisposed()) return;
-          userMessages = (snap.docs || []).map((docSnap: any) =>
-            normalizeOwnedUserAppMessage(docSnap.id, docSnap.data?.() ?? {}, uid),
-          ).filter((message: AppMessage | null): message is AppMessage => !!message);
-          void migrateLegacyReportReplyClaimsForOwnedMessages(uid, userMessages).then((nextPendingClaims) => {
-            if (disposed) return;
-            pendingReportReplyClaims = nextPendingClaims;
-            emit();
-          });
-        },
-        () => {
-          // Персональная лента опциональна: ошибка (нет rules/коллекции) не должна
-          // ронять подписку на глобальные сообщения.
-        },
-      );
-    lifetime.adopt(unsubscribeUserMessages);
+    const refreshUserMessages = async (): Promise<void> => {
+      try {
+        const snap = await db.collection('users').doc(uid)
+          .collection(USER_MESSAGES_COLLECTION)
+          .orderBy('createdAtMs', 'desc')
+          .limit(APP_MESSAGES_BACKGROUND_FETCH_LIMIT)
+          .get();
+        if (lifetime.isDisposed()) return;
+        userMessages = (snap.docs || []).map((docSnap: any) =>
+          normalizeOwnedUserAppMessage(docSnap.id, docSnap.data?.() ?? {}, uid),
+        ).filter((message: AppMessage | null): message is AppMessage => !!message);
+        const nextPendingClaims = await migrateLegacyReportReplyClaimsForOwnedMessages(uid, userMessages);
+        if (disposed) return;
+        pendingReportReplyClaims = nextPendingClaims;
+        emit();
+      } catch {
+        // Персональная лента опциональна: ошибка не должна ронять остальные сообщения.
+      }
+    };
+    void refreshUserMessages();
+    const userMessagesRefreshTimer = setInterval(() => { void refreshUserMessages(); }, 5 * 60 * 1000);
+    lifetime.adopt(() => clearInterval(userMessagesRefreshTimer));
 
     // зачем: этот поток раньше подписывался на ВСЮ коллекцию состояний без лимита,
     // а она растёт монотонно (документ на каждое прочитанное/скрытое сообщение) и
@@ -1695,36 +1695,35 @@ export function subscribeUserAppMessages(
     // маппился в новый массив на каждое изменение — Android падал с OutOfMemoryError
     // в sendOnSnapshotEvent. Ограничиваем как два соседних потока (limit 80):
     // состояния нужны только для сообщений из тех же лент, а они сами лимитированы.
-    const unsubscribeStates = db
-      .collection('users')
-      .doc(uid)
-      .collection(APP_MESSAGE_STATES_COLLECTION)
-      .orderBy('updatedAtMs', 'desc')
-      .limit(APP_MESSAGES_BACKGROUND_FETCH_LIMIT)
-      .onSnapshot(
-        (snap: any) => {
-          if (lifetime.isDisposed()) return;
-          states = (snap.docs || []).map((docSnap: any) =>
-            normalizeAppMessageState(docSnap.id, docSnap.data?.() ?? {}),
-          );
-          void Promise.all([
+    const refreshStates = async (): Promise<void> => {
+      try {
+        const snap = await db.collection('users').doc(uid)
+          .collection(APP_MESSAGE_STATES_COLLECTION)
+          .orderBy('updatedAtMs', 'desc')
+          .limit(APP_MESSAGES_BACKGROUND_FETCH_LIMIT)
+          .get();
+        if (lifetime.isDisposed()) return;
+        states = (snap.docs || []).map((docSnap: any) =>
+          normalizeAppMessageState(docSnap.id, docSnap.data?.() ?? {}),
+        );
+        await Promise.all([
             acknowledgePendingAppMessageVisibility(uid, states),
             acknowledgePendingPersonalModalAcknowledgements(uid, states),
             acknowledgePendingAppMessageModalAcknowledgements(uid, states),
-          ]).then(([nextPendingVisibility, nextPendingPersonalModalAcknowledgements, nextPendingAppMessageModalAcknowledgements]) => {
-            if (disposed) return;
-            pendingVisibility = nextPendingVisibility;
-            pendingPersonalModalAcknowledgements = nextPendingPersonalModalAcknowledgements;
-            pendingAppMessageModalAcknowledgements = nextPendingAppMessageModalAcknowledgements;
-            emit();
-          });
-        },
-        (error: unknown) => {
-          if (lifetime.isDisposed()) return;
-          onError?.(error);
-        },
-      );
-    lifetime.adopt(unsubscribeStates);
+        ]).then(([nextPendingVisibility, nextPendingPersonalModalAcknowledgements, nextPendingAppMessageModalAcknowledgements]) => {
+          if (disposed) return;
+          pendingVisibility = nextPendingVisibility;
+          pendingPersonalModalAcknowledgements = nextPendingPersonalModalAcknowledgements;
+          pendingAppMessageModalAcknowledgements = nextPendingAppMessageModalAcknowledgements;
+          emit();
+        });
+      } catch (error) {
+        if (!lifetime.isDisposed()) onError?.(error);
+      }
+    };
+    void refreshStates();
+    const statesRefreshTimer = setInterval(() => { void refreshStates(); }, 5 * 60 * 1000);
+    lifetime.adopt(() => clearInterval(statesRefreshTimer));
   })();
 
   return {
@@ -2024,24 +2023,10 @@ export async function claimReportReplyShardsOptimistically(
   ).catch(() => false);
   if (!isCurrentAccountGeneration(accountToken, ownerUid)) return false;
   emitAppEvent('app_messages_local_changed');
-  if (queued) {
-    const { commitConfirmedExternalShardEvent } = require('./shards_system') as typeof import('./shards_system');
-    const credited = await commitConfirmedExternalShardEvent({
-      source: 'report_reply',
-      eventId: clean,
-      delta: safeAmount,
-      reason: 'report_reply_coin_claim',
-      grant: {
-        kind: 'confirmed_report_reward',
-        subjectId: clean,
-        payload: { messageId: clean },
-      },
-    });
-    if (
-      (credited.status !== 'applied' && credited.status !== 'already-applied')
-      || !isCurrentAccountGeneration(accountToken, ownerUid)
-    ) return false;
-  }
+  // зачем: D70/D104 — старая награда «1 жемчужина» за ответ на репорт больше не
+  // начисляется. Отметку «забрано» на сервере по-прежнему ставим, чтобы кнопка
+  // не висела вечно; монет у этого старого формата нет (см. отчёт D104).
+  if (!queued) DebugLogger.warn('REPORT-REWARD', `legacy claim not queued id=${clean}`);
   void resumePendingReportReplyShardClaims();
   return true;
 }

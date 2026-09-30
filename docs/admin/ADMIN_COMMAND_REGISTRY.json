@@ -1054,28 +1054,6 @@
       ]
     },
     {
-      "name": "adminRefundCommunityPackPurchase",
-      "sourceSurface": "admin/v2/legacy.html",
-      "functionSourceMatch": true,
-      "mutationCandidate": true,
-      "actorRole": "BLOCKED — prove actor/role enforcement",
-      "inputValidation": "BLOCKED — link schema and rejection tests",
-      "idempotency": "BLOCKED — link operation/idempotency contract",
-      "previewConfirm": "BLOCKED — prove preview/confirm or document why not applicable",
-      "auditEvent": "BLOCKED — link immutable audit evidence",
-      "rollback": "BLOCKED — link rollback/runbook or explicit non-reversibility decision",
-      "tests": "BLOCKED — link focused callable/UI contract tests",
-      "blockers": [
-        "human owner and role evidence not linked",
-        "input schema/validation evidence not linked",
-        "idempotency contract not linked",
-        "preview/confirm semantics not linked",
-        "audit event evidence not linked",
-        "rollback/runbook evidence not linked",
-        "focused test evidence not linked"
-      ]
-    },
-    {
       "name": "adminRepairPendingReferralPurchase",
       "sourceSurface": "admin/v2/legacy.html",
       "functionSourceMatch": true,

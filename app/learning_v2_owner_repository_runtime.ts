@@ -24,7 +24,6 @@ import {
   withAccountTransitionLock,
   type AccountGenerationToken,
 } from './account_generation';
-import type { CoinExchangeWalletRewardRequest } from './coin_exchange_client';
 import { publishLearningV2WalletBalanceState } from './learning_v2_wallet_balance_store';
 import {
   createMistakeCorrectionCompositeAuthority,
@@ -592,13 +591,9 @@ export async function mountLearningV2OwnerRepository(
   return Object.freeze({ binding, scope, repository, accountToken });
 }
 
-export async function commitLearningV2CoinExchangeReward(
-  request: CoinExchangeWalletRewardRequest,
-  dependencies: LearningV2OwnerRepositoryRuntimeDependencies = {},
-): Promise<OwnerRepositoryWalletCreditCommitResult> {
-  return commitLearningV2ServerWalletReward(request, dependencies);
-}
-
+// зачем: D70/D78 — биржа «жемчуг → звёзды» удалена вместе с жемчугом; её отдельная
+// точка зачисления (commitLearningV2CoinExchangeReward) снята. Исторические операции
+// `coin_exchange` в кошельке курса по-прежнему читаются контрактом wallet.ts.
 export async function commitLearningV2ServerWalletReward(
   request: ServerWalletRewardRequestV1,
   dependencies: LearningV2OwnerRepositoryRuntimeDependencies = {},

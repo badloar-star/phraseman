@@ -7,9 +7,7 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { resolveStableUidForAuth } from './auth_identity';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { isLifetimePlanActive, isPremiumAccessActive, isVipActive } from './premium_status';
-import { getLevelFromXP } from './xp_levels';
-
-type ProfileReason = 'daily_xp' | 'display_change' | 'entitlement_change';
+type ProfileReason = 'display_change' | 'entitlement_change';
 
 export type PublicProfileProjectionInput = {
   reason?: ProfileReason;
@@ -23,14 +21,10 @@ export type PublicProfileProjectionInput = {
   profileCardMotion?: unknown;
   profileCardPublicFocus?: unknown;
   profileCardLegendNo?: unknown;
-  seasonProfileFrameId?: unknown;
+  coinRank?: unknown;
   displayHash?: unknown;
   // Explicitly accepted by the type so callers cannot accidentally make these
   // trusted through a future spread. The projection intentionally ignores them.
-  leagueId?: unknown;
-  totalXp?: unknown;
-  level?: unknown;
-  weekPoints?: unknown;
   streak?: unknown;
   isPremium?: unknown;
   isVip?: unknown;
@@ -64,15 +58,13 @@ function boundedInt(value: unknown, min: number, max: number, fallback: number):
   return Number.isFinite(number) ? Math.max(min, Math.min(max, number)) : fallback;
 }
 
-function readServerLeagueId(progress: Record<string, unknown>): number | undefined {
-  const raw = progress.league_state_v3;
-  try {
-    const parsed = typeof raw === 'string' ? JSON.parse(raw) as { leagueId?: unknown } : raw as { leagueId?: unknown };
-    const leagueId = Math.trunc(Number(parsed?.leagueId));
-    return Number.isFinite(leagueId) && leagueId >= 0 ? leagueId : undefined;
-  } catch {
-    return undefined;
-  }
+function validCoinRank(value: unknown): number | null {
+  return typeof value === 'number'
+    && Number.isSafeInteger(value)
+    && value >= 0
+    && value <= 19
+    ? value
+    : null;
 }
 
 /** Pure builder used by the callable and deterministic repair tooling/tests. */
@@ -98,12 +90,9 @@ export function buildAuthoritativePublicProfileProjection(
     profileCardTheme: cleanString(input.profileCardTheme, 40) || 'classic',
     profileCardMotion: cleanString(input.profileCardMotion, 40) || 'still',
     profileCardPublicFocus: cleanString(input.profileCardPublicFocus, 40) || 'words',
-    seasonProfileFrameId: optionalString(input.seasonProfileFrameId, 80),
     displayHash: cleanString(input.displayHash, 1000),
     updatedAt: nowMs,
-    updatedReason: input.reason === 'display_change' || input.reason === 'entitlement_change'
-      ? input.reason
-      : 'daily_xp',
+    updatedReason: input.reason === 'entitlement_change' ? 'entitlement_change' : 'display_change',
     isPremium: isPremiumAccessActive(progress, nowMs),
     isVip: isVipActive(progress, nowMs),
     isLifetime: isLifetimePlanActive(progress, nowMs),
@@ -111,10 +100,8 @@ export function buildAuthoritativePublicProfileProjection(
 
   const legendNo = nonnegativeInt(input.profileCardLegendNo);
   if (legendNo > 0) projection.profileCardLegendNo = legendNo;
-  // League/card-detail fields are presentation contracts, not entitlement or
-  // score authority. Preserve them with explicit bounds; prefer server league
-  // state whenever it is available.
-  projection.leagueId = readServerLeagueId(progress) ?? boundedInt(input.leagueId, 0, 100, 0);
+  const coinRank = validCoinRank(input.coinRank);
+  if (coinRank !== null) projection.coinRank = coinRank;
   if (input.cardWordsLearned !== undefined) {
     projection.cardWordsLearned = boundedInt(input.cardWordsLearned, 0, 10_000_000, 0);
   }
@@ -132,10 +119,6 @@ export function buildAuthoritativePublicProfileProjection(
     ? user.progressServerState as Record<string, unknown>
     : null;
   if (user.progressServerAuthoritative === true && serverState) {
-    const totalXp = nonnegativeInt(serverState.totalXp);
-    projection.totalXp = totalXp;
-    projection.level = getLevelFromXP(totalXp);
-    projection.weekPoints = nonnegativeInt(serverState.weekPoints);
     projection.streak = nonnegativeInt(serverState.streakCount);
     projection.progressAuthority = 'server';
   } else {
@@ -181,10 +164,11 @@ export const publicProfileProjectMine = onCall(HOT_CALLABLE_OPTIONS, async (requ
     };
     if (projection.progressAuthority !== 'server') {
       // Do not leave a previously client-claimed progress snapshot looking current.
-      writePayload.totalXp = admin.firestore.FieldValue.delete();
-      writePayload.level = admin.firestore.FieldValue.delete();
-      writePayload.weekPoints = admin.firestore.FieldValue.delete();
       writePayload.streak = admin.firestore.FieldValue.delete();
+    }
+    if (!Object.prototype.hasOwnProperty.call(projection, 'coinRank')) {
+      // Invalid/missing local state must never preserve a stale projected rank.
+      writePayload.coinRank = admin.firestore.FieldValue.delete();
     }
     transaction.set(profileRef, writePayload, { merge: true });
     return {

@@ -116,42 +116,8 @@ describe('диалоги: ровно три сценария бесплатно'
   });
 });
 
-describe('Арена не имеет дневного лимита — только энергия', () => {
-  const matchmaking = read('app', 'arena_matchmaking.tsx');
-  const hub = read('components', 'arena', 'ArenaHubSurface.tsx');
-
-  /*
-   * зачем (владелец 2026-09-18): раньше здесь стояли ДВЕ группы проверок,
-   * требовавшие гейт на экране поиска и пейвол на кнопке хаба. Правило
-   * отменено владельцем, поэтому сторож теперь держит обратное: любая
-   * попытка вернуть дневной счётчик в Арену ломает сборку.
-   *
-   * Проверяем исходники, а не поведение: класс бага здесь — «кто-то снова
-   * прочитал квоту», и он виден именно по тексту файла.
-   */
-  it('экран поиска не читает и не списывает дневную квоту', () => {
-    expect(matchmaking).not.toContain('arena_match_starts');
-    expect(matchmaking).not.toContain('consumeRevenueDailyQuota');
-    expect(matchmaking).not.toContain('previewRevenueDailyQuota');
-  });
-
-  it('хаб не гейтит кнопку «Играть» и не ведёт на пейвол лимита', () => {
-    expect(hub).not.toContain('arena_match_starts');
-    expect(hub).not.toContain("context: 'arena_limit'");
-    expect(hub).not.toContain('useRevenueDailyQuotaPreview');
-  });
-
-  it('индикатора остатка на кнопке «Играть» нет', () => {
-    expect(hub).not.toContain('SpeakingQuotaDots');
-    expect(hub).not.toContain('arena-hub-play-dots');
-  });
-
-  it('энергия осталась единственным тормозом входа в матч', () => {
-    // Списание энергии обязано жить: без него Арена стала бы полностью
-    // бесплатной, а это уже не «убрали лимит», а раздача.
-    expect(matchmaking).toContain('confirmArenaMatchEnergy(arenaMatchEnergyIntent)');
-  });
-});
+// зачем: D83 — клиентская Арена удалена целиком (экран поиска и хаб),
+// сторож «у Арены нет дневного лимита» снят вместе с ними.
 
 /**
  * Сторожа обходов, найденных аудитом 2026-09-14.

@@ -1,16 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import type { Lang } from '../constants/i18n';
 import {
   dailyPhraseCopyForLang,
   type DailyPhrase,
   type DailyPhraseInterfaceLang,
   type DailyPhraseQuestPoolItem,
 } from './daily_phrase_system';
-import { registerXP } from './xp_manager';
 import { DebugLogger } from './debug-logger';
 import type { RuntimeStudyTarget } from './target_storage_keys';
-
-export const DAILY_PHRASE_QUEST_XP = 50;
 
 export type DailyPhraseQuestOption = {
   id: string;
@@ -20,12 +16,6 @@ export type DailyPhraseQuestOption = {
   misconceptionCode?: string;
 };
 
-export type DailyPhraseQuestAwardResult = {
-  awarded: boolean;
-  finalDelta: number;
-};
-
-const AWARD_KEY_PREFIX = 'daily_phrase_quest_xp_awarded_v1';
 const ANSWER_KEY_PREFIX = 'daily_phrase_quest_answered_v1';
 const QUEST_MARKER_MAX_KEYS = 192;
 const QUEST_MARKER_TTL_MS = 120 * 24 * 60 * 60 * 1000;
@@ -95,10 +85,6 @@ function poolMeaningForLang(
     return cleanText(candidate.sourceLocales?.[lang]?.meaning) || cleanText(candidate.meaning);
   }
   return cleanText(candidate.meaning);
-}
-
-function safeDailyPhraseEventPart(value: unknown, max = 60): string {
-  return String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
 }
 
 export function buildDailyPhraseQuestOptions(
@@ -186,12 +172,6 @@ export function isDailyPhraseQuestAnswerCorrect(
   return options.some((option) => option.id === selectedOptionId && option.correct);
 }
 
-function awardKey(phraseId: string, date: string, studyTarget: DailyPhraseQuestStudyTarget): string {
-  return studyTarget === 'en'
-    ? `${AWARD_KEY_PREFIX}:${date}:${phraseId}`
-    : `${AWARD_KEY_PREFIX}:${studyTarget}:${date}:${phraseId}`;
-}
-
 function answerKey(phraseId: string, date: string, studyTarget: DailyPhraseQuestStudyTarget): string {
   return studyTarget === 'en'
     ? `${ANSWER_KEY_PREFIX}:${date}:${phraseId}`
@@ -199,7 +179,7 @@ function answerKey(phraseId: string, date: string, studyTarget: DailyPhraseQuest
 }
 
 function questMarkerDateFromKey(key: string): string | null {
-  if (!key.startsWith(`${AWARD_KEY_PREFIX}:`) && !key.startsWith(`${ANSWER_KEY_PREFIX}:`)) return null;
+  if (!key.startsWith(`${ANSWER_KEY_PREFIX}:`)) return null;
   const parts = key.split(':');
   const date = /^\d{4}-\d{2}-\d{2}$/.test(parts[1] ?? '') ? parts[1]! : parts[2] ?? '';
   return /^\d{4}-\d{2}-\d{2}$/.test(date) ? date : null;
@@ -277,60 +257,5 @@ export async function hasDailyPhraseQuestAnswered(params: {
   const studyTarget = dailyPhraseQuestStudyTarget(params.studyTarget);
   if (!phraseId || !date || !studyTarget) return false;
 
-  const [answered, awarded] = await Promise.all([
-    AsyncStorage.getItem(answerKey(phraseId, date, studyTarget)),
-    AsyncStorage.getItem(awardKey(phraseId, date, studyTarget)),
-  ]);
-  return Boolean(answered || awarded);
-}
-
-export async function awardDailyPhraseQuestXpOnce(params: {
-  phraseId: string;
-  date: string;
-  lang: Lang;
-  studyTarget?: RuntimeStudyTarget;
-}): Promise<DailyPhraseQuestAwardResult> {
-  const phraseId = cleanText(params.phraseId);
-  const date = cleanText(params.date);
-  const studyTarget = dailyPhraseQuestStudyTarget(params.studyTarget);
-  if (!phraseId || !date || !studyTarget) return { awarded: false, finalDelta: 0 };
-
-  const key = awardKey(phraseId, date, studyTarget);
-  const alreadyAwarded = await AsyncStorage.getItem(key);
-  if (alreadyAwarded) return { awarded: false, finalDelta: 0 };
-
-  const userName = (await AsyncStorage.getItem('user_name')) || '';
-  const legacyEventId = [
-    'daily_phrase_quest',
-    safeDailyPhraseEventPart(date, 20),
-    safeDailyPhraseEventPart(phraseId, 80),
-    'award',
-  ].join(':');
-  const result = await registerXP(DAILY_PHRASE_QUEST_XP, 'daily_phrase_quest', userName, params.lang, undefined, {
-    eventId: studyTarget === 'en'
-      ? legacyEventId
-      : `daily_phrase_quest:${safeDailyPhraseEventPart(studyTarget, 10)}:${safeDailyPhraseEventPart(date, 20)}:${safeDailyPhraseEventPart(phraseId, 80)}:award`,
-    payload: studyTarget === 'en'
-      ? { phraseId, date }
-      : { phraseId, date, studyTarget },
-  });
-  if (Math.max(0, Math.round(result.finalDelta || 0)) <= 0) {
-    throw new Error('daily_phrase_quest_xp_not_confirmed');
-  }
-  await AsyncStorage.setItem(key, '1');
-  void pruneDailyPhraseQuestMarkers([key]).catch(() => {});
-  return { awarded: true, finalDelta: result.finalDelta };
-}
-
-export async function hasDailyPhraseQuestXpAwarded(params: {
-  phraseId: string;
-  date: string;
-  studyTarget?: RuntimeStudyTarget;
-}): Promise<boolean> {
-  const phraseId = cleanText(params.phraseId);
-  const date = cleanText(params.date);
-  const studyTarget = dailyPhraseQuestStudyTarget(params.studyTarget);
-  if (!phraseId || !date || !studyTarget) return false;
-
-  return Boolean(await AsyncStorage.getItem(awardKey(phraseId, date, studyTarget)));
+  return Boolean(await AsyncStorage.getItem(answerKey(phraseId, date, studyTarget)));
 }

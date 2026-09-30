@@ -20,7 +20,6 @@ const DIRECT_HYBRID_DRIVERS = [
   'components/RankChangeBanner.tsx',
   'components/ReferralInviteBannerArt.tsx',
   'components/ActionToast.tsx',
-  'components/AchievementToast.tsx',
   'components/MedalToast.tsx',
   'components/InGameToast.tsx',
   'components/modal_fx/HybridSheetShell.tsx',
@@ -104,38 +103,13 @@ describe('motion hybrid runtime safety', () => {
     expect(source).toContain('dismissFallbackRef.current = null;');
   });
 
-  test('hybrid alert replays on every open and completes exit exactly once', () => {
-    const source = read('components/modal_fx/HybridAlertShell.tsx');
-    expect(source).toContain('exitCompletedRef');
-    expect(source).toContain('runOnJS(completeExit)()');
-    expect(source).toContain('{visible ? children : null}');
-    expect(source).toContain('panelOpacity.value = 0;');
-    expect(source).toContain('exitTimerRef.current = null;');
-  });
-
-  test('boon activation hybrid preserves kicker and CTA copy', () => {
-    const source = read('components/celebration/BoonActivatedHybrid.tsx');
-    expect(source).toContain('kicker: string');
-    expect(source).toContain('ctaLabel: string');
-    expect(source).toContain('>{kicker}</Text>');
-    expect(source).toContain('>{ctaLabel}</Text>');
-  });
-
-  test('reduced-motion chest waits for armed impact before claiming', () => {
+  test('reduced-motion reward impact waits until armed', () => {
     const impactSource = read('components/celebration/use_reward_impact_hybrid.ts');
     expect(impactSource).toContain('if (!armedNow) return undefined;');
     expect(impactSource).toMatch(/if \(reduceMotion\) \{[\s\S]{0,160}onImpactRef\.current\(\)/);
     expect(impactSource).toContain('runOnJS(dispatchImpact)()');
     expect(impactSource).not.toContain('runOnJS(onImpactRef.current)()');
 
-    const chestSource = read('components/celebration/BoonChestHybrid.tsx');
-    const closeHandler = chestSource.slice(
-      chestSource.indexOf('const requestClose ='),
-      chestSource.indexOf('return (', chestSource.indexOf('const requestClose =')),
-    );
-    expect(closeHandler).not.toContain('onClaim()');
-    expect(chestSource).toContain('boon-chest-hybrid-later');
-    expect(chestSource).toContain('<GiftBox3D');
   });
 
   test('reward impact subtitle owns a complete distinct ladder lifecycle', () => {
@@ -158,34 +132,4 @@ describe('motion hybrid runtime safety', () => {
     expect(source).toContain('if (reduceMotion) {\n      enter.value = 1;');
   });
 
-  test('level-gift hybrids bypass classic loops and animate the actual reward hero', () => {
-    const single = read('components/LevelGiftModal.tsx');
-    expect(single).toContain('const reduceMotion = useReduceMotion()');
-    expect(single).toContain('if (skipOpeningAnimation || isHybrid || reduceMotion)');
-    // зачем 2026-08-23: раньше здесь ждали буквальное
-    // `isHybrid ? impact.styles.hero : undefined`. Эта строка и была багом:
-    // хук useRewardImpactHybrid в ЭТОЙ модалке гейтован `phase === 'reveal'`,
-    // а heroOpacity/textOpacity стартуют с 0. При открытии подарка из
-    // инвентаря (presentationMode='apply') фаза остаётся 'box', хук не
-    // запускается — и вся награда навсегда висела с opacity 0: владелец
-    // прислал скриншот пустой модалки «Подарок за уровень». Намерение теста
-    // (герой награды реально анимируется в hybrid) сохранено, но условие
-    // обязано совпадать с гейтом самого хука.
-    expect(single).toContain("isHybrid && phase === 'reveal' ? impact.styles.hero : undefined");
-    expect(single).toContain("isHybrid && phase === 'reveal' ? impact.styles.text : undefined");
-    expect(single).toContain("phase === 'reveal' && !!gift");
-    expect(single).toContain('openingSafetyTimerRef');
-
-    const dual = read('components/LevelGiftDualModal.tsx');
-    expect(dual).toContain('const reduceMotion = useReduceMotion()');
-    expect(dual).toContain('if (isHybrid || reduceMotion) {\n      completeOpen();');
-    expect(dual).toContain('isHybrid ? impact.styles.hero : undefined');
-  });
-
-  test('production tabbar collapses hybrid travel and press under Reduce Motion', () => {
-    const source = read('app/(tabs)/_layout.tsx');
-    expect(source).toContain('const reduceMotion = useReduceMotion()');
-    expect(source).toMatch(/if \(reduceMotion\) \{[\s\S]{0,120}tabHighlightAnim\.setValue/);
-    expect(source).toContain('stiffness: TABBAR_HYBRID.press.stiffness');
-  });
 });

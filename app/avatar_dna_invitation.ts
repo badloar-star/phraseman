@@ -5,7 +5,6 @@ import {
   type AccountGenerationToken,
 } from './account_generation';
 import { emitAppEvent } from './events';
-import { isAvatarDNAEnabled } from './remote_flags';
 
 const INVITATION_PREFIX = 'avatar_dna_invitation_v1:';
 
@@ -89,7 +88,6 @@ export async function onFirstAchievement(
   account: InvitationAccount,
 ): Promise<'offered' | 'already-handled' | 'stale-account' | 'unavailable'> {
   try {
-    if (!isAvatarDNAEnabled(account.stableId.trim())) return 'already-handled';
     let alreadyHandled = false;
     const written = await updateInvitationState(account, (current) => {
       if (current?.offered || current?.dismissed || current?.completed) {

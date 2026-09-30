@@ -71,6 +71,7 @@ import {
 } from './lesson_analytics_attempt';
 import { trackLessonStart, trackLessonAbandoned, trackAnswer, trackEnergyHit } from './user_stats';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
+import { useFirstQuestionEnergyGate } from '../hooks/useFirstQuestionEnergyGate';
 import { canChargeClassicLessonEntry } from './energy_contract';
 import { beginEnergySpendTrace, endEnergySpendTrace, markEnergySpendStage } from './energy_spend_latency_trace';
 import {
@@ -1963,11 +1964,8 @@ function LessonScreen() {
   const lessonHintSupportBlocked = !lessonSupportContentAvailableForTarget(studyTarget, 'lesson_hint', lessonId);
   const { startCell: initialStartCell, initialOrder: initialOrderFromPrime } = getInitialOrderAndCell(lessonStorageId, LESSON_DATA.length, effectiveTotal, studyTarget);
   const initialOverridePhraseCell = getInitialOverridePhraseCell(lessonStorageId, effectiveTotal, studyTarget);
-  const { energy: currentEnergy, bonusEnergy, maxEnergy: currentMaxEnergy, isUnlimited: testerEnergyDisabled, confirmSpendOne, acknowledgeSessionStart, energyReady } = useEnergy();
+  const { energy: currentEnergy, bonusEnergy, maxEnergy: currentMaxEnergy, isUnlimited: testerEnergyDisabled, energyReady } = useEnergy();
   const lessonEnergyIntent = useEnergySessionIntent('lesson', String(lessonId));
-  // Refs to avoid stale closures in useCallback (checkAnswer has [progress,...] deps, not energy)
-  const confirmSpendOneRef = useRef(confirmSpendOne);
-  useEffect(() => { confirmSpendOneRef.current = confirmSpendOne; }, [confirmSpendOne]);
 
   // cellIndex — позиция в прогресс-баре (0..49), двигается строго по кругу
   const [cellIndex,    setCellIndex]    = useState(initialStartCell);
@@ -2566,21 +2564,11 @@ function LessonScreen() {
 
   useEffect(() => { showEnergyEmptyFeedbackRef.current = showEnergyEmptyFeedback; }, [showEnergyEmptyFeedback]);
 
-  // Энергия при входе в урок: списываем РОВНО 20 ⚡ за старт.
-  // зачем: владелец 2026-08-23 — единое правило экономики. Энергия платится за
-  // ПОПЫТКУ (вход в активность), а не за ошибки внутри неё. Ошибка больше не
-  // жжёт заряд, поэтому урок не может оборваться на середине.
-  // Списание идемпотентно на урок за один заход (entryEnergyGateLessonRef): при
-  // ре-рендерах и смене энергии повторно не снимаем. Ноль энергии → модалка и
-  // отказ от входа (обрабатывает вызывающий экран, здесь — блок ответов ниже).
-  const entryEnergyGateLessonRef = useRef<number | null>(null);
-  // зачем: латч НЕ сбрасывается по useFocusEffect. Раньше сброс на фокусе был
-  // безобиден — эффект только показывал модалку про нулевую энергию. Теперь он
-  // СПИСЫВАЕТ единицу, и сброс на каждом возврате фокуса списывал бы повторно:
-  // ушёл в теорию (/hint, /lesson_help) или на пейвол и вернулся — минус ещё
-  // одна единица за тот же урок. Латч живёт по lessonId, поэтому переход на
-  // ДРУГОЙ урок (смена lessonId) честно платится заново, а возврат в тот же —
-  // нет. Размонтирование экрана сбрасывает ref естественным образом.
+  // Энергия за урок: 1 ⚡ за попытку (D06), в момент показа первого задания (D72).
+  // Ошибки внутри урока заряд не жгут. Латч списания живёт в гейте по operationId
+  // попытки и НЕ сбрасывается по фокусу: ушёл в теорию (/hint, /lesson_help) или
+  // на пейвол и вернулся — второй раз не спишет. Переход на ДРУГОЙ урок (новый
+  // lessonId → новый intent) честно платится заново (D67).
   // зачем: трассировка [ENERGY-SPEND-LAT] начинается на МОНТИРОВАНИИ экрана, а
   // не на energyReady — иначе ожидание самого гейта (главный подозреваемый в
   // «анимация не сразу») осталось бы за кадром замера.
@@ -2588,32 +2576,32 @@ function LessonScreen() {
     beginEnergySpendTrace(`spend:${String(lessonId)}`);
   }, [lessonId]);
 
+  // зачем: D72/D87/PM-084 — списание через единый гейт первого вопроса. Урок
+  // готов и интро закрыто = первое задание на экране → −1 один раз на попытку
+  // (operationId попытки; ре-рендеры от смены баланса больше не гасят ack);
+  // уход/падение до показа — возврат. Plus — без списания (D07).
+  const lessonFirstQuestionVisible = canChargeClassicLessonEntry({
+    energyReady,
+    lessonHydrated,
+    introGateReady,
+    introVisible: showIntroScreens,
+    hasPlayableRows: hasPlayableLessonRows,
+    remoteSourceReady: !frenchRemoteLessonRequired || remoteFrenchLessonLoadState === 'ready',
+  });
   useEffect(() => {
-    const traceKey = `spend:${String(lessonId)}`;
-    if (!canChargeClassicLessonEntry({
-      energyReady,
-      lessonHydrated,
-      introGateReady,
-      introVisible: showIntroScreens,
-      hasPlayableRows: hasPlayableLessonRows,
-      remoteSourceReady: !frenchRemoteLessonRequired || remoteFrenchLessonLoadState === 'ready',
-    })) {
-      markEnergySpendStage(traceKey, 'lesson not ready for paid entry');
-      return;
-    }
-    if (entryEnergyGateLessonRef.current === lessonId) return;
-    entryEnergyGateLessonRef.current = lessonId;
-    markEnergySpendStage(traceKey, 'gate passed (energyReady=true), calling confirmSpendOne');
-    let active = true;
-    void confirmSpendOneRef.current(lessonEnergyIntent).then(result => {
-      endEnergySpendTrace(traceKey, String(result));
-      if (!active) return;
-      if (result === 'spent') void acknowledgeSessionStart(lessonEnergyIntent.operationId);
-      if (result === 'insufficient') showEnergyEmptyFeedback();
-      if (result === 'cancelled') safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
-    });
-    return () => { active = false; };
-  }, [acknowledgeSessionStart, bonusEnergy, currentEnergy, energyReady, frenchRemoteLessonRequired, hasPlayableLessonRows, introGateReady, lessonEnergyIntent, lessonHydrated, lessonId, remoteFrenchLessonLoadState, router, showEnergyEmptyFeedback, showIntroScreens, testerEnergyDisabled]);
+    markEnergySpendStage(
+      `spend:${String(lessonId)}`,
+      lessonFirstQuestionVisible ? 'gate passed (first question visible), charging via gate' : 'lesson not ready for paid entry',
+    );
+  }, [lessonFirstQuestionVisible, lessonId]);
+  useFirstQuestionEnergyGate({
+    intent: lessonEnergyIntent,
+    screen: 'lesson1',
+    firstQuestionVisible: lessonFirstQuestionVisible,
+    onResult: (result) => endEnergySpendTrace(`spend:${String(lessonId)}`, String(result)),
+    onInsufficient: () => showEnergyEmptyFeedback(),
+    onCancelled: () => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any),
+  });
 
   const loadData = async () => {
     if (!isLessonScreenPrimedThisSession(lessonStorageId, LESSON_DATA.length, effectiveTotal)) {

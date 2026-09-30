@@ -7,7 +7,6 @@ export const COURSE_PACK_SURFACES = [
   'lesson',
   'lesson_intro',
   'quiz',
-  'plan_content',
   'audio_metadata',
   'daily_phrase',
   'flashcard',

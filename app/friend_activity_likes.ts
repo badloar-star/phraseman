@@ -267,7 +267,7 @@ export async function fetchActivityLikeTotal(userUid: string): Promise<number> {
  * Place a like.
  *  • Omit `eventId` (or pass empty) → profile-level like from a user card: likes ANY user,
  *    friend or not, no activity event required. This is the card path.
- *  • Pass an `eventId` → event-level like (friends activity feed / league group boost).
+ *  • Pass an `eventId` → event-level like (friends activity feed).
  * Each unique target + event/profile can be liked once; other posts and cards are independent.
  */
 export async function sendFriendActivityLike(data: {

@@ -5,8 +5,6 @@
 // копия — кэш для UI; при переустановке восстанавливается restoreFromCloud.
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
-import { isCollectiblesEnabled } from '../remote_flags';
-import { commitConfirmedExternalShardEvent } from '../shards_system';
 import { emitAppEvent } from '../events';
 import {
   captureAccountGeneration,
@@ -37,7 +35,6 @@ export type CollectibleDropOutcome = {
   rarity: CollectibleRarity;
   setCompleted: boolean;
   secretCardId: string | null;
-  bonusShards: number;
 };
 
 type ClaimResponse = {
@@ -48,7 +45,6 @@ type ClaimResponse = {
   card?: { id?: string; setId?: string; rarity?: string } | null;
   setCompleted?: boolean;
   secretCardId?: string | null;
-  bonusShards?: number;
 };
 
 function parseOwnedMap(raw: unknown): CollectiblesOwnedMap {
@@ -280,7 +276,6 @@ export async function maybeRollCollectibleDrop(
   ref: string,
   options?: { dailyScoped?: boolean },
 ): Promise<CollectibleDropOutcome | null> {
-  if (!isCollectiblesEnabled()) return null;
   const accountToken = captureAccountGeneration();
   const accountKey = accountOperationKey(accountToken);
   if (!accountKey || !isAccountOperationCurrent(accountToken)) return null;
@@ -308,46 +303,11 @@ export async function maybeRollCollectibleDrop(
       rarity: rarity ?? 'common',
       setCompleted: data.setCompleted === true,
       secretCardId: data.secretCardId ? String(data.secretCardId) : null,
-      bonusShards: Math.max(0, Math.floor(Number(data.bonusShards) || 0)),
     };
-    // A replay may be the first client callback after the server transaction:
-    // the app could have crashed before projecting its immutable bonus event.
-    // Repair/verify that deterministic event, but do not show the drop twice.
-    if (data.alreadyClaimed) {
-      if (outcome.bonusShards > 0) {
-        const credited = await commitConfirmedExternalShardEvent({
-          expectedOwnerStableId: accountToken.stableId!,
-          source: 'collectibles',
-          eventId,
-          delta: outcome.bonusShards,
-          reason: 'collectible_set_bonus',
-          grant: {
-            kind: 'collectible_set_bonus',
-            subjectId: outcome.setId,
-            payload: { cardId: outcome.cardId, setId: outcome.setId },
-          },
-        });
-        if (credited.status !== 'applied' && credited.status !== 'already-applied') return null;
-      }
-      return null;
-    }
+    // зачем: D70/D104 — жемчужный сет-бонус удалён. Сервер дропы уже не выдаёт
+    // (functions/src/collectibles_retired.ts), так что заменять монетами нечего.
+    if (data.alreadyClaimed) return null;
     if (!await applyDropLocally(outcome, accountToken)) return null;
-    if (!isAccountOperationCurrent(accountToken)) return null;
-    if (outcome.bonusShards > 0) {
-      const credited = await commitConfirmedExternalShardEvent({
-        expectedOwnerStableId: accountToken.stableId!,
-        source: 'collectibles',
-        eventId,
-        delta: outcome.bonusShards,
-        reason: 'collectible_set_bonus',
-        grant: {
-          kind: 'collectible_set_bonus',
-          subjectId: outcome.setId,
-          payload: { cardId: outcome.cardId, setId: outcome.setId },
-        },
-      });
-      if (credited.status !== 'applied' && credited.status !== 'already-applied') return null;
-    }
     if (!isAccountOperationCurrent(accountToken)) return null;
     return outcome;
   } catch {

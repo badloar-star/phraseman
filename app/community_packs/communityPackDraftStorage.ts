@@ -6,7 +6,6 @@ import { COMMUNITY_PACK_CARD_COUNT_MAX } from './schema';
  * Старые черновики читаются как есть: лишнее поле просто игнорируется.
  */
 import { UGC_CARD_THEME_IDS } from './ugcCardThemePresets';
-import { UGC_CARD_BACK_IDS } from '../flashcards/cardBackCatalog';
 import {
   communityPackCreateDraftKey,
   type RuntimeSourceLocale,
@@ -38,7 +37,6 @@ export type CommunityPackCreateDraftV1 = {
   title: string;
   description: string;
   themeIdx: number;
-  cardBackIdx: number;
   packLanguage?: PackLanguage;
   publishToCommunity?: boolean;
   /** Цена набора в рунах в незавершённом черновике (0 — бесплатный). */
@@ -71,19 +69,12 @@ function isRow(x: unknown): x is CommunityPackCreateDraftRow {
   );
 }
 
-function clampCardBackIdx(i: number): number {
-  const n = UGC_CARD_BACK_IDS.length;
-  if (n <= 0) return 0;
-  return ((Math.floor(i) % n) + n) % n;
-}
-
 export function communityPackCreateDraftIsMeaningful(d: CommunityPackCreateDraftV1): boolean {
   return (
     d.rows.length > 0 ||
     d.title.trim().length > 0 ||
     d.description.trim().length > 0 ||
     d.themeIdx !== 0 ||
-    d.cardBackIdx !== 0 ||
     d.addCardFormOpen ||
     d.draftEn.trim().length > 0 ||
     d.draftRu.trim().length > 0 ||
@@ -110,7 +101,6 @@ function parseDraft(raw: string | null): CommunityPackCreateDraftV1 | null {
       title: typeof o.title === 'string' ? o.title : '',
       description: typeof o.description === 'string' ? o.description : '',
       themeIdx: clampThemeIdx(typeof o.themeIdx === 'number' ? o.themeIdx : 0),
-      cardBackIdx: clampCardBackIdx(typeof o.cardBackIdx === 'number' ? o.cardBackIdx : 0),
       packLanguage: isPackLanguage(o.packLanguage) ? o.packLanguage : undefined,
       publishToCommunity: o.publishToCommunity === true,
       priceRunes: Math.max(0, Math.floor(Number(o.priceRunes ?? 0))) || 0,
@@ -187,7 +177,6 @@ export async function saveCommunityPackCreateDraft(
     title: d.title,
     description: d.description,
     themeIdx: clampThemeIdx(d.themeIdx),
-    cardBackIdx: clampCardBackIdx(d.cardBackIdx),
     packLanguage: isPackLanguage(d.packLanguage) ? d.packLanguage : undefined,
     publishToCommunity: d.publishToCommunity === true,
     priceRunes: Math.max(0, Math.floor(Number(d.priceRunes ?? 0))) || 0,

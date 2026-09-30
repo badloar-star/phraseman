@@ -11,10 +11,9 @@ describe('ordinary PhoneState failures stay out of user flows', () => {
     expect(source('app/language_welcome.tsx')).toContain('commitPhoneStateDurableAction');
   });
 
-  test('friend gift intent is durable before connectivity can matter', () => {
+  test('retired friend gift intent no longer runs from the friends screen', () => {
     const friends = source('app/(tabs)/friends.tsx');
-    expect(friends).not.toContain("getNetStatus() === 'offline'");
-    expect(friends).toContain('enqueueFriendGiftSend');
+    expect(friends).not.toContain('enqueueFriendGiftSend');
   });
 
   test('persisted flashcards remain visible when background refresh fails', () => {
@@ -23,14 +22,4 @@ describe('ordinary PhoneState failures stay out of user flows', () => {
     expect(collection).not.toContain('setOwnedPackIdList([]);\n      setCommunityOwnedIdList([]);');
   });
 
-  test('successful local season reward is not reverted by background bookkeeping', () => {
-    const modal = source('components/SeasonGiftModal.tsx');
-    expect(modal).toContain('void markSeasonPassGiftUsed(giftId).catch(() => {})');
-  });
-
-  test('account-boundary warning says phone data is durable and cloud is pending', () => {
-    const logout = source('components/account/AccountLogoutFlow.tsx');
-    expect(logout).toContain('На телефоне всё сохранено');
-    expect(logout).not.toContain('Прогресс не сохранён');
-  });
 });

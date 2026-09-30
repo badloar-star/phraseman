@@ -1,0 +1,99 @@
+{
+  "schemaVersion": "dialogue-v2-locale-draft.v1",
+  "status": "draft_not_releaseable",
+  "sourceScenarioId": "social_01",
+  "sourceLedger": {
+    "path": "dialogue_v2_authoring_ru.json",
+    "revision": "v1"
+  },
+  "targets": {
+    "en": {
+      "content": {
+        "title": "Say hello after meeting someone",
+        "briefing": "You are chatting in the Social world. Your task is to say hello after meeting someone. Do not end the conversation in one message: work through the steps and respond to your chat partner.",
+        "completionTone": "brief, clear, and friendly"
+      },
+      "personas": [
+        {
+          "id": "mila",
+          "displayName": "Mila",
+          "styleNote": "She warmly keeps the conversation going and asks natural follow-up questions."
+        }
+      ],
+      "objectives": [
+        { "id": "objective_01", "label": "Start with a greeting" },
+        { "id": "objective_02", "label": "Say who you are" },
+        { "id": "objective_03", "label": "Say where you met" },
+        { "id": "objective_04", "label": "Ask one simple question" },
+        { "id": "objective_05", "label": "Answer a question in return" },
+        { "id": "objective_06", "label": "End the chat warmly" }
+      ]
+    },
+    "es": {
+      "content": {
+        "title": "Saludar después de conocerse",
+        "briefing": "Estás chateando en el mundo «Social». Tu tarea es saludar después de conocerse. No cierres la conversación con un solo mensaje: sigue los pasos y responde a tu interlocutora.",
+        "completionTone": "breve, claro y amable"
+      },
+      "personas": [
+        {
+          "id": "mila",
+          "displayName": "Mila",
+          "styleNote": "Mantiene la conversación con calidez y hace preguntas de seguimiento naturales."
+        }
+      ],
+      "objectives": [
+        { "id": "objective_01", "label": "Empezar con un saludo" },
+        { "id": "objective_02", "label": "Decir quién eres" },
+        { "id": "objective_03", "label": "Decir dónde se conocieron" },
+        { "id": "objective_04", "label": "Hacer una pregunta sencilla" },
+        { "id": "objective_05", "label": "Responder a una pregunta" },
+        { "id": "objective_06", "label": "Cerrar el chat de forma amable" }
+      ]
+    },
+    "fr": {
+      "content": {
+        "title": "Dire bonjour après avoir fait connaissance",
+        "briefing": "Tu échanges des messages dans le monde «Social». Ton objectif est de dire bonjour après avoir fait connaissance. Ne termine pas la conversation en un seul message : suis les étapes et réponds à ton interlocutrice.",
+        "completionTone": "bref, clair et chaleureux"
+      },
+      "personas": [
+        {
+          "id": "mila",
+          "displayName": "Mila",
+          "styleNote": "Elle relance chaleureusement la conversation et pose des questions de suivi naturelles."
+        }
+      ],
+      "objectives": [
+        { "id": "objective_01", "label": "Commencer par une salutation" },
+        { "id": "objective_02", "label": "Dire qui tu es" },
+        { "id": "objective_03", "label": "Dire où vous vous êtes rencontrés" },
+        { "id": "objective_04", "label": "Poser une question simple" },
+        { "id": "objective_05", "label": "Répondre à une question en retour" },
+        { "id": "objective_06", "label": "Terminer le chat chaleureusement" }
+      ]
+    },
+    "de": {
+      "content": {
+        "title": "Nach dem Kennenlernen Hallo sagen",
+        "briefing": "Du schreibst im Bereich „Social“. Deine Aufgabe: Nach dem Kennenlernen Hallo sagen. Beende das Gespräch nicht mit nur einer Nachricht: Gehe die Schritte durch und reagiere auf deine Gesprächspartnerin.",
+        "completionTone": "kurz, klar und freundlich"
+      },
+      "personas": [
+        {
+          "id": "mila",
+          "displayName": "Mila",
+          "styleNote": "Sie nimmt das Gespräch herzlich auf und stellt natürliche Rückfragen."
+        }
+      ],
+      "objectives": [
+        { "id": "objective_01", "label": "Mit einer Begrüßung beginnen" },
+        { "id": "objective_02", "label": "Sagen, wer du bist" },
+        { "id": "objective_03", "label": "Sagen, wo ihr euch kennengelernt habt" },
+        { "id": "objective_04", "label": "Eine einfache Frage stellen" },
+        { "id": "objective_05", "label": "Eine Gegenfrage beantworten" },
+        { "id": "objective_06", "label": "Den Chat freundlich beenden" }
+      ]
+    }
+  }
+}

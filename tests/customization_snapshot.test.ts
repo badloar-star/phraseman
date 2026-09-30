@@ -1,11 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {
-  buildCustomizationSnapshot,
-  customizationSnapshotsEqual,
-  createCustomizationFallback,
-} from '../app/customization_snapshot';
+import { buildCustomizationSnapshot } from '../app/customization_snapshot';
 import { starterAvatarDNA } from '../modules/avatar-dna/catalog';
 import type { AvatarDNAStoredState } from '../modules/avatar-dna/storage';
 import { avatarDNAStateStorageKey, commitAvatarDNA } from '../modules/avatar-dna/storage';
@@ -46,39 +42,15 @@ describe('customization snapshot', () => {
     resetAppSnapshotForAccountSwitch();
   });
 
-  it('preserves explicit none and valid owned maps', () => {
+  // зачем: D108 — купленные ауры/аватары удалены: снимок их больше не несёт.
+  it('does not carry removed cosmetics (D108)', () => {
     const snapshot = buildCustomizationSnapshot(new Map([
-      ['user_avatar', 'custom:custom-01:violet:black'],
-      ['user_avatar_aura', 'none'],
-      ['user_total_xp', '1250'],
-      ['shards_balance', '44'],
+      ['user_avatar', '18'],
+      ['user_avatar_aura', 'aura-ember'],
       ['custom_avatar_owned_v1', JSON.stringify({ 'custom-01': 'violet:black' })],
-      ['avatar_aura_owned_v1', JSON.stringify({ 'aura-aurora': true, bad: false })],
-      ['custom_avatar_gift_owned_v1', 'custom-61'],
-      ['avatar_aura_gift_owned_v1', 'aura-nimbus'],
+      ['avatar_aura_owned_v1', JSON.stringify({ 'aura-aurora': true })],
     ]), 100, 18);
-
-    expect(snapshot.storedAuraSelection).toBe('none');
-    expect(snapshot.shards).toBe(44);
-    expect(snapshot.ownedAvatars).toEqual({ 'custom-01': 'violet:black' });
-    expect(snapshot.ownedAuras).toEqual({ 'aura-aurora': true });
-    expect(snapshot.giftedAvatarId).toBe('custom-61');
-    expect(snapshot.giftedAuraId).toBe('aura-nimbus');
-  });
-
-  it('rejects arrays and malformed JSON', () => {
-    const snapshot = buildCustomizationSnapshot(new Map([
-      ['custom_avatar_owned_v1', '["custom-01"]'],
-      ['avatar_aura_owned_v1', '{bad'],
-    ]), 100, 1);
-    expect(snapshot.ownedAvatars).toEqual({});
-    expect(snapshot.ownedAuras).toEqual({});
-  });
-
-  it('compares normalized content instead of object identity', () => {
-    const a = buildCustomizationSnapshot(new Map(), 100, 1);
-    const b = buildCustomizationSnapshot(new Map(), 200, 1);
-    expect(customizationSnapshotsEqual(a, b)).toBe(true);
+    expect(Object.keys(snapshot).sort()).toEqual(['activeAvatar', 'avatarDNA', 'level', 'shards', 'source', 'updatedAt']);
   });
 
   it('carries validated account-matching Avatar DNA while preserving legacy fields', () => {
@@ -108,19 +80,6 @@ describe('customization snapshot', () => {
         lastGood: { portrait: 'portrait_1', studio: 'studio_1' },
       },
     });
-  });
-
-  it('keeps the legacy fallback intact when Avatar DNA is absent', () => {
-    const fallback = createCustomizationFallback({
-      profile: {
-        source: 'storage', updatedAt: 10, name: 'Ada', avatar: '18', frame: '',
-        totalXp: 100, level: 2, premiumActive: false, vipActive: false,
-      },
-      progress: { source: 'storage', updatedAt: 11, streak: 1, shards: 7, studyTarget: 'en' },
-    });
-    expect(fallback.activeAvatar).toBe('18');
-    expect(fallback.shards).toBe(7);
-    expect(fallback.avatarDNA).toBeUndefined();
   });
 
   it('publishes matching Avatar DNA in the first local app snapshot', async () => {
@@ -206,7 +165,7 @@ describe('customization snapshot', () => {
 
     await primeAppSnapshotFromStorage('en');
 
-    expect(getAppSnapshot().profile).toMatchObject({ avatar: '18', totalXp: 100 });
+    expect(getAppSnapshot().profile).toMatchObject({ avatar: '18' });
     expect(getAppSnapshot().profile?.avatarDNA).toBeUndefined();
     expect(getAppSnapshot().customization).toMatchObject({ activeAvatar: '18', shards: 7 });
     expect(getAppSnapshot().customization?.avatarDNA).toBeUndefined();

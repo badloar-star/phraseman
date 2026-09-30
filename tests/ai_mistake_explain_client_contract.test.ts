@@ -25,7 +25,7 @@ describe('AI mistake explanation client contract', () => {
     expect(cardSource).toContain('AiLimitUpsellCard');
     expect(cardSource).toContain('testID="ai-mistake-limit-card"');
     expect(limitCardSource).toContain('TonalSurface');
-    expect(limitCardSource).toContain('Получить фулл доступ');
+    expect(limitCardSource).toContain('Посмотреть Plus');
     expect(cardSource).toContain('AiMistakeCardState');
   });
 

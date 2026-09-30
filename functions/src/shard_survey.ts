@@ -10,7 +10,6 @@ import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
-import { appendExternalEconomyEvent } from './external_economy_events';
 import {
   parseSurveyConfig,
   validateAnswers,
@@ -300,24 +299,8 @@ export const submitShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request) =>
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
     });
 
-    // зачем (PM-058, владелец: «удалить выдачу жемчуга за любые действия»):
-    // reward сейчас всегда 0 (SURVEY_SHARD_AMOUNT), а appendExternalEconomyEvent
-    // бросает invalid_external_event_delta на delta === 0 — экономическое
-    // событие с нулевой дельтой создавать нельзя и не нужно, опрос закрывается
-    // без начисления.
-    if (reward > 0) {
-      appendExternalEconomyEvent(tx, userRef, {
-        source: 'shard_survey',
-        eventId: occurrenceId,
-        ownerStableId: stableUid,
-        delta: reward,
-        reason: 'survey_completed',
-        kind: 'survey_reward',
-        subjectId: canonicalSurveyId,
-        payload: { surveyId: canonicalSurveyId, occurrenceId, occurrenceDay },
-        createdAtMs: nowMs,
-      });
-    }
+    // зачем (PM-058/D70): выдача жемчуга за опрос удалена целиком — опрос
+    // закрывается без начисления, экономического события больше нет.
 
     // Только метка последнего опроса (для cooldown в getActive).
     tx.set(userRef, {

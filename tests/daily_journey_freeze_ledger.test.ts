@@ -10,7 +10,6 @@ import {
   consumeDailyJourneyFreeze,
   consumeDailyJourneyFreezeBatch,
   readDailyJourneyFreezeProjection,
-  readEffectiveStreakProtection,
 } from '../app/daily_journey_freeze_ledger';
 import { __cloudSyncTestHooks } from '../app/cloud_sync';
 
@@ -251,18 +250,12 @@ it('keeps committed Daily Journey protection effective after cloud restore remov
     amount: 2,
     occurrenceFingerprint: 'b'.repeat(64),
   }, token);
-  storage.chain_shield = JSON.stringify({ daysLeft: 3, grantedAt: 'server' });
 
   await __cloudSyncTestHooks.applyRestoreFromUserDoc({
     exists: true,
     data: () => ({ progress: { user_total_xp: '0', streak_count: '0' } }),
   });
 
-  await expect(readEffectiveStreakProtection(token)).resolves.toEqual({
-    serverShieldDays: 0,
-    dailyJourneyFreezeCount: 2,
-    totalProtectionCount: 2,
-  });
 });
 
 it('recovers an occurrence-only torn grant without minting twice', async () => {

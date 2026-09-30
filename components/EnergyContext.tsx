@@ -13,8 +13,6 @@ import {
 } from '../app/account_generation';
 import { readDevLocalPlusOverride } from '../app/dev_plus_controls';
 import { applyAdminEnergyCommand, formatTimeUntilRecovery, getRecoveryIntervalMs } from '../app/energy_system';
-import { readLeagueChestEnergyOverrideMs, readLeagueChestEnergyOverrideSnapshot } from '../app/services/league_chest_rewards';
-import { isEnergyFreeWindowActive, readBoonEnergyOverrideMs, readBoonEnergyOverrideSnapshot } from '../app/boons/boon_effects_energy';
 import { createCoalescedAsyncRunner } from '../app/app_resume_policy';
 // зачем (аудит 2026-08-23, третий проход): ключ energy_state пишут ДЕВЯТЬ мест.
 // Подарки уровня, сезонный «полный заряд» и покупка за жемчужины идут под общим
@@ -28,7 +26,6 @@ import { createCoalescedAsyncRunner } from '../app/app_resume_policy';
 import { withStorageLock } from '../app/storage_mutex';
 import type { Lang } from '../constants/i18n';
 import { energyCountdownClock } from './energy_countdown_clock';
-import { getMaxEnergy as getConfiguredBaseEnergy } from '../app/remote_flags';
 import { isFeatureFreeForEveryone } from '../app/feature_gates';
 import type { EnergyStartResult } from './energy_start_confirmation';
 import { peekEnergy, writePeekEnergy } from '../app/energy_peek_cache';
@@ -288,14 +285,6 @@ async function readUnlimited(): Promise<boolean> {
     return true;
   }
 
-  // Weekly Boon «окно без энергии»: в активный вечерний час энергия не тратится у всех.
-  // EnergyContext.spendOne — основной путь траты (не energy_system.spendEnergy),
-  // поэтому окно ОБЯЗАНО проверяться здесь, иначе бонус не работает.
-  if (isEnergyFreeWindowActive()) {
-    _lastUnlimitedReason = `weekly_boon_energy_free_window(hour=${new Date().getHours()})`;
-    return true;
-  }
-
   // зачем (владелец 2026-08-24): DEV-центр → «Снять Plus» переключает только
   // PremiumContext (dev_local_plus_override_v1), а EnergyContext спрашивал
   // getVerifiedPremiumStatus() напрямую — эта функция override не видит.
@@ -335,21 +324,7 @@ async function readUnlimited(): Promise<boolean> {
 }
 
 async function readRecoveryIntervalMs(): Promise<number> {
-  try {
-    // Override-ы интервала: league-chest и weekly-boon (turbo_regen). Берём наименьший
-    // (быстрейшее восстановление). EnergyContext — основной читатель интервала, поэтому
-    // boon-override ОБЯЗАН учитываться здесь (energy_system.ts даёт его только spendEnergy).
-    const [leagueChestMs, boonMs] = await Promise.all([
-      readLeagueChestEnergyOverrideMs(),
-      readBoonEnergyOverrideMs(),
-    ]);
-    const overrides = [leagueChestMs, boonMs].filter(
-      (v): v is number => typeof v === 'number' && v > 0,
-    );
-    return Math.min(getRecoveryIntervalMs(), ...overrides);
-  } catch {
-    return getRecoveryIntervalMs();
-  }
+  return getRecoveryIntervalMs();
 }
 
 type RecoveryOverrideSnapshot = Readonly<{ recoveryMs: number; startedAt: number; expiresAt: number }>;
@@ -471,11 +446,9 @@ async function readAndRecoverState(
   return withStorageLock(async () => {
     if (!isCurrentAccountGeneration(accountToken)) throw new Error('energy_account_changed_before_recovery');
     const now = Date.now();
-    const [bonus, raw, leagueOverride, boonOverride] = await Promise.all([
+    const [bonus, raw] = await Promise.all([
       readBonusEnergyForMutation(accountToken),
       AsyncStorage.getItem(ENERGY_KEY),
-      readLeagueChestEnergyOverrideSnapshot(),
-      readBoonEnergyOverrideSnapshot(),
     ]);
     let parsed: unknown = null;
     if (raw) {
@@ -492,7 +465,7 @@ async function readAndRecoverState(
       opening.lastSettledAt,
       now,
       getRecoveryIntervalMs(),
-      [leagueOverride, boonOverride],
+      [],
     ).map((segment) => ({ ...segment, maxEnergy: dynMax }));
     const settled = settleEnergyAcrossRateSegments(
       openingPools,
@@ -539,7 +512,7 @@ async function readAndRecoverState(
  * чтобы не трогать Promise.all в runLoad/refillToMax.
  */
 async function readDynMax(): Promise<number> {
-  return permanentEnergyCapacity({ base: getConfiguredBaseEnergy() });
+  return permanentEnergyCapacity({ base: 5 });
 }
 
 /** Язык интерфейса для текста уведомления (тот же источник, что в _layout). */
@@ -832,7 +805,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
       }
     });
 
-    // Перезагружаем энергию по событию от xp_manager при level-up / смене Premium.
+    // Перезагружаем энергию по событию при смене Premium.
     const levelSub = DeviceEventEmitter.addListener('energy_reload', () => { load(); });
     const premiumOnSub = DeviceEventEmitter.addListener('premium_activated', () => { load(); });
     const premiumOffSub = DeviceEventEmitter.addListener('premium_deactivated', () => { load(); });
@@ -1054,10 +1027,6 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
         return;
       }
       const now = Date.now();
-      const [leagueOverride, boonOverride] = await Promise.all([
-        readLeagueChestEnergyOverrideSnapshot(),
-        readBoonEnergyOverrideSnapshot(),
-      ]);
       const fullMs = estimateEnergyFullRecoveryMs({
         nowMs: now,
         current: energyRef.current,
@@ -1068,7 +1037,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
         recoveryCreditMicrounits: recoveryCreditMicrounitsRef.current,
         recoveryDivisionRemainder: recoveryDivisionRemainderRef.current,
         baseUnitMs: getRecoveryIntervalMs(),
-        overrides: [leagueOverride, boonOverride],
+        overrides: [],
       });
       const secondsUntilFull = Math.ceil(fullMs / 1000);
       const lang = await readNotificationLang();

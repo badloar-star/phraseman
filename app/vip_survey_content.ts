@@ -167,7 +167,6 @@ export const VIP_SURVEY_QUESTIONS: VipSurveyQuestion[] = [
       { id: 'home', text: loc({ ru: 'Главная', uk: 'Головна', es: 'Inicio', ptBR: 'Início', vi: 'Trang chủ', id: 'Beranda', tr: 'Ana sayfa', pl: 'Główna' }) },
       { id: 'lessons', text: COMMON.lessons },
       { id: 'flashcards', text: COMMON.flashcards },
-      { id: 'leagues', text: loc({ ru: 'Лиги', uk: 'Ліги', es: 'Ligas', ptBR: 'Ligas', vi: 'Giải đấu', id: 'Liga', tr: 'Ligler', pl: 'Ligi' }) },
       { id: 'profile', text: loc({ ru: 'Профиль', uk: 'Профіль', es: 'Perfil', ptBR: 'Perfil', vi: 'Hồ sơ', id: 'Profil', tr: 'Profil', pl: 'Profil' }) },
       { id: 'none', text: loc({ ru: 'Нет такого', uk: 'Немає такого', es: 'Ninguna', ptBR: 'Nenhuma', vi: 'Không có', id: 'Tidak ada', tr: 'Yok', pl: 'Żaden' }) },
     ],

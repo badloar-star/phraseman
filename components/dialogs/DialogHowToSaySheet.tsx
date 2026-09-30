@@ -38,6 +38,7 @@ import { hapticTap } from '../../hooks/use-haptics';
 import { useKeyboardBottomInset } from '../keyboardAvoidance';
 import { useTheme } from '../ThemeContext';
 import TonalSurface from '../TonalSurface';
+import { glassFill } from '../GlassSurface';
 import SkeletonBlock from '../SkeletonShimmer';
 import { triLang, type Lang } from '../../constants/i18n';
 import {
@@ -231,7 +232,7 @@ export default function DialogHowToSaySheet({
               style={[
                 styles.sheet,
                 {
-                  backgroundColor: t.bgCard,
+                  backgroundColor: glassFill(t.bgCard, 0.46),
                   paddingBottom: 20 + Math.max(bottomInset, keyboardBottomInset),
                   maxHeight: viewportHeight * 0.8,
                 },

@@ -3,7 +3,7 @@
  *   • «Добавить себе» — одно нажатие, оптимистично, без списаний и подтверждений;
  *   • лайк активности — повторное нажатие снимает лайк, один пользователь = один лайк.
  *
- * Осколки/звёзды/XP здесь не участвуют вообще: наборы бесплатны и ничего не приносят (§1.4).
+ * Осколки/звёзды/legacy reward здесь не участвуют вообще: наборы бесплатны и ничего не приносят (§1.4).
  */
 import { emitAppEvent } from '../events';
 import { getCanonicalUserId } from '../user_id_policy';
@@ -32,7 +32,7 @@ export type AddPackToLibraryResult =
  * серверный счётчик добавлений догоняет в фоне и дедуплицируется по пользователю.
  */
 export async function addCommunityPackToLibrary(
-  pack: Pick<FlashcardMarketPack, 'id' | 'titleRu' | 'titleUk' | 'titleEs' | 'isCommunityUgc' | 'ugcCardBackKey'>,
+  pack: Pick<FlashcardMarketPack, 'id' | 'titleRu' | 'titleUk' | 'titleEs' | 'isCommunityUgc'>,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<AddPackToLibraryResult> {
   if (!pack?.id) return 'unavailable';
@@ -54,7 +54,6 @@ export async function addCommunityPackToLibrary(
       titleRu: pack.titleRu,
       titleUk: pack.titleUk,
       titleEs: pack.titleEs,
-      ugcCardBackKey: pack.ugcCardBackKey,
     });
     return 'already_added';
   }
@@ -63,7 +62,6 @@ export async function addCommunityPackToLibrary(
     titleRu: pack.titleRu,
     titleUk: pack.titleUk,
     titleEs: pack.titleEs,
-    ugcCardBackKey: pack.ugcCardBackKey,
   });
   void bumpAddedCountOnce(pack.id);
 

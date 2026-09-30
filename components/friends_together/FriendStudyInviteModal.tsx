@@ -1,24 +1,90 @@
 import React, { memo } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image as RNImage, StyleSheet, Text, View } from 'react-native';
+import { coinRankRowForDisplay, isValidCoinRank } from '../../app/coin_rank_table_v1';
+import { triLang } from '../../constants/i18n';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import HybridAlertShell from '../modal_fx/HybridAlertShell';
 import DuoPressable from '../DuoPressable';
-import { useTheme } from '../ThemeContext';
+import { LinearGradient } from '../SafeLinearGradient';
+import { FONT_SCALE, useTheme } from '../ThemeContext';
 import { useLang } from '../LangContext';
-import { triLang } from '../../constants/i18n';
 
-type Props = { visible: boolean; onStart: () => void; onDecline: () => void };
+type Props = {
+  visible: boolean;
+  friendCoinRank?: number | null;
+  onStart: () => void;
+  onDecline: () => void;
+};
 
-function FriendStudyInviteModal({ visible, onStart, onDecline }: Props) {
-  const { theme: t, f } = useTheme();
+function FriendStudyInviteModal({ visible, friendCoinRank = null, onStart, onDecline }: Props) {
+  const { fontSize, liquidGlassThemeId, uiScale } = useTheme();
   const { lang } = useLang();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  const textScale = (FONT_SCALE[fontSize] / FONT_SCALE.medium) * uiScale;
+  const coinRow = isValidCoinRank(friendCoinRank) ? coinRankRowForDisplay(friendCoinRank) : null;
   const L = (ru: string, uk: string, en: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) => triLang(lang, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl });
+
   return (
-    <HybridAlertShell visible={visible} onRequestClose={onDecline} testID="friend-study-invite-modal" shadowColor={t.accent}>
-      <View style={[styles.card, { backgroundColor: t.bgCard }]}>
-        <Text accessibilityRole="header" style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>{L('Пять минут на английский?', 'П’ять хвилин на англійську?', 'Five minutes of English?', '¿Cinco minutos de inglés?', 'Cinco minutos de inglês?', 'Năm phút học tiếng Anh?', 'Lima menit bahasa Inggris?', 'Beş dakika İngilizce?', 'Pięć minut angielskiego?')}</Text>
-        <DuoPressable testID="friend-study-start" onPress={onStart} edgeColor={t.accent} style={[styles.primary, { backgroundColor: t.accent }]}><Text style={[styles.buttonText, { color: t.correctText }]}>{L('Начать занятие', 'Почати заняття', 'Start the lesson', 'Empezar lección', 'Começar lição', 'Bắt đầu bài học', 'Mulai pelajaran', 'Derse başla', 'Zacznij lekcję')}</Text></DuoPressable>
-        <DuoPressable testID="friend-study-decline" onPress={onDecline} edgeColor={t.bgSurface2} style={[styles.secondary, { backgroundColor: t.bgSurface2 }]}><Text style={[styles.buttonText, { color: t.textPrimary }]}>{L('Не сейчас', 'Не зараз', 'Not now', 'Ahora no', 'Agora não', 'Không phải bây giờ', 'Jangan sekarang', 'Şimdi değil', 'Nie teraz')}</Text></DuoPressable>
-      </View>
+    <HybridAlertShell visible={visible} onRequestClose={onDecline} testID="friend-study-invite-modal" shadowColor={glass.cta}>
+      <LinearGradient
+        colors={[glass.opaqueSheet, glass.selected, glass.opaqueSheet]}
+        start={{ x: 0.08, y: 0 }}
+        end={{ x: 0.92, y: 1 }}
+        style={[styles.card, { backgroundColor: glass.opaqueSheet, borderColor: glass.glassEdge }]}
+      >
+        <View
+          accessible
+          accessibilityLabel={L('Приглашение на занятие', 'Запрошення на заняття', 'Study invitation', 'Invitación para estudiar', 'Convite para estudar', 'Lời mời học', 'Undangan belajar', 'Çalışma daveti', 'Zaproszenie do nauki')}
+          style={styles.hero}
+        >
+          {coinRow ? (
+            <RNImage
+              accessible={false}
+              accessibilityElementsHidden
+              importantForAccessibility="no"
+              resizeMode="contain"
+              source={coinRow.source}
+              style={styles.heroImage}
+            />
+          ) : (
+            <View
+              pointerEvents="none"
+              style={[styles.heroPlaceholder, { backgroundColor: glass.selected, borderColor: glass.glassEdge }]}
+            >
+              <View style={[styles.heroPlaceholderCore, { backgroundColor: glass.glassEdge }]} />
+            </View>
+          )}
+        </View>
+        <Text accessibilityRole="header" style={[styles.title, { color: glass.text, fontSize: 22 * textScale, lineHeight: 28 * textScale }]}>
+          {L('Пять минут на английский?', 'П’ять хвилин на англійську?', 'Five minutes of English?', '¿Cinco minutos de inglés?', 'Cinco minutos de inglês?', 'Năm phút học tiếng Anh?', 'Lima menit bahasa Inggris?', 'Beş dakika İngilizce?', 'Pięć minut angielskiego?')}
+        </Text>
+        <Text style={[styles.body, { color: glass.secondary, fontSize: 14 * textScale, lineHeight: 20 * textScale }]}>
+          {L('Друг зовёт вас заниматься сегодня.', 'Друг кличе вас позайматися сьогодні.', 'A friend is inviting you to study today.', 'Un amigo te invita a estudiar hoy.', 'Um amigo está convidando você para estudar hoje.', 'Một người bạn đang mời bạn học hôm nay.', 'Seorang teman mengajakmu belajar hari ini.', 'Bir arkadaşın seni bugün çalışmaya davet ediyor.', 'Znajomy zaprasza cię dziś do nauki.')}
+        </Text>
+        <DuoPressable
+          testID="friend-study-start"
+          accessibilityLabel={L('Начать занятие', 'Почати заняття', 'Start the lesson', 'Empezar lección', 'Começar lição', 'Bắt đầu bài học', 'Mulai pelajaran', 'Derse başla', 'Zacznij lekcję')}
+          onPress={onStart}
+          wrapStyle={styles.primaryWrap}
+          gradientColors={[glass.lightTint, glass.cta, glass.cta]}
+          style={[styles.button, { backgroundColor: glass.cta }]}
+        >
+          <Text style={[styles.buttonText, { color: glass.ctaInk, fontSize: 17 * textScale }]}>
+            {L('Начать занятие', 'Почати заняття', 'Start the lesson', 'Empezar lección', 'Começar lição', 'Bắt đầu bài học', 'Mulai pelajaran', 'Derse başla', 'Zacznij lekcję')}
+          </Text>
+        </DuoPressable>
+        <DuoPressable
+          testID="friend-study-decline"
+          accessibilityLabel={L('Не сейчас', 'Не зараз', 'Not now', 'Ahora no', 'Agora não', 'Không phải bây giờ', 'Jangan sekarang', 'Şimdi değil', 'Nie teraz')}
+          onPress={onDecline}
+          wrapStyle={styles.secondaryWrap}
+          style={[styles.button, styles.secondary, { backgroundColor: 'transparent', borderColor: glass.glassEdge }]}
+        >
+          <Text style={[styles.buttonText, { color: glass.text, fontSize: 17 * textScale }]}>
+            {L('Не сейчас', 'Не зараз', 'Not now', 'Ahora no', 'Agora não', 'Không phải bây giờ', 'Jangan sekarang', 'Şimdi değil', 'Nie teraz')}
+          </Text>
+        </DuoPressable>
+      </LinearGradient>
     </HybridAlertShell>
   );
 }
@@ -26,9 +92,30 @@ function FriendStudyInviteModal({ visible, onStart, onDecline }: Props) {
 export default memo(FriendStudyInviteModal);
 
 const styles = StyleSheet.create({
-  card: { padding: 24 },
-  title: { fontWeight: '700', textAlign: 'center' },
-  primary: { minHeight: 52, marginTop: 22, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
-  secondary: { minHeight: 52, marginTop: 10, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
-  buttonText: { fontSize: 16, fontWeight: '700' },
+  card: {
+    overflow: 'hidden',
+    paddingTop: 24,
+    paddingHorizontal: 20,
+    paddingBottom: 20,
+    borderWidth: 1,
+    borderRadius: 26,
+  },
+  hero: { width: 68, height: 68, alignSelf: 'center' },
+  heroImage: { width: 68, height: 68 },
+  heroPlaceholder: {
+    width: 68,
+    height: 68,
+    borderRadius: 34,
+    borderWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  heroPlaceholderCore: { width: 22, height: 22, borderRadius: 11 },
+  title: { marginTop: 14, fontWeight: '700', textAlign: 'center' },
+  body: { marginTop: 8, fontWeight: '400', textAlign: 'center' },
+  primaryWrap: { marginTop: 20 },
+  secondaryWrap: { marginTop: 10 },
+  button: { minHeight: 48, borderRadius: 24 },
+  secondary: { borderWidth: 1 },
+  buttonText: { fontWeight: '700', textAlign: 'center' },
 });

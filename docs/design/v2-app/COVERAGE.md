@@ -296,7 +296,7 @@
 - `components/daily_journey/DailyJourneyProductionModalHost.tsx`, `DailyJourneyRevealScene.tsx` — «Дневной путь» — удаляется, заменяется блоком «Сегодня» (D49/D51).
 - `components/friends_together/FriendLevelUpModal.tsx`, `FriendStudyInviteModal.tsx`, `FriendTogetherSheet.tsx`, `FriendEventMarker.tsx` — приглашения друга/повышение друга — оставить в разделе Друзья (COM-04), кроме FriendsChestModal/FriendsChestCard (см. COM-07, удаляется).
 - `components/GlobalFriendGiftHost.tsx`, `GlobalShardsEarnedHost.tsx` — глобальные хосты подарков/наград жемчуга — удаляются вместе с подарками/жемчугом (D09/D15).
-- `components/RankChangeBanner.tsx`, `MedalToast.tsx`, `InGameToast.tsx`, `ActionToast.tsx` — общие тосты смены ранга/медали/действия — оставить, но проверить, что «ранг» теперь означает монетный ранг, а не XP-уровень.
+- `components/RankChangeBanner.tsx`, `MedalToast.tsx`, `InGameToast.tsx`, `ActionToast.tsx` — общие тосты смены ранга/медали/действия — оставить, но проверить, что «ранг» означает ранг игрока, а не XP-уровень.
 - `components/SeasonGiftModal.tsx`, `SeasonRewardInfoModal.tsx`, `SeasonAuraRing.tsx`, `SeasonProfileCardFrame.tsx`, `SeasonPassBuyButton.tsx`, `app/season_pass.tsx` — весь сезонный пропуск — удаляется (D53).
 - `components/roulette_win_modal.tsx`, `roulette_win_celebration.tsx` — колесо выигрыша (проверить: это реферальная рулетка PRF-12, которая остаётся, D52 — НЕ путать со спинами уровня, которые удаляются).
 - `components/PlayerProfileModal.tsx` — карточка чужого игрока (визитка) — оставить, обновить под монету/ранг.

@@ -20,6 +20,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import { SpeakingPanel, buildSpeakingPanelTheme, type SpeakingPanelStatus } from '../components/SpeakingPanel';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
+import { useLv2Glass } from '../components/learning-v2/LearningV2Glass';
 import ReportErrorButton from '../components/ReportErrorButton';
 import { matchesMistakePracticeAnswer } from './mistake_practice_answer_match';
 import { mistakePracticeTokenOrder } from './mistake_practice_token_order';
@@ -56,15 +57,12 @@ import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import {
   flushPendingMistakeCorrectionRewards,
   settleMistakePracticeAnswerRewards,
-  settleMistakePracticeCompletionReward,
 } from './mistake_practice_rewards';
 import {
   clearMistakePracticeSession,
   saveMistakePracticeSession,
 } from './mistake_practice_session_store';
 import { getStableId } from './stable_id';
-import { markPersonalPlanTaskCompleted } from './personal_plan_progress';
-import { withOptionalPersonalPlanSunsetGuard } from '../components/personal_plan_sunset_guard';
 import { checkAchievements } from './achievements';
 import { getMistakePracticeAchievementSnapshot } from './mistake_practice_insights';
 import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHud';
@@ -348,6 +346,7 @@ function MistakePracticeSessionScreen() {
   );
   const devJumpToFinale = (Array.isArray(params.devJumpToFinale) ? params.devJumpToFinale[0] : params.devJumpToFinale) === '1';
   const { theme: t, f } = useTheme();
+  const g = useLv2Glass();
   const { lang } = useLang();
   const copy = useMemo(() => sessionCopy(lang), [lang]);
   const { studyTarget } = useStudyTarget();
@@ -392,7 +391,6 @@ function MistakePracticeSessionScreen() {
   const [submitting, setSubmitting] = useState(false);
   const [speechHeld, setSpeechHeld] = useState(false);
   const [speechRecovery, setSpeechRecovery] = useState<string | null>(null);
-  const [earnedXp, setEarnedXp] = useState(0);
   const [earnedStars, setEarnedStars] = useState(0);
   // зачем (макет финала А): фразы, ушедшие навсегда ИМЕННО в этой сессии —
   // они «уезжают» на полку в финале со штампом «Навсегда».
@@ -430,24 +428,11 @@ function MistakePracticeSessionScreen() {
     : '';
   const entrySource = params.lessonId
     ? 'learning_v2'
-    : params.planTaskId
-      ? 'personal_plan'
       : focusedMistakeId
         ? 'correction'
         : 'cards';
   const persistSession = entrySource === 'cards';
-  const returnToMaxReview = params.returnTo === 'max_voice_review';
   const leavePractice = () => {
-    if (returnToMaxReview) {
-      markNextNavigationAsReplace();
-      router.replace({
-        pathname: '/max_voice_review',
-        params: typeof params.maxReviewSessionId === 'string'
-          ? { sessionId: params.maxReviewSessionId }
-          : {},
-      } as any);
-      return;
-    }
     safeRouterBack(router, '/flashcards' as never);
   };
 
@@ -672,7 +657,6 @@ function MistakePracticeSessionScreen() {
         beforeStatus,
         afterStatus,
       }).then((reward) => {
-        if (reward.xp > 0) setEarnedXp((value) => value + reward.xp);
         if (reward.starGranted) {
           setEarnedStars((value) => value + 1);
           setFixedNow((current) => current.some((item) => item.mistakeId === entry.mistakeId)
@@ -785,24 +769,6 @@ function MistakePracticeSessionScreen() {
           .catch((error: unknown) => {
             console.warn('[MISTAKES-REWARD] finale:catch — финал покажем без итогов серии', error instanceof Error ? error.message : String(error)); // guard-ok: лог в catch обязателен
           });
-        if (params.planTaskId) {
-          void markPersonalPlanTaskCompleted({
-            taskId: params.planTaskId,
-            planId: params.planId,
-            planInstanceId: params.planInstanceId,
-            studyTarget,
-            dayIndex: Number.isSafeInteger(Number(params.planDayIndex))
-              ? Number(params.planDayIndex)
-              : undefined,
-          });
-        }
-        void settleMistakePracticeCompletionReward({
-          sessionId: pendingSession.sessionId,
-          initialCount: pendingSession.initialCount,
-          studyTarget,
-        }).then((xp) => {
-          if (xp > 0) setEarnedXp((value) => value + xp);
-        }).catch(() => undefined);
         void getMistakePracticeAchievementSnapshot(studyTarget).then((snapshot) =>
           checkAchievements({
             type: 'mistake_practice_progress',
@@ -966,16 +932,16 @@ function MistakePracticeSessionScreen() {
   }, [accountScope, hiddenUndo, persistSession, studyTarget]);
 
   if (loading) {
-    return <MistakePracticeScreenFrame centered><ActivityIndicator color={t.accent} /></MistakePracticeScreenFrame>;
+    return <MistakePracticeScreenFrame centered><ActivityIndicator color={g.cta} /></MistakePracticeScreenFrame>;
   }
 
   if (loadError || !session || (!entry && !complete)) {
     return (
       <MistakePracticeScreenFrame centered>
-        <Ionicons name="alert-circle-outline" size={48} color={t.wrong} />
-        <Text style={[styles.errorTitle, { color: t.textPrimary, fontSize: f.h3 }]}>{loadError ?? copy.sessionEnded}</Text>
-        <Pressable style={[styles.primaryButton, { backgroundColor: t.accent }]} onPress={leavePractice}>
-          <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>{copy.back}</Text>
+        <Ionicons name="alert-circle-outline" size={48} color={g.bad} />
+        <Text style={[styles.errorTitle, { color: g.text, fontSize: f.h3 }]}>{loadError ?? copy.sessionEnded}</Text>
+        <Pressable style={[styles.primaryButton, { backgroundColor: g.cta }]} onPress={leavePractice}>
+          <Text style={{ color: g.ctaInk, fontSize: f.body, fontWeight: '700' }}>{copy.back}</Text>
         </Pressable>
       </MistakePracticeScreenFrame>
     );
@@ -989,7 +955,6 @@ function MistakePracticeSessionScreen() {
           answered={session?.initialCount ?? 0}
           total={session?.initialCount ?? 0}
           perfect={(session?.initialCount ?? 0) >= 1 && wrongAnswers === 0}
-          xp={devRunesFake ? devRunesFake.secondary : earnedXp}
           runes={practiceRunes.runes}
           fixed={fixedNow}
           rewards={rewardsSnapshot}
@@ -1012,32 +977,32 @@ function MistakePracticeSessionScreen() {
           <PracticeRuneCounter
             runes={practiceRunes.runes}
             lang={lang}
-            backgroundColor={t.bgCard}
-            color={t.textPrimary}
+            backgroundColor={g.opaqueCard}
+            color={g.text}
             testID="mistake-practice-runes"
           />
         </View>
       </View>
       <View style={styles.header}>
-        <Pressable accessibilityLabel={copy.close} onPress={leavePractice} style={styles.headerButton}>
-          <Ionicons name="close" size={24} color={t.textMuted} />
+        <Pressable accessibilityLabel={copy.close} onPress={leavePractice} style={[styles.headerButton, { backgroundColor: g.opaqueCard }]}>
+          <Ionicons name="close" size={24} color={g.secondary} />
         </Pressable>
         <SessionAttemptsHud
           remaining={attempts.state.remainingAttempts}
           locale={lang}
           testID="mistake-practice-session-attempts"
         />
-        <View style={[styles.progressTrack, { backgroundColor: t.bgSurface2 }]}>
-          <View style={[styles.progressFill, { backgroundColor: t.accent, width: `${session.initialCount > 0 ? Math.min(100, (progress / session.initialCount) * 100) : 0}%` }]} />
+        <View style={[styles.progressTrack, { backgroundColor: g.opaqueControl }]}>
+          <View style={[styles.progressFill, { backgroundColor: g.cta, width: `${session.initialCount > 0 ? Math.min(100, (progress / session.initialCount) * 100) : 0}%` }]} />
         </View>
-        <Text style={[styles.counter, { color: t.textMuted, fontSize: f.caption }]}>{progress}/{session.initialCount}</Text>
+        <Text style={[styles.counter, { color: g.secondary, fontSize: f.caption }]}>{progress}/{session.initialCount}</Text>
         <Pressable
           accessibilityRole="button"
           accessibilityLabel={copy.hideError}
           onPress={() => setHideConfirmVisible(true)}
-          style={styles.headerButton}
+          style={[styles.headerButton, { backgroundColor: g.opaqueCard }]}
         >
-          <Ionicons name="eye-off-outline" size={22} color={t.textMuted} />
+          <Ionicons name="eye-off-outline" size={22} color={g.secondary} />
         </Pressable>
         {/* зачем: разбор собственных ошибок — самое обидное место для
             бага: если задание составлено неверно, человек ошибётся снова и
@@ -1056,13 +1021,13 @@ OK: ${entry.exercise.correctAnswer}`}
       {/* Источник полёта рун (владелец, 2026-08-27) */}
       <View ref={runeFlight.originRef} collapsable={false} style={{ flex: 1 }}>
       <ScrollView decelerationRate="fast" contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
-        <Text style={[styles.prompt, { color: t.textPrimary, fontSize: f.h3 }]}>{entry.exercise.prompt}</Text>
+        <Text style={[styles.prompt, { color: g.text, fontSize: f.h3 }]}>{entry.exercise.prompt}</Text>
         {/* зачем: перевод-подсказка под заданием. Не «подпись-расшифровка» из
             запрета владельца (та — мелкий пояснительный текст под названием):
             это рабочий слой задания, читаемым кеглем f.body. От заголовка
             отделён тоном и весом, а не уменьшением шрифта и не обводкой. */}
         {entry.exercise.hint ? (
-          <Text style={[styles.promptHint, { color: t.textMuted, fontSize: f.body }]}>
+          <Text style={[styles.promptHint, { color: g.secondary, fontSize: f.body }]}>
             {entry.exercise.hint}
           </Text>
         ) : null}
@@ -1072,10 +1037,10 @@ OK: ${entry.exercise.correctAnswer}`}
             {(entry.exercise.options ?? [entry.exercise.correctAnswer]).map((option) => (
               <Pressable
                 key={option}
-                style={[styles.option, { backgroundColor: t.bgCard }]}
+                style={[styles.option, { backgroundColor: g.opaqueCard }]}
                 onPress={() => void submitVerdict(matchesMistakePracticeAnswer(option, entry.exercise.correctAnswer, studyTarget))}
               >
-                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{option}</Text>
+                <Text style={{ color: g.text, fontSize: f.body, fontWeight: '700' }}>{option}</Text>
               </Pressable>
             ))}
           </View>
@@ -1083,12 +1048,12 @@ OK: ${entry.exercise.correctAnswer}`}
 
         {!feedback && !hiddenUndo && entry.exercise.renderer === 'builder' ? (
           <>
-            <View style={[styles.builderAnswer, { backgroundColor: t.bgCard }]}>
-              <Text style={{ color: builderTokenIndexes.length ? t.textPrimary : t.textGhost, fontSize: f.body }}>
+            <View style={[styles.builderAnswer, { backgroundColor: g.opaqueCard }]}>
+              <Text style={{ color: builderTokenIndexes.length ? g.text : g.mutedText, fontSize: f.body }}>
                 {builderTokenIndexes.map((index) => entry.exercise.tokens?.[index] ?? '').join(' ') || copy.buildPhrase}
               </Text>
               {builderTokenIndexes.length ? (
-                <Pressable onPress={() => setBuilderTokenIndexes([])}><Ionicons name="refresh" size={20} color={t.textMuted} /></Pressable>
+                <Pressable onPress={() => setBuilderTokenIndexes([])}><Ionicons name="refresh" size={20} color={g.secondary} /></Pressable>
               ) : null}
             </View>
             <View style={styles.tokens}>
@@ -1096,10 +1061,10 @@ OK: ${entry.exercise.correctAnswer}`}
                 <Pressable
                   key={index}
                   disabled={builderTokenIndexes.includes(index)}
-                  style={[styles.token, { backgroundColor: t.bgSurface2, opacity: builderTokenIndexes.includes(index) ? 0.28 : 1 }]}
+                  style={[styles.token, { backgroundColor: g.opaqueControl, opacity: builderTokenIndexes.includes(index) ? 0.28 : 1 }]}
                   onPress={() => setBuilderTokenIndexes((current) => [...current, index])}
                 >
-                  <Text style={{ color: t.textPrimary, fontSize: f.body }}>{entry.exercise.tokens?.[index]}</Text>
+                  <Text style={{ color: g.text, fontSize: f.body }}>{entry.exercise.tokens?.[index]}</Text>
                 </Pressable>
               ))}
             </View>
@@ -1109,7 +1074,7 @@ OK: ${entry.exercise.correctAnswer}`}
         {!feedback && !hiddenUndo && (entry.exercise.renderer === 'typing' || entry.exercise.renderer === 'listening') ? (
           <>
             {entry.exercise.renderer === 'listening' && entry.exercise.audioRef ? (
-              <ListeningPlayback audioRef={entry.exercise.audioRef} color={t.accent} foreground={t.correctText} accessibilityLabel={copy.listen} />
+              <ListeningPlayback audioRef={entry.exercise.audioRef} color={g.cta} foreground={g.ctaInk} accessibilityLabel={copy.listen} />
             ) : null}
             <TextInput
               value={input}
@@ -1117,8 +1082,8 @@ OK: ${entry.exercise.correctAnswer}`}
               autoCapitalize="none"
               autoCorrect={false}
               placeholder={copy.answerPlaceholder}
-              placeholderTextColor={t.textGhost}
-              style={[styles.input, { backgroundColor: t.bgCard, color: t.textPrimary, fontSize: f.body }]}
+              placeholderTextColor={g.mutedText}
+              style={[styles.input, { backgroundColor: g.opaqueCard, color: g.text, fontSize: f.body }]}
             />
           </>
         ) : null}
@@ -1156,12 +1121,12 @@ OK: ${entry.exercise.correctAnswer}`}
               accessibilityLabel={copy.holdToSpeak}
               onPressIn={() => setSpeechHeld(true)}
               onPressOut={() => setSpeechHeld(false)}
-              style={[styles.micButton, { backgroundColor: t.accent }]}
+              style={[styles.micButton, { backgroundColor: g.cta }]}
             >
-              <Ionicons name="mic" size={26} color={t.correctText} />
-              <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>{copy.holdAndSpeak}</Text>
+              <Ionicons name="mic" size={26} color={g.ctaInk} />
+              <Text style={{ color: g.ctaInk, fontSize: f.body, fontWeight: '700' }}>{copy.holdAndSpeak}</Text>
             </Pressable>
-            {speechRecovery ? <Text style={[styles.recovery, { color: t.textMuted, fontSize: f.sub }]}>{speechRecovery}</Text> : null}
+            {speechRecovery ? <Text style={[styles.recovery, { color: g.secondary, fontSize: f.sub }]}>{speechRecovery}</Text> : null}
           </View>
         ) : null}
 
@@ -1179,8 +1144,8 @@ OK: ${entry.exercise.correctAnswer}`}
           />
         ) : null}
         {hiddenUndo ? (
-          <View style={[styles.feedback, { backgroundColor: t.bgSurface2 }]}>
-            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{copy.hidden}</Text>
+          <View style={[styles.feedback, { backgroundColor: g.opaqueCard }]}>
+            <Text style={{ color: g.text, fontSize: f.body, fontWeight: '700' }}>{copy.hidden}</Text>
           </View>
         ) : null}
       </ScrollView>
@@ -1188,24 +1153,24 @@ OK: ${entry.exercise.correctAnswer}`}
 
       {hiddenUndo ? (
         <View style={styles.undoRow}>
-          <Pressable style={[styles.undoButton, { backgroundColor: t.bgSurface2 }]} onPress={() => void undoHiddenMistake()}>
-            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{copy.undo}</Text>
+          <Pressable style={[styles.undoButton, { backgroundColor: g.opaqueCard }]} onPress={() => void undoHiddenMistake()}>
+            <Text style={{ color: g.text, fontSize: f.body, fontWeight: '700' }}>{copy.undo}</Text>
           </Pressable>
-          <Pressable style={[styles.undoButton, { backgroundColor: t.accent }]} onPress={continueAfterHidden}>
-            <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>{copy.continue}</Text>
+          <Pressable style={[styles.undoButton, { backgroundColor: g.cta }]} onPress={continueAfterHidden}>
+            <Text style={{ color: g.ctaInk, fontSize: f.body, fontWeight: '700' }}>{copy.continue}</Text>
           </Pressable>
         </View>
       ) : feedback ? (
-        <Pressable style={[styles.bottomButton, { backgroundColor: t.accent }]} onPress={continueAfterFeedback}>
-          <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>{copy.continue}</Text>
+        <Pressable style={[styles.bottomButton, { backgroundColor: g.cta }]} onPress={continueAfterFeedback}>
+          <Text style={{ color: g.ctaInk, fontSize: f.body, fontWeight: '700' }}>{copy.continue}</Text>
         </Pressable>
       ) : entry.exercise.renderer !== 'choices' && entry.exercise.renderer !== 'fill_gap' && entry.exercise.renderer !== 'matching' && entry.exercise.renderer !== 'speech' ? (
         <Pressable
           disabled={!answerValue.trim() || submitting}
-          style={[styles.bottomButton, { backgroundColor: answerValue.trim() ? t.accent : t.bgSurface2 }]}
+          style={[styles.bottomButton, { backgroundColor: answerValue.trim() ? g.cta : g.opaqueControl }]}
           onPress={() => void submitVerdict(matchesMistakePracticeAnswer(answerValue, entry.exercise.correctAnswer, studyTarget))}
         >
-          <Text style={{ color: answerValue.trim() ? t.correctText : t.textGhost, fontSize: f.body, fontWeight: '700' }}>{copy.check}</Text>
+          <Text style={{ color: answerValue.trim() ? g.ctaInk : g.mutedText, fontSize: f.body, fontWeight: '700' }}>{copy.check}</Text>
         </Pressable>
       ) : null}
       <MistakeEli5Modal
@@ -1249,7 +1214,7 @@ const styles = StyleSheet.create({
   screen: { flex: 1 },
   center: { alignItems: 'center', justifyContent: 'center', padding: 28, gap: 18 },
   header: { height: 62, paddingHorizontal: 14, flexDirection: 'row', alignItems: 'center', gap: 12 },
-  headerButton: { width: 42, height: 42, alignItems: 'center', justifyContent: 'center' },
+  headerButton: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   progressTrack: { flex: 1, height: 8, borderRadius: 4, overflow: 'hidden' },
   progressFill: { height: 8, borderRadius: 4 },
   counter: { minWidth: 36, fontWeight: '700' },
@@ -1279,4 +1244,4 @@ const styles = StyleSheet.create({
   errorTitle: { textAlign: 'center', fontWeight: '700' },
 });
 
-export default withOptionalPersonalPlanSunsetGuard(MistakePracticeSessionScreen, ['planTaskId']);
+export default MistakePracticeSessionScreen;

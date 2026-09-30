@@ -34,10 +34,10 @@ import {
 
 /** Наборы прогресса: обычный, пустой и «ломающий вёрстку». */
 const PROGRESS_PRESETS = {
-  typical: { streak: 12, totalXP: 3400, lessonsCompleted: 7 },
-  fresh: { streak: 1, totalXP: 40, lessonsCompleted: 1 },
-  huge: { streak: 365, totalXP: 128400, lessonsCompleted: 512 },
-  empty: { streak: 0, totalXP: 0, lessonsCompleted: 0 },
+  typical: { streak: 12, lessonsCompleted: 7 },
+  fresh: { streak: 1, lessonsCompleted: 1 },
+  huge: { streak: 365, lessonsCompleted: 512 },
+  empty: { streak: 0, lessonsCompleted: 0 },
 } as const satisfies Record<string, SaveOfferProgress>;
 
 type PresetKey = keyof typeof PROGRESS_PRESETS;
@@ -201,7 +201,7 @@ export default function DevCancelFlowPreview() {
             })}
           </View>
           <Text style={[S.presetDetail, { color: chrome.textMuted }]}>
-            {`Серия ${progress.streak} · уроков ${progress.lessonsCompleted} · опыта ${progress.totalXP}`}
+            {`Серия ${progress.streak} · уроков ${progress.lessonsCompleted}`}
           </Text>
 
           <Text style={[S.groupLabel, { color: chrome.textMuted }]}>СЦЕНАРИИ</Text>
@@ -286,14 +286,6 @@ export default function DevCancelFlowPreview() {
                       <Text style={[S.offerStatNum, { color: chrome.tc.heroAccent }]}>{progress.lessonsCompleted}</Text>
                       <Text style={[S.offerStatLabel, { color: chrome.textMuted }]} maxFontSizeMultiplier={1.2}>
                         {LP('уроков', 'уроків', 'lessons', 'lecciones', 'aulas', 'bài học', 'pelajaran', 'ders', 'lekcji')}
-                      </Text>
-                    </View>
-                  )}
-                  {progress.totalXP > 0 && (
-                    <View style={[S.offerStat, { backgroundColor: `${chrome.tc.heroAccent}14` }]}>
-                      <Text style={[S.offerStatNum, { color: chrome.tc.heroAccent }]}>{progress.totalXP}</Text>
-                      <Text style={[S.offerStatLabel, { color: chrome.textMuted }]} maxFontSizeMultiplier={1.2}>
-                        {LP('опыта', 'досвіду', 'XP', 'de experiencia', 'de experiência', 'kinh nghiệm', 'pengalaman', 'deneyim', 'doświadczenia')}
                       </Text>
                     </View>
                   )}

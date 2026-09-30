@@ -97,9 +97,9 @@ describe("retired Daily Tasks full-removal boundary", () => {
     expect(functionsIndex).toContain("getActiveShardSurvey");
     expect(surveyCard).not.toContain("daily-tasks/DailyTaskCard");
 
-    expect(exists("app/boons/boon_engine.ts")).toBe(true);
-    expect(layout).toContain("<ComebackBoonHost />");
-    expect(layout).toContain("<BoonActivatedHost />");
+    expect(exists("app/boons/boon_engine.ts")).toBe(false);
+    expect(layout).not.toContain("<ComebackBoonHost />");
+    expect(layout).not.toContain("<BoonActivatedHost />");
   });
 
   test("future Compass and its evidence pipeline survive the retirement", () => {

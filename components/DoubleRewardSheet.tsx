@@ -4,7 +4,6 @@ import Svg, { Defs, Ellipse, LinearGradient as SvgGradient, Stop, Text as SvgTex
 import { triLang, type Lang } from '../constants/i18n';
 import { readableOn, isLightSurface } from '../constants/color_contrast';
 import { APP_FONT_FAMILY } from '../app/typography';
-import { getBoonCopy } from '../app/boons/boon_copy';
 import { useReduceMotionPreference } from '../hooks/use_reduce_motion';
 import { useTheme } from './ThemeContext';
 import HybridSheetShell from './modal_fx/HybridSheetShell';
@@ -13,7 +12,7 @@ import { LinearGradient } from './SafeLinearGradient';
 
 type Props = {
   visible: boolean;
-  kind: 'xp' | 'runes';
+  kind: 'runes';
   lang: Lang;
   onClose: () => void;
 };
@@ -35,7 +34,6 @@ function DoubleRewardSheet({ visible, kind, lang, onClose }: Props) {
     tr: { kicker: 'Süper pazar', title: 'Pazar günü\niki kat kazandırır.', body: 'Ders, oyun ve video rünleri ikiye katlanır. Gün boyu. Herkes için.', multiplier: 'Çarpan', runes: '×2 rün', duration: 'Geçerlilik', until: '00:00 UTC’ye kadar', auto: 'Ödüller otomatik olarak ikiye katlanır', cta: 'Devam et', close: 'Kapat', daily: 'Günün bonusu' },
     pl: { kicker: 'Super niedziela', title: 'Niedziela działa\nza dwoje.', body: 'Runy z lekcji, gier i filmów są podwajane. Cały dzień. Dla wszystkich.', multiplier: 'Mnożnik', runes: '×2 runy', duration: 'Działa', until: 'Do 00:00 UTC', auto: 'Nagrody podwajają się automatycznie', cta: 'Kontynuuj', close: 'Zamknij', daily: 'Bonus dnia' },
   });
-  const xpCopy = kind === 'xp' ? getBoonCopy('double_xp', lang) : null;
   const accentText = readableOn(t.accent, t.bgCard, 4.5);
   const mutedText = readableOn(t.textMuted, t.bgCard, 4.5);
   const highlight = isLightSurface(t.bgCard) ? t.accent : t.textPrimary;
@@ -102,12 +100,12 @@ function DoubleRewardSheet({ visible, kind, lang, onClose }: Props) {
               }]}><LinearGradient colors={['transparent', highlight, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={StyleSheet.absoluteFill} /></Animated.View>}
             </View>
             <Animated.View style={reveal(0.2)}>
-              <Text maxFontSizeMultiplier={2} style={[styles.kicker, { color: accentText }]}>{xpCopy ? copy.daily : copy.kicker}</Text>
-              <Text accessibilityRole="header" maxFontSizeMultiplier={2} style={[styles.title, { color: t.textPrimary, fontSize: f.h1, lineHeight: Math.round(f.h1 * 1.15) }]}>{xpCopy?.title ?? copy.title}</Text>
+              <Text maxFontSizeMultiplier={2} style={[styles.kicker, { color: accentText }]}>{copy.kicker}</Text>
+              <Text accessibilityRole="header" maxFontSizeMultiplier={2} style={[styles.title, { color: t.textPrimary, fontSize: f.h1, lineHeight: Math.round(f.h1 * 1.15) }]}>{copy.title}</Text>
             </Animated.View>
-            <Animated.View style={reveal(0.28)}><Text maxFontSizeMultiplier={2} style={[styles.description, { color: mutedText, fontSize: f.body, lineHeight: Math.round(f.body * 1.5) }]}>{xpCopy?.subtitle ?? copy.body}</Text></Animated.View>
+            <Animated.View style={reveal(0.28)}><Text maxFontSizeMultiplier={2} style={[styles.description, { color: mutedText, fontSize: f.body, lineHeight: Math.round(f.body * 1.5) }]}>{copy.body}</Text></Animated.View>
             <Animated.View style={[styles.facts, { borderColor: t.border }, reveal(0.36)]}>
-              <View style={styles.fact}><Text maxFontSizeMultiplier={2} style={[styles.factLabel, { color: mutedText }]}>{copy.multiplier}</Text><Text maxFontSizeMultiplier={2} style={[styles.factValue, { color: t.textPrimary }]}>{kind === 'xp' ? '×2 XP' : copy.runes}</Text></View>
+              <View style={styles.fact}><Text maxFontSizeMultiplier={2} style={[styles.factLabel, { color: mutedText }]}>{copy.multiplier}</Text><Text maxFontSizeMultiplier={2} style={[styles.factValue, { color: t.textPrimary }]}>{copy.runes}</Text></View>
               <View style={[styles.fact, styles.lastFact, { borderColor: t.border }]}><Text maxFontSizeMultiplier={2} style={[styles.factLabel, { color: mutedText }]}>{copy.duration}</Text><Text maxFontSizeMultiplier={2} style={[styles.factValue, { color: t.textPrimary }]}>{copy.until}</Text></View>
             </Animated.View>
           </ScrollView>

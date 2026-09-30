@@ -40,7 +40,8 @@ const DIGEST_STATE_REF = 'admin_digest_state/owner';
 const COMMUNITY_PACK_FIXED_PRICE_SHARDS = 10;
 
 export function canonicalCommunityPackPurchaseShards(purchase: { acquisitionSource?: unknown }): number {
-  return purchase.acquisitionSource === 'weekly_boon_gift' ? 0 : COMMUNITY_PACK_FIXED_PRICE_SHARDS;
+  return purchase.acquisitionSource === 'weekly_boon_gift' || purchase.acquisitionSource === 'pack_gift_voucher'
+    ? 0 : COMMUNITY_PACK_FIXED_PRICE_SHARDS;
 }
 
 // ── Типы сырых строк из источников ────────────────────────────────────────────

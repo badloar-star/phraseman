@@ -23,8 +23,6 @@ const EXCLUDED_DIRECTORY_NAMES = new Set([
   'qa-artifacts', 'history',
 ]);
 const FIXED_GEOMETRY_DIRS = [
-  'assets/images/levels/league-v6-icons/',
-  'assets/images/weekly_boon_icons/',
   'assets/images/weekly_compass_icons/',
 ];
 // Read-only runtime guard: tests/android_bundle_hygiene_contract.test.ts keeps

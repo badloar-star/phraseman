@@ -12,7 +12,7 @@ import { isQuestRewardKind, CLIENT_QUEST_REWARD_KINDS } from '../app/quests_clie
 
 describe('quests_client — reward kind boundary', () => {
   it('признаёт только живые виды награды', () => {
-    expect(CLIENT_QUEST_REWARD_KINDS).toEqual(['runes', 'plus_days', 'energy_full', 'freeze']);
+    expect(CLIENT_QUEST_REWARD_KINDS).toEqual(['runes', 'plus_days', 'freeze']);
     for (const kind of CLIENT_QUEST_REWARD_KINDS) {
       expect(isQuestRewardKind(kind)).toBe(true);
     }

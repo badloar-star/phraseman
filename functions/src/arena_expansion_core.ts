@@ -188,7 +188,7 @@ export function arenaRunEligibility(runKind: ArenaExpansionRunKind, mode: string
   profileOutcome: boolean;
 } {
   if (runKind === 'today') return {
-    rating: false, baseStars: false, todayStars: true, spin: false,
+    rating: false, baseStars: false, todayStars: false, spin: false,
     mastery: true, partnerActivity: true, profileOutcome: false,
   };
   if (runKind === 'ghost' || runKind === 'rival') return {
@@ -202,7 +202,7 @@ export function arenaRunEligibility(runKind: ArenaExpansionRunKind, mode: string
   return {
     /**
      * зачем (владелец 2026-08-29, «начисление рун на арене пропало»): руны
-     * возвращены в быстрый матч — решение «quick выдаёт только XP» отменено.
+     * возвращены в быстрый матч — быстрый режим больше не выдаёт legacy rewards.
      * Остальное по-прежнему только ranked: спин, мастерство и партнёрский
      * прогресс — награды за соревновательный режим, они менялись не этим
      * решением. profileOutcome остаётся телеметрией факта матча.
@@ -210,8 +210,8 @@ export function arenaRunEligibility(runKind: ArenaExpansionRunKind, mode: string
      * Второй гейт помимо ARENA_STAR_POLICY: этот решает «положено ли режиму
      * начисление вообще», политика — «сколько». Оба обязаны разрешать.
      */
-    rating: mode === 'ranked', baseStars: mode === 'ranked' || mode === 'quick',
-    todayStars: false, spin: mode === 'ranked',
+    rating: mode === 'ranked', baseStars: false,
+    todayStars: false, spin: false,
     mastery: mode === 'ranked', partnerActivity: mode === 'ranked',
     profileOutcome: true,
   };

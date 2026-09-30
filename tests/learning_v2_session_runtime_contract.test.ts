@@ -29,7 +29,7 @@ test("premium session route uses the real twelve-card compiler without the rejec
   expect(runtime).toContain("useReducedMotion");
   expect(runtime).not.toContain("withRepeat(");
   expect(runtime).toContain('color: "#07110A"');
-  expect(runtime).toContain("awarded: { xp: 0, shards: 0 }");
+  expect(runtime).toContain("awarded: { shards: 0 }");
   expect(runtime).toContain("getLesson1SessionRuntime");
   expect(runtime).not.toContain("compileV2RequiredSessions(");
   expect(map).toContain(

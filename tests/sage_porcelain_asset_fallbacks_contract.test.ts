@@ -66,10 +66,7 @@ function contains(file: string, snippet: string): void {
 // реальной регрессии.
 const SAGE_REQUIRE_SLOTS: Array<{ file: string; slots: number }> = [
   { file: 'app/coin_icons.ts', slots: 1 },
-  { file: 'constants/generatedThemeIconAssets.ts', slots: 1 },
-  { file: 'constants/socialIconAssets.ts', slots: 2 },
   { file: 'constants/streakIconAssets.ts', slots: 1 },
-  { file: 'constants/weeklyCompassIcons.ts', slots: 1 },
 ];
 
 describe('sage porcelain static asset coverage', () => {
@@ -131,15 +128,6 @@ describe('sage porcelain static asset coverage', () => {
     expect(streak).toContain("sagePorcelain: { rgb: [97, 112, 106], accent: '#52605A' }");
   });
 
-  it('uses generated Celadon artwork for migrated social icons', () => {
-    const socialPaths = themeBlocks(source('constants/socialIconAssets.ts'), 'sagePorcelain').flatMap(
-      requires,
-    );
-    expect(socialPaths).toEqual([
-      '../assets/images/social_icons/social-friends-sagePorcelain.webp',
-      '../assets/images/social_icons/social-chat-sagePorcelain.webp',
-    ]);
-  });
 
   it('uses dedicated Celadon artwork for migrated single-slot systems', () => {
     contains(
@@ -147,10 +135,6 @@ describe('sage porcelain static asset coverage', () => {
       "sagePorcelain: require('../assets/images/currency/pearl_sagePorcelain.webp')",
     );
     contains('components/EnergyIcon.tsx', 'name="flash-outline"');
-    contains(
-      'constants/generatedThemeIconAssets.ts',
-      "sagePorcelain: require('../assets/images/generated_theme_icons/lesson-exam-sagePorcelain.webp')",
-    );
     contains(
       'constants/weeklyCompassIcons.ts',
       "'assets/images/weekly_compass_icons/sagePorcelain.webp'",

@@ -39,6 +39,7 @@ import {
 } from "../modules/learning-v2/runtime/voice_audio_offline_cache_v1";
 import type { LearningV2NativeDecoderIdentityV1 } from "../modules/learning-v2/runtime/voice_native_decoder_observer_v1";
 
+import { reportSwallowed } from './debug-logger';
 export const LEARNING_V2_ACTIVITY_AUDIO_PRELOAD_SCHEMA_V1 =
   "learning-v2-activity-audio-preload.v1" as const;
 export const LEARNING_V2_ACTIVITY_AUDIO_PRELOAD_MAX_CONCURRENCY_V1 = 4;
@@ -301,7 +302,7 @@ export async function preloadCurrentLearningV2ActivityAudioSessionV1(
   // when published, but preserve the descriptor/audio path for an older active
   // release that does not have the learner-core pointer yet.
   await preloadCurrentLearningV2ActivityReleasedSessionV1(locator).catch(
-    () => undefined,
+    (error: unknown) => { reportSwallowed('learning_v2_activity_audio_preload_v1:preloadCurrentLearningV2ActivityAudioSessionV1', error); return undefined; },
   );
   await preloadCurrentLearningV2ActivityAuxiliarySessionV1(locator);
   const descriptor = peekCurrentLearningV2ActivityAuxiliarySessionV1(locator);

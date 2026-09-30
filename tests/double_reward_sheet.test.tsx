@@ -68,7 +68,7 @@ test('does not render when hidden', async () => {
   expect(ui.queryByText('Продолжить')).toBeNull();
 });
 
-test('keeps XP and rune copy separate and dismisses through the sheet shell', async () => {
+test('shows rune copy and dismisses through the sheet shell', async () => {
   const onClose = jest.fn();
   const ui = await render(<DoubleRewardSheet visible kind="runes" lang="ru" onClose={onClose} />);
   expect(ui.getByText('×2 руны')).toBeTruthy();
@@ -76,9 +76,6 @@ test('keeps XP and rune copy separate and dismisses through the sheet shell', as
   await fireEvent.press(ui.getByLabelText('Продолжить'));
   expect(mockDismiss).toHaveBeenCalledTimes(1);
   expect(onClose).toHaveBeenCalledTimes(1);
-  await ui.rerender(<DoubleRewardSheet visible kind="xp" lang="ru" onClose={onClose} />);
-  expect(ui.getByText('Двойной опыт')).toBeTruthy();
-  expect(ui.queryByText('×2 руны')).toBeNull();
 });
 
 test.each([DARK, GOLD, OLIVE, MIDNIGHT, EMBER, AURORA, VOLT, INDIGO, SAGE_PORCELAIN])('uses the active theme for the CTA and emblem', async (theme) => {

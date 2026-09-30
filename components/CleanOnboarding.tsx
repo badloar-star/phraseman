@@ -96,7 +96,6 @@ import {
   ONBOARDING_REQUESTED_STUDY_TARGET_KEY,
   prefetchAndRecordStudyTargetServerPack,
 } from '../app/study_target_server_prefetch';
-import { PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY } from '../app/personal_plan_activation';
 import {
   addDays,
   estimateDaysToTarget,
@@ -124,11 +123,6 @@ const APP_ICON_SOURCE = require('../assets/images/icon.webp');
 const ONBOARDING_ASSETS = {
   languageEn: require('../assets/images/language_flags/language_en.webp'),
   languageFr: require('../assets/images/language_flags/language_fr_dev.webp'),
-  levelA0: require('../assets/images/flow_clean_202607/level_a0.webp'),
-  levelA1: require('../assets/images/flow_clean_202607/level_a1.webp'),
-  levelA2: require('../assets/images/flow_clean_202607/level_a2.webp'),
-  levelB1: require('../assets/images/flow_clean_202607/level_b1.webp'),
-  levelB2: require('../assets/images/flow_clean_202607/level_b2.webp'),
 };
 
 export type OnboardingProps = {
@@ -136,7 +130,6 @@ export type OnboardingProps = {
   initialLang?: Lang;
   onLangSelect?: (lang: Lang) => Promise<void> | void;
   onIntroFullAccessStart?: () => Promise<boolean | void> | boolean | void;
-  onPersonalPlanPaywallStart?: () => Promise<boolean | void> | boolean | void;
   startAtNameStep?: boolean;
 };
 
@@ -251,11 +244,11 @@ const LANGUAGE_OPTIONS: (Option<StudyTarget> & { code: string; native: string })
 ];
 
 const LEVEL_OPTIONS: Option<LevelChoice>[] = [
-  { id: 'a0', title: 'Я начинаю с нуля', icon: 'bar-chart-outline', asset: ONBOARDING_ASSETS.levelA0 },
-  { id: 'a1', title: 'Знаю отдельные слова', icon: 'bar-chart-outline', asset: ONBOARDING_ASSETS.levelA1 },
-  { id: 'a2', title: 'Могу поддержать простой разговор', icon: 'bar-chart-outline', asset: ONBOARDING_ASSETS.levelA2 },
-  { id: 'b1', title: 'Говорю на знакомые темы', icon: 'bar-chart-outline', asset: ONBOARDING_ASSETS.levelB1 },
-  { id: 'b2', title: 'Обсуждаю почти всё', icon: 'bar-chart-outline', asset: ONBOARDING_ASSETS.levelB2 },
+  { id: 'a0', title: 'Я начинаю с нуля', icon: 'bar-chart-outline' },
+  { id: 'a1', title: 'Знаю отдельные слова', icon: 'bar-chart-outline' },
+  { id: 'a2', title: 'Могу поддержать простой разговор', icon: 'bar-chart-outline' },
+  { id: 'b1', title: 'Говорю на знакомые темы', icon: 'bar-chart-outline' },
+  { id: 'b2', title: 'Обсуждаю почти всё', icon: 'bar-chart-outline' },
 ];
 
 function normalizedStoredStep(value: string | null): CleanOnboardingStep | null {
@@ -853,11 +846,13 @@ function OptionCard<T extends string | number>({
   selected,
   onPress,
   testID,
+  showIcon = false,
 }: {
   option: Option<T>;
   selected?: boolean;
   onPress: () => void;
   testID?: string;
+  showIcon?: boolean;
 }) {
   const reduceMotion = useReduceMotion();
   // Галочка «ставится» пружиной при выборе (native driver); фон карточки не
@@ -880,10 +875,11 @@ function OptionCard<T extends string | number>({
       accessibilityRole="button"
       accessibilityState={{ selected: !!selected }}
     >
-      {/* Ведущий слот — только если у варианта есть картинка (уровни); у
-          источников его нет. */}
+      {/* Источники остаются без ведущего слота; уровни используют лёгкую иконку. */}
       {option.asset ? (
         <Image source={option.asset} style={styles.optionAsset} resizeMode="contain" accessible={false} />
+      ) : showIcon ? (
+        <Ionicons name={option.icon} size={36} color="#0C111B" style={styles.optionAsset} />
       ) : null}
       <View style={styles.optionCopy}>
         <Text style={styles.optionTitle} numberOfLines={2}>{option.title}</Text>
@@ -2274,7 +2270,6 @@ function SuccessCheck() {
 function CleanOnboarding({
   onDone,
   initialLang,
-  onPersonalPlanPaywallStart,
   startAtNameStep,
 }: OnboardingProps) {
   const lang = initialLang ?? getDeviceBootstrapLocale();
@@ -2804,8 +2799,8 @@ function CleanOnboarding({
     trackOnboarding('onboarding_plan_billing_select', { plan: next });
   }, [selectBillingPlan]);
 
-  // Честно про факт (2026-08-17): личные планы удалены, и pending-ключ
-  // PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY больше НИКТО не читает —
+  // Честно про факт (2026-08-17): личные планы удалены, и их pending-ключ
+  // больше не используется —
   // finishPersonalPlanActivationFlow не существует. Успешная покупка/восстановление
   // завершают онбординг событием premium_activated → completeOnboarding (см. ниже),
   // а не «возвратом на Имя». Путь startAtNameStep (событие onboarding_paywall_completed
@@ -2815,7 +2810,6 @@ function CleanOnboarding({
   // и запоминаем выбранный тариф (PLAN_BILLING_KEY) для аналитики.
   const queuePostPurchaseReturn = useCallback(async (billing: PaywallPlan = selectedBillingPlan) => {
     await AsyncStorage.multiSet([
-      [PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY, '1'],
       [PLAN_BILLING_KEY, billing],
     ]);
   }, [selectedBillingPlan]);
@@ -3073,13 +3067,11 @@ function CleanOnboarding({
       if (analyticsAllowed) {
         trackOnboarding('onboarding_complete', { level: selectedLevel, target: studyTarget });
       }
-      // зачем (PM-049, D09/S51 владельца): приветственная шторка убрана —
-      // первый вход не прерывается наградой. Деньги welcome-подарка
-      // начисляются отдельно и молча из app/_layout.tsx (ensureWelcomeGiftGranted),
-      // без флага/хоста/модалки; здесь больше нечего ставить.
+      // PM-049: приветственная награда и её шторка удалены; первый вход
+      // завершается без бонусной выдачи.
       onDone();
       void resumePendingGeneratedNickname();
-      void AsyncStorage.multiRemove([STEP_KEY, PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY]).catch(() => {});
+      void AsyncStorage.multiRemove([STEP_KEY]).catch(() => {});
       if (notificationChoice === 'allow') {
         void scheduleDailyReminder(20, 0, lang, { requestPermission: false, studyTarget }).catch(() => {});
       }
@@ -3366,6 +3358,7 @@ function CleanOnboarding({
             selected={level === item.id}
             testID={`onboarding-level-${item.id}`}
             onPress={() => chooseLevel(item.id)}
+            showIcon
           />
         ))}
       </View>

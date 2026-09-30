@@ -32,7 +32,6 @@ import { getVipProgressState } from '../app/premium_progress';
 import { ensureAnonUser, ensureStableAuthLinkForStableIdDetailed, restoreFromCloud } from '../app/cloud_sync';
 import { getIntroFullAccessState } from '../app/intro_full_access';
 import { isFeatureFreeForEveryone, type FeatureGate } from '../app/feature_gates';
-import { isFeatureGrantedByWeeklyBoon } from '../app/boons/boon_feature_grants';
 import { getAppSnapshot } from '../app/app_snapshot_store';
 import { captureAccountGeneration, isCurrentAccountGeneration } from '../app/account_generation';
 import {
@@ -107,24 +106,20 @@ export function usePremium(): PremiumContextValue {
  */
 export function useFeatureAccess(feature: FeatureGate): boolean {
   const { hasPremiumAccess } = usePremium();
-  // freeForAll = админ перевёл в «Фри»; grantedByBoon = бонус дня открыл фичу
-  // (напр. «День голоса» открывает speaking). Оба пересчитываются на смену
-  // remote-config; boon ещё зависит от дня, поэтому пересчитываем и при ремаунте.
+  // freeForAll = админ перевёл фичу в «Фри»; пересчитываем при смене конфига.
   const [access, setAccess] = useState(() => ({
     freeForAll: isFeatureFreeForEveryone(feature),
-    grantedByBoon: isFeatureGrantedByWeeklyBoon(feature),
   }));
   useEffect(() => {
     const recompute = () =>
       setAccess({
         freeForAll: isFeatureFreeForEveryone(feature),
-        grantedByBoon: isFeatureGrantedByWeeklyBoon(feature),
       });
     recompute();
     const sub = onAppEvent('remote_config_changed', recompute);
     return () => sub.remove();
   }, [feature]);
-  return hasPremiumAccess || access.freeForAll || access.grantedByBoon;
+  return hasPremiumAccess || access.freeForAll;
 }
 
 function getFirestoreForPremiumListener(): unknown | null {

@@ -12,19 +12,19 @@ export type ResultsSequenceMotionPlan = {
   playMilestones: boolean;
   badgeDelayMs: number;
   starsDelayMs: number;
-  xpDelayMs: number;
+  rewardDelayMs: number;
   ctaDelayMs: number;
 };
 
 export type ResultsSequenceAudioPlan = {
   medalSoundAtMs: null;
   starSoundAtMs: readonly number[];
-  xpStartAtMs: number;
-  xpTickAtMs: readonly [number];
-  xpCompleteAtMs: number;
+  rewardStartAtMs: number;
+  rewardTickAtMs: readonly [number];
+  rewardCompleteAtMs: number;
   // зачем (владелец, 2026-08-27): руны — параллельный трек той же формы, что
-  // XP («звук счёта, потом счёт растёт»), НО начинается только ПОСЛЕ полного
-  // завершения звука XP — SoundArbiter в проекте однослотовый, два трека не
+  // legacy reward («звук счёта, потом счёт растёт»), НО начинается только ПОСЛЕ полного
+  // завершения звука legacy reward — SoundArbiter в проекте однослотовый, два трека не
   // могут звучать внахлёст (см. COMPLETION_SOUND_GAP_MS ниже).
   runesStartAtMs?: number;
   runesTickAtMs?: readonly [number];
@@ -43,7 +43,7 @@ export function getResultsSequenceAudioPlan(rewards: {
   spinReward?: boolean;
   multiplier?: boolean;
   multiplierCount?: number;
-  /** Руны заработаны в сессии — вставляет свой трек после XP (владелец, 2026-08-27). */
+  /** Руны заработаны в сессии — вставляет свой трек после legacy reward (владелец, 2026-08-27). */
   runes?: boolean;
 }): ResultsSequenceAudioPlan {
   // Every sound begins only after the previous completion sound has finished,
@@ -51,32 +51,32 @@ export function getResultsSequenceAudioPlan(rewards: {
   // cutting a cue off while its matching visual is still on screen.
   const showStars = rewards.showStars !== false;
   const starSoundAtMs: readonly number[] = showStars ? [500, 940, 1500] : [];
-  const xpStartAtMs = showStars
+  const rewardStartAtMs = showStars
     ? completionSoundEndsAt(starSoundAtMs[2], 'pm.complete.star_3_perfect') + COMPLETION_SOUND_GAP_MS
     : 500;
-  const xpTickAtMs: readonly [number] = [
-    completionSoundEndsAt(xpStartAtMs, 'pm.complete.xp_counter_start') + COMPLETION_SOUND_GAP_MS,
+  const rewardTickAtMs: readonly [number] = [
+    completionSoundEndsAt(rewardStartAtMs, 'pm.complete.micro') + COMPLETION_SOUND_GAP_MS,
   ];
-  const xpCompleteAtMs = completionSoundEndsAt(xpTickAtMs[0], 'pm.complete.xp_counter_tick')
+  const rewardCompleteAtMs = completionSoundEndsAt(rewardTickAtMs[0], 'pm.complete.micro')
     + COMPLETION_SOUND_GAP_MS;
   const afterXpCompleteAtMs = completionSoundEndsAt(
-    xpCompleteAtMs,
-    'pm.complete.xp_counter_complete',
+    rewardCompleteAtMs,
+    'pm.complete.micro',
   ) + COMPLETION_SOUND_GAP_MS;
 
-  // Руны: тот же звуковой набор, что XP («старт → тик → комплит»), включается
-  // ТОЛЬКО после того, как звук XP отзвучал целиком — однослотовый арбитр не
+  // Руны: тот же звуковой набор, что legacy reward («старт → тик → комплит»), включается
+  // ТОЛЬКО после того, как звук legacy reward отзвучал целиком — однослотовый арбитр не
   // умеет играть два счётчика одновременно.
   const runesStartAtMs = rewards.runes ? afterXpCompleteAtMs : undefined;
   const runesTickAtMs: readonly [number] | undefined = runesStartAtMs === undefined
     ? undefined
-    : [completionSoundEndsAt(runesStartAtMs, 'pm.complete.xp_counter_start') + COMPLETION_SOUND_GAP_MS];
+    : [completionSoundEndsAt(runesStartAtMs, 'pm.complete.micro') + COMPLETION_SOUND_GAP_MS];
   const runesCompleteAtMs = runesTickAtMs === undefined
     ? undefined
-    : completionSoundEndsAt(runesTickAtMs[0], 'pm.complete.xp_counter_tick') + COMPLETION_SOUND_GAP_MS;
+    : completionSoundEndsAt(runesTickAtMs[0], 'pm.complete.micro') + COMPLETION_SOUND_GAP_MS;
   const afterRunesCompleteAtMs = runesCompleteAtMs === undefined
     ? afterXpCompleteAtMs
-    : completionSoundEndsAt(runesCompleteAtMs, 'pm.complete.xp_counter_complete') + COMPLETION_SOUND_GAP_MS;
+    : completionSoundEndsAt(runesCompleteAtMs, 'pm.complete.micro') + COMPLETION_SOUND_GAP_MS;
 
   const spinRewardAtMs = rewards.spinReward ? afterRunesCompleteAtMs : undefined;
   const afterSpinRewardAtMs = spinRewardAtMs === undefined
@@ -112,16 +112,16 @@ export function getResultsSequenceAudioPlan(rewards: {
   );
   const finaleAtMs = (finalRewardEndsAtMs || (
     runesCompleteAtMs === undefined
-      ? completionSoundEndsAt(xpCompleteAtMs, 'pm.complete.xp_counter_complete')
-      : completionSoundEndsAt(runesCompleteAtMs, 'pm.complete.xp_counter_complete')
+      ? completionSoundEndsAt(rewardCompleteAtMs, 'pm.complete.micro')
+      : completionSoundEndsAt(runesCompleteAtMs, 'pm.complete.micro')
   )) + COMPLETION_SOUND_GAP_MS;
 
   return {
     medalSoundAtMs: null,
     starSoundAtMs,
-    xpStartAtMs,
-    xpTickAtMs,
-    xpCompleteAtMs,
+    rewardStartAtMs,
+    rewardTickAtMs,
+    rewardCompleteAtMs,
     runesStartAtMs,
     runesTickAtMs,
     runesCompleteAtMs,
@@ -132,9 +132,9 @@ export function getResultsSequenceAudioPlan(rewards: {
     finaleAtMs,
     startAtMs: [
       ...starSoundAtMs,
-      xpStartAtMs,
-      ...xpTickAtMs,
-      xpCompleteAtMs,
+      rewardStartAtMs,
+      ...rewardTickAtMs,
+      rewardCompleteAtMs,
       ...(runesStartAtMs !== undefined ? [runesStartAtMs] : []),
       ...(runesTickAtMs ?? []),
       ...(runesCompleteAtMs !== undefined ? [runesCompleteAtMs] : []),
@@ -157,7 +157,7 @@ export function getResultsSequenceMotionPlan(
       playMilestones: false,
       badgeDelayMs: 0,
       starsDelayMs: 0,
-      xpDelayMs: 0,
+      rewardDelayMs: 0,
       ctaDelayMs: 0,
     };
   }
@@ -168,7 +168,7 @@ export function getResultsSequenceMotionPlan(
     playMilestones: intensity !== 'quiet',
     badgeDelayMs: 0,
     starsDelayMs: 500,
-    xpDelayMs: 1400,
+    rewardDelayMs: 1400,
     ctaDelayMs: 2500,
   };
 }

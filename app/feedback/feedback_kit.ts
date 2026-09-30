@@ -124,18 +124,12 @@ export const fk = {
     haptics.success();
   },
 
-  /** Тик счётчика XP. Звук 'tick' убран — метод оставлен как no-op для хостов. */
-  tick(options?: SoundRequestOptions): void {
-    soundDirector.request('pm.complete.xp_counter_tick', options);
-  },
+  /** Legacy counter hooks remain callable but produce no legacy reward audio. */
+  tick(_options?: SoundRequestOptions): void {},
 
-  xpCounterStart(options?: SoundRequestOptions): void {
-    soundDirector.request('pm.complete.xp_counter_start', options);
-  },
+  rewardCounterStart(_options?: SoundRequestOptions): void {},
 
-  xpCounterComplete(options?: SoundRequestOptions): void {
-    soundDirector.request('pm.complete.xp_counter_complete', options);
-  },
+  rewardCounterComplete(_options?: SoundRequestOptions): void {},
 
   resultsReward(kind: ResultsRewardSoundKind, options?: SoundRequestOptions): void {
     const event = kind === 'activeRewardReveal'

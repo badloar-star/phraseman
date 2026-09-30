@@ -43,4 +43,14 @@ describe('client report delivery contract', () => {
     expect(source).toContain('setFailed(true)');
     expect(source).toContain('Попробовать снова');
   });
+
+  it('offers a typed transport override while preserving the standard flag UX for Spire', () => {
+    const button = read('components/ReportErrorButton.tsx');
+    const wrapper = read('modules/spire/SpireTaskReportButton.tsx');
+    expect(button).toContain('submitOverride?: ReportErrorSubmitOverride');
+    expect(button).toContain('result = await submitOverride({ comment: optimisticComment })');
+    expect(wrapper).toContain('variant="icon-flag"');
+    expect(wrapper).toContain('buildSpireTaskReportSubmission');
+    expect(wrapper).not.toContain('router.');
+  });
 });

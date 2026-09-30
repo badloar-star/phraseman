@@ -55,7 +55,7 @@ const ENTRY_KEYS = [...ENTRY_BODY_KEYS, "entryFingerprint"] as const;
 const JOURNAL_BODY_KEYS = ["schemaVersion", "accountKey", "entries"] as const;
 const JOURNAL_KEYS = [...JOURNAL_BODY_KEYS, "journalFingerprint"] as const;
 const OPERATION_KEYS = ["operationId", "sessionId", "status", "awarded"] as const;
-const AWARD_KEYS = ["xp", "shards"] as const;
+const AWARD_KEYS = ["shards"] as const;
 const HASH = /^[a-f0-9]{64}$/;
 const ID = /^[A-Za-z0-9._:-]{1,160}$/;
 const MAX_LEGACY_PENDING_COMMITS = 16;
@@ -110,7 +110,7 @@ const localProgressOperationFor = (
   })}`,
   sessionId: envelope.localSessionId,
   status: "completed",
-  awarded: { xp: 0, shards: 0 },
+  awarded: { shards: 0 },
 });
 
 const parseOperation = (input: unknown): Lesson1ResultInput => {
@@ -118,13 +118,13 @@ const parseOperation = (input: unknown): Lesson1ResultInput => {
     typeof input.operationId !== "string" || !ID.test(input.operationId) ||
     typeof input.sessionId !== "string" || !ID.test(input.sessionId) ||
     input.status !== "completed" || !isRecord(input.awarded) ||
-    !exactKeys(input.awarded, AWARD_KEYS) || input.awarded.xp !== 0 ||
+    !exactKeys(input.awarded, AWARD_KEYS) ||
     input.awarded.shards !== 0) return fail();
   return deepFreeze({
     operationId: input.operationId,
     sessionId: input.sessionId,
     status: "completed",
-    awarded: { xp: 0, shards: 0 },
+    awarded: { shards: 0 },
   });
 };
 

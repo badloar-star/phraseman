@@ -1,8 +1,7 @@
 import { createDisposableAdoption } from './disposable_adoption';
-import { emitAppEvent } from './events';
 import { scheduleAfterRootNavigationReady } from './paywall_navigation';
-import { arenaInviteRouteFromPayload } from './arena_notification_route';
 
+import { reportSwallowed, swallowError } from './debug-logger';
 type NotificationRouter = {
   push: (route: any) => void;
   replace?: (route: any) => void;
@@ -40,7 +39,7 @@ export function setupNotificationTapHandler(router: NotificationRouter): () => v
           shouldSetBadge: false,
         }),
       });
-    } catch {
+    } catch (error) { reportSwallowed('notification_tap_handler:setupNotificationTapHandler', error); 
       // The full notifications module will retry handler setup when needed.
     }
     subscription = Notifications.addNotificationResponseReceivedListener((response: any) => {
@@ -58,7 +57,6 @@ export function setupNotificationTapHandler(router: NotificationRouter): () => v
         case 'reminder':
         case 'd1_reminder':
         case 'premium':
-        case 'league_overtake':
         case 'phrase_of_day':
         case 'weekly_recap':
         case 'monthly_recap':
@@ -78,20 +76,17 @@ export function setupNotificationTapHandler(router: NotificationRouter): () => v
         case 'upsell_d14':
           scheduleNav(() => router.push({ pathname: '/premium_modal', params: { context: 'notification_upsell', source: 'notification_upsell' } } as any));
           break;
-        case 'max_lesson_reminder':
-          scheduleNav(() => router.push({ pathname: '/max_call_prestart', params: { format: 'tutor' } } as any));
-          break;
         case 'gift_expiring':
-          scheduleNav(() => router.push('/level_gifts_inventory' as any));
           break;
         case 'arena_friend_invite':
         case 'arena_friend_accepted':
         case 'arena_friend_declined':
         case 'arena_friend_cancelled':
         case 'arena_friend_expired':
-          scheduleNav(() => {
-            router.push(arenaInviteRouteFromPayload(data));
-          });
+          // зачем: D83 — клиентская Арена удалена; тап по старому уведомлению
+          // дуэли ведёт на Главную, а не в несуществующий маршрут.
+          if (__DEV__) console.warn('[D83-ARENA-RETIRED] legacy arena push tap -> home', { type: data.type });
+          navTabHome();
           break;
         case 'activity_like':
         case 'friend_nudge':
@@ -103,13 +98,6 @@ export function setupNotificationTapHandler(router: NotificationRouter): () => v
             },
           }));
           break;
-        case 'friend_gift_received':
-          emitAppEvent('friend_gift_push_opened');
-          scheduleNav(() => router.push('/(tabs)/friends'));
-          break;
-        case 'friend_gift_thanks':
-          scheduleNav(() => router.push('/(tabs)/friends'));
-          break;
         case 'tournament_starting':
           break;
         default:
@@ -117,7 +105,7 @@ export function setupNotificationTapHandler(router: NotificationRouter): () => v
       }
     });
     lifetime.adopt(() => subscription?.remove?.());
-  }).catch(() => {});
+  }).catch(swallowError('notification_tap_handler:setupNotificationTapHandler'));
 
   return () => { lifetime.dispose(); };
 }

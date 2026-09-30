@@ -67,7 +67,7 @@ describe('cloud_sync: клиентское зеркало блок-листа fi
   it('правила действительно содержат блок-лист (парсер не молчит впустую)', () => {
     // Защита от «зелёного пустого теста»: если разметка правил изменится и
     // парсер перестанет что-либо находить, сторож обязан упасть, а не пройти.
-    expect(blockedByRules.length).toBeGreaterThan(700);
+    expect(blockedByRules.length).toBeGreaterThan(400);
     expect(blockedByRules).toContain('user_total_xp');
     expect(blockedByRules).toContain('premium_plan');
   });

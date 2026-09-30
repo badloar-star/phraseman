@@ -5,9 +5,7 @@ export type DevToolAction =
   // вызвать, и проверять правки было бы нечем.
   | 'preview-first-purchase-dialog'
   | 'preview-first-purchase-lesson'
-  | 'grant-dev-runes'
   | 'run-onboarding'
-  | 'open-max-voice'
   | 'open-motion-showcase'
   | 'open-learning-v2-modes-showcase'
   | 'open-learning-v2-authoring-preview'
@@ -20,15 +18,9 @@ export type DevToolAction =
   | 'open-paywall-f'
   | 'open-paywall-g'
   | 'open-paywall-onboarding'
-  | 'open-max-paywall'
   | 'preview-lesson-results'
-  | 'preview-spin-reward'
   | 'preview-daily-journey'
   | 'preview-session-attempt-gift'
-  | 'preview-league-promoted'
-  | 'preview-league-demoted'
-  | 'preview-league-stay'
-  | 'preview-league-rank-mismatch'
   | 'grant-plus'
   | 'revoke-plus'
   // Отписка: витрина сценариев удержания при отмене подписки (владелец, 24.08).
@@ -37,7 +29,7 @@ export type DevToolAction =
   // зачем (владелец, 2026-08-27): «Проверка рун» — отдельный НОВЫЙ раздел (не
   // внутри «Движение · все поверхности»). Каждая кнопка открывает НАСТОЯЩИЙ
   // экран из соответствующего раздела приложения со случайным стартовым
-  // числом рун/XP/счёта — быстрая визуальная проверка без прохождения сессии.
+  // числом рун и счёта — быстрая визуальная проверка без прохождения сессии.
   | 'open-dev-runes-lesson'
   | 'open-dev-runes-vocabulary'
   | 'open-dev-runes-irregular-verbs'
@@ -191,25 +183,6 @@ export const DEV_TOOL_SECTIONS = [
       },
     ],
   },
-  {
-    id: 'dev-runes-grant',
-    order: -1,
-    title: 'Руны для проверки',
-    icon: 'diamond-outline',
-    testID: 'dev-section-runes-grant',
-    tools: [
-      {
-        id: 'dev-runes-grant-5000',
-        order: 0,
-        title: 'Добавить 5 000 рун',
-        detail: 'Настоящие руны текущего аккаунта: тратятся во всех обычных покупках.',
-        actionLabel: 'Добавить',
-        action: 'grant-dev-runes',
-        icon: 'diamond-outline',
-        testID: 'dev-grant-runes-5000',
-      },
-    ],
-  },
   /**
    * зачем (владелец 2026-09-02): «добавь его в дев-хаб сразу в самый верх, чтобы
    * он полностью рабочий был». order: 0 ставит секцию выше онбординга. Обе
@@ -333,25 +306,6 @@ export const DEV_TOOL_SECTIONS = [
     ],
   },
   {
-    id: 'full-modes',
-    order: 5,
-    title: 'Режимы · полный запуск',
-    icon: 'call-outline',
-    testID: 'dev-hub-section-full-modes',
-    tools: [
-      {
-        id: 'max-voice',
-        order: 10,
-        title: 'MAX Voice',
-        detail: 'Полный путь: подготовка, живой WebRTC-звонок и разбор разговора.',
-        actionLabel: 'Открыть',
-        action: 'open-max-voice',
-        icon: 'call-outline',
-        testID: 'dev-open-max-voice',
-      },
-    ],
-  },
-  {
     id: 'lessons',
     order: 5.5,
     title: 'Уроки',
@@ -456,21 +410,11 @@ export const DEV_TOOL_SECTIONS = [
         id: 'paywall-onboarding',
         order: 80,
         title: 'Пейвол · вариант с онбординга',
-        detail: 'Тот же экран (текущий A/B-вариант), что видит новичок в конце онбординга: source=onboarding_plan, полноэкранный без слайда, Pro и MAX скрыты.',
+        detail: 'Тот же экран (текущий A/B-вариант), что видит новичок в конце онбординга: source=onboarding_plan, полноэкранный без слайда.',
         actionLabel: 'Открыть',
         action: 'open-paywall-onboarding',
         icon: 'rocket-outline',
         testID: 'dev-open-paywall-onboarding',
-      },
-      {
-        id: 'paywall-max',
-        order: 90,
-        title: 'Пейвол MAX',
-        detail: 'Тариф MAX: 120 минут звонков с ИИ-учителем в месяц. Реальная цена из стора.',
-        actionLabel: 'Открыть',
-        action: 'open-max-paywall',
-        icon: 'call-outline',
-        testID: 'dev-open-paywall-max',
       },
     ],
   },
@@ -535,69 +479,6 @@ export const DEV_TOOL_SECTIONS = [
         action: 'preview-lesson-results',
         icon: 'trophy-outline',
         testID: 'dev-preview-lesson-results',
-      },
-      {
-        id: 'spin-reward',
-        order: 40,
-        title: '+1 Спин',
-        detail: 'Показывает только overlay-анимацию получения Спина поверх текущего окна.',
-        actionLabel: 'Показать',
-        action: 'preview-spin-reward',
-        icon: 'sync-outline',
-        testID: 'dev-preview-spin-reward',
-      },
-    ],
-  },
-  // зачем 13.08.2026: настоящие итоги недели показываются только в понедельник
-  // после ролловера — проверить три исхода на живом устройстве было нечем.
-  // Здесь модалка открывается с синтетическим результатом: прогресс, лига и
-  // сохранённый pending не меняются.
-  {
-    id: 'league',
-    order: 25,
-    title: 'Лига · итоги недели',
-    icon: 'trophy-outline',
-    testID: 'dev-hub-section-league',
-    tools: [
-      {
-        id: 'league-promoted',
-        order: 10,
-        title: 'Повышение',
-        detail: 'Зелёный исход: место в зоне повышения, переход в лигу выше.',
-        actionLabel: 'Показать',
-        action: 'preview-league-promoted',
-        icon: 'trending-up-outline',
-        testID: 'dev-preview-league-promoted',
-      },
-      {
-        id: 'league-demoted',
-        order: 20,
-        title: 'Понижение',
-        detail: 'Красный исход: место в зоне вылета, переход в лигу ниже.',
-        actionLabel: 'Показать',
-        action: 'preview-league-demoted',
-        icon: 'trending-down-outline',
-        testID: 'dev-preview-league-demoted',
-      },
-      {
-        id: 'league-stay',
-        order: 30,
-        title: 'Остаёшься в лиге',
-        detail: 'Нейтральный исход: место сразу за зоной повышения.',
-        actionLabel: 'Показать',
-        action: 'preview-league-stay',
-        icon: 'shield-checkmark-outline',
-        testID: 'dev-preview-league-stay',
-      },
-      {
-        id: 'league-rank-mismatch',
-        order: 40,
-        title: 'Отставший снимок группы',
-        detail: 'Сервер отдал место 2, а очки в снимке старые. Моя строка обязана стоять второй.',
-        actionLabel: 'Показать',
-        action: 'preview-league-rank-mismatch',
-        icon: 'bug-outline',
-        testID: 'dev-preview-league-rank-mismatch',
       },
     ],
   },
@@ -667,7 +548,7 @@ export const DEV_TOOL_SECTIONS = [
   // зачем (владелец, 2026-08-27): ОТДЕЛЬНЫЙ новый раздел — не внутри
   // «Движение · все поверхности». Каждая кнопка открывает НАСТОЯЩИЙ экран
   // (тот же самый, что видят игроки) из своего раздела приложения, но со
-  // случайным стартовым числом рун/XP/счёта вместо реального прогресса —
+  // случайным стартовым числом рун и счёта вместо реального прогресса —
   // диск и сеть не трогаются, проверка чисто визуальная.
   {
     id: 'practice-runes-preview',
@@ -681,7 +562,7 @@ export const DEV_TOOL_SECTIONS = [
         id: 'runes-lesson',
         order: 10,
         title: 'Урок',
-        detail: 'Настоящий Урок 1 со случайным счётом рун и XP на экране завершения.',
+        detail: 'Настоящий Урок 1 со случайным счётом рун на экране завершения.',
         actionLabel: 'Открыть',
         action: 'open-dev-runes-lesson',
         icon: 'school-outline',
@@ -731,7 +612,7 @@ export const DEV_TOOL_SECTIONS = [
         id: 'runes-mistake-practice',
         order: 60,
         title: 'Отработка ошибок',
-        detail: 'Настоящая отработка ошибок со случайным счётом рун, XP и оценки.',
+        detail: 'Настоящая отработка ошибок со случайным счётом рун и оценки.',
         actionLabel: 'Открыть',
         action: 'open-dev-runes-mistake-practice',
         icon: 'bug-outline',

@@ -40,6 +40,8 @@ import { buildMistakeExplanationBlocks } from '../app/explanation_presentation';
 import TonalSurface from './TonalSurface';
 import AiBadge from './AiBadge';
 import MistakeEli5ModalHybrid from './MistakeEli5ModalHybrid';
+import { glassFill } from './GlassSurface';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 
 export type MistakeEli5State = 'idle' | 'loading' | 'ready';
 
@@ -68,7 +70,8 @@ function MistakeEli5Modal({ visible, onClose, lang, state, text, motionVariant =
 }
 
 function MistakeEli5ModalClassic({ visible, onClose, lang, state, text }: Omit<Props, 'onRetry' | 'motionVariant'>) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { height: viewportHeight } = useWindowDimensions();
@@ -205,9 +208,9 @@ function MistakeEli5ModalClassic({ visible, onClose, lang, state, text }: Omit<P
             style={[
               styles.sheet,
               {
-                backgroundColor: t.bgCard,
-                borderColor: t.border,
-                shadowColor: t.accent,
+                backgroundColor: glassFill(t.bgCard, 0.46),
+                borderColor: glass.stroke,
+                shadowColor: glass.glow,
                 paddingBottom: 20 + bottomInset,
               },
               sheetStyle,
@@ -223,7 +226,7 @@ function MistakeEli5ModalClassic({ visible, onClose, lang, state, text }: Omit<P
           />
 
           <View style={styles.grabber} pointerEvents="none">
-            <View style={[styles.grabberPill, { backgroundColor: t.border }]} />
+            <View style={[styles.grabberPill, { backgroundColor: glass.stroke }]} />
           </View>
           <View style={styles.header}>
             <View style={styles.titleRow}>
@@ -237,7 +240,7 @@ function MistakeEli5ModalClassic({ visible, onClose, lang, state, text }: Omit<P
               hitSlop={8}
               accessibilityRole="button"
               accessibilityLabel={closeLabel}
-              style={({ pressed }) => [styles.closeBtn, { backgroundColor: t.bgSurface2 }, pressed && styles.pressed]}
+              style={({ pressed }) => [styles.closeBtn, { backgroundColor: glass.selected }, pressed && styles.pressed]}
             >
               <Ionicons name="close" size={20} color={t.textMuted} />
             </Pressable>

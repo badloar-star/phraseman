@@ -22,22 +22,18 @@ describe('Economy Constitution — client authority is a permanent source contra
     expect(constitution).toContain('never reverses a committed local operation');
   });
 
-  test('all ordinary app purchases use the composite client operation', () => {
-    const ordinaryFiles = [
-      'app/energy_shard_refill.ts',
-      'app/streak_freeze_purchase.ts',
-      'app/streak_revive.ts',
-      'app/streak_wager.ts',
-      'app/league_personal_boosts.ts',
-      'app/flashcards/cardPackShardPurchase.ts',
-      'app/customization_purchase_intent.ts',
-      'app/profile_card_system.ts',
-    ];
-    for (const file of ordinaryFiles) {
-      const source = read(file);
-      expect(source).toContain('commitShardCompositeOperation');
-      expect(source).not.toMatch(/\bspendShards(?:Idempotent)?\s*\(/);
+  test('all live ordinary app purchases use the composite client operation', () => {
+    // зачем: D70/D78 — дозаправка энергии за жемчуг удалена целиком; покупка уровня
+    // карточки профиля за жемчуг уже выведена (файл больше не тратит жемчуг вовсе).
+    expect(fs.existsSync(path.join(root, 'app/energy_shard_refill.ts'))).toBe(false);
+    expect(read('app/profile_card_system.ts')).not.toContain('commitShardCompositeOperation');
+    // зачем: D102 — покупка косметики за жемчуг удалена вместе с редактором.
+    expect(fs.existsSync(path.join(root, 'app/customization_purchase_intent.ts'))).toBe(false);
+    // зачем: D101/D107 — платная заморозка и восстановление серии удалены, файлы не должны вернуться.
+    for (const file of ['app/streak_freeze_purchase.ts', 'app/streak_revive.ts']) {
+      expect(fs.existsSync(path.join(root, file))).toBe(false);
     }
+    expect(fs.existsSync(path.join(root, 'app/league_personal_boosts.ts'))).toBe(false);
   });
 
   test('no current or future ordinary app surface can call a standalone spend API', () => {
@@ -83,8 +79,8 @@ describe('Economy Constitution — client authority is a permanent source contra
     const legacySpendGuard = client.slice(legacySpendStart, legacySpendStart + 700);
     expect(legacySpendGuard).toContain("return 'failed';");
 
-    const server = read('functions/src/shards_apply_delta.ts');
-    expect(server).toContain("throw new HttpsError('failed-precondition', 'personal_balance_is_client_owned')");
+    // зачем: D70/D78 — серверная заглушка shards_apply_delta удалена целиком.
+    expect(fs.existsSync(path.join(root, 'functions/src/shards_apply_delta.ts'))).toBe(false);
   });
 
   test('Firestore can only store immutable client operations and server-only external events', () => {
@@ -137,17 +133,17 @@ describe('Economy Constitution — client authority is a permanent source contra
     expect(ledger).toContain('Math.max(0, state.balance)');
   });
 
-  test('RevenueCat never trusts the SDK credit and handles refund reversal as an external fact', () => {
+  test('RevenueCat never credits pearls: no SDK credit and no webhook credit (D103)', () => {
     // PM-057: клиентская покупка жемчуга за деньги убрана целиком — SDK-кредита
-    // нет вообще; зачисление старых покупок остаётся только за вебхуком ниже.
+    // нет вообще. D103: вебхук тоже больше не зачисляет пакеты и не списывает
+    // возвраты по ним — только логирует и поднимает алерт на оплату.
     const shop = read('app/shards_shop.tsx');
     expect(shop).not.toContain('Purchases.purchasePackage');
     expect(shop).not.toContain("source: 'revenuecat_sdk_purchase'");
     const webhook = read('functions/src/revenuecat_shards.ts');
-    expect(webhook).toContain("if (eventType === 'REFUND_REVERSED')");
-    expect(webhook).toContain("source: 'revenuecat_refund_reversed'");
-    expect(webhook).toContain('delta: grantedShards');
-    expect(webhook).toContain("reason: 'original_not_found' as const, retryable: true");
+    expect(webhook).not.toContain('appendExternalEconomyEvent');
+    expect(webhook).toContain('handleRetiredShardProductEvent');
+    expect(webhook).toContain("ignored: 'shards_retired_d103'");
   });
 
   test('cloud restore cannot overwrite a migrated client ledger balance', () => {
@@ -201,10 +197,6 @@ describe('Economy Constitution — client authority is a permanent source contra
       'daily_journey_gift_claim_receipt_v1:',
     ]) expect(dailyJourneyKeys).toContain(`'${prefix}'`);
     expect(cloudSync).toContain('...DAILY_JOURNEY_GIFT_ACCOUNT_LOCAL_PREFIXES');
-    expect(fs.existsSync(path.join(root, 'constants/local_level_spin_storage_keys.ts'))).toBe(true);
-    const localSpinKeys = read('constants/local_level_spin_storage_keys.ts');
-    expect(localSpinKeys).toContain("'local_level_spin_state_v1:'");
-    expect(cloudSync).toContain('...LOCAL_LEVEL_SPIN_ACCOUNT_LOCAL_PREFIXES');
     const dailyJourneyFreezeKeys = read('constants/daily_journey_freeze_storage_keys.ts');
     for (const prefix of [
       'daily_journey_freeze_operation_v1:',
@@ -221,7 +213,7 @@ describe('Economy Constitution — client authority is a permanent source contra
     const client = read('app/level_spin_star_grants.ts');
     const phoneStateEconomy = read('modules/phone-state/domains/economy.ts');
     const friends = read('app/friends_together/claims_client.ts');
-    const bootstrap = read('app/local_level_spins.ts');
+    const grants = read('app/level_spin_star_grants.ts');
     expect(client).toContain('unacknowledgedTotal(projection)');
     expect(client).toContain('seq > current.serverSeq');
     expect(client).toContain('? balance : current.serverBalance');
@@ -235,9 +227,9 @@ describe('Economy Constitution — client authority is a permanent source contra
     expect(phoneStateEconomy).toContain("'paid_level_spin_rune_purchase'");
     expect(phoneStateEconomy).toContain("value.runeDelta !== -300");
     expect(phoneStateEconomy).toContain('balanceAfter !== balanceBefore - 300');
-    expect(bootstrap).toContain('preparePaidLevelSpinRunePurchase({');
-    expect(bootstrap).toContain('[paidLevelSpinOutboxKey(owner), JSON.stringify(nextOutbox)]');
+    expect(grants).toContain('preparePaidLevelSpinRunePurchase({');
+    expect(grants).toContain('[paidLevelSpinOutboxKey(owner), JSON.stringify(nextOutbox)]');
     expect(friends).toContain('mergeLevelSpinServerStars(token');
-    expect(bootstrap).toContain('recoverAndHydrateLevelSpinStarGrants(token)');
+    expect(grants).toContain('recoverAndHydrateLevelSpinStarGrants(token)');
   });
 });

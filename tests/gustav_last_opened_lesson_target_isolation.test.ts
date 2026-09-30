@@ -22,8 +22,11 @@ describe('Gustav last opened lesson target isolation', () => {
     expect(lessonMenu).not.toContain("AsyncStorage.setItem('last_opened_lesson'");
 
     expect(layout).toContain('const { studyTarget } = useStudyTarget();');
-    expect(layout).toContain('AsyncStorage.getItem(lastOpenedLessonKey(studyTarget))');
-    expect(layout).toContain('prefetchLessonMenuCache(id, studyTarget)');
+    // зачем: PM-210 — выключенный стартовый прогрев контента (единственное место, где
+    // корень читал «последний открытый урок») удалён; корень больше не читает этот
+    // ключ вовсе, а если начнёт — только через target-scoped ключ.
+    expect(layout).not.toContain("AsyncStorage.getItem('last_opened_lesson')");
+    expect(layout).not.toContain('prefetchLessonMenuCache(id)');
     expect(layout).toContain('loadLessonsTabStateFromStorage(studyTarget)');
   });
 

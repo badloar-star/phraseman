@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "dialogue-v2-locale-draft.v1",
+  "status": "draft_not_releaseable",
+  "sourceScenarioId": "social_03",
+  "sourceLedger": { "path": "dialogue_v2_authoring_ru.json", "revision": "v1" },
+  "targets": {
+    "en": {
+      "content": {
+        "title": "Ask for directions",
+        "briefing": "You are chatting in the Social world. Your task is to ask how to get somewhere. Do not close the conversation in one message: follow the steps and react to your chat partner.",
+        "completionTone": "brief, clear, and friendly"
+      },
+      "personas": [{
+        "id": "denis", "displayName": "Denis",
+        "styleNote": "He does not rush, reads details carefully, and replies without unnecessary noise."
+      }],
+      "objectives": [
+        { "id": "objective_01", "label": "Open politely" },
+        { "id": "objective_02", "label": "Name the place" },
+        { "id": "objective_03", "label": "Ask for the route" },
+        { "id": "objective_04", "label": "Ask about transport" },
+        { "id": "objective_05", "label": "Ask to repeat something unclear" },
+        { "id": "objective_06", "label": "Say thank you" }
+      ]
+    },
+    "es": {
+      "content": {
+        "title": "Preguntar cómo llegar",
+        "briefing": "Estás chateando en el mundo «Social». Tu tarea es preguntar cómo llegar a un lugar. No cierres la conversación con un solo mensaje: sigue los pasos y responde a tu interlocutor.",
+        "completionTone": "breve, claro y amable"
+      },
+      "personas": [{
+        "id": "denis", "displayName": "Denis",
+        "styleNote": "No tiene prisa, lee los detalles con atención y responde sin ruido innecesario."
+      }],
+      "objectives": [
+        { "id": "objective_01", "label": "Empezar con cortesía" },
+        { "id": "objective_02", "label": "Decir el lugar" },
+        { "id": "objective_03", "label": "Preguntar la ruta" },
+        { "id": "objective_04", "label": "Preguntar por el transporte" },
+        { "id": "objective_05", "label": "Pedir que repita algo" },
+        { "id": "objective_06", "label": "Dar las gracias" }
+      ]
+    },
+    "fr": {
+      "content": {
+        "title": "Demander son chemin",
+        "briefing": "Tu échanges des messages dans le monde «Social». Ton objectif est de demander comment aller quelque part. Ne termine pas la conversation en un seul message : suis les étapes et réponds à ton interlocuteur.",
+        "completionTone": "bref, clair et chaleureux"
+      },
+      "personas": [{
+        "id": "denis", "displayName": "Denis",
+        "styleNote": "Il ne se presse pas, lit les détails attentivement et répond sans bruit inutile."
+      }],
+      "objectives": [
+        { "id": "objective_01", "label": "Commencer poliment" },
+        { "id": "objective_02", "label": "Nommer le lieu" },
+        { "id": "objective_03", "label": "Demander l'itinéraire" },
+        { "id": "objective_04", "label": "Préciser le transport" },
+        { "id": "objective_05", "label": "Faire répéter ce qui est flou" },
+        { "id": "objective_06", "label": "Remercier" }
+      ]
+    },
+    "de": {
+      "content": {
+        "title": "Nach dem Weg fragen",
+        "briefing": "Du schreibst im Bereich „Social“. Deine Aufgabe: Fragen, wie du zu einem Ort kommst. Beende das Gespräch nicht mit nur einer Nachricht: Gehe die Schritte durch und reagiere auf deinen Gesprächspartner.",
+        "completionTone": "kurz, klar und freundlich"
+      },
+      "personas": [{
+        "id": "denis", "displayName": "Denis",
+        "styleNote": "Er lässt sich Zeit, liest Details aufmerksam und antwortet ohne unnötiges Gerede."
+      }],
+      "objectives": [
+        { "id": "objective_01", "label": "Höflich beginnen" },
+        { "id": "objective_02", "label": "Den Ort nennen" },
+        { "id": "objective_03", "label": "Nach dem Weg fragen" },
+        { "id": "objective_04", "label": "Nach dem Verkehrsmittel fragen" },
+        { "id": "objective_05", "label": "Um Wiederholung bitten" },
+        { "id": "objective_06", "label": "Sich bedanken" }
+      ]
+    }
+  }
+}

@@ -1058,6 +1058,16 @@ export default function LearningV2LessonMap() {
       }
       stageLearningV2CourseSessionReadyHandoffV3(readyHandle);
       requestAnimationFrame(() => {
+        if (__DEV__) {
+          console.log(
+            "[V2-PAGE] push:session",
+            JSON.stringify({
+              sessionId: learningV2CourseSessionIdV1(lessonOrdinal, selectedSessionSnapshot.order),
+              sessionRunId: prepared.sessionRunId,
+              from: "lesson/[id].tsx",
+            }),
+          );
+        }
         router.push({
           pathname: "/learning-v2/session/[id]",
           params: {

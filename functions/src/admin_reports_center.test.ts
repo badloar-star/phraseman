@@ -1,5 +1,7 @@
 import { HttpsError } from 'firebase-functions/v2/https';
 import {
+  applyCanonicalSpireIncident,
+  hydrateCanonicalSpireRows,
   canonicalReportLane,
   isAllowedReportTransition,
   matchesReportFilters,
@@ -78,11 +80,82 @@ describe('admin reports center contracts', () => {
     });
   });
 
-  test('defines unresolved as every report not answered or archived', () => {
+  test('excludes canonically resolved reports from unresolved export', () => {
     expect(isReportUnresolved('new')).toBe(true);
-    expect(isReportUnresolved('fixed')).toBe(true);
+    expect(isReportUnresolved('fixed')).toBe(false);
     expect(isReportUnresolved('answered')).toBe(false);
     expect(isReportUnresolved('archived')).toBe(false);
+  });
+
+  test('hydrates Spire filter/export state from the canonical incident and preserves manual-hold provenance', () => {
+    const base = {
+      contentScope: 'spire', status: 'new', spireTaskId: 'arena-es-fill_gap-1-0000', spireLang: 'es',
+      spireQuarantineState: 'quarantined',
+    };
+    const incident = {
+      schemaVersion: 'spire-task-incident-v1' as const,
+      studyTarget: 'es' as const,
+      taskId: 'arena-es-fill_gap-1-0000',
+      state: 'restored' as const,
+      quarantineOwner: 'manual' as const,
+      manualHoldActive: true,
+      revision: 2, reportCount: 1, firstReportedAtMs: 1, latestReportedAtMs: 2,
+      latestReportId: 'report-1', latestWeekId: '2026-W40', latestTier: 1,
+      latestPackHash: 'sp1_hash', latestReason: 'bad', latestMode: 'fill_gap',
+      latestDifficulty: 1, updatedAtMs: 3,
+    };
+    const hydrated = applyCanonicalSpireIncident(base, incident);
+    expect(hydrated).toMatchObject({
+      status: 'fixed', spireQuarantineState: 'restored', spireIncidentRevision: 2,
+      spireQuarantineOwner: 'manual', spireManualHoldRemains: true,
+    });
+    expect(matchesReportFilters('error_reports', hydrated, parseReportListRequest({
+      source: 'error_reports', lane: 'open',
+    }))).toBe(false);
+    expect(isReportUnresolved(hydrated.status)).toBe(false);
+    expect(serializeReportDocument(hydrated)).toMatchObject({
+      spireQuarantineState: 'restored', spireManualHoldRemains: true,
+    });
+    const afterManualUnflag = applyCanonicalSpireIncident(base, {
+      ...incident,
+      manualHoldActive: false,
+      revision: 3,
+      updatedAtMs: 4,
+    });
+    expect(afterManualUnflag).toMatchObject({
+      status: 'fixed', spireIncidentRevision: 3,
+      spireQuarantineOwner: 'manual', spireManualHoldRemains: false,
+    });
+  });
+
+  test('server canonical hydration chunks 101 unique incident identities without hiding the last one', async () => {
+    const calls: number[] = [];
+    const rows = Array.from({ length: 101 }, (_, index) => {
+      const taskId = `arena-es-fill_gap-1-${String(index).padStart(4, '0')}`;
+      return { contentScope: 'spire', spireLang: 'es', spireTaskId: taskId, status: 'new' };
+    });
+    const db = {
+      collection: () => ({ doc: (id: string) => ({ id }) }),
+      getAll: async (...refs: Array<{ id: string }>) => {
+        calls.push(refs.length);
+        return refs.map((ref) => {
+          const taskId = ref.id.slice('es__'.length);
+          return {
+            exists: true,
+            data: () => ({
+              schemaVersion: 'spire-task-incident-v1', studyTarget: 'es', taskId,
+              state: 'quarantined', quarantineOwner: 'incident', manualHoldActive: false, revision: 1, reportCount: 1,
+              firstReportedAtMs: 1, latestReportedAtMs: 2, latestReportId: `r-${taskId}`,
+              latestWeekId: '2026-W40', latestTier: 1, latestPackHash: 'sp1_hash',
+              latestReason: 'bad', latestMode: 'fill_gap', latestDifficulty: 1, updatedAtMs: 2,
+            }),
+          };
+        });
+      },
+    };
+    const hydrated = await hydrateCanonicalSpireRows(db as never, rows);
+    expect(calls).toEqual([100, 1]);
+    expect(hydrated[100]).toMatchObject({ spireIncidentRevision: 1, spireQuarantineState: 'quarantined' });
   });
 
   test('exports manual reward-tier guidance for the LLM workflow', () => {
@@ -129,20 +202,20 @@ describe('admin reports center contracts', () => {
     expect(() => parseReportExportRequest({ reports: Array.from({ length: 101 }, (_, index) => ({ source: 'error_reports', id: `r-${index}` })) })).toThrow(HttpsError);
   });
 
-  test('serializes the complete report document without truncating user text', () => {
+  test('serializes only the explicit LLM allowlist without account or device data', () => {
     const longComment = 'длинный комментарий '.repeat(800);
     const serialized = serializeReportDocument({
       copyText: 'полный текст для разбора',
       comment: longComment,
       userLanguage: 'ru',
       nested: { userAnswer: 'answer', values: [1, true, null] },
+      uid: 'stable-secret', deviceModel: 'Pixel', userPremium: true, userXP: 9000, userStreak: 30,
     });
     expect(serialized).toEqual({
-      copyText: 'полный текст для разбора',
       comment: longComment,
       userLanguage: 'ru',
-      nested: { userAnswer: 'answer', values: [1, true, null] },
     });
+    expect(JSON.stringify(serialized)).not.toMatch(/stable-secret|Pixel|9000|30|copyText|nested/u);
   });
 
   test('preserves the community pack author link used by current report documents', () => {

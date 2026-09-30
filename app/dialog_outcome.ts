@@ -1,7 +1,7 @@
 /**
  * Контракт исхода ИИ-диалога: разбор «сайдкара» от сервера (mood/objectives/
  * outcome/реакция персонажа) с безопасным фолбэком и маппинг исхода в
- * заголовок и множитель XP.
+ * заголовок.
  *
  * Сервер (premiumDialogSend) возвращает reply + turnState. Если JSON битый или
  * поля отсутствуют — parseTurnState даёт «безопасный продолжающийся» исход, и
@@ -103,24 +103,6 @@ export function objectiveLabel(
   if (lang === 'ru' || lang === 'uk') return objective.labelRu;
   if (lang === 'es') return objective.labelEs || objective.en || objective.labelRu;
   return objective.en || objective.labelRu;
-}
-
-/**
- * Множитель XP по исходу. Юзер выбрал «больше XP за успех»; провал/заглох —
- * меньше, но НЕ ноль (попытка ценна). Применяется к базовому XP диалога.
- */
-export function outcomeXpMultiplier(outcome: DialogOutcome): number {
-  switch (outcome) {
-    case 'success':
-      return 1;
-    case 'stalled':
-      return 0.6;
-    case 'lost_patience':
-      return 0.4;
-    case 'ongoing':
-    default:
-      return 0; // диалог не завершён — XP ещё не начисляем
-  }
 }
 
 /** Локализованный заголовок модала-вердикта (8 языков). */

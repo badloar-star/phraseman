@@ -35,7 +35,6 @@ import {
 } from '../app/lesson_lock_system';
 import { resolveLessonRuntimeGate } from '../app/lesson_premium_gate';
 import { isAlwaysOpenLesson, isMainCourseLesson } from '../app/main_course_access';
-import { LESSON_PEARL_UNLOCK_PRICE } from '../app/lessons_pearl_unlock';
 import { purchasedLessonsKey } from '../app/lessons_pearl_unlock_storage';
 import { lessonBestScoreKey } from '../app/target_storage_keys';
 
@@ -75,8 +74,8 @@ describe('owner 2026-09-20: Free получает 3 урока, дальше н�
     expect(await isLessonUnlockedByEarnedProgress(3)).toBe(false);
   });
 
-  it('низкая оценка на первом не открывает второй', async () => {
-    await AsyncStorage.setItem(lessonBestScoreKey(1), '2.4');
+  it('оценка ниже 2★ на первом не открывает второй (D71)', async () => {
+    await AsyncStorage.setItem(lessonBestScoreKey(1), '1.9');
     expect(await isLessonUnlockedByEarnedProgress(2)).toBe(false);
   });
 
@@ -120,10 +119,6 @@ describe('owner 2026-09-20: Free получает 3 урока, дальше н�
     expect(unlocked[31]).toBe(true);
     // Урок 2 больше не подарок: без бронзы на первом он закрыт.
     expect(unlocked[1]).toBe(false);
-  });
-
-  it('цена урока — 100 жемчужин', () => {
-    expect(LESSON_PEARL_UNLOCK_PRICE).toBe(100);
   });
 
   it('после третьего урока Free видит Plus, а Plus — обычный замок прогресса', () => {

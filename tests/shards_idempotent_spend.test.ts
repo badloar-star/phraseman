@@ -27,11 +27,20 @@ beforeEach(() => {
   });
 });
 
-it('deducts a stable operation id only once across a retry', async () => {
+// зачем: spendShardsIdempotent — легаси-путь, retired по «Экономической конституции»
+// (app/shards_system.ts: clientEconomyConstitutionEnabled() всегда true, см. также
+// tests/economy_constitution_contract.test.ts, который проверяет этот же guard по
+// исходнику). Функция сохранена только ради бинарной/типовой совместимости и ВСЕГДА
+// возвращает 'failed', не трогая баланс и журнал операций. Реальные покупки идут через
+// commitShardCompositeOperation (см. tests/client_shard_operation_ledger.test.ts).
+// Тест раньше проверял живое (pre-retirement) поведение и падал: возвращалось 'failed'
+// вместо 'applied'. Теперь тест — регрессионный барьер против случайного «оживления»
+// этого пути.
+it('stays retired: never spends, always returns failed, regardless of retry', async () => {
   await expect(spendShardsIdempotent(35, 'avatar_aura', 'customization:same-op'))
-    .resolves.toBe('applied');
+    .resolves.toBe('failed');
   await expect(spendShardsIdempotent(35, 'avatar_aura', 'customization:same-op'))
-    .resolves.toBe('already-applied');
-  await expect(getShardsBalance()).resolves.toBe(65);
-  expect(JSON.parse(storage.shard_spend_op_ledger_v1)).toContain('customization:same-op');
+    .resolves.toBe('failed');
+  await expect(getShardsBalance()).resolves.toBe(100);
+  expect(storage.shard_spend_op_ledger_v1).toBeUndefined();
 });

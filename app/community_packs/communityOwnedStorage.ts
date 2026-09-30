@@ -5,23 +5,54 @@ import {
   type RuntimeStudyTarget,
 } from '../target_storage_keys';
 import { DebugLogger } from '../debug-logger';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  type AccountGenerationToken,
+} from '../account_generation';
+import { accountScopeKey } from '../account_scope_key';
+import { BoundedScopeCache, parseStrictArrayJson } from '../flashcards/myPacksDataIntegrity';
 
-function parseIds(raw: string | null): string[] {
-  if (!raw) return [];
+const warmOwnedIdsByKey = new BoundedScopeCache<string[]>(16);
+
+function warmOwnedIdsKey(storageKey: string, token: AccountGenerationToken): string | null {
+  const scope = accountScopeKey(token);
+  return scope ? `${scope}|storage:${storageKey}` : null;
+}
+
+export type CommunityOwnedPackIdsLoadResult = {
+  ids: string[];
+  status: 'ready' | 'stale';
+};
+
+/** Status-aware read for callers that must distinguish empty from unreadable. */
+export async function loadCommunityOwnedPackIdsResult(
+  studyTarget?: RuntimeStudyTarget,
+  accountToken: AccountGenerationToken = captureAccountGeneration(),
+): Promise<CommunityOwnedPackIdsLoadResult> {
+  const key = flashcardsCommunityOwnedPacksKey(studyTarget);
+  const cacheKey = warmOwnedIdsKey(key, accountToken);
+  if (!cacheKey || !isCurrentAccountGeneration(accountToken)) return { ids: [], status: 'stale' };
   try {
-    const p = JSON.parse(raw) as unknown;
-    return Array.isArray(p) ? p.filter((x): x is string => typeof x === 'string') : [];
+    const parsed = parseStrictArrayJson(
+      await AsyncStorage.getItem(key),
+      (value): value is string => typeof value === 'string',
+    );
+    if (!isCurrentAccountGeneration(accountToken)) return { ids: [], status: 'stale' };
+    if (parsed.status === 'ready') {
+      warmOwnedIdsByKey.set(cacheKey, parsed.items);
+      return { ids: parsed.items, status: 'ready' };
+    }
+    return { ids: warmOwnedIdsByKey.get(cacheKey) ?? [], status: 'stale' };
   } catch {
-    return [];
+    return isCurrentAccountGeneration(accountToken)
+      ? { ids: warmOwnedIdsByKey.get(cacheKey) ?? [], status: 'stale' }
+      : { ids: [], status: 'stale' };
   }
 }
 
 export async function loadCommunityOwnedPackIds(studyTarget?: RuntimeStudyTarget): Promise<string[]> {
-  try {
-    return parseIds(await AsyncStorage.getItem(flashcardsCommunityOwnedPacksKey(studyTarget)));
-  } catch {
-    return [];
-  }
+  return (await loadCommunityOwnedPackIdsResult(studyTarget)).ids;
 }
 
 /** Локальная мета набора для выбора: название и фактическая рубашка UGC-пака. */
@@ -29,7 +60,6 @@ export type CommunityOwnedPackTitle = {
   titleRu: string;
   titleUk: string;
   titleEs: string;
-  ugcCardBackKey?: string;
 };
 
 function parseTitles(raw: string | null): Record<string, CommunityOwnedPackTitle> {
@@ -45,9 +75,6 @@ function parseTitles(raw: string | null): Record<string, CommunityOwnedPackTitle
         titleRu: typeof t.titleRu === 'string' ? t.titleRu : '',
         titleUk: typeof t.titleUk === 'string' ? t.titleUk : '',
         titleEs: typeof t.titleEs === 'string' ? t.titleEs : '',
-        ...(typeof t.ugcCardBackKey === 'string' && t.ugcCardBackKey.trim()
-          ? { ugcCardBackKey: t.ugcCardBackKey.trim() }
-          : {}),
       };
     }
     return out;
@@ -78,7 +105,12 @@ export async function addCommunityOwnedPackId(
 ): Promise<void> {
   const cur = await loadCommunityOwnedPackIds(studyTarget);
   if (!cur.includes(id)) {
-    await AsyncStorage.setItem(flashcardsCommunityOwnedPacksKey(studyTarget), JSON.stringify([...cur, id]));
+    const next = [...cur, id];
+    const key = flashcardsCommunityOwnedPacksKey(studyTarget);
+    await AsyncStorage.setItem(key, JSON.stringify(next));
+    const token = captureAccountGeneration();
+    const cacheKey = warmOwnedIdsKey(key, token);
+    if (cacheKey && isCurrentAccountGeneration(token)) warmOwnedIdsByKey.set(cacheKey, next);
   }
   // зачем: сохраняем название рядом с id в момент добавления набора — единственный
   // надёжный момент, когда оно точно есть под рукой, без похода в сеть позже

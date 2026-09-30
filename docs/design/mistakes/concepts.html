@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="midnight">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Мои ошибки · 5 концепций</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/phone.css">
+<style>
+/* ============================================================
+   «Мои ошибки» · пять концепций раздела для выбора владельцем.
+   Система та же, что у index.html: токены тем приложения, корпус
+   390×844, карточки radius 26/18, главные числа 34–44 весом 900,
+   действия высотой 56, текст от 15.
+   Законы владельца: без обводок контейнеров, без подписей мелким
+   шрифтом под названием, без эмодзи и растра, всё крупно.
+   Движение: только transform/opacity, ease-out, reduced motion.
+   ============================================================ */
+
+body{background:#06070E;font-family:var(--font);color:var(--text);margin:0;padding:44px 24px 90px}
+.lede{max-width:1480px;margin:0 auto 38px}
+.lede h1{font-size:var(--fs-title);font-weight:900;letter-spacing:-.8px;margin:0 0 12px}
+.lede p{color:var(--muted);font-size:var(--fs-body);line-height:1.62;max-width:72ch;margin:0}
+.rail{max-width:1480px;margin:0 auto;display:flex;gap:30px;overflow-x:auto;padding-bottom:26px;scroll-snap-type:x mandatory}
+.col{flex:0 0 auto;width:390px;scroll-snap-align:start}
+.cap{margin-bottom:16px;min-height:96px}
+.cap .n{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:10px;background:var(--elev2);color:var(--accent);font-size:14px;font-weight:900;margin-right:10px;vertical-align:middle}
+.cap h2{display:inline;font-size:var(--fs-section);font-weight:900;letter-spacing:-.5px}
+.cap p{color:var(--ghost);font-size:var(--fs-label);line-height:1.55;margin:10px 0 0 38px}
+
+/* ---- общий хром экрана ---- */
+.scr{display:flex;flex-direction:column;height:100%;background:linear-gradient(180deg,var(--bg-a),var(--bg-b))}
+.bar{height:54px;flex:0 0 auto}
+.top{display:flex;align-items:center;gap:12px;padding:0 20px 10px;flex:0 0 auto}
+.top .ico{width:40px;height:40px;border-radius:14px;background:var(--card);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.top .ico svg{width:22px;height:22px;stroke:var(--text)}
+.top h3{flex:1;font-size:var(--fs-card);font-weight:900;letter-spacing:-.4px;margin:0;min-width:0}
+.top .ct{font-size:var(--fs-label);font-weight:900;color:var(--muted);font-variant-numeric:tabular-nums}
+.main{flex:1;min-height:0;overflow:hidden;padding:0 20px;display:flex;flex-direction:column;gap:12px}
+.foot{flex:0 0 auto;padding:12px 20px 26px;display:flex;flex-direction:column;gap:10px}
+.act{height:56px;border-radius:var(--r-md);background:var(--accent);color:var(--accent-ink);display:flex;align-items:center;justify-content:center;font-size:var(--fs-card);font-weight:900}
+.act.sec{background:var(--elev2);color:var(--text);height:48px;font-size:var(--fs-body)}
+.seg{display:flex;gap:6px;padding:5px;border-radius:var(--r-md);background:var(--card)}
+.seg span{flex:1;height:42px;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:var(--fs-body);font-weight:800;color:var(--muted)}
+.seg span.on{background:var(--elev2);color:var(--text)}
+.card{border-radius:var(--r-lg);background:var(--card);padding:18px}
+.num{font-variant-numeric:tabular-nums}
+
+/* ══ 1 · КАРТА ОЧАГОВ ══ */
+.c1-hero{border-radius:var(--r-lg);padding:20px;background:linear-gradient(150deg,var(--elev),var(--card) 64%);position:relative;overflow:hidden}
+.c1-hero::after{content:'';position:absolute;right:-40px;top:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,var(--danger-soft),transparent 70%)}
+.c1-lead{display:flex;align-items:flex-end;gap:12px;position:relative}
+.c1-big{font-size:var(--fs-hero);font-weight:900;letter-spacing:-2.6px;line-height:.92}
+.c1-cap{font-size:var(--fs-body);font-weight:800;color:var(--muted);padding-bottom:6px;line-height:1.3}
+.c1-spark{display:flex;align-items:flex-end;gap:3px;height:34px;margin-top:16px;position:relative}
+.c1-spark i{flex:1;border-radius:3px 3px 0 0;background:color-mix(in oklab,var(--danger) 34%,transparent)}
+.c1-spark i.hot{background:var(--danger)}
+.c1-sub{font-size:var(--fs-label);color:var(--ghost);margin-top:12px;line-height:1.5;position:relative}
+.heat{display:flex;flex-direction:column;gap:3px}
+.hr{display:flex;align-items:center;gap:11px;padding:12px 14px;border-radius:var(--r-sm)}
+.hr .d{width:9px;height:9px;border-radius:5px;flex:0 0 auto}
+.hr .nm{flex:1;font-size:var(--fs-body);font-weight:800}
+.hr .v{font-size:var(--fs-body);font-weight:900;color:var(--muted);font-variant-numeric:tabular-nums}
+.l5{background:color-mix(in oklab,var(--danger) 17%,transparent)}
+.l4{background:color-mix(in oklab,var(--danger) 11%,transparent)}
+.l3{background:color-mix(in oklab,var(--danger) 6%,transparent)}
+.l2{background:var(--inner-light)}
+.note{font-size:var(--fs-body);line-height:1.58;font-weight:700}
+.note b{color:var(--text-2)}
+
+/* ══ 2 · СТОПКА ══ */
+.stack{position:relative;height:300px;margin-top:2px}
+.sc{position:absolute;left:0;right:0;border-radius:var(--r-lg);background:var(--card);padding:22px}
+/* зачем: на тёмном фоне карточка цвета --card почти не отличается от экрана,
+   поэтому задние слои стопки должны быть СВЕТЛЕЕ передней, а не прозрачнее —
+   иначе «стопки» не видно и механика свайпа не читается. */
+.sc.z3{top:0;transform:scale(.90);height:252px;background:var(--elev2)}
+.sc.z2{top:13px;transform:scale(.95);height:254px;background:var(--elev)}
+.sc.z1{top:26px;height:262px;box-shadow:0 22px 48px var(--shadow)}
+.tag{display:inline-flex;align-items:center;height:26px;padding:0 12px;border-radius:9px;background:var(--danger-soft);color:var(--danger);font-size:12px;font-weight:900;letter-spacing:.4px}
+.q{font-size:var(--fs-section);font-weight:900;letter-spacing:-.6px;line-height:1.3;margin:16px 0 14px}
+.bad{font-size:var(--fs-card);font-weight:700;color:var(--danger);text-decoration:line-through;text-decoration-thickness:2px;opacity:.9}
+.good{font-size:var(--fs-card);font-weight:900;color:var(--accent);margin-top:6px}
+.smeta{position:absolute;left:22px;right:22px;bottom:20px;display:flex;gap:8px;font-size:var(--fs-label);font-weight:800;color:var(--ghost)}
+.prog{display:flex;gap:4px}
+.prog i{height:4px;border-radius:2px;flex:1;background:var(--elev2)}
+.prog i.on{background:var(--accent)}
+.swipe{display:flex;gap:10px}
+.swipe div{flex:1;height:52px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:var(--fs-body);font-weight:900}
+
+/* ══ 3 · ЛЕНТА ══ */
+.pills{display:flex;gap:8px}
+.pl{height:36px;padding:0 15px;border-radius:var(--r-sm);background:var(--card);display:flex;align-items:center;gap:7px;font-size:var(--fs-body);font-weight:800;color:var(--muted)}
+.pl.on{background:var(--danger-soft);color:var(--danger)}
+.pl b{font-weight:900;font-variant-numeric:tabular-nums}
+.day{display:flex;gap:12px}
+.trail{width:30px;flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:4px;padding-top:4px}
+.nd{width:12px;height:12px;border-radius:6px;background:var(--danger);flex:0 0 auto}
+.nd.ok{background:var(--accent)}
+.ln{width:2px;flex:1;background:var(--elev2);border-radius:1px}
+.dt{font-size:12px;font-weight:900;color:var(--ghost);letter-spacing:.5px;text-transform:uppercase;margin-bottom:9px}
+.it{border-radius:var(--r-md);background:var(--card);padding:15px 16px;margin-bottom:9px}
+.it .ph{font-size:var(--fs-body);font-weight:800;line-height:1.38}
+.it .wh{font-size:var(--fs-label);font-weight:700;color:var(--muted);margin-top:6px}
+.it.ok{background:color-mix(in oklab,var(--accent) 8%,transparent)}
+.it.ok .ph{color:var(--muted);text-decoration:line-through;text-decoration-thickness:2px;opacity:.72}
+.it.ok .wh{color:var(--accent)}
+.src{display:inline-block;height:24px;padding:0 10px;border-radius:8px;background:var(--elev2);color:var(--muted);font-size:12px;font-weight:900;line-height:24px;margin-top:10px}
+
+/* ══ 4 · ЩИТ ══ */
+.ring{position:relative;width:206px;height:206px;align-self:center}
+.ring .mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring .mid b{font-size:var(--fs-hero);font-weight:900;letter-spacing:-2.4px;line-height:1;font-variant-numeric:tabular-nums}
+.ring .mid span{font-size:var(--fs-label);font-weight:800;color:var(--muted);margin-top:6px}
+.leg{display:flex;gap:18px;justify-content:center;margin-top:14px}
+.leg div{display:flex;align-items:center;gap:8px;font-size:var(--fs-label);font-weight:800;color:var(--muted)}
+.leg i{width:10px;height:10px;border-radius:5px}
+.rows{display:flex;flex-direction:column;gap:8px;margin-top:16px}
+.rw{display:flex;align-items:center;gap:12px;background:var(--card);border-radius:var(--r-md);padding:14px 16px}
+.rw .nm{flex:1;font-size:var(--fs-body);font-weight:800}
+.tr{width:76px;height:8px;border-radius:4px;background:var(--elev2);overflow:hidden;flex:0 0 auto}
+.tr i{display:block;height:100%;border-radius:4px}
+.rw .pc{width:40px;text-align:right;font-size:var(--fs-body);font-weight:900;color:var(--muted);font-variant-numeric:tabular-nums}
+.bnr{margin-top:14px;border-radius:var(--r-md);padding:16px 18px;background:linear-gradient(135deg,var(--gold-soft),var(--accent-soft))}
+.bnr .t{font-size:var(--fs-body);font-weight:900;line-height:1.45}
+.bnr .s{font-size:var(--fs-label);font-weight:700;color:var(--muted);margin-top:6px}
+
+/* ══ 5 · ТРЕНЕР ══ */
+.talk{display:flex;flex-direction:column;gap:13px}
+.row{display:flex;gap:11px;align-items:flex-start}
+.av{width:36px;height:36px;border-radius:13px;background:linear-gradient(140deg,var(--bloom-a),var(--bloom-b));flex:0 0 auto}
+.bub{background:var(--card);border-radius:20px 20px 20px 8px;padding:16px 18px;font-size:var(--fs-body);line-height:1.58;font-weight:700}
+.bub b{color:var(--text-2)}
+.quote{margin-top:12px;padding:13px 15px;border-radius:var(--r-sm);background:var(--elev);font-size:var(--fs-body);font-weight:800;line-height:1.7}
+.quote .bad{font-size:var(--fs-body)}
+.quote .good{font-size:var(--fs-body);margin:0}
+.mine{align-self:flex-end;background:var(--elev2);border-radius:20px 20px 8px 20px;padding:13px 17px;font-size:var(--fs-body);font-weight:800;max-width:76%}
+.chips{display:flex;flex-wrap:wrap;gap:9px;padding-left:47px}
+.chip2{height:42px;padding:0 16px;border-radius:var(--r-sm);background:var(--elev2);font-size:var(--fs-body);font-weight:800;display:flex;align-items:center}
+.chip2.pri{background:var(--accent);color:var(--accent-ink);font-weight:900}
+.tri{display:flex;gap:9px;padding-left:47px}
+.tri div{flex:1;background:var(--card);border-radius:var(--r-md);padding:13px 10px;text-align:center}
+.tri b{display:block;font-size:var(--fs-num);font-weight:900;letter-spacing:-1.2px;font-variant-numeric:tabular-nums;line-height:1}
+.tri span{font-size:12px;font-weight:800;color:var(--muted);display:block;margin-top:6px}
+
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="lede">
+  <h1>«Мои ошибки» — пять концепций</h1>
+  <p>Та же система, что в действующем макете раздела: тема «Полночь», токены приложения, корпус 390×844, карточки и кнопки из общей библиотеки. Данные настоящие — типы ошибок, источники, счётчики «готовы / исправлено». Отличаются концепции главным: ради чего человек открывает раздел.</p>
+</div>
+
+<div class="rail">
+
+<!-- ─────────── 1 ─────────── -->
+<div class="col">
+  <div class="cap"><span class="n">1</span><h2>Карта очагов</h2>
+    <p>Экран ставит диагноз. Крупное число, ритм ошибок по дням, тепловая карта слабых мест и один вывод словами.</p>
+  </div>
+  <div class="phone"><div class="scr">
+    <div class="bar"></div>
+    <div class="top">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+      <h3>Работа над ошибками</h3>
+    </div>
+    <div class="main">
+      <div class="c1-hero">
+        <div class="c1-lead"><div class="c1-big num">23</div><div class="c1-cap">ошибки<br>ждут разбора</div></div>
+        <div class="c1-spark">
+          <i style="height:36%"></i><i style="height:52%"></i><i style="height:28%"></i><i style="height:64%"></i>
+          <i style="height:44%"></i><i class="hot" style="height:90%"></i><i style="height:56%"></i>
+          <i style="height:38%"></i><i style="height:70%"></i><i class="hot" style="height:100%"></i>
+          <i style="height:48%"></i><i style="height:32%"></i>
+        </div>
+        <div class="c1-sub">Пик — вторник и четверг. За месяц исправлено 41.</div>
+      </div>
+      <div class="card" style="padding:12px 8px">
+        <div class="heat">
+          <div class="hr l5"><span class="d" style="background:var(--danger)"></span><span class="nm">Порядок слов</span><span class="v">9</span></div>
+          <div class="hr l4"><span class="d" style="background:color-mix(in oklab,var(--danger) 70%,transparent)"></span><span class="nm">Форма слова</span><span class="v">6</span></div>
+          <div class="hr l3"><span class="d" style="background:color-mix(in oklab,var(--danger) 45%,transparent)"></span><span class="nm">Пропущено слово</span><span class="v">4</span></div>
+          <div class="hr l2"><span class="d" style="background:var(--ghost)"></span><span class="nm">На слух</span><span class="v">3</span></div>
+          <div class="hr"><span class="d" style="background:var(--ghost)"></span><span class="nm">Значение</span><span class="v">1</span></div>
+        </div>
+      </div>
+      <div class="card" style="background:var(--elev)">
+        <div class="note">Чаще всего спотыкаешься на <b>порядке слов</b> — и почти всегда в вопросах. С них и начнём.</div>
+      </div>
+    </div>
+    <div class="foot">
+      <div class="seg"><span>5</span><span class="on">10</span><span>20</span><span>Все 23</span></div>
+      <div class="act">Разобрать 10</div>
+    </div>
+  </div></div>
+</div>
+
+<!-- ─────────── 2 ─────────── -->
+<div class="col">
+  <div class="cap"><span class="n">2</span><h2>Стопка карточек</h2>
+    <p>Раздел сразу показывает саму ошибку, а не статистику о ней. Свайп влево — «ещё путаюсь», вправо — «понял».</p>
+  </div>
+  <div class="phone"><div class="scr">
+    <div class="bar"></div>
+    <div class="top">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+      <h3>Мои ошибки</h3><span class="ct">3 / 23</span>
+    </div>
+    <div class="main">
+      <div class="prog"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="stack">
+        <div class="sc z3"></div><div class="sc z2"></div>
+        <div class="sc z1">
+          <span class="tag">ПОРЯДОК СЛОВ</span>
+          <div class="q">Где ты вчера был?</div>
+          <div class="bad">Where you were yesterday?</div>
+          <div class="good">Where were you yesterday?</div>
+          <div class="smeta"><span>Урок 12</span><span>·</span><span>ошибся дважды</span></div>
+        </div>
+      </div>
+      <div class="swipe">
+        <div style="background:var(--danger-soft);color:var(--danger)">← Ещё путаюсь</div>
+        <div style="background:var(--accent-soft);color:var(--accent)">Понял →</div>
+      </div>
+      <div class="card" style="background:var(--elev);padding:15px 17px">
+        <div style="font-size:var(--fs-body);font-weight:700;line-height:1.55;color:var(--muted)">В вопросе глагол встаёт <span style="color:var(--text);font-weight:900">перед</span> тем, кто действует. Та же ловушка была в уроке 9.</div>
+      </div>
+    </div>
+    <div class="foot">
+      <div class="act">Тренировать это правило</div>
+      <div class="act sec">Посмотреть все 23</div>
+    </div>
+  </div></div>
+</div>
+
+<!-- ─────────── 3 ─────────── -->
+<div class="col">
+  <div class="cap"><span class="n">3</span><h2>Лента дней</h2>
+    <p>Хронология: что наошибал сегодня и что уже вылечил вчера. Зачёркнутое — видимая победа, а не просто убранная строка.</p>
+  </div>
+  <div class="phone"><div class="scr">
+    <div class="bar"></div>
+    <div class="top">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+      <h3>Мои ошибки</h3>
+    </div>
+    <div class="main">
+      <div class="pills">
+        <div class="pl on"><b>23</b> готовы</div>
+        <div class="pl"><b>41</b> исправлено</div>
+      </div>
+      <div class="day">
+        <div class="trail"><span class="nd"></span><span class="ln"></span></div>
+        <div style="flex:1;min-width:0">
+          <div class="dt">Сегодня · 4</div>
+          <div class="it"><div class="ph">Where were you yesterday?</div><div class="wh">Сказал «Where you were» — порядок слов</div><span class="src">Урок 12</span></div>
+          <div class="it"><div class="ph">She doesn't like it</div><div class="wh">Потерял «doesn't» — пропущено слово</div><span class="src">Арена</span></div>
+        </div>
+      </div>
+      <div class="day">
+        <div class="trail"><span class="nd ok"></span><span class="ln"></span></div>
+        <div style="flex:1;min-width:0">
+          <div class="dt">Вчера · 2 исправлено</div>
+          <div class="it ok"><div class="ph">I have been there</div><div class="wh">Исправлено с третьей попытки</div></div>
+          <div class="it ok"><div class="ph">He goes to work</div><div class="wh">Исправлено</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><div class="act">Разобрать 4 за сегодня</div></div>
+  </div></div>
+</div>
+
+<!-- ─────────── 4 ─────────── -->
+<div class="col">
+  <div class="cap"><span class="n">4</span><h2>Щит прогресса</h2>
+    <p>Ошибки как броня, которую достраиваешь. Кольцо — доля закрытых слабых мест, полосы — насколько вылечен каждый тип.</p>
+  </div>
+  <div class="phone"><div class="scr">
+    <div class="bar"></div>
+    <div class="top">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+      <h3>Работа над ошибками</h3>
+    </div>
+    <div class="main">
+      <div class="ring">
+        <svg width="206" height="206" viewBox="0 0 206 206">
+          <circle cx="103" cy="103" r="86" fill="none" stroke="var(--elev2)" stroke-width="17"/>
+          <circle cx="103" cy="103" r="86" fill="none" stroke="var(--accent)" stroke-width="17"
+            stroke-linecap="round" stroke-dasharray="540" stroke-dashoffset="194" transform="rotate(-90 103 103)"/>
+          <circle cx="103" cy="103" r="86" fill="none" stroke="var(--danger)" stroke-width="17"
+            stroke-linecap="round" stroke-dasharray="88 540" stroke-dashoffset="-360" transform="rotate(-90 103 103)"/>
+        </svg>
+        <div class="mid"><b>64%</b><span>слабых мест закрыто</span></div>
+      </div>
+      <div class="leg">
+        <div><i style="background:var(--accent)"></i>41 исправлено</div>
+        <div><i style="background:var(--danger)"></i>23 в работе</div>
+      </div>
+      <div class="rows">
+        <div class="rw"><span class="nm">Порядок слов</span><span class="tr"><i style="width:34%;background:var(--danger)"></i></span><span class="pc">34%</span></div>
+        <div class="rw"><span class="nm">Форма слова</span><span class="tr"><i style="width:58%;background:var(--gold)"></i></span><span class="pc">58%</span></div>
+        <div class="rw"><span class="nm">На слух</span><span class="tr"><i style="width:81%;background:var(--accent)"></i></span><span class="pc">81%</span></div>
+      </div>
+      <div class="bnr">
+        <div class="t">До половины по «порядку слов» осталось 4 разбора</div>
+        <div class="s">Закрытое место чинит и соседние задания</div>
+      </div>
+    </div>
+    <div class="foot"><div class="act">Чинить порядок слов · 4</div></div>
+  </div></div>
+</div>
+
+<!-- ─────────── 5 ─────────── -->
+<div class="col">
+  <div class="cap"><span class="n">5</span><h2>Разговор с тренером</h2>
+    <p>Не панель, а диалог. Экран сам говорит, что заметил, предлагает действие и отвечает на встречный вопрос.</p>
+  </div>
+  <div class="phone"><div class="scr">
+    <div class="bar"></div>
+    <div class="top">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></div>
+      <h3>Разбор ошибок</h3>
+    </div>
+    <div class="main">
+      <div class="talk">
+        <div class="row">
+          <div class="av"></div>
+          <div class="bub">За две недели набралось <b>23 ошибки</b>. Почти половина — об одно и то же.
+            <div class="quote"><span class="bad">Where you were?</span><br><span class="good">Where were you?</span></div>
+          </div>
+        </div>
+        <div class="tri">
+          <div><b>9</b><span>порядок слов</span></div>
+          <div><b>6</b><span>форма слова</span></div>
+          <div><b>41</b><span>закрыто</span></div>
+        </div>
+        <div class="row">
+          <div class="av"></div>
+          <div class="bub">Начнём с вопросов? Девять штук — это минут пять.</div>
+        </div>
+        <div class="chips">
+          <div class="chip2 pri">Давай, 9 вопросов</div>
+          <div class="chip2">Быстрые 5</div>
+        </div>
+        <div class="mine">А что с «на слух»?</div>
+        <div class="row">
+          <div class="av"></div>
+          <div class="bub">Там всего три и все из Арены — подождут. Слух заметно вырос: закрыто 81%.</div>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><div class="act">Начать разбор · 9</div></div>
+  </div></div>
+</div>
+
+</div>
+</body>
+</html>

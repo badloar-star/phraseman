@@ -28,6 +28,7 @@ import { withBackgroundNetworkLease } from '../app/interactive_network_quiet';
 import { getPlayablePhraseAudioUrl } from '../modules/audio/phrase_audio_lookup';
 import { ensurePhraseAudioCached } from './phrase_audio_player';
 
+import { reportSwallowed } from '../app/debug-logger';
 // Сколько клипов гарантированно тянем первыми. Пять — примерно столько человек
 // успевает пройти, пока читает условие задания.
 const CRITICAL_HEAD = 5;
@@ -72,7 +73,7 @@ function loadNetInfo(load: () => unknown = () => require('@react-native-communit
     const mod = load() as Readonly<{ default?: NetInfoLike; fetch?: NetInfoLike['fetch'] }>;
     if (mod?.default?.fetch) return mod.default;
     if (typeof mod?.fetch === 'function') return mod as NetInfoLike;
-  } catch {
+  } catch (error) { reportSwallowed('phrase_audio_prefetch:loadNetInfo', error); 
     // NetInfo недоступен (тесты, web) — трактуем как «сеть не дорогая».
   }
   return null;
@@ -159,7 +160,7 @@ export function prefetchPhraseAudio(
       // Падение одного клипа не должно останавливать пачку и тем более всплывать
       // наружу: это предзагрузка, её отсутствие не поломка — обычный путь
       // скачает клип по нажатию.
-      await ensurePhraseAudioCached(item.text, item.url).catch(() => false);
+      await ensurePhraseAudioCached(item.text, item.url).catch((error: unknown) => { reportSwallowed('phrase_audio_prefetch:prefetchPhraseAudio', error); return false; });
     }
 
     const tail = queue.slice(CRITICAL_HEAD);
@@ -176,12 +177,12 @@ export function prefetchPhraseAudio(
             if (!isCurrent() || lease.signal.aborted || getNetStatus() === 'offline') return;
             // Как и в голове: упавший клип не должен уносить с собой воркер,
             // иначе один сетевой сбой обрывает остаток очереди.
-            await ensurePhraseAudioCached(item.text, item.url).catch(() => false);
+            await ensurePhraseAudioCached(item.text, item.url).catch((error: unknown) => { reportSwallowed('phrase_audio_prefetch:prefetchPhraseAudio', error); return false; });
           }
         });
         await Promise.all(workers);
       });
-    } catch {
+    } catch (error) { reportSwallowed('phrase_audio_prefetch:prefetchPhraseAudio', error); 
       // Лизинг отменён (экран запросил тишину сети) — это штатный исход.
     }
   })();

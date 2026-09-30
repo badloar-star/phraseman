@@ -4,16 +4,12 @@ import {
 } from './public_profile_projection';
 
 const cosmetic: PublicProfileProjectionInput = {
-  reason: 'daily_xp',
+  reason: 'display_change',
   name: '  Learner  ',
   lang: 'ru',
   avatar: 'owl',
   frame: 'gold',
   aura: 'lime',
-  leagueId: 999,
-  totalXp: 999_999_999,
-  level: 60,
-  weekPoints: 888_888,
   streak: 777,
   isPremium: true,
   isVip: true,
@@ -66,8 +62,6 @@ describe('server-authoritative public profile projection', () => {
       uid: 'stable-a',
       name: 'Learner',
       nameLower: 'learner',
-      totalXp: 1_250,
-      weekPoints: 45,
       streak: 6,
       isPremium: false,
       isVip: false,
@@ -78,7 +72,6 @@ describe('server-authoritative public profile projection', () => {
       cardLongestStreak: 15,
       progressAuthority: 'server',
     });
-    expect(result.level).toBeGreaterThan(1);
   });
 
   it('does not project legacy progress when no accepted server state exists', () => {

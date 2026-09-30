@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "dialogue-v2-locale-draft.v1",
+  "status": "draft_not_releaseable",
+  "sourceScenarioId": "social_12",
+  "sourceLedger": { "path": "dialogue_v2_authoring_ru.json", "revision": "v1" },
+  "targets": {
+    "en": {
+      "content": { "title": "Support a friend", "briefing": "You are chatting in the Social world. Your task is to support a friend. Do not end the conversation in one message: follow the steps and react to your chat partner.", "completionTone": "confidently, with reasons" },
+      "personas": [{ "id": "denis", "displayName": "Denis", "styleNote": "He does not rush, reads details carefully, and replies without unnecessary noise." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Notice their mood" }, { "id": "objective_02", "label": "Ask whether they want to talk" }, { "id": "objective_03", "label": "Listen without advising" }, { "id": "objective_04", "label": "Clarify what they need" }, { "id": "objective_05", "label": "Offer specific help" }, { "id": "objective_06", "label": "Do not push after a refusal" }, { "id": "objective_07", "label": "Agree when to message again" }
+      ]
+    },
+    "es": {
+      "content": { "title": "Apoyar a un amigo", "briefing": "Estás chateando en el mundo «Social». Tu tarea es apoyar a un amigo. No cierres la conversación con un solo mensaje: sigue los pasos y responde a tu interlocutor.", "completionTone": "con seguridad y explicando las razones" },
+      "personas": [{ "id": "denis", "displayName": "Denis", "styleNote": "No tiene prisa, lee los detalles con atención y responde sin ruido innecesario." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Notar su estado de ánimo" }, { "id": "objective_02", "label": "Preguntar si quiere hablar" }, { "id": "objective_03", "label": "Escuchar sin dar consejos" }, { "id": "objective_04", "label": "Aclarar qué necesita" }, { "id": "objective_05", "label": "Ofrecer ayuda concreta" }, { "id": "objective_06", "label": "No insistir si rechaza" }, { "id": "objective_07", "label": "Acordar cuándo escribir de nuevo" }
+      ]
+    },
+    "fr": {
+      "content": { "title": "Soutenir un ami", "briefing": "Tu échanges des messages dans le monde «Social». Ton objectif est de soutenir un ami. Ne termine pas la conversation en un seul message : suis les étapes et réponds à ton interlocuteur.", "completionTone": "avec assurance et en expliquant les raisons" },
+      "personas": [{ "id": "denis", "displayName": "Denis", "styleNote": "Il ne se presse pas, lit les détails attentivement et répond sans bruit inutile." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Remarquer son humeur" }, { "id": "objective_02", "label": "Demander s'il veut en parler" }, { "id": "objective_03", "label": "Écouter sans conseiller" }, { "id": "objective_04", "label": "Préciser ce dont il a besoin" }, { "id": "objective_05", "label": "Proposer une aide concrète" }, { "id": "objective_06", "label": "Ne pas insister après un refus" }, { "id": "objective_07", "label": "Convenez du prochain message" }
+      ]
+    },
+    "de": {
+      "content": { "title": "Einen Freund unterstützen", "briefing": "Du schreibst im Bereich „Social“. Deine Aufgabe: Einen Freund unterstützen. Beende das Gespräch nicht mit nur einer Nachricht: Gehe die Schritte durch und reagiere auf deinen Gesprächspartner.", "completionTone": "sicher und mit Begründungen" },
+      "personas": [{ "id": "denis", "displayName": "Denis", "styleNote": "Er lässt sich Zeit, liest Details aufmerksam und antwortet ohne unnötiges Gerede." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Seine Stimmung bemerken" }, { "id": "objective_02", "label": "Fragen, ob er reden möchte" }, { "id": "objective_03", "label": "Ohne Rat zuhören" }, { "id": "objective_04", "label": "Klären, was er braucht" }, { "id": "objective_05", "label": "Konkrete Hilfe anbieten" }, { "id": "objective_06", "label": "Nach einer Absage nicht drängen" }, { "id": "objective_07", "label": "Vereinbaren, wann ihr wieder schreibt" }
+      ]
+    }
+  }
+}

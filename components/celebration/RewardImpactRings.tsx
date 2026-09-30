@@ -54,8 +54,7 @@ interface RewardImpactRingsProps {
   ringCount?: 1 | 2;
   color: string;
   // зачем: тип пружинного стиля из useAnimatedStyle конфликтует с web-CSS
-  // типами reanimated при явной аннотации (тот же паттерн, что и в
-  // LeagueChestSlitOpen.tsx) — StyleProp<ViewStyle> принимает то, что реально
+  // типами reanimated при явной аннотации: StyleProp<ViewStyle> принимает то, что реально
   // возвращает хук в RN-рантайме, без строгой связки к типу хука.
   ring0Style: StyleProp<ViewStyle>;
   ring1Style: StyleProp<ViewStyle>;

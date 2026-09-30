@@ -93,7 +93,7 @@ export type StarOpReason =
   | 'arena_partner' | 'arena_tier' | 'spend_shop' | 'admin_grant' | 'admin_revoke' | 'coin_exchange'
   | 'level_spin_grant'
   // «Вместе» (friends_together.ts): веха уровня дружбы и сундук недели — оба заработок
-  // (клеймится только за реально накопленные дни/XP, не подарок).
+  // (клеймится только за реально накопленные дни прогресса, не подарок).
   | 'friends_together_level' | 'friends_together_chest'
   // зачем: владелец 2026-08-23 — звёзды Арены, турниров и Learning V2 это одна
   // валюта. Занятие оплачено учёбой, поэтому earn (обязано открывать награды
@@ -143,7 +143,15 @@ export type StarOpReason =
   // выплачивается в понедельник и не должен попадать в weekEarned НОВОЙ недели
   // (иначе приз прошлой недели двигал бы очки следующей). Открытый вопрос
   // О-280-2 — если монеты-ранги (D34) должны считать и призы, сменить на earn.
-  | 'spire_week_reward';
+  | 'spire_week_reward'
+  // зачем: D100 (владелец, 2026-09-30) — владелец вечного Pro получает приз
+  // реферальной рулетки монетами вместо жемчуга. Grant, НЕ earn: приз за
+  // приглашённого друга не оплачен учёбой и не должен двигать очки лиги.
+  | 'referral_spin'
+  // зачем: D104 (владелец, 2026-09-30) — награда в рассылке (global broadcast)
+  // выдаётся монетами вместо жемчуга. Grant, НЕ earn: подарок команды не оплачен
+  // учёбой и не должен двигать очки лиги.
+  | 'global_broadcast';
 
 export type StarOpClass = 'earn' | 'grant' | 'spend';
 
@@ -175,6 +183,8 @@ export const STAR_OP_CLASS: Readonly<Record<StarOpReason, StarOpClass>> = Object
   community_pack_sale: 'grant',
   spire_step: 'earn',
   spire_week_reward: 'grant',
+  referral_spin: 'grant',
+  global_broadcast: 'grant',
 });
 
 /**
@@ -230,6 +240,10 @@ export const STAR_OP_SOURCE: Readonly<Record<StarOpReason, RuneSourceKey>> = Obj
   // своей строки у Шпиля на экране «Руны» нет, новый ключ сломал бы разрез клиента.
   spire_step: 'learning',
   spire_week_reward: 'other',
+  // Приз реферальной рулетки (D100) — строка «спин» разреза «откуда руны».
+  referral_spin: 'spin',
+  // Подарок из рассылки (D104) — «другое»: своей строки на экране «Руны» нет.
+  global_broadcast: 'other',
 });
 
 export type StarOpMeta = Record<string, string | number | boolean>;
@@ -278,9 +292,6 @@ export type StarOpReceipt = {
   weekEarnedAfter: number;
   seasonId: string;
   seasonEarnedAfter: number;
-  /** D-69: операции Арены несут опыт, начисленный в ТОЙ ЖЕ транзакции. */
-  xpDelta: number;
-  xpTotalAfter: number;
   authUid: string;
   deviceId: string | null;
   earnedAtMs: number;
@@ -304,9 +315,6 @@ export type StarLedgerCtx = {
   weekKeyForMs?: (ms: number) => string;
   authUid: string;
   deviceId?: string | null;
-  /** Опыт, начисляемый в этой же транзакции — попадает в расписки. */
-  xpDelta?: number;
-  xpTotalAfter?: number;
 };
 
 export type StarLedgerResult = {
@@ -676,8 +684,6 @@ export async function prepareStarOperations(
         weekEarnedAfter: after.weekEarned,
         seasonId: after.seasonId,
         seasonEarnedAfter: after.seasonEarned,
-        xpDelta: Math.max(0, int(ctx.xpDelta)),
-        xpTotalAfter: Math.max(0, int(ctx.xpTotalAfter)),
         authUid: ctx.authUid,
         deviceId: ctx.deviceId ?? null,
         earnedAtMs,

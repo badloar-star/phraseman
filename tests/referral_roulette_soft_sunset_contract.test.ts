@@ -18,7 +18,6 @@ describe('referral roulette soft sunset integration contract', () => {
   test('claim awards deterministic individual credits and spin consumes ledger', () => {
     const claim = read('functions/src/referral_claim_spin.ts');
     const spin = read('functions/src/referral_spin.ts');
-    const dev = read('functions/src/referral_dev_grant.ts');
     expect(claim).toContain('referralCreditId');
     expect(claim).toContain('REFERRAL_SPIN_LEDGER');
     expect(claim).toContain("source: 'referral'");
@@ -29,10 +28,7 @@ describe('referral roulette soft sunset integration contract', () => {
     expect(spin).toContain('reconcileLedgerRows');
     expect(spin).toContain("status: 'consumed'");
     expect(spin).toContain('spinRequestId');
-    expect(dev).toContain("source: 'dev_grant'");
-    expect(dev).toContain('reconcileDevGrantLedger');
-    expect(dev).toContain("where('status', '==', 'available')");
-    expect(dev).not.toContain('aggregateBefore + 1');
+    // зачем: D78/D81 — dev-выдача спина (referral_dev_grant.ts) удалена из кода.
   });
 
   test('legacy VIP claim cannot bypass soft sunset or emergency stop', () => {

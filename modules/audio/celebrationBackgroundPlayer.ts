@@ -11,8 +11,7 @@
  * SOUND_EVENTS['pm.celebration.background_bed'] как справочная точка, а
  * фактическое воспроизведение управляется здесь напрямую через expo-audio.
  *
- * Один файл на все тиры (Plus/Pro/VIP/MAX/промокод) — отдельная мелодия под
- * MAX была бы избыточна, у него уже есть акцентный cel_max_awaken.
+ * Один файл для действующих вариантов доступа и промокода.
  */
 import { createAudioPlayer } from 'expo-audio';
 import { SOUND_EVENTS } from './sound_events';

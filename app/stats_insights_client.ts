@@ -1,14 +1,8 @@
 // ═══════════════════════════════════════════════════════════════════════════
 // stats_insights_client.ts — клиентский слой ИИ-микротекстов под блоками статы.
 //
-// Отвечает за: кэш последних заметок (AsyncStorage), локальный гейт частоты
-// (серверное окно), ОДИН вызов CF statsInsightsGenerate и маппинг ошибок в
-// мягкие состояния для UI.
-//
-// Генерация ЛЕНИВАЯ и premium-only: зовём CF только когда экран открыт, premium
-// активен и кэш устарел. Не заходит юзер — 0 затрат (никаких кронов). SERVER —
-// источник правды по окну; локальный гейт лишь чтобы не дёргать платный CF зря.
-// Паттерн зеркалит weekly_review_client.ts.
+// Отвечает за локальные заметки, кэш AsyncStorage и частоту обновления.
+// Сервер не генерирует и не выбирает тексты статистики.
 // ═══════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -20,8 +14,8 @@ const DAY_MS = 24 * 60 * 60 * 1000;
 const PREMIUM_WINDOW_DAYS = 3;
 const FREE_WINDOW_DAYS = 7;
 
-/** Ключи блоков — синхронны с CF stats_insights.ts. */
-export const STATS_INSIGHT_BLOCKS = ['balance', 'rhythm', 'year', 'percentiles', 'lifetime'] as const;
+/** Ключи локальных блоков заметок. */
+export const STATS_INSIGHT_BLOCKS = ['balance', 'rhythm', 'year', 'lifetime'] as const;
 export type StatsInsightBlock = (typeof STATS_INSIGHT_BLOCKS)[number];
 export type StatsInsightsNotes = Record<StatsInsightBlock, string>;
 
@@ -30,9 +24,8 @@ export interface StatsInsightsBriefing {
   lang: Lang;
   studyTarget?: RuntimeStudyTarget;
   balance: { score: number; isWarmup: boolean; active7: number; avgMinutes: number };
-  rhythm: { active7: number; xp7: number; minutes7: number; bestDay: string };
+  rhythm: { active7: number; minutes7: number; bestDay: string };
   year: { activeDays: number; currentStreak: number; longestStreak: number; bestMonth: string; goalPct: number };
-  percentiles: { totalXp: number | null; week: number | null; daily7: number | null };
   lifetime: { words: number; phrases: number; daysActive: number };
   weakCategories: Array<{ label: string; pct: number }>;
 }
@@ -53,10 +46,10 @@ export type StatsInsightsState =
 export type StatsInsightsErrorCode = 'offline' | 'not_ready' | 'insufficient_data' | 'provider_failed' | 'unknown';
 
 function emptyNotes(): StatsInsightsNotes {
-  return { balance: '', rhythm: '', year: '', percentiles: '', lifetime: '' };
+  return { balance: '', rhythm: '', year: '', lifetime: '' };
 }
 
-/** Приводит произвольный объект заметок к известной форме (5 строковых блоков). */
+/** Приводит произвольный объект заметок к известной форме (4 строковых блока). */
 function normalizeNotes(raw: Partial<StatsInsightsNotes> | undefined): StatsInsightsNotes {
   const notes = emptyNotes();
   if (!raw) return notes;
@@ -70,6 +63,7 @@ function normalizeNotes(raw: Partial<StatsInsightsNotes> | undefined): StatsInsi
 function guardLearnerFacingNote(key: StatsInsightBlock, note: string): string {
   const clean = note.trim();
   if (!clean) return '';
+  if (key === 'rhythm' && /\bXP\b/i.test(clean)) return '';
   if (key !== 'balance') return clean;
   const lower = clean.toLocaleLowerCase();
   const hasInternalBalancePhrase =
@@ -174,7 +168,6 @@ export function buildLocalStatsInsights(briefing: StatsInsightsBriefing): StatsI
   const bestDay = briefing.rhythm.bestDay || '—';
   const bestMonth = briefing.year.bestMonth || '—';
   const totalItems = briefing.lifetime.words + briefing.lifetime.phrases;
-  const pct = briefing.percentiles.totalXp;
 
   return {
     balance: briefing.balance.isWarmup
@@ -204,15 +197,15 @@ export function buildLocalStatsInsights(briefing: StatsInsightsBriefing): StatsI
         ),
     rhythm: localText(
       briefing.lang,
-      `За 7 дней: ${briefing.rhythm.active7} активн. дн., ${briefing.rhythm.xp7} XP, ${briefing.rhythm.minutes7} мин. Лучший день: ${bestDay}.`,
-      `За 7 днів: ${briefing.rhythm.active7} активн. дн., ${briefing.rhythm.xp7} XP, ${briefing.rhythm.minutes7} хв. Найкращий день: ${bestDay}.`,
-      `Last 7 days: ${briefing.rhythm.active7} active days, ${briefing.rhythm.xp7} XP, ${briefing.rhythm.minutes7} min. Best day: ${bestDay}.`,
-      `En 7 días: ${briefing.rhythm.active7} días activos, ${briefing.rhythm.xp7} XP, ${briefing.rhythm.minutes7} min. Mejor día: ${bestDay}.`,
-      `Em 7 dias: ${briefing.rhythm.active7} dias ativos, ${briefing.rhythm.xp7} XP, ${briefing.rhythm.minutes7} min. Melhor dia: ${bestDay}.`,
-      `Trong 7 ngày: ${briefing.rhythm.active7} ngày hoạt động, ${briefing.rhythm.xp7} XP, ${briefing.rhythm.minutes7} phút. Ngày tốt nhất: ${bestDay}.`,
-      `Dalam 7 hari: ${briefing.rhythm.active7} hari aktif, ${briefing.rhythm.xp7} XP, ${briefing.rhythm.minutes7} menit. Hari terbaik: ${bestDay}.`,
-      `Son 7 gün: ${briefing.rhythm.active7} aktif gün, ${briefing.rhythm.xp7} XP, ${briefing.rhythm.minutes7} dk. En iyi gün: ${bestDay}.`,
-      `W 7 dni: ${briefing.rhythm.active7} aktywnych dni, ${briefing.rhythm.xp7} XP, ${briefing.rhythm.minutes7} min. Najlepszy dzień: ${bestDay}.`,
+      `За 7 дней: ${briefing.rhythm.active7} активн. дн., ${briefing.rhythm.minutes7} мин. Лучший день: ${bestDay}.`,
+      `За 7 днів: ${briefing.rhythm.active7} активн. дн., ${briefing.rhythm.minutes7} хв. Найкращий день: ${bestDay}.`,
+      `Last 7 days: ${briefing.rhythm.active7} active days, ${briefing.rhythm.minutes7} min. Best day: ${bestDay}.`,
+      `En 7 días: ${briefing.rhythm.active7} días activos, ${briefing.rhythm.minutes7} min. Mejor día: ${bestDay}.`,
+      `Em 7 dias: ${briefing.rhythm.active7} dias ativos, ${briefing.rhythm.minutes7} min. Melhor dia: ${bestDay}.`,
+      `Trong 7 ngày: ${briefing.rhythm.active7} ngày hoạt động, ${briefing.rhythm.minutes7} phút. Ngày tốt nhất: ${bestDay}.`,
+      `Dalam 7 hari: ${briefing.rhythm.active7} hari aktif, ${briefing.rhythm.minutes7} menit. Hari terbaik: ${bestDay}.`,
+      `Son 7 gün: ${briefing.rhythm.active7} aktif gün, ${briefing.rhythm.minutes7} dk. En iyi gün: ${bestDay}.`,
+      `W 7 dni: ${briefing.rhythm.active7} aktywnych dni, ${briefing.rhythm.minutes7} min. Najlepszy dzień: ${bestDay}.`,
     ),
     year: localText(
       briefing.lang,
@@ -226,31 +219,6 @@ export function buildLocalStatsInsights(briefing: StatsInsightsBriefing): StatsI
       `Yıllık ritim: ${briefing.year.activeDays} aktif gün, seri ${briefing.year.currentStreak}, rekor ${briefing.year.longestStreak}. En iyi ay: ${bestMonth}.`,
       `Roczny rytm: ${briefing.year.activeDays} aktywnych dni, seria ${briefing.year.currentStreak}, rekord ${briefing.year.longestStreak}. Najlepszy miesiąc: ${bestMonth}.`,
     ),
-    percentiles: pct == null
-      ? localText(
-          briefing.lang,
-          'Процентили появятся после большего объёма. Пока сравнивай себя с прошлой неделей, а не с другими.',
-          'Процентилі зʼявляться після більшого обсягу. Поки порівнюй себе з минулим тижнем, а не з іншими.',
-          'Percentiles will appear once there\'s more volume. For now, compare yourself to last week, not to others.',
-          'Los percentiles aparecerán con más volumen. Por ahora compárate con tu semana anterior, no con otros.',
-          'Os percentis aparecerão com mais volume. Por enquanto, compare-se com a semana passada, não com outras pessoas.',
-          'Phần trăm xếp hạng sẽ xuất hiện khi có nhiều dữ liệu hơn. Bây giờ hãy so với tuần trước của bạn, không phải với người khác.',
-          'Persentil akan muncul setelah datanya lebih banyak. Untuk sekarang, bandingkan dirimu dengan minggu lalu, bukan dengan orang lain.',
-          'Yüzdelikler daha fazla veriyle görünecek. Şimdilik kendini başkalarıyla değil, geçen haftanla karşılaştır.',
-          'Percentyle pojawią się po większej liczbie danych. Na razie porównuj się z poprzednim tygodniem, nie z innymi.',
-        )
-      : localText(
-          briefing.lang,
-          `Ты примерно в топ-${100 - Math.round(pct)}% по общему XP. Следующий прирост даст стабильность, а не рывок.`,
-          `Ти приблизно в топ-${100 - Math.round(pct)}% за загальним XP. Наступний приріст дасть стабільність, а не ривок.`,
-          `You're roughly in the top ${100 - Math.round(pct)}% by total XP. The next gain will come from consistency, not a spike.`,
-          `Estás cerca del top-${100 - Math.round(pct)}% por XP total. El siguiente salto viene de la constancia.`,
-          `Você está perto do top-${100 - Math.round(pct)}% em XP total. O próximo avanço vem da constância.`,
-          `Bạn đang gần top-${100 - Math.round(pct)}% theo tổng XP. Bước tăng tiếp theo đến từ sự đều đặn.`,
-          `Kamu kira-kira di top-${100 - Math.round(pct)}% berdasarkan total XP. Kenaikan berikutnya datang dari konsistensi.`,
-          `Toplam XP'de yaklaşık ilk ${100 - Math.round(pct)}% içindesin. Bir sonraki artış sıçramadan değil, istikrardan gelir.`,
-          `Jesteś mniej więcej w top-${100 - Math.round(pct)}% według łącznego XP. Kolejny wzrost da regularność, nie zryw.`,
-        ),
     lifetime: weak
       ? localText(
           briefing.lang,
@@ -280,11 +248,8 @@ export function buildLocalStatsInsights(briefing: StatsInsightsBriefing): StatsI
 }
 
 /**
- * Генерирует заметки локальным шаблоном (если окно позволяет). Возвращает обновлённое
- * состояние. При ошибке отдаёт прошлые заметки + код.
- *
- * ВАЖНО: зовётся только для premium (на free фичу не показываем). Локальный
- * гейт + серверное окно = ленивая генерация: не заходишь — не тратим.
+ * Генерирует заметки локальным шаблоном (если окно позволяет).
+ * Возвращает обновлённое состояние без сетевого вызова.
  */
 export async function generateStatsInsights(options: GenerateStatsInsightsOptions): Promise<StatsInsightsState> {
   const { briefing, isPremium } = options;
@@ -294,7 +259,7 @@ export async function generateStatsInsights(options: GenerateStatsInsightsOption
   const stored = await loadStored(studyTarget);
   const storedForCurrentLang = isStoredForLang(stored, lang) ? stored : null;
 
-  // Локальный гейт: рано — отдаём кэш, CF не трогаем.
+  // Локальный гейт: рано — отдаём кэш.
   if (!options.force && !canGenerateNow(storedForCurrentLang, nowMs) && storedForCurrentLang?.notes.balance) {
     if (storedForCurrentLang) return { kind: 'cached', notes: storedForCurrentLang.notes, nextAllowedAtMs: storedForCurrentLang.nextAllowedAtMs, lang: storedForCurrentLang.lang };
     return { kind: 'none' };

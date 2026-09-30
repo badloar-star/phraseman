@@ -1,0 +1,99 @@
+{
+  "schemaVersion": "dialogue-v2-locale-draft.v1",
+  "status": "draft_not_releaseable",
+  "sourceScenarioId": "social_02",
+  "sourceLedger": {
+    "path": "dialogue_v2_authoring_ru.json",
+    "revision": "v1"
+  },
+  "targets": {
+    "en": {
+      "content": {
+        "title": "Reschedule a meeting",
+        "briefing": "You are chatting in the Social world. Your task is to reschedule a meeting. Do not close the conversation in one message: follow the steps and react to your chat partner.",
+        "completionTone": "brief, clear, and friendly"
+      },
+      "personas": [
+        {
+          "id": "zoe",
+          "displayName": "Zoe",
+          "styleNote": "She chats lightly and sometimes uses a gentle joke to help you sound more natural."
+        }
+      ],
+      "objectives": [
+        { "id": "objective_01", "label": "Start with a greeting" },
+        { "id": "objective_02", "label": "Mention your plans" },
+        { "id": "objective_03", "label": "Say that the time does not work" },
+        { "id": "objective_04", "label": "Offer one new time" },
+        { "id": "objective_05", "label": "Ask whether it works" },
+        { "id": "objective_06", "label": "Confirm the final time" }
+      ]
+    },
+    "es": {
+      "content": {
+        "title": "Reprogramar un encuentro",
+        "briefing": "Estás chateando en el mundo «Social». Tu tarea es reprogramar un encuentro. No cierres la conversación con un solo mensaje: sigue los pasos y responde a tu interlocutora.",
+        "completionTone": "breve, claro y amable"
+      },
+      "personas": [
+        {
+          "id": "zoe",
+          "displayName": "Zoe",
+          "styleNote": "Habla con ligereza y a veces usa una broma suave para ayudarte a sonar más natural."
+        }
+      ],
+      "objectives": [
+        { "id": "objective_01", "label": "Empezar con un saludo" },
+        { "id": "objective_02", "label": "Mencionar los planes" },
+        { "id": "objective_03", "label": "Decir que la hora no va bien" },
+        { "id": "objective_04", "label": "Proponer una nueva hora" },
+        { "id": "objective_05", "label": "Preguntar si le viene bien" },
+        { "id": "objective_06", "label": "Confirmar la hora final" }
+      ]
+    },
+    "fr": {
+      "content": {
+        "title": "Reporter un rendez-vous",
+        "briefing": "Tu échanges des messages dans le monde «Social». Ton objectif est de reporter un rendez-vous. Ne termine pas la conversation en un seul message : suis les étapes et réponds à ton interlocutrice.",
+        "completionTone": "bref, clair et chaleureux"
+      },
+      "personas": [
+        {
+          "id": "zoe",
+          "displayName": "Zoé",
+          "styleNote": "Elle discute avec légèreté et glisse parfois une petite blague pour t'aider à parler plus naturellement."
+        }
+      ],
+      "objectives": [
+        { "id": "objective_01", "label": "Commencer par une salutation" },
+        { "id": "objective_02", "label": "Rappeler les projets prévus" },
+        { "id": "objective_03", "label": "Dire que l'heure ne convient pas" },
+        { "id": "objective_04", "label": "Proposer une nouvelle heure" },
+        { "id": "objective_05", "label": "Demander si cela convient" },
+        { "id": "objective_06", "label": "Confirmer l'heure finale" }
+      ]
+    },
+    "de": {
+      "content": {
+        "title": "Ein Treffen verschieben",
+        "briefing": "Du schreibst im Bereich „Social“. Deine Aufgabe: Ein Treffen verschieben. Beende das Gespräch nicht mit nur einer Nachricht: Gehe die Schritte durch und reagiere auf deine Gesprächspartnerin.",
+        "completionTone": "kurz, klar und freundlich"
+      },
+      "personas": [
+        {
+          "id": "zoe",
+          "displayName": "Zoe",
+          "styleNote": "Sie schreibt locker und hilft dir manchmal mit einem kleinen Witz, natürlicher zu klingen."
+        }
+      ],
+      "objectives": [
+        { "id": "objective_01", "label": "Mit einer Begrüßung beginnen" },
+        { "id": "objective_02", "label": "An die Pläne erinnern" },
+        { "id": "objective_03", "label": "Sagen, dass die Zeit nicht passt" },
+        { "id": "objective_04", "label": "Eine neue Uhrzeit vorschlagen" },
+        { "id": "objective_05", "label": "Fragen, ob das passt" },
+        { "id": "objective_06", "label": "Die endgültige Uhrzeit bestätigen" }
+      ]
+    }
+  }
+}

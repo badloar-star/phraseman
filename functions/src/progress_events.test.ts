@@ -6,12 +6,10 @@ import {
   candidateHasSameProgressSemantics,
   fingerprintProgressEvent,
   fingerprintProgressEventV2,
-  examSpinCompletionForEvent,
   getWeekKey,
   getWeekStartIso,
   isServerOwnedProgressKey,
   normalizeProgressEvent,
-  readLegacyLevelUpBonusClaim,
   resolveClientDateKey,
   shouldQualifyReferralFromProgressEvent,
 } from './progress_events';
@@ -21,29 +19,7 @@ import { join } from 'path';
 describe('progress_events engine', () => {
   const now = new Date('2026-06-13T12:00:00.000Z');
 
-  it('authorizes one exam spin only for a valid first V2 pass', () => {
-    const event = {
-      eventId: 'exam:A1:attempt-1',
-      type: 'exam_complete' as const,
-      payload: { level: 'A1', studyTarget: 'en', blueprintVersion: 2, score: 21, total: 30 },
-    };
-    expect(examSpinCompletionForEvent(event, {})).toEqual({ level: 'A1', firstPass: true });
-    expect(examSpinCompletionForEvent(event, { level_exam_A1_passed: 'true' }))
-      .toEqual({ level: 'A1', firstPass: false });
-    expect(examSpinCompletionForEvent({ ...event, payload: { ...event.payload, score: 20 } }, {}))
-      .toBeUndefined();
-  });
-
-  it('authorizes a spin for the current V3 exam blueprint', () => {
-    const event = {
-      eventId: 'exam:A1:attempt-v3',
-      type: 'exam_complete' as const,
-      payload: { level: 'A1', studyTarget: 'en', blueprintVersion: 3, score: 21, total: 30 },
-    };
-    expect(examSpinCompletionForEvent(event, {})).toEqual({ level: 'A1', firstPass: true });
-  });
-
-  it('normalizes v1 without letting the transport marker bypass semantic dedupe', () => {
+  it('does not let obsolete transport markers bypass semantic dedupe', () => {
     const legacy = normalizeProgressEvent({
       eventId: 'lesson:1:answer:legacy',
       type: 'lesson_answer',
@@ -55,8 +31,6 @@ describe('progress_events engine', () => {
       levelSpinProtocol: 'v1',
       payload: { xpDelta: 10 },
     });
-    expect(legacy.levelSpinProtocol).toBeUndefined();
-    expect(v1.levelSpinProtocol).toBe('v1');
     expect(fingerprintProgressEvent(legacy)).toBe(fingerprintProgressEvent(v1));
     expect(canonicalProgressEventSemantics(legacy)).toBe(canonicalProgressEventSemantics(v1));
   });
@@ -83,33 +57,15 @@ describe('progress_events engine', () => {
     })).toBe(true);
   });
 
-  it('grandfathers only a valid canonical legacy +100 ledger', () => {
-    expect(readLegacyLevelUpBonusClaim({
-      eventId: 'level_up:5:bonus',
-      type: 'level_up_bonus',
-      payload: { level: 5, xpDelta: 100 },
-      result: { xpDelta: 100 },
-    }, 5)).toBe('claimed');
-    expect(readLegacyLevelUpBonusClaim(undefined, 5)).toBe('unclaimed');
-    expect(readLegacyLevelUpBonusClaim({
-      eventId: 'level_up:5:bonus',
-      type: 'level_up_bonus',
-      payload: { level: 5, xpDelta: 1000 },
-      result: { xpDelta: 100 },
-    }, 5)).toBe('corrupt');
-  });
-
-  it('compares bounded FNV candidates canonically and reads the legacy bonus ledger before writes', () => {
+  it('compares bounded FNV candidates canonically before writes', () => {
     const source = readFileSync(join(__dirname, 'progress_events.ts'), 'utf8');
     expect(source).toMatch(/\.where\('fingerprint', '==', eventFingerprint\)\r?\n\s+\.limit\(16\)/);
     expect(source).toContain('candidateHasSameProgressSemantics(event, candidate.data())');
-    expect(source).toContain('legacyLevelUpBonusRef ? tx.get(legacyLevelUpBonusRef)');
-    expect(source).toContain("legacyBonusClaimState === 'corrupt'");
     expect(source).toContain('fingerprintCanonicalVersion: 1');
     expect(source).toContain('fingerprintCanonical: canonicalProgressEventSemantics(event)');
   });
 
-  it('applies XP, weekly counters, level and first-day streak on the server', () => {
+  it('records first-day streak without restoring retired XP counters', () => {
     const event = normalizeProgressEvent({
       eventId: 'lesson:1:answer:001',
       type: 'lesson_answer',
@@ -119,20 +75,13 @@ describe('progress_events engine', () => {
 
     const result = applyProgressEvent({}, event, now);
 
-    expect(result.xpDelta).toBe(25);
-    expect(result.totalXp).toBe(25);
-    expect(result.level).toBe(1);
     expect(result.streakCount).toBe(1);
     expect(result.progressPatch).toMatchObject({
-      user_prev_xp: '0',
-      user_total_xp: '25',
-      weekly_xp: '25',
-      weekly_xp_period_start: getWeekStartIso('2026-06-13'),
-      week_points: '25',
-      week_points_v2: JSON.stringify({ weekKey: getWeekKey('2026-06-13'), points: 25 }),
       streak_count: '1',
       last_active_date: '2026-06-13',
     });
+    expect(result.progressPatch).not.toHaveProperty('user_total_xp');
+    expect(result.progressPatch).not.toHaveProperty('weekly_xp');
   });
 
   it('extends streak once per local day and does not rewind on an older offline event', () => {
@@ -243,7 +192,7 @@ describe('progress_events engine', () => {
     expect(result.progressPatch.unlocked_lessons).toBe('[1,2,9]');
   });
 
-  it('accepts final exam completion and preserves gold XP scale', () => {
+  it('accepts final exam completion without a retired XP reward', () => {
     const event = normalizeProgressEvent({
       eventId: 'exam:final:en:attempt-1:complete',
       type: 'exam_complete',
@@ -253,7 +202,6 @@ describe('progress_events engine', () => {
 
     const result = applyProgressEvent({}, event, now);
 
-    expect(result.xpDelta).toBe(10000);
     expect(result.progressPatch.level_exam_final_pct).toBe('95');
     expect(result.progressPatch.level_exam_final_best_pct).toBe('95');
     expect(result.progressPatch.level_exam_final_passed).toBe('true');
@@ -306,7 +254,7 @@ describe('progress_events engine', () => {
     }))).toBe(false);
   });
 
-  it('caps untrusted XP by event type', () => {
+  it('ignores untrusted XP payloads by event type', () => {
     const event = normalizeProgressEvent({
       eventId: 'lesson:1:answer:huge',
       type: 'lesson_answer',
@@ -314,10 +262,10 @@ describe('progress_events engine', () => {
       payload: { xpDelta: 100000 },
     });
 
-    expect(applyProgressEvent({}, event, now).xpDelta).toBe(100);
+    expect(applyProgressEvent({}, event, now).progressPatch).not.toHaveProperty('user_total_xp');
   });
 
-  it('accepts personal-plan task completion and caps its XP', () => {
+  it('accepts personal-plan task completion without an XP reward', () => {
     const event = normalizeProgressEvent({
       eventId: 'plan:en:instance-1:task-1:complete',
       type: 'plan_task_complete',
@@ -326,7 +274,7 @@ describe('progress_events engine', () => {
     });
 
     expect(event.type).toBe('plan_task_complete');
-    expect(applyProgressEvent({}, event, now).xpDelta).toBe(1500);
+    expect(applyProgressEvent({}, event, now).progressPatch).not.toHaveProperty('user_total_xp');
   });
 
   it('rejects personal-plan completion without canonical plan and task ids', () => {
@@ -342,42 +290,19 @@ describe('progress_events engine', () => {
     }
   });
 
-  it('accepts level_up_bonus only as the canonical +100 XP for an authoritative reached level', () => {
-    const valid = normalizeProgressEvent({
+  it('rejects retired reward event types', () => {
+    expect(() => normalizeProgressEvent({
       eventId: 'level_up:5:bonus',
       type: 'level_up_bonus',
       clientLocalDate: '2026-06-13',
       payload: { level: 5, xpDelta: 100 },
-    });
-    const inflated = normalizeProgressEvent({
-      eventId: 'level_up:5:bonus-inflated',
-      type: 'level_up_bonus',
-      clientLocalDate: '2026-06-13',
-      payload: { level: 5, xpDelta: 1000 },
-    });
-    const unreached = normalizeProgressEvent({
-      eventId: 'level_up:6:bonus-early',
-      type: 'level_up_bonus',
-      clientLocalDate: '2026-06-13',
-      payload: { level: 6, xpDelta: 100 },
-    });
-
-    expect(applyProgressEvent({ user_total_xp: '6000' }, valid, now).xpDelta).toBe(100);
-    expect(() => applyProgressEvent({ user_total_xp: '6000' }, inflated, now))
-      .toThrow('level_up_bonus_amount_invalid');
-    expect(() => applyProgressEvent({ user_total_xp: '6000' }, unreached, now))
-      .toThrow('level_up_bonus_level_not_reached');
-  });
-
-  it('preserves high-tier wager rewards', () => {
-    const event = normalizeProgressEvent({
+    })).toThrow('bad_progress_event_type');
+    expect(() => normalizeProgressEvent({
       eventId: 'wager:2026-06-01:5:100:win',
       type: 'wager_win',
       clientLocalDate: '2026-06-13',
       payload: { xpDelta: 15000 },
-    });
-
-    expect(applyProgressEvent({}, event, now).xpDelta).toBe(15000);
+    })).toThrow('bad_progress_event_type');
   });
 
   it('rejects unknown event types and malformed event ids', () => {
@@ -518,11 +443,7 @@ describe('progress_events engine', () => {
     expect(source).not.toContain('`progress.${key}`');
   });
 
-  // ECON-2: суточный потолок XP с гриндабельных источников (lesson_answer и т.п.).
-  // Суточные потолки XP сняты 2026-07-26: они срезали только серверный total, а клиент при
-  // зеркалировании берёт Math.max(local, server) и всегда оставался со своим полным числом —
-  // потолок не ограничивал фарм, а навсегда расщеплял баланс телефона и сервера.
-  describe('daily XP accrual is not capped by how much was earned today', () => {
+  describe('retired XP payloads do not affect progress', () => {
     const answerEvent = (xpDelta: number, id: string) => normalizeProgressEvent({
       eventId: `lesson:1:answer:${id}`,
       type: 'lesson_answer',
@@ -530,36 +451,13 @@ describe('progress_events engine', () => {
       payload: { xpDelta },
     });
 
-    it('awards full XP regardless of how much this source already gave today', () => {
-      const result = applyProgressEvent({}, answerEvent(80, 'a'), now, {
-        sourceXpToday: { lesson_answer: 1000 },
-      });
-      expect(result.xpDelta).toBe(80);
-    });
-
-    it('keeps awarding full XP past the old per-source daily budget', () => {
-      const result = applyProgressEvent({}, answerEvent(100, 'b'), now, {
-        sourceXpToday: { lesson_answer: 7950 },
-      });
-      expect(result.xpDelta).toBe(100);
-    });
-
-    it('keeps awarding full XP past the old global daily budget', () => {
-      const result = applyProgressEvent({}, answerEvent(100, 'c'), now, {
-        sourceXpToday: { lesson_answer: 50_000 },
-        totalXpToday: 500_000,
-      });
-      expect(result.xpDelta).toBe(100);
-    });
-
-    it('still clamps a single forged event to the per-event cap', () => {
-      const result = applyProgressEvent({}, answerEvent(999_999, 'd'), now, {});
-      expect(result.xpDelta).toBe(100); // EVENT_XP_CAP.lesson_answer
+    it('ignores the payload regardless of prior daily counters', () => {
+      const result = applyProgressEvent({}, answerEvent(80, 'a'), now);
+      expect(result.progressPatch).not.toHaveProperty('user_total_xp');
     });
   });
 
-  // ECON-3/11: уровневый зачёт — серверный пересчёт XP + суточный лимит попыток.
-  describe('level exam XP guards (ECON-3, ECON-11)', () => {
+  describe('level exams retain structural progress without XP', () => {
     const levelExam = (pct: number, passed: boolean, xpDelta: number, id = '1') => normalizeProgressEvent({
       eventId: `exam:en:a1:${id}:complete`,
       type: 'exam_complete',
@@ -567,28 +465,18 @@ describe('progress_events engine', () => {
       payload: { level: 'a1', pct, passed, xpDelta },
     });
 
-    it('recomputes pass XP from pct, ignoring inflated client xpDelta', () => {
+    it('ignores client XP values for a passed exam', () => {
       const result = applyProgressEvent({}, levelExam(80, true, 9999), now, { examAttemptsToday: 0 });
-      expect(result.xpDelta).toBe(90); // 50 + round(80/2)
+      expect(result.progressPatch).not.toHaveProperty('user_total_xp');
     });
 
-    it('gives no XP for spam-click low-percentage attempts', () => {
-      const result = applyProgressEvent({}, levelExam(5, false, 9999), now, { examAttemptsToday: 0 });
-      expect(result.xpDelta).toBe(0);
-    });
-
-    it('blocks XP once the daily attempt limit is reached', () => {
-      const result = applyProgressEvent({}, levelExam(95, true, 100), now, { examAttemptsToday: 5 });
-      expect(result.xpDelta).toBe(0);
-    });
-
-    it('still records exam progress (pct/passed) even when XP is blocked', () => {
+    it('records exam progress independent of retired XP and attempt counters', () => {
       const result = applyProgressEvent({}, levelExam(95, true, 100), now, { examAttemptsToday: 5 });
       expect(result.progressPatch.level_exam_A1_best_pct).toBe('95');
       expect(result.progressPatch.level_exam_A1_passed).toBe('true');
     });
 
-    it('preserves the gold-scale reward for the final exam (not a level exam)', () => {
+    it('records final exam completion without a reward', () => {
       const finalEvent = normalizeProgressEvent({
         eventId: 'exam:final:en:attempt-1:complete',
         type: 'exam_complete',
@@ -596,7 +484,7 @@ describe('progress_events engine', () => {
         payload: { level: 'final', pct: 95, passed: true, xpDelta: 10000 },
       });
       const result = applyProgressEvent({}, finalEvent, now, { examAttemptsToday: 5 });
-      expect(result.xpDelta).toBe(10000);
+      expect(result.progressPatch).not.toHaveProperty('user_total_xp');
     });
   });
 });

@@ -3,14 +3,13 @@
  * общий день/забранный уровень) из батча профилей друзей + своих активных дней +
  * серверных `friend_pairs`, кэширует снапшот в AsyncStorage для мгновенного первого
  * кадра, обновляет только по явному вызову (открытие вкладки Друзья / после клейма) —
- * НИКАКИХ листенеров и таймеров (Firebase-экономия, см. правило владельца о лигах).
+ * НИКАКИХ листенеров и таймеров (Firebase-экономия и локальный-first контракт).
  *
  * Источник: docs/plans/2026-08-16-friends-together-implementation.ru.md §4, §6.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { getLocalDayKey } from '../local_date';
-import { getWeekKey } from '../hall_of_fame_utils';
 import { getCanonicalUserId } from '../user_id_policy';
 import type { FriendProfileBatchRecord } from '../friends_profiles_batch';
 import { getFriendsTogetherConfig } from './together_config';
@@ -27,7 +26,6 @@ import { DebugLogger } from '../debug-logger';
 const SNAPSHOT_KEY = 'friends_together_snapshot_v1';
 const BONUS_KEY = 'friends_together_bonus_v1';
 const PAIRS_CACHE_KEY = 'friends_together_pairs_cache_v1';
-const CHEST_CLAIM_KEY_PREFIX = 'friends_together_chest_claimed_v1';
 const PAIRS_CACHE_TTL_MS = 6 * 60 * 60 * 1000; // владелец: чужие цифры не чаще раза в 6ч
 const PAIRS_CACHE_SCHEMA_VERSION = 2;
 
@@ -41,8 +39,6 @@ export type FriendPairServerState = Readonly<{
   bonusDays: number;
   /** Уровень, который МЫ уже забрали звёздами за эту пару (friend_pairs.claimedLevel[me]). */
   claimedLevel: number;
-  /** Буст сундука недели активен (friend_pairs.boostUntilWeekKey покрывает текущую неделю). */
-  boostActive: boolean;
 }>;
 
 export type FriendTogetherPairState = Readonly<{
@@ -52,9 +48,6 @@ export type FriendTogetherPairState = Readonly<{
   todayCommon: boolean;
   claimedLevel: number;
   bonusPercent: number;
-  weeklyXp: number;
-  /** Реферальный буст сундука (×2 вклада) действует на текущей неделе. */
-  boostActive: boolean;
 }>;
 
 export type FriendsTogetherSnapshot = Readonly<{
@@ -66,7 +59,7 @@ export type FriendsTogetherSnapshot = Readonly<{
 type PairsCachePayload = Readonly<{
   schemaVersion: typeof PAIRS_CACHE_SCHEMA_VERSION;
   fetchedAtMs: number;
-  pairs: Record<string, { bonusDays: number; claimedLevel: number; boostUntilWeekKey: string | null }>;
+  pairs: Record<string, { bonusDays: number; claimedLevel: number }>;
 }>;
 
 // ── Firestore access (lazy require — тот же паттерн, что firestore_friend_requests.ts) ──
@@ -100,7 +93,6 @@ function parsePairsCache(raw: string | null): PairsCachePayload | null {
       pairs[uid] = {
         bonusDays: Number.isFinite(v.bonusDays) ? Math.max(0, Math.floor(Number(v.bonusDays))) : 0,
         claimedLevel: Number.isFinite(v.claimedLevel) ? Math.max(0, Math.floor(Number(v.claimedLevel))) : 0,
-        boostUntilWeekKey: typeof v.boostUntilWeekKey === 'string' ? v.boostUntilWeekKey : null,
       };
     }
     return { schemaVersion: PAIRS_CACHE_SCHEMA_VERSION, fetchedAtMs: parsed.fetchedAtMs, pairs };
@@ -121,7 +113,7 @@ export async function loadFriendPairsServerState(
   const uniqueUids = [...new Set(friendUids.filter(Boolean))];
   const out: Record<string, FriendPairServerState> = {};
   for (const uid of uniqueUids) {
-    out[uid] = { friendUid: uid, bonusDays: 0, claimedLevel: 0, boostActive: false };
+    out[uid] = { friendUid: uid, bonusDays: 0, claimedLevel: 0 };
   }
   if (uniqueUids.length === 0) return out;
 
@@ -134,7 +126,6 @@ export async function loadFriendPairsServerState(
   const cacheIsFresh = !!cached && now - cached.fetchedAtMs < PAIRS_CACHE_TTL_MS;
 
   if (cached) {
-    const currentWeekKey = getWeekKey(new Date());
     for (const uid of uniqueUids) {
       const hit = cached.pairs[uid];
       if (hit) {
@@ -142,7 +133,6 @@ export async function loadFriendPairsServerState(
           friendUid: uid,
           bonusDays: hit.bonusDays,
           claimedLevel: hit.claimedLevel,
-          boostActive: !!hit.boostUntilWeekKey && hit.boostUntilWeekKey >= currentWeekKey,
         };
       }
     }
@@ -172,13 +162,9 @@ export async function loadFriendPairsServerState(
       const claimedLevel = Number.isFinite(claimedLevelMap[myUid])
         ? Math.max(0, Math.floor(Number(claimedLevelMap[myUid])))
         : 0;
-      const boostUntilWeekKey = typeof data.boostUntilWeekKey === 'string' ? data.boostUntilWeekKey : null;
-      // зачем: сервер считает буст ×2 только пока boostUntilWeekKey ≥ текущей недели —
-      // клиентская полоса сундука должна совпадать, иначе после первой недели она врёт вверх.
-      const boostActive = !!boostUntilWeekKey && boostUntilWeekKey >= getWeekKey(new Date());
-      fetchedPairs[otherUid] = { bonusDays, claimedLevel, boostUntilWeekKey };
+      fetchedPairs[otherUid] = { bonusDays, claimedLevel };
       if (uniqueUids.includes(otherUid)) {
-        out[otherUid] = { friendUid: otherUid, bonusDays, claimedLevel, boostActive };
+        out[otherUid] = { friendUid: otherUid, bonusDays, claimedLevel };
       }
     });
     await AsyncStorage.setItem(pairsCacheKey, JSON.stringify({
@@ -188,7 +174,7 @@ export async function loadFriendPairsServerState(
     })).catch(() => {});
   } catch (e) {
       // сеть недоступна — кэш уже применён выше, молча остаёмся на нём
-      DebugLogger.error('together_store:boostActive', e instanceof Error ? e : new Error(String(e)), 'warning');
+      DebugLogger.error('together_store:load_pairs', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
 
   return out;
@@ -237,37 +223,6 @@ export async function markFriendLevelClaimedLocally(friendUid: string, level: nu
   }
 }
 
-function chestClaimStorageKey(uid: string): string {
-  return `${CHEST_CLAIM_KEY_PREFIX}::${uid}`;
-}
-
-/** Серверный claim-doc — источник правды после перезапуска/на втором устройстве. */
-export async function readWeeklyChestClaimedWeekKey(weekKey: string): Promise<string | null> {
-  const myUid = await getCanonicalUserId();
-  if (!myUid || !weekKey) return null;
-  const key = chestClaimStorageKey(myUid);
-  const cached = await AsyncStorage.getItem(key).catch(() => null);
-  if (cached === weekKey) return weekKey;
-  const db = getFirestore();
-  if (!db) return null;
-  try {
-    const snap = await db.collection('users').doc(myUid).collection('friends_chest_claims').doc(weekKey).get();
-    if (!snap.exists) return null;
-    await AsyncStorage.setItem(key, weekKey).catch(() => {});
-    return weekKey;
-  } catch {
-    // Старый weekKey полезен только как локальный след, но не должен помечать
-    // новый сундук забранным при временной ошибке сети.
-    return cached === weekKey ? weekKey : null;
-  }
-}
-
-export async function markWeeklyChestClaimedLocally(weekKey: string): Promise<void> {
-  const myUid = await getCanonicalUserId();
-  if (!myUid || !weekKey) return;
-  await AsyncStorage.setItem(chestClaimStorageKey(myUid), weekKey).catch(() => {});
-}
-
 /** Прогреть снапшот из AsyncStorage (вызывать рядом со стартовым прогревом друзей). */
 export async function primeFriendsTogetherSnapshot(): Promise<FriendsTogetherSnapshot | null> {
   const myUid = await getCanonicalUserId();
@@ -302,7 +257,7 @@ async function readMyActiveDays(): Promise<ActiveDays | null> {
 /**
  * Пересчитать состояние пар из батча профилей друзей (см. friends_profiles_batch.ts)
  * + серверных friend_pairs. Пишет снапшот в AsyncStorage и friends_together_bonus_v1
- * (максимальный XP-бонус среди друзей уровня ≥2 с общим днём сегодня — для xp_manager).
+ * (максимальный legacy reward-бонус среди друзей уровня ≥2 с общим днём сегодня).
  * НЕ вызывает сеть сама по себе кроме loadFriendPairsServerState (кэш 6ч).
  */
 export async function refreshFriendsTogether(
@@ -321,7 +276,7 @@ export async function refreshFriendsTogether(
   for (const profile of profiles) {
     if (!profile.uid) continue;
     const friendActiveDays = profile.activeDays ?? null;
-    const server = pairsServerState[profile.uid] ?? { friendUid: profile.uid, bonusDays: 0, claimedLevel: 0, boostActive: false };
+    const server = pairsServerState[profile.uid] ?? { friendUid: profile.uid, bonusDays: 0, claimedLevel: 0 };
     const days = daysTogether(myActiveDays, friendActiveDays, server.bonusDays);
     const level = levelForDays(days, getFriendsTogetherConfig().levelThresholds);
     const todayCommon = hasCommonDay(myActiveDays, friendActiveDays, myDayKey);
@@ -334,8 +289,6 @@ export async function refreshFriendsTogether(
       todayCommon,
       claimedLevel: server.claimedLevel,
       bonusPercent,
-      weeklyXp: Math.max(0, Math.floor(profile.weeklyXp ?? 0)),
-      boostActive: server.boostActive === true,
     };
 
     if (todayCommon && level >= 2 && bonusPercent > bestBonusPercent) {

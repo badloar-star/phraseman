@@ -47,7 +47,6 @@ export interface WeeklyReviewSnapshot {
   activeDays30d: number;
   currentStreak: number;
   longestStreak: number;
-  weekXp: number;
   weekMinutes: number;
   lessons7d: number;
   reviews7d: number;
@@ -114,7 +113,6 @@ export interface WeeklyReviewBriefingV2 {
     activeDays30d: number;
     currentStreak: number;
     longestStreak: number;
-    weekXp: number;
     weekMinutes: number;
     lessons7d: number;
     reviews7d: number;

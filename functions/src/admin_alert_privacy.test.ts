@@ -200,7 +200,7 @@ describe('admin Telegram alert privacy formatter', () => {
     expect(messages.join('')).toContain('продолжение в админке');
   });
 
-  test.each(ADMIN_ALERT_IDS.filter((id) => id !== 'ownerDailyDigest'))('%s retains event version, build and nickname', (eventType) => {
+  test.each(ADMIN_ALERT_IDS.filter((id) => id !== 'ownerDailyDigest' && id !== 'customCardMilestone'))('%s retains event version, build and nickname', (eventType) => {
     const message = renderAdminAlertMessage({ eventType, occurredAtMs: 1725000000000,
       payload: { nickname: 'Мария 12', appVersion: '1.6.15', buildNumber: '215' } as never });
     expect(message).toContain('Мария 12');

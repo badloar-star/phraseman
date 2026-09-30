@@ -2,19 +2,11 @@ import { Image, type ImageSourcePropType } from 'react-native';
 import { Asset } from 'expo-asset';
 import { FIRST_LESSON_SHEET_IMAGES } from '../components/firstLessonSheetAssets';
 import { OSKOLOK_IMAGE_SOURCES } from './oskolok';
-import { getActiveReferralInviteBannerImage } from '../components/ReferralInviteBannerArt';
-import { DebugLogger } from './debug-logger';
+import { DebugLogger, reportSwallowed } from './debug-logger';
 
 // Pre-load critical bundled images so Metro-served assets are already cached in dev.
 // Image.getSize() only works with network URIs, not require() assets.
 // Image.resolveAssetSource() warms the local asset registry without making requests.
-
-const CLUB_IMAGES = [
-  require('../assets/images/levels/club icon base forest.webp'),
-  require('../assets/images/levels/club base ocean.webp'),
-  require('../assets/images/levels/club base corak.webp'),
-  require('../assets/images/levels/club base sacura.webp'),
-];
 
 const MEDAL_IMAGES = [
   require('../assets/images/levels/bronza.webp'),
@@ -23,11 +15,6 @@ const MEDAL_IMAGES = [
   require('../assets/images/levels/rubin.webp'),
   require('../assets/images/levels/izumrud.webp'),
   require('../assets/images/levels/almaz.webp'),
-];
-
-const LESSON_INTRO_CTA_IMAGES = [
-  require('../assets/images/lesson_intro/intro-cta-dark.webp'),
-  require('../assets/images/lesson_intro/intro-cta-premium-gold.webp'),
 ];
 
 function isDevMetroAssetUri(uri: string) {
@@ -65,7 +52,7 @@ async function warmImageSources(sources: readonly ImageSourcePropType[]) {
           assetLoadSources.push(source);
         }
         if (shouldPrefetchResolvedUri(resolved.uri)) {
-          prefetches.push(Image.prefetch(resolved.uri).catch(() => false));
+          prefetches.push(Image.prefetch(resolved.uri).catch((error: unknown) => { reportSwallowed('image_preload:warmImageSources', error); return false; }));
         }
       }
     } catch (e) {
@@ -75,24 +62,20 @@ async function warmImageSources(sources: readonly ImageSourcePropType[]) {
   });
 
   await Promise.all([
-    assetLoadSources.length > 0 ? Asset.loadAsync(assetLoadSources as any).catch(() => []) : Promise.resolve([]),
+    assetLoadSources.length > 0 ? Asset.loadAsync(assetLoadSources as any).catch((error: unknown) => { reportSwallowed('image_preload:warmImageSources', error); return []; }) : Promise.resolve([]),
     ...prefetches,
   ]);
 }
 
 export const preloadPrimaryTabImages = async () => {
   try {
-    const activeReferralBanner = await getActiveReferralInviteBannerImage();
     await warmImageSources([
-      ...CLUB_IMAGES,
       ...MEDAL_IMAGES,
       ...FIRST_LESSON_SHEET_IMAGES,
-      ...LESSON_INTRO_CTA_IMAGES,
-      activeReferralBanner,
     ]);
   } catch (e) {
       // Silently fail - preloading is entirely optional.
-      DebugLogger.error('image_preload:activeReferralBanner', e instanceof Error ? e : new Error(String(e)), 'warning');
+      DebugLogger.error('image_preload:primary', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
 };
 
@@ -109,13 +92,9 @@ export const preloadDeferredNonPrimaryImages = async () => {
 
 export const preloadImages = async () => {
   try {
-    const activeReferralBanner = await getActiveReferralInviteBannerImage();
     const allImages = [
-      ...CLUB_IMAGES,
       ...MEDAL_IMAGES,
       ...FIRST_LESSON_SHEET_IMAGES,
-      ...LESSON_INTRO_CTA_IMAGES,
-      activeReferralBanner,
       ...OSKOLOK_IMAGE_SOURCES,
     ];
     await warmImageSources(allImages);

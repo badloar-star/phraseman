@@ -4,7 +4,7 @@ import {
 } from '../modules/phone-state/cloud_boundary';
 
 describe('PhoneState legacy cloud boundary', () => {
-  test('classifies only migrated XP, streak, lesson, and exam progress as core', () => {
+  test('classifies retired XP plus migrated streak, lesson, and exam progress as core', () => {
     expect(isPhoneStateCoreProgressKey('user_total_xp')).toBe(true);
     expect(isPhoneStateCoreProgressKey('streak_count')).toBe(true);
     expect(isPhoneStateCoreProgressKey('unlocked_lessons')).toBe(true);

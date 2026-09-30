@@ -256,7 +256,6 @@ describe('runMaxVoiceWatchdogOnce', () => {
       endReason: 'watchdog',
       channel: 'realtime',
       priceTableDate: VOICE_PRICE_TABLE_DATE,
-      xpAwarded: 0,
     });
     expect(bills[0].estCostUsd).toBeGreaterThan(0);
   });

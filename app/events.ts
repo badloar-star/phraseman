@@ -1,6 +1,5 @@
 import { DeviceEventEmitter } from 'react-native';
 import type { PlannedTriLangCopy } from '../constants/i18n';
-import type { PersonalPlanHomeSnapshot } from './personal_plan_state';
 import type { RuntimeStudyTarget } from './target_storage_keys';
 import type { SoundEventId } from '../modules/audio/sound_events';
 
@@ -13,12 +12,8 @@ let appFirstContentReadyFired = false;
 let appHomeScreenReadyFired = false;
 
 export type AppEventMap = {
-  xp_changed: undefined;
   level_spin_balance_changed: undefined;
-  level_gift_inventory_changed: undefined;
   session_attempt_gift_rescued: undefined;
-  xp_updated: { total: number; delta: number };
-  level_up_pending: undefined;
   /**
    * Повышение уровня ждёт показа НА ГЛАВНОЙ (полоска доливается, аватарка
    * подпрыгивает, цифра меняется). Пришло на смену полноэкранной модалке
@@ -76,10 +71,6 @@ export type AppEventMap = {
   post_delete_identity_ready: { authUid: string; stableId: string };
   /** После restoreFromCloud / мерджа user_name с облака — обновить профиль в UI. */
   cloud_profile_hydrated: undefined;
-  /** После первого сохранения league_state_v3 из облака — перечитать карточку клуба на главной. */
-  league_local_state_updated: undefined;
-  league_crown_updated: { uid: string; expiresAt: number; crownCount?: number };
-  /** Непрочитанные сообщения чата лиги изменились — обновить badge на главной/в клубе. */
   /** Локальное dev/admin inbox-сообщение изменилось — перечитать inbox без Firestore. */
   app_messages_local_changed: undefined;
   /** Remote Config обновился (admin → Firestore) — перечитать зависящие от флагов экраны/A-B. */
@@ -91,22 +82,6 @@ export type AppEventMap = {
    * в remote_config и не влияет на другие устройства.
    */
   update_modal_preview: { mode: 'force' | 'optional' };
-  /** Серверный каталог продажи косметики обновлён; экраны перечитывают доступность. */
-  cosmetic_asset_catalog_changed: undefined;
-  /** «Сундук недели» (mystery_monday) забран — плашка TodaysBoonStrip должна сразу сменить текст на «уже открыт». */
-  mystery_chest_claimed: undefined;
-  /**
-   * Сезонные ЗВЁЗДЫ пропуска изменились — обновить экран дорожки.
-   *
-   * зачем 2026-08-03 (владелец: «сезон очки капали не за опыт а за звёзды»):
-   * событие звалось season_pass_xp_changed и приходило из registerXP на любое
-   * начисление опыта. Теперь источник один — завершённый турнирный раунд.
-   */
-  season_pass_stars_changed: { totalStars: number };
-  season_pass_gift_inventory_changed: undefined;
-  season_cosmetics_changed: undefined;
-  /** Платная дорожка сезона куплена/разблокирована — экран дорожки открывает pass-клеймы. */
-  season_pass_plus_changed: undefined;
   /** После успешного signInWithProvider — обновить секцию "Аккаунт" в Settings, etc. */
   auth_provider_linked: undefined;
   /** Начисление осколков: анимация на главной + глобальный reward-тост (GlobalShardsEarnedHost). */
@@ -130,12 +105,6 @@ export type AppEventMap = {
    * Эмитит `app/quota_day_pass.ts`; слушают превью квот, чтобы кнопка ожила сразу.
    */
   revenue_quota_pass_granted: { kind: string; period: string };
-  /**
-   * Урок открыт за жемчужины (навсегда, ровно один урок).
-   * Эмитит `app/lessons_pearl_unlock.ts`; слушает экран уроков, чтобы карточка
-   * ожила без перезахода (владелец 2026-09-17).
-   */
-  lesson_pearl_unlock_granted: { lessonId: number; studyTarget: string };
   /**
    * Чек дневной квоты записан — превью обязано перечитаться.
    *
@@ -164,8 +133,7 @@ export type AppEventMap = {
   pack_trial_gift_set: undefined;
   /** Ваучер «згорів» — використано для покупки набору або вийшов час; UI має повернути іконки осколків */
   pack_trial_gift_consumed: undefined;
-  personal_plan_updated: { planId?: string; taskId?: string; snapshot?: PersonalPlanHomeSnapshot } | undefined;
-  energy_purchased_shards: undefined;
+  // зачем: D70/D78 — energy_purchased_shards удалено вместе с дозаправкой энергии за жемчуг.
   /** Цепочка только что обнулена, доступен оффер восстановления (24ч). home.tsx показывает модалку. */
   streak_revive_offer: { lostStreak: number; missedDays?: number };
   /** Цепочка восстановлена за осколки — home/UI должны мгновенно обновить отображение. */
@@ -275,8 +243,6 @@ export type AppEventMap = {
    * игрока — оба места держат сердце в согласии через это событие, без лишних чтений.
    */
   profile_like_changed: { targetUid: string; liked: boolean };
-  /** Тап по push о новом подарке: глобальный host немедленно обходит 5-минутный throttle. */
-  friend_gift_push_opened: undefined;
 };
 
 /** Canonical locale payload for `action_toast` without duplicating field mapping. */

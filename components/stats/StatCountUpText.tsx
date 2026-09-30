@@ -17,7 +17,7 @@ type StatCountUpTextProps = {
   style?: StyleProp<TextStyle>;
   durationMs?: number;
   delayMs?: number;
-  /** Префикс/суффикс (например «×» или « XP»). */
+  /** Префикс/суффикс (например «×» или « legacy reward»). */
   prefix?: string;
   suffix?: string;
   /** Знаков после запятой (для множителей вида ×1.85). */

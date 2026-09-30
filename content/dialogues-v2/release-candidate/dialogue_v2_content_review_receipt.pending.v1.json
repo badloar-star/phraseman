@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "dialogue-v2-content-review-receipt.v1",
+  "status": "pending_authorized_review",
+  "candidateId": "dialogue-v2-content-candidate-v1",
+  "candidateManifestSha256": "05592659b736d48d5592e79dff5713e1d5da3ce1e84f722b6ef1e8f2d5826d5f",
+  "requiredReviewRoles": [
+    "targetContractGuardian",
+    "scenarioPackReviewer",
+    "promptLanguageJudge",
+    "voiceLocaleGate",
+    "stateIsolationJudge",
+    "surfaceMatrixGate"
+  ],
+  "review": {
+    "decision": "PENDING",
+    "reviewerId": null,
+    "authorityReference": null,
+    "reviewedAt": null,
+    "packetCountReviewed": 0,
+    "roleVerdicts": {}
+  }
+}

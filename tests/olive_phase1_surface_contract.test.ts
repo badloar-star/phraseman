@@ -29,21 +29,19 @@ describe('Olive Phase 1 surfaces', () => {
     expect(paywall).not.toContain('olive: shellGold()');
   });
 
-  it('keeps shared Olive CTAs and shards shop borderless with dark champagne foregrounds', () => {
+  it('keeps Olive CTA contracts while shared decision modals use the active Liquid Glass tint', () => {
     const button = read('components/ui/PrimaryButton.tsx');
     const choice = read('components/ThemedChoiceModal.tsx');
     const confirm = read('components/ThemedConfirmModal.tsx');
-    const shop = read('app/shards_shop.tsx');
-    for (const source of [button, choice, confirm]) {
-      expect(source).toContain("const isOliveTheme = themeMode === 'olive';");
-      expect(source).toContain('OLIVE_GRADIENTS.primaryButton');
-      expect(source).toContain('OLIVE_RICH.piano');
+    expect(button).toContain("const isOliveTheme = themeMode === 'olive';");
+    expect(button).toContain('OLIVE_GRADIENTS.primaryButton');
+    expect(button).toContain('OLIVE_RICH.piano');
+    for (const source of [choice, confirm]) {
+      expect(source).toContain('liquidGlassTokens(liquidGlassThemeId)');
+      expect(source).not.toContain('OLIVE_GRADIENTS');
+      expect(source).not.toContain('OLIVE_RICH');
     }
     expect(button).toContain("const foreground = isOliveTheme && isDisabled\n    ? t.textMuted");
     expect(button).toContain(": t.correctText;");
-    expect(shop).toContain("return mode === 'dark' || mode === 'gold' || mode === 'olive';");
-    expect(shop).toContain("const isOliveTheme = themeMode === 'olive';");
-    expect(shop).toContain('OLIVE_GRADIENTS.raisedPanel');
-    expect(shop).not.toContain('isOliveTheme && <GoldBevel');
   });
 });

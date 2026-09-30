@@ -1,9 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const HYBRID_SURFACES = [
-  'components/arena/ArenaRankHybrid.tsx',
-  'components/league/LeagueResultHybrid.tsx',
+const HYBRID_SURFACES = [  'components/league/LeagueResultHybrid.tsx',
   'components/DialogVictoryCelebrationHybrid.tsx',
 ] as const;
 

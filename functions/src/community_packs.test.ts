@@ -368,6 +368,12 @@ function callCommunity<T>(name: string, data: DocData, authUid = 'auth-attacker'
   return mod[name]({ auth: { uid: authUid }, data });
 }
 
+function seedPackGiftVoucher(voucherId = 'gift-voucher', ownerStableUid = 'victim'): void {
+  mockDocs.set(`flashcard_pack_gift_grants/${voucherId}`, {
+    ownerStableUid, occurrenceId: voucherId, expiresAt: Date.now() + 72 * 60 * 60 * 1000,
+  });
+}
+
 beforeEach(() => {
   jest.resetModules();
   jest.restoreAllMocks();
@@ -375,9 +381,6 @@ beforeEach(() => {
   mockReadFailures.clear();
   mockAutoId = 0;
   seedVictimIdentity();
-  mockDocs.set('remote_config/app', {
-    texts: { weekly_boons_config: JSON.stringify({ schedule: { 5: 'flashcard_friday' } }) },
-  });
 });
 
 describe('community pack callable ownership', () => {
@@ -577,83 +580,10 @@ describe('community pack callable ownership', () => {
     expect([...mockDocs.keys()].filter((path) => path.startsWith('community_pack_submissions/'))).toHaveLength(0);
   });
 
-  test('ignores a spoofed buyer stable id and never touches the victim balance', async () => {
+  // зачем: D85 — цена наборов в рунах; сервер больше не переписывает жемчужную цену.
+  test('does not rewrite the legacy pearl price when an admin moderates the pack', async () => {
     seedPublishedPack();
-
-    await expect(callCommunity('communityPurchasePack', {
-      buyerStableId: 'victim',
-      packId: 'pack-1',
-      studyTarget: 'en',
-      buyerDisplayName: 'Mallory',
-    })).resolves.toBeDefined();
-
-    // Личные балансы не тронуты: сервер добавил внешний debit-факт атакующему.
-    expect(mockDocs.get('users/victim')?.shards).toBe(200);
-    expect(mockDocs.get('users/attacker')?.shards).toBe(200);
-    expect([...mockDocs.entries()].some(([key, value]) =>
-      key.startsWith('users/attacker/external_economy_events/') && value.delta === -10
-    )).toBe(true);
-    // Покупка записана на атакующего, доступа к паку у жертвы не появилось.
-    expect(mockDocs.get('community_pack_purchases/attacker__pack-1')).toBeDefined();
-    expect(mockDocs.get('community_pack_purchases/victim__pack-1')).toBeUndefined();
-  });
-
-  test('allows buying a pack with the caller own stable id', async () => {
-    seedPublishedPack();
-
-    const result = await callCommunity<{
-      alreadyOwned: boolean;
-      priceShards: number;
-      authorNetShards: number;
-    }>('communityPurchasePack', {
-      buyerStableId: 'victim',
-      packId: 'pack-1',
-      studyTarget: 'en',
-      buyerDisplayName: 'Alice',
-    }, 'auth-victim');
-
-    expect(result).toMatchObject({
-      alreadyOwned: false,
-      priceShards: 10,
-      authorNetShards: 9,
-    });
-    expect(mockDocs.get('users/victim')?.shards).toBe(200);
-    expect(mockDocs.get('users/author')?.shards).toBe(0);
-    expect(mockDocs.get('community_pack_purchases/victim__pack-1')).toMatchObject({
-      buyerStableId: 'victim',
-      packId: 'pack-1',
-      status: 'completed',
-      acquisitionSource: 'paid_community_sale',
-      priceShards: 10,
-      authorNetShards: 9,
-      platformFeeShards: 1,
-    });
-    const buyerLedger = Array.from(mockDocs.entries())
-      .find(([path, row]) => path.startsWith('users/victim/shard_log/') && row.reason === 'community_pack_purchase')?.[1];
-    expect(buyerLedger).toMatchObject({
-      type: 'spend',
-      amount: 10,
-      authority: 'external_event',
-    });
-    const authorLedger = Array.from(mockDocs.entries())
-      .find(([path, row]) => path.startsWith('users/author/shard_log/') && row.reason === 'community_pack_sale')?.[1];
-    expect(authorLedger).toMatchObject({
-      type: 'earn',
-      amount: 9,
-      grossAmount: 10,
-      platformFeeShards: 1,
-      authority: 'external_event',
-    });
-    expect(mockDocs.get('users/author/community_seller_inbox/victim__pack-1')).toMatchObject({
-      type: 'pack_sold',
-      grossShards: 10,
-      authorNetShards: 9,
-    });
-    expect(mockDocs.get('community_packs/pack-1')?.priceShards).toBe(10);
-  });
-
-  test('normalizes a legacy stored price when an admin moderates the pack', async () => {
-    seedPublishedPack();
+    const before = mockDocs.get('community_packs/pack-1')?.priceShards;
     const mod = require('./community_packs');
 
     await mod.communityAdminModeratePack({
@@ -661,91 +591,11 @@ describe('community pack callable ownership', () => {
       data: { packId: 'pack-1', action: 'remove' },
     });
 
-    expect(mockDocs.get('community_packs/pack-1')).toMatchObject({
-      listingStatus: 'admin_removed',
-      priceShards: 10,
-    });
+    expect(mockDocs.get('community_packs/pack-1')).toMatchObject({ listingStatus: 'admin_removed' });
+    expect(mockDocs.get('community_packs/pack-1')?.priceShards).toBe(before);
   });
 
-  test('admin refund returns exactly the canonical price and records one atomic audit trail', async () => {
-    mockDocs.set('community_pack_purchases/victim__pack-1', {
-      buyerStableId: 'victim',
-      packId: 'pack-1',
-      status: 'completed',
-      acquisitionSource: 'paid_community_sale',
-      priceShards: 999,
-    });
-    const mod = require('./community_packs');
-
-    const result = await mod.adminRefundCommunityPackPurchase({
-      auth: { uid: 'auth-admin', token: { admin: true, email: 'admin@example.com' } },
-      data: { purchaseId: 'victim__pack-1', reason: 'support-approved' },
-    });
-
-    expect(result).toMatchObject({ purchaseId: 'victim__pack-1', buyerStableId: 'victim', amountShards: 10 });
-    expect(mockDocs.get('users/victim')?.shards).toBe(200);
-    expect([...mockDocs.entries()].some(([key, value]) =>
-      key.startsWith('users/victim/external_economy_events/')
-      && value.delta === 10
-      && value.reason === 'admin_community_pack_refund'
-    )).toBe(true);
-    expect(mockDocs.get('community_pack_purchases/victim__pack-1')).toMatchObject({
-      status: 'refunded',
-      refundedAmountShards: 10,
-      refundedByUid: 'auth-admin',
-      refundedByEmail: 'admin@example.com',
-      refundReason: 'support-approved',
-    });
-    const refundLedger = Array.from(mockDocs.entries())
-      .find(([path, row]) => path.startsWith('users/victim/shard_log/') && row.reason === 'admin_community_pack_refund')?.[1];
-    expect(refundLedger).toMatchObject({ type: 'earn', amount: 10, authority: 'external_event' });
-    const audit = Array.from(mockDocs.entries())
-      .find(([path, row]) => path.startsWith('admin_log/') && row.action === 'community_pack_purchase.refund')?.[1];
-    expect(audit).toMatchObject({ actorUid: 'auth-admin', reason: 'support-approved' });
-    await expect(mod.adminRefundCommunityPackPurchase({
-      auth: { uid: 'auth-admin', token: { admin: true, email: 'admin@example.com' } },
-      data: { purchaseId: 'victim__pack-1', reason: 'replay' },
-    })).rejects.toMatchObject({ code: 'failed-precondition', message: 'purchase_already_refunded' });
-    expect(mockDocs.get('users/victim')?.shards).toBe(200);
-  });
-
-  test('admin refund rejects replay, gift receipts, missing receipts, and non-completed receipts without minting shards', async () => {
-    const mod = require('./community_packs');
-    const adminRequest = (purchaseId: string) => ({
-      auth: { uid: 'auth-admin', token: { admin: true } },
-      data: { purchaseId },
-    });
-    mockDocs.set('community_pack_purchases/refunded', { buyerStableId: 'victim', packId: 'pack-1', status: 'refunded' });
-    mockDocs.set('community_pack_purchases/gift', {
-      buyerStableId: 'victim', packId: 'pack-1', status: 'completed', acquisitionSource: 'weekly_boon_gift', priceShards: 0,
-    });
-    mockDocs.set('community_pack_purchases/pending', {
-      buyerStableId: 'victim', packId: 'pack-1', status: 'pending', acquisitionSource: 'paid_community_sale', priceShards: 10,
-    });
-
-    await expect(mod.adminRefundCommunityPackPurchase(adminRequest('refunded')))
-      .rejects.toMatchObject({ code: 'failed-precondition', message: 'purchase_already_refunded' });
-    await expect(mod.adminRefundCommunityPackPurchase(adminRequest('gift')))
-      .rejects.toMatchObject({ code: 'failed-precondition', message: 'gift_purchase_not_refundable' });
-    await expect(mod.adminRefundCommunityPackPurchase(adminRequest('pending')))
-      .rejects.toMatchObject({ code: 'failed-precondition', message: 'purchase_not_completed' });
-    await expect(mod.adminRefundCommunityPackPurchase(adminRequest('missing')))
-      .rejects.toMatchObject({ code: 'not-found', message: 'purchase_not_found' });
-    expect(mockDocs.get('users/victim')?.shards).toBe(200);
-  });
-
-  test('admin refund requires the admin claim', async () => {
-    mockDocs.set('community_pack_purchases/victim__pack-1', {
-      buyerStableId: 'victim', packId: 'pack-1', status: 'completed', acquisitionSource: 'paid_community_sale', priceShards: 10,
-    });
-    const mod = require('./community_packs');
-
-    await expect(mod.adminRefundCommunityPackPurchase({
-      auth: { uid: 'auth-user', token: {} },
-      data: { purchaseId: 'victim__pack-1' },
-    })).rejects.toMatchObject({ code: 'permission-denied' });
-    expect(mockDocs.get('users/victim')?.shards).toBe(200);
-  });
+  // зачем: D110 — тесты админ-возврата покупки набора удалены вместе с функцией.
 
   test('rejects reading cards through another user purchase', async () => {
     seedPublishedPack();
@@ -779,14 +629,15 @@ describe('community pack callable ownership', () => {
     expect(result.cards).toHaveLength(1);
   });
 
-  test('redeems the active weekly pack gift without charging buyer or paying seller', async () => {
+  test('redeems a server-issued pack gift without charging buyer or paying seller', async () => {
     seedPublishedPack();
-    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 6, 31, 12)); // Friday UTC
+    seedPackGiftVoucher();
 
     const result = await callCommunity<{ alreadyOwned: boolean; gifted: boolean }>('communityRedeemPackGiftVoucher', {
       buyerStableId: 'victim',
       packId: 'pack-1',
       studyTarget: 'en',
+      voucherId: 'gift-voucher',
     }, 'auth-victim');
 
     expect(result).toMatchObject({ alreadyOwned: false, gifted: true });
@@ -796,50 +647,53 @@ describe('community pack callable ownership', () => {
       buyerStableId: 'victim',
       packId: 'pack-1',
       priceShards: 0,
-      acquisitionSource: 'weekly_boon_gift',
+      acquisitionSource: 'pack_gift_voucher',
     });
   });
 
-  test('weekly pack gift is one-time across different community packs', async () => {
+  test('pack gift voucher is one-time across different community packs', async () => {
     seedPublishedPack();
     seedSecondPublishedPack();
-    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 6, 31, 12)); // Friday UTC
+    seedPackGiftVoucher();
 
     await callCommunity('communityRedeemPackGiftVoucher', {
       buyerStableId: 'victim',
       packId: 'pack-1',
       studyTarget: 'en',
+      voucherId: 'gift-voucher',
     }, 'auth-victim');
 
     await expect(callCommunity('communityRedeemPackGiftVoucher', {
       buyerStableId: 'victim',
       packId: 'pack-2',
       studyTarget: 'en',
+      voucherId: 'gift-voucher',
     }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition' });
     expect(mockDocs.get('community_pack_purchases/victim__pack-2')).toBeUndefined();
   });
 
   test('replays the same community gift so the client can recover a failed local save', async () => {
     seedPublishedPack();
-    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 6, 31, 12));
+    seedPackGiftVoucher();
 
     await callCommunity('communityRedeemPackGiftVoucher', {
       buyerStableId: 'victim',
       packId: 'pack-1',
       studyTarget: 'en',
+      voucherId: 'gift-voucher',
     }, 'auth-victim');
     const replay = await callCommunity<{ gifted: boolean; replayed?: boolean }>('communityRedeemPackGiftVoucher', {
       buyerStableId: 'victim',
       packId: 'pack-1',
       studyTarget: 'en',
+      voucherId: 'gift-voucher',
     }, 'auth-victim');
 
     expect(replay).toMatchObject({ gifted: true, replayed: true });
   });
 
-  test('rejects a free community claim outside the active gift window', async () => {
+  test('rejects a free community claim without a server grant', async () => {
     seedPublishedPack();
-    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 7, 4, 12)); // Tuesday UTC
 
     await expect(callCommunity('communityRedeemPackGiftVoucher', {
       buyerStableId: 'victim',
@@ -849,138 +703,105 @@ describe('community pack callable ownership', () => {
     expect(mockDocs.get('community_pack_purchases/victim__pack-1')).toBeUndefined();
   });
 
-  test('uses one receipt across official and community decks in both redemption orders', async () => {
+  test('uses one receipt across community decks in both redemption orders', async () => {
     seedPublishedPack();
-    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 6, 31, 12));
+    seedSecondPublishedPack();
+    seedPackGiftVoucher();
 
-    await callCommunity('flashcardPackGiftRedeem', {
-      buyerStableId: 'victim', packType: 'official', packId: 'official_prep_in_en', studyTarget: 'en',
-    }, 'auth-victim');
     await expect(callCommunity('flashcardPackGiftRedeem', {
-      buyerStableId: 'victim', packType: 'community', packId: 'pack-1', studyTarget: 'en',
+      buyerStableId: 'victim', packType: 'community', packId: 'pack-1', studyTarget: 'en', voucherId: 'gift-voucher',
+    }, 'auth-victim')).resolves.toMatchObject({ gifted: true });
+    await expect(callCommunity('flashcardPackGiftRedeem', {
+      buyerStableId: 'victim', packType: 'community', packId: 'pack-2', studyTarget: 'en', voucherId: 'gift-voucher',
     }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition', message: 'pack_gift_already_used' });
 
-    mockDocs.delete('flashcard_pack_gift_claims/victim__weekly_boon_2026-07-31');
-    mockDocs.delete('flashcard_pack_gift_entitlements/victim__official__official_prep_in_en');
+    mockDocs.delete('flashcard_pack_gift_claims/victim__gift-voucher');
+    mockDocs.delete('flashcard_pack_gift_entitlements/victim__community__pack-1');
+    mockDocs.delete('community_pack_purchases/victim__pack-1');
+    seedPackGiftVoucher();
     await callCommunity('flashcardPackGiftRedeem', {
-      buyerStableId: 'victim', packType: 'community', packId: 'pack-1', studyTarget: 'en',
+      buyerStableId: 'victim', packType: 'community', packId: 'pack-2', studyTarget: 'en', voucherId: 'gift-voucher',
     }, 'auth-victim');
     await expect(callCommunity('flashcardPackGiftRedeem', {
-      buyerStableId: 'victim', packType: 'official', packId: 'official_prep_in_en', studyTarget: 'en',
+      buyerStableId: 'victim', packType: 'community', packId: 'pack-1', studyTarget: 'en', voucherId: 'gift-voucher',
     }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition', message: 'pack_gift_already_used' });
   });
 
-  test('does not mint separate weekly claims for English and French', async () => {
+  test('does not mint separate voucher claims for English and French', async () => {
     seedPublishedPack();
     mockDocs.set('community_packs/pack-fr', {
       listingStatus: 'published', authorStableId: 'author', studyTarget: 'fr', cards: [{ id: 'fr1' }],
     });
-    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 6, 31, 12));
+    seedPackGiftVoucher();
 
     await callCommunity('flashcardPackGiftRedeem', {
-      buyerStableId: 'victim', packType: 'community', packId: 'pack-1', studyTarget: 'en',
+      buyerStableId: 'victim', packType: 'community', packId: 'pack-1', studyTarget: 'en', voucherId: 'gift-voucher',
     }, 'auth-victim');
     await expect(callCommunity('flashcardPackGiftRedeem', {
-      buyerStableId: 'victim', packType: 'community', packId: 'pack-fr', studyTarget: 'fr',
+      buyerStableId: 'victim', packType: 'community', packId: 'pack-fr', studyTarget: 'fr', voucherId: 'gift-voucher',
     }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition', message: 'pack_gift_already_used' });
   });
 
-  test('replays exactly the same official choice and rejects a different choice', async () => {
-    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 6, 31, 12));
+  test('replays exactly the same community choice and rejects a different choice', async () => {
+    seedPublishedPack();
+    seedSecondPublishedPack();
+    seedPackGiftVoucher();
     const request = {
-      buyerStableId: 'victim', packType: 'official', packId: 'official_prep_in_en', studyTarget: 'en',
+      buyerStableId: 'victim', packType: 'community', packId: 'pack-1', studyTarget: 'en', voucherId: 'gift-voucher',
     };
 
     await callCommunity('flashcardPackGiftRedeem', request, 'auth-victim');
     await expect(callCommunity('flashcardPackGiftRedeem', request, 'auth-victim')).resolves.toMatchObject({
-      gifted: true, replayed: true, packId: 'official_prep_in_en',
+      gifted: true, replayed: true, packId: 'pack-1',
     });
     await expect(callCommunity('flashcardPackGiftRedeem', {
-      ...request, packId: 'official_prep_on_en',
+      ...request, packId: 'pack-2',
     }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition', message: 'pack_gift_already_used' });
   });
 
   test('rejects spoofed official ids and invalid community pack state', async () => {
     seedPublishedPack();
-    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 6, 31, 12));
+    seedPackGiftVoucher();
 
     await expect(callCommunity('flashcardPackGiftRedeem', {
-      buyerStableId: 'victim', packType: 'official', packId: 'official_spoofed_en', studyTarget: 'en',
+      buyerStableId: 'victim', packType: 'official', packId: 'official_spoofed_en', studyTarget: 'en', voucherId: 'gift-voucher',
     }, 'auth-victim')).rejects.toMatchObject({ code: 'not-found', message: 'pack_not_found' });
 
     mockDocs.set('community_packs/unpublished', { listingStatus: 'draft', authorStableId: 'author', studyTarget: 'en' });
     await expect(callCommunity('flashcardPackGiftRedeem', {
-      buyerStableId: 'victim', packType: 'community', packId: 'unpublished', studyTarget: 'en',
+      buyerStableId: 'victim', packType: 'community', packId: 'unpublished', studyTarget: 'en', voucherId: 'gift-voucher',
     }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition' });
+    seedPackGiftVoucher('gift-author', 'author');
     await expect(callCommunity('flashcardPackGiftRedeem', {
-      buyerStableId: 'author', packType: 'community', packId: 'pack-1', studyTarget: 'en',
+      buyerStableId: 'author', packType: 'community', packId: 'pack-1', studyTarget: 'en', voucherId: 'gift-author',
     }, 'auth-author')).rejects.toMatchObject({ code: 'failed-precondition', message: 'own_pack_not_giftable' });
     await expect(callCommunity('flashcardPackGiftRedeem', {
-      buyerStableId: 'victim', packType: 'community', packId: 'pack-1', studyTarget: 'fr',
+      buyerStableId: 'victim', packType: 'community', packId: 'pack-1', studyTarget: 'fr', voucherId: 'gift-voucher',
     }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition' });
   });
 
-  test('reads weekly boon schedule only from Firestore and fails closed on disabled, partial, or failed config reads', async () => {
-    const tuesday = Date.UTC(2026, 7, 4, 12);
-    jest.spyOn(Date, 'now').mockReturnValue(tuesday);
+  test('remote weekly config cannot mint a pack gift without an issued voucher', async () => {
+    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 6, 31, 12));
+    seedPublishedPack();
     mockDocs.set('remote_config/app', {
-      texts: { weekly_boons_config: JSON.stringify({ schedule: { 2: ['unknown_boon', 'flashcard_friday'] } }) },
+      texts: { weekly_boons_config: JSON.stringify({ schedule: { 5: 'flashcard_friday' } }) },
     });
     await expect(callCommunity('flashcardPackGiftRedeem', {
-      buyerStableId: 'victim', packType: 'official', packId: 'official_prep_in_en', studyTarget: 'en',
-    }, 'auth-victim')).resolves.toMatchObject({ gifted: true });
-
-    mockDocs.clear(); seedVictimIdentity();
-    mockDocs.set('remote_config/app', {
-      texts: { weekly_boons_config: JSON.stringify({ schedule: { 2: 'flashcard_friday' }, enabled: { flashcard_friday: false } }) },
-    });
-    await expect(callCommunity('flashcardPackGiftRedeem', {
-      buyerStableId: 'victim', packType: 'official', packId: 'official_prep_in_en', studyTarget: 'en',
+      buyerStableId: 'victim', packType: 'community', packId: 'pack-1', studyTarget: 'en',
     }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition', message: 'no_pack_gift_voucher' });
-
-    mockReadFailures.add('remote_config/app');
-    await expect(callCommunity('flashcardPackGiftRedeem', {
-      buyerStableId: 'victim', packType: 'official', packId: 'official_prep_in_en', studyTarget: 'en',
-    }, 'auth-victim')).rejects.toMatchObject({ code: 'unavailable', message: 'weekly_boons_config_unavailable' });
-  });
-
-  test.each([
-    ['missing', undefined],
-    ['empty', ''],
-    ['malformed', '{'],
-    ['non-object', '[]'],
-  ])('fails closed for %s weekly boon config', async (_label, raw) => {
-    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 6, 31, 12));
-    mockDocs.set('remote_config/app', raw === undefined ? { texts: {} } : { texts: { weekly_boons_config: raw } });
-    await expect(callCommunity('flashcardPackGiftRedeem', {
-      buyerStableId: 'victim', packType: 'official', packId: 'official_prep_in_en', studyTarget: 'en',
-    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition', message: 'weekly_boons_config_invalid' });
-  });
-
-  test('replays the exact weekly selection after expiry and rejects another pack', async () => {
-    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 6, 31, 12));
-    const occurrenceId = 'weekly_boon_2026-07-31';
-    const request = {
-      buyerStableId: 'victim', packType: 'official', packId: 'official_prep_in_en', studyTarget: 'en',
-      voucherOccurrenceId: occurrenceId,
-    };
-    await callCommunity('flashcardPackGiftRedeem', request, 'auth-victim');
-
-    jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 7, 4, 12));
-    await expect(callCommunity('flashcardPackGiftRedeem', request, 'auth-victim')).resolves.toMatchObject({ replayed: true });
-    await expect(callCommunity('flashcardPackGiftRedeem', {
-      ...request, packId: 'official_prep_on_en',
-    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition', message: 'pack_gift_already_used' });
+    const synced = await callCommunity<{ vouchers: Array<{ source: string }> }>('flashcardPackGiftSyncState', { stableId: 'victim' }, 'auth-victim');
+    expect(synced.vouchers).not.toEqual(expect.arrayContaining([expect.objectContaining({ source: 'weekly_boon' })]));
   });
 
   test('replays the exact expired server grant before checking grant expiry', async () => {
     jest.spyOn(Date, 'now').mockReturnValue(1_800_000_000_000);
+    seedPublishedPack();
     mockDocs.set('flashcard_pack_gift_grants/grant-expiry-replay', {
       ownerStableUid: 'victim', expiresAt: 1_800_000_010_000, occurrenceId: 'grant-expiry-replay',
     });
     const request = {
       buyerStableId: 'victim', voucherId: 'grant-expiry-replay', voucherOccurrenceId: 'grant-expiry-replay',
-      packType: 'official', packId: 'official_prep_in_en', studyTarget: 'en',
+      packType: 'community', packId: 'pack-1', studyTarget: 'en',
     };
     await callCommunity('flashcardPackGiftRedeem', request, 'auth-victim');
     jest.spyOn(Date, 'now').mockReturnValue(1_800_000_020_000);
@@ -989,12 +810,13 @@ describe('community pack callable ownership', () => {
 
   test('derives a server grant occurrence from the grant and rejects client occurrence substitution', async () => {
     jest.spyOn(Date, 'now').mockReturnValue(1_800_000_000_000);
+    seedPublishedPack();
     mockDocs.set('flashcard_pack_gift_grants/grant-G', {
       ownerStableUid: 'victim', expiresAt: 1_800_000_010_000, occurrenceId: 'grant-G',
     });
     const base = {
-      buyerStableId: 'victim', voucherId: 'grant-G', packType: 'official',
-      packId: 'official_prep_in_en', studyTarget: 'en',
+      buyerStableId: 'victim', voucherId: 'grant-G', packType: 'community',
+      packId: 'pack-1', studyTarget: 'en',
     };
 
     await expect(callCommunity('flashcardPackGiftRedeem', {
@@ -1014,37 +836,36 @@ describe('community pack callable ownership', () => {
       ...base, voucherOccurrenceId: 'grant-G',
     }, 'auth-victim')).resolves.toMatchObject({ gifted: true, replayed: true });
     await expect(callCommunity('flashcardPackGiftRedeem', {
-      ...base, voucherOccurrenceId: 'grant-G', packId: 'official_prep_on_en',
+      ...base, voucherOccurrenceId: 'grant-G', packId: 'pack-2',
     }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition', message: 'pack_gift_already_used' });
   });
 
   test('rejects a grant whose stored occurrence disagrees with its authoritative id', async () => {
+    seedPublishedPack();
     mockDocs.set('flashcard_pack_gift_grants/grant-id', {
       ownerStableUid: 'victim', expiresAt: Date.now() + 60_000, occurrenceId: 'different-occurrence',
     });
     await expect(callCommunity('flashcardPackGiftRedeem', {
       buyerStableId: 'victim', voucherId: 'grant-id', voucherOccurrenceId: 'grant-id',
-      packType: 'official', packId: 'official_prep_in_en', studyTarget: 'en',
+      packType: 'community', packId: 'pack-1', studyTarget: 'en',
     }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition', message: 'voucher_occurrence_mismatch' });
   });
 
   test('rejects claimedAt without the exact durable claim receipt', async () => {
+    seedPublishedPack();
     mockDocs.set('flashcard_pack_gift_grants/orphan-claimed', {
       ownerStableUid: 'victim', expiresAt: Date.now() + 60_000,
       occurrenceId: 'orphan-claimed', claimedAt: Date.now(),
     });
     await expect(callCommunity('flashcardPackGiftRedeem', {
       buyerStableId: 'victim', voucherId: 'orphan-claimed', voucherOccurrenceId: 'orphan-claimed',
-      packType: 'official', packId: 'official_prep_in_en', studyTarget: 'en',
+      packType: 'community', packId: 'pack-1', studyTarget: 'en',
     }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition', message: 'no_pack_gift_voucher' });
   });
 
-  test('recognizes official and community ownership under identity aliases without consuming a grant', async () => {
+  test('recognizes community ownership under identity aliases without consuming a grant', async () => {
     seedPublishedPack();
     mockDocs.set('users/old-victim', { identityHidden: true, canonicalStableId: 'victim' });
-    mockDocs.set('flashcard_pack_gift_entitlements/old-victim__official__official_prep_in_en', {
-      buyerStableId: 'old-victim', packId: 'official_prep_in_en', packType: 'official', studyTarget: 'en',
-    });
     mockDocs.set('community_pack_purchases/old-victim__pack-1', {
       buyerStableId: 'old-victim', packId: 'pack-1', status: 'completed', studyTarget: 'en',
     });
@@ -1052,10 +873,6 @@ describe('community pack callable ownership', () => {
       ownerStableUid: 'victim', expiresAt: Date.now() + 60_000, occurrenceId: 'owned-check',
     });
 
-    await expect(callCommunity('flashcardPackGiftRedeem', {
-      buyerStableId: 'victim', voucherId: 'owned-check', packType: 'official',
-      packId: 'official_prep_in_en', studyTarget: 'en',
-    }, 'auth-victim')).resolves.toMatchObject({ alreadyOwned: true, gifted: false });
     await expect(callCommunity('flashcardPackGiftRedeem', {
       buyerStableId: 'victim', voucherId: 'owned-check', packType: 'community', packId: 'pack-1', studyTarget: 'en',
     }, 'auth-victim')).resolves.toMatchObject({ alreadyOwned: true, gifted: false });
@@ -1066,19 +883,22 @@ describe('community pack callable ownership', () => {
   test.each([
     ['canonical', 'victim'],
     ['identity alias', 'old-victim'],
-  ])('recognizes normal official ownership in %s user progress without consuming the grant', async (_label, ownerDocId) => {
+  ])('recognizes normal community ownership in %s account data without consuming the grant', async (_label, ownerDocId) => {
+    seedPublishedPack();
     mockDocs.set('users/old-victim', { identityHidden: true, canonicalStableId: 'victim' });
     mockDocs.set(`users/${ownerDocId}`, {
       ...(mockDocs.get(`users/${ownerDocId}`) ?? {}),
-      progress: { flashcards_owned_packs_v1: JSON.stringify(['official_prep_in_en']) },
+    });
+    mockDocs.set(`community_pack_purchases/${ownerDocId}__pack-1`, {
+      buyerStableId: ownerDocId, packId: 'pack-1', status: 'completed', studyTarget: 'en',
     });
     mockDocs.set('flashcard_pack_gift_grants/normal-owned-check', {
       ownerStableUid: 'victim', expiresAt: Date.now() + 60_000, occurrenceId: 'normal-owned-check',
     });
 
     await expect(callCommunity('flashcardPackGiftRedeem', {
-      buyerStableId: 'victim', voucherId: 'normal-owned-check', packType: 'official',
-      packId: 'official_prep_in_en', studyTarget: 'en',
+      buyerStableId: 'victim', voucherId: 'normal-owned-check', packType: 'community',
+      packId: 'pack-1', studyTarget: 'en',
     }, 'auth-victim')).resolves.toMatchObject({ alreadyOwned: true, gifted: false });
     expect(mockDocs.get('flashcard_pack_gift_grants/normal-owned-check')?.claimedAt).toBeUndefined();
     expect(Array.from(mockDocs.keys()).filter((path) => path.startsWith('flashcard_pack_gift_claims/'))).toHaveLength(0);
@@ -1110,8 +930,8 @@ describe('community pack callable ownership', () => {
     mockDocs.set('flashcard_pack_gift_grants/claimed-alias', {
       ownerStableUid: 'old-victim', expiresAt: Date.now() + 60_000, occurrenceId: 'claimed-alias', claimedAt: Date.now(),
     });
-    mockDocs.set('flashcard_pack_gift_entitlements/old-victim__official__official_prep_in_en', {
-      buyerStableId: 'old-victim', packId: 'official_prep_in_en', packType: 'official', studyTarget: 'en',
+    mockDocs.set('flashcard_pack_gift_entitlements/old-victim__community__pack-1', {
+      buyerStableId: 'old-victim', packId: 'pack-1', packType: 'community', studyTarget: 'en',
     });
 
     const result = await callCommunity<{
@@ -1120,10 +940,9 @@ describe('community pack callable ownership', () => {
     }>('flashcardPackGiftSyncState', { stableId: 'victim' }, 'auth-victim');
     expect(result.vouchers).toEqual(expect.arrayContaining([
       expect.objectContaining({ voucherId: 'active-alias' }),
-      expect.objectContaining({ occurrenceId: 'weekly_boon_2026-07-31' }),
     ]));
     expect(result.vouchers).not.toEqual(expect.arrayContaining([expect.objectContaining({ voucherId: 'claimed-alias' })]));
-    expect(result.entitlements).toEqual(expect.arrayContaining([expect.objectContaining({ packId: 'official_prep_in_en' })]));
+    expect(result.entitlements).toEqual(expect.arrayContaining([expect.objectContaining({ packId: 'pack-1', packType: 'community' })]));
   });
 
   test('syncs active grants and entitlements beyond the former query caps', async () => {
@@ -1137,7 +956,7 @@ describe('community pack callable ownership', () => {
     for (let index = 0; index < 205; index += 1) {
       mockDocs.set(`flashcard_pack_gift_entitlements/victim__official__restored-${String(index).padStart(3, '0')}`, {
         buyerStableId: 'victim', packId: `restored-${String(index).padStart(3, '0')}`,
-        packType: 'official', studyTarget: 'en',
+        packType: 'community', studyTarget: 'en',
       });
     }
 
@@ -1146,11 +965,12 @@ describe('community pack callable ownership', () => {
       entitlements: { packId: string }[];
     }>('flashcardPackGiftSyncState', { stableId: 'victim' }, 'auth-victim');
     expect(result.vouchers).toEqual(expect.arrayContaining([expect.objectContaining({ voucherId: 'grant-109' })]));
-    expect(result.entitlements).toEqual(expect.arrayContaining([expect.objectContaining({ packId: 'restored-204' })]));
+    expect(result.entitlements).toEqual(expect.arrayContaining([expect.objectContaining({ packId: 'restored-204', packType: 'community' })]));
   });
 
   test('redeems a server-issued league grant and rejects a forged grant id', async () => {
     jest.spyOn(Date, 'now').mockReturnValue(1_800_000_000_000);
+    seedPublishedPack();
     mockDocs.set('flashcard_pack_gift_grants/league_claim-1', {
       ownerStableUid: 'victim', source: 'league_chest', occurrenceId: 'league_claim-1',
       expiresAt: 1_800_000_100_000,
@@ -1158,11 +978,11 @@ describe('community pack callable ownership', () => {
 
     await expect(callCommunity('flashcardPackGiftRedeem', {
       buyerStableId: 'victim', voucherId: 'league_claim-1',
-      packType: 'official', packId: 'official_prep_in_en', studyTarget: 'en',
+      packType: 'community', packId: 'pack-1', studyTarget: 'en',
     }, 'auth-victim')).resolves.toMatchObject({ gifted: true });
     await expect(callCommunity('flashcardPackGiftRedeem', {
       buyerStableId: 'victim', voucherId: 'forged',
-      packType: 'official', packId: 'official_prep_on_en', studyTarget: 'en',
+      packType: 'community', packId: 'pack-1', studyTarget: 'en',
     }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition', message: 'no_pack_gift_voucher' });
   });
 
@@ -1211,452 +1031,28 @@ describe('community pack callable ownership', () => {
 
   test('finds a pre-merge receipt under an alias and cannot claim the occurrence again', async () => {
     jest.spyOn(Date, 'now').mockReturnValue(Date.UTC(2026, 6, 31, 12));
+    seedPublishedPack();
     mockDocs.set('users/old-victim', { identityHidden: true, canonicalStableId: 'victim' });
-    mockDocs.set('flashcard_pack_gift_claims/old-victim__weekly_boon_2026-07-31', {
-      buyerStableId: 'old-victim', packType: 'official', packId: 'official_prep_in_en', studyTarget: 'en',
+    mockDocs.set('flashcard_pack_gift_grants/grant-alias', {
+      ownerStableUid: 'old-victim', occurrenceId: 'grant-alias', expiresAt: Date.now() + 60_000,
+    });
+    mockDocs.set('flashcard_pack_gift_claims/old-victim__grant-alias', {
+      buyerStableId: 'old-victim', packType: 'community', packId: 'pack-1', studyTarget: 'en',
     });
 
     await expect(callCommunity('flashcardPackGiftRedeem', {
-      buyerStableId: 'victim', packType: 'official', packId: 'official_prep_on_en', studyTarget: 'en',
+      buyerStableId: 'victim', packType: 'community', packId: 'pack-2', studyTarget: 'en',
+      voucherId: 'grant-alias', voucherOccurrenceId: 'grant-alias',
     }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition', message: 'pack_gift_already_used' });
   });
 
-  test('reserves the authoritative level-25 gift once and activates its voucher proof', async () => {
-    mockDocs.set('users/victim', {
-      ...(mockDocs.get('users/victim') ?? {}),
-      progressServerState: { level: 25 },
-    });
-
-    const reserved = await callCommunity<{
-      reservationId: string;
-      giftId: string;
-      replayed?: boolean;
-    }>('levelGiftReserve', {
-      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
-    }, 'auth-victim');
-    expect(reserved).toMatchObject({ giftId: 'pack_voucher_48h' });
-    expect(mockDocs.get(`flashcard_pack_gift_grants/level_${reserved.reservationId}`)).toBeUndefined();
-
-    await expect(callCommunity('levelGiftReserve', {
-      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
-    }, 'auth-victim')).resolves.toMatchObject({
-      reservationId: reserved.reservationId,
-      giftId: 'pack_voucher_48h',
-      replayed: true,
-    });
-
-    const grant = await callCommunity<{ voucherId: string; expiresAt: number }>('levelGiftActivatePackGift', {
-      stableId: 'victim', reservationId: reserved.reservationId,
-    }, 'auth-victim');
-    expect(grant.voucherId).toBe(`level_${reserved.reservationId}`);
-    expect(mockDocs.get(`flashcard_pack_gift_grants/${grant.voucherId}`)).toMatchObject({
-      ownerStableUid: 'victim', source: 'level_gift', sourceId: reserved.reservationId,
-    });
-  });
-
-  test('creates a deterministic Spin-native pack grant without a legacy reservation', async () => {
-    const requestId = 'spinpackrequest0001';
-    mockDocs.set(`users/victim/level_spin_results/${requestId}`, {
-      baseGiftId: 'pack_voucher_48h',
-      premiumGiftId: 'prem_level_unlock_negotiator',
-      expiresAtMs: Date.now() + 72 * 60 * 60 * 1000,
-      deliveries: {
-        base: { state: 'delivering', deliveryToken: 'deliverytokenbase01', deliveryLeaseUntilMs: Date.now() + 60_000, selectedGiftId: 'pack_voucher_48h' },
-        premium: { state: 'delivering', deliveryToken: 'deliverytokenprem01', deliveryLeaseUntilMs: Date.now() + 60_000, selectedGiftId: 'prem_level_unlock_negotiator' },
-      },
-    });
-
-    const base = await callCommunity<{ voucherId: string; allowedPackId?: string }>('levelSpinActivatePackGift', {
-      stableId: 'victim', requestId, lane: 'base', deliveryToken: 'deliverytokenbase01',
-    }, 'auth-victim');
-    expect(base).toMatchObject({ voucherId: `level_spin_${requestId}_base` });
-    expect(base.allowedPackId).toBeUndefined();
-    expect(mockDocs.get(`flashcard_pack_gift_grants/${base.voucherId}`)).toMatchObject({
-      ownerStableUid: 'victim',
-      source: 'level_spin_v1',
-      sourceId: requestId,
-      occurrenceId: `level-spin:${requestId}:base`,
-    });
-    expect(mockDocs.has(`level_gift_reservations/${requestId}`)).toBe(false);
-
-    await expect(callCommunity('levelSpinActivatePackGift', {
-      stableId: 'victim', requestId, lane: 'base', deliveryToken: 'deliverytokenbase01',
-    }, 'auth-victim')).resolves.toMatchObject({ voucherId: base.voucherId, replayed: true });
-
-    await expect(callCommunity('levelSpinActivatePackGift', {
-      stableId: 'victim', requestId, lane: 'premium', deliveryToken: 'deliverytokenprem01',
-    }, 'auth-victim')).resolves.toMatchObject({
-      voucherId: `level_spin_${requestId}_premium`,
-      allowedPackId: 'official_negotiator_en',
-    });
-  });
-
-  test('Spin-native pack grant fails closed for a forged lane lease or identity transition', async () => {
-    const requestId = 'spinpackrequest0002';
-    mockDocs.set(`users/victim/level_spin_results/${requestId}`, {
-      baseGiftId: 'pack_voucher_48h',
-      expiresAtMs: Date.now() + 72 * 60 * 60 * 1000,
-      deliveries: {
-        base: { state: 'delivering', deliveryToken: 'deliverytokenbase02', deliveryLeaseUntilMs: Date.now() + 60_000, selectedGiftId: 'pack_voucher_48h' },
-      },
-    });
-    await expect(callCommunity('levelSpinActivatePackGift', {
-      stableId: 'victim', requestId, lane: 'base', deliveryToken: 'forgeddeliverytoken',
-    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition' });
-
-    mockDocs.set('users/victim', { ...(mockDocs.get('users/victim') ?? {}), levelSpinMergePending: true });
-    await expect(callCommunity('levelSpinActivatePackGift', {
-      stableId: 'victim', requestId, lane: 'base', deliveryToken: 'deliverytokenbase02',
-    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition' });
-    expect(mockDocs.get(`flashcard_pack_gift_grants/level_spin_${requestId}_base`)).toBeUndefined();
-  });
-
-  test('repoints an immutable Spin pack grant after the source account merges', async () => {
-    const requestId = 'spinpackrequest0005';
-    const deliveryToken = 'deliverytokenbase05';
-    mockDocs.set(`users/victim/level_spin_results/${requestId}`, {
-      baseGiftId: 'pack_voucher_48h',
-      expiresAtMs: Date.now() + 72 * 60 * 60 * 1000,
-      deliveries: {
-        base: {
-          state: 'delivering',
-          deliveryToken,
-          deliveryLeaseUntilMs: Date.now() + 60_000,
-          selectedGiftId: 'pack_voucher_48h',
-        },
-      },
-    });
-    mockDocs.set('users/retired-loser', {
-      identityHidden: true,
-      canonicalStableId: 'victim',
-    });
-    mockDocs.set('account_identity_owner_map/retired-loser', { canonicalStableId: 'victim' });
-    const voucherId = `level_spin_${requestId}_base`;
-    mockDocs.set(`flashcard_pack_gift_grants/${voucherId}`, {
-      ownerStableUid: 'retired-loser',
-      source: 'level_spin_v1',
-      sourceId: requestId,
-      occurrenceId: `level-spin:${requestId}:base`,
-      allowedPackId: null,
-      expiresAt: Date.now() + 48 * 60 * 60 * 1000,
-    });
-
-    await expect(callCommunity('levelSpinActivatePackGift', {
-      stableId: 'victim', requestId, lane: 'base', deliveryToken,
-    }, 'auth-victim')).resolves.toMatchObject({ voucherId, replayed: true });
-    expect(mockDocs.get(`flashcard_pack_gift_grants/${voucherId}`)).toMatchObject({
-      ownerStableUid: 'victim',
-      source: 'level_spin_v1',
-      sourceId: requestId,
-    });
-  });
-
-  test('blocks new legacy reservations after sticky Spin v1 enrollment but replays grandfathered ones', async () => {
-    mockDocs.set('users/victim', {
-      ...(mockDocs.get('users/victim') ?? {}),
-      progressServerState: { level: 25 },
-      levelSpinServerState: { protocol: 'v1', levelBaseline: 25, balance: 1, activeRequestId: null },
-    });
-
-    await expect(callCommunity('levelGiftReserve', {
-      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
-    }, 'auth-victim')).rejects.toMatchObject({
-      code: 'failed-precondition', message: 'legacy_level_gift_cutover',
-    });
-
-    mockDocs.set('level_gift_reservations/victim_25_f2p_en', {
-      ownerStableUid: 'victim', level: 25, lane: 'f2p', studyTarget: 'en', giftId: 'pack_voucher_48h',
-    });
-    await expect(callCommunity('levelGiftReserve', {
-      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
-    }, 'auth-victim')).resolves.toMatchObject({
-      reservationId: 'victim_25_f2p_en', giftId: 'pack_voucher_48h', replayed: true,
-    });
-  });
-
-  test('acquires level-gift display once across devices', async () => {
-    mockDocs.set('users/victim', {
-      ...(mockDocs.get('users/victim') ?? {}),
-      progressServerState: { level: 25 },
-    });
-    const reserved = await callCommunity<{ reservationId: string }>('levelGiftReserve', {
-      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
-    }, 'auth-victim');
-
-    await expect(callCommunity('levelGiftReserve', {
-      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
-      action: 'display', reservationId: reserved.reservationId,
-    }, 'auth-victim')).resolves.toMatchObject({ status: 'acquired' });
-    expect(mockDocs.get(`level_gift_reservations/${reserved.reservationId}`)?.displayedAt).toEqual(expect.any(Number));
-    await expect(callCommunity('levelGiftReserve', {
-      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
-      action: 'display', reservationId: reserved.reservationId,
-    }, 'auth-victim')).resolves.toMatchObject({ status: 'already_displayed' });
-  });
-
-  test('deduplicates level-gift display across different study targets', async () => {
-    mockDocs.set('users/victim', {
-      ...(mockDocs.get('users/victim') ?? {}),
-      progressServerState: { level: 18 },
-    });
-    const en = await callCommunity<{ reservationId: string }>('levelGiftReserve', {
-      stableId: 'victim', level: 18, lane: 'f2p', studyTarget: 'en',
-    }, 'auth-victim');
-    const fr = await callCommunity<{ reservationId: string }>('levelGiftReserve', {
-      stableId: 'victim', level: 18, lane: 'f2p', studyTarget: 'fr',
-    }, 'auth-victim');
-    await expect(callCommunity('levelGiftReserve', {
-      stableId: 'victim', level: 18, lane: 'f2p', studyTarget: 'en',
-      action: 'display', reservationId: en.reservationId,
-    }, 'auth-victim')).resolves.toMatchObject({ status: 'acquired' });
-    await expect(callCommunity('levelGiftReserve', {
-      stableId: 'victim', level: 18, lane: 'f2p', studyTarget: 'fr',
-      action: 'display', reservationId: fr.reservationId,
-    }, 'auth-victim')).resolves.toMatchObject({ status: 'already_displayed' });
-  });
-
-  test('migrates stale blocked or retired reservations to a canonical useful reward', async () => {
-    jest.spyOn(Date, 'now').mockReturnValue(1_800_000_000_000);
-    mockDocs.set('users/victim', {
-      ...(mockDocs.get('users/victim') ?? {}),
-      progressServerState: { level: 17 },
-      progress: { premium_plan: 'monthly', premium_rc_expiry_ms: '1800000100000' },
-    });
-    mockDocs.set('level_gift_reservations/victim_17_f2p_en', {
-      ownerStableUid: 'victim', level: 17, lane: 'f2p', studyTarget: 'en', giftId: 'energy_full',
-    });
-    await expect(callCommunity('levelGiftReserve', {
-      stableId: 'victim', level: 17, lane: 'f2p', studyTarget: 'en',
-    }, 'auth-victim')).resolves.toMatchObject({ giftId: 'xp_250', replayed: true });
-    expect(mockDocs.get('level_gift_reservations/victim_17_f2p_en')?.giftId).toBe('xp_250');
-
-    mockDocs.set('users/victim', {
-      ...(mockDocs.get('users/victim') ?? {}),
-      progressServerState: { level: 18 },
-    });
-    mockDocs.set('level_gift_reservations/victim_18_f2p_en', {
-      ownerStableUid: 'victim', level: 18, lane: 'f2p', studyTarget: 'en', giftId: 'arena_extra_5',
-    });
-    await expect(callCommunity('levelGiftReserve', {
-      stableId: 'victim', level: 18, lane: 'f2p', studyTarget: 'en',
-    }, 'auth-victim')).resolves.toMatchObject({ giftId: 'xp_250', replayed: true });
-    expect(mockDocs.get('level_gift_reservations/victim_18_f2p_en')?.giftId).toBe('xp_250');
-  });
-
-  test('leases and completes a level-gift claim exactly once', async () => {
-    jest.spyOn(Date, 'now').mockReturnValue(1_800_000_000_000);
-    mockDocs.set('users/victim', {
-      ...(mockDocs.get('users/victim') ?? {}),
-      progressServerState: { level: 25 },
-    });
-    const reserved = await callCommunity<{ reservationId: string; giftId: string }>('levelGiftReserve', {
-      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
-    }, 'auth-victim');
-
-    await expect(callCommunity('levelGiftReserve', {
-      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
-      action: 'begin_claim', reservationId: reserved.reservationId,
-      giftId: reserved.giftId, claimToken: 'device-a-attempt',
-    }, 'auth-victim')).resolves.toMatchObject({ status: 'acquired' });
-    await expect(callCommunity('levelGiftReserve', {
-      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
-      action: 'begin_claim', reservationId: reserved.reservationId,
-      giftId: reserved.giftId, claimToken: 'device-b-attempt',
-    }, 'auth-victim')).resolves.toMatchObject({ status: 'busy' });
-    await expect(callCommunity('levelGiftReserve', {
-      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
-      action: 'complete_claim', reservationId: reserved.reservationId,
-      giftId: reserved.giftId, claimToken: 'wrong-attempt',
-    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition' });
-    await expect(callCommunity('levelGiftReserve', {
-      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
-      action: 'complete_claim', reservationId: reserved.reservationId,
-      giftId: reserved.giftId, claimToken: 'device-a-attempt',
-    }, 'auth-victim')).resolves.toMatchObject({ status: 'claimed' });
-    await expect(callCommunity('levelGiftReserve', {
-      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
-      action: 'begin_claim', reservationId: reserved.reservationId,
-      giftId: reserved.giftId, claimToken: 'device-b-attempt',
-    }, 'auth-victim')).resolves.toMatchObject({ status: 'already_claimed' });
-  });
-
-  test('level-gift perk completion updates nested progress fields without replacing the progress map', () => {
+  test('retired level-gift perks are absent from the server claim path', () => {
     const source = fs.readFileSync(path.join(__dirname, 'community_packs.ts'), 'utf8');
-    expect(source).toContain("'progress.chain_shield': chainShield");
-    expect(source).toContain("'progress.gift_xp_multiplier': giftXpMultiplier");
-    expect(source).not.toContain('progress: { chain_shield: chainShield }');
-    expect(source).not.toContain('progress: { gift_xp_multiplier: giftXpMultiplier }');
-  });
-
-  test('level-gift shield completion is server-owned and replays its canonical receipt', async () => {
-    const now = 1_800_000_000_000;
-    jest.spyOn(Date, 'now').mockReturnValue(now);
-    mockDocs.set('users/victim', {
-      ...(mockDocs.get('users/victim') ?? {}),
-      progressServerState: { level: 55 },
-      chain_shield: JSON.stringify({ daysLeft: 1 }),
-      progress: { chain_shield: JSON.stringify({ daysLeft: 2 }), unrelated: 'keep' },
-    });
-    const reserved = await callCommunity<{ reservationId: string; giftId: string }>('levelGiftReserve', {
-      stableId: 'victim', level: 55, lane: 'f2p', studyTarget: 'en',
-    }, 'auth-victim');
-    expect(reserved.giftId).toBe('chain_shield_3');
-    const input = {
-      stableId: 'victim', level: 55, lane: 'f2p', studyTarget: 'en',
-      reservationId: reserved.reservationId, giftId: reserved.giftId, claimToken: 'shield-attempt',
-    };
-    await expect(callCommunity('levelGiftReserve', { ...input, action: 'begin_claim' }, 'auth-victim'))
-      .resolves.toMatchObject({ status: 'acquired' });
-    const completed = await callCommunity<{ status: string; chainShield: string }>(
-      'levelGiftReserve', { ...input, action: 'complete_claim' }, 'auth-victim',
-    );
-    expect(completed.status).toBe('claimed');
-    expect(JSON.parse(completed.chainShield)).toMatchObject({ daysLeft: 5 });
-    expect(mockDocs.get('users/victim')?.chain_shield).toBe(completed.chainShield);
-    await expect(callCommunity('levelGiftReserve', { ...input, action: 'complete_claim' }, 'auth-victim'))
-      .resolves.toMatchObject({ status: 'already_claimed', chainShield: completed.chainShield });
-  });
-
-  test('focus level gifts extend canonical multiplier by their full duration and replay exactly', async () => {
-    const now = 1_800_000_000_000;
-    jest.spyOn(Date, 'now').mockReturnValue(now);
-    mockDocs.set('users/victim', {
-      ...(mockDocs.get('users/victim') ?? {}),
-      gift_xp_multiplier: JSON.stringify({ multiplier: 2, expiresAt: now + 60_000 }),
-      progress: {
-        gift_xp_multiplier: JSON.stringify({ multiplier: 1.5, expiresAt: now + 120_000 }),
-        unrelated: 'keep',
-      },
-    });
-    mockDocs.set('level_gift_reservations/victim_7_f2p_en', {
-      ownerStableUid: 'victim', level: 7, lane: 'f2p', studyTarget: 'en', giftId: 'focus_10m_25',
-    });
-    mockDocs.set('level_gift_reservations/victim_8_f2p_en', {
-      ownerStableUid: 'victim', level: 8, lane: 'f2p', studyTarget: 'en', giftId: 'focus_15m_50',
-    });
-
-    const first = {
-      stableId: 'victim', level: 7, lane: 'f2p', studyTarget: 'en',
-      action: 'begin_claim', reservationId: 'victim_7_f2p_en', giftId: 'focus_10m_25', claimToken: 'focus-ten',
-    };
-    await expect(callCommunity('levelGiftReserve', first, 'auth-victim'))
-      .resolves.toMatchObject({ status: 'acquired' });
-    const firstReceipt = await callCommunity<{ status: string; giftXpMultiplier: string }>(
-      'levelGiftReserve', { ...first, action: 'complete_claim' }, 'auth-victim',
-    );
-    expect(JSON.parse(firstReceipt.giftXpMultiplier)).toEqual({
-      multiplier: 2,
-      expiresAt: now + 120_000 + 10 * 60_000,
-    });
-    await expect(callCommunity('levelGiftReserve', { ...first, action: 'complete_claim' }, 'auth-victim'))
-      .resolves.toMatchObject({ status: 'already_claimed', giftXpMultiplier: firstReceipt.giftXpMultiplier });
-
-    const second = {
-      stableId: 'victim', level: 8, lane: 'f2p', studyTarget: 'en',
-      action: 'begin_claim', reservationId: 'victim_8_f2p_en', giftId: 'focus_15m_50', claimToken: 'focus-fifteen',
-    };
-    await expect(callCommunity('levelGiftReserve', second, 'auth-victim'))
-      .resolves.toMatchObject({ status: 'acquired' });
-    const secondReceipt = await callCommunity<{ status: string; giftXpMultiplier: string }>(
-      'levelGiftReserve', { ...second, action: 'complete_claim' }, 'auth-victim',
-    );
-    expect(JSON.parse(secondReceipt.giftXpMultiplier)).toEqual({
-      multiplier: 2,
-      expiresAt: now + 120_000 + 25 * 60_000,
-    });
-    expect(mockDocs.get('users/victim')?.gift_xp_multiplier).toBe(secondReceipt.giftXpMultiplier);
-    expect((mockDocs.get('users/victim')?.progress as Record<string, unknown>).gift_xp_multiplier)
-      .toBe(secondReceipt.giftXpMultiplier);
-    expect((mockDocs.get('users/victim')?.progress as Record<string, unknown>).unrelated).toBe('keep');
-  });
-
-  test('club level gift increments the canonical server count and replays its exact receipt', async () => {
-    mockDocs.set('users/victim', {
-      ...(mockDocs.get('users/victim') ?? {}),
-      club_gift_free_boost_v1: '1',
-      progress: { club_gift_free_boost_v1: '2', unrelated: 'keep' },
-    });
-    mockDocs.set('level_gift_reservations/victim_9_f2p_en', {
-      ownerStableUid: 'victim', level: 9, lane: 'f2p', studyTarget: 'en', giftId: 'club_boost_free',
-    });
-    const input = {
-      stableId: 'victim', level: 9, lane: 'f2p', studyTarget: 'en',
-      action: 'begin_claim', reservationId: 'victim_9_f2p_en', giftId: 'club_boost_free', claimToken: 'club-one',
-    };
-    await expect(callCommunity('levelGiftReserve', input, 'auth-victim'))
-      .resolves.toMatchObject({ status: 'acquired' });
-    const completed = await callCommunity<{ status: string; clubGiftFreeBoostCount: number }>(
-      'levelGiftReserve', { ...input, action: 'complete_claim' }, 'auth-victim',
-    );
-    expect(completed).toMatchObject({ status: 'claimed', clubGiftFreeBoostCount: 3 });
-    expect(mockDocs.get('users/victim')).toMatchObject({
-      club_gift_free_boost_v1: '3',
-      progress: { club_gift_free_boost_v1: '3', unrelated: 'keep' },
-    });
-    await expect(callCommunity('levelGiftReserve', { ...input, action: 'complete_claim' }, 'auth-victim'))
-      .resolves.toMatchObject({ status: 'already_claimed', clubGiftFreeBoostCount: 3 });
-  });
-
-  test('choice milestone rejects a selected gift outside its three concrete choices', async () => {
-    mockDocs.set('users/victim', {
-      ...(mockDocs.get('users/victim') ?? {}),
-      progressServerState: { level: 30 },
-    });
-    const reserved = await callCommunity<{ reservationId: string }>('levelGiftReserve', {
-      stableId: 'victim', level: 30, lane: 'f2p', studyTarget: 'en',
-    }, 'auth-victim');
-    await expect(callCommunity('levelGiftReserve', {
-      stableId: 'victim', level: 30, lane: 'f2p', studyTarget: 'en',
-      action: 'begin_claim', reservationId: reserved.reservationId,
-      giftId: 'chain_shield_3', claimToken: 'forged-choice',
-    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition' });
-  });
-
-  test('rejects level gift reservation above server progress and forged activation', async () => {
-    mockDocs.set('users/victim', {
-      ...(mockDocs.get('users/victim') ?? {}),
-      progressServerState: { level: 24 },
-    });
-    await expect(callCommunity('levelGiftReserve', {
-      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
-    }, 'auth-victim')).rejects.toMatchObject({ code: 'failed-precondition' });
-    await expect(callCommunity('levelGiftActivatePackGift', {
-      stableId: 'victim', reservationId: 'victim_25_f2p_en',
-    }, 'auth-attacker')).rejects.toMatchObject({ code: 'failed-precondition' });
-  });
-
-  test('requires server premium state for the premium level-gift lane', async () => {
-    mockDocs.set('users/victim', {
-      ...(mockDocs.get('users/victim') ?? {}),
-      progressServerState: { level: 25 },
-      progress: {},
-    });
-    await expect(callCommunity('levelGiftReserve', {
-      stableId: 'victim', level: 25, lane: 'premium', studyTarget: 'en',
-    }, 'auth-victim')).rejects.toMatchObject({ code: 'permission-denied' });
-  });
-
-  test('accepts every canonical Plus source for the premium level-gift lane', async () => {
-    jest.spyOn(Date, 'now').mockReturnValue(1_800_000_000_000);
-    const premiumSources = [
-      { premium_plan: 'monthly', premium_expiry: '0', premium_rc_expiry_ms: '1800000100000' },
-      { vip_active: 'true', vip_until: '1800000100000' },
-      { premium_plan: 'admin_grant', admin_premium_override: 'true', premium_expiry: '0' },
-      { premium_plan: 'lifetime', premium_expiry: '0' },
-      { loyalty_gift_until_ms: '1800000100000' },
-    ];
-
-    for (const [index, progress] of premiumSources.entries()) {
-      mockDocs.set('users/victim', {
-        firebaseAuthUid: 'auth-victim',
-        shards: 200,
-        progressServerState: { level: 100 },
-        progress,
-      });
-      await expect(callCommunity('levelGiftReserve', {
-        stableId: 'victim', level: 21 + index, lane: 'premium', studyTarget: 'en',
-      }, 'auth-victim')).resolves.toEqual(expect.objectContaining({ reservationId: expect.any(String) }));
-    }
+    expect(source).not.toContain('gift_xp_multiplier');
+    expect(source).not.toContain('chain_shield');
+    expect(source).not.toContain('club_gift_free_boost_v1');
+    expect(source).not.toContain('wager_discount_25');
+    expect(source).not.toMatch(/export\s+const\s+(?:levelGiftReserve|levelGiftActivatePackGift|levelSpinActivatePackGift)\b/);
   });
 
   test('uses the authenticated canonical alias graph for premium broadcast audience access', async () => {
@@ -1706,77 +1102,18 @@ describe('community pack callable ownership', () => {
     });
   });
 
-  test('replays an existing premium level reservation after Plus access expires', async () => {
-    mockDocs.set('users/victim', {
-      ...(mockDocs.get('users/victim') ?? {}),
-      progressServerState: { level: 25 },
-      progress: {},
-    });
-    mockDocs.set('level_gift_reservations/victim_25_premium_en', {
-      ownerStableUid: 'victim', level: 25, lane: 'premium', studyTarget: 'en', giftId: 'prem_shards_10',
-    });
-
-    await expect(callCommunity('levelGiftReserve', {
-      stableId: 'victim', level: 25, lane: 'premium', studyTarget: 'en',
-    }, 'auth-victim')).resolves.toMatchObject({
-      reservationId: 'victim_25_premium_en', giftId: 'prem_shards_10', replayed: true,
-    });
-  });
-
-  test('keeps premium authorization reads inside each gift transaction before writes', () => {
-    const source = fs.readFileSync(path.join(__dirname, 'community_packs.ts'), 'utf8');
-    const levelStart = source.indexOf('export const levelGiftReserve');
-    const levelEnd = source.indexOf('export const levelGiftActivatePackGift', levelStart);
-    const levelBody = source.slice(levelStart, levelEnd);
-    const broadcastStart = source.indexOf('export const flashcardPackGiftGrantGlobalBroadcast');
-    const broadcastEnd = source.indexOf('export const flashcardPackGiftSyncState', broadcastStart);
-    const broadcastBody = source.slice(broadcastStart, broadcastEnd);
-
-    const levelResolver = levelBody.indexOf('resolvePremiumAccess(db, stableUid, now, authUid, tx)');
-    expect(levelResolver).toBeGreaterThan(levelBody.indexOf('if (existingReservation)'));
-    expect(levelResolver).toBeLessThan(levelBody.indexOf('tx.set('));
-
-    const transactionStart = broadcastBody.indexOf('runTransaction(async (tx)');
-    const broadcastResolver = broadcastBody.indexOf('resolvePremiumAccess(db, stableUid, now, authUid, tx)');
-    expect(broadcastResolver).toBeGreaterThan(transactionStart);
-    expect(broadcastResolver).toBeGreaterThan(broadcastBody.indexOf('broadcastSnap.data()'));
-    expect(broadcastResolver).toBeGreaterThan(broadcastBody.indexOf('if (grantSnap.exists)'));
-    expect(broadcastResolver).toBeLessThan(broadcastBody.indexOf('tx.set('));
-    expect(broadcastBody.slice(0, transactionStart)).not.toContain('resolvePremiumAccess(');
-  });
-
   test('keeps the retired Arena reward outside every server level-gift catalog', () => {
     const source = fs.readFileSync(path.join(__dirname, 'community_packs.ts'), 'utf8');
     expect(source).not.toContain('arena_extra_5');
   });
 
-  test('replays a pre-merge level reservation through the canonical identity', async () => {
-    mockDocs.set('users/old-victim', { identityHidden: true, canonicalStableId: 'victim' });
-    mockDocs.set('users/victim', {
-      ...(mockDocs.get('users/victim') ?? {}),
-      progressServerState: { level: 25 },
-    });
-    mockDocs.set('level_gift_reservations/old-victim_25_f2p_en', {
-      ownerStableUid: 'old-victim', level: 25, lane: 'f2p', studyTarget: 'en', giftId: 'pack_voucher_48h',
-    });
-
-    const replay = await callCommunity<{ reservationId: string; giftId: string; replayed: boolean }>('levelGiftReserve', {
-      stableId: 'victim', level: 25, lane: 'f2p', studyTarget: 'en',
-    }, 'auth-victim');
-    expect(replay).toMatchObject({
-      reservationId: 'old-victim_25_f2p_en', giftId: 'pack_voucher_48h', replayed: true,
-    });
-    await expect(callCommunity('levelGiftActivatePackGift', {
-      stableId: 'victim', reservationId: replay.reservationId,
-    }, 'auth-victim')).resolves.toMatchObject({ voucherId: 'level_old-victim_25_f2p_en' });
-  });
-
   test('an exact-pack level grant cannot redeem a different official pack', async () => {
+    seedPublishedPack();
     mockDocs.set('flashcard_pack_gift_grants/exact-pack-grant', {
       ownerStableUid: 'victim', expiresAt: Date.now() + 60_000, allowedPackId: 'official_prep_in_en',
     });
     await expect(callCommunity('flashcardPackGiftRedeem', {
-      buyerStableId: 'victim', packType: 'official', packId: 'official_prep_on_en',
+      buyerStableId: 'victim', packType: 'community', packId: 'pack-1',
       studyTarget: 'en', voucherId: 'exact-pack-grant',
     }, 'auth-victim')).rejects.toMatchObject({ code: 'permission-denied', message: 'voucher_pack_mismatch' });
   });
@@ -1916,14 +1253,14 @@ describe('community pack semantic registry synchronization', () => {
     mockDocs.set('community_pack_submissions/sub-1', { status: 'pending', authorStableId: 'author', payload });
     const mod = require('./community_packs');
     await mod.communityModerateSubmission({ auth: { token: { admin: true } }, data: { submissionId: 'sub-1', action: 'approve' } });
-    expect(mockDocs.get('community_packs/sub-1')).toMatchObject({ listingStatus: 'published', cardCount: 10, priceShards: 10 });
+    expect(mockDocs.get('community_packs/sub-1')).toMatchObject({ listingStatus: 'published', cardCount: 10 });
     expect((mockDocs.get('community_packs/sub-1')?.cards as DocData[])[0]).toMatchObject({ richSchemaVersion: 1, exampleTarget: 'Example target', exampleSource: 'Пример', note: 'Usage note', sourceReferences: ['lesson:1:p1', 'exemplar:e1'] });
     const registryAfterPublish = [...mockDocs.entries()].filter(([key]) => key.startsWith('content_factory_flashcard_semantic_keys/'));
     expect(registryAfterPublish).toHaveLength(20);
     expect(registryAfterPublish.map(([, value]) => value.partitionKey)).toEqual(expect.arrayContaining(['community_flashcards:en:ru', 'community_flashcards:en:es']));
 
     await mod.communityAdminModeratePack({ auth: { token: { admin: true } }, data: { packId: 'sub-1', action: 'remove' } });
-    expect(mockDocs.get('community_packs/sub-1')).toMatchObject({ listingStatus: 'admin_removed', priceShards: 10 });
+    expect(mockDocs.get('community_packs/sub-1')).toMatchObject({ listingStatus: 'admin_removed' });
     expect([...mockDocs.keys()].filter((key) => key.startsWith('content_factory_flashcard_semantic_keys/'))).toHaveLength(0);
   });
 });

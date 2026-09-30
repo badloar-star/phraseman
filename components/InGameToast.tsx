@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useRef } from 'react';
-import { Animated, StyleSheet, Text, View } from 'react-native';
+import { Animated, Platform, StyleSheet, Text, View } from 'react-native';
 import Reanimated, {
   Easing,
   cancelAnimation,
@@ -14,11 +14,12 @@ import Reanimated, {
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from './ThemeContext';
 import { LinearGradient } from './SafeLinearGradient';
-import { themedToastChrome } from '../constants/themedToastChrome';
 import { noAndroidOutline } from '../constants/androidGlow';
 import { LUM, TOAST } from '../constants/motionHybrid';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { BlurView } from 'expo-blur';
 
 /** Минимальный отступ сверху — прежнее поведение на экранах без выреза. */
 const TOAST_TOP_MIN = 60;
@@ -41,6 +42,46 @@ const TONE_ICON: Record<'error' | 'info', keyof typeof Ionicons.glyphMap> = {
   info: 'information-circle',
 };
 
+/** Local passive material; callers, timers, and tone semantics remain unchanged. */
+function inGameToastGlassChrome(glass: ReturnType<typeof liquidGlassTokens>) {
+  return {
+    scrim: 'rgba(8,10,14,0.76)',
+    sheenColors: [glass.lightTint, 'transparent'] as [string, string],
+    accent: glass.cta,
+    accentSoft: glass.selected,
+    border: glass.glassEdge,
+    title: glass.text,
+    body: glass.secondary,
+    closeBg: glass.selected,
+    shadowColor: glass.bg,
+    radius: 16,
+  };
+}
+
+/** One passive surface is shared by both motion variants, so contrast is independent of the screen below. */
+function InGameToastSurface({ chrome }: { chrome: ReturnType<typeof inGameToastGlassChrome> }) {
+  return (
+    <>
+      <BlurView
+        pointerEvents="none"
+        intensity={Platform.OS === 'android' ? 8 : 12}
+        blurReductionFactor={4}
+        experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'}
+        tint="systemUltraThinMaterialDark"
+        style={StyleSheet.absoluteFillObject}
+      />
+      <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, { backgroundColor: chrome.scrim }]} />
+      <LinearGradient
+        pointerEvents="none"
+        colors={chrome.sheenColors}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={[StyleSheet.absoluteFillObject, { opacity: 0.12 }]}
+      />
+    </>
+  );
+}
+
 /** зачем: гибрид «Световод» (макет T1 «Тосты») — вход из света без отскока
  * (LUM.resolveMs/settle), ошибка получает жёсткую пружину + единственную
  * дрожь TOAST.errorShakePx, выход короче входа (TOAST.exitMs). */
@@ -55,7 +96,7 @@ function InGameToastHybrid({
   type: 'error' | 'info';
   duration: number;
   onHide: () => void;
-  chrome: ReturnType<typeof themedToastChrome>;
+  chrome: ReturnType<typeof inGameToastGlassChrome>;
 }) {
   const { f } = useTheme();
   // зачем: тост висел на жёстком top:60 и на Android с вырезом/высоким статус-баром
@@ -112,8 +153,8 @@ function InGameToastHybrid({
 
   return (
     <View style={[styles.toastAnchor, { top: safeTop }]} pointerEvents="none">
-    <Reanimated.View style={[styles.toastCard, { shadowColor: chrome.shadowColor }, cardStyle]}>
-      <LinearGradient colors={chrome.cardColors} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFillObject} />
+    <Reanimated.View style={[styles.toastCard, { shadowColor: chrome.shadowColor, borderColor: chrome.border }, cardStyle]}>
+      <InGameToastSurface chrome={chrome} />
       <View style={styles.hybridRow}>
         <Ionicons name={icon} size={18} color={chrome.accent} />
         <Text style={{ flex: 1, color: chrome.title, fontSize: f.body, fontWeight: '700', textAlign: 'left' }}>
@@ -126,7 +167,7 @@ function InGameToastHybrid({
 }
 
 function InGameToast({ message, onHide, duration = 3000, type = 'info', motionVariant = 'hybrid' }: Props) {
-  const { theme: t, f, themeMode } = useTheme();
+  const { f, liquidGlassThemeId } = useTheme();
   const anim = useRef(new Animated.Value(0)).current;
   const isHybrid = motionVariant === 'hybrid';
   // зачем: тот же фикс безопасной зоны, что в гибриде — жёсткий top:60 уводил
@@ -157,7 +198,8 @@ function InGameToast({ message, onHide, duration = 3000, type = 'info', motionVa
 
   if (!message) return null;
 
-  const chrome = themedToastChrome(themeMode, t);
+  const inGameToastGlass = liquidGlassTokens(liquidGlassThemeId);
+  const chrome = inGameToastGlassChrome(inGameToastGlass);
 
   if (isHybrid) {
     return (
@@ -175,11 +217,11 @@ function InGameToast({ message, onHide, duration = 3000, type = 'info', motionVa
         styles.toastCard,
         // зачем: обводка контейнера запрещена стилем владельца — разделяем тоном
         // и тенью; отступ сверху берём от безопасной зоны.
-        { shadowColor: chrome.shadowColor, opacity: anim,
+        { shadowColor: chrome.shadowColor, borderColor: chrome.border, opacity: anim,
           transform: [{ translateY: anim.interpolate({ inputRange: [0, 1], outputRange: [-20, 0] }) }] },
       ]}
     >
-      <LinearGradient colors={chrome.cardColors} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFillObject} />
+      <InGameToastSurface chrome={chrome} />
       <View style={styles.classicRow}>
         <Ionicons name={icon} size={18} color={chrome.accent} />
         <Text style={{ flex: 1, color: chrome.title, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
@@ -202,6 +244,7 @@ const styles = StyleSheet.create({
   },
   toastCard: {
     borderRadius: 16,
+    borderWidth: StyleSheet.hairlineWidth,
     overflow: 'hidden',
     paddingVertical: 14,
     paddingHorizontal: 20,

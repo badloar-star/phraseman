@@ -263,7 +263,6 @@ function classify(id: string, category: string): Omit<AchievementEntry, 'id' | '
     id.startsWith('weekly_xp') ||
     id === 'personal_best' ||
     id === 'level_50' ||
-    id === 'perfect_week' ||
     id === 'perfect_month' ||
     id === 'night_owl' ||
     id === 'early_bird' ||

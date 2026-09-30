@@ -1,6 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getVerifiedPremiumStatus } from '../app/premium_guard';
-import { isFeatureFreeForEveryone } from '../app/feature_gates';
 import {
   flashcardsSavedKey,
   storageStudyTarget,
@@ -15,6 +14,7 @@ import {
 } from '../app/account_generation';
 import { accountScopeKey } from '../app/account_scope_key';
 import { normalizePackLanguage, type PackLanguage } from '../app/flashcards/pack_languages';
+import { FREE_CUSTOM_CARD_LIMIT, PLUS_CUSTOM_CARD_LIMIT } from '../app/flashcards/custom_card_access';
 
 export interface Flashcard {
   id: string;
@@ -365,7 +365,7 @@ export const mergeSavedFlashcardRepairs = async (updates: Flashcard[], accountTo
   }, undefined);
 };
 
-export const FREE_FLASHCARD_LIMIT = 20;
+export const FREE_FLASHCARD_LIMIT = FREE_CUSTOM_CARD_LIMIT;
 
 export type AddFlashcardResult = 'added' | 'duplicate' | 'limit_reached' | 'stale';
 
@@ -391,7 +391,8 @@ export const addFlashcard = async (
     // «Пульт»: если карточки переведены в «Фри» — лимит снят, замок не показываем.
     const isPremium = await getVerifiedPremiumStatus();
     if (!isAccountOperationCurrent(accountToken)) return 'stale';
-    if (!isPremium && !isFeatureFreeForEveryone('flashcards') && cards.length >= FREE_FLASHCARD_LIMIT) {
+    const maxCards = isPremium ? PLUS_CUSTOM_CARD_LIMIT : FREE_FLASHCARD_LIMIT;
+    if (cards.length >= maxCards) {
       return 'limit_reached';
     }
 

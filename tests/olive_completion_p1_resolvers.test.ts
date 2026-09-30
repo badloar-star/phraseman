@@ -23,12 +23,8 @@ describe('Olive completion P1 resolvers', () => {
     expect(oliveThemeTileA11y('en', 'applied')).toBe('Applied');
   });
 
-  it('uses Olive-only quest and incoming-gift copy colors without changing mono non-Olive copy', () => {
+  it('uses Olive-only incoming-gift copy colors without changing mono non-Olive copy', () => {
     const friends = source('app/(tabs)/friends.tsx');
-    const completed = friends.slice(friends.indexOf('function FriendQuestCompletedModal'), friends.indexOf('type ActivityFeedSection'));
-    expect(completed).toContain("color: themeMode === 'olive' ? modalChrome.text : monoIcon(themeMode, '#21170B', MONO_ICON.onLight)");
-    expect(completed).toContain("color: themeMode === 'olive' ? modalChrome.mutedText : monoIcon(themeMode, '#4E3B1D', MONO_ICON.onLight)");
-    expect(completed).toContain("backgroundColor: themeMode === 'olive' ? modalChrome.button : '#34C759'");
     expect(friends).toContain("color: isOliveTheme ? OLIVE_RICH.champagneLight : monoIcon(themeMode, '#7A5518', MONO_ICON.onLight)");
     expect(friends).toContain("color: isOliveTheme ? OLIVE_RICH.ivory : monoIcon(themeMode, '#8A641D', MONO_ICON.onLight)");
     expect(friends).toContain("color: isOliveTheme ? OLIVE_RICH.ivory : monoIcon(themeMode, '#3D2B10', MONO_ICON.onLight)");
@@ -42,12 +38,5 @@ describe('Olive completion P1 resolvers', () => {
     expect(intro).toContain("borderBottomColor: oliveExamChrome?.border ?? LX.cardLine");
     expect(intro).toContain("color={oliveExamChrome?.ivory ?? '#FFFFFF'}");
     expect(exam).toContain("color: oliveExamChrome?.ivory ?? 'rgba(255,255,255,0.92)'");
-  });
-
-  it('keeps the Olive streak shadow on an unclipped wrapper around the clipped pass surface', () => {
-    const streak = source('components/StreakReviveModal.tsx');
-    expect(streak).toContain('styles.passShadow');
-    expect(streak).toContain('styles.olivePassShadow');
-    expect(streak).toContain("overflow: 'hidden'");
   });
 });

@@ -56,7 +56,7 @@ export async function readPremiumFreezesLeftThisMonth(now: Date = new Date()): P
 }
 
 /**
- * Применить месячный лимит: вызвать на открытии главной (см. boon_bootstrap).
+ * Применить месячный лимит: вызывается напрямую при открытии Главной.
  * Не-premium не трогаем вовсе (их флаг и так не даёт бесплатную заморозку).
  */
 export async function applyMonthlyPremiumFreezeAllowance(now: Date = new Date()): Promise<void> {

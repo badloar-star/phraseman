@@ -7,6 +7,7 @@ import AvatarView from '../AvatarView';
 import PressableHybrid from '../PressableHybrid';
 import { FlowText } from '../text-integrity';
 import { useTheme } from '../ThemeContext';
+import { useLv2Glass } from '../learning-v2/LearningV2Glass';
 import { useLang } from '../LangContext';
 import { type Lang, triLang } from '../../constants/i18n';
 import { buttonForegroundForBackground } from '../../constants/color_contrast';
@@ -19,7 +20,6 @@ export interface FriendTogetherDisplay {
   nudged: boolean;
   learnedToday: boolean;
   incomingNudge: boolean;
-  giftReady: boolean;
 }
 
 export interface FriendTogetherSheetProps {
@@ -29,15 +29,12 @@ export interface FriendTogetherSheetProps {
   friendName: string;
   friendUid: string;
   friendAvatar: string;
-  friendTotalXp: number;
   friendAura?: string;
   myAvatar: string;
-  myTotalXp: number;
   streak: number;
   highFived: boolean;
   together: FriendTogetherDisplay | null;
   onNudge: (() => void) | null;
-  onGift: (requestDismiss: () => void) => void;
   onHighFive: () => void;
   onDelete: ((requestDismiss: () => void) => void) | null;
 }
@@ -83,19 +80,17 @@ function FriendTogetherSheet({
   onDismissed,
   friendName,
   friendAvatar,
-  friendTotalXp,
   friendAura,
   myAvatar,
-  myTotalXp,
   streak,
   highFived,
   together,
   onNudge,
-  onGift,
   onHighFive,
   onDelete,
 }: FriendTogetherSheetProps) {
-  const { theme: t, f } = useTheme();
+  const { f } = useTheme();
+  const g = useLv2Glass();
   const { lang } = useLang();
   const L = (ru: string, uk: string, en: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
     triLang(lang, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl });
@@ -111,51 +106,50 @@ function FriendTogetherSheet({
     : together?.learnedToday
       ? L('Вы уже занимались сегодня', 'Ви вже займалися сьогодні', 'You already studied today', 'Ya estudiaste hoy', 'Você já estudou hoje', 'Bạn đã học hôm nay', 'Kamu sudah belajar hari ini', 'Bugün zaten çalıştın', 'Dziś już się uczyłeś')
       : L('Позвать учиться', 'Покликати вчитися', 'Invite to study', 'Invitar a estudiar', 'Convidar para estudar', 'Mời cùng học', 'Ajak belajar', 'Çalışmaya çağır', 'Zaproś do nauki');
-  const giftLabel = L('Отправить подарок', 'Надіслати подарунок', 'Send a gift', 'Enviar regalo', 'Enviar presente', 'Gửi quà tặng', 'Kirim hadiah', 'Hediye gönder', 'Wyślij prezent');
   const highFiveLabel = highFived
     ? L('Дай пять отправлено', 'П’ять відправлено', 'High five sent', 'Choca esos cinco enviado', 'Toca aqui enviado', 'Đập tay đã gửi', 'Tos sudah dikirim', 'Çak gönderildi', 'Piątka wysłana')
     : L('Дать пять', 'Дати п’ять', 'High five', 'Chocar los cinco', 'Toca aqui', 'Đập tay', 'Beri tos', 'Çak', 'Przybij piątkę');
   const deleteLabel = L('Удалить из друзей', 'Видалити з друзів', 'Remove from friends', 'Eliminar de amigos', 'Remover dos amigos', 'Xóa khỏi bạn bè', 'Hapus dari teman', 'Arkadaşlardan kaldır', 'Usuń ze znajomych');
   const incomingLabel = L('Друг зовёт вас заниматься сегодня.', 'Друг кличе вас займатися сьогодні.', 'Your friend is inviting you to study today.', 'Tu amistad te invita a estudiar hoy.', 'Seu amigo convida você para estudar hoje.', 'Bạn của bạn mời bạn học hôm nay.', 'Temanmu mengajakmu belajar hari ini.', 'Arkadaşın seni bugün çalışmaya çağırıyor.', 'Twój znajomy zaprasza Cię dziś do nauki.');
 
-  // зачем: владелец 2026-08-23 — «XP за неделю / место в рейтинге» лишние и некрасивые.
+  // зачем: недельные очки и место в рейтинге не являются частью Together UI.
   // Осталась только серия дней, одной крупной строкой без контейнера и без подписи
   // мелким шрифтом (оба приёма запрещены правилами владельца).
   const streakLabel = L('Серия дней', 'Серія днів', 'Day streak', 'Racha de días', 'Sequência de dias', 'Chuỗi ngày', 'Rangkaian hari', 'Gün serisi', 'Seria dni');
 
   return (
-    <HybridSheetShell visible={visible} onClose={onClose} onDismissed={onDismissed} closeLabel={closeLabel} backdropAccessible={false} testID="friend-together-sheet" glowColor={isGold ? t.gold : t.accent}>
+    <HybridSheetShell visible={visible} onClose={onClose} onDismissed={onDismissed} closeLabel={closeLabel} backdropAccessible={false} testID="friend-together-sheet" material="liquid-glass-opaque" glowColor={isGold ? g.text : g.cta}>
       {({ requestDismiss }) => (
         <>
           <View style={styles.header}>
-            <FlowText testID="friend-together-sheet-title" provenance="user" accessibilityRole="header" style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '700', flex: 1 }}>
+            <FlowText testID="friend-together-sheet-title" provenance="user" accessibilityRole="header" style={{ color: g.text, fontSize: f.h3, fontWeight: '700', flex: 1 }}>
               {friendName}
             </FlowText>
             <PressableHybrid testID="friend-together-sheet-close" onPress={requestDismiss} hitSlop={8} accessibilityRole="button" accessibilityLabel={closeLabel} variant="secondary" style={styles.closeBtn}>
-              <Ionicons name="close" size={20} color={t.textMuted} />
+              <Ionicons name="close" size={20} color={g.secondary} />
             </PressableHybrid>
           </View>
           <ScrollView decelerationRate="fast" style={styles.scroll} nestedScrollEnabled showsVerticalScrollIndicator={false} contentContainerStyle={styles.body}>
             {together && (
               <View testID="friend-together-sheet-together-hero" style={styles.hero}>
                 <View style={styles.pairRow}>
-                  <AvatarView avatar={myAvatar} totalXP={myTotalXp} size={64} />
-                  <View style={[styles.link, { backgroundColor: isGold ? t.gold : t.accent }]} />
-                  <AvatarView avatar={friendAvatar} totalXP={friendTotalXp} size={64} auraId={friendAura} />
+                  <AvatarView avatar={myAvatar} size={64} />
+                  <View style={[styles.link, { backgroundColor: isGold ? g.text : g.cta }]} />
+                  <AvatarView avatar={friendAvatar} size={64} auraId={friendAura} />
                 </View>
-                <FlowText testID="friend-together-sheet-level" provenance="authored" style={{ color: isGold ? t.gold : t.accent, fontSize: f.h3, fontWeight: '700', textAlign: 'center' }}>
+                <FlowText testID="friend-together-sheet-level" provenance="authored" style={{ color: isGold ? g.text : g.cta, fontSize: f.h3, fontWeight: '700', textAlign: 'center' }}>
                   {friendshipLevelName(together.level, lang)}
                 </FlowText>
-                <FlowText testID="friend-together-sheet-days" provenance="authored" style={{ color: t.textPrimary, fontSize: 34, fontWeight: '700', textAlign: 'center' }}>
+                <FlowText testID="friend-together-sheet-days" provenance="authored" style={{ color: g.text, fontSize: 34, fontWeight: '700', textAlign: 'center' }}>
                   {formatTogetherDays(lang, together.days)}
                 </FlowText>
                 {progress !== null && (
                   <View testID="friend-together-sheet-progress" accessibilityRole="progressbar" accessibilityLabel={progressLabel} accessibilityValue={{ min: 0, max: 100, now: progress }} style={styles.progressArea}>
-                    <View style={[styles.progressTrack, { backgroundColor: t.bgSurface2 }]}>
-                      <View style={[styles.progressFill, { width: `${progress}%`, backgroundColor: isGold ? t.gold : t.accent }]} />
+                    <View style={[styles.progressTrack, { backgroundColor: g.opaqueControl }]}>
+                      <View style={[styles.progressFill, { width: `${progress}%`, backgroundColor: isGold ? g.text : g.cta }]} />
                     </View>
                     {together.nextLevelName && (
-                      <FlowText testID="friend-together-sheet-next-level" provenance="authored" style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '400' }}>
+                      <FlowText testID="friend-together-sheet-next-level" provenance="authored" style={{ color: g.secondary, fontSize: f.sub, fontWeight: '400' }}>
                         {friendshipLevelName(together.level + 1, lang)}
                       </FlowText>
                     )}
@@ -165,19 +159,18 @@ function FriendTogetherSheet({
             )}
 
             <View testID="friend-together-sheet-streak" accessibilityLabel={`${streakLabel}: ${streak}`} style={styles.streakRow}>
-              <Ionicons name="flame" size={26} color={isGold ? t.gold : t.accent} />
-              <FlowText testID="friend-together-sheet-streak-value" provenance="authored" style={{ color: t.textPrimary, fontSize: 32, fontWeight: '700' }}>
+              <Ionicons name="flame" size={26} color={isGold ? g.text : g.cta} />
+              <FlowText testID="friend-together-sheet-streak-value" provenance="authored" style={{ color: g.text, fontSize: 32, fontWeight: '700' }}>
                 {streak}
               </FlowText>
             </View>
 
-            {together?.incomingNudge && <FlowText testID="friend-together-sheet-status-nudge" provenance="authored" accessibilityRole="text" accessibilityLabel={incomingLabel} style={[styles.status, { color: t.textPrimary, backgroundColor: t.bgSurface2, fontSize: f.body, fontWeight: '400' }]}>{incomingLabel}</FlowText>}
+            {together?.incomingNudge && <FlowText testID="friend-together-sheet-status-nudge" provenance="authored" accessibilityRole="text" accessibilityLabel={incomingLabel} style={[styles.status, { color: g.text, backgroundColor: g.opaqueControl, fontSize: f.body, fontWeight: '400' }]}>{incomingLabel}</FlowText>}
 
             <View style={styles.actions}>
-              {together && onNudge && <PressableHybrid testID="friend-together-sheet-nudge" onPress={() => onNudge()} disabled={nudgeDisabled} accessibilityLabel={nudgeLabel} variant={nudgeDisabled ? 'secondary' : 'primary'} style={[styles.actionBtn, { backgroundColor: nudgeDisabled ? t.bgSurface2 : t.accent }]} contentStyle={styles.actionContent}><FlowText testID="friend-together-sheet-nudge-label" provenance="authored" style={{ color: nudgeDisabled ? t.textSecond : buttonForegroundForBackground(t.accent), fontSize: f.body, fontWeight: '700' }}>{nudgeLabel}</FlowText></PressableHybrid>}
-              <PressableHybrid testID="friend-together-sheet-gift" onPress={() => onGift(requestDismiss)} accessibilityLabel={giftLabel} variant="secondary" style={[styles.actionBtn, { backgroundColor: t.bgSurface2 }]} contentStyle={styles.actionContent}><FlowText testID="friend-together-sheet-gift-label" provenance="authored" style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{giftLabel}</FlowText></PressableHybrid>
-              <PressableHybrid testID="friend-together-sheet-high-five" onPress={() => onHighFive()} accessibilityLabel={highFiveLabel} accessibilityState={{ selected: highFived }} variant="secondary" style={[styles.actionBtn, { backgroundColor: t.bgSurface2 }]} contentStyle={styles.actionContent}><FlowText testID="friend-together-sheet-high-five-label" provenance="authored" style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{highFiveLabel}</FlowText></PressableHybrid>
-              {onDelete && <PressableHybrid testID="friend-together-sheet-delete" onPress={() => onDelete(requestDismiss)} accessibilityLabel={deleteLabel} variant="secondary" style={[styles.actionBtn, styles.deleteAction, { backgroundColor: t.wrongBg }]} contentStyle={styles.actionContent}><FlowText testID="friend-together-sheet-delete-label" provenance="authored" style={{ color: t.wrong, fontSize: f.body, fontWeight: '700' }}>{deleteLabel}</FlowText></PressableHybrid>}
+              {together && onNudge && <PressableHybrid testID="friend-together-sheet-nudge" onPress={() => onNudge()} disabled={nudgeDisabled} accessibilityLabel={nudgeLabel} variant={nudgeDisabled ? 'secondary' : 'primary'} style={[styles.actionBtn, { backgroundColor: nudgeDisabled ? g.opaqueControl : g.cta }]} contentStyle={styles.actionContent}><FlowText testID="friend-together-sheet-nudge-label" provenance="authored" style={{ color: nudgeDisabled ? g.secondary : buttonForegroundForBackground(g.cta), fontSize: f.body, fontWeight: '700' }}>{nudgeLabel}</FlowText></PressableHybrid>}
+              <PressableHybrid testID="friend-together-sheet-high-five" onPress={() => onHighFive()} accessibilityLabel={highFiveLabel} accessibilityState={{ selected: highFived }} variant="secondary" style={[styles.actionBtn, { backgroundColor: g.opaqueControl }]} contentStyle={styles.actionContent}><FlowText testID="friend-together-sheet-high-five-label" provenance="authored" style={{ color: g.text, fontSize: f.body, fontWeight: '700' }}>{highFiveLabel}</FlowText></PressableHybrid>
+              {onDelete && <PressableHybrid testID="friend-together-sheet-delete" onPress={() => onDelete(requestDismiss)} accessibilityLabel={deleteLabel} variant="secondary" style={[styles.actionBtn, styles.deleteAction, { backgroundColor: g.badFill }]} contentStyle={styles.actionContent}><FlowText testID="friend-together-sheet-delete-label" provenance="authored" style={{ color: g.bad, fontSize: f.body, fontWeight: '700' }}>{deleteLabel}</FlowText></PressableHybrid>}
             </View>
           </ScrollView>
         </>

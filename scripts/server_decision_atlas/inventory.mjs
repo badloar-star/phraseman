@@ -1,7 +1,10 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
 
-const SOURCE_ROOTS = ['app', 'modules', 'components', 'functions/src', 'admin/v2'];
+// Atlas scope is the shipped mobile/client app plus its Functions backend.
+// The standalone admin console is an operational tool, not part of the client
+// bundle and follows a separate privileged-access review.
+const SOURCE_ROOTS = ['app', 'modules', 'components', 'functions/src'];
 const TEST_ROOTS = ['tests', 'functions/src'];
 const EXCLUDED_SEGMENTS = new Set(['node_modules', '.git', '.codex-tmp', '.superpowers', 'build', 'dist', 'coverage']);
 const SOURCE_FILE = /\.(?:[cm]?js|tsx?|html)$/u;
@@ -129,6 +132,12 @@ function scanSourceFile(root, sourcePath) {
     }
     FIRESTORE_OPERATION.lastIndex = 0;
     for (const match of source.matchAll(FIRESTORE_OPERATION)) {
+      // Local callback APIs may be named `onSnapshot` without opening a
+      // Firestore listener (for example Arena warm-cache hydration). Only
+      // inventory it as a client-firestore operation when the file actually
+      // imports/instantiates Firestore.
+      if (match[1] === 'onSnapshot' &&
+        !/@react-native-firebase\/firestore|\bfirestore\s*\(\)/u.test(source)) continue;
       records.push(makeRecord({ routeType: 'client-firestore', name: match[1], sourcePath, line: lineAt(source, match.index), snippet: snippetAt(source, match.index), source }));
     }
     if (/@react-native-firebase\/firestore|\bfirestore\s*\(\)/u.test(source)) {

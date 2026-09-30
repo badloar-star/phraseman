@@ -41,20 +41,8 @@ describe('owner-retired raster families', () => {
       path.join(root, 'components/feedback/RetiredRasterFallback.tsx'),
       'utf8',
     );
-    expect(fallback).toContain("kind: 'gift' | 'league' | 'boon'");
+    expect(fallback).toContain("kind: 'gift' | 'boon'");
     expect(fallback).not.toMatch(/<Image\b|require\(|https?:\/\//);
-
-    const expectations = [
-      ['components/LevelGiftModal.tsx', 'kind="gift"'],
-      ['components/LevelGiftDualModal.tsx', 'kind="gift"'],
-      ['components/LeagueBonusAvailableModal.tsx', 'kind="league"'],
-      ['components/LeagueChestOpenModal.tsx', 'kind="league"'],
-      ['components/WeeklyBoonDetailModal.tsx', 'kind="boon"'],
-      ['components/celebration/BoonActivatedHybrid.tsx', 'kind="boon"'],
-    ] as const;
-    for (const [relativePath, marker] of expectations) {
-      expect(fs.readFileSync(path.join(root, relativePath), 'utf8')).toContain(marker);
-    }
 
     const dailyPhrase = fs.readFileSync(path.join(root, 'components/DailyPhraseCard.tsx'), 'utf8');
     expect(dailyPhrase).not.toContain('dailyPhraseThemeArtSource');

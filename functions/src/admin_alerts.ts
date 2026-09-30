@@ -375,8 +375,6 @@ export function formatContentReportAlert(
   const answer = clip(safe(data.userAnswer), limits.answer);
   const userLine = [
     clip(safe(data.userName), limits.userName) || '—',
-    `Lv${Number(data.userLevel) || 0}`,
-    `${Number(data.userXP) || 0} XP`,
     `стрик ${Number(data.userStreak) || 0}`,
     data.userPremium ? 'Premium' : 'Free',
     `${Number(data.userDaysInApp) || 0} дн. в апке`,

@@ -53,8 +53,8 @@ const CACHE_KEY_PREFIX = 'quests_active_v1';
 // узкий тип здесь только фиксирует контракт, не единственная защита (см.
 // default-ветку в applyQuestRewards ниже — она ловит любой сюрприз рантайма,
 // а не полагается на то, что тип якобы гарантирует чистоту данных).
-export type QuestRewardKind = 'runes' | 'plus_days' | 'energy_full' | 'freeze';
-export const CLIENT_QUEST_REWARD_KINDS: readonly QuestRewardKind[] = ['runes', 'plus_days', 'energy_full', 'freeze'];
+export type QuestRewardKind = 'runes' | 'plus_days' | 'freeze';
+export const CLIENT_QUEST_REWARD_KINDS: readonly QuestRewardKind[] = ['runes', 'plus_days', 'freeze'];
 /** Экспортирована для тестов границы — не для использования вне этого модуля. */
 export function isQuestRewardKind(value: unknown): value is QuestRewardKind {
   return typeof value === 'string' && (CLIENT_QUEST_REWARD_KINDS as readonly string[]).includes(value);
@@ -70,11 +70,19 @@ export type QuestKind =
   | 'complete_lessons'
   | 'arena_matches'
   | 'streak_days'
-  | 'flashcards_reviewed'
-  | 'earn_xp';
+  | 'flashcards_reviewed';
 
 export type QuestPhase = 'active' | 'ready' | 'claimed' | 'expired';
-export type QuestTargetUnit = 'count' | 'runes' | 'minutes' | 'days' | 'xp';
+export type QuestTargetUnit = 'count' | 'runes' | 'minutes' | 'days';
+
+const QUEST_KIND_SET: ReadonlySet<string> = new Set<QuestKind>([
+  'community_pack_submit', 'invite_friend', 'earn_runes', 'spin_wheel',
+  'watch_video', 'complete_lessons', 'arena_matches', 'streak_days',
+  'flashcards_reviewed',
+]);
+const QUEST_TARGET_UNIT_SET: ReadonlySet<string> = new Set<QuestTargetUnit>([
+  'count', 'runes', 'minutes', 'days',
+]);
 
 export type QuestSnapshot = Readonly<{
   questId: string;
@@ -130,6 +138,9 @@ function normalizeQuest(raw: unknown): QuestSnapshot | null {
   const data = raw as Record<string, unknown>;
   const questId = String(data.questId ?? '').trim();
   if (!questId) return null;
+  const kind = String(data.kind ?? '');
+  const unit = String(data.unit ?? 'count');
+  if (!QUEST_KIND_SET.has(kind) || !QUEST_TARGET_UNIT_SET.has(unit)) return null;
   const rewardsRaw = Array.isArray(data.rewards) ? data.rewards : [];
   const rewards = rewardsRaw
     .map((entry) => {
@@ -149,9 +160,9 @@ function normalizeQuest(raw: unknown): QuestSnapshot | null {
 
   return Object.freeze({
     questId,
-    kind: String(data.kind ?? '') as QuestKind,
+    kind: kind as QuestKind,
     target: Math.max(1, Math.trunc(Number(data.target ?? 1))),
-    unit: (String(data.unit ?? 'count') as QuestTargetUnit),
+    unit: unit as QuestTargetUnit,
     title: String(data.title ?? '').trim(),
     body: String(data.body ?? '').trim(),
     rewards: Object.freeze(rewards),
@@ -433,7 +444,6 @@ async function applyQuestRewards(
         // нечего. Логируем, чтобы цепочка в логах не обрывалась.
         console.log(`${LOG} apply_plus quest=${questId} days=${reward.amount} appliedBy=server`);
         break;
-      case 'energy_full':
       case 'freeze':
         // Эти виды выдаются серверной расписной как факт; локальные эффекты
         // подхватит инвентарь при следующем чтении.

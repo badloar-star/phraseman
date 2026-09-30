@@ -36,7 +36,6 @@ export const SOUND_MOTION: Readonly<Partial<Record<SoundEventId, SoundMotionProf
   'pm.exam.begin': { audibleMs: 578, attackMs: 16, hits: [16, 109, 188, 250, 297, 359], shape: 'multi', bright: 0.0592 },
   'pm.lesson.begin': { audibleMs: 1509, attackMs: 180, hits: [180, 288, 431, 575, 683, 755, 898, 1006], shape: 'multi', bright: 0.432 },
   'pm.voice.record_ready': { audibleMs: 125, attackMs: 109, hits: [109], shape: 'perc', bright: 0.89 },
-  'pm.voice.turn_ready': { audibleMs: 219, attackMs: 0, hits: [203], shape: 'perc', bright: 0.71 },
   'pm.voice.no_speech': { audibleMs: 109, attackMs: 0, hits: [], shape: 'perc', bright: 0.41 },
   'pm.complete.micro': { audibleMs: 531, attackMs: 0, hits: [78, 125, 203, 281, 328], shape: 'multi', bright: 0.96 },
   'pm.complete.session': { audibleMs: 469, attackMs: 16, hits: [16, 172, 266], shape: 'triple', bright: 0.19 },
@@ -47,9 +46,6 @@ export const SOUND_MOTION: Readonly<Partial<Record<SoundEventId, SoundMotionProf
   'pm.complete.star_2': { audibleMs: 156, attackMs: 0, hits: [], shape: 'perc', bright: 0.92 },
   'pm.complete.star_3': { audibleMs: 500, attackMs: 16, hits: [16, 250], shape: 'double', bright: 0.63 },
   'pm.complete.star_3_perfect': { audibleMs: 516, attackMs: 78, hits: [47, 172, 281, 422], shape: 'multi', bright: 0.9082 },
-  'pm.complete.xp_counter_start': { audibleMs: 375, attackMs: 94, hits: [94, 156, 234, 328], shape: 'multi', bright: 0.4134 },
-  'pm.complete.xp_counter_tick': { audibleMs: 953, attackMs: 453, hits: [47, 109, 156, 234, 297, 344, 422, 484, 531, 609, 672, 719, 797, 859], shape: 'multi', bright: 0.9798 },
-  'pm.complete.xp_counter_complete': { audibleMs: 297, attackMs: 0, hits: [234], shape: 'perc', bright: 0.7916 },
   'pm.complete.active_reward_reveal': { audibleMs: 234, attackMs: 125, hits: [125], shape: 'sustain', bright: 0.0441 },
   'pm.complete.active_gift_unlock': { audibleMs: 391, attackMs: 94, hits: [31, 94, 172, 234, 281], shape: 'multi', bright: 0.1206 },
   'pm.complete.multiplier_reveal': { audibleMs: 594, attackMs: 344, hits: [47, 125, 188, 234, 297, 344, 406, 484], shape: 'multi', bright: 0.9423 },
@@ -64,12 +60,8 @@ export const SOUND_MOTION: Readonly<Partial<Record<SoundEventId, SoundMotionProf
   'pm.energy.refilled': { audibleMs: 531, attackMs: 281, hits: [94, 156, 219, 281, 344, 391], shape: 'multi', bright: 0.05 },
   'pm.streak.saved': { audibleMs: 297, attackMs: 78, hits: [78, 156], shape: 'double', bright: 0.97 },
   'pm.reward.small': { audibleMs: 422, attackMs: 156, hits: [63, 156], shape: 'double', bright: 0.96 },
-  'pm.reward.achievement': { audibleMs: 406, attackMs: 141, hits: [109, 250], shape: 'double', bright: 0.96 },
-  'pm.reward.level_up': { audibleMs: 900, attackMs: 350, hits: [25, 200, 350, 500, 600], shape: 'multi', bright: 0.13 },
   'pm.reward.chest_open': { audibleMs: 398, attackMs: 141, hits: [141, 188, 328], shape: 'triple', bright: 0.02 },
   'pm.reward.premium_open': { audibleMs: 867, attackMs: 234, hits: [164, 234, 305, 375, 445, 516], shape: 'multi', bright: 0.01 },
-  'pm.reward.premium_finale': { audibleMs: 398, attackMs: 23, hits: [23, 94], shape: 'double', bright: 0.01 },
-  'pm.reward.vip_open': { audibleMs: 609, attackMs: 141, hits: [47, 141, 211, 281, 375], shape: 'multi', bright: 0.01 },
   'pm.reward.daily_journey_intro': { audibleMs: 1087, attackMs: 81, hits: [81, 282, 362], shape: 'triple', bright: 0.0725 },
   // ─── Празднование v6: карты ударов из docs/design/CELEBRATION_SOUND_PROMPTS.md ───
   // зачем: визуальные события сцен стоят ровно на этих миллисекундах
@@ -85,30 +77,15 @@ export const SOUND_MOTION: Readonly<Partial<Record<SoundEventId, SoundMotionProf
   'pm.celebration.error_fix': { audibleMs: 1180, attackMs: 560, hits: [320, 560, 800], shape: 'triple', bright: 0.5 },
   'pm.celebration.plan_route': { audibleMs: 1060, attackMs: 100, hits: [100, 160, 230, 290, 360, 420, 490, 550, 620], shape: 'multi', bright: 0.72 },
   'pm.celebration.stats_rise': { audibleMs: 1040, attackMs: 640, hits: [80, 132, 184, 236, 288, 340, 392, 444, 496, 640], shape: 'multi', bright: 0.66 },
-  'pm.celebration.streak_shield': { audibleMs: 1000, attackMs: 400, hits: [110, 400], shape: 'double', bright: 0.2 },
   'pm.celebration.aura_bloom': { audibleMs: 1030, attackMs: 220, hits: [220, 420, 478, 536, 594, 652], shape: 'multi', bright: 0.85 },
-  'pm.celebration.max_awaken': { audibleMs: 2200, attackMs: 80, hits: [80, 420, 460, 480, 700, 1020], shape: 'swell', bright: 0.18 },
   'pm.celebration.finale_chord': { audibleMs: 1600, attackMs: 200, hits: [0, 200, 440], shape: 'swell', bright: 0.4 },
   'pm.celebration.promo_stamp': { audibleMs: 850, attackMs: 410, hits: [60, 410, 830], shape: 'double', bright: 0.5 },
   'pm.reward.pack_reveal_start': { audibleMs: 328, attackMs: 234, hits: [234], shape: 'sustain', bright: 0.9432 },
   'pm.reward.pack_complete': { audibleMs: 891, attackMs: 875, hits: [875], shape: 'swell', bright: 0.6416 },
-  'pm.league.promoted': { audibleMs: 1008, attackMs: 281, hits: [94, 141, 281, 328, 375, 469, 727], shape: 'multi', bright: 0.07 },
-  'pm.league.demoted': { audibleMs: 656, attackMs: 422, hits: [23, 94, 422, 492], shape: 'multi', bright: 0.06 },
-  'pm.social.gift_received': { audibleMs: 656, attackMs: 281, hits: [281, 352], shape: 'double', bright: 0.78 },
-  'pm.social.friend_request': { audibleMs: 1008, attackMs: 94, hits: [47, 94, 398, 445], shape: 'multi', bright: 0.13 },
-  'pm.social.quest_complete': { audibleMs: 234, attackMs: 164, hits: [23, 164], shape: 'double', bright: 0.95 },
   'pm.social.friend_added': { audibleMs: 234, attackMs: 16, hits: [16], shape: 'perc', bright: 0.0803 },
-  'pm.spin.button_press': { audibleMs: 63, attackMs: 0, hits: [31], shape: 'perc', bright: 0.8839 },
-  'pm.spin.reel_start': { audibleMs: 563, attackMs: 359, hits: [172, 266, 328, 453], shape: 'multi', bright: 0.0271 },
-  'pm.spin.reel_loop': { audibleMs: 2000, attackMs: 1938, hits: [31, 94, 188, 250, 344, 406, 469, 563, 625, 688, 781, 844, 938, 1000, 1063, 1125, 1188, 1281, 1375, 1438, 1531, 1594, 1656, 1781, 1875, 1938], shape: 'multi', bright: 0.9493 },
-  'pm.spin.reel_stop_rollback': { audibleMs: 1088, attackMs: 431, hits: [206, 263, 338, 431, 488, 619, 825], shape: 'multi', bright: 0.0138 },
-  'pm.spin.reward_lock': { audibleMs: 188, attackMs: 63, hits: [63], shape: 'perc', bright: 0.1511 },
-  'pm.spin.reward_win': { audibleMs: 625, attackMs: 94, hits: [94], shape: 'perc', bright: 0.0369 },
-  'pm.spin.reward_rare': { audibleMs: 656, attackMs: 63, hits: [63, 188, 313], shape: 'triple', bright: 0.0122 },
-  'pm.spin.reward_premium': { audibleMs: 1000, attackMs: 344, hits: [219, 344, 438], shape: 'triple', bright: 0.0733 },
 });
 
-/** Профиль движения события. `null`, если у события нет звукового файла (арена, vip_finale). */
+/** Профиль движения события. `null`, если у события нет звукового файла (арена). */
 export function motionOf(id: SoundEventId): SoundMotionProfile | null {
   return SOUND_MOTION[id] ?? null;
 }

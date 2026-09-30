@@ -4,7 +4,6 @@ import {
   CUSTOM_AVATAR_OWNED_KEY,
 } from '../../constants/customization_storage_keys';
 import { flashcardsOwnedPacksKey, storageStudyTarget } from '../target_storage_keys';
-import { seasonPassEntitlementStorageKey } from '../season_pass_model';
 import type { ClientShardGrant, ClientShardLocalWrite } from './client_shard_operation_ledger';
 import { coerceEnergyStateV2, createFullEnergyState } from '../energy_state_v2';
 import { ENERGY_PERMANENT_CAPACITY_LIMIT } from '../energy_contract';
@@ -100,44 +99,6 @@ async function materializePortableClientShardGrant(
       if (owned[grant.subjectId] !== undefined) return { status: 'already-satisfied', writes: [[paidKey, '1']] };
       return { status: 'materialized', writes: [
         [key, JSON.stringify({ ...owned, [grant.subjectId]: ownedValue })],
-        [paidKey, '1'],
-      ] };
-    }
-    case 'profile_card_level': {
-      const level = Math.max(0, Math.min(5, Math.floor(Number(payload.level ?? grant.subjectId) || 0)));
-      const current = Math.max(0, Math.floor(Number(await AsyncStorage.getItem('profile_card_level')) || 0));
-      if (level === current) return { status: 'already-satisfied', writes: [[paidKey, '1']] };
-      if (level < current) return { status: 'materialized', writes: [[paidKey, '1']] };
-      const themes = ['classic', 'steel', 'teal', 'azure', 'crimson', 'platinum'];
-      const coveredPriorLevels: ClientShardLocalWrite[] = Array.from(
-        { length: current },
-        (_, index) => [semanticPaidKey(ownerStableId, grant.kind, String(index + 1)), '1'] as const,
-      );
-      return { status: 'materialized', writes: [
-        ['profile_card_level', String(level)],
-        ['profile_card_theme', themes[level] ?? 'classic'],
-        ['profile_card_motion', 'none'],
-        ['profile_card_public_focus', 'balanced'],
-        ...coveredPriorLevels,
-        [paidKey, '1'],
-      ] };
-    }
-    case 'season_pass': {
-      const entitlementKey = seasonPassEntitlementStorageKey(ownerStableId);
-      const current = jsonObject(await AsyncStorage.getItem(entitlementKey));
-      // Season ids are YYYY-Qn, therefore lexical order is chronological and
-      // also repairs legacy rows whose purchasedAt was stored as zero.
-      const currentSeasonId = String(current.seasonId ?? '');
-      if (currentSeasonId === grant.subjectId) return { status: 'already-satisfied', writes: [[paidKey, '1']] };
-      if (currentSeasonId > grant.subjectId) return { status: 'materialized', writes: [[paidKey, '1']] };
-      return { status: 'materialized', writes: [
-        [entitlementKey, JSON.stringify({
-          schemaVersion: 'season-pass-entitlement.v1',
-          ownerStableId,
-          seasonId: grant.subjectId,
-          purchasedAtMs: createdAtMs,
-        })],
-        ...(currentSeasonId ? [[semanticPaidKey(ownerStableId, grant.kind, currentSeasonId), '1'] as const] : []),
         [paidKey, '1'],
       ] };
     }
@@ -246,35 +207,6 @@ export async function reduceClientShardGrant(
         writes: [['streak_freeze', JSON.stringify({ active: true, date: grant.subjectId })]],
       };
     }
-    case 'personal_league_boost': {
-      const current = jsonObject(await AsyncStorage.getItem('league_personal_boost_v1'));
-      if (current.expiresAt && Number(current.expiresAt) > Date.now()) {
-        return { status: 'already-satisfied', writes: [] };
-      }
-      const expiresAt = Number(payload.expiresAt);
-      if (!Number.isFinite(expiresAt) || expiresAt <= createdAtMs) return { status: 'unsupported', writes: [] };
-      return { status: 'materialized', writes: [['league_personal_boost_v1', JSON.stringify(payload)]] };
-    }
-    case 'streak_wager': {
-      const current = jsonObject(await AsyncStorage.getItem('streak_wager_v2'));
-      if (current.active === true) return { status: 'already-satisfied', writes: [] };
-      const wager = objectValue(payload.wager);
-      if (wager.active !== true || String(wager.startDate ?? '') !== grant.subjectId.split(':')[0]) {
-        return { status: 'unsupported', writes: [] };
-      }
-      const writes: ClientShardLocalWrite[] = [['streak_wager_v2', JSON.stringify(wager)]];
-      if (payload.consumeLegacyPremiumToken === true) {
-        writes.push(['premium_wager_free_after_levelup_v1', '0']);
-        writes.push(['premium_wager_free_month_issued_v1', '0']);
-      }
-      if (payload.consumeGiftDiscount === true) {
-        const parsedUses = Number.parseInt(String(await AsyncStorage.getItem('wager_discount_uses_v1') ?? ''), 10);
-        const remainingUses = Math.max(Number.isFinite(parsedUses) ? parsedUses : 0, 1) - 1;
-        writes.push(['wager_discount', remainingUses > 0 ? '0.25' : '0']);
-        writes.push(['wager_discount_uses_v1', String(remainingUses)]);
-      }
-      return { status: 'materialized', writes };
-    }
     case 'streak_revive': {
       const current = jsonObject(await AsyncStorage.getItem('streak_revive_v1'));
       if (String(current.lostAt ?? '') !== grant.subjectId) return { status: 'unsupported', writes: [] };
@@ -318,8 +250,6 @@ export function isPortableClientShardGrantKind(kind: string): boolean {
     'official_card_pack',
     'custom_avatar',
     'avatar_aura',
-    'profile_card_level',
-    'season_pass',
     // Купленный урок — долговечное монотонное право: оно обязано доехать на
     // другое устройство, иначе человек заплатил, переустановил и потерял урок.
     'lesson_pearl_unlock',
@@ -338,12 +268,6 @@ export function isValidPortableClientShardGrant(grant: ClientShardGrant): boolea
       return typeof payload.ownedValue === 'string' && payload.ownedValue.length > 0 && payload.ownedValue.length <= 160;
     case 'avatar_aura':
       return true;
-    case 'profile_card_level': {
-      const level = Number(payload.level ?? grant.subjectId);
-      return Number.isSafeInteger(level) && level >= 1 && level <= 5 && String(level) === grant.subjectId;
-    }
-    case 'season_pass':
-      return /^\d{4}-Q[1-4]$/.test(grant.subjectId) && payload.seasonId === grant.subjectId;
     case 'lesson_pearl_unlock': {
       // subjectId = `<target>:<lessonId>` и обязан совпадать с payload —
       // расхождение означает подделанный/битый чек, такой не переносим.

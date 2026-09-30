@@ -37,22 +37,6 @@ export async function getCompletedDialogIds(studyTarget: unknown): Promise<Set<s
   }
 }
 
-/**
- * Префикс записей урока с Максом. У урока нет сценария, но звание раздела
- * считается по размеру этого журнала — без записи ученик Макса навсегда
- * оставался бы «Новичком», сколько бы он ни занимался.
- *
- * зачем день в ключе: урок повторяем по замыслу (он каждый раз про новое), и
- * запись «один раз навсегда» дала бы ровно +1 к званию за всю жизнь. День —
- * тот же компромисс, что и у опыта за урок (см. app/tutor_lesson_reward.ts).
- */
-export const TUTOR_LESSON_ID_PREFIX = 'tutor_lesson:';
-
-/** Стабильный id урока за конкретный день. */
-export function tutorLessonProgressId(dayKey: string): string {
-  return `${TUTOR_LESSON_ID_PREFIX}${dayKey}`;
-}
-
 /** Завершён ли конкретный сценарий. */
 export async function isDialogCompleted(studyTarget: unknown, scenarioId: string): Promise<boolean> {
   if (!scenarioId) return false;

@@ -3,7 +3,7 @@ import firestore from '@react-native-firebase/firestore';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser, ensureStableAuthLink } from './cloud_sync';
 import { getCanonicalUserId } from './user_id_policy';
-import { DebugLogger } from './debug-logger';
+import { DebugLogger, reportSwallowed, swallowError } from './debug-logger';
 import { resolveArenaStudyTarget, type ArenaStudyTarget } from '../modules/arena/target_registry';
 
 /**
@@ -23,8 +23,6 @@ export type UserNotificationType =
   | 'friend_request'
   | 'friend_accepted'
   | 'activity_like'
-  | 'friend_gift_received'
-  | 'friend_gift_thanks'
   | 'arena_partner_invite'
   | 'arena_partner_nudge'
   | 'friend_nudge'
@@ -120,8 +118,6 @@ export const VISIBLE_USER_NOTIFICATION_TYPES: ReadonlySet<string> = new Set<User
   'friend_request',
   'friend_accepted',
   'activity_like',
-  'friend_gift_received',
-  'friend_gift_thanks',
   'arena_partner_invite',
   'arena_partner_nudge',
   'friend_nudge',
@@ -155,8 +151,8 @@ const getFirestore = () => {
 
 async function getNotificationOwnerUid(): Promise<string | null> {
   await ensureAnonUser();
-  await ensureStableAuthLink().catch(() => false);
-  const stableUid = await getCanonicalUserId().catch(() => null);
+  await ensureStableAuthLink().catch((error: unknown) => { reportSwallowed('user_notifications:getNotificationOwnerUid', error); return false; });
+  const stableUid = await getCanonicalUserId().catch((error: unknown) => { reportSwallowed('user_notifications:getNotificationOwnerUid', error); return null; });
   return String(stableUid || '').trim() || null;
 }
 
@@ -298,7 +294,7 @@ function rememberOwnerCache(ownerUid: string, list: UserNotification[]): void {
 function cleanupUnownedLegacyCache(): void {
   if (legacyCacheCleanupStarted) return;
   legacyCacheCleanupStarted = true;
-  void AsyncStorage.multiRemove([LEGACY_CACHE_KEY, LEGACY_LAST_REFRESH_KEY]).catch(() => {});
+  void AsyncStorage.multiRemove([LEGACY_CACHE_KEY, LEGACY_LAST_REFRESH_KEY]).catch(swallowError('user_notifications:cleanupUnownedLegacyCache'));
 }
 
 /** Мгновенный первый кадр: последний известный снапшот без похода в сеть. */
@@ -327,7 +323,7 @@ export async function readCachedUserNotifications(): Promise<UserNotification[]>
     if (list.length !== stored.length) {
       // Physically purge retired/unknown records from the account-scoped cache
       // so they cannot return after a restart or count as unread offline.
-      AsyncStorage.setItem(ownerStorageKey(CACHE_KEY_PREFIX, ownerUid), JSON.stringify(list)).catch(() => {});
+      AsyncStorage.setItem(ownerStorageKey(CACHE_KEY_PREFIX, ownerUid), JSON.stringify(list)).catch(swallowError('user_notifications:readCachedUserNotifications'));
     }
     return list;
   } catch {
@@ -349,7 +345,7 @@ function getNotificationsQuery(ownerUid: string): any | null {
 function writeCache(ownerUid: string, list: UserNotification[]): UserNotification[] {
   const visible = applyOwnerNotificationOverrides(ownerUid, onlyVisibleUserNotifications(list));
   rememberOwnerCache(ownerUid, visible);
-  AsyncStorage.setItem(ownerStorageKey(CACHE_KEY_PREFIX, ownerUid), JSON.stringify(visible)).catch(() => {});
+  AsyncStorage.setItem(ownerStorageKey(CACHE_KEY_PREFIX, ownerUid), JSON.stringify(visible)).catch(swallowError('user_notifications:writeCache'));
   return visible;
 }
 
@@ -376,7 +372,7 @@ async function writeLastRefreshMs(ownerUid: string, ms: number): Promise<void> {
   await AsyncStorage.setItem(
     ownerStorageKey(LAST_REFRESH_KEY_PREFIX, ownerUid),
     String(Math.max(0, Math.floor(ms))),
-  ).catch(() => {});
+  ).catch(swallowError('user_notifications:writeLastRefreshMs'));
 }
 
 export function countUnreadNotifications(list: UserNotification[]): number {

@@ -75,30 +75,11 @@ subscribeAccountGeneration((token) => {
 });
 
 /**
- * Интервал восстановления с учётом активных ускорителей — зеркало
- * `readRecoveryIntervalMs` из EnergyContext (сундук лиги и weekly-boon
- * turbo_regen; берём наименьший, то есть самое быстрое восстановление).
+ * Интервал восстановления — зеркало `readRecoveryIntervalMs` из EnergyContext.
  * Дублируется здесь, а не импортируется, чтобы модуль остался без React.
  */
 async function readRecoveryIntervalMsForPeek(): Promise<number> {
   const { getRecoveryIntervalMs } = await import('./energy_system');
-  try {
-    const [{ readLeagueChestEnergyOverrideMs }, { readBoonEnergyOverrideMs }] = await Promise.all([
-      import('./services/league_chest_rewards'),
-      import('./boons/boon_effects_energy'),
-    ]);
-    const [leagueChestMs, boonMs] = await Promise.all([
-      readLeagueChestEnergyOverrideMs(),
-      readBoonEnergyOverrideMs(),
-    ]);
-    const overrides = [leagueChestMs, boonMs].filter(
-      (value): value is number => typeof value === 'number' && value > 0,
-    );
-    if (overrides.length > 0) return Math.min(...overrides);
-  } catch (e) {
-      // Ускорители недоступны — базовый интервал честнее, чем отказ от прогрева.
-      DebugLogger.error('energy_peek_cache:overrides', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
   return getRecoveryIntervalMs();
 }
 
@@ -124,19 +105,13 @@ export async function primeEnergyPeekFromBoot(): Promise<void> {
   if (peekEnergyState) return; // уже читали в этой сессии — свежее значение важнее
   try {
     const AsyncStorage = (await import('@react-native-async-storage/async-storage')).default;
-    // зачем (аудит 2026-08-25): XP берётся из personal_progress_store — ровно как
-    // в readDynMax. Прямое чтение ключа `user_total_xp` было бы неверным: у
-    // когорты phone_state прогресс живёт в своей базе, и голый ключ отдал бы
-    // устаревшее число.
-    const [{ getMaxEnergy }, { permanentEnergyCapacity }] =
-      await Promise.all([
-        import('./remote_flags'),
-        import('./energy_contract'),
-      ]);
-    // зачем (PM-081, D06/D07): потолок ровно 5 — ни ярус карточки, ни лига его
-    // не меняют, поэтому чтение profile_card_level на холодном старте убрано.
+    // Значение берётся из локального energy contract; удалённые/устаревшие
+    // progress-поля не участвуют в расчёте.
+    const { permanentEnergyCapacity } = await import('./energy_contract');
+    // зачем (PM-081, D06/D07): потолок ровно 5 — оформление его не меняет,
+    // поэтому чтение profile_card_level на холодном старте убрано.
     // Формула та же, что в readDynMax EnergyContext: знаменатель не прыгнет.
-    const dynMax = permanentEnergyCapacity({ base: getMaxEnergy() });
+    const dynMax = permanentEnergyCapacity({ base: 5 });
     if (!Number.isFinite(dynMax) || dynMax <= 0 || peekEnergyState) return;
     const raw = await AsyncStorage.getItem(ENERGY_PEEK_STORAGE_KEY);
     if (!raw || peekEnergyState) return;

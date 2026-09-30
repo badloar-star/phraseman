@@ -7,6 +7,9 @@ import {
   dialogueLanguageIsActivated,
 } from '../app/dialogue_language_activation';
 import { DIALOGUE_STUDY_TARGETS } from '../app/dialogue_language_registry';
+import { assertDialogueEnglishVoiceFallbackGuarded } from './dialogue_voice_english_guard';
+import './dialogue_voice_english_guard.contract';
+import './dialogue_pack_canonical.contract';
 
 const root = resolve(__dirname, '..');
 const read = (path: string) => readFileSync(resolve(root, path), 'utf8');
@@ -38,9 +41,18 @@ if (!targetGate.includes("dialogueLanguageIsActivated('es')")
 for (const file of [
   'app/ai_dialog_session.tsx',
   'app/ai_companion_session.tsx',
-  'app/ai_dialog_tutor_session.tsx',
 ]) {
-  if (read(file).includes("'en-US'")) fail(`${file} still hard-codes en-US`);
+  assertDialogueEnglishVoiceFallbackGuarded(read(file), file);
+}
+
+// V2 replaced the deleted tutor route. It has no playback fallback: its local
+// voice-message hook must prove the requested recognition locale from the
+// selected dialogue contour before native recording may start.
+const v2VoiceMessage = read('hooks/use_dialogue_v2_voice_message.ts');
+if (v2VoiceMessage.includes("'en-US'")
+  || !v2VoiceMessage.includes('resolveDialogueAsrCapability')
+  || !v2VoiceMessage.includes('dialogueLanguageMeta(studyTarget).speechLocale')) {
+  fail('V2 voice-message route can no longer prove the selected contour locale');
 }
 
 const client = read('app/ai_dialog_client.ts');

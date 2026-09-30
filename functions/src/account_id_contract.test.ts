@@ -23,7 +23,9 @@ describe('одно имя аккаунта', () => {
   const contract = fs.readFileSync(path.join(__dirname, 'account_id.ts'), 'utf8');
 
   it('опознание по имени стоит ПОСЛЕ живой привязки и ДО поискового запроса', () => {
-    const byAlias = identity.indexOf('const aliasHit = await findAccountByAlias(');
+    const byAlias = identity.indexOf(
+      'const aliasSelection = await findVerifiedAccountAliasSelection(',
+    );
     const anchor = identity.indexOf('const authLinkAnchor = await findLiveAuthLinkAnchor(');
     const byProvider = identity.indexOf('const authoritativeByAuth = await findStableUidForProviderAuth(');
     expect(anchor).toBeGreaterThan(0);
@@ -36,10 +38,17 @@ describe('одно имя аккаунта', () => {
     // её заполнения. Вести человека по устаревшей карте = пустой профиль.
     // Владение по firebaseAuthUid — то, что нашёл бы прежний авторитетный
     // запрос; подсказки провайдера и легаси-документы решает прежняя лестница.
-    expect(identity).toContain('await verifyAccountHit(db, aliasHit, authUid)');
-    expect(lookup).toContain('identityHidden === true');
-    expect(lookup).toMatch(/[!=]== hit\.accountId/);
-    expect(lookup).toContain('owner === ownerAuthUid');
+    const verifierStart = identity.indexOf('async function findVerifiedAccountAliasSelection(');
+    const verifierEnd = identity.indexOf('async function discoverStableIdentityForAuth(', verifierStart);
+    const verifier = identity.slice(verifierStart, verifierEnd);
+    expect(verifierStart).toBeGreaterThan(0);
+    expect(verifierEnd).toBeGreaterThan(verifierStart);
+    expect(verifier).toContain('userData.identityHidden === true');
+    expect(verifier).toContain('userData[ACCOUNT_ID_FIELD]');
+    expect(verifier).toContain("normalizeStableId(userData[ACCOUNT_ID_FIELD]) !== accountId");
+    expect(verifier).toContain('normalizeStableId(userData.firebaseAuthUid)');
+    expect(verifier).toContain('owner !== authUid');
+    expect(verifier).toContain('return null;');
   });
 
   it('новая ступень не может уронить вход', () => {

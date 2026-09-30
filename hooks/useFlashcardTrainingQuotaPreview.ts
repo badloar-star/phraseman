@@ -1,36 +1,31 @@
 import { useCallback, useEffect, useState } from 'react';
 import { AppState } from 'react-native';
 import { useFocusEffect } from 'expo-router';
-
 import { usePremium } from '../components/PremiumContext';
+
 import {
   captureAccountGeneration,
   subscribeAccountGeneration,
   type AccountGenerationToken,
 } from '../app/account_generation';
 import {
-  previewFlashcardTrainingQuota,
-  type RevenueQuotaAccessResult,
-} from '../app/revenue_quota_access';
-import {
-  getPhoneStatePracticeBridgeRevision,
-  subscribePhoneStatePracticeBridgeRevision,
-} from '../app/phone_state_practice_bridge';
+  MONTHLY_TRAINING_SESSION_LIMIT,
+  previewMonthlyTrainingSessions,
+  type MonthlyTrainingSessionQuotaResult,
+} from '../app/monthly_training_sessions';
 
-const WAITING: RevenueQuotaAccessResult = Object.freeze({
-  status: 'waiting', used: 0, limit: 3, resetAt: null, period: null, bypass: null,
+const WAITING: MonthlyTrainingSessionQuotaResult = Object.freeze({
+  status: 'waiting', used: 0, limit: MONTHLY_TRAINING_SESSION_LIMIT, resetAt: null, period: null, bypass: null,
 });
 
-/** Read-only quota projection for hubs/setup. Authoritative starts use consume. */
-export function useFlashcardTrainingQuotaPreview(): RevenueQuotaAccessResult {
-  const { accessResolved, hasPremiumAccess } = usePremium();
+/** Read-only local monthly session projection for cards and speaking entry UI. */
+export function useFlashcardTrainingQuotaPreview(): MonthlyTrainingSessionQuotaResult {
+  const { hasPremiumAccess } = usePremium();
   const [token, setToken] = useState<AccountGenerationToken>(captureAccountGeneration);
-  const [bridgeRevision, setBridgeRevision] = useState(getPhoneStatePracticeBridgeRevision);
   const [refreshRevision, setRefreshRevision] = useState(0);
-  const [result, setResult] = useState<RevenueQuotaAccessResult>(WAITING);
+  const [result, setResult] = useState<MonthlyTrainingSessionQuotaResult>(WAITING);
 
   useEffect(() => subscribeAccountGeneration(setToken).remove, []);
-  useEffect(() => subscribePhoneStatePracticeBridgeRevision(setBridgeRevision).remove, []);
   const refresh = useCallback(() => setRefreshRevision((current) => current + 1), []);
   useFocusEffect(useCallback(() => {
     refresh();
@@ -42,23 +37,17 @@ export function useFlashcardTrainingQuotaPreview(): RevenueQuotaAccessResult {
   useEffect(() => {
     let cancelled = false;
     setResult(WAITING);
-    // зачем: catch был немым — любая ошибка превращалась в 'unavailable', а экран
-    // по этому статусу молча не пускал в тренировку («нажимается, ничего не происходит»).
-    void previewFlashcardTrainingQuota({ token, accessResolved, hasPremiumAccess })
+    void previewMonthlyTrainingSessions({ token, hasPremiumAccess })
       .then((next) => {
-        console.log('[FC-TRAIN-ENTRY] hook:result', JSON.stringify({
-          status: next.status, used: next.used, limit: next.limit, bypass: next.bypass,
-          accessResolved, hasPremiumAccess, tokenPhase: token.phase, cancelled,
-        }));
         if (!cancelled) setResult(next);
       })
       .catch((error: unknown) => {
-        console.warn('[FC-TRAIN-ENTRY] hook:catch → unavailable',
+        console.warn('[FC-TRAIN-ENTRY] local monthly limit unavailable; allowing start',
           error instanceof Error ? `${error.name}: ${error.message}` : String(error));
-        if (!cancelled) setResult({ ...WAITING, status: 'unavailable' });
+        if (!cancelled) setResult({ ...WAITING, status: 'allowed', bypass: 'local_storage' });
       });
     return () => { cancelled = true; };
-  }, [accessResolved, bridgeRevision, hasPremiumAccess, refreshRevision, token]);
+  }, [hasPremiumAccess, refreshRevision, token]);
   useEffect(() => {
     if (!Number.isFinite(result.resetAt) || result.resetAt === null || result.resetAt <= Date.now()) {
       return undefined;

@@ -18,7 +18,6 @@ import {
 } from '../app/economy/client_shard_operation_ledger';
 import { configurePhoneStateEconomyBridge } from '../app/phone_state_economy_bridge';
 import { CLIENT_SHARD_SEMANTIC_PAID_PREFIX } from '../app/economy/client_shard_semantic_reducer';
-import { seasonPassEntitlementStorageKey } from '../app/season_pass_model';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/stable_id', () => ({ getStableId: jest.fn(async () => 'owner-1') }));
@@ -448,7 +447,7 @@ it('recovers a semantic result receipt after a crash and charges exactly once', 
   expect(storage.shards_balance).toBe('15');
 });
 
-it('deduplicates a concurrent boost but permits another purchase after expiry', async () => {
+it('rejects retired league boost receipts without charging them', async () => {
   const now = Date.now();
   const boost = (operationId: string, startedAt: number) => ({
     operationId,
@@ -470,14 +469,9 @@ it('deduplicates a concurrent boost but permits another purchase after expiry', 
     commitClientShardOperation(boost('boost:race:00000001', now)),
     commitClientShardOperation(boost('boost:race:00000002', now + 1)),
   ]);
-  expect(concurrent.map((result) => result.status).sort()).toEqual(['already-satisfied', 'applied']);
-  expect(storage.shards_balance).toBe('16');
-
-  storage.league_personal_boost_v1 = JSON.stringify({ expiresAt: now - 1 });
-  await expect(commitClientShardOperation(boost('boost:later:0000001', now + 120_000))).resolves.toMatchObject({
-    status: 'applied',
-    balanceAfter: 12,
-  });
+  expect(concurrent.map((result) => result.status)).toEqual(['failed', 'failed']);
+  expect(storage.shards_balance).toBe('20');
+  expect(storage.league_personal_boost_v1).toBeUndefined();
 });
 
 it('credits one semantic reward across different device-local marker snapshots', async () => {
@@ -518,95 +512,22 @@ it('merges an unknown remote credit because the balance delta is its portable re
   expect(storage.shards_balance).toBe('22');
 });
 
-it.each([
-  ['higher clock first', [
-    { level: 1, cost: 20, createdAtMs: 200 },
-    { level: 2, cost: 45, createdAtMs: 100 },
-  ]],
-  ['clock-skewed higher semantic level first', [
-    { level: 2, cost: 45, createdAtMs: 100 },
-    { level: 1, cost: 20, createdAtMs: 200 },
-  ]],
-] as const)('charges every distinct profile level in permutation: %s', async (_label, levels) => {
+it('quarantines retired profile-card level receipts without materializing or charging them', async () => {
   storage.shards_balance = '100';
-  for (const item of levels) {
-    await expect(commitClientShardOperation({
-      expectedOwnerStableId: 'owner-1',
-      mergeReplay: true,
-      mergeSemanticResult: true,
-      mergeSourceFingerprint: String(item.level).repeat(64),
-      operationId: `remote:profile:level:${item.level}`,
-      direction: 'debit',
-      amount: item.cost,
-      reason: 'profile_card_upgrade',
-      grant: {
-        kind: 'profile_card_level',
-        subjectId: String(item.level),
-        payload: { level: item.level },
-      },
-      localWrites: [],
-      createdAtMs: item.createdAtMs,
-    })).resolves.toMatchObject({ status: 'applied' });
-  }
-  expect(storage.shards_balance).toBe('35');
-  expect(storage.profile_card_level).toBe('2');
-
   await expect(commitClientShardOperation({
     expectedOwnerStableId: 'owner-1',
     mergeReplay: true,
     mergeSemanticResult: true,
     mergeSourceFingerprint: 'f'.repeat(64),
-    operationId: 'legacy:duplicate:level:1',
+    operationId: 'legacy:profile:level:1',
     direction: 'debit',
     amount: 20,
     reason: 'profile_card_upgrade',
     grant: { kind: 'profile_card_level', subjectId: '1', payload: { level: 1 } },
     localWrites: [],
-    createdAtMs: 300,
-  })).resolves.toMatchObject({ status: 'already-satisfied', balance: 35 });
-});
-
-it.each([
-  ['chronological', ['2026-Q1', '2026-Q2']],
-  ['reverse semantic order despite client clock order', ['2026-Q2', '2026-Q1']],
-] as const)('charges every distinct season purchase in permutation: %s', async (_label, seasons) => {
-  storage.shards_balance = '100';
-  for (const [index, seasonId] of seasons.entries()) {
-    await expect(commitClientShardOperation({
-      expectedOwnerStableId: 'owner-1',
-      mergeReplay: true,
-      mergeSemanticResult: true,
-      mergeSourceFingerprint: (index === 0 ? 'a' : 'b').repeat(64),
-      operationId: `remote:season:${seasonId}`,
-      direction: 'debit',
-      amount: 25,
-      reason: 'season_pass_purchase',
-      grant: { kind: 'season_pass', subjectId: seasonId, payload: { seasonId } },
-      localWrites: [],
-      createdAtMs: index === 0 ? 200 : 100,
-    })).resolves.toMatchObject({ status: 'applied' });
-  }
-  expect(storage.shards_balance).toBe('50');
-  expect(JSON.parse(storage[seasonPassEntitlementStorageKey('owner-1')]!)).toMatchObject({
-    schemaVersion: 'season-pass-entitlement.v1',
-    ownerStableId: 'owner-1',
-    seasonId: '2026-Q2',
-  });
-  expect(storage.season_pass_owned_v1).toBeUndefined();
-
-  await expect(commitClientShardOperation({
-    expectedOwnerStableId: 'owner-1',
-    mergeReplay: true,
-    mergeSemanticResult: true,
-    mergeSourceFingerprint: 'e'.repeat(64),
-    operationId: 'legacy:duplicate:season:q1',
-    direction: 'debit',
-    amount: 25,
-    reason: 'season_pass_purchase',
-    grant: { kind: 'season_pass', subjectId: '2026-Q1', payload: { seasonId: '2026-Q1' } },
-    localWrites: [],
-    createdAtMs: 300,
-  })).resolves.toMatchObject({ status: 'already-satisfied', balance: 50 });
+  })).resolves.toEqual({ status: 'failed', reason: 'unsupported_semantic_grant' });
+  expect(storage.shards_balance).toBe('100');
+  expect(storage.profile_card_level).toBeUndefined();
 });
 
 it('rejects raw caller injection into semantic paid markers', async () => {

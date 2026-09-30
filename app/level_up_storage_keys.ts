@@ -25,7 +25,6 @@ export const LEVEL_UP_REWARD_FALLBACK_QUARANTINE_KEY = 'pending_level_up_reward_
 export const LEVEL_UP_SHOWN_LEVELS_QUARANTINE_KEY = 'level_up_shown_levels_quarantine_v1';
 export const PENDING_LEVEL_SPIN_LEVEL_UP_QUEUE_KEY = 'pending_level_spin_level_up_queue_v1';
 export const LEVEL_SPIN_OUTBOX_KEY = 'level_reward_spin_outbox_v1';
-export const LEVEL_SPIN_BALANCE_CACHE_KEY = 'level_reward_spin_balance_cache_v1';
 export const LEVEL_SPIN_MATERIALIZED_RESULTS_KEY = 'level_reward_spin_materialized_results_v1';
 export const LEVEL_SPIN_GIFT_JOURNAL_KEY = 'level_reward_spin_gift_journal_v1';
 export const LEVEL_SPIN_PENDING_REVEAL_KEY = 'level_reward_spin_pending_reveal_v1';
@@ -55,7 +54,6 @@ export const LEVEL_UP_REWARD_RECOVERY_ACCOUNT_LOCAL_KEYS = [
   LEVEL_UP_SHOWN_LEVELS_QUARANTINE_KEY,
   PENDING_LEVEL_SPIN_LEVEL_UP_QUEUE_KEY,
   LEVEL_SPIN_OUTBOX_KEY,
-  LEVEL_SPIN_BALANCE_CACHE_KEY,
   LEVEL_SPIN_MATERIALIZED_RESULTS_KEY,
   LEVEL_SPIN_GIFT_JOURNAL_KEY,
   LEVEL_SPIN_PENDING_REVEAL_KEY,

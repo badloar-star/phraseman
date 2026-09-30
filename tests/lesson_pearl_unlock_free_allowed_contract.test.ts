@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 
 /**
@@ -12,7 +12,7 @@ import { join } from 'path';
  *                                → Free кнопку ВИДИТ
  *   обработчик   (lessons.tsx) : if (!isPremium) → пейвол
  *                                → Free ОТСЕКАЛСЯ до вызова ядра
- *   ядро (lessons_pearl_unlock): !hasActivePlus && requiresPremiumForLesson(n)
+ *   ядро (lessons_pearl_unlock, УДАЛЕНО): !hasActivePlus && requiresPremiumForLesson(n)
  *                                → Free ПРОДАЛО БЫ урок без пейвола
  *
  * Работающий механизм не звали никогда, а кнопка читалась как обман.
@@ -28,13 +28,9 @@ const lessonsScreen = readFileSync(
   join(__dirname, '..', 'app', '(tabs)', 'lessons.tsx'),
   'utf8',
 );
-const pearlCore = readFileSync(
-  join(__dirname, '..', 'app', 'lessons_pearl_unlock.ts'),
-  'utf8',
-);
-
 // зачем: D107/D70 — покупка урока за жемчуг удалена из экрана уроков; сторож держит,
-// что UI её не вернул. Ядро (lessons_pearl_unlock.ts) удалит другая сессия.
+// что ни UI, ни ядро её не вернули.
+const appDir = join(__dirname, '..', 'app');
 describe('покупка урока за жемчужины: убрана из экрана уроков', () => {
   it('экран не содержит покупки и её флага', () => {
     expect(lessonsScreen).not.toContain('buyLessonUnlock');
@@ -43,14 +39,10 @@ describe('покупка урока за жемчужины: убрана из �
     expect(lessonsScreen).not.toContain('lessonUnlockPending');
   });
 
-  it('ядро продаёт Free урок без пейвола и отказывает на платном', () => {
-    // Денежная граница обязана жить в ядре, а не в UI: прямой вызов
-    // (минуя экран) тоже получает отказ на платном уроке.
-    expect(pearlCore).toMatch(
-      /if\s*\(\s*!hasActivePlus\s*&&\s*requiresPremiumForLesson\(lessonId\)\s*\)/,
-    );
-    // Проверка Plus не должна брать ответ из кэша или облачного восстановления.
-    expect(pearlCore).toMatch(/bypassCache:\s*true/);
-    expect(pearlCore).toMatch(/allowCloudRefresh:\s*false/);
+  it('ядро покупки удалено, хранилище прошлых покупок осталось', () => {
+    expect(existsSync(join(appDir, 'lessons_pearl_unlock.ts'))).toBe(false);
+    expect(existsSync(join(appDir, 'lessons_pearl_unlock_flag.ts'))).toBe(false);
+    // PM-148-A2: уже купленные уроки по-прежнему читаются отсюда
+    expect(existsSync(join(appDir, 'lessons_pearl_unlock_storage.ts'))).toBe(true);
   });
 });

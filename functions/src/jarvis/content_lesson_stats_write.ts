@@ -3,8 +3,8 @@ import { MAX_LESSON_SCORE, MIN_LESSON_SCORE } from './content_lesson_stats';
 /**
  * Решение «нужно ли писать в lesson_stats» и идентификатор документа —
  * без Firestore, без побочных эффектов. Встраивается в существующую
- * транзакцию progress_events.ts::progressSubmitEvent рядом с уже идущим
- * начислением XP, не переписывая саму эту транзакцию с нуля.
+ * транзакцию progress_events.ts::progressSubmitEvent рядом с записью прогресса,
+ * не переписывая саму эту транзакцию с нуля.
  */
 
 export type ContentStudyTarget = 'en' | 'fr';

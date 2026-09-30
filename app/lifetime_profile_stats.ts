@@ -107,15 +107,6 @@ async function countPhrasesLearnedFromLessonProgress(): Promise<number> {
 }
 
 
-const extractPoints = (val: unknown): number => {
-  if (val === null || val === undefined) return 0;
-  if (typeof val === 'number') return val;
-  if (typeof val === 'object' && val !== null && 'points' in val && typeof (val as { points: unknown }).points === 'number') {
-    return (val as { points: number }).points;
-  }
-  return 0;
-};
-
 async function countLearnedWordsTotal(): Promise<number> {
   const { LESSONS_WITH_WORDS } = await import('./lesson_words');
   const lessons = [...LESSONS_WITH_WORDS];
@@ -209,7 +200,6 @@ export async function loadLifetimeProfileStats(): Promise<LifetimeProfileStats> 
   const [
     wordsLearned,
     diagnosticLastRaw,
-    dailyStatsRaw,
     fgDaily,
     flashCards,
     phrasesLearned,
@@ -218,7 +208,6 @@ export async function loadLifetimeProfileStats(): Promise<LifetimeProfileStats> 
   ] = await Promise.all([
     countLearnedWordsTotal(),
     AsyncStorage.getItem(diagnosticLastKey('en')),
-    AsyncStorage.getItem('daily_stats'),
     getForegroundDailyMsMap(),
     readAllCustomCards(),
     countPhrasesLearnedFromLessonProgress(),
@@ -235,22 +224,24 @@ export async function loadLifetimeProfileStats(): Promise<LifetimeProfileStats> 
     }
   }
 
-  const statsMap: Record<string, unknown> = dailyStatsRaw ? JSON.parse(dailyStatsRaw) : {};
-  const unionDates = new Set([...Object.keys(statsMap), ...Object.keys(fgDaily)]);
-  const sortedUnion = [...unionDates].sort();
+  const sortedDates = Object.keys(fgDaily).sort();
   let run = 0;
   let longest = 0;
   let appDaysUnion = 0;
-  for (const d of sortedUnion) {
-    const pts = extractPoints(statsMap[d]);
+  let previousActiveDay: string | null = null;
+  for (const d of sortedDates) {
     const ms = fgDaily[d] ?? 0;
-    const active = pts > 0 || ms >= MIN_ACTIVE_MS;
+    const active = ms >= MIN_ACTIVE_MS;
     if (active) {
       appDaysUnion++;
-      run++;
+      const dayTime = Date.parse(`${d}T00:00:00Z`);
+      const previousTime = previousActiveDay ? Date.parse(`${previousActiveDay}T00:00:00Z`) : NaN;
+      run = dayTime - previousTime === 86_400_000 ? run + 1 : 1;
       longest = Math.max(longest, run);
+      previousActiveDay = d;
     } else {
       run = 0;
+      previousActiveDay = null;
     }
   }
 

@@ -38,7 +38,7 @@ describe('collectible drop overlay contract', () => {
   it('slots collectibleDrop after completion/rating modals but before transient toasts', () => {
     expect(resolveNextOverlay(null, { lessonCompleteNotif: true, collectibleDrop: true })).toBe('lessonCompleteNotif');
     expect(resolveNextOverlay(null, { collectibleDrop: true, shardsEarned: true })).toBe('collectibleDrop');
-    expect(resolveNextOverlay(null, { collectibleDrop: true, achievementToast: true })).toBe('collectibleDrop');
+    expect(resolveNextOverlay(null, { collectibleDrop: true, coachToast: true })).toBe('collectibleDrop');
   });
 
   it('gates every production CollectibleDropModal renderer through OverlayArbiter', () => {

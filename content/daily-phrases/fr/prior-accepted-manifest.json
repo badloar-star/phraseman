@@ -1,0 +1,1320 @@
+{
+  "schemaVersion": "daily-phrase-prior-accepted-manifest-v1",
+  "studyTarget": "fr",
+  "sourceLocale": "ru",
+  "surface": "daily_phrase",
+  "editorialStatus": "EDITORIAL_CONTINUITY_ACCEPTED",
+  "releaseTrusted": false,
+  "activationApproved": false,
+  "acceptedCount": 176,
+  "acceptedThrough": "fr-176",
+  "acceptedRowIds": [
+    "fr-001",
+    "fr-002",
+    "fr-003",
+    "fr-004",
+    "fr-005",
+    "fr-006",
+    "fr-007",
+    "fr-008",
+    "fr-009",
+    "fr-010",
+    "fr-011",
+    "fr-012",
+    "fr-013",
+    "fr-014",
+    "fr-015",
+    "fr-016",
+    "fr-017",
+    "fr-018",
+    "fr-019",
+    "fr-020",
+    "fr-021",
+    "fr-022",
+    "fr-023",
+    "fr-024",
+    "fr-025",
+    "fr-026",
+    "fr-027",
+    "fr-028",
+    "fr-029",
+    "fr-030",
+    "fr-031",
+    "fr-032",
+    "fr-033",
+    "fr-034",
+    "fr-035",
+    "fr-036",
+    "fr-037",
+    "fr-038",
+    "fr-039",
+    "fr-040",
+    "fr-041",
+    "fr-042",
+    "fr-043",
+    "fr-044",
+    "fr-045",
+    "fr-046",
+    "fr-047",
+    "fr-048",
+    "fr-049",
+    "fr-050",
+    "fr-051",
+    "fr-052",
+    "fr-053",
+    "fr-054",
+    "fr-055",
+    "fr-056",
+    "fr-057",
+    "fr-058",
+    "fr-059",
+    "fr-060",
+    "fr-061",
+    "fr-062",
+    "fr-063",
+    "fr-064",
+    "fr-065",
+    "fr-066",
+    "fr-067",
+    "fr-068",
+    "fr-069",
+    "fr-070",
+    "fr-071",
+    "fr-072",
+    "fr-073",
+    "fr-074",
+    "fr-075",
+    "fr-076",
+    "fr-077",
+    "fr-078",
+    "fr-079",
+    "fr-080",
+    "fr-081",
+    "fr-082",
+    "fr-083",
+    "fr-084",
+    "fr-085",
+    "fr-086",
+    "fr-087",
+    "fr-088",
+    "fr-089",
+    "fr-090",
+    "fr-091",
+    "fr-092",
+    "fr-093",
+    "fr-094",
+    "fr-095",
+    "fr-096",
+    "fr-097",
+    "fr-098",
+    "fr-099",
+    "fr-100",
+    "fr-101",
+    "fr-102",
+    "fr-103",
+    "fr-104",
+    "fr-105",
+    "fr-106",
+    "fr-107",
+    "fr-108",
+    "fr-109",
+    "fr-110",
+    "fr-111",
+    "fr-112",
+    "fr-113",
+    "fr-114",
+    "fr-115",
+    "fr-116",
+    "fr-117",
+    "fr-118",
+    "fr-119",
+    "fr-120",
+    "fr-121",
+    "fr-122",
+    "fr-123",
+    "fr-124",
+    "fr-125",
+    "fr-126",
+    "fr-127",
+    "fr-128",
+    "fr-129",
+    "fr-130",
+    "fr-131",
+    "fr-132",
+    "fr-133",
+    "fr-134",
+    "fr-135",
+    "fr-136",
+    "fr-137",
+    "fr-138",
+    "fr-139",
+    "fr-140",
+    "fr-141",
+    "fr-142",
+    "fr-143",
+    "fr-144",
+    "fr-145",
+    "fr-146",
+    "fr-147",
+    "fr-148",
+    "fr-149",
+    "fr-150",
+    "fr-151",
+    "fr-152",
+    "fr-153",
+    "fr-154",
+    "fr-155",
+    "fr-156",
+    "fr-157",
+    "fr-158",
+    "fr-159",
+    "fr-160",
+    "fr-161",
+    "fr-162",
+    "fr-163",
+    "fr-164",
+    "fr-165",
+    "fr-166",
+    "fr-167",
+    "fr-168",
+    "fr-169",
+    "fr-170",
+    "fr-171",
+    "fr-172",
+    "fr-173",
+    "fr-174",
+    "fr-175",
+    "fr-176"
+  ],
+  "acceptedRows": [
+    {
+      "id": "fr-001",
+      "rowSha256": "A8C4E0221CD29BEC6A7692531F98CBD6B5412A3B563233288C0DA2B66C1AD559"
+    },
+    {
+      "id": "fr-002",
+      "rowSha256": "C799BC78A16381E6E6927F4AC6170CDE8B5D4CD318F672C77D72847F69C271A5"
+    },
+    {
+      "id": "fr-003",
+      "rowSha256": "6C8652AD2C671F01569BE80AFF252B51F60C41648048527E895ECBE9DFC4A716"
+    },
+    {
+      "id": "fr-004",
+      "rowSha256": "A157C4A4F126B2B36758059B904B2B4AD84EA178A0D3A76CA353B6577F998FB6"
+    },
+    {
+      "id": "fr-005",
+      "rowSha256": "60D2103DD015C43B4F31F673692BF83318A2BFD800545F79F8A4677DE951532A"
+    },
+    {
+      "id": "fr-006",
+      "rowSha256": "C35FA43D3D32F476D69ADF84008039415342206DD1E7EAF251F07E497E9B810E"
+    },
+    {
+      "id": "fr-007",
+      "rowSha256": "4BC813D4E33B0B266CCD5FBC16408D0AC9ED3119ACECFEE4626475FB2317C34C"
+    },
+    {
+      "id": "fr-008",
+      "rowSha256": "697788FDFB689B88B64FCD634C537FF6B4E95442AB52BD2B6AC4BE4ECD87CD17"
+    },
+    {
+      "id": "fr-009",
+      "rowSha256": "DBF18CABD7055A090DFCF304486C02E6FC3C7F582A77E1CDBAC101958F904EF7"
+    },
+    {
+      "id": "fr-010",
+      "rowSha256": "AC2B23936DC53EDD841D5F7D8292EDA421EC2E0726E4BCF1754167D0978715DD"
+    },
+    {
+      "id": "fr-011",
+      "rowSha256": "D4137CCA3EFB2DCC83666F18663961CEC96F7865BCD0F8C26EA81ADA012DF8F8"
+    },
+    {
+      "id": "fr-012",
+      "rowSha256": "E45FA3A33DEEC34C0DE9DEE6D076BF6F866CAA2A5FB5D98513644DA1E6EAC0E7"
+    },
+    {
+      "id": "fr-013",
+      "rowSha256": "6FE76097FB848F7D62E84FC2E262B73FBE843A97920F5063DA5DCF44F31FC9B8"
+    },
+    {
+      "id": "fr-014",
+      "rowSha256": "6D043826F8F60B2077558E232B741BF2FAAB086BFBD463655FC290E2F4C0469F"
+    },
+    {
+      "id": "fr-015",
+      "rowSha256": "C5438B1A2BF154744AB5BEE4E9E8E1FECEA895F4B05C3F0DBB5527D2CCE13E3A"
+    },
+    {
+      "id": "fr-016",
+      "rowSha256": "101DE9364A0EF0F7632218A46E7093EC96392565400813FA736B80965EA9CF97"
+    },
+    {
+      "id": "fr-017",
+      "rowSha256": "A104F4CEEADB64075B73DF8C115B243D73BEFB1CB6EDFD148840B2B8580E327A"
+    },
+    {
+      "id": "fr-018",
+      "rowSha256": "D27B3B706D6DC6B7580EE856505D7077995A58AE80C5CB2633B6FBD2BD6D2A06"
+    },
+    {
+      "id": "fr-019",
+      "rowSha256": "403824C45BECC37412A80B655DB2E8843304515759663CC655B00E424BC32FED"
+    },
+    {
+      "id": "fr-020",
+      "rowSha256": "36431E1F123CB13FF2643C3122981AD5F63D591645CDB3C5C62262CE77D902ED"
+    },
+    {
+      "id": "fr-021",
+      "rowSha256": "0800CC8346ADFCF68723894E47EFBACA49378AB7434294A9B7A56C5B2E2C874D"
+    },
+    {
+      "id": "fr-022",
+      "rowSha256": "A19621E2CA1FBB36A7AA76D15840D82C67B89AA925951755F9ACF24712284442"
+    },
+    {
+      "id": "fr-023",
+      "rowSha256": "F5973174F8CBCE9E1218B6616D9F875F733287EEE13C81B81B558F112DDD911D"
+    },
+    {
+      "id": "fr-024",
+      "rowSha256": "50009DF315C1DE5953E240C1D745D2054D5D4ED9DCF85DD0E0DAFA8F370A9AB2"
+    },
+    {
+      "id": "fr-025",
+      "rowSha256": "9B5C50FB11F1D4A6879861CC5D48DCF9C347335C91482D2FB36C611905127E7D"
+    },
+    {
+      "id": "fr-026",
+      "rowSha256": "A2EB069FD6179166788064ECE89430AFD98E91C4E7680C3A7DB2C1EF2F16B647"
+    },
+    {
+      "id": "fr-027",
+      "rowSha256": "2309974EC896C5D3C357FCD27EB8A5BE7D3F2C22F52AFCCC5BBD38B88A04E868"
+    },
+    {
+      "id": "fr-028",
+      "rowSha256": "85AE865D2EDD49CFE27F8E12376E3029B4467495281565CEA2D3D8724E2C4710"
+    },
+    {
+      "id": "fr-029",
+      "rowSha256": "83D08D689B6EB9FB323590FFA0A72C1188F80C168190FE50787585F072D6487C"
+    },
+    {
+      "id": "fr-030",
+      "rowSha256": "B344AA2C1682C949A4C0E741F0C6355F5FF58A4A25B132FFE996AC139D293F90"
+    },
+    {
+      "id": "fr-031",
+      "rowSha256": "C96C32A6456C925BACBD89F2A5D5285E665E876DF80A033A723F16F5815427B6"
+    },
+    {
+      "id": "fr-032",
+      "rowSha256": "D6D4A11B5F890846C13E940664CF54F937EE6DDC6AAB65B4BB049DF57D974807"
+    },
+    {
+      "id": "fr-033",
+      "rowSha256": "2F975CA34ED484C866741D62A7103CEB21D02A9038210053D2ED98D3E24F75D9"
+    },
+    {
+      "id": "fr-034",
+      "rowSha256": "6B7DADC00EC64A75284C841D0A117A443BFAAC60E1649912AE22598F6F1FC791"
+    },
+    {
+      "id": "fr-035",
+      "rowSha256": "B9A2818A41362C407AA47287A336B8F57EA1934B70A607E100CB91CBFEFDA7B8"
+    },
+    {
+      "id": "fr-036",
+      "rowSha256": "673688BB4F2F4751AECA2BCDB6D1378456582FFFBA8F2D4BB629AD5123C6A97B"
+    },
+    {
+      "id": "fr-037",
+      "rowSha256": "F1662ED8E49BD19D413332B844E84F61204A2E4BC36D2B2C1AC5754A7346A677"
+    },
+    {
+      "id": "fr-038",
+      "rowSha256": "24BD19C70E556DC145ECED8649D80871A0C2DDDFB2B0608D6ABD5D1036DC1B17"
+    },
+    {
+      "id": "fr-039",
+      "rowSha256": "A70C2098A3676E9FDB93CE6B4DD711961F0ED5D3D1BEFDF2036B49997A0BD435"
+    },
+    {
+      "id": "fr-040",
+      "rowSha256": "A6E10C54AE878A33917ED7F757814C11A67F8B92AA2132BBB668F1012795D703"
+    },
+    {
+      "id": "fr-041",
+      "rowSha256": "A8689CA83BB10445551FC168F97D79B680D4DE5BC84078D652F253DBECC3F3F7"
+    },
+    {
+      "id": "fr-042",
+      "rowSha256": "F42CF2C6ABBEA2DF414F01E059D0A1C5BB65C8E52562DB3348FD8F0ED2C35F62"
+    },
+    {
+      "id": "fr-043",
+      "rowSha256": "44A525D645E311E61B5807B19110D8B8946AAD59094CAA131758E9D2DC33FFEF"
+    },
+    {
+      "id": "fr-044",
+      "rowSha256": "D922F60AA4D8CAA16E90D25287EF0C283FE1F305A49552829E67B0E1CC692148"
+    },
+    {
+      "id": "fr-045",
+      "rowSha256": "042B0E034128CFABD82EC14EA08443297FC3F9A456B0CA71F531E0FE5E869DC2"
+    },
+    {
+      "id": "fr-046",
+      "rowSha256": "B606B0434801B66710146FB6F16929A31C517A1030B8DA034EC852E62B41E5FF"
+    },
+    {
+      "id": "fr-047",
+      "rowSha256": "F78A451425573B225AAB1EA49789E924C8DA612F274E6E785D4590746112BF35"
+    },
+    {
+      "id": "fr-048",
+      "rowSha256": "4FBCE91551842A036C1FC19622AF9BA445912AB7DBE07DCB2B5CA8CFB617A050"
+    },
+    {
+      "id": "fr-049",
+      "rowSha256": "22E96B03F6E901BE07CF62F36375A57A3C900180BF8315B1A399ABEFCF47CF06"
+    },
+    {
+      "id": "fr-050",
+      "rowSha256": "87101963DE4C875EAC84DE3F7C98B7E57E477AE6704F8BC4B0E95A0B4F161486"
+    },
+    {
+      "id": "fr-051",
+      "rowSha256": "FD9074CA18D89D47AFD8A6CE1C7755EA94051DAC0FACDD51811DFAC81541AE0E"
+    },
+    {
+      "id": "fr-052",
+      "rowSha256": "EE4C579D23BFDC4B390AA58547CD7596C1442E5C136D75BC69F733C59477CB01"
+    },
+    {
+      "id": "fr-053",
+      "rowSha256": "DB72662B6A4637F571C9C936937B9DF2A7DEE326CD9B79E50C00BAC4FF6F8AE5"
+    },
+    {
+      "id": "fr-054",
+      "rowSha256": "9F78D6852649B21FE1F8FF328EC52A7D448B87B81CF8AA54BBEA192D90D6408D"
+    },
+    {
+      "id": "fr-055",
+      "rowSha256": "DF8A93CA2B7AFF4CC6E02222F0D6FB841E9DA6CAA53B565E2B89046E0373BEA4"
+    },
+    {
+      "id": "fr-056",
+      "rowSha256": "6F6D142244DE6D647E465467BBFEF3BEF0AACBFA758692E934C66B11FCAA670A"
+    },
+    {
+      "id": "fr-057",
+      "rowSha256": "064637766BE36C53374AFBA30116406D3FD589839B253F476F65200FF61316FD"
+    },
+    {
+      "id": "fr-058",
+      "rowSha256": "6032F25F67E1DA3EFD2C3603F160FA2F2C6D7037B9C1CAD55569A6E935A59C38"
+    },
+    {
+      "id": "fr-059",
+      "rowSha256": "F206E7CEFBB867647130FEE63A3BCFE91BD0EBD6B46EEF67FB2DB912B4B7D3F9"
+    },
+    {
+      "id": "fr-060",
+      "rowSha256": "762D4E53CC5AAD169B2A6D15D1DB237A6565380F990F956276935059756ECDB1"
+    },
+    {
+      "id": "fr-061",
+      "rowSha256": "3B54F05636C27E1A35F43C841A4B5AC9A61BF4634425176E60ABB85AE2914E21"
+    },
+    {
+      "id": "fr-062",
+      "rowSha256": "99DD8DB48F4160E326C9CB2D4FA7421084B6858A127AF3D12BF63696E8E48A5A"
+    },
+    {
+      "id": "fr-063",
+      "rowSha256": "40AA1A68026A1AC1103FE3D933D94CD9C3F1BA8788138B28A138AFE8AE9FBFFE"
+    },
+    {
+      "id": "fr-064",
+      "rowSha256": "FE9B82ACB9B1BB6C1E2FB4097F2D75CB2B8AC988BF5C6980EC0700827E8E571E"
+    },
+    {
+      "id": "fr-065",
+      "rowSha256": "9B47223116249BE7D884D39D9B0569B807793E0113C013B05C7CE24C4B29206E"
+    },
+    {
+      "id": "fr-066",
+      "rowSha256": "15A448250CA2A70CABD5DE3C526E1486F5E8088193917818842A7385C3430B69"
+    },
+    {
+      "id": "fr-067",
+      "rowSha256": "A4F63CD2227D0D21CE46DD7F4C64971FB228CE814E273E49B4C1612FA02BC265"
+    },
+    {
+      "id": "fr-068",
+      "rowSha256": "0336BFD54FE7AA111E65DFF355FA77A3A5269351F7ACCACD9C767870ADBE2FAC"
+    },
+    {
+      "id": "fr-069",
+      "rowSha256": "BE30894EB008CC90D65528B1618F427FF040ACC57963F303BD90AEA07852AB7B"
+    },
+    {
+      "id": "fr-070",
+      "rowSha256": "B4A1BBD9C7EE30725813365C2A508FD9C96EB0B963C0328BD7B003B72C230196"
+    },
+    {
+      "id": "fr-071",
+      "rowSha256": "221D09E139464E1B5FFB1179212D682B2412B1570DE5E852A53D5F02879B117D"
+    },
+    {
+      "id": "fr-072",
+      "rowSha256": "916A5085088F0002C2F9E5AE3AAC4A1582F1C1D7DC02DD846A9129185D7F7A16"
+    },
+    {
+      "id": "fr-073",
+      "rowSha256": "024C52AF5336F4676411C246061A912CD01AF199A6C4D7A729144D666E0B8E34"
+    },
+    {
+      "id": "fr-074",
+      "rowSha256": "E42C187C25C08676B0155DB289B3B818CFAC74ABD6C758FDD5B553D00D3CB65E"
+    },
+    {
+      "id": "fr-075",
+      "rowSha256": "0BC30385A421EDC956DFD0ED47A1459DD8183845CB212BF0679D05141193E6F3"
+    },
+    {
+      "id": "fr-076",
+      "rowSha256": "7B2230197EADD0A39F4A2F0A3CF98FB9BB3922245BC381A8FA7D7E9EADE54E22"
+    },
+    {
+      "id": "fr-077",
+      "rowSha256": "2E0ACFAF8F65A20E0CE75CDBB95610DE8D10E890C7772AAE030BB23311D47C58"
+    },
+    {
+      "id": "fr-078",
+      "rowSha256": "B58AFE45ADC0111C6A86DECD67DF5D1E9353DC8EAA19F40009F7E11225C96E67"
+    },
+    {
+      "id": "fr-079",
+      "rowSha256": "AC9C2BA8B21443B74D8992CE7B35CF3139F5587BD733FA769BC98787D4D72D22"
+    },
+    {
+      "id": "fr-080",
+      "rowSha256": "C7C153E43FE7A00F1607314F2CA26AF9C9685EEA0B2898115C677EAA27EF0F2D"
+    },
+    {
+      "id": "fr-081",
+      "rowSha256": "97A57A981FC1DFEAADD3D5DE2A5F9D779AB11BEABCF058EA4CC38CCB964413B0"
+    },
+    {
+      "id": "fr-082",
+      "rowSha256": "FEEA844E371D11B4786B2FCB737B7349AA525643337E82D0BB38066E06681760"
+    },
+    {
+      "id": "fr-083",
+      "rowSha256": "DA39048168CD913386DE5F22CDABA1EAA376A6E4E780A366F5C460B00221762F"
+    },
+    {
+      "id": "fr-084",
+      "rowSha256": "968B185F4A2B1BCFC28BA9091729A4BE74AF241A32E338AC59C5AF5C34467933"
+    },
+    {
+      "id": "fr-085",
+      "rowSha256": "C141FF7EE9A87D3A398E36ED3CFABF0DAE3C527F1733476B3850DBEBBD66FA81"
+    },
+    {
+      "id": "fr-086",
+      "rowSha256": "1B457B9BC0798C0474CC0E73B5601C0ADDD8D2EB83ECAB4819F2AA3605BCCBD3"
+    },
+    {
+      "id": "fr-087",
+      "rowSha256": "FABA41AAA8B63AF4B3004E34D58B6A27760D900697783A43F437F6315A7541C7"
+    },
+    {
+      "id": "fr-088",
+      "rowSha256": "FE3C6EF1A49F7B318C0B7AA65C22A74485BD1F115B41C7149427447D573D6237"
+    },
+    {
+      "id": "fr-089",
+      "rowSha256": "86F252360E7454255A7DED4751CA3C3978D4B001C09912538610B8B9C6417DE5"
+    },
+    {
+      "id": "fr-090",
+      "rowSha256": "F1F78A9122947BF21244686EBD8D3F3CB1363B0B7A9B9B2F9118D5ED722273AB"
+    },
+    {
+      "id": "fr-091",
+      "rowSha256": "AE1B2851277ED343E0FE14D6D284FD129D76D01749AB24EBE68AE09189E402E9"
+    },
+    {
+      "id": "fr-092",
+      "rowSha256": "8EB3724EC08F13AF22038EF23097D3F506CA4691DAB21F76E3DC64D033E73E42"
+    },
+    {
+      "id": "fr-093",
+      "rowSha256": "D5D897681C2759B180E623B54BA5104F068CF8D49C6A4E18D2A74282D6A1D6DF"
+    },
+    {
+      "id": "fr-094",
+      "rowSha256": "E40445719C8FF2B83B8B4A1F4B18085B5AC2B1CD6A9FA1447008002AA75DE0DA"
+    },
+    {
+      "id": "fr-095",
+      "rowSha256": "4B54DB231CDA67898553AD7C2D3B7AC4AC56218DB6A1072624880731B301A5DA"
+    },
+    {
+      "id": "fr-096",
+      "rowSha256": "AC64266CC342EE94CDD05D3C1B141DB13AF04E1B79E1B552F7A1ED072AB78937"
+    },
+    {
+      "id": "fr-097",
+      "rowSha256": "D2EFEFF95F7EABEE899DF00E808A61639E619A2FAE4C859E1601F522278A1145"
+    },
+    {
+      "id": "fr-098",
+      "rowSha256": "3E19C78AC5D5960A2F93257EAAC912C6F5DC1FBCAB9B9DD9EF7021E1438AF5C5"
+    },
+    {
+      "id": "fr-099",
+      "rowSha256": "3551844F4FBDF553C8599A7510CB50B79F00C514AB7A5B35A4AA49475776A5C5"
+    },
+    {
+      "id": "fr-100",
+      "rowSha256": "F2E2F0847601EE448AB4289A3331164E3D00EB85D727CA17A0FDFEBE892A004F"
+    },
+    {
+      "id": "fr-101",
+      "rowSha256": "EDDC5F1325CCF32126E95FCECA633441F5BD5F097C2DB64D840DCA65E13ACDB0"
+    },
+    {
+      "id": "fr-102",
+      "rowSha256": "7F28FE19F155F6B9EB70841A5FA770D0E4B434CD9F6EB2BCF9D208873CAF187F"
+    },
+    {
+      "id": "fr-103",
+      "rowSha256": "A87F42FDE480DB2235D39CD5C845E4FFE831CBDA0A93F95C6938D7FCFD5541F3"
+    },
+    {
+      "id": "fr-104",
+      "rowSha256": "DB631DA44490106D64099E494169A92A4E8886C82B0350F9DC465F0E842E5307"
+    },
+    {
+      "id": "fr-105",
+      "rowSha256": "F248EB6A7BD2B658C4EE585B75A25624A8102349CC9B18F1AD572351F66D1B8D"
+    },
+    {
+      "id": "fr-106",
+      "rowSha256": "CA306DB6F262B90700E7B50404EF7CCB1936A6E78E018F44D0DE4A9411051432"
+    },
+    {
+      "id": "fr-107",
+      "rowSha256": "00C3470398B19C5BEBB5C8117312B20F55D8DA73B6AA441C80BF021AF9440DC0"
+    },
+    {
+      "id": "fr-108",
+      "rowSha256": "6E2C3BF487B2CC8258673E66888A92D1FE74E61D195DF3E4EEEB99050A739714"
+    },
+    {
+      "id": "fr-109",
+      "rowSha256": "AF52B061C3BA91A93BA6EA3820ACDBFF3C95E7D68D51A18E7C16A74502A99BD7"
+    },
+    {
+      "id": "fr-110",
+      "rowSha256": "85048D420BE8BB32B6DE2119A714526FDF8864C733DA642FD77ADCA4B2B27AA3"
+    },
+    {
+      "id": "fr-111",
+      "rowSha256": "DBA16FF5DF76A6EE7FCE4FCFDD3910AEB3996717E4AD79718FCC29CF20150A43"
+    },
+    {
+      "id": "fr-112",
+      "rowSha256": "3882B175EF0EF54CE6DBF04F78652CFD6D96C441FD401C8EDC77A99E60B60FB2"
+    },
+    {
+      "id": "fr-113",
+      "rowSha256": "65FA88C9FBE7E6B58598AF0CC88782CA7E1B34D9F11022BE52B2831E25937299"
+    },
+    {
+      "id": "fr-114",
+      "rowSha256": "076AC41B493CEEE9B54FE19614CEC56A28A65C81A7BD7E876231B78CE5BCC6DC"
+    },
+    {
+      "id": "fr-115",
+      "rowSha256": "2E3D029D9104EC2F11761EF2C5AAC96D6EECA2B390FE2A53B0652B587C24DC39"
+    },
+    {
+      "id": "fr-116",
+      "rowSha256": "E86A597ED7C847B163CA7382CC604B88FF02E69A6353047C67340500F831555F"
+    },
+    {
+      "id": "fr-117",
+      "rowSha256": "5A93220851F3E8CEDFC883A6ED7434531A516CE1B2BC5836B5E7A3C98BAFA498"
+    },
+    {
+      "id": "fr-118",
+      "rowSha256": "23657C4EF74021B5144F0B6D7712FA03C010DC0D4A654DDBDD3756789AC7FC0B"
+    },
+    {
+      "id": "fr-119",
+      "rowSha256": "97E3933EB2262EDABC33414844087524DB89481013111AE1ACFB3B63DE92A904"
+    },
+    {
+      "id": "fr-120",
+      "rowSha256": "C0F352E04E763D2E0670138B687B9D2B22CDE2298DDADA35C17CE4AFAE0104CE"
+    },
+    {
+      "id": "fr-121",
+      "rowSha256": "2B7588DB96F21B63B1CE10E1CC1A66F89DDFE91A2BCFF1118F87C89BA2C9D615"
+    },
+    {
+      "id": "fr-122",
+      "rowSha256": "EF3C35E0F1FEA5F3DCD3744A829EE1AC4AED42426243263B3C88E09306658AF5"
+    },
+    {
+      "id": "fr-123",
+      "rowSha256": "FE4A96A70BF64BAC9BD1F3283EE00D589180B1FA2ABEEA9616378C4E52729F38"
+    },
+    {
+      "id": "fr-124",
+      "rowSha256": "4503A1C5BA97CB498974B43D57331579A46A4474F5EB93927D14661148DDC78F"
+    },
+    {
+      "id": "fr-125",
+      "rowSha256": "ECD41585EE2769B71357C6DB02377692443A90DD0A200EF29AEAB5227DBE96A5"
+    },
+    {
+      "id": "fr-126",
+      "rowSha256": "343155FFDC675D0A4E8003787C2619BD161C026100E1386E48B98B9591350B5A"
+    },
+    {
+      "id": "fr-127",
+      "rowSha256": "ABD059321679339275DE8F4FA0616CA22013E832C6FBFC76476ACF8A54F06DD0"
+    },
+    {
+      "id": "fr-128",
+      "rowSha256": "2E65DD19AC6DF19A2311D43DA1343D25452656B6915E3E7B527598F1A0E5A8BB"
+    },
+    {
+      "id": "fr-129",
+      "rowSha256": "35C0052248D1CD1B10B9E75F6A446785309E46F7CF6060EF1A0FB7833C19233F"
+    },
+    {
+      "id": "fr-130",
+      "rowSha256": "B222A711B13AB60004FEA57798867A6575C4CBD35EF2F937E47C389B157BBDA3"
+    },
+    {
+      "id": "fr-131",
+      "rowSha256": "BFF52D1B591A3129CFF16427D5D675074958A68CAD6C6941DFA9C2E3A9455816"
+    },
+    {
+      "id": "fr-132",
+      "rowSha256": "B6FECB4CE875BFA5C6337FCFA9A17422C598D0D978C2E896819876AF82C10008"
+    },
+    {
+      "id": "fr-133",
+      "rowSha256": "426FDDDAFCEC18D26862984AEA5B77F859F1D8F9338BFA454987F2D0AE26BD7A"
+    },
+    {
+      "id": "fr-134",
+      "rowSha256": "73EB6BA392E1C8BF0AE1634653B1B90DBB76A1DA093E6187957F4B43888342CB"
+    },
+    {
+      "id": "fr-135",
+      "rowSha256": "D3B0FE9373D5C852E1A85FA6CDEC4F7739A1B08CEBB4877DC33A01090201A4D2"
+    },
+    {
+      "id": "fr-136",
+      "rowSha256": "B087DD2FCB8B9EB4CEB456D79FAFB2DDD9E4BFA8CED38A8226A7D3EFF633696F"
+    },
+    {
+      "id": "fr-137",
+      "rowSha256": "AF8120077CD6659D2673446B217B2BCE2A2C657B01F8DB2C47A9AE47C3CDAF6E"
+    },
+    {
+      "id": "fr-138",
+      "rowSha256": "1F9E951FDB20CCEDC5049671FBEB55825260C6B4721D7128C504AA99A8401310"
+    },
+    {
+      "id": "fr-139",
+      "rowSha256": "4058D4D21381ED8A785D208C0FCFDDAD436DF3DA45C7F70359C01880BBF49F26"
+    },
+    {
+      "id": "fr-140",
+      "rowSha256": "D5548E3D7698110C8A20CCCA80CA9C329CEA4C0FAA459849A781C3C95C6AC9FD"
+    },
+    {
+      "id": "fr-141",
+      "rowSha256": "5F55056E9A50AC53672AEA0457631CDD8A6E5F117F1E2EADABB712B6058A41F4"
+    },
+    {
+      "id": "fr-142",
+      "rowSha256": "ECB049D99C95CBB4735817695C476E9E5669D09AD5D98077DE4D144E9D619549"
+    },
+    {
+      "id": "fr-143",
+      "rowSha256": "57EA8D2DD130F699442EC4453A4EB18F10D68B460B331C7D064BFD03B949FB86"
+    },
+    {
+      "id": "fr-144",
+      "rowSha256": "5728C6334609A097908F1FADB86AF71750CB2608DC0F3A59E94F9B5D4DAF5A7B"
+    },
+    {
+      "id": "fr-145",
+      "rowSha256": "DA303DEC93DED9414472A7B71130AECEC4A87E620B1C6F209EB4F3B3EBA01265"
+    },
+    {
+      "id": "fr-146",
+      "rowSha256": "70C1DE8E24A8E0315F8C9A89218094BF1FBF7856E499533548E7CBB66196D84B"
+    },
+    {
+      "id": "fr-147",
+      "rowSha256": "B09101F752ECE6B0A8C5A53029DC589C9E2A1CE03EC7B7D2625CEBB96298D8BA"
+    },
+    {
+      "id": "fr-148",
+      "rowSha256": "2ECDA5D4AFBC16693DD549A7863FAF275716E296505EC325197FE23CC11C866A"
+    },
+    {
+      "id": "fr-149",
+      "rowSha256": "941F2B12BA776E077048B1786EF3E7AFFAFACD500EABA87ED9B300AEE3865FB4"
+    },
+    {
+      "id": "fr-150",
+      "rowSha256": "D7ED05BA940F981AFAD83F901069CF6E06B91A6EADDECCCDEE70449A94725AD6"
+    },
+    {
+      "id": "fr-151",
+      "rowSha256": "AA47D175C70B3DD7EA8FC0FEC31E3DAA13FEFD161DC1E3DC032BA6AE1EA73153"
+    },
+    {
+      "id": "fr-152",
+      "rowSha256": "B45591A06C5DFBB3C8AA1119EC381EF80ADFDB38F737956EB16A7516938D7346"
+    },
+    {
+      "id": "fr-153",
+      "rowSha256": "F02BD71324988312B48FDCAFDDFBAFF9EC31A5A1CD9F1B73960C67A18B17AD4B"
+    },
+    {
+      "id": "fr-154",
+      "rowSha256": "F4F3A6164C8CE47B6D31F9DD5073023653F88A799F1D30F7F133DE629DB85331"
+    },
+    {
+      "id": "fr-155",
+      "rowSha256": "9AB70C52DE70C58C8C94379D1DA46660A6DC8125B7DB34AFF922F6B4EA4DFFE8"
+    },
+    {
+      "id": "fr-156",
+      "rowSha256": "FF18A46820B33DD5EBA662B3D31BCEB6B0C483F3EFAF67ED058D7A9854531EE3"
+    },
+    {
+      "id": "fr-157",
+      "rowSha256": "2913A22FC9CC74EA42087A3B828278E59AD79E0CB1B0DB1C016B4B5C5AB14F67"
+    },
+    {
+      "id": "fr-158",
+      "rowSha256": "8290B46B2F80DF0FE8D222AE515D36C6994F8C8CB91F881151883253BD4096A5"
+    },
+    {
+      "id": "fr-159",
+      "rowSha256": "15FB114D256BB41535FB0E49E288ADDF46EAE842640DAB4C52AAFA9D59F6F16A"
+    },
+    {
+      "id": "fr-160",
+      "rowSha256": "6B041C09014F92FCB16CC437FE2AAA77D1959F6F3C0ED94F20AC0F8B3BDD4F7E"
+    },
+    {
+      "id": "fr-161",
+      "rowSha256": "C1877BF8E96ABF548DF43F4FB14842AC5C4F8D4DB28E2DBAC79204DD2A01B552"
+    },
+    {
+      "id": "fr-162",
+      "rowSha256": "AF33EABB027123C6864A65B528C94F83CF8FAD0D81488151447DC537B020B3F1"
+    },
+    {
+      "id": "fr-163",
+      "rowSha256": "5A3D47873B95437FB633E3AB0A686E1646BE90C699447C4CE42942ADA955E2F9"
+    },
+    {
+      "id": "fr-164",
+      "rowSha256": "A1B7EB1994C559EC6DEFFE2CD0899FCD14069BBE74BA2FEF591063A934845227"
+    },
+    {
+      "id": "fr-165",
+      "rowSha256": "D3D4D62EDD139DAAB9AB36E5317BA744E95BEC0EED1875DEEFE86EF618E34217"
+    },
+    {
+      "id": "fr-166",
+      "rowSha256": "288D2B8163B8681BB8C3400098557909505081F114D1750B75425A0B9BCC1C52"
+    },
+    {
+      "id": "fr-167",
+      "rowSha256": "640848B22A256420CA63740A8D4CE9EAD1CBE91E764360AE37E84C579834247C"
+    },
+    {
+      "id": "fr-168",
+      "rowSha256": "202C555ACDF95676B66805C52486D0BF765EF1EA5B04909C936E4FA472C927A2"
+    },
+    {
+      "id": "fr-169",
+      "rowSha256": "131012605BF041A6857323D5D2BFB9AADA234BCAAB02C6F7716A937B945D7849"
+    },
+    {
+      "id": "fr-170",
+      "rowSha256": "7A20628FA3EA890B59E1A71064476A9FCFE381D3E5DA5FCB902CD11AD8C0AB10"
+    },
+    {
+      "id": "fr-171",
+      "rowSha256": "32744C1A3803CC820AB01B11D991E79B802C8832A299D3916D44E761B91CEAFE"
+    },
+    {
+      "id": "fr-172",
+      "rowSha256": "F07B05AB72202593F9B2827253BB4C437714B8729492739879E5F6544A08DE3D"
+    },
+    {
+      "id": "fr-173",
+      "rowSha256": "8F690895B9487303015B41F1BFC794CD8203287C64D9D2FBE74E37D4EE7B0506"
+    },
+    {
+      "id": "fr-174",
+      "rowSha256": "269A295F74A7DEC8133AEEDAB3630488D935BC247CD01AE25C73C4FD4E7BDCB7"
+    },
+    {
+      "id": "fr-175",
+      "rowSha256": "88D86BA77923AEBA005148080750683293266B784822A0C37F08D5AD75056171"
+    },
+    {
+      "id": "fr-176",
+      "rowSha256": "247D66AD37FA2D304B781672E3AD3A488E8CE692D3658EF2F5C4558310BCC68A"
+    }
+  ],
+  "authorityArtifacts": {
+    "bank": {
+      "path": "content/daily-phrases/fr/source-bank.json",
+      "sha256": "D97EF2D4CD78DC320E83217273BF6A064C25188A3AA647D040816DC3BF186DA8"
+    },
+    "sourceEvidence": {
+      "path": "content/daily-phrases/fr/authoritative-source-ledger.json",
+      "sha256": "B8D5AFEE5FE01D6DB65291DD6010EB311454DA025BDD539E1C20DD7FD3078E75"
+    },
+    "sourceLinkage": {
+      "path": "content/daily-phrases/fr/source-ledger.json",
+      "sha256": "5DB5F4F6675075F1D787C441753D98B403B8F6C772B9A610839723D5E6810464"
+    },
+    "englishBaseline": {
+      "path": "admin/daily_phrases_seed.json",
+      "sha256": "A2A744254CEA2080EA44326335DF573AE828D465AC721F696B1E1F2235873321"
+    },
+    "styleContract": {
+      "path": "content/daily-phrases/quality/STYLE_CONTRACT.md",
+      "sha256": "1170D74F22F036DCDC919AF5E7DE17ED1AF47A0E70CD562B56DF95BAFB527812"
+    }
+  },
+  "authoringPackets": [
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-001-005.json",
+      "sha256": "2580B269A150F8714133C2223B34ACCC4B9C728657B0FA8E8EA9E8D4CCD18D4F",
+      "rowIds": [
+        "fr-001",
+        "fr-002",
+        "fr-003",
+        "fr-004",
+        "fr-005"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-006-010.json",
+      "sha256": "B12B37A674A5A2D38EF58899E4F1ADF9C08F7D1AD8137FE841FD2FB40DA33872",
+      "rowIds": [
+        "fr-006",
+        "fr-007",
+        "fr-008",
+        "fr-009",
+        "fr-010"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-011-015.json",
+      "sha256": "161BDBCC00FC5D1EEBD523067C347CCA97C3E48956C5D6C938B7DD48D9C7E84F",
+      "rowIds": [
+        "fr-011",
+        "fr-012",
+        "fr-013",
+        "fr-014",
+        "fr-015"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-016-020.json",
+      "sha256": "B055F6985B49261953845803E649DFF8D0B039B18F524AFC91C0AB4ED23D5A90",
+      "rowIds": [
+        "fr-016",
+        "fr-017",
+        "fr-018",
+        "fr-019",
+        "fr-020"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-021-025.json",
+      "sha256": "FFF65F020280FF963655A34EF03CF788622C9A72A5CB5946515E2FCCE0FC8F5B",
+      "rowIds": [
+        "fr-021",
+        "fr-022",
+        "fr-023",
+        "fr-024",
+        "fr-025"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-026-030.json",
+      "sha256": "E45930C2D901F1A75B34847E98F8A089EB6C3795AD22AF0C5C14A94650ED8330",
+      "rowIds": [
+        "fr-026",
+        "fr-027",
+        "fr-028",
+        "fr-029",
+        "fr-030"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-031-035.json",
+      "sha256": "4804B5BFAFAE842F5F685FF7CC80396FD325CDB6C31FFF0045196EED209BB8A0",
+      "rowIds": [
+        "fr-031",
+        "fr-032",
+        "fr-033",
+        "fr-034",
+        "fr-035"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-036-040.json",
+      "sha256": "EA9E017B10410A53A6176FE78D971274AB2AEE439230564BCCAE930E7DFF4CE7",
+      "rowIds": [
+        "fr-036",
+        "fr-037",
+        "fr-038",
+        "fr-039",
+        "fr-040"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-041-045.json",
+      "sha256": "8B407D635C1BCA23A073880F32F2E9A695CC42CBE9F0C9BFCFE0BC2EDEF2B4A0",
+      "rowIds": [
+        "fr-041",
+        "fr-042",
+        "fr-043",
+        "fr-044",
+        "fr-045"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-046-050.json",
+      "sha256": "4DCEEF2021CC535583E416D09210DC0C24A32089DB4EF80867C90B8226D002A8",
+      "rowIds": [
+        "fr-046",
+        "fr-047",
+        "fr-048",
+        "fr-049",
+        "fr-050"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-051-055.json",
+      "sha256": "AF4CF2637FD715ABF3E850EE7B4E0AF3A78360FCB76F776EEECDA8BFDA9D47E4",
+      "rowIds": [
+        "fr-051",
+        "fr-052",
+        "fr-053",
+        "fr-054",
+        "fr-055"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-056-060.json",
+      "sha256": "0D81AAA5CD9C99FE4B783E39AF00EE260170F5F811DFCE3E2E47A3D78C7AA6E2",
+      "rowIds": [
+        "fr-056",
+        "fr-057",
+        "fr-058",
+        "fr-059",
+        "fr-060"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-061-065.json",
+      "sha256": "116D7F21618E8FBD8DBC66D06AFC943D408BB17604204E333997A26465855C52",
+      "rowIds": [
+        "fr-061",
+        "fr-062",
+        "fr-063",
+        "fr-064",
+        "fr-065"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-066-070.json",
+      "sha256": "43C8EF94B9C4DAA8C3F7E32584A6A8B72270E3E58A123C79E112C426EADCA1F8",
+      "rowIds": [
+        "fr-066",
+        "fr-067",
+        "fr-068",
+        "fr-069",
+        "fr-070"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-071-075.json",
+      "sha256": "89CC293840730BFA6FD1E22409E2B70CC4D7AD6AE9D2BEC47AD8A3249999B146",
+      "rowIds": [
+        "fr-071",
+        "fr-072",
+        "fr-073",
+        "fr-074",
+        "fr-075"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-076-080.json",
+      "sha256": "658BDA11D2A78B1754F5D9C0C3EEAD8F253F0D81C6A83075A3A0627B6A893A8F",
+      "rowIds": [
+        "fr-076",
+        "fr-077",
+        "fr-078",
+        "fr-079",
+        "fr-080"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-081-085.json",
+      "sha256": "FCB025F0707355926C434AB01D5FFA8BECC1EAF138967930839296B6353904BB",
+      "rowIds": [
+        "fr-081",
+        "fr-082",
+        "fr-083",
+        "fr-084",
+        "fr-085"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-086-090.json",
+      "sha256": "235EDBE32AC6AB0C10BE68E22B26F930D09B88F881189926788A5883A1B264B6",
+      "rowIds": [
+        "fr-086",
+        "fr-087",
+        "fr-088",
+        "fr-089",
+        "fr-090"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-091-095.json",
+      "sha256": "2D005F8F7FA4782E1259A562C82F97C5E7B070FB2830BCD33D9805ACAA69F4CF",
+      "rowIds": [
+        "fr-091",
+        "fr-092",
+        "fr-093",
+        "fr-094",
+        "fr-095"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-096-100.json",
+      "sha256": "6FD8CA8E1D95A719AC29BCEFE603DBBC7917D4C487322B0FB95643504ED37197",
+      "rowIds": [
+        "fr-096",
+        "fr-097",
+        "fr-098",
+        "fr-099",
+        "fr-100"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-101-105.json",
+      "sha256": "69C27285FDCB273690FB0FB3D8EF159359F1258E91A82220D4EE37C8BABEC8C4",
+      "rowIds": [
+        "fr-101",
+        "fr-102",
+        "fr-103",
+        "fr-104",
+        "fr-105"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-106-110.json",
+      "sha256": "46A4F801CF0BB52744203C2DD3208700266C3981FAE5068FD8E547692BE9E019",
+      "rowIds": [
+        "fr-106",
+        "fr-107",
+        "fr-108",
+        "fr-109",
+        "fr-110"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-111-115.json",
+      "sha256": "D011D46B54BF1B6B7B832350372B3B78C26A634EE91D1BFDAE40632BA1562F5F",
+      "rowIds": [
+        "fr-111",
+        "fr-112",
+        "fr-113",
+        "fr-114",
+        "fr-115"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-116-120.json",
+      "sha256": "48C71CF607FA934521551943039F080D31DE61FC5E210B5B2AD79A383C9D8A3A",
+      "rowIds": [
+        "fr-116",
+        "fr-117",
+        "fr-118",
+        "fr-119",
+        "fr-120"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-121-125.json",
+      "sha256": "B77BF0FC45591EB169EAD73FE9D874CE4ABADB13FCE0A2A3C5E37E7C9DF12A9E",
+      "rowIds": [
+        "fr-121",
+        "fr-122",
+        "fr-123",
+        "fr-124",
+        "fr-125"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-126-130.json",
+      "sha256": "B726EC850F25CDF1F6CF819BC51A3B883CADFEA64A3A40D66AB016A7D74EBD37",
+      "rowIds": [
+        "fr-126",
+        "fr-127",
+        "fr-128",
+        "fr-129",
+        "fr-130"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-131-135.json",
+      "sha256": "C4590F2613B2D45EC7C83D07CD71496C7B385EE6B8C5EF89167BF971243850B0",
+      "rowIds": [
+        "fr-131",
+        "fr-132",
+        "fr-133",
+        "fr-134",
+        "fr-135"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-136-140.json",
+      "sha256": "B65B4E89C9BFACB4E39E7F96BE0715C524F7AF601B48E33A86E2F46E21426556",
+      "rowIds": [
+        "fr-136",
+        "fr-137",
+        "fr-138",
+        "fr-139",
+        "fr-140"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-141-145.json",
+      "sha256": "6BEC204AEBC4B60F0A3420B1472A954C72441593920D9FE614DFEC752C45E361",
+      "rowIds": [
+        "fr-141",
+        "fr-142",
+        "fr-143",
+        "fr-144",
+        "fr-145"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-146-150.json",
+      "sha256": "AEB75148518BB7EA260D190472B64FBF5273CF092F70F00B0B13E9E214FE1A16",
+      "rowIds": [
+        "fr-146",
+        "fr-147",
+        "fr-148",
+        "fr-149",
+        "fr-150"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-151-155.json",
+      "sha256": "3E4B8C96DADE26C7B8515E2C9D68CB8196D9AF374D1D8A85F56595BA21E43604",
+      "rowIds": [
+        "fr-151",
+        "fr-152",
+        "fr-153",
+        "fr-154",
+        "fr-155"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-156-160.json",
+      "sha256": "47F0825DB31248C17546D3A3938D1D7BAE77D60E5F23F059D0B1234FB8B7BB5B",
+      "rowIds": [
+        "fr-156",
+        "fr-157",
+        "fr-158",
+        "fr-159",
+        "fr-160"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-161-165.json",
+      "sha256": "B1E9067F33F7C2CACEEE5EFD0443F054A3526FFD527759A3B5FC462CD2EC5FB3",
+      "rowIds": [
+        "fr-161",
+        "fr-162",
+        "fr-163",
+        "fr-164",
+        "fr-165"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-166-170.json",
+      "sha256": "EE7B1C58699567D7A67A198A903D29D2907371999B91042B82302089D9267294",
+      "rowIds": [
+        "fr-166",
+        "fr-167",
+        "fr-168",
+        "fr-169",
+        "fr-170"
+      ]
+    },
+    {
+      "path": "content/daily-phrases/fr/authoring/fr-171-176.json",
+      "sha256": "B60D3558E6EB127D1EE71403735BBF08D98E216C6E4BDE6B9F9479E5E367962A",
+      "rowIds": [
+        "fr-171",
+        "fr-172",
+        "fr-173",
+        "fr-174",
+        "fr-175",
+        "fr-176"
+      ]
+    }
+  ],
+  "deterministicGates": {
+    "sourceLink": "PASS",
+    "style": "PASS",
+    "quiz": "PASS",
+    "structural": "PASS"
+  },
+  "independentEditorialReview": {
+    "verdict": "ACCEPT",
+    "findings": [],
+    "reviewedAt": "2026-09-27T17:12:15.5363768Z",
+    "reviewerIndependence": true,
+    "reviewerIdentity": "independent-review-chain:/root/review_fr_001_035_prior_acceptance+/root/review_fr_036_040_semantic_quiz+/root/judge_taste_fr_036_040+/root/verify_fr_040_continuity_after_source45+/root/review_fr_041_045_semantic_quiz+/root/judge_taste_fr_041_045+/root/audit_fr_manifest_and_collision+/root/audit_fr_manifest_and_collision:fr050-retarget+/root/review_fr046_050_spec_final+/root/judge_taste_fr046_050_final+/root/verify_fr050_after_source55+/root/guardian_fr051_055+/root/judge_taste_fr051_055+/root/review_fr056_060_semantic+/root/judge_taste_fr056_060+/root/review_fr061_065_semantic+/root/judge_taste_fr061_065+/root/review_fr066_070_semantic+/root/judge_taste_fr066_070+/root/review_fr066_070_semantic:fr071-075+/root/judge_taste_fr066_070:fr071-075+deterministic-continuity-gate:source80+/root/review_fr066_070_semantic:fr076-080+/root/judge_taste_fr066_070:fr076-080+deterministic-continuity-gate:source85+/root/review_fr066_070_semantic:fr081-085+/root/judge_taste_fr066_070:fr081-085+deterministic-continuity-gate:source90+/root/review_fr066_070_semantic:fr086-090+/root/judge_taste_fr066_070:fr086-090+deterministic-continuity-gate:source95+/root/review_fr066_070_semantic:fr091-095+/root/judge_taste_fr066_070:fr091-095+deterministic-continuity-gate:source100+/root/review_fr066_070_semantic:fr096-100+/root/judge_taste_fr066_070:fr096-100+deterministic-continuity-gate:source105+/root/review_fr066_070_semantic:fr101-105+/root/judge_taste_fr066_070:fr101-105+deterministic-continuity-gate:source110+/root/review_fr066_070_semantic:fr106-110+/root/judge_taste_fr066_070:fr106-110+deterministic-continuity-gate:source115+/root/review_fr066_070_semantic:fr111-115+/root/judge_taste_fr066_070:fr111-115+deterministic-continuity-gate:source120+/root/review_fr066_070_semantic:fr116-120+/root/judge_taste_fr066_070:fr116-120+deterministic-continuity-gate:source125+/root/review_fr066_070_semantic:fr121-125+/root/judge_taste_fr066_070:fr121-125+deterministic-continuity-gate:source130+/root/review_fr066_070_semantic:fr126-130+/root/judge_taste_fr066_070:fr126-130+deterministic-continuity-gate:source135+/root/review_fr066_070_semantic:fr131-135+/root/judge_taste_fr066_070:fr131-135+deterministic-continuity-gate:source140+/root/review_fr066_070_semantic:fr136-140+/root/judge_taste_fr066_070:fr136-140+deterministic-continuity-gate:source145+/root/review_fr066_070_semantic:fr141-145+/root/judge_taste_fr066_070:fr141-145+deterministic-continuity-gate:source150+/root/review_fr066_070_semantic:fr146-150+/root/judge_taste_fr066_070:fr146-150+deterministic-continuity-gate:source155+deterministic-continuity-gate:pending151-155+/root/review_fr066_070_semantic:fr171-176+/root/judge_taste_fr066_070:fr171-176",
+    "releaseTrusted": false
+  },
+  "releaseBoundary": "Editorial continuity only; not a trusted release receipt and not activation approval."
+}

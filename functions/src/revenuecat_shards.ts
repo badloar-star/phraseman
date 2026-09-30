@@ -23,7 +23,6 @@ import {
   ACCOUNT_DELETE_TOMBSTONES,
   accountDeletePermanentDenialId,
 } from './account_delete_job';
-import { appendExternalEconomyEvent } from './external_economy_events';
 import { recordPaymentWebhookFailure } from './payment_webhook_alert';
 import { markRefereeQualified } from './referral';
 import { writeAccessProjection, writeAccessProjectionFromPatch } from './access_projection';
@@ -42,12 +41,17 @@ const VOICE_MINUTE_SANDBOX_STABLE_UIDS = defineString('VOICE_MINUTE_SANDBOX_STAB
   description: 'Comma/space separated stable UIDs allowed to receive verified RevenueCat SANDBOX voice-minute purchases.',
 });
 
-const SHARD_PACKS_BY_PRODUCT_ID: Record<string, { packId: string; shards: number }> = {
-  phraseman_shards_30: { packId: 'starter', shards: 35 },
-  phraseman_shards_80: { packId: 'popular', shards: 92 },
-  phraseman_shards_180: { packId: 'value', shards: 210 },
-  phraseman_shards_420: { packId: 'pro', shards: 500 },
-};
+// зачем: D103 (владелец, 2026-09-30) — жемчуг, купленный за реальные деньги,
+// сгорает, как и остальной (D70). Пакеты жемчуга снимает с продажи владелец в
+// сторах; вебхук их больше НЕ начисляет и возвраты по ним не списывает, а только
+// логирует и поднимает алерт на покупку (деньги списаны — владелец должен видеть).
+// Plus/Pro и минуты голоса обрабатываются как раньше.
+const RETIRED_SHARD_PRODUCT_IDS: ReadonlySet<string> = new Set([
+  'phraseman_shards_30',
+  'phraseman_shards_80',
+  'phraseman_shards_180',
+  'phraseman_shards_420',
+]);
 
 const PREMIUM_ACTIVE_EVENTS = new Set([
   'INITIAL_PURCHASE',
@@ -111,104 +115,6 @@ type RevenueCatWebhookBody = {
 };
 
 type RevenueCatEvent = NonNullable<RevenueCatWebhookBody['event']>;
-
-export type ShardRefundLifecycle = Readonly<{
-  status: 'active' | 'refunded';
-  epoch: number;
-  lastEventAtMs: number;
-  lastEventType: 'PURCHASE' | 'REFUND' | 'REFUND_REVERSED';
-  lastEventId: string;
-}>;
-
-export type ShardRefundLifecycleDecision = Readonly<{
-  applyDelta: -1 | 0 | 1;
-  reason: 'refunded' | 'restored' | 'already_refunded' | 'already_active' | 'stale_event' | 'refund_not_found';
-  next: ShardRefundLifecycle;
-}>;
-
-function readShardRefundLifecycle(original: Record<string, unknown>): ShardRefundLifecycle {
-  const explicitStatus = original.shardRefundState === 'refunded' || original.shardRefundState === 'active'
-    ? original.shardRefundState
-    : null;
-  const refundedAt = Math.max(0, Math.trunc(Number(original.refundEventTimestampMs ?? original.refundedAt) || 0));
-  const reversedAt = Math.max(0, Math.trunc(Number(original.refundReversedEventTimestampMs ?? original.refundReversedAt) || 0));
-  const legacyStatus = refundedAt > 0 && refundedAt >= reversedAt ? 'refunded' : 'active';
-  const lastEventAtMs = Math.max(
-    0,
-    Math.trunc(Number(original.shardRefundLastEventAtMs) || 0),
-    refundedAt,
-    reversedAt,
-  );
-  const lastEventType = original.shardRefundLastEventType === 'REFUND'
-    || original.shardRefundLastEventType === 'REFUND_REVERSED'
-    || original.shardRefundLastEventType === 'PURCHASE'
-    ? original.shardRefundLastEventType
-    : refundedAt >= reversedAt && refundedAt > 0
-      ? 'REFUND'
-      : reversedAt > 0
-        ? 'REFUND_REVERSED'
-        : 'PURCHASE';
-  return {
-    status: explicitStatus ?? legacyStatus,
-    epoch: Math.max(0, Math.trunc(Number(original.shardRefundEpoch) || 0)),
-    lastEventAtMs,
-    lastEventType,
-    lastEventId: cleanId(original.shardRefundLastEventId),
-  };
-}
-
-export function reduceShardRefundLifecycle(
-  current: ShardRefundLifecycle,
-  event: Readonly<{ type: 'REFUND' | 'REFUND_REVERSED'; eventId: string; eventTimestampMs: number }>,
-): ShardRefundLifecycleDecision {
-  if (event.eventTimestampMs < current.lastEventAtMs) {
-    return { applyDelta: 0, reason: 'stale_event', next: current };
-  }
-  if (event.type === 'REFUND') {
-    if (current.status === 'refunded') {
-      return { applyDelta: 0, reason: 'already_refunded', next: current };
-    }
-    return {
-      applyDelta: -1,
-      reason: 'refunded',
-      next: {
-        status: 'refunded',
-        epoch: current.epoch + 1,
-        lastEventAtMs: event.eventTimestampMs,
-        lastEventType: event.type,
-        lastEventId: event.eventId,
-      },
-    };
-  }
-  if (current.status === 'active') {
-    return {
-      applyDelta: 0,
-      reason: current.epoch === 0 ? 'refund_not_found' : 'already_active',
-      next: current,
-    };
-  }
-  return {
-    applyDelta: 1,
-    reason: 'restored',
-    next: {
-      status: 'active',
-      epoch: current.epoch,
-      lastEventAtMs: event.eventTimestampMs,
-      lastEventType: event.type,
-      lastEventId: event.eventId,
-    },
-  };
-}
-
-function shardRefundLifecyclePatch(state: ShardRefundLifecycle): Record<string, unknown> {
-  return {
-    shardRefundState: state.status,
-    shardRefundEpoch: state.epoch,
-    shardRefundLastEventAtMs: state.lastEventAtMs,
-    shardRefundLastEventType: state.lastEventType,
-    shardRefundLastEventId: state.lastEventId,
-  };
-}
 
 function cleanId(raw: unknown): string {
   return String(raw ?? '').trim();
@@ -279,12 +185,6 @@ function authMatches(header: string | undefined, expected: string): boolean {
   const lowerValue = value.toLowerCase();
   const lowerBearerExpected = `bearer ${expected}`.toLowerCase();
   return safeEqual(value, expected) || safeEqual(lowerValue, lowerBearerExpected);
-}
-
-function parseShards(raw: unknown): number {
-  const n = typeof raw === 'number' ? raw : Number(raw);
-  if (!Number.isFinite(n) || n < 0) return 0;
-  return Math.floor(n);
 }
 
 function candidateUserIds(event: RevenueCatEvent): string[] {
@@ -976,6 +876,34 @@ async function handleVoiceMinutePackEvent(
   }
 }
 
+async function handleRetiredShardProductEvent(
+  event: RevenueCatEvent,
+  eventType: string,
+  productId: string,
+  res: any,
+): Promise<void> {
+  const transactionId = cleanId(event.transaction_id || event.original_transaction_id || event.id);
+  const details = {
+    eventType,
+    productId,
+    transactionId,
+    eventId: cleanId(event.id),
+    store: cleanId(event.store),
+    environment: cleanId(event.environment),
+    eventTimestampMs: eventMs(event.event_timestamp_ms),
+  };
+  logger.warn('[D103] revenuecat_shard_product_retired', details);
+  if (eventType === 'NON_RENEWING_PURCHASE') {
+    // Деньги списаны за снятый с продажи товар — сигнал владельцу, а не тишина.
+    await recordPaymentWebhookFailure(admin.firestore(), {
+      hook: 'shards',
+      message: `retired pearl pack purchased: product=${productId} tx=${transactionId} store=${details.store} (D103: not credited)`,
+      nowMs: Date.now(),
+    });
+  }
+  res.status(200).json({ ok: true, kind: 'shards', ignored: 'shards_retired_d103', eventType });
+}
+
 async function handlePremiumSubscriptionEvent(
   event: RevenueCatEvent,
   eventType: string,
@@ -993,428 +921,6 @@ async function handlePremiumSubscriptionEvent(
     logger.error('revenuecat_premium_lineage_webhook_failed', error);
     await recordPaymentWebhookFailure(admin.firestore(), {
       hook: 'premium_lineage',
-      message: String(error),
-      nowMs: Date.now(),
-    });
-    res.status(500).send('Internal error');
-  }
-}
-
-async function handleShardPurchaseEvent(
-  event: RevenueCatEvent,
-  eventType: string,
-  productId: string,
-  pack: { packId: string; shards: number },
-  res: any,
-): Promise<void> {
-  // REFUND consumable-покупки осколков обрабатывается отдельно: ищем оригинальную
-  // транзакцию начисления и списываем ровно ту сумму, что была начислена (не из
-  // pack — RC шлёт REFUND с тем же product_id, но идемпотентность ведём по
-  // original_transaction_id оригинальной покупки).
-  if (eventType === 'REFUND') {
-    await handleShardRefundEvent(event, productId, res);
-    return;
-  }
-  if (eventType === 'REFUND_REVERSED') {
-    await handleShardRefundReversedEvent(event, productId, res);
-    return;
-  }
-  if (eventType !== 'NON_RENEWING_PURCHASE') {
-    res.status(200).json({ ok: true, ignored: 'not_non_renewing_purchase' });
-    return;
-  }
-
-  const transactionId = cleanId(event.transaction_id || event.original_transaction_id || event.id);
-  const boundedCandidates = boundPremiumOwnerCandidates(candidateUserIds(event));
-  if (boundedCandidates.status === 'quarantine') {
-    res.status(202).json({ ok: true, kind: 'shards', quarantined: true, reason: boundedCandidates.reason });
-    return;
-  }
-  const candidates = boundedCandidates.candidates;
-  if (!transactionId || candidates.length === 0) {
-    res.status(400).send('Missing transaction_id or app_user_id');
-    return;
-  }
-
-  const db = admin.firestore();
-  const processedRef = db.collection('revenuecat_shard_transactions').doc(transactionId);
-  const now = Date.now();
-  const nowIso = new Date(now).toISOString();
-
-  try {
-    const out = await db.runTransaction(async (tx) => {
-      const processedSnap = await tx.get(processedRef);
-      const permanentDenialSnapshots = await readPermanentDeletionDenials(tx, db, candidates);
-      const deletionSnapshots: FirebaseFirestore.DocumentSnapshot[] = [];
-      for (const candidate of candidates) {
-        deletionSnapshots.push(await tx.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(candidate)));
-        deletionSnapshots.push(await tx.get(db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(candidate)));
-      }
-      if (processedSnap.exists) {
-        return { granted: false, reason: 'duplicate' as const };
-      }
-      if ([...deletionSnapshots, ...permanentDenialSnapshots].some((snapshot) => snapshot.exists)) {
-        return { granted: false, reason: 'account_deletion_pending_or_permanent' as const };
-      }
-
-      const match = await resolvePremiumOwnerRef(tx, db, candidates);
-      if (match.status !== 'resolved') {
-        // зачем: инцидент 2026-08-16 — оплачен пакет «80 + 12 бонусных», не
-        // начислено ничего, владелец узнал из письма покупателя. При исходе
-        // 'ambiguous' ветка отдавала 200 OK: RevenueCat считал доставку
-        // успешной и больше НИКОГДА не повторял событие — деньги списаны,
-        // жемчужин нет, следов нет. И 'missing', и 'ambiguous' означают лишь
-        // «пока не знаем, кому начислить» (аккаунт ещё не долетел, личности
-        // не слиты), а не «начислять некому». Оба — retry, как в премиум-ветке.
-        tx.set(
-          db.collection('revenuecat_shard_denials').doc(transactionId),
-          {
-            reason: match.reason,
-            productId,
-            packId: pack.packId,
-            shards: pack.shards,
-            candidates,
-            ...(match.status === 'ambiguous' ? { ownerUids: match.ownerUids } : {}),
-            eventId: cleanId(event.id),
-            eventTimestampMs: eventMs(event.event_timestamp_ms),
-            createdAt: admin.firestore.FieldValue.serverTimestamp(),
-          },
-          { merge: true },
-        );
-        return { granted: false, reason: match.reason, retryable: true };
-      }
-
-      const { uid, ref: userRef } = match;
-      const canonicalDeletionSnapshots = [
-        await tx.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(uid)),
-        await tx.get(db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(uid)),
-        ...(await readPermanentDeletionDenials(tx, db, [uid])),
-      ];
-      if (canonicalDeletionSnapshots.some((snapshot) => snapshot.exists)) {
-        return { granted: false, reason: 'account_deletion_pending_or_permanent' as const };
-      }
-      appendExternalEconomyEvent(tx, userRef, {
-        source: 'revenuecat_purchase',
-        eventId: transactionId,
-        ownerStableId: uid,
-        delta: pack.shards,
-        reason: 'shards_store_purchase',
-        kind: 'real_money_shard_pack',
-        subjectId: productId,
-        payload: {
-          packId: pack.packId,
-          productId,
-          store: cleanId(event.store),
-          environment: cleanId(event.environment),
-          transactionId: cleanId(event.transaction_id),
-          originalTransactionId: cleanId(event.original_transaction_id),
-          revenueCatEventId: cleanId(event.id),
-        },
-        createdAtMs: eventMs(event.purchased_at_ms) ?? now,
-      });
-
-      tx.set(processedRef, {
-        uid,
-        productId,
-        packId: pack.packId,
-        shards: pack.shards,
-        eventId: cleanId(event.id),
-        eventType,
-        store: cleanId(event.store),
-        environment: cleanId(event.environment),
-        purchasedAtMs: eventMs(event.purchased_at_ms),
-        eventTimestampMs: eventMs(event.event_timestamp_ms),
-        ...shardRefundLifecyclePatch({
-          status: 'active', epoch: 0,
-          lastEventAtMs: eventMs(event.purchased_at_ms) ?? eventMs(event.event_timestamp_ms) ?? now,
-          lastEventType: 'PURCHASE', lastEventId: cleanId(event.id) || transactionId,
-        }),
-        createdAt: admin.firestore.FieldValue.serverTimestamp(),
-      });
-
-      tx.set(userRef.collection('shard_log').doc(), {
-        ts: nowIso,
-        type: 'earn',
-        amount: pack.shards,
-        reason: 'shards_store_purchase',
-        productId,
-        packId: pack.packId,
-        revenueCatTransactionId: transactionId,
-        authority: 'external_event',
-      });
-
-      return { granted: true, eventId: transactionId };
-    });
-
-    if (out.retryable) {
-      res.status(503).json({ ok: false, kind: 'shards', ...out });
-      return;
-    }
-    res.status(200).json({ ok: true, kind: 'shards', ...out });
-  } catch (error) {
-    logger.error('revenuecat_shards_webhook_failed', error);
-    // зачем ещё и алерт: в логи никто не смотрит по расписанию. Человек
-    // заплатил, начисление упало — владелец узнавал об этом от самого
-    // пользователя, часы спустя. Это деньги, а не диагностика.
-    await recordPaymentWebhookFailure(admin.firestore(), {
-      hook: 'shards',
-      message: String(error),
-      nowMs: Date.now(),
-    });
-    res.status(500).send('Internal error');
-  }
-}
-
-async function handleShardRefundReversedEvent(
-  event: RevenueCatEvent,
-  productId: string,
-  res: any,
-): Promise<void> {
-  const originalTxId = cleanId(event.original_transaction_id || event.transaction_id);
-  const eventId = cleanId(event.id);
-  const reversedAtMs = eventMs(event.event_timestamp_ms);
-  if (!originalTxId || !eventId || reversedAtMs === null) {
-    res.status(400).send('Missing immutable REFUND_REVERSED identity');
-    return;
-  }
-  const db = admin.firestore();
-  const reversalRef = db.collection('revenuecat_shard_refund_reversals').doc(eventId);
-  const originalRef = db.collection('revenuecat_shard_transactions').doc(originalTxId);
-  try {
-    const out = await db.runTransaction(async (tx) => {
-      if ((await tx.get(reversalRef)).exists) return { restored: false, reason: 'duplicate' as const };
-      const originalSnap = await tx.get(originalRef);
-      if (!originalSnap.exists) return { restored: false, reason: 'original_not_found' as const, retryable: true };
-      const original = originalSnap.data() ?? {};
-      const lifecycle = reduceShardRefundLifecycle(readShardRefundLifecycle(original), {
-        type: 'REFUND_REVERSED', eventId, eventTimestampMs: reversedAtMs,
-      });
-      if (lifecycle.reason === 'refund_not_found') {
-        return { restored: false, reason: lifecycle.reason, retryable: true };
-      }
-      if (lifecycle.applyDelta === 0) {
-        tx.set(reversalRef, {
-          eventId, originalTransactionId: originalTxId, productId,
-          reason: lifecycle.reason, refundEpoch: lifecycle.next.epoch,
-          eventTimestampMs: reversedAtMs,
-          createdAt: admin.firestore.FieldValue.serverTimestamp(),
-        });
-        return { restored: false, reason: lifecycle.reason };
-      }
-      const uid = cleanId(original.uid);
-      const grantedShards = parseShards(original.shards);
-      if (!uid || grantedShards <= 0) return { restored: false, reason: 'invalid_original' as const };
-      const ownerResolution = await resolvePremiumOwnerRef(tx, db, [uid]);
-      if (ownerResolution.status !== 'resolved') {
-        return { restored: false, reason: ownerResolution.reason, retryable: true };
-      }
-      const { uid: canonicalUid, ref: userRef, snap: userSnap } = ownerResolution;
-      if (!userSnap.exists) return { restored: false, reason: 'missing_user_retryable' as const, retryable: true };
-      appendExternalEconomyEvent(tx, userRef, {
-        source: 'revenuecat_refund_reversed',
-        eventId,
-        ownerStableId: canonicalUid,
-        delta: grantedShards,
-        reason: 'shards_store_refund_reversed',
-        kind: 'real_money_shard_refund_reversed',
-        subjectId: originalTxId,
-        payload: { productId, originalTransactionId: originalTxId },
-        createdAtMs: reversedAtMs,
-      });
-      tx.set(reversalRef, {
-        eventId,
-        originalTransactionId: originalTxId,
-        productId,
-        uid: canonicalUid,
-        grantedShards,
-        refundEpoch: lifecycle.next.epoch,
-        eventTimestampMs: reversedAtMs,
-        createdAt: admin.firestore.FieldValue.serverTimestamp(),
-      });
-      tx.update(originalRef, {
-        uid: canonicalUid,
-        refundReversedAt: Date.now(),
-        refundReversedEventTimestampMs: reversedAtMs,
-        ...shardRefundLifecyclePatch(lifecycle.next),
-        updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-      });
-      return { restored: true, reason: 'restored' as const, shards: grantedShards };
-    });
-    if (out.retryable) {
-      res.status(503).json({ ok: false, kind: 'shards_refund_reversed', ...out });
-      return;
-    }
-    res.status(200).json({ ok: true, kind: 'shards_refund_reversed', ...out });
-  } catch (error) {
-    logger.error('revenuecat_shards_refund_reversed_failed', error);
-    await recordPaymentWebhookFailure(admin.firestore(), {
-      hook: 'refund_reversed',
-      message: String(error),
-      nowMs: Date.now(),
-    });
-    res.status(500).send('Internal error');
-  }
-}
-
-/**
- * REFUND осколков (consumable). Раньше REFUND-вебхуки для shard-продуктов отдавали
- * 200 ignored — пользователь возвращал деньги, но осколки оставались. Прямая утечка
- * дохода: за возвращённую покупку он мог тратить осколки на премиум-наборы.
- *
- * Логика: идемпотентность по eventId; находим оригинальную транзакцию начисления
- * в `revenuecat_shard_transactions` по original_transaction_id (или transaction_id);
- * если уже размечена как рефанд — не списываем повторно; иначе уменьшаем баланс на
- * ту сумму, что была начислена (clamp на 0 — баланс не уходит в минус), пишем
- * `shards_refund_marker` и запись в shard_log.
- */
-async function handleShardRefundEvent(
-  event: RevenueCatEvent,
-  productId: string,
-  res: any,
-): Promise<void> {
-  const originalTxId = cleanId(event.original_transaction_id || event.transaction_id);
-  const eventId = cleanId(event.id);
-  const refundEventTimeMs = eventMs(event.event_timestamp_ms);
-  if (!originalTxId || !eventId || refundEventTimeMs === null) {
-    res.status(400).send('Missing immutable REFUND identity');
-    return;
-  }
-  const db = admin.firestore();
-  const refundRef = db.collection('revenuecat_shard_refunds').doc(eventId);
-  const originalRef = db.collection('revenuecat_shard_transactions').doc(originalTxId);
-  const now = Date.now();
-  const nowIso = new Date(now).toISOString();
-
-  try {
-    const out = await db.runTransaction(async (tx) => {
-      const refundSnap = await tx.get(refundRef);
-      if (refundSnap.exists) {
-        return { refunded: false, reason: 'duplicate' as const };
-      }
-
-      const originalSnap = await tx.get(originalRef);
-      if (!originalSnap.exists) {
-        // Webhooks may arrive out of order. Do not create a permanent receipt:
-        // RevenueCat must retry after the original purchase event is stored.
-        return { refunded: false, reason: 'original_not_found' as const, retryable: true };
-      }
-
-      const original = originalSnap.data() ?? {};
-      const lifecycle = reduceShardRefundLifecycle(readShardRefundLifecycle(original), {
-        type: 'REFUND', eventId, eventTimestampMs: refundEventTimeMs,
-      });
-      if (lifecycle.applyDelta === 0) {
-        tx.set(refundRef, {
-          eventId,
-          originalTransactionId: originalTxId,
-          productId,
-          reason: lifecycle.reason,
-          refundEpoch: lifecycle.next.epoch,
-          eventTimestampMs: refundEventTimeMs,
-          createdAt: admin.firestore.FieldValue.serverTimestamp(),
-        });
-        return { refunded: false, reason: lifecycle.reason };
-      }
-
-      const uid = cleanId(original.uid);
-      const grantedShards = parseShards(original.shards);
-      if (!uid || grantedShards <= 0) {
-        tx.set(refundRef, {
-          eventId,
-          originalTransactionId: originalTxId,
-          productId,
-          reason: 'invalid_original',
-          createdAt: admin.firestore.FieldValue.serverTimestamp(),
-        });
-        return { refunded: false, reason: 'invalid_original' as const };
-      }
-
-      const ownerResolution = await resolvePremiumOwnerRef(tx, db, [uid]);
-      if (ownerResolution.status !== 'resolved') {
-        return { refunded: false, reason: ownerResolution.reason, retryable: true };
-      }
-      const { uid: canonicalUid, ref: userRef, snap: userSnap } = ownerResolution;
-      const permanentDenialSnapshots = await readPermanentDeletionDenials(tx, db, [uid, canonicalUid]);
-      const deletionSnapshots = [
-        await tx.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(uid)),
-        await tx.get(db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(uid)),
-        await tx.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(canonicalUid)),
-        await tx.get(db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(canonicalUid)),
-      ];
-      if ([...deletionSnapshots, ...permanentDenialSnapshots].some((snapshot) => snapshot.exists)) {
-        tx.set(refundRef, {
-          eventId,
-          originalTransactionId: originalTxId,
-          productId,
-          uidHash: createHash('sha256').update(canonicalUid).digest('hex'),
-          reason: 'account_deletion_pending_or_permanent',
-          createdAt: admin.firestore.FieldValue.serverTimestamp(),
-        });
-        return { refunded: false, reason: 'account_deletion_pending_or_permanent' as const };
-      }
-      if (!userSnap.exists) {
-        return { refunded: false, reason: 'missing_user_retryable' as const, retryable: true };
-      }
-      appendExternalEconomyEvent(tx, userRef, {
-        source: 'revenuecat_refund',
-        eventId,
-        ownerStableId: canonicalUid,
-        delta: -grantedShards,
-        reason: 'shards_store_refund',
-        kind: 'real_money_shard_refund',
-        subjectId: originalTxId,
-        payload: { productId, originalTransactionId: originalTxId },
-        createdAtMs: refundEventTimeMs,
-      });
-
-      tx.set(refundRef, {
-        eventId,
-        originalTransactionId: originalTxId,
-        productId,
-        uid: canonicalUid,
-        sourceUid: uid,
-        grantedShards,
-        requestedDebit: grantedShards,
-        refundEpoch: lifecycle.next.epoch,
-        environment: cleanId(event.environment),
-        store: cleanId(event.store),
-        eventTimestampMs: eventMs(event.event_timestamp_ms),
-        createdAt: admin.firestore.FieldValue.serverTimestamp(),
-      });
-
-      tx.update(originalRef, {
-        uid: canonicalUid,
-        refundedAt: now,
-        refundEventTimestampMs: refundEventTimeMs,
-        refundEventId: eventId,
-        refundedShards: grantedShards,
-        ...shardRefundLifecyclePatch(lifecycle.next),
-      });
-
-      tx.set(userRef.collection('shard_log').doc(), {
-        ts: nowIso,
-        type: 'spend',
-        amount: grantedShards,
-        reason: 'shards_store_refund',
-        productId,
-        revenueCatOriginalTransactionId: originalTxId,
-        revenueCatRefundEventId: eventId,
-        grantedShards,
-        authority: 'external_event',
-      });
-
-      return { refunded: true, requestedDebit: grantedShards, eventId };
-    });
-
-    if (out.retryable) {
-      res.status(503).json({ ok: false, kind: 'shards_refund', ...out });
-      return;
-    }
-    res.status(200).json({ ok: true, kind: 'shards_refund', ...out });
-  } catch (error) {
-    logger.error('revenuecat_shards_refund_webhook_failed', error);
-    await recordPaymentWebhookFailure(admin.firestore(), {
-      hook: 'refund',
       message: String(error),
       nowMs: Date.now(),
     });
@@ -1748,7 +1254,7 @@ async function handleTransferEvent(event: RevenueCatEvent, eventType: string, re
         // `tx.update(ref, …)` с патчем, положенным в поле `progress` одним
         // объектом — а update с вложенным объектом ЗАМЕНЯЕТ его целиком,
         // а не мержит (сторож в тестах ловит ту строку буквально). 27.08.2026 это
-        // стёрло платящему (uid 7b46c701…) весь прогресс: XP, уровень, стрик,
+        // стёрло платящему (uid 7b46c701…) весь прогресс: уровень, стрик,
         // выученные слова — в документе осталось ровно 5 полей патча. Получатель
         // строкой выше писался со спредом и не пострадал; здесь спред забыли.
         // Точечные пути (а не спред) выбраны намеренно: они не перечитывают и не
@@ -1826,9 +1332,9 @@ export const revenueCatShardsWebhook = onRequest({ region: REGION, secrets: [REV
     return;
   }
 
-  const pack = SHARD_PACKS_BY_PRODUCT_ID[productId];
+  const retiredShardProduct = RETIRED_SHARD_PRODUCT_IDS.has(productId);
   const premium = looksLikePremiumSubscription(event);
-  if (!pack && !voiceMinutePack && !premium) {
+  if (!retiredShardProduct && !voiceMinutePack && !premium) {
     res.status(200).json({ ok: true, ignored: 'not_managed_product' });
     return;
   }
@@ -1843,7 +1349,7 @@ export const revenueCatShardsWebhook = onRequest({ region: REGION, secrets: [REV
     return;
   }
 
-  await handleShardPurchaseEvent(event, eventType, productId, pack, res);
+  await handleRetiredShardProductEvent(event, eventType, productId, res);
 });
 
 export const __revenueCatWebhookTestHooks = {
@@ -1865,12 +1371,7 @@ export const __revenueCatWebhookTestHooks = {
   handleTransferEvent,
   handlePremiumSubscriptionEvent,
   handleVoiceMinutePackEvent,
-  // зачем в хуки (2026-08-16): ветка покупки жемчужин проверялась ЧТЕНИЕМ
-  // ИСХОДНИКА — такой тест зелёный, даже если логика сломана. Для оплаченной
-  // покупки этого мало: инцидент как раз в том, что деньги списаны, а
-  // начисления нет. Нужна проверка поведения, а не текста.
-  handleShardPurchaseEvent,
-  handleShardRefundEvent,
-  handleShardRefundReversedEvent,
+  // D103: покупки/возвраты пакетов жемчуга больше не начисляются и не списываются.
+  handleRetiredShardProductEvent,
   qualifyReferralFromVerifiedPremiumOutcome,
 };

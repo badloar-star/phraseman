@@ -2,13 +2,7 @@
  * Visual "chrome" for the Daily Phrase surface — the single source of truth for
  * how the phrase-of-the-day looks on EACH theme.
  *
- * Used by:
- *   - components/DailyPhraseCard.tsx  (the in-app card)
- *   - app/widget_bridge.ts            (the home/lock-screen widget snapshot)
- *
- * Keeping one definition means the native widget renders the exact same palette
- * as the in-app card for every theme (dark / gold / minimal* /
- * compass), so the widget reads as a true extension of the app — not a stranger.
+ * Used by components/DailyPhraseCard.tsx for the in-app card.
  */
 
 import type { ThemeMode } from "../constants/theme";

@@ -27,6 +27,7 @@ const LEGACY_RUNTIME_RE =
   /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
 
 const scope: FlashcardsSwipeSessionScope = {
+  trainingMode: 'swipe',
   sourceIds: ['official:western'],
   routeSource: 'official:western',
   routeFilter: 'lesson:DEV:western',
@@ -36,6 +37,7 @@ const scope: FlashcardsSwipeSessionScope = {
 function buildDraft(overrides: Partial<FlashcardsSwipeSessionDraft> = {}): FlashcardsSwipeSessionDraft {
   return {
     version: 1,
+    trainingMode: 'swipe',
     savedAt: 1_700_000_000_000,
     sourceIds: ['official:western'],
     routeSource: 'official:western',
@@ -96,6 +98,29 @@ describe('flashcards swipe session draft', () => {
     const restored = await loadFlashcardsSwipeSessionDraft(scope, draft.savedAt + 1000);
 
     expect(restored).toEqual(draft);
+  });
+
+  it('preserves a deferred correct verdict until True/False Continue', async () => {
+    const prompt = buildDraft().queue[0]!;
+    const draft = buildDraft({ feedback: { kind: 'correct', prompt, mastered: true } });
+
+    await saveFlashcardsSwipeSessionDraft(draft);
+    const restored = await loadFlashcardsSwipeSessionDraft(scope, draft.savedAt + 1000);
+
+    expect(restored?.feedback).toEqual({ kind: 'correct', prompt, mastered: true });
+  });
+
+  it('never restores a swipe draft into the True/False presentation', async () => {
+    const draft = buildDraft({ trainingMode: 'swipe' });
+
+    await saveFlashcardsSwipeSessionDraft(draft);
+    const restored = await loadFlashcardsSwipeSessionDraft(
+      { ...scope, trainingMode: 'truefalse' },
+      draft.savedAt + 1000,
+    );
+
+    expect(restored).toBeNull();
+    expect(AsyncStorage.removeItem).toHaveBeenCalled();
   });
 
   it('does not restore drafts from a different selected source', async () => {

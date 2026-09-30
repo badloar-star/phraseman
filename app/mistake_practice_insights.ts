@@ -113,7 +113,6 @@ export function mistakeSourceGroupFor(sourceKind: string | null | undefined): Mi
     case 'lesson_word':
     case 'irregular_verb':
     case 'learning_v2':
-    case 'personal_plan':
       return 'lessons';
     case 'flashcard':
       return 'cards';

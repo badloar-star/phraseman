@@ -36,7 +36,6 @@ import { V2 } from '../constants/v2Style';
 import { useV2Palette } from './v2/useV2Palette';
 import MotionModal from './MotionModal';
 import auth from '@react-native-firebase/auth';
-import { arenaInviteRouteFromPayload } from '../app/arena_notification_route';
 
 /**
  * Центр событий на главной: «кто поставил лайк, кто принял заявку, кто ответил
@@ -92,10 +91,6 @@ function notificationLabel(type: UserNotificationType, lang: Lang): string {
       return triLang(lang, { ru: 'принял(а) вашу заявку', uk: 'прийняв(ла) вашу заявку', en: 'accepted your request', es: 'aceptó tu solicitud', 'pt-BR': 'aceitou seu pedido', vi: 'đã chấp nhận lời mời', id: 'menerima permintaanmu', tr: 'isteğini kabul etti', pl: 'przyjął(ęła) zaproszenie' });
     case 'activity_like':
       return triLang(lang, { ru: 'поставил(а) вам лайк', uk: 'поставив(ла) вам лайк', en: 'liked you', es: 'te dio un like', 'pt-BR': 'curtiu você', vi: 'đã thích bạn', id: 'menyukaimu', tr: 'seni beğendi', pl: 'dał(a) ci polubienie' });
-    case 'friend_gift_received':
-      return triLang(lang, { ru: 'отправил(а) вам подарок', uk: 'надіслав(ла) вам подарунок', en: 'sent you a gift', es: 'te envió un regalo', 'pt-BR': 'enviou um presente', vi: 'đã gửi quà cho bạn', id: 'mengirimimu hadiah', tr: 'sana hediye gönderdi', pl: 'wysłał(a) ci prezent' });
-    case 'friend_gift_thanks':
-      return triLang(lang, { ru: 'поблагодарил(а) за подарок', uk: 'подякував(ла) за подарунок', en: 'thanked you for the gift', es: 'agradeció tu regalo', 'pt-BR': 'agradeceu o presente', vi: 'đã cảm ơn món quà', id: 'berterima kasih atas hadiah', tr: 'hediye için teşekkür etti', pl: 'podziękował(a) za prezent' });
     case 'arena_partner_invite':
       return triLang(lang, { ru: 'приглашает стать Арена-парой', uk: 'запрошує стати Арена-парою', en: 'invites you to become an Arena Pair', es: 'te invita a formar una Pareja de Arena', 'pt-BR': 'convida você para uma Dupla da Arena', vi: 'mời bạn lập Cặp đôi Arena', id: 'mengundangmu menjadi Partner Arena', tr: 'seni Arena Eşleşmesine davet ediyor', pl: 'zaprasza cię do Pary Areny' });
     case 'arena_partner_nudge':
@@ -126,8 +121,6 @@ function notificationIcon(type: UserNotificationType): keyof typeof Ionicons.gly
     case 'friend_request': return 'person-add-outline';
     case 'friend_accepted': return 'people-outline';
     case 'activity_like': return 'heart';
-    case 'friend_gift_received': return 'gift-outline';
-    case 'friend_gift_thanks': return 'happy-outline';
     case 'arena_partner_invite': return 'people-circle-outline';
     case 'arena_partner_nudge': return 'flash-outline';
     case 'friend_nudge': return 'book-outline';
@@ -397,7 +390,10 @@ function NotificationCenterButton({
     if (!nav) return;
     if (nav.kind === 'friend_event') {
       if ((nav.action === 'duel_invite' || nav.action === 'duel_state') && nav.inviteId) {
-        router.push(arenaInviteRouteFromPayload(nav) as never);
+        // зачем: D83 — клиентская Арена удалена; старое уведомление о дуэли
+        // ведёт на Главную, а не в несуществующий экран приглашения.
+        if (__DEV__) console.warn('[D83-ARENA-RETIRED] legacy duel notification tap -> home', { action: nav.action });
+        router.push('/(tabs)/home' as never);
         return;
       }
       router.push({

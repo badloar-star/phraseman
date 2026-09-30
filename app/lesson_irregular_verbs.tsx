@@ -26,6 +26,7 @@ import { PracticeBackButton, PracticeHeaderTitle } from '../components/practice/
 import { PracticeCta, PracticeProgressRow, PracticeQuestionCard } from '../components/practice/PracticeStates';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
+import { useFirstQuestionEnergyGate } from '../hooks/useFirstQuestionEnergyGate';
 import { canChargePreparedTrainingEntry } from './energy_contract';
 import NoEnergyModal from '../components/NoEnergyModal';
 import CollectibleDropModal from '../components/CollectibleDropModal';
@@ -42,14 +43,13 @@ import { buildIrregularVerbOptions, ensureCompleteIrregularVerbOptions } from '.
 import { irregularVerbPortionProgress } from './irregular_verb_portion_progress';
 import VerbLetterBank from '../components/VerbLetterBank';
 import { safeRouterBack } from './navigation_back';
-import { addShards } from './shards_system';
 import ReportErrorButton from '../components/ReportErrorButton';
 import BouncyScrollView from '../components/BouncyScrollView';
 import AddToFlashcard from '../components/AddToFlashcard';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
 import { normalizeMistakeStudyTarget } from '../modules/mistake-practice/contracts';
 import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundary';
-import { irregularVerbsGlobalKey, lessonIrregularShardsGrantedKey, type RuntimeStudyTarget } from './target_storage_keys';
+import { irregularVerbsGlobalKey, type RuntimeStudyTarget } from './target_storage_keys';
 import {
   frenchVocabularyGateCopy,
   vocabularyContentAvailableForTarget,
@@ -282,14 +282,12 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
   const formMeta = formRowMeta(lang, themeMode);
   const isLightTheme = false;
 
-  const { confirmSpendOne, acknowledgeSessionStart, energyReady } = useEnergy();
+  const { energyReady } = useEnergy();
   const verbsEnergyIntent = useEnergySessionIntent(
     'irregular_verbs',
     `${studyTarget ?? 'en'}:${lessonId ?? 0}`,
     attemptSessionId,
   );
-  const confirmSpendOneRef = useRef(confirmSpendOne);
-  useEffect(() => { confirmSpendOneRef.current = confirmSpendOne; }, [confirmSpendOne]);
 
   const onNoEnergyRef = useRef(onNoEnergy);
   useEffect(() => { onNoEnergyRef.current = onNoEnergy; }, [onNoEnergy]);
@@ -297,19 +295,15 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
   useEffect(() => { onCancelStartRef.current = onCancelStart; }, [onCancelStart]);
 
   // Старт тренировки неправильных глаголов = 1 ⚡ только при готовых упражнениях.
-  const verbsEntryChargedRef = useRef(false);
-  useEffect(() => {
-    if (!canChargePreparedTrainingEntry({ energyReady, hasPlayableItems: verbs.length > 0 }) || verbsEntryChargedRef.current) return;
-    verbsEntryChargedRef.current = true;
-    let active = true;
-    void confirmSpendOneRef.current(verbsEnergyIntent).then(result => {
-      if (!active) return;
-      if (result === 'spent') void acknowledgeSessionStart(verbsEnergyIntent.operationId);
-      if (result === 'insufficient') onNoEnergyRef.current();
-      if (result === 'cancelled') onCancelStartRef.current();
-    });
-    return () => { active = false; };
-  }, [acknowledgeSessionStart, energyReady, verbs.length, verbsEnergyIntent]);
+  // зачем: D72/D87/PM-084 — единый гейт первого вопроса: −1 один раз на попытку,
+  // уход до показа первого задания → возврат.
+  useFirstQuestionEnergyGate({
+    intent: verbsEnergyIntent,
+    screen: 'irregular_verbs',
+    firstQuestionVisible: canChargePreparedTrainingEntry({ energyReady, hasPlayableItems: verbs.length > 0 }),
+    onInsufficient: () => onNoEnergyRef.current(),
+    onCancelled: () => onCancelStartRef.current(),
+  });
 
   const [portionVerbs, setPortionVerbs] = useState<IrregularVerb[]>(() => [...verbs]);
   const [queue, setQueue] = useState<IrregularVerb[]>(() => [...verbs]);
@@ -415,17 +409,6 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
       .then((drop) => { if (drop) setCardDrop(drop); })
       .catch(() => {});
   }, [allDone, sectionProgress.complete, studyTarget, lessonId]);
-
-  useEffect(() => {
-    if (!allDone || !sectionProgress.complete || learnedCnt === 0) return;
-    const key = lessonIrregularShardsGrantedKey(lessonId ?? 0, studyTarget);
-    void AsyncStorage.getItem(key).then(done => {
-      if (!done) return addShards('lesson_completed', {
-        eventId: `irregular:${studyTarget}:${lessonId ?? 0}:completed`,
-        localWrites: [[key, '1']],
-      });
-    }).catch(() => {});
-  }, [allDone, sectionProgress.complete, learnedCnt, lessonId, studyTarget]);
 
   const buildStep = useCallback((verb: IrregularVerb, stepIdx: number) => {
     const form = FORM_SEQ[stepIdx];

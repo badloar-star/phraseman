@@ -1,5 +1,5 @@
-// E2: лимит-20 бесплатных сохранённых карточек по СТАБИЛЬНЫМ id (баг 10) —
-// первые 20 по addedAt, а не по индексу рендера/фильтру.
+// E2: лимит-50 бесплатных сохранённых карточек по СТАБИЛЬНЫМ id —
+// первые 50 по addedAt, а не по индексу рендера/фильтру.
 import {
   computeUnlockedSavedIds,
   splitByFreeLimit,
@@ -22,14 +22,14 @@ describe('computeUnlockedSavedIds', () => {
   });
 
   it('стабильно при любой перестановке исходного массива', () => {
-    const base = Array.from({ length: 30 }, (_, i) => card(`c${i}`, 1000 + i));
+    const base = Array.from({ length: 60 }, (_, i) => card(`c${i}`, 1000 + i));
     const shuffled = [...base].reverse();
     const a = computeUnlockedSavedIds(base);
     const b = computeUnlockedSavedIds(shuffled);
     expect([...a].sort()).toEqual([...b].sort());
     expect(a.size).toBe(FREE_SAVED_CARD_LIMIT);
-    // Открыты именно самые ранние 20 по addedAt
-    for (let i = 0; i < 30; i++) {
+    // Открыты именно самые ранние 50 по addedAt
+    for (let i = 0; i < 60; i++) {
       expect(a.has(`c${i}`)).toBe(i < FREE_SAVED_CARD_LIMIT);
     }
   });
@@ -57,26 +57,26 @@ describe('computeUnlockedSavedIds', () => {
 });
 
 describe('splitByFreeLimit', () => {
-  const all = Array.from({ length: 25 }, (_, i) => card(`c${i}`, 1000 + i));
+  const all = Array.from({ length: 55 }, (_, i) => card(`c${i}`, 1000 + i));
   const unlocked = computeUnlockedSavedIds(all);
 
   it('премиум видит всё, скрытых нет', () => {
     const { visible, hiddenCount } = splitByFreeLimit(all, unlocked, true);
-    expect(visible).toHaveLength(25);
+    expect(visible).toHaveLength(55);
     expect(hiddenCount).toBe(0);
   });
 
-  it('free видит ровно 20, остальные — в счётчик «+N скрыто»', () => {
+  it('free видит ровно 50, остальные — в счётчик «+N скрыто»', () => {
     const { visible, hiddenCount } = splitByFreeLimit(all, unlocked, false);
-    expect(visible).toHaveLength(20);
+    expect(visible).toHaveLength(50);
     expect(hiddenCount).toBe(5);
     expect(visible.every((c) => unlocked.has(c.id))).toBe(true);
   });
 
   it('фильтрация не «переоткрывает» заблокированные id (лимит не позиционный)', () => {
     // Отфильтрованный список из 5 карточек, где 2 — за лимитом:
-    // при позиционном лимите (idx >= 20) все 5 были бы видимы — это баг 10.
-    const filtered = [all[0], all[5], all[21], all[22], all[10]];
+    // при позиционном лимите (idx >= 50) все 5 были бы видимы.
+    const filtered = [all[0], all[5], all[51], all[52], all[10]];
     const { visible, hiddenCount } = splitByFreeLimit(filtered, unlocked, false);
     expect(visible.map((c) => c.id)).toEqual(['c0', 'c5', 'c10']);
     expect(hiddenCount).toBe(2);

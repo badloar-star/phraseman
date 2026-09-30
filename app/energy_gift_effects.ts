@@ -34,7 +34,9 @@ function clampInteger(value: number, min: number, max: number): number {
 }
 
 export function energyGiftEffectForRewardId(id: EnergyGiftRewardId): EnergyGiftEffect {
-  return ENERGY_GIFT_EFFECTS[id];
+  // PM-088: legacy energy gifts are compatibility-readable but never active.
+  void id;
+  return { kind: 'full', amount: 0 };
 }
 
 export function fillEnergyToActiveCap(pools: EnergyPools): EnergyPools {
@@ -57,20 +59,9 @@ export function applyEnergyCapacityGift(
   added: number,
   midnightMs: number,
 ): EnergyPools {
-  const currentCapacity = clampInteger(pools.capacity, 0, ENERGY_BONUS_CAPACITY_LIMIT);
-  const addedCapacity = Math.max(0, Number.isFinite(added) ? Math.floor(added) : 0);
-  const capacity = Math.min(ENERGY_BONUS_CAPACITY_LIMIT, currentCapacity + addedCapacity);
-  const maxEnergy = clampInteger(
-    pools.maxEnergy ?? ENERGY_BASE_CAPACITY,
-    ENERGY_BASE_CAPACITY,
-    ENERGY_PERMANENT_CAPACITY_LIMIT,
-  );
-  return {
-    base: maxEnergy,
-    bonus: capacity,
-    capacity,
-    expiresAt: capacity > 0 ? Math.max(0, Math.floor(midnightMs)) : 0,
-  };
+  void added;
+  void midnightMs;
+  return fillEnergyToActiveCap(pools);
 }
 
 export function expireEnergyGift(pools: EnergyPools): EnergyPools {

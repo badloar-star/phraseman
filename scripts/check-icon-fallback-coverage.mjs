@@ -17,10 +17,6 @@ const REQUIRED_MARKERS = [
     file: 'components/AvatarView.tsx',
     markers: ['AvatarImageWithFallback'],
   },
-  {
-    file: 'components/CustomAvatarBadge.tsx',
-    markers: ['CustomAvatarImageWithFallback'],
-  },
 ];
 
 const missing = [];

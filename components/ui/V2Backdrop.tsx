@@ -1,12 +1,10 @@
-import React, { memo, useEffect, useMemo, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import {
   AccessibilityInfo,
   AppState,
-  Image,
   StyleSheet,
   View,
   type AppStateStatus,
-  type ImageStyle,
 } from 'react-native';
 import Animated, {
   Easing,
@@ -24,7 +22,6 @@ import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { useTheme } from '../ThemeContext';
 import { TABBAR_HYBRID } from '../../constants/motionHybrid';
 import { BG_GRADIENTS } from '../../constants/screenBackground';
-import { getTournamentThemeAssets } from './v2_theme_assets';
 import { useTournamentPalette } from './v2_theme';
 
 export type TournamentBackdropVariant =
@@ -55,28 +52,6 @@ type Props = Readonly<{
 // shimmer instead: it keeps the approved light character without a permanent
 // full-screen compositor loop behind the animated hub content.
 const MOTION_VARIANTS = new Set<TournamentBackdropVariant>(['lobby', 'results']);
-
-/** The only content-owned tournament art: the results podium. */
-export const TournamentPodiumArt = memo(function TournamentPodiumArt({ style }: { style?: ImageStyle }) {
-  const { themeMode } = useTheme();
-  const assets = useMemo(() => getTournamentThemeAssets(themeMode), [themeMode]);
-  return (
-    // зачем 2026-08-03: pointerEvents не является пропом RN Image (он есть
-    // только у View) — из-за него ВЕСЬ проект не компилировался и приложение
-    // нельзя было запустить даже для проверки. Отключение тапов переехало на
-    // обёртку, где оно и должно быть.
-    <View pointerEvents="none" style={style}>
-      <Image
-        importantForAccessibility="no-hide-descendants"
-        accessibilityElementsHidden
-        accessible={false} // guard-ok: декоративный арт подиума, смысл несут очки и места рядом
-        source={assets.podium}
-        resizeMode="contain"
-        style={StyleSheet.absoluteFill}
-      />
-    </View>
-  );
-});
 
 export const TournamentBackdrop = memo(function TournamentBackdrop({ variant, capSafeTop = true }: Props) {
   const { themeMode } = useTheme();

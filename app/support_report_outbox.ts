@@ -19,7 +19,7 @@ import {
   recordSupportDiagnostic,
 } from './support_diagnostics';
 import { sanitizeSupportDiagnosticBundle } from './support_diagnostic_schema';
-import { DebugLogger } from './debug-logger';
+import { DebugLogger, reportSwallowed, swallowError } from './debug-logger';
 
 const OUTBOX_KEY_PREFIX = 'support_report_outbox_v1';
 const mutationLocks = new Map<string, Promise<void>>();
@@ -231,12 +231,15 @@ export async function flushSupportReportOutbox(
       let result: ErrorReportResult;
       try {
         result = await send(row.payload, row.userName, row.lang, {
-          awardSubmissionXp: false,
           expectedStableUid: accountKey,
           idempotencyKey: row.id,
         });
-      } catch {
-        break;
+      } catch (sendError) {
+        // зачем: PM-229 (A2) — сбой одной жалобы не должен вечно блокировать очередь:
+        // «ядовитая» строка (send бросает) раньше обрывала цикл, и все следующие жалобы не уходили.
+        // Строка остаётся в outbox на следующий заход; независимые продолжаем.
+        reportSwallowed('support_report_outbox:flushSupportReportOutbox', sendError);
+        continue;
       }
       if (result !== 'sent' && result !== 'invalid_comment') break;
       await withLock(mutationLocks, accountKey, async () => {
@@ -288,7 +291,7 @@ export async function resumePendingSupportReports(
   if (wasThrottled && !throttledRetryTimers.has(accountKey)) {
     const timer = setTimeout(() => {
       throttledRetryTimers.delete(accountKey);
-      void resumePendingSupportReports(accountKey, send).catch(() => {});
+      void resumePendingSupportReports(accountKey, send).catch(swallowError('support_report_outbox:resumePendingSupportReports'));
     }, SUPPORT_REPORT_THROTTLED_RETRY_MS);
     (timer as unknown as { unref?: () => void }).unref?.();
     throttledRetryTimers.set(accountKey, timer);
@@ -308,7 +311,7 @@ function createSupportReportId(nowMs: number): string {
 export async function sendSupportReportInBackground(
   payload: ErrorReportPayload,
   lang: Lang,
-  options: SubmitErrorReportOptions = { awardSubmissionXp: false },
+  options: SubmitErrorReportOptions = {},
 ): Promise<void> {
   const nowMs = Date.now();
   const prepared = await withAccountTransitionLock(async () => {
@@ -322,7 +325,7 @@ export async function sendSupportReportInBackground(
       subject: 'report',
     });
     if (!isCurrentAccountGeneration(accountToken, accountKey)) return null;
-    const userName = await AsyncStorage.getItem('user_name').catch(() => null);
+    const userName = await AsyncStorage.getItem('user_name').catch((error: unknown) => { reportSwallowed('support_report_outbox:sendSupportReportInBackground', error); return null; });
     if (!isCurrentAccountGeneration(accountToken, accountKey)) return null;
     const capturedDiagnostics = payload.diagnostics
       ?? await captureSupportDiagnosticsWithDeadline();
@@ -369,10 +372,10 @@ export async function sendSupportReportInBackground(
         expectedStableUid: prepared.accountKey,
         idempotencyKey: prepared.report.id,
       },
-    ).catch(() => {});
+    ).catch(swallowError('support_report_outbox:sendSupportReportInBackground'));
     return;
   }
-  await resumePendingSupportReports(prepared.accountKey).catch(() => {});
+  await resumePendingSupportReports(prepared.accountKey).catch(swallowError('support_report_outbox:sendSupportReportInBackground'));
 }
 
 /* expo-router route shim: app/ files are treated as routes and need a default export. */

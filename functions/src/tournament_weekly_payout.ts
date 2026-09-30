@@ -29,7 +29,6 @@ import {
   weeklyBankPayouts,
   type WeeklyStanding,
 } from './tournament_economy';
-import { parseActiveTournamentTicket } from './tournaments';
 import { assertTournamentsReleased, TOURNAMENTS_RELEASED } from './tournament_release_gate';
 import { appendExternalEconomyEvent } from './external_economy_events';
 
@@ -294,12 +293,6 @@ export const tournamentWeeklyBankInfo = onCall(
     const economy = normalizeTournamentEconomy(economySnap.data());
     const userData = userSnap.data() || {};
     const freeEntryAvailable = String(userData.tournament_free_entry_week_id ?? '') !== currentWeek;
-    // зачем 2026-08-04 (владелец: Season Pass tournament_ticket — «появится
-    // ассет в разделе турнир в правом углу»): та же userSnap, что и
-    // freeEntryAvailable выше — ноль лишних чтений. Клиент рисует бейдж по
-    // этому полю (app/(tabs)/tournaments.tsx).
-    const seasonTicketAvailable = parseActiveTournamentTicket(userData) !== null;
-
     // Моя доля прошлой недели — если раздача уже прошла.
     const winners = Array.isArray(lastSnap.data()?.winners) ? lastSnap.data()!.winners : [];
     const mine = winners.find((entry: unknown) => {
@@ -324,7 +317,6 @@ export const tournamentWeeklyBankInfo = onCall(
       /** Цена входа (владелец: «билет стоит 5 жемчужин») — экран билетов считает от неё. */
       entryGems: economy.entryGems,
       freeEntryAvailable,
-      seasonTicketAvailable,
       lastWeek: {
         weekId: lastWeek,
         paidOut: Boolean(lastSnap.data()?.paidOutAtMs),

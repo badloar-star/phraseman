@@ -13,7 +13,6 @@ import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { resolveStableUidForAuth } from './auth_identity';
 import { ENFORCE_APP_CHECK } from './callable_options';
-import { getLevelFromXP } from './xp_levels';
 
 const REGION = 'us-central1';
 const CALLABLE_BASE = { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK } as const;
@@ -40,15 +39,14 @@ export interface FriendPushSettings {
 export interface FriendPublicProfile {
   uid: string;
   displayName: string;
-  totalXp: number;
-  level: number;
   avatar: string;
   frame: string;
   aura: string;
   profileCardLevel: number;
+  /** Публичный ранг 0..19; null = проекция отсутствует или не прошла проверку. */
+  coinRank: number | null;
   /** Цепочка дней. null = писатель её не проставил (не путать с честным нулём). */
   streak: number | null;
-  leagueId: number;
   isPremium: boolean;
   isVip: boolean;
   isLifetime: boolean;
@@ -56,8 +54,6 @@ export interface FriendPublicProfile {
   lastActiveDate: string | null;
   /** «Вместе»: кодек активных дней для daysTogether(). null = нет данных. */
   activeDays: FriendActiveDays | null;
-  /** «Вместе»: XP за ТЕКУЩУЮ неделю (0, если неделя не совпадает или данных нет). */
-  weeklyXp: number;
   /** «Вместе»: настройки пуша «Позвать» этого друга. null = никогда не задавал (трактуем как enabled). */
   friendsPush: FriendPushSettings | null;
   /**
@@ -108,6 +104,15 @@ function numOrNull(v: unknown): number | null {
   return Number.isFinite(n) ? Math.max(0, Math.floor(n)) : null;
 }
 
+function coinRankOrNull(value: unknown): number | null {
+  return typeof value === 'number'
+    && Number.isSafeInteger(value)
+    && value >= 0
+    && value <= 19
+    ? value
+    : null;
+}
+
 type DocData = Record<string, unknown> | undefined;
 
 function getProgress(data: DocData): Record<string, unknown> {
@@ -126,14 +131,6 @@ function parseJsonObject(value: unknown): Record<string, unknown> {
   }
 }
 
-function currentWeekStartIso(nowMs: number): string {
-  const date = new Date(nowMs);
-  const d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
-  const day = d.getUTCDay() || 7;
-  d.setUTCDate(d.getUTCDate() - day + 1);
-  return d.toISOString().slice(0, 10);
-}
-
 function currentWeekKey(nowMs: number): string {
   const date = new Date(nowMs);
   const d = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
@@ -141,31 +138,6 @@ function currentWeekKey(nowMs: number): string {
   const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
   const week = Math.ceil(((d.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
   return `${d.getUTCFullYear()}-W${String(week).padStart(2, '0')}`;
-}
-
-/**
- * Тот же приоритет источников, что sync_leaderboard.ts (~строки 70-90): week_points_v2
- * при совпадении weekKey, иначе weekly_xp при совпадении weekly_xp_period_start с началом
- * ТЕКУЩЕЙ недели, иначе 0. Дублируем узкую чистую функцию вместо кросс-импорта приватной
- * логики sync_leaderboard.ts — тот же паттерн уже используют friends_together.ts и другие модули.
- */
-export function weeklyXpFromUserProgress(
-  progress: Record<string, unknown> | undefined,
-  nowMs: number = Date.now(),
-): number {
-  const p = progress ?? {};
-  let weekPoints = 0;
-  try {
-    const wpRaw = p['week_points_v2'];
-    if (wpRaw) {
-      const wpData = JSON.parse(String(wpRaw)) as { weekKey?: string; points?: number };
-      weekPoints = wpData.weekKey === currentWeekKey(nowMs) ? (wpData.points ?? 0) : 0;
-    }
-  } catch { /* malformed json → 0 */ }
-  if (p['weekly_xp_period_start'] === currentWeekStartIso(nowMs)) {
-    weekPoints = Math.max(weekPoints, Number(p['weekly_xp'] ?? 0) || 0);
-  }
-  return Math.max(0, Math.floor(weekPoints));
 }
 
 /** Языки Шпиля — зеркало SPIRE_LANGS из spire_progress_contract.ts (PM-275/276). */
@@ -178,11 +150,11 @@ const SPIRE_WEEK_RECORD_SCHEMA_VERSION = 'spire-week-record.v1';
  * spireReportSteps (SPIRE_PROGRESS_FIELD, spire_progress_contract.ts) при пачке
  * отчётов о ступенях. Здесь НЕ импортируем spireParseWeekProgress из
  * spire_progress_contract.ts намеренно: тот модуль валидирует форму отчётов
- * (лишний surface для простого чтения), а локальный узкий парсер — тот же
- * приём, что уже применён рядом в weeklyXpFromUserProgress/currentWeekKey.
+ * (лишний surface для простого чтения), а локальный узкий парсер использует
+ * тот же ISO week key, что и недельный Spire ledger.
  *
  * Никакого нового чтения не добавляет: users/{uid} и так читается в
- * fetchOneProfile ради «Вместе»/weeklyXp — Шпиль едет тем же документом,
+ * fetchOneProfile ради «Вместе» — Шпиль едет тем же документом,
  * тем же батчем friendsGetProfiles (0 доп. Firestore-чтений на друга).
  *
  * 15 этажей = 135 ступеней (TOWER.md T32), но progress хранит `tier` (0..11,
@@ -227,7 +199,6 @@ function spireFloorFromUserProgress(
 export function friendTogetherFieldsFromUserData(userData: DocData, nowMs: number = Date.now()): {
   lastActiveDate: string | null;
   activeDays: FriendActiveDays | null;
-  weeklyXp: number;
   friendsPush: FriendPushSettings | null;
   spireFloor: number | null;
   spireLang: string | null;
@@ -252,7 +223,6 @@ export function friendTogetherFieldsFromUserData(userData: DocData, nowMs: numbe
   return {
     lastActiveDate,
     activeDays,
-    weeklyXp: weeklyXpFromUserProgress(progress, nowMs),
     friendsPush,
     spireFloor: spire.spireFloor,
     spireLang: spire.spireLang,
@@ -264,22 +234,15 @@ export function buildFriendProfile(
   uid: string,
   lb: DocData,
   userData?: DocData,
+  publicProfileData?: DocData,
+  hasDeletionMarker = false,
 ): FriendPublicProfile | null {
-  if (!lb) return null;
-  // зачем (2026-08-03): карточка чужого игрока всегда показывала 0 опыта и Lv.1.
-  // Причина — рассинхрон имён полей: writer (functions/src/sync_leaderboard.ts +
-  // firestore_leaderboard.ts) кладёт в leaderboard/{uid} общий XP в поле `points`,
-  // имя в `name`, уровень карточки в `profileCardLevel`. Читатель же спрашивал
-  // `totalXp`/`courseProfileCardLevel`/`courseProfileCardFrame`, которых в
-  // документе нет вовсе → num(undefined) = 0. Молчаливая ложь: профиль
-  // возвращался «валидным», но пустым. Канонические ключи теперь идут ПЕРВЫМИ,
-  // а прежние оставлены как запасной вариант для документов старых схем.
-  const displayName = str(lb?.name) || str(lb?.displayName) || '';
-  const totalXp = num(
-    lb?.points ?? lb?.totalXp ?? lb?.user_total_xp,
-  );
+  if (hasDeletionMarker || userData?.identityHidden === true) return null;
+  const source = publicProfileData ?? lb;
+  if (!source) return null;
+  const displayName = str(source.name) || str(source.displayName) || '';
   const profileCardLevel = num(
-    lb?.profileCardLevel ?? lb?.courseProfileCardLevel,
+    source.profileCardLevel ?? source.courseProfileCardLevel,
   );
   // «Вместе»: поля читаются из users/{uid}.progress, НЕ из leaderboard — тот документ
   // их не несёт. userData отсутствует → нейтральные значения (профиль всё равно валиден
@@ -288,25 +251,22 @@ export function buildFriendProfile(
   const profile: FriendPublicProfile = {
     uid,
     displayName,
-    totalXp,
-    level: getLevelFromXP(totalXp),
-    avatar: str(lb?.avatar),
-    frame: str(lb?.frame ?? lb?.courseProfileCardFrame),
-    aura: str(lb?.aura ?? lb?.courseProfileCardAura),
+    avatar: str(source.avatar),
+    frame: str(source.frame ?? source.courseProfileCardFrame),
+    aura: str(source.aura ?? source.courseProfileCardAura),
     profileCardLevel,
-    streak: numOrNull(lb?.streak),
-    leagueId: num(lb?.leagueId),
-    isPremium: lb?.isPremium === true || lb?.courseIsPremium === true,
-    isVip: lb?.isVip === true || lb?.courseIsVip === true,
-    isLifetime: lb?.isLifetime === true || lb?.courseIsLifetime === true,
+    coinRank: coinRankOrNull(publicProfileData?.coinRank),
+    streak: numOrNull(source.streak),
+    isPremium: source.isPremium === true || source.courseIsPremium === true,
+    isVip: source.isVip === true || source.courseIsVip === true,
+    isLifetime: source.isLifetime === true || source.courseIsLifetime === true,
     lastActiveDate: together.lastActiveDate,
     activeDays: together.activeDays,
-    weeklyXp: together.weeklyXp,
     friendsPush: together.friendsPush,
     spireFloor: together.spireFloor,
     spireLang: together.spireLang,
   };
-  if (!profile.displayName && profile.totalXp <= 0 && !profile.avatar && profile.profileCardLevel <= 0) {
+  if (!profile.displayName && !profile.avatar && profile.profileCardLevel <= 0) {
     return null;
   }
   return profile;
@@ -315,26 +275,41 @@ export function buildFriendProfile(
 /**
  * Та же 4-шаговая цепочка, что была на клиенте, но server-to-server (1 вызов на всех).
  * + 1 доп. чтение users/{uid} для полей «Вместе» (§3.1 спецификации: active_days_v1,
- * weekly_xp, friends_push_v1 — leaderboard их не несёт). Оба чтения параллельно —
+ * friends_push_v1 — leaderboard их не несёт). Оба чтения параллельно —
  * это не удваивает латентность, а серверный кэш 60с (SERVER_CACHE_TTL_MS) держит
  * повторный расход в разумных рамках при частых открытиях вкладки.
  */
 async function fetchOneProfile(db: admin.firestore.Firestore, uid: string): Promise<FriendPublicProfile | null> {
-  const [lbSnap, userSnap] = await Promise.all([
-    db.collection('leaderboard').doc(uid).get(),
+  const [publicProfileSnap, userSnap, deletionTombstone] = await Promise.all([
+    db.collection('public_profiles').doc(uid).get(),
     db.collection('users').doc(uid).get(),
+    db.collection('account_deletion_tombstones').doc(uid).get(),
   ]);
 
-  let lbData: DocData;
-  if (lbSnap.exists) {
-    lbData = lbSnap.data() as DocData;
-  } else {
-    const byAuth = await db.collection('leaderboard').where('firebaseAuthUid', '==', uid).limit(1).get();
-    lbData = byAuth.docs[0]?.data() as DocData;
+  if (!userSnap.exists || userSnap.data()?.identityHidden === true || deletionTombstone.exists) return null;
+
+  const publicProfileData = publicProfileSnap.exists
+    ? publicProfileSnap.data() as DocData
+    : undefined;
+
+  let lbData: DocData = undefined;
+  if (!publicProfileData) {
+    const lbSnap = await db.collection('leaderboard').doc(uid).get();
+    if (lbSnap.exists) {
+      lbData = lbSnap.data() as DocData;
+    } else {
+      const byAuth = await db.collection('leaderboard').where('firebaseAuthUid', '==', uid).limit(1).get();
+      lbData = byAuth.docs[0]?.data() as DocData;
+    }
   }
 
-  const userData = userSnap.exists ? (userSnap.data() as DocData) : undefined;
-  return buildFriendProfile(uid, lbData, userData);
+  return buildFriendProfile(
+    uid,
+    lbData,
+    userSnap.data() as DocData,
+    publicProfileData,
+    deletionTombstone.exists,
+  );
 }
 
 async function authorizedProfileUids(
@@ -352,13 +327,21 @@ async function authorizedProfileUids(
   });
   if (friendCandidates.length === 0) return [...authorized];
 
-  const edgeRefs = friendCandidates.flatMap((friendUid) => [
+  const authorizationRefs = friendCandidates.flatMap((friendUid) => [
     db.collection('users').doc(callerStableUid).collection('friends').doc(friendUid),
     db.collection('users').doc(friendUid).collection('friends').doc(callerStableUid),
+    db.collection('users').doc(friendUid),
+    db.collection('account_deletion_tombstones').doc(friendUid),
   ]);
-  const edgeSnaps = await db.getAll(...edgeRefs);
+  const authorizationSnaps = await db.getAll(...authorizationRefs);
   friendCandidates.forEach((friendUid, index) => {
-    if (edgeSnaps[index * 2]?.exists && edgeSnaps[index * 2 + 1]?.exists) {
+    const offset = index * 4;
+    const friendUser = authorizationSnaps[offset + 2];
+    if (authorizationSnaps[offset]?.exists
+      && authorizationSnaps[offset + 1]?.exists
+      && friendUser?.exists
+      && friendUser.data()?.identityHidden !== true
+      && !authorizationSnaps[offset + 3]?.exists) {
       authorized.add(friendUid);
     }
   });

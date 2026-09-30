@@ -1,8 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LOCAL_REFERRAL_ACTIVITY_KEYS = [
-  'user_total_xp',
-  'weekly_xp',
   'streak_count',
   'lesson1_pass_count',
   'lesson1_best_score',
@@ -47,8 +45,6 @@ function jsonObjectHasPositiveNumber(raw: unknown): boolean {
 }
 
 export function referralLocalActivityFromMap(data: Record<string, string | null | undefined>): boolean {
-  if (positiveNumber(data.user_total_xp)) return true;
-  if (positiveNumber(data.weekly_xp)) return true;
   if (positiveNumber(data.streak_count)) return true;
   if (positiveNumber(data.lesson1_pass_count)) return true;
   if (positiveNumber(data.lesson1_best_score)) return true;

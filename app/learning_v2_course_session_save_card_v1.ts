@@ -3,8 +3,13 @@ import {
   isCurrentAccountGeneration,
   withAccountTransitionLock,
 } from "./account_generation";
-import { updateCustomCards } from "./flashcards/custom_cards_store";
+import {
+  FREE_CUSTOM_CARD_LIMIT,
+  PLUS_CUSTOM_CARD_LIMIT,
+  updateCustomCards,
+} from "./flashcards/custom_cards_store";
 import { storageStudyTarget } from "./target_storage_keys";
+import { getVerifiedPremiumAccessStatus } from "./premium_guard";
 import type { CardItem } from "./flashcards/types";
 import type {
   LearningV2CourseSessionLocalizedTextV1,
@@ -64,6 +69,8 @@ export async function saveLearningV2CourseSessionPhraseToCardsV1(
       sourceId: `learning-v2:${input.save.targetLanguage}:${input.save.savablePhraseRef}`,
     });
     let added = false;
+    const hasPremiumAccess = await getVerifiedPremiumAccessStatus().catch(() => false);
+    const cardLimit = hasPremiumAccess ? PLUS_CUSTOM_CARD_LIMIT : FREE_CUSTOM_CARD_LIMIT;
     // зачем: карточка из урока обязана лечь в хранилище языка ЭТОГО курса —
     // иначе французский урок пишет в английскую библиотеку (2026-09-05).
     const cardStudyTarget = storageStudyTarget(
@@ -77,6 +84,7 @@ export async function saveLearningV2CourseSessionPhraseToCardsV1(
         )
       )
         return cards;
+      if (cards.length >= cardLimit) return cards;
       added = true;
       return [...cards, card];
     }, cardStudyTarget);

@@ -6,10 +6,8 @@ const read = (relativePath: string) => fs.readFileSync(path.join(root, relativeP
 
 describe('reward sound surfaces', () => {
   test('visual reward surfaces request their dedicated events', () => {
-    expect(read('components/AchievementToast.tsx')).toContain("soundDirector.request('pm.reward.achievement'");
     expect(read('components/CollectibleDropModal.tsx')).toContain("soundDirector.request('pm.reward.chest_open'");
-    expect(read('components/BoonChestModal.tsx')).toContain("soundDirector.request('pm.reward.chest_open'");
-    expect(read('app/_layout.tsx')).toContain("soundDirector.request('pm.reward.level_up'");
+    // зачем (PM-206-A2): pm.reward.level_up убран из каталога — показ повышения переехал на Главную и звук не просил.
   });
 
   test('exam result and restored streak use exact semantic events', () => {
@@ -22,7 +20,6 @@ describe('reward sound surfaces', () => {
     const toast = read('components/ActionToast.tsx');
     expect(events).toContain('soundEventId?: SoundEventId');
     expect(toast).toContain('payload.soundEventId ?? TOAST_SOUND_EVENTS[payload.type]');
-    expect(read('components/GlobalFriendGiftHost.tsx')).toContain("soundEventId: 'pm.social.gift_received'");
     expect(read('app/energy_shard_refill.ts')).toContain("soundEventId: 'pm.energy.refilled'");
   });
 });

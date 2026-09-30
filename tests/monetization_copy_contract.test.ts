@@ -33,7 +33,6 @@ describe('legacy monetization copy contract', () => {
   it('keeps the live admin aligned with runtime guardrails and retired Trainer removal', () => {
     const source = read('admin', 'v2', 'legacy.html');
     expect(source).toContain("{ key: 'free_lesson_limit', label: 'Free: уроков открыто', def: 3");
-    expect(source).toContain("{ key: 'intro_full_access_enabled', label: 'Подарок «3 дня» новым юзерам',    def: false");
     const retiredTrainerSignals = [
       ['free', 'trainer', 'sessions', 'per', 'day'].join('_'),
       ['trainer', 'ab', 'a', 'pct'].join('_'),

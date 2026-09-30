@@ -1,69 +1,31 @@
-/**
- * Витрина «Лучшие наборы сообщества» — плитки в горизонтальном ряду НАД списком
- * сохранённых карточек (задание владельца 2026-08-29, расширено 2026-09-17:
- * было жёстко 3 в ряд без скролла — владелец попросил показывать до 10 и
- * скроллить горизонтально, а не резать витрину тремя лучшими).
- *
- * зачем: раздел «Карточки» открывался сразу на сохранённых, и наборы сообщества
- * жили на отдельной вкладке — человек, у которого ещё пусто, просто не знал, что
- * брать. Теперь до десяти самых залайканных наборов видно сразу (меньше, если в
- * каталоге меньше) в одном скроллящемся ряду; тап по плитке открывает набор для
- * просмотра. Размер плитки НЕ меняется от их количества — она держит тот же
- * размер, что раньше был при трёх в ряд (ширина/COLS), просто ряд теперь длиннее
- * ширины экрана и скроллится, как категории в FlashcardsCategoryBar.
- *
- * Раздел «Наборы сообщества» этой правкой НЕ затронут — там всё как было.
- *
- * Стоимость Firebase: НОЛЬ дополнительных чтений. Наборы берём из
- * `marketPackCatalog`, который экран сохранённых уже грузит в `useCollectionData`
- * (`loadPublishedCommunityMarketPacks`), а счётчики — из тех же документов.
- * Членство (`pack_likes`/`pack_adds`) плитки не читают: `variant="tile"` у
- * `CommunityPackSocialBar` это явно запрещает.
- *
- * Решения владельца по этому блоку:
- *   • три плитки в ряд, ровно как в каталоге — знакомая геометрия;
- *   • уже добавленные НЕ прячем: показываем с галочкой «в моих наборах»;
- *   • тап по плитке открывает набор в режиме просмотра (как в каталоге);
- *   • медленная сеть не должна выглядеть как исчезнувший блок: место витрины
- *     резервируется, а после пустого ответа доступна явная повторная загрузка.
- */
+/** Три лучшие реальные UGC-набора на хабе; каталог и доступ не меняются. */
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { Image } from 'expo-image';
-import React, { useCallback, useMemo, useState } from 'react';
-import {
-  ActivityIndicator,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  type ViewStyle,
-} from 'react-native';
-import type { Theme } from '../../constants/theme';
+import React, { type ComponentProps, useMemo } from 'react';
+import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { triLang, type Lang } from '../../constants/i18n';
+import { FlowText } from '../../components/text-integrity/FlowText';
 import { useTheme } from '../../components/ThemeContext';
-import { AdaptiveLabel } from '../../components/text-integrity/AdaptiveLabel';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { hapticTap } from '../../hooks/use-haptics';
-import { getEffectivePlatformOS } from '../platform_ui_preview';
-import {
-  packCategoryIonIcon,
-  packTitleForInterface,
-  type FlashcardMarketPack,
-} from './marketplace';
-import { bundledPackTilePng, packTileImageForPack } from './packMarketplaceIcons';
+import { packCategoryIonIcon, packTitleForInterface, type FlashcardMarketPack } from './marketplace';
 import { useCommunityAuthorName } from '../community_packs/packAuthorNames';
-import CommunityPackSocialBar from '../community_packs/CommunityPackSocialBar';
 import { isLocalAuthorPackId } from '../community_packs/localAuthorPacks';
+import CommunityPackSocialBar from '../community_packs/CommunityPackSocialBar';
 
-/** Сколько плиток помещается БЕЗ скролла — задаёт размер одной плитки (как раньше). */
 const COLS = 3;
-/** Сколько лучших наборов показываем всего — витрина теперь скроллится горизонтально. */
 const SHOWN = 10;
-const GAP = 10;
-const TILE_RADIUS = 18;
-/** Пропорция PNG-«веера» наборов: `contain` должен вписывать по высоте бокса. */
-const PACK_FAN_ASPECT = 329 / 268;
+type IoniconName = ComponentProps<typeof Ionicons>['name'];
+
+function isIoniconName(candidate: unknown): candidate is IoniconName {
+  return typeof candidate === 'string'
+    && Object.prototype.hasOwnProperty.call(Ionicons.glyphMap, candidate);
+}
+
+function communityPackIconName(category: FlashcardMarketPack['category']): IoniconName {
+  const candidate = packCategoryIonIcon(category);
+  return isIoniconName(candidate) ? candidate : 'albums-outline';
+}
+
 /**
  * Порога «минимум N лайков» тут НЕТ намеренно.
  *
@@ -74,18 +36,7 @@ const PACK_FAN_ASPECT = 329 / 268;
  * при равенстве — число добавивших людей ↓ (владелец просил оба сигнала).
  */
 
-/**
- * Тень вместо обводки (правило владельца: контейнеры без рамок).
- * Добавленный набор подсвечен акцентной тенью — тон, а не бордер.
- */
-function tileShadow(t: Theme, owned: boolean): ViewStyle {
-  const os = getEffectivePlatformOS();
-  if (os === 'web') return {};
-  if (os === 'android') return { elevation: owned ? 4 : 3 };
-  return owned
-    ? { shadowColor: t.accent, shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.14, shadowRadius: 9 }
-    : { shadowColor: t.cardShadow, shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.4, shadowRadius: 8 };
-}
+
 
 /**
  * Отбор витрины: наборы сообщества, отсортированные по лайкам ↓, затем по числу
@@ -94,9 +45,7 @@ function tileShadow(t: Theme, owned: boolean): ViewStyle {
  */
 export function pickTopCommunityPacks(
   catalog: readonly FlashcardMarketPack[],
-  /* зачем: дефолт остаётся 3 — этой же функцией пользуется подсказка наборов
-     на экране flashcards_training_setup.tsx, и там ряд НЕ скроллится (три
-     плитки flex:1 в строку). Витрина карточек передаёт SHOWN явно. */
+  /* Default three is also used by the training setup suggestions. */
   limit = COLS,
 ): FlashcardMarketPack[] {
   return catalog
@@ -111,171 +60,73 @@ export function pickTopCommunityPacks(
     .slice(0, Math.max(0, limit));
 }
 
-type TileProps = {
+
+
+function CommunityHighlightRow({ pack, lang, owned, opening, disabled, onOpen }: {
   pack: FlashcardMarketPack;
   lang: Lang;
-  t: Theme;
-  width: number;
-  labelSize: number;
   owned: boolean;
   opening: boolean;
   disabled: boolean;
   onOpen: (pack: FlashcardMarketPack) => void;
-};
-
-function TopPackTileBase({
-  pack, lang, t, width, labelSize, owned, opening, disabled, onOpen,
-}: TileProps) {
+}) {
+  const { theme, liquidGlassThemeId } = useTheme();
+  const g = liquidGlassTokens(liquidGlassThemeId);
+  const socialTheme = useMemo(() => ({
+    ...theme,
+    textSecond: g.secondary,
+    textMuted: g.secondary,
+    accent: g.lightTint,
+  }), [theme, g.secondary, g.lightTint]);
   const authorName = useCommunityAuthorName(pack, lang);
   const title = packTitleForInterface(pack, lang) || pack.codeName || pack.id;
-  const png = packTileImageForPack(pack) ?? bundledPackTilePng(pack.id);
-  /* зачем (владелец 2026-09-21: «иконки маленькие, увеличь»): было 68% плитки,
-     и после `contain` по пропорции веера обложка терялась в пустом квадрате.
-     92% — тот же масштаб, что в каталоге сообщества и «Моих наборах», при этом
-     угловые бейджи (счётчик карт, галочка «в моих») остаются читаемыми. */
-  const iconSize = Math.floor(width * 0.92);
-
-  const [labelReflowed, setLabelReflowed] = useState(false);
-  const onLabelReflow = useCallback(() => setLabelReflowed(true), []);
-  const isOwned = owned;
-
+  const activate = () => {
+    if (disabled) return;
+    void hapticTap();
+    onOpen(pack);
+  };
   return (
-    <View style={{ width, alignItems: 'center' }}>
-      <TouchableOpacity
-        testID={`saved-top-pack-${pack.id}`}
+    <Pressable
+      testID={`saved-top-pack-${pack.id}`}
+      accessible={false}
+      disabled={disabled}
+      onPress={activate}
+      style={({ pressed }) => [styles.highlightRow, pressed && { opacity: 0.82 }]}
+    >
+      <View
+        testID={`saved-top-pack-activation-${pack.id}`}
+        accessible={true}
         accessibilityRole="button"
         accessibilityLabel={`${title}. ${authorName}`}
-        accessibilityState={{ disabled }}
-        activeOpacity={0.85}
-        disabled={disabled}
-        onPress={() => {
-          void hapticTap();
-          onOpen(pack);
+        accessibilityState={{ disabled, busy: opening }}
+        accessibilityActions={[{ name: 'activate' }]}
+        onAccessibilityTap={activate}
+        onAccessibilityAction={(event) => {
+          if (event.nativeEvent.actionName === 'activate') activate();
         }}
-        style={[
-          {
-            width,
-            height: width,
-            borderRadius: TILE_RADIUS,
-            backgroundColor: t.bgSurface,
-            alignItems: 'center',
-            justifyContent: 'center',
-            overflow: 'hidden',
-          },
-          tileShadow(t, isOwned),
-        ]}
       >
-        {png ? (
-          <Image
-            /* Обложка декоративна: название и автор уже озвучены меткой плитки. */
-            accessible={false}
-            source={png}
-            style={{ width: iconSize * PACK_FAN_ASPECT, height: iconSize }}
-            contentFit="contain"
-          />
-        ) : (
+        <View
+          testID={`saved-top-pack-cover-${pack.id}`}
+          style={[styles.cover, { backgroundColor: g.opaqueCard, borderColor: g.glassEdge }]}
+        >
           <Ionicons
-            name={(packCategoryIonIcon(pack.category) || 'albums-outline') as keyof typeof Ionicons.glyphMap}
-            size={Math.round(iconSize * 0.62)}
-            color={t.accent}
+            name={communityPackIconName(pack.category)}
+            size={30}
+            color={g.secondary}
           />
-        )}
-
-        {opening ? (
-          <View
-            pointerEvents="none"
-            style={[
-              StyleSheet.absoluteFillObject,
-              { alignItems: 'center', justifyContent: 'center', backgroundColor: `${t.bgSurface}D9` },
-            ]}
-          >
-            <ActivityIndicator color={t.accent} />
-          </View>
-        ) : null}
-
-        {pack.cardCount > 0 ? (
-          <View
-            pointerEvents="none"
-            style={{
-              position: 'absolute', right: 5, bottom: 5,
-              borderRadius: 9, paddingHorizontal: 6, paddingVertical: 1,
-              backgroundColor: t.bgCard,
-            }}
-          >
-            <Text style={{ fontSize: Math.max(10, Math.round(labelSize * 0.82)), fontWeight: '900', color: t.textSecond }}>
-              {pack.cardCount}
-            </Text>
-          </View>
-        ) : null}
-
-        {isOwned ? (
-          <View
-            pointerEvents="none"
-            style={{
-              position: 'absolute', right: 5, top: 5,
-              borderRadius: 999, padding: 3,
-              backgroundColor: `${t.accent}26`,
-            }}
-          >
-            <Ionicons name="checkmark" size={11} color={t.accent} />
-          </View>
-        ) : null}
-      </TouchableOpacity>
-
-      <AdaptiveLabel
-        testID={`saved-top-pack-title-${pack.id}`}
-        provenance="user"
-        availableWidth={width}
-        compactLineLimit={2}
-        onReflowNeeded={onLabelReflow}
-        style={{
-          marginTop: 8,
-          fontSize: labelReflowed ? Math.max(11, Math.round((labelSize + 1) * 0.82)) : labelSize + 1,
-          fontWeight: '800', color: t.textPrimary, textAlign: 'center',
-          lineHeight: labelReflowed ? Math.max(15, Math.round((labelSize + 4) * 0.86)) : labelSize + 4,
-        }}
-      >
-        {title}
-      </AdaptiveLabel>
-      <AdaptiveLabel
-        testID={`saved-top-pack-author-${pack.id}`}
-        provenance="user"
-        availableWidth={width}
-        compactLineLimit={1}
-        onReflowNeeded={onLabelReflow}
-        style={{
-          marginTop: 2, fontSize: Math.max(10, labelSize - 1), fontWeight: '700',
-          color: t.textSecond, textAlign: 'center', lineHeight: labelSize + 3,
-        }}
-      >
-        {authorName}
-      </AdaptiveLabel>
-
-      {/* Лайки и добавления — тем же компонентом, что в каталоге (0 чтений на плитке). */}
-      <View style={{ marginTop: 5 }}>
-        <CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={isOwned} variant="tile" />
+          {pack.cardCount > 0 ? <View testID={`saved-top-pack-count-${pack.id}`} style={[styles.highlightBadge, { backgroundColor: g.sheet }]}><Text style={[styles.highlightBadgeText, { color: g.text }]}>{pack.cardCount}</Text></View> : null}
+          {opening ? <ActivityIndicator size="small" color={g.cta} style={styles.opening} /> : null}
+          {owned ? <Ionicons name="checkmark-circle" size={16} color={g.lightTint} style={styles.owned} /> : null}
+        </View>
+        <FlowText testID={`saved-top-pack-title-${pack.id}`} provenance="user" style={[styles.highlightTitle, { color: g.text }]}>{title}</FlowText>
+        <FlowText testID={`saved-top-pack-author-${pack.id}`} provenance="user" style={[styles.highlightAuthor, { color: g.secondary }]}>{authorName}</FlowText>
       </View>
-
-    </View>
+      <View style={styles.highlightCounts}>
+        <CommunityPackSocialBar pack={pack} lang={lang} t={socialTheme} owned={owned} variant="tile" />
+      </View>
+    </Pressable>
   );
 }
-
-/**
- * зачем (скорость): блок живёт в шапке FlatList сохранённых, а она перерисовывается
- * на КАЖДЫЙ ввод буквы в поиск и на каждое удаление карточки. Сравниваем по
- * существу: `onOpen` — стрелка родителя, при поверхностном сравнении
- * memo не дал бы ничего.
- */
-const TopPackTile = React.memo(TopPackTileBase, (prev, next) => (
-  prev.pack === next.pack
-  && prev.lang === next.lang
-  && prev.t === next.t
-  && prev.width === next.width
-  && prev.labelSize === next.labelSize
-  && prev.owned === next.owned
-  && prev.opening === next.opening
-  && prev.disabled === next.disabled
-));
 
 export type SavedTopCommunityPacksProps = {
   /** Полный каталог экрана: сообщество отбирается внутри. */
@@ -283,11 +134,12 @@ export type SavedTopCommunityPacksProps = {
   /** Идентификаторы уже добавленных наборов сообщества. */
   ownedCommunityPackIds: readonly string[];
   lang: Lang;
-  t: Theme;
   /** Ширина контента экрана (уже без внешних отступов). */
   contentWidth: number;
   /** Открыть набор в режиме просмотра. */
   onOpenPreview: (pack: FlashcardMarketPack) => void;
+  /** Open the full community catalog from the approved hub heading. */
+  onSeeAll?: () => void;
   /** id набора, который сейчас открывается (крутилка на плитке). */
   openingPackId?: string | null;
   /** Каталог ещё загружается; витрина резервирует место, чтобы экран не прыгал. */
@@ -300,27 +152,20 @@ export default function SavedTopCommunityPacks({
   catalog,
   ownedCommunityPackIds,
   lang,
-  t,
   contentWidth,
   onOpenPreview,
+  onSeeAll,
   openingPackId = null,
   loading = false,
   onRetry,
 }: SavedTopCommunityPacksProps) {
-  const { f } = useTheme();
-  const [headingReflowed, setHeadingReflowed] = useState(false);
-  const onHeadingReflow = useCallback(() => setHeadingReflowed(true), []);
+  const { liquidGlassThemeId } = useTheme();
+  const g = liquidGlassTokens(liquidGlassThemeId);
   const top = useMemo(() => pickTopCommunityPacks(catalog, SHOWN), [catalog]);
   const ownedSet = useMemo(() => new Set(ownedCommunityPackIds), [ownedCommunityPackIds]);
 
-  const tileW = useMemo(
-    () => Math.max(72, Math.floor((contentWidth - GAP * (COLS - 1)) / COLS)),
-    [contentWidth],
-  );
-  const labelSize = Math.max(11, Math.min(f.caption, Math.floor(tileW * 0.13)));
-
   const heading = triLang(lang, {
-    ru: 'Лучшее у сообщества',
+    ru: 'Популярное в сообществе',
     uk: 'Найкраще у спільноти',
     en: 'Top from the community',
     es: 'Lo mejor de la comunidad',
@@ -329,6 +174,10 @@ export default function SavedTopCommunityPacks({
     id: 'Terbaik dari komunitas',
     tr: "Topluluğun en iyileri",
     pl: 'Najlepsze od społeczności',
+  });
+  const seeAllLabel = triLang(lang, {
+    ru: 'Все', uk: 'Усі', en: 'All', es: 'Todos',
+    'pt-BR': 'Ver tudo', vi: 'Xem tất cả', id: 'Lihat semua', tr: 'Tümünü gör', pl: 'Zobacz wszystkie',
   });
   const loadingLabel = triLang(lang, {
     ru: 'Загружаем лучшие наборы', uk: 'Завантажуємо найкращі набори', en: 'Loading top packs',
@@ -350,51 +199,28 @@ export default function SavedTopCommunityPacks({
 
   return (
     /* зачем: витрина не должна липнуть к полю поиска — воздух сверху обязателен. */
-    <View style={{ width: contentWidth, alignSelf: 'center', marginTop: 10, marginBottom: 18 }}>
-      <AdaptiveLabel
-        testID="saved-top-community-heading"
-        provenance="authored"
-        availableWidth={contentWidth}
-        compactLineLimit={1}
-        onReflowNeeded={onHeadingReflow}
-        style={{
-          fontSize: headingReflowed ? Math.max(f.bodyLg, Math.round(f.h2 * 0.86)) : f.h2,
-          lineHeight: Math.round((headingReflowed ? Math.max(f.bodyLg, f.h2 * 0.86) : f.h2) * 1.25),
-          fontWeight: '900',
-          color: t.textPrimary,
-          marginBottom: 12,
-          letterSpacing: 0.1,
-        }}
-      >
-        {heading}
-      </AdaptiveLabel>
+    <View testID="saved-top-community-section" style={{ width: contentWidth, alignSelf: 'center' }}>
+      <View testID="saved-top-community-heading-row" style={styles.sectionHeading}>
+        <FlowText testID="saved-top-community-heading" provenance="authored" accessibilityRole="header" style={[styles.sectionTitle, { color: g.text }]}>{heading}</FlowText>
+        {onSeeAll ? (
+          <Pressable testID="fc-cards-hub-see-all" accessibilityRole="button" accessibilityLabel={seeAllLabel} onPress={onSeeAll} style={styles.seeAll}>
+            <Text style={[styles.seeAllText, { color: g.secondary }]}>{seeAllLabel}</Text><Ionicons name="chevron-forward" size={16} color={g.secondary} />
+          </Pressable>
+        ) : null}
+      </View>
 
       {top.length > 0 ? (
-        /* зачем: до 10 плиток не помещаются в ширину экрана — скроллим
-           горизонтально тем же паттерном, что FlashcardsCategoryBar. Ширина
-           плитки не меняется (та же геометрия, что раньше при трёх в ряд),
-           отрицательные внешние отступы компенсируют паддинг ScrollView, чтобы
-           первая/последняя плитка не съезжали относительно заголовка и списка снизу. */
-        <ScrollView
-          horizontal
-          decelerationRate="fast"
-          showsHorizontalScrollIndicator={false}
-          style={{ marginHorizontal: -GAP / 2 }}
-          contentContainerStyle={{ paddingHorizontal: GAP / 2, gap: GAP }}
-        >
+        <ScrollView testID="saved-top-community-rail" horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.rail}>
           {top.map((pack) => (
-          <TopPackTile
-            key={`saved_top_${pack.id}`}
-            pack={pack}
-            lang={lang}
-            t={t}
-            width={tileW}
-            labelSize={labelSize}
-            owned={ownedSet.has(pack.id)}
-            opening={openingPackId === pack.id}
-            disabled={openingPackId !== null && openingPackId !== pack.id}
-            onOpen={onOpenPreview}
-          />
+            <CommunityHighlightRow
+              key={`saved_top_${pack.id}`}
+              pack={pack}
+              lang={lang}
+              owned={ownedSet.has(pack.id)}
+              opening={openingPackId === pack.id}
+              disabled={openingPackId !== null && openingPackId !== pack.id}
+              onOpen={onOpenPreview}
+            />
           ))}
         </ScrollView>
       ) : loading ? (
@@ -402,50 +228,72 @@ export default function SavedTopCommunityPacks({
           accessible
           accessibilityRole="progressbar"
           accessibilityLabel={loadingLabel}
-          style={{ flexDirection: 'row', gap: GAP }}
+          style={styles.rail}
         >
           {Array.from({ length: COLS }, (_, index) => (
             <View
               key={`saved-top-pack-loading-${index}`}
-              style={{
-                width: tileW,
-                minHeight: tileW + Math.max(108, Math.round(f.sub * 7)),
-                borderRadius: TILE_RADIUS,
-                backgroundColor: t.bgSurface,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
+              testID={`saved-top-pack-loading-${index}`}
+              style={styles.highlightRow}
             >
-              {index === 1 ? <ActivityIndicator color={t.accent} /> : null}
+              <View
+                testID={`saved-top-pack-loading-cover-${index}`}
+                style={[styles.cover, { backgroundColor: g.opaqueCard, borderColor: g.glassEdge }]}
+              >
+                {index === 1 ? <ActivityIndicator color={g.secondary} /> : null}
+              </View>
+              <View testID={`saved-top-pack-loading-title-${index}`} style={[styles.loadingTitle, { backgroundColor: g.opaqueControl }]} />
+              <View testID={`saved-top-pack-loading-author-${index}`} style={[styles.loadingAuthor, { backgroundColor: g.opaqueControl }]} />
             </View>
           ))}
         </View>
       ) : (
-        <View style={{ minHeight: 112, borderRadius: 18, padding: 16, backgroundColor: t.bgSurface, alignItems: 'center', justifyContent: 'center', gap: 12 }}>
-          <Text style={{ color: t.textSecond, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.4), fontWeight: '700', textAlign: 'center' }}>
-            {unavailableLabel}
-          </Text>
-          {onRetry ? (
-            <Pressable
-              accessibilityRole="button"
-              accessibilityLabel={retryLabel}
-              onPress={onRetry}
-              style={({ pressed }) => ({
-                minHeight: 48,
-                minWidth: 120,
-                borderRadius: 14,
-                paddingHorizontal: 18,
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: t.accent,
-                opacity: pressed ? 0.82 : 1,
-              })}
-            >
-              <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '900' }}>{retryLabel}</Text>
-            </Pressable>
-          ) : null}
+        <View style={styles.emptyState}>
+          <View testID="saved-top-community-empty-cover" style={[styles.emptyCover, { backgroundColor: g.opaqueCard, borderColor: g.glassEdge }]}>
+            <Ionicons name="people-outline" size={28} color={g.secondary} />
+          </View>
+          <View style={styles.emptyCopy}>
+            <Text style={{ color: g.text, fontSize: 14, lineHeight: 19, fontWeight: '600' }}>
+              {unavailableLabel}
+            </Text>
+            {onRetry ? (
+              <Pressable
+                testID="saved-top-community-retry"
+                accessibilityRole="button"
+                accessibilityLabel={retryLabel}
+                onPress={onRetry}
+                style={({ pressed }) => [styles.retry, { backgroundColor: g.opaqueControl }, pressed && styles.retryPressed]}
+              >
+                <Text style={{ color: g.text, fontSize: 13, fontWeight: '700' }}>{retryLabel}</Text>
+              </Pressable>
+            ) : null}
+          </View>
         </View>
       )}
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  sectionHeading: { minHeight: 44, marginTop: 20.5, marginBottom: 2.5, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 },
+  sectionTitle: { flex: 1, minWidth: 0, flexShrink: 1, fontSize: 16, lineHeight: 21, fontWeight: '800' },
+  seeAll: { minHeight: 44, maxWidth: '42%', minWidth: 44, flexShrink: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', gap: 3 },
+  seeAllText: { minWidth: 0, flexShrink: 1, fontSize: 12, lineHeight: 16, fontWeight: '600', textAlign: 'right' },
+  rail: { flexDirection: 'row', gap: 10, paddingBottom: 4 },
+  highlightRow: { width: 112 },
+  cover: { width: 112, height: 112, borderRadius: 12, borderWidth: 1, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },
+  opening: { position: 'absolute', alignSelf: 'center' },
+  owned: { position: 'absolute', left: 7, top: 7 },
+  highlightTitle: { fontSize: 12, lineHeight: 16, fontWeight: '700', marginTop: 5 },
+  highlightAuthor: { fontSize: 10, lineHeight: 13, marginTop: 1 },
+  highlightCounts: { flexDirection: 'row', alignItems: 'center', marginTop: 4 },
+  highlightBadge: { position: 'absolute', right: 3, top: 3, minWidth: 26, minHeight: 19, borderRadius: 10, paddingHorizontal: 5, paddingVertical: 2, alignItems: 'center', justifyContent: 'center' },
+  highlightBadgeText: { fontSize: 10, fontWeight: '700' },
+  loadingTitle: { width: '80%', height: 12, borderRadius: 6, marginTop: 5 },
+  loadingAuthor: { width: '60%', height: 10, borderRadius: 5, marginTop: 1 },
+  emptyState: { minHeight: 112, flexDirection: 'row', alignItems: 'flex-start', gap: 12 },
+  emptyCover: { width: 112, height: 112, borderRadius: 12, overflow: 'hidden', borderWidth: 1, alignItems: 'center', justifyContent: 'center' },
+  emptyCopy: { flex: 1, minWidth: 0, paddingTop: 9, gap: 8, alignItems: 'flex-start' },
+  retry: { minHeight: 44, borderRadius: 14, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center' },
+  retryPressed: { opacity: 0.82 },
+});

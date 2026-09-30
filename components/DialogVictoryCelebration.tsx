@@ -16,8 +16,6 @@ import DialogVictoryCelebrationHybrid from './DialogVictoryCelebrationHybrid';
 
 export type DialogVictoryCelebrationProps = {
   lang: Lang;
-  /** Реально начисленный XP; при 0 (повтор сценария, анти-фарм) строка скрыта. */
-  xp: number;
   /** Реплик пользователя в диалоге. */
   replies: number;
   goalsMet: number;
@@ -32,7 +30,6 @@ export type DialogVictoryCelebrationProps = {
 
 export function DialogVictoryCelebration({
   lang,
-  xp,
   replies,
   goalsMet,
   goalsTotal,
@@ -43,7 +40,6 @@ export function DialogVictoryCelebration({
   return (
     <DialogVictoryCelebrationHybrid
       lang={lang}
-      xp={xp}
       replies={replies}
       goalsMet={goalsMet}
       goalsTotal={goalsTotal}

@@ -2,12 +2,14 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useEffect, useMemo, useState } from 'react';
 import {
   Modal,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   useWindowDimensions,
   View,
 } from 'react-native';
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import {
   activity365MonthGridCells,
   emptyActivity365Day,
@@ -18,8 +20,10 @@ import {
   type Activity365Day,
 } from '../app/activity_365_analytics';
 import { GOLD_RICH } from '../constants/goldTheme';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { statsThemeAccent } from '../constants/statsThemeChrome';
 import type { ThemeMode } from '../constants/theme';
+import { LinearGradient } from './SafeLinearGradient';
 import { FlowText } from './text-integrity/FlowText';
 import { useLang } from './LangContext';
 import { useStudyTarget } from './StudyTargetContext';
@@ -33,7 +37,7 @@ const YEAR_CELL_GAP = 1;
 const MONTH_CELL_GAP = 4;
 
 type LoadStatus = 'loading' | 'ready' | 'error';
-type MonthComparisonSummary = { activeDays: number; xp: number; minutes: number };
+type MonthComparisonSummary = { activeDays: number; minutes: number };
 type CanonicalYearModel = {
   cells: Array<Activity365Day | null>;
   monthKeys: string[];
@@ -141,10 +145,9 @@ function monthComparisonSummary(
     if (!monthKey || day.future || !day.date.startsWith(monthKey)) return summary;
     return {
       activeDays: summary.activeDays + (day.active ? 1 : 0),
-      xp: summary.xp + Math.max(0, day.xp),
       minutes: summary.minutes + Math.max(0, day.minutes),
     };
-  }, { activeDays: 0, xp: 0, minutes: 0 });
+  }, { activeDays: 0, minutes: 0 });
 }
 
 function heatPalette(themeMode: ThemeMode): readonly string[] {
@@ -358,9 +361,11 @@ function MonthExplorerModal({
   onMonthChange: (monthKey: string) => void;
   onClose: () => void;
 }) {
-  const { theme: t, f, themeMode } = useTheme();
+  const { theme: t, f, themeMode, liquidGlassThemeId } = useTheme();
   const { lang } = useLang();
   const { width } = useWindowDimensions();
+  const insets = useStableSafeAreaInsets();
+  const monthGlass = liquidGlassTokens(liquidGlassThemeId);
   const [selectedDay, setSelectedDay] = useState<Activity365Day | null>(null);
   const [monthAKey, setMonthAKey] = useState<string | null>(null);
   const [monthBKey, setMonthBKey] = useState<string | null>(null);
@@ -421,7 +426,19 @@ function MonthExplorerModal({
       presentationStyle="fullScreen"
       onRequestClose={onClose}
     >
-      <View style={[styles.modal, { backgroundColor: t.bgPrimary }]}>
+      <View
+        style={[
+          styles.modal,
+          { backgroundColor: t.bgPrimary, paddingTop: Math.max(52, insets.top + 16) },
+        ]}
+      >
+        <LinearGradient
+          pointerEvents="none"
+          colors={[monthGlass.bgTop, monthGlass.bgBottom]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={StyleSheet.absoluteFill}
+        />
         <View style={styles.modalHeader}>
           <TouchableOpacity
             accessibilityRole="button"
@@ -458,10 +475,26 @@ function MonthExplorerModal({
           </TouchableOpacity>
         </View>
 
-        <View
-          testID="activity-365-month-calendar"
-          style={[styles.entity, { backgroundColor: t.bgSurface }]}
+        <ScrollView
+          testID="activity-365-month-viewport"
+          style={styles.monthViewport}
+          contentContainerStyle={[
+            styles.monthViewportContent,
+            { paddingBottom: Math.max(28, insets.bottom + 16) },
+          ]}
+          showsVerticalScrollIndicator
         >
+          <View
+            testID="activity-365-month-calendar"
+            style={[styles.entity, { backgroundColor: monthGlass.card }]}
+          >
+          <LinearGradient
+            pointerEvents="none"
+            colors={[monthGlass.lightTint, 'transparent']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0.8, y: 0.7 }}
+            style={[StyleSheet.absoluteFill, { opacity: 0.08 }]}
+          />
           <View style={styles.weekdayRow}>
             {weekdayLabels.map((label) => (
               <Text
@@ -517,15 +550,22 @@ function MonthExplorerModal({
               testID="activity-365-selected-day"
               style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginTop: 14 }}
             >
-              {formatSelectedDay(selectedDay.date, lang)} · {selectedDay.xp} XP · {selectedDay.minutes} {copy(lang, { ru: 'мин', uk: 'хв', es: 'min', 'pt-BR': 'min', vi: 'phút', id: 'mnt', tr: 'dk', pl: 'min', en: 'min' })}
+              {formatSelectedDay(selectedDay.date, lang)} · {selectedDay.minutes} {copy(lang, { ru: 'мин', uk: 'хв', es: 'min', 'pt-BR': 'min', vi: 'phút', id: 'mnt', tr: 'dk', pl: 'min', en: 'min' })}
             </Text>
           ) : null}
-        </View>
+          </View>
 
-        <View
-          testID="activity-365-month-comparison"
-          style={[styles.entity, { backgroundColor: t.bgSurface2 }]}
-        >
+          <View
+            testID="activity-365-month-comparison"
+            style={[styles.entity, { backgroundColor: monthGlass.sheet }]}
+          >
+          <LinearGradient
+            pointerEvents="none"
+            colors={[monthGlass.lightTint, 'transparent']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0.8, y: 0.7 }}
+            style={[StyleSheet.absoluteFill, { opacity: 0.06 }]}
+          />
           <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800', marginBottom: 10 }}>
             {copy(lang, {
               ru: 'Сравнение месяцев',
@@ -563,7 +603,6 @@ function MonthExplorerModal({
               left: summaryA.activeDays,
               right: summaryB.activeDays,
             },
-            { label: 'XP', left: summaryA.xp, right: summaryB.xp },
             {
               label: copy(lang, { ru: 'Время', uk: 'Час', es: 'Tiempo', 'pt-BR': 'Tempo', vi: 'Thời gian', id: 'Waktu', tr: 'Süre', pl: 'Czas', en: 'Time' }),
               left: `${summaryA.minutes} ${copy(lang, { ru: 'мин', uk: 'хв', es: 'min', 'pt-BR': 'min', vi: 'phút', id: 'mnt', tr: 'dk', pl: 'min', en: 'min' })}`,
@@ -582,7 +621,8 @@ function MonthExplorerModal({
               </Text>
             </View>
           ))}
-        </View>
+          </View>
+        </ScrollView>
       </View>
     </Modal>
   );
@@ -708,6 +748,14 @@ const styles = StyleSheet.create({
     minHeight: 48,
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  monthViewport: {
+    flex: 1,
+    minHeight: 0,
+  },
+  monthViewportContent: {
+    gap: 14,
+    paddingBottom: 28,
   },
   iconButton: {
     minWidth: 44,

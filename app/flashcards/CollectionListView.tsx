@@ -6,6 +6,7 @@
  * escort-скролл к деталям, free-limit секция и действия тренировки.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { BlurView } from 'expo-blur';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -21,6 +22,10 @@ import {
 import Reanimated, { FadeInDown, LinearTransition, type SharedValue } from 'react-native-reanimated';
 import DuoPressable from '../../components/DuoPressable';
 import { FlowText } from '../../components/text-integrity';
+import { useTheme } from '../../components/ThemeContext';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { LinearGradient } from '../../components/SafeLinearGradient';
+import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import PressableHybrid from '../../components/PressableHybrid';
 import { LUM } from '../../constants/motionHybrid';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
@@ -48,6 +53,14 @@ const flashcardFlipEasing = Easing.out(Easing.cubic);
 const LIST_PAD_TOP = 12;
 const LIST_ROW_GAP = 12;
 const ListRowGap = () => <View style={{ height: LIST_ROW_GAP }} />;
+
+function SavedListGlass({ tint, edge }: { tint: string; edge: string }) {
+  return <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+    <BlurView intensity={Platform.OS === 'android' ? 12 : 16} blurReductionFactor={3} experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'} tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
+    <LinearGradient colors={[tint, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
+    <View style={{ height: 1, backgroundColor: edge }} />
+  </View>;
+}
 
 export type PackCardTheme = {
   borderAccent: string;
@@ -166,6 +179,9 @@ export default function CollectionListView({
   onCreatePack,
   onDeleteSelected,
 }: Props) {
+  const { liquidGlassThemeId } = useTheme();
+  const g = liquidGlassTokens(liquidGlassThemeId);
+  const insets = useStableSafeAreaInsets();
   const flatListRef = useRef<any>(null);
   const [scrollViewH, setScrollViewH] = useState(0);
   const scrollViewHRef = useRef(0);
@@ -432,8 +448,9 @@ export default function CollectionListView({
             minHeight: 82,
             borderRadius: 16,
             borderWidth: 1,
-            borderColor: selected ? `${t.gold}CC` : t.border,
-            backgroundColor: selected ? `${t.gold}18` : t.bgCard,
+            borderColor: g.glassEdge,
+            backgroundColor: selected ? g.selected : g.card,
+            overflow: 'hidden',
             paddingHorizontal: 12,
             paddingVertical: 9,
             flexDirection: 'row',
@@ -441,13 +458,14 @@ export default function CollectionListView({
             gap: 10,
           }}
         >
-          <View style={{ width: 30, height: 30, borderRadius: 10, borderWidth: 1.5, borderColor: selected ? t.gold : t.textGhost, backgroundColor: selected ? t.gold : 'transparent', alignItems: 'center', justifyContent: 'center' }}>
-            {selected ? <Ionicons name="checkmark" size={18} color={t.textOnGold} /> : null}
+          <SavedListGlass tint={g.selected} edge={g.glassEdge} />
+          <View style={{ width: 30, height: 30, borderRadius: 10, borderWidth: 1.5, borderColor: g.glassEdge, backgroundColor: selected ? g.cta : g.opaqueControl, alignItems: 'center', justifyContent: 'center' }}>
+            {selected ? <Ionicons name="checkmark" size={18} color={g.ctaInk} /> : null}
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
-            <FlowText testID={`fc-select-front-${item.id}`} provenance="external" style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{item.en}</FlowText>
-            <FlowText testID={`fc-select-back-${item.id}`} provenance="external" style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>{backText}</FlowText>
-            <FlowText testID={`fc-select-source-${item.id}`} provenance="external" style={{ color: selected ? t.gold : t.textGhost, fontSize: Math.max(10, f.caption - 1), fontWeight: '700', marginTop: 3 }}>{sourceLabel}</FlowText>
+            <FlowText testID={`fc-select-front-${item.id}`} provenance="external" style={{ color: g.text, fontSize: f.body, fontWeight: '700' }}>{item.en}</FlowText>
+            <FlowText testID={`fc-select-back-${item.id}`} provenance="external" style={{ color: g.secondary, fontSize: f.caption, marginTop: 2 }}>{backText}</FlowText>
+            <FlowText testID={`fc-select-source-${item.id}`} provenance="external" style={{ color: g.secondary, fontSize: Math.max(10, f.caption - 1), fontWeight: '700', marginTop: 3 }}>{sourceLabel}</FlowText>
           </View>
         </PressableHybrid>
       );
@@ -461,6 +479,7 @@ export default function CollectionListView({
         itemIdx={itemIdx}
         lang={cardContentLang}
         activeCat={activeCat}
+        savedCollectionSurface={activeCat === 'saved' && !packDeeplink}
         deletingId={deletingId}
         longPressedId={longPressedId}
         t={t}
@@ -468,7 +487,7 @@ export default function CollectionListView({
         sourceLabels={sourceLabels}
         deleteLabel={deleteLabel}
         voiceLabel={voiceLabel}
-        cardHeight={cardHeight}
+        cardHeight={activeCat === 'saved' && !packDeeplink ? 112 : cardHeight}
         cardStyle={FLASHCARD_LIST_ITEM_CARD_STYLE}
         sourceBadgeStyle={st.sourceBadge}
         sourceBadgeTextStyle={st.sourceBadgeText}
@@ -522,6 +541,7 @@ export default function CollectionListView({
   }, [
     cardContentLang,
     activeCat,
+    packDeeplink,
     deletingId,
     longPressedId,
     t,
@@ -553,6 +573,14 @@ export default function CollectionListView({
     selectedIds,
     onToggleSelection,
     lang,
+    g.card,
+    g.cta,
+    g.ctaInk,
+    g.glassEdge,
+    g.opaqueControl,
+    g.secondary,
+    g.selected,
+    g.text,
   ]);
 
   /** Нижний «хвост» — чтобы последнюю картку можно было прокрутить к центру. */
@@ -620,16 +648,17 @@ export default function CollectionListView({
               { translateY: deleteHintAnim.interpolate({ inputRange: [0, 1], outputRange: [-8, 0] }) },
               { scale: deleteHintPulse },
             ],
-            marginHorizontal: 16, marginTop: 8, marginBottom: 4,
+            position: 'absolute', bottom: 14, left: 16, right: 16, zIndex: 20,
             flexDirection: 'row', alignItems: 'center', gap: 10,
-            backgroundColor: t.bgSurface,
-            borderRadius: 12, borderWidth: 1, borderColor: t.border,
+            backgroundColor: g.sheet,
+            borderRadius: 14, borderWidth: 1, borderColor: g.glassEdge, overflow: 'hidden',
             paddingHorizontal: 14, paddingVertical: 10,
           }}>
-            <Ionicons name="hand-left-outline" size={18} color={t.textSecond} />
-            <Text style={{ flex: 1, color: t.textSecond, fontSize: f.sub, lineHeight: 18 }}>
+            <SavedListGlass tint={g.selected} edge={g.glassEdge} />
+            <Ionicons name="trash-outline" size={18} color={g.secondary} />
+            <Text style={{ flex: 1, color: g.text, fontSize: f.sub, lineHeight: 18 }}>
               {triLang(lang, {
-                ru: 'Зажмите карточку чтобы удалить её',
+                ru: 'Зажмите карточку, чтобы удалить её',
                 uk: 'Затисніть картку, щоб видалити її',
                 en: 'Hold a card to delete it',
                 es: 'Mantén pulsada la tarjeta para eliminarla',
@@ -641,7 +670,7 @@ export default function CollectionListView({
               })}
             </Text>
             <TouchableOpacity onPress={dismissDeleteHint} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
-              <Ionicons name="close" size={18} color={t.textMuted} />
+              <Ionicons name="close" size={18} color={g.secondary} />
             </TouchableOpacity>
           </Animated.View>
         )}
@@ -727,16 +756,16 @@ export default function CollectionListView({
                       marginTop: 4,
                       borderRadius: 20,
                       borderWidth: 1,
-                      borderColor: t.border,
-                      backgroundColor: t.bgCard,
+                      borderColor: g.glassEdge,
+                      backgroundColor: g.card,
                       paddingVertical: 22,
                       paddingHorizontal: 20,
                       alignItems: 'center',
                       gap: 6,
                     }}
                   >
-                    <Ionicons name="lock-closed" size={26} color={t.textMuted} />
-                    <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
+                    <Ionicons name="lock-closed" size={26} color={g.lightTint} />
+                    <Text style={{ color: g.text, fontSize: f.body, fontWeight: '700' }}>
                       {triLang(lang, {
                         ru: `+${hiddenByLimitCount} карточек скрыто`,
                         uk: `+${hiddenByLimitCount} карток приховано`,
@@ -749,31 +778,31 @@ export default function CollectionListView({
                         pl: `+${hiddenByLimitCount} kart ukrytych`,
                       })}
                     </Text>
-                    <Text style={{ color: t.textMuted, fontSize: f.caption, textAlign: 'center' }}>
+                    <Text style={{ color: g.secondary, fontSize: f.caption, textAlign: 'center' }}>
                       {triLang(lang, {
-                        ru: 'Бесплатно доступны первые 20 сохранённых карточек',
-                        uk: 'Безкоштовно доступні перші 20 збережених карток',
-                        en: 'The first 20 saved cards are free',
-                        es: 'Gratis: las primeras 20 tarjetas guardadas',
-                        'pt-BR': 'Grátis: os primeiros 20 cartões salvos',
-                        vi: 'Miễn phí: 20 thẻ đã lưu đầu tiên',
-                        id: 'Gratis: 20 kartu tersimpan pertama',
-                        tr: 'Ücretsiz: kaydedilen ilk 20 kart',
-                        pl: 'Za darmo: pierwsze 20 zapisanych kart',
+                        ru: 'Бесплатно доступны первые 50 сохранённых карточек',
+                        uk: 'Безкоштовно доступні перші 50 збережених карток',
+                        en: 'The first 50 saved cards are free',
+                        es: 'Gratis: las primeras 50 tarjetas guardadas',
+                        'pt-BR': 'Grátis: os primeiros 50 cartões salvos',
+                        vi: 'Miễn phí: 50 thẻ đã lưu đầu tiên',
+                        id: 'Gratis: 50 kartu tersimpan pertama',
+                        tr: 'Ücretsiz: kaydedilen ilk 50 kart',
+                        pl: 'Za darmo: pierwsze 50 zapisanych kart',
                       })}
                     </Text>
-                    <View style={{ marginTop: 8, backgroundColor: t.accent, borderRadius: 12, paddingHorizontal: 22, paddingVertical: 10 }}>
-                      <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '700' }}>
+                    <View style={{ marginTop: 8, backgroundColor: g.cta, borderRadius: 12, paddingHorizontal: 22, paddingVertical: 10 }}>
+                      <Text style={{ color: g.ctaInk, fontSize: f.sub, fontWeight: '700' }}>
                         {triLang(lang, {
-                          ru: 'Открыть все с Премиум',
-                          uk: 'Відкрити всі з Преміум',
-                          en: 'Unlock all with Premium',
-                          es: 'Desbloquear con Premium',
-                          'pt-BR': 'Desbloquear tudo com Premium',
-                          vi: 'Mở tất cả với Premium',
-                          id: 'Buka semua dengan Premium',
-                          tr: 'Premium ile tümünü aç',
-                          pl: 'Odblokuj wszystko z Premium',
+                          ru: 'Открыть все с Plus',
+                          uk: 'Відкрити все з Plus',
+                          en: 'Unlock all with Plus',
+                          es: 'Desbloquear todo con Plus',
+                          'pt-BR': 'Desbloquear tudo com Plus',
+                          vi: 'Mở tất cả với Plus',
+                          id: 'Buka semua dengan Plus',
+                          tr: 'Plus ile tümünü aç',
+                          pl: 'Odblokuj wszystko z Plus',
                         })}
                       </Text>
                     </View>
@@ -803,7 +832,20 @@ export default function CollectionListView({
       </View>
 
       {selectionMode ? (
-        <Reanimated.View entering={reduceMotion ? undefined : FadeInDown.duration(LUM.contentMs)} testID="fc-selection-action-bar" style={{ backgroundColor: t.bgCard, paddingHorizontal: 16, paddingTop: 10, paddingBottom: 12, gap: 8 }}>
+        <Reanimated.View entering={reduceMotion ? undefined : FadeInDown.duration(LUM.contentMs)} testID="fc-selection-action-bar" style={{ position: 'absolute', left: 0, right: 0, bottom: 0, backgroundColor: g.sheet, paddingHorizontal: 20, paddingTop: 12, paddingBottom: insets.bottom > 0 ? 12 : 20, borderTopWidth: 1, borderTopColor: g.glassEdge, overflow: 'hidden' }}>
+          <SavedListGlass tint={g.selected} edge={g.glassEdge} />
+          {!canCreatePack ? (
+            <Text style={{ color: g.secondary, fontSize: 14, lineHeight: 18, textAlign: 'center', marginBottom: 10 }}>
+              {triLang(lang, {
+                ru: `Выбери ещё ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} карточек, чтобы создать набор`, uk: `Познач ще ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} карток, щоб створити набір`,
+                en: `Select ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} more cards to create a pack`, es: `Elige ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} tarjetas más para crear un pack`,
+                'pt-BR': `Escolha mais ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} cartões para criar um pacote`, vi: `Chọn thêm ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} thẻ để tạo bộ thẻ`,
+                id: `Pilih ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} kartu lagi untuk membuat paket`, tr: `Paket oluşturmak için ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} kart daha seç`,
+                pl: `Wybierz jeszcze ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} kart, aby utworzyć zestaw`,
+              })}
+            </Text>
+          ) : null}
+          <View style={{ flexDirection: 'row', gap: 10 }}>
           <DuoPressable
             testID="fc-create-pack-from-selection"
             accessibilityRole="button"
@@ -816,21 +858,14 @@ export default function CollectionListView({
             accessibilityState={{ disabled: !canCreatePack }}
             disabled={!canCreatePack}
             onPress={onCreatePack}
-            style={{ minHeight: 48, borderRadius: 14, backgroundColor: canCreatePack ? t.gold : t.bgSurface2, alignItems: 'center', justifyContent: 'center' }}
+            style={{ flex: 1, minHeight: 48, borderRadius: 14, backgroundColor: canCreatePack ? g.cta : g.opaqueControl, alignItems: 'center', justifyContent: 'center' }}
           >
-            <Text style={{ color: canCreatePack ? t.textOnGold : t.textMuted, fontSize: f.body, fontWeight: '700' }}>
+            <Text style={{ color: canCreatePack ? g.ctaInk : g.secondary, fontSize: f.body, fontWeight: '700' }}>
               {triLang(lang, {
                 ru: 'Создать набор', uk: 'Створити набір', en: 'Create a pack', es: 'Crear un set', 'pt-BR': 'Criar um conjunto', vi: 'Tạo bộ thẻ', id: 'Buat set', tr: 'Set oluştur', pl: 'Utwórz zestaw',
               })}
             </Text>
           </DuoPressable>
-          {!canCreatePack ? (
-            <Text style={{ color: t.textMuted, fontSize: f.caption, textAlign: 'center' }}>
-              {triLang(lang, {
-                ru: `Выбери ещё ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} карточек`, uk: `Познач ще ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} карток`, en: `Select ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} more cards`, es: `Elige ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} tarjetas más`, 'pt-BR': `Escolha mais ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} cartões`, vi: `Chọn thêm ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} thẻ`, id: `Pilih ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} kartu lagi`, tr: `${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} kart daha seç`, pl: `Wybierz jeszcze ${selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds))} kart`,
-              })}
-            </Text>
-          ) : null}
           <TouchableOpacity
             testID="fc-delete-selected"
             accessibilityRole="button"
@@ -840,14 +875,15 @@ export default function CollectionListView({
             accessibilityState={{ disabled: selectedCount === 0 }}
             disabled={selectedCount === 0}
             onPress={onDeleteSelected}
-            style={{ minHeight: 44, alignItems: 'center', justifyContent: 'center', opacity: selectedCount > 0 ? 1 : 0.38 }}
+            style={{ minWidth: 102, minHeight: 48, borderRadius: 14, paddingHorizontal: 14, backgroundColor: t.wrong, alignItems: 'center', justifyContent: 'center', opacity: selectedCount > 0 ? 1 : 0.38 }}
           >
-            <Text style={{ color: t.wrong, fontSize: f.caption, fontWeight: '900' }}>
+            <Text style={{ color: g.text, fontSize: f.caption, fontWeight: '700' }}>
               {triLang(lang, {
-                ru: 'Удалить выбранные', uk: 'Видалити вибрані', en: 'Delete selected', es: 'Eliminar seleccionadas', 'pt-BR': 'Excluir selecionadas', vi: 'Xóa thẻ đã chọn', id: 'Hapus yang dipilih', tr: 'Seçilenleri sil', pl: 'Usuń zaznaczone',
+                ru: 'Удалить', uk: 'Видалити', en: 'Delete', es: 'Eliminar', 'pt-BR': 'Excluir', vi: 'Xóa', id: 'Hapus', tr: 'Sil', pl: 'Usuń',
               })}
             </Text>
           </TouchableOpacity>
+          </View>
         </Reanimated.View>
       ) : null}
 
@@ -874,6 +910,8 @@ export function UndoDeleteSnackbar({
   f: Record<string, number>;
   onUndo: () => void;
 }) {
+  const { liquidGlassThemeId } = useTheme();
+  const g = liquidGlassTokens(liquidGlassThemeId);
   return (
     <Reanimated.View
       entering={FadeInDown.duration(220)}
@@ -890,8 +928,8 @@ export function UndoDeleteSnackbar({
           flexDirection: 'row',
           alignItems: 'center',
           gap: 12,
-          backgroundColor: t.bgCard,
-          borderColor: t.border,
+          backgroundColor: g.sheet,
+          borderColor: g.glassEdge,
           borderWidth: 1,
           borderRadius: 16,
           paddingHorizontal: 16,
@@ -901,10 +939,12 @@ export function UndoDeleteSnackbar({
           shadowRadius: 12,
           shadowOffset: { width: 0, height: 4 },
           elevation: 6,
+          overflow: 'hidden',
         }}
       >
-        <Ionicons name="trash-outline" size={18} color={t.textMuted} />
-        <FlowText testID="fc-deleted-notice" provenance="authored" style={{ flex: 1, color: t.textPrimary, fontSize: f.sub, fontWeight: '600' }}>
+        <SavedListGlass tint={g.selected} edge={g.glassEdge} />
+        <Ionicons name="trash-outline" size={18} color={g.secondary} />
+        <FlowText testID="fc-deleted-notice" provenance="authored" style={{ flex: 1, color: g.text, fontSize: f.sub, fontWeight: '600' }}>
           {triLang(lang, {
               ru: 'Карточка удалена', uk: 'Картку видалено', en: 'Card deleted', es: 'Tarjeta eliminada',
               'pt-BR': 'Cartão excluído', vi: 'Đã xóa thẻ', id: 'Kartu dihapus', tr: 'Kart silindi', pl: 'Karta usunięta',
@@ -918,14 +958,14 @@ export function UndoDeleteSnackbar({
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           style={{
             borderRadius: 10,
-            backgroundColor: `${t.accent}1C`,
+            backgroundColor: g.selected,
             borderWidth: 1,
-            borderColor: `${t.accent}55`,
+            borderColor: g.glassEdge,
             paddingHorizontal: 14,
             paddingVertical: 7,
           }}
         >
-          <Text style={{ color: t.accent, fontSize: f.sub, fontWeight: '800' }}>
+          <Text style={{ color: g.text, fontSize: f.sub, fontWeight: '700' }}>
             {triLang(lang, {
               ru: 'Вернуть', uk: 'Повернути', en: 'Undo', es: 'Deshacer',
               'pt-BR': 'Desfazer', vi: 'Hoàn tác', id: 'Batalkan', tr: 'Geri al', pl: 'Cofnij',

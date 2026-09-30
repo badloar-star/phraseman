@@ -14,48 +14,8 @@ function optionalModule(file: string): AnyModule {
 }
 
 describe('final sensitive admin write normalizers', () => {
-  const league = optionalModule('./admin_league_controls');
   const config = optionalModule('./admin_config_controls');
   const messages = optionalModule('./admin_app_messages');
-
-  test('normalizes reasoned league mutations and rejects ambiguous points', () => {
-    expect(typeof league.normalizeAdminLeagueResetInput).toBe('function');
-    expect(typeof league.normalizeAdminLeagueMoveInput).toBe('function');
-    if (!league.normalizeAdminLeagueResetInput || !league.normalizeAdminLeagueMoveInput) return;
-    expect(league.normalizeAdminLeagueResetInput({
-      groupId: '2026-W31_2_alpha', uid: 'stable-user', reason: 'Support correction',
-      idempotencyKey: 'league-reset-1', requestId: 'league-request-1',
-    })).toMatchObject({ groupId: '2026-W31_2_alpha', uid: 'stable-user' });
-    expect(() => league.resolveAuthoritativeLeaguePoints({}, {}, {}, '2026-W31')).toThrow(HttpsError);
-    expect(league.resolveAuthoritativeLeaguePoints(
-      { weekKey: '2026-W31', weekPoints: 19, points: 120 },
-      { progress: { week_points_v2: JSON.stringify({ weekKey: '2026-W31', points: 21 }), user_total_xp: 130 } },
-      { points: 20, totalXp: 125 },
-      '2026-W31',
-      '2026-W31',
-    )).toEqual({ points: 21, totalXp: 130 });
-    expect(league.resolveAuthoritativeLeaguePoints(
-      { weekKey: '2026-W30', weekPoints: 5000, points: 120 },
-      { progress: { week_points_v2: JSON.stringify({ weekKey: '2026-W30', points: 4900 }), user_total_xp: 130 } },
-      { points: 20, totalXp: 125 },
-      '2026-W31',
-      '2026-W31',
-    )).toEqual({ points: 20, totalXp: 130 });
-    expect(league.resolveAuthoritativeLeaguePoints(
-      { weekKey: '2026-W30', groupWeekId: '2026-W31', weekPoints: 5000, points: 120 },
-      { progress: { week_points_v2: JSON.stringify({ weekKey: '2026-W31', points: 21 }), user_total_xp: 130 } },
-      { points: 20, totalXp: 125 },
-      '2026-W31',
-      '2026-W31',
-    )).toEqual({ points: 21, totalXp: 130 });
-    expect(() => league.resolveAuthoritativeLeaguePoints(
-      { weekKey: '2026-W30', weekPoints: 5000, points: 120 },
-      { progress: { week_points_v2: '{bad-json', user_total_xp: 130 } },
-      { points: 20, totalXp: 125 },
-      '2026-W31',
-      '2026-W30',
-    )).toThrow(HttpsError);
-  });
 
   test('normalizes revision-CAS config writes and keeps alert tests server-owned', () => {
     expect(typeof config.normalizeAdminNavLayoutInput).toBe('function');
@@ -88,8 +48,8 @@ describe('final sensitive admin write normalizers', () => {
     expect(typeof config.requireAdminConfigActor).toBe('function');
     expect(typeof config.assertExpectedAdminConfigRevision).toBe('function');
     expect(typeof config.assertAdminConfigReplay).toBe('function');
-    expect(typeof league.requireAdminLeagueActor).toBe('function');
-    if (!config.requireAdminConfigActor || !config.assertExpectedAdminConfigRevision || !config.assertAdminConfigReplay || !league.requireAdminLeagueActor) return;
+    // зачем: admin_league_controls удалён при ретайре лиг — проверка league-актора снята, все проверки config-актора остаются.
+    if (!config.requireAdminConfigActor || !config.assertExpectedAdminConfigRevision || !config.assertAdminConfigReplay) return;
     const support = { app: {}, auth: { uid: 'support-1', token: { admin: true, adminRole: 'support' } } };
     const owner = { app: {}, auth: { uid: 'owner-1', token: { admin: true } } };
     // Без App Check-токена вызов ПРОХОДИТ (энфорс выключен по требованию владельца),
@@ -97,7 +57,6 @@ describe('final sensitive admin write normalizers', () => {
     expect(config.requireAdminConfigActor({ auth: owner.auth })).toMatchObject({ actorUid: 'owner-1', role: 'owner' });
     expect(() => config.requireAdminConfigActor(support)).toThrow(HttpsError);
     expect(config.requireAdminConfigActor(owner)).toMatchObject({ actorUid: 'owner-1', role: 'owner' });
-    expect(() => league.requireAdminLeagueActor(support)).toThrow(HttpsError);
     expect(() => config.assertExpectedAdminConfigRevision(5, 4)).toThrow(HttpsError);
     expect(() => config.assertAdminConfigReplay({ actorUid: 'owner-2', requestFingerprint: 'same' }, 'owner-1', 'same')).toThrow(HttpsError);
   });
@@ -145,19 +104,11 @@ describe('sensitive callable source guards', () => {
     }
   });
 
-  test('VIP launch and league move keep all connected writes in bounded transactions', () => {
-    const leagueSource = fs.readFileSync(path.join(root, 'admin_league_controls.ts'), 'utf8');
+  // зачем: часть про adminMoveLeagueUser снята — admin_league_controls удалён при ретайре лиг; проверка VIP-запуска сохранена целиком.
+  test('VIP launch keeps all connected writes in bounded transactions', () => {
     const launch = messageSource.slice(messageSource.indexOf('export const adminLaunchVipSurveyCampaign'));
-    const move = leagueSource.slice(leagueSource.indexOf('export const adminMoveLeagueUser'));
     expect(launch).toContain(".limit(51)");
     expect(launch).toContain('assertBoundedActiveVipSurveyCount(active.size)');
     expect(launch).toContain('db.runTransaction(async (tx) =>');
-    expect(move).toContain(".limit(51)");
-    expect(move).toContain('db.runTransaction(async (tx) =>');
-    expect(move).toContain('tx.set(oldGroupRef');
-    expect(move).toContain('tx.set(targetGroupRef');
-    expect(move).toContain('tx.set(leaderboardRef');
-    expect(move).toContain('tx.set(userRef');
-    expect(move).not.toContain('.catch(() =>');
   });
 });

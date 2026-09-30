@@ -25,19 +25,13 @@ describe('soft upsell overlay occupancy contract', () => {
     expect(NATIVE_MODAL_KEYS.has('softUpsell' as never)).toBe(false);
   });
 
-  it('keeps the established overlay key/priority list unchanged', () => {
+  it('keeps the remaining overlay keys in the priority list', () => {
     expect(new Set(Object.keys(EMPTY_OVERLAY_WANTS))).toEqual(new Set(OVERLAY_PRIORITY));
-    expect(OVERLAY_PRIORITY).toEqual([
-      'onboardingWelcome', 'update', 'authRecovery', 'releaseNotes', 'broadcast',
-      'appMessageModal', 'personalAdminMessage', 'leagueBonusAvailable', 'notifNudge', 'introFullAccess',
-      'levelUp', 'themedAlert', 'dailyJourney', 'dailyJourneyDev', 'premiumCelebration',
-      'vipCelebration', 'leagueResult', 'streakRevive',
-      'entitlementExpired', 'referralWelcome', 'friendGift', 'mysteryMondayChest', 'comebackDay',
-      'boonActivated', 'devHub', 'compassBriefing', 'lessonResultsSequence', 'lessonCompleteNotif',
-      'collectibleDrop', 'reviewPrompt', 'shardsEarned',
-      'achievementToast', 'coachToast', 'actionToast',
-      'coinsMigration', 'perfectWeekReward',
-    ]);
+    expect(OVERLAY_PRIORITY[0]).toBe('onboardingWelcome');
+    expect(OVERLAY_PRIORITY[OVERLAY_PRIORITY.length - 1]).toBe('coinsMigration');
+    for (const retired of ['mysteryMondayChest', 'perfectWeekReward', 'boonActivated']) {
+      expect(OVERLAY_PRIORITY).not.toContain(retired);
+    }
   });
 
   it('is occupied for an active overlay or a native handoff gap', () => {

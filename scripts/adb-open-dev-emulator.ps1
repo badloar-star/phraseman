@@ -9,6 +9,18 @@ param(
 # This dev build currently has 127.0.0.1:8081 baked into Android Gradle by
 # plugins/withAndroidDevServer127.js, so always refresh adb reverse and open
 # localhost inside the emulator to point back to the host Metro server.
+function Get-AdbReversePlan {
+  param([int]$HostPort)
+
+  $plan = @(
+    [pscustomobject]@{ DevicePort = $HostPort; HostPort = $HostPort }
+  )
+  if ($HostPort -ne 8081) {
+    $plan += [pscustomobject]@{ DevicePort = 8081; HostPort = $HostPort }
+  }
+  return $plan
+}
+
 $ErrorActionPreference = "Stop"
 $adb = Join-Path $env:LOCALAPPDATA "Android\Sdk\platform-tools\adb.exe"
 if (-not (Test-Path $adb) -and $env:ANDROID_HOME) {
@@ -41,14 +53,17 @@ $devHttp = "http://${hostUrl}:$Port"
 $enc = [Uri]::EscapeDataString($devHttp)
 $pkg = "app.phraseman"
 $deep = "exp+phraseman://expo-development-client/?url=$enc"
+$reversePlan = @(Get-AdbReversePlan -HostPort $Port)
 
 foreach ($emuSerial in ($serials | Select-Object -Unique)) {
   $avd = ""
   try { $avd = ((& $adb -s $emuSerial shell getprop ro.boot.qemu.avd_name 2>$null) | Select-Object -First 1).Trim() } catch { }
   if (-not $avd) { $avd = "unknown-avd" }
 
-  Write-Host "Serial: $emuSerial ($avd) | refreshing adb reverse tcp:$Port -> tcp:$Port"
-  & $adb -s $emuSerial reverse "tcp:$Port" "tcp:$Port" | Out-Null
+  foreach ($reverseMapping in $reversePlan) {
+    Write-Host "Serial: $emuSerial ($avd) | refreshing adb reverse tcp:$($reverseMapping.DevicePort) -> tcp:$($reverseMapping.HostPort)"
+    & $adb -s $emuSerial reverse "tcp:$($reverseMapping.DevicePort)" "tcp:$($reverseMapping.HostPort)" | Out-Null
+  }
 
   Write-Host "Serial: $emuSerial ($avd) | opening $devHttp"
   if (-not $NoForceStop) {

@@ -6,17 +6,16 @@ const EXPECTED_ICONS = [
   'heart-outline',
   'sparkles-outline',
   'person-outline',
-  'trophy-outline',
   'swap-horizontal-outline',
-  'hardware-chip-outline',
 ];
 
 describe('conversational post-update copy', () => {
-  test.each(LOCALES)('%s has the complete seven-chapter story', (locale) => {
+  test.each(LOCALES)('%s has five current chapters without retired features', (locale) => {
     const copy = pickReleaseNotesTexts(locale);
 
-    expect(copy.items).toHaveLength(7);
+    expect(copy.items).toHaveLength(5);
     expect(copy.items.map((item) => item.icon)).toEqual(EXPECTED_ICONS);
+    expect(copy.items.map((item) => `${item.title}\n${item.body}`).join('\n')).not.toMatch(/\bMAX\b|МАКС|Макс/i);
     expect(copy.pill.trim()).not.toBe('');
     expect(copy.title.trim()).not.toBe('');
     expect(copy.subtitle.trim()).not.toBe('');
@@ -34,9 +33,7 @@ describe('conversational post-update copy', () => {
       'У тебя три попытки',
       'А руны откуда?',
       'Мы освежили твой образ',
-      'Арена снова в игре',
       '«Маршрут» собирает чемоданы',
-      'И да — теперь есть МАКС',
     ]);
     expect(copy.cta).toBe('Пойти посмотреть');
   });

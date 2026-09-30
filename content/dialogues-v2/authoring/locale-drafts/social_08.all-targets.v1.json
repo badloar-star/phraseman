@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "dialogue-v2-locale-draft.v1",
+  "status": "draft_not_releaseable",
+  "sourceScenarioId": "social_08",
+  "sourceLedger": { "path": "dialogue_v2_authoring_ru.json", "revision": "v1" },
+  "targets": {
+    "en": {
+      "content": { "title": "Invite someone to an event", "briefing": "You are chatting in the Social world. Your task is to invite someone to an event. Do not end the conversation in one message: follow the steps and react to your chat partner.", "completionTone": "natural, with follow-up questions" },
+      "personas": [{ "id": "zoe", "displayName": "Zoe", "styleNote": "She chats lightly and sometimes uses a gentle joke to help you sound more natural." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Open informally" }, { "id": "objective_02", "label": "Name the event" }, { "id": "objective_03", "label": "Give the date and time" }, { "id": "objective_04", "label": "Explain why you are inviting them" }, { "id": "objective_05", "label": "Ask whether they can come" }, { "id": "objective_06", "label": "Reply to a hesitation" }, { "id": "objective_07", "label": "Agree on the next step" }
+      ]
+    },
+    "es": {
+      "content": { "title": "Invitar a un evento", "briefing": "Estás chateando en el mundo «Social». Tu tarea es invitar a alguien a un evento. No cierres la conversación con un solo mensaje: sigue los pasos y responde a tu interlocutora.", "completionTone": "natural, con preguntas de seguimiento" },
+      "personas": [{ "id": "zoe", "displayName": "Zoe", "styleNote": "Habla con ligereza y a veces usa una broma suave para ayudarte a sonar más natural." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Empezar de forma informal" }, { "id": "objective_02", "label": "Nombrar el evento" }, { "id": "objective_03", "label": "Decir la fecha y la hora" }, { "id": "objective_04", "label": "Explicar por qué invitas" }, { "id": "objective_05", "label": "Preguntar si puede venir" }, { "id": "objective_06", "label": "Responder a una duda" }, { "id": "objective_07", "label": "Acordar el siguiente paso" }
+      ]
+    },
+    "fr": {
+      "content": { "title": "Inviter quelqu'un à un événement", "briefing": "Tu échanges des messages dans le monde «Social». Ton objectif est d'inviter quelqu'un à un événement. Ne termine pas la conversation en un seul message : suis les étapes et réponds à ton interlocutrice.", "completionTone": "naturel, avec des questions de suivi" },
+      "personas": [{ "id": "zoe", "displayName": "Zoé", "styleNote": "Elle discute avec légèreté et glisse parfois une petite blague pour t'aider à parler plus naturellement." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Commencer de façon informelle" }, { "id": "objective_02", "label": "Nommer l'événement" }, { "id": "objective_03", "label": "Donner la date et l'heure" }, { "id": "objective_04", "label": "Expliquer pourquoi tu invites" }, { "id": "objective_05", "label": "Demander si la personne peut venir" }, { "id": "objective_06", "label": "Répondre à une hésitation" }, { "id": "objective_07", "label": "Convenez de la prochaine étape" }
+      ]
+    },
+    "de": {
+      "content": { "title": "Zu einem Ereignis einladen", "briefing": "Du schreibst im Bereich „Social“. Deine Aufgabe: Jemanden zu einem Ereignis einladen. Beende das Gespräch nicht mit nur einer Nachricht: Gehe die Schritte durch und reagiere auf deine Gesprächspartnerin.", "completionTone": "natürlich, mit Rückfragen" },
+      "personas": [{ "id": "zoe", "displayName": "Zoe", "styleNote": "Sie schreibt locker und hilft dir manchmal mit einem kleinen Witz, natürlicher zu klingen." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Locker beginnen" }, { "id": "objective_02", "label": "Das Ereignis nennen" }, { "id": "objective_03", "label": "Datum und Uhrzeit nennen" }, { "id": "objective_04", "label": "Erklären, warum du einlädst" }, { "id": "objective_05", "label": "Fragen, ob die Person kommen kann" }, { "id": "objective_06", "label": "Auf ein Zögern reagieren" }, { "id": "objective_07", "label": "Den nächsten Schritt vereinbaren" }
+      ]
+    }
+  }
+}

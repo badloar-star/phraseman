@@ -3,7 +3,6 @@ import {
   invalidateAccountGeneration,
 } from '../app/account_generation';
 import {
-  commitLearningV2CoinExchangeReward,
   commitLearningV2ServerWalletReward,
   commitMistakeCorrectionWalletComposite,
   createLearningV2OwnerRepositoryAsyncStorage,
@@ -92,11 +91,11 @@ describe('Learning V2 app Owner Repository runtime', () => {
       rewardId: reward.receipt.rewardId,
       rewardFingerprint: reward.receipt.rewardFingerprint,
     };
-    const applied = await commitLearningV2CoinExchangeReward(request, dependencies);
+    const applied = await commitLearningV2ServerWalletReward(request, dependencies);
     expect(applied.status).toBe('applied');
     expect(applied.appliedReceipt.amountSubunits).toBe(2_400_000);
     const writesBeforeReplay = memory.values.size;
-    const replayed = await commitLearningV2CoinExchangeReward(request, dependencies);
+    const replayed = await commitLearningV2ServerWalletReward(request, dependencies);
     expect(replayed.status).toBe('replayed');
     expect(memory.values.size).toBe(writesBeforeReplay);
   });
@@ -235,7 +234,7 @@ describe('Learning V2 app Owner Repository runtime', () => {
       rewardId: reward.receipt.rewardId,
       rewardFingerprint: reward.receipt.rewardFingerprint,
     });
-    await commitLearningV2CoinExchangeReward(requestFor(first), {
+    await commitLearningV2ServerWalletReward(requestFor(first), {
       storage: createLearningV2OwnerRepositoryAsyncStorage(binding, token4, memory),
       accountToken: token4,
       resolveAccountBinding: async () => binding,
@@ -260,7 +259,7 @@ describe('Learning V2 app Owner Repository runtime', () => {
       operationReason: 'coin_exchange',
       origin: { kind: 'coin_exchange', tradeId: 'cx:rollover-second' },
     });
-    const applied = await commitLearningV2CoinExchangeReward(requestFor(second), {
+    const applied = await commitLearningV2ServerWalletReward(requestFor(second), {
       storage: createLearningV2OwnerRepositoryAsyncStorage(binding5, token5, memory),
       accountToken: token5,
       resolveAccountBinding: async () => binding5,
@@ -272,7 +271,7 @@ describe('Learning V2 app Owner Repository runtime', () => {
     expect(applied.snapshot.walletState.revision).toBe(2);
 
     const writesBeforeOldReplay = memory.values.size;
-    const replayedFirst = await commitLearningV2CoinExchangeReward(requestFor(first), {
+    const replayedFirst = await commitLearningV2ServerWalletReward(requestFor(first), {
       storage: createLearningV2OwnerRepositoryAsyncStorage(binding5, token5, memory),
       accountToken: token5,
       resolveAccountBinding: async () => binding5,

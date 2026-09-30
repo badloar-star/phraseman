@@ -26,6 +26,7 @@ import { setDailyPhraseSavedOnServerForTarget } from '../app/daily_phrase_system
 import type { RuntimeStudyTarget } from '../app/target_storage_keys';
 import { DebugLogger } from '../app/debug-logger';
 import { normalizePackLanguage, type PackLanguage } from '../app/flashcards/pack_languages';
+import { FREE_SAVED_CARD_LIMIT } from '../app/flashcards/free_limit';
 
 interface Props {
   en: string;
@@ -229,7 +230,7 @@ function AddToFlashcard({
               runPostSaveSideEffects();
             } else if (result === 'limit_reached') {
               setSaved(false);
-              router.push({ pathname: '/premium_modal', params: { context: 'flashcard_limit', source: 'add_to_flashcard', saved: '20' } } as any);
+              router.push({ pathname: '/premium_modal', params: { context: 'flashcard_limit', source: 'add_to_flashcard', saved: String(FREE_SAVED_CARD_LIMIT) } } as any);
             } else if (result === 'stale') {
               setSaved(false);
             }

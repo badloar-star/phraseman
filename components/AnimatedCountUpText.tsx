@@ -16,12 +16,12 @@ import Animated, {
 const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
 
 /**
- * AnimatedCountUpText — то же UI-thread решение, что ResultsXpValue в
+ * AnimatedCountUpText — UI-thread решение для нейтральных числовых значений в
  * ResultsSequence.tsx (Learning V2/Урок), но переиспользуемое отдельно от
  * той секвенции — для экранов, у которых нет полноценного ResultsSequence
  * (словарь, глаголы, блиц, тренировка, ошибки, голос).
  *
- * зачем (владелец, 2026-08-27): «руны + XP/счёт тоже анимированы (count-up)»
+ * зачем: count-up используется для рун и нейтральных числовых показателей.
  * на всех семи экранах завершения, не только на уроке.
  */
 

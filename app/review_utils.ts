@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { Lang } from '../constants/i18n';
 import { decideReviewPrompt, type ReviewPromptInput } from './review_prompt_policy';
 import { DebugLogger } from './debug-logger';
+import { getForegroundDailyMsMap } from './foreground_usage_ms';
 
 const KEY_LAST_PROMPTED = 'review_prompted_at';
 const KEY_SESSIONS      = 'app_session_count';
@@ -254,12 +255,8 @@ export const canShowReview = async (input: Omit<ReviewPromptInput, 'nowMs' | 'pr
 
 export const getReviewActiveDays = async (): Promise<number> => {
   try {
-    const raw = await AsyncStorage.getItem('daily_stats');
-    const stats = raw ? JSON.parse(raw) as Record<string, unknown> : {};
-    return Object.values(stats).filter((entry) => {
-      if (typeof entry === 'number') return entry > 0;
-      return typeof entry === 'object' && entry !== null && Number((entry as { points?: unknown }).points) > 0;
-    }).length;
+    const foregroundByDate = await getForegroundDailyMsMap();
+    return Object.values(foregroundByDate).filter((ms) => Number.isFinite(ms) && ms >= 60_000).length;
   } catch {
     return 0;
   }

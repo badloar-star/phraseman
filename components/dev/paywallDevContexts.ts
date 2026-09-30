@@ -11,7 +11,6 @@ export type DevPaywallContext = Readonly<{
 const LABELS: Record<PremiumContext, string> = {
   no_energy: 'Нет энергии',
   onboarding_plan: 'Онбординг',
-  season_pass_lane: 'Сезонный трек',
   course_after_lesson3: 'После 3-го урока',
   lesson_b1: 'Урок B1',
   flashcard_limit: 'Лимит карточек',
@@ -54,4 +53,3 @@ const LABELS: Record<PremiumContext, string> = {
 export const DEV_PAYWALL_CONTEXTS: readonly DevPaywallContext[] = Object.freeze(
   PREMIUM_CONTEXT_VALUES.map((context) => Object.freeze({ context, label: LABELS[context] })),
 );
-

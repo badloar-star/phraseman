@@ -45,7 +45,7 @@ Firestore billing считает document reads, а не поля. Если мы
 | --- | --- | ---: | --- | --- | --- |
 | UID | doc id | 0 extra | низко | нужно | оставить |
 | Имя | `progress.user_name` | 0 extra | низко | нужно | оставить |
-| XP / Level | `progress.user_total_xp` | 0 extra | низко | нужно | оставить |
+| XP / Level | retired legacy fields | 0 extra | низко | не используется | не читать и не показывать |
 | Streak | `progress.streak_count` | 0 extra | низко | нужно | оставить |
 | Уроки `x/32` | `progress.unlocked_lessons` JSON | 0 extra | средне | полезно | в индекс писать только count |
 | Тема | `progress.app_theme` | 0 extra | низко | почти бесполезно | можно убрать колонку/filter/KPI |
@@ -61,7 +61,7 @@ Firestore billing считает document reads, а не поля. Если мы
 | Avatar/frame | `user_avatar`, `user_avatar_frame` | 0 extra | средне | визуально, не admin-critical | можно заменить на level circle |
 | Flashcards count | `progress.flashcards` JSON | 0 extra | высоко | редко нужно | убрать из list, detail по клику |
 | Achievements | `progress.achievements_state` JSON | 0 extra | высоко | редко нужно | убрать из list/analytics, detail по клику |
-| League state | `progress.league_state_v3` JSON | 0 extra | средне | дублируется вкладкой Лиги | убрать из users list |
+| League state | retired legacy field | 0 extra | средне | не используется | не читать и не показывать |
 | Daily tasks | `progress.daily_tasks_progress` JSON | 0 extra | средне | debug only | убрать из analytics/list |
 | User stats commerce | `progress.user_stats_v1` JSON | 0 extra | высоко | полезно только для analytics | вынести в отдельную вкладку/агрегат |
 | Haptics/font/onboarding | progress fields | 0 extra | низко | почти бесполезно | скрыть из list, detail only |
@@ -80,7 +80,6 @@ Firestore billing считает document reads, а не поля. Если мы
 | Daily quiz/tasks today | Analytics | 0 reads сейчас, но JSON parse | средняя | средний |
 | Full commerce bars from `user_stats_v1` | Analytics | 0 reads сейчас, но большой payload | высокая | средний: можно заменить агрегатом |
 | Archive tab as default full scan | Archive | до 1000 при открытии | высокая | низкий, если оставить Load more |
-| League chat archive mode preload | Чат лиг | до 600 messages + 600 groups | высокая | низкий, если грузить архив по кнопке |
 | Ban-list full collection in badges | badges | уже count, не docs | низкая | оставить |
 
 ## Самый сильный следующий шаг

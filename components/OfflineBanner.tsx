@@ -11,7 +11,8 @@
 // (online→offline) баннер показывается заново.
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, PanResponder, StyleSheet, Text, View } from 'react-native';
+import { Animated, PanResponder, Platform, StyleSheet, Text, View } from 'react-native';
+import { BlurView } from 'expo-blur';
 import Reanimated, {
   Easing,
   cancelAnimation,
@@ -35,6 +36,8 @@ import { LUM, TOAST } from '../constants/motionHybrid';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 import { triLang, type Lang } from '../constants/i18n';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { LinearGradient } from './SafeLinearGradient';
 const AUTO_HIDE_MS = 10_000;
 
 // зачем: единый переводчик проекта (учитывает включённые языки), а не свой
@@ -47,34 +50,59 @@ const L = (lang: string, map: Record<string, string>): string =>
  * сцена T3 «Оффлайн-баннер»). Персистентный статус: вход из света (y -12→0,
  * LUM.settle, без отскока), затем еле заметное дыхание (opacity 1↔0.82,
  * 1400мс) — ЕДИНСТВЕННЫЙ цикл, гардим useRuntimeActive, чтобы не крутился в
- * фоне (runtime_lifecycle_ratchet). Смена офлайн→снова-в-сети — НА МЕСТЕ
- * (кросс-фейд иконки/текста 180мс, без перевхода), уход короче входа
- * (TOAST.exitMs).
+ * фоне (runtime_lifecycle_ratchet). При возврате сети баннер исчезает;
+ * отдельного видимого online-состояния у production-вызова нет.
  */
-function OfflineBannerHybridCard({
-  online,
+function OfflineBannerSurface({
   offlineText,
-  onlineText,
-  accentOffline,
-  accentOnline,
   cardBg,
   textColor,
-  runtimeActive,
+  edge,
+  tint,
 }: {
-  online: boolean;
   offlineText: string;
-  onlineText: string;
-  accentOffline: string;
-  accentOnline: string;
   cardBg: string;
   textColor: string;
+  edge: string;
+  tint: string;
+}) {
+  return (
+    <View style={[styles.surface, { backgroundColor: cardBg }]}>
+      <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+        <BlurView intensity={Platform.OS === 'android' ? 10 : 14} blurReductionFactor={3}
+          experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'}
+          tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
+        <View style={[StyleSheet.absoluteFill, { backgroundColor: cardBg }]} />
+        <LinearGradient colors={[tint, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
+        <View style={[styles.surfaceSheen, { backgroundColor: edge }]} />
+      </View>
+      <View style={styles.surfaceRow}>
+        <Ionicons name="wifi-off" size={18} color={textColor} />
+        <Text style={[styles.surfaceText, { color: textColor }]}>{offlineText}</Text>
+      </View>
+    </View>
+  );
+}
+
+function OfflineBannerHybridCard({
+  offlineText,
+  cardBg,
+  textColor,
+  edge,
+  tint,
+  runtimeActive,
+}: {
+  offlineText: string;
+  cardBg: string;
+  textColor: string;
+  edge: string;
+  tint: string;
   runtimeActive: boolean;
 }) {
   const reduceMotion = useReduceMotion();
   const opacity = useSharedValue(0);
   const y = useSharedValue(-12);
   const breathe = useSharedValue(1);
-  const stateOpacity = useSharedValue(1);
 
   useEffect(() => {
     if (reduceMotion) {
@@ -98,7 +126,7 @@ function OfflineBannerHybridCard({
       breathe.value = 1;
       return;
     }
-    if (!runtimeActive || online) {
+    if (!runtimeActive) {
       breathe.value = withTiming(1, { duration: TOAST.feedbackMs, easing: Easing.out(Easing.cubic) });
       return;
     }
@@ -115,36 +143,15 @@ function OfflineBannerHybridCard({
     );
     return () => cancelAnimation(breathe);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [reduceMotion, runtimeActive, online]);
-
-  // Кросс-фейд НА МЕСТЕ при возврате сети — не перевход, а смена содержимого.
-  useEffect(() => {
-    if (reduceMotion) {
-      stateOpacity.value = 1;
-      return;
-    }
-    stateOpacity.value = 0;
-    stateOpacity.value = withTiming(1, { duration: TOAST.stateResolveMs, easing: Easing.out(Easing.cubic) });
-    return () => cancelAnimation(stateOpacity);
-  }, [online, reduceMotion, stateOpacity]);
+  }, [reduceMotion, runtimeActive]);
 
   const cardStyle = useAnimatedStyle(() => ({
     opacity: opacity.value * breathe.value,
     transform: [{ translateY: y.value }],
   }));
-  const contentStyle = useAnimatedStyle(() => ({ opacity: stateOpacity.value }));
-
-  const accent = online ? accentOnline : accentOffline;
-
   return (
-    <Reanimated.View style={[styles.hybridCard, { backgroundColor: cardBg }, cardStyle]}>
-      <View style={[styles.hybridSpine, { backgroundColor: accent }]} />
-      <Reanimated.View style={[styles.hybridRow, contentStyle]}>
-        <Ionicons name={online ? 'checkmark-circle' : 'wifi-outline'} size={18} color={accent} />
-        <Text style={[styles.hybridText, { color: textColor }]}>
-          {online ? onlineText : offlineText}
-        </Text>
-      </Reanimated.View>
+    <Reanimated.View style={[styles.hybridCard, cardStyle]}>
+      <OfflineBannerSurface offlineText={offlineText} cardBg={cardBg} textColor={textColor} edge={edge} tint={tint} />
     </Reanimated.View>
   );
 }
@@ -159,7 +166,8 @@ interface OfflineBannerProps {
 // где язык уже есть, — так он не зависит от места в дереве провайдеров.
 export default function OfflineBanner({ lang, motionVariant = 'hybrid' }: OfflineBannerProps) {
   const insets = useStableSafeAreaInsets();
-  const { theme: t } = useTheme();
+  const { liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const isHybrid = motionVariant === 'hybrid';
   const reduceMotion = useReduceMotion();
   const runtimeActive = useRuntimeActive();
@@ -260,6 +268,7 @@ export default function OfflineBanner({ lang, motionVariant = 'hybrid' }: Offlin
   const offlineText = L(lang, {
     ru: 'Нет соединения',
     uk: 'Немає з’єднання',
+    en: 'No connection',
     es: 'Sin conexión',
     'pt-BR': 'Sem conexão',
     vi: 'Mất kết nối',
@@ -269,16 +278,6 @@ export default function OfflineBanner({ lang, motionVariant = 'hybrid' }: Offlin
   });
 
   if (isHybrid) {
-    const onlineText = L(lang, {
-      ru: 'Снова в сети',
-      uk: 'Знову онлайн',
-      es: 'De vuelta en línea',
-      'pt-BR': 'De volta online',
-      vi: 'Đã có mạng trở lại',
-      id: 'Kembali online',
-      tr: 'Tekrar çevrimiçi',
-      pl: 'Znowu online',
-    });
     return (
       <View style={[styles.hybridAnchor, { top: insets.top + 4 }]}>
         <Animated.View
@@ -286,13 +285,11 @@ export default function OfflineBanner({ lang, motionVariant = 'hybrid' }: Offlin
           style={[styles.hybridMotion, { opacity, transform: [{ translateY }] }]}
         >
           <OfflineBannerHybridCard
-            online={!offline}
             offlineText={offlineText}
-            onlineText={onlineText}
-            accentOffline={t.wrong}
-            accentOnline={t.correct}
-            cardBg={t.bgCard}
-            textColor={t.textPrimary}
+            cardBg={glass.sheet}
+            textColor={glass.text}
+            edge={glass.glassEdge}
+            tint={glass.selected}
             runtimeActive={runtimeActive}
           />
         </Animated.View>
@@ -305,9 +302,7 @@ export default function OfflineBanner({ lang, motionVariant = 'hybrid' }: Offlin
       {...panResponder.panHandlers}
       style={[styles.banner, { top: insets.top + 4, opacity, transform: [{ translateY }] }]}
     >
-      <Text style={styles.text}>
-        {offlineText}
-      </Text>
+      <OfflineBannerSurface offlineText={offlineText} cardBg={glass.sheet} textColor={glass.text} edge={glass.glassEdge} tint={glass.selected} />
     </Animated.View>
   );
 }
@@ -318,17 +313,6 @@ const styles = StyleSheet.create({
     left: 12,
     right: 12,
     zIndex: 9999,
-    ...noAndroidOutline,
-    borderRadius: 10,
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-    backgroundColor: 'rgba(30, 30, 36, 0.92)',
-    alignItems: 'center',
-  },
-  text: {
-    color: 'rgba(255,255,255,0.92)',
-    fontSize: 12.5,
-    fontWeight: '600',
   },
   hybridAnchor: {
     position: 'absolute',
@@ -342,28 +326,27 @@ const styles = StyleSheet.create({
   },
   hybridCard: {
     width: '100%',
+  },
+  surface: {
     borderRadius: 12,
     paddingVertical: 8,
-    paddingLeft: 14,
-    paddingRight: 12,
+    paddingHorizontal: 14,
     overflow: 'hidden',
     ...noAndroidOutline,
   },
-  hybridSpine: {
+  surfaceSheen: {
     position: 'absolute',
-    left: 0,
-    top: 6,
-    bottom: 6,
-    width: 3,
-    borderTopRightRadius: 3,
-    borderBottomRightRadius: 3,
+    top: 0,
+    left: 1,
+    right: 1,
+    height: 1,
   },
-  hybridRow: {
+  surfaceRow: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
   },
-  hybridText: {
+  surfaceText: {
     fontSize: 12.5,
     fontWeight: '700',
   },

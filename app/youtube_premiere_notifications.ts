@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { YoutubeVideoState } from '../shared/youtube_catalog_contract';
 
+import { reportSwallowed, swallowError } from './debug-logger';
 const STORAGE_KEY = 'youtube_premiere_reminders_v1';
 const TEN_MINUTES_MS = 10 * 60_000;
 export const MAX_YOUTUBE_PREMIERE_REMINDERS = 20;
@@ -144,7 +145,7 @@ export async function requestYoutubePremiereReminderFromTap(
 
   const reminders = await readStoredReminders();
   const previous = reminders.find((item) => item.videoId === videoId);
-  if (previous) await dependencies.cancel(previous.notificationId).catch(() => {});
+  if (previous) await dependencies.cancel(previous.notificationId).catch(swallowError('youtube_premiere_notifications:requestYoutubePremiereReminderFromTap'));
   const notificationId = await dependencies.schedule({
     type: 'youtube_premiere',
     videoId,
@@ -153,7 +154,7 @@ export async function requestYoutubePremiereReminderFromTap(
     triggerAtMs: trigger.triggerAtMs,
   });
   if (!notificationId) {
-    await saveReminders(reminders.filter((item) => item.videoId !== videoId), nowMs).catch(() => {});
+    await saveReminders(reminders.filter((item) => item.videoId !== videoId), nowMs).catch(swallowError('youtube_premiere_notifications:requestYoutubePremiereReminderFromTap'));
     return { ok: false, reason: 'schedule_failed' };
   }
   const reminder = { videoId, channelId, scheduledStartTime: input.scheduledStartTime, notificationId };
@@ -169,8 +170,8 @@ export async function reconcileYoutubePremiereReminders(
   const dependencies = options.dependencies ?? defaultDependencies;
   const stored = await readStoredReminders();
   if (!(await dependencies.isMasterEnabled())) {
-    await Promise.all(stored.map((item) => dependencies.cancel(item.notificationId).catch(() => {})));
-    await saveReminders([], nowMs).catch(() => {});
+    await Promise.all(stored.map((item) => dependencies.cancel(item.notificationId).catch(swallowError('youtube_premiere_notifications:reconcileYoutubePremiereReminders'))));
+    await saveReminders([], nowMs).catch(swallowError('youtube_premiere_notifications:reconcileYoutubePremiereReminders'));
     return [];
   }
 
@@ -184,21 +185,21 @@ export async function reconcileYoutubePremiereReminders(
       ? buildYoutubePremiereReminderTrigger(event.scheduledStartTime, nowMs)
       : null;
     if (!event || !trigger) {
-      await dependencies.cancel(reminder.notificationId).catch(() => {});
+      await dependencies.cancel(reminder.notificationId).catch(swallowError('youtube_premiere_notifications:reconcileYoutubePremiereReminders'));
       continue;
     }
     if (event.scheduledStartTime === reminder.scheduledStartTime && event.channelId === reminder.channelId) {
       next.push(reminder);
       continue;
     }
-    await dependencies.cancel(reminder.notificationId).catch(() => {});
+    await dependencies.cancel(reminder.notificationId).catch(swallowError('youtube_premiere_notifications:reconcileYoutubePremiereReminders'));
     const notificationId = await dependencies.schedule({
       type: 'youtube_premiere',
       videoId: event.videoId,
       channelId: event.channelId,
       title: event.title,
       triggerAtMs: trigger.triggerAtMs,
-    }).catch(() => null);
+    }).catch((error: unknown) => { reportSwallowed('youtube_premiere_notifications:reconcileYoutubePremiereReminders', error); return null; });
     if (notificationId) {
       next.push({
         videoId: event.videoId,

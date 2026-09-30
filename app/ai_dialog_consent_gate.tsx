@@ -11,15 +11,18 @@
  * Согласие уже принято → рендерим переданный экран как есть, без задержки.
  */
 import React, { useCallback, useEffect, useState } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../components/ThemeContext';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
 import AiDialogConsentModal from '../components/AiDialogConsentModal';
 import { hapticTap } from '../hooks/use-haptics';
 import { safeRouterBack } from './navigation_back';
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import {
   hasAiDialogConsentDecision,
   isAiDialogConsentGranted,
@@ -30,7 +33,9 @@ import {
 } from './ai_dialog_consent';
 
 export default function AiDialogConsentGate({ children }: { children: React.ReactNode }) {
-  const { theme: t } = useTheme();
+  const { liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  const insets = useStableSafeAreaInsets();
   const { lang } = useLang();
   const router = useRouter();
   const [ready, setReady] = useState(isAiDialogConsentHydrated() && isAiDialogConsentGranted());
@@ -81,13 +86,26 @@ export default function AiDialogConsentGate({ children }: { children: React.Reac
   }, []);
 
   const declinedScreen = (
-    <View style={{ flex: 1, backgroundColor: t.bgPrimary, alignItems: 'center', justifyContent: 'center', padding: 24, gap: 16 }}>
-      <Text style={{ color: t.textPrimary, fontSize: 17, fontWeight: '800', textAlign: 'center' }}>
+    <View style={[
+      styles.declinedScreen,
+      { backgroundColor: glass.bg, paddingTop: insets.top + 24, paddingBottom: Math.max(insets.bottom, 24) },
+    ]}>
+      <LinearGradient
+        pointerEvents="none"
+        colors={[glass.bg, glass.opaqueCard, glass.bg]}
+        start={{ x: 0.15, y: 0 }}
+        end={{ x: 0.85, y: 1 }}
+        style={StyleSheet.absoluteFill}
+      />
+      <View style={[styles.declinedIcon, { backgroundColor: glass.opaqueControl }]} accessible={false}>
+        <Ionicons name="sparkles-outline" size={30} color={glass.lightTint} />
+      </View>
+      <Text accessibilityRole="header" style={[styles.declinedTitle, { color: glass.text }]}>
         {triLang(lang, {
           ru: 'AI-диалоги выключены', uk: 'AI-діалоги вимкнено', en: 'AI dialogues are off', es: 'Diálogos con IA desactivados', 'pt-BR': 'Diálogos com IA desativados', vi: 'Đã tắt hội thoại AI', id: 'Dialog AI dimatikan', tr: 'Yapay zeka diyalogları kapalı', pl: 'Dialogi AI wyłączone',
         })}
       </Text>
-      <Text style={{ color: t.textSecond, fontSize: 15, lineHeight: 22, textAlign: 'center', maxWidth: 320 }}>
+      <Text style={[styles.declinedBody, { color: glass.secondary }]}>
         {triLang(lang, {
           ru: 'Вы выключили AI-диалоги в настройках приватности. Их можно включить в любой момент.',
           uk: 'Ви вимкнули AI-діалоги в налаштуваннях конфіденційності. Їх можна ввімкнути будь-коли.',
@@ -111,11 +129,11 @@ export default function AiDialogConsentGate({ children }: { children: React.Reac
         accessibilityLabel={triLang(lang, {
           ru: 'Включить AI-диалоги', uk: 'Увімкнути AI-діалоги', en: 'Turn on AI dialogues', es: 'Activar los diálogos con IA', 'pt-BR': 'Ativar os diálogos com IA', vi: 'Bật hội thoại AI', id: 'Nyalakan dialog AI', tr: 'Yapay zeka diyaloglarını aç', pl: 'Włącz dialogi AI',
         })}
-        style={{ width: '100%', minHeight: 52, paddingVertical: 12, paddingHorizontal: 20, borderRadius: 14, backgroundColor: t.accent, alignItems: 'center', justifyContent: 'center' }}
+        style={[styles.primaryAction, { backgroundColor: glass.cta }]}
       >
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-          <Ionicons name="sparkles-outline" size={18} color={t.correctText} />
-          <Text style={{ color: t.correctText, fontWeight: '800' }}>
+        <View style={styles.actionContent}>
+          <Ionicons name="sparkles-outline" size={18} color={glass.ctaInk} />
+          <Text style={[styles.primaryActionText, { color: glass.ctaInk }]}>
             {triLang(lang, { ru: 'Включить', uk: 'Увімкнути', en: 'Turn on', es: 'Activar', 'pt-BR': 'Ativar', vi: 'Bật', id: 'Aktifkan', tr: 'Aç', pl: 'Włącz' })}
           </Text>
         </View>
@@ -126,11 +144,11 @@ export default function AiDialogConsentGate({ children }: { children: React.Reac
         accessibilityLabel={triLang(lang, {
           ru: 'Открыть настройки приватности', uk: 'Відкрити налаштування конфіденційності', en: 'Open Privacy settings', es: 'Abrir ajustes de privacidad', 'pt-BR': 'Abrir ajustes de privacidade', vi: 'Mở cài đặt quyền riêng tư', id: 'Buka pengaturan privasi', tr: 'Gizlilik ayarlarını aç', pl: 'Otwórz ustawienia prywatności',
         })}
-        style={{ paddingVertical: 12, paddingHorizontal: 20, borderRadius: 14, backgroundColor: t.bgCard }}
+        style={[styles.secondaryAction, { backgroundColor: glass.opaqueControl }]}
       >
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-          <Ionicons name="settings-outline" size={18} color={t.textPrimary} />
-          <Text style={{ color: t.textPrimary, fontWeight: '700' }}>
+        <View style={styles.actionContent}>
+          <Ionicons name="settings-outline" size={18} color={glass.text} />
+          <Text style={[styles.secondaryActionText, { color: glass.text }]}>
             {triLang(lang, { ru: 'Настройки приватности', uk: 'Налаштування конфіденційності', en: 'Privacy settings', es: 'Ajustes de privacidad', 'pt-BR': 'Ajustes de privacidade', vi: 'Cài đặt quyền riêng tư', id: 'Pengaturan privasi', tr: 'Gizlilik ayarları', pl: 'Ustawienia prywatności' })}
           </Text>
         </View>
@@ -138,11 +156,11 @@ export default function AiDialogConsentGate({ children }: { children: React.Reac
       <TouchableOpacity
         onPress={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as never); }}
         accessibilityRole="button"
-        style={{ paddingVertical: 12, paddingHorizontal: 20, borderRadius: 14, backgroundColor: t.bgCard }}
+        style={[styles.backAction, { backgroundColor: glass.opaqueCard }]}
       >
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-          <Ionicons name="chevron-back" size={18} color={t.textPrimary} />
-          <Text style={{ color: t.textPrimary, fontWeight: '700' }}>
+        <View style={styles.actionContent}>
+          <Ionicons name="chevron-back" size={18} color={glass.secondary} />
+          <Text style={[styles.secondaryActionText, { color: glass.secondary }]}>
             {triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
           </Text>
         </View>
@@ -152,7 +170,7 @@ export default function AiDialogConsentGate({ children }: { children: React.Reac
 
   return (
     <>
-      {ready ? children : declined ? declinedScreen : <View style={{ flex: 1, backgroundColor: t.bgPrimary }} />}
+      {ready ? children : declined ? declinedScreen : <View style={{ flex: 1, backgroundColor: glass.bg }} />}
       <AiDialogConsentModal
         visible={gateVisible}
         lang={lang}
@@ -162,3 +180,45 @@ export default function AiDialogConsentGate({ children }: { children: React.Reac
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  declinedScreen: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 24,
+    gap: 16,
+  },
+  declinedIcon: {
+    width: 72,
+    height: 72,
+    borderRadius: 36,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  declinedTitle: { fontSize: 24, lineHeight: 30, fontWeight: '700', textAlign: 'center' },
+  declinedBody: { fontSize: 15, lineHeight: 22, textAlign: 'center', maxWidth: 320 },
+  primaryAction: {
+    width: '100%',
+    minHeight: 52,
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 8,
+  },
+  secondaryAction: {
+    width: '100%',
+    minHeight: 52,
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  backAction: { minHeight: 48, paddingVertical: 12, paddingHorizontal: 20, borderRadius: 16 },
+  actionContent: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  primaryActionText: { fontWeight: '700' },
+  secondaryActionText: { fontWeight: '700' },
+});

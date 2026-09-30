@@ -1,21 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getPersonalProgressSnapshot, hydratePersonalProgress } from './personal_progress_store';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser, ensureAuthoritativeIdentityForCloudMutation } from './cloud_sync';
-import { USER_AVATAR_AURA_KEY, normalizeAvatarAuraId } from '../constants/avatar_auras';
-import { getBestAvatarForLevel } from '../constants/avatars';
-import { getLevelFromXP } from '../constants/theme';
-import {
-  PROFILE_CARD_LEGEND_NO_KEY,
-  PROFILE_CARD_LEVEL_KEY,
-  PROFILE_CARD_MOTION_KEY,
-  PROFILE_CARD_PUBLIC_FOCUS_KEY,
-  PROFILE_CARD_THEME_KEY,
-  normalizeProfileCardLevel,
-  normalizeProfileCardMotion,
-  normalizeProfileCardPublicFocus,
-  normalizeProfileCardTheme,
-} from './profile_card_system';
 import { readLifetimeProfileStatsCache } from './lifetime_profile_stats';
 import {
   captureAccountGeneration,
@@ -24,35 +9,27 @@ import {
   type AccountGenerationToken,
 } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
-import {
-  loadSeasonCosmetics,
-  SEASON1_FRAME_ID,
-} from './season_cosmetics';
 import { DebugLogger } from './debug-logger';
+import { readCoinRank } from './coin_rank_state_v1';
+import { isValidCoinRank } from './coin_rank_table_v1';
 
 export const PUBLIC_PROFILE_SNAPSHOT_CACHE_KEY = 'public_profile_snapshot_v1';
-export const PUBLIC_PROFILE_XP_TTL_MS = 24 * 60 * 60 * 1000;
-
-type PublicProfileReason = 'daily_xp' | 'display_change' | 'entitlement_change';
+type PublicProfileReason = 'display_change' | 'entitlement_change';
 
 type SnapshotInput = {
   reason: PublicProfileReason;
   name?: string;
-  totalXp?: number;
-  weekPoints?: number;
   lang?: string;
   avatar?: string | null;
   frame?: string | null;
   aura?: string | null;
   streak?: number | null;
-  leagueId?: number | null;
   isPremium?: boolean;
   isVip?: boolean;
   isLifetime?: boolean;
 };
 
 type SnapshotCache = {
-  xpSyncedAt?: number;
   displayHash?: string;
   isPremium?: boolean;
   isVip?: boolean;
@@ -60,7 +37,6 @@ type SnapshotCache = {
 };
 
 type QueuedSnapshotInput = SnapshotInput & {
-  includesDailyXp: boolean;
 };
 
 type OwnerSyncState = {
@@ -119,11 +95,6 @@ async function readString(key: string): Promise<string> {
   }
 }
 
-function readNumber(raw: string | undefined | null, fallback = 0): number {
-  const n = parseInt(String(raw ?? ''), 10);
-  return Number.isFinite(n) ? n : fallback;
-}
-
 function snapshotCacheKey(stableId: string): string {
   return `${PUBLIC_PROFILE_SNAPSHOT_CACHE_KEY}:${encodeURIComponent(stableId)}`;
 }
@@ -147,9 +118,8 @@ async function writeSnapshotCache(stableId: string, cache: SnapshotCache): Promi
 }
 
 const reasonPriority: Record<PublicProfileReason, number> = {
-  daily_xp: 0,
-  display_change: 1,
-  entitlement_change: 2,
+  display_change: 0,
+  entitlement_change: 1,
 };
 
 function mergeQueuedInput(
@@ -158,12 +128,11 @@ function mergeQueuedInput(
 ): QueuedSnapshotInput {
   const merged: QueuedSnapshotInput = current
     ? { ...current }
-    : { reason: next.reason, includesDailyXp: false };
+    : { reason: next.reason };
   for (const [key, value] of Object.entries(next)) {
     if (key !== 'reason' && value !== undefined) (merged as Record<string, unknown>)[key] = value;
   }
   if (!current || reasonPriority[next.reason] > reasonPriority[current.reason]) merged.reason = next.reason;
-  merged.includesDailyXp = Boolean(current?.includesDailyXp || next.reason === 'daily_xp');
   return merged;
 }
 
@@ -191,73 +160,29 @@ async function syncPublicProfileSnapshotUnsafe(
   const db = getFirestore();
   if (!db) return;
 
-  const now = Date.now();
   if (!ownerState.cacheLoaded) {
     ownerState.cache = await readSnapshotCache(accountToken.stableId!);
     ownerState.cacheLoaded = true;
   }
   const cache = ownerState.cache;
   if (!isCurrent()) return;
-  const xpFresh = cache.xpSyncedAt !== undefined && now - cache.xpSyncedAt < PUBLIC_PROFILE_XP_TTL_MS;
-  if (input.reason === 'daily_xp' && xpFresh && !ownerState.dirty) return;
-  if (input.totalXp === undefined) await hydratePersonalProgress().catch(() => null);
-  const [nameRaw, xpRaw, langRaw, avatarRaw, frameRaw, auraRaw, leagueRaw] = await Promise.all([
+  const [nameRaw, langRaw, avatarRaw, frameRaw] = await Promise.all([
     input.name !== undefined ? Promise.resolve(input.name) : readString('user_name'),
-    Promise.resolve(String(input.totalXp ?? getPersonalProgressSnapshot().totalXp)),
     input.lang !== undefined ? Promise.resolve(input.lang) : readString('app_lang'),
     input.avatar !== undefined ? Promise.resolve(input.avatar ?? '') : readString('user_avatar'),
     input.frame !== undefined ? Promise.resolve(input.frame ?? '') : readString('user_frame'),
-    input.aura !== undefined ? Promise.resolve(input.aura ?? '') : readString(USER_AVATAR_AURA_KEY),
-    input.leagueId !== undefined ? Promise.resolve(JSON.stringify({ leagueId: input.leagueId ?? 0 })) : readString('league_state_v3'),
   ]);
   if (!isCurrent()) return;
 
-  const totalXp = Math.max(0, readNumber(xpRaw, 0));
-  const level = getLevelFromXP(totalXp);
-  const fallbackAvatar = String(getBestAvatarForLevel(level));
   const storedAvatar = String(avatarRaw || '').trim();
-  const avatar = storedAvatar && !/^\d+$/.test(storedAvatar) ? storedAvatar : fallbackAvatar;
+  // зачем: D108 — купленные аватары («custom:…») и ауры удалены. Публичный профиль
+  // публикует базовый аватар и явно aura: null, чтобы стереть старую ауру у друзей.
+  const avatar = storedAvatar && !storedAvatar.startsWith('custom:') ? storedAvatar : '1';
   const frame = String(frameRaw || '').trim() || null;
-  const aura = normalizeAvatarAuraId(auraRaw) ?? null;
+  const aura = null;
   const lang = String(langRaw || 'ru').trim() || 'ru';
   const name = String(nameRaw || '').trim();
-  let leagueId = 0;
-  try {
-    leagueId = Math.max(0, readNumber(JSON.parse(leagueRaw || '{}')?.leagueId, 0));
-  } catch {
-    leagueId = 0;
-  }
-
-  const profilePairs = await AsyncStorage.multiGet([
-    PROFILE_CARD_LEVEL_KEY,
-    PROFILE_CARD_THEME_KEY,
-    PROFILE_CARD_MOTION_KEY,
-    PROFILE_CARD_PUBLIC_FOCUS_KEY,
-    PROFILE_CARD_LEGEND_NO_KEY,
-  ]).catch(() => [
-    [PROFILE_CARD_LEVEL_KEY, null],
-    [PROFILE_CARD_THEME_KEY, null],
-    [PROFILE_CARD_MOTION_KEY, null],
-    [PROFILE_CARD_PUBLIC_FOCUS_KEY, null],
-    [PROFILE_CARD_LEGEND_NO_KEY, null],
-  ] as [string, string | null][]);
-  if (!isCurrent()) return;
-
-  const rawProfileLevel = profilePairs[0]?.[1] ?? null;
-  const rawTheme = profilePairs[1]?.[1] ?? null;
-  const rawMotion = profilePairs[2]?.[1] ?? null;
-  const rawFocus = profilePairs[3]?.[1] ?? null;
-  const rawLegendNo = profilePairs[4]?.[1] ?? null;
-
-  const profileCardLevel = normalizeProfileCardLevel(rawProfileLevel);
-  const profileCardTheme = normalizeProfileCardTheme(rawTheme);
-  const profileCardMotion = normalizeProfileCardMotion(rawMotion);
-  const profileCardPublicFocus = normalizeProfileCardPublicFocus(rawFocus);
-  const legendNoParsed = Math.floor(Number(rawLegendNo));
-  const profileCardLegendNo = Number.isFinite(legendNoParsed) && legendNoParsed > 0 ? legendNoParsed : null;
-  const lifetimeStats = profileCardLevel >= 2
-    ? await readLifetimeProfileStatsCache().catch(() => null)
-    : null;
+  const lifetimeStats = await readLifetimeProfileStatsCache().catch(() => null);
   if (!isCurrent()) return;
   const cardStatsPayload = lifetimeStats
     ? {
@@ -267,11 +192,11 @@ async function syncPublicProfileSnapshotUnsafe(
         cardLongestStreak: Math.max(0, Math.floor(lifetimeStats.longestStreakDays)),
       }
     : {};
-  const seasonProfileFrameId = (await loadSeasonCosmetics().catch(() => null))?.frames.includes(SEASON1_FRAME_ID)
-    ? SEASON1_FRAME_ID
-    : null;
-  if (!isCurrent()) return;
-
+  const coinRankOwner = accountToken.stableId?.trim() ?? '';
+  if (!coinRankOwner || !isCurrentAccountGeneration(accountToken, coinRankOwner)) return;
+  const localCoinRank = await readCoinRank(coinRankOwner);
+  if (!isCurrentAccountGeneration(accountToken, coinRankOwner)) return;
+  const coinRankPayload = isValidCoinRank(localCoinRank) ? { coinRank: localCoinRank } : {};
   // Блоки статистики уровней II+ («Выучено»/«Путь») — денормализуем в публичный
   // профиль из локального lifetime-кэша, чтобы ЧУЖИЕ карточки могли их показать.
   // Кэш освежается экраном статистики и модалом собственной карточки; если его ещё
@@ -291,18 +216,11 @@ async function syncPublicProfileSnapshotUnsafe(
     avatar,
     frame,
     aura,
-    leagueId,
-    profileCardLevel,
-    profileCardTheme,
-    profileCardMotion,
-    profileCardPublicFocus,
-    profileCardLegendNo,
-    seasonProfileFrameId,
+    ...coinRankPayload,
     ...cardStatsPayload,
   });
 
-  if (input.reason === 'daily_xp' && xpFresh && cache.displayHash === displayHash) return;
-  if (input.reason === 'display_change' && cache.displayHash === displayHash && (!input.includesDailyXp || xpFresh)) {
+  if (input.reason === 'display_change' && cache.displayHash === displayHash) {
     ownerState.dirty = false;
     return;
   }
@@ -329,13 +247,7 @@ async function syncPublicProfileSnapshotUnsafe(
     avatar,
     frame,
     aura,
-    leagueId,
-    profileCardLevel,
-    profileCardTheme,
-    profileCardMotion,
-    profileCardPublicFocus,
-    seasonProfileFrameId,
-    ...(profileCardLegendNo !== null ? { profileCardLegendNo } : {}),
+    ...coinRankPayload,
     ...cardStatsPayload,
     displayHash,
   };
@@ -355,7 +267,6 @@ async function syncPublicProfileSnapshotUnsafe(
     isPremium: projected.data.isPremium,
     isVip: projected.data.isVip,
     isLifetime: projected.data.isLifetime,
-    xpSyncedAt: input.includesDailyXp && progressProjected ? now : cache.xpSyncedAt,
   };
   await withAccountTransitionLock(async () => {
     if (!isCurrentAccountGeneration(accountToken)) return;
@@ -363,7 +274,7 @@ async function syncPublicProfileSnapshotUnsafe(
     if (!written || !isCurrentAccountGeneration(accountToken)) return;
     ownerState.cache = nextCache;
     ownerState.cacheLoaded = true;
-    ownerState.dirty = input.includesDailyXp && !progressProjected;
+    ownerState.dirty = !progressProjected;
   });
 }
 
@@ -390,7 +301,7 @@ export function syncPublicProfileSnapshot(
     ownerSyncStates.set(ownerKey, state);
   }
   state.pending = mergeQueuedInput(state.pending, input);
-  if (input.reason !== 'daily_xp') state.dirty = true;
+  state.dirty = true;
   if (state.drain) return state.drain;
   const ownerState = state;
   ownerState.drain = Promise.resolve().then(async () => {

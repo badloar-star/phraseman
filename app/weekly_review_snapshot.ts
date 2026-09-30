@@ -20,7 +20,6 @@ export type WeeklyReviewActivitySnapshotSource = SourceError | {
   activeDays30d: number;
   currentStreak: number;
   longestStreak: number;
-  weekXp: number;
   weekMinutes: number;
   lessons7d: number;
   reviews7d: number;
@@ -83,7 +82,7 @@ export function buildWeeklyReviewSnapshot(
     mistakeCount30d,
     count(mistakes?.uniquePhrases),
     count(activity?.activeDays30d),
-    count(activity?.weekXp),
+    count(activity?.weekMinutes),
     dueWords + duePhrases,
     count(practice?.totalTracked),
   ];
@@ -100,7 +99,6 @@ export function buildWeeklyReviewSnapshot(
     activeDays30d: count(activity?.activeDays30d),
     currentStreak: count(activity?.currentStreak),
     longestStreak: count(activity?.longestStreak),
-    weekXp: count(activity?.weekXp),
     weekMinutes: count(activity?.weekMinutes),
     lessons7d: count(activity?.lessons7d),
     reviews7d: count(activity?.reviews7d),

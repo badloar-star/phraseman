@@ -5,6 +5,7 @@ import { createAuditRecord } from './admin/audit_contract';
 import { hasPermission } from './admin/permissions';
 import { hasAdminRole, type AdminRole } from './admin/roles';
 import { ADMIN_SENSITIVE_WRITE_OPTIONS } from './callable_options';
+import { STAR_OP_MAX_ABS_DELTA } from './stars_ledger';
 import {
   FORBIDDEN_GLOBAL_BROADCAST_METADATA_FIELDS,
   GLOBAL_BROADCAST_PUBLIC_SCHEMA_HASH,
@@ -26,7 +27,8 @@ const MAX_ACTIVE_BROADCASTS = 100;
 const MAX_OPERATION_STATUS_IDS = 8;
 const MAX_SCRUB_PAGE = 50;
 export const GLOBAL_BROADCAST_FINAL_VERIFY_CAP = 500;
-const MAX_SHARD_REWARD = 1000;
+// зачем: D104 — награда рассылки монетами; потолок = потолок одной операции журнала монет.
+const MAX_COIN_REWARD = STAR_OP_MAX_ABS_DELTA;
 const LANGUAGE_KEYS = ['ru', 'uk', 'es', 'ptBr', 'vi', 'id', 'tr', 'pl'] as const;
 const LANGUAGE_SUFFIXES = {
   ru: 'Ru',
@@ -40,15 +42,11 @@ const LANGUAGE_SUFFIXES = {
 } as const;
 const REWARD_TYPES = [
   'none',
-  'shards',
-  'xp_boost_2x_24h',
-  'xp_boost_2x_48h',
-  'chain_shield_1',
-  'chain_shield_3',
-  'club_boost_free',
-  'wager_discount_25',
+  'coins',
   'pack_trial_48h',
 ] as const;
+/** Старые рассылки с жемчугом (D70) показываются в списке админки как история. */
+const PROJECTABLE_REWARD_TYPES: readonly string[] = [...REWARD_TYPES, 'shards'];
 
 type Row = Record<string, unknown>;
 type LanguageKey = (typeof LANGUAGE_KEYS)[number];
@@ -56,13 +54,13 @@ type RewardType = (typeof REWARD_TYPES)[number];
 type LocalizedText = Readonly<Record<LanguageKey, string>>;
 
 export const GLOBAL_BROADCAST_SOURCE_ARTIFACT_HASHES = Object.freeze({
-  globalBroadcastClaimSourceSha256: '69e02143c6503ffbd98065de88c59910164908a2d8c96251d88fe5cba66f4a59',
+  globalBroadcastClaimSourceSha256: 'b374bf1e93a64902d594fec40f7f4b3329dfed1abafd079f6828a09524e88d55',
   globalBroadcastPublicSourceSha256: '8a8780755ec2a5bac303073f901bbf955df500d4c20612f8ba99d9c17f7b1c4e',
   communityPacksSourceSha256: '86df771985c056e98d9dd45a3454fd65a11ce80317047ad2ad7cad988145b553',
 });
 export const GLOBAL_BROADCAST_APP_QUERY_ARTIFACT = Object.freeze({
   version: 'global-broadcast-callable-reader-v2',
-  sourceSha256: '28a658b4a66ac5ba697fc959bff3f7a39a3bc4f6df18993985c115ed0b2247e9',
+  sourceSha256: '049ef63619352bb2270a9707bc9f2ffd0d1483b895bc134332de6994929ae731',
 });
 
 export interface GlobalBroadcastPublishInput {
@@ -129,10 +127,10 @@ export function normalizeGlobalBroadcastPublishInput(data: unknown): GlobalBroad
   const rawRewardAmount = Number(data.rewardAmount ?? 0);
   if (!Number.isFinite(rawRewardAmount)) throw new HttpsError('invalid-argument', 'rewardAmount is invalid');
   const integerRewardAmount = Math.floor(rawRewardAmount);
-  if (normalizedRewardType === 'shards' && (integerRewardAmount < 1 || integerRewardAmount > MAX_SHARD_REWARD)) {
-    throw new HttpsError('invalid-argument', `shard reward must be between 1 and ${MAX_SHARD_REWARD}`);
+  if (normalizedRewardType === 'coins' && (integerRewardAmount < 1 || integerRewardAmount > MAX_COIN_REWARD)) {
+    throw new HttpsError('invalid-argument', `coin reward must be between 1 and ${MAX_COIN_REWARD}`);
   }
-  const rewardAmount = normalizedRewardType === 'shards' ? integerRewardAmount : 0;
+  const rewardAmount = normalizedRewardType === 'coins' ? integerRewardAmount : 0;
   return Object.freeze({
     rewardType: normalizedRewardType,
     rewardAmount,
@@ -251,14 +249,14 @@ function millis(value: unknown): number {
 export function projectGlobalBroadcastRow(id: string, row: Row): Readonly<Row> {
   const legacyAmount = Math.max(0, Math.floor(Number(row.rewardAmount ?? row.shards ?? 0) || 0));
   const rawRewardType = text(row.rewardType, 40);
-  const normalizedRewardType = (REWARD_TYPES as readonly string[]).includes(rawRewardType)
-    ? rawRewardType
-    : legacyAmount > 0 ? 'shards' : 'none';
+  const legacyShardReward = (rawRewardType === '' || rawRewardType === 'none') && legacyAmount > 0;
+  const normalizedRewardType = legacyShardReward ? 'shards'
+    : PROJECTABLE_REWARD_TYPES.includes(rawRewardType) ? rawRewardType : 'none';
   const projected: Row = {
     id,
     active: row.active === true,
     rewardType: normalizedRewardType,
-    rewardAmount: normalizedRewardType === 'shards' ? legacyAmount : 0,
+    rewardAmount: normalizedRewardType === 'shards' || normalizedRewardType === 'coins' ? legacyAmount : 0,
     createdAt: text(row.createdAt, 80),
     createdAtMs: millis(row.createdAtMs ?? row.createdAt),
     deactivatedAt: text(row.deactivatedAt, 80) || null,
@@ -481,7 +479,6 @@ export function buildGlobalBroadcastPublicDocument(input: GlobalBroadcastPublish
     active: true,
     rewardType: input.rewardType,
     rewardAmount: input.rewardAmount,
-    shards: input.rewardType === 'shards' ? input.rewardAmount : 0,
     createdAt,
     createdAtMs: nowMs,
   };

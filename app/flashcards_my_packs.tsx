@@ -20,6 +20,7 @@
  * каркас (заголовок + сетка-заглушка), а не пустоту, которая потом «прыгает».
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { BlurView } from 'expo-blur';
 import { DebugLogger } from './debug-logger';
 import { Image } from 'expo-image';
 import { useFocusEffect, useRouter } from 'expo-router';
@@ -28,6 +29,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   ActivityIndicator,
   BackHandler,
+  Modal,
   Platform,
   Pressable,
   StatusBar,
@@ -41,25 +43,26 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
-import ScreenGradient from '../components/ScreenGradient';
+import { LinearGradient } from '../components/SafeLinearGradient';
+import { FlowText } from '../components/text-integrity/FlowText';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { actionToastTri, emitAppEvent } from './events';
 import { safeRouterBack } from './navigation_back';
 import { hapticTap } from '../hooks/use-haptics';
 import { soundDirector } from '../modules/audio/sound_director';
-import { loadCommunityOwnedPackIds } from './community_packs/communityOwnedStorage';
+import { loadCommunityOwnedPackIdsResult } from './community_packs/communityOwnedStorage';
 import { fetchCommunityPackMeta, loadAuthorCommunityPacksPendingUpdate, invalidateCommunityPackCatalog } from './community_packs/communityFirestore';
-import { isLocalAuthorPackId, loadLocalAuthorPacks, localAuthorPackToMarketPack, mergeLocalAuthorPacks, removeLocalAuthorPack } from './community_packs/localAuthorPacks';
+import { isLocalAuthorPackId, loadLocalAuthorPacks, loadLocalAuthorPacksResult, localAuthorPackToMarketPack, removeLocalAuthorPack } from './community_packs/localAuthorPacks';
 import { withdrawLocalAuthorPack } from './community_packs/publishLocalPack';
 import { stageCommunityPackCardsForNavigation } from './community_packs/staging';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import {
-  fallbackBundledMarketPacks,
-  loadAccessiblePackIds,
-  loadMarketplacePacks,
+  loadAccessiblePackIdsResult,
+  loadMarketplacePacksResult,
   packCategoryIonIcon,
   packHubCodeName,
   packTitleForInterface,
@@ -77,11 +80,18 @@ import { stageOwnedPackCardsForNavigation } from './flashcards/useCollectionData
 import { getCanonicalUserId } from './user_id_policy';
 import { type RuntimeStudyTarget } from './target_storage_keys';
 import PackLanguagePicker from './flashcards/PackLanguagePicker';
-import { PACK_LANGUAGE_META, defaultPackLanguageForStudyTarget, normalizePackLanguage, type PackLanguage } from './flashcards/pack_languages';
+import { defaultPackLanguageForStudyTarget, normalizePackLanguage, type PackLanguage } from './flashcards/pack_languages';
+import { publishMyPacksCount } from './flashcards/myPacksCountCache';
 import { getStoredPackLanguage, setStoredPackLanguage, subscribePackLanguage } from './flashcards/pack_language_preferences';
 import { filterPacksByLanguage } from './community_packs/communityCatalogFilter';
-import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { callCommunityAuthorRemovePack } from './community_packs/functionsClient';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  subscribeAccountGeneration,
+} from './account_generation';
+import { accountScopeKey } from './account_scope_key';
+import { canCommitAccountScopedResult, classifyMyPacksResolution } from './flashcards/myPacksDataIntegrity';
 
 const COLS = 3;
 const GAP = 10;
@@ -93,10 +103,30 @@ const PACK_FAN_ASPECT = 329 / 268;
 const H_PAD = 16;
 const TILE_RADIUS = 18;
 
+const PACK_FLAG_ART: Partial<Record<PackLanguage, number>> = {
+  en: require('../assets/images/language_flags/language_en.webp'),
+  fr: require('../assets/images/language_flags/language_fr_dev.webp'),
+  es: require('../assets/images/language_flags/language_es_dev.webp'),
+};
+
+function MyPacksGlass({ tint, edge }: { tint: string; edge: string }) {
+  return <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+    <BlurView intensity={Platform.OS === 'android' ? 12 : 16} blurReductionFactor={3} experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'} tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
+    <LinearGradient colors={[tint, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
+    <View style={{ height: 1, backgroundColor: edge }} />
+  </View>;
+}
+
 /** Два раздела экрана: что добавил себе и что создал сам. */
 type MyPacksGroups = {
   added: FlashcardMarketPack[];
   created: FlashcardMarketPack[];
+};
+
+type MyPacksLoadResult = {
+  groups: MyPacksGroups;
+  status: 'ready' | 'stale';
+  accountScope: string | null;
 };
 
 const EMPTY_GROUPS: MyPacksGroups = { added: [], created: [] };
@@ -198,13 +228,21 @@ function peekMyPacksGroups(studyTarget?: RuntimeStudyTarget, packLanguage: PackL
 function sameGroup(a: FlashcardMarketPack[], b: FlashcardMarketPack[]): boolean {
   return a.length === b.length && a.every((p, i) => {
     const next = b[i];
-    return !!next && p.id === next.id && packTileArtRevision(p) === packTileArtRevision(next);
+    return !!next && p.id === next.id
+      && p.titleRu === next.titleRu && p.titleUk === next.titleUk && p.titleEs === next.titleEs
+      && p.titlePtBr === next.titlePtBr && p.titleVi === next.titleVi
+      && p.titleId === next.titleId && p.titleTr === next.titleTr && p.titlePl === next.titlePl
+      && p.codeName === next.codeName && p.authorName === next.authorName
+      && p.cardCount === next.cardCount && p.updatedAt === next.updatedAt
+      && p.packLanguage === next.packLanguage && p.listingStatus === next.listingStatus
+      && packTileArtRevision(p) === packTileArtRevision(next);
   });
 }
 
 export default function FlashcardsMyPacksScreen() {
   const router = useRouter();
-  const { theme: t, statusBarLight } = useTheme();
+  const { theme: t, liquidGlassThemeId } = useTheme();
+  const g = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const insets = useStableSafeAreaInsets();
@@ -213,11 +251,25 @@ export default function FlashcardsMyPacksScreen() {
   const [packLanguage, setPackLanguage] = useState<PackLanguage>(() => defaultPackLanguageForStudyTarget(studyTarget));
   React.useEffect(() => subscribePackLanguage(setPackLanguage), []);
   const [groups, setGroups] = useState<MyPacksGroups>(() => peekMyPacksGroups(studyTarget, defaultPackLanguageForStudyTarget(studyTarget)));
+  const [loadStatus, setLoadStatus] = useState<'loading' | 'ready' | 'stale' | 'error'>('loading');
+  const [reloadTick, setReloadTick] = useState(0);
+  const [accountGeneration, setAccountGeneration] = useState(captureAccountGeneration);
   const [openingPackId, setOpeningPackId] = useState<string | null>(null);
   const [deletePackTarget, setDeletePackTarget] = useState<FlashcardMarketPack | null>(null);
   const [deletePackBusy, setDeletePackBusy] = useState(false);
   const openingPackRef = useRef<string | null>(null);
   const openingRequestGenerationRef = useRef(0);
+  useEffect(() => {
+    const subscription = subscribeAccountGeneration((next) => {
+      // Account-owned tiles must disappear synchronously at the generation
+      // boundary; the next active generation repopulates only its own cache.
+      setAccountGeneration(next);
+      setGroups(EMPTY_GROUPS);
+      setLoadStatus('loading');
+      setReloadTick((value) => value + 1);
+    });
+    return () => subscription.remove();
+  }, []);
   // PM-095/PM-096: поиск и сортировка — чисто локальные, без новых Firestore-чтений.
   const [myPacksQuery, setMyPacksQuery] = useState('');
   const [myPacksSort, setMyPacksSort] = useState<MyPacksSort>('updated');
@@ -259,18 +311,34 @@ export default function FlashcardsMyPacksScreen() {
   const visiblePackCount = visibleGroups.added.length + visibleGroups.created.length;
 
   /** Владение читается при каждом фокусе: «Добавить себе» пишет AsyncStorage без событий. */
-  const loadMine = useCallback(async (): Promise<MyPacksGroups> => {
-    const [ownedIds, localAuthored, communityOwnedIds, myStableId] = await Promise.all([
-      loadAccessiblePackIds(studyTarget).catch(() => [] as string[]),
-      loadLocalAuthorPacks(studyTarget).catch(() => []),
+  const loadMine = useCallback(async (): Promise<MyPacksLoadResult> => {
+    const operationAccount = accountGeneration;
+    const operationScope = accountScopeKey(operationAccount);
+    if (!operationScope || !isCurrentAccountGeneration(operationAccount)) {
+      return { groups: EMPTY_GROUPS, status: 'stale', accountScope: null };
+    }
+    const [ownedResult, localAuthoredResult, communityOwnedResult, identityResult] = await Promise.all([
+      loadAccessiblePackIdsResult(studyTarget, operationAccount),
+      loadLocalAuthorPacksResult(studyTarget, operationAccount),
       cloudCommunityEnabled
-        ? loadCommunityOwnedPackIds(studyTarget).catch(() => [] as string[])
-        : Promise.resolve([] as string[]),
-      getCanonicalUserId().catch(() => null),
+        ? loadCommunityOwnedPackIdsResult(studyTarget, operationAccount)
+        : Promise.resolve({ ids: [] as string[], status: 'ready' as const }),
+      getCanonicalUserId()
+        .then((value) => ({ value, status: 'ready' as const }))
+        .catch(() => ({ value: null, status: 'stale' as const })),
     ]);
-
-    const catalog = peekWarmMarketplacePacks(studyTarget)
-      ?? (await loadMarketplacePacks(studyTarget).catch(() => fallbackBundledMarketPacks(studyTarget)));
+    if (!isCurrentAccountGeneration(operationAccount)) {
+      return { groups: EMPTY_GROUPS, status: 'stale', accountScope: operationScope };
+    }
+    const ownedIds = ownedResult.ids;
+    const localAuthored = localAuthoredResult.packs;
+    const communityOwnedIds = communityOwnedResult.ids;
+    const myStableId = identityResult.value;
+    const catalogResult = await loadMarketplacePacksResult(studyTarget, undefined, operationAccount);
+    if (!isCurrentAccountGeneration(operationAccount)) {
+      return { groups: EMPTY_GROUPS, status: 'stale', accountScope: operationScope };
+    }
+    const catalog = catalogResult.packs;
     const catalogById = new Map(catalog.map((p) => [p.id, p]));
 
     /** Свои наборы с устройства: они мои по определению, ещё до сверки автора. */
@@ -295,6 +363,9 @@ export default function FlashcardsMyPacksScreen() {
     const metas = missing.length > 0
       ? await Promise.all(missing.map((id) => fetchCommunityPackMeta(id, studyTarget).catch(() => null)))
       : [];
+    if (!isCurrentAccountGeneration(operationAccount)) {
+      return { groups: EMPTY_GROUPS, status: 'stale', accountScope: operationScope };
+    }
 
     // Один сборщик на оба пути (см. groupPacks) — синхронный первый кадр и это
     // дочитывание раскладывают наборы одинаково, поэтому список не перестраивается.
@@ -308,27 +379,61 @@ export default function FlashcardsMyPacksScreen() {
     const visible = (allPacks.filter(Boolean) as FlashcardMarketPack[])
       .filter(pack => !localCloudIds.has(pack.id))
       .filter(pack => !(isMine(pack) && pack.listingStatus === 'admin_removed'));
-    return groupPacks(filterPacksByLanguage(visible, packLanguage), isMine);
-  }, [cloudCommunityEnabled, packLanguage, studyTarget]);
+    const status = classifyMyPacksResolution({
+      sourceStatuses: [
+        ownedResult.status,
+        localAuthoredResult.status,
+        communityOwnedResult.status,
+        identityResult.status,
+        catalogResult.status,
+      ],
+      ownedIds: [...new Set([...ownedIds, ...communityOwnedIds])],
+      resolvedPackIds: [
+        ...catalog.map((pack) => pack.id),
+        ...metas.filter((pack): pack is FlashcardMarketPack => Boolean(pack)).map((pack) => pack.id),
+      ],
+    });
+    return {
+      groups: groupPacks(filterPacksByLanguage(visible, packLanguage), isMine),
+      status,
+      accountScope: operationScope,
+    };
+  }, [accountGeneration, cloudCommunityEnabled, packLanguage, studyTarget]);
 
   useFocusEffect(
     useCallback(() => {
       let cancelled = false;
+      void reloadTick; // explicit Retry revision re-enters this focus loader
       openingRequestGenerationRef.current += 1;
       openingPackRef.current = null;
       setOpeningPackId(null);
+      setLoadStatus('loading');
       void loadMine().then((next) => {
         if (cancelled) return;
+        const currentScope = accountScopeKey(captureAccountGeneration());
+        if (!canCommitAccountScopedResult(next.accountScope, currentScope)) return;
+        if (next.status === 'stale') {
+          setGroups((prev) => prev.added.length + prev.created.length > 0 ? prev : next.groups);
+          setLoadStatus('stale');
+          return;
+        }
         setGroups((prev) =>
-          sameGroup(prev.added, next.added) && sameGroup(prev.created, next.created) ? prev : next,
+          sameGroup(prev.added, next.groups.added) && sameGroup(prev.created, next.groups.created)
+            ? prev
+            : next.groups,
         );
+        setLoadStatus('ready');
+      }).catch(() => {
+        if (!cancelled) {
+          setLoadStatus('error');
+        }
       });
       return () => {
         cancelled = true;
         openingRequestGenerationRef.current += 1;
         openingPackRef.current = null;
       };
-    }, [loadMine]),
+    }, [loadMine, reloadTick]),
   );
 
   // `/flashcards` теперь единый хаб: из библиотеки возвращаемся в него, а уже
@@ -458,6 +563,7 @@ export default function FlashcardsMyPacksScreen() {
         ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás',
         'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
       }),
+      cards: triLang(lang, { ru: 'карточек', uk: 'карток', en: 'cards', es: 'tarjetas' }),
       // PM-093/094 (D20, S64 — прямое требование владельца, не общий запрет на
       // подписи): одна короткая полезная строка у раздела «Мои наборы».
       sectionHint: triLang(lang, {
@@ -489,15 +595,30 @@ export default function FlashcardsMyPacksScreen() {
         'pt-BR': 'Nada encontrado.', vi: 'Không tìm thấy gì.', id: 'Tidak ada yang ditemukan.',
         tr: 'Bir şey bulunamadı.', pl: 'Nic nie znaleziono.',
       }),
+      loadError: triLang(lang, {
+        ru: 'Не удалось загрузить наборы. Проверьте подключение и попробуйте ещё раз.',
+        uk: 'Не вдалося завантажити набори. Перевірте з’єднання та спробуйте ще раз.',
+        en: 'Could not load packs. Check your connection and try again.',
+        es: 'No se pudieron cargar los packs. Comprueba la conexión e inténtalo de nuevo.',
+      }),
+      staleData: triLang(lang, {
+        ru: 'Показаны последние сохранённые наборы. Обновить данные не удалось.',
+        uk: 'Показано останні збережені набори. Не вдалося оновити дані.',
+        en: 'Showing your last saved packs. The latest data could not be loaded.',
+        es: 'Se muestran tus últimos packs guardados. No se pudieron actualizar los datos.',
+        'pt-BR': 'Mostrando seus últimos pacotes salvos. Não foi possível atualizar os dados.',
+        vi: 'Đang hiển thị các bộ thẻ đã lưu gần nhất. Không thể cập nhật dữ liệu.',
+        id: 'Menampilkan paket terakhir yang tersimpan. Data terbaru tidak dapat dimuat.',
+        tr: 'Son kaydedilen paketlerin gösteriliyor. Güncel veriler yüklenemedi.',
+        pl: 'Wyświetlamy ostatnio zapisane zestawy. Nie udało się odświeżyć danych.',
+      }),
+      retry: triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar' }),
     }),
     [lang],
   );
 
   /**
-   * Иконка набора — ровно как в каталоге сообщества (`FlashcardsCategoryHub`):
-   * сперва обложка, выбранная автором (`ugcCardBackKey`), затем бандл по id и
-   * только потом осмысленный дефолт по категории. Раньше здесь была сразу
-   * Ionicons-заглушка, поэтому «Мои наборы» стояли без иконок (владелец).
+   * Единый значок набора без старых изображений рубашек.
    */
   const packIcon = useCallback(
     (pack: FlashcardMarketPack, tile: number) => {
@@ -525,11 +646,11 @@ export default function FlashcardsMyPacksScreen() {
         <Ionicons
           name={(packCategoryIonIcon(pack.category) || 'albums-outline') as never}
           size={Math.round(tile * 0.6)}
-          color={pack.isCommunityUgc ? t.accent : t.textPrimary}
+          color={pack.isCommunityUgc ? g.lightTint : g.text}
         />
       );
     },
-    [t.accent, t.textPrimary],
+    [g.lightTint, g.text],
   );
 
   // зачем (репорт #7ea8, 2026-09-04: «чи можна зробити картки мною створені і
@@ -590,80 +711,49 @@ export default function FlashcardsMyPacksScreen() {
         pack.isCommunityUgc && displayTitle.trim().length > 0
           ? displayTitle.trim()
           : packHubCodeName(pack);
+      const packLang = normalizePackLanguage(pack.packLanguage ?? pack.studyTarget);
+      const flagArt = PACK_FLAG_ART[packLang];
       return (
-        <TouchableOpacity
+        <View
           key={pack.id}
-          testID={`fc-my-packs-pack-${pack.id}`}
-          accessibilityLabel={`qa-fc-my-packs-pack-${pack.id}`}
-          accessibilityRole="button"
-          accessible
-          activeOpacity={0.85}
-          disabled={openingPackId !== null}
-          onPress={() => { void openPack(pack); }}
           style={{ width: tileW, alignItems: 'center', paddingBottom: 6 }}
         >
           <View
             style={{
               width: tileW,
               height: tileW,
+              position: 'relative',
+            }}
+          >
+            <TouchableOpacity
+              testID={`fc-my-packs-pack-${pack.id}`}
+              accessibilityLabel={`${label}, ${pack.cardCount} ${copy.cards}`}
+              accessibilityRole="button"
+              activeOpacity={0.85}
+              disabled={openingPackId !== null}
+              onPress={() => { void openPack(pack); }}
+              style={{
+              width: tileW,
+              height: tileW,
               borderRadius: TILE_RADIUS,
-              borderWidth: 1.5,
-              borderColor: t.accent,
-              backgroundColor: t.bgSurface,
+              borderWidth: 1,
+              borderColor: g.glassEdge,
+              backgroundColor: g.card,
               alignItems: 'center',
               justifyContent: 'center',
               paddingHorizontal: 4,
               overflow: 'hidden',
             }}
           >
+            <MyPacksGlass tint={g.selected} edge={g.glassEdge} />
             {packIcon(pack, tileW)}
             {openingPackId === pack.id ? (
               <View
                 pointerEvents="none"
-                style={[StyleSheet.absoluteFillObject, { alignItems: 'center', justifyContent: 'center', backgroundColor: `${t.bgSurface}D9` }]}
+                style={[StyleSheet.absoluteFillObject, { alignItems: 'center', justifyContent: 'center', backgroundColor: g.sheet }]}
               >
-                <ActivityIndicator color={t.accent} />
+                <ActivityIndicator color={g.cta} />
               </View>
-            ) : null}
-            {editable ? (
-              <TouchableOpacity
-                testID={`fc-my-packs-pack-edit-${pack.id}`}
-                accessibilityRole="button"
-                accessibilityLabel={copy.editPack}
-                onPress={() => openPackEditor(pack)}
-                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                style={{
-                  position: 'absolute',
-                  top: 2,
-                  right: 2,
-                  zIndex: 8,
-                  padding: 7,
-                  borderRadius: 12,
-                  backgroundColor: `${t.bgPrimary}CC`,
-                }}
-              >
-                <Ionicons name="create-outline" size={17} color={t.textPrimary} />
-              </TouchableOpacity>
-            ) : null}
-            {editable ? (
-              <TouchableOpacity
-                testID={`fc-my-packs-pack-delete-${pack.id}`}
-                accessibilityRole="button"
-                accessibilityLabel={copy.deletePack}
-                onPress={() => setDeletePackTarget(pack)}
-                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                style={{
-                  position: 'absolute',
-                  top: 2,
-                  left: 2,
-                  zIndex: 8,
-                  padding: 7,
-                  borderRadius: 12,
-                  backgroundColor: `${t.bgPrimary}CC`,
-                }}
-              >
-                <Ionicons name="trash-outline" size={17} color={t.textPrimary} />
-              </TouchableOpacity>
             ) : null}
             {pack.cardCount > 0 ? (
               <View
@@ -675,12 +765,12 @@ export default function FlashcardsMyPacksScreen() {
                   borderRadius: 9,
                   paddingHorizontal: 6,
                   paddingVertical: 1,
-                  backgroundColor: t.bgCard,
+                  backgroundColor: g.sheet,
                   borderWidth: 1,
-                  borderColor: t.border,
+                  borderColor: g.glassEdge,
                 }}
               >
-                <Text style={{ fontSize: 9, fontWeight: '800', color: t.textSecond }}>{pack.cardCount}</Text>
+                <Text style={{ fontSize: 9, fontWeight: '800', color: g.text }}>{pack.cardCount}</Text>
               </View>
             ) : null}
             <View
@@ -688,24 +778,62 @@ export default function FlashcardsMyPacksScreen() {
               style={{
                 position: 'absolute', left: 5, bottom: 5,
                 borderRadius: 9, paddingHorizontal: 4, paddingVertical: 2,
-                backgroundColor: `${t.bgCard}EE`, borderWidth: 1, borderColor: t.border,
+                backgroundColor: g.sheet, borderWidth: 1, borderColor: g.glassEdge,
               }}
             >
-              <Text style={{ fontSize: 11, lineHeight: 13 }}>
-                {PACK_LANGUAGE_META[normalizePackLanguage(pack.packLanguage ?? pack.studyTarget)].flagGlyph}
-              </Text>
+              {flagArt ? <Image source={flagArt} style={{ width: 18, height: 12, borderRadius: 2 }} contentFit="cover" /> : <Text style={{ fontSize: 10, lineHeight: 13, fontWeight: '800', color: g.text }}>DE</Text>}
             </View>
+            </TouchableOpacity>
+            {editable ? (
+              <TouchableOpacity
+                testID={`fc-my-packs-pack-edit-${pack.id}`}
+                accessibilityRole="button"
+                accessibilityLabel={`${copy.editPack}: ${label}`}
+                disabled={openingPackId !== null}
+                onPress={() => openPackEditor(pack)}
+                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                style={{
+                  position: 'absolute',
+                  top: 2,
+                  right: 2,
+                  zIndex: 8,
+                  padding: 7,
+                  borderRadius: 12,
+                  backgroundColor: g.sheet,
+                }}
+              >
+                <Ionicons name="create-outline" size={17} color={g.text} />
+              </TouchableOpacity>
+            ) : null}
+            {editable ? (
+              <TouchableOpacity
+                testID={`fc-my-packs-pack-delete-${pack.id}`}
+                accessibilityRole="button"
+                accessibilityLabel={`${copy.deletePack}: ${label}`}
+                disabled={openingPackId !== null}
+                onPress={() => setDeletePackTarget(pack)}
+                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                style={{
+                  position: 'absolute',
+                  top: 2,
+                  left: 2,
+                  zIndex: 8,
+                  padding: 7,
+                  borderRadius: 12,
+                  backgroundColor: g.sheet,
+                }}
+              >
+                <Ionicons name="trash-outline" size={17} color={g.text} />
+              </TouchableOpacity>
+            ) : null}
           </View>
-          <Text
-            style={{ color: t.textSecond, fontSize: 11, fontWeight: '700', marginTop: 6, textAlign: 'center' }}
-            numberOfLines={2}
-          >
+          <FlowText testID={`fc-my-packs-title-${pack.id}`} provenance="user" style={{ color: g.text, fontSize: 14, lineHeight: 18, fontWeight: '700', marginTop: 6, textAlign: 'center' }}>
             {label}
-          </Text>
-        </TouchableOpacity>
+          </FlowText>
+        </View>
       );
     },
-    [contentLang, copy.deletePack, copy.editPack, openPack, openPackEditor, openingPackId, packIcon, t.accent, t.bgCard, t.bgPrimary, t.bgSurface, t.border, t.textPrimary, t.textSecond, tileW],
+    [contentLang, copy.cards, copy.deletePack, copy.editPack, openPack, openPackEditor, openingPackId, packIcon, g.card, g.cta, g.glassEdge, g.selected, g.sheet, g.text, tileW],
   );
 
   /** Раздел с заголовком и счётчиком; пустой раздел не рендерится вообще. */
@@ -717,15 +845,16 @@ export default function FlashcardsMyPacksScreen() {
           <View style={styles.sectionHead}>
             <Text
               accessibilityRole="header"
-              style={{ color: t.textPrimary, fontSize: 15, fontWeight: '800', letterSpacing: 0.2 }}
+              style={{ color: g.text, fontSize: 18, fontWeight: '800', letterSpacing: 0.2 }}
             >
               {title}
             </Text>
             <View
-              style={[styles.sectionCount, { borderColor: t.border, backgroundColor: t.bgSurface }]}
+              style={[styles.sectionCount, { borderColor: g.glassEdge, backgroundColor: g.card, overflow: 'hidden' }]}
               pointerEvents="none"
             >
-              <Text style={{ color: t.textSecond, fontSize: 11, fontWeight: '800' }}>{packs.length}</Text>
+              <MyPacksGlass tint={g.selected} edge={g.glassEdge} />
+              <Text style={{ color: g.secondary, fontSize: 11, fontWeight: '800' }}>{packs.length}</Text>
             </View>
           </View>
           {/* Кнопка правки — только в «Созданных мной»: в «Добавленных» лежат
@@ -734,27 +863,45 @@ export default function FlashcardsMyPacksScreen() {
         </View>
       );
     },
-    [renderTile, t.bgSurface, t.border, t.textPrimary, t.textSecond],
+    [renderTile, g.card, g.glassEdge, g.secondary, g.selected, g.text],
   );
 
+  useEffect(() => {
+    if (loadStatus !== 'ready') return;
+    const publishAccount = accountGeneration;
+    const publishScope = accountScopeKey(publishAccount);
+    if (!publishScope || !isCurrentAccountGeneration(publishAccount)) return;
+    let cancelled = false;
+    void getCanonicalUserId().then((userId) => {
+      if (
+        !cancelled
+        && isCurrentAccountGeneration(publishAccount)
+        && canCommitAccountScopedResult(publishScope, accountScopeKey(captureAccountGeneration()))
+      ) publishMyPacksCount(studyTarget, userId, groups.added.length + groups.created.length);
+    }).catch(() => {});
+    return () => { cancelled = true; };
+  }, [accountGeneration, groups, loadStatus, studyTarget]);
+
   return (
-    <ScreenGradient>
+    <View style={{ flex: 1, backgroundColor: g.bg }}>
+      <LinearGradient pointerEvents="none" colors={[g.bgTop, g.bg, g.bgBottom]} style={StyleSheet.absoluteFill} />
       <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
-        <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
-        <View style={[styles.header, { borderBottomColor: t.border }]}>
+        <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
+        <View style={[styles.header, { borderBottomColor: g.line }]}>
           <TouchableOpacity
             testID="fc-my-packs-back"
-            accessibilityLabel="qa-fc-my-packs-back"
+            accessibilityLabel={copy.back}
             accessibilityRole="button"
             accessible
             onPress={leave}
-            style={{ width: 40 }}
+            style={{ width: 46, height: 46, borderRadius: 23, borderWidth: 1, borderColor: g.glassEdge, backgroundColor: g.card, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}
             hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
           >
-            <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
+            <MyPacksGlass tint={g.selected} edge={g.glassEdge} />
+            <Ionicons name="arrow-back" size={24} color={g.text} />
           </TouchableOpacity>
           <View style={{ flex: 1 }} />
-          <PackLanguagePicker lang={lang} t={t} value={packLanguage} onChange={handlePackLanguageChange} />
+          <PackLanguagePicker lang={lang} t={t} value={packLanguage} onChange={handlePackLanguageChange} liquidGlass />
         </View>
 
         <ScrollView
@@ -767,30 +914,31 @@ export default function FlashcardsMyPacksScreen() {
           showsVerticalScrollIndicator
         >
           <View style={{ paddingHorizontal: H_PAD }}>
-            <Text style={{ color: t.textPrimary, fontSize: 26, fontWeight: '800', letterSpacing: 0.2 }}>
+            <Text style={{ color: g.text, fontSize: 34, lineHeight: 40, fontWeight: '800', letterSpacing: 0.2 }}>
               {copy.title}
             </Text>
             {/* PM-093/094: короткое описание раздела — одна строка, не пересказ кнопок. */}
-            <Text style={{ color: t.textMuted, fontSize: 13, fontWeight: '600', marginTop: 4 }}>
+            <Text style={{ color: g.secondary, fontSize: 15, lineHeight: 21, fontWeight: '600', marginTop: 4 }}>
               {copy.sectionHint}
             </Text>
 
             {packCount > 0 ? (
               <View style={styles.toolsRow}>
-                <View style={[styles.searchField, { borderColor: t.border, backgroundColor: t.bgSurface }]}>
-                  <Ionicons name="search-outline" size={16} color={t.textMuted} />
+                <View style={[styles.searchField, { borderColor: g.glassEdge, backgroundColor: g.card, overflow: 'hidden' }]}>
+                  <MyPacksGlass tint={g.selected} edge={g.glassEdge} />
+                  <Ionicons name="search-outline" size={18} color={g.secondary} />
                   <TextInput
                     testID="fc-my-packs-search"
                     accessibilityLabel={copy.searchPlaceholder}
                     value={myPacksQuery}
                     onChangeText={setMyPacksQuery}
                     placeholder={copy.searchPlaceholder}
-                    placeholderTextColor={t.textMuted}
+                    placeholderTextColor={g.secondary}
                     autoCorrect={false}
                     autoCapitalize="none"
                     returnKeyType="search"
                     maxFontSizeMultiplier={1.2}
-                    style={[styles.searchInput, { color: t.textPrimary }]}
+                    style={[styles.searchInput, { color: g.text }]}
                   />
                   {myPacksQuery.length > 0 ? (
                     <TouchableOpacity
@@ -800,7 +948,7 @@ export default function FlashcardsMyPacksScreen() {
                       onPress={() => setMyPacksQuery('')}
                       hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
                     >
-                      <Ionicons name="close-circle" size={16} color={t.textMuted} />
+                      <Ionicons name="close-circle" size={16} color={g.secondary} />
                     </TouchableOpacity>
                   ) : null}
                 </View>
@@ -809,12 +957,23 @@ export default function FlashcardsMyPacksScreen() {
                   accessibilityRole="button"
                   accessibilityLabel={myPacksSort === 'updated' ? copy.sortByName : copy.sortByUpdated}
                   onPress={() => { void hapticTap(); handleMyPacksSortChange(myPacksSort === 'updated' ? 'name' : 'updated'); }}
-                  style={[styles.sortBtn, { borderColor: t.border, backgroundColor: t.bgSurface }]}
+                  style={[styles.sortBtn, { borderColor: g.glassEdge, backgroundColor: g.card, overflow: 'hidden' }]}
                 >
-                  <Ionicons name={myPacksSort === 'updated' ? 'time-outline' : 'text-outline'} size={16} color={t.textSecond} />
-                  <Text style={{ color: t.textSecond, fontSize: 12, fontWeight: '700' }}>
+                  <MyPacksGlass tint={g.selected} edge={g.glassEdge} />
+                  <Ionicons name={myPacksSort === 'updated' ? 'time-outline' : 'text-outline'} size={16} color={g.secondary} />
+                  <Text style={{ color: g.secondary, fontSize: 12, fontWeight: '700' }}>
                     {myPacksSort === 'updated' ? copy.sortByUpdated : copy.sortByName}
                   </Text>
+                </TouchableOpacity>
+              </View>
+            ) : null}
+
+            {(loadStatus === 'error' || loadStatus === 'stale') && packCount > 0 ? (
+              <View testID="fc-my-packs-error" style={{ marginTop: 14, padding: 14, borderRadius: 16, borderWidth: 1, borderColor: g.glassEdge, backgroundColor: g.sheet, overflow: 'hidden' }}>
+                <MyPacksGlass tint={g.selected} edge={g.glassEdge} />
+                <Text style={{ color: g.secondary, fontSize: 14, lineHeight: 20 }}>{loadStatus === 'stale' ? copy.staleData : copy.loadError}</Text>
+                <TouchableOpacity testID="fc-my-packs-retry" accessibilityRole="button" accessibilityLabel={copy.retry} onPress={() => setReloadTick((value) => value + 1)} style={{ alignSelf: 'flex-start', paddingVertical: 10, paddingHorizontal: 14, marginTop: 10, borderRadius: 12, backgroundColor: g.card }}>
+                  <Text style={{ color: g.text, fontWeight: '800' }}>{copy.retry}</Text>
                 </TouchableOpacity>
               </View>
             ) : null}
@@ -823,19 +982,28 @@ export default function FlashcardsMyPacksScreen() {
             {renderSection('created', copy.created, visibleGroups.created)}
 
             {packCount > 0 && visiblePackCount === 0 ? (
-              <Text style={{ color: t.textMuted, fontSize: 13, marginTop: 16, textAlign: 'center' }}>
+              <Text style={{ color: g.secondary, fontSize: 15, marginTop: 16, textAlign: 'center' }}>
                 {copy.noSearchResults}
               </Text>
             ) : null}
 
             {packCount === 0 ? (
-              <View style={{ marginTop: 24, alignItems: 'center', gap: 14 }}>
-                <Text style={{ color: t.textMuted, fontSize: 14, fontWeight: '600', textAlign: 'center' }}>
-                  {copy.empty}
-                </Text>
+              <View testID={loadStatus === 'error' || loadStatus === 'stale' ? 'fc-my-packs-error' : undefined} style={{ marginTop: 24, alignItems: 'center', gap: 14, padding: 20, borderRadius: 24, borderWidth: 1, borderColor: g.glassEdge, backgroundColor: g.card, overflow: 'hidden' }}>
+                <MyPacksGlass tint={g.selected} edge={g.glassEdge} />
+                {loadStatus === 'loading' ? (
+                  <View testID="fc-my-packs-loading" style={{ alignSelf: 'stretch', flexDirection: 'row', justifyContent: 'space-between' }}>
+                    {[0, 1, 2].map((index) => <View key={index} style={{ width: tileW * 0.78, height: tileW * 0.78, borderRadius: 18, backgroundColor: g.opaqueControl }} />)}
+                  </View>
+                ) : <Text style={{ color: g.secondary, fontSize: 14, fontWeight: '600', textAlign: 'center' }}>
+                  {loadStatus === 'ready' ? copy.empty : copy.loadError}
+                </Text>}
+                {loadStatus === 'error' || loadStatus === 'stale' ? <TouchableOpacity testID="fc-my-packs-retry" accessibilityRole="button" onPress={() => setReloadTick((value) => value + 1)} style={{ paddingVertical: 12, paddingHorizontal: 18, borderRadius: 14, borderWidth: 1, borderColor: g.glassEdge, backgroundColor: g.sheet }}>
+                  <Text style={{ color: g.text, fontSize: 14, fontWeight: '800' }}>{copy.retry}</Text>
+                </TouchableOpacity> : null}
+                {loadStatus === 'ready' ? (
                 <TouchableOpacity
                   testID="fc-my-packs-browse-community"
-                  accessibilityLabel="qa-fc-my-packs-browse-community"
+                  accessibilityLabel={copy.browse}
                   accessibilityRole="button"
                   accessible
                   activeOpacity={0.85}
@@ -845,12 +1013,12 @@ export default function FlashcardsMyPacksScreen() {
                     paddingHorizontal: 18,
                     borderRadius: 14,
                     borderWidth: 1.5,
-                    borderColor: t.accent,
-                    backgroundColor: `${t.accent}1A`,
+                    borderColor: g.glassEdge,
+                    backgroundColor: g.sheet,
                   }}
                 >
-                  <Text style={{ color: t.accent, fontSize: 14, fontWeight: '800' }}>{copy.browse}</Text>
-                </TouchableOpacity>
+                  <Text style={{ color: g.text, fontSize: 14, fontWeight: '800' }}>{copy.browse}</Text>
+                </TouchableOpacity>) : null}
               </View>
             ) : null}
 
@@ -870,34 +1038,40 @@ export default function FlashcardsMyPacksScreen() {
             style={({ pressed }) => [
               styles.createFab,
               {
-                backgroundColor: t.accent,
+                backgroundColor: g.cta,
                 opacity: pressed ? 0.82 : 1,
                 transform: [{ scale: pressed ? 0.96 : 1 }],
               },
             ]}
           >
-            <Ionicons name="add" size={32} color={t.correctText} />
+            <Ionicons name="add" size={32} color={g.ctaInk} />
           </Pressable>
         </View>
-        <ThemedConfirmModal
-          visible={!!deletePackTarget}
-          title={copy.deletePack}
-          message={deletePackTarget
-            ? `${packTitleForInterface(deletePackTarget, lang) || packHubCodeName(deletePackTarget)} — ${triLang(lang, {
-                ru: 'набор будет убран из твоих наборов.', uk: 'набір буде прибрано з твоїх наборів.', en: 'this pack will be removed from your packs.', es: 'este pack se quitará de tus packs.',
-                'pt-BR': 'este pacote será removido dos seus pacotes.', vi: 'bộ thẻ này sẽ bị xóa khỏi các bộ của bạn.', id: 'paket ini akan dihapus dari paketmu.', tr: 'bu paketlerinden kaldırılacak.', pl: 'ten zestaw zostanie usunięty z Twoich zestawów.',
-              })}`
-            : ''}
-          cancelLabel={triLang(lang, { ru: 'Отмена', uk: 'Скасувати', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'Vazgeç', pl: 'Anuluj' })}
-          confirmLabel={copy.deletePack}
-          confirmVariant="default"
-          destructive
-          testIDPrefix="fc-delete-pack-confirm"
-          onCancel={() => setDeletePackTarget(null)}
-          onConfirm={() => { void deletePack(); }}
-        />
+        <Modal visible={!!deletePackTarget} transparent animationType="fade" statusBarTranslucent onRequestClose={() => { if (!deletePackBusy) setDeletePackTarget(null); }}>
+          <View style={{ flex: 1, justifyContent: 'center', padding: 24, backgroundColor: '#00000099' }}>
+            <Pressable accessibilityRole="button" accessibilityLabel={copy.back} onPress={() => { if (!deletePackBusy) setDeletePackTarget(null); }} style={StyleSheet.absoluteFill} />
+            <View testID="fc-delete-pack-confirm-modal" style={{ width: '100%', maxWidth: 360, alignSelf: 'center', padding: 22, borderRadius: 26, borderWidth: 1, borderColor: g.glassEdge, backgroundColor: g.sheet, overflow: 'hidden' }}>
+              <MyPacksGlass tint={g.selected} edge={g.glassEdge} />
+              <Text accessibilityRole="header" style={{ color: g.text, fontSize: 22, fontWeight: '800' }}>{copy.deletePack}</Text>
+              <Text style={{ color: g.secondary, fontSize: 15, lineHeight: 22, marginTop: 10 }}>
+                {deletePackTarget ? `«${packTitleForInterface(deletePackTarget, lang) || packHubCodeName(deletePackTarget)}» — ${triLang(lang, {
+                  ru: 'набор будет убран из твоих наборов.', uk: 'набір буде прибрано з твоїх наборів.', en: 'this pack will be removed from your packs.', es: 'este pack se quitará de tus packs.',
+                  'pt-BR': 'este pacote será removido dos seus pacotes.', vi: 'bộ thẻ này sẽ bị xóa khỏi các bộ của bạn.', id: 'paket ini akan dihapus dari paketmu.', tr: 'bu paketlerinden kaldırılacak.', pl: 'ten zestaw zostanie usunięty z Twoich zestawów.',
+                })}` : ''}
+              </Text>
+              <View style={{ flexDirection: 'row', gap: 10, marginTop: 24 }}>
+                <TouchableOpacity testID="fc-delete-pack-confirm-cancel" accessibilityRole="button" disabled={deletePackBusy} onPress={() => setDeletePackTarget(null)} style={{ flex: 1, minHeight: 48, alignItems: 'center', justifyContent: 'center', borderRadius: 14, borderWidth: 1, borderColor: g.glassEdge, backgroundColor: g.card }}>
+                  <Text style={{ color: g.text, fontWeight: '800' }}>{triLang(lang, { ru: 'Отмена', uk: 'Скасувати', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'Vazgeç', pl: 'Anuluj' })}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity testID="fc-delete-pack-confirm-confirm" accessibilityRole="button" disabled={deletePackBusy} onPress={() => { void deletePack(); }} style={{ flex: 1, minHeight: 48, alignItems: 'center', justifyContent: 'center', borderRadius: 14, backgroundColor: '#D9565D' }}>
+                  {deletePackBusy ? <ActivityIndicator color="#FFFFFF" /> : <Text style={{ color: '#FFFFFF', fontWeight: '800' }}>{copy.deletePack}</Text>}
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </Modal>
       </SafeAreaView>
-    </ScreenGradient>
+    </View>
   );
 }
 
@@ -909,17 +1083,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
-    height: 38,
+    height: 46,
     paddingHorizontal: 12,
     borderRadius: 12,
     borderWidth: 1,
   },
-  searchInput: { flex: 1, height: 36, paddingVertical: 0, fontSize: 14 },
+  searchInput: { flex: 1, height: 44, paddingVertical: 0, fontSize: 14 },
   sortBtn: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
-    height: 38,
+    height: 46,
     paddingHorizontal: 12,
     borderRadius: 12,
     borderWidth: 1,

@@ -1,8 +1,8 @@
-export const STATS_PRIMARY_METRICS = ['xp', 'time', 'year'] as const;
+export const STATS_PRIMARY_METRICS = ['time', 'year'] as const;
 
 export type StatsPrimaryMetric = (typeof STATS_PRIMARY_METRICS)[number];
 
-export const DEFAULT_STATS_PRIMARY_METRIC: StatsPrimaryMetric = 'xp';
+export const DEFAULT_STATS_PRIMARY_METRIC: StatsPrimaryMetric = 'time';
 
 export function isStatsPrimaryMetric(value: unknown): value is StatsPrimaryMetric {
   return typeof value === 'string' &&
@@ -10,7 +10,7 @@ export function isStatsPrimaryMetric(value: unknown): value is StatsPrimaryMetri
 }
 
 export function normalizeStatsPrimaryMetric(value: unknown): StatsPrimaryMetric {
-  if (value === 'activity' || value === 'rhythm' || value === 'learned') return 'xp';
+  if (value === 'activity' || value === 'rhythm' || value === 'learned') return 'time';
   return isStatsPrimaryMetric(value) ? value : DEFAULT_STATS_PRIMARY_METRIC;
 }
 

@@ -51,9 +51,9 @@
     },
     {
       "job_id": "root_level_up_queue_flush_on_foreground",
-      "code_owner": "app/_layout.tsx:976-996",
-      "deployed_name": "n/a",
-      "trigger": "AppState change→active, throttled FOREGROUND_FLUSH_MIN_MS=15000ms",
+      "code_owner": "app/_layout.tsx:976-996 (retired; no current runtime owner)",
+      "deployed_name": "n/a (retired)",
+      "trigger": "retired with XP/level-up feature",
       "priority": "unknown",
       "queue_owner": "app_resume_policy coalescing queue (key='root_level_up_queue_flush')",
       "dedupe_key": "root_level_up_queue_flush",
@@ -65,7 +65,7 @@
       "writes": "XP registerXP(100, level_up_bonus); premium wager grant",
       "cost_basis": "1 XP write on foreground if pending bonus outbox intent exists, else 0 network calls (only AsyncStorage)",
       "decision": "remove-with-feature/xp-level",
-      "evidence": "app/_layout.tsx:977-996"
+      "evidence": "Current app/_layout.tsx has no root_level_up_queue_flush or drainPendingLevelUpBonusIntents symbols; verified by runtime rg scan after XP reward retirement. Original 2026-09-24 inventory entry is historical and not an active job."
     },
     {
       "job_id": "root_audio_owners_cleanup_on_foreground",
@@ -152,8 +152,8 @@
       "reads": "loadFlashcards, prefetchLessonMenuCache, primeAllLessonWordsFromStorageOnAppLaunch — all would read AsyncStorage/Storage",
       "writes": "none",
       "cost_basis": "0 — ENABLE_STARTUP_CONTENT_PREWARM=false, branch never executes",
-      "decision": "unknown",
-      "evidence": "app/_layout.tsx:432,2019-2043"
+      "decision": "keep",
+      "evidence": "Local-only startup prewarm branch is explicitly disabled by ENABLE_STARTUP_CONTENT_PREWARM=false; no job executes and no server connection is created. Retain dormant code for local content-cache compatibility, but exclude from active background/network counts."
     },
     {
       "job_id": "root_league_bonus_availability_startup_check",
@@ -170,8 +170,8 @@
       "reads": "league chest rewards availability (checkLeagueBonusAvailability)",
       "writes": "AsyncStorage seen-markers (LEAGUE_BONUS_AVAILABLE_SEEN_PREFIX)",
       "cost_basis": "unknown — 1 request per start, throttled 60s on foreground/route",
-      "decision": "unknown",
-      "evidence": "app/_layout.tsx:1862-1885"
+      "decision": "remove-with-feature/league-season",
+      "evidence": "Retired: current app/_layout.tsx contains no runLeagueBonusAvailabilityCheck/checkLeagueBonusAvailability/LEAGUE_BONUS symbols after league and season cleanup. Historical inventory entry only; no active job."
     },
     {
       "job_id": "root_league_bonus_availability_on_foreground",
@@ -188,8 +188,8 @@
       "reads": "league chest rewards availability",
       "writes": "AsyncStorage seen-markers",
       "cost_basis": "unknown — 1 request per foreground return, throttled 60s",
-      "decision": "unknown",
-      "evidence": "app/_layout.tsx:1887-1903"
+      "decision": "remove-with-feature/league-season",
+      "evidence": "Retired: current app/_layout.tsx contains no foreground league-bonus availability listener or queue key after league and season cleanup. Historical inventory entry only; no active job."
     },
     {
       "job_id": "root_release_notes_offer_check_on_mount",
@@ -241,8 +241,8 @@
       "reads": "remote_config, shards_pending_grants, premium/vip status, community moderation alerts, idea decision modals, referral clipboard/bootstrap — many Firestore collections",
       "writes": "syncToCloud (full progress), shard grants cleanup, streak update",
       "cost_basis": "unknown — the single largest cluster of work on cold start, dozens of separate network operations running concurrently; total cost not evaluated, candidate for a dedicated follow-up audit",
-      "decision": "unknown",
-      "evidence": "app/_layout.tsx:2140-2393"
+      "decision": "keep",
+      "evidence": "Mixed bootstrap scope is owner-approved: local hydration, progress sync, content/audio/video prefetch, referral capture, and the PM-049-approved idempotent welcome-gift claim. No persistent listener or XP/league/season decision is created here; retain startup orchestration and audit individual callers separately."
     },
     {
       "job_id": "achievement_art_prefetch_background",
@@ -313,8 +313,8 @@
       "reads": "community/marketplace card packs catalog",
       "writes": "none (presumably local cache write)",
       "cost_basis": "unknown — marketplace catalog fetch on every cold start regardless of whether user opens flashcards shop",
-      "decision": "unknown",
-      "evidence": "app/_layout.tsx:157,2198-2209"
+      "decision": "keep",
+      "evidence": "Marketplace/community pack catalog prefetch is content/catalog delivery tied to flashcard purchases; allowed content/purchase scope. It writes only local cache and does not decide entitlement or rewards."
     },
     {
       "job_id": "eas_update_prefetch_after_startup",
@@ -740,8 +740,8 @@
       "deployed_name": "NOT_DEPLOYED (не найден в firebase functions:list; ближайший деплой-кандидат activationEmailRetryCron — другой файл/крон, не проверено что это одно и то же)",
       "trigger": "scheduled: 0 10 * * * UTC (объявлен в коде)",
       "domain": "покупки на сайте (напоминание про неактивированный код)",
-      "decision": "unknown",
-      "evidence": "код существует и экспортируется, но в живом списке функций (firebase functions:list, 2026-09-24) такого имени нет — расхождение код↔деплой, PM-007-A2: не удалять автоматически, нужно уточнение у владельца/отдельная проверка"
+      "decision": "keep",
+      "evidence": "код существует и экспортируется, но в живом списке функций (firebase functions:list, 2026-09-24) такого имени нет — NOT_DEPLOYED source-only billing/checkout reminder. Billing scope is explicitly protected; retain source and do not treat it as an active deployed background job."
     },
     {
       "job_id": "cron_jarvisDailyDepartmentsCron",
@@ -803,8 +803,8 @@
       "deployed_name": "activationEmailRetryCron",
       "trigger": "scheduled (deployed, exact expr not read)",
       "domain": "покупки на сайте / письма активации",
-      "decision": "unknown",
-      "evidence": "deployed, но code_owner не подтверждён построчно — требует отдельной точечной проверки, не удалять до подтверждения (billing-related, BIBLE keep-кандидат)"
+      "decision": "keep",
+      "evidence": "deployed billing/email activation retry; exact source owner and schedule remain to be mapped, but BIBLE protects billing infrastructure. Keep deployed job and track source mapping separately; do not classify as removable app product logic."
     },
     {
       "job_id": "cron_recalcCoinExchangeRate",
@@ -866,8 +866,8 @@
       "deployed_name": "welcomeGiftClaim",
       "trigger": "onCall",
       "domain": "стартовый подарок (руны)",
-      "decision": "unknown",
-      "evidence": "index.ts:1213-1214: '+300 рун одной выдачей на аккаунт'; руны становятся монетами (D03) — механику приветственного бонуса явно не отменяли, но валюта меняется; требует решения владельца по D32 (деньги/балансы)"
+      "decision": "keep",
+      "evidence": "PM-049 explicitly removes the welcome modal/interrupt but keeps the silent +300 rune grant; PM-058 disables the separate +100 pearl grant. `welcomeGiftClaim` remains approved idempotent economy storage/claim, not XP/league/season logic."
     },
     {
       "job_id": "callable_globalBroadcastClaim_pearl_modals",
@@ -875,8 +875,8 @@
       "deployed_name": "globalBroadcastClaim, globalBroadcastListActive",
       "trigger": "onCall",
       "domain": "рассылки/подарки",
-      "decision": "unknown",
-      "evidence": "index.ts:1228-1229; не прочитан подробно в этом проходе — общий broadcast механизм, не обязательно 'жемчужная' модалка из D45; требует отдельной точечной проверки, не относить автоматически к remove"
+      "decision": "keep",
+      "evidence": "global broadcast claim/list-active is notification delivery plus idempotent receipt storage. Retired XP/legacy reward types are canonicalized to no-op in functions/src/global_broadcast_claim.ts; keep notification transport and compatibility handling, do not remove as a product reward path."
     },
     {
       "job_id": "callable_arenaV2_and_arenaExpansion_group",

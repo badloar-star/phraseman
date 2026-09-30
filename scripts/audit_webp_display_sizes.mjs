@@ -39,7 +39,6 @@ const SCALE = 3; // @3x — худший случай плотности
 // Контрактные тесты требуют точную геометрию — не предлагать ресайз
 // (список согласован с compress-bundled-assets.mjs).
 const FIXED_GEOMETRY_DIRS = [
-  'assets/images/levels/league-v6-icons/',
   'assets/images/weekly_compass_icons/',
 ];
 // Кандидаты на CDN — решение владельца отдельно; в рекомендации не включаем.

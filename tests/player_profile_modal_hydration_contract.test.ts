@@ -6,15 +6,11 @@ const source = fs.readFileSync(
   'utf8',
 );
 
-describe('PlayerProfileModal multiplier hydration', () => {
-  it('starts loading own XP modifiers before the entrance animation settles', () => {
-    const multiplierLoad = source.indexOf('getCurrentMultiplierBreakdown().then');
-    // The modal body has an unrelated deferred stats refresh; this assertion
-    // targets the outer modal-opening effect, which is the last such queue.
-    const afterInteractions = source.lastIndexOf('InteractionManager.runAfterInteractions');
-
-    expect(multiplierLoad).toBeGreaterThan(-1);
-    expect(afterInteractions).toBeGreaterThan(-1);
-    expect(multiplierLoad).toBeLessThan(afterInteractions);
+describe('PlayerProfileModal post-PM-055 hydration', () => {
+  it('does not read XP multiplier state while preserving deferred profile hydration', () => {
+    expect(source).not.toContain('getCurrentMultiplierBreakdown');
+    expect(source).not.toContain('peekLastMultiplierBreakdown');
+    expect(source).not.toContain('MultiplierBreakdown');
+    expect(source).toContain('InteractionManager.runAfterInteractions');
   });
 });

@@ -130,7 +130,8 @@ describe('critical admin write boundaries', () => {
 
   it.each([
     ['admin_access_controls.ts', ['adminGrantAccess', 'adminSetUserBan']],
-    ['admin_grant.ts', ['adminGrantReward', 'adminSetShardBalance']],
+    // D70/D86: adminSetShardBalance удалён вместе с жемчугом.
+    ['admin_grant.ts', ['adminGrantReward']],
     ['admin_remote_config.ts', ['adminPublishRemoteConfig']],
     ['admin_referrals.ts', [
       'adminRevokeReferralAttribution',

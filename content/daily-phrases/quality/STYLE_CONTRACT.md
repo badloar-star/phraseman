@@ -29,6 +29,8 @@ rhythm without translating English idioms or inventing cultural facts.
 - thesis → “Так говорят / Так кажуть” → “Например / Наприклад”;
 - dictionary or textbook exposition with no person, scene or emotional turn;
 - the same opening formula repeated across a batch;
+- factory batches in which every card has the same sentence count or always
+  inserts the target in the same sentence position;
 - a learner question inserted into nearly every card as a substitute for
   genuine variety; the English baseline uses a question in about 44% of cards,
   so the deterministic batch ceiling is 60% per locale after target questions

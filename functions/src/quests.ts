@@ -159,8 +159,6 @@ function counterForKind(kind: QuestKind, user: Record<string, unknown>): number 
   switch (kind) {
     case 'earn_runes':
       return int(stars.earnedTotal);
-    case 'earn_xp':
-      return Math.max(int(progress.user_total_xp), int(record(user.progressServerState).totalXp));
     case 'complete_lessons': {
       const direct = int(progress.lessons_completed);
       if (direct > 0) return direct;

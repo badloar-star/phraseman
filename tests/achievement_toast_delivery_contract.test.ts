@@ -37,14 +37,11 @@ describe('achievement toast removal contract (PM-053)', () => {
     expect(flushBlock).not.toContain('showAchievementRef');
   });
 
-  it('achievement reward (XP) is granted at unlock time, independent of the notified/toast flag', () => {
+  it('new achievements do not create XP or a toast-dependent reward obligation', () => {
     const achievementsSource = fs.readFileSync(path.join(ROOT, 'app', 'achievements.ts'), 'utf8');
-    // registerXP вызывается в блоке разблокировки (justUnlocked), а не в ветке,
-    // завязанной на notified/показ — удаление тоста не должно унести награду.
-    const rewardIdx = achievementsSource.indexOf('for (const ach of justUnlocked)');
-    expect(rewardIdx).toBeGreaterThanOrEqual(0);
-    const rewardBlock = achievementsSource.slice(rewardIdx, rewardIdx + 700);
-    expect(rewardBlock).toContain('registerXP(');
-    expect(rewardBlock).not.toContain('.notified');
+    expect(achievementsSource).not.toContain('registerXP(');
+    expect(achievementsSource).not.toContain('xpDelta');
+    // New unlocks are marked as already settled; no durable toast/reward debt.
+    expect(achievementsSource).toContain('shardClaimed: true');
   });
 });

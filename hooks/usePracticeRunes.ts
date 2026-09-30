@@ -26,7 +26,6 @@ import {
   readCommittedPracticeRuneSettlementEarnings,
   settlePracticeRuneEarningsToServer,
 } from '../app/practice_rune_settlement';
-import { applySuperSundayRuneMultiplier } from '../modules/economy/super_sunday_runes';
 
 /**
  * usePracticeRunes — единая точка подключения копилки рун к экрану сессии.
@@ -140,9 +139,7 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
     return () => clearTimeout(timer);
   }, [devFakeStartRunes, promotionEpoch]);
 
-  const runes = devFakeStartRunes === undefined
-    ? applySuperSundayRuneMultiplier(baseRunes, Date.now())
-    : baseRunes;
+  const runes = baseRunes;
 
   useEffect(() => {
     sessionGenerationRef.current += 1;
@@ -364,9 +361,7 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
     const result = awardPracticeRune(current, itemId, correctStreak);
     if (result.awarded === 0) return 0;
     earningsRef.current = result.earnings;
-    const earnedAtMs = Date.now();
-    const displayedAward = applySuperSundayRuneMultiplier(result.earnings.pendingRunes, earnedAtMs)
-      - applySuperSundayRuneMultiplier(current.pendingRunes, earnedAtMs);
+    const displayedAward = result.earnings.pendingRunes - current.pendingRunes;
     setBaseRunes(result.earnings.pendingRunes);
     persist(result.earnings);
     DebugLogger.info('practice_runes:answer_awarded', JSON.stringify({

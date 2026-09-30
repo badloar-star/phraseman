@@ -23,6 +23,7 @@
  * transform/opacity, деградация при reduceMotion / lowPower.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { BlurView } from 'expo-blur';
 import { Image } from 'expo-image';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -46,6 +47,10 @@ import Reanimated, {
   withTiming,
 } from 'react-native-reanimated';
 import { triLang } from '../../constants/i18n';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { LinearGradient } from '../../components/SafeLinearGradient';
+import { useTheme } from '../../components/ThemeContext';
+import { FlowText } from '../../components/text-integrity/FlowText';
 import type { Lang } from '../../constants/i18n';
 import type { Theme, ThemeMode } from '../../constants/theme';
 import { FC_SPRING, FC_TIMING, fcStaggerDelay } from '../../constants/flashcards_motion';
@@ -75,6 +80,17 @@ import { isLocalAuthorPackId } from '../community_packs/localAuthorPacks';
 import { PACK_LANGUAGE_META, normalizePackLanguage, type PackLanguage } from './pack_languages';
 
 const ReanimatedPressable = Reanimated.createAnimatedComponent(Pressable);
+type CatalogGlassTokens = ReturnType<typeof liquidGlassTokens>;
+
+function CatalogTileGlass({ g }: { g: CatalogGlassTokens }) {
+  return <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+    <BlurView intensity={Platform.OS === 'android' ? 6 : 12} blurReductionFactor={4}
+      experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'}
+      tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
+    <LinearGradient colors={[g.selected, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
+    <View style={{ height: 1, backgroundColor: g.glassEdge }} />
+  </View>;
+}
 
 type Props = {
   lang: Lang;
@@ -199,6 +215,7 @@ type CommunityPackTileProps = {
   pack: FlashcardMarketPack;
   lang: Lang;
   t: Theme;
+  g: CatalogGlassTokens;
   width: number;
   owned: boolean;
   isTop: boolean;
@@ -219,7 +236,7 @@ type CommunityPackTileProps = {
  * в режиме просмотра.
  */
 function CommunityPackTileBase({
-  pack, lang, t, width, owned, isTop, reduceMotion, showEdit, labelSize, icon, onOpen, onLongPress, onEdit, opening, disabled,
+  pack, lang, t, g, width, owned, isTop, reduceMotion, showEdit, labelSize, icon, onOpen, onLongPress, onEdit, opening, disabled,
 }: CommunityPackTileProps) {
   const authorName = useCommunityAuthorName(pack, lang);
   // Единственный источник цены — тот же, из которого спишет шит покупки.
@@ -230,7 +247,7 @@ function CommunityPackTileBase({
     <View style={{ width, alignItems: 'center', paddingBottom: 4, position: 'relative' }}>
       <HubTileShell
         testID={`flashcards-pack-card-${pack.id}`}
-        a11y={`qa-flashcards-pack-card-${pack.id}`}
+        a11y={`${title}, ${authorName}, ${pack.cardCount} ${triLang(lang, { ru: 'карточек', uk: 'карток', en: 'cards', es: 'tarjetas' })}`}
         width={width}
         reduceMotion={reduceMotion}
         onPress={onOpen}
@@ -244,8 +261,8 @@ function CommunityPackTileBase({
               height: width,
               borderRadius: TILE_RADIUS,
               borderWidth: isTop ? 1.5 : 1,
-              borderColor: isTop ? `${t.accent}88` : owned ? t.accent : t.border,
-              backgroundColor: t.bgSurface,
+              borderColor: isTop ? `${t.accent}88` : owned ? t.accent : g.glassEdge,
+              backgroundColor: g.card,
               alignItems: 'center',
               justifyContent: 'center',
               overflow: 'hidden',
@@ -254,9 +271,10 @@ function CommunityPackTileBase({
             shadowForTile(t, isTop ? 'top' : owned ? 'owned' : 'base'),
           ]}
         >
+          <CatalogTileGlass g={g} />
           {icon}
           {opening ? (
-            <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, { alignItems: 'center', justifyContent: 'center', backgroundColor: `${t.bgSurface}D9` }]}>
+            <View pointerEvents="none" style={[StyleSheet.absoluteFillObject, { alignItems: 'center', justifyContent: 'center', backgroundColor: g.sheet }]}>
               <ActivityIndicator color={t.accent} />
             </View>
           ) : null}
@@ -266,10 +284,10 @@ function CommunityPackTileBase({
               style={{
                 position: 'absolute', right: 5, bottom: 5,
                 borderRadius: 9, paddingHorizontal: 6, paddingVertical: 1,
-                backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border,
+                backgroundColor: g.sheet, borderWidth: 1, borderColor: g.glassEdge,
               }}
             >
-              <Text style={{ fontSize: 9, fontWeight: '800', color: t.textSecond }}>{pack.cardCount}</Text>
+              <Text style={{ fontSize: 9, fontWeight: '800', color: g.secondary }}>{pack.cardCount}</Text>
             </View>
           ) : null}
           {isTop ? (
@@ -301,7 +319,7 @@ function CommunityPackTileBase({
             style={{
               position: 'absolute', left: 5, bottom: 5,
               borderRadius: 9, paddingHorizontal: 4, paddingVertical: 2,
-              backgroundColor: `${t.bgCard}EE`, borderWidth: 1, borderColor: t.border,
+              backgroundColor: g.sheet, borderWidth: 1, borderColor: g.glassEdge,
             }}
           >
             <Text style={{ fontSize: 11, lineHeight: 13 }}>
@@ -318,34 +336,36 @@ function CommunityPackTileBase({
           hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
           style={{
             position: 'absolute', top: 2, left: 2, zIndex: 8,
-            padding: 6, borderRadius: 12, backgroundColor: `${t.bgPrimary}CC`,
+            padding: 6, borderRadius: 12, backgroundColor: g.sheet, borderWidth: 1, borderColor: g.glassEdge,
           }}
         >
-          <Ionicons name="create-outline" size={15} color={t.textPrimary} />
+          <Ionicons name="create-outline" size={15} color={g.text} />
         </TouchableOpacity>
       ) : null}
 
-      <Text
+      <FlowText
+        testID={`flashcards-pack-title-${pack.id}`}
+        provenance="user"
         style={{
           marginTop: 7, fontSize: labelSize + 1, fontWeight: '700',
-          color: t.textPrimary, textAlign: 'center', lineHeight: labelSize + 4,
+          color: g.text, textAlign: 'center', lineHeight: labelSize + 4,
         }}
-        numberOfLines={2}
       >
         {title}
-      </Text>
+      </FlowText>
       {/* зачем цена ЗДЕСЬ, рядом с автором (владелец 2026-09-17, экран 7
           макета рун, выбран дизайн 3): бейдж поверх обложки закрывал бы саму
           картинку набора, а лента внизу спорила бы с соцбаром. Строка в
           описании ничего не перекрывает и читается вместе с автором — цена
           воспринимается как свойство набора, а не как рекламная наклейка.
           Бесплатные наборы цены не показывают: «0» — это шум. */}
-      <Text
-        style={{ marginTop: 2, fontSize: Math.max(8, labelSize - 1), fontWeight: '600', color: t.textMuted, textAlign: 'center' }}
-        numberOfLines={1}
+      <FlowText
+        testID={`flashcards-pack-author-${pack.id}`}
+        provenance="user"
+        style={{ marginTop: 2, fontSize: Math.max(8, labelSize - 1), fontWeight: '600', color: g.secondary, textAlign: 'center' }}
       >
         {packPriceRunes > 0 ? `${authorName} · ᚱ ${packPriceRunes.toLocaleString('ru-RU').replace(/ /g, ' ')}` : authorName}
-      </Text>
+      </FlowText>
       <View style={{ marginTop: 5 }}>
         <CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={owned} variant="tile" />
       </View>
@@ -370,6 +390,7 @@ const CommunityPackTile = React.memo(CommunityPackTileBase, (prev, next) => (
   prev.pack === next.pack
   && prev.lang === next.lang
   && prev.t === next.t
+  && prev.g === next.g
   && prev.width === next.width
   && prev.owned === next.owned
   && prev.isTop === next.isTop
@@ -399,6 +420,8 @@ export default function FlashcardsCategoryHub({
   packLanguage = 'en',
 }: Props) {
   const router = useRouter();
+  const { liquidGlassThemeId } = useTheme();
+  const g = useMemo(() => liquidGlassTokens(liquidGlassThemeId), [liquidGlassThemeId]);
   const [reduceMotion, setReduceMotion] = useState(false);
   const [hasUnfinishedPackDraft, setHasUnfinishedPackDraft] = useState(false);
   const [hiddenCommunityPackIds, setHiddenCommunityPackIds] = useState<Set<string>>(() => new Set());
@@ -467,7 +490,7 @@ export default function FlashcardsCategoryHub({
    * рендерятся на обычной поверхности, поэтому берём цвета прямо из темы.
    */
   const isGradientSurface = false;
-  const hubLabelMuted = t.textMuted;
+  const hubLabelMuted = g.secondary;
   const hubLabelAccent = t.accent;
 
   /** Свой набор: добавлен, авторский, или id в общем `ownedPackIds` (легаси-ветка). */
@@ -658,10 +681,7 @@ export default function FlashcardsCategoryHub({
   );
 
   /**
-   * Иконка/обложка набора. Раньше бралась только по `pack.id` — у наборов
-   * сообщества такой картинки нет, и плитки выходили пустыми. Теперь сперва
-   * пробуем обложку, выбранную автором в редакторе (`ugcCardBackKey`), затем
-   * бандл по id, и только потом — осмысленный дефолт по категории набора.
+   * Единый значок набора без старых изображений рубашек.
    */
   const packIcon = (pack: FlashcardMarketPack, size: number) => {
     const png = packTileImageForPack(pack) ?? bundledPackTilePng(pack.id);
@@ -754,9 +774,9 @@ export default function FlashcardsCategoryHub({
             <Ionicons name="create-outline" size={17} color={t.textPrimary} />
           </TouchableOpacity>
         ) : null}
-        <Text style={packCodeLabelStyle} numberOfLines={2}>
+        <FlowText testID={`flashcards-owned-pack-title-${pack.id}`} provenance="user" style={packCodeLabelStyle}>
           {packTileLabel}
-        </Text>
+        </FlowText>
         {pack.isPendingUpdateReview ? (
           <Text style={{ fontSize: 9, color: hubLabelAccent, fontWeight: '800', marginTop: 3, textAlign: 'center' }}>
             {triLang(lang, {
@@ -789,6 +809,7 @@ export default function FlashcardsCategoryHub({
         pack={pack}
         lang={lang}
         t={t}
+        g={g}
         width={tileW}
         owned={owned}
         isTop={topPackIds.has(pack.id)}
@@ -844,10 +865,12 @@ export default function FlashcardsCategoryHub({
           paddingHorizontal: 12,
           borderRadius: 14,
           borderWidth: 1,
-          borderColor: t.border,
-          backgroundColor: t.bgSurface,
+          borderColor: g.glassEdge,
+          backgroundColor: g.card,
+          overflow: 'hidden',
         }}
       >
+        <CatalogTileGlass g={g} />
         <TouchableOpacity
           onPress={() => {
             void hapticTap();
@@ -946,14 +969,15 @@ export default function FlashcardsCategoryHub({
                 paddingHorizontal: 14,
                 borderRadius: 14,
                 borderWidth: 1.5,
-                borderColor: t.accent,
-                backgroundColor: isGradientSurface ? t.bgCard : `${t.accent}1A`,
+                borderColor: g.glassEdge,
+                backgroundColor: g.card,
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'center',
                 gap: 8,
               }}
             >
+              <CatalogTileGlass g={g} />
               <Ionicons name="document-text-outline" size={20} color={t.accent} />
               <Text style={{ color: isGradientSurface ? t.textPrimary : t.accent, fontWeight: '800', fontSize: 14 }}>
                 {triLang(lang, {
@@ -971,31 +995,35 @@ export default function FlashcardsCategoryHub({
             </TouchableOpacity>
           ) : null}
           {visibleCommunityPacks.length === 0 ? (
-            <Text style={{ color: hubLabelMuted, fontSize: 13, marginBottom: 8 }}>
-              {catalogCommunityPacks.length === 0
-                ? triLang(lang, {
-                    ru: 'Здесь появятся наборы после публикации.',
-                    uk: 'Тут з\'являться набори після публікації.',
-                    en: 'Packs will appear here once published.',
-                    es: 'Aquí verás packs tras publicarlos.',
-                    'pt-BR': 'Aqui você verá pacotes após publicá-los.',
-                    vi: 'Bộ thẻ sẽ xuất hiện ở đây sau khi đăng.',
-                    id: 'Paket akan muncul di sini setelah dipublikasikan.',
-                    tr: 'Paketler yayınlandıktan sonra burada görünür.',
-                    pl: 'Zestawy pojawią się tu po opublikowaniu.',
-                  })
-                : triLang(lang, {
-                    ru: 'Ничего не найдено.',
-                    uk: 'Нічого не знайдено.',
-                    en: 'Nothing found.',
-                    es: 'No se encontró nada.',
-                    'pt-BR': 'Nada encontrado.',
-                    vi: 'Không tìm thấy gì.',
-                    id: 'Tidak ada yang ditemukan.',
-                    tr: 'Bir şey bulunamadı.',
-                    pl: 'Nic nie znaleziono.',
-                  })}
-            </Text>
+            <View testID="flashcards-community-empty" style={{ width: hubBarW, minHeight: 132, borderRadius: 18, borderWidth: 1, borderColor: g.glassEdge, backgroundColor: g.card, overflow: 'hidden', alignItems: 'center', justifyContent: 'center', padding: 18, gap: 9 }}>
+              <CatalogTileGlass g={g} />
+              <Ionicons name={catalogCommunityPacks.length === 0 ? 'albums-outline' : 'search-outline'} size={24} color={g.secondary} />
+              <FlowText testID="flashcards-community-empty-label" provenance="authored" style={{ color: g.secondary, fontSize: 14, lineHeight: 20, textAlign: 'center' }}>
+                {catalogCommunityPacks.length === 0
+                  ? triLang(lang, {
+                      ru: 'Здесь появятся наборы после публикации.',
+                      uk: 'Тут з\'являться набори після публікації.',
+                      en: 'Packs will appear here once published.',
+                      es: 'Aquí verás packs tras publicarlos.',
+                      'pt-BR': 'Aqui você verá pacotes após publicá-los.',
+                      vi: 'Bộ thẻ sẽ xuất hiện ở đây sau khi đăng.',
+                      id: 'Paket akan muncul di sini setelah dipublikasikan.',
+                      tr: 'Paketler yayınlandıktan sonra burada görünür.',
+                      pl: 'Zestawy pojawią się tu po opublikowaniu.',
+                    })
+                  : triLang(lang, {
+                      ru: 'Ничего не найдено.',
+                      uk: 'Нічого не знайдено.',
+                      en: 'Nothing found.',
+                      es: 'No se encontró nada.',
+                      'pt-BR': 'Nada encontrado.',
+                      vi: 'Không tìm thấy gì.',
+                      id: 'Tidak ada yang ditemukan.',
+                      tr: 'Bir şey bulunamadı.',
+                      pl: 'Nic nie znaleziono.',
+                    })}
+              </FlowText>
+            </View>
           ) : null}
           <View
             style={{

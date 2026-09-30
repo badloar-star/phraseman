@@ -2,7 +2,6 @@ import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { upsertEmailContact } from './email_contacts';
-import { findAccountByAlias, verifyAccountHit } from './account_id_lookup';
 import {
   ACCOUNT_ID_FIELD,
   ACCOUNT_ID_INDEX,
@@ -13,8 +12,6 @@ import {
 import {
   accountStateFromSnapshots,
   assertAccountUsable,
-  readAuthAccountState,
-  readStableAccountState,
 } from './account_gate';
 import {
   ACCOUNT_DELETE_AUTH_MARKERS,
@@ -32,6 +29,7 @@ const LEADERBOARD = 'leaderboard';
 const LEAGUE_GROUPS = 'league_groups';
 const CLEANUP_CANDIDATES = 'identity_cleanup_candidates';
 const IDENTITY_CLEANUP_THROTTLE_MS = 6 * 60 * 60 * 1000;
+const SERVER_AUTH_UID_RE = /^(?=.{1,128}$)[^/\u0000-\u001f\u007f]+$/;
 
 type AuthProvider = 'google' | 'apple';
 
@@ -59,7 +57,6 @@ type StableIdentityCandidate = {
   hidden: boolean;
   hasAuthoritativeOwner: boolean;
   hasProviderLink: boolean;
-  xp: number;
   updatedAt: number;
 };
 
@@ -106,6 +103,76 @@ async function readIdentityOrThrow<T>(read: Promise<T>): Promise<T> {
   }
 }
 
+/**
+ * Minimal server-only read surface shared by ordinary and transaction-bound
+ * identity resolution. Keeping discovery behind this seam prevents the
+ * transactional caller from growing a second ownership algorithm.
+ */
+type StableIdentityReadAccess = Readonly<{
+  getDocument(
+    ref: admin.firestore.DocumentReference,
+  ): Promise<admin.firestore.DocumentSnapshot>;
+  getQuery(
+    query: admin.firestore.Query,
+  ): Promise<admin.firestore.QuerySnapshot>;
+}>;
+
+function databaseIdentityReads(): StableIdentityReadAccess {
+  return {
+    getDocument: (ref) => ref.get(),
+    getQuery: (query) => query.get(),
+  };
+}
+
+function transactionIdentityReads(
+  transaction: admin.firestore.Transaction,
+): StableIdentityReadAccess {
+  return {
+    getDocument: (ref) => transaction.get(ref),
+    getQuery: (query) => transaction.get(query),
+  };
+}
+
+function hasFullFirestoreTransactionSurface(value: unknown): value is admin.firestore.Transaction {
+  if (!value || typeof value !== 'object') return false;
+  return ['get', 'getAll', 'create', 'set', 'update', 'delete']
+    .every((method) => typeof Reflect.get(value, method) === 'function');
+}
+
+async function assertAuthDeletionNotPendingFromReads(
+  db: admin.firestore.Firestore,
+  reads: StableIdentityReadAccess,
+  authUid: string,
+): Promise<void> {
+  const [marker, denial] = await Promise.all([
+    readIdentityOrThrow(reads.getDocument(
+      db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid),
+    )),
+    readIdentityOrThrow(reads.getDocument(
+      db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS)
+        .doc(accountDeletePermanentDenialId(authUid)),
+    )),
+  ]);
+  assertAccountUsable(accountStateFromSnapshots({ marker, denial, subject: 'auth' }));
+}
+
+async function assertStableDeletionNotPendingFromReads(
+  db: admin.firestore.Firestore,
+  reads: StableIdentityReadAccess,
+  stableId: string,
+): Promise<void> {
+  const [marker, denial] = await Promise.all([
+    readIdentityOrThrow(reads.getDocument(
+      db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(stableId),
+    )),
+    readIdentityOrThrow(reads.getDocument(
+      db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS)
+        .doc(accountDeletePermanentDenialId(stableId)),
+    )),
+  ]);
+  assertAccountUsable(accountStateFromSnapshots({ marker, denial, subject: 'stable' }));
+}
+
 async function assertAccountDeletionNotPending(
   db: admin.firestore.Firestore,
   authUid: string,
@@ -117,16 +184,14 @@ async function assertAccountDeletionNotPending(
   //
   // readIdentityOrThrow обязателен: сбой сети НЕ должен выглядеть как «аккаунт
   // жив» — иначе при отвале Firestore открылся бы доступ к удаляемому аккаунту.
-  const state = await readIdentityOrThrow(readAuthAccountState(db, authUid));
-  assertAccountUsable(state);
+  await assertAuthDeletionNotPendingFromReads(db, databaseIdentityReads(), authUid);
 }
 
 async function assertStableDeletionNotPending(
   db: admin.firestore.Firestore,
   stableId: string,
 ): Promise<void> {
-  const state = await readIdentityOrThrow(readStableAccountState(db, stableId));
-  assertAccountUsable(state);
+  await assertStableDeletionNotPendingFromReads(db, databaseIdentityReads(), stableId);
 }
 
 async function assertStableAccountMergeNotPending(
@@ -144,10 +209,11 @@ async function assertStableAccountMergeNotPending(
 async function assertSelectionDeletionNotPending(
   db: admin.firestore.Firestore,
   selection: StableIdentitySelection,
+  reads: StableIdentityReadAccess = databaseIdentityReads(),
 ): Promise<void> {
   const stableIds = [...new Set([...selection.sourceStableIds, selection.stableUid])];
   for (const stableId of stableIds) {
-    await assertStableDeletionNotPending(db, stableId);
+    await assertStableDeletionNotPendingFromReads(db, reads, stableId);
   }
 }
 
@@ -244,12 +310,6 @@ async function enrichMetadataFromAuth(
   return Object.keys(out).length > 0 ? out : metadata;
 }
 
-function readProgressXp(data: FirebaseFirestore.DocumentData | undefined): number {
-  const raw = (data?.progress as { user_total_xp?: unknown } | undefined)?.user_total_xp;
-  const n = parseInt(String(raw ?? '0'), 10);
-  return Number.isFinite(n) ? n : 0;
-}
-
 function readUpdatedAt(data: FirebaseFirestore.DocumentData | undefined): number {
   const n = Number((data ?? {}).updatedAt);
   return Number.isFinite(n) && n > 0 ? n : 0;
@@ -267,7 +327,6 @@ function mergeStableIdentityCandidate(
 
   current.hasAuthoritativeOwner = current.hasAuthoritativeOwner || candidate.hasAuthoritativeOwner;
   current.hasProviderLink = current.hasProviderLink || candidate.hasProviderLink;
-  current.xp = Math.max(current.xp, candidate.xp);
   current.updatedAt = Math.max(current.updatedAt, candidate.updatedAt);
   current.hidden = current.hidden && candidate.hidden;
   current.sourceStableIds = [...new Set([
@@ -286,7 +345,6 @@ function pickBestStableIdentityCandidate(
     if (a.hasAuthoritativeOwner !== b.hasAuthoritativeOwner) return a.hasAuthoritativeOwner ? -1 : 1;
     if (a.hidden !== b.hidden) return a.hidden ? 1 : -1;
     if (a.hasProviderLink !== b.hasProviderLink) return a.hasProviderLink ? -1 : 1;
-    if (a.xp !== b.xp) return b.xp - a.xp;
     if (a.updatedAt !== b.updatedAt) return b.updatedAt - a.updatedAt;
     return a.id.localeCompare(b.id);
   });
@@ -313,7 +371,6 @@ function collectStableIdentityCandidates(
       hidden,
       hasAuthoritativeOwner: normalizeStableId(data.firebaseAuthUid) === authUid,
       hasProviderLink: normalizeStableId(linkedAuth?.providerUid) === authUid,
-      xp: readProgressXp(data),
       updatedAt: readUpdatedAt(data),
     };
     mergeStableIdentityCandidate(out, candidate);
@@ -325,12 +382,17 @@ async function findStableUidForProviderAuth(
   db: admin.firestore.Firestore,
   authUid: string,
   authoritativeOnly = false,
+  reads: StableIdentityReadAccess = databaseIdentityReads(),
 ): Promise<StableIdentitySelection | null> {
   const [byFirebaseAuthUidSnap, byLinkedAuthUidSnap] = await Promise.all([
-    readIdentityOrThrow(db.collection(USERS).where('firebaseAuthUid', '==', authUid).limit(20).get()),
+    readIdentityOrThrow(reads.getQuery(
+      db.collection(USERS).where('firebaseAuthUid', '==', authUid).limit(20),
+    )),
     authoritativeOnly
       ? Promise.resolve(null)
-      : readIdentityOrThrow(db.collection(USERS).where('linkedAuth.providerUid', '==', authUid).limit(20).get()),
+      : readIdentityOrThrow(reads.getQuery(
+        db.collection(USERS).where('linkedAuth.providerUid', '==', authUid).limit(20),
+      )),
   ]);
 
   const docs: { id: string; data: () => FirebaseFirestore.DocumentData | undefined }[] = [];
@@ -364,11 +426,13 @@ async function findStableUidForProviderAuth(
   for (const canonicalStableId of canonicalIdsToCheck) candidateStableIds.add(canonicalStableId);
   await Promise.all(
     [...candidateStableIds].map((candidateStableId) => (
-      assertStableDeletionNotPending(db, candidateStableId)
+      assertStableDeletionNotPendingFromReads(db, reads, candidateStableId)
     )),
   );
   await Promise.all([...canonicalIdsToCheck].map(async (canonicalStableId) => {
-    const snap = await readIdentityOrThrow(db.collection(USERS).doc(canonicalStableId).get());
+    const snap = await readIdentityOrThrow(reads.getDocument(
+      db.collection(USERS).doc(canonicalStableId),
+    ));
     if (snap.exists) liveCanonicalIds.add(canonicalStableId);
   }));
 
@@ -390,20 +454,27 @@ async function findStableUidForProviderAuth(
 async function findLiveAuthLinkAnchor(
   db: admin.firestore.Firestore,
   authUid: string,
+  reads: StableIdentityReadAccess = databaseIdentityReads(),
 ): Promise<AuthLinkAnchor | null> {
-  const linkSnap = await readIdentityOrThrow(db.collection(AUTH_LINKS).doc(authUid).get());
+  const linkSnap = await readIdentityOrThrow(reads.getDocument(
+    db.collection(AUTH_LINKS).doc(authUid),
+  ));
   const anchoredStableId = normalizeStableId(linkSnap?.data()?.stable_id);
   if (!anchoredStableId) return null;
-  await assertStableDeletionNotPending(db, anchoredStableId);
-  const anchoredUserSnap = await readIdentityOrThrow(db.collection(USERS).doc(anchoredStableId).get());
+  await assertStableDeletionNotPendingFromReads(db, reads, anchoredStableId);
+  const anchoredUserSnap = await readIdentityOrThrow(reads.getDocument(
+    db.collection(USERS).doc(anchoredStableId),
+  ));
   if (!anchoredUserSnap.exists) {
     return { anchorStableId: anchoredStableId, selection: null };
   }
   const anchoredUserData = anchoredUserSnap.data() ?? {};
   const canonicalStableId = normalizeStableId(anchoredUserData.canonicalStableId);
   if (anchoredUserData.identityHidden === true && canonicalStableId && canonicalStableId !== anchoredStableId) {
-    await assertStableDeletionNotPending(db, canonicalStableId);
-    const canonicalSnap = await readIdentityOrThrow(db.collection(USERS).doc(canonicalStableId).get());
+    await assertStableDeletionNotPendingFromReads(db, reads, canonicalStableId);
+    const canonicalSnap = await readIdentityOrThrow(reads.getDocument(
+      db.collection(USERS).doc(canonicalStableId),
+    ));
     const canonicalAuthUid = normalizeStableId(canonicalSnap?.data()?.firebaseAuthUid);
     if (canonicalSnap?.exists && canonicalAuthUid === authUid) {
       return {
@@ -476,19 +547,20 @@ async function assertStableOwner(
     allowAnonRelink?: boolean;
     allowedAuthLinkStableIds?: readonly string[];
   },
+  reads: StableIdentityReadAccess = databaseIdentityReads(),
 ): Promise<StableOwnerProof> {
   if (!stableId || stableId.length > 160) {
     throw new HttpsError('invalid-argument', 'stable_id_required');
   }
   const [userSnap, linkSnap] = await Promise.all([
-    readIdentityOrThrow(db.collection(USERS).doc(stableId).get()),
-    readIdentityOrThrow(db.collection(AUTH_LINKS).doc(authUid).get()),
+    readIdentityOrThrow(reads.getDocument(db.collection(USERS).doc(stableId))),
+    readIdentityOrThrow(reads.getDocument(db.collection(AUTH_LINKS).doc(authUid))),
   ]);
   const userData = userSnap?.data() ?? {};
   const userAuthUid = String(userData.firebaseAuthUid ?? '').trim();
   const linkedStableId = String(linkSnap?.data()?.stable_id ?? '').trim();
   if (linkedStableId && linkedStableId !== stableId) {
-    await assertStableDeletionNotPending(db, linkedStableId);
+    await assertStableDeletionNotPendingFromReads(db, reads, linkedStableId);
   }
   const allowedAuthLinkStableIds = new Set([
     stableId,
@@ -529,7 +601,7 @@ async function assertStableOwner(
     !linkedAuthUid
   ) {
     const existingByAuth = await readIdentityOrThrow(
-      db.collection(USERS).where('firebaseAuthUid', '==', authUid).limit(1).get(),
+      reads.getQuery(db.collection(USERS).where('firebaseAuthUid', '==', authUid).limit(1)),
     );
     const existingOwnerIds = (existingByAuth?.docs ?? []).map((doc) => doc.id).sort();
     if (existingOwnerIds.length === 0 || existingOwnerIds.every((id) => id === stableId)) {
@@ -967,7 +1039,7 @@ function legacyLeaderboardMerge(
     identityCanonicalizedAt: Date.now(),
   };
 
-  ['points', 'streak', 'daily7xp', 'daily7time_ms', 'profileCardLevel'].forEach((field) => {
+  ['points', 'streak', 'daily7time_ms'].forEach((field) => {
     const next = chooseMaxNumber(stableData[field], legacyData[field]);
     if (next !== undefined) out[field] = next;
   });
@@ -991,7 +1063,6 @@ function legacyLeaderboardMerge(
     'avatar',
     'frame',
     'aura',
-    'leagueId',
     'isPremium',
     'isVip',
     'profileCardTheme',
@@ -1018,9 +1089,6 @@ function mergeLegacyMemberIntoStable(
   const stablePoints = readNumber(stable?.points);
   const legacyPoints = readNumber(legacy?.points);
   if (stablePoints !== null || legacyPoints !== null) out['points'] = Math.max(stablePoints ?? 0, legacyPoints ?? 0);
-  const stableTotalXp = readNumber(stable?.totalXp);
-  const legacyTotalXp = readNumber(legacy?.totalXp);
-  if (stableTotalXp !== null || legacyTotalXp !== null) out['totalXp'] = Math.max(stableTotalXp ?? 0, legacyTotalXp ?? 0);
   return out;
 }
 
@@ -1322,6 +1390,117 @@ function selectionFromUserData(
   return { stableUid: stableId, sourceStableIds: [stableId] };
 }
 
+type StableIdentityDiscovery = Readonly<{
+  selection: StableIdentitySelection;
+  verifyOwner: boolean;
+}>;
+
+async function findVerifiedAccountAliasSelection(
+  db: admin.firestore.Firestore,
+  reads: StableIdentityReadAccess,
+  authUid: string,
+): Promise<StableIdentitySelection | null> {
+  let indexSnap: admin.firestore.DocumentSnapshot;
+  try {
+    indexSnap = await reads.getDocument(
+      db.collection(ACCOUNT_ID_INDEX).doc(accountIdIndexDocId(authUid)),
+    );
+  } catch {
+    // The alias map is an optimization layer. Preserve the canonical resolver's
+    // fail-open-to-the-established-ladder behavior when the index is unavailable.
+    console.warn(JSON.stringify({ event: 'account_id_lookup_unavailable' }));
+    return null;
+  }
+  if (!indexSnap.exists) return null;
+  const indexData = indexSnap.data() ?? {};
+  const accountId = normalizeStableId(indexData.accountId);
+  const stableId = normalizeStableId(indexData.stableId);
+  if (!accountId || !stableId) {
+    console.warn(JSON.stringify({
+      event: 'account_id_index_incomplete',
+      hasAccountId: Boolean(accountId),
+      hasStableId: Boolean(stableId),
+    }));
+    return null;
+  }
+
+  let userSnap: admin.firestore.DocumentSnapshot;
+  try {
+    userSnap = await reads.getDocument(db.collection(USERS).doc(stableId));
+  } catch {
+    console.warn(JSON.stringify({ event: 'account_id_lookup_verify_failed' }));
+    return null;
+  }
+  if (!userSnap.exists) return null;
+  const userData = userSnap.data() ?? {};
+  if (userData.identityHidden === true) return null;
+  if (normalizeStableId(userData[ACCOUNT_ID_FIELD]) !== accountId) return null;
+  const owner = normalizeStableId(userData.firebaseAuthUid);
+  if (owner !== authUid) {
+    console.log(JSON.stringify({
+      event: 'account_id_lookup_not_owned',
+      matchedKind: normalizeStableId(indexData.kind) || 'unknown',
+      ownerPresent: Boolean(owner),
+      selfKeyed: stableId === authUid,
+    }));
+    return null;
+  }
+  return { stableUid: stableId, sourceStableIds: [stableId] };
+}
+
+/**
+ * One discovery ladder for both the legacy database reader and the new
+ * transaction-bound reader. The caller decides whether it may repair links;
+ * identity ranking and authority precedence stay identical.
+ */
+async function discoverStableIdentityForAuth(
+  db: admin.firestore.Firestore,
+  reads: StableIdentityReadAccess,
+  authUid: string,
+): Promise<StableIdentityDiscovery | null> {
+  const authLinkAnchor = await findLiveAuthLinkAnchor(db, authUid, reads);
+  if (authLinkAnchor?.selection) {
+    return { selection: authLinkAnchor.selection, verifyOwner: false };
+  }
+
+  const aliasSelection = await findVerifiedAccountAliasSelection(db, reads, authUid);
+  if (aliasSelection) return { selection: aliasSelection, verifyOwner: true };
+
+  const authoritativeByAuth = await findStableUidForProviderAuth(db, authUid, true, reads);
+  if (authoritativeByAuth) {
+    return { selection: authoritativeByAuth, verifyOwner: true };
+  }
+
+  const direct = await readIdentityOrThrow(
+    reads.getDocument(db.collection(USERS).doc(authUid)),
+  );
+  if (direct.exists) {
+    const directSelection = selectionFromUserData(authUid, direct.data() ?? {});
+    if (directSelection.stableUid !== authUid) {
+      return { selection: directSelection, verifyOwner: true };
+    }
+  }
+
+  const byAuth = await findStableUidForProviderAuth(db, authUid, false, reads);
+  if (byAuth) return { selection: byAuth, verifyOwner: true };
+  return null;
+}
+
+async function authorizeStableIdentitySelection(
+  db: admin.firestore.Firestore,
+  reads: StableIdentityReadAccess,
+  authUid: string,
+  discovery: StableIdentityDiscovery,
+  options?: ResolveStableUidForAuthOptions,
+): Promise<StableOwnerProof | undefined> {
+  await assertSelectionDeletionNotPending(db, discovery.selection, reads);
+  if (!discovery.verifyOwner && !shouldRepairIdentityLinks(options)) return undefined;
+  return assertStableOwner(db, authUid, discovery.selection.stableUid, {
+    ...options,
+    allowedAuthLinkStableIds: discovery.selection.sourceStableIds,
+  }, reads);
+}
+
 async function finalizeStableIdentitySelection(
   db: admin.firestore.Firestore,
   authUid: string,
@@ -1329,13 +1508,13 @@ async function finalizeStableIdentitySelection(
   options: ResolveStableUidForAuthOptions | undefined,
   verifyOwner: boolean,
 ): Promise<string> {
-  await assertSelectionDeletionNotPending(db, selection);
-  const ownerProof = verifyOwner || shouldRepairIdentityLinks(options)
-    ? await assertStableOwner(db, authUid, selection.stableUid, {
-      ...options,
-      allowedAuthLinkStableIds: selection.sourceStableIds,
-    })
-    : undefined;
+  const ownerProof = await authorizeStableIdentitySelection(
+    db,
+    databaseIdentityReads(),
+    authUid,
+    { selection, verifyOwner },
+    options,
+  );
   if (shouldRepairIdentityLinks(options)) {
     await repairStableAuthUid(db, selection, authUid, ownerProof);
   }
@@ -1361,6 +1540,27 @@ export async function resolveStableUidForAuth(
 ): Promise<string> {
   await assertAccountDeletionNotPending(db, authUid);
   const stableId = normalizeStableId(requestedStableId);
+
+  if (!stableId) {
+    const discovery = await discoverStableIdentityForAuth(
+      db,
+      databaseIdentityReads(),
+      authUid,
+    );
+    if (discovery) {
+      return finalizeStableIdentitySelection(
+        db,
+        authUid,
+        discovery.selection,
+        options,
+        discovery.verifyOwner,
+      );
+    }
+    if (options?.requireKnownIdentity) {
+      throw new HttpsError('failed-precondition', 'stable_id_required');
+    }
+    return authUid;
+  }
 
   // Живая привязка auth_links идёт ПЕРВОЙ — это то, чем человек реально входит
   // сегодня (её пишет сам вход с устройства), и это одно точечное чтение.
@@ -1394,13 +1594,17 @@ export async function resolveStableUidForAuth(
   // этот uid ВЛАДЕЕТ (firebaseAuthUid совпал): ровно то, что нашёл бы
   // авторитетный запрос ниже. Не нашли, карта устарела или документ чужой —
   // молча идём прежним путём, ступень по-прежнему обратима.
-  const aliasHit = await findAccountByAlias(db, authUid);
-  if (aliasHit && await verifyAccountHit(db, aliasHit, authUid)) {
-    await assertStableDeletionNotPending(db, aliasHit.stableId);
+  const aliasSelection = await findVerifiedAccountAliasSelection(
+    db,
+    databaseIdentityReads(),
+    authUid,
+  );
+  if (aliasSelection) {
+    await assertStableDeletionNotPending(db, aliasSelection.stableUid);
     return finalizeStableIdentitySelection(
       db,
       authUid,
-      { stableUid: aliasHit.stableId, sourceStableIds: [aliasHit.stableId] },
+      aliasSelection,
       options,
       true,
     );
@@ -1430,6 +1634,48 @@ export async function resolveStableUidForAuth(
   if (options?.requireKnownIdentity) {
     throw new HttpsError('failed-precondition', 'stable_id_required');
   }
+  return authUid;
+}
+
+/**
+ * Resolve the caller's stable account using only reads owned by the supplied
+ * Firestore transaction. No client-requested stable id is accepted and this
+ * read-only boundary never repairs links or writes identity documents.
+ */
+export async function resolveStableUidForAuthInTransaction(
+  db: admin.firestore.Firestore,
+  transaction: admin.firestore.Transaction,
+  authUid: unknown,
+): Promise<string> {
+  if (
+    typeof authUid !== 'string'
+    || authUid.trim() !== authUid
+    || !SERVER_AUTH_UID_RE.test(authUid)
+  ) {
+    throw new HttpsError('invalid-argument', 'auth_uid_invalid');
+  }
+  if (!hasFullFirestoreTransactionSurface(transaction)) {
+    throw new HttpsError('failed-precondition', 'identity_transaction_required');
+  }
+
+  const reads = transactionIdentityReads(transaction);
+  await assertAuthDeletionNotPendingFromReads(db, reads, authUid);
+  const discovery = await discoverStableIdentityForAuth(db, reads, authUid);
+  if (discovery) {
+    await authorizeStableIdentitySelection(
+      db,
+      reads,
+      authUid,
+      discovery,
+      { repairLinks: false },
+    );
+    return discovery.selection.stableUid;
+  }
+
+  // The established resolver falls back to the auth uid. The transaction path
+  // preserves that compatibility while adding the stable deletion fence needed
+  // by an atomic authorization decision.
+  await assertStableDeletionNotPendingFromReads(db, reads, authUid);
   return authUid;
 }
 

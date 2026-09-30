@@ -1,8 +1,5 @@
 /**
- * Cards 2.1 §1.1 — официальные наборы выведены из каталога.
- *
- * Инвариант: официальный пак попадает в выдачу каталога ТОЛЬКО если его id уже есть
- * у пользователя (`loadAccessiblePackIds()`); наборы сообщества не фильтруются никогда.
+ * Официальные наборы удалены из приложения; наборы сообщества остаются.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { flashcardsOwnedPacksKey } from '../app/target_storage_keys';
@@ -53,9 +50,8 @@ describe('официальные наборы в каталоге', () => {
     resetAccessiblePackIdsCache();
   });
 
-  test('бандл-каталог состоит только из официальных наборов', () => {
-    expect(BUNDLED_MARKETPLACE_PACKS.length).toBeGreaterThan(0);
-    expect(BUNDLED_MARKETPLACE_PACKS.every((p) => isOfficialCatalogPack(p))).toBe(true);
+  test('официальный бандл-каталог пуст', () => {
+    expect(BUNDLED_MARKETPLACE_PACKS).toEqual([]);
   });
 
   test('официальным считается пак по флагу или по префиксу id', () => {
@@ -69,9 +65,9 @@ describe('официальные наборы в каталоге', () => {
     expect(out.map((p) => p.id)).toEqual(['ugc_pack_1']);
   });
 
-  test('владелец видит свой официальный пак и не видит чужие', () => {
+  test('старое владение не возвращает удалённые официальные паки', () => {
     const out = filterCatalogPacksByOwnership([OFFICIAL_A, OFFICIAL_B, UGC], ['official_prep_in_en']);
-    expect(out.map((p) => p.id)).toEqual(['official_prep_in_en', 'ugc_pack_1']);
+    expect(out.map((p) => p.id)).toEqual(['ugc_pack_1']);
   });
 
   test('наборы сообщества не фильтруются владением', () => {
@@ -81,16 +77,15 @@ describe('официальные наборы в каталоге', () => {
 
   test('синхронный фолбек каталога пуст у нового пользователя', () => {
     expect(fallbackBundledMarketPacks()).toEqual([]);
-    /** Бандлы при этом на месте — карточки владельцев продолжают собираться. */
-    expect(allBundledMarketPacks().length).toBe(BUNDLED_MARKETPLACE_PACKS.length);
+    expect(allBundledMarketPacks()).toEqual([]);
   });
 
-  test('loadMarketplacePacks отдаёт только доступные пользователю официальные паки', async () => {
-    const ownedId = BUNDLED_MARKETPLACE_PACKS[0].id;
+  test('loadMarketplacePacks остаётся пустым даже со старым owned id', async () => {
+    const ownedId = OFFICIAL_A.id;
     await AsyncStorage.setItem(OWNED_PACKS_KEY, JSON.stringify([ownedId]));
 
     const list = await loadMarketplacePacks();
-    expect(list.map((p) => p.id)).toEqual([ownedId]);
+    expect(list).toEqual([]);
   });
 
   test('без купленных паков каталог официальных наборов пуст', async () => {

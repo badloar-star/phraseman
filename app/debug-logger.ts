@@ -1,5 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Constants from 'expo-constants';
 import { logAppError } from './app_health';
+import { maskDiagnosticText, newTraceId, sanitizeDiagnosticContext } from './diagnostic_mask';
 const isDevRuntime = typeof __DEV__ !== 'undefined' && !!__DEV__;
 
 type DebugLogEntry = {
@@ -167,6 +169,77 @@ function persistDebugLog(entry: DebugLogEntry): void {
     .catch((err) => {
       if (isDevRuntime) console.error('Failed to log:', err);
     });
+}
+
+// зачем: PM-226 — единый контракт диагностической ошибки. Каждая запись несёт
+// code, screen, operation, build, traceId и безопасный (замаскированный)
+// контекст. Формат одной строки для поиска по логу: `[DIAG] code=… screen=… op=… build=… trace=… ctx={…} err=…`.
+export type DiagnosticErrorInput = {
+  code: string;
+  screen: string;
+  operation: string;
+  error?: unknown;
+  context?: Readonly<Record<string, unknown>>;
+  traceId?: string;
+  severity?: 'critical' | 'warning';
+};
+
+function resolveBuild(): string {
+  try {
+    const version = Constants.expoConfig?.version ?? Constants.nativeAppVersion ?? 'unknown';
+    const build = Constants.nativeBuildVersion ?? 'unknown';
+    return `${version}+${build}`;
+  } catch (buildError) {
+    console.warn('[DIAG] build resolve failed', buildError instanceof Error ? buildError.message : 'unknown');
+    return 'unknown';
+  }
+}
+
+export function formatDiagnosticError(input: DiagnosticErrorInput, build: string = resolveBuild()): { line: string; traceId: string } {
+  const traceId = input.traceId ?? newTraceId();
+  const rawMessage = input.error instanceof Error ? input.error.message : input.error == null ? '' : String(input.error);
+  const ctx = sanitizeDiagnosticContext(input.context);
+  const line = `[DIAG] code=${input.code} screen=${input.screen} op=${input.operation} build=${build} trace=${traceId} ctx=${JSON.stringify(ctx)} err=${maskDiagnosticText(rawMessage)}`;
+  return { line, traceId };
+}
+
+/** Единая точка записи диагностической ошибки. Никогда не бросает. */
+export function reportDiagnosticError(input: DiagnosticErrorInput): string {
+  try {
+    const { line, traceId } = formatDiagnosticError(input);
+    // console.warn идёт в бандлер и в metro-console.log даже в релизной отладке владельца;
+    // сообщение уже замаскировано, сырой ошибки/стека наружу не выходит.
+    console.warn(line);
+    persistDebugLog({
+      timestamp: new Date().toISOString(),
+      context: `${input.screen}:${input.operation}`,
+      error: line,
+      severity: input.severity ?? 'warning',
+    });
+    return traceId;
+  } catch (reportError) {
+    console.warn('[DIAG] reportDiagnosticError failed', reportError instanceof Error ? reportError.message : 'unknown');
+    return input.traceId ?? 'no-trace';
+  }
+}
+
+/**
+ * Для намеренно проглоченных ошибок: пишет причину и идёт дальше.
+ * `tag` = `модуль:операция`. Поведение вызывающего не меняется.
+ */
+export function reportSwallowed(tag: string, error?: unknown): void {
+  const sep = tag.indexOf(':');
+  reportDiagnosticError({
+    code: 'swallowed',
+    screen: sep > 0 ? tag.slice(0, sep) : tag,
+    operation: sep > 0 ? tag.slice(sep + 1) : 'unknown',
+    error,
+  });
+}
+
+/** Готовый обработчик для `.catch(swallowError('модуль:операция'))`. */
+export function swallowError(tag: string): (error: unknown) => void {
+  return (error: unknown) => reportSwallowed(tag, error);
 }
 
 export const DebugLogger = {

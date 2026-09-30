@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Platform, Pressable, Linking, AccessibilityInfo } from 'react-native';
+import {
+  AccessibilityInfo,
+  Linking,
+  Modal,
+  Platform,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import Animated, {
   Easing,
-  FadeIn,
   useAnimatedStyle,
   useSharedValue,
   withDelay,
@@ -12,6 +20,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import Constants from 'expo-constants';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { BlurView } from 'expo-blur';
 
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useLang } from './LangContext';
@@ -41,8 +50,12 @@ import {
 } from '../app/campaign_dismissals';
 import { STORE_URL_IOS, STORE_URL_ANDROID } from '../app/config';
 import { DebugLogger } from '../app/debug-logger';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import ResponsiveModalScrollView from './ResponsiveModalScrollView';
+import { LinearGradient } from './SafeLinearGradient';
 
 type GateMode = 'force' | 'optional';
+const blockAndroidBack = () => undefined;
 
 interface GateState {
   source: 'legacy-force' | 'manual';
@@ -231,7 +244,8 @@ async function readGateState(lang: string, userId: string | null): Promise<GateS
 
 export default function ForceUpdateGate() {
   const { lang } = useLang();
-  const { themeMode } = useTheme();
+  const { liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const [userId, setUserId] = useState<string | null>(null);
   const [gate, setGate] = useState<GateState | null>(null);
   // Пока открыт предпросмотр, обычный поток не перерисовывает окно.
@@ -417,155 +431,215 @@ export default function ForceUpdateGate() {
   };
 
   return (
-    <Animated.View
-      entering={reduceMotion ? undefined : FadeIn.duration(forced ? 360 : 420)}
-      style={{
-        position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
-        // Свободное окно оставляет приложение видимым за полупрозрачной
-        // подложкой; принудительное гасит его целиком — за ним ничего нет.
-        backgroundColor: optional ? 'rgba(8, 8, 13, 0.76)' : '#08080d',
-        alignItems: 'center', justifyContent: 'center',
-        paddingHorizontal: 24,
-        zIndex: 10000, elevation: 10000,
-      }}
+    <Modal
+      visible
+      transparent={!forced}
+      animationType="none"
+      statusBarTranslucent
+      navigationBarTranslucent
+      onRequestClose={closable ? closeOptional : blockAndroidBack}
     >
-      <Animated.View
-        style={[{
-          width: '100%',
-          maxWidth: 420,
-          borderRadius: 22,
-          backgroundColor: '#121826',
-          // зачем: обводки контейнеров запрещены правилами владельца — глубину
-          // держим тоном и тенью, а не рамкой.
-          padding: 22,
-          shadowColor: '#000',
-          shadowOpacity: 0.42,
-          shadowRadius: 34,
-          shadowOffset: { width: 0, height: 18 },
-          elevation: 14,
-        }, sheetStyle]}
-      >
-        {closable && (
-          <Pressable
-            accessibilityRole="button"
-            accessibilityLabel={triLang(lang as Lang, {
-              ru: 'Закрыть',
-              uk: 'Закрити',
-              en: 'Close',
-              es: 'Cerrar',
-              'pt-BR': 'Fechar',
-              vi: 'Đóng',
-              id: 'Tutup',
-              tr: 'Kapat',
-              pl: 'Zamknij',
-            })}
-            onPress={closeOptional}
-            hitSlop={12}
-            style={{
-              position: 'absolute',
-              top: 12,
-              right: 12,
-              width: 36,
-              height: 36,
-              borderRadius: 18,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: '#1f2937',
-            }}
-          >
-            <Ionicons name="close" size={20} color="#e5e7eb" />
-          </Pressable>
-        )}
-
-        <View
-          style={{
-            width: 54,
-            height: 54,
-            borderRadius: 18,
-            // зачем: янтарь у принудительного окна — это СЕМАНТИКА запрета, а не
-            // второй акцент. Синий остаётся цветом обычного, необязательного
-            // предложения обновиться.
-            backgroundColor: forced ? '#3a2408' : '#eef2ff',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginBottom: 16,
-          }}
+      <View accessibilityViewIsModal importantForAccessibility="yes" style={styles.modalRoot}>
+        <ResponsiveModalScrollView
+          style={[
+            styles.backdrop,
+            { backgroundColor: forced ? glass.bg : 'rgba(0,0,0,0.68)' },
+          ]}
         >
-          {forced && (
-            <Animated.View
+          {forced ? (
+            <LinearGradient
               pointerEvents="none"
-              style={[{
-                position: 'absolute',
-                top: 0, left: 0, right: 0, bottom: 0,
-                borderRadius: 18,
-                backgroundColor: 'rgba(251, 191, 36, 0.28)',
-              }, haloStyle]}
+              colors={[glass.bgTop, glass.bgBottom]}
+              start={{ x: 0.1, y: 0 }}
+              end={{ x: 0.9, y: 1 }}
+              style={StyleSheet.absoluteFill}
             />
-          )}
-          <Ionicons
-            name={forced ? 'lock-closed' : 'arrow-up-circle-outline'}
-            size={28}
-            color={forced ? '#fbbf24' : '#4338ca'}
-          />
-        </View>
+          ) : null}
 
-        <Text style={{ color: '#fff', fontSize: 22, lineHeight: 28, fontWeight: '800', marginBottom: 10 }}>
-          {gate.title}
-        </Text>
-        <Text style={{ color: '#cbd5e1', fontSize: 15, lineHeight: 22, marginBottom: 18 }}>
-          {gate.body}
-        </Text>
-
-        <Pressable
-          accessibilityRole="button"
-          onPress={openStore}
-          style={({ pressed }) => ({
-            minHeight: 50,
-            borderRadius: 14,
-            backgroundColor: forced
-              ? (pressed ? '#b45309' : '#d97706')
-              : (pressed ? '#4f46e5' : '#6366f1'),
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexDirection: 'row',
-            gap: 8,
-          })}
-        >
-          <Ionicons name="open-outline" size={19} color="#fff" />
-          <Text style={{ color: '#fff', fontSize: 16, fontWeight: '800' }}>
-            {gate.cta}
-          </Text>
-        </Pressable>
-
-        {closable && (
-          <Pressable
-            accessibilityRole="button"
-            onPress={closeOptional}
-            style={({ pressed }) => ({
-              minHeight: 44,
-              marginTop: 10,
-              borderRadius: 12,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: pressed ? '#26324a' : 'transparent',
-            })}
+          <Animated.View
+            testID="force-update-glass"
+            style={[
+              styles.card,
+              { backgroundColor: Platform.OS === 'android' ? glass.opaqueSheet : glass.sheet },
+              sheetStyle,
+            ]}
           >
-            <Text style={{ color: '#9ca3af', fontSize: 14, fontWeight: '700' }}>
-              {triLang(lang as Lang, {
-                ru: 'Позже',
-                uk: 'Пізніше',
-                en: 'Later',
-                es: 'Más tarde',
-                'pt-BR': 'Mais tarde',
-                vi: 'Để sau',
-                id: 'Nanti',
-                tr: 'Sonra',
-                pl: 'Później',
-              })}
+            <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+              <BlurView
+                intensity={Platform.OS === 'android' ? 12 : 20}
+                blurReductionFactor={3}
+                experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'}
+                tint="systemUltraThinMaterialDark"
+                style={StyleSheet.absoluteFill}
+              />
+              <View style={[StyleSheet.absoluteFill, { backgroundColor: glass.sheet }]} />
+              <LinearGradient
+                colors={[glass.selected, 'transparent']}
+                start={{ x: 0.05, y: 0 }}
+                end={{ x: 0.9, y: 1 }}
+                style={StyleSheet.absoluteFill}
+              />
+            </View>
+
+            <View style={[styles.iconStage, { backgroundColor: glass.opaqueControl }]}>
+              {forced ? (
+                <Animated.View
+                  pointerEvents="none"
+                  style={[
+                    styles.halo,
+                    { backgroundColor: glass.selected },
+                    haloStyle,
+                  ]}
+                />
+              ) : null}
+              <LinearGradient
+                pointerEvents="none"
+                colors={[glass.selected, 'transparent']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 0.9, y: 1 }}
+                style={StyleSheet.absoluteFill}
+              />
+              <Ionicons name="compass-outline" size={32} color={glass.lightTint} />
+            </View>
+
+            <Text
+              accessibilityRole="header"
+              style={[styles.title, { color: glass.text }]}
+            >
+              {gate.title}
             </Text>
-          </Pressable>
-        )}
-      </Animated.View>
-    </Animated.View>
+            <Text
+              accessibilityRole="alert"
+              accessibilityLiveRegion={forced ? 'assertive' : 'polite'}
+              accessibilityLabel={`${gate.title}. ${gate.body}`}
+              style={[styles.body, { color: glass.secondary }]}
+            >
+              {gate.body}
+            </Text>
+
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel={gate.cta}
+              onPress={openStore}
+              style={({ pressed }) => [
+                styles.primaryButton,
+                { backgroundColor: glass.cta, opacity: pressed ? 0.82 : 1 },
+              ]}
+            >
+              <Text style={[styles.primaryLabel, { color: glass.ctaInk }]}>{gate.cta}</Text>
+            </Pressable>
+
+            {closable ? (
+              <Pressable
+                accessibilityRole="button"
+                accessibilityLabel={triLang(lang as Lang, {
+                  ru: 'Позже',
+                  uk: 'Пізніше',
+                  en: 'Later',
+                  es: 'Más tarde',
+                  'pt-BR': 'Mais tarde',
+                  vi: 'Để sau',
+                  id: 'Nanti',
+                  tr: 'Sonra',
+                  pl: 'Później',
+                })}
+                onPress={closeOptional}
+                style={({ pressed }) => [
+                  styles.secondaryButton,
+                  { backgroundColor: pressed ? glass.selected : 'transparent' },
+                ]}
+              >
+                <Text style={[styles.secondaryLabel, { color: glass.text }]}>
+                  {triLang(lang as Lang, {
+                    ru: 'Позже',
+                    uk: 'Пізніше',
+                    en: 'Later',
+                    es: 'Más tarde',
+                    'pt-BR': 'Mais tarde',
+                    vi: 'Để sau',
+                    id: 'Nanti',
+                    tr: 'Sonra',
+                    pl: 'Później',
+                  })}
+                </Text>
+              </Pressable>
+            ) : null}
+          </Animated.View>
+        </ResponsiveModalScrollView>
+      </View>
+    </Modal>
   );
 }
+
+const styles = StyleSheet.create({
+  modalRoot: { flex: 1 },
+  backdrop: { flex: 1 },
+  card: {
+    width: '100%',
+    maxWidth: 390,
+    borderRadius: 26,
+    paddingHorizontal: 20,
+    paddingTop: 26,
+    paddingBottom: 20,
+    alignItems: 'center',
+    overflow: 'hidden',
+    shadowColor: '#000000',
+    shadowOpacity: 0.34,
+    shadowRadius: 14,
+    shadowOffset: { width: 0, height: 10 },
+    elevation: 12,
+  },
+  iconStage: {
+    width: 72,
+    height: 72,
+    borderRadius: 36,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 14,
+    overflow: 'hidden',
+  },
+  halo: {
+    ...StyleSheet.absoluteFillObject,
+    borderRadius: 36,
+  },
+  title: {
+    width: '100%',
+    fontSize: 21,
+    lineHeight: 27,
+    fontWeight: '700',
+    textAlign: 'center',
+  },
+  body: {
+    maxWidth: 330,
+    fontSize: 15,
+    lineHeight: 21,
+    fontWeight: '400',
+    textAlign: 'center',
+    marginTop: 8,
+  },
+  primaryButton: {
+    width: '100%',
+    minHeight: 48,
+    borderRadius: 24,
+    paddingHorizontal: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20,
+    shadowColor: '#000000',
+    shadowOpacity: 0.22,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 5 },
+    elevation: 5,
+  },
+  primaryLabel: { fontSize: 17, lineHeight: 21, fontWeight: '700', textAlign: 'center' },
+  secondaryButton: {
+    width: '100%',
+    minHeight: 48,
+    borderRadius: 24,
+    paddingHorizontal: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
+  },
+  secondaryLabel: { fontSize: 16, lineHeight: 20, fontWeight: '700', textAlign: 'center' },
+});

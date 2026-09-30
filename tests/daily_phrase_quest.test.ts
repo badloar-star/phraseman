@@ -1,24 +1,14 @@
 /* eslint-disable import/first */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-jest.mock('../app/xp_manager', () => ({
-  registerXP: jest.fn(async () => ({ finalDelta: 50, multiplier: 1, isBonus: false })),
-}));
-
 import {
-  DAILY_PHRASE_QUEST_XP,
-  awardDailyPhraseQuestXpOnce,
   buildDailyPhraseQuestOptions,
   hasDailyPhraseQuestAnswered,
-  hasDailyPhraseQuestXpAwarded,
   isDailyPhraseQuestAnswerCorrect,
   markDailyPhraseQuestAnswered,
   selectDailyPhraseQuestMarkerKeysToRemove,
 } from '../app/daily_phrase_quest';
-import { registerXP as registerXPMock } from '../app/xp_manager';
 import type { DailyPhrase } from '../app/daily_phrase_system';
-
-const registerXP = registerXPMock as jest.MockedFunction<typeof registerXPMock>;
 
 const phrase = (id: string, meaning: string): DailyPhrase => ({
   id,
@@ -39,7 +29,6 @@ const phrase = (id: string, meaning: string): DailyPhrase => ({
 describe('Daily Phrase Quest', () => {
   beforeEach(async () => {
     await AsyncStorage.clear();
-    registerXP.mockClear();
   });
 
   it('builds exactly three Russian meaning options with one correct answer', () => {
@@ -252,38 +241,7 @@ describe('Daily Phrase Quest', () => {
     expect(isDailyPhraseQuestAnswerCorrect(options, wrong.id)).toBe(false);
   });
 
-  it('awards 50 XP only once for the same phrase on the same date', async () => {
-    await AsyncStorage.setItem('user_name', 'Navigator #1234');
-
-    await expect(
-      hasDailyPhraseQuestXpAwarded({ phraseId: 'local-11', date: '2026-06-12' }),
-    ).resolves.toBe(false);
-
-    await expect(
-      awardDailyPhraseQuestXpOnce({ phraseId: 'local-11', date: '2026-06-12', lang: 'ru' }),
-    ).resolves.toEqual({ awarded: true, finalDelta: DAILY_PHRASE_QUEST_XP });
-    await expect(
-      hasDailyPhraseQuestXpAwarded({ phraseId: 'local-11', date: '2026-06-12' }),
-    ).resolves.toBe(true);
-    await expect(
-      awardDailyPhraseQuestXpOnce({ phraseId: 'local-11', date: '2026-06-12', lang: 'ru' }),
-    ).resolves.toEqual({ awarded: false, finalDelta: 0 });
-
-    expect(registerXP).toHaveBeenCalledTimes(1);
-    expect(registerXP).toHaveBeenCalledWith(
-      DAILY_PHRASE_QUEST_XP,
-      'daily_phrase_quest',
-      'Navigator #1234',
-      'ru',
-      undefined,
-      expect.objectContaining({
-        eventId: 'daily_phrase_quest:2026-06-12:local-11:award',
-        payload: { phraseId: 'local-11', date: '2026-06-12' },
-      }),
-    );
-  });
-
-  it('records that the quest was answered without awarding XP', async () => {
+  it('records that the quest was answered locally', async () => {
     await expect(
       hasDailyPhraseQuestAnswered({ phraseId: 'local-11', date: '2026-06-12' }),
     ).resolves.toBe(false);
@@ -293,54 +251,21 @@ describe('Daily Phrase Quest', () => {
     await expect(
       hasDailyPhraseQuestAnswered({ phraseId: 'local-11', date: '2026-06-12' }),
     ).resolves.toBe(true);
-    await expect(
-      hasDailyPhraseQuestXpAwarded({ phraseId: 'local-11', date: '2026-06-12' }),
-    ).resolves.toBe(false);
-    expect(registerXP).not.toHaveBeenCalled();
   });
 
-  it('treats an existing XP award as an answered quest for older app states', async () => {
-    await awardDailyPhraseQuestXpOnce({ phraseId: 'local-11', date: '2026-06-12', lang: 'ru' });
-
-    await expect(
-      hasDailyPhraseQuestAnswered({ phraseId: 'local-11', date: '2026-06-12' }),
-    ).resolves.toBe(true);
-  });
-
-  it('allows a new reward on a different daily phrase date', async () => {
-    await awardDailyPhraseQuestXpOnce({ phraseId: 'local-11', date: '2026-06-12', lang: 'ru' });
-    await awardDailyPhraseQuestXpOnce({ phraseId: 'local-11', date: '2026-06-13', lang: 'ru' });
-
-    expect(registerXP).toHaveBeenCalledTimes(2);
-  });
-
-  it('separates answer and XP markers for English, Spanish, French, and German', async () => {
+  it('separates answer markers for English, Spanish, French, and German', async () => {
     const shared = { phraseId: 'shared-row', date: '2026-06-12' };
     await markDailyPhraseQuestAnswered({ ...shared, studyTarget: 'es' });
-    await awardDailyPhraseQuestXpOnce({ ...shared, lang: 'ru', studyTarget: 'fr' });
+    await markDailyPhraseQuestAnswered({ ...shared, studyTarget: 'fr' });
 
     await expect(hasDailyPhraseQuestAnswered({ ...shared, studyTarget: 'en' })).resolves.toBe(false);
     await expect(hasDailyPhraseQuestAnswered({ ...shared, studyTarget: 'es' })).resolves.toBe(true);
     await expect(hasDailyPhraseQuestAnswered({ ...shared, studyTarget: 'fr' })).resolves.toBe(true);
     await expect(hasDailyPhraseQuestAnswered({ ...shared, studyTarget: 'de' })).resolves.toBe(false);
-    await expect(hasDailyPhraseQuestXpAwarded({ ...shared, studyTarget: 'fr' })).resolves.toBe(true);
-    await expect(hasDailyPhraseQuestXpAwarded({ ...shared, studyTarget: 'en' })).resolves.toBe(false);
-
-    expect(registerXP).toHaveBeenCalledWith(
-      DAILY_PHRASE_QUEST_XP,
-      'daily_phrase_quest',
-      '',
-      'ru',
-      undefined,
-      expect.objectContaining({
-        eventId: 'daily_phrase_quest:fr:2026-06-12:shared-row:award',
-        payload: { phraseId: 'shared-row', date: '2026-06-12', studyTarget: 'fr' },
-      }),
-    );
   });
 
   it('selects stale quest marker keys for pruning while retaining the active key', () => {
-    const retained = 'daily_phrase_quest_xp_awarded_v1:2026-01-01:old-but-active';
+    const retained = 'daily_phrase_quest_answered_v1:2026-01-01:old-but-active';
     const keys = [
       retained,
       ...Array.from({ length: 210 }, (_, i) => {

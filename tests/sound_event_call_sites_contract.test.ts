@@ -41,7 +41,6 @@ const DESCRIPTIVE_FILES: readonly string[] = [
  * не смешивались в один непонятный отказ.
  */
 const SILENT_WITHOUT_ASSET: readonly SoundEventId[] = [
-  'pm.reward.vip_finale',
 ];
 
 /**
@@ -50,9 +49,7 @@ const SILENT_WITHOUT_ASSET: readonly SoundEventId[] = [
  * Пустой список — это цель, а не случайность.
  */
 const KNOWN_UNWIRED: readonly SoundEventId[] = [
-  // Единственный вызывающий был GlobalCompassSocialHost.tsx — удалён вместе со
-  // всей фичей «Компас» (владелец: удалить и заблокировать навсегда, 2026-08-03).
-  'pm.social.friend_request',
+  // зачем (PM-206-A2): pm.social.friend_request удалён из каталога (осиротел вместе с фичей «Компас»).
 ];
 
 function collectSourceFiles(dir: string): string[] {
@@ -150,7 +147,6 @@ describe('semantic sound event call sites', () => {
       'pm.learn.timer_expired': path.join('hooks', 'use-timer-tick-cue.ts'),
       'pm.system.warning': path.join('components', 'ActionToast.tsx'),
       'pm.system.destructive_done': path.join('components', 'DeleteAccountConfirmModal.tsx'),
-      'pm.voice.turn_ready': path.join('hooks', 'use-turn-ready-cue.ts'),
       'pm.voice.no_speech': path.join('hooks', 'use-no-speech-cue.ts'),
     };
 
@@ -166,7 +162,6 @@ describe('semantic sound event call sites', () => {
     const cueHooks = [
       // useHintRevealCue удалён вместе со звуком подсказки (2026-08-30).
       'useTimerTickCue',
-      'useTurnReadyCue',
       'useNoSpeechCue',
       'useRecordStartCue',
       'useCorrectSound',

@@ -34,11 +34,13 @@ export type FlashcardsSwipePromptDraft = {
 };
 
 export type FlashcardsSwipeFeedbackDraft = {
-  kind: 'wrong' | 'hint';
+  kind: 'wrong' | 'hint' | 'correct';
   prompt: FlashcardsSwipePromptDraft;
+  mastered?: boolean;
 };
 
 export type FlashcardsSwipeSessionScope = {
+  trainingMode: 'swipe' | 'truefalse';
   sourceIds: string[];
   routeSource: string;
   routeFilter: string;
@@ -119,9 +121,14 @@ function parsePrompt(value: unknown): FlashcardsSwipePromptDraft | null {
 function parseFeedback(value: unknown): FlashcardsSwipeFeedbackDraft | null {
   if (!value || typeof value !== 'object') return null;
   const row = value as Record<string, unknown>;
-  if (row.kind !== 'wrong' && row.kind !== 'hint') return null;
+  if (row.kind !== 'wrong' && row.kind !== 'hint' && row.kind !== 'correct') return null;
   const prompt = parsePrompt(row.prompt);
-  return prompt ? { kind: row.kind, prompt } : null;
+  if (!prompt) return null;
+  return {
+    kind: row.kind,
+    prompt,
+    ...(typeof row.mastered === 'boolean' ? { mastered: row.mastered } : {}),
+  };
 }
 
 function parseProgress(value: unknown): Record<string, FlashcardsSwipeCardProgress> {
@@ -149,6 +156,10 @@ function parseDraft(raw: string | null): FlashcardsSwipeSessionDraft | null {
     if (parsed.version !== 1) return null;
 
     const savedAt = validNumber(parsed.savedAt);
+    // Legacy drafts predate the dedicated True/False presentation and therefore
+    // belong only to ordinary swipe. This preserves swipe resume compatibility
+    // without allowing True/False to inherit a fail-open legacy session.
+    const trainingMode = parsed.trainingMode === 'truefalse' ? 'truefalse' : 'swipe';
     const sourceIds = normalizeSourceIds(parsed.sourceIds);
     const routeSource = cleanString(parsed.routeSource);
     const routeFilter = cleanString(parsed.routeFilter);
@@ -165,6 +176,7 @@ function parseDraft(raw: string | null): FlashcardsSwipeSessionDraft | null {
     return {
       version: 1,
       savedAt,
+      trainingMode,
       sourceIds,
       routeSource,
       routeFilter,
@@ -182,7 +194,8 @@ function parseDraft(raw: string | null): FlashcardsSwipeSessionDraft | null {
 
 function draftMatchesScope(draft: FlashcardsSwipeSessionDraft, scope: FlashcardsSwipeSessionScope): boolean {
   return (
-    sameSourceIds(draft.sourceIds, scope.sourceIds)
+    draft.trainingMode === scope.trainingMode
+    && sameSourceIds(draft.sourceIds, scope.sourceIds)
     && draft.routeSource === cleanString(scope.routeSource)
     && draft.routeFilter === cleanString(scope.routeFilter)
     && draft.contentLang === cleanString(scope.contentLang)

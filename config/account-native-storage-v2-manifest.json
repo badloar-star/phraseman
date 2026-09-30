@@ -1,0 +1,33 @@
+{
+  "manifestVersion": 1,
+  "namespace": "account_native_storage_v2",
+  "hashing": {
+    "algorithm": "SHA-256",
+    "encoding": "lower_hex",
+    "characters": 64
+  },
+  "secureStoreService": "phraseman.account_native_storage.v2",
+  "sqliteRoot": "expo_sqlite_default_directory/accounts-v2",
+  "coverage": {
+    "v2Definition": "closed_world",
+    "implementation": "not_implemented",
+    "legacy": "incomplete_unknown",
+    "mayCertifyV2ScopeErase": false,
+    "mayCertifyFullUserLocalWipe": false
+  },
+  "artifacts": [
+    { "id": "v2.account.lineage", "scope": "account", "medium": "secure_store", "selectorTemplate": "accounts_v2_account_lineage_{hash}", "eraseOrder": 0, "requiredAbsentForV2Erase": false },
+    { "id": "v2.account.key", "scope": "account", "medium": "secure_store", "selectorTemplate": "accounts_v2_account_key_{hash}_{lineage}", "eraseOrder": 40, "requiredAbsentForV2Erase": true },
+    { "id": "v2.account.retirement_marker", "scope": "account", "medium": "secure_store", "selectorTemplate": "accounts_v2_account_retire_{hash}", "eraseOrder": 70, "requiredAbsentForV2Erase": true },
+    { "id": "v2.account.db.main", "scope": "account", "medium": "sqlite_file", "selectorTemplate": "accounts-v2-a-{hash}-{lineage}.db", "eraseOrder": 50, "requiredAbsentForV2Erase": true },
+    { "id": "v2.account.db.wal", "scope": "account", "medium": "sqlite_file", "selectorTemplate": "accounts-v2-a-{hash}-{lineage}.db-wal", "eraseOrder": 51, "requiredAbsentForV2Erase": true },
+    { "id": "v2.account.db.shm", "scope": "account", "medium": "sqlite_file", "selectorTemplate": "accounts-v2-a-{hash}-{lineage}.db-shm", "eraseOrder": 52, "requiredAbsentForV2Erase": true },
+    { "id": "v2.account.db.journal", "scope": "account", "medium": "sqlite_file", "selectorTemplate": "accounts-v2-a-{hash}-{lineage}.db-journal", "eraseOrder": 53, "requiredAbsentForV2Erase": true },
+    { "id": "v2.guest.key", "scope": "guest", "medium": "secure_store", "selectorTemplate": "accounts_v2_guest_key_{hash}", "eraseOrder": 40, "requiredAbsentForV2Erase": true },
+    { "id": "v2.guest.retirement_marker", "scope": "guest", "medium": "secure_store", "selectorTemplate": "accounts_v2_guest_retire_{hash}", "eraseOrder": 70, "requiredAbsentForV2Erase": true },
+    { "id": "v2.guest.db.main", "scope": "guest", "medium": "sqlite_file", "selectorTemplate": "accounts-v2-g-{hash}.db", "eraseOrder": 50, "requiredAbsentForV2Erase": true },
+    { "id": "v2.guest.db.wal", "scope": "guest", "medium": "sqlite_file", "selectorTemplate": "accounts-v2-g-{hash}.db-wal", "eraseOrder": 51, "requiredAbsentForV2Erase": true },
+    { "id": "v2.guest.db.shm", "scope": "guest", "medium": "sqlite_file", "selectorTemplate": "accounts-v2-g-{hash}.db-shm", "eraseOrder": 52, "requiredAbsentForV2Erase": true },
+    { "id": "v2.guest.db.journal", "scope": "guest", "medium": "sqlite_file", "selectorTemplate": "accounts-v2-g-{hash}.db-journal", "eraseOrder": 53, "requiredAbsentForV2Erase": true }
+  ]
+}

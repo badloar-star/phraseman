@@ -16,7 +16,12 @@ import {
   startHoldRecording,
   type HoldRecording,
 } from "./speaking_hold_recorder";
-import { updateCustomCards } from "./flashcards/custom_cards_store";
+import {
+  FREE_CUSTOM_CARD_LIMIT,
+  PLUS_CUSTOM_CARD_LIMIT,
+  updateCustomCards,
+} from "./flashcards/custom_cards_store";
+import { getVerifiedPremiumAccessStatus } from "./premium_guard";
 import type { CardItem } from "./flashcards/types";
 import {
   createLearningV2ActivityActionSessionV1,
@@ -119,6 +124,8 @@ export function useLearningV2ActivityActionSessionV1(
           if (!isCurrentAccountGeneration(generation)) return "stale" as const;
           const nextCard = cardForLocale(card);
           let added = false;
+          const hasPremiumAccess = await getVerifiedPremiumAccessStatus().catch(() => false);
+          const cardLimit = hasPremiumAccess ? PLUS_CUSTOM_CARD_LIMIT : FREE_CUSTOM_CARD_LIMIT;
           await updateCustomCards((cards) => {
             if (
               cards.some(
@@ -128,6 +135,7 @@ export function useLearningV2ActivityActionSessionV1(
               )
             )
               return cards;
+            if (cards.length >= cardLimit) return cards;
             added = true;
             return [...cards, nextCard];
           }, "en");

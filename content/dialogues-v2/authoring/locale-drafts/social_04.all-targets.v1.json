@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "dialogue-v2-locale-draft.v1",
+  "status": "draft_not_releaseable",
+  "sourceScenarioId": "social_04",
+  "sourceLedger": { "path": "dialogue_v2_authoring_ru.json", "revision": "v1" },
+  "targets": {
+    "en": {
+      "content": {
+        "title": "Thank someone for help",
+        "briefing": "You are chatting in the Social world. Your task is to thank someone for help. Do not close the conversation in one message: follow the steps and react to your chat partner.",
+        "completionTone": "brief, clear, and friendly"
+      },
+      "personas": [{ "id": "mila", "displayName": "Mila", "styleNote": "She warmly keeps the conversation going and asks natural follow-up questions." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Address the person by name" },
+        { "id": "objective_02", "label": "Name the help you received" },
+        { "id": "objective_03", "label": "Express your thanks" },
+        { "id": "objective_04", "label": "Say how it helped" },
+        { "id": "objective_05", "label": "Reply to their reaction" },
+        { "id": "objective_06", "label": "Say goodbye" }
+      ]
+    },
+    "es": {
+      "content": {
+        "title": "Agradecer una ayuda",
+        "briefing": "Estás chateando en el mundo «Social». Tu tarea es agradecer una ayuda. No cierres la conversación con un solo mensaje: sigue los pasos y responde a tu interlocutora.",
+        "completionTone": "breve, claro y amable"
+      },
+      "personas": [{ "id": "mila", "displayName": "Mila", "styleNote": "Mantiene la conversación con calidez y hace preguntas de seguimiento naturales." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Dirigirte a la persona por su nombre" },
+        { "id": "objective_02", "label": "Nombrar la ayuda recibida" },
+        { "id": "objective_03", "label": "Expresar agradecimiento" },
+        { "id": "objective_04", "label": "Decir en qué te ayudó" },
+        { "id": "objective_05", "label": "Responder a su reacción" },
+        { "id": "objective_06", "label": "Despedirte" }
+      ]
+    },
+    "fr": {
+      "content": {
+        "title": "Remercier pour une aide",
+        "briefing": "Tu échanges des messages dans le monde «Social». Ton objectif est de remercier quelqu'un pour son aide. Ne termine pas la conversation en un seul message : suis les étapes et réponds à ton interlocutrice.",
+        "completionTone": "bref, clair et chaleureux"
+      },
+      "personas": [{ "id": "mila", "displayName": "Mila", "styleNote": "Elle relance chaleureusement la conversation et pose des questions de suivi naturelles." }],
+      "objectives": [
+        { "id": "objective_01", "label": "T'adresser à la personne par son prénom" },
+        { "id": "objective_02", "label": "Nommer l'aide reçue" },
+        { "id": "objective_03", "label": "Exprimer ta gratitude" },
+        { "id": "objective_04", "label": "Dire en quoi cela t'a aidé" },
+        { "id": "objective_05", "label": "Répondre à sa réaction" },
+        { "id": "objective_06", "label": "Dire au revoir" }
+      ]
+    },
+    "de": {
+      "content": {
+        "title": "Für Hilfe danken",
+        "briefing": "Du schreibst im Bereich „Social“. Deine Aufgabe: Jemandem für Hilfe danken. Beende das Gespräch nicht mit nur einer Nachricht: Gehe die Schritte durch und reagiere auf deine Gesprächspartnerin.",
+        "completionTone": "kurz, klar und freundlich"
+      },
+      "personas": [{ "id": "mila", "displayName": "Mila", "styleNote": "Sie nimmt das Gespräch herzlich auf und stellt natürliche Rückfragen." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Die Person mit Namen ansprechen" },
+        { "id": "objective_02", "label": "Die Hilfe benennen" },
+        { "id": "objective_03", "label": "Dankbarkeit ausdrücken" },
+        { "id": "objective_04", "label": "Sagen, wie es geholfen hat" },
+        { "id": "objective_05", "label": "Auf die Reaktion antworten" },
+        { "id": "objective_06", "label": "Sich verabschieden" }
+      ]
+    }
+  }
+}

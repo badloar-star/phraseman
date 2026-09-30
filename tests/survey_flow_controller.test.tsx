@@ -8,7 +8,6 @@ import { Pressable, Text, View } from 'react-native';
 jest.unmock('react-native');
 
 const mockSubmitSurvey = jest.fn();
-const mockCommitConfirmedExternalShardEvent = jest.fn();
 const mockMarkSurveyOfferDone = jest.fn();
 const mockBeginSurveyOfferRequest = jest.fn();
 const mockCommitSurveyOfferRequest = jest.fn();
@@ -17,10 +16,7 @@ const mockEmitAppEvent = jest.fn();
 jest.mock('../app/survey_client', () => ({
   submitSurvey: (...args: unknown[]) => mockSubmitSurvey(...args),
 }));
-jest.mock('../app/shards_system', () => ({
-  commitConfirmedExternalShardEvent: (...args: unknown[]) => mockCommitConfirmedExternalShardEvent(...args),
-  SHARD_REWARDS: { survey_completed: 1 },
-}));
+// зачем: PM-058/D70 — жемчуг за опрос удалён; контроллер больше не зовёт экономику.
 jest.mock('../app/survey_completion_marker', () => ({
   markSurveyOfferDone: (...args: unknown[]) => mockMarkSurveyOfferDone(...args),
 }));
@@ -109,7 +105,6 @@ beforeEach(() => {
   jest.clearAllMocks();
   __resetAccountGenerationForTests();
   beginAccountGeneration(launch.stableId);
-  mockCommitConfirmedExternalShardEvent.mockResolvedValue({ status: 'applied' });
   mockMarkSurveyOfferDone.mockResolvedValue(true);
   mockBeginSurveyOfferRequest.mockReturnValue(17);
   mockCommitSurveyOfferRequest.mockReturnValue(true);
@@ -120,7 +115,7 @@ afterEach(() => {
   jest.useRealTimers();
 });
 
-test('commits the immutable canonical reward only after submit completes, then marks the captured scope', async () => {
+test('marks the captured scope only after submit completes, without any pearl credit', async () => {
   const pending = deferred<{ ok: true; alreadyGranted: false; reward: number; eventId: string }>();
   const onReconciled = jest.fn();
   mockSubmitSurvey.mockReturnValueOnce(pending.promise);
@@ -130,7 +125,6 @@ test('commits the immutable canonical reward only after submit completes, then m
   await fireEvent.press(view.getByTestId('submit'));
 
   expect(mockSubmitSurvey).toHaveBeenCalledTimes(1);
-  expect(mockCommitConfirmedExternalShardEvent).not.toHaveBeenCalled();
   expect(mockMarkSurveyOfferDone).not.toHaveBeenCalled();
 
   await act(async () => {
@@ -138,67 +132,17 @@ test('commits the immutable canonical reward only after submit completes, then m
     await pending.promise;
   });
 
-  await waitFor(() => expect(mockCommitConfirmedExternalShardEvent).toHaveBeenCalledWith({
-    expectedOwnerStableId: launch.stableId,
-    source: 'shard_survey',
-    eventId: launch.survey.surveyId,
-    delta: 1,
-    reason: 'survey_completed',
-    grant: {
-      kind: 'survey_reward',
-      subjectId: launch.survey.surveyId,
-      payload: { surveyId: launch.survey.surveyId },
-    },
-  }));
-  expect(mockMarkSurveyOfferDone).toHaveBeenCalledWith({
+  await waitFor(() => expect(mockMarkSurveyOfferDone).toHaveBeenCalledWith({
     stableId: launch.stableId,
     dayKey: launch.dayKey,
     summary: { surveyId: launch.survey.surveyId, title: launch.survey.title },
-  });
+  }));
   expect(mockCommitSurveyOfferRequest).toHaveBeenCalled();
+  expect(mockEmitAppEvent).not.toHaveBeenCalledWith('shards_earned', expect.anything());
   expect(view.getByTestId('phase').props.children).toBe('reconciled');
   expect(onReconciled).not.toHaveBeenCalled();
   await act(() => { jest.advanceTimersByTime(1400); });
   expect(onReconciled).toHaveBeenCalledTimes(1);
-  await view.unmount();
-});
-
-test('passes the captured owner into the atomic reward commit so an A-to-B race cannot credit B', async () => {
-  const creditedOwners: string[] = [];
-  mockSubmitSurvey.mockResolvedValueOnce({
-    ok: true,
-    alreadyGranted: false,
-    reward: 1,
-    eventId: 'server-event-a',
-  });
-  mockCommitConfirmedExternalShardEvent.mockImplementationOnce(async (input: {
-    expectedOwnerStableId?: string;
-  }) => {
-    // Model the account changing after the controller's outer check but before
-    // the economy primitive captures its operation owner.
-    beginAccountGeneration('account-b');
-    const operationOwner = 'account-b';
-    if (
-      input.expectedOwnerStableId !== undefined
-      && input.expectedOwnerStableId !== operationOwner
-    ) {
-      return { status: 'failed', reason: 'stale_account_generation' };
-    }
-    creditedOwners.push(operationOwner);
-    return { status: 'applied' };
-  });
-  const view = await render(<SurveyFlowHarness />);
-
-  await fireEvent.press(view.getByTestId('answer-q1-o1'));
-  await fireEvent.press(view.getByTestId('submit'));
-
-  await waitFor(() => expect(view.getByTestId('error-key').props.children).toBe('account_changed'));
-  expect(mockCommitConfirmedExternalShardEvent).toHaveBeenCalledWith(expect.objectContaining({
-    expectedOwnerStableId: launch.stableId,
-  }));
-  expect(creditedOwners).toEqual([]);
-  expect(mockMarkSurveyOfferDone).not.toHaveBeenCalled();
-  expect(mockCommitSurveyOfferRequest).not.toHaveBeenCalled();
   await view.unmount();
 });
 
@@ -217,7 +161,6 @@ test('blocks a late completion after account generation changes', async () => {
   });
 
   await waitFor(() => expect(view.getByTestId('error-key').props.children).toBe('account_changed'));
-  expect(mockCommitConfirmedExternalShardEvent).not.toHaveBeenCalled();
   expect(mockMarkSurveyOfferDone).not.toHaveBeenCalled();
   expect(mockCommitSurveyOfferRequest).not.toHaveBeenCalled();
   await view.unmount();
@@ -241,8 +184,7 @@ test('deactivate suppresses presentation but lets an in-flight reconciliation fi
     await pending.promise;
   });
 
-  await waitFor(() => expect(mockCommitConfirmedExternalShardEvent).toHaveBeenCalledTimes(1));
-  expect(mockMarkSurveyOfferDone).toHaveBeenCalledTimes(1);
+  await waitFor(() => expect(mockMarkSurveyOfferDone).toHaveBeenCalledTimes(1));
   expect(mockCommitSurveyOfferRequest).toHaveBeenCalledTimes(1);
   expect(onDurablyReconciled).toHaveBeenCalledTimes(1);
   expect(onDurablyReconciled).toHaveBeenCalledWith({
@@ -275,7 +217,6 @@ test('finishes durable reconciliation after the presentation unmounts without la
   });
 
   await waitFor(() => expect(onDurablyReconciled).toHaveBeenCalledTimes(1));
-  expect(mockCommitConfirmedExternalShardEvent).toHaveBeenCalledTimes(1);
   expect(mockMarkSurveyOfferDone).toHaveBeenCalledTimes(1);
   expect(mockCommitSurveyOfferRequest).toHaveBeenCalledTimes(1);
   expect(onReconciled).not.toHaveBeenCalled();
@@ -319,7 +260,6 @@ test('deactivate is idempotent and suppresses a late submit error plus every new
 
   expect(view.getByTestId('phase').props.children).toBe('optimistic-reward');
   expect(view.getByTestId('error-key').props.children).toBe('');
-  expect(mockCommitConfirmedExternalShardEvent).not.toHaveBeenCalled();
   expect(mockMarkSurveyOfferDone).not.toHaveBeenCalled();
   expect(mockCommitSurveyOfferRequest).not.toHaveBeenCalled();
   expect(mockEmitAppEvent).not.toHaveBeenCalled();

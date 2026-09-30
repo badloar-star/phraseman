@@ -2,27 +2,19 @@ export const LEVEL_SPIN_REWARD_CATALOG_VERSION = 7 as const;
 
 export type LevelSpinRewardTier = 'ordinary' | 'rare' | 'ultra' | 'exceptional';
 const ORDINARY_REWARD_IDS = [
-  'xp_250', 'xp_500', 'xp_1000', 'xp_3000', 'xp_5000',
   'pearls_5', 'pearls_10', 'pearls_20',
   'stars_10', 'stars_20', 'stars_50',
-  'energy_full', 'energy_plus2', 'hint_1', 'hint_3', 'chain_shield_1', 'attempt_restore_all',
-  'xp_bank_150', 'xp_bank_300', 'xp_2x_24h',
+  'hint_1', 'hint_3', 'attempt_restore_all',
 ] as const;
-// зачем (владелец 2026-08-29, «добавить ценные подарки в спин»): v7 расширяет
-// редкую полку двумя реально ценными расходниками — щит серии на 3 дня и
-// крупный банк ×2 на 1500 XP. Оба применяются чисто локально, поэтому награда
-// физически начисляется, а не только рисуется. pack_voucher_48h сюда НЕ вошёл
-// сознательно: его активация требует серверную бронь (activateLevelPackGift),
-// которой у локального спина нет — он бы показывался и не выдавался.
+// Rare shelf: local streak protection only. Server-reserved pack vouchers are
+// intentionally excluded because a local spin cannot claim them safely.
 const RARE_REWARD_IDS = [
-  'xp_10000', 'xp_25000', 'pearls_50', 'pearls_100', 'stars_100', 'stars_250',
-  'energy_plus3', 'xp_bank_600', 'xp_2x_48h',
-  'chain_shield_3', 'xp_bank_1500',
+  'pearls_50', 'pearls_100', 'stars_100', 'stars_250',
 ] as const;
 // v7: два джекпота валют — 1000 жемчужин (5 тем интерфейса) и 2000 рун
 // (два самых дорогих аватара). Вдвое реже прежней ultra-полки (вес 50).
 const ULTRA_REWARD_IDS = [
-  'xp_50000', 'pearls_250', 'pearls_500', 'stars_500', 'stars_1000',
+  'pearls_250', 'pearls_500', 'stars_500', 'stars_1000',
   'pearls_1000', 'stars_2000',
 ] as const;
 
@@ -59,9 +51,6 @@ const REWARD_WEIGHT_OVERRIDES: Partial<Record<LevelSpinRewardId, number>> = {
   // v7 (2026-08-29): при добавлении ценных призов все пять утверждённых целей
   // перенормированы совместно на новую сумму весов 279 814 — энергия и «второй
   // шанс» держат ~15%, аура ~2.8%, тема ~1%, аватар ~1.5%, как в v6.
-  energy_full: 19_078,
-  energy_plus2: 19_078,
-  energy_plus3: 3_816,
   // «Второй шанс»: постоянный предмет инвентаря, который полностью
   // восстанавливает 3 попытки. Вес даёт ~15% в актуальном v7-пуле.
   attempt_restore_all: 41_972,

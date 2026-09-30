@@ -1,18 +1,22 @@
 // Compatibility route for older deep links and retained navigation entries.
 // Home owns the primary survey sheet; this route only validates the scoped
 // handoff and renders the exact same sheet surface.
+import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { ActivityIndicator, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 
+import BouncyScrollView from '../components/BouncyScrollView';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
+import PressableHybrid from '../components/PressableHybrid';
+import SafeLinearGradient from '../components/SafeLinearGradient';
 import ScreenGradient from '../components/ScreenGradient';
 import SurveySheetModal from '../components/survey/SurveySheetModal';
 import { FlowText } from '../components/text-integrity';
-import { useTheme } from '../components/ThemeContext';
+import { FONT_SCALE, useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { screenTextOnGradient } from '../constants/theme';
 import { hapticTap } from '../hooks/use-haptics';
 import {
@@ -22,6 +26,7 @@ import {
 } from './account_generation';
 import { getUtcDayKey } from './local_date';
 import { safeRouterBack } from './navigation_back';
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { clearPrimedSurvey, takePrimedSurvey } from './survey_handoff';
 import type { SurveyLaunch } from './survey_flow_controller';
 import { getCanonicalUserId } from './user_id_policy';
@@ -34,8 +39,12 @@ type ScopeIdentityState =
 export default function SurveyScreen() {
   const router = useRouter();
   const { lang } = useLang();
-  const { theme: t, f, themeMode } = useTheme();
+  const { theme: t, fontSize, uiScale, liquidGlassThemeId, themeMode } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
+  const insets = useStableSafeAreaInsets();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  const designScale = FONT_SCALE[fontSize] / FONT_SCALE.medium * uiScale;
+  const scaled = useCallback((value: number) => Math.round(value * designScale), [designScale]);
   const directOpenDayKey = useRef(getUtcDayKey()).current;
   const params = useLocalSearchParams<{
     surveyId?: string;
@@ -139,13 +148,13 @@ export default function SurveyScreen() {
   if (identityPending) {
     return (
       <ScreenGradient>
-        <SafeAreaView style={styles.fill}>
+        <View style={{ flex: 1, paddingTop: insets.top, paddingRight: insets.right, paddingBottom: insets.bottom, paddingLeft: insets.left }}>
           <ContentWrap>
-            <View style={styles.centerBox}>
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', padding: 24 }}>
               <ActivityIndicator color={sx.primary} />
             </View>
           </ContentWrap>
-        </SafeAreaView>
+        </View>
       </ScreenGradient>
     );
   }
@@ -153,6 +162,14 @@ export default function SurveyScreen() {
   if (!launch) {
     return (
       <UnavailableSurvey
+        title={triLang(lang, {
+          ru: 'Опрос', uk: 'Опитування', en: 'Survey', es: 'Encuesta', 'pt-BR': 'Pesquisa',
+          vi: 'Khảo sát', id: 'Survei', tr: 'Anket', pl: 'Ankieta',
+        })}
+        closeAccessibilityLabel={triLang(lang, {
+          ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar',
+          vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij',
+        })}
         message={triLang(lang, {
           ru: 'Сейчас опрос недоступен. Можно вернуться в приложение и продолжить занятия.', en: 'The survey is unavailable right now. You can return to the app and keep practising.', uk: 'Зараз опитування недоступне. Можна повернутися в застосунок і продовжити заняття.', es: 'La encuesta no está disponible ahora. Puedes volver a la aplicación y seguir practicando.',
           'pt-BR': 'A pesquisa está indisponível agora. Você pode voltar ao aplicativo e continuar praticando.', vi: 'Khảo sát hiện không khả dụng. Bạn có thể quay lại ứng dụng và tiếp tục học.', id: 'Survei sedang tidak tersedia. Kamu bisa kembali ke aplikasi dan melanjutkan latihan.',
@@ -162,9 +179,18 @@ export default function SurveyScreen() {
           hapticTap();
           closeRoute();
         }}
-        textColor={sx.primary}
-        buttonTextColor={t.bgPrimary}
-        fontBody={f.body}
+        insets={insets}
+        colors={{
+          text: glass.text,
+          secondary: glass.secondary,
+          control: glass.opaqueControl,
+          edge: glass.glassEdge,
+          icon: glass.lightTint,
+          sheen: glass.selected,
+          cta: glass.cta,
+          ctaInk: glass.ctaInk,
+        }}
+        scaled={scaled}
       />
     );
   }
@@ -183,45 +209,166 @@ export default function SurveyScreen() {
 }
 
 function UnavailableSurvey({
+  title,
+  closeAccessibilityLabel,
   message,
   onClose,
-  textColor,
-  buttonTextColor,
-  fontBody,
+  insets,
+  colors,
+  scaled,
 }: {
+  title: string;
+  closeAccessibilityLabel: string;
   message: string;
   onClose: () => void;
-  textColor: string;
-  buttonTextColor: string;
-  fontBody: number;
+  insets: { top: number; right: number; bottom: number; left: number };
+  colors: {
+    text: string;
+    secondary: string;
+    control: string;
+    edge: string;
+    icon: string;
+    sheen: string;
+    cta: string;
+    ctaInk: string;
+  };
+  scaled: (value: number) => number;
 }) {
+  const boundary = message.indexOf('. ');
+  const heading = boundary >= 0 ? message.slice(0, boundary + 1) : message;
+  const body = boundary >= 0 ? message.slice(boundary + 2) : '';
+
   return (
-    <ScreenGradient>
-      <SafeAreaView style={styles.fill}>
+    <ScreenGradient artBackdrop="settings">
+      <View
+        testID="survey-fallback-safe-frame"
+        style={{
+          flex: 1,
+          paddingTop: insets.top,
+          paddingRight: insets.right,
+          paddingBottom: insets.bottom,
+          paddingLeft: insets.left,
+        }}
+      >
         <ContentWrap>
-          <View style={styles.centerBox}>
-            <FlowText testID="survey-fallback-message" provenance="authored" style={{ color: textColor, fontSize: fontBody }}>
-              {message}
-            </FlowText>
-            <Pressable
-              accessibilityRole="button"
-              accessibilityLabel="OK"
-              onPress={onClose}
-              style={[styles.primaryBtn, { backgroundColor: textColor }]}
+          <PressableHybrid
+            testID="survey-fallback-close"
+            accessibilityLabel={closeAccessibilityLabel}
+            accessibilityRole="button"
+            onPress={onClose}
+            withHaptic={false}
+            withSound={false}
+            variant="icon"
+            style={{ width: 48, height: 48, alignSelf: 'flex-start', marginTop: 4 }}
+            contentStyle={{
+              width: 48,
+              height: 48,
+              borderRadius: 24,
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: colors.control,
+              borderWidth: 1,
+              borderColor: colors.edge,
+            }}
+          >
+            <Ionicons
+              name="close"
+              size={20}
+              color={colors.icon}
+              accessibilityElementsHidden
+              importantForAccessibility="no-hide-descendants"
+            />
+          </PressableHybrid>
+
+          <FlowText
+            testID="survey-fallback-title"
+            provenance="authored"
+            accessibilityRole="header"
+            allowFontScaling={true}
+            style={{ color: colors.text, fontSize: scaled(34), lineHeight: scaled(40), fontWeight: '700', marginTop: 10 }}
+          >
+            {title}
+          </FlowText>
+
+          <BouncyScrollView
+            testID="survey-fallback-scroll"
+            style={{ flex: 1 }}
+            contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 20, paddingBottom: 24 }}
+            showsVerticalScrollIndicator={false}
+          >
+            <View
+              testID="survey-fallback-empty"
+              style={{ flex: 1, minHeight: 0, alignItems: 'center', justifyContent: 'center', paddingVertical: 24 }}
             >
-              <FlowText testID="survey-fallback-ok" provenance="authored" style={{ color: buttonTextColor, fontWeight: '700', fontSize: fontBody }}>
-                OK
-              </FlowText>
-            </Pressable>
-          </View>
+              <View
+                testID="survey-fallback-icon-tile"
+                style={{
+                  width: 61,
+                  height: 61,
+                  borderRadius: 16,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: colors.control,
+                  borderWidth: 1,
+                  borderColor: colors.edge,
+                  overflow: 'hidden',
+                }}
+              >
+                <SafeLinearGradient
+                  testID="survey-fallback-icon-sheen"
+                  pointerEvents="none"
+                  colors={[colors.sheen, 'transparent']}
+                  style={{ position: 'absolute', inset: 0 }}
+                />
+                <Ionicons
+                  name="chatbubble-outline"
+                  size={25}
+                  color={colors.icon}
+                  accessibilityElementsHidden
+                  importantForAccessibility="no-hide-descendants"
+                />
+              </View>
+
+              <View testID="survey-fallback-message" style={{ alignItems: 'center' }}>
+                <FlowText
+                  testID="survey-fallback-heading"
+                  provenance="authored"
+                  allowFontScaling={true}
+                  style={{ color: colors.text, fontSize: scaled(20), lineHeight: scaled(26), fontWeight: '700', textAlign: 'center', marginTop: 17 }}
+                >
+                  {heading}
+                </FlowText>
+                {body ? (
+                  <FlowText
+                    testID="survey-fallback-body"
+                    provenance="authored"
+                    allowFontScaling={true}
+                    style={{ color: colors.secondary, fontSize: scaled(14), lineHeight: scaled(20), fontWeight: '400', textAlign: 'center', maxWidth: 280, marginTop: 7 }}
+                  >
+                    {body}
+                  </FlowText>
+                ) : null}
+              </View>
+
+              <PressableHybrid
+                testID="survey-fallback-ok"
+                accessibilityLabel="OK"
+                accessibilityRole="button"
+                onPress={onClose}
+                withHaptic={false}
+                withSound={false}
+                variant="primary"
+                style={{ minWidth: 88, marginTop: 20 }}
+                contentStyle={{ minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20, backgroundColor: colors.cta }}
+              >
+                <FlowText provenance="authored" allowFontScaling={true} style={{ color: colors.ctaInk, fontWeight: '700', fontSize: scaled(17), lineHeight: scaled(22) }}>
+                  OK
+                </FlowText>
+              </PressableHybrid>
+            </View>
+          </BouncyScrollView>
         </ContentWrap>
-      </SafeAreaView>
+      </View>
     </ScreenGradient>
   );
 }
-
-const styles = StyleSheet.create({
-  fill: { flex: 1 },
-  centerBox: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 20, padding: 24 },
-  primaryBtn: { minWidth: 88, minHeight: 52, borderRadius: 18, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20 },
-});

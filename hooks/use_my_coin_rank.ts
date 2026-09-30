@@ -6,41 +6,85 @@
 //
 // null = ранг ещё неизвестен (или запись битая) → вызывающий показывает прежний аватар,
 // а не выдумывает медную монету до чтения.
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-import { captureAccountGeneration, subscribeAccountGeneration } from '../app/account_generation';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  subscribeAccountGeneration,
+  type AccountGenerationToken,
+} from '../app/account_generation';
 import { peekCoinRank, readCoinRank, subscribeCoinRank } from '../app/coin_rank_state_v1';
 
-export function useMyCoinRank(): number | null {
-  const [owner, setOwner] = useState<string | null>(() => captureAccountGeneration().stableId);
-  const [rank, setRank] = useState<number | null>(() => peekCoinRank(captureAccountGeneration().stableId));
+export type MyCoinRankBinding = Readonly<{
+  ownerStableId: string;
+  accountGeneration: number;
+  rank: number;
+}>;
+
+function activeOwner(token: AccountGenerationToken): string | null {
+  if (token.phase !== 'active') return null;
+  return token.stableId?.trim() || null;
+}
+
+function bindingFor(token: AccountGenerationToken, rank: number | null): MyCoinRankBinding | null {
+  const owner = activeOwner(token);
+  if (!owner || rank === null) return null;
+  return Object.freeze({ ownerStableId: owner, accountGeneration: token.generation, rank });
+}
+
+/** Rank plus the exact account generation that produced its visible value. */
+export function useMyCoinRankBinding(): MyCoinRankBinding | null {
+  const initialTokenRef = useRef<AccountGenerationToken>(captureAccountGeneration());
+  const [token, setToken] = useState<AccountGenerationToken>(initialTokenRef.current);
+  const [binding, setBinding] = useState<MyCoinRankBinding | null>(() => (
+    bindingFor(initialTokenRef.current, peekCoinRank(activeOwner(initialTokenRef.current)))
+  ));
 
   useEffect(() => {
     const sub = subscribeAccountGeneration((token) => {
-      setOwner(token.phase === 'active' ? token.stableId : null);
+      // Owner and generation change invalidate the displayed rank immediately;
+      // the new owner is never paired with a rank from the previous render.
+      setBinding((current) => (
+        current
+        && current.ownerStableId === activeOwner(token)
+        && current.accountGeneration === token.generation
+          ? current
+          : null
+      ));
+      setToken(token);
     });
     return () => sub.remove();
   }, []);
 
   useEffect(() => {
+    const owner = activeOwner(token);
     if (!owner) {
-      setRank(null);
+      setBinding(null);
       return undefined;
     }
     let alive = true;
-    setRank(peekCoinRank(owner));
+    const commit = (value: number | null) => {
+      if (!alive || !isCurrentAccountGeneration(token, owner)) return;
+      setBinding(bindingFor(token, value));
+    };
+    commit(peekCoinRank(owner));
     void readCoinRank(owner).then((value) => {
-      // readCoinRank сам логирует сбой чтения; здесь только не пишем в размонтированный хук.
-      if (alive) setRank(value);
+      // readCoinRank logs a corrupt row; commit keeps owner and generation atomic.
+      commit(value);
     });
     const unsubscribe = subscribeCoinRank((changedOwner, value) => {
-      if (alive && changedOwner === owner) setRank(value);
+      if (changedOwner === owner) commit(value);
     });
     return () => {
       alive = false;
       unsubscribe();
     };
-  }, [owner]);
+  }, [token]);
 
-  return rank;
+  return binding;
+}
+
+export function useMyCoinRank(): number | null {
+  return useMyCoinRankBinding()?.rank ?? null;
 }

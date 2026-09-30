@@ -13,12 +13,16 @@
  *   • своя (ещё не опубликованная) коллекция получает кнопку «Отправить в сообщество».
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { BlurView } from 'expo-blur';
 import { FlowText } from '../../components/text-integrity';
 import React, { useMemo } from 'react';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
-import { ActivityIndicator, Modal, Pressable, Text, TextInput, TouchableOpacity, View, useWindowDimensions } from 'react-native';
+import { ActivityIndicator, Modal, Platform, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View, useWindowDimensions } from 'react-native';
+import { LinearGradient } from '../../components/SafeLinearGradient';
 import { triLang, type Lang } from '../../constants/i18n';
+import { useTheme } from '../../components/ThemeContext';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import type { Theme } from '../../constants/theme';
 import { CATEGORIES } from './constants';
 import type { CategoryId } from './types';
@@ -31,6 +35,14 @@ import type { PackLanguage } from './pack_languages';
 
 const VIEW_TOGGLE_SIZE = 40;
 const VIEW_TOGGLE_ICON_SIZE = 18;
+
+function SavedHeaderGlass({ tint, edge }: { tint: string; edge: string }) {
+  return <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+    <BlurView intensity={Platform.OS === 'android' ? 12 : 16} blurReductionFactor={3} experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'} tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
+    <LinearGradient colors={[tint, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
+    <View style={{ height: 1, backgroundColor: edge }} />
+  </View>;
+}
 
 type Props = {
   t: Theme;
@@ -121,6 +133,8 @@ export default function CollectionHeader({
   onExitSelection,
   onDeleteSelected,
 }: Props) {
+  const { liquidGlassThemeId } = useTheme();
+  const g = liquidGlassTokens(liquidGlassThemeId);
   const { width: screenW } = useWindowDimensions();
 
   const currentPack = useMemo(
@@ -252,9 +266,6 @@ export default function CollectionHeader({
     ru: 'Удалить выбранные', uk: 'Видалити вибрані', en: 'Delete selected', es: 'Eliminar seleccionadas',
     'pt-BR': 'Excluir selecionadas', vi: 'Xóa thẻ đã chọn', id: 'Hapus yang dipilih', tr: 'Seçilenleri sil', pl: 'Usuń zaznaczone',
   });
-  const currentViewLabel = viewMode === 'list'
-    ? triLang(lang, { ru: 'Список', uk: 'Список', en: 'List', es: 'Lista', 'pt-BR': 'Lista', vi: 'Danh sách', id: 'Daftar', tr: 'Liste', pl: 'Lista' })
-    : triLang(lang, { ru: 'Стопка', uk: 'Стос', en: 'Deck', es: 'Mazo', 'pt-BR': 'Conjunto', vi: 'Bộ thẻ', id: 'Set', tr: 'Deste', pl: 'Zestaw' });
   const cancelSelectionLabel = triLang(lang, {
     ru: 'Отмена', uk: 'Скасувати', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj',
   });
@@ -265,7 +276,7 @@ export default function CollectionHeader({
         style={{
           flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
           paddingHorizontal: 16, paddingTop: 12, paddingBottom: 8,
-          borderBottomWidth: 0.5, borderBottomColor: t.border,
+          borderBottomWidth: savedSurface ? 0 : 0.5, borderBottomColor: t.border,
         }}
       >
         {selectionMode ? (
@@ -308,8 +319,8 @@ export default function CollectionHeader({
         */}
         <FlowText testID="fc-collection-title" provenance="external"
           style={{
-            fontWeight: '700', letterSpacing: 0.2, color: t.textPrimary, fontSize: titleFontSize,
-            lineHeight: Math.round(titleFontSize * 1.2),
+            fontWeight: '700', letterSpacing: 0.2, color: savedSurface ? g.text : t.textPrimary, fontSize: savedSurface ? 20 : titleFontSize,
+            lineHeight: savedSurface ? 26 : Math.round(titleFontSize * 1.2),
             flex: 1, minWidth: 0, textAlign: 'center', paddingHorizontal: 4,
           }}
           maxFontSizeMultiplier={1.2}
@@ -333,9 +344,10 @@ export default function CollectionHeader({
                 accessibilityState={{ expanded: actionsOpen }}
                 accessible
                 onPress={onToggleActions}
-                style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center', borderRadius: 13, borderWidth: 1, borderColor: actionsOpen ? t.accent : t.border, backgroundColor: actionsOpen ? t.accentBg : t.bgSurface }}
+                style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center', borderRadius: 13, borderWidth: 1, borderColor: g.glassEdge, backgroundColor: g.sheet, overflow: 'hidden' }}
               >
-                <Ionicons name="ellipsis-horizontal" size={20} color={actionsOpen ? t.accent : t.textSecond} />
+                <SavedHeaderGlass tint={g.selected} edge={g.glassEdge} />
+                <Ionicons name="ellipsis-horizontal" size={20} color={g.text} />
               </TouchableOpacity>
             </>
           ) : null}
@@ -378,19 +390,21 @@ export default function CollectionHeader({
                 flexDirection: 'row', alignItems: 'center', gap: 3,
                 minHeight: 40, paddingHorizontal: 10,
                 borderRadius: 12, borderWidth: 1,
-                borderColor: activeFilter !== 'all' ? t.accent : t.border,
-                backgroundColor: activeFilter !== 'all' ? t.accent + '18' : 'transparent',
+                borderColor: savedSurface ? g.glassEdge : activeFilter !== 'all' ? t.accent : t.border,
+                backgroundColor: savedSurface ? (activeFilter !== 'all' ? g.selected : g.card) : activeFilter !== 'all' ? t.accent + '18' : 'transparent',
+                overflow: 'hidden',
               }}
             >
-              <Ionicons name="filter-outline" size={12} color={activeFilter !== 'all' ? t.accent : t.textSecond} />
+              {savedSurface ? <SavedHeaderGlass tint={g.selected} edge={g.glassEdge} /> : null}
+              <Ionicons name="filter-outline" size={12} color={savedSurface ? g.text : activeFilter !== 'all' ? t.accent : t.textSecond} />
               <FlowText testID="fc-filter-label" provenance="authored"
-                style={{ maxWidth: screenW < 360 ? 44 : 86, fontSize: f.caption, fontWeight: '600', color: activeFilter !== 'all' ? t.accent : t.textSecond }}
+                style={{ maxWidth: screenW < 360 ? 44 : 86, fontSize: f.caption, fontWeight: '600', color: savedSurface ? g.text : activeFilter !== 'all' ? t.accent : t.textSecond }}
               >
                 {activeFilter === 'all'
                   ? filterLabel
                   : (filterOptions.find(o => o.key === activeFilter)?.label ?? filterLabel)}
               </FlowText>
-              <Ionicons name={filterOpen ? 'chevron-up' : 'chevron-down'} size={10} color={activeFilter !== 'all' ? t.accent : t.textSecond} />
+              <Ionicons name={filterOpen ? 'chevron-up' : 'chevron-down'} size={10} color={savedSurface ? g.text : activeFilter !== 'all' ? t.accent : t.textSecond} />
             </TouchableOpacity>
           )}
         </View>
@@ -403,16 +417,30 @@ export default function CollectionHeader({
             <View
               testID="fc-saved-actions-menu"
               accessibilityRole="menu"
-              style={{ position: 'absolute', top: insets.top + 56, right: 16, width: 230, padding: 8, borderRadius: 18, backgroundColor: t.bgSurface, shadowColor: '#000', shadowOpacity: 0.35, shadowRadius: 18, shadowOffset: { width: 0, height: 8 }, elevation: 8 }}
+              style={{ position: 'absolute', top: insets.top + 56, right: 16, width: 250, padding: 8, borderRadius: 18, borderWidth: 1, borderColor: g.glassEdge, backgroundColor: g.sheet, shadowColor: '#000', shadowOpacity: 0.35, shadowRadius: 18, shadowOffset: { width: 0, height: 8 }, elevation: 8, overflow: 'hidden' }}
             >
+              <SavedHeaderGlass tint={g.selected} edge={g.glassEdge} />
               <TouchableOpacity
+                testID="fc-saved-view-list"
                 accessibilityRole="menuitem"
-                accessibilityLabel={`${viewMenuLabel}: ${currentViewLabel}`}
-                onPress={() => { onToggleActions?.(); onToggleViewMode(); }}
+                accessibilityLabel={`${viewMenuLabel}: ${triLang(lang, { ru: 'Список', uk: 'Список', en: 'List', es: 'Lista', 'pt-BR': 'Lista', vi: 'Danh sách', id: 'Daftar', tr: 'Liste', pl: 'Lista' })}`}
+                accessibilityState={{ selected: viewMode === 'list' }}
+                onPress={() => { onToggleActions?.(); if (viewMode !== 'list') onToggleViewMode(); }}
                 style={{ minHeight: 44, borderRadius: 12, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
               >
-                <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800' }}>{viewMenuLabel}</Text>
-                <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700' }}>{currentViewLabel}</Text>
+                <Text style={{ color: g.text, fontSize: f.sub, fontWeight: '700' }}>{viewMenuLabel}: {triLang(lang, { ru: 'список', uk: 'список', en: 'list', es: 'lista', 'pt-BR': 'lista', vi: 'danh sách', id: 'daftar', tr: 'liste', pl: 'lista' })}</Text>
+                {viewMode === 'list' ? <Ionicons name="checkmark" size={17} color={g.lightTint} /> : null}
+              </TouchableOpacity>
+              <TouchableOpacity
+                testID="fc-saved-view-deck"
+                accessibilityRole="menuitem"
+                accessibilityLabel={`${viewMenuLabel}: ${triLang(lang, { ru: 'Стопка', uk: 'Стос', en: 'Deck', es: 'Mazo', 'pt-BR': 'Conjunto', vi: 'Bộ thẻ', id: 'Set', tr: 'Deste', pl: 'Zestaw' })}`}
+                accessibilityState={{ selected: viewMode === 'deck' }}
+                onPress={() => { onToggleActions?.(); if (viewMode !== 'deck') onToggleViewMode(); }}
+                style={{ minHeight: 44, borderRadius: 12, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
+              >
+                <Text style={{ color: g.text, fontSize: f.sub, fontWeight: '700' }}>{viewMenuLabel}: {triLang(lang, { ru: 'стопка', uk: 'стос', en: 'deck', es: 'mazo', 'pt-BR': 'conjunto', vi: 'bộ thẻ', id: 'set', tr: 'deste', pl: 'zestaw' })}</Text>
+                {viewMode === 'deck' ? <Ionicons name="checkmark" size={17} color={g.lightTint} /> : null}
               </TouchableOpacity>
               <TouchableOpacity
                 accessibilityRole="menuitem"
@@ -420,15 +448,14 @@ export default function CollectionHeader({
                 onPress={() => { onToggleActions?.(); onEnterSelection?.(); }}
                 style={{ minHeight: 44, borderRadius: 12, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', gap: 10 }}
               >
-                <Ionicons name="checkmark-circle-outline" size={18} color={t.accent} />
-                <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800' }}>{selectMenuLabel}</Text>
+                <Ionicons name="checkmark-circle-outline" size={18} color={g.lightTint} />
+                <Text style={{ color: g.text, fontSize: f.sub, fontWeight: '700' }}>{selectMenuLabel}</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 accessibilityRole="menuitem"
                 accessibilityLabel={deleteSelectedMenuLabel}
-                disabled={selectedCount === 0}
-                onPress={() => { onToggleActions?.(); onDeleteSelected?.(); }}
-                style={{ minHeight: 44, borderRadius: 12, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', gap: 10, opacity: selectedCount === 0 ? 0.45 : 1 }}
+                onPress={() => { onToggleActions?.(); if (selectedCount > 0) onDeleteSelected?.(); else onEnterSelection?.(); }}
+                style={{ minHeight: 44, borderRadius: 12, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', gap: 10 }}
               >
                 <Ionicons name="trash-outline" size={18} color={t.wrong} />
                 <Text style={{ color: t.wrong, fontSize: f.sub, fontWeight: '800' }}>{deleteSelectedMenuLabel}</Text>
@@ -541,11 +568,13 @@ export default function CollectionHeader({
             flexShrink: 0,
             borderRadius: 14,
             borderWidth: 1,
-            borderColor: searchActive ? `${t.accent}88` : t.border,
-            backgroundColor: t.bgSurface,
+            borderColor: savedSurface ? g.glassEdge : searchActive ? `${t.accent}88` : t.border,
+            backgroundColor: savedSurface ? g.card : t.bgSurface,
+            overflow: 'hidden',
           }}
         >
-          <Ionicons name="search-outline" size={16} color={searchActive ? t.accent : t.textMuted} />
+          {savedSurface ? <SavedHeaderGlass tint={g.selected} edge={g.glassEdge} /> : null}
+          <Ionicons name="search-outline" size={20} color={savedSurface ? g.secondary : searchActive ? t.accent : t.textMuted} />
           <TextInput
             testID="fc-search-input"
             accessibilityLabel="qa-fc-search-input"
@@ -555,7 +584,7 @@ export default function CollectionHeader({
               ru: 'Поиск по карточкам', uk: 'Пошук по картках', en: 'Search cards', es: 'Buscar tarjetas',
               'pt-BR': 'Buscar cartões', vi: 'Tìm thẻ', id: 'Cari kartu', tr: 'Kart ara', pl: 'Szukaj kart',
             })}
-            placeholderTextColor={t.textMuted}
+            placeholderTextColor={savedSurface ? g.secondary : t.textMuted}
             autoCorrect={false}
             autoCapitalize="none"
             returnKeyType="search"
@@ -573,7 +602,7 @@ export default function CollectionHeader({
               paddingVertical: 0,
               includeFontPadding: false,
               textAlignVertical: 'center',
-              color: t.textPrimary,
+              color: savedSurface ? g.text : t.textPrimary,
               fontSize: f.sub,
             }}
           />
@@ -585,7 +614,7 @@ export default function CollectionHeader({
               onPress={() => onSearchInput('')}
               hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
             >
-              <Ionicons name="close-circle" size={16} color={t.textMuted} />
+              <Ionicons name="close-circle" size={16} color={savedSurface ? g.secondary : t.textMuted} />
             </TouchableOpacity>
           )}
         </View>
@@ -604,10 +633,12 @@ export default function CollectionHeader({
             minHeight: 44,
             borderRadius: 15,
             borderWidth: 1,
-            borderColor: t.border,
-            backgroundColor: t.bgSurface,
+            borderColor: savedSurface ? g.glassEdge : t.border,
+            backgroundColor: savedSurface ? g.card : t.bgSurface,
+            overflow: 'hidden',
           }}
         >
+          <SavedHeaderGlass tint={g.selected} edge={g.glassEdge} />
           {savedContentOptions.map(({ key, label }) => {
             const selected = key === savedContentKind;
             const count = savedContentCounts[key];
@@ -626,10 +657,10 @@ export default function CollectionHeader({
                   justifyContent: 'center',
                   paddingHorizontal: 6,
                   borderRadius: 11,
-                  backgroundColor: selected ? t.accent : 'transparent',
+                  backgroundColor: selected ? g.selected : 'transparent',
                 }}
               >
-                <FlowText provenance="authored" style={{ color: selected ? t.correctText : t.textSecond, fontSize: f.caption, fontWeight: selected ? '900' : '700' }}>
+                <FlowText testID={`fc-saved-content-label-${key}`} provenance="authored" style={{ color: selected ? g.text : g.secondary, fontSize: f.caption, fontWeight: '700' }}>
                   {label} · {count}
                 </FlowText>
               </TouchableOpacity>

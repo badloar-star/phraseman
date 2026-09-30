@@ -1,6 +1,16 @@
 {
   "indexes": [
     {
+      "collectionGroup": "spire_task_incidents",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "studyTarget", "order": "ASCENDING" },
+        { "fieldPath": "state", "order": "ASCENDING" },
+        { "fieldPath": "latestReportedAtMs", "order": "DESCENDING" },
+        { "fieldPath": "__name__", "order": "ASCENDING" }
+      ]
+    },
+    {
       "collectionGroup": "progress_events",
       "queryScope": "COLLECTION_GROUP",
       "fields": [
@@ -14,6 +24,14 @@
       "fields": [
         { "fieldPath": "packLanguage", "order": "ASCENDING" },
         { "fieldPath": "listingStatus", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "community_packs",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "listingStatus", "order": "ASCENDING" },
+        { "fieldPath": "videoId", "order": "ASCENDING" }
       ]
     },
     {
@@ -755,6 +773,20 @@
       ]
     },
     {
+      "collectionGroup": "referral_spins",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
+        {
+          "fieldPath": "prizeKind",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "prizeCoins",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "admin_command_operations",
       "queryScope": "COLLECTION",
       "fields": [
@@ -1178,6 +1210,55 @@
     }
   ],
   "fieldOverrides": [
+    {
+      "collectionGroup": "accounts_v2_ops",
+      "fieldPath": "expireAt",
+      "ttl": true,
+      "indexes": []
+    },
+    {
+      "collectionGroup": "accounts_v2_ops",
+      "fieldPath": "operationIdJson",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "accounts_v2_ops",
+      "fieldPath": "fingerprint",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "accounts_v2_entities",
+      "fieldPath": "stateJson",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "accounts_v2_entities",
+      "fieldPath": "entityIdJson",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "accounts_v2_entities",
+      "fieldPath": "lastOperationIdJson",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "dialogue_v2_sessions",
+      "fieldPath": "expiresAt",
+      "ttl": true,
+      "indexes": []
+    },
+    {
+      "collectionGroup": "dialogue_v2_session_terminals",
+      "fieldPath": "expiresAt",
+      "ttl": true,
+      "indexes": []
+    },
+    {
+      "collectionGroup": "dialogue_v2_bot_voice_claims",
+      "fieldPath": "expiresAt",
+      "ttl": true,
+      "indexes": []
+    },
     {
       "collectionGroup": "arena_v2_target_profiles",
       "fieldPath": "mastery",

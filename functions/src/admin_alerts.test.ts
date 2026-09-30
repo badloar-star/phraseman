@@ -23,8 +23,6 @@ const baseReport = {
   deviceOS: 'Android',
   deviceOSVersion: '14',
   userName: 'Лена',
-  userLevel: 12,
-  userXP: 3400,
   userStreak: 5,
   userPremium: true,
   userDaysInApp: 21,
@@ -40,7 +38,7 @@ describe('formatContentReportAlert', () => {
     expect(text).toContain('I drink a coffee every morning');
     expect(text).toContain('lesson1');
     expect(text).toContain('lesson3_phrase_2');
-    expect(text).toContain('👤 Лена · Lv12');
+    expect(text).toContain('👤 Лена · стрик 5');
     expect(text).not.toContain('#1234');
     expect(text).not.toContain('stable_abcd1234');
     expect(text).toContain('Premium');
@@ -48,7 +46,7 @@ describe('formatContentReportAlert', () => {
 
   it('показывает честный fallback вместо UID, если ник пустой', () => {
     const text = formatContentReportAlert({ ...baseReport, userName: '   ' });
-    expect(text).toContain('👤 — · Lv12');
+    expect(text).toContain('👤 — · стрик 5');
     expect(text).not.toContain('#1234');
     expect(text).not.toContain('stable_abcd1234');
   });

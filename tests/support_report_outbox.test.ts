@@ -52,6 +52,21 @@ describe('support report durable background outbox', () => {
     expect(await listPendingSupportReports(ACCOUNT, NOW)).toEqual([REPORT]);
   });
 
+  it('PM-229: a throwing row does not block the next independent reports', async () => {
+    const second: PendingSupportReport = { ...REPORT, id: 'support_2000000000001_def', queuedAtMs: NOW + 1 };
+    await enqueueSupportReport(ACCOUNT, REPORT, NOW);
+    await enqueueSupportReport(ACCOUNT, second, NOW + 1);
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const send = jest.fn(async (_payload: unknown, _name: unknown, _lang: unknown, opts?: { idempotencyKey?: string }) => {
+      if (opts?.idempotencyKey === REPORT.id) throw new Error('boom');
+      return 'sent' as const;
+    });
+    await expect(flushSupportReportOutbox(ACCOUNT, send as never, NOW + 1)).resolves.toEqual({ sent: 1, left: 1 });
+    expect(send).toHaveBeenCalledTimes(2);
+    expect(warn.mock.calls.some((call) => String(call[0]).includes('code=swallowed'))).toBe(true);
+    warn.mockRestore();
+  });
+
   it('removes a row only after an explicit sent receipt', async () => {
     await enqueueSupportReport(ACCOUNT, REPORT, NOW);
 

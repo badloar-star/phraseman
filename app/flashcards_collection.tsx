@@ -10,7 +10,7 @@ import { configureAccordionLayout } from '../constants/layoutAnimation';
 import { CLOUD_SYNC_ENABLED, DEV_CONTENT_UNLOCK, IS_EXPO_GO } from './config';
 import { useRouter, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { useSharedValue } from 'react-native-reanimated';
-import { usePremium } from '../components/PremiumContext';
+import { useFeatureAccess } from '../components/PremiumContext';
 import { useAudio, type SpeakOpts } from '../hooks/use-audio';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -31,6 +31,8 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
+import { LinearGradient } from '../components/SafeLinearGradient';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { triLang, type Lang } from '../constants/i18n';
 import { isLightThemeMode } from '../constants/theme';
 import { actionToastTri, emitAppEvent } from './events';
@@ -55,6 +57,7 @@ import CollectionListView, {
   CollectionEmptyState,
   UndoDeleteSnackbar,
 } from './flashcards/CollectionListView';
+import { SavedCollectionLoading, SavedCollectionState } from './flashcards/SavedCollectionStates';
 import { resolveFlashcardListItemHeight } from './flashcards/FlashcardListItemChrome';
 // Cards 2.1 §5.2: нижний таббар раздела (Тренировка / + / Наборы)
 // §5.3: два входа в набор — «Мои наборы» и каталог сообщества; «назад» ведёт ровно туда
@@ -64,6 +67,7 @@ import {
   shouldBypassEmptyCustomCollection,
 } from './flashcards/tabbar_state';
 import CommunityPackSocialBar from './community_packs/CommunityPackSocialBar';
+import PackVideoHero from './flashcards/PackVideoHero';
 import PackCommentsSheet from './community_packs/PackCommentsSheet';
 import ReportPackModal from '../components/ReportPackModal';
 import { packTitleForInterface } from './flashcards/marketplace';
@@ -157,7 +161,8 @@ export function fullCategoryLabelForLang(cat: (typeof CATEGORIES)[number], lang:
 export default function FlashcardsScreen() {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
-  const { theme: t, f, themeMode, statusBarLight, uiScale } = useTheme();
+  const { theme: t, f, themeMode, statusBarLight, uiScale, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const isLightTheme = isLightThemeMode(themeMode);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -212,7 +217,7 @@ export default function FlashcardsScreen() {
   const strLang: Lang = lang;
   const cardContentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
   const router   = useRouter();
-  const params   = useLocalSearchParams<{ cat?: string; pack?: string; create?: string; widgetCard?: string; preview?: string; from?: string; openComments?: string; commentId?: string }>();
+  const params   = useLocalSearchParams<{ cat?: string; pack?: string; create?: string; preview?: string; from?: string; openComments?: string; commentId?: string }>();
   const routeCat = useMemo(() => normalizeRouteCategory(params.cat), [params.cat]);
   const packDeeplink = useMemo(() => normalizePackParam(params.pack), [params.pack]);
   const routeCatRef = useRef<CategoryId | null>(null);
@@ -489,14 +494,9 @@ export default function FlashcardsScreen() {
     leaveCollection();
   }, [exitDeckToList, exitSelectionMode, filterOpen, leaveCollection, savedActionsOpen, searchActive, searchInput, selectionMode, viewMode]);
 
-  // зачем (расследование 2026-08-28, жалоба Виталия/«Марс»: «есть Premium, а
-  // лимит сохранённых всё равно показывает 20 из 20»): isPremium — узкое поле
-  // (подтверждённая покупка через RevenueCat), а VIP/admin-override доступ
-  // (his premium_plan='annual', vip_active=true, admin_premium_override=true)
-  // в него НЕ попадает — только в hasPremiumAccess. Весь остальной проект
-  // (остальные экраны) уже гейтит по hasPremiumAccess;
-  // этот файл был единственным исключением.
-  const { hasPremiumAccess: isPremium } = usePremium();
+  // Saved visibility must use the same authoritative feature decision as the
+  // save path: Plus/VIP/intro/admin access and the remote global Free switch.
+  const isPremium = useFeatureAccess('flashcards');
   // Карта «силы слова» строится из проекции нового журнала ошибок.
   const [strengthMap, setStrengthMap] = useState<WordStrengthMap | null>(null);
   useFocusEffect(
@@ -971,7 +971,7 @@ export default function FlashcardsScreen() {
    */
   const packCardsPending =
     !!packDeeplink && !collectionDataReady && (filteredCards.length === 0 || !currentMarketPack);
-  const isEmpty = !loading && !packCardsPending && filteredCards.length === 0;
+  const isEmpty = !loading && !packCardsPending && listCards.length === 0;
   const bypassEmptyCustomCollection = shouldBypassEmptyCustomCollection({
     collectionDataReady,
     activeCat,
@@ -1008,6 +1008,11 @@ export default function FlashcardsScreen() {
 
   return (
     <ScreenGradient>
+    {activeCat === 'saved' && !packDeeplink ? (
+      <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: glass.bg }]}>
+        <LinearGradient colors={[glass.bgTop, glass.bg, glass.bgBottom]} locations={[0, 0.58, 1]} style={StyleSheet.absoluteFill} />
+      </View>
+    ) : null}
     <SafeAreaView style={[st.safe, { backgroundColor: 'transparent' }]}>
       <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
 
@@ -1047,7 +1052,7 @@ export default function FlashcardsScreen() {
           onExitSelection={exitSelectionMode}
           onDeleteSelected={confirmDeleteSelected}
           /* На экране НАБОРА поиска по карточкам нет (в «Сохранённых» — остаётся). */
-          showSearch={!packDeeplink && !(isEmpty && !searchActive)}
+          showSearch={!packDeeplink && (activeCat === 'saved' || !(isEmpty && !searchActive))}
           searchInput={searchInput}
           searchActive={searchActive}
           onSearchInput={setSearchInput}
@@ -1062,6 +1067,16 @@ export default function FlashcardsScreen() {
           Обёртка ниже ограничивает ширину БЕЗ flex, поэтому список получает всю
           оставшуюся высоту.
         */}
+        {/* Набор собран из ролика — широкое превью НАД социальной строкой
+            (владелец 2026-09-23: «покажи как выглядит внутри любого набора
+            тоже экран — с видео вверху»). Набор без `videoId` этот блок не
+            рисует вообще, поэтому обычные наборы не меняются ни на пиксель. */}
+        {packDeeplink && currentMarketPack?.videoId ? (
+          <View style={{ maxWidth: contentMaxW, alignSelf: 'center', width: '100%', paddingHorizontal: 16 }}>
+            <PackVideoHero pack={currentMarketPack} lang={lang} t={t} />
+          </View>
+        ) : null}
+
         {packDeeplink && currentMarketPack?.isCommunityUgc ? (
           <View style={[st.socialRow, { maxWidth: contentMaxW }]}>
             <CommunityPackSocialBar
@@ -1099,7 +1114,17 @@ export default function FlashcardsScreen() {
           </View>
         ) : null}
 
-        {isEmpty ? (
+        {activeCat === 'saved' && loading && !packDeeplink && listCards.length === 0 ? (
+          <SavedCollectionLoading lang={lang} />
+        ) : isEmpty && activeCat === 'saved' && !packDeeplink ? (
+          <SavedCollectionState
+            lang={lang}
+            loadError={loadError}
+            searchActive={searchQuery.trim().length > 0}
+            onCommunity={openCommunityPacks}
+            onRetry={loadAll}
+          />
+        ) : isEmpty ? (
           <ContentWrap>
             {/* зачем (владелец, 2026-08-16): ОДНО состояние, без вариантов.
                 Раньше подпись переключалась «Ничего не найдено» ↔ «Нет карточек»
@@ -1190,6 +1215,7 @@ export default function FlashcardsScreen() {
 
       <FlashcardsFilterDropdown
         visible={filterOpen && !selectionMode && (activeCat !== 'saved' || savedContentKind === 'phrase')}
+        savedGlass={activeCat === 'saved' && !packDeeplink}
         lang={lang}
         activeFilter={activeFilter}
         filterGroups={filterGroups}

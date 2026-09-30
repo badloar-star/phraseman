@@ -18,7 +18,6 @@
  * Все строки — на 8 языках приложения через triLang (единый контракт локализации).
  */
 import { triLang } from '../constants/i18n';
-import { isAiGloballyDisabled } from './remote_flags';
 
 /** Категория диалоговой ситуации (зеркало DialogScenarioCategory). */
 export type AiOfflineDialogCategory = 'everyday' | 'travel' | 'social';
@@ -75,7 +74,7 @@ function localizeRandom(lang: string, variants: readonly MultiLangPair[]): AiOff
 
 /** Единая точка: выключен ли ИИ прямо сейчас (реэкспорт для удобства импорта). */
 export function aiOffline(): boolean {
-  return isAiGloballyDisabled();
+  return false;
 }
 
 /** Код ошибки, который сервер бросает при активном рубильнике (см. functions). */
@@ -695,15 +694,15 @@ const PERSONAL_LIMIT_VARIANTS: readonly MultiLangPair[] = [
       pl: 'Nauczyciel jest zmęczony',
     },
     message: {
-      ru: 'Ты сегодня разобрал столько ошибок, что учитель уснул прямо на стуле. Отдохнёт до завтра — а с Plus у тебя личный учитель без выходных 🛌',
-      en: 'You went through so many mistakes today the teacher fell asleep right in the chair. He\'ll rest until tomorrow — with Plus you get a personal tutor who never takes a day off 🛌',
-      uk: 'Ти сьогодні розібрав стільки помилок, що вчитель заснув прямо на стільці. Відпочине до завтра — а з Plus у тебе особистий вчитель без вихідних 🛌',
-      es: 'Hoy analizaste tantos errores que el profesor se durmió en la silla. Descansará hasta mañana — con Plus tienes un profesor personal sin días libres 🛌',
-      'pt-BR': 'Você analisou tantos erros hoje que o professor pegou no sono na cadeira. Vai descansar até amanhã — com Plus você tem um professor particular sem folga 🛌',
-      vi: 'Hôm nay bạn đã sửa nhiều lỗi đến mức giáo viên ngủ gật ngay trên ghế. Nghỉ tới mai — còn với Plus bạn có gia sư riêng không nghỉ ngày nào 🛌',
-      id: 'Hari ini kamu membahas begitu banyak kesalahan sampai gurunya ketiduran di kursi. Istirahat sampai besok — dengan Plus kamu punya guru pribadi tanpa libur 🛌',
-      tr: 'Bugün o kadar çok hata inceledin ki öğretmen sandalyede uyuyakaldı. Yarına kadar dinlenecek — Plus ile tatil yapmayan kişisel bir öğretmenin olur 🛌',
-      pl: 'Dziś przeanalizowałeś tyle błędów, że nauczyciel zasnął na krześle. Odpocznie do jutra — a z Plus masz osobistego nauczyciela bez wolnego 🛌',
+      ru: 'Ты сегодня разобрал столько ошибок, что учитель уснул прямо на стуле. Отдохнёт до завтра 🛌',
+      en: 'You went through so many mistakes today the teacher fell asleep right in the chair. He\'ll rest until tomorrow 🛌',
+      uk: 'Ти сьогодні розібрав стільки помилок, що вчитель заснув прямо на стільці. Відпочине до завтра 🛌',
+      es: 'Hoy analizaste tantos errores que el profesor se durmió en la silla. Descansará hasta mañana 🛌',
+      'pt-BR': 'Você analisou tantos erros hoje que o professor pegou no sono na cadeira. Vai descansar até amanhã 🛌',
+      vi: 'Hôm nay bạn đã sửa nhiều lỗi đến mức giáo viên ngủ gật ngay trên ghế. Nghỉ tới mai 🛌',
+      id: 'Hari ini kamu membahas begitu banyak kesalahan sampai gurunya ketiduran di kursi. Istirahat sampai besok 🛌',
+      tr: 'Bugün o kadar çok hata inceledin ki öğretmen sandalyede uyuyakaldı. Yarına kadar dinlenecek 🛌',
+      pl: 'Dziś przeanalizowałeś tyle błędów, że nauczyciel zasnął na krześle. Odpocznie do jutra 🛌',
     },
   },
   {
@@ -719,15 +718,15 @@ const PERSONAL_LIMIT_VARIANTS: readonly MultiLangPair[] = [
       pl: 'Słownik się zatrzasnął',
     },
     message: {
-      ru: 'Ты пролистал словарь так быстро, что он захлопнулся сам. Откроется завтра — а с Plus он всегда под рукой 📖',
-      en: 'You flipped through the dictionary so fast it slammed itself shut. It\'ll reopen tomorrow — with Plus it\'s always within reach 📖',
-      uk: 'Ти пролистав словник так швидко, що він захлопнувся сам. Відкриється завтра — а з Plus він завжди під рукою 📖',
-      es: 'Hojeaste el diccionario tan rápido que se cerró solo. Se abrirá mañana — con Plus siempre lo tienes a mano 📖',
-      'pt-BR': 'Você folheou o dicionário tão rápido que ele se fechou sozinho. Abre amanhã — com Plus ele está sempre à mão 📖',
-      vi: 'Bạn lật từ điển nhanh đến mức nó tự khép lại. Mai sẽ mở lại — còn với Plus nó luôn sẵn sàng trong tay 📖',
-      id: 'Kamu membolak-balik kamus begitu cepat sampai tertutup sendiri. Akan terbuka lagi besok — dengan Plus selalu ada di tanganmu 📖',
-      tr: 'Sözlüğü o kadar hızlı çevirdin ki kendiliğinden kapandı. Yarın tekrar açılır — Plus ile her zaman elinin altında olur 📖',
-      pl: 'Przekartkowałeś słownik tak szybko, że sam się zatrzasnął. Otworzy się jutro — a z Plus zawsze masz go pod ręką 📖',
+      ru: 'Ты пролистал словарь так быстро, что он захлопнулся сам. Откроется завтра 📖',
+      en: 'You flipped through the dictionary so fast it slammed itself shut. It\'ll reopen tomorrow 📖',
+      uk: 'Ти пролистав словник так швидко, що він захлопнувся сам. Відкриється завтра 📖',
+      es: 'Hojeaste el diccionario tan rápido que se cerró solo. Se abrirá mañana 📖',
+      'pt-BR': 'Você folheou o dicionário tão rápido que ele se fechou sozinho. Abre amanhã 📖',
+      vi: 'Bạn lật từ điển nhanh đến mức nó tự khép lại. Mai sẽ mở lại 📖',
+      id: 'Kamu membolak-balik kamus begitu cepat sampai tertutup sendiri. Akan terbuka lagi besok 📖',
+      tr: 'Sözlüğü o kadar hızlı çevirdin ki kendiliğinden kapandı. Yarın tekrar açılır 📖',
+      pl: 'Przekartkowałeś słownik tak szybko, że sam się zatrzasnął. Otworzy się jutro 📖',
     },
   },
   {
@@ -743,15 +742,15 @@ const PERSONAL_LIMIT_VARIANTS: readonly MultiLangPair[] = [
       pl: 'Kreda się skończyła',
     },
     message: {
-      ru: 'Сегодняшний урок стёр всю доску подчистую — мела больше нет. Новый привезут завтра, а с Plus доска бесконечная ✏️',
-      en: 'Today\'s lesson wore the whole piece of chalk down to nothing. More arrives tomorrow — with Plus the board never runs out ✏️',
-      uk: 'Сьогоднішній урок витер усю дошку дочиста — крейди більше немає. Нову привезуть завтра, а з Plus дошка нескінченна ✏️',
-      es: 'La lección de hoy gastó toda la tiza en la pizarra. Mañana traen más — con Plus la pizarra es infinita ✏️',
-      'pt-BR': 'A aula de hoje usou todo o giz na lousa. Chega mais amanhã — com Plus a lousa é infinita ✏️',
-      vi: 'Bài học hôm nay đã dùng hết phấn trên bảng. Mai sẽ có phấn mới — còn với Plus thì bảng viết là vô tận ✏️',
-      id: 'Pelajaran hari ini menghabiskan semua kapur di papan tulis. Besok datang lagi — dengan Plus papan tulisnya tak terbatas ✏️',
-      tr: 'Bugünkü ders tahtadaki tüm tebeşiri bitirdi. Yarın yenisi gelir — Plus ile tahta sınırsız olur ✏️',
-      pl: 'Dzisiejsza lekcja zużyła całą kredę na tablicy. Nowa przyjedzie jutro, a z Plus tablica jest nieskończona ✏️',
+      ru: 'Сегодняшний урок стёр всю доску подчистую — мела больше нет. Новый привезут завтра ✏️',
+      en: 'Today\'s lesson wore the whole piece of chalk down to nothing. More arrives tomorrow ✏️',
+      uk: 'Сьогоднішній урок витер усю дошку дочиста — крейди більше немає. Нову привезуть завтра ✏️',
+      es: 'La lección de hoy gastó toda la tiza en la pizarra. Mañana traen más ✏️',
+      'pt-BR': 'A aula de hoje usou todo o giz na lousa. Chega mais amanhã ✏️',
+      vi: 'Bài học hôm nay đã dùng hết phấn trên bảng. Mai sẽ có phấn mới ✏️',
+      id: 'Pelajaran hari ini menghabiskan semua kapur di papan tulis. Besok datang lagi ✏️',
+      tr: 'Bugünkü ders tahtadaki tüm tebeşiri bitirdi. Yarın yenisi gelir ✏️',
+      pl: 'Dzisiejsza lekcja zużyła całą kredę na tablicy. Nowa przyjedzie jutro ✏️',
     },
   },
 ];

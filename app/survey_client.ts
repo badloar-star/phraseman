@@ -31,7 +31,6 @@ export type SurveyAppRoute =
   | '/flashcards'
   | '/streak_stats'
   | '/(tabs)/arena'
-  | '/club_screen'
   | '/lingman_videos'
   | '/support_report'
   | '/flashcards_training_setup?mode=blitz'

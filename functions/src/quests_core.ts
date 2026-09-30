@@ -55,12 +55,10 @@ export const QUEST_KINDS = [
   'streak_days',
   /** Потренировать N карточек. */
   'flashcards_reviewed',
-  /** Заработать N опыта. */
-  'earn_xp',
 ] as const;
 export type QuestKind = (typeof QUEST_KINDS)[number];
 
-export type QuestTargetUnit = 'count' | 'runes' | 'minutes' | 'days' | 'xp';
+export type QuestTargetUnit = 'count' | 'runes' | 'minutes' | 'days';
 
 /** Единица измерения цели — нужна для показа («3 раза», «30 минут»). */
 export const QUEST_TARGET_UNIT: Readonly<Record<QuestKind, QuestTargetUnit>> = Object.freeze({
@@ -73,7 +71,6 @@ export const QUEST_TARGET_UNIT: Readonly<Record<QuestKind, QuestTargetUnit>> = O
   arena_matches: 'count',
   streak_days: 'days',
   flashcards_reviewed: 'count',
-  earn_xp: 'xp',
 });
 
 /**
@@ -94,7 +91,6 @@ export const QUEST_KIND_IS_DELTA: Readonly<Record<QuestKind, boolean>> = Object.
   arena_matches: false,
   streak_days: false,
   flashcards_reviewed: false,
-  earn_xp: true,
 });
 
 // ────────────────────────────────────────────────────────────────────────────
@@ -106,7 +102,7 @@ export const QUEST_KIND_IS_DELTA: Readonly<Record<QuestKind, boolean>> = Object.
 // награды в молчаливый no-op: пользователь видел «награда получена», но не
 // получал ничего. Админка предлагала создавать такие задания (см. аудит
 // docs/phraseman-2.0/evidence/PM-232_dead_admin_forms_audit.md).
-export const QUEST_REWARD_KINDS = ['runes', 'plus_days', 'energy_full', 'freeze'] as const;
+export const QUEST_REWARD_KINDS = ['runes', 'plus_days', 'freeze'] as const;
 export type QuestRewardKind = (typeof QUEST_REWARD_KINDS)[number];
 
 export type QuestReward = Readonly<{ kind: QuestRewardKind; amount: number }>;
@@ -115,7 +111,6 @@ export type QuestReward = Readonly<{ kind: QuestRewardKind; amount: number }>;
 export const QUEST_REWARD_LIMITS: Readonly<Record<QuestRewardKind, Readonly<{ min: number; max: number }>>> = Object.freeze({
   runes: Object.freeze({ min: 10, max: 3_000 }),
   plus_days: Object.freeze({ min: 1, max: 60 }),
-  energy_full: Object.freeze({ min: 1, max: 1 }),
   freeze: Object.freeze({ min: 1, max: 3 }),
 });
 

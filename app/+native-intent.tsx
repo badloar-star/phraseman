@@ -2,8 +2,6 @@
  * Normalizes incoming deep links before Expo Router attempts matching.
  * This prevents "Unmatched Route" on root custom-scheme launches.
  */
-import { IS_STORE_RELEASE } from './config';
-import { DebugLogger } from './debug-logger';
 
 export function redirectSystemPath({
   path,
@@ -40,40 +38,12 @@ export function redirectSystemPath({
     return '/home';
   }
 
-  // Personal-plan developer surfaces can modify local plan state. Store builds
-  // must fail closed even when an old/system deep link targets them directly.
-  if (
-    IS_STORE_RELEASE &&
-    /(?:^|\/)personal_plan_(?:runtime_)?dev(?:[/?#]|$)/i.test(raw)
-  ) {
+  // зачем: D83 — клиентская Арена удалена целиком. Любая старая ссылка Арены
+  // (корень, приглашение в дуэль /arena/invite/…, призрачная дуэль, прямые
+  // /arena_* экраны) обязана открыть Главную, а не мёртвый маршрут. Проверка
+  // стоит ДО реферального `/invite`, иначе `/arena/invite/…` ушло бы туда.
+  if (/(?:^|\/)arena(?:_[a-z_]+)?(?:[/?#]|$)/i.test(raw)) {
     return '/home';
-  }
-
-  // Arena V2 friend-duel links carry a random 128-bit invite id. This check
-  // must precede the generic referral `/invite` matcher below.
-  const arenaInviteMatch = raw.match(
-    /(?:^|\/)arena\/invite\/([A-Za-z0-9_-]{20,200})(?:[/?#]|$)/i,
-  );
-  if (arenaInviteMatch?.[1]) {
-    return `/arena_invite?inviteId=${encodeURIComponent(arenaInviteMatch[1])}`;
-  }
-
-  // зачем: экран /arena_ghost_duel удалён (владелец, 2026-08-16 — экраны
-  // расширения убраны совсем, не только из таббара). Старая ссылка на
-  // призрачную дуэль больше никуда не ведёт содержательно, поэтому падает в
-  // тот же безопасный дом, что и остальные retired-ссылки ниже: живой корень
-  // Арены, а не мёртвый экран или экран с ошибкой параметров.
-  const arenaGhostMatch = raw.match(
-    /(?:^|\/)arena\/ghost\/([A-Za-z0-9_.-]{20,200})(?:[/?#]|$)/i,
-  );
-  if (arenaGhostMatch?.[1]) {
-    return '/arena';
-  }
-
-  // Arena V2 снова является живым продуктом. Старый catch-all ниже нужен для
-  // удалённых duel/arena_join/quiz ссылок, но не должен поглощать новый корень.
-  if (/^(?:\/phraseman)?\/arena\/?(?:[?#].*)?$/i.test(raw)) {
-    return '/arena';
   }
 
   // Referral invite links should not route to a non-existent `/invite` screen.
@@ -93,7 +63,7 @@ export function redirectSystemPath({
     return `/home${query}`;
   }
 
-  // Retired competitive routes (кроме нового корня Arena V2). Старые
+  // Retired competitive routes (Арена снята выше — D83). Старые
   // notifications/widgets/duel links могут жить дольше экранов — fail closed.
   if (/(?:^|\/)phraseman\/(?:duel|arena(?:_join)?|quizzes?|quiz)(?:[/?#]|$)/i.test(raw)
     || /(?:^|\/)(?:duel|arena(?:_join)?|quizzes?|quiz)(?:[/?#]|$)/i.test(raw)) {
@@ -109,19 +79,6 @@ export function redirectSystemPath({
   if (phraseMatch?.[1]) {
     const play = /[?&]play=1\b/i.test(raw) ? '&play=1' : '';
     return `/home?openPhrase=${encodeURIComponent(phraseMatch[1])}${play}`;
-  }
-
-  // Personal-deck widget taps always target the exact local collection/card.
-  // Decode once here; Expo Router receives a normal route with safe query data.
-  const deckMatch = raw.match(/(?:^|\/)deck\/(saved|created)\/([^/?#]+)/i);
-  if (deckMatch?.[1] && deckMatch[2]) {
-    const category = deckMatch[1].toLowerCase() === 'saved' ? 'saved' : 'custom';
-    let cardId = deckMatch[2];
-    try { cardId = decodeURIComponent(cardId); } catch (e) {
-      // already raw
-      DebugLogger.error('+native-intent:cardId', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
-    return `/flashcards_collection?cat=${category}&widgetCard=${encodeURIComponent(cardId)}`;
   }
 
   return raw.startsWith('/') ? raw : `/${raw}`;

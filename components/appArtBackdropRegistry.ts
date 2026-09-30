@@ -25,7 +25,6 @@ export const APP_ART_BACKDROP_NAMES = [
   'flashcards',
   'progressMap',
   'shardsShop',
-  'levelGifts',
   'statistics',
 ] as const;
 
@@ -39,11 +38,7 @@ export const APP_ART_ROUTE_BACKDROPS: Record<string, AppArtBackdropName> = {
   friends: 'friends',
   settings: 'settings',
   lesson_menu: 'lessons',
-  // зачем (владелец 2026-08-31): раздел «Уроки с МАКСом» — такой же список
-  // занятий, как обычные уроки, поэтому берёт их фон. Без записи маршрут падал
-  // в фон Главной и писал предупреждение в каждый заход (видно в логах
-  // эмулятора), а сторож assertAppArtBackdropRoute на нём бросает ошибку.
-  max_lessons: 'lessons',
+  // Уроки используют общий фон практики; явная запись нужна для route-аудита.
   lesson1: 'lessonPractice',
   lesson_words: 'lessonPractice',
   lesson_irregular_verbs: 'lessons',
@@ -65,11 +60,8 @@ export const APP_ART_ROUTE_BACKDROPS: Record<string, AppArtBackdropName> = {
   community_pack_create: 'flashcards',
   pack_opening: 'flashcards',
   shards_shop: 'shardsShop',
-  level_gifts_inventory: 'levelGifts',
   streak_stats: 'statistics',
   phrase_analytics_screen: 'statistics',
-  club_screen: 'friends',
-  league_screen: 'friends',
   settings_edu: 'settings',
   settings_notifications: 'settings',
   settings_themes: 'settings',

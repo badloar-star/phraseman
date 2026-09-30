@@ -1,4 +1,3 @@
-import { getLevelFromXP } from '../functions/src/xp_levels';
 import { createHash } from 'node:crypto';
 
 type DocumentData = Record<string, unknown>;
@@ -19,7 +18,6 @@ export type ProjectionAuditClassification =
   | 'missing_auth_link'
   | 'missing_update_precondition'
   | 'progress_unavailable'
-  | 'legacy_xp_debt'
   | 'server_truth_drift'
   | 'cosmetic_drift'
   | 'in_sync';
@@ -31,11 +29,6 @@ export type ProjectionAuditRow = {
   progressAuthoritative: boolean;
   cosmeticDrift: boolean;
   serverTruthDrift: boolean;
-  legacyXp: {
-    usersProgress: number | null;
-    publicProfile: number | null;
-    serverTruth: number | null;
-  };
   desiredCosmetics: Record<string, unknown>;
   desiredServerTruth: Record<string, unknown> | null;
   expectedUserUpdateTime: string | null;
@@ -114,17 +107,12 @@ export function buildProjectionAuditRow(input: ProjectionAuditInput): Projection
   const progressAuthoritative = input.user.progressServerAuthoritative === true
     && input.user.progressServerState != null
     && typeof input.user.progressServerState === 'object';
-  const usersProgressXp = optionalNonnegativeInt(progress.user_total_xp);
-  const publicProfileXp = optionalNonnegativeInt(profile.totalXp);
-  const serverTruthXp = progressAuthoritative ? optionalNonnegativeInt(serverState.totalXp) ?? 0 : null;
   const desiredName = cleanName(progress.user_name ?? profile.name);
   const desiredCosmetics = desiredName
     ? { name: desiredName, nameLower: desiredName.toLowerCase() }
     : {};
-  const desiredServerTruth = progressAuthoritative && serverTruthXp !== null
+  const desiredServerTruth = progressAuthoritative
     ? {
-        totalXp: serverTruthXp,
-        level: getLevelFromXP(serverTruthXp),
         weekPoints: optionalNonnegativeInt(serverState.weekPoints) ?? 0,
         streak: optionalNonnegativeInt(serverState.streakCount) ?? 0,
         progressAuthority: 'server',
@@ -138,14 +126,8 @@ export function buildProjectionAuditRow(input: ProjectionAuditInput): Projection
     cleanName(profile.name) !== desiredName
     || cleanName(profile.nameLower) !== desiredName.toLowerCase()
   );
-  const legacyXpDebt = progressAuthoritative && serverTruthXp !== null && (
-    (usersProgressXp !== null && usersProgressXp !== serverTruthXp)
-    || (publicProfileXp !== null && publicProfileXp !== serverTruthXp)
-  );
   const serverTruthDrift = desiredServerTruth !== null && (
-    publicProfileXp !== desiredServerTruth.totalXp
-    || optionalNonnegativeInt(profile.level) !== desiredServerTruth.level
-    || optionalNonnegativeInt(profile.weekPoints) !== desiredServerTruth.weekPoints
+    optionalNonnegativeInt(profile.weekPoints) !== desiredServerTruth.weekPoints
     || optionalNonnegativeInt(profile.streak) !== desiredServerTruth.streak
     || profile.progressAuthority !== 'server'
   );
@@ -156,7 +138,6 @@ export function buildProjectionAuditRow(input: ProjectionAuditInput): Projection
   else if (!anchored) classification = 'missing_auth_link';
   else if (!hasPreconditions) classification = 'missing_update_precondition';
   else if (!progressAuthoritative) classification = 'progress_unavailable';
-  else if (legacyXpDebt) classification = 'legacy_xp_debt';
   else if (serverTruthDrift) classification = 'server_truth_drift';
   else if (cosmeticDrift) classification = 'cosmetic_drift';
   else classification = 'in_sync';
@@ -168,11 +149,6 @@ export function buildProjectionAuditRow(input: ProjectionAuditInput): Projection
     progressAuthoritative,
     cosmeticDrift,
     serverTruthDrift,
-    legacyXp: {
-      usersProgress: usersProgressXp,
-      publicProfile: publicProfileXp,
-      serverTruth: serverTruthXp,
-    },
     desiredCosmetics,
     desiredServerTruth,
     expectedUserUpdateTime: input.userUpdateTime,

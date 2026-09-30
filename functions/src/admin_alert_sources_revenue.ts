@@ -129,7 +129,7 @@ export function paidOrderAlertFromWrite(
 
 export function communityPackAlertFromWrite(id: string, before: Row | null, after: Row | null, nowMs: number): EnqueueAdminAlertInput | null {
   if (!id || !after) return null;
-  if (after.acquisitionSource === 'weekly_boon_gift') return null;
+  if (after.acquisitionSource === 'weekly_boon_gift' || after.acquisitionSource === 'pack_gift_voucher') return null;
   const status = String(after.status ?? '').toLowerCase();
   const previous = String(before?.status ?? '').toLowerCase();
   if ((status !== 'completed' && status !== 'refunded') || previous === status) return null;

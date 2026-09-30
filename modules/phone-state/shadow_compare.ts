@@ -59,18 +59,6 @@ export function compareDomain(
   domain: string,
   input: Readonly<{ legacy: unknown; phone: unknown }>,
 ): ShadowComparison {
-  if (domain === 'xp') {
-    const legacy = Number(input.legacy);
-    const phone = Number(input.phone);
-    if (!Number.isFinite(legacy) || !Number.isFinite(phone)) {
-      return Object.freeze({ kind: 'invalid', counts: Object.freeze({ invalid: 1 }) });
-    }
-    if (legacy === phone) return Object.freeze({ kind: 'equal' });
-    return phone > legacy
-      ? Object.freeze({ kind: 'phone_ahead', delta: phone - legacy })
-      : Object.freeze({ kind: 'legacy_ahead', delta: legacy - phone });
-  }
-
   if (Array.isArray(input.legacy) && Array.isArray(input.phone)) {
     return compareSets(input.legacy, input.phone);
   }

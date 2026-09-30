@@ -70,7 +70,6 @@ describe('actual native-write boundaries invalidate settings boot reuse', () => 
       PERSONAL_PLAN_RESTORE_KEY_SET: new Set(['personal_plan_state_v1']),
       sanitizeStoragePairs: (value: unknown) => value,
       withPersonalPlanStateStorageLock: (task: () => Promise<void>) => task(),
-      withPlanXpLedgerStorageLock: (task: () => Promise<void>) => task(),
       mergePersonalPlanRestoreValue: (_key: string, cloud: string) => cloud,
       invalidatePersonalPlanStateCache: () => {},
     });

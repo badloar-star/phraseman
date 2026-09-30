@@ -61,7 +61,8 @@ for (const builtFile of builtFiles) {
 }
 
 const builtSources = readFileSync(builtIndex, 'utf8');
-if (!builtSources.includes('require("./shards_apply_delta")')) {
+// зачем: D70/D78 — shards_apply_delta удалён; якорь сверки — стабильный модуль «Заданий».
+if (!builtSources.includes('require("./quests")')) {
   fail('compiled entrypoint does not contain the expected application exports');
 }
 

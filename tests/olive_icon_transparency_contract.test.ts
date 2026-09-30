@@ -10,12 +10,6 @@ const ICON_SOURCES = [
   'app/coin_icons.ts',
   'app/flashcards/FlashcardsCategoryHub.tsx',
   'components/EnergyIcon.tsx',
-  'constants/generatedThemeIconAssets.ts',
-  'constants/socialIconAssets.ts',
-  'constants/leagueBonusGiftImages.ts',
-  'constants/weeklyCompassIcons.ts',
-  'constants/dailyPhraseThemeArt.ts',
-  'constants/boonIconAssets.ts',
   'constants/streakIconAssets.ts',
 ];
 

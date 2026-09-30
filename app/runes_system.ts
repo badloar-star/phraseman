@@ -126,7 +126,7 @@ export async function getRunesBalance(): Promise<RunesBalance> {
  * Источник истины — снапшот: `publishProjection` в `level_spin_star_grants.ts`
  * патчит `progress.stars`, а `subscribeAppSnapshot` будит подписчиков. Здесь мы
  * лишь отсеиваем кадры, где руны не менялись, чтобы не будить экраны на каждое
- * несвязанное изменение снапшота (XP, серия, профиль).
+ * несвязанное изменение снапшота (legacy reward, серия, профиль).
  *
  * Дополнительно эмитим `runes_balance_updated` с дельтой — на нём висит анимация
  * начисления (полёт глифов футарка) на главной.

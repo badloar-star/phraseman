@@ -36,7 +36,7 @@ interface Props {
  * Кладётся последним ребёнком внутрь элемента с overflow:'hidden'.
  *
  * ВАЖНО: в приложении уже есть локальные shine в PremiumGoldButton,
- * PremiumCelebrationModal, ShopNeonCta, LeagueResultModal, RankChangeModal —
+ * PremiumCelebrationModal, ShopNeonCta, RankChangeModal —
  * туда этот компонент НЕ добавлять (будет двойной блик). Использовать только
  * на кнопках без своего shimmer (IntroFullAccessModal и т.п.).
  *

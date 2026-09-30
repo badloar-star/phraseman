@@ -19,6 +19,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Reanimated, { FadeIn, FadeInDown, ZoomIn } from 'react-native-reanimated';
 
 import type { PremiumDialogReviewResponse } from '../app/ai_dialog_client';
+import { dialogueCompletionFeedbackMode } from '../app/dialogue_completion_debrief';
 import { objectiveLabel, outcomeTitle, type DialogOutcome } from '../app/dialog_outcome';
 import type { DialogObjective } from '../app/ai_dialog_scenarios';
 import type { DialogSceneTheme } from '../constants/dialogSceneThemes';
@@ -28,6 +29,7 @@ import { hapticSuccess, hapticWarning } from '../hooks/use-haptics';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { soundDirector } from '../modules/audio/sound_director';
 import SkeletonBlock from './SkeletonShimmer';
+import { glassFill } from './GlassSurface';
 import DialogPhraseReview from './dialogs/DialogPhraseReview';
 import { useTheme } from './ThemeContext';
 
@@ -46,8 +48,6 @@ interface DialogVerdictScreenProps {
   coachTips: string[];
   review: PremiumDialogReviewResponse | null;
   reviewStatus: 'idle' | 'loading' | 'ready' | 'error';
-  /** Реально начисленный XP этого прохождения; 0 (повтор) — строка скрыта. */
-  xpAwarded: number;
   /** true — Free-пользователь: разбор закрыт, показываем ветку Plus. */
   locked: boolean;
   /**
@@ -81,7 +81,6 @@ export default function DialogVerdictScreen({
   coachTips,
   review,
   reviewStatus,
-  xpAwarded,
   locked,
   neutralClosing,
   feedbackSlot,
@@ -159,6 +158,24 @@ export default function DialogVerdictScreen({
     reduceMotion ? undefined : FadeInDown.delay(delayMs).duration(300);
 
   const metCount = objectives.filter((o) => objectivesMet.has(o.id)).length;
+  const reviewEvidence = review?.evidence ?? [];
+  const completionObjectiveResults = review?.objectiveResults ?? [];
+  const hasSavedScenarioBranch = review?.v2Memory?.scenarioCheckpointStored === true && !locked;
+  // Итог должен быть виден на КАЖДОМ финальном экране. Живой ответ модели
+  // называется оценкой собеседника только при проверяемых цитатах; локальный
+  // fallback честно называется итогом переписки и опирается лишь на её факты.
+  const isLocalCompletionFallback = review?.fallback === true;
+  const hasCompletionAssessment = Boolean(review?.assessment?.trim());
+  const completionAssessment = hasCompletionAssessment ? review!.assessment!.trim() : '';
+  const hasGeneratedPartnerAssessment = Boolean(
+    !isLocalCompletionFallback && completionAssessment && reviewEvidence.length > 0,
+  );
+  const completionFeedbackMode = dialogueCompletionFeedbackMode({
+    fallback: review?.fallback,
+    evidence: reviewEvidence,
+    corrections: review?.corrections,
+    phrases: review?.phrases,
+  });
 
   const showChatLabel = triLang(lang, {
     ru: 'Показать переписку',
@@ -275,23 +292,6 @@ export default function DialogVerdictScreen({
                 </Text>
               </View>
             )}
-            {xpAwarded > 0 && (
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  gap: 6,
-                  marginTop: 12,
-                  backgroundColor: t.accent + '22',
-                  borderRadius: 14,
-                  paddingHorizontal: 12,
-                  paddingVertical: 6,
-                }}
-              >
-                <Ionicons name="sparkles" size={15} color={t.accent} />
-                <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '900' }}>+{xpAwarded} XP</Text>
-              </View>
-            )}
           </Reanimated.View>
 
           {/* Реакция персонажа от первого лица. */}
@@ -301,7 +301,7 @@ export default function DialogVerdictScreen({
               style={{
                 flexDirection: 'row',
                 gap: 12,
-                backgroundColor: t.bgCard,
+                backgroundColor: glassFill(t.bgCard, 0.46),
                 borderRadius: 20,
                 padding: 14,
                 marginTop: 22,
@@ -347,7 +347,7 @@ export default function DialogVerdictScreen({
           {objectives.length > 0 && (
             <Reanimated.View
               entering={enter(220)}
-              style={{ backgroundColor: t.bgCard, borderRadius: 20, padding: 14, marginTop: 12 }}
+              style={{ backgroundColor: glassFill(t.bgCard, 0.46), borderRadius: 20, padding: 14, marginTop: 12 }}
             >
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7, marginBottom: 10 }}>
                 <Ionicons name="flag" size={14} color={scene.hue} />
@@ -381,15 +381,63 @@ export default function DialogVerdictScreen({
                       size={22}
                       color={done ? scene.hue : t.textMuted}
                     />
-                    <Text
-                      style={{ color: done ? t.textPrimary : t.textMuted, fontSize: f.body, fontWeight: '600', flex: 1 }}
+                  <Text
+                    style={{ color: done ? t.textPrimary : t.textMuted, fontSize: f.body, fontWeight: '600', flex: 1 }}
                       maxFontSizeMultiplier={1.2}
                     >
-                      {objectiveLabel(o, lang)}
-                    </Text>
-                  </Reanimated.View>
-                );
+                    {objectiveLabel(o, lang)}
+                  </Text>
+                  <Text
+                    style={{ color: done ? scene.hue : t.textMuted, fontSize: f.sub, fontWeight: '700' }}
+                    maxFontSizeMultiplier={1.2}
+                  >
+                    {done
+                      ? triLang(lang, {
+                          ru: 'Выполнено', uk: 'Виконано', en: 'Done', es: 'Hecho', 'pt-BR': 'Concluído',
+                          vi: 'Đã xong', id: 'Selesai', tr: 'Tamamlandı', pl: 'Wykonano',
+                        })
+                      : triLang(lang, {
+                          ru: 'Не выполнено', uk: 'Не виконано', en: 'Not completed', es: 'No completado', 'pt-BR': 'Não concluído',
+                          vi: 'Chưa hoàn thành', id: 'Belum selesai', tr: 'Tamamlanmadı', pl: 'Nie wykonano',
+                        })}
+                  </Text>
+                </Reanimated.View>
+              );
               })}
+            </Reanimated.View>
+          )}
+
+          {hasSavedScenarioBranch && (
+            <Reanimated.View
+              entering={enter(250)}
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: 9,
+                backgroundColor: glassFill(t.bgCard, 0.46),
+                borderRadius: 16,
+                paddingHorizontal: 14,
+                paddingVertical: 11,
+                marginTop: 12,
+              }}
+            >
+              <Ionicons name="bookmark-outline" size={17} color={t.textMuted} />
+              <Text
+                style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', flex: 1 }}
+                maxFontSizeMultiplier={1.2}
+              >
+                {triLang(lang, {
+                  ru: 'Ветка диалога сохранена',
+                  uk: 'Гілку діалогу збережено',
+                  en: 'This dialogue branch is saved',
+                  es: 'La rama de este diálogo se ha guardado',
+                  'pt-BR': 'Esta ramificação do diálogo foi salva',
+                  vi: 'Nhánh hội thoại này đã được lưu',
+                  id: 'Cabang dialog ini disimpan',
+                  tr: 'Bu diyalog dalı kaydedildi',
+                  pl: 'Ta gałąź dialogu została zapisana',
+                })}
+              </Text>
             </Reanimated.View>
           )}
 
@@ -440,7 +488,7 @@ export default function DialogVerdictScreen({
           {(reviewStatus === 'loading' || (reviewStatus === 'ready' && review)) && (
             <Reanimated.View
               entering={enter(340)}
-              style={{ backgroundColor: t.bgCard, borderRadius: 20, padding: 14, marginTop: 12 }}
+              style={{ backgroundColor: glassFill(t.bgCard, 0.46), borderRadius: 20, padding: 14, marginTop: 12 }}
             >
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7, marginBottom: 10 }}>
                 <Ionicons name="school-outline" size={15} color={t.accent} />
@@ -458,7 +506,7 @@ export default function DialogVerdictScreen({
                   })}
                 </Text>
               </View>
-              {reviewStatus === 'loading' ? (
+              {reviewStatus === 'loading' && !hasCompletionAssessment ? (
                 <View>
                   <SkeletonBlock width={220} height={13} borderRadius={6} />
                   <View style={{ height: 8 }} />
@@ -466,7 +514,51 @@ export default function DialogVerdictScreen({
                 </View>
               ) : (
                 <View>
-                  {!!review?.praise && (
+                  {hasCompletionAssessment ? (
+                    <View style={{ backgroundColor: t.accentBg, borderRadius: 14, padding: 12, marginBottom: 12 }}>
+                      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7, marginBottom: 6 }}>
+                        <Ionicons name="chatbubble-ellipses-outline" size={14} color={t.accent} />
+                        <Text style={{ color: t.accent, fontSize: f.sub, fontWeight: '800' }} maxFontSizeMultiplier={1.2}>
+                          {hasGeneratedPartnerAssessment
+                            ? triLang(lang, {
+                                ru: 'Итог от собеседника', uk: 'Підсумок від співрозмовника', en: 'Your partner’s takeaway', es: 'Conclusión de tu interlocutor',
+                                'pt-BR': 'Resumo do seu interlocutor', vi: 'Nhận xét từ người trò chuyện cùng bạn', id: 'Kesimpulan dari lawan bicaramu',
+                                tr: 'Sohbet arkadaşının özeti', pl: 'Podsumowanie rozmówcy',
+                              })
+                            : triLang(lang, {
+                                ru: 'Итог переписки', uk: 'Підсумок листування', en: 'Conversation summary', es: 'Resumen de la conversación',
+                                'pt-BR': 'Resumo da conversa', vi: 'Tóm tắt cuộc trò chuyện', id: 'Ringkasan percakapan',
+                                tr: 'Yazışma özeti', pl: 'Podsumowanie rozmowy',
+                              })}{hasGeneratedPartnerAssessment && personaName ? ` · ${personaName}` : ''}
+                        </Text>
+                      </View>
+                      <Text
+                        style={{ color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.42) }}
+                        maxFontSizeMultiplier={1.2}
+                      >
+                        {completionAssessment}
+                      </Text>
+                    </View>
+                  ) : null}
+                  {reviewStatus === 'loading' && hasCompletionAssessment ? (
+                    <Text
+                      style={{ color: t.textMuted, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.4), marginBottom: 12 }}
+                      maxFontSizeMultiplier={1.2}
+                    >
+                      {triLang(lang, {
+                        ru: 'Готовим подробный разбор твоих фраз…',
+                        uk: 'Готуємо докладний розбір твоїх фраз…',
+                        en: 'Preparing a detailed breakdown of your messages…',
+                        es: 'Estamos preparando un análisis detallado de tus mensajes…',
+                        'pt-BR': 'Estamos preparando uma análise detalhada das suas mensagens…',
+                        vi: 'Đang chuẩn bị phần phân tích chi tiết các tin nhắn của bạn…',
+                        id: 'Sedang menyiapkan ulasan terperinci pesanmu…',
+                        tr: 'Mesajlarının ayrıntılı incelemesini hazırlıyoruz…',
+                        pl: 'Przygotowujemy szczegółową analizę Twoich wiadomości…',
+                      })}
+                    </Text>
+                  ) : null}
+                  {!!review?.praise && !review?.fallback && review.praise !== completionAssessment && (
                     <Text
                       style={{ color: t.textSecond, fontSize: f.body, lineHeight: Math.round(f.body * 1.42) }}
                       maxFontSizeMultiplier={1.2}
@@ -474,6 +566,67 @@ export default function DialogVerdictScreen({
                       {review.praise}
                     </Text>
                   )}
+                  {reviewEvidence.length > 0 ? (
+                    <View style={{ marginBottom: 12 }}>
+                      <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '800', marginBottom: 6 }} maxFontSizeMultiplier={1.2}>
+                        {triLang(lang, {
+                          ru: 'На чём основан итог', uk: 'На чому ґрунтується підсумок', en: 'What this is based on', es: 'En qué se basa',
+                          'pt-BR': 'Em que isso se baseia', vi: 'Nhận xét này dựa trên', id: 'Dasar kesimpulan ini',
+                          tr: 'Bu özetin dayanağı', pl: 'Na czym opiera się podsumowanie',
+                        })}
+                      </Text>
+                      {reviewEvidence.map((item, index) => (
+                        <View key={`${item.learnerTurn}:${index}`} style={{ marginTop: index === 0 ? 0 : 8 }}>
+                          <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
+                            “{item.learnerTurn}”
+                          </Text>
+                          <Text
+                            style={{ color: t.textMuted, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.4), marginTop: 2 }}
+                            maxFontSizeMultiplier={1.2}
+                          >
+                            {item.note}
+                          </Text>
+                        </View>
+                      ))}
+                    </View>
+                  ) : null}
+                  {completionObjectiveResults.length > 0 ? (
+                    <View style={{ marginBottom: 12 }}>
+                      <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '800', marginBottom: 6 }} maxFontSizeMultiplier={1.2}>
+                        {triLang(lang, {
+                          ru: 'Итоги задач', uk: 'Підсумки завдань', en: 'Task results', es: 'Resultados de las tareas',
+                          'pt-BR': 'Resultados das tarefas', vi: 'Kết quả nhiệm vụ', id: 'Hasil tugas',
+                          tr: 'Görev sonuçları', pl: 'Wyniki zadań',
+                        })}
+                      </Text>
+                      {completionObjectiveResults.map((result) => (
+                        <View key={result.objectiveId} style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 7, marginTop: 7 }}>
+                          <Ionicons
+                            name={result.status === 'met' ? 'checkmark-circle' : 'ellipse-outline'}
+                            size={16}
+                            color={result.status === 'met' ? t.correct : t.textMuted}
+                            style={{ marginTop: 1 }}
+                          />
+                          <View style={{ flex: 1 }}>
+                            <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
+                              {result.label}
+                            </Text>
+                            <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 1 }} maxFontSizeMultiplier={1.2}>
+                              {result.status === 'met'
+                                ? triLang(lang, {
+                                    ru: 'Засчитано', uk: 'Зараховано', en: 'Completed', es: 'Completado', 'pt-BR': 'Concluído',
+                                    vi: 'Đã hoàn thành', id: 'Selesai', tr: 'Tamamlandı', pl: 'Zaliczone',
+                                  })
+                                : triLang(lang, {
+                                    ru: 'Можно потренировать ещё', uk: 'Можна потренувати ще', en: 'Worth practising again', es: 'Vale la pena practicarlo de nuevo',
+                                    'pt-BR': 'Vale praticar de novo', vi: 'Nên luyện thêm', id: 'Layak dilatih lagi', tr: 'Tekrar pratik yapmaya değer', pl: 'Warto przećwiczyć ponownie',
+                                  })}
+                            </Text>
+                          </View>
+                        </View>
+                      ))}
+                    </View>
+                  ) : null}
                   {/* Оценка диалога числом (владелец: «обязательно надо чтобы
                       оценка диалога была»). Показываем только когда сервер её
                       прислал — выдумывать число нельзя. */}
@@ -506,6 +659,41 @@ export default function DialogVerdictScreen({
                         testID="dialog-phrase-review"
                       />
                     </View>
+                  ) : reviewStatus === 'loading' && hasCompletionAssessment ? null
+                    : reviewStatus !== 'loading' && completionFeedbackMode === 'review_unavailable' ? (
+                    <Text
+                      style={{ color: t.textMuted, fontSize: f.body, lineHeight: Math.round(f.body * 1.42), marginTop: 8 }}
+                      maxFontSizeMultiplier={1.2}
+                    >
+                      {triLang(lang, {
+                        ru: 'Подробный разбор сейчас недоступен. Не будем приписывать ошибки или успехи без проверки.',
+                        uk: 'Детальний розбір зараз недоступний. Не будемо приписувати помилки чи успіхи без перевірки.',
+                        en: 'A detailed review is unavailable right now. We will not claim mistakes or successes without checking.',
+                        es: 'El análisis detallado no está disponible ahora. No atribuiremos errores ni aciertos sin comprobarlos.',
+                        'pt-BR': 'A análise detalhada não está disponível agora. Não vamos atribuir erros ou acertos sem verificar.',
+                        vi: 'Bản phân tích chi tiết hiện chưa có. Chúng tôi sẽ không khẳng định lỗi hay thành công khi chưa kiểm tra.',
+                        id: 'Ulasan terperinci belum tersedia. Kami tidak akan mengklaim kesalahan atau keberhasilan tanpa memeriksa.',
+                        tr: 'Ayrıntılı değerlendirme şu anda kullanılamıyor. Kontrol etmeden hata ya da başarı iddiasında bulunmayacağız.',
+                        pl: 'Szczegółowa analiza jest teraz niedostępna. Nie będziemy przypisywać błędów ani sukcesów bez sprawdzenia.',
+                      })}
+                    </Text>
+                  ) : completionFeedbackMode === 'needs_learner_turn' ? (
+                    <Text
+                      style={{ color: t.textMuted, fontSize: f.body, lineHeight: Math.round(f.body * 1.42), marginTop: 8 }}
+                      maxFontSizeMultiplier={1.2}
+                    >
+                      {triLang(lang, {
+                        ru: 'В переписке пока нет твоих реплик, поэтому оценивать язык ещё нечего.',
+                        uk: 'У листуванні поки немає твоїх реплік, тому оцінювати мову ще нічого.',
+                        en: 'There are no messages from you in this conversation yet, so there is no language to assess.',
+                        es: 'Aún no hay mensajes tuyos en esta conversación, así que todavía no hay nada que evaluar.',
+                        'pt-BR': 'Ainda não há mensagens suas nesta conversa, então ainda não há idioma para avaliar.',
+                        vi: 'Cuộc trò chuyện này chưa có tin nhắn nào từ bạn, nên chưa có ngôn ngữ để đánh giá.',
+                        id: 'Belum ada pesan darimu dalam percakapan ini, jadi belum ada bahasa yang bisa dinilai.',
+                        tr: 'Bu konuşmada senden henüz mesaj yok; bu yüzden değerlendirilecek bir dil de yok.',
+                        pl: 'W tej rozmowie nie ma jeszcze Twoich wiadomości, więc nie ma czego oceniać językowo.',
+                      })}
+                    </Text>
                   ) : (review?.corrections ?? []).length === 0 ? (
                     <Text
                       style={{ color: t.correct, fontSize: f.body, fontWeight: '700', marginTop: 8 }}
@@ -577,7 +765,7 @@ export default function DialogVerdictScreen({
           {locked && (review?.phrases ?? []).length === 0 && (
             <Reanimated.View
               entering={enter(280)}
-              style={{ backgroundColor: t.bgCard, borderRadius: 20, padding: 14, marginTop: 12, overflow: 'hidden' }}
+              style={{ backgroundColor: glassFill(t.bgCard, 0.46), borderRadius: 20, padding: 14, marginTop: 12, overflow: 'hidden' }}
             >
               <LinearGradient
                 pointerEvents="none"
@@ -722,7 +910,7 @@ export default function DialogVerdictScreen({
                 minHeight: 52,
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: t.bgCard,
+                backgroundColor: glassFill(t.bgCard, 0.46),
                 marginTop: 10,
               }}
             >

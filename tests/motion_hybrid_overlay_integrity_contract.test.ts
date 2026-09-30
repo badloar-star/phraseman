@@ -31,20 +31,6 @@ describe("motion hybrid overlay integrity", () => {
     expect(styleBlock(source, "toastMotion")).toContain("maxWidth: 560");
   });
 
-  test("achievement toast keeps viewport geometry off its transformed node", () => {
-    const source = read("components/AchievementToast.tsx");
-    const anchor = styleBlock(source, "containerAnchor");
-    const motion = styleBlock(source, "containerMotion");
-
-    expect(source).toContain("s.containerAnchor");
-    expect(source).toContain("s.containerMotion");
-    expect(anchor).toMatch(/position:\s*'absolute'/);
-    expect(anchor).toMatch(/left:\s*14/);
-    expect(anchor).toMatch(/right:\s*14/);
-    expect(anchor).not.toMatch(/\b(?:opacity|transform):/);
-    expect(motion).not.toMatch(/\b(?:position|left|right|bottom):/);
-  });
-
   test("offline hybrid banner keeps viewport geometry off its transformed node", () => {
     const source = read("components/OfflineBanner.tsx");
     const anchor = styleBlock(source, "hybridAnchor");
@@ -68,7 +54,6 @@ describe("motion hybrid overlay integrity", () => {
   });
 
   test.each([
-    "components/AchievementToast.tsx",
     "components/OfflineBanner.tsx",
     "components/PromoBanner.tsx",
     "components/SaveProgressBanner.tsx",
@@ -88,26 +73,9 @@ describe("motion hybrid overlay integrity", () => {
 
   test.each([
     "components/modal_fx/HybridAlertShell.tsx",
-    "components/arena/ArenaModeSheet.tsx",
-    "components/arena/ArenaRankHybrid.tsx",
-    "components/LevelSpinRewardModal.tsx",
     "components/RewardModalBackdrop.tsx",
-    "app/LeagueResultModal.tsx",
   ])("%s does not accelerate hybrid exits with ease-in", (file) => {
     expect(read(file)).not.toMatch(/\bR?Easing\.in\(/);
   });
 
-  test("league result hybrid animates only composite properties", () => {
-    const source = read("components/league/LeagueResultHybrid.tsx");
-    const medallion = animatedStyleBlock(source, "medallionStyle");
-    const trail = animatedStyleBlock(source, "trailStyle");
-    const progress = animatedStyleBlock(source, "progressBarStyle");
-
-    expect(medallion).not.toMatch(/\btop:/);
-    expect(trail).not.toMatch(/\b(?:top|height):/);
-    expect(progress).not.toMatch(/\bwidth:/);
-    expect(medallion).toContain("translateY");
-    expect(trail).toContain("scaleY");
-    expect(progress).toContain("scaleX");
-  });
 });

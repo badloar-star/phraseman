@@ -11,7 +11,6 @@ import { DebugLogger } from './debug-logger';
 export const ACHIEVEMENT_FOUNDATION_PROGRESS_KEY = 'achievement_foundation_progress_v2';
 export const ACHIEVEMENT_ACCESS_PLUS_PAID_KEY = 'achievement_access_plus_paid_v1';
 export const ACHIEVEMENT_ACCESS_PRO_PAID_KEY = 'achievement_access_pro_paid_v1';
-const MAX_WEEK_HISTORY = 1_000;
 const MAX_COMEBACK_DATES = 10;
 const MAX_ACTIVE_DATE_HISTORY = 5_000;
 
@@ -25,42 +24,14 @@ export interface FoundationComebackProgress {
 export interface AchievementFoundationProgressV2 {
   version: 2;
   maxEligibleShardBalance: number;
-  reachedLeagueIds: number[];
-  processedLeagueWeeks: string[];
-  championWeeks: string[];
-  championLeagueIds: number[];
-  legacyChampionCount: number;
-  diamondPlusWeeks: string[];
-  legacyDiamondPlusConsecutiveWeeks: number;
-  diamondPlusConsecutiveWeeks: number;
-  lastDiamondPlusWeekId: string | null;
   activeDates: string[];
   comeback: FoundationComebackProgress | null;
   paidAccess: { plus: boolean; pro: boolean };
 }
 
-export interface FoundationLeagueEvidence {
-  weekId: string;
-  points: number;
-  prevLeagueId: number;
-  newLeagueId: number;
-  myRank: number;
-  totalInGroup: number;
-  confirmed: boolean;
-}
-
 export const createEmptyFoundationProgress = (): AchievementFoundationProgressV2 => ({
   version: 2,
   maxEligibleShardBalance: 0,
-  reachedLeagueIds: [],
-  processedLeagueWeeks: [],
-  championWeeks: [],
-  championLeagueIds: [],
-  legacyChampionCount: 0,
-  diamondPlusWeeks: [],
-  legacyDiamondPlusConsecutiveWeeks: 0,
-  diamondPlusConsecutiveWeeks: 0,
-  lastDiamondPlusWeekId: null,
   activeDates: [],
   comeback: null,
   paidAccess: { plus: false, pro: false },
@@ -78,34 +49,8 @@ const dateKey = (value: unknown): string | null => {
     : null;
 };
 
-const weekKey = (value: unknown): string | null => {
-  const text = String(value ?? '').trim();
-  const match = /^(\d{4})-W(\d{2})$/.exec(text);
-  if (!match) return null;
-  const week = Number(match[2]);
-  return week >= 1 && week <= 53 ? text : null;
-};
-
 const uniqueSorted = <T extends string | number>(values: readonly T[], max: number): T[] =>
   [...new Set(values)].sort((a, b) => String(a).localeCompare(String(b))).slice(-max);
-
-const leagueId = (value: unknown): number | null => {
-  const n = Number(value);
-  if (!Number.isFinite(n)) return null;
-  const normalized = Math.floor(n);
-  return normalized >= 0 && normalized <= 11 ? normalized : null;
-};
-
-const normalizeLeagueIds = (value: unknown): number[] => {
-  if (!Array.isArray(value)) return [];
-  return uniqueSorted(value.map(leagueId).filter((row): row is number => row !== null), 12)
-    .sort((a, b) => a - b);
-};
-
-const normalizeWeeks = (value: unknown): string[] => {
-  if (!Array.isArray(value)) return [];
-  return uniqueSorted(value.map(weekKey).filter((row): row is string => row !== null), MAX_WEEK_HISTORY);
-};
 
 const normalizeDates = (value: unknown): string[] => {
   if (!Array.isArray(value)) return [];
@@ -113,32 +58,6 @@ const normalizeDates = (value: unknown): string[] => {
     value.map(dateKey).filter((row): row is string => row !== null),
     MAX_ACTIVE_DATE_HISTORY,
   );
-};
-
-const isoWeekOrdinal = (value: string): number | null => {
-  const valid = weekKey(value);
-  if (!valid) return null;
-  const [yearText, weekText] = valid.split('-W');
-  const year = Number(yearText);
-  const week = Number(weekText);
-  const jan4 = new Date(Date.UTC(year, 0, 4));
-  const jan4Day = jan4.getUTCDay() || 7;
-  const monday = Date.UTC(year, 0, 4 - jan4Day + 1 + (week - 1) * 7);
-  return Math.floor(monday / (7 * 24 * 60 * 60_000));
-};
-
-const consecutiveTail = (weeks: readonly string[]): { count: number; last: string | null } => {
-  const ordered = uniqueSorted(weeks.map(weekKey).filter((row): row is string => row !== null), MAX_WEEK_HISTORY)
-    .map((week) => ({ week, ordinal: isoWeekOrdinal(week) }))
-    .filter((row): row is { week: string; ordinal: number } => row.ordinal !== null)
-    .sort((a, b) => a.ordinal - b.ordinal);
-  if (ordered.length === 0) return { count: 0, last: null };
-  let count = 1;
-  for (let i = ordered.length - 1; i > 0; i -= 1) {
-    if (ordered[i]!.ordinal - ordered[i - 1]!.ordinal !== 1) break;
-    count += 1;
-  }
-  return { count, last: ordered[ordered.length - 1]!.week };
 };
 
 const normalizeComeback = (value: unknown): FoundationComebackProgress | null => {
@@ -166,23 +85,12 @@ export function normalizeFoundationProgress(value: unknown): AchievementFoundati
       DebugLogger.error('achievement_progress_v2:parsed', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
 
-  const diamondPlusWeeks = normalizeWeeks(row.diamondPlusWeeks);
-  const streak = consecutiveTail(diamondPlusWeeks);
   const paid = row.paidAccess && typeof row.paidAccess === 'object'
     ? row.paidAccess as Record<string, unknown>
     : {};
   return {
     version: 2,
     maxEligibleShardBalance: int(row.maxEligibleShardBalance),
-    reachedLeagueIds: normalizeLeagueIds(row.reachedLeagueIds),
-    processedLeagueWeeks: normalizeWeeks(row.processedLeagueWeeks),
-    championWeeks: normalizeWeeks(row.championWeeks),
-    championLeagueIds: normalizeLeagueIds(row.championLeagueIds),
-    legacyChampionCount: int(row.legacyChampionCount, 10_000),
-    diamondPlusWeeks,
-    legacyDiamondPlusConsecutiveWeeks: int(row.legacyDiamondPlusConsecutiveWeeks, 1_000),
-    diamondPlusConsecutiveWeeks: Math.max(int(row.legacyDiamondPlusConsecutiveWeeks, 1_000), streak.count),
-    lastDiamondPlusWeekId: streak.last,
     activeDates: normalizeDates(row.activeDates),
     comeback: normalizeComeback(row.comeback),
     paidAccess: { plus: paid.plus === true, pro: paid.pro === true },
@@ -198,47 +106,6 @@ export function reduceFoundationShardBalance(
   return maxEligibleShardBalance === state.maxEligibleShardBalance
     ? state
     : { ...state, maxEligibleShardBalance };
-}
-
-export function reduceFoundationLeagueResult(
-  value: AchievementFoundationProgressV2,
-  evidence: FoundationLeagueEvidence,
-): AchievementFoundationProgressV2 {
-  const state = normalizeFoundationProgress(value);
-  const weekId = weekKey(evidence.weekId);
-  if (!evidence.confirmed || !weekId || state.processedLeagueWeeks.includes(weekId)) return state;
-  const points = int(evidence.points);
-  const prevLeagueId = leagueId(evidence.prevLeagueId);
-  const newLeagueId = leagueId(evidence.newLeagueId);
-  if (prevLeagueId === null || newLeagueId === null) return state;
-  const reached = new Set(state.reachedLeagueIds);
-  if (points > 0 || prevLeagueId > 0) reached.add(prevLeagueId);
-  if (points > 0 || newLeagueId > 0) reached.add(newLeagueId);
-
-  const champion = int(evidence.totalInGroup) >= 2 && int(evidence.myRank) === 1;
-  const championWeeks = champion
-    ? uniqueSorted([...state.championWeeks, weekId], MAX_WEEK_HISTORY)
-    : state.championWeeks;
-  const championLeagueIds = champion
-    ? normalizeLeagueIds([...state.championLeagueIds, prevLeagueId])
-    : state.championLeagueIds;
-  const diamondPlusWeeks = prevLeagueId >= 8
-    ? uniqueSorted([...state.diamondPlusWeeks, weekId], MAX_WEEK_HISTORY)
-    : state.diamondPlusWeeks;
-  const diamondStreak = consecutiveTail(diamondPlusWeeks);
-
-  return {
-    ...state,
-    reachedLeagueIds: normalizeLeagueIds([...reached]),
-    processedLeagueWeeks: uniqueSorted([...state.processedLeagueWeeks, weekId], MAX_WEEK_HISTORY),
-    championWeeks,
-    championLeagueIds,
-    legacyChampionCount: state.legacyChampionCount,
-    diamondPlusWeeks,
-    legacyDiamondPlusConsecutiveWeeks: state.legacyDiamondPlusConsecutiveWeeks,
-    diamondPlusConsecutiveWeeks: Math.max(state.legacyDiamondPlusConsecutiveWeeks, diamondStreak.count),
-    lastDiamondPlusWeekId: diamondStreak.last,
-  };
 }
 
 const utcDayDelta = (from: string, to: string): number =>
@@ -319,35 +186,12 @@ export function reduceFoundationPaidAccess(
   };
 }
 
-export function reduceFoundationLegacyCounters(
-  value: AchievementFoundationProgressV2,
-  legacy: Readonly<{ championCount?: unknown; diamondPlusWeeks?: unknown }>,
-): AchievementFoundationProgressV2 {
-  const state = normalizeFoundationProgress(value);
-  const legacyChampionCount = Math.max(state.legacyChampionCount, int(legacy.championCount, 10_000));
-  const legacyDiamondPlusConsecutiveWeeks = Math.max(
-    state.legacyDiamondPlusConsecutiveWeeks,
-    int(legacy.diamondPlusWeeks, 1_000),
-  );
-  return {
-    ...state,
-    legacyChampionCount,
-    legacyDiamondPlusConsecutiveWeeks,
-    diamondPlusConsecutiveWeeks: Math.max(
-      state.diamondPlusConsecutiveWeeks,
-      legacyDiamondPlusConsecutiveWeeks,
-    ),
-  };
-}
-
 export function mergeFoundationProgress(
   leftValue: unknown,
   rightValue: unknown,
 ): AchievementFoundationProgressV2 {
   const left = normalizeFoundationProgress(leftValue);
   const right = normalizeFoundationProgress(rightValue);
-  const diamondPlusWeeks = uniqueSorted([...left.diamondPlusWeeks, ...right.diamondPlusWeeks], MAX_WEEK_HISTORY);
-  const streak = consecutiveTail(diamondPlusWeeks);
   const activeDates = normalizeDates([...left.activeDates, ...right.activeDates]);
   const comeback = left.comeback?.qualified
     ? left.comeback
@@ -357,22 +201,6 @@ export function mergeFoundationProgress(
   return normalizeFoundationProgress({
     version: 2,
     maxEligibleShardBalance: Math.max(left.maxEligibleShardBalance, right.maxEligibleShardBalance),
-    reachedLeagueIds: [...left.reachedLeagueIds, ...right.reachedLeagueIds],
-    processedLeagueWeeks: [...left.processedLeagueWeeks, ...right.processedLeagueWeeks],
-    championWeeks: [...left.championWeeks, ...right.championWeeks],
-    championLeagueIds: [...left.championLeagueIds, ...right.championLeagueIds],
-    legacyChampionCount: Math.max(left.legacyChampionCount, right.legacyChampionCount),
-    diamondPlusWeeks,
-    legacyDiamondPlusConsecutiveWeeks: Math.max(
-      left.legacyDiamondPlusConsecutiveWeeks,
-      right.legacyDiamondPlusConsecutiveWeeks,
-    ),
-    diamondPlusConsecutiveWeeks: Math.max(
-      left.legacyDiamondPlusConsecutiveWeeks,
-      right.legacyDiamondPlusConsecutiveWeeks,
-      streak.count,
-    ),
-    lastDiamondPlusWeekId: streak.last,
     activeDates,
     comeback,
     paidAccess: {

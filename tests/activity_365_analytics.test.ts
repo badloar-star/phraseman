@@ -31,12 +31,10 @@ describe('activity 365 analytics', () => {
     expect(french.days.find(day => day.date === today)?.metrics.lessons).toBe(3);
   });
   it('computes streaks, months, score and goal forecast from deterministic data', () => {
-    const statsMap: Record<string, { points: number }> = {};
     const fgDaily: Record<string, number> = {};
     const breakdown: Record<string, any> = {};
     for (let day = 1; day <= 10; day++) {
       const key = `2026-05-${String(day).padStart(2, '0')}`;
-      statsMap[key] = { points: day * 10 };
       fgDaily[key] = 5 * 60_000;
       breakdown[key] = {
         words_learned: day,
@@ -44,12 +42,10 @@ describe('activity 365 analytics', () => {
         lessons_completed: day % 2,
       };
     }
-    delete statsMap['2026-05-05'];
     delete fgDaily['2026-05-05'];
     delete breakdown['2026-05-05'];
 
     const analytics = computeActivity365Analytics({
-      statsMap,
       fgDaily,
       breakdown,
       goal: 100,
@@ -71,14 +67,13 @@ describe('activity 365 analytics', () => {
 
   it('uses the observed activity window for goal pace, not a full stale 365-day denominator', () => {
     const analytics = computeActivity365Analytics({
-      statsMap: {
-        '2026-05-01': { points: 20 },
-        '2026-05-02': { points: 20 },
-        '2026-05-03': { points: 20 },
-        '2026-05-04': { points: 20 },
-        '2026-05-05': { points: 20 },
+      fgDaily: {
+        '2026-05-01': 60_000,
+        '2026-05-02': 60_000,
+        '2026-05-03': 60_000,
+        '2026-05-04': 60_000,
+        '2026-05-05': 60_000,
       },
-      fgDaily: {},
       breakdown: {},
       goal: 100,
       goalChosen: true,
@@ -92,14 +87,13 @@ describe('activity 365 analytics', () => {
 
   it('hides the forecast until the user explicitly picks a year goal', () => {
     const base = {
-      statsMap: {
-        '2026-05-01': { points: 20 },
-        '2026-05-02': { points: 20 },
-        '2026-05-03': { points: 20 },
-        '2026-05-04': { points: 20 },
-        '2026-05-05': { points: 20 },
+      fgDaily: {
+        '2026-05-01': 60_000,
+        '2026-05-02': 60_000,
+        '2026-05-03': 60_000,
+        '2026-05-04': 60_000,
+        '2026-05-05': 60_000,
       },
-      fgDaily: {},
       breakdown: {},
       goal: 100,
       now: new Date('2026-05-05T12:00:00Z'),
@@ -115,9 +109,6 @@ describe('activity 365 analytics', () => {
 
   it('treats a fresh one-day account as warmup instead of a missed-rhythm state', () => {
     const analytics = computeActivity365Analytics({
-      statsMap: {
-        '2026-05-21': { points: 385 },
-      },
       fgDaily: {
         '2026-05-21': 16 * 60_000,
       },
@@ -136,7 +127,6 @@ describe('activity 365 analytics', () => {
 
   it('counts completed lessons directly instead of treating learned phrases as lessons', () => {
     const analytics = computeActivity365Analytics({
-      statsMap: {},
       fgDaily: {},
       breakdown: {
         '2026-05-21': { lessons_completed: 2, words_learned: 8, phrases_learned: 12 },
@@ -159,10 +149,6 @@ describe('activity 365 analytics', () => {
 
   it('uses type filters from daily breakdown metrics', () => {
     const analytics = computeActivity365Analytics({
-      statsMap: {
-        '2026-05-09': { points: 10 },
-        '2026-05-10': { points: 30 },
-      },
       fgDaily: {},
       breakdown: {
         '2026-05-09': { lessons_completed: 2, flashcards_saved: 1 },
@@ -183,11 +169,10 @@ describe('activity 365 analytics', () => {
 
   it('keeps the monthly calendar on observed months instead of future padding months', () => {
     const analytics = computeActivity365Analytics({
-      statsMap: {
-        '2026-06-29': { points: 20 },
-        '2026-06-30': { points: 35 },
+      fgDaily: {
+        '2026-06-29': 20 * 60_000,
+        '2026-06-30': 35 * 60_000,
       },
-      fgDaily: {},
       breakdown: {},
       goal: 180,
       now: new Date('2026-06-30T12:00:00Z'),
@@ -200,13 +185,12 @@ describe('activity 365 analytics', () => {
     expect(monthKeys).not.toContain('2027-06');
   });
 
-  it('fills the visible month calendar with empty clickable past days while preserving XP days', () => {
+  it('fills the visible month calendar with empty clickable past days while preserving studied days', () => {
     const analytics = computeActivity365Analytics({
-      statsMap: {
-        '2026-06-29': { points: 20 },
-        '2026-06-30': { points: 35 },
+      fgDaily: {
+        '2026-06-29': 20 * 60_000,
+        '2026-06-30': 35 * 60_000,
       },
-      fgDaily: {},
       breakdown: {},
       goal: 180,
       now: new Date('2026-06-30T12:00:00Z'),
@@ -218,12 +202,12 @@ describe('activity 365 analytics', () => {
     expect(grid.month).toBe(6);
     expect(monthDays).toHaveLength(30);
     expect(monthDays.find(day => day.date === '2026-06-01')).toMatchObject({
-      xp: 0,
+      minutes: 0,
       active: false,
       future: false,
     });
     expect(monthDays.find(day => day.date === '2026-06-29')).toMatchObject({
-      xp: 20,
+      minutes: 20,
       active: true,
       future: false,
     });

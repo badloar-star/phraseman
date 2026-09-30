@@ -2,6 +2,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { evaluateDailyPhraseTargetSurface } from './daily_phrase_target_surface.mjs';
+import {
+  exactDailyPhraseRowId,
+  inspectDailyPhraseRowIds,
+  selectExactDailyPhraseRows,
+} from './daily_phrase_row_selection.mjs';
+
 export const APPROVED_STYLE_CONTRACT_VERSION = 'daily-phrase-narrative-style-v1';
 
 const LOCALE_RULES = {
@@ -23,15 +30,21 @@ const LOCALE_RULES = {
   },
 };
 
+const INTERNAL_ROW_REFERENCE = /\b(?:es|fr|de)[_-]?\d{3}\b/iu;
+
 function words(value) {
   return String(value).match(/[\p{L}\p{N}]+(?:[’'ʼ-][\p{L}\p{N}]+)*/gu) ?? [];
 }
 
-function sentenceCount(value) {
+function sentences(value) {
   return String(value)
     .split(/[.!?…]+(?:[»”"']+)?/u)
     .map((part) => part.trim())
-    .filter(Boolean).length;
+    .filter(Boolean);
+}
+
+function sentenceCount(value) {
+  return sentences(value).length;
 }
 
 function normalizeForMatch(value) {
@@ -43,10 +56,15 @@ function issue(rowId, code, message) {
 }
 
 export function evaluateDailyPhraseRowStyle(row) {
-  const rowId = String(row?.id ?? '');
+  const exactRowId = exactDailyPhraseRowId(row?.id);
+  const rowId = exactRowId ?? '';
   const targetText = String(row?.targetText ?? '').trim();
   const targetNormalized = normalizeForMatch(targetText);
   const issues = [];
+
+  if (!exactRowId) {
+    issues.push(issue('__unknown__', 'row.invalid_id_type', 'Row id must be an exact nonblank string'));
+  }
 
   if (!targetNormalized) {
     issues.push(issue(rowId, 'target.missing', 'targetText is required'));
@@ -79,9 +97,28 @@ export function evaluateDailyPhraseRowStyle(row) {
       );
     }
 
-    if (targetNormalized && !normalizeForMatch(text).includes(targetNormalized)) {
+    const targetSurface = evaluateDailyPhraseTargetSurface(row, rules.field);
+    if (targetNormalized && targetSurface.status !== 'PASS') {
+      const invalidDeclaredSurface = ['invalid_surface', 'declared_surface_missing']
+        .includes(targetSurface.status);
       issues.push(
-        issue(rowId, `${prefix}target_missing`, `${rules.field} must weave the exact target phrase into the story`),
+        issue(
+          rowId,
+          invalidDeclaredSurface ? `${prefix}target_surface_form_invalid` : `${prefix}target_missing`,
+          invalidDeclaredSurface
+            ? `${rules.field} declares an invalid or absent grammatical target surface form`
+            : `${rules.field} must weave targetText or an explicit grammatical surface form into the story`,
+        ),
+      );
+    }
+
+    if (INTERNAL_ROW_REFERENCE.test(text)) {
+      issues.push(
+        issue(
+          rowId,
+          `${prefix}internal_row_reference`,
+          `${rules.field} must not expose internal row identifiers to learners`,
+        ),
       );
     }
 
@@ -98,11 +135,8 @@ export function evaluateDailyPhraseRowStyle(row) {
       );
     }
 
-    const sentences = text
-      .split(/[.!?…]+(?:[»”"']+)?/u)
-      .map((part) => part.trim())
-      .filter(Boolean);
-    const closing = sentences.at(-1) ?? '';
+    const textSentences = sentences(text);
+    const closing = textSentences.at(-1) ?? '';
     if (words(closing).length < 4) {
       issues.push(
         issue(rowId, `${prefix}weak_closing`, `${rules.field} needs a memorable closing sentence of at least four words`),
@@ -131,10 +165,31 @@ function containsLearnerQuestion(row, field) {
   return withoutTarget.includes('?');
 }
 
+function targetSentencePosition(row, field) {
+  const result = evaluateDailyPhraseTargetSurface(row, field);
+  return result.status === 'PASS' && Number.isInteger(result.startSentenceIndex)
+    ? result.startSentenceIndex
+    : -1;
+}
+
+function dominantValue(values) {
+  const counts = new Map();
+  for (const value of values) counts.set(value, (counts.get(value) ?? 0) + 1);
+  return [...counts.entries()].sort((left, right) => right[1] - left[1])[0] ?? [undefined, 0];
+}
+
 export function evaluateDailyPhraseBatchStyle(rows) {
   const list = Array.isArray(rows) ? rows : [];
   const rowResults = list.map(evaluateDailyPhraseRowStyle);
   const issues = rowResults.flatMap((result) => result.issues);
+  const rowIdInventory = inspectDailyPhraseRowIds(list);
+
+  for (const index of rowIdInventory.invalidIndexes) {
+    issues.push(issue('__batch__', 'batch.invalid_row_id_type', `Row ${index + 1} needs an exact nonblank string id`));
+  }
+  for (const rowId of rowIdInventory.duplicates) {
+    issues.push(issue(rowId, 'batch.duplicate_row_id', `Row id ${rowId} occurs more than once`));
+  }
 
   if (list.length === 0) {
     issues.push(issue('__batch__', 'batch.empty', 'At least one Daily Phrase row is required'));
@@ -148,7 +203,7 @@ export function evaluateDailyPhraseBatchStyle(rows) {
       const key = openingKey(row?.[field]);
       if (!key) continue;
       const ids = groups.get(key) ?? [];
-      ids.push(String(row?.id ?? '__unknown__'));
+      ids.push(exactDailyPhraseRowId(row?.id) ?? '__unknown__');
       groups.set(key, ids);
     }
 
@@ -165,6 +220,50 @@ export function evaluateDailyPhraseBatchStyle(rows) {
     }
 
     if (list.length >= 5) {
+      const sentenceCounts = list.map((row) => sentenceCount(row?.[field]));
+      if (sentenceCounts.every((count) => count > 0) && new Set(sentenceCounts).size === 1) {
+        issues.push(
+          issue(
+            '__batch__',
+            'batch.uniform_sentence_count',
+            `${locale} descriptions all use exactly ${sentenceCounts[0]} sentences; vary narrative pacing across the batch`,
+          ),
+        );
+      } else if (list.length >= 10 && sentenceCounts.every((count) => count > 0)) {
+        const [dominantCount, occurrences] = dominantValue(sentenceCounts);
+        if (occurrences / list.length >= 0.8) {
+          issues.push(
+            issue(
+              '__batch__',
+              'batch.concentrated_sentence_count',
+              `${locale} descriptions use exactly ${dominantCount} sentences in ${occurrences}/${list.length} rows; vary narrative pacing across the batch`,
+            ),
+          );
+        }
+      }
+
+      const targetPositions = list.map((row) => targetSentencePosition(row, field));
+      if (targetPositions.every((position) => position >= 0) && new Set(targetPositions).size === 1) {
+        issues.push(
+          issue(
+            '__batch__',
+            'batch.uniform_target_position',
+            `${locale} target phrase always appears in sentence ${targetPositions[0] + 1}; vary how the phrase enters each story`,
+          ),
+        );
+      } else if (list.length >= 10 && targetPositions.every((position) => position >= 0)) {
+        const [dominantPosition, occurrences] = dominantValue(targetPositions);
+        if (occurrences / list.length >= 0.8) {
+          issues.push(
+            issue(
+              '__batch__',
+              'batch.concentrated_target_position',
+              `${locale} target phrase appears in sentence ${dominantPosition + 1} in ${occurrences}/${list.length} rows; vary how the phrase enters each story`,
+            ),
+          );
+        }
+      }
+
       const questionRows = list.filter((row) => containsLearnerQuestion(row, field));
       if (questionRows.length / list.length > 0.6) {
         issues.push(
@@ -181,7 +280,7 @@ export function evaluateDailyPhraseBatchStyle(rows) {
   return {
     contractVersion: APPROVED_STYLE_CONTRACT_VERSION,
     verdict: issues.length === 0 ? 'PASS' : 'HOLD',
-    checkedRows: list.map((row) => String(row?.id ?? '__unknown__')),
+    checkedRows: list.map((row) => exactDailyPhraseRowId(row?.id) ?? '__unknown__'),
     issues,
   };
 }
@@ -218,13 +317,7 @@ function runCli() {
     throw new Error(`No rows array found in ${absolutePath}`);
   }
 
-  const requested = ids ? new Set(ids) : null;
-  const rows = requested ? allRows.filter((row) => requested.has(String(row?.id))) : allRows;
-  if (requested && rows.length !== requested.size) {
-    const found = new Set(rows.map((row) => String(row?.id)));
-    const missing = [...requested].filter((id) => !found.has(id));
-    throw new Error(`Unknown row ids: ${missing.join(', ')}`);
-  }
+  const rows = selectExactDailyPhraseRows(allRows, ids);
 
   const result = evaluateDailyPhraseBatchStyle(rows);
   console.log(JSON.stringify(result, null, 2));

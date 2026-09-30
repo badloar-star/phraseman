@@ -1,10 +1,8 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { safeRouterBack } from './navigation_back';
-import { registerXP } from './xp_manager';
-import { lessonTheorySectionsSeenKey, lessonTheoryXpClaimedKey } from './target_storage_keys';
+import { lessonTheorySectionsSeenKey } from './target_storage_keys';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLang } from '../components/LangContext';
 import { legacyRuUk, triLang } from '../constants/i18n';
@@ -201,54 +199,14 @@ export default function LessonTheoryV2Screen() {
     tr: 'am, is, are — İngilizce cümlenin iskeleti',
     pl: 'am, is, are — szkielet angielskiego zdania',
   });
-  const claimStorageKey = useMemo(
-    () => lessonTheoryXpClaimedKey(lessonId, studyTarget),
-    [lessonId, studyTarget],
-  );
   const progressStorageKey = useMemo(
     () => lessonTheorySectionsSeenKey(lessonId, studyTarget),
     [lessonId, studyTarget],
   );
-  const [initialClaimed, setInitialClaimed] = React.useState(false);
-
-  useEffect(() => {
-    let cancelled = false;
-    setInitialClaimed(false);
-    AsyncStorage.getItem(claimStorageKey)
-      .then((value) => {
-        if (!cancelled) setInitialClaimed(value === '1');
-      })
-      .catch(() => {});
-    return () => { cancelled = true; };
-  }, [claimStorageKey, hasNewTheory, studyTarget]);
-
   const goBack = useCallback(
     () => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any),
     [router, lessonId],
   );
-
-  const handleClaimXP = useCallback(async (): Promise<boolean> => {
-    try {
-      const already = await AsyncStorage.getItem(claimStorageKey);
-      if (already === '1') return true;
-      await AsyncStorage.setItem(claimStorageKey, '1');
-      const userName = (await AsyncStorage.getItem('user_name')) ?? '';
-      await registerXP(25, 'vocabulary_learned', userName, lang, lessonId, {
-        eventId: [
-          'vocabulary',
-          String(studyTarget ?? 'na').replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, 40) || 'na',
-          String(lessonId),
-          'theory',
-          'claim',
-        ].join(':'),
-        payload: { lessonId, studyTarget, surface: 'lesson_theory' },
-      });
-      return true;
-    } catch {
-      await AsyncStorage.removeItem(claimStorageKey).catch(() => {});
-      return false;
-    }
-  }, [claimStorageKey, lessonId, studyTarget, lang]);
 
   if (!hasNewTheory) return null;
 
@@ -258,10 +216,7 @@ export default function LessonTheoryV2Screen() {
       title={title}
       subtitle={subtitle}
       sections={sections}
-      xpAmount={25}
-      initialClaimed={initialClaimed}
       progressStorageKey={progressStorageKey}
-      onClaimXP={handleClaimXP}
       onBack={goBack}
     />
   );

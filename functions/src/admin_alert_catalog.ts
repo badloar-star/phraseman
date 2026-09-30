@@ -53,6 +53,7 @@ export const ADMIN_ALERT_CATALOG = Object.freeze([
   { id: 'cancelReason', category: 'content', mode: 'instant', label: 'Новая причина отмены', required: false, defaultEnabled: true },
   { id: 'appMessageDigest', category: 'content', mode: 'digest', label: 'Реакции на сообщение приложения', required: false, defaultEnabled: true },
   { id: 'cardPackDigest', category: 'content', mode: 'digest', label: 'Сохранения и покупки Card Packs', required: false, defaultEnabled: true },
+  { id: 'customCardMilestone', category: 'content', mode: 'instant', label: '1 500 собственных карточек', required: false, defaultEnabled: true },
 
   { id: 'cronHealth', category: 'operations', mode: 'instant', label: 'Крон упал или восстановился', required: false, defaultEnabled: true },
   { id: 'paymentWebhookFailure', category: 'operations', mode: 'instant', label: 'Платёжный webhook не обработан', required: false, defaultEnabled: true },

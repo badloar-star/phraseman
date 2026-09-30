@@ -107,7 +107,7 @@ export type WatchCreditOutcome =
  * passive recovery for the same time window; it is never added on top of it.
  *
  * зачем (PM-115, владелец): «убрать начисление рун и энергии за просмотр
- * видео» — сигнатура и тип возврата сохранены (по образцу local_level_spins.ts
+ * видео» — сигнатура и тип возврата сохранены по прежнему контракту
  * после PM-047), чтобы hooks/use_video_watch_energy_boost.ts и
  * YoutubeInlinePlayer.tsx не требовали правки. Проигрывание/счётчик просмотров
  * не тронуты — гасится только выдача энергии.

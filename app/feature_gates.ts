@@ -17,15 +17,11 @@
 // действовать — их значения настраиваются отдельно (Remote Config numbers).
 // ═══════════════════════════════════════════════════════════════════════════
 
-import { getRemoteBool, type RemoteBoolKey } from './remote_flags';
-import { isFeatureGrantedByWeeklyBoon } from './boons/boon_feature_grants';
-
 /** Каноничные имена фич, у которых есть премиум-замок. */
 export type FeatureGate =
   | 'lessons'
   | 'speaking'
   | 'ai_dialog'
-  | 'personal_plan'
   | 'stats'
   | 'flashcards'
   | 'themes'
@@ -36,36 +32,21 @@ export type FeatureGate =
   | 'extra_languages'
   | 'mistake_practice';
 
-/** Соответствие фича → булев флаг remote_config. Держать в синхроне с RemoteBoolKey. */
-const FEATURE_FLAG: Record<FeatureGate, RemoteBoolKey> = {
-  lessons: 'gate_lessons_premium',
-  speaking: 'gate_speaking_premium',
-  ai_dialog: 'gate_ai_dialog_premium',
-  personal_plan: 'gate_personal_plan_premium',
-  stats: 'gate_stats_premium',
-  flashcards: 'gate_flashcards_premium',
-  themes: 'gate_themes_premium',
-  avatar_auras: 'gate_avatar_auras_premium',
-  mastery: 'gate_mastery_premium',
-  energy: 'gate_energy_premium',
-  // зачем (владелец 2026-09-14): Арена получила дневной лимит 1 матч/сутки,
-  // значит ей нужен и свой рычаг в «Пульте» — иначе лимит нельзя снять без релиза.
-  arena: 'gate_arena_premium',
-  extra_languages: 'gate_extra_languages_premium',
-  // зачем (владелец 2026-09-14): «Работа над ошибками» получила дневной лимит
-  // 1 сессия/сутки - нужен свой рычаг в «Пульте», чтобы снять лимит без релиза.
-  mistake_practice: 'gate_mistake_practice_premium',
-};
+/** Премиум-доступ — локальное контрактное решение приложения, не remote-config. */
+const PREMIUM_GATED = new Set<FeatureGate>([
+  'lessons', 'speaking', 'ai_dialog', 'stats', 'flashcards', 'themes',
+  'avatar_auras', 'mastery', 'energy', 'arena', 'extra_languages', 'mistake_practice',
+]);
 
 /** Полный список фич — для итерации в админке/тестах. */
-export const FEATURE_GATE_KEYS = Object.keys(FEATURE_FLAG) as FeatureGate[];
+export const FEATURE_GATE_KEYS = Object.freeze([...PREMIUM_GATED]) as readonly FeatureGate[];
 
 /**
  * true → фича по-прежнему за премиум-замком (нужно проверять премиум/показывать
  * пейвол). false → админ перевёл фичу в «Фри», замок снят для всех.
  */
 export function isFeaturePremiumGated(feature: FeatureGate): boolean {
-  return getRemoteBool(FEATURE_FLAG[feature]);
+  return PREMIUM_GATED.has(feature);
 }
 
 /** Удобный инверс: true → фича бесплатна для всех (замок снят админом). */
@@ -91,8 +72,6 @@ export function isFeatureBlockedForAge(feature: FeatureGate): boolean {
  */
 export function shouldGateFeature(feature: FeatureGate, hasPremiumAccess: boolean): boolean {
   if (hasPremiumAccess) return false;
-  // Weekly Boon может временно открыть фичу всем (напр. «Speaking-суббота»).
-  if (isFeatureGrantedByWeeklyBoon(feature)) return false;
   return isFeaturePremiumGated(feature);
 }
 

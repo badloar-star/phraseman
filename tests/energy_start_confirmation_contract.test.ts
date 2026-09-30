@@ -52,11 +52,6 @@ describe('старт платной активности: без окна под
 
   it('каждый платный вход идёт через единую точку списания', () => {
     const paidEntryFiles = [
-      'app/ai_dialog_session.tsx',
-      'app/arena_friend_duel.tsx',
-      'app/arena_invite.tsx',
-      'app/arena_matchmaking.tsx',
-      'app/arena_today.tsx',
       'app/diagnostic_test.tsx',
       'app/exam.tsx',
       'app/flashcards_blitz_session.tsx',
@@ -76,7 +71,9 @@ describe('старт платной активности: без окна под
 
     for (const file of paidEntryFiles) {
       const source = read(file);
-      expect(source).toMatch(/confirmSpend(?:One|Amount)|confirm[A-Z][A-Za-z]+Energy/);
+      // зачем (D72/D87, PM-084): экраны, переведённые на гейт первого вопроса,
+      // списывают через него — он сам вызывает единую точку confirmActivityStart.
+      expect(source).toMatch(/confirmSpend(?:One|Amount)|confirm[A-Z][A-Za-z]+Energy|useFirstQuestionEnergyGate\(/);
       expect(source).not.toMatch(/\bspendOne\s*:/);
       expect(source).not.toMatch(/\bspendAmount\s*[,}]/);
     }
@@ -101,9 +98,6 @@ describe('старт платной активности: без окна под
     // чтобы у каждого платного тапа он был; экраны, где списание происходит один
     // раз на монтирование (латч входа), в проверку не входят — там гонки нет.
     const tapPaidScreens: { file: string; latch: string }[] = [
-      { file: 'app/arena_today.tsx', latch: 'startChargeInFlightRef' },
-      { file: 'app/arena_friend_duel.tsx', latch: 'chargeInFlightRef' },
-      { file: 'app/arena_invite.tsx', latch: 'chargeInFlightRef' },
       { file: 'app/flashcards_swipe.tsx', latch: 'startChargeInFlightRef' },
       { file: 'app/diagnostic_test.tsx', latch: 'diagnosticChargeInFlightRef' },
       { file: 'app/max_call_prestart.tsx', latch: 'startInFlightRef' },

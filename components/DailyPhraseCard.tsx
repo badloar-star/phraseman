@@ -16,7 +16,6 @@ import { useAudio } from '../hooks/use-audio';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
-import { syncWidgetData } from '../app/widget_bridge';
 import { dailyPhraseChromeFor } from '../app/daily_phrase_chrome';
 import { LinearGradient } from './SafeLinearGradient';
 import { triLang } from '../constants/i18n';
@@ -29,9 +28,7 @@ import {
   dailyPhraseGateCopyForTarget,
 } from '../app/daily_phrase_target_gate';
 import {
-  awardDailyPhraseQuestXpOnce,
   buildDailyPhraseQuestOptions,
-  DAILY_PHRASE_QUEST_XP,
   hasDailyPhraseQuestAnswered,
   isDailyPhraseQuestAnswerCorrect,
   markDailyPhraseQuestAnswered,
@@ -51,6 +48,7 @@ import { useStudyTarget } from './StudyTargetContext';
 import { useTheme } from './ThemeContext';
 import { FlowText } from './text-integrity';
 import TonalSurface from './TonalSurface';
+import { glassFill } from './GlassSurface';
 import FeatureIntroModal from './FeatureIntroModal';
 import { featureIntroById } from '../app/feature_intro_registry';
 import { featureIntroClose } from '../app/feature_intro_copy';
@@ -120,7 +118,6 @@ function DailyPhraseCard({
   const [showQuestExplanation, setShowQuestExplanation] = useState(false);
   const [questPreviouslyAnswered, setQuestPreviouslyAnswered] = useState(false);
   const [selectedQuestOptionId, setSelectedQuestOptionId] = useState<string | null>(null);
-  const [questXpDelta, setQuestXpDelta] = useState<number | null>(null);
   const shakeAnim = useRef(new Animated.Value(0)).current;
   const explanationAnim = useRef(new Animated.Value(0)).current;
   const successAnim = useRef(new Animated.Value(0)).current;
@@ -194,19 +191,11 @@ function DailyPhraseCard({
     }
   }, [dailyPhraseGateOpen, params.openPhrase, params.play, studyTarget, phrase, speak, dailyIntro.request, introActive, detailsVisible]);
 
-  // Keep the home/lock-screen widget in lockstep with whatever this card shows.
-  // Best-effort and a native no-op off-device, so it never affects rendering.
-  useEffect(() => {
-    if (!dailyPhraseGateOpen) return;
-    void syncWidgetData({ studyTarget, lang: phraseLang, themeMode });
-  }, [dailyPhraseGateOpen, studyTarget, phraseLang, themeMode, phrase?.id]);
-
   useEffect(() => {
     setQuestAnswered(false);
     setShowQuestExplanation(false);
     setQuestPreviouslyAnswered(false);
     setSelectedQuestOptionId(null);
-    setQuestXpDelta(null);
     shakeAnim.setValue(0);
     explanationAnim.setValue(0);
     successAnim.setValue(0);
@@ -329,7 +318,6 @@ function DailyPhraseCard({
         setShowQuestExplanation(true);
         setQuestPreviouslyAnswered(true);
         setSelectedQuestOptionId(null);
-        setQuestXpDelta(null);
         explanationAnim.setValue(1);
         successAnim.setValue(0);
       })
@@ -359,8 +347,8 @@ function DailyPhraseCard({
             <Ionicons name="shield-checkmark-outline" size={20} color={v2.text} />
           </View>
           <View style={[styles.v2Copy, { paddingRight: 0 }]}>
-            <Text style={[styles.v2Phrase, { color: v2.text, marginTop: 0, fontSize: 18, lineHeight: 23 }]} numberOfLines={2}>{gateCopy.title}</Text>
-            <Text style={[styles.v2Translation, { color: v2.textSecondary }]} numberOfLines={3}>{gateCopy.body}</Text>
+            <Text style={[styles.v2Phrase, { color: v2.text, marginTop: 0, fontSize: 18, lineHeight: 23 }]}>{gateCopy.title}</Text>
+            <Text style={[styles.v2Translation, { color: v2.textSecondary }]}>{gateCopy.body}</Text>
           </View>
         </View>
       );
@@ -531,7 +519,6 @@ function DailyPhraseCard({
     setShowQuestExplanation(false);
     setQuestPreviouslyAnswered(false);
     setSelectedQuestOptionId(null);
-    setQuestXpDelta(null);
     shakeAnim.stopAnimation();
     explanationAnim.stopAnimation();
     successAnim.stopAnimation();
@@ -568,7 +555,6 @@ function DailyPhraseCard({
       setShowQuestExplanation(true);
       setQuestPreviouslyAnswered(true);
       setSelectedQuestOptionId(null);
-      setQuestXpDelta(null);
       explanationAnim.setValue(1);
       successAnim.setValue(0);
     }
@@ -612,21 +598,11 @@ function DailyPhraseCard({
 
     const correct = isDailyPhraseQuestAnswerCorrect(questOptions, optionId);
     if (!correct) {
-      setQuestXpDelta(0);
       runWrongAnswerShake();
       return;
     }
 
-    setQuestXpDelta(DAILY_PHRASE_QUEST_XP);
     runCorrectAnswerAnimation();
-    awardDailyPhraseQuestXpOnce({
-      phraseId,
-      date,
-      lang,
-      studyTarget,
-    })
-      .then((result) => setQuestXpDelta(result.finalDelta))
-      .catch(() => setQuestXpDelta(0));
   };
 
   return (
@@ -643,16 +619,14 @@ function DailyPhraseCard({
           style={({ pressed }) => [styles.v2Card, v2Glass, pressed && styles.pressed]}
         >
           <V2GlassSheen seed={4} />
-          {/* зачем: плейсхолдер-арт 2.0 (mug_quote) до финальной картинки от Codex. */}
-          <View pointerEvents="none" style={styles.v2Art}>
-            <Image source={require('../assets/images/v2/mug_quote.png')} style={styles.v2ArtImage} contentFit="contain" accessible={false} />
-          </View>
-          <V2IconTile name="chatbubble-ellipses-outline" size={40} iconSize={20} />
+          {/* зачем: владелец 24.09 — арт не должен читаться отдельным блоком от иконки;
+              картинка сама служит иконкой-цитатой, без второго графического слоя. */}
+          <Image source={require('../assets/images/v2/mug_quote.png')} style={styles.v2Art} contentFit="contain" accessible={false} />
           <View style={styles.v2Copy}>
-            <Text style={[styles.v2Kicker, { color: v2.textSecondary }]} numberOfLines={1}>{title.toUpperCase()}</Text>
-            <Text style={[styles.v2Phrase, { color: v2.text }]} numberOfLines={2}>{phrase.english}</Text>
+            <Text style={[styles.v2Kicker, { color: v2.textSecondary }]}>{title.toUpperCase()}</Text>
+            <Text style={[styles.v2Phrase, { color: v2.text }]}>{phrase.english}</Text>
             {phraseCopy.literal ? (
-              <Text style={[styles.v2Translation, { color: v2.textSecondary }]} numberOfLines={2}>{phraseCopy.literal}</Text>
+              <Text style={[styles.v2Translation, { color: v2.textSecondary }]}>{phraseCopy.literal}</Text>
             ) : null}
             <View style={styles.v2Actions}>
               <Pressable
@@ -779,7 +753,7 @@ function DailyPhraseCard({
             style={[
               styles.sheet,
               {
-                backgroundColor: t.bgCard,
+                backgroundColor: glassFill(t.bgCard, 0.46),
                 shadowColor: t.accent,
                 paddingBottom: 16 + sheetBottomInset,
               },
@@ -992,9 +966,7 @@ function DailyPhraseCard({
                         <Ionicons name="checkmark" size={17} color={t.correctText} />
                       </View>
                       <Text style={[styles.questResultText, { color: t.correct, fontSize: f.label }]}>
-                        {questXpDelta && questXpDelta > 0
-                          ? `+${questXpDelta} XP`
-                          : 'Верно. XP уже получен сегодня.'}
+                        {triLang(lang, { ru: 'Верно!', uk: 'Правильно!', en: 'Correct!', es: '¡Correcto!', 'pt-BR': 'Correto!', vi: 'Đúng rồi!', id: 'Benar!', tr: 'Doğru!', pl: 'Dobrze!' })}
                       </Text>
                     </Animated.View>
                   )}
@@ -1065,29 +1037,27 @@ function DailyPhraseCard({
 export default memo(DailyPhraseCard);
 
 const styles = StyleSheet.create({
-  // ── «Фраза дня» новой Главной (референс 2.0): цитата-плашка слева, текст, две
-  //    круглые кнопки, арт справа. Размеры сняты с референса (2× кадр 863 px).
+  // ── «Фраза дня» новой Главной: текст и действия слева, крупный арт справа.
   v2Card: {
-    minHeight: 116,
+    minHeight: 150,
     borderRadius: V2.radius.card,
     borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43
     flexDirection: 'row',
     alignItems: 'flex-start',
-    paddingVertical: 18,
-    paddingLeft: 16,
-    paddingRight: 16,
-    gap: 14,
+    paddingVertical: 14,
+    paddingLeft: 14,
+    paddingRight: 14,
+    gap: 12,
     overflow: 'hidden',
   },
-  v2Art: { position: 'absolute', right: 0, top: 0, bottom: 0, width: '34%', opacity: 0.6, alignItems: 'center', justifyContent: 'center' },
-  v2ArtImage: { width: '86%', height: '86%' },
+  v2Art: { position: 'absolute', right: 10, top: 11, width: 124, height: 124 },
   v2Quote: { width: 40, height: 40, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
   v2QuoteMark: { fontSize: 30, lineHeight: 36, fontWeight: '800', marginTop: 6 },
-  v2Copy: { flex: 1, minWidth: 0, paddingRight: '24%' },
+  v2Copy: { flex: 1, minWidth: 0, paddingRight: 122 },
   v2Kicker: { ...V2_TYPE.overline },
-  v2Phrase: { fontSize: 22, lineHeight: 27, fontWeight: '800', letterSpacing: -0.3, marginTop: 6 },
-  v2Translation: { ...V2_TYPE.body, marginTop: 4 },
-  v2Actions: { flexDirection: 'row', gap: 10, marginTop: 10 },
+  v2Phrase: { fontSize: 19, lineHeight: 23, fontWeight: '800', letterSpacing: -0.3, marginTop: 4 },
+  v2Translation: { ...V2_TYPE.body, marginTop: 2 },
+  v2Actions: { flexDirection: 'row', gap: 10, marginTop: 8 },
   v2Round: {
     width: 34,
     height: 34,

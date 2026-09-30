@@ -17,13 +17,24 @@
  *
  * VIP пишем теми же полями vip_* в users/{id}.progress, что admin-grant и referralClaimVipReward
  * (vip_plan='referral_spin'). Клиент vip_* не трогает (rules: progressHasNoPremiumWrites).
+ *
+ * D100 (владелец, 2026-09-30): владелец вечного Pro получает вместо дней МОНЕТЫ —
+ * операция 'referral_spin' в журнале stars_ledger в той же транзакции, что и спин;
+ * ответ несёт stars/starsEarnedTotal/starsSeq для кошелька телефона.
  */
 import * as admin from 'firebase-admin';
 import * as crypto from 'node:crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
-import { appendExternalEconomyEvent } from './external_economy_events';
 import { writeAccessProjectionFromPatch } from './access_projection';
+import { getWeekKey, isoDateUtc } from './progress_events';
+import {
+  beginStarLedgerTransactionAttempt,
+  commitStarOperations,
+  normalizeStars,
+  prepareStarOperations,
+  type StarLedgerPrepared,
+} from './stars_ledger';
 import {
   assertAuthStableLink,
   resolveReferralRoulettePolicy,
@@ -33,8 +44,8 @@ import {
 import {
   BIG_PRIZE_INDEX,
   JACKPOT_INDEX,
+  REFERRAL_SPIN_PRIZE_COINS,
   REFERRAL_SPIN_PRIZE_DAYS,
-  REFERRAL_SPIN_PRIZE_PEARLS,
   referralSpinWeightsFromData,
   spinDraw,
 } from './referral_spin_logic';
@@ -84,17 +95,39 @@ function sha256Hex(input: string): string {
   return crypto.createHash('sha256').update(input).digest('hex');
 }
 
+/**
+ * Ключ операции монетного журнала для спина. spinRequestId приходит с клиента
+ * (8..128 любых символов), а opId журнала строже ([A-Za-z0-9_.-]{1,96}), поэтому
+ * берём детерминированный хэш: тот же spinRequestId → тот же opId → повтор не
+ * начислит монеты второй раз (дедуп журнала поверх дедупа лога спина).
+ */
+export function referralSpinCoinOpId(spinRequestId: string): string {
+  return `referral_spin:${sha256Hex(spinRequestId).slice(0, 64)}`;
+}
+
+/** Снапшот монетного кошелька для телефона (mergeLevelSpinServerStars). */
+type StarsSnapshot = { stars: number; starsEarnedTotal: number; starsSeq: number };
+
+function starsSnapshotFromUserData(data: unknown): StarsSnapshot {
+  const stars = normalizeStars((data as { stars?: unknown } | undefined)?.stars);
+  return { stars: stars.balance, starsEarnedTotal: stars.earnedTotal, starsSeq: stars.seq };
+}
+
 type SpinResult = {
   ok: true;
   prizeIndex: number;
   prizeDays: number;
-  /** зачем: владелец (2026-07-26) — Pro (lifetime) получает жемчужины вместо дней. */
-  prizeKind: 'days' | 'pearls';
-  prizePearls: number;
+  /**
+   * зачем: D100 (владелец, 2026-09-30) — Pro (lifetime) получает МОНЕТЫ вместо
+   * дней (раньше жемчуг, D70 его удалил). Старые записи 'pearls' отдаются как
+   * 'coins' с prizeCoins=0: жемчуга больше нет, повтор старого спина ничего не выдаёт.
+   */
+  prizeKind: 'days' | 'coins';
+  prizeCoins: number;
   spinsLeft: number;
   vipUntil: number;
   idempotent?: boolean;
-};
+} & Partial<StarsSnapshot>;
 
 /**
  * Спин рулетки: списывает 1 кредит, вытягивает приз (weighted RNG + pity + джекпот-капы),
@@ -145,6 +178,8 @@ export const referralSpin = onCall(CALLABLE_BASE, async (request): Promise<SpinR
   if (!bigPrizeSnap.empty) forbidden.add(BIG_PRIZE_INDEX);
 
   const outcome = await db.runTransaction(async (tx): Promise<SpinResult | { noCredit: true }> => {
+    // Журнал монет запрещает два prepare в одной попытке; SDK переиспользует tx при ретрае.
+    beginStarLedgerTransactionAttempt(tx);
     const spinRef = spinsCol.doc(spinRequestId);
     const [configSnap, userSnap, existingSpin] = await Promise.all([
       tx.get(configRef),
@@ -163,19 +198,33 @@ export const referralSpin = onCall(CALLABLE_BASE, async (request): Promise<SpinR
         prizeIndex?: number;
         prizeDays?: number;
         prizeKind?: string;
-        prizePearls?: number;
+        prizeCoins?: number;
         spinsLeftAfter?: number;
         vipUntilMs?: number;
       };
+      // Легаси 'pearls' (до D100) → 'coins' без суммы: жемчуг удалён (D70).
+      const replayKind: 'days' | 'coins' = s.prizeKind === 'coins' || s.prizeKind === 'pearls'
+        ? 'coins'
+        : 'days';
+      console.log(JSON.stringify({
+        event: 'referral_spin_replay',
+        stableId,
+        spinRequestId,
+        storedPrizeKind: s.prizeKind ?? null,
+        replayKind,
+      }));
       return {
         ok: true,
         prizeIndex: Math.max(0, Math.floor(Number(s.prizeIndex ?? 0))),
         prizeDays: Math.max(0, Math.floor(Number(s.prizeDays ?? 0))),
-        prizeKind: s.prizeKind === 'pearls' ? 'pearls' : 'days',
-        prizePearls: Math.max(0, Math.floor(Number(s.prizePearls ?? 0))),
+        prizeKind: replayKind,
+        prizeCoins: s.prizeKind === 'coins' ? Math.max(0, Math.floor(Number(s.prizeCoins ?? 0))) : 0,
         spinsLeft: Math.max(0, Math.floor(Number(s.spinsLeftAfter ?? 0))),
         vipUntil: Math.max(0, Math.floor(Number(s.vipUntilMs ?? 0))),
         idempotent: true,
+        // Повтор тоже отдаёт снапшот кошелька: потерянный ответ первого вызова
+        // не оставит телефон без уже начисленных монет.
+        ...(replayKind === 'coins' ? starsSnapshotFromUserData(userSnap.data()) : {}),
       };
     }
 
@@ -232,9 +281,76 @@ export const referralSpin = onCall(CALLABLE_BASE, async (request): Promise<SpinR
     const conservativeWriteCount = migrationRows.length
       + persistedExpiredCount
       + 3
+      + 2 // D100: монетный приз Pro — запись кошелька и расписка журнала
       + (shouldWriteMigrationMarker ? 1 : 0);
     if (conservativeWriteCount > 480) {
       throw new HttpsError('failed-precondition', 'LEDGER_RECONCILIATION_LIMIT');
+    }
+
+    // зачем: D100 — розыгрыш и подготовка монетного приза стоят ДО первой записи:
+    // журнал монет (prepareStarOperations) читает расписку в этой же транзакции,
+    // а Firestore требует, чтобы все чтения шли раньше всех записей.
+    const selectedCredit = eligibleSummary.oldestValid;
+    let prize: {
+      prizeIndex: number;
+      prizeDays: number;
+      pity: boolean;
+      reroll: boolean;
+      seed: string;
+      isProLifetime: boolean;
+      prizeKind: 'days' | 'coins';
+      prizeCoins: number;
+      coinsPrepared: StarLedgerPrepared | null;
+    } | null = null;
+    if (selectedCredit) {
+      // RNG: seed живёт только в памяти вызова; в лог — sha256(seed) для аудита.
+      const seed = crypto.randomBytes(16).toString('hex');
+      const rng = () => crypto.randomInt(0, 1_000_000_000) / 1_000_000_000;
+      // Чистый розыгрыш (pity + джекпот-капы) — та же функция, что в тестах и админке.
+      const draw = spinDraw({ weights, spinsUsedTotal, forbidden, rng });
+      // У Pro (lifetime, разовая оплата) дни Plus бессмысленны: тот же prizeIndex
+      // конвертируется в монеты, vip_* НЕ трогаем (заодно не дёргается «Plus
+      // активирован»). Признак Pro — тот же, что в admin_analytics_core.
+      const premiumPlan = String((progress as { premium_plan?: unknown }).premium_plan ?? '').trim().toLowerCase();
+      const isProLifetime = premiumPlan === 'lifetime';
+      const prizeKind: 'days' | 'coins' = isProLifetime ? 'coins' : 'days';
+      const prizeCoins = isProLifetime
+        ? Math.max(0, Math.floor(Number(REFERRAL_SPIN_PRIZE_COINS[draw.prizeIndex] ?? 0)))
+        : 0;
+      let coinsPrepared: StarLedgerPrepared | null = null;
+      if (prizeCoins > 0) {
+        coinsPrepared = await prepareStarOperations(tx, db, stableId, userSnap, [{
+          opId: referralSpinCoinOpId(spinRequestId),
+          delta: prizeCoins,
+          reason: 'referral_spin',
+          sourceKind: 'referral_spin',
+          sourceId: stableId,
+          ruleVersion: 1,
+          earnedAtMs: nowMs,
+          meta: { prizeIndex: draw.prizeIndex, creditId: selectedCredit.id },
+        }], {
+          nowMs,
+          activeSeasonId: '',
+          weekKeyNow: getWeekKey(isoDateUtc(new Date(nowMs))),
+          authUid,
+        });
+      }
+      console.log(JSON.stringify({
+        event: 'referral_spin_prize_decided',
+        stableId,
+        spinRequestId,
+        premiumPlan: premiumPlan || null,
+        prizeIndex: draw.prizeIndex,
+        prizeKind,
+        prizeCoins,
+        coinOutcome: coinsPrepared?.outcomes[0]?.status ?? null,
+        coinErrorCode: coinsPrepared?.outcomes[0]?.errorCode ?? null,
+      }));
+      if (coinsPrepared && coinsPrepared.outcomes[0]?.status === 'rejected') {
+        // Кредит НЕ списываем: отказ журнала = приз не выдан, ключ остаётся у человека.
+        throw new HttpsError('internal', `REFERRAL_SPIN_COINS_REJECTED:${coinsPrepared.outcomes[0]?.errorCode ?? 'unknown'}`);
+      }
+      prize = { ...draw, seed, isProLifetime, prizeKind, prizeCoins, coinsPrepared };
     }
 
     migrationRows.forEach((row) => {
@@ -274,8 +390,7 @@ export const referralSpin = onCall(CALLABLE_BASE, async (request): Promise<SpinR
       }));
     }
 
-    const selectedCredit = eligibleSummary.oldestValid;
-    if (!selectedCredit) {
+    if (!selectedCredit || !prize) {
       tx.set(userRef, {
         progress: {
           referral_spin_credits: allSummary.availableCount,
@@ -286,31 +401,15 @@ export const referralSpin = onCall(CALLABLE_BASE, async (request): Promise<SpinR
         },
         updatedAt: nowMs,
       }, { merge: true });
+      console.log(JSON.stringify({ event: 'referral_spin_no_credit', stableId, spinRequestId, available: allSummary.availableCount }));
       return { noCredit: true };
     }
 
-    // RNG: seed живёт только в памяти вызова; в лог — sha256(seed) для аудита.
-    const seed = crypto.randomBytes(16).toString('hex');
-    const rng = () => crypto.randomInt(0, 1_000_000_000) / 1_000_000_000;
-
-    // Чистый розыгрыш (pity + джекпот-капы) — та же функция, что в тестах и админке.
-    const draw = spinDraw({ weights, spinsUsedTotal, forbidden, rng });
-    const { prizeIndex, prizeDays, pity, reroll } = draw;
-
-    // зачем: владелец (2026-07-26) — у Pro (lifetime, разовая оплата) дни Plus
-    // бессмысленны: тот же prizeIndex конвертируется в жемчужины, vip_* НЕ
-    // трогаем (заодно не дёргается «Plus активирован»). Признак Pro — тот же,
-    // что в admin_analytics_core: progress.premium_plan === 'lifetime'.
-    const isProLifetime = String((progress as { premium_plan?: unknown }).premium_plan ?? '')
-      .trim().toLowerCase() === 'lifetime';
-    const prizeKind: 'days' | 'pearls' = isProLifetime ? 'pearls' : 'days';
-    const prizePearls = isProLifetime
-      ? Math.max(0, Math.floor(Number(REFERRAL_SPIN_PRIZE_PEARLS[prizeIndex] ?? 0)))
-      : 0;
+    const { prizeIndex, prizeDays, pity, reroll, seed, prizeKind, prizeCoins, coinsPrepared } = prize;
 
     // Стак VIP — тот же подход, что referralClaimVipReward: от max(текущее окно, now).
     const currentUntil = vipUntilFromProgress(progress);
-    const vipUntil = prizeKind === 'pearls'
+    const vipUntil = prizeKind === 'coins'
       ? Math.max(0, currentUntil)
       : stackVipUntilMs(currentUntil, nowMs, prizeDays);
     // The compatibility aggregate keeps every unexpired source, including dev
@@ -339,8 +438,8 @@ export const referralSpin = onCall(CALLABLE_BASE, async (request): Promise<SpinR
       userRef,
       {
         progress: {
-          // Дни Plus стакаются только для prizeKind='days'; жемчужный приз
-          // Pro не пишет vip_* вовсе (начисление — клиентский claim по логу).
+          // Дни Plus стакаются только для prizeKind='days'; монетный приз Pro
+          // не пишет vip_* вовсе (монеты — журнал stars ниже, D100).
           ...vipProgressPatch,
           referral_spin_credits: aggregateSpinsLeft,
           referral_spin_ledger_version: REFERRAL_SPIN_LEDGER_VERSION,
@@ -357,11 +456,17 @@ export const referralSpin = onCall(CALLABLE_BASE, async (request): Promise<SpinR
       writeAccessProjectionFromPatch(tx, userRef, progress, vipProgressPatch, nowMs);
     }
 
+    // D100: монеты Pro — единственный писатель кошелька (stars_ledger), идемпотентно по opId.
+    const coinsCommitted = coinsPrepared ? commitStarOperations(tx, coinsPrepared) : null;
+    const coinsSnapshot: Partial<StarsSnapshot> = coinsCommitted
+      ? { stars: coinsCommitted.balance, starsEarnedTotal: coinsCommitted.earnedTotal, starsSeq: coinsCommitted.seq }
+      : {};
+
     tx.set(spinRef, {
       prizeIndex,
       prizeDays,
       prizeKind,
-      prizePearls,
+      prizeCoins,
       pity,
       reroll,
       seedHash: sha256Hex(seed),
@@ -373,19 +478,6 @@ export const referralSpin = onCall(CALLABLE_BASE, async (request): Promise<SpinR
       creditId: selectedCredit.id,
       creditSource: selectedCredit.source,
     });
-    if (prizeKind === 'pearls' && prizePearls > 0) {
-      appendExternalEconomyEvent(tx, userRef, {
-        source: 'referral_spin',
-        eventId: spinRequestId,
-        ownerStableId: stableId,
-        delta: prizePearls,
-        reason: 'referral_spin',
-        kind: 'referral_spin_prize',
-        subjectId: spinRequestId,
-        payload: { spinRequestId },
-        createdAtMs: nowMs,
-      });
-    }
 
     console.log(
       JSON.stringify({
@@ -394,7 +486,9 @@ export const referralSpin = onCall(CALLABLE_BASE, async (request): Promise<SpinR
         prizeIndex,
         prizeDays,
         prizeKind,
-        prizePearls,
+        prizeCoins,
+        coinsBalanceAfter: coinsCommitted?.balance ?? null,
+        coinsSeqAfter: coinsCommitted?.seq ?? null,
         pity,
         reroll,
         creditId: selectedCredit.id,
@@ -411,7 +505,7 @@ export const referralSpin = onCall(CALLABLE_BASE, async (request): Promise<SpinR
       consumedAtMs: nowMs,
     }));
 
-    return { ok: true, prizeIndex, prizeDays, prizeKind, prizePearls, spinsLeft, vipUntil };
+    return { ok: true, prizeIndex, prizeDays, prizeKind, prizeCoins, spinsLeft, vipUntil, ...coinsSnapshot };
   });
   if ('noCredit' in outcome) {
     throw new HttpsError('failed-precondition', 'NO_SPIN_CREDITS');

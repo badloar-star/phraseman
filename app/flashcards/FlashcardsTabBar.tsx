@@ -53,7 +53,6 @@ import PlusBadge from '../../components/PlusBadge';
 import { shouldGateCreator } from '../creator_access';
 import { markNextNavigationAsReplace } from '../navigation_back';
 import { getEffectivePlatformOS } from '../platform_ui_preview';
-import { isSpeakingEnabled } from '../remote_flags';
 import DeckPickerSheet, { type DeckSheetOption } from './DeckPickerSheet';
 import { useStudyTarget } from '../../components/StudyTargetContext';
 import { loadFcDeckOptions } from './deck_options';
@@ -504,7 +503,7 @@ export default function FlashcardsTabBar({ lang, t, active, bottomInset = 0, scr
    * DeckPickerSheet внутри самого режима блица (как у «Говорить»),
    * и подсчёт здесь стал не нужен.
    */
-  const speakingEnabled = isSpeakingEnabled();
+  const speakingEnabled = true;
   const trainOptions = useMemo(
     () => visibleFcTrainOptions(null, { speakingEnabled }),
     [speakingEnabled],

@@ -21,35 +21,24 @@ function executableSource(relativePath: string): string {
  */
 const HYBRID_DEFAULT_SURFACES = [
   'app/flashcards/DeckPickerSheet.tsx',
-  'components/AchievementToast.tsx',
   'components/AiConsentSheetModal.tsx',
-  'components/BoonActivatedModal.tsx',
-  'components/BoonChestModal.tsx',
   'components/CertificateNameModal.tsx',
   'components/CollectibleDropModal.tsx',
   'components/DeleteAccountConfirmModal.tsx',
   'components/InGameToast.tsx',
   'components/IntroFullAccessModal.tsx',
-  'components/LevelGiftDualModal.tsx',
-  'components/LevelGiftModal.tsx',
   'components/MedalToast.tsx',
   'components/NotificationPermissionModal.tsx',
   'components/OfflineBanner.tsx',
-  // зачем (PM-049, D09/S51 владельца, 2026-09-24): WelcomeGiftModal удалена —
-  // первый вход не должен прерываться наградой. Деньги welcome-подарка
-  // начисляются молча, без модалки (app/welcome_gift.ts, ensureWelcomeGiftGranted).
   'components/PromoBanner.tsx',
   'components/RankChangeBanner.tsx',
   'components/ReferralInviteBannerArt.tsx',
   'components/ReportUserModal.tsx',
   'components/ReviewPromptModal.tsx',
   'components/SaveProgressBanner.tsx',
-  'components/SeasonGiftModal.tsx',
-  'components/SeasonRewardInfoModal.tsx',
   'components/ThemedChoiceModal.tsx',
   'components/ThemedConfirmModal.tsx',
   'components/VipSurveyModal.tsx',
-  'components/WeeklyBoonDetailModal.tsx',
   'components/account/NicknameEditModal.tsx',
 ] as const;
 

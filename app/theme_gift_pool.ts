@@ -8,7 +8,7 @@
 // награду) и выдаче (чтобы выбрать конкретную тему).
 //
 // Почему отдельный модуль, а не функция в level_gift_system: розыгрыш живёт в
-// local_level_spins, а импорт подарочной системы оттуда притащил бы XP-менеджер,
+// удалённая система наград, а импорт подарочной системы оттуда притащил бы лишний код,
 // premium_guard, маркетплейс наборов и облачную синхронизацию — на самый
 // горячий путь спина. Здесь только политика тем и чтение двух ключей.
 // ═══════════════════════════════════════════════════════════════════════════
@@ -17,7 +17,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SELECTABLE_THEME_MODES, isSelectableThemeMode, isThemePlusOnly } from './theme_access_policy';
 import { GRANDFATHERED_THEMES_KEY, OWNED_THEMES_KEY } from './theme_ownership_store';
 import { parseStrictStringList } from './spin_gift_storage_integrity';
-import { loadSpinCustomAvatarGiftCandidates, type SpinCustomAvatarGiftPoolRead } from './spin_avatar_gift_pool';
 
 export type ThemeGiftPoolRead =
   | Readonly<{ status: 'available'; candidates: readonly string[]; owned: readonly string[] }>
@@ -61,38 +60,8 @@ export async function listThemeGiftCandidates(): Promise<string[]> {
   return [...result.candidates];
 }
 
-export function exhaustedSpinRewardIdsForCandidates(
-  themeCandidates: readonly unknown[] | null,
-  avatarPool: SpinCustomAvatarGiftPoolRead,
-): string[] {
-  return [
-    ...(themeCandidates === null || themeCandidates.length === 0 ? ['cosmetic_theme'] : []),
-    ...(avatarPool.status === 'unavailable' || avatarPool.candidates.length === 0
-      ? ['cosmetic_avatar_common']
-      : []),
-  ];
-}
-
-/**
- * Награды спина, которые для этого человека нужно исключить из розыгрыша.
- *
- * Тема и полный avatar-пул — исчерпаемые награды. Обе исчезают до розыгрыша,
- * когда у активного аккаунта больше нет ни одного кандидата.
- *
- * Ошибка ownership fail-closed для каждой исчерпаемой награды: новый чек не
- * должен обещать косметику, которую нельзя безопасно записать без потери уже
- * существующих прав.
- */
-export async function listExhaustedSpinRewardIds(): Promise<string[]> {
-  const [themes, avatars] = await Promise.all([
-    loadThemeGiftCandidates(),
-    loadSpinCustomAvatarGiftCandidates(),
-  ]);
-  return exhaustedSpinRewardIdsForCandidates(
-    themes.status === 'available' ? themes.candidates : null,
-    avatars,
-  );
-}
+// зачем: D108 — исключение «аватара» из розыгрыша спина удалено вместе с выдачей
+// кастомных аватаров; мёртвый расчёт исчерпанных наград (0 вызовов) снят.
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }

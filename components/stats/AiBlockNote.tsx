@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { AppState, View, Text, TouchableOpacity, StyleSheet, type ImageSourcePropType } from 'react-native';
-import { Image } from 'expo-image';
+import { AppState, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import Reanimated, {
   FadeIn,
   Easing,
@@ -10,9 +10,8 @@ import Reanimated, {
   withRepeat,
   withTiming,
 } from 'react-native-reanimated';
-import { compassIconSource } from '../../constants/weeklyCompassIcons';
-import { useTheme } from '../ThemeContext';
 import PlusBadge from '../PlusBadge';
+import { useTheme } from '../ThemeContext';
 import { useIsScreenFocused } from '../../hooks/use_is_screen_focused';
 
 /**
@@ -42,7 +41,7 @@ type AiBlockNoteProps = {
   onUnlock?: () => void;
 };
 
-function CompassNoteIcon({ source }: { source: ImageSourcePropType }) {
+function CompassNoteIcon({ color }: { color: string }) {
   const progress = useSharedValue(0);
   const isFocused = useIsScreenFocused();
 
@@ -90,7 +89,7 @@ function CompassNoteIcon({ source }: { source: ImageSourcePropType }) {
 
   return (
     <Reanimated.View style={compassStyle}>
-      <Image source={source} style={styles.compassNoteIcon} contentFit="contain" />
+      <Ionicons name="compass-outline" size={64} color={color} />
     </Reanimated.View>
   );
 }
@@ -109,8 +108,8 @@ export function AiBlockNote({
   loadingLabel,
   onUnlock,
 }: AiBlockNoteProps) {
+  // зачем: themeMode использовался без объявления (ReferenceError у Free-тизера); берём из контекста темы
   const { themeMode } = useTheme();
-  const aiCompassIcon = compassIconSource(themeMode);
 
   // Free: мягкая заглушка-тизер, ведёт на пейвол.
   if (!isPremium) {
@@ -123,7 +122,7 @@ export function AiBlockNote({
         style={[styles.wrap, { backgroundColor: softBg, borderColor }]}
       >
         <View style={[styles.avatar, { backgroundColor: accent + '24' }]}>
-          <CompassNoteIcon source={aiCompassIcon} />
+          <CompassNoteIcon color={accent} />
         </View>
         <Text style={[styles.lockedText, { color: mutedColor }]} numberOfLines={2}>
           {lockedLabel}
@@ -138,7 +137,7 @@ export function AiBlockNote({
     return (
       <View style={[styles.wrap, { backgroundColor: softBg, borderColor }]}>
         <View style={[styles.avatar, { backgroundColor: accent + '24' }]}>
-          <CompassNoteIcon source={aiCompassIcon} />
+          <CompassNoteIcon color={accent} />
         </View>
         <Text style={[styles.loadingText, { color: mutedColor }]} numberOfLines={1}>
           {loadingLabel}
@@ -153,7 +152,7 @@ export function AiBlockNote({
   return (
     <Reanimated.View entering={FadeIn.duration(260)} style={[styles.wrap, { backgroundColor: softBg, borderColor }]}>
       <View style={[styles.avatar, { backgroundColor: accent + '24' }]}>
-        <CompassNoteIcon source={aiCompassIcon} />
+        <CompassNoteIcon color={accent} />
       </View>
       <View style={{ flex: 1, minWidth: 0 }}>
         <Text style={[styles.author, { color: accent }]}>{authorLabel}</Text>
@@ -175,7 +174,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   avatar: { width: 26, height: 26, borderRadius: 9, alignItems: 'center', justifyContent: 'center', marginTop: 1 },
-  compassNoteIcon: { height: 24, width: 24 },
   author: { fontSize: 10, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 2 },
   note: { fontSize: 13, fontWeight: '600', lineHeight: 18 },
   lockedText: { flex: 1, minWidth: 0, fontSize: 12.5, fontWeight: '700', lineHeight: 17 },

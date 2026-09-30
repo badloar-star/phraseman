@@ -53,6 +53,7 @@ jest.mock('../app/community_packs/communityFirestore', () => ({
   fetchCommunityPackCards: jest.fn(async () => []),
   loadPublishedCommunityMarketPacks: jest.fn(async () => []),
   peekPublishedCommunityMarketPacks: jest.fn(() => []),
+  peekVideoMarketPacks: jest.fn(() => []),
   communityPackCardsToCardItems: jest.requireActual(
     '../app/community_packs/communityFirestore',
   ).communityPackCardsToCardItems,

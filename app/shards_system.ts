@@ -49,13 +49,10 @@ export type ShardSpendReason =
   | 'streak_revive'  // -X Восстановление потерянной цепочки (≤24ч после обнуления)
   | 'wager_bet'      // -X Ставка в турнире
   | 'card_pack'      // -X Набор карточек за осколки
-  | 'league_boost'   // -X Персональный буст лиги
   | 'custom_avatar'
   | 'avatar_aura'
   | 'theme_purchase'  // -200 Тема оформления за жемчуг (подписка её не открывает)
   | 'custom_avatar_restyle'
-  | 'profile_card_upgrade'
-  | 'season_pass_purchase'
   | 'quota_day_pass'     // -X Дневной пропуск: +N попыток сверх лимита обычного аккаунта (2026-09-13)
   | 'lesson_pearl_unlock' // -100 Открыть один урок курса навсегда, минуя прохождение (2026-09-17)
   | 'lesson_replay';     // legacy reason; lesson replay no longer spends shards
@@ -71,7 +68,6 @@ export type ShardSource =
   | 'exam_excellent'        // +3 Экзамен 90%+ (единоразово)
   | 'diagnostic_test'       // +1 Диагностический тест (единоразово)
   | 'lessons_5_perfect'     // +3 5 уроков подряд без ошибок
-  | 'level_gift'            // +1 из подарка за уровень (×3 = +3)
   | 'preposition_drill_perfect' // +1 Идеальный проход тренажёра предлогов (разово на урок)
   | 'survey_completed';     // +1 Пройден опрос (сервер submitShardSurvey, идемпотентно).
                             // Сумма фиксирована на сервере (SURVEY_SHARD_AMOUNT = 1);
@@ -106,7 +102,6 @@ export const SHARD_REWARDS: Record<ShardSource, number> = {
   exam_excellent: 0,
   diagnostic_test: 0,
   lessons_5_perfect: 0,
-  level_gift: 0,
   preposition_drill_perfect: 0,
   survey_completed: 0,
 };
@@ -202,31 +197,20 @@ const consumeStorePurchasedShardsOnSpend = async (amount: number): Promise<numbe
  * Фаза 2 бонусов карточки: +5% осколков (×1.05) со всех ЗАРАБОТАННЫХ начислений
  * для уровня карточки IV+. Значение зеркалит PROFILE_CARD_SHARD_BOOST, ключ —
  * PROFILE_CARD_LEVEL_KEY из app/profile_card_system.ts — модуль сюда НЕ
- * импортируем, чтобы не поймать цикл (тот же паттерн, что readProfileCardXpMultiplier
- * в xp_manager и ключи 'streak_count'/'comeback_active').
+ * импортируем, чтобы не поймать цикл.
  */
-const readProfileCardShardMultiplier = async (): Promise<number> => {
-  try {
-    const raw = await AsyncStorage.getItem('profile_card_level');
-    return parseInt(raw || '0') >= 4 ? 1.05 : 1;
-  } catch {
-    return 1;
-  }
-};
+const readProfileCardShardMultiplier = async (): Promise<number> => 1;
 
 /** Бонусная часть Фазы 2: вверх до целого; при base > 0 и активном перке минимум +1. */
-const profileCardShardBonus = (baseAmount: number, perkM: number): number =>
-  perkM > 1 && baseAmount > 0 ? Math.ceil(baseAmount * (perkM - 1)) : 0;
+const profileCardShardBonus = (_baseAmount: number, _perkM: number): number => 0;
 
 /**
  * Причины addShardsRaw, которые НЕ являются заработком — бонус карточки на них
- * не действует: покупка за реальные деньги (RevenueCat), выплаты пари (возврат
- * ставки + выигрыш), возвраты и подарки/компенсации (обновление, админ-рассылка).
+ * не действует: покупка за реальные деньги (RevenueCat), возвраты и
+ * подарки/компенсации (обновление, админ-рассылка).
  */
 const PROFILE_CARD_PERK_EXCLUDED_REASONS: ReadonlySet<string> = new Set([
   'shards_store_purchase',
-  'streak_wager_win',
-  'club_boost_refund',
   // зачем: возврат за несостоявшуюся покупку пака — НЕ заработок. Без этой
   // строки бонус карточки IV+ начислил бы при откате +5% сверх возвращённой
   // суммы, и юзер выходил бы в плюс от неудачной покупки.
@@ -1466,72 +1450,6 @@ export async function commitShardCreditOperation(
   }, input.accountTransitionLockLease);
 }
 
-export type CommitShardBalanceMigrationDebitInput = Readonly<{
-  /** Токен, захваченный миграцией: смена аккаунта посреди пути = отказ, а не чужое списание. */
-  accountToken: AccountGenerationToken;
-  /** Детерминированный id (одинаковый на повторе и на втором устройстве). */
-  operationId: string;
-  /** Ровно та сумма, что прочитана при планировании — не «весь баланс сейчас». */
-  amount: number;
-  reason: string;
-  subjectId: string;
-  /** Квитанция миграции: пишется ДО неизменяемой операции списания (root-last). */
-  receiptWrites: readonly ClientShardLocalWrite[];
-}>;
-
-/**
- * PM-059 (D15): списание остатка жемчуга при переводе в монеты 1:10.
- *
- * зачем: обычные покупки идут через commitShardCompositeOperation, но он
- * требует семантический грант (энергия, урок…), которого у миграции нет, и
- * считает трату «покупкой» (ачивка «потратил жемчуг», lifetime spent). Здесь
- * тот же неизменяемый журнал (commitClientShardOperation) с квитанцией как
- * «точным результатом», без ачивок. Идемпотентен по operationId: повтор после
- * краха даёт 'already-applied', а не второе списание.
- */
-export async function commitShardBalanceMigrationDebit(
-  input: CommitShardBalanceMigrationDebitInput,
-): Promise<CommitClientShardOperationResult> {
-  const operationToken = input.accountToken;
-  const operationOwnerStableId = operationToken.stableId;
-  const isOperationCurrent = (): boolean => Boolean(
-    operationOwnerStableId
-    && isCurrentAccountGeneration(operationToken, operationOwnerStableId)
-  );
-  if (!isOperationCurrent()) return { status: 'failed', reason: 'stale_account_generation' };
-  const recovered = await recoverPreparedClientShardOperation({ accountToken: operationToken });
-  if (!isOperationCurrent()) return { status: 'failed', reason: 'stale_account_generation' };
-  if (recovered?.status === 'failed' && !isTerminalPreparedRecoveryReason(recovered.reason)) return recovered;
-  const result = await commitClientShardOperation({
-    expectedOwnerStableId: operationOwnerStableId!,
-    operationId: input.operationId,
-    direction: 'debit',
-    amount: input.amount,
-    reason: input.reason,
-    grant: { kind: 'balance_migration', subjectId: input.subjectId },
-    localWrites: input.receiptWrites,
-  }, { accountToken: operationToken });
-  if (result.status !== 'applied' && result.status !== 'already-applied') return result;
-  if (!isOperationCurrent() || result.operation.ownerStableId !== operationOwnerStableId) {
-    return { status: 'failed', reason: 'stale_account_generation' };
-  }
-  setShardsBalanceMemory(Math.max(0, result.balanceAfter), operationToken);
-  if (result.status === 'applied') {
-    await consumeStorePurchasedShardsOnSpend(input.amount);
-    // Единственный облачный след «куда делся жемчуг» для споров поддержки.
-    void logShardTransaction('spend', input.amount, input.reason, result.balanceAfter, result.balanceBefore, operationToken);
-  }
-  await emitShardsBalanceUpdated(Math.max(0, result.balanceAfter), {
-    updatedAtMs: Date.now(),
-    op: 'spend',
-    reason: input.reason,
-  });
-  void import('./economy/client_shard_operation_sync')
-    .then(({ syncClientShardOperationJournalToCloud }) => syncClientShardOperationJournalToCloud())
-    .catch((error: unknown) => DebugLogger.error('shards_system:migrationDebitSync', error, 'warning'));
-  return result;
-}
-
 export type ConfirmedExternalShardEventInput = Readonly<{
   expectedOwnerStableId?: string;
   source: string;
@@ -1869,9 +1787,7 @@ const getOneTimeEvents = async (): Promise<Set<string>> => {
  * недельного трека звёзд ('{weekKey}:{checkpoint}', ролл 70/25/5 — stars_system)
  * и milestone-сундуки lifetime best-звёзд колод ('fc_milestone_10|25|50', E12).
  */
-// зачем 'welcome_gift' (владелец, 2026-08-26): стартовый подарок новичку
-// +100 жемчужин из приветственной модалки — см. app/welcome_gift.ts.
-export type OneTimeVariableSource = 'fc_checkpoint' | 'fc_milestone' | 'welcome_gift';
+export type OneTimeVariableSource = 'fc_checkpoint' | 'fc_milestone';
 
 /**
  * cards-2.0 (E12): какие из ключей уже зарегистрированы в shards_one_time_events.
@@ -2191,7 +2107,8 @@ export const awardOneTime = async (source: 'exam_excellent' | 'diagnostic_test')
 
 /**
  * зачем: владелец (2026-07-26) — Pro (lifetime) выигрывает в «Награде за друга»
- * жемчужины вместо дней Plus. Приз авторитетно выбрал сервер (referralSpin,
+ * жемчужины вместо дней Plus. Старые referral-roulette receipts читаются только
+ * для совместимости; новые server-authoritative spins больше не выдаются,
  * prizeKind='pearls'), а начисление делает эта claim-транзакция: doc
  * reward_claims/referral_spin_{spinRequestId} делает повтор идемпотентным
  * (ретрай сети / двойной вызов не задвоят баланс). Паттерн — awardOneTime.
@@ -2283,12 +2200,11 @@ const syncShardsToCloud = async (
 };
 
 /**
- * Привести облако и локал к согласованному состоянию перед серверо-авторитетной
- * операцией (например, Cloud Function profileCardUpgrade), чтобы сервер видел
- * актуальный баланс, а не отставший.
+ * Привести облако и локал к согласованному состоянию перед локальной
+ * атомарной операцией, чтобы журнал видел актуальный баланс, а не отставший.
  *
  * Раньше эта функция СОЗНАТЕЛЬНО ставила свежий `Date.now()` и перетирала облачный
- * баланс локальным «гарантированно». Проблема: если CF (ежедневки/лига/подарки)
+ * баланс локальным «гарантированно». Проблема: если CF (ежедневки/подарки)
  * только что начислила осколки на сервер, локальный устаревший баланс их затирал —
  * пользователь терял реально начисленные монеты, а потом видел «недостаточно
  * осколков» при покупке (см. аудит 2026-06-27).

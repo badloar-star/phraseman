@@ -7,16 +7,14 @@ type Props = {
   model: ProgressCompletionModel;
   badge?: React.ReactNode;
   stars?: number;
-  xp?: number;
   subtitle?: string;
   onAction: (id: string) => void;
 };
 
-export default function ProgressCompletionView({ model, badge, stars = 0, xp = 0, subtitle, onAction }: Props) {
+export default function ProgressCompletionView({ model, badge, stars = 0, subtitle, onAction }: Props) {
   return (
     <ResultsSequence
       stars={stars}
-      xp={xp}
       title={model.fact}
       subtitle={subtitle ?? `${model.accumulated}\n${model.nextStep}`}
       badge={badge}

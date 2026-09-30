@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useCallback, useEffect, useState } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Text, View } from 'react-native';
 import Reanimated, { FadeInDown, FadeOutUp } from 'react-native-reanimated';
 
 import {
@@ -11,12 +11,18 @@ import {
 } from '../app/user_notifications';
 import { getCanonicalUserId } from '../app/user_id_policy';
 import { triLang, type Lang } from '../constants/i18n';
+import { TOAST } from '../constants/motionHybrid';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { hapticTap } from '../hooks/use-haptics';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { useLang } from './LangContext';
-import { useTheme } from './ThemeContext';
+import PressableHybrid from './PressableHybrid';
+import { LinearGradient } from './SafeLinearGradient';
+import { FONT_SCALE, useTheme } from './ThemeContext';
 
 const DISMISSED_KEY_PREFIX = 'report_reply_home_banner_dismissed_v1:';
+const REPORT_REPLY_BANNER_ENTERING = FadeInDown.duration(TOAST.enterMs);
+const REPORT_REPLY_BANNER_EXITING = FadeOutUp.duration(TOAST.exitMs);
 
 type Props = {
   active: boolean;
@@ -50,9 +56,11 @@ function latestUnreadReportReply(list: readonly UserNotification[], dismissed: R
 }
 
 function ReportReplyHomeBanner({ active, refreshTick, onOpen }: Props) {
-  const { theme: t, f } = useTheme();
+  const { liquidGlassThemeId, fontSize, uiScale } = useTheme();
   const { lang } = useLang();
   const reduceMotion = useReduceMotion();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  const textScale = (FONT_SCALE[fontSize] / FONT_SCALE.medium) * uiScale;
   const [row, setRow] = useState<UserNotification | null>(null);
   const [owner, setOwner] = useState('');
 
@@ -105,40 +113,48 @@ function ReportReplyHomeBanner({ active, refreshTick, onOpen }: Props) {
   return (
     <Reanimated.View
       testID="home-report-reply-banner"
-      entering={reduceMotion ? undefined : FadeInDown.duration(420).springify()}
-      exiting={reduceMotion ? undefined : FadeOutUp.duration(240)}
-      style={{ marginHorizontal: 8, marginBottom: 12, borderRadius: 18, overflow: 'hidden', backgroundColor: t.bgCard }}
+      entering={reduceMotion ? undefined : REPORT_REPLY_BANNER_ENTERING}
+      exiting={reduceMotion ? undefined : REPORT_REPLY_BANNER_EXITING}
+      style={{ marginHorizontal: 8, marginBottom: 12, borderRadius: 21, overflow: 'hidden', backgroundColor: glass.opaqueCard, borderWidth: 1, borderColor: glass.glassEdge }}
     >
-      <TouchableOpacity
+      <PressableHybrid
         accessibilityRole="button"
         accessibilityLabel={label}
-        activeOpacity={0.84}
+        variant="card"
         onPress={open}
-        /* зачем убрана функция-стиль: это TouchableOpacity, а он НЕ передаёт
-           `pressed` — функция вызывалась без него, и ветка нажатия была
-           мёртвой с самого начала. Отклик на нажатие здесь даёт activeOpacity
-           выше, он уже стоит. */
-        style={{ minHeight: 72, paddingLeft: 14, paddingRight: 52, paddingVertical: 12, flexDirection: 'row', alignItems: 'center', gap: 12 }}
+        withHaptic={false}
+        withSound={false}
+        style={{ borderRadius: 21, overflow: 'hidden' }}
+        contentStyle={{ minHeight: 72, paddingLeft: 14, paddingRight: 74, paddingVertical: 12, flexDirection: 'row', alignItems: 'center', gap: 11 }}
       >
-        <View style={{ width: 42, height: 42, borderRadius: 15, backgroundColor: t.correctBg, alignItems: 'center', justifyContent: 'center' }}>
-          <Ionicons name="chatbox-ellipses" size={22} color={t.correct} />
+        <LinearGradient
+          pointerEvents="none"
+          colors={[glass.opaqueCard, glass.selected, glass.opaqueCard]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0 }}
+        />
+        <View style={{ width: 41, height: 41, borderRadius: 10, backgroundColor: glass.selected, alignItems: 'center', justifyContent: 'center' }}>
+          <Ionicons name="chatbox-ellipses" size={20} color={glass.cta} />
         </View>
-        <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.body, lineHeight: f.body * 1.35, fontWeight: '800' }}>
+        <Text style={{ flex: 1, flexShrink: 1, color: glass.text, fontSize: 14 * textScale, lineHeight: 19 * textScale, fontWeight: '700' }}>
           {label}
         </Text>
-        <Ionicons name="chevron-forward" size={19} color={t.textMuted} />
-      </TouchableOpacity>
-      <TouchableOpacity
+        <Ionicons name="chevron-forward" size={19} color={glass.secondary} />
+      </PressableHybrid>
+      <PressableHybrid
         testID="home-report-reply-banner-close"
         accessibilityRole="button"
         accessibilityLabel={triLang(lang as Lang, { ru: 'Скрыть', uk: 'Сховати', en: 'Dismiss', es: 'Ocultar', 'pt-BR': 'Ocultar', vi: 'Ẩn', id: 'Tutup', tr: 'Gizle', pl: 'Ukryj' })}
+        variant="icon"
         onPress={dismiss}
-        activeOpacity={0.72}
-        /* Тот же случай: TouchableOpacity, `pressed` не приходит. */
-        style={{ position: 'absolute', top: 8, right: 7, width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' }}
+        withHaptic={false}
+        withSound={false}
+        style={{ position: 'absolute', top: 8, right: 7, width: 48, height: 48, borderRadius: 24 }}
+        contentStyle={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
       >
-        <Ionicons name="close" size={19} color={t.textMuted} />
-      </TouchableOpacity>
+        <Ionicons name="close" size={19} color={glass.secondary} />
+      </PressableHybrid>
     </Reanimated.View>
   );
 }

@@ -1,6 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSyncExternalStore } from 'react';
-import { getLevelFromXP } from '../constants/theme';
 import type { PersonalProgressProjection } from '../modules/phone-state/domains/progress_projection';
 import { patchAppSnapshotFromPersonalProgress } from './app_snapshot_store';
 import { DebugLogger } from './debug-logger';
@@ -26,9 +25,6 @@ export type PersonalProgressStore = Readonly<{
 
 function emptySnapshot(): PersonalProgressSnapshot {
   return Object.freeze({
-    totalXp: 0,
-    level: 1,
-    weeklyXp: 0,
     activityDates: Object.freeze([]),
     streakCount: 0,
     completedLessons: Object.freeze([]),
@@ -97,14 +93,10 @@ export function createPersonalProgressStore(
 
 async function readLegacyProjection(): Promise<PersonalProgressProjection> {
   const pairs = new Map(await AsyncStorage.multiGet([
-    'user_total_xp',
-    'weekly_xp',
     'streak_count',
     'last_active_date',
     'unlocked_lessons',
   ]));
-  const totalXp = Math.max(0, Number.parseInt(pairs.get('user_total_xp') ?? '0', 10) || 0);
-  const weeklyXp = Math.max(0, Number.parseInt(pairs.get('weekly_xp') ?? '0', 10) || 0);
   const streakCount = Math.max(0, Number.parseInt(pairs.get('streak_count') ?? '0', 10) || 0);
   const activityDate = pairs.get('last_active_date');
   let unlockedLessons: string[] = [];
@@ -116,9 +108,6 @@ async function readLegacyProjection(): Promise<PersonalProgressProjection> {
       DebugLogger.error('personal_progress_store:activityDate', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   return Object.freeze({
-    totalXp,
-    level: getLevelFromXP(totalXp),
-    weeklyXp,
     activityDates: Object.freeze(activityDate ? [activityDate] : []),
     streakCount,
     completedLessons: Object.freeze([]),

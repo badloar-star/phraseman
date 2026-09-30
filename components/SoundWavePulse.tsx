@@ -70,7 +70,7 @@ function SoundWavePulseImpl(
 
   const play = useCallback((id: SoundEventId) => {
     const motion = SOUND_MOTION[id];
-    // Событие без звукового файла (арена, vip_finale) не должно дёргать экран:
+    // Событие без звукового файла (арена) не должно дёргать экран:
     // молчит звук — молчит и движение.
     if (!motion) return;
 

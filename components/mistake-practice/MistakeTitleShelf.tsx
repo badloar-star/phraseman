@@ -5,6 +5,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { triLang, type Lang } from '../../constants/i18n';
 import { pluralWord } from '../../constants/plural';
 import { useTheme } from '../ThemeContext';
+import { useLv2Glass } from '../learning-v2/LearningV2Glass';
 import {
   MISTAKE_TITLES,
   type MistakeRewardsSnapshot,
@@ -37,7 +38,8 @@ const copyFor = (lang: Lang) => triLang(lang, {
 });
 
 function MistakeTitleShelf({ lang, rewards }: Props) {
-  const { theme: t, f } = useTheme();
+  const { f } = useTheme();
+  const g = useLv2Glass();
   const copy = useMemo(() => copyFor(lang), [lang]);
   // зачем (аудит 2026-09-15): при нуле исправленных шапка с крупным «0» и
   // лестницей замков висит над пустым списком и выглядит как сбой.
@@ -49,21 +51,21 @@ function MistakeTitleShelf({ lang, rewards }: Props) {
 
   return (
     <View style={styles.wrap}>
-      <View style={[styles.card, { backgroundColor: t.goldBg }]}>
+      <View style={[styles.card, { backgroundColor: g.opaqueControl }]}>
         <View style={styles.headRow}>
-          <View style={[styles.medal, { backgroundColor: t.gold }]}>
-            <Ionicons name="ribbon" size={30} color={t.textOnGold} />
+          <View style={[styles.medal, { backgroundColor: g.text }]}>
+            <Ionicons name="ribbon" size={30} color={g.ctaInk} />
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={[styles.count, { color: t.gold }]}>{rewards.corrected}</Text>
-            <Text style={[styles.caption, { color: t.textPrimary, fontSize: f.body }]}>
+            <Text style={[styles.count, { color: g.text }]}>{rewards.corrected}</Text>
+            <Text style={[styles.caption, { color: g.text, fontSize: f.body }]}>
               {rewards.title ? copy.titles[rewards.title.id] : copy.fixed}
             </Text>
           </View>
           {rewards.streakDays > 0 ? (
-            <View style={[styles.streak, { backgroundColor: t.bgCard }]}>
-              <Ionicons name="flame" size={16} color={t.gold} />
-              <Text style={[styles.streakText, { color: t.textPrimary, fontSize: f.sub }]}>
+            <View style={[styles.streak, { backgroundColor: g.opaqueCard }]}>
+              <Ionicons name="flame" size={16} color={g.text} />
+              <Text style={[styles.streakText, { color: g.text, fontSize: f.sub }]}>
                 {rewards.streakDays} {pluralWord(lang, rewards.streakDays, copy.days)}
               </Text>
             </View>
@@ -71,18 +73,18 @@ function MistakeTitleShelf({ lang, rewards }: Props) {
         </View>
         {rewards.nextTitle ? (
           <>
-            <View style={[styles.track, { backgroundColor: t.bgSurface2 }]}>
-              <View style={[styles.fill, { backgroundColor: t.gold, width: `${share * 100}%` }]} />
+            <View style={[styles.track, { backgroundColor: g.opaqueControl }]}>
+              <View style={[styles.fill, { backgroundColor: g.text, width: `${share * 100}%` }]} />
             </View>
-            <Text style={[styles.hint, { color: t.textMuted, fontSize: f.sub }]}>
+            <Text style={[styles.hint, { color: g.secondary, fontSize: f.sub }]}>
               {copy.toNext} «{copy.titles[rewards.nextTitle.title.id]}» — {rewards.nextTitle.remaining} {pluralWord(lang, rewards.nextTitle.remaining, copy.fixes)}
             </Text>
           </>
         ) : null}
       </View>
 
-      <View style={[styles.card, { backgroundColor: t.bgCard }]}>
-        <Text style={[styles.ladderTitle, { color: t.textPrimary, fontSize: f.body }]}>{copy.ladder}</Text>
+      <View style={[styles.card, { backgroundColor: g.opaqueCard }]}>
+        <Text style={[styles.ladderTitle, { color: g.text, fontSize: f.body }]}>{copy.ladder}</Text>
         <View style={styles.ladder}>
           {MISTAKE_TITLES.map((title) => {
             const reached = rewards.corrected >= title.threshold;
@@ -90,19 +92,19 @@ function MistakeTitleShelf({ lang, rewards }: Props) {
             return (
               <View
                 key={title.id}
-                style={[styles.rung, { backgroundColor: current ? t.goldBg : reached ? t.bgSurface2 : 'transparent' }]}
+                style={[styles.rung, { backgroundColor: current ? g.opaqueControl : reached ? g.opaqueControl : 'transparent' }]}
               >
-                <View style={[styles.rungMark, { backgroundColor: reached ? t.gold : t.bgSurface2 }]}>
+                <View style={[styles.rungMark, { backgroundColor: reached ? g.text : g.opaqueControl }]}>
                   <Ionicons
                     name={reached ? 'checkmark' : 'lock-closed'}
                     size={16}
-                    color={reached ? t.textOnGold : t.textGhost}
+                    color={reached ? g.ctaInk : g.mutedText}
                   />
                 </View>
-                <Text style={[styles.rungName, { color: reached ? t.textPrimary : t.textMuted, fontSize: f.body }]}>
+                <Text style={[styles.rungName, { color: reached ? g.text : g.secondary, fontSize: f.body }]}>
                   {copy.titles[title.id as MistakeTitleId]}
                 </Text>
-                <Text style={[styles.rungNum, { color: t.textMuted, fontSize: f.sub }]}>{title.threshold}</Text>
+                <Text style={[styles.rungNum, { color: g.secondary, fontSize: f.sub }]}>{title.threshold}</Text>
               </View>
             );
           })}

@@ -22,7 +22,6 @@ export interface Lesson1ResultInput {
   readonly status: "in_progress" | "completed";
   /** Values already decided by the owning legacy/result flow; this layer never prices them. */
   readonly awarded: {
-    readonly xp: number;
     readonly shards: number;
   };
 }
@@ -31,8 +30,6 @@ export interface LegacyLesson1SnapshotInput {
   readonly progressJson: string | null;
   readonly bestScoreRaw: string | null;
   readonly passCountRaw: string | null;
-  /** Kept byte-for-byte as compatibility evidence; never parsed or rewritten. */
-  readonly totalXpRaw: string | null;
   /** Kept byte-for-byte as compatibility evidence; never parsed or rewritten. */
   readonly shardsBalanceRaw: string | null;
 }
@@ -120,7 +117,6 @@ const cloneSource = (
   progressJson: source.progressJson,
   bestScoreRaw: source.bestScoreRaw,
   passCountRaw: source.passCountRaw,
-  totalXpRaw: source.totalXpRaw,
   shardsBalanceRaw: source.shardsBalanceRaw,
 });
 
@@ -169,10 +165,7 @@ export const inspectLegacyLesson1Snapshot = (
   if (!rawUnsignedIntegerIsValid(input.passCountRaw)) {
     return { status: "blocked", reason: "legacy_pass_count_invalid", source };
   }
-  if (
-    !rawUnsignedIntegerIsValid(input.totalXpRaw) ||
-    !rawUnsignedIntegerIsValid(input.shardsBalanceRaw)
-  ) {
+  if (!rawUnsignedIntegerIsValid(input.shardsBalanceRaw)) {
     return { status: "blocked", reason: "legacy_economy_invalid", source };
   }
 
@@ -255,7 +248,6 @@ const isStoredOperation = (value: unknown): value is StoredOperation =>
   isNonEmpty(value.sessionId) &&
   (value.status === "in_progress" || value.status === "completed") &&
   isRecord(value.awarded) &&
-  isNonNegativeInteger(value.awarded.xp) &&
   isNonNegativeInteger(value.awarded.shards);
 
 const isStoredLegacySource = (
@@ -265,7 +257,6 @@ const isStoredLegacySource = (
   isNullableString(value.progressJson) &&
   isNullableString(value.bestScoreRaw) &&
   isNullableString(value.passCountRaw) &&
-  isNullableString(value.totalXpRaw) &&
   isNullableString(value.shardsBalanceRaw);
 
 const isStoredMigration = (value: unknown): value is StoredMigrationState => {
@@ -353,7 +344,6 @@ const sameResult = (
   left.operationId === right.operationId &&
   left.sessionId === right.sessionId &&
   left.status === right.status &&
-  left.awarded.xp === right.awarded.xp &&
   left.awarded.shards === right.awarded.shards;
 
 const reduceResult = (
@@ -364,7 +354,6 @@ const reduceResult = (
     !isOperationId(input.operationId) ||
     !state.requiredSessionIds.includes(input.sessionId) ||
     (input.status !== "in_progress" && input.status !== "completed") ||
-    !isNonNegativeInteger(input.awarded.xp) ||
     !isNonNegativeInteger(input.awarded.shards)
   ) {
     throw new Error("lesson1_result_invalid");
@@ -389,7 +378,7 @@ const reduceResult = (
     operationId: input.operationId,
     sessionId: input.sessionId,
     status: input.status,
-    awarded: { xp: input.awarded.xp, shards: input.awarded.shards },
+    awarded: { shards: input.awarded.shards },
   };
   const nextState: Lesson1LocalProgressState = {
     ...state,
@@ -412,7 +401,6 @@ const sameLegacySource = (
   left.progressJson === right.progressJson &&
   left.bestScoreRaw === right.bestScoreRaw &&
   left.passCountRaw === right.passCountRaw &&
-  left.totalXpRaw === right.totalXpRaw &&
   left.shardsBalanceRaw === right.shardsBalanceRaw;
 
 const reduceLegacyMigration = (

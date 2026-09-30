@@ -3,7 +3,7 @@ import { Image as ExpoImage } from 'expo-image';
 import { Asset } from 'expo-asset';
 import type { ThemeMode } from '../constants/theme';
 import { getHomeMenuImages } from './home_menu_icons';
-import { DebugLogger } from './debug-logger';
+import { DebugLogger, reportSwallowed } from './debug-logger';
 
 /**
  * Предзагрузка ассетов РАЗДЕЛОВ (не главной).
@@ -29,9 +29,9 @@ const warmedThemes = new Set<ThemeMode>();
 function sectionAssetsForTheme(themeMode: ThemeMode): ImageSourcePropType[] {
   const menu = getHomeMenuImages(themeMode);
   return [
-    // Разделы с главной: уроки, карточки, лига, тест, практика, диалоги,
+    // Разделы с главной: уроки, карточки, тест, практика, диалоги,
     // экзамен, магазин, карта героя.
-    menu.lesson, menu.cards, menu.league, menu.test,
+    menu.lesson, menu.cards, menu.test,
     menu.practice, menu.dialogs, menu.exam, menu.shop, menu.heroMap,
     // cards-2.0: хаб карточек больше не рисует тематические плитки-иконки —
     // греть нечего, секции ленты собираются из векторных иконок и обложек наборов.
@@ -55,9 +55,9 @@ async function warmSectionSources(sources: readonly ImageSourcePropType[]): Prom
     }
   }
   await Promise.all([
-    Asset.loadAsync(unique as never).catch(() => []),
+    Asset.loadAsync(unique as never).catch((error: unknown) => { reportSwallowed('section_asset_preload:warmSectionSources', error); return []; }),
     expoUris.length > 0
-      ? ExpoImage.prefetch(expoUris, { cachePolicy: 'memory-disk' }).catch(() => false)
+      ? ExpoImage.prefetch(expoUris, { cachePolicy: 'memory-disk' }).catch((error: unknown) => { reportSwallowed('section_asset_preload:warmSectionSources', error); return false; })
       : Promise.resolve(false),
   ]);
 }

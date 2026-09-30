@@ -1,13 +1,12 @@
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { memo, useMemo, useState } from 'react';
 import { Linking, Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { Image } from 'expo-image';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { useStudyTarget } from './StudyTargetContext';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
-import { oskolokImageForPackShards } from '../app/oskolok';
+import RuneGlyph from './RuneGlyph';
 import {
   claimAndDismissGlobalBroadcastModal,
   getGlobalBroadcastRewardBadge,
@@ -75,9 +74,8 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
 
   const reward = payload ? getGlobalBroadcastRewardBadge(payload) : null;
   const isReviewPromo = payload?.kind === 'review_promo';
-  const shardsAmount = payload?.rewardType === 'shards'
-    ? Math.max(0, Math.floor(Number(payload.rewardAmount ?? 0)))
-    : 0;
+  // зачем: D104 — награда рассылки теперь монетами; жемчужную картинку убрали.
+  const isCoinReward = payload?.rewardType === 'coins';
   const dimColor = 'rgba(0,0,0,0.62)';
 
   const closeOnce = async () => {
@@ -149,8 +147,8 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
 
           {reward && (
             <View style={styles.rewardBlock}>
-              {shardsAmount > 0 ? (
-                <Image source={oskolokImageForPackShards(shardsAmount)} style={styles.oskolokImg} contentFit="contain" />
+              {isCoinReward ? (
+                <RuneGlyph size={64} color={glass.text} />
               ) : (
                 <Text style={styles.rewardEmoji}>{reward.icon}</Text>
               )}
@@ -291,10 +289,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 14,
     marginBottom: 8,
-  },
-  oskolokImg: {
-    width: 108,
-    height: 92,
   },
   rewardLine: {
     marginTop: 6,

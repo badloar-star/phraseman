@@ -60,6 +60,10 @@ jest.mock('../app/account_generation', () => ({
       && (expectedStableId === undefined || expectedStableId === accountGeneration.stableId),
   ),
   withAccountTransitionLock: jest.fn(async (fn: () => Promise<unknown>) => fn()),
+  // зачем: app/shards_system.ts на старте модуля (primeShardsBalanceFromBootStorage)
+  // вызывает waitForActiveAccountGeneration() — экспорта не было в моке, падало
+  // TypeError на самом импорте (не в конкретном тесте, а до jest вообще их запустил).
+  waitForActiveAccountGeneration: jest.fn(async () => ({ ...accountGeneration })),
 }));
 jest.mock('../app/lifetime_profile_stats', () => ({
   bumpLifetimeShardsEarned: jest.fn(),

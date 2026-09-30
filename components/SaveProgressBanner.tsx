@@ -13,7 +13,7 @@
 // Условия показа:
 //   • CLOUD_SYNC_ENABLED (без облака баннер бесполезен).
 //   • Юзер ещё не привязан к Google/Apple (linkedAuth === null).
-//   • user_total_xp >= 1000 — раньше нет смысла беспокоить, прогресс не критичный.
+//   • Есть хотя бы один завершённый урок — до этого не беспокоим новичка.
 //   • Не дисмиссили в последние 7 дней (auth_save_banner_dismissed_at).
 //
 // Поведение:
@@ -54,19 +54,10 @@ import RegistrationPromptModal from './RegistrationPromptModal';
 import { noAndroidOutline } from '../constants/androidGlow';
 import { DebugLogger } from '../app/debug-logger';
 const DISMISSED_AT_KEY = 'auth_save_banner_dismissed_at';
-const XP_THRESHOLD = 1000;
 const DISMISS_COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000; // 7 дней
 
 async function shouldShow(isCurrent: () => boolean): Promise<boolean> {
   if (!CLOUD_SYNC_ENABLED) return false;
-  try {
-    const xpRaw = await AsyncStorage.getItem('user_total_xp');
-    if (!isCurrent()) return false;
-    const xp = parseInt(xpRaw ?? '0', 10) || 0;
-    if (xp < XP_THRESHOLD) return false;
-  } catch {
-    return false;
-  }
   try {
     const dismissedRaw = await AsyncStorage.getItem(DISMISSED_AT_KEY);
     if (!isCurrent()) return false;
@@ -91,11 +82,12 @@ async function shouldShow(isCurrent: () => boolean): Promise<boolean> {
 
 interface SaveProgressBannerProps {
   ownerActive?: boolean;
+  hasSavedLearningProgress?: boolean;
   /** Production default — hybrid; explicit `classic` is the rollback/QA path. */
   motionVariant?: 'classic' | 'hybrid';
 }
 
-function SaveProgressBanner({ ownerActive = true, motionVariant = 'hybrid' }: SaveProgressBannerProps) {
+function SaveProgressBanner({ ownerActive = true, hasSavedLearningProgress = false, motionVariant = 'hybrid' }: SaveProgressBannerProps) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const isHybrid = motionVariant === 'hybrid';
@@ -129,12 +121,14 @@ function SaveProgressBanner({ ownerActive = true, motionVariant = 'hybrid' }: Sa
     transform: [{ translateY: hybridY.value }],
   }));
   const ownerActiveRef = useRef(ownerActive);
+  const hasSavedLearningProgressRef = useRef(hasSavedLearningProgress);
   const visibleRef = useRef(visible);
   const dirtyRef = useRef(false);
   const authLinkedRef = useRef(false);
   const checkGenerationRef = useRef(0);
   const checkInFlightRef = useRef<Promise<void> | null>(null);
   ownerActiveRef.current = ownerActive;
+  hasSavedLearningProgressRef.current = hasSavedLearningProgress;
   visibleRef.current = visible;
 
   const applyVisibility = useCallback((nextVisible: boolean) => {
@@ -149,10 +143,14 @@ function SaveProgressBanner({ ownerActive = true, motionVariant = 'hybrid' }: Sa
       dirtyRef.current = true;
       return Promise.resolve();
     }
-    // Пока карточка уже видима, XP-события не должны повторно ходить в auth/Firestore.
+    if (!hasSavedLearningProgressRef.current) {
+      applyVisibility(false);
+      return Promise.resolve();
+    }
+    // Пока карточка уже видима, повторные проверки не ходят в auth/Firestore.
     if (visibleRef.current || authLinkedRef.current) return Promise.resolve();
     if (checkInFlightRef.current) {
-      // The second event may contain newer XP/account state than the read that
+      // The second event may contain newer progress/account state than the read that
       // is already underway. Preserve exactly one catch-up check instead of
       // silently treating the in-flight request as current.
       dirtyRef.current = true;
@@ -180,9 +178,6 @@ function SaveProgressBanner({ ownerActive = true, motionVariant = 'hybrid' }: Sa
   }, [applyVisibility]);
 
   useEffect(() => {
-    // Любое изменение XP или линка — перепроверяем.
-    const xpSub = DeviceEventEmitter.addListener('xp_changed', recheck);
-    const xpUpdSub = DeviceEventEmitter.addListener('xp_updated', recheck);
     const linkSub = DeviceEventEmitter.addListener('auth_provider_linked', () => {
       checkGenerationRef.current += 1;
       authLinkedRef.current = true;
@@ -197,8 +192,6 @@ function SaveProgressBanner({ ownerActive = true, motionVariant = 'hybrid' }: Sa
       void recheck();
     });
     return () => {
-      xpSub.remove();
-      xpUpdSub.remove();
       linkSub.remove();
       deletedSub.remove();
     };
@@ -218,12 +211,17 @@ function SaveProgressBanner({ ownerActive = true, motionVariant = 'hybrid' }: Sa
   }, [applyVisibility, recheck]);
 
   useEffect(() => {
+    if (!hasSavedLearningProgress) {
+      checkGenerationRef.current += 1;
+      applyVisibility(false);
+      return;
+    }
     if (!ownerActive) {
       checkGenerationRef.current += 1;
       return;
     }
     void recheck();
-  }, [ownerActive, recheck]);
+  }, [ownerActive, hasSavedLearningProgress, applyVisibility, recheck]);
 
   useEffect(() => () => {
     ownerActiveRef.current = false;
@@ -466,19 +464,19 @@ function SaveProgressBanner({ ownerActive = true, motionVariant = 'hybrid' }: Sa
           >
           {triLang(lang, {
             ru:
-              'Привяжи аккаунт — и твои уроки, XP, серия и достижения останутся в безопасности. Даже если телефон внезапно решит уйти в отпуск.',
+              'Привяжи аккаунт — и твои уроки, серия и достижения останутся в безопасности. Даже если телефон внезапно решит уйти в отпуск.',
             uk:
-              "Прив\'яжи акаунт — і твої уроки, XP, серія та досягнення будуть у безпеці. Навіть якщо телефон раптом вирішить піти у відпустку.",
+              "Прив\'яжи акаунт — і твої уроки, серія та досягнення будуть у безпеці. Навіть якщо телефон раптом вирішить піти у відпустку.",
             en:
-              'Link your account — your lessons, XP, streak, and achievements stay safe. Even if your phone suddenly decides to go on vacation.',
+              'Link your account — your lessons, streak, and achievements stay safe. Even if your phone suddenly decides to go on vacation.',
             es:
-              'Vincula tu cuenta: tus lecciones, XP, racha y logros siguen a salvo. Aunque el móvil decida irse de vacaciones sin avisar.',
+              'Vincula tu cuenta: tus lecciones, racha y logros siguen a salvo. Aunque el móvil decida irse de vacaciones sin avisar.',
             'pt-BR':
-              'Vincule sua conta: suas lições, XP, sequência e conquistas ficam seguros. Mesmo se o celular decidir tirar férias sem avisar.',
-            vi: 'Liên kết tài khoản để bài học, XP, chuỗi ngày và thành tích của bạn được an toàn. Kể cả khi điện thoại bất ngờ muốn nghỉ phép.',
-            id: 'Tautkan akunmu agar pelajaran, XP, streak, dan pencapaian tetap aman. Bahkan jika ponsel tiba-tiba memutuskan liburan.',
-            tr: 'Hesabını bağla; derslerin, XP, serin ve başarımların güvende kalsın. Telefon birden tatile çıkmaya karar verse bile.',
-            pl: 'Połącz konto, a lekcje, XP, seria i osiągnięcia będą bezpieczne. Nawet jeśli telefon nagle postanowi zrobić sobie urlop.',
+              'Vincule sua conta: suas lições, sequência e conquistas ficam seguros. Mesmo se o celular decidir tirar férias sem avisar.',
+            vi: 'Liên kết tài khoản để bài học, chuỗi ngày và thành tích của bạn được an toàn. Kể cả khi điện thoại bất ngờ muốn nghỉ phép.',
+            id: 'Tautkan akunmu agar pelajaran, streak, dan pencapaian tetap aman. Bahkan jika ponsel tiba-tiba memutuskan liburan.',
+            tr: 'Hesabını bağla; derslerin, serin ve başarımların güvende kalsın. Telefon birden tatile çıkmaya karar verse bile.',
+            pl: 'Połącz konto, a lekcje, seria i osiągnięcia będą bezpieczne. Nawet jeśli telefon nagle postanowi zrobić sobie urlop.',
           })}
           </Text>
         </View>

@@ -22,44 +22,30 @@ test('redirectSystemPath lands retired duel links on a safe screen', () => {
   expect(redirect('https://badloar-star.github.io/phraseman/duel/ROOM42')).toBe('/home');
 });
 
-test('redirectSystemPath preserves the live Arena V2 root', () => {
-  expect(redirect('phraseman://arena')).toBe('/arena');
-  expect(redirect('https://knowlyapps.com/arena')).toBe('/arena');
-  expect(redirect('phraseman://arena_join/ROOM42')).toBe('/home');
-});
-
-test('redirectSystemPath opens a target-bound Arena invite and sends untagged links to the Arena hub', () => {
+// зачем: D83 — клиентская Арена удалена целиком. Любая старая ссылка Арены
+// (корень, приглашение в дуэль, призрачная дуэль, прямые /arena_* экраны)
+// обязана открыть Главную, а не мёртвый маршрут.
+test('redirectSystemPath sends every retired Arena link to home (D83)', () => {
   const inviteId = 'Pz3FMGqvfVjwMSax_0L9Xg';
-  expect(redirect(`phraseman://arena/invite/${inviteId}?studyTarget=fr`)).toBe(
-    `/arena_invite?inviteId=${inviteId}&studyTarget=fr`,
-  );
-  expect(redirect(`https://knowlyapps.com/arena/invite/${inviteId}?studyTarget=de`)).toBe(
-    `/arena_invite?inviteId=${inviteId}&studyTarget=de`,
-  );
-  expect(redirect(`phraseman://arena/invite/${inviteId}`)).toBe('/arena');
-  expect(redirect(`https://knowlyapps.com/arena/invite/${inviteId}?studyTarget=it`)).toBe('/arena');
-});
-
-// зачем: экран /arena_ghost_duel удалён (владелец, 2026-08-16). Старая
-// ссылка на призрачную дуэль больше никуда не ведёт содержательно — падает
-// в живой корень Арены, тот же дом, что у остальных retired-ссылок.
-test('redirectSystemPath sends retired Arena Ghost links to the live Arena root', () => {
-  const inviteToken = `${'a'.repeat(64)}.5Jp7tYQ8zW2nL4aK9mVx`;
-  const productionToken = `${'b'.repeat(64)}5Jp7tYQ8zW2nL4aK9mVx`;
-  expect(redirect(`phraseman://arena/ghost/${inviteToken}`)).toBe('/arena');
-  expect(redirect(`https://knowlyapps.com/arena/ghost/${inviteToken}`)).toBe('/arena');
-  expect(redirect(`phraseman://arena/ghost/${productionToken}`)).toBe('/arena');
-  expect(redirect('phraseman://arena/ghost/short')).toBe('/home');
-  expect(redirect('https://knowlyapps.com/arena/ghost/has%20spaces')).toBe('/home');
+  const ghostToken = `${'a'.repeat(64)}.5Jp7tYQ8zW2nL4aK9mVx`;
+  for (const url of [
+    'phraseman://arena',
+    'https://knowlyapps.com/arena',
+    'phraseman://arena_join/ROOM42',
+    `phraseman://arena/invite/${inviteId}?studyTarget=fr`,
+    `https://knowlyapps.com/arena/invite/${inviteId}?studyTarget=de`,
+    `phraseman://arena/invite/${inviteId}`,
+    `phraseman://arena/ghost/${ghostToken}`,
+    'phraseman://arena/ghost/short',
+    `phraseman://arena_invite?inviteId=${inviteId}`,
+    'phraseman://arena_match',
+  ]) {
+    expect(redirect(url)).toBe('/home');
+  }
 });
 
 test('redirectSystemPath normalizes custom-scheme phrase links', () => {
   expect(redirect('phraseman://phrase/hello-world?play=1')).toBe('/home?openPhrase=hello-world&play=1');
-});
-
-test('redirectSystemPath sends personal-deck widget cards to their exact collection', () => {
-  expect(redirect('phraseman://deck/saved/saved-42')).toBe('/flashcards_collection?cat=saved&widgetCard=saved-42');
-  expect(redirect('phraseman://deck/created/custom_42')).toBe('/flashcards_collection?cat=custom&widgetCard=custom_42');
 });
 
 test('redirectSystemPath handles triple-slash custom-scheme duel links', () => {

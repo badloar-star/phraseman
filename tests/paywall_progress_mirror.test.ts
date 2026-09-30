@@ -14,7 +14,7 @@ function dayStr(base: Date, offsetDays: number): string {
 }
 
 describe('paywall_progress_mirror — isMirrorWorthShowing', () => {
-  const base: ProgressMirror = { lessons: 0, phrases: 0, words: 0, xp: 0, streak: 0 };
+  const base: ProgressMirror = { lessons: 0, phrases: 0, words: 0, streak: 0 };
 
   it('скрывает блок при пустом прогрессе', () => {
     expect(isMirrorWorthShowing(base)).toBe(false);

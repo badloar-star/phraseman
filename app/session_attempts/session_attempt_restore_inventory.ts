@@ -9,7 +9,6 @@ import {
 } from '../account_generation';
 import { commitPhoneStateNonMonetaryEconomyGrant } from '../phone_state_economy_bridge';
 import { withStorageLock } from '../storage_mutex';
-import { emitAppEvent } from '../events';
 import {
   attemptRestoreGiftConsumeOperationId,
   attemptRestoreGiftCreditOperationId,
@@ -389,7 +388,6 @@ export async function creditAttemptRestoreGiftFromSpin(
     await AsyncStorage.setItem(attemptRestoreGiftPreparedCreditKey(ownerStableId), '[]');
     return Object.freeze({ duplicate: false, count: nextReplay.count });
   }), input.accountTransitionLockLease);
-  if (!result.duplicate) emitAppEvent('level_gift_inventory_changed');
   void syncPendingAttemptRestoreGiftOperations(input.token).catch(() => {});
   return result;
 }

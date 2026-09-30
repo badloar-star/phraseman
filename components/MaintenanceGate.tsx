@@ -1,13 +1,15 @@
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, PanResponder, Pressable, ScrollView, Text, View } from 'react-native';
+import { Animated, Modal, PanResponder, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { onAppEvent } from '../app/events';
 import { animateNextLayoutTransition } from '../app/smooth_layout';
+import { LinearGradient } from './SafeLinearGradient';
 import {
   getMaintenanceCampaignId,
   getMaintenanceText,
@@ -52,8 +54,9 @@ async function readState(lang: string): Promise<MaintenanceState> {
 
 export default function MaintenanceGate() {
   const { lang } = useLang();
-  const { themeMode } = useTheme();
+  const { liquidGlassThemeId } = useTheme();
   const insets = useStableSafeAreaInsets();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const translateX = useRef(new Animated.Value(0)).current;
   const [state, setState] = useState<MaintenanceState>({
     block: false,
@@ -115,48 +118,98 @@ export default function MaintenanceGate() {
   }), [dismiss, translateX]);
 
   const message = state.text && state.text.trim() ? state.text.trim() : defaultText(lang);
+  const maintenanceTitle = triLang(lang as Lang, {
+    ru: 'Технические работы',
+    uk: 'Технічні роботи',
+    en: 'Maintenance',
+    es: 'Mantenimiento',
+    'pt-BR': 'Manutenção',
+    vi: 'Bảo trì',
+    id: 'Pemeliharaan',
+    tr: 'Bakım',
+    pl: 'Prace techniczne',
+  });
 
   if (state.block) {
     return (
-      <View
-        style={{
-          position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
-          backgroundColor: '#0b0b12',
-          alignItems: 'center', justifyContent: 'center',
-          paddingHorizontal: 28,
-          zIndex: 9999, elevation: 9999,
-        }}
+      <Modal
+        visible
+        transparent={false}
+        animationType="none"
+        statusBarTranslucent
+        navigationBarTranslucent
+        onRequestClose={() => undefined}
       >
         <View
+          accessibilityViewIsModal
+          importantForAccessibility="yes"
           style={{
-            width: 62,
-            height: 62,
-            borderRadius: 22,
-            backgroundColor: '#431407',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginBottom: 18,
+            flex: 1,
+            backgroundColor: glass.bg,
+            overflow: 'hidden',
           }}
         >
-          <Ionicons name="construct-outline" size={32} color={'#fed7aa'} />
+          <LinearGradient
+            pointerEvents="none"
+            colors={[glass.bgTop, glass.bgBottom]}
+            start={{ x: 0.1, y: 0 }}
+            end={{ x: 0.9, y: 1 }}
+            style={StyleSheet.absoluteFill}
+          />
+          <ScrollView
+            testID="maintenance-block-message"
+            style={{ flex: 1, width: '100%' }}
+            contentContainerStyle={{
+              flexGrow: 1,
+              alignItems: 'center',
+              justifyContent: 'center',
+              paddingHorizontal: 28,
+              paddingTop: Math.max(insets.top, 24),
+              paddingBottom: Math.max(insets.bottom, 24),
+            }}
+            showsVerticalScrollIndicator={false}
+            bounces={false}
+          >
+            <View
+              style={{
+                width: 64,
+                height: 64,
+                borderRadius: 22,
+                backgroundColor: glass.card,
+                borderWidth: StyleSheet.hairlineWidth,
+                borderColor: glass.glassEdge,
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: 18,
+                overflow: 'hidden',
+              }}
+            >
+              <LinearGradient
+                pointerEvents="none"
+                colors={[glass.selected, 'transparent']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 0.9, y: 1 }}
+                style={StyleSheet.absoluteFill}
+              />
+              <Ionicons name="construct-outline" size={31} color={glass.lightTint} />
+            </View>
+            <Text
+              accessibilityRole="header"
+              style={{ color: glass.text, fontSize: 23, lineHeight: 29, fontWeight: '800', textAlign: 'center', marginBottom: 10 }}
+            >
+              {maintenanceTitle}
+            </Text>
+            <Text
+              accessibilityRole="alert"
+              accessibilityLiveRegion="assertive"
+              accessibilityLabel={`${maintenanceTitle}. ${message}`}
+              style={{ color: glass.secondary, fontSize: 16, lineHeight: 23, textAlign: 'center', maxWidth: 420 }}
+            >
+              {message}
+            </Text>
+          </ScrollView>
         </View>
-        <Text style={{ color: '#fff', fontSize: 20, fontWeight: '800', textAlign: 'center', marginBottom: 12 }}>
-          {triLang(lang as Lang, {
-            ru: 'Технические работы',
-            uk: 'Технічні роботи',
-            en: 'Maintenance',
-            es: 'Mantenimiento',
-            'pt-BR': 'Manutenção',
-            vi: 'Bảo trì',
-            id: 'Pemeliharaan',
-            tr: 'Bakım',
-            pl: 'Prace techniczne',
-          })}
-        </Text>
-        <Text style={{ color: '#cbd5e1', fontSize: 15, lineHeight: 22, textAlign: 'center', maxWidth: 420 }}>
-          {message}
-        </Text>
-      </View>
+      </Modal>
     );
   }
 
@@ -170,33 +223,52 @@ export default function MaintenanceGate() {
         paddingTop: Math.max(insets.top, 8),
         paddingBottom: 8,
         paddingHorizontal: 12,
-        backgroundColor: '#7c2d12',
-        borderBottomWidth: 1,
-        borderBottomColor: '#9a3412',
+        backgroundColor: glass.bg,
         zIndex: 25,
         elevation: 25,
       }}
     >
-      <View style={{ minHeight: 44, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+      <View
+        testID="maintenance-banner-surface"
+        style={{
+          minHeight: 48,
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: 10,
+          paddingHorizontal: 8,
+          borderRadius: 20,
+          backgroundColor: glass.sheet,
+          borderWidth: StyleSheet.hairlineWidth,
+          borderColor: glass.glassEdge,
+          overflow: 'hidden',
+        }}
+      >
+        <LinearGradient
+          pointerEvents="none"
+          colors={[glass.selected, 'transparent']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 0.85, y: 1 }}
+          style={StyleSheet.absoluteFill}
+        />
         <View
           style={{
-            width: 32,
-            height: 32,
-            borderRadius: 16,
+            width: 34,
+            height: 34,
+            borderRadius: 17,
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: 'rgba(255,255,255,0.14)',
+            backgroundColor: glass.selected,
           }}
         >
-          <Ionicons name="construct-outline" size={18} color={'#fed7aa'} />
+          <Ionicons name="construct-outline" size={18} color={glass.lightTint} />
         </View>
         <ScrollView decelerationRate="fast"
           horizontal={false}
           showsVerticalScrollIndicator={false}
-          style={{ flex: 1, maxHeight: 54 }}
-          contentContainerStyle={{ justifyContent: 'center', minHeight: 44 }}
+          style={{ flex: 1, maxHeight: 64 }}
+          contentContainerStyle={{ justifyContent: 'center', minHeight: 46, paddingVertical: 4 }}
         >
-          <Text style={{ color: '#fed7aa', fontSize: 13, lineHeight: 18, fontWeight: '800', textAlign: 'center' }}>
+          <Text style={{ color: glass.text, fontSize: 14, lineHeight: 20, fontWeight: '700', textAlign: 'center' }}>
             {message}
           </Text>
         </ScrollView>
@@ -221,10 +293,10 @@ export default function MaintenanceGate() {
             borderRadius: 20,
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: pressed ? 'rgba(255,255,255,0.20)' : 'rgba(255,255,255,0.12)',
+            backgroundColor: pressed ? glass.selected : glass.card,
           })}
         >
-          <Ionicons name="close" size={20} color={'#fed7aa'} />
+          <Ionicons name="close" size={20} color={glass.lightTint} />
         </Pressable>
       </View>
     </Animated.View>

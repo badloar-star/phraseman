@@ -1184,6 +1184,53 @@ describe('resolveStableUidForAuth', () => {
     expect(stableUid).toBe('stable-noise');
   });
 
+  it('does not use retired XP fields to choose between equivalent owner candidates', async () => {
+    const authUid = 'google-auth-xp-conflict';
+    const { db } = makeDbStub({
+      users: {
+        'stable-established': {
+          firebaseAuthUid: authUid,
+          progress: { user_total_xp: '10000' },
+          updatedAt: 100,
+        },
+        'stable-new-empty': {
+          firebaseAuthUid: authUid,
+          progress: { user_total_xp: '0' },
+          updatedAt: 999,
+        },
+      },
+    });
+
+    await expect(resolveStableUidForAuth(db as any, authUid))
+      .resolves.toBe('stable-new-empty');
+  });
+
+  it('uses the stable id as the deterministic final tie-break for equivalent owner candidates', async () => {
+    const authUid = 'google-auth-exact-tie';
+    const equivalent = {
+      firebaseAuthUid: authUid,
+      progress: { user_total_xp: '42' },
+      updatedAt: 500,
+    };
+    const forward = makeDbStub({
+      users: {
+        'stable-z': { ...equivalent },
+        'stable-a': { ...equivalent },
+      },
+    });
+    const reverse = makeDbStub({
+      users: {
+        'stable-a': { ...equivalent },
+        'stable-z': { ...equivalent },
+      },
+    });
+
+    await expect(resolveStableUidForAuth(forward.db as any, authUid))
+      .resolves.toBe('stable-a');
+    await expect(resolveStableUidForAuth(reverse.db as any, authUid))
+      .resolves.toBe('stable-a');
+  });
+
   it('returns canonical stable id when the direct document is hidden', async () => {
     const { db } = makeDbStub({
       users: {

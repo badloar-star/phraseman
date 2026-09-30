@@ -2,7 +2,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const mockCallableInvoker = jest.fn();
 const mockMarkLevel = jest.fn<Promise<void>, [string, number]>(async () => undefined);
-const mockMarkChest = jest.fn<Promise<void>, [string]>(async () => undefined);
 const mockMergeServerStars = jest.fn(async (_token: unknown, _observation: unknown) => ({ balance: 0, earnedTotal: 0 }));
 let accountGeneration = 1;
 let accountStableId = 'me';
@@ -26,7 +25,6 @@ jest.mock('../app/level_spin_star_grants', () => ({
 }));
 jest.mock('../app/friends_together/together_store', () => ({
   markFriendLevelClaimedLocally: (friendUid: string, level: number) => mockMarkLevel(friendUid, level),
-  markWeeklyChestClaimedLocally: (weekKey: string) => mockMarkChest(weekKey),
 }));
 jest.mock('../app/friends_together/sender_identity', () => ({
   prepareTogetherSender: jest.fn(async () => ({ stableId: 'me', displayName: 'Me' })),
@@ -40,123 +38,32 @@ beforeEach(async () => {
 });
 
 describe('friends together claim response compatibility', () => {
-  it('normalizes the original level callable field names and persists the local claim', async () => {
-    mockCallableInvoker.mockResolvedValueOnce({ data: {
-      ok: true, starsAwarded: 10, starsBalance: 42, starsEarnedTotal: 90, starsSeq: 7,
-    } });
+  it('closes the level claim locally without a server decision or reward', async () => {
     const { claimFriendLevel } = await import('../app/friends_together/claims_client');
 
     await expect(claimFriendLevel('friend-1', 3)).resolves.toEqual({
       ok: true,
-      starsGranted: 10,
-      stars: 42,
-      starsEarnedTotal: 90,
-      starsSeq: 7,
+      starsGranted: 0,
     });
     expect(mockMarkLevel).toHaveBeenCalledWith('friend-1', 3);
-    expect(mockMergeServerStars).toHaveBeenCalledWith(
-      expect.objectContaining({ stableId: 'me' }),
-      { stars: 42, starsEarnedTotal: 90, starsSeq: 7 },
-    );
-  });
-
-  it('normalizes a persisted nested chest receipt and persists the claimed week', async () => {
-    mockCallableInvoker.mockResolvedValueOnce({
-      data: {
-        ok: true,
-        alreadyClaimed: true,
-        rewards: {
-          stars: 135,
-          drops: [
-            { kind: 'xp_boost' },
-            { kind: 'streak_shield' },
-            { kind: 'avatar_aura' },
-          ],
-        },
-        starsBalance: 200,
-        starsSeq: 8,
-      },
-    });
-    const { claimWeeklyChest } = await import('../app/friends_together/claims_client');
-
-    await expect(claimWeeklyChest('2026-W34')).resolves.toEqual({
-      ok: true,
-      // зачем: повторный ответ обязан долетать до экрана флагом — опыт и энергию
-      // начисляет КЛИЕНТ, и без флага перезапуск после потери ответа сети выдал
-      // бы опыт второй раз (руны так не задвоить: их баланс считает сервер).
-      alreadyClaimed: true,
-      // Старый сохранённый receipt не знает полей xpGranted/energyRefilled —
-      // нормализатор обязан подставить безопасные нули, а не undefined.
-      rewards: { starsGranted: 135, xpBoostMinutes: 60, xpGranted: 0, energyRefilled: false, streakShield: true, aura: true },
-      stars: 200,
-      starsSeq: 8,
-    });
-    expect(mockMarkChest).toHaveBeenCalledWith('2026-W34');
-  });
-
-  it('marks a FRESH chest claim as not-already-claimed so rewards actually apply', async () => {
-    // зачем: обратный риск к предыдущему тесту. Если флаг залипнет в true на
-    // свежей выдаче, экран НИКОГДА не начислит опыт и энергию — награда станет
-    // чисто нарисованной. Сервер на свежем клейме шлёт alreadyClaimed: false.
-    mockCallableInvoker.mockResolvedValueOnce({
-      data: {
-        ok: true,
-        alreadyClaimed: false,
-        starsGranted: 175,
-        xpBoostMinutes: 120,
-        xpGranted: 2000,
-        energyRefilled: true,
-        streakShield: true,
-        aura: true,
-        starsBalance: 300,
-      },
-    });
-    const { claimWeeklyChest } = await import('../app/friends_together/claims_client');
-
-    await expect(claimWeeklyChest('2026-W35')).resolves.toEqual({
-      ok: true,
-      alreadyClaimed: false,
-      rewards: {
-        starsGranted: 175,
-        xpBoostMinutes: 120,
-        xpGranted: 2000,
-        energyRefilled: true,
-        streakShield: true,
-        aura: true,
-      },
-      stars: 300,
-    });
-  });
-
-  it('reuses the same durable request id after an ambiguous network failure', async () => {
-    mockCallableInvoker
-      .mockRejectedValueOnce(new Error('unavailable network'))
-      .mockResolvedValueOnce({ data: { ok: true, starsGranted: 5 } });
-    const { claimFriendLevel } = await import('../app/friends_together/claims_client');
-
-    await expect(claimFriendLevel('friend-2', 2)).resolves.toEqual({ ok: false, reason: 'network' });
-    await expect(claimFriendLevel('friend-2', 2)).resolves.toEqual({ ok: true, starsGranted: 5 });
-
-    const firstId = mockCallableInvoker.mock.calls[0][0].requestId;
-    const secondId = mockCallableInvoker.mock.calls[1][0].requestId;
-    expect(secondId).toBe(firstId);
-  });
-
-  it('does not merge, cache, or remove account A claim after switching to B during callable await', async () => {
-    let resolveResponse!: (value: unknown) => void;
-    mockCallableInvoker.mockReturnValueOnce(new Promise((resolve) => { resolveResponse = resolve; }));
-    const { claimFriendLevel } = await import('../app/friends_together/claims_client');
-    const pending = claimFriendLevel('friend-1', 3);
-    for (let index = 0; index < 10 && mockCallableInvoker.mock.calls.length === 0; index += 1) {
-      await Promise.resolve();
-    }
-    accountGeneration = 2;
-    accountStableId = 'account-b';
-    resolveResponse({ data: {
-      ok: true, starsGranted: 20, starsBalance: 120, starsEarnedTotal: 90, starsSeq: 8,
-    } });
-    await expect(pending).resolves.toEqual({ ok: false, reason: 'network' });
-    expect(mockMarkLevel).not.toHaveBeenCalled();
+    expect(mockCallableInvoker).not.toHaveBeenCalled();
     expect(mockMergeServerStars).not.toHaveBeenCalled();
+  });
+
+  it('is idempotent through the local claim store', async () => {
+    const { claimFriendLevel } = await import('../app/friends_together/claims_client');
+
+    await expect(claimFriendLevel('friend-2', 2)).resolves.toEqual({ ok: true, starsGranted: 0 });
+    await expect(claimFriendLevel('friend-2', 2)).resolves.toEqual({ ok: true, starsGranted: 0 });
+    expect(mockCallableInvoker).not.toHaveBeenCalled();
+    expect(mockMarkLevel).toHaveBeenCalledTimes(2);
+  });
+
+  it('fails closed when there is no active owner', async () => {
+    const { claimFriendLevel } = await import('../app/friends_together/claims_client');
+    accountStableId = '';
+    await expect(claimFriendLevel('friend-1', 3)).resolves.toEqual({ ok: false, reason: 'network' });
+    expect(mockMarkLevel).not.toHaveBeenCalled();
+    expect(mockCallableInvoker).not.toHaveBeenCalled();
   });
 });

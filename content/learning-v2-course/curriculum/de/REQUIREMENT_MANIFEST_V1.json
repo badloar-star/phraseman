@@ -104,15 +104,15 @@
     },
     {
       "sourcePath": "factory/exemplars/en/l01_s01.ru.md",
-      "sha256": "aa2efd837cc37ed93a10369dc6232d8686781cf7d0173b95f4ea162254f68b75"
+      "sha256": "2ba7aa5f46e2e063f86224083ea7c08b43bdfae7592f6e9bd85fed9bfded6753"
     },
     {
       "sourcePath": "factory/exemplars/en/l01_s02.ru.md",
-      "sha256": "0c838ad954bed8ea3280953e2ee7845ffd616366375e1daf81b377f7b60088f1"
+      "sha256": "1428be129959b28803c988b3356a12bcec842682d748d2aa4d688ce9bf421118"
     },
     {
       "sourcePath": "factory/exemplars/en/l01_s03.ru.md",
-      "sha256": "8361fc61644694e31aa75e6d9ea7cf393bbe352a64625120d9060672b11427d9"
+      "sha256": "e2b6e89b95a862a9e96533d0cc08c1c64da098c0d4cfbc07f52f8dcfede68a1a"
     },
     {
       "sourcePath": "factory/judgements/owner/2026-09-03_en_l01_s01.md",
@@ -147,8 +147,12 @@
       "sha256": "36cbc02246984defc24164484dc98ce0ddf0a9d39145bd0ab87e60e06aadb565"
     },
     {
+      "sourcePath": "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md",
+      "sha256": "906bd5a12f825639c84481ea6d411330704f208e985b9626a7f571fd21ac89b5"
+    },
+    {
       "sourcePath": "factory/pipeline/prompts/author.md",
-      "sha256": "b2bcd8062fb45e96dd2a468e61ba39a82dcab467125fa96c1aaf80455aede0b9"
+      "sha256": "8998a60c9aa5002a6a457a506b471fe989bf7c3ed9f85b70939238ceeea45be5"
     },
     {
       "sourcePath": "factory/pipeline/prompts/editor.md",
@@ -460,6 +464,96 @@
       "applicability": "always",
       "severity": "HOLD",
       "assertion": "Самый новый owner-вердикт имеет приоритет над прежними исключениями для checkpoint, voice, recall, review и retrieval-only.",
+      "family": "owner_judgements"
+    },
+    {
+      "id": "DE-OPENING-001",
+      "sourcePath": "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md",
+      "sourceSection": "Сцена сессии сразу ориентирует.",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "PRE_AUTHOR фиксирует конкретную сцену и первые две ориентирующие фразы; POST_AUTHOR доказывает по exact RU+UK bytes, что ученик без догадок понимает место, участников или предметы и ближайшую практическую задачу, а урок не начинается с правила или описания конвейера.",
+      "family": "owner_judgements"
+    },
+    {
+      "id": "DE-OPENING-002",
+      "sourcePath": "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md",
+      "sourceSection": "Первое интро продолжает эту сцену.",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "PRE_AUTHOR связывает первое интро с planned scene; POST_AUTHOR доказывает по exact RU+UK bytes, что новое немецкое слово показано вместе с понятным значением и сразу применено в той же конкретной сцене без универсальной подмены.",
+      "family": "owner_judgements"
+    },
+    {
+      "id": "DE-OPENING-003",
+      "sourcePath": "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md",
+      "sourceSection": "Польза фразы видна до разбора ловушки.",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "PRE_AUTHOR планирует практическую причину произнести фразу до разбора; POST_AUTHOR доказывает по exact RU+UK bytes, что эта причина ясна раньше форм, звуков, порядка слов и диагностических ловушек.",
+      "family": "owner_judgements"
+    },
+    {
+      "id": "DE-OPENING-004",
+      "sourcePath": "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md",
+      "sourceSection": "Один проход без догадок.",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "PRE_AUTHOR проектирует вход для одного чтения; POST_AUTHOR доказывает по exact RU+UK bytes, что обычный новичок может назвать сцену, задачу и нужную фразу без перечитывания, достраивания истории или знания грамматического термина.",
+      "family": "owner_judgements"
+    },
+    {
+      "id": "DE-OPENING-005",
+      "sourcePath": "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md",
+      "sourceSection": "Живой, спокойный голос.",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "PRE_AUTHOR задаёт конкретный, тёплый и спокойный голос; POST_AUTHOR доказывает по exact RU+UK bytes отсутствие канцелярита и создание живого вайба точной ситуацией и деталью, а не приклеенной шуткой или театральностью.",
+      "family": "owner_judgements"
+    },
+    {
+      "id": "DE-OPENING-006",
+      "sourcePath": "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md",
+      "sourceSection": "Три интро образуют один вход в урок.",
+      "phase": ["PRE_AUTHOR", "POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "PRE_AUTHOR связывает три intro targets одним местом, предметом и целью; POST_AUTHOR доказывает по exact RU+UK bytes, что страницы выполняют разные функции без повторной переориентации ученика.",
+      "family": "owner_judgements"
+    },
+    {
+      "id": "DE-OPENING-007",
+      "sourcePath": "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md",
+      "sourceSection": "## Независимая проверка",
+      "phase": ["PRE_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "Свежий PRE_AUTHOR guardian до authoring независимо проверяет, что planned scene и три intro targets способны дать понятный вход в exact session; незакрытая проверка означает HOLD.",
+      "family": "owner_judgements"
+    },
+    {
+      "id": "DE-OPENING-008",
+      "sourcePath": "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md",
+      "sourceSection": "## Независимая проверка",
+      "phase": ["POST_AUTHOR"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "POST_AUTHOR проверяет только доступные exact RU+UK authored bytes на выполнение шести opening-правил и не утверждает, что последующие reader или progression judges уже запускались либо прошли.",
+      "family": "owner_judgements"
+    },
+    {
+      "id": "DE-OPENING-009",
+      "sourcePath": "factory/judgements/owner/2026-09-19_clear_lesson_opening_and_vibe.md",
+      "sourceSection": "## Независимая проверка",
+      "phase": ["RELEASE_PROJECTION"],
+      "applicability": "always",
+      "severity": "HOLD",
+      "assertion": "RELEASE_PROJECTION проверяет доступный current contentJudgeBundle с PASS-квитанциями judge_reader и judge_progression и отклоняет прежние PASS после любого изменения owner-verdict hash; это evidence release attempt, а не обещание будущей проверки.",
       "family": "owner_judgements"
     },
     {

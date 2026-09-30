@@ -15,7 +15,6 @@ export type Activity365Level = 0 | 1 | 2 | 3 | 4;
 export type Activity365Day = {
   date: string;
   level: Activity365Level;
-  xp: number;
   minutes: number;
   active: boolean;
   future: boolean;
@@ -33,7 +32,6 @@ export type Activity365MonthSummary = {
   year: number;
   month: number;
   activeDays: number;
-  totalXp: number;
   totalMinutes: number;
 };
 
@@ -111,20 +109,6 @@ function inclusiveDaySpan(a: string, b: string): number {
   return Math.max(1, Math.round((t1 - t0) / 86400000) + 1);
 }
 
-function extractPoints(val: unknown): number {
-  if (val === null || val === undefined) return 0;
-  if (typeof val === 'number') return Math.max(0, Math.floor(val));
-  if (
-    typeof val === 'object' &&
-    val !== null &&
-    'points' in val &&
-    typeof (val as { points: unknown }).points === 'number'
-  ) {
-    return Math.max(0, Math.floor((val as { points: number }).points));
-  }
-  return 0;
-}
-
 function parseObject<T extends Record<string, unknown>>(raw: string | null): T {
   if (!raw) return {} as T;
   try {
@@ -152,7 +136,6 @@ function levelForValue(value: number, thr: [number, number, number, number], act
 }
 
 function findFirstActivityKey(
-  statsMap: Record<string, unknown>,
   fgDaily: Record<string, number>,
   breakdown: DailyBreakdownStore,
   endStr: string,
@@ -163,7 +146,6 @@ function findFirstActivityKey(
     if (!active || !/^\d{4}-\d{2}-\d{2}$/.test(k) || k < limitStart || k > endStr) return;
     if (!best || k < best) best = k;
   };
-  for (const [k, v] of Object.entries(statsMap)) consider(k, extractPoints(v) > 0 || (fgDaily[k] ?? 0) >= MIN_ACTIVE_MS);
   for (const [k, ms] of Object.entries(fgDaily)) consider(k, ms >= MIN_ACTIVE_MS);
   for (const [k, row] of Object.entries(breakdown)) {
     const metrics = metricsForRow(row);
@@ -202,21 +184,19 @@ function summarizeMonths(days: Activity365Day[], todayKey: string) {
       year: Number(yearRaw),
       month: Number(monthRaw),
       activeDays: 0,
-      totalXp: 0,
       totalMinutes: 0,
     };
     prev.activeDays += day.active ? 1 : 0;
-    prev.totalXp += day.xp;
     prev.totalMinutes += day.minutes;
     map.set(key, prev);
   }
   const months = [...map.values()];
-  const nonEmpty = months.filter(m => m.activeDays > 0 || m.totalXp > 0 || m.totalMinutes > 0);
+  const nonEmpty = months.filter(m => m.activeDays > 0 || m.totalMinutes > 0);
   const bestMonth = nonEmpty.length
-    ? [...nonEmpty].sort((a, b) => (b.activeDays - a.activeDays) || (b.totalXp - a.totalXp))[0] ?? null
+    ? [...nonEmpty].sort((a, b) => (b.activeDays - a.activeDays) || (b.totalMinutes - a.totalMinutes))[0] ?? null
     : null;
   const weakestMonth = nonEmpty.length >= 2
-    ? [...nonEmpty].sort((a, b) => (a.activeDays - b.activeDays) || (a.totalXp - b.totalXp))[0] ?? null
+    ? [...nonEmpty].sort((a, b) => (a.activeDays - b.activeDays) || (a.totalMinutes - b.totalMinutes))[0] ?? null
     : null;
   const currentMonth = map.get(todayKey.slice(0, 7)) ?? null;
   return { bestMonth, weakestMonth, currentMonth };
@@ -390,7 +370,7 @@ function buildGoal(goal: number, chosen: boolean, activeDays: number, todayKey: 
 }
 
 export function valueForFilter(day: Activity365Day, filter: Activity365Filter): number {
-  if (filter === 'all') return day.xp;
+  if (filter === 'all') return day.minutes;
   return day.metrics[filter];
 }
 
@@ -420,7 +400,6 @@ const EMPTY_ACTIVITY_365_METRICS: Activity365Day['metrics'] = {
 
 export interface ActivityWindowSummary {
   activeDays: number;
-  xp: number;
   minutes: number;
   lessons: number;
   reviews: number;
@@ -436,19 +415,17 @@ export function summarizeActivityWindow(
   return days.reduce<ActivityWindowSummary>((summary, day) => {
     if (day.future || day.date < startKey || day.date > todayKey) return summary;
     summary.activeDays += day.active ? 1 : 0;
-    summary.xp += Math.max(0, Math.floor(day.xp));
     summary.minutes += Math.max(0, Math.floor(day.minutes));
     summary.lessons += Math.max(0, Math.floor(day.metrics.lessons));
     summary.reviews += Math.max(0, Math.floor(day.metrics.review));
     return summary;
-  }, { activeDays: 0, xp: 0, minutes: 0, lessons: 0, reviews: 0 });
+  }, { activeDays: 0, minutes: 0, lessons: 0, reviews: 0 });
 }
 
 export function emptyActivity365Day(date: string, future = false): Activity365Day {
   return {
     date,
     level: 0,
-    xp: 0,
     minutes: 0,
     active: false,
     future,
@@ -497,7 +474,6 @@ export function activity365MonthGridCells(
 }
 
 export function computeActivity365Analytics(params: {
-  statsMap: Record<string, unknown>;
   fgDaily: Record<string, number>;
   breakdown: DailyBreakdownStore;
   goal: number;
@@ -507,35 +483,34 @@ export function computeActivity365Analytics(params: {
 }): Activity365Analytics {
   const now = params.now ?? new Date();
   const todayKey = toDateKey(now);
-  const firstAct = findFirstActivityKey(params.statsMap, params.fgDaily, params.breakdown, todayKey);
+  const firstAct = findFirstActivityKey(params.fgDaily, params.breakdown, todayKey);
   let timelineStart = addDaysUtcKey(todayKey, -(WINDOW_DAYS - 1));
   if (firstAct != null && inclusiveDaySpan(firstAct, todayKey) <= WINDOW_DAYS) {
     timelineStart = firstAct;
   }
 
-  const xpsInWindow: number[] = [];
+  const minutesInWindow: number[] = [];
   for (let i = 0; i < WINDOW_DAYS; i++) {
     const ds = addDaysUtcKey(timelineStart, i);
     if (ds > todayKey) break;
-    const xp = extractPoints(params.statsMap[ds]);
-    if (xp > 0) xpsInWindow.push(xp);
+    const minutes = Math.max(0, Math.floor(Number(params.fgDaily[ds] ?? 0) / 60_000));
+    if (minutes > 0) minutesInWindow.push(minutes);
   }
-  xpsInWindow.sort((a, b) => a - b);
-  const thr = percentileThresholds(xpsInWindow);
+  minutesInWindow.sort((a, b) => a - b);
+  const thr = percentileThresholds(minutesInWindow);
 
   const days: Activity365Day[] = [];
   for (let i = 0; i < WINDOW_DAYS; i++) {
     const ds = addDaysUtcKey(timelineStart, i);
-    const xp = ds <= todayKey ? extractPoints(params.statsMap[ds]) : 0;
     const ms = ds <= todayKey ? Math.max(0, Math.floor(Number(params.fgDaily[ds] ?? 0))) : 0;
     const metrics = metricsForRow(params.breakdown[ds]);
     const metricSum = Object.values(metrics).reduce((acc, val) => acc + val, 0);
-    const active = ds <= todayKey && (xp > 0 || ms >= MIN_ACTIVE_MS || metricSum > 0);
+    const active = ds <= todayKey && (ms >= MIN_ACTIVE_MS || metricSum > 0);
+    const minutes = Math.round(ms / 60_000);
     days.push({
       date: ds,
-      level: levelForValue(xp, thr, active),
-      xp,
-      minutes: Math.round(ms / 60000),
+      level: levelForValue(minutes, thr, active),
+      minutes,
       active,
       future: ds > todayKey,
       metrics,
@@ -602,8 +577,7 @@ export async function loadActivity365Analytics(studyTarget?: RuntimeStudyTarget)
 
   const request = (async () => {
     try {
-      const [statsRaw, fgDaily, breakdownRaw, goalRaw] = await Promise.all([
-        AsyncStorage.getItem('daily_stats'),
+      const [fgDaily, breakdownRaw, goalRaw] = await Promise.all([
         getForegroundDailyMsMap(),
         AsyncStorage.getItem(statsDailyBreakdownKey(target)),
         AsyncStorage.getItem(ACTIVITY_365_GOAL_KEY),
@@ -611,7 +585,6 @@ export async function loadActivity365Analytics(studyTarget?: RuntimeStudyTarget)
       const goalChosen = [100, 180, 365].includes(Number(goalRaw));
       const goal = goalChosen ? Number(goalRaw) : 180;
       const result = computeActivity365Analytics({
-        statsMap: parseObject<Record<string, unknown>>(statsRaw),
         fgDaily,
         breakdown: parseObject<DailyBreakdownStore>(breakdownRaw),
         goal,

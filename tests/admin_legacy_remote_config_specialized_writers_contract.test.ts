@@ -18,8 +18,7 @@ describe('Legacy admin specialized Remote Config writers', () => {
   });
 
   test.each([
-    ['window.saveControlPanelPremium = async function()', '// ── Пульт: Weekly Boons'],
-    ['window.saveWeeklyBoons = async function()', '// ── Пульт: управление ИИ'],
+    ['window.saveControlPanelPremium = async function()', '// ── Пульт: управление ИИ'],
     ['window.saveControlPanelMaintenance = async function()', '// ── Remote Config changelog'],
   ])('%s uses cached before-values and the protected publisher', (start, end) => {
     const block = functionBlock(start, end);
@@ -29,13 +28,20 @@ describe('Legacy admin specialized Remote Config writers', () => {
   });
 
   test('specialized publishers submit only their managed branches with generated reasons', () => {
-    const premium = functionBlock('window.saveControlPanelPremium = async function()', '// ── Пульт: Weekly Boons');
-    const boons = functionBlock('window.saveWeeklyBoons = async function()', '// ── Пульт: управление ИИ');
+    const premium = functionBlock('window.saveControlPanelPremium = async function()', '// ── Пульт: управление ИИ');
     const maintenance = functionBlock('window.saveControlPanelMaintenance = async function()', '// ── Remote Config changelog');
 
     expect(premium).toContain("'Премиум-пульт: '");
-    expect(boons).toContain("{ texts: { weekly_boons_config: nextStr } }");
-    expect(boons).toContain("'Недельные бонусы: обновлена конфигурация'");
     expect(maintenance).toContain("'Технические работы: banner='");
+  });
+
+  test('retired weekly boon Remote Config has no admin reader or writer', () => {
+    const v2 = fs.readFileSync(path.resolve(__dirname, '..', 'admin', 'v2', 'legacy.html'), 'utf8');
+    for (const html of [legacy, v2]) {
+      expect(html).not.toContain('weekly_boons_config');
+      expect(html).not.toContain('loadWeeklyBoons');
+      expect(html).not.toContain('saveWeeklyBoons');
+      expect(html).not.toContain('loadControlPanelBoons');
+    }
   });
 });

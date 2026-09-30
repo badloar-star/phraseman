@@ -148,7 +148,7 @@ function proposedClassificationForFile(sourcePath: string, currentUnknownTargetR
       rationale: 'Current storage inventory still has target-required records that cannot be classified by key/domain heuristics.',
     };
   }
-  if (sourcePath.includes('release_wave_bonus') || sourcePath.includes('league_chest_rewards')) {
+  if (sourcePath.includes('release_wave_bonus')) {
     return {
       classification: 'global_account_scoped',
       confidence: 'medium',

@@ -18,8 +18,7 @@ describe('home startup stability', () => {
   it('always creates the league row for the first Home frame', () => {
     const home = read('app/(tabs)/home.tsx');
 
-    expect(home).toContain('buildHomeLeagueChest([], clubTierShortName(LEAGUES[0], lang), LEAGUES[0].id)');
-    expect(home).not.toContain('{homeLeagueChest && (<>');
+    expect(home).not.toContain('buildHomeLeagueChest');
   });
 
   it('keeps the independent survey cache primed and exposes a standalone Home offer', () => {

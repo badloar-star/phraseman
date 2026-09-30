@@ -122,7 +122,6 @@ const REPRODUCIBLE_CACHE_KEYS = Object.freeze([
   'top_helpers_snapshot_v2',
   'friend_profiles_cache_v1',
   'friends_tab_swr_v1',
-  'leaderboard_stats_cache_v2',
   'cosmetic_asset_catalog_cache_v1',
 ]);
 

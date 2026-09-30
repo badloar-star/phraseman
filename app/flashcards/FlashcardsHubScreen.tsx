@@ -1,9 +1,13 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
+import { BlurView } from 'expo-blur';
+import { Image } from 'expo-image';
 import {
   AccessibilityInfo,
   findNodeHandle,
+  type LayoutChangeEvent,
+  Platform,
   Pressable,
   ScrollView,
   StatusBar,
@@ -12,28 +16,28 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../../components/ContentWrap';
+import { useTheme } from '../../components/ThemeContext';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import FeatureIntroEntry from '../../components/feature_intro/FeatureIntroEntry';
-import ScreenGradient from '../../components/ScreenGradient';
+import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useLang } from '../../components/LangContext';
 import { useStudyTarget } from '../../components/StudyTargetContext';
-import { useTheme } from '../../components/ThemeContext';
 import { usePremium } from '../../components/PremiumContext';
-import PlusBadge from '../../components/PlusBadge';
-import SpeakingQuotaDots, { speakingQuotaDotsModel } from '../../components/SpeakingQuotaDots';
+import MonthlyTrainingSessionIndicator from '../../components/MonthlyTrainingSessionIndicator';
 import { triLang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useScreen } from '../../hooks/use-screen';
 import { useFlashcardTrainingQuotaPreview } from '../../hooks/useFlashcardTrainingQuotaPreview';
+import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { actionToastTri, emitAppEvent } from '../events';
 import { markNextNavigationAsReplace, safeRouterBack } from '../navigation_back';
 import { loadCommunityOwnedPackIds } from '../community_packs/communityOwnedStorage';
 import { loadPublishedCommunityMarketPacks } from '../community_packs/communityFirestore';
-import { loadLocalAuthorPacks } from '../community_packs/localAuthorPacks';
+import { isLocalAuthorPackId, loadLocalAuthorPacks } from '../community_packs/localAuthorPacks';
+import { getCanonicalUserId } from '../user_id_policy';
 import { stageCommunityPackCardsForNavigation } from '../community_packs/staging';
-import { buildFcCreateRoute } from './tabbar_state';
 import {
   loadMarketplacePacks,
   peekWarmMarketplacePacks,
@@ -44,14 +48,87 @@ import FlashcardsTrainingModeSheet from './FlashcardsTrainingModeSheet';
 import type { CardsTrainingMode } from './training_entry';
 import { primeFlashcardsCollectionCache } from './useCollectionData';
 import { hydrateFcDeckOptionsSnapshot, loadFcDeckOptions } from './deck_options';
+import { loadSelectedSavedContour, peekSelectedSavedContour } from './saved_language_contour';
+import { packTileArtRevision } from './packMarketplaceIcons';
+import { peekMyPacksCount } from './myPacksCountCache';
+import { buildFcCreateRoute } from './tabbar_state';
 
 type LibraryRowProps = {
   testID: string;
   icon: keyof typeof Ionicons.glyphMap;
+  savedArt?: boolean;
   title: string;
   subtitle: string;
+  count: number | null;
+  countPendingLabel: string;
+  lang: string;
   onPress: () => void;
 };
+
+/** Low-intensity native diffusion is bounded to the visible Hub surfaces. */
+function HeaderGlassSheen({ edge, tint, wash }: { edge: string; tint: string; wash: string }) {
+  return <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+    <BlurView intensity={Platform.OS === 'android' ? 12 : 16} blurReductionFactor={3}
+      experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'}
+      tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
+    <View style={[StyleSheet.absoluteFill, { backgroundColor: `${wash}A6` }]} />
+    <LinearGradient colors={[tint, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
+    <View style={[styles.rowSheen, { backgroundColor: edge }]} />
+  </View>;
+}
+
+const LIBRARY_ROW_GRADIENT_FALLBACK = {
+  start: { x: 0, y: 0 },
+  end: { x: 1, y: 1 },
+} as const;
+
+function libraryRowGradientForSize(width: number, height: number) {
+  if (!Number.isFinite(width) || !Number.isFinite(height) || width <= 0 || height <= 0) {
+    return LIBRARY_ROW_GRADIENT_FALLBACK;
+  }
+  // CSS 110deg is 20deg from the physical x-axis. Expo multiplies normalized
+  // coordinates by the rendered size, so compensate for each row aspect ratio.
+  const radians = 20 * Math.PI / 180;
+  const direction = { x: Math.cos(radians), y: Math.sin(radians) };
+  const length = Math.abs(width * direction.x) + Math.abs(height * direction.y);
+  return {
+    start: {
+      x: 0.5 - direction.x * length / (2 * width),
+      y: 0.5 - direction.y * length / (2 * height),
+    },
+    end: {
+      x: 0.5 + direction.x * length / (2 * width),
+      y: 0.5 + direction.y * length / (2 * height),
+    },
+  };
+}
+
+function LibraryRowSheen({ testID }: Readonly<{ testID: string }>) {
+  const [layout, setLayout] = useState({ width: 0, height: 0 });
+  const gradient = useMemo(
+    () => libraryRowGradientForSize(layout.width, layout.height),
+    [layout.height, layout.width],
+  );
+  const onLayout = useCallback((event: LayoutChangeEvent) => {
+    const { width, height } = event.nativeEvent.layout;
+    if (!Number.isFinite(width) || !Number.isFinite(height) || width <= 0 || height <= 0) return;
+    setLayout(current => current.width === width && current.height === height
+      ? current
+      : { width, height });
+  }, []);
+  return (
+    <LinearGradient
+      pointerEvents="none"
+      testID={testID}
+      colors={['rgba(239,241,255,0.09)', 'rgba(239,241,255,0)']}
+      locations={[0, 0.58]}
+      start={gradient.start}
+      end={gradient.end}
+      onLayout={onLayout}
+      style={[StyleSheet.absoluteFill, { opacity: layout.width > 0 && layout.height > 0 ? 1 : 0 }]}
+    />
+  );
+}
 
 /**
  * Совпадают ли каталоги по составу (id и социальные счётчики, которые видно на
@@ -85,6 +162,12 @@ function sameCatalog(a: readonly FlashcardMarketPack[], b: readonly FlashcardMar
     // зачем: без этой строки список НЕ перерисуется при новом отклике — счётчик
     // «💬» отставал бы до полного перезахода в раздел (та же жалоба была на лайк).
     if ((a[i].commentsCount ?? 0) !== (b[i].commentsCount ?? 0)) return false;
+    if (a[i].titleRu !== b[i].titleRu || a[i].titleUk !== b[i].titleUk || a[i].titleEs !== b[i].titleEs) return false;
+    if (a[i].titlePtBr !== b[i].titlePtBr || a[i].titleVi !== b[i].titleVi || a[i].titleId !== b[i].titleId || a[i].titleTr !== b[i].titleTr || a[i].titlePl !== b[i].titlePl) return false;
+    if (a[i].codeName !== b[i].codeName || a[i].authorName !== b[i].authorName || a[i].cardCount !== b[i].cardCount) return false;
+    if (a[i].isCommunityUgc !== b[i].isCommunityUgc || a[i].listingStatus !== b[i].listingStatus || a[i].packLanguage !== b[i].packLanguage) return false;
+    if (a[i].priceRunes !== b[i].priceRunes || a[i].ugcCardThemeKey !== b[i].ugcCardThemeKey || a[i].videoId !== b[i].videoId) return false;
+    if (packTileArtRevision(a[i]) !== packTileArtRevision(b[i])) return false;
   }
   return true;
 }
@@ -110,56 +193,55 @@ function mergeCatalogs(...catalogs: readonly FlashcardMarketPack[][]): Flashcard
   return merged;
 }
 
-function LibraryRow({ testID, icon, title, subtitle, onPress }: LibraryRowProps) {
-  const { theme: t, f } = useTheme();
+function LibraryRow({ testID, icon, savedArt = false, title, subtitle, count, countPendingLabel, lang, onPress }: LibraryRowProps) {
+  const { liquidGlassThemeId } = useTheme();
+  const g = liquidGlassTokens(liquidGlassThemeId);
   return (
     <Pressable
       testID={testID}
       accessibilityRole="button"
-      accessibilityLabel={`${title}. ${subtitle}`}
+      accessibilityLabel={`${title}. ${subtitle}. ${count === null ? countPendingLabel : new Intl.NumberFormat(lang).format(count)}`}
       onPress={onPress}
-      style={({ pressed }) => [styles.libraryRow, { backgroundColor: t.bgSurface, opacity: pressed ? 0.82 : 1 }]}
+      style={({ pressed }) => [styles.libraryRow, { backgroundColor: g.opaqueCard }, pressed && styles.pressed]}
     >
-      <View style={[styles.libraryIcon, { backgroundColor: `${t.accent}18` }]}>
-        <Ionicons name={icon} size={21} color={t.accent} />
+      <LibraryRowSheen testID={`${testID}-sheen`} />
+      <View style={[styles.libraryIcon, { backgroundColor: g.opaqueControl }]}>
+        {savedArt
+          ? <Image source={require('../../assets/images/v2/cards_hub_saved.webp')} style={styles.savedArt} contentFit="contain" accessible={false} />
+          : <Ionicons name={icon} size={20} color={g.lightTint} />}
       </View>
       <View style={styles.libraryCopy}>
-        <Text
-          style={[
-            styles.libraryTitle,
-            { color: t.textPrimary, fontSize: f.bodyLg, lineHeight: Math.round(f.bodyLg * 1.2), fontWeight: '900' },
-          ]}
-        >
-          {title}
-        </Text>
-        <Text
-          style={[
-            styles.librarySubtitle,
-            { color: t.textSecond, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.25), fontWeight: '700' },
-          ]}
-        >
-          {subtitle}
-        </Text>
+        <Text style={[styles.libraryTitle, { color: g.text }]}>{title}</Text>
+        <Text style={[styles.librarySubtitle, { color: g.secondary }]}>{subtitle}</Text>
       </View>
-      <Ionicons name="chevron-forward" size={20} color={t.textMuted} />
+      <Text accessibilityLabel={count === null ? countPendingLabel : new Intl.NumberFormat(lang).format(count)} style={[styles.libraryCount, { color: g.secondary }]}>
+        {count === null ? '—' : new Intl.NumberFormat(lang, { notation: 'compact', maximumFractionDigits: 1 }).format(count)}
+      </Text>
+      <Ionicons name="chevron-forward" size={20} color={g.secondary} />
     </Pressable>
   );
 }
 
 export default function FlashcardsHubScreen() {
+  const { liquidGlassThemeId } = useTheme();
+  const g = liquidGlassTokens(liquidGlassThemeId);
   const router = useRouter();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
-  const { theme: t, f, statusBarLight } = useTheme();
   const { accessResolved } = usePremium();
   const quotaPreview = useFlashcardTrainingQuotaPreview();
   const { contentMaxW } = useScreen();
   const { width } = useWindowDimensions();
+  const insets = useStableSafeAreaInsets();
   const cloudCommunityEnabled = CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
   const [catalog, setCatalog] = useState<FlashcardMarketPack[]>(
     () => peekWarmMarketplacePacks(studyTarget) ?? [],
   );
   const [ownedCommunityPackIds, setOwnedCommunityPackIds] = useState<string[]>([]);
+  const [savedCount, setSavedCount] = useState<number | null>(() => peekSelectedSavedContour()?.length ?? null);
+  // My Packs includes unpublished author packs that the Hub catalog does not know.
+  // Only its settled account/target snapshot is a truthful count.
+  const [myPackCount, setMyPackCount] = useState<number | null>(null);
   /**
    * зачем (владелец: «раздел открывается и происходит скачок, моргание»):
    * состояние стартовало в 'loading' ВСЕГДА, даже когда тёплый каталог уже лежал
@@ -171,6 +253,10 @@ export default function FlashcardsHubScreen() {
   const [catalogLoadState, setCatalogLoadState] = useState<'loading' | 'ready'>(
     () => (catalog.length > 0 ? 'ready' : 'loading'),
   );
+  const communityPackCount = useMemo(() => {
+    if (catalogLoadState !== 'ready') return null;
+    return catalog.filter((pack) => pack.isCommunityUgc && !isLocalAuthorPackId(pack.id)).length;
+  }, [catalog, catalogLoadState]);
   const [catalogLoadRevision, setCatalogLoadRevision] = useState(0);
   const [openingPackId, setOpeningPackId] = useState<string | null>(null);
   const openingPackRef = useRef<string | null>(null);
@@ -192,6 +278,31 @@ export default function FlashcardsHubScreen() {
       ru: 'Карточки', uk: 'Картки', en: 'Cards', es: 'Tarjetas', 'pt-BR': 'Cartões',
       vi: 'Thẻ', id: 'Kartu', tr: 'Kartlar', pl: 'Karty',
     }),
+    subtitle: triLang(lang, {
+      ru: 'Учите слова и фразы эффективнее', uk: 'Вивчайте слова й фрази ефективніше',
+      en: 'Learn words and phrases more effectively', es: 'Aprende palabras y frases de forma más eficaz',
+      'pt-BR': 'Aprenda palavras e frases com mais eficiência', vi: 'Học từ và cụm từ hiệu quả hơn',
+      id: 'Pelajari kata dan frasa dengan lebih efektif', tr: 'Kelimeleri ve ifadeleri daha etkili öğren',
+      pl: 'Ucz się słów i zwrotów skuteczniej',
+    }),
+    brand: 'PhraseMan 2.0',
+    countPending: triLang(lang, {
+      ru: 'Количество пока загружается', uk: 'Кількість ще завантажується', en: 'Count loading',
+      es: 'Cargando cantidad', 'pt-BR': 'Carregando total', vi: 'Đang tải số lượng',
+      id: 'Jumlah sedang dimuat', tr: 'Sayı yükleniyor', pl: 'Ładowanie liczby',
+    }),
+    countUnavailable: triLang(lang, {
+      ru: 'Количество ещё не известно', uk: 'Кількість ще невідома', en: 'Count not yet available',
+      es: 'Cantidad aún no disponible',
+    }),
+    bestSegment: triLang(lang, {
+      ru: 'Лучшее', uk: 'Найкраще', en: 'Best', es: 'Mejor', 'pt-BR': 'Melhores',
+      vi: 'Nổi bật', id: 'Terbaik', tr: 'En iyiler', pl: 'Najlepsze',
+    }),
+    communitySegment: triLang(lang, {
+      ru: 'Сообщество', uk: 'Спільнота', en: 'Community', es: 'Comunidad',
+      'pt-BR': 'Comunidade', vi: 'Cộng đồng', id: 'Komunitas', tr: 'Topluluk', pl: 'Społeczność',
+    }),
     library: triLang(lang, {
       ru: 'Ваши карточки', uk: 'Ваші картки', en: 'Your cards', es: 'Tus tarjetas',
       'pt-BR': 'Seus cartões', vi: 'Thẻ của bạn', id: 'Kartu Anda', tr: 'Kartların', pl: 'Twoje karty',
@@ -204,6 +315,15 @@ export default function FlashcardsHubScreen() {
       ru: 'Личная коллекция', uk: 'Особиста колекція', en: 'Personal collection', es: 'Colección personal',
       'pt-BR': 'Coleção pessoal', vi: 'Bộ sưu tập cá nhân', id: 'Koleksi pribadi',
       tr: 'Kişisel koleksiyon', pl: 'Osobista kolekcja',
+    }),
+    video: triLang(lang, {
+      ru: 'Наборы из видео', uk: 'Набори з відео', en: 'Packs from videos', es: 'Packs de vídeos',
+      'pt-BR': 'Pacotes de vídeos', vi: 'Bộ thẻ từ video', id: 'Paket dari video', tr: 'Video paketleri', pl: 'Zestawy z filmów',
+    }),
+    videoSub: triLang(lang, {
+      ru: 'Карточки по видео', uk: 'Картки за відео', en: 'Cards from videos',
+      es: 'Tarjetas de vídeos', 'pt-BR': 'Cartões de vídeos', vi: 'Thẻ từ video',
+      id: 'Kartu dari video', tr: 'Videolardan kartlar', pl: 'Karty z filmów',
     }),
     mine: triLang(lang, {
       ru: 'Мои наборы', uk: 'Мої набори', en: 'My packs', es: 'Mis packs', 'pt-BR': 'Meus pacotes',
@@ -234,31 +354,27 @@ export default function FlashcardsHubScreen() {
       'pt-BR': 'Criar pacote', vi: 'Tạo bộ thẻ', id: 'Buat paket', tr: 'Paket oluştur',
       pl: 'Utwórz zestaw',
     }),
-    /**
-     * Остаток попыток голосом: точки видны глазами, но скрыты от скринридера
-     * (см. SpeakingQuotaDots), поэтому смысл дублируется в ярлыке кнопки.
-     */
     trainA11yLeft: (left: number, total: number) => triLang(lang, {
-      ru: `Осталось ${left} из ${total} тренировок на сегодня`,
-      uk: `Залишилось ${left} з ${total} тренувань на сьогодні`,
-      en: `${left} of ${total} sessions left today`,
-      es: `Quedan ${left} de ${total} sesiones hoy`,
-      'pt-BR': `Restam ${left} de ${total} sessões hoje`,
-      vi: `Còn ${left} trong ${total} lượt hôm nay`,
-      id: `Sisa ${left} dari ${total} sesi hari ini`,
-      tr: `Bugün ${total} çalışmadan ${left} tanesi kaldı`,
-      pl: `Zostało ${left} z ${total} sesji na dziś`,
+      ru: `Осталось ${left} из ${total} тренировок в этом месяце`,
+      uk: `Залишилось ${left} з ${total} тренувань цього місяця`,
+      en: `${left} of ${total} sessions left this month`,
+      es: `Quedan ${left} de ${total} sesiones este mes`,
+      'pt-BR': `Restam ${left} de ${total} sessões neste mês`,
+      vi: `Còn ${left} trong ${total} lượt luyện tập tháng này`,
+      id: `Sisa ${left} dari ${total} sesi bulan ini`,
+      tr: `Bu ay ${total} çalışmadan ${left} tanesi kaldı`,
+      pl: `Zostało ${left} z ${total} treningów w tym miesiącu`,
     }),
     trainA11yExhausted: triLang(lang, {
-      ru: 'Тренировки на сегодня закончились. Откройте Plus',
-      uk: 'Тренування на сьогодні закінчилися. Відкрийте Plus',
-      en: 'No sessions left today. Get Plus',
-      es: 'No quedan sesiones hoy. Consigue Plus',
-      'pt-BR': 'Sem sessões hoje. Assine o Plus',
-      vi: 'Hết lượt hôm nay. Mở Plus',
-      id: 'Sesi hari ini habis. Dapatkan Plus',
-      tr: 'Bugünlük çalışma kalmadı. Plus al',
-      pl: 'Brak sesji na dziś. Kup Plus',
+      ru: 'Все 30 тренировок на этот месяц использованы',
+      uk: 'Усі 30 тренувань на цей місяць використано',
+      en: 'All 30 training sessions for this month have been used',
+      es: 'Ya usaste las 30 sesiones de este mes',
+      'pt-BR': 'As 30 sessões deste mês foram usadas',
+      vi: 'Bạn đã dùng hết 30 lượt luyện tập tháng này',
+      id: '30 sesi bulan ini sudah digunakan',
+      tr: 'Bu ayın 30 çalışmasının tamamı kullanıldı',
+      pl: 'Wykorzystano wszystkie 30 treningów w tym miesiącu',
     }),
     back: triLang(lang, {
       ru: 'На главную', uk: 'На головну', en: 'Back to home', es: 'Volver al inicio',
@@ -272,6 +388,12 @@ export default function FlashcardsHubScreen() {
       let cancelled = false;
       // Revision is an explicit retry signal: changing it restarts this focused load.
       void catalogLoadRevision;
+      // Local settled count refreshes even on a warm Hub return from My Packs.
+      void getCanonicalUserId().then((userId) => {
+        if (!cancelled) setMyPackCount(peekMyPacksCount(studyTarget, userId));
+      }).catch(() => {
+        if (!cancelled) setMyPackCount(null);
+      });
       /**
        * зачем (владелец 2026-09-21, «всё лагает, причём везде», TestFlight):
        * этот обработчик зовётся при КАЖДОМ открытии вкладки и собирал полную
@@ -309,6 +431,11 @@ export default function FlashcardsHubScreen() {
         console.warn('[FC-DECKS] hub:warm FAILED —', error instanceof Error ? error.message : String(error)); // guard-ok: лог отказа в catch, не на кадр
       });
       primeFlashcardsCollectionCache(studyTarget);
+      void loadSelectedSavedContour(studyTarget).then((cards) => {
+        if (!cancelled) setSavedCount(cards.length);
+      }).catch(() => {
+        if (!cancelled) setSavedCount(null);
+      });
       /**
        * зачем: возврат на экран перечитывает каталог фоном, но НЕ стирает уже
        * показанный список. Скелетон уместен только когда показывать нечего.
@@ -402,37 +529,19 @@ export default function FlashcardsHubScreen() {
   const trainingEntryReady = quotaPreview.status === 'allowed'
     || quotaPreview.status === 'unavailable'
     || quotaPreview.status === 'stale_account';
-  const speakingLocked = trainingLocked;
-
-  /**
-   * Остаток дневных тренировок точками прямо на кнопке.
-   *
-   * зачем (владелец 2026-09-14): лимит 3/сутки существовал, но был НЕВИДИМ —
-   * человек узнавал о нём, только упёршись, и отказ выглядел как поломка.
-   * Точки показывают правило заранее, тем же языком, что и голосовые попытки.
-   *
-   * Точки скрыты от скринридера (внутри компонента), поэтому остаток обязан
-   * звучать в accessibilityLabel кнопки — иначе незрячий человек правила не
-   * узнает вовсе.
-   */
-  const trainingDots = useMemo(() => speakingQuotaDotsModel(quotaPreview), [quotaPreview]);
+  const trainingRemaining = Math.max(0, quotaPreview.limit - quotaPreview.used);
   const trainAccessibilityLabel = trainingLocked
     ? `${copy.train}. ${copy.trainA11yExhausted}`
-    : trainingDots
-      ? `${copy.train}. ${copy.trainA11yLeft(trainingDots.remaining, trainingDots.total)}`
+    : quotaPreview.status === 'allowed'
+      ? `${copy.train}. ${copy.trainA11yLeft(trainingRemaining, quotaPreview.limit)}`
       : copy.train;
 
-  /** Free-пользователь получает paywall до экрана настройки, а не после лишнего тапа. */
   const openTrainingPaywall = useCallback((context: 'flashcard_training', source: string) => {
     markNextNavigationAsReplace();
     router.replace({ pathname: '/premium_modal', params: { context, source } } as never);
   }, [router]);
 
   const chooseMode = useCallback((mode: CardsTrainingMode) => {
-    if (mode === 'speaking' && speakingLocked) {
-      openTrainingPaywall('flashcard_training', 'flashcards_hub_speaking');
-      return;
-    }
     if (trainingLocked) {
       openTrainingPaywall('flashcard_training', 'flashcards_hub_training_mode');
       return;
@@ -440,7 +549,7 @@ export default function FlashcardsHubScreen() {
     if (!trainingEntryReady) return;
     pendingModeRef.current = mode;
     setModeSheetVisible(false);
-  }, [openTrainingPaywall, speakingLocked, trainingEntryReady, trainingLocked]);
+  }, [openTrainingPaywall, trainingEntryReady, trainingLocked]);
 
   const finishModeSheetDismissal = useCallback(() => {
     const mode = pendingModeRef.current;
@@ -455,79 +564,63 @@ export default function FlashcardsHubScreen() {
     router.push({ pathname: '/flashcards_training_setup', params: { mode } } as never);
   }, [router]);
 
-  const contentWidth = Math.max(0, Math.min(contentMaxW, width - 32));
+  const contentWidth = Math.max(0, Math.min(contentMaxW, width) - 40);
 
   return (
-    <ScreenGradient>
+    <View style={[styles.screen, { backgroundColor: g.bg }]}>
+      <LinearGradient pointerEvents="none" colors={[g.bgTop, g.bg, g.bgBottom]} locations={[0, 0.58, 1]} style={StyleSheet.absoluteFill} />
       <FeatureIntroEntry id="cards_hub_first_visit" enabled={accessResolved && !modeSheetVisible && openingPackId === null} />
-      <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
-        <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
+      <View style={[styles.safe, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
+        <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
         <ContentWrap>
           <View style={styles.header}>
-            <View style={styles.headerLeading}>
-              <Pressable
+            <Pressable
                 testID="fc-cards-hub-back"
                 accessibilityRole="button"
                 accessibilityLabel={copy.back}
                 onPress={() => safeRouterBack(router, '/(tabs)/home' as never)}
                 hitSlop={8}
-                style={({ pressed }) => [styles.backButton, { backgroundColor: t.bgSurface, opacity: pressed ? 0.78 : 1 }]}
+                style={({ pressed }) => [styles.backButton, { backgroundColor: g.sheet }, pressed && styles.pressed]}
               >
-                <Ionicons name="arrow-back" size={23} color={t.textPrimary} />
+                <HeaderGlassSheen edge={g.glassEdge} tint={g.selected} wash={g.opaqueSheet} />
+                <Ionicons name="arrow-back" size={20} color={g.text} />
               </Pressable>
-              <Text
-                accessibilityRole="header"
-                style={[
-                  styles.title,
-                  {
-                    color: t.textPrimary,
-                    fontSize: Math.max(27, Math.round(f.h1 * 1.2)),
-                    lineHeight: Math.max(32, Math.round(f.h1 * 1.35)),
-                    fontWeight: '900',
-                  },
-                ]}
-              >
-                {copy.title}
-              </Text>
-            </View>
+            <Text accessibilityRole="header" style={[styles.headerTitle, { color: g.text }]}>{copy.title}</Text>
             <Pressable
               testID="fc-cards-hub-create-pack"
               accessibilityRole="button"
               accessibilityLabel={copy.create}
               onPress={openCreatePack}
-              style={({ pressed }) => [styles.createButton, { backgroundColor: t.bgSurface, opacity: pressed ? 0.78 : 1 }]}
+              hitSlop={8}
+              style={({ pressed }) => [styles.headerTrailing, { backgroundColor: g.sheet }, pressed && styles.pressed]}
             >
-              <Ionicons name="add" size={25} color={t.textPrimary} />
+              <HeaderGlassSheen edge={g.glassEdge} tint={g.selected} wash={g.opaqueSheet} />
+              <Ionicons name="add" size={22} color={g.text} />
             </Pressable>
           </View>
 
           <ScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-            <SavedTopCommunityPacks
-              catalog={catalog}
-              ownedCommunityPackIds={ownedCommunityPackIds}
-              lang={lang}
-              t={t}
-              contentWidth={contentWidth}
-              openingPackId={openingPackId}
-              onOpenPreview={openTopPack}
-              loading={catalogLoadState === 'loading'}
-              onRetry={reloadCatalog}
-            />
-
-            <Text
-              style={[
-                styles.sectionTitle,
-                { color: t.textPrimary, fontSize: f.h2, lineHeight: Math.round(f.h2 * 1.25), fontWeight: '900' },
-              ]}
-            >
-              {copy.library}
-            </Text>
+            <View style={styles.segments} accessibilityRole="tablist">
+              <View testID="fc-cards-hub-segment-best" accessibilityRole="tab" accessibilityState={{ selected: true }} style={[styles.segment, { backgroundColor: g.selected }]}>
+                <Text style={[styles.segmentText, { color: g.text }]}>{copy.bestSegment}</Text>
+              </View>
+              <Pressable testID="fc-cards-hub-segment-mine" accessibilityRole="tab" onPress={() => router.push('/flashcards_my_packs' as never)} style={({ pressed }) => [styles.segment, { backgroundColor: g.card }, pressed && styles.pressed]}>
+                <Text style={[styles.segmentText, { color: g.secondary }]}>{copy.mine}</Text>
+              </Pressable>
+              <Pressable testID="fc-cards-hub-segment-community" accessibilityRole="tab" onPress={() => router.push('/flashcards_packs' as never)} style={({ pressed }) => [styles.segment, { backgroundColor: g.card }, pressed && styles.pressed]}>
+                <Text style={[styles.segmentText, { color: g.secondary }]}>{copy.communitySegment}</Text>
+              </Pressable>
+            </View>
             <View style={styles.libraryList}>
               <LibraryRow
                 testID="fc-cards-hub-library-saved"
                 icon="bookmark-outline"
+                savedArt={true}
                 title={copy.saved}
                 subtitle={copy.savedSub}
+                count={savedCount}
+                countPendingLabel={copy.countPending}
+                lang={lang}
                 onPress={() => router.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'hub' } } as never)}
               />
               <LibraryRow
@@ -535,6 +628,9 @@ export default function FlashcardsHubScreen() {
                 icon="albums-outline"
                 title={copy.mine}
                 subtitle={copy.mineSub}
+                count={myPackCount}
+                countPendingLabel={copy.countUnavailable}
+                lang={lang}
                 onPress={() => router.push('/flashcards_my_packs' as never)}
               />
               <LibraryRow
@@ -542,15 +638,44 @@ export default function FlashcardsHubScreen() {
                 icon="people-outline"
                 title={copy.community}
                 subtitle={copy.communitySub}
+                count={communityPackCount}
+                countPendingLabel={copy.countPending}
+                lang={lang}
                 onPress={() => router.push('/flashcards_packs' as never)}
+              />
+              <LibraryRow
+                testID="fc-cards-hub-library-video"
+                icon="play-circle-outline"
+                title={copy.video}
+                subtitle={copy.videoSub}
+                count={null}
+                countPendingLabel={copy.countUnavailable}
+                lang={lang}
+                onPress={() => router.push('/flashcards_video_packs' as never)}
               />
             </View>
 
+            <SavedTopCommunityPacks
+              catalog={catalog}
+              ownedCommunityPackIds={ownedCommunityPackIds}
+              lang={lang}
+              contentWidth={contentWidth}
+              openingPackId={openingPackId}
+              onOpenPreview={openTopPack}
+              onSeeAll={() => router.push('/flashcards_packs' as never)}
+              loading={catalogLoadState === 'loading'}
+              onRetry={reloadCatalog}
+            />
+
+          </ScrollView>
+          <View style={[styles.trainDock, { backgroundColor: g.bgBottom }]}>
             <Pressable
               ref={trainButtonRef}
               testID="fc-cards-hub-train"
               accessibilityRole="button"
+              accessibilityState={{ disabled: !trainingLocked && !trainingEntryReady }}
               accessibilityLabel={trainAccessibilityLabel}
+              disabled={!trainingLocked && !trainingEntryReady}
               onPress={() => {
                 void hapticTap();
                 console.log('[FC-TRAIN-ENTRY] tap:train', JSON.stringify({
@@ -558,7 +683,6 @@ export default function FlashcardsHubScreen() {
                   bypass: quotaPreview.bypass, trainingLocked, trainingEntryReady, accessResolved,
                 }));
                 if (trainingLocked) {
-                  console.log('[FC-TRAIN-ENTRY] tap:train → paywall (quota exhausted)');
                   openTrainingPaywall('flashcard_training', 'flashcards_hub_train');
                   return;
                 }
@@ -571,70 +695,61 @@ export default function FlashcardsHubScreen() {
                 pendingModeRef.current = null;
                 setModeSheetVisible(true);
               }}
-              style={({ pressed }) => [styles.trainButton, { backgroundColor: t.accent, opacity: pressed ? 0.84 : 1 }]}
+              style={({ pressed }) => [styles.trainButton, { backgroundColor: g.cta }, pressed && styles.pressed, (!trainingLocked && !trainingEntryReady) && styles.trainDisabled]}
             >
               <View style={styles.trainButtonContent}>
-                <Text
-                  style={[
-                    styles.trainText,
-                    { color: t.correctText, fontSize: f.bodyLg, lineHeight: Math.round(f.bodyLg * 1.25), fontWeight: '900' },
-                  ]}
-                >
-                  {copy.train}
-                </Text>
-                {trainingLocked ? <PlusBadge themeMode="dark" size="sm" showIcon={false} /> : null}
+                <Text style={[styles.trainText, { color: g.ctaInk }]}>{copy.train}</Text>
+                <Ionicons name="arrow-forward" size={20} color={g.ctaInk} />
               </View>
-              {/*
-                зачем: точки живут ПОД подписью, а не рядом — в ряд с текстом
-                они бы толкали его при смене остатка. Компонент всегда занимает
-                свою высоту (распорка), поэтому кнопка не «дышит» между кадрами.
-                Цвета берём от подписи: тусклая прозрачность — потраченное,
-                полный тон — оставшееся; обводок нет по правилу владельца.
-              */}
-              <SpeakingQuotaDots
-                testID="fc-cards-hub-train-dots"
-                quota={quotaPreview}
-                size="md"
-                spentColor={`${t.correctText}3D`}
-                remainingColor={t.correctText}
-                style={styles.trainDots}
-              />
             </Pressable>
-          </ScrollView>
+            <MonthlyTrainingSessionIndicator
+              testID="fc-cards-hub-train-monthly-limit"
+              quota={quotaPreview}
+              textColor={g.text}
+              mutedColor={g.mutedText}
+              style={styles.trainDots}
+            />
+          </View>
         </ContentWrap>
 
         <FlashcardsTrainingModeSheet
           visible={modeSheetVisible}
           lang={lang}
-          t={t}
           onClose={() => setModeSheetVisible(false)}
           onDismissed={finishModeSheetDismissal}
           onSelect={chooseMode}
-          lockedModes={{ speaking: speakingLocked }}
         />
-      </SafeAreaView>
-    </ScreenGradient>
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, minHeight: 0, backgroundColor: 'transparent' },
-  header: { minHeight: 60, paddingHorizontal: 16, paddingTop: 8, paddingBottom: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  headerLeading: { flex: 1, minWidth: 0, flexDirection: 'row', alignItems: 'center', gap: 10 },
-  backButton: { width: 48, height: 48, borderRadius: 15, alignItems: 'center', justifyContent: 'center' },
-  title: { flexShrink: 1, letterSpacing: 0.1 },
-  createButton: { width: 48, height: 48, borderRadius: 15, alignItems: 'center', justifyContent: 'center' },
+  screen: { flex: 1 },
+  safe: { flex: 1, minHeight: 0 },
+  header: { height: 48, marginHorizontal: 20, flexDirection: 'row', alignItems: 'center', gap: 10 },
+  backButton: { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
+  headerTitle: { flex: 1, fontSize: 19, lineHeight: 25, fontWeight: '700' },
+  headerTrailing: { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
+  pressed: { opacity: 0.82 },
   scroll: { flex: 1, minHeight: 0 },
-  scrollContent: { paddingHorizontal: 16, paddingBottom: 32 },
-  sectionTitle: { marginTop: 6, marginBottom: 12, letterSpacing: 0.1 },
-  libraryList: { gap: 9 },
-  libraryRow: { minHeight: 72, borderRadius: 18, paddingHorizontal: 12, paddingVertical: 11, flexDirection: 'row', alignItems: 'center', gap: 11 },
-  libraryIcon: { width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
+  scrollContent: { paddingHorizontal: 20, paddingBottom: 22 },
+  segments: { flexDirection: 'row', gap: 5, marginTop: 7, marginBottom: 16 },
+  segment: { flex: 1, minHeight: 34, borderRadius: 17, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 5 },
+  segmentText: { fontSize: 12, lineHeight: 17, fontWeight: '700', textAlign: 'center' },
+  libraryList: { gap: 8 },
+  libraryRow: { minHeight: 58, borderRadius: 13, paddingLeft: 11, paddingRight: 12, paddingVertical: 7, flexDirection: 'row', alignItems: 'center', gap: 10, overflow: 'hidden' },
+  rowSheen: { position: 'absolute', top: 0, left: 1, right: 1, height: 1 },
+  libraryIcon: { width: 38, height: 38, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
+  savedArt: { width: 36, height: 36 },
   libraryCopy: { flex: 1, minWidth: 0 },
-  libraryTitle: {},
-  librarySubtitle: { marginTop: 3 },
-  trainButton: { minHeight: 54, marginTop: 16, borderRadius: 17, paddingHorizontal: 16, paddingVertical: 12, alignItems: 'center', justifyContent: 'center' },
-  trainButtonContent: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
-  trainDots: { marginTop: 6 },
-  trainText: { flexShrink: 1, textAlign: 'center' },
+  libraryTitle: { fontSize: 14, lineHeight: 19, fontWeight: '700' },
+  librarySubtitle: { fontSize: 11, lineHeight: 15, marginTop: 1 },
+  libraryCount: { minWidth: 24, fontSize: 12, lineHeight: 17, fontWeight: '700', textAlign: 'right' },
+  trainDock: { paddingHorizontal: 20, paddingTop: 9 },
+  trainButton: { minHeight: 52, borderRadius: 13, paddingHorizontal: 16, paddingVertical: 9, alignItems: 'center', justifyContent: 'center' },
+  trainDisabled: { opacity: 0.55 },
+  trainButtonContent: { width: '100%', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
+  trainDots: { marginTop: 10, alignSelf: 'center' },
+  trainText: { flexShrink: 1, fontSize: 14, lineHeight: 19, fontWeight: '700', textAlign: 'center' },
 });

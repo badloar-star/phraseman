@@ -52,7 +52,6 @@ export type MistakeSourceKind =
   | 'level_exam'
   | 'exam'
   | 'learning_v2'
-  | 'personal_plan'
   | 'diagnosis_coach'
   | 'voice_review';
 

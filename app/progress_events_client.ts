@@ -8,11 +8,6 @@ import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { ensureAnonUser } from './cloud_sync';
 import { mergeStreakByActivityDate } from './streak_safety';
 import { getCanonicalUserId } from './user_id_policy';
-import { getCurrentWeekStartIso } from './weekly_xp';
-import { getLevelFromXP } from '../constants/theme';
-import { enqueueHomeLevelUpCelebrationForLevels } from './home_level_up_celebration_queue';
-import { enqueueAuthoritativeLevelSpinLevels } from './level_spin_level_up_queue';
-import { persistAuthoritativeLevelSpinBalance } from './level_reward_spins_client';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
@@ -20,18 +15,13 @@ import {
 } from './account_generation';
 import { recordShadowProgressEvent } from './phone_state_shadow_adapters';
 import { trySubmitProgressThroughPhoneState } from './phone_state_progress_cutover';
-import { DebugLogger } from './debug-logger';
+import { DebugLogger, reportSwallowed, swallowError } from './debug-logger';
 
 export type ProgressEventType =
   | 'lesson_answer'
   | 'lesson_complete'
   | 'dialog_complete'
   | 'exam_complete'
-  | 'achievement_reward'
-  | 'level_up_bonus'
-  | 'daily_login_bonus'
-  | 'daily_phrase_quest'
-  | 'bonus_chest'
   | 'vocabulary_learned'
   | 'verb_learned'
   | 'preposition_drill_answer'
@@ -42,10 +32,7 @@ export type ProgressEventType =
   // зачем: порядок обязан совпадать с PROGRESS_EVENT_TYPES в functions/src/progress_events.ts —
   // tests/progress_event_type_contract сверяет списки как упорядоченные, чтобы новый тип события
   // нельзя было завести только на одной стороне.
-  | 'wager_win'
-  // зачем (аудит MAX 2026-08-30): опыт голосового урока MAX. Сумму считает и
-  // капит сервер звонка (maxVoiceSessionEnd), сюда она приходит готовой.
-  | 'max_voice';
+  ;
 
 export type ProgressEventRequest = {
   eventId?: string;
@@ -59,19 +46,8 @@ export type ProgressEventResult = {
   eventId: string;
   type: ProgressEventType;
   duplicate: boolean;
-  xpDelta: number;
-  totalXp: number;
-  level: number;
   streakCount: number;
   activeDate: string;
-  weekKey: string;
-  weekXp: number;
-  levelSpinMintedCredits?: Array<{
-    id: string;
-    level: number;
-    kind: 'standard' | 'milestone';
-  }>;
-  levelSpinBalance?: number;
 };
 
 export type ProgressSubmitOptions = {
@@ -85,7 +61,6 @@ type QueuedProgressEvent = {
   clientCreatedAt: number;
   appVersion: string;
   platform: string;
-  levelSpinProtocol: 'v1';
   stableId: string;
   payload: Record<string, unknown>;
 };
@@ -103,13 +78,6 @@ const PROGRESS_EVENT_RETRY_MAX_MS = 300_000;
 const CALLABLE_TIMEOUT_MS = 15000;
 
 const SERVER_PROGRESS_BASE_KEYS = [
-  'user_total_xp',
-  'user_prev_xp',
-  'user_level',
-  'weekly_xp',
-  'weekly_xp_period_start',
-  'week_points',
-  'week_points_v2',
   'streak_count',
   'last_active_date',
   'streak_last_date',
@@ -415,17 +383,6 @@ function parseNonNegativeNumber(raw: unknown): number {
   return Number.isFinite(n) ? Math.max(0, n) : 0;
 }
 
-function sameWeekPoints(raw: unknown, weekKey: string): number | null {
-  if (typeof raw !== 'string' || raw.trim() === '') return null;
-  try {
-    const parsed = JSON.parse(raw) as { weekKey?: unknown; points?: unknown };
-    if (parsed?.weekKey !== weekKey) return null;
-    return parseNonNegativeNumber(parsed.points);
-  } catch {
-    return null;
-  }
-}
-
 const flushedProgressResults = new Map<string, ProgressEventResult>();
 const terminalProgressEvents = new Map<string, true>();
 
@@ -530,7 +487,7 @@ async function ensureProgressSnapshotMigratedForOwner(stableId: string): Promise
   await ensureAnonUser();
   const migratedKey = progressOwnerKey(PROGRESS_MIGRATED_KEY, stableId);
   if (await AsyncStorage.getItem(migratedKey)) return true;
-  const appCheckReady = await initFirebaseAppCheckIfAvailable().catch(() => false);
+  const appCheckReady = await initFirebaseAppCheckIfAvailable().catch((error: unknown) => { reportSwallowed('progress_events_client:ensureProgressSnapshotMigratedForOwner', error); return false; });
   if (!appCheckReady) return false;
   const frozen = await readOwnedProgressBaseline(stableId);
   const progress = frozen ?? await readLocalProgressSnapshot();
@@ -567,7 +524,7 @@ async function ensureProgressSnapshotMigratedWithBaseline(
   await ensureAnonUser();
   const migratedKey = progressOwnerKey(PROGRESS_MIGRATED_KEY, stableId);
   if (await AsyncStorage.getItem(migratedKey)) return true;
-  const appCheckReady = await initFirebaseAppCheckIfAvailable().catch(() => false);
+  const appCheckReady = await initFirebaseAppCheckIfAvailable().catch((error: unknown) => { reportSwallowed('progress_events_client:ensureProgressSnapshotMigratedWithBaseline', error); return false; });
   if (!appCheckReady) return false;
   const frozen = await readOwnedProgressBaseline(stableId);
   const progress = frozen ?? snapshotOverride ?? await readLocalProgressSnapshot();
@@ -579,29 +536,12 @@ async function ensureProgressSnapshotMigratedWithBaseline(
 }
 
 export async function mirrorProgressResultToLocal(result: ProgressEventResult): Promise<void> {
-  const weekStart = getCurrentWeekStartIso(new Date(`${result.activeDate}T00:00:00.000Z`));
-  const [[, localTotalXp], [, localWeekStart], [, localWeeklyXp], [, localWeekPointsRaw], [, localStreak], [, localLastActive], [, localStreakLast]] = await AsyncStorage.multiGet([
-    'user_total_xp',
-    'weekly_xp_period_start',
-    'weekly_xp',
-    'week_points_v2',
+  const [[, localStreak], [, localLastActive], [, localStreakLast]] = await AsyncStorage.multiGet([
     'streak_count',
     'last_active_date',
     'streak_last_date',
   ]);
-  const localTotalBeforeMirror = parseNonNegativeNumber(localTotalXp);
-  const serverTotalXp = parseNonNegativeNumber(result.totalXp);
-  const serverWeekXp = parseNonNegativeNumber(result.weekXp);
   const serverStreak = Math.max(0, Math.floor(parseNonNegativeNumber(result.streakCount)));
-  const localWeekPoints = sameWeekPoints(localWeekPointsRaw, result.weekKey);
-  const localWeeklyIsCurrent = localWeekStart === weekStart || localWeekPoints !== null;
-  const mergedTotalXp = Math.max(localTotalBeforeMirror, serverTotalXp);
-  const currentWeekCandidates = [serverWeekXp];
-  if (localWeeklyIsCurrent) {
-    currentWeekCandidates.push(parseNonNegativeNumber(localWeeklyXp));
-    if (localWeekPoints !== null) currentWeekCandidates.push(localWeekPoints);
-  }
-  const mergedWeekXp = Math.max(...currentWeekCandidates);
   const mergedStreakState = mergeStreakByActivityDate(
     { streak: localStreak, lastActive: localLastActive, streakLast: localStreakLast },
     { streak: serverStreak, lastActive: result.activeDate, streakLast: result.activeDate },
@@ -609,44 +549,14 @@ export async function mirrorProgressResultToLocal(result: ProgressEventResult): 
   const mergedStreak = mergedStreakState.streak;
   const mergedActiveDate = mergedStreakState.lastActive ?? result.activeDate;
   await AsyncStorage.multiSet([
-    ['user_total_xp', String(mergedTotalXp)],
-    ['user_prev_xp', String(mergedTotalXp)],
-    ['user_level', String(getLevelFromXP(mergedTotalXp))],
-    ['weekly_xp', String(mergedWeekXp)],
-    ['weekly_xp_period_start', weekStart],
-    ['week_points', String(Math.round(mergedWeekXp))],
-    ['week_points_v2', JSON.stringify({ weekKey: result.weekKey, points: mergedWeekXp })],
     ['streak_count', String(mergedStreak)],
     ['last_active_date', mergedActiveDate],
     ['streak_last_date', mergedActiveDate],
   ]);
-  const mintedCredits = result.levelSpinMintedCredits;
-  const spinBalance = result.levelSpinBalance;
-  if (!Array.isArray(mintedCredits)
-    || !Number.isSafeInteger(spinBalance)
-    || Number(spinBalance) < 0) return;
-  const milestoneLevels = new Set([5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60]);
-  const validCredits = mintedCredits.every((credit) => {
-    if (!Number.isInteger(credit.level) || credit.level < 2 || credit.level > 60) return false;
-    const expectedId = `level_spin_v1_${String(credit.level).padStart(3, '0')}`;
-    const expectedKind = milestoneLevels.has(credit.level) ? 'milestone' : 'standard';
-    const examCredit = /^level_exam_spin_v1_(A1|A2|B1|B2)$/.exec(credit.id);
-    const examDisplayLevel: Record<string, number> = { A1: 2, A2: 3, B1: 4, B2: 5 };
-    return (credit.id === expectedId && credit.kind === expectedKind)
-      || (examCredit !== null && examDisplayLevel[examCredit[1]] === credit.level && credit.kind === 'standard');
-  });
-  if (!validCredits) return;
-  await persistAuthoritativeLevelSpinBalance(result.stableUid, Number(spinBalance));
-  const mintedLevels = [...new Set(mintedCredits.map((credit) => credit.level))].sort((a, b) => a - b);
-  if (mintedLevels.length > 0) {
-    await enqueueAuthoritativeLevelSpinLevels(mintedLevels);
-    // Празднование на Главной вместо удалённой модалки поздравления.
-    enqueueHomeLevelUpCelebrationForLevels(mintedLevels);
-  }
 }
 
 async function submitQueuedEvent(event: QueuedProgressEvent): Promise<ProgressEventResult> {
-  const appCheckReady = await initFirebaseAppCheckIfAvailable().catch(() => false);
+  const appCheckReady = await initFirebaseAppCheckIfAvailable().catch((error: unknown) => { reportSwallowed('progress_events_client:submitQueuedEvent', error); return false; });
   if (!appCheckReady) throw new Error('app_check_unavailable');
   const fn = callable<QueuedProgressEvent, ProgressEventResult>('progressSubmitEvent');
   const accountGeneration = captureAccountGeneration();
@@ -699,7 +609,7 @@ async function doFlush(stableId: string): Promise<number> {
     const initialHead = state.queue![0];
     if (retry?.headEventId === initialHead.eventId && Date.now() < retry.nextRetryAt) return 0;
     if (retry && retry.headEventId !== initialHead.eventId) {
-      await AsyncStorage.removeItem(retryKey).catch(() => {});
+      await AsyncStorage.removeItem(retryKey).catch(swallowError('progress_events_client:doFlush'));
     }
 
     const remaining = [...state.queue!];
@@ -757,7 +667,7 @@ async function doFlush(stableId: string): Promise<number> {
           reason: progressErrorDiagnostic(error),
         });
         markTerminalProgressEvent(stableId, next.eventId);
-        await appendDeadLetter(stableId, next, error).catch(() => {});
+        await appendDeadLetter(stableId, next, error).catch(swallowError('progress_events_client:doFlush'));
         remaining.shift();
         removed += 1;
         processed += 1;
@@ -773,7 +683,7 @@ async function doFlush(stableId: string): Promise<number> {
       state.queue = remaining;
       state.eventIds = new Set(remaining.map((event) => event.eventId));
     }
-    if (!transientFailure && retry) await AsyncStorage.removeItem(retryKey).catch(() => {});
+    if (!transientFailure && retry) await AsyncStorage.removeItem(retryKey).catch(swallowError('progress_events_client:doFlush'));
     return sent;
   });
 }
@@ -813,7 +723,7 @@ export async function submitProgressEvent(
     // streak/weekly_xp/week_points ТОЛЬКО локально в SQLite и раньше здесь
     // return-ился без сети — сервер (users/{uid}.progress, server-owned после
     // progressServerAuthoritative=true) переставал видеть события ВООБЩЕ.
-    // XP/уровень/серия застывали в облаке на дату ухода в cutover, хотя
+    // legacy reward/уровень/серия застывали в облаке на дату ухода в cutover, хотя
     // человек занимался каждый день — локальный экран показывал верные числа,
     // а cloud_sync не имеет права писать server-owned ключи напрямую (см.
     // SERVER_OWNED_PROGRESS_KEYS в cloud_sync.ts). Фикс: тот же ивент теперь
@@ -830,7 +740,6 @@ export async function submitProgressEvent(
           clientCreatedAt: Date.now(),
           appVersion: appVersion(),
           platform: Platform.OS,
-          levelSpinProtocol: 'v1',
           stableId,
           payload: request.payload,
         };
@@ -848,13 +757,8 @@ export async function submitProgressEvent(
       eventId,
       type: request.type,
       duplicate: false,
-      xpDelta: Number(request.payload.xpDelta) || 0,
-      totalXp: localProjection.totalXp,
-      level: localProjection.level,
       streakCount: localProjection.streakCount,
       activeDate,
-      weekKey: getCurrentWeekStartIso(),
-      weekXp: localProjection.weeklyXp,
     };
   }
   const [[, clientStreakCount], [, clientLastActive], [, clientStreakLast]] = await AsyncStorage.multiGet([
@@ -869,7 +773,6 @@ export async function submitProgressEvent(
     clientCreatedAt: Date.now(),
     appVersion: appVersion(),
     platform: Platform.OS,
-    levelSpinProtocol: 'v1',
     stableId,
     payload: {
       ...request.payload,
@@ -878,10 +781,9 @@ export async function submitProgressEvent(
     },
   };
   // Commit to the durable outbox before any network work. A crash during the
-  // request must not lose a completed answer or its XP event.
+  // request must not lose a completed learning event.
   await enqueue(event);
-  // Completion facts only: XP is recorded once by xp_manager after its local
-  // total is durable. Shadow failure cannot affect this legacy server queue.
+  // Completion facts only: shadow analytics failure cannot affect this durable queue.
   if (event.type === 'lesson_complete' || event.type === 'exam_complete') {
     void recordShadowProgressEvent({
       eventId: event.eventId,
@@ -913,7 +815,7 @@ export async function submitProgressEvent(
     throw new Error('progress_event_result_unavailable');
   } catch (error) {
     if (!isPermanentProgressEventError(error)) {
-      await enqueue(event).catch(() => {});
+      await enqueue(event).catch(swallowError('progress_events_client:submitProgressEvent'));
     }
     throw error;
   }

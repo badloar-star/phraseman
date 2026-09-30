@@ -12,6 +12,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
+import { useLv2Glass } from '../components/learning-v2/LearningV2Glass';
 import { triLang, type Lang } from '../constants/i18n';
 import { pluralWord } from '../constants/plural';
 import { hapticTap } from '../hooks/use-haptics';
@@ -59,22 +60,23 @@ const copyFor = (lang: Lang) => triLang(lang, {
 let hubSnapshotPeek: Readonly<{ key: string; snapshot: MistakePracticeHubSnapshot }> | null = null;
 
 function FacetBar({ share, index, top, reduceMotion }: Readonly<{ share: number; index: number; top: boolean; reduceMotion: boolean }>) {
-  const { theme: t } = useTheme();
+  const g = useLv2Glass();
   const progress = useSharedValue(reduceMotion ? share : 0);
   useEffect(() => {
     progress.value = reduceMotion ? share : withDelay(index * 90, withTiming(share, { duration: 720 }));
   }, [index, progress, reduceMotion, share]);
   const style = useAnimatedStyle(() => ({ width: `${Math.max(0, Math.min(100, progress.value * 100))}%` }));
   return (
-    <View style={[styles.barTrack, { backgroundColor: t.bgSurface2 }]}>
-      <Reanimated.View style={[styles.barFill, { backgroundColor: top ? t.wrong : t.accent }, style]} />
+    <View style={[styles.barTrack, { backgroundColor: g.opaqueControl }]}>
+      <Reanimated.View style={[styles.barFill, { backgroundColor: top ? g.bad : g.cta }, style]} />
     </View>
   );
 }
 
 export default function MistakesHubScreen() {
   const router = useRouter();
-  const { theme: t, f } = useTheme();
+  const { f } = useTheme();
+  const g = useLv2Glass();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const reduceMotion = useReduceMotion();
@@ -198,10 +200,10 @@ export default function MistakesHubScreen() {
     <ScreenGradient>
       <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
         <View style={styles.header}>
-          <Pressable accessibilityRole="button" accessibilityLabel={copy.back} hitSlop={10} onPress={() => safeRouterBack(router, '/' as never)} style={[styles.iconButton, { backgroundColor: t.bgCard }]}>
-            <Ionicons name="chevron-back" size={24} color={t.textPrimary} />
+          <Pressable accessibilityRole="button" accessibilityLabel={copy.back} hitSlop={10} onPress={() => safeRouterBack(router, '/' as never)} style={[styles.iconButton, { backgroundColor: g.opaqueCard }]}>
+            <Ionicons name="chevron-back" size={24} color={g.text} />
           </Pressable>
-          <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h3 }]} numberOfLines={2}>{copy.title}</Text>
+          <Text style={[styles.title, { color: g.text, fontSize: f.h3 }]}>{copy.title}</Text>
         </View>
         <ScrollView
           contentContainerStyle={styles.content}
@@ -212,13 +214,13 @@ export default function MistakesHubScreen() {
           <View style={styles.pillRow}>
             {loaded ? (
               <>
-                <Pressable testID="mistakes-hub-ready" accessibilityRole="button" onPress={() => openList('ready')} style={[styles.pill, { backgroundColor: t.wrongBg }]}>
-                  <Text style={[styles.pillNum, { color: t.textPrimary, fontSize: f.body }]}>{readyCount}</Text>
-                  <Text style={[styles.pillText, { color: t.textPrimary, fontSize: f.label }]}>{copy.ready}</Text>
+                <Pressable testID="mistakes-hub-ready" accessibilityRole="button" onPress={() => openList('ready')} style={[styles.pill, { backgroundColor: g.badFill }]}>
+                  <Text style={[styles.pillNum, { color: g.text, fontSize: f.body }]}>{readyCount}</Text>
+                  <Text style={[styles.pillText, { color: g.text, fontSize: f.label }]}>{copy.ready}</Text>
                 </Pressable>
-                <Pressable testID="mistakes-hub-corrected" accessibilityRole="button" onPress={() => openList('corrected')} style={[styles.pill, { backgroundColor: t.correctBg }]}>
-                  <Text style={[styles.pillNum, { color: t.textPrimary, fontSize: f.body }]}>{corrected}</Text>
-                  <Text style={[styles.pillText, { color: t.textPrimary, fontSize: f.label }]}>{copy.corrected}</Text>
+                <Pressable testID="mistakes-hub-corrected" accessibilityRole="button" onPress={() => openList('corrected')} style={[styles.pill, { backgroundColor: g.goodFill }]}>
+                  <Text style={[styles.pillNum, { color: g.text, fontSize: f.body }]}>{corrected}</Text>
+                  <Text style={[styles.pillText, { color: g.text, fontSize: f.label }]}>{copy.corrected}</Text>
                 </Pressable>
               </>
             ) : (
@@ -230,31 +232,31 @@ export default function MistakesHubScreen() {
           </View>
 
           {allFixed || nothingYet ? (
-            <View style={[styles.card, { backgroundColor: t.bgCard }]}>
-              <View style={[styles.emptyIcon, { backgroundColor: t.correctBg }]}>
-                <Ionicons name="checkmark" size={36} color={t.correct} />
+            <View style={[styles.card, { backgroundColor: g.opaqueCard }]}>
+              <View style={[styles.emptyIcon, { backgroundColor: g.goodFill }]}>
+                <Ionicons name="checkmark" size={36} color={g.good} />
               </View>
-              <Text style={[styles.emptyTitle, { color: t.textPrimary, fontSize: f.h3 }]}>{allFixed ? copy.empty : copy.noData}</Text>
-              <Text style={[styles.body, { color: t.textMuted, fontSize: f.body }]}>{copy.emptyBody}</Text>
+              <Text style={[styles.emptyTitle, { color: g.text, fontSize: f.h3 }]}>{allFixed ? copy.empty : copy.noData}</Text>
+              <Text style={[styles.body, { color: g.secondary, fontSize: f.body }]}>{copy.emptyBody}</Text>
               {allFixed ? (
-                <Pressable accessibilityRole="button" onPress={() => openList('corrected')} style={[styles.secondary, { backgroundColor: t.bgSurface2 }]}>
-                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>{copy.shelf}</Text>
+                <Pressable accessibilityRole="button" onPress={() => openList('corrected')} style={[styles.secondary, { backgroundColor: g.opaqueControl }]}>
+                  <Text style={{ color: g.text, fontSize: f.body, fontWeight: '800' }}>{copy.shelf}</Text>
                 </Pressable>
               ) : null}
             </View>
           ) : (
             <>
               {/* Карта слабых мест: тип → доля за 30 дней. */}
-              <View style={[styles.card, { backgroundColor: t.bgCard }]}>
-                <Text style={[styles.cardTitle, { color: t.textPrimary, fontSize: f.bodyLg }]}>
+              <View style={[styles.card, { backgroundColor: g.opaqueCard }]}>
+                <Text style={[styles.cardTitle, { color: g.text, fontSize: f.bodyLg }]}>
                   {loaded ? `${copy.map30} · ${facetTotal} ${pluralWord(lang, facetTotal, copy.mistakes)}` : copy.map30}
                 </Text>
                 <View style={styles.facets}>
                   {loaded ? facets.map((item, index) => (
                     <View key={item.facet} style={styles.facet}>
                       <View style={styles.facetRow}>
-                        <Text style={[styles.facetName, { color: t.textPrimary, fontSize: f.body }]}>{mistakeFacetLabel(lang, item.facet as MistakeFacet)}</Text>
-                        <Text style={[styles.facetVal, { color: t.textMuted, fontSize: f.body }]}>{facetTotal > 0 ? Math.round((item.count / facetTotal) * 100) : 0}%</Text>
+                        <Text style={[styles.facetName, { color: g.text, fontSize: f.body }]}>{mistakeFacetLabel(lang, item.facet as MistakeFacet)}</Text>
+                        <Text style={[styles.facetVal, { color: g.secondary, fontSize: f.body }]}>{facetTotal > 0 ? Math.round((item.count / facetTotal) * 100) : 0}%</Text>
                       </View>
                       <FacetBar share={facetTotal > 0 ? item.count / facetTotal : 0} index={index} top={index === 0} reduceMotion={reduceMotion} />
                     </View>
@@ -268,34 +270,34 @@ export default function MistakesHubScreen() {
               </View>
 
               {/* Наблюдение: готово до открытия (кэш ИИ на сегодня или правило). Без подписи «ИИ». */}
-              <View style={[styles.card, { backgroundColor: t.bgSurface }]}>
+              <View style={[styles.card, { backgroundColor: g.opaqueControl }]}>
                 {advice ? (
-                  <Text testID="mistakes-hub-advice" style={[styles.advice, { color: t.textPrimary, fontSize: f.bodyLg }]}>{advice.hub}</Text>
+                  <Text testID="mistakes-hub-advice" style={[styles.advice, { color: g.text, fontSize: f.bodyLg }]}>{advice.hub}</Text>
                 ) : (
                   <View style={{ gap: 10 }}><SkeletonBlock width="92%" height={18} /><SkeletonBlock width="70%" height={18} /></View>
                 )}
               </View>
 
               {/* Откуда приходят. */}
-              <View style={[styles.card, { backgroundColor: t.bgCard }]}>
-                <Text style={[styles.cardTitle, { color: t.textPrimary, fontSize: f.bodyLg }]}>{copy.sources}</Text>
+              <View style={[styles.card, { backgroundColor: g.opaqueCard }]}>
+                <Text style={[styles.cardTitle, { color: g.text, fontSize: f.bodyLg }]}>{copy.sources}</Text>
                 <View style={styles.sourceRow}>
                   {loaded ? sources.map((item) => (
-                    <View key={item.source} style={[styles.sourceTile, { backgroundColor: t.bgSurface2 }]}>
-                      <Text style={[styles.sourceNum, { color: t.textPrimary }]}>{item.count}</Text>
-                      <Text style={[styles.sourceLabel, { color: t.textMuted, fontSize: f.label }]} numberOfLines={1}>{mistakeSourceLabel(lang, item.source)}</Text>
+                    <View key={item.source} style={[styles.sourceTile, { backgroundColor: g.opaqueControl }]}>
+                      <Text style={[styles.sourceNum, { color: g.text }]}>{item.count}</Text>
+                      <Text style={[styles.sourceLabel, { color: g.secondary, fontSize: f.label }]}>{mistakeSourceLabel(lang, item.source)}</Text>
                     </View>
                   )) : [0, 1, 2].map((index) => <SkeletonBlock key={`skeleton-source-${index}`} width="31%" height={76} borderRadius={18} />)}
                   {loaded && advice?.map ? (
-                    <Text style={[styles.body, { color: t.textMuted, fontSize: f.sub, width: '100%' }]}>{advice.map}</Text>
+                    <Text style={[styles.body, { color: g.secondary, fontSize: f.sub, width: '100%' }]}>{advice.map}</Text>
                   ) : null}
                 </View>
               </View>
 
-              <Pressable testID="mistakes-hub-list" accessibilityRole="button" onPress={() => openList('all')} style={[styles.listLink, { backgroundColor: t.bgCard }]}>
-                <Text style={[styles.cardTitle, { color: t.textPrimary, fontSize: f.body, flex: 1 }]}>{copy.list}</Text>
-                <Text style={[styles.facetVal, { color: t.textMuted, fontSize: f.body }]}>{active}</Text>
-                <Ionicons name="chevron-forward" size={20} color={t.textMuted} />
+              <Pressable testID="mistakes-hub-list" accessibilityRole="button" onPress={() => openList('all')} style={[styles.listLink, { backgroundColor: g.opaqueCard }]}>
+                <Text style={[styles.cardTitle, { color: g.text, fontSize: f.body, flex: 1 }]}>{copy.list}</Text>
+                <Text style={[styles.facetVal, { color: g.secondary, fontSize: f.body }]}>{active}</Text>
+                <Ionicons name="chevron-forward" size={20} color={g.secondary} />
               </Pressable>
             </>
           )}
@@ -304,7 +306,7 @@ export default function MistakesHubScreen() {
         {loaded && readyCount > 0 ? (
           <View style={styles.dock}>
             {showSegments ? (
-              <View style={[styles.segment, { backgroundColor: t.bgCard }]}>
+              <View style={[styles.segment, { backgroundColor: g.opaqueCard }]}>
                 {options.map((option) => {
                   const on = option.id === length;
                   return (
@@ -316,9 +318,9 @@ export default function MistakesHubScreen() {
                       disabled={!option.enabled}
                       hitSlop={4}
                       onPress={() => { hapticTap(); setLength(option.id); }}
-                      style={[styles.segmentItem, on && { backgroundColor: t.bgSurface2 }, !option.enabled && { opacity: 0.38 }]}
+                      style={[styles.segmentItem, on && { backgroundColor: g.opaqueControl }, !option.enabled && { opacity: 0.38 }]}
                     >
-                      <Text style={{ color: on ? t.textPrimary : t.textMuted, fontSize: f.body, fontWeight: '800' }}>
+                      <Text style={{ color: on ? g.text : g.secondary, fontSize: f.body, fontWeight: '800' }}>
                         {option.id === 'all' ? `${copy.all} ${option.count}` : option.id}
                       </Text>
                     </Pressable>
@@ -331,9 +333,9 @@ export default function MistakesHubScreen() {
                 testID="mistakes-hub-start"
                 accessibilityRole="button"
                 onPress={startSession}
-                style={({ pressed }) => [styles.start, { backgroundColor: t.accent, transform: [{ scale: pressed ? 0.98 : 1 }] }]}
+                style={({ pressed }) => [styles.start, { backgroundColor: g.cta, transform: [{ scale: pressed ? 0.98 : 1 }] }]}
               >
-                <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '800' }}>
+                <Text style={{ color: g.ctaInk, fontSize: f.body, fontWeight: '800' }}>
                   {showSegments ? `${copy.start} ${sessionCount}` : `${copy.startAll} ${sessionCount}`}
                 </Text>
               </Pressable>
@@ -350,7 +352,7 @@ export default function MistakesHubScreen() {
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: 'transparent' },
   header: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 16, paddingTop: 6, paddingBottom: 8 },
-  iconButton: { width: 40, height: 40, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
+  iconButton: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   title: { flex: 1, fontWeight: '900', letterSpacing: -0.4 },
   content: { paddingHorizontal: 16, paddingTop: 4, paddingBottom: 160, gap: 12 },
   pillRow: { flexDirection: 'row', gap: 8, minHeight: 36 },
@@ -371,7 +373,7 @@ const styles = StyleSheet.create({
   sourceRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
   sourceTile: { width: '31%', flexGrow: 1, minHeight: 76, borderRadius: 18, alignItems: 'center', justifyContent: 'center', gap: 4, paddingHorizontal: 6 },
   sourceNum: { fontSize: 28, fontWeight: '900', letterSpacing: -0.8, fontVariant: ['tabular-nums'] },
-  sourceLabel: { fontWeight: '800' },
+  sourceLabel: { fontWeight: '800', textAlign: 'center', flexShrink: 1 },
   listLink: { borderRadius: 18, paddingHorizontal: 18, minHeight: 60, flexDirection: 'row', alignItems: 'center', gap: 10 },
   emptyIcon: { width: 72, height: 72, borderRadius: 26, alignItems: 'center', justifyContent: 'center', alignSelf: 'center' },
   emptyTitle: { fontWeight: '900', textAlign: 'center' },

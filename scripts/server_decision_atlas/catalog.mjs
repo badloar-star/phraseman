@@ -1,4 +1,5 @@
 import { scanServerDecisionAtlasSources } from './inventory.mjs';
+import { classifyD66 } from './d66_policy.mjs';
 
 const GLOSSARY = [
   ['Приложение', 'Phraseman на телефоне игрока. Оно показывает экран и может сохранить действие до появления интернета.'],
@@ -97,7 +98,8 @@ export function buildServerDecisionAtlas(root = process.cwd()) {
   const scanned = scanServerDecisionAtlasSources(root);
   const records = scanned.records.map((record) => {
     const authority = authorityFor(record);
-    const enriched = { ...record, title: titleFor(record.name), category: categoryFor(record.name), plainWhat: routeExplanation(record), searchAliases: searchAliasesFor(record), authority };
+    const d66 = classifyD66(record);
+    const enriched = { ...record, title: titleFor(record.name), category: categoryFor(record.name), plainWhat: routeExplanation(record), searchAliases: searchAliasesFor(record), authority, d66 };
     enriched.safety = safetyFor(enriched, authority);
     enriched.markerExplanations = enriched.markers.map((marker) => ({ ...marker, simpleMeaning: markerText(marker) }));
     enriched.choices = choicesFor(enriched);
@@ -111,6 +113,7 @@ export function buildServerDecisionAtlas(root = process.cwd()) {
     withTestEvidence: records.filter((record) => record.evidence.some((item) => item.kind === 'test-source')).length,
     withContractEvidence: records.filter((record) => record.evidence.some((item) => item.kind === 'contract-source')).length,
     staticBehaviorEstablished: records.filter((record) => record.markers.some((item) => item.state === 'evidence-found')).length,
+    d66: countBy(records, (record) => record.d66.kind),
   };
   return { schemaVersion: 'server-decision-atlas.v1', generatedAt: new Date().toISOString(), glossary: GLOSSARY, metrics, records };
 }

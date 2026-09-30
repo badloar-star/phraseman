@@ -7,6 +7,12 @@ import ReportErrorButton from "../../../components/ReportErrorButton";
 import { useLang } from "../../../components/LangContext";
 import { useStudyTarget } from "../../../components/StudyTargetContext";
 import { useEnergy, useEnergySessionIntent } from "../../../components/EnergyContext";
+import { useFirstQuestionEnergyGate } from "../../../hooks/useFirstQuestionEnergyGate";
+import {
+  LearningV2FirstQuestionEnergyContext,
+  LearningV2FirstQuestionShownReporter,
+  type LearningV2FirstQuestionEnergySignal,
+} from "../../../hooks/learningV2FirstQuestionEnergy";
 import NoEnergyModal from "../../../components/NoEnergyModal";
 import { useLv2Glass } from "../../../components/learning-v2/LearningV2Glass";
 import { isLearningV2DirectSessionUnready, isLearningV2LegacySessionUnready } from "../../../app/energy_contract";
@@ -1431,6 +1437,8 @@ function LearningV2LegacySessionScreen() {
       colors={["#10151D", "#151B26", "#0E1219"]}
       style={styles.screen}
     >
+      {/* зачем: D72 — первое задание на экране → сигнал гейту энергии. */}
+      <LearningV2FirstQuestionShownReporter />
       <View style={[styles.top, { paddingTop: insets.top + 8 }]}>
         <Pressable
           accessibilityRole="button"
@@ -2120,42 +2128,59 @@ function LearningV2SessionEnergyGate({ children, directMode }: { children: React
     directMode,
     sessionIdKnown: SESSION_IDS.includes(sessionId),
   });
-  const {
-    confirmSpendOne: confirmLearningV2Energy,
-    acknowledgeSessionStart,
-    energyReady,
-  } = useEnergy();
+  const { energyReady, energy, bonusEnergy, isUnlimited } = useEnergy();
+  // зачем: D67/PM-084-A2 — попытка = запуск сессии (sessionRunId): remount того же
+  // запуска не спишет второй раз, новый вход с карты = новый run = новое списание.
   const learningV2EnergyIntent = useEnergySessionIntent(
     "learning_v2_session",
     first(params.id) ?? "unknown",
+    sessionRunId || undefined,
   );
-  const attemptedRef = useRef(false);
   const [gate, setGate] = useState<"checking" | "ok" | "denied">("checking");
+  const [firstQuestionShown, setFirstQuestionShown] = useState(false);
   // зачем (learning-v2.html): скелет ожидания энергии — на токенах Liquid Glass, а не на прежнем
   // тёмно-синем; геометрия шапки та же, что у плеера.
   const gateGlass = useLv2Glass();
   const gateInsets = useStableSafeAreaInsets();
+  const sessionBlocked = isAuthoringPreview || directSessionUnready || legacySessionUnready;
 
+  // зачем: D72 — раньше энергия списывалась здесь, ДО монтирования плеера (пока
+  // шла «Подготавливаем занятие и локальное аудио…»), а сбой подготовки оставлял
+  // её списанной. Теперь здесь только проверка баланса без списания; −1 уходит
+  // через гейт, когда плеер сообщил, что первое задание на экране. Решение
+  // принимается один раз: падение баланса после списания не закрывает сессию.
   useEffect(() => {
-    if (isAuthoringPreview || directSessionUnready || legacySessionUnready) return;
-    if (!energyReady || attemptedRef.current) return;
-    attemptedRef.current = true;
-    let cancelled = false;
-    void confirmLearningV2Energy(learningV2EnergyIntent).then((result) => {
-      if (cancelled) return;
-      if (result === "spent") void acknowledgeSessionStart(learningV2EnergyIntent.operationId);
-      if (result === "cancelled") {
-        safeRouterBack(router, "/(tabs)/lessons" as never);
-        return;
-      }
-      setGate(result === "insufficient" ? "denied" : "ok");
+    if (sessionBlocked || !energyReady) return;
+    const decision = isUnlimited || energy + bonusEnergy >= 1 ? "ok" : "denied";
+    setGate((current) => {
+      if (current !== "checking") return current;
+      console.log(`[ENERGY-GATE] learning_v2: precheck=${decision} energy=${energy} bonus=${bonusEnergy} unlimited=${isUnlimited}`);
+      return decision;
     });
-    return () => { cancelled = true; };
-  }, [acknowledgeSessionStart, confirmLearningV2Energy, directSessionUnready, energyReady, isAuthoringPreview, learningV2EnergyIntent, legacySessionUnready, router]);
+  }, [bonusEnergy, energy, energyReady, isUnlimited, sessionBlocked]);
+
+  // D72/D87/PM-084: −1 в момент показа первого задания, уход/сбой до показа — возврат.
+  useFirstQuestionEnergyGate({
+    intent: learningV2EnergyIntent,
+    screen: "learning_v2_session",
+    firstQuestionVisible: !sessionBlocked && energyReady && gate === "ok" && firstQuestionShown,
+    onInsufficient: () => setGate("denied"),
+    onCancelled: () => safeRouterBack(router, "/(tabs)/lessons" as never),
+  });
+  const firstQuestionSignal = useMemo<LearningV2FirstQuestionEnergySignal>(
+    () => ({ onFirstQuestionShown: () => setFirstQuestionShown(true) }),
+    [],
+  );
 
   if (isAuthoringPreview) return <>{children}</>;
   if (directSessionUnready || legacySessionUnready) return <>{children}</>;
-  if (gate === "ok") return <>{children}</>;
+  if (gate === "ok") {
+    return (
+      <LearningV2FirstQuestionEnergyContext.Provider value={firstQuestionSignal}>
+        {children}
+      </LearningV2FirstQuestionEnergyContext.Provider>
+    );
+  }
   return (
     <View style={[styles.screen, { backgroundColor: gateGlass.bg }]}>
       {/* зачем этот скелет (владелец, 2026-08-27, «открываю — вижу тёмный

@@ -201,7 +201,6 @@ describe('text-integrity/no-unsafe-text-truncation', () => {
     expect(severity('components/foo.gen.ts')).toBeUndefined();
     // Parity with collectProductionFiles: only *.gen.ts(x) is generated-by-name excluded.
     expect(severity('app/collectibles/collectible_image_url_map.generated.ts')).toBe(2);
-    expect(severity('constants/generatedThemeIconAssets.ts')).toBe(2);
     expect(severity('tests/foo.tsx')).toBeUndefined();
     expect(severity('dist/foo.tsx')).toBeUndefined();
   });

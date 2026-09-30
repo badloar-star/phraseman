@@ -9,17 +9,28 @@
 //    перезапустили, пропустили — ничего не начисляется и не списывается повторно.
 //
 // Аватар и баланс обновляются сами (publishCoinRank / publishRuneSpend) до показа церемонии.
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { captureAccountGeneration } from '../app/account_generation';
 import { COIN_RANK_MAX, nextCoinRankRow, type CoinRankRow } from '../app/coin_rank_table_v1';
 import { upgradeCoinRank, type CoinRankUpgradeResult } from '../app/coin_rank_upgrade_v1';
 import { DebugLogger } from '../app/debug-logger';
-import { useMyCoinRank } from './use_my_coin_rank';
+import {
+  isCoinRankCeremonyBindingStale,
+  isCoinRankOwnerBindingCurrent,
+} from './coin_rank_upgrade_guard';
+import { useMyCoinRankBinding, type MyCoinRankBinding } from './use_my_coin_rank';
 
-export type CoinRankCeremony = Readonly<{ fromRank: number; toRank: number }>;
+export type CoinRankCeremony = Readonly<{
+  ownerStableId: string;
+  accountGeneration: number;
+  fromRank: number;
+  toRank: number;
+}>;
 
 export type UseCoinRankUpgrade = Readonly<{
+  /** Immutable owner/generation/rank that produced the visible rank. */
+  rankBinding: MyCoinRankBinding | null;
   /** Текущий ранг или null, пока не прочитан (кнопку в этом состоянии не показывать). */
   rank: number | null;
   /** Следующий ранг (цена priceToReach, levelTitle, source) или null на последнем ранге. */
@@ -33,7 +44,8 @@ export type UseCoinRankUpgrade = Readonly<{
 }>;
 
 export function useCoinRankUpgrade(): UseCoinRankUpgrade {
-  const rank = useMyCoinRank();
+  const binding = useMyCoinRankBinding();
+  const rank = binding?.rank ?? null;
   const [upgrading, setUpgrading] = useState(false);
   const [ceremony, setCeremony] = useState<CoinRankCeremony | null>(null);
   const inFlight = useRef<Promise<CoinRankUpgradeResult> | null>(null);
@@ -43,17 +55,40 @@ export function useCoinRankUpgrade(): UseCoinRankUpgrade {
       DebugLogger.info('[COIN-RANK-UPGRADE]', 'хук: повторный тап во время повышения — ждём тот же результат');
       return inFlight.current;
     }
-    if (rank === null) {
-      DebugLogger.info('[COIN-RANK-UPGRADE]', 'хук: ранг ещё не прочитан — повышение не запускаем');
+    const token = captureAccountGeneration();
+    if (!binding || !isCoinRankOwnerBindingCurrent(binding, token)) {
+      DebugLogger.info('[COIN-RANK-UPGRADE]', 'хук: показанный ранг не принадлежит текущему поколению аккаунта — повышение не запускаем');
       return Promise.resolve({ ok: false, reason: 'stale_rank' } as const);
     }
     setUpgrading(true);
-    const run = upgradeCoinRank({ token: captureAccountGeneration(), expectedFromRank: rank })
+    const run = upgradeCoinRank({ token, expectedFromRank: binding.rank })
       .then((result) => {
         DebugLogger.info('[COIN-RANK-UPGRADE]', `хук: результат ${JSON.stringify(result)}`);
+        // зачем (владелец 30.09: «анимация не запускается при изменении ранга») — временная
+        // трассировка [RANK-CEREMONY]: печатаем КАЖДОЕ условие, решающее, заведём ли церемонию.
+        const ownerCurrentNow = isCoinRankOwnerBindingCurrent(binding, captureAccountGeneration());
+        DebugLogger.info('[RANK-CEREMONY]', `хук: решение о церемонии ${JSON.stringify({
+          ok: result.ok,
+          status: result.ok ? result.status : null,
+          reason: result.ok ? null : (result as { reason?: string }).reason ?? null,
+          resultFromRank: result.ok ? result.fromRank : null,
+          resultToRank: result.ok ? result.toRank : null,
+          bindingRankAtTap: binding.rank,
+          ownerCurrentNow,
+        })}`);
         // Церемония только на свежем повышении; повтор (already_applied) не празднуем дважды.
-        if (result.ok && result.status === 'upgraded') {
-          setCeremony({ fromRank: result.fromRank, toRank: result.toRank });
+        if (result.ok && result.status === 'upgraded'
+          && result.fromRank === binding.rank
+          && ownerCurrentNow) {
+          DebugLogger.info('[RANK-CEREMONY]', `хук: церемония заведена ${result.fromRank}→${result.toRank}`);
+          setCeremony({
+            ownerStableId: binding.ownerStableId,
+            accountGeneration: binding.accountGeneration,
+            fromRank: result.fromRank,
+            toRank: result.toRank,
+          });
+        } else {
+          DebugLogger.info('[RANK-CEREMONY]', 'хук: церемонию НЕ заводим — см. решение выше');
         }
         return result;
       })
@@ -63,11 +98,28 @@ export function useCoinRankUpgrade(): UseCoinRankUpgrade {
       });
     inFlight.current = run;
     return run;
-  }, [rank]);
+  }, [binding]);
+
+  useEffect(() => {
+    if (!ceremony) return;
+    const stale = isCoinRankCeremonyBindingStale(ceremony, binding, captureAccountGeneration());
+    DebugLogger.info('[RANK-CEREMONY]', `хук: сверка церемонии с рангом ${JSON.stringify({
+      ceremonyFrom: ceremony.fromRank,
+      ceremonyTo: ceremony.toRank,
+      bindingRank: binding?.rank ?? null,
+      bindingIsNull: binding === null,
+      stale,
+    })}`);
+    if (stale) {
+      DebugLogger.info('[RANK-CEREMONY]', 'хук: церемония устарела — сбрасываем');
+      setCeremony(null);
+    }
+  }, [binding, ceremony]);
 
   const dismissCeremony = useCallback(() => setCeremony(null), []);
 
   return {
+    rankBinding: binding,
     rank,
     next: rank === null ? null : nextCoinRankRow(rank),
     isMaxRank: rank === COIN_RANK_MAX,

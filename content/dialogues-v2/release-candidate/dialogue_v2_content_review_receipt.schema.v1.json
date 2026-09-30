@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "dialogue-v2-content-review-receipt.v1",
+  "title": "Dialogue V2 content review receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "status",
+    "candidateId",
+    "candidateManifestSha256",
+    "requiredReviewRoles",
+    "review"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "dialogue-v2-content-review-receipt.v1"
+    },
+    "status": {
+      "enum": [
+        "pending_authorized_review",
+        "approved_for_promotion"
+      ]
+    },
+    "candidateId": {
+      "const": "dialogue-v2-content-candidate-v1"
+    },
+    "candidateManifestSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "requiredReviewRoles": {
+      "const": [
+        "targetContractGuardian",
+        "scenarioPackReviewer",
+        "promptLanguageJudge",
+        "voiceLocaleGate",
+        "stateIsolationJudge",
+        "surfaceMatrixGate"
+      ]
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision",
+        "reviewerId",
+        "authorityReference",
+        "reviewedAt",
+        "packetCountReviewed",
+        "roleVerdicts"
+      ],
+      "properties": {
+        "decision": {
+          "enum": [
+            "PENDING",
+            "APPROVE"
+          ]
+        },
+        "reviewerId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "authorityReference": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewedAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "packetCountReviewed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 304
+        },
+        "roleVerdicts": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "targetContractGuardian": {
+              "const": "PASS"
+            },
+            "scenarioPackReviewer": {
+              "const": "PASS"
+            },
+            "promptLanguageJudge": {
+              "const": "PASS"
+            },
+            "voiceLocaleGate": {
+              "const": "PASS"
+            },
+            "stateIsolationJudge": {
+              "const": "PASS"
+            },
+            "surfaceMatrixGate": {
+              "const": "PASS"
+            }
+          }
+        }
+      }
+    }
+  }
+}

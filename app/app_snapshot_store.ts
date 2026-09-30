@@ -1,5 +1,4 @@
 import { useRef, useSyncExternalStore } from 'react';
-import { getLevelFromXP } from '../constants/theme';
 import type { FriendEntry, FriendRequestEntry } from './firestore_friend_requests';
 import type { CustomizationSnapshot } from './customization_snapshot';
 import type { AvatarDNAStoredState } from '../modules/avatar-dna/storage';
@@ -26,8 +25,6 @@ export interface AppSnapshotProfile extends AppSnapshotMeta {
   avatar: string;
   frame: string;
   aura?: string;
-  totalXp: number;
-  level: number;
   premiumActive: boolean;
   premiumPlan?: string;
   vipActive: boolean;
@@ -65,14 +62,11 @@ export interface AppSnapshotLessons extends AppSnapshotMeta {
 export interface AppSnapshotFriendProfile {
   uid: string;
   name: string;
-  totalXp: number;
-  weeklyXp: number;
   streak: number;
   isPremium: boolean;
   avatar: string;
   frame: string;
   aura?: string;
-  profileCardLevel?: number;
   profileCardTheme?: string;
   profileCardMotion?: string;
   profileCardPublicFocus?: string;
@@ -159,7 +153,7 @@ function preserveNewerSnapshotSections(
   const nextPatch: Partial<AppSnapshot> = { ...patch };
   if (storageCannotReplaceLiveProfile && patch.profile && current.profile) {
     // SQLite owns local entitlement/customization fields, but cannot lower the
-    // validated cloud XP identity. Keep the section live so another delayed
+    // validated cloud identity. Keep the section live so another delayed
     // storage pass is subject to the same rule.
     nextPatch.profile = {
       ...patch.profile,
@@ -171,8 +165,6 @@ function preserveNewerSnapshotSections(
         : patch.profile.avatar,
       frame: current.profile.frame || patch.profile.frame,
       aura: current.profile.aura ?? patch.profile.aura,
-      totalXp: current.profile.totalXp,
-      level: current.profile.level,
     };
   } else if (profileMustStayCurrent) {
     nextPatch.profile = current.profile;
@@ -249,46 +241,15 @@ export function patchAppSnapshot(patchOrFn: Patch): void {
   emitSnapshotChanged();
 }
 
-/**
- * Publishes an avatar/aura choice to both customization state and the shared
- * visible profile in one notification. The profile timestamp always advances,
- * including on a local-storage rollback, so an older hydration cannot restore
- * the avatar the user just replaced and a failed write can still restore the
- * previous choice correctly.
- */
-export function patchAppSnapshotCustomizationSelection(customization: CustomizationSnapshot): void {
-  patchAppSnapshot((current) => {
-    if (!current.profile) return { customization };
-    return {
-      customization,
-      profile: {
-        ...current.profile,
-        source: 'local',
-        updatedAt: Math.max(Date.now(), customization.updatedAt, current.profile.updatedAt + 1),
-        avatar: customization.activeAvatar,
-        aura: customization.storedAuraSelection || undefined,
-      },
-    };
-  });
-}
+// зачем: D108 — публикация выбора аватара/ауры из редактора косметики удалена
+// (редактора и аур больше нет; вызовов в приложении не осталось).
 
 export function patchAppSnapshotFromPersonalProgress(progress: Readonly<{
-  totalXp: number;
-  level: number;
   streakCount: number;
 }>): void {
   patchAppSnapshot((current) => {
     const now = Date.now();
     return {
-      ...(current.profile ? {
-        profile: {
-          ...current.profile,
-          source: 'local' as const,
-          updatedAt: now,
-          totalXp: progress.totalXp,
-          level: progress.level,
-        },
-      } : {}),
       progress: {
         source: 'local' as const,
         updatedAt: now,
@@ -297,7 +258,7 @@ export function patchAppSnapshotFromPersonalProgress(progress: Readonly<{
         studyTarget: current.progress?.studyTarget ?? 'en',
         // зачем (владелец, 2026-08-24): «на главной цифра рун постоянно прыгает».
         // Этот патч собирает секцию progress ЗАНОВО, поэтому раньше он молча
-        // ронял stars/starsEarnedTotal — а зовут его на каждое начисление XP и
+        // ронял stars/starsEarnedTotal — а зовут его на каждое начисление рун и
         // смену серии. peekRunes() читал undefined -> 0, счётчик падал в ноль и
         // возвращался, когда level_spin_star_grants публиковал проекцию.
         // Руны здесь не наши — переносим как есть, писатель у них ровно один.
@@ -308,7 +269,6 @@ export function patchAppSnapshotFromPersonalProgress(progress: Readonly<{
   });
 }
 
-const AUTHORITATIVE_TOTAL_XP_MAX = 1_000_000_000;
 const AUTHORITATIVE_STREAK_MAX = 100_000;
 
 function authoritativeNonNegativeInt(value: unknown, maximum: number): number | null | undefined {
@@ -318,10 +278,6 @@ function authoritativeNonNegativeInt(value: unknown, maximum: number): number | 
   const parsed = Number(value);
   if (!Number.isSafeInteger(parsed) || parsed < 0 || parsed > maximum) return null;
   return parsed;
-}
-
-function authoritativeString(value: unknown): string {
-  return typeof value === 'string' ? value.trim() : '';
 }
 
 /**
@@ -337,54 +293,20 @@ export function patchAppSnapshotFromAuthoritativeCloudProgress(
   const rawProgress = root.progress;
   if (!rawProgress || typeof rawProgress !== 'object' || Array.isArray(rawProgress)) return false;
   const progress = rawProgress as Record<string, unknown>;
-  const totalXp = authoritativeNonNegativeInt(progress.user_total_xp, AUTHORITATIVE_TOTAL_XP_MAX);
   const streak = authoritativeNonNegativeInt(progress.streak_count, AUTHORITATIVE_STREAK_MAX);
-  if (totalXp === null || streak === null) return false;
-  if (totalXp === undefined && streak === undefined) return false;
+  if (streak === null || streak === undefined) return false;
 
-  const currentProfile = snapshot.profile;
   const currentProgress = snapshot.progress;
   const patch: Partial<AppSnapshot> = {};
-  if (totalXp !== undefined) {
-    patch.profile = {
-      source: 'live',
-      updatedAt: now,
-      name: authoritativeString(progress.user_name) || currentProfile?.name || '',
-      avatar: authoritativeString(progress.user_avatar)
-        || authoritativeString(root.user_avatar)
-        || currentProfile?.avatar
-        || '1',
-      frame: authoritativeString(progress.user_avatar_frame)
-        || authoritativeString(progress.user_frame)
-        || authoritativeString(root.user_avatar_frame)
-        || currentProfile?.frame
-        || '',
-      aura: currentProfile?.aura,
-      totalXp,
-      level: getLevelFromXP(totalXp),
-      premiumActive: currentProfile?.premiumActive ?? false,
-      premiumPlan: currentProfile?.premiumPlan,
-      vipActive: currentProfile?.vipActive ?? false,
-      vipLifetime: currentProfile?.vipLifetime,
-      avatarDNA: currentProfile?.avatarDNA,
-    };
-  }
-  if (streak !== undefined) {
-    patch.progress = {
-      source: 'live',
-      updatedAt: now,
-      streak,
-      shards: currentProgress?.shards ?? 0,
-      studyTarget: currentProgress?.studyTarget ?? 'en',
-      // зачем (аудит 2026-08-24, «цифра рун прыгает»): облачная сверка авторитетна
-      // по XP и серии, но НЕ по рунам — их писатель ровно один
-      // (level_spin_star_grants.publishProjection), и в этом ответе их просто нет.
-      // Секция собирается заново, поэтому без явного переноса каждый облачный пул
-      // ронял stars в undefined -> peekRunes() -> 0 -> счётчик падал в ноль.
-      stars: currentProgress?.stars ?? 0,
-      starsEarnedTotal: currentProgress?.starsEarnedTotal ?? 0,
-    };
-  }
+  patch.progress = {
+    source: 'live',
+    updatedAt: now,
+    streak,
+    shards: currentProgress?.shards ?? 0,
+    studyTarget: currentProgress?.studyTarget ?? 'en',
+    stars: currentProgress?.stars ?? 0,
+    starsEarnedTotal: currentProgress?.starsEarnedTotal ?? 0,
+  };
   patchAppSnapshot(patch);
   return true;
 }

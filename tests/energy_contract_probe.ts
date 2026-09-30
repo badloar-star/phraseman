@@ -11,30 +11,28 @@ import {
   type EnergyActivityKey,
 } from '../app/energy_contract';
 
-assert.equal(ENERGY_BASE_CAPACITY, 100);
-assert.equal(ENERGY_BONUS_CAPACITY_LIMIT, 200);
-assert.equal(ENERGY_ACTIVE_CAPACITY_LIMIT, 350);
-assert.equal(ENERGY_PASSIVE_UNIT_MS, 360_000);
+assert.equal(ENERGY_BASE_CAPACITY, 5);
+assert.equal(ENERGY_BONUS_CAPACITY_LIMIT, 0);
+assert.equal(ENERGY_ACTIVE_CAPACITY_LIMIT, 5);
+assert.equal(ENERGY_PASSIVE_UNIT_MS, 600_000);
 assert.equal(ENERGY_VIDEO_UNIT_MS, 36_000);
 assert.equal(ENERGY_MICRO_UNITS_PER_UNIT, 1_000_000);
 
 const prices: readonly (readonly [EnergyActivityKey, number])[] = [
-  ['flashcards', 10],
-  ['lesson_words', 10],
-  ['irregular_verbs', 10],
-  ['preposition_drill', 10],
-  ['mistake_practice', 10],
-  ['classic_lesson', 20],
-  ['learning_v2_session', 20],
-  ['ai_dialog', 20],
-  ['personal_plan_exercise', 20],
-  ['diagnostic_test', 20],
-  ['level_exam', 20],
-  ['arena_match', 25],
+  ['flashcards', 1],
+  ['lesson_words', 1],
+  ['irregular_verbs', 1],
+  ['preposition_drill', 1],
+  ['mistake_practice', 1],
+  ['classic_lesson', 1],
+  ['learning_v2_session', 1],
+  ['ai_dialog', 1],
+  ['diagnostic_test', 1],
+  ['level_exam', 1],
+  ['arena_match', 1],
   ['theory', 0],
   ['reading', 0],
   ['video', 0],
-  ['max_call', 0],
 ];
 
 for (const [activity, expected] of prices) {

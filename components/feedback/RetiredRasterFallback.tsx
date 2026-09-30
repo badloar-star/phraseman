@@ -3,7 +3,7 @@ import React, { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 type RetiredRasterFallbackProps = {
-  kind: 'gift' | 'league' | 'boon';
+  kind: 'gift' | 'boon';
   size: number;
   color: string;
   accessibilityLabel?: string;
@@ -11,7 +11,6 @@ type RetiredRasterFallbackProps = {
 
 const ICON_BY_KIND = {
   gift: 'gift-outline',
-  league: 'trophy-outline',
   boon: 'sparkles-outline',
 } as const;
 

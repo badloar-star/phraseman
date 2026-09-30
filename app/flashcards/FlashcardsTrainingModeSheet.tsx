@@ -1,32 +1,31 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import {
   AccessibilityInfo,
   findNodeHandle,
   InteractionManager,
+  Modal,
+  Platform,
   Pressable,
   ScrollView,
   StyleSheet,
   Text,
+  useWindowDimensions,
   View,
 } from 'react-native';
-import HybridSheetShell from '../../components/modal_fx/HybridSheetShell';
-import PlusBadge from '../../components/PlusBadge';
 import { useTheme } from '../../components/ThemeContext';
+import { LinearGradient } from '../../components/SafeLinearGradient';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { triLang, type Lang } from '../../constants/i18n';
-import type { Theme } from '../../constants/theme';
-import { onAppEvent } from '../events';
-import { isSpeakingEnabled } from '../remote_flags';
+import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import type { CardsTrainingMode } from './training_entry';
 
 type Props = {
   visible: boolean;
   lang: Lang;
-  t: Theme;
   onClose: () => void;
   onDismissed: () => void;
   onSelect: (mode: CardsTrainingMode) => void;
-  lockedModes?: Partial<Record<CardsTrainingMode, boolean>>;
 };
 
 type ModeRow = {
@@ -39,22 +38,39 @@ type ModeRow = {
 export default function FlashcardsTrainingModeSheet({
   visible,
   lang,
-  t,
   onClose,
   onDismissed,
   onSelect,
-  lockedModes = {},
 }: Props) {
-  const { f } = useTheme();
-  const [speakingEnabled, setSpeakingEnabled] = useState(() => isSpeakingEnabled());
+  const { liquidGlassThemeId } = useTheme();
+  const g = liquidGlassTokens(liquidGlassThemeId);
+  const insets = useStableSafeAreaInsets();
+  const { height: screenHeight } = useWindowDimensions();
+  const speakingEnabled = true;
   const firstRowRef = useRef<View>(null);
+  const hadVisibleRef = useRef(visible);
+  const didDismissRef = useRef(false);
+  const onDismissedRef = useRef(onDismissed);
+  onDismissedRef.current = onDismissed;
+
+  const finishDismiss = () => {
+    if (didDismissRef.current) return;
+    didDismissRef.current = true;
+    onDismissedRef.current();
+  };
 
   useEffect(() => {
-    const refresh = () => setSpeakingEnabled(isSpeakingEnabled());
-    refresh();
-    const sub = onAppEvent('remote_config_changed', refresh);
-    return () => sub.remove();
-  }, []);
+    if (visible) {
+      hadVisibleRef.current = true;
+      didDismissRef.current = false;
+      return undefined;
+    }
+    if (!hadVisibleRef.current) return undefined;
+    hadVisibleRef.current = false;
+    // Android has no reliable Modal.onDismiss; leave a native-close barrier before navigation.
+    const timer = setTimeout(finishDismiss, Platform.OS === 'ios' ? 400 : 100);
+    return () => clearTimeout(timer);
+  }, [visible]);
 
   useEffect(() => {
     if (!visible) return undefined;
@@ -146,75 +162,106 @@ export default function FlashcardsTrainingModeSheet({
         }),
       },
     ];
-    return speakingEnabled
-      ? allRows
-      : allRows.filter((row) => row.mode !== 'speaking');
-  }, [lang, speakingEnabled]);
+    return allRows;
+  }, [lang]);
+
+  const heading = triLang(lang, {
+    ru: 'Выбери режим тренировки', uk: 'Обери режим тренування', en: 'Choose a training mode',
+    es: 'Elige un modo de práctica', 'pt-BR': 'Escolha um modo de treino', vi: 'Chọn chế độ luyện tập',
+    id: 'Pilih mode latihan', tr: 'Çalışma modu seç', pl: 'Wybierz tryb ćwiczeń',
+  });
+  const subtitle = triLang(lang, {
+    ru: 'Один набор — много способов учиться', uk: 'Один набір — багато способів учитися',
+    en: 'One pack — many ways to learn', es: 'Un pack, muchas formas de aprender',
+    'pt-BR': 'Um pacote, muitas formas de aprender', vi: 'Một bộ thẻ, nhiều cách học',
+    id: 'Satu paket, banyak cara belajar', tr: 'Bir paket, öğrenmenin birçok yolu',
+    pl: 'Jeden zestaw, wiele sposobów nauki',
+  });
 
   return (
-    <HybridSheetShell
-      visible={visible}
-      onClose={onClose}
-      onDismissed={onDismissed}
-      closeLabel={triLang(lang, {
-        ru: 'Закрыть выбор режима', uk: 'Закрити вибір режиму', en: 'Close mode selection',
-        es: 'Cerrar selección de modo', 'pt-BR': 'Fechar seleção de modo',
-        vi: 'Đóng chọn chế độ', id: 'Tutup pilihan mode', tr: 'Mod seçimini kapat',
-        pl: 'Zamknij wybór trybu',
-      })}
-      testID="fc-training-mode-sheet"
-      glowColor={t.accent}
-    >
+    <Modal visible={visible} transparent animationType="fade" statusBarTranslucent onRequestClose={onClose} onDismiss={finishDismiss}>
+      <View style={[styles.modalRoot, { paddingTop: insets.top + 12, paddingBottom: insets.bottom + 12 }]}>
+        <Pressable style={[StyleSheet.absoluteFill, styles.backdrop]} onPress={onClose} accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Отмена', uk: 'Скасувати', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' })} />
+        <View testID="fc-training-mode-sheet" accessibilityViewIsModal style={[styles.dialog, { maxHeight: screenHeight - insets.top - insets.bottom - 24, backgroundColor: g.opaqueSheet }]}>
+          <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+            <LinearGradient
+              pointerEvents="none"
+              colors={[g.opaqueSheet, g.opaqueSheet, g.opaqueSheet]}
+              locations={[0, 0.48, 1]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 0.9, y: 1 }}
+              style={[StyleSheet.absoluteFill, styles.dialogWash]}
+            />
+            <LinearGradient colors={[g.selected, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
+            <View style={[styles.rim, { backgroundColor: g.glassEdge }]} />
+          </View>
       <ScrollView
         style={styles.scroll}
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
         nestedScrollEnabled
       >
+        <View style={styles.headingBlock}>
+          <Text accessibilityRole="header" style={[styles.heading, { color: g.text }]}>{heading}</Text>
+          <Text style={[styles.headingSubtitle, { color: g.secondary }]}>{subtitle}</Text>
+        </View>
         <View style={styles.list}>
           {rows.map((row, rowIndex) => {
-            const locked = lockedModes[row.mode] === true;
+            const disabled = row.mode === 'speaking' && !speakingEnabled;
             return (
               <Pressable
               ref={rowIndex === 0 ? firstRowRef : undefined}
               key={row.mode}
               testID={`fc-training-mode-${row.mode}`}
               accessibilityRole="button"
-              accessibilityLabel={`${row.title}${locked ? '. Plus' : ''}. ${row.description}`}
+              accessibilityLabel={`${row.title}. ${row.description}`}
+              accessibilityState={{ disabled }}
+              disabled={disabled}
               onPress={() => onSelect(row.mode)}
-              style={({ pressed }) => [styles.row, { backgroundColor: t.bgSurface, opacity: pressed ? 0.82 : 1 }]}
+              style={({ pressed }) => [styles.row, { backgroundColor: g.card, opacity: disabled ? 0.48 : pressed ? 0.82 : 1 }]}
             >
-              <View style={[styles.icon, { backgroundColor: `${t.accent}1F` }]}>
-                <Ionicons name={row.icon} size={22} color={t.accent} />
+              <View style={[styles.icon, { backgroundColor: g.opaqueControl }]}>
+                <Ionicons name={row.icon} size={24} color={g.lightTint} />
               </View>
               <View style={styles.copy}>
                 <View style={styles.titleLine}>
-                  <Text style={[styles.rowTitle, { color: t.textPrimary, fontSize: f.bodyLg }]}>{row.title}</Text>
-                  {locked ? <PlusBadge themeMode="dark" size="xs" showIcon={false} /> : null}
+                  <Text style={[styles.rowTitle, { color: g.text }]}>{row.title}</Text>
                 </View>
-                <Text style={[
-                  styles.description,
-                  { color: t.textSecond, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.4) },
-                ]}>{row.description}</Text>
+                <Text style={[styles.description, { color: g.secondary }]}>{row.description}</Text>
               </View>
-              <Ionicons name="chevron-forward" size={20} color={t.textMuted} />
+              <Ionicons name="chevron-forward" size={20} color={g.secondary} />
               </Pressable>
             );
           })}
         </View>
       </ScrollView>
-    </HybridSheetShell>
+          <Pressable testID="fc-training-mode-cancel" accessibilityRole="button" onPress={onClose} style={({ pressed }) => [styles.cancelButton, { backgroundColor: g.card, opacity: pressed ? 0.82 : 1 }]}>
+            <Text style={[styles.cancelText, { color: g.text }]}>{triLang(lang, { ru: 'Отмена', uk: 'Скасувати', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' })}</Text>
+          </Pressable>
+        </View>
+      </View>
+    </Modal>
   );
 }
 
 const styles = StyleSheet.create({
-  scroll: { flexGrow: 0 },
-  content: { paddingHorizontal: 0, paddingTop: 2, paddingBottom: 8 },
-  list: { marginTop: 2, gap: 10 },
-  row: { minHeight: 88, borderRadius: 18, paddingHorizontal: 14, paddingVertical: 13, flexDirection: 'row', alignItems: 'center', gap: 12 },
-  icon: { width: 46, height: 46, borderRadius: 15, alignItems: 'center', justifyContent: 'center' },
+  modalRoot: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18 },
+  backdrop: { backgroundColor: '#000000AA' },
+  dialog: { width: '100%', maxWidth: 420, borderRadius: 24, flexShrink: 1, overflow: 'hidden', paddingHorizontal: 12, paddingTop: 22, paddingBottom: 12 },
+  dialogWash: { opacity: 1 },
+  rim: { height: 1, marginHorizontal: 1 },
+  scroll: { flexGrow: 0, flexShrink: 1, minHeight: 0 },
+  content: { paddingHorizontal: 0, paddingBottom: 12 },
+  headingBlock: { alignItems: 'center', paddingHorizontal: 4 },
+  heading: { fontSize: 18, lineHeight: 24, fontWeight: '700', textAlign: 'center' },
+  headingSubtitle: { fontSize: 12, lineHeight: 17, marginTop: 4, textAlign: 'center' },
+  list: { marginTop: 14, gap: 6 },
+  row: { minHeight: 56, paddingHorizontal: 10, paddingVertical: 6, borderRadius: 13, flexDirection: 'row', alignItems: 'center', gap: 10, overflow: 'hidden' },
+  icon: { width: 34, height: 34, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
   copy: { flex: 1, minWidth: 0 },
   titleLine: { flexDirection: 'row', alignItems: 'center', gap: 6 },
-  rowTitle: { fontWeight: '900' },
-  description: { marginTop: 4, fontWeight: '600' },
+  rowTitle: { fontSize: 13, lineHeight: 17, fontWeight: '700' },
+  description: { fontSize: 10, lineHeight: 13, marginTop: 2 },
+  cancelButton: { minHeight: 42, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
+  cancelText: { fontSize: 12, lineHeight: 17, fontWeight: '700' },
 });

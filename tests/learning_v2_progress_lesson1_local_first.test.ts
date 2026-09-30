@@ -38,7 +38,7 @@ const result = (
   operationId,
   sessionId,
   status,
-  awarded: { xp: 25, shards: 1 },
+  awarded: { shards: 1 },
 });
 
 describe("Learning V2 Lesson 1 local-first progress", () => {
@@ -83,7 +83,7 @@ describe("Learning V2 Lesson 1 local-first progress", () => {
     expect([left.changed, right.changed].sort()).toEqual([false, true]);
     expect(
       [left.acceptedAward, right.acceptedAward].filter(Boolean),
-    ).toEqual([{ xp: 25, shards: 1 }]);
+    ).toEqual([{ shards: 1 }]);
   });
 
   it("rejects reuse of an operationId with a different payload", async () => {
@@ -97,7 +97,7 @@ describe("Learning V2 Lesson 1 local-first progress", () => {
     await expect(
       store.applyResult(scope, {
         ...result("lesson1-op-conflict"),
-        awarded: { xp: 26, shards: 1 },
+        awarded: { shards: 2 },
       }),
     ).rejects.toThrow("lesson1_operation_conflict");
   });
@@ -134,7 +134,6 @@ describe("Learning V2 Lesson 1 local-first progress", () => {
       progressJson,
       bestScoreRaw: "5.0",
       passCountRaw: "4",
-      totalXpRaw: "001250",
       shardsBalanceRaw: "0007",
     });
 
@@ -145,7 +144,6 @@ describe("Learning V2 Lesson 1 local-first progress", () => {
         legacyLessonStatus: "completed",
         source: expect.objectContaining({
           progressJson,
-          totalXpRaw: "001250",
           shardsBalanceRaw: "0007",
         }),
       }),
@@ -169,7 +167,6 @@ describe("Learning V2 Lesson 1 local-first progress", () => {
       progressJson,
       bestScoreRaw: "2.5",
       passCountRaw: "0",
-      totalXpRaw: "900719925474099312345",
       shardsBalanceRaw: "42",
     });
 
@@ -178,7 +175,6 @@ describe("Learning V2 Lesson 1 local-first progress", () => {
         status: "recognized",
         legacyLessonStatus: "in_progress",
         source: expect.objectContaining({
-          totalXpRaw: "900719925474099312345",
           shardsBalanceRaw: "42",
         }),
       }),
@@ -197,7 +193,6 @@ describe("Learning V2 Lesson 1 local-first progress", () => {
       progressJson: "not-json",
       bestScoreRaw: "5",
       passCountRaw: "1",
-      totalXpRaw: "100",
       shardsBalanceRaw: "9",
     });
 
@@ -222,7 +217,6 @@ describe("Learning V2 Lesson 1 local-first progress", () => {
       progressJson: JSON.stringify(new Array(50).fill("empty")),
       bestScoreRaw: null,
       passCountRaw: null,
-      totalXpRaw: "17",
       shardsBalanceRaw: "3",
     });
 
@@ -244,7 +238,6 @@ describe("Learning V2 Lesson 1 local-first progress", () => {
       progressJson: JSON.stringify(new Array(50).fill("empty")),
       bestScoreRaw: null,
       passCountRaw: null,
-      totalXpRaw: "17",
       shardsBalanceRaw: "3",
     });
     const [key, encoded] = [...storage.values.entries()][0];

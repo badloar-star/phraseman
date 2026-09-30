@@ -22,6 +22,7 @@ import {
   EXPLAIN_CALLABLE_TIMEOUT_MS,
 } from './explain_callable_timeout';
 import { parseAiDialogQuotaObservation } from './ai_dialog_daily_quota';
+import { buildDialogueV2CompletionReview } from './dialogue_v2_completion_review_adapter';
 
 const FUNCTIONS_REGION = 'us-central1';
 const premiumDialogSendInFlight = new Map<string, Promise<PremiumDialogResponse>>();
@@ -140,6 +141,7 @@ export function parsePremiumDialogResponse(value: unknown): PremiumDialogRespons
 }
 
 export type PremiumDialogErrorKind =
+  | 'plus_required'
   | 'free_limit'
   | 'premium_limit'
   | 'global_budget'
@@ -155,7 +157,8 @@ export function classifyPremiumDialogError(error: unknown): PremiumDialogErrorKi
   const message = String((error as { message?: unknown })?.message ?? error ?? '').toLowerCase();
   const text = `${code} ${message}`;
 
-  if (text.includes('dialog_free_limit') || text.includes('dialog_plus_required')) return 'free_limit';
+  if (text.includes('dialog_plus_required')) return 'plus_required';
+  if (text.includes('dialog_free_limit')) return 'free_limit';
   if (text.includes('dialog_premium_cap')) return 'premium_limit';
   // Глобальный бюджет ИИ иссяк (на всех сразу) — сервер шлёт resource-exhausted
   // с сообщением 'explain_global_budget'. ВАЖНО: проверяем ДО общего
@@ -188,6 +191,7 @@ export function getPremiumDialogErrorMessage(
 ): string {
   const lang = options?.lang ?? 'ru';
   switch (classifyPremiumDialogError(error)) {
+    case 'plus_required':
     case 'free_limit':
       if (options?.hasPremiumAccess) {
         return triLang(lang, {
@@ -447,8 +451,8 @@ export interface PremiumDialogReviewRequest {
   /** Изучаемый язык. Обязателен: Dialogues никогда не подменяют его English. */
   studyTarget: string;
   /**
-   * 'text' (по умолчанию) — печатный диалог. 'voice' (МАКС ПЛАН §6.2) —
-   * транскрипт голосового MAX-звонка: сервер мягче к артефактам устной речи
+   * 'text' (по умолчанию) — печатный диалог. 'voice' —
+   * транскрипт голосового диалога: сервер мягче к артефактам устной речи
    * (filler words, самоисправления) и не меняет форму JSON-ответа.
    */
   mode?: 'text' | 'voice' | 'tutor';
@@ -458,7 +462,7 @@ export interface PremiumDialogReviewRequest {
   nextTopic?: string;
   /** tutor: просьба ученика, как говорить (set_language_preference). */
   languagePreference?: string;
-  /** voice/tutor: категории flag_safety; MAX отправляет только обезличенный сигнал без записи разговора. */
+  /** voice/tutor: категории flag_safety; отправляется только обезличенный сигнал без записи разговора. */
   safetyFlags?: { kind: string; note: string }[];
   /** voice/tutor: id сессии звонка (дедуп журнала с мгновенными репортами). */
   sessionId?: string;
@@ -485,7 +489,7 @@ export interface PremiumDialogReviewCorrection {
   note: string;
   /**
    * 'polish' — реплика была верной, это лишь более естественный вариант
-   * (voice-режим МАКС-звонка); UI не зачёркивает исходник. Отсутствие = 'fix'.
+   * (voice-режим звонка); UI не зачёркивает исходник. Отсутствие = 'fix'.
    */
   kind?: 'fix' | 'polish';
 }
@@ -502,10 +506,44 @@ export interface PremiumDialogReviewPhrase {
   kind: 'fix' | 'ok' | 'polish';
 }
 
+/** A review observation tied to a verbatim learner message from this session. */
+export interface PremiumDialogReviewEvidence {
+  learnerTurn: string;
+  note: string;
+}
+
+/**
+ * A released V2 scenario can expose the evaluation of every one of its
+ * 6–12 concrete tasks. This is optional so legacy dialogue reviews keep their
+ * exact wire format while the terminal surface is migrated gradually.
+ */
+export interface PremiumDialogReviewObjectiveResult {
+  objectiveId: string;
+  /** Label comes from the reviewed, target-language scenario pack. */
+  label: string;
+  status: 'met' | 'not_met';
+  /** Accepted learner messages supporting this task result. */
+  evidence: string[];
+}
+
 export interface PremiumDialogReviewResponse {
   ok: boolean;
   /** Похвала на языке интерфейса (что реально получилось). */
   praise: string;
+  /** Общая оценка от лица собеседника, основанная на этой переписке. */
+  assessment?: string;
+  /** 1–3 проверяемые реплики ученика, которые поддерживают оценку. */
+  evidence?: PremiumDialogReviewEvidence[];
+  /** V2: detailed status of every task from the released scenario. */
+  objectiveResults?: PremiumDialogReviewObjectiveResult[];
+  /**
+   * V2-only server receipt. This carries no learner text and is accepted only
+   * after the terminal debrief itself has passed the V2 grounding checks.
+   */
+  v2Memory?: {
+    sharedMemoryStored: boolean;
+    scenarioCheckpointStored: boolean;
+  };
   corrections: PremiumDialogReviewCorrection[];
   /** Один практичный совет на следующий раз (язык интерфейса). */
   tip: string;
@@ -517,12 +555,93 @@ export interface PremiumDialogReviewResponse {
   lockedPhrases?: number;
   /** Free: разбор урезан сервером до первой фразы. */
   locked?: boolean;
+  /** Локальный честный итог, показанный только при недоступности review-сервиса. */
+  fallback?: boolean;
   /** Tutor-only durable projection; UI must not claim mastery from local tool output. */
   tutorMemory?: {
     callCount: number;
     homework: string[];
     nextTopic: string;
     acceptedGoalProgress?: { goalId: string; mastery: number };
+  };
+}
+
+function record(value: unknown): Record<string, unknown> | null {
+  return value && typeof value === 'object' && !Array.isArray(value)
+    ? value as Record<string, unknown>
+    : null;
+}
+
+function parseDialogueV2MemoryReceipt(value: unknown): {
+  sharedMemoryStored: boolean;
+  scenarioCheckpointStored: boolean;
+} | null {
+  const receipt = record(value);
+  if (!receipt) return null;
+  const keys = Object.keys(receipt);
+  if (keys.length !== 2
+    || !keys.includes('sharedMemoryStored')
+    || !keys.includes('scenarioCheckpointStored')
+    || typeof receipt.sharedMemoryStored !== 'boolean'
+    || typeof receipt.scenarioCheckpointStored !== 'boolean') return null;
+  return {
+    sharedMemoryStored: receipt.sharedMemoryStored,
+    scenarioCheckpointStored: receipt.scenarioCheckpointStored,
+  };
+}
+
+/**
+ * Converts the strict V2 completion envelope delivered by the callable into
+ * the already-mounted terminal verdict view model. The envelope itself is a
+ * server response; its learner claims are still rejected unless they pass the
+ * V2 ledger/objective validator in the adapter.
+ *
+ * Legacy responses retain their established shape during the staged rollout.
+ */
+export function normalizePremiumDialogReviewCallableResponse(
+  value: unknown,
+): PremiumDialogReviewResponse | null {
+  const response = record(value);
+  if (!response || response.ok !== true) return null;
+  const hasV2MemoryReceipt = Object.prototype.hasOwnProperty.call(response, 'v2Memory');
+  const v2Completion = record(response.v2Completion);
+  if (!v2Completion) {
+    if (hasV2MemoryReceipt) return null;
+    return typeof response.praise === 'string'
+      && typeof response.tip === 'string'
+      && Array.isArray(response.corrections)
+      ? response as unknown as PremiumDialogReviewResponse
+      : null;
+  }
+
+  const review = buildDialogueV2CompletionReview({
+    feedback: v2Completion.feedback,
+    context: v2Completion.context,
+    objectiveLabels: v2Completion.objectiveLabels,
+    personaNames: v2Completion.personaNames,
+    userMessages: v2Completion.userMessages,
+    evidenceNote: v2Completion.evidenceNote,
+  });
+  if (!review) return null;
+  let v2Memory: PremiumDialogReviewResponse['v2Memory'];
+  if (hasV2MemoryReceipt) {
+    const receipt = parseDialogueV2MemoryReceipt(response.v2Memory);
+    if (!receipt) return null;
+    v2Memory = receipt;
+  }
+
+  return {
+    ok: true,
+    praise: '',
+    assessment: review.assessment,
+    evidence: review.evidence.map((item) => ({ ...item })),
+    objectiveResults: review.objectiveResults.map((result) => ({
+      ...result,
+      evidence: [...result.evidence],
+    })),
+    corrections: review.corrections.map((correction) => ({ ...correction })),
+    tip: review.tip,
+    v2Memory,
   };
 }
 
@@ -561,7 +680,7 @@ export async function callPremiumDialogReview(
 
   const request = (async () => {
     await initFirebaseAppCheckIfAvailable().catch(() => {});
-    const fn = httpsCallable<PremiumDialogReviewRequest, PremiumDialogReviewResponse>(
+    const fn = httpsCallable<PremiumDialogReviewRequest, unknown>(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'premiumDialogReview',
     );
@@ -575,7 +694,9 @@ export async function callPremiumDialogReview(
       ),
       { label: 'premiumDialogReview' },
     );
-    return res.data;
+    const normalized = normalizePremiumDialogReviewCallableResponse(res.data);
+    if (!normalized) throw new Error('dialog_review_invalid_response');
+    return normalized;
   })().finally(() => {
     premiumDialogReviewInFlight.delete(key);
   });

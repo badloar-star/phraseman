@@ -4,18 +4,19 @@ import {
 import type { PersonalProgressProjection } from '../modules/phone-state/domains/progress_projection';
 
 const empty: PersonalProgressProjection = {
-  totalXp: 0, level: 1, weeklyXp: 0, activityDates: [], streakCount: 0,
+  // зачем: XP удалён (PM-055/PM-067) — смысл тестов (порядок публикаций) проверяется на streakCount
+  activityDates: [], streakCount: 0,
   completedLessons: [], passedExams: [], unlockedLessons: [], bestResults: {},
 };
 
 test('hydration publishes PhoneState projection before screens render cutover data', async () => {
   const store = createPersonalProgressStore({
-    readPhoneState: async () => ({ ...empty, totalXp: 120, streakCount: 4 }),
-    readLegacy: async () => ({ ...empty, totalXp: 90 }),
+    readPhoneState: async () => ({ ...empty, streakCount: 4 }),
+    readLegacy: async () => ({ ...empty, streakCount: 2 }),
     usePhoneState: () => true,
   });
   await store.hydrate();
-  expect(store.getSnapshot()).toMatchObject({ totalXp: 120, streakCount: 4, hydrated: true });
+  expect(store.getSnapshot()).toMatchObject({ streakCount: 4, hydrated: true });
 });
 
 test('local commit updates subscribers without any cloud event', async () => {
@@ -26,8 +27,8 @@ test('local commit updates subscribers without any cloud event', async () => {
   });
   await store.hydrate();
   const observed: number[] = [];
-  store.subscribe(() => observed.push(store.getSnapshot().totalXp));
-  store.publish({ ...empty, totalXp: 10 }, 'phone_state');
+  store.subscribe(() => observed.push(store.getSnapshot().streakCount));
+  store.publish({ ...empty, streakCount: 10 }, 'phone_state');
   expect(observed.at(-1)).toBe(10);
 });
 
@@ -39,8 +40,8 @@ test('stale hydration cannot replace a newer local commit', async () => {
     usePhoneState: () => true,
   });
   const hydration = store.hydrate();
-  store.publish({ ...empty, totalXp: 10 }, 'phone_state');
-  release({ ...empty, totalXp: 5 });
+  store.publish({ ...empty, streakCount: 10 }, 'phone_state');
+  release({ ...empty, streakCount: 5 });
   await hydration;
-  expect(store.getSnapshot().totalXp).toBe(10);
+  expect(store.getSnapshot().streakCount).toBe(10);
 });

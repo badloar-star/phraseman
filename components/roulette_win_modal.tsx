@@ -24,7 +24,7 @@ import Animated, {
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang, type Lang } from '../constants/i18n';
-import { ROULETTE_PRIZES, roulettePearlsLabel, roulettePrizeLabel } from '../app/roulette_prizes';
+import { ROULETTE_PRIZES, rouletteCoinsLabel, roulettePrizeLabel } from '../app/roulette_prizes';
 import HybridAlertShell, { CascadeItem } from './modal_fx/HybridAlertShell';
 import DuoPressable from './DuoPressable';
 import RewardImpactRings from './celebration/RewardImpactRings';
@@ -37,9 +37,9 @@ export interface RouletteWinData {
   prizeDays: number;
   /** vipUntil из ответа referralSpin (ms). */
   vipUntil: number;
-  /** зачем: владелец (2026-07-26) — Pro (lifetime) выигрывает жемчужины вместо дней. */
-  prizeKind?: 'days' | 'pearls';
-  prizePearls?: number;
+  /** зачем: D100 (владелец, 2026-09-30) — Pro (lifetime) выигрывает МОНЕТЫ вместо дней. */
+  prizeKind?: 'days' | 'coins';
+  prizeCoins?: number;
 }
 
 interface Props {
@@ -121,13 +121,13 @@ export default function RouletteWinModal({ data, onClose, motionVariant = 'class
   const dateLocale = DATE_LOCALE_BY_LANG[lang as Lang] ?? 'ru-RU';
   const vipDate = data.vipUntil > 0 ? new Date(data.vipUntil).toLocaleDateString(dateLocale) : '—';
   const daysShort = `+${data.prizeDays} ${L('дн.', 'd.', 'дн.', 'd.', 'd.', 'ngày', 'hari', 'gün', 'dn.')}`;
-  // Pro (lifetime): приз — жемчужины, строка про дату Plus не показывается.
-  const isPearls = data.prizeKind === 'pearls' && (data.prizePearls ?? 0) > 0;
-  const heroLine = isPearls
-    ? `+${roulettePearlsLabel(data.prizePearls ?? 0, lang as Lang)}`
+  // Pro (lifetime): приз — монеты (D100), строка про дату Plus не показывается.
+  const isCoins = data.prizeKind === 'coins' && (data.prizeCoins ?? 0) > 0;
+  const heroLine = isCoins
+    ? `+${rouletteCoinsLabel(data.prizeCoins ?? 0, lang as Lang)}`
     : `+${roulettePrizeLabel(data.prizeDays, lang as Lang)} Plus`;
   const winTitleText = L('Поздравляем!', 'Congratulations!', 'Вітаємо!', '¡Felicidades!', 'Parabéns!', 'Chúc mừng!', 'Selamat!', 'Tebrikler!', 'Gratulacje!');
-  const winSubPearlsText = L('Жемчужины уже на балансе', 'Pearls are already in your balance', 'Перлини вже на балансі', 'Las perlas ya están en tu saldo', 'As pérolas já estão no seu saldo', 'Ngọc trai đã vào số dư của bạn', 'Mutiara sudah masuk saldomu', 'İnciler bakiyene eklendi', 'Perły są już na twoim saldzie');
+  const winSubCoinsText = L('Монеты уже на балансе', 'Coins are already in your balance', 'Монети вже на балансі', 'Las monedas ya están en tu saldo', 'As moedas já estão no seu saldo', 'Xu đã vào số dư của bạn', 'Koin sudah masuk saldomu', 'Jetonlar bakiyene eklendi', 'Monety są już na twoim saldzie');
   const winSubPlusPrefix = L('Твой Plus теперь до', 'Your Plus now lasts until', 'Твій Plus тепер до', 'Tu Plus ahora hasta', 'Seu Plus agora até', 'Plus của bạn đến', 'Plus-mu sampai', 'Plus artık şu tarihe kadar:', 'Twój Plus teraz do');
   const doneLabel = L('Готово', 'Done', 'Готово', 'Listo', 'Pronto', 'Xong', 'Selesai', 'Tamam', 'Gotowe');
 
@@ -175,7 +175,7 @@ export default function RouletteWinModal({ data, onClose, motionVariant = 'class
               maxFontSizeMultiplier={1.2}
               style={[styles.winSub, { color: t.textMuted, fontSize: f.sub ?? 13, fontFamily: ds.fontFamily }]}
             >
-              {isPearls ? winSubPearlsText : (
+              {isCoins ? winSubCoinsText : (
                 <>
                   {winSubPlusPrefix}
                   {' '}
@@ -245,8 +245,8 @@ export default function RouletteWinModal({ data, onClose, motionVariant = 'class
             maxFontSizeMultiplier={1.2}
             style={[styles.winSub, { color: t.textMuted, fontSize: f.sub ?? 13, fontFamily: ds.fontFamily }]}
           >
-            {isPearls ? (
-              L('Жемчужины уже на балансе', 'Pearls are already in your balance', 'Перлини вже на балансі', 'Las perlas ya están en tu saldo', 'As pérolas já estão no seu saldo', 'Ngọc trai đã vào số dư của bạn', 'Mutiara sudah masuk saldomu', 'İnciler bakiyene eklendi', 'Perły są już na twoim saldzie')
+            {isCoins ? (
+              winSubCoinsText
             ) : (
               <>
                 {L('Твой Plus теперь до', 'Your Plus now lasts until', 'Твій Plus тепер до', 'Tu Plus ahora hasta', 'Seu Plus agora até', 'Plus của bạn đến', 'Plus-mu sampai', 'Plus artık şu tarihe kadar:', 'Twój Plus teraz do')}

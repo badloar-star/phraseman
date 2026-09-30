@@ -135,7 +135,6 @@ function journalOperationId(journal: LegacyJournalEnvelope): string | null {
 }
 
 function projectionFieldName(key: string): string {
-  if (key === 'user_total_xp') return 'total';
   if (key === 'unlocked_lessons') return 'unlocked';
   return key;
 }

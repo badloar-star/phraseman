@@ -3,15 +3,14 @@ import * as Haptics from 'expo-haptics';
 import Slider from '@react-native-community/slider';
 import { useRouter, useFocusEffect } from 'expo-router';
 import React, { useCallback, useState } from 'react';
-import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Text, View } from 'react-native';
 import BouncyScrollView from '../components/BouncyScrollView';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
-import CustomSwitch from '../components/CustomSwitch';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
-import SectionSheetHeader from '../components/SectionSheetHeader';
 import { useTheme } from '../components/ThemeContext';
+import PressableHybrid from '../components/PressableHybrid';
+import SafeLinearGradient from '../components/SafeLinearGradient';
 import { useAudio } from '../hooks/use-audio';
 import {
   isFcAutoSpeakEnabled,
@@ -28,6 +27,8 @@ import {
 } from './user_settings_store';
 import { safeRouterBack } from './navigation_back';
 import { voicePlaybackPolicy } from '../modules/audio/voice_playback_policy';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 
 export {
   DEFAULT_SETTINGS,
@@ -42,11 +43,61 @@ export {
 
 type RowKey = Exclude<keyof UserSettings, 'speechRate' | 'speechVoiceId'>;
 
+type LocalSwitchProps = {
+  value: boolean;
+  onValueChange: (value: boolean) => void;
+  testID?: string;
+  accessibilityLabel: string;
+  glass: ReturnType<typeof liquidGlassTokens>;
+};
+
+function LocalSwitch({ value, onValueChange, testID, accessibilityLabel, glass }: LocalSwitchProps) {
+  return (
+    <PressableHybrid
+      testID={testID}
+      accessibilityLabel={accessibilityLabel}
+      accessibilityRole="switch"
+      accessibilityState={{ checked: value }}
+      onPress={() => onValueChange(!value)}
+      withHaptic={false}
+      withSound={false}
+      variant="chip"
+      style={{ width: 48, minWidth: 48, minHeight: 48, alignSelf: 'center' }}
+      contentStyle={{ width: 48, minHeight: 48, justifyContent: 'center', alignItems: 'center' }}
+    >
+      <View
+        style={{
+          width: 48,
+          height: 29,
+          borderRadius: 16,
+          padding: 3,
+          justifyContent: 'center',
+          backgroundColor: value ? glass.selected : glass.opaqueControl,
+          borderWidth: 1,
+          borderColor: glass.glassEdge,
+        }}
+      >
+        <View
+          style={{
+            width: 21,
+            height: 21,
+            borderRadius: 11,
+            backgroundColor: value ? glass.lightTint : glass.secondary,
+            transform: [{ translateX: value ? 19 : 0 }],
+          }}
+        />
+      </View>
+    </PressableHybrid>
+  );
+}
+
 export default function SettingsEdu() {
   const router = useRouter();
-  const { theme: t, themeMode } = useTheme();
+  const { theme: t, liquidGlassThemeId } = useTheme();
   const { lang, s: loc } = useLang();
   const { speak: speakAudio, stop: stopAudio } = useAudio();
+  const insets = useStableSafeAreaInsets();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const [s, setS] = useState<UserSettings>(() => getUserSettingsSnapshot());
   // E9: тумблеры раздела карточек — «Звуковые эффекты» (fc_sfx_on) и
   // «Автопроизношение» (fc_autospeak_on), оба дефолт true (SoundService).
@@ -71,12 +122,14 @@ export default function SettingsEdu() {
 
   const L = (m: Record<string, string>): string => m[lang] ?? m.ru;
 
-  const rows: { key: RowKey; label: string; sub: string }[] = [
+  const rows: { key: RowKey; label: string; sub: string; icon: keyof typeof Ionicons.glyphMap }[] = [
     {
       key: 'autoCheck',
+      icon: 'checkmark-circle-outline',
       label: L({
         ru: 'Автопроверка',
         uk: 'Автоперевірка',
+        en: 'Auto-check',
         es: 'Comprobación automática',
         'pt-BR': 'Verificação automática',
         vi: 'Tự động kiểm tra',
@@ -87,6 +140,7 @@ export default function SettingsEdu() {
       sub: L({
         ru: 'Проверять при наборе последнего слова',
         uk: 'Перевіряти при наборі останнього слова',
+        en: 'Check when the last word is typed',
         es: 'Comprobar al escribir la última palabra',
         'pt-BR': 'Verificar ao digitar a última palavra',
         vi: 'Kiểm tra khi nhập từ cuối cùng',
@@ -97,9 +151,11 @@ export default function SettingsEdu() {
     },
     {
       key: 'autoAdvance',
+      icon: 'arrow-forward-outline',
       label: L({
         ru: 'Автопереход после ответа',
         uk: 'Автоперехід після відповіді',
+        en: 'Advance after answering',
         es: 'Siguiente automático',
         'pt-BR': 'Avançar automaticamente',
         vi: 'Tự động chuyển tiếp',
@@ -110,6 +166,7 @@ export default function SettingsEdu() {
       sub: L({
         ru: 'После верного ответа следующее задание откроется само. Выключи, если хочешь остановиться и перечитать ответ.',
         uk: 'Після правильної відповіді наступне завдання відкриється саме. Вимкни, якщо хочеш зупинитися й перечитати відповідь.',
+        en: 'After a correct answer, the next task opens automatically. Turn it off if you want to pause and reread the answer.',
         es: 'Tras acertar, se abre la siguiente tarea. Desactívalo si quieres detenerte y releer la respuesta.',
         'pt-BR': 'Após acertar, a próxima tarefa abre sozinha. Desative para parar e reler a resposta.',
         vi: 'Sau câu trả lời đúng, bài tiếp theo tự mở. Tắt nếu muốn dừng lại và đọc lại đáp án.',
@@ -120,9 +177,11 @@ export default function SettingsEdu() {
     },
     {
       key: 'hardMode',
+      icon: 'key-outline',
       label: L({
         ru: 'Ввод с клавиатуры',
         uk: 'Введення з клавіатури',
+        en: 'Type with keyboard',
         es: 'Escribir con el teclado',
         'pt-BR': 'Digitar no teclado',
         vi: 'Nhập bằng bàn phím',
@@ -133,6 +192,7 @@ export default function SettingsEdu() {
       sub: L({
         ru: 'Вводить ответ вручную вместо выбора слов',
         uk: 'Вводити відповідь вручну замість вибору слів',
+        en: 'Type the answer instead of choosing words',
         es: 'Escribir la respuesta completa con el teclado',
         'pt-BR': 'Digitar a resposta em vez de escolher palavras',
         vi: 'Tự gõ câu trả lời thay vì chọn từ',
@@ -143,9 +203,11 @@ export default function SettingsEdu() {
     },
     {
       key: 'haptics',
+      icon: 'flash-outline',
       label: L({
         ru: 'Вибрация при ошибке',
         uk: 'Вібрація при помилці',
+        en: 'Vibrate on mistakes',
         es: 'Vibración al fallar',
         'pt-BR': 'Vibração ao errar',
         vi: 'Rung khi sai',
@@ -156,6 +218,7 @@ export default function SettingsEdu() {
       sub: L({
         ru: 'Работает при включённом тактильном отклике (Настройки → Внешний вид и отклик)',
         uk: 'Працює за увімкненого тактильного відгуку (Налаштування → Вигляд і відгук)',
+        en: 'Works when haptic feedback is enabled (Settings → Appearance and feedback)',
         es: 'Requiere la respuesta háptica activa (Ajustes → Apariencia y respuesta)',
         'pt-BR': 'Requer a resposta tátil ativa (Configurações → Aparência e resposta)',
         vi: 'Cần bật phản hồi rung (Cài đặt → Giao diện và phản hồi)',
@@ -166,65 +229,97 @@ export default function SettingsEdu() {
     },
   ];
 
+  const soundRows = [
+    {
+      testID: 'fc-sfx-toggle',
+      value: fcSfx,
+      label: L({ ru: 'Звуковые эффекты', uk: 'Звукові ефекти', en: 'Sound effects', es: 'Efectos de sonido', 'pt-BR': 'Efeitos sonoros', vi: 'Hiệu ứng âm thanh', id: 'Efek suara', tr: 'Ses efektleri', pl: 'Efekty dźwiękowe' }),
+      sub: L({ ru: 'Короткие звуки в карточках и тренировках', uk: 'Короткі звуки у картках і тренуваннях', en: 'Brief sounds in cards and training', es: 'Sonidos breves en tarjetas y entrenamientos', 'pt-BR': 'Sons curtos em cartões e treinos', vi: 'Âm thanh ngắn trong thẻ và luyện tập', id: 'Suara singkat di kartu dan latihan', tr: 'Kartlarda ve antrenmanlarda kısa sesler', pl: 'Krótkie dźwięki w fiszkach i ćwiczeniach' }),
+      icon: 'volume-high-outline' as const,
+      onValueChange: (value: boolean) => { setFcSfx(value); void setFcSfxEnabled(value); },
+    },
+    {
+      testID: 'fc-autospeak-toggle',
+      value: fcAutoSpeak,
+      label: L({ ru: 'Автопроизношение', uk: 'Автовимова', en: 'Auto pronunciation', es: 'Pronunciación automática', 'pt-BR': 'Pronúncia automática', vi: 'Tự động phát âm', id: 'Pelafalan otomatis', tr: 'Otomatik telaffuz', pl: 'Automatyczna wymowa' }),
+      sub: L({ ru: 'Озвучивать английскую фразу после ответа', uk: 'Озвучувати англійську фразу після відповіді', en: 'Read the English phrase after answering', es: 'Leer la frase en inglés después de responder', 'pt-BR': 'Ler a frase em inglês após responder', vi: 'Đọc câu tiếng Anh sau khi trả lời', id: 'Bacakan frasa Inggris setelah menjawab', tr: 'Cevaptan sonra İngilizce ifadeyi oku', pl: 'Odczytaj angielskie zdanie po odpowiedzi' }),
+      icon: 'volume-high-outline' as const,
+      onValueChange: (value: boolean) => { setFcAutoSpeak(value); void setFcAutoSpeakEnabled(value); },
+    },
+  ];
+
+  const RowIcon = ({ name }: { name: keyof typeof Ionicons.glyphMap }) => (
+    <View style={{ width: 41, height: 41, borderRadius: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }}>
+      <Ionicons name={name} size={20} color={glass.lightTint} />
+    </View>
+  );
+  const rowStyle = { minHeight: 64, borderRadius: 14, paddingVertical: 10, paddingHorizontal: 14, gap: 14, flexDirection: 'row' as const, alignItems: 'center' as const, backgroundColor: glass.opaqueCard, borderWidth: 1, borderColor: glass.glassEdge, overflow: 'hidden' as const };
+  const titleStyle = { color: t.textPrimary, fontSize: 16, lineHeight: 21, fontWeight: '700' as const };
+  const subStyle = { color: t.textMuted, fontSize: 13, lineHeight: 18, fontWeight: '400' as const, marginTop: 3 };
+
   return (
     <ScreenGradient>
-      <SafeAreaView style={{ flex: 1 }}>
+      <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom, paddingLeft: insets.left, paddingRight: insets.right }}>
         <ContentWrap>
-          {/* зачем: стандарт «шторки раздела» — модал с выездом снизу, шапка
-              с центрированным заголовком и крестиком вместо стрелки «назад». */}
-          <SectionSheetHeader
-            title={loc.edu.title}
-            onClose={() => safeRouterBack(router, '/(tabs)/settings' as any)}
-          />
-
-          <BouncyScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
+          <BouncyScrollView contentContainerStyle={{ paddingHorizontal: 15, paddingBottom: 20 }} decelerationRate="fast" showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
+            <PressableHybrid
+              accessibilityLabel={L({ ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
+              onPress={() => safeRouterBack(router, '/(tabs)/settings' as any)}
+              variant="icon"
+              withHaptic={false}
+              withSound={false}
+              style={{ width: 48, height: 48, alignSelf: 'flex-start', marginTop: 4 }}
+              contentStyle={{ width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }}
+            >
+              <Ionicons name="arrow-back" size={22} color={glass.lightTint} />
+            </PressableHybrid>
+            <Text style={{ color: t.textPrimary, fontSize: 34, lineHeight: 40, fontWeight: '700', marginTop: 10 }}>
+              {loc.edu.title}
+            </Text>
+            <Text style={{ color: t.textMuted, fontSize: 15, lineHeight: 20, marginTop: 7 }}>
+              {L({ ru: 'Проверка ответа, ввод и единая озвучка', uk: 'Перевірка відповіді, введення та єдине озвучення', en: 'Answer checking, input, and voice', es: 'Comprobación, escritura y voz', 'pt-BR': 'Verificação, digitação e voz', vi: 'Kiểm tra câu trả lời, nhập và giọng nói', id: 'Pemeriksaan jawaban, input, dan suara', tr: 'Cevap kontrolü, giriş ve ses', pl: 'Sprawdzanie odpowiedzi, wpisywanie i głos' })}
+            </Text>
+            <Text style={{ color: t.textMuted, fontSize: 11, lineHeight: 14, fontWeight: '700', letterSpacing: 0.6, marginTop: 24, marginHorizontal: 4, marginBottom: 10 }}>
+              {L({ ru: 'ОТВЕТ', uk: 'ВІДПОВІДЬ', en: 'ANSWER', es: 'RESPUESTA', 'pt-BR': 'RESPOSTA', vi: 'CÂU TRẢ LỜI', id: 'JAWABAN', tr: 'YANIT', pl: 'ODPOWIEDŹ' })}
+            </Text>
+            <View style={{ gap: 10 }}>
             {rows.map(row => {
               const isOn = !!s[row.key];
               return (
-                <View
-                  key={row.key}
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    paddingHorizontal: 20,
-                    paddingVertical: 16,
-                    borderBottomWidth: 0.5,
-                    borderBottomColor: t.border,
-                  }}
-                >
-                  <View style={{ flex: 1, marginRight: 12 }}>
-                    <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: '500' }}>
-                      {row.label}
-                    </Text>
-                    <Text style={{ color: t.textMuted, fontSize: 13, marginTop: 3 }}>
-                      {row.sub}
-                    </Text>
+                <View key={row.key} style={rowStyle}>
+                  <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
+                  <RowIcon name={row.icon} />
+                  <View style={{ flex: 1, minWidth: 0 }}>
+                    <Text style={titleStyle}>{row.label}</Text>
+                    <Text style={subStyle}>{row.sub}</Text>
                   </View>
-                  <CustomSwitch value={isOn} onValueChange={val => update(row.key, val)} />
+                  <LocalSwitch value={isOn} onValueChange={val => update(row.key, val)} accessibilityLabel={row.label} glass={glass} />
                 </View>
               );
             })}
+            </View>
 
-            {
-              <View
-                style={{
-                  paddingHorizontal: 20,
-                  paddingVertical: 16,
-                  borderBottomWidth: 0.5,
-                  borderBottomColor: t.border,
-                }}
-              >
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
-                  <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: '500' }}>
-                    {loc.edu.speed}
-                  </Text>
-                  <Text style={{ color: t.textSecond, fontSize: 16, fontWeight: '600' }}>
-                    {normalizeSpeechRate(s.speechRate).toFixed(1)}x
-                  </Text>
+            <Text style={{ color: t.textMuted, fontSize: 11, lineHeight: 14, fontWeight: '700', letterSpacing: 0.6, marginTop: 24, marginHorizontal: 4, marginBottom: 10 }}>
+              {L({ ru: 'ЗВУК', uk: 'ЗВУК', en: 'SOUND', es: 'SONIDO', 'pt-BR': 'SOM', vi: 'ÂM THANH', id: 'SUARA', tr: 'SES', pl: 'DŹWIĘK' })}
+            </Text>
+            <View style={{ gap: 10 }}>
+            {soundRows.map(row => <View key={row.testID} testID={row.testID === 'fc-sfx-toggle' ? 'fc-sfx-row' : 'fc-autospeak-row'} style={rowStyle}>
+              <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
+              <RowIcon name={row.icon} />
+              <View style={{ flex: 1, minWidth: 0 }}><Text style={titleStyle}>{row.label}</Text><Text style={subStyle}>{row.sub}</Text></View>
+              <LocalSwitch testID={row.testID} value={row.value} onValueChange={row.onValueChange} accessibilityLabel={row.label} glass={glass} />
+            </View>)}
+            </View>
+
+            <View style={[rowStyle, { marginTop: 10 }]}>
+              <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
+              <RowIcon name="volume-high-outline" />
+              <View style={{ flex: 1, minWidth: 0 }}>
+                <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: 8 }}>
+                  <Text style={[titleStyle, { flex: 1, minWidth: 0 }]}>{loc.edu.speed}</Text>
+                  <Text style={[titleStyle, { color: glass.lightTint, flexShrink: 1 }]}>{normalizeSpeechRate(s.speechRate).toFixed(1)}x</Text>
                 </View>
-                <Text style={{ color: t.textMuted, fontSize: 12, marginBottom: 6 }}>
-                  {loc.edu.speedHint}
-                </Text>
+                <Text style={subStyle}>{loc.edu.speedHint}</Text>
                 <Slider
                   style={{ width: '100%', height: 44 }}
                   minimumValue={0.8}
@@ -236,95 +331,36 @@ export default function SettingsEdu() {
                     const rate = normalizeSpeechRate(v);
                     update('speechRate', rate);
                     stopAudio();
-                    // Preview the real OpenAI "echo" clip (this exact phrase has
-                    // one in PHRASE_AUDIO_URL_MAP) so the user hears the actual
-                    // app voice and its true loudness, not the robotic expo-speech
-                    // voice. Reverts to TTS automatically if the clip is missing.
-                        if (voicePlaybackPolicy.isEnabled()) {
-                          speakAudio('a dark horse', rate, { language: 'en-US' });
-                        }
+                    if (voicePlaybackPolicy.isEnabled()) speakAudio('a dark horse', rate, { language: 'en-US' });
                   }}
                   minimumTrackTintColor={t.textSecond}
                   maximumTrackTintColor={t.border}
                   thumbTintColor={t.textSecond}
                 />
               </View>
-            }
-            {/* E9: тумблеры звука раздела «Карточки и тренировки» (§5 Cards 2.0) */}
-            <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: t.border }} testID="fc-sfx-row">
-            <View style={{ flex: 1, marginRight: 12 }}>
-            <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: '500' }}>
-            {lang === 'uk' ? 'Звукові ефекти' : lang === 'es' ? 'Efectos de sonido' : 'Звуковые эффекты'}
-            </Text>
-            <Text style={{ color: t.textMuted, fontSize: 13, marginTop: 3 }}>
-            {lang === 'uk'
-            ? 'Короткі звуки у картках і тренуваннях'
-            : lang === 'es'
-            ? 'Sonidos breves en tarjetas y entrenamientos'
-            : 'Короткие звуки в карточках и тренировках'}
-            </Text>
-            </View>
-            <CustomSwitch
-            testID="fc-sfx-toggle"
-            value={fcSfx}
-            onValueChange={val => {
-            setFcSfx(val);
-            void setFcSfxEnabled(val);
-            }}
-            />
-            </View>
-            <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: t.border }} testID="fc-autospeak-row">
-            <View style={{ flex: 1, marginRight: 12 }}>
-            <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: '500' }}>
-            {lang === 'uk' ? 'Автовимова' : lang === 'es' ? 'Pronunciación automática' : 'Автопроизношение'}
-            </Text>
-            <Text style={{ color: t.textMuted, fontSize: 13, marginTop: 3 }}>
-            {lang === 'uk'
-            ? 'Озвучувати англійську фразу після відповіді'
-            : lang === 'es'
-            ? 'Leer la frase en inglés después de responder'
-            : 'Озвучивать английскую фразу после ответа'}
-            </Text>
-            </View>
-            <CustomSwitch
-            testID="fc-autospeak-toggle"
-            value={fcAutoSpeak}
-            onValueChange={val => {
-            setFcAutoSpeak(val);
-            void setFcAutoSpeakEnabled(val);
-            }}
-            />
             </View>
 
-            {/* E13: выбор TTS-голоса для EN (fc_voice_prefs_v1) — экран flashcards_voice_picker */}
-            <TouchableOpacity
+            <PressableHybrid
             testID="fc-voice-picker-row"
-            accessibilityLabel="qa-fc-voice-picker-row"
+            accessibilityLabel={L({ ru: 'Голос озвучки (EN)', uk: 'Голос озвучення (EN)', en: 'Voice (EN)', es: 'Voz (EN)', 'pt-BR': 'Voz (EN)', vi: 'Giọng đọc (EN)', id: 'Suara (EN)', tr: 'Ses (EN)', pl: 'Głos (EN)' })}
             accessible
-            activeOpacity={0.75}
+            withHaptic={false}
+            withSound={false}
             onPress={() => {
             void Haptics.selectionAsync();
             router.push('/flashcards_voice_picker' as any);
             }}
-            style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: t.border }}
+            variant="card"
+            contentStyle={[rowStyle, { marginTop: 10 }]}
             >
-            <View style={{ flex: 1, marginRight: 12 }}>
-            <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: '500' }}>
-            {lang === 'uk' ? 'Голос озвучення (EN)' : lang === 'es' ? 'Voz de lectura (EN)' : 'Голос озвучки (EN)'}
-            </Text>
-            <Text style={{ color: t.textMuted, fontSize: 13, marginTop: 3 }}>
-            {lang === 'uk'
-            ? 'Вибір голосу і швидкості для англійської'
-            : lang === 'es'
-            ? 'Elige la voz y la velocidad para el inglés'
-            : 'Выбор голоса и скорости для английского'}
-            </Text>
-            </View>
+            <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
+            <RowIcon name="person-outline" />
+            <View style={{ flex: 1, minWidth: 0 }}><Text style={titleStyle}>{L({ ru: 'Голос озвучки (EN)', uk: 'Голос озвучення (EN)', en: 'Voice (EN)', es: 'Voz (EN)', 'pt-BR': 'Voz (EN)', vi: 'Giọng đọc (EN)', id: 'Suara (EN)', tr: 'Ses (EN)', pl: 'Głos (EN)' })}</Text><Text style={subStyle}>{L({ ru: 'Выбор голоса и скорости для английского', uk: 'Вибір голосу і швидкості для англійської', en: 'Choose the English voice and speed', es: 'Elige la voz y la velocidad para el inglés', 'pt-BR': 'Escolha a voz e a velocidade em inglês', vi: 'Chọn giọng và tốc độ tiếng Anh', id: 'Pilih suara dan kecepatan bahasa Inggris', tr: 'İngilizce sesi ve hızı seç', pl: 'Wybierz angielski głos i tempo' })}</Text></View>
             <Ionicons name="chevron-forward" size={20} color={t.textMuted} />
-            </TouchableOpacity>
+            </PressableHybrid>
           </BouncyScrollView>
         </ContentWrap>
-      </SafeAreaView>
+      </View>
     </ScreenGradient>
   );
 }

@@ -1,0 +1,903 @@
+{
+  "schemaVersion": "daily-phrase-source-linkage-v2",
+  "studyTarget": "fr",
+  "sourceLocale": "ru",
+  "surface": "daily_phrase",
+  "status": "SOURCE_COMPLETE_HOLD",
+  "authoritativeLedger": {
+    "path": "authoritative-source-ledger.json",
+    "schemaVersion": "daily-phrase-authoritative-source-ledger-v1",
+    "source": "Le Robert / Larousse — official dictionary excerpts (direct page or official search-result snippet)",
+    "sourceHomes": [
+      "https://dictionnaire.lerobert.com/",
+      "https://www.larousse.fr/dictionnaires/francais/"
+    ],
+    "checkedAt": "2026-09-27T16:42:57.6328596Z",
+    "requiredCount": 176,
+    "acceptedCount": 176,
+    "status": "SOURCE_COMPLETE_HOLD"
+  },
+  "linkedCandidateRows": [
+    {
+      "rowId": "fr-001",
+      "ledgerRow": 0,
+      "sourceId": "le-robert:cafard"
+    },
+    {
+      "rowId": "fr-002",
+      "ledgerRow": 1,
+      "sourceId": "le-robert:lapin"
+    },
+    {
+      "rowId": "fr-003",
+      "ledgerRow": 2,
+      "sourceId": "le-robert:pied"
+    },
+    {
+      "rowId": "fr-004",
+      "ledgerRow": 3,
+      "sourceId": "le-robert:poil"
+    },
+    {
+      "rowId": "fr-005",
+      "ledgerRow": 4,
+      "sourceId": "larousse:salade"
+    },
+    {
+      "rowId": "fr-006",
+      "ledgerRow": 5,
+      "sourceId": "le-robert:cheveu"
+    },
+    {
+      "rowId": "fr-007",
+      "ledgerRow": 6,
+      "sourceId": "larousse:coûter"
+    },
+    {
+      "rowId": "fr-008",
+      "ledgerRow": 7,
+      "sourceId": "le-robert:pomme"
+    },
+    {
+      "rowId": "fr-009",
+      "ledgerRow": 8,
+      "sourceId": "le-robert:mouche"
+    },
+    {
+      "rowId": "fr-010",
+      "ledgerRow": 9,
+      "sourceId": "larousse:matinée"
+    },
+    {
+      "rowId": "fr-011",
+      "ledgerRow": 10,
+      "sourceId": "le-robert:distrait"
+    },
+    {
+      "rowId": "fr-012",
+      "ledgerRow": 11,
+      "sourceId": "larousse:tête"
+    },
+    {
+      "rowId": "fr-013",
+      "ledgerRow": 12,
+      "sourceId": "larousse:épaule"
+    },
+    {
+      "rowId": "fr-014",
+      "ledgerRow": 13,
+      "sourceId": "larousse:jambe"
+    },
+    {
+      "rowId": "fr-015",
+      "ledgerRow": 14,
+      "sourceId": "larousse:dent"
+    },
+    {
+      "rowId": "fr-016",
+      "ledgerRow": 15,
+      "sourceId": "larousse:estomac"
+    },
+    {
+      "rowId": "fr-017",
+      "ledgerRow": 16,
+      "sourceId": "le-robert:creuser"
+    },
+    {
+      "rowId": "fr-018",
+      "ledgerRow": 17,
+      "sourceId": "larousse:ras"
+    },
+    {
+      "rowId": "fr-019",
+      "ledgerRow": 18,
+      "sourceId": "larousse:bras"
+    },
+    {
+      "rowId": "fr-020",
+      "ledgerRow": 19,
+      "sourceId": "larousse:main"
+    },
+    {
+      "rowId": "fr-021",
+      "ledgerRow": 20,
+      "sourceId": "le-robert:eponge"
+    },
+    {
+      "rowId": "fr-022",
+      "ledgerRow": 21,
+      "sourceId": "le-robert:pain"
+    },
+    {
+      "rowId": "fr-023",
+      "ledgerRow": 22,
+      "sourceId": "le-robert:bouchee"
+    },
+    {
+      "rowId": "fr-024",
+      "ledgerRow": 23,
+      "sourceId": "larousse:morceau"
+    },
+    {
+      "rowId": "fr-025",
+      "ledgerRow": 24,
+      "sourceId": "le-robert:pot"
+    },
+    {
+      "rowId": "fr-026",
+      "ledgerRow": 25,
+      "sourceId": "le-robert:champignon"
+    },
+    {
+      "rowId": "fr-027",
+      "ledgerRow": 26,
+      "sourceId": "le-robert:chou"
+    },
+    {
+      "rowId": "fr-028",
+      "ledgerRow": 27,
+      "sourceId": "le-robert:epingle"
+    },
+    {
+      "rowId": "fr-029",
+      "ledgerRow": 28,
+      "sourceId": "le-robert:perche"
+    },
+    {
+      "rowId": "fr-030",
+      "ledgerRow": 29,
+      "sourceId": "le-robert:charrue"
+    },
+    {
+      "rowId": "fr-031",
+      "ledgerRow": 30,
+      "sourceId": "larousse:poule"
+    },
+    {
+      "rowId": "fr-032",
+      "ledgerRow": 31,
+      "sourceId": "larousse:oeuf"
+    },
+    {
+      "rowId": "fr-033",
+      "ledgerRow": 32,
+      "sourceId": "larousse:vendre"
+    },
+    {
+      "rowId": "fr-034",
+      "ledgerRow": 33,
+      "sourceId": "larousse:bete"
+    },
+    {
+      "rowId": "fr-035",
+      "ledgerRow": 34,
+      "sourceId": "le-robert:poisson"
+    },
+    {
+      "rowId": "fr-036",
+      "ledgerRow": 35,
+      "sourceId": "larousse:chat"
+    },
+    {
+      "rowId": "fr-037",
+      "ledgerRow": 36,
+      "sourceId": "larousse:araignee"
+    },
+    {
+      "rowId": "fr-038",
+      "ledgerRow": 37,
+      "sourceId": "larousse:artichaut"
+    },
+    {
+      "rowId": "fr-039",
+      "ledgerRow": 38,
+      "sourceId": "larousse:carrosse"
+    },
+    {
+      "rowId": "fr-040",
+      "ledgerRow": 39,
+      "sourceId": "larousse:coup"
+    },
+    {
+      "rowId": "fr-041",
+      "ledgerRow": 40,
+      "sourceId": "le-robert:peche"
+    },
+    {
+      "rowId": "fr-042",
+      "ledgerRow": 41,
+      "sourceId": "le-robert:tomber"
+    },
+    {
+      "rowId": "fr-043",
+      "ledgerRow": 42,
+      "sourceId": "larousse:petrin"
+    },
+    {
+      "rowId": "fr-044",
+      "ledgerRow": 43,
+      "sourceId": "le-robert:beurre"
+    },
+    {
+      "rowId": "fr-045",
+      "ledgerRow": 44,
+      "sourceId": "larousse:coq"
+    },
+    {
+      "rowId": "fr-046",
+      "ledgerRow": 45,
+      "sourceId": "larousse:puce"
+    },
+    {
+      "rowId": "fr-047",
+      "ledgerRow": 46,
+      "sourceId": "larousse:poire"
+    },
+    {
+      "rowId": "fr-048",
+      "ledgerRow": 47,
+      "sourceId": "larousse:beurre"
+    },
+    {
+      "rowId": "fr-049",
+      "ledgerRow": 48,
+      "sourceId": "larousse:haricot"
+    },
+    {
+      "rowId": "fr-050",
+      "ledgerRow": 49,
+      "sourceId": "larousse:chat"
+    },
+    {
+      "rowId": "fr-051",
+      "ledgerRow": 50,
+      "sourceId": "larousse:carotte"
+    },
+    {
+      "rowId": "fr-052",
+      "ledgerRow": 51,
+      "sourceId": "larousse:pot"
+    },
+    {
+      "rowId": "fr-053",
+      "ledgerRow": 52,
+      "sourceId": "larousse:pied"
+    },
+    {
+      "rowId": "fr-054",
+      "ledgerRow": 53,
+      "sourceId": "larousse:dormir"
+    },
+    {
+      "rowId": "fr-055",
+      "ledgerRow": 54,
+      "sourceId": "larousse:oreille"
+    },
+    {
+      "rowId": "fr-056",
+      "ledgerRow": 55,
+      "sourceId": "larousse:oreille"
+    },
+    {
+      "rowId": "fr-057",
+      "ledgerRow": 56,
+      "sourceId": "larousse:compas"
+    },
+    {
+      "rowId": "fr-058",
+      "ledgerRow": 57,
+      "sourceId": "larousse:nez"
+    },
+    {
+      "rowId": "fr-059",
+      "ledgerRow": 58,
+      "sourceId": "larousse:porte"
+    },
+    {
+      "rowId": "fr-060",
+      "ledgerRow": 59,
+      "sourceId": "larousse:cle"
+    },
+    {
+      "rowId": "fr-061",
+      "ledgerRow": 60,
+      "sourceId": "larousse:chaussure"
+    },
+    {
+      "rowId": "fr-062",
+      "ledgerRow": 61,
+      "sourceId": "larousse:ficelle"
+    },
+    {
+      "rowId": "fr-063",
+      "ledgerRow": 62,
+      "sourceId": "larousse:huile"
+    },
+    {
+      "rowId": "fr-064",
+      "ledgerRow": 63,
+      "sourceId": "larousse:poudre"
+    },
+    {
+      "rowId": "fr-065",
+      "ledgerRow": 64,
+      "sourceId": "le-robert:lac"
+    },
+    {
+      "rowId": "fr-066",
+      "ledgerRow": 65,
+      "sourceId": "larousse:ciel"
+    },
+    {
+      "rowId": "fr-067",
+      "ledgerRow": 66,
+      "sourceId": "larousse:lune"
+    },
+    {
+      "rowId": "fr-068",
+      "ledgerRow": 67,
+      "sourceId": "larousse:decrocher"
+    },
+    {
+      "rowId": "fr-069",
+      "ledgerRow": 68,
+      "sourceId": "larousse:etoile"
+    },
+    {
+      "rowId": "fr-070",
+      "ledgerRow": 69,
+      "sourceId": "larousse:ange"
+    },
+    {
+      "rowId": "fr-071",
+      "ledgerRow": 70,
+      "sourceId": "larousse:pleuvoir"
+    },
+    {
+      "rowId": "fr-072",
+      "ledgerRow": 71,
+      "sourceId": "le-robert:pluie"
+    },
+    {
+      "rowId": "fr-073",
+      "ledgerRow": 72,
+      "sourceId": "le-robert:pluie"
+    },
+    {
+      "rowId": "fr-074",
+      "ledgerRow": 73,
+      "sourceId": "le-robert:soupe"
+    },
+    {
+      "rowId": "fr-075",
+      "ledgerRow": 74,
+      "sourceId": "larousse:brouillard"
+    },
+    {
+      "rowId": "fr-076",
+      "ledgerRow": 75,
+      "sourceId": "larousse:poupe"
+    },
+    {
+      "rowId": "fr-077",
+      "ledgerRow": 76,
+      "sourceId": "larousse:cap"
+    },
+    {
+      "rowId": "fr-078",
+      "ledgerRow": 77,
+      "sourceId": "le-robert:barque"
+    },
+    {
+      "rowId": "fr-079",
+      "ledgerRow": 78,
+      "sourceId": "larousse:galere"
+    },
+    {
+      "rowId": "fr-080",
+      "ledgerRow": 79,
+      "sourceId": "larousse:port"
+    },
+    {
+      "rowId": "fr-081",
+      "ledgerRow": 80,
+      "sourceId": "le-robert:large"
+    },
+    {
+      "rowId": "fr-082",
+      "ledgerRow": 81,
+      "sourceId": "le-robert:route"
+    },
+    {
+      "rowId": "fr-083",
+      "ledgerRow": 82,
+      "sourceId": "le-robert:farine"
+    },
+    {
+      "rowId": "fr-084",
+      "ledgerRow": 83,
+      "sourceId": "le-robert:sentier"
+    },
+    {
+      "rowId": "fr-085",
+      "ledgerRow": 84,
+      "sourceId": "le-robert:virage"
+    },
+    {
+      "rowId": "fr-086",
+      "ledgerRow": 85,
+      "sourceId": "larousse:eau"
+    },
+    {
+      "rowId": "fr-087",
+      "ledgerRow": 86,
+      "sourceId": "larousse:main-fr-en"
+    },
+    {
+      "rowId": "fr-088",
+      "ledgerRow": 87,
+      "sourceId": "larousse:main"
+    },
+    {
+      "rowId": "fr-089",
+      "ledgerRow": 88,
+      "sourceId": "le-robert:mot"
+    },
+    {
+      "rowId": "fr-090",
+      "ledgerRow": 89,
+      "sourceId": "larousse:i"
+    },
+    {
+      "rowId": "fr-091",
+      "ledgerRow": 90,
+      "sourceId": "larousse:page"
+    },
+    {
+      "rowId": "fr-092",
+      "ledgerRow": 91,
+      "sourceId": "le-robert:ligne"
+    },
+    {
+      "rowId": "fr-093",
+      "ledgerRow": 92,
+      "sourceId": "larousse:desert"
+    },
+    {
+      "rowId": "fr-094",
+      "ledgerRow": 93,
+      "sourceId": "larousse:couper"
+    },
+    {
+      "rowId": "fr-095",
+      "ledgerRow": 94,
+      "sourceId": "larousse-junior:parole"
+    },
+    {
+      "rowId": "fr-096",
+      "ledgerRow": 95,
+      "sourceId": "larousse:langue"
+    },
+    {
+      "rowId": "fr-097",
+      "ledgerRow": 96,
+      "sourceId": "larousse:nerfs"
+    },
+    {
+      "rowId": "fr-098",
+      "ledgerRow": 97,
+      "sourceId": "le-robert:sang"
+    },
+    {
+      "rowId": "fr-099",
+      "ledgerRow": 98,
+      "sourceId": "larousse:face-college"
+    },
+    {
+      "rowId": "fr-100",
+      "ledgerRow": 99,
+      "sourceId": "larousse:face-college"
+    },
+    {
+      "rowId": "fr-101",
+      "ledgerRow": 100,
+      "sourceId": "larousse:table"
+    },
+    {
+      "rowId": "fr-102",
+      "ledgerRow": 101,
+      "sourceId": "larousse-college:battre"
+    },
+    {
+      "rowId": "fr-103",
+      "ledgerRow": 102,
+      "sourceId": "larousse-fr-en:serrer"
+    },
+    {
+      "rowId": "fr-104",
+      "ledgerRow": 103,
+      "sourceId": "larousse:main"
+    },
+    {
+      "rowId": "fr-105",
+      "ledgerRow": 104,
+      "sourceId": "larousse-junior:pied"
+    },
+    {
+      "rowId": "fr-106",
+      "ledgerRow": 105,
+      "sourceId": "larousse:cheveu"
+    },
+    {
+      "rowId": "fr-107",
+      "ledgerRow": 106,
+      "sourceId": "le-robert:rouleau"
+    },
+    {
+      "rowId": "fr-108",
+      "ledgerRow": 107,
+      "sourceId": "larousse:tapis"
+    },
+    {
+      "rowId": "fr-109",
+      "ledgerRow": 108,
+      "sourceId": "le-robert:rouge"
+    },
+    {
+      "rowId": "fr-110",
+      "ledgerRow": 109,
+      "sourceId": "larousse:rose"
+    },
+    {
+      "rowId": "fr-111",
+      "ledgerRow": 110,
+      "sourceId": "larousse:patience"
+    },
+    {
+      "rowId": "fr-112",
+      "ledgerRow": 111,
+      "sourceId": "le-robert:jaune"
+    },
+    {
+      "rowId": "fr-113",
+      "ledgerRow": 112,
+      "sourceId": "le-robert:rouge"
+    },
+    {
+      "rowId": "fr-114",
+      "ledgerRow": 113,
+      "sourceId": "le-robert:feu"
+    },
+    {
+      "rowId": "fr-115",
+      "ledgerRow": 114,
+      "sourceId": "larousse:mine"
+    },
+    {
+      "rowId": "fr-116",
+      "ledgerRow": 115,
+      "sourceId": "larousse:midi"
+    },
+    {
+      "rowId": "fr-117",
+      "ledgerRow": 116,
+      "sourceId": "le-robert:pendule"
+    },
+    {
+      "rowId": "fr-118",
+      "ledgerRow": 117,
+      "sourceId": "larousse:bain"
+    },
+    {
+      "rowId": "fr-119",
+      "ledgerRow": 118,
+      "sourceId": "larousse:froid"
+    },
+    {
+      "rowId": "fr-120",
+      "ledgerRow": 119,
+      "sourceId": "larousse:glace"
+    },
+    {
+      "rowId": "fr-121",
+      "ledgerRow": 120,
+      "sourceId": "larousse:froid"
+    },
+    {
+      "rowId": "fr-122",
+      "ledgerRow": 121,
+      "sourceId": "le-robert:haut"
+    },
+    {
+      "rowId": "fr-123",
+      "ledgerRow": 122,
+      "sourceId": "larousse:revenir"
+    },
+    {
+      "rowId": "fr-124",
+      "ledgerRow": 123,
+      "sourceId": "larousse:venir"
+    },
+    {
+      "rowId": "fr-125",
+      "ledgerRow": 124,
+      "sourceId": "larousse:fortune"
+    },
+    {
+      "rowId": "fr-126",
+      "ledgerRow": 125,
+      "sourceId": "larousse:diable"
+    },
+    {
+      "rowId": "fr-127",
+      "ledgerRow": 126,
+      "sourceId": "larousse:poche"
+    },
+    {
+      "rowId": "fr-128",
+      "ledgerRow": 127,
+      "sourceId": "larousse:fenetre"
+    },
+    {
+      "rowId": "fr-129",
+      "ledgerRow": 128,
+      "sourceId": "larousse:or"
+    },
+    {
+      "rowId": "fr-130",
+      "ledgerRow": 129,
+      "sourceId": "larousse:pesant"
+    },
+    {
+      "rowId": "fr-131",
+      "ledgerRow": 130,
+      "sourceId": "larousse:bonheur"
+    },
+    {
+      "rowId": "fr-132",
+      "ledgerRow": 131,
+      "sourceId": "le-robert:agneau"
+    },
+    {
+      "rowId": "fr-133",
+      "ledgerRow": 132,
+      "sourceId": "larousse-college:ruse"
+    },
+    {
+      "rowId": "fr-134",
+      "ledgerRow": 133,
+      "sourceId": "larousse:carpe"
+    },
+    {
+      "rowId": "fr-135",
+      "ledgerRow": 134,
+      "sourceId": "larousse:grue"
+    },
+    {
+      "rowId": "fr-136",
+      "ledgerRow": 135,
+      "sourceId": "larousse:cheval"
+    },
+    {
+      "rowId": "fr-137",
+      "ledgerRow": 136,
+      "sourceId": "larousse:taureau"
+    },
+    {
+      "rowId": "fr-138",
+      "ledgerRow": 137,
+      "sourceId": "larousse:chien"
+    },
+    {
+      "rowId": "fr-139",
+      "ledgerRow": 138,
+      "sourceId": "le-robert:loup"
+    },
+    {
+      "rowId": "fr-140",
+      "ledgerRow": 139,
+      "sourceId": "le-robert:hurler"
+    },
+    {
+      "rowId": "fr-141",
+      "ledgerRow": 140,
+      "sourceId": "larousse:sardine"
+    },
+    {
+      "rowId": "fr-142",
+      "ledgerRow": 141,
+      "sourceId": "larousse:couleuvre"
+    },
+    {
+      "rowId": "fr-143",
+      "ledgerRow": 142,
+      "sourceId": "larousse:autruche"
+    },
+    {
+      "rowId": "fr-144",
+      "ledgerRow": 143,
+      "sourceId": "larousse:fort"
+    },
+    {
+      "rowId": "fr-145",
+      "ledgerRow": 144,
+      "sourceId": "larousse:madeleine"
+    },
+    {
+      "rowId": "fr-146",
+      "ledgerRow": 145,
+      "sourceId": "larousse-college:simple"
+    },
+    {
+      "rowId": "fr-147",
+      "ledgerRow": 146,
+      "sourceId": "larousse:long"
+    },
+    {
+      "rowId": "fr-148",
+      "ledgerRow": 147,
+      "sourceId": "larousse:dormir"
+    },
+    {
+      "rowId": "fr-149",
+      "ledgerRow": 148,
+      "sourceId": "larousse:manger"
+    },
+    {
+      "rowId": "fr-150",
+      "ledgerRow": 149,
+      "sourceId": "larousse:pompier"
+    },
+    {
+      "rowId": "fr-151",
+      "ledgerRow": 150,
+      "sourceId": "larousse:charretier"
+    },
+    {
+      "rowId": "fr-152",
+      "ledgerRow": 151,
+      "sourceId": "larousse:pave"
+    },
+    {
+      "rowId": "fr-153",
+      "ledgerRow": 152,
+      "sourceId": "larousse:etape"
+    },
+    {
+      "rowId": "fr-154",
+      "ledgerRow": 153,
+      "sourceId": "larousse:pas"
+    },
+    {
+      "rowId": "fr-155",
+      "ledgerRow": 154,
+      "sourceId": "larousse:coup"
+    },
+    {
+      "rowId": "fr-156",
+      "ledgerRow": 155,
+      "sourceId": "larousse:yeux"
+    },
+    {
+      "rowId": "fr-157",
+      "ledgerRow": 156,
+      "sourceId": "larousse:oreille"
+    },
+    {
+      "rowId": "fr-158",
+      "ledgerRow": 157,
+      "sourceId": "larousse:oreille"
+    },
+    {
+      "rowId": "fr-159",
+      "ledgerRow": 158,
+      "sourceId": "larousse:nez"
+    },
+    {
+      "rowId": "fr-160",
+      "ledgerRow": 159,
+      "sourceId": "larousse:nez"
+    },
+    {
+      "rowId": "fr-161",
+      "ledgerRow": 160,
+      "sourceId": "le-robert:nez"
+    },
+    {
+      "rowId": "fr-162",
+      "ledgerRow": 161,
+      "sourceId": "le-robert:nez"
+    },
+    {
+      "rowId": "fr-163",
+      "ledgerRow": 162,
+      "sourceId": "larousse:nez"
+    },
+    {
+      "rowId": "fr-164",
+      "ledgerRow": 163,
+      "sourceId": "larousse:nez"
+    },
+    {
+      "rowId": "fr-165",
+      "ledgerRow": 164,
+      "sourceId": "le-robert:pouce"
+    },
+    {
+      "rowId": "fr-166",
+      "ledgerRow": 165,
+      "sourceId": "larousse-college:coup"
+    },
+    {
+      "rowId": "fr-167",
+      "ledgerRow": 166,
+      "sourceId": "larousse-junior:doigt"
+    },
+    {
+      "rowId": "fr-168",
+      "ledgerRow": 167,
+      "sourceId": "larousse:mordre"
+    },
+    {
+      "rowId": "fr-169",
+      "ledgerRow": 168,
+      "sourceId": "larousse:doigt"
+    },
+    {
+      "rowId": "fr-170",
+      "ledgerRow": 169,
+      "sourceId": "larousse:main"
+    },
+    {
+      "rowId": "fr-171",
+      "ledgerRow": 170,
+      "sourceId": "le-robert:main"
+    },
+    {
+      "rowId": "fr-172",
+      "ledgerRow": 171,
+      "sourceId": "le-robert:dent"
+    },
+    {
+      "rowId": "fr-173",
+      "ledgerRow": 172,
+      "sourceId": "le-robert:dent"
+    },
+    {
+      "rowId": "fr-174",
+      "ledgerRow": 173,
+      "sourceId": "le-robert:arme"
+    },
+    {
+      "rowId": "fr-175",
+      "ledgerRow": 174,
+      "sourceId": "le-robert:joie"
+    },
+    {
+      "rowId": "fr-176",
+      "ledgerRow": 175,
+      "sourceId": "le-robert:coeur"
+    }
+  ],
+  "releasePolicy": "Complete source linkage is not editorial approval. French Daily Phrase remains closed until all 176 rows and every independent hash-bound receipt pass."
+}

@@ -162,7 +162,7 @@ describe('server-owned learning cohort metrics', () => {
     expect(spinIndex).toBeGreaterThan(prepareIndex);
     expect(commitIndex).toBeGreaterThan(spinIndex);
     expect(source).toContain(
-      "completionApplied: event.type !== 'plan_task_complete' || applied.xpDelta > 0",
+      'completionApplied: true',
     );
   });
 

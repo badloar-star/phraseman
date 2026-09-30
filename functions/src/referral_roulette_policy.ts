@@ -39,6 +39,8 @@ export function referralRoulettePolicyFromData(
 ): ReferralRoulettePolicy {
   const numbers = data?.numbers;
   return {
+    // зачем: D80/D99 (владелец, 2026-09-30) — рулетка ЖИВА; вечный «off» из PM-202
+    // снят, флаги снова читаются из «Пульта» (soft/emergency управляются из админки).
     softEnabled: numbers?.referral_roulette_enabled !== false,
     emergencyStop: numbers?.referral_roulette_emergency_stop === true,
     softOffAtMs: policyTimestampMs(numbers?.referral_roulette_soft_off_at_ms),

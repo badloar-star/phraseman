@@ -133,11 +133,7 @@ const storeReleaseVipSurveyDevAuthStubPath = path.join(
   'store_release_stubs',
   'vip_survey_dev_auth_stub.ts',
 );
-const storeReleaseCoinExchangeOutboxStubPath = path.join(
-  __dirname,
-  'store_release_stubs',
-  'coin_exchange_wallet_outbox_stub.ts',
-);
+// зачем: D70/D78 — биржа жемчуга удалена, её стор-заглушка больше не нужна.
 const storeReleaseSessionRuneCompositeStubPath = path.join(
   __dirname,
   'store_release_stubs',
@@ -193,16 +189,6 @@ config.resolver.resolveRequest = (context, moduleName, platform) => {
     return {
       type: 'sourceFile',
       filePath: storeReleaseVipSurveyDevAuthStubPath,
-    };
-  }
-
-  if (
-    process.env.EXPO_PUBLIC_STORE_RELEASE === '1' &&
-    moduleName === './coin_exchange_wallet_outbox'
-  ) {
-    return {
-      type: 'sourceFile',
-      filePath: storeReleaseCoinExchangeOutboxStubPath,
     };
   }
 

@@ -6,16 +6,19 @@ import {
   phoneStateRecoveryCopyRu,
 } from '../app/phone_state_recovery';
 import { triLang } from '../constants/i18n';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import FullscreenHybridEntrance from './feedback/FullscreenHybridEntrance';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import ResponsiveModalScrollView from './ResponsiveModalScrollView';
+import { LinearGradient } from './SafeLinearGradient';
 
 const AUTOMATIC_RETRY_MS = 5_000;
 
 function PhoneStateRecoveryScreen() {
-  const { theme: t, f } = useTheme();
+  const { f, liquidGlassThemeId } = useTheme();
   const { lang } = useLang();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const [snapshot, setSnapshot] = useState(phoneStateDurabilityRecovery.getSnapshot());
   // зачем: человек вправе убрать экран кнопкой «назад». Сбрасываем отказ, когда
   // восстановление удалось (failedAttempts вернулся к 0) — тогда при следующей
@@ -66,16 +69,16 @@ function PhoneStateRecoveryScreen() {
 
   const indicatorSlot = (
     <View style={styles.indicatorWrap} accessibilityElementsHidden>
-      <ActivityIndicator size="large" color={t.accent} />
+      <ActivityIndicator size="large" color={glass.lightTint} />
     </View>
   );
   const titleSlot = (
-    <Text accessibilityRole="header" style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
+    <Text accessibilityRole="header" style={[styles.title, { color: glass.text, fontSize: f.h2 }]}>
       {title}
     </Text>
   );
   const bodySlot = (
-    <Text style={[styles.body, { color: t.textSecond, fontSize: f.body }]}>
+    <Text style={[styles.body, { color: glass.secondary, fontSize: f.body }]}>
       {body}
     </Text>
   );
@@ -83,29 +86,48 @@ function PhoneStateRecoveryScreen() {
   return (
     <Modal
       visible={snapshot.visible && !dismissed}
-      transparent
+      transparent={false}
       animationType="none"
       statusBarTranslucent
+      navigationBarTranslucent
       // зачем (владелец, 2026-09-22, «блокера не должно быть»): раньше кнопка
       // «назад» на Android не делала ничего, и экран был непроходим. Теперь
       // человек может его убрать: восстановление записи от этого не
       // отменяется — повторы продолжаются в фоне (см. эффект выше).
       onRequestClose={() => setDismissed(true)}
     >
-      <ResponsiveModalScrollView style={{ backgroundColor: 'rgba(0,0,0,0.68)' }} accessibilityViewIsModal>
-        <View
-          accessibilityRole="alert"
-          accessibilityLiveRegion="polite"
-          accessibilityLabel={`${title}. ${body}`}
-          style={[styles.card, { backgroundColor: t.bgCard, borderColor: `${t.accent}66` }]}
+      <View
+        style={[styles.root, { backgroundColor: glass.bg }]}
+        accessibilityViewIsModal
+        importantForAccessibility="yes"
+      >
+        <LinearGradient
+          pointerEvents="none"
+          colors={[glass.bgTop, glass.bgBottom]}
+          start={{ x: 0.1, y: 0 }}
+          end={{ x: 0.9, y: 1 }}
+          style={StyleSheet.absoluteFill}
+        />
+        <ResponsiveModalScrollView
+          testID="phone-state-recovery-scroll"
+          style={styles.scroll}
+          showsVerticalScrollIndicator={false}
         >
-          <FullscreenHybridEntrance
-            visible={snapshot.visible}
-            bloomColor={t.accent}
-            slots={[indicatorSlot, titleSlot, bodySlot]}
-          />
-        </View>
-      </ResponsiveModalScrollView>
+          <View
+            accessibilityRole="alert"
+            accessibilityLiveRegion="polite"
+            accessibilityLabel={`${title}. ${body}`}
+            style={styles.content}
+          >
+            <FullscreenHybridEntrance
+              visible={snapshot.visible}
+              bloomColor={glass.cta}
+              slots={[indicatorSlot, titleSlot, bodySlot]}
+              style={styles.entrance}
+            />
+          </View>
+        </ResponsiveModalScrollView>
+      </View>
     </Modal>
   );
 }
@@ -115,20 +137,16 @@ export default memo(PhoneStateRecoveryScreen);
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 24,
-    backgroundColor: 'rgba(0,0,0,0.68)',
+    overflow: 'hidden',
   },
-  card: {
+  scroll: { backgroundColor: 'transparent' },
+  content: {
     width: '100%',
-    maxWidth: 440,
-    borderRadius: 20,
-    borderWidth: 1,
-    paddingHorizontal: 24,
-    paddingVertical: 28,
+    maxWidth: 520,
+    alignSelf: 'center',
   },
+  entrance: { width: '100%' },
   indicatorWrap: { alignItems: 'center', minHeight: 48 },
-  title: { marginTop: 18, fontWeight: '800', textAlign: 'center' },
-  body: { marginTop: 12, lineHeight: 24, textAlign: 'center' },
+  title: { marginTop: 22, fontWeight: '800', textAlign: 'center' },
+  body: { width: '100%', maxWidth: 440, alignSelf: 'center', marginTop: 10, lineHeight: 24, textAlign: 'center' },
 });

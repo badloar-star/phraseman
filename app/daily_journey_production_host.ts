@@ -22,7 +22,6 @@ import {
   type DailyJourneyGiftOccurrenceV1,
 } from './daily_journey_gift_inbox';
 import { dailyJourneyRewardPayloadForDay } from './daily_journey_rewards';
-import { withDailyJourneySpinAutocredit } from './daily_journey_spin_autocredit';
 import { addLocalDays, getLocalDayKey } from './local_date';
 import { isForcedOnboardingForQaRuntime } from './onboarding_runtime_gate';
 import { withStorageLock } from './storage_mutex';
@@ -692,10 +691,7 @@ export function createDefaultDailyJourneyProductionHostController(
     writePreparedIntent,
     clearPreparedIntent,
     consumeFreezeBatch: consumeDailyJourneyFreezeBatch,
-    // зачем (владелец, 2026-09-20): спин не ложится плиткой в «Подарки», а
-    // сразу идёт на счёт спинов. Обёртка — общая с Главной, чтобы оба пути
-    // выдачи дня вели себя одинаково.
-    commitGift: withDailyJourneySpinAutocredit(commitDailyJourneyGift),
+    commitGift: commitDailyJourneyGift,
     reportError,
   });
 }

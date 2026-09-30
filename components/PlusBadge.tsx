@@ -9,13 +9,15 @@ import { LinearGradient } from './SafeLinearGradient';
 import { OLIVE_GRADIENTS, OLIVE_RICH } from '../constants/oliveTheme';
 import { LUM, SUITE } from '../constants/motionHybrid';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { useTheme } from './ThemeContext';
 
 // зачем 2026-08-04 (владелец: «плашка Plus тусклая, сливается с фоном на
 // светлых темах»): primaryButton — светлое золото → бронза, задумано для
 // тёмных фонов (там даёт яркий блик). На светлой (sagePorcelain, bgPrimary
 // #F0F1EC) светлый край градиента почти совпадает с фоном экрана — тот же
-// класс бага, что уже чинили в GiftExpiryCountdown (светлый акцент на
-// светлом фоне нечитаем, нужен отдельный тёмный вариант). На светлой теме
+// тот же класс контрастной ошибки (светлый акцент на светлом фоне нечитаем,
+// нужен отдельный тёмный вариант). На светлой теме
 // берём насыщенную тёмно-бронзовую заливку + светлый текст — контраст
 // вместо тонального совпадения.
 const LIGHT_THEME_GRADIENT = [GOLD_RICH.bronzeDark, GOLD_RICH.bronze, GOLD_RICH.antiqueGold] as const;
@@ -64,7 +66,12 @@ export default function PlusBadge({
   const s = BADGE_SIZE[size];
   const isLight = isLightThemeMode(themeMode as ThemeMode);
   const isOliveTheme = themeMode === 'olive';
-  const fg = isOliveTheme ? OLIVE_RICH.piano : isLight ? GOLD_RICH.champagne : GOLD_RICH.bronzeDark;
+  // зачем (coins.html «Plus-бейдж в профиле»): на теме стекла бейдж — плоская пилюля тона темы с белой
+  // подписью (как .pill макета), а не золотой градиент. Золото/олива — прежняя ветка.
+  const { liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  const isGlass = themeMode !== 'gold' && !isOliveTheme;
+  const fg = isGlass ? glass.text : isOliveTheme ? OLIVE_RICH.piano : isLight ? GOLD_RICH.champagne : GOLD_RICH.bronzeDark;
   const gradientColors = isOliveTheme ? OLIVE_GRADIENTS.primaryButton : isLight ? LIGHT_THEME_GRADIENT : GOLD_GRADIENTS.primaryButton;
 
   const reduceMotion = useReduceMotion();
@@ -97,16 +104,19 @@ export default function PlusBadge({
           paddingHorizontal: s.padX,
           paddingVertical: s.padY,
         },
+        isGlass ? { backgroundColor: glass.opaqueControl } : null,
         style,
       ]}
     >
-      <LinearGradient
-        pointerEvents="none"
-        colors={gradientColors}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        style={StyleSheet.absoluteFillObject}
-      />
+      {isGlass ? null : (
+        <LinearGradient
+          pointerEvents="none"
+          colors={gradientColors}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={StyleSheet.absoluteFillObject}
+        />
+      )}
       {showIcon ? <Ionicons name="diamond" size={s.icon} color={fg} /> : null}
       {/* зачем: подпись значка видна ЦЕЛИКОМ (владелец 2026-09-17: «текст не
           должен уходить в три точки»). Значок обнимает текст по ширине, так что

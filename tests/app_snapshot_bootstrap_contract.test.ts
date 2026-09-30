@@ -41,7 +41,7 @@ describe('app snapshot bootstrap contract', () => {
     const bootstrap = readProjectFile('app', 'app_snapshot_bootstrap.ts');
 
     expect(bootstrap).toContain('CUSTOMIZATION_STORAGE_KEYS');
-    expect(bootstrap).toContain('buildCustomizationSnapshot(values, now, profile.level)');
+    expect(bootstrap).toContain('buildCustomizationSnapshot(values, now, 0, avatarDNA ?? undefined)');
     expect(bootstrap).toContain('customization:');
   });
 
@@ -53,7 +53,7 @@ describe('app snapshot bootstrap contract', () => {
     const settings = readProjectFile('app', '(tabs)', 'settings.tsx');
 
     expect(home).toContain('useAppSnapshotSelector');
-    expect(home).toContain('snapshotTotalXp');
+    expect(home).not.toContain('snapshotTotalXp');
     expect(friends).toContain('friendsSnapshot?.friends');
     expect(settings).toContain('appSnapshot.profile?.name');
     expect(settings).toContain('appSnapshot.settings?.tapHaptics');

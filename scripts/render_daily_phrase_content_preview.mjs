@@ -4,9 +4,18 @@ import { evaluateDailyPhraseQuizContent } from './daily_phrase_quiz_content_gate
 
 const bankPath = process.argv[2] || 'content/daily-phrases/es/source-bank.json';
 const outputPath = process.argv[3] || 'content/daily-phrases/es/REVIEW_PREVIEW.md';
-const requestedCount = Number(process.argv[4] || 20);
+const requestedCount = Number(process.argv[4] || 176);
 const bank = JSON.parse(fs.readFileSync(bankPath, 'utf8'));
 const englishRows = JSON.parse(fs.readFileSync('admin/daily_phrases_seed.json', 'utf8'));
+const LANGUAGE_LABELS = Object.freeze({
+  es: Object.freeze({ title: 'Испанская', example: 'по-испански' }),
+  fr: Object.freeze({ title: 'Французская', example: 'по-французски' }),
+  de: Object.freeze({ title: 'Немецкая', example: 'по-немецки' }),
+});
+const language = LANGUAGE_LABELS[bank.studyTarget] ?? {
+  title: `Контур ${String(bank.studyTarget || 'unknown').toUpperCase()}`,
+  example: `на языке ${String(bank.studyTarget || 'unknown').toUpperCase()}`,
+};
 const rows = bank.rows
   .filter((row) => row.candidateStatus === 'CANDIDATE_PENDING_INDEPENDENT_REVIEW')
   .slice(0, requestedCount);
@@ -63,24 +72,39 @@ function renderQuiz(out, row, locale, readyQuiz) {
   });
 }
 
+function renderSourceProvenance(sourceEvidence) {
+  const method = String(sourceEvidence?.retrievalMethod || '');
+  const status = Number(sourceEvidence?.httpStatus);
+
+  if (!method) return '';
+
+  if (method === 'official_search_result_snippet') {
+    return `официальный поисковый сниппет; страница при проверке вернула HTTP ${Number.isFinite(status) ? status : 'unknown'}`;
+  }
+  if (method === 'official_dictionary_page') {
+    return `официальная словарная страница; HTTP ${Number.isFinite(status) ? status : 'unknown'}`;
+  }
+  return `метод получения: ${method}; HTTP ${Number.isFinite(status) ? status : 'unknown'}`;
+}
+
 const authoredQuizzes = new Map(rows.map((row) => [row.id, authoredQuiz(row)]));
 const authoredQuizCount = [...authoredQuizzes.values()].filter(Boolean).length;
 
 const out = [];
-out.push('# Испанская «Фраза дня» — визуальная проверка');
+out.push(`# ${language.title} «Фраза дня» — визуальная проверка`);
 out.push('');
-out.push(`Снимок текущего контента: **${rows.length} написанных карточек из 176**. Остальные строки пока не показаны, потому что там ещё не готов learner-facing текст.`);
+out.push(`Снимок текущего контента: **${rows.length} написанных карточек из ${bank.rows.length}**. Остальные строки пока не показаны, потому что там ещё не готов learner-facing текст.`);
 out.push('');
 out.push(`Статус банка: **HOLD / не включён**. Показаны **${authoredQuizCount} авторских викторин из ${rows.length}**; остальные ${rows.length - authoredQuizCount} викторин остаются в HOLD и не получают вымышленных вариантов.`);
 out.push('');
-out.push(`Для показанных ${rows.length} карточек описания прошли source-link, style и независимый taste-аудит. Это не заменяет проверки истины, локалей, дистракторов и release trust root; активация банка по-прежнему закрыта.`);
+out.push(`Для ${authoredQuizCount} показанных викторин quiz-гейт прошёл на текущем снимке. Source-link, style, независимые проверки истины, локалей, дистракторов, вкуса и release trust root выполняются отдельно; активация банка по-прежнему закрыта.`);
 out.push('');
 
 rows.forEach((row, index) => {
   const readyQuiz = authoredQuizzes.get(row.id);
-  out.push(`## ${index + 1}. ${row.targetText}`);
+  out.push(`## ${row.order ?? index + 1}. ${row.targetText}`);
   out.push('');
-  out.push(`**Пример по-испански:** ${row.targetExample}`);
+  out.push(`**Пример ${language.example}:** ${row.targetExample}`);
   out.push('');
   out.push(`**Буквально:** ${row.literal_ru}`);
   out.push('');
@@ -101,7 +125,10 @@ rows.forEach((row, index) => {
   renderQuiz(out, row, 'uk', readyQuiz);
   out.push('</details>');
   out.push('');
-  out.push(`**Источник:** [Instituto Cervantes, карточка ${row.sourceEvidence.sourceId}](${row.sourceEvidence.sourceUrl})`);
+  const sourceName = row.sourceEvidence.sourceName || row.sourceEvidence.sourceType || 'Авторитетный словарь';
+  const sourceProvenance = renderSourceProvenance(row.sourceEvidence);
+  const provenanceSuffix = sourceProvenance ? ` — ${sourceProvenance}.` : '';
+  out.push(`**Источник:** [${sourceName}, карточка ${row.sourceEvidence.sourceId}](${row.sourceEvidence.sourceUrl})${provenanceSuffix}`);
   out.push('');
   out.push(`> ${row.sourceEvidence.definitionQuote}`);
   out.push('');

@@ -86,7 +86,7 @@ function CircularProgress({
     };
   });
   // зачем: AnimatedText — обёртка над RN Text (не TextInput), паттерн
-  // text+defaultValue как в LeagueResultHybrid.tsx rankTextProps — приведение
+  // text+defaultValue сохраняют единый контракт подписи прогресса.
   // к Partial<TextProps> единственное, что useAnimatedProps обязан вернуть.
   const labelProps = useAnimatedProps<Partial<TextProps>>(() => {
     const pctNow = `${Math.round((deg.value / 360) * 100)}%`;

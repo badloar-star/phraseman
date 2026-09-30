@@ -39,7 +39,7 @@ export interface AdminAlertDetail {
 export const ADMIN_ALERT_DETAIL_LABELS = Object.freeze([
   'Текст репорта', 'Отзыв', 'Причина', 'Комментарий', 'Контент', 'Ответ пользователя',
   'Экран', 'Контекст', 'Ошибка', 'Сообщение ошибки', 'Стек ошибки', 'Устройство',
-  'ОС', 'Уровень', 'XP', 'Стрик', 'Дней в приложении', 'Доступ', 'Название',
+  'ОС', 'Стрик', 'Дней в приложении', 'Доступ', 'Название',
   'Описание', 'Сообщение', 'Тема', 'Отправитель', 'Страница', 'Урок / сессия',
   'Набор', 'Карточек', 'Язык обучения', 'Тип изменения', 'Пригласивший',
   'Награда', 'Период подписки', 'Окончание подписки', 'Автопродление',
@@ -57,7 +57,7 @@ const RATING_DETAIL_LABELS = ['Отзыв', 'Урок / сессия'];
 const ERROR_DETAIL_LABELS = ['Ошибка', 'Сообщение ошибки', 'Контекст', 'Стек ошибки', 'Повторов'];
 const REFERRAL_DETAIL_LABELS = ['Награда'];
 const DETAIL_POLICY: Partial<Readonly<Record<AdminAlertType, readonly string[]>>> = Object.freeze({
-  contentReport: ['Текст репорта', 'Контент', 'Ответ пользователя', 'Уровень', 'XP', 'Стрик', 'Дней в приложении', 'Доступ'],
+  contentReport: ['Текст репорта', 'Контент', 'Ответ пользователя', 'Стрик', 'Дней в приложении', 'Доступ'],
   userReport: ['Причина', 'Комментарий', 'Название'], ideaOrCommunityReport: ['Причина', 'Комментарий', 'Название'],
   lessonRating: RATING_DETAIL_LABELS, vocabDialogueRating: RATING_DETAIL_LABELS, arenaRating: RATING_DETAIL_LABELS,
   criticalError: ERROR_DETAIL_LABELS, appErrorDigest: ERROR_DETAIL_LABELS, paymentWebhookFailure: ERROR_DETAIL_LABELS,
@@ -144,6 +144,7 @@ const SAFE_FIELD_POLICY: Readonly<Record<AdminAlertType, readonly SafePayloadKey
   cancelReason: CONTENT_FIELDS,
   appMessageDigest: CONTENT_FIELDS,
   cardPackDigest: CONTENT_FIELDS,
+  customCardMilestone: ['count', 'language'],
 
   cronHealth: OPS_FIELDS,
   paymentWebhookFailure: OPS_FIELDS,
@@ -244,7 +245,12 @@ export function sanitizeAdminAlertPayload(
   if (typeof input !== 'object' || input === null || Array.isArray(input)) return Object.freeze({});
   const source = input as Record<string, unknown>;
   const sanitized: Record<string, string | number | readonly AdminAlertDigestMetric[] | readonly AdminAlertDetail[]> = {};
-  for (const key of new Set([...COMMON_FIELDS, ...SAFE_FIELD_POLICY[eventType]])) {
+  // This client-originated milestone intentionally permits only aggregate
+  // count+language. In particular, do not inherit the usual identity fields.
+  const allowedFields = eventType === 'customCardMilestone'
+    ? SAFE_FIELD_POLICY[eventType]
+    : [...COMMON_FIELDS, ...SAFE_FIELD_POLICY[eventType]];
+  for (const key of new Set(allowedFields)) {
     const value = source[key];
     if (value === undefined || value === null) continue;
     if (key === 'nickname' || key === 'relatedNickname') {
@@ -290,7 +296,11 @@ export function sanitizeAdminAlertPayload(
     const token = safeToken(value);
     if (token) sanitized[key] = token;
   }
-  if (eventType !== 'ownerDailyDigest' && Array.isArray(source.details)) {
+  if (
+    eventType !== 'ownerDailyDigest'
+    && eventType !== 'customCardMilestone'
+    && Array.isArray(source.details)
+  ) {
     let remaining = 60_000;
     sanitized.details = Object.freeze(source.details.slice(0, 28).flatMap((item: unknown) => {
       if (!item || typeof item !== 'object' || Array.isArray(item)) return [];

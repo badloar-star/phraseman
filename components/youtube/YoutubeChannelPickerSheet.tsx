@@ -9,6 +9,8 @@ import { useTheme } from '../ThemeContext';
 import { triLang } from '../../constants/i18n';
 import HybridSheetShell from '../modal_fx/HybridSheetShell';
 import PressableHybrid from '../PressableHybrid';
+import { glassFill } from '../GlassSurface';
+import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 
 type YoutubeManifestChannel = YoutubeCatalogManifest['channels'][number];
 
@@ -33,16 +35,17 @@ function ChannelRowContent({ channel, checked, t }: { channel: YoutubeManifestCh
   );
 }
 
-export default function YoutubeChannelPickerSheet({ visible, manifest, preference, onSelect, onClose, motionVariant = 'classic' }: Props) {
+export default function YoutubeChannelPickerSheet({ visible, manifest, preference, onSelect, onClose, motionVariant = 'hybrid' }: Props) {
   const { lang } = useLang();
   const { theme: t } = useTheme();
+  const insets = useStableSafeAreaInsets();
   const title = triLang(lang, { ru: 'Наши каналы', uk: 'Наші канали', en: 'Our channels', es: 'Nuestros canales', 'pt-BR': 'Nossos canais', vi: 'Kênh của chúng tôi', id: 'Kanal kami', tr: 'Kanallarımız', pl: 'Nasze kanały' });
   const closeLabel = triLang(lang, { ru: 'Закрыть выбор канала', uk: 'Закрити вибір каналу', en: 'Close channel picker', es: 'Cerrar selector de canal', 'pt-BR': 'Fechar seletor de canal', vi: 'Đóng bộ chọn kênh', id: 'Tutup pemilih kanal', tr: 'Kanal seçiciyi kapat', pl: 'Zamknij wybór kanału' });
   const channels = manifest.channels.slice().sort((a, b) => a.order - b.order);
 
   if (motionVariant === 'hybrid') {
     return (
-      <HybridSheetShell visible={visible} onClose={onClose} closeLabel={closeLabel} testID="youtube-channel-picker-sheet">
+      <HybridSheetShell visible={visible} onClose={onClose} closeLabel={closeLabel} testID="youtube-channel-picker-sheet" material="liquid-glass">
         <Text style={[styles.title, { color: t.textPrimary }]}>{title}</Text>
         <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={styles.list}>
           {channels.map((channel) => {
@@ -55,7 +58,7 @@ export default function YoutubeChannelPickerSheet({ visible, manifest, preferenc
                 accessibilityState={{ checked }}
                 variant="card"
                 onPress={() => onSelect({ mode: 'manual', channelId: channel.id })}
-                style={[styles.row, { backgroundColor: t.bgCard }]}
+                style={[styles.row, { backgroundColor: glassFill(t.bgCard, 0.46) }]}
               >
                 <ChannelRowContent channel={channel} checked={checked} t={t} />
               </PressableHybrid>
@@ -69,14 +72,18 @@ export default function YoutubeChannelPickerSheet({ visible, manifest, preferenc
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
       <Pressable style={styles.scrim} onPress={onClose} accessibilityRole="button" accessibilityLabel={closeLabel} />
-      <View style={[styles.sheet, { backgroundColor: t.bgSurface }]}>
+      <View style={[styles.sheet, {
+        backgroundColor: glassFill(t.bgSurface, 0.72),
+        paddingBottom: Math.max(32, insets.bottom + 12),
+        marginTop: insets.top + 12,
+      }]}>
         <View style={styles.handle} />
         <Text style={[styles.title, { color: t.textPrimary }]}>{title}</Text>
         <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={styles.list}>
           {channels.map((channel) => {
             const checked = preference.mode === 'manual' && preference.channelId === channel.id;
             return (
-              <TouchableOpacity key={channel.id} testID={`youtube-channel-${channel.id}`} accessibilityRole="radio" accessibilityState={{ checked }} onPress={() => onSelect({ mode: 'manual', channelId: channel.id })} style={[styles.row, { backgroundColor: t.bgCard }]}>
+              <TouchableOpacity key={channel.id} testID={`youtube-channel-${channel.id}`} accessibilityRole="radio" accessibilityState={{ checked }} onPress={() => onSelect({ mode: 'manual', channelId: channel.id })} style={[styles.row, { backgroundColor: glassFill(t.bgCard, 0.46) }]}>
                 <ChannelRowContent channel={channel} checked={checked} t={t} />
               </TouchableOpacity>
             );

@@ -11,8 +11,16 @@ type Boundary = Readonly<{
   reviewedConstructIds: readonly string[];
   prohibitedConstructIds: readonly string[];
   prerequisiteLessonIds: readonly string[];
-  crossLessonRecall: readonly { fromLessonId: string }[];
-  session56Final: { sessionId: string };
+  crossLessonRecall: readonly {
+    fromLessonId: string;
+    constructIds: readonly string[];
+    responsibility: string;
+  }[];
+  lexicalDomains: readonly string[];
+  session56Final: {
+    sessionId: string;
+    requiredConstructIds: readonly string[];
+  };
 }>;
 type Grammar = Readonly<{
   id: string;
@@ -110,6 +118,10 @@ const NECESSITY_CLASSES = new Set([
   "REPAIR_UNAVAILABLE",
   "TRANSFER_UNAVAILABLE",
 ]);
+// Additions require an explicit reviewed curriculum-contract change.
+const VERIFIED_INTRODUCTION_ACCUSATIVE_VALENCY_FRAMES = new Set([
+  "transitive cancel-appointment accusative frame",
+]);
 function json(path: string): unknown {
   return JSON.parse(readFileSync(path, "utf8")) as unknown;
 }
@@ -179,6 +191,13 @@ function order(x: { l: number; s: number }): number {
 }
 function sort(x: readonly string[]): string[] {
   return [...x].sort();
+}
+
+function sameStringSet(
+  actual: readonly string[],
+  expected: readonly string[],
+): boolean {
+  return JSON.stringify(sort(actual)) === JSON.stringify(sort(expected));
 }
 
 function normalized(value: string): string {
@@ -271,6 +290,14 @@ function verbPackageIsValid(value: unknown): boolean {
     )
   );
 }
+function isCanonicalIntroductionAccusativeValencyFrame(
+  value: unknown,
+): boolean {
+  return (
+    typeof value === "string" &&
+    VERIFIED_INTRODUCTION_ACCUSATIVE_VALENCY_FRAMES.has(value)
+  );
+}
 function requiredAnchors(
   grammar: readonly Grammar[],
   lessons: Set<string>,
@@ -289,6 +316,716 @@ function requiredAnchors(
         if (lessons.has(`de_l${String(pp(id, "grammar").l).padStart(2, "0")}`))
           out.add(`${g.id}|${stage}|${id}`);
   return out;
+}
+
+const L09_ROUTE_FEASIBILITY_OUTCOME =
+  "express one route-feasibility possibility meaning";
+const L09_ROUTE_FEASIBILITY_DOMAINS = [
+  "town navigation",
+  "destinations",
+  "route feasibility",
+  "route actions",
+] as const;
+const L09_MODAL_GLOSS =
+  "express bounded route feasibility with a bare infinitive";
+const L09_MODAL_VALENCY =
+  "finite modal expressing bounded route feasibility plus a bare infinitive right bracket";
+const L09_YES_NO_CONSTRUCT = "de_gc_yes_no_verberst_v1";
+const L09_L5_RECALL_RESPONSIBILITY =
+  "reuse the established verb-first yes-no topology to ask whether the bounded route action is feasible";
+const L09_C04_SUPPORT_ENTRY =
+  "exact question model Kann ich durch den Park gehen?, plus closure notice and route map";
+const L09_C04_COMMUNICATIVE_USE =
+  "make the closed-route problem concrete when asking Kann ich durch den Park gehen?";
+const L09_INTRODUCED = [
+  "de_gc_modal_finite_bare_infinitive_v1",
+  "de_gc_local_preposition_governed_case_v1",
+] as const;
+const L09_EXTENDED = [
+  "de_gc_statement_v2_v1",
+  "de_gc_separable_verb_bracket_v1",
+] as const;
+const L09_REVIEWED = [
+  "de_gc_w_element_v2_v1",
+  "de_gc_frequent_accusative_frames_v1",
+  "de_gc_accusative_personal_pronouns_v1",
+  L09_YES_NO_CONSTRUCT,
+] as const;
+const L09_PROHIBITED = [
+  "de_gc_temporal_preposition_governed_case_v1",
+  "de_gc_dative_recipient_frames_v1",
+] as const;
+const L09_FINAL_REQUIRED = [
+  "de_gc_modal_finite_bare_infinitive_v1",
+  "de_gc_local_preposition_governed_case_v1",
+  "de_gc_accusative_personal_pronouns_v1",
+  "de_gc_separable_verb_bracket_v1",
+] as const;
+const L09_C07_PRIMARY_SITUATION = {
+  setting: "night-market-arrival-route-change",
+  participants: "visitor-and-night-market-kiosk-helper",
+  goal: "negotiate-a-feasible-route-to-the-night-market-after-the-expected-destination-changes",
+  contextSignature: "night-market-arrival-changed-destination-final-transfer",
+} as const;
+const L09_C07_NEW_SITUATION = {
+  setting: "night-market-route-help-point",
+  participants: "lost-visitor-and-market-helper",
+  goal: "independently-negotiate-the-changed-night-market-route-with-all-four-established-proofs",
+  contextSignature: "night-market-changed-destination-four-proof-final",
+} as const;
+const L09_C07_SUPPORT_ENTRY =
+  "changed night-market destination card with the exact proofs Man kann durch den Park gehen. and Ich hole den Stadtplan ab. Ich hole ihn ab.";
+const L09_C07_SUPPORT_EXIT =
+  "independently produce kann…gehen, durch den Park, hole…ab, and den Stadtplan→ihn at the changed night-market destination";
+const L09_C07_STADTPLAN_COMMUNICATIVE_USE =
+  "at the changed night-market destination, independently produce Man kann durch den Park gehen. and Ich hole den Stadtplan ab. Ich hole ihn ab., explicitly proving kann…gehen, durch den Park, hole…ab, and den Stadtplan→ihn";
+const L09_OPERATION_LABELS = [
+  "kann…gehen",
+  "durch den Park",
+  "hole…ab",
+  "den Stadtplan→ihn",
+] as const;
+
+function validateL09SemanticContract(raw: R, plan: Boundary): void {
+  const l9 = (raw.lessons as R[]).find(
+    (lesson) => lesson.lessonId === "de_l09",
+  );
+  if (!l9) return;
+  const chapters = l9.chapters as R[];
+  const l5RecallRows = plan.crossLessonRecall.filter(
+    (row) => row.fromLessonId === "de_l05",
+  );
+  if (
+    !sameStringSet(plan.introducedConstructIds, L09_INTRODUCED) ||
+    !sameStringSet(plan.extendedConstructIds, L09_EXTENDED) ||
+    !sameStringSet(plan.reviewedConstructIds, L09_REVIEWED) ||
+    !sameStringSet(plan.prohibitedConstructIds, L09_PROHIBITED) ||
+    !sameStringSet(
+      plan.session56Final.requiredConstructIds,
+      L09_FINAL_REQUIRED,
+    ) ||
+    l5RecallRows.length !== 1 ||
+    !sameStringSet(l5RecallRows[0].constructIds, [L09_YES_NO_CONSTRUCT]) ||
+    l5RecallRows[0].responsibility !== L09_L5_RECALL_RESPONSIBILITY
+  )
+    throw new Error("l09_semantic_contract_invalid:c04_yes_no_undeclared");
+  if (
+    plan.chapterOutcomes[1]?.outcome !== L09_ROUTE_FEASIBILITY_OUTCOME ||
+    JSON.stringify(plan.lexicalDomains) !==
+      JSON.stringify(L09_ROUTE_FEASIBILITY_DOMAINS) ||
+    /\bability\b/iu.test(JSON.stringify({ plan, l9 }))
+  )
+    throw new Error("l09_semantic_contract_invalid:ability_ambiguity");
+
+  const c1 = chapters[0];
+  const c1Senses = ((c1.checkpoint as R).plannedNewLexicalSenses as R[]) ?? [];
+  const modalSenses = c1Senses.filter(
+    (sense) =>
+      typeof sense.lemmaOrExpression === "string" &&
+      normalized(sense.lemmaOrExpression) === "konnen",
+  );
+  const modal = modalSenses[0];
+  if (
+    modalSenses.length !== 1 ||
+    !modal ||
+    modal.semanticIdentity !== `konnen|${L09_MODAL_GLOSS}` ||
+    modal.senseGloss !== L09_MODAL_GLOSS ||
+    (modal.verbPackage as R | null)?.valencyFrame !== L09_MODAL_VALENCY
+  )
+    throw new Error("l09_semantic_contract_invalid:modal_route_feasibility");
+  if (
+    chapters.some((chapter) =>
+      (((chapter.checkpoint as R).plannedNewLexicalSenses as R[]) ?? []).some(
+        (sense) => sense.lexicalKind === "FIXED_EXPRESSION",
+      ),
+    )
+  )
+    throw new Error("l09_semantic_contract_invalid:fixed_expression_route");
+
+  const c4 = chapters[3];
+  const c4Checkpoint = c4.checkpoint as R;
+  const c4BridgeSenses = (c4Checkpoint.plannedNewLexicalSenses as R[]).filter(
+    (sense) => sense.id === "de_lex_plan_l09_c04_bruecke_v1",
+  );
+  if (
+    (c4.supportFading as R).entry !== L09_C04_SUPPORT_ENTRY ||
+    c4BridgeSenses.length !== 1 ||
+    c4BridgeSenses[0].communicativeUse !== L09_C04_COMMUNICATIVE_USE
+  )
+    throw new Error("l09_semantic_contract_invalid:c04_yes_no_proof");
+
+  const c7 = chapters[6];
+  const c7Checkpoint = c7.checkpoint as R;
+  const c7Situation = c7.situation as R;
+  const c7NewSituation = c7Checkpoint.newSituation as R;
+  const c7Support = c7.supportFading as R;
+  const c7Senses = c7Checkpoint.plannedNewLexicalSenses as R[];
+  const cityMapSense = c7Senses.find(
+    (sense) => sense.id === "de_lex_plan_l09_c07_stadtplan_v1",
+  );
+  if (
+    JSON.stringify(c7Situation) !== JSON.stringify(L09_C07_PRIMARY_SITUATION) ||
+    JSON.stringify(c7NewSituation) !== JSON.stringify(L09_C07_NEW_SITUATION) ||
+    c7Support.entry !== L09_C07_SUPPORT_ENTRY ||
+    c7Support.exit !== L09_C07_SUPPORT_EXIT ||
+    c7Senses.length !== 1 ||
+    cityMapSense?.communicativeUse !== L09_C07_STADTPLAN_COMMUNICATIVE_USE
+  )
+    throw new Error(
+      "l09_semantic_contract_invalid:c07_four_proof_or_destination",
+    );
+}
+
+const L10_TEMPORAL = "de_gc_temporal_preposition_governed_case_v1";
+const L10_DATIVE = "de_gc_dative_recipient_frames_v1";
+const L10_ACCUSATIVE = "de_gc_frequent_accusative_frames_v1";
+const L10_MODAL = "de_gc_modal_finite_bare_infinitive_v1";
+const L10_W = "de_gc_w_element_v2_v1";
+const L10_LOCAL = "de_gc_local_preposition_governed_case_v1";
+const L10_INTRODUCED = [L10_TEMPORAL, L10_DATIVE] as const;
+const L10_EXTENDED = [L10_ACCUSATIVE, L10_MODAL] as const;
+const L10_REVIEWED = [L10_W, L10_LOCAL] as const;
+const L10_PROHIBITED = [
+  "de_gc_dative_location_frames_v1",
+  "de_gc_dative_personal_pronouns_v1",
+] as const;
+const L10_FINAL_REQUIRED = [
+  L10_TEMPORAL,
+  L10_DATIVE,
+  L10_MODAL,
+  L10_LOCAL,
+] as const;
+const L10_ALLOWED = [
+  ...L10_INTRODUCED,
+  ...L10_EXTENDED,
+  ...L10_REVIEWED,
+] as const;
+const L10_LEXICAL_IDS = [
+  "de_lex_plan_l10_c01_vormittag_v1",
+  "de_lex_plan_l10_c02_helfen_v1",
+  "de_lex_plan_l10_c03_schicht_v1",
+  "de_lex_plan_l10_c04_uebergabe_v1",
+  "de_lex_plan_l10_c05_rollwagen_v1",
+  "de_lex_plan_l10_c06_einsatzplan_v1",
+  "de_lex_plan_l10_c07_flur_v1",
+] as const;
+const L10_HELP_VALENCY =
+  "helper-action frame selecting one explicit dative noun phrase and no accusative transferred entity";
+const L10_C07_SUPPORT_EXIT =
+  "independently coordinate für den Vormittag, Ich helfe dem Kollegen., and Der Rollwagen kann durch den Flur fahren., preserving the bounded interval, explicit dative noun phrase, route-feasibility modal bracket, and directional durch-plus-Akkusativ path";
+
+type L10ClosedChapterContract = {
+  id: string;
+  situation: R;
+  supportEntry: string;
+  supportExit: string;
+  newSituation: R;
+  lexical: {
+    id: string;
+    semanticIdentity: string;
+    lemmaOrExpression: string;
+    senseGloss: string;
+    communicativeUse: string;
+    utilityRole: string;
+    situationFacet: string;
+    facetValue: string;
+    necessityClass: string;
+  };
+};
+
+const L10_CLOSED_CHAPTER_CONTRACTS: readonly L10ClosedChapterContract[] = [
+  {
+    id: "de_l10_c01",
+    situation: {
+      setting: "workshop-morning-board",
+      participants: "shift-coordinator-and-new-colleague",
+      goal: "recognise-fuer-den-vormittag-as-one-bounded-work-interval-and-an-explicit-recipient-frame",
+      contextSignature: "workshop-morning-temporal-recipient-introduction",
+    },
+    supportEntry:
+      "colour-marked für den Vormittag and Ich helfe dem Kollegen. with the time span and recipient roles shown",
+    supportExit:
+      "identify the complete bounded interval and explicit recipient noun phrase without case labels",
+    newSituation: {
+      setting: "service-desk-morning-rota",
+      participants: "rota-coordinator-and-service-colleague",
+      goal: "select-fuer-den-vormittag-for-one-bounded-work-interval-on-a-changed-shift-board",
+      contextSignature: "service-desk-bounded-morning-checkpoint",
+    },
+    lexical: {
+      id: "de_lex_plan_l10_c01_vormittag_v1",
+      semanticIdentity:
+        "vormittag|morning period before midday used as a bounded work interval",
+      lemmaOrExpression: "Vormittag",
+      senseGloss:
+        "morning period before midday used as a bounded work interval",
+      communicativeUse:
+        "realise the exact bounded temporal relation as für den Vormittag, with für governing the accusative form den Vormittag",
+      utilityRole: "temporal_spatial",
+      situationFacet: "goal",
+      facetValue:
+        "select-fuer-den-vormittag-for-one-bounded-work-interval-on-a-changed-shift-board",
+      necessityClass: "OUTCOME_UNACHIEVABLE",
+    },
+  },
+  {
+    id: "de_l10_c02",
+    situation: {
+      setting: "tool-checkout-counter",
+      participants: "technician-and-named-colleague",
+      goal: "recognise-helfen-as-selecting-one-explicit-dative-recipient-noun-phrase",
+      contextSignature: "tool-counter-helfen-recipient-guided",
+    },
+    supportEntry:
+      "whole model Ich helfe dem Kollegen. with the helper and recipient roles marked",
+    supportExit:
+      "identify dem Kollegen as the explicit recipient selected by helfen",
+    newSituation: {
+      setting: "assembly-bench-support-card",
+      participants: "assembler-and-assigned-colleague",
+      goal: "choose-helfen-with-an-explicit-dative-colleague-on-a-changed-work-bench",
+      contextSignature: "assembly-bench-dative-recipient-check",
+    },
+    lexical: {
+      id: "de_lex_plan_l10_c02_helfen_v1",
+      semanticIdentity:
+        "helfen|support a named colleague through a frame selecting an explicit dative noun phrase",
+      lemmaOrExpression: "helfen",
+      senseGloss:
+        "support a named colleague through a frame selecting an explicit dative noun phrase",
+      communicativeUse:
+        "use Ich helfe dem Kollegen. so helfen selects one explicit dative noun phrase and no accusative transferred entity",
+      utilityRole: "action",
+      situationFacet: "goal",
+      facetValue:
+        "choose-helfen-with-an-explicit-dative-colleague-on-a-changed-work-bench",
+      necessityClass: "OUTCOME_UNACHIEVABLE",
+    },
+  },
+  {
+    id: "de_l10_c03",
+    situation: {
+      setting: "warehouse-shift-rota",
+      participants: "floor-coordinator-and-shift-worker",
+      goal: "state-one-bounded-shift-window-with-fuer-plus-accusative",
+      contextSignature: "warehouse-shift-temporal-retrieval",
+    },
+    supportEntry:
+      "shift card showing für den Vormittag and one explicit colleague role",
+    supportExit:
+      "state the bounded shift window from a changed rota without a case cue",
+    newSituation: {
+      setting: "customer-support-shift-board",
+      participants: "team-lead-and-support-worker",
+      goal: "state-the-bounded-morning-window-for-a-changed-service-shift",
+      contextSignature: "support-shift-bounded-window-check",
+    },
+    lexical: {
+      id: "de_lex_plan_l10_c03_schicht_v1",
+      semanticIdentity: "schicht|scheduled period of work assigned to a worker",
+      lemmaOrExpression: "Schicht",
+      senseGloss: "scheduled period of work assigned to a worker",
+      communicativeUse:
+        "name the work shift whose bounded morning window is stated with für den Vormittag",
+      utilityRole: "scene_grounding",
+      situationFacet: "goal",
+      facetValue:
+        "state-the-bounded-morning-window-for-a-changed-service-shift",
+      necessityClass: "SCENE_UNGROUNDED",
+    },
+  },
+  {
+    id: "de_l10_c04",
+    situation: {
+      setting: "maintenance-handover-board",
+      participants: "maintenance-coordinator-and-responsible-colleague",
+      goal: "identify-the-colleague-who-receives-help-during-a-work-handover",
+      contextSignature: "maintenance-handover-recipient-production",
+    },
+    supportEntry: "role card and complete model Ich helfe dem Kollegen.",
+    supportExit:
+      "identify the responsible colleague through the explicit noun phrase without role labels",
+    newSituation: {
+      setting: "service-team-handover-table",
+      participants: "service-lead-and-relief-colleague",
+      goal: "identify-a-different-colleague-as-the-recipient-of-help-during-a-service-handover",
+      contextSignature: "service-handover-explicit-recipient-check",
+    },
+    lexical: {
+      id: "de_lex_plan_l10_c04_uebergabe_v1",
+      semanticIdentity:
+        "ubergabe|workplace handover in which responsibility is made explicit",
+      lemmaOrExpression: "Übergabe",
+      senseGloss: "workplace handover in which responsibility is made explicit",
+      communicativeUse:
+        "ground the handover while Ich helfe dem Kollegen. explicitly identifies the colleague through the verb-selected dative noun phrase",
+      utilityRole: "scene_grounding",
+      situationFacet: "setting",
+      facetValue: "service-team-handover-table",
+      necessityClass: "SCENE_UNGROUNDED",
+    },
+  },
+  {
+    id: "de_l10_c05",
+    situation: {
+      setting: "workshop-equipment-route-board",
+      participants: "floor-coordinator-and-equipment-mover",
+      goal: "coordinate-a-bounded-morning-recipient-and-rollwagen-path-through-the-exit",
+      contextSignature: "workshop-time-recipient-corridor-combination",
+    },
+    supportEntry:
+      "three-panel model with für den Vormittag, Ich helfe dem Kollegen., and Der Rollwagen kann durch den Ausgang fahren.",
+    supportExit:
+      "coordinate the bounded interval, explicit recipient noun phrase, route-feasibility modal bracket, and directional path durch den Ausgang",
+    newSituation: {
+      setting: "loading-bay-route-board",
+      participants: "loading-lead-and-equipment-mover",
+      goal: "coordinate-time-recipient-and-the-new-rollwagen-on-the-established-directional-path-through-the-exit",
+      contextSignature: "loading-bay-time-recipient-rollwagen-path-check",
+    },
+    lexical: {
+      id: "de_lex_plan_l10_c05_rollwagen_v1",
+      semanticIdentity:
+        "rollwagen|wheeled cart used to move workplace equipment",
+      lemmaOrExpression: "Rollwagen",
+      senseGloss: "wheeled cart used to move workplace equipment",
+      communicativeUse:
+        "supply the explicit equipment subject in Der Rollwagen kann durch den Ausgang fahren., combining route feasibility with the established directional path without a human-subject ambiguity",
+      utilityRole: "action",
+      situationFacet: "goal",
+      facetValue:
+        "coordinate-time-recipient-and-the-new-rollwagen-on-the-established-directional-path-through-the-exit",
+      necessityClass: "OUTCOME_UNACHIEVABLE",
+    },
+  },
+  {
+    id: "de_l10_c06",
+    situation: {
+      setting: "dispatch-plan-error-card",
+      participants: "dispatcher-and-rota-reviewer",
+      goal: "repair-a-broken-fuer-den-vormittag-form-or-the-recipient-role-in-ich-helfe-dem-kollegen",
+      contextSignature: "dispatch-plan-duration-recipient-repair",
+    },
+    supportEntry:
+      "two marked defects and complete repair choices for the bounded interval and recipient noun phrase",
+    supportExit:
+      "repair für den Vormittag or Ich helfe dem Kollegen. without a grammar label",
+    newSituation: {
+      setting: "event-staff-assignment-plan",
+      participants: "event-coordinator-and-staff-reviewer",
+      goal: "repair-the-bounded-window-and-explicit-recipient-on-a-changed-assignment-plan",
+      contextSignature: "event-staff-duration-recipient-repair-check",
+    },
+    lexical: {
+      id: "de_lex_plan_l10_c06_einsatzplan_v1",
+      semanticIdentity:
+        "einsatzplan|work assignment plan listing people and time windows",
+      lemmaOrExpression: "Einsatzplan",
+      senseGloss: "work assignment plan listing people and time windows",
+      communicativeUse:
+        "ground a real repair in which the plan must show für den Vormittag and Ich helfe dem Kollegen. with the correct roles",
+      utilityRole: "repair",
+      situationFacet: "goal",
+      facetValue:
+        "repair-the-bounded-window-and-explicit-recipient-on-a-changed-assignment-plan",
+      necessityClass: "REPAIR_UNAVAILABLE",
+    },
+  },
+  {
+    id: "de_l10_c07",
+    situation: {
+      setting: "workshop-relief-handover-change",
+      participants: "relief-coordinator-and-workshop-colleague",
+      goal: "coordinate-a-changed-time-recipient-and-equipment-path-for-a-different-workplace-handover",
+      contextSignature: "workshop-relief-changed-handover-final-transfer",
+    },
+    supportEntry:
+      "three-panel handover card showing für den Vormittag, Ich helfe dem Kollegen., and Der Rollwagen kann durch den Flur fahren., with time, recipient, finite modal, bare infinitive, and directional path visually separated",
+    supportExit: L10_C07_SUPPORT_EXIT,
+    newSituation: {
+      setting: "repair-cafe-relief-handover",
+      participants: "repair-cafe-coordinator-and-relief-colleague",
+      goal: "independently-coordinate-changed-time-recipient-and-equipment-on-the-new-directional-path-through-the-corridor",
+      contextSignature: "repair-cafe-changed-time-recipient-corridor-final",
+    },
+    lexical: {
+      id: "de_lex_plan_l10_c07_flur_v1",
+      semanticIdentity: "flur|corridor used as a directional equipment path",
+      lemmaOrExpression: "Flur",
+      senseGloss: "corridor used as a directional equipment path",
+      communicativeUse:
+        "at the changed repair-cafe handover, independently use für den Vormittag for one bounded work interval, Ich helfe dem Kollegen. for an explicit dative recipient with no accusative transferred entity, and Der Rollwagen kann durch den Flur fahren. for route feasibility and the directional path durch den Flur",
+      utilityRole: "transfer",
+      situationFacet: "goal",
+      facetValue:
+        "independently-coordinate-changed-time-recipient-and-equipment-on-the-new-directional-path-through-the-corridor",
+      necessityClass: "TRANSFER_UNAVAILABLE",
+    },
+  },
+] as const;
+
+const L10_RECALL_CONTRACTS = [
+  [["de_l09_c06", "de_l09_c07"], ["de_l10_c02"]],
+  [["de_l10_c01"], ["de_l10_c03"]],
+  [["de_l10_c01", "de_l10_c02"], ["de_l10_c04"]],
+  [["de_l10_c02", "de_l10_c03"], ["de_l10_c05"]],
+  [["de_l10_c03", "de_l10_c04"], ["de_l10_c06"]],
+  [["de_l10_c04", "de_l10_c05"], ["de_l10_c07"]],
+  [["de_l10_c05", "de_l10_c06"], ["de_l11_c01"]],
+] as const;
+
+const L09_TO_L10_DELAYED_PACKETS = [51, 52, 53, 54, 55, 56, 55].map(
+  (session, index) =>
+    `de_l09_c${String(index + 1).padStart(2, "0")}->de_l10_c07_s${session}`,
+);
+const L10_TO_L11_DELAYED_PACKETS = [51, 52, 53, 54, 55, 56, 55].map(
+  (session, index) =>
+    `de_l10_c${String(index + 1).padStart(2, "0")}->de_l11_c07_s${session}`,
+);
+
+function validateL10SemanticContract(raw: R, plan: Boundary): void {
+  const l10 = (raw.lessons as R[]).find(
+    (lesson) => lesson.lessonId === "de_l10",
+  );
+  if (!l10) throw new Error("l10_semantic_contract_invalid:missing");
+  const chapters = l10.chapters as R[];
+  if (
+    !sameStringSet(plan.introducedConstructIds, L10_INTRODUCED) ||
+    !sameStringSet(plan.extendedConstructIds, L10_EXTENDED) ||
+    !sameStringSet(plan.reviewedConstructIds, L10_REVIEWED) ||
+    !sameStringSet(plan.prohibitedConstructIds, L10_PROHIBITED) ||
+    !sameStringSet(
+      plan.session56Final.requiredConstructIds,
+      L10_FINAL_REQUIRED,
+    ) ||
+    chapters.length !== 7
+  )
+    throw new Error("l10_semantic_contract_invalid:sets");
+
+  const expectedAnchors = [
+    `${L10_TEMPORAL}|introduction|de_l10_c01_s01`,
+    `${L10_DATIVE}|introduction|de_l10_c01_s02`,
+    `${L10_TEMPORAL}|guided|de_l10_c02_s09`,
+    `${L10_DATIVE}|guided|de_l10_c02_s10`,
+    `${L10_TEMPORAL}|retrieval|de_l10_c03_s17`,
+    `${L10_DATIVE}|retrieval|de_l10_c03_s18`,
+    `${L10_TEMPORAL}|production|de_l10_c04_s25`,
+    `${L10_DATIVE}|production|de_l10_c04_s26`,
+    `${L10_TEMPORAL}|transfer|de_l10_c06_s41`,
+    `${L10_DATIVE}|transfer|de_l10_c06_s42`,
+    `${L10_MODAL}|delayed|de_l10_c07_s49`,
+    `${L10_LOCAL}|delayed|de_l10_c07_s50`,
+  ];
+  const actualAnchors = chapters.flatMap((chapter) =>
+    ((chapter.lifecycleAnchors as R[]) ?? []).map(
+      (anchor) =>
+        `${String(anchor.constructId)}|${String(anchor.stage)}|${String(anchor.packetId)}`,
+    ),
+  );
+  if (!sameStringSet(actualAnchors, expectedAnchors))
+    throw new Error("l10_semantic_contract_invalid:anchors");
+
+  const l9 = (raw.lessons as R[]).find(
+    (lesson) => lesson.lessonId === "de_l09",
+  );
+  const l9Chapters = (l9?.chapters as R[]) ?? [];
+  const l9ToL10 = l9Chapters.map((chapter, index) => {
+    const packetId = ((chapter.recallSchedule as R).futureDelayedProbe as R)
+      .packetId;
+    return `de_l09_c${String(index + 1).padStart(2, "0")}->${String(packetId)}`;
+  });
+  const c7Evidence = chapters[6].chapterEvidencePacketIds as string[];
+  const exactC7Evidence = [
+    "de_l10_c07_s51",
+    "de_l10_c07_s52",
+    "de_l10_c07_s53",
+    "de_l10_c07_s54",
+    "de_l10_c07_s55",
+    "de_l10_c07_s56",
+  ];
+  const l9Inverse = new Map<string, string[]>();
+  for (let index = 0; index < l9Chapters.length; index += 1) {
+    const packetId = String(
+      (((l9Chapters[index].recallSchedule as R).futureDelayedProbe as R) ?? {})
+        .packetId,
+    );
+    const sources = l9Inverse.get(packetId) ?? [];
+    sources.push(`de_l09_c${String(index + 1).padStart(2, "0")}`);
+    l9Inverse.set(packetId, sources);
+  }
+  const expectedL9Inverse = new Map<string, string[]>([
+    ["de_l10_c07_s51", ["de_l09_c01"]],
+    ["de_l10_c07_s52", ["de_l09_c02"]],
+    ["de_l10_c07_s53", ["de_l09_c03"]],
+    ["de_l10_c07_s54", ["de_l09_c04"]],
+    ["de_l10_c07_s55", ["de_l09_c05", "de_l09_c07"]],
+    ["de_l10_c07_s56", ["de_l09_c06"]],
+  ]);
+  if (
+    JSON.stringify(l9ToL10) !== JSON.stringify(L09_TO_L10_DELAYED_PACKETS) ||
+    JSON.stringify(c7Evidence) !== JSON.stringify(exactC7Evidence) ||
+    JSON.stringify([...l9Inverse]) !== JSON.stringify([...expectedL9Inverse])
+  )
+    throw new Error("l09_l10_inverse_provenance_invalid");
+
+  const l10ToL11 = chapters.map((chapter, index) => {
+    const packetId = ((chapter.recallSchedule as R).futureDelayedProbe as R)
+      .packetId;
+    return `de_l10_c${String(index + 1).padStart(2, "0")}->${String(packetId)}`;
+  });
+  const l10Inverse = new Map<string, string[]>();
+  for (let index = 0; index < chapters.length; index += 1) {
+    const packetId = String(
+      (((chapters[index].recallSchedule as R).futureDelayedProbe as R) ?? {})
+        .packetId,
+    );
+    const sources = l10Inverse.get(packetId) ?? [];
+    sources.push(`de_l10_c${String(index + 1).padStart(2, "0")}`);
+    l10Inverse.set(packetId, sources);
+  }
+  const expectedL10Inverse = new Map<string, string[]>([
+    ["de_l11_c07_s51", ["de_l10_c01"]],
+    ["de_l11_c07_s52", ["de_l10_c02"]],
+    ["de_l11_c07_s53", ["de_l10_c03"]],
+    ["de_l11_c07_s54", ["de_l10_c04"]],
+    ["de_l11_c07_s55", ["de_l10_c05", "de_l10_c07"]],
+    ["de_l11_c07_s56", ["de_l10_c06"]],
+  ]);
+  if (
+    JSON.stringify(l10ToL11) !== JSON.stringify(L10_TO_L11_DELAYED_PACKETS) ||
+    JSON.stringify([...l10Inverse]) !== JSON.stringify([...expectedL10Inverse])
+  )
+    throw new Error("l10_l11_inverse_provenance_invalid");
+
+  for (let index = 0; index < chapters.length; index += 1) {
+    const chapter = chapters[index];
+    const expectedConstructs = index === 6 ? L10_FINAL_REQUIRED : L10_ALLOWED;
+    const senses =
+      ((chapter.checkpoint as R).plannedNewLexicalSenses as R[]) ?? [];
+    if (
+      !sameStringSet(
+        chapter.allowedConstructIds as string[],
+        expectedConstructs,
+      ) ||
+      !sameStringSet(
+        (chapter.checkpoint as R).integratedConstructIds as string[],
+        expectedConstructs,
+      ) ||
+      senses.length !== 1 ||
+      senses[0].id !== L10_LEXICAL_IDS[index] ||
+      senses[0].lexicalKind === "FIXED_EXPRESSION"
+    )
+      throw new Error("l10_semantic_contract_invalid:chapter_contract");
+  }
+
+  const expectedNouns = new Map<number, readonly string[]>([
+    [0, ["der", "Vormittag", "Vormittage", "der|vormittag|vormittage"]],
+    [2, ["die", "Schicht", "Schichten", "die|schicht|schichten"]],
+    [3, ["die", "Übergabe", "Übergaben", "die|ubergabe|ubergaben"]],
+    [4, ["der", "Rollwagen", "Rollwagen", "der|rollwagen|rollwagen"]],
+    [5, ["der", "Einsatzplan", "Einsatzpläne", "der|einsatzplan|einsatzplane"]],
+    [6, ["der", "Flur", "Flure", "der|flur|flure"]],
+  ]);
+  for (const [index, expected] of expectedNouns) {
+    const sense = (
+      (chapters[index].checkpoint as R).plannedNewLexicalSenses as R[]
+    )[0];
+    const noun = sense.nounPackage as R | null;
+    if (
+      sense.lexicalKind !== "NOUN_LEXEME" ||
+      sense.lemmaOrExpression !== expected[1] ||
+      noun?.article !== expected[0] ||
+      noun?.singular !== expected[1] ||
+      noun?.plural !== expected[2] ||
+      sense.nounPackageIdentity !== expected[3] ||
+      sense.verbPackage !== null
+    )
+      throw new Error("l10_semantic_contract_invalid:lexical_packages");
+  }
+
+  for (let index = 0; index < chapters.length; index += 1) {
+    const chapter = chapters[index];
+    const checkpoint = chapter.checkpoint as R;
+    const sense = (checkpoint.plannedNewLexicalSenses as R[])[0];
+    const utility = sense.utilityProof as R;
+    const expected = L10_CLOSED_CHAPTER_CONTRACTS[index];
+    const actual: L10ClosedChapterContract = {
+      id: String(chapter.id),
+      situation: chapter.situation as R,
+      supportEntry: String((chapter.supportFading as R).entry),
+      supportExit: String((chapter.supportFading as R).exit),
+      newSituation: checkpoint.newSituation as R,
+      lexical: {
+        id: String(sense.id),
+        semanticIdentity: String(sense.semanticIdentity),
+        lemmaOrExpression: String(sense.lemmaOrExpression),
+        senseGloss: String(sense.senseGloss),
+        communicativeUse: String(sense.communicativeUse),
+        utilityRole: String(utility.utilityRole),
+        situationFacet: String(utility.situationFacet),
+        facetValue: String(utility.facetValue),
+        necessityClass: String(utility.necessityClass),
+      },
+    };
+    if (JSON.stringify(actual) !== JSON.stringify(expected))
+      throw new Error(
+        `l10_semantic_contract_invalid:closed_chapter:${expected.id}`,
+      );
+
+    const recall = chapter.recallSchedule as R;
+    const [expectedFrom, expectedTo] = L10_RECALL_CONTRACTS[index];
+    if (
+      JSON.stringify(recall.retrievesFromChapterIds) !==
+        JSON.stringify(expectedFrom) ||
+      JSON.stringify(recall.targetsFutureChapterIds) !==
+        JSON.stringify(expectedTo)
+    )
+      throw new Error(`l10_recall_contract_invalid:${expected.id}`);
+  }
+
+  const c1Sense = (((chapters[0].checkpoint as R)
+    .plannedNewLexicalSenses as R[]) ?? [])[0];
+  if (
+    c1Sense.lemmaOrExpression !== "Vormittag" ||
+    (c1Sense.nounPackage as R | null)?.article !== "der" ||
+    !String(c1Sense.communicativeUse).includes("für den Vormittag") ||
+    !String((chapters[0].supportFading as R).entry).includes(
+      "für den Vormittag",
+    ) ||
+    String(c1Sense.lemmaOrExpression).includes("für")
+  )
+    throw new Error(
+      "l10_semantic_contract_invalid:temporal_bounded_accusative",
+    );
+
+  const help = (((chapters[1].checkpoint as R)
+    .plannedNewLexicalSenses as R[]) ?? [])[0];
+  const helpPackage = help.verbPackage as R | null;
+  if (
+    help.lemmaOrExpression !== "helfen" ||
+    help.lexicalKind !== "VERB_LEXEME" ||
+    helpPackage?.infinitive !== "helfen" ||
+    helpPackage?.valencyFrame !== L10_HELP_VALENCY ||
+    helpPackage?.separability !== "inseparable" ||
+    helpPackage?.perfectAuxiliary !== "haben" ||
+    !String(help.communicativeUse).includes("Ich helfe dem Kollegen.")
+  )
+    throw new Error("l10_semantic_contract_invalid:helfen_dative_np");
+
+  const c7 = chapters[6];
+  const c7Checkpoint = c7.checkpoint as R;
+  const c7Sense = (c7Checkpoint.plannedNewLexicalSenses as R[])[0];
+  if (
+    !sameStringSet(c7.allowedConstructIds as string[], L10_FINAL_REQUIRED) ||
+    !sameStringSet(
+      c7Checkpoint.integratedConstructIds as string[],
+      L10_FINAL_REQUIRED,
+    ) ||
+    (c7.supportFading as R).exit !== L10_C07_SUPPORT_EXIT ||
+    c7Sense.communicativeUse !==
+      L10_CLOSED_CHAPTER_CONTRACTS[6].lexical.communicativeUse
+  )
+    throw new Error("l10_semantic_contract_invalid:c07_transfer_or_provenance");
 }
 
 function validate(raw: unknown): {
@@ -332,6 +1069,10 @@ function validate(raw: unknown): {
   const source = new Map(
     (json(LESSONS) as { lessons: Boundary[] }).lessons.map((x) => [x.id, x]),
   );
+  const l9Plan = source.get("de_l09");
+  if (l9Plan) validateL09SemanticContract(raw, l9Plan);
+  const l10Plan = source.get("de_l10");
+  if (l10Plan) validateL10SemanticContract(raw, l10Plan);
   const grammar = json(GRAMMAR) as Grammar[];
   const grammarIds = new Set(grammar.map((x) => x.id));
   const lessonIds = new Set<string>(),
@@ -420,11 +1161,13 @@ function validate(raw: unknown): {
       });
       strings(cv.allowedConstructIds, "chapter.allowed");
       strings(cv.prohibitedConstructIds, "chapter.prohibited");
+      const chapterAllowed =
+        cn === 7 ? plan.session56Final.requiredConstructIds : allowed;
       if (
         !cv.allowedConstructIds.length ||
-        !cv.allowedConstructIds.every(
-          (id) => allowed.includes(id) && grammarIds.has(id),
-        ) ||
+        JSON.stringify(sort(cv.allowedConstructIds)) !==
+          JSON.stringify(sort(chapterAllowed)) ||
+        !cv.allowedConstructIds.every((id) => grammarIds.has(id)) ||
         JSON.stringify(sort(cv.prohibitedConstructIds)) !==
           JSON.stringify(sort(plan.prohibitedConstructIds))
       )
@@ -499,7 +1242,7 @@ function validate(raw: unknown): {
       if (
         !cv.checkpoint.integratedConstructIds.length ||
         JSON.stringify(sort(cv.checkpoint.integratedConstructIds)) !==
-          JSON.stringify(sort(cv.allowedConstructIds))
+          JSON.stringify(sort(chapterAllowed))
       )
         throw new Error(`checkpoint_integrated_grammar_invalid:${cv.id}`);
       array(cv.checkpoint.plannedNewLexicalSenses, "plannedSenses");
@@ -660,6 +1403,42 @@ function validate(raw: unknown): {
         } else if (sv.nounPackage !== null || sv.verbPackage !== null)
           throw new Error(`non_lexeme_package_forbidden:${sv.id}`);
       }
+      const introducesSeparableBracket = cv.lifecycleAnchors.some(
+        (anchor) =>
+          anchor.constructId === "de_gc_separable_verb_bracket_v1" &&
+          anchor.stage === "introduction",
+      );
+      const separableVerbSupports = (
+        cv.checkpoint.plannedNewLexicalSenses as R[]
+      ).filter(
+        (sense) =>
+          sense.lexicalKind === "VERB_LEXEME" &&
+          (sense.verbPackage as R | null)?.separability === "separable",
+      );
+      if (introducesSeparableBracket && !separableVerbSupports.length)
+        throw new Error(
+          `lifecycle_lexical_support_missing:${cv.id}:de_gc_separable_verb_bracket_v1`,
+        );
+      const introducesAccusativePronoun = cv.lifecycleAnchors.some(
+        (anchor) =>
+          anchor.constructId === "de_gc_accusative_personal_pronouns_v1" &&
+          anchor.stage === "introduction",
+      );
+      if (
+        introducesSeparableBracket &&
+        introducesAccusativePronoun &&
+        (!separableVerbSupports.some((sense) =>
+          isCanonicalIntroductionAccusativeValencyFrame(
+            (sense.verbPackage as R).valencyFrame,
+          ),
+        ) ||
+          !(cv.checkpoint.plannedNewLexicalSenses as R[]).some(
+            (sense) => sense.lexicalKind === "NOUN_LEXEME",
+          ))
+      )
+        throw new Error(
+          `lifecycle_lexical_support_missing:${cv.id}:de_gc_accusative_personal_pronouns_v1`,
+        );
       if (
         ["setting", "participants", "goal"].filter(
           (k) => primary[k] !== check[k],
@@ -677,6 +1456,8 @@ function validate(raw: unknown): {
         ],
         "recall",
       );
+      const probe = cv.recallSchedule.futureDelayedProbe;
+      rec(probe, "probe");
       strings(cv.recallSchedule.retrievesFromChapterIds, "recall.from");
       strings(cv.recallSchedule.targetsFutureChapterIds, "recall.to");
       const isOnlyCourseEntry = ln === 1 && cn === 1;
@@ -689,11 +1470,7 @@ function validate(raw: unknown): {
       )
         throw new Error(`backward_recall_contract_invalid:${cv.id}`);
       if (
-        targetsFutureChapterIsRequired(
-          ln,
-          cn,
-          (cv.recallSchedule.futureDelayedProbe as R).kind,
-        ) &&
+        targetsFutureChapterIsRequired(ln, cn, probe.kind) &&
         !cv.recallSchedule.targetsFutureChapterIds.length
       )
         throw new Error(`future_cross_chapter_recall_missing:${cv.id}`);
@@ -707,8 +1484,6 @@ function validate(raw: unknown): {
         if (p.l < ln || (p.l === ln && p.c <= cn))
           throw new Error(`recall_target_not_future:${cv.id}`);
       }
-      rec(cv.recallSchedule.futureDelayedProbe, "probe");
-      const probe = cv.recallSchedule.futureDelayedProbe;
       if (probe.kind === "COURSE_PACKET") {
         keys(probe, ["kind", "packetId"], "probe");
         text(probe.packetId, "probe.packet");
@@ -725,6 +1500,12 @@ function validate(raw: unknown): {
       } else throw new Error(`future_probe_kind_invalid:${cv.id}`);
       if (cn === 7 && cv.packetIds[7] !== plan.session56Final.sessionId)
         throw new Error(`task4_session56_final_mismatch:${lv.lessonId}`);
+      if (
+        cn === 7 &&
+        JSON.stringify(sort(cv.allowedConstructIds)) !==
+          JSON.stringify(sort(plan.session56Final.requiredConstructIds))
+      )
+        throw new Error(`task4_session56_grammar_mismatch:${lv.lessonId}`);
     });
   });
   const required = requiredAnchors(grammar, lessonIds);
@@ -747,6 +1528,50 @@ function expect(mut: (raw: R) => void, re: RegExp): void {
   mut(raw);
   assert.throws(() => validate(raw), re);
 }
+function expectExact(mut: (raw: R) => void, message: string): void {
+  const raw = clone(json(FILE)) as R;
+  mut(raw);
+  let thrown: unknown;
+  try {
+    validate(raw);
+  } catch (error) {
+    thrown = error;
+  }
+  assert.ok(thrown instanceof Error, `expected_error:${message}`);
+  assert.equal(thrown.message, message);
+}
+function expectL09PlanExact(mut: (plan: R) => void, message: string): void {
+  const raw = clone(json(FILE)) as R;
+  const lessonRegistry = json(LESSONS) as { lessons: R[] };
+  const plan = clone(
+    lessonRegistry.lessons.find((lesson) => lesson.id === "de_l09") as R,
+  );
+  mut(plan);
+  let thrown: unknown;
+  try {
+    validateL09SemanticContract(raw, plan as Boundary);
+  } catch (error) {
+    thrown = error;
+  }
+  assert.ok(thrown instanceof Error, `expected_error:${message}`);
+  assert.equal(thrown.message, message);
+}
+function expectL10PlanExact(mut: (plan: R) => void, message: string): void {
+  const raw = clone(json(FILE)) as R;
+  const lessonRegistry = json(LESSONS) as { lessons: R[] };
+  const plan = clone(
+    lessonRegistry.lessons.find((lesson) => lesson.id === "de_l10") as R,
+  );
+  mut(plan);
+  let thrown: unknown;
+  try {
+    validateL10SemanticContract(raw, plan as Boundary);
+  } catch (error) {
+    thrown = error;
+  }
+  assert.ok(thrown instanceof Error, `expected_error:${message}`);
+  assert.equal(thrown.message, message);
+}
 function fixtures(): void {
   const first = (raw: R) => ((raw.lessons as R[])[0].chapters as R[])[0];
   expect((raw) => {
@@ -757,6 +1582,18 @@ function fixtures(): void {
       "de_gc_finite_present_agreement_v1",
     );
   }, /grammar_boundary_leak/u);
+  expect((raw) => {
+    ((raw.lessons as R[])[0].chapters as R[])[3].allowedConstructIds = [
+      "de_gc_pre_a1_formulaic_chunks_v1",
+    ];
+  }, /grammar_boundary_leak/u);
+  expect((raw) => {
+    const c7 = ((raw.lessons as R[])[0].chapters as R[])[6];
+    c7.allowedConstructIds = ["de_gc_pre_a1_formulaic_chunks_v1"];
+    (c7.checkpoint as R).integratedConstructIds = [
+      "de_gc_pre_a1_formulaic_chunks_v1",
+    ];
+  }, /grammar_boundary_leak|task4_session56_grammar_mismatch/u);
   expect((raw) => {
     first(raw).lessonOutcome = "stale";
   }, /stale_or_mismatched_outcome/u);
@@ -842,6 +1679,9 @@ function fixtures(): void {
     (c2.recallSchedule as R).retrievesFromChapterIds = [];
   }, /backward_recall_contract_invalid/u);
   expect((raw) => {
+    (first(raw).recallSchedule as R).futureDelayedProbe = null;
+  }, /record_required:probe/u);
+  expect((raw) => {
     (first(raw).supportFading as R).exitLevel = 5;
   }, /support_not_strictly_fading/u);
   expect((raw) => {
@@ -861,6 +1701,364 @@ function fixtures(): void {
   expect((raw) => {
     raw.buildStatus = "COMPLETE_TASK5";
   }, /complete_status_not_exactly_full_registry/u);
+  expectExact((raw) => {
+    const l8 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l08",
+    ) as R;
+    const c1 = (l8.chapters as R[])[0];
+    (c1.checkpoint as R).plannedNewLexicalSenses = (
+      (c1.checkpoint as R).plannedNewLexicalSenses as R[]
+    ).filter((sense) => sense.id !== "de_lex_plan_l08_c01_absagen_v1");
+  }, "lifecycle_lexical_support_missing:de_l08_c01:de_gc_separable_verb_bracket_v1");
+  expectExact((raw) => {
+    const l8 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l08",
+    ) as R;
+    const c1 = (l8.chapters as R[])[0];
+    const absagen = ((c1.checkpoint as R).plannedNewLexicalSenses as R[]).find(
+      (sense) => sense.id === "de_lex_plan_l08_c01_absagen_v1",
+    ) as R;
+    (absagen.verbPackage as R).separability = "inseparable";
+  }, "lifecycle_lexical_support_missing:de_l08_c01:de_gc_separable_verb_bracket_v1");
+  expectExact((raw) => {
+    const l8 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l08",
+    ) as R;
+    const c1 = (l8.chapters as R[])[0];
+    const absagen = ((c1.checkpoint as R).plannedNewLexicalSenses as R[]).find(
+      (sense) => sense.id === "de_lex_plan_l08_c01_absagen_v1",
+    ) as R;
+    (absagen.verbPackage as R).valencyFrame =
+      "transitive cancel-appointment frame";
+  }, "lifecycle_lexical_support_missing:de_l08_c01:de_gc_accusative_personal_pronouns_v1");
+  expectExact((raw) => {
+    const l8 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l08",
+    ) as R;
+    const c1 = (l8.chapters as R[])[0];
+    const absagen = ((c1.checkpoint as R).plannedNewLexicalSenses as R[]).find(
+      (sense) => sense.id === "de_lex_plan_l08_c01_absagen_v1",
+    ) as R;
+    (absagen.verbPackage as R).valencyFrame =
+      "explicitly non-accusative object frame";
+  }, "lifecycle_lexical_support_missing:de_l08_c01:de_gc_accusative_personal_pronouns_v1");
+  expectExact((raw) => {
+    const l8 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l08",
+    ) as R;
+    const c1 = (l8.chapters as R[])[0];
+    const absagen = ((c1.checkpoint as R).plannedNewLexicalSenses as R[]).find(
+      (sense) => sense.id === "de_lex_plan_l08_c01_absagen_v1",
+    ) as R;
+    (absagen.verbPackage as R).valencyFrame = "transitive not accusative frame";
+  }, "lifecycle_lexical_support_missing:de_l08_c01:de_gc_accusative_personal_pronouns_v1");
+  for (const valencyFrame of [
+    "transitive no accusative frame",
+    "transitive without accusative frame",
+    "transitive non accusative frame",
+    "transitive non-accusative accusative frame",
+    "transitive maybe accusative frame",
+    "transitive generic-object accusative frame",
+  ])
+    expectExact((raw) => {
+      const l8 = (raw.lessons as R[]).find(
+        (lesson) => lesson.lessonId === "de_l08",
+      ) as R;
+      const c1 = (l8.chapters as R[])[0];
+      const absagen = (
+        (c1.checkpoint as R).plannedNewLexicalSenses as R[]
+      ).find((sense) => sense.id === "de_lex_plan_l08_c01_absagen_v1") as R;
+      (absagen.verbPackage as R).valencyFrame = valencyFrame;
+    }, "lifecycle_lexical_support_missing:de_l08_c01:de_gc_accusative_personal_pronouns_v1");
+
+  expectExact((raw) => {
+    const l9 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l09",
+    ) as R;
+    (l9.grammarBoundary as R).noExpansion =
+      "finite können may express ability or possibility";
+  }, "l09_semantic_contract_invalid:ability_ambiguity");
+  expectExact((raw) => {
+    const l9 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l09",
+    ) as R;
+    const c1 = (l9.chapters as R[])[0];
+    (c1.checkpoint as R).plannedNewLexicalSenses = (
+      (c1.checkpoint as R).plannedNewLexicalSenses as R[]
+    ).filter((sense) => sense.id !== "de_lex_plan_l09_c01_koennen_v1");
+  }, "l09_semantic_contract_invalid:modal_route_feasibility");
+  expectExact((raw) => {
+    const l9 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l09",
+    ) as R;
+    const c1 = (l9.chapters as R[])[0];
+    const park = ((c1.checkpoint as R).plannedNewLexicalSenses as R[]).find(
+      (sense) => sense.id === "de_lex_plan_l09_c01_park_v1",
+    ) as R;
+    park.id = "de_lex_plan_l09_c01_durch_den_park_v1";
+    park.lexicalKind = "FIXED_EXPRESSION";
+    park.lemmaOrExpression = "durch den Park";
+  }, "l09_semantic_contract_invalid:fixed_expression_route");
+  expectL09PlanExact((plan) => {
+    plan.reviewedConstructIds = (plan.reviewedConstructIds as string[]).filter(
+      (id) => id !== "de_gc_yes_no_verberst_v1",
+    );
+  }, "l09_semantic_contract_invalid:c04_yes_no_undeclared");
+  expectL09PlanExact((plan) => {
+    plan.crossLessonRecall = (plan.crossLessonRecall as R[]).filter(
+      (row) => row.fromLessonId !== "de_l05",
+    );
+  }, "l09_semantic_contract_invalid:c04_yes_no_undeclared");
+  expectL09PlanExact((plan) => {
+    const l5Recall = (plan.crossLessonRecall as R[]).find(
+      (row) => row.fromLessonId === "de_l05",
+    ) as R;
+    l5Recall.constructIds = ["de_gc_statement_v2_v1"];
+  }, "l09_semantic_contract_invalid:c04_yes_no_undeclared");
+  expectL09PlanExact((plan) => {
+    const l5Recall = (plan.crossLessonRecall as R[]).find(
+      (row) => row.fromLessonId === "de_l05",
+    ) as R;
+    l5Recall.responsibility = "reuse a question somehow";
+  }, "l09_semantic_contract_invalid:c04_yes_no_undeclared");
+  expectExact((raw) => {
+    const l9 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l09",
+    ) as R;
+    const c4 = (l9.chapters as R[])[3];
+    (c4.supportFading as R).entry =
+      "exact declarative model Man kann durch den Park gehen., plus closure notice and route map";
+  }, "l09_semantic_contract_invalid:c04_yes_no_proof");
+  expectExact((raw) => {
+    const l9 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l09",
+    ) as R;
+    const c4 = (l9.chapters as R[])[3];
+    const bridge = ((c4.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    bridge.communicativeUse =
+      "make the closed-route problem concrete when stating Man kann durch den Park gehen.";
+  }, "l09_semantic_contract_invalid:c04_yes_no_proof");
+  expectExact((raw) => {
+    const l9 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l09",
+    ) as R;
+    const c2 = (l9.chapters as R[])[1];
+    const museum = ((c2.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    ((c2.checkpoint as R).plannedNewLexicalSenses as R[]).push({
+      ...clone(museum),
+      id: "de_lex_plan_l09_c02_durch_den_park_v1",
+      semanticIdentity:
+        "durch den park|complete path expression through the park",
+      lemmaOrExpression: "durch den Park",
+      partOfSpeech: "fixed_expression",
+      lexicalKind: "FIXED_EXPRESSION",
+      nounPackage: null,
+      nounPackageIdentity: undefined,
+      senseGloss: "complete path expression through the park",
+      communicativeUse:
+        "provide the complete route chunk during the museum exchange",
+    });
+    delete (((c2.checkpoint as R).plannedNewLexicalSenses as R[])[1] as R)
+      .nounPackageIdentity;
+  }, "l09_semantic_contract_invalid:fixed_expression_route");
+  expectExact((raw) => {
+    const l9 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l09",
+    ) as R;
+    const c7 = (l9.chapters as R[])[6];
+    (c7.supportFading as R).entry = "known route prompts";
+  }, "l09_semantic_contract_invalid:c07_four_proof_or_destination");
+  expectExact((raw) => {
+    const l9 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l09",
+    ) as R;
+    const c7 = (l9.chapters as R[])[6];
+    (c7.allowedConstructIds as string[]).push(L09_YES_NO_CONSTRUCT);
+  }, "grammar_boundary_leak:de_l09_c07");
+  expectExact((raw) => {
+    const l9 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l09",
+    ) as R;
+    const c7 = (l9.chapters as R[])[6];
+    (c7.situation as R).setting = "not-a-night-market";
+    ((c7.checkpoint as R).newSituation as R).setting = "not-a-night-market";
+  }, "l09_semantic_contract_invalid:c07_four_proof_or_destination");
+  expectExact((raw) => {
+    const l9 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l09",
+    ) as R;
+    const c7 = (l9.chapters as R[])[6];
+    (c7.supportFading as R).entry =
+      "Do not use Man kann durch den Park gehen. Reject Ich hole den Stadtplan ab. Ich hole ihn ab.";
+    const cityMap = ((c7.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    cityMap.communicativeUse =
+      "Reject Man kann durch den Park gehen. and Ich hole den Stadtplan ab. Ich hole ihn ab.; do not use kann…gehen, durch den Park, hole…ab, or den Stadtplan→ihn";
+  }, "l09_semantic_contract_invalid:c07_four_proof_or_destination");
+  for (const operation of L09_OPERATION_LABELS)
+    expectExact((raw) => {
+      const l9 = (raw.lessons as R[]).find(
+        (lesson) => lesson.lessonId === "de_l09",
+      ) as R;
+      const c7 = (l9.chapters as R[])[6];
+      const cityMap = ((c7.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+      cityMap.communicativeUse = String(cityMap.communicativeUse).replace(
+        operation,
+        `${operation}-mutated`,
+      );
+    }, "l09_semantic_contract_invalid:c07_four_proof_or_destination");
+
+  expectL10PlanExact((plan) => {
+    plan.introducedConstructIds = [L10_TEMPORAL];
+  }, "l10_semantic_contract_invalid:sets");
+  expectL10PlanExact((plan) => {
+    (plan.session56Final as R).requiredConstructIds = [
+      L10_TEMPORAL,
+      L10_DATIVE,
+      L10_MODAL,
+    ];
+  }, "l10_semantic_contract_invalid:sets");
+  expectExact((raw) => {
+    const l10 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l10",
+    ) as R;
+    const c1 = (l10.chapters as R[])[0];
+    ((c1.lifecycleAnchors as R[])[0] as R).packetId = "de_l10_c01_s03";
+  }, "l10_semantic_contract_invalid:anchors");
+  expectExact((raw) => {
+    const l10 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l10",
+    ) as R;
+    const c1 = (l10.chapters as R[])[0];
+    const sense = ((c1.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    sense.communicativeUse = "state a morning interval";
+  }, "l10_semantic_contract_invalid:closed_chapter:de_l10_c01");
+  expectExact((raw) => {
+    const l10 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l10",
+    ) as R;
+    const c1 = (l10.chapters as R[])[0];
+    const sense = ((c1.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    sense.lexicalKind = "FIXED_EXPRESSION";
+    sense.partOfSpeech = "fixed_expression";
+    sense.lemmaOrExpression = "für den Vormittag";
+  }, "l10_semantic_contract_invalid:chapter_contract");
+  expectExact((raw) => {
+    const l10 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l10",
+    ) as R;
+    const c2 = (l10.chapters as R[])[1];
+    const help = ((c2.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    (help.verbPackage as R).valencyFrame =
+      "ditransitive transferred-entity frame";
+  }, "l10_semantic_contract_invalid:helfen_dative_np");
+  expectExact((raw) => {
+    const l10 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l10",
+    ) as R;
+    const c2 = (l10.chapters as R[])[1];
+    const help = ((c2.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    (help.verbPackage as R).separability = "separable";
+  }, "l10_semantic_contract_invalid:helfen_dative_np");
+  expectExact((raw) => {
+    const l10 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l10",
+    ) as R;
+    const c3 = (l10.chapters as R[])[2];
+    const schicht = ((c3.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    (schicht.nounPackage as R).article = "das";
+  }, "l10_semantic_contract_invalid:lexical_packages");
+
+  expectExact((raw) => {
+    const l9 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l09",
+    ) as R;
+    const c5 = (l9.chapters as R[])[4];
+    ((c5.recallSchedule as R).futureDelayedProbe as R).packetId =
+      "de_l10_c07_s56";
+  }, "l09_l10_inverse_provenance_invalid");
+  expectExact((raw) => {
+    const l10 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l10",
+    ) as R;
+    const c1 = (l10.chapters as R[])[0];
+    ((c1.recallSchedule as R).futureDelayedProbe as R).packetId =
+      "de_l11_c07_s56";
+  }, "l10_l11_inverse_provenance_invalid");
+  expectExact((raw) => {
+    const l10 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l10",
+    ) as R;
+    const c2 = (l10.chapters as R[])[1];
+    (c2.recallSchedule as R).targetsFutureChapterIds = ["de_l10_c04"];
+  }, "l10_recall_contract_invalid:de_l10_c02");
+  expectExact((raw) => {
+    const l10 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l10",
+    ) as R;
+    const c1 = (l10.chapters as R[])[0];
+    (c1.supportFading as R).entry = String(
+      (c1.supportFading as R).entry,
+    ).replace("für den Vormittag", "am Vormittag");
+  }, "l10_semantic_contract_invalid:closed_chapter:de_l10_c01");
+  expectExact((raw) => {
+    const l10 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l10",
+    ) as R;
+    const c2 = (l10.chapters as R[])[1];
+    const help = ((c2.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    help.communicativeUse = "Ich gebe dem Kollegen den Plan.";
+  }, "l10_semantic_contract_invalid:closed_chapter:de_l10_c02");
+  expectExact((raw) => {
+    const l10 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l10",
+    ) as R;
+    const c4 = (l10.chapters as R[])[3];
+    (c4.supportFading as R).exit = "help him";
+  }, "l10_semantic_contract_invalid:closed_chapter:de_l10_c04");
+  for (const replacement of [
+    "Der Rollwagen steht im Flur.",
+    "Der Kollege darf gehen.",
+  ])
+    expectExact((raw) => {
+      const l10 = (raw.lessons as R[]).find(
+        (lesson) => lesson.lessonId === "de_l10",
+      ) as R;
+      const c5 = (l10.chapters as R[])[4];
+      (c5.supportFading as R).entry = String(
+        (c5.supportFading as R).entry,
+      ).replace("Der Rollwagen kann durch den Ausgang fahren.", replacement);
+    }, "l10_semantic_contract_invalid:closed_chapter:de_l10_c05");
+  expectExact((raw) => {
+    const l10 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l10",
+    ) as R;
+    const c7 = (l10.chapters as R[])[6];
+    (c7.supportFading as R).entry =
+      "incoming delayed provenance: de_l10_c07_s51<-de_l09_c01; de_l10_c07_s52<-de_l09_c02; de_l10_c07_s53<-de_l09_c03; de_l10_c07_s54<-de_l09_c04; de_l10_c07_s55<-de_l09_c05+de_l09_c07; de_l10_c07_s56<-de_l09_c06";
+  }, "l10_semantic_contract_invalid:closed_chapter:de_l10_c07");
+  expectExact((raw) => {
+    const l10 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l10",
+    ) as R;
+    const c7 = (l10.chapters as R[])[6];
+    const flur = ((c7.checkpoint as R).plannedNewLexicalSenses as R[])[0];
+    flur.communicativeUse = "Wie kann der Rollwagen durch den Flur fahren?";
+  }, "l10_semantic_contract_invalid:closed_chapter:de_l10_c07");
+  expectExact((raw) => {
+    const l10 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l10",
+    ) as R;
+    const c7 = (l10.chapters as R[])[6];
+    (c7.allowedConstructIds as string[]).push(L10_W);
+    ((c7.checkpoint as R).integratedConstructIds as string[]).push(L10_W);
+  }, "l10_semantic_contract_invalid:chapter_contract");
+  expectExact((raw) => {
+    const l10 = (raw.lessons as R[]).find(
+      (lesson) => lesson.lessonId === "de_l10",
+    ) as R;
+    const c7 = (l10.chapters as R[])[6];
+    (c7.chapterEvidencePacketIds as string[]).splice(0, 1);
+  }, "l09_l10_inverse_provenance_invalid");
 
   const l2Boundary: Boundary = {
     id: "de_l02",
@@ -871,7 +2069,11 @@ function fixtures(): void {
     prohibitedConstructIds: [],
     prerequisiteLessonIds: ["de_l01"],
     crossLessonRecall: [],
-    session56Final: { sessionId: "de_l02_c07_s56" },
+    lexicalDomains: [],
+    session56Final: {
+      sessionId: "de_l02_c07_s56",
+      requiredConstructIds: [],
+    },
   };
   assert.equal(recallSourceAllowed(1, 7, 2, 1, l2Boundary), true);
   assert.equal(recallSourceAllowed(2, 1, 2, 1, l2Boundary), false);

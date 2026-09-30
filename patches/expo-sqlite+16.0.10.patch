@@ -1,0 +1,2572 @@
+diff --git a/node_modules/expo-sqlite/android/src/main/java/expo/modules/sqlite/NativeDatabase.kt b/node_modules/expo-sqlite/android/src/main/java/expo/modules/sqlite/NativeDatabase.kt
+--- a/node_modules/expo-sqlite/android/src/main/java/expo/modules/sqlite/NativeDatabase.kt
++++ b/node_modules/expo-sqlite/android/src/main/java/expo/modules/sqlite/NativeDatabase.kt
+@@ -3,11 +3,240 @@
+ package expo.modules.sqlite
+ 
+ import expo.modules.kotlin.sharedobjects.SharedRef
++import java.util.concurrent.CountDownLatch
++import java.util.concurrent.ConcurrentHashMap
++import java.util.concurrent.atomic.AtomicBoolean
+ import java.util.concurrent.atomic.AtomicInteger
++import java.util.concurrent.atomic.AtomicLong
++import java.util.concurrent.atomic.AtomicReference
+ 
+-internal class NativeDatabase(val databasePath: String, val openOptions: OpenDatabaseOptions) : SharedRef<NativeDatabaseBinding>(NativeDatabaseBinding()) {
++internal enum class AccountLeaseCommitAdmissionOutcome {
++  ADMITTED,
++  REVOKED,
++  BUSY
++}
++
++internal data class AccountLeaseCommitAdmission(
++  val outcome: AccountLeaseCommitAdmissionOutcome,
++  val drainToken: CountDownLatch? = null
++)
++
++internal enum class AccountLeaseCloseOutcome {
++  PENDING,
++  SUCCEEDED,
++  FAILED
++}
++
++internal class AccountLeaseCloseFlight {
++  val completion = CountDownLatch(1)
++
++  @Volatile
++  var outcome = AccountLeaseCloseOutcome.PENDING
++    private set
++
++  fun succeed() {
++    outcome = AccountLeaseCloseOutcome.SUCCEEDED
++    completion.countDown()
++  }
++
++  fun fail() {
++    outcome = AccountLeaseCloseOutcome.FAILED
++    completion.countDown()
++  }
++}
++
++internal data class AccountLeaseCloseClaim(
++  val flight: AccountLeaseCloseFlight,
++  val isOwner: Boolean
++)
++
++private class AccountLeaseStatementIdentity(val statement: NativeStatement) {
++  override fun equals(other: Any?): Boolean =
++    other is AccountLeaseStatementIdentity && other.statement === statement
++
++  override fun hashCode(): Int = System.identityHashCode(statement)
++}
++
++internal class NativeDatabase(
++  val databasePath: String,
++  val openOptions: OpenDatabaseOptions,
++  val leaseActivated: Boolean = false
++) : SharedRef<NativeDatabaseBinding>(NativeDatabaseBinding()) {
+   var isClosed = false
+   private val refCount = AtomicInteger(1)
++  private val leaseState = AtomicLong(0L)
++  private val leaseDrain = AtomicReference<CountDownLatch?>(null)
++  private val operationDrain = AtomicReference<CountDownLatch?>(null)
++  private val closeFlight = AtomicReference<AccountLeaseCloseFlight?>(null)
++  private val nativeRefReleasePending = AtomicBoolean(false)
++  private val nativeRefReleased = AtomicBoolean(false)
++  private val physicalCloseSucceeded = AtomicBoolean(false)
++  private val closeOwnershipReserved = AtomicBoolean(false)
++  private val closeBookkeepingCompleted = AtomicBoolean(false)
++  private val accountLeaseStatements =
++    ConcurrentHashMap<AccountLeaseStatementIdentity, NativeStatement>()
++
++  internal fun beginAccountLeaseCommit(): AccountLeaseCommitAdmission {
++    check(leaseActivated)
++    val drainToken = CountDownLatch(1)
++    if (!publishDrainToken(drainToken)) {
++      return AccountLeaseCommitAdmission(AccountLeaseCommitAdmissionOutcome.BUSY)
++    }
++    while (true) {
++      val current = leaseState.get()
++      if ((current and REVOKED) != 0L) {
++        releaseCommitDrainToken(drainToken)
++        return AccountLeaseCommitAdmission(AccountLeaseCommitAdmissionOutcome.REVOKED)
++      }
++      if ((current and COMMITTING) != 0L || accountLeaseOperationCount(current) != 0L) {
++        releaseCommitDrainToken(drainToken)
++        return AccountLeaseCommitAdmission(AccountLeaseCommitAdmissionOutcome.BUSY)
++      }
++      val next = (current or COMMITTING) + OPERATION_UNIT
++      if (leaseState.compareAndSet(current, next)) {
++        return AccountLeaseCommitAdmission(AccountLeaseCommitAdmissionOutcome.ADMITTED, drainToken)
++      }
++    }
++  }
++
++  private fun publishDrainToken(drainToken: CountDownLatch): Boolean {
++    return leaseDrain.compareAndSet(null, drainToken)
++  }
++
++  private fun releaseCommitDrainToken(drainToken: CountDownLatch) {
++    drainToken.countDown()
++    leaseDrain.compareAndSet(drainToken, null)
++  }
++
++  internal fun beginAccountLeaseOperation(): AccountLeaseCommitAdmissionOutcome {
++    check(leaseActivated)
++    while (true) {
++      val current = leaseState.get()
++      if ((current and REVOKED) != 0L) return AccountLeaseCommitAdmissionOutcome.REVOKED
++      if ((current and COMMITTING) != 0L) return AccountLeaseCommitAdmissionOutcome.BUSY
++      if (accountLeaseOperationCount(current) >= MAX_ACCOUNT_LEASE_OPERATIONS) {
++        return AccountLeaseCommitAdmissionOutcome.BUSY
++      }
++      if (leaseState.compareAndSet(current, current + OPERATION_UNIT)) {
++        return AccountLeaseCommitAdmissionOutcome.ADMITTED
++      }
++    }
++  }
++
++  internal fun finishAccountLeaseOperation() {
++    while (true) {
++      val current = leaseState.get()
++      val next = current - OPERATION_UNIT
++      if (leaseState.compareAndSet(current, next)) {
++        signalAccountLeaseOperationsDrained(next)
++        return
++      }
++    }
++  }
++
++  internal fun finishAccountLeaseCommit(drainToken: CountDownLatch) {
++    while (true) {
++      val current = leaseState.get()
++      val next = (current and COMMITTING.inv()) - OPERATION_UNIT
++      if (leaseState.compareAndSet(current, next)) {
++        signalAccountLeaseOperationsDrained(next)
++        break
++      }
++    }
++    // The owning commit calls this from finally, after its last SQLite pointer access.
++    releaseCommitDrainToken(drainToken)
++  }
++
++  internal fun revokeAccountLease() {
++    while (true) {
++      val current = leaseState.get()
++      if ((current and REVOKED) != 0L || leaseState.compareAndSet(current, current or REVOKED)) {
++        return
++      }
++    }
++  }
++
++  internal fun isAccountLeaseRevoked(): Boolean = (leaseState.get() and REVOKED) != 0L
++
++  internal fun accountLeaseOperationCount(): Long = accountLeaseOperationCount(leaseState.get())
++
++  private fun accountLeaseOperationCount(state: Long): Long = state ushr OPERATION_SHIFT
++
++  private fun signalAccountLeaseOperationsDrained(state: Long) {
++    if (accountLeaseOperationCount(state) == 0L) operationDrain.get()?.countDown()
++  }
++
++  internal fun awaitAccountLeaseOperations() {
++    val proposed = CountDownLatch(1)
++    val waiter = if (operationDrain.compareAndSet(null, proposed)) proposed else operationDrain.get()!!
++    if (accountLeaseOperationCount() == 0L) waiter.countDown()
++    waiter.await()
++  }
++
++  internal fun awaitAccountLeaseDrain() {
++    leaseDrain.get()?.await()
++  }
++
++  internal fun claimAccountLeaseClose(): AccountLeaseCloseClaim {
++    while (true) {
++      closeFlight.get()?.let { return AccountLeaseCloseClaim(it, false) }
++      val proposed = AccountLeaseCloseFlight()
++      if (closeFlight.compareAndSet(null, proposed)) {
++        return AccountLeaseCloseClaim(proposed, true)
++      }
++    }
++  }
++
++  internal fun completeAccountLeaseCloseSuccess(flight: AccountLeaseCloseFlight) {
++    physicalCloseSucceeded.set(true)
++    maybeReleaseNativeRef()
++    flight.succeed()
++  }
++
++  internal fun completeAccountLeaseCloseFailure(flight: AccountLeaseCloseFlight) {
++    flight.fail()
++    closeFlight.compareAndSet(flight, null)
++  }
++
++  private fun maybeReleaseNativeRef() {
++    if (nativeRefReleasePending.get() && physicalCloseSucceeded.get()
++      && nativeRefReleased.compareAndSet(false, true)) {
++      runCatching { ref.close() }
++    }
++  }
++
++  internal fun hasExclusiveAccountLeaseOwnership(): Boolean = refCount.get() == 1
++
++  internal fun reserveAccountLeaseCloseOwnership(): Boolean {
++    return closeOwnershipReserved.compareAndSet(false, true) || closeOwnershipReserved.get()
++  }
++
++  internal fun completeAccountLeaseCloseBookkeepingOnce(): Boolean {
++    return closeBookkeepingCompleted.compareAndSet(false, true)
++  }
++
++  internal fun registerAccountLeaseStatement(statement: NativeStatement): Boolean {
++    if (!leaseActivated || !statement.isAccountLeaseOwner(this)) return false
++    val previous = accountLeaseStatements.putIfAbsent(AccountLeaseStatementIdentity(statement), statement)
++    return previous == null || previous === statement
++  }
++
++  internal fun removeAccountLeaseStatement(statement: NativeStatement) {
++    if (statement.canDropAccountLeaseRegistryEntry()) {
++      accountLeaseStatements.remove(AccountLeaseStatementIdentity(statement), statement)
++    }
++  }
++
++  internal fun forceFinalizeAccountLeaseStatements() {
++    check(leaseActivated)
++    val statements = accountLeaseStatements.values.toList()
++    statements.forEach { statement -> statement.forceFinalizeAccountLease() }
++    ref.sqlite3_finalize_all_statement()
++    statements.forEach { statement ->
++      statement.completeAccountLeaseForcedFinalize()
++      removeAccountLeaseStatement(statement)
++    }
++  }
+ 
+   internal fun addRef(): Int {
+     return refCount.incrementAndGet()
+@@ -27,6 +256,20 @@
+ 
+   override fun sharedObjectDidRelease() {
+     super.sharedObjectDidRelease()
+-    this.ref.close()
++    if (!leaseActivated) {
++      ref.close()
++      return
++    }
++    nativeRefReleasePending.set(true)
++    revokeAccountLease()
++    maybeReleaseNativeRef()
++  }
++
++  companion object {
++    private const val COMMITTING = 1L
++    private const val REVOKED = 2L
++    private const val OPERATION_SHIFT = 2
++    private const val OPERATION_UNIT = 1L shl OPERATION_SHIFT
++    private const val MAX_ACCOUNT_LEASE_OPERATIONS = (1L shl 30) - 1L
+   }
+ }
+diff --git a/node_modules/expo-sqlite/android/src/main/java/expo/modules/sqlite/SQLiteModule.kt b/node_modules/expo-sqlite/android/src/main/java/expo/modules/sqlite/SQLiteModule.kt
+--- a/node_modules/expo-sqlite/android/src/main/java/expo/modules/sqlite/SQLiteModule.kt
++++ b/node_modules/expo-sqlite/android/src/main/java/expo/modules/sqlite/SQLiteModule.kt
+@@ -11,10 +11,57 @@
+ import expo.modules.kotlin.modules.ModuleDefinition
++import expo.modules.kotlin.sharedobjects.SharedObject
+ import kotlinx.coroutines.CoroutineScope
+ import kotlinx.coroutines.Dispatchers
++import kotlinx.coroutines.launch
++import android.system.Os
++import android.system.OsConstants
+ import java.io.File
++import java.io.FileOutputStream
+ import java.io.IOException
++import java.nio.channels.FileLock
+ 
+ private const val MEMORY_DB_NAME = ":memory:"
+ 
++private class NativeAccountProvisionLock(
++  private val databaseFile: File,
++  private val stream: FileOutputStream,
++  private val fileLock: FileLock
++) : SharedObject() {
++  private val releaseMonitor = Any()
++  @Volatile private var ownsLock = true
++
++  internal fun releaseAccountProvisionLock() {
++    synchronized(releaseMonitor) {
++      if (!ownsLock) return
++      try {
++        fileLock.release()
++      } catch (_: Throwable) {
++        if (fileLock.isValid) {
++          throw InvalidArgumentsException("account_native_provision_lock_release_failed")
++        }
++        ownsLock = false
++        runCatching { stream.close() }
++        return
++      }
++      ownsLock = false
++      runCatching { stream.close() }
++    }
++  }
++
++  private fun releaseAccountProvisionLockBestEffort() {
++    synchronized(releaseMonitor) {
++      if (!ownsLock) return
++      if (runCatching { fileLock.release() }.isFailure) return
++      ownsLock = false
++      runCatching { stream.close() }
++    }
++  }
++
++  override fun sharedObjectDidRelease() {
++    releaseAccountProvisionLockBestEffort()
++    super.sharedObjectDidRelease()
++  }
++}
++
+ @Suppress("unused")
+ class SQLiteModule : Module() {
+@@ -58,11 +105,34 @@
+     }
+ 
+     OnDestroy {
+-      try {
+-        removeAllCachedDatabases().forEach {
++      val (normalDatabases, accountLeaseDatabases) = partitionCachedDatabasesForDestroy()
++      normalDatabases.forEach {
++        try {
+           closeDatabase(it)
+-        }
+-      } catch (_: Throwable) {}
++        } catch (_: Throwable) {}
++      }
++      accountLeaseDatabases.forEach { database ->
++        database.revokeAccountLease()
++        moduleCoroutineScope.launch {
++          try {
++            closeAccountLeaseDatabase(database)
++          } catch (_: Throwable) {}
++        }
++      }
+     }
++
++    AsyncFunction("acquireAccountProvisionLockAsync") { databasePath: String ->
++      acquireAccountProvisionLock(databasePath)
++    }.runOnQueue(moduleCoroutineScope)
++
++    Class(NativeAccountProvisionLock::class) {
++      Constructor {
++        throw InvalidArgumentsException("account_native_provision_lock_constructor_forbidden")
++      }
++
++      AsyncFunction("releaseAsync") { lock: NativeAccountProvisionLock ->
++        lock.releaseAccountProvisionLock()
++      }.runOnQueue(moduleCoroutineScope)
++    }
+ 
+     AsyncFunction("deleteDatabaseAsync") { databasePath: String ->
+@@ -101,7 +171,8 @@
+     // region NativeDatabase
+ 
+     Class(NativeDatabase::class) {
+       Constructor { databasePath: String, options: OpenDatabaseOptions, serializedData: ByteArray? ->
++        val leaseActivated = validateAccountLeaseConstruction(databasePath, options, serializedData)
+         val database: NativeDatabase
+         if (serializedData != null) {
+           database = deserializeDatabase(serializedData, options)
+@@ -113,7 +184,7 @@
+           }
+ 
+           val dbPath = ensureDatabasePathExists(databasePath)
+-          database = NativeDatabase(databasePath, options)
++          database = NativeDatabase(databasePath, options, leaseActivated)
+           if (BuildConfig.USE_LIBSQL) {
+             val libSQLUrl = options.libSQLUrl ?: throw InvalidArgumentsException("libSQLUrl must be provided")
+             val libSQLAuthToken = options.libSQLAuthToken ?: throw InvalidArgumentsException("libSQLAuthToken must be provided")
+@@ -143,4 +214,6 @@
+       AsyncFunction("isInTransactionAsync") { database: NativeDatabase ->
+-        maybeThrowForClosedDatabase(database)
+-        return@AsyncFunction database.ref.sqlite3_get_autocommit() == 0
++        return@AsyncFunction withAccountLeaseOperation(database) {
++          maybeThrowForClosedDatabase(database)
++          database.ref.sqlite3_get_autocommit() == 0
++        }
+       }.runOnQueue(moduleCoroutineScope)
+@@ -147,22 +220,65 @@
+       Function("isInTransactionSync") { database: NativeDatabase ->
+-        maybeThrowForClosedDatabase(database)
+-        return@Function database.ref.sqlite3_get_autocommit() == 0
++        return@Function withAccountLeaseOperation(database) {
++          maybeThrowForClosedDatabase(database)
++          database.ref.sqlite3_get_autocommit() == 0
++        }
+       }
+ 
+       AsyncFunction("closeAsync") { database: NativeDatabase ->
++        if (database.leaseActivated && !database.isClosed) {
++          throw InvalidArgumentsException("account_native_sqlite_lease_close_required")
++        }
+         maybeThrowForClosedDatabase(database)
+         val db = removeCachedDatabase(database)
+         if (db != null) {
+           closeDatabase(db)
+         }
+       }.runOnQueue(moduleCoroutineScope)
+       Function("closeSync") { database: NativeDatabase ->
++        if (database.leaseActivated && !database.isClosed) {
++          throw InvalidArgumentsException("account_native_sqlite_lease_close_required")
++        }
+         maybeThrowForClosedDatabase(database)
+         val db = removeCachedDatabase(database)
+         if (db != null) {
+           closeDatabase(db)
+         }
+       }
++
++      Function("revokeAccountLeaseSync") { database: NativeDatabase ->
++        requireActivatedAccountLease(database)
++        database.revokeAccountLease()
++      }
++
++      AsyncFunction("commitAccountLeaseAsync") { database: NativeDatabase ->
++        requireActivatedAccountLease(database)
++        maybeThrowForClosedDatabase(database)
++        val admission = database.beginAccountLeaseCommit()
++        when (admission.outcome) {
++          AccountLeaseCommitAdmissionOutcome.REVOKED -> return@AsyncFunction "revoked"
++          AccountLeaseCommitAdmissionOutcome.BUSY -> {
++            throw InvalidArgumentsException("account_native_sqlite_commit_busy")
++          }
++          AccountLeaseCommitAdmissionOutcome.ADMITTED -> Unit
++        }
++        val drainToken = admission.drainToken
++          ?: throw InvalidArgumentsException("account_native_sqlite_commit_state_invalid")
++        try {
++          maybeThrowForClosedDatabase(database)
++          val result = database.ref.sqlite3_exec("COMMIT")
++          if (result != NativeDatabaseBinding.SQLITE_OK) {
++            throw SQLiteErrorException("account_native_sqlite_commit_failed")
++          }
++          return@AsyncFunction "committed"
++        } finally {
++          database.finishAccountLeaseCommit(drainToken)
++        }
++      }.runOnQueue(moduleCoroutineScope)
++
++      AsyncFunction("closeAccountLeaseAsync") { database: NativeDatabase ->
++        requireActivatedAccountLease(database)
++        closeAccountLeaseDatabase(database)
++      }.runOnQueue(moduleCoroutineScope)
+ 
+       AsyncFunction("execAsync") { database: NativeDatabase, source: String ->
+         exec(database, source)
+@@ -202,6 +318,7 @@
+       AsyncFunction("syncLibSQL") { database: NativeDatabase ->
++        rejectActivatedAccountLeaseApi(database)
+         maybeThrowForClosedDatabase(database)
+         if (database.ref.libsql_sync() != NativeDatabaseBinding.SQLITE_OK) {
+           throw SQLiteErrorException(database.ref.convertSqlLiteErrorToString())
+         }
+       }.runOnQueue(moduleCoroutineScope)
+@@ -247,8 +364,12 @@
+       AsyncFunction("getColumnNamesAsync") { statement: NativeStatement ->
+-        maybeThrowForFinalizedStatement(statement)
+-        return@AsyncFunction statement.ref.getColumnNames()
++        return@AsyncFunction withAccountLeaseStatementUse(statement) {
++          maybeThrowForFinalizedStatement(statement)
++          statement.ref.getColumnNames()
++        }
+       }.runOnQueue(moduleCoroutineScope)
+       Function("getColumnNamesSync") { statement: NativeStatement ->
+-        maybeThrowForFinalizedStatement(statement)
+-        return@Function statement.ref.getColumnNames()
++        return@Function withAccountLeaseStatementUse(statement) {
++          maybeThrowForFinalizedStatement(statement)
++          statement.ref.getColumnNames()
++        }
+       }
+@@ -341,6 +462,190 @@
+     }
+   }
+ 
++  private fun validateAccountProvisionLockPath(databasePath: String): File {
++    try {
++      val lexicalDefaultRoot = File(context.filesDir.canonicalFile, "SQLite").absoluteFile
++      val resolvedDefaultRoot = lexicalDefaultRoot.canonicalFile
++      val lexicalRoot = File(lexicalDefaultRoot, "accounts-v2").absoluteFile
++      val resolvedRoot = lexicalRoot.canonicalFile
++      val lexicalCandidate = File(databasePath).absoluteFile
++      val resolvedCandidate = lexicalCandidate.canonicalFile
++      val lexicalName = lexicalCandidate.name
++      val resolvedName = resolvedCandidate.name
++      val expectedLexical = File(lexicalRoot, lexicalName).absolutePath
++      val expectedResolved = File(resolvedRoot, lexicalName).canonicalFile
++      if (lexicalDefaultRoot != resolvedDefaultRoot || lexicalRoot != resolvedRoot ||
++        (lexicalRoot.exists() && !lexicalRoot.isDirectory) ||
++        lexicalCandidate.absolutePath != expectedLexical || resolvedCandidate != expectedResolved ||
++        lexicalName != resolvedName || !isCanonicalAccountDatabaseName(lexicalName)) {
++        throw InvalidArgumentsException("account_native_provision_lock_invalid_path")
++      }
++      return lexicalCandidate
++    } catch (_: IOException) {
++      throw InvalidArgumentsException("account_native_provision_lock_invalid_path")
++    }
++  }
++
++  private fun accountProvisionLockFile(lockRoot: File, databaseName: String): File {
++    val candidate = File(lockRoot, "$databaseName.provision.lock").absoluteFile
++    if (candidate.parentFile != lockRoot) {
++      throw InvalidArgumentsException("account_native_provision_lock_invalid_path")
++    }
++    return candidate
++  }
++
++  private fun acquireAccountProvisionLock(databasePath: String): NativeAccountProvisionLock {
++    val databaseFile = validateAccountProvisionLockPath(databasePath)
++    val privateLockRoot = try {
++      context.noBackupFilesDir.canonicalFile
++    } catch (_: IOException) {
++      throw InvalidArgumentsException("account_native_provision_lock_failed")
++    }
++    val requestedLockRoot = File(privateLockRoot, "account-sqlite-provision-locks").absoluteFile
++    if (!requestedLockRoot.isDirectory && !requestedLockRoot.mkdirs()) {
++      throw InvalidArgumentsException("account_native_provision_lock_failed")
++    }
++    val lockRoot = try {
++      requestedLockRoot.canonicalFile
++    } catch (_: IOException) {
++      throw InvalidArgumentsException("account_native_provision_lock_failed")
++    }
++    if (lockRoot != requestedLockRoot) {
++      throw InvalidArgumentsException("account_native_provision_lock_failed")
++    }
++    val lockFile = accountProvisionLockFile(lockRoot, databaseFile.name)
++    val flags = OsConstants.O_CREAT or OsConstants.O_RDWR or
++      OsConstants.O_CLOEXEC or OsConstants.O_NOFOLLOW
++    val fileDescriptor = try {
++      Os.open(lockFile.absolutePath, flags, 384)
++    } catch (_: Throwable) {
++      throw InvalidArgumentsException("account_native_provision_lock_failed")
++    }
++    val stream = try {
++      FileOutputStream(fileDescriptor)
++    } catch (_: Throwable) {
++      runCatching { Os.close(fileDescriptor) }
++      throw InvalidArgumentsException("account_native_provision_lock_failed")
++    }
++    try {
++      // FileChannel.lock is an OS advisory lock. The descriptor owns authority, not file presence.
++      val fileLock = stream.channel.lock()
++      if (!fileLock.isValid) {
++        throw InvalidArgumentsException("account_native_provision_lock_failed")
++      }
++      return NativeAccountProvisionLock(databaseFile, stream, fileLock)
++    } catch (_: Throwable) {
++      runCatching { stream.close() }
++      throw InvalidArgumentsException("account_native_provision_lock_failed")
++    }
++  }
++
++  private fun validateAccountLeaseConstruction(
++    databasePath: String,
++    options: OpenDatabaseOptions,
++    serializedData: ByteArray?
++  ): Boolean {
++    try {
++      val lexicalDefaultRoot = File(context.filesDir.canonicalFile, "SQLite").absoluteFile
++      val resolvedDefaultRoot = lexicalDefaultRoot.canonicalFile
++      val lexicalRoot = File(lexicalDefaultRoot, "accounts-v2").absoluteFile
++      val resolvedRoot = lexicalRoot.canonicalFile
++      val lexicalCandidate = File(databasePath).absoluteFile
++      val resolvedCandidate = lexicalCandidate.canonicalFile
++      val lexicalName = lexicalCandidate.name
++      val resolvedName = resolvedCandidate.name
++      val looksLikeAccountDatabase = lexicalName.contains(ACCOUNT_DATABASE_PREFIX) ||
++        resolvedName.contains(ACCOUNT_DATABASE_PREFIX)
++      if (!looksLikeAccountDatabase) return false
++      if (serializedData != null || !options.useNewConnection || BuildConfig.USE_LIBSQL ||
++        options.enableChangeListener || options.libSQLUrl != null ||
++        options.libSQLAuthToken != null || options.libSQLRemoteOnly) {
++        throw InvalidArgumentsException("account_native_sqlite_open_rejected")
++      }
++      val expectedLexical = File(lexicalRoot, lexicalName).absolutePath
++      val expectedResolved = File(resolvedRoot, lexicalName).canonicalFile
++      if (lexicalDefaultRoot != resolvedDefaultRoot || lexicalRoot != resolvedRoot ||
++        (lexicalRoot.exists() && !lexicalRoot.isDirectory) ||
++        lexicalCandidate.absolutePath != expectedLexical || resolvedCandidate != expectedResolved ||
++        lexicalName != resolvedName || !isCanonicalAccountDatabaseName(lexicalName)) {
++        throw InvalidArgumentsException("account_native_sqlite_open_rejected")
++      }
++      return true
++    } catch (_: IOException) {
++      throw InvalidArgumentsException("account_native_sqlite_open_rejected")
++    }
++  }
++
++  private fun isCanonicalAccountDatabaseName(name: String): Boolean {
++    if (ACCOUNT_GUEST_DATABASE_REGEX.matches(name)) return true
++    val match = ACCOUNT_DATABASE_REGEX.matchEntire(name) ?: return false
++    val lineage = match.groupValues[2].toLongOrNull() ?: return false
++    return lineage in 1..MAX_SAFE_INTEGER
++  }
++
++  private fun requireActivatedAccountLease(database: NativeDatabase) {
++    if (!database.leaseActivated || !database.openOptions.useNewConnection || BuildConfig.USE_LIBSQL) {
++      throw InvalidArgumentsException("account_native_sqlite_unsupported")
++    }
++  }
++
++  private inline fun <T> withAccountLeaseOperation(database: NativeDatabase, block: () -> T): T {
++    if (!database.leaseActivated) return block()
++    when (database.beginAccountLeaseOperation()) {
++      AccountLeaseCommitAdmissionOutcome.REVOKED ->
++        throw InvalidArgumentsException("account_native_sqlite_revoked")
++      AccountLeaseCommitAdmissionOutcome.BUSY ->
++        throw InvalidArgumentsException("account_native_sqlite_operation_busy")
++      AccountLeaseCommitAdmissionOutcome.ADMITTED -> Unit
++    }
++    try {
++      return block()
++    } finally {
++      database.finishAccountLeaseOperation()
++    }
++  }
++
++  private inline fun <T> withAccountLeaseStatementUse(
++    statement: NativeStatement,
++    database: NativeDatabase,
++    block: () -> T
++  ): T {
++    if (!database.leaseActivated) {
++      if (statement.accountLeaseOwnerOrNull() != null) {
++        throw InvalidArgumentsException("account_native_sqlite_statement_owner_invalid")
++      }
++      return block()
++    }
++    return withAccountLeaseOperation(database) {
++      when (statement.beginAccountLeaseUse(database)) {
++        AccountLeaseStatementAdmissionOutcome.REJECTED ->
++          throw InvalidArgumentsException("account_native_sqlite_statement_owner_invalid")
++        AccountLeaseStatementAdmissionOutcome.BUSY ->
++          throw InvalidArgumentsException("account_native_sqlite_statement_busy")
++        AccountLeaseStatementAdmissionOutcome.ADMITTED -> Unit
++      }
++      try {
++        block()
++      } finally {
++        statement.finishAccountLeaseUse()
++      }
++    }
++  }
++
++  private inline fun <T> withAccountLeaseStatementUse(
++    statement: NativeStatement,
++    block: () -> T
++  ): T {
++    val owner = statement.accountLeaseOwnerOrNull() ?: return block()
++    return withAccountLeaseStatementUse(statement, owner, block)
++  }
++
++  private fun rejectActivatedAccountLeaseApi(vararg databases: NativeDatabase) {
++    if (databases.any { it.leaseActivated }) {
++      throw InvalidArgumentsException("account_native_sqlite_api_unsupported")
++    }
++  }
++
+   private fun deserializeDatabase(serializedData: ByteArray, options: OpenDatabaseOptions): NativeDatabase {
+     val database = NativeDatabase(MEMORY_DB_NAME, options)
+     if (database.ref.sqlite3_open(MEMORY_DB_NAME) != NativeDatabaseBinding.SQLITE_OK) {
+@@ -355,29 +660,85 @@
+   @Throws(AccessClosedResourceException::class)
++  private fun initDb(database: NativeDatabase) = withAccountLeaseOperation(database) {
++    initDbUngated(database)
++  }
++
+-  private fun initDb(database: NativeDatabase) {
++  private fun initDbUngated(database: NativeDatabase) {
+     maybeThrowForClosedDatabase(database)
+     if (database.openOptions.enableChangeListener) {
+       addUpdateHook(database)
+     }
+   }
+ 
+   @Throws(AccessClosedResourceException::class, SQLiteErrorException::class)
+-  private fun exec(database: NativeDatabase, source: String) {
++  private fun exec(database: NativeDatabase, source: String) = withAccountLeaseOperation(database) {
++    execUngated(database, source)
++  }
++
++  private fun execUngated(database: NativeDatabase, source: String) {
+     maybeThrowForClosedDatabase(database)
+     database.ref.sqlite3_exec(source)
+   }
+ 
+   @Throws(AccessClosedResourceException::class, SQLiteErrorException::class)
+   private fun serialize(database: NativeDatabase, databaseName: String): ByteArray {
++    rejectActivatedAccountLeaseApi(database)
+     maybeThrowForClosedDatabase(database)
+     return database.ref.sqlite3_serialize(databaseName)
+   }
+ 
+   @Throws(AccessClosedResourceException::class, SQLiteErrorException::class)
+-  private fun prepareStatement(database: NativeDatabase, statement: NativeStatement, source: String) {
+-    maybeThrowForClosedDatabase(database)
+-    maybeThrowForFinalizedStatement(statement)
+-    if (database.ref.sqlite3_prepare_v2(source, statement.ref) != NativeDatabaseBinding.SQLITE_OK) {
+-      throw SQLiteErrorException(database.ref.convertSqlLiteErrorToString())
+-    }
+-  }
++  private fun prepareStatement(database: NativeDatabase, statement: NativeStatement, source: String) =
++    withAccountLeaseOperation(database) {
++      prepareStatementUngated(database, statement, source)
++    }
++
++  private fun prepareStatementUngated(database: NativeDatabase, statement: NativeStatement, source: String) {
++    if (!database.leaseActivated) {
++      if (!statement.reserveOrdinaryStatementProvenance()) {
++        throw InvalidArgumentsException("account_native_sqlite_statement_owner_invalid")
++      }
++      if (!statement.beginAccountLeasePrepare(null)) {
++        statement.markAccountLeasePrepareFailed()
++        throw InvalidArgumentsException("account_native_sqlite_statement_owner_invalid")
++      }
++      try {
++        if (statement.accountLeaseOwnerOrNull() != null) {
++          throw InvalidArgumentsException("account_native_sqlite_statement_owner_invalid")
++        }
++        maybeThrowForClosedDatabase(database)
++        maybeThrowForFinalizedStatement(statement)
++        if (database.ref.sqlite3_prepare_v2(source, statement.ref) != NativeDatabaseBinding.SQLITE_OK) {
++          throw SQLiteErrorException(database.ref.convertSqlLiteErrorToString())
++        }
++        statement.markAccountLeasePrepared()
++      } catch (error: Throwable) {
++        statement.markAccountLeasePrepareFailed()
++        throw error
++      } finally {
++        statement.finishAccountLeaseUse()
++      }
++      return
++    }
++    if (!statement.reserveAccountLeaseOwner(database)) {
++      throw InvalidArgumentsException("account_native_sqlite_statement_owner_invalid")
++    }
++    if (!database.registerAccountLeaseStatement(statement) ||
++      !statement.beginAccountLeasePrepare(database)) {
++      statement.markAccountLeasePrepareFailed()
++      throw InvalidArgumentsException("account_native_sqlite_statement_owner_invalid")
++    }
++    try {
++      maybeThrowForClosedDatabase(database)
++      maybeThrowForFinalizedStatement(statement)
++      if (database.ref.sqlite3_prepare_v2(source, statement.ref) != NativeDatabaseBinding.SQLITE_OK) {
++        throw SQLiteErrorException(database.ref.convertSqlLiteErrorToString())
++      }
++      statement.markAccountLeasePrepared()
++    } catch (error: Throwable) {
++      statement.markAccountLeasePrepareFailed()
++      throw error
++    } finally {
++      statement.finishAccountLeaseUse()
++    }
++  }
+ 
+@@ -384,4 +745,9 @@
+   @Throws(AccessClosedResourceException::class, SQLiteErrorException::class)
+-  private fun run(statement: NativeStatement, database: NativeDatabase, bindParams: Map<String, Any?>, bindBlobParams: Map<String, ByteArray>, shouldPassAsArray: Boolean): Map<String, Any> {
++  private fun run(statement: NativeStatement, database: NativeDatabase, bindParams: Map<String, Any?>, bindBlobParams: Map<String, ByteArray>, shouldPassAsArray: Boolean): Map<String, Any> =
++    withAccountLeaseStatementUse(statement, database) {
++      runUngated(statement, database, bindParams, bindBlobParams, shouldPassAsArray)
++    }
++
++  private fun runUngated(statement: NativeStatement, database: NativeDatabase, bindParams: Map<String, Any?>, bindBlobParams: Map<String, ByteArray>, shouldPassAsArray: Boolean): Map<String, Any> {
+     maybeThrowForClosedDatabase(database)
+     maybeThrowForFinalizedStatement(statement)
+@@ -433,5 +799,10 @@
+   @Throws(AccessClosedResourceException::class, InvalidConvertibleException::class, SQLiteErrorException::class)
+-  private fun step(statement: NativeStatement, database: NativeDatabase): SQLiteColumnValues? {
++  private fun step(statement: NativeStatement, database: NativeDatabase): SQLiteColumnValues? =
++    withAccountLeaseStatementUse(statement, database) {
++      stepUngated(statement, database)
++    }
++
++  private fun stepUngated(statement: NativeStatement, database: NativeDatabase): SQLiteColumnValues? {
+     maybeThrowForClosedDatabase(database)
+     maybeThrowForFinalizedStatement(statement)
+     val ret = statement.ref.sqlite3_step()
+@@ -447,4 +818,9 @@
+   @Throws(AccessClosedResourceException::class, InvalidConvertibleException::class, SQLiteErrorException::class)
+-  private fun getAll(statement: NativeStatement, database: NativeDatabase): List<SQLiteColumnValues> {
++  private fun getAll(statement: NativeStatement, database: NativeDatabase): List<SQLiteColumnValues> =
++    withAccountLeaseStatementUse(statement, database) {
++      getAllUngated(statement, database)
++    }
++
++  private fun getAllUngated(statement: NativeStatement, database: NativeDatabase): List<SQLiteColumnValues> {
+     maybeThrowForClosedDatabase(database)
+     maybeThrowForFinalizedStatement(statement)
+@@ -465,4 +841,9 @@
+   @Throws(AccessClosedResourceException::class, SQLiteErrorException::class)
+-  private fun reset(statement: NativeStatement, database: NativeDatabase) {
++  private fun reset(statement: NativeStatement, database: NativeDatabase) =
++    withAccountLeaseStatementUse(statement, database) {
++      resetUngated(statement, database)
++    }
++
++  private fun resetUngated(statement: NativeStatement, database: NativeDatabase) {
+     maybeThrowForClosedDatabase(database)
+     maybeThrowForFinalizedStatement(statement)
+@@ -474,4 +855,9 @@
+   @Throws(AccessClosedResourceException::class, SQLiteErrorException::class)
+-  private fun finalize(statement: NativeStatement, database: NativeDatabase) {
++  private fun finalize(statement: NativeStatement, database: NativeDatabase) =
++    withAccountLeaseStatementUse(statement, database) {
++      finalizeUngated(statement, database)
++    }
++
++  private fun finalizeUngated(statement: NativeStatement, database: NativeDatabase) {
+     maybeThrowForClosedDatabase(database)
+     maybeThrowForFinalizedStatement(statement)
+@@ -478,5 +864,6 @@
+-    if (statement.ref.sqlite3_finalize() != NativeDatabaseBinding.SQLITE_OK) {
++    val result = statement.ref.sqlite3_finalize()
++    statement.markAccountLeaseFinalized()
++    if (result != NativeDatabaseBinding.SQLITE_OK) {
+       throw SQLiteErrorException(database.ref.convertSqlLiteErrorToString())
+     }
+-    statement.isFinalized = true
+   }
+@@ -503,10 +890,11 @@
+   @Throws(AccessClosedResourceException::class, SQLiteErrorException::class)
+   private fun loadExtension(database: NativeDatabase, libPath: String, entryPoint: String?) {
++    rejectActivatedAccountLeaseApi(database)
+     maybeThrowForClosedDatabase(database)
+     database.ref.sqlite3_enable_load_extension(1)
+     val ret = database.ref.sqlite3_load_extension(libPath, entryPoint ?: "")
+     if (ret != NativeDatabaseBinding.SQLITE_OK) {
+       throw SQLiteErrorException(database.ref.convertSqlLiteErrorToString())
+     }
+   }
+ 
+@@ -513,6 +901,10 @@
+   @Throws(AccessClosedResourceException::class, SQLiteErrorException::class)
+   private fun closeDatabase(database: NativeDatabase) {
+-    maybeFinalizeAllStatements(database)
++    if (database.leaseActivated) {
++      database.forceFinalizeAccountLeaseStatements()
++    } else {
++      maybeFinalizeAllStatements(database)
++    }
+     val ret = database.ref.sqlite3_close()
+     if (ret != NativeDatabaseBinding.SQLITE_OK) {
+       throw SQLiteErrorException(database.ref.convertSqlLiteErrorToString())
+@@ -520,6 +912,47 @@
+     database.isClosed = true
+   }
+ 
++  private fun closeAccountLeaseDatabase(database: NativeDatabase) {
++    if (!database.isAccountLeaseRevoked()) {
++      throw InvalidArgumentsException("account_native_sqlite_revoke_required")
++    }
++    val claim = database.claimAccountLeaseClose()
++    if (!claim.isOwner) {
++      claim.flight.completion.await()
++      if (claim.flight.outcome != AccountLeaseCloseOutcome.SUCCEEDED) {
++        throw SQLiteErrorException("account_native_sqlite_close_failed")
++      }
++      return
++    }
++    try {
++      database.awaitAccountLeaseOperations()
++      database.awaitAccountLeaseDrain()
++      maybeThrowForClosedDatabase(database)
++      reserveAccountLeaseCloseOwnership(database)
++      closeDatabase(database)
++      completeClosedAccountLeaseDatabase(database)
++      database.completeAccountLeaseCloseSuccess(claim.flight)
++    } catch (error: Throwable) {
++      database.completeAccountLeaseCloseFailure(claim.flight)
++      throw error
++    }
++  }
++
++  @Synchronized
++  private fun reserveAccountLeaseCloseOwnership(database: NativeDatabase) {
++    if (cachedDatabases.indexOf(database) < 0 || !database.hasExclusiveAccountLeaseOwnership() ||
++      !database.reserveAccountLeaseCloseOwnership()) {
++      throw SQLiteErrorException("account_native_sqlite_close_ownership_invalid")
++    }
++  }
++
++  @Synchronized
++  private fun completeClosedAccountLeaseDatabase(database: NativeDatabase) {
++    if (!database.completeAccountLeaseCloseBookkeepingOnce()) return
++    cachedDatabases.remove(database)
++    runCatching { database.release() }
++  }
++
+   private fun deleteDatabase(databasePath: String) {
+     findCachedDatabase { it.databasePath == databasePath }?.let {
+       throw DeleteDatabaseException(databasePath)
+@@ -540,6 +973,7 @@
+   @Throws(AccessClosedResourceException::class, SQLiteErrorException::class)
+   private fun backupDatabase(destDatabase: NativeDatabase, destDatabaseName: String, sourceDatabase: NativeDatabase, sourceDatabaseName: String) {
++    rejectActivatedAccountLeaseApi(destDatabase, sourceDatabase)
+     maybeThrowForClosedDatabase(destDatabase)
+     maybeThrowForClosedDatabase(sourceDatabase)
+     NativeDatabaseBinding.sqlite3_backup(destDatabase.ref, destDatabaseName, sourceDatabase.ref, sourceDatabaseName)
+   }
+@@ -591,13 +1025,14 @@
+     return cachedDatabases.find(predicate)
+   }
+ 
+-  @Synchronized
+-  private fun removeAllCachedDatabases(): List<NativeDatabase> {
+-    val databases = cachedDatabases
+-    cachedDatabases.clear()
+-    return databases
++  @Synchronized
++  private fun partitionCachedDatabasesForDestroy(): Pair<List<NativeDatabase>, List<NativeDatabase>> {
++    val normalDatabases = cachedDatabases.filterNot { it.leaseActivated }
++    val accountLeaseDatabases = cachedDatabases.filter { it.leaseActivated }
++    cachedDatabases.removeAll(normalDatabases.toSet())
++    return normalDatabases to accountLeaseDatabases
+   }
+ 
+   // endregion
+ 
+   // region statements managements
+@@ -617,3 +1052,4 @@
+   @Throws(AccessClosedResourceException::class, SQLiteErrorException::class)
+   private fun sessionCreate(database: NativeDatabase, session: NativeSession, dbName: String) {
++    rejectActivatedAccountLeaseApi(database)
+     maybeThrowForClosedDatabase(database)
+@@ -625,3 +1061,4 @@
+   @Throws(AccessClosedResourceException::class, SQLiteErrorException::class)
+   private fun sessionAttach(database: NativeDatabase, session: NativeSession, table: String?) {
++    rejectActivatedAccountLeaseApi(database)
+     maybeThrowForClosedDatabase(database)
+@@ -633,3 +1070,4 @@
+   @Throws(AccessClosedResourceException::class)
+   private fun sessionEnable(database: NativeDatabase, session: NativeSession, enabled: Boolean) {
++    rejectActivatedAccountLeaseApi(database)
+     maybeThrowForClosedDatabase(database)
+@@ -639,3 +1077,4 @@
+   @Throws(AccessClosedResourceException::class)
+   private fun sessionClose(database: NativeDatabase, session: NativeSession) {
++    rejectActivatedAccountLeaseApi(database)
+     maybeThrowForClosedDatabase(database)
+@@ -645,3 +1084,4 @@
+   @Throws(AccessClosedResourceException::class, SQLiteErrorException::class)
+   private fun sessionCreateChangeset(database: NativeDatabase, session: NativeSession): ByteArray {
++    rejectActivatedAccountLeaseApi(database)
+     maybeThrowForClosedDatabase(database)
+@@ -652,3 +1092,4 @@
+   @Throws(AccessClosedResourceException::class, SQLiteErrorException::class)
+   private fun sessionCreateInvertedChangeset(database: NativeDatabase, session: NativeSession): ByteArray {
++    rejectActivatedAccountLeaseApi(database)
+     maybeThrowForClosedDatabase(database)
+@@ -659,3 +1100,4 @@
+   @Throws(AccessClosedResourceException::class, SQLiteErrorException::class)
+   private fun sessionApplyChangeset(database: NativeDatabase, session: NativeSession, changeset: ByteArray) {
++    rejectActivatedAccountLeaseApi(database)
+     maybeThrowForClosedDatabase(database)
+@@ -667,13 +1109,20 @@
+   @Throws(AccessClosedResourceException::class, SQLiteErrorException::class)
+   private fun sessionInvertChangeset(database: NativeDatabase, session: NativeSession, changeset: ByteArray): ByteArray {
++    rejectActivatedAccountLeaseApi(database)
+     maybeThrowForClosedDatabase(database)
+     return session.ref.sqlite3changeset_invert(changeset)
+       ?: throw SQLiteErrorException(database.ref.convertSqlLiteErrorToString())
+   }
+ 
+   // endregion
+ 
+   companion object {
++    private const val ACCOUNT_DATABASE_PREFIX = "accounts-v2-"
++    private const val MAX_SAFE_INTEGER = 9007199254740991L
++    private val ACCOUNT_DATABASE_REGEX =
++      Regex("^accounts-v2-a-([0-9a-f]{64})-([1-9][0-9]*)\\.db$")
++    private val ACCOUNT_GUEST_DATABASE_REGEX =
++      Regex("^accounts-v2-g-[0-9a-f]{64}\\.db$")
+     private val TAG = SQLiteModule::class.java.simpleName
+   }
+ }
+diff --git a/node_modules/expo-sqlite/android/src/main/java/expo/modules/sqlite/NativeStatement.kt b/node_modules/expo-sqlite/android/src/main/java/expo/modules/sqlite/NativeStatement.kt
+--- a/node_modules/expo-sqlite/android/src/main/java/expo/modules/sqlite/NativeStatement.kt
++++ b/node_modules/expo-sqlite/android/src/main/java/expo/modules/sqlite/NativeStatement.kt
+@@ -3,20 +3,218 @@
+ package expo.modules.sqlite
+ 
+-import expo.modules.kotlin.sharedobjects.SharedRef
++import expo.modules.kotlin.sharedobjects.SharedRef
++import java.util.concurrent.CountDownLatch
++import java.util.concurrent.atomic.AtomicBoolean
++import java.util.concurrent.atomic.AtomicLong
++import java.util.concurrent.atomic.AtomicReference
+ 
+-internal class NativeStatement : SharedRef<NativeStatementBinding>(NativeStatementBinding()) {
+-  var isFinalized = false
++internal enum class AccountLeaseStatementAdmissionOutcome {
++  ADMITTED,
++  REJECTED,
++  BUSY
++}
++
++private enum class AccountLeaseStatementPreparePhase {
++  UNCLAIMED,
++  RESERVED,
++  PREPARING,
++  PREPARED,
++  TERMINAL
++}
++
++internal class NativeStatement : SharedRef<NativeStatementBinding>(NativeStatementBinding()) {
++  @Volatile
++  var isFinalized = false
++  private val accountLeaseOwner = AtomicReference<NativeDatabase?>(null)
++  private val accountLeaseState = AtomicLong(0L)
++  private val accountLeaseDrain = AtomicReference<CountDownLatch?>(null)
++  private val accountLeaseRefReleaseClaimed = AtomicBoolean(false)
++  private val accountLeaseOwnershipLock = Any()
++  @Volatile
++  private var accountLeasePreparePhase = AccountLeaseStatementPreparePhase.UNCLAIMED
++  @Volatile
++  private var accountLeaseReleasePending = false
++
++  internal fun reserveAccountLeaseOwner(database: NativeDatabase): Boolean {
++    if (!database.leaseActivated) return false
++    return synchronized(accountLeaseOwnershipLock) {
++      if (accountLeaseReleasePending ||
++        accountLeasePreparePhase != AccountLeaseStatementPreparePhase.UNCLAIMED ||
++        accountLeaseOwner.get() != null) {
++        false
++      } else {
++        accountLeaseOwner.set(database)
++        accountLeasePreparePhase = AccountLeaseStatementPreparePhase.RESERVED
++        true
++      }
++    }
++  }
++
++  internal fun reserveOrdinaryStatementProvenance(): Boolean = synchronized(accountLeaseOwnershipLock) {
++    if (accountLeaseReleasePending ||
++      accountLeasePreparePhase != AccountLeaseStatementPreparePhase.UNCLAIMED ||
++      accountLeaseOwner.get() != null) {
++      false
++    } else {
++      accountLeasePreparePhase = AccountLeaseStatementPreparePhase.RESERVED
++      true
++    }
++  }
++
++  internal fun beginAccountLeasePrepare(database: NativeDatabase?): Boolean =
++    synchronized(accountLeaseOwnershipLock) {
++      if (accountLeaseReleasePending ||
++        accountLeasePreparePhase != AccountLeaseStatementPreparePhase.RESERVED ||
++        accountLeaseOwner.get() !== database ||
++        !incrementAccountLeaseUse()) {
++        false
++      } else {
++        accountLeasePreparePhase = AccountLeaseStatementPreparePhase.PREPARING
++        true
++      }
++    }
++
++  internal fun markAccountLeasePrepared() = synchronized(accountLeaseOwnershipLock) {
++    check(accountLeasePreparePhase == AccountLeaseStatementPreparePhase.PREPARING)
++    accountLeasePreparePhase = AccountLeaseStatementPreparePhase.PREPARED
++  }
++
++  internal fun accountLeaseOwnerOrNull(): NativeDatabase? = accountLeaseOwner.get()
++
++  internal fun isAccountLeaseOwner(database: NativeDatabase): Boolean =
++    accountLeaseOwner.get() === database
++
++  internal fun beginAccountLeaseUse(database: NativeDatabase): AccountLeaseStatementAdmissionOutcome {
++    if (accountLeaseOwner.get() !== database) return AccountLeaseStatementAdmissionOutcome.REJECTED
++    if (accountLeasePreparePhase != AccountLeaseStatementPreparePhase.PREPARED) {
++      return AccountLeaseStatementAdmissionOutcome.REJECTED
++    }
++    while (true) {
++      val current = accountLeaseState.get()
++      if ((current and TERMINAL_FLAGS) != 0L) return AccountLeaseStatementAdmissionOutcome.REJECTED
++      if (accountLeaseUseCount(current) >= MAX_ACCOUNT_LEASE_STATEMENT_USES) {
++        return AccountLeaseStatementAdmissionOutcome.BUSY
++      }
++      if (accountLeaseState.compareAndSet(current, current + USE_UNIT)) {
++        return AccountLeaseStatementAdmissionOutcome.ADMITTED
++      }
++    }
++  }
++
++  internal fun finishAccountLeaseUse() {
++    while (true) {
++      val current = accountLeaseState.get()
++      check(accountLeaseUseCount(current) > 0L)
++      val next = current - USE_UNIT
++      if (accountLeaseState.compareAndSet(current, next)) {
++        if (accountLeaseUseCount(next) == 0L) accountLeaseDrain.get()?.countDown()
++        break
++      }
++    }
++    maybeReleaseAccountLeaseRef()
++  }
++
++  internal fun markAccountLeasePrepareFailed() {
++    isFinalized = true
++    synchronized(accountLeaseOwnershipLock) {
++      accountLeasePreparePhase = AccountLeaseStatementPreparePhase.TERMINAL
++    }
++    addAccountLeaseFlags(PREPARE_FAILED or FINALIZED or RELEASE_PENDING)
++    maybeReleaseAccountLeaseRef()
++  }
++
++  internal fun markAccountLeaseFinalized() {
++    isFinalized = true
++    synchronized(accountLeaseOwnershipLock) {
++      accountLeasePreparePhase = AccountLeaseStatementPreparePhase.TERMINAL
++    }
++    addAccountLeaseFlags(FINALIZED)
++    maybeReleaseAccountLeaseRef()
++  }
++
++  internal fun forceFinalizeAccountLease() {
++    isFinalized = true
++    synchronized(accountLeaseOwnershipLock) {
++      accountLeasePreparePhase = AccountLeaseStatementPreparePhase.TERMINAL
++    }
++    addAccountLeaseFlags(CLOSING)
++    awaitAccountLeaseUses()
++  }
++
++  internal fun completeAccountLeaseForcedFinalize() {
++    addAccountLeaseFlags(FINALIZED or RELEASE_PENDING)
++    maybeReleaseAccountLeaseRef()
++  }
++
++  internal fun canDropAccountLeaseRegistryEntry(): Boolean = accountLeaseRefReleaseClaimed.get()
++
++  private fun markAccountLeaseReleasePending() =
++    synchronized(accountLeaseOwnershipLock) {
++      accountLeaseReleasePending = true
++      addAccountLeaseFlags(RELEASE_PENDING)
++    }
++
++  private fun addAccountLeaseFlags(flags: Long) {
++    while (true) {
++      val current = accountLeaseState.get()
++      if ((current and flags) == flags || accountLeaseState.compareAndSet(current, current or flags)) return
++    }
++  }
++
++  private fun accountLeaseUseCount(state: Long): Long = state ushr USE_SHIFT
++
++  private fun incrementAccountLeaseUse(): Boolean {
++    while (true) {
++      val current = accountLeaseState.get()
++      if ((current and TERMINAL_FLAGS) != 0L ||
++        accountLeaseUseCount(current) >= MAX_ACCOUNT_LEASE_STATEMENT_USES) return false
++      if (accountLeaseState.compareAndSet(current, current + USE_UNIT)) return true
++    }
++  }
++
++  private fun awaitAccountLeaseUses() {
++    if (accountLeaseUseCount(accountLeaseState.get()) == 0L) return
++    val proposed = CountDownLatch(1)
++    val waiter = if (accountLeaseDrain.compareAndSet(null, proposed)) proposed else accountLeaseDrain.get()!!
++    if (accountLeaseUseCount(accountLeaseState.get()) == 0L) waiter.countDown()
++    waiter.await()
++  }
++
++  private fun maybeReleaseAccountLeaseRef() {
++    val state = accountLeaseState.get()
++    if ((state and RELEASE_PENDING) == 0L || accountLeaseUseCount(state) != 0L ||
++      (accountLeaseOwner.get() != null && (state and (FINALIZED or PREPARE_FAILED)) == 0L) ||
++      !accountLeaseRefReleaseClaimed.compareAndSet(false, true)) return
++    runCatching { ref.close() }
++    accountLeaseOwner.get()?.removeAccountLeaseStatement(this)
++  }
+ 
+   override fun sharedObjectDidRelease() {
+     super.sharedObjectDidRelease()
+-    this.ref.close()
++    markAccountLeaseReleasePending()
++    if (accountLeaseOwnerOrNull() == null) {
++      maybeReleaseAccountLeaseRef()
++      return
++    }
++    maybeReleaseAccountLeaseRef()
+   }
+ 
+   override fun equals(other: Any?): Boolean {
+     return other is NativeStatement && this.ref == other.ref
+   }
+ 
+   override fun hashCode(): Int {
+     return ref.hashCode()
+   }
++
++  companion object {
++    private const val RELEASE_PENDING = 1L
++    private const val FINALIZED = 2L
++    private const val PREPARE_FAILED = 4L
++    private const val CLOSING = 8L
++    private const val TERMINAL_FLAGS = RELEASE_PENDING or FINALIZED or PREPARE_FAILED or CLOSING
++    private const val USE_SHIFT = 4
++    private const val USE_UNIT = 1L shl USE_SHIFT
++    private const val MAX_ACCOUNT_LEASE_STATEMENT_USES = 1L
++  }
+ }
+diff --git a/node_modules/expo-sqlite/ios/NativeDatabase.swift b/node_modules/expo-sqlite/ios/NativeDatabase.swift
+--- a/node_modules/expo-sqlite/ios/NativeDatabase.swift
++++ b/node_modules/expo-sqlite/ios/NativeDatabase.swift
+@@ -3,17 +3,90 @@
+ import ExpoModulesCore
+ 
++final class AccountLeaseCloseFlight {
++  let completion = DispatchGroup()
++  var succeeded = false
++
++  init() {
++    completion.enter()
++  }
++}
++
+ final class NativeDatabase: SharedObject, Equatable, Hashable {
+   var pointer: OpaquePointer?
+   let databasePath: String
+   let openOptions: OpenDatabaseOptions
++  let leaseActivated: Bool
++  let accountLease = AccountSQLiteLeaseAtomic()
+   var isClosed = false
+   var extraPointer: OpaquePointer?
+   private var refCount = AtomicInteger(1)
++  private let closeStateQueue = DispatchQueue(label: "expo.modules.sqlite.accountLeaseCloseState")
++  private var closeFlight: AccountLeaseCloseFlight?
++  private var closeOwnershipReserved = false
++  private var closeBookkeepingCompleted = false
+ 
+-  init(_ pointer: OpaquePointer?, databasePath: String, openOptions: OpenDatabaseOptions) {
++  init(
++    _ pointer: OpaquePointer?,
++    databasePath: String,
++    openOptions: OpenDatabaseOptions,
++    leaseActivated: Bool = false
++  ) {
+     self.pointer = pointer
+     self.databasePath = databasePath
+     self.openOptions = openOptions
++    self.leaseActivated = leaseActivated
++  }
++
++  func hasExclusiveAccountLeaseOwnership() -> Bool {
++    return refCount.get() == 1
++  }
++
++  func reserveAccountLeaseCloseOwnership() -> Bool {
++    return closeStateQueue.sync {
++      if closeOwnershipReserved { return true }
++      closeOwnershipReserved = true
++      return true
++    }
++  }
++
++  func completeAccountLeaseCloseBookkeepingOnce() -> Bool {
++    return closeStateQueue.sync {
++      if closeBookkeepingCompleted { return false }
++      closeBookkeepingCompleted = true
++      return true
++    }
++  }
++
++  func claimAccountLeaseClose() -> (flight: AccountLeaseCloseFlight, isOwner: Bool) {
++    return closeStateQueue.sync {
++      if let closeFlight {
++        return (closeFlight, false)
++      }
++      let proposed = AccountLeaseCloseFlight()
++      closeFlight = proposed
++      return (proposed, true)
++    }
++  }
++
++  func completeAccountLeaseCloseSuccess(_ flight: AccountLeaseCloseFlight) {
++    closeStateQueue.sync {
++      guard closeFlight === flight else {
++        return
++      }
++      flight.succeeded = true
++      flight.completion.leave()
++    }
++  }
++
++  func completeAccountLeaseCloseFailure(_ flight: AccountLeaseCloseFlight) {
++    closeStateQueue.sync {
++      guard closeFlight === flight else {
++        return
++      }
++      flight.succeeded = false
++      flight.completion.leave()
++      closeFlight = nil
++    }
+   }
+ 
+   @discardableResult
+diff --git a/node_modules/expo-sqlite/ios/SQLiteModule.swift b/node_modules/expo-sqlite/ios/SQLiteModule.swift
+--- a/node_modules/expo-sqlite/ios/SQLiteModule.swift
++++ b/node_modules/expo-sqlite/ios/SQLiteModule.swift
+@@ -3,3 +3,4 @@
++import Darwin
+ import ExpoModulesCore
+ 
+ private typealias SQLiteColumnNames = [String]
+@@ -10,11 +11,212 @@
+ private let moduleQueue = DispatchQueue(label: "expo.module.sqlite.AsyncQueue", qos: .userInitiated, attributes: .concurrent)
+ 
++private enum AccountLeaseStatementPhase {
++  case reserved
++  case preparing
++  case prepared
++  case terminal
++}
++
++private final class AccountLeaseStatementRecord {
++  let statementIdentity: ObjectIdentifier
++  let ownerIdentity: ObjectIdentifier?
++  let leaseOwned: Bool
++  weak var statement: NativeStatement?
++  weak var owner: NativeDatabase?
++  var retainedStatement: NativeStatement?
++  var activeUses = 0
++  var phase = AccountLeaseStatementPhase.reserved
++  var finalized = false
++  var prepareFailed = false
++
++  init(statement: NativeStatement, owner: NativeDatabase?) {
++    self.statementIdentity = ObjectIdentifier(statement)
++    self.ownerIdentity = owner.map { ObjectIdentifier($0) }
++    self.leaseOwned = owner != nil
++    self.statement = statement
++    self.owner = owner
++    self.retainedStatement = owner == nil ? nil : statement
++  }
++}
++
++private final class NativeAccountProvisionLock: SharedObject {
++  private let stateQueue = DispatchQueue(label: "expo.module.sqlite.AccountProvisionLock")
++  private let databaseURL: URL
++  private var fileDescriptor: Int32
++  private var ownsLock = true
++
++  init(fileDescriptor: Int32, databaseURL: URL) {
++    self.fileDescriptor = fileDescriptor
++    self.databaseURL = databaseURL.standardizedFileURL
++  }
++
++  func protectAccountDatabaseFamily() throws {
++    try stateQueue.sync {
++      guard ownsLock else {
++        throw InvalidArgumentsException("account_native_provision_lock_not_owned")
++      }
++      do {
++        let lexicalRoot = databaseURL.deletingLastPathComponent().standardizedFileURL
++        try FileManager.default.createDirectory(
++          at: lexicalRoot,
++          withIntermediateDirectories: true
++        )
++        let resolvedRoot = lexicalRoot.resolvingSymlinksInPath()
++        let sharedParent = lexicalRoot.deletingLastPathComponent().standardizedFileURL
++        guard lexicalRoot == resolvedRoot,
++          lexicalRoot.lastPathComponent == "accounts-v2",
++          sharedParent.lastPathComponent == "SQLite" else {
++          throw InvalidArgumentsException("account_native_provision_family_protection_failed")
++        }
++        let lstatPath: (String, UnsafeMutablePointer<stat>) -> Int32 = {
++          Darwin.lstat($0, $1)
++        }
++        let symlinkMode = S_IFLNK
++        var rootStat = stat()
++        guard lstatPath(lexicalRoot.path, &rootStat) == 0,
++          (rootStat.st_mode & S_IFMT) != symlinkMode,
++          (rootStat.st_mode & S_IFMT) == S_IFDIR else {
++          throw InvalidArgumentsException("account_native_provision_family_protection_failed")
++        }
++
++        let databaseName = databaseURL.lastPathComponent
++        let accountPattern = "^accounts-v2-a-[0-9a-f]{64}-[1-9][0-9]*\\.db$"
++        let guestPattern = "^accounts-v2-g-[0-9a-f]{64}\\.db$"
++        let isGuest = databaseName.range(of: guestPattern, options: .regularExpression) != nil
++        var isAccount = false
++        if databaseName.range(of: accountPattern, options: .regularExpression) != nil {
++          let withoutExtension = databaseName.dropLast(3)
++          if let separator = withoutExtension.lastIndex(of: "-"),
++            let lineage = UInt64(withoutExtension[withoutExtension.index(after: separator)...]),
++            lineage > 0,
++            lineage <= 9007199254740991 {
++            isAccount = true
++          }
++        }
++        guard isGuest || isAccount else {
++          throw InvalidArgumentsException("account_native_provision_family_protection_failed")
++        }
++
++        let familyURLs = ["", "-wal", "-shm", "-journal"].map {
++          URL(fileURLWithPath: databaseURL.path + $0).standardizedFileURL
++        }
++        guard familyURLs.allSatisfy({
++          $0.deletingLastPathComponent().standardizedFileURL == lexicalRoot
++        }) else {
++          throw InvalidArgumentsException("account_native_provision_family_protection_failed")
++        }
++
++        // Future SQLite sidecar inheritance requires device verification.
++        var directoryBackupValues = URLResourceValues()
++        directoryBackupValues.isExcludedFromBackup = true
++        var mutableRoot = lexicalRoot
++        try mutableRoot.setResourceValues(directoryBackupValues)
++        let directoryBackupReadback = try mutableRoot.resourceValues(
++          forKeys: [URLResourceKey.isExcludedFromBackupKey]
++        )
++        guard directoryBackupReadback.isExcludedFromBackup == true else {
++          throw InvalidArgumentsException("account_native_provision_family_protection_failed")
++        }
++        let protectionKey = FileAttributeKey.protectionKey
++        let requiredProtection = FileProtectionType.completeUntilFirstUserAuthentication
++        try FileManager.default.setAttributes(
++          [
++            protectionKey: requiredProtection
++          ],
++          ofItemAtPath: lexicalRoot.path
++        )
++        let directoryProtectionReadback = try FileManager.default.attributesOfItem(
++          atPath: lexicalRoot.path
++        )
++        guard directoryProtectionReadback[protectionKey] as? FileProtectionType ==
++          requiredProtection else {
++          throw InvalidArgumentsException("account_native_provision_family_protection_failed")
++        }
++
++        for familyURL in familyURLs {
++          var memberStat = stat()
++          if lstatPath(familyURL.path, &memberStat) != 0 {
++            if errno == ENOENT { continue }
++            throw InvalidArgumentsException("account_native_provision_family_protection_failed")
++          }
++          guard (memberStat.st_mode & S_IFMT) != symlinkMode,
++            (memberStat.st_mode & S_IFMT) == S_IFREG else {
++            throw InvalidArgumentsException("account_native_provision_family_protection_failed")
++          }
++          let resolvedMember = familyURL.resolvingSymlinksInPath()
++          guard resolvedMember == familyURL else {
++            throw InvalidArgumentsException("account_native_provision_family_protection_failed")
++          }
++          var memberBackupValues = URLResourceValues()
++          memberBackupValues.isExcludedFromBackup = true
++          var mutableMember = familyURL
++          try mutableMember.setResourceValues(memberBackupValues)
++          let memberBackupReadback = try mutableMember.resourceValues(
++            forKeys: [.isExcludedFromBackupKey]
++          )
++          guard memberBackupReadback.isExcludedFromBackup == true else {
++            throw InvalidArgumentsException("account_native_provision_family_protection_failed")
++          }
++          try FileManager.default.setAttributes(
++            [
++              protectionKey: requiredProtection
++            ],
++            ofItemAtPath: familyURL.path
++          )
++          let memberProtectionReadback = try FileManager.default.attributesOfItem(
++            atPath: familyURL.path
++          )
++          guard memberProtectionReadback[protectionKey] as? FileProtectionType ==
++            requiredProtection else {
++            throw InvalidArgumentsException("account_native_provision_family_protection_failed")
++          }
++        }
++      } catch let error as InvalidArgumentsException {
++        throw error
++      } catch {
++        throw InvalidArgumentsException("account_native_provision_family_protection_failed")
++      }
++    }
++  }
++
++  func releaseAccountProvisionLock() throws {
++    var releaseFailed = false
++    stateQueue.sync {
++      guard ownsLock else { return }
++      if Darwin.flock(fileDescriptor, LOCK_UN) != 0 {
++        releaseFailed = true
++        return
++      }
++      ownsLock = false
++      _ = Darwin.close(fileDescriptor)
++    }
++    if releaseFailed {
++      throw InvalidArgumentsException("account_native_provision_lock_release_failed")
++    }
++  }
++
++  private func releaseAccountProvisionLockBestEffort() {
++    stateQueue.sync {
++      guard ownsLock else { return }
++      guard Darwin.flock(fileDescriptor, LOCK_UN) == 0 else { return }
++      ownsLock = false
++      _ = Darwin.close(fileDescriptor)
++    }
++  }
++
++  override func sharedObjectDidRelease() {
++    releaseAccountProvisionLockBestEffort()
++    super.sharedObjectDidRelease()
++  }
++}
++
+ public final class SQLiteModule: Module {
+   // Store unmanaged (SQLiteModule, Database) pairs for sqlite callbacks,
+   // will release the pair when `closeDatabase` is called.
+   private var contextPairs = [Unmanaged<AnyObject>]()
+ 
+   private static let lockQueue = DispatchQueue(label: "expo.modules.sqlite.lockQueue")
+   private var cachedDatabases = [NativeDatabase]()
++  private var accountLeaseStatementRecords = [ObjectIdentifier: AccountLeaseStatementRecord]()
+   private var hasListeners = false
+ 
+@@ -51,11 +253,31 @@
+     }
+ 
+     OnDestroy {
+-      removeAllCachedDatabases().forEach {
++      let partition = partitionCachedDatabasesForDestroy()
++      partition.normal.forEach {
+         do {
+           try closeDatabase($0)
+         } catch {}
+       }
++      partition.accountLease.forEach { database in
++        database.accountLease.revoke()
++        try? closeAccountLeaseDatabase(database: database) { _ in
++          // Module teardown owns this retained database until physical close settles.
++        }
++      }
+     }
++
++    AsyncFunction("acquireAccountProvisionLockAsync") { (databasePath: String) in
++      return try acquireAccountProvisionLock(databasePath: databasePath)
++    }.runOnQueue(moduleQueue)
++
++    Class(NativeAccountProvisionLock.self) {
++      AsyncFunction("releaseAsync") { (lock: NativeAccountProvisionLock) in
++        try lock.releaseAccountProvisionLock()
++      }.runOnQueue(moduleQueue)
++      AsyncFunction("protectAccountDatabaseFamilyAsync") { (lock: NativeAccountProvisionLock) in
++        try lock.protectAccountDatabaseFamily()
++      }.runOnQueue(moduleQueue)
++    }
+ 
+     AsyncFunction("deleteDatabaseAsync") { (databasePath: String) in
+@@ -99,6 +321,9 @@
+     // swiftlint:disable:next closure_body_length
+     Class(NativeDatabase.self) {
+       Constructor { (databasePath: String, options: OpenDatabaseOptions, serializedData: Data?) -> NativeDatabase in
++        let leaseActivated = try validateAccountLeaseConstruction(
++          databasePath: databasePath, options: options, serializedData: serializedData
++        )
+         var db: OpaquePointer?
+ 
+         if let serializedData = serializedData {
+@@ -116,7 +341,12 @@
+           }
+         }
+ 
+-        let database = NativeDatabase(db, databasePath: databasePath, openOptions: options)
++        let database = NativeDatabase(
++          db,
++          databasePath: databasePath,
++          openOptions: options,
++          leaseActivated: leaseActivated
++        )
+         addCachedDatabase(database)
+         return database
+       }
+@@ -131,4 +361,6 @@
+       AsyncFunction("isInTransactionAsync") { (database: NativeDatabase) -> Bool in
+-        try maybeThrowForClosedDatabase(database)
+-        return exsqlite3_get_autocommit(database.pointer) == 0
++        return try withAccountLeaseOperation(database) {
++          try maybeThrowForClosedDatabase(database)
++          return exsqlite3_get_autocommit(database.pointer) == 0
++        }
+       }.runOnQueue(moduleQueue)
+@@ -135,20 +367,72 @@
+       Function("isInTransactionSync") { (database: NativeDatabase) -> Bool in
+-        try maybeThrowForClosedDatabase(database)
+-        return exsqlite3_get_autocommit(database.pointer) == 0
++        return try withAccountLeaseOperation(database) {
++          try maybeThrowForClosedDatabase(database)
++          return exsqlite3_get_autocommit(database.pointer) == 0
++        }
+       }
+ 
+       AsyncFunction("closeAsync") { (database: NativeDatabase) in
++        if database.leaseActivated && !database.isClosed {
++          throw InvalidArgumentsException("account_native_sqlite_lease_close_required")
++        }
+         try maybeThrowForClosedDatabase(database)
+         if let db = removeCachedDatabase(of: database) {
+           try closeDatabase(db)
+         }
+       }.runOnQueue(moduleQueue)
+       Function("closeSync") { (database: NativeDatabase) in
++        if database.leaseActivated && !database.isClosed {
++          throw InvalidArgumentsException("account_native_sqlite_lease_close_required")
++        }
+         try maybeThrowForClosedDatabase(database)
+         if let db = removeCachedDatabase(of: database) {
+           try closeDatabase(db)
+         }
+       }
++
++      Function("revokeAccountLeaseSync") { (database: NativeDatabase) in
++        try requireActivatedAccountLease(database)
++        database.accountLease.revoke()
++      }
++
++      AsyncFunction("commitAccountLeaseAsync") { (database: NativeDatabase) -> String in
++        try requireActivatedAccountLease(database)
++        try maybeThrowForClosedDatabase(database)
++        var commitToken: UInt64 = 0
++        switch database.accountLease.beginCommit(token: &commitToken) {
++        case .revoked:
++          return "revoked"
++        case .busy:
++          throw InvalidArgumentsException("account_native_sqlite_commit_busy")
++        case .unsupported:
++          throw InvalidArgumentsException("account_native_sqlite_atomic_unsupported")
++        case .admitted:
++          break
++        @unknown default:
++          throw InvalidArgumentsException("account_native_sqlite_commit_state_invalid")
++        }
++        defer {
++          database.accountLease.finishCommit(token: commitToken)
++        }
++        try execAccountLeaseCommit(database: database)
++        return "committed"
++      }.runOnQueue(moduleQueue)
++
++      AsyncFunction("closeAccountLeaseAsync") { (database: NativeDatabase, promise: Promise) in
++        do {
++          try requireActivatedAccountLease(database)
++          try closeAccountLeaseDatabase(database: database) { result in
++            switch result {
++            case .success:
++              promise.resolve(JavaScriptValue.undefined)
++            case .failure:
++              promise.reject(SQLiteErrorException("account_native_sqlite_close_failed"))
++            }
++          }
++        } catch {
++          promise.reject(SQLiteErrorException("account_native_sqlite_close_failed"))
++        }
++      }
+ 
+       AsyncFunction("execAsync") { (database: NativeDatabase, source: String) in
+         try exec(database: database, source: source)
+@@ -319,6 +603,375 @@
+     return pathUrl
+   }
+ 
++  private func validateAccountProvisionLockPath(databasePath: String) throws -> URL {
++    let lexicalCandidate = URL(fileURLWithPath: databasePath)
++    let resolvedCandidate = lexicalCandidate.standardizedFileURL.resolvingSymlinksInPath()
++    let lexicalName = lexicalCandidate.lastPathComponent
++    let resolvedName = resolvedCandidate.lastPathComponent
++    guard let defaultDirectory = appContext?.config.documentDirectory else {
++      throw InvalidArgumentsException("account_native_provision_lock_invalid_path")
++    }
++    let lexicalDefaultRoot = defaultDirectory
++      .appendingPathComponent("SQLite", isDirectory: true)
++      .standardizedFileURL
++    let resolvedDefaultRoot = lexicalDefaultRoot.resolvingSymlinksInPath()
++    let lexicalRoot = lexicalDefaultRoot.appendingPathComponent("accounts-v2", isDirectory: true).standardizedFileURL
++    let resolvedRoot = lexicalRoot.resolvingSymlinksInPath()
++    var isDirectory: ObjCBool = false
++    let rootExists = FileManager.default.fileExists(atPath: lexicalRoot.path, isDirectory: &isDirectory)
++    let expectedLexical = lexicalRoot.appendingPathComponent(lexicalName, isDirectory: false)
++    let expectedResolved = resolvedRoot.appendingPathComponent(lexicalName, isDirectory: false)
++    guard lexicalDefaultRoot == resolvedDefaultRoot,
++      lexicalRoot == resolvedRoot,
++      (!rootExists || isDirectory.boolValue),
++      databasePath == expectedLexical.path,
++      resolvedCandidate == expectedResolved,
++      lexicalName == resolvedName,
++      isCanonicalAccountDatabaseName(lexicalName) else {
++      throw InvalidArgumentsException("account_native_provision_lock_invalid_path")
++    }
++    return lexicalCandidate
++  }
++
++  private func accountProvisionLockURL(databaseName: String) throws -> URL {
++    let fileManager = FileManager.default
++    let applicationSupport = try fileManager.url(
++      for: .applicationSupportDirectory,
++      in: .userDomainMask,
++      appropriateFor: nil,
++      create: true
++    )
++    let privateLockRoot = applicationSupport.standardizedFileURL.resolvingSymlinksInPath()
++    let requestedRoot = privateLockRoot
++      .appendingPathComponent("account-sqlite-provision-locks", isDirectory: true)
++      .standardizedFileURL
++    try fileManager.createDirectory(at: requestedRoot, withIntermediateDirectories: true)
++    let resolvedRoot = requestedRoot.resolvingSymlinksInPath()
++    guard resolvedRoot == requestedRoot else {
++      throw InvalidArgumentsException("account_native_provision_lock_failed")
++    }
++    return resolvedRoot.appendingPathComponent("\(databaseName).provision.lock", isDirectory: false)
++  }
++
++  private func acquireAccountProvisionLock(databasePath: String) throws -> NativeAccountProvisionLock {
++    let databaseURL = try validateAccountProvisionLockPath(databasePath: databasePath)
++    let lockURL: URL
++    do {
++      lockURL = try accountProvisionLockURL(databaseName: databaseURL.lastPathComponent)
++      var directoryURL = lockURL.deletingLastPathComponent()
++      var resourceValues = URLResourceValues()
++      resourceValues.isExcludedFromBackup = true
++      try directoryURL.setResourceValues(resourceValues)
++    } catch {
++      throw InvalidArgumentsException("account_native_provision_lock_failed")
++    }
++    let flags = O_CREAT | O_RDWR | O_CLOEXEC | O_NOFOLLOW
++    let fileDescriptor = Darwin.open(lockURL.path, flags, S_IRUSR | S_IWUSR)
++    guard fileDescriptor >= 0 else {
++      throw InvalidArgumentsException("account_native_provision_lock_failed")
++    }
++    guard Darwin.flock(fileDescriptor, LOCK_EX) == 0 else {
++      _ = Darwin.close(fileDescriptor)
++      throw InvalidArgumentsException("account_native_provision_lock_failed")
++    }
++    // The descriptor-held advisory lock is authority; stale lock-file presence is not.
++    return NativeAccountProvisionLock(fileDescriptor: fileDescriptor, databaseURL: databaseURL)
++  }
++
++  private func validateAccountLeaseConstruction(
++    databasePath: String,
++    options: OpenDatabaseOptions,
++    serializedData: Data?
++  ) throws -> Bool {
++    let lexicalCandidate = URL(fileURLWithPath: databasePath)
++    let resolvedCandidate = lexicalCandidate.standardizedFileURL.resolvingSymlinksInPath()
++    let lexicalName = lexicalCandidate.lastPathComponent
++    let resolvedName = resolvedCandidate.lastPathComponent
++    guard lexicalName.contains(ACCOUNT_DATABASE_PREFIX) ||
++      resolvedName.contains(ACCOUNT_DATABASE_PREFIX) else {
++      return false
++    }
++    guard serializedData == nil,
++      options.useNewConnection,
++      !options.enableChangeListener,
++      options.libSQLUrl == nil,
++      options.libSQLAuthToken == nil,
++      !options.libSQLRemoteOnly,
++      AccountSQLiteLeaseAtomic().isLockFree,
++      let defaultDirectory = appContext?.config.documentDirectory else {
++      throw InvalidArgumentsException("account_native_sqlite_open_rejected")
++    }
++    let lexicalDefaultRoot = defaultDirectory
++      .appendingPathComponent("SQLite", isDirectory: true)
++      .standardizedFileURL
++    let resolvedDefaultRoot = lexicalDefaultRoot.resolvingSymlinksInPath()
++    let lexicalRoot = lexicalDefaultRoot.appendingPathComponent("accounts-v2", isDirectory: true).standardizedFileURL
++    let resolvedRoot = lexicalRoot.resolvingSymlinksInPath()
++    var isDirectory: ObjCBool = false
++    let rootExists = FileManager.default.fileExists(atPath: lexicalRoot.path, isDirectory: &isDirectory)
++    let expectedLexical = lexicalRoot.appendingPathComponent(lexicalName, isDirectory: false)
++    let expectedResolved = resolvedRoot.appendingPathComponent(lexicalName, isDirectory: false)
++    guard lexicalDefaultRoot == resolvedDefaultRoot,
++      lexicalRoot == resolvedRoot,
++      (!rootExists || isDirectory.boolValue),
++      databasePath == expectedLexical.path,
++      resolvedCandidate == expectedResolved,
++      lexicalName == resolvedName,
++      isCanonicalAccountDatabaseName(lexicalName) else {
++      throw InvalidArgumentsException("account_native_sqlite_open_rejected")
++    }
++    return true
++  }
++
++  private func isCanonicalAccountDatabaseName(_ name: String) -> Bool {
++    if name.range(of: ACCOUNT_GUEST_DATABASE_PATTERN, options: .regularExpression) != nil {
++      return true
++    }
++    guard let match = name.range(of: ACCOUNT_DATABASE_PATTERN, options: .regularExpression) else {
++      return false
++    }
++    let matched = String(name[match])
++    guard let separator = matched.lastIndex(of: "-"),
++      let suffix = matched[matched.index(after: separator)...].split(separator: ".").first,
++      let lineage = UInt64(suffix), lineage > 0, lineage <= 9007199254740991 else {
++      return false
++    }
++    return true
++  }
++
++  private func requireActivatedAccountLease(_ database: NativeDatabase) throws {
++    guard database.leaseActivated,
++      database.openOptions.useNewConnection,
++      database.accountLease.isLockFree else {
++      throw InvalidArgumentsException("account_native_sqlite_unsupported")
++    }
++  }
++
++  private func withAccountLeaseOperation<T>(
++    _ database: NativeDatabase,
++    _ block: () throws -> T
++  ) throws -> T {
++    if !database.leaseActivated { return try block() }
++    switch database.accountLease.beginOperation() {
++    case .admitted:
++      break
++    case .revoked:
++      throw InvalidArgumentsException("account_native_sqlite_revoked")
++    case .busy:
++      throw InvalidArgumentsException("account_native_sqlite_operation_busy")
++    case .unsupported:
++      throw InvalidArgumentsException("account_native_sqlite_atomic_unsupported")
++    @unknown default:
++      throw InvalidArgumentsException("account_native_sqlite_operation_state_invalid")
++    }
++    defer { database.accountLease.finishOperation() }
++    return try block()
++  }
++
++  private func reserveAccountLeaseStatementOwner(
++    statement: NativeStatement,
++    database: NativeDatabase
++  ) throws -> AccountLeaseStatementRecord {
++    return try Self.lockQueue.sync {
++      let key = ObjectIdentifier(statement)
++      cleanupAccountLeaseStatementRecordsLocked()
++      if accountLeaseStatementRecords[key] != nil {
++        throw InvalidArgumentsException("account_native_sqlite_statement_owner_invalid")
++      }
++      let record = AccountLeaseStatementRecord(
++        statement: statement,
++        owner: database.leaseActivated ? database : nil
++      )
++      accountLeaseStatementRecords[key] = record
++      return record
++    }
++  }
++
++  private func accountLeaseStatementRecord(
++    statement: NativeStatement
++  ) throws -> AccountLeaseStatementRecord? {
++    return try Self.lockQueue.sync {
++      let key = ObjectIdentifier(statement)
++      cleanupAccountLeaseStatementRecordsLocked()
++      guard let record = accountLeaseStatementRecords[key] else { return nil }
++      guard record.statementIdentity == key, record.statement === statement else {
++        throw InvalidArgumentsException("account_native_sqlite_statement_owner_invalid")
++      }
++      return record
++    }
++  }
++
++  private func cleanupAccountLeaseStatementRecordsLocked() {
++    let releasedKeys = accountLeaseStatementRecords.compactMap { key, record in
++      record.statement == nil ? key : nil
++    }
++    for key in releasedKeys {
++      accountLeaseStatementRecords.removeValue(forKey: key)
++    }
++  }
++
++  private func beginAccountLeaseStatementUse(_ record: AccountLeaseStatementRecord) throws {
++    try Self.lockQueue.sync {
++      guard
++        record.phase == .prepared,
++        !record.finalized,
++        !record.prepareFailed,
++        record.activeUses == 0
++      else {
++        throw InvalidArgumentsException("account_native_sqlite_statement_busy")
++      }
++      record.activeUses += 1
++    }
++  }
++
++  private func beginAccountLeaseStatementPrepare(
++    _ record: AccountLeaseStatementRecord,
++    database: NativeDatabase
++  ) throws {
++    try Self.lockQueue.sync {
++      let leaseOwnerMatches = record.leaseOwned &&
++        database.leaseActivated &&
++        record.ownerIdentity == ObjectIdentifier(database) &&
++        record.owner === database
++      let ordinaryOwnerMatches = !record.leaseOwned &&
++        !database.leaseActivated &&
++        record.ownerIdentity == nil &&
++        record.owner == nil
++      guard
++        record.phase == .reserved,
++        record.activeUses == 0,
++        leaseOwnerMatches || ordinaryOwnerMatches
++      else {
++        throw InvalidArgumentsException("account_native_sqlite_statement_owner_invalid")
++      }
++      record.phase = .preparing
++      record.activeUses = 1
++    }
++  }
++
++  private func markAccountLeaseStatementPrepared(_ record: AccountLeaseStatementRecord) {
++    Self.lockQueue.sync {
++      precondition(record.phase == .preparing)
++      record.phase = .prepared
++    }
++  }
++
++  private func finishAccountLeaseStatementUse(_ record: AccountLeaseStatementRecord) {
++    Self.lockQueue.sync {
++      precondition(record.activeUses > 0)
++      record.activeUses -= 1
++    }
++  }
++
++  private func withAccountLeaseStatementUse<T>(
++    statement: NativeStatement,
++    database: NativeDatabase,
++    _ block: () throws -> T
++  ) throws -> T {
++    let record = try accountLeaseStatementRecord(statement: statement)
++    if !database.leaseActivated {
++      guard record == nil || record?.leaseOwned == false else {
++        throw InvalidArgumentsException("account_native_sqlite_statement_owner_invalid")
++      }
++      return try block()
++    }
++    guard
++      let record,
++      record.ownerIdentity == ObjectIdentifier(database),
++      record.owner === database
++    else {
++      throw InvalidArgumentsException("account_native_sqlite_statement_owner_invalid")
++    }
++    return try withAccountLeaseOperation(database) {
++      try beginAccountLeaseStatementUse(record)
++      defer { finishAccountLeaseStatementUse(record) }
++      return try block()
++    }
++  }
++
++  private func withAccountLeaseStatementUse<T>(
++    statement: NativeStatement,
++    _ block: () throws -> T
++  ) throws -> T {
++    guard let record = try accountLeaseStatementRecord(statement: statement) else {
++      return try block()
++    }
++    if !record.leaseOwned {
++      return try block()
++    }
++    guard let owner = record.owner else {
++      throw InvalidArgumentsException("account_native_sqlite_statement_owner_invalid")
++    }
++    return try withAccountLeaseStatementUse(
++      statement: statement, database: owner, block
++    )
++  }
++
++  private func markAccountLeaseStatementPrepareFailed(_ record: AccountLeaseStatementRecord) {
++    Self.lockQueue.sync {
++      record.prepareFailed = true
++      record.finalized = true
++      record.phase = .terminal
++      record.statement?.isFinalized = true
++      record.retainedStatement = nil
++    }
++  }
++
++  private func markAccountLeaseStatementFinalized(_ record: AccountLeaseStatementRecord) {
++    Self.lockQueue.sync {
++      record.finalized = true
++      record.phase = .terminal
++      record.statement?.isFinalized = true
++      record.retainedStatement = nil
++    }
++  }
++
++  private func forceFinalizeAccountLeaseStatements(_ database: NativeDatabase) throws {
++    let records = Self.lockQueue.sync {
++      cleanupAccountLeaseStatementRecordsLocked()
++      return accountLeaseStatementRecords.values.filter {
++        $0.leaseOwned &&
++          $0.ownerIdentity == ObjectIdentifier(database) &&
++          $0.owner === database
++      }
++    }
++    for record in records {
++      guard let statement = record.statement else { continue }
++      let shouldFinalize = try Self.lockQueue.sync {
++        guard record.activeUses == 0 else {
++          throw SQLiteErrorException("account_native_sqlite_statement_busy")
++        }
++        return !record.finalized
++      }
++      if shouldFinalize {
++        let result = exsqlite3_finalize(statement.pointer)
++        statement.pointer = nil
++        markAccountLeaseStatementFinalized(record)
++        if result != SQLITE_OK {
++          throw SQLiteErrorException("account_native_sqlite_statement_finalize_failed")
++        }
++      }
++    }
++  }
++
++  private func rejectActivatedAccountLeaseApi(_ databases: NativeDatabase...) throws {
++    if databases.contains(where: { $0.leaseActivated }) {
++      throw InvalidArgumentsException("account_native_sqlite_api_unsupported")
++    }
++  }
++
++  private func execAccountLeaseCommit(database: NativeDatabase) throws {
++    try maybeThrowForClosedDatabase(database)
++    var error: UnsafeMutablePointer<CChar>?
++    let result = exsqlite3_exec(database.pointer, "COMMIT", nil, nil, &error)
++    if let error {
++      exsqlite3_free(error)
++    }
++    guard result == SQLITE_OK else {
++      throw SQLiteErrorException("account_native_sqlite_commit_failed")
++    }
++  }
++
+   private func deserializeDatabase(_ serializedData: Data) throws -> OpaquePointer? {
+     var db: OpaquePointer?
+     if exsqlite3_open(MEMORY_DB_NAME, &db) != SQLITE_OK {
+@@ -346,10 +999,18 @@
+-  private func initDb(database: NativeDatabase) throws {
++  private func initDb(database: NativeDatabase) throws {
++    try withAccountLeaseOperation(database) { try initDbUngated(database: database) }
++  }
++
++  private func initDbUngated(database: NativeDatabase) throws {
+     try maybeThrowForClosedDatabase(database)
+     if database.openOptions.enableChangeListener {
+       addUpdateHook(database)
+     }
+   }
+ 
+-  private func exec(database: NativeDatabase, source: String) throws {
++  private func exec(database: NativeDatabase, source: String) throws {
++    try withAccountLeaseOperation(database) { try execUngated(database: database, source: source) }
++  }
++
++  private func execUngated(database: NativeDatabase, source: String) throws {
+     try maybeThrowForClosedDatabase(database)
+     var error: UnsafeMutablePointer<CChar>?
+@@ -364,2 +1025,3 @@
+   private func serialize(database: NativeDatabase, databaseName: String) throws -> Data {
++    try rejectActivatedAccountLeaseApi(database)
+     try maybeThrowForClosedDatabase(database)
+@@ -377,11 +1039,37 @@
+-  private func prepareStatement(database: NativeDatabase, statement: NativeStatement, source: String) throws {
+-    try maybeThrowForClosedDatabase(database)
+-    try maybeThrowForFinalizedStatement(statement)
+-    let sourceString = source.cString(using: .utf8)
+-    if exsqlite3_prepare_v2(database.pointer, sourceString, -1, &statement.pointer, nil) != SQLITE_OK {
+-      throw SQLiteErrorException(convertSqlLiteErrorToString(database))
+-    }
+-  }
++  private func prepareStatement(database: NativeDatabase, statement: NativeStatement, source: String) throws {
++    try withAccountLeaseOperation(database) {
++      try prepareStatementUngated(database: database, statement: statement, source: source)
++    }
++  }
++
++  private func prepareStatementUngated(database: NativeDatabase, statement: NativeStatement, source: String) throws {
++    let record = try reserveAccountLeaseStatementOwner(
++      statement: statement, database: database
++    )
++    do {
++      try beginAccountLeaseStatementPrepare(record, database: database)
++    } catch {
++      markAccountLeaseStatementPrepareFailed(record)
++      throw error
++    }
++    defer { finishAccountLeaseStatementUse(record) }
++    do {
++      try maybeThrowForClosedDatabase(database)
++      try maybeThrowForFinalizedStatement(statement)
++      let sourceString = source.cString(using: .utf8)
++      if exsqlite3_prepare_v2(database.pointer, sourceString, -1, &statement.pointer, nil) != SQLITE_OK {
++        throw SQLiteErrorException(convertSqlLiteErrorToString(database))
++      }
++      markAccountLeaseStatementPrepared(record)
++    } catch {
++      if statement.pointer != nil {
++        _ = exsqlite3_finalize(statement.pointer)
++        statement.pointer = nil
++      }
++      markAccountLeaseStatementPrepareFailed(record)
++      throw error
++    }
++  }
+ 
+   // swiftlint:disable line_length
+ 
+@@ -388,3 +1076,9 @@
+-  private func run(statement: NativeStatement, database: NativeDatabase, bindParams: [String: Any], bindBlobParams: [String: Data], shouldPassAsArray: Bool) throws -> [String: Any] {
++  private func run(statement: NativeStatement, database: NativeDatabase, bindParams: [String: Any], bindBlobParams: [String: Data], shouldPassAsArray: Bool) throws -> [String: Any] {
++    return try withAccountLeaseStatementUse(statement: statement, database: database) {
++      try runUngated(statement: statement, database: database, bindParams: bindParams, bindBlobParams: bindBlobParams, shouldPassAsArray: shouldPassAsArray)
++    }
++  }
++
++  private func runUngated(statement: NativeStatement, database: NativeDatabase, bindParams: [String: Any], bindBlobParams: [String: Data], shouldPassAsArray: Bool) throws -> [String: Any] {
+     try maybeThrowForClosedDatabase(database)
+     try maybeThrowForFinalizedStatement(statement)
+@@ -428,4 +1122,10 @@
+-  private func step(statement: NativeStatement, database: NativeDatabase) throws -> SQLiteColumnValues? {
++  private func step(statement: NativeStatement, database: NativeDatabase) throws -> SQLiteColumnValues? {
++    return try withAccountLeaseStatementUse(statement: statement, database: database) {
++      try stepUngated(statement: statement, database: database)
++    }
++  }
++
++  private func stepUngated(statement: NativeStatement, database: NativeDatabase) throws -> SQLiteColumnValues? {
+     try maybeThrowForClosedDatabase(database)
+     try maybeThrowForFinalizedStatement(statement)
+     let ret = exsqlite3_step(statement.pointer)
+@@ -441,4 +1141,10 @@
+-  private func getAll(statement: NativeStatement, database: NativeDatabase) throws -> [SQLiteColumnValues] {
++  private func getAll(statement: NativeStatement, database: NativeDatabase) throws -> [SQLiteColumnValues] {
++    return try withAccountLeaseStatementUse(statement: statement, database: database) {
++      try getAllUngated(statement: statement, database: database)
++    }
++  }
++
++  private func getAllUngated(statement: NativeStatement, database: NativeDatabase) throws -> [SQLiteColumnValues] {
+     try maybeThrowForClosedDatabase(database)
+     try maybeThrowForFinalizedStatement(statement)
+     var columnValuesList: [SQLiteColumnValues] = []
+@@ -459,4 +1165,10 @@
+-  private func reset(statement: NativeStatement, database: NativeDatabase) throws {
++  private func reset(statement: NativeStatement, database: NativeDatabase) throws {
++    try withAccountLeaseStatementUse(statement: statement, database: database) {
++      try resetUngated(statement: statement, database: database)
++    }
++  }
++
++  private func resetUngated(statement: NativeStatement, database: NativeDatabase) throws {
+     try maybeThrowForClosedDatabase(database)
+     try maybeThrowForFinalizedStatement(statement)
+     if exsqlite3_reset(statement.pointer) != SQLITE_OK {
+@@ -467,11 +1179,23 @@
+-  private func finalize(statement: NativeStatement, database: NativeDatabase) throws {
+-    try maybeThrowForClosedDatabase(database)
+-    try maybeThrowForFinalizedStatement(statement)
+-    if exsqlite3_finalize(statement.pointer) != SQLITE_OK {
+-      throw SQLiteErrorException(convertSqlLiteErrorToString(database))
+-    }
+-    statement.isFinalized = true
+-  }
++  private func finalize(statement: NativeStatement, database: NativeDatabase) throws {
++    try withAccountLeaseStatementUse(statement: statement, database: database) {
++      try finalizeUngated(statement: statement, database: database)
++    }
++  }
++
++  private func finalizeUngated(statement: NativeStatement, database: NativeDatabase) throws {
++    try maybeThrowForClosedDatabase(database)
++    try maybeThrowForFinalizedStatement(statement)
++    let result = exsqlite3_finalize(statement.pointer)
++    statement.pointer = nil
++    if let record = try accountLeaseStatementRecord(statement: statement) {
++      markAccountLeaseStatementFinalized(record)
++    } else {
++      statement.isFinalized = true
++    }
++    if result != SQLITE_OK {
++      throw SQLiteErrorException(convertSqlLiteErrorToString(database))
++    }
++  }
+ 
+   private func convertSqlLiteErrorToString(_ db: OpaquePointer?) -> String {
+     let code = exsqlite3_errcode(db)
+@@ -482,28 +1206,86 @@
+   private func convertSqlLiteErrorToString(_ db: NativeDatabase) -> String {
+     return convertSqlLiteErrorToString(db.pointer)
+   }
+ 
++  private enum AccountLeaseCloseResult {
++    case success
++    case failure
++  }
++
++  private func closeAccountLeaseDatabase(
++    database: NativeDatabase,
++    completion: @escaping (AccountLeaseCloseResult) -> Void
++  ) throws {
++    guard database.accountLease.isRevoked else {
++      throw InvalidArgumentsException("account_native_sqlite_revoke_required")
++    }
++    let claim = database.claimAccountLeaseClose()
++    if !claim.isOwner {
++      claim.flight.completion.notify(queue: moduleQueue) {
++        completion(claim.flight.succeeded ? .success : .failure)
++      }
++      return
++    }
++    database.accountLease.notifyWhenDrained(on: moduleQueue) { [self, database, flight = claim.flight] in
++      do {
++        try maybeThrowForClosedDatabase(database)
++        try reserveAccountLeaseCloseOwnership(database)
++        try closeDatabase(database)
++        completeClosedAccountLeaseDatabase(database)
++        database.completeAccountLeaseCloseSuccess(flight)
++        completion(.success)
++      } catch {
++        database.completeAccountLeaseCloseFailure(flight)
++        completion(.failure)
++      }
++    }
++  }
++
++  private func reserveAccountLeaseCloseOwnership(_ database: NativeDatabase) throws {
++    try Self.lockQueue.sync {
++      guard cachedDatabases.contains(database), database.hasExclusiveAccountLeaseOwnership(),
++        database.reserveAccountLeaseCloseOwnership() else {
++        throw SQLiteErrorException("account_native_sqlite_close_ownership_invalid")
++      }
++    }
++  }
++
++  private func completeClosedAccountLeaseDatabase(_ database: NativeDatabase) {
++    Self.lockQueue.sync {
++      guard database.completeAccountLeaseCloseBookkeepingOnce() else { return }
++      cachedDatabases.removeAll { $0 === database }
++      database.release()
++    }
++  }
++
+   private func closeDatabase(_ db: NativeDatabase) throws {
+-    try maybeFinalizeAllStatements(db)
++    if db.leaseActivated {
++      try forceFinalizeAccountLeaseStatements(db)
++    } else {
++      try maybeFinalizeAllStatements(db)
++    }
+ 
+     let ret = exsqlite3_close(db.pointer)
+-    db.isClosed = true
++    if db.leaseActivated && ret != SQLITE_OK {
++      throw SQLiteErrorException(convertSqlLiteErrorToString(db))
++    }
++    db.isClosed = true
+ 
+-    if let index = contextPairs.firstIndex(where: {
++    if !db.leaseActivated, let index = contextPairs.firstIndex(where: {
+       guard let pair = $0.takeUnretainedValue() as? (SQLiteModule, NativeDatabase) else {
+         return false
+       }
+       if pair.1.sharedObjectId != db.sharedObjectId {
+         return false
+       }
+       $0.release()
+       return true
+     }) {
+       contextPairs.remove(at: index)
+     }
+ 
+     if ret != SQLITE_OK {
+       throw SQLiteErrorException(convertSqlLiteErrorToString(db))
+     }
+   }
+ 
+@@ -531,3 +1313,4 @@
+   private func backupDatabase(destDatabase: NativeDatabase, destDatabaseName: String, sourceDatabase: NativeDatabase, sourceDatabaseName: String) throws {
++    try rejectActivatedAccountLeaseApi(destDatabase, sourceDatabase)
+     try maybeThrowForClosedDatabase(destDatabase)
+     try maybeThrowForClosedDatabase(sourceDatabase)
+@@ -569,3 +1352,4 @@
+   private func loadExtension(database: NativeDatabase, libPath: String, entryPoint: String?) throws {
++    try rejectActivatedAccountLeaseApi(database)
+     try maybeThrowForClosedDatabase(database)
+     exsqlite3_enable_load_extension(database.pointer, 1)
+@@ -581,12 +1365,18 @@
+-  private func getColumnNames(statement: NativeStatement) throws -> SQLiteColumnNames {
+-    try maybeThrowForFinalizedStatement(statement)
+-    let columnCount = Int(exsqlite3_column_count(statement.pointer))
+-    var columnNames: SQLiteColumnNames = Array(repeating: "", count: columnCount)
+-    for i in 0..<columnCount {
+-      columnNames[i] = String(cString: exsqlite3_column_name(statement.pointer, Int32(i)))
+-    }
+-    return columnNames
+-  }
++  private func getColumnNames(statement: NativeStatement) throws -> SQLiteColumnNames {
++    return try withAccountLeaseStatementUse(statement: statement) {
++      try getColumnNamesUngated(statement: statement)
++    }
++  }
++
++  private func getColumnNamesUngated(statement: NativeStatement) throws -> SQLiteColumnNames {
++    try maybeThrowForFinalizedStatement(statement)
++    let columnCount = Int(exsqlite3_column_count(statement.pointer))
++    var columnNames: SQLiteColumnNames = Array(repeating: "", count: columnCount)
++    for i in 0..<columnCount {
++      columnNames[i] = String(cString: exsqlite3_column_name(statement.pointer, Int32(i)))
++    }
++    return columnNames
++  }
+ 
+   private func getColumnValues(statement: NativeStatement) throws -> SQLiteColumnValues {
+     try maybeThrowForFinalizedStatement(statement)
+@@ -707,15 +1497,24 @@
+     }
+   }
+ 
+-  private func removeAllCachedDatabases() -> [NativeDatabase] {
+-    return Self.lockQueue.sync {
+-      let databases = cachedDatabases
+-      cachedDatabases.removeAll()
+-      return databases
++  private func partitionCachedDatabasesForDestroy() -> (
++    normal: [NativeDatabase], accountLease: [NativeDatabase]
++  ) {
++    return Self.lockQueue.sync {
++      let normal = cachedDatabases.filter { !$0.leaseActivated }
++      let accountLease = cachedDatabases.filter { $0.leaseActivated }
++      cachedDatabases.removeAll { !$0.leaseActivated }
++      return (normal, accountLease)
+     }
+   }
+ 
+   // MARK: - statements managements
++
++  private let ACCOUNT_DATABASE_PREFIX = "accounts-v2-"
++  private let ACCOUNT_DATABASE_PATTERN =
++    "^accounts-v2-a-[0-9a-f]{64}-[1-9][0-9]*\\.db$"
++  private let ACCOUNT_GUEST_DATABASE_PATTERN =
++    "^accounts-v2-g-[0-9a-f]{64}\\.db$"
+   private func maybeFinalizeAllStatements(_ database: NativeDatabase) throws {
+     guard database.openOptions.finalizeUnusedStatementsBeforeClosing else {
+       return
+@@ -739,3 +1538,4 @@
+   private func sessionCreate(database: NativeDatabase, session: NativeSession, dbName: String) throws {
++    try rejectActivatedAccountLeaseApi(database)
+     try maybeThrowForClosedDatabase(database)
+     let db = dbName.cString(using: .utf8)
+@@ -747,3 +1547,4 @@
+   private func sessionAttach(database: NativeDatabase, session: NativeSession, table: String?) throws {
++    try rejectActivatedAccountLeaseApi(database)
+     try maybeThrowForClosedDatabase(database)
+     let tableName = table?.cString(using: .utf8)
+@@ -755,3 +1556,4 @@
+   private func sessionEnable(database: NativeDatabase, session: NativeSession, enabled: Bool) throws {
++    try rejectActivatedAccountLeaseApi(database)
+     try maybeThrowForClosedDatabase(database)
+     exsqlite3session_enable(session.pointer, enabled ? 1 : 0)
+@@ -760,3 +1562,4 @@
+   private func sessionClose(database: NativeDatabase, session: NativeSession) throws {
++    try rejectActivatedAccountLeaseApi(database)
+     try maybeThrowForClosedDatabase(database)
+     exsqlite3session_delete(session.pointer)
+@@ -765,3 +1568,4 @@
+   private func sessionCreateChangeset(database: NativeDatabase, session: NativeSession) throws -> Data {
++    try rejectActivatedAccountLeaseApi(database)
+     try maybeThrowForClosedDatabase(database)
+     var size: Int32 = 0
+@@ -779,3 +1583,4 @@
+   private func sessionCreateInvertedChangeset(database: NativeDatabase, session: NativeSession) throws -> Data {
++    try rejectActivatedAccountLeaseApi(database)
+     do {
+       let changeset = try sessionCreateChangeset(database: database, session: session)
+@@ -788,3 +1593,4 @@
+   private func sessionApplyChangeset(database: NativeDatabase, session: NativeSession, changeset: Data) throws {
++    try rejectActivatedAccountLeaseApi(database)
+     try maybeThrowForClosedDatabase(database)
+     try changeset.withUnsafeBytes {
+@@ -807,3 +1613,4 @@
+   private func sessionInvertChangeset(database: NativeDatabase, session: NativeSession, changeset: Data) throws -> Data {
++    try rejectActivatedAccountLeaseApi(database)
+     try maybeThrowForClosedDatabase(database)
+     return try changeset.withUnsafeBytes {
+diff --git a/node_modules/expo-sqlite/ios/AccountSQLiteLeaseAtomic.h b/node_modules/expo-sqlite/ios/AccountSQLiteLeaseAtomic.h
+new file mode 100644
+--- /dev/null
++++ b/node_modules/expo-sqlite/ios/AccountSQLiteLeaseAtomic.h
+@@ -0,0 +1,29 @@
++#import <Foundation/Foundation.h>
++
++NS_ASSUME_NONNULL_BEGIN
++
++typedef NS_ENUM(NSInteger, EXAccountSQLiteLeaseAdmission) {
++  EXAccountSQLiteLeaseAdmissionAdmitted = 0,
++  EXAccountSQLiteLeaseAdmissionRevoked = 1,
++  EXAccountSQLiteLeaseAdmissionBusy = 2,
++  EXAccountSQLiteLeaseAdmissionUnsupported = 3,
++} NS_SWIFT_NAME(AccountSQLiteLeaseAdmission);
++
++NS_SWIFT_NAME(AccountSQLiteLeaseAtomic)
++@interface EXAccountSQLiteLeaseAtomic : NSObject
++
++@property(nonatomic, readonly, getter=isRevoked) BOOL revoked;
++@property(nonatomic, readonly, getter=isLockFree) BOOL lockFree;
++
++- (EXAccountSQLiteLeaseAdmission)beginOperation;
++- (void)finishOperation;
++- (EXAccountSQLiteLeaseAdmission)beginCommitWithToken:(uint64_t *)token
++  NS_SWIFT_NAME(beginCommit(token:));
++- (void)finishCommitWithToken:(uint64_t)token NS_SWIFT_NAME(finishCommit(token:));
++- (void)revoke;
++- (void)notifyWhenDrainedOn:(dispatch_queue_t)queue
++                      block:(dispatch_block_t)block NS_SWIFT_NAME(notifyWhenDrained(on:block:));
++
++@end
++
++NS_ASSUME_NONNULL_END
+diff --git a/node_modules/expo-sqlite/ios/AccountSQLiteLeaseAtomic.m b/node_modules/expo-sqlite/ios/AccountSQLiteLeaseAtomic.m
+new file mode 100644
+--- /dev/null
++++ b/node_modules/expo-sqlite/ios/AccountSQLiteLeaseAtomic.m
+@@ -0,0 +1,132 @@
++#import "AccountSQLiteLeaseAtomic.h"
++
++#import <stdatomic.h>
++
++static const uint64_t EXAccountSQLiteLeaseCommitting = 1u;
++static const uint64_t EXAccountSQLiteLeaseRevoked = 2u;
++static const uint64_t EXAccountSQLiteLeaseOperationUnit = 4u;
++static const uint64_t EXAccountSQLiteLeaseMaximumOperations = (1u << 30) - 1u;
++
++@implementation EXAccountSQLiteLeaseAtomic {
++  _Atomic(uint64_t) _state;
++  _Atomic(uint64_t) _nextCommitToken;
++  _Atomic(uint64_t) _commitOwner;
++  dispatch_group_t _drain;
++  BOOL _lockFree;
++}
++
++- (instancetype)init
++{
++  self = [super init];
++  if (self) {
++    atomic_init(&_state, 0u);
++    atomic_init(&_nextCommitToken, 0u);
++    atomic_init(&_commitOwner, 0u);
++    _lockFree = atomic_is_lock_free(&_state) &&
++      atomic_is_lock_free(&_nextCommitToken) && atomic_is_lock_free(&_commitOwner);
++    _drain = dispatch_group_create();
++  }
++  return self;
++}
++
++- (BOOL)isLockFree
++{
++  return _lockFree;
++}
++
++- (BOOL)isRevoked
++{
++  return (atomic_load_explicit(&_state, memory_order_acquire) & EXAccountSQLiteLeaseRevoked) != 0u;
++}
++
++- (EXAccountSQLiteLeaseAdmission)beginOperation
++{
++  if (!_lockFree) return EXAccountSQLiteLeaseAdmissionUnsupported;
++  dispatch_group_enter(_drain);
++  uint64_t current = atomic_load_explicit(&_state, memory_order_acquire);
++  for (;;) {
++    if ((current & EXAccountSQLiteLeaseRevoked) != 0u) {
++      dispatch_group_leave(_drain);
++      return EXAccountSQLiteLeaseAdmissionRevoked;
++    }
++    if ((current & EXAccountSQLiteLeaseCommitting) != 0u ||
++      (current >> 2u) >= EXAccountSQLiteLeaseMaximumOperations) {
++      dispatch_group_leave(_drain);
++      return EXAccountSQLiteLeaseAdmissionBusy;
++    }
++    if (atomic_compare_exchange_weak_explicit(
++          &_state, &current, current + EXAccountSQLiteLeaseOperationUnit,
++          memory_order_acq_rel, memory_order_acquire)) {
++      return EXAccountSQLiteLeaseAdmissionAdmitted;
++    }
++  }
++}
++
++- (void)finishOperation
++{
++  atomic_fetch_sub_explicit(&_state, EXAccountSQLiteLeaseOperationUnit, memory_order_acq_rel);
++  dispatch_group_leave(_drain);
++}
++
++- (EXAccountSQLiteLeaseAdmission)beginCommitWithToken:(uint64_t *)token
++{
++  if (!_lockFree || token == NULL) return EXAccountSQLiteLeaseAdmissionUnsupported;
++  dispatch_group_enter(_drain);
++  uint64_t owner = atomic_fetch_add_explicit(&_nextCommitToken, 1u, memory_order_relaxed) + 1u;
++  if (owner == 0u) {
++    dispatch_group_leave(_drain);
++    return EXAccountSQLiteLeaseAdmissionBusy;
++  }
++  uint64_t noOwner = 0u;
++  if (!atomic_compare_exchange_strong_explicit(
++        &_commitOwner, &noOwner, owner, memory_order_acq_rel, memory_order_acquire)) {
++    dispatch_group_leave(_drain);
++    return EXAccountSQLiteLeaseAdmissionBusy;
++  }
++  uint64_t current = atomic_load_explicit(&_state, memory_order_acquire);
++  for (;;) {
++    if ((current & EXAccountSQLiteLeaseRevoked) != 0u ||
++      (current & EXAccountSQLiteLeaseCommitting) != 0u ||
++      (current >> 2u) != 0u) {
++      atomic_store_explicit(&_commitOwner, 0u, memory_order_release);
++      dispatch_group_leave(_drain);
++      return (current & EXAccountSQLiteLeaseRevoked) != 0u
++        ? EXAccountSQLiteLeaseAdmissionRevoked : EXAccountSQLiteLeaseAdmissionBusy;
++    }
++    uint64_t next = (current | EXAccountSQLiteLeaseCommitting) + EXAccountSQLiteLeaseOperationUnit;
++    if (atomic_compare_exchange_weak_explicit(
++          &_state, &current, next, memory_order_acq_rel, memory_order_acquire)) {
++      *token = owner;
++      return EXAccountSQLiteLeaseAdmissionAdmitted;
++    }
++  }
++}
++
++- (void)finishCommitWithToken:(uint64_t)token
++{
++  uint64_t expectedOwner = token;
++  if (!atomic_compare_exchange_strong_explicit(
++        &_commitOwner, &expectedOwner, 0u, memory_order_acq_rel, memory_order_acquire)) return;
++  uint64_t current = atomic_load_explicit(&_state, memory_order_acquire);
++  for (;;) {
++    uint64_t next = (current & ~EXAccountSQLiteLeaseCommitting) - EXAccountSQLiteLeaseOperationUnit;
++    if (atomic_compare_exchange_weak_explicit(
++          &_state, &current, next, memory_order_acq_rel, memory_order_acquire)) break;
++  }
++  dispatch_group_leave(_drain);
++}
++
++- (void)revoke
++{
++  atomic_fetch_or_explicit(
++    &_state,
++    EXAccountSQLiteLeaseRevoked,
++    memory_order_acq_rel);
++}
++
++- (void)notifyWhenDrainedOn:(dispatch_queue_t)queue block:(dispatch_block_t)block
++{
++  dispatch_group_notify(_drain, queue, block);
++}
++
++@end

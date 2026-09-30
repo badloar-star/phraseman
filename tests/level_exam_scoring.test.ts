@@ -53,7 +53,6 @@ describe('level exam scoring', () => {
       neededForPass: 0,
       finishReason: 'submitted',
       medal: 'gold',
-      baseXp: 100,
     });
     expect(result.byFormat).toEqual({
       guess_phrase: { correct: 6, total: 6 },
@@ -63,13 +62,14 @@ describe('level exam scoring', () => {
       speed_match: { correct: 6, total: 6 },
     });
     expect(result.byLesson.reduce((sum, lesson) => sum + lesson.total, 0)).toBe(30);
+    expect(result).not.toHaveProperty('baseXp');
   });
 
   test('passes at 21 of 30 and fails at 20 of 30', () => {
     expect(scoreLevelExam(BLUEPRINT, answersWithCorrectCount(21), 'submitted'))
-      .toMatchObject({ score: 21, pct: 70, passed: true, neededForPass: 0, medal: 'silver', baseXp: 85 });
+      .toMatchObject({ score: 21, pct: 70, passed: true, neededForPass: 0, medal: 'silver' });
     expect(scoreLevelExam(BLUEPRINT, answersWithCorrectCount(20), 'submitted'))
-      .toMatchObject({ score: 20, pct: 67, passed: false, neededForPass: 1, medal: 'bronze', baseXp: 17 });
+      .toMatchObject({ score: 20, pct: 67, passed: false, neededForPass: 1, medal: 'bronze' });
   });
 
   test('counts missing timeout answers as incorrect', () => {
@@ -83,7 +83,6 @@ describe('level exam scoring', () => {
       neededForPass: 21,
       finishReason: 'timeout',
       medal: 'none',
-      baseXp: 10,
     });
   });
 

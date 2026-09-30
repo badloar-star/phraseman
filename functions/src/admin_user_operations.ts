@@ -13,7 +13,7 @@ type Actor = Readonly<{ actorUid: string; actorEmail: string; role: AdminRole }>
 
 const UID_RE = /^[A-Za-z0-9._-]{2,160}$/;
 const TOKEN_RE = /^[A-Za-z0-9._-]{1,160}$/;
-const PROFILE_FIELDS = ['user_name', 'user_total_xp', 'streak_count'] as const;
+const PROFILE_FIELDS = ['user_name', 'streak_count'] as const;
 const RESET_TYPES = ['achievements'] as const;
 const REPORT_ACTIONS = ['warn', 'rename', 'ban', 'status'] as const;
 const MAX_MIGRATION_UIDS = 200;
@@ -91,8 +91,7 @@ export function normalizeAdminProfileFieldCommand(data: unknown): AdminProfileFi
     if (!value) throw new HttpsError('invalid-argument', 'user name is required');
   } else {
     const parsed = typeof input.value === 'number' ? input.value : Number(input.value);
-    const maximum = field === 'user_total_xp' ? 1_000_000_000 : 100_000;
-    if (!Number.isSafeInteger(parsed) || parsed < 0 || parsed > maximum) throw new HttpsError('invalid-argument', 'profile number is out of range');
+    if (!Number.isSafeInteger(parsed) || parsed < 0 || parsed > 100_000) throw new HttpsError('invalid-argument', 'profile number is out of range');
     value = parsed;
   }
   return Object.freeze({ uid, field, value, ...parseMeta(input) });
@@ -256,7 +255,6 @@ export const adminUpdateUserProfileField = onCall(ADMIN_SENSITIVE_WRITE_OPTIONS,
     tx.update(userRef, { [`progress.${input.field}`]: input.value, updatedAt: nowMs });
     if (leaderboardSnap.exists) {
       if (input.field === 'user_name') tx.update(leaderboardRef, { name: input.value, nameLower: String(input.value).toLowerCase() });
-      if (input.field === 'user_total_xp') tx.update(leaderboardRef, { points: input.value });
       if (input.field === 'streak_count') tx.update(leaderboardRef, { streak: input.value });
     }
     const audit = auditRecord(actor, 'user_profile_field_update', { collection: 'users', id: input.uid }, input.reason, input.requestId, before, after, nowMs);

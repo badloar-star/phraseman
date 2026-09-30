@@ -37,9 +37,9 @@ describe('Cards whole-pack training entry', () => {
     });
   });
 
-  test('true/false quick-starts the existing trainer without a size limit', () => {
+  test('true/false opens the dedicated presentation on the existing training controller', () => {
     expect(buildCardsTrainingRoute('truefalse', ['pack:one', 'pack:two'])).toEqual({
-      pathname: '/flashcards_swipe',
+      pathname: '/flashcards_truefalse_session',
       params: { deck: 'pack:one,pack:two', quick: '1' },
     });
   });

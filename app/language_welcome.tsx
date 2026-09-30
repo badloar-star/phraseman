@@ -105,24 +105,23 @@ type ChoiceOption = {
   ru: string;
   uk: string;
   icon: IoniconName;
-  asset?: ImageSourcePropType;
 };
 
 /** Те же id, что в CleanOnboarding. */
 const GOAL_OPTIONS: ChoiceOption[] = [
-  { id: 'series', ru: 'Понимать кино и сериалы', uk: 'Розуміти кіно й серіали', icon: 'volume-high-outline', asset: require('../assets/images/flow_clean_202607/goal_series.webp') },
-  { id: 'everyday', ru: 'Говорить в обычной жизни', uk: 'Говорити в повсякденному житті', icon: 'chatbubble-ellipses-outline', asset: require('../assets/images/flow_clean_202607/goal_everyday.webp') },
-  { id: 'travel', ru: 'Путешествовать', uk: 'Подорожувати', icon: 'airplane-outline', asset: require('../assets/images/flow_clean_202607/goal_travel.webp') },
-  { id: 'words', ru: 'Нужные фразы каждый день', uk: 'Потрібні фрази щодня', icon: 'cube-outline', asset: require('../assets/images/flow_clean_202607/goal_words.webp') },
-  { id: 'mind', ru: 'Учиться для себя', uk: 'Вчитися для себе', icon: 'school-outline', asset: require('../assets/images/flow_clean_202607/goal_mind.webp') },
+  { id: 'series', ru: 'Понимать кино и сериалы', uk: 'Розуміти кіно й серіали', icon: 'volume-high-outline' },
+  { id: 'everyday', ru: 'Говорить в обычной жизни', uk: 'Говорити в повсякденному житті', icon: 'chatbubble-ellipses-outline' },
+  { id: 'travel', ru: 'Путешествовать', uk: 'Подорожувати', icon: 'airplane-outline' },
+  { id: 'words', ru: 'Нужные фразы каждый день', uk: 'Потрібні фрази щодня', icon: 'cube-outline' },
+  { id: 'mind', ru: 'Учиться для себя', uk: 'Вчитися для себе', icon: 'school-outline' },
 ];
 
 const LEVEL_OPTIONS: ChoiceOption[] = [
-  { id: 'a0', ru: 'Начинаю с нуля', uk: 'Починаю з нуля', icon: 'bar-chart-outline', asset: require('../assets/images/flow_clean_202607/level_a0.webp') },
-  { id: 'a1', ru: 'Знаю отдельные слова', uk: 'Знаю окремі слова', icon: 'bar-chart-outline', asset: require('../assets/images/flow_clean_202607/level_a1.webp') },
-  { id: 'a2', ru: 'Могу поддержать простой разговор', uk: 'Можу підтримати просту розмову', icon: 'bar-chart-outline', asset: require('../assets/images/flow_clean_202607/level_a2.webp') },
-  { id: 'b1', ru: 'Говорю на знакомые темы', uk: 'Розмовляю на знайомі теми', icon: 'bar-chart-outline', asset: require('../assets/images/flow_clean_202607/level_b1.webp') },
-  { id: 'b2', ru: 'Обсуждаю почти всё', uk: 'Обговорюю майже все', icon: 'bar-chart-outline', asset: require('../assets/images/flow_clean_202607/level_b2.webp') },
+  { id: 'a0', ru: 'Начинаю с нуля', uk: 'Починаю з нуля', icon: 'bar-chart-outline' },
+  { id: 'a1', ru: 'Знаю отдельные слова', uk: 'Знаю окремі слова', icon: 'bar-chart-outline' },
+  { id: 'a2', ru: 'Могу поддержать простой разговор', uk: 'Можу підтримати просту розмову', icon: 'bar-chart-outline' },
+  { id: 'b1', ru: 'Говорю на знакомые темы', uk: 'Розмовляю на знайомі теми', icon: 'bar-chart-outline' },
+  { id: 'b2', ru: 'Обсуждаю почти всё', uk: 'Обговорюю майже все', icon: 'bar-chart-outline' },
 ];
 
 export default function LanguageWelcomeScreen() {
@@ -279,11 +278,7 @@ export default function LanguageWelcomeScreen() {
             accessibilityState={{ selected: isSelected }}
             style={({ pressed }) => [styles.optionCard, isSelected && styles.optionCardSelected, pressed && styles.pressed]}
           >
-            {item.asset ? (
-              <Image source={item.asset} style={styles.optionAsset} resizeMode="contain" />
-            ) : (
-              <Ionicons name={item.icon} size={32} color={isSelected ? '#E3ECFF' : '#C6D3FF'} />
-            )}
+            <Ionicons name={item.icon} size={32} color={isSelected ? '#E3ECFF' : '#C6D3FF'} />
             <Text style={styles.optionTitle} numberOfLines={2}>{tr(item.ru, item.uk)}</Text>
             <View style={[styles.radio, isSelected && styles.radioSelected]}>
               {isSelected ? <Ionicons name="checkmark" size={18} color="#07111F" /> : null}
@@ -542,7 +537,6 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   optionCardSelected: { borderColor: '#7B8CFF', backgroundColor: 'rgba(123,140,255,0.16)' },
-  optionAsset: { width: 40, height: 40 },
   optionTitle: { color: '#EAF0FF', fontSize: 16, fontWeight: '600', flex: 1 },
   radio: {
     width: 26,

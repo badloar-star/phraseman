@@ -176,11 +176,38 @@ describe('referral admin dashboard projection', () => {
       ],
     });
 
+    // Исторический жемчужный спин (до D100) показывается как был.
     expect(row.roulette).toEqual({
       state: 'spun',
       prizeDays: 30,
       prizeKind: 'pearls',
       prizePearls: 70,
+      prizeCoins: 0,
+      createdAtMs: 3_000,
+    });
+  });
+
+  // зачем: D100 (владелец, 2026-09-30) — новые призы Pro идут монетами.
+  it('projects a Pro coins prize receipt', () => {
+    const row = project({
+      spinReceipts: [
+        {
+          creditId: referralCreditId('invitee-1'),
+          creditSource: 'referral',
+          prizeDays: 30,
+          prizeKind: 'coins',
+          prizeCoins: 700,
+          createdAtMs: 3_000,
+        },
+      ],
+    });
+
+    expect(row.roulette).toEqual({
+      state: 'spun',
+      prizeDays: 30,
+      prizeKind: 'coins',
+      prizePearls: 0,
+      prizeCoins: 700,
       createdAtMs: 3_000,
     });
   });

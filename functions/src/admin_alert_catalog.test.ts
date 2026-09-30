@@ -46,6 +46,7 @@ const SELECTED_ALERT_IDS = [
   'cancelReason',
   'appMessageDigest',
   'cardPackDigest',
+  'customCardMilestone',
   'cronHealth',
   'paymentWebhookFailure',
   'adminAudit',
@@ -58,10 +59,10 @@ const SELECTED_ALERT_IDS = [
 ] as const;
 
 describe('admin owner alert catalog', () => {
-  test('contains exactly the 47 events selected by the owner', () => {
+  test('contains exactly the 48 events selected by the owner', () => {
     expect(ADMIN_ALERT_IDS).toEqual(SELECTED_ALERT_IDS);
-    expect(ADMIN_ALERT_CATALOG).toHaveLength(47);
-    expect(new Set(ADMIN_ALERT_IDS).size).toBe(47);
+    expect(ADMIN_ALERT_CATALOG).toHaveLength(48);
+    expect(new Set(ADMIN_ALERT_IDS).size).toBe(48);
     expect(ADMIN_ALERT_IDS).not.toContain('maxRating');
     expect(ADMIN_ALERT_IDS).not.toContain('dailyPhraseSaved');
   });

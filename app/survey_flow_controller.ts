@@ -4,8 +4,6 @@ import Constants from 'expo-constants';
 import type { Lang } from '../constants/i18n';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
-import { emitAppEvent } from './events';
-import { commitConfirmedExternalShardEvent, SHARD_REWARDS } from './shards_system';
 import { submitSurvey, type ActiveSurvey, type SurveyQuestionClient } from './survey_client';
 import { markSurveyOfferDone } from './survey_completion_marker';
 import { beginSurveyOfferRequest, commitSurveyOfferRequest } from './survey_offer_cache';
@@ -182,7 +180,8 @@ export function useSurveyFlowController(input: {
     dispatchSubmission({
       type: 'submit_started',
       attemptId,
-      expectedReward: SHARD_REWARDS.survey_completed,
+      // зачем: PM-058/D70 — награда жемчугом за опрос удалена.
+      expectedReward: 0,
     });
 
     try {
@@ -207,30 +206,9 @@ export function useSurveyFlowController(input: {
         return;
       }
 
-      const rewardApplied = response.reward > 0
-        ? await commitConfirmedExternalShardEvent({
-            expectedOwnerStableId: stableId,
-            source: 'shard_survey',
-            eventId: survey.surveyId,
-            delta: SHARD_REWARDS.survey_completed,
-            reason: 'survey_completed',
-            grant: {
-              kind: 'survey_reward',
-              subjectId: survey.surveyId,
-              payload: { surveyId: survey.surveyId },
-            },
-          })
-        : null;
-      if (!isCurrentAccountGeneration(accountToken, stableId)) {
-        presentAccountChanged(attemptId);
-        return;
-      }
-      if (
-        rewardApplied
-        && rewardApplied.status !== 'applied'
-        && rewardApplied.status !== 'already-applied'
-      ) {
-        throw new Error('reward_event_apply_failed');
+      if (response.reward > 0) {
+        // Сервер жемчуг за опрос больше не выдаёт (D70); ненулевое значение — старый ответ.
+        DebugLogger.warn('SURVEY-REWARD', `server reported reward=${response.reward} survey=${survey.surveyId}; pearls retired, not credited`);
       }
 
       const markerWritten = await markSurveyOfferDone({
@@ -263,14 +241,8 @@ export function useSurveyFlowController(input: {
     }
       if (!presentationActiveRef.current || attemptIdRef.current !== attemptId) return;
 
-      dispatchSubmission({ type: 'submit_succeeded', attemptId, reward: response.reward });
+      dispatchSubmission({ type: 'submit_succeeded', attemptId, reward: 0 });
       hapticSuccess();
-      if (response.reward > 0) {
-        emitAppEvent('shards_earned', {
-          amount: response.reward,
-          reasonKey: 'survey_completed',
-        });
-      }
     } catch (error: unknown) {
       const messageKey = mapSubmitError(error);
       if (presentationActiveRef.current && attemptIdRef.current === attemptId) {

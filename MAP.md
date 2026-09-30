@@ -25,7 +25,6 @@ Phraseman - Expo / React Native приложение на TypeScript.
 - `constants/`: около 40 файлов. Темы, тексты, ассеты, справочники.
 - `hooks/`: около 24 файлов. Аудио, haptics, экранные утилиты, streak freeze.
 - `contexts/`: `MatchmakingContext`.
-- `modules/phrase-widget/`: native widget module; при обычной карте игнорировать build output внутри модуля.
 
 ## 2. Вход приложения
 

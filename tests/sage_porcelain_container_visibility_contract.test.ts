@@ -19,13 +19,11 @@ describe('Sage Porcelain container visibility', () => {
     const glassSurface = source('components', 'GlassSurface.tsx');
     const profile = source('components', 'PlayerProfileModal.tsx');
     const account = source('app', 'account_details.tsx');
-    const streakRevive = source('components', 'StreakReviveModal.tsx');
 
     expect(glassSurface).toContain("import { isLightThemeMode } from '../constants/theme';");
     expect(glassSurface).not.toMatch(/function isLightThemeMode\(/);
     expect(profile).toContain('prestigeActive || !isLightThemeMode(themeMode)');
     expect(account).toContain('const isLightTheme = isLightThemeMode(themeMode);');
-    expect(streakRevive).toContain('const isLightTheme = isLightThemeMode(themeMode);');
   });
 
   it('uses Sage semantic foregrounds for light profile metadata and active XP', () => {

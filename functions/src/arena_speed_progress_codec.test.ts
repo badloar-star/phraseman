@@ -1,5 +1,3 @@
-import fs from 'fs';
-import path from 'path';
 import {
   decodeArenaSpeedProgress,
   encodeArenaSpeedProgress,
@@ -47,19 +45,6 @@ describe('Arena Firestore speed progress codec', () => {
     expect(sanitized).toEqual(encodeArenaSpeedProgress(logical));
     expect(hasDirectNestedArray(sanitized)).toBe(false);
   });
-
-  test('all Arena persistence paths use encode and all gameplay reads use decode', () => {
-    const root = path.resolve(__dirname, '../..');
-    const base = fs.readFileSync(path.join(root, 'functions/src/arena_v2.ts'), 'utf8');
-    const expansion = fs.readFileSync(path.join(root, 'functions/src/arena_expansion.ts'), 'utf8');
-
-    for (const source of [base, expansion]) {
-      expect(source).toContain('decodeArenaSpeedProgress');
-      expect(source).toContain('encodeArenaSpeedProgress');
-      expect(source).not.toMatch(/speedProgress[^\n]*= applied\.progress/);
-      expect(source).not.toContain('answerSnapshot: applied.progress');
-    }
-    expect(base).toMatch(/answerSnapshot:\s*storedProgress/);
-    expect(expansion).toMatch(/answerSnapshot:\s*storedProgress/);
-  });
+  // зачем: D78 — проверка «все пути сохранения Арены кодируют прогресс» читала
+  // удалённые arena_v2.ts/arena_expansion.ts; сам кодек (arena_v2_core) проверен выше.
 });

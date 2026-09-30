@@ -1,5 +1,7 @@
 import { legacyPolicyForKey } from './legacy_inventory';
 
+// Retired XP is also excluded from the legacy cloud mirror: it is never a
+// valid phone-state source, but old records must be filtered on cutover.
 const PHONE_STATE_CORE_DOMAINS = new Set(['xp', 'streak', 'lessons', 'exams']);
 
 /**

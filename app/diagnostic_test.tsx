@@ -39,7 +39,6 @@ import { isCorrectAnswer } from '../constants/contractions';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
 import { isMistakeStudyTargetValue } from '../modules/mistake-practice/contracts';
 import { useEffectivePlatformOS } from './platform_ui_preview';
-import { awardOneTime } from './shards_system';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ClozeGapText from '../components/ClozeGapText';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
@@ -1319,7 +1318,6 @@ export default function DiagnosticTest() {
       void AsyncStorage.setItem(diagnosticLastKey(studyTarget), JSON.stringify(lastPayload));
       setPrev(lastPayload);
       checkAchievements({ type: 'diagnosis', studyTarget }).catch(() => {});
-      awardOneTime('diagnostic_test').catch(() => {});
       void trackFeatureSuccess('diagnostic', 'complete', {
         score: newScore,
         total: questions.length,

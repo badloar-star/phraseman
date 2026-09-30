@@ -19,8 +19,6 @@ describe('modal opaque surface contract', () => {
       'app/_layout.tsx',
       // AchievementToast.tsx удалён в PM-053 (владелец — «тосты тосты тосты достижений»).
       'components/ActivityHeatmap365.tsx',
-      'components/LevelGiftModal.tsx',
-      'components/StreakReviveModal.tsx',
     ];
 
     for (const file of files) {

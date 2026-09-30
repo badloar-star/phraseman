@@ -129,7 +129,7 @@ export function residentTicksElapsed(nowMs: number, index = 0): number {
   return Math.floor((nowMs - start) / RESIDENT_TICK_MS);
 }
 
-export function residentTotalXpAt(index: number, nowMs: number): number {
+export function residentScoreAt(index: number, nowMs: number): number {
   const { generation, signupMs } = residentGeneration(index, nowMs);
   if (nowMs <= signupMs) return 0;
   const ticks = Math.floor((nowMs - signupMs) / RESIDENT_TICK_MS);
@@ -142,29 +142,29 @@ export function residentTotalXpAt(index: number, nowMs: number): number {
 
 // Формула уровня — зеркало constants/theme.ts (XP_BASE/XP_EXP). Дублируется
 // намеренно, чтобы реестр не зависел от порядка инициализации темы.
-const XP_BASE = 400;
-const XP_EXP = 1.82;
+const SCORE_BASE = 400;
+const SCORE_EXP = 1.82;
 
-function totalXpForLevel(level: number): number {
+function scoreForRank(level: number): number {
   if (level <= 1) return 0;
-  return Math.round(XP_BASE * Math.pow(level - 1, XP_EXP));
+  return Math.round(SCORE_BASE * Math.pow(level - 1, SCORE_EXP));
 }
 
-export function residentLevelFromXp(totalXp: number): number {
-  if (totalXp <= 0) return 1;
+export function residentRankFromScore(score: number): number {
+  if (score <= 0) return 1;
   let level = 1;
-  while (level < RESIDENT_MAX_LEVEL && totalXpForLevel(level + 1) <= totalXp) {
+  while (level < RESIDENT_MAX_LEVEL && scoreForRank(level + 1) <= score) {
     level++;
   }
   return level;
 }
 
 /** Прирост опыта за период — зеркало сервера (учитывает смену поколения). */
-export function residentXpGainedBetween(index: number, fromMs: number, toMs: number): number {
+export function residentScoreGainedBetween(index: number, fromMs: number, toMs: number): number {
   if (toMs <= fromMs) return 0;
   const from = residentGeneration(index, fromMs);
   const to = residentGeneration(index, toMs);
-  if (from.generation !== to.generation) return residentTotalXpAt(index, toMs);
+  if (from.generation !== to.generation) return residentScoreAt(index, toMs);
   const seed = index * 64 + to.generation;
   const fromTick = Math.max(0, Math.floor((fromMs - to.signupMs) / RESIDENT_TICK_MS));
   const toTick = Math.max(0, Math.floor((toMs - to.signupMs) / RESIDENT_TICK_MS));
@@ -189,10 +189,10 @@ export function residentAvatar(level: number): string {
  * стабильную долю внутри него. Это ровно тот диапазон опыта, который тот же
  * персонаж показывает в лиге — расхождения «разный опыт в двух местах» нет.
  */
-export function residentXpForLevel(level: number, seed: string): number {
+export function residentScoreForRank(level: number, seed: string): number {
   const safeLevel = Math.max(1, Math.min(RESIDENT_MAX_LEVEL, Math.trunc(level)));
-  const start = totalXpForLevel(safeLevel);
-  const next = totalXpForLevel(Math.min(RESIDENT_MAX_LEVEL + 1, safeLevel + 1));
+  const start = scoreForRank(safeLevel);
+  const next = scoreForRank(Math.min(RESIDENT_MAX_LEVEL + 1, safeLevel + 1));
   const span = Math.max(1, next - start);
   // Доля внутри уровня 0..85%: цифра не выглядит «ровной», но и не перескакивает
   // на следующий уровень, из-за чего уровень и опыт разошлись бы.
@@ -279,14 +279,14 @@ export function residentStreakAt(index: number, nowMs: number, signupMs: number)
 }
 
 /** Базовое число лайков — зеркало серверного residentBaseLikes. */
-export function residentBaseLikes(totalXp: number): number {
-  return Math.floor(totalXp / 3000);
+export function residentBaseLikes(score: number): number {
+  return Math.floor(score / 3000);
 }
 
 export type ResidentProfile = {
   index: number;
-  totalXp: number;
-  level: number;
+  score: number;
+  rank: number;
   avatar: string;
   streak: number;
   baseLikes: number;
@@ -298,14 +298,14 @@ export type ResidentProfile = {
  */
 export function residentProfileAt(index: number, nowMs: number): ResidentProfile {
   const { generation, signupMs } = residentGeneration(index, nowMs);
-  const totalXp = residentTotalXpAt(index, nowMs);
-  const level = residentLevelFromXp(totalXp);
+  const score = residentScoreAt(index, nowMs);
+  const rank = residentRankFromScore(score);
   return {
     index,
-    totalXp,
-    level,
-    avatar: residentAvatar(level),
+    score,
+    rank,
+    avatar: residentAvatar(rank),
     streak: residentStreakAt(index * 64 + generation, nowMs, signupMs),
-    baseLikes: residentBaseLikes(totalXp),
+    baseLikes: residentBaseLikes(score),
   };
 }

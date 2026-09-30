@@ -116,10 +116,6 @@ const DAILY_JOURNEY_STATIC_ART = Object.freeze({
   stars_250: require('../../assets/images/level-spin-rewards/stars_250.webp'),
   stars_500: require('../../assets/images/level-spin-rewards/stars_500.webp'),
   stars_1000: require('../../assets/images/level-spin-rewards/stars_1000.webp'),
-  energy_full: require('../../assets/images/level-spin-rewards/energy_full.webp'),
-  energy_plus2: require('../../assets/images/level-spin-rewards/energy_plus2.webp'),
-  energy_plus3: require('../../assets/images/level-spin-rewards/energy_plus3.webp'),
-  spins: require('../../assets/images/spin/spin_ticket.webp'),
 });
 
 export function rewardImageSource(reward: Pick<DailyJourneyReward, 'kind' | 'amount'>, themeMode: Parameters<typeof getStreakFreezeIconVariant>[0]): ImageSourcePropType | null {
@@ -130,14 +126,11 @@ export function rewardImageSource(reward: Pick<DailyJourneyReward, 'kind' | 'amo
       return DAILY_JOURNEY_STATIC_ART[`pearls_${reward.amount}` as keyof typeof DAILY_JOURNEY_STATIC_ART] ?? DAILY_JOURNEY_STATIC_ART.pearls_100;
     case 'runes':
       return DAILY_JOURNEY_STATIC_ART[dailyJourneyRuneArtRewardId(reward.amount)];
-    case 'energy_full':
-      return DAILY_JOURNEY_STATIC_ART.energy_full;
-    case 'energy_plus':
-      return reward.amount >= 3
-        ? DAILY_JOURNEY_STATIC_ART.energy_plus3
-        : DAILY_JOURNEY_STATIC_ART.energy_plus2;
+        case 'energy_full':
+        case 'energy_plus':
+          return null;
     case 'spins':
-      return DAILY_JOURNEY_STATIC_ART.spins;
+      return null;
     case 'freeze':
       return getStreakFreezeIconVariant(themeMode).source;
   }

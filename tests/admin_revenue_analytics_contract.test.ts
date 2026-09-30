@@ -362,7 +362,7 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('>Hide duplicates</span>');
     expect(adminHtml).toContain('>Duplicates</button>');
     expect(adminHtml).toContain('>Email list</button>');
-    expect(adminHtml).toContain('>Grant shards</button>');
+    expect(adminHtml).toContain('>Grant coins</button>'); // зачем: D86 — массовая выдача монетами
     expect(adminHtml).toContain('>Ban users</button>');
     expect(adminHtml).toContain('<th onclick="setSort(\'name\')" data-i18n-es="Usuario">User</th>');
     expect(adminHtml).toContain('data-i18n-es="Progreso">Progress');

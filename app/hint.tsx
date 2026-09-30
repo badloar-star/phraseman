@@ -17,7 +17,6 @@ import {
 } from './lesson_support_target_gate';
 import { safeRouterBack } from './navigation_back';
 import BouncyScrollView from '../components/BouncyScrollView';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import ReportErrorButton from '../components/ReportErrorButton';
 import TheoryLessonView, {
   type TheorySection,
@@ -26,10 +25,7 @@ import TheoryLessonView, {
 import { LESSON1_THEORY } from './theory_content_lesson1';
 import { getTheoryContent, hasTheoryContent, type LessonTheoryContent } from './theory_content_registry';
 import { legacyRuUk } from '../constants/i18n';
-import { registerXP } from './xp_manager';
-import { lessonTheorySectionsSeenKey, lessonTheoryXpClaimedKey } from './target_storage_keys';
-import SkeletonBlock from '../components/SkeletonShimmer';
-import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import { lessonTheorySectionsSeenKey } from './target_storage_keys';
 import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundary';
 
 function L(
@@ -115,32 +111,6 @@ function buildTheorySections(content: LessonTheoryContent, lang: Lang): TheorySe
   });
 }
 
-// зачем (аудит 2026-08-22): скелетон повторяет геометрию TheoryLessonView
-// (шапка с назад, заголовок, пара текстовых блоков, XP-кнопка снизу), чтобы
-// первый кадр не отличался от финального — без прыжка при гидрации claim-флага.
-function TheoryLessonSkeleton() {
-  const { theme: t } = useTheme();
-  const insets = useStableSafeAreaInsets();
-  return (
-    <ScreenGradient>
-      <SafeAreaView style={{ flex: 1 }}>
-        <View style={{ paddingTop: insets.top, paddingHorizontal: 20, gap: 20 }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, marginTop: 8 }}>
-            <SkeletonBlock width={28} height={28} borderRadius={14} />
-            <SkeletonBlock width="55%" height={20} borderRadius={10} />
-          </View>
-          <SkeletonBlock width="100%" height={96} borderRadius={18} />
-          <SkeletonBlock width="100%" height={96} borderRadius={18} />
-          <SkeletonBlock width="70%" height={16} borderRadius={8} />
-        </View>
-        <View style={{ marginTop: 'auto', paddingHorizontal: 20, paddingBottom: Math.max(20, insets.bottom + 16) }}>
-          <SkeletonBlock width="100%" height={54} borderRadius={16} />
-        </View>
-      </SafeAreaView>
-    </ScreenGradient>
-  );
-}
-
 function LessonTheoryNew({ lessonId }: { lessonId: number }) {
   const router = useRouter();
   const { theme: t } = useTheme();
@@ -151,70 +121,11 @@ function LessonTheoryNew({ lessonId }: { lessonId: number }) {
   const sections = React.useMemo(() => buildTheorySections(content, lang), [content, lang]);
   const title = key === 'es' ? content.titleEs : key === 'uk' ? content.titleUk : content.titleRu;
   const subtitle = undefined;
-  const claimStorageKey = React.useMemo(
-    () => lessonTheoryXpClaimedKey(lessonId, studyTarget),
-    [lessonId, studyTarget],
-  );
   const progressStorageKey = React.useMemo(
     () => lessonTheorySectionsSeenKey(lessonId, studyTarget),
     [lessonId, studyTarget],
   );
-  const [initialClaimed, setInitialClaimed] = React.useState(false);
-  const [claimHydrated, setClaimHydrated] = React.useState(false);
-  const claimInFlightRef = React.useRef(false);
-
-  React.useEffect(() => {
-    let cancelled = false;
-    setClaimHydrated(false);
-    setInitialClaimed(false);
-    AsyncStorage.getItem(claimStorageKey)
-      .then((value) => {
-        if (!cancelled) setInitialClaimed(value === '1');
-      })
-      .catch(() => {})
-      .finally(() => {
-        if (!cancelled) setClaimHydrated(true);
-      });
-    return () => { cancelled = true; };
-  }, [claimStorageKey, studyTarget]);
-
   const goBack = React.useCallback(() => safeRouterBack(router, '/(tabs)/home' as any), [router]);
-
-  const handleClaimXP = React.useCallback(async (): Promise<boolean> => {
-    if (claimInFlightRef.current) return false;
-    claimInFlightRef.current = true;
-    try {
-      if ((await AsyncStorage.getItem(claimStorageKey)) === '1') {
-        setInitialClaimed(true);
-        return true;
-      }
-      await AsyncStorage.setItem(claimStorageKey, '1');
-      const userName = (await AsyncStorage.getItem('user_name')) ?? '';
-      await registerXP(25, 'vocabulary_learned', userName, lang, lessonId, {
-        eventId: [
-          'vocabulary',
-          String(studyTarget ?? 'na').replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, 40) || 'na',
-          String(lessonId),
-          'theory',
-          'claim',
-        ].join(':'),
-        payload: { lessonId, studyTarget, surface: 'lesson_theory' },
-      });
-      return true;
-    } catch {
-      await AsyncStorage.removeItem(claimStorageKey).catch(() => {});
-      return false;
-    } finally {
-      claimInFlightRef.current = false;
-    }
-  }, [claimStorageKey, lessonId, studyTarget, lang]);
-
-  if (!claimHydrated) {
-    // зачем (аудит 2026-08-22): голый «...» по центру мигал вместо финальной
-    // геометрии экрана теории (шапка + заголовок + блоки + XP-кнопка) — первый
-    // кадр должен держать ту же раскладку, что и TheoryLessonView.
-    return <TheoryLessonSkeleton />;
-  }
 
   return (
     <TheoryLessonView
@@ -222,10 +133,7 @@ function LessonTheoryNew({ lessonId }: { lessonId: number }) {
       title={title}
       subtitle={subtitle}
       sections={sections}
-      xpAmount={25}
-      initialClaimed={initialClaimed}
       progressStorageKey={progressStorageKey}
-      onClaimXP={handleClaimXP}
       onBack={goBack}
     />
   );

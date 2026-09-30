@@ -23,7 +23,7 @@ import {
   loadCommunityOwnedPackTitles,
   type CommunityOwnedPackTitle,
 } from '../community_packs/communityOwnedStorage';
-import { loadPublishedCommunityMarketPacks, peekPublishedCommunityMarketPacks } from '../community_packs/communityFirestore';
+import { loadPublishedCommunityMarketPacks, peekPublishedCommunityMarketPacks, peekVideoMarketPacks } from '../community_packs/communityFirestore';
 import {
   loadLocalAuthorPacks,
   localAuthorPackToMarketPack,
@@ -31,7 +31,6 @@ import {
 } from '../community_packs/localAuthorPacks';
 import { storageStudyTarget } from '../target_storage_keys';
 import type { DeckSheetOption } from './DeckPickerSheet';
-import { cardBackFanImage } from './cardBackCatalog';
 import { loadDeckCards, type DeckRef } from './deck_sources';
 import {
   bundledPacksForOwned,
@@ -409,7 +408,21 @@ export async function loadFcDeckOptions(
   const bundled = bundledPacksForOwned(packIds, studyTarget, lang);
   const localMarketPacks = localPacks.map((pack) => localAuthorPackToMarketPack(pack, pack.studyTarget));
   const catalogById = new Map<string, FlashcardMarketPack>();
-  for (const pack of [...bundled, ...communityPacks, ...localMarketPacks]) {
+  /**
+   * Тёплый снимок наборов из видео.
+   *
+   * зачем ОТДЕЛЬНО от communityPacks: общий каталог берёт limit(40) на язык, и
+   * добавленный набор из ролика в него может не попасть — тогда в списке
+   * тренировки он остался бы БЕЗ названия и обложки (карточки при этом
+   * грузятся отдельно, поэтому тренировка не ломалась бы, но набор выглядел бы
+   * безымянным). Берём только тёплый слепок, сеть здесь не ждём — первый кадр
+   * списка наборов дороже обложки.
+   */
+  const warmVideoPacks = peekVideoMarketPacks(studyTarget) ?? [];
+  if (warmVideoPacks.length > 0) {
+    console.log(`[FC-DECKS] source:videoCatalog warm наборов=${warmVideoPacks.length}`);
+  }
+  for (const pack of [...bundled, ...communityPacks, ...warmVideoPacks, ...localMarketPacks]) {
     if (packIds.includes(pack.id)) catalogById.set(pack.id, pack);
   }
   const packDecks = await Promise.all(
@@ -418,11 +431,8 @@ export async function loadFcDeckOptions(
       /** Набор без доступных на устройстве карточек в списке не нужен. */
       if (cards.length === 0) return null;
       const pack = catalogById.get(packId);
-      const storedBackKey = ownedTitles[packId]?.ugcCardBackKey;
-      const coverImage = pack
-        ? packTileImageForPack(pack) ?? bundledPackTilePng(pack.id)
-        : cardBackFanImage(storedBackKey) ?? bundledPackTilePng(packId);
-      const coverRevision = pack ? packTileArtRevision(pack) : storedBackKey || packId;
+      const coverImage = pack ? packTileImageForPack(pack) : bundledPackTilePng(packId);
+      const coverRevision = pack ? packTileArtRevision(pack) : packId;
       return {
         deckId: `pack:${packId}` as FcDeckId,
         title: packTitle(

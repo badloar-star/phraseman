@@ -1,10 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
-  CUSTOMIZATION_STORAGE_KEYS,
-  USER_AVATAR_AURA_KEY,
-} from '../constants/customization_storage_keys';
-import { getLevelFromXP } from '../constants/theme';
-import {
   APP_SNAPSHOT_RESOURCE_LIMITS,
   limitArray,
   patchAppSnapshot,
@@ -32,15 +27,12 @@ import {
   REFERRAL_STATE_STORAGE_KEY,
   hydrateReferralStateFromRaw,
 } from './referrals_cache';
-import { rememberLeagueStateSnapshot, sanitizeLeagueState } from './league_open_cache_policy';
 import { readAvatarDNAState, type AvatarDNAStoredState } from '../modules/avatar-dna/storage';
 
 const BOOT_PROFILE_KEYS = [
   'user_name',
   'user_avatar',
   'user_frame',
-  USER_AVATAR_AURA_KEY,
-  'user_total_xp',
   'premium_active',
   'premium_plan',
 ] as const;
@@ -72,7 +64,6 @@ const BOOT_SETTINGS_KEYS = [
 // false-positive (неверный язык/target) — нет.
 const BOOT_LANG_KEY = 'app_lang';
 const BOOT_STUDY_TARGET_KEY = 'study_target_v1';
-const BOOT_LEAGUE_STATE_KEY = 'league_state_v3';
 
 let peekAppLangState: string | null = null;
 let peekStudyTargetState: string | null = null;
@@ -116,7 +107,6 @@ function buildProfileSnapshot(
   vipSnapshot: VipStorageValues | null,
   avatarDNA: AvatarDNAStoredState | null,
 ): AppSnapshotProfile {
-  const totalXp = readInt(values.get('user_total_xp'));
   const vipUntil = Number(vipSnapshot?.vip_until ?? '0') || 0;
   // зачем: пожизненный VIP-грант (сертификат «Pro — навсегда», промокод,
   // бессрочная выдача из админки) не имеет даты окончания — vip_until = 0.
@@ -128,7 +118,7 @@ function buildProfileSnapshot(
   const name = values.get('user_name')?.trim() || '';
   const avatar = values.get('user_avatar')?.trim() || '1';
   const frame = values.get('user_frame')?.trim() || '';
-  const aura = values.get(USER_AVATAR_AURA_KEY)?.trim() || undefined;
+  // зачем: D108 — ауры удалены: первый кадр больше не читает и не публикует ауру.
 
   return {
     source: 'storage',
@@ -136,9 +126,6 @@ function buildProfileSnapshot(
     name,
     avatar,
     frame,
-    aura,
-    totalXp,
-    level: getLevelFromXP(totalXp),
     premiumActive: readBool(values.get('premium_active')),
     premiumPlan: values.get('premium_plan')?.trim().toLowerCase() || undefined,
     vipActive: vipUntil > now || vipLifetime,
@@ -236,12 +223,10 @@ export async function primeAppSnapshotFromStorage(
   const keys = [
     ...BOOT_PROFILE_KEYS,
     ...BOOT_PROGRESS_KEYS,
-    ...CUSTOMIZATION_STORAGE_KEYS,
     ...BOOT_SETTINGS_KEYS,
     lastOpenedKey,
     BOOT_LANG_KEY,
     BOOT_STUDY_TARGET_KEY,
-    BOOT_LEAGUE_STATE_KEY,
     REFERRAL_STATE_STORAGE_KEY,
   ];
   const [storageRead, friends, , avatarDNA, bootRunes] = await Promise.all([
@@ -274,11 +259,6 @@ export async function primeAppSnapshotFromStorage(
   const values = mapPairs(pairs);
   writePeekAppLang(values.get(BOOT_LANG_KEY) ?? null);
   writePeekStudyTargetRaw(values.get(BOOT_STUDY_TARGET_KEY) ?? null);
-  try {
-    rememberLeagueStateSnapshot(sanitizeLeagueState(JSON.parse(values.get(BOOT_LEAGUE_STATE_KEY) ?? 'null')));
-  } catch {
-    rememberLeagueStateSnapshot(null);
-  }
   hydrateReferralStateFromRaw(
     values.get(REFERRAL_STATE_STORAGE_KEY),
     captureAccountGeneration(),
@@ -300,7 +280,7 @@ export async function primeAppSnapshotFromStorage(
   patchAppSnapshot((current) => ({
     profile,
     progress: buildProgressSnapshot(values, studyTarget, now, current, bootRunes),
-    customization: buildCustomizationSnapshot(values, now, profile.level, avatarDNA ?? undefined),
+    customization: buildCustomizationSnapshot(values, now, 0, avatarDNA ?? undefined),
     lessons: {
       source: 'storage',
       updatedAt: now,

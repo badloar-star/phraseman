@@ -26,11 +26,11 @@ describe('friend sheet handoff session', () => {
   });
 
   it('keeps the first queued native handoff action during repeated taps', () => {
-    const gift = { kind: 'gift' as const, profile: placeholder };
+    const deletion = { kind: 'delete' as const, profile: placeholder };
     const duel = { kind: 'duel' as const, profile: placeholder };
 
-    expect(queueFirstFriendSheetAction(null, gift)).toEqual(gift);
-    expect(queueFirstFriendSheetAction(gift, duel)).toEqual(gift);
+    expect(queueFirstFriendSheetAction(null, deletion)).toEqual(deletion);
+    expect(queueFirstFriendSheetAction(deletion, duel)).toEqual(deletion);
   });
 
   it('hides only the visible matching session and preserves referential identity otherwise', () => {

@@ -76,7 +76,6 @@ const retiredAdminOnlySymbols: Record<string, readonly string[]> = {
   'app/lifetime_profile_stats.ts': ['devSeedLifetimeStatsScenario'],
   'app/platform_ui_preview.ts': ['setPlatformUiPreviewMode', 'usePlatformUiPreviewMode'],
   'app/premium_trial_eligibility.ts': ['resetTrialCooldownForTesting', 'getTrialStatusLineForTesters'],
-  'app/services/league_chest_rewards.ts': ['revokeLeagueGoldThemeReward'],
   'app/survey_client.ts': ['adminWriteShardSurvey', 'TEST_SHARD_SURVEYS'],
   'constants/avatars.ts': ['unlockAllFrames'],
   'components/SpeakingPanel.tsx': ['previewStatus', 'previewScore', 'previewHoldMode'],

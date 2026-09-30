@@ -103,7 +103,7 @@ describe('Gustav French curriculum contract', () => {
     expect(getLessonIntroScreens(19, 'fr')).toHaveLength(0);
   });
 
-  it('routes the theory screen through French target content and scoped theory rewards', () => {
+  it('routes the theory screen through French target content and scoped theory progress', () => {
     const source = fs.readFileSync(path.join(process.cwd(), 'app', 'lesson_help.tsx'), 'utf8');
 
     expect(source).toContain('getFrenchLessonIntroScreens');
@@ -117,13 +117,8 @@ describe('Gustav French curriculum contract', () => {
     expect(source).toContain('renderFrenchTheoryFromIntroScreens(plannedTheoryScreens, t, lang, f)');
     expect(source).toContain('key="french-theory-source-gate"');
     expect(source).toContain('text={frenchTheoryGateCopy.body}');
-    expect(source).toContain('lessonTheoryXpClaimedKey(lessonId, studyTarget)');
-    expect(source).toContain('const canClaimTheoryXp = !isFrenchTarget || Boolean(frenchTheoryScreens?.length)');
-    expect(source).toContain('if (canClaimTheoryXp) {');
     expect(source).toContain("updateTaskProgress('open_theory', 1, studyTarget)");
-    expect(source).toContain('if (claimInFlightRef.current || xpClaimed || !xpClaimHydrated || !canClaimTheoryXp) return');
-    expect(source).toContain('{canClaimTheoryXp ? (');
-    expect(source).not.toContain('`theory_xp_claimed_${lessonId}`');
+    expect(source).not.toContain('theory_xp_claimed');
   });
 
   it('opens sourced French lesson theory while keeping hint support gated from English fallback', () => {

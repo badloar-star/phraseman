@@ -46,7 +46,6 @@ describe('Phraseman canonical SFX assets', () => {
     const disabledIds = specs.filter((spec) => !spec.enabled).map((spec) => spec.eventId);
 
     expect(disabledIds).toEqual([
-      'pm.reward.vip_finale',
     ]);
   });
 

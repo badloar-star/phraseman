@@ -36,5 +36,4 @@ test('accepts booleans and rejects non-booleans without changing existing defaul
   expect(getRemoteBool('soft_upsell_first_lesson_enabled')).toBe(false);
   expect(getRemoteBool('soft_upsell_weekly_review_enabled')).toBe(false);
   expect(getRemoteBool('referral_enabled')).toBe(true);
-  expect(getRemoteBool('ideas_enabled')).toBe(false);
 });

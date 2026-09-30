@@ -1,5 +1,5 @@
 export const HOME_HINT_CATEGORIES = [
-  'results', 'lessons', 'dialogues', 'flashcards', 'energy', 'video', 'plus', 'league',
+  'results', 'lessons', 'dialogues', 'flashcards', 'energy', 'video', 'plus',
   'referrals', 'arena', 'settings', 'streak', 'daily', 'learning', 'home',
 ] as const;
 
@@ -62,12 +62,6 @@ const TOPICS: Record<HomeHintCategory, readonly string[]> = {
     'подписка Plus', 'месячный план', 'годовой план', 'плюсы подписки', 'страница оплаты', 'экран преимуществ',
     'доступные режимы', 'проверка тарифа', 'вопрос о Plus', 'пауза перед покупкой', 'решение без спешки',
     'карточка Plus', 'раздел подписки', 'меню Plus',
-  ],
-  league: [
-    'лига', 'клуб недели', 'цель лиги', 'место в таблице', 'очки недели', 'следующий соперник',
-    'экран клуба', 'недельный итог', 'лиговая карточка', 'путь вверх', 'текущая группа', 'позиция недели',
-    'активность клуба', 'таблица очков', 'начало недели', 'конец недели', 'лиговая цель', 'твой клуб',
-    'новая неделя', 'раздел лиги',
   ],
   referrals: [
     'рефералы', 'приглашение друга', 'твоя ссылка', 'экран приглашений', 'статус приглашения', 'реферальная программа',
@@ -140,7 +134,6 @@ const SOURCE_BY_CATEGORY: Partial<Record<HomeHintCategory, string>> = {
   energy: 'components/EnergyBar.tsx',
   video: 'components/home/HomeYoutubeFeatureCard.tsx',
   plus: 'app/premium_context.ts',
-  league: 'app/club_screen.tsx',
   referrals: 'functions/src/referral.ts',
   arena: 'modules/arena/duel_plan.ts',
   settings: 'app/(tabs)/settings.tsx',

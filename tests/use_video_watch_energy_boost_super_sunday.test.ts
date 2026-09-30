@@ -61,6 +61,16 @@ jest.mock('../app/video_watch_runes_client', () => ({
 
 jest.mock('../app/account_generation', () => ({
   captureAccountGeneration: () => ({ stableId: 'stable-user-1', generation: 7 }),
+  // зачем: showVideoWatchRunesInGlobalBalance (app/level_spin_star_grants.ts) с недавних
+  // правок проверяет isCurrentAccountGeneration перед показом рун в общем счётчике —
+  // мок не содержал этот экспорт, падало TypeError "is not a function" ещё до assert'ов.
+  // Мок всегда считает токен актуальным (единственный аккаунт в тесте).
+  isCurrentAccountGeneration: () => true,
+  // зачем: app/shards_system.ts (импортируется транзитивно через level_spin_star_grants
+  // → level_spin_local_contract → level_gift_system → club_boosts → firestore_boosts →
+  // cloud_sync) на старте модуля ждёт waitForActiveAccountGeneration() — экспорта не было
+  // в моке, падало TypeError при самом импорте хука ещё до рендера.
+  waitForActiveAccountGeneration: async () => ({ stableId: 'stable-user-1', generation: 7 }),
 }));
 
 jest.mock('../app/debug-logger', () => ({
@@ -72,7 +82,10 @@ import { useVideoWatchEnergyBoost } from '../hooks/use_video_watch_energy_boost'
 
 async function watchAcrossBoundary(startIso: string) {
   jest.setSystemTime(new Date(startIso));
-  const hook = await renderHook(() => useVideoWatchEnergyBoost());
+  // зачем: useVideoWatchEnergyBoost с 744901978 требует videoId (трекер верифицированного
+  // прогресса ключуется по видео) — тест писался до этой правки и падал компиляцией
+  // TS2554 (Expected 1 arguments, but got 0), сама механика рун/энергии не менялась.
+  const hook = await renderHook(() => useVideoWatchEnergyBoost('super-sunday-probe-video'));
 
   await act(async () => {
     hook.result.current.reportPlaybackSample({ playing: true, positionMs: 0 });
@@ -99,7 +112,7 @@ async function watchAcrossBoundary(startIso: string) {
   return { afterFirstMinute, afterSecondMinute };
 }
 
-describe('video watch optimistic Super Sunday batch', () => {
+describe('video watch fixed base batch', () => {
   beforeEach(() => {
     jest.useFakeTimers();
     mockStartVideoWatchRuneSession.mockClear();
@@ -112,10 +125,10 @@ describe('video watch optimistic Super Sunday batch', () => {
     jest.useRealTimers();
   });
 
-  it('reprices the whole base batch from ×1 to ×2 at Sunday start and claims the server session', async () => {
+  it('keeps the base batch fixed across the Sunday boundary and claims the server session', async () => {
     const result = await watchAcrossBoundary('2026-09-05T23:58:00.000Z');
 
-    expect(result).toEqual({ afterFirstMinute: 3, afterSecondMinute: 12 });
+    expect(result).toEqual({ afterFirstMinute: 3, afterSecondMinute: 6 });
     expect(mockStartVideoWatchRuneSession).toHaveBeenCalledWith({ stableId: 'stable-user-1', generation: 7 }, 'stable-user-1');
     expect(mockClaimVideoWatchRuneSession).toHaveBeenCalledWith(
       { stableId: 'stable-user-1', generation: 7 },
@@ -124,10 +137,10 @@ describe('video watch optimistic Super Sunday batch', () => {
     );
   });
 
-  it('reprices the whole base batch from ×2 to ×1 at Monday start and claims the same session', async () => {
+  it('keeps the base batch fixed across the Monday boundary and claims the same session', async () => {
     const result = await watchAcrossBoundary('2026-09-06T23:58:00.000Z');
 
-    expect(result).toEqual({ afterFirstMinute: 6, afterSecondMinute: 6 });
+    expect(result).toEqual({ afterFirstMinute: 3, afterSecondMinute: 6 });
     expect(mockClaimVideoWatchRuneSession).toHaveBeenCalledWith(
       { stableId: 'stable-user-1', generation: 7 },
       'stable-user-1',

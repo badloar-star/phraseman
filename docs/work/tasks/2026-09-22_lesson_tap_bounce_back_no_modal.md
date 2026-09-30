@@ -1,7 +1,8 @@
 # Task packet: тап по закрытому уроку показывает модал, а не пустой экран с выбросом назад
 
 Governance-ID: TG-F57AFCD69DC1
-Status: In progress
+Governance-ID: TG-83890E461B4D
+Status: Done (коммит c3be76985), ждёт подтверждения на телефоне владельца
 Owner: сессия «Уроки не открываются»
 Related epic/enabler: none
 

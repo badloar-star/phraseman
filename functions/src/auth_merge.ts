@@ -27,11 +27,6 @@ import {
   type PremiumLineageState,
 } from './revenuecat_premium_lineage';
 import {
-  buildLevelSpinMergePlan,
-  type LevelSpinMergeDoc,
-  type LevelSpinMergeSnapshot,
-} from './level_spin_merge';
-import {
   materializeMistakePracticeEventRecord,
   mistakePracticeEventDocIdForRecord,
   verifyMistakePracticeEventReplay,
@@ -246,7 +241,7 @@ function vipStrength(progress: ProgressMap, now: number): PremiumStrength {
  *  1. active beats inactive,
  *  2. among same activeness, furthest expiry wins,
  *  3. a side with any shape beats a side with none.
- * Ties → prefer A (the declared winner-by-XP). Returns 'a' | 'b'.
+ * Ties → prefer A (the declared canonical side). Returns 'a' | 'b'.
  */
 function chooseEntitlementSide(a: PremiumStrength, b: PremiumStrength): 'a' | 'b' {
   if (a.active !== b.active) return a.active ? 'a' : 'b';
@@ -263,7 +258,7 @@ function copyKeys(from: ProgressMap, keys: readonly string[], into: ProgressMap)
 
 /**
  * Best-of-field merge of two progress maps.
- * @param winner the canonical side (higher XP) — wins ties / opaque-string conflicts
+ * @param winner the canonical side — wins ties / opaque-string conflicts
  * @param loser  the side being merged in
  * @returns a NEW merged progress map (immutable — neither input mutated)
  */
@@ -366,7 +361,8 @@ type MergeResult = {
 
 /**
  * Merges two stable-id accounts into one canonical doc using Admin SDK.
- * Winner = higher user_total_xp. Loser's data is merged in (best-of-field), then
+ * The first resolved stable identity is canonical. The other side's data is
+ * merged in best-of-field; retired reward fields are not part of account identity selection.
  * the loser doc is hidden (identityHidden + canonicalStableId) and downstream
  * surfaces (leaderboard/league/name_index) are canonicalized via the existing
  * cleanup helper.
@@ -392,8 +388,6 @@ type TransactionResolvedIdentity = {
 };
 
 type TransactionMergeOutcome = MergeResult & {
-  xpA: number;
-  xpB: number;
 };
 
 const MAX_MERGE_CANONICAL_HOPS = 8;
@@ -481,8 +475,6 @@ async function reserveStableAccountMerge(
     assertAccountUsable(accountStateFromSnapshots({
       marker: authMarkerSnap, denial: authDenialSnap, subject: 'auth',
     }));
-    const xpA = asCleanInt((resolvedA.data.progress as ProgressMap | undefined)?.user_total_xp) ?? 0;
-    const xpB = asCleanInt((resolvedB.data.progress as ProgressMap | undefined)?.user_total_xp) ?? 0;
     const linkedStableId = cleanStr(authLinkSnap.data()?.stable_id);
     if (authLinkSnap.exists) {
       if (!linkedStableId) throw new HttpsError('permission-denied', 'stable_id_mismatch');
@@ -494,18 +486,16 @@ async function reserveStableAccountMerge(
         canonicalStableId: linkedIdentity.stableId,
         mergedFromStableId: null,
         alreadyMerged: true,
-        xpA,
-        xpB,
       };
     }
     if (resolvedA.stableId === resolvedB.stableId) {
       if (!userDataOwnedByAuth(resolvedA.data, authUid)) {
         throw new HttpsError('permission-denied', 'stable_id_mismatch');
       }
-      return { canonicalStableId: resolvedA.stableId, mergedFromStableId: null, alreadyMerged: true, xpA, xpB };
+      return { canonicalStableId: resolvedA.stableId, mergedFromStableId: null, alreadyMerged: true };
     }
-    const winner = xpB > xpA ? resolvedB : resolvedA;
-    const loser = xpB > xpA ? resolvedA : resolvedB;
+    const winner = resolvedA;
+    const loser = resolvedB;
     if (!userDataOwnedByAuth(winner.data, authUid)) {
       throw new HttpsError('permission-denied', 'stable_id_mismatch');
     }
@@ -525,7 +515,7 @@ async function reserveStableAccountMerge(
         cleanStr(outbox.loserStableId) !== loser.stableId || cleanStr(outbox.authUid) !== authUid) {
         throw new HttpsError('failed-precondition', 'account_merge_already_pending');
       }
-      return { canonicalStableId: winner.stableId, mergedFromStableId: loser.stableId, alreadyMerged: false, xpA, xpB };
+      return { canonicalStableId: winner.stableId, mergedFromStableId: loser.stableId, alreadyMerged: false };
     }
     tx.set(winner.ref, { mistakePracticeMergePending: true, updatedAt: now }, { merge: true });
     tx.set(loser.ref, { mistakePracticeMergePending: true, updatedAt: now }, { merge: true });
@@ -535,11 +525,11 @@ async function reserveStableAccountMerge(
       authUid,
       publicationStatus: 'reserved',
       status: 'pending',
-      tasks: ['historical_revenuecat_receipts', 'derived_identity_cleanup', 'level_spins', 'mistake_practice_events'],
+      tasks: ['historical_revenuecat_receipts', 'derived_identity_cleanup', 'mistake_practice_events'],
       createdAt: now,
       updatedAt: now,
     }, { merge: true });
-    return { canonicalStableId: winner.stableId, mergedFromStableId: loser.stableId, alreadyMerged: false, xpA, xpB };
+    return { canonicalStableId: winner.stableId, mergedFromStableId: loser.stableId, alreadyMerged: false };
   });
 }
 
@@ -643,8 +633,6 @@ async function mergeStableAccountsTransactionally(
         canonicalStableId: linkedIdentity.stableId,
         mergedFromStableId: null,
         alreadyMerged: true,
-        xpA: asCleanInt((resolvedA.data.progress as ProgressMap | undefined)?.user_total_xp) ?? 0,
-        xpB: asCleanInt((resolvedB.data.progress as ProgressMap | undefined)?.user_total_xp) ?? 0,
       };
     }
 
@@ -652,32 +640,24 @@ async function mergeStableAccountsTransactionally(
       if (!userDataOwnedByAuth(resolvedA.data, authUid)) {
         throw new HttpsError('permission-denied', 'stable_id_mismatch');
       }
-      const xp = asCleanInt((resolvedA.data.progress as ProgressMap | undefined)?.user_total_xp) ?? 0;
       return {
         canonicalStableId: resolvedA.stableId,
         mergedFromStableId: null,
         alreadyMerged: true,
-        xpA: xp,
-        xpB: xp,
       };
     }
 
-    const xpA = asCleanInt((resolvedA.data.progress as ProgressMap | undefined)?.user_total_xp) ?? 0;
-    const xpB = asCleanInt((resolvedB.data.progress as ProgressMap | undefined)?.user_total_xp) ?? 0;
     if (publication && new Set([resolvedA.stableId, resolvedB.stableId]).size !== 2) {
       throw new HttpsError('failed-precondition', 'stable_identity_changed');
     }
     const bWins = publication
       ? resolvedB.stableId === publication.winnerStableId
-      : xpB > xpA;
+      : false;
     const winner = bWins ? resolvedB : resolvedA;
     const loser = bWins ? resolvedA : resolvedB;
     if (publication && (winner.stableId !== publication.winnerStableId ||
       loser.stableId !== publication.loserStableId)) {
       throw new HttpsError('failed-precondition', 'stable_identity_changed');
-    }
-    if (winner.data.levelSpinMergePending === true || loser.data.levelSpinMergePending === true) {
-      throw new HttpsError('failed-precondition', 'level_spin_merge_already_pending');
     }
     if (!userDataOwnedByAuth(winner.data, authUid)) {
       throw new HttpsError('permission-denied', 'stable_id_mismatch');
@@ -769,7 +749,6 @@ async function mergeStableAccountsTransactionally(
     });
     const winnerUpdate: Record<string, unknown> = {
       progress: reconciledMergedProgress,
-      levelSpinMergePending: true,
       mistakePracticeMergePending: publication ? false : true,
       firebaseAuthUid: authUid,
       updatedAt: now,
@@ -783,7 +762,6 @@ async function mergeStableAccountsTransactionally(
     tx.set(winner.ref, winnerUpdate, { merge: true });
     writeAccessProjection(tx, winner.ref, reconciledMergedProgress, now);
     const loserUpdate: Record<string, unknown> = {
-      levelSpinMergePending: true,
       mistakePracticeMergePending: publication ? false : true,
       identityHidden: true,
       canonicalStableId: winner.stableId,
@@ -804,7 +782,7 @@ async function mergeStableAccountsTransactionally(
       winnerStableId: winner.stableId,
       loserStableId: loser.stableId,
       ...(publication ? { publicationStatus: 'published' } : { status: 'pending' }),
-      tasks: ['historical_revenuecat_receipts', 'derived_identity_cleanup', 'level_spins', 'mistake_practice_events'],
+      tasks: ['historical_revenuecat_receipts', 'derived_identity_cleanup', 'mistake_practice_events'],
       createdAt: now,
       updatedAt: now,
     }, { merge: true });
@@ -813,8 +791,6 @@ async function mergeStableAccountsTransactionally(
       canonicalStableId: winner.stableId,
       mergedFromStableId: loser.stableId,
       alreadyMerged: false,
-      xpA,
-      xpB,
     };
   });
 
@@ -868,8 +844,6 @@ async function mergeStableAccountsTransactionally(
     event: 'account_merged',
     winner: winnerId.slice(0, 8),
     loser: loserId.slice(0, 8),
-    xpWinner: Math.max(outcome.xpA, outcome.xpB),
-    xpLoser: Math.min(outcome.xpA, outcome.xpB),
   }));
   return {
     canonicalStableId: winnerId,
@@ -941,35 +915,6 @@ function levelSpinMergeCollection(
   return db.collection(`users/${stableUid}/${name}`);
 }
 
-function legacyBonusClaimDoc(
-  data: FirebaseFirestore.DocumentData | undefined,
-  level: number,
-): LevelSpinMergeDoc | null {
-  if (!data) return null;
-  const payload = data.payload && typeof data.payload === 'object'
-    ? data.payload as Record<string, unknown>
-    : {};
-  const result = data.result && typeof data.result === 'object'
-    ? data.result as Record<string, unknown>
-    : {};
-  if (data.eventId !== `level_up:${level}:bonus`
-    || data.type !== 'level_up_bonus'
-    || Number(payload.level) !== level
-    || Number(payload.xpDelta ?? payload.amount ?? payload.baseXp) !== 100
-    || Number(result.xpDelta) !== 100) {
-    throw new Error('level_up_bonus_legacy_ledger_corrupt');
-  }
-  return {
-    id: `level_bonus_v1_${String(level).padStart(3, '0')}`,
-    data: {
-      level,
-      eventId: `level_up:${level}:bonus`,
-      amount: 100,
-      grandfatheredLegacyLedger: true,
-    },
-  };
-}
-
 async function migrateLevelSpinAccountMerge(
   db: FirebaseFirestore.Firestore,
   winner: string,
@@ -1039,55 +984,20 @@ async function migrateLevelSpinAccountMerge(
       throw new Error('account_merge_spin_identity_changed');
     }
 
-    const currentListed = current.slice(0, listed.length);
-    const currentLegacy = current.slice(listed.length);
-    const snapshotFor = (owner: string): LevelSpinMergeSnapshot => {
-      const docs = (kind: LevelSpinMergeCollection): LevelSpinMergeDoc[] => listed.flatMap((entry, index) => (
-        entry.owner === owner && entry.kind === kind && currentListed[index]?.exists
-          ? [{ id: entry.ref.id, data: currentListed[index]!.data() ?? {} }]
-          : []
-      ));
-      const bonusClaims = docs('level_up_bonus_claims');
-      legacy.forEach((entry, index) => {
-        if (entry.owner !== owner || !currentLegacy[index]?.exists) return;
-        const grandfathered = legacyBonusClaimDoc(currentLegacy[index]!.data(), entry.level);
-        if (grandfathered && !bonusClaims.some((claim) => claim.id === grandfathered.id)) {
-          bonusClaims.push(grandfathered);
-        }
-      });
-      const userData = owner === winner ? winnerData : loserData;
-      return {
-        stableUid: owner,
-        state: userData.levelSpinServerState && typeof userData.levelSpinServerState === 'object'
-          ? userData.levelSpinServerState as Record<string, unknown>
-          : {},
-        credits: docs('level_spin_credits'),
-        results: docs('level_spin_results'),
-        bonusClaims,
-      };
-    };
-
-    const plan = buildLevelSpinMergePlan(snapshotFor(winner), snapshotFor(loser));
-    for (const doc of plan.credits) {
-      tx.set(levelSpinMergeCollection(db, winner, 'level_spin_credits').doc(doc.id), doc.data, { merge: false });
-    }
-    for (const doc of plan.results) {
-      tx.set(levelSpinMergeCollection(db, winner, 'level_spin_results').doc(doc.id), doc.data, { merge: false });
-    }
-    for (const doc of plan.bonusClaims) {
-      tx.set(levelSpinMergeCollection(db, winner, 'level_up_bonus_claims').doc(doc.id), doc.data, { merge: false });
-    }
+    // PM-067/PM-068: level gifts and spins are retired. Historical rows are
+    // closed during merge and are never copied into the surviving account.
+    const currentListedRetired = current.slice(0, listed.length);
+    const currentLegacyRetired = current.slice(listed.length);
     listed.forEach((entry, index) => {
-      if (entry.owner === loser && currentListed[index]?.exists) tx.delete(entry.ref);
+      if (currentListedRetired[index]?.exists) tx.delete(entry.ref);
     });
-    tx.update(winnerRef, {
-      levelSpinServerState: { ...plan.state, updatedAt: now },
-      'progress.level_reward_spin_balance': String(plan.state.balance),
-      levelSpinMergePending: false,
-      updatedAt: now,
+    legacy.forEach((entry, index) => {
+      if (currentLegacyRetired[index]?.exists) tx.delete(entry.ref);
     });
+    tx.update(winnerRef, { levelSpinMergePending: false, updatedAt: now });
     tx.update(loserRef, { levelSpinMergePending: false, updatedAt: now });
-    return plan.credits.length + plan.results.length + plan.bonusClaims.length;
+    return 0;
+
   });
 }
 
@@ -1289,16 +1199,6 @@ export async function processAccountMergeOutboxJob(
           outboxRef: ref,
           leaseToken,
         },
-      );
-    }
-    if (claim.tasks.includes('level_spins')) {
-      updated += await migrateLevelSpinAccountMerge(
-        db,
-        claim.winner,
-        claim.loser,
-        ref,
-        leaseToken,
-        now,
       );
     }
     if (claim.tasks.includes('mistake_practice_events')) {

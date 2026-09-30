@@ -20250,3 +20250,453 @@ as a normal resumable pause. Published cache hashes are reconstructed directly
 from the generated index on every process launch and remain protected across
 account-generation resets, before any lesson pack is revisited.
 The final independent re-review reports PASS with no remaining P0/P1/P2.
+
+### 2026-09-26 — German Learning V2 blueprint Task 5 progress: L1 closed
+
+German remains a separate `de` Learning V2 contour. Task 5 is **PARTIAL / IN
+PROGRESS**: only `de_l01` is materialized, with seven chapters and 56 exact
+packet identities. The full Task 5 gate intentionally remains RED until all
+32 lessons / 224 chapters are present. No learner-facing German session,
+release, audio, RU/UK copy or session mockup has been authored; Task 6 lexical
+reconciliation and the later full blueprint fingerprint/owner approval still
+block Session 1 authoring.
+
+The L1 chapter slice is in
+`modules/learning-v2/curriculum/de/chapter_blueprints_de_v1.json`; its closed,
+incremental gate is
+`tests/learning_v2_de_chapter_blueprints_gate.ts`. It binds the seven exact
+Task 4 outcomes, `de_l01_c01_s01..de_l01_c07_s56`, Task 3 lifecycle anchors,
+strict support fading, backward/future recall, delayed probes, checkpoint
+grammar integration, distinct primary/checkpoint situations and 1–5 useful
+planned lexical senses per checkpoint. Planned lexical entries are
+discriminated and owner-bound but remain explicitly
+`PLANNED_TASK6_RECONCILIATION_REQUIRED`.
+
+Independent review forced multiple fail-closed repairs before PASS: generic
+per-lesson/prefix validation, future-safe L2–L32 recall and terminal L32 C07
+post-course ownership, semantic situation identity, structured lexical utility
+proofs, future verb/noun discriminators, exact checkpoint grammar equality,
+support-text validation, noun-package identity and linguistic corrections.
+The final L1 inventory has 14 reviewed senses and seven reviewed noun packages,
+including `das Büro / Büros`; C07 uses `Guten Abend` as an opaque fixed chunk
+and `die Einladung / Einladungen` only as receptive scene context, not free
+article or `haben` production. Fresh semantic review and fresh specification
+review report no remaining bounded P0/P1/P2.
+
+The English authoring neighbor confirmed that changes to the three canonical
+English exemplars and `factory/pipeline/prompts/author.md` are normative and
+released in commit `4f7bdb01db45c14b48676a8bc3f6e63174b5a123`.
+The German-only
+`content/learning-v2-course/curriculum/de/REQUIREMENT_MANIFEST_V1.json` now
+binds their actual current SHA-256 values. English source bytes were not edited
+by the German contour.
+
+Deterministic evidence from `C:\appsprojects\phraseman`:
+
+- `npx tsx tests/learning_v2_de_chapter_blueprints_gate.ts --lesson de_l01`
+  PASS: 7 chapters, 56 packet IDs;
+- the same gate with `--prefix 1` PASS;
+- the unscoped Task 5 gate intentionally RED:
+  `INCREMENTAL_TASK5;1/32 lessons;7/224 chapters`;
+- Task 2 schema PASS; Task 3 grammar graph PASS (48 constructs, 89 edges,
+  18 branches); Task 4 lesson boundaries PASS (32 lessons, 224 outcomes,
+  32 finals, 48 constructs);
+- German recenter contract/pack/receipt suite PASS 25/25 after independent
+  byte-hash verification;
+- focused Task 5 TypeScript/JSON Prettier PASS. The large historical German
+  requirement manifest is already non-Prettier in `HEAD`; this slice changed
+  only its four confirmed hash strings and `git diff --check` passes.
+
+Repository at closure: branch `feature/referral-roulette`, HEAD
+`54b3b90e670ba96b371528463819a147ce236766`, upstream ahead/behind `273/0`.
+This shared checkout contains unrelated work owned by other sessions; preserve
+it. German Learning V2 owns `modules/learning-v2/curriculum/de/**`,
+`tests/learning_v2_de_*`, `docs/v2/curriculum/de/**`, and future
+`content/learning-v2-course/{curriculum,sessions,release}/de/**`. The separate
+Daily Phrase contour owns `content/daily-phrases/**` and its scripts/tests; do
+not cross-edit. Shared recenter/progression/readiness/release projection code
+must remain target-scoped and requires neighbor coordination.
+
+Next exact task: continue Task 5 with **only `de_l02`** (seven chapters / 56
+packet IDs) in the same registry and gate. Before editing, rerun the current
+L1/prefix, Task 2/3/4 and 25/25 recenter baselines. The single writer must bind
+the exact Task 4 L2 outcomes and Task 3 lifecycle, recall L1 through the
+approved prerequisite/cross-lesson route, preserve the L2 grammar boundary,
+introduce useful non-filler lexical senses and genuinely new situations at
+every checkpoint, and leave learner-facing RU/UK content untouched. After
+GREEN, run a full recenter and fresh read-only semantic + spec reviews; any
+P0/P1/P2 returns to repair before L3. Intended bounded commit subject when the
+shared checkout can safely commit the complete Task 5 unit:
+`feat(learning-v2): materialize German chapter blueprint`.
+
+### 2026-09-26 — German Learning V2 blueprint Task 5 progress: L2 closed
+
+Task 5 is now 2/32 lessons: `de_l01` and `de_l02`, 14/224 chapters and
+112/1792 exact packet identities. L2 binds the Task 4 boundary for finite
+present person-number agreement and complete article/singular/plural noun
+packages while retaining L1 personal reference and formulaic chunks. Free V2
+and productive finite `haben`/`sein` remain prohibited. L1 delayed lifecycle
+anchors are owned at L2 C07 S49/S50; L2's two new constructs have their exact
+Task 3 introduction, guided, retrieval, production and transfer anchors.
+
+Fresh semantic review initially returned HOLD for copied C04/C05 scene copy
+and an incoherent `kochen + Jacke` checkpoint. Fresh spec review also found a
+coordinated-subset loophole that could remove required grammar from a chapter
+and S56. Repairs made every chapter equal the full Task 4 permitted construct
+set and separately bound C07 to `session56Final.requiredConstructIds`. C04 now
+uses `der Stuhl / Stühle` and `das Regal / Regale` in a moving-day furniture
+zone; C05 uses `kochen` and `der Topf / Töpfe` at a shared-kitchen worktop.
+Fresh semantic and specification re-reviews both PASS with no P0/P1/P2.
+
+Evidence: L1 PASS; L2 PASS (7 chapters / 56 packet IDs); prefix 2 PASS
+(14 chapters / 112 IDs); full Task 5 intentionally RED
+`INCREMENTAL_TASK5;2/32 lessons;14/224 chapters`; Task 2/3/4 PASS; recenter
+25/25 PASS; Task 5 JSON/gate Prettier PASS. No English, Daily Phrase,
+learner-facing German, release or mockup file was edited by the L2 slice.
+
+Next exact task: materialize only `de_l03` with seven chapters and exact
+`de_l03_c01_s01..de_l03_c07_s56`, then repeat focused gate, full recenter and
+fresh semantic/spec review before L4. Task 6 and all learner-facing authoring
+remain HOLD.
+
+### 2026-09-26 — German Learning V2 blueprint Task 5 progress: L3 closed
+
+Task 5 is now 3/32 lessons: `de_l01` through `de_l03`, 21/224 chapters and
+168/1792 exact packet identities. L3 binds the Task 4 boundary for finite
+present `haben` in bounded possession/availability frames and finite present
+`sein` in bounded identity/state frames, extending known present agreement
+without introducing Perfekt, passive, productive nominative-subject analysis
+or V2. L2 delayed lifecycle anchors are owned at L3 C07 S49/S50; L3's two new
+constructs have their exact Task 3 introduction, guided, retrieval, production
+and transfer anchors. C07 uses the exact four-construct Task 4 S56 subset.
+
+Fresh semantic review initially returned HOLD for four alignment defects:
+`Rezeption` did not match the luggage-room scene, `sauber` conflated
+cleanliness with readiness, the C06 goal used modal `possibility` language,
+and `Fehler` named the repair instead of enabling it. The repaired checkpoints
+use `der Koffer / Koffer` for the late-arrival luggage scene, `sauber` only for
+clean/not-dirty linen state, and `kaputt` for a faulty-state contrast between
+`sein` and bounded availability/possession with `haben`. No filler lexicon was
+added; the contract permits 1–5 useful senses per checkpoint and does not
+require a fixed per-lesson count. Fresh semantic review PASSed with no
+P0/P1/P2.
+
+Fresh specification review found and closed one P2 fail-closed gap in the Task
+5 gate: a null `futureDelayedProbe` was read before record validation and could
+emit a native `TypeError`. The gate now validates the probe before `.kind`, and
+a malformed fixture requires the stable `record_required:probe` issue code.
+Final fresh specification review PASSed with no P0/P1/P2.
+
+Evidence: L3 PASS (7 chapters / 56 packet IDs); prefix 3 PASS (21 chapters /
+168 IDs); full Task 5 intentionally RED
+`INCREMENTAL_TASK5;3/32 lessons;21/224 chapters`; Task 2 schema PASS; Task 3
+grammar graph PASS (48 constructs, 89 edges, 18 branches); Task 4 lesson
+boundaries PASS (32 lessons, 224 outcomes, 32 finals, 48 constructs); recenter
+25/25 PASS with current manifest hashes; focused Prettier and `git diff
+--check` PASS. No English, Daily Phrase, learner-facing German, release or
+mockup file was edited by the L3 slice.
+
+Next exact task: materialize only `de_l04` with seven chapters and exact
+`de_l04_c01_s01..de_l04_c07_s56`. Bind nominative-subject control and neutral
+statement V2 without leaking yes-no V1 or W-question topology, retain the exact
+Task 4 S56 subset, own L3 delayed anchors at L4 C07 S49/S50, then repeat full
+recenter and fresh semantic/spec review before L5. Task 6 and all learner-facing
+RU/UK authoring, release and German mockup remain HOLD.
+
+### 2026-09-26 — German Learning V2 blueprint Task 5 progress: L4 closed
+
+Task 5 is now 4/32 lessons: `de_l01` through `de_l04`, 28/224 chapters and
+224/1792 exact packet identities. L4 binds nominative-subject agreement control
+and neutral statement V2 with one whole Vorfeld constituent. Yes-no V1,
+W-question V2, introduced subordinate clauses, multiverb brackets, Perfekt,
+passive and premature object-case instruction remain outside the boundary.
+L3 delayed `haben`/`sein` anchors are owned at L4 C07 S49/S50; the exact Task 4
+S56 set intentionally excludes the noun-package construct.
+
+Initial semantic/spec review correctly HOLDed a mechanically green draft:
+C02/C03 checkpoint scenes were synonymous schedule/board renamings,
+`Reihenfolge` only named a grammar error, `Koch` blurred a masculine
+professional role with a community volunteer, and the workshop transfer was
+lexically cosmetic. Repairs use neutral `das Mitglied / Mitglieder`, a live
+pantry-delivery handover, an evening key handover, intransitive cleanup action
+`fegen`, and `regelmäßig` plus intransitive workshop action `bohren`. The
+changed situations and utility proofs now describe real communicative work
+without expanding the grammar boundary. Fresh semantic and specification
+re-reviews both PASSed with no P0/P1/P2.
+
+Evidence: L1–L4 individually PASS; prefix 4 PASS (28 chapters / 224 packet
+IDs); full Task 5 intentionally RED
+`INCREMENTAL_TASK5;4/32 lessons;28/224 chapters`; Task 2 schema PASS; Task 3
+grammar graph PASS (48 constructs, 89 edges, 18 branches); Task 4 lesson
+boundaries PASS (32 lessons, 224 outcomes, 32 finals, 48 constructs); recenter
+25/25 PASS; focused Prettier and `git diff --check` PASS. No English, Daily
+Phrase, learner-facing German, release or mockup file was edited by the L4
+slice.
+
+Next exact task: materialize only `de_l05` with seven chapters and exact
+`de_l05_c01_s01..de_l05_c07_s56`. Bind finite-first yes-no questions separately
+from W-element plus finite V2 questions, preserve the exact Task 4 S56 subset,
+own L4 delayed anchors at L5 C07 S49/S50, and repeat full recenter plus fresh
+semantic/spec review before L6. Task 6 and learner-facing RU/UK authoring,
+release and German mockup remain HOLD.
+
+### 2026-09-26 — German Learning V2 blueprint Task 5 progress: L5 closed
+
+Task 5 is now 5/32 lessons: `de_l01` through `de_l05`, 35/224 chapters and
+280/1792 exact packet identities. L5 keeps finite-first yes-no questions and
+W-element plus finite V2 questions topologically distinct; it does not teach
+the false rule that every German question begins with a verb. Negation,
+indirect/subordinate questions, case expansion, modal/separable brackets,
+Perfekt and passive remain outside the boundary. L4 delayed nominative/V2
+anchors are owned at L5 C07 S49/S50; C07 uses the exact four-construct Task 4
+S56 subset.
+
+Initial fresh review HOLDed a mechanically green draft because `Frage` was
+metalinguistic filler, `offen` conflated open with general availability,
+`Gleis` was downstream-labelled as a platform, C04's bicycle-parking scene was
+weakly tied to the requested track location, and S56 obtained only the first
+of two details at a ferry terminal. Repairs keep `das Gleis / Gleise` as a
+numbered departure track distinct from `Bahnsteig`, narrow `offen` to open/not
+closed and operating at that time, use a live concourse wayfinding exchange,
+replace filler with concrete `das Fundbüro / Fundbüros`, and require S56 at an
+unfamiliar regional station to confirm a direct connection by finite-first
+yes-no and request departure time by W-element plus finite V2. Fresh semantic
+and specification re-reviews both PASSed with no P0/P1/P2.
+
+Evidence: L1–L5 individually PASS; prefix 5 PASS (35 chapters / 280 packet
+IDs); full Task 5 intentionally RED
+`INCREMENTAL_TASK5;5/32 lessons;35/224 chapters`; Task 2 schema PASS; Task 3
+grammar graph PASS (48 constructs, 89 edges, 18 branches); Task 4 lesson
+boundaries PASS (32 lessons, 224 outcomes, 32 finals); recenter 25/25 PASS;
+focused Prettier and `git diff --check` PASS. No English, Daily Phrase,
+learner-facing German, release or mockup file was edited by the L5 slice.
+
+Next exact task: materialize only `de_l06` with seven chapters and exact
+`de_l06_c01_s01..de_l06_c07_s56`. Bind response `nein` versus clause-internal
+`nicht` separately from nominal `kein-`, preserve the exact Task 4 S56 subset,
+own L5 delayed question anchors at L6 C07 S49/S50, and repeat full recenter plus
+fresh semantic/spec review before L7. Task 6 and learner-facing RU/UK
+authoring, release and German mockup remain HOLD.
+
+### 2026-09-26 — German Learning V2 blueprint Task 5 progress: L6 closed
+
+Task 5 is now 6/32 lessons: `de_l01` through `de_l06`, 42/224 chapters and
+336/1792 exact packet identities. L6 separates response `nein`,
+clause-internal `nicht` and nominal `kein-` in controlled familiar frames.
+Free `nicht` focus placement, `doch`, pronoun chains, accusative object frames,
+case guessing and later brackets remain outside the boundary. L5 delayed
+yes-no/W-question anchors are owned at L6 C07 S49/S50; C07 preserves the exact
+four-construct Task 4 S56 set.
+
+Initial fresh review HOLDed cosmetic C01/C03/C06/C07 transfers, count/mass
+conflation in `Brot`, weak `Tausch` utility and an `unpassend` final that could
+bypass `nicht geeignet`. Repairs use a telephone bookshop order, a guesthouse
+breakfast with countable whole-loaf `das Brot / Brote`, a telephone stock check
+with `vorrätig` contrasting `nicht vorrätig` against `kein-` plus a familiar
+noun, and an unfamiliar hardware shop. S56 now explicitly requires a bounded
+yes-no availability question, a separate `Nein`, `kein-` for absence,
+clause-internal `nicht geeignet`, and a W-question for an alternative, with
+`stattdessen` as discourse support rather than a negation substitute. Fresh
+semantic and specification re-reviews both PASSed with no P0/P1/P2.
+
+Evidence: L1–L6 individually PASS; prefix 6 PASS (42 chapters / 336 packet
+IDs); full Task 5 intentionally RED
+`INCREMENTAL_TASK5;6/32 lessons;42/224 chapters`; Task 2 schema PASS; Task 3
+grammar graph PASS (48 constructs, 89 edges, 18 branches); Task 4 lesson
+boundaries PASS (32 lessons, 224 outcomes, 32 finals); recenter 25/25 PASS;
+focused Prettier and `git diff --check` PASS. No English, Daily Phrase,
+learner-facing German, release or mockup file was edited by the L6 slice.
+
+Next exact task: materialize only `de_l07` with seven chapters and exact
+`de_l07_c01_s01..de_l07_c07_s56`. Bind noun-to-pronoun reference chains and
+verified frequent accusative frames without case guessing or premature
+accusative-pronoun substitution, preserve the exact Task 4 S56 subset, own L6
+delayed negation anchors at L7 C07 S49/S50, and repeat full recenter plus fresh
+semantic/spec review before L8. Task 6 and learner-facing RU/UK authoring,
+release and German mockup remain HOLD.
+
+### 2026-09-26 — German Learning V2 blueprint Task 5 progress: L7 closed
+
+Task 5 is now 7/32 lessons: `de_l01` through `de_l07`, 49/224 chapters and
+392/1792 exact packet identities. L7 introduces noun-to-pronoun reference
+chains and verified frequent accusative frames while explicitly forbidding
+accusative personal pronouns until L8. Every object remains an explicit noun
+package in a lexically verified accusative frame; a matching personal pronoun
+may refer back only as nominative subject in the immediately adjacent
+utterance. Separable brackets and case guessing from word order remain outside
+the boundary. L6 delayed negation anchors are owned at L7 C07 S49/S50.
+
+Initial fresh review HOLDed an incoherent `kaufen` food-bank scene, a cosmetic
+household-shop-to-repair-shop transfer, weak noun glosses and an S56 that named
+required negation IDs without proving them. Repairs define broad exact
+`der Eimer / Eimer` and neutral `das Paket / Pakete`, tighten C03 to an
+immediately adjacent nominative `sie`, use a real hardware-store purchase for
+`kaufen +` explicit accusative `Eimer`, and change the final into an independent
+community repair-day supply pickup. S56 now explicitly requires `besorgen +`
+explicit accusative noun, immediately adjacent nominative `er`, a separate
+`Nein`, clause-internal `nicht`, and `kein-` before a familiar explicit noun
+package. Fresh semantic and specification re-reviews both PASSed with no
+P0/P1/P2.
+
+Evidence: L1–L7 individually PASS; prefix 7 PASS (49 chapters / 392 packet
+IDs); full Task 5 intentionally RED
+`INCREMENTAL_TASK5;7/32 lessons;49/224 chapters`; Task 2 schema PASS; Task 3
+grammar graph PASS (48 constructs, 89 edges, 18 branches); Task 4 lesson
+boundaries PASS (32 lessons, 224 outcomes, 32 finals); recenter 25/25 PASS;
+focused Prettier and `git diff --check` PASS. No English, Daily Phrase,
+learner-facing German, release or mockup file was edited by the L7 slice.
+
+Next exact task: materialize only `de_l08` with seven chapters and exact
+`de_l08_c01_s01..de_l08_c07_s56`. Bind accusative personal pronouns only inside
+verified transitive frames and finite separable stems with their right-bracket
+particles, preserve the exact Task 4 S56 subset, own L7 delayed reference/frame
+anchors at L8 C07 S49/S50, and repeat full recenter plus fresh semantic/spec
+review before L9. Task 6 and learner-facing RU/UK authoring, release and German
+mockup remain HOLD.
+
+### 2026-09-26 — German Learning V2 blueprint Task 5 progress: L8 closed
+
+Task 5 is now 8/32 lessons: `de_l01` through `de_l08`, 56/224 chapters and
+448/1792 exact packet identities. L8 introduces accusative personal pronouns
+only after an explicit noun referent inside a verified transitive frame and
+introduces individually verified separable verbs with finite stem in the left
+bracket and exact particle in the right bracket. Dative pronouns, modal
+infinitive brackets, local preposition/case expansion, Perfekt and passive
+remain outside the boundary. L7 delayed reference/frame anchors are owned at
+L8 C07 S49/S50.
+
+Fresh review HOLDed the first draft because C01 introduced a separable bracket
+before any separable verb existed, C02 wording resembled an imperative, C04 did
+not name the exact frame for `Mappe → sie`, and S56 allowed `anrufen` or
+`abholen` rather than proving both. Repairs add `absagen +` accusative
+`Termin` in C01, require overt-subject declarative V2, bind C04 to exact
+`abholen`, and make S56 atomically prove both `anrufen` and `abholen`, each with
+explicit noun → accusative pronoun and a complete bracket in a storm-relief
+dispatch task. `Verschiebung` is only scene grounding and cannot replace either
+operation. Fresh semantic review PASSed with no P0/P1/P2.
+
+Spec review then forced a fail-closed gate repair. Introduction of a separable
+bracket now requires a planned separable verb; simultaneous accusative-pronoun
+introduction requires an explicit noun and a reviewer-approved exact valency
+frame. The exact allowlist currently contains only
+`transitive cancel-appointment accusative frame`. Strict `Error.message`
+fixtures distinguish separable-support failures from accusative-valency
+failures and reject missing, `non`, `non-accusative`, `no`, `not`, `without`,
+`maybe` and generic descriptors. Final fresh exact-spec review PASSed with no
+P0/P1/P2, and the blueprint SHA remained identical to the semantic-PASS bytes.
+
+Evidence: L1–L8 individually PASS; prefix 8 PASS (56 chapters / 448 packet
+IDs); full Task 5 intentionally RED
+`INCREMENTAL_TASK5;8/32 lessons;56/224 chapters`; Task 2 schema PASS; Task 3
+grammar graph PASS (48 constructs, 89 edges, 18 branches); Task 4 lesson
+boundaries PASS (32 lessons, 224 outcomes, 32 finals); recenter 25/25 PASS;
+focused Prettier and `git diff --check` PASS. No English, Daily Phrase,
+learner-facing German, release or mockup file was edited by the L8 slice.
+
+Next exact task: materialize only `de_l09` with seven chapters and exact
+`de_l09_c01_s01..de_l09_c07_s56`. Bind one bounded modal meaning to the finite
+modal + bare-infinitive bracket and one named local direction relation to its
+governed accusative frame, preserve the exact Task 4 S56 subset, own L8 delayed
+accusative-pronoun/separable anchors at L9 C07 S49/S50, and repeat full recenter
+plus fresh semantic/spec review before L10. Task 6 and learner-facing RU/UK
+authoring, release and German mockup remain HOLD.
+
+### 2026-09-26 — German Learning V2 blueprint Task 5 progress: L9 closed
+
+Task 5 is now 9/32 lessons: `de_l01` through `de_l09`, 63/224 chapters and
+504/1792 exact packet identities. L9 introduces only route feasibility with
+finite `können` plus a bare-infinitive right bracket and one local path
+relation, `durch + Akkusativ`. Personal ability, Dativ, temporal relations,
+other modal meanings, modal Perfekt and case-free preposition translation
+remain outside the boundary. L8 delayed accusative-pronoun/separable anchors
+are owned at L9 C07 S49/S50.
+
+Fresh semantic review first HOLDed the draft because `ability or possibility`
+permitted two modal meanings, `durch den Park` was incorrectly counted as a
+new fixed-expression lexical sense, and the final named four constructs without
+proving them in one changed destination. Repairs narrow the lesson to route
+feasibility, keep `der Park / Parks` as the genuine noun package, and make the
+night-market final prove `Man kann durch den Park gehen.` plus `Ich hole den
+Stadtplan ab. Ich hole ihn ab.`. A later fresh review found that C04's `Kann
+ich durch den Park gehen?` also required the established Verb-Erst yes/no
+construct. Task 4 and Task 5 now declare an exact reviewed recall from L5,
+while C07 retains its exact four-construct subset without yes/no.
+
+Exact-spec adversarial review also rejected substring-based validation. The L9
+gate now compares complete C04/C07 contracts and exact construct/lexical sets,
+rejects any `FIXED_EXPRESSION` in all seven L9 chapters, and has exact RED
+fixtures for missing or wrong L5 recall, declarative/changed C04 proof,
+out-of-C01 fixed-expression injection, `not-a-night-market` destination
+substitution, negated `Do not use` / `Reject` proof text, each of the four
+individual proof mutations, and a C07 yes/no leak. Final fresh semantic and
+exact-spec judges both PASSed with no P0/P1/P2.
+
+During L9 review, a separate cross-contract flaw was found and closed: the
+mandatory clear-lesson-opening owner verdict was not content-addressed by the
+German requirement manifest. The manifest now binds that source and nine
+phase-safe `DE-OPENING-001..009` requirements. PRE_AUTHOR, POST_AUTHOR and
+RELEASE_PROJECTION assertions follow the real judge order; exact-row mutation
+tests and owner-byte tamper tests prove that semantic changes invalidate the
+instruction/pack digests and stale PRE receipts. Fresh critical re-review
+PASSed with no P0/P1/P2. The recenter suite is now 28/28 PASS.
+
+Evidence: L9 focused PASS (7 chapters / 56 packet IDs); prefix 9 PASS (63
+chapters / 504 packet IDs); full Task 5 intentionally RED
+`INCREMENTAL_TASK5;9/32 lessons;63/224 chapters`; Task 2 schema PASS; Task 3
+grammar graph PASS (48 constructs, 89 edges, 18 branches); Task 4 lesson
+boundaries PASS (32 lessons, 224 outcomes, 32 finals); owner decisions and
+research authority PASS; recenter 28/28 PASS; focused Prettier and `git diff
+--check` PASS. Final hashes: requirement manifest
+`FBB14A88961D1A72D665A044F7E31E318132FD16122540430935EE0A9E24F5BC`, Task 4
+lesson blueprint `79B7686911040987C3AE0FAD416D72960BB823E7CC21F76F4B604063094737DE`,
+Task 5 chapter blueprint
+`4DA54A5C0B2A14E014140091AF6358E8D6CF3C932C4B835BB67C940952446049`, and
+chapter gate `7314A695E219E3CE2BBA2E3451A2F235D42DB5EBB95775876D42785174A05ED2`.
+No English, Daily Phrase, learner-facing German, release or mockup file was
+edited by the L9 slice.
+
+Next exact task: obtain a fresh PREAUTHOR guardian for `de_l10`, then
+materialize only its seven chapters and exact
+`de_l10_c01_s01..de_l10_c07_s56` identities. Preserve the exact Task 4
+boundary/final subset, own L9 delayed anchors at L10 C07 S49/S50, and repeat
+full recenter plus fresh semantic/spec review before L11. Task 6 and all
+learner-facing RU/UK authoring, release and German session mockup remain HOLD.
+
+### 2026-09-26 — German Learning V2 paused by owner during L10 final review
+
+The owner explicitly paused this session and requested no continuation until a
+new instruction. All current work remains saved in the shared worktree; no
+commit, release, learner-facing session or mockup was created.
+
+Accepted baseline at pause: Task 5 L1–L9 is closed at 63/224 chapters and
+504/1792 exact packet identities. L9 has final fresh semantic and exact-spec
+PASS with no P0/P1/P2. Recenter is 28/28 PASS after the clear-opening manifest
+contract repair.
+
+L10 is materialized as a review candidate only, not closed: 7 chapters / 56
+packet IDs; prefix 10 is mechanically PASS at 70 chapters / 560 IDs; the full
+Task 5 sentinel correctly remains RED at 10/32 lessons and 70/224 chapters.
+The current candidate/gate hashes are chapter blueprint
+`95391392E75C2A35B2C0705EB6E9C8B19F163236BEB25ACB7B58DAB22721305F` and
+chapter gate `8DDA963CF4F6B0775DD8D52AC12223DBFC6B81259BAA8AB2F75D1B0F21C21190`.
+Task 2/3/4, L9, L10, prefix 10 and recenter 28/28 were green immediately
+before the final review was interrupted.
+
+The first L10 semantic/spec review rejected the initial candidate and its
+fail-open blacklist. The repaired candidate now has closed C01–C07 semantic
+contracts, exact recall arrays, exact bidirectional L9→L10 and L10→L11 delayed
+maps with dual S55 provenance, a real C07 learner scaffold, corrected C04
+`Übergabe` scene grounding, and C05/C07 `Rollwagen`/`Flur` ordering. Both fresh
+final judges were deliberately interrupted on owner pause. Before interruption,
+the semantic judge identified one unresolved candidate risk: C01 support uses
+`Ich helfe dem Kollegen.` while `helfen` is first planned as the sole new
+lexical sense in C02. Treat this as an open forward-lexical-dependency finding,
+not as an accepted L10 state. The final exact-spec judge returned no verdict
+before interruption.
+
+Resume protocol: do not continue automatically. On an explicit owner command,
+start with a fresh guardian/recenter against current disk bytes, resolve the
+open C01→C02 `helfen` dependency with one writer and RED/GREEN evidence, then
+run fresh semantic and exact-spec judges from scratch. Only two final PASS
+verdicts may close L10 and authorize the HANDOVER closure entry. L11, Task 6,
+all learner-facing RU+UK authoring, release and German mockup remain HOLD.

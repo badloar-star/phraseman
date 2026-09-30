@@ -177,8 +177,9 @@ import {
 import { DebugLogger } from '../debug-logger';
 import { isValidCoinRank } from '../coin_rank_table_v1';
 
-// Тёплый кеш (дублирует root layout — если вкладка подгрузилась отдельным чанком).
-startFriendsTabSwrPrime();
+// зачем: PM-212 — чтение AsyncStorage при ИМПОРТЕ модуля убрано. Тёплый кеш
+// греет root layout, а сам экран зовёт идемпотентный prime в эффектах монтирования
+// (тот же общий Promise), поэтому импорт вкладки больше ничего не читает с диска.
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -1896,17 +1897,11 @@ export default function FriendsTabScreen() {
     if (togetherSheetSession !== null || modalWedgeActive) return;
 
     setPendingTogetherSheetAction(null);
+    // зачем: D83 — клиентская Арена удалена, дуэли с другом больше нет;
+    // из шторки друга остаётся только удаление.
     if (action.kind === 'delete') handleDeleteConfirm(action.profile.uid, action.profile.name);
-    else if (action.profile.uid.startsWith('devbot_')) router.push({ pathname: '/arena_friend_duel', params: { devBot: '1' } } as never);
-    else router.push({
-      pathname: '/arena_friend_duel',
-      params: {
-        friendStableUid: action.profile.uid,
-        friendName: action.profile.name,
-        friendAvatar: action.profile.avatar,
-      },
-    } as never);
-  }, [handleDeleteConfirm, modalWedgeActive, pendingTogetherSheetAction, router, togetherSheetSession]);
+    else if (__DEV__) console.warn('[D83-ARENA-RETIRED] friend sheet duel action ignored', { kind: action.kind });
+  }, [handleDeleteConfirm, modalWedgeActive, pendingTogetherSheetAction, togetherSheetSession]);
 
   // ── Derived ────────────────────────────────────────────────────────────────
 
@@ -1957,9 +1952,11 @@ export default function FriendsTabScreen() {
       setStudyInvite({ event, friendName: profile.name, friendCoinRank: isValidCoinRank(profile.coinRank) ? profile.coinRank : null });
       return;
     }
+    // зачем: D83 — клиентская Арена удалена; старое приглашение в дуэль
+    // просто гасится как прочитанное, экрана приглашения больше нет.
+    if (__DEV__) console.warn('[D83-ARENA-RETIRED] duel invite marker acknowledged without navigation', { kind: event.kind });
     acknowledgeFriendEvent(event);
-    router.push({ pathname: '/arena_invite', params: { inviteId: event.inviteId ?? event.id } } as never);
-  }, [acknowledgeFriendEvent, router]);
+  }, [acknowledgeFriendEvent]);
 
   // зачем (аудит скорости 2026-08-22): renderItem ниже создавал новые стрелочные
   // обёртки (() => openProfile(profile) и т.д.) на КАЖДЫЙ рендер экрана — новые

@@ -49,12 +49,10 @@ import {
 } from './referral_vip';
 import {
   claimReferralSpins,
-  devGrantReferralSpin,
   readCachedSpinCredits,
   spinReferralRoulette,
 } from './roulette_spin_client';
 import { preloadRoulettePrizeImages } from './roulette_prizes';
-import { claimReferralSpinPearls } from './shards_system';
 import { useReferralRoulettePolicy } from './referral_roulette_flag';
 import { formatReferralSunsetDate, referralSunsetCopy } from './referral_sunset_copy';
 import { selectAccountScopedReferralState, selectReferralSurfaceState } from './referral_surface_state';
@@ -191,7 +189,7 @@ export default function ReferralsScreen() {
   const arcRef = useRef<PrizeArcHandle>(null);
   const [spinning, setSpinning] = useState(false);
   const spinningRef = useRef(false);
-  // зачем: владелец (2026-07-26) — Pro (lifetime) выигрывает жемчужины вместо
+  // зачем: D100 (владелец, 2026-09-30) — Pro (lifetime) выигрывает монеты вместо
   // дней Plus; экран лишь подписывает это под дугой (тот же ключ, что настройки).
   const [isProLifetime, setIsProLifetime] = useState(false);
   useEffect(() => {
@@ -430,17 +428,15 @@ export default function ReferralsScreen() {
       }
       devGrantedCreditsFloorRef.current = outcome.spinsLeft;
       setSpinCredits(outcome.spinsLeft);
-      if (outcome.prizeKind === 'pearls') {
-        // Pro: жемчужины начисляет клиентская claim-транзакция, идемпотентная
-        // по spinRequestId — стартуем параллельно с докруткой, не ждём.
-        void claimReferralSpinPearls(outcome.spinRequestId, outcome.prizePearls).catch(() => {});
-      }
+      // зачем: D100 — монеты Pro начисляет сам сервер в транзакции спина; клиент
+      // рулетки уже фоном влил снапшот кошелька (mergeReferralSpinCoins), экрану
+      // ничего не нужно доначислять.
       // Сервер уже списал ключ и авторитетно выбрал приз — докручиваем дугу до
       // него с текущей скорости; JS-дедлайн не даст модалке потеряться.
       await settlePrizeArcAnimation(() => arcRef.current?.spinTo(outcome.prizeIndex));
       if (!isCurrentAccountGeneration(spinAccount)) return;
       void hapticSuccess();
-      setWin({ prizeIndex: outcome.prizeIndex, prizeDays: outcome.prizeDays, vipUntil: outcome.vipUntil, prizeKind: outcome.prizeKind, prizePearls: outcome.prizePearls });
+      setWin({ prizeIndex: outcome.prizeIndex, prizeDays: outcome.prizeDays, vipUntil: outcome.vipUntil, prizeKind: outcome.prizeKind, prizeCoins: outcome.prizeCoins });
     } finally {
       spinningRef.current = false;
       setSpinning(false);
@@ -457,36 +453,8 @@ export default function ReferralsScreen() {
     }, 220);
   }, []);
 
-  // DEV: кнопка «+1 ключ» (только __DEV__; гейт/лимит 10-в-сутки — на сервере).
-  const [devGrantBusy, setDevGrantBusy] = useState(false);
-  const onDevGrantSpin = useCallback(async () => {
-    if (devGrantBusy) return;
-    setDevGrantBusy(true);
-    try {
-      const res = await devGrantReferralSpin();
-      if (res.ok) {
-        // DEV-грант уже подтверждён сервером. Обновляем оба источника этого экрана
-        // синхронно: иначе ранний load() с прежним drain.availableCreditCount = 0
-        // способен перерисовать кнопку неактивной прямо после «DEV +1».
-        const grantedSpins = Math.max(1, res.spinsTotal);
-        devGrantedCreditsFloorRef.current = Math.max(devGrantedCreditsFloorRef.current, grantedSpins);
-        setLoadedAccountScope(renderAccountScope);
-        setSpinCredits((current) => Math.max(current, grantedSpins));
-        setDrain((current) => ({
-          ...current,
-          availableCreditCount: Math.max(current.availableCreditCount, grantedSpins),
-        }));
-        setHasServerDrain(true);
-        setMessage('DEV: ключ добавлен — нажми «Получить приз», чтобы увидеть серверный выигрыш.');
-      } else if (res.reason === 'disabled') {
-        setMessage('DEV: выдача ключей выключена (remote_config)');
-      } else {
-        setMessage(`DEV: не удалось выдать ключ (${res.code ?? 'error'})`);
-      }
-    } finally {
-      setDevGrantBusy(false);
-    }
-  }, [devGrantBusy, renderAccountScope]);
+  // зачем: D78/D81 (владелец, 2026-09-30) — DEV-кнопка «+1 ключ» и её серверная
+  // выдача referralDevGrantSpin удалены из кода; сама рулетка (D80) остаётся.
 
   // Реф-код: тот же серверный код, что в /friends. Ретрай/бэкофф — внутри синглтона
   // (dedupe с friends.tsx — один сетевой проход на процесс).
@@ -680,22 +648,6 @@ export default function ReferralsScreen() {
                     {L(`Ключей: ${spinCredits}`, `Ключів: ${spinCredits}`, `Keys: ${spinCredits}`, `Llaves: ${spinCredits}`, `Chaves: ${spinCredits}`, `Chìa khóa: ${spinCredits}`, `Kunci: ${spinCredits}`, `Anahtar: ${spinCredits}`, `Klucze: ${spinCredits}`)}
                   </Text>
                 </View>
-                {marketingVisible && __DEV__ && (
-                  <TouchableOpacity
-                    testID="referrals-roulette-dev-grant"
-                    accessibilityRole="button"
-                    accessibilityLabel="DEV: добавить один ключ"
-                    accessibilityState={{ disabled: devGrantBusy }}
-                    activeOpacity={0.8}
-                    disabled={devGrantBusy}
-                    onPress={() => void onDevGrantSpin()}
-                    style={{ minHeight: 34, paddingHorizontal: 11, borderRadius: 12, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface, opacity: devGrantBusy ? 0.6 : 1 }}
-                  >
-                    {devGrantBusy
-                      ? <ActivityIndicator size="small" color={t.accent} />
-                      : <Text style={{ color: t.accent, fontSize: f.sub ?? 13, fontFamily: ds.fontFamily, fontWeight: '700' }}>DEV +1</Text>}
-                  </TouchableOpacity>
-                )}
               </View>
 
               <Text testID="referrals-condition-hint" style={{ color: t.textSecond, fontSize: f.sub ?? 13, lineHeight: 19, fontFamily: ds.fontFamily, fontWeight: '400', textAlign: 'center', paddingHorizontal: 8 }}>
@@ -712,20 +664,20 @@ export default function ReferralsScreen() {
                 )}
               </Text>
 
-              {/* зачем: владелец (2026-07-26) — у Pro дни Plus бессмысленны, призы
-                  приходят жемчужинами; карточки те же, конверсию объясняет подпись. */}
+              {/* зачем: D100 (владелец, 2026-09-30) — у Pro дни Plus бессмысленны, призы
+                  приходят монетами; карточки те же, конверсию объясняет подпись. */}
               {isProLifetime && !drainVisible && (
-                <Text testID="referrals-pro-pearls-hint" style={{ color: t.accent, fontSize: f.sub ?? 13, lineHeight: 19, fontFamily: ds.fontFamily, fontWeight: '700', textAlign: 'center', paddingHorizontal: 8, marginTop: -6 }}>
+                <Text testID="referrals-pro-coins-hint" style={{ color: t.accent, fontSize: f.sub ?? 13, lineHeight: 19, fontFamily: ds.fontFamily, fontWeight: '700', textAlign: 'center', paddingHorizontal: 8, marginTop: -6 }}>
                   {L(
-                    'У тебя Pro — каждый приз приходит жемчужинами.',
-                    'У тебе Pro — кожен приз приходить перлинами.',
-                    'You have Pro — every prize comes as pearls.',
-                    'Tienes Pro: cada premio llega en perlas.',
-                    'Você tem Pro: cada prêmio vem em pérolas.',
-                    'Bạn có Pro — mỗi phần thưởng là ngọc trai.',
-                    'Kamu punya Pro — setiap hadiah berupa mutiara.',
-                    'Pro üyesin — her ödül inci olarak gelir.',
-                    'Masz Pro — każda nagroda przychodzi w perłach.',
+                    'У тебя Pro — каждый приз приходит монетами.',
+                    'У тебе Pro — кожен приз приходить монетами.',
+                    'You have Pro — every prize comes as coins.',
+                    'Tienes Pro: cada premio llega en monedas.',
+                    'Você tem Pro: cada prêmio vem em moedas.',
+                    'Bạn có Pro — mỗi phần thưởng là xu.',
+                    'Kamu punya Pro — setiap hadiah berupa koin.',
+                    'Pro üyesin — her ödül jeton olarak gelir.',
+                    'Masz Pro — każda nagroda przychodzi w monetach.',
                   )}
                 </Text>
               )}

@@ -30,6 +30,9 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { Theme } from '../../constants/theme';
 import { FC_TIMING } from '../../constants/flashcards_motion';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { FONT_SCALE, useTheme } from '../../components/ThemeContext';
+import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
 import { fcHaptic } from './SoundService';
 import { isLowPowerEffective } from './low_power';
 // зачем (2026-08-16, motionVariant='hybrid'): гибрид «Световод + Чекан» — тот же
@@ -39,6 +42,7 @@ import { isLowPowerEffective } from './low_power';
 // early return чуть ниже, использующий те же state/handlers.
 import HybridSheetShell from '../../components/modal_fx/HybridSheetShell';
 import PressableHybrid from '../../components/PressableHybrid';
+import { compactDeckCountLabel } from '../../lib/flashcards/compact_deck_count_label';
 import DeckSelectionTile from './DeckSelectionTile';
 import {
   deckSelectionLabel,
@@ -129,6 +133,9 @@ export default function DeckPickerSheet({
   mode = 'trainer',
   motionVariant = 'hybrid',
 }: Props) {
+  const { liquidGlassThemeId, fontSize, uiScale } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  const textScale = (FONT_SCALE[fontSize] / FONT_SCALE.medium) * uiScale;
   const insets = useStableSafeAreaInsets();
   const { height: winH, width: winW } = useWindowDimensions();
   /** Modal живёт чуть дольше visible — успевает проиграться анимация закрытия. */
@@ -309,112 +316,196 @@ export default function DeckPickerSheet({
   // встроен) вместо самодельного Modal+backdrop+Reanimated.View выше. 'classic'
   // ниже не тронут — минимальная вставка по правилу владельца.
   if (motionVariant === 'hybrid') {
+    const normalizedBottomInset = normalizeSafeAreaBottomInset(insets.bottom);
+    const hybridContentMaxHeight = Math.max(
+      0,
+      Math.min(winH - insets.top, winH * 0.86) - 20 - normalizedBottomInset - 28,
+    );
+    const hybridDockMaxHeight = Math.max(0, Math.min(240, hybridContentMaxHeight * 0.55));
+    const hybridBodyMaxHeight = Math.max(0, hybridContentMaxHeight - hybridDockMaxHeight);
     return (
-      <HybridSheetShell visible={visible} onClose={onClose} closeLabel={closeLabel} testID="fc-deck-sheet">
-        <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '700', marginBottom: 4 }}>
-          {sheetHeading}
-        </Text>
-
-        <Text
-          testID="fc-deck-selection-summary"
-          accessibilityLabel="qa-fc-deck-selection-summary"
-          accessible
-          style={{
-            color: summary.deckCount > 0 ? t.accent : t.textMuted,
-            fontSize: f.caption,
-            fontWeight: '700',
-            marginBottom: 12,
-          }}
-        >
-          {summaryLabel}
-        </Text>
-
-        <ScrollView decelerationRate="fast" style={{ flexGrow: 0 }} showsVerticalScrollIndicator={false}>
-          {/* PM-092 (владелец: «не квадраты блоки здоровые, а типа удобно
-              списочек»): столбец компактных строк вместо сетки 2-в-ряд. */}
-          <View style={{ flexDirection: 'column', gap: 8 }}>
-            {decks.map((d, i) => (
-              <DeckSelectionTile
-                key={d.deckId}
-                deck={d}
-                index={i}
-                selected={selectedIds.has(d.deckId)}
-                onToggle={toggleDeck}
-                simpleMotion={simpleMotion}
-                t={t}
-                f={f}
-              />
-            ))}
-          </View>
-
-          {mode === 'blitz' ? null : (
-            <Text
-              style={{
-                color: t.textMuted,
-                fontSize: f.caption,
-                fontWeight: '700',
-                letterSpacing: 0.8,
-                textTransform: 'uppercase',
-                marginTop: 16,
-                marginBottom: 8,
-              }}
-            >
-              {cardsInSessionLabel}
-            </Text>
-          )}
-          {mode === 'blitz' ? null : (
-            <View style={{ flexDirection: 'row', gap: 8 }}>
-              {FC_SESSION_SIZES.map((n) => {
-                const active = n === size;
-                return (
-                  <PressableHybrid
-                    key={n}
-                    testID={`fc-deck-size-${n}`}
-                    accessibilityLabel={`qa-fc-deck-size-${n}`}
-                    variant="chip"
-                    onPress={() => setSize(n)}
-                    style={{
-                      flex: 1,
-                      borderRadius: 14,
-                      backgroundColor: active ? `${t.accent}14` : t.bgSurface,
-                    }}
-                    contentStyle={{ paddingVertical: 10, alignItems: 'center' }}
-                  >
-                    <Text style={{ color: active ? t.accent : t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-                      {n}
-                    </Text>
-                  </PressableHybrid>
-                );
-              })}
-            </View>
-          )}
-        </ScrollView>
-
-        <PressableHybrid
-          testID="fc-deck-start"
-          accessibilityLabel="qa-fc-deck-start"
-          variant="primary"
-          disabled={!canStart}
-          onPress={handleStart}
-          style={{
-            marginTop: 16,
-            borderRadius: 16,
-            backgroundColor: canStart ? t.accent : t.bgSurface,
-          }}
-          contentStyle={{ paddingVertical: 15, alignItems: 'center' }}
-        >
-          <Text
+      <HybridSheetShell
+        visible={visible}
+        onClose={onClose}
+        closeLabel={closeLabel}
+        testID="fc-deck-sheet"
+        material="liquid-glass-opaque"
+        backdropAccessible={false}
+      >
+        {({ requestDismiss }) => (
+          <View
+            testID="fc-deck-picker-safe-frame"
             style={{
-              color: canStart ? t.correctText : t.textGhost,
-              fontSize: f.body,
-              fontWeight: '700',
+              maxHeight: hybridContentMaxHeight,
+              minHeight: 0,
+              flexShrink: 1,
+              paddingLeft: insets.left,
+              paddingRight: insets.right,
+              overflow: 'hidden',
             }}
           >
-            {startLabel}
-          </Text>
-          {/* зачем (PM-086, владелец 2026-09-24): ценник энергии над кнопкой
-              старта убран — расход энергии не меняется. */}
-        </PressableHybrid>
+            <ScrollView
+              testID="fc-deck-picker-body"
+              decelerationRate="fast"
+              style={{ flexGrow: 0, flexShrink: 0, minHeight: 0, maxHeight: hybridBodyMaxHeight }}
+              contentContainerStyle={{ paddingBottom: 4 }}
+              showsVerticalScrollIndicator={false}
+            >
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 4 }}>
+                <View style={{ flex: 1, minWidth: 0 }}>
+                  <Text
+                    testID="fc-deck-picker-heading"
+                    style={{ color: glass.text, fontSize: 22 * textScale, lineHeight: 28 * textScale, fontWeight: '700' }}
+                  >
+                    {sheetHeading}
+                  </Text>
+                  <Text
+                    testID="fc-deck-selection-summary"
+                    accessibilityLabel="qa-fc-deck-selection-summary"
+                    accessible
+                    style={{
+                      color: summary.deckCount > 0 ? glass.secondary : glass.mutedText,
+                      fontSize: 15 * textScale,
+                      lineHeight: 21 * textScale,
+                      fontWeight: '400',
+                      marginTop: 4,
+                    }}
+                  >
+                    {summaryLabel}
+                  </Text>
+                </View>
+                <PressableHybrid
+                  testID="fc-deck-sheet-close"
+                  accessibilityLabel={closeLabel}
+                  variant="icon"
+                  withHaptic={false}
+                  withSound={false}
+                  onPress={requestDismiss}
+                  style={{
+                    width: 44,
+                    height: 44,
+                    alignSelf: 'center',
+                    borderRadius: 22,
+                    backgroundColor: glass.opaqueControl,
+                    borderWidth: 1,
+                    borderColor: glass.glassEdge,
+                  }}
+                  contentStyle={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+                >
+                  <Ionicons name="close" size={18} color={glass.secondary} />
+                </PressableHybrid>
+              </View>
+
+              <View style={{ height: 12 }} />
+              <View style={{ flexDirection: 'column' }}>
+                {decks.map((d, i) => (
+                  <DeckSelectionTile
+                    key={d.deckId}
+                    deck={d}
+                    index={i}
+                    selected={selectedIds.has(d.deckId)}
+                    onToggle={toggleDeck}
+                    simpleMotion={simpleMotion}
+                    t={t}
+                    f={f}
+                    presentation="compact-liquid-glass"
+                    liquidGlass={glass}
+                    textScale={textScale}
+                    countLabel={compactDeckCountLabel(lang, d.count)}
+                  />
+                ))}
+              </View>
+            </ScrollView>
+
+            <ScrollView
+              testID="fc-deck-picker-dock"
+              style={{ flexGrow: 0, flexShrink: 0, minHeight: 0, maxHeight: hybridDockMaxHeight }}
+              contentContainerStyle={{ paddingTop: mode === 'blitz' ? 8 : 16 }}
+              showsVerticalScrollIndicator={false}
+            >
+              {mode === 'blitz' ? null : (
+                <Text
+                  style={{
+                    color: glass.text,
+                    fontSize: 15 * textScale,
+                    lineHeight: 21 * textScale,
+                    fontWeight: '700',
+                    marginHorizontal: 4,
+                    marginBottom: 10,
+                  }}
+                >
+                  {cardsInSessionLabel}
+                </Text>
+              )}
+              {mode === 'blitz' ? null : (
+                <View style={{ flexDirection: 'row', gap: 8 }}>
+                  {FC_SESSION_SIZES.map((n) => {
+                    const active = n === size;
+                    return (
+                      <PressableHybrid
+                        key={n}
+                        testID={`fc-deck-size-${n}`}
+                        accessibilityLabel={`qa-fc-deck-size-${n}`}
+                        variant="chip"
+                        onPress={() => setSize(n)}
+                        style={{
+                          flex: 1,
+                          minHeight: 44,
+                          borderRadius: 22,
+                          backgroundColor: active ? glass.cta : glass.opaqueControl,
+                          borderWidth: active ? 0 : 1,
+                          borderColor: glass.glassEdge,
+                        }}
+                        contentStyle={{ flex: 1, paddingHorizontal: 12, alignItems: 'center', justifyContent: 'center' }}
+                      >
+                        <Text
+                          style={{
+                            color: active ? glass.ctaInk : glass.text,
+                            fontSize: 15 * textScale,
+                            lineHeight: 21 * textScale,
+                            fontWeight: '700',
+                          }}
+                        >
+                          {n}
+                        </Text>
+                      </PressableHybrid>
+                    );
+                  })}
+                </View>
+              )}
+
+              <PressableHybrid
+                testID="fc-deck-start"
+                accessibilityLabel="qa-fc-deck-start"
+                variant="primary"
+                disabled={!canStart}
+                onPress={handleStart}
+                style={{
+                  minHeight: 48,
+                  marginTop: 20,
+                  borderRadius: 24,
+                  backgroundColor: canStart ? glass.cta : glass.opaqueControl,
+                  borderWidth: canStart ? 0 : 1,
+                  borderColor: glass.glassEdge,
+                }}
+                contentStyle={{ minHeight: 48, paddingVertical: 12, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center' }}
+              >
+                <Text
+                  testID="fc-deck-start-label"
+                  style={{
+                    color: canStart ? glass.ctaInk : glass.mutedText,
+                    fontSize: 17 * textScale,
+                    lineHeight: 23 * textScale,
+                    fontWeight: '700',
+                    textAlign: 'center',
+                  }}
+                >
+                  {startLabel}
+                </Text>
+              </PressableHybrid>
+            </ScrollView>
+          </View>
+        )}
       </HybridSheetShell>
     );
   }

@@ -16,6 +16,7 @@
  *     «Новые» (спарклы), без подписей, с обязательным accessibilityLabel.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { BlurView } from 'expo-blur';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -35,8 +36,10 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import ScreenGradient from '../components/ScreenGradient';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { hapticTap } from '../hooks/use-haptics';
 import { AdaptiveLabel } from '../components/text-integrity/AdaptiveLabel';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -80,12 +83,23 @@ export type FlashcardsPacksScreenProps = {
   presentation?: 'push' | 'embedded';
 };
 
+function CatalogGlass({ tint, edge }: { tint: string; edge: string }) {
+  return <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+    <BlurView intensity={Platform.OS === 'android' ? 10 : 16} blurReductionFactor={3}
+      experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'}
+      tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
+    <LinearGradient colors={[tint, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
+    <View style={{ height: 1, backgroundColor: edge }} />
+  </View>;
+}
+
 export default function FlashcardsPacksScreen({ presentation = 'push' }: FlashcardsPacksScreenProps = {}) {
   const embedded = presentation === 'embedded';
   const tabContentBottomPad = useTabContentBottomPad();
   const router = useRouter();
   const params = useLocalSearchParams<{ sort?: string }>();
-  const { theme: t, f, statusBarLight, themeMode } = useTheme();
+  const { theme: t, f, statusBarLight, themeMode, liquidGlassThemeId } = useTheme();
+  const g = liquidGlassTokens(liquidGlassThemeId);
   /** В этом проекте градиентных тем (`ocean` / `sakura`) нет — шапка всегда на обычной поверхности. */
   const onColoredGradient = false;
   const gradHeaderInk = 'rgba(255,250,252,0.98)';
@@ -393,6 +407,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
 
   return (
     <ScreenGradient entranceOffsetY={reduceMotion || embedded ? undefined : (parallaxY as unknown as Animated.Value)}>
+      <LinearGradient pointerEvents="none" colors={[g.bgTop, g.bg, g.bgBottom]} style={StyleSheet.absoluteFill} />
       <SafeAreaView
         style={[styles.safe, { backgroundColor: 'transparent' }]}
         edges={embedded ? ['left', 'right'] : ['top', 'left', 'right']}
@@ -408,7 +423,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
             style={styles.headerBack}
             hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
           >
-            <Ionicons name="arrow-back" size={24} color={onColoredGradient ? gradHeaderInk : t.textPrimary} />
+            <Ionicons name="arrow-back" size={24} color={onColoredGradient ? gradHeaderInk : g.text} />
           </TouchableOpacity>
           )}
 
@@ -425,7 +440,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
             accessibilityRole="header"
             style={[
               styles.headerTitle,
-              { color: onColoredGradient ? gradHeaderInk : t.textPrimary, fontSize: headerTitleSize },
+              { color: onColoredGradient ? gradHeaderInk : g.text, fontSize: headerTitleSize },
             ]}
             maxFontSizeMultiplier={1.2}
           >
@@ -450,15 +465,17 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
               style={[
                 styles.headerRoundBtn,
                 {
-                  borderColor: searchOpen || communityQuery.trim().length > 0 ? t.accent : t.border,
-                  backgroundColor: searchOpen || communityQuery.trim().length > 0 ? `${t.accent}1F` : t.bgSurface,
+                  borderColor: g.glassEdge,
+                  backgroundColor: searchOpen || communityQuery.trim().length > 0 ? g.selected : g.card,
+                  overflow: 'hidden',
                 },
               ]}
             >
+              <CatalogGlass tint={g.selected} edge={g.glassEdge} />
               <Ionicons
                 name={searchOpen ? 'search' : 'search-outline'}
                 size={18}
-                color={searchOpen || communityQuery.trim().length > 0 ? t.accent : t.textSecond}
+                color={searchOpen || communityQuery.trim().length > 0 ? t.accent : g.secondary}
               />
             </TouchableOpacity>
 
@@ -482,7 +499,8 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
               },
             ]}
           >
-            <View style={[styles.headerSearchField, { borderColor: t.accent, backgroundColor: t.bgSurface }]}>
+            <View style={[styles.headerSearchField, { borderColor: g.glassEdge, backgroundColor: g.card, overflow: 'hidden' }]}>
+              <CatalogGlass tint={g.selected} edge={g.glassEdge} />
               <Ionicons name="search-outline" size={16} color={t.accent} />
               <TextInput
                 ref={searchInputRef}
@@ -496,7 +514,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
                 autoCapitalize="none"
                 returnKeyType="search"
                 maxFontSizeMultiplier={1.2}
-                style={[styles.headerSearchInput, { color: t.textPrimary }]}
+                style={[styles.headerSearchInput, { color: g.text }]}
               />
               <TouchableOpacity
                 testID="flashcards-packs-search-close"
@@ -545,17 +563,18 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
           </Animated.ScrollView>
         </View>
         <View style={[styles.bottomTabsDock, { paddingBottom: embedded ? tabContentBottomPad - 8 : Math.max(insets.bottom, 12) }]}>
-          <View style={[styles.bottomTabs, { backgroundColor: t.bgCard }]}>
+          <View style={[styles.bottomTabs, { backgroundColor: g.sheet, borderColor: g.glassEdge, borderWidth: 1, overflow: 'hidden' }]}>
+            <CatalogGlass tint={g.selected} edge={g.glassEdge} />
             <TouchableOpacity
               testID="flashcards-packs-sort-new"
               accessibilityRole="button"
               accessibilityLabel={newPacksLabel}
               accessibilityState={{ selected: communitySort === 'new' }}
               onPress={() => { void hapticTap(); setCommunitySort('new'); }}
-              style={[styles.bottomTab, communitySort === 'new' ? { backgroundColor: t.bgSurface } : null]}
+              style={[styles.bottomTab, communitySort === 'new' ? { backgroundColor: g.selected } : null]}
             >
-              <Ionicons name={communitySort === 'new' ? 'sparkles' : 'sparkles-outline'} size={20} color={communitySort === 'new' ? t.textPrimary : t.textSecond} />
-              <Text style={{ color: communitySort === 'new' ? t.textPrimary : t.textSecond, fontSize: 12, fontWeight: '800', marginTop: 3 }}>{newPacksLabel}</Text>
+              <Ionicons name={communitySort === 'new' ? 'sparkles' : 'sparkles-outline'} size={20} color={communitySort === 'new' ? g.text : g.secondary} />
+              <Text style={{ color: communitySort === 'new' ? g.text : g.secondary, fontSize: 12, fontWeight: '800', marginTop: 3 }}>{newPacksLabel}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               testID="flashcards-packs-create"
@@ -576,10 +595,10 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
               accessibilityLabel={topPacksLabel}
               accessibilityState={{ selected: communitySort === 'popular' }}
               onPress={() => { void hapticTap(); setCommunitySort('popular'); }}
-              style={[styles.bottomTab, communitySort === 'popular' ? { backgroundColor: t.bgSurface } : null]}
+              style={[styles.bottomTab, communitySort === 'popular' ? { backgroundColor: g.selected } : null]}
             >
-              <Ionicons name={communitySort === 'popular' ? 'trophy' : 'trophy-outline'} size={20} color={communitySort === 'popular' ? t.textPrimary : t.textSecond} />
-              <Text style={{ color: communitySort === 'popular' ? t.textPrimary : t.textSecond, fontSize: 12, fontWeight: '800', marginTop: 3 }}>{topPacksLabel}</Text>
+              <Ionicons name={communitySort === 'popular' ? 'trophy' : 'trophy-outline'} size={20} color={communitySort === 'popular' ? g.text : g.secondary} />
+              <Text style={{ color: communitySort === 'popular' ? g.text : g.secondary, fontSize: 12, fontWeight: '800', marginTop: 3 }}>{topPacksLabel}</Text>
             </TouchableOpacity>
           </View>
         </View>

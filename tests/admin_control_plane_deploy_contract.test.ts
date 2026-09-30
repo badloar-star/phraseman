@@ -17,7 +17,6 @@ describe('bounded admin control-plane deploy lane', () => {
       'adminSetUserBan',
       'adminGrantReward',
       'adminGrantVoiceMinutes',
-      'adminSetShardBalance',
       'adminUpdateUserProfileField',
       'adminWarnUser',
       'adminResolveUserReport',

@@ -48,16 +48,6 @@ export const SECTION: ShowcaseSection = {
       ),
     },
     {
-      id: 'max_celebration_hybrid',
-      title: cs('max_celebration_title'),
-      detail: cs('celebration_max_detail'),
-      approval: 'pending',
-      kind: 'render',
-      render: ({ visible, onClose }) => (
-        <PremiumCelebrationModal visible={visible} onClose={onClose} variant="max" />
-      ),
-    },
-    {
       id: 'promo_celebration_hybrid',
       title: cs('promo_celebration_title'),
       detail: cs('celebration_promo_detail'),

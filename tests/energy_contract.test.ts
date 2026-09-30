@@ -19,29 +19,21 @@ describe('numeric energy contract', () => {
   it('uses a capacity of exactly 5 and no permanent expansion', () => {
     expect(ENERGY_BASE_CAPACITY).toBe(5);
     expect(ENERGY_PERMANENT_CAPACITY_LIMIT).toBe(5);
-    // Бонусный пул подарков — зона PM-088, здесь только фиксируем текущее.
-    expect(ENERGY_BONUS_CAPACITY_LIMIT).toBe(200);
-    expect(ENERGY_ACTIVE_CAPACITY_LIMIT).toBe(205);
+    // PM-088: дополнительные ускорители и бонусная ёмкость удалены.
+    expect(ENERGY_BONUS_CAPACITY_LIMIT).toBe(0);
+    expect(ENERGY_ACTIVE_CAPACITY_LIMIT).toBe(5);
     expect(ENERGY_VIDEO_UNIT_MS).toBe(36_000);
     expect(ENERGY_MICRO_UNITS_PER_UNIT).toBe(1_000_000);
     // PM-083 (BIBLE «+1 за 10 минут»; D06): прежние 6 минут отменены.
     expect(ENERGY_PASSIVE_UNIT_MS).toBe(600_000);
   });
 
-  // PM-081 (D07): «никаких бонусов cap/rate от визиток/лиги/видео».
-  describe('no league or profile-card capacity bonus', () => {
-    it('ignores the league', () => {
-      expect(permanentEnergyCapacity({ leagueId: 0 })).toBe(5);
-      expect(permanentEnergyCapacity({ leagueId: 1 })).toBe(5);
-      expect(permanentEnergyCapacity({ leagueId: 11 })).toBe(5);
-      expect(permanentEnergyCapacity({ leagueId: 999 })).toBe(5);
-    });
-
+  // PM-081 (D07): «никаких бонусов cap/rate от визиток/видео».
+  describe('no profile-card capacity bonus', () => {
     it('ignores the profile card, the remote base and garbage input', () => {
-      expect(permanentEnergyCapacity({ profileCardLevel: 5, leagueId: 11 })).toBe(5);
+      expect(permanentEnergyCapacity({ profileCardLevel: 5 })).toBe(5);
       expect(permanentEnergyCapacity({ base: 100 })).toBe(5);
       expect(permanentEnergyCapacity({})).toBe(5);
-      expect(permanentEnergyCapacity({ leagueId: 'gold' })).toBe(5);
       expect(profileCardEnergyCapacity(0)).toBe(5);
       expect(profileCardEnergyCapacity(5)).toBe(5);
     });
@@ -59,14 +51,12 @@ describe('numeric energy contract', () => {
     ['classic_lesson', 1],
     ['learning_v2_session', 1],
     ['ai_dialog', 1],
-    ['personal_plan_exercise', 1],
     ['diagnostic_test', 1],
     ['level_exam', 1],
     ['arena_match', 1],
     ['theory', 0],
     ['reading', 0],
     ['video', 0],
-    ['max_call', 0],
   ])('%s costs %i', (key, cost) => {
     expect(activityEnergyCost(key)).toBe(cost);
   });

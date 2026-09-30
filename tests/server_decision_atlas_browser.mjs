@@ -15,6 +15,7 @@ try {
   const page = await browser.newPage();
   const address = server.address();
   await page.goto(`http://127.0.0.1:${address.port}`);
+  assert.match(await page.locator('#atlas-app').textContent(), /D66|Локальное устройство принимает учебные решения/u);
   await page.locator('#atlas-search').fill('руны');
   assert.equal(await page.locator('#atlas-search').inputValue(), 'руны');
   assert.match(await page.locator('#atlas-status').textContent(), /Показано \d+ из \d+ совпадений/u);

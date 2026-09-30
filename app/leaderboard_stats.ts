@@ -14,16 +14,10 @@ import { DebugLogger } from './debug-logger';
 
 const CACHE_KEY = 'leaderboard_stats_cache_v2';
 const CACHE_TTL_MS = 60 * 60 * 1000; // 1 час
-export const MIN_PERCENTILE_SAMPLE_XP = 5000;
-
 export interface GlobalLeaderboardStats {
   totalUsers: number;
   updatedAt: number;
-  minimumSampleXp?: number;
-  xpThresholds: number[];
   streakThresholds: number[];
-  weekXpThresholds: number[];
-  daily7xpThresholds: number[];
   daily7timeMsThresholds: number[];
 }
 
@@ -155,20 +149,9 @@ export function lookupPercentile(thresholds: number[], myValue: number): number 
   return result;
 }
 
-function percentileSampleXpFloor(stats: GlobalLeaderboardStats): number {
-  const configured = Math.trunc(Number(stats.minimumSampleXp));
-  return Number.isFinite(configured) && configured > 0 ? configured : MIN_PERCENTILE_SAMPLE_XP;
-}
-
 export interface AllPercentiles {
-  /** По суммарному XP (все время) */
-  xp: number | null;
   /** По текущей цепочке дней подряд */
   streak: number | null;
-  /** По XP за текущую неделю */
-  weekXp: number | null;
-  /** По XP за последние 7 дней */
-  daily7xp: number | null;
   /** По времени в приложении за последние 7 дней */
   daily7timeMs: number | null;
   /** Размер выборки (количество пользователей в базе) */
@@ -177,30 +160,20 @@ export interface AllPercentiles {
 
 /**
  * Вычисляет все доступные перцентили для одного пользователя.
- * myWeekXp = очки текущей недели (week_points_v2).
  */
 export async function computeAllPercentiles(opts: {
-  myXp: number;
   myStreak: number;
-  myWeekXp: number;
-  myDaily7xp: number;
   myDaily7timeMs: number;
 }): Promise<AllPercentiles> {
   const empty: AllPercentiles = {
-    xp: null, streak: null, weekXp: null,
-    daily7xp: null, daily7timeMs: null, totalUsers: 0,
+    streak: null, daily7timeMs: null, totalUsers: 0,
   };
   const stats = await fetchLeaderboardStats();
   if (!stats) return empty;
 
-  const isInAppSample = opts.myXp >= percentileSampleXpFloor(stats);
-
   return {
-    xp: isInAppSample ? lookupPercentile(stats.xpThresholds, opts.myXp) : null,
-    streak: isInAppSample ? lookupPercentile(stats.streakThresholds, opts.myStreak) : null,
-    weekXp: isInAppSample ? lookupPercentile(stats.weekXpThresholds, opts.myWeekXp) : null,
-    daily7xp: isInAppSample ? lookupPercentile(stats.daily7xpThresholds, opts.myDaily7xp) : null,
-    daily7timeMs: isInAppSample ? lookupPercentile(stats.daily7timeMsThresholds, opts.myDaily7timeMs) : null,
+    streak: lookupPercentile(stats.streakThresholds, opts.myStreak),
+    daily7timeMs: lookupPercentile(stats.daily7timeMsThresholds, opts.myDaily7timeMs),
     totalUsers: stats.totalUsers,
   };
 }

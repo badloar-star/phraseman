@@ -2,7 +2,7 @@
   "schemaVersion": "arena-multilingual-pool-manifest-v1",
   "studyTarget": "fr",
   "verdict": "BLOCK",
-  "blockReason": "independent_review_and_admin_publication_required;lexical_facts_pending_native_review",
+  "blockReason": "independent_review_and_admin_publication_required;lexical_facts_pending_native_review;cefr_not_claimed",
   "releaseEligible": false,
   "requiredTaskCount": 4000,
   "generatedTaskCount": 4000,
@@ -23,12 +23,13 @@
     "translate_build:2": 700,
     "translate_build:3": 400
   },
-  "evidencePackSha256": "de61db90da9eb0fea88ac308fd9ffa864b4c3b7689253c5e9df8a0b63767b467",
-  "tasksSha256": "89536b4e2139fe2066597a7ebc834ef41b2ecaab63f883394cef719601c28f1a",
-  "semanticLedgerSha256": "a7a8f329b6c3ec2fbad473d797a3e33d0245118d0c9b0fcaa35c032f66694339",
+  "evidencePackSha256": "3539b12720f8c9531ce51810c2201053993352dcbe32cf483ec7767063d0f63a",
+  "tasksSha256": "d4e4d085ae5dae5ff82d51f8933d9603e98ab94d8facd6357814528710d08fc4",
+  "semanticLedgerSha256": "610c6c8422dd5d289f29784bbf2626692acd1885187d47ef569bf99994295975",
   "coverage": {
     "provenFactCount": 12,
     "lexicalFactInventoryStatus": "pending_native_review",
+    "cefrEvidenceStatus": "not_claimed",
     "sourceFactIds": [
       "fr-aller-allons",
       "fr-aller-va",
@@ -51,16 +52,17 @@
     "choiceModes": "one_grammatical_and_three_invalid_same_frame",
     "findOddity": "three_agree_one_mismatch",
     "translateBuild": "one_same_pos_decoy_and_tokenization_proof",
-    "speedMatch": "six_pair_bijection_with_independent_ordinal_groups",
-    "maxSpeedMatchPairSurfaceReuse": 3,
-    "learnerSurfaceUniqueness": "metadata_excluded",
+    "speedMatch": "six_short_pairs_from_hash_bound_lexical_inventory",
+    "maxSpeedMatchPairSurfaceReuse": 24,
+    "learnerSurfaceUniqueness": "player_visible_fields_only",
     "taskFields": [
       "studyTarget",
-      "cefrBand",
+      "difficulty",
+      "difficultyProfile",
       "semanticSignature",
       "sourceFactIds",
       "distractorReasons"
     ]
   },
-  "manifestSha256": "3992001895f3f051561ccb9e4097e1e8911425783bd1ec92b76cdcb5a2b00cb2"
+  "manifestSha256": "9348efa65f86403869df481fdd1c7e939e4b8fde7509d8d0f24008b0ff9df375"
 }

@@ -13,7 +13,6 @@ import { useTheme } from '../../../ThemeContext';
 import { StreakChainIcon } from '../../../StreakChainIcon';
 import LevelBadge from '../../../LevelBadge';
 import PlusBadge from '../../../PlusBadge';
-import LeagueCrownName from '../../../LeagueCrownName';
 import EnergyIcon from '../../../EnergyIcon';
 import PressableHybrid, { type PressableHybridVariant } from '../../../PressableHybrid';
 import TabBarHybridPreview from '../../../tabbar/TabBarHybridPreview';
@@ -23,7 +22,6 @@ import { emitAppEvent, actionToastTri } from '../../../../app/events';
 import DuoPressable from '../../../DuoPressable';
 import CircularProgress from '../../../CircularProgress';
 import GradientProgressBar from '../../../GradientProgressBar';
-import GiftExpiryCountdown from '../../../GiftExpiryCountdown';
 import { GOLD_RICH } from '../../../../constants/goldTheme';
 import { HOME_NOTIFICATION_BADGE_COLOR, HOME_NOTIFICATION_BADGE_TEXT_COLOR } from '../../../homeNotificationBadge';
 import { SUITE } from '../../../../constants/motionHybrid';
@@ -90,7 +88,6 @@ function IconsLivePreview({ visible, onClose }: ShowcaseRenderProps) {
   const [demoLevel, setDemoLevel] = useState(12);
   const [plusJustActivated, setPlusJustActivated] = useState(false);
   const [demoUnreadCount, setDemoUnreadCount] = useState(0);
-  const [leagueCelebrate, setLeagueCelebrate] = useState(false);
   const [demoEnergyFilled, setDemoEnergyFilled] = useState(true);
 
   // зачем: bloomOnMount у PlusBadge реагирует на изменение false→true один раз
@@ -110,10 +107,6 @@ function IconsLivePreview({ visible, onClose }: ShowcaseRenderProps) {
   }, []);
   const handleNewNotification = useCallback(() => {
     setDemoUnreadCount((c) => c + 1);
-  }, []);
-  const handleLeagueUp = useCallback(() => {
-    setLeagueCelebrate(false);
-    setTimeout(() => setLeagueCelebrate(true), 0);
   }, []);
   const handleEnergyRefill = useCallback(() => {
     setDemoEnergyFilled(false);
@@ -141,10 +134,6 @@ function IconsLivePreview({ visible, onClose }: ShowcaseRenderProps) {
           <View style={styles.cell}>
             <PlusBadge key={plusReplayKey} themeMode={themeMode} size="md" bloomOnMount={plusJustActivated} />
             <Text style={[styles.cellLabel, { color: t.textMuted }]}>{cs('press_icon_cell_plus_badge')}</Text>
-          </View>
-          <View style={styles.cell}>
-            <LeagueCrownName text={cs('press_icon_league_crown_demo_text')} fontSize={16} count={3} celebrate={leagueCelebrate} />
-            <Text style={[styles.cellLabel, { color: t.textMuted }]}>{cs('press_icon_cell_league_crown_name')}</Text>
           </View>
           <View style={styles.cell}>
             <EnergyIcon filled={demoEnergyFilled} themeColor={t.accent} themeMode={themeMode} size={40} animateChange={false} bloomOnRefill />
@@ -182,14 +171,6 @@ function IconsLivePreview({ visible, onClose }: ShowcaseRenderProps) {
             contentStyle={[styles.triggerChip, { backgroundColor: t.bgSurface2 }]}
           >
             <Text style={[styles.triggerChipLabel, { color: t.textPrimary }]}>{cs('icons_live_trigger_notification')}</Text>
-          </PressableHybrid>
-          <PressableHybrid
-            variant="chip"
-            silent
-            onPress={handleLeagueUp}
-            contentStyle={[styles.triggerChip, { backgroundColor: t.bgSurface2 }]}
-          >
-            <Text style={[styles.triggerChipLabel, { color: t.textPrimary }]}>{cs('icons_live_trigger_league_up')}</Text>
           </PressableHybrid>
           <PressableHybrid
             variant="chip"
@@ -453,33 +434,6 @@ function ProgressBarLivePreview({ visible, onClose }: ShowcaseRenderProps) {
 
 const ProgressBarLivePreviewMemo = memo(ProgressBarLivePreview);
 
-/**
- * Живая панель таймера подарка (GiftExpiryCountdown) — демо-TTL 5 часов 50
- * минут, чтобы «загорание» (порог 6ч) сработало почти сразу после открытия
- * панели, без ожидания реального 72-часового отсчёта.
- */
-function ProgressTimerLivePreview({ visible, onClose }: ShowcaseRenderProps) {
-  const { theme: t, f } = useTheme();
-  const [expiresAtMs] = useState(() => Date.now() + 5 * 60 * 60 * 1000 + 50 * 60 * 1000);
-  return (
-    <MotionModal visible={visible} onRequestClose={onClose} testID="motion-showcase-progress-timer-preview">
-      <View style={[styles.root, { backgroundColor: t.bgCard }]}>
-        <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>
-          {cs('progress_timer_hybrid_heading')}
-        </Text>
-        <Text style={[styles.hint, { color: t.textMuted, fontSize: f.caption }]}>
-          {cs('progress_timer_hybrid_hint')}
-        </Text>
-        <View style={styles.progressTimerWrap}>
-          <GiftExpiryCountdown expiresAtMs={expiresAtMs} accent={t.accent} testID="motion-showcase-progress-timer" />
-        </View>
-      </View>
-    </MotionModal>
-  );
-}
-
-const ProgressTimerLivePreviewMemo = memo(ProgressTimerLivePreview);
-
 const styles = StyleSheet.create({
   root: { flex: 1, padding: 20, gap: 6 },
   title: { fontWeight: '800' },
@@ -521,7 +475,6 @@ const styles = StyleSheet.create({
   edgePressLabel: { fontSize: 15, fontWeight: '700' },
   progressRingWrap: { alignItems: 'center', justifyContent: 'center', marginTop: 16, marginBottom: 20, height: 120 },
   progressBarWrap: { marginTop: 16, marginBottom: 20 },
-  progressTimerWrap: { alignItems: 'flex-start', marginTop: 16, marginBottom: 8 },
 });
 
 export const SECTION: ShowcaseSection = {
@@ -582,12 +535,6 @@ export const SECTION: ShowcaseSection = {
       title: cs('icon_target_plus_badge_title'),
       kind: 'note',
       note: cs('icon_target_plus_badge_note'),
-    },
-    {
-      id: 'icon-target-league-crown-name',
-      title: cs('icon_target_league_crown_name_title'),
-      kind: 'note',
-      note: cs('icon_target_league_crown_name_note'),
     },
     {
       id: 'icon-target-notification-center-button',
@@ -674,13 +621,6 @@ export const SECTION: ShowcaseSection = {
       kind: 'render',
       detail: cs('progress_bar_hybrid_detail'),
       render: ({ visible, onClose }) => <ProgressBarLivePreviewMemo visible={visible} onClose={onClose} />,
-    },
-    {
-      id: 'progress-timer-live-preview',
-      title: cs('progress_timer_hybrid_title'),
-      kind: 'render',
-      detail: cs('progress_timer_hybrid_detail'),
-      render: ({ visible, onClose }) => <ProgressTimerLivePreviewMemo visible={visible} onClose={onClose} />,
     },
   ],
 };

@@ -5,7 +5,6 @@ import type { CardItem } from './flashcards/types';
 import { FRENCH_CONTENT_SOURCE_GATE } from './french_content_source_gate';
 import {
   getCachedFrenchRemoteFlashcards,
-  getCachedFrenchRemoteMarketplacePacks,
 } from './french_flashcard_remote_runtime';
 import { storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 
@@ -38,7 +37,17 @@ export function flashcardsSourceGateForTarget(
   surface: FlashcardsSourceGatedSurface,
   sourceLocale?: unknown,
 ): FlashcardsSourceGate {
+  void sourceLocale;
   const target = storageStudyTarget(studyTarget);
+  if (surface === 'official_marketplace_packs') {
+    return {
+      enabled: false,
+      studyTarget: target === 'fr' ? 'fr' : 'en',
+      surface,
+      blockedRoutes: [],
+      requiredEvidence: [],
+    };
+  }
   if (target !== 'fr') {
     return {
       enabled: true,
@@ -50,20 +59,15 @@ export function flashcardsSourceGateForTarget(
   }
 
   const systemCardsEnabled = surface === 'system_cards';
-  const marketplacePacksEnabled =
-    surface === 'official_marketplace_packs' &&
-    getCachedFrenchRemoteMarketplacePacks(sourceLocale).length > 0;
-  const enabled = systemCardsEnabled || marketplacePacksEnabled || surface === 'community_packs';
+  const enabled = systemCardsEnabled || surface === 'community_packs';
   return {
     enabled,
     studyTarget: 'fr',
     surface,
     reason: systemCardsEnabled
       ? 'french_flashcards_server_system_cards_available'
-      : marketplacePacksEnabled
-        ? 'french_flashcards_server_marketplace_packs_available'
-        : 'french_flashcards_source_gate',
-    blockedRoutes: enabled ? [] : ['/flashcards_collection', '/flashcards_swipe', FLASHCARDS_MARKET_DEV_ROUTE, '/pack_opening', '/shards_shop'],
+      : 'french_flashcards_source_gate',
+    blockedRoutes: enabled ? [] : ['/flashcards_collection', '/flashcards_swipe', '/flashcards_truefalse_session', FLASHCARDS_MARKET_DEV_ROUTE, '/pack_opening', '/shards_shop'],
     requiredEvidence: FRENCH_FLASHCARDS_REQUIRED_EVIDENCE,
   };
 }
@@ -77,7 +81,9 @@ export function flashcardsSourceGatedContentAvailableForTarget(
 }
 
 export function flashcardsOfficialPacksAvailableForTarget(studyTarget: RuntimeStudyTarget, sourceLocale?: unknown): boolean {
-  return flashcardsSourceGatedContentAvailableForTarget(studyTarget, 'official_marketplace_packs', sourceLocale);
+  void studyTarget;
+  void sourceLocale;
+  return false;
 }
 
 export function flashcardsCommunityPacksAvailableForTarget(studyTarget: RuntimeStudyTarget): boolean {

@@ -43,7 +43,6 @@ const RAW_TARGET_SENSITIVE_PATTERNS = [
   /^achievement_lesson_\d+_perfect_passes_v1$/,
   /^achievement_lesson_marathon_day_\d{4}-\d{2}-\d{2}$/,
   /^grammar_hint_[a-z0-9_]+$/,
-  /^theory_xp_claimed_\d+$/,
   /^theory_sections_seen_\d+$/,
   /^prep_drill_perfect_\d+$/,
   /^unlocked_lessons$/,
@@ -382,11 +381,6 @@ export function lessonPerfectMilestoneKey(perfectCount: string | number, studyTa
 
 export function lessonTopicShardGrantedKey(level: string, studyTarget?: RuntimeStudyTarget): string {
   const raw = `shards_topic_${level}_granted`;
-  return scopedOrLegacyKey(raw, 'lesson_rewards', studyTarget);
-}
-
-export function lessonTheoryXpClaimedKey(lessonId: string | number, studyTarget?: RuntimeStudyTarget): string {
-  const raw = `theory_xp_claimed_${lessonId}`;
   return scopedOrLegacyKey(raw, 'lesson_rewards', studyTarget);
 }
 

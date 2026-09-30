@@ -11,8 +11,6 @@ import {
   STREAK_CAL_WDAYS_TR,
   STREAK_CAL_WDAYS_UK,
   STREAK_CAL_WDAYS_VI,
-  STREAK_WAGER_TIER_DAYS_ES,
-  STREAK_WAGER_TIER_DAYS_PT_BR,
   STREAK_WEEK_ROW_ES,
   STREAK_WEEK_ROW_ID,
   STREAK_WEEK_ROW_PL,
@@ -22,7 +20,6 @@ import {
   STREAK_WEEK_ROW_VI,
   streakCalendarShortWeekdays,
   streakProtectionStatusLabel,
-  streakWagerTierDaysLabel,
   streakWeekRowShort,
 } from '../constants/streak_stats_i18n';
 import * as fs from 'fs';
@@ -63,26 +60,7 @@ describe('streakWeekRowShort', () => {
   });
 });
 
-describe('streakWagerTierDaysLabel', () => {
-  it.each<[Lang, number, string]>([
-    ['ru', 0, '7 дней'],
-    ['uk', 2, '21 день'],
-    ['es', 5, '100 días'],
-    ['pt-BR', 0, '7 dias'],
-    ['vi', 1, '14 ngày'],
-    ['id', 2, '21 hari'],
-    ['tr', 3, '30 gün'],
-    ['pl', 4, '50 dni'],
-  ])('lang=%s tier %i → expected label', (lang, idx, expected) => {
-    expect(streakWagerTierDaysLabel(lang, idx)).toBe(expected);
-  });
-
-  it('clamps tier index into 0..5', () => {
-    expect(streakWagerTierDaysLabel('es', -99)).toBe(STREAK_WAGER_TIER_DAYS_ES[0]);
-    expect(streakWagerTierDaysLabel('es', 999)).toBe(STREAK_WAGER_TIER_DAYS_ES[5]);
-    expect(streakWagerTierDaysLabel('pt-BR', -99)).toBe(STREAK_WAGER_TIER_DAYS_PT_BR[0]);
-  });
-
+describe('streak stats locale contract', () => {
   it('does not route planned locale stats copy through legacy runtime markers', () => {
     const source = fs.readFileSync(path.join(__dirname, '../constants/streak_stats_i18n.ts'), 'utf8');
     const legacyRuntimePattern = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;

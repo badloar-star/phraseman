@@ -22,10 +22,10 @@ describe('startup image preload contract', () => {
     expect(rootLayoutSource).not.toContain('preloadStartupImages');
     expect(rootLayoutSource).not.toContain('preloadImages().catch');
 
-    expect(primarySource).toContain('CLUB_IMAGES');
     expect(primarySource).toContain('MEDAL_IMAGES');
     expect(primarySource).toContain('FIRST_LESSON_SHEET_IMAGES');
-    expect(primarySource).toContain('LESSON_INTRO_CTA_IMAGES');
+    expect(primarySource).not.toContain('CLUB_IMAGES');
+    expect(primarySource).not.toContain('LESSON_INTRO_CTA_IMAGES');
     expect(primarySource).not.toContain('LEVEL_GIFT_IMAGE_SOURCES');
     expect(primarySource).not.toContain('LEVEL_GIFT_REWARD_ICON_SOURCES');
     expect(primarySource).not.toContain('OSKOLOK_IMAGE_SOURCES');

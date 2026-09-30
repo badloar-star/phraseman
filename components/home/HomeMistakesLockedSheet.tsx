@@ -1,11 +1,13 @@
 import React, { memo, useMemo } from 'react';
-import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Modal, Pressable, StyleSheet, Text } from 'react-native';
 import Animated, { FadeIn, FadeInDown, FadeOut } from 'react-native-reanimated';
 
 import type { Lang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
 import { mistakesLockedCopy } from '../../app/mistakes_locked_copy';
 import { useTheme } from '../ThemeContext';
+import { glassFill } from '../GlassSurface';
+import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 
 /**
  * Небольшой лист «разбирать пока нечего» для закрытого раздела ошибок.
@@ -25,6 +27,7 @@ type Props = {
 
 function HomeMistakesLockedSheet({ visible, lang, count, onClose }: Props) {
   const { theme: t, f } = useTheme();
+  const insets = useStableSafeAreaInsets();
   const copy = useMemo(() => mistakesLockedCopy(lang, count), [count, lang]);
 
   return (
@@ -34,7 +37,7 @@ function HomeMistakesLockedSheet({ visible, lang, count, onClose }: Props) {
         <Animated.View
           entering={FadeInDown.duration(220).springify().damping(18)}
           exiting={FadeOut.duration(140)}
-          style={[styles.sheet, { backgroundColor: t.bgCard }]}
+          style={[styles.sheet, { backgroundColor: glassFill(t.bgCard, 0.46), paddingBottom: Math.max(34, insets.bottom + 16) }]}
         >
           <Text testID="mistakes-locked-title" style={[styles.title, { color: t.textPrimary, fontSize: f.h3 }]}>
             {copy.title}

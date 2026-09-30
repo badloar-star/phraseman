@@ -8,11 +8,11 @@ describe('achievement foundation catalog v2', () => {
   const active = ACHIEVEMENT_CATALOG_V2.filter((row) => !row.retired);
   const retired = ACHIEVEMENT_CATALOG_V2.filter((row) => row.retired);
 
-  it('contains the approved 70 active and 9 historical definitions', () => {
-    expect(active).toHaveLength(70);
+  it('contains the retained 32 active and 9 historical definitions', () => {
+    expect(active).toHaveLength(32);
     expect(retired).toHaveLength(9);
-    expect(ACTIVE_FOUNDATION_IDS).toHaveLength(70);
-    expect(SECRET_FOUNDATION_IDS).toHaveLength(8);
+    expect(ACTIVE_FOUNDATION_IDS).toHaveLength(32);
+    expect(SECRET_FOUNDATION_IDS).toHaveLength(3);
     expect(new Set(ACHIEVEMENT_CATALOG_V2.map((row) => row.id)).size)
       .toBe(ACHIEVEMENT_CATALOG_V2.length);
   });
@@ -23,14 +23,14 @@ describe('achievement foundation catalog v2', () => {
       expect(row).not.toHaveProperty('shards');
       expect(row).not.toHaveProperty('pearls');
       expect(row).not.toHaveProperty('shardReward');
-      expect(row.xp).toBeGreaterThan(0);
+      expect(row).not.toHaveProperty('xp');
       expect(row.nameRu).not.toHaveLength(0);
       expect(row.conditionRu).not.toHaveLength(0);
       expect(row.descRu).not.toHaveLength(0);
     }
   });
 
-  it('keeps only the eight composite legends secret', () => {
+  it('keeps only the three available composite legends secret', () => {
     expect(active.filter((row) => row.secret).map((row) => row.id))
       .toEqual(SECRET_FOUNDATION_IDS);
     expect(SECRET_FOUNDATION_IDS.every((id) => id.startsWith('legend_'))).toBe(true);

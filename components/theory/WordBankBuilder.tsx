@@ -14,7 +14,7 @@ import type { TheoryDrillProgressState } from '../../app/theory_progress';
  * - tap-only, без drag; тап-зоны ≥48dp.
  * - перевод-подсказка и слот-роли видны всегда (рабочая память 40+/50+).
  * - фидбэк без модалок: трясётся только неверный слот, мягкий danger.
- * - БЕЗ XP/штрафов — теория это песочница.
+ * - БЕЗ legacy reward/штрафов — теория это песочница.
  * - после 2 промахов подряд правильное слово в банке подсвечивается.
  */
 interface Props {
@@ -34,7 +34,7 @@ interface Props {
     chipBgFaint: string;
     onAccentText: string;
   };
-  /** Вызов при первом успехе (для прогресса теории; БЕЗ XP). */
+  /** Вызов при первом успехе (для прогресса теории; БЕЗ legacy reward). */
   onSolved?: () => void;
   initialProgress?: TheoryDrillProgressState;
   onProgressChange?: (state: TheoryDrillProgressState) => void;

@@ -41,7 +41,6 @@ const STATIC_CACHE_KEYS = [
   // Пары «снапшот + метка обновления» — см. правило 3 в шапке файла.
   'global_lb_cache_v4',
   'leaderboard_cache_v1',
-  'leaderboard_stats_cache_v2',
   'arena_top100_snapshot_v8',
   'arena_top100_remote_at_v1',
   'arena_rating_screen_cache_v1',
@@ -53,7 +52,8 @@ const STATIC_CACHE_KEYS = [
   'top_helpers_remote_at_v2',
 
   // Биржа монет: курс и история считаются ТОЛЬКО сервером, клиент их не хранит
-  // как источник правды (см. coin_exchange_client.ts).
+  // как источник правды. Клиент биржи удалён (D70/D78) — ключи остаются в списке
+  // только ради очистки у тех, у кого кэш уже лежит.
   'coin_exchange_quote_cache_v1',
   'coin_exchange_history_cache_v1',
 
@@ -78,7 +78,6 @@ const APP_MESSAGES_CACHE_PREFIXES = [
 
 /** Аккаунт-scoped ключи, которые безопасно сбросить (пересоздаются с сервера). */
 const SCOPED_CACHE_PREFIXES = [
-  'referral_spin_credits_v1:',
   // AI-объяснения: закешированный текст, уже показанный ученику. Промах кеша
   // тихий — сервер ответит заново (см. explain_local_cache.ts).
   'ai_explain_local_cache_v1:',

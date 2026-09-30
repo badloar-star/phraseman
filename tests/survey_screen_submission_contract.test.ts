@@ -30,7 +30,8 @@ describe('survey screen submission contract', () => {
     expect(controllerSource).toContain("type: 'submit_started'");
     expect(controllerSource.indexOf("type: 'submit_started'"))
       .toBeLessThan(controllerSource.indexOf('await submitSurvey('));
-    expect(controllerSource).toContain('expectedReward: SHARD_REWARDS.survey_completed');
+    // зачем: PM-058/D70 — награды за опрос нет, оптимистичная сумма всегда 0.
+    expect(controllerSource).toContain('expectedReward: 0');
   });
 
   test('captures identity generation and the immutable opened scope before sending', () => {
@@ -44,32 +45,23 @@ describe('survey screen submission contract', () => {
     expect(controllerSource).toContain('dayKey,');
   });
 
-  test('applies the immutable confirmed event before marker and cache without a balance projection', () => {
+  // зачем: PM-058/D70 — жемчуг за опрос удалён: никакого экономического события,
+  // только отметка и кэш после проверки поколения аккаунта.
+  test('marks and caches the completion after the generation gate without any pearl event', () => {
     const submit = controllerSource.indexOf('await submitSurvey({');
     const generationGate = controllerSource.indexOf(
       'if (!isCurrentAccountGeneration(accountToken, stableId)) {',
       submit,
     );
-    const event = controllerSource.indexOf('await commitConfirmedExternalShardEvent({');
     const marker = controllerSource.indexOf('await markSurveyOfferDone({');
     const cache = controllerSource.indexOf('commitSurveyOfferRequest(');
-    const presentationGate = controllerSource.indexOf(
-      'if (!presentationActiveRef.current || attemptIdRef.current !== attemptId) return;',
-    );
     expect(generationGate).toBeGreaterThan(submit);
-    expect(event).toBeGreaterThan(generationGate);
-    expect(marker).toBeGreaterThan(event);
+    expect(marker).toBeGreaterThan(generationGate);
     expect(cache).toBeGreaterThan(marker);
-    expect(presentationGate).toBeGreaterThan(cache);
-    expect(controllerSource).toContain("source: 'shard_survey'");
-    expect(controllerSource).toContain('eventId: survey.surveyId');
-    expect(controllerSource).toContain('delta: SHARD_REWARDS.survey_completed');
-    expect(controllerSource).toContain("kind: 'survey_reward'");
+    expect(controllerSource).not.toContain('commitConfirmedExternalShardEvent');
+    expect(controllerSource).not.toContain('shards_earned');
     expect(controllerSource).not.toContain('replaceShardsBalance');
-    expect(controllerSource).not.toContain('balanceAfter');
     expect(controllerSource).toContain('presentAccountChanged(attemptId)');
-    expect(controllerSource.match(/isCurrentAccountGeneration\(accountToken, stableId\)/g)?.length)
-      .toBeGreaterThanOrEqual(5);
   });
 
   test('uses a monotonic active request guard and clears the auto-return timer on deactivate', () => {
@@ -78,7 +70,7 @@ describe('survey screen submission contract', () => {
     expect(controllerSource).toContain('clearAutoReturnTimer');
     expect(controllerSource).toContain('presentationActiveRef.current = false');
     expect(controllerSource).toMatch(/setTimeout\([\s\S]*?,\s*AUTO_RETURN_DELAY_MS\)/);
-    expect(controllerSource).toContain("dispatchSubmission({ type: 'submit_succeeded', attemptId, reward: response.reward })");
+    expect(controllerSource).toContain("dispatchSubmission({ type: 'submit_succeeded', attemptId, reward: 0 })"); // зачем: PM-058/D70 — награды за опрос нет
     expect(controllerSource).toContain("dispatchSubmission({ type: 'submit_failed', attemptId, messageKey })");
   });
 });

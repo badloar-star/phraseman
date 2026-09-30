@@ -167,22 +167,6 @@ const M = {
     `<g stroke="${c.primary}"><path d="${bubble}"/></g><g stroke="${c.secondary}"><path d="M9.6 8.6l-1.25 4.1M13.4 8.6l-1.25 4.1"/></g>`,
   words: (c) =>
     `<g stroke="${c.primary}"><path d="M3.5 6a2.5 2.5 0 012.5-2.5h6.1a2 2 0 011.4.6l6.9 6.9a2 2 0 010 2.83l-6.07 6.07a2 2 0 01-2.83 0L4.1 13a2 2 0 01-.6-1.4V6z"/></g><g stroke="${c.secondary}"><circle cx="8.3" cy="8.3" r="1.45"/></g>`,
-  comeback: (c) =>
-    `<g stroke="${c.primary}"><path d="M17.5 20v-7.4a5.5 5.5 0 00-11 0v3.7"/></g><g stroke="${c.secondary}"><path d="M3.6 13.4l2.9 2.9 2.9-2.9"/></g>`,
-  doubleXp: (c) =>
-    `<g fill="${c.primary}" stroke="none">${star(9.4, 13.4, 4.9)}</g><g stroke="${c.secondary}" fill="none">${star(17.1, 6.9, 2.9)}</g>`,
-  earlyBird: (c) =>
-    `<g stroke="${c.primary}"><path d="M3.5 17.5h17"/><path d="M7.4 17.5a4.6 4.6 0 019.2 0"/></g><g stroke="${c.secondary}"><path d="M12 9.1V6.6M6.1 11.6L4.35 9.85M17.9 11.6l1.75-1.75"/></g>`,
-  energyWindow: (c) =>
-    `<g stroke="${c.secondary}"><circle cx="12" cy="12" r="8.4"/></g><g stroke="${c.primary}"><path d="M13 6.9l-3.6 5.4h2.7l-1.1 4.8 3.6-5.4h-2.7z"/></g>`,
-  giftQuestion: (c) =>
-    `<g stroke="${c.primary}"><rect x="4.6" y="10.4" width="14.8" height="9.6" rx="1.5"/><rect x="3.8" y="6.9" width="16.4" height="3.5" rx="1"/></g><g stroke="${c.secondary}"><path d="M12 6.9C11 4.4 7.6 3.9 7.6 6.1S10.5 6.9 12 6.9zm0 0c1-2.5 4.4-3 4.4-.8S13.5 6.9 12 6.9z"/><path d="M10.6 13.9A1.6 1.6 0 0112 12.85c.9 0 1.6.55 1.6 1.35 0 .95-.9 1.15-1.6 1.85v.45"/><circle cx="12" cy="18.15" r="0.32"/></g>`,
-  calendarCheck: (c) =>
-    `<g stroke="${c.secondary}"><rect x="3.75" y="5" width="16.5" height="15" rx="2.25"/><path d="M3.75 9.6h16.5M8.25 3v3.4M15.75 3v3.4"/></g><g stroke="${c.primary}"><path d="M8.9 14.6l2.1 2.1 4.1-4.6"/></g>`,
-  shieldFlame: (c) =>
-    `<g stroke="${c.primary}"><path d="${SHIELD}"/></g><g stroke="${c.secondary}" transform="translate(5.5 5.1) scale(0.55)"><path d="${FLAME}"/></g>`,
-  turboRegen: (c) =>
-    `<g stroke="${c.secondary}"><path d="M18.9 8.1A7.7 7.7 0 005.6 9.4M5.1 15.9a7.7 7.7 0 0013.3-1.3"/><path d="M18.75 4.4v3.7h-3.7M5.25 19.6v-3.7h3.7"/></g><g stroke="${c.primary}"><path d="M13 7.9l-3.4 5h2.55l-1.05 4.2 3.4-5H11.9z"/></g>`,
 };
 
 // ── композиции ───────────────────────────────────────────────────────────────
@@ -250,17 +234,6 @@ const JOBS = [
   { out: 'trainer_theme_icons/{v}/analytics.webp', w: 256, h: 256, kind: 'glyph', m: M.barChart },
   { out: 'trainer_theme_icons/{v}/phrases.webp', w: 256, h: 256, kind: 'glyph', m: M.phrases },
   { out: 'trainer_theme_icons/{v}/words.webp', w: 256, h: 256, kind: 'glyph', m: M.words },
-  // Недельные буны.
-  { out: 'weekly_boon_icons/png/{v}/comeback.webp', w: 256, h: 256, kind: 'glyph', m: M.comeback },
-  { out: 'weekly_boon_icons/png/{v}/double_xp.webp', w: 256, h: 256, kind: 'glyph', m: M.doubleXp },
-  { out: 'weekly_boon_icons/png/{v}/early_bird.webp', w: 256, h: 256, kind: 'glyph', m: M.earlyBird },
-  { out: 'weekly_boon_icons/png/{v}/energy_free_window.webp', w: 256, h: 256, kind: 'glyph', m: M.energyWindow },
-  { out: 'weekly_boon_icons/png/{v}/flashcard_friday.webp', w: 256, h: 256, kind: 'glyph', m: M.cards },
-  { out: 'weekly_boon_icons/png/{v}/mystery_monday.webp', w: 256, h: 256, kind: 'glyph', m: M.giftQuestion },
-  { out: 'weekly_boon_icons/png/{v}/perfect_week.webp', w: 256, h: 256, kind: 'glyph', m: M.calendarCheck },
-  { out: 'weekly_boon_icons/png/{v}/speaking_saturday.webp', w: 256, h: 256, kind: 'glyph', m: M.mic },
-  { out: 'weekly_boon_icons/png/{v}/streak_saver.webp', w: 256, h: 256, kind: 'glyph', m: M.shieldFlame },
-  { out: 'weekly_boon_icons/png/{v}/turbo_regen.webp', w: 256, h: 256, kind: 'glyph', m: M.turboRegen },
 ];
 
 // ── рендер ───────────────────────────────────────────────────────────────────

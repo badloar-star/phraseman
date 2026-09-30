@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "dialogue-v2-locale-draft.v1",
+  "status": "draft_not_releaseable",
+  "sourceScenarioId": "social_09",
+  "sourceLedger": { "path": "dialogue_v2_authoring_ru.json", "revision": "v1" },
+  "targets": {
+    "en": {
+      "content": { "title": "Cancel plans politely", "briefing": "You are chatting in the Social world. Your task is to cancel plans politely. Do not end the conversation in one message: follow the steps and react to both participants.", "completionTone": "natural, with follow-up questions" },
+      "personas": [{ "id": "denis", "displayName": "Denis", "styleNote": "He does not rush, reads details carefully, and replies without unnecessary noise." }, { "id": "mila", "displayName": "Mila", "styleNote": "She warmly keeps the conversation going and asks natural follow-up questions." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Address them personally" }, { "id": "objective_02", "label": "Apologise" }, { "id": "objective_03", "label": "Briefly explain why" }, { "id": "objective_04", "label": "Show the meeting matters" }, { "id": "objective_05", "label": "Offer an alternative" }, { "id": "objective_06", "label": "Reply to their reaction" }, { "id": "objective_07", "label": "Thank them for understanding" }
+      ]
+    },
+    "es": {
+      "content": { "title": "Cancelar planes con educación", "briefing": "Estás chateando en el mundo «Social». Tu tarea es cancelar unos planes con educación. No cierres la conversación con un solo mensaje: sigue los pasos y responde a las dos personas.", "completionTone": "natural, con preguntas de seguimiento" },
+      "personas": [{ "id": "denis", "displayName": "Denis", "styleNote": "No tiene prisa, lee los detalles con atención y responde sin ruido innecesario." }, { "id": "mila", "displayName": "Mila", "styleNote": "Mantiene la conversación con calidez y hace preguntas de seguimiento naturales." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Dirigirte a ellos personalmente" }, { "id": "objective_02", "label": "Pedir disculpas" }, { "id": "objective_03", "label": "Explicar brevemente el motivo" }, { "id": "objective_04", "label": "Mostrar que la cita importa" }, { "id": "objective_05", "label": "Proponer una alternativa" }, { "id": "objective_06", "label": "Responder a su reacción" }, { "id": "objective_07", "label": "Agradecer su comprensión" }
+      ]
+    },
+    "fr": {
+      "content": { "title": "Annuler des projets avec tact", "briefing": "Tu échanges des messages dans le monde «Social». Ton objectif est d'annuler des projets avec tact. Ne termine pas la conversation en un seul message : suis les étapes et réponds aux deux personnes.", "completionTone": "naturel, avec des questions de suivi" },
+      "personas": [{ "id": "denis", "displayName": "Denis", "styleNote": "Il ne se presse pas, lit les détails attentivement et répond sans bruit inutile." }, { "id": "mila", "displayName": "Mila", "styleNote": "Elle relance chaleureusement la conversation et pose des questions de suivi naturelles." }],
+      "objectives": [
+        { "id": "objective_01", "label": "T'adresser aux personnes directement" }, { "id": "objective_02", "label": "Présenter tes excuses" }, { "id": "objective_03", "label": "Expliquer brièvement la raison" }, { "id": "objective_04", "label": "Montrer que le rendez-vous compte" }, { "id": "objective_05", "label": "Proposer une alternative" }, { "id": "objective_06", "label": "Répondre à leur réaction" }, { "id": "objective_07", "label": "Les remercier de leur compréhension" }
+      ]
+    },
+    "de": {
+      "content": { "title": "Pläne höflich absagen", "briefing": "Du schreibst im Bereich „Social“. Deine Aufgabe: Pläne höflich absagen. Beende das Gespräch nicht mit nur einer Nachricht: Gehe die Schritte durch und reagiere auf beide Teilnehmende.", "completionTone": "natürlich, mit Rückfragen" },
+      "personas": [{ "id": "denis", "displayName": "Denis", "styleNote": "Er lässt sich Zeit, liest Details aufmerksam und antwortet ohne unnötiges Gerede." }, { "id": "mila", "displayName": "Mila", "styleNote": "Sie nimmt das Gespräch herzlich auf und stellt natürliche Rückfragen." }],
+      "objectives": [
+        { "id": "objective_01", "label": "Die Personen direkt ansprechen" }, { "id": "objective_02", "label": "Dich entschuldigen" }, { "id": "objective_03", "label": "Den Grund kurz erklären" }, { "id": "objective_04", "label": "Zeigen, dass das Treffen wichtig ist" }, { "id": "objective_05", "label": "Eine Alternative vorschlagen" }, { "id": "objective_06", "label": "Auf die Reaktion antworten" }, { "id": "objective_07", "label": "Für Verständnis danken" }
+      ]
+    }
+  }
+}

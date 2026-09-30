@@ -9,7 +9,7 @@ const registry = fs.readFileSync(
   'utf8',
 );
 const hook = fs.readFileSync(path.join(root, 'hooks', 'useSessionAttempts.ts'), 'utf8');
-const giftInventory = fs.readFileSync(path.join(root, 'app', 'level_gift_active_inventory.ts'), 'utf8');
+const giftInventoryPath = path.join(root, 'app', 'level_gift_active_inventory.ts');
 const rewardCatalog = fs.readFileSync(path.join(root, 'app', 'level_spin_reward_catalog.ts'), 'utf8');
 const recovery = fs.readFileSync(
   path.join(root, 'app', 'session_attempts', 'session_attempt_recovery.ts'),
@@ -30,10 +30,7 @@ for (const needle of [
 assert.ok(!swipe.includes('Попытка потеряна'), 'wrong-answer toast is forbidden');
 assert.ok(registry.includes("'/flashcards_swipe'"), 'ordinary training route is not registered');
 assert.ok(hook.includes('restoreAfterSessionRuneForfeit'), 'automatic local attempt restore is missing');
-assert.ok(
-  !giftInventory.includes("key: 'attempt_restore_all'"),
-  'retired Second chance must not appear in active inventory',
-);
+assert.ok(!fs.existsSync(giftInventoryPath), 'retired active gift inventory must not return');
 assert.ok(
   recovery.includes("kind: 'session_attempt_recovery_rune_debit'")
     && recovery.includes('commitPhoneStateNonMonetaryEconomyGrant'),

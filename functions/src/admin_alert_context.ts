@@ -88,7 +88,7 @@ function eventDetails(eventType: AdminAlertType, data: AlertSourceRow): AdminAle
   switch (eventType) {
     case 'contentReport':
       pick('Текст репорта', 'comment', 'reportText', 'message'); pick('Контент', 'dataText'); pick('Ответ пользователя', 'userAnswer');
-      pick('Уровень', 'userLevel'); pick('XP', 'userXP'); pick('Стрик', 'userStreak'); pick('Дней в приложении', 'userDaysInApp');
+      pick('Стрик', 'userStreak'); pick('Дней в приложении', 'userDaysInApp');
       if (typeof data.userPremium === 'boolean') add('Доступ', data.userPremium ? 'Premium' : 'Free');
       break;
     case 'criticalError': case 'appErrorDigest': case 'paymentWebhookFailure':

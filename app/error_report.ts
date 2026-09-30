@@ -2,9 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Platform, Dimensions, PixelRatio } from 'react-native';
 import Constants from 'expo-constants';
 import type { Lang } from '../constants/i18n';
-import { registerXP } from './xp_manager';
 import { getCanonicalUserId } from './user_id_policy';
-import { getLevelFromXP } from '../constants/theme';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { submitClientReport } from './client_reports';
 import type { SupportDiagnosticBundle } from './support_diagnostic_schema';
@@ -12,9 +10,6 @@ import type { SupportDiagnosticBundle } from './support_diagnostic_schema';
 const THROTTLE_KEY = 'last_error_report_ts';
 const THROTTLE_MS = 60_000;
 let errorReportThrottleCacheTs = 0;
-const safeReportEventPart = (value: unknown, max = 60): string =>
-  String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
-
 async function isErrorReportThrottled(now: number): Promise<boolean> {
   if (errorReportThrottleCacheTs > 0 && now - errorReportThrottleCacheTs < THROTTLE_MS) {
     return true;
@@ -61,8 +56,6 @@ export interface ErrorReportPayload {
 export type ErrorReportResult = 'sent' | 'throttled' | 'invalid_comment' | 'failed';
 
 export interface SubmitErrorReportOptions {
-  /** Existing lesson/content report buttons keep their historical +10 XP by default. */
-  awardSubmissionXp?: boolean;
   /** Owner binding for durable retries; the server rejects a changed account. */
   expectedStableUid?: string;
   /** Stable retry key; the server returns the original receipt instead of duplicating. */
@@ -89,14 +82,12 @@ export async function collectMetadata(userName: string, lang: string) {
   const pixelRatio = PixelRatio.get();
 
   const [
-    xpRaw,
     streakRaw,
     installDateRaw,
     legacyAnonId,
     fallbackName,
     canonicalUid,
   ] = await Promise.all([
-    AsyncStorage.getItem('user_total_xp'),
     AsyncStorage.getItem('streak_count'),
     AsyncStorage.getItem('install_date'),
     AsyncStorage.getItem('anon_id'),
@@ -104,9 +95,7 @@ export async function collectMetadata(userName: string, lang: string) {
     getCanonicalUserId().catch(() => null),
   ]);
 
-  const totalXp = parseInt(xpRaw ?? '0') || 0;
   const streak = parseInt(streakRaw ?? '0') || 0;
-  const level = getLevelFromXP(totalXp) ?? 1;
   const isPremium = await getVerifiedPremiumStatus().catch(() => false);
 
   let daysInApp = 0;
@@ -132,8 +121,6 @@ export async function collectMetadata(userName: string, lang: string) {
     // User
     uid: canonicalUid ?? legacyAnonId ?? 'unknown',
     userName: userName || fallbackName || 'unknown',
-    userLevel: level,
-    userXP: totalXp,
     userStreak: streak,
     userPremium: isPremium,
     userLanguage: lang,
@@ -151,7 +138,7 @@ export function buildCopyText(
     `dataId:    ${payload.dataId}`,
     `screen:    ${payload.screen}`,
     `category:  ${category}`,
-    `user:      ${meta.userName} #${meta.uid.slice(-4)} | Lv${meta.userLevel} | ${meta.userXP} XP | streak ${meta.userStreak} | premium: ${meta.userPremium} | days: ${meta.userDaysInApp}`,
+    `user:      ${meta.userName} #${meta.uid.slice(-4)} | streak ${meta.userStreak} | premium: ${meta.userPremium} | days: ${meta.userDaysInApp}`,
     `device:    ${meta.deviceOS} ${meta.deviceOSVersion} | ${meta.deviceModel} | ${meta.screenWidth}x${meta.screenHeight} @${meta.pixelRatio}x | app v${meta.appVersion}`,
     `lang:      ${meta.userLanguage}`,
     'content:',
@@ -201,8 +188,6 @@ export const submitErrorReport = async (
       pixelRatio: meta.pixelRatio,
       appVersion: meta.appVersion,
       userName: meta.userName,
-      userLevel: meta.userLevel,
-      userXP: meta.userXP,
       userStreak: meta.userStreak,
       userPremium: meta.userPremium,
       userLanguage: meta.userLanguage,
@@ -226,22 +211,6 @@ export const submitErrorReport = async (
   // in-memory throttle authoritative for this process and persist best-effort.
   errorReportThrottleCacheTs = now;
   await AsyncStorage.setItem(THROTTLE_KEY, String(now)).catch(() => {});
-  if (options.awardSubmissionXp !== false) {
-    /** Маленький бонус за отправку — не await: иначе общая очередь registerXP может навсегда держать «Отправка…». */
-    void registerXP(10, 'achievement_reward', userName, lang, undefined, {
-      eventId: [
-        'achievement',
-        'error_report',
-        safeReportEventPart(Math.floor(now / THROTTLE_MS)),
-        safeReportEventPart(payload.dataId, 50),
-      ].join(':'),
-      payload: {
-        surface: 'error_report',
-        dataId: payload.dataId,
-      },
-    }).catch(() => {});
-  }
-
   return 'sent';
 };
 

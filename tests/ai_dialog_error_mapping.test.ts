@@ -20,7 +20,7 @@ describe('ai dialog callable error mapping', () => {
   it('maps the server Plus gate to a paywall message instead of a network failure', () => {
     const error = { code: 'functions/permission-denied', message: 'dialog_plus_required' };
 
-    expect(classifyPremiumDialogError(error)).toBe('free_limit');
+    expect(classifyPremiumDialogError(error)).toBe('plus_required');
     expect(getPremiumDialogErrorMessage(error)).toContain('Plus');
     expect(getPremiumDialogErrorMessage(error)).not.toContain('Пробный диалог');
   });

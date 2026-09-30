@@ -25,9 +25,6 @@ import {
 } from '../../app/dev_plus_controls';
 import { emitAppEvent } from '../../app/events';
 import { makeDevRunesSeed } from '../../app/dev_practice_runes_seed';
-import { grantRunesOnServerForDev } from '../../app/dev_runes_grant';
-import { grantLocalDevSpin } from '../../app/local_level_spins';
-import { isMaxVoiceNativeAvailable } from '../../app/max_webrtc_module';
 import { hapticTap } from '../../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
@@ -37,7 +34,6 @@ import FirstPurchaseSealCelebration, {
   type FirstPurchaseKind,
 } from '../FirstPurchaseSealCelebration';
 import ResultsSequence from '../feedback/ResultsSequence';
-import { SpinRewardPlaque } from '../SpinRewardPlaque';
 import DailyJourneyRewardPreviewModal from './DailyJourneyRewardPreviewModal';
 import { useOverlayVisible } from '../OverlayArbiter';
 import { usePremium } from '../PremiumContext';
@@ -47,8 +43,6 @@ import {
   type DevTool,
   type DevToolAction,
 } from './devToolRegistry';
-import LeagueResultModal from '../../app/LeagueResultModal';
-import { buildLeagueDevSeed, type LeagueDevSeedId } from './leagueDevSeeds';
 import {
   CANCEL_FLOW_PREVIEW_ROUTE,
   LEARNING_V2_AUTHORING_PREVIEW_ROUTE,
@@ -71,21 +65,6 @@ export type DevHubSheetProps = Readonly<{
 type PreviewState =
   | Readonly<{
       type: 'lesson-results';
-      variant?: never;
-      run: number;
-    }>
-  | Readonly<{
-      type: 'spin-plaque';
-      variant?: never;
-      run: number;
-    }>
-  | Readonly<{
-      type: 'league';
-      seed: LeagueDevSeedId;
-      run: number;
-    }>
-  | Readonly<{
-      type: 'welcome-gift';
       variant?: never;
       run: number;
     }>
@@ -225,7 +204,6 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
   const headingRef = useRef<Text>(null);
   const headingFocusTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const closingRef = useRef(false);
-  const grantRunesInFlightRef = useRef(false);
   const devHubMountedRef = useRef(true);
   const backdropOpacity = useRef(new Animated.Value(0)).current;
   const sheetY = useRef(new Animated.Value(SHEET_HIDDEN_Y)).current;
@@ -246,7 +224,6 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
     devHubMountedRef.current = true;
     return () => {
       devHubMountedRef.current = false;
-      grantRunesInFlightRef.current = false;
     };
   }, []);
 
@@ -358,19 +335,6 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
     requestClose(true);
   }, [requestClose]);
 
-  // зачем (владелец, 2026-08-26): «добавь кнопку в DEV Hub чтобы проверить
-  // модал». WelcomeGiftModal сама по себе ничего не начисляет (начисление
-  // живёт снаружи, в OnboardingWelcomeHost/welcome_gift.ts) — здесь просто
-  // монтируем компонент, ни разу не вызывая beginWelcomeGiftGrant. Строгая
-  // идемпотентность «1 раз на аккаунт» этим не затрагивается: можно жать
-  // сколько угодно раз подряд, деньги не спишутся.
-  const openWelcomeGiftPreview = useCallback(() => {
-    hapticTap();
-    runRef.current += 1;
-    setPreview({ type: 'welcome-gift', run: runRef.current });
-    requestClose(true);
-  }, [requestClose]);
-
   const openDailyJourneyPreview = useCallback(() => {
     hapticTap();
     runRef.current += 1;
@@ -380,7 +344,7 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
     requestClose(true);
   }, [requestClose]);
 
-  // зачем: тот же контракт, что у welcome-gift — хаб закрывается ДО показа
+  // Хаб закрывается ДО показа celebration,
   // (requestClose(true) сохраняет preview), иначе native Modal хаба останется
   // поверх празднования и его не будет видно. Ни pending-флаг, ни consume
   // здесь не вызываются: реальная очередь празднования на Главной не трогается.
@@ -400,36 +364,6 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
     setPreview({ type: 'first-purchase', kind, run: runRef.current });
     requestClose(true);
   }, [requestClose]);
-
-  const openLeaguePreview = useCallback((seed: LeagueDevSeedId) => {
-    hapticTap();
-    runRef.current += 1;
-    setPreview({ type: 'league', seed, run: runRef.current });
-    requestClose(true);
-  }, [requestClose]);
-
-  // Результат собирается в памяти на каждый показ: ни диска, ни сети.
-  const leagueSeedResult = useMemo(
-    () => (preview?.type === 'league' ? buildLeagueDevSeed(preview.seed) : null),
-    [preview],
-  );
-
-  const openSpinRewardPreview = useCallback(async () => {
-    if (busy || account.phase !== 'active' || !account.stableId) return;
-    const accountToken = captureAccountGeneration();
-    setBusy(true);
-    setNotice('');
-    const granted = await grantLocalDevSpin(accountToken).catch(() => false);
-    if (!granted || !isCurrentAccountGeneration(accountToken, accountToken.stableId)) {
-      setBusy(false);
-      return;
-    }
-    hapticTap();
-    runRef.current += 1;
-    setPreview({ type: 'spin-plaque', run: runRef.current });
-    requestClose(true);
-    setBusy(false);
-  }, [account.phase, account.stableId, busy, requestClose]);
 
   const closePreview = useCallback((message = '') => {
     setPreview(null);
@@ -465,7 +399,7 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
   // зачем: событие эмитим ИЗ onClosed, то есть после того как native Modal
   // DEV-центра действительно снят. Иначе оверлей онбординга поднимается под
   // ещё живым Modal — на iOS это даёт кадр, в котором виден DEV-шит поверх
-  // первого экрана (та же беда, что чинили в open-max-voice).
+  // первого экрана.
   const runOnboardingPreview = useCallback(async () => {
     await AsyncStorage.multiRemove([
       'onboarding_done',
@@ -488,50 +422,6 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
 
   const handleTool = useCallback((action: DevToolAction) => {
     switch (action) {
-      case 'grant-dev-runes':
-        // зачем (владелец 2026-09-21): тап по «Добавить 5 000 рун» уходил в
-        // ПОЛНУЮ тишину — четыре причины отказа и ни одного лога, кнопка
-        // выглядела мёртвой. Тот же класс бага, что убил покупку диалога:
-        // молчание не отказ. Каждый ранний выход обязан назвать причину.
-        console.log('[DEV-RUNES] tap', JSON.stringify({ // guard-ok: вход обязан логироваться и в релизе
-          busy,
-          inFlight: grantRunesInFlightRef.current,
-          phase: account.phase,
-          stableId: account.stableId ? account.stableId.slice(0, 8) : null,
-          generation: account.generation,
-        }));
-        if (busy || grantRunesInFlightRef.current
-          || account.phase !== 'active' || !account.stableId) {
-          console.log(`[DEV-RUNES] ignored busy=${busy} inFlight=${grantRunesInFlightRef.current} phase=${account.phase} hasStableId=${!!account.stableId}`); // guard-ok: ранний выход обязан логироваться и в релизе
-          return;
-        }
-        grantRunesInFlightRef.current = true;
-        void (async () => {
-          const accountToken = account;
-          hapticTap();
-          setBusy(true);
-          setNotice('');
-          try {
-            const result = await grantRunesOnServerForDev(accountToken);
-            console.log(`[DEV-RUNES] result ok=${result.ok}${result.ok ? '' : ` reason=${result.reason}`}`); // guard-ok: исход обязан логироваться и в релизе
-            if (!devHubMountedRef.current
-              || !isCurrentAccountGeneration(accountToken, accountToken.stableId)) {
-              console.log('[DEV-RUNES] late_result — экран закрыт или аккаунт сменился'); // guard-ok: ранний выход обязан логироваться и в релизе
-              return;
-            }
-            setNotice(result.ok
-              ? 'Добавлено 5 000 настоящих рун.'
-              : result.reason === 'disabled'
-                ? 'DEV-выдача выключена серверным рубильником.'
-                : result.reason === 'stale-account'
-                  ? 'Аккаунт сменился — руны не применены.'
-                  : 'Не удалось добавить руны. Проверь сеть и сервер.');
-          } finally {
-            grantRunesInFlightRef.current = false;
-            if (devHubMountedRef.current) setBusy(false);
-          }
-        })();
-        return;
       case 'run-onboarding':
         void runOnboardingPreview();
         return;
@@ -551,18 +441,6 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
       case 'open-shop':
         // Магазин пока БЕЗ входа из приложения — эта кнопка единственная дверь.
         requestClose(false, () => router.push(SHOP_ROUTE as never));
-        return;
-      case 'open-max-voice':
-        if (!isMaxVoiceNativeAvailable()) {
-          setNotice('MAX Voice не встроен в установленную DEV-сборку. Metro обновляет только JavaScript — пересобери и установи приложение на iPhone.');
-          return;
-        }
-        // Полноценный режим, не preview: закрываем native Modal до смены route,
-        // чтобы iOS не оставлял DEV-sheet поверх pre-start экрана звонка.
-        requestClose(false, () => router.push({
-          pathname: '/max_call_session',
-          params: { devMode: '1' },
-        } as never));
         return;
       // зачем 2026-08-24: прямые кнопки на каждый экран пейвола — «Витрина
       // движения» их отфильтровывала (isExecutableHybridItem), владелец не
@@ -592,13 +470,10 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
         return;
       // зачем: source: 'onboarding_plan' — тот же флаг, что ставит настоящий
       // онбординг (isOnboarding=true): полноэкранный без слайда, sticky-CTA,
-      // Pro и MAX скрыты. Роут берётся из resolveCurrentPaywallRoute() — это
+      // тарифы скрыты. Роут берётся из resolveCurrentPaywallRoute() — это
       // и есть текущий активный A/B-вариант, который реально увидит новичок.
       case 'open-paywall-onboarding':
         openPaywallVariant(resolveCurrentPaywallRoute(), 'onboarding_plan', 'onboarding_plan');
-        return;
-      case 'open-max-paywall':
-        requestClose(false, () => router.push({ pathname: '/max_paywall', params: { source: 'dev_hub' } } as never));
         return;
       // зачем (владелец 2026-09-02): показать НАСТОЯЩЕЕ окно обновления на этом
       // телефоне. Хаб закрывается до показа, иначе native Modal хаба останется
@@ -625,29 +500,11 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
       case 'preview-lesson-results':
         openLessonResultsPreview();
         return;
-      case 'preview-spin-reward':
-        void openSpinRewardPreview();
-        return;
-      case 'preview-welcome-gift':
-        openWelcomeGiftPreview();
-        return;
       case 'preview-daily-journey':
         openDailyJourneyPreview();
         return;
       case 'preview-session-attempt-gift':
         requestClose(false, () => emitAppEvent('session_attempt_gift_rescued'));
-        return;
-      case 'preview-league-promoted':
-        openLeaguePreview('promoted');
-        return;
-      case 'preview-league-demoted':
-        openLeaguePreview('demoted');
-        return;
-      case 'preview-league-stay':
-        openLeaguePreview('stay');
-        return;
-      case 'preview-league-rank-mismatch':
-        openLeaguePreview('rank-mismatch');
         return;
       case 'open-cancel-flow':
         // Витрина сценариев отписки — обычный маршрут; закрываем native Modal
@@ -716,7 +573,7 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
         } as never));
         return;
     }
-  }, [account, applyPlusOverride, busy, openCelebrationPreview, openDailyJourneyPreview, openFirstPurchasePreview, openLeaguePreview, openLessonResultsPreview, openPaywallVariant, openSpinRewardPreview, openWelcomeGiftPreview, requestClose, router, runOnboardingPreview, selectedPaywallContext]);
+  }, [account, applyPlusOverride, busy, openCelebrationPreview, openDailyJourneyPreview, openFirstPurchasePreview, openLessonResultsPreview, openPaywallVariant, requestClose, router, runOnboardingPreview, selectedPaywallContext]);
 
   const accountReady = account.phase === 'active' && Boolean(account.stableId);
   const overrideLabel = plusOverride === 'granted'
@@ -867,7 +724,7 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
                         key={tool.id}
                         tool={tool}
                         disabled={busy || (
-                          (section.id === 'subscription' || section.id === 'dev-runes-grant')
+                          section.id === 'subscription'
                           && !accountReady
                         )}
                         onPress={() => handleTool(tool.action)}
@@ -904,18 +761,11 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
             <ResultsSequence
               key={preview.run}
               stars={3}
-              xp={120}
               title="DEV · Учебный пример"
               subtitle="Синтетический результат: прогресс и награды не изменяются."
               rewards={{
                 activeGift: { label: 'Активный подарок: +1 подсказка' },
-                multipliers: [
-                  { label: 'Множитель XP ×1.5', xpDelta: 15 },
-                  { label: 'Множитель XP ×2', xpDelta: 20 },
-                  { label: 'Множитель XP ×3', xpDelta: 30 },
-                ],
               }}
-              spinReward={{ amount: 1, receiptId: `dev-lesson-spin-${preview.run}` }}
               ctaPrimaryLabel="Вернуться в Dev Hub"
               onCtaPrimary={closePreview}
               ctaSecondaryLabel="Закрыть preview"
@@ -925,59 +775,10 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
         ) : null}
       </Modal>
 
-      <Modal
-        testID="dev-spin-reward-preview-modal"
-        visible={!visible && preview?.type === 'spin-plaque'}
-        transparent
-        animationType="none"
-        statusBarTranslucent
-        onRequestClose={() => closePreview()}
-      >
-        <View pointerEvents="box-none" style={styles.spinPlaqueOverlay}>
-          {preview?.type === 'spin-plaque' ? (
-            <SpinRewardPlaque
-              key={preview.run}
-              amount={1}
-              receiptId={`dev-spin-plaque-${preview.run}`}
-              visible
-              onComplete={() => closePreview()}
-              testID="dev-spin-reward-plaque"
-            />
-          ) : null}
-        </View>
-      </Modal>
-
-      {preview?.type === 'league' && leagueSeedResult ? (
-        <LeagueResultModal
-          key={preview.run}
-          visible={!visible && devSurfaceGranted}
-          result={leagueSeedResult}
-          previewMode
-          onClose={() => {
-            closePreview();
-            onOpen?.();
-          }}
-        />
-      ) : null}
-
-      {preview?.type === 'welcome-gift' ? (
-        // зачем: WelcomeGiftModal рисует свой native Modal сама (как
-        // LeagueResultModal выше) — оборачивать её ещё в один Modal нельзя,
-        // вложенный презент на iOS ломает стек показа. Компонент не звонит
-        // ни на сервер, ни в локальный кошелёк — реальный beginWelcomeGiftGrant
-        // здесь не подключён, поэтому кнопку можно жать сколько угодно раз.
-        <WelcomeGiftModal
-          key={preview.run}
-          visible={!visible && devSurfaceGranted}
-          onClose={() => closePreview()}
-          testID="dev-welcome-gift-preview"
-        />
-      ) : null}
-
       {preview?.type === 'celebration' ? (
         // зачем: PremiumCelebrationModal рисует свой native Modal сама — второй
         // Modal снаружи на iOS ломает стек показа (та же причина, что у
-        // WelcomeGiftModal выше). key={run} перезапускает хореографию с нуля на
+        // key={run} перезапускает хореографию с нуля на
         // каждый тап, иначе повторный показ стартовал бы с конца анимации.
         <PremiumCelebrationModal
           key={preview.run}
@@ -1085,10 +886,4 @@ const styles = StyleSheet.create({
   pressed: { opacity: 0.74, transform: [{ scale: 0.985 }] },
   disabled: { opacity: 0.46 },
   resultsPreview: { flex: 1 },
-  spinPlaqueOverlay: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-  },
 });

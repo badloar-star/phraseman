@@ -24,36 +24,6 @@ const REMOTE_CONFIG_CACHE_KEY = 'remote_config_cache_v1';
  * тем же массивом чисел — держим здесь копию под конфиг ради читаемого единого места настроек. */
 export const FRIENDS_LEVEL_THRESHOLDS: readonly number[] = [0, 3, 10, 30, 100];
 
-/** Пороги сундука недели (XP). */
-export const FRIENDS_CHEST_TIERS: readonly number[] = [6000, 12000, 20000];
-
-/** Кап вклада одного друга в прогресс сундука. */
-export const FRIENDS_CHEST_CAP_PER_FRIEND = 2000;
-
-/** Топ-N друзей, чей weeklyXp считается в сундук. */
-export const FRIENDS_CHEST_TOP_N = 10;
-
-/** Минимум СВОИХ активных дней за неделю, чтобы открыть клейм сундука. */
-export const FRIENDS_CHEST_MIN_DAYS = 5;
-
-/** Минимум своего weeklyXp за неделю, чтобы открыть клейм сундука. */
-export const FRIENDS_CHEST_MIN_WEEKLY_XP = 1000;
-
-/** Множитель награды сундука по числу своих активных дней за неделю (5→×1 … 7→×1.5). */
-export const FRIENDS_CHEST_MULTIPLIER_BY_DAYS: Readonly<Record<number, number>> = {
-  5: 1,
-  6: 1.25,
-  7: 1.5,
-};
-
-export function chestMultiplierForMyDays(myDaysThisWeek: number): number {
-  const d = Number.isFinite(myDaysThisWeek) ? Math.max(0, Math.floor(myDaysThisWeek)) : 0;
-  if (d >= 7) return FRIENDS_CHEST_MULTIPLIER_BY_DAYS[7];
-  if (d >= 6) return FRIENDS_CHEST_MULTIPLIER_BY_DAYS[6];
-  if (d >= 5) return FRIENDS_CHEST_MULTIPLIER_BY_DAYS[5];
-  return 0; // ниже минимума — сундук не открывается вовсе (см. FRIENDS_CHEST_MIN_DAYS)
-}
-
 /** Лимиты «Позвать» (nudge), §1.3. */
 export const FRIENDS_NUDGE_LIMITS = Object.freeze({
   /** Тихие часы получателя, локальное время. */
@@ -69,26 +39,10 @@ export const FRIENDS_NUDGE_LIMITS = Object.freeze({
 
 export type FriendsTogetherClientConfig = Readonly<{
   levelThresholds: readonly number[];
-  chestTiers: readonly number[];
-  chestCapPerFriend: number;
-  chestTopN: number;
-  chestMinPairLevel: number;
-  chestMinDays: number;
-  chestMinWeeklyXp: number;
-  chestBoostMultiplier: number;
-  chestClaimAnyDay: boolean;
 }>;
 
 export const FRIENDS_TOGETHER_CLIENT_DEFAULTS: FriendsTogetherClientConfig = Object.freeze({
   levelThresholds: FRIENDS_LEVEL_THRESHOLDS,
-  chestTiers: FRIENDS_CHEST_TIERS,
-  chestCapPerFriend: FRIENDS_CHEST_CAP_PER_FRIEND,
-  chestTopN: FRIENDS_CHEST_TOP_N,
-  chestMinPairLevel: 2,
-  chestMinDays: FRIENDS_CHEST_MIN_DAYS,
-  chestMinWeeklyXp: FRIENDS_CHEST_MIN_WEEKLY_XP,
-  chestBoostMultiplier: 2,
-  chestClaimAnyDay: false,
 });
 
 function clampInt(value: unknown, min: number, max: number, fallback: number): number {
@@ -109,14 +63,6 @@ export function friendsTogetherClientConfigFromNumbers(numbers: Record<string, u
   const d = FRIENDS_TOGETHER_CLIENT_DEFAULTS;
   return Object.freeze({
     levelThresholds: numberArray(n.friends_level_thresholds, d.levelThresholds, 0, 100_000),
-    chestTiers: numberArray(n.friends_chest_tiers, d.chestTiers, 0, 10_000_000),
-    chestCapPerFriend: clampInt(n.friends_chest_cap_per_friend, 0, 1_000_000, d.chestCapPerFriend),
-    chestTopN: clampInt(n.friends_chest_top_n, 1, 100, d.chestTopN),
-    chestMinPairLevel: clampInt(n.friends_chest_min_pair_level, 1, 5, d.chestMinPairLevel),
-    chestMinDays: clampInt(n.friends_chest_min_days, 0, 7, d.chestMinDays),
-    chestMinWeeklyXp: clampInt(n.friends_chest_min_xp, 0, 1_000_000, d.chestMinWeeklyXp),
-    chestBoostMultiplier: clampInt(n.friends_chest_boost_multiplier, 1, 10, d.chestBoostMultiplier),
-    chestClaimAnyDay: n.friends_chest_claim_any_day === 1 || n.friends_chest_claim_any_day === true,
   });
 }
 

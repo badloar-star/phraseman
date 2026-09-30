@@ -22,7 +22,6 @@ export const DEV_HOME_HINT_FIXTURES: readonly PublishedHomeHint[] = [
   { id: 'dev-energy', category: 'energy', audience: 'all', textRu: 'Проверь энергию перед новой тренировкой.' },
   { id: 'dev-video', category: 'video', audience: 'all', textRu: 'Видео зовёт на короткий английский просмотр.' },
   { id: 'dev-plus', category: 'plus', audience: 'plus', textRu: 'Загляни в Plus и изучи его возможности.' },
-  { id: 'dev-league', category: 'league', audience: 'all', textRu: 'Лига ждёт проверки текущей цели.' },
   { id: 'dev-referrals', category: 'referrals', audience: 'all', textRu: 'Возможно, пора позвать языкового союзника.' },
   { id: 'dev-arena', category: 'arena', audience: 'all', textRu: 'Арена готова к маленькому матчу.' },
   { id: 'dev-settings', category: 'settings', audience: 'all', textRu: 'Шестерёнка приготовила настройки.' },

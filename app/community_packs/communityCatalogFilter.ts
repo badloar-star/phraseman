@@ -25,6 +25,19 @@ export function filterPacksByLanguage(
   return packs.filter((pack) => normalizePackLanguage(pack.packLanguage ?? pack.studyTarget) === language);
 }
 
+/**
+ * Наборы, собранные из роликов YouTube (есть `videoId`).
+ *
+ * зачем ЗДЕСЬ, а рядом с остальными фильтрами каталога: источник наборов в
+ * приложении ОДИН, и раздел «Из видео» — это отбор из него, а не вторая база.
+ * Свой отдельный загрузчик уже приводил к тому, что набор был в базе, но не
+ * показывался (`project_own_pack_missing_in_deck_picker`: источников три,
+ * список собирался из двух).
+ */
+export function filterVideoPacks(packs: readonly FlashcardMarketPack[]): FlashcardMarketPack[] {
+  return packs.filter((pack) => !!pack.videoId);
+}
+
 export function communitySortLabel(sort: CommunityPacksSort, lang: Lang): string {
   if (sort === 'new') {
     return triLang(lang, {

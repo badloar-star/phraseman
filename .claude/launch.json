@@ -254,6 +254,18 @@
         "0"
       ],
       "port": 8081
+    },
+    {
+      "name": "links-page",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8852",
+        "--directory",
+        "C:/appsprojects/phraseman/docs/design/links-page"
+      ],
+      "port": 8852
     }
   ]
 }

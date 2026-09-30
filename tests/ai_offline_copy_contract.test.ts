@@ -145,7 +145,7 @@ describe('dialog error mapping — глобальный бюджет vs rate-lim
 
   it('лимиты, auth и age по-прежнему классифицируются отдельно', () => {
     expect(classifyPremiumDialogError({ message: 'dialog_free_limit' })).toBe('free_limit');
-    expect(classifyPremiumDialogError({ message: 'dialog_plus_required' })).toBe('free_limit');
+    expect(classifyPremiumDialogError({ message: 'dialog_plus_required' })).toBe('plus_required');
     expect(classifyPremiumDialogError({ message: 'dialog_premium_cap' })).toBe('premium_limit');
     expect(classifyPremiumDialogError({ code: 'unauthenticated' })).toBe('auth_required');
     expect(classifyPremiumDialogError({ message: 'age_restricted' })).toBe('age_restricted');

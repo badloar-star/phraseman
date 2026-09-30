@@ -120,7 +120,7 @@ const DIALOG_PURCHASE_LOCK_TIMEOUT_MS = 8000;
 
 export type DialogPurchaseResult =
   | { ok: true; alreadyOwned: boolean; balance: number }
-  | { ok: false; reason: 'insufficient_runes' | 'identity_changed' | 'invalid_scenario' | 'invalid_target' | 'storage_busy' };
+  | { ok: false; reason: 'rank_access_only' | 'insufficient_runes' | 'identity_changed' | 'invalid_scenario' | 'invalid_target' | 'storage_busy' };
 
 /**
  * Покупка доступа к сценарию. Всё решается ЛОКАЛЬНО и мгновенно: списываем
@@ -138,6 +138,9 @@ export async function buyDialogAccessLocally(
   scenarioId: string,
   priceRunes: number,
 ): Promise<DialogPurchaseResult> {
+  // PM-140: direct rune purchases are retired. Dialogue access is determined
+  // by the coin-rank gate; legacy purchase receipts remain readable only.
+  return { ok: false, reason: 'rank_access_only' };
   const target = resolveDialogueStudyTarget(studyTarget);
   if (!target) {
     console.log(`[RUNES-BUY] denied invalid_target raw=${String(studyTarget)}`); // guard-ok: ранний выход обязан логироваться и в релизе
@@ -300,6 +303,8 @@ export async function syncDialogPurchases(
   studyTarget: unknown,
   token: AccountGenerationToken,
 ): Promise<void> {
+  // PM-140: no new or queued direct-purchase writes are synchronized.
+  return;
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
   const target = resolveDialogueStudyTarget(studyTarget);
   if (!target) return;

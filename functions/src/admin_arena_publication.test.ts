@@ -38,10 +38,10 @@ describe('Arena publication admin boundary', () => {
   });
 
   it('binds runtime pool queries and the exact Firestore index to the publication fingerprint', () => {
-    const arenaV2 = readFileSync(join(__dirname, 'arena_v2.ts'), 'utf8');
-    const expansion = readFileSync(join(__dirname, 'arena_expansion.ts'), 'utf8');
-    expect(arenaV2).toContain(".where('publicationFingerprint', '==', publication.publicationFingerprint)");
-    expect(expansion).toContain(".where('publicationFingerprint', '==', publication.publicationFingerprint)");
+    // зачем: D78 — серверная Арена (arena_v2.ts/arena_expansion.ts) удалена;
+    // единственный живой читатель опубликованного пула теперь сборщик пакетов Шпиля.
+    const spirePackBuild = readFileSync(join(__dirname, 'spire_pack_build.ts'), 'utf8');
+    expect(spirePackBuild).toContain(".where('publicationFingerprint', '==', publication.publicationFingerprint)");
     const indexes = JSON.parse(readFileSync(join(__dirname, '..', '..', 'firestore.indexes.json'), 'utf8'));
     expect(indexes.indexes).toContainEqual(expect.objectContaining({
       collectionGroup: 'tournamentTasks',

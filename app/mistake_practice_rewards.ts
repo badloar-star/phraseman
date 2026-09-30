@@ -8,7 +8,6 @@ import {
   type MistakeProjectionStatus,
 } from '../modules/mistake-practice/projection';
 import type { MistakeExerciseSupport } from '../modules/mistake-practice/exercise_mode_registry';
-import { registerXP as registerXPDefault } from './xp_manager';
 import {
   appendMistakeEvent,
   loadMistakeEventJournal,
@@ -27,8 +26,6 @@ import {
 import { DebugLogger } from './debug-logger';
 import { applySuperSundayRuneMultiplier } from '../modules/economy/super_sunday_runes';
 
-export const MISTAKE_PRACTICE_ANSWER_XP = 5;
-export const MISTAKE_PRACTICE_COMPLETION_XP = 10;
 
 export interface MistakePracticeAnswerRewardInput {
   readonly accountScope: string;
@@ -56,7 +53,6 @@ interface CorrectionStarClaimInput {
 }
 
 interface RewardDependencies {
-  readonly registerXP?: typeof registerXPDefault;
   readonly claimCorrectionStar?: (
     input: CorrectionStarClaimInput,
   ) => Promise<Readonly<{ granted: boolean; replayReceipt?: MistakeCorrectionWalletCompositeV1 }>>;
@@ -352,36 +348,9 @@ export async function flushPendingMistakeCorrectionRewards(
 export async function settleMistakePracticeAnswerRewards(
   input: MistakePracticeAnswerRewardInput,
   dependencies: RewardDependencies = {},
-): Promise<Readonly<{ xp: number; starGranted: boolean }>> {
-  const productionSuccess = input.correct
-    && input.independent
-    && input.support === 'production';
-  let xp = 0;
-  if (productionSuccess) {
-    const result = await (dependencies.registerXP ?? registerXPDefault)(
-      MISTAKE_PRACTICE_ANSWER_XP,
-      'mistake_practice_answer',
-      '',
-      'ru',
-      undefined,
-      {
-        eventId: stableId('mistake-practice-xp', {
-          mistakeId: input.mistakeId,
-          cycleId: input.cycleId,
-          attemptId: input.attemptId,
-        }),
-        payload: {
-          mistakeId: input.mistakeId,
-          cycleId: input.cycleId,
-          studyTarget: input.studyTarget,
-        },
-      },
-    );
-    xp = result.finalDelta;
-  }
-
+): Promise<Readonly<{ starGranted: boolean }>> {
   if (!shouldRewardMistakeCorrection(input)) {
-    return Object.freeze({ xp, starGranted: false });
+    return Object.freeze({ starGranted: false });
   }
   const rewardKey = buildMistakeCorrectionRewardKey(input);
   const claim = await (dependencies.claimCorrectionStar ?? claimCorrectionStarDefault)({
@@ -400,39 +369,5 @@ export async function settleMistakePracticeAnswerRewards(
       replayReceipt: claim.replayReceipt,
     });
   }
-  return Object.freeze({ xp, starGranted: claim.granted });
-}
-
-export async function settleMistakePracticeCompletionReward(
-  input: Readonly<{
-    sessionId: string;
-    initialCount: number;
-    studyTarget: MistakeStudyTarget;
-  }>,
-  dependencies: Pick<RewardDependencies, 'registerXP'> = {},
-): Promise<number> {
-  if (!input.sessionId.trim() || !Number.isSafeInteger(input.initialCount) || input.initialCount < 5) {
-    return 0;
-  }
-  const result = await (dependencies.registerXP ?? registerXPDefault)(
-    MISTAKE_PRACTICE_COMPLETION_XP,
-    'mistake_practice_answer',
-    '',
-    'ru',
-    undefined,
-    {
-      eventId: stableId('mistake-practice-complete-xp', {
-        sessionId: input.sessionId,
-        studyTarget: input.studyTarget,
-        rewardVersion: 1,
-      }),
-      payload: {
-        sessionId: input.sessionId,
-        initialCount: input.initialCount,
-        studyTarget: input.studyTarget,
-        kind: 'completion',
-      },
-    },
-  );
-  return result.finalDelta;
+  return Object.freeze({ starGranted: claim.granted });
 }

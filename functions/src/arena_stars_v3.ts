@@ -407,19 +407,3 @@ export function arenaBankedStars(input: Readonly<{
   return Math.min(scaled, roomLeft);
 }
 
-/** База опыта за звезду счёта. Кривая приложения — в constants/theme.ts. */
-export const ARENA_XP_PER_STAR = 5;
-export const ARENA_XP_COMPLETION = 10;
-export const ARENA_XP_WIN = 20;
-
-export function arenaMatchXp(input: Readonly<{
-  mode: ArenaEntryMode;
-  matchStars: number;
-  outcome: ArenaDuelOutcome;
-  completed: boolean;
-}>): number {
-  if (!input.completed) return 0;
-  const base = Math.max(0, Math.trunc(input.matchStars)) * ARENA_XP_PER_STAR;
-  const win = input.outcome === 'win' ? ARENA_XP_WIN : 0;
-  return base + ARENA_XP_COMPLETION + win;
-}

@@ -15,9 +15,6 @@
 export const CORE_ACHIEVEMENT_IDS = [
   'streak_3',
   'streak_7',
-  'xp_100',
-  'xp_250',
-  'xp_500',
   'comeback',
   'shards_100',
 ] as const;

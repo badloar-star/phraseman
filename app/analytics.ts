@@ -62,8 +62,6 @@ export type AnalyticsEvent =
   | 'lesson_complete'
   | 'lesson_abandon'
   | 'dialog_complete'
-  | 'plan_content_source'
-  | 'plan_content_fallback'
   | 'mistake_practice_menu_opened'
   | 'mistake_practice_setup_started'
   | 'mistake_practice_session_started'
@@ -122,20 +120,10 @@ export type AnalyticsEvent =
   // это и есть проверка гипотезы «руны покупают язык».
   | 'ai_dialog_extra_replies_bought'
   | 'ai_dialog_hint_purchased'
-  // Урок с Максом (текстовый тутор на каркасе MAX).
-  | 'ai_dialog_tutor_lesson_opened'
-  | 'tutor_text_started'
-  | 'tutor_text_phrase_saved'
   // Говорение («Устно»): успешная попытка проговорить фразу вслух (premium).
   | 'speaking_attempt_passed'
-  | 'max_tutor_board_shown'
-  | 'max_tutor_board_listened'
-  | 'max_tutor_board_dismissed'
-  | 'max_tutor_topic_changed'
-  | 'max_tutor_review_practice_started'
   // зачем (аудит 2026-08-23): экран разбора звонка слал это событие, но в
   // реестре его не было — событие терялось, а отклик на отзывы не измерялся.
-  | 'max_voice_feedback_sent'
   | 'feedback_entry_sent'
   // «Объясни как для 5-летнего» (Фаза 5 — adoption/cohort + health кэш-хитов)
   | 'explain_button_shown'

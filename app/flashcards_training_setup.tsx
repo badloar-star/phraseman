@@ -1,22 +1,24 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, Pressable, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Pressable, ScrollView, StatusBar, StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 import { useReducedMotion } from 'react-native-reanimated';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
+import MonthlyTrainingSessionIndicator from '../components/MonthlyTrainingSessionIndicator';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import ScreenGradient from '../components/ScreenGradient';
 import FeatureIntroEntry from '../components/feature_intro/FeatureIntroEntry';
 import { useLang } from '../components/LangContext';
-import { useTheme } from '../components/ThemeContext';
+import { FONT_SCALE, useTheme } from '../components/ThemeContext';
 import { usePremium } from '../components/PremiumContext';
 import { triLang } from '../constants/i18n';
 // зачем: рестайл 2.0 — экран остаётся полноэкранным (не шторкой), но шапка,
-// кнопки и состояния собраны из общего набора деталей стиля 2.0, а не рисуются
-// вручную. DeckSelectionTile — общий компонент с DeckPickerSheet, не трогаем.
-import { V2Button, V2ScreenHeader } from '../components/v2/V2Kit';
-import { useV2Palette } from '../components/v2/useV2Palette';
+// DeckSelectionTile — общий компонент с DeckPickerSheet.
+import { V2IconButton } from '../components/v2/V2Kit';
+import V2Pressable from '../components/v2/V2Pressable';
 import { V2 } from '../constants/v2Style';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { compactDeckCountLabel } from '../lib/flashcards/compact_deck_count_label';
 import { canStartBlitz } from './flashcards/blitz_logic';
 import { trainingSetupExplanation } from './flashcards/training_setup_explanation';
 import { loadFcDeckOptions, peekFcDeckOptions, sameDeckOptions } from './flashcards/deck_options';
@@ -53,8 +55,8 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { actionToastTri, emitAppEvent } from './events';
 import { hapticTap } from '../hooks/use-haptics';
 import { useFlashcardTrainingQuotaPreview } from '../hooks/useFlashcardTrainingQuotaPreview';
-import { isSpeakingEnabled } from './remote_flags';
-import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
+import { safeRouterBack } from './navigation_back';
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 
 type LoadState = 'loading' | 'ready' | 'error';
 type LoadErrorKind = 'invalid' | 'unavailable' | 'load' | null;
@@ -65,18 +67,83 @@ function presetModeFor(mode: CardsTrainingMode): FcPresetMode {
   return fcTrainOptionPresetMode('train');
 }
 
+type SetupGlass = ReturnType<typeof liquidGlassTokens>;
+
+function SetupSurface({
+  children,
+  glass,
+  style,
+  testID,
+}: Readonly<{
+  children: React.ReactNode;
+  glass: SetupGlass;
+  style?: StyleProp<ViewStyle>;
+  testID: string;
+}>) {
+  return (
+    <View
+      testID={testID}
+      style={[styles.stateSurface, style, { backgroundColor: glass.opaqueCard, borderColor: glass.glassEdge }]}
+    >
+      <LinearGradient
+        pointerEvents="none"
+        testID={`${testID}-sheen`}
+        colors={[glass.selected, 'transparent']}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0.9, y: 1 }}
+        style={[StyleSheet.absoluteFill, styles.surfaceSheen]}
+      />
+      {children}
+    </View>
+  );
+}
+
+function SetupAction({
+  disabled,
+  label,
+  onPress,
+  testID,
+  glass,
+  textScale,
+}: Readonly<{
+  disabled?: boolean;
+  label: string;
+  onPress: () => void;
+  testID: string;
+  glass: SetupGlass;
+  textScale: number;
+}>) {
+  return (
+    <V2Pressable
+      testID={testID}
+      accessibilityLabel={label}
+      accessibilityState={{ disabled: !!disabled }}
+      disabled={disabled}
+      onPress={onPress}
+      outerStyle={styles.actionOuter}
+      style={[styles.action, { backgroundColor: glass.cta, opacity: disabled ? 0.45 : 1 }]}
+    >
+      <Text style={[
+        styles.actionLabel,
+        { color: glass.ctaInk, fontSize: 17 * textScale, lineHeight: 22 * textScale },
+      ]}>{label}</Text>
+    </V2Pressable>
+  );
+}
+
 export default function FlashcardsTrainingSetupScreen() {
   const router = useRouter();
   const params = useLocalSearchParams<{ mode?: string | string[] }>();
   const mode = useMemo(() => parseCardsTrainingMode(params.mode), [params.mode]);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
-  const { theme: t, f, statusBarLight } = useTheme();
-  const p = useV2Palette();
+  const { theme: t, f, statusBarLight, liquidGlassThemeId, fontSize, uiScale } = useTheme();
+  const insets = useStableSafeAreaInsets();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  const textScale = (FONT_SCALE[fontSize] / FONT_SCALE.medium) * uiScale;
   const reducedMotion = useReducedMotion();
   const { accessResolved } = usePremium();
   const quotaPreview = useFlashcardTrainingQuotaPreview();
-  const paywallRedirectedRef = useRef(false);
   /**
    * зачем (владелец: «открывая раздел тренировки, экран отметить наборы моргает»):
    * первый кадр берём из тёплого снимка, если он есть, — тогда список виден сразу
@@ -100,15 +167,6 @@ export default function FlashcardsTrainingSetupScreen() {
   const startInFlightRef = useRef(false);
   const cloudCommunityEnabled = CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
 
-  useEffect(() => {
-    if (quotaPreview.status !== 'exhausted' || paywallRedirectedRef.current) return;
-    paywallRedirectedRef.current = true;
-    markNextNavigationAsReplace();
-    router.replace({
-      pathname: '/premium_modal',
-      params: { context: 'flashcard_training', source: 'flashcards_training_setup_direct' },
-    } as never);
-  }, [quotaPreview.status, router]);
   /**
    * зачем (владелец): «когда наборов нет ни одного — показывать три лучших
    * пользовательских с предложением добавить». Витрина живёт ТОЛЬКО в этом
@@ -202,13 +260,6 @@ export default function FlashcardsTrainingSetupScreen() {
       setDecks([]);
       setSelectedDeckIds([]);
       setLoadErrorKind('invalid');
-      setLoadState('error');
-      return;
-    }
-    if (mode === 'speaking' && !isSpeakingEnabled()) {
-      setDecks([]);
-      setSelectedDeckIds([]);
-      setLoadErrorKind('unavailable');
       setLoadState('error');
       return;
     }
@@ -424,67 +475,117 @@ export default function FlashcardsTrainingSetupScreen() {
 
   return (
     <ScreenGradient>
-      <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
+      <View
+        testID="fc-training-setup-safe-frame"
+        style={[
+          styles.safe,
+          { paddingTop: insets.top, paddingRight: insets.right, paddingLeft: insets.left },
+        ]}
+      >
         <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
         <ContentWrap>
-          {/* зачем: та же круглая «назад» и заголовок 2.0, что на других экранах —
-              вместо квадратной кнопки на bgSurface и ручного заголовка. */}
-          <V2ScreenHeader
-            title={copy.title}
-            onBack={leave}
-            backLabel={triLang(lang, {
-              ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại',
-              id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
-            })}
-            testID="fc-training-setup-header"
-          />
-
-          <ScrollView style={styles.scroll} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-            <View style={styles.summaryRow}>
-              <Text accessibilityLiveRegion="polite" style={[
-                styles.summary,
-                { color: t.textPrimary, fontSize: f.sub },
-              ]}>
-                {selectionExplanation}
+          <View style={styles.layout}>
+          <ScrollView
+            testID="fc-training-setup-body-scroll"
+            style={styles.scroll}
+            contentContainerStyle={styles.content}
+            showsVerticalScrollIndicator={false}
+          >
+            <View testID="fc-training-setup-header" style={styles.header}>
+              <V2IconButton
+                icon="chevron-back"
+                onPress={leave}
+                accessibilityLabel={triLang(lang, {
+                  ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại',
+                  id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
+                })}
+                testID="fc-training-setup-header-back"
+              />
+              <Text
+                testID="fc-training-setup-header-title"
+                accessibilityRole="header"
+                style={[
+                  styles.headerTitle,
+                  { color: glass.text, fontSize: 20 * textScale, lineHeight: 24 * textScale },
+                ]}
+              >
+                {copy.title}
               </Text>
             </View>
 
+            {loadState === 'ready' && decks.length === 0 && suggestedPacks.length === 0 ? null : <View style={styles.summaryRow}>
+              <Text
+                testID="fc-training-setup-summary"
+                accessibilityLiveRegion="polite"
+                style={[styles.summary, { color: t.textPrimary, fontSize: 15 * textScale, lineHeight: 21 * textScale }]}
+              >
+                {selectionExplanation}
+              </Text>
+            </View>}
+
             {loadState === 'loading' ? (
-              <View accessible accessibilityRole="progressbar" accessibilityLabel={triLang(lang, {
-                ru: 'Загрузка наборов', uk: 'Завантаження наборів', en: 'Loading packs', es: 'Cargando packs',
-                'pt-BR': 'Carregando pacotes', vi: 'Đang tải bộ thẻ', id: 'Memuat paket', tr: 'Paketler yükleniyor',
-                pl: 'Ładowanie zestawów',
-              })} style={styles.loadingBox}>
-                <ActivityIndicator color={t.accent} />
-              </View>
+              <SetupSurface
+                testID="fc-training-setup-loading"
+                glass={glass}
+                style={styles.loadingBox}
+              >
+                <View accessible accessibilityRole="progressbar" accessibilityLabel={triLang(lang, {
+                  ru: 'Загрузка наборов', uk: 'Завантаження наборів', en: 'Loading packs', es: 'Cargando packs',
+                  'pt-BR': 'Carregando pacotes', vi: 'Đang tải bộ thẻ', id: 'Memuat paket', tr: 'Paketler yükleniyor',
+                  pl: 'Ładowanie zestawów',
+                })} style={styles.loadingContent}>
+                  {/* зачем (cards.html setupLoading, spec_learn F7): загрузка — только скелет строк, без спиннера. */}
+                  <View style={styles.loadingRows}>
+                    {[0, 1, 2].map((index) => (
+                      <View
+                        key={`loading-row-${index}`}
+                        testID={`fc-training-setup-loading-row-${index}`}
+                        accessible={false}
+                        accessibilityElementsHidden
+                        importantForAccessibility="no-hide-descendants"
+                        style={[
+                          styles.loadingRow,
+                          { backgroundColor: glass.opaqueControl, borderColor: glass.glassEdge },
+                        ]}
+                      >
+                        <View style={[styles.loadingIcon, { backgroundColor: glass.selected }]} />
+                        <View style={styles.loadingCopy}>
+                          <View style={[styles.loadingLineLong, { backgroundColor: glass.selected }]} />
+                          <View style={[styles.loadingLineShort, { backgroundColor: glass.selected }]} />
+                        </View>
+                      </View>
+                    ))}
+                  </View>
+                </View>
+              </SetupSurface>
             ) : loadState === 'error' ? (
-              <View style={[styles.messageBox, { backgroundColor: p.glass, borderColor: p.stroke }]/* guard-ok: D43 */}>
+              <SetupSurface testID="fc-training-setup-error" glass={glass} style={styles.messageBox}>
                 <Text accessibilityLiveRegion="polite" style={[
                   styles.message,
-                  { color: t.textSecond, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.45) },
+                  { color: t.textSecond, fontSize: 15 * textScale, lineHeight: 22 * textScale },
                 ]}>{loadErrorMessage}</Text>
                 {loadErrorKind === 'load' ? (
-                  <V2Button
+                  <SetupAction
                     testID="fc-training-setup-retry"
                     label={retryLabel}
-                    variant="primary"
-                    size="small"
                     onPress={() => setLoadRevision((value) => value + 1)}
+                    glass={glass}
+                    textScale={textScale}
                   />
                 ) : null}
-              </View>
+              </SetupSurface>
             ) : decks.length === 0 ? (
-              <View style={styles.emptyBox}>
+              <SetupSurface testID="fc-training-setup-empty" glass={glass} style={styles.emptyBox}>
                 {/*
-                  зачем: строка-сводка выше уже говорит это — второй раз тот
-                  же текст был бы дублем. Витрина есть — показываем её, нет —
-                  единственное сообщение остаётся в сводке.
+                  зачем: с витриной сводка остаётся над карточкой и поясняет
+                  состояние до списка рекомендаций. Без витрины тот же текст
+                  показывается один раз внутри пустой карточки.
                 */}
                 {suggestedPacks.length > 0 ? (
                   <>
                     <Text style={[
                       styles.suggestHeading,
-                      { color: t.textPrimary, fontSize: f.bodyLg, lineHeight: Math.round(f.bodyLg * 1.25) },
+                      { color: t.textPrimary, fontSize: 17 * textScale, lineHeight: 23 * textScale },
                     ]}>{suggestHeading}</Text>
                     <View style={styles.suggestRow}>
                       {suggestedPacks.map((pack) => {
@@ -501,23 +602,24 @@ export default function FlashcardsTrainingSetupScreen() {
                             style={({ pressed }) => [
                               styles.suggestTile,
                               {
-                                backgroundColor: p.glass,
-                                borderColor: p.stroke, // guard-ok: D43
+                                backgroundColor: glass.opaqueCard,
+                                borderColor: glass.glassEdge,
                                 opacity: pressed ? 0.82 : openingPackId !== null && !opening ? 0.5 : 1,
                               },
                             ]}
                           >
-                            <View style={[styles.suggestIcon, { backgroundColor: p.glassRaised }]}>
+                            <View style={[styles.suggestIcon, { backgroundColor: glass.opaqueCard }]}>
                               {opening ? (
-                                <ActivityIndicator color={p.iconTint} />
+                                <ActivityIndicator color={glass.secondary} />
                               ) : (
-                                <Ionicons name="albums-outline" size={21} color={p.iconTint} />
+                                <Ionicons name="albums-outline" size={21} color={glass.secondary} />
                               )}
                             </View>
-                            {/* eslint-disable-next-line text-integrity/no-unsafe-text-truncation -- compact source tile has fixed geometry; the full pack title is exposed by the parent accessibilityLabel */}
                             <Text
-                              numberOfLines={2}
-                              style={[styles.suggestTitle, { color: p.text, fontSize: f.caption }]}
+                              style={[
+                                styles.suggestTitle,
+                                { color: glass.text, fontSize: 13 * textScale, lineHeight: 18 * textScale },
+                              ]}
                             >
                               {packTitleForInterface(pack, contentLangForTitle) || pack.codeName || pack.id}
                             </Text>
@@ -526,8 +628,16 @@ export default function FlashcardsTrainingSetupScreen() {
                       })}
                     </View>
                   </>
-                ) : null}
-              </View>
+                ) : (
+                  <Text
+                    testID="fc-training-setup-empty-message"
+                    accessibilityLiveRegion="polite"
+                    style={[styles.message, { color: t.textSecond, fontSize: 15 * textScale, lineHeight: 22 * textScale }]}
+                  >
+                    {selectionExplanation}
+                  </Text>
+                )}
+              </SetupSurface>
             ) : (
               <View style={styles.deckGrid}>
                 {decks.map((deck, index) => {
@@ -543,6 +653,10 @@ export default function FlashcardsTrainingSetupScreen() {
                       t={t}
                       f={f}
                       testIDPrefix="fc-training-setup-deck"
+                      presentation="compact-liquid-glass"
+                      liquidGlass={glass}
+                      textScale={textScale}
+                      countLabel={compactDeckCountLabel(lang, deck.count)}
                     />
                   );
                 })}
@@ -552,21 +666,39 @@ export default function FlashcardsTrainingSetupScreen() {
             {!blitzHasEnoughCards && summary.cardCount > 0 ? (
               <Text accessibilityLiveRegion="polite" style={[
                 styles.validation,
-                { color: t.wrong, fontSize: f.sub },
+                { color: t.wrong, fontSize: 14 * textScale, lineHeight: 20 * textScale },
               ]}>{blitzMinimumLabel}</Text>
             ) : null}
+          </ScrollView>
+
+          <ScrollView
+            testID="fc-training-setup-dock-scroll"
+            style={styles.dockScroll}
+            contentContainerStyle={[styles.dockContent, { paddingBottom: insets.bottom }]}
+            showsVerticalScrollIndicator={false}
+          >
+            <MonthlyTrainingSessionIndicator
+              testID="fc-training-setup-monthly-limit"
+              quota={quotaPreview}
+              textColor={t.textSecond}
+              mutedColor={t.wrong}
+              textMetrics={{ fontSize: 12 * textScale, lineHeight: 17 * textScale }}
+              style={styles.quota}
+            />
             {/* зачем (PM-086): ценник энергии на кнопке убран — сам расход энергии не менялся.
                 Кнопка — светлая главная кнопка стиля 2.0. */}
-            <V2Button
+            <SetupAction
               testID="fc-training-setup-start"
               label={copy.start}
               disabled={!canStart}
               onPress={() => void startTraining()}
-              style={{ marginTop: 14 }}
+              glass={glass}
+              textScale={textScale}
             />
           </ScrollView>
+          </View>
         </ContentWrap>
-      </SafeAreaView>
+      </View>
       {mode && mode !== 'truefalse' ? <FeatureIntroEntry
         key={mode}
         id={`training_${mode}_first_visit`}
@@ -578,20 +710,37 @@ export default function FlashcardsTrainingSetupScreen() {
 
 const styles = StyleSheet.create({
   safe: { flex: 1, minHeight: 0, backgroundColor: 'transparent' },
+  layout: { flex: 1, minHeight: 0 },
   scroll: { flex: 1, minHeight: 0 },
-  content: { paddingHorizontal: V2.screenPad, paddingBottom: 32 },
-  summaryRow: { minHeight: 44, marginTop: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 10 },
-  summary: { flex: 1, fontWeight: '800' },
-  loadingBox: { minHeight: 280, alignItems: 'center', justifyContent: 'center' },
-  // Тонкая кромка стекла — разрешённое исключение стиля 2.0 (D43), см. guard-ok рядом с использованием.
-  messageBox: { minHeight: 150, borderRadius: V2.radius.card, borderWidth: 1, padding: 18, alignItems: 'center', justifyContent: 'center', gap: 14 },
-  emptyBox: { minHeight: 150, paddingVertical: 18, alignItems: 'center', justifyContent: 'center', gap: 16 },
+  content: { paddingHorizontal: 20, paddingBottom: 18 },
+  header: { flexDirection: 'row', alignItems: 'center', gap: 14, paddingTop: 8 },
+  headerTitle: { flex: 1, minWidth: 0, textAlign: 'left', fontWeight: '700' },
+  summaryRow: { marginTop: 15, flexDirection: 'row', alignItems: 'center' },
+  summary: { flex: 1, minWidth: 0, fontWeight: '700' },
+  stateSurface: { position: 'relative', overflow: 'hidden', borderRadius: 16, borderWidth: 1 },
+  surfaceSheen: { borderRadius: 16 },
+  loadingBox: { minHeight: 150, marginTop: 14, padding: 14 },
+  loadingContent: { width: '100%', gap: 12 },
+  loadingRows: { width: '100%', gap: 10 },
+  loadingRow: { minHeight: 58, flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 11, paddingVertical: 7, borderRadius: 13, borderWidth: 1 },
+  loadingIcon: { width: 44, height: 44, borderRadius: 12 },
+  loadingCopy: { flex: 1, minWidth: 0, gap: 7 },
+  loadingLineLong: { width: '72%', height: 10, borderRadius: 5 },
+  loadingLineShort: { width: '44%', height: 8, borderRadius: 4 },
+  messageBox: { minHeight: 150, marginTop: 14, padding: 18, alignItems: 'center', justifyContent: 'center', gap: 14 },
+  emptyBox: { minHeight: 150, marginTop: 14, paddingHorizontal: 16, paddingVertical: 18, alignItems: 'center', justifyContent: 'center', gap: 16 },
   suggestHeading: { textAlign: 'center', fontWeight: '900' },
-  suggestRow: { alignSelf: 'stretch', flexDirection: 'row', gap: 10 },
-  suggestTile: { flex: 1, minHeight: 118, borderRadius: V2.radius.card, borderWidth: 1, paddingHorizontal: 8, paddingVertical: 12, alignItems: 'center', justifyContent: 'flex-start', gap: 9 },
+  suggestRow: { alignSelf: 'stretch', flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
+  suggestTile: { flexGrow: 1, flexBasis: 94, minWidth: 0, minHeight: 118, borderRadius: V2.radius.card, borderWidth: 1, paddingHorizontal: 8, paddingVertical: 12, alignItems: 'center', justifyContent: 'flex-start', gap: 9 },
   suggestIcon: { width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
-  suggestTitle: { textAlign: 'center', fontWeight: '800' },
+  suggestTitle: { minWidth: 0, textAlign: 'center', fontWeight: '800' },
   message: { textAlign: 'center', fontWeight: '600' },
-  deckGrid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', gap: 10 },
+  deckGrid: { marginTop: 14, gap: 10 },
   validation: { marginTop: 10, textAlign: 'center', fontWeight: '700' },
+  dockScroll: { flexGrow: 0, flexShrink: 1, maxHeight: '46%' },
+  dockContent: { paddingHorizontal: 20, paddingTop: 10, gap: 12 },
+  quota: { width: '100%' },
+  actionOuter: { width: '100%' },
+  action: { width: '100%', minHeight: 48, borderRadius: 24, paddingHorizontal: 20, paddingVertical: 12, alignItems: 'center', justifyContent: 'center' },
+  actionLabel: { minWidth: 0, textAlign: 'center', fontWeight: '800' },
 });

@@ -120,12 +120,6 @@ export function logStreakLost(streakDays: number) {
   logEvent('streak_lost', { days: streakDays });
 }
 
-// ── League ─────────────────────────────────────────────────────────────────────
-
-export function logLeaguePromoted(leagueName: string) {
-  logEvent('league_promoted', { league: leagueName });
-}
-
 // ── Premium events ────────────────────────────────────────────────────────────
 
 export function logPremiumModalOpened(context: string) {

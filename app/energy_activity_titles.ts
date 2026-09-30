@@ -66,12 +66,6 @@ export function energyActivityTitle(activity: EnergyActivityKey, lang: Lang): st
         ru: 'урока', uk: 'уроку', en: 'a lesson', es: 'una lección', 'pt-BR': 'uma lição',
         vi: 'một bài học', id: 'sebuah pelajaran', tr: 'bir ders', pl: 'lekcji',
       });
-    case 'personal_plan_exercise':
-      return triLang(lang, {
-        ru: 'задания плана', uk: 'завдання плану', en: 'a plan task', es: 'una tarea del plan',
-        'pt-BR': 'uma tarefa do plano', vi: 'một nhiệm vụ trong kế hoạch', id: 'tugas rencana',
-        tr: 'plan görevi', pl: 'zadania planu',
-      });
     case 'diagnostic_test':
       return triLang(lang, {
         ru: 'теста уровня', uk: 'тесту рівня', en: 'the level test', es: 'la prueba de nivel',
@@ -102,12 +96,6 @@ export function energyActivityTitle(activity: EnergyActivityKey, lang: Lang): st
       return triLang(lang, {
         ru: 'видео', uk: 'відео', en: 'the video', es: 'el vídeo', 'pt-BR': 'o vídeo',
         vi: 'video', id: 'video', tr: 'video', pl: 'wideo',
-      });
-    case 'max_call':
-      return triLang(lang, {
-        ru: 'урока с Максом', uk: 'уроку з Максом', en: 'a lesson with Max',
-        es: 'una lección con Max', 'pt-BR': 'uma lição com Max', vi: 'buổi học với Max',
-        id: 'pelajaran dengan Max', tr: "Max'la ders", pl: 'lekcji z Maxem',
       });
     default: {
       // Полнота карты держится типом: новая активность обязана получить

@@ -16,7 +16,7 @@ function progressHarness(options?: Readonly<{ mirrorFails?: boolean }>) {
   const journal: PersonalProgressJournal = {
     commit: async (command: PersonalProgressCommand) => {
       await new Promise<void>((resolve) => { releaseCommit = resolve; });
-      const result = applyPersonalProgressCommand(state, command, (xp) => Math.floor(xp / 100) + 1);
+      const result = applyPersonalProgressCommand(state, command);
       state = result.state;
       uiSuccesses += 1;
       return { projection: state.projection, duplicate: result.duplicate };
@@ -35,57 +35,53 @@ function progressHarness(options?: Readonly<{ mirrorFails?: boolean }>) {
   };
 }
 
-function xpInput(input: Readonly<{ amount: number; eventId: string }>) {
-  return {
-    ...input,
-    source: 'lesson_answer',
-    activityDate: '2026-08-21',
-    exactResult: { accepted: true },
-  };
+// зачем: выдача XP удалена (PM-055/PM-067); те же гарантии проверяются на completeLesson.
+function lessonInput(eventId: string) {
+  return { eventId, lessonId: 'lesson-1', bestPct: 90 };
 }
 
 test('commit returns only after journal and projection are durable', async () => {
   const harness = progressHarness();
-  const pending = harness.api.grantXp(xpInput({ amount: 10, eventId: 'lesson:1:a:1' }));
+  const pending = harness.api.completeLesson(lessonInput('lesson:1:a:1'));
   expect(harness.uiSuccesses()).toBe(0);
   await Promise.resolve();
   harness.releaseSqlCommit();
-  await expect(pending).resolves.toMatchObject({ totalXp: 10, duplicate: false });
+  await expect(pending).resolves.toMatchObject({ completedLessons: ['lesson-1'] });
 });
 
 test('server time and server balance are absent from ordinary progress inputs', () => {
-  expect(Object.keys(xpInput({ amount: 10, eventId: 'x' })))
+  expect(Object.keys(lessonInput('x')))
     .not.toEqual(expect.arrayContaining(['serverTime', 'serverTotalXp', 'serverStreak']));
 });
 
-test('duplicate XP is idempotent and mirror failure cannot fail the commit', async () => {
+test('duplicate completion is idempotent and mirror failure cannot fail the commit', async () => {
   const harness = progressHarness({ mirrorFails: true });
-  const first = harness.api.grantXp(xpInput({ amount: 10, eventId: 'same-event' }));
+  const first = harness.api.completeLesson(lessonInput('same-event'));
   await Promise.resolve();
   harness.releaseSqlCommit();
-  await expect(first).resolves.toMatchObject({ totalXp: 10, duplicate: false });
-  const second = harness.api.grantXp(xpInput({ amount: 10, eventId: 'same-event' }));
+  await expect(first).resolves.toMatchObject({ completedLessons: ['lesson-1'] });
+  const second = harness.api.completeLesson(lessonInput('same-event'));
   await Promise.resolve();
   harness.releaseSqlCommit();
-  await expect(second).resolves.toMatchObject({ totalXp: 10, duplicate: true });
+  await expect(second).resolves.toMatchObject({ completedLessons: ['lesson-1'] });
 });
 
-test('unsafe and negative XP inputs reject before the journal', async () => {
+test('invalid completion inputs reject before the journal', async () => {
   const harness = progressHarness();
-  await expect(harness.api.grantXp(xpInput({ amount: -1, eventId: 'negative' })))
-    .rejects.toThrow('phone_state_progress_input_invalid');
-  await expect(harness.api.grantXp(xpInput({ amount: Number.NaN, eventId: 'nan' })))
-    .rejects.toThrow('phone_state_progress_input_invalid');
+  const pending = harness.api.completeLesson({ eventId: 'bad', lessonId: 'lesson-1', bestPct: -1 });
+  await Promise.resolve();
+  harness.releaseSqlCommit();
+  await expect(pending).rejects.toThrow('phone_state_progress_input_invalid');
 });
 
 test('completion unions dates and ids while best result only increases', () => {
   let state = emptyPersonalProgressState();
   state = applyPersonalProgressCommand(state, {
     kind: 'complete_lesson', eventId: 'run-1', lessonId: 'lesson-1', bestPct: 90,
-  }, () => 1).state;
+  }).state;
   state = applyPersonalProgressCommand(state, {
     kind: 'complete_lesson', eventId: 'run-2', lessonId: 'lesson-1', bestPct: 80,
-  }, () => 1).state;
+  }).state;
   expect(state.projection.completedLessons).toEqual(['lesson-1']);
   expect(state.projection.bestResults['lesson:lesson-1']).toBe(90);
 });

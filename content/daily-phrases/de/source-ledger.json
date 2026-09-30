@@ -1,0 +1,904 @@
+{
+  "schemaVersion": "daily-phrase-source-linkage-v2",
+  "studyTarget": "de",
+  "sourceLocale": "ru",
+  "surface": "daily_phrase",
+  "status": "SOURCE_COMPLETE_HOLD",
+  "authoritativeLedger": {
+    "path": "authoritative-source-ledger.json",
+    "schemaVersion": "daily-phrase-authoritative-source-ledger-v1",
+    "source": "Duden — official dictionary entries and official publisher excerpts; German Wiktionary fallback only where the live Duden entry omits the phrase gloss",
+    "sourceHomes": [
+      "https://www.duden.de/rechtschreibung/",
+      "https://shop.duden.de/",
+      "https://de.wiktionary.org/"
+    ],
+    "checkedAt": "2026-09-27T18:59:49.3454773Z",
+    "requiredCount": 176,
+    "acceptedCount": 176,
+    "status": "SOURCE_COMPLETE_HOLD"
+  },
+  "linkedCandidateRows": [
+    {
+      "rowId": "de-001",
+      "ledgerRow": 0,
+      "sourceId": "duden:holzweg"
+    },
+    {
+      "rowId": "de-002",
+      "ledgerRow": 1,
+      "sourceId": "duden:tomate"
+    },
+    {
+      "rowId": "de-003",
+      "ledgerRow": 2,
+      "sourceId": "duden:nagel"
+    },
+    {
+      "rowId": "de-004",
+      "ledgerRow": 3,
+      "sourceId": "duden:fliege"
+    },
+    {
+      "rowId": "de-005",
+      "ledgerRow": 4,
+      "sourceId": "duden:brei"
+    },
+    {
+      "rowId": "de-006",
+      "ledgerRow": 5,
+      "sourceId": "duden:katze"
+    },
+    {
+      "rowId": "de-007",
+      "ledgerRow": 6,
+      "sourceId": "duden-preview:baer"
+    },
+    {
+      "rowId": "de-008",
+      "ledgerRow": 7,
+      "sourceId": "duden:flinte"
+    },
+    {
+      "rowId": "de-009",
+      "ledgerRow": 8,
+      "sourceId": "duden:wasser-kalt"
+    },
+    {
+      "rowId": "de-010",
+      "ledgerRow": 9,
+      "sourceId": "duden:wolke"
+    },
+    {
+      "rowId": "de-011",
+      "ledgerRow": 10,
+      "sourceId": "duden:strich"
+    },
+    {
+      "rowId": "de-012",
+      "ledgerRow": 11,
+      "sourceId": "duden:schwein"
+    },
+    {
+      "rowId": "de-013",
+      "ledgerRow": 12,
+      "sourceId": "duden:daumen"
+    },
+    {
+      "rowId": "de-014",
+      "ledgerRow": 13,
+      "sourceId": "duden:bahnhof"
+    },
+    {
+      "rowId": "de-015",
+      "ledgerRow": 14,
+      "sourceId": "duden:kuh"
+    },
+    {
+      "rowId": "de-016",
+      "ledgerRow": 15,
+      "sourceId": "duden:zweig"
+    },
+    {
+      "rowId": "de-017",
+      "ledgerRow": 16,
+      "sourceId": "duden:bank"
+    },
+    {
+      "rowId": "de-018",
+      "ledgerRow": 17,
+      "sourceId": "duden:muecke"
+    },
+    {
+      "rowId": "de-019",
+      "ledgerRow": 18,
+      "sourceId": "duden:oel-feuer"
+    },
+    {
+      "rowId": "de-020",
+      "ledgerRow": 19,
+      "sourceId": "duden:faden"
+    },
+    {
+      "rowId": "de-021",
+      "ledgerRow": 20,
+      "sourceId": "duden:kurz"
+    },
+    {
+      "rowId": "de-022",
+      "ledgerRow": 21,
+      "sourceId": "duden:aermel"
+    },
+    {
+      "rowId": "de-023",
+      "ledgerRow": 22,
+      "sourceId": "duden:kopf"
+    },
+    {
+      "rowId": "de-024",
+      "ledgerRow": 23,
+      "sourceId": "duden:auge"
+    },
+    {
+      "rowId": "de-025",
+      "ledgerRow": 24,
+      "sourceId": "duden:wolke"
+    },
+    {
+      "rowId": "de-026",
+      "ledgerRow": 25,
+      "sourceId": "duden:offen"
+    },
+    {
+      "rowId": "de-027",
+      "ledgerRow": 26,
+      "sourceId": "duden:blume"
+    },
+    {
+      "rowId": "de-028",
+      "ledgerRow": 27,
+      "sourceId": "duden:teufel"
+    },
+    {
+      "rowId": "de-029",
+      "ledgerRow": 28,
+      "sourceId": "duden:nagel"
+    },
+    {
+      "rowId": "de-030",
+      "ledgerRow": 29,
+      "sourceId": "duden:regen"
+    },
+    {
+      "rowId": "de-031",
+      "ledgerRow": 30,
+      "sourceId": "duden:faust"
+    },
+    {
+      "rowId": "de-032",
+      "ledgerRow": 31,
+      "sourceId": "duden:hebel"
+    },
+    {
+      "rowId": "de-033",
+      "ledgerRow": 32,
+      "sourceId": "duden:auge"
+    },
+    {
+      "rowId": "de-034",
+      "ledgerRow": 33,
+      "sourceId": "duden:zahn"
+    },
+    {
+      "rowId": "de-035",
+      "ledgerRow": 34,
+      "sourceId": "duden:dick"
+    },
+    {
+      "rowId": "de-036",
+      "ledgerRow": 35,
+      "sourceId": "duden:apfel"
+    },
+    {
+      "rowId": "de-037",
+      "ledgerRow": 36,
+      "sourceId": "duden:ohr"
+    },
+    {
+      "rowId": "de-038",
+      "ledgerRow": 37,
+      "sourceId": "duden:reihe"
+    },
+    {
+      "rowId": "de-039",
+      "ledgerRow": 38,
+      "sourceId": "duden:nummer"
+    },
+    {
+      "rowId": "de-040",
+      "ledgerRow": 39,
+      "sourceId": "duden:ruecken"
+    },
+    {
+      "rowId": "de-041",
+      "ledgerRow": 40,
+      "sourceId": "de041"
+    },
+    {
+      "rowId": "de-042",
+      "ledgerRow": 41,
+      "sourceId": "de042"
+    },
+    {
+      "rowId": "de-043",
+      "ledgerRow": 42,
+      "sourceId": "de043"
+    },
+    {
+      "rowId": "de-044",
+      "ledgerRow": 43,
+      "sourceId": "de044"
+    },
+    {
+      "rowId": "de-045",
+      "ledgerRow": 44,
+      "sourceId": "de045"
+    },
+    {
+      "rowId": "de-046",
+      "ledgerRow": 45,
+      "sourceId": "de046"
+    },
+    {
+      "rowId": "de-047",
+      "ledgerRow": 46,
+      "sourceId": "de047"
+    },
+    {
+      "rowId": "de-048",
+      "ledgerRow": 47,
+      "sourceId": "de048"
+    },
+    {
+      "rowId": "de-049",
+      "ledgerRow": 48,
+      "sourceId": "de049"
+    },
+    {
+      "rowId": "de-050",
+      "ledgerRow": 49,
+      "sourceId": "de050"
+    },
+    {
+      "rowId": "de-051",
+      "ledgerRow": 50,
+      "sourceId": "de051"
+    },
+    {
+      "rowId": "de-052",
+      "ledgerRow": 51,
+      "sourceId": "de052"
+    },
+    {
+      "rowId": "de-053",
+      "ledgerRow": 52,
+      "sourceId": "de053"
+    },
+    {
+      "rowId": "de-054",
+      "ledgerRow": 53,
+      "sourceId": "de054"
+    },
+    {
+      "rowId": "de-055",
+      "ledgerRow": 54,
+      "sourceId": "de055"
+    },
+    {
+      "rowId": "de-056",
+      "ledgerRow": 55,
+      "sourceId": "de056"
+    },
+    {
+      "rowId": "de-057",
+      "ledgerRow": 56,
+      "sourceId": "de057"
+    },
+    {
+      "rowId": "de-058",
+      "ledgerRow": 57,
+      "sourceId": "de058"
+    },
+    {
+      "rowId": "de-059",
+      "ledgerRow": 58,
+      "sourceId": "de059"
+    },
+    {
+      "rowId": "de-060",
+      "ledgerRow": 59,
+      "sourceId": "de060"
+    },
+    {
+      "rowId": "de-061",
+      "ledgerRow": 60,
+      "sourceId": "de061"
+    },
+    {
+      "rowId": "de-062",
+      "ledgerRow": 61,
+      "sourceId": "de062"
+    },
+    {
+      "rowId": "de-063",
+      "ledgerRow": 62,
+      "sourceId": "de063"
+    },
+    {
+      "rowId": "de-064",
+      "ledgerRow": 63,
+      "sourceId": "de064"
+    },
+    {
+      "rowId": "de-065",
+      "ledgerRow": 64,
+      "sourceId": "de065"
+    },
+    {
+      "rowId": "de-066",
+      "ledgerRow": 65,
+      "sourceId": "de066"
+    },
+    {
+      "rowId": "de-067",
+      "ledgerRow": 66,
+      "sourceId": "de067"
+    },
+    {
+      "rowId": "de-068",
+      "ledgerRow": 67,
+      "sourceId": "de068"
+    },
+    {
+      "rowId": "de-069",
+      "ledgerRow": 68,
+      "sourceId": "de069"
+    },
+    {
+      "rowId": "de-070",
+      "ledgerRow": 69,
+      "sourceId": "de070"
+    },
+    {
+      "rowId": "de-071",
+      "ledgerRow": 70,
+      "sourceId": "de071"
+    },
+    {
+      "rowId": "de-072",
+      "ledgerRow": 71,
+      "sourceId": "de072"
+    },
+    {
+      "rowId": "de-073",
+      "ledgerRow": 72,
+      "sourceId": "de073"
+    },
+    {
+      "rowId": "de-074",
+      "ledgerRow": 73,
+      "sourceId": "de074"
+    },
+    {
+      "rowId": "de-075",
+      "ledgerRow": 74,
+      "sourceId": "de075"
+    },
+    {
+      "rowId": "de-076",
+      "ledgerRow": 75,
+      "sourceId": "de076"
+    },
+    {
+      "rowId": "de-077",
+      "ledgerRow": 76,
+      "sourceId": "duden:guertel"
+    },
+    {
+      "rowId": "de-078",
+      "ledgerRow": 77,
+      "sourceId": "duden:runde"
+    },
+    {
+      "rowId": "de-079",
+      "ledgerRow": 78,
+      "sourceId": "duden:tasche"
+    },
+    {
+      "rowId": "de-080",
+      "ledgerRow": 79,
+      "sourceId": "duden:rotstift"
+    },
+    {
+      "rowId": "de-081",
+      "ledgerRow": 80,
+      "sourceId": "duden:zahl"
+    },
+    {
+      "rowId": "de-082",
+      "ledgerRow": 81,
+      "sourceId": "duden:aermel"
+    },
+    {
+      "rowId": "de-083",
+      "ledgerRow": 82,
+      "sourceId": "duden:zeug"
+    },
+    {
+      "rowId": "de-084",
+      "ledgerRow": 83,
+      "sourceId": "duden:licht"
+    },
+    {
+      "rowId": "de-085",
+      "ledgerRow": 84,
+      "sourceId": "duden:tuch"
+    },
+    {
+      "rowId": "de-086",
+      "ledgerRow": 85,
+      "sourceId": "duden:bein"
+    },
+    {
+      "rowId": "de-087",
+      "ledgerRow": 86,
+      "sourceId": "duden:ruder"
+    },
+    {
+      "rowId": "de-088",
+      "ledgerRow": 87,
+      "sourceId": "duden:teppich"
+    },
+    {
+      "rowId": "de-089",
+      "ledgerRow": 88,
+      "sourceId": "duden:qual"
+    },
+    {
+      "rowId": "de-090",
+      "ledgerRow": 89,
+      "sourceId": "duden:stuhl"
+    },
+    {
+      "rowId": "de-091",
+      "ledgerRow": 90,
+      "sourceId": "duden:kauf"
+    },
+    {
+      "rowId": "de-092",
+      "ledgerRow": 91,
+      "sourceId": "duden:ausschlag"
+    },
+    {
+      "rowId": "de-093",
+      "ledgerRow": 92,
+      "sourceId": "duden:handumdrehen"
+    },
+    {
+      "rowId": "de-094",
+      "ledgerRow": 93,
+      "sourceId": "duden:glocke"
+    },
+    {
+      "rowId": "de-095",
+      "ledgerRow": 94,
+      "sourceId": "duden:schlussstrich"
+    },
+    {
+      "rowId": "de-096",
+      "ledgerRow": 95,
+      "sourceId": "duden:knie"
+    },
+    {
+      "rowId": "de-097",
+      "ledgerRow": 96,
+      "sourceId": "duden:hase"
+    },
+    {
+      "rowId": "de-098",
+      "ledgerRow": 97,
+      "sourceId": "duden:bock"
+    },
+    {
+      "rowId": "de-099",
+      "ledgerRow": 98,
+      "sourceId": "duden:krokodilstraene"
+    },
+    {
+      "rowId": "de-100",
+      "ledgerRow": 99,
+      "sourceId": "duden:wolf"
+    },
+    {
+      "rowId": "de-101",
+      "ledgerRow": 100,
+      "sourceId": "duden:schwalbe"
+    },
+    {
+      "rowId": "de-102",
+      "ledgerRow": 101,
+      "sourceId": "duden:pilz"
+    },
+    {
+      "rowId": "de-103",
+      "ledgerRow": 102,
+      "sourceId": "duden:gras"
+    },
+    {
+      "rowId": "de-104",
+      "ledgerRow": 103,
+      "sourceId": "duden:wald"
+    },
+    {
+      "rowId": "de-105",
+      "ledgerRow": 104,
+      "sourceId": "duden:sand"
+    },
+    {
+      "rowId": "de-106",
+      "ledgerRow": 105,
+      "sourceId": "duden:wind"
+    },
+    {
+      "rowId": "de-107",
+      "ledgerRow": 106,
+      "sourceId": "duden:staub"
+    },
+    {
+      "rowId": "de-108",
+      "ledgerRow": 107,
+      "sourceId": "duden:ruder"
+    },
+    {
+      "rowId": "de-109",
+      "ledgerRow": 108,
+      "sourceId": "duden:eis"
+    },
+    {
+      "rowId": "de-110",
+      "ledgerRow": 109,
+      "sourceId": "duden:regen"
+    },
+    {
+      "rowId": "de-111",
+      "ledgerRow": 110,
+      "sourceId": "duden:palme"
+    },
+    {
+      "rowId": "de-112",
+      "ledgerRow": 111,
+      "sourceId": "duden:stein"
+    },
+    {
+      "rowId": "de-113",
+      "ledgerRow": 112,
+      "sourceId": "duden:links"
+    },
+    {
+      "rowId": "de-114",
+      "ledgerRow": 113,
+      "sourceId": "duden:honig"
+    },
+    {
+      "rowId": "de-115",
+      "ledgerRow": 114,
+      "sourceId": "duden:strang"
+    },
+    {
+      "rowId": "de-116",
+      "ledgerRow": 115,
+      "sourceId": "duden:decke"
+    },
+    {
+      "rowId": "de-117",
+      "ledgerRow": 116,
+      "sourceId": "duden:tuer"
+    },
+    {
+      "rowId": "de-118",
+      "ledgerRow": 117,
+      "sourceId": "duden:hut-kopfbedeckung"
+    },
+    {
+      "rowId": "de-119",
+      "ledgerRow": 118,
+      "sourceId": "duden:kopf"
+    },
+    {
+      "rowId": "de-120",
+      "ledgerRow": 119,
+      "sourceId": "duden:korb"
+    },
+    {
+      "rowId": "de-121",
+      "ledgerRow": 120,
+      "sourceId": "duden:rad"
+    },
+    {
+      "rowId": "de-122",
+      "ledgerRow": 121,
+      "sourceId": "duden:schulter"
+    },
+    {
+      "rowId": "de-123",
+      "ledgerRow": 122,
+      "sourceId": "duden:stirn"
+    },
+    {
+      "rowId": "de-124",
+      "ledgerRow": 123,
+      "sourceId": "duden:suppe"
+    },
+    {
+      "rowId": "de-125",
+      "ledgerRow": 124,
+      "sourceId": "duden:senf"
+    },
+    {
+      "rowId": "de-126",
+      "ledgerRow": 125,
+      "sourceId": "duden:feuer"
+    },
+    {
+      "rowId": "de-127",
+      "ledgerRow": 126,
+      "sourceId": "duden:klosz"
+    },
+    {
+      "rowId": "de-128",
+      "ledgerRow": 127,
+      "sourceId": "duden:auge"
+    },
+    {
+      "rowId": "de-129",
+      "ledgerRow": 128,
+      "sourceId": "duden:wasser"
+    },
+    {
+      "rowId": "de-130",
+      "ledgerRow": 129,
+      "sourceId": "duden:hand-alle-haende"
+    },
+    {
+      "rowId": "de-131",
+      "ledgerRow": 130,
+      "sourceId": "duden:ach"
+    },
+    {
+      "rowId": "de-132",
+      "ledgerRow": 131,
+      "sourceId": "duden:hand"
+    },
+    {
+      "rowId": "de-133",
+      "ledgerRow": 132,
+      "sourceId": "duden:fleisch"
+    },
+    {
+      "rowId": "de-134",
+      "ledgerRow": 133,
+      "sourceId": "duden:hund"
+    },
+    {
+      "rowId": "de-135",
+      "ledgerRow": 134,
+      "sourceId": "duden:eisen"
+    },
+    {
+      "rowId": "de-136",
+      "ledgerRow": 135,
+      "sourceId": "duden:gang"
+    },
+    {
+      "rowId": "de-137",
+      "ledgerRow": 136,
+      "sourceId": "duden:goldwaage"
+    },
+    {
+      "rowId": "de-138",
+      "ledgerRow": 137,
+      "sourceId": "de138"
+    },
+    {
+      "rowId": "de-139",
+      "ledgerRow": 138,
+      "sourceId": "de139"
+    },
+    {
+      "rowId": "de-140",
+      "ledgerRow": 139,
+      "sourceId": "de140"
+    },
+    {
+      "rowId": "de-141",
+      "ledgerRow": 140,
+      "sourceId": "duden:auge-blau-davonkommen"
+    },
+    {
+      "rowId": "de-142",
+      "ledgerRow": 141,
+      "sourceId": "de142"
+    },
+    {
+      "rowId": "de-143",
+      "ledgerRow": 142,
+      "sourceId": "de143"
+    },
+    {
+      "rowId": "de-144",
+      "ledgerRow": 143,
+      "sourceId": "de144"
+    },
+    {
+      "rowId": "de-145",
+      "ledgerRow": 144,
+      "sourceId": "de145"
+    },
+    {
+      "rowId": "de-146",
+      "ledgerRow": 145,
+      "sourceId": "de146"
+    },
+    {
+      "rowId": "de-147",
+      "ledgerRow": 146,
+      "sourceId": "de147"
+    },
+    {
+      "rowId": "de-148",
+      "ledgerRow": 147,
+      "sourceId": "de148"
+    },
+    {
+      "rowId": "de-149",
+      "ledgerRow": 148,
+      "sourceId": "de149"
+    },
+    {
+      "rowId": "de-150",
+      "ledgerRow": 149,
+      "sourceId": "duden:stein-vom-herzen"
+    },
+    {
+      "rowId": "de-151",
+      "ledgerRow": 150,
+      "sourceId": "de151"
+    },
+    {
+      "rowId": "de-152",
+      "ledgerRow": 151,
+      "sourceId": "de152"
+    },
+    {
+      "rowId": "de-153",
+      "ledgerRow": 152,
+      "sourceId": "de153"
+    },
+    {
+      "rowId": "de-154",
+      "ledgerRow": 153,
+      "sourceId": "de154"
+    },
+    {
+      "rowId": "de-155",
+      "ledgerRow": 154,
+      "sourceId": "de155"
+    },
+    {
+      "rowId": "de-156",
+      "ledgerRow": 155,
+      "sourceId": "de156"
+    },
+    {
+      "rowId": "de-157",
+      "ledgerRow": 156,
+      "sourceId": "duden:baerendienst"
+    },
+    {
+      "rowId": "de-158",
+      "ledgerRow": 157,
+      "sourceId": "duden:rechnung-wirt"
+    },
+    {
+      "rowId": "de-159",
+      "ledgerRow": 158,
+      "sourceId": "duden:kind-bad"
+    },
+    {
+      "rowId": "de-160",
+      "ledgerRow": 159,
+      "sourceId": "duden:lunte"
+    },
+    {
+      "rowId": "de-161",
+      "ledgerRow": 160,
+      "sourceId": "duden:stier"
+    },
+    {
+      "rowId": "de-162",
+      "ledgerRow": 161,
+      "sourceId": "duden:extrawurst"
+    },
+    {
+      "rowId": "de-163",
+      "ledgerRow": 162,
+      "sourceId": "duden:schneider"
+    },
+    {
+      "rowId": "de-164",
+      "ledgerRow": 163,
+      "sourceId": "duden:wasser-reichen"
+    },
+    {
+      "rowId": "de-165",
+      "ledgerRow": 164,
+      "sourceId": "duden:weisz"
+    },
+    {
+      "rowId": "de-166",
+      "ledgerRow": 165,
+      "sourceId": "duden:naht"
+    },
+    {
+      "rowId": "de-167",
+      "ledgerRow": 166,
+      "sourceId": "duden:arm"
+    },
+    {
+      "rowId": "de-168",
+      "ledgerRow": 167,
+      "sourceId": "duden:keim"
+    },
+    {
+      "rowId": "de-169",
+      "ledgerRow": 168,
+      "sourceId": "duden:pfeife"
+    },
+    {
+      "rowId": "de-170",
+      "ledgerRow": 169,
+      "sourceId": "duden:dampf"
+    },
+    {
+      "rowId": "de-171",
+      "ledgerRow": 170,
+      "sourceId": "duden:fass"
+    },
+    {
+      "rowId": "de-172",
+      "ledgerRow": 171,
+      "sourceId": "duden:tropfen-heiss"
+    },
+    {
+      "rowId": "de-173",
+      "ledgerRow": 172,
+      "sourceId": "duden:spiess"
+    },
+    {
+      "rowId": "de-174",
+      "ledgerRow": 173,
+      "sourceId": "duden:peter-schwarz"
+    },
+    {
+      "rowId": "de-175",
+      "ledgerRow": 174,
+      "sourceId": "duden:messer-offen"
+    },
+    {
+      "rowId": "de-176",
+      "ledgerRow": 175,
+      "sourceId": "duden:nagel-dringend"
+    }
+  ],
+  "releasePolicy": "Source linkage is not editorial approval. German Daily Phrase remains closed until all 176 rows and every independent hash-bound review pass."
+}

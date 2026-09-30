@@ -1,12 +1,26 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 import test from 'node:test';
 
-const root = process.cwd();
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const script = join(root, 'scripts', 'build_arena_multilingual_pools.mjs');
+const DIFFICULTY_PROFILE_FOR_TEST = Object.freeze({
+  1: 'core_single_clause_no_adjunct',
+  2: 'single_clause_with_one_adjunct',
+  3: 'longer_clause_with_two_adjuncts',
+});
+
+function canonical(value) {
+  if (value === null || ['boolean', 'number', 'string'].includes(typeof value)) return JSON.stringify(value);
+  if (Array.isArray(value)) return `[${value.map(canonical).join(',')}]`;
+  return `{${Object.entries(value).sort(([left], [right]) => left.localeCompare(right)).map(([key, item]) => `${JSON.stringify(key)}:${canonical(item)}`).join(',')}}`;
+}
+const sha = (value) => createHash('sha256').update(canonical(value), 'utf8').digest('hex');
 
 function learnerVisibleSurface(task) {
   const payload = task.payload;
@@ -15,7 +29,7 @@ function learnerVisibleSurface(task) {
   }
   if (task.mode === 'find_oddity') return { mode: task.mode, promptRu: payload.promptRu, options: payload.options };
   if (task.mode === 'translate_build') return { mode: task.mode, promptRu: payload.promptRu, tokenBank: payload.tokenBank };
-  return { mode: task.mode, promptRu: payload.promptRu, pairs: payload.pairs.map(({ left, right }) => ({ left, right })) };
+  return { mode: task.mode, promptRu: payload.promptRu, pairs: payload.pairs.map(({ tileLeft, tileRight }) => ({ tileLeft, tileRight })) };
 }
 
 test('builds 4k evidence-bound tasks per target but remains HOLD without independent release proof', () => {
@@ -41,6 +55,9 @@ test('builds 4k evidence-bound tasks per target but remains HOLD without indepen
       assert.match(manifest.blockReason, /independent_review_and_admin_publication_required/u);
       const tasks = readFileSync(join(output, target, 'tasks.jsonl'), 'utf8').trim().split('\n').map(JSON.parse);
       assert.equal(tasks.length, 4000);
+      assert.equal(manifest.tasksSha256, sha(tasks), `${target} tasks hash`);
+      const { manifestSha256, ...manifestBody } = manifest;
+      assert.equal(manifestSha256, sha(manifestBody), `${target} manifest self hash`);
       assert.equal(new Set(tasks.map((task) => task.taskId)).size, 4000);
       assert.equal(new Set(tasks.map((task) => task.semanticSignature)).size, 4000);
       const quotas = Object.fromEntries(Object.entries(manifest.quotas).map(([key]) => [key, 0]));
@@ -86,6 +103,12 @@ test('builds 4k evidence-bound tasks per target but remains HOLD without indepen
           assert.equal(task.payload.pairs.length, 6);
           assert.equal(new Set(task.payload.pairs.map((pair) => pair.left)).size, 6);
           assert.equal(new Set(task.payload.pairs.map((pair) => pair.right)).size, 6);
+          assert.equal(new Set(task.payload.pairs.map((pair) => pair.tileLeft.toLocaleLowerCase())).size, 6);
+          assert.equal(new Set(task.payload.pairs.map((pair) => pair.tileRight.toLocaleLowerCase())).size, 6);
+          assert.ok(task.payload.pairs.every((pair) => pair.tileLeft.trim().split(/\s+/u).length <= 3));
+          assert.ok(task.payload.pairs.every((pair) => pair.tileRight.trim().split(/\s+/u).length <= 3));
+          assert.ok(task.payload.pairs.every((pair) => pair.tileEvidence?.lexicalFactId));
+          assert.ok(task.payload.pairs.every((pair) => pair.tileEvidence?.sourceIds?.length));
           assert.ok(task.payload.pairs.every((pair) => pair.senseEvidence?.sourceFactIds?.length));
           assert.ok(task.payload.bijectionProof);
         }
@@ -97,22 +120,50 @@ test('builds 4k evidence-bound tasks per target but remains HOLD without indepen
   }
 });
 
+test('committed multilingual artifacts are byte-for-byte reproducible from the current generator', () => {
+  const output = mkdtempSync(join(tmpdir(), 'arena-multilingual-parity-'));
+  try {
+    const run = spawnSync(process.execPath, [script, '--output', output], { cwd: root, encoding: 'utf8' });
+    assert.equal(run.status, 0, run.stderr);
+    for (const target of ['es', 'fr', 'de']) {
+      for (const file of ['tasks.jsonl', 'manifest.json']) {
+        assert.equal(
+          readFileSync(join(root, 'content', 'arena-multilingual', 'generated', target, file), 'utf8'),
+          readFileSync(join(output, target, file), 'utf8'),
+          `${target}/${file} is stale`,
+        );
+      }
+    }
+  } finally {
+    rmSync(output, { recursive: true, force: true });
+  }
+});
+
 test('renders natural target sentences and complete Russian learner prompts for every generated task', () => {
   const output = mkdtempSync(join(tmpdir(), 'arena-multilingual-naturalness-'));
   try {
     const run = spawnSync(process.execPath, [script, '--output', output], { cwd: root, encoding: 'utf8' });
     assert.equal(run.status, 0, run.stderr);
-    const forbiddenRussian = /(?:Я находится|Мы находится|Мы идёт|Я велосипед|Я тетрадь|Я машина|Я сегодня нервничает|Ты сегодня нервничает|Он сегодня нервничаю|Мы сегодня нервничаю|Я сегодня горжусь|Мы сегодня горжусь)/u;
+    const forbiddenRussian = /(?:Я находится|Мы находится|Мы идёт|Я велосипед|Я тетрадь|Я машина|Я сегодня нервничает|Ты сегодня нервничает|Он сегодня нервничаю|Мы сегодня нервничаю|Я сегодня горжусь|Мы сегодня горжусь|Я(?: [^".]+){0,3} творческий\.|Я(?: [^".]+){0,3} реалистичен\.|Мы(?: [^".]+){0,3} дружелюбен\.|Мы(?: [^".]+){0,3} один, без компании\.|рано ещё есть|поздно ещё есть|рано тоже есть|поздно тоже есть)/u;
     for (const target of ['es', 'fr', 'de']) {
       const tasks = readFileSync(join(output, target, 'tasks.jsonl'), 'utf8').trim().split('\n').map(JSON.parse);
+      const serializedTasks = JSON.stringify(tasks);
+      assert.equal(/en mi contexto diario|dans mon contexte quotidien|in meinem Alltag/u.test(serializedTasks), false, `${target} personal context leak`);
+      const afternoon = ({ es: ['esta tarde', 'сегодня днём'], fr: ["cet après-midi", 'сегодня днём'], de: ['heute Nachmittag', 'сегодня днём'] })[target];
+      for (const task of tasks.filter((item) => ['guess_phrase', 'fill_gap', 'translate_build'].includes(item.mode))) {
+        if (JSON.stringify(task.payload).includes(afternoon[0])) assert.match(task.payload.promptRu, new RegExp(afternoon[1], 'u'), `${task.taskId} afternoon parity`);
+      }
       for (const task of tasks) {
-        const prompts = task.mode === 'speed_match'
-          ? task.payload.pairs.map((pair) => pair.left)
-          : task.mode === 'find_oddity' ? [] : [task.payload.promptRu];
+        const prompts = task.mode === 'speed_match' || task.mode === 'find_oddity'
+          ? [] : [task.payload.promptRu];
         for (const prompt of prompts) {
           assert.match(prompt, /[.!?]$/u, `${target} prompt is not a full sentence: ${prompt}`);
           assert.equal(forbiddenRussian.test(prompt), false, `${target} malformed Russian: ${prompt}`);
           assert.match(prompt, /(?:Я|Ты|Он|Мы|У меня|У тебя|У него|У нас)/u, `${target} prompt lacks subject: ${prompt}`);
+          if (/^(?:Я|Ты|Он|Мы) (?:по \S+|летом|зимой|весной|осенью|каждый день)/u.test(prompt)
+            && task.sourceFactIds.some((id) => /-(?:ir|aller|gehen)-/u.test(id))) {
+            assert.match(prompt, /(?:хожу|ходишь|ходит|ходим)/u, `${task.taskId} habitual movement aspect`);
+          }
         }
         const targetSentences = [];
         if (task.mode === 'guess_phrase' || task.mode === 'fill_gap') {
@@ -211,10 +262,13 @@ test('keeps audited language invariants, independent speed-match groups, and fac
       const manifest = JSON.parse(readFileSync(join(output, target, 'manifest.json'), 'utf8'));
       const tasks = readFileSync(join(output, target, 'tasks.jsonl'), 'utf8').trim().split('\n').map(JSON.parse);
       for (const task of tasks) {
-        assert.equal(task.cefrBand, ({ 1: 'A1', 2: 'A2', 3: 'A2' })[task.difficulty], `${task.taskId} CEFR band`);
+        assert.equal(Object.hasOwn(task, 'cefrBand'), false, `${task.taskId} must not claim unsupported CEFR`);
+        assert.equal(Object.hasOwn(task, 'cefrProfile'), false, `${task.taskId} must not expose a fake CEFR profile`);
+        assert.equal(Object.hasOwn(task.payload, 'cefrBand'), false, `${task.taskId} payload must not claim unsupported CEFR`);
+        assert.equal(task.difficultyProfile.frameComplexity, DIFFICULTY_PROFILE_FOR_TEST[task.difficulty], `${task.taskId} difficulty profile`);
         assert.equal(JSON.stringify(task).includes('B1'), false, `${task.taskId} falsely claims B1`);
-        assert.ok(task.sourceFactIds.length > 1, `${task.taskId} binds lexical facts`);
-        assert.ok(task.sourceFactIds.some((id) => verbFactIds.has(id)), `${task.taskId} binds a real verb fact`);
+        assert.ok(task.sourceFactIds.length >= (task.mode === 'speed_match' ? 1 : 2), `${task.taskId} binds lexical facts`);
+        if (task.mode !== 'speed_match') assert.ok(task.sourceFactIds.some((id) => verbFactIds.has(id)), `${task.taskId} binds a real verb fact`);
         assert.ok(task.sourceFactIds.some((id) => lexicalFactIds.has(id)), `${task.taskId} binds an umbrella lexical fact`);
         if (task.mode === 'find_oddity') {
           assert.equal(task.payload.inverseProof.options.length, 4);
@@ -222,27 +276,54 @@ test('keeps audited language invariants, independent speed-match groups, and fac
         }
         if (task.mode === 'speed_match') {
           assert.equal(new Set(task.payload.pairs.map((pair) => pair.factId)).size, 6, `${task.taskId} independent facts`);
-          assert.ok(task.payload.pairs.every((pair) => pair.senseEvidence.sourceFactIds.length > 1));
+          assert.ok(task.payload.pairs.every((pair) => pair.senseEvidence.sourceFactIds.length === 1));
+          for (const pair of task.payload.pairs) {
+            const lexicalFact = pack.lexicalFacts.find((fact) => fact.id === pair.tileEvidence.lexicalFactId);
+            assert.ok(lexicalFact, `${task.taskId} tile lexical fact`);
+            assert.equal(pair.tileRight, lexicalFact.values[pair.tileEvidence.valueIndex], `${task.taskId} tile target binding`);
+            assert.deepEqual(pair.tileEvidence.sourceIds, lexicalFact.sourceIds, `${task.taskId} tile source binding`);
+          }
         }
       }
       const speedPairCounts = new Map();
+      const speedVisibleSurfaces = new Set();
       for (const task of tasks.filter((item) => item.mode === 'speed_match')) for (const pair of task.payload.pairs) {
-        const key = `${pair.factId}\u0000${pair.right}`;
+        const key = `${pair.tileLeft}\u0000${pair.tileRight}`;
         speedPairCounts.set(key, (speedPairCounts.get(key) ?? 0) + 1);
       }
+      for (const task of tasks.filter((item) => item.mode === 'speed_match')) {
+        speedVisibleSurfaces.add(JSON.stringify(task.payload.pairs.map((pair) => [pair.tileLeft, pair.tileRight])));
+      }
+      assert.equal(speedPairCounts.size, 60, `${target} lexical speed-match inventory`);
+      assert.equal(speedVisibleSurfaces.size, 192, `${target} unique visible speed-match tasks`);
       assert.equal(Math.max(...speedPairCounts.values()) <= manifest.structuralRequirements.maxSpeedMatchPairSurfaceReuse, true, `${target} speed-match source cap`);
       if (target === 'de') {
         const corpus = JSON.stringify(tasks);
         assert.equal(/\b(?:habe|hast|hat|haben)\s+(?:ein Freund|ein Hund|ein Bleistift|ein Mantel|ein Plan|ein Traum)\b/u.test(corpus), false, 'haben takes accusative articles');
+        const speedPairs = tasks.filter((task) => task.mode === 'speed_match').flatMap((task) => task.payload.pairs);
+        const glosses = new Map(speedPairs.map((pair) => [pair.tileRight, pair.tileLeft]));
+        assert.equal(glosses.get('freundlich'), 'дружелюбен');
+        assert.equal(glosses.get('allein'), 'один, без компании');
+        assert.equal(glosses.get('eine Arbeit'), 'задание');
       }
       if (target === 'fr') {
+        const speedPairs = tasks.filter((task) => task.mode === 'speed_match').flatMap((task) => task.payload.pairs);
+        const glosses = new Map(speedPairs.map((pair) => [pair.tileRight, pair.tileLeft]));
+        assert.equal(glosses.get('seul'), 'один, без компании');
+        assert.equal(glosses.get('un moment'), 'время');
+        assert.equal(pack.facts.some((fact) => /(?:\b(?:я|ты|он|мы) (?:есть|имею|имеешь|имеет|имеем))\b/iu.test(fact.sourceRu)), false, 'French source glosses are natural Russian');
         for (const task of tasks.filter((item) => item.mode === 'translate_build' && item.payload.correctAnswer.startsWith("J'ai "))) {
           assert.ok(task.payload.correctTokens.includes("J'"), `${task.taskId} splits elision`);
           assert.equal(task.payload.samePosDecoy.token, 'as', `${task.taskId} keeps a substitutable verb decoy`);
         }
       }
       if (target === 'es') {
-        assert.equal(JSON.stringify(tasks).includes('esta tarde') && JSON.stringify(tasks).includes('днём'), true, 'esta tarde RU parity');
+        const spanishCorpus = JSON.stringify(tasks);
+        assert.equal(/\bjoven normalmente\b/u.test(spanishCorpus), false, 'joven cannot use normalmente');
+        assert.equal(/\btodavía\b[^".]*\bahora\b/u.test(spanishCorpus), false, 'ahora precedes todavía in natural Spanish');
+        assert.equal(/\bun sueño esta noche\b/u.test(spanishCorpus), false, 'sueño must keep the dream sense');
+        assert.equal(/en esta clase/u.test(spanishCorpus), false, 'class/group context must stay bilingual');
+        assert.equal(pack.facts.some((fact) => /(?:\b(?:yo|tú|él|nosotros) (?:hay|tiene)|\b(?:я|ты|он|мы) (?:есть|имею|имеешь|имеет|имеем))\b/iu.test(fact.sourceRu)), false, 'Spanish source glosses are natural Russian');
         const serPayloads = tasks.flatMap((task) => task.mode === 'speed_match'
           ? task.payload.pairs.filter((pair) => pair.factId === 'es-ser-soy').map((pair) => pair.right)
           : task.sourceFactIds[0] === 'es-ser-soy' ? [JSON.stringify(task.payload)] : []);

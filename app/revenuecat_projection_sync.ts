@@ -2,6 +2,7 @@ import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { withCallableTimeout } from './callable_timeout';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 
+import { reportSwallowed } from './debug-logger';
 const FUNCTIONS_REGION = 'us-central1';
 const MAX_TRACKED_ACCOUNTS = 8;
 
@@ -66,7 +67,7 @@ export async function syncRevenueCatProjectionForAccount(stableUid: string): Pro
   if (existing) return existing;
 
   const pending = (async () => {
-    await initFirebaseAppCheckIfAvailable().catch(() => false);
+    await initFirebaseAppCheckIfAvailable().catch((error: unknown) => { reportSwallowed('revenuecat_projection_sync:syncRevenueCatProjectionForAccount', error); return false; });
     const response = await withCallableTimeout(
       getReconcileCallable()({}),
       'revenueCatPremiumReconcileMine',

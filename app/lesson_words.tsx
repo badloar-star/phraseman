@@ -29,6 +29,7 @@ import { PracticeBackButton, PracticeHeaderTitle } from '../components/practice/
 import { PracticeCta, PracticeProgressRow, PracticeQuestionCard } from '../components/practice/PracticeStates';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
+import { useFirstQuestionEnergyGate } from '../hooks/useFirstQuestionEnergyGate';
 import { canChargePreparedTrainingEntry } from './energy_contract';
 import { useScreen } from '../hooks/use-screen';
 import NoEnergyModal from '../components/NoEnergyModal';
@@ -44,7 +45,6 @@ import { loadFlashcards } from '../hooks/use-flashcards';
 import { useAudio } from '../hooks/use-audio';
 import { hapticTap } from '../hooks/use-haptics';
 import { loadSettings } from './settings_edu';
-import { addShards } from './shards_system';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import CollectibleDropModal from '../components/CollectibleDropModal';
@@ -63,7 +63,6 @@ import { buildLessonWordOptions } from './lesson_word_options';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import {
   lessonWordsKey,
-  lessonWordsShardsGrantedKey,
   storageStudyTarget,
   type RuntimeStudyTarget,
 } from './target_storage_keys';
@@ -2715,7 +2714,7 @@ function WordsTrainingSkeleton({ glass, kicker }: { glass: ReturnType<typeof liq
   );
 }
 
-function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initialLearned, initialCounts, onCountUpdate, userName: userNameProp = '', onNoEnergy, onCancelStart, studyTarget, onAndroidBackIntercept, devFakeStartRunes, devJumpToFinale }: { words:Word[]; storageKey:string; wordsShardGrantKey:string; lessonId: number; lang: Lang; initialLearned:string[]; initialCounts:Record<string,number>; onCountUpdate:(word:string, count:number)=>void; userName?: string; onNoEnergy: () => void; onCancelStart: () => void; studyTarget?: RuntimeStudyTarget; onAndroidBackIntercept?: (handler: (() => boolean) | null) => void; devFakeStartRunes?: number; devJumpToFinale?: boolean }) {
+function Training({ words, storageKey, lessonId, lang, initialLearned, initialCounts, onCountUpdate, userName: userNameProp = '', onNoEnergy, onCancelStart, studyTarget, onAndroidBackIntercept, devFakeStartRunes, devJumpToFinale }: { words:Word[]; storageKey:string; lessonId: number; lang: Lang; initialLearned:string[]; initialCounts:Record<string,number>; onCountUpdate:(word:string, count:number)=>void; userName?: string; onNoEnergy: () => void; onCancelStart: () => void; studyTarget?: RuntimeStudyTarget; onAndroidBackIntercept?: (handler: (() => boolean) | null) => void; devFakeStartRunes?: number; devJumpToFinale?: boolean }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   const { flashKey, flash } = useWordFlash();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
@@ -2747,14 +2746,12 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
   const ws = s.words;
   const isLightTheme = false;
 
-  const { confirmSpendOne, acknowledgeSessionStart, energyReady } = useEnergy();
+  const { energyReady } = useEnergy();
   const wordsEnergyIntent = useEnergySessionIntent(
     'lesson_words',
     `${studyTarget ?? 'en'}:${lessonId}`,
     attemptSessionId,
   );
-  const confirmSpendOneRef = useRef(confirmSpendOne);
-  useEffect(() => { confirmSpendOneRef.current = confirmSpendOne; }, [confirmSpendOne]);
 
 
   const onNoEnergyRef = useRef(onNoEnergy);
@@ -2774,19 +2771,15 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
   const [qIdx,       setQIdx]       = useState(0);
   // Пустая очередь (всё уже изучено) и ещё не загруженный заряд не являются
   // началом упражнения. Повторный реальный вход создаёт новый intent и стоит 1 ⚡.
-  const trainingEntryChargedRef = useRef(false);
-  useEffect(() => {
-    if (!canChargePreparedTrainingEntry({ energyReady, hasPlayableItems: queue.length > 0 }) || trainingEntryChargedRef.current) return;
-    trainingEntryChargedRef.current = true;
-    let active = true;
-    void confirmSpendOneRef.current(wordsEnergyIntent).then(result => {
-      if (!active) return;
-      if (result === 'spent') void acknowledgeSessionStart(wordsEnergyIntent.operationId);
-      if (result === 'insufficient') onNoEnergyRef.current();
-      if (result === 'cancelled') onCancelStartRef.current();
-    });
-    return () => { active = false; };
-  }, [acknowledgeSessionStart, energyReady, queue.length, wordsEnergyIntent]);
+  // зачем: D72/D87/PM-084 — списание через единый гейт первого вопроса: первая
+  // карточка видна → −1 один раз на попытку; уход до показа → возврат.
+  useFirstQuestionEnergyGate({
+    intent: wordsEnergyIntent,
+    screen: 'lesson_words',
+    firstQuestionVisible: canChargePreparedTrainingEntry({ energyReady, hasPlayableItems: queue.length > 0 }),
+    onInsufficient: () => onNoEnergyRef.current(),
+    onCancelled: () => onCancelStartRef.current(),
+  });
   const [chosen,     setChosen]     = useState<string|null>(null);
   const [learnedCnt, setLearnedCnt] = useState(initialTrainingState.learnedCnt);
   const sessionTouchedRef = useRef(false);
@@ -3047,16 +3040,6 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
             if (newLearned >= words.length) {
               applyLearnedCount(newLearned); applyTrainingQueue(finalQ, 0); setAllDone(true);
               setChosen(null); locked.current = false;
-              // Осколок за завершение раздела слов (единоразово)
-              AsyncStorage.getItem(wordsShardGrantKey).then(done => {
-                if (!done) {
-                  addShards('lesson_completed', {
-                    eventId: `words:${studyTarget}:${lessonId}:completed`,
-                    localWrites: [[wordsShardGrantKey, '1']],
-                  })
-                    .catch(() => {});
-                }
-              }).catch(() => {});
               return;
             }
             const rebuilt = makeTrainingQueueState(words, [], newCounts, lang);
@@ -3619,7 +3602,6 @@ function LessonWords() {
     [frenchRemoteWords, frenchVocabularyBlocked, isFrenchLessonWords, lessonId, qaFocusWords],
   );
   const storageKey = lessonWordsKey(lessonId, studyTarget);
-  const wordsShardGrantKey = lessonWordsShardsGrantedKey(lessonId, studyTarget);
   const ws = s.words;
 
   // зачем: системный «Назад» на Android уходил мимо safeRouterBack и вёл себя иначе, чем
@@ -3751,7 +3733,6 @@ function LessonWords() {
             key={storageKey}
             words={words}
             storageKey={storageKey}
-            wordsShardGrantKey={wordsShardGrantKey}
             lessonId={lessonId}
             lang={lang}
             userName={userName}

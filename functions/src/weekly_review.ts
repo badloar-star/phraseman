@@ -94,7 +94,6 @@ interface WeeklyReviewBriefing {
     activeDays30d: number;
     currentStreak: number;
     longestStreak: number;
-    weekXp: number;
     weekMinutes: number;
     lessons7d: number;
     reviews7d: number;
@@ -254,7 +253,6 @@ function sanitizeBriefing(raw: unknown): WeeklyReviewBriefing {
       activeDays30d: clampInt(effortRaw.activeDays30d, 0, 30),
       currentStreak: clampInt(effortRaw.currentStreak, 0, 100000),
       longestStreak: clampInt(effortRaw.longestStreak, 0, 100000),
-      weekXp: clampInt(effortRaw.weekXp, 0, 100000000),
       weekMinutes: clampInt(effortRaw.weekMinutes, 0, 1000000),
       lessons7d: clampInt(effortRaw.lessons7d, 0, 100000),
       reviews7d: clampInt(effortRaw.reviews7d, 0, 100000),

@@ -25,10 +25,7 @@ export const PEARL_STORE_PURCHASES_RETIRED_PM057 = true as const;
 export type PearlShortageSource =
   | 'friend_gift'
   | 'friend_gift_reply'
-  | 'season_pass'
-  | 'streak_wager'
   | 'streak_freeze'
-  | 'profile_card_upgrade'
   | 'streak_revive'
   | 'card_pack_insufficient';
 

@@ -180,10 +180,10 @@ describe('safe runtime asset hygiene CLI', () => {
     commitAll(root);
 
     const result = run(root);
-    const contract = readFileSync(path.join(REPO_ROOT, 'tests', 'android_bundle_hygiene_contract.test.ts'), 'utf8');
-    const block = contract.match(/const RUNTIME_PNGS = \[([\s\S]*?)\] as const;/)?.[1] ?? '';
-    const expectedProtected = [...block.matchAll(/'([^']+\.png)'/g)]
-      .map(match => match[1].replace(/\.png$/, '.webp'))
+    const hygiene = readFileSync(path.join(REPO_ROOT, 'scripts', 'asset-hygiene-safe.mjs'), 'utf8');
+    const block = hygiene.match(/const PROTECTED_RUNTIME_ASSETS = new Set\(\[([\s\S]*?)\]\);/)?.[1] ?? '';
+    const expectedProtected = [...block.matchAll(/'([^']+\.(?:png|webp))'/g)]
+      .map(match => match[1])
       .sort();
 
     expect(result.status).toBe(0);
@@ -671,7 +671,6 @@ describe('safe runtime asset hygiene CLI', () => {
     const root = makeFixture();
     writeAsset(root, 'assets/images/header_glyphs/vector_sources_3d_aligned_20260605/glyph.svg', '<svg/>');
     writeAsset(root, 'assets/images/header_glyphs/vector_sources_outline_v1/outline.svg', '<svg/>');
-    writeAsset(root, 'assets/images/league/league_crown_source.webp');
     writeAsset(root, 'assets/images/streak_overlays/streak-freeze-ice-source.png');
     writeAsset(root, 'assets/images/flow_clean_202607/source_tiktok.webp');
     writeAsset(root, 'assets/images/runtime/source-guide.webp');
@@ -685,7 +684,6 @@ describe('safe runtime asset hygiene CLI', () => {
     expect(result.report?.skipped.excluded).toEqual(expect.arrayContaining([
       'assets/images/header_glyphs/vector_sources_3d_aligned_20260605/glyph.svg',
       'assets/images/header_glyphs/vector_sources_outline_v1/outline.svg',
-      'assets/images/league/league_crown_source.webp',
       'assets/images/streak_overlays/streak-freeze-ice-source.png',
     ]));
     expect(result.report?.audit.used).toContain('assets/images/flow_clean_202607/source_tiktok.webp');
@@ -1169,7 +1167,6 @@ describe('safe runtime asset hygiene CLI', () => {
     const root = makeFixture();
     await writeImage(root, 'assets/images/runtime/static-large.webp', 800, 600, 'webp');
     await writeImage(root, 'assets/images/bundled/resize.webp', 900, 700, 'webp');
-    await writeImage(root, 'assets/images/levels/league-v6-icons/fixed.webp', 700, 700, 'webp');
     await writeImage(root, 'assets/images/runtime/convert.png', 640, 480, 'png');
     await writeImage(root, 'assets/images/icon.png', 512, 512, 'png');
     await writeImage(root, 'assets/images/runtime/dirty.webp', 700, 500, 'webp');
@@ -1194,7 +1191,6 @@ describe('safe runtime asset hygiene CLI', () => {
         updates: {
           assetPatternsToBeBundled: [
             'assets/images/bundled/*.webp',
-            'assets/images/levels/league-v6-icons/*.webp',
           ],
         },
       },
@@ -1214,7 +1210,6 @@ describe('safe runtime asset hygiene CLI', () => {
     expect(dryRun.report?.compression.candidates.map(item => item.path)).toEqual(expect.arrayContaining([
       'assets/images/runtime/static-large.webp',
       'assets/images/bundled/resize.webp',
-      'assets/images/levels/league-v6-icons/fixed.webp',
       'assets/images/runtime/convert.png',
     ]));
     expect(dryRun.report?.skipped.configPng).toContain('assets/images/icon.png');
@@ -1229,7 +1224,6 @@ describe('safe runtime asset hygiene CLI', () => {
     expect(write.report?.compressed).toEqual(expect.arrayContaining([
       'assets/images/runtime/static-large.webp',
       'assets/images/bundled/resize.webp',
-      'assets/images/levels/league-v6-icons/fixed.webp',
     ]));
     expect(write.report?.converted).toEqual([
       {
@@ -1242,8 +1236,6 @@ describe('safe runtime asset hygiene CLI', () => {
       .toMatchObject({ width: 800, height: 600 });
     expect(await sharp(path.join(root, 'assets', 'images', 'bundled', 'resize.webp')).metadata())
       .toMatchObject({ width: 512, height: 398 });
-    expect(await sharp(path.join(root, 'assets', 'images', 'levels', 'league-v6-icons', 'fixed.webp')).metadata())
-      .toMatchObject({ width: 700, height: 700 });
     expect(existsSync(path.join(root, 'assets', 'images', 'runtime', 'convert.png'))).toBe(false);
     expect(existsSync(path.join(root, 'assets', 'images', 'runtime', 'convert.webp'))).toBe(true);
     expect(readFileSync(path.join(root, 'app', 'assets.ts'), 'utf8')).toContain('assets/images/runtime/convert.webp');
@@ -1254,7 +1246,6 @@ describe('safe runtime asset hygiene CLI', () => {
     for (const relativePath of [
       'assets/images/runtime/static-large.webp',
       'assets/images/bundled/resize.webp',
-      'assets/images/levels/league-v6-icons/fixed.webp',
       'assets/images/runtime/convert.png',
       'app/assets.ts',
     ]) {

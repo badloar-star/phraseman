@@ -13,7 +13,6 @@ const routes = [
   ['legacy_lessons_first_visit', 'orbit', 'app/(tabs)/lessons.tsx'],
   ['profile_card_first_visit', undefined, 'app/(tabs)/home.tsx'],
   // зачем: PM-171 — 'ideas_first_visit' удалена вместе с разделом «Идеи» (app/ideas_catalog.tsx больше не существует).
-  ['spin_first_visit', undefined, 'app/level_reward_spin.tsx'],
 ];
 test('approved explanations have complete localized copy and selected families', () => {
   assert.ok(fs.existsSync('app/feature_intro_sections_copy.ts'), 'section explanations are missing');
@@ -31,6 +30,17 @@ test('approved explanations have complete localized copy and selected families',
     }
   }
 });
+test('statistics explanation does not promise XP', () => {
+  const exports = {};
+  vm.runInNewContext(ts.transpileModule(read('app/feature_intro_sections_copy.ts'), { compilerOptions: { module: ts.ModuleKind.CommonJS } }).outputText, {
+    exports, require: p => { assert.equal(p, '../constants/i18n'); return { triLang: (lang, texts) => texts[lang] }; },
+  });
+  const statistics = exports.SECTION_FEATURE_INTROS.find(d => d.id === 'statistics_first_visit');
+  assert.ok(statistics);
+  for (const locale of ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl']) {
+    assert.doesNotMatch(statistics.body(locale), /XP|опыт|досвід/u, `statistics ${locale} must not promise XP`);
+  }
+});
 test('all approved explanations are registered and wired at their real entry owners', () => {
   assert.match(read('app/feature_intro_registry.ts'), /\.\.\.SECTION_FEATURE_INTROS/);
   for (const [id, , path] of routes) assert.ok(read(path).includes(id), `${path} must own ${id}`);
@@ -45,9 +55,9 @@ test('daily phrase hands off after native dismissal and preserves widget links',
   assert.ok(source.includes('handledDeepLinkRef.current = pendingDeepLinkRef.current'));
   assert.ok(source.includes('spokenDeepLinkRef.current = linkKey'));
 });
-test('friends explanation yields to incoming and confirmation modals', () => {
+test('friends explanation yields to active confirmation modals', () => {
   const entry = read('app/(tabs)/friends.tsx').split('\n').find(line => line.includes('id="friends_first_visit"'));
-  for (const name of ['friendQuestStarted', 'friendQuestCompleted', 'studyInvite', 'deleteTarget', 'incomingGiftModal', 'levelUpModal']) {
+  for (const name of ['studyInvite', 'deleteTarget', 'levelUpModal']) {
     assert.ok(entry?.includes(`!${name}`), name);
   }
 });

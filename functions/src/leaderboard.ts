@@ -4,8 +4,6 @@ import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { randomInt } from 'node:crypto';
 
-const MAX_DAILY7_XP = 500_000;
-const MAX_DAILY7_TIME_MS = 7 * 24 * 60 * 60 * 1000;
 const NAME_INDEX = 'name_index';
 const NICKNAME_CHANGE_COOLDOWN_MS = 14 * 24 * 60 * 60 * 1000;
 const GENERATED_NICKNAME_WORDS = [
@@ -17,11 +15,6 @@ const GENERATED_NICKNAME_ATTEMPTS = 16;
 
 function sanitizeString(value: unknown, max: number): string {
   return String(value ?? '').normalize('NFKC').replace(/\s+/g, ' ').trim().slice(0, max);
-}
-
-function readInt(value: unknown, fallback = 0): number {
-  const n = Math.trunc(Number(value));
-  return Number.isFinite(n) ? n : fallback;
 }
 
 function normalizeName(value: unknown): { name: string; nameLower: string } {
@@ -226,23 +219,6 @@ async function legacyNameHasLiveOwner(
   }
   return false;
 }
-
-export const leaderboardUpdateDailyAnalytics = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
-  if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
-  const db = admin.firestore();
-  const authUid = request.auth.uid;
-  const stableUid = await resolveStableUid(db, authUid, request.data?.stableId);
-  await assertNotBanned(db, stableUid);
-
-  const daily7xp = Math.max(0, Math.min(MAX_DAILY7_XP, readInt(request.data?.daily7xp, 0)));
-  const daily7time_ms = Math.max(0, Math.min(MAX_DAILY7_TIME_MS, readInt(request.data?.daily7time_ms, 0)));
-  await db.collection('leaderboard').doc(stableUid).set({
-    daily7xp,
-    daily7time_ms,
-    dailyAnalyticsUpdatedAt: Date.now(),
-  }, { merge: true });
-  return { ok: true };
-});
 
 export const nameCheckAvailability = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');

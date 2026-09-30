@@ -17,7 +17,6 @@ export type LevelExamScoreResult = {
   byLesson: { lessonId: number; correct: number; total: number }[];
   weakLessons: { lessonId: number; title: string; correct: number; total: number }[];
   medal: MedalTier;
-  baseXp: number;
 };
 
 type ScoredUnit = {
@@ -137,6 +136,5 @@ export function scoreLevelExam(
     byLesson,
     weakLessons,
     medal: getExamMedalTier(pct),
-    baseXp: passed ? 50 + Math.round(pct / 2) : Math.max(10, Math.round(pct / 4)),
   };
 }

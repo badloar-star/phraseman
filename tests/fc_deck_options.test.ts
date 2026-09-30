@@ -119,7 +119,6 @@ describe('loadFcDeckOptions', () => {
       titleRu: 'Разговорный английский',
       titleUk: 'Розмовна англійська',
       titleEs: 'Inglés conversacional',
-      ugcCardBackKey: 'community_06_forest_rune',
     });
     await saveBuiltMarketplaceCardsCache(
       [communityPackId],

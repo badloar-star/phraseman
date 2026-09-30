@@ -12,14 +12,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { beginAccountGeneration } from '../app/account_generation';
 
-jest.mock('../app/daily_journey_freeze_ledger', () => ({
-  consumeDailyJourneyFreeze: jest.fn(),
-}));
-jest.mock('../app/daily_journey_protected_day', () => ({
-  commitDailyJourneyProtectedDay: jest.fn(),
-  recoverDailyJourneyProtectedDay: jest.fn().mockResolvedValue(null),
-}));
-
 let simulatedZone = 'UTC';
 
 // jest.mock replaces the WHOLE module's exports; functions inside the real
@@ -58,11 +50,6 @@ jest.mock('../app/local_date', () => {
 });
 
 import { updateStreakOnActivity, checkStreakLossPending } from '../app/hall_of_fame_utils';
-import {
-  commitDailyJourneyProtectedDay,
-  recoverDailyJourneyProtectedDay,
-} from '../app/daily_journey_protected_day';
-import { isRepairEligible } from '../app/streak_repair';
 
 describe('streak transition: evening in UTC+10 (Australia/Brisbane, no DST)', () => {
   beforeEach(async () => {
@@ -154,26 +141,13 @@ describe('streak transition: morning in UTC-8 (America/Los_Angeles-like, no DST 
   });
 });
 
-describe('streak transition: repair eligibility respects local day across the migration', () => {
+describe('streak transition: missed local day across the migration', () => {
   beforeEach(async () => {
     simulatedZone = 'Australia/Brisbane'; // UTC+10
     await AsyncStorage.clear();
     jest.clearAllMocks();
   });
   afterEach(() => jest.useRealTimers());
-
-  it('is eligible when exactly one LOCAL day was missed, even with a legacy UTC last_active_date', async () => {
-    // "Now": 2026-07-06 20:00 local (UTC+10) = 2026-07-06T10:00:00Z. Local today = 07-06,
-    // local day-before-yesterday = 07-04. A legacy UTC last_active_date of '2026-07-04'
-    // must still be recognized as "missed exactly one day" (repair-eligible).
-    jest.useFakeTimers().setSystemTime(new Date('2026-07-06T10:00:00.000Z'));
-    await AsyncStorage.multiSet([
-      ['last_active_date', '2026-07-04'],
-      ['streak_count', '8'],
-    ]);
-
-    await expect(isRepairEligible()).resolves.toBe(true);
-  });
 
   it('checkStreakLossPending flags risk for a local day-before-yesterday last_active_date', async () => {
     jest.useFakeTimers().setSystemTime(new Date('2026-07-06T10:00:00.000Z'));
@@ -187,27 +161,18 @@ describe('streak transition: repair eligibility respects local day across the mi
     expect(result.streakBefore).toBe(8);
   });
 
-  it('consumes Daily Journey protection before server shield and preserves the streak', async () => {
+  // зачем: D107 — ни «Путешествие дня», ни урок-починка серию не спасают:
+  // без заморозки Plus пропуск ровно одного дня сбрасывает серию.
+  it('resets the streak after one missed day without a Plus freeze (D107)', async () => {
     jest.useFakeTimers().setSystemTime(new Date('2026-07-06T10:00:00.000Z'));
     const token = beginAccountGeneration('owner-a');
-    (commitDailyJourneyProtectedDay as jest.Mock).mockImplementation(async (input) => {
-      await AsyncStorage.setItem('streak_count', String(input.streakCount));
-      await AsyncStorage.setItem('last_active_date', input.protectedDayDate);
-      return true;
-    });
     await AsyncStorage.multiSet([
       ['last_active_date', '2026-07-04'],
       ['streak_count', '8'],
     ]);
 
-    await expect(updateStreakOnActivity(token)).resolves.toBe(8);
-    expect(recoverDailyJourneyProtectedDay).toHaveBeenCalledWith(token, undefined);
-    expect(commitDailyJourneyProtectedDay).toHaveBeenCalledWith({
-      useOperationId: 'daily-journey-missed-day:2026-07-04:2026-07-06',
-      lastActiveDate: '2026-07-04',
-      protectedDayDate: '2026-07-06',
-      streakCount: 8,
-    }, token, undefined);
+    await expect(updateStreakOnActivity(token)).resolves.toBe(1);
+    expect(await AsyncStorage.getItem('last_active_date')).toBe('2026-07-06');
   });
 });
 

@@ -350,3 +350,66 @@ worktree or commit was touched.
   editable transcript draft. There is no auto-send, scoring or reward path.
 - Companion and tutor remain playback-only; scenario/tutor action controls and
   inline keyphrases visibly dim while strict non-English playback is unavailable.
+
+## PhraseMan 2.0 coordination checkpoint — 2026-09-26
+
+- At the owner's request, the active 2.0 program, documentation, Daily Phrase,
+  and Arena/Spire sessions were contacted with explicit file boundaries. The
+  documentation session confirmed HTML styling only. The main 2.0 session owns
+  D66 and `docs/phraseman-2.0/**` plus its server-decision atlas; it confirmed
+  no overlap with `app/dialogue*` or `functions/src/dialogue*`. Dialogues owns
+  only its feature files, tests, and this audit. Shared picker, study-target,
+  function exports, rules, and other 2.0 runtime contracts remain unassigned
+  until a specific cross-session handoff.
+- D66 local-first does **not** automatically allow dynamic server AI generation,
+  server-side learning validation, quota/debit, or target gates. The 2.0 owner
+  classified these as manual-review / retire-or-replace candidates, not as
+  permission to delete working Dialogues endpoints. A compatible replacement
+  plan is required before changing those cross-contract paths.
+- A fresh `npm run dialogues:language-contours-gate` run first failed because
+  its static scan flagged the `en-US` fallback inside a branch explicitly
+  guarded by `dialogueTarget === 'en'`. The gate now parses the TSX source and
+  requires the `en-US` literal to sit inside that English-only branch, while
+  retaining a strict playback call outside that branch. A RED/GREEN contract
+  checks unguarded literals, other targets, duplicate fallbacks, comment decoys
+  and an English-only strict call; it runs as part of the named contour gate.
+  The same contour command exits 0. The server registry test's no-argument
+  TypeScript compile error was repaired by testing explicit `undefined`; its
+  focused suite is 1/1, 2/2 PASS. An independent reviewer challenged the
+  voice guard with English-only strict calls, unused strict calls and nested
+  English branches; each produced a failing regression before the gate was
+  tightened to require an immediate strict return in the same callback.
+  The reviewer found no remaining issue in this bounded guard after the final
+  fix. This is a structural gate result, **not**
+  independent release approval: its owner-release bypass still accepts empty
+  activation receipts, the canonical server pack manifest is empty, and
+  physical target-specific voice evidence remains absent.
+- A fresh independent read-only surface audit found native client scenario
+  projection intact but no canonical pack/prompt pin on send, stream,
+  companion, review, translate, how-to-say, or tutor requests. The server
+  accepts target-only non-English requests and interpolates client-supplied
+  role/setting/goal/persona fields into prompts. Per-field language guards are
+  present, but they cannot prove the request used the reviewed native pack.
+  The tutor's `mode: 'text'` is deliberate: `tutor_text_turn` already commits
+  memory, so switching to `mode: 'tutor'` would double-write lesson evidence.
+  The prior owner-release assertions make the current named contour command
+  a structural smoke test, **not** a release-grade pass. Full release remains
+  BLOCK pending exact receipts, canonical binding, voice evidence, and D66
+  classification of dynamic provider endpoints.
+
+## Exact native-pack hash checkpoint — 2026-09-26
+
+- Added a deterministic recursive canonical JSON function and an executable
+  contract that recomputes SHA-256 over each live ES/FR/DE pack and compares it
+  to the independent native-content review. All three current hashes match;
+  the contract now runs inside `dialogues:language-contours-gate`, so future
+  pack edits invalidate the historical PASS instead of silently inheriting it.
+- The review artifact's `canonicalBytes` field has mixed historical units:
+  ES and FR recorded JavaScript UTF-16 string lengths (35,951 / 39,603), while
+  DE recorded UTF-8 bytes (39,594). The cryptographic hashes are consistent
+  for all three; the executable contract preserves the historical count-unit
+  interpretation without rewriting an independent receipt. New review
+  receipts should name UTF-8 bytes and code units separately.
+- This proves current content-byte identity only. It does not create a shared
+  client/server binding manifest, supply physical voice evidence, approve D66
+  provider topology, or make the release-grade activation gate green.

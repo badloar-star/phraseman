@@ -27,7 +27,6 @@ import {
   type SessionAttemptRuneRecoveryExactResultV1,
 } from '../../modules/phone-state/domains/economy';
 import { DebugLogger } from '../debug-logger';
-import { emitAppEvent } from '../events';
 
 export type SessionAttemptRecoverySource = 'runes' | 'gift';
 
@@ -540,7 +539,6 @@ export async function commitSessionAttemptRecovery(input: Readonly<{
     void recoverAndHydrateLevelSpinStarGrants(input.token, { syncNow: false }).catch(() => {});
     void syncPendingSessionAttemptRecoveryOperations(input.token).catch(() => {});
   } else {
-    if (!committed.duplicate) emitAppEvent('level_gift_inventory_changed');
     void syncPendingAttemptRestoreGiftOperations(input.token).catch(() => {});
   }
   return committed;

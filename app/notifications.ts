@@ -10,15 +10,14 @@ import { Linking, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getTodayPhraseForTarget } from './daily_phrase_system';
 import { scheduleAfterRootNavigationReady } from './paywall_navigation';
-import { getCurrentWeekStartIso, WEEKLY_XP_KEY, WEEKLY_XP_PERIOD_START_KEY } from './weekly_xp';
 import { getStoredStudyTarget } from './study_target';
 import { lessonPassCountKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 import { getLocalDayKey, isSameLocalOrUtcDay } from './local_date';
 import { createDisposableAdoption } from './disposable_adoption';
 import { persistPortablePreference } from './phone_state_preference_bridge';
-import { emitAppEvent } from './events';
-import { DebugLogger } from './debug-logger';
-import { arenaInviteRouteFromPayload } from './arena_notification_route';
+import { cancelRetiredLocalNotificationsOnce as runRetiredLocalNotificationsCancel } from './retired_local_notifications';
+import { DebugLogger, reportSwallowed, swallowError } from './debug-logger';
+import { trialReminderDelaySeconds } from './trial_end_reminder_schedule';
 
 /** Android 8+: канал с high importance; `channelId` дублируется в каждом триггере. */
 const ANDROID_NOTIF_CHANNEL_ID = 'phraseman_reminders';
@@ -34,11 +33,11 @@ async function resolveNotificationStudyTarget(
   explicit?: RuntimeStudyTarget,
 ): Promise<ReturnType<typeof storageStudyTarget>> {
   if (explicit !== undefined && explicit !== null) return storageStudyTarget(explicit);
-  const stored = await getStoredStudyTarget(lang).catch(() => 'en');
+  const stored = await getStoredStudyTarget(lang).catch((error: unknown) => { reportSwallowed('notifications:resolveNotificationStudyTarget', error); return 'en'; });
   return storageStudyTarget(stored);
 }
 
-/** Уроки с ненулевым pass_count для активного study target. XP/streak остаются общими. */
+/** Уроки с ненулевым pass_count для активного study target; streak остаётся общим. */
 async function countCompletedLessonsFromStorage(studyTarget?: RuntimeStudyTarget): Promise<number> {
   const keys = Array.from({ length: NUM_TRACKED_LESSONS }, (_, i) => lessonPassCountKey(i + 1, studyTarget));
   const rows = await AsyncStorage.multiGet(keys);
@@ -162,7 +161,7 @@ export const requestNotificationPermissionWithFallback = async (
     }
     if (current?.status === 'denied' && current?.canAskAgain === false) {
       if (opts.openSettingsIfBlocked) {
-        await Linking.openSettings().catch(() => {});
+        await Linking.openSettings().catch(swallowError('notifications:requestNotificationPermissionWithFallback'));
         return { granted: false, blocked: true, openedSettings: true };
       }
       return { granted: false, blocked: true, openedSettings: false };
@@ -174,7 +173,7 @@ export const requestNotificationPermissionWithFallback = async (
     }
     if (asked?.status === 'denied' && asked?.canAskAgain === false) {
       if (opts.openSettingsIfBlocked) {
-        await Linking.openSettings().catch(() => {});
+        await Linking.openSettings().catch(swallowError('notifications:requestNotificationPermissionWithFallback'));
         return { granted: false, blocked: true, openedSettings: true };
       }
       return { granted: false, blocked: true, openedSettings: false };
@@ -259,7 +258,6 @@ export async function cancelYoutubePremiereLocalNotification(notificationId: str
 const MESSAGES_RU = [
   { title: '🔥 Серия ждёт тебя!',          body: '5 минут в день — и серия растёт' },
   { title: '📚 Время для English',         body: 'Один раунд сегодня — уверенность на всю жизнь' },
-  { title: '⭐ Верни лидерство!',           body: 'Один раунд — и ты снова выше в лиге' },
   { title: '🎯 Ежедневная цель',           body: 'Осталось совсем немного до завершения вызовов!' },
   { title: '💪 Так держать!',              body: 'Ты уже столько прошёл. Продолжи сегодня' },
   { title: '🧠 Повтори вчерашнее',         body: 'Лучшее время для повторения — сейчас' },
@@ -268,7 +266,6 @@ const MESSAGES_RU = [
 const MESSAGES_UK = [
   { title: '🔥 Серія чекає тебе!',         body: '5 хвилин на день — і серія росте' },
   { title: '📚 Час для English',            body: 'Один раунд сьогодні — впевненість на все життя' },
-  { title: '⭐ Поверни лідерство!',          body: 'Один раунд — і ти знову вище в лізі' },
   { title: '🎯 Щоденна ціль',              body: 'Залишилось зовсім небагато до завершення викликів!' },
   { title: '💪 Так тримати!',              body: 'Ти вже стільки пройшов. Продовжуй сьогодні' },
   { title: '🧠 Повтори вчорашнє',          body: 'Найкращий час для повторення — зараз' },
@@ -277,7 +274,6 @@ const MESSAGES_UK = [
 const MESSAGES_FR_TARGET_RU = [
   { title: '🔥 Цепочка ждёт тебя!',        body: 'Не прерывай серию — 5 минут в день изменят всё' },
   { title: '📚 Время для занятия',         body: 'Один урок сегодня — уверенность на всю жизнь' },
-  { title: '⭐ Обгони соперника!',          body: 'Кто-то обошёл тебя в лиге. Ответный ход?' },
   { title: '🎯 Ежедневная цель',           body: 'Осталось совсем немного до завершения заданий!' },
   { title: '💪 Не останавливайся!',        body: 'Ты уже столько прошёл. Продолжи сегодня' },
   { title: '🧠 Повтори вчерашнее',         body: 'Лучшее время для повторения — сейчас' },
@@ -286,7 +282,6 @@ const MESSAGES_FR_TARGET_RU = [
 const MESSAGES_FR_TARGET_UK = [
   { title: '🔥 Стрік чекає тебе!',         body: 'Не переривай серію — 5 хвилин на день змінять все' },
   { title: '📚 Час для заняття',            body: 'Один урок сьогодні — впевненість на все життя' },
-  { title: '⭐ Виперед суперника!',          body: 'Хтось обійшов тебе в лізі. Час дати відповідь?' },
   { title: '🎯 Щоденна ціль',              body: 'Залишилось зовсім небагато до завершення завдань!' },
   { title: '💪 Не зупиняйся!',             body: 'Ти вже стільки пройшов. Продовжуй сьогодні' },
   { title: '🧠 Повтори вчорашнє',          body: 'Найкращий час для повторення — зараз' },
@@ -296,7 +291,6 @@ const MESSAGES_FR_TARGET_UK = [
 const MESSAGES_ES = [
   { title: '🔥 ¡Tu racha cuenta!', body: 'No la cortes: dedica solo 5 minutos al día y verás la diferencia' },
   { title: '📚 Tu momento de inglés', body: 'Una lección hoy puede darte seguridad mañana' },
-  { title: '⭐ Te adelantaron', body: 'Alguien ganó puntos en la liga. ¿Te animas a responder?' },
   { title: '🎯 Objetivo del día', body: '¡Te falta muy poco para cerrar tus metas!' },
   { title: '💪 Sigue sumando', body: 'Ya recorriste mucho camino; continúa hoy' },
   { title: '🧠 Repasa lo de ayer', body: 'Este es un buen momento para refrescar lo aprendido' },
@@ -304,7 +298,6 @@ const MESSAGES_ES = [
 const MESSAGES_PT_BR = [
   { title: '🔥 Sua sequência espera por você!', body: 'Não quebre o ritmo: 5 minutos por dia já fazem diferença' },
   { title: '📚 Hora do inglês', body: 'Uma lição hoje traz mais confiança amanhã' },
-  { title: '⭐ Passaram você na liga', body: 'Alguém subiu no ranking. Hora de responder?' },
   { title: '🎯 Meta do dia', body: 'Falta pouco para fechar suas tarefas!' },
   { title: '💪 Continue firme', body: 'Você já avançou bastante. Treine hoje' },
   { title: '🧠 Revise o que viu ontem', body: 'Agora é um ótimo momento para reforçar' },
@@ -312,7 +305,6 @@ const MESSAGES_PT_BR = [
 const MESSAGES_VI = [
   { title: '🔥 Chuỗi học đang chờ bạn!', body: 'Đừng ngắt chuỗi: 5 phút mỗi ngày tạo khác biệt' },
   { title: '📚 Đến giờ học tiếng Anh', body: 'Một bài hôm nay, tự tin hơn ngày mai' },
-  { title: '⭐ Có người vượt bạn', body: 'Ai đó đã tăng hạng trong league. Bạn đáp lại chứ?' },
   { title: '🎯 Mục tiêu hôm nay', body: 'Bạn sắp hoàn thành các nhiệm vụ rồi!' },
   { title: '💪 Đừng dừng lại', body: 'Bạn đã đi được một đoạn dài. Học tiếp hôm nay nhé' },
   { title: '🧠 Ôn lại hôm qua', body: 'Bây giờ là lúc tốt để củng cố' },
@@ -320,7 +312,6 @@ const MESSAGES_VI = [
 const MESSAGES_ID = [
   { title: '🔥 Streak menunggumu!', body: 'Jangan putuskan ritme: 5 menit sehari sudah berarti' },
   { title: '📚 Waktunya bahasa Inggris', body: 'Satu pelajaran hari ini, lebih percaya diri besok' },
-  { title: '⭐ Kamu disusul di liga', body: 'Ada yang naik peringkat. Mau balas sekarang?' },
   { title: '🎯 Target harian', body: 'Sedikit lagi tugasmu selesai!' },
   { title: '💪 Lanjutkan', body: 'Kamu sudah banyak maju. Latihan hari ini' },
   { title: '🧠 Ulangi materi kemarin', body: 'Ini waktu yang pas untuk menguatkan ingatan' },
@@ -401,7 +392,6 @@ type LocalNotificationType =
   | 'phrase_of_day'
   | 'weekly_recap'
   | 'monthly_recap'
-  | 'league_overtake'
   | 'd1_reminder'
   | 'premium'
   | 'intro_expiring'
@@ -415,7 +405,6 @@ type LocalNotificationType =
 const IMMEDIATE_NOTIFICATION_MIN_GAP_MS = 45 * 60 * 1000;
 const IMMEDIATE_NOTIFICATION_TYPE_COOLDOWN_MS: Partial<Record<LocalNotificationType, number>> = {
   streak_warning: 23 * 60 * 60 * 1000,
-  league_overtake: 6 * 60 * 60 * 1000,
   paywall_abandoned: 23 * 60 * 60 * 1000,
 };
 
@@ -424,50 +413,12 @@ function parseStoredNumber(raw: string | null | undefined): number {
   return Number.isFinite(n) ? Math.max(0, n) : 0;
 }
 
-function getIsoWeekKey(d: Date): string {
-  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-  const day = date.getUTCDay() || 7;
-  date.setUTCDate(date.getUTCDate() + 4 - day);
-  const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
-  const weekNum = Math.ceil((((date.getTime() - yearStart.getTime()) / 86400000) + 1) / 7);
-  return `${date.getUTCFullYear()}-W${String(weekNum).padStart(2, '0')}`;
-}
-
-function parseWeekPointsForCurrentWeek(raw: string | null | undefined, weekKey: string): number {
-  try {
-    if (!raw) return 0;
-    const data = JSON.parse(raw) as { weekKey?: string; points?: number };
-    if (data.weekKey !== weekKey) return 0;
-    const points = Number(data.points ?? 0);
-    return Number.isFinite(points) ? Math.max(0, points) : 0;
-  } catch {
-    return 0;
-  }
-}
-
 export async function readWeeklyRecapStatsForNotification(
-  now: Date = new Date(),
-): Promise<{ weekXP: number; streak: number }> {
-  const [weeklyXpRaw, weeklyPeriodRaw, weekPointsV2Raw, weekPointsRaw, streakRaw] = await Promise.all([
-    AsyncStorage.getItem(WEEKLY_XP_KEY),
-    AsyncStorage.getItem(WEEKLY_XP_PERIOD_START_KEY),
-    AsyncStorage.getItem('week_points_v2'),
-    AsyncStorage.getItem('week_points'),
+): Promise<{ streak: number }> {
+  const [streakRaw] = await Promise.all([
     AsyncStorage.getItem('streak_count'),
   ]);
-
-  const currentWeeklyXpPeriod = getCurrentWeekStartIso(now);
-  const currentWeekPointsKey = getIsoWeekKey(now);
-  const recoveredWeekPoints = parseWeekPointsForCurrentWeek(weekPointsV2Raw, currentWeekPointsKey)
-    || (weekPointsV2Raw ? 0 : parseStoredNumber(weekPointsRaw));
-  const currentWeeklyXp = weeklyPeriodRaw === currentWeeklyXpPeriod
-    ? parseStoredNumber(weeklyXpRaw)
-    : 0;
-
-  return {
-    weekXP: currentWeeklyXp > 0 ? currentWeeklyXp : recoveredWeekPoints,
-    streak: parseStoredNumber(streakRaw),
-  };
+  return { streak: parseStoredNumber(streakRaw) };
 }
 
 async function cancelScheduledNotificationsByType(
@@ -481,7 +432,7 @@ async function cancelScheduledNotificationsByType(
       const type = request?.content?.data?.type;
       const id = request?.identifier;
       if (!id || !types.includes(type)) return Promise.resolve();
-      return N.cancelScheduledNotificationAsync(id).catch(() => {});
+      return N.cancelScheduledNotificationAsync(id).catch(swallowError('notifications:cancelScheduledNotificationsByType'));
     }));
   } catch (e) {
     if (__DEV__) console.warn('[notifications]', e);
@@ -522,6 +473,10 @@ export const scheduleDailyReminder = async (
   lang: Lang = 'ru',
   opts: NotificationTargetOpts = {}
 ): Promise<void> => {
+  // Retired notification export remains inert for old callers until their UI and
+  // notification metadata are physically removed.
+  return;
+
   try {
     const N = await getNotifications();
     if (!N) return;
@@ -534,13 +489,13 @@ export const scheduleDailyReminder = async (
     await cancelScheduledNotificationsByType(N, ['reminder']);
     const prevId = await AsyncStorage.getItem(DAILY_REMINDER_ID_KEY);
     if (prevId) {
-      await N.cancelScheduledNotificationAsync(prevId).catch(() => {});
+      await N.cancelScheduledNotificationAsync(prevId).catch(swallowError('notifications:scheduleDailyReminder'));
     }
     const prevPerDayRaw = await AsyncStorage.getItem('per_day_notif_ids');
     if (prevPerDayRaw) {
       try {
         const ids: string[] = JSON.parse(prevPerDayRaw);
-        await Promise.all(ids.map(id => N.cancelScheduledNotificationAsync(id).catch(() => {})));
+        await Promise.all(ids.map(id => N.cancelScheduledNotificationAsync(id).catch(swallowError('notifications:scheduleDailyReminder'))));
       } catch (e) {
         if (__DEV__) console.warn('[notifications]', e);
       }
@@ -585,7 +540,6 @@ const NOTIFICATION_SCHEDULE_STORAGE_KEYS = [
   MONTHLY_RECAP_NOTIF_ID_KEY,
   IMMEDIATE_NOTIFICATION_LAST_AT_KEY,
   `${IMMEDIATE_NOTIFICATION_TYPE_LAST_AT_PREFIX}streak_warning`,
-  `${IMMEDIATE_NOTIFICATION_TYPE_LAST_AT_PREFIX}league_overtake`,
   'streak_warning_scheduled',
   'phrase_notif_scheduled',
   'weekly_recap_scheduled',
@@ -601,7 +555,7 @@ const NOTIFICATION_SCHEDULE_STORAGE_KEYS = [
 
 async function cancelAllScheduledLocalNotifications(N: Awaited<ReturnType<typeof getNotifications>>): Promise<void> {
   try {
-    if (N) await N.cancelAllScheduledNotificationsAsync().catch(() => {});
+    if (N) await N.cancelAllScheduledNotificationsAsync().catch(swallowError('notifications:cancelAllScheduledLocalNotifications'));
   } catch (e) {
     if (__DEV__) console.warn('[notifications]', e);
   }
@@ -620,7 +574,7 @@ export const cancelAllNotifications = async (): Promise<void> => {
   // Удаляем токен из Firestore: сервер перестаёт слать re-engage пуши
   // на пользователя, который явно отключил уведомления.
   void import('./push_token_registration').then(({ clearPushTokenForServerPush }) => {
-    clearPushTokenForServerPush().catch(() => {});
+    clearPushTokenForServerPush().catch(swallowError('notifications:cancelAllNotifications'));
   });
 };
 
@@ -794,7 +748,7 @@ export const scheduleD1PersonalizedReminder = async (
 
     await cancelScheduledNotificationsByType(N, ['d1_reminder']);
     const prevD1Id = await AsyncStorage.getItem(D1_PERSONALIZED_REMINDER_NOTIF_ID_KEY);
-    if (prevD1Id) await N.cancelScheduledNotificationAsync(prevD1Id).catch(() => {});
+    if (prevD1Id) await N.cancelScheduledNotificationAsync(prevD1Id).catch(swallowError('notifications:scheduleD1PersonalizedReminder'));
 
     const d1Id = await N.scheduleNotificationAsync({
       content: { title, body, sound: false, data: { type: 'd1_reminder' } },
@@ -809,8 +763,8 @@ export const scheduleD1PersonalizedReminder = async (
 // ── Уведомление об активации Premium ─────────────────────────────────────────
 export const sendPremiumNotification = async (lang: Lang = 'ru'): Promise<void> => {
   // Пользователь купил Premium — upsell и expiring-уведомления больше не нужны
-  cancelIntroExpiringNotification().catch(() => {});
-  cancelUpsellNotifications().catch(() => {});
+  cancelIntroExpiringNotification().catch(swallowError('notifications:sendPremiumNotification'));
+  cancelUpsellNotifications().catch(swallowError('notifications:sendPremiumNotification'));
 
   try {
     const N = await getNotifications();
@@ -923,7 +877,7 @@ export const scheduleIntroExpiringNotification = async (
     if (secondsUntil <= (opts.minSeconds ?? 60)) return { ok: false, reason: 'too_soon' };
 
     const prev = await AsyncStorage.getItem(INTRO_EXPIRING_NOTIF_ID_KEY);
-    if (prev) await N.cancelScheduledNotificationAsync(prev).catch(() => {});
+    if (prev) await N.cancelScheduledNotificationAsync(prev).catch(swallowError('notifications:scheduleIntroExpiringNotification'));
 
     const title = pickNotif(lang, notificationCopy({
       ru: 'Твой Плюс истекает через 2 часа',
@@ -964,7 +918,7 @@ export const cancelIntroExpiringNotification = async (): Promise<void> => {
     if (!N) return;
     const id = await AsyncStorage.getItem(INTRO_EXPIRING_NOTIF_ID_KEY);
     if (id) {
-      await N.cancelScheduledNotificationAsync(id).catch(() => {});
+      await N.cancelScheduledNotificationAsync(id).catch(swallowError('notifications:cancelIntroExpiringNotification'));
       await AsyncStorage.removeItem(INTRO_EXPIRING_NOTIF_ID_KEY);
     }
   } catch (e) {
@@ -972,91 +926,11 @@ export const cancelIntroExpiringNotification = async (): Promise<void> => {
   }
 };
 
-// ── Пуш «подарок сгорит через 6 часов» ───────────────────────────────────────
-// зачем (2026-08-02, владелец): подарок с тикающим 72ч-таймером — двигатель
-// возвратов; пуш не бесит, потому что он про потерю СВОЕГО добра. Живёт максимум
-// один такой пуш — на ближайший к сгоранию подарок; каждая смена инвентаря
-// (получение/клейм/сгорание) пересинхронизирует его.
-
-/** Сериализация пересинков: параллельные вызовы не гоняются cancel/schedule. */
-let giftExpiringSyncChain: Promise<void> = Promise.resolve();
-
-const runGiftExpiringSync = async (earliestExpiresAtMs: number | null): Promise<void> => {
-  try {
-    const N = await getNotifications();
-    if (!N) return;
-
-    const cancelPrev = async () => {
-      const prev = await AsyncStorage.getItem(GIFT_EXPIRING_NOTIF_ID_KEY).catch(() => null);
-      if (prev) {
-        await N.cancelScheduledNotificationAsync(prev).catch(() => {});
-        await AsyncStorage.removeItem(GIFT_EXPIRING_NOTIF_ID_KEY).catch(() => {});
-      }
-    };
-
-    if (!earliestExpiresAtMs) {
-      await cancelPrev();
-      return;
-    }
-    // НЕ поднимаем системный диалог в момент получения подарка — только если
-    // разрешение уже есть (паттерн sendStreakWarning).
-    const hasPermission = await canUseNotifications(false);
-    if (!hasPermission) return;
-    if (!(await isNotifCategoryEnabled('gifts'))) {
-      await cancelPrev();
-      return;
-    }
-
-    const fireAtMs = earliestExpiresAtMs - 6 * 60 * 60 * 1000;
-    const secondsUntil = Math.floor((fireAtMs - Date.now()) / 1000);
-    await cancelPrev();
-    // Осталось меньше 6 часов — юзер уже видел тёплый таймер в разделе,
-    // мгновенный пуш поверх открытого приложения только бесил бы.
-    if (secondsUntil <= 60) return;
-
-    const lang = normalizeNotificationLang(await AsyncStorage.getItem('app_lang').catch(() => null));
-    const title = pickNotif(lang, notificationCopy({
-      // зачем (аудит по Библии, 2026-08-26): срок настоящий, но подача через
-      // сгорание — это давление потерей. Правило 2: та же правда в gain-виде.
-      ru: '🎁 Подарок ждёт тебя ещё 6 часов',
-      uk: '🎁 Подарунок чекає на тебе ще 6 годин',
-      es: '🎁 Tu regalo te espera 6 horas más',
-      'pt-BR': '🎁 Seu presente espera mais 6 horas',
-      vi: '🎁 Quà vẫn chờ bạn thêm 6 giờ nữa',
-      id: '🎁 Hadiahmu menunggu 6 jam lagi',
-      tr: '🎁 Hediyen seni 6 saat daha bekliyor',
-      pl: '🎁 Prezent czeka na ciebie jeszcze 6 godzin',
-    }));
-    const body = pickNotif(lang, notificationCopy({
-      ru: 'Он уже твой — забери в разделе подарков, пока не исчез.',
-      uk: 'Він уже твій — забери в розділі подарунків, поки не зник.',
-      es: 'Ya es tuyo: recógelo en la sección de regalos antes de que desaparezca.',
-      'pt-BR': 'Ele já é seu: pegue na seção de presentes antes que suma.',
-      vi: 'Nó đã là của bạn — nhận trong mục quà trước khi biến mất.',
-      id: 'Itu sudah milikmu — ambil di bagian hadiah sebelum hilang.',
-      tr: 'O zaten senin — kaybolmadan hediyeler bölümünden al.',
-      pl: 'Jest już twój — odbierz go w prezentach, zanim zniknie.',
-    }));
-
-    const id = await N.scheduleNotificationAsync({
-      content: { title, body, sound: false, data: { type: 'gift_expiring' } },
-      trigger: triggerInterval(secondsUntil),
-    });
-    await AsyncStorage.setItem(GIFT_EXPIRING_NOTIF_ID_KEY, id).catch(() => {});
-  } catch (e) {
-    if (__DEV__) console.warn('[notifications] gift_expiring', e);
-  }
-};
-
-/**
- * Пересинхронизировать пуш сгорания подарков под ближайший срок.
- * `earliestExpiresAtMs = null` — подарков нет, пуш снимается.
- */
-export const syncGiftExpiringNotification = (earliestExpiresAtMs: number | null): Promise<void> => {
-  const run = () => runGiftExpiringSync(earliestExpiresAtMs);
-  giftExpiringSyncChain = giftExpiringSyncChain.then(run, run);
-  return giftExpiringSyncChain;
-};
+// ── Миграция: отмена старых локальных уведомлений удалённых функций ──────────
+// зачем (PM-201): логика вынесена в app/retired_local_notifications.ts (лёгкий модуль, проверяется
+// без этого файла). Здесь — только точка вызова с ленивым загрузчиком expo-notifications.
+export const cancelRetiredLocalNotificationsOnce = (): Promise<void> =>
+  runRetiredLocalNotificationsCancel(getNotifications);
 
 // ── Upsell уведомления для не-Premium пользователей (D+4, D+7, D+14) ─────────
 const UPSELL_NOTIF_KEYS = {
@@ -1243,8 +1117,8 @@ export const schedulePaywallAbandonedNotification = async (
       trigger: triggerInterval(Math.max(60, opts.delaySeconds ?? 3600)),
     });
     // Воронка: пуш реально запланирован — фиксируем для baseline/atтрибуции re-engagement.
-    void import('./analytics').then(({ trackEvent }) => trackEvent('paywall_abandoned_push_sent', {})).catch(() => {});
-    void import('./firebase').then(({ logPaywallAbandonedPush }) => logPaywallAbandonedPush()).catch(() => {});
+    void import('./analytics').then(({ trackEvent }) => trackEvent('paywall_abandoned_push_sent', {})).catch(swallowError('notifications:schedulePaywallAbandonedNotification'));
+    void import('./firebase').then(({ logPaywallAbandonedPush }) => logPaywallAbandonedPush()).catch(swallowError('notifications:schedulePaywallAbandonedNotification'));
   } catch (e) {
     if (__DEV__) console.warn('[notifications]', e);
   }
@@ -1305,25 +1179,18 @@ export const saveNotifSettings = async (s: NotifSettings): Promise<void> => {
 // управлял только типом 'reminder', а остальные ~12 типов жили без выключателя —
 // отсюда жалоба «уведомления приходят как попало». Теперь у каждого типа есть
 // категория, у категории — тумблер. Мастер = легаси-флаг 'notifications_enabled'
-// (его уже читают bootstrap, streak, league и weekly-refresh — не ломаем связи).
+// (его уже читают bootstrap, streak и weekly-refresh — не ломаем связи).
 export type NotifCategory =
   | 'streak'
   | 'phrase_of_day'
   | 'energy'
   | 'weekly_recap'
   | 'monthly_recap'
-  | 'league'
   | 'offers'
   | 'gifts'
   // «Вместе» (friends_together §1.3): пуш «Позвал(а)» от друга. Локальных
   // напоминаний нет (см. CATEGORY_LOCAL_TYPES ниже) — шлёт только сервер по чужому тапу.
   | 'friends';
-  // PM-198 (владелец): категория 'max_lessons' удалена вместе с пунктом
-  // настроек «Уроки с MAX» — раздел MAX законсервирован
-  // (MAX_SECTION_SEALED_BY_OWNER_2026_09_04), серверный
-  // functions/src/max_lesson_reminder_push.ts уже снят с деплоя (см.
-  // maxLessonReminderCron, закомментирован в functions/src/index.ts).
-
 export type NotifPrefs = { master: boolean; categories: Record<NotifCategory, boolean> };
 
 export const DEFAULT_NOTIF_PREFS: NotifPrefs = {
@@ -1334,7 +1201,6 @@ export const DEFAULT_NOTIF_PREFS: NotifPrefs = {
     energy: true,
     weekly_recap: true,
     monthly_recap: true,
-    league: true,
     offers: true,
     // зачем (2026-08-02, владелец): пуш «подарок сгорит» — про потерю своего
     // добра, отдельный тумблер, по умолчанию включён (не «предложения»).
@@ -1354,7 +1220,6 @@ const CATEGORY_LOCAL_TYPES: Record<NotifCategory, LocalNotificationType[]> = {
   energy: ['energy_full'],
   weekly_recap: ['weekly_recap'],
   monthly_recap: ['monthly_recap'],
-  league: ['league_overtake'],
   offers: ['intro_expiring', 'upsell_d4', 'upsell_d7', 'upsell_d14', 'paywall_abandoned', 'premium'],
   gifts: ['gift_expiring'],
   // Пустой массив: «Позвать» — не локальное напоминание с расписанием, а серверный
@@ -1401,7 +1266,7 @@ export async function hydrateNotifPrefsFromStorage(): Promise<NotifPrefs> {
     const migrated: NotifPrefs = { ...DEFAULT_NOTIF_PREFS, master, categories: { ...DEFAULT_NOTIF_PREFS.categories } };
     notifPrefsMemory = migrated;
     await AsyncStorage.setItem(NOTIF_PREFS_KEY, JSON.stringify(migrated));
-    // Синхронизируем легаси-флаг: его читают streak/league/weekly-refresh/bootstrap.
+    // Синхронизируем легаси-флаг: его читают streak/weekly-refresh/bootstrap.
     if (master && legacy !== 'true') await persistPortablePreference('notifications_enabled', 'true');
     return getNotifPrefsSnapshot();
   } catch {
@@ -1459,9 +1324,8 @@ export const saveNotifPrefs = async (p: NotifPrefs): Promise<void> => {
     .then(({ updateServerPushPrefs }) => updateServerPushPrefs({
       streak: normalized.master && normalized.categories.streak,
       offers: normalized.master && normalized.categories.offers,
-      league: normalized.master && normalized.categories.league,
     }))
-    .catch(() => {});
+    .catch(swallowError('notifications:saveNotifPrefs'));
 };
 
 async function getNotifPrefs(): Promise<NotifPrefs> {
@@ -1518,25 +1382,18 @@ export const applyNotifPrefsSideEffects = async (
     );
   }
   if (prefs.categories.gifts === false) staleKeys.push(GIFT_EXPIRING_NOTIF_ID_KEY);
-  if (staleKeys.length) await AsyncStorage.multiRemove(staleKeys).catch(() => {});
+  if (staleKeys.length) await AsyncStorage.multiRemove(staleKeys).catch(swallowError('notifications:applyNotifPrefsSideEffects'));
 
   // Включённые категории: перепланируем стандартный набор (как bootstrap в _layout).
   const scheduleOpts = { requestPermission: false as const, studyTarget: opts.studyTarget };
-  if (prefs.categories.streak) scheduleStreakWarningIfNeeded(lang, scheduleOpts).catch(() => {});
-  if (prefs.categories.phrase_of_day) schedulePhraseOfDayNotification(lang, scheduleOpts).catch(() => {});
-  if (prefs.categories.weekly_recap) scheduleWeeklyRecapNotification(lang, scheduleOpts).catch(() => {});
-  if (prefs.categories.monthly_recap) scheduleMonthlyRecapNotification(lang, scheduleOpts).catch(() => {});
-  // Тумблер «Подарки» включили обратно — пересинхронизируем пуш от инвентаря.
-  if (prefs.categories.gifts) {
-    void import('./level_gift_inventory')
-      .then(({ resyncGiftExpiryPush }) => resyncGiftExpiryPush())
-      .catch(() => {});
-  }
-
+  if (prefs.categories.streak) scheduleStreakWarningIfNeeded(lang, scheduleOpts).catch(swallowError('notifications:applyNotifPrefsSideEffects'));
+  if (prefs.categories.phrase_of_day) schedulePhraseOfDayNotification(lang, scheduleOpts).catch(swallowError('notifications:applyNotifPrefsSideEffects'));
+  if (prefs.categories.weekly_recap) scheduleWeeklyRecapNotification(lang, scheduleOpts).catch(swallowError('notifications:applyNotifPrefsSideEffects'));
+  if (prefs.categories.monthly_recap) scheduleMonthlyRecapNotification(lang, scheduleOpts).catch(swallowError('notifications:applyNotifPrefsSideEffects'));
   // Мастер включён — вернём push-токен в облако (мог быть удалён при выключении).
   void import('./push_token_registration')
     .then(({ registerPushTokenForServerPush }) => registerPushTokenForServerPush(lang))
-    .catch(() => {});
+    .catch(swallowError('notifications:applyNotifPrefsSideEffects'));
 };
 
 // app day index 0=Mon..6=Sun → expo weekday 1=Sun,2=Mon..7=Sat
@@ -1550,6 +1407,9 @@ export const scheduleNotifications = async (
 ): Promise<void> => {
   const N = await getNotifications();
   if (!N) return;
+  // зачем (PM-201): гасим уже запланированные уведомления удалённых функций ДО проверок разрешения/мастера —
+  // отмена разрешения не требует, а без неё старый пуш сработал бы у тех, кто отключил расписание.
+  void cancelRetiredLocalNotificationsOnce();
 
   const hasPermission = await canUseNotifications(opts.requestPermission ?? true);
   if (!hasPermission) return;
@@ -1567,13 +1427,13 @@ export const scheduleNotifications = async (
     if (stalePerDayRaw) {
       try {
         const ids: string[] = JSON.parse(stalePerDayRaw);
-        await Promise.all(ids.map(id => N.cancelScheduledNotificationAsync(id).catch(() => {})));
+        await Promise.all(ids.map(id => N.cancelScheduledNotificationAsync(id).catch(swallowError('notifications:scheduleNotifications'))));
       } catch (e) {
         if (__DEV__) console.warn('[notifications]', e);
       }
     }
     const staleDailyId = await AsyncStorage.getItem(DAILY_REMINDER_ID_KEY);
-    if (staleDailyId) await N.cancelScheduledNotificationAsync(staleDailyId).catch(() => {});
+    if (staleDailyId) await N.cancelScheduledNotificationAsync(staleDailyId).catch(swallowError('notifications:scheduleNotifications'));
     await AsyncStorage.multiRemove(['per_day_notif_ids', DAILY_REMINDER_ID_KEY]);
     return;
   }
@@ -1583,11 +1443,11 @@ export const scheduleNotifications = async (
   const prevPerDayRaw = await AsyncStorage.getItem('per_day_notif_ids');
   if (prevPerDayRaw) {
     const ids: string[] = JSON.parse(prevPerDayRaw);
-    await Promise.all(ids.map(id => N.cancelScheduledNotificationAsync(id).catch(() => {})));
+    await Promise.all(ids.map(id => N.cancelScheduledNotificationAsync(id).catch(swallowError('notifications:scheduleNotifications'))));
   }
   // Также отменяем старый daily reminder
   const prevId = await AsyncStorage.getItem(DAILY_REMINDER_ID_KEY);
-  if (prevId) await N.cancelScheduledNotificationAsync(prevId).catch(() => {});
+  if (prevId) await N.cancelScheduledNotificationAsync(prevId).catch(swallowError('notifications:scheduleNotifications'));
   await AsyncStorage.removeItem(DAILY_REMINDER_ID_KEY);
 
   const studyTarget = await resolveNotificationStudyTarget(lang as Lang, opts.studyTarget);
@@ -1649,7 +1509,7 @@ export const scheduleStreakWarningIfNeeded = async (
       // Категория выключена — вычищаем уже запланированное предупреждение.
       await cancelScheduledNotificationsByType(N, ['streak_warning']);
       const staleWarningId = await AsyncStorage.getItem(STREAK_WARNING_NOTIF_ID_KEY);
-      if (staleWarningId) await N.cancelScheduledNotificationAsync(staleWarningId).catch(() => {});
+      if (staleWarningId) await N.cancelScheduledNotificationAsync(staleWarningId).catch(swallowError('notifications:scheduleStreakWarningIfNeeded'));
       await AsyncStorage.multiRemove(['streak_warning_scheduled', STREAK_WARNING_NOTIF_ID_KEY]);
       return;
     }
@@ -1664,7 +1524,7 @@ export const scheduleStreakWarningIfNeeded = async (
     if (lessonDoneToday) {
       await cancelScheduledNotificationsByType(N, ['streak_warning']);
       const prevWarningId = await AsyncStorage.getItem(STREAK_WARNING_NOTIF_ID_KEY);
-      if (prevWarningId) await N.cancelScheduledNotificationAsync(prevWarningId).catch(() => {});
+      if (prevWarningId) await N.cancelScheduledNotificationAsync(prevWarningId).catch(swallowError('notifications:scheduleStreakWarningIfNeeded'));
       await AsyncStorage.multiRemove(['streak_warning_scheduled', STREAK_WARNING_NOTIF_ID_KEY]);
       return;
     }
@@ -2049,7 +1909,7 @@ export const cancelEnergyFullNotification = async (): Promise<void> => {
     if (!N) return;
     await cancelScheduledNotificationsByType(N, ['energy_full']);
     const prevId = await AsyncStorage.getItem(ENERGY_FULL_NOTIF_ID_KEY);
-    if (prevId) await N.cancelScheduledNotificationAsync(prevId).catch(() => {});
+    if (prevId) await N.cancelScheduledNotificationAsync(prevId).catch(swallowError('notifications:cancelEnergyFullNotification'));
     await AsyncStorage.removeItem(ENERGY_FULL_NOTIF_ID_KEY);
   } catch (e) {
     if (__DEV__) console.warn('[notifications]', e);
@@ -2120,7 +1980,7 @@ export const scheduleEnergyFullNotification = async (
 
     await cancelScheduledNotificationsByType(N, ['energy_full']);
     const prevId = await AsyncStorage.getItem(ENERGY_FULL_NOTIF_ID_KEY);
-    if (prevId) await N.cancelScheduledNotificationAsync(prevId).catch(() => {});
+    if (prevId) await N.cancelScheduledNotificationAsync(prevId).catch(swallowError('notifications:scheduleEnergyFullNotification'));
 
     const energyId = await N.scheduleNotificationAsync({
       content: {
@@ -2158,7 +2018,7 @@ const scheduleWeeklyRecapNotificationUnlocked = async (
     }
 
     const now = new Date();
-    const { weekXP, streak } = await readWeeklyRecapStatsForNotification(now);
+    const { streak } = await readWeeklyRecapStatsForNotification();
     const nextSunday = getNextWeeklyRecapTime(now);
     const secondsUntil = Math.max(1, Math.floor((nextSunday.getTime() - now.getTime()) / 1000));
 
@@ -2174,59 +2034,19 @@ const scheduleWeeklyRecapNotificationUnlocked = async (
       pl: _pw(['📊 Podsumowanie tygodnia', '🏆 Twój tydzień w liczbach', '🔥 Jak minął tydzień?', '⭐ Raport tygodniowy gotowy!']),
     }));
     const body = pickNotif(lang, notificationCopy({
-      ru: _pw([
-        `Цепочка: ${streak} 🔥 · XP за неделю: ${weekXP} ⭐ — так держать!`,
-        `Ты сделал ${streak} дней подряд! За неделю: ${weekXP} XP ⭐ Продолжай в том же духе! 💪`,
-        `${weekXP} XP за неделю — ты движешься к цели! 🚀 Цепочка: ${streak} 🔥`,
-        `Невероятная неделя! Цепочка ${streak} дней · ${weekXP} XP. Молодец! 🎯`,
-      ]),
-      uk: _pw([
-        `Стрік: ${streak} 🔥 · XP за тиждень: ${weekXP} ⭐ — так тримати!`,
-        `Ти зробив ${streak} днів поспіль! За тиждень: ${weekXP} XP ⭐ Продовжуй у тому ж дусі! 💪`,
-        `${weekXP} XP за тиждень — ти рухаєшся до мети! 🚀 Стрік: ${streak} 🔥`,
-        `Неймовірний тиждень! Стрік ${streak} днів · ${weekXP} XP. Ти молодець! 🎯`,
-      ]),
-      es: _pw([
-        `Racha: ${streak} 🔥 · XP semanal: ${weekXP} ⭐ ¡sigue así!`,
-        `${streak} días seguidos y ${weekXP} XP esta semana; mantén el impulso 💪`,
-        `+${weekXP} XP esta semana: vas en serio 🚀 Racha ${streak} 🔥`,
-        `Semana redonda: racha ${streak} · ${weekXP} XP. Buen trabajo 🎯`,
-      ]),
-      'pt-BR': _pw([
-        `Sequência: ${streak} 🔥 · XP da semana: ${weekXP} ⭐ Continue assim!`,
-        `${streak} dias seguidos e ${weekXP} XP na semana. Mantenha o ritmo 💪`,
-        `+${weekXP} XP nesta semana: você está avançando 🚀 Sequência ${streak} 🔥`,
-        `Semana forte: sequência ${streak} · ${weekXP} XP. Muito bem 🎯`,
-      ]),
-      vi: _pw([
-        `Chuỗi: ${streak} 🔥 · XP tuần này: ${weekXP} ⭐ Cứ tiếp tục nhé!`,
-        `${streak} ngày liên tiếp và ${weekXP} XP tuần này. Giữ nhịp nào 💪`,
-        `+${weekXP} XP tuần này: bạn đang tiến lên 🚀 Chuỗi ${streak} 🔥`,
-        `Một tuần thật tốt: chuỗi ${streak} · ${weekXP} XP. Làm tốt lắm 🎯`,
-      ]),
-      id: _pw([
-        `Streak: ${streak} 🔥 · XP minggu ini: ${weekXP} ⭐ Pertahankan!`,
-        `${streak} hari berturut-turut dan ${weekXP} XP minggu ini. Jaga ritme 💪`,
-        `+${weekXP} XP minggu ini: kamu terus maju 🚀 Streak ${streak} 🔥`,
-        `Minggu yang kuat: streak ${streak} · ${weekXP} XP. Mantap 🎯`,
-      ]),
-      tr: _pw([
-        `Seri: ${streak} 🔥 · Haftalık XP: ${weekXP} ⭐ Böyle devam!`,
-        `${streak} gün üst üste ve bu hafta ${weekXP} XP. Ritmi koru 💪`,
-        `Bu hafta +${weekXP} XP: ilerliyorsun 🚀 Seri ${streak} 🔥`,
-        `Güçlü hafta: seri ${streak} · ${weekXP} XP. Harika iş 🎯`,
-      ]),
-      pl: _pw([
-        `Seria: ${streak} 🔥 · XP w tygodniu: ${weekXP} ⭐ Tak trzymaj!`,
-        `${streak} dni z rzędu i ${weekXP} XP w tym tygodniu. Utrzymaj tempo 💪`,
-        `+${weekXP} XP w tym tygodniu: idziesz do przodu 🚀 Seria ${streak} 🔥`,
-        `Mocny tydzień: seria ${streak} · ${weekXP} XP. Dobra robota 🎯`,
-      ]),
+      ru: `Твоя цепочка: ${streak} дней 🔥 Продолжай учиться в своём ритме!`,
+      uk: `Твій стрік: ${streak} днів 🔥 Продовжуй навчатися у своєму ритмі!`,
+      es: `Tu racha: ${streak} días 🔥 ¡Sigue aprendiendo a tu ritmo!`,
+      'pt-BR': `Sua sequência: ${streak} dias 🔥 Continue aprendendo no seu ritmo!`,
+      vi: `Chuỗi của bạn: ${streak} ngày 🔥 Hãy tiếp tục học theo nhịp của bạn!`,
+      id: `Streak kamu: ${streak} hari 🔥 Terus belajar dengan ritmemu!`,
+      tr: `Serin: ${streak} gün 🔥 Kendi ritminde öğrenmeye devam et!`,
+      pl: `Twoja seria: ${streak} dni 🔥 Ucz się dalej we własnym rytmie!`,
     }));
 
     await cancelScheduledNotificationsByType(N, ['weekly_recap']);
     const prevWeeklyId = await AsyncStorage.getItem(WEEKLY_RECAP_NOTIF_ID_KEY);
-    if (prevWeeklyId) await N.cancelScheduledNotificationAsync(prevWeeklyId).catch(() => {});
+    if (prevWeeklyId) await N.cancelScheduledNotificationAsync(prevWeeklyId).catch(swallowError('notifications:scheduleWeeklyRecapNotificationUnlocked'));
 
     const weeklyId = await N.scheduleNotificationAsync({
       content: { title, body, sound: false, data: { type: 'weekly_recap' } },
@@ -2245,23 +2065,23 @@ export const scheduleWeeklyRecapNotification = (
   opts: NotificationTargetOpts = {},
 ): Promise<void> => {
   const next = weeklyRecapScheduleLock.then(() => scheduleWeeklyRecapNotificationUnlocked(lang, opts));
-  weeklyRecapScheduleLock = next.catch(() => {});
+  weeklyRecapScheduleLock = next.catch(swallowError('notifications:scheduleWeeklyRecapNotification'));
   return next;
 };
 
 let weeklyRecapRefreshTimer: ReturnType<typeof setTimeout> | null = null;
 
-export function refreshWeeklyRecapNotificationAfterXpChange(langHint?: Lang): void {
+export function refreshWeeklyRecapNotification(langHint?: Lang): void {
   if (weeklyRecapRefreshTimer) clearTimeout(weeklyRecapRefreshTimer);
   weeklyRecapRefreshTimer = setTimeout(() => {
     weeklyRecapRefreshTimer = null;
     void (async () => {
-      const enabled = await AsyncStorage.getItem('notifications_enabled').catch(() => null);
+      const enabled = await AsyncStorage.getItem('notifications_enabled').catch((error: unknown) => { reportSwallowed('notifications:refreshWeeklyRecapNotification', error); return null; });
       if (enabled !== 'true') return;
-      const storedLang = langHint ?? (await AsyncStorage.getItem('app_lang').catch(() => null));
+      const storedLang = langHint ?? (await AsyncStorage.getItem('app_lang').catch((error: unknown) => { reportSwallowed('notifications:refreshWeeklyRecapNotification', error); return null; }));
       const lang = normalizeNotificationLang(storedLang);
       await scheduleWeeklyRecapNotification(lang, { requestPermission: false });
-    })().catch(() => {});
+    })().catch(swallowError('notifications:refreshWeeklyRecapNotification'));
   }, 1500);
 }
 
@@ -2282,12 +2102,10 @@ export const scheduleMonthlyRecapNotification = async (
     }
 
     const studyTarget = await resolveNotificationStudyTarget(lang, opts.studyTarget);
-    const [xpRaw, streakRaw, lessons] = await Promise.all([
-      AsyncStorage.getItem('user_total_xp'),
+    const [streakRaw, lessons] = await Promise.all([
       AsyncStorage.getItem('streak_count'),
       countCompletedLessonsFromStorage(studyTarget),
     ]);
-    const totalXP = parseInt(xpRaw || '0') || 0;
     const streak = parseInt(streakRaw || '0') || 0;
 
     // Первое число следующего месяца в 10:00
@@ -2306,19 +2124,19 @@ export const scheduleMonthlyRecapNotification = async (
       pl: '🏆 Twój miesiąc w liczbach',
     }));
     const body = pickNotif(lang, notificationCopy({
-      ru: `Уроков: ${lessons} · Цепочка: ${streak} 🔥 · XP: ${totalXP} ⭐`,
-      uk: `Уроків: ${lessons} · Стрік: ${streak} 🔥 · XP: ${totalXP} ⭐`,
-      es: `Lecciones: ${lessons} · Racha: ${streak} 🔥 · XP: ${totalXP} ⭐`,
-      'pt-BR': `Lições: ${lessons} · Sequência: ${streak} 🔥 · XP: ${totalXP} ⭐`,
-      vi: `Bài học: ${lessons} · Chuỗi: ${streak} 🔥 · XP: ${totalXP} ⭐`,
-      id: `Pelajaran: ${lessons} · Streak: ${streak} 🔥 · XP: ${totalXP} ⭐`,
-      tr: `Ders: ${lessons} · Seri: ${streak} 🔥 · XP: ${totalXP} ⭐`,
-      pl: `Lekcje: ${lessons} · Seria: ${streak} 🔥 · XP: ${totalXP} ⭐`,
+      ru: `Уроков: ${lessons} · Цепочка: ${streak} 🔥`,
+      uk: `Уроків: ${lessons} · Стрік: ${streak} 🔥`,
+      es: `Lecciones: ${lessons} · Racha: ${streak} 🔥`,
+      'pt-BR': `Lições: ${lessons} · Sequência: ${streak} 🔥`,
+      vi: `Bài học: ${lessons} · Chuỗi: ${streak} 🔥`,
+      id: `Pelajaran: ${lessons} · Streak: ${streak} 🔥`,
+      tr: `Ders: ${lessons} · Seri: ${streak} 🔥`,
+      pl: `Lekcje: ${lessons} · Seria: ${streak} 🔥`,
     }));
 
     await cancelScheduledNotificationsByType(N, ['monthly_recap']);
     const prevMonthlyId = await AsyncStorage.getItem(MONTHLY_RECAP_NOTIF_ID_KEY);
-    if (prevMonthlyId) await N.cancelScheduledNotificationAsync(prevMonthlyId).catch(() => {});
+    if (prevMonthlyId) await N.cancelScheduledNotificationAsync(prevMonthlyId).catch(swallowError('notifications:scheduleMonthlyRecapNotification'));
 
     const monthlyId = await N.scheduleNotificationAsync({
       content: { title, body, sound: false, data: { type: 'monthly_recap' } },
@@ -2327,124 +2145,6 @@ export const scheduleMonthlyRecapNotification = async (
 
     await AsyncStorage.setItem(MONTHLY_RECAP_NOTIF_ID_KEY, monthlyId);
     await AsyncStorage.setItem('monthly_recap_scheduled', firstNextMonth.toISOString().split('T')[0]);
-  } catch (e) {
-    if (__DEV__) console.warn('[notifications]', e);
-  }
-};
-
-// ── «Соперник обогнал тебя в лиге» — локальное уведомление ──────────────────
-// Вызывается при старте приложения. Сравниваем сохранённый ранг с текущим.
-// Если ранг ухудшился (стали ниже) — отправляем немедленное уведомление.
-export const checkLeagueOvertakeNotification = async (
-  currentRank: number,
-  leaderName: string,       // имя игрока на 1 место выше нас
-  lang: Lang = 'ru',
-  opts: { requestPermission?: boolean } = {},
-): Promise<void> => {
-  try {
-    const N = await getNotifications();
-    if (!N) return;
-    const notifEnabled = await AsyncStorage.getItem('notifications_enabled');
-    if (notifEnabled !== 'true') return;
-
-    const savedRankRaw = await AsyncStorage.getItem('last_known_league_rank');
-    const savedRank = savedRankRaw ? parseInt(savedRankRaw) : null;
-    await AsyncStorage.setItem('last_known_league_rank', String(currentRank));
-
-    // Ранг ухудшился (число больше = ниже в таблице)
-    if (savedRank === null || currentRank <= savedRank) return;
-
-    // Гейт ПОСЛЕ записи ранга: слежение за позицией не останавливается,
-    // чтобы повторное включение категории не выстрелило устаревшим «обогнали».
-    if (!(await isNotifCategoryEnabled('league'))) return;
-
-    const hasPermission = await canUseNotifications(opts.requestPermission ?? true);
-    if (!hasPermission) return;
-    const canShowNow = await claimImmediateNotificationSlot('league_overtake');
-    if (!canShowNow) return;
-
-    const _po = <T,>(a: T[]) => a[Math.floor(Math.random() * a.length)];
-    const ruT = [`⚔️ ${leaderName} вырвался вперёд — твой ход!`, `🔥 Верни лидерство одним раундом!`, `⚡ Догони ${leaderName} — один раунд решает!`, `🎯 ${leaderName} впереди — покажи класс!`];
-    const ukT = [`⚔️ ${leaderName} вирвався вперед — твоя черга!`, `🔥 Поверни лідерство одним раундом!`, `⚡ Наздожени ${leaderName} — один раунд вирішує!`, `🎯 ${leaderName} попереду — покажи клас!`];
-    const esT = [`😤 ${leaderName} te adelantó en el club`, `⚔️ ${leaderName} se colocó por delante: te toca responder`, `🔥 ${leaderName} escala posiciones — no pierdas el ritmo`, `😱 ¡Te han superado! ${leaderName} va ahora por delante.`];
-    const title = pickNotif(lang, notificationCopy({
-      ru: _po(ruT),
-      uk: _po(ukT),
-      es: _po(esT),
-      'pt-BR': _po([
-        `😤 ${leaderName} passou você no clube!`,
-        `⚔️ ${leaderName} abriu vantagem. Sua vez!`,
-        `🔥 ${leaderName} está subindo — não perca o ritmo`,
-        `😱 Você foi ultrapassado! ${leaderName} está na frente agora.`,
-      ]),
-      vi: _po([
-        `😤 ${leaderName} đã vượt bạn trong câu lạc bộ!`,
-        `⚔️ ${leaderName} đã vươn lên. Đến lượt bạn!`,
-        `🔥 ${leaderName} đang leo hạng — đừng mất nhịp`,
-        `😱 Bạn đã bị vượt! ${leaderName} đang ở phía trước.`,
-      ]),
-      id: _po([
-        `😤 ${leaderName} melewatimu di klub!`,
-        `⚔️ ${leaderName} unggul. Giliranmu!`,
-        `🔥 ${leaderName} naik peringkat — jangan kehilangan ritme`,
-        `😱 Kamu tersalip! ${leaderName} sekarang di depan.`,
-      ]),
-      tr: _po([
-        `😤 ${leaderName} kulüpte seni geçti!`,
-        `⚔️ ${leaderName} öne geçti. Sıra sende!`,
-        `🔥 ${leaderName} yükseliyor — ritmi kaybetme`,
-        `😱 Geçildin! ${leaderName} artık önde.`,
-      ]),
-      pl: _po([
-        `😤 ${leaderName} wyprzedza cię w klubie!`,
-        `⚔️ ${leaderName} wysunął się do przodu. Twoja kolej!`,
-        `🔥 ${leaderName} pnie się w górę — nie trać tempa`,
-        `😱 Ktoś cię wyprzedził! ${leaderName} jest teraz przed tobą.`,
-      ]),
-    }));
-    const ruB = [`Ты на ${currentRank} месте. Отвечай прямо сейчас!`, `${currentRank} место — это временно. Один урок вернёт лидерство!`, `Покажи ${leaderName} кто тут настоящий лингвист! 💪`, `Время ответить! Верни своё место в рейтинге. 🎯`];
-    const ukB = [`Ти на ${currentRank} місці. Відповідай прямо зараз!`, `${currentRank} місце — це тимчасово. Один урок поверне лідерство!`, `Покажи ${leaderName} хто тут справжній лінгвіст! 💪`, `Час дати відповідь! Поверни своє місце в рейтингу. 🎯`];
-    const esB = [`Estás en el puesto ${currentRank}: contesta cuando puedas`, `El ${currentRank} es solo provisional; recupera tu sitio en una sesión`, `Enséñale a ${leaderName} quién marca el ritmo 💪`, `Reacciona y vuelve a subir posiciones 🎯`];
-    const body = pickNotif(lang, notificationCopy({
-      ru: _po(ruB),
-      uk: _po(ukB),
-      es: _po(esB),
-      'pt-BR': _po([
-        `Você está em ${currentRank}º lugar. Responda agora!`,
-        `${currentRank}º lugar é só temporário. Uma lição pode mudar tudo!`,
-        `Mostre a ${leaderName} quem dita o ritmo 💪`,
-        `Hora de reagir e recuperar posições 🎯`,
-      ]),
-      vi: _po([
-        `Bạn đang ở hạng ${currentRank}. Đáp lại ngay!`,
-        `Hạng ${currentRank} chỉ là tạm thời. Một bài học có thể đổi cục diện!`,
-        `Cho ${leaderName} thấy ai mới là người giữ nhịp 💪`,
-        `Đến lúc phản công và leo hạng lại 🎯`,
-      ]),
-      id: _po([
-        `Kamu di peringkat ${currentRank}. Balas sekarang!`,
-        `Peringkat ${currentRank} hanya sementara. Satu pelajaran bisa mengubahnya!`,
-        `Tunjukkan pada ${leaderName} siapa yang memimpin ritme 💪`,
-        `Waktunya merespons dan naik lagi 🎯`,
-      ]),
-      tr: _po([
-        `${currentRank}. sıradasın. Şimdi karşılık ver!`,
-        `${currentRank}. sıra geçici. Bir ders her şeyi değiştirebilir!`,
-        `${leaderName} kimin ritmi belirlediğini görsün 💪`,
-        `Cevap verme ve yeniden yükselme zamanı 🎯`,
-      ]),
-      pl: _po([
-        `Jesteś na miejscu ${currentRank}. Odpowiedz teraz!`,
-        `Miejsce ${currentRank} jest tylko chwilowe. Jedna lekcja może zmienić układ!`,
-        `Pokaż ${leaderName}, kto trzyma tempo 💪`,
-        `Czas zareagować i wrócić wyżej 🎯`,
-      ]),
-    }));
-
-    await N.scheduleNotificationAsync({
-      content: { title, body, sound: false, data: { type: 'league_overtake' } },
-      trigger: null, // немедленное уведомление
-    });
   } catch (e) {
     if (__DEV__) console.warn('[notifications]', e);
   }
@@ -2485,7 +2185,7 @@ export const schedulePhraseOfDayNotification = async (
     if (storageStudyTarget(studyTarget) === 'fr') {
       await cancelScheduledNotificationsByType(N, ['phrase_of_day']);
       const prevPhraseId = await AsyncStorage.getItem(PHRASE_OF_DAY_NOTIF_ID_KEY);
-      if (prevPhraseId) await N.cancelScheduledNotificationAsync(prevPhraseId).catch(() => {});
+      if (prevPhraseId) await N.cancelScheduledNotificationAsync(prevPhraseId).catch(swallowError('notifications:schedulePhraseOfDayNotification'));
       await AsyncStorage.removeItem('phrase_notif_scheduled');
       await AsyncStorage.removeItem(PHRASE_OF_DAY_NOTIF_ID_KEY);
       return;
@@ -2495,7 +2195,7 @@ export const schedulePhraseOfDayNotification = async (
     if (!(await isNotifCategoryEnabled('phrase_of_day'))) {
       await cancelScheduledNotificationsByType(N, ['phrase_of_day']);
       const stalePhraseId = await AsyncStorage.getItem(PHRASE_OF_DAY_NOTIF_ID_KEY);
-      if (stalePhraseId) await N.cancelScheduledNotificationAsync(stalePhraseId).catch(() => {});
+      if (stalePhraseId) await N.cancelScheduledNotificationAsync(stalePhraseId).catch(swallowError('notifications:schedulePhraseOfDayNotification'));
       await AsyncStorage.multiRemove(['phrase_notif_scheduled', PHRASE_OF_DAY_NOTIF_ID_KEY]);
       return;
     }
@@ -2590,7 +2290,7 @@ export const schedulePhraseOfDayNotification = async (
 
     await cancelScheduledNotificationsByType(N, ['phrase_of_day']);
     const prevPhraseId = await AsyncStorage.getItem(PHRASE_OF_DAY_NOTIF_ID_KEY);
-    if (prevPhraseId) await N.cancelScheduledNotificationAsync(prevPhraseId).catch(() => {});
+    if (prevPhraseId) await N.cancelScheduledNotificationAsync(prevPhraseId).catch(swallowError('notifications:schedulePhraseOfDayNotification'));
 
     const phraseId = await N.scheduleNotificationAsync({
       content: {
@@ -2652,7 +2352,6 @@ export const setupNotificationTapHandler = (
         case 'reminder':
         case 'd1_reminder':
         case 'premium':
-        case 'league_overtake':
         case 'phrase_of_day':
         case 'weekly_recap':
         case 'monthly_recap':
@@ -2677,29 +2376,18 @@ export const setupNotificationTapHandler = (
             router.push({ pathname: '/premium_modal', params: { context: 'notification_upsell', source: 'notification_upsell' } } as any);
           });
           break;
-        case 'max_lesson_reminder':
-          // зачем (2026-08-23, P2-1): напоминание обещает конкретный урок —
-          // тап ведёт прямо на подготовку звонка, а не на главную: лишний тап
-          // между обещанием и уроком ломает ритуал. format=tutor, потому что
-          // обещание темы даёт именно учитель.
-          scheduleNav(() => {
-            router.push({ pathname: '/max_call_prestart', params: { format: 'tutor' } } as any);
-          });
-          break;
         case 'gift_expiring':
-          // Тап по «подарок сгорит» ведёт прямо к сгорающему — в раздел подарков.
-          scheduleNav(() => {
-            router.push('/level_gifts_inventory' as any);
-          });
+          // Level gifts are retired; expiring-gift notifications have no destination.
           break;
         case 'arena_friend_invite':
         case 'arena_friend_accepted':
         case 'arena_friend_declined':
         case 'arena_friend_cancelled':
         case 'arena_friend_expired':
-          scheduleNav(() => {
-            router.push(arenaInviteRouteFromPayload(data));
-          });
+          // зачем: D83 — клиентская Арена удалена; тап по старому уведомлению
+          // дуэли ведёт на Главную, а не в несуществующий маршрут.
+          if (__DEV__) console.warn('[D83-ARENA-RETIRED] legacy arena push tap -> home', { type: data.type });
+          navTabHome();
           break;
         case 'activity_like':
         case 'friend_nudge':
@@ -2714,13 +2402,6 @@ export const setupNotificationTapHandler = (
               },
             });
           });
-          break;
-        case 'friend_gift_received':
-          emitAppEvent('friend_gift_push_opened');
-          scheduleNav(() => { router.push('/(tabs)/friends'); });
-          break;
-        case 'friend_gift_thanks':
-          scheduleNav(() => { router.push('/(tabs)/friends'); });
           break;
         case 'tournament_starting':
           // Owner lock: an already delivered notification is inert. Do not
@@ -2747,29 +2428,54 @@ export const scheduleTrialEndReminder = async (
   trialDays: number,
   title: string,
   body: string,
+  trialStartMs: number = Date.now(),
 ): Promise<boolean> => {
+  // зачем (владелец 2026-09-30): «убедись что уведомление действительно отправляется».
+  // Каждый ранний выход пишет причину с префиксом [TRIAL-REMINDER] — раньше любой
+  // отказ (нет разрешения, выключен мастер, сбой планировщика) был немым `false`.
+  DebugLogger.info('[TRIAL-REMINDER]', `schedule: вход trialDays=${trialDays} start=${new Date(trialStartMs).toISOString()} platform=${Platform.OS}`);
   try {
     const N = await getNotifications();
-    if (!N || Platform.OS === 'web') return false;
+    if (!N || Platform.OS === 'web') {
+      DebugLogger.warn('[TRIAL-REMINDER]', `schedule: выход — модуль уведомлений недоступен (N=${N ? 'есть' : 'нет'}, platform=${Platform.OS})`);
+      return false;
+    }
     const { status } = await N.getPermissionsAsync();
-    if (status !== 'granted') return false;
+    if (status !== 'granted') {
+      DebugLogger.warn('[TRIAL-REMINDER]', `schedule: выход — разрешение=${status}`);
+      return false;
+    }
     // Сервисное напоминание о конце триала: гейт только мастером (не «Предложениями») —
     // «скоро спишутся деньги» должно дойти, даже если маркетинг выключен.
-    if (!(await isNotifMasterEnabled())) return false;
+    const master = await isNotifMasterEnabled();
+    if (!master) {
+      DebugLogger.warn('[TRIAL-REMINDER]', `schedule: выход — мастер уведомлений в настройках=${master}`);
+      return false;
+    }
 
-    const prevId = await AsyncStorage.getItem(TRIAL_END_REMINDER_ID_KEY).catch(() => null);
-    if (prevId) await N.cancelScheduledNotificationAsync(prevId).catch(() => {});
+    // Дата — одна чистая функция: старт + (N − 2) дней (обещание пейвола «за 2 дня»).
+    const seconds = trialReminderDelaySeconds(trialStartMs, trialDays, Date.now());
+    if (seconds === null) {
+      DebugLogger.warn('[TRIAL-REMINDER]', `schedule: выход — пробный ${trialDays} дн. слишком короткий для напоминания за 2 дня`);
+      return false;
+    }
 
-    // За сутки до конца триала; для сверхкоротких триалов — не раньше чем через час.
-    const seconds = Math.max(3600, Math.round((trialDays - 1) * 86400));
+    const prevId = await AsyncStorage.getItem(TRIAL_END_REMINDER_ID_KEY).catch((error: unknown) => { reportSwallowed('notifications:scheduleTrialEndReminder', error); return null; });
+    if (prevId) {
+      DebugLogger.info('[TRIAL-REMINDER]', `schedule: снимаем прежнее напоминание id=${prevId}`);
+      await N.cancelScheduledNotificationAsync(prevId).catch(swallowError('notifications:scheduleTrialEndReminder'));
+    }
+
+    const fireAtIso = new Date(Date.now() + seconds * 1000).toISOString();
     const id = await N.scheduleNotificationAsync({
       content: { title, body, sound: 'default' },
       trigger: triggerInterval(seconds),
     });
-    await AsyncStorage.setItem(TRIAL_END_REMINDER_ID_KEY, id).catch(() => {});
+    await AsyncStorage.setItem(TRIAL_END_REMINDER_ID_KEY, id).catch(swallowError('notifications:scheduleTrialEndReminder'));
+    DebugLogger.info('[TRIAL-REMINDER]', `schedule: поставлено id=${id} через ${seconds} с, сработает ${fireAtIso}`);
     return true;
   } catch (e) {
-    if (__DEV__) console.warn('[notifications] scheduleTrialEndReminder', e);
+    DebugLogger.error('[TRIAL-REMINDER] schedule', e instanceof Error ? e : new Error(String(e)), 'warning');
     return false;
   }
 };
@@ -2778,10 +2484,10 @@ export const cancelTrialEndReminder = async (): Promise<void> => {
   try {
     const N = await getNotifications();
     if (!N) return;
-    const prevId = await AsyncStorage.getItem(TRIAL_END_REMINDER_ID_KEY).catch(() => null);
+    const prevId = await AsyncStorage.getItem(TRIAL_END_REMINDER_ID_KEY).catch((error: unknown) => { reportSwallowed('notifications:cancelTrialEndReminder', error); return null; });
     if (prevId) {
-      await N.cancelScheduledNotificationAsync(prevId).catch(() => {});
-      await AsyncStorage.removeItem(TRIAL_END_REMINDER_ID_KEY).catch(() => {});
+      await N.cancelScheduledNotificationAsync(prevId).catch(swallowError('notifications:cancelTrialEndReminder'));
+      await AsyncStorage.removeItem(TRIAL_END_REMINDER_ID_KEY).catch(swallowError('notifications:cancelTrialEndReminder'));
     }
   } catch (e) {
       // best-effort

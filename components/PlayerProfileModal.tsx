@@ -1,72 +1,34 @@
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 /**
- * Unified player/bot profile card.
- * Used in Hall of Fame AND Clubs — same component, no differences.
+ * Active PhraseMan 2.0 player card.
  *
- * Props:
- *   player      — the player to display (null = hidden). Modal `visible` tied only to this — no
- *                 post-close snapshot, so Android never keeps an invisible touch-blocking layer.
- *   myInfo      — current user's own data (to detect isMe)
- *   onClose     — called when modal should close (parent sets player to null immediately)
+ * Identity is represented by the authoritative rank coin. A missing public rank
+ * stays neutral; this component never substitutes the current account's rank.
  */
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import {
   ActivityIndicator,
   Animated,
   Easing,
-  InteractionManager,
   Modal,
   Pressable,
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
+  useWindowDimensions,
   View,
 } from 'react-native';
 import { Image } from 'expo-image';
-import { useRouter } from 'expo-router';
-import firestore from '@react-native-firebase/firestore';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import Svg, { Circle, Defs, LinearGradient as SvgLinearGradient, Stop } from 'react-native-svg';
-import Reanimated, {
-  Easing as REasing,
-  cancelAnimation,
-  runOnJS,
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring,
-  withTiming,
-} from 'react-native-reanimated';
-import { LinearGradient } from './SafeLinearGradient';
-import { LUM } from '../constants/motionHybrid';
-import DuoPressable from './DuoPressable';
-import PressableHybrid from './PressableHybrid';
-import EnergyIcon from './EnergyIcon';
-import { useTheme } from './ThemeContext';
+
+import { FONT_SCALE, useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
-import { usePremium } from './PremiumContext';
-import AvatarView from './AvatarView';
-import PremiumAvatarHalo from './PremiumAvatarHalo';
-import LeagueCrownName from './LeagueCrownName';
-import { memberNameStatusStyle } from './premiumMemberStyles';
-import { getBestAvatarForLevel } from '../constants/avatars';
-import { noAndroidOutline } from '../constants/androidGlow';
-import { getLevelFromXP, isLightThemeMode } from '../constants/theme';
-import { getTitleString } from '../constants/titles';
 import { triLang, type Lang } from '../constants/i18n';
-import { pearlIconForTheme } from '../app/coin_icons';
-import { CLUBS, clubTierShortName } from '../app/league_engine';
-import { getCurrentMultiplierBreakdown, peekLastMultiplierBreakdown, MultiplierBreakdown } from '../app/xp_manager';
-import SkeletonBlock from './SkeletonShimmer';
-import { useReduceMotion } from '../hooks/use_reduce_motion';
-import { getCardStreakShieldStatus, type CardStreakShieldStatus } from '../app/profile_card_streak_shield';
-import { CLOUD_SYNC_ENABLED, ENABLE_PROFILE_CARD, IS_EXPO_GO } from '../app/config';
-import { readLifetimeProfileStatsCache, loadLifetimeProfileStats } from '../app/lifetime_profile_stats';
-import { syncToCloud } from '../app/cloud_sync';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../app/config';
 import { deleteFriend, sendFriendRequest } from '../app/firestore_friend_requests';
 import { friendsAccountStore } from '../app/friends_account_store';
 import {
-  hasSyntheticFriendRequest,
   isSyntheticUid,
   loadSyntheticFriendRequests,
   peekSyntheticFriendRequests,
@@ -80,7 +42,6 @@ import {
 } from '../app/synthetic_activity_likes';
 import { residentBaseLikes } from '../constants/synthetic_residents';
 import ReportUserModal from './ReportUserModal';
-import { fetchFriendProfilesBatch } from '../app/friends_profiles_batch';
 import {
   fetchActivityLikeTotal,
   fetchActivityLikeState,
@@ -90,76 +51,40 @@ import {
   type FriendActivityLikeState,
 } from '../app/friend_activity_likes';
 import { getCanonicalUserId } from '../app/user_id_policy';
-import { isLifetimePlanLocal } from '../app/premium_guard';
 import { hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { useMyCoinRank } from '../hooks/use_my_coin_rank';
+import { coinRankRowForDisplay } from '../app/coin_rank_table_v1';
+import {
+  resolvePlayerProfileV2State,
+  resolvePlayerProfileVisibleRank,
+} from '../app/player_profile_v2_state';
+import { emitAppEvent } from '../app/events';
 import InGameToast from './InGameToast';
 import ThemedConfirmModal from './ThemedConfirmModal';
-import ProfileCardMotionFx from './ProfileCardMotionFx';
-import SeasonProfileCardFrame from './SeasonProfileCardFrame';
-import { fetchActiveLeagueCrowns } from '../app/services/league_chest_rewards';
-import { PREMIUM_AVATAR_AURA_ID, getEffectiveAvatarAuraId } from '../constants/avatar_auras';
-import { emitAppEvent, onAppEvent } from '../app/events';
-import { notifyPearlShortageWithoutStore } from '../app/pearl_store_retired';
-import {
-  loadSeasonCosmetics,
-  peekSeasonCosmetics,
-} from '../app/season_cosmetics';
-import {
-  resolveProfileCardDisplayLevel,
-  resolveSeasonProfileFrameVisible,
-  SEASON1_FRAME_ID,
-} from '../app/season_cosmetics_model';
-import {
-  fxKindForProfileCard,
-  getNextProfileCardLevel,
-  getProfileCardLegendNo,
-  getProfileCardLevelDef,
-  getProfileCardSnapshot,
-  PROFILE_CARD_GRADIENTS,
-  PROFILE_CARD_LEVEL_NAME_RU,
-  PROFILE_CARD_SURFACES,
-  PROFILE_CARD_THEME_COLORS,
-  normalizeProfileCardLevel,
-  profileCardLevelRoman,
-  themeForProfileCardLevel,
-  upgradeProfileCardLevel,
-  ProfileCardLevel,
-  ProfileCardMotion,
-  ProfileCardSnapshot,
-  ProfileCardTheme,
-} from '../app/profile_card_system';
-import { DebugLogger } from '../app/debug-logger';
 
 export interface PlayerInfo {
   name: string;
-  points: number;      // total XP (or weekXp when from club room)
-  totalXp?: number;    // actual total XP (overrides points for level calc)
-  weekXp?: number;
+  points: number;
   isMe: boolean;
+  uid?: string;
+  friendUid?: string;
+  /** Public rank supplied by an authoritative public-profile projection. */
+  coinRank?: number | null;
+  isPremium?: boolean;
+  isVip?: boolean;
+  isLifetime?: boolean;
+  /** Retained only for caller compatibility while the retired card system is removed elsewhere. */
   avatar?: string;
   frame?: string;
   aura?: string;
   streak?: number | null;
-  leagueId?: number;
-  uid?: string;
-  friendUid?: string;
-  isPremium?: boolean;
-  isVip?: boolean;
-  /** Разовая покупка «Навсегда» (premium_plan==='lifetime') → показываем «Pro» вместо «Plus». */
-  isLifetime?: boolean;
-  leagueCrownExpiresAt?: number;
-  leagueCrownCount?: number;
   profileCardLevel?: number;
   profileCardTheme?: string;
   profileCardMotion?: string;
   profileCardPublicFocus?: string;
-  /** Public status reward decorating the complete profile-card sheet. */
-  seasonProfileFrameId?: string;
-  /** DEV Settings only: visual level preview; never changes purchase/storage state. */
   devProfileCardLevelOverride?: number;
-  /** DEV Settings only: compare the real card with/without the seasonal frame. */
-  devSeasonProfileFrameEnabled?: boolean;
 }
 
 interface MyInfo {
@@ -167,8 +92,6 @@ interface MyInfo {
   avatar: string;
   frame: string;
   aura?: string;
-  totalXP: number;
-  leagueId?: number;
   streak?: number | null;
 }
 
@@ -176,342 +99,126 @@ interface Props {
   player: PlayerInfo | null;
   myInfo: MyInfo;
   onClose: () => void;
-  /** dev-only: витрина движения запускает гибрид «Световод» рядом с боевым видом. Default 'classic'. */
+  /** Kept as a no-op compatibility prop for the retired showcase. */
   motionVariant?: 'classic' | 'hybrid';
 }
 
-// Синяя «дорогая» палитра Pro-плашки (зеркало celebrationContent.ts → pro.main).
-const PRO_BADGE_BLUE = '#38BDF8';
-
-type ProfileCardVisual = {
-  theme: ProfileCardTheme;
-  motion: ProfileCardMotion;
-  gradient: readonly [string, string, string];
-  accent: string;
-  accentSoft: string;
-  accentStrong: string;
-  secondary: string;
-  surface: string;
-  surfaceBorder: string;
-  shadowColor: string;
-  glowBottom: string;
-  glowTop: string;
-};
-
-const DEFAULT_PROFILE_CARD_SNAPSHOT: ProfileCardSnapshot = {
-  level: 0,
-  theme: 'classic',
-  motion: 'none',
-  publicFocus: 'balanced',
-};
-const PROFILE_HEADER_ACTION_SIZE = 42;
-// Отступы больше радиуса угла шторки (30), чтобы круглые кнопки не срезались скруглением.
-const PROFILE_HEADER_ACTION_TOP = 18;
-const PROFILE_HEADER_ACTION_RIGHT = 18;
-const PROFILE_HEADER_ACTION_GAP = 10;
-
-// Цвета/градиенты/подложки живут в profile_card_system.ts (одни и те же на модалке
-// профиля и превью апгрейда — владелец и другие игроки видят ОДИН визуал уровня).
-const buildCardVisual = (theme: ProfileCardTheme): Omit<ProfileCardVisual, 'theme' | 'motion'> => ({
-  gradient: PROFILE_CARD_GRADIENTS[theme],
-  ...PROFILE_CARD_THEME_COLORS[theme],
-  ...PROFILE_CARD_SURFACES[theme],
-});
-
-const PROFILE_CARD_VISUALS = Object.fromEntries(
-  (Object.keys(PROFILE_CARD_THEME_COLORS) as ProfileCardTheme[]).map((theme) => [theme, buildCardVisual(theme)]),
-) as Record<ProfileCardTheme, Omit<ProfileCardVisual, 'theme' | 'motion'>>;
-
-// ─── AURORA ─────────────────────────────────────────────────────────────────
-// Утверждённый владельцем редизайн «стекло и глубина света»: полупрозрачные
-// панели с тонкой светлой кромкой поверх тёмного градиента уровня, волосяные
-// разделители и стеклянный хром (кнопки/пилюли) rgba(8,10,16,0.44).
-const AURORA_GLASS = {
-  panelBg: 'rgba(255,255,255,0.05)',
-  panelBorder: 'rgba(255,255,255,0.075)',
-  hairline: 'rgba(255,255,255,0.08)',
-  chromeBg: 'rgba(8,10,16,0.44)',
-  chromeBorder: 'rgba(255,255,255,0.13)',
-  chipBg: 'rgba(255,255,255,0.055)',
-  chipBorder: 'rgba(255,255,255,0.07)',
-  inkSoft: '#C9CBD6',
-  inkPrimary: '#F4F5F8',
-  inkMuted: '#9799A6',
-} as const;
-
-/**
- * Кольцо аватара (AURORA v2): СТАТИЧНАЯ полная окружность с градиентом акцента,
- * strokeWidth 2 — без dasharray-разрыва и без вращения. Анимированные ауры
- * рисует PremiumAvatarHalo; вращающееся кольцо с ними конфликтовало (фидбек
- * владельца 2026-07-19).
- */
-function ProfileOrbitRing({ size, accent }: { size: number; accent: string }) {
-  const strokeWidth = 2;
-  const center = size / 2;
-  const radius = (size - strokeWidth) / 2;
-  return (
-    <View pointerEvents="none" style={{ position: 'absolute', width: size, height: size }}>
-      <Svg width={size} height={size}>
-        <Defs>
-          <SvgLinearGradient id="profileOrbitStroke" x1="0" y1="0" x2="1" y2="1">
-            <Stop offset="0" stopColor={accent} />
-            <Stop offset="0.5" stopColor={accent} stopOpacity={0.55} />
-            <Stop offset="1" stopColor={accent} />
-          </SvgLinearGradient>
-        </Defs>
-        <Circle
-          cx={center}
-          cy={center}
-          r={radius}
-          fill="none"
-          stroke="url(#profileOrbitStroke)"
-          strokeWidth={strokeWidth}
-        />
-      </Svg>
-    </View>
-  );
-}
-
-function normalizeProfileCardSnapshotForLevel(raw: Partial<ProfileCardSnapshot> & Partial<PlayerInfo>): ProfileCardSnapshot {
-  const level = normalizeProfileCardLevel(raw.profileCardLevel ?? raw.level);
-  const theme = themeForProfileCardLevel(level);
-  const motion = 'none';
-  const publicFocus = 'balanced';
-  return { level, theme, motion, publicFocus };
-}
-
-function getProfileCardVisual(snapshot: ProfileCardSnapshot): ProfileCardVisual {
-  const theme = themeForProfileCardLevel(snapshot.level);
-  const motion = 'none';
-  return { theme, motion, ...PROFILE_CARD_VISUALS[theme] };
-}
-
-/** Публичные блоки статистики, открываемые уровнями карточки (II+). null = скрыть строку. */
-type ProfileCardStats = {
-  wordsLearned: number | null;
-  phrasesLearned: number | null;
-  appDays: number | null;
-  longestStreak: number | null;
-  legendNo: number | null;
-};
-
-function readPublicCardStatNumber(value: unknown): number | null {
-  const n = Math.floor(Number(value));
-  return Number.isFinite(n) && n >= 0 ? n : null;
-}
-
-function formatProfileCompactNumber(value: number): string {
-  const n = Math.max(0, Math.floor(Number.isFinite(value) ? value : 0));
-  if (n < 1000) return String(n);
-  const thousands = n / 1000;
-  if (n < 10000) {
-    const oneDecimal = Math.floor(thousands * 10) / 10;
-    return `${Number.isInteger(oneDecimal) ? oneDecimal.toFixed(0) : oneDecimal.toFixed(1)}K`;
-  }
-  return `${Math.floor(thousands)}K`;
-}
+const PROFILE_ACTION_SIZE = 48;
+const PROFILE_ACTION_RIGHT = 21;
+const PROFILE_ACTION_TOP = 31;
+const PROFILE_ACTION_GAP = 9;
 
 type BodyProps = {
   player: PlayerInfo;
   myInfo: MyInfo;
-  resolvedTotalXp: number | null;
-  /** true = сеть отработала и опыт так и не нашёлся: показываем 0, а не вечный skeleton. */
-  xpResolutionSettled: boolean;
   slideAnim: Animated.Value;
   fadeAnim: Animated.Value;
-  shimmerAnim: Animated.Value;
   onBackdropPress: () => void;
   onClose: () => void;
-  multipliers: MultiplierBreakdown | null;
   onFriendRequestToast: (message: string, toastType?: 'error' | 'info') => void;
-  /** Гибрид «Световод»: вход панели из света вместо classic-пружины; кнопки — DuoPressable/PressableHybrid. */
-  isHybrid: boolean;
-  hybridOpacity: ReturnType<typeof useSharedValue<number>>;
-  hybridY: ReturnType<typeof useSharedValue<number>>;
 };
 
 function PlayerProfileModalBody({
   player,
   myInfo,
-  resolvedTotalXp,
-  xpResolutionSettled,
   slideAnim,
   fadeAnim,
-  shimmerAnim,
   onBackdropPress,
   onClose,
-  multipliers,
   onFriendRequestToast,
-  isHybrid,
-  hybridOpacity,
-  hybridY,
 }: BodyProps) {
-  const { theme: t, f, themeMode } = useTheme();
+  const { fontSize, liquidGlassThemeId, uiScale } = useTheme();
   const { lang } = useLang();
-  const router = useRouter();
-  const { isPremium: myIsPremium, isVip: myIsVip } = usePremium();
   const insets = useStableSafeAreaInsets();
+  const { height: windowHeight } = useWindowDimensions();
+  const topInset = Math.max(0, insets.top);
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
+  const availableHeight = Math.max(0, windowHeight - topInset - bottomInset - 12);
+  const sheetHeight = Math.min(530, availableHeight);
+  const textScale = FONT_SCALE[fontSize] / FONT_SCALE.medium * uiScale;
+  const g = liquidGlassTokens(liquidGlassThemeId);
   const isMe = player.isMe;
-  const devSeasonFrameOverride = __DEV__ ? player.devSeasonProfileFrameEnabled : undefined;
-  const hasDevProfileCardLevelOverride = __DEV__ && player.devProfileCardLevelOverride !== undefined;
+  const myCoinRank = useMyCoinRank();
+  const publicRank = player.coinRank ?? null;
+  const visibleRank = resolvePlayerProfileVisibleRank({
+    isMe,
+    myRank: myCoinRank,
+    publicRank: publicRank,
+  });
+  const rankRow = visibleRank === null ? null : coinRankRowForDisplay(visibleRank);
+
   const [friendRequestBusy, setFriendRequestBusy] = useState(false);
   const [friendUids, setFriendUids] = useState<Set<string>>(() => new Set());
-  // зачем (владелец 2026-08-04): заявки к синтетическим персонажам живут только
-  // на устройстве. Инициализируем состояние из локального кэша СИНХРОННО, иначе
-  // кнопка мигнёт «Добавить в друзья» на первом кадре и юзер заметит подвох.
   const [friendRequestSentUids, setFriendRequestSentUids] = useState<Set<string>>(
     () => new Set(peekSyntheticFriendRequests()),
   );
   const [removeFriendConfirmOpen, setRemoveFriendConfirmOpen] = useState(false);
-  // зачем (владелец, обязательное требование сторов — report-abuse для UGC-ников,
-  // Apple Guideline 1.2): жалоба на ник доступна с ЛЮБОЙ чужой карточки, не
-  // только с leaderboard, откуда её раньше можно было вызвать только
-  // на бумаге — сам ReportUserModal существовал, но нигде не был подключён.
   const [reportUserOpen, setReportUserOpen] = useState(false);
-  const [hasSeasonProfileFrame, setHasSeasonProfileFrame] = useState(
-    () => resolveSeasonProfileFrameVisible({
-      isMe,
-      ownedFrameIds: peekSeasonCosmetics().frames,
-      publicFrameId: player.seasonProfileFrameId,
-      devOverride: devSeasonFrameOverride,
-    }),
-  );
-  const [profileCardSnapshot, setProfileCardSnapshot] = useState<ProfileCardSnapshot>(() => normalizeProfileCardSnapshotForLevel(player));
-  const [cardStats, setCardStats] = useState<ProfileCardStats | null>(null);
-  // Фаза 3: статус карточного щита «Защита цепочки» (III+, только своя карточка).
-  const [cardShieldStatus, setCardShieldStatus] = useState<CardStreakShieldStatus | null>(null);
-  // Превью апгрейда прямо на открытой карточке: null = настоящий уровень, иначе
-  // карточка целиком преображается в выбранный уровень (визуал+эффекты+блоки).
-  const [previewLevel, setPreviewLevel] = useState<ProfileCardLevel | null>(null);
-  const [upgradeBusy, setUpgradeBusy] = useState(false);
-  // Анимация «морфа» при смене уровня карточки (превью или покупка).
-  const levelSwitchAnim = useRef(new Animated.Value(1)).current;
-  // Выезд панели превью снизу (0 = спрятана под краем, 1 = на месте).
-  const previewPanelAnim = useRef(new Animated.Value(0)).current;
   const [activityLikeTotal, setActivityLikeTotal] = useState(0);
-  // Persistent profile-level like for this exact user card (toggle state).
   const [profileLike, setProfileLike] = useState<FriendActivityLikeState | null>(null);
   const [likeBusy, setLikeBusy] = useState(false);
   const likeInFlightRef = useRef(false);
-  const profileCardLevel = profileCardSnapshot.level;
-  const [remoteCrown, setRemoteCrown] = useState<{ expiresAt: number; crownCount: number }>(() => ({ expiresAt: 0, crownCount: 0 }));
-  // зачем (2026-08-03): `points` у чужого игрока — витринное поле вызывающего
-  // экрана (в лиге это НЕДЕЛЬНЫЕ очки, в лобби турнира — заглушка 0, пока не
-  // долетел батч профилей). Считать его общим опытом нельзя: именно отсюда
-  // бралась «0 опыта, Lv.1» на карточке живого игрока. Ноль как источник уровня
-  // теперь не принимаем — берём только явно положительное значение, иначе ждём
-  // настоящий totalXp (resolvedTotalXp/leaderboard) и показываем skeleton.
-  const rawPoints = Math.floor(Number(player.points));
-  const playerPoints = Number.isFinite(rawPoints) && rawPoints > 0 ? rawPoints : null;
-  const playerTotalXp = Number.isFinite(Number(player.totalXp))
-    ? Math.max(0, Math.floor(Number(player.totalXp)))
-    : null;
-  const totalXp = isMe ? myInfo.totalXP : (resolvedTotalXp ?? playerTotalXp ?? playerPoints ?? null);
-  const safeTotalXp = totalXp ?? 0;
-  const displayXp = isMe ? myInfo.totalXP : (totalXp ?? 0);
-  const xp = displayXp;
-  const level = getLevelFromXP(safeTotalXp);
-  const streak = isMe ? (myInfo.streak ?? player.streak ?? null) : (player.streak ?? null);
-  const avatarStr = isMe
-    ? (myInfo.avatar || String(getBestAvatarForLevel(level)))
-    : (player.avatar ? String(player.avatar) : String(getBestAvatarForLevel(level)));
-  const leagueIdx = isMe
-    ? (myInfo.leagueId ?? 0)
-    : (player.leagueId ?? 0);
-  const club = CLUBS[Math.max(0, Math.min(leagueIdx, CLUBS.length - 1))];
-  const showPremium = isMe ? myIsPremium : (player.isPremium ?? false);
-  const showVip = isMe ? myIsVip : (player.isVip ?? false);
-  // «Pro» = разовая покупка «Навсегда» (lifetime). Для себя читаем локальный план,
-  // для чужих — денормализованный флаг из публичного профиля. Показываем Pro только
-  // при активном премиум-доступе (showPremium), иначе плашки нет вовсе.
-  const [myIsLifetime, setMyIsLifetime] = useState(false);
-  useEffect(() => {
-    if (devSeasonFrameOverride !== undefined) {
-      setHasSeasonProfileFrame(devSeasonFrameOverride);
-      return undefined;
-    }
-    if (!isMe) {
-      setHasSeasonProfileFrame(resolveSeasonProfileFrameVisible({
-        isMe: false,
-        ownedFrameIds: [],
-        publicFrameId: player.seasonProfileFrameId,
-      }));
-      return undefined;
-    }
 
-    let cancelled = false;
-    const refreshFromCache = () => {
-      if (!cancelled) {
-        setHasSeasonProfileFrame(peekSeasonCosmetics().frames.includes(SEASON1_FRAME_ID));
-      }
-    };
-    const subscription = onAppEvent('season_cosmetics_changed', refreshFromCache);
-    refreshFromCache();
-    void loadSeasonCosmetics().then(refreshFromCache).catch(() => {});
+  const friendRequestTargetUid = player.friendUid !== undefined ? player.friendUid : player.uid;
+  const showAddFriend =
+    !isMe &&
+    !!friendRequestTargetUid &&
+    CLOUD_SYNC_ENABLED &&
+    !IS_EXPO_GO;
+  const isAlreadyFriend = !!friendRequestTargetUid && friendUids.has(friendRequestTargetUid);
+  const isFriendRequestSent = !!friendRequestTargetUid && friendRequestSentUids.has(friendRequestTargetUid);
+  const likeTargetUid = player.friendUid || player.uid || '';
+  const canLike = !isMe && !!likeTargetUid && CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
+  const likedThisProfile =
+    !!profileLike &&
+    profileLike.targetUid === likeTargetUid &&
+    profileLike.eventId === PROFILE_LIKE_EVENT_ID;
 
-    return () => {
-      cancelled = true;
-      subscription.remove();
-    };
-  }, [devSeasonFrameOverride, isMe, player.seasonProfileFrameId]);
+  const profileState = resolvePlayerProfileV2State({
+    isMe,
+    targetUid: friendRequestTargetUid,
+    friendRequestBusy,
+    friendRequestSent: isFriendRequestSent,
+    isFriend: isAlreadyFriend,
+    liked: likedThisProfile,
+  });
 
   useEffect(() => {
-    if (!isMe) return;
-    let cancelled = false;
-    void isLifetimePlanLocal().then((v) => { if (!cancelled) setMyIsLifetime(v); }).catch(() => {});
-    return () => { cancelled = true; };
-  }, [isMe]);
-  const showPro = showPremium && (isMe ? myIsLifetime : (player.isLifetime ?? false));
-  const storedAuraId = isMe ? myInfo.aura : player.aura;
-  const effectiveAuraId = getEffectiveAvatarAuraId(storedAuraId, showPremium, showVip);
-  const usesPremiumAura = effectiveAuraId === PREMIUM_AVATAR_AURA_ID;
-  // Всё ВИЗУАЛЬНОЕ рисуем от displayCardLevel (уровень превью, если оно активно),
-  // а логика покупки/кнопки живёт на настоящем profileCardLevel.
-  const nextRealLevel = getNextProfileCardLevel(profileCardLevel);
-  const displayCardLevel = normalizeProfileCardLevel(resolveProfileCardDisplayLevel({
-    realLevel: profileCardLevel,
-    inCardPreviewLevel: isMe ? previewLevel : null,
-    devOverride: __DEV__ ? player.devProfileCardLevelOverride : undefined,
-  }));
-  const displaySnapshot: ProfileCardSnapshot = displayCardLevel === profileCardSnapshot.level
-    ? profileCardSnapshot
-    : normalizeProfileCardSnapshotForLevel({ profileCardLevel: displayCardLevel });
-  const cardDef = getProfileCardLevelDef(displayCardLevel);
-  const cardVisual = getProfileCardVisual(displaySnapshot);
-  const nextLevelVisual = PROFILE_CARD_VISUALS[themeForProfileCardLevel(nextRealLevel ?? profileCardLevel)];
-  const crownUid = player.friendUid || player.uid || '';
-  const leagueCrownCount = Math.max(
-    0,
-    Math.floor(Number(player.leagueCrownCount) || 0),
-    Math.floor(Number(remoteCrown.crownCount) || 0),
-  );
-  const hasLeagueCrown = leagueCrownCount > 0 || Math.max(Number(player.leagueCrownExpiresAt) || 0, remoteCrown.expiresAt) > Date.now();
-  const displayLeagueCrownCount = hasLeagueCrown ? Math.max(1, leagueCrownCount) : 0;
-  const rawProfileCardLevel = player.profileCardLevel;
+    setFriendRequestBusy(false);
+    setRemoveFriendConfirmOpen(false);
+    setReportUserOpen(false);
+    setFriendRequestSentUids(new Set(peekSyntheticFriendRequests()));
+  }, [player.friendUid, player.uid]);
 
   useEffect(() => {
-    // зачем: у бота/жителя лиги (isSyntheticUid) документа корон в Firestore
-    // нет и быть не может — запрос лишь тратил бы чтение впустую (аудит
-    // 2026-08-04, найдено при проверке нового контракта uid бота).
-    if (!crownUid || isSyntheticUid(crownUid)) {
-      setRemoteCrown({ expiresAt: 0, crownCount: 0 });
-      return;
-    }
     let cancelled = false;
-    void fetchActiveLeagueCrowns([crownUid]).then((crowns) => {
-      const crown = crowns[crownUid];
-      if (!cancelled) {
-        setRemoteCrown({
-          expiresAt: crown?.expiresAt ?? 0,
-          crownCount: Math.max(0, Math.floor(Number(crown?.crownCount) || 0)),
-        });
-      }
-    }).catch(() => {});
+    void loadSyntheticFriendRequests().then((stored) => {
+      if (cancelled || stored.size === 0) return;
+      setFriendRequestSentUids((previous) => {
+        const next = new Set(previous);
+        stored.forEach((uid) => next.add(uid));
+        return next;
+      });
+    });
     return () => {
       cancelled = true;
     };
-  }, [crownUid]);
+  }, []);
+
+  useEffect(() => {
+    if (!showAddFriend) {
+      setFriendUids(new Set());
+      return undefined;
+    }
+    return friendsAccountStore.subscribe((rows) => {
+      const nextFriendUids = new Set(rows.map((row) => row.uid));
+      setFriendUids(nextFriendUids);
+      setFriendRequestSentUids((previous) => {
+        const next = new Set([...previous].filter((uid) => !nextFriendUids.has(uid)));
+        return next.size === previous.size ? previous : next;
+      });
+    });
+  }, [showAddFriend]);
 
   useEffect(() => {
     let cancelled = false;
@@ -520,20 +227,15 @@ function PlayerProfileModalBody({
     void (async () => {
       const uid = player.friendUid || player.uid || (isMe ? await getCanonicalUserId() : '');
       if (!uid || cancelled) return;
-      // зачем (владелец 2026-08-04): «лайк боту не сохранялся, сделай чтобы
-      // сохранялся навсегда и число росло всегда как у живых». У синтетического
-      // персонажа нет документов в Firestore (сеть для него намеренно заглушена
-      // — аудит 2026-08-04), поэтому число собирается из двух локальных частей:
-      // растущей базы (функция от его опыта, как у живого игрока со стажем) и
-      // лайков, поставленных этим устройством, которые хранятся навсегда.
       if (isSyntheticUid(uid)) {
         await loadSyntheticActivityLikes();
         if (cancelled) return;
-        const base = residentBaseLikes(player.totalXp ?? player.points ?? 0);
-        setActivityLikeTotal(base + syntheticLikesAddedByMe(uid));
-        setProfileLike(hasLikedSynthetic(uid)
-          ? { date: '', targetUid: uid, eventId: PROFILE_LIKE_EVENT_ID }
-          : null);
+        setActivityLikeTotal(residentBaseLikes(player.points ?? 0) + syntheticLikesAddedByMe(uid));
+        setProfileLike(
+          hasLikedSynthetic(uid)
+            ? { date: '', targetUid: uid, eventId: PROFILE_LIKE_EVENT_ID }
+            : null,
+        );
         return;
       }
       const [total, likeState] = await Promise.all([
@@ -547,463 +249,66 @@ function PlayerProfileModalBody({
     return () => {
       cancelled = true;
     };
-  }, [isMe, player.friendUid, player.uid]);
+  }, [isMe, player.friendUid, player.points, player.uid]);
 
-  const shimmerOpacity = shimmerAnim.interpolate({ inputRange: [0, 1], outputRange: [0.7, 1] });
-  // Анимацию карточки рисует теперь ProfileCardMotionFx (единый движок) — старые
-  // prestigeGlow/Glint/Particle интерполяции удалены как мёртвый код.
-  const prestigeActive = displayCardLevel > 0;
-  // AURORA-стекло: на тёмной престижной карточке — всегда; на светлой базовой
-  // карточке стекло нечитаемо, поэтому используем непрозрачные токены темы.
-  const auroraGlass = prestigeActive || !isLightThemeMode(themeMode);
-  const glassPanel = auroraGlass ? AURORA_GLASS.panelBg : t.bgSurface;
-  // зачем: panelBorder/chipBorder больше не используются — все кромки панелей и
-  // чипов сняты по §0.D, разделение переведено на тон. Токены удалены, чтобы не
-  // соблазняли вернуть рамку.
-  const glassHairline = auroraGlass ? AURORA_GLASS.hairline : t.border;
-  const glassChromeBg = auroraGlass ? AURORA_GLASS.chromeBg : t.bgSurface;
-  const glassChipBg = auroraGlass ? AURORA_GLASS.chipBg : t.bgCard;
-  const activeMultiplierColor = isLightThemeMode(themeMode) ? t.accent : '#35D07F';
-  // зачем: в светлой теме t.textPrimary/textMuted/textSecond — тёмные (для светлого фона
-  // приложения), но эти панели на престижной карточке лежат на тёмном AURORA-стекле
-  // независимо от темы — тёмный текст на тёмной карточке становится нечитаемым.
-  // Те же панели, что решают фон (glassPanel/glassChromeBg), решают и чернила текста.
-  const inkPrimary = auroraGlass ? AURORA_GLASS.inkPrimary : t.textPrimary;
-  const inkSecond = auroraGlass ? AURORA_GLASS.inkSoft : t.textSecond;
-  const inkMuted = auroraGlass ? AURORA_GLASS.inkMuted : t.textMuted;
-
-  // зачем: владелец не терпит обводок контейнеров — разделяем тоном/тенью/фоном
-  // (хендоф docs/cards-redesign §0.D, приоритет над рамками из HTML-макета).
-  // Акцентная подложка уровня вместо цветной кромки: та же семантика уровня,
-  // читается как материал, а не как рамка.
-  const levelSurface = cardVisual.accentSoft;
-
-  // зачем: A-54/A-55 — модалка не знала про «Уменьшение движения», вечный shimmer
-  // крутился всегда. Теперь один флаг гейтит и цикл, и длительности входа.
-  const reduceMotion = useReduceMotion();
-
-  const friendRequestTargetUid = player.friendUid !== undefined ? player.friendUid : player.uid;
-
-  const showAddFriend =
-    !isMe &&
-    !!friendRequestTargetUid &&
-    CLOUD_SYNC_ENABLED &&
-    !IS_EXPO_GO;
-  const isAlreadyFriend = !!friendRequestTargetUid && friendUids.has(friendRequestTargetUid);
-  const isFriendRequestSent = !!friendRequestTargetUid && friendRequestSentUids.has(friendRequestTargetUid);
-
-  // Profile-level activity like: tappable on ANY user's card (friend or not), just not your
-  // own. The like is bound persistently to this person (not an event) and is toggleable.
-  const likeTargetUid = player.friendUid || player.uid || '';
-  const canLike = !isMe && !!likeTargetUid && CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
-  const likedThisProfile =
-    !!profileLike &&
-    profileLike.targetUid === likeTargetUid &&
-    profileLike.eventId === PROFILE_LIKE_EVENT_ID;
-
-  // Открытие уровневых блоков карточки: II «Выучено» и IV «Путь» собираются
-  // ниже в ОДНУ glass-панель (iOS-список); V «Легенда» — отдельная строка.
-  const showLearnedBlock =
-    displayCardLevel >= 2 &&
-    !!cardStats &&
-    (cardStats.wordsLearned !== null || cardStats.phrasesLearned !== null);
-  const showPathBlock = displayCardLevel >= 4 && !!cardStats && cardStats.appDays !== null;
-  // Фаза 3: строка щита — только своя карточка уровня III+ (чужой статус не виден).
-  const showShieldBlock = isMe && displayCardLevel >= 3;
-  const showShieldRow = showShieldBlock && cardShieldStatus !== null;
-
-  // Статус щита грузим как соседние cardStats: async, с отменой при размонтировании.
-  useEffect(() => {
-    let cancelled = false;
-    if (isMe && displayCardLevel >= 3) {
-      getCardStreakShieldStatus().then((s) => { if (!cancelled) setCardShieldStatus(s); }).catch(() => {});
-    } else {
-      setCardShieldStatus(null);
-    }
-    return () => { cancelled = true; };
-  }, [isMe, displayCardLevel]);
-
-  // Подпись статуса щита: активна / перезарядка · N дн / спасла сегодня.
-  const cardShieldStatusText = cardShieldStatus === null
-    ? ''
-    : cardShieldStatus.usedToday
-      ? triLang(lang as Lang, {
-          ru: 'спасла сегодня',
-          uk: 'врятувала сьогодні',
-          es: 'te salvó hoy',
-          en: 'saved you today',
-          'pt-BR': 'salvou hoje',
-          vi: 'đã cứu hôm nay',
-          id: 'menyelamatkan hari ini',
-          tr: 'bugün kurtardı',
-          pl: 'uratowała dziś',
-        })
-      : cardShieldStatus.eligible
-        ? triLang(lang as Lang, {
-            ru: 'активна',
-            uk: 'активна',
-            es: 'activa',
-            en: 'activa',
-            'pt-BR': 'ativa',
-            vi: 'đang hoạt động',
-            id: 'aktif',
-            tr: 'aktif',
-            pl: 'aktywna',
-          })
-        : triLang(lang as Lang, {
-            ru: `перезарядка · ${cardShieldStatus.cooldownDaysLeft} дн`,
-            uk: `перезарядка · ${cardShieldStatus.cooldownDaysLeft} дн`,
-            es: `recarga · ${cardShieldStatus.cooldownDaysLeft} d`,
-            en: `recarga · ${cardShieldStatus.cooldownDaysLeft} d`,
-            'pt-BR': `recarga · ${cardShieldStatus.cooldownDaysLeft} d`,
-            vi: `nạp lại · ${cardShieldStatus.cooldownDaysLeft} ngày`,
-            id: `isi ulang · ${cardShieldStatus.cooldownDaysLeft} hari`,
-            tr: `yeniden dolum · ${cardShieldStatus.cooldownDaysLeft} gün`,
-            pl: `odnowienie · ${cardShieldStatus.cooldownDaysLeft} dni`,
-          });
-
-  useEffect(() => {
-    let cancelled = false;
-    if (!isMe) {
-      setProfileCardSnapshot(normalizeProfileCardSnapshotForLevel({
-        profileCardLevel: rawProfileCardLevel,
-      }));
-      return () => {
-        cancelled = true;
-      };
-    }
-    getProfileCardSnapshot()
-      .then((snapshot) => {
-        if (!cancelled) setProfileCardSnapshot(normalizeProfileCardSnapshotForLevel(snapshot));
-      })
-      .catch(() => {
-        if (!cancelled) setProfileCardSnapshot(DEFAULT_PROFILE_CARD_SNAPSHOT);
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, [
-    isMe,
-    rawProfileCardLevel,
-    player.uid,
-    player.friendUid,
-  ]);
-
-  // Блоки статистики уровней II+ («Выучено»/«Арена»/«Путь»/«Легенда»). Для себя —
-  // локальные lifetime-статы (кэш мгновенно, полный пересчёт добегает следом); для
-  // других — денормализованные card*-поля из public_profiles, которые пишет
-  // public_profile_snapshot.ts при уровне карточки II+.
-  useEffect(() => {
-    let cancelled = false;
-    setCardStats(null);
-    // Свою карточку грузим всегда (нужно для превью будущих уровней), чужую — только
-    // если её уровень реально открывает блоки.
-    // зачем: у бота/жителя лиги (isSyntheticUid) документа public_profiles нет
-    // и быть не может — оба флага гасим, иначе каждое открытие карточки тратило
-    // бы чтение впустую (аудит 2026-08-04, найдено при проверке нового контракта
-    // uid бота).
-    const isSynthetic = isSyntheticUid(player.uid) || isSyntheticUid(player.friendUid);
-    const needsRemoteFrame = !isMe
-      && !isSynthetic
-      && devSeasonFrameOverride === undefined
-      && player.seasonProfileFrameId === undefined;
-    const needsRemoteStats = !isMe && !isSynthetic && profileCardLevel >= 2;
-    if (!isMe && !needsRemoteStats && !needsRemoteFrame) {
-      return () => { cancelled = true; };
-    }
-    if (isMe) {
-      void (async () => {
-        const legendNo = profileCardLevel >= 5 ? await getProfileCardLegendNo().catch(() => null) : null;
-        const apply = (s: Awaited<ReturnType<typeof readLifetimeProfileStatsCache>>) => {
-          if (cancelled || !s) return;
-          setCardStats({
-            wordsLearned: s.wordsLearned,
-            phrasesLearned: s.phrasesLearned,
-            appDays: s.appDaysUnion,
-            longestStreak: s.longestStreakDays,
-            legendNo,
-          });
-        };
-        apply(await readLifetimeProfileStatsCache().catch(() => null));
-        // Полный пересчёт освежит кэш и цифры, если снимок устарел.
-        InteractionManager.runAfterInteractions(() => {
-          if (cancelled) return;
-          void loadLifetimeProfileStats().then(apply).catch(() => {});
-        });
-      })();
-      return () => { cancelled = true; };
-    }
-    if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
-      return () => { cancelled = true; };
-    }
-    const publicIds = Array.from(new Set([player.friendUid, player.uid].filter(Boolean) as string[]));
-    void (async () => {
-      let statsApplied = false;
-      for (const id of publicIds) {
-        try {
-          const snap = await firestore().collection('public_profiles').doc(id).get();
-          if (cancelled) return;
-          if (!snap.exists) continue;
-          const d = (snap.data() ?? {}) as Record<string, unknown>;
-          if (needsRemoteStats && !statsApplied) {
-            statsApplied = true;
-            setCardStats({
-              wordsLearned: readPublicCardStatNumber(d.cardWordsLearned),
-              phrasesLearned: readPublicCardStatNumber(d.cardPhrasesLearned),
-              appDays: readPublicCardStatNumber(d.cardAppDays),
-              longestStreak: readPublicCardStatNumber(d.cardLongestStreak),
-              legendNo: readPublicCardStatNumber(d.profileCardLegendNo),
-            });
-          }
-          if (!needsRemoteFrame) return;
-          const publicFrameId = typeof d.seasonProfileFrameId === 'string'
-            ? d.seasonProfileFrameId
-            : '';
-          if (publicFrameId === SEASON1_FRAME_ID) {
-            setHasSeasonProfileFrame(true);
-            return;
-          }
-        } catch (e) {
-      // пробуем следующий id
-      DebugLogger.error('PlayerProfileModal:publicFrameId', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
-      }
-      if (!cancelled && needsRemoteFrame) setHasSeasonProfileFrame(false);
-    })();
-    return () => { cancelled = true; };
-  }, [devSeasonFrameOverride, isMe, player.friendUid, player.seasonProfileFrameId, player.uid, profileCardLevel]);
-
-  // «Морф» при каждой смене отображаемого уровня: фон/эффекты проявляются заново,
-  // шторка едва заметно пружинит масштабом.
-  const prevDisplayLevelRef = useRef(displayCardLevel);
-  useEffect(() => {
-    if (prevDisplayLevelRef.current === displayCardLevel) return;
-    prevDisplayLevelRef.current = displayCardLevel;
-    levelSwitchAnim.setValue(0);
-    Animated.timing(levelSwitchAnim, {
-      toValue: 1,
-      duration: 380,
-      easing: Easing.out(Easing.cubic),
-      useNativeDriver: true,
-    }).start();
-  }, [displayCardLevel, levelSwitchAnim]);
-
-  // Панель превью выезжает снизу при входе в режим превью и уезжает при выходе.
-  useEffect(() => {
-    Animated.timing(previewPanelAnim, {
-      toValue: isMe && !hasDevProfileCardLevelOverride && previewLevel !== null ? 1 : 0,
-      duration: 260,
-      easing: Easing.out(Easing.cubic),
-      useNativeDriver: true,
-    }).start();
-  }, [hasDevProfileCardLevelOverride, isMe, previewLevel, previewPanelAnim]);
-
-  // Тап по круглой кнопке: карточка ПРЯМО ЗДЕСЬ преображается в следующий уровень
-  // (никакого отдельного экрана). Повторные тапы листают уровни дальше до V,
-  // после V — возврат к настоящей карточке.
-  const handleUpgradeButtonTap = useCallback(() => {
-    if (hasDevProfileCardLevelOverride) return;
-    hapticTap();
-    setPreviewLevel((prev) => (prev === null ? getNextProfileCardLevel(profileCardLevel) : getNextProfileCardLevel(prev)));
-  }, [hasDevProfileCardLevelOverride, profileCardLevel]);
-
-  const handleExitPreview = useCallback(() => {
-    hapticTap();
-    setPreviewLevel(null);
-  }, []);
-
-  const handleBuyPreviewedLevel = useCallback(async () => {
-    if (hasDevProfileCardLevelOverride || upgradeBusy || previewLevel === null || nextRealLevel === null || previewLevel !== nextRealLevel) return;
-    hapticTap();
-    setUpgradeBusy(true);
-    try {
-      const result = await upgradeProfileCardLevel();
-      if (result.ok === true) {
-        const fresh = await getProfileCardSnapshot().catch(() => null);
-        if (fresh) setProfileCardSnapshot(normalizeProfileCardSnapshotForLevel(fresh));
-        setPreviewLevel(null);
-        if (result.legendNo) {
-          const legendNo = result.legendNo;
-          setCardStats((prev) => (prev ? { ...prev, legendNo } : prev));
-        }
-        // Покупка = публичная смена вида: бейдж в списках должен смениться сразу.
-        void syncToCloud({ forceNow: true });
-        const boughtName = lang === 'ru'
-          ? PROFILE_CARD_LEVEL_NAME_RU[result.level]
-          : getProfileCardLevelDef(result.level).name;
-        onFriendRequestToast(triLang(lang as Lang, {
-          ru: `Карточка улучшена: ${boughtName}`,
-          uk: `Картку покращено: ${boughtName}`,
-          es: `Tarjeta mejorada: ${boughtName}`,
-          en: `Card upgraded: ${boughtName}`,
-          'pt-BR': `Cartão melhorado: ${boughtName}`,
-          vi: `Đã nâng cấp thẻ: ${boughtName}`,
-          id: `Kartu ditingkatkan: ${boughtName}`,
-          tr: `Kart yükseltildi: ${boughtName}`,
-          pl: `Karta ulepszona: ${boughtName}`,
-        }), 'info');
-        if (result.legendNo) {
-          // Фаза 4: «праздник легенды» — отдельный праздничный тост следом за тостом апгрейда.
-          const legendNo = result.legendNo;
-          setTimeout(() => {
-            onFriendRequestToast(triLang(lang as Lang, {
-              ru: `Ты стал Легендой № ${legendNo}! Друзья получили +5`,
-              uk: `Ти став Легендою № ${legendNo}! Друзі отримали +5`,
-              es: `¡Te convertiste en Leyenda n.º ${legendNo}! Tus amigos recibieron +5`,
-              en: `You became Legend #${legendNo}! Friends got +5`,
-              'pt-BR': `Você virou Lenda n.º ${legendNo}! Seus amigos receberam +5`,
-              vi: `Bạn đã trở thành Huyền thoại số ${legendNo}! Bạn bè nhận được +5`,
-              id: `Kamu menjadi Legenda № ${legendNo}! Temanmu menerima +5`,
-              tr: `Efsane № ${legendNo} oldun! Arkadaşların +5 kazandı`,
-              pl: `Zostałeś Legendą № ${legendNo}! Znajomi otrzymali +5`,
-            }), 'info');
-          }, 1400);
-        }
-        return;
-      }
-      if (result.reason === 'insufficient') {
-        // зачем (PM-057): магазина жемчуга больше нет — закрываем модал и честно
-        // говорим о нехватке, без перехода в магазин.
-        onClose();
-        notifyPearlShortageWithoutStore('profile_card_upgrade', Math.max(0, result.need ?? 0));
-        return;
-      }
-      onFriendRequestToast(triLang(lang as Lang, {
-        ru: 'Не получилось обновить карточку. Попробуй ещё раз.',
-        uk: 'Не вдалося оновити картку. Спробуй ще раз.',
-        es: 'No se pudo mejorar la tarjeta. Inténtalo de nuevo.',
-        en: 'Could not upgrade the card. Try again.',
-        'pt-BR': 'Não foi possível melhorar o cartão. Tente novamente.',
-        vi: 'Không thể nâng cấp thẻ. Hãy thử lại.',
-        id: 'Kartu belum bisa ditingkatkan. Coba lagi.',
-        tr: 'Kart yükseltilemedi. Tekrar dene.',
-        pl: 'Nie udało się ulepszyć karty. Spróbuj ponownie.',
-      }), 'error');
-    } finally {
-      setUpgradeBusy(false);
-    }
-  }, [hasDevProfileCardLevelOverride, lang, nextRealLevel, onClose, onFriendRequestToast, previewLevel, router, upgradeBusy]);
-
-  useEffect(() => {
-    setFriendRequestBusy(false);
-    setRemoveFriendConfirmOpen(false);
-    // зачем (владелец 2026-08-04): сброс в ПУСТОЕ множество стирал отметку
-    // «заявка отправлена» у синтетических персонажей при каждом открытии другой
-    // карточки — кнопка возвращалась в исходное состояние и выдавала обман.
-    // Заявки к живым по-прежнему сбрасываются (правду о них приносит сервер),
-    // а локальные к жителям/ботам сохраняются.
-    setFriendRequestSentUids(new Set(peekSyntheticFriendRequests()));
-    setPreviewLevel(null);
-    setUpgradeBusy(false);
-  }, [player.uid, player.friendUid]);
-
-  // Локальный список заявок к синтетическим персонажам переживает перезапуск
-  // приложения: подтягиваем его с диска и доливаем в состояние.
-  useEffect(() => {
-    let cancelled = false;
-    void loadSyntheticFriendRequests().then((stored) => {
-      if (cancelled || stored.size === 0) return;
-      setFriendRequestSentUids((prev) => {
-        const next = new Set(prev);
-        let added = false;
-        stored.forEach((uid) => {
-          if (!next.has(uid)) {
-            next.add(uid);
-            added = true;
-          }
-        });
-        return added ? next : prev;
-      });
-    });
-    return () => { cancelled = true; };
-  }, []);
-
-  useEffect(() => {
-    if (!showAddFriend) {
-      setFriendUids(new Set());
-      return;
-    }
-    return friendsAccountStore.subscribe((rows) => {
-      const nextFriendUids = new Set(rows.map((row) => row.uid));
-      setFriendUids(nextFriendUids);
-      setFriendRequestSentUids(prev => {
-        const next = new Set([...prev].filter(uid => !nextFriendUids.has(uid)));
-        return next.size === prev.size ? prev : next;
-      });
-    });
-  }, [showAddFriend]);
+  const requestSentText = triLang(lang as Lang, {
+    ru: 'Заявка отправлена!',
+    uk: 'Заявку надіслано!',
+    es: '¡Solicitud enviada!',
+    en: 'Request sent!',
+    'pt-BR': 'Solicitação enviada!',
+    vi: 'Đã gửi lời mời!',
+    id: 'Permintaan terkirim!',
+    tr: 'İstek gönderildi!',
+    pl: 'Zaproszenie wysłane!',
+  });
+  const requestFailedText = triLang(lang as Lang, {
+    ru: 'Не отправилось. Попробуй позже',
+    uk: 'Не вдалося надіслати. Спробуйте пізніше',
+    es: 'No se pudo enviar. Inténtalo más tarde',
+    en: 'Failed to send. Try again later',
+    'pt-BR': 'Não foi possível enviar. Tente mais tarde',
+    vi: 'Không gửi được. Hãy thử lại sau',
+    id: 'Tidak dapat dikirim. Coba lagi nanti',
+    tr: 'Gönderilemedi. Daha sonra tekrar dene',
+    pl: 'Nie udało się wysłać. Spróbuj później',
+  });
 
   const handleAddFriendPress = useCallback(async () => {
     if (!friendRequestTargetUid || friendRequestBusy) return;
     const targetUid = friendRequestTargetUid;
     setFriendRequestBusy(true);
-    setFriendRequestSentUids(prev => {
-      const next = new Set(prev);
-      next.add(targetUid);
-      return next;
-    });
-    onFriendRequestToast(
-      triLang(lang as Lang, {
-        ru: 'Заявка отправлена!',
-        uk: 'Заявку надіслано!',
-        es: '¡Solicitud enviada!',
-        en: 'Request sent!',
-        'pt-BR': 'Solicitação enviada!',
-        vi: 'Đã gửi lời mời!',
-        id: 'Permintaan terkirim!',
-        tr: 'İstek gönderildi!',
-        pl: 'Zaproszenie wysłane!',
-      }),
-      'info',
-    );
-    // зачем (владелец 2026-08-04): житель лиги / бот турнира — не настоящий
-    // аккаунт, отправлять ему заявку некуда. Запоминаем факт отправки локально:
-    // кнопка навсегда останется «Заявка отправлена», как у живого человека,
-    // который её не принял. В сеть не уходит ничего — ни записи, ни чтения.
+    setFriendRequestSentUids((previous) => new Set([...previous, targetUid]));
+    onFriendRequestToast(requestSentText, 'info');
+
     if (isSyntheticUid(targetUid)) {
       rememberSyntheticFriendRequest(targetUid);
       setFriendRequestBusy(false);
       return;
     }
+
     try {
       const result = await sendFriendRequest(targetUid);
       if (result === 'sent') {
-        onFriendRequestToast(
-          triLang(lang as Lang, {
-            ru: 'Заявка отправлена!',
-            uk: 'Заявку надіслано!',
-            es: '¡Solicitud enviada!',
-            en: 'Request sent!',
-            'pt-BR': "Solicitação enviada!",
-            vi: "Đã gửi lời mời!",
-            id: "Permintaan terkirim!",
-            tr: "İstek gönderildi!",
-            pl: "Zaproszenie wysłane!",
-          }),
-          'info',
-        );
+        onFriendRequestToast(requestSentText, 'info');
       } else if (result === 'already_friends') {
-        setFriendRequestSentUids(prev => {
-          const next = new Set(prev);
+        setFriendRequestSentUids((previous) => {
+          const next = new Set(previous);
           next.delete(targetUid);
           return next;
         });
-        setFriendUids(prev => {
-          const next = new Set(prev);
-          next.add(targetUid);
-          return next;
-        });
+        setFriendUids((previous) => new Set([...previous, targetUid]));
         onFriendRequestToast(
           triLang(lang as Lang, {
             ru: 'Уже друзья',
             uk: 'Уже друзі',
             es: 'Ya son amigos',
             en: 'Already friends',
-            'pt-BR': "Vocês já são amigos",
-            vi: "Hai bạn đã là bạn bè",
-            id: "Kalian sudah berteman",
-            tr: "Zaten arkadaşsınız",
-            pl: "Już jesteście znajomymi",
+            'pt-BR': 'Vocês já são amigos',
+            vi: 'Hai bạn đã là bạn bè',
+            id: 'Kalian sudah berteman',
+            tr: 'Zaten arkadaşsınız',
+            pl: 'Już jesteście znajomymi',
           }),
           'info',
         );
@@ -1014,79 +319,55 @@ function PlayerProfileModalBody({
             uk: 'Заявку вже надіслано',
             es: 'Solicitud ya enviada',
             en: 'Request already sent',
-            'pt-BR': "Solicitação já enviada",
-            vi: "Lời mời đã được gửi",
-            id: "Permintaan sudah dikirim",
-            tr: "İstek zaten gönderildi",
-            pl: "Zaproszenie już wysłane",
+            'pt-BR': 'Solicitação já enviada',
+            vi: 'Lời mời đã được gửi',
+            id: 'Permintaan sudah dikirim',
+            tr: 'İstek zaten gönderildi',
+            pl: 'Zaproszenie już wysłane',
           }),
           'info',
         );
-      } else if (result === 'self') {
-        setFriendRequestSentUids(prev => {
-          const next = new Set(prev);
+      } else if (result === 'self' || result === 'not_found' || result === 'error') {
+        setFriendRequestSentUids((previous) => {
+          const next = new Set(previous);
           next.delete(targetUid);
           return next;
         });
         onFriendRequestToast(
-          triLang(lang as Lang, {
-            ru: 'Это твой профиль',
-            uk: 'Це твій профіль',
-            es: 'Es tu perfil',
-            en: 'This is your profile',
-            'pt-BR': "Este é seu perfil",
-            vi: "Đây là hồ sơ của bạn",
-            id: "Ini profilmu",
-            tr: "Bu senin profilin",
-            pl: "To twój profil",
-          }),
-          'info',
-        );
-      } else {
-        setFriendRequestSentUids(prev => {
-          const next = new Set(prev);
-          next.delete(targetUid);
-          return next;
-        });
-        onFriendRequestToast(
-          triLang(lang as Lang, {
-            ru: 'Не отправилось. Попробуй позже',
-            uk: 'Не вдалося надіслати. Спробуйте пізніше',
-            es: 'No se pudo enviar. Inténtalo más tarde',
-            en: 'Failed to send. Try again later',
-            'pt-BR': "Não foi possível enviar. Tente mais tarde",
-            vi: "Không gửi được. Hãy thử lại sau",
-            id: "Tidak dapat dikirim. Coba lagi nanti",
-            tr: "Gönderilemedi. Daha sonra tekrar dene",
-            pl: "Nie udało się wysłać. Spróbuj później",
-          }),
-          'error',
+          result === 'self'
+            ? triLang(lang as Lang, {
+                ru: 'Это твой профиль',
+                uk: 'Це твій профіль',
+                es: 'Es tu perfil',
+                en: 'This is your profile',
+                'pt-BR': 'Este é seu perfil',
+                vi: 'Đây là hồ sơ của bạn',
+                id: 'Ini profilmu',
+                tr: 'Bu senin profilin',
+                pl: 'To twój profil',
+              })
+            : requestFailedText,
+          result === 'self' ? 'info' : 'error',
         );
       }
     } catch {
-      setFriendRequestSentUids(prev => {
-        const next = new Set(prev);
+      setFriendRequestSentUids((previous) => {
+        const next = new Set(previous);
         next.delete(targetUid);
         return next;
       });
-      onFriendRequestToast(
-        triLang(lang as Lang, {
-          ru: 'Не отправилось. Попробуй позже',
-          uk: 'Не вдалося надіслати. Спробуйте пізніше',
-          es: 'No se pudo enviar. Inténtalo más tarde',
-          en: 'Failed to send. Try again later',
-          'pt-BR': 'Não foi possível enviar. Tente mais tarde',
-          vi: 'Không gửi được. Hãy thử lại sau',
-          id: 'Tidak dapat dikirim. Coba lagi nanti',
-          tr: 'Gönderilemedi. Daha sonra tekrar dene',
-          pl: 'Nie udało się wysłać. Spróbuj później',
-        }),
-        'error',
-      );
+      onFriendRequestToast(requestFailedText, 'error');
     } finally {
       setFriendRequestBusy(false);
     }
-  }, [friendRequestTargetUid, friendRequestBusy, lang, onFriendRequestToast]);
+  }, [
+    friendRequestBusy,
+    friendRequestTargetUid,
+    lang,
+    onFriendRequestToast,
+    requestFailedText,
+    requestSentText,
+  ]);
 
   const handleFriendButtonPress = useCallback(() => {
     if (!friendRequestTargetUid || friendRequestBusy || isFriendRequestSent) return;
@@ -1096,7 +377,13 @@ function PlayerProfileModalBody({
       return;
     }
     void handleAddFriendPress();
-  }, [friendRequestTargetUid, friendRequestBusy, isAlreadyFriend, isFriendRequestSent, handleAddFriendPress]);
+  }, [
+    friendRequestBusy,
+    friendRequestTargetUid,
+    handleAddFriendPress,
+    isAlreadyFriend,
+    isFriendRequestSent,
+  ]);
 
   const handleRemoveFriendConfirm = useCallback(() => {
     if (!friendRequestTargetUid || friendRequestBusy) return;
@@ -1104,15 +391,15 @@ function PlayerProfileModalBody({
     const wasFriend = friendUids.has(removedUid);
     setRemoveFriendConfirmOpen(false);
     setFriendRequestBusy(true);
-    setFriendUids((prev) => {
-      const next = new Set(prev);
+    setFriendUids((previous) => {
+      const next = new Set(previous);
       next.delete(removedUid);
       return next;
     });
     deleteFriend(removedUid)
       .then(() => {
-        setFriendUids((prev) => {
-          const next = new Set(prev);
+        setFriendUids((previous) => {
+          const next = new Set(previous);
           next.delete(removedUid);
           return next;
         });
@@ -1122,22 +409,18 @@ function PlayerProfileModalBody({
             uk: 'Друга видалено',
             es: 'Amigo eliminado',
             en: 'Friend removed',
-            'pt-BR': "Amigo removido",
-            vi: "Đã xóa bạn bè",
-            id: "Teman dihapus",
-            tr: "Arkadaş silindi",
-            pl: "Znajomy usunięty",
+            'pt-BR': 'Amigo removido',
+            vi: 'Đã xóa bạn bè',
+            id: 'Teman dihapus',
+            tr: 'Arkadaş silindi',
+            pl: 'Znajomy usunięty',
           }),
           'info',
         );
       })
       .catch(() => {
         if (wasFriend) {
-          setFriendUids((prev) => {
-            const next = new Set(prev);
-            next.add(removedUid);
-            return next;
-          });
+          setFriendUids((previous) => new Set([...previous, removedUid]));
         }
         onFriendRequestToast(
           triLang(lang as Lang, {
@@ -1145,17 +428,23 @@ function PlayerProfileModalBody({
             uk: 'Не вийшло прибрати. Спробуй ще раз',
             es: 'No se pudo quitar. Inténtalo de nuevo',
             en: 'Could not remove. Try again',
-            'pt-BR': "Não deu para remover. Tente de novo",
-            vi: "Chưa gỡ được. Hãy thử lại",
-            id: "Belum bisa dihapus. Coba lagi",
-            tr: "Kaldırılamadı. Tekrar dene",
-            pl: "Nie udało się usunąć. Spróbuj ponownie",
+            'pt-BR': 'Não deu para remover. Tente de novo',
+            vi: 'Chưa gỡ được. Hãy thử lại',
+            id: 'Belum bisa dihapus. Coba lagi',
+            tr: 'Kaldırılamadı. Tekrar dene',
+            pl: 'Nie udało się usunąć. Spróbuj ponownie',
           }),
           'error',
         );
       })
       .finally(() => setFriendRequestBusy(false));
-  }, [friendRequestTargetUid, friendRequestBusy, friendUids, lang, onFriendRequestToast]);
+  }, [
+    friendRequestBusy,
+    friendRequestTargetUid,
+    friendUids,
+    lang,
+    onFriendRequestToast,
+  ]);
 
   const handleToggleLike = useCallback(() => {
     if (!canLike || !likeTargetUid || likeInFlightRef.current) return;
@@ -1164,12 +453,11 @@ function PlayerProfileModalBody({
     setLikeBusy(true);
 
     const wasLiked = likedThisProfile;
-    // Optimistic toggle.
     if (wasLiked) {
-      setActivityLikeTotal((n) => Math.max(0, n - 1));
+      setActivityLikeTotal((total) => Math.max(0, total - 1));
       setProfileLike(null);
     } else {
-      setActivityLikeTotal((n) => n + 1);
+      setActivityLikeTotal((total) => total + 1);
       setProfileLike({
         date: '',
         targetUid: likeTargetUid,
@@ -1178,12 +466,6 @@ function PlayerProfileModalBody({
       });
     }
 
-    // зачем (владелец 2026-08-04): «поставка боту лайка не сохранялась,
-    // сделай чтобы лайк боту сохранялся у него навсегда и число росло всегда
-    // как у живых». Синтетическому персонажу некуда слать сетевой вызов — он
-    // сохраняется на устройство и остаётся, даже если приложение закрыть.
-    // Отклика от сервера ждать не нужно, поэтому просто выходим после
-    // оптимистичного апдейта выше — откат тут в принципе невозможен.
     if (isSyntheticUid(likeTargetUid)) {
       toggleSyntheticLike(likeTargetUid, !wasLiked);
       likeInFlightRef.current = false;
@@ -1196,24 +478,21 @@ function PlayerProfileModalBody({
       : sendFriendActivityLike({ targetUid: likeTargetUid, senderDisplayName: myInfo.name });
 
     void action
-      .then((res) => {
-        // Reconcile with the authoritative server total.
-        setActivityLikeTotal(Math.max(0, Math.floor(Number(res.targetActivityLikeTotal) || 0)));
-        if (wasLiked) {
-          setProfileLike(null);
-        } else {
-          setProfileLike({
-            date: res.date,
-            targetUid: res.targetUid,
-            eventId: res.eventId,
-            createdAt: Date.now(),
-          });
-        }
-        // зачем: сердце «дай пять» в строке списка друзей слушает это событие.
+      .then((result) => {
+        setActivityLikeTotal(Math.max(0, Math.floor(Number(result.targetActivityLikeTotal) || 0)));
+        setProfileLike(
+          wasLiked
+            ? null
+            : {
+                date: result.date,
+                targetUid: result.targetUid,
+                eventId: result.eventId,
+                createdAt: Date.now(),
+              },
+        );
         emitAppEvent('profile_like_changed', { targetUid: likeTargetUid, liked: !wasLiked });
       })
       .catch(async () => {
-        // Roll back the optimistic change to the truth on the server.
         const freshState = await fetchActivityLikeState(likeTargetUid).catch(() => null);
         const freshTotal = await fetchActivityLikeTotal(likeTargetUid).catch(() => null);
         setProfileLike(freshState);
@@ -1224,7 +503,7 @@ function PlayerProfileModalBody({
             ru: 'Не получилось. Проверь интернет и попробуй ещё раз',
             uk: 'Не вдалося. Перевір інтернет і спробуй ще раз',
             es: 'No funcionó. Comprueba Internet e inténtalo de nuevo',
-            en: 'Didn\'t work. Check your internet and try again',
+            en: 'Did not work. Check your internet and try again',
             'pt-BR': 'Não deu certo. Verifique a internet e tente novamente',
             vi: 'Không thành công. Hãy kiểm tra mạng rồi thử lại',
             id: 'Gagal. Periksa internet lalu coba lagi',
@@ -1238,126 +517,185 @@ function PlayerProfileModalBody({
         likeInFlightRef.current = false;
         setLikeBusy(false);
       });
-  }, [canLike, likeTargetUid, likedThisProfile, myInfo.name, lang, onFriendRequestToast]);
+  }, [
+    canLike,
+    lang,
+    likeTargetUid,
+    likedThisProfile,
+    myInfo.name,
+    onFriendRequestToast,
+  ]);
 
-  const compactXp = formatProfileCompactNumber(xp);
-  // зачем (2026-08-03): опыт чужого игрока может быть ещё не известен (батч
-  // профилей/leaderboard в полёте). Печатать в этом случае «0» и «Lv.1» —
-  // враньё: владелец видел живого игрока с нулями. Показываем skeleton той же
-  // геометрии (первый кадр = финальный, layout не прыгает), а как только
-  // приходит настоящее число — плитки заполняются.
-  // зачем (2026-08-03): skeleton был ВЕЧНЫМ. У новичка (турнирное лобби, Lv.1)
-  // опыт честно равен нулю: сервер отдаёт профиль с totalXp: 0 либо null, а
-  // клиент считал такой ответ «не знаю» и ждал число, которое никогда не
-  // придёт. Теперь ожидание конечно: как только сеть отработала
-  // (xpResolutionSettled), показываем настоящий 0 и Lv.1 вместо пульсации.
-  const xpUnknown = !isMe && totalXp === null && !xpResolutionSettled;
-  const profileChainLabel = triLang(lang as Lang, {
-    ru: 'цепочка',
-    uk: 'ланцюжок',
-    es: 'racha',
-    en: 'streak',
-    'pt-BR': "sequência",
-    vi: "chuỗi",
-    id: "rangkaian",
-    tr: "seri",
-    pl: "seria",
-  });
+  const relationshipText = (() => {
+    switch (profileState) {
+      case 'self':
+        return triLang(lang as Lang, {
+          ru: 'Ваша визитка',
+          uk: 'Ваша візитка',
+          es: 'Tu tarjeta',
+          en: 'Your player card',
+          'pt-BR': 'Seu cartão',
+          vi: 'Thẻ của bạn',
+          id: 'Kartu Anda',
+          tr: 'Oyuncu kartın',
+          pl: 'Twoja wizytówka',
+        });
+      case 'readonly':
+        return triLang(lang as Lang, {
+          ru: 'Профиль доступен только для просмотра',
+          uk: 'Профіль доступний лише для перегляду',
+          es: 'Perfil disponible solo para ver',
+          en: 'View-only profile',
+          'pt-BR': 'Perfil somente para visualização',
+          vi: 'Hồ sơ chỉ xem',
+          id: 'Profil hanya lihat',
+          tr: 'Salt okunur profil',
+          pl: 'Profil tylko do odczytu',
+        });
+      case 'add-busy':
+        return triLang(lang as Lang, {
+          ru: 'Отправляем заявку…',
+          uk: 'Надсилаємо заявку…',
+          es: 'Enviando solicitud…',
+          en: 'Sending request…',
+          'pt-BR': 'Enviando solicitação…',
+          vi: 'Đang gửi lời mời…',
+          id: 'Mengirim permintaan…',
+          tr: 'İstek gönderiliyor…',
+          pl: 'Wysyłanie zaproszenia…',
+        });
+      case 'request-sent':
+        return triLang(lang as Lang, {
+          ru: 'Заявка отправлена',
+          uk: 'Заявку надіслано',
+          es: 'Solicitud enviada',
+          en: 'Request sent',
+          'pt-BR': 'Solicitação enviada',
+          vi: 'Đã gửi lời mời',
+          id: 'Permintaan terkirim',
+          tr: 'İstek gönderildi',
+          pl: 'Zaproszenie wysłane',
+        });
+      case 'friend':
+        return triLang(lang as Lang, {
+          ru: 'Вы друзья',
+          uk: 'Ви друзі',
+          es: 'Son amigos',
+          en: 'You are friends',
+          'pt-BR': 'Vocês são amigos',
+          vi: 'Hai bạn là bạn bè',
+          id: 'Kalian berteman',
+          tr: 'Arkadaşsınız',
+          pl: 'Jesteście znajomymi',
+        });
+      case 'liked':
+        return triLang(lang as Lang, {
+          ru: 'Активность отмечена',
+          uk: 'Активність відзначено',
+          es: 'Actividad marcada',
+          en: 'Activity liked',
+          'pt-BR': 'Atividade curtida',
+          vi: 'Đã thích hoạt động',
+          id: 'Aktivitas disukai',
+          tr: 'Etkinlik beğenildi',
+          pl: 'Aktywność polubiona',
+        });
+      default:
+        return triLang(lang as Lang, {
+          ru: 'Можно отправить заявку в друзья',
+          uk: 'Можна надіслати запит у друзі',
+          es: 'Puedes enviar una solicitud de amistad',
+          en: 'You can send a friend request',
+          'pt-BR': 'Você pode enviar uma solicitação de amizade',
+          vi: 'Bạn có thể gửi lời mời kết bạn',
+          id: 'Anda dapat mengirim permintaan pertemanan',
+          tr: 'Arkadaşlık isteği gönderebilirsin',
+          pl: 'Możesz wysłać zaproszenie do znajomych',
+        });
+    }
+  })();
 
-  // зачем: гибрид «Световод» (владелец 2026-08-15) — панель поднимается из
-  // света (opacity+y на LUM.settle, без отскока) вместо classic-таймингов
-  // (timing 300 out-cubic). Управляется общими sharedValue из корневого
-  // компонента (hybridOpacity/hybridY), чтобы выход мог доиграть ПЕРЕД onClose.
-  const hybridPanelStyle = useAnimatedStyle(() => ({
-    opacity: hybridOpacity.value,
-    transform: [{ translateY: hybridY.value }],
-  }));
-  const hybridBackdropStyle = useAnimatedStyle(() => ({ opacity: hybridOpacity.value * 0.55 }));
+  const actionButton = (
+    testID: string,
+    icon: React.ComponentProps<typeof Ionicons>['name'],
+    label: string,
+    onPress: () => void,
+    disabled = false,
+    index = 0,
+  ) => (
+    <Pressable
+      testID={testID}
+      accessibilityRole="button"
+      accessibilityLabel={label}
+      accessibilityState={{ disabled }}
+      disabled={disabled}
+      hitSlop={8}
+      onPress={onPress}
+      style={({ pressed }) => ({
+        position: 'absolute',
+        top: PROFILE_ACTION_TOP + index * (PROFILE_ACTION_SIZE + PROFILE_ACTION_GAP),
+        right: PROFILE_ACTION_RIGHT,
+        zIndex: 5,
+        width: PROFILE_ACTION_SIZE,
+        height: PROFILE_ACTION_SIZE,
+        borderRadius: PROFILE_ACTION_SIZE / 2,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: g.opaqueControl,
+        opacity: disabled ? 0.52 : pressed ? 0.76 : 1,
+        shadowColor: '#000',
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
+        shadowOffset: { width: 0, height: 3 },
+        elevation: 5,
+      })}
+    >
+      {disabled && friendRequestBusy ? (
+        <ActivityIndicator size="small" color={g.text} />
+      ) : (
+        <Ionicons name={icon} size={21} color={g.text} />
+      )}
+    </Pressable>
+  );
+
+  const friendActionLabel = isAlreadyFriend
+    ? triLang(lang as Lang, {
+        ru: 'Удалить из друзей',
+        uk: 'Видалити з друзів',
+        es: 'Eliminar amigo',
+        en: 'Remove friend',
+        'pt-BR': 'Remover amigo',
+        vi: 'Xóa bạn bè',
+        id: 'Hapus teman',
+        tr: 'Arkadaşlıktan çıkar',
+        pl: 'Usuń znajomego',
+      })
+    : isFriendRequestSent
+      ? relationshipText
+      : triLang(lang as Lang, {
+          ru: 'Добавить в друзья',
+          uk: 'Додати в друзі',
+          es: 'Añadir amigo',
+          en: 'Add friend',
+          'pt-BR': 'Adicionar amigo',
+          vi: 'Thêm bạn',
+          id: 'Tambah teman',
+          tr: 'Arkadaş ekle',
+          pl: 'Dodaj znajomego',
+        });
 
   return (
     <>
-    {isHybrid ? (
-      <Reanimated.View pointerEvents="box-none" style={[{ flex: 1, justifyContent: 'flex-end' }]}>
-        <Reanimated.View
-          pointerEvents="none"
-          style={[{ ...StyleSheet.absoluteFillObject, backgroundColor: '#000' }, hybridBackdropStyle]}
-        />
-        <Pressable style={{ ...StyleSheet.absoluteFillObject }} onPress={onBackdropPress} />
-        <Reanimated.View testID="player-profile-modal-sheet" style={[{
-          backgroundColor: t.bgCard,
-          borderTopLeftRadius: 30,
-          borderTopRightRadius: 30,
-          maxHeight: '90%',
-          overflow: 'hidden',
-          // Без обводок (правило владельца): модал держат скругление, градиент и тень.
-          borderTopWidth: prestigeActive ? 0 : 0.5,
-          borderColor: t.border,
-          shadowColor: prestigeActive ? cardVisual.shadowColor : '#000',
-          shadowOpacity: prestigeActive ? 0.34 : 0.18,
-          shadowRadius: prestigeActive ? 22 : 12,
-          elevation: prestigeActive ? 12 : 6,
-        }, hybridPanelStyle]}>
-          {renderHeaderActions()}
-          {renderCardBody()}
-        </Reanimated.View>
-      </Reanimated.View>
-    ) : (
-    <Animated.View
-      style={{
-        flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.55)',
-        opacity: fadeAnim,
-        justifyContent: 'flex-end',
-      }}
-    >
-      <Pressable style={{ flex: 1 }} onPress={onBackdropPress} />
-      <Animated.View testID="player-profile-modal-sheet" style={{
-        backgroundColor: t.bgCard,
-        borderTopLeftRadius: 30,
-        borderTopRightRadius: 30,
-        maxHeight: '90%',
-        overflow: 'hidden',
-        transform: [
-          { translateY: slideAnim },
-          { scale: levelSwitchAnim.interpolate({ inputRange: [0, 1], outputRange: [0.982, 1] }) },
-        ],
-        // Без обводок (правило владельца): модал держат скругление, градиент и тень.
-        borderTopWidth: prestigeActive ? 0 : 0.5,
-        borderColor: t.border,
-        shadowColor: prestigeActive ? cardVisual.shadowColor : '#000',
-        shadowOpacity: prestigeActive ? 0.34 : 0.18,
-        shadowRadius: prestigeActive ? 22 : 12,
-        elevation: prestigeActive ? 12 : 6,
-      }}>
-        {renderHeaderActions()}
-        {renderCardBody()}
-      </Animated.View>
-    </Animated.View>
-    )}
-    {renderProfileModalOverlays(
-      player,
-      lang,
-      removeFriendConfirmOpen,
-      setRemoveFriendConfirmOpen,
-      handleRemoveFriendConfirm,
-      reportUserOpen,
-      setReportUserOpen,
-    )}
-    </>
-  );
-
-  // зачем: шапка (крест/друг/жалоба/апгрейд) идентична в classic и hybrid —
-  // вынесена в функцию, чтобы не дублировать 200 строк JSX между двумя ветками
-  // разметки панели. Кнопки-действия переведены на DuoPressable/PressableHybrid
-  // (единый пресс-стандарт constants/motionHybrid.ts → PRESS) в ОБЕИХ ветках —
-  // это не визуальный редизайн classic, а замена трёх расходящихся способов
-  // «вдавливания» на один. Тело карточки (сканирующий ScrollView) — ниже отдельно.
-  function renderHeaderActions() {
-    return (
-      <>
-        <PressableHybrid
-          testID="player-profile-close"
-          variant="icon"
+      <Animated.View
+        style={{
+          flex: 1,
+          justifyContent: 'flex-end',
+          backgroundColor: 'rgba(0,0,0,0.58)',
+          opacity: fadeAnim,
+        }}
+      >
+        <Pressable
+          accessibilityRole="button"
           accessibilityLabel={triLang(lang as Lang, {
             ru: 'Закрыть профиль',
             uk: 'Закрити профіль',
@@ -1369,1027 +707,286 @@ function PlayerProfileModalBody({
             tr: 'Profili kapat',
             pl: 'Zamknij profil',
           })}
-          hitSlop={{ top: 12, right: 12, bottom: 12, left: 12 }}
-          onPress={onClose}
-          withHaptic={false}
+          style={StyleSheet.absoluteFillObject}
+          onPress={onBackdropPress}
+        />
+        <Animated.View
+          testID="player-profile-modal-sheet"
+          accessibilityViewIsModal
           style={{
-            position: 'absolute',
-            top: PROFILE_HEADER_ACTION_TOP,
-            right: PROFILE_HEADER_ACTION_RIGHT,
-            zIndex: 30,
-            width: PROFILE_HEADER_ACTION_SIZE,
-          }}
-          contentStyle={{
-            width: PROFILE_HEADER_ACTION_SIZE,
-            height: PROFILE_HEADER_ACTION_SIZE,
-            borderRadius: PROFILE_HEADER_ACTION_SIZE / 2,
-            alignItems: 'center',
-            justifyContent: 'center',
-            // зачем: §0.D — та же логика, что у кнопки друга: тон + мягкая
-            // тень вместо кромки; кнопка лежит поверх артворка карточки.
-            backgroundColor: glassChromeBg,
-            overflow: 'visible',
+            height: sheetHeight,
+            maxHeight: availableHeight,
+            borderTopLeftRadius: 30,
+            borderTopRightRadius: 30,
+            backgroundColor: g.opaqueSheet,
+            overflow: 'hidden',
             shadowColor: '#000',
-            shadowOpacity: 0.32,
-            shadowRadius: 8,
-            shadowOffset: { width: 0, height: 3 },
-            elevation: 5,
+            shadowOpacity: 0.38,
+            shadowRadius: 22,
+            shadowOffset: { width: 0, height: -6 },
+            elevation: 16,
+            transform: [{ translateY: slideAnim }],
           }}
         >
-          <Ionicons name="close" size={22} color={prestigeActive ? 'rgba(255,255,255,0.82)' : t.textPrimary} />
-        </PressableHybrid>
-        {showAddFriend ? (
-          <PressableHybrid
-            testID="player-profile-add-friend"
-            variant="icon"
-            onPress={handleFriendButtonPress}
-            disabled={friendRequestBusy || isFriendRequestSent}
-            withHaptic={false}
-            style={{
-              position: 'absolute',
-              top: PROFILE_HEADER_ACTION_TOP + PROFILE_HEADER_ACTION_SIZE + PROFILE_HEADER_ACTION_GAP,
-              right: PROFILE_HEADER_ACTION_RIGHT,
-              zIndex: 30,
-              width: PROFILE_HEADER_ACTION_SIZE,
+          <ScrollView
+            testID="player-profile-scroll"
+            style={{ flex: 1, minHeight: 0, width: '100%' }}
+            contentContainerStyle={{
+              flexGrow: 1,
+              paddingHorizontal: 24,
+              paddingTop: 12,
+              paddingBottom: Math.max(54, bottomInset + 24),
             }}
-            contentStyle={{
-              width: PROFILE_HEADER_ACTION_SIZE,
-              height: PROFILE_HEADER_ACTION_SIZE,
-              borderRadius: PROFILE_HEADER_ACTION_SIZE / 2,
-              // зачем: §0.D — кнопка лежит поверх артворка карточки, поэтому
-              // кромку заменяем более плотной заливкой + мягкой тенью ниже:
-              // отделение то же, «нарисованной» линии нет.
-              backgroundColor: isAlreadyFriend ? 'rgba(240,84,84,0.30)' : glassChromeBg,
-              alignItems: 'center',
-              justifyContent: 'center',
-              overflow: 'visible',
-              shadowColor: '#000',
-              shadowOpacity: 0.32,
-              shadowRadius: 8,
-              shadowOffset: { width: 0, height: 3 },
-              elevation: 5,
-              opacity: friendRequestBusy ? 0.55 : isFriendRequestSent ? 0.75 : 1,
-            }}
-            accessibilityLabel={triLang(lang as Lang, {
-              ru: 'Добавить в друзья',
-              uk: 'Додати до друзів',
-              es: 'Añadir amigo',
-              en: 'Add friend',
-              'pt-BR': "Adicionar amigo",
-              vi: "Thêm bạn bè",
-              id: "Tambah teman",
-              tr: "Arkadaş ekle",
-              pl: "Dodaj znajomego",
-            })}
+            bounces={false}
+            nestedScrollEnabled
+            showsVerticalScrollIndicator
           >
-            <Ionicons
-              name={isAlreadyFriend ? 'person-remove-outline' : isFriendRequestSent ? 'checkmark-circle-outline' : 'person-add-outline'}
-              size={22}
-              color={isAlreadyFriend ? (t.wrong ?? t.accent) : t.accent}
-            />
-          </PressableHybrid>
-        ) : null}
-        {!isMe && (player.friendUid || player.uid) ? (
-          // зачем (владелец, обязательное требование сторов — report-abuse для
-          // UGC-ников): жалоба доступна на ЛЮБОЙ чужой карточке, не только
-          // друзей — ник виден и незнакомцам. Без uid жаловаться некуда
-          // (submitUserReport требует reportedUid), кнопку тогда не показываем.
-          // Позиция под кнопкой друга, если она есть, иначе под крестиком.
-          (<PressableHybrid
-            testID="player-profile-report-user"
-            variant="icon"
-            onPress={() => setReportUserOpen(true)}
-            style={{
-              position: 'absolute',
-              top: PROFILE_HEADER_ACTION_TOP + (PROFILE_HEADER_ACTION_SIZE + PROFILE_HEADER_ACTION_GAP) * (showAddFriend ? 2 : 1),
-              right: PROFILE_HEADER_ACTION_RIGHT,
-              zIndex: 30,
-              width: PROFILE_HEADER_ACTION_SIZE,
-            }}
-            contentStyle={{
-              width: PROFILE_HEADER_ACTION_SIZE,
-              height: PROFILE_HEADER_ACTION_SIZE,
-              borderRadius: PROFILE_HEADER_ACTION_SIZE / 2,
-              backgroundColor: glassChromeBg,
-              alignItems: 'center',
-              justifyContent: 'center',
-              overflow: 'visible',
-              shadowColor: '#000',
-              shadowOpacity: 0.32,
-              shadowRadius: 8,
-              shadowOffset: { width: 0, height: 3 },
-              elevation: 5,
-            }}
-            accessibilityLabel={triLang(lang as Lang, {
-              ru: 'Пожаловаться на ник',
-              uk: 'Поскаржитися на нік',
-              es: 'Denunciar apodo',
-              en: 'Report nickname',
-              'pt-BR': 'Denunciar apelido',
-              vi: 'Báo cáo biệt danh',
-              id: 'Laporkan nama panggilan',
-              tr: 'Takma adı şikayet et',
-              pl: 'Zgłoś nick',
-            })}
-          >
-            <Ionicons name="flag-outline" size={20} color={t.textSecond} />
-          </PressableHybrid>)
-        ) : null}
-        {isMe && !hasDevProfileCardLevelOverride && ENABLE_PROFILE_CARD && nextRealLevel !== null ? (
-          // Круглая кнопка апгрейда на СВОЕЙ карточке: тап преображает карточку в
-          // превью следующего уровня ПРЯМО НА МЕСТЕ, повторные тапы листают до V.
-          // AURORA: стеклянный круг, кромка и стрелка в акценте СЛЕДУЮЩЕГО уровня
-          // + его свечение (в превью — римский номер уровня вместо стрелки).
-          (<PressableHybrid
-            testID="player-profile-upgrade-card"
-            variant="icon"
-            accessibilityLabel={triLang(lang as Lang, {
-              ru: 'Улучшить карточку',
-              uk: 'Покращити картку',
-              es: 'Mejorar tarjeta',
-              en: 'Upgrade card',
-              'pt-BR': 'Melhorar cartão',
-              vi: 'Nâng cấp thẻ',
-              id: 'Tingkatkan kartu',
-              tr: 'Kartı yükselt',
-              pl: 'Ulepsz kartę',
-            })}
-            hitSlop={{ top: 12, right: 12, bottom: 12, left: 12 }}
-            onPress={handleUpgradeButtonTap}
-            withHaptic={false}
-            style={{
-              position: 'absolute',
-              top: PROFILE_HEADER_ACTION_TOP + PROFILE_HEADER_ACTION_SIZE + PROFILE_HEADER_ACTION_GAP,
-              right: PROFILE_HEADER_ACTION_RIGHT,
-              zIndex: 30,
-              width: PROFILE_HEADER_ACTION_SIZE,
-            }}
-            contentStyle={{
-              width: PROFILE_HEADER_ACTION_SIZE,
-              height: PROFILE_HEADER_ACTION_SIZE,
-              borderRadius: PROFILE_HEADER_ACTION_SIZE / 2,
-              overflow: 'hidden',
-              alignItems: 'center',
-              justifyContent: 'center',
-              // зачем: §0.D — вместо цветной кромки уровня даём тонированную
-              // подложку следующего уровня; свечение ниже и так несёт его цвет.
-              backgroundColor: nextLevelVisual.accentSoft,
-              shadowColor: nextLevelVisual.shadowColor,
-              shadowOpacity: 0.55,
-              shadowRadius: 9,
-              shadowOffset: { width: 0, height: 0 },
-              elevation: 7,
-            }}
-          >
-            <Animated.View style={{ opacity: shimmerOpacity }}>
-              {previewLevel === null ? (
-                <Ionicons name="arrow-up" size={22} color={nextLevelVisual.accent} />
-              ) : (
-                <Text style={{ color: nextLevelVisual.accent, fontSize: 15, fontWeight: '900' }}>
-                  {profileCardLevelRoman(previewLevel)}
-                </Text>
-              )}
-            </Animated.View>
-          </PressableHybrid>)
-        ) : null}
-      </>
-    );
-  }
-
-  // зачем: остальное тело карточки (пилюля уровня, эффекты престижа,
-  // прокручиваемый контент — статы/лайки/превью апгрейда) идентично в classic
-  // и hybrid, вынесено рядом с renderHeaderActions по той же причине.
-  function renderCardBody() {
-    return (
-      <>
-        {displayCardLevel > 0 && (
-          // AURORA: пилюля уровня переехала из центра в ЛЕВЫЙ ВЕРХНИЙ УГОЛ —
-          // floating glass pill, кромка и текст в акценте отображаемого уровня.
-          (<View
-            pointerEvents="none"
-            style={{
-              position: 'absolute',
-              top: PROFILE_HEADER_ACTION_TOP,
-              left: PROFILE_HEADER_ACTION_RIGHT,
-              zIndex: 30,
-              maxWidth: '58%',
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 6,
-              // зачем: §0.D — пилюля уровня держится тоном акцента, не кромкой.
-              backgroundColor: levelSurface,
-              borderRadius: 999,
-              paddingHorizontal: 11,
-              paddingVertical: 6,
-            }}
-          >
-            <Ionicons name="sparkles" size={12} color={cardVisual.accent} />
-            <Text style={{ color: cardVisual.accent, fontWeight: '800', fontSize: f.caption, letterSpacing: 0.4, flexShrink: 1 }}>
-              {profileCardLevelRoman(displayCardLevel)} · {lang === 'ru' ? PROFILE_CARD_LEVEL_NAME_RU[displayCardLevel] : cardDef.name}
-            </Text>
-          </View>)
-        )}
-        {displayCardLevel > 0 && (
-          <View
-            testID="profile-card-energy-upgrade-bonus"
-            pointerEvents="none"
-            accessibilityLabel={triLang(lang as Lang, {
-              ru: `Этот уровень карточки: плюс 10 к запасу энергии. Общий бонус карточки: плюс ${displayCardLevel * 10}.`,
-              uk: `Цей рівень картки: плюс 10 до запасу енергії. Загальний бонус картки: плюс ${displayCardLevel * 10}.`,
-              en: `This card level adds 10 energy capacity. Total card bonus: ${displayCardLevel * 10}.`,
-              es: `Este nivel de tarjeta añade 10 de capacidad de energía. Bono total: ${displayCardLevel * 10}.`,
-              'pt-BR': `Este nível do cartão adiciona 10 de capacidade de energia. Bônus total: ${displayCardLevel * 10}.`,
-              vi: `Cấp thẻ này tăng 10 dung lượng năng lượng. Tổng thưởng: ${displayCardLevel * 10}.`,
-              id: `Level kartu ini menambah 10 kapasitas energi. Total bonus: ${displayCardLevel * 10}.`,
-              tr: `Bu kart seviyesi enerji kapasitesine 10 ekler. Toplam bonus: ${displayCardLevel * 10}.`,
-              pl: `Ten poziom karty dodaje 10 pojemności energii. Łączny bonus: ${displayCardLevel * 10}.`,
-            })}
-            accessible
-            style={{
-              position: 'absolute',
-              top: PROFILE_HEADER_ACTION_TOP + 38,
-              left: PROFILE_HEADER_ACTION_RIGHT,
-              zIndex: 30,
-              minHeight: 24,
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 4,
-              paddingHorizontal: 9,
-              borderRadius: 999,
-              backgroundColor: levelSurface,
-            }}
-          >
-            <EnergyIcon size={12} filled tintColor={cardVisual.accent} themeColor={cardVisual.accent} animateChange={false} />
-            <Text style={{ color: cardVisual.accent, fontSize: 12, lineHeight: 15, fontWeight: '900', fontVariant: ['tabular-nums'] }}>{'+10'}</Text>
-          </View>
-        )}
-        {prestigeActive && (
-          // При смене уровня (превью/покупка) фон и эффекты мягко проявляются заново —
-          // «морф» карточки вместо мгновенной подмены.
-          (<Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { opacity: levelSwitchAnim }]}>
-            <LinearGradient
-              colors={cardVisual.gradient}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={StyleSheet.absoluteFill}
-            />
-            {/* Свечение снизу+сверху и все эффекты уровня рисует единый движок —
-                чтобы владелец и другие игроки видели ОДИН визуал. */}
-            <ProfileCardMotionFx
-              kind={fxKindForProfileCard(displaySnapshot.level, displaySnapshot.motion)}
-              radius={30}
-              accent={cardVisual.accent}
-              secondary={cardVisual.secondary}
-              accentSoft={cardVisual.accentSoft}
-              glowBottom={cardVisual.glowBottom}
-              glowTop={cardVisual.glowTop}
-            />
-          </Animated.View>)
-        )}
-        <ScrollView decelerationRate="fast"
-          bounces={false}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingHorizontal: 18, paddingTop: 14, paddingBottom: Math.max(96, bottomInset + 72) + (isMe && !hasDevProfileCardLevelOverride && previewLevel !== null ? 112 : 0) }}
-        >
-        <View style={{ width: 40, height: 4, borderRadius: 2, backgroundColor: prestigeActive ? cardVisual.accentStrong : t.border, alignSelf: 'center', marginBottom: 20 }} />
-        <View style={{ alignItems: 'center', marginTop: 6, marginBottom: 18 }}>
-          <View style={{ width: 88, height: 88, alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}>
-            {displayCardLevel > 0 ? (
-              <ProfileOrbitRing size={88} accent={cardVisual.accent} />
-            ) : (
-              // Уровень 0 — без кольца, простая тонкая кромка.
-              (<View pointerEvents="none" style={{ position: 'absolute', width: 78, height: 78, borderRadius: 39, borderWidth: 1, borderColor: auroraGlass ? 'rgba(255,255,255,0.14)' : t.border }} />)
-            )}
-            {/* Уровень III+ — мягкое внешнее свечение кольца цветом уровня
-                (бывшее «усиленное кольцо», переосмысленное под стекло). */}
-            <View style={displayCardLevel >= 3 ? {
-              borderRadius: 999,
-              // зачем: КРУГЛЫЙ аватар без непрозрачного фона — Android рисовал
-              // вокруг него квадрат вместо свечения. На iOS ореол как был.
-              shadowColor: cardVisual.shadowColor,
-              shadowOpacity: 0.55,
-              shadowRadius: 16,
-              shadowOffset: { width: 0, height: 0 },
-              ...noAndroidOutline,
-            } : null}>
-              <PremiumAvatarHalo enabled={usesPremiumAura} avatarSize={76} maskColor={prestigeActive ? cardVisual.gradient[1] : t.bgCard}>
-                <AvatarView
-                  avatar={avatarStr}
-                  totalXP={safeTotalXp}
-                  size={76}
-                  auraId={usesPremiumAura ? undefined : effectiveAuraId}
-                />
-              </PremiumAvatarHalo>
-            </View>
-            <View style={{
-              position: 'absolute',
-              bottom: -6,
-              alignSelf: 'center',
-              // зачем: §0.D — бейдж лежит поверх аватара, поэтому отделяем его
-              // плотной подложкой + тенью вместо акцентной кромки.
-              backgroundColor: auroraGlass ? 'rgba(8,10,16,0.88)' : t.bgCard,
-              borderRadius: 999,
-              paddingHorizontal: 9,
-              paddingVertical: 2,
-              shadowColor: '#000',
-              shadowOpacity: auroraGlass ? 0.5 : 0.18,
-              shadowRadius: 6,
-              shadowOffset: { width: 0, height: 2 },
-              ...noAndroidOutline,
-            }}>
-              <Text style={{ color: cardVisual.accent, fontSize: 10.5, fontWeight: '800', letterSpacing: 0.7 }}>
-                LV {level}
-              </Text>
-            </View>
-          </View>
-          {hasLeagueCrown && (
-            <View style={{ maxWidth: '100%' }}>
-              <LeagueCrownName
-                text={player.name}
-                fontSize={26}
-                iconScale={1.8}
-                count={displayLeagueCrownCount}
-              />
-            </View>
-          )}
-          {!hasLeagueCrown && (
-          <Text style={memberNameStatusStyle(
-            { fontSize: 26, fontWeight: '700', color: inkPrimary },
-            { isPremium: showPremium, isVip: showVip, themeMode },
-          )}>
-            {player.name}
-          </Text>
-          )}
-          <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', gap: 8, marginTop: 10 }}>
-            {showPremium && (
-              // Стеклянная пилюля подписки: PLUS — золотая с diamond, lifetime PRO —
-              // синяя (pro=синий, как в PremiumCelebrationModal). Shimmer сохранён.
-              (<Animated.View style={{ opacity: shimmerOpacity }}>
-                <LinearGradient
-                  // зачем: §0.D — цветную кромку заменяет более глубокий
-                  // градиент того же тона (0.18→0.28 сверху): пилюля читается
-                  // как материал, а не как обведённый блок.
-                  colors={showPro
-                    ? ['rgba(56,189,248,0.28)', 'rgba(56,189,248,0.10)']
-                    : ['rgba(245,200,66,0.28)', 'rgba(245,200,66,0.10)']}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    gap: 5,
-                    borderRadius: 999,
-                    paddingHorizontal: 11,
-                    paddingVertical: 5,
-                  }}
-                >
-                  <Ionicons name="diamond" size={11} color={showPro ? PRO_BADGE_BLUE : '#F5C842'} />
-                  <Text style={{ color: showPro ? PRO_BADGE_BLUE : '#F5C842', fontWeight: '800', fontSize: 11.5, letterSpacing: 1 }}>
-                    {showPro ? 'PRO' : 'PLUS'}
-                  </Text>
-                </LinearGradient>
-              </Animated.View>)
-            )}
-            <View style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              borderRadius: 999,
-              paddingHorizontal: 11,
-              paddingVertical: 5,
-              // зачем: §0.D — пилюля титула держится тоном; кромку заменяет
-              // чуть более плотная подложка (0.06 → 0.10), разделение то же.
-              backgroundColor: auroraGlass ? 'rgba(255,255,255,0.10)' : t.bgSurface,
-            }}>
-              <Text style={{ color: inkSecond, fontSize: 11.5, fontWeight: '600' }}>
-                {getTitleString(level, lang)}
-              </Text>
-            </View>
-          </View>
-        </View>
-        {/* AURORA: три плитки статистики слиты в ОДНУ стеклянную капсулу
-            с волосяными разделителями; значения/форматирование не менялись. */}
-        <View style={{
-          flexDirection: 'row',
-          alignItems: 'stretch',
-          borderRadius: 16,
-          // зачем: §0.D — капсула статистики держится тоном подложки, не кромкой.
-          backgroundColor: glassPanel,
-          paddingVertical: 12,
-          marginBottom: 14,
-        }}>
-          {[
-            {
-              key: 'xp',
-              value: xpUnknown ? null : compactXp,
-              label: triLang(lang as Lang, {
-                ru: 'опыт',
-                uk: 'досвід',
-                es: 'experiencia',
-                en: 'experience',
-                'pt-BR': "experiência",
-                vi: "kinh nghiệm",
-                id: "pengalaman",
-                tr: "deneyim",
-                pl: "doświadczenie",
-              }),
-              color: t.gold,
-            },
-            {
-              key: 'level',
-              value: xpUnknown ? null : `Lv.${level}`,
-              label: triLang(lang as Lang, {
-                ru: 'уровень',
-                uk: 'рівень',
-                es: 'nivel',
-                en: 'level',
-                'pt-BR': "nível",
-                vi: "cấp độ",
-                id: "level",
-                tr: "seviye",
-                pl: "poziom",
-              }),
-              color: inkPrimary,
-            },
-            {
-              key: 'streak',
-              // Цепочку показываем только когда она реально известна: жёсткий
-              // `?? 0` рисовал ноль и тем, у кого цепочка просто не пришла.
-              value: streak === null ? (xpUnknown ? null : '0') : String(streak),
-              label: profileChainLabel,
-              color: inkPrimary,
-            },
-          ].map((metric, idx) => (
             <View
-              key={metric.key}
+              pointerEvents="none"
               style={{
-                flex: 1,
+                width: 42,
+                height: 5,
+                borderRadius: 5,
+                alignSelf: 'center',
+                backgroundColor: g.mutedText,
+                opacity: 0.72,
+              }}
+            />
+
+            {actionButton(
+              'player-profile-close',
+              'close',
+              triLang(lang as Lang, {
+                ru: 'Закрыть профиль',
+                uk: 'Закрити профіль',
+                es: 'Cerrar perfil',
+                en: 'Close profile',
+                'pt-BR': 'Fechar perfil',
+                vi: 'Đóng hồ sơ',
+                id: 'Tutup profil',
+                tr: 'Profili kapat',
+                pl: 'Zamknij profil',
+              }),
+              onClose,
+            )}
+            {showAddFriend
+              ? actionButton(
+                  'player-profile-add-friend',
+                  isAlreadyFriend ? 'person-remove-outline' : isFriendRequestSent ? 'checkmark' : 'person-add-outline',
+                  friendActionLabel,
+                  handleFriendButtonPress,
+                  friendRequestBusy || isFriendRequestSent,
+                  1,
+                )
+              : null}
+            {!isMe && !!friendRequestTargetUid
+              ? actionButton(
+                  'player-profile-report-user',
+                  'alert-circle-outline',
+                  triLang(lang as Lang, {
+                    ru: 'Пожаловаться на игрока',
+                    uk: 'Поскаржитися на гравця',
+                    es: 'Reportar jugador',
+                    en: 'Report player',
+                    'pt-BR': 'Denunciar jogador',
+                    vi: 'Báo cáo người chơi',
+                    id: 'Laporkan pemain',
+                    tr: 'Oyuncuyu bildir',
+                    pl: 'Zgłoś gracza',
+                  }),
+                  () => {
+                    hapticTap();
+                    setReportUserOpen(true);
+                  },
+                  false,
+                  showAddFriend ? 2 : 1,
+                )
+              : null}
+
+            <View style={{ width: '100%', minWidth: 0, alignItems: 'center', paddingTop: 73 }}>
+            {rankRow ? (
+              <Image
+                source={rankRow.source}
+                style={{ width: 88, height: 88 }}
+                contentFit="contain"
+                accessible
+                accessibilityLabel={rankRow.levelTitle}
+              />
+            ) : (
+              <View
+                testID="player-profile-rank-placeholder"
+                accessibilityLabel={triLang(lang as Lang, {
+                  ru: 'Ранг игрока пока недоступен',
+                  uk: 'Ранг гравця поки недоступний',
+                  es: 'Rango del jugador aún no disponible',
+                  en: 'Player rank is not available yet',
+                  'pt-BR': 'A classificação do jogador ainda não está disponível',
+                  vi: 'Hạng người chơi chưa có',
+                  id: 'Peringkat pemain belum tersedia',
+                  tr: 'Oyuncu rütbesi henüz mevcut değil',
+                  pl: 'Ranga gracza nie jest jeszcze dostępna',
+                })}
+                style={{
+                  width: 88,
+                  height: 88,
+                  borderRadius: 44,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: g.opaqueControl,
+                }}
+              >
+                <Ionicons name="person-outline" size={32} color={g.secondary} />
+              </View>
+            )}
+
+            <Text
+              style={{
+                marginTop: 16,
+                color: g.text,
+                width: '100%',
                 minWidth: 0,
-                alignItems: 'center',
-                paddingHorizontal: 6,
-                // Волосяной разделитель между колонками — левая кромка колонки.
-                borderLeftWidth: idx > 0 ? 1 : 0,
-                borderColor: idx > 0 ? glassHairline : 'transparent',
-                marginVertical: 3,
+                flexShrink: 1,
+                fontSize: 29 * textScale,
+                lineHeight: 35 * textScale,
+                letterSpacing: -0.45,
+                fontWeight: '700',
+                textAlign: 'center',
               }}
             >
-              <View style={{ width: '100%' }}>
-                {/* зачем: авто-ужатие шрифта убрано — запрещено правилом
-                    владельца (класс бага: короткие значения на iOS сжимались
-                    до нечитаемого кегля рядом с длинными). Значения тут
-                    короткие — «12.3K», «Lv.42», «365», — поэтому фиксированный
-                    кегль с tabular-nums: цифры одной ширины, три колонки не
-                    пляшут. text-integrity: clip запрещён (усечение без следа) —
-                    аномально длинное значение получит честное многоточие. */}
-                {metric.value === null ? (
-                  // Заглушка ровно под кегль 20/вес 800 — геометрия колонки та же,
-                  // поэтому подстановка настоящей цифры не двигает лейаут.
-                  (<View style={{ height: 24, alignItems: 'center', justifyContent: 'center' }}>
-                    <SkeletonBlock width={46} height={18} borderRadius={5} />
-                  </View>)
-                ) : (
-                  <Text
-                    style={{
-                      color: metric.color,
-                      fontSize: 20,
-                      fontWeight: '800',
-                      width: '100%',
-                      textAlign: 'center',
-                      fontVariant: ['tabular-nums'],
-                    }}
-                    numberOfLines={1}
-                    maxFontSizeMultiplier={1.1}
-                  >
-                    {metric.value}
-                  </Text>
-                )}
+              {player.name}
+            </Text>
+            <Text
+              style={{
+                minHeight: 20,
+                width: '100%',
+                minWidth: 0,
+                flexShrink: 1,
+                marginTop: 5,
+                color: g.secondary,
+                fontSize: 14 * textScale,
+                lineHeight: 20 * textScale,
+                textAlign: 'center',
+              }}
+            >
+              {relationshipText}
+            </Text>
+
+            <View
+              style={{
+                marginTop: 17,
+                minHeight: 40,
+                paddingHorizontal: 13,
+                paddingVertical: 8,
+                borderRadius: 999,
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                justifyContent: 'center',
+                alignItems: 'center',
+                maxWidth: '100%',
+                minWidth: 0,
+                gap: 8,
+                backgroundColor: g.opaqueControl,
+              }}
+            >
+              {rankRow ? (
+                <Image source={rankRow.source} style={{ width: 24, height: 24 }} contentFit="contain" accessible={false} />
+              ) : (
+                <View style={{ width: 24, height: 24, borderRadius: 12, backgroundColor: g.selected }} />
+              )}
+              <View style={{ flexShrink: 1, minWidth: 0, alignItems: 'center' }}>
+                <Text style={{ color: g.text, flexShrink: 1, fontSize: 13 * textScale, lineHeight: 18 * textScale, fontWeight: '700', textAlign: 'center' }}>
+                  {triLang(lang as Lang, {
+                    ru: 'Ранг игрока',
+                    uk: 'Ранг гравця',
+                    es: 'Rango del jugador',
+                    en: 'Player rank',
+                    'pt-BR': 'Classificação do jogador',
+                    vi: 'Hạng người chơi',
+                    id: 'Peringkat pemain',
+                    tr: 'Oyuncu rütbesi',
+                    pl: 'Ranga gracza',
+                  })}
+                </Text>
+                {rankRow ? (
+                  <Text style={{ color: g.secondary, flexShrink: 1, fontSize: 11 * textScale, lineHeight: 16 * textScale, marginTop: 1, textAlign: 'center' }}>{rankRow.levelTitle}</Text>
+                ) : null}
               </View>
-              <Text
-                style={{ color: inkMuted, fontSize: 9.5, fontWeight: '600', letterSpacing: 1.1, textTransform: 'uppercase', marginTop: 3 }}
-                numberOfLines={1}
-              >
-                {metric.label}
+            </View>
+            </View>
+
+            <View style={{ height: 1, marginTop: 31, marginBottom: 22, backgroundColor: g.line }} />
+
+            <View style={{ width: '100%', minWidth: 0, alignItems: 'center', gap: 20 }}>
+            <Text style={{ width: '100%', minWidth: 0, flexShrink: 1, color: g.secondary, fontSize: 14 * textScale, lineHeight: 20 * textScale, textAlign: 'center' }}>
+              {relationshipText}
+            </Text>
+            <Pressable
+              testID="player-profile-activity-like"
+              accessibilityRole="button"
+              accessibilityLabel={triLang(lang as Lang, {
+                ru: 'Лайки за активность',
+                uk: 'Вподобання за активність',
+                es: 'Me gusta por actividad',
+                en: 'Activity likes',
+                'pt-BR': 'Curtidas por atividade',
+                vi: 'Lượt thích hoạt động',
+                id: 'Suka aktivitas',
+                tr: 'Etkinlik beğenileri',
+                pl: 'Polubienia aktywności',
+              })}
+              accessibilityState={{ selected: likedThisProfile, disabled: !canLike || likeBusy }}
+              disabled={!canLike || likeBusy}
+              onPress={handleToggleLike}
+              style={({ pressed }) => ({
+                minHeight: 48,
+                maxWidth: '100%',
+                minWidth: 0,
+                paddingHorizontal: 16,
+                borderRadius: 23,
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 8,
+                backgroundColor: g.opaqueControl,
+                opacity: !canLike ? 0.48 : pressed || likeBusy ? 0.74 : 1,
+              })}
+            >
+              <Ionicons name={likedThisProfile ? 'heart' : 'heart-outline'} size={20} color={likedThisProfile ? '#FF5C7A' : g.text} />
+              <Text style={{ color: g.text, flexShrink: 1, fontSize: 15 * textScale, lineHeight: 20 * textScale, fontWeight: '700' }}>
+                {activityLikeTotal.toLocaleString()}
               </Text>
-            </View>
-          ))}
-        </View>
-        {/* AURORA мета-ряд: компактная пилюля лайка (сердце + число, ширина по
-            содержимому) + чип лиги на остаток ширины. Ряд — это кнопка постоянного
-            лайка карточки (тап, оптимизм, повторный тап снимает лайк);
-            чип лиги глушит responder, чтобы тап по нему не ставил лайк. */}
-        <Pressable
-          testID="player-profile-activity-like"
-          onPress={() => {
-            // Tap just works: like / unlike toggles silently, the counter updates. No hint copy.
-            if (canLike) handleToggleLike();
-          }}
-          disabled={!canLike || likeBusy}
-          accessibilityRole="button"
-          accessibilityState={{ selected: likedThisProfile, disabled: !canLike || likeBusy }}
-          accessibilityLabel={triLang(lang as Lang, {
-            ru: 'Лайки за активность',
-            uk: 'Лайки за активність',
-            es: 'Likes de actividad',
-            en: 'Activity likes',
-            'pt-BR': "Curtidas de atividade",
-            vi: "Lượt thích hoạt động",
-            id: "Like aktivitas",
-            tr: "Aktivite beğenileri",
-            pl: "Polubienia aktywności",
-          })}
-          style={({ pressed }) => ({
-            flexDirection: 'row',
-            gap: 10,
-            marginBottom: 14,
-            opacity: likeBusy ? 0.6 : pressed && canLike ? 0.85 : 1,
-          })}
-        >
-          <View style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 6,
-            borderRadius: 999,
-            // зачем: §0.D — счётчик лайков держится тоном подложки.
-            backgroundColor: glassPanel,
-            paddingHorizontal: 12,
-            paddingVertical: 10,
-          }}>
-            <Ionicons
-              name={likedThisProfile ? 'heart' : 'heart-outline'}
-              size={16}
-              color={'#FF2D55'}
-            />
-            <Text style={{ color: inkPrimary, fontSize: 13.5, fontWeight: '800' }} numberOfLines={1}>
-              {activityLikeTotal.toLocaleString()}
-            </Text>
-          </View>
-          <View
-            onStartShouldSetResponder={() => true}
-            style={{
-              flex: 1,
-              minWidth: 0,
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: 9,
-              borderRadius: 16,
-              // зачем: §0.D — плашка лиги держится тоном подложки.
-              backgroundColor: glassPanel,
-              paddingHorizontal: 12,
-              paddingVertical: 10,
-            }}
-          >
-            {club.imageUri
-              ? <Image source={club.imageUri} style={{ width: 28, height: 28, borderRadius: 6 }} contentFit="contain" accessibilityLabel={triLang(lang as Lang, { ru: 'Иконка лиги', uk: 'Іконка ліги', es: 'Icono de liga', en: 'League icon', 'pt-BR': 'Ícone da liga', vi: 'Biểu tượng giải đấu', id: 'Ikon liga', tr: 'Lig simgesi', pl: 'Ikona ligi' })} />
-              : <Ionicons name={club.ionIcon as any} size={26} color={club.color} />
-            }
-            <Text style={{ color: inkPrimary, fontSize: 13.5, fontWeight: '700', flex: 1, minWidth: 0 }} numberOfLines={1}>
-              {clubTierShortName(club, lang as Lang)}
-            </Text>
-          </View>
-        </Pressable>
-        {isMe && !multipliers && (
-          // зачем: §5 Шаг 1 «состояния» + Performance Bible — модификаторы
-          // грузятся после interactions, и панель раньше ВОЗНИКАЛА на пустом
-          // месте, дёргая лэйаут. Скелетон держит ту же геометрию (высота
-          // шапки 24 + gap 9 + ряд чипов 24 + паддинги 26 = 83), поэтому
-          // первый кадр совпадает с финальным.
-          (<View style={{
-            borderRadius: 16, backgroundColor: glassPanel,
-            paddingHorizontal: 14, paddingVertical: 13, marginBottom: 14,
-          }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 9 }}>
-              <SkeletonBlock width={118} height={11} borderRadius={4} />
-              <SkeletonBlock width={54} height={19} borderRadius={6} />
-            </View>
-            <View style={{ flexDirection: 'row', gap: 6 }}>
-              <SkeletonBlock width={92} height={24} borderRadius={8} />
-              <SkeletonBlock width={78} height={24} borderRadius={8} />
-            </View>
-          </View>)
-        )}
-        {isMe && multipliers && (
-          // AURORA: одна glass-панель — шапка (подпись капсом + крупный итог,
-          // зелёный #35D07F когда бонус активен) и wrap-чипы модификаторов под ней.
-          // зачем: §0.D — панель держится тоном подложки, кромка снята.
-          (<View style={{
-            borderRadius: 16, backgroundColor: glassPanel,
-            paddingHorizontal: 14, paddingVertical: 13, marginBottom: 14,
-          }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 9 }}>
-              <Text style={{ color: inkMuted, fontSize: 10.5, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase' }}>
+              <Text style={{ color: g.secondary, flexShrink: 1, minWidth: 0, fontSize: 12 * textScale, lineHeight: 17 * textScale, fontWeight: '500', textAlign: 'center' }}>
                 {triLang(lang as Lang, {
-                  ru: 'Модификаторы XP',
-                  uk: 'Модифікатори XP',
-                  es: 'Modificadores de XP',
-                  en: 'XP modifiers',
-                  'pt-BR': "Modificadores de XP",
-                  vi: "Bộ điều chỉnh XP",
-                  id: "Pengubah XP",
-                  tr: "XP değiştiricileri",
-                  pl: "Modyfikatory XP",
+                  ru: 'Лайки за активность',
+                  uk: 'Вподобання за активність',
+                  es: 'Me gusta por actividad',
+                  en: 'Activity likes',
+                  'pt-BR': 'Curtidas por atividade',
+                  vi: 'Lượt thích hoạt động',
+                  id: 'Suka aktivitas',
+                  tr: 'Etkinlik beğenileri',
+                  pl: 'Polubienia aktywności',
                 })}
               </Text>
-              <Text style={{ color: multipliers.total > 1 ? activeMultiplierColor : inkMuted, fontWeight: '800', fontSize: 19 }}>
-                ×{multipliers.total.toFixed(2)}
-              </Text>
+              {likeBusy ? <ActivityIndicator size="small" color={g.secondary} /> : null}
+            </Pressable>
             </View>
-            <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
-              {multipliers.clubM > 1 && (
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
-                  <Ionicons name="business-outline" size={13} color={t.textMuted} />
-                  <Text style={{ color: inkSecond, fontSize: 11 }}>
-                    {triLang(lang as Lang, {
-                      ru: 'Лига',
-                      uk: 'Ліга',
-                      es: 'Liga',
-                      en: 'League',
-                      'pt-BR': "Liga",
-                      vi: "Giải đấu",
-                      id: "Liga",
-                      tr: "Lig",
-                      pl: "Liga",
-                    })} ×{multipliers.clubM.toFixed(1)}
-                  </Text>
-                </View>
-              )}
-              {multipliers.streakM > 1 && (
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
-                  <Ionicons name="flame" size={13} color={t.accent} />
-                  <Text style={{ color: inkSecond, fontSize: 11 }}>
-                    {triLang(lang as Lang, {
-                      ru: 'Цепочка',
-                      uk: 'Стрік',
-                      es: 'Racha',
-                      en: 'Streak',
-                      'pt-BR': "Sequência",
-                      vi: "Chuỗi",
-                      id: "Rangkaian",
-                      tr: "Seri",
-                      pl: "Seria",
-                    })} ×{multipliers.streakM.toFixed(1)}
-                  </Text>
-                </View>
-              )}
-              {multipliers.comebackM > 1 && (
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
-                  <Text style={{ fontSize: 13 }}>⚡</Text>
-                  <Text style={{ color: inkSecond, fontSize: 11 }}>
-                    {triLang(lang as Lang, {
-                      ru: 'Камбэк',
-                      uk: 'Повернення',
-                      es: 'Vuelta',
-                      en: 'Comeback',
-                      'pt-BR': "Retorno",
-                      vi: "Quay lại",
-                      id: "Kembali",
-                      tr: "Dönüş",
-                      pl: "Powrót",
-                    })} ×{multipliers.comebackM.toFixed(1)}
-                  </Text>
-                </View>
-              )}
-              {multipliers.leagueBoostM > 1 && (
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
-                  <Text style={{ fontSize: 13 }}>XP</Text>
-                  <Text style={{ color: inkSecond, fontSize: 11 }}>
-                    {triLang(lang as Lang, {
-                      ru: 'Буст лиги',
-                      uk: 'Буст ліги',
-                      es: 'Impulso de liga',
-                      en: 'League boost',
-                      'pt-BR': "Impulso de liga",
-                      vi: "Tăng lực giải đấu",
-                      id: "Dorongan liga",
-                      tr: "Lig güçlendirmesi",
-                      pl: "Wzmocnienie ligi",
-                    })} ×{multipliers.leagueBoostM.toFixed(1)}
-                  </Text>
-                </View>
-              )}
-              {multipliers.leagueGroupBoostM > 1 && (
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
-                  <Text style={{ fontSize: 13 }}>XP</Text>
-                  <Text style={{ color: inkSecond, fontSize: 11 }}>
-                    {triLang(lang as Lang, {
-                      ru: 'Общий буст лиги',
-                      uk: 'Спільний буст ліги',
-                      es: 'Impulso común de liga',
-                      en: 'Shared league boost',
-                      'pt-BR': "Impulso común de liga",
-                      vi: "Tăng lực chung giải đấu",
-                      id: "Dorongan liga bersama",
-                      tr: "Ortak lig güçlendirmesi",
-                      pl: "Wspólne wzmocnienie ligi",
-                    })} ×{multipliers.leagueGroupBoostM.toFixed(1)}
-                  </Text>
-                </View>
-              )}
-              {multipliers.giftM > 1 && (
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
-                  <Ionicons name="gift-outline" size={13} color={t.accent} />
-                  <Text style={{ color: inkSecond, fontSize: 11 }}>
-                    {triLang(lang as Lang, {
-                      ru: 'Подарок',
-                      uk: 'Подарунок',
-                      es: 'Regalo',
-                      en: 'Gift',
-                      'pt-BR': "Presente",
-                      vi: "Quà tặng",
-                      id: "Hadiah",
-                      tr: "Hediye",
-                      pl: "Prezent",
-                    })} ×{multipliers.giftM.toFixed(1)}
-                  </Text>
-                </View>
-              )}
-              {multipliers.cardM > 1 && (
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
-                  <Text style={{ fontSize: 13 }}>✦</Text>
-                  <Text style={{ color: inkSecond, fontSize: 11 }}>
-                    {triLang(lang as Lang, {
-                      ru: 'Карточка',
-                      uk: 'Картка',
-                      es: 'Tarjeta',
-                      en: 'Card',
-                      'pt-BR': "Cartão",
-                      vi: "Thẻ",
-                      id: "Kartu",
-                      tr: "Kart",
-                      pl: 'Karta',
-                    })} ×{multipliers.cardM.toFixed(2)}
-                  </Text>
-                </View>
-              )}
-              {multipliers.total === 1 && (
-                <Text style={{ color: inkMuted, fontSize: f.sub }}>
-                  {triLang(lang as Lang, {
-                    ru: 'Нет активных бонусов',
-                    uk: 'Немає активних бонусів',
-                    es: 'No hay bonificaciones activas',
-                    en: 'No active bonuses',
-                    'pt-BR': "Não há bonificações ativas",
-                    vi: "Không có thưởng đang hoạt động",
-                    id: "Tidak ada bonus aktif",
-                    tr: "Aktif bonus yok",
-                    pl: "Brak aktywnych bonusów",
-                  })}
-                </Text>
-              )}
-            </View>
-          </View>)
-        )}
-        {/* Разблокировки уровней II «Выучено», III «Защита цепочки» (только себе)
-            и IV «Путь» — ОДНА glass-панель: строки разделены волосяной линией,
-            как iOS-список; если открыт только один блок — панель с одной строкой.
-            V «Легенда» — отдельная строка. */}
-        {(showLearnedBlock || showShieldBlock || showPathBlock) && (
-          <View style={{
-            // зачем: §0.D — панель бонусов держится тоном подложки, не кромкой.
-            borderRadius: 16, backgroundColor: glassPanel,
-            marginBottom: 14,
-          }}>
-            {showLearnedBlock && (
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 11, paddingHorizontal: 12, paddingVertical: 11 }}>
-                <View style={{
-                  width: 33, height: 33, borderRadius: 11, alignItems: 'center', justifyContent: 'center',
-                  backgroundColor: cardVisual.accentSoft,
-                  shadowColor: cardVisual.shadowColor, shadowOpacity: 0.5, shadowRadius: 8, shadowOffset: { width: 0, height: 0 }, ...noAndroidOutline,
-                }}>
-                  <Ionicons name="book" size={16} color={cardVisual.accent} />
-                </View>
-                <View style={{ flex: 1, minWidth: 0 }}>
-                  <Text style={{ color: inkPrimary, fontSize: 14, fontWeight: '700' }}>
-                    {(cardStats?.wordsLearned ?? 0).toLocaleString()} · {(cardStats?.phrasesLearned ?? 0).toLocaleString()}
-                  </Text>
-                  <Text style={{ color: inkMuted, fontSize: 10, marginTop: 1 }}>
-                    {triLang(lang as Lang, {
-                      ru: 'выучено: слова · фразы',
-                      uk: 'вивчено: слова · фрази',
-                      es: 'aprendido: palabras · frases',
-                      en: 'learned: words · phrases',
-                      'pt-BR': 'aprendido: palavras · frases',
-                      vi: 'đã học: từ · cụm từ',
-                      id: 'dipelajari: kata · frasa',
-                      tr: 'öğrenilen: kelime · kalıp',
-                      pl: 'nauczone: słowa · frazy',
-                    })}
-                  </Text>
-                </View>
-              </View>
-            )}
-            {showLearnedBlock && (showShieldRow || showPathBlock) && (
-              <View style={{ height: 1, backgroundColor: glassHairline, marginLeft: 56 }} />
-            )}
-            {showShieldRow && (
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 11, paddingHorizontal: 12, paddingVertical: 11 }}>
-                <View style={{
-                  width: 33, height: 33, borderRadius: 11, alignItems: 'center', justifyContent: 'center',
-                  backgroundColor: cardVisual.accentSoft,
-                  shadowColor: cardVisual.shadowColor, shadowOpacity: 0.5, shadowRadius: 8, shadowOffset: { width: 0, height: 0 }, ...noAndroidOutline,
-                }}>
-                  <Ionicons name="shield-checkmark" size={16} color={cardVisual.accent} />
-                </View>
-                <View style={{ flex: 1, minWidth: 0 }}>
-                  <Text style={{ color: inkPrimary, fontSize: 14, fontWeight: '700' }}>
-                    {triLang(lang as Lang, {
-                      ru: 'Защита цепочки',
-                      uk: 'Захист ланцюжка',
-                      es: 'Protección de racha',
-                      en: 'Streak protection',
-                      'pt-BR': 'Proteção de sequência',
-                      vi: 'Bảo vệ chuỗi',
-                      id: 'Perlindungan rentetan',
-                      tr: 'Seri koruması',
-                      pl: 'Ochrona serii',
-                    })}
-                  </Text>
-                  <Text style={{ color: inkMuted, fontSize: 10, marginTop: 1 }}>
-                    {cardShieldStatusText}
-                  </Text>
-                </View>
-              </View>
-            )}
-            {showShieldRow && showPathBlock && (
-              <View style={{ height: 1, backgroundColor: glassHairline, marginLeft: 56 }} />
-            )}
-            {showPathBlock && (
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 11, paddingHorizontal: 12, paddingVertical: 11 }}>
-                <View style={{
-                  width: 33, height: 33, borderRadius: 11, alignItems: 'center', justifyContent: 'center',
-                  backgroundColor: cardVisual.accentSoft,
-                  shadowColor: cardVisual.shadowColor, shadowOpacity: 0.5, shadowRadius: 8, shadowOffset: { width: 0, height: 0 }, ...noAndroidOutline,
-                }}>
-                  <Ionicons name="compass" size={16} color={cardVisual.accent} />
-                </View>
-                <View style={{ flex: 1, minWidth: 0 }}>
-                  <Text style={{ color: inkPrimary, fontSize: 14, fontWeight: '700' }}>
-                    {(cardStats?.appDays ?? 0).toLocaleString()} · {(cardStats?.longestStreak ?? 0).toLocaleString()}
-                  </Text>
-                  <Text style={{ color: inkMuted, fontSize: 10, marginTop: 1 }}>
-                    {triLang(lang as Lang, {
-                      ru: 'дней в Phraseman · рекордная серия',
-                      uk: 'днів у Phraseman · рекордна серія',
-                      es: 'días en Phraseman · racha récord',
-                      en: 'days in Phraseman · longest streak',
-                      'pt-BR': 'dias no Phraseman · sequência recorde',
-                      vi: 'ngày dùng Phraseman · chuỗi kỷ lục',
-                      id: 'hari di Phraseman · rentetan rekor',
-                      tr: 'Phraseman günleri · rekor seri',
-                      pl: 'dni w Phraseman · rekordowa seria',
-                    })}
-                  </Text>
-                </View>
-              </View>
-            )}
-          </View>
-        )}
-        {displayCardLevel >= 5 && (
-          // AURORA: акцентная строка легенды — корона + имя одной строкой
-          // (вторая строка-подпись убрана по фидбеку владельца).
-          (<View style={{
-            flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 11,
-            // зачем: §0.D — строка легенды держится акцентным тоном уровня V.
-            borderRadius: 16, backgroundColor: cardVisual.accentSoft,
-            paddingHorizontal: 12, paddingVertical: 11, marginBottom: 14,
-          }}>
-            <Ionicons name="trophy" size={f.numMd} color={t.gold} />
-            <Text style={{ color: cardVisual.secondary, fontSize: 14, fontWeight: '900' }}>
-              {cardStats?.legendNo
-                ? triLang(lang as Lang, {
-                    ru: `Легенда №${cardStats.legendNo}`,
-                    uk: `Легенда №${cardStats.legendNo}`,
-                    es: `Leyenda #${cardStats.legendNo}`,
-                    en: `Legend #${cardStats.legendNo}`,
-                    'pt-BR': `Lenda #${cardStats.legendNo}`,
-                    vi: `Huyền thoại #${cardStats.legendNo}`,
-                    id: `Legenda #${cardStats.legendNo}`,
-                    tr: `Efsane #${cardStats.legendNo}`,
-                    pl: `Legenda #${cardStats.legendNo}`,
-                  })
-                : triLang(lang as Lang, {
-                    ru: 'Легенда',
-                    uk: 'Легенда',
-                    es: 'Leyenda',
-                    en: 'Legend',
-                    'pt-BR': 'Lenda',
-                    vi: 'Huyền thoại',
-                    id: 'Legenda',
-                    tr: 'Efsane',
-                    pl: 'Legenda',
-                  })}
-            </Text>
-          </View>)
-        )}
-        </ScrollView>
-        {isMe && !hasDevProfileCardLevelOverride && previewLevel !== null && (
-          // Панель превью: карточка выше уже преобразилась в выбранный уровень —
-          // здесь имя уровня, выход из превью и покупка СЛЕДУЮЩЕГО уровня.
-          // Плавающая скруглённая панель без обводок — часть модала, а не «приклейка».
-          // Выезжает снизу (previewPanelAnim).
-          (<Animated.View style={{
-            position: 'absolute',
-            left: 12,
-            right: 12,
-            bottom: Math.max(12, bottomInset + 8),
-            paddingHorizontal: 14,
-            paddingTop: 12,
-            paddingBottom: 12,
-            borderRadius: 20,
-            // зачем: §0.D — плавающая панель превью отделяется тенью ниже
-            // (она уже сильная), кромка не нужна.
-            // зачем: фон панели полупрозрачный (alpha 0.94) — Android не мог
-            // вывести скруглённый outline и заливал квадрат под панелью.
-            backgroundColor: 'rgba(8,10,16,0.94)',
-            shadowColor: '#000',
-            shadowOpacity: 0.4,
-            shadowRadius: 16,
-            shadowOffset: { width: 0, height: 6 },
-            ...noAndroidOutline,
-            opacity: previewPanelAnim,
-            transform: [{ translateY: previewPanelAnim.interpolate({ inputRange: [0, 1], outputRange: [90, 0] }) }],
-          }}>
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
-              <Text style={{ color: cardVisual.secondary, fontSize: f.caption, fontWeight: '900', letterSpacing: 0.4 }} numberOfLines={1}>
-                {triLang(lang as Lang, {
-                  ru: 'Превью',
-                  uk: 'Превʼю',
-                  es: 'Vista previa',
-                  en: 'Preview',
-                  'pt-BR': 'Prévia',
-                  vi: 'Xem trước',
-                  id: 'Pratinjau',
-                  tr: 'Önizleme',
-                  pl: 'Podgląd',
-                })} · {profileCardLevelRoman(displayCardLevel)} {lang === 'ru' ? PROFILE_CARD_LEVEL_NAME_RU[displayCardLevel] : cardDef.name}
-              </Text>
-              <TouchableOpacity
-                testID="player-profile-preview-exit"
-                accessibilityRole="button"
-                onPress={handleExitPreview}
-                hitSlop={{ top: 10, right: 10, bottom: 10, left: 10 }}
-              >
-                <Ionicons name="close" size={18} color={AURORA_GLASS.inkMuted} />
-              </TouchableOpacity>
-            </View>
-            {previewLevel === nextRealLevel ? (
-              <TouchableOpacity
-                testID="player-profile-preview-buy"
-                disabled={upgradeBusy}
-                onPress={handleBuyPreviewedLevel}
-                activeOpacity={0.88}
-                style={{ borderRadius: 14, paddingVertical: 13, alignItems: 'center', backgroundColor: '#FACC15', opacity: upgradeBusy ? 0.7 : 1, flexDirection: 'row', justifyContent: 'center', gap: 8 }}
-              >
-                <Text style={{ color: '#1A1205', fontSize: f.bodyLg, fontWeight: '900' }}>
-                  {triLang(lang as Lang, {
-                    ru: `Улучшить · ${cardDef.cost}`,
-                    uk: `Покращити · ${cardDef.cost}`,
-                    es: `Mejorar · ${cardDef.cost}`,
-                    en: `Upgrade · ${cardDef.cost}`,
-                    'pt-BR': `Melhorar · ${cardDef.cost}`,
-                    vi: `Nâng cấp · ${cardDef.cost}`,
-                    id: `Tingkatkan · ${cardDef.cost}`,
-                    tr: `Yükselt · ${cardDef.cost}`,
-                    pl: `Ulepsz · ${cardDef.cost}`,
-                  })}
-                </Text>
-                {upgradeBusy ? (
-                  <ActivityIndicator size="small" color="#1A1205" />
-                ) : (
-                  // зачем: цена карточки — в жемчужинах, значит и значок обязан быть
-                  // ассетом жемчужины (как в магазине/на Главной), а не Ionicons-«алмазом».
-                  (<Image
-                    source={pearlIconForTheme(themeMode)}
-                    style={{ width: 20, height: 20 }}
-                    contentFit="contain"
-                    accessible={false}
-                  />)
-                )}
-              </TouchableOpacity>
-            ) : (
-              <View style={{ borderRadius: 14, paddingVertical: 13, alignItems: 'center', backgroundColor: 'rgba(255,255,255,0.07)' }}>
-                <Text style={{ color: AURORA_GLASS.inkMuted, fontSize: f.body, fontWeight: '800' }}>
-                  {nextRealLevel !== null
-                    ? triLang(lang as Lang, {
-                        ru: `Сначала уровень ${profileCardLevelRoman(nextRealLevel)}`,
-                        uk: `Спочатку рівень ${profileCardLevelRoman(nextRealLevel)}`,
-                        es: `Primero el nivel ${profileCardLevelRoman(nextRealLevel)}`,
-                        en: `Level ${profileCardLevelRoman(nextRealLevel)} first`,
-                        'pt-BR': `Primeiro o nível ${profileCardLevelRoman(nextRealLevel)}`,
-                        vi: `Trước tiên cấp ${profileCardLevelRoman(nextRealLevel)}`,
-                        id: `Level ${profileCardLevelRoman(nextRealLevel)} dulu`,
-                        tr: `Önce seviye ${profileCardLevelRoman(nextRealLevel)}`,
-                        pl: `Najpierw poziom ${profileCardLevelRoman(nextRealLevel)}`,
-                      })
-                    : ''}
-                </Text>
-              </View>
-            )}
-          </Animated.View>)
-        )}
-        {hasSeasonProfileFrame && <SeasonProfileCardFrame radius={30} />}
-      </>
-    );
-  }
+          </ScrollView>
+        </Animated.View>
+      </Animated.View>
+
+      {renderProfileModalOverlays(
+        player,
+        lang,
+        removeFriendConfirmOpen,
+        setRemoveFriendConfirmOpen,
+        handleRemoveFriendConfirm,
+        reportUserOpen,
+        setReportUserOpen,
+      )}
+    </>
+  );
 }
 
 // зачем: подтверждение удаления друга и жалоба на ник рендерятся ВНЕ анимированной
@@ -2457,128 +1054,25 @@ function renderProfileModalOverlays(
   );
 }
 
-function PlayerProfileModal({ player, myInfo, onClose, motionVariant = 'classic' }: Props) {
-  const isHybrid = motionVariant === 'hybrid';
+function PlayerProfileModal({ player, myInfo, onClose }: Props) {
   const slideAnim = useRef(new Animated.Value(500)).current;
-  const fadeAnim  = useRef(new Animated.Value(0)).current;
-  const shimmerAnim = useRef(new Animated.Value(0)).current;
-  // Гибрид «Световод»: панель поднимается из света (opacity+y, LUM.settle, без
-  // отскока) — отдельные Reanimated sharedValue, т.к. classic-путь остаётся на
-  // legacy Animated.Value (slideAnim/fadeAnim) и не смешивается с ним.
-  const hybridOpacity = useSharedValue(0);
-  const hybridY = useSharedValue(24);
-  // Держим панель смонтированной, пока не доиграет hybrid-выход (аудит A-55:
-  // раньше закрытие обрывало кадр мгновенно — onClose звался ДО завершения анимации).
-  const [hybridClosing, setHybridClosing] = useState(false);
-  const hybridCloseTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  // зачем: требование владельца — модалка открывается СНИМКОМ, без skeleton→
-  // reveal. getCurrentMultiplierBreakdown() сама по себе асинхронна (AsyncStorage
-  // + Firestore чтения), но peekLastMultiplierBreakdown() отдаёт синхронно
-  // последнее резолвленное значение той же сессии — используем его как
-  // начальное состояние, чтобы первый рендер уже был "финальным" (если игрок
-  // уже открывал профиль/начислял XP в этой сессии). Совсем первое открытие
-  // после старта приложения по-прежнему покажет короткий skeleton — реальных
-  // синхронных данных для него в приложении не существует.
-  const [multipliers, setMultipliers] = useState<MultiplierBreakdown | null>(() => peekLastMultiplierBreakdown());
-  const [resolvedTotalXp, setResolvedTotalXp] = useState<number | null>(null);
-  // зачем (2026-08-03): «вечный скелет» на карточке игрока из турнира. Флаг
-  // отмечает, что сетевое доразрешение опыта ЗАВЕРШИЛОСЬ (успехом или пустым
-  // ответом) — без него у skeleton не было условия выхода вообще, и он
-  // крутился до закрытия модалки.
-  const [xpResolutionSettled, setXpResolutionSettled] = useState(false);
+  const fadeAnim = useRef(new Animated.Value(0)).current;
   const [friendToast, setFriendToast] = useState<string | null>(null);
   const [friendToastType, setFriendToastType] = useState<'error' | 'info'>('info');
-
-  // зачем: A-54/A-55 — внешняя оболочка модалки владеет вечным shimmer и
-  // анимацией входа; флаг нужен здесь отдельно от внутренней карточки.
   const reduceMotion = useReduceMotion();
-
-  // Только `player` с родителя — никакого «снимка» после onClose. Иначе на Android
-  // прозрачный Modal с visible=true оставался невидимым перехватчиком касаний.
   const modalOpen = !!player;
 
-  // Gold shimmer — пока открыт профиль.
-  // зачем: A-6/A-54 — вечный цикл раньше крутился всегда, даже при системном
-  // «Уменьшении движения». Теперь при reduce-motion показываем статичный кадр
-  // на полной непрозрачности вместо пульсации (гасим цикл, не элемент).
-  useEffect(() => {
-    if (!player) {
-      return;
-    }
-    if (reduceMotion) {
-      shimmerAnim.setValue(1);
-      return;
-    }
-    const loop = Animated.loop(
-      Animated.sequence([
-        Animated.timing(shimmerAnim, { toValue: 1, duration: 1200, useNativeDriver: true }),
-        Animated.timing(shimmerAnim, { toValue: 0, duration: 1200, useNativeDriver: true }),
-      ])
-    );
-    loop.start();
-    return () => loop.stop();
-  }, [player, shimmerAnim, reduceMotion]);
-
-  // Сброс при полном закрытии
   useEffect(() => {
     if (player) return;
     slideAnim.setValue(500);
     fadeAnim.setValue(0);
-    // зачем: НЕ сбрасываем multipliers в null при закрытии — держим последний
-    // резолвленный снимок, чтобы следующее открытие сразу отрисовалось финальным
-    // состоянием (см. peekLastMultiplierBreakdown выше), а не снова со skeleton.
-    setResolvedTotalXp(null);
-    setXpResolutionSettled(false);
     setFriendToast(null);
-  }, [player, slideAnim, fadeAnim]);
+  }, [fadeAnim, player, slideAnim]);
 
-  const showFriendRequestToast = useCallback((message: string, toastType: 'error' | 'info' = 'info') => {
-    setFriendToastType(toastType);
-    setFriendToast(message);
-  }, []);
-
-  // Открытие: множители запускаем сразу, чтобы первый профиль в сессии успел
-  // отрисовать реальные данные во время entrance-анимации. Более тяжёлое чтение
-  // leaderboard остаётся после interactions ниже.
   useEffect(() => {
     if (!player) return;
-    let cancelled = false;
-
-    // зачем: не затираем кэш в null на каждое открытие — если peekLastMultiplierBreakdown()
-    // уже дал значение синхронно при инициализации state, держим его видимым, пока
-    // фоновый пересчёт ниже не подтвердит/обновит актуальное значение.
-    if (!multipliers) setMultipliers(peekLastMultiplierBreakdown());
-    // зачем (2026-08-03): `points` для ЧУЖОГО игрока — витринное число вызывающего
-    // экрана (недельные очки в лиге, заглушка 0 в лобби турнира). Раньше оно
-    // попадало сюда как стартовый «общий опыт», а дальше стояло Math.max(...) —
-    // и ноль намертво фиксировался как правда ещё до ответа leaderboard.
-    // Теперь для чужой карточки стартуем только с явного totalXp.
-    const numericTotalXp = Number.isFinite(Number(player.totalXp))
-      ? Math.max(0, Math.floor(Number(player.totalXp)))
-      : null;
-    const numericPoints = Number.isFinite(Number(player.points))
-      ? Math.max(0, Math.floor(Number(player.points)))
-      : null;
-    const initialTotalXp = player.isMe
-      ? (numericTotalXp ?? numericPoints)
-      : numericTotalXp;
-    setResolvedTotalXp(initialTotalXp);
-    // Своей карточке и карточке с уже готовым опытом ждать нечего — ожидание
-    // закрыто сразу, skeleton не показывается вовсе.
-    setXpResolutionSettled(player.isMe || initialTotalXp !== null);
-
-    if (player.isMe) {
-      void getCurrentMultiplierBreakdown().then((m) => {
-        if (!cancelled) setMultipliers(m);
-      }).catch(() => {});
-    }
-
     slideAnim.stopAnimation();
     fadeAnim.stopAnimation();
-    // зачем: A-55 — при «Уменьшении движения» вход не отменяем (иначе модалка
-    // возникает рывком), а сжимаем до 150мс и убираем выезд снизу: остаётся
-    // мягкий кросс-фейд на месте.
     if (reduceMotion) slideAnim.setValue(0);
     Animated.parallel([
       Animated.timing(slideAnim, {
@@ -2587,79 +1081,25 @@ function PlayerProfileModal({ player, myInfo, onClose, motionVariant = 'classic'
         easing: Easing.out(Easing.cubic),
         useNativeDriver: true,
       }),
-      Animated.timing(fadeAnim, { toValue: 1, duration: reduceMotion ? 150 : 220, useNativeDriver: true }),
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: reduceMotion ? 150 : 220,
+        useNativeDriver: true,
+      }),
     ]).start();
-
-    const task: { cancel: () => void } = InteractionManager.runAfterInteractions(() => {
-      if (cancelled) return;
-      // Синтетический персонаж: документа leaderboard у него нет и быть не может.
-      // Запрос вернул бы пустоту, обнулив уже показанный опыт из реестра, — и
-      // стоил бы чтения на каждое открытие карточки (владелец 2026-08-04).
-      if (player.uid && !isSyntheticUid(player.uid)) {
-        const lbDocIds = Array.from(new Set([player.friendUid, player.uid].filter(Boolean) as string[]));
-        Promise.all(lbDocIds.map((id) => firestore().collection('leaderboard').doc(id).get().catch(() => null)))
-          .then((lbSnaps) => {
-            if (cancelled) return;
-            let bestTotalXp = initialTotalXp;
-            for (const lbSnap of lbSnaps) {
-              if (lbSnap?.exists) {
-                const lbData = lbSnap.data() as { points?: unknown };
-                const lbTotal = Number(lbData?.points);
-                if (Number.isFinite(lbTotal) && lbTotal >= 0) {
-                  bestTotalXp = Math.max(bestTotalXp ?? 0, Math.floor(lbTotal));
-                }
-              }
-            }
-            if (bestTotalXp !== null) setResolvedTotalXp(bestTotalXp);
-            // зачем (2026-08-03): документа leaderboard/{uid} может не быть — он
-            // живёт под firebaseAuthUid, а на руках stableId (или наоборот).
-            // Раньше карточка в этом случае молча оставалась на нуле и зависела
-            // от того, успел ли ВЫЗЫВАЮЩИЙ экран сделать префетч. Теперь модалка
-            // сама добирает профиль тем же батч-хелпером (TTL-кэш 5 мин + dedupe,
-            // на одну карточку это максимум один callable, обычно ноль).
-            if (bestTotalXp !== null || !CLOUD_SYNC_ENABLED || IS_EXPO_GO) {
-              setXpResolutionSettled(true);
-              return;
-            }
-            void fetchFriendProfilesBatch(lbDocIds)
-              .then((profiles) => {
-                if (cancelled) return;
-                for (const id of lbDocIds) {
-                  const fetched = profiles[id];
-                  // зачем (2026-08-03): было `fetched.totalXp > 0` — профиль
-                  // новичка с честным нулём отбрасывался как «пустой», и
-                  // карточка навсегда оставалась в skeleton. Ноль — валидный
-                  // ответ; «не знаю» — это только отсутствие профиля (null).
-                  if (fetched) {
-                    setResolvedTotalXp(Math.max(0, Math.floor(fetched.totalXp)));
-                    return;
-                  }
-                }
-              })
-              .catch(() => {})
-              // Сеть отработала — ожидание закрыто в любом исходе, включая
-              // «профиля нет вовсе»: тогда честно показываем 0 / Lv.1.
-              .finally(() => { if (!cancelled) setXpResolutionSettled(true); });
-          })
-          .catch(() => { if (!cancelled) setXpResolutionSettled(true); });
-      } else {
-        // Нет uid (бот, локальный профиль) — доразрешать нечего, ждать незачем.
-        setXpResolutionSettled(true);
-      }
-    });
-    return () => {
-      cancelled = true;
-      task?.cancel?.();
-    };
-  }, [player, fadeAnim, slideAnim, reduceMotion]);
+  }, [fadeAnim, player, reduceMotion, slideAnim]);
 
   const handleClose = useCallback(() => {
     onClose();
   }, [onClose]);
 
-  const clearFriendToast = useCallback(() => {
-    setFriendToast(null);
-  }, []);
+  const showFriendRequestToast = useCallback(
+    (message: string, toastType: 'error' | 'info' = 'info') => {
+      setFriendToastType(toastType);
+      setFriendToast(message);
+    },
+    [],
+  );
 
   return (
     <Modal
@@ -2669,32 +1109,26 @@ function PlayerProfileModal({ player, myInfo, onClose, motionVariant = 'classic'
       onRequestClose={handleClose}
       hardwareAccelerated
       statusBarTranslucent
+      navigationBarTranslucent
     >
-      {player && (
+      {player ? (
         <View style={styles.modalFill} pointerEvents="box-none">
           <PlayerProfileModalBody
             player={player}
             myInfo={myInfo}
-            resolvedTotalXp={resolvedTotalXp}
-            xpResolutionSettled={xpResolutionSettled}
             slideAnim={slideAnim}
             fadeAnim={fadeAnim}
-            shimmerAnim={shimmerAnim}
             onBackdropPress={handleClose}
             onClose={handleClose}
-            multipliers={multipliers}
             onFriendRequestToast={showFriendRequestToast}
-            isHybrid={isHybrid}
-            hybridOpacity={hybridOpacity}
-            hybridY={hybridY}
           />
           <InGameToast
             message={friendToast}
             type={friendToastType}
-            onHide={clearFriendToast}
+            onHide={() => setFriendToast(null)}
           />
         </View>
-      )}
+      ) : null}
     </Modal>
   );
 }

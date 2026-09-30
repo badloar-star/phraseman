@@ -34,7 +34,6 @@ import {
   roundStateFor,
   scoreAnswer,
   scoreRound,
-  seasonPointsForPlace,
   TOURNAMENT_FALLBACK_NAME,
   seededShuffle,
   selectRoundTasks,
@@ -144,7 +143,7 @@ describe('active tournament forfeits', () => {
     };
     const effect = planTournamentFinalization(room, 100).playerEffects
       .find((entry) => entry.playerId === forfeited.id);
-    expect(effect).toMatchObject({ won: false, seasonPoints: 2, reward: { gems: 0, tickets: 0 } });
+    expect(effect).toMatchObject({ won: false, reward: { gems: 0, tickets: 0 } });
   });
 
   it('publishes authoritative ordered places, rewards, and absolute retention anchors at finalization', () => {
@@ -534,13 +533,7 @@ describe('prizes / placements (§7)', () => {
   });
 });
 
-describe('season / bank / hot streak (§8, §9)', () => {
-  it('season points by place', () => {
-    expect(seasonPointsForPlace(1)).toBe(25);
-    expect(seasonPointsForPlace(2)).toBe(15);
-    expect(seasonPointsForPlace(3)).toBe(10);
-    expect(seasonPointsForPlace(9)).toBe(2);
-  });
+describe('bank / hot streak (§9)', () => {
 
   it('bank contribution is 20% of ticket value in gems, floored', () => {
     expect(bankContributionGems(1, 10)).toBe(2);
@@ -1491,14 +1484,14 @@ describe('transaction plan semantics', () => {
     // 2 живых × 5 = 10, минус 20% в недельный банк = 8 призёрам,
     // 60/25/15 → победителю 5. Билетов больше нет.
     expect(first.playerEffects[0]).toMatchObject({
-      playerId: 'u1', seasonPoints: 25, roundStars: 100, tournamentsPlayed: 1, won: true,
+      playerId: 'u1', roundStars: 100, tournamentsPlayed: 1, won: true,
       reward: { gems: 5, tickets: 0 },
     });
     // roundStars — реальный счёт игрока (player.score), НЕ очки места
     // (seasonPoints): второе место получает меньше очков, но может набрать
     // больше звёзд, чем первое — лобби обязано показывать честный счёт.
     expect(first.playerEffects[1]).toMatchObject({
-      playerId: 'u2', seasonPoints: 15, roundStars: 50,
+      playerId: 'u2', roundStars: 50,
     });
     // В недельный банк уходит доля турнира (20% от 10 = 2) ПЛЮС остаток от
     // округления призовых долей вниз — призёр здесь один, поэтому 25% и 15%

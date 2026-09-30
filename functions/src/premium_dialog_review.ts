@@ -21,8 +21,22 @@ import {
 } from './dialogue_ai_language_contract';
 import { resolvePremiumAccess } from './premium_status';
 import { resolveRemoteBool } from './remote_gates';
+import {
+  DialogueV2CompletionServerError,
+  executeDialogueV2CompletionReview,
+} from './dialogue_v2_completion_server';
+import {
+  loadDialogueV2CompletionReleaseCandidate,
+  type DialogueV2CompletionReleaseRepository,
+} from './dialogue_v2_completion_release_source';
+import { authorizeDialogueV2ServerPacket } from './dialogue_v2_server_authorization';
+import {
+  makeFirestoreDialogueV2MemoryRepository,
+  persistDialogueV2CompletionMemory,
+} from './dialogue_v2_memory_writer';
 
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
+const DIALOGUE_V2_MEMORY_ID_SECRET = defineSecret('DIALOGUE_V2_MEMORY_ID_SECRET');
 
 /**
  * premiumDialogReview — финальный «разбор полётов» завершённого ИИ-диалога.
@@ -69,6 +83,8 @@ interface ChatTurn {
 }
 
 interface DialogReviewRequest {
+  /** Explicit opt-in to the released V2 completion contract. */
+  dialogueVersion?: unknown;
   history?: unknown;
   cefr?: unknown;
   interfaceLang?: unknown;
@@ -107,6 +123,38 @@ interface DialogReviewRequest {
   goalProgress?: unknown;
 }
 
+function dialogueV2ReleaseRepository(
+  db: FirebaseFirestore.Firestore,
+): DialogueV2CompletionReleaseRepository {
+  return {
+    readDocument: async (path) => {
+      const snapshot = await db.doc(path).get();
+      return snapshot.exists ? snapshot.data() ?? null : null;
+    },
+    readCollection: async (path) => {
+      const snapshot = await db.collection(path).get();
+      return snapshot.docs.map((document) => ({ id: document.id, data: document.data() }));
+    },
+  };
+}
+
+function dialogueV2CompletionHttpError(error: unknown): HttpsError {
+  if (!(error instanceof DialogueV2CompletionServerError)) {
+    if (error instanceof HttpsError) return error;
+    return new HttpsError('unavailable', 'dialogue_v2_completion_provider_failed');
+  }
+  if (error.code === 'request_invalid' || error.code === 'history_required') {
+    return new HttpsError('invalid-argument', `dialogue_v2_completion_${error.code}`);
+  }
+  if (error.code === 'release_unavailable') {
+    return new HttpsError('failed-precondition', 'dialogue_v2_completion_release_unavailable');
+  }
+  if (error.code === 'pack_reference_mismatch') {
+    return new HttpsError('failed-precondition', 'dialogue_v2_completion_pack_mismatch');
+  }
+  return new HttpsError('unavailable', 'dialogue_v2_completion_provider_failed');
+}
+
 /** Одно исправление: фраза ученика → естественный вариант + короткое пояснение. */
 export interface DialogReviewCorrection {
   original: string;
@@ -141,8 +189,18 @@ export interface DialogReviewPhrase {
   kind: 'fix' | 'ok' | 'polish';
 }
 
+/** A model observation explicitly anchored to one verbatim learner message. */
+export interface DialogReviewEvidence {
+  learnerTurn: string;
+  note: string;
+}
+
 export interface DialogReviewResult {
   praise: string;
+  /** Overall, partner-perspective assessment of this specific conversation. */
+  assessment?: string;
+  /** Concrete evidence for the assessment. Entries are grounded server-side. */
+  evidence?: DialogReviewEvidence[];
   corrections: DialogReviewCorrection[];
   tip: string;
   /** text-режим: разбор каждой реплики ученика по порядку (до 12). */
@@ -263,16 +321,18 @@ export function buildReviewSystemPrompt(
 - "score": an integer 0-100 for the learner's ${targetName} in this conversation at level ${cefr} (100 = every line correct and natural; a couple of small slips ≈ 80-90; many mistakes or one-word answers ≈ 40-60).`
       : '';
   const phrasesShape = mode === 'text'
-    ? ', "phrases": [{"original": "...", "corrected": "...", "note": "...", "kind": "ok"}], "score": 85'
+    ? ', "assessment": "...", "evidence": [{"learnerTurn": "...", "note": "..."}], "phrases": [{"original": "...", "corrected": "...", "note": "...", "kind": "ok"}], "score": 85'
     : '';
   return `You are a warm, encouraging ${targetName} tutor inside the Phraseman language app. A learner has just finished a practice conversation with a role-play partner. Your job is a short, kind debrief of the learner's ${targetName}.${goalLine}${modeLine}
 The learner's level is ${cefr}. The learner's native language is ${learnerLangName}.
 
 Review ONLY the learner's lines. Respond with a single JSON object and nothing else:
-{"praise": "...", "corrections": [{"original": "...", "corrected": "...", "note": "..."}], "tip": "..."${phrasesShape}}
+{"praise": "...", "assessment": "...", "evidence": [{"learnerTurn": "...", "note": "..."}], "corrections": [{"original": "...", "corrected": "...", "note": "..."}], "tip": "..."${phrasesShape}}
 
 Rules:
 - "praise": 1-2 warm, specific sentences in ${learnerLangName} about what the learner genuinely did well (a phrase they used, politeness, persistence). Never invent things they did not say, never use empty flattery.
+- "assessment": 2-3 concise sentences in ${learnerLangName}, written from the role-play partner's point of view ("I understood…", "It helped when…"). Give an overall assessment of how the conversation worked. Ground every claim in the learner's actual lines; do not pretend the partner saw anything outside this transcript.
+- "evidence": 1-3 items supporting "assessment". "learnerTurn" MUST be copied verbatim from one learner line in this transcript; "note" is one short explanation in ${learnerLangName}. Never invent or paraphrase a learner turn.
 - "corrections": scan all learner lines, then return only the most useful items for the next conversation:
   - "original": the learner's line exactly as they wrote it (shorten to the broken part if the line is long);
   - "corrected": the natural ${targetName} a friendly native speaker would use for the same idea, kept at level ${cefr};
@@ -327,7 +387,16 @@ export function parseReviewEnvelope(
   }
 
   const praise = text(parsed.praise, voiceLike ? 240 : 500);
+  const assessment = text(parsed.assessment, voiceLike ? 240 : 500);
   const tip = text(parsed.tip, voiceLike ? 220 : 400);
+  const rawEvidence = Array.isArray(parsed.evidence) ? parsed.evidence : [];
+  const evidence: DialogReviewEvidence[] = [];
+  for (const item of rawEvidence.slice(0, 3)) {
+    const source = (item ?? {}) as Record<string, unknown>;
+    const learnerTurn = text(source.learnerTurn, 300);
+    const note = text(source.note, 300);
+    if (learnerTurn && note) evidence.push({ learnerTurn, note });
+  }
   // зачем (владелец 2026-09-14): полный разбор КАЖДОЙ реплики ученика + оценка
   // разговора числом. Только text-режим; для voice/tutor поле отсутствует и
   // клиент ведёт себя как раньше.
@@ -359,12 +428,76 @@ export function parseReviewEnvelope(
     : undefined;
   return {
     praise,
+    ...(assessment ? { assessment } : {}),
+    ...(evidence.length > 0 ? { evidence } : {}),
     corrections,
     tip,
     ...(phrases.length > 0 ? { phrases } : {}),
     ...(score != null ? { score } : {}),
     ...(memory ? { memory } : {}),
   };
+}
+
+/**
+ * A provider may only cite learner turns that actually exist in this request.
+ * The returned `learnerTurn` is always the source transcript's verbatim text,
+ * never a model-provided paraphrase. This makes the completion assessment
+ * inspectable and prevents fabricated evidence from reaching the client.
+ */
+function groundedLearnerQuote(quote: string, learnerTurns: readonly string[]): string | null {
+  const requested = quote.trim();
+  if (!requested) return null;
+  const matches: string[] = [];
+  for (const learnerTurn of learnerTurns) {
+    let index = learnerTurn.indexOf(requested);
+    while (index >= 0) {
+      matches.push(learnerTurn.slice(index, index + requested.length));
+      if (matches.length > 1) return null;
+      index = learnerTurn.indexOf(requested, index + requested.length);
+    }
+  }
+  return matches[0] ?? null;
+}
+
+export function groundReviewEvidence(
+  review: DialogReviewResult,
+  history: readonly ChatTurn[],
+): DialogReviewResult {
+  const learnerTurns = history
+    .filter((turn) => turn.role === 'user')
+    .map((turn) => stripKeyPhraseMarkers(turn.content));
+  const seen = new Set<string>();
+  const evidence = (review.evidence ?? []).flatMap((item) => {
+    const match = groundedLearnerQuote(item.learnerTurn, learnerTurns);
+    if (!match || seen.has(match)) return [];
+    seen.add(match);
+    return [{ learnerTurn: match, note: item.note }];
+  });
+  const corrections = review.corrections.flatMap((item) => {
+    const original = groundedLearnerQuote(item.original, learnerTurns);
+    return original ? [{ ...item, original }] : [];
+  });
+  const phrases = (review.phrases ?? []).flatMap((item) => {
+    const original = groundedLearnerQuote(item.original, learnerTurns);
+    return original ? [{ ...item, original }] : [];
+  });
+  const {
+    evidence: _untrustedEvidence,
+    corrections: _untrustedCorrections,
+    phrases: _untrustedPhrases,
+    ...reviewWithoutUntrustedLearnerQuotes
+  } = review;
+  return {
+    ...reviewWithoutUntrustedLearnerQuotes,
+    corrections,
+    ...(evidence.length > 0 ? { evidence } : {}),
+    ...(phrases.length > 0 ? { phrases } : {}),
+  };
+}
+
+/** A completion debrief is safe to present as a partner assessment only with evidence. */
+export function hasGroundedCompletionAssessment(review: DialogReviewResult): boolean {
+  return Boolean(review.assessment?.trim() && (review.evidence?.length ?? 0) > 0);
 }
 
 /** Клиентские итоги урока не зависят от ответа провайдера и сохраняются первыми. */
@@ -426,7 +559,7 @@ export const premiumDialogReview = onCall({
   timeoutSeconds: 30,
   memory: '256MiB',
   maxInstances: 20,
-  secrets: [OPENAI_API_KEY, ADMIN_ALERT_BOT_TOKEN],
+  secrets: [OPENAI_API_KEY, ADMIN_ALERT_BOT_TOKEN, DIALOGUE_V2_MEMORY_ID_SECRET],
 }, async (request) => {
   if (!request.auth?.uid) {
     console.warn('premium_dialog_review rejected', { reason: 'auth_required' });
@@ -434,6 +567,66 @@ export const premiumDialogReview = onCall({
   }
 
   const data = (request.data ?? {}) as DialogReviewRequest;
+  if (data.dialogueVersion === 'v2') {
+    const db = admin.firestore();
+    try {
+      let releasePromise: ReturnType<typeof loadDialogueV2CompletionReleaseCandidate> | undefined;
+      const resolveRelease = () => {
+        releasePromise ??= loadDialogueV2CompletionReleaseCandidate(
+          dialogueV2ReleaseRepository(db),
+        );
+        return releasePromise;
+      };
+      const v2Completion = await executeDialogueV2CompletionReview(data, {
+        resolveRelease,
+        // Deliberately fail closed. The current production callable has no
+        // approved V2 transcript-processing adapter. Connecting one must be a
+        // separate privacy-reviewed change after the immutable release exists.
+        generateFeedback: async () => {
+          throw new DialogueV2CompletionServerError('provider_failed');
+        },
+      });
+      const authUid = request.auth.uid;
+      const v2Memory = await persistDialogueV2CompletionMemory({
+        authUid,
+        studyTarget: data.studyTarget,
+        scenarioId: data.scenarioId,
+        completion: v2Completion,
+      }, {
+        repository: makeFirestoreDialogueV2MemoryRepository(db),
+        identifierSecret: DIALOGUE_V2_MEMORY_ID_SECRET.value(),
+        resolveStableAccountId: (candidateAuthUid) => resolveStableUidForAuth(db, candidateAuthUid),
+        resolvePremiumAccess: (stableAccountId, candidateAuthUid) => resolvePremiumAccess(
+          db,
+          stableAccountId,
+          Date.now(),
+          candidateAuthUid,
+        ),
+        resolveApprovedLanguagePack: async (studyTarget, scenarioId) => (
+          authorizeDialogueV2ServerPacket(
+            { studyTarget, scenarioId },
+            await resolveRelease(),
+          )
+        ),
+      });
+      return {
+        ok: true,
+        v2Completion,
+        v2Memory: {
+          sharedMemoryStored: v2Memory.sharedMemoryStored,
+          scenarioCheckpointStored: v2Memory.scenarioCheckpointStored,
+        },
+      };
+    } catch (error) {
+      const mapped = dialogueV2CompletionHttpError(error);
+      console.warn('premium_dialog_review V2 rejected', {
+        reason: mapped.message,
+        scenarioId: text(data.scenarioId, 80) || null,
+      });
+      throw mapped;
+    }
+  }
+
   // Dialogue target validation is intentionally the first request-data check.
   // A direct call with an absent/unknown target must fail before identity reads,
   // tutor evidence writes, access/rate checks, or any provider work.
@@ -567,9 +760,17 @@ export const premiumDialogReview = onCall({
       }
 
       json = (await response.json()) as OpenAIChatResponse;
-      review = parseReviewEnvelope(text(json.choices?.[0]?.message?.content, 6000), mode);
-      if (!review) {
+      const parsedReview = parseReviewEnvelope(text(json.choices?.[0]?.message?.content, 6000), mode);
+      if (!parsedReview) {
         console.error('premium_dialog_review unparseable reply', {
+          model: dialogModel,
+          scenarioId: text(data.scenarioId, 80) || null,
+        });
+        throw new HttpsError('unavailable', 'dialog_provider_failed');
+      }
+      review = groundReviewEvidence(parsedReview, history);
+      if (!hasGroundedCompletionAssessment(review)) {
+        console.error('premium_dialog_review missing_grounded_completion_assessment', {
           model: dialogModel,
           scenarioId: text(data.scenarioId, 80) || null,
         });
@@ -651,6 +852,8 @@ export const premiumDialogReview = onCall({
     return {
       ok: true,
       praise: publicReview.praise,
+      ...(publicReview.assessment ? { assessment: publicReview.assessment } : {}),
+      ...(publicReview.evidence ? { evidence: publicReview.evidence } : {}),
       // corrections — старый список «только ошибки»; для Free он весь под замком.
       corrections: [],
       tip: '',

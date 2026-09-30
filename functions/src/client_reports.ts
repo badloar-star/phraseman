@@ -8,9 +8,28 @@ import {
   isQualityReportKind,
   prepareQualityDailyAggregate,
 } from './quality_daily_aggregate';
+import {
+  parseSpireTaskReportClaim,
+  verifySpireTaskClaimAgainstPack,
+  type VerifiedSpireTaskClaim,
+} from './spire_task_report_contract';
+import {
+  SPIRE_TASK_FLAGS_COLLECTION,
+  parseSpireTaskFlagsDocStrict,
+  spireTaskFlagsDocId,
+} from './spire_task_flag_contract';
+import {
+  SPIRE_TASK_INCIDENTS_COLLECTION,
+  parseSpireTaskIncident,
+  planAcceptedSpireTaskReport,
+  spireTaskIncidentId,
+} from './spire_task_incident_contract';
+import { spireWeekId } from './spire_groups';
+import { spireWeekStartMs } from './spire_residents';
 
 const REGION = 'us-central1';
 const RATE_COLLECTION = 'client_report_rate_limits';
+const SPIRE_RESERVATION_COLLECTION = 'spire_task_report_reservations';
 /** Приватный документ матча Арены: там лежит seatByStableUid и маркер бота. */
 const ARENA_MATCH_PRIVATE = 'arena_v2_match_private';
 const HOUR_MS = 60 * 60 * 1000;
@@ -21,6 +40,7 @@ type ClientReportKind =
   | 'arena_opponent_report'
   | 'community_pack_report'
   | 'error_report'
+  | 'spire_task_report'
   | 'app_error'
   | 'app_activity'
   | 'subscription_cancel_survey'
@@ -39,6 +59,7 @@ const REPORT_CONFIG: Record<ClientReportKind, ReportConfig> = {
   arena_opponent_report: { collection: 'user_reports', max: 5, windowMs: HOUR_MS },
   community_pack_report: { collection: 'community_pack_reports', max: 5, windowMs: HOUR_MS },
   error_report: { collection: 'error_reports', max: 10, windowMs: HOUR_MS },
+  spire_task_report: { collection: 'error_reports', max: 10, windowMs: HOUR_MS },
   app_error: { collection: 'app_errors', max: 20, windowMs: HOUR_MS },
   app_activity: { collection: 'app_activity', max: 60, windowMs: HOUR_MS },
   subscription_cancel_survey: { collection: 'subscription_cancel_surveys', max: 5, windowMs: DAY_MS },
@@ -310,6 +331,35 @@ function buildReportDoc(
     };
   }
 
+  if (kind === 'spire_task_report') {
+    const claim = resolvedSpireClaim(payload);
+    return {
+      ...base,
+      screen: 'spire',
+      category: 'spire_task_report',
+      dataId: claim.taskId,
+      dataText: '',
+      userAnswer: '',
+      comment: claim.reason,
+      status: 'new',
+      contentScope: 'spire',
+      spireTaskId: claim.taskId,
+      spireLang: claim.studyTarget,
+      spireWeekId: claim.weekId,
+      spireTier: claim.tier,
+      spirePackHash: claim.packHash,
+      spireFloor: claim.floor,
+      spireStep: claim.step,
+      spireSetIndex: claim.setIndex,
+      spireTaskIndex: claim.taskIndex,
+      spireTaskMode: claim.mode,
+      spireTaskKind: claim.kind,
+      spireTaskDifficulty: claim.difficulty,
+      spireQuarantineState: 'quarantined',
+      spireQuarantinedAtMs: now,
+    };
+  }
+
   if (kind === 'app_error') {
     return {
       ...base,
@@ -361,6 +411,196 @@ function buildReportDoc(
     broadcastId: text(payload.broadcastId, 180),
     status: 'clicked',
   };
+}
+
+function resolvedSpireClaim(payload: Record<string, unknown>): VerifiedSpireTaskClaim {
+  if (payload.__verifiedSpireTaskClaim !== true) throw new HttpsError('failed-precondition', 'spire_task_report_not_verified');
+  const { __verifiedSpireTaskClaim: _verified, ...claim } = payload;
+  return claim as unknown as VerifiedSpireTaskClaim;
+}
+
+async function verifyPublishedSpireTaskClaim(payload: Record<string, unknown>): Promise<Record<string, unknown>> {
+  let claim;
+  try {
+    claim = parseSpireTaskReportClaim(payload);
+  } catch (error) {
+    throw new HttpsError('invalid-argument', error instanceof Error ? error.message : 'spire_task_report_invalid');
+  }
+  const currentWeekId = spireWeekId(new Date(spireWeekStartMs(Date.now())));
+  if (claim.weekId !== currentWeekId) {
+    throw new HttpsError('failed-precondition', 'spire_task_report_week_not_current');
+  }
+  const path = `spire_packs/${claim.studyTarget}/${claim.tier}/${claim.weekId}.json`;
+  try {
+    const file = admin.storage().bucket().file(path);
+    const [metadata] = await file.getMetadata();
+    const publishedPackHash = text((metadata.metadata as Record<string, unknown> | undefined)?.packHash, 128);
+    const size = Number(metadata.size ?? 0);
+    if (!publishedPackHash || !Number.isFinite(size) || size <= 0 || size > 12 * 1024 * 1024) {
+      throw new Error('spire_task_report_pack_unavailable');
+    }
+    const [bytes] = await file.download({ validation: 'crc32c' });
+    if (bytes.byteLength !== size) throw new Error('spire_task_report_pack_unavailable');
+    const pack = JSON.parse(bytes.toString('utf8')) as unknown;
+    const verified = verifySpireTaskClaimAgainstPack(claim, pack, publishedPackHash);
+    return { ...verified, __verifiedSpireTaskClaim: true };
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'spire_task_report_pack_unavailable';
+    if (message.startsWith('spire_task_report_')) throw new HttpsError('failed-precondition', message);
+    throw new HttpsError('failed-precondition', 'spire_task_report_pack_unavailable');
+  }
+}
+
+function spireAttemptFingerprint(payload: Record<string, unknown>): string {
+  const bounded = [
+    payload.taskId, payload.studyTarget, payload.weekId, payload.tier, payload.packHash,
+    payload.floor, payload.step, payload.setIndex, payload.taskIndex, text(payload.reason, 2000),
+  ];
+  return createHash('sha256').update(JSON.stringify(bounded), 'utf8').digest('hex');
+}
+
+function requireMatchingFinalizedSpireFingerprint(
+  snapshot: admin.firestore.DocumentSnapshot,
+  expected: string,
+): void {
+  const actual = snapshot.data()?.spireRequestFingerprint;
+  if (actual !== expected) {
+    throw new HttpsError('already-exists', 'spire_task_report_idempotency_mismatch');
+  }
+}
+
+async function submitVerifiedSpireTaskReport(input: Readonly<{
+  db: admin.firestore.Firestore;
+  authUid: string;
+  stableUid: string;
+  idempotencyKey: string;
+  payload: Record<string, unknown>;
+  nowMs: number;
+}>): Promise<Readonly<{ ok: true; id: string; collection: string }>> {
+  const config = REPORT_CONFIG.spire_task_report;
+  const reportRef = input.db.collection(config.collection)
+    .doc(idempotentReportDocId('spire_task_report', input.stableUid, input.idempotencyKey));
+  const rateRef = input.db.collection(RATE_COLLECTION)
+    .doc(rateDocId('spire_task_report', input.authUid, input.stableUid));
+  const reservationRef = input.db.collection(SPIRE_RESERVATION_COLLECTION).doc(reportRef.id);
+  const fingerprint = spireAttemptFingerprint(input.payload);
+
+  const reservation = await input.db.runTransaction(async (tx) => {
+    const [existingReport, existingReservation, rateSnap] = await Promise.all([
+      tx.get(reportRef), tx.get(reservationRef), tx.get(rateRef),
+    ]);
+    if (existingReport.exists) {
+      requireMatchingFinalizedSpireFingerprint(existingReport, fingerprint);
+      return { replayed: true as const };
+    }
+    if (existingReservation.exists) {
+      const row = existingReservation.data() ?? {};
+      if (row.stableUid !== input.stableUid || row.requestFingerprint !== fingerprint) {
+        throw new HttpsError('already-exists', 'spire_task_report_idempotency_mismatch');
+      }
+      if (row.status !== 'pending') throw new HttpsError('failed-precondition', 'spire_task_report_reservation_invalid');
+      return { replayed: false as const };
+    }
+    const rate = rateSnap.data() || {};
+    const windowStartMs = numeric(rate.windowStartMs);
+    const sameWindow = input.nowMs - windowStartMs < config.windowMs;
+    const count = sameWindow ? numeric(rate.count) : 0;
+    if (count >= config.max) throw new HttpsError('resource-exhausted', 'rate_limited');
+    tx.set(rateRef, {
+      kind: 'spire_task_report', stableUid: input.stableUid, authUid: input.authUid,
+      windowStartMs: sameWindow ? windowStartMs : input.nowMs,
+      count: count + 1,
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(), updatedAtMs: input.nowMs,
+    }, { merge: true });
+    tx.create(reservationRef, {
+      schemaVersion: 'spire-task-report-reservation-v1',
+      reportId: reportRef.id,
+      stableUid: input.stableUid,
+      requestFingerprint: fingerprint,
+      status: 'pending',
+      createdAtMs: input.nowMs,
+      serverCreatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+    return { replayed: false as const };
+  });
+  if (reservation.replayed) {
+    return { ok: true, id: reportRef.id, collection: config.collection };
+  }
+
+  const resolvedPayload = await verifyPublishedSpireTaskClaim(input.payload);
+  const claim = resolvedSpireClaim(resolvedPayload);
+  const reportDoc = buildReportDoc('spire_task_report', resolvedPayload, input.stableUid, input.authUid, input.nowMs);
+  const flagRef = input.db.collection(SPIRE_TASK_FLAGS_COLLECTION).doc(spireTaskFlagsDocId(claim.studyTarget));
+  const incidentId = spireTaskIncidentId(claim.studyTarget, claim.taskId);
+  const incidentRef = input.db.collection(SPIRE_TASK_INCIDENTS_COLLECTION).doc(incidentId);
+  const receiptRef = input.db.collection('spire_task_report_receipts').doc(reportRef.id);
+
+  return input.db.runTransaction(async (tx) => {
+    const [existingReport, reservationSnap, flagSnap, incidentSnap] = await Promise.all([
+      tx.get(reportRef), tx.get(reservationRef), tx.get(flagRef), tx.get(incidentRef),
+    ]);
+    if (existingReport.exists) {
+      requireMatchingFinalizedSpireFingerprint(existingReport, fingerprint);
+      return { ok: true as const, id: reportRef.id, collection: config.collection };
+    }
+    const pending = reservationSnap.data() ?? {};
+    if (!reservationSnap.exists
+      || pending.status !== 'pending'
+      || pending.stableUid !== input.stableUid
+      || pending.requestFingerprint !== fingerprint) {
+      throw new HttpsError('failed-precondition', 'spire_task_report_reservation_invalid');
+    }
+    const flags = parseSpireTaskFlagsDocStrict(flagSnap.exists ? flagSnap.data() : null, claim.studyTarget);
+    const existingIncident = incidentSnap.exists
+      ? parseSpireTaskIncident(incidentSnap.data(), claim.studyTarget, claim.taskId)
+      : null;
+    const plan = planAcceptedSpireTaskReport({
+      existing: existingIncident,
+      evidence: {
+        reportId: reportRef.id, studyTarget: claim.studyTarget, taskId: claim.taskId,
+        weekId: claim.weekId, tier: claim.tier, packHash: claim.packHash,
+        reason: claim.reason, mode: claim.mode, difficulty: claim.difficulty,
+      },
+      nowMs: input.nowMs,
+      flags,
+    });
+    const qualityAggregate = await prepareQualityDailyAggregate({
+      db: input.db,
+      tx,
+      kind: 'error_report',
+      reportDoc,
+      stableUid: input.stableUid,
+      nowMs: input.nowMs,
+      fields: admin.firestore.FieldValue,
+    });
+    tx.create(reportRef, {
+      ...reportDoc,
+      spireIncidentId: incidentId,
+      spireIncidentRevisionAtReport: plan.incident.revision,
+      spireRequestFingerprint: fingerprint,
+    });
+    if (plan.nextFlags !== flags) tx.set(flagRef, plan.nextFlags);
+    tx.set(incidentRef, plan.incident);
+    tx.create(receiptRef, {
+      schemaVersion: 'spire-task-report-receipt-v1',
+      reportId: reportRef.id,
+      taskId: claim.taskId,
+      studyTarget: claim.studyTarget,
+      incidentId,
+      incidentRevision: plan.incident.revision,
+      transition: plan.transition,
+      requestFingerprint: fingerprint,
+      createdAtMs: input.nowMs,
+      serverCreatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+    tx.set(reservationRef, {
+      status: 'finalized',
+      finalizedAtMs: input.nowMs,
+      serverFinalizedAt: admin.firestore.FieldValue.serverTimestamp(),
+    }, { merge: true });
+    commitPreparedQualityDailyAggregate(tx, qualityAggregate);
+    return { ok: true as const, id: reportRef.id, collection: config.collection };
+  });
 }
 
 /**
@@ -417,8 +657,16 @@ export const submitClientReport = onCall({
     throw new HttpsError('failed-precondition', 'report_owner_changed');
   }
   const idempotencyKey = text(request.data?.idempotencyKey, 120);
+  if (kind === 'spire_task_report' && !idempotencyKey) {
+    throw new HttpsError('invalid-argument', 'spire_task_report_idempotency_required');
+  }
   const payload = asRecord(request.data?.payload);
   const now = Date.now();
+  if (kind === 'spire_task_report') {
+    return submitVerifiedSpireTaskReport({
+      db, authUid, stableUid, idempotencyKey, payload, nowMs: now,
+    });
+  }
   // зачем: в Арене клиент не знает uid соперника (сервер его намеренно не шлёт),
   // поэтому находим сами по matchId + месту.
   //
@@ -442,7 +690,6 @@ export const submitClientReport = onCall({
   const reportRef = idempotencyKey
     ? db.collection(config.collection).doc(idempotentReportDocId(kind, stableUid, idempotencyKey))
     : db.collection(config.collection).doc();
-
   return db.runTransaction(async (tx) => {
     if (idempotencyKey) {
       const existingReport = await tx.get(reportRef);
@@ -459,11 +706,12 @@ export const submitClientReport = onCall({
       throw new HttpsError('resource-exhausted', 'rate_limited');
     }
 
-    const qualityAggregate = isQualityReportKind(kind)
+    const qualityKind = kind;
+    const qualityAggregate = isQualityReportKind(qualityKind)
       ? await prepareQualityDailyAggregate({
         db,
         tx,
-        kind,
+        kind: qualityKind,
         reportDoc: doc,
         stableUid,
         nowMs: now,

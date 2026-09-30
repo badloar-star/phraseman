@@ -14,7 +14,7 @@ import {
 } from './account_delete_job';
 // Префикс синтетических жителей: комната без ЖИВЫХ считается пустой и удаляется,
 // иначе после ухода последнего человека остался бы призрак из ботов.
-import { RESIDENT_UID_PREFIX } from './league_residents';
+const RESIDENT_UID_PREFIX = 'res_';
 // зачем: id контактной записи считается ТЕМ ЖЕ хешем, что и при записи —
 // иначе удаление промахнётся мимо документа и данные тихо переживут запрос.
 import { emailContactDocId } from './email_contacts';
@@ -304,6 +304,17 @@ export const ARENA_EXPANSION_USER_SUBCOLLECTIONS = Object.freeze([
   // всего приложения, а не только для Арены, но живёт под тем же документом
   // игрока и обязана удаляться вместе с ним.
   'star_operations',
+] as const);
+
+// Dialogue V2 private memory and prepared-voice claim metadata live exclusively
+// below users/{stableId}. The worker recursively deletes both stable and auth
+// user roots, so every opaque nested document is in the same deletion boundary.
+// This audit constant makes that privacy contract executable without adding a
+// second, partial Firestore traversal.
+export const ACCOUNT_DELETE_USER_TREE_NAMESPACES = Object.freeze([
+  'dialogue_v2_memory',
+  'dialogue_v2_freeform_memory',
+  'dialogue_v2_bot_voice_claims',
 ] as const);
 
 function cleanId(value: unknown): string {

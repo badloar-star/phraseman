@@ -14,7 +14,7 @@ jest.mock('react-native', () => ({
   Text: 'Text', TouchableOpacity: 'TouchableOpacity', View: 'View',
 }));
 jest.mock('@react-native-async-storage/async-storage', () => ({
-  getItem: jest.fn(async (key: string) => key === 'user_total_xp' ? '1200' : null),
+  getItem: jest.fn(async () => null),
   setItem: jest.fn(),
 }));
 jest.mock('../app/config', () => ({ CLOUD_SYNC_ENABLED: true }));
@@ -43,7 +43,7 @@ jest.mock('@expo/vector-icons/Ionicons', () => 'Ionicons');
 const SaveProgressBanner = require('../components/SaveProgressBanner').default;
 
 test('an account-generation transition invalidates a pending banner check before its old auth result can display', async () => {
-  const screen = await render(React.createElement(SaveProgressBanner, { ownerActive: true }));
+  const screen = await render(React.createElement(SaveProgressBanner, { ownerActive: true, hasSavedLearningProgress: true }));
 
   expect(listeners.size).toBe(1);
 

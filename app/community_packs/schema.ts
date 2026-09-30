@@ -1,11 +1,10 @@
 /**
  * Community (UGC) flashcard packs — схема коллекций и лимиты.
- * Запись в Firestore для черновиков/модерации/покупок — через Cloud Functions (см. functions/src/community_packs.ts).
+ * Запись в Firestore для черновиков/модерации — через Cloud Functions (см. functions/src/community_packs.ts).
  *
  * Callable (v2 HTTPS, регион по умолчанию проекта):
  * - communitySubmitPackForReview
  * - communityModerateSubmission (admin claim)
- * - communityPurchasePack
  * - communityListSellerInbox
  * - communityMarkSellerInboxSeen
  * - communityFetchPackCardsIfAccessible (карты при снятии с витрины / для покупателя)
@@ -84,8 +83,6 @@ export type CommunityPackCardPayload = {
 
 /** Ключ палитры карточек UGC — см. `ugcCardThemePresets.ts` / `getCommunityUgcPackPaywallTheme`. */
 export type CommunityPackCardThemeKey = string;
-/** Ключ рубашки карточек UGC — см. `flashcards/cardBackCatalog.ts`. */
-export type CommunityPackCardBackKey = string;
 
 export type CommunityPackSubmissionPayload = {
   /** Target language of this user/community pack; legacy records omit it and mean English. */
@@ -108,7 +105,6 @@ export type CommunityPackSubmissionPayload = {
   title: string;
   description: string;
   cardThemeKey?: CommunityPackCardThemeKey;
-  cardBackKey?: CommunityPackCardBackKey;
   cards: CommunityPackCardPayload[];
   sourceLang?: Lang;
   /** Legacy — ігнорується, якщо задані title/description. */
@@ -244,7 +240,6 @@ export function buildCommunityPackPayloadForCloud(p: CommunityPackSubmissionPayl
       ...normalizePackCardTexts(card, packLanguage),
     })),
     cardThemeKey: String(p.cardThemeKey ?? '').trim() || undefined,
-    cardBackKey: String(p.cardBackKey ?? '').trim() || undefined,
     // зачем (владелец 2026-09-21): цена автора обязана доехать до сервера.
     // Без неё документ набора получал priceRunes=0, и начисление автору
     // отвергало КАЖДУЮ продажу как pack_is_not_paid — весь механизм был мёртв.

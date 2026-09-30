@@ -18,18 +18,13 @@ const THEME_MAP_FILES = [
   "app/home_last_lesson_assets.ts",
   "app/home_menu_icons.ts",
   "app/personal_plan_task_visuals.ts",
-  "app/season_pass_theme_backgrounds.ts",
   "components/ReferralInviteBannerArt.tsx",
-  "components/ui/v2_theme_assets.ts",
-  "constants/generatedThemeIconAssets.ts",
-  "constants/socialIconAssets.ts",
   "constants/streakIconAssets.ts",
   "constants/weeklyCompassIcons.ts",
   "constants/screenBackground.ts",
   "constants/statsThemeChrome.ts",
   "constants/themedToastChrome.ts",
   "constants/weekDotTheme.ts",
-  "constants/leagueBonusPalette.ts",
   "constants/seasonPassRewardGradients.ts",
 ] as const;
 

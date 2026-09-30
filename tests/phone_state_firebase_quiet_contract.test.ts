@@ -15,14 +15,14 @@ describe('quiet Firebase refresh policy', () => {
     expect(source('app/(tabs)/home.tsx')).not.toContain('checkLeagueOnAppOpen(');
   });
 
-  test('marketplace owns a persisted six-hour refresh TTL', async () => {
+  test('retired official marketplace performs no remote refresh', async () => {
     const marketplace = await import('../app/flashcards/marketplace');
-    expect(marketplace.MARKETPLACE_REMOTE_REFRESH_TTL_MS).toBeGreaterThanOrEqual(6 * 60 * 60 * 1000);
-    expect(source('app/flashcards/marketplace.ts')).toContain('MARKETPLACE_PACKS_SNAPSHOT_KEY');
+    expect(marketplace.BUNDLED_MARKETPLACE_PACKS).toEqual([]);
+    expect(source('app/flashcards/marketplace.ts')).not.toContain(".collection('card_packs')");
   });
 
-  test('GlobalFriendGiftHost is the sole gift poll owner', () => {
-    expect(source('components/GlobalFriendGiftHost.tsx')).toContain('claimUnseenFriendGifts');
+  test('the root layout no longer mounts a global gift poll', () => {
+    expect(source('app/_layout.tsx')).not.toContain('GlobalFriendGiftHost');
     expect(source('app/(tabs)/friends.tsx')).not.toContain('claimUnseenFriendGifts');
   });
 
@@ -30,7 +30,6 @@ describe('quiet Firebase refresh policy', () => {
     for (const file of [
       'app/(tabs)/friends.tsx',
       'components/PlayerProfileModal.tsx',
-      'components/SeasonGiftModal.tsx',
     ]) {
       expect(source(file)).not.toContain('subscribeToFriends(');
       expect(source(file)).toContain('friends_account_store');

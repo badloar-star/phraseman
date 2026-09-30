@@ -32,7 +32,6 @@ export type SaveOfferKind =
 /** Локальный прогресс для варианта 'progress' (0 чтений Firestore). */
 export type SaveOfferProgress = {
   readonly streak: number;
-  readonly totalXP: number;
   readonly lessonsCompleted: number;
 };
 
@@ -44,7 +43,7 @@ export type SaveOfferInput = {
 /** Есть ли что показать в варианте 'progress' — пустой прогресс не мотивирует. */
 export function hasMeaningfulProgress(progress: SaveOfferProgress | null): boolean {
   if (!progress) return false;
-  return progress.streak > 0 || progress.totalXP > 0 || progress.lessonsCompleted > 0;
+  return progress.streak > 0 || progress.lessonsCompleted > 0;
 }
 
 /**

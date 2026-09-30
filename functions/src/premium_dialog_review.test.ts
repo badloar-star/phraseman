@@ -70,13 +70,93 @@ mockResolveRemoteBool.mockResolvedValue(true);
 jest.mock('./premium_status', () => ({ resolvePremiumAccess: mockResolvePremiumAccess }));
 jest.mock('./remote_gates', () => ({ resolveRemoteBool: mockResolveRemoteBool }));
 
+// Jest hoists the dependency mocks above this import at runtime.
+// eslint-disable-next-line import/first
 import {
   assertDialogReviewTargetLanguage,
+  groundReviewEvidence,
+  hasGroundedCompletionAssessment,
   parseReviewEnvelope,
   asReviewMode,
   buildReviewSystemPrompt,
   premiumDialogReview,
 } from './premium_dialog_review';
+
+describe('groundReviewEvidence', () => {
+  it('keeps only evidence quoted from actual learner turns', () => {
+    const grounded = groundReviewEvidence({
+      praise: 'You kept the conversation moving.',
+      assessment: 'I understood your plan and your timing request.',
+      corrections: [],
+      tip: 'Keep using complete questions.',
+      evidence: [
+        { learnerTurn: 'Could we make it seven instead?', note: 'You clearly suggested another time.' },
+        { learnerTurn: 'I booked a private jet.', note: 'This was invented by the model.' },
+      ],
+    }, [
+      { role: 'user', content: 'Could we make it seven instead?' },
+      { role: 'assistant', content: 'Seven works for me.' },
+    ]);
+
+    expect(grounded.assessment).toBe('I understood your plan and your timing request.');
+    expect(grounded.evidence).toEqual([
+      { learnerTurn: 'Could we make it seven instead?', note: 'You clearly suggested another time.' },
+    ]);
+  });
+
+  it('drops the evidence field entirely when no provider quote matches the transcript', () => {
+    const grounded = groundReviewEvidence({
+      praise: 'Nice work.',
+      assessment: 'I understood you.',
+      corrections: [],
+      tip: 'Keep going.',
+      evidence: [{ learnerTurn: 'A message the learner never sent.', note: 'Invented.' }],
+    }, [{ role: 'user', content: 'Hello there.' }]);
+
+    expect(grounded.evidence).toBeUndefined();
+  });
+
+  it('grounds correction and phrase originals to the learner transcript before returning them', () => {
+    const grounded = groundReviewEvidence({
+      praise: 'Nice work.',
+      assessment: 'I understood your timing request.',
+      evidence: [{ learnerTurn: 'Could we make it seven instead?', note: 'You proposed another time.' }],
+      corrections: [
+        { original: 'Could we make it seven instead?', corrected: 'Could we make it seven instead?', note: 'Natural.', kind: 'polish' },
+        { original: 'I booked a private jet.', corrected: 'I booked a private jet.', note: 'Invented.', kind: 'fix' },
+      ],
+      phrases: [
+        { original: 'Could we make it seven instead?', corrected: 'Could we make it seven instead?', note: 'Natural.', kind: 'ok' },
+        { original: 'A message the learner never sent.', corrected: 'Anything.', note: 'Invented.', kind: 'fix' },
+      ],
+      tip: 'Keep asking clear questions.',
+    }, [{ role: 'user', content: 'Could we make it seven instead?' }]);
+
+    expect(grounded.corrections.map((item) => item.original)).toEqual(['Could we make it seven instead?']);
+    expect(grounded.phrases?.map((item) => item.original)).toEqual(['Could we make it seven instead?']);
+  });
+
+  it('rejects a parseable review without a grounded assessment and evidence', () => {
+    expect(hasGroundedCompletionAssessment({
+      praise: 'Nice work.',
+      corrections: [],
+      tip: 'Keep going.',
+    })).toBe(false);
+    expect(hasGroundedCompletionAssessment({
+      praise: 'Nice work.',
+      assessment: 'I understood you.',
+      corrections: [],
+      tip: 'Keep going.',
+    })).toBe(false);
+    expect(hasGroundedCompletionAssessment({
+      praise: 'Nice work.',
+      assessment: 'I understood you.',
+      evidence: [{ learnerTurn: 'Hello.', note: 'A real message.' }],
+      corrections: [],
+      tip: 'Keep going.',
+    })).toBe(true);
+  });
+});
 
 describe('parseReviewEnvelope', () => {
   it('parses a clean review envelope', () => {
@@ -233,9 +313,9 @@ describe('buildReviewSystemPrompt mode awareness', () => {
     expect(prompt).toContain('Never diagnose pronunciation from this transcript alone');
   });
 
-  it('voice mode still returns the identical JSON contract instructions', () => {
+  it('voice mode keeps the review JSON contract, including the grounded assessment', () => {
     const prompt = buildReviewSystemPrompt('B1', 'Russian', '', 'en', 'voice');
-    expect(prompt).toContain('"praise": "...", "corrections": [{"original": "...", "corrected": "...", "note": "..."}], "tip": "..."');
+    expect(prompt).toContain('"praise": "...", "assessment": "...", "evidence": [{"learnerTurn": "...", "note": "..."}], "corrections": [{"original": "...", "corrected": "...", "note": "..."}], "tip": "..."');
   });
 
   // зачем: владелец 2026-08-16 — разбор после звонка «ничего не разбирает».
@@ -533,6 +613,8 @@ describe('tutor deterministic evidence durability', () => {
           message: {
             content: JSON.stringify({
               praise: 'Gut gemacht.',
+              assessment: 'Ich habe verstanden, dass du Kaffee möchtest.',
+              evidence: [{ learnerTurn: 'Ich will Kaffee.', note: 'Deine Absicht war klar.' }],
               corrections: [{
                 original: 'Ich will Kaffee.',
                 corrected: 'Ich möchte einen Kaffee.',
@@ -566,5 +648,84 @@ describe('tutor deterministic evidence durability', () => {
     expect(secondOptions).toMatchObject({ strict: true, studyTarget: 'de' });
     expect(firstOptions.operationStartedAtMs).toEqual(expect.any(Number));
     expect(secondOptions.operationStartedAtMs).toBe(firstOptions.operationStartedAtMs);
+  });
+});
+
+describe('Dialogue V2 completion callable boundary', () => {
+  it('rejects unknown V2 completion request keys before release, identity, quota, or provider work', async () => {
+    jest.clearAllMocks();
+    const fetchMock = jest.fn();
+    global.fetch = fetchMock as typeof fetch;
+    const pointerGet = jest.fn();
+    mockFirestore.mockReturnValue({
+      doc: jest.fn(() => ({ get: pointerGet })),
+      collection: jest.fn(),
+    });
+    const handler = premiumDialogReview as unknown as (request: unknown) => Promise<unknown>;
+    const validRequest = {
+      dialogueVersion: 'v2',
+      studyTarget: 'de',
+      scenarioId: 'travel_19',
+      packVersion: 'dialogues_v2_2026_09_26',
+      packSha256: 'a'.repeat(64),
+      sharedManifestSha256: 'b'.repeat(64),
+      interfaceLang: 'en',
+      history: [{ role: 'user', content: 'Ich muss meine Reise ändern.' }],
+    };
+
+    for (const [field, value] of [
+      ['rank', 99],
+      ['achievedRank', 99],
+      ['rankRequired', 19],
+      ['coinRank', 99],
+      ['unexpected', true],
+    ] as const) {
+      await expect(handler({
+        auth: { uid: 'auth-1' },
+        data: { ...validRequest, [field]: value },
+      })).rejects.toMatchObject({
+        code: 'invalid-argument',
+        message: 'dialogue_v2_completion_request_invalid',
+      });
+    }
+
+    expect(pointerGet).not.toHaveBeenCalled();
+    expect(mockResolveStableUidForAuth).not.toHaveBeenCalled();
+    expect(mockEnforceRateLimit).not.toHaveBeenCalled();
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it('fails closed on the dedicated V2 route before identity, quota, or provider work when release data is absent', async () => {
+    jest.clearAllMocks();
+    const fetchMock = jest.fn();
+    global.fetch = fetchMock as typeof fetch;
+    const pointerGet = jest.fn().mockResolvedValue({ exists: false, data: () => undefined });
+    mockFirestore.mockReturnValue({
+      doc: jest.fn(() => ({ get: pointerGet })),
+      collection: jest.fn(),
+    });
+    const handler = premiumDialogReview as unknown as (request: unknown) => Promise<unknown>;
+
+    await expect(handler({
+      auth: { uid: 'auth-1' },
+      data: {
+        dialogueVersion: 'v2',
+        studyTarget: 'de',
+        scenarioId: 'travel_19',
+        packVersion: 'dialogues_v2_2026_09_26',
+        packSha256: 'a'.repeat(64),
+        sharedManifestSha256: 'b'.repeat(64),
+        interfaceLang: 'en',
+        history: [{ role: 'user', content: 'Ich muss meine Reise ändern.' }],
+      },
+    })).rejects.toMatchObject({
+      code: 'failed-precondition',
+      message: 'dialogue_v2_completion_release_unavailable',
+    });
+
+    expect(pointerGet).toHaveBeenCalledTimes(1);
+    expect(mockResolveStableUidForAuth).not.toHaveBeenCalled();
+    expect(mockEnforceRateLimit).not.toHaveBeenCalled();
+    expect(fetchMock).not.toHaveBeenCalled();
   });
 });

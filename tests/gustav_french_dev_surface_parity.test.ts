@@ -72,7 +72,7 @@ describe('Gustav French dev surface parity', () => {
     expect(home).not.toContain('frenchGateCopy.body');
 
     expect(dialogsTab).toContain('if (!aiDialogGateOpen)');
-    expect(dialogsTab).toContain('Alert.alert(frenchGateCopy.title, frenchGateCopy.body');
+    expect(dialogsTab).toContain('showGlassAlert(frenchGateCopy.title, frenchGateCopy.body'); // зачем: стеклянное окно вместо нативного Alert (overlays-runtime)
     expect(dialogsTab).toContain("{ key: 'situations' as const");
     expect(dialogsTab).toContain('getChallengeDialogScenarios().map');
     expect(dialogsTab).not.toContain('return (\n      <View style={{ flex: 1 }}>\n        {headerSlot}');

@@ -35,9 +35,9 @@ import { getCanonicalUserId } from '../../app/user_id_policy';
 import { saveExamProgress } from '../../app/medal_utils';
 import { getFirstLessonForLevel, getLastLessonForLevel, getNextCourseLevel } from '../../app/course_levels';
 import { markPremiumCourseLevelReached, unlockLesson } from '../../app/lesson_lock_system';
-import { addShards, awardOneTime } from '../../app/shards_system';
 import { safeRouterBack } from '../../app/navigation_back';
 import { useEnergy, useEnergySessionIntent } from '../EnergyContext';
+import { useFirstQuestionEnergyGate } from '../../hooks/useFirstQuestionEnergyGate';
 import { usePremium } from '../PremiumContext';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import NoEnergyModal from '../NoEnergyModal';
@@ -119,7 +119,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
   const router = useRouter();
   const { liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
-  const { isUnlimited, confirmSpendAmount, acknowledgeSessionStart, energy, bonusEnergy, energyReady } = useEnergy();
+  const { isUnlimited, energy, bonusEnergy, energyReady } = useEnergy();
   const { hasPremiumAccess } = usePremium();
   const unlimitedEnergy = isUnlimited || hasPremiumAccess;
   const examRuntimeActive = useRuntimeActive();
@@ -133,6 +133,11 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
     level,
     attempt?.attemptId,
   );
+  // зачем: D72/D87/PM-084 — списание за зачёт идёт через единый гейт первого вопроса.
+  const levelExamEnergyGate = useFirstQuestionEnergyGate({
+    intent: levelExamEnergyIntent,
+    screen: 'level_exam_v2',
+  });
   const [remainingMs, setRemainingMs] = useState(0);
   const [result, setResult] = useState<LevelExamScoreResult | null>(null);
   const [rewardState, setRewardState] = useState<LevelExamRewardState>('none');
@@ -205,15 +210,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
           await markPremiumCourseLevelReached(nextLevel, 'en');
           await unlockLesson(getFirstLessonForLevel(nextLevel), 'en');
         }
-        const shardKey = `level_exam_quiz_shard_en_${level}`;
-        if (await AsyncStorage.getItem(shardKey) !== '1') {
-          await addShards('lesson_quiz_passed', {
-            eventId: `level-exam:en:${level}:first-pass`,
-            localWrites: [[shardKey, '1']],
-          }).catch(() => 0);
-        }
       }
-      if (scored.pct >= 90) void awardOneTime('exam_excellent');
       const progress = await saveExamProgress(level, scored.pct, 'en', finishing.finishToken);
       const gemMap: Record<number, 'ruby' | 'emerald' | 'diamond'> = { 2: 'ruby', 3: 'emerald', 4: 'diamond' };
       const gem = gemMap[progress.newPassCount];
@@ -401,8 +398,11 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
     if (!current || current.status !== 'active') return;
     beginQuizInFlightRef.current = true;
     try {
-      {
-        const energyResult = await confirmSpendAmount(ENERGY_COST, levelExamEnergyIntent);
+      // зачем: D72 — энергия уходит в момент показа первого вопроса (конец
+      // отсчёта), через единый гейт: повтор/remount той же попытки не спишет
+      // второй раз (operationId = attemptId). D07 — Plus не расходует энергию.
+      if (!unlimitedEnergy) {
+        const energyResult = await levelExamEnergyGate.charge();
         if (energyResult === 'cancelled') {
           setPhase('intro');
           return;
@@ -422,14 +422,16 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
       setAttempt(started);
       setRemainingMs(started.deadlineAtMs - started.startedAtMs);
       setPhase('quiz');
-      void acknowledgeSessionStart(levelExamEnergyIntent.operationId);
+      // зачем: D87 — до этой строки размонтирование вернёт энергию; после неё
+      // вопрос показан и возврата нет.
+      levelExamEnergyGate.markShown();
       await persistActiveLevelExamAttempt(started).catch((error) => {
         void trackFeatureError('level_exam', 'attempt_persist', error, { level }, 'level_exam_v2');
       });
     } finally {
       beginQuizInFlightRef.current = false;
     }
-  }, [acknowledgeSessionStart, bonusEnergy, confirmSpendAmount, energy, level, levelExamEnergyIntent]);
+  }, [level, levelExamEnergyGate, unlimitedEnergy]);
 
   const pauseAndExit = useCallback(() => {
     const current = attemptRef.current;
@@ -453,11 +455,11 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
               glass={glass}
               icon="lock-closed-outline"
               title={triLang(lang, { ru: 'Зачёт пока недоступен', uk: 'Залік поки недоступний', en: 'Exam is not available yet', es: 'El examen aún no está disponible', 'pt-BR': 'O exame ainda não está disponível', vi: 'Bài thi chưa khả dụng', id: 'Ujian belum tersedia', tr: 'Sınav henüz kullanılamıyor', pl: 'Egzamin jeszcze niedostępny' })}
-              message={{contentUnavailable
+              message={contentUnavailable
                     ? triLang(lang, { ru: 'Экзамен для этого языка пока готовится. Энергия не списана.', uk: 'Іспит для цієї мови ще готується. Енергію не списано.', en: "The exam for this language is still being prepared. No energy was charged.", es: 'El examen para este idioma aún se está preparando. No se descontó energía.', 'pt-BR': 'O exame para este idioma ainda está sendo preparado. Nenhuma energia foi descontada.', vi: 'Bài thi cho ngôn ngữ này đang được chuẩn bị. Năng lượng chưa bị trừ.', id: 'Ujian untuk bahasa ini masih disiapkan. Energi tidak dikurangi.', tr: 'Bu dil için sınav hâlâ hazırlanıyor. Enerji düşülmedi.', pl: 'Egzamin dla tego języka jest jeszcze przygotowywany. Energia nie została pobrana.' })
                     : identityUnavailable
                     ? triLang(lang, { ru: 'Не удалось подготовить сохранение попытки. Вернись и открой экзамен снова.', uk: 'Не вдалося підготувати збереження спроби. Повернися й відкрий іспит знову.', en: "Couldn't prepare a save for this attempt. Go back and open the exam again.", es: 'No se pudo preparar el guardado. Vuelve a abrir el examen.', 'pt-BR': 'Não foi possível preparar o salvamento. Abra o exame novamente.', vi: 'Không thể chuẩn bị lưu bài thi. Hãy mở lại bài thi.', id: 'Penyimpanan ujian belum siap. Buka kembali ujian.', tr: 'Sınav kaydı hazırlanamadı. Sınavı yeniden aç.', pl: 'Nie udało się przygotować zapisu. Otwórz egzamin ponownie.' })
-                    : blockedText}}
+                    : blockedText}
             />
           </View>
           <ExamFooter bottomInset={0}>

@@ -4,7 +4,7 @@
  *
  * Держим это модулем БЕЗ импорта admin/firestore: friends_together.ts (callables)
  * оборачивает эти функции в транзакции; friends_together_core.test.ts гоняет их
- * напрямую без эмулятора — как league_chest/referral_roulette_policy делают со
+ * напрямую без эмулятора — как referral_roulette_policy делает со
  * своими чистыми частями.
  */
 
@@ -112,11 +112,8 @@ export function nextThreshold(days: number, thresholds: readonly number[] = FRIE
   return level >= thresholds.length ? null : (thresholds[level] ?? null);
 }
 
-/**
- * Бонус к XP в общий день, в процентах. С уровня 2. Не суммируется между друзьями —
- * xp_manager берёт максимум по всем парам (клиентская сторона, вне этого модуля).
- */
-const BONUS_PERCENT_BY_LEVEL: readonly number[] = [0, 5, 5, 10, 15];
+/** Friendship milestones grant stars only. */
+const BONUS_PERCENT_BY_LEVEL: readonly number[] = [0, 0, 0, 0, 0];
 
 export function bonusPercentForLevel(level: number): number {
   const idx = Math.max(1, Math.min(MAX_FRIENDSHIP_LEVEL, Math.floor(level) || 1)) - 1;
@@ -139,110 +136,6 @@ export function starsForLevelRange(claimedLevel: number, targetLevel: number): n
   let total = 0;
   for (let level = from + 1; level <= to; level += 1) total += starsForLevel(level);
   return total;
-}
-
-/* ------------------------------ weekly chest ------------------------------- */
-
-export const CHEST_TIERS: readonly number[] = [6000, 12000, 20000];
-export const CHEST_CAP_PER_FRIEND = 2000;
-export const CHEST_TOP_N = 10;
-export const CHEST_MIN_PAIR_LEVEL = 2;
-export const CHEST_MIN_MY_DAYS = 5;
-export const CHEST_MIN_MY_WEEKLY_XP = 1000;
-/** boost ×2 (реферальный старт, §1.4). */
-export const CHEST_BOOST_MULTIPLIER = 2;
-
-export type ChestFriendContribution = {
-  friendUid: string;
-  /** Уровень пары (this-user ↔ friendUid), с учётом bonusDays. */
-  pairLevel: number;
-  weeklyXp: number;
-  /** true если boostUntilWeekKey пары ≥ текущая неделя. */
-  boosted: boolean;
-};
-
-/**
- * Прогресс сундука недели: сумма по топ-N друзьям уровня ≥2, каждый капнут на
- * CHEST_CAP_PER_FRIEND, ×2 если пара ещё под реферальным бустом. §1.2/§0.
- */
-export function weeklyChestProgress(
-  friends: readonly ChestFriendContribution[],
-  cap: number = CHEST_CAP_PER_FRIEND,
-  topN: number = CHEST_TOP_N,
-  minPairLevel: number = CHEST_MIN_PAIR_LEVEL,
-  boostMultiplier: number = CHEST_BOOST_MULTIPLIER,
-): number {
-  const contributions = friends
-    .filter((f) => f.pairLevel >= minPairLevel)
-    .map((f) => {
-      const capped = Math.min(Math.max(0, Math.floor(f.weeklyXp) || 0), cap);
-      return f.boosted ? capped * Math.max(1, Math.floor(boostMultiplier) || 1) : capped;
-    })
-    .sort((a, b) => b - a)
-    .slice(0, Math.max(0, Math.floor(topN)));
-  return contributions.reduce((sum, v) => sum + v, 0);
-}
-
-/** Топ-N вкладчиков (для UI — «кто тянет сундук»), та же формула вклада, что и в сумме. */
-export function weeklyChestTopContributors(
-  friends: readonly ChestFriendContribution[],
-  topN: number = CHEST_TOP_N,
-  cap: number = CHEST_CAP_PER_FRIEND,
-  minPairLevel: number = CHEST_MIN_PAIR_LEVEL,
-  boostMultiplier: number = CHEST_BOOST_MULTIPLIER,
-): { friendUid: string; contribution: number }[] {
-  return friends
-    .filter((f) => f.pairLevel >= minPairLevel)
-    .map((f) => {
-      const capped = Math.min(Math.max(0, Math.floor(f.weeklyXp) || 0), cap);
-      return {
-        friendUid: f.friendUid,
-        contribution: f.boosted ? capped * Math.max(1, Math.floor(boostMultiplier) || 1) : capped,
-      };
-    })
-    .sort((a, b) => b.contribution - a.contribution)
-    .slice(0, Math.max(0, Math.floor(topN)));
-}
-
-/** Тир, достигнутый прогрессом (0 = ни один порог не взят). */
-export function chestTierForProgress(progress: number, tiers: readonly number[] = CHEST_TIERS): number {
-  let tier = 0;
-  for (let i = 0; i < tiers.length; i += 1) {
-    if (progress >= tiers[i]) tier = i + 1;
-  }
-  return tier;
-}
-
-export type ChestClaimBlockReason = 'own_days' | 'own_xp' | 'tier_zero';
-
-/**
- * Условия клейма сундука (§1.2): мои активные дни за неделю ≥5 И мой weeklyXp ≥1000
- * И хотя бы тир I взят. Возвращает первую нарушенную причину или null (можно клеймить).
- */
-export function chestClaimBlockReason(params: {
-  myDaysThisWeek: number;
-  myWeeklyXp: number;
-  tier: number;
-  minDays?: number;
-  minXp?: number;
-}): ChestClaimBlockReason | null {
-  const minDays = params.minDays ?? CHEST_MIN_MY_DAYS;
-  const minXp = params.minXp ?? CHEST_MIN_MY_WEEKLY_XP;
-  if (params.myDaysThisWeek < minDays) return 'own_days';
-  if (params.myWeeklyXp < minXp) return 'own_xp';
-  if (params.tier <= 0) return 'tier_zero';
-  return null;
-}
-
-/**
- * Множитель награды сундука по МОИМ активным дням за неделю (§0): 5→×1, 6→×1.25, 7→×1.5.
- * Дни < 5 не проходят chestClaimBlockReason раньше, так что не участвуют в этой шкале.
- */
-export function chestRewardMultiplier(myDaysThisWeek: number): number {
-  const d = Math.floor(myDaysThisWeek) || 0;
-  if (d >= 7) return 1.5;
-  if (d === 6) return 1.25;
-  return 1;
 }
 
 /* ------------------------------- quiet hours -------------------------------- */
@@ -270,24 +163,6 @@ export function isQuietHours(
   const localHour = new Date(localMs).getUTCHours();
   // Окно переходит через полночь: 22:00 включительно .. 09:00 исключительно.
   return localHour >= startHour || localHour < endHour;
-}
-
-/**
- * Клейм сундука недели — только в воскресенье ПО ЛОКАЛЬНОМУ времени вызывающего
- * (макет владельца: «Откроется в воскресенье»). tz — как в isQuietHours; нет tz → UTC+3.
- * зачем: иначе сундук открывали бы во вторник на пороге I и теряли II/III к концу недели.
- */
-export const WEEK_KEY_RE = /^\d{4}-W\d{2}$/;
-export function isChestClaimDay(
-  nowMs: number,
-  tzOffsetMinutes: number | null | undefined,
-  defaultTzOffsetMinutes: number = DEFAULT_NUDGE_TZ_OFFSET_MINUTES,
-): boolean {
-  const offset = typeof tzOffsetMinutes === 'number' && Number.isFinite(tzOffsetMinutes)
-    ? tzOffsetMinutes
-    : defaultTzOffsetMinutes;
-  const localMs = nowMs + offset * 60 * 1000;
-  return new Date(localMs).getUTCDay() === 0;
 }
 
 /* -------------------------------- nudge limits ------------------------------- */
@@ -329,39 +204,22 @@ export function nudgeLimitBlockReason(params: {
  */
 export type FriendsTogetherConfig = {
   levelThresholds: readonly number[];
-  chestTiers: readonly number[];
-  chestCapPerFriend: number;
-  chestTopN: number;
-  chestMinPairLevel: number;
-  chestMinMyDays: number;
-  chestMinMyWeeklyXp: number;
-  chestBoostMultiplier: number;
   nudgeMaxPerFriendPerDay: number;
   nudgeMaxSenderPerDay: number;
   nudgeMaxReceiverPerDay: number;
   nudgeQuietStartHour: number;
   nudgeQuietEndHour: number;
   nudgeDefaultTzOffsetMinutes: number;
-  /** Разрешить клейм сундука в любой день (тесты/админка). По умолчанию — только воскресенье. */
-  chestClaimAnyDay: boolean;
 };
 
 export const FRIENDS_TOGETHER_DEFAULTS: FriendsTogetherConfig = {
   levelThresholds: FRIENDSHIP_LEVEL_THRESHOLDS,
-  chestTiers: CHEST_TIERS,
-  chestCapPerFriend: CHEST_CAP_PER_FRIEND,
-  chestTopN: CHEST_TOP_N,
-  chestMinPairLevel: CHEST_MIN_PAIR_LEVEL,
-  chestMinMyDays: CHEST_MIN_MY_DAYS,
-  chestMinMyWeeklyXp: CHEST_MIN_MY_WEEKLY_XP,
-  chestBoostMultiplier: CHEST_BOOST_MULTIPLIER,
   nudgeMaxPerFriendPerDay: NUDGE_MAX_PER_FRIEND_PER_DAY,
   nudgeMaxSenderPerDay: NUDGE_MAX_SENT_PER_SENDER_PER_DAY,
   nudgeMaxReceiverPerDay: NUDGE_MAX_RECEIVED_PER_RECEIVER_PER_DAY,
   nudgeQuietStartHour: QUIET_HOURS_START,
   nudgeQuietEndHour: QUIET_HOURS_END,
   nudgeDefaultTzOffsetMinutes: DEFAULT_NUDGE_TZ_OFFSET_MINUTES,
-  chestClaimAnyDay: false,
 };
 
 function clampInt(value: unknown, min: number, max: number, fallback: number): number {
@@ -379,9 +237,7 @@ function clampNumberArray(value: unknown, fallback: readonly number[], min: numb
 }
 
 /**
- * Оверлей remote_config/app.numbers поверх дефолтов. Ключи `friends_level_thresholds`,
- * `friends_chest_tiers`, `friends_chest_cap_per_friend`, `friends_chest_top_n`,
- * `friends_chest_min_days` и т.п. — см. §3.6 спецификации. НИКОГДА не бросает.
+ * Оверлей remote_config/app.numbers поверх дефолтов. НИКОГДА не бросает.
  */
 export function friendsTogetherConfigFromNumbers(
   numbers: Record<string, unknown> | undefined,
@@ -390,14 +246,6 @@ export function friendsTogetherConfigFromNumbers(
   const d = FRIENDS_TOGETHER_DEFAULTS;
   return {
     levelThresholds: clampNumberArray(n.friends_level_thresholds, d.levelThresholds, 0, 100000),
-    chestTiers: clampNumberArray(n.friends_chest_tiers, d.chestTiers, 0, 10_000_000),
-    chestCapPerFriend: clampInt(n.friends_chest_cap_per_friend, 0, 1_000_000, d.chestCapPerFriend),
-    chestTopN: clampInt(n.friends_chest_top_n, 1, 100, d.chestTopN),
-    chestMinPairLevel: clampInt(n.friends_chest_min_pair_level, 1, MAX_FRIENDSHIP_LEVEL, d.chestMinPairLevel),
-    chestMinMyDays: clampInt(n.friends_chest_min_days, 0, 7, d.chestMinMyDays),
-    chestMinMyWeeklyXp: clampInt(n.friends_chest_min_xp, 0, 1_000_000, d.chestMinMyWeeklyXp),
-    chestBoostMultiplier: clampInt(n.friends_chest_boost_multiplier, 1, 10, d.chestBoostMultiplier),
-    chestClaimAnyDay: n.friends_chest_claim_any_day === 1 || n.friends_chest_claim_any_day === true,
     nudgeMaxPerFriendPerDay: clampInt(n.friends_nudge_max_per_friend_day, 0, 100, d.nudgeMaxPerFriendPerDay),
     nudgeMaxSenderPerDay: clampInt(n.friends_nudge_max_sender_day, 0, 1000, d.nudgeMaxSenderPerDay),
     nudgeMaxReceiverPerDay: clampInt(n.friends_nudge_max_receiver_day, 0, 1000, d.nudgeMaxReceiverPerDay),

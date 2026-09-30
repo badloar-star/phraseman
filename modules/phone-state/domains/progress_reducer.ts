@@ -18,13 +18,7 @@ function commandFrom(operation: PersonalOperation): PersonalProgressCommand {
 
 function validProjection(value: unknown): boolean {
   if (!isRecord(value)) return false;
-  return Number.isSafeInteger(value.totalXp)
-    && (value.totalXp as number) >= 0
-    && Number.isSafeInteger(value.level)
-    && (value.level as number) >= 1
-    && Number.isSafeInteger(value.weeklyXp)
-    && (value.weeklyXp as number) >= 0
-    && ['activityDates', 'completedLessons', 'passedExams', 'unlockedLessons']
+  return ['activityDates', 'completedLessons', 'passedExams', 'unlockedLessons']
       .every((key) => Array.isArray(value[key]) && (value[key] as unknown[]).every((item) => typeof item === 'string'))
     && isRecord(value.bestResults)
     && Object.values(value.bestResults).every((item) => typeof item === 'number' && Number.isFinite(item));
@@ -37,9 +31,7 @@ function validState(value: unknown): value is PersonalProgressState {
     && value.appliedEventIds.every((item) => typeof item === 'string');
 }
 
-export function createPersonalProgressReducer(
-  levelForXp: (totalXp: number) => number,
-): DomainReducer<PersonalProgressState> {
+export function createPersonalProgressReducer(): DomainReducer<PersonalProgressState> {
   return Object.freeze({
     domain: 'progress',
     version: 1,
@@ -47,7 +39,6 @@ export function createPersonalProgressReducer(
     apply: (state, operation) => applyPersonalProgressCommand(
       state,
       commandFrom(operation),
-      levelForXp,
     ).state,
     validate: validState,
   });

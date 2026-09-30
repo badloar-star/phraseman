@@ -12,7 +12,7 @@ describe('approved Cards hub entry', () => {
     expect(entry).not.toContain('FlashcardsCollectionScreen');
   });
 
-  test('hub implements option C destinations and the single create-pack action', () => {
+  test('hub implements latest four library destinations and training entry', () => {
     const hubPath = path.join(ROOT, 'app', 'flashcards', 'FlashcardsHubScreen.tsx');
     const exists = fs.existsSync(hubPath);
     expect(exists).toBe(true);
@@ -23,11 +23,13 @@ describe('approved Cards hub entry', () => {
     expect(hub).toContain("pathname: '/flashcards_collection'");
     expect(hub).toContain("router.push('/flashcards_my_packs'");
     expect(hub).toContain("router.push('/flashcards_packs'");
-    expect(hub).toContain("buildFcCreateRoute('pack')");
-    expect(hub).toContain('fc-cards-hub-create-pack');
     expect(hub).toContain('fc-cards-hub-library-saved');
     expect(hub).toContain('fc-cards-hub-library-mine');
     expect(hub).toContain('fc-cards-hub-library-community');
+    expect(hub).toContain('fc-cards-hub-library-video');
+    expect(hub).toContain('fc-cards-hub-segment-best');
+    expect(hub).toContain('fc-cards-hub-segment-mine');
+    expect(hub).toContain('fc-cards-hub-segment-community');
     expect(hub).toContain('fc-cards-hub-train');
     expect(hub).not.toContain('<Ionicons name="barbell-outline"');
     expect(hub).not.toContain('FlashcardsTabBar');
@@ -41,24 +43,24 @@ describe('approved Cards hub entry', () => {
     expect(hub).toContain('accessibilityLabel={copy.back}');
   });
 
-  test('Cards hub uses the Statistics-style adaptive typography hierarchy', () => {
+  test('Cards hub uses the approved Liquid Glass theme and legible text hierarchy', () => {
     const hub = read('app', 'flashcards', 'FlashcardsHubScreen.tsx');
     const topPacks = read('app', 'flashcards', 'SavedTopCommunityPacks.tsx');
 
-    expect(hub).toContain('const { theme: t, f } = useTheme();');
-    expect(hub).toContain('const { theme: t, f, statusBarLight } = useTheme();');
-    expect(hub).toContain('color: t.textPrimary, fontSize: f.h2');
-    expect(hub).toContain('color: t.textSecond, fontSize: f.sub');
-    expect(hub).toContain('fontSize: f.bodyLg');
+    expect(hub).toContain('liquidGlassTokens(liquidGlassThemeId)');
+    expect(hub).toContain('backgroundColor: g.card');
+    expect(hub).toContain('color: g.text');
+    expect(hub).toContain('color: g.secondary');
+    expect(hub).toContain('headerTitle: { flex: 1, fontSize: 19, lineHeight: 25');
+    expect(hub).toContain('styles.trainDock');
     expect(topPacks).toContain("import { useTheme } from '../../components/ThemeContext';");
-    expect(topPacks).toContain('const { f } = useTheme();');
-    expect(topPacks).toContain('f.h2');
-    expect(topPacks).toContain('color: t.textSecond');
-    expect(topPacks).toContain("import { AdaptiveLabel } from '../../components/text-integrity/AdaptiveLabel';");
+    expect(topPacks).toContain('liquidGlassTokens(liquidGlassThemeId)');
+    expect(topPacks).toContain('color: g.secondary');
+    expect(topPacks).toContain("import { FlowText } from '../../components/text-integrity/FlowText';");
     expect(topPacks).not.toContain('numberOfLines={');
   });
 
-  test('mode choice is a bottom sheet and setup is a normal full screen', () => {
+  test('mode choice is a centered modal and setup is a normal full screen', () => {
     const sheetPath = path.join(ROOT, 'app', 'flashcards', 'FlashcardsTrainingModeSheet.tsx');
     const setupPath = path.join(ROOT, 'app', 'flashcards_training_setup.tsx');
     expect(fs.existsSync(sheetPath)).toBe(true);
@@ -70,36 +72,38 @@ describe('approved Cards hub entry', () => {
     const layout = read('app', '_layout.tsx');
     const hub = read('app', 'flashcards', 'FlashcardsHubScreen.tsx');
 
-    expect(sheet).toContain('HybridSheetShell');
+    expect(sheet).toContain('<Modal');
+    expect(sheet).toContain('styles.dialog');
+    expect(sheet).toContain('styles.cancelButton');
     expect(sheet).toContain("mode: 'blitz'");
     expect(sheet).toContain("mode: 'speaking'");
     expect(sheet).toContain("mode: 'truefalse'");
     expect(sheet).toContain("mode: 'recall'");
     expect(sheet).not.toContain("mode: 'listening'");
     expect(sheet).toContain('isSpeakingEnabled()');
-    expect(sheet).toContain('PlusBadge');
+    expect(sheet).toContain("row.mode === 'speaking' && !speakingEnabled");
     expect(hub).toContain('useFlashcardTrainingQuotaPreview()');
     expect(hub).toContain("quotaPreview.status === 'exhausted'");
     expect(hub).toContain("quotaPreview.status === 'allowed'");
     expect(hub).not.toContain('consumeFlashcardTrainingQuota');
     expect(hub).not.toContain('useFeatureAccess(');
-    expect(hub).toContain("openTrainingPaywall('flashcard_training'");
-    expect(hub).toContain("openTrainingPaywall('flashcard_training', 'flashcards_hub_speaking')");
-    expect(hub).not.toContain("openTrainingPaywall('speaking'");
+    expect(hub).toContain('MonthlyTrainingSessionIndicator');
+    expect(hub).toContain('disabled={trainingLocked || !trainingEntryReady}');
+    expect(hub).not.toContain('openTrainingPaywall(');
     expect(setup).toContain('loadFcDeckOptions');
     expect(setup).toContain('useFlashcardTrainingQuotaPreview()');
     expect(setup).toContain("quotaPreview.status !== 'exhausted'");
     expect(setup).toContain("quotaPreview.status === 'allowed'");
     expect(setup).not.toContain('consumeFlashcardTrainingQuota');
     expect(setup).not.toContain('useFeatureAccess(');
-    expect(setup).toContain("context: 'flashcard_training'");
+    expect(setup).not.toContain("context: 'flashcard_training'");
     expect(setup).toContain('summarizeDeckSelection');
     expect(setup).toContain('toggleDeckSelection');
     expect(setup).not.toContain('FC_SESSION_SIZES');
     expect(layout).toContain('<Stack.Screen name="flashcards_training_setup" />');
     expect(layout).toContain('<Stack.Screen name="flashcards_recall_session" />');
     expect(hub).toContain('enabled={accessResolved && !modeSheetVisible');
-    expect(setup).toContain("enabled={accessResolved && quotaPreview.status === 'allowed'");
+    expect(setup).toContain("enabled={accessResolved && quotaPreview.status !== 'exhausted'");
   });
 
   // зачем (владелец 2026-09-14, «удали навсегда»): раздел «Сегодня слабое»

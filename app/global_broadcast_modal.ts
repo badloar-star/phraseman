@@ -2,11 +2,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Platform } from 'react-native';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { getCanonicalUserId } from './user_id_policy';
-import { commitConfirmedExternalShardEvent } from './shards_system';
-import { setClubGiftFreeBoostCountFromAuthority } from './club_boosts';
+import { mergeLevelSpinServerStars } from './level_spin_star_grants';
 import { primeMarketplaceBuiltCardsCacheFromAccessibleStorage } from './flashcards/marketplace';
 import { setRandomPackGiftTrial48h } from './flashcards/pack_trial_gift';
-import { WAGER_DISCOUNT_KEY } from './level_gift_system';
 import { isPremiumAccessProgressActive } from './premium_progress';
 import type { RuntimeStudyTarget } from './target_storage_keys';
 import { submitClientReport } from './client_reports';
@@ -15,12 +13,8 @@ import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { ensureStableAuthLinkForStableIdDetailed } from './cloud_sync';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { withCallableTimeout } from './callable_timeout';
-import { captureAccountGeneration, isCurrentAccountGeneration, type AccountGenerationToken, withAccountTransitionLock } from './account_generation';
+import { captureAccountGeneration, isCurrentAccountGeneration, type AccountGenerationToken, type AccountTransitionLockLease, withAccountTransitionLock } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
-import {
-  ruKnowledgeShardsAfterNumber,
-  ukKnowledgeShardsAfterNumber,
-} from '../constants/shard_plurals';
 import { DebugLogger } from './debug-logger';
 
 export type GlobalBroadcastKind = 'general' | 'review_promo';
@@ -63,15 +57,10 @@ export interface GlobalBroadcastModalPayload {
   createdAt: string;
 }
 
+// зачем: D70/D104 — жемчуг ('shards') в рассылках заменён монетами ('coins').
 export type GlobalBroadcastRewardType =
   | 'none'
-  | 'shards'
-  | 'xp_boost_2x_24h'
-  | 'xp_boost_2x_48h'
-  | 'chain_shield_1'
-  | 'chain_shield_3'
-  | 'club_boost_free'
-  | 'wager_discount_25'
+  | 'coins'
   | 'pack_trial_48h';
 
 type GlobalBroadcastPublicListResponse = {
@@ -95,13 +84,7 @@ function normalizeRewardType(value: unknown): GlobalBroadcastRewardType {
   const raw = String(value ?? '').trim() as GlobalBroadcastRewardType;
   const allowed: GlobalBroadcastRewardType[] = [
     'none',
-    'shards',
-    'xp_boost_2x_24h',
-    'xp_boost_2x_48h',
-    'chain_shield_1',
-    'chain_shield_3',
-    'club_boost_free',
-    'wager_discount_25',
+    'coins',
     'pack_trial_48h',
   ];
   return allowed.includes(raw) ? raw : 'none';
@@ -133,10 +116,9 @@ function normalizePayload(id: string, data: Record<string, unknown>): GlobalBroa
   const messageId = String(data.messageId ?? '').trim() || 'Terima kasih sudah bersama kami.';
   const messageTr = String(data.messageTr ?? '').trim() || 'Bizimle olduğun için teşekkürler.';
   const messagePl = String(data.messagePl ?? '').trim() || 'Dziękujemy, że jesteś z nami.';
-  const rewardType = normalizeRewardType(data.rewardType);
-  const legacyShards = toSafePositiveInt(data.shards, 0);
-  const rewardAmount = toSafePositiveInt(data.rewardAmount, legacyShards);
-  const resolvedRewardType: GlobalBroadcastRewardType = rewardType === 'none' && rewardAmount > 0 ? 'shards' : rewardType;
+  // Старый жемчуг ('shards' / поле shards) нормализуется в 'none' — D70.
+  const resolvedRewardType = normalizeRewardType(data.rewardType);
+  const rewardAmount = resolvedRewardType === 'coins' ? toSafePositiveInt(data.rewardAmount, 0) : 0;
   const kind = normalizeKind(data.kind);
   return {
     id,
@@ -179,7 +161,7 @@ function normalizePayload(id: string, data: Record<string, unknown>): GlobalBroa
 // в тексте. Теперь это имя иконки из набора проекта (@expo/vector-icons/Ionicons),
 // GlobalBroadcastModal рендерит её через <Ionicons name={reward.icon} />.
 export type GlobalBroadcastRewardIconName =
-  | 'diamond'
+  | 'rune'
   | 'flame'
   | 'rocket'
   | 'shield-checkmark'
@@ -202,93 +184,18 @@ export function getGlobalBroadcastRewardBadge(payload: GlobalBroadcastModalPaylo
   switch (payload.rewardType) {
     case 'none':
       return null;
-    case 'shards':
+    case 'coins':
+      if (amount <= 0) return null;
       return {
-        icon: 'diamond',
-        // зачем: склонение по числу — «+1 жемчужина», а не «+1 жемчужин».
-        labelRu: `+${amount} ${ruKnowledgeShardsAfterNumber(amount)}`,
-        labelUk: `+${amount} ${ukKnowledgeShardsAfterNumber(amount)}`,
-        labelEs:
-          amount === 1
-            ? '+1 fragmento'
-            : `+${amount} perlas`,
-        labelPtBr: amount === 1 ? '+1 fragmento' : `+${amount} perlas`,
+        icon: 'rune',
+        labelRu: `+${amount} ${ruCoinsAfterNumber(amount)}`,
+        labelUk: `+${amount} ${ukCoinsAfterNumber(amount)}`,
+        labelEs: amount === 1 ? '+1 moneda' : `+${amount} monedas`,
+        labelPtBr: amount === 1 ? '+1 moeda' : `+${amount} moedas`,
         labelVi: `+${amount} xu`,
         labelId: `+${amount} koin`,
         labelTr: `+${amount} jeton`,
-        labelPl: `+${amount} monet`,
-      };
-    case 'xp_boost_2x_24h':
-      return {
-        icon: 'flame',
-        labelRu: 'x2 XP на 24 часа',
-        labelUk: 'x2 XP на 24 години',
-        labelEs: 'x2 XP durante 24 horas',
-        labelPtBr: 'x2 XP por 24 horas',
-        labelVi: 'x2 XP trong 24 giờ',
-        labelId: 'x2 XP selama 24 jam',
-        labelTr: '24 saat x2 XP',
-        labelPl: 'x2 XP przez 24 godz.',
-      };
-    case 'xp_boost_2x_48h':
-      return {
-        icon: 'rocket',
-        labelRu: 'x2 XP на 48 часов',
-        labelUk: 'x2 XP на 48 годин',
-        labelEs: 'x2 XP durante 48 horas',
-        labelPtBr: 'x2 XP por 48 horas',
-        labelVi: 'x2 XP trong 48 giờ',
-        labelId: 'x2 XP selama 48 jam',
-        labelTr: '48 saat x2 XP',
-        labelPl: 'x2 XP przez 48 godz.',
-      };
-    case 'chain_shield_1':
-      return {
-        icon: 'shield-checkmark',
-        labelRu: 'Щит цепочки на 1 день',
-        labelUk: 'Щит стріку на 1 день',
-        labelEs: 'Escudo de racha: 1 día',
-        labelPtBr: 'Escudo de sequência: 1 dia',
-        labelVi: 'Khiên chuỗi: 1 ngày',
-        labelId: 'Perisai rentetan: 1 hari',
-        labelTr: 'Seri kalkanı: 1 gün',
-        labelPl: 'Tarcza serii: 1 dzień',
-      };
-    case 'chain_shield_3':
-      return {
-        icon: 'shield-checkmark',
-        labelRu: 'Щит цепочки на 3 дня',
-        labelUk: 'Щит стріку на 3 дні',
-        labelEs: 'Escudo de racha: 3 días',
-        labelPtBr: 'Escudo de sequência: 3 dias',
-        labelVi: 'Khiên chuỗi: 3 ngày',
-        labelId: 'Perisai rentetan: 3 hari',
-        labelTr: 'Seri kalkanı: 3 gün',
-        labelPl: 'Tarcza serii: 3 dni',
-      };
-    case 'club_boost_free':
-      return {
-        icon: 'people',
-        labelRu: 'Бесплатный буст лиги',
-        labelUk: 'Безкоштовний буст ліги',
-        labelEs: 'Impulso de liga gratuito',
-        labelPtBr: 'Impulso de liga grátis',
-        labelVi: 'Tăng lực giải đấu miễn phí',
-        labelId: 'Boost liga gratis',
-        labelTr: 'Ücretsiz lig güçlendirmesi',
-        labelPl: 'Darmowy boost ligi',
-      };
-    case 'wager_discount_25':
-      return {
-        icon: 'dice',
-        labelRu: 'Скидка на пари 25%',
-        labelUk: 'Знижка на парі 25%',
-        labelEs: '25 % de descuento en apuestas',
-        labelPtBr: '25% de desconto em apostas',
-        labelVi: 'Giảm 25% cho cược',
-        labelId: 'Diskon taruhan 25%',
-        labelTr: 'Bahislerde %25 indirim',
-        labelPl: '25% zniżki na zakłady',
+        labelPl: `+${amount} ${plCoinsAfterNumber(amount)}`,
       };
     case 'pack_trial_48h':
       return {
@@ -309,17 +216,40 @@ export function getGlobalBroadcastRewardBadge(payload: GlobalBroadcastModalPaylo
 
 type GlobalBroadcastClaimResponse = {
   ok: boolean;
-  rewardType: GlobalBroadcastRewardType;
+  /** Старые квитанции могут нести 'shards' — они ничего не начисляют (D70). */
+  rewardType: GlobalBroadcastRewardType | 'shards';
   rewardAmount?: number;
-  senderBalanceAfter?: number;
-  shardsUpdatedAtMs?: number;
-  chainShield?: string;
-  giftXpMultiplier?: string;
+  /** D104: снапшот монетного кошелька после начисления (stars_ledger). */
+  stars?: number;
+  starsEarnedTotal?: number;
+  starsSeq?: number;
   voucherId?: string;
   expiresAt?: number;
-  clubGiftFreeBoostCount?: number;
-  wagerDiscountUses?: number;
 };
+
+function ruCoinsAfterNumber(n: number): string {
+  const mod10 = n % 10;
+  const mod100 = n % 100;
+  if (mod10 === 1 && mod100 !== 11) return 'монета';
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return 'монеты';
+  return 'монет';
+}
+
+function ukCoinsAfterNumber(n: number): string {
+  const mod10 = n % 10;
+  const mod100 = n % 100;
+  if (mod10 === 1 && mod100 !== 11) return 'монета';
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return 'монети';
+  return 'монет';
+}
+
+function plCoinsAfterNumber(n: number): string {
+  if (n === 1) return 'moneta';
+  const mod10 = n % 10;
+  const mod100 = n % 100;
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return 'monety';
+  return 'monet';
+}
 
 async function claimGlobalBroadcastReward(
   payload: GlobalBroadcastModalPayload,
@@ -342,61 +272,35 @@ async function applyBroadcastReward(
   studyTarget?: RuntimeStudyTarget,
   accountToken?: AccountGenerationToken,
   stableId?: string,
+  lease?: AccountTransitionLockLease,
 ): Promise<void> {
   switch (claim.rewardType) {
     case 'none':
       return;
     case 'shards':
-      if (!Number.isFinite(claim.rewardAmount) || Number(claim.rewardAmount) <= 0) {
-        throw new Error('broadcast_shard_receipt_missing');
-      }
+      // зачем: D70 — квитанция старой жемчужной рассылки больше ничего не начисляет.
+      DebugLogger.info('BROADCAST-REWARD', `retired shards receipt id=${payload.id} amount=${claim.rewardAmount ?? 0}`);
+      return;
+    case 'coins': {
+      // зачем: D104 — монеты уже начислены сервером (stars_ledger); телефону
+      // доливаем снапшот кошелька. Применяется только более новый starsSeq,
+      // поэтому повтор квитанции не удваивает монеты.
       if (!accountToken || !stableId) throw new Error('broadcast_identity_missing');
-      {
-        const applied = await commitConfirmedExternalShardEvent({
-          source: 'global_broadcast',
-          eventId: payload.id,
-          delta: Number(claim.rewardAmount),
-          reason: 'global_broadcast_modal',
-          grant: {
-            kind: 'global_broadcast_reward',
-            subjectId: payload.id,
-            payload: { broadcastId: payload.id },
-          },
-        });
-        if (applied.status !== 'applied' && applied.status !== 'already-applied') {
-          throw new Error('broadcast_identity_changed');
-        }
+      const seq = Number(claim.starsSeq);
+      if (!Number.isSafeInteger(seq) || seq < 0) {
+        DebugLogger.warn('BROADCAST-REWARD', `coins receipt without starsSeq id=${payload.id} amount=${claim.rewardAmount ?? 0}`);
+        return;
       }
+      const stars = Number(claim.stars);
+      const earned = Number(claim.starsEarnedTotal);
+      const visible = await mergeLevelSpinServerStars(accountToken, {
+        ...(Number.isFinite(stars) ? { stars: Math.max(0, Math.trunc(stars)) } : {}),
+        ...(Number.isFinite(earned) ? { starsEarnedTotal: Math.max(0, Math.trunc(earned)) } : {}),
+        starsSeq: seq,
+      }, lease);
+      DebugLogger.info('BROADCAST-REWARD', `coins merged id=${payload.id} amount=${claim.rewardAmount ?? 0} seq=${seq} balance=${visible.balance}`);
       return;
-    case 'xp_boost_2x_24h':
-    case 'xp_boost_2x_48h':
-      if (!claim.giftXpMultiplier) throw new Error('broadcast_xp_receipt_missing');
-      await AsyncStorage.setItem('gift_xp_multiplier', claim.giftXpMultiplier);
-      return;
-    case 'chain_shield_1':
-    case 'chain_shield_3':
-      if (!claim.chainShield) throw new Error('broadcast_shield_receipt_missing');
-      await AsyncStorage.setItem('chain_shield', claim.chainShield);
-      return;
-    case 'club_boost_free':
-      if (!Number.isFinite(claim.clubGiftFreeBoostCount) || claim.clubGiftFreeBoostCount! < 0) {
-        throw new Error('broadcast_club_boost_receipt_missing');
-      }
-      await setClubGiftFreeBoostCountFromAuthority(claim.clubGiftFreeBoostCount!);
-      return;
-    case 'wager_discount_25':
-      if (!Number.isFinite(claim.wagerDiscountUses) || claim.wagerDiscountUses! < 0) {
-        throw new Error('broadcast_wager_receipt_missing');
-      }
-      if (claim.wagerDiscountUses! > 0) {
-        await AsyncStorage.multiSet([
-          [WAGER_DISCOUNT_KEY, '0.25'],
-          ['wager_discount_uses_v1', String(Math.floor(claim.wagerDiscountUses!))],
-        ]);
-      } else {
-        await AsyncStorage.multiRemove([WAGER_DISCOUNT_KEY, 'wager_discount_uses_v1']);
-      }
-      return;
+    }
     case 'pack_trial_48h':
       if (!claim.voucherId || !claim.expiresAt) throw new Error('pack_gift_receipt_missing');
       if (await setRandomPackGiftTrial48h(studyTarget, claim.voucherId, claim.expiresAt)) {
@@ -443,8 +347,7 @@ function isRetiredLeagueSystemBroadcast(payload: GlobalBroadcastModalPayload): b
   const mentionsLeague = text.includes('\u043b\u0438\u0433') || text.includes('league');
   const mentionsSystemUpdate = text.includes('\u0441\u0438\u0441\u0442\u0435\u043c') || text.includes('system');
   const mentionsCompensation = text.includes('\u043a\u043e\u043c\u043f\u0435\u043d\u0441') || text.includes('compens');
-  const isShardCompensation = payload.rewardType === 'shards' && payload.rewardAmount === 30;
-  return mentionsLeague && (mentionsSystemUpdate || mentionsCompensation || isShardCompensation);
+  return mentionsLeague && (mentionsSystemUpdate || mentionsCompensation);
 }
 
 export async function fetchPendingGlobalBroadcastModal(
@@ -508,17 +411,14 @@ export async function fetchPendingGlobalBroadcastModal(
     const claimSnap = await db.collection('users').doc(uid).collection('reward_claims').doc(claimId).get();
     if (claimSnap.exists) {
       let receipt = claimSnap.data()?.response as GlobalBroadcastClaimResponse | undefined;
-      if (receipt?.rewardType === 'club_boost_free' && !Number.isFinite(receipt.clubGiftFreeBoostCount)
-        || receipt?.rewardType === 'wager_discount_25' && !Number.isFinite(receipt.wagerDiscountUses)) {
-        receipt = await claimGlobalBroadcastReward(payload, uid).catch(() => undefined);
-      }
       if (receipt?.rewardType) {
         try {
-          await withAccountTransitionLock(async () => {
+          await withAccountTransitionLock(async (lease) => {
             if (!isCurrentAccountGeneration(accountToken, uid)) throw new Error('broadcast_identity_changed');
-            await applyBroadcastReward(payload, receipt, studyTarget, accountToken, uid);
+            await applyBroadcastReward(payload, receipt, studyTarget, accountToken, uid, lease);
           });
-        } catch {
+        } catch (e) {
+          DebugLogger.error('global_broadcast_modal:replayReceipt', e instanceof Error ? e : new Error(String(e)), 'warning');
           return payload;
         }
       }
@@ -570,9 +470,9 @@ export async function claimAndDismissGlobalBroadcastModal(
   if (!isCurrentAccountGeneration(accountToken, uid)) throw new Error('broadcast_identity_changed');
   const receipt = await claimGlobalBroadcastReward(payload, uid);
   if (!isCurrentAccountGeneration(accountToken, uid)) throw new Error('broadcast_identity_changed');
-  await withAccountTransitionLock(async () => {
+  await withAccountTransitionLock(async (lease) => {
     if (!isCurrentAccountGeneration(accountToken, uid)) throw new Error('broadcast_identity_changed');
-    await applyBroadcastReward(payload, receipt, studyTarget, accountToken, uid);
+    await applyBroadcastReward(payload, receipt, studyTarget, accountToken, uid, lease);
     if (!isCurrentAccountGeneration(accountToken, uid)) throw new Error('broadcast_identity_changed');
     await AsyncStorage.setItem(dismissKey(payload.id, accountToken), '1');
   });

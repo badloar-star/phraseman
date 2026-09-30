@@ -4,6 +4,7 @@ import { useLocalSearchParams, useRouter, useRootNavigationState } from 'expo-ro
 import * as Crypto from 'expo-crypto';
 
 import { LinearGradient } from '../components/SafeLinearGradient';
+import { useTheme } from '../components/ThemeContext';
 import {
   openPremiumPaywall,
   resolveCurrentPaywallRoute,
@@ -67,6 +68,7 @@ function renderPaywallRoute(
 
 export default function PremiumModalDispatcher() {
   const router = useRouter();
+  const { theme } = useTheme();
   const params = useLocalSearchParams<RouteParams>();
   const paywallRouteRef = useRef<ReturnType<typeof resolveCurrentPaywallRoute> | null>(null);
   const { accessResolved, hasPremiumAccess } = usePremium();
@@ -132,10 +134,10 @@ export default function PremiumModalDispatcher() {
 
   return (
     <LinearGradient
-      colors={['#111827', '#18233D', '#101827']}
+      colors={[theme.bgPrimary, theme.bgSurface, theme.bgPrimary]}
       start={{ x: 0.5, y: 0 }}
       end={{ x: 0.5, y: 1 }}
-      style={styles.root}
+      style={[styles.root, { backgroundColor: theme.bgPrimary }]}
     />
   );
 }
@@ -143,6 +145,5 @@ export default function PremiumModalDispatcher() {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: '#111827',
   },
 });

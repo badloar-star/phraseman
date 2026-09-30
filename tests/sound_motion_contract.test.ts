@@ -16,7 +16,7 @@ describe('sound motion timings', () => {
   });
 
   it('has no timings for silent events', () => {
-    // Арена и vip_finale ждут озвучки. Профиль без файла означал бы, что экран
+    // Арена ждёт озвучки. Профиль без файла означает, что экран
     // дёргается впустую под несуществующий звук.
     const extra = withoutSound.filter((id) => SOUND_MOTION[id]);
     expect(extra).toEqual([]);
@@ -29,8 +29,8 @@ describe('sound motion timings', () => {
   });
 
   // зачем: `durationMs` в каталоге проставлен на глаз и у шести событий короче
-  // реального звучания — сильнее всего у social.friend_request (540 против
-  // 1008 мс). Арбитр считает такой звук законченным, пока он ещё играет, и
+  // реального звучания — сильнее всего был social.friend_request (540 против
+  // 1008 мс; событие удалено в PM-206-A2). Арбитр считает такой звук законченным, пока он ещё играет, и
   // может пустить следующий поверх. Тест фиксирует известное расхождение:
   // список может только сокращаться. Как только `durationMs` поправят —
   // событие уйдёт отсюда, и тест потребует убрать его из исключений.
@@ -39,7 +39,6 @@ describe('sound motion timings', () => {
     'pm.complete.star_3',
     'pm.system.info',
     'pm.energy.empty',
-    'pm.social.friend_request',
   ];
 
   it('does not grow the set of events whose catalog duration understates the sound', () => {

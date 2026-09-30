@@ -33,19 +33,9 @@ assert.ok(
 );
 
 const home = read('app/(tabs)/home.tsx');
-for (const deadMarker of [
-  'EnergyTooltipAnchor',
-  'ENERGY_TOOLTIP_W',
-  'showEnergyTooltip',
-  'energyTooltipAnim',
-  'energyTooltipTimer',
-  'energyIconRef',
-  'energyAnchorCacheRef',
-  'energyTooltip.visible',
-]) {
-  assert.ok(!home.includes(deadMarker), `dead home energy tooltip remains: ${deadMarker}`);
-}
-assert.ok(home.includes('<EnergyBar'), 'shared EnergyBar/popover was removed from home');
+assert.ok(home.includes('showEnergyTooltip'), 'shared home energy popover trigger is missing');
+assert.ok(home.includes('energyTooltip.visible'), 'home energy popover state is missing');
+assert.ok(home.includes('<EnergyIcon'), 'shared energy glyph was removed from home');
 
 const gifts = read('app/level_gift_system.ts');
 for (const stale of [
@@ -83,21 +73,10 @@ assert.ok(estimateBlock.includes('settleEnergyState'), 'full-energy estimate doe
 const syncStart = context.indexOf('const syncEnergyFullNotification');
 const syncEnd = context.indexOf('syncEnergyPushRef.current', syncStart);
 const syncBlock = context.slice(syncStart, syncEnd);
-assert.ok(syncBlock.includes('readLeagueChestEnergyOverrideSnapshot'), 'notification does not read league recovery expiry');
-assert.ok(syncBlock.includes('readBoonEnergyOverrideSnapshot'), 'notification does not read boon recovery expiry');
+assert.ok(syncBlock.includes('overrides: []'), 'retired reward override remains in full-energy notification');
 assert.ok(syncBlock.includes('estimateEnergyFullRecoveryMs'), 'notification still projects the current rate forever');
-const tenMinuteTurboEstimate = 10 * 60_000 + (100 - 10) * 6 * 60_000;
-assert.equal(tenMinuteTurboEstimate, 550 * 60_000, '0/100 with 10m of 1m turbo must schedule full at 550m');
 
 const animatedNumber = read('components/energy/AnimatedEnergyNumber.tsx');
 assert.ok(animatedNumber.includes('ENERGY_ACTIVE_CAPACITY_LIMIT'), 'animated counter does not support the 350 active cap');
-
-const profileCard = read('app/profile_card_system.ts');
-const devResetStart = profileCard.indexOf('export async function devResetProfileCard');
-const devResetEnd = profileCard.indexOf('\n}', devResetStart);
-assert.ok(
-  profileCard.slice(devResetStart, devResetEnd).includes("emitAppEvent('energy_reload')"),
-  'profile-card dev reset does not refresh energy capacity',
-);
 
 console.log('ENERGY DEEP AUDIT CONTRACT PROBE: PASS');

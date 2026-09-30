@@ -97,12 +97,12 @@ test('drafts follow the requested pack language without losing another language'
   const disk = new Map();
   const drafts = file('app/community_packs/communityPackDraftStorage.ts', {
     '@react-native-async-storage/async-storage': { default: { getItem: async k => disk.get(k) ?? null, setItem: async (k,v) => disk.set(k,v), removeItem: async k => disk.delete(k) } },
-    './schema': { COMMUNITY_PACK_CARD_COUNT_MAX: 50 }, './ugcCardThemePresets': { UGC_CARD_THEME_IDS: ['a'] }, '../flashcards/cardBackCatalog': { UGC_CARD_BACK_IDS: ['a'] },
+    './schema': { COMMUNITY_PACK_CARD_COUNT_MAX: 50 }, './ugcCardThemePresets': { UGC_CARD_THEME_IDS: ['a'] },
     '../target_storage_keys': { communityPackCreateDraftKey: (target,locale) => `${target}:${locale}` },
     '../debug-logger': { DebugLogger: { error: () => {} } }, '../flashcards/pack_languages': languages,
     '../account_generation': { captureAccountGeneration: () => ({}), isCurrentAccountGeneration: () => true, withAccountTransitionLock: fn => fn() },
   });
-  const draft = { title: 'English', description: 'Trip', themeIdx: 0, cardBackIdx: 0, packLanguage: 'en', rows: [], addCardFormOpen: false, draftEn: '', draftRu: '', draftEs: '', draftNote: '', draftPlannedTranslation: '' };
+  const draft = { title: 'English', description: 'Trip', themeIdx: 0, packLanguage: 'en', rows: [], addCardFormOpen: false, draftEn: '', draftRu: '', draftEs: '', draftNote: '', draftPlannedTranslation: '' };
   await drafts.saveCommunityPackCreateDraft(draft, 'en', 'ru');
   assert.equal(await drafts.loadCommunityPackCreateDraft('en', 'ru', 'fr'), null);
   await drafts.saveCommunityPackCreateDraft({ ...draft, title: 'French', packLanguage: 'fr' }, 'en', 'ru');

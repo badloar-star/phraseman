@@ -12,7 +12,7 @@
  */
 export {}; // изолируем область видимости файла (иначе top-level currentDb/makeDbStub
 
-// коллидируют с другими *.test.ts при общей компиляции tsc). Совпадает с league_groups_name.test.ts.
+// коллидируют с другими *.test.ts при общей компиляции tsc).
 
 type DocData = Record<string, unknown>;
 type Store = Record<string, Record<string, DocData | undefined>>;

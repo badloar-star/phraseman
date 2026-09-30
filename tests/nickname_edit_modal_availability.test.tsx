@@ -56,7 +56,6 @@ jest.mock('../app/firestore_leaderboard', () => ({
   reserveNameDetailed: (...args: unknown[]) => mockReserveNameDetailed(...args),
   warmNameAvailabilityAuth: jest.fn(),
 }));
-jest.mock('../app/firestore_leagues', () => ({ syncMyLeagueMemberProfileNow: jest.fn() }));
 jest.mock('../app/app_snapshot_store', () => ({ patchAppSnapshot: jest.fn() }));
 jest.mock('../app/nickname_change_helpers', () => ({
   containsBadWord: () => false,

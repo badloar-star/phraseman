@@ -164,16 +164,7 @@ function buildLifetimePathChartDateRange(todayStr: string): string[] {
 
 
 
-function extractDailyPoints(val: unknown): number {
-  if (val === null || val === undefined) return 0;
-  if (typeof val === 'number') return val;
-  if (typeof val === 'object' && 'points' in val && typeof (val as { points: unknown }).points === 'number') {
-    return (val as { points: number }).points;
-  }
-  return 0;
-}
-
-/** Увеличить счётчик за сегодняшнюю дату (UTC‑день как в daily_stats). */
+/** Увеличить счётчик за сегодняшнюю дату (UTC‑день). */
 export async function bumpStatsDaily(
   metric: StatsDailyMetric,
   delta: number,
@@ -315,24 +306,17 @@ export async function loadLifetimeTotalsChartDays(
   const todayStr = toDateStr(new Date());
 
   if (kind === 'app_days') {
-    let statsRaw: string | null = '';
     let fgDaily: Record<string, number> = {};
     try {
-      [statsRaw, fgDaily] = await Promise.all([
-        AsyncStorage.getItem('daily_stats'),
-        getForegroundDailyMsMap(),
-      ]);
+      fgDaily = await getForegroundDailyMsMap();
     } catch {
-      statsRaw = '';
       fgDaily = {};
     }
-    const statsMap: Record<string, unknown> = statsRaw ? JSON.parse(statsRaw) : {};
     const dates = buildLifetimePathChartDateRange(todayStr);
     return dates.map(dateStr => {
       const cal = new Date(dateStr + 'T12:00:00');
-      const pts = extractDailyPoints(statsMap[dateStr]);
       const ms = fgDaily[dateStr] ?? 0;
-      const active = pts > 0 || ms >= MIN_ACTIVE_MS;
+      const active = ms >= MIN_ACTIVE_MS;
       return {
         date: dateStr,
         shortLabel: wdays[cal.getDay()],

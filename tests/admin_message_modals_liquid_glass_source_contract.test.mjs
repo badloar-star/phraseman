@@ -33,7 +33,7 @@ test('personal message keeps guarded acknowledgement and hybrid variant', () => 
 
 test('broadcast keeps claim/review-promo behaviour and busy guard', () => {
   const s = files.broadcast;
-  for (const x of ['claimAndDismissGlobalBroadcastModal', 'recordReviewPromoClick', 'getReviewPromoUrl', 'if (!payload || busy) return;', 'hapticSuccess', 'oskolokImageForPackShards']) {
+  for (const x of ['claimAndDismissGlobalBroadcastModal', 'recordReviewPromoClick', 'getReviewPromoUrl', 'if (!payload || busy) return;', 'hapticSuccess', 'RuneGlyph']) {
     assert.ok(s.includes(x), `keeps ${x}`);
   }
 });

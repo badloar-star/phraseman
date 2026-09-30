@@ -54,12 +54,9 @@ const BOT: DevBotFriend = {
   uid: 'devbot_test_1',
   name: 'Ada',
   colorIdx: 0,
-  totalXp: 1000,
-  weeklyXp: 500,
   streak: 3,
   days: 3,
   learnedToday: false,
-  giftReady: false,
   incomingNudge: false,
   nudgedByMe: false,
   createdAtMs: 1,
@@ -77,7 +74,6 @@ function Harness() {
       onAdvanceOne={(uid) => setBots((current) => current.map((bot) => bot.uid === uid ? { ...bot, days: bot.days + 1, learnedToday: true } : bot))}
       onChestTier={() => undefined}
       onIncomingNudge={(uid) => setBots((current) => current.map((bot) => bot.uid === uid ? { ...bot, incomingNudge: true } : bot))}
-      onGiftReady={(uid) => setBots((current) => current.map((bot) => bot.uid === uid ? { ...bot, giftReady: true } : bot))}
       onResetChest={() => undefined}
       onReset={() => setBots([])}
     />

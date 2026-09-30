@@ -95,7 +95,6 @@ describe('SoundArbiter', () => {
 
   test('disabling effects clears state, stops eligibility, and missing assets fail silently', () => {
     const { arbiter } = setup();
-    expect(arbiter.request('pm.reward.vip_finale')).toEqual({ kind: 'drop', reason: 'missing' });
     arbiter.request('pm.complete.star_2');
     arbiter.setEffectsEnabled(false);
     expect(arbiter.hasActiveSound()).toBe(false);

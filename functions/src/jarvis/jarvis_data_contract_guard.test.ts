@@ -316,7 +316,8 @@ const INTENTIONALLY_UNREAD_PHONE_STATE_ECONOMY_GRANTS = [
   {
     grantKind: 'customization_rune_purchase',
     contract: 'modules/phone-state/domains/economy.ts',
-    writer: 'app/customization_rune_purchase.ts',
+    // зачем: D102 — покупка косметики удалена; историческую запись принимает мост Phone State.
+    writer: 'app/phone_state_economy_bridge.ts',
     collection: 'personal_sync_segments',
     authority: 'client-authoritative exact rune debit plus avatar entitlement in an owner-only opaque Phone State segment; intentionally unread by Jarvis',
   },
@@ -484,19 +485,20 @@ const ISOLATED_COLLECTION_CONTRACTS = [
   },
   {
     collection: 'arena_v2_receipts',
-    writer: 'functions/src/arena_v2.ts',
-    authority: 'owner-read/server-write private XP settlement evidence; never a Jarvis business metric',
+    // зачем: D78 — серверная Арена удалена; новых записей нет, остаются исторические документы.
+    writer: 'none since D78 (deleted functions/src/arena_v2.ts; historical documents only)',
+    authority: 'owner-read/server-write private Arena settlement evidence; never a Jarvis business metric',
     fields: ['studyTarget', 'publicationFingerprint', 'settledAtMs'],
   },
   {
     collection: 'arena_v2_target_profiles',
-    writer: 'functions/src/arena_v2.ts and functions/src/arena_expansion.ts',
+    writer: 'none since D78 (deleted functions/src/arena_v2.ts and arena_expansion.ts; historical documents only)',
     authority: 'owner-read/server-write target-local competitive Arena projection; intentionally unread by Jarvis',
     fields: ['rating', 'rank', 'wins', 'losses', 'draws', 'matches', 'activeMatchId', 'mastery'],
   },
   {
     collection: 'arena_v2_match_labs',
-    writer: 'functions/src/arena_v2.ts and functions/src/arena_expansion.ts',
+    writer: 'none since D78 (deleted functions/src/arena_v2.ts and arena_expansion.ts; historical documents only)',
     authority: 'owner-read/server-write private Arena review history; intentionally unread by Jarvis',
     fields: ['studyTarget', 'publicationFingerprint', 'createdAtMs'],
   },
@@ -574,8 +576,8 @@ const ISOLATED_COLLECTION_CONTRACTS = [
   },
   {
     collection: 'admin_alert_events',
-    writer: 'functions/src/admin_alert_dispatcher.ts',
-    authority: 'owner-authorized Telegram report text and numbered delivery checkpoints; server-only, never Jarvis prompt material',
+    writer: 'functions/src/admin_alert_dispatcher.ts + functions/src/custom_card_milestone.ts',
+    authority: 'owner-authorized Telegram report text, privacy-safe card milestone signals, and numbered delivery checkpoints; server-only, never Jarvis prompt material',
     fields: ['telegramMessages', 'telegramNextPart', 'telegramMessageId', 'deliveryFormatVersion', 'payload.metrics.available'],
   },
   {
@@ -583,6 +585,24 @@ const ISOLATED_COLLECTION_CONTRACTS = [
     writer: 'functions/src/admin_alerts.ts',
     authority: 'admin-only idempotency receipts and critical-error cooldown; server-written, not a Jarvis business projection',
     fields: ['processedAtMs', 'lastSentAtMs', 'suppressed', 'lastSuppressedAtMs'],
+  },
+  {
+    collection: 'spire_task_report_receipts',
+    writer: 'functions/src/client_reports.ts',
+    authority: 'server-only idempotent evidence that a verified published Spire task report reached quarantine; intentionally unread by Jarvis',
+    fields: ['schemaVersion', 'reportId', 'taskId', 'studyTarget', 'transition', 'createdAtMs'],
+  },
+  {
+    collection: 'spire_task_report_reservations',
+    writer: 'functions/src/client_reports.ts',
+    authority: 'server-only pre-Storage rate/idempotency reservation; contains account binding and is intentionally unread by Jarvis',
+    fields: ['schemaVersion', 'reportId', 'stableUid', 'requestFingerprint', 'status', 'createdAtMs', 'finalizedAtMs'],
+  },
+  {
+    collection: 'spire_task_incidents',
+    writer: 'functions/src/client_reports.ts + functions/src/admin_spire_task_flag.ts',
+    authority: 'server-only bounded Spire moderation lifecycle; admin consumes a redacted callable projection and Jarvis does not ingest report evidence',
+    fields: ['schemaVersion', 'studyTarget', 'taskId', 'state', 'revision', 'reportCount', 'latestReportId', 'updatedAtMs'],
   },
 ] as const;
 
@@ -593,6 +613,10 @@ const INTENTIONALLY_EXCLUDED_NESTED_FIELDS = [{
   field: 'error_reports.diagnostics',
   writer: 'client_reports.ts',
   authority: 'intentionally_excluded_from_jarvis_prompts',
+}, {
+  field: 'error_reports.spire_provenance',
+  writer: 'client_reports.ts',
+  authority: 'task identity and quarantine workflow fields stay in manual moderation; Jarvis reads only bounded category/screen/time aggregates',
 }] as const;
 
 describe('Jarvis data contract — silence must never replace a broken source', () => {
@@ -995,12 +1019,10 @@ describe('Jarvis data contract — silence must never replace a broken source', 
   });
 });
 
-describe('level reward spin Jarvis impact', () => {
-  test('records the new server schema as intentionally unread by Jarvis until a metric is approved', () => {
-    const writer = readSource('level_reward_spins.ts');
-    expect(writer).toContain("collection('level_spin_credits')");
-    expect(writer).toContain("collection('level_spin_results')");
-    expect(writer).toContain('level_reward_spin_balance');
+describe('retired level reward spin Jarvis impact', () => {
+  test('keeps retired level-spin writer modules out of the Functions source tree', () => {
+    expect(fs.existsSync(path.join(functionsSrc, 'level_reward_spins.ts'))).toBe(false);
+    expect(fs.existsSync(path.join(functionsSrc, 'level_spin_merge.ts'))).toBe(false);
 
     const jarvisDir = path.join(functionsSrc, 'jarvis');
     const readers = fs.readdirSync(jarvisDir)

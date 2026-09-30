@@ -217,13 +217,13 @@ describe('levelForDays / nextThreshold', () => {
 
 describe('bonusPercentForLevel / starRewardForLevel', () => {
   it('matches the documented tables', () => {
-    expect(BONUS_PERCENT_BY_LEVEL).toEqual([0, 0, 5, 5, 10, 15]);
+    expect(BONUS_PERCENT_BY_LEVEL).toEqual([0, 0, 0, 0, 0, 0]);
     expect(STAR_REWARD_BY_LEVEL).toEqual([0, 0, 5, 10, 20, 50]);
     expect(bonusPercentForLevel(1)).toBe(0);
-    expect(bonusPercentForLevel(2)).toBe(5);
-    expect(bonusPercentForLevel(3)).toBe(5);
-    expect(bonusPercentForLevel(4)).toBe(10);
-    expect(bonusPercentForLevel(5)).toBe(15);
+    expect(bonusPercentForLevel(2)).toBe(0);
+    expect(bonusPercentForLevel(3)).toBe(0);
+    expect(bonusPercentForLevel(4)).toBe(0);
+    expect(bonusPercentForLevel(5)).toBe(0);
     expect(starRewardForLevel(2)).toBe(5);
     expect(starRewardForLevel(3)).toBe(10);
     expect(starRewardForLevel(4)).toBe(20);

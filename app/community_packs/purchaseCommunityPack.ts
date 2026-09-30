@@ -1,36 +1,16 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import auth from '@react-native-firebase/auth';
 import { actionToastTri, emitAppEvent } from '../events';
 import { getCanonicalUserId } from '../user_id_policy';
-import {
-  commitConfirmedExternalShardEvent,
-  getShardsBalance,
-} from '../shards_system';
-import {
-  emitShardPurchaseSyncPendingToast,
-  reconcileShardsBeforePurchase,
-} from '../shards_purchase_reconcile';
 import type { FlashcardMarketPack } from '../flashcards/marketplace';
-import type { CardPackShardPurchaseResult } from '../flashcards/cardPackShardPurchase';
 import {
-  callCommunityPurchasePack,
   callFlashcardPackGiftRedeem,
   isCommunityPacksCloudEnabled,
 } from './functionsClient';
-import { addCommunityOwnedPackId, loadCommunityOwnedPackIds } from './communityOwnedStorage';
-import {
-  trackCardPackAcquiredAchievement,
-  trackExternalShardSpendAchievement,
-} from '../flashcards/packAchievementTracking';
+import { addCommunityOwnedPackId } from './communityOwnedStorage';
+import { trackCardPackAcquiredAchievement } from '../flashcards/packAchievementTracking';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 import { storageStudyTarget } from '../target_storage_keys';
 import { bindPackGiftVoucherSelection, consumePackGiftTrial, getPackGiftTrial } from '../flashcards/pack_trial_gift';
-/**
- * Cards 2.1 §1.2: цены наборов удалены из создания/публикации (`schema.ts`).
- * Здесь константа осталась только для легаси-пути покупки набора за осколки
- * в «Магазине осколков» — каталог раздела «Карточки» её не использует.
- */
-const COMMUNITY_PACK_PRICE_SHARDS = 10;
 
 /**
  * Cloud Functions (onCall) require Firebase Auth. `cloud_sync.ensureAnonUser` only starts
@@ -45,36 +25,6 @@ export async function ensureFirebaseUserSignedInForCallable(): Promise<boolean> 
   } catch {
     return false;
   }
-}
-
-function communityPurchaseErrorText(e: unknown): string {
-  if (e == null) return '';
-  if (typeof e === 'string') return e;
-  if (typeof e === 'object') {
-    const o = e as {
-      message?: string;
-      nativeErrorMessage?: string;
-      code?: string;
-      details?: unknown;
-      userInfo?: { message?: string };
-    };
-    const details = typeof o.details === 'string'
-      ? o.details
-      : o.details && typeof o.details === 'object'
-        ? JSON.stringify(o.details)
-        : '';
-    return [o.message, o.nativeErrorMessage, o.userInfo?.message, o.code, details]
-      .filter((value): value is string => typeof value === 'string' && value.trim().length > 0)
-      .join(' ');
-  }
-  return String(e);
-}
-
-function isInsufficientCommunityPurchaseError(e: unknown): boolean {
-  const lower = communityPurchaseErrorText(e).toLowerCase();
-  return lower.includes('insufficient')
-    || lower.includes('недостаточ')
-    || lower.includes('недостатн');
 }
 
 function formatCommunityPurchaseError(e: unknown): Parameters<typeof actionToastTri>[1] {
@@ -156,119 +106,6 @@ function formatCommunityPurchaseError(e: unknown): Parameters<typeof actionToast
   };
 }
 
-export async function purchaseCommunityPackWithShards(
-  pack: FlashcardMarketPack,
-  studyTarget?: RuntimeStudyTarget,
-): Promise<CardPackShardPurchaseResult> {
-  if (!isCommunityPacksCloudEnabled()) return 'spend_failed';
-  const owned = await loadCommunityOwnedPackIds(studyTarget);
-  if (owned.includes(pack.id)) return 'already_owned';
-
-  const buyerStableId = await getCanonicalUserId();
-  if (!buyerStableId) {
-    emitAppEvent('action_toast', actionToastTri('error', {
-      ru: 'Нужен профиль, чтобы открыть набор.',
-      uk: 'Потрібен профіль, щоб відкрити набір.',
-      es: 'No hay perfil para completar la compra.',
-      'pt-BR': 'Não há perfil para concluir a compra.',
-      vi: 'Không có hồ sơ để hoàn tất giao dịch mua.',
-      id: 'Tidak ada profil untuk menyelesaikan pembelian.',
-      tr: 'Satın almayı tamamlamak için profil yok.',
-      pl: 'Brak profilu do ukończenia zakupu.',
-    }));
-    return 'spend_failed';
-  }
-
-  const nameRaw = (await AsyncStorage.getItem('user_name')) ?? '';
-  const buyerDisplayName = nameRaw.trim().slice(0, 80) || 'Игрок';
-
-  if (!(await ensureFirebaseUserSignedInForCallable())) {
-    emitAppEvent('action_toast', actionToastTri('error', {
-      ru: 'Не удалось подтвердить аккаунт. Повтори попытку.',
-      uk: 'Не вдалося підтвердити акаунт. Спробуйте ще раз.',
-      es: 'No se pudo confirmar la cuenta. Inténtalo de nuevo.',
-      'pt-BR': 'Não foi possível confirmar a conta. Tente novamente.',
-      vi: 'Không thể xác nhận tài khoản. Hãy thử lại.',
-      id: 'Tidak dapat mengonfirmasi akun. Coba lagi.',
-      tr: 'Hesap doğrulanamadı. Tekrar dene.',
-      pl: 'Nie udało się potwierdzić konta. Spróbuj ponownie.',
-    }));
-    return 'spend_failed';
-  }
-
-  const reconciliation = await reconcileShardsBeforePurchase();
-  if (reconciliation.status !== 'ready') {
-    emitShardPurchaseSyncPendingToast();
-    return 'wallet_sync_pending';
-  }
-
-  try {
-    const res = await callCommunityPurchasePack({
-      buyerStableId,
-      packId: pack.id,
-      studyTarget: storageStudyTarget(studyTarget),
-      buyerDisplayName,
-    });
-    const title = {
-      titleRu: pack.titleRu,
-      titleUk: pack.titleUk,
-      titleEs: pack.titleEs,
-      ugcCardBackKey: pack.ugcCardBackKey,
-    };
-    if (res.alreadyOwned) {
-      await addCommunityOwnedPackId(pack.id, studyTarget, title);
-      return 'already_owned';
-    }
-    await addCommunityOwnedPackId(pack.id, studyTarget, title);
-    const purchaseId = res.purchaseId || `${buyerStableId}__${pack.id}`;
-    const debit = await commitConfirmedExternalShardEvent({
-      source: 'community_pack_purchase',
-      eventId: purchaseId,
-      delta: -COMMUNITY_PACK_PRICE_SHARDS,
-      reason: 'community_pack_purchase',
-      grant: {
-        kind: 'person_to_person_pack_purchase',
-        subjectId: pack.id,
-        payload: { packId: pack.id, studyTarget: storageStudyTarget(studyTarget) },
-      },
-    });
-    if (debit.status !== 'applied' && debit.status !== 'already-applied') return 'spend_failed';
-    void trackCardPackAcquiredAchievement(studyTarget);
-    void trackExternalShardSpendAchievement(COMMUNITY_PACK_PRICE_SHARDS);
-    const titleEs =
-      pack.titleEs.trim()
-      || pack.titleUk.trim()
-      || pack.titleRu.trim()
-      || pack.id;
-    const titlePtBr = (pack.titlePtBr ?? '').trim() || titleEs;
-    const titleVi = (pack.titleVi ?? '').trim() || titleEs;
-    const titleId = (pack.titleId ?? '').trim() || titleEs;
-    const titleTr = (pack.titleTr ?? '').trim() || titleEs;
-    const titlePl = (pack.titlePl ?? '').trim() || titleEs;
-    emitAppEvent('action_toast', actionToastTri('success', {
-      ru: `Набор «${pack.titleRu}» доступен в «Карточки».`,
-      uk: `Набір «${pack.titleUk}» доступний у «Картки».`,
-      es: `El pack «${titleEs}» ya está disponible en Tarjetas.`,
-      'pt-BR': `O pacote “${titlePtBr}” já está disponível em Cartões.`,
-      vi: `Bộ thẻ “${titleVi}” đã có trong Thẻ.`,
-      id: `Paket “${titleId}” sudah tersedia di Kartu.`,
-      tr: `“${titleTr}” paketi Kartlar bölümünde hazır.`,
-      pl: `Zestaw „${titlePl}” jest już dostępny w Kartach.`,
-    }));
-    return 'ok';
-  } catch (e: unknown) {
-    if (isInsufficientCommunityPurchaseError(e)) {
-      // Сервер больше не является источником личного баланса и не вправе
-      // откатывать уже подтверждённую локальную проекцию.
-      const freshBalance = await getShardsBalance().catch(() => reconciliation.balance);
-      emitAppEvent('shards_balance_updated', { balance: freshBalance });
-      return 'insufficient';
-    }
-    emitAppEvent('action_toast', actionToastTri('error', formatCommunityPurchaseError(e)));
-    return 'spend_failed';
-  }
-}
-
 export type CommunityPackGiftRedeemResult = 'ok' | 'already_owned' | 'redeem_failed';
 
 /**
@@ -328,7 +165,6 @@ export async function redeemCommunityPackGiftVoucher(
       titleRu: pack.titleRu,
       titleUk: pack.titleUk,
       titleEs: pack.titleEs,
-      ugcCardBackKey: pack.ugcCardBackKey,
     });
     await consumePackGiftTrial(trial.localVoucherId);
     void trackCardPackAcquiredAchievement(studyTarget);

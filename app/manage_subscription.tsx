@@ -18,8 +18,8 @@
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
-  View, Text, ScrollView, StyleSheet, TouchableOpacity, ActivityIndicator,
-  Linking, Platform, TextInput,
+  View, Text, ScrollView, StyleSheet, ActivityIndicator,
+  KeyboardAvoidingView, Linking, Platform, TextInput, type LayoutChangeEvent,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -29,9 +29,16 @@ import Purchases, { type CustomerInfo } from 'react-native-purchases';
 
 import { LinearGradient } from '../components/SafeLinearGradient';
 import SkeletonBlock from '../components/SkeletonShimmer';
+import ContentWrap from '../components/ContentWrap';
+import DuoPressable from '../components/DuoPressable';
+import FullscreenHybridEntrance from '../components/feedback/FullscreenHybridEntrance';
+import { useKeyboardBottomInset } from '../components/keyboardAvoidance';
+import PressableHybrid from '../components/PressableHybrid';
+import { FONT_SCALE, useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
-import { usePaywallChrome, PaywallCloseButton } from '../components/paywall/paywallShared';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { useScreen } from '../hooks/use-screen';
 import { initRevenueCat, resolvePremiumPackages, syncRevenueCatIdentity } from './revenuecat_init';
 import { storePriceTrim } from './paywall_purchase';
 import { revenueCatCustomerInfoHasPremiumAccess } from './revenuecat_premium_access';
@@ -69,6 +76,7 @@ import { DebugLogger } from './debug-logger';
 type ManageSubscriptionCopy = {
   ru: string;
   uk: string;
+  en: string;
   es: string;
   'pt-BR': string;
   vi: string;
@@ -77,37 +85,27 @@ type ManageSubscriptionCopy = {
   pl: string;
 };
 
-// «Что включено» — полный список привилегий Premium. Каждый пункт сверен с реальным
-// гейтом в коде (аудит 2026-07-25, см. app/feature_gates.ts + app/energy_system.ts +
-// app/remote_flags.ts). Формулировки сжатые, по Библии Phraseman, без хардкода чисел/цен.
-//
-// Энергия — единственный реально проверенный "безлимит для премиума" гейт
-// (см. spendEnergy → isFeatureFreeForEveryone('energy') / getVerifiedPremiumStatus(),
-// energy_system.ts:212-224), поэтому первый пункт остаётся про энергию.
-const INCLUDED: ManageSubscriptionCopy[] = [
-  // — Доступ и лимиты —
-  // Уроки и экзамены — реальные потребители энергии.
-  { ru: 'Безлимитная энергия — уроки и экзамены без ожидания', uk: 'Безлімітна енергія — уроки та іспити без очікування', es: 'Energía ilimitada: lecciones y exámenes sin esperas', 'pt-BR': 'Energia ilimitada: aulas e exames sem espera', vi: 'Năng lượng không giới hạn: bài học và bài kiểm tra không phải chờ', id: 'Energi tak terbatas: pelajaran dan ujian tanpa menunggu', tr: 'Sınırsız enerji: dersler ve sınavlar beklemeden', pl: 'Nielimitowana energia: lekcje i egzaminy bez czekania' },
-  { ru: 'Все уроки текущего уровня открыты полностью', uk: 'Усі уроки поточного рівня відкриті повністю', es: 'Todas las lecciones del nivel actual abiertas', 'pt-BR': 'Todas as aulas do nível atual totalmente abertas', vi: 'Tất cả bài học của cấp hiện tại được mở đầy đủ', id: 'Semua pelajaran level saat ini terbuka penuh', tr: 'Mevcut seviyedeki tüm dersler tamamen açık', pl: 'Wszystkie lekcje bieżącego poziomu są w pełni otwarte' },
-  // — Живая практика —
-  { ru: 'Безлимитные диалоги по сценариям', uk: 'Безлімітні діалоги за сценаріями', es: 'Diálogos por escenarios sin límite', 'pt-BR': 'Diálogos por cenários sem limite', vi: 'Hội thoại theo kịch bản không giới hạn', id: 'Dialog berbasis skenario tanpa batas', tr: 'Senaryolu diyaloglar sınırsız', pl: 'Nielimitowane dialogi według scenariuszy' },
-  { ru: 'Собеседник «Компас» — общайся без ограничений', uk: 'Співрозмовник «Компас» — спілкуйся без обмежень', es: 'Compañero «Compás»: conversa sin límites', 'pt-BR': 'Parceiro «Bússola»: converse sem limites', vi: 'Người bạn «La bàn» — trò chuyện không giới hạn', id: 'Teman «Kompas» — mengobrol tanpa batas', tr: 'Sohbet arkadaşı «Pusula» — sınırsız konuş', pl: 'Rozmówca „Kompas” — rozmawiaj bez ograniczeń' },
-  { ru: 'Доступ ко всем уровням сценариев диалогов', uk: 'Доступ до всіх рівнів сценаріїв діалогів', es: 'Acceso a todos los niveles de los diálogos', 'pt-BR': 'Acesso a todos os níveis dos diálogos', vi: 'Mở mọi cấp độ kịch bản hội thoại', id: 'Akses ke semua level skenario dialog', tr: 'Tüm diyalog senaryosu seviyelerine erişim', pl: 'Dostęp do wszystkich poziomów scenariuszy dialogów' },
-  // — Персональное обучение —
-  { ru: 'Умный тренажёр и все режимы тренировки', uk: 'Розумний тренажер і всі режими тренування', es: 'Entrenador inteligente y todos los modos', 'pt-BR': 'Treinador inteligente e todos os modos', vi: 'Trình luyện thông minh và mọi chế độ', id: 'Latihan cerdas dan semua mode latihan', tr: 'Akıllı antrenör ve tüm çalışma modları', pl: 'Inteligentny trener i wszystkie tryby treningu' },
-  { ru: 'Тренажёр говорения с распознаванием речи', uk: 'Тренажер говоріння з розпізнаванням мовлення', es: 'Práctica de habla con reconocimiento de voz', 'pt-BR': 'Treino de fala com reconhecimento de voz', vi: 'Luyện nói với nhận diện giọng nói', id: 'Latihan bicara dengan pengenalan suara', tr: 'Ses tanımalı konuşma alıştırması', pl: 'Trener mówienia z rozpoznawaniem mowy' },
-  // — Аналитика —
-  { ru: 'Глубокая статистика, разбор недели и инсайты практики', uk: 'Глибока статистика, розбір тижня та інсайти практики', es: 'Estadística avanzada, resumen semanal e insights', 'pt-BR': 'Estatísticas avançadas, resumo semanal e insights', vi: 'Thống kê chuyên sâu, phân tích tuần và insight luyện tập', id: 'Statistik mendalam, ulasan mingguan, dan insight latihan', tr: 'Derin istatistik, haftalık analiz ve pratik içgörüleri', pl: 'Zaawansowane statystyki, tygodniowy przegląd i wnioski z praktyki' },
-  // — Контент и серия —
-  { ru: 'Неограниченные сохранённые карточки', uk: 'Необмежені збережені картки', es: 'Tarjetas guardadas ilimitadas', 'pt-BR': 'Cartões salvos ilimitados', vi: 'Thẻ đã lưu không giới hạn', id: 'Kartu tersimpan tak terbatas', tr: 'Sınırsız kayıtlı kart', pl: 'Nielimitowane zapisane fiszki' },
-  { ru: 'Защита серии: бесплатная заморозка', uk: 'Захист серії: безкоштовна заморозка', es: 'Protección de racha: congelación gratis', 'pt-BR': 'Proteção de sequência: congelamento grátis', vi: 'Bảo vệ chuỗi ngày: đóng băng miễn phí', id: 'Perlindungan streak: pembekuan gratis', tr: 'Seri koruması: ücretsiz dondurma', pl: 'Ochrona serii: darmowe zamrożenie' },
-  // — Косметика и статус —
-  { ru: 'Плюс-темы и эксклюзивная аура аватара', uk: 'Плюс-теми та ексклюзивна аура аватара', es: 'Temas Plus y aura de avatar exclusiva', 'pt-BR': 'Temas Plus e aura de avatar exclusiva', vi: 'Giao diện Plus và hào quang avatar độc quyền', id: 'Tema Plus dan aura avatar eksklusif', tr: 'Plus temalar ve özel avatar aurası', pl: 'Motywy Plus i ekskluzywna aura awatara' },
-  { ru: 'Плюс-подсветка профиля в лидербордах', uk: 'Плюс-підсвічування профілю в лідербордах', es: 'Perfil destacado en las clasificaciones', 'pt-BR': 'Perfil Plus destacado nos rankings', vi: 'Hồ sơ Plus nổi bật trên bảng xếp hạng', id: 'Sorotan profil Plus di papan peringkat', tr: 'Liderlik tablolarında Plus profil vurgusu', pl: 'Wyróżnienie profilu Plus w rankingach' },
+type ManageSubscriptionReasonCopy = Omit<ManageSubscriptionCopy, 'en'>;
+
+type ManageSubscriptionBenefit = ManageSubscriptionCopy & {
+  benefitId: string;
+  icon: React.ComponentProps<typeof Ionicons>['name'];
+};
+
+// Короткий список только тех преимуществ Plus, для которых есть прямые живые гейты.
+// Не расширять маркетинговыми обещаниями без отдельной проверки runtime-контракта.
+const INCLUDED: ManageSubscriptionBenefit[] = [
+  { benefitId: 'energy', icon: 'flash', ru: 'Энергия не расходуется', uk: 'Енергія не витрачається', en: 'Energy is not consumed', es: 'La energía no se consume', 'pt-BR': 'A energia não é consumida', vi: 'Không tiêu hao năng lượng', id: 'Energi tidak berkurang', tr: 'Enerji harcanmaz', pl: 'Energia nie jest zużywana' },
+  { benefitId: 'free_conversation', icon: 'chatbubbles', ru: 'Свободный разговор', uk: 'Вільна розмова', en: 'Free conversation', es: 'Conversación libre', 'pt-BR': 'Conversa livre', vi: 'Trò chuyện tự do', id: 'Percakapan bebas', tr: 'Serbest konuşma', pl: 'Swobodna rozmowa' },
+  { benefitId: 'pronunciation', icon: 'mic', ru: 'Произношение без дневного лимита', uk: 'Вимова без денного ліміту', en: 'Pronunciation without a daily limit', es: 'Pronunciación sin límite diario', 'pt-BR': 'Pronúncia sem limite diário', vi: 'Luyện phát âm không giới hạn hằng ngày', id: 'Latihan pengucapan tanpa batas harian', tr: 'Günlük limitsiz telaffuz', pl: 'Wymowa bez dziennego limitu' },
+  { benefitId: 'saved_phrases', icon: 'bookmark', ru: 'Сохранённые фразы без ограничения', uk: 'Збережені фрази без обмеження', en: 'Unlimited saved phrases', es: 'Frases guardadas sin límite', 'pt-BR': 'Frases salvas sem limite', vi: 'Lưu cụm từ không giới hạn', id: 'Frasa tersimpan tanpa batas', tr: 'Sınırsız kayıtlı ifadeler', pl: 'Zapisane zwroty bez limitu' },
+  { benefitId: 'streak_freezes', icon: 'snow', ru: '3 заморозки серии в месяц', uk: '3 заморозки серії на місяць', en: '3 streak freezes per month', es: '3 protecciones de racha al mes', 'pt-BR': '3 congelamentos de sequência por mês', vi: '3 lần đóng băng chuỗi mỗi tháng', id: '3 pembekuan rentetan per bulan', tr: 'Ayda 3 seri dondurma', pl: '3 zamrożenia serii miesięcznie' },
+  { benefitId: 'detailed_stats', icon: 'stats-chart', ru: 'Подробная статистика занятий', uk: 'Докладна статистика занять', en: 'Detailed learning statistics', es: 'Estadísticas detalladas de aprendizaje', 'pt-BR': 'Estatísticas detalhadas de estudo', vi: 'Thống kê học tập chi tiết', id: 'Statistik belajar terperinci', tr: 'Ayrıntılı çalışma istatistikleri', pl: 'Szczegółowe statystyki nauki' },
+  { benefitId: 'flashcard_training', icon: 'albums', ru: 'Тренировки с карточками без ограничений', uk: 'Тренування з картками без обмежень', en: 'Unlimited flashcard training', es: 'Entrenamiento con tarjetas sin límites', 'pt-BR': 'Treinos com cartões sem limites', vi: 'Luyện tập thẻ ghi nhớ không giới hạn', id: 'Latihan kartu tanpa batas', tr: 'Sınırsız kart çalışması', pl: 'Trening z fiszkami bez ograniczeń' },
 ];
 
 // Причины отмены для шит-опроса (logCancelSurvey).
-const CANCEL_REASONS: ({ key: string } & ManageSubscriptionCopy)[] = [
+const CANCEL_REASONS: ({ key: string } & ManageSubscriptionReasonCopy)[] = [
   { key: 'too_expensive', ru: 'Слишком дорого', uk: 'Занадто дорого', es: 'Demasiado caro', 'pt-BR': 'Muito caro', vi: 'Quá đắt', id: 'Terlalu mahal', tr: 'Çok pahalı', pl: 'Za drogo' },
   { key: 'not_using', ru: 'Не пользуюсь достаточно', uk: 'Не користуюся достатньо', es: 'No lo uso lo suficiente', 'pt-BR': 'Não uso o suficiente', vi: 'Tôi không dùng đủ nhiều', id: 'Saya tidak cukup sering memakainya', tr: 'Yeterince kullanmıyorum', pl: 'Nie korzystam wystarczająco' },
   { key: 'missing_features', ru: 'Не хватает функций', uk: 'Бракує функцій', es: 'Faltan funciones', 'pt-BR': 'Faltam recursos', vi: 'Thiếu tính năng', id: 'Fitur kurang', tr: 'Özellikler eksik', pl: 'Brakuje funkcji' },
@@ -160,6 +158,77 @@ function localPremiumPlan(productId: unknown, storedPlan: unknown): PremiumStore
   return fallback;
 }
 
+type SubscriptionOverlayFrameProps = {
+  bloomColor: string;
+  children: React.ReactNode;
+  glass: ReturnType<typeof liquidGlassTokens>;
+};
+
+/**
+ * Inline presentation shell: SafeAreaView above it already owns all four insets.
+ * The viewport is measured after keyboard avoidance / Android resize, and the
+ * only entrance slot receives that exact numeric maximum so short windows scroll
+ * instead of clipping an action below the fold.
+ */
+function SubscriptionOverlayFrame({ bloomColor, children, glass }: SubscriptionOverlayFrameProps) {
+  const { contentMaxW, rawBottomInset } = useScreen();
+  const keyboardBottomInset = useKeyboardBottomInset(Platform.OS === 'android');
+  const androidKeyboardLift = Platform.OS === 'android'
+    ? Math.max(0, keyboardBottomInset - rawBottomInset)
+    : 0;
+  const [availableHeight, setAvailableHeight] = useState<number | null>(null);
+  const panelMaxHeight = availableHeight === null
+    ? null
+    : Math.max(0, availableHeight - androidKeyboardLift);
+  const handleViewportLayout = useCallback((event: LayoutChangeEvent) => {
+    const next = Math.max(0, Math.floor(event.nativeEvent.layout.height));
+    setAvailableHeight(current => current === next ? current : next);
+  }, []);
+
+  return (
+    <View testID="manage-subscription-overlay" accessibilityViewIsModal style={S.sheetOverlay}>
+      <View pointerEvents="none" style={S.sheetBackdrop} />
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        style={S.sheetAvoiding}
+      >
+        <View
+          testID="manage-subscription-overlay-viewport"
+          onLayout={handleViewportLayout}
+          style={[S.sheetViewport, androidKeyboardLift > 0 ? { paddingBottom: androidKeyboardLift } : null]}
+        >
+          {panelMaxHeight !== null && panelMaxHeight > 0 ? (
+            <FullscreenHybridEntrance
+              visible
+              bloomColor={bloomColor}
+              style={[S.sheetEntrance, { maxWidth: contentMaxW }]}
+              slots={[
+                <View
+                  key="subscription-overlay-panel"
+                  testID="manage-subscription-overlay-panel"
+                  style={[S.sheet, { backgroundColor: glass.opaqueSheet, maxHeight: panelMaxHeight }]}
+                >
+                  <LinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={S.sheetSheen} />
+                  <View pointerEvents="none" style={[S.sheetTopHighlight, { backgroundColor: glass.glassEdge }]} />
+                  <ScrollView
+                    testID="manage-subscription-overlay-scroll"
+                    style={S.sheetScroll}
+                    contentContainerStyle={S.sheetContent}
+                    keyboardShouldPersistTaps="handled"
+                    showsVerticalScrollIndicator={false}
+                  >
+                    {children}
+                  </ScrollView>
+                </View>,
+              ]}
+            />
+          ) : null}
+        </View>
+      </KeyboardAvoidingView>
+    </View>
+  );
+}
+
 export default function ManageSubscription() {
   const router = useRouter();
   const params = useLocalSearchParams<{
@@ -172,7 +241,10 @@ export default function ManageSubscription() {
     : undefined;
   const { lang } = useLang();
   const L = lang as Lang;
-  const chrome = usePaywallChrome();
+  const { fontSize, uiScale, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  const designScale = FONT_SCALE[fontSize] / FONT_SCALE.medium * uiScale;
+  const scaled = useCallback((value: number) => Math.round(value * designScale), [designScale]);
   const LP = (
     ru: string,
     uk: string,
@@ -564,7 +636,6 @@ export default function ManageSubscription() {
     const progress: SaveOfferProgress | null = hydration
       ? {
           streak: hydration.displayStreak || hydration.streak || 0,
-          totalXP: hydration.totalXP || 0,
           lessonsCompleted: hydration.lessonsCompleted || 0,
         }
       : null;
@@ -609,179 +680,251 @@ export default function ManageSubscription() {
     openStoreCancel();
   }, [saveOffer, cancelReason, openStoreCancel]);
 
+  const overlayActive = showCancelSheet || showRestoreEmpty;
+
   return (
-    <LinearGradient colors={chrome.bgColors} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} style={S.root}>
+    <LinearGradient colors={[glass.bgTop, glass.bgBottom]} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} style={S.root}>
       <SafeAreaView style={S.safe}>
-        <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={S.scroll}>
-          <PaywallCloseButton onPress={() => { hapticTap(); safeRouterBack(router, closeFallback); }} chrome={chrome} />
+        <View testID="manage-subscription-safe-content" style={S.safeContent}>
+        <View
+          testID="manage-subscription-host"
+          style={S.host}
+          accessibilityElementsHidden={overlayActive}
+          importantForAccessibility={overlayActive ? 'no-hide-descendants' : 'auto'}
+        >
+          <ContentWrap>
+            <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={S.scroll}>
+            <PressableHybrid
+              testID="manage-subscription-close"
+              accessibilityRole="button"
+              accessibilityLabel={LP('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij')}
+              onPress={() => { hapticTap(); safeRouterBack(router, closeFallback); }}
+              withHaptic={false}
+              withSound={false}
+              variant="icon"
+              style={S.closeHit}
+              contentStyle={[S.closeFace, { backgroundColor: glass.opaqueControl }]}
+            >
+              <Ionicons name="close" size={20} color={glass.lightTint} />
+            </PressableHybrid>
 
-          <View style={[S.statusBadge, { backgroundColor: `${chrome.tc.heroAccent}1A` }]}>
-            <Ionicons name="checkmark-circle" size={16} color={chrome.tc.heroAccent} />
-            <Text style={[S.statusText, { color: chrome.tc.heroAccent }]}>
-              {LP('Plus активирован', 'Plus активовано', 'Plus activated', 'Plus activado', 'Plus ativado', 'Plus đã kích hoạt', 'Plus aktif', 'Plus etkinleştirildi', 'Plus aktywowany')}
+            <Text testID="manage-subscription-title" style={[S.screenTitle, { color: glass.text, fontSize: scaled(34), lineHeight: scaled(40) }]}>
+              {LP('Управление подпиской', 'Керування підпискою', 'Manage subscription', 'Gestionar suscripción', 'Gerenciar assinatura', 'Quản lý gói đăng ký', 'Kelola langganan', 'Aboneliği yönet', 'Zarządzaj subskrypcją')}
             </Text>
-          </View>
 
-          <Text style={[S.title, { color: chrome.textPrimary }]}>{planLabel}</Text>
-
-          {loading ? (
-            <View style={{ marginTop: 18, gap: 12 }}>
-              <SkeletonBlock width="100%" height={64} borderRadius={16} />
-              <SkeletonBlock width="100%" height={64} borderRadius={16} />
-              <SkeletonBlock width="70%" height={48} borderRadius={14} />
-            </View>
-          ) : (
-            <>
-              {!isLifetime && nextDate && (
-                <View style={[S.infoCard, { backgroundColor: chrome.cardBg }]}>
-                  <View style={S.infoRow}>
-                    <Text style={[S.infoLabel, { color: chrome.textMuted }]}>
-                      {LP('Следующее списание', 'Наступне списання', 'Next charge', 'Próximo cobro', 'Próxima cobrança', 'Lần thanh toán tiếp theo', 'Tagihan berikutnya', 'Sonraki ödeme', 'Następna płatność')}
-                    </Text>
-                    <Text style={[S.infoValue, { color: chrome.textPrimary }]}>{nextDate}</Text>
-                  </View>
+            <View testID="manage-subscription-status-card" style={[S.statusCard, { backgroundColor: glass.opaqueCard }]}>
+              <LinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={S.cardSheen} />
+              <View pointerEvents="none" style={[S.cardRim, { backgroundColor: glass.glassEdge }]} />
+              <View style={S.statusRow}>
+                <Ionicons name="checkmark-circle" size={18} color={glass.lightTint} />
+                <Text style={[S.statusText, { color: glass.secondary, fontSize: scaled(15), lineHeight: scaled(20) }]}>
+                  {LP('Plus активирован', 'Plus активовано', 'Plus activated', 'Plus activado', 'Plus ativado', 'Plus đã kích hoạt', 'Plus aktif', 'Plus etkinleştirildi', 'Plus aktywowany')}
+                </Text>
+              </View>
+              <Text style={[S.planTitle, { color: glass.text, fontSize: scaled(24), lineHeight: scaled(30) }]}>{planLabel}</Text>
+              {!loading && !isLifetime && nextDate && (
+                <View style={S.infoRow}>
+                  <Text style={[S.infoLabel, { color: glass.secondary, fontSize: scaled(15), lineHeight: scaled(20) }]}>
+                    {LP('Следующее списание', 'Наступне списання', 'Next charge', 'Próximo cobro', 'Próxima cobrança', 'Lần thanh toán tiếp theo', 'Tagihan berikutnya', 'Sonraki ödeme', 'Następna płatność')}
+                  </Text>
+                  <Text style={[S.infoValue, { color: glass.text, fontSize: scaled(15), lineHeight: scaled(20) }]}>{nextDate}</Text>
                 </View>
               )}
-              {isLifetime && (
-                <Text style={[S.lifetimeNote, { color: chrome.textMuted }]}>
+              {!loading && isLifetime && (
+                <Text style={[S.lifetimeNote, { color: glass.secondary, fontSize: scaled(15), lineHeight: scaled(20) }]}>
                   {LP('Разовая покупка — без списаний и автопродления.', 'Разова покупка — без списань і автопродовження.', 'One-time purchase — no charges or auto-renewal.', 'Compra única, sin cobros ni renovación.', 'Compra única, sem cobranças nem renovação automática.', 'Mua một lần, không thu phí và không tự gia hạn.', 'Pembelian sekali, tanpa tagihan dan perpanjangan otomatis.', 'Tek seferlik satın alma, ödeme ve otomatik yenileme yok.', 'Jednorazowy zakup, bez opłat i automatycznego odnawiania.')}
                 </Text>
               )}
+            </View>
 
-              <Text style={[S.sectionTitle, { color: chrome.textMuted }]}>
-                {LP('ЧТО ВКЛЮЧЕНО', 'ЩО ВКЛЮЧЕНО', 'WHAT\'S INCLUDED', 'QUÉ INCLUYE', 'O QUE INCLUI', 'BAO GỒM', 'YANG TERMASUK', 'NELER DAHİL', 'CO ZAWIERA')}
-              </Text>
-              <View style={[S.infoCard, { backgroundColor: chrome.cardBg }]}>
-                {INCLUDED.map((b, i) => (
-                  <View key={i} style={[S.benefitRow, i > 0 && { marginTop: 10 }]}>
-                    <Ionicons name="checkmark-circle" size={16} color={chrome.tc.heroAccent} style={{ marginTop: 1 }} />
-                    <Text style={[S.benefitText, { color: chrome.textPrimary }]}>{LP(b.ru, b.uk, b.ru, b.es, b['pt-BR'], b.vi, b.id, b.tr, b.pl)}</Text>
-                  </View>
-                ))}
+            {loading ? (
+              <View testID="manage-subscription-loading" style={S.loading}>
+                <SkeletonBlock width="100%" height={64} borderRadius={14} />
+                <SkeletonBlock width="100%" height={64} borderRadius={14} />
+                <SkeletonBlock width="70%" height={48} borderRadius={14} />
               </View>
-
-              {/* Карточка «Перейти на годовой» — только если сейчас месячный и годовой пакет есть. */}
-              {isMonthly && yearlyPkg && (
-                <TouchableOpacity
-                  activeOpacity={0.85}
-                  onPress={handleChangePlan}
-                  disabled={changing}
-                  style={[S.changeCard, { backgroundColor: `${chrome.tc.heroAccent}10` }]}
-                >
-                  <View style={{ flex: 1 }}>
-                    <Text style={[S.changeTitle, { color: chrome.textPrimary }]}>
-                      {LP('Перейти на годовой план', 'Перейти на річний план', 'Switch to the annual plan', 'Cambiar al plan anual', 'Mudar para o plano anual', 'Chuyển sang gói năm', 'Beralih ke paket tahunan', 'Yıllık plana geç', 'Przejdź na plan roczny')}
-                    </Text>
-                    <Text style={[S.changeSub, { color: chrome.textMuted }]}>
-                      {yearlyPriceStr
-                        ? LP(`Дешевле в пересчёте — ${yearlyPriceStr}/год`, `Дешевше в перерахунку — ${yearlyPriceStr}/рік`, `Cheaper per year — ${yearlyPriceStr}/yr`, `Más barato al año — ${yearlyPriceStr}/año`, `Mais barato no ano — ${yearlyPriceStr}/ano`, `Rẻ hơn tính theo năm — ${yearlyPriceStr}/năm`, `Lebih murah per tahun — ${yearlyPriceStr}/tahun`, `Yıllık daha ucuz — ${yearlyPriceStr}/yıl`, `Taniej rocznie — ${yearlyPriceStr}/rok`)
-                        : LP('Дешевле в пересчёте на месяц', 'Дешевше в перерахунку на місяць', 'Cheaper per month', 'Más barato por mes', 'Mais barato por mês', 'Rẻ hơn tính theo tháng', 'Lebih murah per bulan', 'Aylık hesapta daha ucuz', 'Taniej w przeliczeniu na miesiąc')}
-                    </Text>
-                  </View>
-                  {changing
-                    ? <ActivityIndicator color={chrome.tc.heroAccent} />
-                    : <Ionicons name="arrow-forward-circle" size={26} color={chrome.tc.heroAccent} />}
-                </TouchableOpacity>
-              )}
-
-              {/* Восстановить покупки — виден ВСЕГДА, в том числе без активной
-                  подписки: именно без неё он и нужен (сменил телефон, переустановил).
-                  Геометрия строки не меняется в busy — крутится только иконка,
-                  текст остаётся на месте (без прыжка раскладки). */}
-              <TouchableOpacity
-                accessibilityRole="button"
-                accessibilityState={{ disabled: restoring }}
-                accessibilityLabel={LP('Восстановить покупки', 'Відновити покупки', 'Restore purchases', 'Restaurar compras', 'Restaurar compras', 'Khôi phục giao dịch', 'Pulihkan pembelian', 'Satın alımları geri yükle', 'Przywróć zakupy')}
-                activeOpacity={0.85}
-                onPress={handleRestore}
-                disabled={restoring}
-                style={[S.restoreRow, { backgroundColor: chrome.cardBg }]}
-                testID="manage-subscription-restore"
-              >
-                <Ionicons name="refresh" size={18} color={chrome.tc.heroAccent} />
-                <Text style={[S.restoreText, { color: chrome.textPrimary }]}>
-                  {LP('Восстановить покупки', 'Відновити покупки', 'Restore purchases', 'Restaurar compras', 'Restaurar compras', 'Khôi phục giao dịch', 'Pulihkan pembelian', 'Satın alımları geri yükle', 'Przywróć zakupy')}
+            ) : (
+              <>
+                <Text style={[S.sectionTitle, { color: glass.secondary, fontSize: scaled(11), lineHeight: scaled(16) }]}>
+                  {LP('ЧТО ВКЛЮЧЕНО', 'ЩО ВКЛЮЧЕНО', 'WHAT\'S INCLUDED', 'QUÉ INCLUYE', 'O QUE INCLUI', 'BAO GỒM', 'YANG TERMASUK', 'NELER DAHİL', 'CO ZAWIERA')}
                 </Text>
-                {restoring
-                  ? <ActivityIndicator color={chrome.tc.heroAccent} />
-                  : <Ionicons name="chevron-forward" size={18} color={chrome.textMuted} />}
-              </TouchableOpacity>
+                <View style={S.benefitList}>
+                  {INCLUDED.map((benefit) => (
+                    <View
+                      key={benefit.benefitId}
+                      testID={`manage-subscription-benefit-${benefit.benefitId}`}
+                      accessibilityRole="text"
+                      style={[S.benefitRow, { backgroundColor: glass.opaqueControl }]}
+                    >
+                      <View style={[S.benefitIcon, { backgroundColor: glass.selected }]}>
+                        <Ionicons name={benefit.icon} size={20} color={glass.lightTint} />
+                      </View>
+                      <Text style={[S.benefitText, { color: glass.text, fontSize: scaled(16), lineHeight: scaled(21) }]}>
+                        {LP(benefit.ru, benefit.uk, benefit.en, benefit.es, benefit['pt-BR'], benefit.vi, benefit.id, benefit.tr, benefit.pl)}
+                      </Text>
+                      <Ionicons name="checkmark" size={20} color={glass.lightTint} />
+                    </View>
+                  ))}
+                </View>
 
-              {/* Отмена — только для подписок (не lifetime). */}
-              {!isLifetime && (
-                <TouchableOpacity onPress={() => { hapticTap(); setShowCancelSheet(true); }} style={S.cancelBtn}>
-                  <Text style={[S.cancelText, { color: chrome.textMuted }]}>
-                    {LP('Отменить подписку', 'Скасувати підписку', 'Cancel subscription', 'Cancelar suscripción', 'Cancelar assinatura', 'Hủy gói đăng ký', 'Batalkan langganan', 'Aboneliği iptal et', 'Anuluj subskrypcję')}
+                {/* Карточка «Перейти на годовой» — только если сейчас месячный и годовой пакет есть. */}
+                {isMonthly && yearlyPkg && (
+                  <PressableHybrid
+                    testID="manage-subscription-change-plan"
+                    accessibilityRole="button"
+                    accessibilityState={{ disabled: changing }}
+                    onPress={handleChangePlan}
+                    disabled={changing}
+                    withHaptic={false}
+                    withSound={false}
+                    variant="card"
+                    contentStyle={[S.changeCard, { backgroundColor: glass.opaqueCard }]}
+                  >
+                    <View style={S.actionCopy}>
+                      <Text style={[S.changeTitle, { color: glass.text, fontSize: scaled(16), lineHeight: scaled(21) }]}>
+                        {LP('Перейти на годовой план', 'Перейти на річний план', 'Switch to the annual plan', 'Cambiar al plan anual', 'Mudar para o plano anual', 'Chuyển sang gói năm', 'Beralih ke paket tahunan', 'Yıllık plana geç', 'Przejdź na plan roczny')}
+                      </Text>
+                      <Text style={[S.changeSub, { color: glass.secondary, fontSize: scaled(14), lineHeight: scaled(20) }]}>
+                        {yearlyPriceStr
+                          ? LP(`Дешевле в пересчёте — ${yearlyPriceStr}/год`, `Дешевше в перерахунку — ${yearlyPriceStr}/рік`, `Cheaper per year — ${yearlyPriceStr}/yr`, `Más barato al año — ${yearlyPriceStr}/año`, `Mais barato no ano — ${yearlyPriceStr}/ano`, `Rẻ hơn tính theo năm — ${yearlyPriceStr}/năm`, `Lebih murah per tahun — ${yearlyPriceStr}/tahun`, `Yıllık daha ucuz — ${yearlyPriceStr}/yıl`, `Taniej rocznie — ${yearlyPriceStr}/rok`)
+                          : LP('Дешевле в пересчёте на месяц', 'Дешевше в перерахунку на місяць', 'Cheaper per month', 'Más barato por mes', 'Mais barato por mês', 'Rẻ hơn tính theo tháng', 'Lebih murah per bulan', 'Aylık hesapta daha ucuz', 'Taniej w przeliczeniu na miesiąc')}
+                      </Text>
+                    </View>
+                    {changing
+                      ? <ActivityIndicator color={glass.lightTint} />
+                      : <Ionicons name="arrow-forward-circle" size={26} color={glass.lightTint} />}
+                  </PressableHybrid>
+                )}
+
+                {/* Восстановить покупки — виден ВСЕГДА, в том числе без активной
+                    подписки: именно без неё он и нужен (сменил телефон, переустановил).
+                    Геометрия строки не меняется в busy — крутится только иконка,
+                    текст остаётся на месте (без прыжка раскладки). */}
+                <PressableHybrid
+                  testID="manage-subscription-restore"
+                  accessibilityRole="button"
+                  accessibilityState={{ disabled: restoring }}
+                  accessibilityLabel={LP('Восстановить покупки', 'Відновити покупки', 'Restore purchases', 'Restaurar compras', 'Restaurar compras', 'Khôi phục giao dịch', 'Pulihkan pembelian', 'Satın alımları geri yükle', 'Przywróć zakupy')}
+                  onPress={handleRestore}
+                  disabled={restoring}
+                  withHaptic={false}
+                  withSound={false}
+                  variant="card"
+                  contentStyle={[S.restoreRow, { backgroundColor: glass.opaqueControl }]}
+                >
+                  <Ionicons name="refresh" size={20} color={glass.lightTint} />
+                  <Text style={[S.restoreText, { color: glass.text, fontSize: scaled(16), lineHeight: scaled(21) }]}>
+                    {LP('Восстановить покупки', 'Відновити покупки', 'Restore purchases', 'Restaurar compras', 'Restaurar compras', 'Khôi phục giao dịch', 'Pulihkan pembelian', 'Satın alımları geri yükle', 'Przywróć zakupy')}
                   </Text>
-                </TouchableOpacity>
-              )}
-            </>
-          )}
-        </ScrollView>
+                  {restoring
+                    ? <ActivityIndicator color={glass.lightTint} />
+                    : <Ionicons name="chevron-forward" size={18} color={glass.secondary} />}
+                </PressableHybrid>
+
+                {/* Отмена — только для подписок (не lifetime). */}
+                {!isLifetime && (
+                  <PressableHybrid
+                    testID="manage-subscription-cancel"
+                    accessibilityRole="button"
+                    accessibilityLabel={LP('Отменить подписку', 'Скасувати підписку', 'Cancel subscription', 'Cancelar suscripción', 'Cancelar assinatura', 'Hủy gói đăng ký', 'Batalkan langganan', 'Aboneliği iptal et', 'Anuluj subskrypcję')}
+                    onPress={() => { hapticTap(); setShowCancelSheet(true); }}
+                    withHaptic={false}
+                    withSound={false}
+                    variant="secondary"
+                    contentStyle={[S.cancelBtn, { backgroundColor: glass.opaqueControl }]}
+                  >
+                    <Ionicons name="open-outline" size={19} color={glass.secondary} />
+                    <Text style={[S.cancelText, { color: glass.secondary, fontSize: scaled(15), lineHeight: scaled(20) }]}>
+                      {LP('Отменить подписку', 'Скасувати підписку', 'Cancel subscription', 'Cancelar suscripción', 'Cancelar assinatura', 'Hủy gói đăng ký', 'Batalkan langganan', 'Aboneliği iptal et', 'Anuluj subskrypcję')}
+                    </Text>
+                  </PressableHybrid>
+                )}
+              </>
+            )}
+            </ScrollView>
+          </ContentWrap>
+        </View>
 
         {/* ── шит-опрос отмены ── */}
         {showCancelSheet && cancelStep === 'reasons' && (
-          <View style={S.sheetOverlay}>
-            <View style={[S.sheet, { backgroundColor: chrome.bgColors[1] ?? '#11151a' }]}>
-              <Text style={[S.sheetTitle, { color: chrome.textPrimary }]}>
+          <SubscriptionOverlayFrame bloomColor={glass.selected} glass={glass}>
+              <Text style={[S.sheetTitle, { color: glass.text, fontSize: scaled(22), lineHeight: scaled(28) }]}>
                 {LP('Почему уходишь?', 'Чому йдеш?', 'Why are you leaving?', '¿Por qué te vas?', 'Por que você vai sair?', 'Vì sao bạn rời đi?', 'Mengapa kamu pergi?', 'Neden ayrılıyorsun?', 'Dlaczego odchodzisz?')}
               </Text>
-              <Text style={[S.sheetSub, { color: chrome.textMuted }]}>
+              <Text style={[S.sheetSub, { color: glass.secondary, fontSize: scaled(15), lineHeight: scaled(21) }]}>
                 {LP('Это поможет нам стать лучше.', 'Це допоможе нам стати кращими.', 'This helps us get better.', 'Nos ayuda a mejorar.', 'Isso nos ajuda a melhorar.', 'Điều này giúp chúng tôi cải thiện.', 'Ini membantu kami menjadi lebih baik.', 'Bu, daha iyi olmamıza yardımcı olur.', 'To pomoże nam się poprawić.')}
               </Text>
               {CANCEL_REASONS.map((r) => {
                 const sel = cancelReason === r.key;
                 return (
-                  <TouchableOpacity
+                  <PressableHybrid
                     key={r.key}
+                    testID={`manage-subscription-reason-${r.key}`}
+                    accessibilityRole="radio"
+                    accessibilityState={{ selected: sel }}
                     onPress={() => { hapticTap(); setCancelReason(r.key); }}
-                    style={[S.reasonRow, { backgroundColor: sel ? `${chrome.tc.heroAccent}14` : 'transparent' }]}
+                    withHaptic={false}
+                    withSound={false}
+                    variant="secondary"
+                    contentStyle={[S.reasonRow, { backgroundColor: sel ? glass.selected : glass.opaqueControl }]}
                   >
-                    <Ionicons name={sel ? 'radio-button-on' : 'radio-button-off'} size={18} color={sel ? chrome.tc.heroAccent : chrome.textMuted} />
-                    <Text style={[S.reasonText, { color: chrome.textPrimary }]}>{LP(r.ru, r.uk, r.ru, r.es, r['pt-BR'], r.vi, r.id, r.tr, r.pl)}</Text>
-                  </TouchableOpacity>
+                    <Ionicons name={sel ? 'radio-button-on' : 'radio-button-off'} size={20} color={sel ? glass.lightTint : glass.secondary} />
+                    <Text style={[S.reasonText, { color: glass.text, fontSize: scaled(15), lineHeight: scaled(21) }]}>{LP(r.ru, r.uk, r.ru, r.es, r['pt-BR'], r.vi, r.id, r.tr, r.pl)}</Text>
+                  </PressableHybrid>
                 );
               })}
               {cancelReason === 'other' && (
                 <TextInput
+                  testID="manage-subscription-reason-other-input"
                   value={cancelText}
                   onChangeText={setCancelText}
                   placeholder={LP('Расскажи подробнее…', 'Розкажи детальніше…', 'Tell us more…', 'Cuéntanos más…', 'Conte mais…', 'Nói rõ hơn…', 'Ceritakan lebih lanjut…', 'Biraz daha anlat…', 'Napisz więcej…')}
-                  placeholderTextColor={chrome.textMuted}
-                  style={[S.input, { color: chrome.textPrimary }]}
+                  placeholderTextColor={glass.mutedText}
+                  style={[S.input, { backgroundColor: glass.opaqueControl, color: glass.text, fontSize: scaled(15), lineHeight: scaled(21) }]}
                   multiline
                 />
               )}
-              <TouchableOpacity
+              <DuoPressable
+                testID="manage-subscription-reasons-continue"
+                accessibilityRole="button"
+                accessibilityState={{ disabled: !cancelReason }}
                 onPress={submitCancel}
                 disabled={!cancelReason}
-                style={[S.sheetPrimary, { backgroundColor: chrome.tc.ctaBg, opacity: cancelReason ? 1 : 0.5 }]}
+                withHaptic={false}
+                wrapStyle={S.sheetPrimaryWrap}
+                style={[S.sheetPrimary, { backgroundColor: glass.cta, opacity: cancelReason ? 1 : 0.5 }]}
               >
-                <Text style={[S.sheetPrimaryText, { color: chrome.tc.ctaText }]}>
+                <Text style={[S.sheetPrimaryText, { color: glass.ctaInk, fontSize: scaled(16), lineHeight: scaled(22) }]}>
                   {LP('Перейти к отмене', 'Перейти до скасування', 'Continue to cancel', 'Ir a cancelar', 'Ir para o cancelamento', 'Đi tới hủy gói', 'Lanjut ke pembatalan', 'İptale git', 'Przejdź do anulowania')}
                 </Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => { hapticTap(); closeCancelSheet(); }} style={S.sheetSecondary}>
-                <Text style={[S.sheetSecondaryText, { color: chrome.textMuted }]}>
+              </DuoPressable>
+              <PressableHybrid
+                testID="manage-subscription-reasons-stay"
+                accessibilityRole="button"
+                onPress={() => { hapticTap(); closeCancelSheet(); }}
+                withHaptic={false}
+                withSound={false}
+                variant="secondary"
+                contentStyle={S.sheetSecondary}
+              >
+                <Text style={[S.sheetSecondaryText, { color: glass.secondary, fontSize: scaled(15), lineHeight: scaled(21) }]}>
                   {LP('Остаться в Plus', 'Залишитися в Plus', 'Stay on Plus', 'Quedarme en Plus', 'Ficar no Plus', 'Ở lại Plus', 'Tetap di Plus', "Plus'da kal", 'Zostań w Plus')}
                 </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+              </PressableHybrid>
+          </SubscriptionOverlayFrame>
         )}
 
         {/* ── шаг удержания: ответ на названную причину ──
             Кнопка отмены остаётся живой и видимой (требование ревью сторов):
             один дополнительный экран — да, препятствие отмене — нет. */}
         {showCancelSheet && cancelStep === 'offer' && (
-          <View style={S.sheetOverlay}>
-            <View style={[S.sheet, { backgroundColor: chrome.bgColors[1] ?? '#11151a' }]}>
-              <Text style={[S.sheetTitle, { color: chrome.textPrimary }]}>
+          <SubscriptionOverlayFrame bloomColor={glass.selected} glass={glass}>
+              <Text style={[S.sheetTitle, { color: glass.text, fontSize: scaled(22), lineHeight: scaled(28) }]}>
                 {saveOffer === 'support'
                   ? LP('Расскажи, что пошло не так', 'Розкажи, що пішло не так', 'Tell us what went wrong', 'Cuéntanos qué salió mal', 'Conte o que deu errado', 'Hãy cho chúng tôi biết vấn đề', 'Ceritakan apa yang salah', 'Neyin yanlış gittiğini anlat', 'Napisz, co poszło nie tak')
                   : LP('Ты уже многого добился', 'Ти вже багато чого досяг', 'You\'ve already achieved a lot', 'Ya has logrado mucho', 'Você já conquistou muito', 'Bạn đã đạt được rất nhiều', 'Kamu sudah mencapai banyak hal', 'Şimdiden çok şey başardın', 'Już wiele osiągnąłeś')}
               </Text>
-              <Text style={[S.sheetSub, { color: chrome.textMuted }]}>
+              <Text style={[S.sheetSub, { color: glass.secondary, fontSize: scaled(15), lineHeight: scaled(21) }]}>
                 {saveOffer === 'support'
                   ? LP('Мы читаем каждое обращение и чиним то, что мешает.', 'Ми читаємо кожне звернення і лагодимо те, що заважає.', 'We read every message and fix what\'s getting in your way.', 'Leemos cada mensaje y arreglamos lo que molesta.', 'Lemos cada mensagem e corrigimos o que atrapalha.', 'Chúng tôi đọc mọi phản hồi và sửa những gì gây cản trở.', 'Kami membaca setiap pesan dan memperbaiki yang mengganggu.', 'Her mesajı okuyoruz ve engel olan şeyi düzeltiyoruz.', 'Czytamy każde zgłoszenie i naprawiamy to, co przeszkadza.')
                   : LP('Прогресс останется с тобой, но занятия придётся продолжать без Plus.', 'Прогрес залишиться з тобою, але заняття доведеться продовжувати без Plus.', 'Your progress stays with you, but you\'ll have to keep learning without Plus.', 'Tu progreso se queda, pero seguirás sin Plus.', 'Seu progresso fica, mas você seguirá sem o Plus.', 'Tiến trình vẫn còn, nhưng bạn sẽ học tiếp mà không có Plus.', 'Progresmu tetap ada, tetapi kamu akan lanjut tanpa Plus.', 'İlerlemen kalır, ama Plus olmadan devam edeceksin.', 'Twoje postępy zostaną, ale będziesz uczyć się bez Plus.')}
@@ -790,51 +933,53 @@ export default function ManageSubscription() {
               {saveOffer === 'progress' && offerProgress && (
                 <View style={S.offerStats}>
                   {offerProgress.streak > 0 && (
-                    <View style={[S.offerStat, { backgroundColor: `${chrome.tc.heroAccent}14` }]}>
-                      <Text style={[S.offerStatNum, { color: chrome.tc.heroAccent }]}>{offerProgress.streak}</Text>
-                      <Text style={[S.offerStatLabel, { color: chrome.textMuted }]} maxFontSizeMultiplier={1.2}>
+                    <View style={[S.offerStat, { backgroundColor: glass.opaqueControl }]}>
+                      <Text style={[S.offerStatNum, { color: glass.lightTint, fontSize: scaled(20), lineHeight: scaled(26) }]}>{offerProgress.streak}</Text>
+                      <Text style={[S.offerStatLabel, { color: glass.secondary, fontSize: scaled(13), lineHeight: scaled(18) }]}>
                         {LP('дней подряд', 'днів поспіль', 'days in a row', 'días seguidos', 'dias seguidos', 'ngày liên tiếp', 'hari berturut', 'gün üst üste', 'dni z rzędu')}
                       </Text>
                     </View>
                   )}
                   {offerProgress.lessonsCompleted > 0 && (
-                    <View style={[S.offerStat, { backgroundColor: `${chrome.tc.heroAccent}14` }]}>
-                      <Text style={[S.offerStatNum, { color: chrome.tc.heroAccent }]}>{offerProgress.lessonsCompleted}</Text>
-                      <Text style={[S.offerStatLabel, { color: chrome.textMuted }]} maxFontSizeMultiplier={1.2}>
+                    <View style={[S.offerStat, { backgroundColor: glass.opaqueControl }]}>
+                      <Text style={[S.offerStatNum, { color: glass.lightTint, fontSize: scaled(20), lineHeight: scaled(26) }]}>{offerProgress.lessonsCompleted}</Text>
+                      <Text style={[S.offerStatLabel, { color: glass.secondary, fontSize: scaled(13), lineHeight: scaled(18) }]}>
                         {LP('уроков', 'уроків', 'lessons', 'lecciones', 'aulas', 'bài học', 'pelajaran', 'ders', 'lekcji')}
-                      </Text>
-                    </View>
-                  )}
-                  {offerProgress.totalXP > 0 && (
-                    <View style={[S.offerStat, { backgroundColor: `${chrome.tc.heroAccent}14` }]}>
-                      <Text style={[S.offerStatNum, { color: chrome.tc.heroAccent }]}>{offerProgress.totalXP}</Text>
-                      <Text style={[S.offerStatLabel, { color: chrome.textMuted }]} maxFontSizeMultiplier={1.2}>
-                        {LP('опыта', 'досвіду', 'XP', 'de experiencia', 'de experiência', 'kinh nghiệm', 'pengalaman', 'deneyim', 'doświadczenia')}
                       </Text>
                     </View>
                   )}
                 </View>
               )}
 
-              <TouchableOpacity
+              <DuoPressable
+                testID="manage-subscription-offer-accept"
                 onPress={acceptSaveOffer}
                 accessibilityRole="button"
-                style={[S.sheetPrimary, { backgroundColor: chrome.tc.ctaBg }]}
+                withHaptic={false}
+                wrapStyle={S.sheetPrimaryWrap}
+                style={[S.sheetPrimary, { backgroundColor: glass.cta }]}
               >
-                <Text style={[S.sheetPrimaryText, { color: chrome.tc.ctaText }]}>
+                <Text style={[S.sheetPrimaryText, { color: glass.ctaInk, fontSize: scaled(16), lineHeight: scaled(22) }]}>
                   {saveOffer === 'support'
                     ? LP('Написать нам', 'Написати нам', 'Write to us', 'Escríbenos', 'Fale conosco', 'Nhắn cho chúng tôi', 'Hubungi kami', 'Bize yaz', 'Napisz do nas')
                     : LP('Остаться в Plus', 'Залишитися в Plus', 'Stay on Plus', 'Quedarme en Plus', 'Ficar no Plus', 'Ở lại Plus', 'Tetap di Plus', "Plus'da kal", 'Zostań w Plus')}
                 </Text>
-              </TouchableOpacity>
+              </DuoPressable>
 
-              <TouchableOpacity onPress={declineSaveOffer} accessibilityRole="button" style={S.sheetSecondary}>
-                <Text style={[S.sheetSecondaryText, { color: chrome.textMuted }]}>
+              <PressableHybrid
+                testID="manage-subscription-offer-decline"
+                onPress={declineSaveOffer}
+                accessibilityRole="button"
+                withHaptic={false}
+                withSound={false}
+                variant="secondary"
+                contentStyle={S.sheetSecondary}
+              >
+                <Text style={[S.sheetSecondaryText, { color: glass.secondary, fontSize: scaled(15), lineHeight: scaled(21) }]}>
                   {LP('Всё равно отменить', 'Все одно скасувати', 'Cancel anyway', 'Cancelar de todos modos', 'Cancelar mesmo assim', 'Vẫn hủy', 'Tetap batalkan', 'Yine de iptal et', 'Anuluj mimo to')}
                 </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+              </PressableHybrid>
+          </SubscriptionOverlayFrame>
         )}
 
         {/* ── покупок не нашлось ──
@@ -842,12 +987,11 @@ export default function ManageSubscription() {
             спокойный. Самая частая причина в проде — вход не с того аккаунта
             магазина, поэтому её называем прямо, а не оставляем человека гадать. */}
         {showRestoreEmpty && (
-          <View style={S.sheetOverlay}>
-            <View style={[S.sheet, { backgroundColor: chrome.bgColors[1] ?? '#11151a' }]}>
-              <Text style={[S.sheetTitle, { color: chrome.textPrimary }]}>
+          <SubscriptionOverlayFrame bloomColor={glass.selected} glass={glass}>
+              <Text style={[S.sheetTitle, { color: glass.text, fontSize: scaled(22), lineHeight: scaled(28) }]}>
                 {LP('Покупок не нашлось', 'Покупок не знайшлося', 'No purchases found', 'No se encontraron compras', 'Nenhuma compra encontrada', 'Không tìm thấy giao dịch', 'Pembelian tidak ditemukan', 'Satın alım bulunamadı', 'Nie znaleziono zakupów')}
               </Text>
-              <Text style={[S.sheetSub, { color: chrome.textMuted }]}>
+              <Text style={[S.sheetSub, { color: glass.secondary, fontSize: scaled(15), lineHeight: scaled(21) }]}>
                 {LP(
                   'Проверь, тот ли это аккаунт магазина, с которого покупал. Чаще всего дело именно в нём.',
                   'Перевір, чи той це акаунт магазину, з якого купував. Найчастіше річ саме в ньому.',
@@ -861,28 +1005,35 @@ export default function ManageSubscription() {
                 )}
               </Text>
 
-              <TouchableOpacity
+              <DuoPressable
+                testID="manage-subscription-restore-support"
                 accessibilityRole="button"
                 onPress={() => { hapticTap(); setShowRestoreEmpty(false); router.push('/support_report' as never); }}
-                style={[S.sheetPrimary, { backgroundColor: chrome.tc.ctaBg }]}
+                withHaptic={false}
+                wrapStyle={S.sheetPrimaryWrap}
+                style={[S.sheetPrimary, { backgroundColor: glass.cta }]}
               >
-                <Text style={[S.sheetPrimaryText, { color: chrome.tc.ctaText }]}>
+                <Text style={[S.sheetPrimaryText, { color: glass.ctaInk, fontSize: scaled(16), lineHeight: scaled(22) }]}>
                   {LP('Написать в поддержку', 'Написати в підтримку', 'Contact support', 'Escribir a soporte', 'Falar com o suporte', 'Liên hệ hỗ trợ', 'Hubungi dukungan', 'Desteğe yaz', 'Napisz do wsparcia')}
                 </Text>
-              </TouchableOpacity>
+              </DuoPressable>
 
-              <TouchableOpacity
+              <PressableHybrid
+                testID="manage-subscription-restore-close"
                 accessibilityRole="button"
                 onPress={() => { hapticTap(); setShowRestoreEmpty(false); }}
-                style={S.sheetSecondary}
+                withHaptic={false}
+                withSound={false}
+                variant="secondary"
+                contentStyle={S.sheetSecondary}
               >
-                <Text style={[S.sheetSecondaryText, { color: chrome.textMuted }]}>
+                <Text style={[S.sheetSecondaryText, { color: glass.secondary, fontSize: scaled(15), lineHeight: scaled(21) }]}>
                   {LP('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij')}
                 </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+              </PressableHybrid>
+          </SubscriptionOverlayFrame>
         )}
+        </View>
       </SafeAreaView>
     </LinearGradient>
   );
@@ -891,50 +1042,67 @@ export default function ManageSubscription() {
 const S = StyleSheet.create({
   root: { flex: 1 },
   safe: { flex: 1 },
-  scroll: { paddingHorizontal: 20, paddingBottom: 40 },
-  statusBadge: {
-    flexDirection: 'row', alignItems: 'center', alignSelf: 'center', gap: 7,
-    paddingHorizontal: 13, paddingVertical: 7, borderRadius: 14, borderWidth: 0, marginTop: 8,
-  },
-  statusText: { fontSize: 12.5, fontWeight: '800' },
-  title: { fontSize: 26, fontWeight: '900', textAlign: 'center', marginTop: 14, letterSpacing: -0.6 },
-  infoCard: { borderRadius: 16, borderWidth: 0, paddingHorizontal: 16, paddingVertical: 14, marginTop: 14 },
-  infoRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  infoLabel: { fontSize: 13, fontWeight: '600' },
-  infoValue: { fontSize: 14, fontWeight: '800' },
-  lifetimeNote: { fontSize: 12.5, textAlign: 'center', marginTop: 12, lineHeight: 17 },
-  sectionTitle: { fontSize: 10.5, fontWeight: '800', letterSpacing: 1.2, marginTop: 22, marginLeft: 4 },
-  benefitRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 9 },
-  benefitText: { flex: 1, fontSize: 13, lineHeight: 18 },
+  safeContent: { flex: 1, position: 'relative' },
+  host: { flex: 1 },
+  scroll: { paddingHorizontal: 15, paddingBottom: 40 },
+  closeHit: { width: 48, height: 48, alignSelf: 'flex-start', marginTop: 4 },
+  closeFace: { width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center' },
+  screenTitle: { marginTop: 10, fontWeight: '700', letterSpacing: -0.6, flexShrink: 1 },
+  statusCard: { borderRadius: 22, padding: 20, marginTop: 20, overflow: 'hidden' },
+  cardSheen: { position: 'absolute', left: 0, right: 0, top: 0, height: 78, opacity: 0.62 },
+  cardRim: { position: 'absolute', left: 14, right: 14, top: 0, height: 1, borderRadius: 1, opacity: 0.8 },
+  statusRow: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  statusText: { fontWeight: '700', flexShrink: 1 },
+  planTitle: { fontWeight: '700', letterSpacing: -0.35, marginTop: 8, flexShrink: 1 },
+  infoRow: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'baseline', justifyContent: 'space-between', gap: 8, marginTop: 10 },
+  infoLabel: { fontWeight: '400', flexShrink: 1 },
+  infoValue: { fontWeight: '700', flexShrink: 1 },
+  lifetimeNote: { marginTop: 10, fontWeight: '400', flexShrink: 1 },
+  loading: { marginTop: 18, gap: 12 },
+  sectionTitle: { fontWeight: '700', letterSpacing: 1.7, marginTop: 24, marginBottom: 10, marginHorizontal: 4, flexShrink: 1 },
+  benefitList: { gap: 10 },
+  benefitRow: { minHeight: 64, borderRadius: 14, paddingVertical: 10, paddingHorizontal: 14, flexDirection: 'row', alignItems: 'center', gap: 14, overflow: 'hidden' },
+  benefitIcon: { width: 41, height: 41, borderRadius: 10, alignItems: 'center', justifyContent: 'center', flexShrink: 0 },
+  benefitText: { flex: 1, minWidth: 0, fontWeight: '700', flexShrink: 1 },
   changeCard: {
-    flexDirection: 'row', alignItems: 'center', gap: 12,
-    borderRadius: 16, borderWidth: 0, paddingHorizontal: 16, paddingVertical: 15, marginTop: 18,
+    minHeight: 64, flexDirection: 'row', alignItems: 'center', gap: 12,
+    borderRadius: 16, paddingHorizontal: 16, paddingVertical: 12, marginTop: 18,
   },
-  changeTitle: { fontSize: 15, fontWeight: '800' },
-  changeSub: { fontSize: 12, marginTop: 2 },
+  actionCopy: { flex: 1, minWidth: 0 },
+  changeTitle: { fontWeight: '700', flexShrink: 1 },
+  changeSub: { fontWeight: '400', marginTop: 2, flexShrink: 1 },
   // Ряд «Восстановить покупки»: minHeight 56 — комфортная зона тапа (выше
   // минимума 44pt). Разделяем тоном карточки, без обводки (запрет владельца).
   restoreRow: {
     marginTop: 16, minHeight: 56, borderRadius: 16,
-    paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 12,
+    paddingHorizontal: 16, paddingVertical: 10, flexDirection: 'row', alignItems: 'center', gap: 12,
   },
-  restoreText: { flex: 1, minWidth: 0, fontSize: 15, fontWeight: '700' },
-  cancelBtn: { alignSelf: 'center', marginTop: 24, paddingVertical: 8, paddingHorizontal: 12 },
-  cancelText: { fontSize: 13, textDecorationLine: 'underline', opacity: 0.7 },
-  sheetOverlay: { position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, backgroundColor: 'rgba(0,0,0,0.62)', justifyContent: 'flex-end' },
-  sheet: { borderTopLeftRadius: 24, borderTopRightRadius: 24, borderWidth: 0, paddingHorizontal: 20, paddingTop: 22, paddingBottom: 34 },
-  sheetTitle: { fontSize: 20, fontWeight: '900', letterSpacing: -0.4 },
-  sheetSub: { fontSize: 13, marginTop: 4, marginBottom: 14 },
-  reasonRow: { flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: 12, borderWidth: 0, paddingHorizontal: 13, paddingVertical: 12, marginTop: 8 },
-  reasonText: { flex: 1, fontSize: 14, fontWeight: '600' },
-  input: { borderRadius: 12, borderWidth: 0, padding: 12, marginTop: 10, minHeight: 70, fontSize: 14, textAlignVertical: 'top' },
-  sheetPrimary: { minHeight: 52, borderRadius: 16, alignItems: 'center', justifyContent: 'center', marginTop: 16 },
-  sheetPrimaryText: { fontSize: 16, fontWeight: '900' },
-  sheetSecondary: { minHeight: 44, alignItems: 'center', justifyContent: 'center', marginTop: 4 },
-  sheetSecondaryText: { fontSize: 14, fontWeight: '700' },
+  restoreText: { flex: 1, minWidth: 0, fontWeight: '700', flexShrink: 1 },
+  cancelBtn: { minHeight: 48, borderRadius: 16, marginTop: 10, paddingVertical: 10, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
+  cancelText: { fontWeight: '700', flexShrink: 1, textAlign: 'center' },
+  sheetOverlay: { ...StyleSheet.absoluteFillObject },
+  sheetBackdrop: { ...StyleSheet.absoluteFillObject, backgroundColor: 'rgba(0,0,0,0.68)' },
+  sheetAvoiding: { flex: 1 },
+  sheetViewport: { flex: 1, minHeight: 0, justifyContent: 'flex-end' },
+  sheetEntrance: { width: '100%', alignSelf: 'center', flexShrink: 1 },
+  sheet: { width: '100%', minHeight: 0, flexShrink: 1, borderTopLeftRadius: 24, borderTopRightRadius: 24, overflow: 'hidden' },
+  sheetSheen: { position: 'absolute', left: 0, right: 0, top: 0, height: 88, opacity: 0.42 },
+  sheetTopHighlight: { position: 'absolute', left: 20, right: 20, top: 0, height: 1, borderRadius: 1, opacity: 0.78 },
+  sheetScroll: { minHeight: 0, flexShrink: 1 },
+  sheetContent: { paddingHorizontal: 20, paddingTop: 22, paddingBottom: 16 },
+  sheetTitle: { fontWeight: '700', letterSpacing: -0.4, flexShrink: 1 },
+  sheetSub: { fontWeight: '400', marginTop: 6, marginBottom: 14, flexShrink: 1 },
+  reasonRow: { minHeight: 52, flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: 14, paddingHorizontal: 14, paddingVertical: 12, marginTop: 8 },
+  reasonText: { flex: 1, minWidth: 0, fontWeight: '400', flexShrink: 1 },
+  input: { borderRadius: 14, paddingHorizontal: 14, paddingVertical: 12, marginTop: 10, minHeight: 88, fontWeight: '400', textAlignVertical: 'top' },
+  sheetPrimaryWrap: { marginTop: 16 },
+  sheetPrimary: { minHeight: 52, borderRadius: 16, paddingHorizontal: 16, paddingVertical: 14, alignItems: 'center', justifyContent: 'center' },
+  sheetPrimaryText: { fontWeight: '700', textAlign: 'center', flexShrink: 1 },
+  sheetSecondary: { minHeight: 48, paddingHorizontal: 16, paddingVertical: 13, alignItems: 'center', justifyContent: 'center', marginTop: 4 },
+  sheetSecondaryText: { fontWeight: '700', textAlign: 'center', flexShrink: 1 },
   // Плитки прогресса: разделены тоном подложки, без обводок (правило владельца).
-  offerStats: { flexDirection: 'row', gap: 8, marginTop: 4, marginBottom: 4 },
-  offerStat: { flex: 1, borderRadius: 14, paddingVertical: 12, paddingHorizontal: 8, alignItems: 'center', gap: 2 },
-  offerStatNum: { fontSize: 20, fontWeight: '700', letterSpacing: -0.3 },
-  offerStatLabel: { fontSize: 12, fontWeight: '400', textAlign: 'center' },
+  offerStats: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 4, marginBottom: 4 },
+  offerStat: { minWidth: 132, flexBasis: 0, flexGrow: 1, borderRadius: 14, paddingVertical: 12, paddingHorizontal: 10, alignItems: 'center', gap: 2 },
+  offerStatNum: { fontWeight: '700', letterSpacing: -0.3, flexShrink: 1 },
+  offerStatLabel: { fontWeight: '400', textAlign: 'center', flexShrink: 1 },
 });

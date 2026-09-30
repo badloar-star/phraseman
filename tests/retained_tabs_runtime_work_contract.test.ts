@@ -9,13 +9,11 @@ describe('retained tabs runtime work contract', () => {
     const source = read('components/SaveProgressBanner.tsx');
 
     expect(source).toContain('ownerActive?: boolean');
-    expect(source).toContain('function SaveProgressBanner({ ownerActive = true }: SaveProgressBannerProps)');
+    expect(source).toContain('function SaveProgressBanner({ ownerActive = true, hasSavedLearningProgress = false, motionVariant =');
     expect(source).toContain('if (!ownerActiveRef.current)');
     expect(source).toContain('dirtyRef.current = true;');
-    expect(source).toContain('const xpRaw = await AsyncStorage.getItem(\'user_total_xp\');');
-    expect(source.indexOf("const xpRaw = await AsyncStorage.getItem('user_total_xp');")).toBeLessThan(
-      source.indexOf('const info = await getLinkedAuthInfo();'),
-    );
+    expect(source).toContain('if (!hasSavedLearningProgressRef.current)');
+    expect(source).not.toContain("AsyncStorage.getItem('user_total_xp')");
     expect(source).toContain('const checkGenerationRef = useRef(0);');
     expect(source).toContain('if (checkInFlightRef.current) {');
     expect(source).toMatch(/dirtyRef\.current = true;\s+return checkInFlightRef\.current;/);
@@ -56,7 +54,7 @@ describe('retained tabs runtime work contract', () => {
     // handoff must therefore request the initial data load.
     expect(source).toContain('const homeDataDirtyRef = useRef(true);');
     expect(source).toContain('if (homeDataDirtyRef.current) {');
-    expect(source).toContain('<SaveProgressBanner ownerActive={homeRuntimeActive} />');
+    expect(source).toContain('<SaveProgressBanner ownerActive={homeRuntimeActive} hasSavedLearningProgress={lessonsCompleted > 0} />');
     expect(source).toContain('shardsDirtyRef.current = true;');
     expect(source).toContain('shardsAnim.stopAnimation();');
     expect(source).toContain('shardsAnim.setValue(1);');
@@ -82,8 +80,6 @@ describe('retained tabs runtime work contract', () => {
     const video = read('components/LingmanVideosButton.tsx');
     const center = read('components/NotificationCenterButton.tsx');
     const inbox = read('components/AppMessagesInbox.tsx');
-    const aura = read('components/AvatarAura.tsx');
-    const avatar = read('components/AvatarView.tsx');
 
     expect(home).toContain('<LingmanVideosButton ownerActive={homeRuntimeActive} />');
     expect(home).toContain('ownerActive={homeRuntimeActive}');
@@ -94,8 +90,6 @@ describe('retained tabs runtime work contract', () => {
     expect(center).toContain('ownerActive={isHomeTabActive}');
     expect(inbox).toContain('ownerActive?: boolean;');
     expect(inbox).toContain('const runtimeActive = ownerActive ?? isScreenFocused;');
-    expect(aura).toContain('ownerActive?: boolean;');
-    expect(aura).toContain('const runtimeActive = isFocused && (ownerActive ?? true);');
-    expect(avatar).toContain('ownerActive={ownerActive}');
+    // зачем: D108 — ауры удалены вместе с их анимационным циклом; проверять нечего.
   });
 });

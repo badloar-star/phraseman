@@ -6,27 +6,32 @@
  * collections directly.
  */
 import * as admin from 'firebase-admin';
+import * as crypto from 'node:crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { createAuditRecord } from './admin/audit_contract';
 import { hasPermission } from './admin/permissions';
 import { hasAdminRole, type AdminRole } from './admin/roles';
-import { resolveCanonicalAdminAccessTarget } from './admin_access_controls';
 import { ADMIN_SENSITIVE_WRITE_OPTIONS, requireAdminAppCheck } from './callable_options';
-import { appendExternalEconomyEvent } from './external_economy_events';
+import { getWeekKey, isoDateUtc } from './progress_events';
+import {
+  beginStarLedgerTransactionAttempt,
+  commitStarOperations,
+  prepareStarOperations,
+  STAR_OP_MAX_ABS_DELTA,
+} from './stars_ledger';
 
 const REGION = 'us-central1';
 const UID_RE = /^[A-Za-z0-9._-]{2,160}$/;
 const TOKEN_RE = /^[A-Za-z0-9._-]{1,160}$/;
-const SHARDS_MIN = 1;
-const SHARDS_MAX = 10_000;
-const SHARD_ADJUSTMENT_MAX = 1_000_000;
+// зачем: D86 (владелец, 2026-09-30) — админ-выдача жемчуга заменена монетами
+// (рунный кошелёк, stars_ledger, причина admin_grant). Потолок — потолок одной
+// операции журнала монет. Корректировка баланса жемчуга (adminSetShardBalance)
+// удалена вместе с жемчугом (D70). Дни Plus выдаёт отдельный adminGrantAccess.
+const COINS_MIN = 1;
+const COINS_MAX = STAR_OP_MAX_ABS_DELTA;
 
 export const ADMIN_GRANT_REWARD_TYPES = [
-  'shards',
-  'xp_boost_2x_24h',
-  'xp_boost_2x_48h',
-  'chain_shield_1',
-  'chain_shield_3',
+  'coins',
 ] as const;
 
 export type AdminGrantRewardType = (typeof ADMIN_GRANT_REWARD_TYPES)[number];
@@ -44,26 +49,10 @@ export interface AdminGrantRewardInput {
 
 export interface AdminRewardMutation {
   readonly updates: Readonly<Row>;
-  readonly shardLog: Readonly<Row> | null;
   readonly label: string;
-  readonly shardsAmount: number;
+  readonly coinsAmount: number;
   readonly before: Readonly<Row>;
   readonly after: Readonly<Row>;
-}
-
-export interface AdminSetShardBalanceInput {
-  readonly uid: string;
-  readonly delta: number;
-  readonly reason: string;
-  readonly idempotencyKey: string;
-  readonly requestId: string;
-}
-
-export interface AdminShardBalanceMutation {
-  readonly shardLog: Readonly<Row>;
-  readonly before: Readonly<Row>;
-  readonly after: Readonly<Row>;
-  readonly delta: number;
 }
 
 function isRecord(value: unknown): value is Row {
@@ -79,15 +68,6 @@ function finiteNumber(value: unknown, fallback = 0): number {
   return Number.isFinite(parsed) ? parsed : fallback;
 }
 
-function parsePerkObject(value: unknown): Row {
-  try {
-    const parsed = typeof value === 'string' ? JSON.parse(value) : value;
-    return isRecord(parsed) ? parsed : {};
-  } catch {
-    return {};
-  }
-}
-
 function rewardType(value: unknown): AdminGrantRewardType {
   const candidate = text(value, 40);
   if (!(ADMIN_GRANT_REWARD_TYPES as readonly string[]).includes(candidate)) {
@@ -101,15 +81,15 @@ export function normalizeAdminGrantRewardInput(data: unknown): AdminGrantRewardI
   const uid = text(data.uid, 161);
   const type = rewardType(data.type);
   const rawAmount = finiteNumber(data.amount, 0);
-  const amount = type === 'shards' ? Math.floor(rawAmount) : 0;
+  const amount = Math.floor(rawAmount);
   const reason = text(data.reason, 500);
   const comment = text(data.comment, 200);
   const idempotencyKey = text(data.idempotencyKey, 161);
   const requestId = text(data.requestId, 161);
 
   if (!UID_RE.test(uid)) throw new HttpsError('invalid-argument', 'uid is invalid');
-  if (type === 'shards' && (amount < SHARDS_MIN || amount > SHARDS_MAX)) {
-    throw new HttpsError('invalid-argument', `shards amount must be ${SHARDS_MIN}..${SHARDS_MAX}`);
+  if (amount < COINS_MIN || amount > COINS_MAX) {
+    throw new HttpsError('invalid-argument', `coins amount must be ${COINS_MIN}..${COINS_MAX}`);
   }
   if (!reason) throw new HttpsError('invalid-argument', 'reason is required');
   if (!TOKEN_RE.test(idempotencyKey) || !TOKEN_RE.test(requestId)) {
@@ -130,127 +110,25 @@ export function adminGrantRewardFingerprint(input: AdminGrantRewardInput): strin
   });
 }
 
-export function normalizeAdminSetShardBalanceInput(data: unknown): AdminSetShardBalanceInput {
-  if (!isRecord(data)) throw new HttpsError('invalid-argument', 'shard balance command required');
-  const uid = text(data.uid, 161);
-  const delta = data.delta;
-  const reason = text(data.reason, 500);
-  const idempotencyKey = text(data.idempotencyKey, 161);
-  const requestId = text(data.requestId, 161);
-  if (!UID_RE.test(uid)) throw new HttpsError('invalid-argument', 'uid is invalid');
-  if (typeof delta !== 'number' || !Number.isSafeInteger(delta) || delta === 0 || Math.abs(delta) > SHARD_ADJUSTMENT_MAX) {
-    throw new HttpsError('invalid-argument', `delta must be a non-zero integer from -${SHARD_ADJUSTMENT_MAX} to ${SHARD_ADJUSTMENT_MAX}`);
-  }
-  if (!reason) throw new HttpsError('invalid-argument', 'reason is required');
-  if (!TOKEN_RE.test(idempotencyKey) || !TOKEN_RE.test(requestId)) {
-    throw new HttpsError('invalid-argument', 'idempotencyKey and requestId are required');
-  }
-  return Object.freeze({ uid, delta, reason, idempotencyKey, requestId });
-}
-
-export function adminSetShardBalanceFingerprint(input: AdminSetShardBalanceInput): string {
-  return JSON.stringify({ action: 'adjust_shard_balance', uid: input.uid, delta: input.delta, reason: input.reason });
-}
-
-function utcDate(nowMs: number): string {
-  return new Date(nowMs).toISOString().slice(0, 10);
-}
-
 export function buildAdminRewardMutation(
-  user: Readonly<Row>,
-  type: AdminGrantRewardType,
+  _user: Readonly<Row>,
+  type: string,
   amount: number,
   nowMs: number,
 ): AdminRewardMutation {
-  // Fixed non-shard perks still read their own fields below. The shards branch
-  // intentionally never reads the retired personal balance projection.
-  const updates: Row = { updatedAt: nowMs };
-  let shardLog: Row | null = null;
-  let label = '';
-  let shardsAmount = 0;
-  let before: Row = {};
-  let after: Row = {};
-
-  if (type === 'shards') {
-    shardLog = {
-      ts: new Date(nowMs).toISOString(),
-      type: 'earn',
-      amount,
-      reason: 'admin_grant',
-    };
-    label = `+${amount} осколков знаний`;
-    shardsAmount = amount;
-    before = { personalBalance: 'client_owned_not_read' };
-    after = { externalDelta: amount };
-  }
-
-  if (type === 'xp_boost_2x_24h' || type === 'xp_boost_2x_48h') {
-    const hours = type === 'xp_boost_2x_24h' ? 24 : 48;
-    const progress = isRecord(user.progress) ? user.progress : {};
-    const previous = text(user.gift_xp_multiplier, 2_000)
-      || text(progress.gift_xp_multiplier, 2_000)
-      || null;
-    const rootExpiry = finiteNumber(parsePerkObject(user.gift_xp_multiplier).expiresAt, 0);
-    const progressExpiry = finiteNumber(parsePerkObject(progress.gift_xp_multiplier).expiresAt, 0);
-    const next = JSON.stringify({
-      multiplier: 2,
-      expiresAt: Math.max(nowMs, rootExpiry, progressExpiry) + hours * 3_600_000,
-    });
-    updates.gift_xp_multiplier = next;
-    updates['progress.gift_xp_multiplier'] = next;
-    label = `x2 XP на ${hours} часов`;
-    before = { gift_xp_multiplier: previous };
-    after = { gift_xp_multiplier: next };
-  }
-
-  if (type === 'chain_shield_1' || type === 'chain_shield_3') {
-    const days = type === 'chain_shield_1' ? 1 : 3;
-    const progress = isRecord(user.progress) ? user.progress : {};
-    const rootShield = parsePerkObject(user.chain_shield);
-    const progressShield = parsePerkObject(progress.chain_shield);
-    const existingDays = Math.max(
-      0,
-      Math.floor(finiteNumber(rootShield.daysLeft, 0)),
-      Math.floor(finiteNumber(progressShield.daysLeft, 0)),
-    );
-    const previous = text(user.chain_shield, 2_000)
-      || text(progress.chain_shield, 2_000)
-      || null;
-    const next = JSON.stringify({ daysLeft: existingDays + days, grantedAt: utcDate(nowMs) });
-    updates.chain_shield = next;
-    updates['progress.chain_shield'] = next;
-    label = `Щит серии на ${days} ${days === 1 ? 'день' : 'дня'}`;
-    before = { chain_shield: previous };
-    after = { chain_shield: next };
-  }
-
+  if (type !== 'coins') throw new HttpsError('invalid-argument', 'unsupported reward type');
   return Object.freeze({
-    updates: Object.freeze(updates),
-    shardLog: shardLog ? Object.freeze(shardLog) : null,
-    label,
-    shardsAmount,
-    before: Object.freeze(before),
-    after: Object.freeze(after),
+    updates: Object.freeze({ updatedAt: nowMs }),
+    label: `+${amount} монет`,
+    coinsAmount: amount,
+    before: Object.freeze({ coinsLedger: 'stars_ledger' }),
+    after: Object.freeze({ coinsDelta: amount }),
   });
 }
 
-export function buildAdminShardBalanceMutation(
-  delta: number,
-  nowMs: number,
-): AdminShardBalanceMutation {
-  const type = delta < 0 ? 'spend' : 'earn';
-  const nowIso = new Date(nowMs).toISOString();
-  return Object.freeze({
-    shardLog: Object.freeze({
-      ts: nowIso,
-      type,
-      amount: Math.abs(delta),
-      reason: 'admin_adjust_balance',
-    }),
-    before: Object.freeze({ personalBalance: 'client_owned_not_read' }),
-    after: Object.freeze({ externalDelta: delta }),
-    delta,
-  });
+/** Детерминированный opId журнала монет: одна админ-команда = одна операция. */
+export function adminGrantCoinOpId(idempotencyKey: string): string {
+  return `admin_grant:${crypto.createHash('sha256').update(idempotencyKey).digest('hex').slice(0, 64)}`;
 }
 
 function requireRewardWriter(request: { auth?: { uid?: string; token?: Row } | null }): {
@@ -287,22 +165,6 @@ export function assertAdminRewardReplay(
   }
 }
 
-export function assertAdminShardBalanceReplay(
-  operation: Readonly<Row>,
-  fingerprint: string,
-  actorUid: string,
-): void {
-  if (operation.action !== 'adjust_shard_balance') {
-    throw new HttpsError('already-exists', 'idempotencyKey belongs to another admin action');
-  }
-  if (operation.requestFingerprint !== fingerprint) {
-    throw new HttpsError('already-exists', 'idempotencyKey reused for another shard balance command');
-  }
-  if (operation.actorUid && operation.actorUid !== actorUid) {
-    throw new HttpsError('permission-denied', 'admin operation belongs to another actor');
-  }
-}
-
 function replayResult(operation: Readonly<Row>): Row {
   const result = isRecord(operation.result) ? operation.result : {};
   return {
@@ -324,8 +186,8 @@ export const adminGrantReward = onCall(
     const input = normalizeAdminGrantRewardInput(request.data);
     const db = admin.firestore();
     const userRef = db.collection('users').doc(input.uid);
+    // История выдач для карточки пользователя в админке (admin_user_profile читает её).
     const rewardRef = userRef.collection('shard_rewards').doc(`admin_${input.idempotencyKey}`);
-    const shardLogRef = userRef.collection('shard_log').doc(`admin_${input.idempotencyKey}`);
     const operationRef = db.collection('admin_command_operations').doc(input.idempotencyKey);
     const auditRef = db.collection('admin_log').doc();
     const fingerprint = adminGrantRewardFingerprint(input);
@@ -333,6 +195,7 @@ export const adminGrantReward = onCall(
     const nowIso = new Date(nowMs).toISOString();
 
     return db.runTransaction(async (tx) => {
+      beginStarLedgerTransactionAttempt(tx);
       const operationSnapshot = await tx.get(operationRef);
       if (operationSnapshot.exists) {
         const operation = operationSnapshot.data() ?? {};
@@ -343,9 +206,37 @@ export const adminGrantReward = onCall(
       const userSnapshot = await tx.get(userRef);
       if (!userSnapshot.exists) throw new HttpsError('not-found', `User ${input.uid} not found`);
       const mutation = buildAdminRewardMutation(userSnapshot.data() ?? {}, input.type, input.amount, nowMs);
+      // зачем: D86 — журнал монет читает расписку в этой же транзакции, поэтому
+      // подготовка идёт ДО первой записи.
+      const coinsPrepared = await prepareStarOperations(tx, db, input.uid, userSnapshot, [{
+        opId: adminGrantCoinOpId(input.idempotencyKey),
+        delta: mutation.coinsAmount,
+        reason: 'admin_grant',
+        sourceKind: 'admin_grant',
+        sourceId: input.idempotencyKey.slice(0, 96),
+        ruleVersion: 1,
+        earnedAtMs: nowMs,
+      }], {
+        nowMs,
+        activeSeasonId: '',
+        weekKeyNow: getWeekKey(isoDateUtc(new Date(nowMs))),
+        authUid: actor.actorUid,
+      });
+      const outcome = coinsPrepared.outcomes[0];
+      console.log(JSON.stringify({
+        event: 'admin_grant_coins_prepared',
+        targetUid: input.uid,
+        operationId: input.idempotencyKey,
+        amount: mutation.coinsAmount,
+        status: outcome?.status ?? null,
+        errorCode: outcome?.errorCode ?? null,
+      }));
+      if (!outcome || outcome.status === 'rejected') {
+        throw new HttpsError('failed-precondition', `admin_grant_coins_rejected:${outcome?.errorCode ?? 'unknown'}`);
+      }
       const result = {
         type: input.type,
-        amount: mutation.shardsAmount,
+        amount: mutation.coinsAmount,
         label: mutation.label,
         rewardId: rewardRef.id,
       };
@@ -362,27 +253,15 @@ export const adminGrantReward = onCall(
         timestamp: nowIso,
       });
 
-      const nonShardUpdates = { ...mutation.updates };
-      if (Object.keys(nonShardUpdates).length > 0) tx.update(userRef, nonShardUpdates);
-      if (input.type === 'shards' && mutation.shardsAmount > 0) appendExternalEconomyEvent(tx, userRef, {
-        source: 'admin_grant', eventId: input.idempotencyKey, ownerStableId: input.uid,
-        delta: mutation.shardsAmount, reason: 'admin_grant', kind: 'admin_award',
-        subjectId: input.idempotencyKey, payload: { comment: input.comment || null }, createdAtMs: nowMs,
-      });
-      if (mutation.shardLog) {
-        tx.create(shardLogRef, {
-          ...mutation.shardLog,
-          targetUid: input.uid,
-          adminEmail: actor.actorEmail,
-          adminUid: actor.actorUid,
-          comment: input.comment || null,
-          operationId: input.idempotencyKey,
-        });
-      }
+      const extraUpdates = { ...mutation.updates };
+      if (Object.keys(extraUpdates).length > 0) tx.update(userRef, extraUpdates);
+      // Единственный писатель кошелька монет. На телефон монеты приходят со
+      // следующим серверным снапшотом кошелька (mergeLevelSpinServerStars).
+      const committed = commitStarOperations(tx, coinsPrepared);
       tx.create(rewardRef, {
         ts: nowIso,
         reason: 'admin_grant',
-        amount: mutation.shardsAmount,
+        amount: mutation.coinsAmount,
         rewardType: input.type,
         adminEmail: actor.actorEmail,
         adminUid: actor.actorUid,
@@ -402,80 +281,14 @@ export const adminGrantReward = onCall(
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
       });
 
-      return { ok: true, replayed: false, auditId: auditRef.id, ...result };
-    });
-  },
-);
-
-export const adminSetShardBalance = onCall(
-  ADMIN_SENSITIVE_WRITE_OPTIONS,
-  async (request) => {
-    requireAdminAppCheck(request);
-    const actor = requireRewardWriter(request as { auth?: { uid?: string; token?: Row } });
-    const input = normalizeAdminSetShardBalanceInput(request.data);
-    const db = admin.firestore();
-    const operationRef = db.collection('admin_command_operations').doc(`shard_balance_${input.idempotencyKey}`);
-    const auditRef = db.collection('admin_log').doc();
-    const fingerprint = adminSetShardBalanceFingerprint(input);
-    const nowMs = Date.now();
-    const nowIso = new Date(nowMs).toISOString();
-
-    return db.runTransaction(async (tx) => {
-      const operationSnapshot = await tx.get(operationRef);
-      if (operationSnapshot.exists) {
-        const operation = operationSnapshot.data() ?? {};
-        assertAdminShardBalanceReplay(operation, fingerprint, actor.actorUid);
-        return { ...(isRecord(operation.result) ? operation.result : {}), replayed: true };
-      }
-
-      const target = await resolveCanonicalAdminAccessTarget(tx, db, input.uid);
-      const mutation = buildAdminShardBalanceMutation(input.delta, nowMs);
-      const shardLogRef = target.ref.collection('shard_log').doc(`admin_balance_${input.idempotencyKey}`);
-      const audit = createAuditRecord({
-        action: 'adjust_shard_balance',
-        actorUid: actor.actorUid,
-        role: actor.role,
-        entity: { collection: 'users', id: target.uid },
-        reason: input.reason,
-        before: mutation.before,
-        after: mutation.after,
-        rollbackReference: null,
-        requestId: input.requestId,
-        timestamp: nowIso,
-      });
-      const result = {
+      return {
         ok: true,
-        uid: target.uid,
-        requestedUid: input.uid,
-        delta: mutation.delta,
-        shardLogId: shardLogRef.id,
+        replayed: false,
         auditId: auditRef.id,
+        ...result,
+        coinsBalanceAfter: committed.balance,
+        coinsSeqAfter: committed.seq,
       };
-
-      if (mutation.delta !== 0) appendExternalEconomyEvent(tx, target.ref, {
-        source: 'admin_balance_adjustment', eventId: input.idempotencyKey, ownerStableId: target.uid,
-        delta: mutation.delta, reason: 'admin_adjust_balance', kind: 'admin_balance_adjustment',
-        subjectId: input.idempotencyKey, payload: { delta: input.delta }, createdAtMs: nowMs,
-      });
-      tx.create(shardLogRef, {
-        ...mutation.shardLog,
-        targetUid: target.uid,
-        adminUid: actor.actorUid,
-        adminEmail: actor.actorEmail,
-        adminReason: input.reason,
-        operationId: operationRef.id,
-      });
-      tx.create(auditRef, { ...audit, operationId: operationRef.id });
-      tx.create(operationRef, {
-        operationId: operationRef.id,
-        action: 'adjust_shard_balance',
-        requestFingerprint: fingerprint,
-        actorUid: actor.actorUid,
-        auditId: auditRef.id,
-        result,
-        createdAt: admin.firestore.FieldValue.serverTimestamp(),
-      });
-      return { ...result, replayed: false };
     });
   },
 );

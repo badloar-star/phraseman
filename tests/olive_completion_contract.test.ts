@@ -6,13 +6,9 @@ const read = (file: string) => fs.readFileSync(path.join(process.cwd(), file), '
 describe('Olive completion surfaces', () => {
   it('gives reward and revival surfaces explicit piano, ivory, sage and champagne branches', () => {
     const bonus = read('components/BonusXPCard.tsx');
-    const revive = read('components/StreakReviveModal.tsx');
     expect(bonus).toContain("const isOliveTheme = themeMode === 'olive';");
     expect(bonus).toContain('OLIVE_RICH.champagne');
     expect(bonus).toContain('<Ionicons');
-    expect(revive).toContain("const isOliveTheme = themeMode === 'olive';");
-    expect(revive).toContain('OLIVE_RICH.champagne');
-    expect(revive).toContain('OLIVE_RICH.piano');
   });
 
   it('keeps the remaining Olive shells explicit and matte', () => {

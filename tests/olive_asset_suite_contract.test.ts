@@ -6,9 +6,8 @@ const ROOT = path.resolve(__dirname, '..');
 const SOURCES = [
   'app/settings_themes.tsx', 'app/season_pass_theme_backgrounds.ts', 'app/home_menu_icons.ts',
   'app/home_last_lesson_assets.ts', 'app/coin_icons.ts', 'app/flashcards/FlashcardsCategoryHub.tsx',
-  'components/EnergyIcon.tsx', 'components/ReferralInviteBannerArt.tsx',
-  'components/ui/v2_theme_assets.ts', 'constants/generatedThemeIconAssets.ts',
-  'constants/socialIconAssets.ts', 'constants/leagueBonusGiftImages.ts', 'constants/weeklyCompassIcons.ts',
+  'components/EnergyIcon.tsx',
+  'constants/leagueBonusGiftImages.ts',
   'constants/dailyPhraseThemeArt.ts', 'constants/boonIconAssets.ts', 'constants/streakIconAssets.ts',
 ];
 
@@ -25,7 +24,7 @@ describe('Olive premium asset suite', () => {
 
     // Daily Tasks and Personal Plans no longer own live theme slots. Keep this
     // count aligned with the remaining statically wired Olive asset catalog.
-    expect(required.size).toBe(46);
+    expect(required.size).toBe(40);
     for (const file of required) {
       expect(fs.existsSync(file)).toBe(true);
       expect(path.extname(file)).toMatch(/\.(webp|png)$/);

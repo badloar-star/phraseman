@@ -1,8 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from './debug-logger';
-import { readLeagueChestEnergyOverrideMs } from './services/league_chest_rewards';
-import { getMaxEnergy, getEnergyRecoveryIntervalMs } from './remote_flags';
-import { readBoonEnergyOverrideMs } from './boons/boon_effects_energy';
 import { withStorageLock } from './storage_mutex';
 import { emitAppEvent } from './events';
 import {
@@ -24,20 +21,18 @@ import {
 export type EnergyState = EnergyStateV2;
 
 const ENERGY_STORAGE_KEY = 'energy_state';
-/** Build-time default; runtime uses remote-tunable getEnergyRecoveryIntervalMs(). */
+/** Локальный интервал восстановления: серверный конфиг больше не управляет энергией. */
 // PM-083 (BIBLE «+1 за 10 минут»): 0→5 занимает 50 минут.
 export const ENERGY_RECOVERY_INTERVAL_MS = ENERGY_PASSIVE_UNIT_MS;
 
-/** Remote-tunable max energy (cap). Read at call time so admin changes apply live. */
-function MAX_ENERGY_VALUE(): number {
-  return getMaxEnergy();
-}
+/** Fixed local max-energy value; remote/admin changes are not consulted. */
+function MAX_ENERGY_VALUE(): number { return permanentEnergyCapacity({ base: 5 }); }
 
 /**
  * Постоянный потолок энергии — тот же, что в EnergyContext.
  *
- * зачем (PM-081, D06/D07): потолок ровно 5; ни ярус карточки профиля, ни лига
- * его больше не меняют, поэтому чтение `profile_card_level` с диска убрано —
+ * зачем (PM-081, D06/D07): потолок ровно 5; оформление профиля его больше
+ * не меняет, поэтому чтение `profile_card_level` с диска убрано —
  * на каждом пересчёте энергии на одно обращение к хранилищу меньше.
  * Функция осталась async, чтобы не трогать сигнатуры вызывающих.
  */
@@ -54,26 +49,13 @@ export async function getEffectiveMaxEnergyValue(): Promise<number> {
 }
 
 // Время восстановления 1 единицы энергии фиксированное:
-// цепочка дней влияет на XP, но не ускоряет энергию.
+// цепочка дней влияет на legacy reward, но не ускоряет энергию.
 export function getRecoveryIntervalMs(_streakDays: number = 0): number {
-  return getEnergyRecoveryIntervalMs();
+  return ENERGY_PASSIVE_UNIT_MS;
 }
 
 async function getCurrentRecoveryIntervalMs(): Promise<number> {
-  try {
-    // Активные override-ы интервала: league-chest и weekly-boon (turbo_regen).
-    // Берём наименьший (быстрейшее восстановление), чтобы один не перетирал другой.
-    const [leagueChestMs, boonMs] = await Promise.all([
-      readLeagueChestEnergyOverrideMs(),
-      readBoonEnergyOverrideMs(),
-    ]);
-    const overrides = [leagueChestMs, boonMs].filter(
-      (v): v is number => typeof v === 'number' && v > 0,
-    );
-    return Math.min(getRecoveryIntervalMs(), ...overrides);
-  } catch {
-    return getEnergyRecoveryIntervalMs();
-  }
+  return getRecoveryIntervalMs();
 }
 
 const DEFAULT_STATE: EnergyState = createFullEnergyState(Date.now());
@@ -82,71 +64,15 @@ const DEFAULT_STATE: EnergyState = createFullEnergyState(Date.now());
  * Получить текущее состояние энергии из хранилища.
  * Если данные отсутствуют, инициализирует с максимальной энергией.
  */
-/**
- * Разовая команда админки на изменение энергии.
- * Админка пишет в облако users/{uid}.progress.admin_energy_command (в SYNC_KEYS),
- * оттуда ключ 'admin_energy_command' доезжает на устройство. Клиент применяет команду
- * РОВНО ОДИН РАЗ — по метке `at`: если at новее применённого, меняет energy_state и
- * запоминает applied at. Так энергия остаётся client-owned, а команда — одноразовый
- * триггер (обнулить / налить до максимума), который не повторяется при каждом синке.
- */
-const ADMIN_ENERGY_COMMAND_KEY = 'admin_energy_command';
-const ADMIN_ENERGY_COMMAND_APPLIED_KEY = 'admin_energy_command_applied_at';
-
-type AdminEnergyCommand = { op?: 'drain' | 'fill'; at?: number };
-
-/** Применяет разовую админ-команду к energy_state, если она новее уже применённой. */
-// зачем export (аудит 2026-08-23, третий проход): единственным вызывающим был
-// getEnergyState, а его боевые вызовы исчезли задолго до переделки энергии —
-// команда админки drain/fill доезжала до телефона и НИКОГДА не применялась.
-// Теперь её зовёт EnergyContext.runLoad — живой путь каждой загрузки.
-// Функция идемпотентна по метке `at`, повторные вызовы безопасны.
+/** Compatibility export retained for old callers; intentionally does nothing. */
 export async function applyAdminEnergyCommand(): Promise<void> {
-  try {
-    const raw = await AsyncStorage.getItem(ADMIN_ENERGY_COMMAND_KEY);
-    if (!raw) return;
-    const cmd = JSON.parse(raw) as AdminEnergyCommand;
-    const at = Number(cmd?.at) || 0;
-    if (!at || (cmd?.op !== 'drain' && cmd?.op !== 'fill')) return;
-
-    const appliedRaw = await AsyncStorage.getItem(ADMIN_ENERGY_COMMAND_APPLIED_KEY);
-    const appliedAt = Number(appliedRaw) || 0;
-    if (at <= appliedAt) return; // уже применена — не повторяем
-
-    const maxEnergy = await readLevelAwareBaseMaxEnergy();
-    await withStorageLock(async () => {
-      const now = Date.now();
-      const stored = await AsyncStorage.getItem(ENERGY_STORAGE_KEY);
-      let parsed: unknown = null;
-      if (stored) {
-        try { parsed = JSON.parse(stored); } catch { parsed = null; }
-      }
-      const prev = coerceEnergyStateV2(parsed, now);
-      const next: EnergyState = {
-        schemaVersion: 2,
-        current: cmd.op === 'fill' ? maxEnergy : 0,
-        // Both commands settle the clock now. A drain cannot replay offline
-        // time, and a full state must not retain stale fractional credit.
-        lastSettledAt: now,
-        recoveryCreditMicrounits: 0,
-        recoveryDivisionRemainder: 0,
-      };
-      // Keep this reference intentional: parsing first performs any one-time
-      // migration before the authoritative admin operation replaces the value.
-      void prev;
-      await AsyncStorage.multiSet([
-        [ENERGY_STORAGE_KEY, JSON.stringify(next)],
-        [ADMIN_ENERGY_COMMAND_APPLIED_KEY, String(at)],
-      ]);
-    });
-  } catch (error) {
-    DebugLogger.error('energy_system.ts:applyAdminEnergyCommand', error, 'warning');
-  }
+  // Server-side drain/fill commands are retired: energy is local-only and
+  // cannot be changed by a remote product decision.
+  return;
 }
 
 export async function getEnergyState(): Promise<EnergyState> {
   try {
-    await applyAdminEnergyCommand();
     const maxEnergy = await readLevelAwareBaseMaxEnergy();
     return withStorageLock(async () => {
       const now = Date.now();

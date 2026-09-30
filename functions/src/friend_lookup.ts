@@ -23,8 +23,6 @@ function nameIndexDocIsHidden(data: FirebaseFirestore.DocumentData | undefined):
 /** Публичный профиль найденного юзера из users/{uid}.progress (первичный источник). */
 interface LookupProfile {
   name: string;
-  totalXp: number;
-  level: number;
   avatar: string;
   frame: string;
   aura: string;
@@ -33,16 +31,10 @@ interface LookupProfile {
 
 function readLookupProfile(userData: FirebaseFirestore.DocumentData | undefined): LookupProfile {
   const p = (userData?.progress ?? {}) as FirebaseFirestore.DocumentData;
-  const num = (v: unknown): number => {
-    const n = Math.floor(Number(v));
-    return Number.isFinite(n) && n > 0 ? n : 0;
-  };
   const premiumPlan = String(p.premium_plan ?? '').trim().toLowerCase();
   const premiumActive = premiumPlan.length > 0 && premiumPlan !== 'free' && premiumPlan !== 'none';
   return {
     name: sanitizeString(p.user_name, 40),
-    totalXp: num(p.user_total_xp),
-    level: num(p.user_level),
     avatar: sanitizeString(p.user_avatar, 64),
     frame: sanitizeString(p.user_avatar_frame ?? p.user_frame, 64),
     aura: sanitizeString(p.user_avatar_aura, 64),
@@ -160,8 +152,6 @@ function buildUserResponse(
   uid: string;
   source: 'name_index';
   name: string;
-  totalXp: number;
-  level: number;
   avatar: string;
   frame: string;
   aura: string;
@@ -172,8 +162,6 @@ function buildUserResponse(
     uid,
     source: 'name_index',
     name: profile.name || sanitizeString(fallbackName, 40),
-    totalXp: profile.totalXp,
-    level: profile.level,
     avatar: profile.avatar,
     frame: profile.frame,
     aura: profile.aura,

@@ -1,4 +1,3 @@
-import { DebugLogger } from './debug-logger';
 /**
  * Флаги фичи «Объясни как для 5-летнего» (Фаза 5).
  * Самодостаточный модуль по образцу ai_dialog_flags.ts: env-override + дефолты.
@@ -25,14 +24,5 @@ function explainEnabledFromEnv(): boolean | undefined {
 /** Включена ли фича (когортный rollout). Дефолт true (kill-switch, см. EXPLAIN_ENABLED_DEFAULT).
  *  Источники (любой включает): Remote Config (admin «Пульт») ИЛИ env QA-флаг. */
 export function isExplainEnabled(): boolean {
-  // Remote Config имеет приоритет: если админ включил — фича включена.
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const { getRemoteBool } = require('./remote_flags') as { getRemoteBool: (k: string) => boolean };
-    if (getRemoteBool('explain_enabled')) return true;
-  } catch (e) {
-      // remote_flags недоступен — падаем на env
-      DebugLogger.error('explain_phrase_flags:isExplainEnabled', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
   return explainEnabledFromEnv() ?? EXPLAIN_ENABLED_DEFAULT;
 }

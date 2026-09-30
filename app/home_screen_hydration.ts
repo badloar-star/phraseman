@@ -1,12 +1,9 @@
 /**
  * Последний снимок главного экрана в памяти процесса: при повторном открытии таба «Главная»
- * без этого React снова берёт нули из useState(0), а homeStatsLoadedOnce уже true — мелькает «уровень 1».
+ * без этого React снова берёт нули из useState(0), а homeStatsLoadedOnce уже true.
  */
 
 import type { Lang } from '../constants/i18n';
-import { getBestAvatarForLevel, getBestFrameForLevel } from '../constants/avatars';
-import { normalizeAvatarAuraId } from '../constants/avatar_auras';
-import { getLevelFromXP } from '../constants/theme';
 import type { StudyTargetLang } from './study_target_lang_dev';
 import { lessonNamesForStudyTarget } from './lesson_titles_for_study_target';
 import { storageStudyTarget } from './target_storage_keys';
@@ -20,7 +17,6 @@ import {
 
 export type HomeScreenHydration = {
   userName: string;
-  totalXP: number;
   streak: number;
   displayStreak: number;
   weekDone: boolean[];
@@ -30,23 +26,12 @@ export type HomeScreenHydration = {
   lessonsCompleted: number;
   freezeActive: boolean;
   premiumFreezeUsed: boolean;
-  totalXPMulti: number;
   userAvatar: string;
   userAvatarAura?: string | null;
   userFrame: string;
   lastLessonId: number | null;
   lastLessonProgress: number;
   lastLessonScore: string;
-  homeLeagueCrownExpiresAt?: number;
-  homeLeagueCrownCount?: number;
-  homeLeagueChest?: {
-    leagueName: string;
-    progress: number;
-    goal: number;
-    myContribution: number;
-    leaderName: string;
-    leaderPoints: number;
-  } | null;
 };
 
 type OwnedHomeScreenHydration = Readonly<{
@@ -118,50 +103,17 @@ export function shouldApplyHomeSnapshotToStats(
     || progressSource === 'local';
 }
 
-function parseStoredNonNegativeInt(value: string | null | undefined): number {
-  const parsed = Number.parseInt(value ?? '0', 10);
-  return Number.isFinite(parsed) ? Math.max(0, parsed) : 0;
-}
-
-/**
- * Resolves the two headline counters during Home's delayed SQLite hydration.
- * A validated live cloud projection wins over storage because Android may have
- * returned missing/stale values after SQLITE_FULL. Local user actions still use
- * `source: local` elsewhere and are not covered by this restore-only rule.
- */
-export function resolveHomeStorageStats(params: {
-  storedTotalXp: string | null | undefined;
-  storedStreak: string | null | undefined;
-  profile?: { source: AppSnapshotSource; totalXp: number } | null;
-  progress?: { source: AppSnapshotSource; streak: number } | null;
-}): { totalXp: number; streak: number } {
-  const storedTotalXp = parseStoredNonNegativeInt(params.storedTotalXp);
-  const storedStreak = parseStoredNonNegativeInt(params.storedStreak);
-  const snapshotTotalXp = Math.max(0, Math.floor(Number(params.profile?.totalXp) || 0));
-  const snapshotStreak = Math.max(0, Math.floor(Number(params.progress?.streak) || 0));
-  return {
-    totalXp: params.profile?.source === 'live'
-      ? snapshotTotalXp
-      : (params.storedTotalXp == null ? snapshotTotalXp : storedTotalXp),
-    streak: params.progress?.source === 'live'
-      ? snapshotStreak
-      : (params.storedStreak == null ? snapshotStreak : storedStreak),
-  };
-}
-
 export function resolveHomeProfileVisuals(params: {
-  hydration?: Pick<HomeScreenHydration, 'totalXP' | 'userAvatar' | 'userAvatarAura' | 'userFrame'> | null;
-  snapshot?: { totalXp?: number; avatar?: string; frame?: string; aura?: string } | null;
-}): { avatar: string; frame: string; aura: string | null; level: number } {
-  const totalXP = params.hydration?.totalXP ?? params.snapshot?.totalXp ?? 0;
-  const level = getLevelFromXP(Math.max(0, Math.floor(Number(totalXP) || 0)));
-  const levelAvatar = getBestAvatarForLevel(level);
+  hydration?: Pick<HomeScreenHydration, 'userAvatar' | 'userAvatarAura' | 'userFrame'> | null;
+  snapshot?: { avatar?: string; frame?: string; aura?: string } | null;
+}): { avatar: string; frame: string; aura: string | null } {
   const hydrationAvatar = params.hydration?.userAvatar ?? '';
   const snapshotAvatar = params.snapshot?.avatar ?? '';
-  const avatar = hydrationAvatar || (snapshotAvatar && !(snapshotAvatar === '1' && levelAvatar !== '1') ? snapshotAvatar : levelAvatar);
-  const frame = (params.hydration?.userFrame ?? params.snapshot?.frame ?? '') || getBestFrameForLevel(level).id;
-  const aura = normalizeAvatarAuraId(params.hydration?.userAvatarAura) ?? normalizeAvatarAuraId(params.snapshot?.aura) ?? null;
-  return { avatar, frame, aura, level };
+  const avatar = hydrationAvatar || snapshotAvatar || '1';
+  const frame = (params.hydration?.userFrame ?? params.snapshot?.frame ?? '');
+  // зачем: D108 — ауры удалены: Главная всегда получает «без ауры».
+  const aura = null;
+  return { avatar, frame, aura };
 }
 
 export function buildLastLessonFromHydration(

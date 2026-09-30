@@ -7,14 +7,12 @@ export type SoundFamily =
   | 'energy'
   | 'streak'
   | 'reward'
-  | 'league'
   | 'social'
   | 'arena'
   | 'cards'
   | 'commerce'
   | 'dialog'
   | 'economy'
-  | 'max'
   | 'profile'
   // зачем: сердечки (система попыток session_attempts) — отдельное семейство,
   // как и планировалось при одобрении звуков 2026-08-28.
@@ -94,7 +92,6 @@ export const SOUND_EVENTS = Object.freeze({
   'pm.lesson.begin': event(require('../../assets/audio/sfx/v1/learning/pm_lesson_begin_v1.m4a'), 0.18, 20, 4000, 2960, 'learning'),
 
   'pm.voice.record_ready': event(require('../../assets/audio/sfx/v1/voice/pm_voice_record_ready_v1.m4a'), 0.40, 95, 450, 220, 'voice', { platform: 'ios' }),
-  'pm.voice.turn_ready': event(require('../../assets/audio/sfx/v1/voice/pm_voice_turn_ready_v1.m4a'), 0.34, 82, 700, 300, 'voice'),
   'pm.voice.no_speech': event(require('../../assets/audio/sfx/v1/voice/pm_voice_no_speech_v1.m4a'), 0.27, 78, 800, 380, 'voice'),
 
   'pm.complete.micro': event(require('../../assets/audio/sfx/v1/completion/pm_complete_micro_v1.m4a'), 0.46, 74, 1800, 780, 'completion'),
@@ -107,9 +104,6 @@ export const SOUND_EVENTS = Object.freeze({
   'pm.complete.star_2': event(require('../../assets/audio/sfx/v1/completion/pm_complete_star_2_v1.m4a'), 0.40, 75, 180, 380, 'completion'),
   'pm.complete.star_3': event(require('../../assets/audio/sfx/v1/completion/pm_complete_star_3_v1.m4a'), 0.44, 78, 220, 480, 'completion'),
   'pm.complete.star_3_perfect': event(require('../../assets/audio/sfx/v1/completion/pm_complete_star_3_perfect_v1.m4a'), 0.46, 80, 500, 800, 'completion'),
-  'pm.complete.xp_counter_start': event(require('../../assets/audio/sfx/v1/completion/pm_complete_xp_counter_start_v1.m4a'), 0.30, 62, 900, 450, 'completion'),
-  'pm.complete.xp_counter_tick': event(require('../../assets/audio/sfx/v1/completion/pm_complete_xp_counter_tick_v1.m4a'), 0.20, 48, 140, 1000, 'completion'),
-  'pm.complete.xp_counter_complete': event(require('../../assets/audio/sfx/v1/completion/pm_complete_xp_counter_complete_v1.m4a'), 0.42, 82, 900, 900, 'completion'),
   'pm.complete.active_reward_reveal': event(require('../../assets/audio/sfx/v1/completion/pm_complete_active_reward_reveal_v1.m4a'), 0.38, 76, 1200, 1100, 'completion'),
   'pm.complete.active_gift_unlock': event(require('../../assets/audio/sfx/v1/completion/pm_complete_active_gift_unlock_v1.m4a'), 0.42, 80, 1200, 1300, 'completion'),
   'pm.complete.multiplier_reveal': event(require('../../assets/audio/sfx/v1/completion/pm_complete_multiplier_reveal_v1.m4a'), 0.40, 78, 1200, 1500, 'completion'),
@@ -127,13 +121,8 @@ export const SOUND_EVENTS = Object.freeze({
   'pm.streak.saved': event(require('../../assets/audio/sfx/v1/streak/pm_streak_saved_v1.m4a'), 0.54, 84, 5000, 1080, 'streak'),
 
   'pm.reward.small': event(require('../../assets/audio/sfx/v1/reward/pm_reward_small_v1.m4a'), 0.42, 64, 1800, 720, 'reward', { deferAfterVoice: true }),
-  'pm.reward.achievement': event(require('../../assets/audio/sfx/v1/reward/pm_reward_achievement_v1.m4a'), 0.55, 84, 4500, 1120, 'reward'),
-  'pm.reward.level_up': event(require('../../assets/audio/sfx/v1/reward/pm_reward_level_up_v1.m4a'), 0.58, 88, 5500, 1350, 'reward'),
   'pm.reward.chest_open': event(require('../../assets/audio/sfx/v1/reward/pm_reward_chest_open_v1.m4a'), 0.58, 86, 4500, 1420, 'reward'),
   'pm.reward.premium_open': event(require('../../assets/audio/sfx/v1/reward/pm_reward_premium_open_v1.m4a'), 0.60, 94, 8000, 1450, 'reward'),
-  'pm.reward.premium_finale': event(require('../../assets/audio/sfx/v1/reward/pm_reward_premium_finale_v1.m4a'), 0.62, 95, 8000, 1650, 'reward'),
-  'pm.reward.vip_open': event(require('../../assets/audio/sfx/v1/reward/pm_reward_vip_open_v1.m4a'), 0.62, 96, 10000, 1550, 'reward'),
-  'pm.reward.vip_finale': event(null, 0.64, 97, 10000, 1850, 'reward'),
 
   // ─── Празднование покупки v6 «Золотая палата» (владелец 2026-08-24) ───
   // зачем: у каждой сцены СВОЙ звук — иначе одиннадцать разных механик звучат
@@ -152,17 +141,13 @@ export const SOUND_EVENTS = Object.freeze({
   'pm.celebration.error_fix': event(require('../../assets/audio/sfx/v1/celebration/cel_error_fix_v1.m4a'), 0.44, 90, 2000, 1180, 'reward'),
   'pm.celebration.plan_route': event(require('../../assets/audio/sfx/v1/celebration/cel_plan_route_v1.m4a'), 0.50, 90, 2000, 1060, 'reward'),
   'pm.celebration.stats_rise': event(require('../../assets/audio/sfx/v1/celebration/cel_stats_rise_v1.m4a'), 0.44, 90, 2000, 1040, 'reward'),
-  'pm.celebration.streak_shield': event(require('../../assets/audio/sfx/v1/celebration/cel_streak_shield_v1.m4a'), 0.52, 90, 2000, 1000, 'reward'),
   'pm.celebration.aura_bloom': event(require('../../assets/audio/sfx/v1/celebration/cel_aura_bloom_v1.m4a'), 0.48, 90, 2000, 1030, 'reward'),
-  'pm.celebration.max_awaken': event(require('../../assets/audio/sfx/v1/celebration/cel_max_awaken_v1.m4a'), 0.60, 92, 4000, 2200, 'reward'),
   'pm.celebration.finale_chord': event(require('../../assets/audio/sfx/v1/celebration/cel_finale_chord_v1.m4a'), 0.64, 96, 6000, 1600, 'reward'),
   'pm.celebration.promo_stamp': event(require('../../assets/audio/sfx/v1/celebration/cel_promo_stamp_v1.m4a'), 0.56, 94, 4000, 850, 'reward'),
   // зачем (владелец 2026-08-25): «на фон надо мелодию какую-то» — точечные
   // удары сцен звучат разрозненно без общей тёплой подложки под всем
-  // прогоном. Один файл на ~12 с (длиннее самого долгого прогона — MAX 11.3с)
-  // со встроенным fade-in/fade-out, ОДИН на все тиры (не дублировать под
-  // Plus/Pro/MAX — своя мелодия на тир была бы избыточна, а MAX уже имеет
-  // отдельный акцент в cel_max_awaken). Громкость 0.13 — сильно тише точечных
+  // прогоном. Один файл на ~12 с со встроенным fade-in/fade-out для всех
+  // действующих вариантов доступа. Громкость 0.13 — сильно тише точечных
   // ударов (0.42-0.64), не спорит с ними. Не проигрывается системой событий
   // sound_director (та рассчитана на короткие дискретные сигналы с cooldown) —
   // запускается/останавливается напрямую в PremiumCelebrationModal через
@@ -181,22 +166,10 @@ export const SOUND_EVENTS = Object.freeze({
   // четыре остальных направления в приложение не подключать.
   'pm.reward.daily_journey_intro': event(require('../../assets/audio/sfx/v1/reward/pm_reward_daily_journey_intro_v1.m4a'), 0.42, 68, 0, 2560, 'reward'),
 
-  // Level Spin is a short, authored sequence. Each cue has a separate asset so
-  // visual phase changes can trigger it exactly instead of relying on timers.
-  'pm.spin.button_press': event(require('../../assets/audio/sfx/v1/spin/pm_spin_button_press_v1.m4a'), 0.32, 42, 0, 1000, 'reward'),
-  'pm.spin.reel_start': event(require('../../assets/audio/sfx/v1/spin/pm_spin_reel_start_v1.m4a'), 0.44, 70, 0, 1000, 'reward'),
-  'pm.spin.reel_loop': event(require('../../assets/audio/sfx/v1/spin/pm_spin_reel_loop_v1.m4a'), 0.28, 74, 0, 2000, 'reward'),
-  'pm.spin.reel_stop_rollback': event(require('../../assets/audio/sfx/v1/spin/pm_spin_reel_stop_rollback_v1.m4a'), 0.52, 90, 0, 1200, 'reward'),
-  'pm.spin.reward_lock': event(require('../../assets/audio/sfx/v1/spin/pm_spin_reward_lock_v1.m4a'), 0.48, 92, 0, 2000, 'reward'),
-  'pm.spin.reward_win': event(require('../../assets/audio/sfx/v1/spin/pm_spin_reward_win_v1.m4a'), 0.54, 94, 0, 2000, 'reward'),
-  'pm.spin.reward_rare': event(require('../../assets/audio/sfx/v1/spin/pm_spin_reward_rare_v1.m4a'), 0.58, 95, 0, 2000, 'reward'),
-  'pm.spin.reward_premium': event(require('../../assets/audio/sfx/v1/spin/pm_spin_reward_premium_v1.m4a'), 0.62, 96, 0, 2000, 'reward'),
+  // зачем (PM-206-A2): убраны 14 осиротевших id без вызывающих — pm.reward.{achievement,level_up,
+  // premium_finale,vip_open}, весь pm.spin.* (Level Spin), pm.social.{friend_request,quest_complete}.
+  // Возвращать только вместе с реальным вызывающим (см. tests/pm206_sound_event_callers.probe.ts).
 
-  'pm.league.promoted': event(require('../../assets/audio/sfx/v1/league/pm_league_promoted_v1.m4a'), 0.64, 94, 8000, 1620, 'league'),
-  'pm.league.demoted': event(require('../../assets/audio/sfx/v1/league/pm_league_demoted_v1.m4a'), 0.36, 80, 6000, 980, 'league'),
-  'pm.social.gift_received': event(require('../../assets/audio/sfx/v1/social/pm_social_gift_received_v1.m4a'), 0.48, 72, 3000, 880, 'social', { deferAfterVoice: true }),
-  'pm.social.friend_request': event(require('../../assets/audio/sfx/v1/social/pm_social_friend_request_v1.m4a'), 0.36, 60, 2500, 540, 'social', { deferAfterVoice: true }),
-  'pm.social.quest_complete': event(require('../../assets/audio/sfx/v1/social/pm_social_quest_complete_v1.m4a'), 0.52, 80, 4500, 1020, 'social', { deferAfterVoice: true }),
   // зачем: лёгкий сигнал «теперь вы друзья» на стороне того, кто принял
   // заявку — не путать с friend_request (входящая заявка).
   'pm.social.friend_added': event(require('../../assets/audio/sfx/v1/social/pm_social_friend_added_v1.m4a'), 0.30, 55, 2000, 1000, 'social', { deferAfterVoice: true }),
@@ -214,13 +187,16 @@ export const SOUND_EVENTS = Object.freeze({
    * Числа зеркалятся с `modules/arena/sound_catalog.ts`, тест
    * `arena_sound_catalog` падает при первом же расхождении.
    */
-  'pm.arena.search_start': event(require('../../assets/audio/sfx/v1/arena/ar_search_start_v1.m4a'), 0.35, 55, 600, 2000, 'arena'),
+  // зачем: D83 — клиентская Арена удалена целиком; её звуковые файлы сняты из
+  // бандла, события остаются немыми (их зовёт только общий каталог звуков,
+  // который делит Learning V2 speed-match).
+  'pm.arena.search_start': event(null, 0.35, 55, 600, 2000, 'arena'), // D83: Арена удалена, файл снят
   // зачем: единственный луп Арены — файл 3с бесшовный, повторный запрос идёт
   // интервалом из arena_matchmaking (см. там), cooldown 1800 гасит дребезг.
-  'pm.arena.search_loop': event(require('../../assets/audio/sfx/v1/arena/ar_search_loop_v1.m4a'), 0.12, 20, 1800, 3000, 'arena'),
+  'pm.arena.search_loop': event(null, 0.12, 20, 1800, 3000, 'arena'), // D83: Арена удалена, файл снят
   'pm.arena.opponent_found': event(null, 0.6, 78, 1500, 700, 'arena'), // ОТВЕРГНУТО 2026-08-30
-  'pm.arena.countdown_tick': event(require('../../assets/audio/sfx/v1/arena/ar_countdown_tick_v1.m4a'), 0.34, 62, 700, 200, 'arena'),
-  'pm.arena.countdown_go': event(require('../../assets/audio/sfx/v1/arena/ar_countdown_go_v1.m4a'), 0.55, 74, 1200, 1390, 'arena'),
+  'pm.arena.countdown_tick': event(null, 0.34, 62, 700, 200, 'arena'), // D83: Арена удалена, файл снят
+  'pm.arena.countdown_go': event(null, 0.55, 74, 1200, 1390, 'arena'), // D83: Арена удалена, файл снят
   'pm.arena.task_in': event(null, 0.24, 40, 500, 260, 'arena'), // ОТВЕРГНУТО 2026-08-30
   'pm.arena.option_tap': event(null, 0.2, 30, 60, 120, 'arena'), // ОТВЕРГНУТО 2026-08-30
   'pm.arena.answer_correct': event(null, 0.42, 70, 160, 380, 'arena'), // ОТВЕРГНУТО 2026-08-30
@@ -235,15 +211,15 @@ export const SOUND_EVENTS = Object.freeze({
   'pm.arena.pair_match': event(null, 0.34, 66, 80, 180, 'arena'), // ОТВЕРГНУТО 2026-08-30
   'pm.arena.pair_miss': event(null, 0.24, 62, 120, 200, 'arena'), // ОТВЕРГНУТО 2026-08-30
   'pm.arena.pair_clear': event(null, 0.46, 74, 800, 520, 'arena'), // ОТВЕРГНУТО 2026-08-30
-  'pm.arena.result_win': event(require('../../assets/audio/sfx/v1/arena/ar_result_win_v1.m4a'), 0.55, 90, 2000, 1400, 'arena'),
-  'pm.arena.result_loss': event(require('../../assets/audio/sfx/v1/arena/ar_result_loss_v1.m4a'), 0.38, 90, 2000, 1200, 'arena'),
-  'pm.arena.result_draw': event(require('../../assets/audio/sfx/v1/arena/ar_result_draw_v1.m4a'), 0.42, 90, 2000, 2480, 'arena'),
+  'pm.arena.result_win': event(null, 0.55, 90, 2000, 1400, 'arena'), // D83: Арена удалена, файл снят
+  'pm.arena.result_loss': event(null, 0.38, 90, 2000, 1200, 'arena'), // D83: Арена удалена, файл снят
+  'pm.arena.result_draw': event(null, 0.42, 90, 2000, 2480, 'arena'), // D83: Арена удалена, файл снят
   'pm.arena.star_fly': event(null, 0.26, 50, 70, 240, 'arena'), // ОТВЕРГНУТО 2026-08-30
   'pm.arena.star_land': event(null, 0.34, 56, 90, 260, 'arena'), // не отмечен владельцем в раунде 5
   'pm.arena.goal_complete': event(null, 0.44, 76, 1500, 700, 'arena'), // ОТВЕРГНУТО 2026-08-30
   'pm.arena.reward_unlock': event(null, 0.5, 84, 1500, 900, 'arena'), // ОТВЕРГНУТО 2026-08-30
-  'pm.arena.rank_up': event(require('../../assets/audio/sfx/v1/arena/ar_rank_up_v1.m4a'), 0.55, 88, 2000, 3000, 'arena'),
-  'pm.arena.rank_down': event(require('../../assets/audio/sfx/v1/arena/ar_rank_down_v1.m4a'), 0.34, 82, 2000, 2480, 'arena'),
+  'pm.arena.rank_up': event(null, 0.55, 88, 2000, 3000, 'arena'), // D83: Арена удалена, файл снят
+  'pm.arena.rank_down': event(null, 0.34, 82, 2000, 2480, 'arena'), // D83: Арена удалена, файл снят
 
   // Карточки. Файлы сгенерированы владельцем через Firefly
   // по промптам docs/sound/SOUND_PROMPTS_FULL.md (редакция 3).
@@ -252,8 +228,6 @@ export const SOUND_EVENTS = Object.freeze({
   'pm.cards.flip': event(require('../../assets/audio/sfx/v1/cards/pm_cards_flip_v1.m4a'), 0.26, 34, 90, 280, 'cards'),
   'pm.cards.pack_created': event(require('../../assets/audio/sfx/v1/cards/pm_cards_pack_created_v1.m4a'), 0.44, 78, 3000, 1200, 'cards'),
   'pm.cards.pack_open': event(require('../../assets/audio/sfx/v1/cards/pm_cards_pack_open_v1.m4a'), 0.28, 56, 800, 700, 'cards'),
-  'pm.cards.swipe_know': event(require('../../assets/audio/sfx/v1/cards/pm_cards_swipe_know_v1.m4a'), 0.30, 46, 120, 320, 'cards'),
-  'pm.cards.swipe_learn': event(require('../../assets/audio/sfx/v1/cards/pm_cards_swipe_learn_v1.m4a'), 0.26, 42, 120, 340, 'cards'),
 
   // Биллинг. Файл сгенерирован владельцем через Firefly
   // по промптам docs/sound/SOUND_PROMPTS_FULL.md (редакция 3).
@@ -261,23 +235,11 @@ export const SOUND_EVENTS = Object.freeze({
 
   // Диалоги с ИИ. Файлы сгенерированы владельцем через Firefly
   // по промптам docs/sound/SOUND_PROMPTS_FULL.md (редакция 3).
-  'pm.dialog.reply_in': event(require('../../assets/audio/sfx/v1/dialog/pm_dialog_reply_in_v1.m4a'), 0.20, 38, 250, 350, 'dialog', { deferAfterVoice: true }),
-  'pm.dialog.reply_sent': event(require('../../assets/audio/sfx/v1/dialog/pm_dialog_reply_sent_v1.m4a'), 0.22, 34, 200, 300, 'dialog', { deferAfterVoice: true }),
   'pm.dialog.retry': event(require('../../assets/audio/sfx/v1/dialog/pm_dialog_retry_v1.m4a'), 0.32, 66, 800, 900, 'dialog', { deferAfterVoice: true }),
   'pm.dialog.victory': event(require('../../assets/audio/sfx/v1/dialog/pm_dialog_victory_v1.m4a'), 0.54, 88, 5000, 1800, 'dialog'),
 
   // Магазин и валюты. Файлы сгенерированы владельцем через Firefly
   // по промптам docs/sound/SOUND_PROMPTS_FULL.md (редакция 3).
-  'pm.shards.earned': event(require('../../assets/audio/sfx/v1/economy/pm_shards_earned_v1.m4a'), 0.44, 70, 1200, 900, 'economy'),
-  'pm.shop.open': event(require('../../assets/audio/sfx/v1/economy/pm_shop_open_v1.m4a'), 0.26, 40, 800, 1000, 'economy', { deferAfterVoice: true }),
-
-  // MAX — голосовой звонок. Файлы сгенерированы владельцем через Firefly
-  // по промптам docs/sound/SOUND_PROMPTS_FULL.md (редакция 3).
-  'pm.max.call_connect': event(require('../../assets/audio/sfx/v1/max/pm_max_call_connect_v1.m4a'), 0.34, 72, 800, 800, 'max'),
-  'pm.max.call_end': event(require('../../assets/audio/sfx/v1/max/pm_max_call_end_v1.m4a'), 0.32, 68, 800, 1100, 'max'),
-  'pm.max.consent_granted': event(require('../../assets/audio/sfx/v1/max/pm_max_consent_granted_v1.m4a'), 0.30, 56, 800, 800, 'max', { deferAfterVoice: true }),
-  'pm.max.prestart_ready': event(require('../../assets/audio/sfx/v1/max/pm_max_prestart_ready_v1.m4a'), 0.26, 48, 800, 900, 'max', { deferAfterVoice: true }),
-  'pm.max.review_open': event(require('../../assets/audio/sfx/v1/max/pm_max_review_open_v1.m4a'), 0.30, 52, 800, 1200, 'max', { deferAfterVoice: true }),
 
   // Профиль и достижения. Файлы сгенерированы владельцем через Firefly
   // по промптам docs/sound/SOUND_PROMPTS_FULL.md (редакция 3).

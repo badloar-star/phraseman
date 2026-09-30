@@ -18,7 +18,6 @@
  * поскольку это full-screen оверлей без Modal-обёртки — как и classic).
  */
 import React, { useCallback, useEffect, useMemo } from 'react';
-import type { TextProps } from 'react-native';
 import { Platform, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
 import { LinearGradient } from './SafeLinearGradient';
 import Animated, {
@@ -47,9 +46,8 @@ import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { soundDirector } from '../modules/audio/sound_director';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
-// зачем: число опыта ведём по UI-потоку через animatedProps (как счётчик места
+// зачем: числовое значение ведём по UI-потоку через animatedProps (как счётчик места
 // в лиге) — обёртка над Text нужна именно для этого, ре-рендеров JS не будет.
-const AnimatedText = Animated.createAnimatedComponent(Text);
 
 // Та же палитра «дорогого» праздника — единый язык с classic-вариантом.
 const PALETTE = DIALOG_VICTORY_HYBRID_PALETTE;
@@ -153,7 +151,6 @@ function MetricCard({
 
 export type DialogVictoryCelebrationHybridProps = {
   lang: Lang;
-  xp: number;
   replies: number;
   goalsMet: number;
   goalsTotal: number;
@@ -164,7 +161,6 @@ export type DialogVictoryCelebrationHybridProps = {
 
 export function DialogVictoryCelebrationHybrid({
   lang,
-  xp,
   replies,
   goalsMet,
   goalsTotal,
@@ -189,12 +185,6 @@ export function DialogVictoryCelebrationHybrid({
   const confettiProgress = useSharedValue(0);
   const titleAnim = useSharedValue(0);
   const ctaIn = useSharedValue(0);
-  // зачем: аудит 2026-08-17 — счётчик опыта крутился через setInterval(16мс)
-  // с setState, то есть ре-рендерил JS-поток 60 раз в секунду ровно тогда,
-  // когда на UI-потоке идут салют, кольцо и пружины. Ведём число по UI-потоку
-  // (тот же приём, что у счётчика места в лиге) — ре-рендеров ноль.
-  const xpTick = useSharedValue(0);
-
   const RING_SIZE = Math.min(width * 0.56, 220);
   const RING_R = (RING_SIZE - 18) / 2;
   const RING_C = 2 * Math.PI * RING_R;
@@ -221,7 +211,6 @@ export function DialogVictoryCelebrationHybrid({
       titleAnim.value = 1;
       ctaIn.value = 1;
       void hapticSuccess();
-      xpTick.value = xp;
       return undefined;
     }
 
@@ -269,16 +258,6 @@ export function DialogVictoryCelebrationHybrid({
       void hapticSuccess();
     }, LUM.ladder[1]);
 
-    if (xp > 0) {
-      // разгон числа на UI-потоке: та же кривая «out cubic» и та же секунда,
-      // но без единого ре-рендера JS — счётчик больше не конкурирует с салютом
-      xpTick.value = 0;
-      xpTick.value = withDelay(
-        Math.max(0, ctaDelay - 700),
-        withTiming(xp, { duration: 1000, easing: REasing.out(REasing.cubic) }),
-      );
-    }
-
     return () => {
       clearTimeout(hHero);
       cancelAnimation(backdrop);
@@ -293,12 +272,11 @@ export function DialogVictoryCelebrationHybrid({
       cancelAnimation(confettiProgress);
       cancelAnimation(titleAnim);
       cancelAnimation(ctaIn);
-      cancelAnimation(xpTick);
     };
     // зачем: пересобираем последовательность заново на каждый показ; shared values
     // не мутируются вне эффекта (нет setState в кадрах).
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [reduceMotion, goalsFraction, isFullClear, xp, handleImpact]);
+  }, [reduceMotion, goalsFraction, isFullClear, handleImpact]);
 
   const handleDone = useCallback(() => {
     onDone();
@@ -323,14 +301,6 @@ export function DialogVictoryCelebrationHybrid({
   const ringProps = useAnimatedProps(() => ({
     strokeDashoffset: RING_C * (1 - ringProgress.value),
   }));
-  // зачем: то же, что rankTextProps в LeagueResultHybrid — число печатается
-  // нативно из UI-потока; тип приводим к Partial<TextProps>, потому что у
-  // обёртки над Text нативных пропов text/defaultValue в типах нет.
-  const xpTextProps = useAnimatedProps<Partial<TextProps>>(() => ({
-    text: String(Math.round(xpTick.value)),
-    defaultValue: String(Math.round(xpTick.value)),
-  } as Partial<TextProps>));
-
   const titleStyle = useAnimatedStyle(() => ({
     opacity: titleAnim.value,
     transform: [{ translateY: interpolate(titleAnim.value, [0, 1], [14, 0]) }],
@@ -438,16 +408,6 @@ export function DialogVictoryCelebrationHybrid({
           <Text style={styles.subtitle}>{subtitle}</Text>
         </Animated.View>
 
-        {xp > 0 && (
-          <View style={styles.xpRow}>
-            <Text style={styles.xpPlus}>+</Text>
-            <AnimatedText style={styles.xpValue} animatedProps={xpTextProps}>
-              {'0'}
-            </AnimatedText>
-            <Text style={styles.xpUnit}>XP</Text>
-          </View>
-        )}
-
         <View style={styles.metricsRow}>
           <MetricCard
             index={0}
@@ -521,10 +481,6 @@ const styles = StyleSheet.create({
   confettiLayer: { position: 'absolute', alignItems: 'center', justifyContent: 'center' },
   title: { color: PALETTE.text, fontSize: 28, fontWeight: '700', marginTop: 24, letterSpacing: 0.3, textAlign: 'center' },
   subtitle: { color: PALETTE.textDim, fontSize: 15, marginTop: 7, textAlign: 'center' },
-  xpRow: { flexDirection: 'row', alignItems: 'flex-end', marginTop: 18 },
-  xpPlus: { color: PALETTE.gold, fontSize: 24, fontWeight: '700', marginBottom: 5 },
-  xpValue: { color: PALETTE.goldBright, fontSize: 52, fontWeight: '700', lineHeight: 56, marginHorizontal: 2 },
-  xpUnit: { color: PALETTE.gold, fontSize: 18, fontWeight: '700', marginBottom: 6, marginLeft: 4 },
   metricsRow: { flexDirection: 'row', gap: 12, marginTop: 26 },
   metricCard: {
     width: 96,

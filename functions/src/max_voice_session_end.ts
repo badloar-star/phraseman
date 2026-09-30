@@ -7,7 +7,7 @@
 //
 // maxVoiceSessionEnd: серверный сеттлмент min(факт, резерв) через
 // settleVoiceSession, billing-запись voice_call_billing со всеми полями и
-// серверный расчёт XP. Клиентским секундам в деньгах не верим: факт считается
+// серверный расчёт биллинга. Клиентским секундам в деньгах не верим: факт считается
 // от серверных часов разговора (activatedAtMs — первый heartbeat, иначе
 // sessionStartedAtMs); клиентские цифры — только вниз и в фрод-лог.
 // ═══════════════════════════════════════════════════════════════════════════
@@ -22,11 +22,11 @@ import { asVoiceCefr } from './max_voice_prompt';
 import {
   VOICE_QUOTA_COLLECTION,
   ensureCanonicalVoiceQuota,
-  settleVoiceSessionWithXp,
+  settleVoiceSessionWithSnapshot,
   voiceQuotaDocId,
   voiceSessionClockStartMs,
 } from './max_voice_quota';
-import { VOICE_EST_COST_USD_PER_MIN, refundVoiceBudgetEstimate, utcDayKey } from './max_voice_mint';
+import { VOICE_EST_COST_USD_PER_MIN, refundVoiceBudgetEstimate } from './max_voice_mint';
 import {
   MAX_VOICE_OPS_EVENT_SCHEMA,
   recordMaxVoiceOpsOnce,
@@ -147,77 +147,12 @@ export function estimateVoiceCostUsd(usage: VoiceUsageTotals, chargedSec: number
   return { estCostUsd: tokensUsd + transcriptionCostUsd, transcriptionCostUsd };
 }
 
-// ── XP ──────────────────────────────────────────────────────────────────────
-
-/** rate(CEFR): на высоких уровнях минута речи «тяжелее». */
-export const VOICE_XP_CEFR_RATE: Record<'A1' | 'A2' | 'B1' | 'B2', number> = {
-  A1: 1,
-  A2: 1,
-  B1: 1.2,
-  B2: 1.4,
-};
-
-/**
- * Минимум РЕАЛЬНОЙ речи для XP-floor: 30 секунд по серверной оценке из
- * audio-input токенов Realtime (~AUDIO_TOKENS_PER_SEC ток/с → 300 токенов).
- * Зачем: repliesCount — чисто клиентское поле, и floor «5 XP/минуту при ≥1
- * реплике» без серверного подтверждения фармился бы молчанием в открытый
- * микрофон с repliesCount=1. Аудио-вход накрутить «бесплатно» нельзя — токены
- * входа оплачиваются самим звонком и копятся сервером из heartbeat'ов.
- */
-export const VOICE_XP_FLOOR_MIN_SPEECH_SEC = 30;
-export const VOICE_XP_FLOOR_MIN_AUDIO_TOKENS = VOICE_XP_FLOOR_MIN_SPEECH_SEC * AUDIO_TOKENS_PER_SEC;
-
-export interface VoiceXpArgs {
-  clientSpeechSec: number;
-  sessionSec: number;
-  transcriptWordCount: number;
-  replies: number;
-  /** Серверный аккумулятор audio-input токенов — подтверждение, что речь была. */
-  audioInputTokens: number;
-  cefr: string;
-  xpRatePerSpeechMin: number;
-  xpDailyCap: number;
-}
-
-/**
- * Формула спеки: xp = min(clientSpeechSec, sessionSec×0.8, wordCount/2) × rate(CEFR),
- * где базовая ставка — xpRatePerSpeechMin за минуту речи. Каждый кламп — своя
- * защита от накрутки: речи не может быть больше 80% сессии, и болтовня без слов
- * (тишина в открытый микрофон) не оплачивается. Floor: 5 XP за каждую полную
- * минуту сессии при ≥1 реплике И серверном подтверждении речи
- * (audioInputTokens ≥ VOICE_XP_FLOOR_MIN_AUDIO_TOKENS): клиентскому repliesCount
- * одному не верим. Сверху — дневной кэп.
- */
-export function computeVoiceXp(args: VoiceXpArgs): number {
-  const sessionSec = Math.max(0, args.sessionSec);
-  const speechSec = Math.max(0, Math.min(
-    args.clientSpeechSec,
-    sessionSec * 0.8,
-    Math.max(0, args.transcriptWordCount) / 2,
-  ));
-  const rate = VOICE_XP_CEFR_RATE[asVoiceCefr(args.cefr)];
-  let xp = Math.round((speechSec / 60) * args.xpRatePerSpeechMin * rate);
-  const speechConfirmed = Math.max(0, args.audioInputTokens) >= VOICE_XP_FLOOR_MIN_AUDIO_TOKENS;
-  if (args.replies >= 1 && speechConfirmed) {
-    xp = Math.max(xp, 5 * Math.floor(sessionSec / 60));
-  }
-  return Math.max(0, Math.min(xp, Math.max(0, args.xpDailyCap)));
-}
-
 /** true — клиентские секунды речи завышены к серверной оценке больше чем на 30%. */
 export function detectSpeechDrift(clientSpeechSec: number, audioInputTokens: number): boolean {
   if (!(audioInputTokens > 0) || !(clientSpeechSec > 0)) return false;
   const serverEstSec = audioInputTokens / AUDIO_TOKENS_PER_SEC;
   return clientSpeechSec > serverEstSec * 1.3;
 }
-
-// зачем (P1-13, 2026-08-23): accrueVoiceXpDaily + VoiceXpAccrualArgs удалены.
-// Дневной XP-кэп теперь считается ВНУТРИ settleVoiceSessionWithXp, той же
-// транзакцией, что и сеттлмент. Оставлять вторую, отдельную точку начисления
-// на тот же документ опасно: вызов её вдобавок к транзакции начислил бы XP
-// дважды. Формула кэпа (аккумулятор xpAwardedToday + reset по UTC-дню)
-// перенесена в max_voice_quota.ts без изменений.
 
 // ── Billing row ─────────────────────────────────────────────────────────────
 
@@ -236,7 +171,6 @@ export interface VoiceBillingRowArgs {
   cefr: string | null;
   trialVariant: 'companion' | 'scenario' | null;
   clientSpeechSec: number;
-  xpAwarded: number;
   sessionStartedAtMs: number;
   nowMs: number;
 }
@@ -272,7 +206,6 @@ export async function writeVoiceBillingRow(db: Firestore, row: VoiceBillingRowAr
     trialVariant: row.trialVariant,
     endReason: row.endReason,
     clientSpeechSec: row.clientSpeechSec,
-    xpAwarded: row.xpAwarded,
     sessionStartedAtMs: row.sessionStartedAtMs,
     createdAt: admin.firestore.FieldValue.serverTimestamp(),
     createdAtMs: row.nowMs,
@@ -426,11 +359,11 @@ export const maxVoiceSessionEnd = onCall({
   // к одному документу voice_call_quotas — quotaRef.get() ради снимка, затем
   // транзакция settleVoiceSession, затем транзакция accrueVoiceXpDaily. Три
   // раунд-трипа на каждый звонок, и между ними документ мог измениться
-  // (watchdog, второй end): XP начислялся уже по другому состоянию, чем то,
+  // (watchdog, второй end): usage начислялся уже по другому состоянию, чем то,
   // что прочитал снимок.
   //
-  // Теперь всё это — одна транзакция settleVoiceSessionWithXp. Она читает док
-  // один раз и отдаёт снимок наружу, поэтому расчёт секунд/usage/XP переехал
+  // Теперь всё это — одна транзакция snapshot settlement. Она читает док
+  // один раз и отдаёт снимок наружу, поэтому расчёт секунд/usage выполняется
   // в чистые функции, которые транзакция зовёт у себя внутри. Формулы, клампы
   // и порядок вычислений сохранены 1:1 — менялась только «упаковка».
   // Ссылка на док квоты нужна и после транзакции — как markerRef для
@@ -441,7 +374,6 @@ export const maxVoiceSessionEnd = onCall({
   const reportedUsage = sanitizeVoiceUsage(data.usage);
   const endReason = asVoiceEndReason(data.endReason);
   const cefr = asVoiceCefr(data.cefr);
-  const replies = nonNegInt(data.repliesCount);
 
   /**
    * Серверные часы разговора из снимка дока. Клиентским секундам в деньгах не
@@ -482,7 +414,7 @@ export const maxVoiceSessionEnd = onCall({
     });
   };
 
-  const settle = await settleVoiceSessionWithXp(db, {
+  const settle = await settleVoiceSessionWithSnapshot(db, {
     authUid,
     stableUid,
     sessionId,
@@ -491,20 +423,6 @@ export const maxVoiceSessionEnd = onCall({
     resolveActualSec: serverElapsedFrom,
     endReason,
     nowMs,
-    xpDayKey: utcDayKey(nowMs),
-    xpDailyCap: config.xpDailyCap,
-    // Чистая функция: зовётся ВНУТРИ транзакции, к БД не обращается.
-    computeXp: (chargedSec: number, quotaData: Record<string, unknown>) => computeVoiceXp({
-      clientSpeechSec: Math.min(nonNegInt(data.clientSpeechSec), chargedSec),
-      sessionSec: chargedSec,
-      transcriptWordCount: nonNegInt(data.transcriptWordCount),
-      replies,
-      // max(heartbeat-аккумулятор, финальный отчёт) — серверное подтверждение речи.
-      audioInputTokens: usageFrom(quotaData).audioInputTokens,
-      cefr,
-      xpRatePerSpeechMin: config.xpRatePerSpeechMin,
-      xpDailyCap: config.xpDailyCap,
-    }),
   });
 
   // зачем: снимок берём из РЕЗУЛЬТАТА транзакции, а не через побочный эффект
@@ -515,7 +433,6 @@ export const maxVoiceSessionEnd = onCall({
   const startedAtMs = voiceSessionClockStartMs(quotaData);
   const usage: SanitizedVoiceUsageTotals = usageFrom(quotaData);
   const serverElapsedSec = serverElapsedFrom(quotaData);
-  const xpAwarded = settle.xpAwarded;
 
   if (Math.abs(serverElapsedSec - clientElapsedSec) > 30) {
     // Не фрод сам по себе (сон процесса, kill app) — но сигнал в аналитику.
@@ -526,7 +443,7 @@ export const maxVoiceSessionEnd = onCall({
 
   if (settle.alreadySettled) {
     // Двойной end / гонка с watchdog: ничего не списываем и не пишем второй billing.
-    return { ok: true, alreadySettled: true, chargedSec: 0, refundedSec: 0, xpAwarded: 0 };
+    return { ok: true, alreadySettled: true, chargedSec: 0, refundedSec: 0 };
   }
 
   // Сторно бюджета: неиспользованный хвост резерва возвращается в дневной счётчик.
@@ -562,7 +479,6 @@ export const maxVoiceSessionEnd = onCall({
     cefr,
     trialVariant: trialVariantRaw === 'companion' || trialVariantRaw === 'scenario' ? trialVariantRaw : null,
     clientSpeechSec,
-    xpAwarded,
     sessionStartedAtMs: startedAtMs,
     nowMs,
   });
@@ -610,9 +526,6 @@ export const maxVoiceSessionEnd = onCall({
     alreadySettled: false,
     chargedSec: settle.chargedSec,
     refundedSec: settle.refundedSec,
-    // XP начисляет КЛИЕНТ через существующий xp_manager-контур (XPSource 'max_voice');
-    // сервер отдаёт посчитанное значение и фиксирует его в billing для сверки.
-    xpAwarded,
     endReason,
   };
 });

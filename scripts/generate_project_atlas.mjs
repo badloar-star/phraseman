@@ -561,7 +561,6 @@ function buildCriticalPaths(model) {
   };
 
   addPath("XP -> Leaderboard -> Hall", [
-    "app/xp_manager.ts",
     "app/firestore_leaderboard.ts",
     "app/(tabs)/hall_of_fame.tsx",
   ]);

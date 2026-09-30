@@ -7,7 +7,6 @@ export type OverlayKey =
   | 'broadcast'
   | 'appMessageModal'
   | 'personalAdminMessage'
-  | 'leagueBonusAvailable'
   | 'notifNudge'
   | 'introFullAccess'
   | 'levelUp'
@@ -16,15 +15,10 @@ export type OverlayKey =
   | 'dailyJourneyDev'
   | 'premiumCelebration'
   | 'vipCelebration'
-  | 'leagueResult'
   | 'streakRevive'
   | 'entitlementExpired'
   | 'referralWelcome'
   | 'friendGift'
-  | 'mysteryMondayChest'
-  | 'comebackDay'
-  | 'perfectWeekReward'
-  | 'boonActivated'
   | 'devHub'
   | 'compassBriefing'
   | 'lessonResultsSequence'
@@ -33,7 +27,6 @@ export type OverlayKey =
   | 'reviewPrompt'
   | 'coinsMigration'
   | 'shardsEarned'
-  | 'achievementToast'
   | 'coachToast'
   | 'actionToast';
 
@@ -58,7 +51,6 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'broadcast',
   'appMessageModal',
   'personalAdminMessage',
-  'leagueBonusAvailable',
   'notifNudge',
   'introFullAccess',
   'levelUp',
@@ -70,14 +62,10 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'dailyJourneyDev',
   'premiumCelebration',
   'vipCelebration',
-  'leagueResult',
   'streakRevive',
   'entitlementExpired',
   'referralWelcome',
   'friendGift',
-  'mysteryMondayChest',
-  'comebackDay',
-  'boonActivated',
   // DEV Hub owns one uninterrupted slot while handing off from its native
   // tool sheet to an in-tree preview.
   'devHub',
@@ -90,18 +78,11 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'collectibleDrop',
   'reviewPrompt',
   'shardsEarned',
-  'achievementToast',
   'coachToast',
   'actionToast',
   // coinsMigration — одноразовый информ-модал «Осколки → Монеты» (без награды по тапу,
-  // закрывает юзер): дожидается всех наград/тостов, стоит перед «идеальной неделей».
+  // закрывает юзер): дожидается всех наград/тостов.
   'coinsMigration',
-  // perfectWeekReward — недельный бонус («Идеальная неделя»). По требованию показывается
-  // САМЫМ ПОСЛЕДНИМ: дожидается, пока закроются ВСЕ остальные окна (приветствие, обновление,
-  // «что нового», компас, праздники, тосты) — и только тогда занимает слот. Награда уже
-  // начислена в PerfectWeekHost при eligibility (claim до рендера), поэтому ждать слот
-  // безопасно: даже если юзер уйдёт раньше, осколки не теряются — модалка лишь сообщает.
-  'perfectWeekReward',
 ];
 
 // Транзиентный «тост-ярус»: оверлеи, которые сами по себе автозакрываются по таймеру
@@ -109,7 +90,7 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
 // сторож (H-ARBITER) имеет право принудительно выселять и карантинить.
 //
 // КРУПНЫЕ модалки (update/releaseNotes/broadcast/levelUp/подарки/праздники/intro/loyalty/
-// celebration/leagueResult/streakRevive/… — всё, чего здесь НЕТ) закрывает
+// celebration/streakRevive/… — всё, чего здесь НЕТ) закрывает
 // ПОЛЬЗОВАТЕЛЬ. Их НЕЛЬЗЯ выселять по таймеру: иначе если юзер просто читает окно >15с,
 // а за ним ждёт мелкий тост, окно (и его награда, напр. сундук level-up) пропадёт на всю
 // сессию. Это и был баг: сторож карантинил живую модалку как «зависшую».
@@ -118,16 +99,8 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
 // пользователь тапом, поэтому выселение по таймеру недопустимо.
 export const FORCE_EVICTABLE_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
   'shardsEarned',
-  'achievementToast',
   'coachToast',
   'actionToast',
-  // boonActivated — ИНФОРМАЦИОННАЯ плашка «бонус дня активирован» (бонус уже включён,
-  // закрытие НЕ выдаёт награду — см. BoonActivatedHost.close: только markShown+wantShow=false).
-  // Поэтому её ОБЯЗАТЕЛЬНО можно выселять сторожем: если юзер не нажал «Отлично», а свернул
-  // приложение / ушёл навигацией, wantShow застревает true → слот занят → все тосты ниже по
-  // приоритету мертвы до перезапуска (рецидив бага «все тосты глобально пропали»). В отличие
-  // от сундуков (mystery/comeback/perfectWeek) тут терять нечего — плашка лишь информирует.
-  'boonActivated',
 ]);
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -154,7 +127,6 @@ export const NATIVE_MODAL_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
   'broadcast',
   'appMessageModal',
   'personalAdminMessage',
-  'leagueBonusAvailable',
   'notifNudge',
   'introFullAccess',
   'levelUp',
@@ -162,21 +134,15 @@ export const NATIVE_MODAL_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
   'dailyJourneyDev',
   'premiumCelebration',
   'vipCelebration',
-  'leagueResult',
   'streakRevive',
   'entitlementExpired',
   'referralWelcome',
   'friendGift',
   'themedAlert',
-  'mysteryMondayChest',
-  'comebackDay',
-  'perfectWeekReward',
-  'boonActivated',
   'devHub',
   'compassBriefing',
   'collectibleDrop',
   'reviewPrompt',
-  'achievementToast',
   'coinsMigration',
 ]);
 
@@ -213,7 +179,6 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   broadcast: false,
   appMessageModal: false,
   personalAdminMessage: false,
-  leagueBonusAvailable: false,
   notifNudge: false,
   introFullAccess: false,
   levelUp: false,
@@ -222,15 +187,10 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   dailyJourneyDev: false,
   premiumCelebration: false,
   vipCelebration: false,
-  leagueResult: false,
   streakRevive: false,
   entitlementExpired: false,
   referralWelcome: false,
   friendGift: false,
-  mysteryMondayChest: false,
-  comebackDay: false,
-  perfectWeekReward: false,
-  boonActivated: false,
   devHub: false,
   compassBriefing: false,
   lessonResultsSequence: false,
@@ -238,7 +198,6 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   collectibleDrop: false,
   reviewPrompt: false,
   shardsEarned: false,
-  achievementToast: false,
   coachToast: false,
   actionToast: false,
   coinsMigration: false,

@@ -119,7 +119,7 @@ describe('Arena Expansion pure contracts', () => {
   it('scores speed mastery exactly and keeps all noncompetitive modes hard-zero', () => {
     expect(arenaSpeedSkill(4, 0)).toBe(1);
     expect(arenaSpeedSkill(3, 4)).toBe(0.5);
-    expect(arenaRunEligibility('today', 'friend')).toMatchObject({ todayStars: true, mastery: true, spin: false });
+    expect(arenaRunEligibility('today', 'friend')).toMatchObject({ todayStars: false, mastery: true, spin: false });
     expect(arenaRunEligibility('ghost', 'quick')).toMatchObject({ baseStars: false, rating: false, mastery: false });
     expect(arenaRunEligibility('rival', 'ranked')).toMatchObject({ baseStars: false, rating: false, spin: false });
     // Владелец 2026-08-29: руны вернулись в быстрый матч (D-07 отменено).
@@ -127,10 +127,10 @@ describe('Arena Expansion pure contracts', () => {
     // превращаться в косвенную награду за казуальный режим.
     expect(arenaRunEligibility('match', 'quick'))
       .toMatchObject({
-        baseStars: true, rating: false, spin: false, mastery: false,
+        baseStars: false, rating: false, spin: false, mastery: false,
         partnerActivity: false, profileOutcome: true,
       });
-    expect(arenaRunEligibility('match', 'ranked')).toMatchObject({ baseStars: true, rating: true, spin: true });
+    expect(arenaRunEligibility('match', 'ranked')).toMatchObject({ baseStars: false, rating: true, spin: false });
   });
 
   it('uses weekly spotlight thresholds three and five for at most 30 stars', () => {

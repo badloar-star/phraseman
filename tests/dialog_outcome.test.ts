@@ -2,7 +2,6 @@ import {
   parseTurnState,
   neutralTurnState,
   isTerminalOutcome,
-  outcomeXpMultiplier,
   outcomeTitle,
   objectiveLabel,
   type DialogOutcome,
@@ -74,20 +73,6 @@ describe('dialog_outcome — контракт исхода диалога', () =
       expect(isTerminalOutcome('success')).toBe(true);
       expect(isTerminalOutcome('lost_patience')).toBe(true);
       expect(isTerminalOutcome('stalled')).toBe(true);
-    });
-  });
-
-  describe('outcomeXpMultiplier — больше XP за успех, провал >0', () => {
-    it('success полный, провал/заглох меньше но не ноль', () => {
-      expect(outcomeXpMultiplier('success')).toBe(1);
-      expect(outcomeXpMultiplier('stalled')).toBeGreaterThan(0);
-      expect(outcomeXpMultiplier('lost_patience')).toBeGreaterThan(0);
-      expect(outcomeXpMultiplier('success')).toBeGreaterThan(outcomeXpMultiplier('stalled'));
-      expect(outcomeXpMultiplier('stalled')).toBeGreaterThan(outcomeXpMultiplier('lost_patience'));
-    });
-
-    it('ongoing → 0 (диалог не завершён)', () => {
-      expect(outcomeXpMultiplier('ongoing')).toBe(0);
     });
   });
 

@@ -17,7 +17,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import LingmanCertificateSvg from './share_cards/LingmanCertificateSvg';
 import { shareCardFromSvgRef } from './share_cards/shareCardPng';
 import CertificateNameModal from './CertificateNameModal';
-import XpGainBadge from './XpGainBadge';
 import ScreenGradient from './ScreenGradient';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -139,11 +138,6 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert, mo
   // Адаптивная ширина превью карточки сертификата на «экране результата»
   // (внутри ScrollView с padding 24).
   const certCardWidth = Math.min(420, Math.max(220, winW - 96));
-
-  const examXp = useMemo(
-    () => (cert.pct >= 90 ? 10000 : 50 + Math.round(cert.pct / 2)),
-    [cert.pct],
-  );
 
   // Демо-вопросы под текущий total: берём из стаба, докручиваем правильные/неправильные
   // под cert.score, чтобы цифры в шапке и галочки в списке били друг с другом.
@@ -288,10 +282,6 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert, mo
             <Text style={{ color: t.textSecond, fontSize: f.h2, marginBottom: 24 }}>
               {cert.score} / {cert.total} — {cert.pct}%
             </Text>
-            <View style={{ marginBottom: 16 }}>
-              <XpGainBadge amount={examXp} visible={true} />
-            </View>
-
             <View
               style={{
                 backgroundColor: t.bgCard, borderRadius: 16, padding: 20,

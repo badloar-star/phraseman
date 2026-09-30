@@ -170,12 +170,15 @@ describe('тексты пейволов не врут после смены пр
 describe('карточки: кнопка тренировки показывает остаток', () => {
   const source = read('app', 'flashcards', 'FlashcardsHubScreen.tsx');
 
-  it('точки нарисованы на кнопке', () => {
-    expect(source).toMatch(/<SpeakingQuotaDots[\s\S]{0,400}quota=\{quotaPreview\}/);
+  // зачем (2.0, месячный лимит тренировок): рядом с кнопкой теперь общий индикатор
+  // MonthlyTrainingSessionIndicator («N из 30 в этом месяце»), а не три точки
+  // SpeakingQuotaDots, и без отдельной плашки Plus — исчерпание объясняет текст индикатора.
+  // Сохранено главное: остаток виден у кнопки, а тап по исчерпанной тренировке ведёт на пейвол.
+  it('остаток нарисован рядом с кнопкой', () => {
+    expect(source).toMatch(/<MonthlyTrainingSessionIndicator[\s\S]{0,400}quota=\{quotaPreview\}/);
   });
 
-  it('исчерпано — плашка Plus и пейвол по тапу', () => {
-    expect(source).toMatch(/trainingLocked \? <PlusBadge/);
+  it('исчерпано — пейвол по тапу', () => {
     expect(source).toMatch(/if \(trainingLocked\)[\s\S]{0,260}openTrainingPaywall/);
   });
 

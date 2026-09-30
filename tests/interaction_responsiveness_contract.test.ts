@@ -54,8 +54,12 @@ describe('instant interaction response contract', () => {
     const speakStart = speak.indexOf('const onPressIn');
     expect(speak.indexOf('press.value =', speakStart)).toBeLessThan(speak.indexOf('hapticTap()', speakStart));
 
-    const tabs = read('app', '(tabs)', '_layout.tsx');
-    const tabPressStart = tabs.indexOf('const beginTabPress');
+    // зачем (2.0, таббар «В · Тёплая кромка», D97): нижнюю панель рисует V2TabBar, а не
+    // _layout.tsx с beginTabPress — правило то же: пружина нажатия стартует раньше хаптика.
+    const tabs = read('components', 'v2', 'V2TabBar.tsx');
+    const tabPressStart = tabs.indexOf('const pressIn');
+    expect(tabPressStart).toBeGreaterThanOrEqual(0);
+    expect(tabs.indexOf('Animated.spring', tabPressStart)).toBeGreaterThanOrEqual(0);
     expect(tabs.indexOf('Animated.spring', tabPressStart)).toBeLessThan(tabs.indexOf('hapticTap()', tabPressStart));
   });
 

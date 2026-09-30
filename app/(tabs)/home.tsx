@@ -2481,22 +2481,30 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             const lessonEntriesWithLastOpened = await AsyncStorage.multiGet([...lessonKeys, lastOpenedKey]);
             const lessonEntries = lessonEntriesWithLastOpened.slice(0, lessonKeys.length);
             const lastLessonIdKey = lessonEntriesWithLastOpened[lessonKeys.length]?.[1] ?? null;
-            for (const [, saved] of lessonEntries) {
-                if (saved) {
-                    // Inner try/catch: одна порченная запись прогресса (битый JSON в AsyncStorage)
-                    // не должна валить весь loadData → баннер «Обновить» вместо Главной.
-                    try {
-                        const p: unknown = JSON.parse(saved);
-                        if (Array.isArray(p)) {
-                            const correct = p.filter(x => x === 'correct' || x === 'replay_correct').length;
-                            if (correct >= 45) done++;
+            // зачем: контракт tests/home_lesson_progress_single_pass — каждый сохранённый
+            // урок парсится ОДИН раз, а число верных считается циклом без filter-массивов;
+            // результат переиспользует блок «последний урок» ниже (раньше парсил заново).
+            const correctByLesson: number[] = new Array(lessonEntries.length).fill(0);
+            lessonEntries.forEach(([, saved], index) => {
+                if (!saved) return;
+                // Inner try/catch: одна порченная запись прогресса (битый JSON в AsyncStorage)
+                // не должна валить весь loadData → баннер «Обновить» вместо Главной.
+                try {
+                    const p: unknown = JSON.parse(saved);
+                    if (Array.isArray(p)) {
+                        let correct = 0;
+                        for (let i = 0; i < p.length; i += 1) {
+                            const x = p[i];
+                            if (x === 'correct' || x === 'replay_correct') correct += 1;
                         }
-                    } catch (e) {
-      // битая запись — пропускаем, не считаем как завершённый
-      DebugLogger.error('home:correct', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
+                        correctByLesson[index] = correct;
+                        if (correct >= 45) done++;
+                    }
+                } catch (e) {
+                    // битая запись — пропускаем, не считаем как завершённый
+                    DebugLogger.error('home:correct', e instanceof Error ? e : new Error(String(e)), 'warning');
                 }
-            }
+            });
             if (mountedRef.current)
                 setLessonsCompleted(done);
             let snapLastLessonId: number | null = null;
@@ -2525,35 +2533,14 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             }
             if (lastId && lastId >= 1 && lastId <= 32) {
                 const lessonNames = lessonNamesForStudyTarget(lang, studyTarget);
-                const saved = lessonEntries[lastId - 1]?.[1] ?? null;
                 snapLastLessonId = lastId;
-                if (saved) {
-                    // Inner try/catch (см. цикл выше): битый JSON одного урока не
-                    // должен валить загрузку «последнего урока» на Главной.
-                    try {
-                        const p: unknown = JSON.parse(saved);
-                        if (Array.isArray(p)) {
-                            const correct = p.filter(x => x === 'correct' || x === 'replay_correct').length;
-                            const scoreStr = (correct / 50 * 5).toFixed(1);
-                            snapLastLessonProgress = correct;
-                            snapLastLessonScore = scoreStr;
-                            setLastLesson({ id: lastId, name: lessonNames[lastId - 1], progress: correct, score: scoreStr });
-                        } else {
-                            snapLastLessonProgress = 0;
-                            snapLastLessonScore = '0.0';
-                            setLastLesson({ id: lastId, name: lessonNames[lastId - 1], progress: 0, score: '0.0' });
-                        }
-                    } catch {
-                        snapLastLessonProgress = 0;
-                        snapLastLessonScore = '0.0';
-                        setLastLesson({ id: lastId, name: lessonNames[lastId - 1], progress: 0, score: '0.0' });
-                    }
-                }
-                else {
-                    snapLastLessonProgress = 0;
-                    snapLastLessonScore = '0.0';
-                    setLastLesson({ id: lastId, name: lessonNames[lastId - 1], progress: 0, score: '0.0' });
-                }
+                // зачем: берём уже посчитанное выше число верных (0 для пустой/битой записи) —
+                // второго JSON.parse и filter здесь нет.
+                const correct = correctByLesson[lastId - 1] ?? 0;
+                const scoreStr = (correct / 50 * 5).toFixed(1);
+                snapLastLessonProgress = correct;
+                snapLastLessonScore = scoreStr;
+                setLastLesson({ id: lastId, name: lessonNames[lastId - 1], progress: correct, score: scoreStr });
             }
             else if (mountedRef.current) {
                 setLastLesson(null);

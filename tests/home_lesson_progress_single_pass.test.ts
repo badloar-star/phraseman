@@ -75,6 +75,9 @@ function createRun(options: Options = {}) {
     lessonProgressKey: progressKey,
     lastOpenedLessonKey: lastKey,
     studyTarget,
+    // зачем: блок Главной передаёт isPremium в resolveLastAvailableLessonId; без него в vm-контексте
+    // ReferenceError глотался catch'ем и давал ложное предупреждение home:lastId.
+    isPremium: false,
     lang: 'uk',
     lessonNamesForStudyTarget: (lang: string, target: string) =>
       Array.from({ length: 32 }, (_, i) => `${lang}:${target}:lesson${i + 1}`),

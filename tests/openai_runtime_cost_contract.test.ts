@@ -21,15 +21,12 @@ describe("OpenAI runtime cost controls", () => {
     expect(companion).not.toContain("(start the conversation: greet me warmly");
   });
 
-  test("weekly review callable is Plus-only and stats insights remain local", () => {
-    const weekly = read("app/weekly_review_client.ts");
+  // зачем: раздел «Итог недели» (weekly_review_client / weeklyReviewGenerate) удалён целиком в 2.0
+  // (D78: удаляемое удаляем из кода вместе с тестами), поэтому проверка Plus-only для него снята.
+  // Остаётся охрана: инсайты статистики считаются локально и не ходят в OpenAI.
+  test("stats insights remain local", () => {
     const stats = read("app/stats_insights_client.ts");
 
-    expect(weekly).toContain("'weeklyReviewGenerate'");
-    expect(weekly).toContain("if (!options.isPremium)");
-    expect(weekly.indexOf("if (!options.isPremium)")).toBeLessThan(
-      weekly.indexOf("import('@react-native-firebase/functions')"),
-    );
     expect(stats).toContain("buildLocalStatsInsights");
     expect(stats).not.toContain("statsInsightsGenerate'");
     expect(stats).not.toContain('"statsInsightsGenerate"');
@@ -111,12 +108,16 @@ describe("OpenAI runtime cost controls", () => {
         callable: "explainChoice",
       },
     ]) {
-      expect(source).toContain(
-        "import { withExplainCallableTimeout } from './explain_callable_timeout'",
+      // зачем: клиенты получили ретрай холодного старта (withAiCallableRetry) и укороченный
+      // таймаут второй попытки — импорт идёт вместе с EXPLAIN_CALLABLE_TIMEOUT_MS, а аргумент
+      // вызова у mistake-клиента называется normalizedReq. Суть сторожа прежняя: каждый
+      // explain-вызов обёрнут таймаутом.
+      expect(source).toMatch(
+        /import \{[^}]*\bwithExplainCallableTimeout\b[^}]*\} from '\.\/explain_callable_timeout'/,
       );
       expect(source).toMatch(
         new RegExp(
-          `withExplainCallableTimeout\\(\\s*fn\\(req\\),\\s*'${callable}'`,
+          `withExplainCallableTimeout\\(\\s*fn\\((?:req|normalizedReq)\\),\\s*'${callable}'`,
         ),
       );
       expect(source).toContain("finally(() =>");

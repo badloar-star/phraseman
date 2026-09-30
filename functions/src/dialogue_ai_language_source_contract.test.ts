@@ -34,12 +34,22 @@ describe('dialogue server language isolation source contract', () => {
 
   it('validates review targets before identity, evidence, rate-limit, and provider work', () => {
     const review = endpointBody(source('premium_dialog_review.ts'), 'premiumDialogReview');
-    const validation = review.indexOf('resolveDialogueTargetBeforeWarmup(');
-    expect(validation).toBeGreaterThanOrEqual(0);
-    expect(validation).toBeLessThan(review.indexOf('resolveStableUidForAuth('));
-    expect(validation).toBeLessThan(review.indexOf('applyTutorMemoryUpdate('));
-    expect(validation).toBeLessThan(review.indexOf('enforceRateLimit('));
-    expect(validation).toBeLessThan(review.indexOf('fetch(OPENAI_CHAT_URL'));
+    // зачем (Dialogue V2, D112): в начале эндпоинта появилась ветка dialogueVersion === 'v2' со своей
+    // серверной валидацией запроса — executeDialogueV2CompletionReview проверяет цель и сценарий
+    // РАНЬШЕ, чем persistDialogueV2CompletionMemory читает личность (resolveStableUidForAuth).
+    // Прежняя проверка порядка теперь относится к устаревшему (не-V2) пути после этой ветки.
+    const v2Branch = review.indexOf("data.dialogueVersion === 'v2'");
+    expect(v2Branch).toBeGreaterThanOrEqual(0);
+    const v2Validation = review.indexOf('executeDialogueV2CompletionReview(');
+    expect(v2Validation).toBeGreaterThan(v2Branch);
+    expect(v2Validation).toBeLessThan(review.indexOf('resolveStableUidForAuth('));
+
+    const legacy = review.slice(review.indexOf('resolveDialogueTargetBeforeWarmup('));
+    expect(legacy.length).toBeGreaterThan(0);
+    expect(legacy.indexOf('resolveStableUidForAuth(')).toBeGreaterThan(0);
+    expect(legacy.indexOf('applyTutorMemoryUpdate(')).toBeGreaterThan(0);
+    expect(legacy.indexOf('enforceRateLimit(')).toBeGreaterThan(0);
+    expect(legacy.indexOf('fetch(OPENAI_CHAT_URL')).toBeGreaterThan(0);
   });
 
   it('validates translation and how-to-say targets before cache, rate-limit, or provider work', () => {

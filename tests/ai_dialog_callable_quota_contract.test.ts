@@ -26,7 +26,9 @@ const valid = Object.freeze({
   ok: true,
   assistantMessage: 'Hola',
   remainingQuota: 4,
-  resetAtMs: Date.UTC(2026, 8, 21),
+  // зачем (D111): лимит Free в Диалогах месячный — сервер шлёт границу календарного месяца UTC
+  // (1-е число, 00:00:00.000); суточная граница (21 сентября) парсером отвергается.
+  resetAtMs: Date.UTC(2026, 9, 1),
   quotaVersion: 9,
   model: 'dialog-model',
 });
@@ -42,6 +44,7 @@ test.each([
   { resetAtMs: String(valid.resetAtMs) },
   { resetAtMs: null },
   { resetAtMs: [valid.resetAtMs] },
+  { resetAtMs: Date.UTC(2026, 8, 21) },
   { quotaVersion: '9' },
   { quotaVersion: null },
   { quotaVersion: [9] },

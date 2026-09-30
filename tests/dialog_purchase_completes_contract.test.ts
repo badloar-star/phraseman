@@ -1,27 +1,21 @@
 /**
- * ГЛАВНЫЙ сторож покупки диалога: она обязана ВЕРНУТЬСЯ.
+ * Сторож: прямая покупка диалога за руны ЗАКРЫТА (D124, PM-140).
  *
- * зачем (владелец 2026-09-20): существующий контракт покупки был ЗЕЛЁНЫМ всё
- * время, пока кнопка была мертва — он проверял ТЕКСТ исходника (grep по файлу),
- * а не поведение. Самозахват замка такой проверкой не ловится в принципе.
- *
- * Здесь покупка вызывается ПО-НАСТОЯЩЕМУ, с активированной личностью.
- * Личность обязательна: без неё `buyDialogAccessLocally` честно отказывает на
- * ВХОДЕ (`identity_changed`) и до замков не доходит — тест был бы зелёным,
- * ничего не проверив. Ровно на это я и наступил при первой попытке, поэтому
- * здесь НЕТ ни одного тихого `return`: каждый тест обязан дойти до покупки.
- *
- * Если самозахват вернётся, тест не «упадёт с ошибкой», а перестанет
- * укладываться в таймаут — точный портрет бага: `step 6` есть, `step 7` нет.
+ * зачем ПЕРЕПИСАНО (2026-09-30): раньше файл проверял, что покупка за руны доходит до
+ * конца, не виснет на замке хранилища и не списывает цену дважды. Владелец решил (D124):
+ * доступ к диалогам — только по монетному рангу, старые покупки за руны не учитываются,
+ * поэтому `buyDialogAccessLocally` теперь всегда отвечает `rank_access_only`. Сценарии
+ * «возвращается и открывает доступ / повторный тап / нехватка рун / два тапа» описывали
+ * удалённую функциональность и убраны. Остаётся то, что обязано быть верно всегда:
+ * отказ честный и мгновенный, руны не списываются и владение не записывается.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 jest.mock('@react-native-async-storage/async-storage', () =>
   require('@react-native-async-storage/async-storage/jest/async-storage-mock'));
 
-// Сеть в покупке не участвует по прямому решению владельца («телефон
-// авторитетен»), но модуль импортирует firebase — глушим, чтобы тест не
-// поднимал нативные модули.
+// Сеть в покупке не участвует, но модуль импортирует firebase — глушим,
+// чтобы тест не поднимал нативные модули.
 jest.mock('@react-native-firebase/app', () => ({ getApp: () => ({}) }));
 jest.mock('@react-native-firebase/functions', () => ({
   getFunctions: () => ({}),
@@ -35,7 +29,7 @@ async function setUpOwner(stars: number) {
   const { mergeLevelSpinServerStars } = require('../app/level_spin_star_grants');
 
   const token = beginAccountGeneration(STABLE_ID);
-  // Личность обязана быть активной — иначе покупка откажет на входе.
+  // Личность обязана быть активной — иначе отказ был бы identity_changed, а не rank_access_only.
   expect(token.stableId).toBe(STABLE_ID);
   expect(token.phase).toBe('active');
 
@@ -43,65 +37,44 @@ async function setUpOwner(stars: number) {
   return token;
 }
 
-describe('покупка диалога доходит до конца', () => {
+async function snapshot(): Promise<Record<string, string | null>> {
+  const keys = await AsyncStorage.getAllKeys();
+  const pairs = await AsyncStorage.multiGet(keys);
+  return Object.fromEntries(pairs);
+}
+
+describe('прямая покупка диалога за руны закрыта (D124)', () => {
   beforeEach(async () => {
     jest.resetModules();
     await AsyncStorage.clear();
   });
 
-  it('ВОЗВРАЩАЕТСЯ и открывает доступ, а не висит на чтении баланса', async () => {
-    const token = await setUpOwner(5523);
+  it('отказывает rank_access_only, не списывает руны и не записывает владение', async () => {
+    const token = await setUpOwner(12000);
     const { buyDialogAccessLocally, getOwnedDialogIds } = require('../app/ai_dialog_ownership');
-    const { readUnifiedLevelSpinStars } = require('../app/level_spin_star_grants');
+    const before = await snapshot();
 
     const result = await buyDialogAccessLocally('en', token, 'first_meeting', 5000);
 
-    // Главное: мы ВООБЩЕ сюда дошли. При самозахвате вызов не возвращался.
-    expect(result).toEqual({ ok: true, alreadyOwned: false, balance: 523 });
-
-    const owned = await getOwnedDialogIds('en', STABLE_ID);
-    expect(owned.has('first_meeting')).toBe(true);
-
-    const { balance } = await readUnifiedLevelSpinStars(token);
-    expect(balance).toBe(523);
+    expect(result).toEqual({ ok: false, reason: 'rank_access_only' });
+    expect(await snapshot()).toEqual(before);
+    expect((await getOwnedDialogIds('en', STABLE_ID)).has('first_meeting')).toBe(false);
   }, 20000);
 
-  it('повторный тап НЕ снимает вторую цену', async () => {
+  it('два тапа одновременно оба получают отказ и ничего не меняют', async () => {
     const token = await setUpOwner(12000);
     const { buyDialogAccessLocally } = require('../app/ai_dialog_ownership');
+    const before = await snapshot();
 
-    const first = await buyDialogAccessLocally('en', token, 'first_meeting', 5000);
-    const second = await buyDialogAccessLocally('en', token, 'first_meeting', 5000);
-
-    expect(first).toEqual({ ok: true, alreadyOwned: false, balance: 7000 });
-    // Цена снята ОДИН раз: 12000 - 5000, а не дважды.
-    expect(second).toEqual({ ok: true, alreadyOwned: true, balance: 7000 });
-  }, 20000);
-
-  it('нехватка рун — честный отказ, а не зависание', async () => {
-    const token = await setUpOwner(100);
-    const { buyDialogAccessLocally } = require('../app/ai_dialog_ownership');
-
-    const result = await buyDialogAccessLocally('en', token, 'first_meeting', 5000);
-    expect(result).toEqual({ ok: false, reason: 'insufficient_runes' });
-  }, 20000);
-
-  it('два тапа ОДНОВРЕМЕННО не списывают цену дважды', async () => {
-    const token = await setUpOwner(12000);
-    const { buyDialogAccessLocally } = require('../app/ai_dialog_ownership');
-
-    // Гонка: оба вызова стартуют до того, как первый успел записать владение.
-    const [a, b] = await Promise.all([
+    const results = await Promise.all([
       buyDialogAccessLocally('en', token, 'first_meeting', 5000),
       buyDialogAccessLocally('en', token, 'first_meeting', 5000),
     ]);
 
-    expect(a.ok).toBe(true);
-    expect(b.ok).toBe(true);
-    if (!a.ok || !b.ok) throw new Error('обе покупки обязаны завершиться');
-    // Ровно одна из двух — настоящая трата, вторая узнаёт уже купленное.
-    expect([a.alreadyOwned, b.alreadyOwned].sort()).toEqual([false, true]);
-    expect(a.balance).toBe(7000);
-    expect(b.balance).toBe(7000);
+    expect(results).toEqual([
+      { ok: false, reason: 'rank_access_only' },
+      { ok: false, reason: 'rank_access_only' },
+    ]);
+    expect(await snapshot()).toEqual(before);
   }, 20000);
 });

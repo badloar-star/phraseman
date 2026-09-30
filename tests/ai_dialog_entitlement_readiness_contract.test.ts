@@ -31,12 +31,18 @@ describe('AI-dialog entitlement readiness contract', () => {
       'useEffect(() => {',
       '// Приветствие собеседника присутствует',
     );
-    expect(redirectEffect).toContain('if (!accessResolved || !companionGateOpen) return;');
-    expect(redirectEffect).toContain('[accessResolved, accountStableId, companionGateOpen, hasPremiumAccess, router, studyTarget]');
+    // зачем (D111/D124): дневной гейт квоты (companionGateOpen/dailyQuotaGate) удалён — у Plus
+    // безлимит, у Free месячный счёт ведёт сервер. Редирект на пейвол по-прежнему стоит
+    // только ПОСЛЕ разрешения доступа (иначе Plus-пользователя на миг увело бы на пейвол).
+    expect(redirectEffect).toContain('if (!accessResolved || hasPremiumAccess) return;');
+    expect(redirectEffect).toContain('[accessResolved, hasPremiumAccess, openCompanionPlusPaywall]');
 
     const send = between(companion, 'const send = useCallback(', '// Приветствие уже в начальном состоянии.');
-    expectResolutionGuardBefore(send, "if (!hasPremiumAccess && dailyQuotaGate !== 'open')");
-    expectResolutionGuardBefore(send, 'sendToTheo(trimmed, history)');
+    const sendGuard = send.indexOf('if (!accessResolved || !hasPremiumAccess) {');
+    expect(sendGuard).toBeGreaterThan(-1);
+    // пейвол из отправки открывается только при разрешённом доступе, до похода на сервер
+    expect(send.indexOf('if (accessResolved) openCompanionPlusPaywall();')).toBeGreaterThan(sendGuard);
+    expect(send.indexOf('sendToTheo(trimmed, history)')).toBeGreaterThan(sendGuard);
     expect(send).toContain('accessResolved');
   });
 
@@ -88,7 +94,9 @@ describe('AI-dialog entitlement readiness contract', () => {
       'voiceInputMountedRef.current = true;',
     );
     // 2026-09-13: голосовой ввод идёт через дневную квоту речи, а не через Plus-замок.
-    expectResolutionGuardBefore(voice, 'if (!voiceInputGate.tryStartAttempt())');
+    // зачем: проверка права стала canStartAttempt() (списание — commitStartedAttempt() уже
+    // после старта распознавателя), но гейт по-прежнему стоит после разрешения доступа.
+    expectResolutionGuardBefore(voice, 'if (!voiceInputGate.canStartAttempt())');
 
     const analysisMarker = scenario.indexOf("source: 'dialog_analysis'");
     const analysisPaywall = scenario.slice(analysisMarker - 220, analysisMarker + 360);
@@ -107,11 +115,12 @@ describe('AI-dialog entitlement readiness contract', () => {
     expect(catalogue).toContain('const { accessResolved, hasPremiumAccess } = usePremium();');
 
     const coursePress = between(catalogue, 'const openCourseScenario = useCallback(', 'const openChallengeScenario');
-    expectResolutionGuardBefore(coursePress, 'if (!dialogsOpenToday)');
+    // зачем (D111): суточный лимит заменён месячным — имя флага dialogsOpenThisMonth.
+    expectResolutionGuardBefore(coursePress, 'if (!dialogsOpenThisMonth)');
     expectResolutionGuardBefore(coursePress, "pathname: '/premium_modal'");
 
     const challengePress = between(catalogue, 'const openChallengeScenario = useCallback(', '// ── View-model');
-    expectResolutionGuardBefore(challengePress, 'if (!dialogsOpenToday)');
+    expectResolutionGuardBefore(challengePress, 'if (!dialogsOpenThisMonth)');
     expectResolutionGuardBefore(challengePress, "pathname: '/premium_modal'");
 
     const upsellStart = catalogue.indexOf('{hasLockedCourseLevels && (');
@@ -119,6 +128,6 @@ describe('AI-dialog entitlement readiness contract', () => {
     const upsellPaywall = catalogue.slice(upsellStart, upsellStart + 2200);
     expectResolutionGuardBefore(upsellPaywall, "pathname: '/premium_modal'");
     expect(upsellPaywall).toContain('context: upsellContext');
-    expect(catalogue).toContain("dailyLimitExhausted ? 'dialog_limit' : 'dialog_locked_level'");
+    expect(catalogue).toContain("monthlyLimitExhausted ? 'dialog_limit' :");
   });
 });

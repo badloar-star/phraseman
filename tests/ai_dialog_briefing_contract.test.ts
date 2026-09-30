@@ -178,7 +178,10 @@ describe('AI dialog catalog scenario-feed contract', () => {
     expect(catalog()).toContain('const accessibilityHint = locked');
     expect(catalog()).toContain('`${title}. ${levelChip}. ${statusLabel}`');
     expect(content).not.toContain('dialogScenarioGoal(');
-    expect(content).not.toContain('borderWidth');
+    // зачем (D97, исключение PhraseMan 2.0 в CLAUDE.md): в новом тёмном стиле разрешены
+    // тонкие (1px) обводки плашек и пилюль; толстые/цветные рамки по-прежнему запрещены.
+    const borderWidths = [...content.matchAll(/borderWidth:\s*([^,\s]+)/g)].map((match) => match[1]);
+    expect(borderWidths.every((width) => width === '1')).toBe(true);
     expect(content).not.toContain('withRepeat(');
   });
 });

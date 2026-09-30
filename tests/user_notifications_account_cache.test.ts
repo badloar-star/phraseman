@@ -277,3 +277,21 @@ describe('notification cache account isolation', () => {
   });
 
 });
+
+// Точка «новое в Сообществе» (макет system.html, 2026-09-30).
+describe('community tab dot rule', () => {
+  const { hasCommunityUnreadSince } = jest.requireActual('../app/user_notifications') as typeof import('../app/user_notifications');
+  const row = (over: Record<string, unknown>) => ({
+    id: 'n1', type: 'friend_request', fromUid: 'u', fromName: 'A', read: false, createdAt: 2_000, ...over,
+  }) as never;
+
+  it('lights for an unread friend event newer than the last visit', () => {
+    expect(hasCommunityUnreadSince([row({})], 1_000)).toBe(true);
+  });
+
+  it('stays dark for read, older or non-community events', () => {
+    expect(hasCommunityUnreadSince([row({ read: true })], 1_000)).toBe(false);
+    expect(hasCommunityUnreadSince([row({ createdAt: 500 })], 1_000)).toBe(false);
+    expect(hasCommunityUnreadSince([row({ type: 'pack_comment' })], 1_000)).toBe(false);
+  });
+});

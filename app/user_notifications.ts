@@ -279,9 +279,36 @@ function ownerStorageKey(prefix: string, ownerUid: string): string {
   return `${prefix}${encodeURIComponent(ownerUid)}`;
 }
 
+// зачем (макет system.html «Точка — есть новое в Сообществе»): таббар узнаёт о
+// свежих событиях друзей из ЭТОГО кэша — без своей подписки на Firestore.
+const cacheListeners = new Set<(list: readonly UserNotification[]) => void>();
+
+export function subscribeUserNotificationsCache(
+  listener: (list: readonly UserNotification[]) => void,
+): () => void {
+  cacheListeners.add(listener);
+  return () => { cacheListeners.delete(listener); };
+}
+
+/** События, которые живут во вкладке «Сообщество» (друзья, лайки активности). */
+export const COMMUNITY_NOTIFICATION_TYPES: ReadonlySet<UserNotificationType> = new Set<UserNotificationType>([
+  'friend_request',
+  'friend_accepted',
+  'activity_like',
+  'friend_nudge',
+]);
+
+export function hasCommunityUnreadSince(list: readonly UserNotification[], sinceMs: number): boolean {
+  return list.some((row) => !row.read
+    && COMMUNITY_NOTIFICATION_TYPES.has(row.type)
+    && isUserNotificationVisible(row)
+    && Number(row.createdAt || 0) > sinceMs);
+}
+
 function rememberOwnerCache(ownerUid: string, list: UserNotification[]): void {
   cachedMemoryByOwner.delete(ownerUid);
   cachedMemoryByOwner.set(ownerUid, list);
+  for (const listener of cacheListeners) listener(list);
   while (cachedMemoryByOwner.size > MAX_MEMORY_OWNERS) {
     const oldestOwnerUid = cachedMemoryByOwner.keys().next().value;
     if (typeof oldestOwnerUid !== 'string') break;
@@ -326,7 +353,8 @@ export async function readCachedUserNotifications(): Promise<UserNotification[]>
       AsyncStorage.setItem(ownerStorageKey(CACHE_KEY_PREFIX, ownerUid), JSON.stringify(list)).catch(swallowError('user_notifications:readCachedUserNotifications'));
     }
     return list;
-  } catch {
+  } catch (error: unknown) {
+    console.warn('[USER-NOTIFICATIONS] cache read failed', { message: error instanceof Error ? error.message : String(error) });
     return [];
   }
 }

@@ -19,6 +19,7 @@ import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { HOME_ENTRANCE } from '../../constants/motion';
 import { TabBarVisibilityProvider, useTabBarVisibility } from '../../components/TabBarVisibilityContext';
 import V2TabBar, { V2_TAB_BAR_HEIGHT, type V2TabBarItem } from '../../components/v2/V2TabBar';
+import { useCommunityTabDot } from '../../hooks/use_community_tab_dot';
 import { FLOATING_PILL_BOTTOM_GAP } from '../../hooks/use-tab-content-bottom-pad';
 import { emitAppEvent, onAppEvent } from '../events';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
@@ -497,10 +498,20 @@ function TabScaffold({
   const { hidden: tabBarHidden } = useTabBarVisibility();
   const firstContentReadyEmittedRef = useRef(false);
   const activeBarTabIdx = TAB_BAR_TABS.findIndex((tab) => tab.logicalIdx === visualIdx);
+  // зачем (макет system.html «Точка — есть новое в Сообществе»): точка из локального
+  // кэша уведомлений, гаснет при заходе во вкладку. 0 чтений Firestore.
+  const communityLogicalIdx = TAB_BAR_TABS.find((tab) => tab.key === 'community')?.logicalIdx ?? -1;
+  const communityDot = useCommunityTabDot(visualIdx === communityLogicalIdx);
   const tabBarItems = useMemo<V2TabBarItem[]>(
     // зачем: TabLabelCopy содержит Partial-локали, поэтому triLang типизирован как string|undefined; ru всегда есть.
-    () => TAB_BAR_TABS.map((tab) => ({ key: tab.key, label: triLang(lang, tab.label) ?? tab.label.ru, icon: tab.icon, activeIcon: tab.active })),
-    [lang],
+    () => TAB_BAR_TABS.map((tab) => ({
+      key: tab.key,
+      label: triLang(lang, tab.label) ?? tab.label.ru,
+      icon: tab.icon,
+      activeIcon: tab.active,
+      badge: tab.key === 'community' && communityDot,
+    })),
+    [lang, communityDot],
   );
   const handleTabBarSelect = useCallback((barIndex: number) => {
     const tab = TAB_BAR_TABS[barIndex];

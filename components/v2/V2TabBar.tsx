@@ -25,6 +25,8 @@ export type V2TabBarItem = Readonly<{
   label: string;
   icon: IconName;
   activeIcon: IconName;
+  /** Точка «есть новое» (макет system.html: 8px, белая, с кольцом цвета капсулы). */
+  badge?: boolean;
 }>;
 
 // зачем: размеры сняты с референса владельца 24.09 и утверждены на макете
@@ -313,6 +315,12 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
                   название вкладки остаётся в accessibilityLabel для TalkBack/VoiceOver. */}
               <Animated.View style={pressedIdx === i ? { transform: [{ scale: iconPressScale }] } : null}>
                 <Ionicons name={on ? item.activeIcon : item.icon} size={ICON_SIZE} color={color} />
+                {item.badge ? (
+                  <View
+                    testID={`tab-${item.key}-badge`}
+                    style={[s.badge, { backgroundColor: palette.text, borderColor: palette.bgBottom }]}
+                  />
+                ) : null}
               </Animated.View>
             </View>
           );
@@ -364,4 +372,5 @@ const s = StyleSheet.create({
   capBright: { ...StyleSheet.absoluteFillObject, borderRadius: CAP_RADIUS, backgroundColor: '#FFFFFF' },
   row: { ...StyleSheet.absoluteFillObject, flexDirection: 'row', paddingHorizontal: PAD },
   tab: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  badge: { position: 'absolute', top: -1, right: -3, width: 12, height: 12, borderRadius: 6, borderWidth: 2 },
 });

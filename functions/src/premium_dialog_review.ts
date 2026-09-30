@@ -21,6 +21,8 @@ import {
 } from './dialogue_ai_language_contract';
 import { resolvePremiumAccess } from './premium_status';
 import { resolveRemoteBool } from './remote_gates';
+import { enforceFreeJobGenLimit, refundFreeJobGenLimit, type FreeJobGenReservation } from './explain/explain_budget';
+import { PAID_AI_FETCH_TIMEOUT_MS, paidAiFetchFailureReason } from './paid_ai_fetch_timeout';
 import {
   DialogueV2CompletionServerError,
   executeDialogueV2CompletionReview,
@@ -57,6 +59,42 @@ const DIALOGUE_V2_MEMORY_ID_SECRET = defineSecret('DIALOGUE_V2_MEMORY_ID_SECRET'
 
 const REGION = 'us-central1';
 const BILLING_COLLECTION = 'premium_dialog_billing';
+
+/** PM-231: платных текстовых разборов в UTC-сутки для Free (Plus без суточного потолка). */
+export const FREE_TEXT_REVIEW_DAILY_CAP = 3;
+const FREE_TEXT_REVIEW_JOB = 'dialog_text_review';
+
+/**
+ * PM-231: резерв Free-кредита текстового разбора ДО OpenAI. Не Free-превью →
+ * null (ничего не списываем). Исчерпан → 'dialog_free_limit'.
+ */
+export async function reserveFreeTextReviewCredit(params: {
+  isFreeTextPreview: boolean;
+  authUid: string;
+  stableUid: string;
+  nowMs?: number;
+}): Promise<FreeJobGenReservation | null> {
+  if (!params.isFreeTextPreview) return null;
+  try {
+    return await enforceFreeJobGenLimit(
+      FREE_TEXT_REVIEW_JOB,
+      params.authUid,
+      params.stableUid,
+      FREE_TEXT_REVIEW_DAILY_CAP,
+      params.nowMs ?? Date.now(),
+    );
+  } catch (error) {
+    const reason = error instanceof HttpsError ? error.message : 'limit_check_failed';
+    console.warn('[AI-LIMIT] premium_dialog_review free daily cap refused', {
+      reason,
+      cap: FREE_TEXT_REVIEW_DAILY_CAP,
+    });
+    if (error instanceof HttpsError && error.code === 'resource-exhausted') {
+      throw new HttpsError('resource-exhausted', 'dialog_free_limit');
+    }
+    throw error;
+  }
+}
 const OPENAI_CHAT_URL = 'https://api.openai.com/v1/chat/completions';
 
 const MAX_REVIEW_TURNS = 40;
@@ -697,6 +735,16 @@ export const premiumDialogReview = onCall({
   // Общий rate-limit с send/translate: разбор — один вызов на диалог, окна хватает.
   await enforceRateLimit(authUid, stableUid);
 
+  // зачем: PM-231 — Free-превью текстового разбора держал только часовой лимит
+  // (60/ч ⇒ до 1440 платных разборов в сутки × 900 токенов). Суточный потолок
+  // FREE_TEXT_REVIEW_DAILY_CAP ставим ДО OpenAI; Plus не ограничиваем. Отказ —
+  // существующий 'dialog_free_limit', клиент уже показывает на него Plus.
+  const freeReviewReservation = await reserveFreeTextReviewCredit({
+    isFreeTextPreview: !isPremium && aiDialogGatedByPremium && textPreviewForFree,
+    authUid,
+    stableUid,
+  });
+
   const interfaceLang = asInterfaceLang(data.interfaceLang);
   const learnerLangName = LEARNER_LANG_NAME[interfaceLang] ?? LEARNER_LANG_NAME.ru;
   const goalEn = text(data.goalEn, 200);
@@ -746,6 +794,9 @@ export const premiumDialogReview = onCall({
           ],
           ...(useJsonFormat ? { response_format: { type: 'json_object' } } : {}),
         }),
+        // зачем: PM-231 — тайм-аут ниже потолка функции 30с, иначе рантайм убивал
+        // инстанс раньше, чем срабатывал возврат Free-кредита ниже.
+        signal: AbortSignal.timeout(PAID_AI_FETCH_TIMEOUT_MS.dialogReview),
       });
 
       if (!response.ok) {
@@ -779,7 +830,9 @@ export const premiumDialogReview = onCall({
       assertDialogReviewTargetLanguage(review, studyTarget);
     } catch (error) {
       if (error instanceof HttpsError) throw error;
-      console.error('premium_dialog_review provider exception', {
+      console.error('[AI-LIMIT] premium_dialog_review provider exception', {
+        reason: paidAiFetchFailureReason(error),
+        timeoutMs: PAID_AI_FETCH_TIMEOUT_MS.dialogReview,
         model: dialogModel,
         scenarioId: text(data.scenarioId, 80) || null,
         error: String((error as Error)?.message ?? error).slice(0, 500),
@@ -789,7 +842,20 @@ export const premiumDialogReview = onCall({
     return { json, review };
   };
   const [, reviewSettled] = await Promise.allSettled([safetyPromise, runReview()]);
-  if (reviewSettled.status === 'rejected') throw reviewSettled.reason;
+  if (reviewSettled.status === 'rejected') {
+    // Разбора нет → Free-кредит дня возвращаем (как у explain/mistake).
+    if (freeReviewReservation) {
+      console.warn('[AI-LIMIT] premium_dialog_review failed, refunding free credit', {
+        reason: String((reviewSettled.reason as Error)?.message ?? reviewSettled.reason).slice(0, 120),
+      });
+      await refundFreeJobGenLimit(freeReviewReservation).catch((refundError) => {
+        console.error('[AI-LIMIT] premium_dialog_review free credit refund failed', {
+          reason: String((refundError as Error)?.message ?? refundError).slice(0, 200),
+        });
+      });
+    }
+    throw reviewSettled.reason;
+  }
   const { json, review } = reviewSettled.value;
 
   const usage = json.usage ?? {};

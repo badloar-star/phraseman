@@ -5,6 +5,11 @@ import { defineSecret } from 'firebase-functions/params';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolvePremiumAccess } from './premium_status';
 import {
+  createPaidAiAbortScope,
+  PAID_AI_FETCH_TIMEOUT_MS,
+  paidAiFetchFailureReason,
+} from './paid_ai_fetch_timeout';
+import {
   resolveConfiguredDialogModel,
   resolveConfiguredDialogQuota,
   modelSupportsJsonObject,
@@ -411,9 +416,31 @@ export const premiumDialogStream = onRequest({
     gatesFromCache: gates.fromCache,
   };
 
+  // зачем: PM-231 — у upstream-запроса не было ни дедлайна, ни отмены. Висящий
+  // OpenAI держал инстанс до 60с потолка (рантайм убивал его ДО отката квоты),
+  // а ушедший клиент продолжал жечь токены. Один сигнал на весь стрим (обе
+  // попытки + чтение тела): общий дедлайн 50с и обрыв при закрытии соединения.
+  const upstreamAbort = createPaidAiAbortScope(PAID_AI_FETCH_TIMEOUT_MS.dialogStream);
+  // res 'close' до завершения ответа = клиент ушёл. req 'close' в Node ≥16
+  // срабатывает уже по дочитанному телу запроса, поэтому слушаем именно res.
+  res.on('close', () => {
+    if (res.writableEnded) return;
+    console.warn('[AI-LIMIT] stream: client closed before done, aborting upstream', {
+      mode,
+      elapsedMs: timer.elapsedMs(),
+    });
+    upstreamAbort.abortClientClosed();
+  });
+
   const failStream = async (code: string): Promise<void> => {
     // Сбой провайдера не должен съедать дневную реплику — как и в callable.
-    const release = quotaObservation.consumed
+    // PM-231: но уход клиента посреди стрима квоту НЕ возвращает — он уже видел
+    // часть ответа, иначе обрыв соединения давал бы бесконечные бесплатные реплики.
+    const clientClosed = upstreamAbort.abortReason() === 'client_closed';
+    if (clientClosed) {
+      console.warn('[AI-LIMIT] stream: quota kept after client disconnect', { code, mode });
+    }
+    const release = quotaObservation.consumed && !clientClosed
       ? releaseMonthlyQuota(authUid, stableUid, quotaObservation.resetAtMs)
       : Promise.resolve();
     await release.catch((e) => {
@@ -422,6 +449,11 @@ export const premiumDialogStream = onRequest({
       });
     });
     await flushSafetyFlags();
+    if (clientClosed) {
+      // Писать некому: сокет уже закрыт.
+      if (!res.writableEnded) res.end();
+      return;
+    }
     if (res.headersSent) {
       sseWrite(res, { type: 'error', code });
       res.end();
@@ -475,6 +507,7 @@ export const premiumDialogStream = onRequest({
           stream_options: { include_usage: true },
           ...(gameMode ? { response_format: { type: 'json_object' } } : {}),
         }),
+        signal: upstreamAbort.signal,
       });
       timer.mark(attempt === 0 ? 'providerHeadersMs' : 'retryProviderHeadersMs');
 
@@ -627,7 +660,9 @@ export const premiumDialogStream = onRequest({
       : String((error as Error)?.message ?? '').includes('dialog_empty_reply')
         ? 'dialog_empty_reply'
         : 'dialog_provider_failed';
-    console.error('premium_dialog_stream exception', {
+    console.error('[AI-LIMIT] premium_dialog_stream exception', {
+      reason: upstreamAbort.abortReason() ?? paidAiFetchFailureReason(error),
+      timeoutMs: PAID_AI_FETCH_TIMEOUT_MS.dialogStream,
       model: dialogModel,
       mode,
       error: String((error as Error)?.message ?? error).slice(0, 500),
@@ -640,5 +675,7 @@ export const premiumDialogStream = onRequest({
       ...timer.summary(),
     });
     await failStream(code);
+  } finally {
+    upstreamAbort.dispose();
   }
 });

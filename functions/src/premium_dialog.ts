@@ -5,6 +5,7 @@ import { createHash } from 'crypto';
 import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolvePremiumAccess } from './premium_status';
+import { PAID_AI_FETCH_TIMEOUT_MS, paidAiFetchFailureReason } from './paid_ai_fetch_timeout';
 import { resolveConfiguredDialogModel, resolveConfiguredDialogQuota, modelSupportsJsonObject } from './openai_dialog_model_config';
 import {
   DIALOGUE_V2_TURN_QUOTA_RECEIPTS_FIELD,
@@ -1277,6 +1278,9 @@ export const premiumDialogSend = onCall({
           temperature: 0.8,
           ...(gameMode ? { response_format: { type: 'json_object' } } : {}),
         }),
+        // зачем: PM-231 — без сигнала fetch висел до 30с потолка функции, рантайм
+        // убивал инстанс и откат квоты ниже не выполнялся. 2 попытки × 12с < 30с.
+        signal: AbortSignal.timeout(PAID_AI_FETCH_TIMEOUT_MS.dialogSend),
       });
 
       if (!response.ok) {
@@ -1393,7 +1397,10 @@ export const premiumDialogSend = onCall({
       throw new HttpsError('unavailable', 'dialog_repeated_reply');
     }
     if (error instanceof HttpsError) throw error;
-    console.error('premium_dialog provider exception', {
+    console.error('[AI-LIMIT] premium_dialog provider exception', {
+      reason: paidAiFetchFailureReason(error),
+      timeoutMs: PAID_AI_FETCH_TIMEOUT_MS.dialogSend,
+      quotaReleased: quotaObservation.consumed,
       model: dialogModel,
       mode,
       scenarioId: text(data.scenarioId, 80) || null,
@@ -1766,6 +1773,8 @@ export const premiumDialogTranslate = onCall({
         max_tokens: MAX_TRANSLATE_OUTPUT_TOKENS,
         temperature: 0.2,
       }),
+      // зачем: PM-231 — тайм-аут ниже потолка функции (20с), чтобы сработал обычный путь ошибки.
+      signal: AbortSignal.timeout(PAID_AI_FETCH_TIMEOUT_MS.dialogTranslate),
     });
 
     if (!response.ok) {
@@ -1791,7 +1800,9 @@ export const premiumDialogTranslate = onCall({
     if (direction === 'to_native') assertDialogTranslationLanguage(translation, targetLang);
   } catch (error) {
     if (error instanceof HttpsError) throw error;
-    console.error('premium_dialog_translate provider exception', {
+    console.error('[AI-LIMIT] premium_dialog_translate provider exception', {
+      reason: paidAiFetchFailureReason(error),
+      timeoutMs: PAID_AI_FETCH_TIMEOUT_MS.dialogTranslate,
       model: translateModel,
       direction,
       targetLang,

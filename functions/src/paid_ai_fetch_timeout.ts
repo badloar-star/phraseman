@@ -33,6 +33,43 @@ export function isPaidAiFetchAbort(error: unknown): boolean {
   return name === 'TimeoutError' || name === 'AbortError';
 }
 
+export type PaidAiAbortReason = 'timeout' | 'client_closed';
+
+export interface PaidAiAbortScope {
+  readonly signal: AbortSignal;
+  /** Почему оборвали: тайм-аут, уход клиента или null (не обрывали). */
+  abortReason(): PaidAiAbortReason | null;
+  /** Клиент закрыл соединение — upstream больше не нужен, токены жечь незачем. */
+  abortClientClosed(): void;
+  /** Снять таймер после завершения работы (успех или ошибка). */
+  dispose(): void;
+}
+
+/**
+ * PM-231: один сигнал на весь стрим (все попытки + чтение тела): общий дедлайн
+ * и обрыв при уходе клиента. Первая причина фиксируется и больше не меняется.
+ */
+export function createPaidAiAbortScope(timeoutMs: number): PaidAiAbortScope {
+  const controller = new AbortController();
+  let reason: PaidAiAbortReason | null = null;
+  const abortWith = (next: PaidAiAbortReason): void => {
+    if (reason) return;
+    reason = next;
+    controller.abort(new DOMException(
+      next === 'timeout' ? 'paid_ai_timeout' : 'paid_ai_client_closed',
+      next === 'timeout' ? 'TimeoutError' : 'AbortError',
+    ));
+  };
+  const timer = setTimeout(() => abortWith('timeout'), timeoutMs);
+  (timer as { unref?: () => void }).unref?.();
+  return {
+    signal: controller.signal,
+    abortReason: () => reason,
+    abortClientClosed: () => abortWith('client_closed'),
+    dispose: () => clearTimeout(timer),
+  };
+}
+
 /** Стабильная причина для логов: 'timeout' | 'aborted' | 'provider_exception'. */
 export function paidAiFetchFailureReason(error: unknown): 'timeout' | 'aborted' | 'provider_exception' {
   const name = String((error as { name?: unknown } | null)?.name ?? '');

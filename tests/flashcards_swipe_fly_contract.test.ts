@@ -38,26 +38,46 @@ describe('улёт карточки и подмена на следующую (�
     expect(body).not.toContain('flyOpacity.setValue');
   });
 
-  it('смещение обнуляется синхронно в коммите новой карточки', () => {
-    const start = source.indexOf('useLayoutEffect(() => {');
+  /**
+   * 2026-09-30 (жалоба ученика «пустая карточка, руны сгорают»): сброс ОБЩИХ
+   * значений в useLayoutEffect проигрывал гонку — нативная анимация улёта позже
+   * присылала в JS своё последнее значение (opacity≈0) и новая карточка оставалась
+   * невидимой. Инвариант теперь: у каждой карточки свежие значения анимации.
+   */
+  it('у каждой карточки свои значения анимации — запоздалый улёт новую не задевает', () => {
+    expect(source).toContain('const cardAnimKey = `${cardEpoch}:${queue[0]?.id ?? \'\'}`;');
+    const memoAt = source.indexOf('const cardAnim = useMemo(');
+    expect(memoAt).toBeGreaterThan(-1);
+    const memo = source.slice(memoAt, source.indexOf('const { position, flyOpacity, riseAnim } = cardAnim;', memoAt));
+    expect(memo).toContain('new Animated.ValueXY()');
+    expect(memo).toContain('new Animated.Value(1)');
+    expect(memo).toContain('new Animated.Value(0)');
+    expect(memo).toContain('[cardAnimKey]');
+    /** Общих на всю сессию значений больше нет. */
+    expect(source).not.toContain('const position = useRef(new Animated.ValueXY()).current;');
+    expect(source).not.toContain('const flyOpacity = useRef(new Animated.Value(1)).current;');
+  });
+
+  it('при смене карточки глушатся анимации снятой, новые значения не перезаписываются', () => {
+    const start = source.indexOf('const previous = previousCardAnimRef.current;');
     expect(start).toBeGreaterThan(-1);
-    const depsAt = source.indexOf('}, [', start);
-    expect(depsAt).toBeGreaterThan(start);
-    const effect = source.slice(start, depsAt);
-    expect(effect).toContain('position.setValue({ x: 0, y: 0 })');
-    expect(effect).toContain('flyOpacity.setValue(1)');
-    /** Останов native-анимации ДО setValue: иначе запоздавший fade вернёт 0. */
-    expect(effect.indexOf('position.stopAnimation()')).toBeLessThan(
-      effect.indexOf('position.setValue'),
-    );
-    expect(effect.indexOf('flyOpacity.stopAnimation()')).toBeLessThan(
-      effect.indexOf('flyOpacity.setValue'),
-    );
-    /** Ключ сброса — новая карточка и завершённый улёт, а не флаг `settling`. */
-    const deps = source.slice(depsAt, source.indexOf('\n', depsAt));
-    expect(deps).toContain('cardEpoch');
-    expect(deps).toContain("currentPrompt?.id");
-    expect(deps).not.toContain('settling');
+    const effect = source.slice(start, source.indexOf('}, [cardAnim, currentPrompt?.id]);', start));
+    expect(effect).toContain('previous.position.stopAnimation()');
+    expect(effect).toContain('previous.flyOpacity.stopAnimation()');
+    expect(effect).toContain('previous.riseAnim.stopAnimation()');
+    expect(effect).not.toContain('flyOpacity.setValue');
+    /** Сторож регресса пишет в журнал, если карточка вне улёта невидима. */
+    expect(effect).toContain('SWIPE-BLANK-STALE');
+  });
+
+  it('ответ на невидимую карточку не засчитывается (страховка рун)', () => {
+    const start = source.indexOf('const answerCurrent = useCallback(');
+    const body = source.slice(start, source.indexOf('const revealCurrent', start));
+    const guardAt = body.indexOf('SWIPE-BLANK-ANSWER-BLOCKED');
+    expect(guardAt).toBeGreaterThan(-1);
+    /** Страховка стоит ДО того, как ответ помечен и засчитан. */
+    expect(guardAt).toBeLessThan(body.indexOf('answeredPromptIdRef.current = currentPrompt.id;'));
+    expect(guardAt).toBeLessThan(body.indexOf('applyAnswer('));
   });
 
   it('ошибочный ответ карточку за экран не уводит — разбор показывается на месте', () => {

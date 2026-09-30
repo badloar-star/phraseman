@@ -5,13 +5,13 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import V2Pressable from '../../v2/V2Pressable';
 import { V2, V2_TYPE } from '../../../constants/v2Style';
 import { useV2Palette } from '../../v2/useV2Palette';
-import { V2GlassSheen, V2IconTile, useV2GlassStyle } from '../../v2/V2Glass';
+import { V2GlassSheen, useV2GlassStyle } from '../../v2/V2Glass';
 import type { HomeFeatureTile } from './home_v2_types';
 
 /**
  * Три плитки новой Главной (референс 2.0): Уроки / Диалоги / Карточки.
- * Сверху место под арт (заглушка до ассета от Codex), ниже название, под ним
- * подпись в две строки и круглая стрелка справа внизу.
+ * Слева сверху — утверждённый арт, ниже название и полная подпись, справа
+ * внизу — круглая стрелка.
  */
 export default function HomeV2FeatureTiles({ tiles }: { tiles: readonly HomeFeatureTile[] }) {
   const p = useV2Palette();
@@ -30,12 +30,12 @@ export default function HomeV2FeatureTiles({ tiles }: { tiles: readonly HomeFeat
           style={[s.tile, glass]}
         >
           <V2GlassSheen seed={index + 2} />
-          <View pointerEvents="none" style={[s.art, { backgroundColor: p.glassRaised }]}>
+          <View pointerEvents="none" style={s.art}>
             <Image source={tile.art} style={s.artImage} contentFit="contain" accessible={false} /* guard-ok: декоративный арт, подпись на V2Pressable */ />
           </View>
-          <Text numberOfLines={1} style={[s.title, { color: p.text }]}>{tile.title}</Text>
+          <Text style={[s.title, { color: p.text }]}>{tile.title}</Text>
           <View style={s.footer}>
-            <Text numberOfLines={2} style={[s.subtitle, { color: p.textSecondary }]}>{tile.subtitle}</Text>
+            <Text style={[s.subtitle, { color: p.textSecondary }]}>{tile.subtitle}</Text>
             <View style={[s.arrow, { backgroundColor: p.glassRaised, borderColor: p.stroke }]}>
               <Ionicons name="chevron-forward" size={16} color={p.text} />
             </View>
@@ -58,8 +58,8 @@ const s = StyleSheet.create({
     paddingBottom: 10,
     overflow: 'hidden',
   },
-  art: { height: 76, marginHorizontal: -10, marginBottom: 10, alignItems: 'center', justifyContent: 'center' },
-  artImage: { width: 60, height: 60 },
+  art: { height: 92, marginHorizontal: -10, marginBottom: 6, paddingLeft: 10, alignItems: 'flex-start', justifyContent: 'center' },
+  artImage: { width: 84, height: 84 },
   title: { ...V2_TYPE.headline },
   footer: { flexDirection: 'row', alignItems: 'flex-end', gap: 4, marginTop: 4 },
   subtitle: { ...V2_TYPE.caption, fontSize: 12, lineHeight: 16, flex: 1 },

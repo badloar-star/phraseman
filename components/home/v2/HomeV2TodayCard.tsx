@@ -57,9 +57,9 @@ export default function HomeV2TodayCard({ title, tasks, onOpenTask }: Props) {
               </View>
               <V2IconTile name={KIND_ICON[task.kind]} size={36} iconSize={19} />
               <View style={s.copy}>
-                <Text numberOfLines={1} style={[s.taskTitle, { color: p.text }]}>{task.title}</Text>
+                <Text style={[s.taskTitle, { color: p.text }]}>{task.title}</Text>
                 {task.subtitle ? (
-                  <Text numberOfLines={1} style={[s.taskSubtitle, { color: p.textSecondary }]}>{task.subtitle}</Text>
+                  <Text style={[s.taskSubtitle, { color: p.textSecondary }]}>{task.subtitle}</Text>
                 ) : null}
               </View>
               <Text style={[s.counter, { color: p.textSecondary }]}>{counter}</Text>

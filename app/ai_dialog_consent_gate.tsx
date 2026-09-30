@@ -129,11 +129,11 @@ export default function AiDialogConsentGate({ children }: { children: React.Reac
         accessibilityLabel={triLang(lang, {
           ru: 'Включить AI-диалоги', uk: 'Увімкнути AI-діалоги', en: 'Turn on AI dialogues', es: 'Activar los diálogos con IA', 'pt-BR': 'Ativar os diálogos com IA', vi: 'Bật hội thoại AI', id: 'Nyalakan dialog AI', tr: 'Yapay zeka diyaloglarını aç', pl: 'Włącz dialogi AI',
         })}
-        style={[styles.primaryAction, { backgroundColor: glass.cta }]}
+        style={[styles.primaryAction, { backgroundColor: glass.accent }]}
       >
         <View style={styles.actionContent}>
           <Ionicons name="sparkles-outline" size={18} color={glass.ctaInk} />
-          <Text style={[styles.primaryActionText, { color: glass.ctaInk }]}>
+          <Text style={[styles.primaryActionText, { color: glass.accentInk }]}>
             {triLang(lang, { ru: 'Включить', uk: 'Увімкнути', en: 'Turn on', es: 'Activar', 'pt-BR': 'Ativar', vi: 'Bật', id: 'Aktifkan', tr: 'Aç', pl: 'Włącz' })}
           </Text>
         </View>

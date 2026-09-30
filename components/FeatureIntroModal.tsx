@@ -210,9 +210,9 @@ function FeatureIntroModal({
           onPress={() => requestAction(onDone, requestDismiss)}
           edgeColor={glass.glassEdge}
           edgeHeight={4}
-          style={[styles.primaryFace, { backgroundColor: glass.cta, borderRadius: family === 'orbit' ? 30 : 18 }]}
+          style={[styles.primaryFace, { backgroundColor: glass.accent, borderRadius: family === 'orbit' ? 30 : 18 }]}
         >
-          <Text style={[styles.primaryText, { color: glass.ctaInk, fontSize: f.bodyLg }]}>{ctaLabel}</Text>
+          <Text style={[styles.primaryText, { color: glass.accentInk, fontSize: f.bodyLg }]}>{ctaLabel}</Text>
         </DuoPressable>
         {!hideSecondary ? <PressableHybrid
           variant="secondary"

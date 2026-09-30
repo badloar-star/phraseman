@@ -118,9 +118,9 @@ export default function SupportReportScreen() {
                 withSound={false}
                 variant="primary"
                 style={{ marginTop: 18 }}
-                contentStyle={{ minHeight: 48, borderRadius: 24, backgroundColor: glass.cta, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20 }}
+                contentStyle={{ minHeight: 48, borderRadius: 24, backgroundColor: glass.accent, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20 }}
               >
-                <Text style={{ color: glass.ctaInk, fontSize: scaled(17), lineHeight: scaled(22), fontWeight: '700' }}>
+                <Text style={{ color: glass.accentInk, fontSize: scaled(17), lineHeight: scaled(22), fontWeight: '700' }}>
                   {L('Готово', 'Готово', 'Done', 'Listo', 'Pronto', 'Xong', 'Selesai', 'Bitti', 'Gotowe')}
                 </Text>
               </PressableHybrid>

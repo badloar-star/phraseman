@@ -65,8 +65,8 @@ export default function ReferralHowSheet({ visible, onClose }: ReferralHowSheetP
       <View style={{ gap: 14 }}>
         {steps.map((s, i) => (
           <View key={s.title} style={{ flexDirection: 'row', gap: 12, alignItems: 'flex-start' }}>
-            <View style={{ width: 26, height: 26, borderRadius: 13, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.cta, marginTop: 1 }}>
-              <Text style={{ color: glass.ctaInk, fontSize: f.label ?? 12, fontWeight: '700' }}>{i + 1}</Text>
+            <View style={{ width: 26, height: 26, borderRadius: 13, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.accent, marginTop: 1 }}>
+              <Text style={{ color: glass.accentInk, fontSize: f.label ?? 12, fontWeight: '700' }}>{i + 1}</Text>
             </View>
             <View style={{ flex: 1, minWidth: 0 }}>
               <Text style={{ color: glass.text, fontSize: f.body ?? 16, fontWeight: '700' }}>{s.title}</Text>

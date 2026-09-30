@@ -98,9 +98,9 @@ function AcceptButton({ label, onPress, testID }: { label: string; onPress: () =
         onPress={onPress}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
-        style={[styles.primaryBtn, { backgroundColor: glass.cta, shadowColor: glass.lightTint }]}
+        style={[styles.primaryBtn, { backgroundColor: glass.accent, shadowColor: glass.lightTint }]}
       >
-        <Text style={[styles.primaryBtnText, { color: glass.ctaInk, fontSize: f.bodyLg }]}>{label}</Text>
+        <Text style={[styles.primaryBtnText, { color: glass.accentInk, fontSize: f.bodyLg }]}>{label}</Text>
       </Pressable>
     </Animated.View>
   );

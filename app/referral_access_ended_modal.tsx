@@ -203,14 +203,14 @@ export function ReferralAccessEndedModal({
               borderRadius: 24,
               alignItems: 'center',
               justifyContent: 'center',
-              backgroundColor: glass.cta,
+              backgroundColor: glass.accent,
               opacity: pressed ? 0.85 : 1,
             })}
             onPress={onOpenFullAccess}
             accessibilityRole="button"
             accessibilityLabel={btnFullAccess}
           >
-            <Text style={{ color: glass.ctaInk, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
+            <Text style={{ color: glass.accentInk, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
               {btnFullAccess}
             </Text>
           </Pressable>

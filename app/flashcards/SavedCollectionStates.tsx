@@ -83,8 +83,8 @@ export function SavedCollectionState({ lang, loadError, searchActive, onCommunit
     <Text accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text>
     <Text style={[styles.detail, { color: g.secondary }]}>{detail}</Text>
     {!searchActive || loadError ? <Pressable accessibilityRole="button" accessibilityLabel={action} onPress={() => { if (loadError) void onRetry(); else onCommunity(); }}
-      style={({ pressed }) => [styles.action, { backgroundColor: g.cta }, pressed && styles.pressed]}>
-      <Text style={[styles.actionText, { color: g.ctaInk }]}>{action}</Text>
+      style={({ pressed }) => [styles.action, { backgroundColor: g.accent }, pressed && styles.pressed]}>
+      <Text style={[styles.actionText, { color: g.accentInk }]}>{action}</Text>
     </Pressable> : null}
   </View>;
 }

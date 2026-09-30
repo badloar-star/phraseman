@@ -402,9 +402,9 @@ function NoEnergyModal({
               openPremiumAfterClose();
             }}
             activeOpacity={0.82}
-            style={[styles.action, { backgroundColor: glass.cta }]}
+            style={[styles.action, { backgroundColor: glass.accent }]}
           >
-            <Text style={[styles.actionLabel, { color: glass.ctaInk, fontSize: f.body }]}>{goldCtaLabel}</Text>
+            <Text style={[styles.actionLabel, { color: glass.accentInk, fontSize: f.body }]}>{goldCtaLabel}</Text>
           </TouchableOpacity>
         </View>,
       )}

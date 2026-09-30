@@ -25,7 +25,7 @@ test('AchievementNotifModal (lesson_complete) is opaque Liquid Glass with neutra
   const block = between(src, 'function AchievementNotifModal', 'export default function LessonComplete');
   assert.ok(block.includes('liquidGlassTokens(liquidGlassThemeId)'), 'токены активной из 13 тем');
   assert.ok(block.includes('glass.opaqueSheet'), 'непрозрачная основа окна');
-  assert.ok(block.includes('glass.cta') && block.includes('glass.ctaInk'), 'нейтральный CTA темы');
+  assert.ok(block.includes('glass.accent') && block.includes('glass.accentInk'), 'нейтральный CTA темы');
   assert.doesNotMatch(block, /t\.correct|t\.accent|glassFill/, 'нет старого зелёного/акцентного стиля и glassFill');
   noThickBorders(block, 'AchievementNotifModal');
   assert.ok(block.includes('minHeight: 44') || block.includes('minHeight: 48'), 'области нажатия >= 44');
@@ -39,7 +39,7 @@ test('AchievementNotifModal (lesson_complete) is opaque Liquid Glass with neutra
 test('SurveyRewardPanel uses Liquid Glass tokens and has no pearl reward (pearls removed 2026-09-30)', () => {
   const src = read('../components/survey/SurveyRewardPanel.tsx');
   assert.ok(src.includes('liquidGlassTokens(liquidGlassThemeId)'));
-  assert.ok(src.includes('glass.cta') && src.includes('glass.ctaInk'), 'CTA «Готово» нейтральный');
+  assert.ok(src.includes('glass.accent') && src.includes('glass.accentInk'), 'CTA «Готово» нейтральный');
   assert.doesNotMatch(src, /t\.accent|t\.correctText|t\.accentBg|TonalSurface/, 'нет старого стиля');
   noThickBorders(src, 'SurveyRewardPanel');
   for (const id of ['survey-reward-panel', 'survey-pending-accepted', 'survey-completion-check', 'survey-retry', 'survey-back', 'survey-done', 'survey-reward-error']) {

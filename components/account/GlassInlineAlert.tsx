@@ -45,9 +45,9 @@ function GlassInlineAlert({ visible, title, message, okLabel = 'OK', onClose }: 
           accessibilityLabel={okLabel}
           activeOpacity={0.8}
           onPress={onClose}
-          style={[styles.button, { backgroundColor: glass.cta }]}
+          style={[styles.button, { backgroundColor: glass.accent }]}
         >
-          <Text style={[styles.buttonLabel, { color: glass.ctaInk, fontSize: f.body }]}>{okLabel}</Text>
+          <Text style={[styles.buttonLabel, { color: glass.accentInk, fontSize: f.body }]}>{okLabel}</Text>
         </TouchableOpacity>
       </View>
     </View>

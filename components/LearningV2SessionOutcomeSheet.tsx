@@ -243,9 +243,9 @@ export default function LearningV2SessionOutcomeSheet({
                   disabled={actionsDisabled}
                   activeOpacity={0.8}
                   onPress={start}
-                  style={[styles.primaryButton, { backgroundColor: g.cta, minHeight: layout.targetHeight, opacity: actionsDisabled ? 0.66 : 1 }]}
+                  style={[styles.primaryButton, { backgroundColor: g.accent, minHeight: layout.targetHeight, opacity: actionsDisabled ? 0.66 : 1 }]}
                 >
-                  <Text style={[styles.primaryLabel, { color: g.ctaInk, fontSize: 17 }]}>{primaryLabel}</Text>
+                  <Text style={[styles.primaryLabel, { color: g.accentInk, fontSize: 17 }]}>{primaryLabel}</Text>
                   <Ionicons name="arrow-forward" size={20} color={g.ctaInk} />
                 </TouchableOpacity>
               </View>

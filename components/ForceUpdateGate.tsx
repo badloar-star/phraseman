@@ -523,10 +523,10 @@ export default function ForceUpdateGate() {
               onPress={openStore}
               style={({ pressed }) => [
                 styles.primaryButton,
-                { backgroundColor: glass.cta, opacity: pressed ? 0.82 : 1 },
+                { backgroundColor: glass.accent, opacity: pressed ? 0.82 : 1 },
               ]}
             >
-              <Text style={[styles.primaryLabel, { color: glass.ctaInk }]}>{gate.cta}</Text>
+              <Text style={[styles.primaryLabel, { color: glass.accentInk }]}>{gate.cta}</Text>
             </Pressable>
 
             {closable ? (

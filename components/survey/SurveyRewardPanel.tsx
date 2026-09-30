@@ -119,9 +119,9 @@ export default function SurveyRewardPanel({
               <FlowText testID="survey-reward-error" provenance="authored" accessibilityRole="alert" accessibilityLiveRegion="assertive" style={[styles.error, { color: t.wrong, backgroundColor: t.wrongBg, fontSize: f.body }]}>
                 {error}
               </FlowText>
-              <PressableHybrid testID="survey-retry" accessibilityLabel={labels.retry} onPress={onRetry} withHaptic={false} disabled={retryDisabled} accessibilityState={{ disabled: retryDisabled }} variant="secondary" style={[styles.action, { backgroundColor: glass.cta, opacity: retryDisabled ? 0.45 : 1 }]} contentStyle={styles.actionContent}>
+              <PressableHybrid testID="survey-retry" accessibilityLabel={labels.retry} onPress={onRetry} withHaptic={false} disabled={retryDisabled} accessibilityState={{ disabled: retryDisabled }} variant="secondary" style={[styles.action, { backgroundColor: glass.accent, opacity: retryDisabled ? 0.45 : 1 }]} contentStyle={styles.actionContent}>
                 <Ionicons name="refresh" size={20} color={glass.ctaInk} accessibilityElementsHidden />
-                <FlowText testID="survey-retry-label" provenance="authored" style={[styles.actionLabel, { color: glass.ctaInk, fontSize: f.body }]}>{labels.retry}</FlowText>
+                <FlowText testID="survey-retry-label" provenance="authored" style={[styles.actionLabel, { color: glass.accentInk, fontSize: f.body }]}>{labels.retry}</FlowText>
               </PressableHybrid>
               {!!onBack && (
                 <PressableHybrid testID="survey-back" accessibilityLabel={labels.back} onPress={onBack} withHaptic={false} variant="secondary" style={[styles.action, { backgroundColor: glass.opaqueControl }]} contentStyle={styles.actionContent}>
@@ -163,8 +163,8 @@ export default function SurveyRewardPanel({
                   />
                 </PressableHybrid>
               ))}
-              <PressableHybrid testID="survey-done" accessibilityLabel={labels.done} onPress={onDone} withHaptic={false} variant="primary" style={[styles.action, { backgroundColor: glass.cta }]} contentStyle={styles.actionContent}>
-                <FlowText testID="survey-done-label" provenance="authored" style={[styles.actionLabel, { color: glass.ctaInk, fontSize: f.body }]}>{labels.done}</FlowText>
+              <PressableHybrid testID="survey-done" accessibilityLabel={labels.done} onPress={onDone} withHaptic={false} variant="primary" style={[styles.action, { backgroundColor: glass.accent }]} contentStyle={styles.actionContent}>
+                <FlowText testID="survey-done-label" provenance="authored" style={[styles.actionLabel, { color: glass.accentInk, fontSize: f.body }]}>{labels.done}</FlowText>
               </PressableHybrid>
             </>
           )}

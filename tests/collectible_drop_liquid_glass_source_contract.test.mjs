@@ -8,7 +8,7 @@ test('collectible drop uses Liquid Glass tokens (13 themes), opaque base, no gla
   assert.ok(source.includes("from '../constants/liquidGlassThemePalette'"));
   assert.ok(source.includes('liquidGlassTokens(liquidGlassThemeId)'));
   assert.ok(source.includes('glass.opaqueSheet'), 'opaque sheet base');
-  assert.ok(source.includes('glass.cta') && source.includes('glass.ctaInk'));
+  assert.ok(source.includes('glass.accent') && source.includes('glass.accentInk'));
   assert.equal(source.includes('glassFill'), false);
   assert.equal(source.includes('t.bgCard'), false);
   assert.equal(source.includes('DuoPressable'), false);

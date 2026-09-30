@@ -259,10 +259,10 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
               <TouchableOpacity
                 onPress={handleSend}
                 disabled={loading}
-                style={{ flex: 1, minHeight: 48, paddingVertical: 11, borderRadius: 24, justifyContent: 'center', backgroundColor: glass.cta, overflow: 'hidden' }}
+                style={{ flex: 1, minHeight: 48, paddingVertical: 11, borderRadius: 24, justifyContent: 'center', backgroundColor: glass.accent, overflow: 'hidden' }}
               >
                 {false && loading ? <View />
-                  : <Text style={{ color: glass.ctaInk, textAlign: 'center', fontWeight: '700', fontSize: f.body }}>
+                  : <Text style={{ color: glass.accentInk, textAlign: 'center', fontWeight: '700', fontSize: f.body }}>
                       {tx.send}
                     </Text>
                 }

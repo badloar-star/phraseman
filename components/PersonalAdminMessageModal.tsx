@@ -69,9 +69,9 @@ function PersonalAdminMessageModal({ message, visible, onAcknowledge, motionVari
       edgeColor={glass.opaqueControl}
       edgeHeight={0}
       wrapStyle={styles.buttonWrap}
-      style={[styles.button, { backgroundColor: glass.cta }]}
+      style={[styles.button, { backgroundColor: glass.accent }]}
     >
-      <Text style={[styles.buttonText, { color: glass.ctaInk, fontSize: f.bodyLg }]}>{triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}</Text>
+      <Text style={[styles.buttonText, { color: glass.accentInk, fontSize: f.bodyLg }]}>{triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}</Text>
     </DuoPressable>
   );
 

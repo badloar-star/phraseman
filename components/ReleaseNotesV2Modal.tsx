@@ -76,9 +76,9 @@ function ReleaseNotesV2Modal({ visible, onClose }: Props) {
             edgeColor={glass.opaqueControl}
             edgeHeight={4}
             wrapStyle={styles.ctaWrap}
-            style={[styles.cta, { backgroundColor: glass.cta }]}
+            style={[styles.cta, { backgroundColor: glass.accent }]}
           >
-            <Text style={[styles.ctaText, { color: glass.ctaInk }]}>{copy.cta}</Text>
+            <Text style={[styles.ctaText, { color: glass.accentInk }]}>{copy.cta}</Text>
           </DuoPressable>
         </>
       )}

@@ -940,8 +940,8 @@ function MistakePracticeSessionScreen() {
       <MistakePracticeScreenFrame centered>
         <Ionicons name="alert-circle-outline" size={48} color={g.bad} />
         <Text style={[styles.errorTitle, { color: g.text, fontSize: f.h3 }]}>{loadError ?? copy.sessionEnded}</Text>
-        <Pressable style={[styles.primaryButton, { backgroundColor: g.cta }]} onPress={leavePractice}>
-          <Text style={{ color: g.ctaInk, fontSize: f.body, fontWeight: '700' }}>{copy.back}</Text>
+        <Pressable style={[styles.primaryButton, { backgroundColor: g.accent }]} onPress={leavePractice}>
+          <Text style={{ color: g.accentInk, fontSize: f.body, fontWeight: '700' }}>{copy.back}</Text>
         </Pressable>
       </MistakePracticeScreenFrame>
     );
@@ -993,7 +993,7 @@ function MistakePracticeSessionScreen() {
           testID="mistake-practice-session-attempts"
         />
         <View style={[styles.progressTrack, { backgroundColor: g.opaqueControl }]}>
-          <View style={[styles.progressFill, { backgroundColor: g.cta, width: `${session.initialCount > 0 ? Math.min(100, (progress / session.initialCount) * 100) : 0}%` }]} />
+          <View style={[styles.progressFill, { backgroundColor: g.accent, width: `${session.initialCount > 0 ? Math.min(100, (progress / session.initialCount) * 100) : 0}%` }]} />
         </View>
         <Text style={[styles.counter, { color: g.secondary, fontSize: f.caption }]}>{progress}/{session.initialCount}</Text>
         <Pressable
@@ -1121,10 +1121,10 @@ OK: ${entry.exercise.correctAnswer}`}
               accessibilityLabel={copy.holdToSpeak}
               onPressIn={() => setSpeechHeld(true)}
               onPressOut={() => setSpeechHeld(false)}
-              style={[styles.micButton, { backgroundColor: g.cta }]}
+              style={[styles.micButton, { backgroundColor: g.accent }]}
             >
               <Ionicons name="mic" size={26} color={g.ctaInk} />
-              <Text style={{ color: g.ctaInk, fontSize: f.body, fontWeight: '700' }}>{copy.holdAndSpeak}</Text>
+              <Text style={{ color: g.accentInk, fontSize: f.body, fontWeight: '700' }}>{copy.holdAndSpeak}</Text>
             </Pressable>
             {speechRecovery ? <Text style={[styles.recovery, { color: g.secondary, fontSize: f.sub }]}>{speechRecovery}</Text> : null}
           </View>
@@ -1156,13 +1156,13 @@ OK: ${entry.exercise.correctAnswer}`}
           <Pressable style={[styles.undoButton, { backgroundColor: g.opaqueCard }]} onPress={() => void undoHiddenMistake()}>
             <Text style={{ color: g.text, fontSize: f.body, fontWeight: '700' }}>{copy.undo}</Text>
           </Pressable>
-          <Pressable style={[styles.undoButton, { backgroundColor: g.cta }]} onPress={continueAfterHidden}>
-            <Text style={{ color: g.ctaInk, fontSize: f.body, fontWeight: '700' }}>{copy.continue}</Text>
+          <Pressable style={[styles.undoButton, { backgroundColor: g.accent }]} onPress={continueAfterHidden}>
+            <Text style={{ color: g.accentInk, fontSize: f.body, fontWeight: '700' }}>{copy.continue}</Text>
           </Pressable>
         </View>
       ) : feedback ? (
-        <Pressable style={[styles.bottomButton, { backgroundColor: g.cta }]} onPress={continueAfterFeedback}>
-          <Text style={{ color: g.ctaInk, fontSize: f.body, fontWeight: '700' }}>{copy.continue}</Text>
+        <Pressable style={[styles.bottomButton, { backgroundColor: g.accent }]} onPress={continueAfterFeedback}>
+          <Text style={{ color: g.accentInk, fontSize: f.body, fontWeight: '700' }}>{copy.continue}</Text>
         </Pressable>
       ) : entry.exercise.renderer !== 'choices' && entry.exercise.renderer !== 'fill_gap' && entry.exercise.renderer !== 'matching' && entry.exercise.renderer !== 'speech' ? (
         <Pressable

@@ -28,7 +28,7 @@ test('legacy release notes: sheet on liquid-glass shell, announcement card keeps
   assert.match(s, /<HybridSheetShell[\s\S]*material="liquid-glass"/);
   assert.match(s, /onPress=\{requestDismiss\}/);
   assert.match(s, /onPress=\{closeOnce\}/);
-  assert.match(s, /backgroundColor: releaseGlass\.cta/);
+  assert.match(s, /backgroundColor: releaseGlass.accent/);
   assert.match(s, /backgroundColor: announcementGlass\.opaqueSheet/);
   assert.ok(s.includes('announcement?: ReleaseNotesAnnouncement | null;'), 'announcement prop');
   assert.ok(s.includes('showCloseButton?: boolean;'), 'showCloseButton prop');

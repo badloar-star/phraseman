@@ -197,11 +197,11 @@ export default function ReferralWelcomeHost() {
               <Pressable
                 testID="referral-welcome-primary"
                 onPress={close}
-                style={({ pressed }) => [styles.primaryBtn, { backgroundColor: glass.cta, opacity: pressed ? 0.85 : 1 }]}
+                style={({ pressed }) => [styles.primaryBtn, { backgroundColor: glass.accent, opacity: pressed ? 0.85 : 1 }]}
                 accessibilityRole="button"
                 accessibilityLabel={primaryCta}
               >
-                <Text style={[styles.primaryBtnText, { color: glass.ctaInk }]}>{primaryCta}</Text>
+                <Text style={[styles.primaryBtnText, { color: glass.accentInk }]}>{primaryCta}</Text>
               </Pressable>
 
               {showCodeCta ? (

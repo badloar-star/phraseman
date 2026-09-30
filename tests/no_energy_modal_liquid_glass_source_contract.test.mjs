@@ -10,7 +10,7 @@ test('NoEnergyModal takes every surface from the active Liquid Glass tokens', ()
   assert.ok(source.includes('liquidGlassTokens(liquidGlassThemeId)'), 'active 13-theme token registry');
   assert.ok(source.includes('glass.opaqueSheet'), 'opaque base, no see-through hole');
   assert.ok(source.includes('glass.glassEdge'), 'hairline glass edge');
-  assert.ok(source.includes('glass.cta') && source.includes('glass.ctaInk'), 'Plus CTA uses the pale CTA token pair');
+  assert.ok(source.includes('glass.accent') && source.includes('glass.accentInk'), 'Plus CTA uses the pale CTA token pair');
   assert.ok(source.includes('glass.text') && source.includes('glass.secondary'), 'text tokens');
   assert.ok(!source.includes('NO_ENERGY_MODAL_CHROME'), 'per-mode green/gold palettes are gone');
 });

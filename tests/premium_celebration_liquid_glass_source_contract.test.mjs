@@ -9,7 +9,7 @@ const vip = readFileSync(new URL('../components/VipCelebrationModal.tsx', import
 test('celebration uses Liquid Glass tokens, no gradients, no legacy tier palettes', () => {
   assert.ok(src.includes("from '../constants/liquidGlassThemePalette'"));
   assert.ok(src.includes('liquidGlassTokens(liquidGlassThemeId)'));
-  for (const token of ['glass.bg', 'glass.opaqueControl', 'glass.cta', 'glass.ctaInk', 'glass.text', 'glass.secondary'])
+  for (const token of ['glass.bg', 'glass.opaqueControl', 'glass.accent', 'glass.accentInk', 'glass.text', 'glass.secondary'])
     assert.ok(src.includes(token), `missing ${token}`);
   assert.equal(src.includes('LinearGradient'), false, 'gradients removed');
   assert.equal(src.includes('CELEBRATION_PALETTES'), false, 'gold/green/blue palettes are not used');

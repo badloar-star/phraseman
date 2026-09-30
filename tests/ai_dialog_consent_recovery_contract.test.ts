@@ -9,7 +9,7 @@ describe('AI dialog consent recovery', () => {
     expect(gateSource).toContain('Открыть настройки приватности');
     expect(gateSource).toContain("router.push('/privacy_settings' as never)");
     expect(gateSource).toContain('accessibilityLabel');
-    expect(gateSource).toContain('backgroundColor: glass.cta');
+    expect(gateSource).toContain('backgroundColor: glass.accent');
     expect(gateSource).toContain('color={glass.ctaInk}');
   });
 });

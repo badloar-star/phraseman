@@ -209,7 +209,7 @@ export default function StudyLanguagePicker({
                     width: 18,
                     height: 18,
                     borderRadius: 9,
-                    backgroundColor: glass.cta,
+                    backgroundColor: glass.accent,
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}

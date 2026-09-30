@@ -11,8 +11,8 @@ const source = fs.readFileSync(
 // а не старая золотая карточка с жёсткими hex.
 assert.match(source, /const releaseGlass = announcementGlass;|const releaseGlass = liquidGlassTokens\(liquidGlassThemeId\);/);
 assert.match(source, /<HybridSheetShell[\s\S]*material="liquid-glass"/);
-assert.match(source, /backgroundColor: releaseGlass\.cta/);
-assert.match(source, /color: releaseGlass\.ctaInk/);
+assert.match(source, /backgroundColor: releaseGlass.accent/);
+assert.match(source, /color: releaseGlass.accentInk/);
 assert.doesNotMatch(source, /#B9791F|#FFE08A|#F7BE4F|#E99D35|#111722|#171A24|#241F13/);
 assert.match(source, /onPress=\{closeOnce\}/);
 assert.match(source, /onPress=\{requestDismiss\}/);

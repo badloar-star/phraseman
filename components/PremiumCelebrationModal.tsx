@@ -398,9 +398,9 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
               accessibilityLabel={primaryLabel}
               activeOpacity={0.88}
               onPress={handlePrimary}
-              style={[styles.cta, { backgroundColor: glass.cta }]}
+              style={[styles.cta, { backgroundColor: glass.accent }]}
             >
-              <Text style={[styles.ctaText, { color: glass.ctaInk, fontSize: f.bodyLg }]}>{primaryLabel}</Text>
+              <Text style={[styles.ctaText, { color: glass.accentInk, fontSize: f.bodyLg }]}>{primaryLabel}</Text>
             </TouchableOpacity>
           </Reanimated.View>
         </ScrollView>

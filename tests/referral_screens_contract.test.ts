@@ -351,7 +351,7 @@ describe('referral roulette screen contract', () => {
 
     // Liquid Glass (OM-REFERRAL-ACCESS-ENDED): материал из активной темы, нейтральный CTA, без обводок.
     expect(ended).toContain('liquidGlassTokens(liquidGlassThemeId)');
-    expect(ended).toContain('backgroundColor: glass.cta');
+    expect(ended).toContain('backgroundColor: glass.accent');
     expect(ended).not.toContain('borderColor');
   });
 });

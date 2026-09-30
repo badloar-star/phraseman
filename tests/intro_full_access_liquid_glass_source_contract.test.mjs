@@ -8,7 +8,7 @@ test('IntroFullAccessModal — Liquid Glass без градиентов и hex-�
   assert.ok(src.includes("from '../constants/liquidGlassThemePalette'"));
   assert.ok(src.includes('liquidGlassTokens(liquidGlassThemeId)'));
   assert.ok(src.includes('glass.opaqueSheet') || src.includes('glass.opaqueCard'), 'непрозрачная основа');
-  assert.ok(src.includes('glass.cta') && src.includes('glass.ctaInk'));
+  assert.ok(src.includes('glass.accent') && src.includes('glass.accentInk'));
   assert.equal(src.includes('LinearGradient'), false, 'градиентов нет');
   assert.equal(src.includes('RewardModalBackdrop'), false, 'старая награда-подложка убрана');
   assert.equal(/t\.correct(Text)?\b/.test(src), false);

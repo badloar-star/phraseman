@@ -892,9 +892,9 @@ export default function ManageSubscription() {
                 disabled={!cancelReason}
                 withHaptic={false}
                 wrapStyle={S.sheetPrimaryWrap}
-                style={[S.sheetPrimary, { backgroundColor: glass.cta, opacity: cancelReason ? 1 : 0.5 }]}
+                style={[S.sheetPrimary, { backgroundColor: glass.accent, opacity: cancelReason ? 1 : 0.5 }]}
               >
-                <Text style={[S.sheetPrimaryText, { color: glass.ctaInk, fontSize: scaled(16), lineHeight: scaled(22) }]}>
+                <Text style={[S.sheetPrimaryText, { color: glass.accentInk, fontSize: scaled(16), lineHeight: scaled(22) }]}>
                   {LP('Перейти к отмене', 'Перейти до скасування', 'Continue to cancel', 'Ir a cancelar', 'Ir para o cancelamento', 'Đi tới hủy gói', 'Lanjut ke pembatalan', 'İptale git', 'Przejdź do anulowania')}
                 </Text>
               </DuoPressable>
@@ -957,9 +957,9 @@ export default function ManageSubscription() {
                 accessibilityRole="button"
                 withHaptic={false}
                 wrapStyle={S.sheetPrimaryWrap}
-                style={[S.sheetPrimary, { backgroundColor: glass.cta }]}
+                style={[S.sheetPrimary, { backgroundColor: glass.accent }]}
               >
-                <Text style={[S.sheetPrimaryText, { color: glass.ctaInk, fontSize: scaled(16), lineHeight: scaled(22) }]}>
+                <Text style={[S.sheetPrimaryText, { color: glass.accentInk, fontSize: scaled(16), lineHeight: scaled(22) }]}>
                   {saveOffer === 'support'
                     ? LP('Написать нам', 'Написати нам', 'Write to us', 'Escríbenos', 'Fale conosco', 'Nhắn cho chúng tôi', 'Hubungi kami', 'Bize yaz', 'Napisz do nas')
                     : LP('Остаться в Plus', 'Залишитися в Plus', 'Stay on Plus', 'Quedarme en Plus', 'Ficar no Plus', 'Ở lại Plus', 'Tetap di Plus', "Plus'da kal", 'Zostań w Plus')}
@@ -1011,9 +1011,9 @@ export default function ManageSubscription() {
                 onPress={() => { hapticTap(); setShowRestoreEmpty(false); router.push('/support_report' as never); }}
                 withHaptic={false}
                 wrapStyle={S.sheetPrimaryWrap}
-                style={[S.sheetPrimary, { backgroundColor: glass.cta }]}
+                style={[S.sheetPrimary, { backgroundColor: glass.accent }]}
               >
-                <Text style={[S.sheetPrimaryText, { color: glass.ctaInk, fontSize: scaled(16), lineHeight: scaled(22) }]}>
+                <Text style={[S.sheetPrimaryText, { color: glass.accentInk, fontSize: scaled(16), lineHeight: scaled(22) }]}>
                   {LP('Написать в поддержку', 'Написати в підтримку', 'Contact support', 'Escribir a soporte', 'Falar com o suporte', 'Liên hệ hỗ trợ', 'Hubungi dukungan', 'Desteğe yaz', 'Napisz do wsparcia')}
                 </Text>
               </DuoPressable>

@@ -177,13 +177,13 @@ export default function DialogWhySheet({
                   onPress={gate.onUnlock}
                   accessibilityLabel={`${showLabel}, ${gate.priceRunes}`}
                   style={styles.unlockHit}
-                  contentStyle={[styles.unlockBtn, { backgroundColor: glass.cta }]}
+                  contentStyle={[styles.unlockBtn, { backgroundColor: glass.accent }]}
                   testID="ai-dialog-why-unlock"
                 >
-                  <Text style={{ color: glass.ctaInk, fontSize: f.bodyLg, fontWeight: '900' }} maxFontSizeMultiplier={1.2}>
+                  <Text style={{ color: glass.accentInk, fontSize: f.bodyLg, fontWeight: '900' }} maxFontSizeMultiplier={1.2}>
                     {`ᚱ ${gate.priceRunes}`}
                   </Text>
-                  <Text style={{ color: glass.ctaInk, fontSize: f.bodyLg, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
+                  <Text style={{ color: glass.accentInk, fontSize: f.bodyLg, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
                     {`· ${showLabel}`}
                   </Text>
                 </PressableHybrid>
@@ -231,10 +231,10 @@ export default function DialogWhySheet({
                   onPress={plusGate.onOpenPlus}
                   accessibilityLabel={plusGate.openPlusLabel}
                   style={styles.unlockHit}
-                  contentStyle={[styles.unlockBtn, { backgroundColor: glass.cta }]}
+                  contentStyle={[styles.unlockBtn, { backgroundColor: glass.accent }]}
                   testID="dialogue-v2-why-open-plus"
                 >
-                  <Text style={{ color: glass.ctaInk, fontSize: f.bodyLg, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
+                  <Text style={{ color: glass.accentInk, fontSize: f.bodyLg, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
                     {plusGate.openPlusLabel}
                   </Text>
                 </PressableHybrid>

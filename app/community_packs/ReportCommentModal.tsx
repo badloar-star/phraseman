@@ -113,9 +113,9 @@ function ReportCommentModal({ visible, packId, packTitle, comment, lang, onClose
     <TouchableOpacity
       onPress={onPress}
       accessibilityRole="button"
-      style={{ marginTop: 18, alignSelf: 'stretch', minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 24, backgroundColor: glass.cta }}
+      style={{ marginTop: 18, alignSelf: 'stretch', minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 24, backgroundColor: glass.accent }}
     >
-      <Text style={{ color: glass.ctaInk, fontWeight: '700', fontSize: f.body }}>{label}</Text>
+      <Text style={{ color: glass.accentInk, fontWeight: '700', fontSize: f.body }}>{label}</Text>
     </TouchableOpacity>
   );
 

@@ -9,8 +9,8 @@ test('RegistrationPromptModal берёт материал из активных 
   assert.ok(src.includes("from '../constants/liquidGlassThemePalette'"), 'импорт токенов');
   assert.ok(src.includes('liquidGlassTokens(liquidGlassThemeId)'), 'токены активной темы');
   assert.ok(src.includes('glass.opaqueSheet'), 'непрозрачная основа листа');
-  assert.ok(src.includes('glass.cta'), 'CTA — нейтральный токен темы');
-  assert.ok(src.includes('glass.ctaInk'), 'текст CTA — токен чернил CTA');
+  assert.ok(src.includes('glass.accent'), 'CTA — нейтральный токен темы');
+  assert.ok(src.includes('glass.accentInk'), 'текст CTA — токен чернил CTA');
 });
 
 test('нет зелёных фирменных CTA: t.correct / t.correctText не используются', () => {

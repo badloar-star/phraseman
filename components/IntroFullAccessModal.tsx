@@ -133,9 +133,9 @@ function IntroFullAccessModal({ visible, variant, onPrimaryPress, onSecondaryPre
           variant="primary"
           onPress={handlePrimaryPress}
           style={styles.primaryWrap}
-          contentStyle={[styles.primary, { backgroundColor: glass.cta }]}
+          contentStyle={[styles.primary, { backgroundColor: glass.accent }]}
         >
-          <Text style={[styles.primaryText, { color: glass.ctaInk, fontSize: f.body }]}>{primaryLabel}</Text>
+          <Text style={[styles.primaryText, { color: glass.accentInk, fontSize: f.body }]}>{primaryLabel}</Text>
         </PressableHybrid>
       ))}
       {isWelcome

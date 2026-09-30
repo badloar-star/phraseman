@@ -1879,7 +1879,7 @@ export default function SettingsMain() {
                     flex: 1,
                     padding: 12,
                     borderRadius: 24,
-                    backgroundColor: glass.cta,
+                    backgroundColor: glass.accent,
                     borderWidth: 0,
                     borderColor: 'transparent',
                     alignItems: 'center',
@@ -1900,7 +1900,7 @@ export default function SettingsMain() {
                       («Kaydediliyor», «Zapisywanie») влезали в flex:1-кнопку рядом с индикатором
                       без ужимания на рендере, guard-ok */}
                   <Text
-                    style={{ color: glass.ctaInk, fontSize: Math.min(f.body, 13), fontWeight: '700', flexShrink: 1 }}
+                    style={{ color: glass.accentInk, fontSize: Math.min(f.body, 13), fontWeight: '700', flexShrink: 1 }}
                     numberOfLines={1}
                   >
                     {nameSaving

@@ -142,10 +142,10 @@ function VipSurveyReviewPromptModal({ visible, onClose, motionVariant = 'classic
             onPress={openReview}
             edgeColor={g.glassEdge}
             edgeHeight={5}
-            style={[styles.primaryButtonHybridFace, { backgroundColor: g.cta }]}
+            style={[styles.primaryButtonHybridFace, { backgroundColor: g.accent }]}
           >
             <Ionicons name="create-outline" size={19} color={g.ctaInk} />
-            <Text style={[styles.primaryText, { fontSize: f.body, color: g.ctaInk }]}>
+            <Text style={[styles.primaryText, { fontSize: f.body, color: g.accentInk }]}>
               {triLang(lang, { ru: 'Написать отзыв', uk: 'Написати відгук', en: 'Write a review', es: 'Escribir reseña', 'pt-BR': 'Escrever avaliação', vi: 'Viết đánh giá', id: 'Tulis ulasan', tr: 'Değerlendirme yaz', pl: 'Napisz recenzję' })}
             </Text>
           </DuoPressable>
@@ -155,10 +155,10 @@ function VipSurveyReviewPromptModal({ visible, onClose, motionVariant = 'classic
             activeOpacity={0.88}
             accessibilityRole="button"
             onPress={openReview}
-            style={[styles.primaryButton, { backgroundColor: g.cta, borderRadius: 16, overflow: 'hidden' }]}
+            style={[styles.primaryButton, { backgroundColor: g.accent, borderRadius: 16, overflow: 'hidden' }]}
           >
             <Ionicons name="create-outline" size={19} color={g.ctaInk} />
-            <Text style={[styles.primaryText, { fontSize: f.body, color: g.ctaInk }]}>
+            <Text style={[styles.primaryText, { fontSize: f.body, color: g.accentInk }]}>
               {triLang(lang, { ru: 'Написать отзыв', uk: 'Написати відгук', en: 'Write a review', es: 'Escribir reseña', 'pt-BR': 'Escrever avaliação', vi: 'Viết đánh giá', id: 'Tulis ulasan', tr: 'Değerlendirme yaz', pl: 'Napisz recenzję' })}
             </Text>
           </TouchableOpacity>

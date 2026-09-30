@@ -192,9 +192,9 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
             edgeColor={glass.opaqueControl}
             edgeHeight={0}
             wrapStyle={styles.btnWrap}
-            style={[styles.btn, { backgroundColor: glass.cta }]}
+            style={[styles.btn, { backgroundColor: glass.accent }]}
           >
-            <Text style={{ color: glass.ctaInk, fontWeight: '800', fontSize: f.bodyLg }}>
+            <Text style={{ color: glass.accentInk, fontWeight: '800', fontSize: f.bodyLg }}>
               {isReviewPromo && payload
                 ? triLang(lang, {
                   ru: payload.reviewCtaRu,

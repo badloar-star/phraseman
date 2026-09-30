@@ -8,8 +8,8 @@ const source = fs.readFileSync(path.join(__dirname, '../components/SoftContextua
 test('live lesson-result Plus entry follows the selected glass tint', () => {
   assert.match(source, /liquidGlassTokens\(liquidGlassThemeId\)/);
   assert.match(source, /borderColor: glass\.glassEdge/);
-  assert.match(source, /backgroundColor: glass\.cta/);
-  assert.match(source, /color: glass\.ctaInk/);
+  assert.match(source, /backgroundColor: glass.accent/);
+  assert.match(source, /color: glass.accentInk/);
   assert.doesNotMatch(source, /color: t\.correctText/);
 });
 

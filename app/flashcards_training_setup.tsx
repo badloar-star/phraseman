@@ -121,11 +121,11 @@ function SetupAction({
       disabled={disabled}
       onPress={onPress}
       outerStyle={styles.actionOuter}
-      style={[styles.action, { backgroundColor: glass.cta, opacity: disabled ? 0.45 : 1 }]}
+      style={[styles.action, { backgroundColor: glass.accent, opacity: disabled ? 0.45 : 1 }]}
     >
       <Text style={[
         styles.actionLabel,
-        { color: glass.ctaInk, fontSize: 17 * textScale, lineHeight: 22 * textScale },
+        { color: glass.accentInk, fontSize: 17 * textScale, lineHeight: 22 * textScale },
       ]}>{label}</Text>
     </V2Pressable>
   );

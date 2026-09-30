@@ -226,6 +226,8 @@ function createHarness({
     opaqueCard: `${themeId}-card`, opaqueControl: `${themeId}-control`,
     glassEdge: `${themeId}-edge`, lightTint: `${themeId}-light`,
     cta: `${themeId}-cta`, ctaInk: `${themeId}-ink`, secondary: `${themeId}-secondary`,
+    // темы 2.0: главная кнопка берёт роли цвета темы (в «Спокойно» равны cta/ctaInk)
+    accent: `${themeId}-accent`, accentInk: `${themeId}-accentInk`,
   };
   const modules = {
     react: { __esModule: true, default: React, ...React },
@@ -432,7 +434,7 @@ function assertCoreLayout(tree, harness, { stacked }) {
   assert.equal(done.props.withSound, false);
   assert.equal(flatStyle(done.props.contentStyle).minHeight, 52);
   assert.equal(flatStyle(done.props.contentStyle).borderRadius, 26);
-  assert.equal(flatStyle(done.props.contentStyle).backgroundColor, harness.glass.cta);
+  assert.equal(flatStyle(done.props.contentStyle).backgroundColor, harness.glass.accent);
   const retry = byId(tree, 'result-probe-retry');
   assert.equal(flatStyle(retry.props.contentStyle).minHeight, 48);
   assert.ok(visit(tree).indexOf(done) < visit(tree).indexOf(retry), 'primary Done precedes quiet retry');

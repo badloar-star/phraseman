@@ -137,8 +137,8 @@ function MistakeSessionFinale({
               <Text style={[styles.fixedMeaning, { color: g.secondary, fontSize: f.sub }]}>{item.meaning}</Text>
             ) : null}
           </View>
-          <View style={[styles.stamp, { backgroundColor: g.cta }]}>
-            <Text style={[styles.stampText, { color: g.ctaInk }]}>{copy.forever}</Text>
+          <View style={[styles.stamp, { backgroundColor: g.accent }]}>
+            <Text style={[styles.stampText, { color: g.accentInk }]}>{copy.forever}</Text>
           </View>
         </View>
       ))}
@@ -158,7 +158,7 @@ function MistakeSessionFinale({
       {newTitle ? (
         <View style={[styles.card, { backgroundColor: g.opaqueControl }]}>
           <View style={styles.cardRow}>
-            <View style={[styles.cardMedal, { backgroundColor: g.cta }]}>
+            <View style={[styles.cardMedal, { backgroundColor: g.accent }]}>
               <Ionicons name="ribbon" size={24} color={g.ctaInk} />
             </View>
             <View style={{ flex: 1, minWidth: 0 }}>
@@ -184,9 +184,9 @@ function MistakeSessionFinale({
           testID="mistake-finale-done"
           accessibilityRole="button"
           onPress={onDone}
-          style={({ pressed }) => [styles.primary, { backgroundColor: g.cta, transform: [{ scale: pressed ? 0.98 : 1 }] }]}
+          style={({ pressed }) => [styles.primary, { backgroundColor: g.accent, transform: [{ scale: pressed ? 0.98 : 1 }] }]}
         >
-          <Text style={{ color: g.ctaInk, fontSize: f.body, fontWeight: '800' }}>{copy.finish}</Text>
+          <Text style={{ color: g.accentInk, fontSize: f.body, fontWeight: '800' }}>{copy.finish}</Text>
         </Pressable>
       </View>
     </ScrollView>

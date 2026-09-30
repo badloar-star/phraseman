@@ -327,7 +327,7 @@ function FirstPurchaseSealCelebrationImpl({
             >
               {/* Текст на залитой CTA — всегда correctText, белый хардкодить
                   нельзя: на светлых темах он был бы нечитаем. */}
-              <Text style={[styles.ctaText, { color: g.ctaInk }]}>
+              <Text style={[styles.ctaText, { color: g.accentInk }]}>
                 {ctaLabel}
               </Text>
             </Pressable>

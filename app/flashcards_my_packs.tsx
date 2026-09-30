@@ -1047,7 +1047,7 @@ export default function FlashcardsMyPacksScreen() {
             style={({ pressed }) => [
               styles.createFab,
               {
-                backgroundColor: g.cta,
+                backgroundColor: g.accent,
                 opacity: pressed ? 0.82 : 1,
                 transform: [{ scale: pressed ? 0.96 : 1 }],
               },

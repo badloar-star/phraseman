@@ -304,11 +304,11 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: lang
                   disabled={sending}
                   accessibilityRole="button"
                   accessibilityState={{ disabled: sending, busy: sending }}
-                  style={[styles.btn, styles.btnSend, { backgroundColor: glass.cta }, sending && styles.btnBusy]}
+                  style={[styles.btn, styles.btnSend, { backgroundColor: glass.accent }, sending && styles.btnBusy]}
                 >
                   <View style={styles.btnSendContent}>
                     {sending ? <ActivityIndicator size="small" color={glass.ctaInk} /> : null}
-                    <Text style={{ color: glass.ctaInk, fontWeight: '700', fontSize: f.body }}>
+                    <Text style={{ color: glass.accentInk, fontWeight: '700', fontSize: f.body }}>
                       {sending
                         ? triLang(uiLang, { ru: 'Отправляем…', uk: 'Надсилаємо…', en: 'Sending…', es: 'Enviando…', 'pt-BR': 'Enviando…', vi: 'Đang gửi…', id: 'Mengirim…', tr: 'Gönderiliyor…', pl: 'Wysyłanie…' })
                         : triLang(uiLang, { ru: 'Отправить', uk: 'Надіслати', en: 'Send', es: 'Enviar', 'pt-BR': 'Enviar', vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij' })}

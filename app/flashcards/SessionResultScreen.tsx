@@ -400,9 +400,9 @@ function SessionResultScreenImpl({
                 }}
                 testID={`${testID}-done`}
                 style={styles.actionTarget}
-                contentStyle={[styles.doneBtn, { backgroundColor: glass.cta }]}
+                contentStyle={[styles.doneBtn, { backgroundColor: glass.accent }]}
               >
-                <Text style={{ color: glass.ctaInk, fontSize: 17 * textScale, lineHeight: 22 * textScale, fontWeight: '700', textAlign: 'center', flexShrink: 1 }}>
+                <Text style={{ color: glass.accentInk, fontSize: 17 * textScale, lineHeight: 22 * textScale, fontWeight: '700', textAlign: 'center', flexShrink: 1 }}>
                   {triLang(lang, {
                     ru: 'Готово', uk: 'Готово', en: 'Done', es: 'Listo',
                     'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe',

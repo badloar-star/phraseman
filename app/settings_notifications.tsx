@@ -136,8 +136,8 @@ function TimeModal({ visible, hour, minute, timeTitle, cancelLabel, onConfirm, o
             <DuoPressable wrapStyle={{ flex:1 }} style={{ minHeight:52, borderRadius:24, backgroundColor:'transparent', borderWidth:1, borderColor:glass.glassEdge }} onPress={onCancel}>
               <Text style={{ color:glass.text, fontSize:16, fontWeight:'400' }}>{cancelLabel}</Text>
             </DuoPressable>
-            <DuoPressable wrapStyle={{ flex:1 }} style={{ minHeight:52, borderRadius:24, backgroundColor:glass.cta }} onPress={() => onConfirm(h, m)}>
-              <Text style={{ color:glass.ctaInk, fontSize:16, fontWeight:'700' }}>OK</Text>
+            <DuoPressable wrapStyle={{ flex:1 }} style={{ minHeight:52, borderRadius:24, backgroundColor:glass.accent }} onPress={() => onConfirm(h, m)}>
+              <Text style={{ color:glass.accentInk, fontSize:16, fontWeight:'700' }}>OK</Text>
             </DuoPressable>
           </View>
         </LinearGradient>

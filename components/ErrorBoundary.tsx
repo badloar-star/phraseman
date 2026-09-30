@@ -274,7 +274,7 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 320,
     minHeight: 52,
-    backgroundColor: GRAPHITE.cta,
+    backgroundColor: GRAPHITE.accent,
     paddingVertical: 14,
     paddingHorizontal: 20,
     borderRadius: 26,
@@ -282,7 +282,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   retryText: {
-    color: GRAPHITE.ctaInk,
+    color: GRAPHITE.accentInk,
     fontSize: 16,
     fontWeight: '700',
     textAlign: 'center',

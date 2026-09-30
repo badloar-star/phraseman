@@ -473,12 +473,12 @@ function AchievementNotifModal({ notif, lang, f, lessonId, lessonScore, lessonCe
               alignSelf: 'stretch',
               alignItems: 'center',
               justifyContent: 'center',
-              backgroundColor: glass.cta,
+              backgroundColor: glass.accent,
               borderRadius: 16,
               paddingHorizontal: 24,
             }}
           >
-            <Text style={{ color: glass.ctaInk, fontWeight: '800', fontSize: f.bodyLg }}>
+            <Text style={{ color: glass.accentInk, fontWeight: '800', fontSize: f.bodyLg }}>
               {greatLabel}
             </Text>
           </TouchableOpacity>

@@ -230,9 +230,9 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
                     accessibilityRole="button"
                     testID="account-logout-failed-retry"
                     onPress={() => { void runLogout(); }}
-                    style={[buttonStyle, { flex: 1, backgroundColor: glass.cta }]}
+                    style={[buttonStyle, { flex: 1, backgroundColor: glass.accent }]}
                   >
-                    <Text style={{ color: glass.ctaInk, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
+                    <Text style={{ color: glass.accentInk, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
                       {L('Повторить', 'Повторити', 'Retry', 'Reintentar', 'Tentar de novo', 'Thử lại', 'Coba lagi', 'Tekrar dene', 'Ponów')}
                     </Text>
                   </TouchableOpacity>
@@ -289,9 +289,9 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
                 accessibilityRole="button"
                 testID="account-logout-confirm"
                 onPress={() => { void runLogout(); }}
-                style={[buttonStyle, { marginTop: 22, backgroundColor: glass.cta }]}
+                style={[buttonStyle, { marginTop: 22, backgroundColor: glass.accent }]}
               >
-                <Text style={{ color: glass.ctaInk, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
+                <Text style={{ color: glass.accentInk, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
                   {L('Выйти', 'Вийти', 'Sign out', 'Salir', 'Sair', 'Đăng xuất', 'Keluar', 'Çıkış yap', 'Wyloguj')}
                 </Text>
               </TouchableOpacity>

@@ -667,7 +667,7 @@ export default function TheoryLessonView({
               <View
                 style={[
                   styles.progressFill,
-                  { backgroundColor: glass.cta, width: `${progressPct}%` },
+                  { backgroundColor: glass.accent, width: `${progressPct}%` },
                 ]}
               />
             </View>

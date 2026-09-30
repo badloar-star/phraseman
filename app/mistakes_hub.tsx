@@ -333,9 +333,9 @@ export default function MistakesHubScreen() {
                 testID="mistakes-hub-start"
                 accessibilityRole="button"
                 onPress={startSession}
-                style={({ pressed }) => [styles.start, { backgroundColor: g.cta, transform: [{ scale: pressed ? 0.98 : 1 }] }]}
+                style={({ pressed }) => [styles.start, { backgroundColor: g.accent, transform: [{ scale: pressed ? 0.98 : 1 }] }]}
               >
-                <Text style={{ color: g.ctaInk, fontSize: f.body, fontWeight: '800' }}>
+                <Text style={{ color: g.accentInk, fontSize: f.body, fontWeight: '800' }}>
                   {showSegments ? `${copy.start} ${sessionCount}` : `${copy.startAll} ${sessionCount}`}
                 </Text>
               </Pressable>

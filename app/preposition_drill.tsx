@@ -434,7 +434,7 @@ function PrepositionDrillScreen() {
               {/* Полоса прогресса + «Вызов 3 / 12» (макет prep) */}
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, marginTop: 22 }}>
                 <View style={{ flex: 1, height: 6, borderRadius: 3, overflow: 'hidden', backgroundColor: glass.opaqueControl }}>
-                  <View style={{ width: '100%', height: '100%', borderRadius: 3, backgroundColor: glass.cta, transformOrigin: 'left', transform: [{ scaleX: total > 0 ? (itemIdx + 1) / total : 0 }] }} />
+                  <View style={{ width: '100%', height: '100%', borderRadius: 3, backgroundColor: glass.accent, transformOrigin: 'left', transform: [{ scaleX: total > 0 ? (itemIdx + 1) / total : 0 }] }} />
                 </View>
                 <Text style={{ color: glass.secondary, fontSize: 15, lineHeight: 20, fontWeight: '600', fontVariant: ['tabular-nums'] }}>
                   {triLang(lang, {

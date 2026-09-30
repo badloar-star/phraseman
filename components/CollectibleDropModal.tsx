@@ -177,9 +177,9 @@ export default function CollectibleDropModal({ outcome, onClose, onOpenCollectio
               onPress={onClose}
               variant="primary"
               style={styles.ctaBtn}
-              contentStyle={[styles.ctaInner, { backgroundColor: glass.cta }]}
+              contentStyle={[styles.ctaInner, { backgroundColor: glass.accent }]}
             >
-              <Text style={[styles.ctaBtnText, { color: glass.ctaInk, fontSize: f.body }]}>{claimLabel}</Text>
+              <Text style={[styles.ctaBtnText, { color: glass.accentInk, fontSize: f.body }]}>{claimLabel}</Text>
             </PressableHybrid>
           </CascadeItem>
 
@@ -221,9 +221,9 @@ export default function CollectibleDropModal({ outcome, onClose, onOpenCollectio
               accessibilityLabel={claimLabel}
               activeOpacity={0.85}
               onPress={onClose}
-              style={[styles.ctaBtn, styles.ctaInner, { backgroundColor: glass.cta }]}
+              style={[styles.ctaBtn, styles.ctaInner, { backgroundColor: glass.accent }]}
             >
-              <Text style={[styles.ctaBtnText, { color: glass.ctaInk, fontSize: f.body }]}>{claimLabel}</Text>
+              <Text style={[styles.ctaBtnText, { color: glass.accentInk, fontSize: f.body }]}>{claimLabel}</Text>
             </TouchableOpacity>
 
             {!!onOpenCollection && (

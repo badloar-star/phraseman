@@ -90,7 +90,7 @@ function compileModal() {
     if (id.endsWith('/liquidGlassThemePalette')) {
       return {
         liquidGlassTokens: () => ({
-          cta: '#cta', ctaInk: '#ink', glassEdge: '#edge',
+          cta: '#cta', ctaInk: '#ink', accent: '#cta', accentInk: '#ink', glassEdge: '#edge',
           opaqueSheet: '#sheet', secondary: '#secondary', selected: '#selected', text: '#text',
         }),
       };
@@ -144,8 +144,8 @@ test('COM-04 invite uses the approved opaque Liquid Glass geometry, typography, 
   assert.match(modal, /secondaryWrap: \{ marginTop: 10 \}/);
   assert.match(modal, /minHeight: 48/);
   assert.match(modal, /borderRadius: 24/);
-  assert.match(modal, /backgroundColor: glass\.cta/);
-  assert.match(modal, /color: glass\.ctaInk/);
+  assert.match(modal, /backgroundColor: glass.accent/);
+  assert.match(modal, /color: glass.accentInk/);
   assert.match(modal, /backgroundColor: 'transparent'/);
   for (const copy of [...TITLE_COPY, ...BODY_COPY, ...START_COPY, ...DECLINE_COPY]) {
     assert.ok(modal.includes(copy), `missing approved locale copy: ${copy}`);

@@ -695,10 +695,10 @@ export default function FlashcardsHubScreen() {
                 pendingModeRef.current = null;
                 setModeSheetVisible(true);
               }}
-              style={({ pressed }) => [styles.trainButton, { backgroundColor: g.cta }, pressed && styles.pressed, (!trainingLocked && !trainingEntryReady) && styles.trainDisabled]}
+              style={({ pressed }) => [styles.trainButton, { backgroundColor: g.accent }, pressed && styles.pressed, (!trainingLocked && !trainingEntryReady) && styles.trainDisabled]}
             >
               <View style={styles.trainButtonContent}>
-                <Text style={[styles.trainText, { color: g.ctaInk }]}>{copy.train}</Text>
+                <Text style={[styles.trainText, { color: g.accentInk }]}>{copy.train}</Text>
                 <Ionicons name="arrow-forward" size={20} color={g.ctaInk} />
               </View>
             </Pressable>

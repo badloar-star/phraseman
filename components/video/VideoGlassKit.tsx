@@ -77,9 +77,9 @@ export function VideoStateBlock({ g, icon, text, testID, actionLabel, actionTest
           disabled={actionDisabled}
           onPress={onAction}
           activeOpacity={0.85}
-          style={[styles.stateAction, { backgroundColor: g.cta }, actionDisabled ? styles.stateActionDisabled : null]}
+          style={[styles.stateAction, { backgroundColor: g.accent }, actionDisabled ? styles.stateActionDisabled : null]}
         >
-          <Text style={[styles.stateActionText, { color: g.ctaInk }]}>{actionLabel}</Text>
+          <Text style={[styles.stateActionText, { color: g.accentInk }]}>{actionLabel}</Text>
         </TouchableOpacity>
       ) : null}
     </View>

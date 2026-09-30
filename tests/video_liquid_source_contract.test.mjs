@@ -28,7 +28,7 @@ test('video channel uses active 13-theme glass without replacing real thumbnails
   // зачем: состояния «нет сети / устарел / ошибка» переехали в components/video/VideoGlassKit (макет video.html).
   const kit = readFileSync(new URL('../components/video/VideoGlassKit.tsx', import.meta.url), 'utf8');
   assert.ok(kit.includes('{ backgroundColor: g.card, borderColor: g.glassEdge }'), 'note surface uses current tint');
-  assert.ok(kit.includes('styles.stateActionText, { color: g.ctaInk }'), 'retry label follows current theme CTA');
+  assert.ok(kit.includes('styles.stateActionText, { color: g.accentInk }'), 'retry label follows current theme CTA');
   assert.ok(!kit.includes("color: '#071015'"), 'retry label has no graphite-only fallback');
   assert.ok(screen.includes('paddingBottom: tabContentBottomPad'), 'tab content clears bottom navigation');
   // The HTML language pill is visual reference only: Video has no native language setter,

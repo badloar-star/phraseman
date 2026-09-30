@@ -511,7 +511,7 @@ export default function NicknameEditModal({
               paddingHorizontal: 12,
               paddingVertical: 12,
               borderRadius: 24,
-              backgroundColor: glass.cta,
+              backgroundColor: glass.accent,
               alignItems: 'center',
               justifyContent: 'center',
               opacity: saveDisabled ? 0.5 : 1,
@@ -527,7 +527,7 @@ export default function NicknameEditModal({
               <FlowText
                 testID="nickname-save-label"
                 provenance="authored"
-                style={{ color: glass.ctaInk, fontSize: f.body, fontWeight: '700', flexShrink: 1, textAlign: 'center' }}
+                style={{ color: glass.accentInk, fontSize: f.body, fontWeight: '700', flexShrink: 1, textAlign: 'center' }}
               >
                 {saving
                   ? L('Сохраняем', 'Зберігаємо', 'Saving', 'Guardando', 'Salvando', 'Đang lưu', 'Menyimpan', 'Kaydediliyor', 'Zapisywanie')

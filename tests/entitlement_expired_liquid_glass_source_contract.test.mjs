@@ -8,7 +8,7 @@ test('expired sheet uses Liquid Glass tokens on an opaque sheet, no legacy rewar
   assert.ok(src.includes("from '../constants/liquidGlassThemePalette'"));
   assert.ok(src.includes('liquidGlassTokens(liquidGlassThemeId)'));
   assert.ok(src.includes('HybridSheetShell') && src.includes('material="liquid-glass-opaque"'));
-  for (const token of ['glass.opaqueControl', 'glass.cta', 'glass.ctaInk', 'glass.text', 'glass.secondary'])
+  for (const token of ['glass.opaqueControl', 'glass.accent', 'glass.accentInk', 'glass.text', 'glass.secondary'])
     assert.ok(src.includes(token), `missing ${token}`);
   assert.equal(src.includes('RewardCardV2'), false);
   assert.equal(src.includes('LinearGradient'), false);

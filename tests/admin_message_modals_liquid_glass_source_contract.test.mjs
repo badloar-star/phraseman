@@ -12,7 +12,7 @@ for (const [name, src] of Object.entries(files)) {
   test(`${name}: neutral Liquid Glass tokens, hairline edge, no brand green`, () => {
     assert.ok(src.includes('liquidGlassTokens(liquidGlassThemeId)'), 'active 13-theme token registry');
     assert.ok(src.includes('glass.opaqueSheet'), 'opaque card base');
-    assert.ok(src.includes('glass.cta') && src.includes('glass.ctaInk'), 'neutral CTA');
+    assert.ok(src.includes('glass.accent') && src.includes('glass.accentInk'), 'neutral CTA');
     assert.ok(src.includes('glass.glassEdge'), 'hairline edge');
     assert.ok(!/t\.accent|t\.correct|\$\{t\.accent\}/.test(src), 'no theme accent / correct surfaces');
     assert.ok(!/#63D98F/i.test(src), 'no brand green');

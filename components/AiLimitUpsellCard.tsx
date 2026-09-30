@@ -162,11 +162,11 @@ export default function AiLimitUpsellCard({
           }}
           style={({ pressed }) => [
             styles.cta,
-            { backgroundColor: glass.cta },
+            { backgroundColor: glass.accent },
             pressed && styles.pressed,
           ]}
         >
-          <Text style={[styles.ctaLabel, { color: glass.ctaInk, fontSize: f.label }]}>
+          <Text style={[styles.ctaLabel, { color: glass.accentInk, fontSize: f.label }]}>
             {ctaLabel}
           </Text>
           <Ionicons name="arrow-forward" size={17} color={glass.ctaInk} />

@@ -263,7 +263,7 @@ export function LessonMenuSummary({
         </View>
       ) : (
         <View style={{ flex: 1, height: 7, borderRadius: 4, overflow: 'hidden', backgroundColor: glass.line }}>
-          <View style={{ width: `${ratio * 100}%`, minWidth: 7, height: 7, borderRadius: 4, backgroundColor: glass.cta }} />
+          <View style={{ width: `${ratio * 100}%`, minWidth: 7, height: 7, borderRadius: 4, backgroundColor: glass.accent }} />
         </View>
       )}
       <Text style={{ color: glass.secondary, fontSize: 15, lineHeight: 20, fontWeight: '600', fontVariant: ['tabular-nums'] }}>{`${progress}/50`}</Text>

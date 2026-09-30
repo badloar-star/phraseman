@@ -377,7 +377,7 @@ export default function CoinRankScreen() {
                 <Image source={next.source} contentFit="contain" style={styles.nextCoin} accessible={false} />
               </View>
               <View style={[styles.progressTrack, { backgroundColor: g.opaqueControl }]}>
-                <View style={[styles.progressFill, { width: `${progress * 100}%`, backgroundColor: g.cta }]} />
+                <View style={[styles.progressFill, { width: `${progress * 100}%`, backgroundColor: g.accent }]} />
               </View>
               <View style={styles.costRow}>
                 <Text style={[styles.costText, { color: p.textSecondary }]}>{copy.cost}</Text>

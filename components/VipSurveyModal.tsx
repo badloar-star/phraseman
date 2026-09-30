@@ -364,7 +364,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted, motionVarian
           { opacity: busy || !canGoNext ? 0.55 : 1, backgroundColor: accent.strong },
         ]}
       >
-        <Text style={[styles.primaryButtonText, { color: g.ctaInk }]}>
+        <Text style={[styles.primaryButtonText, { color: g.accentInk }]}>
           {busy ? copy.saving : isCompleteStep ? copy.finish : copy.next}
         </Text>
       </DuoPressable>
@@ -420,7 +420,7 @@ function VipSurveyModal({ visible, messageId, onClose, onCompleted, motionVarian
                 }}
                 style={[styles.primaryButton, { marginTop: 0, backgroundColor: accent.strong }]}
               >
-                <Text style={[styles.primaryButtonText, { color: g.ctaInk }]}>{copy.exitLeave}</Text>
+                <Text style={[styles.primaryButtonText, { color: g.accentInk }]}>{copy.exitLeave}</Text>
               </Pressable>
               <Pressable
                 testID="vip-survey-exit-stay"

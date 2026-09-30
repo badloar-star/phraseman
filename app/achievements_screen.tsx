@@ -749,7 +749,7 @@ function AchievementModal({
               accessibilityLabel={shareLabel}
               scaleTo={0.97}
               style={{
-                width: '100%', minHeight: 56, backgroundColor: glass.cta, borderRadius: 18,
+                width: '100%', minHeight: 56, backgroundColor: glass.accent, borderRadius: 18,
                 paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', gap: 11,
               }}
               onPress={async () => {
@@ -761,7 +761,7 @@ function AchievementModal({
               }}
             >
               <Ionicons name="share-outline" size={20} color={glass.ctaInk} />
-              <Text style={{ color: glass.ctaInk, fontSize: f.body, fontWeight: '900', flex: 1 }}>
+              <Text style={{ color: glass.accentInk, fontSize: f.body, fontWeight: '900', flex: 1 }}>
                 {shareLabel}
               </Text>
               <Ionicons name="chevron-forward" size={18} color={glass.ctaInk} />

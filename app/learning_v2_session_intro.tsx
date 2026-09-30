@@ -542,7 +542,7 @@ export default function LearningV2SessionIntro({
               style={[
                 styles.progressSegment,
                 { backgroundColor: g.opaqueControl },
-                progressIndex <= safeIndex && { backgroundColor: g.cta },
+                progressIndex <= safeIndex && { backgroundColor: g.accent },
               ]}
             />
           ))}

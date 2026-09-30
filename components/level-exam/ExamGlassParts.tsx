@@ -84,7 +84,7 @@ export function ExamTrack({ glass, ratio, style }: { glass: PracticeGlass; ratio
   const r = Number.isFinite(ratio) ? Math.max(0, Math.min(1, ratio)) : 0;
   return (
     <View style={[styles.track, { backgroundColor: glass.opaqueControl }, style]}>
-      <View style={[styles.trackFill, { backgroundColor: glass.cta, width: `${r * 100}%` }]} />
+      <View style={[styles.trackFill, { backgroundColor: glass.accent, width: `${r * 100}%` }]} />
     </View>
   );
 }

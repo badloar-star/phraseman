@@ -166,9 +166,9 @@ export default function DialogGoalsSheet({
             onPress={requestDismiss}
             accessibilityLabel={closeLabel}
             style={styles.ctaHit}
-            contentStyle={[styles.cta, { backgroundColor: glass.cta }]}
+            contentStyle={[styles.cta, { backgroundColor: glass.accent }]}
           >
-            <Text style={{ color: glass.ctaInk, fontSize: f.bodyLg, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
+            <Text style={{ color: glass.accentInk, fontSize: f.bodyLg, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>
               {closeLabel}
             </Text>
           </PressableHybrid>

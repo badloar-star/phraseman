@@ -380,10 +380,10 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
               onPress={() => restartRound(false)}
               style={({ pressed }) => [
                 styles.timeoutButton,
-                { backgroundColor: g.cta, opacity: pressed ? 0.72 : 1 },
+                { backgroundColor: g.accent, opacity: pressed ? 0.72 : 1 },
               ]}
             >
-              <Text style={[styles.timeoutButtonText, { color: g.ctaInk }]}>
+              <Text style={[styles.timeoutButtonText, { color: g.accentInk }]}>
                 {copy.withoutTimer}
               </Text>
             </Pressable>

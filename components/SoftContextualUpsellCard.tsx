@@ -69,9 +69,9 @@ export default function SoftContextualUpsellCard({
           accessibilityLabel={ctaAccessibilityLabel}
           accessibilityHint={ctaAccessibilityHint}
           onPress={() => { void onCta(); }}
-          style={({ pressed }) => [styles.cta, { backgroundColor: glass.cta, opacity: pressed ? 0.82 : 1 }]}
+          style={({ pressed }) => [styles.cta, { backgroundColor: glass.accent, opacity: pressed ? 0.82 : 1 }]}
         >
-          <Text style={[styles.ctaText, { color: glass.ctaInk, fontSize: f.label }]}>{ctaLabel}</Text>
+          <Text style={[styles.ctaText, { color: glass.accentInk, fontSize: f.label }]}>{ctaLabel}</Text>
           <Ionicons name="arrow-forward" size={19} color={glass.ctaInk} />
         </Pressable>
       </View>

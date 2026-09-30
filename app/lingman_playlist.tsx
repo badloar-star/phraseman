@@ -85,7 +85,7 @@ export default function LingmanPlaylistScreen() {
             <Text accessibilityRole="header" style={[styles.title, { color: g.text }]}>{playlist.title}</Text>
             <Text style={[styles.subtitle, { color: g.secondary }]}>{subtitle}</Text>
             {!!playlist.description && <ExpandableText testID="youtube-playlist-description" provenance="external" text={playlist.description} previewCharacterBudget={260} style={[styles.description, { color: g.secondary }]} />}
-            {videos.length ? <TouchableOpacity testID="youtube-playlist-play-all" accessibilityRole="button" accessibilityLabel={copy.playAll} onPress={playAll} activeOpacity={0.85} style={[styles.playAll, { backgroundColor: g.cta }]}><Ionicons name="play" size={20} color={g.ctaInk} /><Text style={[styles.playAllText, { color: g.ctaInk }]}>{copy.playAll}</Text></TouchableOpacity> : null}
+            {videos.length ? <TouchableOpacity testID="youtube-playlist-play-all" accessibilityRole="button" accessibilityLabel={copy.playAll} onPress={playAll} activeOpacity={0.85} style={[styles.playAll, { backgroundColor: g.accent }]}><Ionicons name="play" size={20} color={g.ctaInk} /><Text style={[styles.playAllText, { color: g.accentInk }]}>{copy.playAll}</Text></TouchableOpacity> : null}
             <View style={styles.videoList}>{videos.length ? videos.map((video) => (
               <YoutubeVideoCard
                 key={video.id}

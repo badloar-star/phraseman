@@ -343,10 +343,10 @@ function ReportErrorButton({
                       setFailed(false);
                       setSending(false);
                     }}
-                    style={[styles.btnSend, { backgroundColor: glass.cta, marginTop: 8, alignSelf: 'stretch' }]}
+                    style={[styles.btnSend, { backgroundColor: glass.accent, marginTop: 8, alignSelf: 'stretch' }]}
                     accessibilityRole="button"
                   >
-                    <Text style={{ color: glass.ctaInk, fontWeight: '700', fontSize: f.body }}>
+                    <Text style={{ color: glass.accentInk, fontWeight: '700', fontSize: f.body }}>
                       {triLang(lang, { ru: 'Попробовать снова', uk: 'Спробувати ще раз', en: 'Try again', es: 'Intentar de nuevo', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
                     </Text>
                   </TouchableOpacity>
@@ -381,10 +381,10 @@ function ReportErrorButton({
                   </Text>
                   <TouchableOpacity
                     onPress={() => setVisible(false)}
-                    style={[styles.btnSend, { backgroundColor: glass.cta, marginTop: 8, alignSelf: 'stretch' }]}
+                    style={[styles.btnSend, { backgroundColor: glass.accent, marginTop: 8, alignSelf: 'stretch' }]}
                     accessibilityRole="button"
                   >
-                    <Text style={{ color: glass.ctaInk, fontWeight: '700', fontSize: f.body }}>
+                    <Text style={{ color: glass.accentInk, fontWeight: '700', fontSize: f.body }}>
                       {triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
                     </Text>
                   </TouchableOpacity>
@@ -419,10 +419,10 @@ function ReportErrorButton({
                   ) : null}
                   <TouchableOpacity
                     onPress={() => setVisible(false)}
-                    style={[styles.btnSend, { backgroundColor: glass.cta, marginTop: 8, alignSelf: 'stretch' }]}
+                    style={[styles.btnSend, { backgroundColor: glass.accent, marginTop: 8, alignSelf: 'stretch' }]}
                     accessibilityRole="button"
                   >
-                    <Text style={{ color: glass.ctaInk, fontWeight: '700', fontSize: f.body }}>
+                    <Text style={{ color: glass.accentInk, fontWeight: '700', fontSize: f.body }}>
                       {triLang(lang, { ru: 'Готово', uk: 'Готово', en: 'Done', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe' })}
                     </Text>
                   </TouchableOpacity>
@@ -517,11 +517,11 @@ function ReportErrorButton({
                       disabled={sending}
                       accessibilityRole="button"
                       accessibilityState={{ disabled: sending, busy: sending }}
-                      style={[styles.btnSend, { backgroundColor: glass.cta }, sending && styles.btnBusy]}
+                      style={[styles.btnSend, { backgroundColor: glass.accent }, sending && styles.btnBusy]}
                     >
                       <View style={styles.btnSendContent}>
                         {sending ? <ActivityIndicator size="small" color={glass.ctaInk} /> : null}
-                        <Text style={{ color: glass.ctaInk, fontWeight: '700', fontSize: f.body }}>
+                        <Text style={{ color: glass.accentInk, fontWeight: '700', fontSize: f.body }}>
                           {sending
                             ? triLang(lang, { ru: 'Отправляю...', uk: 'Надсилаю...', en: 'Sending...', es: 'Enviando...', 'pt-BR': 'Enviando...', vi: 'Đang gửi...', id: 'Mengirim...', tr: 'Gönderiliyor...', pl: 'Wysyłanie...' })
                             : triLang(lang, { ru: 'Отправить', uk: 'Надіслати', en: 'Send', es: 'Enviar', 'pt-BR': 'Enviar', vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij' })}

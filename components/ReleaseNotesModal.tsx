@@ -248,9 +248,9 @@ function ReleaseNotesModal({
               edgeColor={releaseGlass.opaqueControl}
               edgeHeight={4}
               wrapStyle={styles.sheetCtaWrap}
-              style={[styles.btn, { backgroundColor: releaseGlass.cta }]}
+              style={[styles.btn, { backgroundColor: releaseGlass.accent }]}
             >
-              <Text style={[styles.btnText, { fontSize: buttonSize, color: releaseGlass.ctaInk }]}>
+              <Text style={[styles.btnText, { fontSize: buttonSize, color: releaseGlass.accentInk }]}>
                 {displayTx.cta}
               </Text>
             </DuoPressable>
@@ -350,9 +350,9 @@ function ReleaseNotesModal({
             edgeColor={announcementGlass.opaqueControl}
             edgeHeight={4}
             wrapStyle={styles.btnWrap}
-            style={[styles.btn, { backgroundColor: announcementGlass.cta }]}
+            style={[styles.btn, { backgroundColor: announcementGlass.accent }]}
           >
-            <Text style={[styles.btnText, { fontSize: buttonSize, color: announcementGlass.ctaInk }]}>
+            <Text style={[styles.btnText, { fontSize: buttonSize, color: announcementGlass.accentInk }]}>
               {displayTx.cta}
             </Text>
           </DuoPressable>

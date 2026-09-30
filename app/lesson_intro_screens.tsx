@@ -671,7 +671,7 @@ export default function LessonIntroScreens({
             },
           ]}
         >
-          <Text style={[styles.ctaText, { color: introGlass.ctaInk, fontSize: 17, lineHeight: 22 }]}>
+          <Text style={[styles.ctaText, { color: introGlass.accentInk, fontSize: 17, lineHeight: 22 }]}>
             {startLabel}
           </Text>
           <View style={styles.ctaIconWrap}>

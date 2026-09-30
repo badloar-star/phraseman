@@ -239,8 +239,8 @@ export const PaywallPlusPricesError = memo(function PaywallPlusPricesError({ lan
         <Text style={[S.errorTitle, { color: g.text }]}>{pick(lang, COPY.pricesFailed)}</Text>
         <Text style={[S.errorSub, { color: g.secondary }]}>{pick(lang, COPY.checkInternet)}</Text>
       </View>
-      <V2Pressable testID="paywall-prices-retry" onPress={onRetry} scaleTo={0.94} style={[S.retry, { backgroundColor: g.cta }]}>
-        <Text style={[S.retryText, { color: g.ctaInk }]}>{pick(lang, COPY.retry)}</Text>
+      <V2Pressable testID="paywall-prices-retry" onPress={onRetry} scaleTo={0.94} style={[S.retry, { backgroundColor: g.accent }]}>
+        <Text style={[S.retryText, { color: g.accentInk }]}>{pick(lang, COPY.retry)}</Text>
       </V2Pressable>
     </View>
   );
@@ -311,11 +311,11 @@ export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, l
         onPress={onPress}
         withHaptic={false}
         scaleTo={0.97}
-        style={[S.cta, { backgroundColor: g.cta }, !ready && S.ctaWaiting]}
+        style={[S.cta, { backgroundColor: g.accent }, !ready && S.ctaWaiting]}
       >
         {purchasing
           ? <ActivityIndicator color={g.ctaInk} />
-          : <Text style={[S.ctaText, { color: g.ctaInk }]}>{ready ? label : pick(lang, COPY.wait)}</Text>}
+          : <Text style={[S.ctaText, { color: g.accentInk }]}>{ready ? label : pick(lang, COPY.wait)}</Text>}
       </V2Pressable>
       {ready ? <Text style={[S.fine, { color: g.mutedText }]}>{fine}</Text> : null}
     </View>

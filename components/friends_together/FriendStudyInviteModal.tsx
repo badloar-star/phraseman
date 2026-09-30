@@ -67,9 +67,9 @@ function FriendStudyInviteModal({ visible, friendCoinRank = null, onStart, onDec
           onPress={onStart}
           wrapStyle={styles.primaryWrap}
           gradientColors={[glass.lightTint, glass.cta, glass.cta]}
-          style={[styles.button, { backgroundColor: glass.cta }]}
+          style={[styles.button, { backgroundColor: glass.accent }]}
         >
-          <Text style={[styles.buttonText, { color: glass.ctaInk, fontSize: 17 * textScale }]}>
+          <Text style={[styles.buttonText, { color: glass.accentInk, fontSize: 17 * textScale }]}>
             {L('Начать занятие', 'Почати заняття', 'Start the lesson', 'Empezar lección', 'Começar lição', 'Bắt đầu bài học', 'Mulai pelajaran', 'Derse başla', 'Zacznij lekcję')}
           </Text>
         </DuoPressable>

@@ -791,8 +791,8 @@ export default function CollectionListView({
                         pl: 'Za darmo: pierwsze 50 zapisanych kart',
                       })}
                     </Text>
-                    <View style={{ marginTop: 8, backgroundColor: g.cta, borderRadius: 12, paddingHorizontal: 22, paddingVertical: 10 }}>
-                      <Text style={{ color: g.ctaInk, fontSize: f.sub, fontWeight: '700' }}>
+                    <View style={{ marginTop: 8, backgroundColor: g.accent, borderRadius: 12, paddingHorizontal: 22, paddingVertical: 10 }}>
+                      <Text style={{ color: g.accentInk, fontSize: f.sub, fontWeight: '700' }}>
                         {triLang(lang, {
                           ru: 'Открыть все с Plus',
                           uk: 'Відкрити все з Plus',

@@ -494,9 +494,9 @@ export default function FlashcardsVideoPacksScreen() {
                 testID="fc-video-packs-retry"
                 accessibilityRole="button"
                 onPress={retryCatalog}
-                style={({ pressed }) => [styles.stateAction, { backgroundColor: g.cta, opacity: pressed ? 0.8 : 1 }]}
+                style={({ pressed }) => [styles.stateAction, { backgroundColor: g.accent, opacity: pressed ? 0.8 : 1 }]}
               >
-                <Text style={{ color: g.ctaInk, fontSize: 16, fontWeight: '600' }}>{copy.retry}</Text>
+                <Text style={{ color: g.accentInk, fontSize: 16, fontWeight: '600' }}>{copy.retry}</Text>
               </Pressable>
             </View>
           ) : showEmpty ? (
@@ -513,9 +513,9 @@ export default function FlashcardsVideoPacksScreen() {
                   testID="fc-video-packs-clear-search"
                   accessibilityRole="button"
                   onPress={() => { void hapticTap(); setQuery(''); }}
-                  style={({ pressed }) => [styles.stateAction, { backgroundColor: g.cta, opacity: pressed ? 0.8 : 1 }]}
+                  style={({ pressed }) => [styles.stateAction, { backgroundColor: g.accent, opacity: pressed ? 0.8 : 1 }]}
                 >
-                  <Text style={{ color: g.ctaInk, fontSize: 16, fontWeight: '600' }}>{copy.showAll}</Text>
+                  <Text style={{ color: g.accentInk, fontSize: 16, fontWeight: '600' }}>{copy.showAll}</Text>
                 </Pressable>
               ) : null}
             </View>

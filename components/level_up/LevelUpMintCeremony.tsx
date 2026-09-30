@@ -366,8 +366,8 @@ export default function LevelUpMintCeremony({ visible, from, to, onDone, onCue }
             </Animated.View>
           </View>
           <Animated.View style={buttonStyle} pointerEvents={ready ? 'auto' : 'none'}>
-            <PressableScale variant="primary" onPress={finish} disabled={!ready} withHaptic={false} style={[styles.button, { backgroundColor: glass.cta }]}>
-              <Text style={[styles.buttonText, { color: glass.ctaInk }]}>{copy.cta}</Text>
+            <PressableScale variant="primary" onPress={finish} disabled={!ready} withHaptic={false} style={[styles.button, { backgroundColor: glass.accent }]}>
+              <Text style={[styles.buttonText, { color: glass.accentInk }]}>{copy.cta}</Text>
             </PressableScale>
           </Animated.View>
         </View>

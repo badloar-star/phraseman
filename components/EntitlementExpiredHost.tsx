@@ -328,7 +328,7 @@ function EntitlementExpiredHost() {
           accessibilityRole="button"
           accessibilityLabel={tx.cta}
           activeOpacity={0.88}
-          style={[styles.cta, { backgroundColor: glass.cta }]}
+          style={[styles.cta, { backgroundColor: glass.accent }]}
           onPress={() => {
             const context = kind === 'premium' ? 'premium_expired' : 'vip_expired';
             navigateAfterModalClose(markShownAndClose, () => {
@@ -339,7 +339,7 @@ function EntitlementExpiredHost() {
             });
           }}
         >
-          <Text style={[styles.ctaText, { color: glass.ctaInk, fontSize: f.body }]}>{tx.cta}</Text>
+          <Text style={[styles.ctaText, { color: glass.accentInk, fontSize: f.body }]}>{tx.cta}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           testID="entitlement-expired-ghost"

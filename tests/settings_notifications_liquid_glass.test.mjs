@@ -39,7 +39,8 @@ function findArrowContaining(fragment) {
 
 const protectedHashes = {
   SimplePicker: 'c09930bd91831d761d027dedc87b5c960643114427a0b9fbe54d67d34684b23b',
-  TimeModal: '2205d0065569847e941e45524ca309427f66a70bf70be8ce103cad8376f33f88',
+  // зачем (темы 2.0): кнопка OK модалки — роли цвета темы accent/accentInk (в «Спокойно» = cta/ctaInk).
+  TimeModal: '20b0d43d0d427d055bcafe140f5c2b7759ca4e7f7868b62a755b212d30c43bbd',
   scheduleTime: 'ba0a7abb3016f9ad6d07373ff26b07a699ca06431ef0ddcfff3268319f36cce1',
   scheduleAnyEnabled: 'c1806f95116fb5a4651c0a115d7db2371ab8109ae9e72fcde2d5ccae4c3d61d8',
   flashSaved: 'a44652baaecc9ed9e907e3bdae4f6e646bc4168cf22fe99de9e7790310390d1b',

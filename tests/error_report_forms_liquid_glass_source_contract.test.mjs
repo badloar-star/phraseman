@@ -9,8 +9,8 @@ for (const [name, src] of [['ExplainReportButton', explain], ['ReportErrorButton
   test(`${name}: Liquid Glass tokens, opaque sheet, neutral CTA, no thick/coloured borders`, () => {
     assert.ok(src.includes('liquidGlassTokens(liquidGlassThemeId)'), 'active 13-theme registry');
     assert.ok(src.includes('glass.opaqueSheet'), 'opaque sheet base');
-    assert.ok(src.includes('backgroundColor: glass.cta'), 'neutral theme CTA');
-    assert.ok(src.includes('color: glass.ctaInk'), 'CTA ink from tokens');
+    assert.ok(src.includes('backgroundColor: glass.accent'), 'neutral theme CTA');
+    assert.ok(src.includes('color: glass.accentInk'), 'CTA ink from tokens');
     assert.ok(!src.includes('t.correct'), 'no brand-green surfaces or ink');
     assert.ok(!src.includes('t.border'), 'no legacy theme border');
     assert.ok(!src.includes('TonalSurface'), 'no legacy tonal overlay');

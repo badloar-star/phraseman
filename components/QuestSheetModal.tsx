@@ -236,7 +236,7 @@ function QuestSheetModal({
                   <Text style={[styles.progressPct, { color: g.secondary, fontSize: f.label }]}>{`${progressPct}%`}</Text>
                 </View>
                 <View style={[styles.track, { backgroundColor: g.opaqueControl }]}>
-                  <View style={[styles.fill, { width: `${progressPct}%`, backgroundColor: g.cta }]} />
+                  <View style={[styles.fill, { width: `${progressPct}%`, backgroundColor: g.accent }]} />
                 </View>
               </View>
             ) : null}
@@ -323,9 +323,9 @@ function QuestSheetModal({
                 edgeColor={g.glassEdge}
                 edgeHeight={4}
                 wrapStyle={styles.btnWrap}
-                style={[styles.btn, { backgroundColor: g.cta, borderRadius: 14 }]}
+                style={[styles.btn, { backgroundColor: g.accent, borderRadius: 14 }]}
               >
-                <Text style={{ color: g.ctaInk, fontWeight: '800', fontSize: f.bodyLg }}>
+                <Text style={{ color: g.accentInk, fontWeight: '800', fontSize: f.bodyLg }}>
                   {ready
                     ? triLang(lang, {
                       ru: 'Забрать награду', uk: 'Забрати нагороду', en: 'Claim reward',

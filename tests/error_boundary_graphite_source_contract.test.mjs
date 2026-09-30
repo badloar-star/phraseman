@@ -81,8 +81,8 @@ assert.match(source, /paddingBottom: Math\.max\(24, FALLBACK_INSETS\.bottom\)/, 
 assert.match(source, /<ScrollView[\s\S]*?testID="error-boundary-scroll"[\s\S]*?contentContainerStyle=\{styles\.content\}/, 'fallback content must be reachable in a bounded full-screen scroll surface');
 assert.match(source, /testID="error-boundary-warning-art"/, 'compact warning art must remain addressable');
 assert.match(source, /accessibilityRole="alert"[\s\S]*?accessibilityLiveRegion="assertive"[\s\S]*?accessibilityLabel=\{`\$\{tx\.title\}\. \$\{tx\.body\}`\}/, 'asynchronous crash fallback must announce the localized title and body');
-assert.match(source, /backgroundColor: GRAPHITE\.cta/, 'retry action must use the light graphite CTA');
-assert.match(source, /color: GRAPHITE\.ctaInk/, 'retry label must retain legible graphite CTA contrast');
+assert.match(source, /backgroundColor: GRAPHITE.accent/, 'retry action must use the light graphite CTA');
+assert.match(source, /color: GRAPHITE.accentInk/, 'retry label must retain legible graphite CTA contrast');
 assert.match(source, /accessibilityRole="button"[\s\S]*?onPress=\{this\.handleRetry\}/, 'retry must remain an accessible action wired to the existing callback');
 assert.match(source, /handleRetry = \(\) => \{\s*this\.setState\(\{ hasError: false, error: null, errorInfo: null \}\);\s*\};/, 'retry callback must continue clearing only boundary error state');
 assert.match(source, /AsyncStorage\.getItem\('app_lang'\)\.then\(v => \{\s*if \(v && Object\.prototype\.hasOwnProperty\.call\(TEXTS, v\)\) \{\s*this\.setState\(\{ lang: v as ErrorBoundaryLang \}\);/, 'saved supported language, including English, must be applied to the fallback');

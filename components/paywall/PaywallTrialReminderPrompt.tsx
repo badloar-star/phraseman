@@ -60,11 +60,11 @@ function PaywallTrialReminderPrompt({ lang, g, topInset, bottomInset, onAllow, o
         disabled={asking}
         onPress={allow}
         withHaptic={false}
-        style={[S.cta, { backgroundColor: g.cta }]}
+        style={[S.cta, { backgroundColor: g.accent }]}
       >
         {asking
           ? <ActivityIndicator color={g.ctaInk} />
-          : <Text style={[S.ctaText, { color: g.ctaInk }]}>{pick(lang, COPY.afterAllow)}</Text>}
+          : <Text style={[S.ctaText, { color: g.accentInk }]}>{pick(lang, COPY.afterAllow)}</Text>}
       </V2Pressable>
       <V2Pressable
         testID="paywall-trial-reminder-skip"

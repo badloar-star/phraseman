@@ -7,8 +7,8 @@ const source = readFileSync(new URL('../components/AiConsentSheetModalHybrid.tsx
 test('AI dialog consent uses the shared Liquid Glass sheet without changing the consent actions', () => {
   assert.match(source, /material="liquid-glass"/);
   assert.match(source, /liquidGlassTokens\(liquidGlassThemeId\)/);
-  assert.match(source, /backgroundColor: glass\.cta/);
-  assert.match(source, /color: glass\.ctaInk/);
+  assert.match(source, /backgroundColor: glass.accent/);
+  assert.match(source, /color: glass.accentInk/);
   assert.match(source, /onClose=\{onDecline\}/);
   assert.match(source, /onPress=\{handleAccept\}/);
   assert.match(source, /onPress=\{handleDecline\}/);

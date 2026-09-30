@@ -227,7 +227,7 @@ function UpdateModal({
           style={styles.buttonSheen}
           pointerEvents="none"
         />
-        <Text style={[styles.updateBtnText, { color: glass.ctaInk }]}>
+        <Text style={[styles.updateBtnText, { color: glass.accentInk }]}>
           {primaryLabel ?? tx.update}
         </Text>
       </DuoPressable>

@@ -2261,14 +2261,14 @@ export default function LearningV2DirectSessionPlayerV1() {
         style={({ pressed }) => [
           styles.devJumpToVoiceButton,
           {
-            backgroundColor: g.cta,
+            backgroundColor: g.accent,
             borderColor: g.text,
             opacity: pressed ? 0.72 : 1,
           },
         ]}
       >
         <Ionicons name="mic" size={18} color={g.ctaInk} />
-        <Text style={[styles.devJumpToVoiceText, { color: g.ctaInk }]}>
+        <Text style={[styles.devJumpToVoiceText, { color: g.accentInk }]}>
           DEV · К УСТНО
         </Text>
       </Pressable>
@@ -2502,10 +2502,10 @@ export default function LearningV2DirectSessionPlayerV1() {
             onPress={() => setLoadRevision((value) => value + 1)}
             style={({ pressed }) => [
               styles.retry,
-              { backgroundColor: g.cta, opacity: pressed ? 0.8 : 1 },
+              { backgroundColor: g.accent, opacity: pressed ? 0.8 : 1 },
             ]}
           >
-            <Text style={[styles.retryText, { color: g.ctaInk }]}>
+            <Text style={[styles.retryText, { color: g.accentInk }]}>
               {copy.retry}
             </Text>
           </Pressable>
@@ -2735,7 +2735,7 @@ export default function LearningV2DirectSessionPlayerV1() {
               style={[
                 styles.progressFill,
                 {
-                  backgroundColor: g.cta,
+                  backgroundColor: g.accent,
                   width: `${Math.max(4, Math.round((progressOrdinal / totalInteractions) * 100))}%`,
                 },
               ]}
@@ -3357,8 +3357,8 @@ export default function LearningV2DirectSessionPlayerV1() {
                     </View>
                   </View>
                   {unlockedWords.length > 0 ? (
-                    <View style={[styles.wordPocketBadge, { backgroundColor: g.cta }]}>
-                      <Text style={[styles.wordPocketBadgeText, { color: g.ctaInk }]}>
+                    <View style={[styles.wordPocketBadge, { backgroundColor: g.accent }]}>
+                      <Text style={[styles.wordPocketBadgeText, { color: g.accentInk }]}>
                         {unlockedWords.length}
                       </Text>
                     </View>

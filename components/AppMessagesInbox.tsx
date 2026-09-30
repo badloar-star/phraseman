@@ -969,10 +969,10 @@ function AppMessagesInbox({
             accessibilityRole="button"
             accessibilityLabel={copy.claim}
             onPress={() => { void claimReportReward(message); }}
-            style={[styles.vipSurveyButton, { backgroundColor: glass.cta }]}
+            style={[styles.vipSurveyButton, { backgroundColor: glass.accent }]}
           >
             <Ionicons name="gift-outline" size={17} color={glass.ctaInk} />
-            <Text style={[styles.vipSurveyButtonText, { color: glass.ctaInk }]}>{copy.claim}</Text>
+            <Text style={[styles.vipSurveyButtonText, { color: glass.accentInk }]}>{copy.claim}</Text>
           </TouchableOpacity>
         ) : null}
       </View>

@@ -18,7 +18,7 @@ const ALL = { nickname, del, logout, referral };
 for (const [name, source] of Object.entries(ALL)) {
   test(`${name}: берёт материал из активной темы Liquid Glass и не нарушает запреты владельца`, () => {
     assert.ok(source.includes('liquidGlassTokens('), 'токены 13 тем');
-    assert.ok(source.includes('glass.cta') || name === 'referral' || name === 'del', 'нейтральный CTA темы');
+    assert.ok(source.includes('glass.accent') || name === 'referral' || name === 'del', 'нейтральный CTA темы');
     assert.ok(!/\bt\.correct\b/.test(source), 'зелёная поверхность/текст убраны');
     assert.ok(!/borderWidth:\s*(?:[2-9]|\d{2,})/.test(source), 'нет толстых обводок');
     assert.ok(!/borderTopWidth|borderBottomWidth:\s*[2-9]/.test(source), 'нет разделителей-обводок');
@@ -30,7 +30,7 @@ for (const [name, source] of Object.entries(ALL)) {
 test('NicknameEditModal: шторка Liquid Glass, вся логика смены имени на месте', () => {
   assert.ok(nickname.includes('placement="bottom"'), 'макет PRF-19 — нижняя шторка');
   assert.ok(nickname.includes('glass.opaqueSheet'), 'непрозрачная основа');
-  assert.ok(nickname.includes('glass.ctaInk'), 'текст CTA — чернила темы');
+  assert.ok(nickname.includes('glass.accentInk'), 'текст CTA — чернила темы');
   for (const id of ['nickname-input', 'nickname-save', 'nickname-cancel-label', 'nickname-save-label', 'nickname-availability']) {
     assert.ok(nickname.includes(`"${id}"`), `testID ${id}`);
   }
@@ -77,7 +77,7 @@ test('AccountLogoutFlow: один нативный Modal на три стади�
 
 test('ReferralAccessEndedModal: уведомление-совместимость без обещаний наград, пропсы на месте', () => {
   assert.ok(referral.includes('glass.opaqueSheet'), 'непрозрачная основа');
-  assert.ok(referral.includes('glass.cta') && referral.includes('glass.ctaInk'), 'нейтральный CTA');
+  assert.ok(referral.includes('glass.accent') && referral.includes('glass.accentInk'), 'нейтральный CTA');
   for (const token of ['onInviteFriend', 'onOpenFullAccess', 'onClose', 'accessibilityLabel={closeLabel}', 'onRequestClose={onClose}',
     'ResponsiveModalScrollView']) {
     assert.ok(referral.includes(token), token);

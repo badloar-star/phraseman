@@ -38,7 +38,7 @@ test('lesson review modal is the glass sheet with the same handlers', () => {
 
 test('level-up ceremony CTA uses theme tokens; queue/logic untouched', () => {
   assert.ok(ceremony.includes('liquidGlassTokens(liquidGlassThemeId)'));
-  assert.ok(ceremony.includes('backgroundColor: glass.cta') && ceremony.includes('color: glass.ctaInk'));
+  assert.ok(ceremony.includes('backgroundColor: glass.accent') && ceremony.includes('color: glass.accentInk'));
   assert.ok(ceremony.includes('{copy.newLevel}'), 'eyebrow from the mockup');
   assert.ok(ceremony.includes('onPress={finish}') && ceremony.includes('onPress={skip}'));
   assert.ok(!ceremony.includes('adjustsFontSizeToFit') && !thickBorder(ceremony));

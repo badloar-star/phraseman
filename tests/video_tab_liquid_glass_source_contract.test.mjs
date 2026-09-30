@@ -72,5 +72,5 @@ test('video.html: loading, empty, error and note states use the shared glass kit
 
 test('video packs screen: empty/error states carry the tile and a filled cta', () => {
   assert.ok(packs.includes('styles.stateTile'), 'state tile');
-  assert.ok(packs.includes('backgroundColor: g.cta') && packs.includes('color: g.ctaInk'), 'filled cta');
+  assert.ok(packs.includes('backgroundColor: g.accent') && packs.includes('color: g.accentInk'), 'filled cta');
 });

@@ -53,10 +53,10 @@ test('time modal keeps the action dock reachable in a bounded viewport and uses 
   assert.match(timeModalSource, /colors=\{\[glass\.opaqueSheet, glass\.opaqueSheet\]\}/, 'panel has the approved opaque sheet base');
   assert.match(timeModalSource, /colors=\{\[glass\.selected, 'transparent'\]\}/, 'panel has the approved subtle sheen');
   assert.match(timeModalSource, /borderColor:glass\.glassEdge/, 'panel edge comes from the active glass token');
-  assert.match(timeModalSource, /backgroundColor:glass\.cta/, 'OK uses the approved CTA token');
-  assert.match(timeModalSource, /color:glass\.ctaInk/, 'OK label uses the approved CTA ink token');
+  assert.match(timeModalSource, /backgroundColor:glass.accent/, 'OK uses the approved CTA token');
+  assert.match(timeModalSource, /color:glass.accentInk/, 'OK label uses the approved CTA ink token');
   assert.match(timeModalSource, /borderRadius:24, backgroundColor:'transparent', borderWidth:1, borderColor:glass\.glassEdge/, 'Cancel keeps the transparent ghost treatment and glass edge');
-  assert.match(timeModalSource, /borderRadius:24, backgroundColor:glass\.cta/, 'OK keeps the approved pill radius');
+  assert.match(timeModalSource, /borderRadius:24, backgroundColor:glass.accent/, 'OK keeps the approved pill radius');
   assert.match(source, /useEffect\(\(\) => \(\) => \{ if \(timer\.current\) clearTimeout\(timer\.current\); \}, \[\]\)/, 'pending wheel snap timer is cleaned on unmount');
   assert.doesNotMatch(source, /adjustsFontSizeToFit|maxFontSizeMultiplier/, 'large text is not shrunk or capped');
   assert.doesNotMatch(source, /lineHeight: Math\.ceil\(\(v === value \? 32 : 20\) \* fontScale\)/, 'wheel line height is not manually scaled twice');

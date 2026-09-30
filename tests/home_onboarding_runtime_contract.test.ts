@@ -17,11 +17,9 @@ describe('hidden Home runtime behind onboarding', () => {
   });
 
   it('gates hidden prefetch, below-fold mounting, animations and the crown request', () => {
-    const prefetchEffect = home.slice(
-      home.indexOf('void prefetchTrainerPracticeSnapshot({'),
-      home.indexOf('const appSnapshot =', home.indexOf('void prefetchTrainerPracticeSnapshot({')),
-    );
-    expect(prefetchEffect).toContain('homeRuntimeActive');
+    // 30.09: скрытый прогрев тренажёра удалён вместе со старым тренажёром (4ccd8c4f4, 21.08) —
+    // за онбордингом Главной больше нечего прогревать.
+    expect(home).not.toContain('prefetchTrainerPracticeSnapshot');
 
     const belowFoldEffect = home.slice(
       home.indexOf('const [belowFoldReady'),
@@ -29,11 +27,8 @@ describe('hidden Home runtime behind onboarding', () => {
     );
     expect(belowFoldEffect).toContain('if (!homeRuntimeActive) return undefined');
 
-    const crownEffect = home.slice(
-      home.indexOf('if (!homeRuntimeActive || homeLeagueCrownLoadedRef.current)'),
-      home.indexOf('/** Подсказка по блоку статистики', home.indexOf('if (!homeRuntimeActive || homeLeagueCrownLoadedRef.current)')),
-    );
-    expect(crownEffect).toContain('[homeRuntimeActive]');
+    // 30.09: Лиги удалены (D78) — запроса короны лиги на Главной больше нет.
+    expect(home).not.toContain('homeLeagueCrownLoadedRef');
   });
 
   it('wakes the preserved Home tree only after CleanOnboarding persisted completion', () => {

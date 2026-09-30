@@ -10,7 +10,8 @@ import {
     HOME_FEATURE_TIPS_MAX_REPLAYS,
 } from '../app/home_feature_tips';
 
-const TIP_COUNT = { ru: 9, uk: 10 } as const;
+// 30.09: карточка «Лига» удалена вместе с Лигами (D78, снимок efe19ae9d) — на одну меньше.
+const TIP_COUNT = { ru: 8, uk: 9 } as const;
 const ALL_SETS = [0, 1, 2, 3, 4, 5] as const;
 
 describe('home_feature_tips', () => {

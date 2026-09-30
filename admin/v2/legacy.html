@@ -17718,6 +17718,15 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     }
     return _fnCommunityAdminPack;
   }
+  // зачем: D128 — одобренный набор озвучивается сервером через OpenAI TTS; если прогон упал
+  // или озвучил не всё, владелец ставит набор в очередь заново одной кнопкой.
+  let _fnCardTtsRequeuePack = null;
+  function getCardTtsRequeuePackCallable() {
+    if (!_fnCardTtsRequeuePack) {
+      _fnCardTtsRequeuePack = httpsCallable(functionsUs, 'adminCardTtsRequeuePack');
+    }
+    return _fnCardTtsRequeuePack;
+  }
   // зачем: D110 — админ-возврат покупки набора удалён вместе с серверной функцией.
   let _fnOpenAiBudgetDashboard = null;
   function getOpenAiBudgetDashboardCallable() {
@@ -25764,6 +25773,67 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     }
   };
 
+  // зачем: D128 — сводку озвучки пишет серверный воркер в community_packs/{id}.cardTts
+  // (status done/partial/failed, voicedCount/uniqueCount, language). Показываем её как есть:
+  // нет поля — значит набор ещё не озвучивался, а не «ошибка».
+  const CP_CARD_TTS_STATUS = {
+    done: { label: 'озвучен', bg: '#0f2a1a', fg: '#4ade80' },
+    partial: { label: 'озвучен частично', bg: '#422006', fg: '#fbbf24' },
+    failed: { label: 'озвучка упала', bg: '#3b0a0a', fg: '#f87171' },
+    queued: { label: 'озвучка в очереди', bg: '#1a2540', fg: '#93c5fd' },
+  };
+  function cpCardTtsBadge(row) {
+    const tts = row && typeof row.cardTts === 'object' && row.cardTts ? row.cardTts : null;
+    const status = tts ? String(tts.status || '') : '';
+    const meta = CP_CARD_TTS_STATUS[status];
+    if (!meta) {
+      return '<span data-cp-tts-badge style="display:inline-block;margin-right:8px;padding:2px 8px;border-radius:8px;background:#1f2937;color:#9ca3af;font-size:11px">🔇 без озвучки</span>';
+    }
+    const voiced = Number.isFinite(Number(tts.voicedCount)) ? Number(tts.voicedCount) : null;
+    const unique = Number.isFinite(Number(tts.uniqueCount)) ? Number(tts.uniqueCount) : null;
+    const counts = voiced !== null && unique !== null ? ` ${voiced}/${unique}` : '';
+    const lang = tts.language ? ` · ${escapeHtml(String(tts.language))}` : '';
+    const when = Number(tts.updatedAtMs) > 0 ? new Date(Number(tts.updatedAtMs)).toLocaleString('ru-RU') : '';
+    return `<span data-cp-tts-badge title="${escapeHtml(when ? 'Последний прогон: ' + when : 'Сводка озвучки')}" style="display:inline-block;margin-right:8px;padding:2px 8px;border-radius:8px;background:${meta.bg};color:${meta.fg};font-size:11px;font-weight:700">🔊 ${meta.label}${counts}${lang}</span>`;
+  }
+
+  async function cpRequeueCardTts(packId, btn) {
+    if (!packId) {
+      console.warn('[CARD-TTS-ADMIN] requeue:skip_no_pack_id');
+      return;
+    }
+    if (btn && btn.dataset.busy === '1') {
+      console.warn('[CARD-TTS-ADMIN] requeue:skip_busy', { packId });
+      return;
+    }
+    const card = btn ? btn.closest('.report-card') : null;
+    const badgeEl = card ? card.querySelector('[data-cp-tts-badge]') : null;
+    const prevBadge = badgeEl ? badgeEl.outerHTML : '';
+    const prevLabel = btn ? btn.textContent : '';
+    // Optimistic UI: кнопка и бейдж меняются сразу, сервер догоняет; при ошибке — откат.
+    if (btn) { btn.dataset.busy = '1'; btn.disabled = true; btn.textContent = '⏳ Ставим в очередь…'; }
+    if (badgeEl) badgeEl.outerHTML = cpCardTtsBadge({ cardTts: { status: 'queued' } });
+    console.log('[CARD-TTS-ADMIN] requeue:start', { packId });
+    try {
+      const res = await getCardTtsRequeuePackCallable()({ packId });
+      const data = res && res.data ? res.data : {};
+      if (data.ok !== true) throw new Error('Сервер не подтвердил постановку в очередь');
+      console.log('[CARD-TTS-ADMIN] requeue:ok', { packId });
+      showToast('🔊 Набор поставлен на переозвучку — сводка обновится после прогона', 'ok');
+    } catch (e) {
+      const code = String(e?.code || '').replace('functions/', '');
+      const msg = e?.message || String(e);
+      console.warn('[CARD-TTS-ADMIN] requeue:failed', { packId, code, msg });
+      const cardNow = btn ? btn.closest('.report-card') : null;
+      const badgeNow = cardNow ? cardNow.querySelector('[data-cp-tts-badge]') : null;
+      if (badgeNow && prevBadge) badgeNow.outerHTML = prevBadge;
+      const human = code === 'not-found' ? 'функция ещё не задеплоена' : code === 'permission-denied' ? 'нет прав администратора' : msg;
+      showToast('Переозвучка не запущена: ' + human, 'err');
+    } finally {
+      if (btn) { btn.dataset.busy = '0'; btn.disabled = false; btn.textContent = prevLabel || '🔊 Переозвучить'; }
+    }
+  }
+
   function renderCpActivePackRow(row) {
     const st = String(row.listingStatus || '');
     const title = cpAnyTitle(row).slice(0, 90) || row.id;
@@ -25787,7 +25857,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     return `
       <div class="report-card" style="cursor:default">
         <div class="rc-left" style="min-width:0;flex:1">
-          <div class="report-screen">${badge}${targetBadge}📦 <code>${escapeHtml(packIdAttr)}</code></div>
+          <div class="report-screen">${badge}${targetBadge}${cpCardTtsBadge(row)}📦 <code>${escapeHtml(packIdAttr)}</code></div>
           <div class="report-context">${escapeHtml(title)}</div>
           <div class="report-uid">author: ${sid} · 💎 ${escapeHtml(String(price))} · карт: ${escapeHtml(String(cc))}</div>
           <div class="report-date">продаж: ${escapeHtml(String(sales))} · опубликован: ${escapeHtml(pub)}</div>
@@ -25795,6 +25865,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         <div class="rc-right">
           <button type="button" class="cp-open-pack-btn" data-cp-active-open="${packIdAttr}">👁 Открыть набор</button>
           <button type="button" class="copy-btn" data-cp-active-copy="${packIdAttr}" style="margin-bottom:4px">📋 JSON</button>
+          <button type="button" style="background:#1a2540;border:1px solid #1e40af;color:#93c5fd;border-radius:6px;padding:6px 12px;font-size:12px;cursor:pointer;margin-bottom:4px" data-cp-active-tts="${packIdAttr}" title="Заново озвучить карточки набора через OpenAI TTS (D128)">🔊 Переозвучить</button>
           <button type="button" style="background:#422006;border:1px solid #854d0e;color:#fbbf24;border-radius:6px;padding:6px 12px;font-size:12px;cursor:pointer;margin-bottom:4px" data-cp-active-revision="${packIdAttr}">На доработку</button>
           <button type="button" class="btn-delete" data-cp-active-remove="${packIdAttr}">Снять с продажи</button>
         </div>
@@ -25876,6 +25947,9 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
           const text = JSON.stringify(row, null, 2);
           navigator.clipboard.writeText(text).then(() => showToast('Скопировано', 'ok')).catch(() => showToast('Ошибка копирования', 'err'));
         });
+      });
+      listEl.querySelectorAll('[data-cp-active-tts]').forEach((btn) => {
+        btn.addEventListener('click', () => void cpRequeueCardTts(btn.getAttribute('data-cp-active-tts'), btn));
       });
       listEl.querySelectorAll('[data-cp-active-revision]').forEach((btn) => {
         btn.addEventListener('click', () => void cpActiveModerate(btn.getAttribute('data-cp-active-revision'), 'require_revision'));
@@ -40341,7 +40415,8 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     ['promise', 'Обещание результата', 'График роста «с Phraseman / без повторения» на весь экран.'],
     ['improve', 'Помоги улучшить', 'Зачем нужна анонимная статистика — перед вопросом «откуда узнал».'],
     ['source', 'Источник', 'Откуда узнал о нас. Ответы попадают в раздел «Откуда узнали».'],
-    ['language', 'Язык', 'Выбор изучаемого языка.', 'lang'],
+    // зачем: D126 — экран выбора языка включён в поток онбординга; пометка «выключен в коде» снята только у него.
+    ['language', 'Язык', 'Выбор изучаемого языка.'],
     ['level', 'Уровень', 'Насколько хорошо уже говорит.', 'lang'],
     ['notifications', 'Уведомления', 'Просьба разрешить напоминания, с макетом телефона и пушем.'],
     ['name', 'Имя и согласия', 'Галочка статистики и вопрос про возраст — до пробного и цен. Имя создаётся автоматически.'],
@@ -49525,7 +49600,8 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       [ugcComplete ? 'Всего' : 'Загружено', stats.total],
       ['Завершено', ugcComplete ? stats.completed : '—'],
       ['Возвращено', ugcComplete ? stats.refunded : '—'],
-      ['Осколков', ugcComplete ? stats.shards : '—'],
+      // зачем: D85 — наборы покупаются за монеты.
+      ['Монет', ugcComplete ? stats.shards : '—'],
     ].map(([label, value]) => `<div class="stat-card"><div class="label">${label}</div><div class="value">${typeof value === 'number' ? Number(value).toLocaleString('ru-RU') : value}</div></div>`).join('');
     if (count) count.textContent = ugcComplete
       ? `${rows.length} из ${_ugcPurchasesAll.length}`
@@ -55161,11 +55237,13 @@ window.PMStrictRemediation=Object.freeze({version:'2026-08-18',exactEye:true,man
     });
     return jsZipPromise;
    }
+   // зачем: PM-231 — сервер режет документ длиннее 60 000 знаков (document_text_too_long),
+   // поэтому админка проверяет тот же предел до отправки, а не падает после загрузки.
    async function docxText(file){
     const name=String(file?.name||'').trim();
     if(!name)throw new Error('Имя документа не найдено');
     if(Number(file.size||0)>15*1024*1024)throw new Error('Документ больше 15 МБ');
-    if(name.toLowerCase().endsWith('.txt')){const text=await file.text();if(text.length>500000)throw new Error('В документе больше 500 000 символов');return text}
+    if(name.toLowerCase().endsWith('.txt')){const text=await file.text();if(text.length>60000)throw new Error('В документе больше 60 000 символов — сервер такой не примет (document_text_too_long)');return text}
     if(!name.toLowerCase().endsWith('.docx'))throw new Error('Поддерживаются только .docx и .txt');
     const JSZip=await loadJsZip();
     const archive=await JSZip.loadAsync(await file.arrayBuffer());
@@ -55177,7 +55255,7 @@ window.PMStrictRemediation=Object.freeze({version:'2026-08-18',exactEye:true,man
         const paragraphs=[...doc.querySelectorAll('w\\:p,p')].map((paragraph)=>[...paragraph.querySelectorAll('w\\:t,t')].map((node)=>node.textContent||'').join('').trim()).filter(Boolean);
         const text=paragraphs.join('\n').trim();
         if(!text)throw new Error('В документе нет текста');
-        if(text.length>500000)throw new Error('В документе больше 500 000 символов');
+        if(text.length>60000)throw new Error('В документе больше 60 000 символов — сервер такой не примет (document_text_too_long)');
         return text;
        }
        function splitVideoPhraseDocumentText(text){

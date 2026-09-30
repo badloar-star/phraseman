@@ -56,9 +56,11 @@ const PROTECTED_AST = {
 };
 
 const PROTECTED_FILES = new Map([
-  ['components/survey/SurveySheetModal.tsx', 'b143466b73e3370660bd6830bcbc522db86e2f96abfb8164eb26106e1200ce07'],
+  // зачем (30.09): жемчуг удалён из окна опроса (e2ba35f65) — законное изменение, хеш сдвинут.
+  ['components/survey/SurveySheetModal.tsx', '4b5a35032b8f63e4cd3b7bb19e6003ab97887d045b987dd0bbe8ee6535bdc1f2'],
   ['app/survey_handoff.ts', 'b93b86591466a6b7514340828964231245d32e1fb2529f04b2d0072b7b13ff6f'],
-  ['app/survey_flow_controller.ts', '2b2046264e85b11de27afc1d6eceb72848a5a96c4a1df3efc80332399367448f'],
+  // зачем (30.09): награда жемчугом за опрос удалена (PM-058/D70, efe19ae9d) — законно.
+  ['app/survey_flow_controller.ts', '420e4a04cc27a63cf45ea604e2b00f19b87eef5d300d0d5acf0a7133b2977b30'],
   ['app/account_generation.ts', '2a6880b410038e868f4bf32266e80a7a55c0fe31e2aaa8f8e49178ba2a113004'],
   ['app/user_id_policy.ts', 'e221004d0932220f3221d3372df69872e3ba478bfd7b404b113a53f83d41e464'],
 ]);

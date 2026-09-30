@@ -20,20 +20,26 @@ require('tsx/cjs');
 const { themeDisplayName } = require('../app/theme_display_names.ts');
 Module._load = originalModuleLoad;
 
+// зачем (владелец 2026-09-30): имена тем — набор «Небо и природа», ключи прежние.
 const ENGLISH_LIQUID_GLASS_NAMES = {
-  graphite: 'Graphite',
-  polar: 'Polar',
-  slate: 'Slate',
-  ink: 'Ink',
-  lavender: 'Lavender',
-  iris: 'Iris',
-  rose: 'Dusty Rose',
-  terracotta: 'Soft Terracotta',
-  taupe: 'Taupe',
-  olive: 'Olive',
-  sage: 'Sage',
-  eucalyptus: 'Eucalyptus',
-  marine: 'Marine',
+  graphite: 'Eclipse',
+  polar: 'Frost',
+  slate: 'Storm',
+  ink: 'Twilight',
+  lavender: 'Lilac',
+  iris: 'Orchid',
+  rose: 'Dawn',
+  terracotta: 'Sunset',
+  taupe: 'Dune',
+  olive: 'Savanna',
+  sage: 'Mint',
+  eucalyptus: 'Lagoon',
+  marine: 'Ocean',
+};
+const RUSSIAN_LIQUID_GLASS_NAMES = {
+  graphite: 'Затмение', polar: 'Иней', slate: 'Шторм', ink: 'Сумерки', lavender: 'Сирень',
+  iris: 'Орхидея', rose: 'Рассвет', terracotta: 'Закат', taupe: 'Дюна', olive: 'Саванна',
+  sage: 'Мята', eucalyptus: 'Лагуна', marine: 'Океан',
 };
 
 test('Settings theme row names the effective Liquid Glass theme', () => {
@@ -55,5 +61,14 @@ test('Settings theme row has no legacy Forest fallback', () => {
 test('themeDisplayName has an explicit English label for every approved Liquid Glass theme', () => {
   for (const [id, englishName] of Object.entries(ENGLISH_LIQUID_GLASS_NAMES)) {
     assert.equal(themeDisplayName(id, 'en'), englishName);
+  }
+});
+
+test('themeDisplayName uses the owner-approved «Небо и природа» names in all nine locales', () => {
+  for (const [id, name] of Object.entries(RUSSIAN_LIQUID_GLASS_NAMES)) {
+    assert.equal(themeDisplayName(id, 'ru'), name);
+    for (const lang of ['uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl']) {
+      assert.ok(themeDisplayName(id, lang).length > 0, `${id}/${lang}`);
+    }
   }
 });

@@ -26,22 +26,24 @@ export type ThemeDisplayName = Readonly<{
   pl: string;
 }>;
 
+// зачем (владелец 2026-09-30, темы 2.0): имена 13 тем — набор «Небо и природа»
+// (старые «Графит/Сланец/…» отменены). Ключи прежние, чтобы выбор пользователей не слетел.
 export const THEME_DISPLAY_NAMES: Readonly<Record<string, ThemeDisplayName>> = Object.freeze({
-  graphite: { ru: 'Графит', uk: 'Графіт', en: 'Graphite', es: 'Grafito', 'pt-BR': 'Grafite', vi: 'Than chì', id: 'Grafit', tr: 'Grafit', pl: 'Grafit' },
-  polar: { ru: 'Полярная', uk: 'Полярна', en: 'Polar', es: 'Polar', 'pt-BR': 'Polar', vi: 'Cực', id: 'Kutub', tr: 'Kutup', pl: 'Polarna' },
-  slate: { ru: 'Сланец', uk: 'Сланець', en: 'Slate', es: 'Pizarra', 'pt-BR': 'Ardósia', vi: 'Đá phiến', id: 'Batu sabak', tr: 'Arduvaz', pl: 'Łupek' },
-  ink: { ru: 'Чернильная', uk: 'Чорнильна', en: 'Ink', es: 'Tinta', 'pt-BR': 'Tinta', vi: 'Mực', id: 'Tinta', tr: 'Mürekkep', pl: 'Atramentowa' },
-  lavender: { ru: 'Лаванда', uk: 'Лаванда', en: 'Lavender', es: 'Lavanda', 'pt-BR': 'Lavanda', vi: 'Oải hương', id: 'Lavender', tr: 'Lavanta', pl: 'Lawenda' },
-  iris: { ru: 'Ирис', uk: 'Ірис', en: 'Iris', es: 'Iris', 'pt-BR': 'Íris', vi: 'Diên vĩ', id: 'Iris', tr: 'Süsen', pl: 'Irys' },
-  rose: { ru: 'Пыльная роза', uk: 'Пильна троянда', en: 'Dusty Rose', es: 'Rosa empolvado', 'pt-BR': 'Rosa empoeirada', vi: 'Hồng phấn', id: 'Mawar berdebu', tr: 'Toz pembe', pl: 'Przygaszony róż' },
-  terracotta: { ru: 'Мягкая терракота', uk: 'М’яка теракота', en: 'Soft Terracotta', es: 'Terracota suave', 'pt-BR': 'Terracota suave', vi: 'Đất nung dịu', id: 'Terakota lembut', tr: 'Yumuşak terracotta', pl: 'Miękka terakota' },
-  taupe: { ru: 'Тауп', uk: 'Тауп', en: 'Taupe', es: 'Topo', 'pt-BR': 'Taupe', vi: 'Taupe', id: 'Taupe', tr: 'Vizon', pl: 'Taupe' },
-  sage: { ru: 'Шалфей', uk: 'Шавлія', en: 'Sage', es: 'Salvia', 'pt-BR': 'Sálvia', vi: 'Xô thơm', id: 'Sage', tr: 'Adaçayı', pl: 'Szałwia' },
-  eucalyptus: { ru: 'Эвкалипт', uk: 'Евкаліпт', en: 'Eucalyptus', es: 'Eucalipto', 'pt-BR': 'Eucalipto', vi: 'Bạch đàn', id: 'Eukaliptus', tr: 'Okaliptüs', pl: 'Eukaliptus' },
-  marine: { ru: 'Морская', uk: 'Морська', en: 'Marine', es: 'Marina', 'pt-BR': 'Marinha', vi: 'Biển sâu', id: 'Laut', tr: 'Deniz', pl: 'Morska' },
+  graphite: { ru: 'Затмение', uk: 'Затемнення', en: 'Eclipse', es: 'Eclipse', 'pt-BR': 'Eclipse', vi: 'Nhật thực', id: 'Gerhana', tr: 'Tutulma', pl: 'Zaćmienie' },
+  polar: { ru: 'Иней', uk: 'Іній', en: 'Frost', es: 'Escarcha', 'pt-BR': 'Geada', vi: 'Sương giá', id: 'Embun beku', tr: 'Kırağı', pl: 'Szron' },
+  slate: { ru: 'Шторм', uk: 'Шторм', en: 'Storm', es: 'Tormenta', 'pt-BR': 'Tempestade', vi: 'Bão', id: 'Badai', tr: 'Fırtına', pl: 'Burza' },
+  ink: { ru: 'Сумерки', uk: 'Сутінки', en: 'Twilight', es: 'Crepúsculo', 'pt-BR': 'Crepúsculo', vi: 'Chạng vạng', id: 'Temaram', tr: 'Alacakaranlık', pl: 'Zmierzch' },
+  lavender: { ru: 'Сирень', uk: 'Бузок', en: 'Lilac', es: 'Lila', 'pt-BR': 'Lilás', vi: 'Tử đinh hương', id: 'Lilak', tr: 'Leylak', pl: 'Bez' },
+  iris: { ru: 'Орхидея', uk: 'Орхідея', en: 'Orchid', es: 'Orquídea', 'pt-BR': 'Orquídea', vi: 'Hoa lan', id: 'Anggrek', tr: 'Orkide', pl: 'Orchidea' },
+  rose: { ru: 'Рассвет', uk: 'Світанок', en: 'Dawn', es: 'Amanecer', 'pt-BR': 'Amanhecer', vi: 'Bình minh', id: 'Fajar', tr: 'Şafak', pl: 'Świt' },
+  terracotta: { ru: 'Закат', uk: 'Захід сонця', en: 'Sunset', es: 'Atardecer', 'pt-BR': 'Pôr do sol', vi: 'Hoàng hôn', id: 'Senja', tr: 'Gün batımı', pl: 'Zachód słońca' },
+  taupe: { ru: 'Дюна', uk: 'Дюна', en: 'Dune', es: 'Duna', 'pt-BR': 'Duna', vi: 'Đụn cát', id: 'Bukit pasir', tr: 'Kumul', pl: 'Wydma' },
+  sage: { ru: 'Мята', uk: 'М’ята', en: 'Mint', es: 'Menta', 'pt-BR': 'Menta', vi: 'Bạc hà', id: 'Mint', tr: 'Nane', pl: 'Mięta' },
+  eucalyptus: { ru: 'Лагуна', uk: 'Лагуна', en: 'Lagoon', es: 'Laguna', 'pt-BR': 'Lagoa', vi: 'Đầm phá', id: 'Laguna', tr: 'Lagün', pl: 'Laguna' },
+  marine: { ru: 'Океан', uk: 'Океан', en: 'Ocean', es: 'Océano', 'pt-BR': 'Oceano', vi: 'Đại dương', id: 'Samudra', tr: 'Okyanus', pl: 'Ocean' },
   indigo: { ru: 'Индиго', uk: 'Індиго', es: 'Índigo', 'pt-BR': 'Índigo', vi: 'Chàm', id: 'Indigo', tr: 'İndigo', pl: 'Indygo' },
   sagePorcelain: { ru: 'Нефрит', uk: 'Нефрит', es: 'Jade', 'pt-BR': 'Jade', vi: 'Ngọc bích', id: 'Giok', tr: 'Yeşim', pl: 'Jadeit' },
-  olive: { ru: 'Олива', uk: 'Олива', en: 'Olive', es: 'Oliva', 'pt-BR': 'Oliva', vi: 'Ô liu', id: 'Zaitun', tr: 'Zeytin', pl: 'Oliwka' },
+  olive: { ru: 'Саванна', uk: 'Савана', en: 'Savanna', es: 'Sabana', 'pt-BR': 'Savana', vi: 'Thảo nguyên', id: 'Sabana', tr: 'Savan', pl: 'Sawanna' },
   midnight: { ru: 'Полночь', uk: 'Північ', es: 'Medianoche', 'pt-BR': 'Meia-noite', vi: 'Nửa đêm', id: 'Tengah malam', tr: 'Gece yarısı', pl: 'Północ' },
   ember: { ru: 'Янтарь', uk: 'Бурштин', es: 'Ámbar', 'pt-BR': 'Âmbar', vi: 'Hổ phách', id: 'Amber', tr: 'Kehribar', pl: 'Bursztyn' },
   aurora: { ru: 'Сияние', uk: 'Сяйво', es: 'Aurora', 'pt-BR': 'Aurora', vi: 'Cực quang', id: 'Aurora', tr: 'Aurora', pl: 'Zorza' },

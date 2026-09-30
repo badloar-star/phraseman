@@ -32,6 +32,8 @@ export interface OpenAiChatParams {
   beforeRequest?: (attempt: number) => Promise<void>;
   /** Bound nested retries when an outer orchestration already owns retry/backoff. */
   maxAttempts?: number;
+  /** PM-231: per-attempt fetch timeout; default 30s. Callers under a shorter function timeout pass less. */
+  timeoutMs?: number;
 }
 
 export interface OpenAiChatResult {
@@ -77,6 +79,8 @@ function isRetryableFetchError(error: unknown): boolean {
 export async function openAiChat(params: OpenAiChatParams): Promise<OpenAiChatResult> {
   const { apiKey, model, messages, maxTokens, temperature, responseFormat, beforeRequest } = params;
   const maxAttempts = Math.max(1, Math.min(OPENAI_CHAT_MAX_ATTEMPTS, Math.floor(params.maxAttempts ?? OPENAI_CHAT_MAX_ATTEMPTS)));
+  // зачем: PM-231 — функция с потолком 30с не может ждать 30с×3 попытки; вызывающий задаёт свой тайм-аут.
+  const timeoutMs = Math.max(1_000, Math.min(OPENAI_CHAT_TIMEOUT_MS, Math.floor(params.timeoutMs ?? OPENAI_CHAT_TIMEOUT_MS)));
 
   const body: Record<string, unknown> = {
     model,
@@ -98,7 +102,7 @@ export async function openAiChat(params: OpenAiChatParams): Promise<OpenAiChatRe
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(body),
-        signal: AbortSignal.timeout(OPENAI_CHAT_TIMEOUT_MS),
+        signal: AbortSignal.timeout(timeoutMs),
       });
       if (response.ok || !isRetryableStatus(response.status) || attempt === maxAttempts) break;
       const detail = await response.text().catch(() => '');

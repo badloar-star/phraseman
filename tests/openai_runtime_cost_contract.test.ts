@@ -256,6 +256,8 @@ describe("OpenAI runtime cost controls", () => {
       "league_compass_daily_billing",
       "choice_explain_billing",
       "mistake_explain_billing",
+      // PM-231: подсказка хаба ошибок пишет usage с 2026-09-30.
+      "mistake_hub_advice_billing",
       "tournament_ai_billing",
       "voice_call_billing",
     ];

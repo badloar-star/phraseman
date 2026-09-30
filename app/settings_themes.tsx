@@ -1,42 +1,25 @@
-import React, { memo, useCallback, useEffect, useMemo } from 'react';
-import { StyleSheet, useWindowDimensions, View, TouchableOpacity } from 'react-native';
-import { Image } from 'expo-image';
+import React, { memo, useCallback, useEffect } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import BouncyScrollView from '../components/BouncyScrollView';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { LinearGradient } from '../components/SafeLinearGradient';
+import SafeLinearGradient, { LinearGradient } from '../components/SafeLinearGradient';
+import PressableHybrid from '../components/PressableHybrid';
+import { settingsGlassCardStyle } from '../components/settings/SettingsGlassRows';
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
-import SectionSheetHeader from '../components/SectionSheetHeader';
 import { useTheme, getVolumetricShadow } from '../components/ThemeContext';
 import { FlowText } from '../components/text-integrity/FlowText';
 import { useLang } from '../components/LangContext';
 import { hapticTap } from '../hooks/use-haptics';
-import TapScale from '../components/TapScale';
 import PlusBadge from '../components/PlusBadge';
 import { ENABLE_DEV_TOOLS } from './config';
 import { triLang, type Lang } from '../constants/i18n';
-import {
-  type Theme,
-  INDIGO,
-  SAGE_PORCELAIN,
-  OLIVE,
-  MIDNIGHT,
-  EMBER,
-  AURORA,
-  VOLT,
-  DARK,
-  GOLD,
-} from '../constants/theme';
-import { GOLD_GRADIENTS, GOLD_RICH } from '../constants/goldTheme';
+import { DARK, type Theme } from '../constants/theme';
+import { liquidGlassTokens, makeLiquidGlassTheme, type LiquidGlassThemeId } from '../constants/liquidGlassThemePalette';
 import { safeRouterBack } from './navigation_back';
 import { themeDisplayName } from './theme_display_names';
-import {
-  isThemePlusOnly,
-  isThemeRewardOnly,
-} from './theme_access_policy';
-import { oliveThemeTileA11y } from './olive_completion_chrome';
 // зачем (PM-064, D38/D45): полка тем «за жемчуг» опустела ещё 2026-09-13 —
 // isThemeShardPurchasable/themePriceShards всегда возвращали false/0, а
 // ThemeShardPaywallModal и purchaseThemeWithShards были недостижимым кодом.
@@ -55,17 +38,10 @@ type ThemeOption = {
 const DEV_THEME_UNLOCKS = ENABLE_DEV_TOOLS;
 
 const THEME_OPTIONS: ThemeOption[] = [
-  // зачем: «Индиго» и «Нефрит» — фри-витрина (выбор владельца); «Полночь» в премиуме,
-  // но у «дедушек» (жили на ней бесплатно) остаётся открытой.
-  { mode: 'indigo' },
-  { mode: 'sagePorcelain' },
-  { mode: 'olive' },
-  { mode: 'midnight' },
-  { mode: 'ember' },
-  { mode: 'aurora' },
-  { mode: 'volt' },
-  { mode: 'dark' },
-  { mode: 'gold' },
+  { mode: 'graphite' }, { mode: 'polar' }, { mode: 'slate' }, { mode: 'ink' },
+  { mode: 'lavender' }, { mode: 'iris' }, { mode: 'rose' }, { mode: 'terracotta' },
+  { mode: 'taupe' }, { mode: 'olive' }, { mode: 'sage' }, { mode: 'eucalyptus' },
+  { mode: 'marine' },
 ];
 
 // зачем: имя темы нужно и плитке, и модалке покупки — один помощник вместо
@@ -77,128 +53,77 @@ function themeLabel(mode: string, lang: Lang): string {
   return themeDisplayName(mode, lang);
 }
 
-// Единственный источник цветов плашек — реальные палитры тем.
-const PALETTES = {
-  indigo: INDIGO,
-  sagePorcelain: SAGE_PORCELAIN,
-  olive: OLIVE,
-  midnight: MIDNIGHT,
-  ember: EMBER,
-  aurora: AURORA,
-  volt: VOLT,
-  dark: DARK,
-  gold: GOLD,
-} as const;
+type PickerThemeMode = LiquidGlassThemeId;
+const paletteFor = (id: PickerThemeMode): Theme => makeLiquidGlassTheme(id, DARK);
 
-type PickerThemeMode = keyof typeof PALETTES;
-
-// зачем: иконки тем сгенерированы через OpenAI по решению владельца (2026-08-02),
-// лежат бандл-ассетами — ноль сети и генераций в рантайме.
-// зачем webp (2026-08-23): владелец заметил, что «Янтарь» тяжелее соседей — PNG-иконки
-// весили 16–29 КБ каждая (197 КБ на девять). WebP в режиме LOSSLESS даёт те же
-// пиксели (проверено побайтово: 0 отличий на всех непрозрачных пикселях) при 86 КБ
-// на все девять. Палитровое сжатие PNG отвергнуто: 256 цветов рвут градиенты
-// иконок (средняя ошибка канала ~40/255 — заметно глазом).
-const THEME_ICONS: Record<PickerThemeMode, number> = {
-  indigo: require('../assets/theme-icons/indigo.webp'),
-  sagePorcelain: require('../assets/theme-icons/sagePorcelain.webp'),
-  olive: require('../assets/theme-icons/olive.webp'),
-  midnight: require('../assets/theme-icons/midnight.webp'),
-  ember: require('../assets/theme-icons/ember.webp'),
-  aurora: require('../assets/theme-icons/aurora.webp'),
-  volt: require('../assets/theme-icons/volt.webp'),
-  dark: require('../assets/theme-icons/dark.webp'),
-  gold: require('../assets/theme-icons/gold.webp'),
-};
-
-type ThemeTileProps = {
+type ThemeRowProps = {
   option: ThemeOption;
   label: string;
-  nameColor: string;
+  sub: string;
   locked: boolean;
   applied: boolean;
   candidate: boolean;
-  size: number;
   onPress: (mode: PickerThemeMode) => void;
-  lang: Lang;
+  glass: ReturnType<typeof liquidGlassTokens>;
 };
 
-// зачем: владелец отверг «шумную» строку (полоска прогресса + текстовый чип внутри
-// плашки) в пользу немой квадратной плитки — только крупная иконка. Имя переехало
-// под плитку (правило: никаких подписей-расшифровок ВНУТРИ карточки), а состояние
-// (заблокировано/выбрано) читается по угловому бейджу, как в студии кастомизации
-// (components/customization/CustomizationCatalogCard.tsx) — тот же язык уже принят
-// владельцем для сетки аватаров/аур.
-//
-// зачем size приходит числом, а не % — процентная ширина + flexGrow внутри
-// flexWrap-контейнера НЕ гарантирует перенос ровно после 3 штук (Yoga считает
-// перенос по НЕрастянутой базе; при flexBasis:0 база нулевая у всех 9 плиток,
-// и они все встают в один ряд крошечными кружками — баг, который поймал
-// владелец на скриншоте). Точный пиксельный размер, посчитанный один раз от
-// ширины экрана в SettingsThemes, исключает эту неопределённость целиком.
-const ThemeTile = memo(function ThemeTile({ option, label, nameColor, locked, applied, candidate, size, onPress, lang }: ThemeTileProps) {
-  const palette: Theme = PALETTES[option.mode];
-  const shadow = getVolumetricShadow(option.mode, palette, candidate ? 3 : 2);
+// зачем (владелец 2026-09-29, макет profile.html#PRF-06): «Темы» — плотный список стеклянных
+// строк: образец темы слева (красится НАСТОЯЩЕЙ палитрой самой темы, не ручным дублем),
+// имя + короткий статус, справа радио «выбрана для примерки/применена». Тап по-прежнему
+// примеряет тему на весь экран, применение и пейволл — кнопкой внизу (логика не менялась).
+const ThemeRow = memo(function ThemeRow({ option, label, sub, locked, applied, candidate, onPress, glass }: ThemeRowProps) {
+  const palette = paletteFor(option.mode);
   return (
-    <View style={{ width: size }}>
-      <TapScale
-        testID={`theme-tile-${option.mode}`}
-        accessibilityRole="button"
-        accessibilityState={{ selected: applied }}
-        accessibilityValue={{ text: oliveThemeTileA11y(lang, locked ? 'locked' : applied ? 'applied' : candidate ? 'preview' : 'available') }}
-        accessibilityLabel={label}
-        onPress={() => onPress(option.mode)}
-        scaleTo={0.95}
-        style={[styles.tileWrap, shadow, candidate ? styles.tileCandidate : null]}
+    <PressableHybrid
+      testID={`theme-tile-${option.mode}`}
+      accessibilityRole="radio"
+      accessibilityState={{ selected: candidate, checked: candidate }}
+      accessibilityValue={{ text: locked ? 'locked' : applied ? 'applied' : candidate ? 'preview' : 'available' }}
+      accessibilityLabel={`${label}, ${sub}`}
+      onPress={() => onPress(option.mode)}
+      withHaptic={false}
+      withSound={false}
+      variant="card"
+      contentStyle={settingsGlassCardStyle(glass)}
+    >
+      <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={StyleSheet.absoluteFillObject} />
+      <LinearGradient
+        colors={palette.cardGradient}
+        start={{ x: 0.15, y: 0 }}
+        end={{ x: 0.85, y: 1 }}
+        style={styles.swatch}
       >
-        <LinearGradient
-          colors={palette.cardGradient}
-          start={{ x: 0.15, y: 0 }}
-          end={{ x: 0.85, y: 1 }}
-          style={[styles.tile, { width: size, height: size }]}
-        >
-          {/* зачем: владелец явно попросил иконку НА ВЕСЬ квадрат, не мелкий
-              кружок в центре — absoluteFill растягивает картинку на всю
-              плитку, tile уже overflow:'hidden' со скруглением, так что
-              иконка обрежется точно по форме карточки. */}
-          <Image source={THEME_ICONS[option.mode]} style={StyleSheet.absoluteFillObject} contentFit="cover" accessible={false} />
-          {locked ? (
-            <PlusBadge themeMode={option.mode} size="sm" style={styles.lockBadge} />
-          ) : applied ? (
-            <View style={[styles.appliedBadge, { backgroundColor: palette.accent }]}>
-              <Ionicons name="checkmark" size={14} color={palette.correctText} />
-            </View>
-          ) : null}
-        </LinearGradient>
-      </TapScale>
-      {/* зачем: FlowText намеренно не принимает numberOfLines (text-integrity: без
-          усечений) — длинное имя темы на узкой плитке переносится на 2 строки,
-          а не режется троеточием; centerText + lineHeight держат высоту стабильной. */}
-      <FlowText testID={`theme-tile-name-${option.mode}`} provenance="authored" style={[styles.name, { color: nameColor }]}>{label}</FlowText>
-    </View>
+        <View style={[styles.swatchDot, { backgroundColor: palette.accent }]} />
+      </LinearGradient>
+      <View style={{ flex: 1, minWidth: 0 }}>
+        {/* зачем: FlowText намеренно не принимает numberOfLines (text-integrity: без усечений) —
+            длинное имя темы переносится, а не режется троеточием. */}
+        <FlowText testID={`theme-tile-name-${option.mode}`} provenance="authored" style={{ color: glass.text, fontSize: 16, lineHeight: 21, fontWeight: '700' }}>{label}</FlowText>
+        <Text style={{ color: glass.mutedText, fontSize: 13, lineHeight: 18, marginTop: 3 }}>{sub}</Text>
+      </View>
+      {locked ? <PlusBadge themeMode="dark" size="sm" /> : null}
+      <View
+        style={[
+          styles.radio,
+          { borderColor: candidate ? glass.lightTint : glass.glassEdge, backgroundColor: candidate ? glass.selected : 'transparent' },
+        ]}
+      >
+        {applied ? <Ionicons name="checkmark" size={14} color={glass.lightTint} /> : candidate ? <View style={[styles.radioDot, { backgroundColor: glass.lightTint }]} /> : null}
+      </View>
+    </PressableHybrid>
   );
 });
 
-// зачем: те же зазор и паддинг экрана, что и в сетке студии кастомизации
-// (avatar_select.tsx GRID_GAP/GRID_PAD) — единый ритм сеток по приложению.
-// Подняты сюда (а не в самый низ файла), потому что tileSize внутри
-// SettingsThemes считает точный пиксельный размер плитки уже на их основе —
-// объявление ДО использования исключает любую зависимость от hoisting.
-const TILE_GRID_GAP = 10;
-const GRID_SCREEN_PAD = 10;
-
 export default function SettingsThemes() {
   const router = useRouter();
-  const { width: windowWidth } = useWindowDimensions();
   const {
     theme: t,
-    appliedThemeMode,
-    previewThemeMode,
-    setPreviewThemeMode,
-    setThemeMode,
-    isGoldThemeUnlocked,
-    isMidnightGrandfathered,
-    isThemeAvailable,
+    liquidGlassThemeId,
+    appliedLiquidGlassThemeId,
+    previewLiquidGlassThemeId,
+    setPreviewLiquidGlassThemeId,
+    setLiquidGlassThemeId,
+    isLiquidGlassThemeAvailable,
   } = useTheme();
   const { lang } = useLang();
   // зачем удалено (аудит 2026-08-25): мёртвая переменная — «Пульт» (remote-config
@@ -206,44 +131,34 @@ export default function SettingsThemes() {
   // в isThemeAvailable/isThemeUnlockedFor. Дублировать здесь — источник расхождения,
   // не защита.
 
-  // зачем: явный пиксельный размер плитки вместо %/flexGrow — гарантирует РОВНО
-  // 3 в ряд на любой ширине экрана (см. комментарий у ThemeTile). Экран открыт
-  // на весь ЖЦ, ширина окна не меняется без ремаунта — Dimensions.get() без
-  // подписки на resize достаточно (та же логика уже используется в customization
-  // heroHeight).
-  const tileSize = useMemo(() => {
-    const usableWidth = windowWidth - GRID_SCREEN_PAD * 2;
-    return Math.floor((usableWidth - TILE_GRID_GAP * 2) / 3);
-  }, [windowWidth]);
-
   // зачем: примерка живёт только пока открыт экран «Темы» — уход с экрана
   // всегда возвращает применённую тему (превью не персистится).
-  useEffect(() => () => setPreviewThemeMode(null), [setPreviewThemeMode]);
+  useEffect(() => () => setPreviewLiquidGlassThemeId(null), [setPreviewLiquidGlassThemeId]);
 
-  const candidate: PickerThemeMode = (previewThemeMode ?? appliedThemeMode) as PickerThemeMode;
-  const candidatePalette: Theme = PALETTES[candidate] ?? PALETTES.indigo;
+  const candidate: PickerThemeMode = previewLiquidGlassThemeId ?? appliedLiquidGlassThemeId;
+  const candidatePalette = paletteFor(candidate);
   // зачем: доступность считает ThemeContext по единой политике (покупка/подписка/
   // награда/«дедушка»). Экран больше не собирает свой замок из кусочков — раньше
   // это уже расходилось с реальным правом применить тему.
-  const candidateLocked = !isThemeAvailable(candidate) && !DEV_THEME_UNLOCKS;
-  const candidateApplied = candidate === appliedThemeMode;
+  const candidateLocked = !isLiquidGlassThemeAvailable(candidate) && !DEV_THEME_UNLOCKS;
+  const candidateApplied = candidate === appliedLiquidGlassThemeId;
 
   const onRowPress = useCallback((mode: PickerThemeMode) => {
     hapticTap();
     // Тап по применённой теме = выход из примерки; по любой другой — мгновенная примерка.
-    setPreviewThemeMode(mode === appliedThemeMode ? null : mode);
-  }, [appliedThemeMode, setPreviewThemeMode]);
+    setPreviewLiquidGlassThemeId(mode === appliedLiquidGlassThemeId ? null : mode);
+  }, [appliedLiquidGlassThemeId, setPreviewLiquidGlassThemeId]);
 
   /** Применить тему + ачивка. Вынесено: используется и из CTA, и сразу после покупки. */
   const applyCandidate = useCallback((mode: PickerThemeMode) => {
-    setThemeMode(mode);
-    setPreviewThemeMode(null);
+    setLiquidGlassThemeId(mode);
+    setPreviewLiquidGlassThemeId(null);
     // зачем: ачивка — только за НАСТОЯЩЕЕ применение, примерка её не триггерит.
     void (async () => {
       const { checkAchievements } = await import('./achievements');
       void checkAchievements({ type: 'profile_theme_set' });
     })();
-  }, [setPreviewThemeMode, setThemeMode]);
+  }, [setPreviewLiquidGlassThemeId, setLiquidGlassThemeId]);
 
   const onCtaPress = useCallback(() => {
     hapticTap();
@@ -263,46 +178,45 @@ export default function SettingsThemes() {
       ? triLang(lang, { ru: 'Тема применена', uk: 'Тему застосовано', en: 'Theme applied', es: 'Tema aplicado', 'pt-BR': 'Tema aplicado', vi: 'Đã áp dụng chủ đề', id: 'Tema diterapkan', tr: 'Tema uygulandı', pl: 'Motyw zastosowany' })
       : triLang(lang, { ru: 'Применить тему', uk: 'Застосувати тему', en: 'Apply theme', es: 'Aplicar tema', 'pt-BR': 'Aplicar tema', vi: 'Áp dụng chủ đề', id: 'Terapkan tema', tr: 'Temayı uygula', pl: 'Zastosuj motyw' });
 
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  const insets = useStableSafeAreaInsets();
+  const backLabel = triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' });
+  const standardLabel = triLang(lang, { ru: 'Стандартная', uk: 'Стандартна', en: 'Standard', es: 'Estándar', 'pt-BR': 'Padrão', vi: 'Mặc định', id: 'Standar', tr: 'Standart', pl: 'Standardowy' });
+
   return (
     <ScreenGradient>
-      <SafeAreaView style={{ flex: 1 }}>
+      <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom, paddingLeft: insets.left, paddingRight: insets.right }}>
         <ContentWrap>
-          {/* зачем: стандарт «шторки раздела» — модал с выездом снизу, шапка
-              с центрированным заголовком и крестиком вместо стрелки «назад». */}
-          <SectionSheetHeader
-            title={triLang(lang, {
-              ru: 'Темы',
-              uk: 'Теми',
-              en: 'Themes',
-              es: 'Temas',
-              'pt-BR': 'Temas',
-              vi: 'Chủ đề',
-              id: 'Tema',
-              tr: 'Temalar',
-              pl: 'Motywy',
-            })}
-            onClose={() => safeRouterBack(router, '/(tabs)/settings' as any)}
-          />
-
-          {/* зачем: владелец попросил КРУПНЫЕ квадраты — боковой паддинг экрана
-              уменьшен (GRID_SCREEN_PAD), чтобы отдать эту ширину самим плиткам,
-              а не воздуху по краям (3 в ряд остаются, но каждая заметно больше). */}
-          <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ paddingHorizontal: GRID_SCREEN_PAD, paddingTop: 12, paddingBottom: 16 }} scrollEventThrottle={16}>
-            <View style={styles.grid}>
-              {THEME_OPTIONS.filter(item => !isThemeRewardOnly(item.mode) || DEV_THEME_UNLOCKS || (item.mode === 'gold' && isGoldThemeUnlocked)).map(item => {
-                const locked = !isThemeAvailable(item.mode) && !DEV_THEME_UNLOCKS;
+          <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ paddingHorizontal: 15, paddingBottom: 16 }} showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
+            <PressableHybrid
+              testID="themes-back"
+              accessibilityLabel={backLabel}
+              onPress={() => safeRouterBack(router, '/(tabs)/settings' as any)}
+              variant="icon"
+              withHaptic={false}
+              withSound={false}
+              style={{ width: 48, height: 48, alignSelf: 'flex-start', marginTop: 4 }}
+              contentStyle={{ width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }}
+            >
+              <Ionicons name="arrow-back" size={22} color={glass.lightTint} />
+            </PressableHybrid>
+            <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: 10 }}>
+              {triLang(lang, { ru: 'Темы', uk: 'Теми', en: 'Themes', es: 'Temas', 'pt-BR': 'Temas', vi: 'Chủ đề', id: 'Tema', tr: 'Temalar', pl: 'Motywy' })}
+            </Text>
+            <View accessibilityRole="radiogroup" style={{ gap: 10, marginTop: 22 }}>
+              {THEME_OPTIONS.map(item => {
+                const locked = !isLiquidGlassThemeAvailable(item.mode) && !DEV_THEME_UNLOCKS;
                 return (
-                  <ThemeTile
+                  <ThemeRow
                     key={item.mode}
                     option={item}
                     label={themeLabel(item.mode, lang)}
-                    nameColor={t.textPrimary}
+                    sub={item.mode === 'graphite' ? standardLabel : 'Plus'}
                     locked={locked}
-                    size={tileSize}
-                    applied={item.mode === appliedThemeMode}
-                        candidate={item.mode === candidate}
-                        lang={lang}
+                    applied={item.mode === appliedLiquidGlassThemeId}
+                    candidate={item.mode === candidate}
                     onPress={onRowPress}
+                    glass={glass}
                   />
                 );
               })}
@@ -324,20 +238,20 @@ export default function SettingsThemes() {
                 candidateLocked
                   ? null
                   : { backgroundColor: candidateApplied ? candidatePalette.accentBg : candidatePalette.accent },
-                !candidateLocked && !candidateApplied ? getVolumetricShadow(candidate, candidatePalette, 2) : null,
+                !candidateLocked && !candidateApplied ? getVolumetricShadow('dark', candidatePalette, 2) : null,
               ]}
             >
               {candidateLocked ? (
                 <LinearGradient
                   pointerEvents="none"
-                  colors={GOLD_GRADIENTS.primaryButton}
+                  colors={[candidatePalette.accent, candidatePalette.accentBg]}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 1 }}
                   style={StyleSheet.absoluteFillObject}
                 />
               ) : null}
               {candidateLocked ? (
-                <Ionicons name="diamond" size={16} color={GOLD_RICH.bronzeDark} />
+                <Ionicons name="lock-closed" size={16} color={candidatePalette.correctText} />
               ) : (
                 <Ionicons
                   name={candidateApplied ? 'checkmark-circle' : 'color-palette'}
@@ -350,7 +264,7 @@ export default function SettingsThemes() {
                 provenance="authored"
                 style={[
                   styles.ctaText,
-                  { color: candidateLocked ? GOLD_RICH.bronzeDark : candidateApplied ? candidatePalette.accent : candidatePalette.correctText },
+                  { color: candidateLocked ? candidatePalette.correctText : candidateApplied ? candidatePalette.accent : candidatePalette.correctText },
                 ]}
               >
                 {ctaLabel}
@@ -358,56 +272,37 @@ export default function SettingsThemes() {
             </TouchableOpacity>
           </View>
         </ContentWrap>
-      </SafeAreaView>
+      </View>
     </ScreenGradient>
   );
 }
 
 const styles = StyleSheet.create({
-  grid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: TILE_GRID_GAP,
-  },
-  tileWrap: {
-    borderRadius: 22,
-  },
-  tileCandidate: {
-    transform: [{ translateY: -2 }],
-  },
-  tile: {
-    aspectRatio: 1,
-    borderRadius: 22,
+  swatch: {
+    width: 41,
+    height: 41,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
     overflow: 'hidden',
+  },
+  swatchDot: {
+    width: 14,
+    height: 14,
+    borderRadius: 7,
+  },
+  radio: {
+    width: 26,
+    height: 26,
+    borderRadius: 13,
+    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  lockBadge: {
-    position: 'absolute',
-    top: 8,
-    right: 8,
-  },
-  appliedBadge: {
-    position: 'absolute',
-    top: 8,
-    right: 8,
-    width: 22,
-    height: 22,
-    borderRadius: 11,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  name: {
-    marginTop: 8,
-    fontSize: 13,
-    lineHeight: 17,
-    // зачем: минимум-высота под 2 строки резервируется сразу (layout stability —
-    // first frame = final geometry), чтобы длинная локаль не «прыгала» сеткой,
-    // когда её имя переносится, а короткие имена остальных тем — нет.
-    minHeight: 34,
-    fontWeight: '800',
-    letterSpacing: -0.1,
-    textAlign: 'center',
+  radioDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
   },
   footer: {
     paddingHorizontal: 16,

@@ -1,10 +1,14 @@
 // ════════════════════════════════════════════════════════════════════════════
-// account_details.tsx — экран «Аккаунт», модальный лист (выезд снизу).
+// account_details.tsx — экран «Аккаунт» (Liquid Glass, макет profile.html#PRF-02).
 //
 // зачем: владелец попросил раздел аккаунта «как в Bevel» — аватар-инициалы
 // с крупным именем, карточка данных со значениями справа (имя, email с
 // копированием, способ входа, «с нами с …») и две кнопки внизу: «Выйти» и
 // красная «Удалить аккаунт». Открывается из настроек по ряду «Аккаунт».
+//
+// зачем (владелец 2026-09-29): перенос 1 в 1 по макету — монета ранга + имя + «Изменить имя»,
+// секции «Данные» и «Аккаунт» плотными стеклянными строками. Только вид: логика привязки,
+// копирования, выхода и удаления не менялась.
 //
 // Первый кадр = финальная геометрия (Performance Bible):
 //   • имя — синхронно из app-снапшота;
@@ -15,29 +19,22 @@
 // юзера и через animateNextLayoutTransition.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import {
-  DeviceEventEmitter,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { DeviceEventEmitter, Text, View } from 'react-native';
 import { FlowText } from '../components/text-integrity/FlowText';
 import { useRouter } from 'expo-router';
+import { Image } from 'expo-image';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import * as Clipboard from 'expo-clipboard';
 
 import ScreenGradient from '../components/ScreenGradient';
 import BouncyScrollView from '../components/BouncyScrollView';
 import ContentWrap from '../components/ContentWrap';
-import SectionSheetHeader from '../components/SectionSheetHeader';
+import PressableHybrid from '../components/PressableHybrid';
 import {
-  SettingsGroup,
-  SettingsRow,
-  SETTINGS_GROUP_MARGIN,
-  SETTINGS_GROUP_RADIUS,
-} from '../components/settings/SettingsGroup';
-import { SETTINGS_SURFACES } from '../components/settings/settingsSurfaces';
+  SettingsGlassEyebrow,
+  SettingsGlassList,
+  SettingsGlassRow,
+} from '../components/settings/SettingsGlassRows';
 import NicknameEditModal from '../components/account/NicknameEditModal';
 import AccountLogoutFlow, { type LogoutStage } from '../components/account/AccountLogoutFlow';
 import DeleteAccountConfirmModal from '../components/DeleteAccountConfirmModal';
@@ -45,7 +42,10 @@ import RegistrationPromptModal from '../components/RegistrationPromptModal';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
-import { isLightThemeMode } from '../constants/theme';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { useMyCoinRank } from '../hooks/use_my_coin_rank';
+import { coinRankRowForDisplay, isValidCoinRank } from './coin_rank_table_v1';
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import {
   getLinkedAuthInfo,
   peekAccountCreatedAtMs,
@@ -57,6 +57,7 @@ import { animateNextLayoutTransition } from './smooth_layout';
 import { safeRouterBack } from './navigation_back';
 import { hapticTap as doHaptic } from '../hooks/use-haptics';
 import { traceAccountDeleteUi } from './account_delete_ui_trace';
+import { DebugLogger } from './debug-logger';
 
 const DATE_LOCALE_BY_LANG: Record<Lang, string> = {
   ru: 'ru-RU',
@@ -76,33 +77,28 @@ function formatMemberSince(ms: number, lang: Lang): string {
   try {
     const raw = d.toLocaleDateString(DATE_LOCALE_BY_LANG[lang], { month: 'long', year: 'numeric' });
     return raw.charAt(0).toUpperCase() + raw.slice(1);
-  } catch {
+  } catch (error) {
+    DebugLogger.error('AccountDetails:formatMemberSince', error, 'warning');
     return `${String(d.getMonth() + 1).padStart(2, '0')}.${d.getFullYear()}`;
   }
 }
 
-/** До двух инициалов: первое слово + последнее («Максим Бабиев» → «МБ»). */
-function initialsFromName(name: string): string {
-  const parts = name.trim().split(/\s+/).filter(Boolean);
-  if (parts.length === 0) return '';
-  const first = [...parts[0]][0] ?? '';
-  const last = parts.length > 1 ? ([...parts[parts.length - 1]][0] ?? '') : '';
-  return (first + last).toUpperCase();
-}
-
-const AVATAR_SIZE = 84;
+const COIN_SIZE = 102;
 const COPY_FEEDBACK_MS = 1400;
 
 export default function AccountDetailsScreen() {
   const router = useRouter();
-  const { theme: t, themeMode, f } = useTheme();
+  const { theme: t, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  const insets = useStableSafeAreaInsets();
+  // зачем: монета текущего ранга вместо инициалов (макет PRF-02) — из кэша в памяти, без сети.
+  const myCoinRank = useMyCoinRank();
+  const coinRow = isValidCoinRank(myCoinRank) ? coinRankRowForDisplay(myCoinRank) : null;
   const { lang } = useLang();
   const L = (
     ru: string, uk: string, en: string, es: string, ptBr: string,
     vi: string, id: string, tr: string, pl: string,
   ) => triLang(lang, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl });
-  const surface = SETTINGS_SURFACES[themeMode];
-  const isLightTheme = isLightThemeMode(themeMode);
 
   // ── Синхронная гидрация (нулевой сетевой трафик на первый кадр) ────────────
   const snapshotName = useAppSnapshotSelector((s) => s.profile?.name ?? '', (a, b) => a === b);
@@ -119,7 +115,10 @@ export default function AccountDetailsScreen() {
   /** Тихая ревалидация: setState только при реальном изменении; смена
    *  «не привязан ↔ привязан» (меняет состав рядов) — через layout-анимацию. */
   const refreshLinkedAuth = useCallback(async () => {
-    const info = await getLinkedAuthInfo().catch(() => undefined);
+    const info = await getLinkedAuthInfo().catch((error) => {
+      DebugLogger.error('AccountDetails:refreshLinkedAuth', error, 'warning');
+      return undefined;
+    });
     if (info === undefined) return; // сеть не ответила — остаёмся на peek-значении
     const prev = linkedAuthRef.current;
     const same = !!prev === !!info
@@ -169,12 +168,12 @@ export default function AccountDetailsScreen() {
     copyTimerRef.current = setTimeout(() => setCopied(false), COPY_FEEDBACK_MS);
     try {
       await Clipboard.setStringAsync(email);
-    } catch {
+    } catch (error) {
+      DebugLogger.error('AccountDetails:copyEmail', error, 'warning');
       setCopied(false);
     }
   }, []);
 
-  const initials = initialsFromName(userName);
   const providerLabel = linkedAuth?.provider === 'apple' ? 'Apple' : 'Google';
   const namePlaceholder = L('Не задано', 'Не задано', 'Not set', 'No indicado', 'Não definido', 'Chưa đặt', 'Belum diatur', 'Ayarlanmadı', 'Nie ustawiono');
   const logoutActionLabel = L(
@@ -189,181 +188,168 @@ export default function AccountDetailsScreen() {
     'Wyloguj się i zaloguj na inne konto',
   );
 
+  const nameLabel = L('Изменить имя', 'Змінити ім\'я', 'Change name', 'Cambiar nombre', 'Alterar nome', 'Đổi tên', 'Ubah nama', 'Adı değiştir', 'Zmień nazwę');
+  const copyLabel = copied
+    ? L('Скопировано', 'Скопійовано', 'Copied', 'Copiado', 'Copiado', 'Đã sao chép', 'Disalin', 'Kopyalandı', 'Skopiowano')
+    : L('Скопировать', 'Скопіювати', 'Copy', 'Copiar', 'Copiar', 'Sao chép', 'Salin', 'Kopyala', 'Kopiuj');
+  const backLabel = L('Назад', 'Назад', 'Back', 'Atrás', 'Voltar', 'Quay lại', 'Kembali', 'Geri', 'Wstecz');
+
   return (
     <ScreenGradient>
-      <SafeAreaView style={{ flex: 1 }}>
+      <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom, paddingLeft: insets.left, paddingRight: insets.right }}>
         <ContentWrap>
-          {/* зачем: стандарт «шторки раздела» — модал с выездом снизу, шапка
-              с центрированным заголовком и крестиком вместо стрелки «назад». */}
-          <SectionSheetHeader
-            title={L('Аккаунт', 'Акаунт', 'Account', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
-            onClose={() => safeRouterBack(router, '/(tabs)/settings' as never)}
-            closeTestID="account-sheet-close"
-          />
-
-          <BouncyScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
-        {/* ── Герой: инициалы + крупное имя (тап — изменить имя) ── */}
-        <TouchableOpacity
-          activeOpacity={0.8}
-          accessibilityRole="button"
-          accessibilityLabel={L('Изменить имя', 'Змінити ім\'я', 'Change name', 'Cambiar nombre', 'Alterar nome', 'Đổi tên', 'Ubah nama', 'Adı değiştir', 'Zmień nazwę')}
-          onPress={openNameModal}
-          style={{ alignItems: 'center', marginTop: 22 }}
-          testID="account-hero"
-        >
-          <View
-            style={{
-              width: AVATAR_SIZE, height: AVATAR_SIZE, borderRadius: AVATAR_SIZE / 2,
-              backgroundColor: surface.chipOn,
-              alignItems: 'center', justifyContent: 'center',
-            }}
+          <BouncyScrollView
+            contentContainerStyle={{ paddingHorizontal: 15, paddingBottom: 28 }}
+            decelerationRate="fast"
+            showsVerticalScrollIndicator={false}
+            scrollEventThrottle={16}
           >
-            {initials ? (
-              <Text style={{ color: surface.accent, fontSize: 30, fontWeight: '800', letterSpacing: 1 }}>
-                {initials}
-              </Text>
-            ) : (
-              <Ionicons name="person" size={34} color={surface.accent} />
-            )}
-          </View>
-          {/* Высота имени зарезервирована и при пустом нике — геометрия не прыгает.
-              зачем: text-integrity — длинный ник переносится (контент юзера),
-              шапка-колонка растёт; усечение запрещено. */}
-          <FlowText
-            testID="account-name"
-            provenance="user"
-            style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', marginTop: 14, maxWidth: '86%', textAlign: 'center' }}
-          >
-            {userName || namePlaceholder}
-          </FlowText>
-          <Text style={{ color: surface.accent, fontSize: f.caption, fontWeight: '700', marginTop: 5 }}>
-            {L('Изменить имя', 'Змінити ім\'я', 'Change name', 'Cambiar nombre', 'Alterar nome', 'Đổi tên', 'Ubah nama', 'Adı değiştir', 'Zmień nazwę')}
-          </Text>
-        </TouchableOpacity>
-
-        {/* Инлайн-плашка отката смены ника (некритичная, вместо блокирующего Alert). */}
-        {nameNotice ? (
-          <View
-            testID="account-nickname-inline-notice"
-            style={{
-              marginHorizontal: SETTINGS_GROUP_MARGIN, marginTop: 18, marginBottom: -6,
-              flexDirection: 'row', alignItems: 'center', gap: 10,
-              backgroundColor: surface.notice,
-              borderRadius: 12, padding: 12,
-            }}
-          >
-            <Ionicons name="alert-circle-outline" size={20} color={t.wrong} />
-            <Text style={{ flex: 1, color: t.textSecond, fontSize: f.caption, lineHeight: 18 }}>
-              {nameNotice}
+            <PressableHybrid
+              testID="account-sheet-close"
+              accessibilityLabel={backLabel}
+              onPress={() => safeRouterBack(router, '/(tabs)/settings' as never)}
+              variant="icon"
+              withHaptic={false}
+              withSound={false}
+              style={{ width: 48, height: 48, alignSelf: 'flex-start', marginTop: 4 }}
+              contentStyle={{ width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }}
+            >
+              <Ionicons name="arrow-back" size={22} color={glass.lightTint} />
+            </PressableHybrid>
+            <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: 10 }}>
+              {L('Аккаунт', 'Акаунт', 'Account', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
             </Text>
-          </View>
-        ) : null}
 
-        {/* ── Карточка данных: значения справа, по референсу Bevel ── */}
-        <SettingsGroup
-          marginTop={24}
-          surfaceColor={surface.panel}
-          borderColor={surface.border}
-          dividerColor={surface.divider}
-        >
-          <SettingsRow
-            testID="account-name-row"
-            icon="person"
-            color="blue"
-            label={L('Имя', 'Ім\'я', 'Name', 'Nombre', 'Nome', 'Tên', 'Nama', 'Ad', 'Imię')}
-            value={userName || namePlaceholder}
-            onPress={openNameModal}
-          />
-          {linkedAuth ? (
-            <SettingsRow
-              testID="account-email-row"
-              icon="mail"
-              color="teal"
-              label="Email"
-              value={linkedAuth.email || '—'}
-              onPress={linkedAuth.email ? () => { void copyEmail(linkedAuth.email!); } : undefined}
-              right={linkedAuth.email ? (
-                <Ionicons
-                  name={copied ? 'checkmark' : 'copy-outline'}
-                  size={17}
-                  color={copied ? surface.accent : t.textGhost}
+            {/* Герой: монета ранга + имя + «Изменить имя». */}
+            <View testID="account-hero" style={{ alignItems: 'center', marginTop: 26 }}>
+              {coinRow ? (
+                <Image testID="account-coin" accessible={false} source={coinRow.source} style={{ width: COIN_SIZE, height: COIN_SIZE }} contentFit="contain" />
+              ) : (
+                <View testID="account-coin-loading" style={{ width: COIN_SIZE, height: COIN_SIZE, borderRadius: COIN_SIZE / 2, backgroundColor: glass.opaqueControl }} />
+              )}
+              {/* Высота имени зарезервирована и при пустом нике — геометрия не прыгает.
+                  зачем: text-integrity — длинный ник переносится (контент юзера), усечение запрещено. */}
+              <FlowText
+                testID="account-name"
+                provenance="user"
+                style={{ color: glass.text, fontSize: 26, lineHeight: 32, fontWeight: '700', marginTop: 10, maxWidth: '86%', textAlign: 'center' }}
+              >
+                {userName || namePlaceholder}
+              </FlowText>
+              <PressableHybrid
+                testID="account-change-name"
+                accessibilityLabel={nameLabel}
+                onPress={openNameModal}
+                withHaptic={false}
+                withSound={false}
+                variant="chip"
+                style={{ marginTop: 10, minHeight: 44 }}
+                contentStyle={{ minHeight: 44, paddingHorizontal: 18, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }}
+              >
+                <Text style={{ color: glass.text, fontSize: 15, lineHeight: 20, fontWeight: '700' }}>{nameLabel}</Text>
+              </PressableHybrid>
+            </View>
+
+            {/* Инлайн-плашка отката смены ника (некритичная, вместо блокирующего Alert). */}
+            {nameNotice ? (
+              <View
+                testID="account-nickname-inline-notice"
+                style={{ marginTop: 18, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: glass.opaqueCard, borderWidth: 1, borderColor: glass.glassEdge, borderRadius: 14, padding: 12 }}
+              >
+                <Ionicons name="alert-circle-outline" size={20} color={t.wrong} />
+                <Text style={{ flex: 1, color: glass.secondary, fontSize: 13, lineHeight: 18 }}>{nameNotice}</Text>
+              </View>
+            ) : null}
+
+            <SettingsGlassEyebrow glass={glass} title={L('ДАННЫЕ', 'ДАНІ', 'DETAILS', 'DATOS', 'DADOS', 'THÔNG TIN', 'DATA', 'BİLGİLER', 'DANE')} />
+            <SettingsGlassList>
+              <SettingsGlassRow
+                glass={glass}
+                testID="account-name-row"
+                icon="person-outline"
+                title={L('Имя', 'Ім\'я', 'Name', 'Nombre', 'Nome', 'Tên', 'Nama', 'Ad', 'Imię')}
+                sub={L('Показывается друзьям', 'Показується друзям', 'Shown to friends', 'Se muestra a tus amigos', 'Mostrado aos amigos', 'Hiển thị cho bạn bè', 'Ditampilkan ke teman', 'Arkadaşlarına gösterilir', 'Widoczne dla znajomych')}
+                value={userName || namePlaceholder}
+                onPress={openNameModal}
+              />
+              {linkedAuth ? (
+                <SettingsGlassRow
+                  glass={glass}
+                  testID="account-email-row"
+                  icon="mail-outline"
+                  title="Email"
+                  sub={linkedAuth.email || '—'}
+                  right={linkedAuth.email ? (
+                    <PressableHybrid
+                      testID="account-email-copy"
+                      accessibilityLabel={copyLabel}
+                      onPress={() => { void copyEmail(linkedAuth.email!); }}
+                      withHaptic={false}
+                      withSound={false}
+                      variant="chip"
+                      style={{ minHeight: 44, alignSelf: 'center' }}
+                      contentStyle={{ minHeight: 44, paddingHorizontal: 14, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }}
+                    >
+                      <Text style={{ color: glass.text, fontSize: 14, lineHeight: 19, fontWeight: '700' }}>{copyLabel}</Text>
+                    </PressableHybrid>
+                  ) : <View />}
+                />
+              ) : (
+                <SettingsGlassRow
+                  glass={glass}
+                  testID="account-link-row"
+                  icon="link-outline"
+                  title={L('Привязать аккаунт', "Прив'язати акаунт", 'Link account', 'Vincular cuenta', 'Vincular conta', 'Liên kết tài khoản', 'Tautkan akun', 'Hesabı bağla', 'Połącz konto')}
+                  onPress={() => { doHaptic(); setAuthPromptVisible(true); }}
+                />
+              )}
+              {linkedAuth ? (
+                <SettingsGlassRow
+                  glass={glass}
+                  icon="checkmark-circle-outline"
+                  title={L('Способ входа', 'Спосіб входу', 'Sign-in method', 'Método de acceso', 'Método de login', 'Cách đăng nhập', 'Metode masuk', 'Giriş yöntemi', 'Metoda logowania')}
+                  value={providerLabel}
                 />
               ) : null}
-            />
-          ) : (
-            <SettingsRow
-              testID="account-link-row"
-              icon="link"
-              color="green"
-              label={L('Привязать аккаунт', "Прив\'язати акаунт", 'Link account', 'Vincular cuenta', 'Vincular conta', 'Liên kết tài khoản', 'Tautkan akun', 'Hesabı bağla', 'Połącz konto')}
-              onPress={() => { doHaptic(); setAuthPromptVisible(true); }}
-            />
-          )}
-          {linkedAuth ? (
-            <SettingsRow
-              icon={linkedAuth.provider === 'apple' ? 'logo-apple' : 'logo-google'}
-              color="gray"
-              label={L('Способ входа', 'Спосіб входу', 'Sign-in method', 'Método de acceso', 'Método de login', 'Cách đăng nhập', 'Metode masuk', 'Giriş yöntemi', 'Metoda logowania')}
-              value={providerLabel}
-              hideChevron
-            />
-          ) : null}
-          {memberSinceMs ? (
-            <SettingsRow
-              icon="calendar-clear"
-              color="orange"
-              label={L('С нами с', 'З нами з', 'With us since', 'Con nosotros desde', 'Conosco desde', 'Cùng chúng tôi từ', 'Bersama kami sejak', 'Bizimle şu tarihten beri', 'Z nami od')}
-              value={formatMemberSince(memberSinceMs, lang)}
-              hideChevron
-            />
-          ) : null}
-        </SettingsGroup>
+              {memberSinceMs ? (
+                <SettingsGlassRow
+                  glass={glass}
+                  icon="trending-up-outline"
+                  title={L('С нами с', 'З нами з', 'With us since', 'Con nosotros desde', 'Conosco desde', 'Cùng chúng tôi từ', 'Bersama kami sejak', 'Bizimle şu tarihten beri', 'Z nami od')}
+                  value={formatMemberSince(memberSinceMs, lang)}
+                />
+              ) : null}
+            </SettingsGlassList>
 
-        {/* ── Кнопки: «Выйти» (только при привязке) и «Удалить аккаунт» ── */}
-        <View style={{ marginTop: 28, marginHorizontal: SETTINGS_GROUP_MARGIN, gap: 12 }}>
-          {linkedAuth ? (
-            <TouchableOpacity
-              testID="account-logout-button"
-              accessibilityRole="button"
-              accessibilityLabel={logoutActionLabel}
-              activeOpacity={0.7}
-              // зачем (владелец, 2026-08-31): «никаких модалов, просто мгновенный
-              // выход» — окно подтверждения убрано, выход стартует сразу.
-              onPress={() => { doHaptic(); setLogoutStage('wiping'); }}
-              style={{
-                height: 52, borderRadius: SETTINGS_GROUP_RADIUS,
-                backgroundColor: surface.panel,
-                alignItems: 'center', justifyContent: 'center',
-              }}
-            >
-              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-                {logoutActionLabel}
-              </Text>
-            </TouchableOpacity>
-          ) : null}
-          <TouchableOpacity
-            testID="account-delete-button"
-            accessibilityRole="button"
-            activeOpacity={0.7}
-            onPress={() => { doHaptic(); setDeleteVisible(true); }}
-            style={{
-              height: 52, borderRadius: SETTINGS_GROUP_RADIUS,
-              // Тональная «опасная» заливка (без обводки) — красный читается тоном.
-              backgroundColor: isLightTheme ? 'rgba(200,55,55,0.10)' : 'rgba(255,99,92,0.14)',
-              alignItems: 'center', justifyContent: 'center',
-            }}
-          >
-            <Text style={{ color: t.wrong, fontSize: f.body, fontWeight: '700' }}>
-              {L('Удалить аккаунт', 'Видалити акаунт', 'Delete account', 'Eliminar cuenta', 'Excluir conta', 'Xóa tài khoản', 'Hapus akun', 'Hesabı sil', 'Usuń konto')}
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-            {/* Нижний отступ прокрутки (SafeAreaView уже учёл системную зону). */}
-            <View style={{ height: 28 }} />
+            <SettingsGlassEyebrow glass={glass} title={L('АККАУНТ', 'АКАУНТ', 'ACCOUNT', 'CUENTA', 'CONTA', 'TÀI KHOẢN', 'AKUN', 'HESAP', 'KONTO')} />
+            <SettingsGlassList>
+              {linkedAuth ? (
+                <SettingsGlassRow
+                  glass={glass}
+                  testID="account-logout-button"
+                  icon="arrow-forward-outline"
+                  title={logoutActionLabel}
+                  accessibilityLabel={logoutActionLabel}
+                  haptic={false}
+                  // зачем (владелец, 2026-08-31): «никаких модалов, просто мгновенный
+                  // выход» — окно подтверждения убрано, выход стартует сразу.
+                  onPress={() => { doHaptic(); setLogoutStage('wiping'); }}
+                />
+              ) : null}
+              <SettingsGlassRow
+                glass={glass}
+                testID="account-delete-button"
+                icon="trash-outline"
+                title={L('Удалить аккаунт', 'Видалити акаунт', 'Delete account', 'Eliminar cuenta', 'Excluir conta', 'Xóa tài khoản', 'Hapus akun', 'Hesabı sil', 'Usuń konto')}
+                sub={L('Требует отдельного подтверждения', 'Потребує окремого підтвердження', 'Needs separate confirmation', 'Requiere confirmación aparte', 'Exige confirmação separada', 'Cần xác nhận riêng', 'Perlu konfirmasi terpisah', 'Ayrı onay gerektirir', 'Wymaga osobnego potwierdzenia')}
+                titleColor={t.wrong}
+                haptic={false}
+                onPress={() => { doHaptic(); setDeleteVisible(true); }}
+              />
+            </SettingsGlassList>
           </BouncyScrollView>
         </ContentWrap>
-      </SafeAreaView>
+      </View>
 
       <NicknameEditModal
         visible={nameModalVisible}

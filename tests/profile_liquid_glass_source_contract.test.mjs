@@ -1,0 +1,97 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import test from 'node:test';
+
+// зачем (владелец 2026-09-29): экраны профиля переносятся 1 в 1 по макету profile.html (Liquid Glass).
+// Контракт держит: токены стекла вместо старых палитр, отсутствие XP/жемчуга и запрещённых приёмов
+// (adjustsFontSizeToFit, numberOfLines, толстые рамки) на перенесённых экранах — «Аккаунт» (PRF-02)
+// и «Темы» (PRF-06). Остальные экраны профиля (язык, обучение, уведомления, приватность, поддержка,
+// юридические документы, смена имени) перенесены раньше и проверяются здесь только на токены.
+const read = (file) => fs.readFileSync(path.resolve(file), 'utf8');
+// Комментарии (история решений) не считаются UI: их вырезаем перед проверкой запретных слов.
+const code = (file) => read(file).replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+const account = read('app/account_details.tsx');
+const themes = read('app/settings_themes.tsx');
+const LOCALES = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
+
+const TRANSFERRED = [
+  ['account', 'app/account_details.tsx'],
+  ['themes', 'app/settings_themes.tsx'],
+  ['language', 'app/settings_language.tsx'],
+  ['education', 'app/settings_edu.tsx'],
+  ['notifications', 'app/settings_notifications.tsx'],
+  ['privacy', 'app/privacy_settings.tsx'],
+  ['support', 'app/support_report.tsx'],
+  ['legal sheet', 'components/legal/LegalDocumentSheet.tsx'],
+  ['nickname sheet', 'components/account/NicknameEditModal.tsx'],
+];
+
+for (const [name, file] of TRANSFERRED) {
+  test(`${name}: uses Liquid Glass tokens, no forbidden text/border tricks`, () => {
+    const src = read(file);
+    assert.match(src, /liquidGlassTokens|makeLiquidGlassTheme/, `${file} must read glass tokens`);
+    assert.doesNotMatch(src, /adjustsFontSizeToFit/);
+    assert.doesNotMatch(src, /borderWidth:\s*[2-9]/, 'no thick borders');
+  });
+}
+
+test('account: glass shell, coin hero and sections follow PRF-02', () => {
+  assert.match(account, /liquidGlassTokens\(liquidGlassThemeId\)/);
+  assert.match(account, /useStableSafeAreaInsets/);
+  assert.match(account, /fontSize: 34, lineHeight: 40, fontWeight: '700'/);
+  assert.match(account, /useMyCoinRank/);
+  assert.match(account, /testID="account-hero"/);
+  assert.match(account, /SettingsGlassEyebrow/);
+  // строки данных: имя, email + «Скопировать», способ входа, «С нами с»; действия: выход и удаление
+  for (const id of ['account-name-row', 'account-email-row', 'account-email-copy', 'account-logout-button', 'account-delete-button']) {
+    assert.ok(account.includes(`testID="${id}"`), `missing ${id}`);
+  }
+  assert.doesNotMatch(account, /SETTINGS_SURFACES|SettingsGroup|SectionSheetHeader|TouchableOpacity/);
+});
+
+test('account: functional logic of the old screen is preserved', () => {
+  assert.match(account, /setLogoutStage\('wiping'\)/);
+  assert.match(account, /setDeleteVisible\(true\)/);
+  assert.match(account, /Clipboard\.setStringAsync\(email\)/);
+  assert.match(account, /<NicknameEditModal/);
+  assert.match(account, /<AccountLogoutFlow/);
+  assert.match(account, /<DeleteAccountConfirmModal/);
+  assert.match(account, /<RegistrationPromptModal/);
+  assert.match(account, /peekLinkedAuthFromCurrentUser\(\)/);
+  assert.doesNotMatch(account, /catch\s*\{\s*\}/, 'no silent catch');
+});
+
+test('account: new copy exists in all nine locales', () => {
+  for (const marker of ['ДАННЫЕ', 'Скопировать', 'Показывается друзьям', 'Требует отдельного подтверждения']) {
+    const at = account.indexOf(marker);
+    assert.ok(at >= 0, `missing ${marker}`);
+    const call = account.slice(at, at + 900);
+    // девять аргументов L(...) — девять строк в кавычках до закрывающей скобки
+    const args = call.slice(0, call.indexOf(')')).split("', '").length;
+    assert.ok(args >= LOCALES.length - 1, `${marker} must carry 9 locales`);
+  }
+});
+
+test('themes: 13 glass rows, preview/apply/paywall logic untouched', () => {
+  assert.match(themes, /liquidGlassTokens\(liquidGlassThemeId\)/);
+  assert.match(themes, /settingsGlassCardStyle/);
+  assert.match(themes, /accessibilityRole="radio"/);
+  assert.equal(themes.match(/\{ mode: '/g).length, 13);
+  assert.match(themes, /setPreviewLiquidGlassThemeId\(mode === appliedLiquidGlassThemeId \? null : mode\)/);
+  assert.match(themes, /pathname: '\/premium_modal', params: \{ context: 'theme', source: 'settings_theme_picker' \}/);
+  assert.match(themes, /profile_theme_set/);
+  assert.doesNotMatch(themes, /TapScale|SectionSheetHeader|GRID_SCREEN_PAD|useWindowDimensions/);
+});
+
+test('none of the transferred profile screens show XP or pearls', () => {
+  for (const [, file] of TRANSFERRED) {
+    const src = code(file);
+    assert.doesNotMatch(src, /pearl|жемчуг|\bXP\b|\bxp\b|experience/i, `${file} must not mention XP/pearls in the UI`);
+  }
+});
+
+test('no numberOfLines truncation on the two new screens', () => {
+  assert.doesNotMatch(code('app/account_details.tsx'), /numberOfLines/);
+  assert.doesNotMatch(code('app/settings_themes.tsx'), /numberOfLines/);
+});

@@ -22,17 +22,17 @@ describe('Olive completion surfaces', () => {
     ]) expect(read(file)).toContain("themeMode === 'olive'");
   });
 
-  it('maps Olive social rewards to champagne or sage and has accessible add-friend control', () => {
+  it('keeps the accessible add-friend control after social gift retirement', () => {
     const friends = read('app/(tabs)/friends.tsx');
-    expect(friends).toContain('function friendGiftAccent(giftId: FriendGiftId | string, t: any, themeMode: ThemeMode)');
+    expect(friends).not.toContain('friendGiftAccent');
     expect(friends).toContain('function eventIconColor(type: FriendEvent[\'type\'], accent: string, themeMode: ThemeMode)');
     expect(friends).toContain("accessibilityLabel={L('Добавить друга'");
   });
 
   it('keeps theme picker responsive and distinguishes applied from previewed', () => {
     const picker = read('app/settings_themes.tsx');
-    expect(picker).toContain('useWindowDimensions');
     expect(picker).not.toContain("Dimensions.get('window')");
+    expect(picker).toContain('useStableSafeAreaInsets');
     expect(picker).toContain('accessibilityValue');
   });
 

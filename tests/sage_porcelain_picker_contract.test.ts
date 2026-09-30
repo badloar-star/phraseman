@@ -10,37 +10,27 @@ describe('Sage Porcelain picker contract', () => {
   const pickerSource = readSource('app', 'settings_themes.tsx');
   const settingsSource = readSource('app', '(tabs)', 'settings.tsx');
 
-  it('places the free Jade choice directly after Indigo with every localized label', () => {
-    expect(pickerSource).toMatch(/mode: 'indigo'[\s\S]*?mode: 'sagePorcelain'[\s\S]*?mode: 'midnight'/);
-    expect(pickerSource).toMatch(/\{ mode: 'sagePorcelain'[^}]*labelRU: 'Нефрит'[^}]*labelUK: 'Нефрит'[^}]*labelES: 'Jade'[^}]*labelPtBr: 'Jade'[^}]*labelVi: 'Ngọc bích'[^}]*labelId: 'Giok'[^}]*labelTr: 'Yeşim'[^}]*labelPl: 'Jadeit'[^}]*\}/);
-    expect(pickerSource).not.toMatch(/\{ mode: 'sagePorcelain'[^}]*premiumOnly: true/);
+  it('lists the 13 Liquid Glass themes with graphite first and Plus marked on the rest', () => {
+    // зачем (2026-09-30): «Темы» перенесены на список стеклянных строк (макет PRF-06);
+    // старые темы indigo/sagePorcelain удалены, реестр — LIQUID_GLASS_THEME_IDS.
+    expect(pickerSource).toMatch(/\{ mode: 'graphite' \}, \{ mode: 'polar' \}[\s\S]*?\{ mode: 'marine' \}/);
+    expect(pickerSource.match(/\{ mode: '/g)).toHaveLength(13);
+    expect(pickerSource).toContain("item.mode === 'graphite' ? standardLabel : 'Plus'");
   });
 
-  it('paints rows from real theme palettes with no borders and a bundled icon per theme', () => {
-    // Единственный источник цветов — палитры из constants/theme (ручные дубли уже разъезжались).
-    expect(pickerSource).toContain("} from '../constants/theme'");
-    expect(pickerSource).toMatch(/sagePorcelain: SAGE_PORCELAIN/);
-    expect(pickerSource).toMatch(/indigo: INDIGO/);
+  it('paints rows from real theme palettes with the glass tokens and no thick borders', () => {
+    expect(pickerSource).toContain('makeLiquidGlassTheme(id, DARK)');
     expect(pickerSource).toContain('palette.cardGradient');
-    // Запрет владельца: никаких обводок контейнеров — выделение тоном/тенью/подъёмом.
-    expect(pickerSource).not.toMatch(/borderWidth/);
-    // Иконки тем — бандл-ассеты, без сети и рантайм-генерации.
-    // зачем формат не зафиксирован: контракт сторожит СМЫСЛ («иконка лежит в бандле»),
-    // а не расширение файла. 2026-08-23 иконки переведены png→webp lossless (тот же
-    // пиксель, вдвое меньше вес) — сжатие ассетов не должно ронять контракт.
-    expect(pickerSource).toMatch(/require\('\.\.\/assets\/theme-icons\/sagePorcelain\.(png|webp)'\)/);
-    expect(pickerSource).toMatch(/require\('\.\.\/assets\/theme-icons\/indigo\.(png|webp)'\)/);
+    expect(pickerSource).toContain('liquidGlassTokens(liquidGlassThemeId)');
+    expect(pickerSource).not.toMatch(/borderWidth:\s*[2-9]/);
+    expect(pickerSource).not.toContain('adjustsFontSizeToFit');
   });
 
   it('keeps the try-on preview scoped to the themes screen', () => {
-    // Примерка: тап красит экран через previewThemeMode, применение — отдельной кнопкой.
-    expect(pickerSource).toContain('setPreviewThemeMode(mode === appliedThemeMode ? null : mode)');
-    // Уход с экрана всегда сбрасывает примерку (превью не персистится).
-    expect(pickerSource).toMatch(/useEffect\(\(\) => \(\) => setPreviewThemeMode\(null\)/);
-    // Замкнутая тема ведёт в пейволл с контекстом темы, а не применяется.
-    expect(pickerSource).toContain("params: { context: 'theme' }");
-    // Ачивка — только за настоящее применение (не за примерку).
-    expect(pickerSource).toMatch(/setThemeMode\(candidate\);[\s\S]*?profile_theme_set/);
+    expect(pickerSource).toContain('setPreviewLiquidGlassThemeId(mode === appliedLiquidGlassThemeId ? null : mode)');
+    expect(pickerSource).toMatch(/useEffect\(\(\) => \(\) => setPreviewLiquidGlassThemeId\(null\)/);
+    expect(pickerSource).toContain("params: { context: 'theme', source: 'settings_theme_picker' }");
+    expect(pickerSource).toMatch(/setLiquidGlassThemeId\(mode\);[\s\S]*?profile_theme_set/);
   });
 
   it('shows the exact localized Jade name on the settings summary row', () => {

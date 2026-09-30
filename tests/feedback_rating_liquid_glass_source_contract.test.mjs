@@ -20,7 +20,8 @@ const DEPENDENCY_HASHES = {
   'app/analytics.ts': 'a5f0c9143133b481949f914b2497e4ca88ab91c314f64dbac68abacb09687070',
   'app/stable_id.ts': '274fe5889b3f291eb4f474ce14670a05125a75bc3525c2f4b52f002525d99acd',
   'hooks/use-haptics.ts': 'fbb8366e985889400c4736f097ed12532cd06e3d5b6e2a997129e776e66ab208',
-  'app/debug-logger.ts': '4f165d00174d8d62ba080726896c4d8185c6744e48b939af499b5d5fa686f395',
+  // зачем (30.09): +контракт диагностики PM-226 (DiagnosticErrorInput, [DIAG]) в efe19ae9d — только добавление, путь доставки отзыва не тронут.
+  'app/debug-logger.ts': '1f88bdcb74fb5a22c270f3ba745d6e74bed3462cc461895a508d258f6d52772b',
 };
 const PROTECTED_AST = { count: 7, digest: '80f60e74868c26136e37247854b52212f0b48c7962a26106d0e4418b92342a22' };
 const LEGACY_RENDER_HASHES = {

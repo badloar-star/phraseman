@@ -62,7 +62,9 @@ test('friend handlers, request actions and testIDs are preserved', () => {
   ]) assert.ok(friends.includes(marker), marker);
   assert.ok(request.includes('friend-request-accept-${profile.uid}') && request.includes('friend-request-decline-${profile.uid}'));
   assert.ok(found.includes('testID="friends-found-user-card"') && found.includes('testID="friends-add-found"'));
-  assert.ok(empty.includes('testID="friends-list-empty"') && empty.includes('testID="friends-empty-add"'));
+  assert.ok(empty.includes("'friends-list-empty'") && empty.includes("'friends-empty-add'"));
+  // COM-04-OFFLINE (2026-09-30): ошибка подписки — «Связь пропала · Повторить».
+  assert.ok(empty.includes("'friends-list-offline'") && empty.includes("'friends-offline-retry'"));
   assert.ok(row.includes('friend-row-avatar-${friendUid}') && row.includes('friend-row-body-${friendUid}'));
 });
 

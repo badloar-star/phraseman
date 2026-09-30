@@ -1171,6 +1171,8 @@ export default function FriendsTabScreen() {
   const friendsSnapshot = useAppSnapshotSelector((snapshot) => snapshot.friends);
   const warmFriendsSnapshot = peekFriendsTabSwrWarm();
   const [friends, setFriends] = useState<FriendEntry[]>(() => warmFriendsSnapshot?.friends ?? friendsSnapshot?.friends ?? []);
+  // зачем (макет COM-04-OFFLINE): подписка на список упала — показать «Связь пропала · Повторить».
+  const [friendsListError, setFriendsListError] = useState(false);
   const [requests, setRequests] = useState<FriendRequestEntry[]>(() => warmFriendsSnapshot?.requests ?? friendsSnapshot?.requests ?? []);
   const [profiles, setProfiles] = useState<Record<string, FriendProfile>>(() => {
     // Модульный кеш переживает ремаунты — показываем мгновенно без async.
@@ -1422,12 +1424,17 @@ export default function FriendsTabScreen() {
 
       unsubFriends = friendsAccountStore.subscribe((data, meta) => {
         if (cancelled) return;
+        setFriendsListError(false);
         const fromCache = meta?.fromCache === true;
         if (data.length === 0 && fromCache && swrHadFriendsRef.current) return;
         setFriends(data);
         if (data.length > 0) {
           void checkAchievements({ type: 'friend_added', totalFriends: data.length }).catch(() => {});
         }
+      }, (error) => {
+        if (cancelled) return;
+        console.warn('[FRIENDS-LIST] screen got subscription error', { message: error?.message });
+        setFriendsListError(true);
       });
 
       unsubRequests = subscribeToIncomingRequests(
@@ -2126,7 +2133,16 @@ export default function FriendsTabScreen() {
   );
 
   const friendsEmptyState = (
-    <FriendsEmptyState onAdd={() => { hapticTap(); setAddModalOpen(true); }} />
+    <FriendsEmptyState
+      onAdd={() => { hapticTap(); setAddModalOpen(true); }}
+      error={friendsListError}
+      onRetry={() => {
+        hapticTap();
+        // Оптимистично убираем плашку сразу; новая ошибка вернёт её сама.
+        setFriendsListError(false);
+        friendsAccountStore.retry();
+      }}
+    />
   );
 
   const listFooter = (

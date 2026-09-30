@@ -33,4 +33,26 @@ describe('friends account store', () => {
     expect(detach).toHaveBeenCalledTimes(1);
   });
 
+  // COM-04-OFFLINE (2026-09-30): ошибка подписки не глохнет — экран узнаёт о ней,
+  // а «Повторить» заново поднимает слушатель.
+  test('non-permission errors reach the screen and retry re-attaches the listener', () => {
+    type Listener = (rows: FriendEntry[], meta?: SubscribeFriendsSnapshotMeta) => void;
+    let fail: ((error: Error) => void) | null = null;
+    const listen = jest.fn((_callback: Listener, onError?: (error: Error) => void) => {
+      fail = onError ?? null;
+      return jest.fn();
+    });
+    const store = createFriendsAccountStore({ listen, repairAuthLink: jest.fn(async () => true) });
+    const onError = jest.fn();
+    const warn = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    store.subscribe(jest.fn(), onError);
+    expect(listen).toHaveBeenCalledTimes(1);
+
+    (fail as unknown as (error: Error) => void)(Object.assign(new Error('offline'), { code: 'unavailable' }));
+    expect(onError).toHaveBeenCalledTimes(1);
+
+    store.retry();
+    expect(listen).toHaveBeenCalledTimes(2);
+    warn.mockRestore();
+  });
 });

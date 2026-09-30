@@ -1538,8 +1538,10 @@
       {
         "id": "PM-033-A2",
         "text": "«премиальность» не оправдывает серый нечитаемый текст",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "constants/liquidGlassThemeVariants.ts + tests/liquid_glass_contrast_contract.test.cjs: WCAG-контраст 702 пар (13 тем × 3 уровня × 2 оформления) — 0 провалов после правки светлого mutedText и accentText/overline (было 45)"
+        ]
       }
     ],
     "depends_on": [],
@@ -1550,8 +1552,12 @@
     "result_sha": null,
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "constants/liquidGlassThemeVariants.ts + tests/liquid_glass_contrast_contract.test.cjs: WCAG-контраст 702 пар (13 тем × 3 уровня × 2 оформления) — 0 провалов после правки светлого mutedText и accentText/overline (было 45)"
+    ],
+    "notes": [
+      "Дизайн 01.10: A2 закрыт аудитом контраста; A1 (screen reader, крупный шрифт, reduce motion) — в очереди, нужен эмулятор"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,

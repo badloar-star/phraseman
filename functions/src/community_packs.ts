@@ -12,6 +12,7 @@ import { applyFlashcardRegistryDocumentMutation, planFlashcardRegistryPackMutati
 import { resolvePremiumAccess } from './premium_status';
 import { requireGlobalBroadcastPublicAuthority } from './global_broadcast_public_schema';
 import { isCommunityPackLanguage, normalizeCommunityPackLanguage, type CommunityPackLanguage } from './community_pack_language';
+import { enqueueCardTtsJob } from './card_tts_jobs';
 
 const COMMUNITY_PACKS = 'community_packs';
 const COMMUNITY_SUBMISSIONS = 'community_pack_submissions';
@@ -516,6 +517,10 @@ export const communitySubmitPackForReview = onCall({ enforceAppCheck: ENFORCE_AP
         updatedAt: now,
       });
     });
+    // зачем: D128 — новые карточки опубликованного набора озвучиваются в фоне.
+    // Постановка не бросает и не задерживает ответ автору дольше одной записи;
+    // воркер сам пропустит набор, если он не 'published' или без языка.
+    await enqueueCardTtsJob(db, updatePackId, 'author_edit_published');
     return { submissionId: subRef.id };
   }
 
@@ -826,6 +831,13 @@ export const communityModerateSubmission = onCall({ enforceAppCheck: ENFORCE_APP
     approvedPackId = submissionId;
   });
 
+  if (action === 'approve' && approvedPackId) {
+    // зачем: D128 — одобренный набор озвучивается сразу, но в фоне
+    // (card_tts_worker.ts): одобрение не ждёт OpenAI и не падает из-за него.
+    await enqueueCardTtsJob(db, approvedPackId, 'moderation_approve');
+  } else if (action === 'approve') {
+    console.log('[CARD-TTS] enqueue:skip moderation — одобрение ничего не опубликовало', JSON.stringify({ submissionId }));
+  }
   return { ok: true, publishedPackId: action === 'approve' ? approvedPackId : null };
 });
 

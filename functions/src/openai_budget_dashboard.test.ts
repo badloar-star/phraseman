@@ -68,3 +68,14 @@ describe('openAiBudgetDashboard MAX voice rows', () => {
     expect(row.costUsd).toBe(0.5);
   });
 });
+
+describe('openAiBudgetDashboard card TTS rows (D128)', () => {
+  it('counts card_tts_billing by stored estimate, not chat token prices', () => {
+    const row = usageFromDoc('card_tts_billing', 'Озвучка карточек (TTS)', voiceSnap({
+      operation: 'card_tts', model: 'gpt-4o-mini-tts', characters: 2000, estCostUsd: 0.03, createdAtMs: 1,
+    }));
+    expect(row.costUsd).toBe(0.03);
+    expect(row.inputTokens).toBe(2000);
+    expect(row.uid).toBe('');
+  });
+});

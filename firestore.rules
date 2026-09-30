@@ -3948,6 +3948,19 @@ service cloud.firestore {
       allow write: if false;
     }
 
+    // D128: очередь, бюджет и биллинг озвучки карточек — только сервер
+    // (card_tts_worker.ts). Клиент находит клипы по детерминированной ссылке
+    // в Storage и эти документы не читает.
+    match /card_tts_jobs/{packId} {
+      allow read, write: if false;
+    }
+    match /card_tts_daily_budget/{day} {
+      allow read, write: if false;
+    }
+    match /card_tts_billing/{rowId} {
+      allow read, write: if false;
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }

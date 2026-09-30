@@ -604,6 +604,11 @@ export {
   communityMarkSellerInboxSeen,
 } from "./community_packs";
 
+// D128 (2026-09-30): озвучка одобренных наборов карточек через OpenAI TTS.
+// Деплой — только после релиза клиента 2.0 (D91), прицельно:
+//   firebase deploy --only "functions:cardTtsPackWorker,functions:adminCardTtsRequeuePack"
+export { cardTtsPackWorker, adminCardTtsRequeuePack } from "./card_tts_worker";
+
 
 // Learning V2 learner-safe active-session descriptor. Auth + App Check are
 // enforced in the callable module; no private repository handle is serialized.

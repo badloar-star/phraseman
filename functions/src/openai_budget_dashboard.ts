@@ -111,6 +111,24 @@ export function usageFromDoc(
     };
   }
 
+  if (collectionName === 'card_tts_billing') {
+    // зачем: D128 — TTS считается по символам, а не по chat-токенам; пересчёт
+    // общей формулой по цене gpt-4.1-nano занизил бы трату в десятки раз.
+    const characters = num(data.characters);
+    return {
+      id: snap.id,
+      feature,
+      collection: collectionName,
+      model,
+      inputTokens: characters,
+      outputTokens: 0,
+      totalTokens: characters,
+      costUsd: num(data.estCostUsd),
+      uid: '',
+      createdAtMs: createdMs(data),
+    };
+  }
+
   // Разные фичи пишут токены в РАЗНЫХ полях. Три схемы:
   //  A) promptTokens/completionTokens        — dialog, weekly, stats, mistake, speaking, league-cron
   //  B) genPromptTokens/genCompletionTokens + judgePromptTokens/judgeCompletionTokens — explain, choice, compass
@@ -276,6 +294,8 @@ export const openAiBudgetDashboard = onCall({ region: REGION, enforceAppCheck: E
     // дашборд повторил бы старый баг недосчёта трат.
     { collection: 'tournament_ai_billing', feature: 'Турниры: ИИ-генератор' },
     { collection: 'voice_call_billing', feature: 'MAX voice' },
+    // D128: озвучка карточек (OpenAI TTS). Цена — estCostUsd из строки (символы × ставка).
+    { collection: 'card_tts_billing', feature: 'Озвучка карточек (TTS)' },
   ];
 
   const fetchedDocs = await Promise.all(

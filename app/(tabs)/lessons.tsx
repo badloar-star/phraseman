@@ -40,7 +40,6 @@ import Svg, {
   Stop,
 } from "react-native-svg";
 import TapScale from "../../components/TapScale";
-import FirstPurchaseSealCelebration from "../../components/FirstPurchaseSealCelebration";
 import { useFocusEffect, useRouter } from "expo-router";
 import { useFeatureAccess, usePremium } from "../../components/PremiumContext";
 import {
@@ -52,15 +51,6 @@ import {
   resolveLessonAccess,
 } from "../monetization_policy";
 import { openPremiumPaywall } from "../paywall_navigation";
-import {
-  LESSON_PEARL_UNLOCK_PRICE,
-  buyLessonWithPearls,
-} from "../lessons_pearl_unlock";
-import { LESSON_PEARL_UNLOCK_ENABLED } from "../lessons_pearl_unlock_flag"; // зачем: PM-148 — покупка урока за жемчуг выключена, кнопка не показывается
-// зачем: настоящий ассет жемчужины на кнопке разблокировки (владелец 18.09).
-// Тот же источник, что в шите покупки наборов — иконка не разойдётся.
-import { oskolokImageForPackShards } from "../oskolok";
-import { getShardsBalance } from "../shards_system";
 import { lessonPurchaseContinuationParams } from "../paywall_lesson_continuation";
 import { HOME_BACK_FALLBACK, safeRouterBack } from "../navigation_back";
 import {
@@ -147,7 +137,6 @@ import { useEnergy } from "../../components/EnergyContext";
 import DialogsTabContent from "../../components/DialogsTabContent";
 import PlusBadge from "../../components/PlusBadge";
 import { isAiDialogEnabled } from "../ai_dialog_flags";
-import { onAppEvent } from "../events";
 import {
   getVerifiedPremiumAccessStatus,
   invalidatePremiumCache,
@@ -3777,153 +3766,7 @@ export default function LessonsTab({
     soundDirector.request('pm.ui.tap_blocked', { scope: 'lessons-gate' });
   }, [gateModalKind]);
 
-  // ── Открыть урок за жемчужины (владелец 2026-09-17) ──────────────────────
-  // Баланс нужен, чтобы кнопка честно говорила «не хватает», а не роняла
-  // покупку после тапа. Читаем лениво — только когда шторка замка открыта.
-  const [pearlBalance, setPearlBalance] = useState<number | null>(null);
-  const [lessonUnlockPending, setLessonUnlockPending] = useState(false);
-  // Номер урока, который празднуем. В памяти экрана, не durable: пропущенная
-  // анимация не должна всплыть когда-нибудь потом (правило владельца).
-  const [celebratingLesson, setCelebratingLesson] = useState<number | null>(null);
-  useEffect(() => {
-    if (gateModalKind !== "lesson" && gateModalKind !== "levelGate") return;
-    let alive = true;
-    void getShardsBalance().then(
-      (balance) => { if (alive) setPearlBalance(balance); },
-      (error: unknown) => {
-        // Немой catch запрещён: без баланса кнопка покупки должна остаться
-        // рабочей (сервер сам откажет), а причина — попасть в лог.
-        console.warn('[LESSON-UNLOCK] balance:read_failed', String(error));
-        if (alive) setPearlBalance(null);
-      },
-    );
-    const sub = onAppEvent('shards_balance_updated', (payload) => {
-      const b = (payload as { balance?: number } | undefined)?.balance;
-      if (alive && typeof b === 'number' && Number.isFinite(b)) {
-        setPearlBalance(Math.max(0, Math.floor(b)));
-      }
-    });
-    return () => { alive = false; sub.remove(); };
-  }, [gateModalKind]);
-
-  const buyLessonUnlock = useCallback(async (lessonNum: number) => {
-    // зачем (владелец 22.09, «попытка купить за жемчуг любой урок открывает
-    // пейвол», решение — «жемчуг должен работать и у Free»): здесь стояло
-    // `if (!isPremium) → пейвол`, и это противоречило двум соседним слоям.
-    // Кнопка «Разблокировать · 100» ПОКАЗЫВАЕТСЯ Free на уроках без пейвола
-    // (условие модалки ниже), а ядро buyLessonWithPearls Free ПРОДАЁТ
-    // (lessons_pearl_unlock.ts: отказ только при requiresPremiumForLesson).
-    // Отсечка посередине рубила тап ДО вызова ядра — работающий механизм не
-    // звали никогда, а кнопка читалась как обман.
-    //
-    // Решение «продать или нет» теперь принимается в ОДНОМ месте — ядре, где
-    // денежная граница живёт fail-closed (bypassCache, без cloud restore).
-    // Здесь остаётся только честная отсечка по ПЛАТНОСТИ урока: на уроки 4+
-    // у Free пейвол, а не покупка — ровно как обещает условие показа кнопки.
-    if (!isPremium && requiresPremiumForLesson(lessonNum)) {
-      console.log('[LESSON-UNLOCK] press:paywall_instead', JSON.stringify({ // guard-ok: ранний выход логируется в релизе намеренно
-        lessonNum,
-        isPremium,
-        paywalled: true,
-      }));
-      setGateModal(null);
-      const doneSoFar = scores.filter((score) => score > 0).length;
-      openPremiumPaywall(router, {
-        context: lessonPaywallContext(lessonNum, effectiveLegacyFreeLessonCap),
-        lessons_done: doneSoFar,
-        ...lessonPurchaseContinuationParams(lessonNum),
-      });
-      return;
-    }
-    // Защита от двойного тапа: второй тап не уходит в покупку вовсе.
-    if (lessonUnlockPending) {
-      if (__DEV__) console.log('[LESSON-UNLOCK] press:ignored_pending', JSON.stringify({ lessonNum }));
-      return;
-    }
-    hapticTap();
-    // зачем: баланс уже известен и его не хватает — не устраиваем мигание
-    // «открылось и закрылось». Отказываем сразу, до всякой оптимистики.
-    if (pearlBalance !== null && pearlBalance < LESSON_PEARL_UNLOCK_PRICE) {
-      if (__DEV__) console.log('[LESSON-UNLOCK] press:insufficient_local', JSON.stringify({ lessonNum, pearlBalance }));
-      Alert.alert('', triLang(lang, {
-        ru: `Не хватает жемчужин. Нужно ${LESSON_PEARL_UNLOCK_PRICE}, у тебя ${pearlBalance}.`,
-        en: `Not enough pearls. You need ${LESSON_PEARL_UNLOCK_PRICE}, you have ${pearlBalance}.`,
-        uk: `Не вистачає перлин. Потрібно ${LESSON_PEARL_UNLOCK_PRICE}, у тебе ${pearlBalance}.`,
-        es: `No tienes suficientes perlas. Necesitas ${LESSON_PEARL_UNLOCK_PRICE} y tienes ${pearlBalance}.`,
-        "pt-BR": `Pérolas insuficientes. Você precisa de ${LESSON_PEARL_UNLOCK_PRICE} e tem ${pearlBalance}.`,
-        vi: `Không đủ ngọc trai. Bạn cần ${LESSON_PEARL_UNLOCK_PRICE}, hiện có ${pearlBalance}.`,
-        id: `Mutiara tidak cukup. Butuh ${LESSON_PEARL_UNLOCK_PRICE}, kamu punya ${pearlBalance}.`,
-        tr: `Yeterli inci yok. ${LESSON_PEARL_UNLOCK_PRICE} gerekiyor, sende ${pearlBalance} var.`,
-        pl: `Za mało pereł. Potrzebujesz ${LESSON_PEARL_UNLOCK_PRICE}, masz ${pearlBalance}.`,
-      }));
-      return;
-    }
-    setLessonUnlockPending(true);
-    // Optimistic UI: карточка открывается СРАЗУ, сеть/диск догоняют фоном.
-    setPurchasedLessons((prev) =>
-      prev.includes(lessonNum) ? prev : [...prev, lessonNum].sort((a, b) => a - b),
-    );
-    setGateModal(null);
-    try {
-      const result = await buyLessonWithPearls({ lessonId: lessonNum, studyTarget });
-      if (!result.ok) {
-        // Откат: покупка не прошла — карточка обязана снова закрыться.
-        setPurchasedLessons((prev) => prev.filter((id) => id !== lessonNum));
-        const message = result.reason === 'insufficient_shards'
-          ? triLang(lang, {
-              ru: `Не хватает жемчужин. Нужно ${LESSON_PEARL_UNLOCK_PRICE}.`,
-              en: `Not enough pearls. You need ${LESSON_PEARL_UNLOCK_PRICE}.`,
-              uk: `Не вистачає перлин. Потрібно ${LESSON_PEARL_UNLOCK_PRICE}.`,
-              es: `No tienes suficientes perlas. Necesitas ${LESSON_PEARL_UNLOCK_PRICE}.`,
-              "pt-BR": `Pérolas insuficientes. Você precisa de ${LESSON_PEARL_UNLOCK_PRICE}.`,
-              vi: `Không đủ ngọc trai. Bạn cần ${LESSON_PEARL_UNLOCK_PRICE}.`,
-              id: `Mutiara tidak cukup. Butuh ${LESSON_PEARL_UNLOCK_PRICE}.`,
-              tr: `Yeterli inci yok. ${LESSON_PEARL_UNLOCK_PRICE} gerekiyor.`,
-              pl: `Za mało pereł. Potrzebujesz ${LESSON_PEARL_UNLOCK_PRICE}.`,
-            })
-          : triLang(lang, {
-              ru: "Не получилось открыть урок. Попробуй ещё раз.",
-              en: "Could not unlock the lesson. Please try again.",
-              uk: "Не вдалося відкрити урок. Спробуй ще раз.",
-              es: "No se pudo desbloquear la lección. Inténtalo de nuevo.",
-              "pt-BR": "Não foi possível desbloquear a lição. Tente novamente.",
-              vi: "Không thể mở bài học. Hãy thử lại.",
-              id: "Gagal membuka pelajaran. Coba lagi.",
-              tr: "Ders açılamadı. Tekrar dene.",
-              pl: "Nie udało się odblokować lekcji. Spróbuj ponownie.",
-            });
-        console.warn('[LESSON-UNLOCK] press:failed', JSON.stringify({ lessonNum, reason: result.reason }));
-        Alert.alert('', message);
-        return;
-      }
-      if (__DEV__) console.log('[LESSON-UNLOCK] press:ok', JSON.stringify({ lessonNum, already: result.alreadyOwned }));
-      void prefetchLessonMenuCache(lessonNum, studyTarget);
-      /**
-       * Празднуем ТОЛЬКО первую покупку урока (владелец 21.09). Повторный тап
-       * или возврат на экран (`alreadyOwned`) праздника не получает.
-       *
-       * Урок уже открыт ВЫШЕ, до показа: празднование ничего не выдаёт и
-       * ничего не держит — правило «празднование не ставится в durable-очередь».
-       */
-      if (result.alreadyOwned) {
-        router.push({ pathname: "/lesson_menu", params: { id: lessonNum } });
-        return;
-      }
-      console.log('[LESSON-UNLOCK] celebrate', JSON.stringify({ lessonNum })); // guard-ok: ветка решения обязана логироваться и в релизе
-      setCelebratingLesson(lessonNum);
-    } finally {
-      setLessonUnlockPending(false);
-    }
-  }, [
-    effectiveLegacyFreeLessonCap,
-    isPremium,
-    lang,
-    lessonUnlockPending,
-    pearlBalance,
-    router,
-    scores,
-    studyTarget,
-  ]);
+  // зачем: D107/D70 — покупка урока за жемчуг удалена, уже купленные уроки читаются из lessons_pearl_unlock_storage
   const mountedRef = useRef(true);
   const scoresLoadRef = useRef<{
     target: string;
@@ -6171,67 +6014,8 @@ export default function LessonsTab({
                     : ""
         }
         choices={
-          // зачем (владелец 2026-09-17): у замка по прогрессу человек не должен
-          // упереться в тупик — рядом с причиной сразу лежит выход: открыть
-          // именно этот урок за 100 жемчужин, навсегда. Одна шторка, одно решение.
-          //
-          // зачем (владелец 2026-09-20): условие было голым `isPremium`, и после
-          // закрытия уроков 2–3 Free получил РОВНО ТОТ ТУПИК, который обещает
-          // не допускать комментарий выше: причина есть, выхода нет. Теперь кнопка
-          // есть там, где замок ИМЕННО по прогрессу: у Plus — везде, у Free — на
-          // уроках без пейвола (2–3). На уроках 4+ у Free пейвол, а не покупка —
-          // туда ведёт отдельный экран, и покупка там не предлагается.
-          LESSON_PEARL_UNLOCK_ENABLED
-            && (isPremium || (gateModal?.kind === "lesson" && !requiresPremiumForLesson(gateModal.lessonNum)))
-            && (gateModal?.kind === "lesson" || gateModal?.kind === "levelGate")
-            ? [
-                {
-                  /**
-                   * ОДИН текст всегда (владелец 2026-09-18): «Разблокировать»
-                   * + цена + ассет жемчужины.
-                   *
-                   * зачем убрано «Не хватает жемчужин»: кнопка сообщала отказ
-                   * ДО нажатия и читалась как мёртвая. Человек и так видит свой
-                   * баланс в шапке; кнопка должна называть ДЕЙСТВИЕ и цену, а
-                   * нехватку объяснит ответ по тапу. Название валюты словом
-                   * тоже убрано — его заменяет настоящий ассет справа.
-                   */
-                  label: triLang(lang, {
-                    ru: `Разблокировать · ${LESSON_PEARL_UNLOCK_PRICE}`,
-                    en: `Unlock · ${LESSON_PEARL_UNLOCK_PRICE}`,
-                    uk: `Розблокувати · ${LESSON_PEARL_UNLOCK_PRICE}`,
-                    es: `Desbloquear · ${LESSON_PEARL_UNLOCK_PRICE}`,
-                    "pt-BR": `Desbloquear · ${LESSON_PEARL_UNLOCK_PRICE}`,
-                    vi: `Mở khóa · ${LESSON_PEARL_UNLOCK_PRICE}`,
-                    id: `Buka · ${LESSON_PEARL_UNLOCK_PRICE}`,
-                    tr: `Kilidi aç · ${LESSON_PEARL_UNLOCK_PRICE}`,
-                    pl: `Odblokuj · ${LESSON_PEARL_UNLOCK_PRICE}`,
-                  }),
-                  icon: oskolokImageForPackShards(LESSON_PEARL_UNLOCK_PRICE),
-                  variant: "primary" as const,
-                  onPress: () => {
-                    void buyLessonUnlock(gateModal.lessonNum);
-                  },
-                },
-                {
-                  label: triLang(lang, {
-                    ru: "Закрыть",
-                    en: "Close",
-                    uk: "Закрити",
-                    es: "Cerrar",
-                    "pt-BR": "Fechar",
-                    vi: "Đóng",
-                    id: "Tutup",
-                    tr: "Kapat",
-                    pl: "Zamknij",
-                  }),
-                  variant: "secondary" as const,
-                  onPress: () => {
-                    setGateModal(null);
-                  },
-                },
-              ]
-            : [
+          // зачем: D107/D70 — покупка урока за жемчуг удалена, уже купленные уроки читаются из lessons_pearl_unlock_storage
+          [
                 {
                   label: triLang(lang, {
                     ru: "Закрыть",
@@ -6251,63 +6035,6 @@ export default function LessonsTab({
               ]
         }
         onRequestClose={() => setGateModal(null)}
-      />
-      {/* Празднование первой покупки урока — на СВОЁМ экране, не глобальным
-          оверлеем (правило владельца о празднованиях). */}
-      <FirstPurchaseSealCelebration
-        visible={celebratingLesson !== null}
-        kind="lesson"
-        subjectTitle={triLang(lang, {
-          ru: `Урок ${celebratingLesson ?? ''}`,
-          en: `Lesson ${celebratingLesson ?? ''}`,
-          uk: `Урок ${celebratingLesson ?? ''}`,
-          es: `Lección ${celebratingLesson ?? ''}`,
-          'pt-BR': `Lição ${celebratingLesson ?? ''}`,
-          vi: `Bài học ${celebratingLesson ?? ''}`,
-          id: `Pelajaran ${celebratingLesson ?? ''}`,
-          tr: `Ders ${celebratingLesson ?? ''}`,
-          pl: `Lekcja ${celebratingLesson ?? ''}`,
-        })}
-        title={triLang(lang, {
-          ru: 'Урок открыт',
-          en: 'Lesson unlocked',
-          uk: 'Урок відкрито',
-          es: 'Lección desbloqueada',
-          'pt-BR': 'Lição desbloqueada',
-          vi: 'Đã mở bài học',
-          id: 'Pelajaran terbuka',
-          tr: 'Ders açıldı',
-          pl: 'Lekcja odblokowana',
-        })}
-        subtitle={triLang(lang, {
-          ru: 'Теперь он твой навсегда',
-          en: 'It is yours for good',
-          uk: 'Тепер він твій назавжди',
-          es: 'Es tuya para siempre',
-          'pt-BR': 'Agora é sua para sempre',
-          vi: 'Nó là của bạn mãi mãi',
-          id: 'Sekarang milikmu selamanya',
-          tr: 'Artık kalıcı olarak senin',
-          pl: 'Jest twoja na zawsze',
-        })}
-        ctaLabel={triLang(lang, {
-          ru: 'Начать урок',
-          en: 'Start lesson',
-          uk: 'Почати урок',
-          es: 'Empezar lección',
-          'pt-BR': 'Começar lição',
-          vi: 'Bắt đầu bài học',
-          id: 'Mulai pelajaran',
-          tr: 'Derse başla',
-          pl: 'Rozpocznij lekcję',
-        })}
-        onDone={() => {
-          const lessonNum = celebratingLesson;
-          setCelebratingLesson(null);
-          if (lessonNum === null) return;
-          console.log('[LESSON-UNLOCK] celebrate_done', JSON.stringify({ lessonNum })); // guard-ok: финальный результат обязан логироваться и в релизе
-          router.push({ pathname: '/lesson_menu', params: { id: lessonNum } });
-        }}
       />
     </>
   );

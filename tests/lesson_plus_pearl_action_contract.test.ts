@@ -16,38 +16,19 @@ describe('Plus-only lesson pearl purchase contract', () => {
     expect(source).not.toContain('setGateModal({ kind: "premium", lessonNum: num })');
   });
 
-  it('keeps the previous progress-gate modal and composite purchase flow', () => {
+  // зачем: D107/D70 — покупка урока за жемчуг удалена; модалка гейта осталась, кнопки покупки нет
+  it('keeps the progress-gate modal without the pearl purchase button', () => {
     expect(source).toContain('<ThemedChoiceModal');
-    // Владелец 20.09 пустил Free на уроки без пейвола, и с тех пор голого
-    // `isPremium && (...)` в коде НЕТ — это утверждение было красным ещё до
-    // правки 22.09 и охраняло отменённое правило. Проверяем действующее:
-    // кнопка у Plus везде, у Free — на уроках без пейвола.
-    expect(source).toContain(
-      'isPremium || (gateModal?.kind === "lesson" && !requiresPremiumForLesson(gateModal.lessonNum))',
-    );
-    expect(source).not.toContain('gateModal?.kind === "lesson" || gateModal?.kind === "levelGate" || gateModal?.kind === "premium"');
-    expect(source).toContain('ru: `Разблокировать · ${LESSON_PEARL_UNLOCK_PRICE}`');
+    expect(source).not.toContain('Разблокировать · ');
+    expect(source).not.toContain('buyLessonUnlock');
+    expect(source).not.toContain('buyLessonWithPearls');
+    expect(source).not.toContain('LESSON_PEARL_UNLOCK');
     expect(source).toContain('ru: "Закрыть"');
-    expect(source).toContain('void buyLessonUnlock(gateModal.lessonNum)');
-    expect(source).toContain('icon: oskolokImageForPackShards(LESSON_PEARL_UNLOCK_PRICE)');
   });
 
-  it('уводит в пейвол только на ПЛАТНОМ уроке, а не всех Free', () => {
-    // Правило владельца 22.09: «жемчуг должен работать и у Free». Голая
-    // отсечка `if (!isPremium)` рубила тап Free ДО вызова ядра, хотя ядро
-    // Free продаёт, а кнопка Free показывается. Отсечка допустима только
-    // вместе с проверкой платности урока.
-    // Проверяем ТЕЛО обработчика покупки, а не весь файл: голый
-    // `if (!isPremium)` законно живёт в openCombinedLesson — это другая
-    // платная механика (выбор тем), и она под Plus осознанно.
-    const handlerStart = source.indexOf('const buyLessonUnlock = useCallback');
-    const handlerEnd = source.indexOf('const mountedRef = useRef', handlerStart);
-    expect(handlerStart).toBeGreaterThan(-1);
-    expect(handlerEnd).toBeGreaterThan(handlerStart);
-    const handler = source.slice(handlerStart, handlerEnd);
-    expect(handler).not.toMatch(/if\s*\(\s*!isPremium\s*\)\s*\{/);
-    expect(handler).toContain('if (!isPremium && requiresPremiumForLesson(lessonNum)) {');
+  it('платный урок для Free по-прежнему ведёт в пейвол', () => {
     expect(source).toContain('openPremiumPaywall(router, {');
+    expect(source).toContain('requiresPremiumForLesson');
   });
 
   it('labels a durable entitlement only as purchased', () => {

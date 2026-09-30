@@ -1,9 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import TapScale from '../components/TapScale';
-import { Image } from 'expo-image';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import {  Animated,
+import {
   AppState,
   Dimensions,
   Keyboard,
@@ -17,15 +15,25 @@ import {  Animated,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
-import { FlowText } from '../components/text-integrity';
 import { useLang } from '../components/LangContext';
-import ScreenGradient from '../components/ScreenGradient';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { triLang, type Lang } from '../constants/i18n';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
-import { useTheme } from '../components/ThemeContext';
+import HybridSheetShell from '../components/modal_fx/HybridSheetShell';
+import ThemedChoiceModal from '../components/ThemedChoiceModal';
+import {
+  CardsGlassBottomBar,
+  CardsGlassPrimaryButton,
+  CardsGlassRoundButton,
+  CardsGlassScreen,
+  CardsGlassStateBlock,
+  CardsGlassSurface,
+  useCardsGlass,
+} from './flashcards/CardsGlassKit';
+import { PackCardRow, PackMenuRow, PackPopoverMenu, PackSwitch } from './community_packs/PackCreateGlassParts';
+import { DebugLogger } from './debug-logger';
 import { actionToastTri, emitAppEvent } from './events';
 import { flashcardsCommunityPacksAvailableForTarget } from './flashcards_target_gate';
 import {
@@ -41,17 +49,11 @@ import {
   loadCommunityPackCreateDraft,
   saveCommunityPackCreateDraft,
 } from './community_packs/communityPackDraftStorage';
-import UgcPackEditorCardPreview from './community_packs/UgcPackEditorCardPreview';
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { soundDirector } from '../modules/audio/sound_director';
-import { LinearGradient } from '../components/SafeLinearGradient';
-import { useAccordionChevronStyle } from '../hooks/useAccordionFaqStyle';
-import { configureAccordionLayout } from '../constants/layoutAnimation';
 import {
   UGC_CARD_THEME_DEFAULT_ID,
   UGC_CARD_THEME_IDS,
-  ugcCardChrome,
-  ugcCardThemeAccent,
-  ugcCardThemeLabel,
   type UgcCardThemeId,
 } from './community_packs/ugcCardThemePresets';
 import {
@@ -59,14 +61,6 @@ import {
   loadLocalAuthorPacks,
   saveLocalAuthorPack,
 } from './community_packs/localAuthorPacks';
-import {
-  UGC_CARD_BACK_DEFAULT_ID,
-  UGC_CARD_BACK_IDS,
-  cardBackFanImage,
-  cardBackImage,
-  ugcCardBackLabel,
-  type UgcCardBackId,
-} from './flashcards/cardBackCatalog';
 import { getCanonicalUserId } from './user_id_policy';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { getTextInputSystemEditMenuProps } from './textInputSystemMenuProps';
@@ -269,7 +263,9 @@ export default function CommunityPackCreateScreen() {
   const freshStart = String(params.fresh ?? '') === '1';
   const stageKey = typeof params.stage === 'string' ? params.stage.trim() : '';
 
-  const { theme: t, f, isDark } = useTheme();
+  // зачем: Liquid Glass — токены активной темы (cards.html #23–24, #65–74).
+  const { t, g } = useCardsGlass();
+  const insets = useStableSafeAreaInsets();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const entryPackLanguage = normalizePackLanguage(params.packLanguage ?? studyTarget);
@@ -284,12 +280,10 @@ export default function CommunityPackCreateScreen() {
     tr: string,
     pl: string,
   ) => triLang(lang, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl }), [lang]);
-  const isLightTheme = !isDark;
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [themeIdx, setThemeIdx] = useState(0);
-  const [cardBackIdx, setCardBackIdx] = useState(0);
   const [packLanguage, setPackLanguage] = useState<PackLanguage>(() => normalizePackLanguage(params.packLanguage ?? studyTarget));
   const [publishToCommunity, setPublishToCommunity] = useState(false);
   const [rows, setRows] = useState<Row[]>([]);
@@ -305,8 +299,13 @@ export default function CommunityPackCreateScreen() {
   /** Extra bottom padding so ScrollView can scroll past the keyboard. */
   const [keyboardBottomInset, setKeyboardBottomInset] = useState(0);
   const [clearDraftModalOpen, setClearDraftModalOpen] = useState(false);
+  /** Меню «⋯» в шапке (очистить черновик / сообщить об ошибке). */
+  const [packMenuOpen, setPackMenuOpen] = useState(false);
+  /** Индекс карточки, для которой открыто меню «править / удалить». */
+  const [rowMenuIdx, setRowMenuIdx] = useState<number | null>(null);
+  /** Окно «Карточек уже 50». */
+  const [cardLimitModalOpen, setCardLimitModalOpen] = useState(false);
   /** Оформление (цвет карточек, иконка) — необязательное, по умолчанию свёрнуто. */
-  const [decorOpen, setDecorOpen] = useState(false);
 
   const scrollViewRef = useRef<ScrollView>(null);
   const savedPackIdRef = useRef<string | undefined>(undefined);
@@ -357,26 +356,10 @@ export default function CommunityPackCreateScreen() {
   /** Create mode: false until local draft load/clear finished (avoid overwriting AsyncStorage). */
   const [draftHydrated, setDraftHydrated] = useState(() => isEditMode || !canUse);
 
-  const themeKey: UgcCardThemeId = (UGC_CARD_THEME_IDS[themeIdx] ?? UGC_CARD_THEME_DEFAULT_ID) as UgcCardThemeId;
-  const cardBackKey: UgcCardBackId = (UGC_CARD_BACK_IDS[cardBackIdx] ?? UGC_CARD_BACK_DEFAULT_ID) as UgcCardBackId;
-  const selectedCardBack = cardBackImage(cardBackKey);
-  const selectedCardBackFan = cardBackFanImage(cardBackKey);
+  // PM-065: one canonical card appearance; legacy stored theme indices are read
+  // for compatibility but never affect the rendered UI or new submissions.
+  const themeKey: UgcCardThemeId = UGC_CARD_THEME_DEFAULT_ID;
   const plannedDraftLocale = plannedCommunitySourceLocale(lang);
-
-  /**
-   * Цвет карточек берём напрямую из выбранной палитры: декор paywall-модалки в светлой
-   * теме игнорировал выбор автора, и «Цвет карточек» ни на что не влиял (владелец, 2026-08-13).
-   */
-  const cardChrome = useMemo(
-    () => ugcCardChrome(themeKey, { isLight: isLightTheme, bgCard: t.bgCard, bgSurface: t.bgSurface }),
-    [themeKey, isLightTheme, t.bgCard, t.bgSurface],
-  );
-  const decorChevron = useAccordionChevronStyle(decorOpen);
-  const toggleDecor = useCallback(() => {
-    Keyboard.dismiss();
-    configureAccordionLayout();
-    setDecorOpen((v) => !v);
-  }, []);
 
   const scrollFocusedInputIntoView = useCallback((inputRef: React.RefObject<TextInput | null>) => {
     const input = inputRef.current;
@@ -456,8 +439,6 @@ export default function CommunityPackCreateScreen() {
         // вместе с галочкой — иначе правка молча делала набор бесплатным.
         const localThemeIdx = UGC_CARD_THEME_IDS.indexOf(local.cardThemeKey as UgcCardThemeId);
         setThemeIdx(localThemeIdx >= 0 ? localThemeIdx : 0);
-        const localBackIdx = UGC_CARD_BACK_IDS.indexOf(local.cardBackKey as UgcCardBackId);
-        setCardBackIdx(localBackIdx >= 0 ? localBackIdx : 0);
         setRows(
           local.cards.map((c) => ({
             translationUk: c.translationUk,
@@ -496,8 +477,6 @@ export default function CommunityPackCreateScreen() {
       setPublishToCommunity(true);
       const ti = UGC_CARD_THEME_IDS.indexOf(snap.cardThemeKey as UgcCardThemeId);
       setThemeIdx(ti >= 0 ? ti : 0);
-      const bi = UGC_CARD_BACK_IDS.indexOf(snap.cardBackKey as UgcCardBackId);
-      setCardBackIdx(bi >= 0 ? bi : 0);
       setRows(
         snap.cards.map((c) => ({
           translationUk: c.translationUk,
@@ -548,7 +527,6 @@ export default function CommunityPackCreateScreen() {
         setTitle(d.title);
         setDescription(d.description);
         setThemeIdx(d.themeIdx);
-        setCardBackIdx(d.cardBackIdx);
         setPackLanguage(normalizePackLanguage(d.packLanguage ?? studyTarget));
         setPublishToCommunity(d.publishToCommunity !== false);
         setRows(d.rows.map((r, i) => ({ ...r, id: r.id || `c${i + 1}` })));
@@ -574,7 +552,6 @@ export default function CommunityPackCreateScreen() {
         title,
         description,
         themeIdx,
-        cardBackIdx,
         packLanguage,
         publishToCommunity,
         rows,
@@ -595,7 +572,6 @@ export default function CommunityPackCreateScreen() {
     title,
     description,
     themeIdx,
-    cardBackIdx,
     packLanguage,
     publishToCommunity,
     rows,
@@ -618,7 +594,6 @@ export default function CommunityPackCreateScreen() {
           title,
           description,
           themeIdx,
-          cardBackIdx,
           packLanguage,
           publishToCommunity,
           rows,
@@ -640,7 +615,6 @@ export default function CommunityPackCreateScreen() {
     title,
     description,
     themeIdx,
-    cardBackIdx,
     packLanguage,
     publishToCommunity,
     rows,
@@ -766,7 +740,6 @@ export default function CommunityPackCreateScreen() {
         title,
         description,
         themeIdx,
-        cardBackIdx,
         rows,
         addCardFormOpen,
         draftEn,
@@ -775,7 +748,7 @@ export default function CommunityPackCreateScreen() {
         draftPlannedTranslation,
         draftNote,
       }),
-    [title, description, themeIdx, cardBackIdx, rows, addCardFormOpen, draftEn, draftRu, draftEs, draftPlannedTranslation, draftNote],
+    [title, description, themeIdx, rows, addCardFormOpen, draftEn, draftRu, draftEs, draftPlannedTranslation, draftNote],
   );
 
   const performClearLocalDraft = useCallback(() => {
@@ -784,7 +757,6 @@ export default function CommunityPackCreateScreen() {
     setTitle('');
     setDescription('');
     setThemeIdx(0);
-    setCardBackIdx(0);
     setPublishToCommunity(false);
     setRows([]);
     setAddCardFormOpen(false);
@@ -827,7 +799,6 @@ export default function CommunityPackCreateScreen() {
       sourceLang: lang,
       cards,
       cardThemeKey: themeKey,
-      cardBackKey,
       // Приватный набор ценой не обладает: его никто, кроме автора, не увидит.
       // зачем ноль жёстко (владелец 2026-09-21: «убери чтобы никто не смог
       // сделать набор платным»): блок цены снят с экрана, назначить её через
@@ -837,7 +808,7 @@ export default function CommunityPackCreateScreen() {
       priceRunes: 0,
     };
     return p;
-  }, [title, description, rows, themeKey, cardBackKey, lang, packLanguage, publishToCommunity, studyTarget]);
+  }, [title, description, rows, themeKey, lang, packLanguage, publishToCommunity, studyTarget]);
 
   /** Локальная проверка перед сохранением: название, описание и хотя бы одна карточка. */
   const localSaveError = useCallback((submission: CommunityPackSubmissionPayload): string | null => {
@@ -889,6 +860,7 @@ export default function CommunityPackCreateScreen() {
           authorStableId: authorStableId ?? undefined,
           studyTarget: originalStudyTargetRef.current,
           cloudPackId: cloudEdit && !previous ? editPackId : undefined,
+          isPremium: hasPremiumAccess,
         });
         savedPackIdRef.current = savedId;
         if (!payload.publishToCommunity && cloudEdit && !previous) await withdrawLocalAuthorPack(savedId);
@@ -929,6 +901,7 @@ export default function CommunityPackCreateScreen() {
             : '/flashcards') as any,
         );
       } catch (e: unknown) {
+        DebugLogger.error('community_pack_create:save', e instanceof Error ? e : new Error(String(e)), 'warning');
         const msg = e && typeof e === 'object' && 'message' in e ? String((e as Error).message) : String(e);
         const short = msg.slice(0, 140);
         emitAppEvent('action_toast', actionToastTri('error', {
@@ -948,32 +921,37 @@ export default function CommunityPackCreateScreen() {
     })();
   }, [payload, localSaveError, isEditMode, editPackId, studyTarget, lang, router, creatorGated, packLanguage]);
 
-  const bumpCardBack = useCallback((delta: number) => {
-    setCardBackIdx((i) => {
-      const n = UGC_CARD_BACK_IDS.length;
-      return (i + delta + n * 10) % n;
-    });
-  }, []);
+
+  // зачем (Liquid Glass, cards.html #23–24, #65–74): весь экран на токенах стекла —
+  // поля-плашки с подписью внутри, переключатель, строки карточек, закреплённая
+  // «Сохранить». Логика черновика/публикации/лимитов выше не менялась.
+  const backLabel = L('Назад', 'Назад', 'Back', 'Atrás', 'Voltar', 'Quay lại', 'Kembali', 'Geri', 'Wstecz');
+  const menuLabel = L('Меню', 'Меню', 'Menu', 'Menú', 'Menu', 'Menu', 'Menu', 'Menü', 'Menu');
+  const goBack = () => {
+    Keyboard.dismiss();
+    safeRouterBack(router, '/flashcards' as any);
+  };
+  const headerTitleStyle = { flex: 1, textAlign: 'center' as const, color: g.text, fontSize: 20, lineHeight: 26, fontWeight: '700' as const };
+  const renderHeader = (title: string, right?: React.ReactNode) => (
+    <View style={styles.headerRow}>
+      <CardsGlassRoundButton g={g} testID="ugc-pack-back" label={backLabel} icon="arrow-back" onPress={goBack} />
+      <Text style={headerTitleStyle}>{title}</Text>
+      {right ?? <View style={{ width: 44 }} />}
+    </View>
+  );
+  const newPackTitle = L('Новый набор', 'Новий набір', 'New pack', 'Nuevo pack', 'Novo pack', 'Bộ thẻ mới', 'Paket baru', 'Yeni paket', 'Nowy pakiet');
+  const glassInput = { color: g.text, fontSize: 18, lineHeight: 24, paddingHorizontal: 0, paddingVertical: 0, marginTop: 6 } as const;
+  const fieldLabel = { color: g.secondary, fontSize: 13, lineHeight: 18, fontWeight: '700' as const, letterSpacing: 0.2 };
+  const cardsCountText = `${rows.length} ${L('из', 'з', 'of', 'de', 'de', 'trên', 'dari', '/', 'z')} 10–50`;
 
   if (!canUse) {
     return (
-      <ScreenGradient artBackdrop="flashcards">
+      <CardsGlassScreen g={g}>
         <SafeAreaView style={[styles.safe, { backgroundColor: 'transparent' }]} edges={['top', 'left', 'right']}>
-          <View style={styles.headerRow}>
-            <TapScale
-              onPress={() => {
-                Keyboard.dismiss();
-                safeRouterBack(router, '/flashcards' as any);
-              }}
-              hitSlop={12}
-              style={{ width: 40 }}
-            >
-              <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
-            </TapScale>
-          </View>
+          {renderHeader('')}
           <ContentWrap>
             <View style={styles.formHorizontalInset}>
-              <Text style={{ color: t.textMuted, fontSize: f.body, marginTop: 24 }}>
+              <Text style={{ color: g.secondary, fontSize: 16, lineHeight: 22, marginTop: 24 }}>
                 {communityPacksTargetEnabled
                   ? L('Создание наборов недоступно в этой сборке.', 'Створення наборів недоступне в цьому білді.', 'Creating packs is not available in this build.', 'Crear packs no está disponible en esta versión.', 'A criação de packs não está disponível nesta versão.', 'Tính năng tạo bộ thẻ không khả dụng trong bản dựng này.', 'Pembuatan paket tidak tersedia di build ini.', 'Paket oluşturma bu sürümde kullanılamıyor.', 'Tworzenie pakietów nie jest dostępne w tej wersji.')
                   : L('Community-наборы для French закрыты до отдельной проверки источников.', 'Community-набори для French закриті до окремої перевірки джерел.', 'Community packs for French are closed pending a separate source review.', 'Los packs community para French están bloqueados hasta una revisión de fuentes.', 'Os packs community para French estão bloqueados até uma revisão de fontes.', 'Các gói community cho French đang bị khóa cho đến khi kiểm tra nguồn riêng.', 'Paket community untuk French dikunci sampai pemeriksaan sumber terpisah.', 'French için community paketleri ayrı kaynak kontrolüne kadar kapalı.', 'Pakiety community dla French są zablokowane do osobnej kontroli źródeł.')}
@@ -981,37 +959,28 @@ export default function CommunityPackCreateScreen() {
             </View>
           </ContentWrap>
         </SafeAreaView>
-      </ScreenGradient>
+      </CardsGlassScreen>
     );
   }
 
+  // Недоступно для правки / ошибка загрузки (макет #74): плитка-замок, заголовок, «Назад».
   if (isEditMode && loadErr) {
     return (
-      <ScreenGradient artBackdrop="flashcards">
+      <CardsGlassScreen g={g}>
         <SafeAreaView style={[styles.safe, { backgroundColor: 'transparent' }]} edges={['top', 'left', 'right']}>
-          <View style={[styles.headerRow, { borderBottomColor: t.border }]}>
-            <TapScale
-              onPress={() => {
-                Keyboard.dismiss();
-                safeRouterBack(router, '/flashcards' as any);
-              }}
-              hitSlop={12}
-              style={{ width: 40 }}
-            >
-              <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
-            </TapScale>
-            <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.h3 }]}>
-              {L('Редактирование', 'Редагування', 'Editing', 'Edición', 'Edição', 'Chỉnh sửa', 'Pengeditan', 'Düzenleme', 'Edycja')}
-            </Text>
-            <View style={{ width: 40 }} />
-          </View>
+          {renderHeader(L('Редактирование', 'Редагування', 'Editing', 'Edición', 'Edição', 'Chỉnh sửa', 'Pengeditan', 'Düzenleme', 'Edycja'))}
           <ContentWrap>
-            <View style={styles.formHorizontalInset}>
-              <Text style={{ color: '#f87171', marginTop: 20 }}>{loadErr}</Text>
-            </View>
+            <CardsGlassStateBlock
+              g={g}
+              testID="ugc-pack-load-error"
+              icon="lock-closed"
+              title={loadErr}
+              actionLabel={backLabel}
+              onAction={goBack}
+            />
           </ContentWrap>
         </SafeAreaView>
-      </ScreenGradient>
+      </CardsGlassScreen>
     );
   }
 
@@ -1026,67 +995,68 @@ export default function CommunityPackCreateScreen() {
   // редирект — геометрия шапки и первого кадра сохраняется (layout stability).
   if (creatorGated) {
     return (
-      <ScreenGradient artBackdrop="flashcards">
+      <CardsGlassScreen g={g}>
         <SafeAreaView style={[styles.safe, { backgroundColor: 'transparent' }]} edges={['top', 'left', 'right']}>
-          <View style={[styles.headerRow, { borderBottomColor: t.border }]}>
-            <TapScale
-              onPress={() => {
-                Keyboard.dismiss();
-                safeRouterBack(router, '/flashcards' as any);
-              }}
-              hitSlop={12}
-              style={{ width: 40 }}
-            >
-              <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
-            </TapScale>
-            <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.h3 }]}>
-              {L('Новый набор', 'Новий набір', 'New pack', 'Nuevo pack', 'Novo pack', 'Bộ thẻ mới', 'Paket baru', 'Yeni paket', 'Nowy pakiet')}
-            </Text>
-            <View style={{ width: 40 }} />
-          </View>
+          {renderHeader(newPackTitle)}
           <ContentWrap>
-            <View style={[styles.formHorizontalInset, { gap: 20, marginTop: 24 }]}>
-              <View style={{ gap: 8 }}>
-                <SkeletonBlock width="30%" height={f.body} borderRadius={6} />
-                <SkeletonBlock width="100%" height={f.body + 2 + 32} borderRadius={16} />
-              </View>
-              <View style={{ gap: 8 }}>
-                <SkeletonBlock width="30%" height={f.body} borderRadius={6} />
-                <SkeletonBlock width="100%" height={88} borderRadius={16} />
-              </View>
+            <View style={[styles.formHorizontalInset, { marginTop: 12 }]}>
+              {[74, 74, 74].map((h, i) => (
+                <View key={i} style={{ marginTop: 14 }}>
+                  <SkeletonBlock width="100%" height={h} borderRadius={14} baseColor={g.opaqueControl} highlightColor={g.selected} />
+                </View>
+              ))}
             </View>
           </ContentWrap>
         </SafeAreaView>
-      </ScreenGradient>
+      </CardsGlassScreen>
     );
   }
 
+  const cloudEditLocked = isEditMode && !isLocalAuthorPackId(editPackId);
+  const cardLimitReached = rows.length >= 50;
+  const cardBackText = (row: Row): string => {
+    // зачем: та же логика «что показывать на обороте», что была в превью карточки.
+    const planned = lang === 'pt-BR' || lang === 'vi' || lang === 'id' || lang === 'tr' || lang === 'pl'
+      ? row.sourceLocales?.[lang]?.trim()
+      : '';
+    return planned || (lang === 'es' ? (row.es?.trim() || row.ru.trim()) : row.ru.trim());
+  };
+  const openAddCard = () => {
+    Keyboard.dismiss();
+    if (cardLimitReached) {
+      // Макет #71: вместо «мёртвой» кнопки — окно с объяснением.
+      console.log(`[PACK-CREATE] лимит карточек: rows=${rows.length} -> окно`); // guard-ok: ранний выход обязан называть причину
+      setCardLimitModalOpen(true);
+      return;
+    }
+    if (isEditingCard) return;
+    setAddCardFormOpen(true);
+  };
+  const editLabel = L('Редактировать', 'Редагувати', 'Edit', 'Editar', 'Editar', 'Chỉnh sửa', 'Edit', 'Düzenle', 'Edytuj');
+  const deleteLabel = L('Удалить', 'Видалити', 'Delete', 'Eliminar', 'Excluir', 'Xóa', 'Hapus', 'Sil', 'Usuń');
+  const cancelLabel = L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj');
+  const menuRow = rowMenuIdx != null ? rows[rowMenuIdx] : undefined;
+
   return (
-    <ScreenGradient artBackdrop="flashcards">
+    <CardsGlassScreen g={g}>
       <SafeAreaView style={[styles.safe, { backgroundColor: 'transparent' }]} edges={['top', 'left', 'right']}>
         <KeyboardAvoidingView
           style={{ flex: 1 }}
           behavior={effectiveOs === 'ios' ? 'padding' : 'height'}
           keyboardVerticalOffset={64}
         >
-          <View style={[styles.headerRow, { borderBottomColor: t.border }]}>
-            <TapScale
-              onPress={() => {
-                Keyboard.dismiss();
-                safeRouterBack(router, '/flashcards' as any);
-              }}
-              hitSlop={12}
-              style={{ width: 40 }}
-            >
-              <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
-            </TapScale>
-            <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.h3 }]}>
-              {isEditMode
-                ? L('Редактировать набор', 'Редагувати набір', 'Edit pack', 'Editar pack', 'Editar pack', 'Chỉnh sửa bộ thẻ', 'Edit paket', 'Paketi düzenle', 'Edytuj pakiet')
-                : L('Новый набор', 'Новий набір', 'New pack', 'Nuevo pack', 'Novo pack', 'Bộ thẻ mới', 'Paket baru', 'Yeni paket', 'Nowy pakiet')}
-            </Text>
-            <View style={{ width: 40 }} />
-          </View>
+          {renderHeader(
+            isEditMode
+              ? L('Редактировать набор', 'Редагувати набір', 'Edit pack', 'Editar pack', 'Editar pack', 'Chỉnh sửa bộ thẻ', 'Edit paket', 'Paketi düzenle', 'Edytuj pakiet')
+              : newPackTitle,
+            <CardsGlassRoundButton
+              g={g}
+              testID="ugc-pack-menu"
+              label={menuLabel}
+              icon="ellipsis-horizontal"
+              onPress={() => setPackMenuOpen(true)}
+            />,
+          )}
           <BouncyScrollView
             ref={scrollViewRef}
             style={{ flex: 1 }}
@@ -1098,79 +1068,83 @@ export default function CommunityPackCreateScreen() {
               scrollYRef.current = e.nativeEvent.contentOffset.y;
             }}
             scrollEventThrottle={16}
-            contentContainerStyle={{ paddingBottom: 32 + keyboardBottomInset }}
+            contentContainerStyle={{ paddingBottom: 120 + keyboardBottomInset }}
             showsVerticalScrollIndicator={false}
           >
             <ContentWrap>
-              <View style={styles.formHorizontalInset}>
-              <Text style={labelStyle(t)}>{L('Название', 'Назва', 'Title', 'Título', 'Título', 'Tên', 'Judul', 'Başlık', 'Tytuł')} *</Text>
-              <TextInput
-                ref={titleInputRef}
-                accessibilityLabel={L('Название набора', 'Назва набору', 'Pack title', 'Título del pack', 'Título do pack', 'Tên bộ thẻ', 'Judul paket', 'Paket başlığı', 'Tytuł pakietu')}
-                {...getTextInputSystemEditMenuProps()}
-                value={title}
-                onChangeText={setTitle}
-                onFocus={bindScrollOnFocus(titleInputRef)}
-                placeholder={L('Название набора', 'Назва набору', 'Pack title', 'Título del pack', 'Título do pack', 'Tên bộ thẻ', 'Judul paket', 'Paket başlığı', 'Tytuł pakietu')}
-                placeholderTextColor={t.textGhost}
-                style={fieldInputStyle(t)}
-              />
-              <Text style={labelStyle(t)}>{L('Описание', 'Опис', 'Description', 'Descripción', 'Descrição', 'Mô tả', 'Deskripsi', 'Açıklama', 'Opis')} *</Text>
-              <TextInput
-                ref={descriptionInputRef}
-                accessibilityLabel={L('Описание набора', 'Опис набору', 'Pack description', 'Descripción del pack', 'Descrição do pack', 'Mô tả bộ thẻ', 'Deskripsi paket', 'Paket açıklaması', 'Opis pakietu')}
-                {...getTextInputSystemEditMenuProps()}
-                value={description}
-                onChangeText={setDescription}
-                onFocus={bindScrollOnFocus(descriptionInputRef)}
-                placeholder={L('Кратко о наборе', 'Коротко про набір', 'Briefly about the pack', 'Breve descripción del pack', 'Resumo do pack', 'Mô tả ngắn về bộ thẻ', 'Ringkasan paket', 'Paket hakkında kısa bilgi', 'Krótko o pakiecie')}
-                placeholderTextColor={t.textGhost}
-                multiline
-                style={[fieldInputStyle(t), { minHeight: 88, textAlignVertical: 'top' }]}
-              />
+              <View style={[styles.formHorizontalInset, { paddingTop: 10 }]}>
+              <CardsGlassSurface g={g} style={styles.fieldSurface}>
+                <Text style={fieldLabel}>{L('Название', 'Назва', 'Title', 'Título', 'Título', 'Tên', 'Judul', 'Başlık', 'Tytuł')} *</Text>
+                <TextInput
+                  ref={titleInputRef}
+                  accessibilityLabel={L('Название набора', 'Назва набору', 'Pack title', 'Título del pack', 'Título do pack', 'Tên bộ thẻ', 'Judul paket', 'Paket başlığı', 'Tytuł pakietu')}
+                  {...getTextInputSystemEditMenuProps()}
+                  value={title}
+                  onChangeText={setTitle}
+                  onFocus={bindScrollOnFocus(titleInputRef)}
+                  placeholder={L('Название набора', 'Назва набору', 'Pack title', 'Título del pack', 'Título do pack', 'Tên bộ thẻ', 'Judul paket', 'Paket başlığı', 'Tytuł pakietu')}
+                  placeholderTextColor={g.mutedText}
+                  style={glassInput}
+                />
+              </CardsGlassSurface>
+              <CardsGlassSurface g={g} style={[styles.fieldSurface, { marginTop: 10 }]}>
+                <Text style={fieldLabel}>{L('Описание', 'Опис', 'Description', 'Descripción', 'Descrição', 'Mô tả', 'Deskripsi', 'Açıklama', 'Opis')} *</Text>
+                <TextInput
+                  ref={descriptionInputRef}
+                  accessibilityLabel={L('Описание набора', 'Опис набору', 'Pack description', 'Descripción del pack', 'Descrição do pack', 'Mô tả bộ thẻ', 'Deskripsi paket', 'Paket açıklaması', 'Opis pakietu')}
+                  {...getTextInputSystemEditMenuProps()}
+                  value={description}
+                  onChangeText={setDescription}
+                  onFocus={bindScrollOnFocus(descriptionInputRef)}
+                  placeholder={L('Кратко о наборе', 'Коротко про набір', 'Briefly about the pack', 'Breve descripción del pack', 'Resumo do pack', 'Mô tả ngắn về bộ thẻ', 'Ringkasan paket', 'Paket hakkında kısa bilgi', 'Krótko o pakiecie')}
+                  placeholderTextColor={g.mutedText}
+                  multiline
+                  style={[glassInput, { fontSize: 16, lineHeight: 22, minHeight: 66, textAlignVertical: 'top' }]}
+                />
+              </CardsGlassSurface>
 
-              <View style={styles.packLanguageRow}>
+              <CardsGlassSurface g={g} style={[styles.rowSurface, { marginTop: 10 }]}>
                 <View style={{ flex: 1, paddingRight: 12 }}>
-                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
+                  <Text style={{ color: g.text, fontSize: 16, lineHeight: 22, fontWeight: '600' }}>
                     {L('Язык набора', 'Мова набору', 'Pack language', 'Idioma del pack', 'Idioma do pacote', 'Ngôn ngữ bộ thẻ', 'Bahasa paket', 'Paket dili', 'Język pakietu')}
                   </Text>
-                  <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 3 }}>
+                  <Text style={{ color: g.secondary, fontSize: 13, lineHeight: 18, marginTop: 2 }}>
                     {L('Карточки будут показаны в выбранном разделе языка.', 'Картки будуть показані у вибраному мовному розділі.', 'Cards will appear in the selected language section.', 'Las tarjetas aparecerán en el idioma elegido.', 'Os cartões aparecerão no idioma escolhido.', 'Thẻ sẽ xuất hiện trong mục ngôn ngữ đã chọn.', 'Kartu akan muncul di bagian bahasa yang dipilih.', 'Kartlar seçilen dil bölümünde görünür.', 'Karty pojawią się w wybranej sekcji językowej.')}
                   </Text>
                 </View>
-                <PackLanguagePicker lang={lang} t={t} value={packLanguage} onChange={setPackLanguage} />
-              </View>
+                <PackLanguagePicker lang={lang} t={t} value={packLanguage} onChange={setPackLanguage} liquidGlass />
+              </CardsGlassSurface>
 
               <TouchableOpacity
                 testID="ugc-pack-public-toggle"
                 accessibilityRole="switch"
                 accessibilityLabel={L('Опубликовать набор в сообществе', 'Опублікувати набір у спільноті', 'Publish the pack to the community', 'Publicar el pack en la comunidad', 'Publicar o pacote na comunidade', 'Đăng bộ thẻ lên cộng đồng', 'Publikasikan paket ke komunitas', 'Paketi toplulukta yayınla', 'Opublikuj zestaw w społeczności')}
-                accessibilityState={{ checked: publishToCommunity, disabled: isEditMode && !isLocalAuthorPackId(editPackId) }}
+                accessibilityState={{ checked: publishToCommunity, disabled: cloudEditLocked }}
                 onPress={() => setPublishToCommunity((value) => !value)}
-                style={[styles.publishToggle, { borderColor: publishToCommunity ? `${t.accent}88` : t.border, backgroundColor: publishToCommunity ? `${t.accent}14` : t.bgCard, opacity: isEditMode && !isLocalAuthorPackId(editPackId) ? 0.7 : 1 }]}
+                activeOpacity={0.85}
+                style={{ marginTop: 10 }}
               >
-                <View style={[styles.publishToggleIcon, { backgroundColor: publishToCommunity ? t.accent : t.border }]}>
-                  <Ionicons name={publishToCommunity ? 'globe-outline' : 'lock-closed-outline'} size={16} color={publishToCommunity ? t.correctText : t.textMuted} />
-                </View>
-                <View style={{ flex: 1 }}>
-                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
-                    {publishToCommunity
-                      ? L('Публичный набор', 'Публічний набір', 'Public pack', 'Pack público', 'Pacote público', 'Bộ thẻ công khai', 'Paket publik', 'Herkese açık paket', 'Zestaw publiczny')
-                      : L('Только для меня', 'Лише для мене', 'Private on this device', 'Privado en este dispositivo', 'Privado neste dispositivo', 'Riêng tư trên thiết bị này', 'Pribadi di perangkat ini', 'Bu cihazda özel', 'Prywatny na tym urządzeniu')}
-                  </Text>
-                  <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 3 }}>
-                    {publishToCommunity
-                      // зачем ветка cloudEdit (аудит 2026-09-17): правка УЖЕ
-                      // опубликованного набора публикуется сразу, без очереди на
-                      // модерацию (owner-решение 17.09.2026) — старый текст «после
-                      // проверки» здесь был бы прямой ложью пользователю.
-                      ? (isEditMode && !isLocalAuthorPackId(editPackId)
-                        ? L('Изменения станут видны всем сразу после сохранения.', 'Зміни стануть видимими всім одразу після збереження.', 'Changes become visible to everyone as soon as you save.', 'Los cambios se verán para todos en cuanto guardes.', 'As mudanças ficam visíveis para todos assim que você salvar.', 'Thay đổi sẽ hiển thị cho mọi người ngay sau khi lưu.', 'Perubahan langsung terlihat oleh semua orang setelah disimpan.', 'Değişiklikler kaydeder kaydetmez herkese görünür olur.', 'Zmiany będą widoczne dla wszystkich zaraz po zapisaniu.')
-                        : L('Набор появится в каталоге после проверки.', 'Набір з’явиться в каталозі після перевірки.', 'The pack will appear in the catalog after review.', 'El pack aparecerá en el catálogo tras la revisión.', 'O pacote aparecerá no catálogo após a revisão.', 'Bộ thẻ sẽ xuất hiện trong danh mục sau khi duyệt.', 'Paket akan muncul di katalog setelah ditinjau.', 'Paket incelemeden sonra katalogda görünür.', 'Zestaw pojawi się w katalogu po sprawdzeniu.'))
-                      : L('Он сохранится только у тебя.', 'Він збережеться лише у тебе.', 'It will stay on your device.', 'Se quedará en tu dispositivo.', 'Ele ficará no seu dispositivo.', 'Bộ thẻ chỉ lưu trên thiết bị của bạn.', 'Paket hanya tersimpan di perangkatmu.', 'Yalnızca cihazında kalır.', 'Zostanie tylko na Twoim urządzeniu.')}
-                  </Text>
-                </View>
-                <Ionicons name={publishToCommunity ? 'checkmark-circle' : 'ellipse-outline'} size={22} color={publishToCommunity ? t.accent : t.textGhost} />
+                <CardsGlassSurface g={g} style={styles.rowSurface}>
+                  <View style={{ flex: 1, paddingRight: 12 }}>
+                    <Text style={{ color: g.text, fontSize: 16, lineHeight: 22, fontWeight: '600' }}>
+                      {publishToCommunity
+                        ? L('Публичный набор', 'Публічний набір', 'Public pack', 'Pack público', 'Pacote público', 'Bộ thẻ công khai', 'Paket publik', 'Herkese açık paket', 'Zestaw publiczny')
+                        : L('Только для меня', 'Лише для мене', 'Private on this device', 'Privado en este dispositivo', 'Privado neste dispositivo', 'Riêng tư trên thiết bị này', 'Pribadi di perangkat ini', 'Bu cihazda özel', 'Prywatny na tym urządzeniu')}
+                    </Text>
+                    <Text style={{ color: g.secondary, fontSize: 13, lineHeight: 18, marginTop: 2 }}>
+                      {publishToCommunity
+                        // зачем ветка cloudEdit (аудит 2026-09-17): правка УЖЕ
+                        // опубликованного набора публикуется сразу, без очереди на
+                        // модерацию (owner-решение 17.09.2026) — старый текст «после
+                        // проверки» здесь был бы прямой ложью пользователю.
+                        ? (cloudEditLocked
+                          ? L('Изменения станут видны всем сразу после сохранения.', 'Зміни стануть видимими всім одразу після збереження.', 'Changes become visible to everyone as soon as you save.', 'Los cambios se verán para todos en cuanto guardes.', 'As mudanças ficam visíveis para todos assim que você salvar.', 'Thay đổi sẽ hiển thị cho mọi người ngay sau khi lưu.', 'Perubahan langsung terlihat oleh semua orang setelah disimpan.', 'Değişiklikler kaydeder kaydetmez herkese görünür olur.', 'Zmiany będą widoczne dla wszystkich zaraz po zapisaniu.')
+                          : L('Набор появится в каталоге после проверки.', 'Набір з’явиться в каталозі після перевірки.', 'The pack will appear in the catalog after review.', 'El pack aparecerá en el catálogo tras la revisión.', 'O pacote aparecerá no catálogo após a revisão.', 'Bộ thẻ sẽ xuất hiện trong danh mục sau khi duyệt.', 'Paket akan muncul di katalog setelah ditinjau.', 'Paket incelemeden sonra katalogda görünür.', 'Zestaw pojawi się w katalogu po sprawdzeniu.'))
+                        : L('Он сохранится только у тебя.', 'Він збережеться лише у тебе.', 'It will stay on your device.', 'Se quedará en tu dispositivo.', 'Ele ficará no seu dispositivo.', 'Bộ thẻ chỉ lưu trên thiết bị của bạn.', 'Paket hanya tersimpan di perangkatmu.', 'Yalnızca cihazında kalır.', 'Zostanie tylko na Twoim urządzeniu.')}
+                    </Text>
+                  </View>
+                  <PackSwitch g={g} on={publishToCommunity} disabled={cloudEditLocked} />
+                </CardsGlassSurface>
               </TouchableOpacity>
 
               {/* зачем здесь НЕТ цены (владелец 2026-09-21: «убери чтобы никто
@@ -1178,372 +1152,247 @@ export default function CommunityPackCreateScreen() {
                   целиком, наборы бесплатны. Отменяет решение 2026-09-17. Сервер
                   по прямому запрету владельца НЕ трогали — механизм начисления
                   автору цел и оживёт, если цену вернут. */}
+              <View style={{ marginTop: 24, flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between' }}>
+                <Text style={{ color: g.text, fontSize: 18, lineHeight: 24, fontWeight: '700' }}>
+                  {L('Карточки', 'Картки', 'Cards', 'Tarjetas', 'Cartões', 'Thẻ', 'Kartu', 'Kartlar', 'Karty')}
+                </Text>
+                <Text testID="ugc-pack-cards-count" style={{ color: g.mutedText, fontSize: 15, lineHeight: 20, fontWeight: '600' }}>
+                  {cardsCountText}
+                </Text>
+              </View>
+
+              <View style={{ marginTop: 12, gap: 10 }}>
+                {rows.map((row, idx) => (
+                  <PackCardRow
+                    key={row.id + String(idx)}
+                    g={g}
+                    testID={`ugc-pack-card-${idx}`}
+                    front={row.en}
+                    back={cardBackText(row)}
+                    editing={editingIdx === idx}
+                    moreLabel={menuLabel}
+                    onPress={() => {
+                      if (!isEditingCard) editRow(idx);
+                    }}
+                    onMore={() => {
+                      Keyboard.dismiss();
+                      if (!isEditingCard) setRowMenuIdx(idx);
+                    }}
+                  />
+                ))}
+              </View>
+
               <TouchableOpacity
-                onPress={() => {
-                  Keyboard.dismiss();
-                  setAddCardFormOpen(true);
-                }}
-                disabled={rows.length >= 50 || isEditingCard}
+                testID="ugc-pack-add-card"
+                accessibilityRole="button"
+                onPress={openAddCard}
+                disabled={isEditingCard}
+                activeOpacity={0.8}
                 style={{
-                  marginTop: 20,
-                  paddingVertical: 14,
-                  paddingHorizontal: 16,
-                  borderRadius: 14,
-                  borderWidth: 0,
-                  borderColor: t.accent,
+                  marginTop: 14,
+                  minHeight: 44,
+                  flexDirection: 'row',
                   alignItems: 'center',
-                  opacity: rows.length >= 50 || isEditingCard ? 0.45 : 1,
+                  alignSelf: 'flex-start',
+                  gap: 8,
+                  opacity: isEditingCard ? 0.45 : 1,
                 }}
               >
-                <Text style={{ color: t.accent, fontWeight: '800', fontSize: f.body }}>
-                  {L('+ Добавить карточку', '+ Додати картку', '+ Add card', '+ Añadir tarjeta', '+ Adicionar cartão', '+ Thêm thẻ', '+ Tambah kartu', '+ Kart ekle', '+ Dodaj kartę')}
+                <Ionicons name="add" size={20} color={g.text} />
+                <Text style={{ color: g.text, fontSize: 16, lineHeight: 22, fontWeight: '600' }}>
+                  {L('Добавить карточку', 'Додати картку', 'Add card', 'Añadir tarjeta', 'Adicionar cartão', 'Thêm thẻ', 'Tambah kartu', 'Kart ekle', 'Dodaj kartę')}
                 </Text>
               </TouchableOpacity>
 
               {addCardFormOpen ? (
-                <View ref={draftPanelRef} style={[styles.draftCardPanel, { backgroundColor: t.bgSurface, borderColor: t.border }]}>
-                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800', marginBottom: 4 }}>
+                <View
+                  ref={draftPanelRef}
+                  style={{
+                    marginTop: 14,
+                    padding: 16,
+                    borderRadius: 24,
+                    backgroundColor: g.opaqueSheet,
+                    borderWidth: StyleSheet.hairlineWidth,
+                    borderColor: g.glassEdge,
+                  }}
+                >
+                  <Text style={{ color: g.text, fontSize: 22, lineHeight: 28, fontWeight: '700', paddingHorizontal: 4 }}>
                     {isEditingCard
                       ? L('Редактирование карточки', 'Редагування картки', 'Editing the card', 'Editar tarjeta', 'Editar cartão', 'Chỉnh sửa thẻ', 'Edit kartu', 'Kartı düzenle', 'Edytuj kartę')
                       : L('Новая карточка', 'Нова картка', 'New card', 'Nueva tarjeta', 'Novo cartão', 'Thẻ mới', 'Kartu baru', 'Yeni kart', 'Nowa karta')}
                   </Text>
-                  <Text style={[draftLabelStyle(t), { marginTop: 8 }]}>
-                    {L('Передняя сторона', 'Передня сторона', 'Front side', 'Cara delantera', 'Frente', 'Mặt trước', 'Sisi depan', 'Ön yüz', 'Przednia strona')}
-                  </Text>
-                  <TextInput
-                    ref={draftEnInputRef}
-                    accessibilityLabel={L('Передняя сторона карточки', 'Передня сторона картки', 'Front side of the card', 'Cara delantera de la tarjeta', 'Frente do cartão', 'Mặt trước của thẻ', 'Sisi depan kartu', 'Kartın ön yüzü', 'Przednia strona karty')}
-                    {...getTextInputSystemEditMenuProps()}
-                    value={draftEn}
-                    onChangeText={setDraftEn}
-                    onFocus={bindScrollOnFocus(draftEnInputRef)}
-                    style={[fieldInputStyle(t), { borderColor: t.accent }]}
-                  />
-                  <Text style={draftLabelStyle(t)}>
-                    {L('Задняя сторона', 'Зворотна сторона', 'Back side', 'Cara trasera', 'Verso', 'Mặt sau', 'Sisi belakang', 'Arka yüz', 'Tylna strona')}
-                  </Text>
-                  <TextInput
-                    ref={draftTranslationInputRef}
-                    accessibilityLabel={L('Задняя сторона карточки', 'Зворотна сторона картки', 'Back side of the card', 'Cara trasera de la tarjeta', 'Verso do cartão', 'Mặt sau của thẻ', 'Sisi belakang kartu', 'Kartın arka yüzü', 'Tylna strona karty')}
-                    {...getTextInputSystemEditMenuProps()}
-                    value={draftTranslation}
-                    onChangeText={setDraftTranslation}
-                    onFocus={bindScrollOnFocus(draftTranslationInputRef)}
-                    style={fieldInputStyle(t)}
-                  />
-                  <Text style={draftLabelStyle(t)}>
-                    {L('Подсказка (необязательно)', 'Підказка (необов\'язково)', 'Hint (optional)', 'Nota (opcional)', 'Nota (opcional)', 'Ghi chú (không bắt buộc)', 'Catatan (opsional)', 'Not (isteğe bağlı)', 'Notatka (opcjonalnie)')}
-                  </Text>
-                  <TextInput
-                    ref={draftNoteInputRef}
-                    accessibilityLabel={L('Описание или заметка к карточке', 'Опис або замітка до картки', 'Description or note for the card', 'Descripción o nota de la tarjeta', 'Descrição ou nota do cartão', 'Mô tả hoặc ghi chú thẻ', 'Deskripsi atau catatan kartu', 'Kart açıklaması veya notu', 'Opis lub notatka do karty')}
-                    {...getTextInputSystemEditMenuProps()}
-                    value={draftNote}
-                    onChangeText={setDraftNote}
-                    onFocus={bindScrollOnFocus(draftNoteInputRef)}
-                    multiline
-                    style={[fieldInputStyle(t), { minHeight: 72, textAlignVertical: 'top' }]}
-                  />
-                  <View style={{ flexDirection: 'row', gap: 10, marginTop: 12 }}>
-                    <TouchableOpacity
-                      onPress={cancelDraftCard}
-                      style={{
-                        flex: 1,
-                        paddingVertical: 12,
-                        paddingHorizontal: 8,
-                        borderRadius: 12,
-                        borderWidth: 0,
-                        borderColor: t.border,
-                        alignItems: 'center',
-                      }}
-                    >
-                      <Text style={{ color: t.textSecond, fontWeight: '700', fontSize: f.body }}>
-                        {L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
-                      </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
+                  <CardsGlassSurface g={g} raised focused style={[styles.fieldSurface, { marginTop: 16 }]}>
+                    <Text style={fieldLabel}>
+                      {L('Передняя сторона', 'Передня сторона', 'Front side', 'Cara delantera', 'Frente', 'Mặt trước', 'Sisi depan', 'Ön yüz', 'Przednia strona')}
+                    </Text>
+                    <TextInput
+                      ref={draftEnInputRef}
+                      accessibilityLabel={L('Передняя сторона карточки', 'Передня сторона картки', 'Front side of the card', 'Cara delantera de la tarjeta', 'Frente do cartão', 'Mặt trước của thẻ', 'Sisi depan kartu', 'Kartın ön yüzü', 'Przednia strona karty')}
+                      {...getTextInputSystemEditMenuProps()}
+                      value={draftEn}
+                      onChangeText={setDraftEn}
+                      onFocus={bindScrollOnFocus(draftEnInputRef)}
+                      placeholderTextColor={g.mutedText}
+                      style={glassInput}
+                    />
+                  </CardsGlassSurface>
+                  <CardsGlassSurface g={g} raised style={[styles.fieldSurface, { marginTop: 10 }]}>
+                    <Text style={fieldLabel}>
+                      {L('Задняя сторона', 'Зворотна сторона', 'Back side', 'Cara trasera', 'Verso', 'Mặt sau', 'Sisi belakang', 'Arka yüz', 'Tylna strona')}
+                    </Text>
+                    <TextInput
+                      ref={draftTranslationInputRef}
+                      accessibilityLabel={L('Задняя сторона карточки', 'Зворотна сторона картки', 'Back side of the card', 'Cara trasera de la tarjeta', 'Verso do cartão', 'Mặt sau của thẻ', 'Sisi belakang kartu', 'Kartın arka yüzü', 'Tylna strona karty')}
+                      {...getTextInputSystemEditMenuProps()}
+                      value={draftTranslation}
+                      onChangeText={setDraftTranslation}
+                      onFocus={bindScrollOnFocus(draftTranslationInputRef)}
+                      placeholderTextColor={g.mutedText}
+                      style={glassInput}
+                    />
+                  </CardsGlassSurface>
+                  <CardsGlassSurface g={g} raised style={[styles.fieldSurface, { marginTop: 10 }]}>
+                    <Text style={fieldLabel}>
+                      {L('Подсказка (необязательно)', 'Підказка (необов\'язково)', 'Hint (optional)', 'Nota (opcional)', 'Nota (opcional)', 'Ghi chú (không bắt buộc)', 'Catatan (opsional)', 'Not (isteğe bağlı)', 'Notatka (opcjonalnie)')}
+                    </Text>
+                    <TextInput
+                      ref={draftNoteInputRef}
+                      accessibilityLabel={L('Описание или заметка к карточке', 'Опис або замітка до картки', 'Description or note for the card', 'Descripción o nota de la tarjeta', 'Descrição ou nota do cartão', 'Mô tả hoặc ghi chú thẻ', 'Deskripsi atau catatan kartu', 'Kart açıklaması veya notu', 'Opis lub notatka do karty')}
+                      {...getTextInputSystemEditMenuProps()}
+                      value={draftNote}
+                      onChangeText={setDraftNote}
+                      onFocus={bindScrollOnFocus(draftNoteInputRef)}
+                      placeholderTextColor={g.mutedText}
+                      multiline
+                      style={[glassInput, { fontSize: 16, lineHeight: 22, minHeight: 44, textAlignVertical: 'top' }]}
+                    />
+                  </CardsGlassSurface>
+                  <View style={{ flexDirection: 'row', gap: 10, marginTop: 18 }}>
+                    <CardsGlassPrimaryButton g={g} variant="ghost" label={cancelLabel} onPress={cancelDraftCard} style={{ flex: 1 }} />
+                    <CardsGlassPrimaryButton
+                      g={g}
+                      label={isEditingCard
+                        ? L('Обновить', 'Оновити', 'Update', 'Actualizar', 'Atualizar', 'Cập nhật', 'Perbarui', 'Güncelle', 'Zaktualizuj')
+                        : L('Сохранить', 'Зберегти', 'Save', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz')}
                       onPress={saveDraftCard}
-                      disabled={!draftValid || rows.length >= 50}
-                      style={{
-                        flex: 1,
-                        flexDirection: 'row',
-                        gap: 8,
-                        paddingVertical: 12,
-                        paddingHorizontal: 8,
-                        borderRadius: 12,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        backgroundColor: !draftValid || rows.length >= 50 ? t.border : t.accent,
-                      }}
-                    >
-                      <Ionicons name="checkmark-circle" size={22} color={t.correctText} />
-                      <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.body }}>
-                        {isEditingCard
-                          ? L('Обновить', 'Оновити', 'Update', 'Actualizar', 'Atualizar', 'Cập nhật', 'Perbarui', 'Güncelle', 'Zaktualizuj')
-                          : L('Сохранить', 'Зберегти', 'Save', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz')}
-                      </Text>
-                    </TouchableOpacity>
+                      disabled={!draftValid || cardLimitReached}
+                      style={{ flex: 1.4 }}
+                    />
                   </View>
                 </View>
               ) : null}
 
-              {rows.map((row, idx) => (
-                <UgcPackEditorCardPreview
-                  key={row.id + String(idx)}
-                  t={t}
-                  f={f}
-                  lang={lang}
-                  index={idx}
-                  en={row.en}
-                  ru={row.ru}
-                  uk={row.origin ? [buildSourceLabel(row.origin, lang), row.uk].filter(Boolean).join(' · ') : row.uk}
-                  es={row.es}
-                  sourceLocales={row.sourceLocales}
-                  frontGradient={cardChrome.frontGradient}
-                  backGradient={cardChrome.backGradient}
-                  borderAccent={cardChrome.borderAccent}
-                  canRemove={!isEditingCard}
-                  onRemove={() => removeRow(idx)}
-                  canEdit={!isEditingCard}
-                  onEdit={() => editRow(idx)}
-                  editing={editingIdx === idx}
-                />
-              ))}
-
-              {/* Оформление — необязательное, свёрнуто по умолчанию (упрощение экрана 2026-08-13). */}
-              <TouchableOpacity
-                testID="ugc-pack-decor-toggle"
-                accessibilityRole="button"
-                accessibilityState={{ expanded: decorOpen }}
-                onPress={toggleDecor}
-                activeOpacity={0.8}
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  gap: 10,
-                  marginTop: 18,
-                  paddingVertical: 14,
-                  paddingHorizontal: 14,
-                  borderRadius: 14,
-                  backgroundColor: t.bgCard,
-                }}
-              >
-                <Ionicons name="color-palette-outline" size={18} color={t.accent} />
-                <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-                  {L('Оформление', 'Оформлення', 'Design', 'Aspecto', 'Aparência', 'Giao diện', 'Tampilan', 'Görünüm', 'Wygląd')}
-                </Text>
-                <FlowText testID="ugc-theme-label" provenance="authored" style={{ flexShrink: 1, color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
-                  {ugcCardThemeLabel(themeKey, lang)}
-                </FlowText>
-                <Animated.View style={{ transform: [{ rotate: decorChevron.rotate }] }}>
-                  <Ionicons name="chevron-down" size={18} color={t.textMuted} />
-                </Animated.View>
-              </TouchableOpacity>
-
-              {decorOpen ? (
-                <View>
-              <Text style={labelStyle(t)}>{L('Цвет карточек', 'Колір карток', 'Card color', 'Color de las tarjetas', 'Cor dos cartões', 'Màu thẻ', 'Warna kartu', 'Kart rengi', 'Kolor kart')}</Text>
-              {/* Живое превью: цвет виден сразу, в любой теме (владелец, 2026-08-13). */}
-              <LinearGradient
-                colors={[...cardChrome.frontGradient]}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-                style={{
-                  height: 72,
-                  borderRadius: 16,
-                  borderWidth: 1,
-                  borderColor: cardChrome.borderAccent,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginTop: 8,
-                }}
-              >
-                <FlowText testID="ugc-title-preview" provenance="user" style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800', textAlign: 'center' }}>
-                  {title.trim() || L('Ваш набор', 'Ваш набір', 'Your pack', 'Tu pack', 'Seu pack', 'Bộ thẻ của bạn', 'Paketmu', 'Paketin', 'Twój pakiet')}
-                </FlowText>
-              </LinearGradient>
-              <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, marginTop: 12 }}>
-                {UGC_CARD_THEME_IDS.map((id, idx) => {
-                  const selected = id === themeKey;
-                  return (
-                    <TouchableOpacity
-                      key={id}
-                      testID={`ugc-pack-color-${id}`}
-                      accessibilityRole="button"
-                      accessibilityState={{ selected }}
-                      accessibilityLabel={ugcCardThemeLabel(id, lang)}
-                      onPress={() => {
-                        Keyboard.dismiss();
-                        setThemeIdx(idx);
-                      }}
-                      activeOpacity={0.85}
-                      style={{
-                        width: 46,
-                        height: 46,
-                        borderRadius: 23,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        borderWidth: selected ? 2 : 1,
-                        borderColor: selected ? t.accent : t.border,
-                        backgroundColor: t.bgCard,
-                      }}
-                    >
-                      <View
-                        style={{
-                          width: 28,
-                          height: 28,
-                          borderRadius: 14,
-                          backgroundColor: ugcCardThemeAccent(id, { isLight: isLightTheme }),
-                        }}
-                      />
-                    </TouchableOpacity>
-                  );
-                })}
-              </View>
-              <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 8 }} numberOfLines={1}>
-                {ugcCardThemeLabel(themeKey, lang)}
-              </Text>
-
-              <Text style={labelStyle(t)}>{L('Иконка набора', 'Іконка набору', 'Pack icon', 'Icono del pack', 'Icone do pack', 'Biểu tượng bộ thẻ', 'Ikon paket', 'Paket ikonu', 'Ikona pakietu')}</Text>
-              <View style={[styles.cardBackPickerPanel, { backgroundColor: t.bgCard, borderColor: t.border }]}>
-                <View style={styles.cardBackHeroRow}>
-                  <TapScale
-                    onPress={() => {
-                      Keyboard.dismiss();
-                      bumpCardBack(-1);
-                    }}
-                    style={styles.stepperHit}
-                    accessibilityRole="button"
-                  >
-                    <Ionicons name="chevron-back" size={28} color={t.accent} />
-                  </TapScale>
-
-                  <View style={styles.cardBackHero}>
-                    {selectedCardBackFan ? (
-                      <Image
-                        key={`fan-${cardBackKey}`}
-                        source={selectedCardBackFan}
-                        style={styles.cardBackHeroImage}
-                        contentFit="contain"
-                      />
-                    ) : selectedCardBack ? (
-                      <Image
-                        key={`single-${cardBackKey}`}
-                        source={selectedCardBack}
-                        style={styles.cardBackHeroImage}
-                        contentFit="contain"
-                      />
-                    ) : null}
-                  </View>
-
-                  <TouchableOpacity
-                    onPress={() => {
-                      Keyboard.dismiss();
-                      bumpCardBack(1);
-                    }}
-                    style={styles.stepperHit}
-                    accessibilityRole="button"
-                  >
-                    <Ionicons name="chevron-forward" size={28} color={t.accent} />
-                  </TouchableOpacity>
-                </View>
-
-                <Text style={[styles.cardBackPickerTitle, { color: t.textPrimary }]} numberOfLines={1}>
-                  {ugcCardBackLabel(cardBackKey, lang)}
-                </Text>
-
-                <ScrollView
-                  horizontal
-                  nestedScrollEnabled
-                  directionalLockEnabled
-                  decelerationRate="fast"
-                  showsHorizontalScrollIndicator={false}
-                  contentContainerStyle={styles.cardBackThumbRow}
-                  keyboardShouldPersistTaps="handled"
-                >
-                  {UGC_CARD_BACK_IDS.map((id, idx) => {
-                    const selected = id === cardBackKey;
-                    const img = cardBackImage(id);
-                    return (
-                      <TouchableOpacity
-                        key={id}
-                        testID={`ugc-pack-back-${id}`}
-                        onPress={() => {
-                          Keyboard.dismiss();
-                          setCardBackIdx(idx);
-                        }}
-                        activeOpacity={0.82}
-                        accessibilityRole="button"
-                        accessibilityState={{ selected }}
-                        accessibilityLabel={ugcCardBackLabel(id, lang)}
-                        style={[
-                          styles.cardBackThumb,
-                          {
-                            borderColor: selected ? t.accent : t.border,
-                            backgroundColor: selected ? t.bgSurface2 : t.bgSurface,
-                          },
-                        ]}
-                      >
-                        {img ? <Image source={img} style={styles.cardBackThumbImage} contentFit="contain" /> : null}
-                      </TouchableOpacity>
-                    );
-                  })}
-                </ScrollView>
-              </View>
-                </View>
-              ) : null}
-
-              <TouchableOpacity
-                testID="ugc-pack-save"
-                accessibilityRole="button"
-                accessibilityLabel={L('Сохранить набор', 'Зберегти набір', 'Save the pack', 'Guardar el pack', 'Salvar o pacote', 'Lưu bộ thẻ', 'Simpan paket', 'Paketi kaydet', 'Zapisz zestaw')}
-                onPress={() => {
-                  Keyboard.dismiss();
-                  void onSubmit();
-                }}
-                disabled={busy || rows.length < 10 || rows.length > 50}
-                activeOpacity={0.85}
-                style={{
-                  marginTop: 28,
-                  paddingHorizontal: 16,
-                  backgroundColor: busy ? t.border : t.accent,
-                  borderRadius: 16,
-                  paddingVertical: 16,
-                  alignItems: 'center',
-                }}
-              >
-                <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.body + 1 }}>
-                  {L('Сохранить', 'Зберегти', 'Save', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz')}
-                </Text>
-              </TouchableOpacity>
-
-              {/* Второстепенное действие — внизу экрана, а не в шапке (владелец, 2026-08-13). */}
-              {!isEditMode && draftHydrated && localDraftLooksMeaningful ? (
-                <TouchableOpacity
-                  testID="ugc-pack-clear-draft"
-                  accessibilityRole="button"
-                  onPress={() => {
-                    Keyboard.dismiss();
-                    onClearLocalDraftPrompt();
-                  }}
-                  style={{ alignSelf: 'center', marginTop: 20, paddingVertical: 8, paddingHorizontal: 12 }}
-                >
-                  <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
-                    {L('Очистить черновик', 'Очистити чернетку', 'Clear draft', 'Borrar borrador', 'Apagar rascunho', 'Xóa bản nháp', 'Hapus draf', 'Taslağı temizle', 'Wyczyść szkic')}
-                  </Text>
-                </TouchableOpacity>
-              ) : null}
-              <View style={{ alignItems: 'center', marginTop: 16 }}>
-                <ReportErrorButton
-                  screen="community_pack_create"
-                  dataId="community_pack_editor"
-                  dataText={L('Создание набора', 'Створення набору', 'Creating a pack', 'Crear pack', 'Criar pack', 'Tạo bộ thẻ', 'Buat paket', 'Paket oluşturma', 'Tworzenie pakietu')}
-                />
-              </View>
+              {/* Все пользовательские наборы используют единое оформление; старый
+                  picker цветов/рубашек удалён из активного UI (PM-065). */}
               </View>
             </ContentWrap>
           </BouncyScrollView>
+
+          {/* Сохранить набор — закреплена внизу (макет #23). Кнопка активна и при
+              <10 карточек: тап показывает тост «Минимум 10 карточек» (макет #69);
+              проверки — прежние, в onSubmit. */}
+          <CardsGlassBottomBar g={g} bottomInset={keyboardBottomInset > 0 ? 0 : insets.bottom}>
+            <CardsGlassPrimaryButton
+              g={g}
+              testID="ugc-pack-save"
+              label={L('Сохранить', 'Зберегти', 'Save', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz')}
+              disabled={busy}
+              onPress={() => {
+                Keyboard.dismiss();
+                void onSubmit();
+              }}
+            />
+          </CardsGlassBottomBar>
         </KeyboardAvoidingView>
+
+        {/* Меню шапки (макет #67): очистка черновика и сообщение об ошибке. */}
+        <PackPopoverMenu g={g} visible={packMenuOpen} onClose={() => setPackMenuOpen(false)} top={68} closeLabel={cancelLabel}>
+          {!isEditMode && draftHydrated && localDraftLooksMeaningful ? (
+            <PackMenuRow
+              g={g}
+              testID="ugc-pack-clear-draft"
+              icon="trash-outline"
+              danger
+              label={L('Очистить черновик', 'Очистити чернетку', 'Clear draft', 'Borrar borrador', 'Apagar rascunho', 'Xóa bản nháp', 'Hapus draf', 'Taslağı temizle', 'Wyczyść szkic')}
+              onPress={() => {
+                setPackMenuOpen(false);
+                Keyboard.dismiss();
+                onClearLocalDraftPrompt();
+              }}
+            />
+          ) : null}
+          <View style={{ minHeight: 48, justifyContent: 'center', paddingHorizontal: 12 }}>
+            <ReportErrorButton
+              screen="community_pack_create"
+              dataId="community_pack_editor"
+              dataText={L('Создание набора', 'Створення набору', 'Creating a pack', 'Crear pack', 'Criar pack', 'Tạo bộ thẻ', 'Buat paket', 'Paket oluşturma', 'Tworzenie pakietu')}
+              textColor={g.text}
+              style={{ alignSelf: 'flex-start', minHeight: 44, justifyContent: 'center' }}
+            />
+          </View>
+        </PackPopoverMenu>
+
+        {/* Действия над строкой карточки: «⋯» → править / удалить. */}
+        <HybridSheetShell
+          visible={rowMenuIdx != null}
+          onClose={() => setRowMenuIdx(null)}
+          closeLabel={cancelLabel}
+          testID="ugc-pack-card-menu"
+          material="liquid-glass-opaque"
+          backdropAccessible={false}
+        >
+          {({ requestDismiss }) => (
+            <View style={{ paddingHorizontal: 16, paddingBottom: 8 }}>
+              <Text style={{ color: g.text, fontSize: 18, lineHeight: 24, fontWeight: '700', paddingHorizontal: 4, paddingBottom: 8 }}>
+                {menuRow?.en ?? ''}
+              </Text>
+              <PackMenuRow
+                g={g}
+                icon="create-outline"
+                label={editLabel}
+                onPress={() => {
+                  const idx = rowMenuIdx;
+                  requestDismiss();
+                  if (idx != null) editRow(idx);
+                }}
+              />
+              <PackMenuRow
+                g={g}
+                icon="trash-outline"
+                danger
+                label={deleteLabel}
+                onPress={() => {
+                  const idx = rowMenuIdx;
+                  requestDismiss();
+                  if (idx != null) removeRow(idx);
+                }}
+              />
+            </View>
+          )}
+        </HybridSheetShell>
+
+        {/* Лимит 50 карточек (макет #71). */}
+        <ThemedChoiceModal
+          visible={cardLimitModalOpen}
+          title={L('Карточек уже 50', 'Карток уже 50', 'Already 50 cards', 'Ya hay 50 tarjetas', 'Já são 50 cartões', 'Đã có 50 thẻ', 'Sudah ada 50 kartu', 'Zaten 50 kart var', 'Jest już 50 kart')}
+          message={L(
+            'В наборе не больше 50 карточек. Удали лишнюю, чтобы добавить новую.',
+            'У наборі не більше 50 карток. Видали зайву, щоб додати нову.',
+            'A pack holds at most 50 cards. Delete one to add a new card.',
+            'Un pack admite como máximo 50 tarjetas. Elimina una para añadir otra.',
+            'Um pacote tem no máximo 50 cartões. Exclua um para adicionar outro.',
+            'Bộ thẻ có tối đa 50 thẻ. Hãy xóa bớt một thẻ để thêm thẻ mới.',
+            'Satu paket maksimal berisi 50 kartu. Hapus satu untuk menambah yang baru.',
+            'Bir pakette en fazla 50 kart olur. Yenisini eklemek için birini sil.',
+            'W zestawie jest maksymalnie 50 kart. Usuń jedną, aby dodać nową.',
+          )}
+          choices={[{
+            label: L('Понятно', 'Зрозуміло', 'Got it', 'Entendido', 'Entendi', 'Đã hiểu', 'Mengerti', 'Anladım', 'Rozumiem'),
+            onPress: () => setCardLimitModalOpen(false),
+          }]}
+          onRequestClose={() => setCardLimitModalOpen(false)}
+        />
+
         <ThemedConfirmModal
           visible={clearDraftModalOpen}
           title={L('Очистить черновик?', 'Очистити чернетку?', 'Clear the draft?', '¿Borrar borrador?', 'Apagar rascunho?', 'Xóa bản nháp?', 'Hapus draf?', 'Taslak temizlensin mi?', 'Wyczyścić szkic?')}
@@ -1558,49 +1407,16 @@ export default function CommunityPackCreateScreen() {
             'Bu paketin yerel verileri silinecek.',
             'Lokalne dane tego pakietu zostaną usunięte.',
           )}
-          cancelLabel={L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
+          cancelLabel={cancelLabel}
           confirmLabel={L('Очистить', 'Очистити', 'Clear', 'Borrar', 'Apagar', 'Xóa', 'Hapus', 'Temizle', 'Wyczyść')}
           confirmVariant="default"
+          destructive
           onCancel={() => setClearDraftModalOpen(false)}
           onConfirm={performClearLocalDraft}
         />
       </SafeAreaView>
-    </ScreenGradient>
+    </CardsGlassScreen>
   );
-}
-
-function labelStyle(t: { textSecond: string }) {
-  return {
-    color: t.textSecond,
-    fontSize: 13,
-    marginTop: 12,
-    marginBottom: 4,
-    fontWeight: '600' as const,
-  };
-}
-
-function draftLabelStyle(t: { textMuted: string }) {
-  return {
-    color: t.textMuted,
-    fontSize: 13,
-    fontWeight: '700' as const,
-    letterSpacing: 0.2,
-    marginTop: 12,
-    marginBottom: 6,
-  };
-}
-
-function fieldInputStyle(t: { bgCard: string; textPrimary: string; border: string }) {
-  return {
-    backgroundColor: t.bgCard,
-    borderWidth: 0,
-    borderColor: t.border,
-    borderRadius: 12,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    color: t.textPrimary,
-    fontSize: 16,
-  } as const;
 }
 
 const styles = StyleSheet.create({
@@ -1610,83 +1426,17 @@ const styles = StyleSheet.create({
   headerRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  headerTitle: { flex: 1, textAlign: 'center', fontWeight: '700' },
-  packLanguageRow: {
-    marginTop: 16,
-    padding: 14,
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.08)',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  publishToggle: {
-    marginTop: 10,
-    padding: 14,
-    borderRadius: 16,
-    borderWidth: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-  },
-  publishToggleIcon: {
-    width: 34,
-    height: 34,
-    borderRadius: 12,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  /** Блок полей новой карточки — отдельная плашка с внутренними отступами. */
-  draftCardPanel: {
-    marginTop: 20,
-    padding: 16,
-    borderRadius: 16,
-    borderWidth: 0,
-  },
-  stepperHit: { padding: 8, minWidth: 48, alignItems: 'center' },
-  cardBackPickerPanel: {
-    marginTop: 8,
-    paddingVertical: 12,
-    paddingHorizontal: 14,
-    borderRadius: 14,
-    borderWidth: 0,
-  },
-  cardBackHeroRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: 10,
-  },
-  cardBackHero: {
-    flex: 1,
-    height: 126,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  cardBackHeroImage: { width: '100%', height: '100%' },
-  cardBackPickerTitle: {
-    marginTop: 4,
-    fontSize: 15,
-    fontWeight: '800',
-    textAlign: 'center',
-  },
-  cardBackThumbRow: {
-    gap: 10,
+    paddingHorizontal: 20,
     paddingTop: 12,
-    paddingBottom: 2,
+    paddingBottom: 8,
+    gap: 14,
   },
-  cardBackThumb: {
-    width: 64,
-    height: 86,
-    borderRadius: 12,
-    borderWidth: 0,
+  fieldSurface: { paddingHorizontal: 16, paddingVertical: 12 },
+  rowSurface: {
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    overflow: 'hidden',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    minHeight: 64,
   },
-  cardBackThumbImage: { width: 58, height: 80 },
 });

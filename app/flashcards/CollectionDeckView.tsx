@@ -12,7 +12,7 @@ import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { Platform, Pressable, Text, View, useWindowDimensions } from 'react-native';
+import { Platform, Pressable, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Reanimated, {
   cancelAnimation,
@@ -29,7 +29,10 @@ import Reanimated, {
 
 import { triLang } from '../../constants/i18n';
 import type { Theme } from '../../constants/theme';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { FC_SPRING, FC_SWIPE } from '../../constants/flashcards_motion';
+import PressableHybrid from '../../components/PressableHybrid';
+import { useTheme } from '../../components/ThemeContext';
 import { inferExpoSpeechLanguage, type SpeakOpts } from '../../hooks/use-audio';
 import PhraseCard, { useFcReduceMotion, type PhraseCardPackTheme } from './PhraseCard';
 import { isLowPowerEffective } from './low_power';
@@ -92,11 +95,15 @@ export default function CollectionDeckView({
   extraBottomPad = 0,
 }: Props) {
   const insets = useStableSafeAreaInsets();
+  // зачем (Liquid Glass, cards.html #8/#37): счётчик, «К списку» и кнопки ‹ › на токенах стекла.
+  const { liquidGlassThemeId } = useTheme();
+  const g = liquidGlassTokens(liquidGlassThemeId);
   const { width: screenW, height: screenH } = useWindowDimensions();
   const isWeb = Platform.OS === 'web';
   const reduceMotion = useFcReduceMotion();
   /** lowPower-ветка: без улёта, мгновенная подмена (transform-подложки статичны и дёшевы). */
-  const instantNav = reduceMotion || isLowPowerEffective();
+  const lowPower = isLowPowerEffective();
+  const instantNav = reduceMotion || lowPower;
 
   const total = cards.length;
   const [index, setIndex] = useState(() => Math.min(Math.max(0, initialIndex), Math.max(0, total - 1)));
@@ -475,6 +482,7 @@ export default function CollectionDeckView({
           minHeight={cardMinHeight}
           testID="fc-deck-card"
           strength={strengthForCard ? strengthForCard(card.en) : null}
+          edgeLabels={{ front: String(card.packLanguage ?? 'en').toUpperCase(), back: String(cardContentLang).toUpperCase() }}
         />
         {renderTopCardAction ? (
           <View
@@ -500,20 +508,9 @@ export default function CollectionDeckView({
           paddingTop: 10,
         }}
       >
-        <View
-          style={{
-            borderRadius: 999,
-            borderWidth: 1,
-            borderColor: t.border,
-            backgroundColor: t.bgSurface,
-            paddingHorizontal: 14,
-            paddingVertical: 6,
-          }}
-        >
-          <Text testID="fc-deck-counter" style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', letterSpacing: 0.4 }}>
-            {index + 1}/{total}
-          </Text>
-        </View>
+        <Text testID="fc-deck-counter" style={{ color: g.secondary, fontSize: 15, lineHeight: 20, fontWeight: '600' }}>
+          {index + 1}/{total}
+        </Text>
         <Pressable
           testID="fc-deck-exit"
           accessibilityRole="button"
@@ -522,20 +519,23 @@ export default function CollectionDeckView({
             'pt-BR': 'Para a lista', vi: 'Về danh sách', id: 'Ke daftar', tr: 'Listeye dön', pl: 'Do listy',
           })}
           onPress={onExitToList}
-          hitSlop={10}
+          hitSlop={6}
           style={({ pressed }) => ({
-            width: 36,
-            height: 36,
-            borderRadius: 18,
+            flexDirection: 'row',
             alignItems: 'center',
-            justifyContent: 'center',
-            borderWidth: 1,
-            borderColor: t.border,
-            backgroundColor: t.bgSurface,
-            transform: [{ scale: pressed ? 0.94 : 1 }],
+            gap: 4,
+            minHeight: 44,
+            paddingHorizontal: 4,
+            opacity: pressed ? 0.7 : 1,
           })}
         >
-          <Ionicons name="list-outline" size={18} color={t.textSecond} />
+          <Text style={{ color: g.secondary, fontSize: 15, lineHeight: 20, fontWeight: '600' }}>
+            {triLang(lang, {
+              ru: 'К списку', uk: 'До списку', en: 'To the list', es: 'A la lista',
+              'pt-BR': 'Para a lista', vi: 'Về danh sách', id: 'Ke daftar', tr: 'Listeye dön', pl: 'Do listy',
+            })}
+          </Text>
+          <Ionicons name="chevron-forward" size={16} color={g.secondary} />
         </Pressable>
       </View>
 
@@ -554,9 +554,9 @@ export default function CollectionDeckView({
           paddingBottom: Math.max(insets.bottom, 8) + 12 + extraBottomPad,
         }}
       >
-        <Pressable
+        <PressableHybrid
           testID="fc-deck-prev"
-          accessibilityRole="button"
+          variant="icon"
           accessibilityLabel={triLang(lang, {
             ru: 'Предыдущая карточка', uk: 'Попередня картка', en: 'Previous card', es: 'Tarjeta anterior',
             'pt-BR': 'Cartão anterior', vi: 'Thẻ trước', id: 'Kartu sebelumnya', tr: 'Önceki kart', pl: 'Poprzednia karta',
@@ -564,30 +564,21 @@ export default function CollectionDeckView({
           onPress={goPrev}
           disabled={index <= 0}
           hitSlop={8}
-          style={({ pressed }) => ({
-            width: 54,
-            height: 54,
-            borderRadius: 27,
-            alignItems: 'center',
-            justifyContent: 'center',
-            borderWidth: 1.5,
-            borderColor: index <= 0 ? t.border : `${t.accent}88`,
-            backgroundColor: index <= 0 ? 'transparent' : `${t.accent}14`,
-            opacity: index <= 0 ? 0.35 : 1,
-            transform: [{ scale: pressed ? 0.93 : 1 }],
-          })}
+          style={{ width: 54, height: 54, borderRadius: 27, opacity: index <= 0 ? 0.42 : 1 }}
         >
-          <Ionicons name="chevron-back" size={26} color={index <= 0 ? t.textMuted : t.accent} />
-        </Pressable>
+          <View style={{ width: 54, height: 54, borderRadius: 27, alignItems: 'center', justifyContent: 'center', backgroundColor: g.opaqueControl }}>
+            <Ionicons name="chevron-back" size={26} color={index <= 0 ? g.mutedText : g.text} />
+          </View>
+        </PressableHybrid>
         {/*
           Текстовой подсказки про тап здесь больше нет (репорт владельца после
           теста на iPhone). Отступ между ‹ и › держим спейсером, чтобы кнопки
           не съезжались к центру.
         */}
         <View style={{ width: 60 }} />
-        <Pressable
+        <PressableHybrid
           testID="fc-deck-next"
-          accessibilityRole="button"
+          variant="icon"
           accessibilityLabel={triLang(lang, {
             ru: 'Следующая карточка', uk: 'Наступна картка', en: 'Next card', es: 'Siguiente tarjeta',
             'pt-BR': 'Próximo cartão', vi: 'Thẻ tiếp theo', id: 'Kartu berikutnya', tr: 'Sonraki kart', pl: 'Następna karta',
@@ -595,21 +586,12 @@ export default function CollectionDeckView({
           onPress={goNext}
           disabled={index >= total - 1}
           hitSlop={8}
-          style={({ pressed }) => ({
-            width: 54,
-            height: 54,
-            borderRadius: 27,
-            alignItems: 'center',
-            justifyContent: 'center',
-            borderWidth: 1.5,
-            borderColor: index >= total - 1 ? t.border : `${t.accent}88`,
-            backgroundColor: index >= total - 1 ? 'transparent' : `${t.accent}14`,
-            opacity: index >= total - 1 ? 0.35 : 1,
-            transform: [{ scale: pressed ? 0.93 : 1 }],
-          })}
+          style={{ width: 54, height: 54, borderRadius: 27, opacity: index >= total - 1 ? 0.42 : 1 }}
         >
-          <Ionicons name="chevron-forward" size={26} color={index >= total - 1 ? t.textMuted : t.accent} />
-        </Pressable>
+          <View style={{ width: 54, height: 54, borderRadius: 27, alignItems: 'center', justifyContent: 'center', backgroundColor: g.opaqueControl }}>
+            <Ionicons name="chevron-forward" size={26} color={index >= total - 1 ? g.mutedText : g.text} />
+          </View>
+        </PressableHybrid>
       </View>
     </View>
   );

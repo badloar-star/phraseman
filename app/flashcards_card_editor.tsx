@@ -28,10 +28,16 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { useFeatureAccess, usePremium } from '../components/PremiumContext';
 import { trackEvent } from './analytics';
 import { creatorPaywallContext, shouldGateCreator } from './creator_access';
-import ScreenGradient from '../components/ScreenGradient';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { animateNextLayoutTransition } from './smooth_layout';
-import { useTheme } from '../components/ThemeContext';
+import {
+  CardsGlassBottomBar,
+  CardsGlassPrimaryButton,
+  CardsGlassRoundButton,
+  CardsGlassScreen,
+  CardsGlassSurface,
+  useCardsGlass,
+} from './flashcards/CardsGlassKit';
 import { triLang } from '../constants/i18n';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { actionToastTri, emitAppEvent } from './events';
@@ -43,6 +49,8 @@ import { getTranscription, TRANSCRIPTION_ENGINE_VERSION } from './transcription'
 import { STR } from './flashcards/constants';
 import { fcHaptic, playSfx } from './flashcards/SoundService';
 import {
+  FREE_CUSTOM_CARD_LIMIT,
+  PLUS_CUSTOM_CARD_LIMIT,
   listCustomCards,
   peekCustomCardsSync,
   upsertCustomCard,
@@ -113,7 +121,8 @@ async function getAssistTranslationMap(): Promise<Map<string, AssistEntry>> {
 const ASSIST_DEBOUNCE_MS = 250;
 
 export default function FlashcardsCardEditorScreen() {
-  const { theme: t, f, statusBarLight } = useTheme();
+  // зачем: Liquid Glass — токены активной темы (cards.html #21–22, #60–64).
+  const { g } = useCardsGlass();
   const { lang } = useLang();
   // зачем: редактор обязан читать и писать библиотеку СВОЕГО языка обучения —
   // без этого карточка, созданная в режиме French, уходила в английский ключ.
@@ -183,8 +192,14 @@ export default function FlashcardsCardEditorScreen() {
   useEffect(() => {
     let cancelled = false;
     void Promise.all([
-      listCustomCards(studyTarget).catch((): CardItem[] => []),
-      loadFlashcards(studyTarget).catch(() => []),
+      listCustomCards(studyTarget).catch((e: unknown): CardItem[] => {
+        DebugLogger.error('flashcards_card_editor:existing_custom', e instanceof Error ? e : new Error(String(e)), 'warning');
+        return [];
+      }),
+      loadFlashcards(studyTarget).catch((e: unknown) => {
+        DebugLogger.error('flashcards_card_editor:existing_saved', e instanceof Error ? e : new Error(String(e)), 'warning');
+        return [];
+      }),
     ]).then(([custom, saved]) => {
       if (cancelled) return;
       const map = new Map<string, ExistingRow[]>();
@@ -315,7 +330,8 @@ export default function FlashcardsCardEditorScreen() {
           safeRouterBack(router, '/flashcards' as any);
         }
       })
-      .catch(() => {
+      .catch((e: unknown) => {
+        DebugLogger.error('flashcards_card_editor:load_card', e instanceof Error ? e : new Error(String(e)), 'warning');
         if (!cancelled) setLoadingCard(false);
       });
     return () => { cancelled = true; };
@@ -397,6 +413,11 @@ export default function FlashcardsCardEditorScreen() {
       isSystem: false,
     };
     try {
+      const existingCards = existing ? null : await listCustomCards(studyTarget);
+      const cardLimit = hasPremiumAccess ? PLUS_CUSTOM_CARD_LIMIT : FREE_CUSTOM_CARD_LIMIT;
+      if (existingCards && existingCards.length >= cardLimit) {
+        throw new Error(hasPremiumAccess ? 'plus_custom_card_limit_reached' : 'free_custom_card_limit_reached');
+      }
       await upsertCustomCard(newCard, studyTarget);
       playSfx('correct');
       fcHaptic('correct');
@@ -412,7 +433,8 @@ export default function FlashcardsCardEditorScreen() {
         }),
       );
       leaveEditorAfterSave();
-    } catch {
+    } catch (e: unknown) {
+      DebugLogger.error('flashcards_card_editor:save', e instanceof Error ? e : new Error(String(e)), 'warning');
       setSaving(false);
       emitAppEvent(
         'action_toast',
@@ -437,82 +459,84 @@ export default function FlashcardsCardEditorScreen() {
     saving,
   ]);
 
+  // зачем (Liquid Glass, cards.html #21–22, #60–64): поле — одна непрозрачная
+  // плашка с подписью ВНУТРИ и полем ввода без своей рамки; фокус — светлее
+  // кромка, а не цветная толстая рамка. Логика ввода/сохранения не менялась.
   const fieldLabelStyle = {
-    color: t.textSecond,
-    fontSize: f.sub,
+    color: g.secondary,
+    fontSize: 14,
+    lineHeight: 18,
     fontWeight: '700' as const,
     letterSpacing: 0.2,
   };
-  const inputBaseStyle = (focused: boolean) => ({
-    backgroundColor: t.bgSurface,
-    borderWidth: 1.5,
-    borderColor: focused ? t.accent : t.border,
-    borderRadius: 16,
-    paddingHorizontal: 18,
-    paddingVertical: 16,
-    color: t.textPrimary,
+  const inputInnerStyle = {
+    color: g.text,
+    paddingHorizontal: 0,
+    paddingVertical: 0,
+    marginTop: 6,
+  };
+  const closeLabel = triLang(lang, {
+    ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar',
+    'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij',
   });
 
   return (
-    <ScreenGradient>
+    <CardsGlassScreen g={g}>
       <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }}>
-        <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} />
+        <StatusBar barStyle="light-content" />
         <KeyboardAvoidingView style={{ flex: 1 }} behavior={effectiveOs === 'ios' ? 'padding' : 'height'}>
           <ContentWrap>
             {/* Header */}
-            <View style={[st.header, { borderBottomColor: t.border }]}>
-              <TouchableOpacity
+            <View style={st.header}>
+              <CardsGlassRoundButton
+                g={g}
                 testID="fc-editor-close"
-                accessibilityLabel="qa-fc-editor-close"
-                accessible
+                label={closeLabel}
+                icon="close"
                 onPress={leaveEditor}
-                style={{ width: 40 }}
-                hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
-              >
-                <Ionicons name="close" size={26} color={t.textMuted} />
-              </TouchableOpacity>
+              />
               <View style={{ flex: 1, alignItems: 'center', minWidth: 0 }}>
-                <Text
-                  style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', letterSpacing: 0.2 }}
-                  numberOfLines={1}
-                >
+                <Text style={{ color: g.text, fontSize: 18, lineHeight: 24, fontWeight: '700', textAlign: 'center' }}>
                   {isEdit ? s.editCard : s.newCard}
                 </Text>
               </View>
-              <View style={{ width: 40 }} />
+              <View style={{ width: 44 }} />
             </View>
 
             {/*
               * зачем (владелец, 2026-08-16, «прыжки страниц»): раньше на время
               * чтения карточки вся форма подменялась спиннером по центру, и
-              * поля появлялись скачком. Держим ту же раскладку — два подписанных
-              * поля (высота = paddingV 16*2 + строка) и кнопку сохранения.
+              * поля появлялись скачком. Держим ту же раскладку — три плашки
+              * (макет: высота 74, радиус 14) вместо формы.
               */}
             {/* зачем: при закрытом создании показываем ТОТ ЖЕ скелет, что при
                 загрузке — форма не мелькает за кадр до ухода на пейвол, и
                 геометрия первого кадра совпадает с обычной (layout stability). */}
             {loadingCard || creatorGated ? (
-              <View style={{ flex: 1, paddingHorizontal: 16, paddingTop: 24, gap: 20 }}>
-                <View style={{ gap: 8 }}>
-                  <Text style={fieldLabelStyle}>{s.editFront}</Text>
-                  <SkeletonBlock width="100%" height={f.body + 2 + 32} borderRadius={16} />
-                </View>
-                <View style={{ gap: 8 }}>
-                  <Text style={fieldLabelStyle}>{s.editBack}</Text>
-                  <SkeletonBlock width="100%" height={f.body + 2 + 32} borderRadius={16} />
-                </View>
+              <View testID="fc-editor-skeleton" style={{ flex: 1, paddingHorizontal: 20, paddingTop: 12 }}>
+                {[0, 1, 2].map((i) => (
+                  <View key={i} style={{ marginTop: 14 }}>
+                    <SkeletonBlock
+                      width="100%"
+                      height={74}
+                      borderRadius={14}
+                      baseColor={g.opaqueControl}
+                      highlightColor={g.selected}
+                    />
+                  </View>
+                ))}
               </View>
             ) : (
+              <>
               <ScrollView decelerationRate="fast"
                 style={{ flex: 1 }}
-                contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 24, paddingBottom: 32, gap: 20 }}
+                contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 20, paddingBottom: 24, gap: 12 }}
                 keyboardShouldPersistTaps="handled"
                 showsVerticalScrollIndicator={false}
               >
                 {/* EN field */}
-                <View style={{ gap: 8 }}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                    <Ionicons name="language-outline" size={13} color={t.textMuted} />
+                <CardsGlassSurface g={g} focused={focusedField === 'front'} style={{ paddingHorizontal: 16, paddingVertical: 12 }}>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, minHeight: 24 }}>
                     <Text style={[fieldLabelStyle, { flex: 1 }]}>{s.editFront}</Text>
                     {/* E13: TTS-превью введённого EN */}
                     {draftEN.trim() ? (
@@ -521,26 +545,17 @@ export default function FlashcardsCardEditorScreen() {
                         accessibilityLabel="qa-fc-editor-tts"
                         accessible
                         onPress={previewEn}
-                        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-                        style={{
-                          width: 30,
-                          height: 30,
-                          borderRadius: 15,
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          borderWidth: 1,
-                          borderColor: t.border,
-                          backgroundColor: t.bgSurface,
-                        }}
+                        hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+                        style={{ width: 44, height: 44, marginVertical: -10, marginRight: -10, alignItems: 'center', justifyContent: 'center' }}
                       >
-                        <Ionicons name="volume-medium" size={15} color={t.accent} />
+                        <Ionicons name="volume-medium" size={20} color={g.text} />
                       </TouchableOpacity>
                     ) : null}
                   </View>
                   <TextInput
                     testID="fc-editor-en"
                     accessibilityLabel="qa-fc-editor-en"
-                    style={[inputBaseStyle(focusedField === 'front'), { fontSize: f.body + 2, fontWeight: '600' }]}
+                    style={[inputInnerStyle, { fontSize: 18, lineHeight: 24, fontWeight: '600' }]}
                     value={draftEN}
                     onChangeText={setDraftEN}
                     autoFocus
@@ -549,70 +564,66 @@ export default function FlashcardsCardEditorScreen() {
                     blurOnSubmit={false}
                     maxLength={80}
                     onFocus={() => setFocusedField('front')}
+                    placeholderTextColor={g.mutedText}
                   />
                   {/* E13: автотранскрипция — пойдёт в карточку при сохранении */}
                   {assistTranscription ? (
                     <Text
                       testID="fc-editor-transcription"
                       style={{
-                        color: t.textMuted,
-                        fontSize: f.sub,
+                        color: g.secondary,
+                        fontSize: 14,
+                        lineHeight: 20,
                         fontStyle: 'italic',
                         letterSpacing: 0.25,
-                        paddingHorizontal: 4,
+                        marginTop: 6,
                       }}
-                      numberOfLines={2}
                     >
                       {assistTranscription}
                     </Text>
                   ) : null}
-                  {/* E13: предупреждение о дубликате (жёлтая плашка) */}
-                  {duplicateOfEn ? (
-                    <View
-                      testID="fc-editor-duplicate"
-                      accessibilityLabel="qa-fc-editor-duplicate"
-                      accessible
-                      style={{
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        gap: 8,
-                        borderRadius: 12,
-                        borderWidth: 1,
-                        borderColor: `${t.gold}88`,
-                        backgroundColor: t.goldBg,
-                        paddingHorizontal: 12,
-                        paddingVertical: 10,
-                      }}
-                    >
-                      <Ionicons name="warning-outline" size={16} color={t.gold} />
-                      <Text style={{ color: t.textPrimary, fontSize: f.caption, flex: 1, lineHeight: 16 }}>
-                        {triLang(lang, {
-                          ru: `Карточка «${duplicateOfEn}» уже есть в коллекции.`,
-                          uk: `Картка «${duplicateOfEn}» вже є в колекції.`,
-                          en: `The card "${duplicateOfEn}" is already in the collection.`,
-                          es: `La tarjeta «${duplicateOfEn}» ya existe en la colección.`,
-                          'pt-BR': `O cartão «${duplicateOfEn}» já está na coleção.`,
-                          vi: `Thẻ «${duplicateOfEn}» đã có trong bộ sưu tập.`,
-                          id: `Kartu «${duplicateOfEn}» sudah ada di koleksi.`,
-                          tr: `«${duplicateOfEn}» kartı zaten koleksiyonda.`,
-                          pl: `Karta «${duplicateOfEn}» już jest w kolekcji.`,
-                        })}
-                      </Text>
-                    </View>
-                  ) : null}
-                </View>
+                </CardsGlassSurface>
+                {/* E13: предупреждение о дубликате (плашка тоном, без жёлтой рамки) */}
+                {duplicateOfEn ? (
+                  <View
+                    testID="fc-editor-duplicate"
+                    accessibilityLabel="qa-fc-editor-duplicate"
+                    accessible
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      gap: 8,
+                      borderRadius: 16,
+                      backgroundColor: g.opaqueControl,
+                      paddingHorizontal: 14,
+                      paddingVertical: 12,
+                    }}
+                  >
+                    <Ionicons name="alert-circle-outline" size={18} color={g.text} />
+                    <Text style={{ color: g.text, fontSize: 14, lineHeight: 20, flex: 1 }}>
+                      {triLang(lang, {
+                        ru: `Карточка «${duplicateOfEn}» уже есть в коллекции.`,
+                        uk: `Картка «${duplicateOfEn}» вже є в колекції.`,
+                        en: `The card "${duplicateOfEn}" is already in the collection.`,
+                        es: `La tarjeta «${duplicateOfEn}» ya existe en la colección.`,
+                        'pt-BR': `O cartão «${duplicateOfEn}» já está na coleção.`,
+                        vi: `Thẻ «${duplicateOfEn}» đã có trong bộ sưu tập.`,
+                        id: `Kartu «${duplicateOfEn}» sudah ada di koleksi.`,
+                        tr: `«${duplicateOfEn}» kartı zaten koleksiyonda.`,
+                        pl: `Karta «${duplicateOfEn}» już jest w kolekcji.`,
+                      })}
+                    </Text>
+                  </View>
+                ) : null}
 
                 {/* Translation field (текущая локаль — инвариант) */}
-                <View style={{ gap: 8 }}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                    <Ionicons name="swap-horizontal-outline" size={13} color={t.textMuted} />
-                    <Text style={fieldLabelStyle}>{s.editBack}</Text>
-                  </View>
+                <CardsGlassSurface g={g} focused={focusedField === 'back'} style={{ paddingHorizontal: 16, paddingVertical: 12 }}>
+                  <Text style={fieldLabelStyle}>{s.editBack}</Text>
                   <TextInput
                     ref={backInputRef}
                     testID="fc-editor-tr"
                     accessibilityLabel="qa-fc-editor-tr"
-                    style={[inputBaseStyle(focusedField === 'back'), { fontSize: f.body + 2, fontWeight: '600' }]}
+                    style={[inputInnerStyle, { fontSize: 18, lineHeight: 24, fontWeight: '600' }]}
                     value={draftTR}
                     onChangeText={setDraftTR}
                     returnKeyType={descriptionOpen ? 'next' : 'done'}
@@ -623,53 +634,51 @@ export default function FlashcardsCardEditorScreen() {
                     blurOnSubmit={!descriptionOpen}
                     maxLength={80}
                     onFocus={() => setFocusedField('back')}
+                    placeholderTextColor={g.mutedText}
                   />
-                  {/* E13: подсказка перевода из словаря уроков — тап подставляет */}
-                  {assistSuggestion && assistSuggestion !== trVal ? (
-                    <TouchableOpacity
-                      testID="fc-editor-suggest"
-                      accessibilityLabel="qa-fc-editor-suggest"
-                      accessible
-                      activeOpacity={0.8}
-                      onPress={applySuggestion}
-                      style={{
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        gap: 8,
-                        alignSelf: 'flex-start',
-                        borderRadius: 999,
-                        borderWidth: 1,
-                        borderColor: `${t.accent}66`,
-                        backgroundColor: `${t.accent}14`,
-                        paddingHorizontal: 12,
-                        paddingVertical: 8,
-                      }}
-                    >
-                      <Ionicons name="bulb-outline" size={14} color={t.accent} />
-                      <Text style={{ color: t.accent, fontSize: f.caption, fontWeight: '700' }} numberOfLines={1}>
-                        {triLang(lang, {
-                          ru: 'Подсказка', uk: 'Підказка', en: 'Hint', es: 'Sugerencia',
-                          'pt-BR': 'Sugestão', vi: 'Gợi ý', id: 'Saran', tr: 'İpucu', pl: 'Podpowiedź',
-                        })}: {assistSuggestion}
-                      </Text>
-                    </TouchableOpacity>
-                  ) : null}
-                </View>
+                </CardsGlassSurface>
+                {/* E13: подсказка перевода из словаря уроков — тап подставляет */}
+                {assistSuggestion && assistSuggestion !== trVal ? (
+                  <TouchableOpacity
+                    testID="fc-editor-suggest"
+                    accessibilityLabel="qa-fc-editor-suggest"
+                    accessible
+                    activeOpacity={0.8}
+                    onPress={applySuggestion}
+                    style={{
+                      alignSelf: 'flex-start',
+                      minHeight: 44,
+                      justifyContent: 'center',
+                      borderRadius: 22,
+                      backgroundColor: g.opaqueControl,
+                      paddingHorizontal: 16,
+                    }}
+                  >
+                    <Text style={{ color: g.text, fontSize: 15, lineHeight: 20, fontWeight: '600' }}>
+                      {triLang(lang, {
+                        ru: 'Подсказка', uk: 'Підказка', en: 'Hint', es: 'Sugerencia',
+                        'pt-BR': 'Sugestão', vi: 'Gợi ý', id: 'Saran', tr: 'İpucu', pl: 'Podpowiedź',
+                      })}: {assistSuggestion}
+                    </Text>
+                  </TouchableOpacity>
+                ) : null}
 
                 {/* Optional description — раскрывается по запросу (упрощение 2026-08-13) */}
                 {descriptionOpen ? (
-                <View style={{ gap: 8 }}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                    <Ionicons name="document-text-outline" size={13} color={t.textMuted} />
+                <CardsGlassSurface g={g} focused={focusedField === 'description'} style={{ paddingHorizontal: 16, paddingVertical: 12 }}>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                     <Text style={fieldLabelStyle}>{s.editDescription}</Text>
+                    <Text style={{ color: g.mutedText, fontSize: 13, fontWeight: '500' }}>
+                      {draftDescription.length}/220
+                    </Text>
                   </View>
                   <TextInput
                     ref={descriptionInputRef}
                     testID="fc-editor-description"
                     accessibilityLabel="qa-fc-editor-description"
                     style={[
-                      inputBaseStyle(focusedField === 'description'),
-                      { fontSize: f.body, fontWeight: '500', minHeight: 88, textAlignVertical: 'top' },
+                      inputInnerStyle,
+                      { fontSize: 16, lineHeight: 22, fontWeight: '500', minHeight: 66, textAlignVertical: 'top' },
                     ]}
                     value={draftDescription}
                     onChangeText={setDraftDescription}
@@ -679,11 +688,9 @@ export default function FlashcardsCardEditorScreen() {
                     maxLength={220}
                     multiline
                     onFocus={() => setFocusedField('description')}
+                    placeholderTextColor={g.mutedText}
                   />
-                  <Text style={{ color: t.textGhost, fontSize: f.caption, alignSelf: 'flex-end' }}>
-                    {draftDescription.length}/220
-                  </Text>
-                </View>
+                </CardsGlassSurface>
                 ) : (
                   <TouchableOpacity
                     testID="fc-editor-description-open"
@@ -691,8 +698,8 @@ export default function FlashcardsCardEditorScreen() {
                     accessible
                     activeOpacity={0.8}
                     onPress={() => {
-                      // Поле заметки (minHeight 88) вставляется в поток и толкает
-                      // кнопку сохранения — сдвигаем плавно, а не рывком.
+                      // Поле заметки вставляется в поток и толкает форму —
+                      // сдвигаем плавно, а не рывком.
                       animateNextLayoutTransition();
                       setDescriptionOpen(true);
                       requestAnimationFrame(() => descriptionInputRef.current?.focus());
@@ -702,11 +709,12 @@ export default function FlashcardsCardEditorScreen() {
                       alignItems: 'center',
                       gap: 8,
                       alignSelf: 'flex-start',
-                      paddingVertical: 8,
+                      minHeight: 44,
+                      marginTop: 6,
                     }}
                   >
-                    <Ionicons name="add-circle-outline" size={16} color={t.textSecond} />
-                    <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '600' }}>
+                    <Ionicons name="add" size={20} color={g.text} />
+                    <Text style={{ color: g.text, fontSize: 16, lineHeight: 22, fontWeight: '600' }}>
                       {triLang(lang, {
                         ru: 'Добавить заметку',
                         uk: 'Додати нотатку',
@@ -722,38 +730,7 @@ export default function FlashcardsCardEditorScreen() {
                   </TouchableOpacity>
                 )}
 
-                {/* Save button */}
-                <TouchableOpacity
-                  testID="fc-editor-save"
-                  accessibilityLabel="qa-fc-editor-save"
-                  accessible
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    backgroundColor: canSave ? t.accent : t.bgSurface,
-                    borderWidth: canSave ? 0 : 1,
-                    borderColor: t.border,
-                    borderRadius: 16,
-                    paddingVertical: 16,
-                    marginTop: 4,
-                    gap: 8,
-                  }}
-                  onPress={handleSave}
-                  disabled={!canSave}
-                  activeOpacity={0.8}
-                >
-                  <Ionicons
-                    name="checkmark-circle-outline"
-                    size={20}
-                    color={canSave ? t.correctText : t.textGhost}
-                  />
-                  <Text style={{ color: canSave ? t.correctText : t.textGhost, fontSize: f.body, fontWeight: '700' }}>
-                    {s.save}
-                  </Text>
-                </TouchableOpacity>
-
-                <Text style={{ color: t.textGhost, fontSize: f.caption, textAlign: 'center', lineHeight: 16 }}>
+                <Text style={{ color: g.mutedText, fontSize: 14, lineHeight: 19, marginTop: 14 }}>
                   {triLang(lang, {
                     ru: 'Карточка появится во вкладке «Свои» и будет доступна в тренировках.',
                     uk: 'Картка з’явиться у вкладці «Свої» і буде доступна в тренуваннях.',
@@ -767,11 +744,23 @@ export default function FlashcardsCardEditorScreen() {
                   })}
                 </Text>
               </ScrollView>
+
+              {/* Save: закреплена внизу с затуханием (макет #21, #22) */}
+              <CardsGlassBottomBar g={g} bottomInset={0}>
+                <CardsGlassPrimaryButton
+                  g={g}
+                  testID="fc-editor-save"
+                  label={s.save}
+                  disabled={!canSave}
+                  onPress={handleSave}
+                />
+              </CardsGlassBottomBar>
+              </>
             )}
           </ContentWrap>
         </KeyboardAvoidingView>
       </SafeAreaView>
-    </ScreenGradient>
+    </CardsGlassScreen>
   );
 }
 
@@ -780,9 +769,9 @@ const st = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 16,
+    paddingHorizontal: 20,
     paddingTop: 12,
     paddingBottom: 8,
-    borderBottomWidth: 0.5,
+    gap: 14,
   },
 });

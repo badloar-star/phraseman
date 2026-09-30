@@ -51,6 +51,7 @@ import {
   FC_TIMING,
 } from '../../constants/flashcards_motion';
 import { useTheme } from '../../components/ThemeContext';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { computeHeightScale } from '../../constants/layout-scale';
 import { soundDirector } from '../../modules/audio/sound_director';
 import { isLowPowerEffective } from './low_power';
@@ -153,6 +154,13 @@ export type PhraseCardPackTheme = {
   backGradient: readonly [string, string];
 };
 
+export type PhraseCardPresentation = Readonly<{
+  borderRadius?: number;
+  paddingHorizontal?: number;
+  paddingTop?: number;
+  paddingBottom?: number;
+}>;
+
 export type PhraseCardProps = {
   mode?: 'view' | 'grade';
   /** Структурный контент (обычный случай) */
@@ -179,6 +187,8 @@ export type PhraseCardProps = {
   t?: Theme;
   f?: Record<string, number>;
   minHeight?: number;
+  /** Opt-in face geometry; omitted values preserve the shared card defaults. */
+  presentation?: PhraseCardPresentation;
   style?: StyleProp<ViewStyle>;
   /** Без SFX/хаптики флипа (напр. автофлип в «Слушании») */
   muted?: boolean;
@@ -186,9 +196,27 @@ export type PhraseCardProps = {
   testID?: string;
   /** E13: «сила слова» из проекции ошибок — 1–3 точки; null — не рисуем. */
   strength?: WordStrength | null;
+  /**
+   * Макет cards.html #8/#37: над фразой — мелкая подпись языка («EN» / «RU») и
+   * крупная типографика. Только для «Стопки»; без пропа карточка выглядит как раньше.
+   */
+  edgeLabels?: { front: string; back: string } | null;
 };
 
 const CARD_RADIUS = 24;
+
+function resolvePhraseCardPresentation(
+  presentation: PhraseCardPresentation | undefined,
+  adaptiveFacePadH: number,
+  adaptiveFacePadV: number,
+) {
+  return {
+    faceRadius: presentation?.borderRadius ?? CARD_RADIUS,
+    facePadH: presentation?.paddingHorizontal ?? adaptiveFacePadH,
+    facePadTop: presentation?.paddingTop ?? adaptiveFacePadV,
+    facePadBottom: presentation?.paddingBottom ?? adaptiveFacePadV,
+  };
+}
 
 function PhraseCardImpl({
   mode = 'view',
@@ -208,13 +236,17 @@ function PhraseCardImpl({
   t: tProp,
   f: fProp,
   minHeight = 120,
+  presentation,
   style,
   muted = false,
   disabled = false,
   testID,
   strength = null,
+  edgeLabels = null,
 }: PhraseCardProps) {
   const ctx = useTheme();
+  // зачем (Liquid Glass, cards.html #8/#37): грани карточки на токенах стекла активной темы.
+  const g = liquidGlassTokens(ctx.liquidGlassThemeId);
   const t = tProp ?? ctx.theme;
   const f = fProp ?? (ctx.f as unknown as Record<string, number>);
   // зачем: на низких экранах (iPhone SE 667pt, Android 360x800) текст фразы почти
@@ -515,35 +547,57 @@ function PhraseCardImpl({
   // остаётся высокой даже с уменьшенным текстом. Пол 12/10 держит воздух.
   // Живут отдельной переменной, потому что ИЗМЕРИТЕЛЬ обязан считать по тем же
   // полям, что и реальная грань: разойдутся — карточка получит неверную высоту.
-  const facePadH = Math.max(12, Math.round(16 * cardScale));
-  const facePadV = Math.max(10, Math.round(14 * cardScale));
+  const adaptiveFacePadH = Math.max(12, Math.round(16 * cardScale));
+  const adaptiveFacePadV = Math.max(10, Math.round(14 * cardScale));
+  const { faceRadius, facePadH, facePadTop, facePadBottom } = resolvePhraseCardPresentation(
+    presentation,
+    adaptiveFacePadH,
+    adaptiveFacePadV,
+  );
   const faceBaseStyle: ViewStyle = {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    borderRadius: CARD_RADIUS,
+    borderRadius: faceRadius,
     borderWidth: 1,
     overflow: 'hidden',
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: facePadH,
-    paddingVertical: facePadV,
+    paddingTop: facePadTop,
+    paddingBottom: facePadBottom,
   };
 
+  const edgeLabelStyle = { color: g.secondary, fontSize: 12, fontWeight: '600' as const, letterSpacing: 2, textAlign: 'center' as const };
   const defaultFront = (
     <>
+      {edgeLabels ? <Text style={edgeLabelStyle}>{edgeLabels.front}</Text> : null}
       <Text
         maxFontSizeMultiplier={1.35}
-        style={{ color: t.textPrimary, fontSize: cardFont((f.h1 ?? 22) + 2, 17), fontWeight: '600', textAlign: 'center', width: '100%' }}
+        style={{
+          color: g.text,
+          fontSize: edgeLabels ? cardFont(34, 24) : cardFont((f.h1 ?? 22) + 2, 17),
+          fontWeight: edgeLabels ? '700' : '600',
+          textAlign: 'center',
+          width: '100%',
+          marginTop: edgeLabels ? Math.round(14 * cardScale) : 0,
+        }}
       >
         {en}
       </Text>
       {transcription?.trim() ? (
         <Text
           maxFontSizeMultiplier={1.35}
-          style={{ color: t.textMuted, fontSize: cardFont(f.sub ?? 14, 12), marginTop: Math.round(6 * cardScale), textAlign: 'center', fontStyle: 'italic', letterSpacing: 0.25 }}
+          style={{
+            color: g.secondary,
+            fontSize: edgeLabels ? cardFont(16, 13) : cardFont(f.sub ?? 14, 12),
+            marginTop: Math.round((edgeLabels ? 8 : 6) * cardScale),
+            textAlign: 'center',
+            fontStyle: edgeLabels ? 'normal' : 'italic',
+            letterSpacing: 0.25,
+          }}
         >
           {transcription.trim()}
         </Text>
@@ -551,12 +605,23 @@ function PhraseCardImpl({
     </>
   );
   const defaultBack = (
-    <Text
-      maxFontSizeMultiplier={1.35}
-      style={{ color: t.textPrimary, fontSize: cardFont(f.h1 ?? 22, 16), fontWeight: '400', textAlign: 'center', width: '100%' }}
-    >
-      {translation ?? ''}
-    </Text>
+    <>
+      {edgeLabels ? <Text style={edgeLabelStyle}>{edgeLabels.back}</Text> : null}
+      <Text
+        maxFontSizeMultiplier={1.35}
+        style={{
+          color: g.text,
+          fontSize: edgeLabels ? cardFont(28, 20) : cardFont(f.h1 ?? 22, 16),
+          lineHeight: edgeLabels ? Math.round(cardFont(28, 20) * 1.22) : undefined,
+          fontWeight: edgeLabels ? '700' : '400',
+          textAlign: 'center',
+          width: '100%',
+          marginTop: edgeLabels ? Math.round(14 * cardScale) : 0,
+        }}
+      >
+        {translation ?? ''}
+      </Text>
+    </>
   );
 
   const speakBtn = (side: 'front' | 'back', onSpeak?: () => void) =>
@@ -564,25 +629,25 @@ function PhraseCardImpl({
       // Правило FLASHCARDS_RULES §3: НЕ e.stopPropagation() — responder-обёртка
       <View
         onStartShouldSetResponder={() => true}
-        style={{ position: 'absolute', top: 10, right: 10, zIndex: 5 }}
+        style={{ position: 'absolute', top: 8, right: 8, zIndex: 5 }}
       >
         <Pressable
           onPress={onSpeak}
           accessibilityRole="button"
-          hitSlop={8}
+          hitSlop={4}
           testID={testID ? `${testID}-speak-${side}` : undefined}
           style={{
-            width: 32,
-            height: 32,
-            borderRadius: 16,
+            width: 44,
+            height: 44,
+            borderRadius: 22,
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: `${t.bgSurface}F0`,
+            backgroundColor: g.opaqueControl,
             borderWidth: 1,
-            borderColor: t.border,
+            borderColor: g.glassEdge,
           }}
         >
-          <Ionicons name="volume-medium" size={16} color={accent} />
+          <Ionicons name="volume-medium" size={18} color={packTheme ? accent : g.text} />
         </Pressable>
       </View>
     ) : null;
@@ -608,7 +673,7 @@ function PhraseCardImpl({
             faceBaseStyle,
             packTheme
               ? { backgroundColor: 'transparent', borderColor: packTheme.borderAccent }
-              : { backgroundColor: t.bgCard, borderColor: t.border },
+              : { backgroundColor: g.opaqueCard, borderColor: g.glassEdge },
             frontStyle,
           ]}
         >
@@ -617,16 +682,16 @@ function PhraseCardImpl({
               colors={[...packTheme.frontGradient]}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
-              style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, borderRadius: CARD_RADIUS }}
+              style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, borderRadius: faceRadius }}
             />
           ) : null}
           {!packTheme ? (
             <LinearGradient
               pointerEvents="none"
-              colors={t.cardGradient}
+              colors={[g.selected, 'transparent']}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
-              style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, borderRadius: CARD_RADIUS }}
+              style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, borderRadius: faceRadius }}
             />
           ) : null}
           {renderFront ? renderFront() : defaultFront}
@@ -648,7 +713,7 @@ function PhraseCardImpl({
             faceBaseStyle,
             packTheme
               ? { backgroundColor: 'transparent', borderColor: packTheme.borderAccent }
-              : { backgroundColor: t.bgSurface, borderColor: `${accent}80` },
+              : { backgroundColor: g.opaqueCard, borderColor: g.glassEdge },
             backStyle,
           ]}
         >
@@ -657,16 +722,16 @@ function PhraseCardImpl({
               colors={[...packTheme.backGradient]}
               start={{ x: 0, y: 1 }}
               end={{ x: 1, y: 0 }}
-              style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, borderRadius: CARD_RADIUS }}
+              style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, borderRadius: faceRadius }}
             />
           ) : null}
           {!packTheme ? (
             <LinearGradient
               pointerEvents="none"
-              colors={[t.cardGradient[1], t.cardGradient[0]]}
+              colors={[g.selected, 'transparent']}
               start={{ x: 0, y: 1 }}
               end={{ x: 1, y: 0 }}
-              style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, borderRadius: CARD_RADIUS }}
+              style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, borderRadius: faceRadius }}
             />
           ) : null}
           {renderBack ? renderBack() : defaultBack}
@@ -677,7 +742,8 @@ function PhraseCardImpl({
         <PhraseCardSizer
           minHeight={minHeight}
           paddingHorizontal={facePadH}
-          paddingVertical={facePadV}
+          paddingTop={facePadTop}
+          paddingBottom={facePadBottom}
           front={renderFront ? renderFront() : defaultFront}
           back={renderBack ? renderBack() : defaultBack}
         />
@@ -691,7 +757,7 @@ function PhraseCardImpl({
               importantForAccessibility="no-hide-descendants"
               style={[
                 faceBaseStyle,
-                { backgroundColor: `${t.correct}2E`, borderColor: t.correct, borderWidth: 2 },
+                { backgroundColor: `${t.correct}2E`, borderColor: `${t.correct}66`, borderWidth: 1 },
                 knowOverlayStyle,
               ]}
               testID={testID ? `${testID}-swipe-know` : 'fc-swipe-know'}
@@ -710,7 +776,7 @@ function PhraseCardImpl({
               importantForAccessibility="no-hide-descendants"
               style={[
                 faceBaseStyle,
-                { backgroundColor: `${t.wrong}2E`, borderColor: t.wrong, borderWidth: 2 },
+                { backgroundColor: `${t.wrong}2E`, borderColor: `${t.wrong}66`, borderWidth: 1 },
                 learnOverlayStyle,
               ]}
               testID={testID ? `${testID}-swipe-learn` : 'fc-swipe-learn'}
@@ -754,12 +820,12 @@ function PhraseCardImpl({
               flexDirection: 'row',
               alignItems: 'center',
               gap: 6,
+              minWidth: 64,
+              minHeight: 48,
+              justifyContent: 'center',
               paddingHorizontal: 22,
-              paddingVertical: 12,
               borderRadius: 999,
-              borderWidth: 1.5,
-              borderColor: t.wrong,
-              backgroundColor: `${t.wrong}1A`,
+              backgroundColor: `${t.wrong}26`,
               transform: [{ scale: p ? 0.97 : 1 }],
             })}
           >
@@ -774,12 +840,12 @@ function PhraseCardImpl({
               flexDirection: 'row',
               alignItems: 'center',
               gap: 6,
+              minWidth: 64,
+              minHeight: 48,
+              justifyContent: 'center',
               paddingHorizontal: 22,
-              paddingVertical: 12,
               borderRadius: 999,
-              borderWidth: 1.5,
-              borderColor: t.correct,
-              backgroundColor: `${t.correct}1A`,
+              backgroundColor: `${t.correct}26`,
               transform: [{ scale: p ? 0.97 : 1 }],
             })}
           >

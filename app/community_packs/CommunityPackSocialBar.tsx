@@ -16,6 +16,8 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, Easing, Text, TouchableOpacity, View } from 'react-native';
 import type { Theme } from '../../constants/theme';
+import { useTheme } from '../../components/ThemeContext';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { triLang, type Lang } from '../../constants/i18n';
 import { actionToastTri, emitAppEvent, onAppEvent } from '../events';
 import { useStudyTarget } from '../../components/StudyTargetContext';
@@ -75,6 +77,12 @@ export default function CommunityPackSocialBar({
   onRequestPurchase,
   onOpenComments,
 }: Props) {
+  // зачем (Liquid Glass, cards.html #18–19, #50, video.html #12–13): варианты `screen` и
+  // `row` — на токенах стекла активной темы, без зелёного «добавлен» и цветных рамок.
+  // Вариант `tile` НЕ меняем: он стоит на утверждённом владельцем хабе Карточек
+  // (плитки «Лучшее у сообщества»), хаб трогать нельзя.
+  const { liquidGlassThemeId } = useTheme();
+  const g = liquidGlassTokens(liquidGlassThemeId);
   const mode: CommunityPackSocialVariant = variant ?? (compact ? 'tile' : 'row');
   const isTile = mode === 'tile';
   const isScreen = mode === 'screen';
@@ -239,12 +247,39 @@ export default function CommunityPackSocialBar({
       return;
     }
     opSeqRef.current += 1;
+    /** Снимок ДО оптимистичного шага — только по нему можно честно откатиться. */
+    const before = snapshot;
+    const seq = opSeqRef.current;
     setSnapshot((prev) => addToLibraryOptimistic(prev));
     void (async () => {
       const res = await addCommunityPackToLibrary(pack, studyTarget);
-      if (res === 'added' || res === 'already_added') onAdded?.(pack.id);
+      if (res === 'added' || res === 'already_added') {
+        onAdded?.(pack.id);
+        return;
+      }
+      /**
+       * Отказ добавления: возвращаем прежнее состояние и говорим человеку.
+       *
+       * зачем (аудит 2026-09-23): раньше отказ проглатывался — кнопка навсегда
+       * оставалась «В моих», хотя набора у человека нет. При следующем заходе
+       * он пропадал без объяснения, и это выглядело как потеря покупки.
+       *
+       * `seq` защищает от гонки: если человек успел нажать ещё раз, поздний
+       * отказ не имеет права затирать более свежее состояние.
+       */
+      if (opSeqRef.current !== seq) {
+        console.warn(`[PACK-SOCIAL] откат добавления пропущен: есть более свежее действие pack=${pack.id}`); // guard-ok
+        return;
+      }
+      console.warn(`[PACK-SOCIAL] добавление отклонено pack=${pack.id} причина=${res}`); // guard-ok
+      setSnapshot(before);
+      emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Не удалось добавить набор. Проверьте связь и попробуйте ещё раз.',
+        uk: 'Не вдалося додати набір. Перевірте зв’язок і спробуйте ще раз.',
+        es: 'No se pudo añadir el pack. Comprueba la conexión e inténtalo de nuevo.',
+      }));
     })();
-  }, [pack, onAdded, studyTarget, isAdded, onRequestPurchase]);
+  }, [pack, onAdded, studyTarget, isAdded, onRequestPurchase, snapshot]);
 
   const addedLabel = triLang(lang, {
     ru: 'добавили', uk: 'додали', en: 'added', es: 'lo añadieron',
@@ -306,12 +341,12 @@ export default function CommunityPackSocialBar({
         <Ionicons
           name="chatbubble-outline"
           size={iconSize}
-          color={onOpenComments ? t.accent : t.textMuted}
+          color={isTile ? (onOpenComments ? t.accent : t.textMuted) : (onOpenComments ? g.text : g.secondary)}
         />
         {shouldShowCommentsCount(commentsCount) ? (
           <Text
             style={{
-              color: onOpenComments ? t.accent : t.textSecond,
+              color: isTile ? (onOpenComments ? t.accent : t.textSecond) : (onOpenComments ? g.text : g.secondary),
               fontSize,
               fontWeight: '700',
             }}
@@ -347,10 +382,10 @@ export default function CommunityPackSocialBar({
                 flexDirection: 'row',
                 alignItems: 'center',
                 gap,
+                minHeight: 44,
                 paddingHorizontal: 12,
-                paddingVertical: 10,
-                borderRadius: 14,
-                backgroundColor: `${t.accent}10`,
+                borderRadius: 22,
+                backgroundColor: g.opaqueControl,
               }
             : { flexDirection: 'row', alignItems: 'center', gap }
         }
@@ -383,10 +418,10 @@ export default function CommunityPackSocialBar({
     );
   }
 
-  /** Экран набора: явная заметная кнопка лайка + «Добавить себе». */
+  /** Экран набора: лайк · добавления · отклики + «Добавить себе» (макет cards.html #18–19). */
   if (isScreen) {
     return (
-      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
         <TouchableOpacity
           testID={`pack-like-${pack.id}`}
           accessibilityRole="button"
@@ -396,57 +431,41 @@ export default function CommunityPackSocialBar({
           accessible
           activeOpacity={0.85}
           onPress={onLikePress}
-          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+          hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
           style={{
             flexDirection: 'row',
             alignItems: 'center',
-            gap: 7,
-            paddingHorizontal: 14,
-            paddingVertical: 10,
-            borderRadius: 14,
-            borderWidth: 1.5,
-            borderColor: !isAdded ? t.border : snapshot.liked ? t.accent : `${t.accent}66`,
-            backgroundColor: !isAdded ? 'transparent' : snapshot.liked ? `${t.accent}22` : `${t.accent}10`,
-            opacity: isAdded ? 1 : 0.55,
+            gap: 6,
+            minHeight: 44,
+            paddingHorizontal: 8,
+            // До добавления лайк приглушён (макет: 50%), но остаётся нажимаемым — тост объяснит.
+            opacity: isAdded ? 1 : 0.5,
           }}
         >
           <Animated.View style={{ transform: [{ scale: likePop }] }}>
             <Ionicons
               name={snapshot.liked ? 'heart' : 'heart-outline'}
-              size={19}
-              color={!isAdded ? t.textMuted : t.accent}
+              size={20}
+              color={g.text}
             />
           </Animated.View>
-          <Text
-            style={{
-              color: !isAdded ? t.textMuted : t.accent,
-              fontSize: 14,
-              fontWeight: '800',
-            }}
-            numberOfLines={1}
-          >
-            {/* До добавления подпись не рисуем: иначе строка не влезает на узкий экран.
-                Понятная подсказка приходит тостом по нажатию и в accessibilityHint. */}
-            {isAdded ? `${likeLabel} · ${snapshot.likesCount}` : String(snapshot.likesCount)}
+          <Text style={{ color: g.text, fontSize: 16, fontWeight: '600' }}>
+            {snapshot.likesCount}
           </Text>
         </TouchableOpacity>
 
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
-          <Ionicons name="people-outline" size={16} color={t.textMuted} />
-          <Text style={{ color: t.textSecond, fontSize: 13, fontWeight: '700' }}>{snapshot.addedCount}</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, minHeight: 44, paddingHorizontal: 8 }}>
+          <Ionicons name="people-outline" size={20} color={g.text} />
+          <Text style={{ color: g.text, fontSize: 16, fontWeight: '600' }}>{snapshot.addedCount}</Text>
         </View>
 
-        {renderCommentsCount(19, 14, 6)}
+        {renderCommentsCount(20, 16, 6)}
 
         <View style={{ flex: 1 }} />
 
-        {/* зачем компактная иконка, а не текстовая плашка (владелец 17.09.2026,
-            «убери большую плашку, вместо неё просто галочку»/«замени на просто
-            плюсик»): «Добавить себе»/«В моих наборах» текстом дублировало то,
-            что и так ясно из состояния (закрашенный кружок = уже моё) — та же
-            логика, что уже применена к лайку выше (подпись прячется, когда
-            смысл читается по цвету/иконке). 44×44 — минимальная цель тапа,
-            hitSlop добивает до неё при 36×36 визуального круга. */}
+        {/* зачем подпись снова видна (макет 30.09 «Добавить себе» / «В моих наборах»):
+            17.09 владелец просил компактную иконку, но утверждённый макет
+            возвращает пилюлю с текстом — рисуем макет. Цель тапа ≥44dp. */}
         <TouchableOpacity
           testID={`pack-add-${pack.id}`}
           accessibilityRole="button"
@@ -456,21 +475,21 @@ export default function CommunityPackSocialBar({
           disabled={isAdded}
           onPress={onAddPress}
           activeOpacity={0.85}
-          hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
           style={{
-            width: 36,
-            height: 36,
-            borderRadius: 18,
+            flexDirection: 'row',
             alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: isAdded ? `${t.correct}22` : t.accent,
+            gap: 6,
+            minHeight: 44,
+            paddingHorizontal: 16,
+            borderRadius: 22,
+            backgroundColor: isAdded ? g.opaqueControl : g.cta,
           }}
         >
-          <Ionicons
-            name={isAdded ? 'checkmark' : 'add'}
-            size={20}
-            color={isAdded ? t.correct : t.correctText}
-          />
+          {isAdded ? <Ionicons name="checkmark" size={18} color={g.text} /> : null}
+          <Text style={{ color: isAdded ? g.text : g.ctaInk, fontSize: 15, lineHeight: 20, fontWeight: '700' }}>
+            {isAdded ? ownedLabel : addLabel}
+          </Text>
+          {isAdded ? null : <Ionicons name="add" size={18} color={g.ctaInk} />}
         </TouchableOpacity>
       </View>
     );
@@ -492,12 +511,12 @@ export default function CommunityPackSocialBar({
             <Ionicons
               name={snapshot.liked ? 'heart' : 'heart-outline'}
               size={18}
-              color={snapshot.liked && isAdded ? t.accent : t.textMuted}
+              color={snapshot.liked && isAdded ? g.text : g.secondary}
             />
           </Animated.View>
           <Text
             style={{
-              color: snapshot.liked && isAdded ? t.accent : t.textSecond,
+              color: snapshot.liked && isAdded ? g.text : g.secondary,
               fontSize: 13,
               fontWeight: '700',
             }}
@@ -507,9 +526,9 @@ export default function CommunityPackSocialBar({
         </TouchableOpacity>
 
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
-          <Ionicons name="people-outline" size={18} color={t.textMuted} />
-          <Text style={{ color: t.textSecond, fontSize: 13, fontWeight: '700' }}>{snapshot.addedCount}</Text>
-          <Text style={{ color: t.textMuted, fontSize: 12 }}>{addedLabel}</Text>
+          <Ionicons name="people-outline" size={18} color={g.secondary} />
+          <Text style={{ color: g.secondary, fontSize: 13, fontWeight: '700' }}>{snapshot.addedCount}</Text>
+          <Text style={{ color: g.mutedText, fontSize: 12 }}>{addedLabel}</Text>
         </View>
 
         {renderCommentsCount(18, 13, 5)}
@@ -523,13 +542,11 @@ export default function CommunityPackSocialBar({
               paddingHorizontal: 8,
               paddingVertical: 3,
               borderRadius: 999,
-              borderWidth: 1,
-              borderColor: `${t.accent}66`,
-              backgroundColor: `${t.accent}1A`,
+              backgroundColor: g.opaqueControl,
             }}
           >
-            <Ionicons name="trending-up-outline" size={12} color={t.accent} />
-            <Text style={{ color: t.accent, fontSize: 11, fontWeight: '800' }}>{topLabel}</Text>
+            <Ionicons name="trending-up-outline" size={12} color={g.text} />
+            <Text style={{ color: g.text, fontSize: 11, fontWeight: '800' }}>{topLabel}</Text>
           </View>
         ) : null}
       </View>
@@ -541,15 +558,14 @@ export default function CommunityPackSocialBar({
         disabled={isAdded}
         onPress={onAddPress}
         style={{
-          borderRadius: 12,
-          paddingVertical: 11,
+          borderRadius: 22,
+          minHeight: 44,
+          justifyContent: 'center',
           alignItems: 'center',
-          borderWidth: 1,
-          borderColor: isAdded ? `${t.correct}55` : `${t.accent}66`,
-          backgroundColor: isAdded ? `${t.correct}22` : `${t.accent}1F`,
+          backgroundColor: isAdded ? g.opaqueControl : g.cta,
         }}
       >
-        <Text style={{ color: isAdded ? t.correct : t.accent, fontSize: 14, fontWeight: '800' }}>
+        <Text style={{ color: isAdded ? g.text : g.ctaInk, fontSize: 14, fontWeight: '800' }}>
           {isAdded ? ownedLabel : addLabel}
         </Text>
       </TouchableOpacity>

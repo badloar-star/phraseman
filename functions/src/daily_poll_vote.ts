@@ -81,7 +81,9 @@ export const dailyPollVote = onCall(HOT_CALLABLE_OPTIONS, async (request): Promi
       };
     }
     // Минимум данных: только выбранный вариант и время. Имя/язык/устройство не пишем.
-    transaction.create(voteRef, { optionId: decision.optionId, createdAtMs: nowMs });
+    // зачем userId (30.09): удаление аккаунта находит голоса через collectionGroup('votes')
+    // по этому полю (account_delete.ts COLLECTION_GROUP_QUERY_SPECS) — иначе голос переживал бы аккаунт.
+    transaction.create(voteRef, { optionId: decision.optionId, createdAtMs: nowMs, userId: stableUid });
     transaction.update(pollRef, {
       [`counts.${decision.optionId}`]: admin.firestore.FieldValue.increment(1),
       voteCount: admin.firestore.FieldValue.increment(1),

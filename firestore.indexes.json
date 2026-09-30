@@ -1489,6 +1489,16 @@
       ]
     },
     {
+      "collectionGroup": "votes",
+      "fieldPath": "userId",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
+    {
       "collectionGroup": "poll_votes",
       "fieldPath": "userId",
       "indexes": [

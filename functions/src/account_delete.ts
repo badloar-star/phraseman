@@ -245,6 +245,8 @@ const COLLECTION_GROUP_QUERY_SPECS: AccountDeleteCollectionGroupSpec[] = [
   { collectionGroup: 'messages', field: 'authorStableUid', values: 'both' },
   { collectionGroup: 'reactions', field: 'userId', values: 'stable' },
   { collectionGroup: 'poll_votes', field: 'userId', values: 'stable' },
+  // Опрос дня (30.09): daily_polls/{date}/votes/{stableUid}. Счётчики опроса не уменьшаем — это анонимная сумма.
+  { collectionGroup: 'votes', field: 'userId', values: 'stable' },
   { collectionGroup: 'activity_likes_received', field: 'fromUid', values: 'stable' },
   { collectionGroup: 'friend_activity_like_daily_limits', field: 'targetUid', values: 'stable' },
   { collectionGroup: 'friend_activity_likes_sent', field: 'targetUid', values: 'stable' },

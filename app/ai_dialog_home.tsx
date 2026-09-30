@@ -5,6 +5,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
 import EnergyBar from '../components/EnergyBar';
 import DialogsTabContent from '../components/DialogsTabContent';
+import { dialogueV2HubCopy } from '../components/dialogs/DialogueV2HubNotices';
+import { DialogueGlassQuotaPill } from '../components/dialogs/glass/DialogueGlassSessionParts';
+import { useDialogueGlass } from '../components/dialogs/glass/DialogueGlassKit';
+import { useDialogueHubQuota } from '../hooks/use_dialogue_hub_quota';
 import { V2IconButton, V2LargeTitle } from '../components/v2/V2Kit';
 import { useLang } from '../components/LangContext';
 import { hapticTap } from '../hooks/use-haptics';
@@ -28,7 +32,7 @@ export default function AiDialogHome() {
   // (иначе жест/аппаратная кнопка — единственный путь назад), но крупный
   // заголовок и подпись делят один верхний ряд с кнопкой назад и живой
   // энергией. На узком экране и при крупном шрифте текст получает полную
-  // ширину под действиями. Квота остаётся в DialogsTabContent.
+  // ширину под действиями. Квота — в шапке (quotaInHeader), не над каталогом.
   const title = triLang(lang, {
     ru: 'Диалоги', uk: 'Діалоги', en: 'Dialogues', es: 'Diálogos',
     'pt-BR': 'Diálogos', vi: 'Đối thoại', id: 'Dialog', tr: 'Diyaloglar', pl: 'Dialogi',
@@ -44,6 +48,24 @@ export default function AiDialogHome() {
     tr: 'Dili gerçek hayat durumlarında pratik yap',
     pl: 'Ćwicz język w codziennych sytuacjach',
   });
+  // зачем (макет dialogs.html hubHead): справа в шапке столбиком — энергия и «💬 N/30»
+  // (месячный остаток Free, D111). У Plus остатка нет — пилюли нет.
+  const quota = useDialogueHubQuota();
+  const dialogueGlass = useDialogueGlass();
+  const hubCopy = dialogueV2HubCopy(lang);
+  const headerRight = (
+    <View style={{ alignItems: 'flex-end', gap: 14 }}>
+      <EnergyBar size={30} />
+      {quota ? (
+        <DialogueGlassQuotaPill
+          glass={dialogueGlass}
+          testID="ai-dialog-home-quota"
+          text={`${quota.remaining}/${quota.total}`}
+          accessibilityLabel={hubCopy.quotaA11y(quota.remaining, quota.total)}
+        />
+      ) : null}
+    </View>
+  );
   const backButton = <V2IconButton icon="chevron-back" accessibilityLabel={backLabel} onPress={() => {
     hapticTap();
     safeRouterBack(router, '/(tabs)/home' as any);
@@ -54,7 +76,7 @@ export default function AiDialogHome() {
         <View>
           <View testID="ai-dialog-home-header-actions" style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
             {backButton}
-            <EnergyBar size={30} />
+            {headerRight}
           </View>
           <View style={{ marginTop: 12 }}>
             <V2LargeTitle title={title} subtitle={subtitle} />
@@ -64,7 +86,7 @@ export default function AiDialogHome() {
         <View testID="ai-dialog-home-header-row" style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 12 }}>
           {backButton}
           <View style={{ flex: 1, minWidth: 0 }}>
-            <V2LargeTitle title={title} subtitle={subtitle} right={<EnergyBar size={30} />} />
+            <V2LargeTitle title={title} subtitle={subtitle} right={headerRight} />
           </View>
         </View>
       )}
@@ -74,7 +96,7 @@ export default function AiDialogHome() {
   return (
     <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }}>
-        <DialogsTabContent headerSlot={header} />
+        <DialogsTabContent headerSlot={header} quotaInHeader />
       </SafeAreaView>
     </ScreenGradient>
   );

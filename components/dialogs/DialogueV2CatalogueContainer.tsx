@@ -87,13 +87,15 @@ function supportedTarget(value: unknown): value is DialogueV2CatalogueStudyTarge
 
 export type DialogueV2CatalogueContainerProps = Readonly<{
   onPressItem: (item: DialogueV2CatalogueLearnerItem) => void;
+  /** Макет hubHead: на экране диалогов пилюля «N/30» в шапке — строку над каталогом не дублируем. */
+  showQuotaRow?: boolean;
 }>;
 
 /**
  * Owns only the V2 learner catalogue loading boundary. The callable response
  * is revalidated before rendering and no legacy dialog surface is involved.
  */
-export function DialogueV2CatalogueContainer({ onPressItem }: DialogueV2CatalogueContainerProps) {
+export function DialogueV2CatalogueContainer({ onPressItem, showQuotaRow = true }: DialogueV2CatalogueContainerProps) {
   const router = useRouter();
   const { studyTarget } = useStudyTarget();
   const { lang } = useLang();
@@ -177,7 +179,7 @@ export function DialogueV2CatalogueContainer({ onPressItem }: DialogueV2Catalogu
   }, [headings, localCoinRank, state, studyTarget]);
   const plusTools = (
     <>
-      {freeTier && quotaRemaining !== null ? (
+      {showQuotaRow && freeTier && quotaRemaining !== null ? (
         <DialogueV2HubQuotaRow
           text={`${quotaRemaining}/${quotaTotal}`}
           accessibilityLabel={hubCopy.quotaA11y(quotaRemaining, quotaTotal)}

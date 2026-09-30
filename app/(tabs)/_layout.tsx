@@ -54,11 +54,17 @@ import {
   setExamBestPctTabActivity,
 } from '../exam_best_pct_overlay';
 import {
+  isLogicalTabHidden,
   logicalTabToPhysicalPage,
+  physicalPageCount,
   physicalPageToLogicalTab,
   physicalPageToRuntimeOwner,
+  tabPageLayoutFor,
   type PhysicalPageIndex,
+  type TabPageLayout,
 } from '../tab_page_model';
+import { useStudyTarget } from '../../components/StudyTargetContext';
+import { isLearnTabVisibleForTarget } from '../learning_language_surface_readiness';
 import { shouldLoadTabScreen } from '../tab_mount_policy';
 
 type IconName = React.ComponentProps<typeof Ionicons>['name'];
@@ -330,6 +336,11 @@ const IDX_TO_TAB_ROUTE: Record<number, string> = {
   4: '/(tabs)/settings',
 };
 
+/** D129: скрытая вкладка заменяется Главной (0). */
+function visibleTabIdx(idx: number, layout: TabPageLayout): number {
+  return isLogicalTabHidden(idx, layout) ? 0 : idx;
+}
+
 function addVisitedTab(prev: Set<number>, idx: number): Set<number> {
   if (idx < 0 || prev.has(idx)) return prev;
   const next = new Set(prev);
@@ -470,6 +481,7 @@ type TabScaffoldProps = {
   devHubVisible: boolean;
   onCloseDevHub: () => void;
   onOpenDevHub: () => void;
+  pageLayout: TabPageLayout;
 };
 
 /**
@@ -484,6 +496,7 @@ function TabScaffold({
   devHubVisible,
   onCloseDevHub,
   onOpenDevHub,
+  pageLayout,
 }: TabScaffoldProps) {
   const { lang } = useLang();
   const { bottomInset: PB } = useScreen();
@@ -497,26 +510,31 @@ function TabScaffold({
   const tabBarBottom = Math.max(PB, TAB_DOCK_MIN_BOTTOM_PAD) + FLOATING_PILL_BOTTOM_GAP;
   const { hidden: tabBarHidden } = useTabBarVisibility();
   const firstContentReadyEmittedRef = useRef(false);
-  const activeBarTabIdx = TAB_BAR_TABS.findIndex((tab) => tab.logicalIdx === visualIdx);
+  // зачем D129: вкладка «Обучение» есть в таббаре только для языка с готовым курсом.
+  const barTabs = useMemo(
+    () => TAB_BAR_TABS.filter((tab) => !isLogicalTabHidden(tab.logicalIdx, pageLayout)),
+    [pageLayout],
+  );
+  const activeBarTabIdx = barTabs.findIndex((tab) => tab.logicalIdx === visualIdx);
   // зачем (макет system.html «Точка — есть новое в Сообществе»): точка из локального
   // кэша уведомлений, гаснет при заходе во вкладку. 0 чтений Firestore.
   const communityLogicalIdx = TAB_BAR_TABS.find((tab) => tab.key === 'community')?.logicalIdx ?? -1;
   const communityDot = useCommunityTabDot(visualIdx === communityLogicalIdx);
   const tabBarItems = useMemo<V2TabBarItem[]>(
     // зачем: TabLabelCopy содержит Partial-локали, поэтому triLang типизирован как string|undefined; ru всегда есть.
-    () => TAB_BAR_TABS.map((tab) => ({
+    () => barTabs.map((tab) => ({
       key: tab.key,
       label: triLang(lang, tab.label) ?? tab.label.ru,
       icon: tab.icon,
       activeIcon: tab.active,
       badge: tab.key === 'community' && communityDot,
     })),
-    [lang, communityDot],
+    [barTabs, lang, communityDot],
   );
   const handleTabBarSelect = useCallback((barIndex: number) => {
-    const tab = TAB_BAR_TABS[barIndex];
+    const tab = barTabs[barIndex];
     if (tab) goToTab(tab.logicalIdx);
-  }, [goToTab]);
+  }, [barTabs, goToTab]);
   // зачем (владелец 24.09, референс): капсула сжимается при скролле вниз и
   // разворачивается при скролле вверх/смене таба/свайпе — портировано из
   // дореформенного таббара (commit bfdc8e783~1), см. TAB_SCROLL_* выше.
@@ -715,9 +733,18 @@ function ReleasedTabLayout() {
   // в массивах зависимостей TS падает с TS2590 («union слишком сложный»).
   // Помощники ниже и так принимают readonly string[], поэтому сужаем тип здесь.
   const segments: readonly string[] = useSegments();
-  const [activeIdx, setActiveIdx] = useState(() => tabIdxFromRouter(pathname, segments) ?? 0);
-  const [visualIdx, setVisualIdx] = useState(() => tabIdxFromRouter(pathname, segments) ?? 0);
-  const [physicalPageIdx, setPhysicalPageIdx] = useState<PhysicalPageIndex>(() => logicalTabToPhysicalPage(tabIdxFromRouter(pathname, segments) ?? 0));
+  // зачем D129 (владелец 2026-09-30): «Обучение» видно только для языка с готовым курсом.
+  // studyTarget синхронный (peek из снапшота) — первый кадр таббара уже финальный,
+  // без вспышки вкладки, которая потом исчезает.
+  const { studyTarget } = useStudyTarget();
+  const learnTabVisible = isLearnTabVisibleForTarget(studyTarget);
+  const pageLayout = tabPageLayoutFor({ learnTabVisible });
+  const pageLayoutRef = useRef(pageLayout);
+  pageLayoutRef.current = pageLayout;
+  const initialTabIdx = visibleTabIdx(tabIdxFromRouter(pathname, segments) ?? 0, pageLayout);
+  const [activeIdx, setActiveIdx] = useState(() => initialTabIdx);
+  const [visualIdx, setVisualIdx] = useState(() => initialTabIdx);
+  const [physicalPageIdx, setPhysicalPageIdx] = useState<PhysicalPageIndex>(() => logicalTabToPhysicalPage(initialTabIdx, pageLayout));
   const physicalPageIdxRef = useRef(physicalPageIdx);
   physicalPageIdxRef.current = physicalPageIdx;
   const activeIdxRef = useRef(activeIdx);
@@ -730,26 +757,23 @@ function ReleasedTabLayout() {
   const closeDevHub = useCallback(() => setDevHubVisible(false), []);
   // Ліниве монтування: слот таба появляется сразу, а тяжелый экран монтируется в idle после первого кадра.
   // Начальный таб всегда в visited/mounted — чтобы первый рендер не был плейсхолдером.
-  const [visitedTabs, setVisitedTabs] = useState(() => {
-    const initial = tabIdxFromRouter(pathname, segments) ?? 0;
-    return new Set<number>([0, initial]);
-  });
+  const [visitedTabs, setVisitedTabs] = useState(() => new Set<number>([0, initialTabIdx]));
   const visitedTabsRef = useRef(visitedTabs);
   visitedTabsRef.current = visitedTabs;
-  const [mountedTabs, setMountedTabs] = useState(() => {
-    const initial = tabIdxFromRouter(pathname, segments) ?? 0;
-    return new Set<number>([0, initial]);
-  });
+  const [mountedTabs, setMountedTabs] = useState(() => new Set<number>([0, initialTabIdx]));
   const mountedTabsRef = useRef(mountedTabs);
   mountedTabsRef.current = mountedTabs;
   const scheduledMountsRef = useRef<Map<number, CancelableTask>>(new Map());
   const foregroundMountsRef = useRef<Set<number>>(new Set());
   const router = useRouter();
+  const routerRef = useRef(router);
+  routerRef.current = router;
+  const lastEffectLayoutRef = useRef<TabPageLayout | null>(null);
   const backgroundPremountStartedRef = useRef(false);
   const backgroundPremountTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   /** Пока router.replace ещё не обновил pathname, useLayoutEffect не должен откатить вкладку по старому URL. */
   const pendingTabIdxRef = useRef<number | null>(null);
-  const initialExamBestPctTabIdxRef = useRef(tabIdxFromRouter(pathname, segments) ?? activeIdxRef.current);
+  const initialExamBestPctTabIdxRef = useRef(initialTabIdx);
 
   useLayoutEffect(() => {
     markExamBestPctTabActivity(initialExamBestPctTabIdxRef.current);
@@ -816,7 +840,21 @@ function ReleasedTabLayout() {
 
   // До paint: pathname + segments, чтобы индекс не отставал и TabSlider не кадрил старый слайд.
   useLayoutEffect(() => {
-    const fromRouter = tabIdxFromRouter(pathname, segments);
+    const layout = pageLayout;
+    const layoutChanged = lastEffectLayoutRef.current !== layout;
+    lastEffectLayoutRef.current = layout;
+    const rawFromRouter = tabIdxFromRouter(pathname, segments);
+    // зачем D129: маршрут скрытой вкладки (старая ссылка, возврат из урока, смена языка)
+    // ведёт на Главную — экрана «Обучение» в ленте нет.
+    if (rawFromRouter !== null && isLogicalTabHidden(rawFromRouter, layout)) {
+      console.warn('[LANG-SURFACE] tabs:hidden_tab_route → home', { rawFromRouter, pathname, studyTarget });
+      routerRef.current.replace('/(tabs)/home' as any);
+    }
+    const fromRouter = rawFromRouter === null ? null : visibleTabIdx(rawFromRouter, layout);
+    if (pendingTabIdxRef.current !== null && isLogicalTabHidden(pendingTabIdxRef.current, layout)) {
+      console.warn('[LANG-SURFACE] tabs:pending_hidden_tab → drop', { pending: pendingTabIdxRef.current });
+      pendingTabIdxRef.current = null;
+    }
     const pending = pendingTabIdxRef.current;
     if (pending !== null && fromRouter !== null && fromRouter === pending) {
       pendingTabIdxRef.current = null;
@@ -836,7 +874,7 @@ function ReleasedTabLayout() {
       if (activeIdxRef.current !== hold) {
         setActiveIdx(hold);
       }
-      const physical = logicalTabToPhysicalPage(hold);
+      const physical = logicalTabToPhysicalPage(hold, layout);
       if (physicalPageIdxRef.current !== physical) setPhysicalPageIdx(physical);
       return;
     }
@@ -852,10 +890,23 @@ function ReleasedTabLayout() {
       if (activeIdxRef.current !== fromRouter) {
         setActiveIdx(fromRouter);
       }
-      const physical = logicalTabToPhysicalPage(fromRouter);
+      const physical = logicalTabToPhysicalPage(fromRouter, layout);
       if (physicalPageIdxRef.current !== physical) setPhysicalPageIdx(physical);
+      return;
     }
-  }, [mountNow, pathname, segments]);
+    // зачем D129: язык сменили поверх push-экрана (URL не таб) — пересчитываем
+    // страницу по новой раскладке, скрытую активную вкладку меняем на Главную.
+    // Только при смене раскладки: обычный push-экран поверх табов ничего не трогает.
+    if (!layoutChanged) return;
+    const active = visibleTabIdx(activeIdxRef.current, layout);
+    if (active !== activeIdxRef.current) {
+      console.warn('[LANG-SURFACE] tabs:active_tab_hidden → home', { was: activeIdxRef.current, studyTarget });
+      setActiveIdx(active);
+      setVisualIdx(active);
+    }
+    const physical = logicalTabToPhysicalPage(active, layout);
+    if (physicalPageIdxRef.current !== physical) setPhysicalPageIdx(physical);
+  }, [mountNow, pageLayout, pathname, segments, studyTarget]);
 
   useFocusEffect(useCallback(() => { setFocusTick(tick => tick + 1); }, []));
 
@@ -867,6 +918,11 @@ function ReleasedTabLayout() {
     BACKGROUND_TAB_PREMOUNT_ORDER.forEach((idx, order) => {
       const timer = setTimeout(() => {
         backgroundPremountTimersRef.current = backgroundPremountTimersRef.current.filter((entry) => entry !== timer);
+        // зачем D129: скрытую вкладку («Обучение» без курса) не греем — 52 импорта впустую.
+        if (isLogicalTabHidden(idx, pageLayoutRef.current)) {
+          console.log('[LANG-SURFACE] tabs:premount_skip_hidden', { idx });
+          return;
+        }
         scheduleMount(idx);
       }, BACKGROUND_TAB_PREMOUNT_FIRST_DELAY_MS + order * BACKGROUND_TAB_PREMOUNT_STEP_MS);
       backgroundPremountTimersRef.current.push(timer);
@@ -899,7 +955,7 @@ function ReleasedTabLayout() {
   /** Вызывается в момент отпускания пальца (до анимации): хром таббара догоняет сразу,
    *  а реальный activeIdx/URL переключаются после UI-thread анимации. */
   const handleSwipeStart = useCallback((physicalIdx: number) => {
-    const idx = physicalPageToLogicalTab(physicalIdx);
+    const idx = physicalPageToLogicalTab(physicalIdx, pageLayoutRef.current);
     setExamBestPctTabActivity('unsafe');
     setVisualIdx(idx);
     if (physicalIdx === 0 || idx === activeIdxRef.current) return;
@@ -925,13 +981,16 @@ function ReleasedTabLayout() {
   }, [pathname, segments, router]);
 
   /** Тап по таббару — немедленно обновляем UI, URL обновляем асинхронно. */
-  const handleTabChange = useCallback((idx: number) => {
+  const handleTabChange = useCallback((requestedIdx: number) => {
+    // зачем D129: goToTab(1) из экранов при скрытом «Обучении» ведёт на Главную.
+    const idx = visibleTabIdx(requestedIdx, pageLayoutRef.current);
+    if (idx !== requestedIdx) console.warn('[LANG-SURFACE] tabs:goto_hidden_tab → home', { requestedIdx });
     // зачем: метка [TAP-LAT] для тапа по табу — отделяет отклик таббара от
     // разморозки (react-freeze) и коммита панели назначения.
     noteTapAction(`tab:${idx}`);
     markExamBestPctTabActivity(idx);
     setVisualIdx(idx);
-    const physical = logicalTabToPhysicalPage(idx);
+    const physical = logicalTabToPhysicalPage(idx, pageLayoutRef.current);
     setPhysicalPageIdx(physical);
     if (idx === activeIdxRef.current && physicalPageIdxRef.current === physical) return;
     setActiveIdx(idx);
@@ -945,7 +1004,7 @@ function ReleasedTabLayout() {
   const handleSwipeComplete = useCallback((physicalIdx: number) => {
     const physical = physicalIdx as PhysicalPageIndex;
     physicalPageIdxRef.current = physical;
-    const idx = physicalPageToLogicalTab(physical);
+    const idx = physicalPageToLogicalTab(physical, pageLayoutRef.current);
     markExamBestPctTabActivity(idx);
     setPhysicalPageIdx(physical);
     setVisualIdx(idx);
@@ -981,8 +1040,9 @@ function ReleasedTabLayout() {
     const shouldLoad = (i: number) => shouldLoadTabScreen(activeIdx, i, mountedTabs);
     // Замораживаем табы дальше чем сосед активного: активный + оба соседа живут
     // (свайп-драг показывает соседнюю панель — она не должна быть пустой).
-    const freezeWanted = (logicalIdx: number) => Math.abs(logicalTabToPhysicalPage(logicalIdx) - physicalPageIdx) >= TAB_FREEZE_MIN_DISTANCE;
-    return [
+    const freezeWanted = (logicalIdx: number) => Math.abs(logicalTabToPhysicalPage(logicalIdx, pageLayout) - physicalPageIdx) >= TAB_FREEZE_MIN_DISTANCE;
+    // зачем D129: скрытая вкладка выпадает из ленты целиком — свайп её не находит.
+    const screens = [
       show(0) ? (
         <TabPane key="home" freezeWanted={freezeWanted(0)}>
           <React.Suspense fallback={placeholder('home-loading')}>
@@ -1001,9 +1061,15 @@ function ReleasedTabLayout() {
       show(3) ? <TabPane key="community" freezeWanted={freezeWanted(3)}><TabRenderProbe id="tab:community"><DeferredTabScreen shouldLoad={shouldLoad(3)} loadScreen={loadCommunityScreen} /></TabRenderProbe></TabPane> : placeholder('ph-community'),
       show(4) ? <TabPane key="settings" freezeWanted={freezeWanted(4)}><TabRenderProbe id="tab:settings"><DeferredTabScreen shouldLoad={shouldLoad(4)} loadScreen={loadSettingsScreen} /></TabRenderProbe></TabPane> : placeholder('ph-settings'),
     ];
-  }, [activeIdx, mountedTabs, openDevHub, physicalPageIdx, t.bgPrimary, tabPaneWidth, visitedTabs]);
+    return screens.filter((_, logicalIdx) => !isLogicalTabHidden(logicalIdx, pageLayout));
+  }, [activeIdx, mountedTabs, openDevHub, pageLayout, physicalPageIdx, t.bgPrimary, tabPaneWidth, visitedTabs]);
 
-  const runtimeOwnerId = physicalPageToRuntimeOwner(physicalPageIdx);
+  // зачем D129: при смене раскладки state страницы догоняет в layout-эффекте; до него
+  // старый индекс может выйти за новую длину ленты — зажимаем, а не падаем.
+  const renderPhysicalIdx = (physicalPageIdx < physicalPageCount(pageLayout)
+    ? physicalPageIdx
+    : logicalTabToPhysicalPage(visibleTabIdx(activeIdx, pageLayout), pageLayout)) as PhysicalPageIndex;
+  const runtimeOwnerId = physicalPageToRuntimeOwner(renderPhysicalIdx, pageLayout);
 
   return (
     <TabProvider
@@ -1019,7 +1085,8 @@ function ReleasedTabLayout() {
           tabScreens={tabScreens}
           currentRouteIsTab={currentRouteIsTab}
           visualIdx={visualIdx}
-          physicalPageIdx={physicalPageIdx}
+          physicalPageIdx={renderPhysicalIdx}
+          pageLayout={pageLayout}
           devHubVisible={devHubVisible}
           onCloseDevHub={closeDevHub}
           onOpenDevHub={openDevHub}

@@ -207,6 +207,62 @@ export async function fetchYoutubeHomeFeatureCatalog(
   return fetchYoutubeHomeFeatureWithReader(channelId, await createFirestoreReader(), knownManifest);
 }
 
+export type YoutubeHomeRailCatalog = {
+  version: string;
+  channel: YoutubeChannelSnapshot;
+  videos: YoutubeVideoSnapshot[];
+  fetchedAt: string;
+};
+
+/**
+ * Лента видео канала для Главной по языку обучения (D130: итальянский).
+ * зачем (Firebase-экономия): полный fetchYoutubeChannelCatalog листает до 100 видео и
+ * 50 плейлистов (~150 чтений). Для горизонтальной ленты хватает корня, канала и
+ * первых `limit` роликов из recentVideoIds — не больше limit+2 чтений.
+ */
+export async function fetchYoutubeHomeRailWithReader(
+  channelId: string,
+  reader: YoutubeCatalogReader,
+  knownManifest: YoutubeCatalogManifest,
+  limit = 8,
+): Promise<YoutubeHomeRailCatalog> {
+  const manifest = knownManifest;
+  if (!manifest.channels.some((channel) => channel.id === channelId)) {
+    throw new Error('youtube_catalog_channel_missing');
+  }
+  const rootPath = `youtube_catalog_snapshots/${manifest.activeVersion}`;
+  const root = requireRecord(await reader.get(rootPath), 'youtube_catalog_snapshot_missing');
+  if (root.status !== 'ready') throw new Error('youtube_catalog_snapshot_not_ready');
+  const channelPath = `${rootPath}/channels/${channelId}`;
+  const channel = parseYoutubeChannelSnapshot(await reader.get(channelPath));
+  if (channel.id !== channelId) throw new Error('youtube_catalog_channel_mismatch');
+  const ids = channel.recentVideoIds.slice(0, Math.max(0, limit));
+  // guard-ok: ≤limit (8) точечных чтений параллельно; 'in'-запрос стоил бы столько же чтений.
+  const raws = await Promise.all(ids.map((id) => reader.get(`${channelPath}/videos/${id}`)));
+  const videos: YoutubeVideoSnapshot[] = [];
+  raws.forEach((raw, index) => {
+    if (!raw) {
+      console.warn('[LANG-SURFACE] home_rail:video_missing', { channelId, videoId: ids[index] });
+      return;
+    }
+    try {
+      const parsed = parseYoutubeVideoSnapshot({ ...requireRecord(raw, 'youtube_catalog_video_missing'), id: ids[index] });
+      if (parsed.channelId === channelId) videos.push(parsed);
+    } catch (error) {
+      console.warn('[LANG-SURFACE] home_rail:video_invalid', { channelId, videoId: ids[index], error: error instanceof Error ? error.message : String(error) });
+    }
+  });
+  return { version: manifest.activeVersion, channel, videos, fetchedAt: new Date().toISOString() };
+}
+
+export async function fetchYoutubeHomeRailCatalog(
+  channelId: string,
+  knownManifest: YoutubeCatalogManifest,
+  limit?: number,
+): Promise<YoutubeHomeRailCatalog> {
+  return fetchYoutubeHomeRailWithReader(channelId, await createFirestoreReader(), knownManifest, limit);
+}
+
 /**
  * Каталог YouTube — общий публичный контент, а не данные аккаунта: одни и те же
  * ролики видят все. Поэтому загрузка НЕ гейтится готовностью личности — иначе

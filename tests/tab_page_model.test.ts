@@ -4,6 +4,9 @@ import {
   logicalTabToPhysicalPage,
   physicalPageToLogicalTab,
   physicalPageToRuntimeOwner,
+  physicalPageCount,
+  isLogicalTabHidden,
+  tabPageLayoutFor,
   SUB_RUNTIME_OWNER_IDS,
 } from '../app/tab_page_model';
 
@@ -25,7 +28,7 @@ describe('Tab page model', () => {
   // Турниров среди runtime-владельцев нет: скрытая вкладка не должна оставаться
   // физической страницей, доступной горизонтальным свайпом.
   test('assigns one runtime owner to every physical page', () => {
-    expect([0, 1, 2, 3, 4].map(physicalPageToRuntimeOwner)).toEqual([
+    expect([0, 1, 2, 3, 4].map((index) => physicalPageToRuntimeOwner(index))).toEqual([
       'home',
       'lessons',
       'video',
@@ -45,5 +48,26 @@ describe('Tab page model', () => {
   // runtime-владельцем; порядок совпадает с сегментами «Друзья / Шпиль / Наборы».
   test('lists spire as a community sub-runtime owner between friends and packs', () => {
     expect(SUB_RUNTIME_OWNER_IDS).toEqual(['friends', 'spire', 'packs']);
+  });
+
+  // зачем D129 (владелец 2026-09-30): без готового курса вкладки «Обучение» нет ни в
+  // таббаре, ни в свайп-ленте. Логические индексы не меняются, сдвиг только тут.
+  test('hides the learn tab from the swipe pages when the course is not ready', () => {
+    const layout = tabPageLayoutFor({ learnTabVisible: false });
+    expect(physicalPageCount(layout)).toBe(4);
+    expect(isLogicalTabHidden(1, layout)).toBe(true);
+    expect([0, 1, 2, 3].map((index) => physicalPageToRuntimeOwner(index, layout))).toEqual([
+      'home',
+      'video',
+      'community',
+      'settings',
+    ]);
+    expect(logicalTabToPhysicalPage(2, layout)).toBe(1);
+    expect(logicalTabToPhysicalPage(4, layout)).toBe(3);
+    // Скрытая вкладка ведёт на Главную, а не падает.
+    expect(logicalTabToPhysicalPage(1, layout)).toBe(0);
+    expect(physicalPageToLogicalTab(3, layout)).toBe(4);
+    expect(() => physicalPageToLogicalTab(4, layout)).toThrow(RangeError);
+    expect(physicalPageCount(tabPageLayoutFor({ learnTabVisible: true }))).toBe(5);
   });
 });

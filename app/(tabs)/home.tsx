@@ -20,6 +20,9 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
 import { useStudyTarget } from '../../components/StudyTargetContext';
+import { isLearnTabVisibleForTarget, isLearningSurfaceReady } from '../learning_language_surface_readiness';
+import { filterTodayTasksForTarget } from '../today_task_surface_filter';
+import { homeVideoRailUsesCatalog, loadHomeVideoRailForTarget, peekHomeVideoRailForTarget } from '../home_video_rail_source';
 import ScreenGradient from '../../components/ScreenGradient';
 import { glassFill } from '../../components/GlassSurface';
 import BouncyScrollView from '../../components/BouncyScrollView';
@@ -601,6 +604,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const myCoinRank = useMyCoinRank();
     const { s, lang } = useLang();
     const { studyTarget } = useStudyTarget();
+    // зачем D129/D130: какие разделы видны для языка обучения — только из таблицы
+    // готовности. studyTarget синхронный (peek), поэтому первый кадр уже финальный.
+    const homeLearnVisible = isLearnTabVisibleForTarget(studyTarget);
+    const homeDialoguesVisible = isLearningSurfaceReady(studyTarget, 'dialogues');
+    const homeFlashcardsVisible = isLearningSurfaceReady(studyTarget, 'flashcards');
+    const homeVideosVisible = isLearningSurfaceReady(studyTarget, 'videos');
+    const homeDailyPhraseVisible = isLearningSurfaceReady(studyTarget, 'daily_phrase');
     const insets = useStableSafeAreaInsets();
     const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
     const topFadeScroll = useTopFadeScroll();
@@ -908,8 +918,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     } | null>(null);
     // Счётчик непросмотренных видео переехал из кнопки в шапке в этот же ряд.
     const [videoUnreadCount, setVideoUnreadCount] = useState(0);
-    const [homeV2Videos, setHomeV2Videos] = useState<readonly LingmanYoutubeVideo[]>([]);
-    const [homeV2VideoStatus, setHomeV2VideoStatus] = useState<'loading' | 'ready' | 'error'>('loading');
+    // зачем D130: для языка с лентой из каталога (итальянский) первый кадр берёт кэш процесса.
+    const [homeV2Videos, setHomeV2Videos] = useState<readonly LingmanYoutubeVideo[]>(() => (
+        homeVideoRailUsesCatalog(studyTarget) ? peekHomeVideoRailForTarget(studyTarget)?.videos ?? [] : []
+    ));
+    const [homeV2VideoStatus, setHomeV2VideoStatus] = useState<'loading' | 'ready' | 'error'>(() => (
+        homeVideoRailUsesCatalog(studyTarget) && peekHomeVideoRailForTarget(studyTarget) ? 'ready' : 'loading'
+    ));
     const latestVideoIdRef = useRef<string | null>(null);
     // зачем (владелец 2026-09-14/15): плитка «Мои ошибки» больше не подменяет
     // «Продолжить урок» — вход в раздел живёт кнопкой у заголовка «Сегодня».
@@ -1241,6 +1256,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 if (!alive) return;
                 latestVideoIdRef.current = snapshot.latestVideoId ?? snapshot.videos[0]?.id ?? null;
                 setVideoUnreadCount(snapshot.unreadCount);
+                // зачем D130: язык с лентой из каталога берёт видео своего канала (эффект ниже),
+                // английская RSS-лента для него только считает непросмотренные.
+                if (homeVideoRailUsesCatalog(studyTarget)) return;
                 setHomeV2Videos(snapshot.videos);
                 setHomeV2VideoStatus(snapshot.error && snapshot.videos.length === 0 ? 'error' : 'ready');
             })
@@ -1252,7 +1270,33 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 }
             });
         return () => { alive = false; };
-    }, [focusTick, homeRuntimeActive]);
+    }, [focusTick, homeRuntimeActive, studyTarget]);
+    // зачем D130: при смене языка лента не показывает видео прежнего языка, пока грузится новая.
+    const homeRailTargetRef = useRef(studyTarget);
+    useEffect(() => {
+        if (homeRailTargetRef.current === studyTarget) return;
+        homeRailTargetRef.current = studyTarget;
+        const peek = homeVideoRailUsesCatalog(studyTarget) ? peekHomeVideoRailForTarget(studyTarget) : null;
+        setHomeV2Videos(peek?.videos ?? []);
+        setHomeV2VideoStatus(peek ? 'ready' : 'loading');
+    }, [studyTarget]);
+    // зачем D130: лента Главной для итальянского — канал каталога с тегом 'it'.
+    useEffect(() => {
+        if (!homeRuntimeActive || !isVideoButtonEnabled()) return undefined;
+        if (!homeVideoRailUsesCatalog(studyTarget) || !homeVideosVisible) return undefined;
+        let alive = true;
+        void loadHomeVideoRailForTarget(studyTarget)
+            .then((rail) => {
+                if (!alive) return;
+                setHomeV2Videos(rail.videos);
+                setHomeV2VideoStatus('ready');
+            })
+            .catch((error: unknown) => {
+                console.warn('[LANG-SURFACE] home_rail:catch → error', { studyTarget, error: error instanceof Error ? error.message : String(error) }); // guard-ok: лог в catch обязателен
+                if (alive) setHomeV2VideoStatus('error');
+            });
+        return () => { alive = false; };
+    }, [focusTick, homeRuntimeActive, homeVideosVisible, studyTarget]);
     const [userAvatar, setUserAvatar] = useState(() => initialVisuals.avatar);
     // зачем: владелец (2026-08-27) — новичок не догадывается, что аватарка
     // кликабельна. Пока он ни разу не открыл раздел внешнего вида, она раз в
@@ -2944,7 +2988,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 : homePriorityCardFace === 'mistakes';
         // Карточка ошибок живёт и без последнего урока: разбирать есть что даже
         // тому, кто ни одного урока не открыл (ошибки копятся и в карточках).
-        const priorityCardVisible = lastLesson !== null || priorityCardShowsMistakes;
+        // зачем D129: «Продолжить урок» — это курс; без курса для языка плашку урока не рисуем.
+        const priorityCardVisible = (lastLesson !== null && homeLearnVisible) || priorityCardShowsMistakes;
         const priorityCardTitle = priorityCardShowsMistakes
             ? triLang(lang, {
                 ru: 'Мои ошибки', uk: 'Мої помилки', en: 'My mistakes', es: 'Mis errores',
@@ -3481,7 +3526,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             pl: `${homeV2Days} ${homeV2Days === 1 ? 'dzień' : 'dni'}`,
         });
         const homeV2StreakWord = triLang(lang, { ru: 'Серия', uk: 'Серія', en: 'Streak', es: 'Racha', 'pt-BR': 'Sequência', vi: 'Chuỗi', id: 'Runtunan', tr: 'Seri', pl: 'Seria' });
-        const homeV2Tiles: HomeFeatureTile[] = [
+        // зачем D129/D130: плитка показывается, только если её раздел готов для языка обучения.
+        const homeV2AllTiles: HomeFeatureTile[] = [
             {
                 key: 'lessons',
                 title: quickItems[0]!.label,
@@ -3504,8 +3550,15 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 art: require('../../assets/images/v2/notecard_stack.png'),
             },
         ];
+        const homeV2TileVisible: Record<string, boolean> = {
+            lessons: homeLearnVisible,
+            dialogs: homeDialoguesVisible,
+            cards: homeFlashcardsVisible,
+        };
+        const homeV2Tiles = homeV2AllTiles.filter((tile) => homeV2TileVisible[tile.key] === true);
         // TODO(PM-259): заменить заглушку на useTodayTasks() программы 2.0.
-        const homeV2Tasks = buildTodayTasksPlaceholder(lang, lastLesson ? lastLessonName : null);
+        // зачем D129: задания только из разделов, видимых для языка обучения.
+        const homeV2Tasks = filterTodayTasksForTarget(buildTodayTasksPlaceholder(lang, lastLesson ? lastLessonName : null), studyTarget);
         const homeV2CoinsLabel = triLang(lang, { ru: 'Монеты', uk: 'Монети', en: 'Coins', es: 'Monedas', 'pt-BR': 'Moedas', vi: 'Xu', id: 'Koin', tr: 'Jeton', pl: 'Monety' });
         const homeV2Palette = getV2Palette(t, themeMode);
         const renderHomeV2 = () => (
@@ -3587,8 +3640,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               />
             ) : null}
             <View style={{ gap: 4 }}>
-              <HomeV2FeatureTiles tiles={homeV2Tiles} />
-              {isVideoButtonEnabled() ? (
+              {homeV2Tiles.length > 0 ? <HomeV2FeatureTiles tiles={homeV2Tiles} /> : null}
+              {isVideoButtonEnabled() && homeVideosVisible ? (
                 <HomeV2VideoRail
                   videos={homeV2Videos}
                   status={homeV2VideoStatus}
@@ -3602,12 +3655,15 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               tasks={homeV2Tasks}
               onOpenTask={(task) => go(task.route)}
             />
+            {/* зачем D129: «Фраза дня» только там, где есть банк фраз для языка (en, fr). */}
+            {homeDailyPhraseVisible ? (
             <View onLayout={(event: LayoutChangeEvent) => {
                 dailyPhraseLayoutRef.current = { top: event.nativeEvent.layout.y, height: event.nativeEvent.layout.height };
                 refreshDailyPhraseVisibility();
             }}>
               <DailyPhraseCard variant="homeV2" homeCardVisible={dailyPhraseCardVisible} />
             </View>
+            ) : null}
           </BouncyScrollView>
         );
         // зачем (владелец 24.09, 2.0): Главная ровно как на референсе — шапка,

@@ -47,17 +47,47 @@ function assertIntegerInRange(value: number, max: number, label: string): void {
   }
 }
 
-export function logicalTabToPhysicalPage(index: number): PhysicalPageIndex {
+/**
+ * зачем D129 (владелец 2026-09-30): вкладка «Обучение» видна только для языка, у
+ * которого готов курс. Скрытая вкладка исчезает и из таббара, и из свайп-ленты:
+ * физических страниц становится меньше, логические индексы (маршруты, goToTab)
+ * остаются прежними. Раскладка — единственное место, где считается сдвиг.
+ */
+export type TabPageLayout = Readonly<{ hiddenLogicalTabs: readonly LogicalTabIndex[] }>;
+
+export const FULL_TAB_PAGE_LAYOUT: TabPageLayout = Object.freeze({ hiddenLogicalTabs: Object.freeze([]) as readonly LogicalTabIndex[] });
+const LESSONS_HIDDEN_TAB_PAGE_LAYOUT: TabPageLayout = Object.freeze({ hiddenLogicalTabs: Object.freeze([1]) as readonly LogicalTabIndex[] });
+
+export function tabPageLayoutFor(options: { learnTabVisible: boolean }): TabPageLayout {
+  return options.learnTabVisible ? FULL_TAB_PAGE_LAYOUT : LESSONS_HIDDEN_TAB_PAGE_LAYOUT;
+}
+
+/** Логические индексы, у которых есть физическая страница, в порядке свайпа. */
+export function visibleLogicalTabs(layout: TabPageLayout = FULL_TAB_PAGE_LAYOUT): readonly LogicalTabIndex[] {
+  return ([0, 1, 2, 3, 4] as const).filter((index) => !layout.hiddenLogicalTabs.includes(index));
+}
+
+export function isLogicalTabHidden(index: number, layout: TabPageLayout = FULL_TAB_PAGE_LAYOUT): boolean {
+  return (layout.hiddenLogicalTabs as readonly number[]).includes(index);
+}
+
+export function physicalPageCount(layout: TabPageLayout = FULL_TAB_PAGE_LAYOUT): number {
+  return visibleLogicalTabs(layout).length;
+}
+
+/** Скрытая вкладка ведёт на Главную (страница 0): её экрана в ленте нет. */
+export function logicalTabToPhysicalPage(index: number, layout: TabPageLayout = FULL_TAB_PAGE_LAYOUT): PhysicalPageIndex {
   assertIntegerInRange(index, LOGICAL_TAB_IDS.length - 1, 'logical tab index');
-  return index as PhysicalPageIndex;
+  const physical = visibleLogicalTabs(layout).indexOf(index as LogicalTabIndex);
+  return (physical < 0 ? 0 : physical) as PhysicalPageIndex;
 }
 
-export function physicalPageToLogicalTab(index: number): LogicalTabIndex {
-  assertIntegerInRange(index, PHYSICAL_PAGE_IDS.length - 1, 'physical page index');
-  return index as LogicalTabIndex;
+export function physicalPageToLogicalTab(index: number, layout: TabPageLayout = FULL_TAB_PAGE_LAYOUT): LogicalTabIndex {
+  const visible = visibleLogicalTabs(layout);
+  assertIntegerInRange(index, visible.length - 1, 'physical page index');
+  return visible[index]!;
 }
 
-export function physicalPageToRuntimeOwner(index: number): TabRuntimeOwnerId {
-  assertIntegerInRange(index, PHYSICAL_PAGE_IDS.length - 1, 'physical page index');
-  return PHYSICAL_PAGE_IDS[index] as TabRuntimeOwnerId;
+export function physicalPageToRuntimeOwner(index: number, layout: TabPageLayout = FULL_TAB_PAGE_LAYOUT): TabRuntimeOwnerId {
+  return LOGICAL_TAB_IDS[physicalPageToLogicalTab(index, layout)] as TabRuntimeOwnerId;
 }

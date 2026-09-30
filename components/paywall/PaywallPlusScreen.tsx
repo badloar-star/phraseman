@@ -47,7 +47,8 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   const lang = rawLang as Lang;
   const { liquidGlassThemeId } = useTheme();
   // зачем: пейвол целиком на токенах АКТИВНОЙ темы — меняешь тему, меняется пейвол.
-  const g = useMemo(() => liquidGlassTokens(liquidGlassThemeId), [liquidGlassThemeId]);
+  // зачем (темы 2.0): без useMemo — токены зависят ещё от уровня цвета и оформления; поиск кэширован.
+  const g = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
   const ctx = entry.context;
   const source = entry.source;

@@ -113,7 +113,8 @@ function QuestSheetModal({
   quest, visible, busy = false, errorRu = null, onClose, onOpenTarget, onClaim,
 }: QuestSheetModalProps) {
   const { f, themeMode, liquidGlassThemeId } = useTheme();
-  const g = useMemo(() => liquidGlassTokens(liquidGlassThemeId), [liquidGlassThemeId]);
+  // зачем (темы 2.0): без useMemo — токены зависят ещё от уровня цвета и оформления; поиск кэширован.
+  const g = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);

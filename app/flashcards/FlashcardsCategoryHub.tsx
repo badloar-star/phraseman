@@ -429,7 +429,8 @@ export default function FlashcardsCategoryHub({
 }: Props) {
   const router = useRouter();
   const { liquidGlassThemeId } = useTheme();
-  const g = useMemo(() => liquidGlassTokens(liquidGlassThemeId), [liquidGlassThemeId]);
+  // зачем (темы 2.0): без useMemo — токены зависят ещё от уровня цвета и оформления; поиск кэширован.
+  const g = liquidGlassTokens(liquidGlassThemeId);
   const [reduceMotion, setReduceMotion] = useState(false);
   const [hasUnfinishedPackDraft, setHasUnfinishedPackDraft] = useState(false);
   const [hiddenCommunityPackIds, setHiddenCommunityPackIds] = useState<Set<string>>(() => new Set());

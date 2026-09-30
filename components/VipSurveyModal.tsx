@@ -60,7 +60,8 @@ type Props = {
 function VipSurveyModal({ visible, messageId, onClose, onCompleted, motionVariant = 'hybrid' }: Props) {
   const { lang } = useLang();
   const { f, liquidGlassThemeId } = useTheme();
-  const g = useMemo(() => liquidGlassTokens(liquidGlassThemeId), [liquidGlassThemeId]);
+  // зачем (темы 2.0): без useMemo — токены зависят ещё от уровня цвета и оформления; поиск кэширован.
+  const g = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { height: windowHeight } = useWindowDimensions();

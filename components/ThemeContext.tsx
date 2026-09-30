@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
+import React, { createContext, useContext, useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useWindowDimensions } from 'react-native';
 import { DARK, Theme, ThemeMode } from '../constants/theme';
@@ -12,8 +12,14 @@ import { setOskolokThemeMode } from '../app/oskolok';
 import { APP_FONT_FAMILY } from '../app/typography';
 import {
   LIQUID_GLASS_THEME_IDS,
+  getActiveLiquidGlassVariant,
   makeLiquidGlassTheme,
+  resolveLiquidGlassAppearance,
+  resolveLiquidGlassColorLevel,
   resolveLiquidGlassTheme,
+  setActiveLiquidGlassVariant,
+  type LiquidGlassAppearance,
+  type LiquidGlassColorLevel,
   type LiquidGlassThemeId,
 } from '../constants/liquidGlassThemePalette';
 
@@ -165,6 +171,12 @@ interface ThemeCtx {
   setPreviewLiquidGlassThemeId: (id: LiquidGlassThemeId | null) => void;
   setLiquidGlassThemeId: (id: LiquidGlassThemeId) => void;
   isLiquidGlassThemeAvailable: (id: LiquidGlassThemeId) => boolean;
+  /** Темы 2.0: уровень цвета «Спокойно / Акцент / Максимум». По умолчанию calm. */
+  liquidGlassColorLevel: LiquidGlassColorLevel;
+  setLiquidGlassColorLevel: (level: LiquidGlassColorLevel) => void;
+  /** Темы 2.0: тёмное / светлое оформление. По умолчанию dark. */
+  liquidGlassAppearance: LiquidGlassAppearance;
+  setLiquidGlassAppearance: (appearance: LiquidGlassAppearance) => void;
   isGoldThemeUnlocked: boolean;
   /** «Дедушка»: юзер жил на бесплатной «Полночи» до её ухода в премиум — тема остаётся ему доступной. */
   isMidnightGrandfathered: boolean;
@@ -215,6 +227,10 @@ const ThemeContext = createContext<ThemeCtx>({
   setPreviewLiquidGlassThemeId: () => {},
   setLiquidGlassThemeId: () => {},
   isLiquidGlassThemeAvailable: (id) => id === 'graphite',
+  liquidGlassColorLevel: 'calm',
+  setLiquidGlassColorLevel: () => {},
+  liquidGlassAppearance: 'dark',
+  setLiquidGlassAppearance: () => {},
   isGoldThemeUnlocked: false,
   isMidnightGrandfathered: false,
   ownedThemeModes: new Set<ThemeMode>(),
@@ -241,12 +257,29 @@ const ThemeContext = createContext<ThemeCtx>({
 
 const LEGACY_GRAPHITE_THEME_MODE: ThemeMode = 'dark';
 const EMPTY_OWNED_THEME_MODES: ReadonlySet<ThemeMode> = new Set<ThemeMode>();
+// зачем (темы 2.0): выбор темы, уровня цвета и оформления — локальный (в облако не
+// уходит, чтений Firestore ноль). Три ключа читаются ОДНИМ multiGet при старте.
+const THEME_STORAGE_KEY = 'liquid_glass_theme';
+const COLOR_LEVEL_STORAGE_KEY = 'liquid_glass_color_level';
+const APPEARANCE_STORAGE_KEY = 'liquid_glass_appearance';
+// Модульный peek: повторный маунт провайдера в той же сессии (Fast Refresh, ремаунт
+// дерева) сразу рисует последнюю выбранную тему, без кадра графита.
+let peekLiquidGlassThemeId: LiquidGlassThemeId = 'graphite';
+
+const logThemeWriteError = (key: string) => (e: unknown) => {
+  DebugLogger.error(`ThemeContext:${key}:write`, e instanceof Error ? e : new Error(String(e)), 'warning');
+};
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const { width: layoutW, height: layoutH } = useWindowDimensions();
   const windowUiScale = useMemo(() => computeUiScale(layoutW, layoutH), [layoutW, layoutH]);
 
-  const [appliedLiquidGlassThemeId, setAppliedLiquidGlassThemeId] = useState<LiquidGlassThemeId>('graphite');
+  const [appliedLiquidGlassThemeId, setAppliedLiquidGlassThemeId] = useState<LiquidGlassThemeId>(() => peekLiquidGlassThemeId);
+  const [liquidGlassColorLevel, setColorLevelState] = useState<LiquidGlassColorLevel>(() => getActiveLiquidGlassVariant().level);
+  const [liquidGlassAppearance, setAppearanceState] = useState<LiquidGlassAppearance>(() => getActiveLiquidGlassVariant().appearance);
+  // зачем: запоздалое чтение хранилища при старте не должно затереть выбор, который
+  // человек успел сделать раньше (last-write-guard, как с осколками).
+  const touchedRef = useRef({ theme: false, level: false, appearance: false });
   const [previewLiquidGlassThemeId, setPreviewLiquidGlassThemeId] = useState<LiquidGlassThemeId | null>(null);
   const liquidGlassThemeId = previewLiquidGlassThemeId ?? appliedLiquidGlassThemeId;
   const uiScale = windowUiScale;
@@ -262,8 +295,26 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   ), []);
 
   const commitLiquidGlassThemeId = useCallback((id: LiquidGlassThemeId) => {
+    touchedRef.current.theme = true;
+    peekLiquidGlassThemeId = id;
     setAppliedLiquidGlassThemeId(id);
-    void AsyncStorage.setItem('liquid_glass_theme', id);
+    AsyncStorage.setItem(THEME_STORAGE_KEY, id).catch(logThemeWriteError(THEME_STORAGE_KEY));
+  }, []);
+
+  // зачем (темы 2.0): уровень и оформление меняются мгновенно (локальный state), запись
+  // на диск догоняет фоном; ошибка записи только логируется — выбор на экране остаётся.
+  const setLiquidGlassColorLevel = useCallback((level: LiquidGlassColorLevel) => {
+    const resolved = resolveLiquidGlassColorLevel(level);
+    touchedRef.current.level = true;
+    setColorLevelState(resolved);
+    AsyncStorage.setItem(COLOR_LEVEL_STORAGE_KEY, resolved).catch(logThemeWriteError(COLOR_LEVEL_STORAGE_KEY));
+  }, []);
+
+  const setLiquidGlassAppearance = useCallback((appearance: LiquidGlassAppearance) => {
+    const resolved = resolveLiquidGlassAppearance(appearance);
+    touchedRef.current.appearance = true;
+    setAppearanceState(resolved);
+    AsyncStorage.setItem(APPEARANCE_STORAGE_KEY, resolved).catch(logThemeWriteError(APPEARANCE_STORAGE_KEY));
   }, []);
 
   const setLiquidGlassThemeId = useCallback((id: LiquidGlassThemeId) => {
@@ -277,16 +328,22 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     let cancelled = false;
     void (async () => {
-      const storedId = await AsyncStorage.getItem('liquid_glass_theme');
+      const pairs = await AsyncStorage.multiGet([THEME_STORAGE_KEY, COLOR_LEVEL_STORAGE_KEY, APPEARANCE_STORAGE_KEY]);
       if (cancelled) return;
+      const storedId = pairs[0]?.[1] ?? null;
       const resolved = resolveLiquidGlassTheme(storedId);
-      setAppliedLiquidGlassThemeId(resolved);
-      if (storedId !== null && storedId !== resolved) {
-        void AsyncStorage.setItem('liquid_glass_theme', resolved);
+      if (!touchedRef.current.theme) {
+        peekLiquidGlassThemeId = resolved;
+        setAppliedLiquidGlassThemeId(resolved);
       }
+      if (storedId !== null && storedId !== resolved) {
+        AsyncStorage.setItem(THEME_STORAGE_KEY, resolved).catch(logThemeWriteError(THEME_STORAGE_KEY));
+      }
+      if (!touchedRef.current.level) setColorLevelState(resolveLiquidGlassColorLevel(pairs[1]?.[1] ?? null));
+      if (!touchedRef.current.appearance) setAppearanceState(resolveLiquidGlassAppearance(pairs[2]?.[1] ?? null));
     })().catch((e: unknown) => {
       DebugLogger.error('ThemeContext:liquid_glass_theme', e instanceof Error ? e : new Error(String(e)), 'warning');
-      if (!cancelled) setAppliedLiquidGlassThemeId('graphite');
+      if (!cancelled && !touchedRef.current.theme) setAppliedLiquidGlassThemeId('graphite');
     });
     return () => { cancelled = true; };
   }, []);
@@ -334,9 +391,17 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     () => createFonts(FONT_SCALE[fontSize] * uiScale),
     [fontSize, uiScale],
   );
-  const theme = useMemo(() => makeLiquidGlassTheme(liquidGlassThemeId, DARK), [liquidGlassThemeId]);
-  const isDark = true;
-  const statusBarLight = true;
+  const variant = useMemo(
+    () => ({ level: liquidGlassColorLevel, appearance: liquidGlassAppearance }),
+    [liquidGlassColorLevel, liquidGlassAppearance],
+  );
+  // зачем: регистрируем вариант ДО рендера детей — экраны, читающие
+  // liquidGlassTokens(id) без второго аргумента, в этом же кадре получают новый цвет
+  // (без мигания старым). Вызов идемпотентен: тот же state → тот же вариант.
+  setActiveLiquidGlassVariant(variant);
+  const theme = useMemo(() => makeLiquidGlassTheme(liquidGlassThemeId, DARK, variant), [liquidGlassThemeId, variant]);
+  const isDark = liquidGlassAppearance === 'dark';
+  const statusBarLight = isDark;
   const ds = useMemo(() => {
     const px = (n: number) => Math.max(2, Math.round(n * uiScale));
     const radiusBase = { md: 12, lg: 16, xl: 20, xxl: 24 };
@@ -380,6 +445,10 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       setPreviewLiquidGlassThemeId,
       setLiquidGlassThemeId,
       isLiquidGlassThemeAvailable,
+      liquidGlassColorLevel,
+      setLiquidGlassColorLevel,
+      liquidGlassAppearance,
+      setLiquidGlassAppearance,
       isGoldThemeUnlocked: false,
       isMidnightGrandfathered: false,
       ownedThemeModes: EMPTY_OWNED_THEME_MODES,
@@ -393,7 +462,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       f,
       ds,
     }),
-    [theme, isDark, statusBarLight, setPreviewThemeMode, liquidGlassThemeId, appliedLiquidGlassThemeId, previewLiquidGlassThemeId, setLiquidGlassThemeId, isLiquidGlassThemeAvailable, isThemeAvailable, markThemePurchased, toggle, setThemeMode, fontSize, setFontSize, uiScale, f, ds],
+    [theme, isDark, statusBarLight, setPreviewThemeMode, liquidGlassThemeId, appliedLiquidGlassThemeId, previewLiquidGlassThemeId, setLiquidGlassThemeId, isLiquidGlassThemeAvailable, liquidGlassColorLevel, setLiquidGlassColorLevel, liquidGlassAppearance, setLiquidGlassAppearance, isThemeAvailable, markThemePurchased, toggle, setThemeMode, fontSize, setFontSize, uiScale, f, ds],
   );
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;

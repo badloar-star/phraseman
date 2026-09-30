@@ -20,7 +20,8 @@ type IconName = React.ComponentProps<typeof Ionicons>['name'];
 /** Токены активной темы Liquid Glass (graphite по умолчанию). */
 export function useDialogueGlass(): DialogueGlass {
   const { liquidGlassThemeId } = useTheme();
-  return React.useMemo(() => liquidGlassTokens(liquidGlassThemeId), [liquidGlassThemeId]);
+  // зачем (темы 2.0): без useMemo — токены зависят ещё от уровня цвета и оформления; поиск кэширован.
+  return liquidGlassTokens(liquidGlassThemeId);
 }
 
 /** Карточка `.bcard`/`.goal`: непрозрачное стекло + 1 px кромка. */

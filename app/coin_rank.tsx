@@ -147,7 +147,8 @@ export default function CoinRankScreen() {
   const { liquidGlassThemeId } = useTheme();
   const p = useV2Palette();
   const glass = useV2GlassStyle();
-  const g = useMemo(() => liquidGlassTokens(liquidGlassThemeId), [liquidGlassThemeId]);
+  // зачем (темы 2.0): без useMemo — токены зависят ещё от уровня цвета и оформления; поиск кэширован.
+  const g = liquidGlassTokens(liquidGlassThemeId);
   const { balance, ownerKey, forceBalanceReconcile } = useCoinBalance();
   const {
     rankBinding,

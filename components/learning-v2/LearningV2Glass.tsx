@@ -51,8 +51,9 @@ export type Lv2Glass = ReturnType<typeof liquidGlassTokens> & {
 /** Токены стекла активной темы + цвета вердикта. Мемоизировано по id темы. */
 export function useLv2Glass(): Lv2Glass {
   const { liquidGlassThemeId } = useTheme();
+  // зачем (темы 2.0): токены зависят ещё от уровня цвета и оформления — мемо по самому объекту токенов.
+  const g = liquidGlassTokens(liquidGlassThemeId);
   return useMemo(() => {
-    const g = liquidGlassTokens(liquidGlassThemeId);
     return {
       ...g,
       good: LV2_GOOD,
@@ -65,7 +66,7 @@ export function useLv2Glass(): Lv2Glass {
       badEdge: lv2Alpha(LV2_BAD, 0.45),
       plate: 'rgba(0,0,0,0.34)',
     };
-  }, [liquidGlassThemeId]);
+  }, [g]);
 }
 
 /**

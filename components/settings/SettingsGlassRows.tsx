@@ -3,6 +3,7 @@ import { Text, View, type StyleProp, type ViewStyle } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import PressableHybrid from '../PressableHybrid';
 import SafeLinearGradient from '../SafeLinearGradient';
+import { ThemeGlassSmoke } from '../v2/ThemeGlassSmoke';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 
 // зачем (владелец 2026-09-29): корневой экран «Настройки» переносится 1 в 1 по макету
@@ -62,6 +63,8 @@ export function SettingsGlassCard({ glass, children, testID, style }: { glass: S
   return (
     <View testID={testID} style={[settingsGlassCardStyle(glass), style]}>
       <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
+      {/* зачем (темы 2.0): цветная дымка внутри карточки — только «Максимум». */}
+      <ThemeGlassSmoke glass={glass} />
       {children}
     </View>
   );
@@ -94,9 +97,12 @@ export function SettingsGlassRow({ glass, testID, title, sub, value, icon, leadi
   const body = (
     <>
       <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={{ position: 'absolute', inset: 0 }} />
+      {/* зачем (темы 2.0): цветная дымка внутри карточки — только «Максимум». */}
+      <ThemeGlassSmoke glass={glass} />
       {leading ?? (icon ? (
         <SettingsGlassTile glass={glass}>
-          <Ionicons name={icon} size={20} color={glass.lightTint} />
+          {/* зачем (темы 2.0): значок плитки в цвете темы в «Акценте/Максимуме»; в «Спокойно» — как было. */}
+          <Ionicons name={icon} size={20} color={glass.level === 'accent' || glass.level === 'max' ? glass.accentBright : glass.lightTint} />
         </SettingsGlassTile>
       ) : null)}
       <View style={{ flex: 1, minWidth: 0 }}>

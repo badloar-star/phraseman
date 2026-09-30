@@ -3,6 +3,7 @@ import { Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import PressableHybrid from '../PressableHybrid';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { ThemeGlassSmoke } from '../v2/ThemeGlassSmoke';
 
 // зачем (владелец 2026-09-29): меню урока переносится «1 в 1» по макету learn.html B1–B5
 // (Liquid Glass). Раньше экран собирался из общего V2Kit с его собственной палитрой, из-за чего
@@ -154,6 +155,8 @@ export function LessonMenuRow({
         opacity: dimmed || disabled ? DIMMED_OPACITY : 1,
       }}
     >
+      {/* зачем (темы 2.0): цветная дымка внутри карточки — только «Максимум». */}
+      <ThemeGlassSmoke glass={glass} />
       <View
         style={{
           width: 46,
@@ -201,6 +204,7 @@ export function LessonMenuTip({
         paddingHorizontal: 16,
       }}
     >
+      <ThemeGlassSmoke glass={glass} />
       <View
         style={{
           width: 55,

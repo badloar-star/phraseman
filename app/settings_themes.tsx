@@ -6,6 +6,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import PressableHybrid from '../components/PressableHybrid';
 import { settingsGlassCardStyle } from '../components/settings/SettingsGlassRows';
 import { ThemeSwatch } from '../components/settings/ThemeSwatch';
+import { ThemeGlassSmoke } from '../components/v2/ThemeGlassSmoke';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
@@ -249,6 +250,7 @@ export default function SettingsThemes() {
               accessibilityRole="radiogroup"
               style={[settingsGlassCardStyle(glass), styles.list, listShadow]}
             >
+              <ThemeGlassSmoke glass={glass} />
               {THEME_OPTIONS.map((item, index) => (
                 <ThemeRow
                   key={item.mode}

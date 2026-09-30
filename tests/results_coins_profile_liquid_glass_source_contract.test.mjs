@@ -33,7 +33,8 @@ const GLASS_FILES = [
 for (const file of GLASS_FILES) {
   test(`${file}: Liquid Glass tokens, no forbidden tricks`, () => {
     const src = code(file);
-    assert.match(src, /liquidGlassTokens|useLv2Glass/, `${file} must read glass tokens`);
+    // 30.09: итог диалога V2 читает токены через useDialogueGlass (= liquidGlassTokens активной темы).
+    assert.match(src, /liquidGlassTokens|useLv2Glass|useDialogueGlass/, `${file} must read glass tokens`);
     assert.doesNotMatch(src, /adjustsFontSizeToFit/);
     assert.doesNotMatch(src, /Alert\.alert/);
     assert.doesNotMatch(src, /borderWidth:\s*[2-9]/, 'no thick borders');

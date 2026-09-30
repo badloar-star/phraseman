@@ -11679,9 +11679,9 @@
       {
         "id": "PM-231-A1",
         "text": "Idempotency/cache/timeout/rate limit/max output",
-        "accepted": false,
+        "accepted": true,
         "evidence": [
-          "evidence/PM-231_paid_ai_requests_audit.md: PARTIAL — дыры 1–6 (mistake_hub_advice без лимита, нет fetch-тайм-аутов в premium_dialog*/mistake_explain)"
+          "Коммиты 490f82406, 15326b641, 9d4b90e8d, d99195f71: серверный день+3/сутки+billing в mistake_hub_advice; AbortSignal-тайм-ауты в premium_dialog*/review/mistake_explain/video_phrases/asset_studio; Free text review 3/сутки; Plus mistake_explain 100/сутки; max_tokens у video_phrases. Остаток: admin_director_digest_audio без кэша (админ-only)"
         ]
       },
       {
@@ -11697,7 +11697,7 @@
         "text": "расходы видны по operation",
         "accepted": false,
         "evidence": [
-          "evidence/PM-231_paid_ai_requests_audit.md: PARTIAL — Dialogue V2, mistake_hub_advice, часть админ-функций без billing"
+          "48483c341: Dialogue V2 (freeform/text/complete) и mistake_hub_advice теперь в billing и дашборде; без usage остаются админ-функции (translate, digests, report_replies, ideas, feedback)"
         ]
       }
     ],

@@ -73,6 +73,8 @@ jest.mock('../app/ai_dialog_consent_gate', () => ({
 jest.mock('../components/StudyTargetContext', () => ({ useStudyTarget: () => mockUseStudyTarget() }));
 jest.mock('../hooks/use_my_coin_rank', () => ({ useMyCoinRank: () => mockUseMyCoinRank() }));
 jest.mock('../components/LangContext', () => ({ useLang: () => mockUseLang() }));
+// 30.09: пилюля энергии в шапке сессии (макет B6), у Plus её нет.
+jest.mock('../components/EnergyContext', () => ({ useEnergy: () => ({ isUnlimited: false }) }));
 // Экран-гейт Liquid Glass (загрузка / недоступно / Plus) — простая замена для узлового теста.
 jest.mock('../components/dialogs/glass/DialogueGlassKit', () => {
   const mockReact = jest.requireActual('react') as typeof React;

@@ -1,3 +1,4 @@
+import EnergyBar from '../EnergyBar';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React from 'react';
 import { ActivityIndicator, BackHandler, KeyboardAvoidingView, Platform, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
@@ -140,6 +141,8 @@ export type DialogueV2SessionScreenProps = Readonly<{
   headerMood?: Readonly<{ mood: DialogueV2CoachingMood; label: string }> | null;
   /** Месячный остаток ответов у Free (D111); null — Plus или остаток ещё не известен. */
   quotaPill?: Readonly<{ text: string; accessibilityLabel: string }> | null;
+  /** Макет dialogs.html B6: пилюля энергии в шапке (5 → 4 на старте); у Plus её нет. */
+  showEnergy?: boolean;
   /** Текущее задание сцены; null — все выполнены. */
   goal?: Readonly<{ kicker: string; label: string }> | null;
   /** Текст окна «Подсказка». */
@@ -195,6 +198,7 @@ export function DialogueV2SessionScreen({
   objectives,
   headerMood = null,
   quotaPill = null,
+  showEnergy = false,
   goal = null,
   hintText = null,
   translatedIds = EMPTY_SET,
@@ -296,6 +300,7 @@ export function DialogueV2SessionScreen({
                 </Text>
               </View>
             </View>
+            {showEnergy ? <EnergyBar glass /> : null}
             {quotaPill ? (
               <DialogueGlassQuotaPill
                 glass={glass}

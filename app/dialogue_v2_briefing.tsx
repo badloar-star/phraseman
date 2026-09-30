@@ -1,5 +1,5 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 import {
   buildDialogueV2BriefingModel,
@@ -16,6 +16,8 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { DialogueV2BriefingScreen } from '../components/dialogs/DialogueV2BriefingScreen';
 import { DialogueGlassGate, useDialogueGlass } from '../components/dialogs/glass/DialogueGlassKit';
+import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
+import NoEnergyModal from '../components/NoEnergyModal';
 
 const V2_TARGETS = new Set(['en', 'es', 'fr', 'de']);
 
@@ -113,6 +115,14 @@ export default function DialogueV2BriefingRoute() {
   const { lang } = useLang();
   const labels = useMemo(() => labelsFor(lang), [lang]);
   const scenarioId = validScenarioId(params.scenarioId) ? params.scenarioId : null;
+  // зачем (владелец 30.09: «энергия как урок, 1 за диалог»; макет dialogs.html B5/B6):
+  // «Начать» списывает 1 энергию до входа в сессию; нет энергии — окно «Нет энергии».
+  // Plus не тратит (confirmSpendOne вернёт 'unlimited'). Латч — от двойного тапа.
+  const { confirmSpendOne, acknowledgeSessionStart } = useEnergy();
+  const [dialogueAttempt, setDialogueAttempt] = useState(0);
+  const energyIntent = useEnergySessionIntent('ai_dialog', `dialogue_v2:${scenarioId ?? 'none'}`, String(dialogueAttempt));
+  const startInFlightRef = useRef(false);
+  const [noEnergy, setNoEnergy] = useState(false);
   const [state, setState] = useState<BriefingState>({ kind: 'loading' });
 
   useEffect(() => {
@@ -152,18 +162,44 @@ export default function DialogueV2BriefingRoute() {
   }
 
   return (
+    <>
     <DialogueV2BriefingScreen
       {...model}
       currentRank={localCoinRank}
       labels={labels}
       onBack={() => router.back()}
       onStart={() => {
-        if (!model.unlocked) return;
-        router.push({
-          pathname: '/dialogue_v2_session',
-          params: { scenarioId },
-        } as never);
+        if (!model.unlocked) {
+          console.warn('[DIALOGUE-V2] start blocked: scenario locked', { scenarioId });
+          return;
+        }
+        if (startInFlightRef.current) return;
+        startInFlightRef.current = true;
+        void (async () => {
+          try {
+            const result = await confirmSpendOne(energyIntent);
+            console.log('[DIALOGUE-V2] start energy', { scenarioId, result }); // guard-ok: ранний выход старта логируется
+            if (result === 'cancelled') return;
+            if (result === 'insufficient') {
+              setNoEnergy(true);
+              return;
+            }
+            void acknowledgeSessionStart(energyIntent.operationId);
+            setDialogueAttempt((n) => n + 1);
+            router.push({
+              pathname: '/dialogue_v2_session',
+              params: { scenarioId },
+            } as never);
+          } catch (error: unknown) {
+            console.warn('[DIALOGUE-V2] start energy failed', { scenarioId, message: error instanceof Error ? error.message : String(error) });
+          } finally {
+            startInFlightRef.current = false;
+          }
+        })();
       }}
     />
+    {/* макет B5: закрытие окна уводит с экрана диалога */}
+    <NoEnergyModal visible={noEnergy} onClose={() => { setNoEnergy(false); router.back(); }} />
+    </>
   );
 }

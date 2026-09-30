@@ -1,3 +1,4 @@
+import { useEnergy } from '../components/EnergyContext';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import * as Crypto from 'expo-crypto';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
@@ -376,6 +377,8 @@ function SessionContent() {
     router.push(route);
   };
 
+  // зачем (владелец 30.09, макет B6): энергия как в уроке — пилюля в шапке, у Plus её нет.
+  const { isUnlimited: energyUnlimited } = useEnergy();
   if (paused) {
     if (typeof __DEV__ !== 'undefined' && __DEV__) console.warn('[DIALOGUE-V2] session:render → paused gate', { scenarioId });
     return (
@@ -473,6 +476,7 @@ function SessionContent() {
       labels={labels}
       coachingLabels={coachingLabels}
       objectives={model.objectives}
+      showEnergy={!energyUnlimited}
       headerMood={coaching.mood ? { mood: coaching.mood, label: dialogueMoodLabel(lang, coaching.mood) } : null}
       quotaPill={coaching.quotaView ? {
         text: `${coaching.quotaView.remaining}/${coaching.quotaView.total}`,

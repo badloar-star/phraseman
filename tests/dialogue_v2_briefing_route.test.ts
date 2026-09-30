@@ -31,6 +31,14 @@ jest.mock('../app/dialogue_v2_briefing_model', () => ({
 jest.mock('../components/StudyTargetContext', () => ({ useStudyTarget: () => mockUseStudyTarget() }));
 jest.mock('../hooks/use_my_coin_rank', () => ({ useMyCoinRank: () => mockUseMyCoinRank() }));
 jest.mock('../components/LangContext', () => ({ useLang: () => mockUseLang() }));
+// 30.09: старт диалога списывает 1 энергию (владелец: «как урок»).
+const mockConfirmSpendOne = jest.fn(async () => 'spent');
+jest.mock('../components/EnergyContext', () => ({
+  useEnergy: () => ({ confirmSpendOne: mockConfirmSpendOne, acknowledgeSessionStart: jest.fn(async () => true) }),
+  useEnergySessionIntent: () => ({ operationId: 'op-1', grant: { kind: 'ai_dialog' } }),
+}));
+const mockNoEnergyModal = jest.fn((_props: unknown) => null);
+jest.mock('../components/NoEnergyModal', () => ({ __esModule: true, default: (props: unknown) => mockNoEnergyModal(props) }));
 // Экран-гейт Liquid Glass (загрузка / недоступно / Plus) — простая замена для узлового теста.
 jest.mock('../components/dialogs/glass/DialogueGlassKit', () => {
   const mockReact = jest.requireActual('react') as typeof React;
@@ -123,5 +131,17 @@ describe('Dialogue V2 briefing route', () => {
       pathname: '/dialogue_v2_session',
       params: { scenarioId: 'work_01' },
     });
+  });
+
+  it('does not open the session without energy and shows the no-energy window', async () => {
+    mockConfirmSpendOne.mockResolvedValueOnce('insufficient');
+    await render(h(DialogueV2BriefingRoute));
+    await waitFor(() => expect(mockScreen).toHaveBeenCalled());
+    await act(async () => {
+      mockScreen.mock.calls[0][0].onStart();
+    });
+    expect(mockPush).not.toHaveBeenCalled();
+    const last = mockNoEnergyModal.mock.calls[mockNoEnergyModal.mock.calls.length - 1][0] as { visible: boolean };
+    expect(last.visible).toBe(true);
   });
 });

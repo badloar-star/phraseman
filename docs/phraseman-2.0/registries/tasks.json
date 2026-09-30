@@ -7439,7 +7439,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -7448,8 +7448,12 @@
       {
         "id": "PM-144-A1",
         "text": "Новый UI не ломает роли, перевод, повтор речи и историю текущей сессии",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "app/dialogue_v2_session.tsx + components/dialogs/DialogueV2SessionScreen.tsx: перевод реплики, разбор, «Лучше так», подсказка, настроение; голосовой ввод и воспроизведение голоса собеседника сохранены",
+          "commits ffbc48813 2e7c25009 be1a507e3 60fe964ea b5acf5d27 73aac3377",
+          "tests: dialogue_v2_session_route 15/15, dialogue_v2_session_screen 3/3, dialogs_v2_screens_liquid_glass_source_contract 8/8"
+        ]
       }
     ],
     "depends_on": [],
@@ -7460,10 +7464,16 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "owner": "Claude Opus 5.5 (сессия «Дизайн»)",
+    "reviewer": "self-check (не независимое ревью)",
+    "evidence": [
+      "app/dialogue_v2_session.tsx + components/dialogs/DialogueV2SessionScreen.tsx: перевод реплики, разбор, «Лучше так», подсказка, настроение; голосовой ввод и воспроизведение голоса собеседника сохранены",
+      "commits ffbc48813 2e7c25009 be1a507e3 60fe964ea b5acf5d27 73aac3377",
+      "tests: dialogue_v2_session_route 15/15, dialogue_v2_session_screen 3/3, dialogs_v2_screens_liquid_glass_source_contract 8/8"
+    ],
+    "notes": [
+      "Дизайн: экран сессии и итога диалога по макету dialogs.html; проверка в эмуляторе в очереди (эмулятор занят другой сессией)"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -13594,7 +13604,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -13603,14 +13613,20 @@
       {
         "id": "PM-279-A1",
         "text": "Тур из 3 экранов, экран Шпиля в «Сообществе» вместо Лиги, итог ступени, этаж/Страж/вершина, итог недели, нет энергии",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "components/spire/SpireTour.tsx (тур), SpireHomeScreen (вкладка «Сообщество» вместо Лиги), SpireResultPanel (итог ступени), SpireFloorInfo/SpireTowerSvg (этаж/Страж/вершина), SpireWeekResultCard (итог недели), нет энергии — как в уроке",
+          "commits 951f3bf87 6ea086014 315c3edb6 847fe6ff0",
+          "tests: spire_game_source_contract (node --test) PASS"
+        ]
       },
       {
         "id": "PM-279-A2",
         "text": "Первый кадр из кэша без спиннера; празднования на своём экране, не durable-очередь",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Первый кадр из локального кэша (app/spire/spire_local_store.ts); итог недели — карточка фактом по документу крона, хранится только «закрыто» (spire_week_result_client.ts) — не durable-очередь"
+        ]
       }
     ],
     "depends_on": [
@@ -13623,11 +13639,17 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
-    "reviewer": null,
-    "evidence": [],
+    "owner": "Claude Opus 5.5 (сессия «Дизайн»)",
+    "reviewer": "self-check (не независимое ревью)",
+    "evidence": [
+      "components/spire/SpireTour.tsx (тур), SpireHomeScreen (вкладка «Сообщество» вместо Лиги), SpireResultPanel (итог ступени), SpireFloorInfo/SpireTowerSvg (этаж/Страж/вершина), SpireWeekResultCard (итог недели), нет энергии — как в уроке",
+      "commits 951f3bf87 6ea086014 315c3edb6 847fe6ff0",
+      "tests: spire_game_source_contract (node --test) PASS",
+      "Первый кадр из локального кэша (app/spire/spire_local_store.ts); итог недели — карточка фактом по документу крона, хранится только «закрыто» (spire_week_result_client.ts) — не durable-очередь"
+    ],
     "notes": [
-      "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md"
+      "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md",
+      "Дизайн: проверка в эмуляторе в очереди (эмулятор занят другой сессией)"
     ],
     "actual_cost": null,
     "kind": "unclassified",

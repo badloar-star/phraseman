@@ -12,9 +12,11 @@ test('dialogue hub keeps back, title and live energy in one safe-area header row
   assert.match(source, /flexDirection: 'row', alignItems: 'flex-start'/);
   assert.match(source, /<V2IconButton icon="chevron-back"/);
   assert.match(source, /safeRouterBack\(router, '\/\(tabs\)\/home'/);
+  // 30.09: пилюля энергии стеклянная (glass) — старая тёмная капсула выбивалась из тем 2.0.
   // 30.09 (макет hubHead): справа столбик — энергия и пилюля остатка «N/30» (у Plus её нет).
   assert.match(source, /<V2LargeTitle[\s\S]*right=\{headerRight\}/);
-  assert.match(source, /const headerRight = \([\s\S]*<EnergyBar size=\{30\} \/>[\s\S]*DialogueGlassQuotaPill/);
+  // 30.09: пилюля энергии стеклянная (glass) — старая тёмная капсула выбивалась из тем 2.0.
+  assert.match(source, /const headerRight = \([\s\S]*<EnergyBar size=\{30\} glass \/>[\s\S]*DialogueGlassQuotaPill/);
   assert.doesNotMatch(source, /paddingTop: 12, gap: 12/);
 });
 

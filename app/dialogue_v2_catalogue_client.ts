@@ -82,9 +82,22 @@ export async function fetchReleasedDialogueV2Catalogue(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'dialogueV2Catalogue',
     );
+    const startedAt = Date.now();
     const response = await callable(Object.freeze({ studyTarget }));
-    return safeEnvelope(response.data);
-  } catch {
+    const envelope = safeEnvelope(response.data);
+    // зачем (правило «сперва логи»): отказ формы ответа раньше молча давал «Диалоги недоступны».
+    if (!envelope) {
+      const data = plainRecord(response.data);
+      console.warn('[DIALOGUE-V2] catalogue:rejected_envelope', JSON.stringify({
+        studyTarget, ms: Date.now() - startedAt, keys: data ? Object.keys(data) : null, ok: data?.ok ?? null,
+      }));
+    }
+    return envelope;
+  } catch (error: unknown) {
+    const code = (error as { code?: unknown } | null)?.code;
+    console.warn('[DIALOGUE-V2] catalogue:callable_failed', JSON.stringify({
+      studyTarget, code: typeof code === 'string' ? code : null, message: error instanceof Error ? error.message : String(error),
+    }));
     throw new DialogueV2CatalogueUnavailableError();
   }
 }

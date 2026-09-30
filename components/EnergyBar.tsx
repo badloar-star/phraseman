@@ -44,6 +44,9 @@ const DROP_IN_MS = 230;
 const DROP_OUT_MS = 420;
 const DROP_EASE = Easing.bezier(0.3, 1.4, 0.5, 1);
 
+/** Доля ёмкости, ниже которой заряд считается низким (красная молния). */
+const LOW_CHARGE_SHARE = 0.2;
+
 const COLORS = Object.freeze({
   background: '#0D1123',
   normal: '#9187FF',
@@ -76,9 +79,12 @@ function EnergyBar({ ownerActive = true, glass = false }: Props) {
   });
   const activeCap = maxEnergy + Math.max(0, bonusEnergyCapacity);
   const current = Math.max(0, Math.min(activeCap, energy + bonusEnergy));
+  // зачем (эмулятор 30.09): порог «низкий заряд» был числом 20 от старой шкалы на 100; при
+  // шкале 2.0 (5) молния горела красным ВСЕГДА. Доля 20% от ёмкости: на 100 — прежние <20.
+  const lowCharge = current < Math.max(1, Math.ceil(activeCap * LOW_CHARGE_SHARE));
   const accent = bonusEnergyCapacity > 0
     ? COLORS.overcharge
-    : current < 20
+    : lowCharge
       ? (glass ? lg.bad : COLORS.low)
       // зачем (темы 2.0): в «Акценте/Максимуме» молния в цвете темы; перезаряд (золото) и
       // низкий заряд (красный) — смысловые цвета, темой не красятся.
@@ -114,7 +120,7 @@ function EnergyBar({ ownerActive = true, glass = false }: Props) {
       });
     }
     return triLang(lang, {
-      ru: `Энергия ${current} из ${activeCap}.${current < 20 ? ' Низкий заряд.' : ''} Нажмите, чтобы узнать подробнее.`,
+      ru: `Энергия ${current} из ${activeCap}.${lowCharge ? ' Низкий заряд.' : ''} Нажмите, чтобы узнать подробнее.`,
       uk: `Енергія ${current} з ${activeCap}. Натисніть, щоб дізнатися більше.`,
       en: `Energy ${current} of ${activeCap}. Tap for details.`, es: `Energía ${current} de ${activeCap}. Toca para ver detalles.`,
       'pt-BR': `Energia ${current} de ${activeCap}. Toque para ver detalhes.`, vi: `Năng lượng ${current} trên ${activeCap}. Nhấn để xem chi tiết.`,

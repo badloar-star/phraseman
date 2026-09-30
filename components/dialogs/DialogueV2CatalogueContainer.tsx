@@ -160,7 +160,9 @@ export function DialogueV2CatalogueContainer({ onPressItem, showQuotaRow = true 
     void fetchReleasedDialogueV2Catalogue(studyTarget).then((envelope) => {
       if (!active) return;
       setState(envelope ? { kind: 'available', envelope } : { kind: 'unavailable' });
-    }).catch(() => {
+    }).catch((error: unknown) => {
+      // Причину пишет клиент каталога (catalogue:callable_failed); здесь — только факт экрана.
+      console.warn('[DIALOGUE-V2] hub:catalogue → unavailable', { studyTarget, active, error: error instanceof Error ? error.name : String(error) });
       if (active) setState({ kind: 'unavailable' });
     });
     return () => {

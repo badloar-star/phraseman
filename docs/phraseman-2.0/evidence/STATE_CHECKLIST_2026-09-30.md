@@ -916,3 +916,9 @@
 | 8 | Промокод / код друга / ReferralCodeSheet + жалоба на ник + FeatureIntro (12 режимов) | 39 🟠 | `app/promo_code_entry.tsx`, `components/referral_code_sheet.tsx`, `components/ReportUserModal.tsx`, `components/FeatureIntroModal.tsx`, `components/feature_intro/*` |
 | 9 | Ошибки, серия, статистика | 9 🟠 | `app/mistakes_hub.tsx`, `mistakes_list.tsx`, `mistake_detail.tsx`, `app/mistake_practice_session.tsx`, `components/mistake-practice/*`, `app/streak_stats.tsx` (3266 строк) |
 | 10 | VIP-опрос, «Сегодня», пейволы B/C/E/F/G, промо, бейдж Plus, энергия в тренировках | около 30 | `components/VipSurveyModal.tsx`, `VipSurveyReviewPromptModal.tsx`, `components/QuestSheetModal.tsx`/`QuestTaskCard.tsx`, `components/paywall/PaywallPromoBanner.tsx`, `components/PlusBadge.tsx`, `components/EnergyBar.tsx`; ❌: точка на таббаре, уведомления «открыт урок/экзамен», каталог рангов 00–19 |
+
+## Эмулятор 30.09 — находки прохода «Дизайн»
+
+- Пейвол, светлый «Максимум»: выбор плана был чёрным рядом с синей кнопкой → исправлено (870f783af).
+- Тёплая ссылка открывала экран дважды: «назад» с первого раза не работало, неизвестная ссылка оставляла пустой экран → исправлено, сторож `tests/warm_deeplink_single_open_contract.test.mjs`.
+- Хаб «Диалоги» пуст («Диалоги недоступны»): лог `catalogue:callable_failed code=not-found` — функция `dialogueV2Catalogue` есть в коде (`functions/src/index.ts:369`), но **не задеплоена**. В список деплоя к релизу (D91 — до релиза не деплоим).

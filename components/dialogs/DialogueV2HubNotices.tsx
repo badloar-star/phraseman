@@ -33,6 +33,10 @@ export function dialogueV2HubCopy(lang: Lang) {
     }),
     gateTitle: triLang(lang, { ru: 'Диалоги на этом языке ещё проверяются', uk: 'Діалоги цією мовою ще перевіряються', en: 'Dialogues in this language are still being checked', es: 'Los diálogos en este idioma aún se están revisando', 'pt-BR': 'Os diálogos neste idioma ainda estão em revisão', vi: 'Hội thoại cho ngôn ngữ này vẫn đang được kiểm tra', id: 'Dialog dalam bahasa ini masih diperiksa', tr: 'Bu dildeki diyaloglar hâlâ kontrol ediliyor', pl: 'Dialogi w tym języku są jeszcze sprawdzane', fr: 'Les dialogues dans cette langue sont encore en vérification', de: 'Dialoge in dieser Sprache werden noch geprüft' }),
     gateText: triLang(lang, { ru: 'Сценарии, подсказки и озвучка ещё проходят отдельную проверку. Пока можно заниматься уроками.', uk: 'Сценарії, підказки й озвучення ще проходять окрему перевірку. Поки можна займатися уроками.', en: 'Scenarios, hints and audio are still under review. Meanwhile, keep going with lessons.', es: 'Los escenarios, pistas y audios aún se revisan. Mientras tanto, sigue con las lecciones.', 'pt-BR': 'Cenários, dicas e áudio ainda estão em revisão. Enquanto isso, siga com as lições.', vi: 'Kịch bản, gợi ý và âm thanh vẫn đang được kiểm tra. Trong lúc chờ, hãy học bài nhé.', id: 'Skenario, petunjuk, dan audio masih ditinjau. Sementara itu, lanjutkan pelajaran.', tr: 'Senaryolar, ipuçları ve seslendirme hâlâ inceleniyor. Bu arada derslere devam et.', pl: 'Scenariusze, podpowiedzi i nagrania są jeszcze sprawdzane. Na razie ucz się z lekcji.', fr: 'Scénarios, indices et audio sont encore en vérification. En attendant, continue les leçons.', de: 'Szenarien, Tipps und Audio werden noch geprüft. Mach inzwischen mit den Lektionen weiter.' }),
+    // зачем (эмулятор 30.09): каталог не пришёл (сеть/сервер) — раньше сухая строка без выхода.
+    loadErrorTitle: triLang(lang, { ru: 'Диалоги не загрузились', uk: 'Діалоги не завантажилися', en: 'Dialogues didn’t load', es: 'Los diálogos no se cargaron', 'pt-BR': 'Os diálogos não carregaram', vi: 'Không tải được hội thoại', id: 'Dialog gagal dimuat', tr: 'Diyaloglar yüklenemedi', pl: 'Nie udało się wczytać dialogów', fr: 'Les dialogues n’ont pas chargé', de: 'Dialoge wurden nicht geladen' }),
+    loadErrorText: triLang(lang, { ru: 'Проверьте интернет и попробуйте ещё раз.', uk: 'Перевірте інтернет і спробуйте ще раз.', en: 'Check your connection and try again.', es: 'Revisa tu conexión e inténtalo de nuevo.', 'pt-BR': 'Verifique sua conexão e tente de novo.', vi: 'Kiểm tra kết nối và thử lại.', id: 'Periksa koneksi lalu coba lagi.', tr: 'Bağlantını kontrol edip tekrar dene.', pl: 'Sprawdź połączenie i spróbuj ponownie.', fr: 'Vérifie ta connexion et réessaie.', de: 'Prüfe deine Verbindung und versuch es erneut.' }),
+    loadErrorRetry: triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Try again', es: 'Reintentar', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie', fr: 'Réessayer', de: 'Erneut versuchen' }),
     gateCta: triLang(lang, { ru: 'К урокам', uk: 'До уроків', en: 'To lessons', es: 'A las lecciones', 'pt-BR': 'Para as lições', vi: 'Đến bài học', id: 'Ke pelajaran', tr: 'Derslere', pl: 'Do lekcji', fr: 'Aux leçons', de: 'Zu den Lektionen' }),
   });
 }
@@ -74,19 +78,22 @@ export function DialogueV2HubExhaustedCard({ title, text, onPress }: Readonly<{ 
 }
 
 /** A6: язык без проверенных диалогов — замок, объяснение и «К урокам». Миры не показываются. */
-export function DialogueV2HubLanguageGate({ title, text, ctaLabel, onPress }: Readonly<{
+export function DialogueV2HubLanguageGate({ title, text, ctaLabel, onPress, icon = 'lock-closed', testID = 'dialogue-v2-hub-language-gate' }: Readonly<{
   title: string; text: string; ctaLabel: string; onPress: () => void;
+  /** Та же карточка A6 служит и ошибкой загрузки каталога (значок «нет сети», «Повторить»). */
+  icon?: React.ComponentProps<typeof Ionicons>['name'];
+  testID?: string;
 }>) {
   const glass = useDialogueGlass();
   return (
-    <View testID="dialogue-v2-hub-language-gate" style={[dialogueGlassCardStyle(glass, 22), styles.gate]}>
+    <View testID={testID} style={[dialogueGlassCardStyle(glass, 22), styles.gate]}>
       <View style={[styles.tileSmall, { backgroundColor: glass.opaqueControl }]}>
-        <Ionicons name="lock-closed" size={24} color={glass.secondary} />
+        <Ionicons name={icon} size={24} color={glass.secondary} />
       </View>
       <View style={styles.cardText}>
         <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={[styles.cardTitle, { color: glass.text }]}>{title}</Text>
         <Text maxFontSizeMultiplier={1.3} style={[styles.cardBody, { color: glass.secondary }]}>{text}</Text>
-        <DialogueGlassCta glass={glass} size="small" label={ctaLabel} onPress={onPress} testID="dialogue-v2-hub-language-gate-cta" style={styles.gateCta} />
+        <DialogueGlassCta glass={glass} size="small" label={ctaLabel} onPress={onPress} testID={`${testID}-cta`} style={styles.gateCta} />
       </View>
     </View>
   );

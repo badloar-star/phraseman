@@ -150,6 +150,14 @@ export function DialogueV2CatalogueContainer({ onPressItem, showQuotaRow = true 
     router.push({ pathname: '/dialogue_v2_memory' } as never);
   }, [accessResolved, router]);
 
+  // зачем (надсмотрщик 30.09): «Повторить» на ошибке каталога — счётчик перезапускает загрузку.
+  // Двойной тап безопасен: на время загрузки карточки с кнопкой нет (state = loading).
+  const [reloadNonce, setReloadNonce] = useState(0);
+  const retryCatalogue = useCallback(() => {
+    console.warn('[DIALOGUE-V2] hub:catalogue → retry', { studyTarget, attempt: reloadNonce + 1 });
+    setReloadNonce((value) => value + 1);
+  }, [reloadNonce, studyTarget]);
+
   useEffect(() => {
     if (!supportedTarget(studyTarget)) {
       setState({ kind: 'unavailable' });
@@ -168,7 +176,7 @@ export function DialogueV2CatalogueContainer({ onPressItem, showQuotaRow = true 
     return () => {
       active = false;
     };
-  }, [studyTarget]);
+  }, [reloadNonce, studyTarget]);
 
   const projection = useMemo(() => {
     if (state.kind !== 'available' || !supportedTarget(studyTarget)) return null;
@@ -233,11 +241,14 @@ export function DialogueV2CatalogueContainer({ onPressItem, showQuotaRow = true 
     return (
       <>
         {plusTools}
-        <View testID="dialogue-v2-catalogue-unavailable" style={{ marginTop: V2.gap }}>
-          <Text style={{ color: palette.textSecondary, ...V2_TYPE.body }} maxFontSizeMultiplier={1.2}>
-            {copy.unavailable}
-          </Text>
-        </View>
+        <DialogueV2HubLanguageGate
+          testID="dialogue-v2-catalogue-unavailable"
+          icon="cloud-offline-outline"
+          title={hubCopy.loadErrorTitle}
+          text={hubCopy.loadErrorText}
+          ctaLabel={hubCopy.loadErrorRetry}
+          onPress={retryCatalogue}
+        />
       </>
     );
   }

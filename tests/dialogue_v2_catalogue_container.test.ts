@@ -1,6 +1,6 @@
 /* eslint-disable import/first */
 import React from 'react';
-import { render, waitFor } from '@testing-library/react-native';
+import { act, render, waitFor } from '@testing-library/react-native';
 
 const h = React.createElement;
 
@@ -59,10 +59,14 @@ jest.mock('../components/dialogs/DialogueV2HubNotices', () => {
       gateTitle: 'Диалоги на этом языке ещё проверяются',
       gateText: 'text',
       gateCta: 'К урокам',
+      loadErrorTitle: 'Диалоги не загрузились',
+      loadErrorText: 'Проверьте интернет и попробуйте ещё раз.',
+      loadErrorRetry: 'Повторить',
     }),
     DialogueV2HubQuotaRow: ({ text }: { text: string }) => mockReact.createElement('Text', { testID: 'dialogue-v2-hub-quota' }, text),
     DialogueV2HubExhaustedCard: ({ onPress }: { onPress: () => void }) => mockReact.createElement('View', { testID: 'dialogue-v2-hub-exhausted', onPress }),
-    DialogueV2HubLanguageGate: ({ onPress }: { onPress: () => void }) => mockReact.createElement('View', { testID: 'dialogue-v2-hub-language-gate', onPress }),
+    DialogueV2HubLanguageGate: ({ onPress, testID = 'dialogue-v2-hub-language-gate', title }: { onPress: () => void; testID?: string; title: string }) =>
+      mockReact.createElement('View', { testID, onPress }, mockReact.createElement('Text', null, title)),
   };
 });
 jest.mock('../components/PremiumContext', () => ({ usePremium: () => mockUsePremium() }));
@@ -166,18 +170,23 @@ describe('DialogueV2CatalogueContainer', () => {
     expect(mockSection).not.toHaveBeenCalled();
   });
 
-  it('shows only a neutral unavailable state when the release or revalidation fails', async () => {
+  it('shows a retryable load-error card when the release or revalidation fails', async () => {
     mockFetchCatalogue.mockResolvedValue(null);
     const screen = await render(h(DialogueV2CatalogueContainer, { onPressItem: jest.fn() }));
 
-    await expect(screen.findByText('Диалоги недоступны')).resolves.toBeTruthy();
+    await expect(screen.findByText('Диалоги не загрузились')).resolves.toBeTruthy();
     expect(mockSection).not.toHaveBeenCalled();
+    // зачем (30.09): «Повторить» заново запрашивает каталог, а не оставляет тупик.
+    const callsBeforeRetry = mockFetchCatalogue.mock.calls.length;
+    await act(async () => { screen.getByTestId('dialogue-v2-catalogue-unavailable').props.onPress(); });
+    expect(mockFetchCatalogue.mock.calls.length).toBe(callsBeforeRetry + 1);
+    await expect(screen.findByText('Диалоги не загрузились')).resolves.toBeTruthy();
 
     mockFetchCatalogue.mockResolvedValue(packetEnvelope);
     mockProjection.mockReturnValue(null);
     await screen.unmount();
     const retry = await render(h(DialogueV2CatalogueContainer, { onPressItem: jest.fn() }));
-    await expect(retry.findByText('Диалоги недоступны')).resolves.toBeTruthy();
+    await expect(retry.findByText('Диалоги не загрузились')).resolves.toBeTruthy();
     expect(mockSection).not.toHaveBeenCalled();
   });
 

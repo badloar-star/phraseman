@@ -245,7 +245,7 @@ describe('Dialogue V2 session route', () => {
     await act(async () => { mockScreen.mock.calls.at(-1)[0].onComplete(); });
     expect(mockReplace).toHaveBeenCalledWith({
       pathname: '/dialogue_v2_completion',
-      params: { sessionId: `d2s_${'a'.repeat(32)}`, scenarioId: 'work_01', endedBy: 'manual', learnerTurns: '0' },
+      params: { sessionId: `d2s_${'a'.repeat(32)}`, scenarioId: 'work_01', endedBy: 'manual', learnerTurns: '0', title: 'Согласовать время' },
     });
   });
 
@@ -391,7 +391,7 @@ describe('Dialogue V2 session route', () => {
     expect(mockPush).toHaveBeenCalledWith({
       pathname: '/dialogue_v2_completion',
       params: {
-        sessionId: `d2s_${'a'.repeat(32)}`, scenarioId: 'work_01', endedBy: 'bot', learnerTurns: '1', mood: 'happy',
+        sessionId: `d2s_${'a'.repeat(32)}`, scenarioId: 'work_01', endedBy: 'bot', learnerTurns: '1', title: 'Согласовать время', mood: 'happy',
       },
     });
     expect(mockScreen.mock.calls.at(-1)[0].bottom).toBe('summary');

@@ -18,6 +18,7 @@ import {
   type DialogueV2TurnFailureReason,
 } from './dialogue_v2_turn_coaching_client';
 import { dialogueV2SessionCoachingLabels } from './dialogue_v2_session_coaching_labels';
+import { rememberDialogueV2SessionOutcome } from './dialogue_v2_session_outcome_store';
 import { resolveCurrentDialogueV2PreparedBotVoice } from './dialogue_v2_prepared_bot_voice_runtime';
 import { triLang } from '../constants/i18n';
 import { useMyCoinRank } from '../hooks/use_my_coin_rank';
@@ -343,7 +344,17 @@ function SessionContent() {
       console.warn('[DIALOGUE-V2] summary:open → no session', { scenarioId });
       return;
     }
-    const learnerTurns = messages.filter((message) => message.author === 'learner').length;
+    const learnerMessages = messages.filter((message) => message.author === 'learner');
+    const learnerTurns = learnerMessages.length;
+    // зачем (D1–D5): цифры итога из разбора каждого хода, а не из одной заметки ревью.
+    rememberDialogueV2SessionOutcome(serverSession.sessionId, {
+      learnerTurns,
+      corrections: learnerMessages.flatMap((message) => (
+        message.author === 'learner' && message.betterPhrasing
+          ? [{ original: message.text, corrected: message.betterPhrasing }]
+          : []
+      )),
+    });
     const route = {
       pathname: '/dialogue_v2_completion' as never,
       params: {
@@ -351,6 +362,8 @@ function SessionContent() {
         scenarioId,
         endedBy,
         learnerTurns: String(learnerTurns),
+        // зачем (D1–D5): название сцены под заголовком итога без второго запроса каталога.
+        ...(model?.title ? { title: model.title } : {}),
         ...(coaching.mood ? { mood: coaching.mood } : {}),
       },
     };

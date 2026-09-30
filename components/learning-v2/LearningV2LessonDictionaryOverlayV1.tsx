@@ -11,6 +11,7 @@ import { useAudio } from "../../hooks/use-audio";
 import AddToFlashcard from "../AddToFlashcard";
 import { useLang } from "../LangContext";
 import { useTheme } from "../ThemeContext";
+import { useLv2Glass } from "./LearningV2Glass";
 
 type Props = Readonly<{
   /**
@@ -38,7 +39,9 @@ export default function LearningV2LessonDictionaryOverlayV1({
   onClose,
 }: Props) {
   const { lang } = useLang();
-  const { theme: t, f } = useTheme();
+  const { f } = useTheme();
+  // зачем (learning-v2.html, dict): словарь курса — на токенах Liquid Glass активной темы.
+  const g = useLv2Glass();
   const insets = useStableSafeAreaInsets();
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   const [speakingId, setSpeakingId] = useState<string | null>(null);
@@ -251,10 +254,10 @@ export default function LearningV2LessonDictionaryOverlayV1({
       if (item.kind === "lesson") {
         return (
           <View style={styles.lessonHeading}>
-            <Text style={[styles.lessonHeadingText, { color: t.accent }]}>
+            <Text style={[styles.lessonHeadingText, { color: g.secondary }]}>
               {lessonLabel(item.lessonOrdinal)}
             </Text>
-            <Text style={[styles.lessonHeadingCount, { color: t.textMuted }]}>
+            <Text style={[styles.lessonHeadingCount, { color: g.secondary }]}>
               {item.count}
             </Text>
           </View>
@@ -273,26 +276,26 @@ export default function LearningV2LessonDictionaryOverlayV1({
             onPress={() => replay(word)}
             style={({ pressed }) => [
               styles.wordAction,
-              { backgroundColor: active || pressed ? `${t.accent}22` : "transparent" },
+              { backgroundColor: active || pressed ? g.selected : "transparent" },
             ]}
           >
             <View style={styles.wordCopy}>
               <Text
                 style={[
                   styles.target,
-                  { color: active ? t.accent : t.textPrimary, fontSize: f.bodyLg },
+                  { color: g.text, fontSize: f.bodyLg },
                 ]}
               >
                 {target}
               </Text>
-              <Text style={[styles.meta, { color: t.textMuted }]}>
+              <Text style={[styles.meta, { color: g.secondary }]}>
                 {encounter.transcription} · {translation}
               </Text>
             </View>
             <Ionicons
               name={active ? "volume-high" : "volume-medium-outline"}
               size={21}
-              color={active ? t.accent : t.textMuted}
+              color={active ? g.text : g.secondary}
             />
           </Pressable>
           <AddToFlashcard
@@ -314,7 +317,7 @@ export default function LearningV2LessonDictionaryOverlayV1({
         </View>
       );
     },
-    [f.bodyLg, lang, lessonLabel, listenLabel, replay, speakingId, t],
+    [f.bodyLg, g, lang, lessonLabel, listenLabel, replay, speakingId],
   );
 
   return (
@@ -330,16 +333,16 @@ export default function LearningV2LessonDictionaryOverlayV1({
       accessibilityViewIsModal
       importantForAccessibility="yes"
       style={[styles.overlay, {
-        backgroundColor: t.bgPrimary,
+        backgroundColor: g.bg,
         paddingTop: insets.top,
         paddingBottom: insets.bottom,
       }]}
     >
-      <View style={[styles.header, { borderBottomColor: t.border }]}> 
+      <View style={[styles.header, { borderBottomColor: g.line }]}>
         <View style={styles.headerCopy}>
-          <Text style={[styles.eyebrow, { color: t.accent }]}>{copy.lesson}</Text>
-          <Text style={[styles.title, { color: t.textPrimary }]}>{copy.title}</Text>
-          <Text style={[styles.count, { color: t.textMuted }]}>{copy.count}</Text>
+          <Text style={[styles.eyebrow, { color: g.secondary }]}>{copy.lesson}</Text>
+          <Text style={[styles.title, { color: g.text }]}>{copy.title}</Text>
+          <Text style={[styles.count, { color: g.secondary }]}>{copy.count}</Text>
         </View>
         <Pressable
           testID="learning-v2-map-dictionary-close"
@@ -349,29 +352,29 @@ export default function LearningV2LessonDictionaryOverlayV1({
           hitSlop={10}
           style={({ pressed }) => [
             styles.close,
-            { backgroundColor: t.bgSurface2, opacity: pressed ? 0.7 : 1 },
+            { backgroundColor: g.opaqueControl, opacity: pressed ? 0.7 : 1 },
           ]}
         >
-          <Ionicons name="close" size={25} color={t.textPrimary} />
+          <Ionicons name="close" size={22} color={g.text} />
         </Pressable>
       </View>
 
       {/* Поиск показываем только когда искать есть в чём: на десятке слов
           строка поиска — лишний элемент, который просто занимает экран. */}
       {words.length >= 12 ? (
-        <View style={[styles.searchRow, { backgroundColor: t.bgSurface2 }]}>
-          <Ionicons name="search" size={18} color={t.textMuted} />
+        <View style={[styles.searchRow, { backgroundColor: g.opaqueControl }]}>
+          <Ionicons name="search" size={18} color={g.secondary} />
           <TextInput
             testID="learning-v2-map-dictionary-search"
             value={query}
             onChangeText={setQuery}
             accessibilityLabel={copy.search}
             placeholder={copy.search}
-            placeholderTextColor={t.textMuted}
+            placeholderTextColor={g.mutedText}
             autoCorrect={false}
             autoCapitalize="none"
             returnKeyType="search"
-            style={[styles.searchInput, { color: t.textPrimary }]}
+            style={[styles.searchInput, { color: g.text }]}
           />
           {query.length > 0 ? (
             <Pressable
@@ -380,7 +383,7 @@ export default function LearningV2LessonDictionaryOverlayV1({
               onPress={() => setQuery("")}
               hitSlop={10}
             >
-              <Ionicons name="close-circle" size={18} color={t.textMuted} />
+              <Ionicons name="close" size={16} color={g.secondary} />
             </Pressable>
           ) : null}
         </View>
@@ -393,8 +396,8 @@ export default function LearningV2LessonDictionaryOverlayV1({
         keyboardShouldPersistTaps="handled"
         ListEmptyComponent={
           <View style={styles.empty}>
-            <Ionicons name={normalizedQuery ? "search" : "book-outline"} size={34} color={t.textMuted} />
-            <Text style={[styles.emptyText, { color: t.textSecond }]}>
+            <Ionicons name={normalizedQuery ? "search" : "book-outline"} size={36} color={g.mutedText} />
+            <Text style={[styles.emptyText, { color: g.secondary }]}>
               {normalizedQuery ? copy.nothingFound : copy.empty}
             </Text>
           </View>
@@ -412,31 +415,31 @@ const styles = StyleSheet.create({
     minHeight: 104,
     paddingHorizontal: 20,
     paddingTop: 22,
-    paddingBottom: 14,
+    paddingBottom: 16,
     borderBottomWidth: StyleSheet.hairlineWidth,
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-start",
     justifyContent: "space-between",
   },
-  headerCopy: { gap: 1 },
-  eyebrow: { fontSize: 11, lineHeight: 15, fontWeight: "900", letterSpacing: 1.3 },
-  title: { fontSize: 27, lineHeight: 32, fontWeight: "900" },
-  count: { fontSize: 13, lineHeight: 18, fontWeight: "600" },
-  close: { width: 44, height: 44, borderRadius: 16, alignItems: "center", justifyContent: "center" },
+  headerCopy: { gap: 0 },
+  eyebrow: { fontSize: 12, lineHeight: 16, fontWeight: "700", letterSpacing: 2.4 },
+  title: { marginTop: 6, fontSize: 34, lineHeight: 40, fontWeight: "700", letterSpacing: -0.5 },
+  count: { marginTop: 4, fontSize: 15, lineHeight: 20, fontWeight: "400" },
+  close: { marginTop: 8, width: 44, height: 44, borderRadius: 14, alignItems: "center", justifyContent: "center" },
   listContent: { paddingBottom: 44 },
   // Поиск: тон подложки, без обводки контейнера (закон владельца).
   searchRow: {
     marginHorizontal: 18,
-    marginTop: 12,
+    marginTop: 16,
     marginBottom: 4,
     minHeight: 46,
-    borderRadius: 15,
+    borderRadius: 14,
     paddingHorizontal: 13,
     flexDirection: "row",
     alignItems: "center",
     gap: 9,
   },
-  searchInput: { flex: 1, minWidth: 0, fontSize: 16, fontWeight: "600", paddingVertical: 0 },
+  searchInput: { flex: 1, minWidth: 0, fontSize: 16, fontWeight: "400", paddingVertical: 0 },
   // Заголовок урока внутри списка. Он же служит разделителем секций, поэтому
   // отдельная линия-разделитель между словами больше не нужна.
   lessonHeading: {
@@ -448,8 +451,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     gap: 10,
   },
-  lessonHeadingText: { fontSize: 12, lineHeight: 16, fontWeight: "900", letterSpacing: 1.2 },
-  lessonHeadingCount: { fontSize: 13, lineHeight: 17, fontWeight: "800" },
+  lessonHeadingText: { fontSize: 12, lineHeight: 16, fontWeight: "700", letterSpacing: 2.4 },
+  lessonHeadingCount: { fontSize: 12, lineHeight: 16, fontWeight: "700" },
   row: {
     minHeight: 76,
     paddingLeft: 18,
@@ -468,8 +471,8 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   wordCopy: { flex: 1 },
-  target: { fontWeight: "800" },
-  meta: { marginTop: 2, fontSize: 14, lineHeight: 19, fontWeight: "500" },
+  target: { fontWeight: "600" },
+  meta: { marginTop: 3, fontSize: 14, lineHeight: 19, fontWeight: "400" },
   empty: { paddingTop: 120, paddingHorizontal: 34, alignItems: "center", gap: 12 },
-  emptyText: { maxWidth: 320, fontSize: 16, lineHeight: 23, fontWeight: "600", textAlign: "center" },
+  emptyText: { maxWidth: 320, fontSize: 16, lineHeight: 22, fontWeight: "400", textAlign: "center" },
 });

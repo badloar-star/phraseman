@@ -10,12 +10,11 @@ import FeedbackRatingCard from "../../FeedbackRatingCard";
 import HorizonMistakeReview, { type HorizonMistakeReviewItem } from "./HorizonMistakeReview";
 import ResultsSequence from "../../feedback/ResultsSequence";
 import RuneBalanceChip from "../../RuneBalanceChip";
-import { useTheme } from "../../ThemeContext";
+import { lv2CardStyle, useLv2Glass } from "../LearningV2Glass";
 
 export type HorizonResultFacts = Readonly<{
   runes: number;
-  /** XP confirmed by the canonical registerXP receipt for this run. */
-  xp?: number;
+  /** Total completed activities confirmed for this run. */
   total: number;
   firstTry: number;
   elapsedMs: number;
@@ -105,7 +104,6 @@ function copyFor(lang: Lang) {
       ru: "СЕССИЯ", uk: "СЕСІЯ", en: "SESSION", es: "SESIÓN", "pt-BR": "SESSÃO",
       vi: "BUỔI", id: "SESI", tr: "OTURUM", pl: "SESJA",
     }),
-    xp: "XP",
     runes: triLang(lang, {
       ru: "РУНЫ", uk: "РУНИ", en: "RUNES", es: "RUNAS", "pt-BR": "RUNAS",
       vi: "RUNE", id: "RUNE", tr: "RÜNLER", pl: "RUNY",
@@ -179,7 +177,9 @@ export default function HorizonSessionResult({
   onOpenMistake,
   onOpenAllMistakes,
 }: Props) {
-  const { theme: t } = useTheme();
+  // зачем (learning-v2.html, done): обвязка итога — на токенах Liquid Glass; сама анимированная
+  // последовательность звёзд/наград (ResultsSequence) общая для приложения и живёт в своём модуле.
+  const g = useLv2Glass();
   const insets = useStableSafeAreaInsets();
   const active = useRuntimeActive();
   const c = useMemo(() => copyFor(lang), [lang]);
@@ -192,7 +192,6 @@ export default function HorizonSessionResult({
   const creditedRunes = !preview && facts.credit === "credited"
     ? Math.max(0, Math.round(facts.runes))
     : 0;
-  const xp = Math.max(0, Math.round(facts.xp ?? 0));
   const subtitle = preview
     ? c.preview
     : facts.credit === "existing"
@@ -214,7 +213,7 @@ export default function HorizonSessionResult({
   return (
     <View
       testID="learning-v2-horizon-result"
-      style={[styles.root, { backgroundColor: t.bgPrimary, paddingTop: insets.top }]}
+      style={[styles.root, { backgroundColor: g.bg, paddingTop: insets.top }]}
     >
       <View style={styles.header}>
         <Pressable
@@ -225,18 +224,18 @@ export default function HorizonSessionResult({
           onPress={onContinue}
           style={({ pressed }) => [
             styles.close,
-            { backgroundColor: t.bgCard, opacity: pressed ? 0.7 : 1 },
+            { backgroundColor: g.opaqueControl, opacity: pressed ? 0.7 : 1 },
           ]}
         >
-          <Ionicons name="close" size={22} color={t.textPrimary} />
+          <Ionicons name="close" size={22} color={g.text} />
         </Pressable>
-        <Text style={[styles.headerTitle, { color: t.textPrimary }]}>
+        <Text style={[styles.headerTitle, { color: g.text }]}>
           {c.header}
         </Text>
         <View style={styles.balanceSlot}>
           <RuneBalanceChip
             testID="learning-v2-completion-header-runes"
-            color={t.textPrimary}
+            color={g.text}
             size={22}
             active={active}
           />
@@ -251,9 +250,7 @@ export default function HorizonSessionResult({
         rewardsSettled={rewardsSettled}
         stars={stars}
         showStars
-        xp={xp}
         runes={creditedRunes > 0 ? creditedRunes : undefined}
-        xpLabel={c.xp}
         runesLabel={c.runes}
         runesAccessibilityLabel={runeAmount(lang, creditedRunes)}
         eyebrow={completionEyebrow}
@@ -277,8 +274,8 @@ export default function HorizonSessionResult({
                 onOpenAll={onOpenAllMistakes}
               />
             ) : null}
-          <View style={[styles.feedbackShell, { backgroundColor: t.bgSurface2 }]}>
-            <Text style={[styles.feedbackKicker, { color: t.accent }]}>{c.feedbackKicker}</Text>
+          <View style={[styles.feedbackShell, lv2CardStyle(g)]}>
+            <Text style={[styles.feedbackKicker, { color: g.secondary }]}>{c.feedbackKicker}</Text>
             <FeedbackRatingCard
               kind="learning_v2"
               entityId={feedbackEntityId}
@@ -317,7 +314,7 @@ const styles = StyleSheet.create({
   close: {
     width: 44,
     height: 44,
-    borderRadius: 16,
+    borderRadius: 22,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -325,21 +322,21 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 17,
     lineHeight: 22,
-    fontWeight: "900",
+    fontWeight: "700",
     textAlign: "center",
   },
   balanceSlot: { minWidth: 64, alignItems: "flex-end" },
   // Разбор ошибок и карточка отзыва живут одной колонкой: сначала учёба,
   // потом просьба оценить.
   afterResultStack: { gap: 16 },
-  feedbackShell: { borderRadius: 22, padding: 4 },
+  feedbackShell: { padding: 4 },
   feedbackKicker: {
-    paddingTop: 5,
+    paddingTop: 8,
     paddingBottom: 2,
-    fontSize: 9,
-    lineHeight: 11,
-    fontWeight: "900",
-    letterSpacing: 1.2,
+    fontSize: 12,
+    lineHeight: 16,
+    fontWeight: "700",
+    letterSpacing: 2.4,
     textAlign: "center",
   },
 });

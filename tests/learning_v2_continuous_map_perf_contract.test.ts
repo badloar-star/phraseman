@@ -116,7 +116,9 @@ describe("Learning V2 continuous map performance contract", () => {
       expect(block).toContain("borderRadius");
       expect(block).toContain("alignItems: 'center'");
       // Цвет подложки приходит из темы инлайном — плашка не «просто текст».
-      expect(source).toContain(`styles.${style}, { backgroundColor: t.bgCard }`);
+      // зачем (learning-v2.html): подложка — карточка стекла lv2CardStyle(g) на токенах темы
+      // (раньше { backgroundColor: t.bgCard }).
+      expect(source).toContain(`styles.${style}, lv2CardStyle(g`);
     }
     for (const style of ["plateTitle", "plateKicker", "plateArc", "chapterTitle", "chapterNum"] as const) {
       const block = new RegExp(`${style}: \{[^}]*\}`).exec(source)?.[0] ?? "";

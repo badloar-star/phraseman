@@ -17,6 +17,7 @@
  */
 
 import React, { useEffect, useRef } from "react";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { AccessibilityInfo, Pressable, StyleSheet, Text, View } from "react-native";
 import Animated, {
   cancelAnimation,
@@ -31,8 +32,7 @@ import Animated, {
 import Svg, { Circle } from "react-native-svg";
 
 import { useLearningV2CompactPractice } from "../../../components/learning-v2/LearningV2PracticeViewport";
-import { useTheme } from "../../../components/ThemeContext";
-import { useTournamentPalette } from "../../../components/ui/v2_theme";
+import { Lv2Explain, useLv2Glass } from "../../../components/learning-v2/LearningV2Glass";
 import { hapticError, hapticSuccess } from "../../../hooks/use-haptics";
 import { useRuntimeActive } from "../../../hooks/use_runtime_active";
 import type { LearningV2LocalHoldToTalkStatusV1 } from "../../../hooks/use_learning_v2_local_hold_to_talk_v1";
@@ -54,8 +54,7 @@ export interface ScriptedRepeatCompareModePropsV1 extends LearningV2ModeCommonPr
 
 export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModePropsV1) {
   const compact = useLearningV2CompactPractice();
-  const { theme: t } = useTheme();
-  const palette = useTournamentPalette();
+  const g = useLv2Glass();
   const {
     prompt,
     interfaceLocale,
@@ -144,8 +143,11 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
 
   return (
     <View style={[styles.root, compact && { gap: 6 }]}>
-      <Text style={[styles.taskLabel, { color: palette.muted }]}>{prompt}</Text>
+      <Text style={[styles.taskLabel, { color: g.secondary }]}>{prompt}</Text>
       {onPlayFullPhraseAudio && (
+        // зачем (learning-v2.html, rc): эталон — круглая кнопка на токенах стекла с кольцом хода
+        // звука (прежнее решение владельца 26.08 сохранено), значок динамика/паузы вместо текстовых
+        // символов; реальное состояние аудио по-прежнему берётся из referenceAudioState.
         <View style={[styles.playWrap, compact && { width: 80, height: 80 }]}>
           <Svg
             width={compact ? 80 : 116}
@@ -157,7 +159,7 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
               cx={58}
               cy={58}
               r={RING_RADIUS}
-              stroke={t.border}
+              stroke={g.opaqueControl}
               strokeWidth={5}
               fill="none"
             />
@@ -165,7 +167,7 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
               cx={58}
               cy={58}
               r={RING_RADIUS}
-              stroke={referencePlaying ? t.accent : t.correct}
+              stroke={referencePlaying ? g.text : g.good}
               strokeWidth={5}
               strokeLinecap="round"
               fill="none"
@@ -186,37 +188,34 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
               style={[
                 styles.playBtn, compact && { width: 64, height: 64, borderRadius: 32 },
                 {
-                  backgroundColor: t.bgSurface2,
+                  backgroundColor: g.opaqueCard,
                   opacity: referenceDisabled ? 0.45 : 1,
                 },
               ]}
             >
-              <Text style={[styles.playGlyph, { color: t.accent }]}>
-                {referencePlaying ? "Ⅱ" : "▶"}
-              </Text>
+              <Ionicons name={referencePlaying ? "pause" : "volume-high"} size={40} color={g.text} />
             </Pressable>
           </Animated.View>
         </View>
       )}
 
-      <Text style={[styles.targetPhrase, compact && { fontSize: 26, lineHeight: 31 }, { color: t.accent }]}>
+      <Text style={[styles.targetPhrase, compact && { fontSize: 26, lineHeight: 31 }, { color: g.text }]}>
         {modePayload?.family === "scripted_repeat_compare"
           ? modePayload.targetPhrase
           : ""}
       </Text>
 
       {instruction && (
-        <Text style={[styles.instruction, { color: t.textMuted }]}>{instruction}</Text>
+        <Text style={[styles.instruction, { color: g.secondary }]}>{instruction}</Text>
       )}
 
-      {explanation && (
-        <View style={[styles.feedbackLane, compact && { padding: 8 }, { backgroundColor: t.bgSurface2 }]}>
-          <Text style={[styles.feedbackText, { color: t.textPrimary }]}>{explanation}</Text>
-        </View>
-      )}
+      {explanation ? <Lv2Explain style={styles.feedbackLane}>{explanation}</Lv2Explain> : null}
       {resolved && (
-        <View style={[styles.feedbackLane, compact && { padding: 8 }, { backgroundColor: t.correctBg }]}>
-          <Text style={[styles.feedbackText, { color: t.textPrimary }]}>{copy.success}</Text>
+        // зачем (learning-v2.html, `.verdict.ok`): «Отлично сказано!» — значок-галочка и текст
+        // зелёным по центру, без плашки-заливки.
+        <View accessibilityLiveRegion="polite" style={styles.verdict}>
+          <Ionicons name="checkmark" size={20} color={g.good} />
+          <Text style={[styles.verdictText, { color: g.good }]}>{copy.success}</Text>
         </View>
       )}
     </View>
@@ -228,11 +227,9 @@ export default ScriptedRepeatCompareModeV1;
 const styles = StyleSheet.create({
   root: { gap: 14, alignItems: "center" },
   taskLabel: {
-    fontSize: 13,
-    lineHeight: 18,
-    fontWeight: "700",
-    letterSpacing: 1.1,
-    textTransform: "uppercase",
+    fontSize: 15,
+    lineHeight: 20,
+    fontWeight: "600",
     textAlign: "center",
   },
   playWrap: { width: 116, height: 116, alignItems: "center", justifyContent: "center" },
@@ -243,21 +240,22 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  playGlyph: { fontSize: 28, fontWeight: "700" },
   targetPhrase: {
     width: "100%",
     fontSize: 30,
     lineHeight: 36,
-    fontWeight: "900",
+    fontWeight: "700",
+    letterSpacing: -0.3,
     textAlign: "center",
   },
   instruction: {
     width: "100%",
-    fontSize: 15,
-    fontWeight: "600",
-    lineHeight: 21,
+    fontSize: 16,
+    fontWeight: "400",
+    lineHeight: 22,
     textAlign: "center",
   },
-  feedbackLane: { width: "100%", borderRadius: 18, padding: 12 },
-  feedbackText: { fontSize: 14.5, fontWeight: "600", lineHeight: 19 },
+  feedbackLane: { width: "100%" },
+  verdict: { flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 10, minHeight: 22 },
+  verdictText: { fontSize: 16, lineHeight: 22, fontWeight: "600", flexShrink: 1 },
 });

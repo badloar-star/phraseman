@@ -35,6 +35,12 @@ type Props = {
   /** Причина отказа сервера; null/не передан — подарок применён. */
   giftRecoveryError?: string | null;
   onRetryGiftRecovery?: () => void;
+  /**
+   * зачем (learning-v2.html, `.pill.hearts`): Learning V2 показывает попытки нейтральной
+   * пилюлей стекла — светлые сердца на плите, потерянные гаснут до 22%. Остальные экраны
+   * (карточки, слова) передают ничего и остаются на прежних красных сердцах.
+   */
+  glassPill?: { readonly fill: string; readonly empty: string; readonly plate: string };
 };
 
 type HeartSlotProps = {
@@ -201,6 +207,7 @@ function SessionAttemptsHud({
   giftRescueSequence,
   giftRecoveryError,
   onRetryGiftRecovery,
+  glassPill,
 }: Props) {
   const { theme: t } = useTheme();
   const safeTotal = Math.max(1, Math.floor(total));
@@ -285,7 +292,7 @@ function SessionAttemptsHud({
       ref={hudRef}
       onLayout={measureHud}
       testID={testID}
-      style={styles.row}
+      style={[styles.row, glassPill ? styles.glassPill : null, glassPill ? { backgroundColor: glassPill.plate } : null]}
       accessible
       accessibilityRole="text"
       accessibilityLabel={accessibilityLabel}
@@ -295,8 +302,8 @@ function SessionAttemptsHud({
           key={index}
           index={index}
           filled={index < displayRemaining}
-          activeColor={t.wrong}
-          emptyColor={t.textGhost}
+          activeColor={glassPill?.fill ?? t.wrong}
+          emptyColor={glassPill?.empty ?? t.textGhost}
         />
       ))}
       {__DEV__ && ENABLE_DEV_TOOLS ? (
@@ -330,6 +337,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 4,
     paddingHorizontal: 6,
+  },
+  glassPill: {
+    minHeight: 30,
+    borderRadius: 15,
+    paddingHorizontal: 10,
+    alignSelf: 'center',
   },
   slot: {
     width: 22,

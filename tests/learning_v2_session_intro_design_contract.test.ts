@@ -32,7 +32,8 @@ test("Learning V2 uses a dedicated new intro renderer instead of the legacy less
   expect(intro).toContain('role === "targetWrong"');
   expect(bridge).toContain('case "danger":');
   expect(bridge).toContain('return "targetWrong"');
-  expect(intro).toContain("DuoPressable");
+  // зачем (learning-v2.html, `.cta`): «Дальше» — плоская пилюля Lv2Cta, а не объёмный DuoPressable.
+  expect(intro).toContain("Lv2Cta");
   expect(intro).toContain("PressableHybrid");
   expect(intro).toContain("useStableSafeAreaInsets");
   expect(intro).not.toContain("useSafeAreaInsets");
@@ -55,15 +56,12 @@ test("each of the three intro pages contains its own question and practice begin
   expect(intro).toContain("wrongCount >= 2");
   expect(intro).not.toMatch(/ru:\s*['"]К 3 вопросам['"]/);
   expect(intro).not.toContain("Три вопроса закрепят тему");
-  expect(intro).toContain(
-    'import { useTheme } from "../components/ThemeContext"',
-  );
-  expect(intro).toContain("const { theme: t, themeMode } = useTheme()");
-  expect(intro).toContain(
-    "colors={[t.bgGradient[0], t.bgPrimary, t.bgGradient[1]]}",
-  );
-  expect(intro).toContain("answered ? t.correct : t.bgSurface2");
-  expect(intro).toContain("answered ? ctaTextColor : t.textMuted");
+  // Интро красится токенами Liquid Glass активной темы, а не полями старой палитры.
+  expect(intro).toContain("useLv2Glass");
+  expect(intro).toContain("const g = useLv2Glass()");
+  expect(intro).toContain("colors={[g.bgTop, g.bg, g.bgBottom]}");
+  expect(intro).toContain("disabled={!answered}");
+  expect(intro).toContain('testID="learning-v2-intro-next"');
   expect(route).toContain("const [cardIndex, setCardIndex] = useState(3)");
   expect(route).toContain("setCardIndex(3)");
   expect(route).not.toContain("cardIndex < 3");

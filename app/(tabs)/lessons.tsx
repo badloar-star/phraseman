@@ -5907,17 +5907,21 @@ export default function LessonsTab({
                   position: "absolute",
                   left: 24,
                   right: 24,
-                  bottom: 96,
+                  bottom: 130,
                   alignItems: "center",
                 },
                 learningV2DenialHintStyle,
               ]}
             >
+              {/* зачем (learning-v2.html, `.hint`): тост «Урок ещё в работе» / «Пройди урок N» —
+                  плита стекла радиусом 18 с кромкой 1 px, текст 15/600; логика показа прежняя. */}
               <View
                 style={{
-                  backgroundColor: t.bgCard,
-                  borderRadius: 14,
-                  paddingHorizontal: 18,
+                  backgroundColor: learnGlass.opaqueControl,
+                  borderRadius: 18,
+                  borderWidth: 1, // guard-ok: 1 px кромка макета
+                  borderColor: learnGlass.glassEdge,
+                  paddingHorizontal: 20,
                   paddingVertical: 12,
                   shadowColor: t.cardShadow,
                   shadowOpacity: 0.35,
@@ -5928,9 +5932,11 @@ export default function LessonsTab({
               >
                 <Text
                   style={{
-                    color: t.textPrimary,
-                    fontSize: 14.5,
-                    fontWeight: "700",
+                    color: learnGlass.text,
+                    fontSize: 15,
+                    lineHeight: 20,
+                    fontWeight: "600",
+                    textAlign: "center",
                   }}
                 >
                   {learningV2DenialHint}

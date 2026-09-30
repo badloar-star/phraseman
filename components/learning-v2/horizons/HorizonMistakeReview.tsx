@@ -22,7 +22,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { triLang, type Lang } from "../../../constants/i18n";
-import { useTheme } from "../../ThemeContext";
+import { lv2CardStyle, useLv2Glass } from "../LearningV2Glass";
 
 /** Сколько промахов показываем на экране итога. Больше — уже лента стыда. */
 export const HORIZON_MISTAKE_REVIEW_LIMIT = 3;
@@ -53,7 +53,9 @@ export default function HorizonMistakeReview({
   onOpenItem,
   onOpenAll,
 }: Props) {
-  const { theme: t, f } = useTheme();
+  // зачем (learning-v2.html, `.errc`): разбор ошибок — карточка стекла; ошибочный ответ красным и
+  // зачёркнут, верный — зелёным, как в строках `.er` макета.
+  const g = useLv2Glass();
 
   if (items.length === 0) return null;
 
@@ -85,7 +87,7 @@ export default function HorizonMistakeReview({
 
   return (
     <View style={styles.wrap}>
-      <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h3 }]}>{title}</Text>
+      <Text style={[styles.title, { color: g.text }]}>{title}</Text>
 
       {items.map((item) => {
         const interactive = !!onOpenItem;
@@ -112,31 +114,31 @@ export default function HorizonMistakeReview({
                   onPress: () => onOpenItem(item.id),
                   style: ({ pressed }: { pressed: boolean }) => [
                     styles.row,
-                    { backgroundColor: t.bgSurface, transform: [{ scale: pressed ? 0.985 : 1 }] },
+                    lv2CardStyle(g),
+                    { transform: [{ scale: pressed ? 0.985 : 1 }] },
                   ],
                 }
-              : { style: [styles.row, { backgroundColor: t.bgSurface }] })}
+              : { style: [styles.row, lv2CardStyle(g)] })}
           >
             {/* Грань слева — маркер ОДНОЙ стороной, а не обводка блока
                 (запрет владельца на контейнеры с обводкой соблюдён). */}
-            <View style={[styles.edge, { backgroundColor: t.wrong }]} />
             <View style={styles.body}>
               {item.given ? (
-                <Text style={[styles.given, { color: t.textGhost }]} numberOfLines={1}>
+                <Text style={[styles.given, { color: g.bad }]}>
                   {item.given}
                 </Text>
               ) : null}
-              <Text style={[styles.correct, { color: t.textPrimary }]} numberOfLines={2}>
+              <Text style={[styles.correct, { color: g.good }]}>
                 {item.correct}
               </Text>
               {item.hint ? (
-                <Text style={[styles.hint, { color: t.textSecond }]} numberOfLines={2}>
+                <Text style={[styles.hint, { color: g.secondary }]}>
                   {item.hint}
                 </Text>
               ) : null}
             </View>
             {interactive ? (
-              <Ionicons name="chevron-forward" size={16} color={t.textGhost} style={styles.chevron} />
+              <Ionicons name="chevron-forward" size={18} color={g.mutedText} style={styles.chevron} />
             ) : null}
           </Row>
         );
@@ -150,7 +152,7 @@ export default function HorizonMistakeReview({
           onPress={onOpenAll}
           style={({ pressed }) => [styles.rest, { opacity: pressed ? 0.6 : 1 }]}
         >
-          <Text style={[styles.restText, { color: t.textMuted }]}>{restLabel}</Text>
+          <Text style={[styles.restText, { color: g.secondary }]}>{restLabel}</Text>
         </Pressable>
       ) : null}
     </View>
@@ -159,21 +161,18 @@ export default function HorizonMistakeReview({
 
 const styles = StyleSheet.create({
   wrap: { gap: 10 },
-  title: { fontWeight: "900", letterSpacing: -0.2 },
+  title: { fontSize: 17, lineHeight: 22, fontWeight: "700" },
   row: {
     flexDirection: "row",
     alignItems: "stretch",
-    borderRadius: 18,
     overflow: "hidden",
   },
-  edge: { width: 4, flexShrink: 0 },
-  body: { flex: 1, minWidth: 0, paddingHorizontal: 15, paddingVertical: 13 },
-  // Зачёркнутый ответ мельче и тусклее: взгляд идёт вниз и заканчивается
-  // на ПРАВИЛЬНОМ варианте, а не на ошибке.
-  given: { fontSize: 13.5, fontWeight: "700", textDecorationLine: "line-through" },
-  correct: { fontSize: 16, fontWeight: "800", marginTop: 3 },
-  hint: { fontSize: 12.5, fontWeight: "700", marginTop: 6 },
+  body: { flex: 1, minWidth: 0, paddingHorizontal: 16, paddingVertical: 14 },
+  // Зачёркнутый ответ мельче: взгляд идёт вниз и заканчивается на ПРАВИЛЬНОМ варианте.
+  given: { fontSize: 15, lineHeight: 20, fontWeight: "400", textDecorationLine: "line-through" },
+  correct: { fontSize: 16, lineHeight: 22, fontWeight: "600", marginTop: 3 },
+  hint: { fontSize: 14, lineHeight: 20, fontWeight: "400", marginTop: 6 },
   chevron: { alignSelf: "center", marginRight: 13 },
-  rest: { minHeight: 36, alignItems: "center", justifyContent: "center" },
-  restText: { fontSize: 13.5, fontWeight: "700", textAlign: "center" },
+  rest: { minHeight: 44, alignItems: "center", justifyContent: "center" },
+  restText: { fontSize: 15, lineHeight: 20, fontWeight: "600", textAlign: "center" },
 });

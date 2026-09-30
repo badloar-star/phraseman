@@ -29,9 +29,8 @@ import Animated, {
 import Svg, { Circle } from "react-native-svg";
 
 import { useLearningV2CompactPractice } from "../../../components/learning-v2/LearningV2PracticeViewport";
-import { useTheme } from "../../../components/ThemeContext";
-import { V2Chip, V2Cta } from "../../../components/ui/v2_ui";
-import { useTournamentPalette } from "../../../components/ui/v2_theme";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { Lv2Chip, Lv2Cta, Lv2Explain, useLv2Glass } from "../../../components/learning-v2/LearningV2Glass";
 import { hapticError, hapticLightImpact, hapticSuccess } from "../../../hooks/use-haptics";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
 import {
@@ -98,7 +97,7 @@ function DictationRingButtonV1({
   }));
   return (
     <View style={[styles.ringWrap, compact && { width: 80, height: 80 }]}>
-      <Svg width={compact ? 80 : 104} height={compact ? 80 : 104} viewBox="0 0 104 104" style={StyleSheet.absoluteFill}>
+      <Svg width={compact ? 80 : 128} height={compact ? 80 : 128} viewBox="0 0 104 104" style={StyleSheet.absoluteFill}>
         <Circle cx={52} cy={52} r={RING_RADIUS} stroke={track} strokeWidth={5} fill="none" />
         <AnimatedCircle
           cx={52}
@@ -125,7 +124,7 @@ function DictationRingButtonV1({
         }}
         style={[styles.ringBtn, compact && { width: 64, height: 64, borderRadius: 32 }, { backgroundColor: surface, opacity: disabled ? 0.45 : 1 }]}
       >
-        <Text style={{ color: accent, fontSize: 26 }}>▶</Text>
+        <Ionicons name="play" size={40} color={accent} />
       </Pressable>
     </View>
   );
@@ -140,8 +139,6 @@ interface ChipProps {
   readonly disabled: boolean;
   readonly onPress: () => void;
   readonly variant: "bank" | "answer";
-  readonly bg: string;
-  readonly textColor: string;
 }
 
 function DictationChipV1({
@@ -153,7 +150,6 @@ function DictationChipV1({
   disabled,
   onPress,
   variant,
-  textColor,
 }: ChipProps) {
   const compact = useLearningV2CompactPractice();
   const enter = useSharedValue(reducedMotion ? 1 : 0);
@@ -201,24 +197,23 @@ function DictationChipV1({
 
   return (
     <Animated.View style={style}>
-      <V2Chip
+      {/* зачем (learning-v2.html, .chip): чип-слово стекла, см. LearningV2Glass. */}
+      <Lv2Chip
         compact={compact}
         accessibilityLabel={label}
         disabled={disabled}
         onPress={onPress}
         verdict={verdict === "ok" ? "ok" : verdict === "bad" ? "bad" : "idle"}
-        textStyle={[styles.chipText, { color: textColor }]}
       >
         {label}
-      </V2Chip>
+      </Lv2Chip>
     </Animated.View>
   );
 }
 
 export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
   const compact = useLearningV2CompactPractice();
-  const { theme: t } = useTheme();
-  const palette = useTournamentPalette();
+  const g = useLv2Glass();
   const {
     prompt,
     options,
@@ -282,7 +277,7 @@ export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
 
   return (
     <View style={[styles.root, compact && { gap: 6 }]}>
-      <Text style={[styles.taskLabel, { color: palette.muted }]}>
+      <Text style={[styles.taskLabel, { color: g.secondary }]}>
         {listenBuildTaskLabel(
           interfaceLocale,
           (modePayload?.family === "listen_build_dictation"
@@ -296,11 +291,11 @@ export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
         disabled={!onPlayFullPhraseAudio || loading}
         accessibilityLabel={hasPlayedOnce ? audioCopy.replay : audioCopy.play}
         onPress={handlePlay}
-        accent={t.accent}
-        track={t.bgSurface2}
-        surface={t.bgSurface2}
+        accent={g.text}
+        track={g.opaqueControl}
+        surface={g.opaqueCard}
       />
-      <Text style={[styles.playSub, { color: t.textMuted }]}>
+      <Text style={[styles.playSub, { color: g.secondary }]}>
         {!onPlayFullPhraseAudio
           ? audioCopy.unavailable
           : loading
@@ -314,14 +309,14 @@ export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
 
       {/* Перевод/EN раскрывается только после успеха — до этого честный диктант. */}
       {phase === "success" && (
-        <Text style={[styles.revealText, styles.targetLanguageText, { color: t.accent }]}>
+        <Text style={[styles.revealText, { color: g.text }]}>
           {modePayload?.family === "listen_build_dictation"
             ? modePayload.hiddenTargetPhrase
             : prompt}
         </Text>
       )}
 
-      <View style={[styles.answerRow, compact && { minHeight: 48, paddingBottom: 4, gap: 6 }, { borderBottomColor: t.bgSurface2 }]}>
+      <View style={[styles.answerRow, compact && { minHeight: 48, paddingBottom: 4, gap: 6 }, { borderBottomColor: g.line }]}>
         {answerChips.map((chip, index) => (
           <DictationChipV1
             key={`${chip.responseId}-${index}`}
@@ -339,14 +334,6 @@ export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
             reducedMotion={reducedMotion}
             disabled={resolved || phase === "processing"}
             onPress={() => onRemoveTokenAt(index)}
-            bg={t.bgCard}
-            textColor={
-              phase === "success"
-                ? t.correctText
-                : phase === "needs_work" && chip.responseId === wrongNudge.responseId
-                  ? t.wrong
-              : t.accent
-            }
           />
         ))}
       </View>
@@ -365,24 +352,19 @@ export function ListenBuildDictationModeV1(props: LearningV2ModeCommonPropsV1) {
               reducedMotion={reducedMotion}
               disabled={resolved || phase === "processing"}
               onPress={() => onAppendToken(option.responseId)}
-              bg={t.bgCard}
-              textColor={t.accent}
             />
           ))}
       </View>
 
-      <V2Cta
+      {explanation ? <Lv2Explain style={styles.feedbackLane}>{explanation}</Lv2Explain> : null}
+
+      <Lv2Cta
         disabled={!canSubmit || resolved || phase === "processing"}
         onPress={onSubmit}
+        style={styles.submit}
       >
         {learningV2ModeCheckLabelV1(interfaceLocale)}
-      </V2Cta>
-
-      {explanation && (
-        <View style={[styles.feedbackLane, compact && { padding: 8 }, { backgroundColor: t.bgSurface2 }]}>
-          <Text style={[styles.feedbackText, { color: t.textPrimary }]}>{explanation}</Text>
-        </View>
-      )}
+      </Lv2Cta>
     </View>
   );
 }
@@ -392,17 +374,15 @@ export default ListenBuildDictationModeV1;
 const styles = StyleSheet.create({
   root: { gap: 14, alignItems: "center" },
   taskLabel: {
-    fontSize: 13,
-    fontWeight: "800",
-    letterSpacing: 1.4,
-    textTransform: "uppercase",
+    fontSize: 15,
+    lineHeight: 20,
+    fontWeight: "600",
     textAlign: "center",
   },
-  ringWrap: { width: 104, height: 104, alignItems: "center", justifyContent: "center" },
-  ringBtn: { width: 84, height: 84, borderRadius: 42, alignItems: "center", justifyContent: "center" },
-  playSub: { fontSize: 14, fontWeight: "700" },
-  revealText: { fontSize: 16, fontWeight: "900", textAlign: "center" },
-  targetLanguageText: { fontWeight: "900" },
+  ringWrap: { width: 128, height: 128, alignItems: "center", justifyContent: "center" },
+  ringBtn: { width: 104, height: 104, borderRadius: 52, alignItems: "center", justifyContent: "center" },
+  playSub: { fontSize: 15, lineHeight: 20, fontWeight: "600" },
+  revealText: { fontSize: 24, lineHeight: 30, fontWeight: "700", textAlign: "center", letterSpacing: -0.3 },
   answerRow: {
     minHeight: 64,
     width: "100%",
@@ -412,10 +392,7 @@ const styles = StyleSheet.create({
     gap: 8,
     paddingBottom: 10,
   },
-  bank: { flexDirection: "row", flexWrap: "wrap", gap: 10, justifyContent: "center" },
-  chip: { borderRadius: 16, paddingVertical: 11, paddingHorizontal: 16 },
-  chipText: { fontSize: 16.5, fontWeight: "900" },
-  targetText: { fontWeight: "900" },
-  feedbackLane: { width: "100%", borderRadius: 18, padding: 12 },
-  feedbackText: { fontSize: 14.5, fontWeight: "600", lineHeight: 19 },
+  bank: { flexDirection: "row", flexWrap: "wrap", gap: 10, justifyContent: "flex-start", width: "100%" },
+  feedbackLane: { width: "100%" },
+  submit: { width: "100%" },
 });

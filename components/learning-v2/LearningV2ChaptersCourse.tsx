@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useTheme } from "../ThemeContext";
+import { lv2Alpha, lv2CardStyle, lv2NodePaint, useLv2Glass } from "./LearningV2Glass";
 import PressableHybrid from "../PressableHybrid";
 import { triLang, type Lang } from "../../constants/i18n";
 import {
@@ -60,7 +60,9 @@ function currentLessonOrdinal(currentSessionId: string | null): number {
 }
 
 export default function LearningV2ChaptersCourse(props: Props) {
-  const { theme: t } = useTheme();
+  // зачем (learning-v2.html, вариант «Главы»): карточки глав, узлы и «Все уроки» — на токенах
+  // Liquid Glass активной темы; логика выбора урока и глав осталась прежней.
+  const g = useLv2Glass();
   const [allLessonsOpen, setAllLessonsOpen] = useState(false);
   const [expandedChapter, setExpandedChapter] = useState<number | null>(null);
   const canonicalCurrentLessonOrdinal = currentLessonOrdinal(props.currentSessionId);
@@ -112,12 +114,12 @@ export default function LearningV2ChaptersCourse(props: Props) {
   }, [props]);
 
   if (allLessonsOpen) {
-    return <View testID="learning-v2-chapters-course" style={[styles.root, { backgroundColor: t.bgPrimary, paddingTop: props.topPadding ?? 0 }]}>
+    return <View testID="learning-v2-chapters-course" style={[styles.root, { backgroundColor: g.bg, paddingTop: props.topPadding ?? 0 }]}>
       <View style={styles.header}>
-        <PressableHybrid variant="icon" accessibilityLabel={triLang(props.lang, { ru: "Назад", en: "Back", uk: "Назад", es: "Atrás", "pt-BR": "Voltar", vi: "Quay lại", id: "Kembali", tr: "Geri", pl: "Wstecz" })} onPress={() => setAllLessonsOpen(false)} style={[styles.iconButton, { backgroundColor: t.bgCard }]} contentStyle={styles.iconButtonContent}>
-          <Ionicons name="chevron-back" size={24} color={t.textPrimary} />
+        <PressableHybrid variant="icon" accessibilityLabel={triLang(props.lang, { ru: "Назад", en: "Back", uk: "Назад", es: "Atrás", "pt-BR": "Voltar", vi: "Quay lại", id: "Kembali", tr: "Geri", pl: "Wstecz" })} onPress={() => setAllLessonsOpen(false)} style={[styles.iconButton, { backgroundColor: g.opaqueCard }]} contentStyle={styles.iconButtonContent}>
+          <Ionicons name="chevron-back" size={24} color={g.text} />
         </PressableHybrid>
-        <Text style={[styles.headerTitle, { color: t.textPrimary }]}>{triLang(props.lang, { ru: "Все уроки", en: "All lessons", uk: "Усі уроки", es: "Todas las lecciones", "pt-BR": "Todas as lições", vi: "Tất cả bài học", id: "Semua pelajaran", tr: "Tüm dersler", pl: "Wszystkie lekcje" })}</Text>
+        <Text style={[styles.headerTitle, { color: g.text }]}>{triLang(props.lang, { ru: "Все уроки", en: "All lessons", uk: "Усі уроки", es: "Todas las lecciones", "pt-BR": "Todas as lições", vi: "Tất cả bài học", id: "Semua pelajaran", tr: "Tüm dersler", pl: "Wszystkie lekcje" })}</Text>
         {props.headerAccessory}
       </View>
       <ScrollView testID="learning-v2-all-lessons-list" contentContainerStyle={[styles.list, { paddingBottom: props.bottomPadding }]}>
@@ -126,17 +128,17 @@ export default function LearningV2ChaptersCourse(props: Props) {
           const lessonSessions = rows.filter((row): row is SessionRow => row.kind === "session" && row.lessonOrdinal === ordinal);
           const completedSessionCount = lessonSessions.filter((row) => completed.has(row.id)).length;
           const cardProps = { title, ordinal, completedSessionCount, isCurrent: ordinal === selectedLessonOrdinal, isAvailable: true, isInProgress: false, onPress: () => openLesson(ordinal) };
-          return <View key={ordinal} style={styles.lessonCard}>{props.renderLessonCard ? props.renderLessonCard(cardProps) : <PressableHybrid variant="card" accessibilityLabel={title} onPress={cardProps.onPress} style={[styles.fallbackLesson, { backgroundColor: t.bgCard }]} contentStyle={styles.fallbackLessonContent}><View style={styles.lessonCopy}><Text style={[styles.lessonMeta, { color: t.textMuted }]}>{ordinal} · {completedSessionCount}/56</Text><Text style={[styles.lessonTitle, { color: t.textPrimary }]}>{title}</Text></View><Ionicons name="chevron-forward" size={20} color={t.textMuted} /></PressableHybrid>}</View>;
+          return <View key={ordinal} style={styles.lessonCard}>{props.renderLessonCard ? props.renderLessonCard(cardProps) : <PressableHybrid variant="card" accessibilityLabel={title} onPress={cardProps.onPress} style={[styles.fallbackLesson, { backgroundColor: g.opaqueCard }]} contentStyle={styles.fallbackLessonContent}><View style={styles.lessonCopy}><Text style={[styles.lessonMeta, { color: g.secondary }]}>{ordinal} · {completedSessionCount}/56</Text><Text style={[styles.lessonTitle, { color: g.text }]}>{title}</Text></View><Ionicons name="chevron-forward" size={20} color={g.secondary} /></PressableHybrid>}</View>;
         })}
-        <PressableHybrid variant="chip" accessibilityLabel={props.legacyLessonsLabel} onPress={props.onLegacyLessons} style={[styles.legacyButton, { backgroundColor: t.bgSurface2 }]} contentStyle={styles.legacyButtonContent}><Text style={{ color: t.textPrimary }}>{props.legacyLessonsLabel}</Text></PressableHybrid>
+        <PressableHybrid variant="chip" accessibilityLabel={props.legacyLessonsLabel} onPress={props.onLegacyLessons} style={[styles.legacyButton, { backgroundColor: g.opaqueControl }]} contentStyle={styles.legacyButtonContent}><Text style={{ color: g.text }}>{props.legacyLessonsLabel}</Text></PressableHybrid>
       </ScrollView>
     </View>;
   }
 
-  return <View testID="learning-v2-chapters-course" style={[styles.root, { backgroundColor: t.bgPrimary, paddingTop: props.topPadding ?? 0 }]}>
+  return <View testID="learning-v2-chapters-course" style={[styles.root, { backgroundColor: g.bg, paddingTop: props.topPadding ?? 0 }]}>
     <View style={styles.header}>
       {props.navigationControl}
-      <View style={styles.titleBlock}><Text style={[styles.lessonKicker, { color: t.textMuted }]}>{triLang(props.lang, { ru: `Урок ${selectedLessonOrdinal}`, en: `Lesson ${selectedLessonOrdinal}`, uk: `Урок ${selectedLessonOrdinal}`, es: `Lección ${selectedLessonOrdinal}`, "pt-BR": `Lição ${selectedLessonOrdinal}`, vi: `Bài ${selectedLessonOrdinal}`, id: `Pelajaran ${selectedLessonOrdinal}`, tr: `Ders ${selectedLessonOrdinal}`, pl: `Lekcja ${selectedLessonOrdinal}` })}</Text><Text style={[styles.headerTitle, { color: t.textPrimary }]}>{currentLessonTitle}</Text></View>
+      <View style={styles.titleBlock}><Text style={[styles.lessonKicker, { color: g.secondary }]}>{triLang(props.lang, { ru: `Урок ${selectedLessonOrdinal}`, en: `Lesson ${selectedLessonOrdinal}`, uk: `Урок ${selectedLessonOrdinal}`, es: `Lección ${selectedLessonOrdinal}`, "pt-BR": `Lição ${selectedLessonOrdinal}`, vi: `Bài ${selectedLessonOrdinal}`, id: `Pelajaran ${selectedLessonOrdinal}`, tr: `Ders ${selectedLessonOrdinal}`, pl: `Lekcja ${selectedLessonOrdinal}` })}</Text><Text style={[styles.headerTitle, { color: g.text }]}>{currentLessonTitle}</Text></View>
       {props.headerAccessory}
     </View>
     <ScrollView contentContainerStyle={[styles.list, { paddingBottom: props.bottomPadding }]}>
@@ -144,25 +146,67 @@ export default function LearningV2ChaptersCourse(props: Props) {
         const chapterSessions = sessionRows.filter((row) => row.chapterOrdinal === chapter.chapterOrdinal);
         const completedCount = chapterSessions.filter((row) => row.state === "completed").length;
         const isExpanded = expandedChapter === chapter.chapterOrdinal;
-        return <View key={chapter.id} style={[styles.chapter, { backgroundColor: t.bgCard }]}>
+        const chapterState = chapterSessions.length > 0 && completedCount === chapterSessions.length
+          ? "done"
+          : chapterSessions.every((row) => row.state === "locked") ? "locked" : "open";
+        const firstOrdinal = chapterSessions[0]?.sessionOrdinal ?? (chapter.chapterOrdinal - 1) * 8 + 1;
+        const lastOrdinal = chapterSessions[chapterSessions.length - 1]?.sessionOrdinal ?? chapter.chapterOrdinal * 8;
+        const sessionsWord = triLang(props.lang, { ru: "Занятия", en: "Sessions", uk: "Заняття", es: "Sesiones", "pt-BR": "Sessões", vi: "Phiên", id: "Sesi", tr: "Oturumlar", pl: "Sesje" });
+        return <View key={chapter.id} style={[styles.chapter, lv2CardStyle(g, 22)]}>
           <PressableHybrid variant="card" testID={`learning-v2-chapter-${chapter.chapterOrdinal}`} accessibilityLabel={`${triLang(props.lang, { ru: "Глава", en: "Chapter", uk: "Розділ", es: "Capítulo", "pt-BR": "Capítulo", vi: "Chương", id: "Bab", tr: "Bölüm", pl: "Rozdział" })} ${chapter.chapterOrdinal}`} onPress={() => toggleChapter(chapter.chapterOrdinal)} style={styles.chapterPress} contentStyle={styles.chapterPressContent}>
-            <View style={styles.chapterCopy}><Text style={[styles.chapterKicker, { color: t.accent }]}>{triLang(props.lang, { ru: `ГЛАВА ${chapter.chapterOrdinal}`, en: `CHAPTER ${chapter.chapterOrdinal}`, uk: `РОЗДІЛ ${chapter.chapterOrdinal}`, es: `CAPÍTULO ${chapter.chapterOrdinal}`, "pt-BR": `CAPÍTULO ${chapter.chapterOrdinal}`, vi: `CHƯƠNG ${chapter.chapterOrdinal}`, id: `BAB ${chapter.chapterOrdinal}`, tr: `BÖLÜM ${chapter.chapterOrdinal}`, pl: `ROZDZIAŁ ${chapter.chapterOrdinal}` })}</Text><Text style={[styles.chapterProgress, { color: t.textPrimary }]}>{completedCount}/8</Text></View>
-            <Ionicons name={isExpanded ? "chevron-up" : "chevron-down"} size={20} color={t.textMuted} />
+            <View style={[styles.chapterTile, { backgroundColor: g.opaqueControl }]}><Ionicons name={chapterState === "done" ? "checkmark" : chapterState === "locked" ? "lock-closed" : "trophy-outline"} size={24} color={chapterState === "locked" ? g.mutedText : g.text} /></View>
+            <View style={styles.chapterCopy}><Text style={[styles.chapterTitle, { color: g.text }]}>{triLang(props.lang, { ru: "Глава", en: "Chapter", uk: "Розділ", es: "Capítulo", "pt-BR": "Capítulo", vi: "Chương", id: "Bab", tr: "Bölüm", pl: "Rozdział" })} {chapter.chapterOrdinal}</Text><Text style={[styles.chapterSub, { color: g.secondary }]}>{sessionsWord} {firstOrdinal}–{lastOrdinal}</Text></View>
+            <Text style={[styles.chapterFrac, { color: g.secondary }]}><Text style={{ color: g.text, fontWeight: "700" }}>{completedCount}</Text>/8</Text>
+            <Ionicons name={isExpanded ? "chevron-up" : "chevron-down"} size={20} color={g.secondary} />
           </PressableHybrid>
           {isExpanded ? <View style={styles.sessions}>{chapterSessions.map((row) => {
             const hasMaterial = props.isSessionMaterialAvailable?.(row.lessonOrdinal, row.sessionOrdinal) ?? true;
             const isCheckpoint = row.role === "chapter_checkpoint";
             const isExam = row.role === "final_exam";
-            const icon = !hasMaterial ? "construct-outline" : row.state === "completed" ? "checkmark" : isCheckpoint || isExam ? "trophy" : row.state === "locked" ? "lock-closed" : "play";
-            return <PressableHybrid key={row.id} variant="card" testID={`learning-v2-chapter-session-${row.sessionOrdinal}`} accessibilityLabel={`${row.sessionOrdinal}`} accessibilityState={{ disabled: !hasMaterial }} disabled={!hasMaterial} onPress={hasMaterial ? () => onSessionPress(row.lessonOrdinal, row.sessionOrdinal, row.state) : undefined} style={[styles.session, { backgroundColor: t.bgSurface2, opacity: hasMaterial ? 1 : 0.62 }]} contentStyle={styles.sessionContent}><View style={styles.sessionNumber}><Ionicons name={icon} size={17} color={t.accent} /></View><Text style={[styles.sessionLabel, { color: t.textPrimary }]}>{triLang(props.lang, { ru: `Сессия ${row.sessionOrdinal}`, en: `Session ${row.sessionOrdinal}`, uk: `Сесія ${row.sessionOrdinal}`, es: `Sesión ${row.sessionOrdinal}`, "pt-BR": `Sessão ${row.sessionOrdinal}`, vi: `Phiên ${row.sessionOrdinal}`, id: `Sesi ${row.sessionOrdinal}`, tr: `Oturum ${row.sessionOrdinal}`, pl: `Sesja ${row.sessionOrdinal}` })}</Text><Text style={[styles.sessionState, { color: t.textMuted }]}>{row.state}</Text></PressableHybrid>;
-          })}</View> : null}
+            const available = hasMaterial && (row.state === "current" || row.state === "completed");
+            const paint = lv2NodePaint(g, row.state, available);
+            const icon = !hasMaterial ? "construct-outline" : row.state === "completed" ? "checkmark" : isCheckpoint || isExam ? "trophy" : row.state === "locked" ? "lock-closed" : available ? "play" : "lock-closed";
+            const stars = row.state === "completed" ? Math.max(1, props.stars[row.id] ?? 1) : 0;
+            return <PressableHybrid key={row.id} variant="card" testID={`learning-v2-chapter-session-${row.sessionOrdinal}`} accessibilityLabel={`${row.sessionOrdinal}`} accessibilityState={{ disabled: !hasMaterial }} disabled={!hasMaterial} onPress={hasMaterial ? () => onSessionPress(row.lessonOrdinal, row.sessionOrdinal, row.state) : undefined} style={[styles.session, { opacity: hasMaterial ? 1 : 0.62 }]} contentStyle={styles.sessionContent}>
+              <View style={styles.nodeWrap}>
+                <View style={[styles.nodePlate, { backgroundColor: paint.face }]}><View style={styles.nodePlateShade} /></View>
+                <View style={[styles.nodeFace, { backgroundColor: paint.face }]}>
+                  <Ionicons name={icon} size={24} color={paint.ink} />
+                  <Text style={[styles.nodeNumber, { color: paint.ink }]}>{row.sessionOrdinal}</Text>
+                </View>
+                {stars > 0 ? <View style={[styles.nodeStars, { backgroundColor: g.opaqueControl, borderColor: g.glassEdge }]}>{[0, 1, 2].map((starIndex) => <Ionicons key={starIndex} name="star" size={11} color={starIndex < stars ? g.text : lv2Alpha(g.text, 0.2)} />)}</View> : null}
+              </View>
+              <Text style={[styles.sessionLabel, { color: row.state === "current" ? g.text : g.secondary, fontWeight: row.state === "current" ? "800" : "700" }]}>{triLang(props.lang, { ru: `Сессия ${row.sessionOrdinal}`, en: `Session ${row.sessionOrdinal}`, uk: `Сесія ${row.sessionOrdinal}`, es: `Sesión ${row.sessionOrdinal}`, "pt-BR": `Sessão ${row.sessionOrdinal}`, vi: `Phiên ${row.sessionOrdinal}`, id: `Sesi ${row.sessionOrdinal}`, tr: `Oturum ${row.sessionOrdinal}`, pl: `Sesja ${row.sessionOrdinal}` })}</Text>
+            </PressableHybrid>;
+          })}</View> : <View style={[styles.chapterTrack, { backgroundColor: g.opaqueControl }]}><View style={[styles.chapterTrackFill, { backgroundColor: g.cta, width: `${Math.round(completedCount / 8 * 100)}%` }]} /></View>}
         </View>;
       })}
-      <PressableHybrid variant="card" testID="learning-v2-all-lessons" accessibilityLabel={triLang(props.lang, { ru: "Все уроки", en: "All lessons", uk: "Усі уроки", es: "Todas las lecciones", "pt-BR": "Todas as lições", vi: "Tất cả bài học", id: "Semua pelajaran", tr: "Tüm dersler", pl: "Wszystkie lekcje" })} onPress={() => setAllLessonsOpen(true)} style={[styles.allLessons, { backgroundColor: t.bgSurface2 }]} contentStyle={styles.allLessonsContent}><Ionicons name="list-outline" size={20} color={t.textPrimary} /><Text style={[styles.allLessonsText, { color: t.textPrimary }]}>{triLang(props.lang, { ru: "Все уроки", en: "All lessons", uk: "Усі уроки", es: "Todas las lecciones", "pt-BR": "Todas as lições", vi: "Tất cả bài học", id: "Semua pelajaran", tr: "Tüm dersler", pl: "Wszystkie lekcje" })}</Text></PressableHybrid>
+      <PressableHybrid variant="card" testID="learning-v2-all-lessons" accessibilityLabel={triLang(props.lang, { ru: "Все уроки", en: "All lessons", uk: "Усі уроки", es: "Todas las lecciones", "pt-BR": "Todas as lições", vi: "Tất cả bài học", id: "Semua pelajaran", tr: "Tüm dersler", pl: "Wszystkie lekcje" })} onPress={() => setAllLessonsOpen(true)} style={[styles.allLessons, { backgroundColor: g.opaqueControl }]} contentStyle={styles.allLessonsContent}><Ionicons name="list-outline" size={20} color={g.text} /><Text style={[styles.allLessonsText, { color: g.text }]}>{triLang(props.lang, { ru: "Все уроки", en: "All lessons", uk: "Усі уроки", es: "Todas las lecciones", "pt-BR": "Todas as lições", vi: "Tất cả bài học", id: "Semua pelajaran", tr: "Tüm dersler", pl: "Wszystkie lekcje" })}</Text></PressableHybrid>
     </ScrollView>
   </View>;
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1 }, header: { minHeight: 72, paddingHorizontal: 12, flexDirection: "row", alignItems: "center", gap: 10 }, titleBlock: { flex: 1, minWidth: 0, flexShrink: 1 }, headerTitle: { flexShrink: 1, fontSize: 20, lineHeight: 25, fontWeight: "800" }, lessonKicker: { fontSize: 12, lineHeight: 16, fontWeight: "700" }, iconButton: { width: 48, height: 48, borderRadius: 18 }, iconButtonContent: { flex: 1, alignItems: "center", justifyContent: "center" }, list: { paddingHorizontal: 12, gap: 10 }, chapter: { borderRadius: 24, overflow: "hidden" }, chapterPress: { borderRadius: 24 }, chapterPressContent: { minHeight: 76, paddingHorizontal: 18, flexDirection: "row", alignItems: "center", justifyContent: "space-between" }, chapterCopy: { gap: 3 }, chapterKicker: { fontSize: 12, lineHeight: 16, letterSpacing: 1.2, fontWeight: "800" }, chapterProgress: { fontSize: 18, lineHeight: 23, fontWeight: "800" }, sessions: { paddingHorizontal: 10, paddingBottom: 10, gap: 8 }, session: { borderRadius: 18 }, sessionContent: { minHeight: 54, paddingHorizontal: 12, flexDirection: "row", alignItems: "center", gap: 10 }, sessionNumber: { width: 28, alignItems: "center" }, sessionLabel: { flex: 1, fontSize: 15, fontWeight: "700" }, sessionState: { fontSize: 12, fontWeight: "700" }, allLessons: { borderRadius: 20, marginTop: 6 }, allLessonsContent: { minHeight: 56, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8 }, allLessonsText: { fontSize: 16, fontWeight: "800" }, lessonCard: { marginBottom: 2 }, fallbackLesson: { borderRadius: 20 }, fallbackLessonContent: { minHeight: 76, paddingHorizontal: 16, flexDirection: "row", alignItems: "center", gap: 12 }, lessonCopy: { flex: 1 }, lessonMeta: { fontSize: 12, fontWeight: "700", marginBottom: 3 }, lessonTitle: { fontSize: 17, fontWeight: "800" }, legacyButton: { borderRadius: 18, marginTop: 6 }, legacyButtonContent: { minHeight: 48, alignItems: "center", justifyContent: "center" },
+  root: { flex: 1 }, header: { minHeight: 72, paddingHorizontal: 12, flexDirection: "row", alignItems: "center", gap: 10 }, titleBlock: { flex: 1, minWidth: 0, flexShrink: 1 }, headerTitle: { flexShrink: 1, fontSize: 20, lineHeight: 25, fontWeight: "700" }, lessonKicker: { fontSize: 12, lineHeight: 16, fontWeight: "700" }, iconButton: { width: 48, height: 48, borderRadius: 24 }, iconButtonContent: { flex: 1, alignItems: "center", justifyContent: "center" }, list: { paddingHorizontal: 12, gap: 12 },
+  chapter: { overflow: "hidden", paddingBottom: 6 },
+  chapterPress: { borderRadius: 22 },
+  chapterPressContent: { minHeight: 84, paddingHorizontal: 16, flexDirection: "row", alignItems: "center", gap: 14 },
+  chapterTile: { width: 55, height: 55, borderRadius: 16, alignItems: "center", justifyContent: "center" },
+  chapterCopy: { flex: 1, minWidth: 0, gap: 4 },
+  chapterTitle: { fontSize: 19, lineHeight: 24, fontWeight: "700" },
+  chapterSub: { fontSize: 15, lineHeight: 20 },
+  chapterFrac: { fontSize: 15, lineHeight: 20, fontVariant: ["tabular-nums"] },
+  chapterTrack: { height: 7, borderRadius: 4, marginTop: 2, marginBottom: 14, marginHorizontal: 20, overflow: "hidden" },
+  chapterTrackFill: { height: "100%", borderRadius: 4 },
+  sessions: { paddingHorizontal: 6, paddingBottom: 10, paddingTop: 6, flexDirection: "row", flexWrap: "wrap", rowGap: 18 },
+  session: { width: "25%", alignItems: "center" },
+  sessionContent: { minHeight: 96, paddingHorizontal: 2, alignItems: "center", justifyContent: "flex-start", gap: 8 },
+  nodeWrap: { width: 64, height: 70, alignItems: "center" },
+  nodePlate: { position: "absolute", left: 0, right: 0, top: 6, height: 64, borderRadius: 32, overflow: "hidden" },
+  nodePlateShade: { flex: 1, backgroundColor: "rgba(0,0,0,0.32)" },
+  nodeFace: { width: 64, height: 64, borderRadius: 32, alignItems: "center", justifyContent: "center", gap: 1 },
+  nodeNumber: { fontSize: 12, lineHeight: 15, fontWeight: "700" },
+  nodeStars: { position: "absolute", bottom: -10, minHeight: 20, paddingHorizontal: 6, borderRadius: 10, borderWidth: StyleSheet.hairlineWidth, flexDirection: "row", alignItems: "center", gap: 1 },
+  sessionLabel: { width: 82, fontSize: 11, lineHeight: 14, textAlign: "center", marginTop: 10 },
+  allLessons: { borderRadius: 28, marginTop: 6 }, allLessonsContent: { minHeight: 56, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 8 }, allLessonsText: { fontSize: 16, fontWeight: "700" }, lessonCard: { marginBottom: 2 }, fallbackLesson: { borderRadius: 14 }, fallbackLessonContent: { minHeight: 76, paddingHorizontal: 16, flexDirection: "row", alignItems: "center", gap: 12 }, lessonCopy: { flex: 1 }, lessonMeta: { fontSize: 13, fontWeight: "600", marginBottom: 2 }, lessonTitle: { fontSize: 17, fontWeight: "700" }, legacyButton: { borderRadius: 28, marginTop: 6 }, legacyButtonContent: { minHeight: 48, alignItems: "center", justifyContent: "center" },
 });

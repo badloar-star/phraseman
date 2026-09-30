@@ -15,28 +15,33 @@ const modeFiles = [
   "scripted_repeat_compare_mode_v1.tsx",
 ] as const;
 
-for (const file of modeFiles) {
-  const path = `modules/learning-v2/modes/${file}`;
-  const source = read(path);
-  if (
-    file !== "scripted_repeat_compare_mode_v1.tsx" &&
-    !source.includes("components/ui/v2_ui")
-  )
-    findings.push(`arena_primitives_not_imported:${path}`);
-  if (!source.includes("useTournamentPalette"))
-    findings.push(`arena_palette_not_used:${path}`);
-}
-
-for (const file of [
+// зачем (владелец 2026-09-30, learning-v2.html): шесть боевых режимов занятия перенесены с «арена-
+// примитивов» (V2Chip/useTournamentPalette) на общий набор Liquid Glass — LearningV2Glass. Режим
+// sound_contrast в макете не рисуется и остаётся на прежних примитивах.
+const glassModes = new Set([
   "phrase_builder_mode_v1.tsx",
   "listen_choose_mode_v1.tsx",
-  "sound_contrast_mode_v1.tsx",
   "listen_build_dictation_mode_v1.tsx",
   "context_gap_grammar_mode_v1.tsx",
   "speed_match_mode_v1.tsx",
-] as const) {
+  "scripted_repeat_compare_mode_v1.tsx",
+]);
+
+for (const file of modeFiles) {
   const path = `modules/learning-v2/modes/${file}`;
-  if (!read(path).includes("V2Chip")) findings.push(`v2_chip_missing:${path}`);
+  const source = read(path);
+  if (glassModes.has(file)) {
+    if (!source.includes("components/learning-v2/LearningV2Glass"))
+      findings.push(`glass_kit_not_imported:${path}`);
+    if (!source.includes("useLv2Glass"))
+      findings.push(`glass_tokens_not_used:${path}`);
+    continue;
+  }
+  if (!source.includes("components/ui/v2_ui"))
+    findings.push(`arena_primitives_not_imported:${path}`);
+  if (!source.includes("useTournamentPalette"))
+    findings.push(`arena_palette_not_used:${path}`);
+  if (!source.includes("V2Chip")) findings.push(`v2_chip_missing:${path}`);
 }
 
 const player = read("app/learning_v2_direct_session_player_v1.tsx");

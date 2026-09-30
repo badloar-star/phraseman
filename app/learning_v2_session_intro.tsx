@@ -20,21 +20,22 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { LEARNING_V2_OWNER_LAYOUT } from "../components/learning-v2/learningV2OwnerLayout";
 
 import { useStableSafeAreaInsets } from "./stable_safe_area_metrics";
-import DuoPressable from "../components/DuoPressable";
 import { useLang } from "../components/LangContext";
 import PressableHybrid from "../components/PressableHybrid";
 import { LinearGradient } from "../components/SafeLinearGradient";
 import { useStudyTarget } from "../components/StudyTargetContext";
-import { useTheme } from "../components/ThemeContext";
+import {
+  Lv2Cta,
+  lv2Alpha,
+  lv2CardStyle,
+  useLv2Glass,
+  type Lv2Glass,
+} from "../components/learning-v2/LearningV2Glass";
 import { triLang, type Lang } from "../constants/i18n";
 import ReportErrorButton from "../components/ReportErrorButton";
-import { CHK, LUM } from "../constants/motionHybrid";
+import { LUM } from "../constants/motionHybrid";
 import { hapticError, hapticSuccess } from "../hooks/use-haptics";
 import type { RequiredSessionTaskCompletionInputV3 } from "../modules/learning-v2/progress/required_session_completion_envelope";
-import {
-  introCtaTextColor,
-  introTargetTextColor,
-} from "./learning_v2_intro_theme";
 import {
   introPartRole,
   type IntroPartRole,
@@ -185,50 +186,47 @@ const stringsFor = (lang: Lang) => ({
 /**
  * Цвет и вес куска по его роли.
  *
- * зачем: до 2026-08-23 экран красил только по полю `semantic`, которого в
- * контенте нет ни разу — 61,5% разметки доезжало серым текстом. Теперь роль
- * приходит из моста над `tone`, а палитра берётся из токенов темы (не хардкод),
- * иначе цвета ломались бы на светлой теме sagePorcelain.
+ * зачем (learning-v2.html, `.know`): роль куска по-прежнему выводит мост над `tone`, но палитра
+ * теперь — токены Liquid Glass активной темы. Правильный пример на изучаемом языке — белый и
+ * жирнее обычного текста; ошибочный — зачёркнут красным; «верно»-маркер зелёный, предупреждение
+ * и формула — светлые и жирные. Прежний цвет «языка» (accent) ушёл: в макете он нейтральный.
  */
 function rolePresentation(
   role: IntroPartRole,
-  theme: ReturnType<typeof useTheme>["theme"],
-  targetColor: string,
-): { color: string; fontWeight: "400" | "700"; strike: boolean; size: number } {
+  g: Lv2Glass,
+): { color: string; fontWeight: "400" | "600" | "700"; strike: boolean; size: number } {
   switch (role) {
     case "target":
-      return { color: targetColor, fontWeight: "700", strike: false, size: 16 };
+      return { color: g.text, fontWeight: "700", strike: false, size: 17 };
     case "targetWrong":
-      return { color: theme.wrong, fontWeight: "700", strike: true, size: 16 };
+      return { color: g.bad, fontWeight: "700", strike: true, size: 17 };
     case "gloss":
-      return { color: theme.textMuted, fontWeight: "400", strike: false, size: 15 };
+      return { color: g.secondary, fontWeight: "400", strike: false, size: 16 };
     case "markerCorrect":
-      return { color: theme.correct, fontWeight: "700", strike: false, size: 15 };
+      return { color: g.good, fontWeight: "700", strike: false, size: 16 };
     case "markerWarning":
-      return { color: theme.gold, fontWeight: "700", strike: false, size: 15 };
+      return { color: g.cta, fontWeight: "700", strike: false, size: 16 };
     case "formula":
-      return { color: theme.textSecond, fontWeight: "700", strike: false, size: 15 };
+      return { color: g.text, fontWeight: "700", strike: false, size: 16 };
     case "emphasis":
-      return { color: theme.textOnCard, fontWeight: "700", strike: false, size: 15 };
+      return { color: g.text, fontWeight: "700", strike: false, size: 16 };
     case "plain":
     default:
-      return { color: theme.textOnCard, fontWeight: "400", strike: false, size: 15 };
+      return { color: g.text, fontWeight: "400", strike: false, size: 16 };
   }
 }
 
 function IntroReaderParagraph({
   lineIndex,
   parts,
-  targetColor,
-  theme,
+  glass,
   nativeScriptIsCyrillic,
   correctExampleLabel,
   wrongExampleLabel,
 }: Readonly<{
   lineIndex: number;
   parts: readonly IntroTextPart[];
-  targetColor: string;
-  theme: ReturnType<typeof useTheme>["theme"];
+  glass: Lv2Glass;
   nativeScriptIsCyrillic: boolean;
   correctExampleLabel: string;
   wrongExampleLabel: string;
@@ -242,12 +240,12 @@ function IntroReaderParagraph({
       }
       style={[
         styles.readerParagraph,
-        { color: theme.textOnCard },
+        { color: glass.text },
       ]}
     >
       {parts.map((part, index) => {
         const role = introPartRole(part, nativeScriptIsCyrillic);
-        const look = rolePresentation(role, theme, targetColor);
+        const look = rolePresentation(role, glass);
         return (
           <Text
             key={`${index}-${part.text}`}
@@ -340,7 +338,8 @@ export default function LearningV2SessionIntro({
 }>) {
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
-  const { theme: t, themeMode } = useTheme();
+  // зачем (learning-v2.html, интро): все цвета экрана — токены Liquid Glass активной темы.
+  const g = useLv2Glass();
   const { height } = useWindowDimensions();
   const insets = useStableSafeAreaInsets();
   const reducedMotion = useReducedMotion();
@@ -350,6 +349,9 @@ export default function LearningV2SessionIntro({
   >(null);
   const [attempts, setAttempts] = useState(1);
   const [wrongCount, setWrongCount] = useState(0);
+  // зачем (макет 25 «ЛОВУШКА — две ошибки»): неверные варианты остаются красными на странице,
+  // а не гаснут после толчка. Только вид: вердикт по-прежнему решает evaluateChoice.
+  const [wrongChoiceIndexes, setWrongChoiceIndexes] = useState<readonly number[]>([]);
   const [wrongChoiceNudge, setWrongChoiceNudge] = useState({
     choiceIndex: -1,
     token: 0,
@@ -418,8 +420,6 @@ export default function LearningV2SessionIntro({
       "")
     : "";
   const answered = selectedCorrectIndex !== null;
-  const targetColor = introTargetTextColor(t, themeMode);
-  const ctaTextColor = introCtaTextColor(t);
 
   useEffect(() => {
     if (screens.length === 0) onComplete([]);
@@ -458,6 +458,9 @@ export default function LearningV2SessionIntro({
       return;
     }
     setWrongCount((value) => value + 1);
+    setWrongChoiceIndexes((current) =>
+      current.includes(choiceIndex) ? current : [...current, choiceIndex],
+    );
     setAttempts((value) => value + 1);
     setWrongChoiceNudge((current) => ({
       choiceIndex,
@@ -480,6 +483,7 @@ export default function LearningV2SessionIntro({
       return;
     }
     setSelectedCorrectIndex(null);
+    setWrongChoiceIndexes([]);
     setAttempts(1);
     setWrongCount(0);
     setWrongChoiceNudge({ choiceIndex: -1, token: 0 });
@@ -488,8 +492,8 @@ export default function LearningV2SessionIntro({
 
   return (
     <LinearGradient
-      colors={[t.bgGradient[0], t.bgPrimary, t.bgGradient[1]]}
-      style={[styles.screen, { backgroundColor: t.bgPrimary }]}
+      colors={[g.bgTop, g.bg, g.bgBottom]}
+      style={[styles.screen, { backgroundColor: g.bg }]}
     >
       <SafeAreaView
         style={[styles.safe, { paddingTop: insets.top }]}
@@ -505,19 +509,19 @@ export default function LearningV2SessionIntro({
             style={styles.closeButton}
             contentStyle={[
               styles.closeButtonFace,
-              { backgroundColor: t.bgCard },
+              { backgroundColor: g.opaqueControl },
             ]}
           >
-            <Ionicons name="close" size={22} color={t.textPrimary} />
+            <Ionicons name="close" size={22} color={g.text} />
           </PressableHybrid>
 
           <View style={styles.stageMeta}>
-            <Text style={[styles.stageLabel, { color: targetColor }]}>
+            <Text style={[styles.stageLabel, { color: lv2Alpha(g.text, 0.86) }]}>
               {stageLabel}
             </Text>
             <Text
               accessibilityLabel={copy.progress(safeIndex + 1, screens.length)}
-              style={[styles.pageCounter, { color: t.textMuted }]}
+              style={[styles.pageCounter, { color: g.secondary }]}
             >
               {safeIndex + 1} / {screens.length}
             </Text>
@@ -537,8 +541,8 @@ export default function LearningV2SessionIntro({
               key={entry.screenId ?? `${lessonId}-${progressIndex}`}
               style={[
                 styles.progressSegment,
-                { backgroundColor: t.bgSurface2 },
-                progressIndex <= safeIndex && { backgroundColor: targetColor },
+                { backgroundColor: g.opaqueControl },
+                progressIndex <= safeIndex && { backgroundColor: g.cta },
               ]}
             />
           ))}
@@ -566,13 +570,13 @@ export default function LearningV2SessionIntro({
             keyboardShouldPersistTaps="handled"
           >
             <View style={styles.readerColumn}>
-              <Text style={[styles.title, { color: t.textPrimary }]}>
+              <Text style={[styles.title, { color: lv2Alpha(g.text, 0.86) }]}>
                 {titleSegments.map((segment, segmentIndex) => (
                   <Text
                     key={`${segmentIndex}-${segment.text}`}
                     style={
                       segment.isTarget
-                        ? { color: targetColor, fontWeight: "900" }
+                        ? { color: g.text, fontWeight: "800" }
                         : undefined
                     }
                   >
@@ -581,12 +585,12 @@ export default function LearningV2SessionIntro({
                 ))}
               </Text>
               {!!subtitle && (
-                <Text style={[styles.subtitle, { color: t.textMuted }]}>
+                <Text style={[styles.subtitle, { color: g.secondary }]}>
                   {subtitle}
                 </Text>
               )}
 
-              <View style={[styles.knowledgeFlow, { backgroundColor: t.bgCard }]}>
+              <View style={[styles.knowledgeFlow, lv2CardStyle(g)]}>
                 {lines.map((line, lineIndex) => {
                   const text = lineText(line);
                   if (line.type === "spacer") {
@@ -601,8 +605,7 @@ export default function LearningV2SessionIntro({
                       key={`${lineIndex}-${text}`}
                       lineIndex={lineIndex}
                       parts={parts}
-                      targetColor={targetColor}
-                      theme={t}
+                      glass={g}
                       nativeScriptIsCyrillic={nativeScriptIsCyrillic}
                       correctExampleLabel={copy.correctExample}
                       wrongExampleLabel={copy.wrongExample}
@@ -614,19 +617,20 @@ export default function LearningV2SessionIntro({
               {question && (
                 <View ref={runeAwardOriginRef} collapsable={false} style={styles.questionPanel}>
                   <View style={styles.questionEyebrowRow}>
-                    <Text style={[styles.questionEyebrow, { color: targetColor }]}>
+                    <Text style={[styles.questionEyebrow, { color: g.text }]}>
                       {copy.answerFirst}
                     </Text>
-                    <Text style={[styles.questionNumber, { color: t.textMuted }]}>
+                    <Text style={[styles.questionNumber, { color: g.mutedText }]}>
                       {question.taskSlot} / 3
                     </Text>
                   </View>
-                  <Text style={[styles.questionPrompt, { color: t.textOnCard }]}>
+                  <Text style={[styles.questionPrompt, { color: g.text }]}>
                     {questionPrompt}
                   </Text>
                   <View style={styles.answerList}>
                     {questionChoices.map((choice, choiceIndex) => {
                       const correct = selectedCorrectIndex === choiceIndex;
+                      const wrong = !correct && wrongChoiceIndexes.includes(choiceIndex);
                       return (
                         <IntroAnswerShake
                           key={`${question.questionId}-${choiceIndex}`}
@@ -649,26 +653,33 @@ export default function LearningV2SessionIntro({
                           contentStyle={[
                             styles.answerChoice,
                             {
-                              backgroundColor: correct ? t.correct : t.bgCard,
+                              // зачем (learning-v2.html, `.ach`): верный — зелёная заливка .12 и
+                              // кромка 1 px того же цвета, неверный — красная .10; обычный — плита.
+                              backgroundColor: correct
+                                ? g.goodSoft
+                                : wrong
+                                  ? lv2Alpha(g.bad, 0.1)
+                                  : g.opaqueCard,
+                              borderColor: correct ? g.good : wrong ? g.bad : g.glassEdge, // guard-ok: 1 px кромка макета
                             },
                           ]}
                         >
-                          <View style={[styles.answerLetter, { backgroundColor: correct ? t.correct : t.bgSurface2 }]}>
-                            <Text style={{ color: correct ? t.correctText : t.textMuted, fontSize: 12, fontWeight: "700" }}>{String.fromCharCode(65 + choiceIndex)}</Text>
+                          <View style={[styles.answerLetter, { backgroundColor: correct ? g.good : wrong ? g.bad : g.opaqueControl }]}>
+                            <Text style={{ color: correct || wrong ? g.ctaInk : g.secondary, fontSize: 12, fontWeight: "700" }}>{String.fromCharCode(65 + choiceIndex)}</Text>
                           </View>
                           <Text
                             style={[
                               styles.answerChoiceText,
-                              { color: correct ? t.correctText : t.textOnCard },
+                              { color: g.text },
                             ]}
                           >
                             {choice}
                           </Text>
                           {correct && (
                             <Ionicons
-                              name="checkmark-circle"
-                              size={21}
-                              color={t.correctText}
+                              name="checkmark"
+                              size={20}
+                              color={g.good}
                             />
                           )}
                         </PressableHybrid>
@@ -679,7 +690,7 @@ export default function LearningV2SessionIntro({
                   {answered && (
                     <Text
                       accessibilityLiveRegion="polite"
-                      style={[styles.correctMessage, { color: t.correct }]}
+                      style={[styles.correctMessage, { color: g.good }]}
                     >
                       {copy.correct}
                     </Text>
@@ -687,7 +698,7 @@ export default function LearningV2SessionIntro({
                   {!answered && wrongCount >= 2 && (
                     <Text
                       accessibilityLiveRegion="polite"
-                      style={[styles.explanation, { color: t.textMuted }]}
+                      style={[styles.explanation, { color: g.secondary }]}
                     >
                       {questionExplanation}
                     </Text>
@@ -714,39 +725,28 @@ export default function LearningV2SessionIntro({
             styles.bottomBar,
             {
               paddingBottom: Math.max(insets.bottom, 6),
-              backgroundColor: t.bgPrimary,
-              borderTopColor: t.border,
+              backgroundColor: g.bg,
             },
           ]}
         >
-          <DuoPressable
+          {/* зачем (learning-v2.html, `.cta` / `.cta.dis`): «Дальше» — плоская пилюля цвета CTA
+              темы; пока нет верного ответа — глухая плита. Значок справа как в макете. */}
+          <Lv2Cta
             testID="learning-v2-intro-next"
             accessibilityLabel={isLast ? copy.startPractice : copy.next}
-            accessibilityState={{ disabled: !answered }}
             disabled={!answered}
             onPress={advance}
-            edgeColor={answered ? t.btnShadow : undefined}
-            edgeHeight={CHK.recoilShiftPx}
-            wrapStyle={styles.ctaWrap}
-            style={[
-              styles.cta,
-              { backgroundColor: answered ? t.correct : t.bgSurface2 },
-            ]}
+            style={styles.ctaWrap}
+            right={
+              <Ionicons
+                name={isLast ? "play" : "arrow-forward"}
+                size={20}
+                color={answered ? g.ctaInk : g.mutedText}
+              />
+            }
           >
-            <Text
-              style={[
-                styles.ctaText,
-                { color: answered ? ctaTextColor : t.textMuted },
-              ]}
-            >
-              {isLast ? copy.startPractice : copy.next}
-            </Text>
-            <Ionicons
-              name={isLast ? "play" : "arrow-forward"}
-              size={20}
-              color={answered ? ctaTextColor : t.textMuted}
-            />
-          </DuoPressable>
+            {isLast ? copy.startPractice : copy.next}
+          </Lv2Cta>
         </View>
       </SafeAreaView>
     </LinearGradient>
@@ -769,7 +769,7 @@ const styles = StyleSheet.create({
   closeButtonFace: {
     width: 44,
     height: 44,
-    borderRadius: 15,
+    borderRadius: 22,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -785,9 +785,9 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 17,
     fontWeight: "700",
-    letterSpacing: 1.4,
+    letterSpacing: 1.6,
   },
-  pageCounter: { fontSize: 13, lineHeight: 18, fontWeight: "700" },
+  pageCounter: { fontSize: 13, lineHeight: 18, fontWeight: "700", fontVariant: ["tabular-nums"] },
   headerAccessory: { flexShrink: 0 },
   progressRow: {
     height: 4,
@@ -803,19 +803,20 @@ const styles = StyleSheet.create({
   scrollContentCompact: { paddingTop: 16 },
   readerColumn: { width: "100%", maxWidth: 680, alignSelf: "center" },
   title: {
-    fontSize: LEARNING_V2_OWNER_LAYOUT.intro.headingSize,
-    lineHeight: 29,
+    fontSize: 26,
+    lineHeight: 32,
     fontWeight: "700",
     letterSpacing: -0.4,
+    marginTop: 8,
   },
   subtitle: {
-    fontSize: 14,
+    fontSize: 16,
     lineHeight: 22,
     fontWeight: "400",
-    marginTop: 10,
+    marginTop: 8,
   },
-  knowledgeFlow: { marginTop: 18, gap: LEARNING_V2_OWNER_LAYOUT.intro.cardGap, padding: 24, borderRadius: LEARNING_V2_OWNER_LAYOUT.intro.cardRadius },
-  readerParagraph: { fontSize: LEARNING_V2_OWNER_LAYOUT.intro.bodySize, lineHeight: 22, fontWeight: "400" },
+  knowledgeFlow: { marginTop: 20, gap: 12, paddingHorizontal: 18, paddingVertical: 18 },
+  readerParagraph: { fontSize: 16, lineHeight: 23, fontWeight: "400" },
   spacer: { height: 4 },
   questionPanel: {
     marginTop: 18,
@@ -830,23 +831,26 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 17,
     fontWeight: "700",
-    letterSpacing: 0.6,
+    letterSpacing: 1.6,
+    textTransform: "uppercase",
   },
-  questionNumber: { fontSize: 12, lineHeight: 17, fontWeight: "700" },
+  questionNumber: { fontSize: 13, lineHeight: 18, fontWeight: "700", fontVariant: ["tabular-nums"] },
   questionPrompt: {
-    fontSize: 15,
-    lineHeight: 23,
+    fontSize: 19,
+    lineHeight: 25,
     fontWeight: "700",
-    marginTop: 12,
+    marginTop: 10,
   },
   answerList: { marginTop: 14, gap: LEARNING_V2_OWNER_LAYOUT.intro.cardGap },
   answerChoiceTouch: { minHeight: LEARNING_V2_OWNER_LAYOUT.intro.targetHeight },
-  answerLetter: { width: 31, height: 31, borderRadius: 11, alignItems: "center", justifyContent: "center" },
+  answerLetter: { width: 30, height: 30, borderRadius: 9, alignItems: "center", justifyContent: "center" },
   answerChoice: {
     minHeight: LEARNING_V2_OWNER_LAYOUT.intro.targetHeight,
-    borderRadius: LEARNING_V2_OWNER_LAYOUT.intro.cardRadius,
-    paddingHorizontal: 14,
-    paddingVertical: 12,
+    borderRadius: 14,
+    borderWidth: StyleSheet.hairlineWidth, // guard-ok: 1 px кромка макета
+    paddingLeft: 10,
+    paddingRight: 14,
+    paddingVertical: 8,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -854,21 +858,21 @@ const styles = StyleSheet.create({
   },
   answerChoiceText: {
     flex: 1,
-    fontSize: 16,
+    fontSize: 17,
     lineHeight: 22,
-    fontWeight: "700",
+    fontWeight: "600",
   },
   correctMessage: {
-    fontSize: 14,
-    lineHeight: 20,
-    fontWeight: "700",
-    marginTop: 12,
+    fontSize: 16,
+    lineHeight: 22,
+    fontWeight: "600",
+    marginTop: 14,
   },
   explanation: {
-    fontSize: 14,
+    fontSize: 15,
     lineHeight: 21,
     fontWeight: "400",
-    marginTop: 12,
+    marginTop: 14,
   },
   bottomBar: {
     position: "absolute",
@@ -877,7 +881,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     paddingHorizontal: 18,
     paddingTop: 12,
-    borderTopWidth: 1,
   },
   reportDock: {
     position: "absolute",
@@ -885,13 +888,4 @@ const styles = StyleSheet.create({
     zIndex: 20,
   },
   ctaWrap: { width: "100%", maxWidth: 680, alignSelf: "center" },
-  cta: {
-    minHeight: 58,
-    borderRadius: 19,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 10,
-  },
-  ctaText: { fontSize: 16, lineHeight: 22, fontWeight: "700" },
 });

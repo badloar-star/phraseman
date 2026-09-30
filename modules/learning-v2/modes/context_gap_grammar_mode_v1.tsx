@@ -20,9 +20,8 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { useLearningV2CompactPractice } from "../../../components/learning-v2/LearningV2PracticeViewport";
-import { useTheme } from "../../../components/ThemeContext";
-import { V2Chip } from "../../../components/ui/v2_ui";
-import { useTournamentPalette } from "../../../components/ui/v2_theme";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { Lv2Explain, Lv2Option, useLv2Glass } from "../../../components/learning-v2/LearningV2Glass";
 import { hapticError, hapticSuccess } from "../../../hooks/use-haptics";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
 import { learningV2ModeContextGapCopyV1 } from "./mode_copy_v1";
@@ -38,6 +37,20 @@ function splitPromptAtGap(prompt: string): { pre: string; hasGap: boolean; post:
     hasGap: true,
     post: prompt.slice(ix + GAP_MARKER.length),
   };
+}
+
+/** Заливка «дырки» `.gap`: светлая при выбранном, зелёная при верном, красная при неверном. */
+function lv2GapFill(
+  g: ReturnType<typeof useLv2Glass>,
+  phase: LearningV2ModeCommonPropsV1["phase"],
+  selectedId: string | null,
+  wrongId: string | null,
+): { readonly bg: string; readonly ink: string } {
+  if (phase === "success") return { bg: g.goodFill, ink: g.good };
+  if (phase === "needs_work" && selectedId !== null && selectedId === wrongId) {
+    return { bg: g.badFill, ink: g.bad };
+  }
+  return { bg: g.cta, ink: g.ctaInk };
 }
 
 function ContextGapVariantV1({
@@ -61,7 +74,7 @@ function ContextGapVariantV1({
   readonly onPress: () => void;
   readonly bg: string;
   readonly selectedBg: string;
-  readonly textColor: string;
+  readonly textColor?: string;
 }) {
   const compact = useLearningV2CompactPractice();
   const lift = useSharedValue(0);
@@ -93,26 +106,26 @@ function ContextGapVariantV1({
 
   return (
     <Animated.View style={[styles.variantWrap, style]}>
-      <V2Chip
+      {/* зачем (learning-v2.html, cg): три варианта — плиты `.opt` друг под другом на всю
+          ширину, с отметкой верно/неверно справа; тап по ним не блокируется затемнением. */}
+      <Lv2Option
         compact={compact}
-        singleLine
         accessibilityLabel={label}
         disabled={disabled}
         onPress={onPress}
         selected={selected}
-        verdict={verdict === "ok" ? "ok" : verdict === "bad" ? "bad" : dimmed ? "dim" : "idle"}
-        textStyle={[styles.variantText, styles.targetText, { color: textColor }]}
-      >
-        {label}
-      </V2Chip>
+        verdict={verdict === "ok" ? "ok" : verdict === "bad" ? "bad" : "idle"}
+        style={dimmed ? { opacity: 0.6 } : undefined}
+        textStyle={textColor ? { color: textColor } : undefined}
+        label={label}
+      />
     </Animated.View>
   );
 }
 
 export function ContextGapGrammarModeV1(props: LearningV2ModeCommonPropsV1) {
   const compact = useLearningV2CompactPractice();
-  const { theme: t } = useTheme();
-  const palette = useTournamentPalette();
+  const g = useLv2Glass();
   const {
     prompt,
     options,
@@ -141,6 +154,7 @@ export function ContextGapGrammarModeV1(props: LearningV2ModeCommonPropsV1) {
   );
   const filled = options.find((option) => option.responseId === selectedChoiceId)?.text ?? null;
   const copy = learningV2ModeContextGapCopyV1(interfaceLocale);
+  const gapPaint = lv2GapFill(g, phase, selectedChoiceId, wrongNudge.responseId);
 
   const announcedRef = useRef(false);
   useEffect(() => {
@@ -157,8 +171,8 @@ export function ContextGapGrammarModeV1(props: LearningV2ModeCommonPropsV1) {
 
   return (
     <View style={[styles.root, compact && { gap: 6 }]}>
-      <Text style={[styles.taskLabel, { color: palette.muted }]}>{copy.title}</Text>
-      <Text style={[styles.scene, { color: t.textMuted }]}>
+      <Text style={[styles.taskLabel, { color: g.secondary }]}>{copy.title}</Text>
+      <Text style={[styles.scene, { color: g.secondary }]}>
         {modePayload?.family === "context_gap_grammar"
           ? modePayload.localizedScene[interfaceLocale]
           : prompt}
@@ -166,14 +180,14 @@ export function ContextGapGrammarModeV1(props: LearningV2ModeCommonPropsV1) {
 
       <View style={styles.heroRow}>
         {hasGap ? (
-          <Text style={[styles.hero, styles.targetLanguageText, { color: t.accent }]}>
+          <Text style={[styles.hero, { color: g.text }]}>
             {pre}
             <Text
               style={[
                 styles.gapSlot,
                 {
-                  color: filled ? t.correctText : t.textGhost,
-                  backgroundColor: filled ? t.accentBg : t.bgSurface2,
+                  color: filled ? gapPaint.ink : g.mutedText,
+                  backgroundColor: filled ? gapPaint.bg : g.opaqueControl,
                 },
               ]}
             >
@@ -184,14 +198,14 @@ export function ContextGapGrammarModeV1(props: LearningV2ModeCommonPropsV1) {
           </Text>
         ) : (
           <>
-            <Text style={[styles.hero, styles.targetLanguageText, { color: t.accent }]}>{prompt}</Text>
+            <Text style={[styles.hero, { color: g.text }]}>{prompt}</Text>
             <Text
               style={[
                 styles.gapSlot,
                 styles.gapSlotStandalone,
                 {
-                  color: filled ? t.correctText : t.textMuted,
-                  backgroundColor: filled ? t.accentBg : t.bgSurface2,
+                  color: filled ? gapPaint.ink : g.mutedText,
+                  backgroundColor: filled ? gapPaint.bg : g.opaqueControl,
                 },
               ]}
             >
@@ -205,9 +219,9 @@ export function ContextGapGrammarModeV1(props: LearningV2ModeCommonPropsV1) {
             accessibilityLabel={copy.playPhrase}
             hitSlop={8}
             onPress={onPlayFullPhraseAudio}
-            style={[styles.audioBtn, { backgroundColor: t.bgSurface2 }]}
+            style={[styles.audioBtn, { backgroundColor: g.opaqueControl }]}
           >
-            <Text style={{ color: t.accent, fontSize: 14 }}>♪</Text>
+            <Ionicons name="volume-high" size={18} color={g.text} />
           </Pressable>
         )}
       </View>
@@ -232,27 +246,15 @@ export function ContextGapGrammarModeV1(props: LearningV2ModeCommonPropsV1) {
               reducedMotion={reducedMotion}
               disabled={resolved || phase === "processing"}
               onPress={() => onPick(option.responseId)}
-              bg={t.bgCard}
-              selectedBg={t.accentBg}
-              textColor={
-                verdict === "ok"
-                  ? t.correctText
-                  : verdict === "bad"
-                    ? t.wrong
-                    : selected
-                      ? t.textPrimary
-                      : t.textMuted
-              }
+              bg={g.opaqueCard}
+              selectedBg={g.selected}
+              textColor={undefined}
             />
           );
         })}
       </View>
 
-      {explanation && (
-        <View style={[styles.feedbackLane, compact && { padding: 8 }, { backgroundColor: t.bgSurface2 }]}>
-          <Text style={[styles.feedbackText, { color: t.textPrimary }]}>{explanation}</Text>
-        </View>
-      )}
+      {explanation ? <Lv2Explain>{explanation}</Lv2Explain> : null}
     </View>
   );
 }
@@ -262,18 +264,15 @@ export default ContextGapGrammarModeV1;
 const styles = StyleSheet.create({
   root: { gap: 14 },
   taskLabel: {
-    fontSize: 13,
-    fontWeight: "800",
-    letterSpacing: 1.4,
-    textTransform: "uppercase",
+    fontSize: 15,
+    lineHeight: 20,
+    fontWeight: "600",
   },
-  scene: { fontSize: 15, lineHeight: 21, fontWeight: "600" },
+  scene: { fontSize: 16, lineHeight: 22, fontWeight: "400" },
   heroRow: { flexDirection: "row", alignItems: "flex-start", flexWrap: "wrap", gap: 10 },
-  hero: { flex: 1, fontSize: 21, lineHeight: 28, minWidth: 200 },
-  targetLanguageText: { fontWeight: "900" },
-  targetText: { fontWeight: "900" },
+  hero: { flex: 1, fontSize: 28, lineHeight: 44, minWidth: 200, fontWeight: "700", letterSpacing: -0.3 },
   gapSlot: {
-    fontWeight: "900",
+    fontWeight: "700",
     borderRadius: 8,
     overflow: "hidden",
     paddingHorizontal: 4,
@@ -286,28 +285,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   audioBtn: {
-    width: 34,
-    height: 34,
-    borderRadius: 14,
+    width: 38,
+    height: 38,
+    borderRadius: 19,
     alignItems: "center",
     justifyContent: "center",
   },
-  variants: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    gap: 10,
-  },
-  variantWrap: { flexShrink: 0, maxWidth: "100%" },
-  variant: {
-    borderRadius: 18,
-    paddingVertical: 14,
-    paddingHorizontal: 10,
-    alignItems: "center",
-    minHeight: 56,
-    justifyContent: "center",
-  },
-  variantText: { fontSize: 15.5, fontWeight: "900", textAlign: "center" },
-  feedbackLane: { borderRadius: 18, padding: 12 },
-  feedbackText: { fontSize: 14.5, fontWeight: "600", lineHeight: 19 },
+  variants: { gap: 10, marginTop: 8 },
+  variantWrap: { width: "100%" },
 });

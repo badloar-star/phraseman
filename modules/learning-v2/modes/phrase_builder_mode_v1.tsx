@@ -16,6 +16,7 @@
  */
 
 import React, { useEffect, useMemo, useRef } from "react";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { AccessibilityInfo, Pressable, StyleSheet, Text, View } from "react-native";
 import Animated, {
   Easing,
@@ -28,9 +29,7 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { useLearningV2CompactPractice } from "../../../components/learning-v2/LearningV2PracticeViewport";
-import { useTheme } from "../../../components/ThemeContext";
-import { V2Chip, V2Cta } from "../../../components/ui/v2_ui";
-import { useTournamentPalette } from "../../../components/ui/v2_theme";
+import { Lv2Chip, Lv2Cta, Lv2Explain, useLv2Glass } from "../../../components/learning-v2/LearningV2Glass";
 import { hapticSuccess } from "../../../hooks/use-haptics";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
 import {
@@ -52,9 +51,6 @@ interface ChipProps {
   readonly onPress: () => void;
   readonly variant: "bank" | "answer";
   readonly ghost: boolean;
-  readonly bg: string;
-  readonly edgeColor: string;
-  readonly textColor: string;
 }
 
 /** Один чип (банк или строка ответа). Стаггер входа + пресс + посадка +
@@ -70,7 +66,6 @@ function PhraseBuilderChipV1({
   onPress,
   variant,
   ghost,
-  textColor,
 }: ChipProps) {
   const compact = useLearningV2CompactPractice();
   const enter = useSharedValue(reducedMotion ? 1 : 0);
@@ -125,17 +120,17 @@ function PhraseBuilderChipV1({
 
   return (
     <Animated.View style={style}>
-      <V2Chip
+      {/* зачем (learning-v2.html, .chip): чип-слово стекла — 46 dp, радиус 14, «полка» 3 px;
+          верно/неверно красят заливку и текст сами, цвет слова в идле — токен темы. */}
+      <Lv2Chip
         compact={compact}
         accessibilityLabel={label}
         disabled={disabled || ghost}
         onPress={onPress}
         verdict={verdict === "ok" ? "ok" : verdict === "bad" ? "bad" : "idle"}
-        singleLine
-        textStyle={[styles.chipText, styles.targetText, { color: textColor }]}
       >
         {label}
-      </V2Chip>
+      </Lv2Chip>
     </Animated.View>
   );
 }
@@ -148,8 +143,7 @@ function PhraseBuilderChipV1({
  */
 export function PhraseBuilderModeV1(props: LearningV2ModeCommonPropsV1) {
   const compact = useLearningV2CompactPractice();
-  const { theme: t } = useTheme();
-  const palette = useTournamentPalette();
+  const g = useLv2Glass();
   const {
     prompt,
     options,
@@ -196,9 +190,9 @@ export function PhraseBuilderModeV1(props: LearningV2ModeCommonPropsV1) {
 
   return (
     <View style={[styles.root, compact && { gap: 6 }]}>
-      <Text style={[styles.taskLabel, { color: palette.muted }]}>{prompt}</Text>
+      <Text style={[styles.taskLabel, { color: g.secondary }]}>{prompt}</Text>
       <View style={styles.heroRow}>
-        <Text style={[styles.hero, styles.targetText, { color: t.accent }]}>
+        <Text style={[styles.hero, { color: g.text }]}>
           {modePayload?.family === "phrase_builder"
             ? modePayload.localizedMeaning[interfaceLocale]
             : ""}
@@ -208,18 +202,18 @@ export function PhraseBuilderModeV1(props: LearningV2ModeCommonPropsV1) {
             accessibilityRole="button"
             hitSlop={8}
             onPress={onPlayFullPhraseAudio}
-            style={[styles.audioBtn, { backgroundColor: t.bgSurface2 }]}
+            style={[styles.audioBtn, { backgroundColor: g.opaqueControl }]}
           >
-            <Text style={[styles.audioGlyph, { color: t.accent }]}>♪</Text>
+            <Ionicons name="volume-high" size={18} color={g.text} />
           </Pressable>
         )}
       </View>
 
       {/* Строка ответа: min-height зарезервирована, первый кадр = финальная
         геометрия (Performance Bible — никаких прыжков при появлении чипов). */}
-      <View style={[styles.answerRow, compact && { minHeight: 48, paddingBottom: 4, gap: 6 }, { borderBottomColor: t.bgSurface2 }]}>
+      <View style={[styles.answerRow, compact && { minHeight: 48, paddingBottom: 4, gap: 6 }, { borderBottomColor: g.line }]}>
         {answerChips.length === 0 ? (
-          <Text style={[styles.placeholder, { color: t.textMuted }]}>
+          <Text style={[styles.placeholder, { color: g.mutedText }]}>
             {" "}
           </Text>
         ) : (
@@ -241,15 +235,6 @@ export function PhraseBuilderModeV1(props: LearningV2ModeCommonPropsV1) {
               reducedMotion={reducedMotion}
               disabled={resolved || phase === "processing"}
               onPress={() => onRemoveTokenAt(index)}
-              bg={t.bgCard}
-              edgeColor={t.bgSurface2}
-              textColor={
-                phase === "success"
-                  ? t.correctText
-                  : phase === "needs_work" && chip.responseId === wrongNudge.responseId
-                    ? t.wrong
-                    : t.accent
-              }
             />
           ))
         )}
@@ -270,27 +255,18 @@ export function PhraseBuilderModeV1(props: LearningV2ModeCommonPropsV1) {
               reducedMotion={reducedMotion}
               disabled={resolved || phase === "processing"}
               onPress={() => onAppendToken(option.responseId)}
-              bg={t.bgCard}
-              edgeColor={t.bgSurface2}
-              textColor={t.accent}
             />
           ))}
       </View>
 
-      <V2Cta
+      {explanation ? <Lv2Explain>{explanation}</Lv2Explain> : null}
+
+      <Lv2Cta
         disabled={!canSubmit || resolved || phase === "processing"}
         onPress={onSubmit}
       >
         {learningV2ModeCheckLabelV1(interfaceLocale)}
-      </V2Cta>
-
-      {explanation && (
-        <View style={[styles.feedbackLane, compact && { padding: 8 }, { backgroundColor: t.bgSurface2 }]}>
-          <Text style={[styles.feedbackText, { color: t.textPrimary }]}>
-            {explanation}
-          </Text>
-        </View>
-      )}
+      </Lv2Cta>
     </View>
   );
 }
@@ -300,21 +276,19 @@ export default PhraseBuilderModeV1;
 const styles = StyleSheet.create({
   root: { gap: 14 },
   taskLabel: {
-    fontSize: 13,
-    lineHeight: 18,
-    fontWeight: "700",
-    letterSpacing: 0.25,
+    fontSize: 15,
+    lineHeight: 20,
+    fontWeight: "600",
   },
   heroRow: { flexDirection: "row", alignItems: "flex-start", gap: 12 },
-  hero: { flex: 1, fontSize: 25, lineHeight: 31, fontWeight: "900" },
+  hero: { flex: 1, fontSize: 28, lineHeight: 34, fontWeight: "700", letterSpacing: -0.3 },
   audioBtn: {
-    width: 40,
-    height: 40,
-    borderRadius: 16,
+    width: 38,
+    height: 38,
+    borderRadius: 19,
     alignItems: "center",
     justifyContent: "center",
   },
-  audioGlyph: { fontSize: 16, fontWeight: "700" },
   answerRow: {
     minHeight: 64,
     borderBottomWidth: 1,
@@ -325,10 +299,5 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   placeholder: { fontSize: 15 },
-  bank: { flexDirection: "row", flexWrap: "wrap", gap: 10, justifyContent: "center" },
-  chip: { borderRadius: 16, paddingVertical: 11, paddingHorizontal: 16 },
-  chipText: { fontSize: 16.5, fontWeight: "900" },
-  targetText: { fontWeight: "900" },
-  feedbackLane: { borderRadius: 18, padding: 12 },
-  feedbackText: { fontSize: 14.5, fontWeight: "600", lineHeight: 19 },
+  bank: { flexDirection: "row", flexWrap: "wrap", gap: 10, justifyContent: "flex-start" },
 });

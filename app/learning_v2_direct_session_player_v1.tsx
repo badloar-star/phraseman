@@ -41,14 +41,13 @@ import LearningV2PracticeViewport from "../components/learning-v2/LearningV2Prac
 import HorizonSessionResult, {
   type HorizonResultFacts,
 } from '../components/learning-v2/horizons/HorizonSessionResult';
-import { HorizonArtwork } from '../components/learning-v2/horizons/HorizonArtwork';
-import { horizonPalette } from '../components/learning-v2/horizons/model';
 import { WALLET_SUBUNITS_PER_STAR } from '../modules/learning-v2/contracts/wallet';
 import { applySuperSundayRuneMultiplier } from '../modules/economy/super_sunday_runes';
 import LearningV2RuneFlight, {
   type LearningV2RuneFlightPoint,
 } from "../components/LearningV2RuneFlight";
 import { HOME_RUNE_ICON_SOURCE } from "../components/home/homeRuneAsset";
+import EnergyBar from "../components/EnergyBar";
 import ReportErrorButton from "../components/ReportErrorButton";
 import SessionAttemptsHud from "../components/session_attempts/SessionAttemptsHud";
 import SpeakingPanel, {
@@ -61,6 +60,7 @@ import SpeakHoldButton from "./flashcards/SpeakHoldButton";
 import { useLang } from "../components/LangContext";
 import { useStudyTarget } from "../components/StudyTargetContext";
 import { useTheme } from "../components/ThemeContext";
+import { Lv2Cta, Lv2Explain, lv2Alpha, lv2CardStyle, useLv2Glass } from "../components/learning-v2/LearningV2Glass";
 import { useEnergy, useEnergySessionIntent } from "../components/EnergyContext";
 import { hapticError, hapticSuccess, hapticTap } from "../hooks/use-haptics";
 import { useAudio } from "../hooks/use-audio";
@@ -73,10 +73,6 @@ import { createLearningV2CourseLocalProgressStoreV1 } from "../modules/learning-
 import { retryLearningV2LocalCompletionV1 } from "../modules/learning-v2/progress/local_completion_retry_v1";
 import { deriveLocalOfflineProgressAccountScopeHash } from "../modules/learning-v2/progress/progress_account_scope";
 import { deriveLearningV2EconomicAccountScopeHash } from "../modules/learning-v2/progress/economic_account_scope";
-import {
-  learningV2SessionBaseXpV1,
-  learningV2SessionXpEventIdV1,
-} from "../modules/learning-v2/progress/session_xp_reward_v1";
 import {
   createLearningV2SessionRuneRewardCompositeV1,
   resolveLearningV2SessionRuneRewardPublicationTokenV1,
@@ -372,6 +368,14 @@ export default function LearningV2DirectSessionPlayerV1() {
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { theme: t, f } = useTheme();
+  // зачем (learning-v2.html): весь экран занятия красится токенами Liquid Glass активной
+  // темы (`g`), а не разрозненными полями старой палитры; `t` остаётся только для
+  // SpeakingPanel, чей общий тематический контракт живёт в другом модуле.
+  const g = useLv2Glass();
+  const heartsPill = useMemo(
+    () => ({ fill: g.text, empty: lv2Alpha(g.text, 0.22), plate: g.opaqueControl }),
+    [g.text, g.opaqueControl],
+  );
   const insets = useStableSafeAreaInsets();
   const reducedMotion = useReducedMotion();
   const copy = useMemo(() => learningV2SessionCopy(lang), [lang]);
@@ -646,7 +650,6 @@ export default function LearningV2DirectSessionPlayerV1() {
     });
     return () => subscription.remove();
   }, [isAuthoringPreview]);
-  const creditedSessionXpRef = useRef(0);
   const [finaleStars, setFinaleStars] = useState<0 | 1 | 2 | 3 | null>(null);
   const [finaleRewardsSettled, setFinaleRewardsSettled] = useState(false);
   // зачем (техдолг Phase 12): до этого в курсе не было НИ ОДНОГО события —
@@ -1504,11 +1507,9 @@ export default function LearningV2DirectSessionPlayerV1() {
     sessionStartedAtRef.current = null;
     sessionStageRef.current = "intro";
     telemetryStartSentRef.current = false;
-    creditedSessionXpRef.current = 0;
     setFinaleRewardsSettled(false);
     publishFinaleFacts({
       runes: 0,
-      xp: 0,
       total: 0,
       firstTry: 0,
       elapsedMs: 0,
@@ -1939,7 +1940,6 @@ export default function LearningV2DirectSessionPlayerV1() {
       const passedSession = learningV2SessionUnlocksNextV1(earned);
       publishFinaleFacts({
         runes: sessionRunes,
-        xp: creditedSessionXpRef.current,
         credit: canEarnSessionRunes ? "practice" : undefined,
         total: completion.interactionCompletions.length,
         firstTry: completion.interactionCompletions.filter(entry =>
@@ -2013,51 +2013,6 @@ export default function LearningV2DirectSessionPlayerV1() {
             );
           },
         });
-      }
-      try {
-        if (canEarnSessionRunes && creditedSessionXpRef.current === 0) {
-          const baseXp = learningV2SessionBaseXpV1(
-            completion.interactionCompletions.length,
-            material!.introChild.pages.length,
-          );
-          if (baseXp > 0) {
-            // Keep the legacy XP owner outside the initial Learning V2 graph.
-            // Its stable event identity makes background recovery a replay.
-            const { registerXP } = await import("./xp_manager");
-            const xpReceipt = await registerXP(
-              baseXp,
-              "learning_v2_session",
-              "",
-              lang,
-              undefined,
-              {
-                eventId: learningV2SessionXpEventIdV1(runSummary.courseSessionId),
-                payload: {
-                  surface: "learning_v2_session_complete",
-                  studyTarget: runSummary.studyTarget,
-                  lessonOrdinal: runSummary.lessonOrdinal,
-                  sessionOrdinal: runSummary.sessionOrdinal,
-                  courseSessionId: runSummary.courseSessionId,
-                  baseXp,
-                },
-              },
-            );
-            creditedSessionXpRef.current = Math.max(
-              0,
-              Math.round(xpReceipt.finalDelta),
-            );
-            publishFinaleFacts({
-              ...finaleFactsRef.current,
-              xp: creditedSessionXpRef.current,
-            });
-          }
-        }
-      } catch (error: unknown) {
-        DebugLogger.error(
-          "learning_v2_direct_session_player_v1:xp_background",
-          error instanceof Error ? error : new Error(String(error)),
-          "warning",
-        );
       }
       if (runSummary.targetLanguage === "en" && canEarnSessionRunes) {
         try {
@@ -2256,14 +2211,14 @@ export default function LearningV2DirectSessionPlayerV1() {
         style={({ pressed }) => [
           styles.devJumpToVoiceButton,
           {
-            backgroundColor: t.accent,
-            borderColor: t.textPrimary,
+            backgroundColor: g.cta,
+            borderColor: g.text,
             opacity: pressed ? 0.72 : 1,
           },
         ]}
       >
-        <Ionicons name="mic" size={18} color={t.correctText} />
-        <Text style={[styles.devJumpToVoiceText, { color: t.correctText }]}>
+        <Ionicons name="mic" size={18} color={g.ctaInk} />
+        <Text style={[styles.devJumpToVoiceText, { color: g.ctaInk }]}>
           DEV · К УСТНО
         </Text>
       </Pressable>
@@ -2363,7 +2318,7 @@ export default function LearningV2DirectSessionPlayerV1() {
           }),
         );
       }
-      return <View style={[styles.center, { backgroundColor: t.bgPrimary }]} />;
+      return <View style={[styles.center, { backgroundColor: g.bg }]} />;
     }
     // Ранний выход обязан называть причину (правило «сперва логи»).
     if (__DEV__) {
@@ -2378,30 +2333,25 @@ export default function LearningV2DirectSessionPlayerV1() {
       );
     }
     return (
-      <View style={[styles.center, { backgroundColor: t.bgPrimary }]}>
-        <Text style={[styles.errorText, { color: t.textPrimary }]}>
+      <View style={[styles.center, { backgroundColor: g.bg }]}>
+        <Ionicons name="cloud-offline-outline" size={36} color={g.mutedText} />
+        <Text style={[styles.errorText, { color: g.text }]}>
           {copy.unavailable}
         </Text>
-        <Pressable
+        <Lv2Cta
           testID="learning-v2-unavailable-back"
-          accessibilityRole="button"
+          ghost
           accessibilityLabel={footerBackLabel}
           onPress={() => safeRouterBack(router, exitRoute)}
-          style={({ pressed }) => [
-            styles.retry,
-            { backgroundColor: t.bgCard, opacity: pressed ? 0.72 : 1 },
-          ]}
         >
-          <Text style={[styles.retryText, { color: t.textPrimary }]}>
-            {footerBackLabel}
-          </Text>
-        </Pressable>
+          {footerBackLabel}
+        </Lv2Cta>
       </View>
     );
   }
   if (finaleStars !== null) {
     // Presentation mounts immediately; rewardsSettled keeps its details/CTA
-    // inert until the local XP/rune barrier publishes the final snapshot.
+    // inert until the local legacy reward/rune barrier publishes the final snapshot.
     return <HorizonSessionResult
       lesson={lessonOrdinal}
       sessionOrdinal={sessionOrdinal}
@@ -2445,7 +2395,7 @@ export default function LearningV2DirectSessionPlayerV1() {
           }),
         );
       }
-      return <View style={[styles.center, { backgroundColor: t.bgPrimary }]} />;
+      return <View style={[styles.center, { backgroundColor: g.bg }]} />;
     }
     // Ранний выход обязан называть причину (правило «сперва логи»).
     if (__DEV__) {
@@ -2462,33 +2412,27 @@ export default function LearningV2DirectSessionPlayerV1() {
       );
     }
     return (
-      <View style={[styles.center, { backgroundColor: t.bgPrimary }]}>
-        <Ionicons name="cloud-offline-outline" size={34} color={t.textMuted} />
-        <Text style={[styles.errorText, { color: t.textPrimary }]}>
+      <View style={[styles.center, { backgroundColor: g.bg }]}>
+        <Ionicons name="cloud-offline-outline" size={36} color={g.mutedText} />
+        <Text style={[styles.errorText, { color: g.text }]}>
           {copy.unavailable}
         </Text>
         {__DEV__ && loadFailureReason ? (
           <Text
             selectable
-            style={[styles.devFailureReason, { color: t.textMuted }]}
+            style={[styles.devFailureReason, { color: g.secondary }]}
           >
             {loadFailureReason}
           </Text>
         ) : null}
-        <Pressable
+        <Lv2Cta
           testID="learning-v2-unavailable-back"
-          accessibilityRole="button"
+          ghost
           accessibilityLabel={footerBackLabel}
           onPress={() => safeRouterBack(router, exitRoute)}
-          style={({ pressed }) => [
-            styles.retry,
-            { backgroundColor: t.bgCard, opacity: pressed ? 0.72 : 1 },
-          ]}
         >
-          <Text style={[styles.retryText, { color: t.textPrimary }]}>
-            {footerBackLabel}
-          </Text>
-        </Pressable>
+          {footerBackLabel}
+        </Lv2Cta>
         {/* зачем (владелец 23.09): в боевом режиме у «Повторить» НЕ БЫЛО ни
             одного успешного исхода — повтор снова упирался в отсутствующий
             мост. Кнопка обещала то, чего механизм не умел. Боевой путь теперь
@@ -2500,10 +2444,10 @@ export default function LearningV2DirectSessionPlayerV1() {
             onPress={() => setLoadRevision((value) => value + 1)}
             style={({ pressed }) => [
               styles.retry,
-              { backgroundColor: t.accent, opacity: pressed ? 0.8 : 1 },
+              { backgroundColor: g.cta, opacity: pressed ? 0.8 : 1 },
             ]}
           >
-            <Text style={[styles.retryText, { color: t.correctText }]}>
+            <Text style={[styles.retryText, { color: g.ctaInk }]}>
               {copy.retry}
             </Text>
           </Pressable>
@@ -2513,46 +2457,42 @@ export default function LearningV2DirectSessionPlayerV1() {
   }
 
   if (isCheckpoint && !checkpointEntryDone) {
-    const entryPalette = horizonPalette(lessonOrdinal);
     const chapter = Math.ceil((sessionOrdinal ?? 8) / 8);
     const isFinal = sessionRole === "final_exam";
+    // зачем (learning-v2.html, checkEntry): вход в проверку главы / итоговый экзамен —
+    // плитка 140 с кубком, заголовок 30/700, пояснение 17 и кнопка «Начать проверку» на токенах
+    // темы. Прежний иллюстрированный «портал» уехал вместе со своей палитрой; сам вход и
+    // порядок (setCheckpointEntryDone → practice) не менялись.
     return (
       <ScrollView
-        style={{ flex: 1, backgroundColor: entryPalette.bg }}
+        style={{ flex: 1, backgroundColor: g.bg }}
         contentContainerStyle={[
           styles.center,
           { flex: undefined, flexGrow: 1, paddingTop: insets.top + 24, paddingBottom: insets.bottom + 24 },
         ]}
       >
-        <View style={{ width: 260, height: 285 }}>
-          <HorizonArtwork lesson={lessonOrdinal} portal reducedMotion={reducedMotion}/>
+        <View style={[styles.checkpointTile, { backgroundColor: g.opaqueCard, shadowColor: g.bg }]}>
+          <Ionicons name={isFinal ? "trophy" : "trophy-outline"} size={56} color={g.text} />
         </View>
-        <Text style={[styles.checkpointTitle, { color: "#f5f2e9" }]}>
+        <Text style={[styles.checkpointTitle, { color: g.text }]}>
           {isFinal
             ? checkpointCopy.finalTitle
             : checkpointCopy.entryTitle(chapter)}
         </Text>
-        <Text style={[styles.checkpointBody, { color: entryPalette.muted }]}>
+        <Text style={[styles.checkpointBody, { color: g.secondary }]}>
           {isFinal ? checkpointCopy.finalBody : checkpointCopy.entryBody}
         </Text>
-        <Pressable
-          accessibilityRole="button"
+        <Lv2Cta
           accessibilityLabel={checkpointCopy.start}
           onPress={() => {
-            void hapticTap();
             sessionStageRef.current = "practice";
             setCheckpointEntryDone(true);
             setIntroDone(true);
           }}
-          style={({ pressed }) => [
-            styles.checkpointCta,
-            { backgroundColor: entryPalette.accent, opacity: pressed ? 0.86 : 1 },
-          ]}
+          style={styles.checkpointCta}
         >
-          <Text style={[styles.checkpointCtaText, { color: "#101c19" }]}>
-            {checkpointCopy.start}
-          </Text>
-        </Pressable>
+          {checkpointCopy.start}
+        </Lv2Cta>
       </ScrollView>
     );
   }
@@ -2565,7 +2505,7 @@ export default function LearningV2DirectSessionPlayerV1() {
         testID="learning-v2-session-runes"
         accessible
         accessibilityLabel={learningV2RuneAccessibilityLabelV1(lang, sessionRunes)}
-        style={[styles.runeCounter, { backgroundColor: t.bgCard }]}
+        style={[styles.runeCounter, { backgroundColor: g.opaqueControl }]}
       >
         <Image
           source={HOME_RUNE_ICON_SOURCE}
@@ -2574,7 +2514,7 @@ export default function LearningV2DirectSessionPlayerV1() {
           accessibilityElementsHidden
           importantForAccessibility="no"
         />
-        <Text style={[styles.runeCounterText, { color: t.textPrimary }]}>{sessionRunes}</Text>
+        <Text style={[styles.runeCounterText, { color: g.text }]}>{sessionRunes}</Text>
       </View>
     </Animated.View>
   );
@@ -2590,7 +2530,7 @@ export default function LearningV2DirectSessionPlayerV1() {
 
   if (!introDone) {
     return (
-      <View style={[styles.screen, { backgroundColor: t.bgPrimary }]}>
+      <View style={[styles.screen, { backgroundColor: g.bg }]}>
         <View
           style={styles.screen}
           pointerEvents={
@@ -2668,6 +2608,7 @@ export default function LearningV2DirectSessionPlayerV1() {
             headerAccessory={
               <View style={styles.headerActions}>
               <SessionAttemptsHud
+                glassPill={heartsPill}
                 remaining={sessionAttempts.state.remainingAttempts}
                 locale={lang}
                 testID="learning-v2-intro-attempts"
@@ -2675,6 +2616,7 @@ export default function LearningV2DirectSessionPlayerV1() {
                 giftRecoveryError={attemptsReset.giftRecoveryError}
                 onRetryGiftRecovery={attemptsReset.retryGiftRecovery}
               />
+              <EnergyBar glass />
               {runeHud}
               </View>
             }
@@ -2710,7 +2652,7 @@ export default function LearningV2DirectSessionPlayerV1() {
         : { kind: "text", value: selectedText || null };
 
   return (
-    <View style={[styles.screen, { backgroundColor: t.bgPrimary }]}>
+    <View style={[styles.screen, { backgroundColor: g.bg }]}>
       <View style={[styles.header, { paddingTop: insets.top + 10 }]}>
         <Pressable
           testID="learning-v2-session-close"
@@ -2720,31 +2662,32 @@ export default function LearningV2DirectSessionPlayerV1() {
           onPress={exitLearningV2Session}
           style={({ pressed }) => [
             styles.iconButton,
-            { backgroundColor: t.bgCard, opacity: pressed ? 0.72 : 1 },
+            { backgroundColor: g.opaqueControl, opacity: pressed ? 0.72 : 1 },
           ]}
         >
-          <Ionicons name="close" size={22} color={t.textPrimary} />
+          <Ionicons name="close" size={22} color={g.text} />
         </Pressable>
         <View style={styles.progressColumn}>
           <View
-            style={[styles.progressTrack, { backgroundColor: t.bgSurface2 }]}
+            style={[styles.progressTrack, { backgroundColor: g.opaqueControl }]}
           >
             <View
               style={[
                 styles.progressFill,
                 {
-                  backgroundColor: t.accent,
+                  backgroundColor: g.cta,
                   width: `${Math.max(4, Math.round((progressOrdinal / totalInteractions) * 100))}%`,
                 },
               ]}
             />
           </View>
-          <Text style={[styles.progressText, { color: t.textMuted }]}>
+          <Text style={[styles.progressText, { color: g.secondary }]}>
             {progressOrdinal} / {totalInteractions}
           </Text>
         </View>
         <View style={styles.headerActions}>
           <SessionAttemptsHud
+            glassPill={heartsPill}
             remaining={sessionAttempts.state.remainingAttempts}
             locale={lang}
             testID="learning-v2-session-attempts"
@@ -2752,6 +2695,9 @@ export default function LearningV2DirectSessionPlayerV1() {
             giftRecoveryError={attemptsReset.giftRecoveryError}
             onRetryGiftRecovery={attemptsReset.retryGiftRecovery}
           />
+          {/* зачем (learning-v2.html, шапка занятия): пилюля энергии рядом с попытками; у Plus
+              EnergyBar сам не рисуется («Plus — энергии нет»). Только показ, трата — в гейте. */}
+          <EnergyBar glass />
           {runeHud}
         </View>
       </View>
@@ -2912,18 +2858,18 @@ export default function LearningV2DirectSessionPlayerV1() {
           ) : (
             <>
               <View style={styles.modeRow}>
-                <View style={[styles.modeIcon, { backgroundColor: t.bgSurface2 }]}>
+                <View style={[styles.modeIcon, { backgroundColor: g.opaqueControl }]}>
                   <Ionicons
                     name={MODE_ICONS[practice.family]}
                     size={22}
-                    color={t.accent}
+                    color={g.cta}
                   />
                 </View>
                 <View style={styles.modeCopy}>
-                  <Text style={[styles.modeTitle, { color: t.textPrimary }]}>
+                  <Text style={[styles.modeTitle, { color: g.text }]}>
                     {copy.modes[practice.family] ?? copy.independent}
                   </Text>
-                  <Text style={[styles.modeNote, { color: t.textMuted }]}>
+                  <Text style={[styles.modeNote, { color: g.secondary }]}>
                     {copy.supportFades}
                   </Text>
                 </View>
@@ -2944,7 +2890,7 @@ export default function LearningV2DirectSessionPlayerV1() {
                 style={[
                   styles.prompt,
                   styles.promptText,
-                  { color: t.textPrimary, fontSize: f.h2 },
+                  { color: g.text, fontSize: f.h2 },
                 ]}
               >
                 {learnerFacingPracticePrompt}
@@ -2962,12 +2908,12 @@ export default function LearningV2DirectSessionPlayerV1() {
                   style={({ pressed }) => [
                     styles.audioButton,
                     {
-                      backgroundColor: t.bgSurface2,
+                      backgroundColor: g.opaqueControl,
                       opacity: pressed ? 0.72 : 1,
                     },
                   ]}
                 >
-                  <Ionicons name="volume-high" size={21} color={t.accent} />
+                  <Ionicons name="volume-high" size={21} color={g.cta} />
                 </Pressable>
               )}
             </View>
@@ -3005,13 +2951,13 @@ export default function LearningV2DirectSessionPlayerV1() {
                           // ответ теперь виден заливкой, а не рамкой вокруг.
                           backgroundColor:
                             result === "correct" && selected
-                              ? t.correctBg
+                              ? g.goodFill
                               : selected
-                                ? t.bgSurface2
-                                : t.bgCard,
+                                ? g.opaqueControl
+                                : g.opaqueCard,
                         },
                       ]}
-                      textStyle={[styles.answerText, { color: t.textPrimary }]}
+                      textStyle={[styles.answerText, { color: g.text }]}
                     />
                   );
                 })}
@@ -3019,12 +2965,12 @@ export default function LearningV2DirectSessionPlayerV1() {
               {practice.inputMode === "ordered_tokens" && (
                 <>
                   <View
-                    style={[styles.assembled, { backgroundColor: t.bgCard }]}
+                    style={[styles.assembled, { backgroundColor: g.opaqueCard }]}
                   >
                     <Text
                       style={[
                         styles.assembledText,
-                        { color: selectedText ? t.textPrimary : t.textMuted },
+                        { color: selectedText ? g.text : g.secondary },
                       ]}
                     >
                       {selectedText || copy.tapWords}
@@ -3051,13 +2997,13 @@ export default function LearningV2DirectSessionPlayerV1() {
                           style={({ pressed }) => [
                             styles.chip,
                             {
-                              backgroundColor: t.bgCard,
+                              backgroundColor: g.opaqueCard,
                               opacity: used ? 0.3 : pressed ? 0.72 : 1,
                             },
                           ]}
                         >
                           <Text
-                            style={[styles.chipText, { color: t.textPrimary }]}
+                            style={[styles.chipText, { color: g.text }]}
                           >
                             {option.text}
                           </Text>
@@ -3076,9 +3022,9 @@ export default function LearningV2DirectSessionPlayerV1() {
                       <Ionicons
                         name="arrow-undo"
                         size={18}
-                        color={t.textMuted}
+                        color={g.secondary}
                       />
-                      <Text style={[styles.undoText, { color: t.textMuted }]}>
+                      <Text style={[styles.undoText, { color: g.secondary }]}>
                         Назад
                       </Text>
                     </Pressable>
@@ -3094,8 +3040,8 @@ export default function LearningV2DirectSessionPlayerV1() {
                       // Слушание уже читается по заливке — рамка была лишней.
                       backgroundColor:
                         modeVoiceStatus === "listening"
-                          ? t.accentBg
-                          : t.bgCard,
+                          ? g.selected
+                          : g.opaqueCard,
                     },
                   ]}
                 >
@@ -3104,19 +3050,19 @@ export default function LearningV2DirectSessionPlayerV1() {
                       modeVoiceStatus === "listening" ? "mic" : "mic-outline"
                     }
                     size={30}
-                    color={t.accent}
+                    color={g.cta}
                   />
-                  <Text style={[styles.speechTitle, { color: t.textPrimary }]}>
+                  <Text style={[styles.speechTitle, { color: g.text }]}>
                     {modeVoiceStatus === "listening"
                       ? copy.voiceSpeaking
                       : (practice.scriptedAlternate?.instruction ??
                         copy.startVoice)}
                   </Text>
-                  <Text style={[styles.speechNote, { color: t.textMuted }]}>
+                  <Text style={[styles.speechNote, { color: g.secondary }]}>
                     {copy.repeatPrivacy}
                   </Text>
                   <View style={styles.transcriptRow}>
-                    <Text style={[styles.transcript, { color: t.textPrimary }]}>
+                    <Text style={[styles.transcript, { color: g.text }]}>
                       {transcript || "—"}
                     </Text>
                   </View>
@@ -3130,7 +3076,6 @@ export default function LearningV2DirectSessionPlayerV1() {
             // въезжать opacity + translateY 8 за 180-220мс, а не возникать
             // мгновенно. reduce motion оставляет финальный кадр.
             <Animated.View
-              accessibilityLiveRegion="polite"
               entering={
                 reducedMotion
                   ? undefined
@@ -3138,12 +3083,9 @@ export default function LearningV2DirectSessionPlayerV1() {
                       Easing.bezier(0.23, 1, 0.32, 1).factory(),
                     )
               }
-              style={[styles.explanation, { backgroundColor: t.bgSurface2 }]}
+              style={styles.explanationWrap}
             >
-              <Ionicons name="bulb-outline" size={20} color={t.accent} />
-              <Text style={[styles.explanationText, { color: t.textPrimary }]}>
-                {wrongExplanation}
-              </Text>
+              <Lv2Explain>{wrongExplanation}</Lv2Explain>
             </Animated.View>
           )}
             </>
@@ -3157,32 +3099,35 @@ export default function LearningV2DirectSessionPlayerV1() {
               accessibilityLiveRegion="polite"
               style={[
                 styles.voiceTranscript,
-                { backgroundColor: t.bgSurface2 },
+                { backgroundColor: g.opaqueControl },
               ]}
             >
-              <Ionicons name="mic" size={18} color={t.accent} />
+              <Ionicons name="mic" size={18} color={g.cta} />
               <Text
-                style={[styles.voiceTranscriptText, { color: t.textPrimary }]}
+                style={[styles.voiceTranscriptText, { color: g.text }]}
               >
                 {transcript}
               </Text>
             </View>
           )}
 
+          {/* зачем (learning-v2.html, rc «Микрофон недоступен» / «Голосовой ответ недоступен» /
+              «Не удалось записать ответ»): три сообщения — карточка-пояснение `.expl` со
+              значком; тексты и условия показа прежние (copy.voice*), меняется только вид. */}
           {modeVoiceStatus === "permission_denied" && (
-            <Text style={[styles.voiceStatus, { color: t.textMuted }]}>
+            <Lv2Explain icon="mic-off-outline" style={styles.voiceStatus}>
               {copy.voicePermission}
-            </Text>
+            </Lv2Explain>
           )}
           {modeVoiceStatus === "local_recognition_unavailable" && (
-            <Text style={[styles.voiceStatus, { color: t.textMuted }]}>
+            <Lv2Explain icon="cloud-offline-outline" style={styles.voiceStatus}>
               {copy.voiceUnavailable}
-            </Text>
+            </Lv2Explain>
           )}
           {modeVoiceStatus === "error" && (
-            <Text style={[styles.voiceStatus, { color: t.textMuted }]}>
+            <Lv2Explain icon="bulb-outline" style={styles.voiceStatus}>
               {copy.voiceFailed}
-            </Text>
+            </Lv2Explain>
           )}
           {showVoiceFooter && voiceTargetText ? (
             <View
@@ -3233,26 +3178,30 @@ export default function LearningV2DirectSessionPlayerV1() {
                   accessibilityRole="text"
                   accessibilityLabel={voiceResultAccessibilityLabel}
                   accessibilityLiveRegion="polite"
-                  style={[styles.voiceResultCard, { backgroundColor: t.bgCard }]}
+                  style={[
+                    styles.voiceResultCard,
+                    lv2CardStyle(g),
+                    { borderColor: voiceAttemptResult.passed ? g.goodEdge : g.badEdge }, // guard-ok: 1 px кромка вердикта
+                  ]}
                 >
                   <SpeakingInlineResultStars
                     result={voiceAttemptResult}
                     theme={buildSpeakingPanelTheme(t)}
                     testID="learning-v2-speaking-stars"
                   />
-                  <Text style={[styles.voiceHeardLabel, { color: t.textMuted }]}>
+                  <Text style={[styles.voiceHeardLabel, { color: g.secondary }]}>
                     {triLang(lang, {
                       ru: "Вы сказали", uk: "Ви сказали", en: "You said", es: "Dijiste",
                       "pt-BR": "Você disse", vi: "Bạn đã nói", id: "Kamu berkata", tr: "Şunu söyledin", pl: "Powiedziano",
                     })}
                   </Text>
-                  <Text style={[styles.voiceHeardText, { color: t.textPrimary }]}>
+                  <Text style={[styles.voiceHeardText, { color: g.text }]}>
                     {voiceAttemptResult.transcript}
                   </Text>
                 </View>
               ) : null}
               <SpeakHoldButton
-                accent={t.accent}
+                accent={g.cta}
                 listening={voiceCaptureActive}
                 disabled={voiceControlDisabled}
                 sessionAuthorized
@@ -3291,8 +3240,7 @@ export default function LearningV2DirectSessionPlayerV1() {
             styles.footer,
             {
               paddingBottom: insets.bottom + 14,
-              backgroundColor: t.bgPrimary,
-              borderTopColor: t.border,
+              backgroundColor: g.bg,
             },
           ]}
         >
@@ -3311,8 +3259,8 @@ export default function LearningV2DirectSessionPlayerV1() {
                 { opacity: practiceIndex <= 0 ? 0.3 : pressed ? 0.62 : 1 },
               ]}
             >
-              <Ionicons name="arrow-undo-outline" size={26} color={t.textSecond} />
-              <Text style={[styles.footerActionLabel, { color: t.textMuted, fontSize: f.label }]}>
+              <Ionicons name="arrow-undo-outline" size={26} color={g.secondary} />
+              <Text style={[styles.footerActionLabel, { color: g.secondary, fontSize: f.label }]}>
                 {footerBackLabel}
               </Text>
             </Pressable>
@@ -3343,20 +3291,20 @@ export default function LearningV2DirectSessionPlayerV1() {
                     pointerEvents="none"
                     style={styles.wordPocketMiniature}
                   >
-                    <View style={[styles.wordPocketMiniBack, { backgroundColor: t.bgSurface2, borderColor: t.textMuted }]} />
-                    <View style={[styles.wordPocketMiniFace, { backgroundColor: t.bgCard, borderColor: t.accent }]}>
-                      <Ionicons name="text-outline" size={14} color={t.textPrimary} />
+                    <View style={[styles.wordPocketMiniBack, { backgroundColor: g.opaqueControl, borderColor: g.glassEdge }]} />
+                    <View style={[styles.wordPocketMiniFace, { backgroundColor: g.opaqueCard, borderColor: g.glassEdge }]}>
+                      <Ionicons name="text-outline" size={14} color={g.text} />
                     </View>
                   </View>
                   {unlockedWords.length > 0 ? (
-                    <View style={[styles.wordPocketBadge, { backgroundColor: t.gold }]}>
-                      <Text style={[styles.wordPocketBadgeText, { color: "#07110A" }]}>
+                    <View style={[styles.wordPocketBadge, { backgroundColor: g.cta }]}>
+                      <Text style={[styles.wordPocketBadgeText, { color: g.ctaInk }]}>
                         {unlockedWords.length}
                       </Text>
                     </View>
                   ) : null}
                 </View>
-                <Text style={[styles.footerActionLabel, { color: t.textMuted, fontSize: f.label }]}>
+                <Text style={[styles.footerActionLabel, { color: g.secondary, fontSize: f.label }]}>
                   {footerWordsLabel}
                 </Text>
               </Pressable>
@@ -3388,13 +3336,13 @@ export default function LearningV2DirectSessionPlayerV1() {
               <Ionicons
                 name="play-forward"
                 size={26}
-                color={result === "correct" ? t.correct : t.textMuted}
+                color={result === "correct" ? g.text : g.secondary}
               />
               <Text
                 style={[
                   styles.footerActionLabel,
                   {
-                    color: result === "correct" ? t.correct : t.textMuted,
+                    color: result === "correct" ? g.text : g.secondary,
                     fontSize: f.label,
                   },
                 ]}
@@ -3478,29 +3426,35 @@ export default function LearningV2DirectSessionPlayerV1() {
 
 const styles = StyleSheet.create({
   // Проверка главы: собственная типографика входа (макет 26).
-  checkpointTitle: {
-    fontSize: 22,
-    fontWeight: "700",
-    textAlign: "center",
-    marginTop: 22,
-  },
-  checkpointBody: {
-    fontSize: 15,
-    lineHeight: 23,
-    fontWeight: "400",
-    textAlign: "center",
-    marginTop: 10,
-    maxWidth: 320,
-  },
-  checkpointCta: {
-    marginTop: 26,
-    minHeight: 54,
-    borderRadius: 16,
-    paddingHorizontal: 30,
+  checkpointTile: {
+    width: 140,
+    height: 140,
+    borderRadius: 44,
     alignItems: "center",
     justifyContent: "center",
+    // «объёмная» нижняя кромка плитки макета (0 10px 0)
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 1,
+    shadowRadius: 0,
+    elevation: 6,
   },
-  checkpointCtaText: { fontSize: 16, fontWeight: "700" },
+  checkpointTitle: {
+    fontSize: 30,
+    lineHeight: 36,
+    fontWeight: "700",
+    letterSpacing: -0.4,
+    textAlign: "center",
+    marginTop: 38,
+  },
+  checkpointBody: {
+    fontSize: 17,
+    lineHeight: 24,
+    fontWeight: "400",
+    textAlign: "center",
+    marginTop: 12,
+    maxWidth: 320,
+  },
+  checkpointCta: { marginTop: 30, alignSelf: "stretch" },
   checkpointRows: { width: "100%", alignItems: "center", marginTop: 18 },
   screen: { flex: 1 },
   practiceBlocked: { opacity: 0 },
@@ -3512,9 +3466,9 @@ const styles = StyleSheet.create({
     gap: 18,
   },
   errorText: {
-    fontSize: 17,
-    lineHeight: 24,
-    fontWeight: "800",
+    fontSize: 22,
+    lineHeight: 28,
+    fontWeight: "700",
     textAlign: "center",
   },
   // зачем: техническая причина падения, видна только в дев-сборке. Тоном тише
@@ -3544,14 +3498,14 @@ const styles = StyleSheet.create({
   iconButton: {
     width: 44,
     height: 44,
-    borderRadius: 15,
+    borderRadius: 22,
     alignItems: "center",
     justifyContent: "center",
   },
   progressColumn: { flex: 1, gap: 5 },
-  progressTrack: { height: 8, borderRadius: 5, overflow: "hidden" },
-  progressFill: { height: 8, borderRadius: 5 },
-  progressText: { fontSize: 11, lineHeight: 14, fontWeight: "800" },
+  progressTrack: { height: 6, borderRadius: 3, overflow: "hidden" },
+  progressFill: { height: 6, borderRadius: 3 },
+  progressText: { fontSize: 14, lineHeight: 18, fontWeight: "600", fontVariant: ["tabular-nums"] },
   headerActions: {
     flexDirection: "row",
     alignItems: "center",
@@ -3590,9 +3544,9 @@ const styles = StyleSheet.create({
     gap: 5,
   },
   runeCounterText: {
-    fontSize: 13,
-    lineHeight: 16,
-    fontWeight: "900",
+    fontSize: 15,
+    lineHeight: 20,
+    fontWeight: "700",
     fontVariant: ["tabular-nums"],
   },
   runeAsset: { width: 18, height: 18 },
@@ -3684,15 +3638,7 @@ const styles = StyleSheet.create({
     fontWeight: "800",
     textAlign: "center",
   },
-  explanation: {
-    marginTop: 18,
-    borderRadius: 18,
-    padding: 15,
-    flexDirection: "row",
-    alignItems: "flex-start",
-    gap: 10,
-  },
-  explanationText: { flex: 1, fontSize: 14, lineHeight: 21, fontWeight: "700" },
+  explanationWrap: { marginTop: 18 },
   // зачем gap и alignItems (владелец, 2026-08-17): раньше кнопка сохранения с
   // длинным текстом растягивалась почти на всю ширину и обрезала соседнюю
   // «Ответить голосом» — теперь сохранение стало квадратной иконкой (48×48),
@@ -3730,12 +3676,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     fontWeight: "700",
   },
-  voiceStatus: {
-    marginTop: 9,
-    fontSize: 13,
-    lineHeight: 19,
-    fontWeight: "700",
-  },
+  voiceStatus: { marginTop: 12 },
   speakingSurface: {
     width: "100%",
     alignItems: "center",
@@ -3756,18 +3697,19 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 16,
     fontWeight: "700",
+    letterSpacing: 3,
+    textTransform: "uppercase",
   },
   voiceHeardText: {
-    fontSize: 16,
-    lineHeight: 22,
-    fontWeight: "800",
+    fontSize: 20,
+    lineHeight: 26,
+    fontWeight: "600",
     textAlign: "center",
   },
   footer: {
     flexShrink: 0,
     paddingHorizontal: 0,
     paddingTop: 6,
-    borderTopWidth: 0.5,
   },
   reportDock: {
     position: "absolute",

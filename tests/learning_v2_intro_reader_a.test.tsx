@@ -3,6 +3,8 @@ import { fireEvent, render } from "@testing-library/react-native";
 import { StyleSheet } from "react-native";
 import LearningV2SessionIntro from "../app/learning_v2_session_intro";
 import { INDIGO } from "../constants/theme";
+import { liquidGlassTokens } from "../constants/liquidGlassThemePalette";
+import { LV2_GOOD } from "../components/learning-v2/LearningV2Glass";
 import type { LessonIntroScreen } from "../app/lesson_data_types";
 
 jest.mock("react-native", () => ({
@@ -276,7 +278,10 @@ describe("Learning V2 intro Reader A", () => {
     // A source must explicitly mark targetWrong before the reader strikes it.
     const wrongExample = view.getByTestId("learning-v2-intro-part-0-1");
     const wrongStyle = StyleSheet.flatten(wrongExample.props.style);
-    expect(wrongStyle.color).toBe(INDIGO.textOnCard);
+    // зачем (learning-v2.html, Liquid Glass): интро красится токенами стекла темы, а не полями
+    // INDIGO; мок ThemeContext не задаёт liquidGlassThemeId, поэтому берётся графит.
+    const glass = liquidGlassTokens("graphite");
+    expect(wrongStyle.color).toBe(glass.text);
     expect(wrongStyle.textDecorationLine).toBe("none");
     expect(wrongExample.props.accessibilityLabel).not.toContain("неверный пример");
 
@@ -290,10 +295,10 @@ describe("Learning V2 intro Reader A", () => {
     const warnMarker = StyleSheet.flatten(
       view.getByTestId("learning-v2-intro-part-0-0").props.style,
     );
-    expect(warnMarker.color).toBe(INDIGO.gold);
+    expect(warnMarker.color).toBe(glass.cta);
     const okMarker = StyleSheet.flatten(
       view.getByTestId("learning-v2-intro-part-1-0").props.style,
     );
-    expect(okMarker.color).toBe(INDIGO.correct);
+    expect(okMarker.color).toBe(LV2_GOOD);
   });
 });

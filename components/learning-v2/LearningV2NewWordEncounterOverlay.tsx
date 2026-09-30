@@ -32,7 +32,7 @@ import type { LearningV2InterfaceLocale } from "../../modules/learning-v2/conten
 import { learningV2NewWordFlipHintV1 } from "../../modules/learning-v2/modes/mode_copy_v1";
 import type { LearningV2CourseSessionWordEncounterPresentationV1 } from "../../modules/learning-v2/runtime/course_session_word_encounter_presentation_v1";
 import { useTheme } from "../ThemeContext";
-import { V2Cta } from "../ui/v2_ui";
+import { Lv2Cta, Lv2Explain, useLv2Glass } from "./LearningV2Glass";
 import { LEARNING_V2_OWNER_LAYOUT } from "./learningV2OwnerLayout";
 
 export const NEW_WORD_AUTO_FLIP_MS = 3_000;
@@ -88,6 +88,10 @@ export default function LearningV2NewWordEncounterOverlay({
   measurePocketTarget,
 }: LearningV2NewWordEncounterOverlayProps) {
   const { theme: t, f } = useTheme();
+  // зачем (learning-v2.html, wordCard): окно нового слова — плита стекла (`g`), CTA и статус
+  // сохранения из общего набора Learning V2; `t` остаётся только общей карточке слова
+  // FlashcardListItem, чей контракт темы живёт в модуле карточек.
+  const g = useLv2Glass();
   const reduceMotion = useReducedMotion();
   const appActive = useAppRuntimeActive();
   const word = encounter.save.targetText;
@@ -298,6 +302,9 @@ export default function LearningV2NewWordEncounterOverlay({
       pointerEvents="box-none"
       style={styles.overlay}
     >
+      {/* зачем (макет `cm`): окно поверх занятия затемняет фон; слой не ловит касания, поэтому
+          прежняя проходимость касаний сквозь оверлей не изменилась. */}
+      <View pointerEvents="none" style={[StyleSheet.absoluteFill, styles.scrim]} />
       <RNAnimated.View
         ref={sheetFlightOriginRef}
         collapsable={false}
@@ -305,8 +312,8 @@ export default function LearningV2NewWordEncounterOverlay({
         style={[
           styles.sheet,
           {
-            backgroundColor: t.bgCard,
-            borderColor: t.border,
+            backgroundColor: g.opaqueSheet,
+            borderColor: g.glassEdge, // guard-ok: 1 px кромка макета
             opacity: RNAnimated.multiply(
               entranceProgress,
               pocketFlight.interpolate({
@@ -342,10 +349,10 @@ export default function LearningV2NewWordEncounterOverlay({
         ]}
       >
         <View style={styles.header}>
-          <Text style={[styles.label, { color: t.textPrimary }]}>
+          <Text style={[styles.label, { color: g.text }]}>
             {copy.label}
           </Text>
-          <Text style={[styles.counter, { color: t.textMuted }]}>
+          <Text style={[styles.counter, { color: g.secondary }]}>
             {copy.counter}
           </Text>
         </View>
@@ -414,7 +421,7 @@ export default function LearningV2NewWordEncounterOverlay({
             <Ionicons
               name={saved ? "bookmark" : "bookmark-outline"}
               size={20}
-              color={saved ? cardTheme.accent : cardTheme.textPrimary}
+              color={saved ? g.cta : g.text}
             />
           </Pressable>
         </RNAnimated.View>
@@ -422,7 +429,7 @@ export default function LearningV2NewWordEncounterOverlay({
 
         <Text
           testID="learning-v2-new-word-definition"
-          style={[styles.editorialDefinition, { color: t.textPrimary }]}
+          style={[styles.editorialDefinition, { color: g.text }]}
         >
           {editorialDefinition}
         </Text>
@@ -430,7 +437,7 @@ export default function LearningV2NewWordEncounterOverlay({
         <RNAnimated.Text
           style={[
             styles.flipHint,
-            { color: t.textPrimary },
+            { color: g.secondary },
             {
               opacity: hintPulse.interpolate({
                 inputRange: [0, 1],
@@ -444,25 +451,24 @@ export default function LearningV2NewWordEncounterOverlay({
         </ScrollView>
 
         <View style={styles.continueRow}>
-          <V2Cta
+          <Lv2Cta
             accessibilityLabel={copy.continue}
             disabled={continuing}
             onPress={() => {
               void continueToPocket();
             }}
             style={styles.continue}
+            right={<Ionicons name="arrow-forward" size={20} color={continuing ? g.mutedText : g.ctaInk} />}
           >
             {copy.continue}
-          </V2Cta>
+          </Lv2Cta>
         </View>
 
+        {/* макет 61/62: «Перевёрнута и сохранена» — галочка, «Не сохранилось» — лампочка */}
         {copy.saveStatus ? (
-          <Text
-            accessibilityLiveRegion="polite"
-            style={[styles.status, { color: t.textPrimary }]}
-          >
+          <Lv2Explain icon={saved ? "checkmark-circle-outline" : "bulb-outline"}>
             {copy.saveStatus}
-          </Text>
+          </Lv2Explain>
         ) : null}
       </RNAnimated.View>
     </View>
@@ -484,8 +490,8 @@ const styles = StyleSheet.create({
     maxHeight: "62%",
     gap: 10,
     overflow: "visible",
-    borderWidth: 1,
-    borderRadius: 28,
+    borderWidth: StyleSheet.hairlineWidth, // guard-ok: 1 px кромка макета
+    borderRadius: 22,
     paddingHorizontal: 12,
     paddingTop: 12,
     paddingBottom: 14,
@@ -512,16 +518,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4,
   },
   label: {
-    fontSize: 14,
-    lineHeight: 20,
-    fontWeight: "900",
-    letterSpacing: 0.6,
-    textTransform: "uppercase",
+    fontSize: 20,
+    lineHeight: 26,
+    fontWeight: "700",
   },
   counter: {
-    fontSize: 14,
+    fontSize: 15,
     lineHeight: 20,
-    fontWeight: "700",
+    fontWeight: "600",
   },
   flipHint: {
     fontSize: 14,
@@ -531,9 +535,9 @@ const styles = StyleSheet.create({
   },
   editorialDefinition: {
     paddingHorizontal: 8,
-    fontSize: 14,
-    lineHeight: 20,
-    fontWeight: "600",
+    fontSize: 17,
+    lineHeight: 24,
+    fontWeight: "400",
     textAlign: "center",
   },
   cardWrap: {
@@ -561,11 +565,5 @@ const styles = StyleSheet.create({
     width: "100%",
     maxWidth: 360,
   },
-  status: {
-    minHeight: 20,
-    fontSize: 14,
-    lineHeight: 20,
-    fontWeight: "600",
-    textAlign: "center",
-  },
+  scrim: { backgroundColor: "rgba(0,0,0,0.6)" },
 });

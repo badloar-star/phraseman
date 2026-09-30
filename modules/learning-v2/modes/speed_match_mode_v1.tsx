@@ -33,11 +33,10 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { scheduleOnRN } from "react-native-worklets";
-import { V2Chip } from "../../../components/ui/v2_ui";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { Lv2Explain, Lv2Option, lv2CardStyle, useLv2Glass } from "../../../components/learning-v2/LearningV2Glass";
 
 import { useLearningV2CompactPractice, useLearningV2PracticeViewportHost } from "../../../components/learning-v2/LearningV2PracticeViewport";
-import { useTheme } from "../../../components/ThemeContext";
-import { useTournamentPalette } from "../../../components/ui/v2_theme";
 import { useArenaSound } from "../../../hooks/use_arena_sound";
 import { hapticError, hapticSuccess } from "../../../hooks/use-haptics";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
@@ -109,7 +108,6 @@ function SpeedMatchCardV1({
   reducedMotion,
   disabled,
   onPress,
-  textColor,
 }: {
   readonly label: string;
   readonly side: "left" | "right";
@@ -118,7 +116,6 @@ function SpeedMatchCardV1({
   readonly reducedMotion: boolean;
   readonly disabled: boolean;
   readonly onPress: () => void;
-  readonly textColor: string;
 }) {
   const compact = useLearningV2CompactPractice();
   const scale = useSharedValue(1);
@@ -150,27 +147,27 @@ function SpeedMatchCardV1({
 
   return (
     <Animated.View style={[styles.tileFrame, style]}>
-      <V2Chip
+      {/* зачем (learning-v2.html, .mc): плитка пары — от 72 dp, слово по центру 16/600,
+          выбранная светлее, найденная зелёная, неверная красная; длинное слово переносится. */}
+      <Lv2Option
         compact={compact}
         accessibilityLabel={label}
         disabled={disabled || verdict === "ok"}
         onPress={onPress}
         selected={picked}
-        singleLine
+        showMark={false}
         style={[styles.card, compact && styles.cardCompact]}
-        textStyle={[styles.cardText, { color: textColor }]}
+        textStyle={styles.cardText}
         verdict={verdict === "ok" ? "ok" : verdict === "bad" ? "bad" : "idle"}
-      >
-        {label}
-      </V2Chip>
+        label={label}
+      />
     </Animated.View>
   );
 }
 
 export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
   const compact = useLearningV2CompactPractice();
-  const { theme: t } = useTheme();
-  const palette = useTournamentPalette();
+  const g = useLv2Glass();
   const playArenaSound = useArenaSound();
   const {
     prompt,
@@ -302,20 +299,21 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
   return (
     <View style={[styles.root, compact && { gap: 6 }]}>
       <View style={styles.headerRow}>
-        <Text style={[styles.taskLabel, { color: palette.muted }]}>{copy.title}</Text>
+        <Text style={[styles.taskLabel, { color: g.secondary }]}>{copy.title}</Text>
         {round.timerEnabled ? <View
           style={[
             styles.timerPill,
-            { backgroundColor: timerLow ? t.wrong + "22" : t.bgSurface2 },
+            { backgroundColor: timerLow ? g.badFill : g.opaqueControl },
           ]}
         >
-          <Text style={[styles.timerText, { color: timerLow ? t.wrong : t.textMuted }]}>
+          <Ionicons name="time-outline" size={16} color={timerLow ? g.bad : g.text} />
+          <Text style={[styles.timerText, { color: timerLow ? g.bad : g.text }]}>
             {secondsLeft}{copy.secondsSuffix}
           </Text>
         </View> : null}
       </View>
 
-      <Text style={[styles.hero, { color: t.textPrimary }]}>{prompt}</Text>
+      <Text style={[styles.hero, { color: g.text }]}>{prompt}</Text>
 
       <SpeedMatchGridV1>
         <View style={[styles.column, compact && { gap: 6 }]}>
@@ -332,7 +330,6 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
               reducedMotion={reducedMotion}
               disabled={resolved || phase === "processing" || !canPick}
               onPress={() => chooseLeft(pair.pairId)}
-              textColor={wrongPairIds.has(pair.pairId) ? t.wrong : t.accent}
             />
             );
           })}
@@ -351,7 +348,6 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
                 reducedMotion={reducedMotion}
                 disabled={resolved || phase === "processing" || !canPick}
                 onPress={() => chooseRight(pair.pairId)}
-                textColor={wrongPairIds.has(pair.pairId) ? t.wrong : t.textPrimary}
               />
             );
           })}
@@ -359,20 +355,23 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
       </SpeedMatchGridV1>
 
       {round.phase === "finish_timeout" && !resolved && (
-        <View style={[styles.feedbackLane, compact && { padding: 8 }, { backgroundColor: t.wrong + "1A" }]}>
-          <Text style={[styles.feedbackText, { color: t.textPrimary }]}>
-            {copy.timeout}
-          </Text>
+        // зачем (learning-v2.html, sm «Время вышло»): карточка `.expl` в колонку — значок часов
+        // и «Время вышло», под ней «Ещё раунд» (контур) и «Продолжить без таймера» (залитая).
+        <View accessibilityLiveRegion="polite" style={[styles.timeoutCard, lv2CardStyle(g)]}>
+          <View style={styles.timeoutHead}>
+            <Ionicons name="time-outline" size={20} color={g.secondary} />
+            <Text style={[styles.feedbackText, { color: g.text }]}>{copy.timeout}</Text>
+          </View>
           <View style={styles.timeoutActions}>
             <Pressable
               accessibilityRole="button"
               onPress={() => restartRound(true)}
               style={({ pressed }) => [
                 styles.timeoutButton,
-                { backgroundColor: t.bgCard, opacity: pressed ? 0.72 : 1 },
+                { backgroundColor: "transparent", borderColor: g.glassEdge, opacity: pressed ? 0.72 : 1 }, // guard-ok: 1 px контурная кнопка
               ]}
             >
-              <Text style={[styles.timeoutButtonText, { color: t.textPrimary }]}>
+              <Text style={[styles.timeoutButtonText, { color: g.text }]}>
                 {copy.again}
               </Text>
             </Pressable>
@@ -381,21 +380,17 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
               onPress={() => restartRound(false)}
               style={({ pressed }) => [
                 styles.timeoutButton,
-                { backgroundColor: t.accent, opacity: pressed ? 0.72 : 1 },
+                { backgroundColor: g.cta, opacity: pressed ? 0.72 : 1 },
               ]}
             >
-              <Text style={[styles.timeoutButtonText, { color: t.correctText }]}>
+              <Text style={[styles.timeoutButtonText, { color: g.ctaInk }]}>
                 {copy.withoutTimer}
               </Text>
             </Pressable>
           </View>
         </View>
       )}
-      {explanation && (
-        <View style={[styles.feedbackLane, compact && { padding: 8 }, { backgroundColor: t.bgSurface2 }]}>
-          <Text style={[styles.feedbackText, { color: t.textPrimary }]}>{explanation}</Text>
-        </View>
-      )}
+      {explanation ? <Lv2Explain>{explanation}</Lv2Explain> : null}
     </View>
   );
 }
@@ -414,35 +409,43 @@ function SpeedMatchGridV1({ children }: { children: React.ReactNode }): React.JS
 const styles = StyleSheet.create({
   root: { flex: 1, gap: 14 },
   headerRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
-  taskLabel: {
-    fontSize: 13,
-    fontWeight: "800",
-    letterSpacing: 1.4,
-    textTransform: "uppercase",
-  },
+  taskLabel: { fontSize: 15, lineHeight: 20, fontWeight: "600" },
   timerPill: {
-    borderRadius: 999,
-    paddingVertical: 5,
-    paddingHorizontal: 12,
+    minHeight: 34,
+    borderRadius: 17,
+    paddingHorizontal: 14,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
   },
-  timerText: { fontSize: 13, fontWeight: "800", fontVariant: ["tabular-nums"] },
-  hero: { fontSize: 22, lineHeight: 28, fontWeight: "800" },
+  timerText: { fontSize: 16, lineHeight: 21, fontWeight: "700", fontVariant: ["tabular-nums"] },
+  hero: { fontSize: 28, lineHeight: 34, fontWeight: "700", letterSpacing: -0.3 },
   gridScroll: { flexGrow: 0, maxHeight: 470 },
   grid: { flexDirection: "row", gap: 10, paddingBottom: 4 },
   column: { flex: 1, gap: 10 },
   tileFrame: { width: "100%" },
   card: {
     width: "100%",
-    minHeight: 58,
+    minHeight: 72,
     maxWidth: "100%",
-    backgroundColor: "transparent",
-    paddingBottom: 0,
   },
-  cardCompact: { minHeight: 50 },
-  cardText: { fontSize: 15.5, fontWeight: "900" },
-  feedbackLane: { borderRadius: 18, padding: 12 },
-  feedbackText: { fontSize: 14.5, fontWeight: "600", lineHeight: 19 },
-  timeoutActions: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginTop: 10 },
-  timeoutButton: { borderRadius: 14, paddingHorizontal: 14, paddingVertical: 11 },
-  timeoutButtonText: { fontSize: 14, fontWeight: "800" },
+  cardCompact: { minHeight: 56 },
+  cardText: { fontSize: 16, lineHeight: 21, fontWeight: "600" },
+  timeoutCard: { padding: 16, gap: 14 },
+  timeoutHead: { flexDirection: "row", alignItems: "center", gap: 12 },
+  feedbackText: { flex: 1, fontSize: 15, fontWeight: "700", lineHeight: 21 },
+  timeoutActions: { flexDirection: "row", flexWrap: "wrap", gap: 10 },
+  timeoutButton: {
+    flex: 1,
+    minWidth: 130,
+    minHeight: 44,
+    borderRadius: 22,
+    borderWidth: StyleSheet.hairlineWidth, // guard-ok: 1 px
+    borderColor: "transparent",
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  timeoutButtonText: { fontSize: 16, lineHeight: 21, fontWeight: "600", textAlign: "center" },
 });

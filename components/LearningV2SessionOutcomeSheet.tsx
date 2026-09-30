@@ -15,7 +15,7 @@ import { useStableSafeAreaInsets } from "../app/stable_safe_area_metrics";
 import { hapticTap } from "../hooks/use-haptics";
 import { useReduceMotionPreference } from "../hooks/use_reduce_motion";
 import { LEARNING_V2_OWNER_LAYOUT } from "./learning-v2/learningV2OwnerLayout";
-import { useTheme } from "./ThemeContext";
+import { useLv2Glass } from "./learning-v2/LearningV2Glass";
 
 export const LEARNING_V2_SESSION_MODAL_EXIT_MS = 180;
 
@@ -38,6 +38,11 @@ interface LearningV2SessionOutcomeSheetProps {
   wordsLabel?: string;
   attemptsLabel?: string;
   onMounted?: () => void;
+  /**
+   * зачем (learning-v2.html, «Закрытое занятие» / «Занятие Plus»): тёмная шайба с замком вместо
+   * белой с «play». Чисто вид; сам путь открытия закрытых занятий (тост-отказ) не менялся.
+   */
+  locked?: boolean;
 }
 
 export default function LearningV2SessionOutcomeSheet({
@@ -58,8 +63,10 @@ export default function LearningV2SessionOutcomeSheet({
   wordsLabel = "4 новых слова",
   attemptsLabel = "3 попытки",
   onMounted,
+  locked = false,
 }: LearningV2SessionOutcomeSheetProps) {
-  const { theme: t, f } = useTheme();
+  // зачем (learning-v2.html, startModal): окно занятия — на токенах Liquid Glass активной темы.
+  const g = useLv2Glass();
   const layout = LEARNING_V2_OWNER_LAYOUT.modal;
   const reducedMotion = useReduceMotionPreference() !== false;
   const checkpoint = sessionOrdinal % 8 === 0;
@@ -191,7 +198,7 @@ export default function LearningV2SessionOutcomeSheet({
             accessibilityViewIsModal
             style={[
               styles.card,
-              { borderRadius: layout.cardRadius, backgroundColor: t.bgCard, borderColor: t.border },
+              { borderRadius: 22, backgroundColor: g.opaqueSheet, borderColor: g.glassEdge }, // guard-ok: 1 px кромка макета
               cardStyle,
             ]}
           >
@@ -201,30 +208,33 @@ export default function LearningV2SessionOutcomeSheet({
               accessibilityLabel={closeLabel}
               hitSlop={8}
               onPress={dismiss}
-              style={({ pressed }) => [styles.close, { backgroundColor: t.bgSurface2, opacity: pressed ? 0.66 : 1 }]}
+              style={({ pressed }) => [styles.close, { backgroundColor: g.opaqueControl, opacity: pressed ? 0.66 : 1 }]}
             >
-              <Ionicons name="close" size={20} color={t.textPrimary} />
+              <Ionicons name="close" size={20} color={g.text} />
             </Pressable>
 
             <Animated.View style={[styles.scene, sceneStyle]}>
-              <View style={[styles.orb, { width: layout.nodeSize, height: layout.nodeSize, borderRadius: layout.nodeSize / 2, backgroundColor: t.accent }]}>
-                <Ionicons name={checkpoint ? "trophy" : "play"} size={36} color={t.correctText} />
+              <View style={[styles.orbPlate, { width: layout.nodeSize, height: layout.nodeSize, borderRadius: layout.nodeSize / 2, backgroundColor: locked ? g.opaqueControl : g.cta }]}>
+                <View style={styles.orbPlateShade} />
+              </View>
+              <View style={[styles.orb, { width: layout.nodeSize, height: layout.nodeSize, borderRadius: layout.nodeSize / 2, backgroundColor: locked ? g.opaqueControl : g.text }]}>
+                <Ionicons name={locked ? "lock-closed" : checkpoint ? "trophy" : "play"} size={38} color={locked ? g.secondary : g.ctaInk} />
               </View>
             </Animated.View>
             <Animated.View style={detailsStyle}>
-              <Text testID="learning-v2-session-modal-kicker" style={[styles.kicker, { color: t.accent }]}>{sessionLabel.toUpperCase()} {sessionOrdinal} · {chapterLabel.toUpperCase()} {chapterOrdinal}</Text>
-              <Text style={[styles.title, { color: t.textPrimary, fontSize: layout.headingSize, lineHeight: 31 }]}>{title}</Text>
-              <Text style={[styles.message, { color: t.textMuted, fontSize: layout.bodySize, lineHeight: layout.bodySize * 1.45 }]}>{message}</Text>
+              <Text testID="learning-v2-session-modal-kicker" style={[styles.kicker, { color: g.secondary }]}>{sessionLabel.toUpperCase()} {sessionOrdinal} · {chapterLabel.toUpperCase()} {chapterOrdinal}</Text>
+              <Text style={[styles.title, { color: g.text, fontSize: layout.headingSize, lineHeight: 31 }]}>{title}</Text>
+              <Text style={[styles.message, { color: g.secondary, fontSize: 15, lineHeight: 22 }]}>{message}</Text>
 
               <View style={styles.stats}>
                 {stats.map((stat) => (
-                  <View key={stat.id} testID={stat.testID} style={[styles.stat, { backgroundColor: t.bgSurface2 }]}>
-                    <Ionicons name={stat.icon} size={17} color={t.accent} />
-                    <Text style={[styles.statText, { color: t.textPrimary }]}>{stat.value}</Text>
+                  <View key={stat.id} testID={stat.testID} style={[styles.stat, { backgroundColor: g.opaqueControl }]}>
+                    <Ionicons name={stat.icon} size={18} color={g.secondary} />
+                    <Text style={[styles.statText, { color: g.text }]}>{stat.value}</Text>
                   </View>
                 ))}
               </View>
-              <View style={[styles.divider, { backgroundColor: t.border }]} />
+              <View style={[styles.divider, { backgroundColor: g.line }]} />
 
               <View style={styles.primaryWrap}>
                 <TouchableOpacity
@@ -233,14 +243,14 @@ export default function LearningV2SessionOutcomeSheet({
                   disabled={actionsDisabled}
                   activeOpacity={0.8}
                   onPress={start}
-                  style={[styles.primaryButton, { backgroundColor: t.accent, minHeight: layout.targetHeight, opacity: actionsDisabled ? 0.66 : 1 }]}
+                  style={[styles.primaryButton, { backgroundColor: g.cta, minHeight: layout.targetHeight, opacity: actionsDisabled ? 0.66 : 1 }]}
                 >
-                  <Text style={[styles.primaryLabel, { color: t.correctText, fontSize: f.body }]}>{primaryLabel}</Text>
-                  <Ionicons name="arrow-forward" size={19} color={t.correctText} />
+                  <Text style={[styles.primaryLabel, { color: g.ctaInk, fontSize: 17 }]}>{primaryLabel}</Text>
+                  <Ionicons name="arrow-forward" size={20} color={g.ctaInk} />
                 </TouchableOpacity>
               </View>
               <TouchableOpacity testID="learning-v2-session-skip-intro" accessibilityRole="button" accessibilityState={{ disabled: actionsDisabled }} disabled={actionsDisabled} onPress={skipIntro} style={[styles.secondaryButton, actionsDisabled && { opacity: 0.45 }]}>
-                <Text style={[styles.secondaryLabel, { color: t.textMuted, fontSize: f.body }]}>{secondaryLabel}</Text>
+                <Text style={[styles.secondaryLabel, { color: g.secondary, fontSize: 16 }]}>{secondaryLabel}</Text>
               </TouchableOpacity>
             </Animated.View>
           </Animated.View>
@@ -254,20 +264,23 @@ const styles = StyleSheet.create({
   root: { flex: 1 },
   backdrop: { ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(0,0,0,0.68)" },
   center: { flex: 1, justifyContent: "center", alignItems: "center", paddingHorizontal: 18 },
-  card: { width: "100%", maxWidth: 390, borderWidth: 1, paddingHorizontal: 22, paddingTop: 22, paddingBottom: 16, overflow: "hidden" },
-  close: { position: "absolute", top: 14, right: 14, width: 38, height: 38, borderRadius: 14, alignItems: "center", justifyContent: "center", zIndex: 3 },
+  card: { width: "100%", maxWidth: 390, borderWidth: StyleSheet.hairlineWidth, paddingHorizontal: 22, paddingTop: 22, paddingBottom: 16, overflow: "hidden" },
+  close: { position: "absolute", top: 10, right: 10, width: 44, height: 44, borderRadius: 14, alignItems: "center", justifyContent: "center", zIndex: 3 },
   scene: { height: 112, alignItems: "center", justifyContent: "center" },
   orb: { alignItems: "center", justifyContent: "center" },
-  kicker: { marginTop: 2, textAlign: "center", fontSize: 11, lineHeight: 16, fontWeight: "900", letterSpacing: 1.1 },
-  title: { marginTop: 9, textAlign: "center", fontWeight: "900", letterSpacing: -0.7 },
+  // «цоколь» шайбы (0 7px 0 в макете): та же площадка, смещённая вниз и затемнённая
+  orbPlate: { position: "absolute", top: 13, overflow: "hidden" },
+  orbPlateShade: { flex: 1, backgroundColor: "rgba(0,0,0,0.32)" },
+  kicker: { marginTop: 8, textAlign: "center", fontSize: 11, lineHeight: 16, fontWeight: "800", letterSpacing: 1.6 },
+  title: { marginTop: 9, textAlign: "center", fontWeight: "800", letterSpacing: -0.6 },
   message: { marginTop: 8, textAlign: "center", fontWeight: "400" },
   stats: { flexDirection: "row", gap: 7, marginTop: 18 },
-  stat: { flex: 1, minHeight: 58, borderRadius: 16, paddingHorizontal: 6, paddingVertical: 9, alignItems: "center", justifyContent: "center", gap: 4 },
-  statText: { fontSize: 10.5, lineHeight: 14, fontWeight: "700", textAlign: "center" },
+  stat: { flex: 1, minHeight: 58, borderRadius: 16, paddingHorizontal: 6, paddingVertical: 9, alignItems: "center", justifyContent: "center", gap: 5 },
+  statText: { fontSize: 11.5, lineHeight: 14, fontWeight: "700", textAlign: "center" },
   divider: { height: StyleSheet.hairlineWidth, marginVertical: 18 },
   primaryWrap: { position: "relative" },
-  primaryButton: { minHeight: 54, borderRadius: 20, paddingHorizontal: 20, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 9 },
-  primaryLabel: { fontWeight: "900" },
+  primaryButton: { minHeight: 54, borderRadius: 27, paddingHorizontal: 20, flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 9 },
+  primaryLabel: { fontWeight: "700" },
   secondaryButton: { alignSelf: "center", minHeight: 44, paddingHorizontal: 20, paddingVertical: 12, justifyContent: "center" },
-  secondaryLabel: { fontWeight: "700" },
+  secondaryLabel: { fontWeight: "600" },
 });

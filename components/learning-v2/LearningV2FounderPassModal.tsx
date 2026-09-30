@@ -13,9 +13,9 @@ import {
 import { useStableSafeAreaInsets } from "../../app/stable_safe_area_metrics";
 import { triLang } from "../../constants/i18n";
 import { useReduceMotionPreference } from "../../hooks/use_reduce_motion";
-import { LinearGradient } from "../SafeLinearGradient";
 import { useLang } from "../LangContext";
 import { useTheme } from "../ThemeContext";
+import { Lv2Cta, lv2CardStyle, useLv2Glass } from "./LearningV2Glass";
 
 type Props = Readonly<{
   visible: boolean;
@@ -33,7 +33,10 @@ export default function LearningV2FounderPassModal({
   onDismiss,
 }: Props) {
   const { lang } = useLang();
-  const { theme: t, f } = useTheme();
+  const { f } = useTheme();
+  // зачем (learning-v2.html, founder): «Пропуск основателя» — окно стекла без золотых градиентов:
+  // плита пропуска и плита отзыва на токенах активной темы, кнопка — общий Lv2Cta.
+  const g = useLv2Glass();
   const insets = useStableSafeAreaInsets();
   const reduceMotion = useReduceMotionPreference() !== false;
   const entrance = useRef(new Animated.Value(0)).current;
@@ -248,7 +251,7 @@ export default function LearningV2FounderPassModal({
         ]}
       >
         <Animated.View style={[StyleSheet.absoluteFill, styles.scrim, { opacity: entrance }]} />
-        <Animated.View style={[styles.card, { backgroundColor: t.bgCard }, cardStyle]}>
+        <Animated.View style={[styles.card, { backgroundColor: g.opaqueSheet }, cardStyle]}>
           <Pressable
             accessibilityRole="button"
             accessibilityLabel={copy.close}
@@ -256,69 +259,54 @@ export default function LearningV2FounderPassModal({
             onPress={dismiss}
             style={({ pressed }) => [
               styles.close,
-              { backgroundColor: t.bgSurface2, opacity: pressed ? 0.7 : 1 },
+              { backgroundColor: g.opaqueControl, opacity: pressed ? 0.7 : 1 },
             ]}
           >
-            <Ionicons name="close" size={22} color={t.textPrimary} />
+            <Ionicons name="close" size={22} color={g.text} />
           </Pressable>
 
-          <Animated.View style={[styles.pass, { borderColor: `${t.gold}55` }, passStyle]}>
-            <LinearGradient
-              colors={[`${t.gold}28`, `${t.accent}1F`]}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={StyleSheet.absoluteFill}
-            />
+          <Animated.View style={[styles.pass, lv2CardStyle(g, 18), { backgroundColor: g.opaqueCard }, passStyle]}>
             <Animated.View
               pointerEvents="none"
               style={[
                 styles.sheen,
                 {
-                  opacity: sheen.interpolate({ inputRange: [0, 0.2, 0.75, 1], outputRange: [0, 0.25, 0.2, 0] }),
+                  opacity: sheen.interpolate({ inputRange: [0, 0.2, 0.75, 1], outputRange: [0, 0.12, 0.08, 0] }),
                   transform: [{ translateX: sheen.interpolate({ inputRange: [0, 1], outputRange: [-220, 260] }) }, { rotate: "18deg" }],
                 },
               ]}
             />
-            <LinearGradient
-              colors={["#FFF0B8", t.gold, "#C89435"]}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={styles.seal}
-            >
-              <Ionicons name="star-outline" size={28} color={t.textOnGold} />
-            </LinearGradient>
+            <View style={[styles.seal, { backgroundColor: g.opaqueControl }]}>
+              <Ionicons name="star-outline" size={28} color={g.text} />
+            </View>
             <View style={styles.passCopy}>
-              <Text style={[styles.passLabel, { color: t.gold }]}>{copy.pass}</Text>
+              <Text style={[styles.passLabel, { color: g.secondary }]}>{copy.pass}</Text>
               {nickname ? (
-                <Text style={[styles.passName, { color: t.textPrimary, fontSize: f.bodyLg }]}>
+                <Text style={[styles.passName, { color: g.text }]}>
                   @{nickname}
                 </Text>
               ) : null}
-              <Text style={[styles.passMeta, { color: t.textMuted }]}>{copy.access}</Text>
+              <Text style={[styles.passMeta, { color: g.secondary }]}>{copy.access}</Text>
             </View>
           </Animated.View>
 
-          <Text style={[styles.kicker, { color: t.accent }]}>{copy.kicker}</Text>
-          <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h1 }]}>{copy.title}</Text>
-          <Text style={[styles.body, { color: t.textSecond, fontSize: f.body }]}>{copy.body}</Text>
+          <Text style={[styles.kicker, { color: g.secondary }]}>{copy.kicker}</Text>
+          <Text style={[styles.title, { color: g.text }]}>{copy.title}</Text>
+          <Text style={[styles.body, { color: g.secondary, fontSize: f.body }]}>{copy.body}</Text>
 
-          <View style={[styles.feedback, { backgroundColor: t.accentBg }]}>
-            <Ionicons name="options-outline" size={21} color={t.accent} />
-            <Text style={[styles.feedbackText, { color: t.textPrimary }]}>{copy.feedback}</Text>
+          <View style={[styles.feedback, lv2CardStyle(g, 14)]}>
+            <Ionicons name="paper-plane-outline" size={20} color={g.secondary} />
+            <Text style={[styles.feedbackText, { color: g.text }]}>{copy.feedback}</Text>
           </View>
 
-          <Pressable
+          <Lv2Cta
             testID="learning-v2-founder-pass-continue"
-            accessibilityRole="button"
             onPress={dismiss}
-            style={({ pressed }) => [
-              styles.cta,
-              { backgroundColor: t.accent, opacity: pressed ? 0.82 : 1 },
-            ]}
+            style={styles.cta}
+            right={<Ionicons name="arrow-forward" size={20} color={g.ctaInk} />}
           >
-            <Text style={[styles.ctaText, { color: t.correctText }]}>{copy.cta}</Text>
-            <Ionicons name="arrow-forward" size={20} color={t.correctText} />
-          </Pressable>
+            {copy.cta}
+          </Lv2Cta>
         </Animated.View>
       </View>
     </Modal>
@@ -331,15 +319,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingHorizontal: 18,
   },
-  scrim: { backgroundColor: "rgba(2,4,8,0.78)" },
+  scrim: { backgroundColor: "rgba(0,0,0,0.68)" },
   card: {
     width: "100%",
     maxWidth: 410,
     alignSelf: "center",
-    borderRadius: 28,
+    borderRadius: 22,
     paddingHorizontal: 22,
     paddingTop: 54,
-    paddingBottom: 22,
+    paddingBottom: 20,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 18 },
     shadowOpacity: 0.48,
@@ -352,21 +340,19 @@ const styles = StyleSheet.create({
     right: 12,
     width: 44,
     height: 44,
-    borderRadius: 16,
+    borderRadius: 14,
     alignItems: "center",
     justifyContent: "center",
     zIndex: 3,
   },
   pass: {
-    minHeight: 112,
-    borderWidth: StyleSheet.hairlineWidth,
-    borderRadius: 22,
+    minHeight: 96,
     overflow: "hidden",
     paddingHorizontal: 18,
-    paddingVertical: 17,
+    paddingVertical: 18,
     flexDirection: "row",
     alignItems: "center",
-    gap: 15,
+    gap: 16,
   },
   sheen: {
     position: "absolute",
@@ -376,44 +362,27 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
   },
   seal: {
-    width: 62,
-    height: 62,
-    borderRadius: 21,
+    width: 55,
+    height: 55,
+    borderRadius: 16,
     alignItems: "center",
     justifyContent: "center",
-    shadowColor: "#E2AA42",
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.28,
-    shadowRadius: 14,
-    elevation: 7,
   },
   passCopy: { flex: 1, minWidth: 0 },
-  passLabel: { fontSize: 10, lineHeight: 14, fontWeight: "900", letterSpacing: 1.2 },
-  passName: { marginTop: 4, lineHeight: 25, fontWeight: "900" },
-  passMeta: { marginTop: 8, fontSize: 10, lineHeight: 14, fontWeight: "700", letterSpacing: 1 },
-  kicker: { marginTop: 22, fontSize: 11, lineHeight: 15, fontWeight: "900", letterSpacing: 1.2 },
-  title: { marginTop: 8, lineHeight: 34, fontWeight: "900", letterSpacing: -0.6 },
-  body: { marginTop: 11, lineHeight: 22, fontWeight: "500" },
+  passLabel: { fontSize: 12, lineHeight: 16, fontWeight: "700", letterSpacing: 2.4 },
+  passName: { marginTop: 6, fontSize: 19, lineHeight: 25, fontWeight: "700" },
+  passMeta: { marginTop: 3, fontSize: 14, lineHeight: 19, fontWeight: "400" },
+  kicker: { marginTop: 24, fontSize: 11, lineHeight: 15, fontWeight: "800", letterSpacing: 1.6 },
+  title: { marginTop: 9, fontSize: 28, lineHeight: 34, fontWeight: "800", letterSpacing: -0.6 },
+  body: { marginTop: 8, lineHeight: 22, fontWeight: "400" },
   feedback: {
-    marginTop: 17,
-    minHeight: 68,
-    borderRadius: 19,
-    paddingHorizontal: 15,
-    paddingVertical: 13,
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 11,
-  },
-  feedbackText: { flex: 1, fontSize: 13, lineHeight: 18, fontWeight: "600" },
-  cta: {
     marginTop: 18,
-    minHeight: 52,
-    borderRadius: 18,
-    paddingHorizontal: 18,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
     flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 8,
+    alignItems: "flex-start",
+    gap: 12,
   },
-  ctaText: { fontSize: 15, lineHeight: 20, fontWeight: "900" },
+  feedbackText: { flex: 1, fontSize: 15, lineHeight: 21, fontWeight: "400" },
+  cta: { marginTop: 22 },
 });

@@ -32,9 +32,8 @@ import Animated, {
 import Svg, { Circle } from "react-native-svg";
 
 import { useLearningV2CompactPractice } from "../../../components/learning-v2/LearningV2PracticeViewport";
-import { useTheme } from "../../../components/ThemeContext";
-import { V2Chip } from "../../../components/ui/v2_ui";
-import { useTournamentPalette } from "../../../components/ui/v2_theme";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { Lv2Explain, Lv2Option, useLv2Glass } from "../../../components/learning-v2/LearningV2Glass";
 import { hapticError, hapticLightImpact, hapticSuccess } from "../../../hooks/use-haptics";
 import { useRuntimeActive } from "../../../hooks/use_runtime_active";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
@@ -126,7 +125,7 @@ function ListenChoosePlayButtonV1({
 
   return (
     <View style={[styles.playWrap, compact && { width: 80, height: 80 }]}>
-      <Svg width={compact ? 80 : 116} height={compact ? 80 : 116} viewBox="0 0 116 116" style={StyleSheet.absoluteFill}>
+      <Svg width={compact ? 80 : 128} height={compact ? 80 : 128} viewBox="0 0 116 116" style={StyleSheet.absoluteFill}>
         <Circle
           cx={58}
           cy={58}
@@ -161,9 +160,7 @@ function ListenChoosePlayButtonV1({
           }}
           style={[styles.playBtn, compact && { width: 64, height: 64, borderRadius: 32 }, { backgroundColor: surface, opacity: disabled ? 0.45 : 1 }]}
         >
-          <Text style={[styles.playGlyph, { color: accent }]}>
-            {playing ? "▶" : "▶"}
-          </Text>
+          <Ionicons name={playing ? "volume-high" : "play"} size={44} color={accent} />
         </Pressable>
       </Animated.View>
     </View>
@@ -191,7 +188,7 @@ function ListenChooseOptionV1({
   readonly onPress: () => void;
   readonly bg: string;
   readonly selectedBg: string;
-  readonly textColor: string;
+  readonly textColor?: string;
 }) {
   const compact = useLearningV2CompactPractice();
   const lift = useSharedValue(0);
@@ -223,26 +220,26 @@ function ListenChooseOptionV1({
 
   return (
     <Animated.View style={[style, compact && { width: "48%" }]}>
-      <V2Chip
+      {/* зачем (learning-v2.html, .opt): плита-вариант стекла — от 58 dp, слово 17/600 по центру,
+          отметка верно/неверно справа; «затемнённый» невыбранный вариант остаётся нажимаемым. */}
+      <Lv2Option
         compact={compact}
-        block
         accessibilityLabel={label}
         disabled={disabled}
         onPress={onPress}
         selected={selected}
-        verdict={verdict === "ok" ? "ok" : verdict === "bad" ? "bad" : dimmed ? "dim" : "idle"}
-        textStyle={[styles.optionText, { color: textColor }]}
-      >
-        {label}
-      </V2Chip>
+        verdict={verdict === "ok" ? "ok" : verdict === "bad" ? "bad" : "idle"}
+        style={dimmed ? { opacity: 0.6 } : undefined}
+        textStyle={textColor ? { color: textColor } : undefined}
+        label={label}
+      />
     </Animated.View>
   );
 }
 
 export function ListenChooseModeV1(props: LearningV2ModeCommonPropsV1) {
   const compact = useLearningV2CompactPractice();
-  const { theme: t } = useTheme();
-  const palette = useTournamentPalette();
+  const g = useLv2Glass();
   const {
     prompt,
     options,
@@ -296,7 +293,7 @@ export function ListenChooseModeV1(props: LearningV2ModeCommonPropsV1) {
 
   return (
     <View style={[styles.root, compact && { gap: 6 }]}>
-      <Text style={[styles.taskLabel, { color: palette.muted }]}>{prompt}</Text>
+      <Text style={[styles.taskLabel, { color: g.secondary }]}>{prompt}</Text>
 
       <ListenChoosePlayButtonV1
         playing={playing}
@@ -305,12 +302,12 @@ export function ListenChooseModeV1(props: LearningV2ModeCommonPropsV1) {
         disabled={!onPlayFullPhraseAudio || loading}
         accessibilityLabel={hasPlayedOnce ? audioCopy.replay : audioCopy.play}
         onPress={handlePlay}
-        accent={t.accent}
-        correct={t.correct}
-        surface={t.bgSurface2}
-        track={t.bgSurface2}
+        accent={g.text}
+        correct={g.good}
+        surface={g.opaqueCard}
+        track={g.opaqueControl}
       />
-      <Text style={[styles.playSub, { color: t.textMuted }]}>
+      <Text style={[styles.playSub, { color: g.secondary }]}>
         {!onPlayFullPhraseAudio
           ? audioCopy.unavailable
           : loading
@@ -353,31 +350,15 @@ export function ListenChooseModeV1(props: LearningV2ModeCommonPropsV1) {
               reducedMotion={reducedMotion}
               disabled={resolved || phase === "processing"}
               onPress={() => onPick(option.responseId)}
-              bg={t.bgCard}
-              selectedBg={t.accentBg}
-              textColor={
-                verdict === "ok"
-                  ? t.correctText
-                  : verdict === "bad"
-                    ? t.wrong
-                    : targetLanguageText
-                      ? t.accent
-                      : selected
-                        ? t.textPrimary
-                        : t.textMuted
-              }
+              bg={g.opaqueCard}
+              selectedBg={g.selected}
+              textColor={targetLanguageText && verdict === "none" ? g.text : undefined}
             />
           );
         })}
       </View>
 
-      {explanation && (
-        <View style={[styles.feedbackLane, compact && { padding: 8 }, { backgroundColor: t.bgSurface2 }]}>
-          <Text style={[styles.feedbackText, { color: t.textPrimary }]}>
-            {explanation}
-          </Text>
-        </View>
-      )}
+      {explanation ? <Lv2Explain style={styles.feedbackLane}>{explanation}</Lv2Explain> : null}
     </View>
   );
 }
@@ -387,25 +368,20 @@ export default ListenChooseModeV1;
 const styles = StyleSheet.create({
   root: { gap: 14, alignItems: "center" },
   taskLabel: {
-    fontSize: 13,
-    fontWeight: "800",
-    letterSpacing: 1.4,
-    textTransform: "uppercase",
+    fontSize: 15,
+    lineHeight: 20,
+    fontWeight: "600",
+    textAlign: "center",
   },
-  playWrap: { width: 116, height: 116, alignItems: "center", justifyContent: "center" },
+  playWrap: { width: 128, height: 128, alignItems: "center", justifyContent: "center" },
   playBtn: {
-    width: 92,
-    height: 92,
-    borderRadius: 46,
+    width: 104,
+    height: 104,
+    borderRadius: 52,
     alignItems: "center",
     justifyContent: "center",
   },
-  playGlyph: { fontSize: 28, fontWeight: "700" },
-  playSub: { fontSize: 14, fontWeight: "700" },
+  playSub: { fontSize: 15, lineHeight: 20, fontWeight: "600" },
   options: { width: "100%", gap: 10 },
-  option: { borderRadius: 18, paddingVertical: 14, paddingHorizontal: 16 },
-  optionText: { fontSize: 17, fontWeight: "900" },
-  targetText: { fontWeight: "900" },
-  feedbackLane: { width: "100%", borderRadius: 18, padding: 12 },
-  feedbackText: { fontSize: 14.5, fontWeight: "600", lineHeight: 19 },
+  feedbackLane: { width: "100%" },
 });

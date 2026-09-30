@@ -8,6 +8,10 @@ import { useLang } from "../../../components/LangContext";
 import { useStudyTarget } from "../../../components/StudyTargetContext";
 import { useEnergy, useEnergySessionIntent } from "../../../components/EnergyContext";
 import NoEnergyModal from "../../../components/NoEnergyModal";
+import { useLv2Glass } from "../../../components/learning-v2/LearningV2Glass";
+import { isLearningV2DirectSessionUnready, isLearningV2LegacySessionUnready } from "../../../app/energy_contract";
+import { consumeLearningV2CourseSessionReadyHandoffV3 } from "../../../app/learning_v2_course_released_session_client_v3";
+import { resolveLearningV2SessionRouteCoordinatesV1 } from "../../../app/learning_v2_session_route_coordinates_v1";
 import SessionAttemptsHud from "../../../components/session_attempts/SessionAttemptsHud";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React, {
@@ -47,7 +51,6 @@ import {
 import { useSessionAttempts } from "../../../hooks/useSessionAttempts";
 import { useSessionAttemptAutoReset } from "../../../hooks/useSessionAttemptAutoReset";
 import { SESSION_ATTEMPTS_MOTION } from "../../../constants/motionHybrid";
-import { grantLocalCourseSessionCompletionSpin } from "../../../app/local_level_spins";
 import {
   ensureLearningV2CompletionBackgroundSchedulerInstalled,
   enterLearningV2InteractiveSurface,
@@ -72,7 +75,7 @@ import { captureCurrentAccountObjectiveAttempt } from "../../../app/mistake_prac
 import { useStableSafeAreaInsets } from "../../../app/stable_safe_area_metrics";
 import LearningV2SessionIntro from "../../../app/learning_v2_session_intro";
 import LearningV2DirectSessionPlayerV1 from "../../../app/learning_v2_direct_session_player_v1";
-import { safeRouterBack } from "../../../app/navigation_back";
+import { markNextNavigationAsReplace, safeRouterBack } from "../../../app/navigation_back";
 import {
   parseLearningV2ActivityAuxiliaryRouteScopeV1,
   useLearningV2ActivityAuxiliarySessionV1,
@@ -607,7 +610,7 @@ function LearningV2LegacySessionScreen() {
           operationId: `session-start-${sessionId}`,
           sessionId,
           status: "in_progress",
-          awarded: { xp: 0, shards: 0 },
+          awarded: { shards: 0 },
         },
       );
     }).catch(() => undefined);
@@ -1182,23 +1185,6 @@ function LearningV2LegacySessionScreen() {
       });
       void hapticSuccess();
       localCommitCompletedRef.current = true;
-      // зачем: спин — обязательная награда за пройденную сессию (владелец,
-      // 23.08). Выдаём ПОСЛЕ подтверждённой локальной фиксации и в фоне: сама
-      // функция идемпотентна по sessionId, а её сбой не должен мешать игроку
-      // увидеть результат — кредит доедет при следующем заходе.
-      void (async () => {
-        try {
-          const stableId = await getStableId();
-          await grantLocalCourseSessionCompletionSpin(
-            sessionId,
-            "en",
-            ensureAccountGeneration(stableId),
-          );
-        } catch (e) {
-      // Спин восстановится при повторном завершении: ключ тот же.
-      DebugLogger.error('[id]:stableId', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
-      })();
       const breakdown = summarizeSessionStars(
         taskCompletionsRef.current.values(),
       );
@@ -1302,6 +1288,8 @@ function LearningV2LegacySessionScreen() {
     sessionAttempts.endAttemptsSession();
     setShowAttemptsModal(false);
     stopAttemptMediaBeforeRecovery();
+    // зачем: см. closeSession выше — тот же трекер, тот же эффект.
+    markNextNavigationAsReplace();
     router.replace("/learning-v2/course");
   };
 
@@ -1321,6 +1309,11 @@ function LearningV2LegacySessionScreen() {
   }
   const closeSession = () => {
     stopAudioAttempt();
+    // зачем: без этого маркера трекер навигации (navigation_back.ts) кладёт
+    // /learning-v2/course ПОВЕРХ ещё не вытесненной записи этой сессии (тот же
+    // раздел lessons), и следующий тап «назад» на карте открывает закрытую
+    // сессию заново, а не выходит из раздела.
+    markNextNavigationAsReplace();
     router.replace("/learning-v2/course");
   };
   if (!introComplete && session && ordinal > 0) {
@@ -1376,7 +1369,11 @@ function LearningV2LegacySessionScreen() {
               }
               return verdict;
             }}
-            onBack={() => router.replace("/learning-v2/course")}
+            onBack={() => {
+              // зачем: см. closeSession выше — тот же трекер, тот же эффект.
+              markNextNavigationAsReplace();
+              router.replace("/learning-v2/course");
+            }}
             onComplete={(introCompletions) => {
               for (const completion of introCompletions) {
                 taskCompletionsRef.current.set(completion.taskId, completion);
@@ -2060,15 +2057,17 @@ function LearningV2LegacySessionScreen() {
                 accessibilityRole="button"
                 accessibilityLabel={copy.backToMap(completionStars)}
                 onPressIn={() => void hapticTap()}
-                onPress={() =>
+                onPress={() => {
+                  // зачем: см. closeSession выше — тот же трекер, тот же эффект.
+                  markNextNavigationAsReplace();
                   router.replace({
                     pathname: "/learning-v2/course",
                     params: buildLearningV2SessionResultRouteParams({
                       localSessionId: sessionId,
                       provisionalStars: completionStars,
                     }),
-                  } as never)
-                }
+                  } as never);
+                }}
                 style={({ pressed }) => [
                   styles.ceremonyCta,
                   pressed && styles.pressed,
@@ -2088,15 +2087,39 @@ function LearningV2LegacySessionScreen() {
   );
 }
 
-function LearningV2SessionEnergyGate({ children }: { children: React.ReactNode }) {
+function LearningV2SessionEnergyGate({ children, directMode }: { children: React.ReactNode; directMode: boolean }) {
   const router = useRouter();
   const params = useLocalSearchParams<{
     id?: string | string[];
     previewMode?: string | string[];
+    sessionRunId?: string | string[];
+    lessonOrdinal?: string | string[];
+    sessionOrdinal?: string | string[];
   }>();
   const previewMode = first(params.previewMode);
   const isAuthoringPreview = __DEV__ &&
     (previewMode === "authoring_v1" || previewMode === "dev_unlocked_drafts_v1");
+  const sessionId = first(params.id);
+  const sessionRunId = first(params.sessionRunId);
+  const routeCoordinatesReady = !directMode || resolveLearningV2SessionRouteCoordinatesV1({
+    id: sessionId,
+    lessonOrdinal: first(params.lessonOrdinal),
+    sessionOrdinal: first(params.sessionOrdinal),
+  }) !== null;
+  const readyHandle = useMemo(() => directMode && !isAuthoringPreview && sessionId && sessionRunId
+    ? consumeLearningV2CourseSessionReadyHandoffV3({ courseSessionId: sessionId, sessionRunId })
+    : null, [directMode, isAuthoringPreview, sessionId, sessionRunId]);
+  const directSessionUnready = isLearningV2DirectSessionUnready({
+    directMode,
+    sessionId,
+    sessionRunId,
+    hasReadyHandle: Boolean(readyHandle),
+    routeCoordinatesReady,
+  });
+  const legacySessionUnready = isLearningV2LegacySessionUnready({
+    directMode,
+    sessionIdKnown: SESSION_IDS.includes(sessionId),
+  });
   const {
     confirmSpendOne: confirmLearningV2Energy,
     acknowledgeSessionStart,
@@ -2108,9 +2131,13 @@ function LearningV2SessionEnergyGate({ children }: { children: React.ReactNode }
   );
   const attemptedRef = useRef(false);
   const [gate, setGate] = useState<"checking" | "ok" | "denied">("checking");
+  // зачем (learning-v2.html): скелет ожидания энергии — на токенах Liquid Glass, а не на прежнем
+  // тёмно-синем; геометрия шапки та же, что у плеера.
+  const gateGlass = useLv2Glass();
+  const gateInsets = useStableSafeAreaInsets();
 
   useEffect(() => {
-    if (isAuthoringPreview) return;
+    if (isAuthoringPreview || directSessionUnready || legacySessionUnready) return;
     if (!energyReady || attemptedRef.current) return;
     attemptedRef.current = true;
     let cancelled = false;
@@ -2124,12 +2151,13 @@ function LearningV2SessionEnergyGate({ children }: { children: React.ReactNode }
       setGate(result === "insufficient" ? "denied" : "ok");
     });
     return () => { cancelled = true; };
-  }, [acknowledgeSessionStart, confirmLearningV2Energy, energyReady, isAuthoringPreview, learningV2EnergyIntent, router]);
+  }, [acknowledgeSessionStart, confirmLearningV2Energy, directSessionUnready, energyReady, isAuthoringPreview, learningV2EnergyIntent, legacySessionUnready, router]);
 
   if (isAuthoringPreview) return <>{children}</>;
+  if (directSessionUnready || legacySessionUnready) return <>{children}</>;
   if (gate === "ok") return <>{children}</>;
   return (
-    <View style={styles.screen}>
+    <View style={[styles.screen, { backgroundColor: gateGlass.bg }]}>
       {/* зачем этот скелет (владелец, 2026-08-27, «открываю — вижу тёмный
           экран, потом сессия недоступна»): пока gate === "checking" (ждём
           energyReady + подтверждение траты — это реально пара секунд) экран
@@ -2140,19 +2168,22 @@ function LearningV2SessionEnergyGate({ children }: { children: React.ReactNode }
           Показываем ту же шапку, что и сам плеер, чтобы кадр был осмысленным
           и из него всегда можно было выйти назад. */}
       {gate === "checking" ? (
-        <View style={styles.gateSkeleton}>
+        <View style={[styles.gateSkeleton, { paddingTop: gateInsets.top + 10 }]}>
           <Pressable
             accessibilityRole="button"
             hitSlop={10}
             onPress={() => safeRouterBack(router, "/(tabs)/lessons" as never)}
             style={({ pressed }) => [
               styles.gateSkeletonClose,
-              { opacity: pressed ? 0.72 : 1 },
+              { backgroundColor: gateGlass.opaqueControl, opacity: pressed ? 0.72 : 1 },
             ]}
           >
-            <Ionicons name="close" size={22} color="#F7F9FB" />
+            <Ionicons name="close" size={22} color={gateGlass.text} />
           </Pressable>
-          <View style={styles.gateSkeletonTrack} />
+          <View style={[styles.gateSkeletonTrack, { backgroundColor: gateGlass.opaqueControl }]} />
+          {/* зачем (learning-v2.html, «Скелет ожидания»): пилюля попыток — приглушённая заглушка
+              на месте будущих сердец, чтобы первый кадр уже имел финальную геометрию шапки. */}
+          <View style={[styles.gateSkeletonHearts, { backgroundColor: gateGlass.opaqueControl }]} />
         </View>
       ) : null}
       <NoEnergyModal
@@ -2171,11 +2202,12 @@ export default function LearningV2SessionScreen() {
     runtimeMode?: string | string[];
     previewMode?: string | string[];
   }>();
-  const content = studyTarget === "en" || first(params.runtimeMode) === "direct_v1"
+  const directMode = studyTarget === "en" || first(params.runtimeMode) === "direct_v1";
+  const content = directMode
     ? <LearningV2DirectSessionPlayerV1 />
     : <LearningV2LegacySessionScreen />;
   return (
-    <LearningV2SessionEnergyGate key={first(params.id) ?? "learning-v2-session"}>
+    <LearningV2SessionEnergyGate key={first(params.id) ?? "learning-v2-session"} directMode={directMode}>
       {content}
     </LearningV2SessionEnergyGate>
   );
@@ -2193,18 +2225,22 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   gateSkeletonClose: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#1A222D",
   },
   gateSkeletonTrack: {
     flex: 1,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: "#1A222D",
+    height: 6,
+    borderRadius: 3,
+  },
+  gateSkeletonHearts: {
+    width: 86,
+    height: 30,
+    borderRadius: 15,
+    opacity: 0.35,
   },
   introAttemptsOverlay: {
     position: "absolute",

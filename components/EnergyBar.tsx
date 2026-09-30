@@ -1,15 +1,16 @@
-import React, { memo, useCallback, useMemo, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { triLang } from '../constants/i18n';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import { AnimatedEnergyNumber } from './energy/AnimatedEnergyNumber';
-import { EnergyInfoPopover } from './energy/EnergyInfoPopover';
+import { createEnergyPopoverRequestGate, EnergyInfoPopover } from './energy/EnergyInfoPopover';
 import EnergyIcon from './EnergyIcon';
-import { useEnergy } from './EnergyContext';
+import { useEnergy, useEnergyCountdown } from './EnergyContext';
 import { useLang } from './LangContext';
 import { usePremium } from './PremiumContext';
 import PressableHybrid from './PressableHybrid';
+import { useLv2Glass } from './learning-v2/LearningV2Glass';
 
 interface Props {
   /** Deprecated sizing input: every screen now uses one fixed compact pill. */
@@ -18,6 +19,12 @@ interface Props {
   ownerActive?: boolean;
   /** Deprecated compatibility input: the pill is equally compact everywhere. */
   compact?: boolean;
+  /**
+   * зачем (learning-v2.html, шапка занятия `energy(n,{s:true})`): в занятии Learning V2 пилюля
+   * энергии — нейтральная плита стекла с белой молнией, без фиолетового. Остальные экраны
+   * (карта, карточки, диалоги) не передают флаг и остаются как были.
+   */
+  glass?: boolean;
 }
 
 const ENERGY_PILL_WIDTH = 60;
@@ -32,21 +39,35 @@ const COLORS = Object.freeze({
   value: '#FFFFFF',
 });
 
-function EnergyBar({ ownerActive = true }: Props) {
-  const { energy, bonusEnergy, bonusEnergyCapacity, maxEnergy, isUnlimited } = useEnergy();
+function EnergyBar({ ownerActive = true, glass = false }: Props) {
+  const lg = useLv2Glass();
+  const { energy, bonusEnergy, bonusEnergyCapacity, maxEnergy, isUnlimited, recoveryIntervalMs } = useEnergy();
   const { hasPremiumAccess } = usePremium();
   const { lang } = useLang();
   const focused = useIsScreenFocused();
   const [infoVisible, setInfoVisible] = useState(false);
   const [popoverAnchor, setPopoverAnchor] = useState<{ x: number; y: number; w: number; h: number } | null>(null);
   const anchorRef = useRef<View>(null);
+  const popoverRequestGateRef = useRef(createEnergyPopoverRequestGate());
+  const popoverRequestGate = popoverRequestGateRef.current;
+  const popoverEligible = !hasPremiumAccess && focused && ownerActive;
+  const popoverEligibleRef = useRef(popoverEligible);
+  useLayoutEffect(() => {
+    const lostEligibility = popoverEligibleRef.current && !popoverEligible;
+    popoverEligibleRef.current = popoverEligible;
+    if (lostEligibility) popoverRequestGate.invalidate();
+  }, [popoverEligible, popoverRequestGate]);
+  const popoverVisible = infoVisible && popoverEligible;
+  const { formattedTime } = useEnergyCountdown({
+    visible: popoverVisible,
+  });
   const activeCap = maxEnergy + Math.max(0, bonusEnergyCapacity);
   const current = Math.max(0, Math.min(activeCap, energy + bonusEnergy));
   const accent = bonusEnergyCapacity > 0
     ? COLORS.overcharge
     : current < 20
-      ? COLORS.low
-      : COLORS.normal;
+      ? (glass ? lg.bad : COLORS.low)
+      : (glass ? lg.text : COLORS.normal);
   const iconSize = 13;
   const accessibilityLabel = useMemo(() => {
     if (isUnlimited) {
@@ -69,18 +90,33 @@ function EnergyBar({ ownerActive = true }: Props) {
   }, [activeCap, current, isUnlimited, lang]);
 
   const openInfo = useCallback(() => {
+    if (!popoverEligibleRef.current) return;
+    const requestGeneration = popoverRequestGate.begin();
+    const openForCurrentOwner = (nextAnchor: { x: number; y: number; w: number; h: number } | null) => {
+      if (!popoverEligibleRef.current || !popoverRequestGate.isCurrent(requestGeneration)) return;
+      setPopoverAnchor(nextAnchor);
+      setInfoVisible(true);
+    };
     const node = anchorRef.current;
     if (node && typeof node.measureInWindow === 'function') {
       node.measureInWindow((x, y, width, height) => {
-        setPopoverAnchor(width > 0 && height > 0 ? { x, y, w: width, h: height } : null);
-        setInfoVisible(true);
+        openForCurrentOwner(width > 0 && height > 0 ? { x, y, w: width, h: height } : null);
       });
       return;
     }
-    setPopoverAnchor(null);
-    setInfoVisible(true);
-  }, []);
-  const closeInfo = useCallback(() => setInfoVisible(false), []);
+    openForCurrentOwner(null);
+  }, [popoverRequestGate]);
+  const closeInfo = useCallback(() => {
+    popoverRequestGate.invalidate();
+    setInfoVisible(false);
+  }, [popoverRequestGate]);
+
+  useEffect(() => {
+    if (!popoverVisible && infoVisible) {
+      popoverRequestGate.invalidate();
+      setInfoVisible(false);
+    }
+  }, [infoVisible, popoverRequestGate, popoverVisible]);
 
   // hasPremiumAccess is synchronously seeded from the app snapshot. Waiting for
   // the async entitlement refresh made the free-user pill mount late and look
@@ -99,6 +135,7 @@ function EnergyBar({ ownerActive = true }: Props) {
           style={styles.touchTarget}
           contentStyle={[
             styles.capsule,
+            glass ? { backgroundColor: lg.opaqueControl } : null,
             bonusEnergyCapacity > 0 ? styles.overchargeGlow : null,
           ]}
         >
@@ -116,13 +153,22 @@ function EnergyBar({ ownerActive = true }: Props) {
             <AnimatedEnergyNumber
               value={current}
               active={focused && ownerActive}
-              color={COLORS.value}
+              color={glass ? lg.text : COLORS.value}
               style={styles.valueCompact}
             />
           )}
         </PressableHybrid>
       </View>
-      <EnergyInfoPopover anchor={popoverAnchor} visible={infoVisible} onClose={closeInfo} />
+      <EnergyInfoPopover
+        anchor={popoverAnchor}
+        visible={popoverVisible}
+        onClose={closeInfo}
+        current={current}
+        capacity={activeCap}
+        recoveryIntervalMs={recoveryIntervalMs}
+        formattedTime={formattedTime}
+        isUnlimited={isUnlimited}
+      />
     </>
   );
 }

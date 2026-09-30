@@ -3,7 +3,7 @@ import { BackHandler, FlatList, ScrollView, StyleSheet, Text, View, type StylePr
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Svg, { Circle, Path } from 'react-native-svg';
 import Animated, { cancelAnimation, Easing, useAnimatedProps, useAnimatedStyle, useSharedValue, withTiming, type SharedValue } from 'react-native-reanimated';
-import { useTheme } from '../ThemeContext';
+import { lv2Alpha, lv2CardStyle, useLv2Glass } from './LearningV2Glass';
 import { LinearGradient } from '../SafeLinearGradient';
 import { withAlpha } from '../../app/flashcards/pill_tabbar_chrome';
 import { LearningV2MapNode } from '../LearningV2MapNode';
@@ -158,16 +158,17 @@ function LearningV2PulseCourseChapterHead({
   height,
   lang,
 }: Readonly<{ row: ChapterRow; height: number; lang: Lang }>) {
-  const { theme: t } = useTheme();
+  // зачем (learning-v2.html): карта красится токенами Liquid Glass активной темы.
+  const g = useLv2Glass();
   return (
     <View
       testID={`learning-v2-pulse-chapter-${row.lessonOrdinal}-${row.chapterOrdinal}`}
       style={[styles.chapterRow, { height }]}
     >
-      <View style={[styles.chapterCard, { backgroundColor: t.bgCard }]}>
+      <View style={[styles.chapterCard, lv2CardStyle(g)]}>
         {/* зачем: владелец 20.09 — «вместо названий глав просто лучше
             пронумеруй их». Сцену главы больше не показываем. */}
-        <Text style={[styles.chapterTitle, { color: t.textPrimary }]}>
+        <Text style={[styles.chapterTitle, { color: g.text }]}>
           {triLang(lang, {
             ru: 'Глава', uk: 'Розділ', en: 'Chapter', es: 'Capítulo', 'pt-BR': 'Capítulo',
             vi: 'Chương', id: 'Bab', tr: 'Bölüm', pl: 'Rozdział',
@@ -199,7 +200,8 @@ function LearningV2PulseCourseLessonPlate({
   lang: Lang;
   completedSessionIds: ReadonlySet<string>;
 }>) {
-  const { theme: t } = useTheme();
+  // зачем (learning-v2.html): карта красится токенами Liquid Glass активной темы.
+  const g = useLv2Glass();
   // Арка урока — одна строка о том, про что этот урок. Только по-русски:
   // переводов арок пока нет, русский текст в чужом интерфейсе недопустим.
   const arc = lang === 'ru' ? learningV2LessonArcV1(row.lessonOrdinal) : null;
@@ -212,17 +214,17 @@ function LearningV2PulseCourseLessonPlate({
       testID={`learning-v2-pulse-lesson-plate-${row.lessonOrdinal}`}
       style={[styles.plateRow, { height }]}
     >
-      <View style={[styles.plateCard, { backgroundColor: t.bgCard }]}>
-        <Text style={[styles.plateKicker, { color: t.accent }]}>
+      <View style={[styles.plateCard, lv2CardStyle(g, 22)]}>
+        <Text style={[styles.plateKicker, { color: g.secondary }]}>
           {triLang(lang, {
             ru: 'УРОК', uk: 'УРОК', en: 'LESSON', es: 'LECCIÓN', 'pt-BR': 'LIÇÃO',
             vi: 'BÀI', id: 'PELAJARAN', tr: 'DERS', pl: 'LEKCJA',
           })} {row.lessonOrdinal}
         </Text>
-        <Text style={[styles.plateTitle, { color: t.textPrimary }]}>{title}</Text>
-        {arc ? <Text style={[styles.plateArc, { color: t.textSecond }]}>{arc}</Text> : null}
-        <View style={[styles.plateCount, { backgroundColor: t.bgSurface2 }]}>
-          <Text style={[styles.plateCountText, { color: t.textSecond }]}>{done} / 56</Text>
+        <Text style={[styles.plateTitle, { color: g.text }]}>{title}</Text>
+        {arc ? <Text style={[styles.plateArc, { color: g.secondary }]}>{arc}</Text> : null}
+        <View style={[styles.plateCount, { backgroundColor: g.opaqueControl }]}>
+          <Text style={[styles.plateCountText, { color: g.secondary }]}>{done} / 56</Text>
         </View>
       </View>
     </View>
@@ -348,7 +350,8 @@ const LearningV2PulseBackToCurrent = React.memo(function LearningV2PulseBackToCu
 });
 
 export default function LearningV2PulseCourse(props: Props) {
-  const { theme: t } = useTheme();
+  // зачем (learning-v2.html): карта красится токенами Liquid Glass активной темы.
+  const g = useLv2Glass();
   // horizonsCopy строит объект на 27 ключей: без мемо это новая ссылка
   // каждый рендер и срыв всех зависимостей ниже.
   const c = useMemo(() => horizonsCopy(props.lang), [props.lang]);
@@ -738,8 +741,15 @@ export default function LearningV2PulseCourse(props: Props) {
         const hasMaterial = isSessionMaterialAvailable?.(rowLesson, row.sessionOrdinal) ?? true;
         const devReady = devUnlockAll && !ready && hasMaterial;
         const available = hasMaterial && (ready || devReady);
-        const nodeColor = available ? t.accent : t.bgSurface2;
-        const ink = available ? t.correctText : t.textMuted;
+        // зачем (learning-v2.html, узлы): пройденный — светлая площадка, текущий — белая,
+        // следующий — тёмная плита, закрытый — самая тёмная; значок и номер тем же приёмом.
+        const nodeColor = row.state === 'completed' ? g.cta
+          : row.state === 'current' && available ? g.text
+            : available ? g.opaqueControl
+              : row.state === 'next' ? g.opaqueControl : g.opaqueCard;
+        const ink = row.state === 'completed' || (row.state === 'current' && available) ? g.ctaInk
+          : available ? g.text
+            : row.state === 'next' ? g.secondary : g.mutedText;
         const completedStars = row.state === 'completed'
           ? Math.max(1, stars[row.id] ?? 1)
           : 0;
@@ -778,6 +788,12 @@ export default function LearningV2PulseCourse(props: Props) {
         // мусора подряд). Рендер строк стоит 0 мс — SVG здесь ни при чём.
         // НЕ МЕНЯТЬ на View: проверено дважды, оба раза ломает геометрию.
         const routeD = `M ${x} 0 C ${x} 64 ${nextX} 64 ${nextX} ${geometry.step}`;
+        // зачем (макет: дужка «зажжена» только между пройденным и пройденным/текущим узлом)
+        const followingRow = rows[index + 1];
+        const routeLit = row.state === 'completed'
+          && followingRow !== undefined
+          && 'state' in followingRow
+          && (followingRow.state === 'completed' || followingRow.state === 'current');
         const body = (
           <View style={{ height: geometry.step, alignItems: 'center', justifyContent: 'flex-start', paddingTop: 6 }}>
           {/* зачем: дужка между узлами. Попытка заменить SVG на повёрнутый
@@ -787,7 +803,7 @@ export default function LearningV2PulseCourse(props: Props) {
               он рисует кривую по точным координатам узлов. */}
           {index < rows.length - 1 ? (
             <Svg pointerEvents="none" width={viewport.width} height={geometry.step * 2} style={{ position: 'absolute', top: geometry.step / 2, left: 0 }}>
-              <Path d={routeD} fill="none" stroke={t.bgSurface2} strokeOpacity={0.35} strokeWidth={7} strokeLinecap="round" />
+              <Path d={routeD} fill="none" stroke={routeLit ? g.cta : g.text} strokeOpacity={routeLit ? 0.45 : 0.14} strokeWidth={7} strokeLinecap="round" />
             </Svg>
           ) : null}
           {/* зачем: владелец 21.09 — «названия уроков убирай, я уже говорил,
@@ -798,10 +814,10 @@ export default function LearningV2PulseCourse(props: Props) {
               40px её высоты — при быстрой прокрутке карта успевает рисоваться
               («экран при быстром скролле не успевает рисоваться», 21.09). */}
           <View style={[styles.nodeCluster, { transform: [{ translateX: nodeOffsetX }] }]}>
-              <LearningV2MapNode testID={`learning-v2-pulse-session-${row.sessionOrdinal}`} state={row.state} width={geometry.nodeSize} height={geometry.nodeSize} radius={geometry.nodeSize / 2} faceColor={nodeColor} haloColor={t.accent} accessible active={active} reduceMotion={reducedMotion} accessibilityLabel={`${c.chapter} ${row.chapterOrdinal}, ${c.session} ${row.sessionOrdinal}, ${statusLabel}${completedStarsLabel ? `, ${completedStarsLabel}` : ''}`} onPress={() => onSessionPress(rowLesson, row.sessionOrdinal, row.state)} onCompletedTransition={onSessionCompleted}>
+              <LearningV2MapNode testID={`learning-v2-pulse-session-${row.sessionOrdinal}`} state={row.state} width={geometry.nodeSize} height={geometry.nodeSize} radius={geometry.nodeSize / 2} faceColor={nodeColor} haloColor={g.text} accessible active={active} reduceMotion={reducedMotion} accessibilityLabel={`${c.chapter} ${row.chapterOrdinal}, ${c.session} ${row.sessionOrdinal}, ${statusLabel}${completedStarsLabel ? `, ${completedStarsLabel}` : ''}`} onPress={() => onSessionPress(rowLesson, row.sessionOrdinal, row.state)} onCompletedTransition={onSessionCompleted}>
                 <View pointerEvents="none" style={styles.nodeFace}><Ionicons testID={`learning-v2-pulse-session-icon-${row.sessionOrdinal}`} name={!hasMaterial ? 'construct-outline' : row.state === 'completed' ? 'checkmark' : available && (row.role === 'final_exam' || row.role === 'chapter_checkpoint') ? 'trophy' : available ? 'play' : 'lock-closed'} size={31} color={ink} /><Text style={{ color: ink, fontSize: 13, fontWeight: '700' }}>{row.sessionOrdinal}</Text></View>
               </LearningV2MapNode>
-              {completedStars > 0 ? <View testID={`learning-v2-pulse-session-${row.sessionOrdinal}-stars`} pointerEvents="none" accessible={false} style={[styles.sessionStars, { backgroundColor: t.bgCard, borderColor: t.gold }]}>{Array.from({ length: completedStars }, (_, starIndex) => <Ionicons key={starIndex} name="star" size={14} color={t.gold} />)}</View> : null}
+              {completedStars > 0 ? <View testID={`learning-v2-pulse-session-${row.sessionOrdinal}-stars`} pointerEvents="none" accessible={false} style={[styles.sessionStars, { backgroundColor: g.opaqueControl, borderColor: g.glassEdge }]}>{[0, 1, 2].map((starIndex) => <Ionicons key={starIndex} name="star" size={14} color={starIndex < completedStars ? g.text : lv2Alpha(g.text, 0.2)} />)}</View> : null}
           </View>
           </View>
         );
@@ -811,7 +827,7 @@ export default function LearningV2PulseCourse(props: Props) {
             {body}
           </LearningV2PulseMapEntryAnimatedMemo>
         );
-  }, [active, c, completed, currentRowIndex, devUnlockAll, geometry.nodeSize, geometry.step, isSessionMaterialAvailable, lang, mapEntry, onSessionCompleted, onSessionPress, reducedMotion, rows.length, stars, t, titles, viewport.width]);
+  }, [active, c, completed, currentRowIndex, devUnlockAll, geometry.nodeSize, geometry.step, isSessionMaterialAvailable, lang, mapEntry, onSessionCompleted, onSessionPress, reducedMotion, rows.length, stars, g, titles, viewport.width]);
 
   // зачем: владелец 21.09 — «опусти ниже и вверху тоже, чтобы поле карты было
   // больше». На КАРТЕ шапка становится плавающей (absolute) и safe-area уходит
@@ -820,7 +836,7 @@ export default function LearningV2PulseCourse(props: Props) {
   // В режиме СПИСКА уроков всё остаётся как было — шапка в потоке, отступ на
   // корне: под ней идут чипы уровней и список, которым нужна честная высота.
   const mapTopPad = props.topPadding ?? 0;
-  return <View testID="learning-v2-pulse-course" style={[styles.root, { backgroundColor: t.bgPrimary, paddingTop: lessonListOpen ? mapTopPad : 0 }]}>
+  return <View testID="learning-v2-pulse-course" style={[styles.root, { backgroundColor: g.bg, paddingTop: lessonListOpen ? mapTopPad : 0 }]}>
     <View
       pointerEvents="box-none"
       style={[
@@ -829,8 +845,8 @@ export default function LearningV2PulseCourse(props: Props) {
       ]}
     >
       <View pointerEvents="box-none" style={styles.headerRow}>
-        {lessonListOpen ? <PressableHybrid variant="icon" accessibilityLabel={c.back} onPress={back} style={[styles.iconButton, { backgroundColor: t.bgCard }]} contentStyle={styles.iconButtonContent}><Ionicons name="chevron-back" size={24} color={t.textPrimary} /></PressableHybrid> : props.navigationControl}
-        {lessonListOpen ? <Text style={[styles.headerTitle, { color: t.textPrimary }]}>{c.all}</Text> : <View style={styles.headerSpacer} />}
+        {lessonListOpen ? <PressableHybrid variant="icon" accessibilityLabel={c.back} onPress={back} style={[styles.iconButton, { backgroundColor: g.opaqueCard }]} contentStyle={styles.iconButtonContent}><Ionicons name="chevron-back" size={24} color={g.text} /></PressableHybrid> : props.navigationControl}
+        {lessonListOpen ? <Text style={[styles.headerTitle, { color: g.text }]}>{c.all}</Text> : <View style={styles.headerSpacer} />}
         {props.headerAccessory}
       </View>
       {/* На сплошной карте шапка называет урок, который человек сейчас
@@ -856,10 +872,10 @@ export default function LearningV2PulseCourse(props: Props) {
               accessibilityState={{ selected: selectedLevel === section.label }}
               onPress={() => setSelectedLevel(section.label)}
               variant="chip"
-              style={[styles.section, { backgroundColor: selectedLevel === section.label ? t.accent : t.bgCard }]}
+              style={[styles.section, { backgroundColor: selectedLevel === section.label ? g.cta : g.opaqueCard }]}
               contentStyle={styles.sectionContent}
             >
-              <Text style={{ fontSize: 15, fontWeight: '700', color: selectedLevel === section.label ? t.correctText : t.textPrimary }}>{section.label}</Text>
+              <Text style={{ fontSize: 15, fontWeight: '700', color: selectedLevel === section.label ? g.ctaInk : g.text }}>{section.label}</Text>
             </PressableHybrid>
           ))}
         </ScrollView>
@@ -868,11 +884,11 @@ export default function LearningV2PulseCourse(props: Props) {
           accessibilityLabel={props.legacyLessonsLabel}
           onPress={props.onLegacyLessons}
           variant="chip"
-          style={[styles.section, styles.utilitySection, { backgroundColor: t.bgCard }]}
+          style={[styles.section, styles.utilitySection, { backgroundColor: g.opaqueCard }]}
           contentStyle={[styles.sectionContent, styles.utilitySectionContent]}
         >
-          <Ionicons name="albums-outline" size={16} color={t.textPrimary} />
-          <Text style={[styles.utilitySectionText, { color: t.textPrimary }]}>{props.legacyLessonsLabel}</Text>
+          <Ionicons name="albums-outline" size={16} color={g.text} />
+          <Text style={[styles.utilitySectionText, { color: g.text }]}>{props.legacyLessonsLabel}</Text>
         </PressableHybrid>
       </View>
       <FlatList key={selectedLevel} testID="learning-v2-pulse-lesson-list" data={courses} keyExtractor={item => String(item.ordinal)} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingHorizontal: props.renderLessonCard ? 0 : L.lessons.pagePadding, paddingBottom: props.bottomPadding }} renderItem={({ item }) => {
@@ -899,9 +915,9 @@ export default function LearningV2PulseCourse(props: Props) {
         if (props.renderLessonCard) {
           return <View testID={`learning-v2-pulse-lesson-${item.ordinal}`}>{props.renderLessonCard({ title: item.title, ordinal: item.ordinal, completedSessionCount: count, isCurrent: isCurrent && isAvailable, isAvailable, isInProgress, onPress: openLesson })}</View>;
         }
-        return <PressableHybrid variant="card" testID={`learning-v2-pulse-lesson-${item.ordinal}`} accessibilityLabel={`${item.title}, ${isAvailable ? `${Math.round(count / 56 * 100)}%` : c.locked}`} onPress={openLesson} style={[styles.lesson, { backgroundColor: !isAvailable || isInProgress ? t.bgSurface2 : t.bgCard, opacity: isAvailable ? (isInProgress ? .88 : 1) : .62 }]} contentStyle={styles.lessonContent}>
-          <View style={styles.lessonCopy}><Text style={[styles.lessonMeta, { color: isCurrent && isAvailable ? t.accent : t.textMuted }]}>{pulseCourseSectionForLesson(item.ordinal).label} · {String(item.ordinal).padStart(2, '0')}{isCurrent && isAvailable ? ` · ${c.available}` : ''}</Text><Text style={[styles.lessonTitle, { color: t.textPrimary }]}>{item.title}</Text></View>
-          <View accessible={false} style={styles.ring}>{isInProgress ? <Ionicons name="construct-outline" size={24} color={t.textMuted} style={styles.workIcon} /> : <><Svg width={48} height={48} viewBox="0 0 48 48"><Circle cx="24" cy="24" r="20" stroke={t.bgSurface2} strokeWidth="5" fill="none" /><Circle cx="24" cy="24" r="20" stroke={t.accent} strokeWidth="5" fill="none" strokeDasharray={`${count / 56 * 125.66} 125.66`} strokeLinecap="round" rotation="-90" origin="24,24" /></Svg>{count === 56 ? <Ionicons name="checkmark" size={21} color={t.accent} style={styles.ringCheck} /> : null}</>}</View>
+        return <PressableHybrid variant="card" testID={`learning-v2-pulse-lesson-${item.ordinal}`} accessibilityLabel={`${item.title}, ${isAvailable ? `${Math.round(count / 56 * 100)}%` : c.locked}`} onPress={openLesson} style={[styles.lesson, { backgroundColor: !isAvailable || isInProgress ? g.opaqueControl : g.opaqueCard, opacity: isAvailable ? (isInProgress ? .88 : 1) : .62 }]} contentStyle={styles.lessonContent}>
+          <View style={styles.lessonCopy}><Text style={[styles.lessonMeta, { color: isCurrent && isAvailable ? g.cta : g.secondary }]}>{pulseCourseSectionForLesson(item.ordinal).label} · {String(item.ordinal).padStart(2, '0')}{isCurrent && isAvailable ? ` · ${c.available}` : ''}</Text><Text style={[styles.lessonTitle, { color: g.text }]}>{item.title}</Text></View>
+          <View accessible={false} style={styles.ring}>{isInProgress ? <Ionicons name="construct-outline" size={24} color={g.secondary} style={styles.workIcon} /> : <><Svg width={48} height={48} viewBox="0 0 48 48"><Circle cx="24" cy="24" r="20" stroke={g.opaqueControl} strokeWidth="5" fill="none" /><Circle cx="24" cy="24" r="20" stroke={g.cta} strokeWidth="5" fill="none" strokeDasharray={`${count / 56 * 125.66} 125.66`} strokeLinecap="round" rotation="-90" origin="24,24" /></Svg>{count === 56 ? <Ionicons name="checkmark" size={21} color={g.cta} style={styles.ringCheck} /> : null}</>}</View>
         </PressableHybrid>;
       }} />
     </> : <Animated.View testID="learning-v2-pulse-map-entry" style={[styles.mapContainer, mapEntryStyle]} onLayout={e => setViewport(e.nativeEvent.layout)}>
@@ -916,14 +932,14 @@ export default function LearningV2PulseCourse(props: Props) {
       <LinearGradient
         pointerEvents="none"
         testID="learning-v2-pulse-map-fade-top"
-        colors={[t.bgPrimary, withAlpha(t.bgPrimary, 0.58), withAlpha(t.bgPrimary, 0)]}
+        colors={[g.bg, withAlpha(g.bg, 0.58), withAlpha(g.bg, 0)]}
         locations={[0, 0.5, 1]}
         style={[styles.mapEdgeFadeTop, { height: MAP_EDGE_FADE_HEIGHT + (props.topPadding ?? 0) }]}
       />
       <LinearGradient
         pointerEvents="none"
         testID="learning-v2-pulse-map-fade-bottom"
-        colors={[withAlpha(t.bgPrimary, 0), withAlpha(t.bgPrimary, 0.58), t.bgPrimary]}
+        colors={[withAlpha(g.bg, 0), withAlpha(g.bg, 0.58), g.bg]}
         locations={[0, 0.5, 1]}
         style={[styles.mapEdgeFadeBottom, { height: MAP_EDGE_FADE_HEIGHT + Math.max(18, props.bottomPadding) }]}
       />
@@ -936,11 +952,11 @@ export default function LearningV2PulseCourse(props: Props) {
           testID="learning-v2-pulse-open-lesson-list"
           accessibilityLabel={c.all}
           onPress={() => setLessonListOpen(true)}
-          style={[styles.mapFooterButton, { backgroundColor: t.bgCard }]}
+          style={[styles.mapFooterButton, { backgroundColor: g.opaqueCard }]}
           contentStyle={styles.mapFooterButtonContent}
         >
-          <Ionicons name="list-outline" size={20} color={t.textPrimary} />
-          <Text style={[styles.mapFooterText, { color: t.textPrimary }]}>{c.all}</Text>
+          <Ionicons name="list-outline" size={20} color={g.text} />
+          <Text style={[styles.mapFooterText, { color: g.text }]}>{c.all}</Text>
         </PressableHybrid>
         {/* зачем: кнопка возврата к текущему занятию — была в утверждённом
             макете, в приложение я её не перенёс (владелец 20.09). Показываем
@@ -949,8 +965,8 @@ export default function LearningV2PulseCourse(props: Props) {
         <LearningV2PulseBackToCurrent
           store={mapViewStore}
           label={currentStatusLabel}
-          background={t.accent}
-          ink={t.correctText}
+          background={g.cta}
+          ink={g.ctaInk}
           onPress={backToCurrent}
         />
       </View>
@@ -967,7 +983,6 @@ const styles = StyleSheet.create({
   // то есть в обычном порядке потока), иначе верхняя полоса легла бы на
   // кнопки и притушила их. pointerEvents="box-none" на самой шапке: пустое
   // место между кнопками не должно перехватывать прокрутку карты.
-  mapHeaderFloating: { position: 'absolute', left: 0, right: 0, top: 0, zIndex: 3, elevation: 3 },
   // Плавающая шапка карты: лежит ПОВЕРХ карты и полос растворения.
   // zIndex/elevation обязаны быть выше полос, иначе затухание накроет кнопки
   // и они станут блёклыми. pointerEvents="box-none" на контейнере — пустое
@@ -977,21 +992,21 @@ const styles = StyleSheet.create({
   headerSpacer: { flex: 1 },
   headerTitle: { flex: 1, minWidth: 0, fontSize: L.map.headingSize, lineHeight: 23, fontWeight: '700', paddingVertical: 10 },
   mapHeaderTitle: { paddingHorizontal: 4, fontSize: L.map.headingSize, lineHeight: 23, fontWeight: '700' },
-  iconButton: { width: 48, height: 48, borderRadius: 18 },
+  iconButton: { width: 48, height: 48, borderRadius: 24 },
   iconButtonContent: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   sectionsRow: { flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 8, paddingBottom: 12 },
   levelRail: { flex: 1, minWidth: 0 },
   sections: { flexDirection: 'row', alignItems: 'center', gap: 6 },
-  section: { alignSelf: 'center', flexGrow: 0, flexShrink: 0, minWidth: 54, minHeight: 44, borderRadius: 15 },
+  section: { alignSelf: 'center', flexGrow: 0, flexShrink: 0, minWidth: 54, minHeight: 44, borderRadius: 22 },
   sectionContent: { minHeight: 44, paddingHorizontal: 14, paddingVertical: 7, justifyContent: 'center', alignItems: 'center' },
   utilitySection: { flexShrink: 1, maxWidth: 160 },
   utilitySectionContent: { flexDirection: 'row', gap: 6, paddingHorizontal: 12 },
   utilitySectionText: { flexShrink: 1, fontSize: 14, lineHeight: 19, fontWeight: '700', textAlign: 'center' },
-  lesson: { minHeight: 106, borderRadius: L.lessons.cardRadius, marginBottom: L.lessons.cardGap },
-  lessonContent: { minHeight: 106, flexDirection: 'row', alignItems: 'center', gap: 14, padding: 16 },
+  lesson: { minHeight: 76, borderRadius: 14, marginBottom: 10 },
+  lessonContent: { minHeight: 76, flexDirection: 'row', alignItems: 'center', gap: 14, paddingVertical: 12, paddingHorizontal: 16 },
   lessonCopy: { flex: 1 },
-  lessonMeta: { fontSize: 11, lineHeight: 16, fontWeight: '700', marginBottom: 7 },
-  lessonTitle: { fontSize: L.lessons.headingSize, lineHeight: 23, fontWeight: '700' },
+  lessonMeta: { fontSize: 13, lineHeight: 17, fontWeight: '600', letterSpacing: 0.4, marginBottom: 2 },
+  lessonTitle: { fontSize: 17, lineHeight: 22, fontWeight: '700' },
   ring: { width: 48, height: 48 },
   ringCheck: { position: 'absolute', left: 14, top: 14 },
   workIcon: { position: 'absolute', left: 12, top: 12 },
@@ -999,35 +1014,35 @@ const styles = StyleSheet.create({
   // ---- Плашка главы: карточка на карте, текст по центру ----
   chapterRow: { width: '100%', alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18 },
   chapterCard: {
-    width: '100%', borderRadius: 22, paddingVertical: 16, paddingHorizontal: 20,
+    width: '100%', borderRadius: 16, paddingVertical: 12, paddingHorizontal: 18,
     alignItems: 'center', justifyContent: 'center',
   },
   chapterNum: { fontSize: 12, fontWeight: '800', letterSpacing: 1.6, marginBottom: 6, textAlign: 'center' },
-  chapterTitle: { fontSize: 20, fontWeight: '900', letterSpacing: -0.4, lineHeight: 25, textAlign: 'center' },
+  chapterTitle: { fontSize: 15, fontWeight: '700', lineHeight: 20, textAlign: 'center' },
 
   // ---- Плашка урока: разворот между уроками, текст по центру ----
   plateRow: { width: '100%', alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18 },
   plateCard: {
-    width: '100%', borderRadius: 30, paddingVertical: 34, paddingHorizontal: 26,
+    width: '100%', borderRadius: 22, paddingVertical: 28, paddingHorizontal: 22,
     alignItems: 'center', justifyContent: 'center',
   },
-  plateKicker: { fontSize: 13, fontWeight: '800', letterSpacing: 2.2, marginBottom: 14, textAlign: 'center' },
+  plateKicker: { fontSize: 11, fontWeight: '700', letterSpacing: 2.4, marginBottom: 8, textAlign: 'center' },
   // Владелец 20.09: «текст название урока уменьши, он сильно большой».
-  plateTitle: { fontSize: 20, fontWeight: '900', letterSpacing: -0.5, lineHeight: 25, textAlign: 'center' },
-  plateArc: { fontSize: 15, fontWeight: '600', lineHeight: 21, marginTop: 14, textAlign: 'center' },
-  plateCount: { marginTop: 20, borderRadius: 999, paddingVertical: 7, paddingHorizontal: 16 },
-  plateCountText: { fontSize: 13, fontWeight: '800', letterSpacing: 0.3 },
+  plateTitle: { fontSize: 18, fontWeight: '700', lineHeight: 23, textAlign: 'center' },
+  plateArc: { fontSize: 14, fontWeight: '400', lineHeight: 19, marginTop: 4, textAlign: 'center' },
+  plateCount: { marginTop: 16, borderRadius: 999, paddingVertical: 6, paddingHorizontal: 14 },
+  plateCountText: { fontSize: 14, fontWeight: '700', fontVariant: ['tabular-nums'] },
   // Полосы растворения у кромок карты. Лежат поверх списка, тач пропускают
   // (pointerEvents="none" на самих элементах), высота задаётся инлайном —
   // она зависит от safe-area конкретного телефона.
   mapEdgeFadeTop: { position: 'absolute', left: 0, right: 0, top: 0 },
   mapEdgeFadeBottom: { position: 'absolute', left: 0, right: 0, bottom: 0 },
   mapFooter: { position: 'absolute', left: 0, right: 0, bottom: 0, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 11 },
-  mapFooterButton: { borderRadius: 19, height: 56, flex: 1 },
-  mapFooterNow: { borderRadius: 19, height: 56, width: 56 },
+  mapFooterButton: { borderRadius: 28, height: 56, flex: 1 },
+  mapFooterNow: { borderRadius: 28, height: 56, width: 56 },
   mapFooterNowContent: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   mapFooterButtonContent: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
-  mapFooterText: { fontSize: 16, fontWeight: '800' },
+  mapFooterText: { fontSize: 16, fontWeight: '700' },
   nodeCluster: { alignItems: 'center', justifyContent: 'center' },
   nodeFace: { alignItems: 'center', justifyContent: 'center', gap: 5 },
   // Подпись занятия сбоку от кружка. Ширина 150 подобрана под самые длинные
@@ -1047,7 +1062,7 @@ const styles = StyleSheet.create({
     minWidth: 30,
     paddingHorizontal: 7,
     borderRadius: 12,
-    borderWidth: 1,
+    borderWidth: StyleSheet.hairlineWidth, // guard-ok: 1 px кромка бейджа звёзд
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',

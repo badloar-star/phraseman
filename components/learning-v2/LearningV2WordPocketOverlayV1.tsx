@@ -12,6 +12,7 @@ import { triLang } from "../../constants/i18n";
 import AddToFlashcard from "../AddToFlashcard";
 import { useLang } from "../LangContext";
 import { useTheme } from "../ThemeContext";
+import { lv2CardStyle, useLv2Glass } from "./LearningV2Glass";
 
 type Props = Readonly<{
   words: readonly LearningV2UnlockedLessonWordV1[];
@@ -25,7 +26,10 @@ export default function LearningV2WordPocketOverlayV1({
   onSpeak,
 }: Props) {
   const { lang } = useLang();
+  // зачем (learning-v2.html, pocket): экран кармана — на токенах Liquid Glass (`g`); `t` нужен
+  // только общей колоде CollectionDeckView, чей контракт темы живёт в другом модуле.
   const { theme: t, f } = useTheme();
+  const g = useLv2Glass();
   const insets = useStableSafeAreaInsets();
   const [deckIndex, setDeckIndex] = useState<number | null>(null);
   const cards = useMemo(
@@ -41,6 +45,10 @@ export default function LearningV2WordPocketOverlayV1({
     title: triLang(lang, {
       ru: "Карман слов", uk: "Кишеня слів", en: "Word pocket", es: "Bolsillo de palabras",
       "pt-BR": "Bolso de palavras", vi: "Túi từ", id: "Kantong kata", tr: "Kelime cebi", pl: "Kieszeń słów",
+    }),
+    opened: triLang(lang, {
+      ru: "Открыто", uk: "Відкрито", en: "Unlocked", es: "Abiertas",
+      "pt-BR": "Abertas", vi: "Đã mở", id: "Terbuka", tr: "Açık", pl: "Odblokowane",
     }),
     close: triLang(lang, {
       ru: "Закрыть карман слов", uk: "Закрити кишеню слів", en: "Close word pocket", es: "Cerrar el bolsillo de palabras",
@@ -70,7 +78,7 @@ export default function LearningV2WordPocketOverlayV1({
       testID="learning-v2-word-pocket-overlay"
       accessibilityViewIsModal
       importantForAccessibility="yes"
-      style={[styles.overlay, { backgroundColor: t.bgPrimary }]}
+      style={[styles.overlay, { backgroundColor: g.bg }]}
     >
       <View
         style={[
@@ -78,12 +86,14 @@ export default function LearningV2WordPocketOverlayV1({
           {
             paddingTop: insets.top + 12,
             minHeight: insets.top + 78,
+            borderBottomColor: g.line,
           },
         ]}
       >
         <View>
-          <Text style={[styles.eyebrow, { color: t.accent }]}>{copy.eyebrow}</Text>
-          <Text style={[styles.title, { color: t.textPrimary }]}>{copy.title}</Text>
+          <Text style={[styles.eyebrow, { color: g.secondary }]}>{copy.eyebrow}</Text>
+          <Text style={[styles.title, { color: g.text }]}>{copy.title}</Text>
+          <Text style={[styles.count, { color: g.secondary }]}>{copy.opened}: {cards.length}</Text>
         </View>
         <Pressable
           testID="learning-v2-word-pocket-close"
@@ -93,10 +103,10 @@ export default function LearningV2WordPocketOverlayV1({
           hitSlop={10}
           style={({ pressed }) => [
             styles.close,
-            { backgroundColor: t.bgSurface2, opacity: pressed ? 0.7 : 1 },
+            { backgroundColor: g.opaqueControl, opacity: pressed ? 0.7 : 1 },
           ]}
         >
-          <Ionicons name="close" size={25} color={t.textPrimary} />
+          <Ionicons name="close" size={22} color={g.text} />
         </Pressable>
       </View>
 
@@ -135,13 +145,13 @@ export default function LearningV2WordPocketOverlayV1({
           contentContainerStyle={{ padding: 16, paddingBottom: insets.bottom + 24, gap: 12 }}
           renderItem={({ item: card, index }) => {
             const meaning = resolveFlashcardBackText(card, cardContentLang);
-            return <View style={[styles.wordRow, { backgroundColor: t.bgCard }]}>
+            return <View style={[styles.wordRow, lv2CardStyle(g)]}>
               <Pressable accessibilityRole="button" accessibilityLabel={card.en} onPress={() => setDeckIndex(index)} style={styles.wordCopy}>
-                <Text style={[styles.word, { color: t.textPrimary }]}>{card.en}</Text>
-                <Text style={[styles.meaning, { color: t.textMuted }]}>{meaning}</Text>
+                <Text style={[styles.word, { color: g.text }]}>{card.en}</Text>
+                <Text style={[styles.meaning, { color: g.secondary }]}>{meaning}</Text>
               </Pressable>
-              <Pressable accessibilityRole="button" accessibilityLabel={copy.speak(card.en)} onPress={() => onSpeak(card.en, { language: inferExpoSpeechLanguage(card.en, card.packLanguage) })} style={styles.wordTool}>
-                <Ionicons name="volume-high-outline" size={23} color={t.accent} />
+              <Pressable accessibilityRole="button" accessibilityLabel={copy.speak(card.en)} onPress={() => onSpeak(card.en, { language: inferExpoSpeechLanguage(card.en, card.packLanguage) })} style={[styles.wordTool, styles.wordSpeak, { backgroundColor: g.opaqueControl }]}>
+                <Ionicons name="volume-high" size={18} color={g.text} />
               </Pressable>
               <View style={styles.wordTool}><AddToFlashcard en={card.en} ru={card.ru} uk={card.uk} es={card.es} sourceLocales={card.sourceLocales} source="lesson" sourceId={card.sourceId} size={22} /></View>
             </View>;
@@ -149,8 +159,8 @@ export default function LearningV2WordPocketOverlayV1({
         />
       ) : (
         <View style={styles.empty}>
-          <Ionicons name="albums-outline" size={36} color={t.textMuted} />
-          <Text style={[styles.emptyText, { color: t.textSecond }]}>{copy.empty}</Text>
+          <Ionicons name="albums-outline" size={36} color={g.mutedText} />
+          <Text style={[styles.emptyText, { color: g.secondary }]}>{copy.empty}</Text>
         </View>
       )}
     </View>
@@ -158,38 +168,44 @@ export default function LearningV2WordPocketOverlayV1({
 }
 
 const styles = StyleSheet.create({
-  wordRow: { minHeight: 128, borderRadius: 27, padding: 18, flexDirection: "row", alignItems: "center", gap: 4 },
-  wordCopy: { flex: 1, minHeight: 80, justifyContent: "center", gap: 9 },
-  word: { fontSize: 28, lineHeight: 34, fontWeight: "700" },
-  meaning: { fontSize: 14, lineHeight: 21 },
+  wordRow: { minHeight: 88, paddingLeft: 20, paddingRight: 12, paddingVertical: 12, flexDirection: "row", alignItems: "center", gap: 8 },
+  wordCopy: { flex: 1, minHeight: 64, justifyContent: "center", gap: 4 },
+  word: { fontSize: 24, lineHeight: 30, fontWeight: "600" },
+  meaning: { fontSize: 15, lineHeight: 21 },
   wordTool: { width: 44, minHeight: 44, alignItems: "center", justifyContent: "center" },
+  wordSpeak: { width: 44, height: 44, borderRadius: 22 },
   overlay: {
     ...StyleSheet.absoluteFillObject,
     zIndex: 120,
   },
   header: {
     paddingHorizontal: 20,
-    paddingBottom: 10,
+    paddingBottom: 16,
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-start",
     justifyContent: "space-between",
+    borderBottomWidth: StyleSheet.hairlineWidth,
   },
   eyebrow: {
-    fontSize: 11,
-    lineHeight: 15,
-    fontWeight: "900",
-    letterSpacing: 1.4,
+    fontSize: 12,
+    lineHeight: 16,
+    fontWeight: "700",
+    letterSpacing: 2.4,
+    textTransform: "uppercase",
   },
   title: {
-    marginTop: 2,
-    fontSize: 25,
-    lineHeight: 30,
-    fontWeight: "900",
+    marginTop: 6,
+    fontSize: 34,
+    lineHeight: 40,
+    fontWeight: "700",
+    letterSpacing: -0.5,
   },
+  count: { marginTop: 4, fontSize: 15, lineHeight: 20 },
   close: {
+    marginTop: 8,
     width: 44,
     height: 44,
-    borderRadius: 16,
+    borderRadius: 14,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -208,8 +224,8 @@ const styles = StyleSheet.create({
   emptyText: {
     maxWidth: 320,
     fontSize: 16,
-    lineHeight: 23,
-    fontWeight: "600",
+    lineHeight: 22,
+    fontWeight: "400",
     textAlign: "center",
   },
 });

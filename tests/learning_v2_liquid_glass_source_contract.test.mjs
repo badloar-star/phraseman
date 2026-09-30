@@ -1,0 +1,82 @@
+// зачем (владелец 2026-09-30): весь Learning V2 переносится 1 в 1 по макету learning-v2.html
+// (Liquid Glass). Сторож не даёт вернуть старую палитру и запретные приёмы: каждый затронутый файл
+// обязан брать цвета из токенов стекла (LearningV2Glass / liquidGlassTokens), не сжимать шрифт
+// (adjustsFontSizeToFit), не обрезать текст (numberOfLines) и не показывать XP / жемчуг.
+// Запуск: node --test tests/learning_v2_liquid_glass_source_contract.test.mjs
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import test from "node:test";
+
+const read = (path) => readFileSync(path, "utf8");
+
+/** Файлы, целиком переведённые на токены стекла. */
+const GLASS_FILES = [
+  "components/learning-v2/LearningV2Glass.tsx",
+  "modules/learning-v2/modes/phrase_builder_mode_v1.tsx",
+  "modules/learning-v2/modes/listen_choose_mode_v1.tsx",
+  "modules/learning-v2/modes/listen_build_dictation_mode_v1.tsx",
+  "modules/learning-v2/modes/context_gap_grammar_mode_v1.tsx",
+  "modules/learning-v2/modes/speed_match_mode_v1.tsx",
+  "modules/learning-v2/modes/scripted_repeat_compare_mode_v1.tsx",
+  "app/learning_v2_direct_session_player_v1.tsx",
+  "app/learning_v2_session_intro.tsx",
+  "app/learning-v2/session/[id].tsx",
+  "components/session_attempts/SessionAttemptsRecoveryModal.tsx",
+  "components/EnergyBar.tsx",
+  "components/learning-v2/LearningV2WordPocketOverlayV1.tsx",
+  "components/learning-v2/LearningV2LessonDictionaryOverlayV1.tsx",
+  "components/learning-v2/LearningV2NewWordEncounterOverlay.tsx",
+  "components/learning-v2/LearningV2FounderPassModal.tsx",
+  "components/learning-v2/LearningV2PulseCourse.tsx",
+  "components/learning-v2/LearningV2ChaptersCourse.tsx",
+  "components/LearningV2SessionOutcomeSheet.tsx",
+  "components/learning-v2/horizons/HorizonSessionResult.tsx",
+  "components/learning-v2/horizons/HorizonMistakeReview.tsx",
+];
+
+const TOKEN_MARKER = /useLv2Glass|liquidGlassTokens|LearningV2Glass/u;
+
+for (const file of GLASS_FILES) {
+  test(`${file}: токены Liquid Glass, без сжатия шрифта, обрезки и XP`, () => {
+    const source = read(file);
+    assert.match(source, TOKEN_MARKER, "файл обязан брать цвета из токенов стекла");
+    assert.doesNotMatch(source, /adjustsFontSizeToFit/u, "сжимать шрифт нельзя — только перенос/вёрстка");
+    assert.doesNotMatch(source, /numberOfLines/u, "обрезать текст нельзя — он переносится");
+    assert.doesNotMatch(source, /\bXP\b|жемчуг|pearl/iu, "XP и жемчуг удалены и не показываются");
+  });
+}
+
+test("набор LearningV2Glass: цвета вердикта из макета и хаптик только на кнопке", () => {
+  const kit = read("components/learning-v2/LearningV2Glass.tsx");
+  assert.match(kit, /LV2_GOOD = '#6FD08C'/u);
+  assert.match(kit, /LV2_BAD = '#F2766B'/u);
+  assert.match(kit, /liquidGlassTokens\(liquidGlassThemeId\)/u, "цвета берутся у активной темы");
+  for (const part of ["Lv2Chip", "Lv2Option", "Lv2Cta", "Lv2Explain"]) {
+    assert.match(kit, new RegExp(`export const ${part}\\b`, "u"), `${part} экспортируется`);
+  }
+});
+
+test("шесть режимов занятия не тянут старые арена-примитивы", () => {
+  for (const file of GLASS_FILES.filter((f) => f.includes("modules/learning-v2/modes/"))) {
+    const source = read(file);
+    assert.doesNotMatch(source, /components\/ui\/v2_ui|useTournamentPalette/u, `${file}: арена-палитра`);
+  }
+});
+
+test("тост «Урок ещё в работе» на плите стекла", () => {
+  const lessons = read("app/(tabs)/lessons.tsx");
+  assert.match(lessons, /backgroundColor: learnGlass\.opaqueControl,\s*borderRadius: 18/u);
+});
+
+test("не тронуты запретные зоны: загрузка сессий, мост, потолок, энергия, награды", () => {
+  const player = read("app/learning_v2_direct_session_player_v1.tsx");
+  // Эти вызовы обязаны остаться: правка была только про внешний вид.
+  for (const marker of [
+    "consumeLearningV2CourseSessionReadyHandoffV3",
+    "evaluateLearningV2CourseSessionDeviceInteractionV1",
+    "useEnergySessionIntent",
+    "commitLearningV2SessionRuneRewardCompositeV1",
+  ]) {
+    assert.ok(player.includes(marker), `плеер потерял ${marker}`);
+  }
+});

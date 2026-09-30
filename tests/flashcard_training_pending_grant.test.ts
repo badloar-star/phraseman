@@ -66,7 +66,6 @@ const scope = (
   studyTarget: 'en',
   contentLang: 'ru',
   deckKeys: ['saved', 'custom:one'],
-  daily: false,
   sessionSize: 10,
   preset: 'trainer',
   ...overrides,
@@ -138,7 +137,6 @@ test.each([
   ['mode', scope({ mode: 'recall' })],
   ['language', scope({ contentLang: 'uk' })],
   ['target', scope({ studyTarget: 'es' })],
-  ['daily', scope({ daily: true })],
   ['size', scope({ sessionSize: 20 })],
   ['preset', scope({ preset: 'daily' })],
 ])('a different %s scope never inherits the pending grant', async (_label, otherScope) => {

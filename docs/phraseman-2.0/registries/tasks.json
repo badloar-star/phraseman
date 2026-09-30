@@ -11680,19 +11680,25 @@
         "id": "PM-231-A1",
         "text": "Idempotency/cache/timeout/rate limit/max output",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "evidence/PM-231_paid_ai_requests_audit.md: PARTIAL — дыры 1–6 (mistake_hub_advice без лимита, нет fetch-тайм-аутов в premium_dialog*/mistake_explain)"
+        ]
       },
       {
         "id": "PM-231-A2",
         "text": "клиенты не передают секреты",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "evidence/PM-231_paid_ai_requests_audit.md: в клиенте нет AI-ключей и api.openai.com; Bearer только Firebase ID token; ключи через defineSecret"
+        ]
       },
       {
         "id": "PM-231-A3",
         "text": "расходы видны по operation",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "evidence/PM-231_paid_ai_requests_audit.md: PARTIAL — Dialogue V2, mistake_hub_advice, часть админ-функций без billing"
+        ]
       }
     ],
     "depends_on": [],

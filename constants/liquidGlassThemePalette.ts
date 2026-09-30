@@ -108,10 +108,20 @@ export function resolveLiquidGlassTheme(id: unknown, _hasPlus?: boolean): Liquid
     : 'graphite';
 }
 
+// зачем (темы 2.0): getV2Palette(theme) (Главная, Шпиль, фон экранов) получает только
+// объект Theme. По нему находим токены темы с уровнем и оформлением — без правки
+// сотни вызовов. WeakMap не держит старые темы в памяти.
+const THEME_GLASS_SOURCE = new WeakMap<object, Readonly<{ tokens: GlassTokens; calmCta: string }>>();
+
+/** Токены, из которых собран Theme (null — тема собрана не makeLiquidGlassTheme). */
+export function liquidGlassSourceOfTheme(theme: object): Readonly<{ tokens: GlassTokens; calmCta: string }> | null {
+  return THEME_GLASS_SOURCE.get(theme) ?? null;
+}
+
 /** Map neutral RN theme roles; success/error/reward and ownership remain untouched. */
 export function makeLiquidGlassTheme(id: LiquidGlassThemeId, base: Theme, variant: LiquidGlassVariant = activeVariant): Theme {
   const t = liquidGlassTokens(id, variant);
-  return {
+  const theme: Theme = {
     ...base,
     bgPrimary: t.bg,
     bgCard: t.opaqueCard,
@@ -139,4 +149,6 @@ export function makeLiquidGlassTheme(id: LiquidGlassThemeId, base: Theme, varian
     cardGradient: [t.opaqueControl, t.opaqueCard],
     bgGradient: [t.bgTop, t.bgBottom],
   };
+  THEME_GLASS_SOURCE.set(theme, { tokens: t, calmCta: TOKEN_REGISTRY[resolveLiquidGlassTheme(id)].cta });
+  return theme;
 }

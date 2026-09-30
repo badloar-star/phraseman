@@ -8,6 +8,8 @@
 // docs/work/tasks/2026-09-24_ui_2_0_redesign.md.
 
 import type { Theme, ThemeMode } from './theme';
+import { liquidGlassSourceOfTheme } from './liquidGlassThemePalette';
+import { adaptV2PaletteToGlass } from './v2StyleGlassVariant';
 
 type Rgb = readonly [number, number, number];
 
@@ -120,12 +122,33 @@ export type V2Palette = Readonly<{
   accentFill: string;
   /** Лист нижней шторки. */
   sheet: string;
+  /**
+   * Темы 2.0: цвет темы для ссылок, огня серии, колец на нейтральном стекле.
+   * В «Спокойно» = iconTint (ничего не меняется).
+   */
+  accentText: string;
+  /** Темы 2.0: сила дымки в карточках (1 — как было; «Максимум» — сильнее). */
+  smokeBoost: number;
 }>;
 
 const paletteCache = new Map<string, V2Palette>();
 
 /** Палитра нового стиля для темы. Кэшируется — вызов в рендере бесплатный. */
 export function getV2Palette(theme: Theme, themeMode: ThemeMode): V2Palette {
+  // зачем (темы 2.0): уровень цвета и светлое оформление. База строится от «Спокойного»
+  // цвета темы (в «Акценте» фон и стекло прежние), поверх — роли темы и светлые токены.
+  const source = liquidGlassSourceOfTheme(theme);
+  if (!source || (source.tokens.level === 'calm' && !source.tokens.isLight)) return buildBaseV2Palette(theme, themeMode);
+  const g = source.tokens;
+  const key = `glass|${themeMode}|${source.calmCta}|${g.level}|${g.appearance}|${g.bg}|${g.accent}`;
+  const cached = paletteCache.get(key);
+  if (cached) return cached;
+  const palette = adaptV2PaletteToGlass(buildBaseV2Palette({ ...theme, accent: source.calmCta }, themeMode), g);
+  paletteCache.set(key, palette);
+  return palette;
+}
+
+function buildBaseV2Palette(theme: Theme, themeMode: ThemeMode): V2Palette {
   const key = `${themeMode}|${theme.accent}`;
   const cached = paletteCache.get(key);
   if (cached) return cached;
@@ -173,6 +196,8 @@ export function getV2Palette(theme: Theme, themeMode: ThemeMode): V2Palette {
     tileTo: mixHex('#1C1C1D', tintColor, 0.02),
     accentFill: mixHex('#E6DCCB', tintColor, 0.1),
     sheet: mixHex('#1B1B1C', tintColor, 0.015),
+    accentText: mixHex('#DDD8D0', tintColor, 0.08),
+    smokeBoost: 1,
   };
   paletteCache.set(key, palette);
   return palette;

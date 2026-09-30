@@ -31,6 +31,8 @@ export const V2GlassSheen = memo(function V2GlassSheen({ seed = 0 }: { seed?: nu
   // id градиента уникален на экземпляр: у SVG общее пространство имён id.
   const idRef = React.useRef(`v2smoke${smokeId++}`);
   const spot = SMOKE_SPOTS[Math.abs(Math.trunc(seed)) % SMOKE_SPOTS.length]!;
+  // зачем (темы 2.0): в «Максимуме» дымка цвета темы заметнее (smokeBoost), в остальных — как было.
+  const o = Math.min(0.5, spot.o * p.smokeBoost);
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
       <LinearGradient
@@ -42,8 +44,8 @@ export const V2GlassSheen = memo(function V2GlassSheen({ seed = 0 }: { seed?: nu
       <Svg width="100%" height="100%" style={StyleSheet.absoluteFill}>
         <Defs>
           <RadialGradient id={idRef.current} cx={spot.cx} cy={spot.cy} r={spot.r} fx={spot.cx} fy={spot.cy}>
-            <Stop offset="0" stopColor={p.smoke} stopOpacity={spot.o} />
-            <Stop offset="0.55" stopColor={p.smoke} stopOpacity={spot.o * 0.35} />
+            <Stop offset="0" stopColor={p.smoke} stopOpacity={o} />
+            <Stop offset="0.55" stopColor={p.smoke} stopOpacity={o * 0.35} />
             <Stop offset="1" stopColor={p.smoke} stopOpacity={0} />
           </RadialGradient>
         </Defs>

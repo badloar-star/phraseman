@@ -1151,7 +1151,7 @@
     ],
     "basis": "OWNER",
     "stage": "B",
-    "status": "planned",
+    "status": "superseded",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -1182,10 +1182,12 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
-    "reviewer": null,
+    "owner": "Claude Opus 5.5 (сессия «Дизайн»)",
+    "reviewer": "self-check (не независимое ревью)",
     "evidence": [],
-    "notes": [],
+    "notes": [
+      "Заменено решением владельца 30.09 (память project_themes_vivid_twins_2026-09-30): вместо одной темы — 13 тем «Небо и природа» с уровнями «Спокойно/Акцент/Максимум» и светлым режимом; «Спокойно» = прежняя нейтральная тёмная система. Реализация — коммиты 72c1380db..b889b0d1f."
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -1562,7 +1564,7 @@
     ],
     "basis": "OWNER",
     "stage": "B",
-    "status": "planned",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -1571,14 +1573,18 @@
       {
         "id": "PM-034-A1",
         "text": "Есть матрица экран × состояния × приёмка",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "docs/phraseman-2.0/evidence/STATE_CHECKLIST_2026-09-30.md: матрица 758 состояний × макет × статус (747 ✅, остальное — решения владельца/не применимо/одобренная Главная)"
+        ]
       },
       {
         "id": "PM-034-A2",
         "text": "ни один старый экран не спрятан за новым фасадом",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Каждая строка сверки указывает реальный файл экрана и коммит переноса; старые экраны не прячутся за фасадом (удалённые — удалены, D78/D108)"
+        ]
       }
     ],
     "depends_on": [],
@@ -1587,10 +1593,15 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "owner": "Claude Opus 5.5 (сессия «Дизайн»)",
+    "reviewer": "self-check (не независимое ревью)",
+    "evidence": [
+      "docs/phraseman-2.0/evidence/STATE_CHECKLIST_2026-09-30.md: матрица 758 состояний × макет × статус (747 ✅, остальное — решения владельца/не применимо/одобренная Главная)",
+      "Каждая строка сверки указывает реальный файл экрана и коммит переноса; старые экраны не прячутся за фасадом (удалённые — удалены, D78/D108)"
+    ],
+    "notes": [
+      "Дизайн: визуальный проход в эмуляторе — в очереди"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -2096,7 +2107,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -2105,14 +2116,18 @@
       {
         "id": "PM-045-A1",
         "text": "Кнопка ведёт только в согласованный сценарий",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "components/PlayerProfileModal.tsx handleShare: своя визитка → системный Share.share с именем, званием ранга и своим текстом; других сценариев у кнопки нет"
+        ]
       },
       {
         "id": "PM-045-A2",
         "text": "старый XP в карточку sharing не попадает",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "В сообщение не попадает XP (XP удалён); только имя, звание, подпись"
+        ]
       }
     ],
     "depends_on": [],
@@ -2123,10 +2138,15 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "owner": "Claude Opus 5.5 (сессия «Дизайн»)",
+    "reviewer": "self-check (не независимое ревью)",
+    "evidence": [
+      "components/PlayerProfileModal.tsx handleShare: своя визитка → системный Share.share с именем, званием ранга и своим текстом; других сценариев у кнопки нет",
+      "В сообщение не попадает XP (XP удалён); только имя, звание, подпись"
+    ],
+    "notes": [
+      "Дизайн: визитка 2.0 (коммиты f445814c1 ace685121)"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -9554,7 +9574,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -9563,14 +9583,18 @@
       {
         "id": "PM-187-A1",
         "text": "Share sheet штатный, экспорт не раскрывает email/ID/личные ошибки",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Share.share штатный; в сообщении нет email, uid/stableId и личных ошибок — только имя, звание, подпись визитки"
+        ]
       },
       {
         "id": "PM-187-A2",
         "text": "функция доступна без старого XP",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Работает без XP (XP удалён целиком)"
+        ]
       }
     ],
     "depends_on": [],
@@ -9581,10 +9605,15 @@
     ],
     "audit_sha": null,
     "result_sha": null,
-    "owner": null,
-    "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "owner": "Claude Opus 5.5 (сессия «Дизайн»)",
+    "reviewer": "self-check (не независимое ревью)",
+    "evidence": [
+      "Share.share штатный; в сообщении нет email, uid/stableId и личных ошибок — только имя, звание, подпись визитки",
+      "Работает без XP (XP удалён целиком)"
+    ],
+    "notes": [
+      "Дизайн: визитка 2.0"
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,

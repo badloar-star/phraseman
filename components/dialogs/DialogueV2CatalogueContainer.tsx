@@ -1,10 +1,13 @@
-import { useRouter } from 'expo-router';
+import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Text, View } from 'react-native';
 
 import {
   projectAuthorizedDialogueV2Catalogue,
 } from '../../app/dialogue_v2_authorized_catalogue_projection';
+import { captureAccountGeneration } from '../../app/account_generation';
+import { readAiDialogMonthlyQuota } from '../../app/ai_dialog_daily_quota';
+import { REVENUE_MONTHLY_LIMITS } from '../../app/revenue_daily_limits';
 import {
   fetchReleasedDialogueV2Catalogue,
   type DialogueV2CatalogueReleaseEnvelope,
@@ -23,6 +26,12 @@ import {
   type DialogueV2CatalogueWorld,
 } from './DialogueV2CatalogueSection';
 import { DialogueV2PlusTools } from './DialogueV2PlusTools';
+import {
+  DialogueV2HubExhaustedCard,
+  DialogueV2HubLanguageGate,
+  DialogueV2HubQuotaRow,
+  dialogueV2HubCopy,
+} from './DialogueV2HubNotices';
 
 const V2_TARGETS = new Set(['en', 'es', 'fr', 'de']);
 
@@ -94,6 +103,35 @@ export function DialogueV2CatalogueContainer({ onPressItem }: DialogueV2Catalogu
   const [state, setState] = useState<CatalogueState>({ kind: 'loading' });
   const headings = useMemo(() => dialogueV2WorldHeadings(lang), [lang]);
   const copy = useMemo(() => catalogueCopy(lang), [lang]);
+  const hubCopy = useMemo(() => dialogueV2HubCopy(lang), [lang]);
+  // зачем (D111, макет A1/A5): месячный остаток ответов Free — из зеркала на телефоне
+  // (0 чтений Firestore). Перечитываем при возврате на вкладку: после сессии цифра свежая.
+  const [quotaRemaining, setQuotaRemaining] = useState<number | null>(null);
+  const freeTier = accessResolved && !hasPremiumAccess;
+  useFocusEffect(useCallback(() => {
+    if (!freeTier || !supportedTarget(studyTarget)) {
+      setQuotaRemaining(null);
+      return undefined;
+    }
+    let alive = true;
+    void readAiDialogMonthlyQuota(studyTarget, captureAccountGeneration().stableId).then((quota) => {
+      if (!alive) return;
+      setQuotaRemaining(quota.status === 'allowed' ? quota.remaining : quota.status === 'exhausted' ? 0 : null);
+    }).catch((error: unknown) => {
+      console.warn('[DIALOGUE-V2] hub:quota → mirror read failed', error instanceof Error ? error.message : String(error));
+    });
+    return () => { alive = false; };
+  }, [freeTier, studyTarget]));
+  const quotaTotal = REVENUE_MONTHLY_LIMITS.ai_dialog_replies;
+  const openPlus = useCallback(() => {
+    router.push({
+      pathname: '/premium_modal',
+      params: { context: 'dialog_limit', source: 'dialogue_v2_hub' },
+    } as never);
+  }, [router]);
+  const openLessons = useCallback(() => {
+    router.push('/(tabs)/lessons' as never);
+  }, [router]);
   const openFreeform = useCallback(() => {
     if (!accessResolved) return;
     if (!hasPremiumAccess) {
@@ -138,11 +176,28 @@ export function DialogueV2CatalogueContainer({ onPressItem }: DialogueV2Catalogu
     });
   }, [headings, localCoinRank, state, studyTarget]);
   const plusTools = (
-    <DialogueV2PlusTools
-      accessResolved={accessResolved}
-      hasPremiumAccess={hasPremiumAccess}
-      onOpenFreeform={openFreeform}
-      onOpenMemory={openMemory}
+    <>
+      {freeTier && quotaRemaining !== null ? (
+        <DialogueV2HubQuotaRow
+          text={`${quotaRemaining}/${quotaTotal}`}
+          accessibilityLabel={hubCopy.quotaA11y(quotaRemaining, quotaTotal)}
+        />
+      ) : null}
+      <DialogueV2PlusTools
+        accessResolved={accessResolved}
+        hasPremiumAccess={hasPremiumAccess}
+        onOpenFreeform={openFreeform}
+        onOpenMemory={openMemory}
+      />
+    </>
+  );
+  // A6: язык без проверенных сценариев — карточка с замком вместо миров.
+  const languageGate = (
+    <DialogueV2HubLanguageGate
+      title={hubCopy.gateTitle}
+      text={hubCopy.gateText}
+      ctaLabel={hubCopy.gateCta}
+      onPress={openLessons}
     />
   );
 
@@ -159,7 +214,18 @@ export function DialogueV2CatalogueContainer({ onPressItem }: DialogueV2Catalogu
     );
   }
 
+  if (!supportedTarget(studyTarget) || (projection && projection.items.length === 0)) {
+    if (typeof __DEV__ !== 'undefined' && __DEV__) console.warn('[DIALOGUE-V2] hub:render → language gate', { studyTarget, items: projection?.items.length ?? null });
+    return (
+      <>
+        {plusTools}
+        {languageGate}
+      </>
+    );
+  }
+
   if (!projection) {
+    if (typeof __DEV__ !== 'undefined' && __DEV__) console.warn('[DIALOGUE-V2] hub:render → catalogue unavailable', { studyTarget });
     return (
       <>
         {plusTools}
@@ -181,6 +247,13 @@ export function DialogueV2CatalogueContainer({ onPressItem }: DialogueV2Catalogu
         labels={copy}
         onPressItem={onPressItem}
       />
+      {freeTier && quotaRemaining === 0 ? (
+        <DialogueV2HubExhaustedCard
+          title={hubCopy.exhaustedTitle}
+          text={hubCopy.exhaustedText(quotaTotal)}
+          onPress={openPlus}
+        />
+      ) : null}
     </>
   );
 }

@@ -13,6 +13,7 @@ const mockSection: jest.Mock = jest.fn(() => null);
 const mockUsePremium = jest.fn();
 const mockPush = jest.fn();
 const mockPlusTools: jest.Mock = jest.fn(() => null);
+const mockReadQuota = jest.fn();
 
 jest.mock('react-native', () => ({
   View: 'View',
@@ -33,7 +34,37 @@ jest.mock('../hooks/use_my_coin_rank', () => ({
   useMyCoinRank: () => mockUseMyCoinRank(),
 }));
 jest.mock('../components/LangContext', () => ({ useLang: () => mockUseLang() }));
-jest.mock('expo-router', () => ({ useRouter: () => ({ push: mockPush }) }));
+jest.mock('expo-router', () => {
+  const mockReact = jest.requireActual('react') as typeof React;
+  return {
+    useRouter: () => ({ push: mockPush }),
+    // Фокус вкладки в тесте = монтирование.
+    useFocusEffect: (effect: () => void | (() => void)) => { mockReact.useEffect(effect, [effect]); },
+  };
+});
+jest.mock('../app/ai_dialog_daily_quota', () => ({
+  readAiDialogMonthlyQuota: (...args: unknown[]) => mockReadQuota(...args),
+}));
+jest.mock('../app/account_generation', () => ({
+  captureAccountGeneration: () => ({ generation: 1, stableId: 'stable-user', phase: 'active' }),
+}));
+// D111/A5/A6: карточки хаба — простые заглушки с testID, вид проверяется source-контрактом.
+jest.mock('../components/dialogs/DialogueV2HubNotices', () => {
+  const mockReact = jest.requireActual('react') as typeof React;
+  return {
+    dialogueV2HubCopy: () => ({
+      quotaA11y: (remaining: number, total: number) => `${remaining} из ${total}`,
+      exhaustedTitle: 'Plus снимает лимит ответов',
+      exhaustedText: (total: number) => `В этом месяце осталось 0 из ${total} ответов.`,
+      gateTitle: 'Диалоги на этом языке ещё проверяются',
+      gateText: 'text',
+      gateCta: 'К урокам',
+    }),
+    DialogueV2HubQuotaRow: ({ text }: { text: string }) => mockReact.createElement('Text', { testID: 'dialogue-v2-hub-quota' }, text),
+    DialogueV2HubExhaustedCard: ({ onPress }: { onPress: () => void }) => mockReact.createElement('View', { testID: 'dialogue-v2-hub-exhausted', onPress }),
+    DialogueV2HubLanguageGate: ({ onPress }: { onPress: () => void }) => mockReact.createElement('View', { testID: 'dialogue-v2-hub-language-gate', onPress }),
+  };
+});
 jest.mock('../components/PremiumContext', () => ({ usePremium: () => mockUsePremium() }));
 jest.mock('../components/v2/useV2Palette', () => ({
   useV2Palette: () => ({ textSecondary: '#text' }),
@@ -65,6 +96,7 @@ describe('DialogueV2CatalogueContainer', () => {
     mockUsePremium.mockReturnValue({ accessResolved: true, hasPremiumAccess: true });
     mockFetchCatalogue.mockResolvedValue(packetEnvelope);
     mockProjection.mockReturnValue(projection);
+    mockReadQuota.mockResolvedValue({ status: 'unknown', limit: 30 });
   });
 
   it('routes Plus tools without treating local catalogue state as entitlement authority', async () => {
@@ -122,11 +154,13 @@ describe('DialogueV2CatalogueContainer', () => {
     });
   });
 
-  it('fails closed without a fetch when the selected language contour is unsupported', async () => {
+  it('shows the «still being checked» card without a fetch when the language contour is unsupported (A6)', async () => {
     mockUseStudyTarget.mockReturnValue({ studyTarget: 'pt-BR' });
     const screen = await render(h(DialogueV2CatalogueContainer, { onPressItem: jest.fn() }));
 
-    await expect(screen.findByText('Диалоги недоступны')).resolves.toBeTruthy();
+    await expect(screen.findByTestId('dialogue-v2-hub-language-gate')).resolves.toBeTruthy();
+    screen.getByTestId('dialogue-v2-hub-language-gate').props.onPress();
+    expect(mockPush).toHaveBeenLastCalledWith('/(tabs)/lessons');
     expect(mockFetchCatalogue).not.toHaveBeenCalled();
     expect(mockProjection).not.toHaveBeenCalled();
     expect(mockSection).not.toHaveBeenCalled();
@@ -145,5 +179,31 @@ describe('DialogueV2CatalogueContainer', () => {
     const retry = await render(h(DialogueV2CatalogueContainer, { onPressItem: jest.fn() }));
     await expect(retry.findByText('Диалоги недоступны')).resolves.toBeTruthy();
     expect(mockSection).not.toHaveBeenCalled();
+  });
+
+  it('shows the monthly remainder for Free and the Plus card when it is used up (A1/A5, D111)', async () => {
+    mockUsePremium.mockReturnValue({ accessResolved: true, hasPremiumAccess: false });
+    mockReadQuota.mockResolvedValue({ status: 'allowed', remaining: 12, limit: 30, resetAtMs: 1, quotaVersion: 2 });
+    const screen = await render(h(DialogueV2CatalogueContainer, { onPressItem: jest.fn() }));
+    await expect(screen.findByText('12/30')).resolves.toBeTruthy();
+    expect(screen.queryByTestId('dialogue-v2-hub-exhausted')).toBeNull();
+    await screen.unmount();
+
+    mockReadQuota.mockResolvedValue({ status: 'exhausted', remaining: 0, limit: 30, resetAtMs: 1, quotaVersion: 3 });
+    const exhausted = await render(h(DialogueV2CatalogueContainer, { onPressItem: jest.fn() }));
+    await expect(exhausted.findByTestId('dialogue-v2-hub-exhausted')).resolves.toBeTruthy();
+    exhausted.getByTestId('dialogue-v2-hub-exhausted').props.onPress();
+    expect(mockPush).toHaveBeenLastCalledWith({
+      pathname: '/premium_modal',
+      params: { context: 'dialog_limit', source: 'dialogue_v2_hub' },
+    });
+  });
+
+  it('never shows the remainder to Plus', async () => {
+    mockReadQuota.mockResolvedValue({ status: 'allowed', remaining: 12, limit: 30, resetAtMs: 1, quotaVersion: 2 });
+    const screen = await render(h(DialogueV2CatalogueContainer, { onPressItem: jest.fn() }));
+    await waitFor(() => expect(mockSection).toHaveBeenCalled());
+    expect(screen.queryByTestId('dialogue-v2-hub-quota')).toBeNull();
+    expect(mockReadQuota).not.toHaveBeenCalled();
   });
 });

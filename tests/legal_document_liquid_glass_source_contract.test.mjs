@@ -32,8 +32,9 @@ const CLOSE_LABELS = ['Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fe
 const THEME_IDS = ['graphite', 'polar', 'slate', 'ink', 'lavender', 'iris', 'rose', 'terracotta', 'taupe', 'olive', 'sage', 'eucalyptus', 'marine'];
 
 const LEGAL_FILES = [
-  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', '9db081c355541047a64c5dd47b9cb5daef4ba37aa63e6b87c6449071cc173ffc'],
-  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '3197b4ef755b49c0c8d5d54994d2c1525f106a7609a4af7d14e4b02075603985'],
+  // зачем (30.09): политика обновлена по «да» владельца (визитка Про, опрос дня, Шпиль, D128 озвучка) — хеши сдвинуты осознанно.
+  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', 'ba251cd69acb80145b6041dc585c86fbca6b33d1916a724f9c2a181033aadc28'],
+  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '6c1d3cbae4e08262d14a416963180ff6b506e3732850082695388064a45ac6c9'],
   ['legal/terms_of_use_en.json', 'app/legal/terms_of_use_en.json', '0800a1132761b91756da591c07fb15d1989456d22ad048ae9e2759c71990e9c4'],
   ['legal/terms_of_use_en_ios.json', 'app/legal/terms_of_use_en_ios.json', 'f081fe90fdd3248e677266c9e7970c7a8985249a55c9412658c608b38a4dfe02'],
 ];

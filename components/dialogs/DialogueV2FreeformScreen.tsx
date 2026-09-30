@@ -1,0 +1,219 @@
+import Ionicons from '@expo/vector-icons/Ionicons';
+import React from 'react';
+import { ActivityIndicator, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+import { PressableScale } from '../feedback/PressableScale';
+import { describeDialogueVoiceMessage, type DialogueVoiceDraft } from '../../app/dialogue_voice_message';
+import type { DialogueV2VoiceStatus } from '../../hooks/use_dialogue_v2_voice_message';
+import type { Lang } from '../../constants/i18n';
+import { DialogueGlassBackButton, dialogueGlassCardStyle, useDialogueGlass } from './glass/DialogueGlassKit';
+import {
+  DialogueGlassBubble,
+  DialogueGlassBubbleText,
+  DialogueGlassTyping,
+  dialogueGlassBubbleInk,
+  dialogueGlassFieldStyle,
+  dialogueGlassRoundButtonStyle,
+} from './glass/DialogueGlassChat';
+
+// зачем (владелец 2026-09-30): «Свободный разговор» «1 в 1» по макету dialogs.html F1/F2
+// (Liquid Glass): шапка с круглой «‹» и названием, пустое состояние — карточка «Что можно
+// спросить» с лампочкой, ответы — стеклянный пузырь без аватара, свои — светлый пузырь,
+// строка ввода «поле · ↑». Микрофон сохранён: голосовой ввод — живая функция этого экрана.
+
+export type DialogueV2FreeformMessage = Readonly<{
+  id: string;
+  author: 'learner' | 'assistant';
+  text: string;
+  /** Replay-only local learner attachment. Its transcript never leaves the route. */
+  voice?: Readonly<{ uri: string }>;
+}>;
+
+export type DialogueV2FreeformScreenProps = Readonly<{
+  title: string;
+  memoryNote: string;
+  messages: readonly DialogueV2FreeformMessage[];
+  draft: string;
+  sending: boolean;
+  voiceStatus: DialogueV2VoiceStatus;
+  voiceDraft: DialogueVoiceDraft | null;
+  playingVoiceUri: string | null;
+  interfaceLang: Lang;
+  labels: Readonly<{
+    back: string;
+    placeholder: string;
+    send: string;
+    emptyTitle: string;
+    emptyText: string;
+    voiceIdle: string;
+    voiceRecording: string;
+    discardVoice: string;
+  }>;
+  onBack: () => void;
+  onChangeDraft: (value: string) => void;
+  onSend: () => void;
+  onStartVoice: () => void;
+  onStopVoice: () => void;
+  onDiscardVoice: () => void;
+  onPlayVoice: (uri: string) => void;
+}>;
+
+/** A dedicated V2 freeform surface, deliberately separate from scenario sessions. */
+export function DialogueV2FreeformScreen({
+  title,
+  memoryNote,
+  messages,
+  draft,
+  sending,
+  voiceStatus,
+  voiceDraft,
+  playingVoiceUri,
+  interfaceLang,
+  labels,
+  onBack,
+  onChangeDraft,
+  onSend,
+  onStartVoice,
+  onStopVoice,
+  onDiscardVoice,
+  onPlayVoice,
+}: DialogueV2FreeformScreenProps) {
+  const glass = useDialogueGlass();
+  const voiceBusy = voiceStatus !== 'idle';
+  const canSend = draft.trim().length > 0 && !voiceBusy;
+  const voiceCopy = describeDialogueVoiceMessage(interfaceLang);
+  return (
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={0}
+      style={{ flex: 1, backgroundColor: glass.bg }}
+      testID="dialogue-v2-freeform-screen"
+    >
+      <SafeAreaView style={styles.fill} edges={['top', 'bottom']}>
+        <View style={styles.header}>
+          <DialogueGlassBackButton glass={glass} onPress={onBack} accessibilityLabel={labels.back} />
+          <View style={styles.headerText}>
+            <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={[styles.title, { color: glass.text }]}>{title}</Text>
+            <Text maxFontSizeMultiplier={1.3} style={[styles.subtitle, { color: glass.secondary }]}>{memoryNote}</Text>
+          </View>
+        </View>
+
+        <ScrollView
+          style={styles.fill}
+          contentContainerStyle={styles.scroll}
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}
+        >
+          {messages.length === 0 && !sending ? (
+            <View testID="dialogue-v2-freeform-empty" style={[dialogueGlassCardStyle(glass), styles.tip]}>
+              <View style={[styles.tipTile, { backgroundColor: glass.opaqueControl }]}>
+                <Ionicons name="bulb-outline" size={22} color={glass.text} />
+              </View>
+              <View style={styles.headerText}>
+                <Text maxFontSizeMultiplier={1.3} style={[styles.tipTitle, { color: glass.text }]}>{labels.emptyTitle}</Text>
+                <Text maxFontSizeMultiplier={1.4} style={[styles.tipText, { color: glass.secondary }]}>{labels.emptyText}</Text>
+              </View>
+            </View>
+          ) : null}
+          {messages.map((message) => {
+            const author = message.author === 'learner' ? 'learner' : 'assistant';
+            return (
+              <DialogueGlassBubble key={message.id} glass={glass} author={author}>
+                {message.voice ? (
+                  <PressableScale
+                    onPress={() => onPlayVoice(message.voice!.uri)}
+                    variant="flat"
+                    accessibilityRole="button"
+                    accessibilityLabel={voiceCopy.action}
+                    testID={`dialogue-v2-freeform-voice-message-${message.id}`}
+                    style={styles.voiceRow}
+                  >
+                    <Ionicons name={playingVoiceUri === message.voice.uri ? 'pause' : 'play'} size={18} color={dialogueGlassBubbleInk(glass, author)} />
+                    <DialogueGlassBubbleText glass={glass} author={author}>{voiceCopy.label}</DialogueGlassBubbleText>
+                  </PressableScale>
+                ) : (
+                  <DialogueGlassBubbleText glass={glass} author={author}>{message.text}</DialogueGlassBubbleText>
+                )}
+              </DialogueGlassBubble>
+            );
+          })}
+          {sending ? <DialogueGlassTyping glass={glass} testID="dialogue-v2-freeform-typing" /> : null}
+        </ScrollView>
+
+        <View style={[styles.composer, { backgroundColor: glass.bg }]}>
+          <View style={styles.composerRow}>
+            <Pressable
+              onPressIn={onStartVoice}
+              onPressOut={onStopVoice}
+              disabled={sending}
+              accessibilityRole="button"
+              accessibilityLabel={voiceBusy ? labels.voiceRecording : labels.voiceIdle}
+              accessibilityState={{ disabled: sending, selected: voiceBusy }}
+              testID="dialogue-v2-freeform-voice-input"
+              style={[dialogueGlassRoundButtonStyle(glass, voiceStatus === 'recording'), { opacity: sending ? 0.55 : 1 }]}
+            >
+              {voiceStatus === 'starting' ? (
+                <ActivityIndicator color={glass.text} />
+              ) : (
+                <Ionicons name="mic-outline" size={24} color={voiceStatus === 'recording' ? glass.ctaInk : glass.text} />
+              )}
+            </Pressable>
+            <TextInput
+              value={draft}
+              onChangeText={onChangeDraft}
+              editable={!sending && !voiceBusy}
+              placeholder={labels.placeholder}
+              placeholderTextColor={glass.mutedText}
+              accessibilityLabel={labels.placeholder}
+              maxFontSizeMultiplier={1.4}
+              style={[dialogueGlassFieldStyle(glass), { color: glass.text, fontSize: 16 }]}
+            />
+            {voiceDraft ? (
+              <PressableScale
+                onPress={onDiscardVoice}
+                disabled={sending || voiceBusy}
+                variant="flat"
+                accessibilityRole="button"
+                accessibilityLabel={labels.discardVoice}
+                accessibilityState={{ disabled: sending || voiceBusy }}
+                style={[dialogueGlassRoundButtonStyle(glass, false), { opacity: sending || voiceBusy ? 0.55 : 1 }]}
+              >
+                <Ionicons name="trash-outline" size={20} color={glass.text} />
+              </PressableScale>
+            ) : null}
+            <PressableScale
+              onPress={onSend}
+              disabled={sending || !canSend}
+              variant="flat"
+              accessibilityRole="button"
+              accessibilityLabel={labels.send}
+              accessibilityState={{ disabled: sending || !canSend }}
+              style={dialogueGlassRoundButtonStyle(glass, !sending && canSend)}
+            >
+              <Ionicons name="arrow-up" size={24} color={!sending && canSend ? glass.ctaInk : glass.mutedText} />
+            </PressableScale>
+          </View>
+        </View>
+      </SafeAreaView>
+    </KeyboardAvoidingView>
+  );
+}
+
+const styles = StyleSheet.create({
+  fill: { flex: 1 },
+  header: { paddingHorizontal: 14, paddingTop: 2, paddingBottom: 12, flexDirection: 'row', alignItems: 'center', gap: 12 },
+  headerText: { flex: 1, minWidth: 0 },
+  title: { fontSize: 22, lineHeight: 26, fontWeight: '700', letterSpacing: -0.2 },
+  subtitle: { fontSize: 15, lineHeight: 19, marginTop: 2 },
+  scroll: { paddingHorizontal: 14, paddingBottom: 24 },
+  tip: { marginTop: 18, padding: 16, flexDirection: 'row', alignItems: 'flex-start', gap: 14 },
+  tipTile: { width: 46, height: 46, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
+  tipTitle: { fontSize: 17, lineHeight: 22, fontWeight: '700' },
+  tipText: { marginTop: 6, fontSize: 16, lineHeight: 22 },
+  voiceRow: { minHeight: 36, flexDirection: 'row', alignItems: 'center', gap: 8 },
+  composer: { paddingHorizontal: 14, paddingTop: 14, paddingBottom: 8 },
+  composerRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+});
+
+export default DialogueV2FreeformScreen;

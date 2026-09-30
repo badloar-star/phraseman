@@ -109,14 +109,15 @@ describe('AI dialog catalog scenario-feed contract', () => {
      * известен в первом кадре и из ТОГО ЖЕ источника, что у плиток каталога —
      * иначе плитка покажет открытым то, что экран закроет.
      */
-    expect(route).toContain("useFeatureAccess('ai_dialog')");
-    // Третий аргумент — владение, купленное за руны (владелец 2026-09-17).
-    // Само правило сторожа не изменилось: замок решает СИНХРОННО и из того же
-    // источника, что плитки каталога. Владение читается с ДИСКА, а не из сети,
-    // и пока оно не прочитано, экран не уводит на пейвол (`ownedIds === null`) —
-    // иначе купленный диалог на кадр выбрасывал бы человека на платный экран.
-    expect(route).toMatch(/isScenarioUnlockedForAccount\(scenario\.id, hasDialogAccess(, ownedIds)?\)/);
-    expect(route).toContain('ownedIds === null');
+    // D124 (владелец 2026-09-30): доступ — только монетный ранг, как у Dialogue V2.
+    // Правило сторожа прежнее: замок СИНХРОННЫЙ и из того же источника, что
+    // плитки каталога (ранг из кэша useMyCoinRank, без сети). Plus и владение
+    // за руны больше не читаются вовсе, а закрытый сценарий не уводит на пейвол.
+    expect(route).toContain('useMyCoinRank()');
+    expect(route).toContain('isScenarioUnlockedForAccount(scenario, coinRank)');
+    expect(route).not.toContain("= useFeatureAccess('ai_dialog')");
+    expect(route).not.toContain('getOwnedDialogIds');
+    expect(route).not.toContain("pathname: '/premium_modal'");
     expect(route).not.toContain('accessGate');
     expect(route).not.toContain('resolveDialogScenarioAccess');
     // Спиннера ожидания на этом экране больше нет — ждать нечего.

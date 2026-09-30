@@ -15,9 +15,13 @@ import {
 import { trackEvent as trackAiDialogEvent } from '../app/analytics';
 import { warmPremiumDialog } from '../app/ai_dialog_client';
 import { warmPremiumDialogStream } from '../app/ai_dialog_stream_client';
-import { isScenarioUnlockedForAccount, reachedCourseLevel } from '../app/ai_dialog_level_lock';
+import {
+  isScenarioUnlockedForAccount,
+  legacyDialogScenarioRankRequired,
+  reachedCourseLevel,
+} from '../app/ai_dialog_level_lock';
+import { useMyCoinRank } from '../hooks/use_my_coin_rank';
 import { getCompletedDialogIds } from '../app/dialogs_progress';
-import { getOwnedDialogIds } from '../app/ai_dialog_ownership';
 import { DebugLogger } from '../app/debug-logger';
 import { dialogueScenarioPresentation } from '../app/dialogue_scenario_presentation';
 import {
@@ -25,7 +29,6 @@ import {
   dialogScenarioGroupLabel,
   getChallengeDialogScenarios,
   getScenariosByCategory,
-  scenarioPriceRunes,
   type DialogScenario,
   type DialogScenarioCategory,
 } from '../app/ai_dialog_scenarios';
@@ -106,27 +109,18 @@ interface DialogsTabContentProps {
 }
 
 /**
- * Подпись закрытого сценария — ЦЕНА В РУНАХ (владелец 2026-09-17, вариант Б
- * макета: «цена строкой под названием»).
+ * Подпись закрытого сценария — нужный РАНГ (D124, владелец 2026-09-30).
  *
- * зачем цена, а не «Входит в Plus»: руны дают ДОСТУП, Plus даёт ОБЪЁМ реплик.
- * Пока в списке висело «Входит в Plus», копить руны было незачем и не на что —
- * стоков у валюты фактически не было.
- *
- * зачем БЕЗ слова «навсегда» (прямое указание владельца): доступ бывает двух
- * видов — купленный за руны (неотчуждаемый) и открытый по Plus (исчезает
- * вместе с подпиской). «Навсегда» врало бы про второй.
- *
- * Цена берётся из scenarioPriceRunes — единственного источника, того же, из
- * которого списывает покупка. Разойдись они, в списке стояла бы одна цифра,
- * а списалась бы другая.
+ * зачем: доступ решает только монетный ранг, как у Dialogue V2. Прежние подписи
+ * «ᚱ цена» и «Входит в Plus» врали бы: ни руны, ни Plus сценарий больше не
+ * открывают. Текст тот же, что на брифинге Dialogue V2.
  */
 function dialogLockedLabel(scenario: DialogScenario, lang: Lang): string {
-  const price = scenarioPriceRunes(scenario);
-  if (price > 0) return `ᚱ ${price.toLocaleString('ru-RU').replace(/ /g, ' ')}`;
+  const rank = legacyDialogScenarioRankRequired(scenario.cefr) ?? 1;
   return triLang(lang, {
-    ru: 'Входит в Plus', uk: 'Входить у Plus', en: 'Included in Plus', es: 'Incluido en Plus', 'pt-BR': 'Incluído no Plus',
-    vi: 'Có trong Plus', id: 'Termasuk Plus', tr: 'Plus’a dahil', pl: 'Dostępne w Plus',
+    ru: `Откроется на ранге ${rank}`, uk: `Відкриється на ранзі ${rank}`, en: `Unlocks at rank ${rank}`,
+    es: `Se desbloquea en el rango ${rank}`, 'pt-BR': `Desbloqueia no nível ${rank}`, vi: `Mở ở hạng ${rank}`,
+    id: `Terbuka di peringkat ${rank}`, tr: `${rank}. rütbede açılır`, pl: `Odblokuje się na randze ${rank}`,
   });
 }
 
@@ -191,10 +185,9 @@ function DialogsTabContentBody({
   // Завершённые сценарии (локальный прогресс) — для отметки «Пройдено»
   // и счётчиков X/N в мирах.
   const [completedIds, setCompletedIds] = useState<Set<string>>(() => new Set());
-  // Сценарии, купленные за руны (владелец 2026-09-17: руны покупают ЯЗЫК).
-  // Локальное чтение, 0 чтений Firestore: владение живёт на телефоне, облако
-  // лишь догоняет его фоном (см. app/ai_dialog_ownership.ts).
-  const [ownedIds, setOwnedIds] = useState<Set<string>>(() => new Set());
+  // D124: доступ к сценарию решает только монетный ранг (как у Dialogue V2);
+  // покупки за руны и Plus больше не учитываются. Ранг — из кэша, без сети.
+  const coinRank = useMyCoinRank();
   // Раскрытый мир. При входе на экран все разделы свёрнуты — раскрытие только
   // ручное, по тапу (эталонный паттерн разворота карточки).
   const [openWorld, setOpenWorld] = useState<WorldKey | null>(null);
@@ -218,17 +211,9 @@ function DialogsTabContentBody({
     }
     completedDirtyRef.current = false;
     const generation = ++completedGenerationRef.current;
-    // зачем ВМЕСТЕ с прогрессом: покупка диалога за руны шлёт то же событие
-    // `dialogs_progress_changed`, поэтому купленный сценарий обязан открыться
-    // в списке в том же обновлении — иначе человек заплатил, а плитка ещё
-    // висит с замком (правило Optimistic UI).
-    void Promise.all([
-      getCompletedDialogIds(studyTarget),
-      getOwnedDialogIds(studyTarget, captureAccountGeneration().stableId ?? ''),
-    ]).then(([ids, owned]) => {
+    void getCompletedDialogIds(studyTarget).then((ids) => {
       if (!activeRef.current || generation !== completedGenerationRef.current) return;
       setCompletedIds(ids);
-      setOwnedIds(owned);
     }).catch((error: unknown) => {
       // Немой catch запрещён: без лога «плитка висит с замком после покупки»
       // выглядело бы как баг доступа, а не как сбой чтения хранилища.
@@ -366,35 +351,22 @@ function DialogsTabContentBody({
       }
       // Тап и статус плитки обязаны спрашивать ОДНО правило, иначе плитка
       // покажет «открыто», а тап уведёт на пейвол (или наоборот).
-      const unlocked = isScenarioUnlockedForAccount(scenario.id, dialogAccess, ownedIds);
-      /**
-       * У сценария есть ЦЕНА В РУНАХ — это не тупик, а предложение купить
-       * (владелец 2026-09-17, экраны 2-3 макета docs/design/runes/MAKET.html).
-       *
-       * зачем ветка ДО пейвола: найдено на живом эмуляторе 17.09 — в списке
-       * цена «ᚱ 5 000» показывалась, а тап уводил на пейвол Plus, то есть
-       * купить диалог за руны было НЕВОЗМОЖНО, экран покупки недостижим.
-       * Пейвол здесь ещё и врал: доступ продаётся за руны, а не только за Plus.
-       */
-      if (!unlocked && scenarioPriceRunes(scenario) > 0) {
-        console.log(`[RUNES-BUY] catalog:offer scenario=${scenario.id} price=${scenarioPriceRunes(scenario)}`); // guard-ok: ветка решения обязана логироваться и в релизе
-        void openScenarioDestination(scenario, forceBriefing);
-        return;
-      }
+      const unlocked = isScenarioUnlockedForAccount(scenario, coinRank);
       if (!unlocked) {
+        // D124: Plus ранг не заменяет — пейвол врал бы; называем нужный ранг.
+        console.log(`[DIALOG-GATE] catalog:rank_required scenario=${scenario.id} rank=${String(coinRank)}`); // guard-ok: ранний выход обязан логироваться
         void trackAiDialogEvent('ai_dialog_locked_scenario_tapped', {
           scenarioId: scenario.id,
           cefr: scenario.cefr,
           reachedLevel,
-          reason: 'plus_only_scenario',
+          reason: 'rank_required',
         });
-        void trackAiDialogEvent('paywall_shown', { context: 'dialog_locked_level', source: 'dialogs_catalogue' });
-        router.push({ pathname: '/premium_modal', params: { context: 'dialog_locked_level', source: 'dialogs_catalogue' } } as never);
+        showGlassAlert(dialogLockedLabel(scenario, lang));
         return;
       }
       void openScenarioDestination(scenario, forceBriefing);
     },
-    [accessResolved, aiDialogGateOpen, dialogAccess, ownedIds, dialogsOpenThisMonth, frenchGateCopy, showGlassAlert, openScenarioDestination, reachedLevel, router],
+    [accessResolved, aiDialogGateOpen, coinRank, dialogsOpenThisMonth, frenchGateCopy, lang, showGlassAlert, openScenarioDestination, reachedLevel, router],
   );
 
   const openChallengeScenario = useCallback(
@@ -422,19 +394,19 @@ function DialogsTabContentBody({
        * Алерт заменён пейволом: он называет настоящую причину и даёт выход,
        * а не просто закрывается кнопкой «Закрыть».
        */
-      const unlocked = isScenarioUnlockedForAccount(scenario.id, dialogAccess);
+      const unlocked = isScenarioUnlockedForAccount(scenario, coinRank);
       if (!unlocked) {
+        console.log(`[DIALOG-GATE] catalog:rank_required scenario=${scenario.id} rank=${String(coinRank)}`); // guard-ok: ранний выход обязан логироваться
         void trackAiDialogEvent('ai_dialog_locked_scenario_tapped', {
           scenarioId: scenario.id,
-          reason: 'plus_only_scenario',
+          reason: 'rank_required',
         });
-        void trackAiDialogEvent('paywall_shown', { context: 'dialog_locked_level', source: 'dialogs_catalogue' });
-        router.push({ pathname: '/premium_modal', params: { context: 'dialog_locked_level', source: 'dialogs_catalogue' } } as never);
+        showGlassAlert(dialogLockedLabel(scenario, lang));
         return;
       }
       void openScenarioDestination(scenario, forceBriefing);
     },
-    [accessResolved, aiDialogGateOpen, dialogAccess, dialogsOpenThisMonth, frenchGateCopy, showGlassAlert, openScenarioDestination, router],
+    [accessResolved, aiDialogGateOpen, coinRank, dialogsOpenThisMonth, frenchGateCopy, lang, showGlassAlert, openScenarioDestination, router],
   );
 
   // ── View-model каталога ────────────────────────────────────────────────────
@@ -450,7 +422,7 @@ function DialogsTabContentBody({
           // открыты ровно три сценария, остальные за Plus. Прежний текст
           // «Откроется на уровне A2» стал бы ложью: никакой прогресс их уже
           // не откроет.
-          const unlocked = isScenarioUnlockedForAccount(scenario.id, dialogAccess, ownedIds);
+          const unlocked = isScenarioUnlockedForAccount(scenario, coinRank);
           const done = completedIds.has(scenario.id);
           const status: ScenarioStatus = !dialogsOpenThisMonth || !unlocked ? 'locked' : done ? 'done' : 'available';
           return {
@@ -466,7 +438,7 @@ function DialogsTabContentBody({
         const doneCount = scenarios.filter((s) => s.status === 'done').length;
         return { group, scene, scenarios, doneCount };
       }),
-    [dialogAccess, dialogsOpenThisMonth, completedIds, ownedIds, lang, openCourseScenario],
+    [coinRank, dialogsOpenThisMonth, completedIds, lang, openCourseScenario],
   );
 
   const challengeVMs = useMemo<ScenarioVM[]>(
@@ -475,7 +447,7 @@ function DialogsTabContentBody({
         const requiredLevel = scenario.requiredAccountLevel ?? 1;
         // Вызовы теперь входят в Plus (владелец 2026-09-14) — уровень аккаунта
         // их больше не открывает. Тап считает ровно это же правило.
-        const unlocked = isScenarioUnlockedForAccount(scenario.id, dialogAccess, ownedIds);
+        const unlocked = isScenarioUnlockedForAccount(scenario, coinRank);
         const done = completedIds.has(scenario.id);
         const status: ScenarioStatus = !dialogsOpenThisMonth || !unlocked ? 'locked' : done ? 'done' : 'available';
         return {
@@ -498,7 +470,7 @@ function DialogsTabContentBody({
           onLongPress: () => openChallengeScenario(scenario, true),
         };
       }),
-    [dialogAccess, completedIds, ownedIds, dialogsOpenThisMonth, lang, openChallengeScenario],
+    [coinRank, completedIds, dialogsOpenThisMonth, lang, openChallengeScenario],
   );
 
   // зачем: владелец просил заходить в «Диалоги» с полностью свёрнутыми

@@ -80,9 +80,12 @@ describe('ИИ-диалог — месячный лимит обычного а�
     expect(session).toContain('{voiceInputGate.locked && (');
   });
 
-  test('каталог закрывает сценарии только при исчерпанном месяце, уровни выше — за Plus', () => {
+  // D124 (владелец 2026-09-30): закрытый сценарий открывает только ранг — тап
+  // называет нужный ранг, а не ведёт на пейвол Plus (Plus ранг не заменяет).
+  test('каталог закрывает сценарии при исчерпанном месяце или по рангу (D124)', () => {
     expect(catalogue.match(/!dialogsOpenThisMonth \|\| !unlocked \? 'locked'/g)).toHaveLength(2);
-    expect(catalogue).toContain("context: 'dialog_locked_level'");
+    expect(catalogue).not.toContain("context: 'dialog_locked_level', source: 'dialogs_catalogue'");
+    expect(catalogue.match(/showGlassAlert\(dialogLockedLabel\(scenario, lang\)\)/g)).toHaveLength(2);
     expect(catalogue).toContain("params: { context: 'dialog_limit', source: 'dialogs_catalogue' }");
   });
 

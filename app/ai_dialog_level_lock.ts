@@ -1,9 +1,10 @@
 /**
- * Замок сценариев ИИ-диалогов по уровню (CEFR).
+ * Замок сценариев ИИ-диалогов старого каталога.
  *
- * Идея (запрос пользователя): сценарии открываются по мере прохождения курса —
- * как и уроки. Сценарий уровня A2 доступен, если ученик ДОШЁЛ до A2 в курсе
- * ИЛИ у него есть Premium (Premium открывает все уровни сразу).
+ * D124 (владелец 2026-09-30): доступ — только монетный ранг для всех, как у
+ * Dialogue V2. Plus и покупки за руны сценарии больше не открывают.
+ * reachedCourseLevel/isScenarioLevelUnlocked ниже остались для группировки и
+ * аналитики каталога, доступ они не решают.
  *
  * Чистый модуль без React/Firestore — логика тривиально тестируется.
  * Источник прогресса (массив открытых уроков) передаётся снаружи: на клиенте —
@@ -15,8 +16,11 @@ import {
   getCourseLevelIndex,
   type CourseLevel,
 } from './course_levels';
-import { isFeaturePremiumGated } from './feature_gates';
-import { getVerifiedPremiumAccessStatus } from './premium_guard';
+import { DIALOGUE_V2_CEFR_SEQUENCE } from '../shared/dialogue_v2_contract';
+import {
+  decideDialogueV2ScenarioAccess,
+  type DialogueV2ScenarioAccess,
+} from '../shared/dialogue_v2_access_contract';
 
 /**
  * Достигнутый уровень курса = уровень самого старшего открытого урока.
@@ -51,72 +55,46 @@ export function isScenarioLevelUnlocked(
 }
 
 /**
- * Сценарии, открытые обычному аккаунту. Ровно три, по прямому указанию
- * владельца (2026-09-14): «диалоги открой для фри юзера только закажи кофе,
- * в продуктовом и магазин одежды. Все остальные это плюс или уровень.
- * (те что уровень тоже плюс нужен)».
+ * Порог ранга для сценария старого каталога.
  *
- * зачем СПИСОК ID, а не уровень курса: прежнее правило открывало сценарий, как
- * только человек доходил до его уровня (`isScenarioLevelUnlocked`), поэтому
- * каталог постепенно раздавался бесплатно сам собой. Теперь граница жёсткая и
- * не зависит ни от прогресса курса, ни от уровня аккаунта — их замки тоже
- * перекрыты Plus, как и просил владелец второй фразой.
+ * зачем (D124, владелец 2026-09-30): «Доступ к диалогам — только монетный ранг
+ * для всех: Plus не открывает сценарии без ранга, старые покупки диалогов за
+ * руны не учитываются. Там новые диалоги». У старых сценариев нет своего ранга,
+ * поэтому берём ранг ПЕРВОГО сценария того же уровня в каталоге Dialogue V2
+ * (DIALOGUE_V2_CEFR_SEQUENCE: A1 → 1, A2 → 6, B1 → 11, B2 → 14). Так старый
+ * список и новые диалоги открываются одной лестницей рангов, а не двумя.
  */
-export const FREE_DIALOG_SCENARIO_IDS: readonly string[] = Object.freeze([
-  'coffee',
-  'grocery',
-  'clothes_shop',
-]);
-
-/**
- * Открыт ли сценарий.
- *
- * ДВА ВИДА ДОСТУПА (владелец, 2026-09-17, макет экономики рун):
- *  • купленный за руны — неотчуждаемый, переживает окончание подписки;
- *  • открытый по Plus — временный, исчезает вместе с подпиской.
- * Именно поэтому в списке НЕТ слова «навсегда»: оно врало бы про второй вид.
- *
- * Роли валют после перехода на руны: руны дают ДОСТУП (какие диалоги
- * существуют для человека), Plus даёт ОБЪЁМ (сколько реплик в день). До этого
- * Plus и руны продавали бы одно и то же, и руны всегда проигрывали бы деньгам.
- *
- * Единственное правило доступа к сценарию: оба места в каталоге (тап по плитке
- * и расчёт её статуса) обязаны спрашивать именно эту функцию, иначе плитка
- * покажет одно, а тап сделает другое.
- */
-export function isScenarioUnlockedForAccount(
-  scenarioId: string,
-  hasPremiumAccess: boolean,
-  ownedScenarioIds?: ReadonlySet<string> | null,
-): boolean {
-  // Куплено за руны — открыто всегда, независимо от подписки.
-  if (ownedScenarioIds?.has(scenarioId)) return true;
-  if (hasPremiumAccess) return true;
-  return FREE_DIALOG_SCENARIO_IDS.includes(scenarioId);
+export function legacyDialogScenarioRankRequired(cefr: string): number | null {
+  const index = (DIALOGUE_V2_CEFR_SEQUENCE as readonly string[]).indexOf(cefr);
+  return index >= 0 ? index + 1 : null;
 }
 
 /**
- * Тот же замок, но для экранов БЕЗ React-контекста премиума (брифинг диалога).
+ * Открыт ли сценарий старого каталога — единственное правило для плитки,
+ * тапа и прямого роута брифинга (иначе плитка покажет одно, а тап сделает другое).
  *
- * зачем (аудит 2026-09-14): каталог спрашивал `useFeatureAccess('ai_dialog')`,
- * а экран брифинга не спрашивал ничего — и прямой роут открывал любой платный
- * сценарий. Здесь та же связка «фича за замком? + есть ли премиум?», что и в
- * хуке, но в асинхронной форме, пригодной для эффекта экрана.
- *
- * Правило доступа при этом НЕ дублируется: решение по-прежнему принимает
- * `isScenarioUnlockedForAccount`.
+ * D124: решает ТОЛЬКО монетный ранг — то же правило, что у Dialogue V2
+ * (decideDialogueV2ScenarioAccess). Подписка и владение за руны сюда больше
+ * не передаются вовсе, чтобы их нельзя было случайно снова сделать ключом.
+ * Месячную квоту реплик Free (D111) это не трогает — она живёт отдельно.
  */
-export async function resolveDialogScenarioAccess(
-  scenarioId: string,
-  ownedScenarioIds?: ReadonlySet<string> | null,
-): Promise<boolean> {
-  // Куплено за руны — решаем сразу, не спрашивая ни «Пульт», ни премиум:
-  // оплаченный доступ не может зависеть от состояния подписки.
-  if (ownedScenarioIds?.has(scenarioId)) return true;
-  // Фича снята с замка админом в «Пульте» → открыто всем, премиум не спрашиваем.
-  if (!isFeaturePremiumGated('ai_dialog')) return true;
-  const hasPremiumAccess = await getVerifiedPremiumAccessStatus();
-  return isScenarioUnlockedForAccount(scenarioId, hasPremiumAccess, ownedScenarioIds);
+export function isScenarioUnlockedForAccount(
+  scenario: Readonly<{ id: string; cefr: string }>,
+  coinRank: unknown,
+): boolean {
+  return dialogScenarioRankAccess(scenario, coinRank).status === 'unlocked';
+}
+
+export function dialogScenarioRankAccess(
+  scenario: Readonly<{ id: string; cefr: string }>,
+  coinRank: unknown,
+): DialogueV2ScenarioAccess {
+  return decideDialogueV2ScenarioAccess({
+    // Контракт сам отбрасывает не-целые и ранги < 1; таблицу монет (с картинками)
+    // сюда не тянем — модуль остаётся чистым и лёгким.
+    achievedRank: coinRank,
+    rankRequired: legacyDialogScenarioRankRequired(scenario.cefr),
+  });
 }
 
 /**

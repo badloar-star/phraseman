@@ -1,13 +1,12 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import AiDialogBriefingScreen from '../components/AiDialogBriefingScreen';
 import DialogueTargetBoundary from '../components/dialogs/DialogueTargetBoundary';
 import { useLang } from '../components/LangContext';
-import { useFeatureAccess } from '../components/PremiumContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
@@ -17,11 +16,10 @@ import { markAiDialogIntroSeen } from './ai_dialog_intro_seen';
 import { warmPremiumDialog } from './ai_dialog_client';
 import { warmPremiumDialogStream } from './ai_dialog_stream_client';
 import { trackEvent as trackAiDialogEvent } from './analytics';
-import { isScenarioUnlockedForAccount } from './ai_dialog_level_lock';
+import { dialogScenarioRankAccess, isScenarioUnlockedForAccount } from './ai_dialog_level_lock';
+import { useMyCoinRank } from '../hooks/use_my_coin_rank';
 import { getScenarioById } from './ai_dialog_scenarios';
 import { dialogueScenarioPresentation } from './dialogue_scenario_presentation';
-import { getOwnedDialogIds } from './ai_dialog_ownership';
-import { captureAccountGeneration } from './account_generation';
 import {
   aiDialogContentAvailableForTarget,
   aiDialogTargetGateCopy,
@@ -198,75 +196,29 @@ function AiDialogBriefingBody() {
    * Инвариант аудита 2026-09-14 сохранён: прямой роут по id платный сценарий
    * не открывает. Реальную оплату всё равно проверяет сервер на первой реплике.
    */
-  // Тот же источник правды, что и у плиток каталога (DialogsTabContent):
-  // премиум + «Пульт» + бонус дня. Синхронно, из контекста, без сети.
-  const hasDialogAccess = useFeatureAccess('ai_dialog');
-
   /**
-   * Владение, купленное за руны (владелец 2026-09-17, экран 3 макета).
+   * D124 (владелец 2026-09-30): доступ — только монетный ранг для всех, то же
+   * правило, что у Dialogue V2. Plus и купленное за руны сценарий больше НЕ
+   * открывают, поэтому ни подписка, ни владение здесь не читаются.
    *
-   * ⛔ ПРАВИЛО ЭТОГО ФАЙЛА СОХРАНЕНО: экран по-прежнему НЕ ждёт. Владение
-   * читается с диска (AsyncStorage, не сеть), и пока оно не прочитано,
-   * `ownedLoaded === false` — в этот момент мы НЕ уводим на пейвол. Иначе
-   * купленный диалог на один кадр выбрасывал бы человека на платный экран:
-   * ровно тот класс бага, из-за которого замок здесь сделали синхронным
-   * («молчание — не отказ»).
+   * Замок по-прежнему СИНХРОННЫЙ: ранг приходит из кэша в памяти/диска через
+   * тот же хук, что у каталога V2 (useMyCoinRank), без сети. Пока ранг не
+   * прочитан (null), сценарий считается закрытым — как в V2 — но на пейвол мы
+   * НЕ уводим: Plus его всё равно не откроет, а экран честно называет ранг.
    */
-  const [ownedIds, setOwnedIds] = useState<ReadonlySet<string> | null>(null);
-  useEffect(() => {
-    let cancelled = false;
-    // зачем эта трасса (владелец 2026-09-17, «ВСЁ ВЫЛЕТАЕТ ПРИ ПОПЫТКЕ
-    // ОТКРЫТЬ»): экран правят две сессии сразу, и краш не оставлял JS-трейса в
-    // бандлере. Печатаем ВХОД экрана целиком — что за сценарий, цена, владение,
-    // премиум — чтобы по логу было видно, на каком звене рвётся, а не гадать.
-    let stableId = '';
-    try {
-      stableId = captureAccountGeneration().stableId ?? '';
-    } catch (error: unknown) {
-      // Немой catch запрещён. Без личности владение не прочитать — считаем, что
-      // купленного нет, но экран НЕ роняем и не закрываем.
-      console.warn('[RUNES-BUY] briefing:generation_failed', // guard-ok: ранний выход обязан логироваться и в релизе
-        error instanceof Error ? `${error.name}: ${error.message}` : String(error));
-      setOwnedIds(new Set());
-      return () => { cancelled = true; };
-    }
-    console.log('[RUNES-BUY] briefing:in', JSON.stringify({ // guard-ok: временная трасса краша (владелец 2026-09-17), снять после починки
-      scenarioId: scenario?.id ?? null,
-      hasDialogAccess,
-      stableId: stableId ? stableId.slice(0, 8) : null,
-    }));
-    void getOwnedDialogIds(studyTarget, stableId).then((ids) => {
-      if (!cancelled) setOwnedIds(ids);
-    }).catch((error: unknown) => {
-      // Немой catch запрещён: без лога «купленный диалог просит оплату снова»
-      // выглядело бы как потеря покупки, а не как сбой чтения хранилища.
-      console.warn('[RUNES-BUY] briefing:owned_read_failed', // guard-ok: ранний выход обязан логироваться и в релизе
-        error instanceof Error ? `${error.name}: ${error.message}` : String(error));
-      if (!cancelled) setOwnedIds(new Set());
-    });
-    return () => { cancelled = true; };
-  }, [hasDialogAccess, scenario, studyTarget]);
+  const coinRank = useMyCoinRank();
+  const rankAccess = scenario ? dialogScenarioRankAccess(scenario, coinRank) : null;
+  const scenarioUnlocked = !scenario || isScenarioUnlockedForAccount(scenario, coinRank);
+  const rankRequired = rankAccess?.status === 'locked_by_rank' ? rankAccess.rankRequired : null;
 
-  const ownsScenario = !!scenario && !!ownedIds?.has(scenario.id);
-  const scenarioUnlocked = !scenario
-    // Владение ещё не прочитано — молчание не отказ, ждём и не гоним на пейвол.
-    || ownedIds === null
-    || ownsScenario
-    || isScenarioUnlockedForAccount(scenario.id, hasDialogAccess, ownedIds);
-
-  // Отказ — единственный ранний выход этого экрана, поэтому логируем его всегда
-  // и уводим на пейвол. Навигация в эффекте (во время рендера роутер трогать
-  // нельзя), но экран при этом НЕ ждёт: вердикт уже известен, ниже сразу рисуем.
+  // Отказ — единственный ранний выход этого экрана, поэтому логируем его всегда.
   useEffect(() => {
     if (!scenario || scenarioUnlocked) return;
-    console.log(`[DIALOG-GATE] briefing:access denied scenario=${scenario.id} cefr=${scenario.cefr} premium=${hasDialogAccess} → пейвол`); // guard-ok: ранний выход обязан логироваться и в релизе (правило «сперва логи»)
+    console.log(`[DIALOG-GATE] briefing:access denied scenario=${scenario.id} cefr=${scenario.cefr} rank=${String(coinRank)} rankRequired=${String(rankRequired)} → экран ранга`); // guard-ok: ранний выход обязан логироваться и в релизе (правило «сперва логи»)
     void trackAiDialogEvent('ai_dialog_locked_scenario_tapped', {
-      scenarioId: scenario.id, cefr: scenario.cefr, reason: 'direct_route_blocked',
+      scenarioId: scenario.id, cefr: scenario.cefr, reason: 'rank_required',
     });
-    void trackAiDialogEvent('paywall_shown', { context: 'dialog_locked_level', source: 'ai_dialog_briefing_direct' });
-    markNextNavigationAsReplace();
-    router.replace({ pathname: '/premium_modal', params: { context: 'dialog_locked_level', source: 'ai_dialog_briefing_direct' } } as never);
-  }, [router, scenario, scenarioUnlocked, hasDialogAccess]);
+  }, [coinRank, rankRequired, scenario, scenarioUnlocked]);
 
   /**
    * Будим спящий инстанс, пока человек читает задание.
@@ -306,35 +258,34 @@ function AiDialogBriefingBody() {
   if (!scenario) return <MissingDialogueScreen />;
 
   if (!scenarioUnlocked) {
-    // Сценарий закрыт: эффект выше уже отправил на пейвол. Экран-задание в этот
-    // кадр рисовать нельзя (мигнуло бы задание платного сценария с кнопкой
-    // «Начать»), но и ЖДАТЬ здесь больше нечего — вердикт синхронный. Поэтому
-    // не спиннер «Готовим разговор…», а понятная причина и выход: если переход
-    // почему-то не случится, человек не останется в тупике.
+    // D124: сценарий закрыт рангом. Экран-задание рисовать нельзя (мигнула бы
+    // кнопка «Начать»), пейвол врал бы (Plus ранг не заменяет) — поэтому честная
+    // причина с тем же текстом, что у Dialogue V2, и выход назад.
+    const rankLabel = rankRequired ?? 1;
     return (
       <RecoveryScreen
         icon="lock-closed-outline"
         title={triLang(lang, {
-          ru: 'Этот диалог в Plus',
-          uk: 'Цей діалог у Plus',
-          en: 'This dialogue is in Plus',
-          es: 'Este diálogo está en Plus',
-          'pt-BR': 'Este diálogo está no Plus',
-          vi: 'Hội thoại này thuộc Plus',
-          id: 'Dialog ini ada di Plus',
-          tr: 'Bu diyalog Plus içinde',
-          pl: 'Ten dialog jest w Plus',
+          ru: 'Этот диалог пока закрыт',
+          uk: 'Цей діалог поки закритий',
+          en: 'This dialogue is locked for now',
+          es: 'Este diálogo aún está bloqueado',
+          'pt-BR': 'Este diálogo ainda está bloqueado',
+          vi: 'Hội thoại này đang khóa',
+          id: 'Dialog ini masih terkunci',
+          tr: 'Bu diyalog şimdilik kilitli',
+          pl: 'Ten dialog jest na razie zablokowany',
         })}
         body={triLang(lang, {
-          ru: 'Откройте Plus, чтобы говорить во всех ситуациях. Три диалога доступны всегда.',
-          uk: 'Відкрийте Plus, щоб говорити в усіх ситуаціях. Три діалоги доступні завжди.',
-          en: 'Get Plus to talk in every situation. Three dialogues are always open.',
-          es: 'Consigue Plus para hablar en todas las situaciones. Tres diálogos están siempre abiertos.',
-          'pt-BR': 'Assine o Plus para falar em todas as situações. Três diálogos ficam sempre abertos.',
-          vi: 'Mở Plus để trò chuyện trong mọi tình huống. Ba hội thoại luôn mở.',
-          id: 'Buka Plus untuk berbicara di semua situasi. Tiga dialog selalu terbuka.',
-          tr: 'Her durumda konuşmak için Plus al. Üç diyalog her zaman açık.',
-          pl: 'Włącz Plus, aby rozmawiać w każdej sytuacji. Trzy dialogi są zawsze otwarte.',
+          ru: `Откроется на ранге ${rankLabel}`,
+          uk: `Відкриється на ранзі ${rankLabel}`,
+          en: `Unlocks at rank ${rankLabel}`,
+          es: `Se desbloquea en el rango ${rankLabel}`,
+          'pt-BR': `Desbloqueia no nível ${rankLabel}`,
+          vi: `Mở ở hạng ${rankLabel}`,
+          id: `Terbuka di peringkat ${rankLabel}`,
+          tr: `${rankLabel}. rütbede açılır`,
+          pl: `Odblokuje się na randze ${rankLabel}`,
         })}
         action={triLang(lang, {
           ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar',

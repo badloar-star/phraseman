@@ -25,8 +25,8 @@ jest.mock('react-native', () => ({
 }));
 
 import {
-  FREE_DIALOG_SCENARIO_IDS,
   isScenarioUnlockedForAccount,
+  legacyDialogScenarioRankRequired,
 } from '../app/ai_dialog_level_lock';
 import { DIALOG_SCENARIOS } from '../app/ai_dialog_scenarios';
 import { REVENUE_DAILY_LIMITS } from '../app/revenue_daily_limits';
@@ -79,40 +79,39 @@ describe('индикатор точек считает остаток', () => {
   });
 });
 
-describe('диалоги: ровно три сценария бесплатно', () => {
-  it('открыты кофе, продуктовый и магазин одежды', () => {
-    expect([...FREE_DIALOG_SCENARIO_IDS].sort()).toEqual(['clothes_shop', 'coffee', 'grocery']);
+/**
+ * D124 (владелец 2026-09-30): «Доступ к диалогам — только монетный ранг для
+ * всех: Plus не открывает сценарии без ранга, старые покупки диалогов за руны
+ * не учитываются». До D124 здесь сторожились три бесплатных сценария и
+ * «Plus открывает всё» — правило отменено владельцем, сторож переписан.
+ */
+describe('диалоги: доступ решает только монетный ранг (D124)', () => {
+  it('ранг старого сценария = ранг первого сценария того же уровня в Dialogue V2', () => {
+    expect(legacyDialogScenarioRankRequired('A1')).toBe(1);
+    expect(legacyDialogScenarioRankRequired('A2')).toBe(6);
+    expect(legacyDialogScenarioRankRequired('B1')).toBe(11);
+    expect(legacyDialogScenarioRankRequired('B2')).toBe(14);
   });
 
-  it('все три id существуют в каталоге', () => {
-    for (const id of FREE_DIALOG_SCENARIO_IDS) {
-      expect(DIALOG_SCENARIOS.find((scenario) => scenario.id === id)).toBeDefined();
-    }
-  });
-
-  it('обычный аккаунт видит открытыми только их', () => {
-    expect(isScenarioUnlockedForAccount('coffee', false)).toBe(true);
-    expect(isScenarioUnlockedForAccount('grocery', false)).toBe(true);
-    expect(isScenarioUnlockedForAccount('clothes_shop', false)).toBe(true);
-    expect(isScenarioUnlockedForAccount('pharmacy', false)).toBe(false);
-    expect(isScenarioUnlockedForAccount('restaurant', false)).toBe(false);
-  });
-
-  it('уровень курса больше НЕ открывает сценарии — только Plus', () => {
-    // Класс бага: каталог раздавался бесплатно сам собой по мере прохождения.
-    const everythingElse = DIALOG_SCENARIOS
-      .filter((scenario) => !FREE_DIALOG_SCENARIO_IDS.includes(scenario.id))
-      .map((scenario) => scenario.id);
-    expect(everythingElse.length).toBeGreaterThan(0);
-    for (const id of everythingElse) {
-      expect(isScenarioUnlockedForAccount(id, false)).toBe(false);
-    }
-  });
-
-  it('Plus открывает всё', () => {
+  it('без ранга (0 или неизвестен) не открыт ни один сценарий — Plus не участвует', () => {
     for (const scenario of DIALOG_SCENARIOS) {
-      expect(isScenarioUnlockedForAccount(scenario.id, true)).toBe(true);
+      expect(isScenarioUnlockedForAccount(scenario, 0)).toBe(false);
+      expect(isScenarioUnlockedForAccount(scenario, null)).toBe(false);
     }
+  });
+
+  it('ранг открывает сценарии своего уровня и ниже, выше — нет', () => {
+    const a1 = DIALOG_SCENARIOS.find((scenario) => scenario.cefr === 'A1')!;
+    const b2 = DIALOG_SCENARIOS.find((scenario) => scenario.cefr === 'B2')!;
+    expect(isScenarioUnlockedForAccount(a1, 1)).toBe(true);
+    expect(isScenarioUnlockedForAccount(b2, 13)).toBe(false);
+    expect(isScenarioUnlockedForAccount(b2, 14)).toBe(true);
+  });
+
+  it('старое правило Plus/руны не вернулось в модуль доступа', () => {
+    const lock = read('app', 'ai_dialog_level_lock.ts');
+    expect(lock).not.toContain('FREE_DIALOG_SCENARIO_IDS');
+    expect(lock).not.toContain('ownedScenarioIds');
   });
 });
 
@@ -136,22 +135,17 @@ describe('диалоги: ровно три сценария бесплатно'
  * в «горле» экрана, а не на кнопке. Он по-прежнему сторожится для диалогов
  * ниже и для энергии Арены выше.
  */
-describe('обход платных диалогов прямым роутом закрыт', () => {
+describe('обход закрытых диалогов прямым роутом закрыт', () => {
   const briefing = read('app', 'ai_dialog_briefing.tsx');
 
-  it('экран брифинга сам проверяет доступ к сценарию', () => {
-    expect(briefing).toContain('resolveDialogScenarioAccess');
-    expect(briefing).toContain("source: 'ai_dialog_briefing_direct'");
+  it('экран брифинга сам проверяет доступ к сценарию по рангу (D124)', () => {
+    expect(briefing).toContain('isScenarioUnlockedForAccount(scenario, coinRank)');
+    expect(briefing).toContain('useMyCoinRank()');
   });
 
-  it('автопереход в сессию ждёт вердикта замка', () => {
-    // Иначе повторный вход (интро просмотрено) уводил бы в платный сценарий
-    // мимо проверки — самая тихая форма этой дыры.
-    expect(briefing).toMatch(/if \(accessGate !== 'ok'\) return;/);
-  });
-
-  it('ошибка чтения премиума не отнимает доступ', () => {
-    expect(briefing).toMatch(/access failed → пускаем/);
+  it('закрытый рангом сценарий не уводит на пейвол — Plus ранг не заменяет', () => {
+    expect(briefing).not.toContain("pathname: '/premium_modal'");
+    expect(briefing).toMatch(/briefing:access denied/);
   });
 });
 

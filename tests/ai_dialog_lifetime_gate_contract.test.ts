@@ -54,12 +54,15 @@ describe('ai dialog daily-limit gate contract', () => {
   // и переменную plusLocked сторожили ОТМЕНЁННУЮ форму подачи, поэтому сняты.
   // Суть гейта (Plus обязателен, закрытая карточка помечается замком) осталась
   // и проверяется ниже — её ослаблять нельзя.
-  it('Dialogs catalogue marks every inaccessible scenario as locked behind Plus', () => {
+  // D124 (владелец 2026-09-30): сценарий закрывает монетный ранг, а не Plus.
+  // Исчерпанный месяц (D111) по-прежнему ведёт на пейвол; закрытый рангом
+  // сценарий называет нужный ранг — Plus его всё равно не откроет.
+  it('Dialogs catalogue marks every inaccessible scenario as locked (month or rank)', () => {
     expect(tabContent).toContain("const dialogAccess = useFeatureAccess('ai_dialog')");
     expect(tabContent).toContain("const status: ScenarioStatus = !dialogsOpenThisMonth || !unlocked ? 'locked'");
-    // Замок ведёт на пейвол, а не молча ничего не делает.
+    // Замок не молчит: месяц → пейвол, ранг → окно с нужным рангом.
     expect(tabContent).toContain("context: 'dialog_limit'");
-    expect(tabContent).toContain("context: 'dialog_locked_level'");
+    expect(tabContent).toContain('showGlassAlert(dialogLockedLabel(scenario, lang))');
     // Пожизненная бесплатная квота остаётся отменённой.
     expect(tabContent).not.toContain('getFreeDialogsLeft');
     expect(tabContent).not.toContain('freeDialogsLeft');

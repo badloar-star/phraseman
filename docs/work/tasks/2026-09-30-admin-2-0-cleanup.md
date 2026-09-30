@@ -1,7 +1,7 @@
 # Task packet: админка 2.0 — удалить из admin/v2/legacy.html всё, что 2.0 удалила
 
 Governance-ID: TG-8F126EF7AACF
-Status: In progress
+Status: Done (серверная часть и вопросы владельцу — в evidence/ADMIN_2_0_CLEANUP.md)
 Owner: сессия «программа 2.0 — админка» (FINAL_PHASE, пункт 8)
 Related epic/enabler: FINAL_PHASE.md п.8; D54, D70, D74, D78, D83, D102, D108, D110, D126, D128
 

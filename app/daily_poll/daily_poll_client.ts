@@ -97,7 +97,10 @@ async function fetchPollFromNetwork(dateKey: string): Promise<DailyPoll | null> 
 
 async function loadInternal(): Promise<DailyPollSnapshot> {
   const dateKey = getLocalDayKey();
-  const ownerId = (await getCanonicalUserId().catch(() => null)) ?? '';
+  const ownerId = (await getCanonicalUserId().catch((error: unknown) => {
+    console.warn('[DAILY-POLL] owner id unavailable', { message: error instanceof Error ? error.message : String(error) });
+    return null;
+  })) ?? '';
   const cached = await readJson<PollCacheRecord>(pollCacheKey(dateKey));
   let poll: DailyPoll | null = cached ? parseCachedPoll(cached.poll, dateKey) : null;
   const cacheFresh = Boolean(cached) && (poll !== null || Date.now() - Number(cached?.fetchedAtMs ?? 0) < NO_POLL_RECHECK_MS);

@@ -6,34 +6,43 @@ import type { YoutubePlaylistSnapshot } from '../../shared/youtube_catalog_contr
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
 import { triLang } from '../../constants/i18n';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { VideoPlayBadge } from '../video/VideoGlassKit';
 
+/** Строка плейлиста по макету `.plrow`: стопка-обложка слева, название и «N видео», шеврон; без карточки — только тонкая линия снизу. */
 export default function YoutubePlaylistRow({ playlist, onPress }: { playlist: YoutubePlaylistSnapshot; onPress: () => void }) {
   const { lang } = useLang();
-  const { theme: t } = useTheme();
+  const { liquidGlassThemeId } = useTheme();
+  const g = liquidGlassTokens(liquidGlassThemeId);
   const countLabel = triLang(lang, { ru: 'видео', uk: 'відео', en: 'videos', es: 'videos', 'pt-BR': 'vídeos', vi: 'video', id: 'video', tr: 'video', pl: 'filmów' });
   return (
-    <TouchableOpacity testID="youtube-playlist-row" accessibilityRole="button" accessibilityLabel={`${playlist.title}, ${playlist.itemCount} ${countLabel}`} onPress={onPress} activeOpacity={0.86} style={[styles.row, { backgroundColor: t.bgCard }]}>
-      <View style={styles.imageWrap}>
-        {playlist.thumbnailUrl ? <Image source={{ uri: playlist.thumbnailUrl }} style={styles.image} contentFit="cover" /> : <View style={[styles.image, styles.fallback, { backgroundColor: t.accentBg }]}><Ionicons name="albums-outline" size={25} color={t.accent} /></View>}
-        <View style={styles.stackOne} /><View style={styles.stackTwo} />
+    <TouchableOpacity testID="youtube-playlist-row" accessibilityRole="button" accessibilityLabel={`${playlist.title}, ${playlist.itemCount} ${countLabel}`} onPress={onPress} activeOpacity={0.86} style={[styles.row, { borderBottomColor: g.line }]}>
+      <View style={styles.stack}>
+        <View style={[styles.imageWrap, { backgroundColor: g.opaqueControl, borderColor: g.glassEdge }]}>
+          {playlist.thumbnailUrl
+            ? <Image accessible={false} source={{ uri: playlist.thumbnailUrl }} style={styles.image} contentFit="cover" />
+            : <Ionicons name="albums-outline" size={24} color={g.secondary} />}
+          <VideoPlayBadge small />
+        </View>
+        <View style={[styles.stackOne, { backgroundColor: g.opaqueControl }]} /><View style={[styles.stackTwo, { backgroundColor: g.opaqueCard }]} />
       </View>
       <View style={styles.body}>
-        <Text style={[styles.title, { color: t.textPrimary }]}>{playlist.title}</Text>
-        <Text style={[styles.count, { color: t.textMuted }]}>{playlist.itemCount} {countLabel}</Text>
+        <Text style={[styles.title, { color: g.text }]}>{playlist.title}</Text>
+        <Text style={[styles.count, { color: g.secondary }]}>{playlist.itemCount} {countLabel}</Text>
       </View>
-      <Ionicons name="chevron-forward" size={20} color={t.textMuted} />
+      <Ionicons name="chevron-forward" size={20} color={g.secondary} />
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
-  row: { minHeight: 92, borderRadius: 19, padding: 10, flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 10 },
-  imageWrap: { width: 112, aspectRatio: 16 / 9 },
-  image: { ...StyleSheet.absoluteFillObject, borderRadius: 13, zIndex: 3 },
-  fallback: { alignItems: 'center', justifyContent: 'center' },
-  stackOne: { position: 'absolute', left: 8, right: 8, top: -4, height: 8, borderRadius: 7, backgroundColor: 'rgba(120,120,120,0.25)', zIndex: 2 },
-  stackTwo: { position: 'absolute', left: 15, right: 15, top: -8, height: 8, borderRadius: 7, backgroundColor: 'rgba(120,120,120,0.14)', zIndex: 1 },
+  row: { minHeight: 72, paddingVertical: 10, flexDirection: 'row', alignItems: 'center', gap: 14, borderBottomWidth: 1 }, // guard-ok: тонкая разделительная линия строки, как `.plrow` макета
+  stack: { width: 128, aspectRatio: 16 / 9, marginTop: 8 },
+  imageWrap: { ...StyleSheet.absoluteFillObject, borderRadius: 12, borderWidth: 1, overflow: 'hidden', alignItems: 'center', justifyContent: 'center', zIndex: 3 }, // guard-ok: тонкая 1 px кромка кадра, как `.thumb` макета
+  image: { ...StyleSheet.absoluteFillObject },
+  stackOne: { position: 'absolute', left: 8, right: 8, top: -6, height: 10, borderTopLeftRadius: 10, borderTopRightRadius: 10, zIndex: 2 },
+  stackTwo: { position: 'absolute', left: 16, right: 16, top: -11, height: 10, borderTopLeftRadius: 10, borderTopRightRadius: 10, zIndex: 1 },
   body: { flex: 1, minWidth: 0 },
-  title: { fontSize: 14, lineHeight: 19, fontWeight: '900' },
-  count: { marginTop: 5, fontSize: 12, fontWeight: '700' },
+  title: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
+  count: { marginTop: 4, fontSize: 14, fontWeight: '600' },
 });

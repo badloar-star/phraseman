@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { Image } from 'expo-image';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
+import { LinearGradient } from '../components/SafeLinearGradient';
+import { VideoStateBlock } from '../components/video/VideoGlassKit';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import YoutubeVideoCard from '../components/youtube/YoutubeVideoCard';
 import YoutubeInlinePlayer from '../components/youtube/YoutubeInlinePlayer';
@@ -12,9 +13,11 @@ import { ExpandableText } from '../components/text-integrity';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { captureAccountGeneration } from './account_generation';
 import { safeRouterBack } from './navigation_back';
+import { DebugLogger } from './debug-logger';
 import { getTrustedLingmanYoutubeUrl } from './lingman_youtube';
 import { peekYoutubeCatalogScreenSnapshot, revalidateYoutubeChannelCatalog, type YoutubeCatalogScreenSnapshot } from './youtube_catalog_client';
 
@@ -33,7 +36,8 @@ export default function LingmanPlaylistScreen() {
   const router = useRouter();
   const { playlistId = '', channelId = '' } = useLocalSearchParams<{ playlistId?: string; channelId?: string }>();
   const { lang } = useLang();
-  const { theme: t } = useTheme();
+  const { liquidGlassThemeId } = useTheme();
+  const g = liquidGlassTokens(liquidGlassThemeId);
   const screenRuntimeActive = useRuntimeActive(true);
   const token = useMemo(() => captureAccountGeneration(), []);
   const initial = peekYoutubeCatalogScreenSnapshot(token);
@@ -46,6 +50,8 @@ export default function LingmanPlaylistScreen() {
   const videos = useMemo(() => catalog?.videos.filter((video) => video.playlistIds.includes(playlistId)) ?? [], [catalog, playlistId]);
   const copy = {
     playAll: triLang(lang, { ru: 'Воспроизвести всё', uk: 'Відтворити все', en: 'Play all', es: 'Reproducir todo', 'pt-BR': 'Reproduzir tudo', vi: 'Phát tất cả', id: 'Putar semua', tr: 'Tümünü oynat', pl: 'Odtwórz wszystko' }),
+    back: triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' }),
+    videos: triLang(lang, { ru: 'видео', uk: 'відео', en: 'videos', es: 'videos', 'pt-BR': 'vídeos', vi: 'video', id: 'video', tr: 'video', pl: 'filmów' }),
     empty: triLang(lang, { ru: 'Видео этого плейлиста пока недоступны.', uk: 'Відео цього плейлиста поки недоступні.', en: 'Playlist videos are not available yet.', es: 'Los vídeos de esta lista aún no están disponibles.', 'pt-BR': 'Os vídeos ainda não estão disponíveis.', vi: 'Video chưa khả dụng.', id: 'Video belum tersedia.', tr: 'Videolar henüz kullanılamıyor.', pl: 'Filmy nie są jeszcze dostępne.' }),
   };
 
@@ -53,7 +59,7 @@ export default function LingmanPlaylistScreen() {
     if (!channelId) { setLoading(false); return; }
     void revalidateYoutubeChannelCatalog({ channelId, token, previous: catalogRef.current, commit: (next) => { catalogRef.current = next; setCatalog(next); } })
       .then((next) => { if (next) { catalogRef.current = next; setCatalog(next); } })
-      .catch(() => {})
+      .catch((error: unknown) => { DebugLogger.error('[VIDEO-PLAYLIST]:revalidate', error, 'warning'); })
       .finally(() => setLoading(false));
   }, [channelId, token]);
 
@@ -65,25 +71,26 @@ export default function LingmanPlaylistScreen() {
     if (url) void Linking.openURL(url);
   };
 
+  const subtitle = playlist ? `${playlist.itemCount} ${copy.videos}${catalog?.channel.displayName ? ` · ${catalog.channel.displayName}` : ''}` : '';
+
   return (
     <ScreenGradient artBackdrop="home">
+      <LinearGradient pointerEvents="none" colors={[g.bgTop, g.bg, g.bgBottom]} style={StyleSheet.absoluteFill} />
       <SafeAreaView testID="youtube-playlist-detail" style={styles.container} edges={['top', 'left', 'right', 'bottom']}>
-        <View style={styles.header}>
-          <TouchableOpacity accessibilityRole="button" accessibilityLabel="Back" onPress={() => safeRouterBack(router, '/lingman_videos' as any)} style={[styles.back, { backgroundColor: t.bgCard }]}><Ionicons name="chevron-back" size={24} color={t.textPrimary} /></TouchableOpacity>
-          <Text style={[styles.headerTitle, { color: t.textPrimary }]}>{playlist?.title ?? 'YouTube'}</Text>
+        <View style={styles.topbar}>
+          <TouchableOpacity accessibilityRole="button" accessibilityLabel={copy.back} onPress={() => safeRouterBack(router, '/lingman_videos' as any)} style={[styles.back, { backgroundColor: g.card, borderColor: g.glassEdge }]}><Ionicons name="chevron-back" size={22} color={g.text} /></TouchableOpacity>
         </View>
-        {loading && !playlist ? <View style={styles.loading}><SkeletonBlock width="100%" height={210} borderRadius={22} /><SkeletonBlock width="70%" height={24} borderRadius={10} /></View> : playlist ? (
+        {loading && !playlist ? <View style={styles.loading}><SkeletonBlock width="70%" height={32} borderRadius={10} /><SkeletonBlock width="40%" height={18} borderRadius={8} /><SkeletonBlock width="100%" height={48} borderRadius={24} /></View> : playlist ? (
           <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} contentContainerStyle={styles.content}>
-            <View style={[styles.cover, { backgroundColor: t.bgCard }]}>
-              {playlist.thumbnailUrl ? <Image source={{ uri: playlist.thumbnailUrl }} style={styles.coverImage} contentFit="cover" /> : <View style={[styles.coverImage, styles.coverFallback]}><Ionicons name="albums-outline" size={42} color={t.accent} /></View>}
-            </View>
-            <Text style={[styles.title, { color: t.textPrimary }]}>{playlist.title}</Text>
-            {!!playlist.description && <ExpandableText testID="youtube-playlist-description" provenance="external" text={playlist.description} previewCharacterBudget={260} style={[styles.description, { color: t.textMuted }]} />}
-            <TouchableOpacity testID="youtube-playlist-play-all" accessibilityRole="button" accessibilityLabel={copy.playAll} onPress={playAll} style={[styles.playAll, { backgroundColor: t.accent }]}><Ionicons name="play" size={18} color="#071015" /><Text style={styles.playAllText}>{copy.playAll}</Text></TouchableOpacity>
+            <Text accessibilityRole="header" style={[styles.title, { color: g.text }]}>{playlist.title}</Text>
+            <Text style={[styles.subtitle, { color: g.secondary }]}>{subtitle}</Text>
+            {!!playlist.description && <ExpandableText testID="youtube-playlist-description" provenance="external" text={playlist.description} previewCharacterBudget={260} style={[styles.description, { color: g.secondary }]} />}
+            {videos.length ? <TouchableOpacity testID="youtube-playlist-play-all" accessibilityRole="button" accessibilityLabel={copy.playAll} onPress={playAll} activeOpacity={0.85} style={[styles.playAll, { backgroundColor: g.cta }]}><Ionicons name="play" size={20} color={g.ctaInk} /><Text style={[styles.playAllText, { color: g.ctaInk }]}>{copy.playAll}</Text></TouchableOpacity> : null}
             <View style={styles.videoList}>{videos.length ? videos.map((video) => (
               <YoutubeVideoCard
                 key={video.id}
                 video={video}
+                compact
                 highlighted={video.id === activeVideoId}
                 onWatch={() => openVideo(video)}
                 inlinePlayer={video.id === activeVideoId ? (
@@ -96,9 +103,9 @@ export default function LingmanPlaylistScreen() {
                   />
                 ) : undefined}
               />
-            )) : <Text style={[styles.empty, { color: t.textMuted }]}>{copy.empty}</Text>}</View>
+            )) : <VideoStateBlock g={g} icon="play" text={copy.empty} style={styles.emptyState} />}</View>
           </ScrollView>
-        ) : <Text style={[styles.empty, { color: t.textMuted }]}>{copy.empty}</Text>}
+        ) : <VideoStateBlock g={g} icon="play" text={copy.empty} style={styles.emptyState} />}
       </SafeAreaView>
     </ScreenGradient>
   );
@@ -106,18 +113,15 @@ export default function LingmanPlaylistScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, paddingHorizontal: 16, paddingTop: 12 },
-  header: { minHeight: 52, flexDirection: 'row', alignItems: 'center', gap: 11, marginBottom: 12 },
-  back: { width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
-  headerTitle: { flex: 1, fontSize: 19, fontWeight: '900' },
-  loading: { gap: 14 },
+  topbar: { height: 44, flexDirection: 'row', alignItems: 'center' },
+  back: { width: 44, height: 44, borderRadius: 22, borderWidth: 1, alignItems: 'center', justifyContent: 'center' }, // guard-ok: тонкая 1 px кромка круглой кнопки, как `.rb` макета
+  loading: { gap: 14, marginTop: 14 },
   content: { paddingBottom: 32 },
-  cover: { width: '100%', aspectRatio: 16 / 9, borderRadius: 22, overflow: 'hidden' },
-  coverImage: { ...StyleSheet.absoluteFillObject },
-  coverFallback: { alignItems: 'center', justifyContent: 'center' },
-  title: { marginTop: 17, fontSize: 24, lineHeight: 30, fontWeight: '900' },
-  description: { marginTop: 8, fontSize: 13, lineHeight: 19, fontWeight: '700' },
-  playAll: { minHeight: 48, marginTop: 16, borderRadius: 15, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
-  playAllText: { color: '#071015', fontSize: 14, fontWeight: '900' },
-  videoList: { marginTop: 18 },
-  empty: { paddingVertical: 40, textAlign: 'center', fontSize: 14, fontWeight: '800' },
+  title: { marginTop: 14, fontSize: 30, lineHeight: 36, fontWeight: '700' },
+  subtitle: { marginTop: 4, fontSize: 15, lineHeight: 20, fontWeight: '500' },
+  description: { marginTop: 10, fontSize: 14, lineHeight: 20, fontWeight: '500' },
+  playAll: { minHeight: 48, marginTop: 18, borderRadius: 24, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 12 },
+  playAllText: { fontSize: 17, fontWeight: '700' },
+  videoList: { marginTop: 20 },
+  emptyState: { paddingTop: 96 },
 });

@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
@@ -18,6 +18,8 @@ import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { useLang } from '../LangContext';
 import { useTheme } from '../ThemeContext';
 import { triLang } from '../../constants/i18n';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { VideoGlassSheen, VideoPlayBadge } from '../video/VideoGlassKit';
 
 export const PREMIERE_INTRO_DURATION_MS = 1100;
 const SEEN_STORAGE_KEY = 'youtube_premiere_intro_seen_v1';
@@ -42,13 +44,16 @@ function readSeenMap(raw: string | null): PremiereIntroSeenMap {
   }
 }
 
-export default function YoutubePremiereHero({ video, onWatch, onRemind }: {
+export default function YoutubePremiereHero({ video, onWatch, onRemind, reminded = false }: {
   video: YoutubeVideoSnapshot;
   onWatch: () => void;
   onRemind: () => void;
+  /** Напоминание уже поставлено (оптимистично, до ответа системы): кнопка сразу меняется. */
+  reminded?: boolean;
 }) {
   const { lang } = useLang();
-  const { theme: t } = useTheme();
+  const { liquidGlassThemeId } = useTheme();
+  const g = liquidGlassTokens(liquidGlassThemeId);
   const runtimeActive = useRuntimeActive(true);
   const reducedMotion = useReducedMotion();
   const [nowMs, setNowMs] = useState(Date.now());
@@ -62,6 +67,7 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind }: {
     join: triLang(lang, { ru: 'Присоединиться', uk: 'Приєднатися', en: 'Join now', es: 'Join now', 'pt-BR': 'Participar', vi: 'Tham gia', id: 'Gabung sekarang', tr: 'Katıl', pl: 'Dołącz' }),
     remind: triLang(lang, { ru: 'Напомнить', uk: 'Нагадати', en: 'Remind me', es: 'Remind me', 'pt-BR': 'Lembrar-me', vi: 'Nhắc tôi', id: 'Ingatkan saya', tr: 'Hatırlat', pl: 'Przypomnij' }),
     checking: triLang(lang, { ru: 'Проверяем начало…', uk: 'Перевіряємо початок…', en: 'Checking the start…', es: 'Checking the start…', 'pt-BR': 'Verificando o início…', vi: 'Đang kiểm tra…', id: 'Memeriksa waktu mulai…', tr: 'Başlangıç kontrol ediliyor…', pl: 'Sprawdzamy start…' }),
+    reminded: triLang(lang, { ru: 'Напоминание установлено', uk: 'Нагадування встановлено', en: 'Reminder set', es: 'Recordatorio activado', 'pt-BR': 'Lembrete definido', vi: 'Đã đặt lời nhắc', id: 'Pengingat dibuat', tr: 'Hatırlatıcı ayarlandı', pl: 'Ustawiono przypomnienie' }),
     days: triLang(lang, { ru: 'д', uk: 'д', en: 'd', es: 'd', 'pt-BR': 'd', vi: 'ng', id: 'h', tr: 'g', pl: 'd' }),
     hours: triLang(lang, { ru: 'ч', uk: 'г', en: 'h', es: 'h', 'pt-BR': 'h', vi: 'g', id: 'j', tr: 'sa', pl: 'g' }),
     minutes: triLang(lang, { ru: 'мин', uk: 'хв', en: 'min', es: 'min', 'pt-BR': 'min', vi: 'ph', id: 'm', tr: 'dk', pl: 'min' }),
@@ -107,7 +113,8 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind }: {
   }, [live, reducedMotion, runtimeActive, video.id]);
 
   if (!live && video.state !== 'upcoming') return null;
-  const countdown = presentation.kind === 'countdown'
+  const isCountdown = presentation.kind === 'countdown';
+  const countdown = isCountdown
     ? `${presentation.days}${copy.days}  ${presentation.hours}${copy.hours}  ${presentation.minutes}${copy.minutes}${presentation.seconds == null ? '' : `  ${presentation.seconds}${copy.seconds}`}`
     : copy.checking;
   const countdownAccessibilityLabel = live ? copy.liveNow : `${copy.upcoming}. ${countdown}`;
@@ -116,7 +123,7 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind }: {
       testID="youtube-premiere-static"
       style={[
         styles.hero,
-        { borderColor: live ? '#A6FF4D' : t.accent, backgroundColor: live ? '#101B18' : t.bgCard },
+        { backgroundColor: g.card, borderColor: g.glassEdge },
         playIntro ? ({
           animationName: introKeyframes,
           animationDuration: `${PREMIERE_INTRO_DURATION_MS}ms`,
@@ -125,6 +132,7 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind }: {
         } as any) : null,
       ]}
     >
+      <VideoGlassSheen tint={g.selected} edge={g.glassEdge} />
       <TouchableOpacity
         testID="youtube-premiere-thumbnail"
         accessibilityRole="button"
@@ -135,15 +143,32 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind }: {
       >
         <Image source={{ uri: video.thumbnailUrl }} style={styles.image} contentFit="cover" />
         {playIntro && <Animated.View testID="youtube-premiere-intro" pointerEvents="none" style={[styles.sweep, ({ animationName: sweepKeyframes, animationDuration: `${PREMIERE_INTRO_DURATION_MS}ms`, animationPlayState: runtimeActive ? 'running' : 'paused' } as any)]} />}
-      </TouchableOpacity>
-      <View testID="youtube-premiere-details" style={[styles.details, { backgroundColor: live ? '#101B18' : t.bgCard }]}>
-        <View testID="youtube-premiere-state" style={[styles.state, { backgroundColor: live ? '#A6FF4D' : t.accentBg }]}>
-          <Ionicons name={live ? 'radio' : 'sparkles'} size={14} color={live ? '#071015' : t.accent} />
-          <Text style={[styles.badgeText, live ? styles.liveBadgeText : { color: t.accent }]}>{live ? copy.liveNow : copy.upcoming}</Text>
+        {/* зачем: `.hero .badge` макета — тёмная пилюля состояния на кадре, слева-сверху. */}
+        <View testID="youtube-premiere-state" style={styles.state}>
+          {live ? <View style={styles.liveDot} /> : <Ionicons name="flag-outline" size={16} color="#FFFFFF" />}
+          <Text style={styles.badgeText}>{live ? copy.liveNow : copy.upcoming}</Text>
         </View>
-        <Text style={styles.title}>{video.title}</Text>
-        {!live && <Text testID="youtube-premiere-countdown" accessibilityRole="timer" accessibilityLabel={countdownAccessibilityLabel} style={styles.countdown}>{countdown}</Text>}
-        {!live && <View style={styles.actions}><TouchableOpacity testID="youtube-premiere-remind" accessibilityRole="button" accessibilityLabel={copy.remind} onPress={onRemind} style={styles.remind}><Ionicons name="notifications-outline" size={18} color="#FFFFFF" /><Text style={styles.remindText}>{copy.remind}</Text></TouchableOpacity></View>}
+        <VideoPlayBadge />
+      </TouchableOpacity>
+      <View testID="youtube-premiere-details" style={styles.details}>
+        <Text style={[styles.title, { color: g.text }]}>{video.title}</Text>
+        {!live && isCountdown && <Text testID="youtube-premiere-countdown" accessibilityRole="timer" accessibilityLabel={countdownAccessibilityLabel} style={[styles.countdown, { color: g.secondary }]}>{countdown}</Text>}
+        {live ? (
+          <TouchableOpacity testID="youtube-premiere-join" accessibilityRole="button" accessibilityLabel={copy.join} onPress={onWatch} activeOpacity={0.85} style={[styles.cta, { backgroundColor: g.cta }]}>
+            <Ionicons name="play" size={18} color={g.ctaInk} />
+            <Text style={[styles.ctaText, { color: g.ctaInk }]}>{copy.join}</Text>
+          </TouchableOpacity>
+        ) : !isCountdown ? (
+          <View testID="youtube-premiere-checking" accessibilityRole="button" accessibilityLabel={copy.checking} style={[styles.cta, styles.ctaGhost, { borderColor: g.glassEdge }]}>
+            <ActivityIndicator size="small" color={g.text} />
+            <Text style={[styles.ctaText, { color: g.text }]}>{copy.checking}</Text>
+          </View>
+        ) : (
+          <TouchableOpacity testID="youtube-premiere-remind" accessibilityRole="button" accessibilityLabel={reminded ? copy.reminded : copy.remind} accessibilityState={{ disabled: reminded }} disabled={reminded} onPress={onRemind} activeOpacity={0.85} style={[styles.cta, reminded ? [styles.ctaGhost, { borderColor: g.glassEdge }] : { backgroundColor: g.cta }]}>
+            <Ionicons name={reminded ? 'checkmark' : 'flag-outline'} size={18} color={reminded ? g.text : g.ctaInk} />
+            <Text style={[styles.ctaText, { color: reminded ? g.text : g.ctaInk }]}>{reminded ? copy.reminded : copy.remind}</Text>
+          </TouchableOpacity>
+        )}
       </View>
     </Animated.View>
   );
@@ -153,17 +178,18 @@ export default function YoutubePremiereHero({ video, onWatch, onRemind }: {
 }
 
 const styles = StyleSheet.create({
-  hero: { borderRadius: 24, borderWidth: 1, overflow: 'hidden', marginBottom: 14 },
-  thumbnail: { aspectRatio: 16 / 9, position: 'relative' },
+  // зачем: `.hero` макета — плашка радиус 22, поля 12, кадр внутри радиусом 14.
+  hero: { borderRadius: 22, borderWidth: 1, overflow: 'hidden', padding: 12, marginTop: 18, marginBottom: 4 }, // guard-ok: тонкая 1 px кромка стекла, как в макете
+  thumbnail: { aspectRatio: 16 / 9, position: 'relative', borderRadius: 14, overflow: 'hidden', backgroundColor: '#050505' },
   image: { ...StyleSheet.absoluteFillObject },
   sweep: { position: 'absolute', top: -100, bottom: -100, width: 100, backgroundColor: 'rgba(255,255,255,0.42)' },
-  details: { padding: 17 },
-  state: { alignSelf: 'flex-start', minHeight: 30, borderRadius: 15, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', gap: 6 },
-  badgeText: { fontSize: 11, fontWeight: '900', letterSpacing: 0.4 },
-  liveBadgeText: { color: '#071015' },
-  title: { color: '#FFFFFF', marginTop: 11, fontSize: 21, lineHeight: 27, fontWeight: '900' },
-  countdown: { color: '#FFFFFF', marginTop: 10, fontSize: 18, fontWeight: '900', letterSpacing: 0.5 },
-  actions: { flexDirection: 'row', gap: 9, marginTop: 15 },
-  remind: { minHeight: 48, flex: 1, borderRadius: 15, paddingHorizontal: 13, backgroundColor: 'rgba(255,255,255,0.14)', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 },
-  remindText: { color: '#FFFFFF', fontSize: 12, fontWeight: '900' },
+  details: { paddingTop: 12 },
+  state: { position: 'absolute', left: 12, top: 12, minHeight: 26, borderRadius: 13, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', gap: 7, backgroundColor: 'rgba(0,0,0,0.6)' },
+  liveDot: { width: 8, height: 8, borderRadius: 4, backgroundColor: '#FFFFFF' },
+  badgeText: { color: '#FFFFFF', fontSize: 12, fontWeight: '700', letterSpacing: 0.3 },
+  title: { fontSize: 17, lineHeight: 22, fontWeight: '700' },
+  countdown: { marginTop: 4, fontSize: 14, fontWeight: '600' },
+  cta: { minHeight: 44, marginTop: 12, borderRadius: 22, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
+  ctaGhost: { backgroundColor: 'transparent', borderWidth: 1 }, // guard-ok: `.cta.gh` макета — тонкая 1 px полупрозрачная кромка
+  ctaText: { fontSize: 16, fontWeight: '600' },
 });

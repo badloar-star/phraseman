@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Alert, Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Linking, ScrollView, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import FeatureIntroEntry from '../components/feature_intro/FeatureIntroEntry';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import HybridRefreshControl from '../components/feedback/HybridRefreshControl';
@@ -21,6 +22,7 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { hapticTap } from '../hooks/use-haptics';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import type { YoutubeChannelSnapshot, YoutubeVideoSnapshot } from '../shared/youtube_catalog_contract';
@@ -29,9 +31,9 @@ import { accountScopeKey } from './account_scope_key';
 import { safeRouterBack } from './navigation_back';
 import { useTabNav } from './TabContext';
 import { useTabContentBottomPad } from '../hooks/use-tab-content-bottom-pad';
-import { V2, V2_TYPE } from '../constants/v2Style';
-import { useV2Palette } from '../components/v2/useV2Palette';
-import { V2GlassSheen, V2IconTile, useV2GlassStyle } from '../components/v2/V2Glass';
+import { V2 } from '../constants/v2Style';
+import { VideoGlassSheen, VideoNote, VideoStateBlock } from '../components/video/VideoGlassKit';
+import { DebugLogger } from './debug-logger';
 import {
   getActiveYoutubeChannel,
   getLingmanYoutubeSnapshot,
@@ -70,6 +72,9 @@ import {
 
 // Stable child contract: YoutubeVideoCard renders testID="lingman-video-card".
 
+// зачем: единый стеклянный блик плашек — живёт в components/video/VideoGlassKit (макет video.html).
+const VideoScreenGlass = VideoGlassSheen;
+
 function legacyChannelSnapshot(): YoutubeChannelSnapshot {
   const channel = getActiveYoutubeChannel();
   return {
@@ -92,13 +97,13 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   const inTab = presentation === 'tab';
   const { runtimeOwnerId } = useTabNav();
   const tabContentBottomPad = useTabContentBottomPad();
-  const p = useV2Palette();
-  const packsGlass = useV2GlassStyle();
+  const { width: windowWidth } = useWindowDimensions();
   const router = useRouter();
   const { videoId: deepLinkedVideoId, channelId: deepLinkedChannelId } = useLocalSearchParams<{ videoId?: string; channelId?: string }>();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
-  const { theme: t } = useTheme();
+  const { liquidGlassThemeId } = useTheme();
+  const g = liquidGlassTokens(liquidGlassThemeId);
   // зачем: вкладка премаунтится в фоне — каталог и плеер живут, только пока «Видео» на экране.
   const screenRuntimeActive = useRuntimeActive(inTab ? runtimeOwnerId === 'video' : true);
   const screenRuntimeActiveRef = useRef(screenRuntimeActive);
@@ -117,6 +122,8 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   const [issue, setIssue] = useState<'none' | 'offline' | 'error'>('none');
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
   const [expandedPhraseVideoId, setExpandedPhraseVideoId] = useState<string | null>(null);
+  // зачем: «Напомнить» меняется на «Напоминание установлено» мгновенно (оптимистично), система догоняет.
+  const [remindedIds, setRemindedIds] = useState<readonly string[]>([]);
 
   // RSS remains a rollback fallback while the new atomic catalog rolls out.
   const initialChannel = getActiveYoutubeChannel();
@@ -205,9 +212,10 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
         setIssue('none');
         void markLingmanYoutubeSectionOpened();
       }
-    } catch {
+    } catch (error) {
+      DebugLogger.error('[VIDEO-TAB]:loadCatalog', error, 'warning');
       setIssue(catalogRef.current ? 'offline' : 'error');
-      if (!catalogRef.current) await loadLegacyFallback().catch(() => {});
+      if (!catalogRef.current) await loadLegacyFallback().catch((fallbackError: unknown) => { DebugLogger.error('[VIDEO-TAB]:legacyFallback', fallbackError, 'warning'); });
     } finally {
       // Скелетоны обязаны сняться и тогда, когда личность активировалась прямо
       // во время загрузки: иначе экран навсегда застывал бы на заглушках.
@@ -279,11 +287,21 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
 
   const openPlaylist = (playlistId: string) => router.push({ pathname: '/lingman_playlist', params: { playlistId, channelId: catalog?.channel.id } } as any);
   const remind = async (video: YoutubeVideoSnapshot) => {
-    const result = await requestYoutubePremiereReminderFromTap({ videoId: video.id, channelId: video.channelId, title: video.title, scheduledStartTime: video.scheduledStartTime ?? '' });
-    if (result.ok) { Alert.alert(copy.reminderSet); return; }
-    if (result.reason === 'permission_blocked') {
-      Alert.alert(copy.error, undefined, [{ text: 'OK' }, { text: 'Settings', onPress: () => void openYoutubePremiereNotificationSettings() }]);
-    } else if (result.reason === 'master_disabled') {
+    setRemindedIds((current) => current.includes(video.id) ? current : [...current, video.id]);
+    const rollback = () => setRemindedIds((current) => current.filter((id) => id !== video.id));
+    try {
+      const result = await requestYoutubePremiereReminderFromTap({ videoId: video.id, channelId: video.channelId, title: video.title, scheduledStartTime: video.scheduledStartTime ?? '' });
+      if (result.ok) return;
+      DebugLogger.warn('[VIDEO-TAB]', `напоминание не поставлено: reason=${result.reason}`);
+      rollback();
+      if (result.reason === 'permission_blocked') {
+        Alert.alert(copy.error, undefined, [{ text: 'OK' }, { text: 'Settings', onPress: () => void openYoutubePremiereNotificationSettings() }]);
+      } else if (result.reason === 'master_disabled') {
+        Alert.alert(copy.error);
+      }
+    } catch (error) {
+      DebugLogger.error('[VIDEO-TAB]:remind', error, 'warning');
+      rollback();
       Alert.alert(copy.error);
     }
   };
@@ -311,35 +329,61 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     }],
   };
 
-  const videosList = (videos: YoutubeVideoSnapshot[]) => videos.map((video) => (
-    <React.Fragment key={video.id}>
-      <YoutubeVideoCard
-        video={video}
-        highlighted={video.id === deepLinkedVideoId || video.id === activeVideoId}
-        onWatch={() => openVideo(video)}
-        inlinePlayer={video.id === activeVideoId ? (
-          <YoutubeInlinePlayer
-            videoId={video.id}
-            title={video.title}
-            active={screenRuntimeActive}
-            onClose={closeVideo}
-            presentation="preview"
-          />
-        ) : undefined}
-        belowPlayer={<YoutubeVideoPhrases
-          packLanguage={normalizePackLanguage(activeChannel.languageTags[0]?.split('-')[0])}
-          sourceTitle={activeChannel.displayName}
+  const renderVideoCard = (video: YoutubeVideoSnapshot, compact = false) => (
+    <YoutubeVideoCard
+      video={video}
+      compact={compact && video.id !== activeVideoId}
+      highlighted={video.id === deepLinkedVideoId || video.id === activeVideoId}
+      onWatch={() => openVideo(video)}
+      inlinePlayer={video.id === activeVideoId ? (
+        <YoutubeInlinePlayer
           videoId={video.id}
-          expanded={expandedPhraseVideoId === video.id}
-          onToggle={() => setExpandedPhraseVideoId((current) => current === video.id ? null : video.id)}
-          testID={`video-phrases-${video.id}`}
-        />}
-      />
-    </React.Fragment>
+          title={video.title}
+          active={screenRuntimeActive}
+          onClose={closeVideo}
+          presentation="preview"
+        />
+      ) : undefined}
+      belowPlayer={!compact || video.id === activeVideoId ? <YoutubeVideoPhrases
+        packLanguage={normalizePackLanguage(activeChannel.languageTags[0]?.split('-')[0])}
+        sourceTitle={activeChannel.displayName}
+        videoId={video.id}
+        expanded={expandedPhraseVideoId === video.id}
+        onToggle={() => setExpandedPhraseVideoId((current) => current === video.id ? null : video.id)}
+        testID={`video-phrases-${video.id}`}
+      /> : undefined}
+    />
+  );
+  const videosList = (videos: YoutubeVideoSnapshot[], compact = false) => videos.map((video) => (
+    <React.Fragment key={video.id}>{renderVideoCard(video, compact)}</React.Fragment>
   ));
+
+  const skeletonHeight = Math.round((windowWidth - V2.screenPad * 2) * 9 / 16);
+  // зачем: плашка «Наборы из видео» стоит в макете внутри вкладки «Главная» — после премьеры,
+  // перед «Новыми видео» (и в пустом состоянии), а не над вкладками.
+  const packsRow = inTab ? (
+    <TouchableOpacity
+      testID="video-tab-packs-row"
+      accessibilityRole="button"
+      accessibilityLabel={copy.videoPacks}
+      activeOpacity={0.8}
+      onPressIn={() => hapticTap()}
+      onPress={() => router.push('/flashcards_video_packs' as never)}
+      style={[styles.packsRow, { backgroundColor: g.card, borderColor: g.glassEdge }]}
+    >
+      <VideoScreenGlass tint={g.selected} edge={g.glassEdge} />
+      <View style={[styles.packsIcon, { backgroundColor: g.opaqueControl }]}><Ionicons name="layers-outline" size={20} color={g.text} /></View>
+      <View style={styles.packsCopy}>
+        <Text style={[styles.packsTitle, { color: g.text }]}>{copy.videoPacks}</Text>
+        <Text style={[styles.packsSub, { color: g.secondary }]}>{copy.videoPacksSub}</Text>
+      </View>
+      <Ionicons name="chevron-forward" size={20} color={g.secondary} />
+    </TouchableOpacity>
+  ) : null;
 
   return (
     <ScreenGradient artBackdrop="home">
+      <LinearGradient pointerEvents="none" colors={[g.bgTop, g.bg, g.bgBottom]} style={StyleSheet.absoluteFill} />
       <FeatureIntroEntry id="videos_first_visit" enabled={screenRuntimeActive && !pickerVisible && !deepLinkedVideoId && !activeVideoId} />
       <SafeAreaView testID="lingman-videos-screen" style={styles.container} edges={inTab ? ['left', 'right'] : ['top', 'left', 'right', 'bottom']}>
         <YoutubeChannelHeader
@@ -349,44 +393,31 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
           onOpenChannels={() => setPickerVisible(true)}
           onOpenYoutube={() => openExternalUrl(activeChannel.url)}
         />
-        {inTab ? (
-          <TouchableOpacity
-            testID="video-tab-packs-row"
-            accessibilityRole="button"
-            accessibilityLabel={copy.videoPacks}
-            activeOpacity={0.8}
-            onPressIn={() => hapticTap()}
-            onPress={() => router.push('/flashcards_video_packs' as never)}
-            style={[styles.packsRow, packsGlass]}
-          >
-            <V2GlassSheen />
-            <V2IconTile name="albums-outline" size={V2.rowIcon} iconSize={20} />
-            <View style={styles.packsCopy}>
-              <Text numberOfLines={1} style={[styles.packsTitle, { color: p.text }]}>{copy.videoPacks}</Text>
-              <Text numberOfLines={1} style={[styles.packsSub, { color: p.textSecondary }]}>{copy.videoPacksSub}</Text>
-            </View>
-            <Ionicons name="chevron-forward" size={20} color={p.textSecondary} />
-          </TouchableOpacity>
-        ) : null}
-        {(catalog || snapshot) && <YoutubeChannelTabs value={tab} onChange={changeTab} />}
-        {stale && <View testID="youtube-catalog-stale" style={[styles.notice, { backgroundColor: t.accentBg }]}><Ionicons name="time-outline" size={17} color={t.accent} /><Text style={[styles.noticeText, { color: t.textSecond }]}>{copy.stale}</Text></View>}
-        {issue === 'offline' && <View testID="youtube-catalog-offline" style={[styles.notice, { backgroundColor: t.accentBg }]}><Ionicons name="cloud-offline-outline" size={17} color={t.accent} /><Text style={[styles.noticeText, { color: t.textSecond }]}>{copy.offline}</Text></View>}
-        {issue === 'error' && !catalog && !snapshot && <View testID="youtube-catalog-error" style={[styles.notice, styles.errorNotice, { backgroundColor: t.accentBg }]}><View style={styles.errorCopy}><Ionicons name="alert-circle-outline" size={17} color={t.accent} /><Text style={[styles.noticeText, { color: t.textSecond }]}>{copy.error}</Text></View><TouchableOpacity testID="youtube-catalog-retry" accessibilityRole="button" accessibilityLabel={copy.retry} disabled={refreshing} onPress={() => void loadCatalog(undefined, true)} style={[styles.retryButton, { backgroundColor: t.accent }, refreshing && styles.retryButtonDisabled]}><Text style={styles.retryButtonText}>{copy.retry}</Text></TouchableOpacity></View>}
+        <YoutubeChannelTabs value={tab} onChange={changeTab} />
+        {stale && <VideoNote g={g} icon="flag-outline" text={copy.stale} testID="youtube-catalog-stale" />}
+        {issue === 'offline' && <VideoNote g={g} icon="cloud-offline-outline" text={copy.offline} testID="youtube-catalog-offline" />}
         {issue !== 'none' && snapshot && <View testID="lingman-videos-fallback-notice" />}
 
-        {visibleLoading && !catalog && !snapshot ? (
+        {issue === 'error' && !catalog && !snapshot ? (
+          <ScrollView decelerationRate="fast" showsVerticalScrollIndicator={false} refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} contentContainerStyle={inTab ? { paddingBottom: tabContentBottomPad } : undefined}>
+            <VideoStateBlock g={g} icon="cloud-offline-outline" text={copy.error} testID="youtube-catalog-error" actionLabel={copy.retry} actionTestID="youtube-catalog-retry" actionDisabled={refreshing} onAction={() => void loadCatalog(undefined, true)} style={styles.errorState} />
+          </ScrollView>
+        ) : visibleLoading && !catalog && !snapshot ? (
           <View testID="youtube-catalog-loading" style={styles.skeletons}>
-            <SkeletonBlock width="100%" height={250} borderRadius={24} />
-            <SkeletonBlock width="100%" height={44} borderRadius={16} />
-            {Array.from({ length: 3 }).map((_, index) => <SkeletonBlock key={index} width="100%" height={190} borderRadius={20} />)}
+            <SkeletonBlock width="100%" height={skeletonHeight} borderRadius={22} />
+            <SkeletonBlock width="100%" height={64} borderRadius={12} />
+            {Array.from({ length: 2 }).map((_, index) => <View key={index} style={styles.skeletonCard}><SkeletonBlock width="100%" height={skeletonHeight} borderRadius={16} /><SkeletonBlock width="70%" height={16} borderRadius={8} /></View>)}
           </View>
         ) : allVideos.length === 0 && (catalog?.playlists.length ?? 0) === 0 ? (
-          <ScrollView decelerationRate="fast" testID="youtube-catalog-empty" refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} contentContainerStyle={styles.empty}>
-            <Ionicons name="videocam-outline" size={36} color={t.accent} /><Text style={[styles.emptyText, { color: t.textMuted }]}>{copy.empty}</Text>
+          <ScrollView decelerationRate="fast" testID="youtube-catalog-empty" refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} contentContainerStyle={inTab ? { paddingBottom: tabContentBottomPad } : undefined}>
+            {packsRow}
+            <VideoStateBlock g={g} icon="play" text={copy.empty} style={styles.emptyState} />
           </ScrollView>
         ) : tab === 'playlists' ? (
           catalog ? <FlashList decelerationRate="fast" testID="lingman-videos-list" data={catalog.playlists} keyExtractor={(item) => item.id} renderItem={({ item }) => <YoutubePlaylistRow playlist={item} onPress={() => openPlaylist(item.id)} />} showsVerticalScrollIndicator={false} contentContainerStyle={[styles.list, inTab ? { paddingBottom: tabContentBottomPad } : null]} refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} />
-            : <ScrollView decelerationRate="fast" testID="youtube-catalog-playlists-empty" contentContainerStyle={styles.empty}><Ionicons name="albums-outline" size={36} color={t.accent} /><Text style={[styles.emptyText, { color: t.textMuted }]}>{copy.empty}</Text></ScrollView>
+            : <ScrollView decelerationRate="fast" testID="youtube-catalog-playlists-empty" contentContainerStyle={inTab ? { paddingBottom: tabContentBottomPad } : undefined}><VideoStateBlock g={g} icon="play" text={copy.empty} style={styles.emptyState} /></ScrollView>
+        ) : tab === 'all' ? (
+          <FlashList decelerationRate="fast" testID="youtube-catalog-all-videos" data={allVideos} keyExtractor={(item) => item.id} renderItem={({ item }) => renderVideoCard(item, true)} showsVerticalScrollIndicator={false} contentContainerStyle={[styles.list, inTab ? { paddingBottom: tabContentBottomPad } : null]} refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} ListEmptyComponent={<VideoStateBlock g={g} icon="play" text={copy.empty} style={styles.emptyState} />} />
         ) : (
           <ScrollView decelerationRate="fast" testID="lingman-videos-list" showsVerticalScrollIndicator={false} refreshControl={<HybridRefreshControl refreshing={refreshing} onRefresh={() => void loadCatalog(undefined, true)} />} contentContainerStyle={[styles.list, inTab ? { paddingBottom: tabContentBottomPad } : null]}>
             {hero ? hero.id === activeVideoId ? (
@@ -399,7 +430,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
                   presentation="preview"
                 />
               </View>
-            ) : <YoutubePremiereHero video={hero} onWatch={() => openVideo(hero)} onRemind={() => void remind(hero)} /> : null}
+            ) : <YoutubePremiereHero video={hero} reminded={remindedIds.includes(hero.id)} onWatch={() => openVideo(hero)} onRemind={() => void remind(hero)} /> : null}
             {hero ? <YoutubeVideoPhrases
               packLanguage={normalizePackLanguage(activeChannel.languageTags[0]?.split('-')[0])}
               sourceTitle={activeChannel.displayName}
@@ -408,13 +439,14 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
               onToggle={() => setExpandedPhraseVideoId((current) => current === hero.id ? null : hero.id)}
               testID={`video-phrases-${hero.id}`}
             /> : null}
-            <Text style={[styles.sectionTitle, { color: t.textPrimary }]}>{copy.recent}</Text>
+            {packsRow}
+            <Text style={[styles.sectionTitle, { color: g.text }]}>{copy.recent}</Text>
             {videosList(allVideos.filter((video) => video.id !== hero?.id))}
             {!hero && !allVideos.length && <View testID="lingman-videos-empty" />}
           </ScrollView>
         )}
 
-        <YoutubeChannelPickerSheet visible={pickerVisible} manifest={pickerManifest} preference={preference} onSelect={(value) => void selectPreference(value)} onClose={() => setPickerVisible(false)} />
+        <YoutubeChannelPickerSheet visible={pickerVisible} manifest={pickerManifest} preference={preference} onSelect={(value) => void selectPreference(value)} onClose={() => setPickerVisible(false)} motionVariant="hybrid" />
       </SafeAreaView>
     </ScreenGradient>
   );
@@ -423,31 +455,27 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
 const styles = StyleSheet.create({
   container: { flex: 1, paddingHorizontal: V2.screenPad, paddingTop: 12, backgroundColor: 'transparent' },
   list: { paddingBottom: 32 },
-  sectionTitle: { marginTop: 7, marginBottom: 11, fontSize: 18, fontWeight: '900' },
-  notice: { minHeight: 44, borderRadius: 14, paddingHorizontal: 12, paddingVertical: 9, flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 10 },
-  errorNotice: { alignItems: 'stretch', gap: 10 },
-  errorCopy: { flexDirection: 'row', alignItems: 'center', gap: 8 },
-  noticeText: { flex: 1, fontSize: 12, lineHeight: 17, fontWeight: '800' },
-  retryButton: { minHeight: 44, borderRadius: 12, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 16 },
-  retryButtonDisabled: { opacity: 0.55 },
-  retryButtonText: { color: '#071015', fontSize: 13, fontWeight: '900' },
-  skeletons: { gap: 12 },
-  empty: { minHeight: 300, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 28, gap: 12 },
-  emptyText: { fontSize: 14, lineHeight: 20, textAlign: 'center', fontWeight: '800' },
+  // зачем: `.sec .ti` макета — 20/26, вес 700, отступ сверху 26.
+  sectionTitle: { marginTop: 26, marginBottom: 14, marginHorizontal: 2, fontSize: 20, lineHeight: 26, fontWeight: '700' },
+  skeletons: { gap: 18, marginTop: 18 },
+  skeletonCard: { gap: 10, marginTop: 4 },
+  emptyState: { paddingTop: 96 },
+  errorState: { paddingTop: 120 },
   packsRow: {
-    minHeight: V2.rowMinHeight,
-    borderRadius: V2.radius.row,
-    borderWidth: StyleSheet.hairlineWidth, // guard-ok: D43
+    minHeight: 64,
+    borderRadius: 14,
+    borderWidth: 1, // guard-ok: тонкая 1 px полупрозрачная кромка стекла, как `.card` макета
+    overflow: 'hidden',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
-    paddingHorizontal: 12,
-    paddingVertical: 10,
-    marginBottom: 12,
+    gap: 14,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    marginTop: 18,
   },
-  packsIcon: { width: V2.rowIcon, height: V2.rowIcon, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
+  packsIcon: { width: 41, height: 41, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
   packsCopy: { flex: 1, minWidth: 0 },
-  packsTitle: { ...V2_TYPE.headline },
-  packsSub: { ...V2_TYPE.subtitle, marginTop: 2 },
-  heroPlayer: { width: '100%', aspectRatio: 16 / 9, borderRadius: 24, overflow: 'hidden', marginBottom: 14, backgroundColor: '#000000' },
+  packsTitle: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
+  packsSub: { fontSize: 14, lineHeight: 19, marginTop: 2 },
+  heroPlayer: { width: '100%', aspectRatio: 16 / 9, borderRadius: 24, overflow: 'hidden', marginTop: 18, marginBottom: 14, backgroundColor: '#000000' },
 });

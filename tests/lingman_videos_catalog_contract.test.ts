@@ -33,13 +33,16 @@ describe('multichannel YouTube catalog UI contract', () => {
     expect(source).not.toContain('resolvePreferredYoutubeChannel(manifest, lang,');
   });
 
-  it('replaces the old channel strip with all-channels picker and two stable tabs', () => {
+  it('replaces the old channel strip with all-channels picker and three stable tabs', () => {
     const source = `${screen()}\n${components()}`;
     expect(source).toContain('testID="youtube-all-channels"');
     expect(source).not.toContain('youtube-all-channels-legacy');
     expect(source).toContain('testID={`youtube-channel-${channel.id}`}');
     expect(source).toContain("testID={`youtube-tab-${tab}`}");
-    expect(source).toContain("(['home', 'playlists'] as const)");
+    expect(source).toContain("(['home', 'all', 'playlists'] as const)");
+    expect(screen()).toContain('testID="youtube-catalog-all-videos"');
+    expect(screen()).toContain('data={allVideos}');
+    expect(screen()).toContain('renderItem={({ item }) => renderVideoCard(item, true)}');
   });
 
   it('keeps playlist rows exclusively on the playlists tab', () => {
@@ -92,13 +95,14 @@ describe('multichannel YouTube catalog UI contract', () => {
     for (const id of ['youtube-catalog-loading', 'youtube-catalog-empty', 'youtube-catalog-stale', 'youtube-catalog-offline', 'youtube-catalog-error']) {
       expect(source).toContain(`testID="${id}"`);
     }
-    expect(source).toContain('testID="youtube-catalog-retry"');
-    expect(source).toContain('onPress={() => void loadCatalog(undefined, true)}');
+    expect(source).toContain('actionTestID="youtube-catalog-retry"');
+    expect(source).toContain('onAction={() => void loadCatalog(undefined, true)}');
   });
 
   it('keeps the redesigned shell visible while the catalog is still on RSS fallback', () => {
     const source = screen();
-    expect(source).toContain('{(catalog || snapshot) && <YoutubeChannelTabs');
+    // зачем: по макету video.html вкладки рисуются в каждом состоянии (загрузка/пусто/ошибка тоже)
+    expect(source).toContain('<YoutubeChannelTabs value={tab}');
     expect(source).toContain("tab === 'playlists' ?");
     expect(source).not.toContain("tab === 'all' || !catalog ?");
   });

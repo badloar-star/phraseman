@@ -162,8 +162,9 @@ export function V2SectionHeader({ title, actionLabel, onAction, count }: { title
       </Text>
       {actionLabel && onAction ? (
         <V2Pressable onPress={onAction} accessibilityLabel={actionLabel} scaleTo={0.95} hitSlop={8} style={s.sectionAction}>
-          <Text style={[s.sectionActionText, { color: p.textSecondary }]}>{actionLabel}</Text>
-          <Ionicons name="chevron-forward" size={15} color={p.textSecondary} />
+          {/* зачем (темы 2.0): ссылка в цвете темы в «Акценте/Максимуме»; в «Спокойно» link = textSecondary. */}
+          <Text style={[s.sectionActionText, { color: p.link }]}>{actionLabel}</Text>
+          <Ionicons name="chevron-forward" size={15} color={p.link} />
         </V2Pressable>
       ) : null}
     </View>

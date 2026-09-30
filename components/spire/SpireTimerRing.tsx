@@ -42,7 +42,7 @@ function SpireTimerRing({ lang, clock, budgetMs, paused }: Props) {
           cy={SIZE / 2}
           r={R}
           fill="none"
-          stroke={paused ? p.textMuted : p.text}
+          stroke={paused ? p.textMuted : p.accentText}
           strokeWidth={STROKE}
           strokeLinecap="round"
           strokeDasharray={`${CIRC} ${CIRC}`}

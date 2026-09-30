@@ -42,8 +42,8 @@ export default function HomeV2VideoRail({ videos, status, ownerActive, onSeeAll 
       <View style={s.heading}>
         <Text style={[s.headingText, { color: p.text }]}>{title}</Text>
         <Pressable accessibilityRole="button" accessibilityLabel={seeAll} onPress={onSeeAll} hitSlop={8} style={s.seeAll}>
-          <Text style={[s.seeAllText, { color: p.textSecondary }]}>{seeAll}</Text>
-          <Ionicons name="chevron-forward" size={15} color={p.textSecondary} />
+          <Text style={[s.seeAllText, { color: p.link }]}>{seeAll}</Text>
+          <Ionicons name="chevron-forward" size={15} color={p.link} />
         </Pressable>
       </View>
       {videos.length ? (

@@ -127,6 +127,8 @@ export type V2Palette = Readonly<{
    * В «Спокойно» = iconTint (ничего не меняется).
    */
   accentText: string;
+  /** Темы 2.0: ссылки «Смотреть все ›». В «Спокойно» = textSecondary (как было). */
+  link: string;
   /** Темы 2.0: сила дымки в карточках (1 — как было; «Максимум» — сильнее). */
   smokeBoost: number;
 }>;
@@ -197,6 +199,7 @@ function buildBaseV2Palette(theme: Theme, themeMode: ThemeMode): V2Palette {
     accentFill: mixHex('#E6DCCB', tintColor, 0.1),
     sheet: mixHex('#1B1B1C', tintColor, 0.015),
     accentText: mixHex('#DDD8D0', tintColor, 0.08),
+    link: mixHex('#A6A6A8', tintColor, 0.03),
     smokeBoost: 1,
   };
   paletteCache.set(key, palette);

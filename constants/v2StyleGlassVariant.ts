@@ -30,6 +30,10 @@ export function adaptV2PaletteToGlass(p: V2Palette, g: GlassTokens): V2Palette {
     ctaText: g.accentInk,
     accentFill: g.accent,
     accentText: g.accentText,
+    link: g.accentText,
+    // Значки в плитках, огонь серии на Главной, отметки «Сегодня» — цвет темы (макет .tile / .fl).
+    iconTint: g.accentBright,
+    tileFrom: g.accentTile,
   };
   if (g.isLight) {
     return Object.freeze({
@@ -37,6 +41,7 @@ export function adaptV2PaletteToGlass(p: V2Palette, g: GlassTokens): V2Palette {
       ...accentRoles,
       // «Спокойно» в светлом: кнопка «чернильная», огонь/ссылки — вторичный тон текста.
       accentText: g.level === 'calm' ? g.secondary : g.accentText,
+      link: g.level === 'calm' ? g.secondary : g.accentText,
       bg: g.bg,
       bgTop: g.bgTop,
       card: g.opaqueCard,

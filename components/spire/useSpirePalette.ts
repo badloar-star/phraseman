@@ -24,8 +24,11 @@ export function useSpirePalette(): V2Palette {
       text: g.text,
       textSecondary: g.secondary,
       textMuted: g.mutedText,
-      cta: g.cta,
-      ctaText: g.ctaInk,
+      // зачем (темы 2.0): главная кнопка и кольцо таймера — цвет темы в «Акценте/Максимуме»;
+      // в «Спокойно» accent = cta, а кольцо остаётся цвета текста, как было.
+      cta: g.accent,
+      ctaText: g.accentInk,
+      accentText: g.level === 'calm' ? g.text : g.accentText,
     };
   }, [theme, themeMode, liquidGlassThemeId]);
 }

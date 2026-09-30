@@ -40,7 +40,9 @@ import LearningV2WordPocketOverlayV1 from "../components/learning-v2/LearningV2W
 import LearningV2PracticeViewport from "../components/learning-v2/LearningV2PracticeViewport";
 import HorizonSessionResult, {
   type HorizonResultFacts,
+  type HorizonResultSkill,
 } from '../components/learning-v2/horizons/HorizonSessionResult';
+import type { HorizonMistakeReviewItem } from '../components/learning-v2/horizons/HorizonMistakeReview';
 import { WALLET_SUBUNITS_PER_STAR } from '../modules/learning-v2/contracts/wallet';
 import { applySuperSundayRuneMultiplier } from '../modules/economy/super_sunday_runes';
 import LearningV2RuneFlight, {
@@ -627,6 +629,11 @@ export default function LearningV2DirectSessionPlayerV1() {
   const [finaleFacts, setFinaleFacts] = useState<HorizonResultFacts>(
     finaleFactsRef.current,
   );
+  // зачем (владелец 2026-09-30, learning-v2.html → «Итог занятия»): итог показывает, на чём
+  // человек споткнулся (тип задания, его ответ → верный) и на проверке главы — «Что вы теперь
+  // умеете». Живёт только в памяти прогона: не durable, сбрасывается при перезапуске.
+  const sessionMistakesRef = useRef<HorizonMistakeReviewItem[]>([]);
+  const [finaleSkills, setFinaleSkills] = useState<readonly HorizonResultSkill[]>([]);
   const publishFinaleFacts = useCallback((nextFacts: HorizonResultFacts) => {
     finaleFactsRef.current = nextFacts;
     setFinaleFacts(nextFacts);
@@ -1509,6 +1516,8 @@ export default function LearningV2DirectSessionPlayerV1() {
     sessionStageRef.current = "intro";
     telemetryStartSentRef.current = false;
     setFinaleRewardsSettled(false);
+    sessionMistakesRef.current = [];
+    setFinaleSkills([]);
     publishFinaleFacts({
       runes: 0,
       total: 0,
@@ -1738,6 +1747,24 @@ export default function LearningV2DirectSessionPlayerV1() {
       ];
       const canonicalTarget = factorySemantic?.canonicalTarget ??
         auxiliary?.save.targetText ?? "";
+      if (
+        canonicalTarget &&
+        !sessionMistakesRef.current.some((entry) => entry.id === practice.interactionId)
+      ) {
+        // Ответ ученика: для выбора — текст варианта, для текста/речи — сама строка.
+        const givenText = response.kind === "choice_token"
+          ? practice.responseOptions.find((option) => option.responseId === response.value)?.text ?? null
+          : response.value;
+        sessionMistakesRef.current = [
+          ...sessionMistakesRef.current,
+          {
+            id: practice.interactionId,
+            label: copy.modes[practice.family] ?? null,
+            given: givenText && givenText !== canonicalTarget ? givenText : null,
+            correct: canonicalTarget,
+          },
+        ];
+      }
       const sourceMeaning = factorySemantic
         ? factorySemantic.reviewedMeaningByLocale?.[lang] ?? null
         : auxiliary?.save.meaningByLocale[lang] ?? null;
@@ -1813,6 +1840,7 @@ export default function LearningV2DirectSessionPlayerV1() {
     [
       attempts,
       auxiliary,
+      copy,
       hintUsed,
       isAuthoringPreview,
       lang,
@@ -1939,6 +1967,25 @@ export default function LearningV2DirectSessionPlayerV1() {
       });
       earned = learningV2SessionStars(completion.interactionCompletions);
       const passedSession = learningV2SessionUnlocksNextV1(earned);
+      if (isCheckpoint) {
+        // «Что вы теперь умеете»: по типу задания — всё с первой попытки → «Закрепилось»,
+        // иначе «Стоит повторить». «Провалено» не бывает by design.
+        const byFamily = new Map<string, boolean>();
+        for (let index = 0; index < runSummary.practiceInteractionCount; index += 1) {
+          const interaction = getLearningV2CourseSessionPracticeInteractionV1(run, index);
+          const entry = completionsRef.current.get(interaction.interactionId);
+          const clean = entry?.disposition === "completed" &&
+            entry.learnerAttempts <= 1 && !entry.hintUsed;
+          byFamily.set(interaction.family, (byFamily.get(interaction.family) ?? true) && clean);
+        }
+        setFinaleSkills(
+          [...byFamily.entries()].map(([family, confirmed]) => ({
+            id: family,
+            label: copy.modes[family] ?? copy.independent,
+            confirmed,
+          })),
+        );
+      }
       publishFinaleFacts({
         runes: sessionRunes,
         credit: canEarnSessionRunes ? "practice" : undefined,
@@ -2115,7 +2162,9 @@ export default function LearningV2DirectSessionPlayerV1() {
     finishing,
     canEarnSessionRunes,
     sessionRunes,
+    copy,
     isAuthoringPreview,
+    isCheckpoint,
     isSessionRepeat,
     lang,
     material,
@@ -2366,6 +2415,14 @@ export default function LearningV2DirectSessionPlayerV1() {
       reducedMotion={reducedMotion}
       rewardsSettled={finaleRewardsSettled}
       preview={isAuthoringPreview}
+      mistakes={sessionMistakesRef.current}
+      mistakesTotal={sessionMistakesRef.current.length}
+      onOpenAllMistakes={
+        !isAuthoringPreview && (studyTarget === "en" || studyTarget === "fr")
+          ? () => { router.push("/mistakes_hub" as never); }
+          : undefined
+      }
+      skills={finaleSkills}
       nextLessonAvailable={lessonOrdinal !== null && lessonOrdinal < 32 &&
         isPulseLessonAuthored(lessonOrdinal + 1) &&
         FACTORY_NATIVE_SESSION_IDS.has(

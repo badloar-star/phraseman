@@ -12,11 +12,16 @@ const sequence = readFileSync(
 const feedback = readFileSync("components/FeedbackRatingCard.tsx", "utf8");
 const player = readFileSync("app/learning_v2_direct_session_player_v1.tsx", "utf8");
 
-assert.match(result, /layoutVariant="learning-v2-orbit"/u);
-assert.match(result, /presentation="compact-stars"/u);
-assert.match(result, /reducedMotion=\{reducedMotion\}/u);
-assert.match(result, /bottomInset=\{insets\.bottom\}/u);
-assert.match(result, /rewardsSettled=\{rewardsSettled\}/u);
+// зачем (владелец 2026-09-30): итог Learning V2 переведён на LG-ядро HorizonResultGlass
+// (learning-v2.html → «Итог занятия»); общий ResultsSequence остаётся для других экранов.
+assert.match(result, /from "\.\/HorizonResultGlass"/);
+assert.doesNotMatch(result, /feedback\/ResultsSequence/);
+assert.match(result, /from "\.\.\/\.\.\/FeedbackRatingCard"/);
+assert.match(result, /from "\.\.\/\.\.\/RuneBalanceChip"/);
+assert.match(result, /presentation="liquid-glass-rate"/);
+assert.match(result, /testID="learning-v2-completion-feedback"/);
+assert.match(result, /testID="learning-v2-completion-header-runes"/);
+assert.doesNotMatch(result, /learning-v2-completion-replay|Повторить анимацию/);
 assert.match(player, /const \[finaleRewardsSettled, setFinaleRewardsSettled\] = useState\(false\)/u);
 assert.match(player, /setFinaleRewardsSettled\(true\)/u);
 assert.match(player, /rewardsSettled=\{finaleRewardsSettled\}/u);

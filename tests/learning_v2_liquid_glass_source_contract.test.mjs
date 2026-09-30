@@ -32,6 +32,7 @@ const GLASS_FILES = [
   "components/LearningV2SessionOutcomeSheet.tsx",
   "components/learning-v2/horizons/HorizonSessionResult.tsx",
   "components/learning-v2/horizons/HorizonMistakeReview.tsx",
+  "components/learning-v2/horizons/HorizonResultGlass.tsx",
 ];
 
 const TOKEN_MARKER = /useLv2Glass|liquidGlassTokens|LearningV2Glass/u;
@@ -79,4 +80,21 @@ test("не тронуты запретные зоны: загрузка сесс
   ]) {
     assert.ok(player.includes(marker), `плеер потерял ${marker}`);
   }
+});
+
+test("итог занятия: LG-ядро HorizonResultGlass по макету «Итог занятия»", () => {
+  const result = read("components/learning-v2/horizons/HorizonSessionResult.tsx");
+  const core = read("components/learning-v2/horizons/HorizonResultGlass.tsx");
+  // Общий ResultsSequence остаётся другим экранам; Learning V2 рисует своё LG-ядро.
+  assert.match(result, /from "\.\/HorizonResultGlass"/u);
+  assert.doesNotMatch(result, /feedback\/ResultsSequence/u);
+  // Карточка «верно · ошибок · точность», начисление, «Что вы теперь умеете».
+  assert.match(result, /labels=\{\{ correct: c\.correct, wrong: c\.wrong, accuracy: c\.accuracy \}\}/u);
+  assert.match(result, /skillsTitle=\{checkpoint\.outcomeTitle\}/u);
+  // Повтор не начисляет: показываем только подтверждённый кошельком факт.
+  assert.match(result, /facts\.credit === "credited"/u);
+  // Движение на UI-треде и с учётом reduceMotion.
+  assert.match(core, /from "react-native-reanimated"/u);
+  assert.match(core, /reducedMotion/u);
+  assert.doesNotMatch(core, /AsyncStorage/u, "празднование не durable");
 });

@@ -8,21 +8,25 @@
  * Три решения из макета (docs/v2/mockups/35-new-ui-approved.html, сцена 2):
  *
  * 1. МАКСИМУМ ТРИ строки. Ошибся в десяти → показать все = лента стыда,
- *    человек закроет экран и не вернётся. Три + «и ещё N» честно и не давит.
- * 2. ВЗГЛЯД ЗАКАНЧИВАЕТСЯ НА ПРАВИЛЬНОМ: зачёркнутый ответ сверху мелким,
- *    верный снизу крупным. Уходишь с экрана, помня КАК НАДО, а не как ошибся.
+ *    человек закроет экран и не вернётся. Три + счётчик всех честно и не давит.
+ * 2. ВЗГЛЯД ЗАКАНЧИВАЕТСЯ НА ПРАВИЛЬНОМ: зачёркнутый ответ → верный.
+ *    Уходишь с экрана, помня КАК НАДО, а не как ошибся.
  * 3. ОТВЕТА УЧЕНИКА МОЖЕТ НЕ БЫТЬ: у записей журнала до 21.09 поля `given`
  *    нет. Тогда показываем только правильный вариант — без пустой строки и
  *    без выдуманного «ты написал».
  *
- * Данные локальные (журнал ошибок на устройстве): 0 чтений Firestore.
+ * Вид (владелец 2026-09-30, learning-v2.html `.errc`/`.er`): одна карточка стекла
+ * «Споткнулся на N» + счётчик, строка = тип задания слева, зачёркнутый ответ → верный,
+ * внизу контурная «Повторить ошибки» (ведёт в «Мои ошибки»).
+ *
+ * Данные локальные (память экрана / журнал ошибок на устройстве): 0 чтений Firestore.
  */
 import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { triLang, type Lang } from "../../../constants/i18n";
-import { lv2CardStyle, useLv2Glass } from "../LearningV2Glass";
+import { Lv2Cta, lv2CardStyle, useLv2Glass } from "../LearningV2Glass";
 
 /** Сколько промахов показываем на экране итога. Больше — уже лента стыда. */
 export const HORIZON_MISTAKE_REVIEW_LIMIT = 3;
@@ -33,18 +37,38 @@ export type HorizonMistakeReviewItem = Readonly<{
   given?: string | null;
   /** Как правильно. Без него строку показывать незачем. */
   correct: string;
+  /** Тип задания слева строки (`.er .w` макета): «Собери фразу», «Точная грамматика». */
+  label?: string | null;
   /** Короткое правило одной фразой: «он / она / оно → doesn't». */
   hint?: string | null;
 }>;
 
 type Props = Readonly<{
   items: readonly HorizonMistakeReviewItem[];
-  /** Сколько ошибок всего — чтобы честно сказать «и ещё N». */
+  /** Сколько ошибок всего — счётчик в шапке карточки. */
   totalCount: number;
   lang: Lang;
   onOpenItem?: (id: string) => void;
+  /** «Повторить ошибки». Не передан — кнопки нет. */
   onOpenAll?: () => void;
 }>;
+
+function mistakeA11yLabel(lang: Lang, item: HorizonMistakeReviewItem): string {
+  if (!item.given) return item.correct;
+  const given = item.given;
+  const correct = item.correct;
+  return triLang(lang, {
+    ru: `Было ${given}, правильно ${correct}`,
+    uk: `Було ${given}, правильно ${correct}`,
+    en: `You wrote ${given}, correct is ${correct}`,
+    es: `Escribiste ${given}, lo correcto es ${correct}`,
+    "pt-BR": `Você escreveu ${given}, o correto é ${correct}`,
+    vi: `Bạn viết ${given}, đúng là ${correct}`,
+    id: `Kamu menulis ${given}, yang benar ${correct}`,
+    tr: `${given} yazdın, doğrusu ${correct}`,
+    pl: `Napisałeś ${given}, poprawnie ${correct}`,
+  });
+}
 
 export default function HorizonMistakeReview({
   items,
@@ -53,126 +77,112 @@ export default function HorizonMistakeReview({
   onOpenItem,
   onOpenAll,
 }: Props) {
-  // зачем (learning-v2.html, `.errc`): разбор ошибок — карточка стекла; ошибочный ответ красным и
-  // зачёркнут, верный — зелёным, как в строках `.er` макета.
   const g = useLv2Glass();
 
   if (items.length === 0) return null;
 
-  const restCount = Math.max(0, totalCount - items.length);
-
+  const shownTotal = Math.max(items.length, totalCount);
   const title = triLang(lang, {
-    ru: items.length === 1 ? "Споткнулся на одной" : `Споткнулся на ${items.length}`,
-    uk: items.length === 1 ? "Спіткнувся на одній" : `Спіткнувся на ${items.length}`,
-    en: items.length === 1 ? "One slip" : `${items.length} slips`,
-    es: items.length === 1 ? "Un tropiezo" : `${items.length} tropiezos`,
-    "pt-BR": items.length === 1 ? "Um tropeço" : `${items.length} tropeços`,
-    vi: `${items.length} chỗ vấp`,
-    id: `${items.length} kesalahan`,
-    tr: `${items.length} takılma`,
-    pl: items.length === 1 ? "Jedno potknięcie" : `Potknięcia: ${items.length}`,
+    ru: shownTotal === 1 ? "Споткнулся на одной" : `Споткнулся на ${shownTotal}`,
+    uk: shownTotal === 1 ? "Спіткнувся на одній" : `Спіткнувся на ${shownTotal}`,
+    en: shownTotal === 1 ? "One slip" : `${shownTotal} slips`,
+    es: shownTotal === 1 ? "Un tropiezo" : `${shownTotal} tropiezos`,
+    "pt-BR": shownTotal === 1 ? "Um tropeço" : `${shownTotal} tropeços`,
+    vi: `${shownTotal} chỗ vấp`,
+    id: `${shownTotal} kesalahan`,
+    tr: `${shownTotal} takılma`,
+    pl: shownTotal === 1 ? "Jedno potknięcie" : `Potknięcia: ${shownTotal}`,
   });
-
-  const restLabel = triLang(lang, {
-    ru: `и ещё ${restCount} — в «Моих ошибках»`,
-    uk: `і ще ${restCount} — у «Моїх помилках»`,
-    en: `and ${restCount} more — in My mistakes`,
-    es: `y ${restCount} más — en Mis errores`,
-    "pt-BR": `e mais ${restCount} — em Meus erros`,
-    vi: `và ${restCount} lỗi nữa — trong Lỗi của tôi`,
-    id: `dan ${restCount} lagi — di Kesalahanku`,
-    tr: `ve ${restCount} tane daha — Hatalarım'da`,
-    pl: `i jeszcze ${restCount} — w „Moich błędach”`,
+  const retryLabel = triLang(lang, {
+    ru: "Повторить ошибки", uk: "Повторити помилки", en: "Practise mistakes", es: "Repasar errores",
+    "pt-BR": "Revisar erros", vi: "Ôn lại lỗi", id: "Ulangi kesalahan", tr: "Hataları tekrarla", pl: "Powtórz błędy",
   });
 
   return (
-    <View style={styles.wrap}>
-      <Text style={[styles.title, { color: g.text }]}>{title}</Text>
+    <View testID="horizons-mistake-review" style={[styles.card, lv2CardStyle(g)]}>
+      <View style={styles.head}>
+        <Text style={[styles.title, { color: g.text }]}>{title}</Text>
+        <Text style={[styles.count, { color: g.mutedText }]}>{shownTotal}</Text>
+      </View>
 
-      {items.map((item) => {
-        const interactive = !!onOpenItem;
-        const Row = interactive ? Pressable : View;
-        return (
-          <Row
-            key={item.id}
-            {...(interactive
-              ? {
-                  accessibilityRole: "button" as const,
-                  accessibilityLabel: item.given
-                    ? triLang(lang, {
-                        ru: `Было ${item.given}, правильно ${item.correct}`,
-                        uk: `Було ${item.given}, правильно ${item.correct}`,
-                        en: `You wrote ${item.given}, correct is ${item.correct}`,
-                        es: `Escribiste ${item.given}, lo correcto es ${item.correct}`,
-                        "pt-BR": `Você escreveu ${item.given}, o correto é ${item.correct}`,
-                        vi: `Bạn viết ${item.given}, đúng là ${item.correct}`,
-                        id: `Kamu menulis ${item.given}, yang benar ${item.correct}`,
-                        tr: `${item.given} yazdın, doğrusu ${item.correct}`,
-                        pl: `Napisałeś ${item.given}, poprawnie ${item.correct}`,
-                      })
-                    : item.correct,
-                  onPress: () => onOpenItem(item.id),
-                  style: ({ pressed }: { pressed: boolean }) => [
-                    styles.row,
-                    lv2CardStyle(g),
-                    { transform: [{ scale: pressed ? 0.985 : 1 }] },
-                  ],
-                }
-              : { style: [styles.row, lv2CardStyle(g)] })}
-          >
-            {/* Грань слева — маркер ОДНОЙ стороной, а не обводка блока
-                (запрет владельца на контейнеры с обводкой соблюдён). */}
-            <View style={styles.body}>
+      {items.map((item, index) => {
+        const rowStyle = [
+          styles.row,
+          // guard-ok: тонкий разделитель строк `.er` макета, не рамка блока
+          index > 0 ? { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: g.line } : null,
+        ];
+        const body = (
+          <>
+            {item.label ? (
+              <Text style={[styles.label, { color: g.secondary }]}>{item.label}</Text>
+            ) : null}
+            <View style={styles.pair}>
               {item.given ? (
-                <Text style={[styles.given, { color: g.bad }]}>
-                  {item.given}
-                </Text>
+                <>
+                  <Text style={[styles.given, { color: g.bad, textDecorationColor: g.badEdge }]}>
+                    {item.given}
+                  </Text>
+                  <Ionicons name="arrow-forward" size={16} color={g.mutedText} />
+                </>
               ) : null}
-              <Text style={[styles.correct, { color: g.good }]}>
-                {item.correct}
-              </Text>
+              <Text style={[styles.correct, { color: g.good }]}>{item.correct}</Text>
               {item.hint ? (
-                <Text style={[styles.hint, { color: g.secondary }]}>
-                  {item.hint}
-                </Text>
+                <Text style={[styles.hint, { color: g.secondary }]}>{item.hint}</Text>
               ) : null}
             </View>
-            {interactive ? (
-              <Ionicons name="chevron-forward" size={18} color={g.mutedText} style={styles.chevron} />
-            ) : null}
-          </Row>
+          </>
+        );
+        return onOpenItem ? (
+          <Pressable
+            key={item.id}
+            accessibilityRole="button"
+            accessibilityLabel={mistakeA11yLabel(lang, item)}
+            onPress={() => onOpenItem(item.id)}
+            style={({ pressed }) => [...rowStyle, { opacity: pressed ? 0.7 : 1 }]}
+          >
+            {body}
+          </Pressable>
+        ) : (
+          <View key={item.id} accessible accessibilityLabel={mistakeA11yLabel(lang, item)} style={rowStyle}>
+            {body}
+          </View>
         );
       })}
 
-      {restCount > 0 ? (
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel={restLabel}
-          hitSlop={8}
+      {onOpenAll ? (
+        <Lv2Cta
+          ghost
+          testID="horizons-mistakes-retry"
+          accessibilityLabel={retryLabel}
           onPress={onOpenAll}
-          style={({ pressed }) => [styles.rest, { opacity: pressed ? 0.6 : 1 }]}
+          style={styles.retry}
+          right={<Ionicons name="refresh" size={18} color={g.text} />}
         >
-          <Text style={[styles.restText, { color: g.secondary }]}>{restLabel}</Text>
-        </Pressable>
+          {retryLabel}
+        </Lv2Cta>
       ) : null}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  wrap: { gap: 10 },
-  title: { fontSize: 17, lineHeight: 22, fontWeight: "700" },
-  row: {
+  card: { paddingTop: 14, paddingBottom: 14, paddingHorizontal: 16 },
+  head: { flexDirection: "row", alignItems: "center", gap: 10, paddingBottom: 2 },
+  title: { flexShrink: 1, fontSize: 17, lineHeight: 22, fontWeight: "700" },
+  count: { fontSize: 17, lineHeight: 22, fontWeight: "600" },
+  row: { flexDirection: "row", alignItems: "center", gap: 12, paddingVertical: 12 },
+  label: { width: 110, fontSize: 15, lineHeight: 20, fontWeight: "700" },
+  pair: {
+    flex: 1,
+    minWidth: 0,
     flexDirection: "row",
-    alignItems: "stretch",
-    overflow: "hidden",
+    flexWrap: "wrap",
+    alignItems: "center",
+    columnGap: 10,
+    rowGap: 6,
   },
-  body: { flex: 1, minWidth: 0, paddingHorizontal: 16, paddingVertical: 14 },
-  // Зачёркнутый ответ мельче: взгляд идёт вниз и заканчивается на ПРАВИЛЬНОМ варианте.
-  given: { fontSize: 15, lineHeight: 20, fontWeight: "400", textDecorationLine: "line-through" },
-  correct: { fontSize: 16, lineHeight: 22, fontWeight: "600", marginTop: 3 },
-  hint: { fontSize: 14, lineHeight: 20, fontWeight: "400", marginTop: 6 },
-  chevron: { alignSelf: "center", marginRight: 13 },
-  rest: { minHeight: 44, alignItems: "center", justifyContent: "center" },
-  restText: { fontSize: 15, lineHeight: 20, fontWeight: "600", textAlign: "center" },
+  given: { fontSize: 15, lineHeight: 20, textDecorationLine: "line-through" },
+  correct: { fontSize: 15, lineHeight: 20, fontWeight: "600" },
+  hint: { width: "100%", fontSize: 14, lineHeight: 20, marginTop: 2 },
+  retry: { minHeight: 44, borderRadius: 22, marginTop: 6 },
 });

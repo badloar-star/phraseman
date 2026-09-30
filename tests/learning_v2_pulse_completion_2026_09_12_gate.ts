@@ -14,16 +14,16 @@ const player = readFileSync(
   "utf8",
 );
 
-assert.match(result, /from "\.\.\/\.\.\/feedback\/ResultsSequence"/);
+// зачем (владелец 2026-09-30): итог Learning V2 переведён на LG-ядро HorizonResultGlass
+// (learning-v2.html → «Итог занятия»); общий ResultsSequence остаётся для других экранов.
+assert.match(result, /from "\.\/HorizonResultGlass"/);
+assert.doesNotMatch(result, /feedback\/ResultsSequence/);
 assert.match(result, /from "\.\.\/\.\.\/FeedbackRatingCard"/);
 assert.match(result, /from "\.\.\/\.\.\/RuneBalanceChip"/);
-assert.match(result, /layoutVariant="learning-v2-orbit"/);
-assert.match(result, /showStars\b/);
-assert.doesNotMatch(result, /showStars=\{kind === "session"\}/);
+assert.match(result, /presentation="liquid-glass-rate"/);
 assert.match(result, /testID="learning-v2-completion-feedback"/);
 assert.match(result, /testID="learning-v2-completion-header-runes"/);
 assert.doesNotMatch(result, /learning-v2-completion-replay|Повторить анимацию/);
-assert.match(result, /skipAnimationA11yLabel=\{c\.showResult\}/);
 
 assert.match(sequence, /layoutVariant\?: 'default' \| 'learning-v2-pulse' \| 'learning-v2-orbit'/);
 assert.match(sequence, /scrollEnabled=\{!orbitMode\}/);
@@ -55,7 +55,7 @@ assert.match(player, /const canEarnSessionRunes = !isAuthoringPreview && !isSess
 assert.match(player, /learningV2SessionBaseXpV1/);
 assert.match(player, /nextLessonAvailable=/);
 assert.match(player, /isPulseLessonAuthored\(lessonOrdinal \+ 1\)/);
-assert.match(result, /nextLessonInProgress/);
+assert.match(result, /nextLessonWip/);
 assert.match(player, /learning_v2_direct_session_player_v1:finish/);
 assert.match(player, /lessonOrdinal === 32 \? "final" : "lesson"/);
 

@@ -1,16 +1,22 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import React, { useMemo } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 
+import { learningV2CheckpointCopy } from "../../../app/learning_v2_checkpoint_copy";
+import { learningV2SessionUnlocksNextV1 } from "../../../app/learning_v2_session_unlock_policy_v1";
 import { useStableSafeAreaInsets } from "../../../app/stable_safe_area_metrics";
-import { triLang, type Lang } from "../../../constants/i18n";
-import { runeAmount } from "../../../constants/runes";
+import { type Lang } from "../../../constants/i18n";
+import { runeAmount, runeWord } from "../../../constants/runes";
 import { useRuntimeActive } from "../../../hooks/use_runtime_active";
 import FeedbackRatingCard from "../../FeedbackRatingCard";
-import HorizonMistakeReview, { type HorizonMistakeReviewItem } from "./HorizonMistakeReview";
-import ResultsSequence from "../../feedback/ResultsSequence";
 import RuneBalanceChip from "../../RuneBalanceChip";
-import { lv2CardStyle, useLv2Glass } from "../LearningV2Glass";
+import { useLv2Glass } from "../LearningV2Glass";
+import HorizonMistakeReview, {
+  HORIZON_MISTAKE_REVIEW_LIMIT,
+  type HorizonMistakeReviewItem,
+} from "./HorizonMistakeReview";
+import HorizonResultGlass, { type HorizonResultSkillRow } from "./HorizonResultGlass";
+import { horizonResultGlassCopy } from "./horizon_result_glass_copy";
 
 export type HorizonResultFacts = Readonly<{
   runes: number;
@@ -20,6 +26,16 @@ export type HorizonResultFacts = Readonly<{
   elapsedMs: number;
   credit?: "credited" | "existing" | "practice";
 }>;
+
+/** Строка «Что вы теперь умеете»: тип задания и закрепилось ли оно с первой попытки. */
+export type HorizonResultSkill = Readonly<{
+  id: string;
+  label: string;
+  confirmed: boolean;
+}>;
+
+/** Всего занятий в уроке Learning V2 (сквозная нумерация 1..56). */
+const SESSIONS_PER_LESSON = 56;
 
 type Props = Readonly<{
   lesson: number;
@@ -40,124 +56,14 @@ type Props = Readonly<{
    * пустой заголовок «ошибок нет» был бы шумом.
    */
   mistakes?: readonly HorizonMistakeReviewItem[];
-  /** Сколько промахов было всего — чтобы честно сказать «и ещё N». */
+  /** Сколько промахов было всего — счётчик в шапке разбора. */
   mistakesTotal?: number;
   onOpenMistake?: (id: string) => void;
+  /** «Повторить ошибки» — открыть «Мои ошибки». Не передан — кнопки нет. */
   onOpenAllMistakes?: () => void;
+  /** Проверка главы: «Что вы теперь умеете» (без «провалено» by design). */
+  skills?: readonly HorizonResultSkill[];
 }>;
-
-function copyFor(lang: Lang) {
-  return {
-    header: triLang(lang, {
-      ru: "Итоги сессии", uk: "Підсумки сесії", en: "Session results", es: "Resultados de la sesión",
-      "pt-BR": "Resultado da sessão", vi: "Kết quả buổi học", id: "Hasil sesi", tr: "Oturum sonucu", pl: "Wynik sesji",
-    }),
-    sessionComplete: triLang(lang, {
-      ru: "СЕССИЯ ЗАВЕРШЕНА", uk: "СЕСІЮ ЗАВЕРШЕНО", en: "SESSION COMPLETE", es: "SESIÓN COMPLETADA",
-      "pt-BR": "SESSÃO CONCLUÍDA", vi: "ĐÃ XONG BUỔI HỌC", id: "SESI SELESAI", tr: "OTURUM TAMAMLANDI", pl: "SESJA UKOŃCZONA",
-    }),
-    chapterComplete: triLang(lang, {
-      ru: "ГЛАВА ЗАВЕРШЕНА", uk: "РОЗДІЛ ЗАВЕРШЕНО", en: "CHAPTER COMPLETE", es: "CAPÍTULO COMPLETADO",
-      "pt-BR": "CAPÍTULO CONCLUÍDO", vi: "ĐÃ XONG CHƯƠNG", id: "BAB SELESAI", tr: "BÖLÜM TAMAMLANDI", pl: "ROZDZIAŁ UKOŃCZONY",
-    }),
-    lessonComplete: triLang(lang, {
-      ru: "УРОК ЗАВЕРШЁН", uk: "УРОК ЗАВЕРШЕНО", en: "LESSON COMPLETE", es: "LECCIÓN COMPLETADA",
-      "pt-BR": "LIÇÃO CONCLUÍDA", vi: "ĐÃ XONG BÀI HỌC", id: "PELAJARAN SELESAI", tr: "DERS TAMAMLANDI", pl: "LEKCJA UKOŃCZONA",
-    }),
-    courseCompleteEyebrow: triLang(lang, {
-      ru: "КУРС ЗАВЕРШЁН", uk: "КУРС ЗАВЕРШЕНО", en: "COURSE COMPLETE", es: "CURSO COMPLETADO",
-      "pt-BR": "CURSO CONCLUÍDO", vi: "ĐÃ HOÀN THÀNH KHÓA HỌC", id: "KURSUS SELESAI", tr: "KURS TAMAMLANDI", pl: "KURS UKOŃCZONY",
-    }),
-    title: triLang(lang, {
-      ru: "Отличная работа", uk: "Чудова робота", en: "Great work", es: "Gran trabajo",
-      "pt-BR": "Ótimo trabalho", vi: "Làm tốt lắm", id: "Kerja bagus", tr: "Harika iş", pl: "Świetna robota",
-    }),
-    nextSession: triLang(lang, {
-      ru: "Следующая сессия уже открыта", uk: "Наступну сесію вже відкрито", en: "The next session is now open", es: "La siguiente sesión ya está disponible",
-      "pt-BR": "A próxima sessão já está aberta", vi: "Buổi tiếp theo đã mở", id: "Sesi berikutnya sudah terbuka", tr: "Sonraki oturum açıldı", pl: "Następna sesja jest już dostępna",
-    }),
-    nextChapter: triLang(lang, {
-      ru: "Следующая глава уже открыта", uk: "Наступний розділ уже відкрито", en: "The next chapter is now open", es: "El siguiente capítulo ya está disponible",
-      "pt-BR": "O próximo capítulo já está aberto", vi: "Chương tiếp theo đã mở", id: "Bab berikutnya sudah terbuka", tr: "Sonraki bölüm açıldı", pl: "Następny rozdział jest już dostępny",
-    }),
-    nextLesson: triLang(lang, {
-      ru: "Следующий урок уже открыт", uk: "Наступний урок уже відкрито", en: "The next lesson is now open", es: "La siguiente lección ya está disponible",
-      "pt-BR": "A próxima lição já está aberta", vi: "Bài tiếp theo đã mở", id: "Pelajaran berikutnya sudah terbuka", tr: "Sonraki ders açıldı", pl: "Następna lekcja jest już dostępna",
-    }),
-    nextLessonInProgress: triLang(lang, {
-      ru: "Следующий урок ещё в работе", uk: "Наступний урок ще в роботі", en: "The next lesson is still in progress", es: "La siguiente lección aún está en preparación",
-      "pt-BR": "A próxima lição ainda está em preparação", vi: "Bài tiếp theo vẫn đang được hoàn thiện", id: "Pelajaran berikutnya masih disiapkan", tr: "Sonraki ders hâlâ hazırlanıyor", pl: "Następna lekcja jest jeszcze przygotowywana",
-    }),
-    courseComplete: triLang(lang, {
-      ru: "Курс завершён", uk: "Курс завершено", en: "Course complete", es: "Curso completado",
-      "pt-BR": "Curso concluído", vi: "Đã hoàn thành khóa học", id: "Kursus selesai", tr: "Kurs tamamlandı", pl: "Kurs ukończony",
-    }),
-    noNewCredit: triLang(lang, {
-      ru: "Результат сохранён · повторного начисления нет", uk: "Результат збережено · повторного нарахування немає", en: "Result saved · no duplicate reward", es: "Resultado guardado · sin recompensa duplicada",
-      "pt-BR": "Resultado salvo · sem recompensa duplicada", vi: "Đã lưu kết quả · không thưởng trùng", id: "Hasil tersimpan · tanpa hadiah ganda", tr: "Sonuç kaydedildi · tekrar ödül yok", pl: "Wynik zapisany · bez podwójnej nagrody",
-    }),
-    preview: triLang(lang, {
-      ru: "Предпросмотр · без начисления", uk: "Попередній перегляд · без нарахування", en: "Preview · no reward", es: "Vista previa · sin recompensa",
-      "pt-BR": "Prévia · sem recompensa", vi: "Xem trước · không thưởng", id: "Pratinjau · tanpa hadiah", tr: "Ön izleme · ödül yok", pl: "Podgląd · bez nagrody",
-    }),
-    session: triLang(lang, {
-      ru: "СЕССИЯ", uk: "СЕСІЯ", en: "SESSION", es: "SESIÓN", "pt-BR": "SESSÃO",
-      vi: "BUỔI", id: "SESI", tr: "OTURUM", pl: "SESJA",
-    }),
-    runes: triLang(lang, {
-      ru: "РУНЫ", uk: "РУНИ", en: "RUNES", es: "RUNAS", "pt-BR": "RUNAS",
-      vi: "RUNE", id: "RUNE", tr: "RÜNLER", pl: "RUNY",
-    }),
-    accuracy: triLang(lang, {
-      ru: "с первой попытки", uk: "з першої спроби", en: "first try", es: "al primer intento",
-      "pt-BR": "na primeira tentativa", vi: "đúng lần đầu", id: "percobaan pertama", tr: "ilk denemede", pl: "za pierwszym razem",
-    }),
-    time: triLang(lang, {
-      ru: "время", uk: "час", en: "time", es: "tiempo", "pt-BR": "tempo",
-      vi: "thời gian", id: "waktu", tr: "süre", pl: "czas",
-    }),
-    tasks: triLang(lang, {
-      ru: "заданий", uk: "завдань", en: "activities", es: "actividades", "pt-BR": "atividades",
-      vi: "hoạt động", id: "aktivitas", tr: "etkinlik", pl: "zadań",
-    }),
-    feedbackKicker: triLang(lang, {
-      ru: "ВАШЕ ВПЕЧАТЛЕНИЕ", uk: "ВАШЕ ВРАЖЕННЯ", en: "YOUR FEEDBACK", es: "TU OPINIÓN",
-      "pt-BR": "SUA OPINIÃO", vi: "PHẢN HỒI CỦA BẠN", id: "PENDAPAT ANDA", tr: "GÖRÜŞÜNÜZ", pl: "TWOJA OPINIA",
-    }),
-    feedbackTitle: triLang(lang, {
-      ru: "Всё было понятно?", uk: "Усе було зрозуміло?", en: "Did everything make sense?", es: "¿Se entendió todo?",
-      "pt-BR": "Deu para entender tudo?", vi: "Mọi thứ có dễ hiểu không?", id: "Semuanya jelas?", tr: "Her şey anlaşıldı mı?", pl: "Wszystko było jasne?",
-    }),
-    placeholder: triLang(lang, {
-      ru: "Где застрял? Что объяснить иначе?", uk: "Де застряг? Що пояснити інакше?", en: "Where did you get stuck? What should we explain better?", es: "¿Dónde te atascaste? ¿Qué explicar mejor?",
-      "pt-BR": "Onde travou? O que explicar melhor?", vi: "Bạn mắc ở đâu? Cần giải thích lại điều gì?", id: "Di mana kamu tersendat? Apa yang perlu dijelaskan ulang?", tr: "Nerede takıldın? Ne daha iyi anlatılmalı?", pl: "Gdzie utknąłeś? Co wyjaśnić inaczej?",
-    }),
-    send: triLang(lang, {
-      ru: "Отправить", uk: "Надіслати", en: "Send", es: "Enviar", "pt-BR": "Enviar",
-      vi: "Gửi", id: "Kirim", tr: "Gönder", pl: "Wyślij",
-    }),
-    thanks: triLang(lang, {
-      ru: "Спасибо! Отзыв отправлен", uk: "Дякуємо! Відгук надіслано", en: "Thanks! Feedback sent", es: "¡Gracias! Comentario enviado",
-      "pt-BR": "Obrigado! Comentário enviado", vi: "Cảm ơn! Đã gửi phản hồi", id: "Terima kasih! Masukan terkirim", tr: "Teşekkürler! Geri bildirim gönderildi", pl: "Dziękujemy! Opinia wysłana",
-    }),
-    rating: triLang(lang, {
-      ru: "Оценка", uk: "Оцінка", en: "Rating", es: "Valoración", "pt-BR": "Avaliação",
-      vi: "Đánh giá", id: "Penilaian", tr: "Puan", pl: "Ocena",
-    }),
-    continue: triLang(lang, {
-      ru: "Продолжить", uk: "Продовжити", en: "Continue", es: "Continuar", "pt-BR": "Continuar",
-      vi: "Tiếp tục", id: "Lanjutkan", tr: "Devam et", pl: "Kontynuuj",
-    }),
-    showResult: triLang(lang, {
-      ru: "Показать весь итог", uk: "Показати весь підсумок", en: "Show full result", es: "Mostrar el resultado completo",
-      "pt-BR": "Mostrar o resultado completo", vi: "Hiện toàn bộ kết quả", id: "Tampilkan hasil lengkap", tr: "Tüm sonucu göster", pl: "Pokaż pełny wynik",
-    }),
-    close: triLang(lang, {
-      ru: "Закрыть", uk: "Закрити", en: "Close", es: "Cerrar", "pt-BR": "Fechar",
-      vi: "Đóng", id: "Tutup", tr: "Kapat", pl: "Zamknij",
-    }),
-  };
-}
 
 export default function HorizonSessionResult({
   lesson,
@@ -176,39 +82,57 @@ export default function HorizonSessionResult({
   mistakesTotal,
   onOpenMistake,
   onOpenAllMistakes,
+  skills,
 }: Props) {
-  // зачем (learning-v2.html, done): обвязка итога — на токенах Liquid Glass; сама анимированная
-  // последовательность звёзд/наград (ResultsSequence) общая для приложения и живёт в своём модуле.
+  // зачем (владелец 2026-09-30, learning-v2.html → «Итог занятия»): единый экран завершения
+  // 1 в 1 по макету Liquid Glass. Анимированное ядро — HorizonResultGlass (LG-вариант);
+  // общий ResultsSequence остаётся для остальных экранов приложения и здесь не используется.
   const g = useLv2Glass();
   const insets = useStableSafeAreaInsets();
   const active = useRuntimeActive();
-  const c = useMemo(() => copyFor(lang), [lang]);
+  const c = useMemo(() => horizonResultGlassCopy(lang), [lang]);
+  const checkpoint = useMemo(() => learningV2CheckpointCopy(lang), [lang]);
   const chapter = Math.max(1, Math.ceil(sessionOrdinal / 8));
-  const minutes = Math.floor(Math.max(0, facts.elapsedMs) / 60000);
-  const seconds = Math.floor(Math.max(0, facts.elapsedMs) / 1000) % 60;
-  const accuracy = facts.total > 0
-    ? Math.round((Math.max(0, facts.firstTry) / facts.total) * 100)
-    : 0;
-  const creditedRunes = !preview && facts.credit === "credited"
-    ? Math.max(0, Math.round(facts.runes))
-    : 0;
-  const subtitle = preview
-    ? c.preview
+  const total = Math.max(0, Math.round(facts.total));
+  const correct = Math.min(total, Math.max(0, Math.round(facts.firstTry)));
+  const wrong = total - correct;
+  // Начисление показываем только подтверждённым фактом кошелька: повтор («existing»),
+  // практика и предпросмотр честно дают +0 — повторного начисления нет.
+  const gain = !preview && facts.credit === "credited" ? Math.max(0, Math.round(facts.runes)) : 0; // guard-ok: только показ, баланс не меняется
+
+  const title = kind === "final"
+    ? c.courseDone
+    : kind === "lesson"
+      ? c.lessonDone
+      : kind === "chapter"
+        ? c.chapterDone
+        : c.sessionDone;
+  const tail = preview
+    ? c.previewNoCredit
     : facts.credit === "existing"
-      ? c.noNewCredit
-      : kind === "final"
-        ? c.courseComplete
-        : kind === "lesson"
-          ? nextLessonAvailable ? c.nextLesson : c.nextLessonInProgress
-        : kind === "chapter"
-          ? c.nextChapter
-          : c.nextSession;
+      ? c.resultSaved
+      : kind === "lesson"
+        ? nextLessonAvailable ? c.nextLessonOpen : c.nextLessonWip
+        : kind === "session" && learningV2SessionUnlocksNextV1(stars)
+          ? c.nextOpen
+          : null;
+  const place = kind === "chapter"
+    ? c.chapterCheck(chapter)
+    : kind === "session"
+      ? facts.credit === "existing" ? c.sessionShort(sessionOrdinal) : c.sessionOf(sessionOrdinal, SESSIONS_PER_LESSON)
+      : null;
+  const subtitle = [c.lessonLabel(lesson), place, tail].filter(Boolean).join(" · ");
+  const ctaLabel = kind === "lesson"
+    ? nextLessonAvailable ? c.toLesson(lesson + 1) : c.toMap
+    : c.continue;
+
+  const skillRows = useMemo<readonly HorizonResultSkillRow[] | undefined>(() => {
+    if (kind !== "chapter" || !skills || skills.length === 0) return undefined;
+    return skills.map((s) => ({ id: s.id, label: s.label, state: s.confirmed ? "ok" : "review" }));
+  }, [kind, skills]);
+
   const feedbackEntityId = sessionId?.trim() || `learning-v2:${lesson}:${sessionOrdinal}`;
-  const completionEyebrow = kind === "final"
-    ? c.courseCompleteEyebrow
-    : `${kind === "lesson" ? c.lessonComplete : kind === "chapter" ? c.chapterComplete : c.sessionComplete} · ${
-      kind === "lesson" ? lesson : kind === "chapter" ? chapter : sessionOrdinal
-    }`;
+  const visibleMistakes = mistakes?.slice(0, HORIZON_MISTAKE_REVIEW_LIMIT) ?? [];
 
   return (
     <View
@@ -227,76 +151,61 @@ export default function HorizonSessionResult({
             { backgroundColor: g.opaqueControl, opacity: pressed ? 0.7 : 1 },
           ]}
         >
-          <Ionicons name="close" size={22} color={g.text} />
+          <Ionicons name="close" size={20} color={g.text} />
         </Pressable>
-        <Text style={[styles.headerTitle, { color: g.text }]}>
-          {c.header}
-        </Text>
-        <View style={styles.balanceSlot}>
-          <RuneBalanceChip
-            testID="learning-v2-completion-header-runes"
-            color={g.text}
-            size={22}
-            active={active}
-          />
-        </View>
+        <RuneBalanceChip
+          testID="learning-v2-completion-header-runes"
+          color={g.text}
+          size={22}
+          active={active}
+        />
       </View>
 
-      <ResultsSequence
-        layoutVariant="learning-v2-orbit"
-        animateLateRewards
-        reducedMotion={reducedMotion}
-        bottomInset={insets.bottom}
-        rewardsSettled={rewardsSettled}
-        stars={stars}
-        showStars
-        runes={creditedRunes > 0 ? creditedRunes : undefined}
-        runesLabel={c.runes}
-        runesAccessibilityLabel={runeAmount(lang, creditedRunes)}
-        eyebrow={completionEyebrow}
-        title={c.title}
+      <HorizonResultGlass
+        title={title}
         subtitle={subtitle}
-        summaryMetrics={[
-          { value: `${accuracy}%`, label: c.accuracy },
-          { value: `${minutes}:${String(seconds).padStart(2, "0")}`, label: c.time },
-          { value: String(Math.max(0, facts.total)), label: c.tasks },
-        ]}
-        feedbackSlot={!preview ? (
-          <View style={styles.afterResultStack}>
-            {/* Разбор ВЫШЕ отзыва: сначала учёба, потом просьба оценить.
-                Нет промахов → блок не рисуется, пустого «ошибок нет» не будет. */}
-            {mistakes && mistakes.length > 0 ? (
-              <HorizonMistakeReview
-                items={mistakes}
-                totalCount={mistakesTotal ?? mistakes.length}
-                lang={lang}
-                onOpenItem={onOpenMistake}
-                onOpenAll={onOpenAllMistakes}
-              />
-            ) : null}
-          <View style={[styles.feedbackShell, lv2CardStyle(g)]}>
-            <Text style={[styles.feedbackKicker, { color: g.secondary }]}>{c.feedbackKicker}</Text>
-            <FeedbackRatingCard
-              kind="learning_v2"
-              entityId={feedbackEntityId}
-              entityLabel={`Learning V2 · ${lesson}.${sessionOrdinal}`}
-              lang={lang}
-              title={c.feedbackTitle}
-              placeholder={c.placeholder}
-              sendLabel={c.send}
-              thanksLabel={c.thanks}
-              ratingA11yLabel={c.rating}
-              testID="learning-v2-completion-feedback"
-              presentation="compact-stars"
-            />
-            </View>
-          </View>
+        stars={stars}
+        correct={correct}
+        wrong={wrong}
+        labels={{ correct: c.correct, wrong: c.wrong, accuracy: c.accuracy }}
+        gain={gain}
+        gainWord={runeWord(lang, gain)}
+        gainA11yLabel={`+${runeAmount(lang, gain)}`}
+        rewardsSettled={rewardsSettled || preview}
+        reducedMotion={reducedMotion}
+        skills={skillRows}
+        skillsTitle={checkpoint.outcomeTitle}
+        skillOkLabel={checkpoint.confirmed}
+        skillReviewLabel={checkpoint.review}
+        mistakesSlot={visibleMistakes.length > 0 ? (
+          <HorizonMistakeReview
+            items={visibleMistakes}
+            totalCount={mistakesTotal ?? mistakes?.length ?? visibleMistakes.length}
+            lang={lang}
+            onOpenItem={onOpenMistake}
+            onOpenAll={onOpenAllMistakes}
+          />
         ) : undefined}
-        ctaPrimaryLabel={c.continue}
-        skipAnimationA11yLabel={c.showResult}
-        ctaPrimaryTestID="horizons-result-continue"
-        onCtaPrimary={onContinue}
-        intensity={reducedMotion ? "quiet" : kind === "final" ? "major" : "milestone"}
+        feedbackSlot={!preview ? (
+          <FeedbackRatingCard
+            kind="learning_v2"
+            entityId={feedbackEntityId}
+            entityLabel={`Learning V2 · ${lesson}.${sessionOrdinal}`}
+            lang={lang}
+            title={c.feedbackTitle}
+            placeholder={c.feedbackPlaceholder}
+            sendLabel={c.feedbackSend}
+            thanksLabel={c.feedbackThanks}
+            ratingA11yLabel={c.feedbackRating}
+            testID="learning-v2-completion-feedback"
+            presentation="liquid-glass-rate"
+          />
+        ) : undefined}
+        ctaLabel={ctaLabel}
+        ctaTestID="horizons-result-continue"
+        ctaEnabled={rewardsSettled || preview}
+        onContinue={onContinue}
+        bottomInset={insets.bottom}
       />
     </View>
   );
@@ -308,8 +217,8 @@ const styles = StyleSheet.create({
     minHeight: 56,
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 14,
-    gap: 10,
+    justifyContent: "space-between",
+    paddingHorizontal: 16,
   },
   close: {
     width: 44,
@@ -317,26 +226,5 @@ const styles = StyleSheet.create({
     borderRadius: 22,
     alignItems: "center",
     justifyContent: "center",
-  },
-  headerTitle: {
-    flex: 1,
-    fontSize: 17,
-    lineHeight: 22,
-    fontWeight: "700",
-    textAlign: "center",
-  },
-  balanceSlot: { minWidth: 64, alignItems: "flex-end" },
-  // Разбор ошибок и карточка отзыва живут одной колонкой: сначала учёба,
-  // потом просьба оценить.
-  afterResultStack: { gap: 16 },
-  feedbackShell: { padding: 4 },
-  feedbackKicker: {
-    paddingTop: 8,
-    paddingBottom: 2,
-    fontSize: 12,
-    lineHeight: 16,
-    fontWeight: "700",
-    letterSpacing: 2.4,
-    textAlign: "center",
   },
 });

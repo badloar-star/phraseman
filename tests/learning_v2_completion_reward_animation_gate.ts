@@ -19,7 +19,8 @@ const horizon = read(
   "components/learning-v2/horizons/HorizonSessionResult.tsx",
 );
 const sequence = read("components/feedback/ResultsSequence.tsx");
-assert.match(horizon, /animateLateRewards/u);
+// Поздняя награда: LG-ядро досчитывает до факта после rewardsSettled (count-up на UI-треде).
+assert.match(horizon, /rewardsSettled=\{rewardsSettled \|\| preview\}/u);
 assert.match(sequence, /animateLateRewards\?: boolean/u);
 assert.match(sequence, /lateXpAnimatedRef/u);
 assert.match(sequence, /lateRunesAnimatedRef/u);

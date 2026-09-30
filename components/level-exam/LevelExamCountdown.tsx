@@ -14,18 +14,27 @@ import { soundDirector } from '../../modules/audio/sound_director';
 import { useIsScreenFocused } from '../../hooks/use_is_screen_focused';
 import ScreenGradient from '../ScreenGradient';
 import { useTheme } from '../ThemeContext';
-import TonalSurface from '../TonalSurface';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { triLang, type Lang } from '../../constants/i18n';
 import { COUNTDOWN_STEP_MS, COUNTDOWN_TOTAL_MS } from './levelExamMotion';
 
 type Props = {
   attemptId: string;
   level: string;
+  /** Язык интерфейса для подписи «Приготовься»; по умолчанию русский. */
+  lang?: Lang;
   active?: boolean;
   onComplete: () => void;
 };
 
-export default function LevelExamCountdown({ attemptId, level, active = true, onComplete }: Props) {
-  const { theme: t, f, ds } = useTheme();
+export default function LevelExamCountdown({ attemptId, level, lang = 'ru', active = true, onComplete }: Props) {
+  const { liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  // зачем: в макете под цифрой подпись «Приготовься»
+  const readyText = triLang(lang, {
+    ru: 'Приготовься', uk: 'Приготуйся', en: 'Get ready', es: 'Prepárate', 'pt-BR': 'Prepare-se',
+    vi: 'Chuẩn bị nào', id: 'Bersiaplah', tr: 'Hazırlan', pl: 'Przygotuj się',
+  });
   const reducedMotion = useReducedMotion();
   const isFocused = useIsScreenFocused();
   const [step, setStep] = useState<3 | 2 | 1>(3);
@@ -94,30 +103,28 @@ export default function LevelExamCountdown({ attemptId, level, active = true, on
 
   return (
     <ScreenGradient artBackdrop="exam">
-      <View style={[styles.root, { padding: ds.spacing.xl }]}>
-        <Text style={{ color: t.textMuted, fontSize: f.label, fontFamily: ds.fontFamily, fontWeight: '800' }}>
-          {level}
-        </Text>
-        <TonalSurface
-          tone="raised"
-          radius={ds.radius.xl}
+      <View style={styles.root}>
+        <Text style={[styles.level, { color: glass.secondary }]}>{level}</Text>
+        <View
           accessibilityLiveRegion="assertive"
           accessibilityLabel={`${level}: ${step}`}
-          style={[styles.numberSurface, { backgroundColor: t.accentBg }]}
+          style={styles.numberSurface}
         >
           <Animated.View style={[styles.numberWrap, numberStyle]}>
-            <Text style={{ color: t.accent, fontSize: f.numLg * 3, fontFamily: ds.fontFamily, fontWeight: '900' }}>
-              {step}
-            </Text>
+            <Text style={[styles.number, { color: glass.text }]}>{step}</Text>
           </Animated.View>
-        </TonalSurface>
+        </View>
+        <Text style={[styles.ready, { color: glass.secondary }]}>{readyText}</Text>
       </View>
     </ScreenGradient>
   );
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 16 },
-  numberSurface: { width: 176, height: 176, alignItems: 'center', justifyContent: 'center' },
+  root: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 16, padding: 32 },
+  level: { fontSize: 15, lineHeight: 20, fontWeight: '600' },
+  numberSurface: { minWidth: 176, minHeight: 176, alignItems: 'center', justifyContent: 'center' },
   numberWrap: { alignItems: 'center', justifyContent: 'center' },
+  number: { fontSize: 132, lineHeight: 140, fontWeight: '800', fontVariant: ['tabular-nums'] },
+  ready: { fontSize: 17, lineHeight: 22, fontWeight: '600' },
 });

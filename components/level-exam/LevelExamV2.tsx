@@ -1,5 +1,4 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -37,7 +36,6 @@ import { saveExamProgress } from '../../app/medal_utils';
 import { getFirstLessonForLevel, getLastLessonForLevel, getNextCourseLevel } from '../../app/course_levels';
 import { markPremiumCourseLevelReached, unlockLesson } from '../../app/lesson_lock_system';
 import { addShards, awardOneTime } from '../../app/shards_system';
-import { registerXP } from '../../app/xp_manager';
 import { safeRouterBack } from '../../app/navigation_back';
 import { useEnergy, useEnergySessionIntent } from '../EnergyContext';
 import { usePremium } from '../PremiumContext';
@@ -45,10 +43,12 @@ import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import NoEnergyModal from '../NoEnergyModal';
 import { activityEnergyCost } from '../../app/energy_contract';
 import ScreenGradient from '../ScreenGradient';
-import TapScale from '../TapScale';
 import { useTheme } from '../ThemeContext';
 import ThemedConfirmModal from '../ThemedConfirmModal';
-import TonalSurface from '../TonalSurface';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { getLevelExamCopy } from '../../app/level_exam_copy';
+import { PracticeCta } from '../practice/PracticeStates';
+import { ExamFooter, ExamHeader, ExamHero } from './ExamGlassParts';
 import ContextChoiceQuestion from './ContextChoiceQuestion';
 import LevelExamCountdown from './LevelExamCountdown';
 import LevelExamIntro from './LevelExamIntro';
@@ -117,7 +117,8 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
   // фолбэки без en в проекте.
   const examSourceLocale = lang === 'en' ? 'ru' : lang;
   const router = useRouter();
-  const { theme: t, f, ds } = useTheme();
+  const { liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const { isUnlimited, confirmSpendAmount, acknowledgeSessionStart, energy, bonusEnergy, energyReady } = useEnergy();
   const { hasPremiumAccess } = usePremium();
   const unlimitedEnergy = isUnlimited || hasPremiumAccess;
@@ -139,6 +140,15 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
   const [starting, setStarting] = useState(false);
   const beginQuizInFlightRef = useRef(false);
   const [noEnergy, setNoEnergy] = useState(false);
+  // зачем: заголовок «Зачёт A1» в шапках блокировки и вопросов берём из общей копии экзамена
+  const examTitle = getLevelExamCopy(lang, {
+    level,
+    firstLesson: getFirstLessonForLevel(level),
+    lastLesson: getLastLessonForLevel(level),
+    durationMinutes: 0,
+    energyCost: 0,
+    bestScore: null,
+  }).title;
   const [exitConfirm, setExitConfirm] = useState(false);
   const [contentUnavailable, setContentUnavailable] = useState(false);
   const attemptRef = useRef<LevelExamAttemptSnapshot | null>(null);
@@ -209,27 +219,8 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
       const gem = gemMap[progress.newPassCount];
       if (gem) void checkAchievements({ type: 'gem', level, gem, studyTarget: 'en' });
       void checkAchievements({ type: 'exam', pct: scored.pct, studyTarget: 'en' });
-      const storedName = ((await AsyncStorage.getItem('user_name')) || '').trim();
-      const progressEvent = registerXP(scored.baseXp, 'exam_complete', storedName, lang, undefined, {
-        eventId: finishing.finishToken,
-        payload: {
-          level,
-          studyTarget: 'en',
-          blueprintVersion: 3,
-          pct: scored.pct,
-          percent: scored.pct,
-          passed: scored.passed,
-          score: scored.score,
-          total: scored.total,
-          attemptNumber,
-          finishReason: reason,
-        },
-      });
       const firstPass = !storedProgressFlagIsTrue(previousPassed);
-      setRewardState(scored.passed ? (firstPass ? 'pending' : 'already_claimed') : 'none');
-      if (scored.passed && firstPass) {
-        void progressEvent.then(() => setRewardState('earned')).catch(() => setRewardState('pending'));
-      }
+      setRewardState(scored.passed ? (firstPass ? 'earned' : 'already_claimed') : 'none');
       void trackFeatureSuccess('level_exam', 'complete', {
         level,
         score: scored.score,
@@ -456,23 +447,22 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
     return (
       <ScreenGradient artBackdrop="exam">
         <SafeAreaView style={styles.safeArea}>
-          <View style={[styles.stateWrap, { padding: ds.spacing.xl }]}> 
-            <TonalSurface tone="raised" radius={ds.radius.xl} style={[styles.stateCard, { padding: ds.spacing.xl, gap: ds.spacing.md }]}> 
-              <Ionicons name="lock-closed-outline" size={34} color={t.accent} />
-              <Text accessibilityRole="header" style={{ color: t.textPrimary, fontSize: f.h2, fontFamily: ds.fontFamily, fontWeight: '900', textAlign: 'center' }}>
-                {contentUnavailable
+          <ExamHeader glass={glass} title={examTitle} onBack={() => safeRouterBack(router, '/lessons_list' as never)} />
+          <View style={styles.stateWrap}>
+            <ExamHero
+              glass={glass}
+              icon="lock-closed-outline"
+              title={triLang(lang, { ru: 'Зачёт пока недоступен', uk: 'Залік поки недоступний', en: 'Exam is not available yet', es: 'El examen aún no está disponible', 'pt-BR': 'O exame ainda não está disponível', vi: 'Bài thi chưa khả dụng', id: 'Ujian belum tersedia', tr: 'Sınav henüz kullanılamıyor', pl: 'Egzamin jeszcze niedostępny' })}
+              message={{contentUnavailable
                     ? triLang(lang, { ru: 'Экзамен для этого языка пока готовится. Энергия не списана.', uk: 'Іспит для цієї мови ще готується. Енергію не списано.', en: "The exam for this language is still being prepared. No energy was charged.", es: 'El examen para este idioma aún se está preparando. No se descontó energía.', 'pt-BR': 'O exame para este idioma ainda está sendo preparado. Nenhuma energia foi descontada.', vi: 'Bài thi cho ngôn ngữ này đang được chuẩn bị. Năng lượng chưa bị trừ.', id: 'Ujian untuk bahasa ini masih disiapkan. Energi tidak dikurangi.', tr: 'Bu dil için sınav hâlâ hazırlanıyor. Enerji düşülmedi.', pl: 'Egzamin dla tego języka jest jeszcze przygotowywany. Energia nie została pobrana.' })
                     : identityUnavailable
                     ? triLang(lang, { ru: 'Не удалось подготовить сохранение попытки. Вернись и открой экзамен снова.', uk: 'Не вдалося підготувати збереження спроби. Повернися й відкрий іспит знову.', en: "Couldn't prepare a save for this attempt. Go back and open the exam again.", es: 'No se pudo preparar el guardado. Vuelve a abrir el examen.', 'pt-BR': 'Não foi possível preparar o salvamento. Abra o exame novamente.', vi: 'Không thể chuẩn bị lưu bài thi. Hãy mở lại bài thi.', id: 'Penyimpanan ujian belum siap. Buka kembali ujian.', tr: 'Sınav kaydı hazırlanamadı. Sınavı yeniden aç.', pl: 'Nie udało się przygotować zapisu. Otwórz egzamin ponownie.' })
-                    : blockedText}
-              </Text>
-              <TapScale onPress={() => safeRouterBack(router, '/lessons_list' as never)} accessibilityLabel="Back" style={[styles.stateButton, { backgroundColor: t.accent, minHeight: ds.buttonHeight }]}>
-                  <Text style={{ color: t.correctText, fontSize: f.body, fontFamily: ds.fontFamily, fontWeight: '900' }}>
-                    {triLang(lang, { ru: 'К урокам', uk: 'До уроків', en: 'To lessons', es: 'Ir a lecciones', 'pt-BR': 'Ir para as aulas', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derslere git', pl: 'Do lekcji' })}
-                  </Text>
-              </TapScale>
-            </TonalSurface>
+                    : blockedText}}
+            />
           </View>
+          <ExamFooter bottomInset={0}>
+            <PracticeCta glass={glass} label={triLang(lang, { ru: 'К урокам', uk: 'До уроків', en: 'To lessons', es: 'Ir a lecciones', 'pt-BR': 'Ir para as aulas', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derslere git', pl: 'Do lekcji' })} trailingArrow onPress={() => safeRouterBack(router, '/lessons_list' as never)} accessibilityLabel="Back" />
+          </ExamFooter>
         </SafeAreaView>
       </ScreenGradient>
     );
@@ -502,7 +492,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
   }
 
   if (phase === 'countdown' && attempt) {
-    return <LevelExamCountdown attemptId={attempt.attemptId} level={level} onComplete={beginQuiz} />;
+    return <LevelExamCountdown attemptId={attempt.attemptId} level={level} lang={lang} onComplete={beginQuiz} />;
   }
 
   if (phase === 'result' && result && attempt) {
@@ -568,6 +558,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
         canContinue={canContinue}
         continueLabel={continueLabel}
         exitLabel={exitLabel}
+        title={examTitle}
         onContinue={continueExam}
         onExit={() => setExitConfirm(true)}
       >
@@ -595,7 +586,5 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
 
 const styles = StyleSheet.create({
   safeArea: { flex: 1 },
-  stateWrap: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-  stateCard: { width: '100%', maxWidth: 440, alignItems: 'center' },
-  stateButton: { width: '100%', borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
+  stateWrap: { flex: 1, justifyContent: 'center', paddingBottom: 60 },
 });

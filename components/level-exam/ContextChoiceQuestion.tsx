@@ -4,7 +4,8 @@ import Animated, { FadeInDown, useReducedMotion } from 'react-native-reanimated'
 
 import type { LevelExamChoiceTask } from '../../app/level_exam_types';
 import { useTheme } from '../ThemeContext';
-import { V2Chip } from '../ui/v2_ui';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { ExamOption } from './ExamGlassParts';
 
 type Props = {
   task: LevelExamChoiceTask;
@@ -13,7 +14,8 @@ type Props = {
 };
 
 export default function ContextChoiceQuestion({ task, selectedOptionId, onSelect }: Props) {
-  const { ds } = useTheme();
+  const { theme: t, ds, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const reduceMotion = useReducedMotion();
   return (
     <View accessibilityLabel={task.prompt} style={{ gap: ds.spacing.sm }}>
@@ -21,14 +23,17 @@ export default function ContextChoiceQuestion({ task, selectedOptionId, onSelect
         const selected = option.id === selectedOptionId;
         return (
           <Animated.View key={option.id} entering={reduceMotion ? undefined : FadeInDown.delay(index * 40).duration(260)}>
-            <V2Chip
-              block
-              selected={selected}
+            <ExamOption
+              glass={glass}
+              label={option.text}
+              state={selected ? 'pressed' : 'idle'}
+              okColor={t.correct}
+              okBg={t.correctBg}
+              noColor={t.wrong}
+              noBg={t.wrongBg}
               onPress={() => onSelect(option.id)}
               accessibilityLabel={`${index + 1}. ${option.text}`}
-            >
-              {option.text}
-            </V2Chip>
+            />
           </Animated.View>
         );
       })}

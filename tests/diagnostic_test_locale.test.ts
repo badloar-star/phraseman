@@ -57,14 +57,17 @@ describe('diagnostic test planned locale runtime copy', () => {
     expect(source).toContain('{diagnosticUi.loadError}');
     expect(source).toContain('{diagnosticUi.back}');
     expect(source).toContain('{diagnosticUi.cancel}');
-    expect(source).toContain('const continueButtonLabel = `${diagnosticUi.continue} →`');
+    // зачем: стрелка теперь рисуется самой кнопкой (<PracticeCta trailingArrow>), а не символом в строке подписи.
+    expect(source).toContain('label={diagnosticUi.continue}');
+    expect(source).toContain('trailingArrow');
     expect(source).toContain('{diagnosticUi.buildPlaceholder}');
     expect(source).toContain('{diagnosticUi.check}');
     expect(source).toContain('placeholder={diagnosticUi.typeHere}');
     expect(source).toContain('✓ {diagnosticUi.correctAnswerPrefix}: {correctAnswer}');
     expect(source).toContain('`${diagnosticUi.options}: ${optsForReport.map');
     expect(source).toContain('{diagnosticUi.skip}');
-    expect(source).toContain('`${timeLeft}${diagnosticUi.secondSuffix}`');
+    // зачем: секунды теперь показывает кольцо таймера <GlassTimerRing> (число внутри), суффикс «с» в подписи не нужен.
+    expect(source).toContain('<GlassTimerRing glass={glass} seconds={timeLeft}');
 
     for (const legacy of [
       "isES ? 'Volver' : isUK ? 'Назад' : 'Назад'",

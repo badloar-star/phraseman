@@ -1,19 +1,20 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import TapScale from '../components/TapScale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Animated, Easing, InteractionManager, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { InteractionManager, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
-import { screenTextOnGradient } from '../constants/theme';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { PracticeBackButton, PracticeHeaderTitle } from '../components/practice/PracticeChrome';
+import { PracticeCta, PracticeQuestionCard, PracticeStatePanel } from '../components/practice/PracticeStates';
 import { useTheme } from '../components/ThemeContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
+import { canChargePreparedTrainingEntry } from './energy_contract';
 import EnergyBar from '../components/EnergyBar';
 import NoEnergyModal from '../components/NoEnergyModal';
 import CollectibleDropModal from '../components/CollectibleDropModal';
@@ -28,7 +29,6 @@ import VictoryBurst from '../components/feedback/VictoryBurst';
 import { prepDrillDoneTitle, prepDrillDoneSubtitle } from './feedback/feedback_i18n';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { getLessonPrepositionPack } from './lesson_prepositions';
-import { registerXP } from './xp_manager';
 import { addShards } from './shards_system';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundary';
@@ -39,14 +39,7 @@ import {
   vocabularyContentAvailableForTarget,
 } from './vocabulary_target_gate';
 import { safeRouterBack } from './navigation_back';
-import { glassFill } from '../components/GlassSurface';
 
-import { noAndroidOutline } from '../constants/androidGlow';
-const POINTS_PER_CORRECT = 2;
-const POINTS_PER_PERFECT = 10;
-
-const safePrepositionEventPart = (value: unknown, max = 60): string =>
-  String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
 
 type PrepositionProgress = {
   answeredIds: string[];
@@ -54,31 +47,29 @@ type PrepositionProgress = {
 };
 
 function FrenchPrepositionDrillUnavailable({ lang, onBack }: { lang: Lang; onBack: () => void }) {
-  const { theme: t, f, themeMode } = useTheme();
-  const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
+  const { liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const copy = frenchVocabularyGateCopy('preposition_drill', lang);
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 24, gap: 16 }}>
-      <View style={{ alignSelf: 'center', width: 72, height: 72, borderRadius: 36, backgroundColor: t.bgCard, alignItems: 'center', justifyContent: 'center' }}>
-        <Ionicons name="shield-checkmark-outline" size={34} color={sx.second} />
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 28, paddingBottom: 40 }}>
+      <View style={{ width: 61, height: 61, borderRadius: 16, backgroundColor: glass.opaqueControl, alignItems: 'center', justifyContent: 'center' }}>
+        <Ionicons name="shield-checkmark-outline" size={26} color={glass.text} />
       </View>
-      <Text style={{ color: sx.primary, fontSize: f.h1, fontWeight: '800', textAlign: 'center' }}>
+      <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 20, lineHeight: 26, fontWeight: '700', textAlign: 'center', marginTop: 18 }}>
         {copy.title}
       </Text>
-      <Text style={{ color: sx.muted, fontSize: f.bodyLg, lineHeight: 24, textAlign: 'center' }}>
+      <Text style={{ color: glass.secondary, fontSize: 15, lineHeight: 21, textAlign: 'center', marginTop: 8 }}>
         {copy.body}
       </Text>
-      <TouchableOpacity
+      <PracticeCta
+        glass={glass}
+        size="small"
         testID="preposition-drill-french-source-gate-back"
+        label={copy.action}
         onPress={onBack}
-        activeOpacity={0.82}
-        style={{ marginTop: 8, alignSelf: 'center', backgroundColor: sx.second, borderRadius: 14, paddingHorizontal: 26, paddingVertical: 13 }}
-      >
-        <Text style={{ color: '#06111f', fontSize: f.bodyLg, fontWeight: '800' }}>
-          {copy.action}
-        </Text>
-      </TouchableOpacity>
+        style={{ marginTop: 22 }}
+      />
     </View>
   );
 }
@@ -90,8 +81,9 @@ function PrepositionDrillScreen() {
   const lessonId = parseInt(id || '0', 10) || 0;
   const { studyTarget } = useStudyTarget();
   const { lang } = useLang();
-  const { theme: t, f, themeMode, ds } = useTheme();
-  const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
+  const { theme: t, ds, liquidGlassThemeId } = useTheme();
+  // зачем (владелец 2026-09-30): «Тренажёр предлогов» 1:1 по макету learn.html (I1–I5, Liquid Glass); только вид.
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const scrollRef = useRef<ScrollView>(null);
@@ -109,14 +101,13 @@ function PrepositionDrillScreen() {
   const [answeredIds, setAnsweredIds] = useState<string[]>([]);
   const [wrongIds, setWrongIds] = useState<string[]>([]);
   const [reviewMode, setReviewMode] = useState(false);
+  const [progressReadyForKey, setProgressReadyForKey] = useState<string | null>(null);
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   const [voiceOut, setVoiceOut] = useState(true);
   const [speechRate, setSpeechRate] = useState(0.9);
 
-  const userNameRef = useRef<string>('');
   useEffect(() => {
     const task = InteractionManager.runAfterInteractions(() => {
-      AsyncStorage.getItem('user_name').then(n => { if (n) userNameRef.current = n; });
       loadSettings().then(s => { setVoiceOut(s.voiceOut); setSpeechRate(s.speechRate); });
     });
     return () => task.cancel();
@@ -125,68 +116,6 @@ function PrepositionDrillScreen() {
 
   // Perfect-bonus is granted once per lesson on the first clean pass
   const perfectAwardedRef = useRef(false);
-  const [xpToastVisible, setXpToastVisible] = useState(false);
-  const [xpToastAmount, setXpToastAmount] = useState(POINTS_PER_CORRECT);
-  const xpTranslateY = useRef(new Animated.Value(44)).current;
-  const xpOpacity = useRef(new Animated.Value(0)).current;
-
-  // ── Энергия ────────────────────────────────────────────────────────────────
-  // Поведение с 2026-08-23 (единое правило владельца, см. lesson_words.tsx /
-  // lesson_irregular_verbs.tsx):
-  //   • 10 ⚡ списываются ОДИН РАЗ при входе в тренажёр;
-  //   • ошибки внутри сессии энергию НЕ трогают вообще;
-  //   • не хватило на входе — модал, и тренажёр не начинается;
-  //   • закрытие модала = выход (вход не был оплачен).
-  const { confirmSpendOne, acknowledgeSessionStart, energyReady } = useEnergy();
-  const drillEnergyIntent = useEnergySessionIntent('preposition_drill', String(lessonId));
-  const confirmSpendOneRef = useRef(confirmSpendOne);
-  useEffect(() => { confirmSpendOneRef.current = confirmSpendOne; }, [confirmSpendOne]);
-
-  const [noEnergyModalOpen, setNoEnergyModalOpen] = useState(false);
-
-  // Вход в тренажёр предлогов = 10 ⚡ (numeric energy: платим за попытку,
-  // а не за ошибки). Ждём energyReady — до первого живого чтения из AsyncStorage
-  // в контексте лежит placeholder MAX_ENERGY, списание по нему украло бы заряд.
-  // зачем: ref-латч, а не деп на energy — после списания баланс падает, и эффект
-  // с депами на energy списал бы второй раз.
-  const drillEntryChargedRef = useRef(false);
-  useEffect(() => {
-    if (!energyReady || drillEntryChargedRef.current) return;
-    drillEntryChargedRef.current = true;
-    let active = true;
-    void confirmSpendOneRef.current(drillEnergyIntent).then(result => {
-      if (!active) return;
-      if (result === 'spent') void acknowledgeSessionStart(drillEnergyIntent.operationId);
-      if (result === 'insufficient') setNoEnergyModalOpen(true);
-      if (result === 'cancelled') safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
-    });
-    return () => { active = false; };
-  }, [acknowledgeSessionStart, drillEnergyIntent, energyReady, lessonId, router]);
-
-  const onCloseEnergyModal = useCallback(() => {
-    setNoEnergyModalOpen(false);
-    // Модал показываем только когда вход НЕ оплачен (не хватило заряда) — значит
-    // закрытие всегда означает выход из тренажёра.
-    safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
-  }, [router, lessonId]);
-
-  const showXpToast = (amount: number = POINTS_PER_CORRECT) => {
-    setXpToastAmount(amount);
-    xpTranslateY.setValue(44);
-    xpOpacity.setValue(0);
-    setXpToastVisible(true);
-    Animated.sequence([
-      Animated.parallel([
-        Animated.timing(xpTranslateY, { toValue: 0, duration: 420, easing: Easing.out(Easing.cubic), useNativeDriver: true }),
-        Animated.timing(xpOpacity, { toValue: 1, duration: 400, easing: Easing.out(Easing.cubic), useNativeDriver: true }),
-      ]),
-      Animated.delay(1000),
-      Animated.parallel([
-        Animated.timing(xpOpacity, { toValue: 0, duration: 480, easing: Easing.in(Easing.cubic), useNativeDriver: true }),
-        Animated.timing(xpTranslateY, { toValue: -12, duration: 480, easing: Easing.in(Easing.cubic), useNativeDriver: true }),
-      ]),
-    ]).start(() => setXpToastVisible(false));
-  };
 
   const activeItems = useMemo(() => {
     if (!pack) return [];
@@ -199,8 +128,44 @@ function PrepositionDrillScreen() {
   const done = total > 0 && itemIdx >= total;
   const accuracy = total > 0 ? Math.round((correctCount / total) * 100) : 0;
 
+  // ── Энергия: 1 ⚡ только за доступное начатое упражнение ────────────────
+  const { confirmSpendOne, acknowledgeSessionStart, energyReady } = useEnergy();
+  const drillEnergyIntent = useEnergySessionIntent('preposition_drill', String(lessonId));
+  const confirmSpendOneRef = useRef(confirmSpendOne);
+  useEffect(() => { confirmSpendOneRef.current = confirmSpendOne; }, [confirmSpendOne]);
+
+  const [noEnergyModalOpen, setNoEnergyModalOpen] = useState(false);
+
+  // Ждём заряд и прогресс: завершённый/пустой урок не является новым занятием.
+  // зачем: ref-латч, а не деп на energy — после списания баланс падает, и эффект
+  // с депами на energy списал бы второй раз.
+  const drillEntryChargedRef = useRef(false);
+  useEffect(() => {
+    if (!canChargePreparedTrainingEntry({
+      energyReady,
+      hasPlayableItems: !frenchPrepositionBlocked && progressReadyForKey === progressKey && Boolean(item),
+    }) || drillEntryChargedRef.current) return;
+    drillEntryChargedRef.current = true;
+    let active = true;
+    void confirmSpendOneRef.current(drillEnergyIntent).then(result => {
+      if (!active) return;
+      if (result === 'spent') void acknowledgeSessionStart(drillEnergyIntent.operationId);
+      if (result === 'insufficient') setNoEnergyModalOpen(true);
+      if (result === 'cancelled') safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
+    });
+    return () => { active = false; };
+  }, [acknowledgeSessionStart, drillEnergyIntent, energyReady, frenchPrepositionBlocked, item, lessonId, progressKey, progressReadyForKey, router]);
+
+  const onCloseEnergyModal = useCallback(() => {
+    setNoEnergyModalOpen(false);
+    // Модал показываем только когда вход НЕ оплачен (не хватило заряда) — значит
+    // закрытие всегда означает выход из тренажёра.
+    safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
+  }, [router, lessonId]);
+
   useEffect(() => {
     if (!pack) return;
+    setProgressReadyForKey(null);
     setReviewMode(false);
     setSelected(null);
     setIsCorrect(false);
@@ -227,7 +192,7 @@ function PrepositionDrillScreen() {
         setItemIdx(0);
         setCorrectCount(0);
       }
-    }).catch(() => {});
+    }).catch(() => {}).finally(() => setProgressReadyForKey(progressKey));
   }, [pack, progressKey]);
 
   const saveProgress = (nextAnswered: string[], nextWrong: string[]) => {
@@ -235,7 +200,7 @@ function PrepositionDrillScreen() {
     AsyncStorage.setItem(progressKey, JSON.stringify(payload)).catch(() => {});
   };
 
-  // Award the perfect-pass bonus exactly once per lesson, when the FIRST pass
+  // Award the shard perfect-pass bonus exactly once per lesson, when the FIRST pass
   // (not the review pass) finishes with zero wrong answers.
   useEffect(() => {
     if (perfectAwardedRef.current) return;
@@ -249,23 +214,6 @@ function PrepositionDrillScreen() {
       try {
         const already = await AsyncStorage.getItem(key);
         if (already) return;
-        const xpResult = await registerXP(POINTS_PER_PERFECT, 'preposition_drill_perfect', userNameRef.current || '', lang, lessonId, {
-          eventId: [
-            'preposition',
-            safePrepositionEventPart(studyTarget),
-            String(lessonId),
-            'perfect',
-          ].join(':'),
-          payload: {
-            lessonId,
-            studyTarget,
-            total,
-          },
-        });
-        if (Math.max(0, Math.round(xpResult.finalDelta || 0)) <= 0) {
-          perfectAwardedRef.current = false;
-          return;
-        }
         await addShards('preposition_drill_perfect', {
           eventId: `preposition:${studyTarget}:${lessonId}:perfect`,
           localWrites: [[key, '1']],
@@ -323,57 +271,6 @@ function PrepositionDrillScreen() {
     };
   }, [selected, item?.id, isCorrect]);
 
-  if (frenchPrepositionBlocked) {
-    return (
-      <ScreenGradient>
-        <SafeAreaView style={{ flex: 1 }}>
-          <ContentWrap>
-            <FrenchPrepositionDrillUnavailable
-              lang={lang}
-              onBack={() => router.replace({ pathname: '/lesson_menu', params: { id: lessonId } } as any)}
-            />
-          </ContentWrap>
-        </SafeAreaView>
-      </ScreenGradient>
-    );
-  }
-
-  if (!pack) {
-    return (
-      <ScreenGradient>
-        <SafeAreaView style={{ flex: 1 }}>
-          <ContentWrap>
-          <View style={{ flex: 1, paddingHorizontal: ds.spacing.lg }}>
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 14 }}>
-              <TapScale
-                onPress={() => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any)}
-                style={{ width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgCard }}
-              >
-                <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
-              </TapScale>
-            </View>
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-              <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>
-                {triLang(lang, {
-                  uk: 'У цьому уроці немає прийменників',
-                  ru: 'В этом уроке нет предлогов',
-                  en: 'This lesson has no prepositions',
-                  es: 'En esta lección no hay preposiciones.',
-                  'pt-BR': 'Esta lição não tem preposições.',
-                  vi: 'Bài học này không có giới từ.',
-                  id: 'Tidak ada preposisi dalam pelajaran ini.',
-                  tr: 'Bu derste edat yok.',
-                  pl: 'W tej lekcji nie ma przyimków.',
-                })}
-              </Text>
-            </View>
-          </View>
-          </ContentWrap>
-        </SafeAreaView>
-      </ScreenGradient>
-    );
-  }
-
   const title = triLang(lang, {
     uk: 'Тренажер прийменників',
     ru: 'Тренажер предлогов',
@@ -396,6 +293,69 @@ function PrepositionDrillScreen() {
     tr: `Ders ${lessonId}: bu dersin edatları`,
     pl: `Lekcja ${lessonId}: przyimki z tej lekcji`,
   });
+  const backToLesson = () => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
+  // Шапка макета `.hd`: круглая «‹» 34/44, заголовок 20/700 + подзаголовок 15, энергия справа.
+  const headerNode = (
+    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 12, paddingTop: 12 }}>
+      <PracticeBackButton
+        glass={glass}
+        color={glass.text}
+        accessibilityLabel={triLang(lang, { ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
+        onPress={() => { fk.tap(); backToLesson(); }}
+      />
+      <PracticeHeaderTitle glass={glass} title={title} subtitle={subtitle} />
+      <EnergyBar size={30} />
+    </View>
+  );
+
+  if (frenchPrepositionBlocked) {
+    return (
+      <ScreenGradient>
+        <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: bottomInset }}>
+          <ContentWrap>
+            <FrenchPrepositionDrillUnavailable
+              lang={lang}
+              onBack={() => router.replace({ pathname: '/lesson_menu', params: { id: lessonId } } as any)}
+            />
+          </ContentWrap>
+        </View>
+      </ScreenGradient>
+    );
+  }
+
+  if (!pack) {
+    // Пустое состояние (макет prepEmpty): плитка со значком, название, кнопка «К уроку».
+    return (
+      <ScreenGradient>
+        <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: bottomInset }}>
+          <ContentWrap>
+            {headerNode}
+            <PracticeStatePanel
+              glass={glass}
+              icon="key-outline"
+              title={triLang(lang, {
+                uk: 'У цьому уроці немає прийменників',
+                ru: 'В этом уроке нет предлогов',
+                en: 'This lesson has no prepositions',
+                es: 'En esta lección no hay preposiciones.',
+                'pt-BR': 'Esta lição não tem preposições.',
+                vi: 'Bài học này không có giới từ.',
+                id: 'Tidak ada preposisi dalam pelajaran ini.',
+                tr: 'Bu derste edat yok.',
+                pl: 'W tej lekcji nie ma przyimków.',
+              })}
+              message=""
+              action={{
+                label: triLang(lang, { ru: 'К уроку', uk: 'До уроку', en: 'To lesson', es: 'A la lección', 'pt-BR': 'Para a lição', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derse', pl: 'Do lekcji' }),
+                onPress: () => { fk.tap(); backToLesson(); },
+              }}
+            />
+          </ContentWrap>
+        </View>
+      </ScreenGradient>
+    );
+  }
+
   const prepositionsLabel = pack.newPrepositions.map(p => p.text).join(', ');
 
   const onAnswer = (option: string) => {
@@ -410,30 +370,12 @@ function PrepositionDrillScreen() {
     // haptic + тёплый/мягкий звук. Экономика/прогресс ниже считаются как раньше.
     if (ok) {
       fk.verdict({ correct: true });
-      showXpToast(POINTS_PER_CORRECT);
       setCorrectCount(v => v + 1);
       const nextAnswered = answeredIds.includes(item.id) ? answeredIds : [...answeredIds, item.id];
       const nextWrong = reviewMode ? wrongIds.filter(id => id !== item.id) : wrongIds;
       setAnsweredIds(nextAnswered);
       setWrongIds(nextWrong);
       saveProgress(nextAnswered, nextWrong);
-      registerXP(POINTS_PER_CORRECT, 'preposition_drill_answer', userNameRef.current || '', lang, lessonId, {
-        eventId: [
-          'preposition',
-          safePrepositionEventPart(studyTarget),
-          String(lessonId),
-          'answer',
-          safePrepositionEventPart(item.id, 40),
-        ].join(':'),
-        payload: {
-          lessonId,
-          studyTarget,
-          itemId: item.id,
-          reviewMode,
-        },
-      })
-        .then(r => setXpToastAmount(r.finalDelta))
-        .catch(() => {});
     } else {
       fk.verdict({ correct: false });
       const nextAnswered = answeredIds.includes(item.id) ? answeredIds : [...answeredIds, item.id];
@@ -485,15 +427,14 @@ function PrepositionDrillScreen() {
   const renderSentenceCard = () => {
     if (!item) return null;
     const tpl = item.sentenceTemplate;
-    const lh = Math.round(f.h2 * 1.35);
-    const baseStyle = { color: t.textPrimary, fontSize: f.h2, fontWeight: '700' as const, lineHeight: lh };
+    const baseStyle = { color: glass.text, fontSize: 24, fontWeight: '600' as const, lineHeight: 32, textAlign: 'center' as const };
     if (selected === null || !tpl.includes('__')) {
-      return <ClozeGapText text={tpl} style={baseStyle} />;
+      return <ClozeGapText text={tpl} style={baseStyle} gapColor={glass.secondary} />;
     }
     const [before, ...rest] = tpl.split('__');
     const after = rest.join('__'); // если в шаблоне когда-нибудь окажется больше одного маркера
     const fill = (
-      <Text style={{ ...baseStyle, fontWeight: '800', color: t.correct }}>{item.correct}</Text>
+      <Text style={{ ...baseStyle, fontWeight: '700', color: t.correct }}>{item.correct}</Text>
     );
     return (
       <Text style={baseStyle}>
@@ -506,23 +447,10 @@ function PrepositionDrillScreen() {
 
   return (
     <ScreenGradient>
-      <SafeAreaView style={{ flex: 1 }} edges={['top', 'left', 'right', 'bottom']}>
+      <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: bottomInset }}>
         <ContentWrap>
-        <View style={{ flex: 1, paddingHorizontal: ds.spacing.lg }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 14 }}>
-            <TapScale
-              onPress={() => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any)}
-              style={{ width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgCard }}
-            >
-              <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
-            </TapScale>
-            <Text style={{ color: sx.primary, fontSize: f.body, fontWeight: '700' }}>{title}</Text>
-            <EnergyBar size={30} />
-          </View>
-
-          <View style={{ backgroundColor: glassFill(t.bgSurface, 0.46), borderRadius: 14, padding: 14, marginBottom: 12 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{subtitle}</Text>
-          </View>
+        {headerNode}
+        <View style={{ flex: 1, paddingHorizontal: 16 }}>
 
           {!done && item ? (
             <View style={{ flex: 1 }}>
@@ -536,112 +464,137 @@ function PrepositionDrillScreen() {
                 showsVerticalScrollIndicator
                 removeClippedSubviews={effectiveOs === 'android' ? false : undefined}
               >
-              <Text style={{ color: sx.muted, fontSize: f.sub, marginBottom: 8 }}>
-                {triLang(lang, {
-                  uk: 'Завдання',
-                  ru: 'Вызов',
-                  en: 'Challenge',
-                  es: 'Ejercicio',
-                  'pt-BR': 'Exercício',
-                  vi: 'Bài tập',
-                  id: 'Latihan',
-                  tr: 'Alıştırma',
-                  pl: 'Ćwiczenie',
-                })} {itemIdx + 1}/{total}
-              </Text>
-
-              <View
-                style={{
-                  backgroundColor: glassFill(t.bgSurface, 0.46),
-                  borderRadius: ds.radius.lg,
-                  padding: ds.spacing.md,
-                  marginBottom: ds.spacing.md,
-                  ...(effectiveOs === 'android' ? { elevation: 2 } : {}),
-                }}
-              >
-                {renderSentenceCard()}
+              {/* Полоса прогресса + «Вызов 3 / 12» (макет prep) */}
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, marginTop: 22 }}>
+                <View style={{ flex: 1, height: 6, borderRadius: 3, overflow: 'hidden', backgroundColor: glass.opaqueControl }}>
+                  <View style={{ width: '100%', height: '100%', borderRadius: 3, backgroundColor: glass.cta, transformOrigin: 'left', transform: [{ scaleX: total > 0 ? (itemIdx + 1) / total : 0 }] }} />
+                </View>
+                <Text style={{ color: glass.secondary, fontSize: 15, lineHeight: 20, fontWeight: '600', fontVariant: ['tabular-nums'] }}>
+                  {triLang(lang, {
+                    uk: 'Завдання',
+                    ru: 'Вызов',
+                    en: 'Challenge',
+                    es: 'Ejercicio',
+                    'pt-BR': 'Exercício',
+                    vi: 'Bài tập',
+                    id: 'Latihan',
+                    tr: 'Alıştırma',
+                    pl: 'Ćwiczenie',
+                  })} {itemIdx + 1} / {total}
+                </Text>
               </View>
 
+              <PracticeQuestionCard
+                glass={glass}
+                minHeight={140}
+                style={{ marginTop: 26, ...(effectiveOs === 'android' ? { elevation: 2 } : {}) }}
+                kicker={triLang(lang, {
+                  ru: 'Вставь предлог',
+                  en: 'Fill in the preposition',
+                  uk: 'Встав прийменник',
+                  es: 'Completa con la preposición',
+                  'pt-BR': 'Complete com a preposição',
+                  vi: 'Điền giới từ',
+                  id: 'Isi preposisi',
+                  tr: 'Edatı yerleştir',
+                  pl: 'Wstaw przyimek',
+                })}
+              >
+                <View style={{ marginTop: 14 }}>{renderSentenceCard()}</View>
+              </PracticeQuestionCard>
+
+              {/* Варианты — 2 колонки (макет opts2), знак верно/неверно у правого края */}
+              <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', rowGap: 12, marginTop: 22 }}>
               {item.options.map((opt, optIdx) => {
                 const isSel = selected === opt;
                 const showCorrect = selected !== null && opt === item.correct;
-                const bg = showCorrect ? 'rgba(21,128,61,0.2)' : isSel ? 'rgba(185,28,28,0.2)' : t.bgCard;
-                const border = showCorrect ? '#15803D' : isSel ? '#B91C1C' : 'transparent';
-                const signal = showCorrect || isSel;
+                const showWrong = isSel && !showCorrect;
+                const dim = selected !== null && !showCorrect && !isSel;
+                const tone = showCorrect ? t.correct : showWrong ? t.wrong : glass.text;
                 return (
                   <View
                     key={`${item.id}:${optIdx}:${opt}`}
                     collapsable={effectiveOs === 'android' ? false : undefined}
+                    style={{ width: '48%' }}
                   >
-                    <TouchableOpacity
+                    <Pressable
+                      accessibilityRole="button"
+                      accessibilityLabel={opt}
                       onPress={() => onAnswer(opt)}
                       disabled={selected !== null}
-                      style={{ backgroundColor: bg, borderColor: border, borderWidth: 0, borderRadius: 12, paddingVertical: 12, alignItems: 'center', marginBottom: 10 }}
+                      style={({ pressed }) => ({
+                        minHeight: 56, borderRadius: 16, paddingVertical: 10, paddingHorizontal: showCorrect || showWrong ? 34 : 12,
+                        alignItems: 'center', justifyContent: 'center',
+                        // guard-ok: 1 px полупрозрачная кромка `.opt` макета (исключение PhraseMan 2.0).
+                        borderWidth: StyleSheet.hairlineWidth, // guard-ok
+                        borderColor: glass.line,
+                        backgroundColor: pressed ? glass.selected : glass.opaqueCard,
+                        opacity: dim ? 0.4 : 1,
+                        transform: [{ scale: pressed && selected === null ? 0.98 : 1 }],
+                      })}
                     >
-                    <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{opt}</Text>
-                  </TouchableOpacity>
+                      {(showCorrect || showWrong) && (
+                        <View pointerEvents="none" style={{ position: 'absolute', right: 12, top: 0, bottom: 0, justifyContent: 'center' }}>
+                          <Ionicons name={showCorrect ? 'checkmark' : 'close'} size={18} color={tone} />
+                        </View>
+                      )}
+                      <Text style={{ color: tone, fontSize: 17, lineHeight: 22, fontWeight: '600' }} maxFontSizeMultiplier={1.2}>{opt}</Text>
+                    </Pressable>
                   </View>
                 );
               })}
+              </View>
 
               {selected !== null && (
-                <View style={{ marginTop: 6, backgroundColor: glassFill(t.bgCard, 0.32), borderRadius: 12, padding: 12 }}>
-                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginBottom: 6 }}>
-                    {isCorrect
-                      ? triLang(lang, {
-                        uk: 'Правильно',
-                        ru: 'Верно',
-                        en: 'Correct',
-                        es: 'Correcto',
-                        'pt-BR': 'Correto',
-                        vi: 'Đúng',
-                        id: 'Benar',
-                        tr: 'Doğru',
-                        pl: 'Poprawnie',
-                      })
-                      : triLang(lang, {
-                        uk: 'Майже',
-                        ru: 'Почти',
-                        en: 'Not quite',
-                        es: 'Incorrecto',
-                        'pt-BR': 'Incorreto',
-                        vi: 'Sai',
-                        id: 'Salah',
-                        tr: 'Yanlış',
-                        pl: 'Niepoprawnie',
-                      })}
-                  </Text>
-                  <Text style={{ color: t.textSecond, fontSize: f.sub, lineHeight: Math.round((f.sub ?? 14) * 1.45) }}>
-                    {triLang(lang, {
-                      uk: item.explainUK,
-                      ru: item.explainRU,
-                      en: item.explainES ?? item.explainRU,
-                      es: item.explainES ?? item.explainRU,
-                      'pt-BR': item.explainPtBr ?? item.explainES ?? item.explainRU,
-                      vi: item.explainVi ?? item.explainES ?? item.explainRU,
-                      id: item.explainId ?? item.explainES ?? item.explainRU,
-                      tr: item.explainTr ?? item.explainES ?? item.explainRU,
-                      pl: item.explainPl ?? item.explainES ?? item.explainRU,
-                    })}
-                  </Text>
-                  <TouchableOpacity
-                    onPress={() => { fk.tap(); goNext(); }}
-                    style={{ marginTop: ds.spacing.sm, backgroundColor: '#2E7D52', borderRadius: ds.radius.md, paddingVertical: ds.spacing.sm, alignItems: 'center' }}
-                  >
-                    <Text style={{ color: '#fff', fontWeight: '700', fontSize: f.body }}>
+                <View>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, marginTop: 18, minHeight: 22 }}>
+                    <Ionicons name={isCorrect ? 'checkmark' : 'close'} size={20} color={isCorrect ? t.correct : t.wrong} />
+                    <Text style={{ color: isCorrect ? t.correct : t.wrong, fontSize: 16, lineHeight: 22, fontWeight: '600' }}>
+                      {isCorrect
+                        ? triLang(lang, {
+                          uk: 'Правильно',
+                          ru: 'Верно',
+                          en: 'Correct',
+                          es: 'Correcto',
+                          'pt-BR': 'Correto',
+                          vi: 'Đúng',
+                          id: 'Benar',
+                          tr: 'Doğru',
+                          pl: 'Poprawnie',
+                        })
+                        : triLang(lang, {
+                          uk: 'Майже',
+                          ru: 'Почти',
+                          en: 'Not quite',
+                          es: 'Incorrecto',
+                          'pt-BR': 'Incorreto',
+                          vi: 'Sai',
+                          id: 'Salah',
+                          tr: 'Yanlış',
+                          pl: 'Niepoprawnie',
+                        })}
+                    </Text>
+                  </View>
+                  <View style={{
+                    marginTop: 14, borderRadius: 14, paddingVertical: 14, paddingHorizontal: 16, backgroundColor: glass.opaqueCard,
+                    // guard-ok: 1 px полупрозрачная кромка `.why` макета (исключение PhraseMan 2.0).
+                    borderWidth: StyleSheet.hairlineWidth, // guard-ok
+                    borderColor: glass.line,
+                  }}>
+                    <Text style={{ color: glass.text, fontSize: 15, lineHeight: 21 }}>
                       {triLang(lang, {
-                        uk: 'Продовжити',
-                        ru: 'Продолжить',
-                        en: 'Next',
-                        es: 'Siguiente',
-                        'pt-BR': 'Próximo',
-                        vi: 'Tiếp theo',
-                        id: 'Berikutnya',
-                        tr: 'Sonraki',
-                        pl: 'Dalej',
+                        uk: item.explainUK,
+                        ru: item.explainRU,
+                        en: item.explainES ?? item.explainRU,
+                        es: item.explainES ?? item.explainRU,
+                        'pt-BR': item.explainPtBr ?? item.explainES ?? item.explainRU,
+                        vi: item.explainVi ?? item.explainES ?? item.explainRU,
+                        id: item.explainId ?? item.explainES ?? item.explainRU,
+                        tr: item.explainTr ?? item.explainES ?? item.explainRU,
+                        pl: item.explainPl ?? item.explainES ?? item.explainRU,
                       })}
                     </Text>
-                  </TouchableOpacity>
+                  </View>
                 </View>
               )}
 
@@ -685,16 +638,37 @@ function PrepositionDrillScreen() {
                   }),
                 ].join('\n')}
                 style={{ alignSelf: 'center', marginTop: ds.spacing.md, marginBottom: ds.spacing.sm }}
-                textColor={sx.muted}
+                textColor={glass.secondary}
               />
               </BouncyScrollView>
+              {selected !== null ? (
+                // Кнопка «Продолжить →» закреплена под прокруткой (макет `.fx`).
+                <View style={{ paddingTop: 10, paddingBottom: 12 }}>
+                  <PracticeCta
+                    glass={glass}
+                    trailingArrow
+                    onPress={() => { fk.tap(); goNext(); }}
+                    label={triLang(lang, {
+                      uk: 'Продовжити',
+                      ru: 'Продолжить',
+                      en: 'Next',
+                      es: 'Siguiente',
+                      'pt-BR': 'Próximo',
+                      vi: 'Tiếp theo',
+                      id: 'Berikutnya',
+                      tr: 'Sonraki',
+                      pl: 'Dalej',
+                    })}
+                  />
+                </View>
+              ) : null}
             </View>
           ) : (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 16, padding: 20 }}>
-              <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: t.bgCard, justifyContent: 'center', alignItems: 'center' }}>
-                <Ionicons name="checkmark-done-outline" size={36} color={t.correct} />
+              <View style={{ width: 61, height: 61, borderRadius: 16, backgroundColor: glass.opaqueControl, justifyContent: 'center', alignItems: 'center' }}>
+                <Ionicons name="checkmark-done-outline" size={28} color={t.correct} />
               </View>
-              <Text style={{ color: sx.primary, fontSize: f.h1, fontWeight: '700', textAlign: 'center' }}>
+              <Text style={{ color: glass.text, fontSize: 20, lineHeight: 26, fontWeight: '700', textAlign: 'center' }}>
                 {triLang(lang, {
                   uk: 'Прийменники відпрацьовано!',
                   ru: 'Предлоги отработаны!',
@@ -707,7 +681,7 @@ function PrepositionDrillScreen() {
                   pl: 'Przyimki przećwiczone!',
                 })}
               </Text>
-              <Text style={{ color: sx.muted, fontSize: f.bodyLg }}>
+              <Text style={{ color: glass.secondary, fontSize: 15, lineHeight: 20, fontWeight: '600' }}>
                 {triLang(lang, {
                   uk: 'Точність: ',
                   ru: 'Точность: ',
@@ -720,7 +694,7 @@ function PrepositionDrillScreen() {
                   pl: 'Dokładność: ',
                 })}{accuracy}% ({correctCount}/{total})
               </Text>
-              <Text style={{ color: sx.second, fontSize: f.body }}>
+              <Text style={{ color: glass.secondary, fontSize: 15, lineHeight: 20 }}>
                 {triLang(lang, {
                   uk: `Помилок: ${wrongIds.length}`,
                   ru: `Ошибок: ${wrongIds.length}`,
@@ -734,32 +708,30 @@ function PrepositionDrillScreen() {
                 })}
               </Text>
 
-              <TouchableOpacity
-                onPress={() => { fk.tap(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }}
-                style={{ backgroundColor: t.correct, paddingHorizontal: 32, paddingVertical: 14, borderRadius: 14, marginTop: 8 }}
-              >
-                <Text style={{ color: t.correctText, fontSize: f.h2, fontWeight: '700' }}>
-                  {triLang(lang, {
-                    uk: '← До уроку',
-                    ru: '← К уроку',
-                    en: '← Back to lesson',
-                    es: '← Volver a la lección',
-                    'pt-BR': '← Voltar para a lição',
-                    vi: '← Về bài học',
-                    id: '← Kembali ke pelajaran',
-                    tr: '← Derse dön',
-                    pl: '← Do lekcji',
-                  })}
-                </Text>
-              </TouchableOpacity>
+              <PracticeCta
+                glass={glass}
+                onPress={() => { fk.tap(); backToLesson(); }}
+                style={{ marginTop: 8 }}
+                label={triLang(lang, {
+                  uk: 'До уроку',
+                  ru: 'К уроку',
+                  en: 'Back to lesson',
+                  es: 'Volver a la lección',
+                  'pt-BR': 'Voltar para a lição',
+                  vi: 'Về bài học',
+                  id: 'Kembali ke pelajaran',
+                  tr: 'Derse dön',
+                  pl: 'Do lekcji',
+                })}
+              />
 
-              <TouchableOpacity
+              <Pressable
+                accessibilityRole="button"
                 onPress={() => { fk.tap(); restartAll(); }}
-                activeOpacity={0.8}
-                style={{ backgroundColor: t.bgCard, paddingHorizontal: 32, paddingVertical: 13, borderRadius: 14, flexDirection: 'row', alignItems: 'center', gap: 8 }}
+                style={({ pressed }) => ({ minHeight: 44, paddingHorizontal: 24, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, opacity: pressed ? 0.7 : 1 })}
               >
-                <Ionicons name="refresh-outline" size={18} color={t.textSecond} />
-                <Text style={{ color: t.textSecond, fontSize: f.h2, fontWeight: '600' }}>
+                <Ionicons name="refresh-outline" size={18} color={glass.secondary} />
+                <Text style={{ color: glass.secondary, fontSize: 16, fontWeight: '600' }}>
                   {triLang(lang, {
                     uk: 'Ще раз',
                     ru: 'Снова',
@@ -772,14 +744,15 @@ function PrepositionDrillScreen() {
                     pl: 'Jeszcze raz',
                   })}
                 </Text>
-              </TouchableOpacity>
+              </Pressable>
 
               {wrongIds.length > 0 && !reviewMode && (
-                <TouchableOpacity
+                <Pressable
+                  accessibilityRole="button"
                   onPress={() => { fk.tap(); restartWrong(); }}
-                  style={{ backgroundColor: t.bgSurface, paddingHorizontal: 28, paddingVertical: 12, borderRadius: 14 }}
+                  style={({ pressed }) => ({ minHeight: 44, paddingHorizontal: 28, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, opacity: pressed ? 0.7 : 1 })}
                 >
-                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
+                  <Text style={{ color: glass.text, fontSize: 16, fontWeight: '600' }}>
                     {triLang(lang, {
                       uk: 'Закріпити промахи',
                       ru: 'Закрепить промахи',
@@ -792,35 +765,13 @@ function PrepositionDrillScreen() {
                       pl: 'Popraw błędy',
                     })}
                   </Text>
-                </TouchableOpacity>
+                </Pressable>
               )}
             </View>
           )}
-          {xpToastVisible && (
-            <Animated.View
-              pointerEvents="none"
-              style={{
-                position: 'absolute',
-                bottom: Math.max(24, bottomInset + 18),
-                alignSelf: 'center',
-                backgroundColor: isLightTheme ? '#92400E' : '#FFC800',
-                borderRadius: 20,
-                paddingHorizontal: 20,
-                paddingVertical: 10,
-                transform: [{ translateY: xpTranslateY }],
-                opacity: xpOpacity,
-                zIndex: 99999,
-                ...noAndroidOutline,
-              }}
-            >
-              <Text style={{ color: isLightTheme ? '#FFF3C4' : '#000', fontWeight: '700', fontSize: 16 }}>
-                +{xpToastAmount} XP
-              </Text>
-            </Animated.View>
-          )}
           {/* [FeedbackKit] Мини-победа на финал прогона. Перфект (основной прогон
               без ошибок) — усиленное празднование: аккорд + больше конфетти. Сам
-              бонус/XP перфекта НЕ трогаем (см. эффект perfect-bonus выше). */}
+              награду за идеальный проход НЕ трогаем (см. эффект perfect-bonus выше). */}
           {(() => {
             const perfectRun = !reviewMode && total > 0 && wrongIds.length === 0;
             return (
@@ -848,7 +799,7 @@ function PrepositionDrillScreen() {
             router.push('/collectibles_screen' as any);
           }}
         />
-      </SafeAreaView>
+      </View>
     </ScreenGradient>
   );
 }

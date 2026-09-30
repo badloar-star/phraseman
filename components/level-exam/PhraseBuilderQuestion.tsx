@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeInDown, useReducedMotion } from 'react-native-reanimated';
 
 import type { LevelExamPhraseBuilderTask } from '../../app/level_exam_types';
 import { useTheme } from '../ThemeContext';
-import { V2Chip, V2ChipGhost } from '../ui/v2_ui';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 
 type Props = {
   task: LevelExamPhraseBuilderTask;
@@ -13,35 +13,41 @@ type Props = {
 };
 
 export default function PhraseBuilderQuestion({ task, selectedTokenIds, onChange }: Props) {
-  const { theme: t, ds } = useTheme();
+  const { ds, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const reduceMotion = useReducedMotion();
   const selected = selectedTokenIds.map((id) => task.tokens.find((token) => token.id === id)).filter(Boolean);
   return (
     <View accessibilityLabel={task.prompt} style={{ gap: ds.spacing.lg }}>
-      <View style={[styles.answer, { backgroundColor: t.bgSurface, padding: ds.spacing.md, gap: ds.spacing.sm }]}> 
+      <View style={[styles.answer, { backgroundColor: glass.opaqueCard, padding: ds.spacing.md, gap: ds.spacing.sm }]}>
         {selected.map((token, index) => token ? (
           <Animated.View key={token.id} entering={reduceMotion ? undefined : FadeInDown.duration(140)}>
-            <V2Chip
-              selected
+            <Pressable
+              accessibilityRole="button"
               onPress={() => onChange(selectedTokenIds.filter((_id, selectedIndex) => selectedIndex !== index))}
               accessibilityLabel={`${token.text}, remove`}
+              style={({ pressed }) => [styles.tile, { backgroundColor: glass.opaqueControl, opacity: pressed ? 0.8 : 1 }]}
             >
-              {token.text}
-            </V2Chip>
+              <Text style={[styles.tileText, { color: glass.text }]}>{token.text}</Text>
+            </Pressable>
           </Animated.View>
         ) : null)}
       </View>
-      <View style={[styles.bank, { gap: ds.spacing.sm }]}> 
+      <View style={[styles.bank, { gap: ds.spacing.sm }]}>
         {task.tokens.map((token, index) => selectedTokenIds.includes(token.id) ? (
-          <V2ChipGhost key={token.id} label={token.text} />
+          <View key={token.id} accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={[styles.tile, styles.tileUsed, { backgroundColor: glass.opaqueControl }]}>
+            <Text style={[styles.tileText, { color: glass.mutedText }]}>{token.text}</Text>
+          </View>
         ) : (
           <Animated.View key={token.id} entering={reduceMotion ? undefined : FadeInDown.delay(index * 30).duration(180)}>
-            <V2Chip
+            <Pressable
+              accessibilityRole="button"
               onPress={() => onChange([...selectedTokenIds, token.id])}
               accessibilityLabel={`${token.text}, add`}
+              style={({ pressed }) => [styles.tile, styles.tileBorder, { backgroundColor: glass.opaqueCard, borderColor: glass.glassEdge, opacity: pressed ? 0.8 : 1 }]}
             >
-              {token.text}
-            </V2Chip>
+              <Text style={[styles.tileText, { color: glass.text }]}>{token.text}</Text>
+            </Pressable>
           </Animated.View>
         ))}
       </View>
@@ -50,6 +56,10 @@ export default function PhraseBuilderQuestion({ task, selectedTokenIds, onChange
 }
 
 const styles = StyleSheet.create({
-  answer: { minHeight: 84, borderRadius: 18, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center' },
+  answer: { minHeight: 84, borderRadius: 16, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center' },
+  tile: { minHeight: 44, borderRadius: 14, paddingHorizontal: 16, justifyContent: 'center' },
+  tileBorder: { borderWidth: StyleSheet.hairlineWidth }, // guard-ok: 1 px glassEdge
+  tileUsed: { opacity: 0.4 },
+  tileText: { fontSize: 17, lineHeight: 22, fontWeight: '600' },
   bank: { flexDirection: 'row', flexWrap: 'wrap' },
 });

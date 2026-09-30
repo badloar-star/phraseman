@@ -8,13 +8,14 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   Animated,
   KeyboardAvoidingView,
+  Pressable,
   ScrollView,
+  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
-import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
@@ -35,7 +36,6 @@ import { safeRouterBack } from './navigation_back';
 import { loadSettings } from './settings_edu';
 import { shuffle } from './utils_shuffle';
 import { isCorrectAnswer } from '../constants/contractions';
-import { registerXP } from './xp_manager';
 import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_capture';
 import { isMistakeStudyTargetValue } from '../modules/mistake-practice/contracts';
 import { useEffectivePlatformOS } from './platform_ui_preview';
@@ -43,7 +43,7 @@ import { awardOneTime } from './shards_system';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ClozeGapText from '../components/ClozeGapText';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
-import { screenTextOnGradient, type ThemeMode } from '../constants/theme';
+import { screenTextOnGradient } from '../constants/theme';
 import { loadExamReadinessSnapshot, type ExamReadinessSnapshot, EXAM_LESSON_DONE_THRESHOLD } from './exam_readiness';
 import { peekDiagnosticReadiness, rememberDiagnosticExamLessonsDone, rememberDiagnosticExamReadinessPercent } from './diagnostic_test_state';
 import SkeletonBlock from '../components/SkeletonShimmer';
@@ -51,22 +51,21 @@ import { trackFeatureBlocked, trackFeatureStart, trackFeatureSuccess } from './a
 import { diagnosticContentAvailableForTarget, frenchDiagnosticGateCopy } from './diagnostic_target_gate';
 import { diagnosticLastKey, diagnosticOpenFlagKey, lessonProgressKey, storageStudyTarget } from './target_storage_keys';
 import { loadFrenchRemoteDiagnosticQuestions } from './french_diagnostic_remote_runtime';
-import { getHomeMenuImages } from './home_menu_icons';
-import { glassFill } from '../components/GlassSurface';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { DebugLogger } from './debug-logger';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { PracticeCta } from '../components/practice/PracticeStates';
+import { PracticeStatePanel } from '../components/practice/PracticeStates';
+import {
+  ExamFooter, ExamHeader, ExamKvCard, ExamOption, ExamPill, ExamQuietButton, ExamStatRow,
+  ExamTile, ExamTrack, ExamVerdict, GlassTimerRing, examCardStyle, type ExamOptionState,
+} from '../components/level-exam/ExamGlassParts';
 
 const TIMER_SEC = 30;
 
-const safeDiagnosticEventPart = (value: unknown, max = 60): string =>
-  String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
 
 const makeDiagnosticAttemptId = (): string =>
   `${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`;
-
-function examMenuImage(themeMode: ThemeMode) {
-  return getHomeMenuImages(themeMode).exam;
-}
 
 /** Encabezado del tipo «build»: mismo texto en pantalla y en reportes. */
 const DIAGNOSTIC_BUILD_HEADER = {
@@ -928,45 +927,27 @@ function FrenchDiagnosticUnavailable({
   lang,
   onBack,
   onLessons,
-  sx,
-  t,
-  f,
+  liquidGlassThemeId,
 }: {
   lang: string;
   onBack: () => void;
   onLessons: () => void;
-  sx: ReturnType<typeof screenTextOnGradient>;
-  t: ReturnType<typeof useTheme>['theme'];
-  f: ReturnType<typeof useTheme>['f'];
+  liquidGlassThemeId: ReturnType<typeof useTheme>['liquidGlassThemeId'];
 }) {
   const copy = frenchDiagnosticGateCopy(lang);
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   return (
     <ScreenGradient artBackdrop="diagnosticTest">
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
-          <View style={{ flexDirection: 'row', alignItems: 'center', padding: 15, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-            <TapScale onPress={onBack}>
-              <Ionicons name="chevron-back" size={28} color={sx.primary} />
-            </TapScale>
-          </View>
-          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 28 }}>
-            <View style={{ width: 88, height: 88, borderRadius: 44, backgroundColor: t.bgCard, alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
-              <Ionicons name="shield-checkmark-outline" size={40} color={t.textSecond} />
-            </View>
-            <Text style={{ color: sx.primary, fontSize: f.h1, fontWeight: '800', textAlign: 'center', marginBottom: 12 }}>
-              {copy.title}
-            </Text>
-            <Text style={{ color: sx.muted, fontSize: f.bodyLg, lineHeight: 25, textAlign: 'center', marginBottom: 26 }}>
-              {copy.body}
-            </Text>
-            <TouchableOpacity
-              activeOpacity={0.86}
-              onPress={onLessons}
-              style={{ backgroundColor: t.bgSurface, borderRadius: 16, paddingHorizontal: 22, paddingVertical: 14 }}
-            >
-              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>{copy.cta}</Text>
-            </TouchableOpacity>
-          </View>
+          <ExamHeader glass={glass} title="" onBack={onBack} />
+          <PracticeStatePanel
+            glass={glass}
+            icon="shield-checkmark-outline"
+            title={copy.title}
+            message={copy.body}
+            action={{ label: copy.cta, onPress: onLessons }}
+          />
         </ContentWrap>
       </SafeAreaView>
     </ScreenGradient>
@@ -979,7 +960,8 @@ export default function DiagnosticTest() {
   const effectiveOs = useEffectivePlatformOS();
   const params = useLocalSearchParams();
   const isFromOnboarding = params.fromOnboarding === '1';
-  const { theme: t , f, themeMode } = useTheme();
+  const { theme: t , f, themeMode, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
@@ -1086,26 +1068,6 @@ export default function DiagnosticTest() {
             : question.type === 'type' || question.type === 'fill' ? 'missing_token'
               : 'form',
         expected: correctAnswer,
-      },
-    }).catch(() => {});
-  };
-
-  const awardDiagnosticAnswerXp = (question: Question, questionIndex: number, mode: string) => {
-    registerXP(2, 'diagnostic_test', userNameRef.current || '', lang, undefined, {
-      eventId: [
-        'diagnostic',
-        safeDiagnosticEventPart(studyTarget),
-        safeDiagnosticEventPart(diagnosticAttemptIdRef.current),
-        'answer',
-        questionIndex,
-        safeDiagnosticEventPart(question.phrase, 40),
-      ].join(':'),
-      payload: {
-        studyTarget,
-        questionIndex,
-        mode,
-        level: question.level,
-        question: question.phrase,
       },
     }).catch(() => {});
   };
@@ -1436,7 +1398,6 @@ export default function DiagnosticTest() {
       setScore(ns);
       playCorrect();
       void hapticSuccess();
-      awardDiagnosticAnswerXp(cur, idx, 'choice');
     } else {
       void hapticError();
     }
@@ -1464,7 +1425,6 @@ export default function DiagnosticTest() {
       setScore(ns);
       playCorrect();
       void hapticSuccess();
-      if (q) awardDiagnosticAnswerXp(q, idx, 'type');
     } else {
       void hapticError();
     }
@@ -1491,7 +1451,6 @@ export default function DiagnosticTest() {
       setScore(ns);
       playCorrect();
       void hapticSuccess();
-      awardDiagnosticAnswerXp(cur, idx, 'build');
     } else {
       void hapticError();
     }
@@ -1508,9 +1467,7 @@ export default function DiagnosticTest() {
         lang={lang}
         onBack={() => safeRouterBack(router)}
         onLessons={() => router.replace('/lessons_list' as any)}
-        sx={sx}
-        t={t}
-        f={f}
+        liquidGlassThemeId={liquidGlassThemeId}
       />
     );
   }
@@ -1531,13 +1488,14 @@ export default function DiagnosticTest() {
       <ScreenGradient artBackdrop="diagnosticTest">
         <SafeAreaView style={{ flex: 1 }}>
           <ContentWrap>
-            <View style={{ padding: 24 }}>
-              <SkeletonBlock width="70%" height={f.h2} borderRadius={6} />
-              <SkeletonBlock width="100%" height={90} borderRadius={16} style={{ marginTop: 24 }} />
-              <SkeletonBlock width="100%" height={52} borderRadius={14} style={{ marginTop: 20 }} />
-              <SkeletonBlock width="100%" height={52} borderRadius={14} style={{ marginTop: 12 }} />
-              <SkeletonBlock width="100%" height={52} borderRadius={14} style={{ marginTop: 12 }} />
-              <SkeletonBlock width="100%" height={52} borderRadius={14} style={{ marginTop: 12 }} />
+            <ExamHeader glass={glass} title={s.diagnostic.start} onBack={() => safeRouterBack(router)} backLabel={diagnosticUi.back} />
+            <View style={{ padding: 16, paddingTop: 22 }}>
+              <SkeletonBlock width="100%" height={6} borderRadius={3} />
+              <SkeletonBlock width="100%" height={120} borderRadius={16} style={{ marginTop: 22 }} />
+              <SkeletonBlock width="100%" height={56} borderRadius={16} style={{ marginTop: 18 }} />
+              <SkeletonBlock width="100%" height={56} borderRadius={16} style={{ marginTop: 10 }} />
+              <SkeletonBlock width="100%" height={56} borderRadius={16} style={{ marginTop: 10 }} />
+              <SkeletonBlock width="100%" height={56} borderRadius={16} style={{ marginTop: 10 }} />
             </View>
           </ContentWrap>
         </SafeAreaView>
@@ -1550,24 +1508,18 @@ export default function DiagnosticTest() {
       <ScreenGradient artBackdrop="diagnosticTest">
         <SafeAreaView style={{ flex: 1 }}>
           <ContentWrap>
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
-              <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center' }}>
-                {diagnosticUi.loadError}
-              </Text>
-              <TapScale onPress={() => safeRouterBack(router)} style={{ marginTop: 20 }}>
-                <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '700' }}>
-                  {diagnosticUi.back}
-                </Text>
-              </TapScale>
-            </View>
+            <ExamHeader glass={glass} title={s.diagnostic.start} onBack={() => safeRouterBack(router)} backLabel={diagnosticUi.back} />
+            <PracticeStatePanel
+              glass={glass}
+              icon="cloud-offline-outline"
+              message={diagnosticUi.loadError}
+              action={{ label: diagnosticUi.back, onPress: () => safeRouterBack(router), icon: 'chevron-back' }}
+            />
           </ContentWrap>
         </SafeAreaView>
       </ScreenGradient>
     );
   }
-  const barColor = timerAnim.interpolate({
-    inputRange: [0, 0.3, 1], outputRange: [t.wrong, t.bgSurface, t.textSecond],
-  });
 
   // ── ИНТРО ────────────────────────────────────────────────────────────────
   if (phase === 'intro') return (
@@ -1575,158 +1527,72 @@ export default function DiagnosticTest() {
     <ScreenGradient artBackdrop="diagnosticTest">
     <SafeAreaView style={{ flex: 1 }}>
       <ContentWrap>
-      <View style={{ flexDirection: 'row', alignItems: 'center', padding: 15, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-        {!isFromOnboarding && (
-          <TapScale onPress={() => safeRouterBack(router)}>
-            <Ionicons name="chevron-back" size={28} color={sx.primary} />
-          </TapScale>
-        )}
-        <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700', marginLeft: isFromOnboarding ? 0 : 8 }}>
-          {s.diagnostic.start}
-        </Text>
-      </View>
-      <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ padding: 24 }}>
-        {prevResult && (
-          <View style={{ backgroundColor: glassFill(t.bgSurface, 0.46), borderRadius: 16, padding: 16, marginBottom: 20, width: '100%' }}>
-            <Text style={{ color: t.textSecond, fontSize: f.label, textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 8 }}>
-              {s.diagnostic.prevResult}
-            </Text>
-            <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '700' }} numberOfLines={2}>
-              {prevResult.level} — {diagnosticResultTitle(lang, LEVEL_RESULTS.find(r => r.level === prevResult.level) ?? LEVEL_RESULTS[0])}
-            </Text>
-            <Text style={{ color: t.textSecond, fontSize: f.sub, marginTop: 10 }}>
-              {s.diagnostic.correct}: {prevResult.score} / {questions.length}
-            </Text>
-            <Text style={{ color: t.textSecond, fontSize: f.sub, marginTop: 4 }}>
-              {triLang(lang, { ru: 'Дата', uk: 'Дата', en: 'Date', es: 'Fecha', 'pt-BR': 'Data', vi: 'Ngày', id: 'Tanggal', tr: 'Tarih', pl: 'Data' })}: {prevResult.date}
-            </Text>
-          </View>
-        )}
+      <ExamHeader
+        glass={glass}
+        title={s.diagnostic.start}
+        onBack={isFromOnboarding ? undefined : () => safeRouterBack(router)}
+        backLabel={diagnosticUi.back}
+      />
+      <BouncyScrollView decelerationRate="fast" style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 22, paddingBottom: 24, gap: 14 }}>
+        {/* «Твой текущий уровень»: с прошлым результатом — уровень и строка результата, без — приглашение пройти тест */}
+        <ExamKvCard
+          glass={glass}
+          label={s.diagnostic.currentEnglishLevelTitle}
+          value={prevResult
+            ? `${prevResult.level} — ${diagnosticResultTitle(lang, LEVEL_RESULTS.find(r => r.level === prevResult.level) ?? LEVEL_RESULTS[0])}`
+            : s.diagnostic.currentEnglishLevelHintBeforeTest}
+          valueStyle={prevResult ? 'normal' : 'muted'}
+          note={prevResult ? `${s.diagnostic.prevResult} · ${prevResult.score} / ${questions.length} · ${prevResult.date}` : undefined}
+        />
 
-        <View
-          style={{
-            backgroundColor: glassFill(t.bgSurface, 0.46),
-            borderRadius: 16,
-            padding: 16,
-            marginBottom: 20,
-            width: '100%',
-          }}
-        >
-          <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
-            {s.diagnostic.examReadinessTitle}
-          </Text>
-          {/* зачем: examReadinessPercent===null только на первом кадре до подгрузки — скелетон той же геометрии вместо ложного «0%» */}
-          {examReadinessPercent === null ? (
-            <SkeletonBlock width={64} height={f.numLg + 10} borderRadius={8} style={{ marginTop: 12 }} />
+        {/* зачем: examReadinessPercent===null только на первом кадре до подгрузки — скелетон той же геометрии вместо ложного «0%» */}
+        <ExamKvCard
+          glass={glass}
+          label={s.diagnostic.examReadinessTitle}
+          right={examReadinessPercent === null ? (
+            <SkeletonBlock width={64} height={44} borderRadius={8} />
           ) : (
-            <View style={{ flexDirection: 'row', alignItems: 'baseline', marginTop: 12, gap: 6 }}>
-              <Text style={{ color: t.accent, fontSize: f.numLg + 10, fontWeight: '800' }}>{examReadiness.percent}</Text>
-              <Text style={{ color: t.textSecond, fontSize: f.h2, fontWeight: '700' }}>%</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'baseline', gap: 2 }}>
+              <Text style={{ color: glass.text, fontSize: 40, lineHeight: 46, fontWeight: '700', letterSpacing: -1, fontVariant: ['tabular-nums'] }}>{examReadiness.percent}</Text>
+              <Text style={{ color: glass.secondary, fontSize: 18, fontWeight: '600' }}>%</Text>
             </View>
           )}
-          <View
-            style={{
-              width: '100%',
-              height: 8,
-              backgroundColor: t.bgSurface2,
-              borderRadius: 4,
-              marginTop: 12,
-              overflow: 'hidden',
-            }}
-          >
-            <View
-              style={{
-                width: `${examReadinessPercent ?? 0}%` as `${number}%`,
-                height: '100%',
-                backgroundColor: t.correct,
-                borderRadius: 4,
-              }}
-            />
-          </View>
-        </View>
+        />
 
-        <TouchableOpacity
-          style={{
-            backgroundColor: glassFill(t.bgSurface, 0.46),
-            borderRadius: 16,
-            paddingVertical: 14,
-            paddingHorizontal: 16,
-            marginTop: 0,
-            flexDirection: 'row',
-            alignItems: 'center',
-            gap: 14,
-          }}
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={s.home.examBtn}
+          style={({ pressed }) => [examCardStyle(glass), { padding: 16, flexDirection: 'row', alignItems: 'center', gap: 16, opacity: pressed ? 0.85 : 1 }]}
           onPress={() => { hapticTap(); router.push('/exam'); }}
-          activeOpacity={0.85}
         >
-          <Image source={examMenuImage(themeMode)} style={{ width: 56, height: 56, flexShrink: 0 }} contentFit="contain" cachePolicy="memory-disk" />
+          <ExamTile glass={glass} icon="ribbon-outline" />
           <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>{s.home.examBtn}</Text>
+            <Text style={{ color: glass.text, fontSize: 17, lineHeight: 22, fontWeight: '700' }}>{s.home.examBtn}</Text>
             {/* зачем: examLessonsDone===null только на первом кадре до подгрузки — скелетон вместо ложного «0/32» */}
             {examLessonsDone === null ? (
-              <SkeletonBlock width={90} height={f.label} borderRadius={4} style={{ marginTop: 6 }} />
+              <SkeletonBlock width={90} height={16} borderRadius={4} style={{ marginTop: 6 }} />
             ) : (
-              <Text style={{ color: t.textSecond, fontSize: f.label, marginTop: 4 }}>
+              <Text style={{ color: glass.secondary, fontSize: 14, lineHeight: 19, marginTop: 3 }}>
                 {examLessonsDone}/32 {triLang(lang, { ru: 'уроков', uk: 'уроків', en: 'lessons', es: 'lecciones', 'pt-BR': 'lições', vi: 'bài học', id: 'pelajaran', tr: 'ders', pl: 'lekcji' })}
               </Text>
             )}
-            <View style={{ width: '100%', height: 4, backgroundColor: t.bgSurface2, borderRadius: 2, marginTop: 8, overflow: 'hidden' }}>
-              <View
-                style={{
-                  width: `${Math.round(((examLessonsDone ?? 0) / 32) * 100)}%` as `${number}%`,
-                  height: '100%',
-                  backgroundColor: t.correct,
-                  borderRadius: 2,
-                }}
-              />
-            </View>
           </View>
-        </TouchableOpacity>
+          <Ionicons name="chevron-forward" size={20} color={glass.secondary} />
+        </Pressable>
 
         {/* зачем (PM-086, владелец 2026-09-24): ценник энергии над кнопкой
             убран — расход энергии за прохождение не меняется. */}
-        <View style={{ width: '100%', marginTop: 12 }}>
-          <TouchableOpacity
-            style={{ backgroundColor: t.bgSurface, borderRadius: 16, padding: 20, alignItems: 'center' }}
-            onPress={() => { void tryStartDiagnosticQuiz(); }}
-            activeOpacity={0.85}
-          >
-            <Text
-              style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', textAlign: 'center' }}
-              numberOfLines={2}
-            >
-              {s.diagnostic.startTest}
-            </Text>
-          </TouchableOpacity>
-        </View>
-
         {/* зачем (PM-082 + PM-086): подпись «20 ⚡ за старт диагностики» снята —
             цена стала единой (1), а ценники у кнопок владелец убрал везде. */}
-
-        <View
-          style={{
-            backgroundColor: glassFill(t.bgSurface, 0.46),
-            borderRadius: 16,
-            padding: 16,
-            marginTop: 20,
-            width: '100%',
-          }}
-        >
-          <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
-            {s.diagnostic.currentEnglishLevelTitle}
-          </Text>
-          {prevResult ? (
-            <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '700', marginTop: 12, lineHeight: 26 }} numberOfLines={3}>
-              {prevResult.level} — {diagnosticResultTitle(lang, LEVEL_RESULTS.find(r => r.level === prevResult.level) ?? LEVEL_RESULTS[0])}
-            </Text>
-          ) : (
-            <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: 'bold', marginTop: 10, lineHeight: 24 }}>
-              {s.diagnostic.currentEnglishLevelHintBeforeTest}
-            </Text>
-          )}
-        </View>
-
       </BouncyScrollView>
+      <ExamFooter bottomInset={bottomInset}>
+        <PracticeCta
+          glass={glass}
+          label={s.diagnostic.startTest}
+          trailingArrow
+          onPress={() => { hapticTap(); void tryStartDiagnosticQuiz(); }}
+        />
+      </ExamFooter>
       </ContentWrap>
     </SafeAreaView>
     </ScreenGradient>
@@ -1740,51 +1606,34 @@ export default function DiagnosticTest() {
     <ScreenGradient artBackdrop="diagnosticTest">
     <SafeAreaView style={{ flex: 1 }}>
       <ContentWrap>
-      <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ padding: 24, alignItems: 'center' }}>
-        <View style={{ width: 100, height: 100, borderRadius: 50, backgroundColor: t.bgCard, justifyContent: 'center', alignItems: 'center', marginTop: 20, marginBottom: 20 }}>
-          <Ionicons name="school-outline" size={44} color={t.textSecond} />
-        </View>
-        <Text style={{ color: sx.second, fontSize: f.caption, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>
-          {s.diagnostic.yourLevel}
-        </Text>
-        <Text style={{ color: sx.primary, fontSize: f.numLg + 16, fontWeight: '700' }} numberOfLines={1}>{result.level}</Text>
-        <Text style={{ color: sx.second, fontSize: f.h1, fontWeight: '600', marginTop: 4 }}>
-          {diagnosticResultTitle(lang, result)}
-        </Text>
-        <Text style={{ color: sx.second, fontSize: f.body, textAlign: 'center', marginTop: 16, lineHeight: 24, marginBottom: 28 }}>
-          {diagnosticResultMessage(lang, result)}
-        </Text>
-        <View style={{ backgroundColor: glassFill(t.bgSurface, 0.46), borderRadius: 16, padding: 20, width: '100%', alignItems: 'center', marginBottom: 16 }}>
-          <Text style={{ color: t.textSecond, fontSize: f.caption, marginBottom: 6 }}>
-            {s.diagnostic.correct}
+      <BouncyScrollView decelerationRate="fast" style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 44, paddingBottom: 24 }}>
+        <View style={{ alignItems: 'center' }}>
+          <View style={{ width: 61, height: 61, borderRadius: 16, backgroundColor: glass.opaqueControl, alignItems: 'center', justifyContent: 'center' }}>
+            <Ionicons name="school-outline" size={30} color={glass.text} />
+          </View>
+          <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 18, letterSpacing: 1.6, textTransform: 'uppercase', marginTop: 22 }}>
+            {s.diagnostic.yourLevel}
           </Text>
-          <Text style={{ color: t.textPrimary, fontSize: f.numLg + 12, fontWeight: '700' }} numberOfLines={1}>{score} / {questions.length}</Text>
-          {score > 0 && (
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 12, backgroundColor: t.correctBg, borderRadius: 8, paddingHorizontal: 14, paddingVertical: 8 }}>
-              <Ionicons name="star" size={14} color={t.correct} />
-              <Text style={{ color: t.correct, fontSize: f.body, fontWeight: '600' }}>
-                {s.diagnostic.points(score)}
-              </Text>
-            </View>
-          )}
+          <Text style={{ color: glass.text, fontSize: 72, lineHeight: 78, fontWeight: '800', letterSpacing: -2, marginTop: 10 }}>{result.level}</Text>
+          <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 22, lineHeight: 28, fontWeight: '700', marginTop: 10, textAlign: 'center' }}>
+            {diagnosticResultTitle(lang, result)}
+          </Text>
+          <Text style={{ color: glass.secondary, fontSize: 15, lineHeight: 21, textAlign: 'center', marginTop: 8 }}>
+            {diagnosticResultMessage(lang, result)}
+          </Text>
         </View>
-
-        {/* зачем (PM-086, владелец 2026-09-24): ценник энергии над кнопкой
-            убран — расход энергии за повтор не меняется. */}
-        <View style={{ width: '100%', marginBottom: 12 }}>
-          <TouchableOpacity
-            style={{ backgroundColor: t.bgSurface, borderRadius: 16, padding: 16, alignItems: 'center', width: '100%' }}
-            onPress={() => { void tryRestartDiagnosticQuiz(); }}
-          >
-            <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
-              {s.diagnostic.again}
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <TapScale style={{ padding: 14 }} onPress={() => { hapticTap(); router.replace('/(tabs)/home' as any); }}>
-          <Text style={{ color: sx.second, fontSize: f.body }}>{s.diagnostic.backHome}</Text>
-        </TapScale>
+        {/* зачем: бейдж «+N очков» относился к удалённому XP — экран падал бы на s.diagnostic.points */}
+        <ExamStatRow
+          glass={glass}
+          items={[{ value: `${score} / ${questions.length}`, label: s.diagnostic.correct }]}
+        />
       </BouncyScrollView>
+      {/* зачем (PM-086, владелец 2026-09-24): ценник энергии над кнопкой
+          убран — расход энергии за повтор не меняется. */}
+      <ExamFooter bottomInset={bottomInset}>
+        <PracticeCta glass={glass} label={s.diagnostic.again} onPress={() => { hapticTap(); void tryRestartDiagnosticQuiz(); }} />
+        <ExamQuietButton glass={glass} label={s.diagnostic.backHome} onPress={() => { hapticTap(); router.replace('/(tabs)/home' as any); }} />
+      </ExamFooter>
       </ContentWrap>
     </SafeAreaView>
     </ScreenGradient>
@@ -1798,7 +1647,22 @@ export default function DiagnosticTest() {
   const isAnswered = chosen !== null || typeSubmitted || buildSubmitted;
   const correctAnswer = isTyping ? (q?.answer || q?.opts?.[q.correct] || '') : '';
   const continueA11yLabel = diagnosticUi.continue;
-  const continueButtonLabel = `${diagnosticUi.continue} →`;
+
+  const lowTime = !isAnswered && timeLeft <= Math.ceil(TIMER_SEC * 0.3);
+  const timedOutShown = chosen === -1 && timeLeft <= 0;
+  const kickerRaw = q.type === 'build'
+    ? diagnosticBuildHeader(lang)
+    : q.type === 'choice4'
+      ? triLang(lang, { ru: 'Выбери верный вариант', uk: 'Обери правильний варіант', en: 'Choose the correct option', es: 'Elige la opción correcta', 'pt-BR': 'Escolha a opção correta', vi: 'Chọn đáp án đúng', id: 'Pilih jawaban yang benar', tr: 'Doğru seçeneği seç', pl: 'Wybierz poprawną odpowiedź' })
+      : q.type === 'match'
+        ? triLang(lang, { ru: 'Сопоставь слово и значение', uk: 'Зістав слово й значення', en: 'Match the word and meaning', es: 'Relaciona palabra y significado', 'pt-BR': 'Relacione palavra e significado', vi: 'Nối từ với nghĩa', id: 'Cocokkan kata dan arti', tr: 'Kelimeyle anlamı eşleştir', pl: 'Połącz słowo ze znaczeniem' })
+        : triLang(lang, { ru: 'Введи пропущенное слово', uk: 'Введи пропущене слово', en: 'Type the missing word', es: 'Escribe la palabra que falta', 'pt-BR': 'Digite a palavra que falta', vi: 'Nhập từ còn thiếu', id: 'Ketik kata yang hilang', tr: 'Eksik kelimeyi yaz', pl: 'Wpisz brakujące słowo' });
+  // зачем: в макете подпись задания без эмодзи — срезаем ведущие символы-не-буквы из общих строк
+  const kickerText = kickerRaw.replace(/^[^\p{L}\p{N}]+/u, '');
+  const timeoutVerdictText = triLang(lang, {
+    ru: 'Время вышло — вопрос пропущен', uk: 'Час вийшов — питання пропущено', en: 'Time’s up — question skipped', es: 'Se acabó el tiempo: pregunta omitida', 'pt-BR': 'O tempo acabou — pergunta pulada',
+    vi: 'Hết giờ — đã bỏ qua câu hỏi', id: 'Waktu habis — pertanyaan dilewati', tr: 'Süre doldu — soru atlandı', pl: 'Czas minął — pytanie pominięte',
+  });
 
   return (
     <>
@@ -1806,180 +1670,125 @@ export default function DiagnosticTest() {
     <KeyboardAvoidingView style={{ flex: 1 }} behavior={effectiveOs === 'ios' ? 'padding' : 'height'}>
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 15 }}>
-          {isFromOnboarding ? (
-            <TapScale onPress={() => { hapticTap(); setExitDiagnosticConfirm(true); }} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
-              <Text style={{ color: sx.primary, fontSize: f.body, fontWeight: '600' }}>
-                {diagnosticUi.cancel}
-              </Text>
+        <ExamHeader
+          glass={glass}
+          title={s.diagnostic.start}
+          subtitle={`${idx + 1} / ${questions.length}`}
+          onBack={isFromOnboarding ? undefined : () => { hapticTap(); setExitDiagnosticConfirm(true); }}
+          backLabel={diagnosticUi.back}
+          leading={isFromOnboarding ? (
+            <TapScale onPress={() => { hapticTap(); setExitDiagnosticConfirm(true); }} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }} style={{ minHeight: 44, justifyContent: 'center' }}>
+              <Text style={{ color: glass.text, fontSize: 16, fontWeight: '600' }}>{diagnosticUi.cancel}</Text>
             </TapScale>
-          ) : (
-            <TapScale onPress={() => { hapticTap(); setExitDiagnosticConfirm(true); }}>
-              <Ionicons name="chevron-back" size={28} color={sx.primary} />
-            </TapScale>
+          ) : undefined}
+          right={(
+            <>
+              <ExamPill glass={glass} icon="checkmark" text={String(score)} />
+              <GlassTimerRing glass={glass} seconds={timeLeft} total={TIMER_SEC} low={lowTime} lowColor={t.wrong} testID="diagnostic-timer" />
+            </>
           )}
-          <Text style={{ color: sx.second, fontSize: f.body, fontWeight: '500' }}>{idx + 1} / {questions.length}</Text>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-            <Ionicons name="checkmark-circle" size={16} color={t.correct} />
-            <Text style={{ color: t.correct, fontSize: f.body, fontWeight: '600' }}>{score}</Text>
-          </View>
+        />
+        <View style={{ paddingHorizontal: 16, marginTop: 14 }}>
+          <ExamTrack glass={glass} ratio={(idx + 1) / Math.max(1, questions.length)} />
         </View>
-
-        {/* Таймер-бар */}
-        <View style={{ height: 5, backgroundColor: t.border, marginHorizontal: 16, borderRadius: 3, overflow: 'hidden', marginBottom: 4 }}>
-          <Animated.View style={{
-            height: '100%', borderRadius: 3, backgroundColor: barColor,
-            width: timerAnim.interpolate({ inputRange: [0, 1], outputRange: ['0%', '100%'] }),
-          }} />
-        </View>
-        <Text style={{ color: sx.second, fontSize: f.label, textAlign: 'right', marginRight: 16, marginBottom: 12 }}>
-          {isAnswered ? '—' : `${timeLeft}${diagnosticUi.secondSuffix}`}
-        </Text>
 
         <BouncyScrollView
           style={{ flex: 1 }}
           decelerationRate="fast"
           contentContainerStyle={{
             flexGrow: 1,
-            paddingHorizontal: 20,
-            paddingBottom: Math.max(24, bottomInset + 24),
+            paddingHorizontal: 16,
+            paddingTop: 22,
+            paddingBottom: 24,
           }}
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
         >
-        <View style={{ flexGrow: 1, justifyContent: 'space-between' }}>
-          <View>
-          {/* Тип вопроса */}
-          {q.type === 'build' && (
-            <Text
-              style={{ color: sx.second, fontSize: f.label, marginBottom: 4 }}
-              accessibilityRole="text"
-              accessibilityLabel={diagnosticSkillA11y(lang, 'build')}
-            >
-              {diagnosticBuildHeader(lang)}
-            </Text>
-          )}
-          {q.type === 'choice4' && (
-            <Text
-              style={{ color: sx.second, fontSize: f.label, marginBottom: 4 }}
-              accessibilityRole="text"
-              accessibilityLabel={diagnosticSkillA11y(lang, 'choice4')}
-            >
-              {triLang(lang, { ru: '🔤 Выбери верный вариант', uk: '🔤 Обери правильний варіант', en: '🔤 Choose the correct option', es: '🔤 Elige la opción correcta', 'pt-BR': '🔤 Escolha a opção correta', vi: '🔤 Chọn đáp án đúng', id: '🔤 Pilih jawaban yang benar', tr: '🔤 Doğru seçeneği seç', pl: '🔤 Wybierz poprawną odpowiedź' })}
-            </Text>
-          )}
-          {q.type === 'match' && (
-            <Text
-              style={{ color: sx.second, fontSize: f.label, marginBottom: 4 }}
-              accessibilityRole="text"
-              accessibilityLabel={diagnosticSkillA11y(lang, 'match')}
-            >
-              {triLang(lang, { ru: '🔗 Сопоставь слово и значение', uk: '🔗 Зістав слово й значення', en: '🔗 Match the word and meaning', es: '🔗 Relaciona palabra y significado', 'pt-BR': '🔗 Relacione palavra e significado', vi: '🔗 Nối từ với nghĩa', id: '🔗 Cocokkan kata dan arti', tr: '🔗 Kelimeyle anlamı eşleştir', pl: '🔗 Połącz słowo ze znaczeniem' })}
-            </Text>
-          )}
-          {q.type === 'type' && (
-            <Text
-              style={{ color: sx.second, fontSize: f.label, marginBottom: 4 }}
-              accessibilityRole="text"
-              accessibilityLabel={diagnosticSkillA11y(lang, 'type')}
-            >
-              {triLang(lang, { ru: '⌨️ Введи пропущенное слово', uk: '⌨️ Введи пропущене слово', en: '⌨️ Type the missing word', es: '⌨️ Escribe la palabra que falta', 'pt-BR': '⌨️ Digite a palavra que falta', vi: '⌨️ Nhập từ còn thiếu', id: '⌨️ Ketik kata yang hilang', tr: '⌨️ Eksik kelimeyi yaz', pl: '⌨️ Wpisz brakujące słowo' })}
-            </Text>
-          )}
-
-          <ClozeGapText
-            text={q.type === 'build' ? diagnosticQuestionHint(lang, q) : q.phrase}
-            style={{ color: sx.primary, fontSize: f.numMd + 6, fontWeight: '500', lineHeight: 36, marginBottom: 12 }}
-          />
+          <View
+            style={[examCardStyle(glass), { paddingVertical: 22, paddingHorizontal: 22, minHeight: 120 }]}
+            accessibilityRole="text"
+            accessibilityLabel={diagnosticSkillA11y(lang, q.type === 'build' ? 'build' : q.type === 'choice4' ? 'choice4' : q.type === 'match' ? 'match' : 'type')}
+          >
+            <Text style={{ color: glass.secondary, fontSize: 16, lineHeight: 21, marginBottom: 10 }}>{kickerText}</Text>
+            <ClozeGapText
+              text={q.type === 'build' ? diagnosticQuestionHint(lang, q) : q.phrase}
+              style={{ color: glass.text, fontSize: 24, fontWeight: '600', lineHeight: 30 }}
+            />
           </View>
 
-          <View style={{ paddingBottom: 16 }}>
+          <View style={{ marginTop: 18 }}>
           {/* BUILD — интерактивная сборка фразы */}
           {isBuilding && (
             <View>
               {/* Answer area */}
               <View style={{
-                minHeight: 52, flexDirection: 'row', flexWrap: 'wrap', gap: 6,
-                backgroundColor: buildSubmitted ? (chosen === 0 ? t.correctBg : t.wrongBg) : t.bgCard,
-                borderRadius: 12, padding: 10, marginBottom: 8,
-                borderWidth: 0,
-                borderColor: buildSubmitted ? (chosen === 0 ? t.correct : t.wrong) : 'transparent',
+                minHeight: 56, flexDirection: 'row', flexWrap: 'wrap', gap: 8,
+                backgroundColor: buildSubmitted ? (chosen === 0 ? t.correctBg : t.wrongBg) : glass.opaqueCard,
+                borderRadius: 16, padding: 12, marginBottom: 12,
               }}>
                 {buildSelected.length === 0 ? (
-                  <Text style={{ color: t.textMuted, fontSize: f.sub, fontStyle: 'italic', alignSelf: 'center' }}>
+                  <Text style={{ color: glass.mutedText, fontSize: 16, alignSelf: 'center' }}>
                     {diagnosticUi.buildPlaceholder}
                   </Text>
                 ) : (
                   buildSelected.map((word, wi) => (
-                    <TouchableOpacity
+                    <Pressable
                       key={wi}
+                      accessibilityRole="button"
+                      accessibilityLabel={word}
                       onPress={() => {
                         if (buildSubmitted) return;
                         setBuildSelected(prev => prev.filter((_, i) => i !== wi));
                         setBuildBank(prev => [...prev, word]);
                       }}
-                      style={{ backgroundColor: t.bgSurface, borderRadius: 8, paddingHorizontal: 10, paddingVertical: 6 }}
+                      style={({ pressed }) => ({ backgroundColor: glass.opaqueControl, borderRadius: 14, minHeight: 44, paddingHorizontal: 14, justifyContent: 'center', opacity: pressed ? 0.8 : 1 })}
                     >
-                      <Text style={{ color: t.textPrimary, fontSize: f.body }}>{word}</Text>
-                    </TouchableOpacity>
+                      <Text style={{ color: glass.text, fontSize: 17, fontWeight: '600' }}>{word}</Text>
+                    </Pressable>
                   ))
                 )}
               </View>
               {buildSubmitted && chosen !== 0 && (
-                <Text style={{ color: t.correct, fontSize: f.sub, marginBottom: 8, marginLeft: 4 }}>
+                <Text style={{ color: t.correct, fontSize: 16, marginBottom: 12, marginLeft: 4 }}>
                   ✓ {q.answer}
                 </Text>
               )}
               {/* Word bank */}
               {!buildSubmitted && (
-                <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 12 }}>
+                <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
                   {buildBank.map((word, wi) => (
-                    <TouchableOpacity
+                    <Pressable
                       key={wi}
+                      accessibilityRole="button"
+                      accessibilityLabel={word}
                       onPress={() => {
                         setBuildBank(prev => prev.filter((_, i) => i !== wi));
                         setBuildSelected(prev => [...prev, word]);
                       }}
-                      style={{ backgroundColor: t.bgSurface, borderRadius: 8, paddingHorizontal: 12, paddingVertical: 8 }}
+                      style={({ pressed }) => ({ backgroundColor: glass.opaqueCard, borderColor: glass.glassEdge, borderWidth: StyleSheet.hairlineWidth, borderRadius: 14, minHeight: 44, paddingHorizontal: 16, justifyContent: 'center', opacity: pressed ? 0.8 : 1 })}
                     >
-                      <Text style={{ color: t.textPrimary, fontSize: f.body }}>{word}</Text>
-                    </TouchableOpacity>
+                      <Text style={{ color: glass.text, fontSize: 17, fontWeight: '600' }}>{word}</Text>
+                    </Pressable>
                   ))}
                 </View>
-              )}
-              {/* Submit */}
-              {!buildSubmitted && (
-                <TouchableOpacity
-                  style={{
-                    backgroundColor: buildSelected.length > 0 ? t.bgSurface : t.bgCard,
-                    borderRadius: 12, padding: 14, alignItems: 'center',
-                    opacity: buildSelected.length > 0 ? 1 : 0.45,
-                  }}
-                  onPress={handleBuildSubmit}
-                  disabled={buildSelected.length === 0}
-                  activeOpacity={0.8}
-                >
-                  <Text style={{ color: buildSelected.length > 0 ? t.textPrimary : t.textMuted, fontSize: f.body, fontWeight: '600' }}>
-                    {diagnosticUi.check}
-                  </Text>
-                </TouchableOpacity>
               )}
             </View>
           )}
 
           {/* TYPE — текстовый ввод */}
           {isTyping && (
-            <View style={{ marginBottom: 16 }}>
+            <View>
               <View style={{
-                flexDirection: 'row', borderWidth: 0,
-                borderColor: typeSubmitted ? (chosen === q.correct ? t.correct : t.wrong) : 'transparent',
-                borderRadius: 14, overflow: 'hidden', backgroundColor: t.bgCard,
+                flexDirection: 'row',
+                borderRadius: 16, overflow: 'hidden',
+                backgroundColor: typeSubmitted ? (chosen === q.correct ? t.correctBg : t.wrongBg) : glass.opaqueCard,
+                borderColor: glass.glassEdge, borderWidth: StyleSheet.hairlineWidth,
               }}>
                 <TextInput
                   ref={inputRef}
-                  style={{ flex: 1, padding: 16, fontSize: f.h2, color: t.textPrimary, fontWeight: '500' }}
+                  style={{ flex: 1, minHeight: 56, paddingHorizontal: 18, paddingVertical: 14, fontSize: 20, color: glass.text, fontWeight: '600' }}
                   placeholder={diagnosticUi.typeHere}
-                  placeholderTextColor={t.textSecond}
+                  placeholderTextColor={glass.mutedText}
                   value={typedAnswer}
                   onChangeText={setTypedAnswer}
                   editable={!typeSubmitted}
@@ -1988,17 +1797,9 @@ export default function DiagnosticTest() {
                   returnKeyType="done"
                   onSubmitEditing={handleTypeSubmit}
                 />
-                {!typeSubmitted && (
-                  <TouchableOpacity
-                    style={{ backgroundColor: t.bgSurface, paddingHorizontal: 16, justifyContent: 'center' }}
-                    onPress={handleTypeSubmit}
-                  >
-                    <Ionicons name="checkmark" size={22} color={t.textSecond} />
-                  </TouchableOpacity>
-                )}
               </View>
               {typeSubmitted && chosen !== q.correct && (
-                <Text style={{ color: t.correct, fontSize: f.sub, marginTop: 8, marginLeft: 4 }}>
+                <Text style={{ color: t.correct, fontSize: 16, marginTop: 10, marginLeft: 4 }}>
                   ✓ {diagnosticUi.correctAnswerPrefix}: {correctAnswer}
                 </Text>
               )}
@@ -2009,25 +1810,30 @@ export default function DiagnosticTest() {
           {!isTyping && !isBuilding && (
             <View style={{ gap: 10 }}>
               {qOpts.map((opt, ci) => {
-                let bg = t.bgCard, border = 'transparent', tc = t.textPrimary, signal = false;
+                let state: ExamOptionState = 'idle';
                 if (chosen !== null) {
-                  if (ci === q.correct)                    { bg = t.correctBg; border = t.correct; tc = t.correct; signal = true; }
-                  else if (ci === chosen && chosen !== -1) { bg = t.wrongBg;   border = t.wrong;   tc = t.wrong;   signal = true; }
+                  if (ci === q.correct) state = 'ok';
+                  else if (ci === chosen && chosen !== -1) state = 'no';
                 }
-                if (chosen === -1 && ci === q.correct)     { bg = t.correctBg; border = t.correct; tc = t.correct; signal = true; }
                 return (
-                  <TouchableOpacity key={ci}
-                    style={{ backgroundColor: bg, borderWidth: 0, borderColor: border, borderRadius: 14, padding: 18 }}
+                  <ExamOption
+                    key={ci}
+                    glass={glass}
+                    label={opt}
+                    state={state}
+                    okColor={t.correct}
+                    okBg={t.correctBg}
+                    noColor={t.wrong}
+                    noBg={t.wrongBg}
                     onPress={() => { handleAnswer(ci); }}
-                    activeOpacity={0.8}
                     disabled={chosen !== null}
-                  >
-                    <Text style={{ color: tc, fontSize: f.h2, fontWeight: '500' }}>{opt}</Text>
-                  </TouchableOpacity>
+                  />
                 );
               })}
             </View>
           )}
+
+          {timedOutShown && <ExamVerdict icon="timer-outline" text={timeoutVerdictText} color={t.wrong} />}
 
           {q && (
             <ReportErrorButton
@@ -2048,53 +1854,41 @@ export default function DiagnosticTest() {
               textColor={sx.muted}
             />
           )}
-
-          {/* ADDED: кнопка "Пропустить" — пропустить вопрос если не знаешь ответа. Засчитывается как неверно. */}
-          {!isAnswered && (
-            <TouchableOpacity
-              style={{ alignItems: 'center', paddingVertical: 12, marginTop: 4 }}
-              onPress={() => { hapticTap(); handleSkip(); }}
-              activeOpacity={0.5}
-            >
-              <Text style={{ color: sx.muted, fontSize: f.body }}>
-                {diagnosticUi.skip}
-              </Text>
-            </TouchableOpacity>
-          )}
           </View>
-        </View>
         </BouncyScrollView>
+        {/* Закреплённый низ (`.fx`): Проверить / Пропустить до ответа, «Дальше» после */}
         {isAnswered && !autoAdvance && (
-          <View
-            testID="diagnostic-continue-footer"
-            style={{
-              paddingHorizontal: 20,
-              paddingTop: 10,
-              paddingBottom: Math.max(20, bottomInset + 16),
-              borderTopWidth: 1,
-              borderTopColor: t.border,
-            }}
-          >
-            <TouchableOpacity
-              style={{
-                minHeight: 52,
-                backgroundColor: `${t.accent}33`,
-                borderRadius: 14,
-                paddingVertical: 14,
-                paddingHorizontal: 20,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
+          <ExamFooter testID="diagnostic-continue-footer" bottomInset={bottomInset}>
+            <PracticeCta
+              glass={glass}
+              label={diagnosticUi.continue}
+              trailingArrow
               onPress={() => { hapticTap(); advance(score); }}
-              activeOpacity={0.85}
-              accessibilityRole="button"
               accessibilityLabel={continueA11yLabel}
-            >
-              <Text style={{ color: t.accent, fontSize: f.bodyLg, fontWeight: '800' }}>
-                {continueButtonLabel}
-              </Text>
-            </TouchableOpacity>
-          </View>
+            />
+          </ExamFooter>
+        )}
+        {!isAnswered && (
+          <ExamFooter bottomInset={bottomInset}>
+            {isBuilding ? (
+              <PracticeCta
+                glass={glass}
+                label={diagnosticUi.check}
+                disabled={buildSelected.length === 0}
+                onPress={() => { hapticTap(); handleBuildSubmit(); }}
+              />
+            ) : null}
+            {isTyping ? (
+              <PracticeCta
+                glass={glass}
+                label={diagnosticUi.check}
+                disabled={typedAnswer.trim().length === 0}
+                onPress={() => { hapticTap(); handleTypeSubmit(); }}
+              />
+            ) : null}
+            {/* ADDED: «Пропустить» — засчитывается как неверно. */}
+            <ExamQuietButton glass={glass} label={diagnosticUi.skip} onPress={() => { hapticTap(); handleSkip(); }} />
+          </ExamFooter>
         )}
         </ContentWrap>
       </SafeAreaView>

@@ -33,11 +33,13 @@ describe('level exam question UI contract', () => {
     for (const file of files) {
       const source = read(file);
       expect(source).toContain('accessibility');
-      expect(source).toContain('<V2Chip');
+      // зачем: экраны переведены на Liquid Glass — ответ теперь <ExamOption> (из ExamGlassParts) или свой <Pressable>, а не <V2Chip>.
+      expect(source).toMatch(/<V2Chip|<ExamOption|<Pressable/);
       expect(source).toContain('FadeInDown');
       expect(source).not.toMatch(/#[0-9a-f]{3,8}\b/i);
       expect(source).not.toMatch(/rgba?\(/i);
-      expect(source).not.toMatch(/borderWidth\s*:/);
+      // Обводка допустима только 1 px (hairline, исключение PhraseMan 2.0); толстые рамки запрещены.
+      expect(source).not.toMatch(/borderWidth\s*:\s*(?!StyleSheet\.hairlineWidth)\S/);
     }
     const route = read('LevelExamV2.tsx');
     expect(route).not.toContain('<SpotErrorQuestion');
@@ -58,10 +60,13 @@ describe('level exam question UI contract', () => {
     expect(frame).toContain('<LevelExamTimer');
     expect(frame).toContain('progressStart');
     expect(frame).toContain('progressEnd');
-    expect(frame).toContain('footerProgress');
-    expect(frame.indexOf('footerProgress')).toBeGreaterThan(frame.indexOf('onContinue'));
+    // зачем: прогресс переехал в шапку («n / 30») и тонкую дорожку <ExamTrack>; кнопка — <PracticeCta>, а блокировку держит disabled={!canContinue}.
+    expect(frame).toContain('<ExamTrack');
+    expect(frame).toContain('progressLabel');
     expect(frame).not.toContain('progressArea');
-    expect(frame).toContain('accessibilityState={{ disabled: !canContinue }}');
+    expect(frame).toContain('<PracticeCta');
+    expect(frame).toContain('disabled={!canContinue}');
+    expect(frame).toContain('onPress={onContinue}');
     expect(frame).toContain('decelerationRate="fast"');
     expect(frame).toContain('SlideInRight');
     expect(frame).toContain('SlideOutLeft');
@@ -75,7 +80,7 @@ describe('level exam question UI contract', () => {
 
   it('keeps the exam intro metrics in one quiet surface', () => {
     const intro = read('LevelExamIntro.tsx');
-    expect((intro.match(/<TonalSurface\b/g) || []).length).toBe(1);
+    expect((intro.match(/<ExamKvCard\b/g) || []).length).toBe(1);
     expect(intro).toContain('copy.passGoal');
     expect(intro).toContain('copy.duration');
   });

@@ -8,7 +8,7 @@
  * Законы владельца, соблюдённые здесь:
  * — ни одной обводки контейнера: строки отделены тоном, а не рамкой;
  * — ни одной подписи-расшифровки мелким шрифтом под названием;
- * — без adjustsFontSizeToFit: длинное название режется многоточием;
+ * — без adjustsFontSizeToFit: длинное название переносится на вторую строку;
  * — кнопка «Начать» стоит на месте с ПЕРВОГО кадра и только меняет подпись,
  *   иначе раскладка прыгала бы при первом выборе.
  */
@@ -16,13 +16,13 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useMemo, useState } from 'react';
-import { Pressable, ScrollView, Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { lessonNamesForLang } from '../constants/lessons';
 import { hapticTap } from '../hooks/use-haptics';
 import {
@@ -30,11 +30,17 @@ import {
   COMBINED_LESSON_MIN_TOPICS,
 } from './combined_lesson_pool';
 import { getCourseLevelForLesson } from './course_levels';
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import { PracticeBackButton } from '../components/practice/PracticeChrome';
+import { PracticeCta } from '../components/practice/PracticeStates';
 
 const TOPIC_COUNT = 32;
 
 export default function CombinedLessonPickScreen() {
-  const { theme: t, f } = useTheme();
+  const { liquidGlassThemeId } = useTheme();
+  // зачем (владелец 2026-09-30): «Смешать темы» 1:1 по макету learn.html (A15–A17), Liquid Glass; только вид.
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  const insets = useStableSafeAreaInsets();
   const { lang } = useLang();
   const router = useRouter();
   const names = useMemo(() => lessonNamesForLang(lang), [lang]);
@@ -111,24 +117,22 @@ export default function CombinedLessonPickScreen() {
     // тегом <ScreenGradient /> он не растягивал экран, и содержимое жило в
     // половине окна. Оборачиваем всё внутрь, как в app/lesson_menu.tsx:1098.
     <ScreenGradient>
-      <SafeAreaView style={{ flex: 1 }} edges={['top', 'bottom']}>
+      <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: Math.max(insets.bottom, 12) }}>
         {/* Шапка */}
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingBottom: 10 }}>
-          <Pressable
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingTop: 16, paddingBottom: 10 }}>
+          <PracticeBackButton
+            glass={glass}
+            color={glass.text}
             testID="combo-pick-back"
-            accessibilityRole="button"
             accessibilityLabel={triLang(lang, {
               ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Atrás',
               'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
             })}
             onPress={() => { hapticTap(); router.back(); }}
-            style={{ width: 44, height: 44, borderRadius: 18, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgCard }}
-          >
-            <Ionicons name="chevron-back" size={24} color={t.textSecond} />
-          </Pressable>
+          />
           <Text
             maxFontSizeMultiplier={1.3}
-            style={{ flex: 1, color: t.textPrimary, fontSize: f.h1, fontWeight: '800', letterSpacing: -0.5 }}
+            style={{ flex: 1, color: glass.text, fontSize: 28, lineHeight: 34, fontWeight: '700', letterSpacing: -0.4 }}
           >
             {triLang(lang, {
               ru: 'Смешать темы', en: 'Mix topics', uk: 'Змішати теми', es: 'Mezclar temas',
@@ -141,7 +145,7 @@ export default function CombinedLessonPickScreen() {
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingBottom: 12 }}>
           <Text
             maxFontSizeMultiplier={1.3}
-            style={{ flex: 1, color: t.textSecond, fontSize: f.body, fontWeight: '600' }}
+            style={{ flex: 1, color: glass.secondary, fontSize: 15, lineHeight: 20, fontWeight: '600' }}
           >
             {picked.length === 0
               ? triLang(lang, {
@@ -172,10 +176,10 @@ export default function CombinedLessonPickScreen() {
                   borderRadius: 4,
                   backgroundColor:
                     i < picked.length
-                      ? t.accent
+                      ? glass.cta
                       : i < COMBINED_LESSON_MIN_TOPICS
-                        ? t.bgSurface
-                        : t.bgCard,
+                        ? glass.selected
+                        : glass.opaqueControl,
                 }}
               />
             ))}
@@ -185,7 +189,7 @@ export default function CombinedLessonPickScreen() {
         {/* Список тем */}
         <ScrollView
           style={{ flex: 1 }}
-          contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 16, gap: 9 }}
+          contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 16, gap: 10 }}
           showsVerticalScrollIndicator={false}
         >
           {Array.from({ length: TOPIC_COUNT }).map((_, index) => {
@@ -208,10 +212,13 @@ export default function CombinedLessonPickScreen() {
                   gap: 14,
                   // зачем: фиксированная высота — длинные названия иначе
                   // переносятся и строки скачут при прокрутке.
-                  height: 60,
+                  minHeight: 60,
                   paddingHorizontal: 16,
-                  borderRadius: 18,
-                  backgroundColor: selected ? t.bgSurface : t.bgCard,
+                  borderRadius: 16,
+                  // guard-ok: 1 px полупрозрачная кромка строки `.tp` макета (исключение PhraseMan 2.0).
+                  borderWidth: StyleSheet.hairlineWidth, // guard-ok
+                  borderColor: glass.line,
+                  backgroundColor: selected ? glass.opaqueControl : glass.opaqueCard,
                   opacity: atCap ? 0.42 : 1,
                 }}
               >
@@ -222,22 +229,20 @@ export default function CombinedLessonPickScreen() {
                     borderRadius: 11,
                     alignItems: 'center',
                     justifyContent: 'center',
-                    backgroundColor: selected ? t.accent : t.bgSurface,
+                    backgroundColor: selected ? glass.cta : glass.opaqueControl,
                   }}
                 >
-                  {selected ? <Ionicons name="checkmark" size={18} color={t.correctText} /> : null}
+                  {selected ? <Ionicons name="checkmark" size={18} color={glass.ctaInk} /> : null}
                 </View>
                 <Text
-                  numberOfLines={1}
-                  ellipsizeMode="tail"
                   maxFontSizeMultiplier={1.3}
-                  style={{ flex: 1, color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}
+                  style={{ flex: 1, color: glass.text, fontSize: 16, lineHeight: 21, fontWeight: '700' }}
                 >
                   {name}
                 </Text>
                 <Text
                   maxFontSizeMultiplier={1.3}
-                  style={{ color: t.textMuted, fontSize: f.label, fontWeight: '800' }}
+                  style={{ color: glass.mutedText, fontSize: 13, fontWeight: '700' }}
                 >
                   {getCourseLevelForLesson(lessonId)}
                 </Text>
@@ -248,34 +253,15 @@ export default function CombinedLessonPickScreen() {
 
         {/* Кнопка на месте с первого кадра: меняется подпись, а не геометрия */}
         <View style={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 8 }}>
-          <Pressable
+          <PracticeCta
+            glass={glass}
             testID="combo-pick-start"
-            accessibilityRole="button"
-            accessibilityState={{ disabled: !enough }}
-            accessibilityLabel={startLabel}
+            label={startLabel}
             disabled={!enough}
             onPress={start}
-            style={{
-              height: 58,
-              borderRadius: 20,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: enough ? t.accent : t.bgCard,
-            }}
-          >
-            <Text
-              maxFontSizeMultiplier={1.3}
-              style={{
-                color: enough ? t.correctText : t.textMuted,
-                fontSize: f.body,
-                fontWeight: '800',
-              }}
-            >
-              {startLabel}
-            </Text>
-          </Pressable>
+          />
         </View>
-      </SafeAreaView>
+      </View>
     </ScreenGradient>
   );
 }

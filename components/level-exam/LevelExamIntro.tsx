@@ -7,9 +7,11 @@ import { triLang, type Lang } from '../../constants/i18n';
 import { getLevelExamCopy } from '../../app/level_exam_copy';
 import type { LevelExamLevel } from '../../app/level_exam_types';
 import ScreenGradient from '../ScreenGradient';
-import TapScale from '../TapScale';
+import BouncyScrollView from '../BouncyScrollView';
 import { useTheme } from '../ThemeContext';
-import TonalSurface from '../TonalSurface';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { PracticeCta } from '../practice/PracticeStates';
+import { ExamFooter, ExamHeader, ExamHero, ExamKvCard, ExamVerdict } from './ExamGlassParts';
 import { AnimatedEnergyNumber } from '../energy/AnimatedEnergyNumber';
 
 type Props = {
@@ -41,7 +43,8 @@ export default function LevelExamIntro({
   onBack,
   onStart,
 }: Props) {
-  const { theme: t, f, ds } = useTheme();
+  const { theme: t, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const [launching, setLaunching] = useState(false);
   const launchGuardRef = useRef(false);
   const mountedRef = useRef(true);
@@ -55,9 +58,8 @@ export default function LevelExamIntro({
     energyCost,
     bestScore,
   }), [bestScore, durationMinutes, energyCost, firstLesson, lang, lastLesson, level]);
-  const startAccessibilityLabel = unlimitedEnergy
-    ? copy.startCta
-    : `${copy.startCta} −${energyCost} ⚡`;
+  // PM-086: кнопка не показывает цену энергии; стоимость остаётся в runtime guard.
+  const startAccessibilityLabel = copy.startCta;
 
   useEffect(() => {
     if (!starting && !launching) launchGuardRef.current = false;
@@ -93,93 +95,62 @@ export default function LevelExamIntro({
   return (
     <ScreenGradient artBackdrop="exam">
       <SafeAreaView style={styles.safeArea}>
-        <View style={[styles.header, { paddingHorizontal: ds.spacing.lg }]}> 
-          <TapScale
-            onPress={onBack}
-            accessibilityLabel={triLang(lang, {
-              ru: 'Вернуться назад', uk: 'Повернутися назад', en: 'Go back', es: 'Volver',
-              'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri dön', pl: 'Wróć',
-            })}
-            style={[styles.backButton, { backgroundColor: t.bgSurface }]}
-          >
-            <Ionicons name="chevron-back" size={24} color={t.textPrimary} />
-          </TapScale>
-          <View style={styles.energyPill}>
-            <Ionicons name="flash-outline" size={20} color="#9187FF" importantForAccessibility="no" />
-            {unlimitedEnergy ? (
-              <Text style={styles.energyInfinity} maxFontSizeMultiplier={1.2}>∞</Text>
-            ) : (
-              <AnimatedEnergyNumber value={availableEnergy} color="#FFFFFF" style={styles.energyValue} />
-            )}
-          </View>
-        </View>
-
-        <View style={styles.sheetWrap}>
-          <View style={[styles.sheet, { backgroundColor: t.bgCard, padding: ds.spacing.lg, gap: ds.spacing.md }]}> 
-            <View style={[styles.sheetHandle, { backgroundColor: t.bgSurface2 }]} />
-            <View style={styles.sheetTitleRow}>
-              <View style={{ flex: 1, gap: 3 }}>
-                <Text style={{ color: t.accent, fontSize: f.caption, fontFamily: ds.fontFamily, fontWeight: '800' }}>
-                  {copy.lessonRange}
-                </Text>
-                <Text
-                  accessibilityRole="header"
-                  style={{ color: t.textPrimary, fontSize: f.h1, fontFamily: ds.fontFamily, fontWeight: '900' }}
-                >
-                  {copy.title}
-                </Text>
-              </View>
-              <Ionicons name="school-outline" size={28} color={t.accent} />
+        <ExamHeader
+          glass={glass}
+          title={copy.title}
+          onBack={onBack}
+          backLabel={triLang(lang, {
+            ru: 'Вернуться назад', uk: 'Повернутися назад', en: 'Go back', es: 'Volver',
+            'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri dön', pl: 'Wróć',
+          })}
+          right={(
+            <View style={[styles.energyPill, { backgroundColor: glass.opaqueControl }]}>
+              <Ionicons name="flash-outline" size={20} color={glass.text} importantForAccessibility="no" />
+              {unlimitedEnergy ? (
+                <Text style={[styles.energyInfinity, { color: glass.text }]} maxFontSizeMultiplier={1.2}>∞</Text>
+              ) : (
+                <AnimatedEnergyNumber value={availableEnergy} color={glass.text} style={styles.energyValue} />
+              )}
             </View>
-
-            <TonalSurface tone="raised" radius={ds.radius.lg} style={[styles.metrics, { padding: ds.spacing.md }]}> 
+          )}
+        />
+        <BouncyScrollView style={styles.scroll} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+          {/* K1: герой «Зачёт A1» + диапазон уроков вторым абзацем */}
+          <View style={{ marginTop: 12 }}>
+            <ExamHero glass={glass} icon="ribbon-outline" title={copy.title} message={copy.lessonRange} />
+          </View>
+          <ExamKvCard glass={glass} style={{ marginTop: 26 }}>
             <View style={styles.metric}>
               <Ionicons name="checkmark-circle-outline" size={20} color={t.correct} />
-              <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.body, fontFamily: ds.fontFamily, fontWeight: '700' }}>
-                {copy.passGoal}
-              </Text>
+              <Text style={[styles.metricText, { color: glass.text }]}>{copy.passGoal}</Text>
             </View>
-            <View style={[styles.metric, styles.metricSecondary]}>
-              <Ionicons name="timer-outline" size={20} color={t.accent} />
-              <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.body, fontFamily: ds.fontFamily, fontWeight: '700' }}>
-                {copy.duration}
-              </Text>
+            <View style={[styles.metric, { marginTop: 14 }]}>
+              <Ionicons name="timer-outline" size={20} color={glass.text} />
+              <Text style={[styles.metricText, { color: glass.text }]}>{copy.duration}</Text>
             </View>
-            </TonalSurface>
-
             {bestScore !== null ? (
-              <Text style={[styles.bestResult, { color: t.textMuted, fontSize: f.caption, fontFamily: ds.fontFamily }]}>
-                {copy.bestResult}
-              </Text>
+              <Text style={[styles.bestResult, { color: glass.secondary }]}>{copy.bestResult}</Text>
             ) : null}
-
-            {!unlimitedEnergy && !hasEnergy ? (
-              <Text accessibilityRole="alert" style={[styles.centerText, { color: t.wrong, fontSize: f.caption, fontFamily: ds.fontFamily }]}>
-                {copy.energyMissing}
-              </Text>
-            ) : null}
-
-            <View style={styles.startButtonWrap}>
-              <TapScale
-                testID="level-exam-start"
-                onPress={handleStart}
-                disabled={disabled}
-                accessibilityLabel={startAccessibilityLabel}
-                accessibilityHint={copy.lessonRange}
-                accessibilityState={{ disabled }}
-                style={[styles.startButton, { minHeight: ds.buttonHeight, backgroundColor: disabled ? t.bgSurface2 : t.accent, paddingHorizontal: ds.spacing.lg }]}
-              >
-                <View testID="level-exam-start-content" style={styles.startButtonContent}>
-                  <Text style={{ color: disabled ? t.textMuted : t.correctText, fontSize: f.bodyLg, fontFamily: ds.fontFamily, fontWeight: '900' }}>
-                    {copy.startCta}
-                  </Text>
-                </View>
-              </TapScale>
-              {/* зачем (PM-086, владелец 2026-09-24): ценник энергии над
-                  кнопкой убран — расход энергии не меняется. */}
+          </ExamKvCard>
+          {!unlimitedEnergy && !hasEnergy ? (
+            <View accessibilityRole="alert">
+              <ExamVerdict icon="flash-outline" text={copy.energyMissing} color={t.wrong} />
             </View>
-          </View>
-        </View>
+          ) : null}
+        </BouncyScrollView>
+        <ExamFooter bottomInset={0}>
+          <PracticeCta
+            testID="level-exam-start"
+            glass={glass}
+            label={copy.startCta}
+            trailingArrow
+            disabled={disabled}
+            onPress={handleStart}
+            accessibilityLabel={startAccessibilityLabel}
+          />
+          {/* зачем (PM-086, владелец 2026-09-24): ценник энергии над
+              кнопкой убран — расход энергии не меняется. */}
+        </ExamFooter>
       </SafeAreaView>
     </ScreenGradient>
   );
@@ -187,21 +158,12 @@ export default function LevelExamIntro({
 
 const styles = StyleSheet.create({
   safeArea: { flex: 1 },
-  header: { minHeight: 56, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  backButton: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
-  energyPill: { minHeight: 44, minWidth: 82, borderRadius: 18, paddingHorizontal: 9, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 2, backgroundColor: '#0D1123' },
-  energyValue: { width: 44, fontSize: 20, lineHeight: 26 },
-  energyInfinity: { width: 44, color: '#FFFFFF', textAlign: 'center', fontSize: 25, lineHeight: 29, fontWeight: '900' },
-  sheetWrap: { flex: 1, justifyContent: 'flex-end' },
-  sheet: { borderTopLeftRadius: 24, borderTopRightRadius: 24 },
-  sheetHandle: { alignSelf: 'center', width: 38, height: 4, borderRadius: 2 },
-  sheetTitleRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
-  metrics: { flexDirection: 'row', alignItems: 'center', gap: 12 },
-  metric: { flex: 1, flexDirection: 'row', alignItems: 'center', gap: 8, minWidth: 0 },
-  metricSecondary: { paddingLeft: 12 },
-  bestResult: { textAlign: 'center' },
-  centerText: { textAlign: 'center' },
-  startButton: { borderRadius: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
-  startButtonContent: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
-  startButtonWrap: { position: 'relative', overflow: 'visible' },
+  scroll: { flex: 1 },
+  content: { paddingHorizontal: 16, paddingTop: 22, paddingBottom: 24 },
+  energyPill: { minHeight: 38, minWidth: 74, borderRadius: 19, paddingHorizontal: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 2 },
+  energyValue: { width: 40, fontSize: 18, lineHeight: 24 },
+  energyInfinity: { width: 40, textAlign: 'center', fontSize: 22, lineHeight: 26, fontWeight: '700' },
+  metric: { flexDirection: 'row', alignItems: 'center', gap: 10, minWidth: 0 },
+  metricText: { flex: 1, fontSize: 16, lineHeight: 22, fontWeight: '600' },
+  bestResult: { marginTop: 14, fontSize: 15, lineHeight: 21 },
 });

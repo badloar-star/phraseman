@@ -46,19 +46,22 @@ import { examContentAvailableForTarget, frenchExamGateCopy } from './exam_target
 import { loadFrenchRemoteLevelExamQuestions } from './french_exam_remote_runtime';
 import { recordLevelExamAttempt } from './level_exam_attempts';
 import { safeRouterBack } from './navigation_back';
-import { registerXP } from './xp_manager';
 import { canShowReview } from './review_utils';
 import ReviewPromptModal from '../components/ReviewPromptModal';
 import { soundDirector } from '../modules/audio/sound_director';
 import LevelExamV2 from '../components/level-exam/LevelExamV2';
 import { DebugLogger } from './debug-logger';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { PracticeCta, PracticeStatePanel } from '../components/practice/PracticeStates';
+import {
+  ExamFooter, ExamHeader, ExamHero, ExamKvCard, ExamOption, ExamQuietButton, ExamStatRow,
+  ExamTrack, examCardStyle, type ExamOptionState,
+} from '../components/level-exam/ExamGlassParts';
 
-const safeLevelExamEventPart = (value: unknown, max = 60): string =>
-  String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
 
 /** Энергия за ПОПЫТКУ зачёта уровня (списывается авансом на старте, не за ошибку). */
-// Numeric energy: экзамен стоит 20 ⚡ за один старт.
-const LEVEL_EXAM_ENERGY = 20;
+// зачем (PM-086/D06): зачёт уровня стоит 1 энергию, как любое начатое занятие; сумма в confirmSpendAmount не используется (цену задаёт таблица активностей).
+const LEVEL_EXAM_ENERGY = 1;
 
 const MEDAL_IMAGES_EXAM: Record<string, any> = {
   bronze:  require('../assets/images/levels/bronza.webp'),
@@ -524,53 +527,27 @@ function FrenchLevelExamUnavailable({
   lang,
   onBack,
   onLessons,
-  f,
-  themeMode,
+  liquidGlassThemeId,
 }: {
   lang: string;
   onBack: () => void;
   onLessons: () => void;
-  f: ReturnType<typeof useTheme>['f'];
-  themeMode: ReturnType<typeof useTheme>['themeMode'];
+  liquidGlassThemeId: ReturnType<typeof useTheme>['liquidGlassThemeId'];
 }) {
   const copy = frenchExamGateCopy('level', lang);
-  const oliveChrome = oliveLevelExamChrome(themeMode);
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   return (
     <ScreenGradient artBackdrop="exam">
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              paddingHorizontal: 16,
-              paddingVertical: 12,
-              borderBottomWidth: StyleSheet.hairlineWidth,
-              borderBottomColor: oliveChrome?.border ?? LX.cardLine,
-            }}
-          >
-            <TapScale onPress={onBack} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
-              <Ionicons name="chevron-back" size={26} color={oliveChrome?.ivory ?? '#FFFFFF'} />
-            </TapScale>
-          </View>
-          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 28 }}>
-            <View style={{ width: 86, height: 86, borderRadius: 43, backgroundColor: oliveChrome?.raised ?? LX.card, borderWidth: 0, borderColor: oliveChrome?.border ?? LX.cardLine, alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
-              <Ionicons name="shield-checkmark-outline" size={38} color={LX.gold} />
-            </View>
-            <Text style={{ color: oliveChrome?.ivory ?? '#FFFFFF', fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 12 }}>
-              {copy.title}
-            </Text>
-            <Text style={{ color: oliveChrome?.muted ?? 'rgba(255,255,255,0.74)', fontSize: f.bodyLg, lineHeight: 24, textAlign: 'center', marginBottom: 26 }}>
-              {copy.body}
-            </Text>
-            <TouchableOpacity
-              activeOpacity={0.86}
-              onPress={onLessons}
-              style={{ backgroundColor: oliveChrome?.cta ?? LX.gold, paddingHorizontal: 22, paddingVertical: 13, borderRadius: 14 }}
-            >
-              <Text style={{ color: oliveChrome?.ctaText ?? LX.ink, fontSize: f.body, fontWeight: '900' }}>{copy.cta}</Text>
-            </TouchableOpacity>
-          </View>
+          <ExamHeader glass={glass} title="" onBack={onBack} />
+          <PracticeStatePanel
+            glass={glass}
+            icon="shield-checkmark-outline"
+            title={copy.title}
+            message={copy.body}
+            action={{ label: copy.cta, onPress: onLessons }}
+          />
         </ContentWrap>
       </SafeAreaView>
     </ScreenGradient>
@@ -580,7 +557,8 @@ function FrenchLevelExamUnavailable({
 // ── Главный компонент ─────────────────────────────────────────────────────────
 export default function LevelExam() {
   const router = useRouter();
-  const { theme: t, f, themeMode } = useTheme();
+  const { theme: t, f, themeMode, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const isGoldTheme = themeMode === 'gold';
   const isOliveTheme = themeMode === 'olive';
   const oliveExamChrome = oliveLevelExamChrome(themeMode);
@@ -938,34 +916,6 @@ export default function LevelExam() {
       }
       if (pct >= 90) awardOneTime('exam_excellent').catch(() => {});
       const { newTier, prevTier, newPassCount } = await saveExamProgress(lvl, pct, studyTarget);
-      // XP за зачёт: сдача = 50 + бонус за % (как у финального экзамена), провал = небольшая
-      // награда за участие (раньше зачёт давал 0 XP — полноценная работа без награды).
-      // registerXP сам шлёт серверное событие exam_complete с правильным xpDelta и применяет
-      // множители/цепочку — поэтому прежний прямой submitProgressEvent с xpDelta:0 убран.
-      const examXp = passed ? 50 + Math.round(pct / 2) : Math.max(10, Math.round(pct / 4));
-      let storedName = '';
-      try { storedName = ((await AsyncStorage.getItem('user_name')) || '').trim(); } catch (e) {
-      DebugLogger.error('level_exam:storedName', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
-      registerXP(examXp, 'exam_complete', storedName, lang, undefined, {
-        eventId: [
-          'exam',
-          safeLevelExamEventPart(studyTarget),
-          safeLevelExamEventPart(lvl),
-          String(attemptNumber),
-          'complete',
-        ].join(':'),
-        payload: {
-          level: lvl,
-          studyTarget,
-          pct,
-          percent: pct,
-          passed,
-          score: correct,
-          total,
-          attemptNumber,
-        },
-      }).catch(() => {});
       setExamMedalTier(newTier);
       setExamPassCount(newPassCount);
       setMedalImproved(newTier !== prevTier && newTier !== 'none');
@@ -1015,69 +965,47 @@ export default function LevelExam() {
         lang={lang}
         onBack={() => { hapticTap(); safeRouterBack(router, '/lessons_list' as any); }}
         onLessons={() => { hapticTap(); router.replace('/lessons_list' as any); }}
-        f={f}
-        themeMode={themeMode}
+        liquidGlassThemeId={liquidGlassThemeId}
       />
     );
   }
 
   if (accessState !== 'allowed') {
     const checking = accessState === 'checking';
+    const accessCtaLabel = accessBlockKind === 'premium'
+      ? triLang(lang, { ru: 'Получить Plus', uk: 'Отримати Plus', en: 'Get Plus', es: 'Obtener Plus', 'pt-BR': "Obter Plus", vi: "Mở Plus", id: "Dapatkan Plus", tr: "Plus al", pl: "Kup Plus" })
+      : triLang(lang, { ru: 'К урокам', uk: 'До уроків', en: 'To lessons', es: 'Ir a lecciones', 'pt-BR': "Ir para as aulas", vi: "Đến bài học", id: "Ke pelajaran", tr: "Derslere git", pl: "Do lekcji" });
     return (
       <ScreenGradient artBackdrop="exam">
         <SafeAreaView style={{ flex: 1 }}>
           <ContentWrap>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                paddingHorizontal: 16,
-                paddingVertical: 12,
-                borderBottomWidth: StyleSheet.hairlineWidth,
-                borderBottomColor: isOliveTheme ? 'transparent' : LX.cardLine,
-              }}
-            >
-              <TapScale onPress={() => { hapticTap(); safeRouterBack(router, '/lessons_list' as any); }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
-                <Ionicons name="chevron-back" size={26} color={isOliveTheme ? OLIVE_RICH.ivory : '#FFFFFF'} />
-              </TapScale>
-            </View>
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 28 }}>
-              <View style={{ width: 86, height: 86, borderRadius: 43, backgroundColor: oliveExamChrome?.raised ?? LX.card, borderWidth: 0, borderColor: oliveExamChrome?.border ?? LX.cardLine, alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
-                <Ionicons name={checking ? 'hourglass-outline' : 'lock-closed-outline'} size={38} color={LX.gold} />
-              </View>
-              <Text style={{ color: oliveExamChrome?.ivory ?? '#FFFFFF', fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 12 }}>
-                {checking
+            <ExamHeader glass={glass} title={title} onBack={() => { hapticTap(); safeRouterBack(router, '/lessons_list' as any); }} />
+            <View style={{ flex: 1, justifyContent: 'center', paddingBottom: 60 }}>
+              <ExamHero
+                glass={glass}
+                icon={checking ? 'hourglass-outline' : 'lock-closed-outline'}
+                title={checking
                   ? triLang(lang, {
-                    ru: 'Проверяем доступ',
-                    en: 'Checking access',
-                    uk: 'Перевіряємо доступ',
-                    es: 'Comprobando acceso',
-                    'pt-BR': "Verificando acesso",
-                    vi: "Đang kiểm tra quyền truy cập",
-                    id: "Memeriksa akses",
-                    tr: "Erişim kontrol ediliyor",
-                    pl: "Sprawdzanie dostępu",
+                    ru: 'Проверяем доступ', en: 'Checking access', uk: 'Перевіряємо доступ', es: 'Comprobando acceso',
+                    'pt-BR': "Verificando acesso", vi: "Đang kiểm tra quyền truy cập", id: "Memeriksa akses", tr: "Erişim kontrol ediliyor", pl: "Sprawdzanie dostępu",
                   })
                   : title}
-              </Text>
-              <Text style={{ color: oliveExamChrome?.muted ?? 'rgba(255,255,255,0.74)', fontSize: f.bodyLg, lineHeight: 24, textAlign: 'center', marginBottom: 26 }}>
-                {checking
+                message={checking
                   ? triLang(lang, {
-                    ru: 'Секунду, сверяем текущий уровень.',
-                    en: 'One second, checking your current level.',
-                    uk: 'Секунду, звіряємо поточний рівень.',
-                    es: 'Un segundo, estamos comprobando tu nivel actual.',
-                    'pt-BR': "Um segundo, estamos conferindo seu nível atual.",
-                    vi: "Chờ một chút, chúng tôi đang kiểm tra cấp độ hiện tại của bạn.",
-                    id: "Sebentar, kami sedang memeriksa levelmu saat ini.",
-                    tr: "Bir saniye, mevcut seviyeni kontrol ediyoruz.",
-                    pl: "Chwileczkę, sprawdzamy Twój aktualny poziom.",
+                    ru: 'Секунду, сверяем текущий уровень.', en: 'One second, checking your current level.', uk: 'Секунду, звіряємо поточний рівень.',
+                    es: 'Un segundo, estamos comprobando tu nivel actual.', 'pt-BR': "Um segundo, estamos conferindo seu nível atual.",
+                    vi: "Chờ một chút, chúng tôi đang kiểm tra cấp độ hiện tại của bạn.", id: "Sebentar, kami sedang memeriksa levelmu saat ini.",
+                    tr: "Bir saniye, mevcut seviyeni kontrol ediyoruz.", pl: "Chwileczkę, sprawdzamy Twój aktualny poziom.",
                   })
                   : blockedText}
-              </Text>
-              {!checking && (
-                <TouchableOpacity
-                  activeOpacity={0.86}
+              />
+            </View>
+            {!checking && (
+              <ExamFooter bottomInset={0}>
+                <PracticeCta
+                  glass={glass}
+                  label={accessCtaLabel}
+                  trailingArrow
                   onPress={() => {
                     hapticTap();
                     if (accessBlockKind === 'premium') {
@@ -1095,36 +1023,9 @@ export default function LevelExam() {
                       router.replace('/lessons_list' as any);
                     }
                   }}
-                  style={{ backgroundColor: oliveExamChrome?.cta ?? LX.gold, paddingHorizontal: 22, paddingVertical: 13, borderRadius: 14 }}
-                >
-                  <Text style={{ color: oliveExamChrome?.ctaText ?? LX.ink, fontSize: f.body, fontWeight: '900' }}>
-                    {accessBlockKind === 'premium'
-                      ? triLang(lang, {
-                        ru: 'Получить Plus',
-                        uk: 'Отримати Plus',
-                        en: 'Get Plus',
-                        es: 'Obtener Plus',
-                        'pt-BR': "Obter Plus",
-                        vi: "Mở Plus",
-                        id: "Dapatkan Plus",
-                        tr: "Plus al",
-                        pl: "Kup Plus",
-                      })
-                      : triLang(lang, {
-                        ru: 'К урокам',
-                        uk: 'До уроків',
-                        en: 'To lessons',
-                        es: 'Ir a lecciones',
-                        'pt-BR': "Ir para as aulas",
-                        vi: "Đến bài học",
-                        id: "Ke pelajaran",
-                        tr: "Derslere git",
-                        pl: "Do lekcji",
-                      })}
-                  </Text>
-                </TouchableOpacity>
-              )}
-            </View>
+                />
+              </ExamFooter>
+            )}
           </ContentWrap>
         </SafeAreaView>
       </ScreenGradient>
@@ -1222,130 +1123,14 @@ export default function LevelExam() {
       <ScreenGradient artBackdrop="exam">
         <SafeAreaView style={{ flex: 1 }}>
           <ContentWrap>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                paddingHorizontal: 16,
-                paddingVertical: 12,
-                borderBottomWidth: StyleSheet.hairlineWidth,
-                borderBottomColor: oliveExamChrome?.border ?? LX.cardLine,
-              }}
-            >
-              <TapScale onPress={() => { hapticTap(); safeRouterBack(router, '/lessons_list' as any); }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
-                <Ionicons name="chevron-back" size={26} color={oliveExamChrome?.ivory ?? '#FFFFFF'} />
-              </TapScale>
-            </View>
-            <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ paddingHorizontal: 18, paddingTop: 16, paddingBottom: 28 }}>
-              <View
-                style={{
-                  backgroundColor: oliveExamChrome?.raised ?? (isOliveTheme ? OLIVE_RICH.raised : LX.card),
-                  borderRadius: 22,
-                  borderWidth: 0,
-                  borderColor: LX.cardLine,
-                  padding: 20,
-                  gap: 18,
-                }}
-              >
-                <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 14 }}>
-                  <View
-                    style={{
-                      width: 48,
-                      height: 48,
-                      borderRadius: 14,
-                      borderWidth: 0,
-                      borderColor: LX.gold,
-                      backgroundColor: LX.goldSoft,
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <Ionicons name="diamond-outline" size={26} color={LX.gold} />
-                  </View>
-                  <View style={{ flex: 1, paddingTop: 2 }}>
-                    <Text style={{ color: oliveExamChrome?.ivory ?? '#FFFFFF', fontSize: f.h1, fontWeight: '800', lineHeight: Math.round(f.h1 * 1.15) }}>
-                      {title}
-                    </Text>
-                  </View>
-                </View>
-
-                <View style={{ flexDirection: 'row', gap: 10 }}>
-                  {statTriples.map((s, i) => (
-                    <View
-                      key={i}
-                      style={{
-                        flex: 1,
-                        minWidth: 0,
-                        alignItems: 'center',
-                        paddingVertical: 14,
-                        paddingHorizontal: 6,
-                        borderRadius: 16,
-                      backgroundColor: oliveExamChrome?.panel ?? 'rgba(0,0,0,0.35)',
-                        borderWidth: 0,
-                        borderColor: LX.cardLine,
-                      }}
-                    >
-                      <Ionicons name={s.icon} size={18} color={LX.gold} style={{ marginBottom: 8 }} />
-                      <Text style={{ color: oliveExamChrome?.cta ?? LX.gold, fontSize: f.numMd, fontWeight: '800', marginBottom: 4 }}>{s.value}</Text>
-                      <Text
-                        style={{
-                          color: oliveExamChrome?.muted ?? LX.gold,
-                          fontSize: f.label - 1,
-                          fontWeight: '700',
-                          letterSpacing: 0,
-                          textAlign: 'center',
-                        }}
-                        numberOfLines={1}
-                      >
-                        {s.cap}
-                      </Text>
-                    </View>
-                  ))}
-                </View>
-
-                <Text style={{ color: isOliveTheme ? OLIVE_RICH.champagneLight : 'rgba(255,255,255,0.88)', fontSize: f.body, lineHeight: 22 }}>{introBody}</Text>
-
-                {premiumNote ? (
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      alignItems: 'flex-start',
-                      gap: 10,
-                      padding: 14,
-                      borderRadius: 14,
-                      backgroundColor: oliveExamChrome?.panel ?? LX.goldSoft,
-                      borderWidth: 0,
-                      borderColor: oliveExamChrome?.border ?? LX.cardLine,
-                    }}
-                  >
-                    <Ionicons name="sparkles-outline" size={20} color={oliveExamChrome?.cta ?? LX.gold} style={{ marginTop: 2 }} />
-                    <Text style={{ flex: 1, color: oliveExamChrome?.ivory ?? 'rgba(255,255,255,0.92)', fontSize: f.body, lineHeight: 21 }}>{premiumNote}</Text>
-                  </View>
-                ) : null}
-
-                <View style={{ position: 'relative', overflow: 'visible', marginTop: 4 }}>
-                  <TouchableOpacity
-                    activeOpacity={0.92}
-                    onPress={() => { hapticTap(); void startExam(); }}
-                    disabled={examStarting}
-                    style={{ borderRadius: 18, overflow: 'hidden', opacity: examStarting ? 0.6 : 1 }}
-                  >
-                    <LinearGradient
-                      colors={isOliveTheme ? ['#F0DEA5', '#C9A84C', '#9C7A29'] : ['#FFE9A8', '#E8C040', '#C99516']}
-                      start={{ x: 0, y: 0 }}
-                      end={{ x: 1, y: 1 }}
-                      style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, paddingVertical: 16 }}
-                    >
-                      <Ionicons name="sparkles" size={20} color={LX.ink} />
-                      <Text style={{ color: LX.ink, fontSize: f.bodyLg, fontWeight: '800' }}>
-                        {triLang(lang, { ru: 'Начать зачёт', uk: 'Почати залік', en: 'Start the test', es: 'Empezar examen', 'pt-BR': "Começar teste", vi: "Bắt đầu bài kiểm tra", id: "Mulai ujian", tr: "Sınava başla", pl: "Rozpocznij test" })}
-                      </Text>
-                    </LinearGradient>
-                  </TouchableOpacity>
-                  {/* зачем (PM-086): ценник энергии на кнопке убран — сам расход энергии не менялся. */}
-                </View>
-              </View>
-
+            <ExamHeader glass={glass} title={title} onBack={() => { hapticTap(); safeRouterBack(router, '/lessons_list' as any); }} />
+            <BouncyScrollView decelerationRate="fast" style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 22, paddingBottom: 24 }}>
+              <ExamHero glass={glass} icon="ribbon-outline" title={title} message={introBody} />
+              <ExamStatRow
+                glass={glass}
+                items={statTriples.map((st) => ({ value: st.value, label: st.cap.toLocaleLowerCase() }))}
+              />
+              {premiumNote ? <ExamKvCard glass={glass} note={premiumNote} style={{ marginTop: 18 }} /> : null}
               <View style={{ alignItems: 'center', marginTop: 18 }}>
                 <ReportErrorButton
                   screen="level_exam"
@@ -1365,6 +1150,16 @@ export default function LevelExam() {
                 />
               </View>
             </BouncyScrollView>
+            {/* зачем (PM-086): ценник энергии на кнопке убран — сам расход энергии не менялся. */}
+            <ExamFooter bottomInset={0}>
+              <PracticeCta
+                glass={glass}
+                label={triLang(lang, { ru: 'Начать зачёт', uk: 'Почати залік', en: 'Start the test', es: 'Empezar examen', 'pt-BR': "Começar teste", vi: "Bắt đầu bài kiểm tra", id: "Mulai ujian", tr: "Sınava başla", pl: "Rozpocznij test" })}
+                trailingArrow
+                disabled={examStarting}
+                onPress={() => { hapticTap(); void startExam(); }}
+              />
+            </ExamFooter>
           </ContentWrap>
           <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
         </SafeAreaView>
@@ -1377,195 +1172,91 @@ export default function LevelExam() {
     const wrongItems = questions
       .map((qu, i) => ({ q: qu, chosen: choices[i] ?? null, correct: qu?.correct ?? -1 }))
       .filter(x => x.q && x.chosen !== x.correct);
+    const attemptWord = triLang(lang, { ru: 'попытка', uk: 'спроба', en: 'attempt', es: 'intento', 'pt-BR': 'tentativa', vi: 'lần thử', id: 'percobaan', tr: 'deneme', pl: 'podejście' });
+    const accuracyWord = triLang(lang, { ru: 'точность', uk: 'точність', en: 'accuracy', es: 'precisión', 'pt-BR': 'precisão', vi: 'chính xác', id: 'akurasi', tr: 'doğruluk', pl: 'trafność' });
+    const ofWord = triLang(lang, { ru: `из ${total}`, uk: `з ${total}`, en: `of ${total}`, es: `de ${total}`, 'pt-BR': `de ${total}`, vi: `/ ${total}`, id: `dari ${total}`, tr: `/ ${total}`, pl: `z ${total}` });
+    const toLessonsLabel = triLang(lang, { ru: 'К урокам', uk: 'До уроків', en: 'Back to lessons', es: 'Volver a las lecciones', 'pt-BR': "Voltar às aulas", vi: "Quay lại bài học", id: "Kembali ke pelajaran", tr: "Derslere dön", pl: "Wróć do lekcji" });
+    const retryLabel = triLang(lang, { ru: 'Попробовать ещё раз', uk: 'Спробувати ще раз', en: 'Try again', es: 'Intentar de nuevo', 'pt-BR': "Tentar de novo", vi: "Thử lại", id: "Coba lagi", tr: "Tekrar dene", pl: "Spróbuj ponownie" });
+    const resultMessage = !passed
+      ? triLang(lang, {
+        ru: `Ниже ${PASS_PCT}% зачёт не засчитан — вернись к «Теории», «Словарю» и «Формам глаголов» по слабым местам.`,
+        uk: `Нижче ${PASS_PCT}% залік не зараховано — повернись до «Теорії», «Словника» й форм дієслів за слабкими місцями.`,
+        en: `Below ${PASS_PCT}% the test doesn't count as passed — go back to "Theory", "Vocabulary" and "Verb forms" for your weak spots.`,
+        es: `Por debajo del ${PASS_PCT} % no hay aprobado: repasa «Teoría», «Vocabulario» y verbos en los temas fallidos.`,
+        'pt-BR': `Abaixo de ${PASS_PCT}%, o teste não conta como aprovado — volte a "Teoria", "Vocabulário" e "Formas verbais" nos temas em que errou.`,
+        vi: `Dưới ${PASS_PCT}% thì chưa đạt: hãy quay lại "Lý thuyết", "Từ vựng" và "Dạng động từ" ở các chủ đề bị sai.`,
+        id: `Di bawah ${PASS_PCT}%, ujian belum lulus — kembali ke "Teori", "Kosakata", dan "Bentuk kata kerja" pada topik yang salah.`,
+        tr: `%${PASS_PCT} altı geçerli sayılmaz — hata yaptığın konularda "Teori", "Kelime" ve "Fiil formları" bölümlerine dön.`,
+        pl: `Poniżej ${PASS_PCT}% test nie jest zaliczony — wróć do "Teorii", "Słownika" i "Form czasowników" przy tematach z błędami.`,
+      })
+      : pct >= 90
+        ? triLang(lang, {
+          ru: 'Отлично по темам уровня — закрепи слабые уроки, чтобы удерживать планку.',
+          uk: 'Чудово за темами рівня — закріплюй слабкі уроки, щоб тримати планку.',
+          en: 'Great on the level topics — reinforce your weaker lessons to keep it up.',
+          es: 'Muy bien por temas del nivel: refuerza lecciones flojas para mantener el ritmo.',
+          'pt-BR': "Muito bem nos temas do nível: reforce as aulas mais fracas para manter o ritmo.",
+          vi: "Bạn làm rất tốt ở các chủ đề của cấp độ này: hãy củng cố các bài còn yếu để giữ nhịp.",
+          id: "Bagus sekali untuk topik level ini: perkuat pelajaran yang masih lemah agar ritmenya terjaga.",
+          tr: "Seviye konularında çok iyi: tempoyu korumak için zayıf dersleri pekiştir.",
+          pl: "Bardzo dobrze z tematów tego poziomu: utrwal słabsze lekcje, żeby utrzymać formę.",
+        })
+        : triLang(lang, {
+          ru: `Зачёт сдан (${PASS_PCT}%+) — при желании добейся ${90}% для золота.`,
+          uk: `Залік здано (${PASS_PCT}%+) — за бажанням добийся ${90}% для золота.`,
+          en: `Test passed (${PASS_PCT}%+) — if you like, aim for ${90}% to earn gold.`,
+          es: `Aprobado (${PASS_PCT} %+); si quieres, apunta al ${90} % para el oro.`,
+          'pt-BR': `Teste aprovado (${PASS_PCT}%+); se quiser, mire em ${90}% para ganhar ouro.`,
+          vi: `Đã đạt (${PASS_PCT}%+); nếu muốn, hãy nhắm tới ${90}% để lấy vàng.`,
+          id: `Lulus (${PASS_PCT}%+); kalau mau, kejar ${90}% untuk emas.`,
+          tr: `Geçtin (%${PASS_PCT}+); istersen altın için %${90} hedefle.`,
+          pl: `Zaliczone (${PASS_PCT}%+); jeśli chcesz, celuj w ${90}% na złoto.`,
+        });
     return (
       <>
       <ScreenGradient artBackdrop="exam">
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
-          <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-            <TapScale onPress={() => { hapticTap(); safeRouterBack(router, '/lessons_list' as any); }}>
-              <Ionicons name="chevron-back" size={26} color={sx.primary} />
-            </TapScale>
-            <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700', marginLeft: 10 }}>{title}</Text>
-          </View>
-          <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ padding: 20, gap: 16 }}>
-            {/* Итог */}
-            <View style={{ alignItems: 'center', gap: 8, paddingVertical: 12 }}>
-              {examMedalTier !== 'none' && MEDAL_IMAGES_EXAM[examMedalTier] ? (
-                <Image
-                  source={MEDAL_IMAGES_EXAM[examMedalTier]}
-                  style={{ width: 90, height: 90 }}
-                  contentFit="contain"
-                />
-              ) : (
-                <View style={{ width: 90, height: 90, borderRadius: 45, backgroundColor: '#3A3A3A', justifyContent: 'center', alignItems: 'center' }}>
-                  <Text style={{ fontSize: 36, color: '#555' }}>?</Text>
-                </View>
-              )}
-              {medalImproved && (
-                <Text style={{ color: t.gold, fontSize: f.bodyLg, fontWeight: '700', marginTop: 4 }}>
+          <ExamHeader glass={glass} title={title} onBack={() => { hapticTap(); safeRouterBack(router, '/lessons_list' as any); }} />
+          <BouncyScrollView decelerationRate="fast" style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 22, paddingBottom: 24 }}>
+            <ExamHero
+              glass={glass}
+              icon={passed ? 'ribbon-outline' : 'refresh-outline'}
+              title={passed ? triLang(lang, { ru: `Зачёт ${lvl} сдан`, uk: `Залік ${lvl} складено`, en: `${lvl} test passed`, es: `Examen ${lvl} aprobado`, 'pt-BR': `Teste ${lvl} aprovado`, vi: `Đã đạt bài kiểm tra ${lvl}`, id: `Ujian ${lvl} lulus`, tr: `${lvl} sınavı geçildi`, pl: `Test ${lvl} zaliczony` }) : triLang(lang, { ru: 'Пока не сдан', uk: 'Поки не складено', en: 'Not passed yet', es: 'Aún no aprobado', 'pt-BR': 'Ainda não aprovado', vi: 'Chưa đạt', id: 'Belum lulus', tr: 'Henüz geçilmedi', pl: 'Jeszcze niezaliczony' })}
+              message={resultMessage}
+            />
+            {/* медаль показываем только когда она реально улучшилась — это уже существующая механика экзамена */}
+            {medalImproved && examMedalTier !== 'none' && MEDAL_IMAGES_EXAM[examMedalTier] ? (
+              <View style={{ alignItems: 'center', marginTop: 18 }}>
+                <Image source={MEDAL_IMAGES_EXAM[examMedalTier]} style={{ width: 72, height: 72 }} contentFit="contain" />
+                <Text style={{ color: glass.text, fontSize: 16, fontWeight: '600', marginTop: 6 }}>
                   {examMedalTier === 'gold'
-                    ? triLang(lang, {
-                      ru: '🥇 Золото!',
-                      uk: '🥇 Золото!',
-                      en: '🥇 Gold!',
-                      es: '🥇 ¡Oro!',
-                      'pt-BR': "🥇 Ouro!",
-                      vi: "🥇 Vàng!",
-                      id: "🥇 Emas!",
-                      tr: "🥇 Altın!",
-                      pl: "🥇 Złoto!",
-                    })
-                    : examMedalTier === 'silver'
-                      ? triLang(lang, {
-                        ru: '🥈 Новая медаль!',
-                        uk: '🥈 Нова медаль!',
-                        en: '🥈 New medal!',
-                        es: '🥈 ¡Nueva medalla!',
-                        'pt-BR': "🥈 Nova medalha!",
-                        vi: "🥈 Huy chương mới!",
-                        id: "🥈 Medali baru!",
-                        tr: "🥈 Yeni madalya!",
-                        pl: "🥈 Nowy medal!",
-                      })
-                      : triLang(lang, {
-                        ru: '🥉 Новая медаль!',
-                        uk: '🥉 Нова медаль!',
-                        en: '🥉 New medal!',
-                        es: '🥉 ¡Nueva medalla!',
-                        'pt-BR': "🥉 Nova medalha!",
-                        vi: "🥉 Huy chương mới!",
-                        id: "🥉 Medali baru!",
-                        tr: "🥉 Yeni madalya!",
-                        pl: "🥉 Nowy medal!",
-                      })}
+                    ? triLang(lang, { ru: 'Золото!', uk: 'Золото!', en: 'Gold!', es: '¡Oro!', 'pt-BR': "Ouro!", vi: "Vàng!", id: "Emas!", tr: "Altın!", pl: "Złoto!" })
+                    : triLang(lang, { ru: 'Новая медаль!', uk: 'Нова медаль!', en: 'New medal!', es: '¡Nueva medalla!', 'pt-BR': "Nova medalha!", vi: "Huy chương mới!", id: "Medali baru!", tr: "Yeni madalya!", pl: "Nowy medal!" })}
                 </Text>
-              )}
-              <Text style={{ color: sx.primary, fontSize: f.h1, fontWeight: '800' }}>{pct}%</Text>
-              <Text style={{ color: sx.muted, fontSize: f.body }}>
-                {triLang(lang, {
-                  ru: `${correctCount} из ${total} правильно`,
-                  uk: `${correctCount} з ${total} правильно`,
-                  en: `${correctCount} of ${total} correct`,
-                  es: `${correctCount} de ${total} acertadas`,
-                  'pt-BR': `${correctCount} de ${total} corretas`,
-                  vi: `${correctCount} / ${total} câu đúng`,
-                  id: `${correctCount} dari ${total} benar`,
-                  tr: `${total} sorudan ${correctCount} doğru`,
-                  pl: `${correctCount} z ${total} poprawnie`,
-                })}
-              </Text>
-              <Text style={{ color: sx.muted, fontSize: f.sub }}>
-                {triLang(lang, {
-                  ru: `Попытка №${examAttemptNumber}`,
-                  uk: `Спроба №${examAttemptNumber}`,
-                  en: `Attempt #${examAttemptNumber}`,
-                  es: `Intento n.º ${examAttemptNumber}`,
-                  'pt-BR': `Tentativa nº ${examAttemptNumber}`,
-                  vi: `Lần thứ ${examAttemptNumber}`,
-                  id: `Percobaan ke-${examAttemptNumber}`,
-                  tr: `${examAttemptNumber}. deneme`,
-                  pl: `Podejście nr ${examAttemptNumber}`,
-                })}
-              </Text>
-            </View>
-
-            {/* Прогресс-бар */}
-            <View
-              style={{
-                height: 8,
-                backgroundColor: isGoldTheme ? 'rgba(0,0,0,0.44)' : t.bgSurface,
-                borderRadius: 4,
-                overflow: 'hidden',
-                borderWidth: isGoldTheme ? StyleSheet.hairlineWidth : 0,
-                borderColor: isGoldTheme ? GOLD_RICH.hairline : 'transparent',
-              }}
-            >
-              {isGoldTheme ? (
-                <LinearGradient
-                  colors={passed ? GOLD_GRADIENTS.progressMetal : (['#7A302A', '#2A0D0B', '#140605'] as [string, string, string])}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 0 }}
-                  style={{ height: '100%', width: `${pct}%` as any, borderRadius: 4 }}
-                />
-              ) : (
-                <View style={{ height: '100%', width: `${pct}%` as any, backgroundColor: passed ? t.correct : t.wrong, borderRadius: 4 }} />
-              )}
-            </View>
-
-            <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center', lineHeight: 22, marginTop: 12, paddingHorizontal: 8 }}>
-              {!passed
-                ? triLang(lang, {
-                  ru: `Ниже ${PASS_PCT}% зачёт не засчитан — вернись к «Теории», «Словарю» и «Формам глаголов» по слабым местам.`,
-                  uk: `Нижче ${PASS_PCT}% залік не зараховано — повернись до «Теорії», «Словника» й форм дієслів за слабкими місцями.`,
-                  en: `Below ${PASS_PCT}% the test doesn't count as passed — go back to "Theory", "Vocabulary" and "Verb forms" for your weak spots.`,
-                  es: `Por debajo del ${PASS_PCT} % no hay aprobado: repasa «Teoría», «Vocabulario» y verbos en los temas fallidos.`,
-                  'pt-BR': `Abaixo de ${PASS_PCT}%, o teste não conta como aprovado — volte a "Teoria", "Vocabulário" e "Formas verbais" nos temas em que errou.`,
-                  vi: `Dưới ${PASS_PCT}% thì chưa đạt: hãy quay lại "Lý thuyết", "Từ vựng" và "Dạng động từ" ở các chủ đề bị sai.`,
-                  id: `Di bawah ${PASS_PCT}%, ujian belum lulus — kembali ke "Teori", "Kosakata", dan "Bentuk kata kerja" pada topik yang salah.`,
-                  tr: `%${PASS_PCT} altı geçerli sayılmaz — hata yaptığın konularda "Teori", "Kelime" ve "Fiil formları" bölümlerine dön.`,
-                  pl: `Poniżej ${PASS_PCT}% test nie jest zaliczony — wróć do "Teorii", "Słownika" i "Form czasowników" przy tematach z błędami.`,
-                })
-                : pct >= 90
-                  ? triLang(lang, {
-                    ru: 'Отлично по темам уровня — закрепи слабые уроки, чтобы удерживать планку.',
-                    uk: 'Чудово за темами рівня — закріплюй слабкі уроки, щоб тримати планку.',
-                    en: 'Great on the level topics — reinforce your weaker lessons to keep it up.',
-                    es: 'Muy bien por temas del nivel: refuerza lecciones flojas para mantener el ritmo.',
-                    'pt-BR': "Muito bem nos temas do nível: reforce as aulas mais fracas para manter o ritmo.",
-                    vi: "Bạn làm rất tốt ở các chủ đề của cấp độ này: hãy củng cố các bài còn yếu để giữ nhịp.",
-                    id: "Bagus sekali untuk topik level ini: perkuat pelajaran yang masih lemah agar ritmenya terjaga.",
-                    tr: "Seviye konularında çok iyi: tempoyu korumak için zayıf dersleri pekiştir.",
-                    pl: "Bardzo dobrze z tematów tego poziomu: utrwal słabsze lekcje, żeby utrzymać formę.",
-                  })
-                  : triLang(lang, {
-                    ru: `Зачёт сдан (${PASS_PCT}%+) — при желании добейся ${90}% для золота.`,
-                    uk: `Залік здано (${PASS_PCT}%+) — за бажанням добийся ${90}% для золота.`,
-                    en: `Test passed (${PASS_PCT}%+) — if you like, aim for ${90}% to earn gold.`,
-                    es: `Aprobado (${PASS_PCT} %+); si quieres, apunta al ${90} % para el oro.`,
-                    'pt-BR': `Teste aprovado (${PASS_PCT}%+); se quiser, mire em ${90}% para ganhar ouro.`,
-                    vi: `Đã đạt (${PASS_PCT}%+); nếu muốn, hãy nhắm tới ${90}% để lấy vàng.`,
-                    id: `Lulus (${PASS_PCT}%+); kalau mau, kejar ${90}% untuk emas.`,
-                    tr: `Geçtin (%${PASS_PCT}+); istersen altın için %${90} hedefle.`,
-                    pl: `Zaliczone (${PASS_PCT}%+); jeśli chcesz, celuj w ${90}% na złoto.`,
-                  })}
-            </Text>
+              </View>
+            ) : null}
+            <ExamStatRow
+              glass={glass}
+              items={[
+                { value: String(correctCount), label: ofWord },
+                { value: `${pct}%`, label: accuracyWord },
+                { value: `№ ${examAttemptNumber}`, label: attemptWord },
+              ]}
+            />
 
             {/* Ошибки */}
             {wrongItems.length > 0 && (
-              <View style={{ gap: 8 }}>
-                <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
-                  {triLang(lang, {
-                    ru: 'Что разобрать:',
-                    uk: 'Що розібрати:',
-                    en: 'What to review:',
-                    es: 'Qué repasar:',
-                    'pt-BR': "Erros:",
-                    vi: "Lỗi sai:",
-                    id: "Kesalahan:",
-                    tr: "Hatalar:",
-                    pl: "Błędy:",
-                  })}
-                </Text>
+              <View style={[examCardStyle(glass), { marginTop: 18, paddingHorizontal: 16, paddingVertical: 8 }]}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 10 }}>
+                  <Text style={{ flex: 1, color: glass.text, fontSize: 17, fontWeight: '700' }}>
+                    {triLang(lang, { ru: 'Что разобрать', uk: 'Що розібрати', en: 'What to review', es: 'Qué repasar', 'pt-BR': "Erros", vi: "Lỗi sai", id: "Kesalahan", tr: "Hatalar", pl: "Błędy" })}
+                  </Text>
+                  <Text style={{ color: glass.secondary, fontSize: 15, fontWeight: '600', fontVariant: ['tabular-nums'] }}>{wrongItems.length}</Text>
+                </View>
                 {wrongItems.map((item, i) => (
-                  <LinearGradient
-                    key={i}
-                    colors={isGoldTheme ? GOLD_GRADIENTS.raisedTile : ([t.bgCard, t.bgCard, t.bgCard] as [string, string, string])}
-                    locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
-                    start={isGoldTheme ? { x: 0, y: 0 } : undefined}
-                    end={isGoldTheme ? { x: 1, y: 1 } : undefined}
-                    style={{
-                      borderRadius: 12,
-                      borderWidth: isGoldTheme ? 0.5 : 0,
-                      borderColor: isGoldTheme ? GOLD_RICH.hairline : 'transparent',
-                      padding: 14,
-                      gap: 6,
-                      overflow: 'hidden',
-                      ...(isGoldTheme ? goldShadow(1) : {}),
-                    }}
-                  >
-                    {isGoldTheme && <GoldBevel radius={12} intensity="quiet" />}
-                    <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '700', zIndex: 10 }}>
+                  <View key={i} style={{ paddingVertical: 12, gap: 6, borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: glass.line }}>
+                    <Text style={{ color: glass.secondary, fontSize: 13, fontWeight: '600' }}>
                       {triLang(lang, {
                         ru: item.q.topic ?? '',
                         uk: item.q.topicUK ?? '',
@@ -1578,77 +1269,22 @@ export default function LevelExam() {
                         pl: levelTopicPlanned(item.q, 'pl'),
                       })}
                     </Text>
-                    <ClozeGapText text={item.q.q ?? ''} style={{ color: t.textPrimary, fontSize: f.body, zIndex: 10 }} />
-                    <View style={{ flexDirection: 'row', gap: 8, flexWrap: 'wrap', zIndex: 10 }}>
+                    <ClozeGapText text={item.q.q ?? ''} style={{ color: glass.text, fontSize: 16, lineHeight: 22 }} />
+                    <View style={{ flexDirection: 'row', gap: 12, flexWrap: 'wrap' }}>
                       {item.chosen !== null && item.chosen !== undefined && (
-                        <Text style={{ color: t.wrong, fontSize: f.sub }}>
+                        <Text style={{ color: t.wrong, fontSize: 15 }}>
                           ✗ {item.q.opts?.[item.chosen] ?? '—'}
                         </Text>
                       )}
-                      <Text style={{ color: t.correct, fontSize: f.sub }}>
+                      <Text style={{ color: t.correct, fontSize: 15 }}>
                         ✓ {item.q.opts?.[item.correct] ?? '—'}
                       </Text>
                     </View>
-                  </LinearGradient>
+                  </View>
                 ))}
               </View>
             )}
-
-            {/* Кнопки */}
-            <View style={{ position: 'relative', overflow: 'visible' }}>
-              <TouchableOpacity
-                onPress={() => { hapticTap(); void startExam(); }}
-                style={{ borderRadius: 14, borderWidth: isGoldTheme ? 0.5 : 0, borderColor: isGoldTheme ? GOLD_RICH.hairline : 'transparent', overflow: 'hidden', ...(isGoldTheme ? goldShadow(1) : {}) }}
-              >
-                <LinearGradient
-                  colors={isGoldTheme ? GOLD_GRADIENTS.raisedTile : ([t.bgCard, t.bgCard, t.bgCard] as [string, string, string])}
-                  locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
-                  start={isGoldTheme ? { x: 0, y: 0 } : undefined}
-                  end={isGoldTheme ? { x: 1, y: 1 } : undefined}
-                  style={{ paddingVertical: 14, alignItems: 'center', paddingHorizontal: 16 }}
-                >
-                  {isGoldTheme && <GoldBevel radius={14} intensity="quiet" />}
-                  <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700', zIndex: 10 }}>
-                    {triLang(lang, { ru: 'Попробовать ещё раз', uk: 'Спробувати ще раз', en: 'Try again', es: 'Intentar de nuevo', 'pt-BR': "Tentar de novo", vi: "Thử lại", id: "Coba lagi", tr: "Tekrar dene", pl: "Spróbuj ponownie" })}
-                  </Text>
-                </LinearGradient>
-              </TouchableOpacity>
-              {/* зачем (PM-086): ценник энергии на кнопке убран — сам расход энергии не менялся. */}
-            </View>
-            <TouchableOpacity
-              onPress={() => { void leaveResultAfterReview(); }}
-              style={{
-                borderRadius: 14,
-                borderWidth: isGoldTheme ? 1 : 0,
-                borderColor: isGoldTheme ? GOLD_RICH.edgeLight : 'transparent',
-                overflow: 'hidden',
-                ...(isGoldTheme ? goldShadow(2) : {}),
-              }}
-            >
-              <LinearGradient
-                colors={isGoldTheme ? GOLD_GRADIENTS.primaryButton : ([t.accent, t.accent, t.accent] as [string, string, string])}
-                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
-                start={isGoldTheme ? { x: 0, y: 0 } : undefined}
-                end={isGoldTheme ? { x: 1, y: 1 } : undefined}
-                style={{ paddingVertical: 14, alignItems: 'center', paddingHorizontal: 16 }}
-              >
-                {isGoldTheme && <GoldBevel radius={14} intensity="strong" />}
-              <Text style={{ color: isGoldTheme ? GOLD_RICH.blackPiano : t.correctText, fontSize: f.bodyLg, fontWeight: '700', zIndex: 10 }}>
-                {triLang(lang, {
-                  ru: 'К урокам',
-                  uk: 'До уроків',
-                  en: 'Back to lessons',
-                  es: 'Volver a las lecciones',
-                  'pt-BR': "Voltar às aulas",
-                  vi: "Quay lại bài học",
-                  id: "Kembali ke pelajaran",
-                  tr: "Derslere dön",
-                  pl: "Wróć do lekcji",
-                })}
-              </Text>
-              </LinearGradient>
-            </TouchableOpacity>
-            <View style={{ alignItems: 'center', marginTop: 8 }}>
+            <View style={{ alignItems: 'center', marginTop: 12 }}>
               <ReportErrorButton
                 screen="level_exam"
                 dataId={`level_exam_result_${lvl}_${pct}`}
@@ -1667,6 +1303,20 @@ export default function LevelExam() {
               />
             </View>
           </BouncyScrollView>
+          {/* зачем (PM-086): ценник энергии на кнопке убран — сам расход энергии не менялся. */}
+          <ExamFooter bottomInset={0}>
+            {passed ? (
+              <>
+                <PracticeCta glass={glass} label={toLessonsLabel} trailingArrow onPress={() => { void leaveResultAfterReview(); }} />
+                <ExamQuietButton glass={glass} label={retryLabel} onPress={() => { hapticTap(); void startExam(); }} />
+              </>
+            ) : (
+              <>
+                <PracticeCta glass={glass} label={retryLabel} trailingArrow onPress={() => { hapticTap(); void startExam(); }} />
+                <ExamQuietButton glass={glass} label={toLessonsLabel} onPress={() => { void leaveResultAfterReview(); }} />
+              </>
+            )}
+          </ExamFooter>
         </ContentWrap>
         <NoEnergyModal visible={noEnergy} onClose={() => setNoEnergy(false)} activity="level_exam" />
       </SafeAreaView>
@@ -1679,165 +1329,74 @@ export default function LevelExam() {
   if (!q) return null;
 
   const progressPct = Math.round((idx + 1) / total * 100);
+  const nextLabel = idx + 1 < total
+    ? triLang(lang, { ru: 'Следующий вопрос', uk: 'Наступне питання', en: 'Next question', es: 'Siguiente pregunta', 'pt-BR': "Próximo", vi: "Tiếp theo", id: "Berikutnya", tr: "İleri", pl: "Dalej" })
+    : triLang(lang, { ru: 'Завершить', uk: 'Завершити', en: 'Finish', es: 'Terminar', 'pt-BR': "Finalizar", vi: "Hoàn thành", id: "Selesai", tr: "Bitir", pl: "Zakończ" });
+  const lessonWord = triLang(lang, { ru: 'Урок', uk: 'Урок', en: 'Lesson', es: 'Lección', 'pt-BR': "Aula", vi: "Bài học", id: "Pelajaran", tr: "Ders", pl: "Lekcja" });
   return (
     <ScreenGradient artBackdrop="exam">
     <SafeAreaView style={{ flex: 1 }}>
       <ContentWrap>
-        {/* Хедер */}
-        <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-          <TapScale onPress={() => {
-            hapticTap();
-            setExitExamConfirm(true);
-          }}>
-            <Ionicons name="close" size={26} color={sx.primary} />
-          </TapScale>
-          <View style={{ flex: 1, marginHorizontal: 12 }}>
-            <View
-              style={{
-                height: 6,
-                backgroundColor: isGoldTheme ? 'rgba(0,0,0,0.44)' : t.bgSurface,
-                borderRadius: 3,
-                overflow: 'hidden',
-                borderWidth: isGoldTheme ? StyleSheet.hairlineWidth : 0,
-                borderColor: isGoldTheme ? GOLD_RICH.hairline : 'transparent',
-              }}
-            >
-              {isGoldTheme ? (
-                <LinearGradient
-                  colors={GOLD_GRADIENTS.progressMetal}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 0 }}
-                  style={{ height: '100%', width: `${progressPct}%` as any, borderRadius: 3 }}
-                />
-              ) : (
-                <LinearGradient
-                  colors={[t.accent, lightenHex(t.accent, 0.28)]}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 0 }}
-                  style={{ height: '100%', width: `${progressPct}%` as any, borderRadius: 3 }}
-                />
-              )}
-            </View>
-          </View>
-          <Text style={{ color: sx.muted, fontSize: f.label, fontWeight: '700', minWidth: 48, textAlign: 'right' }}>
-            {idx + 1} / {total}
-          </Text>
+        <ExamHeader
+          glass={glass}
+          title={title}
+          subtitle={`${idx + 1} / ${total}`}
+          onBack={() => { hapticTap(); setExitExamConfirm(true); }}
+        />
+        <View style={{ paddingHorizontal: 16, marginTop: 14 }}>
+          <ExamTrack glass={glass} ratio={(idx + 1) / Math.max(1, total)} />
         </View>
 
-        <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ padding: 20, gap: 16 }}>
-          {/* Топик */}
-          <Text style={{ color: sx.muted, fontSize: f.label, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1 }}>
-            {triLang(lang, {
-              ru: q.topic,
-              uk: q.topicUK,
-              en: levelTopicEn(q),
-              es: q.topicES,
-              'pt-BR': levelTopicPlanned(q, 'pt-BR'),
-              vi: levelTopicPlanned(q, 'vi'),
-              id: levelTopicPlanned(q, 'id'),
-              tr: levelTopicPlanned(q, 'tr'),
-              pl: levelTopicPlanned(q, 'pl'),
-            })} · {triLang(lang, {
-              ru: 'Урок',
-              uk: 'Урок',
-              en: 'Lesson',
-              es: 'Lección',
-              'pt-BR': "Aula",
-              vi: "Bài học",
-              id: "Pelajaran",
-              tr: "Ders",
-              pl: "Lekcja",
-            })} {q.lessonNum}
-          </Text>
+        <BouncyScrollView decelerationRate="fast" style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 18, paddingBottom: 24 }}>
+          {/* Топик и номер урока (`.qhead`) */}
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12, minHeight: 34 }}>
+            <Text style={{ flexShrink: 1, color: glass.secondary, fontSize: 13, lineHeight: 18, letterSpacing: 1.2, textTransform: 'uppercase', fontWeight: '600' }}>
+              {triLang(lang, {
+                ru: q.topic,
+                uk: q.topicUK,
+                en: levelTopicEn(q),
+                es: q.topicES,
+                'pt-BR': levelTopicPlanned(q, 'pt-BR'),
+                vi: levelTopicPlanned(q, 'vi'),
+                id: levelTopicPlanned(q, 'id'),
+                tr: levelTopicPlanned(q, 'tr'),
+                pl: levelTopicPlanned(q, 'pl'),
+              })}
+            </Text>
+            <Text style={{ color: glass.secondary, fontSize: 15, fontWeight: '600', fontVariant: ['tabular-nums'] }}>{lessonWord} {q.lessonNum}</Text>
+          </View>
 
           {/* Вопрос */}
-          <LinearGradient
-            colors={isGoldTheme ? GOLD_GRADIENTS.premiumPanel : ([t.bgCard, t.bgCard, t.bgCard] as [string, string, string])}
-            locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
-            start={isGoldTheme ? { x: 0, y: 0 } : undefined}
-            end={isGoldTheme ? { x: 1, y: 1 } : undefined}
-            style={{
-              borderRadius: 16,
-              borderWidth: isGoldTheme ? 0.5 : 0,
-              borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : 'transparent',
-              padding: 20,
-              overflow: 'hidden',
-              ...(isGoldTheme ? goldShadow(2) : {}),
-            }}
-          >
-            {isGoldTheme && <GoldBevel radius={16} intensity="normal" />}
-            <ClozeGapText text={q.q} style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600', lineHeight: 26, zIndex: 10 }} />
-          </LinearGradient>
+          <View style={[examCardStyle(glass), { marginTop: 14, paddingVertical: 22, paddingHorizontal: 22 }]}>
+            <ClozeGapText text={q.q} style={{ color: glass.text, fontSize: 24, fontWeight: '600', lineHeight: 30 }} />
+          </View>
 
           {/* Варианты ответов */}
-          <View style={{ gap: 10 }}>
+          <View style={{ gap: 10, marginTop: 18 }}>
             {(q.opts ?? []).map((opt, ci) => {
               const on = flashKey === `${ci}`;
               const isChosen  = chosen === ci;
               const isOptCorrect = ci === q.correct;
-              let bg = on ? t.accent : t.bgCard;
-              let border = on ? t.accent : t.border;
-              let signalBorder = on;
-              let textColor = on ? (t.correctText ?? '#fff') : t.textPrimary;
-              if (!on && showAnswer && isOptCorrect)  { bg = t.correctBg ?? t.bgCard; border = t.correct; textColor = t.correct; signalBorder = true; }
-              if (!on && showAnswer && isChosen && !isOptCorrect) { bg = '#3A1A1A'; border = t.wrong; textColor = t.wrong; signalBorder = true; }
+              let state: ExamOptionState = on ? 'pressed' : 'idle';
+              if (!on && showAnswer && isOptCorrect) state = 'ok';
+              if (!on && showAnswer && isChosen && !isOptCorrect) state = 'no';
               return (
-                <DuoPressable
+                <ExamOption
                   key={ci}
-                  edgeHeight={5}
-                  withHaptic={false}
-                  edgeColor={on ? t.accent : 'rgba(0,0,0,0.30)'}
-                  style={{ backgroundColor: bg, borderRadius: 14, borderWidth: 0, borderColor: border, paddingHorizontal: 18, paddingVertical: 14, flexDirection: 'row', alignItems: 'center', gap: 10 }}
+                  glass={glass}
+                  label={opt}
+                  state={state}
+                  okColor={t.correct}
+                  okBg={t.correctBg ?? glass.opaqueCard}
+                  noColor={t.wrong}
+                  noBg={t.wrongBg ?? glass.opaqueCard}
                   onPress={() => { flash(`${ci}`); handlePick(ci); }}
                   disabled={chosen !== null}
-                >
-                  <View style={{ width: 26, height: 26, borderRadius: 13, backgroundColor: t.bgSurface, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '700' }}>
-                      {['A','B','C','D'][ci]}
-                    </Text>
-                  </View>
-                  <Text style={{ color: textColor, fontSize: f.body, fontWeight: on ? '700' : '400', flex: 1 }}>{opt}</Text>
-                  {showAnswer && isOptCorrect && <Ionicons name="checkmark-circle" size={20} color={t.correct} />}
-                  {showAnswer && isChosen && !isOptCorrect && <Ionicons name="close-circle" size={20} color={t.wrong} />}
-                </DuoPressable>
+                />
               );
             })}
           </View>
-
-          {/* Кнопка Далее */}
-          {showAnswer && (
-            <TouchableOpacity
-              onPress={() => { hapticTap(); goNext(); }}
-              style={{ backgroundColor: t.accent, borderRadius: 14, paddingVertical: 16, alignItems: 'center', marginTop: 4 }}
-            >
-              <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '700' }}>
-                {idx + 1 < total
-                  ? triLang(lang, {
-                    ru: 'Следующий вопрос →',
-                    uk: 'Наступне питання →',
-                    en: 'Next question →',
-                    es: 'Siguiente pregunta →',
-                    'pt-BR': "Próximo →",
-                    vi: "Tiếp theo →",
-                    id: "Berikutnya →",
-                    tr: "İleri →",
-                    pl: "Dalej →",
-                  })
-                  : triLang(lang, {
-                    ru: 'Завершить',
-                    uk: 'Завершити',
-                    en: 'Finish',
-                    es: 'Terminar',
-                    'pt-BR': "Finalizar",
-                    vi: "Hoàn thành",
-                    id: "Selesai",
-                    tr: "Bitir",
-                    pl: "Zakończ",
-                  })}
-              </Text>
-            </TouchableOpacity>
-          )}
-          <View style={{ alignItems: 'center', marginTop: 8 }}>
+          <View style={{ alignItems: 'center', marginTop: 12 }}>
             <ReportErrorButton
               screen="level_exam"
               dataId={`level_exam_${lvl}_q${idx}_L${q.lessonNum}`}
@@ -1846,6 +1405,11 @@ export default function LevelExam() {
             />
           </View>
         </BouncyScrollView>
+        {showAnswer ? (
+          <ExamFooter bottomInset={0}>
+            <PracticeCta glass={glass} label={nextLabel} trailingArrow onPress={() => { hapticTap(); goNext(); }} />
+          </ExamFooter>
+        ) : null}
       </ContentWrap>
       <ThemedConfirmModal
         visible={exitExamConfirm}

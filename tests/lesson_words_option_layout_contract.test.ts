@@ -14,12 +14,13 @@ describe('lesson words option layout contract', () => {
     const block = source.slice(start, source.indexOf('{current && (', start));
 
     expect(start).toBeGreaterThanOrEqual(0);
-    expect(block).toContain('const optionFontSize = Math.min(f.h2, 22)');
-    expect(block).toContain("wrapStyle={{ flexBasis:'47.5%', maxWidth:'48%', flexGrow:1, flexShrink:1, minWidth:0 }}");
-    expect(block).toContain('style={{ minHeight:68');
-    expect(block).toContain("overflow:'hidden'");
-    expect(block).toContain('numberOfLines={2}');
-    expect(block).toContain('ellipsizeMode="tail"');
+    // зачем: карточки ответов переведены на Liquid Glass — теперь <Pressable> с width 48%/100%, minHeight 56 и
+    // переносом слов; устойчивость к крупному тексту держат minWidth:0 + maxFontSizeMultiplier, а не обрезка.
+    expect(block).toContain("width: isContext ? '48%' : '100%'");
+    expect(block).toContain('minHeight: 56');
+    expect(block).toContain('minWidth:0');
+    expect(block).toContain('flexShrink:1');
+    expect(block).toContain('maxFontSizeMultiplier={1.2}');
   });
 
   it('does not use heavy wrong-answer haptics for option cards', () => {
@@ -27,7 +28,8 @@ describe('lesson words option layout contract', () => {
     const start = source.indexOf('{current.options.map((opt, i) => {');
     const block = source.slice(start, source.indexOf('{current && (', start));
 
-    expect(block).toContain('withHaptic={false}');
+    // зачем: у плиток ответа вибрации нет вовсе (правило владельца: хаптик только на управляющих кнопках).
+    expect(block).not.toMatch(/haptic/i);
     expect(source).toContain('hapticTap()');
     expect(block).not.toMatch(/haptic(Error|Heavy|Impact|Notification)/);
   });

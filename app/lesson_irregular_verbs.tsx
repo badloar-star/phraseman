@@ -1,5 +1,4 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import TapScale from '../components/TapScale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
@@ -7,23 +6,27 @@ import { Image } from 'expo-image';
 import {
   ActivityIndicator,
   Animated,
-  Easing,
   InteractionManager,
   Keyboard,
+  Pressable,
   ScrollView,
+  StyleSheet,
   Text, TouchableOpacity,
   View,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { stringsForLang, useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { triLang, type Lang } from '../constants/i18n';
-import { screenTextOnGradient, type ThemeMode } from '../constants/theme';
+import type { ThemeMode } from '../constants/theme';
 import { useTheme } from '../components/ThemeContext';
-import XpGainBadge from '../components/XpGainBadge';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { PracticeBackButton, PracticeHeaderTitle } from '../components/practice/PracticeChrome';
+import { PracticeCta, PracticeProgressRow, PracticeQuestionCard } from '../components/practice/PracticeStates';
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
+import { canChargePreparedTrainingEntry } from './energy_contract';
 import NoEnergyModal from '../components/NoEnergyModal';
 import CollectibleDropModal from '../components/CollectibleDropModal';
 import { useOverlayVisible } from '../components/OverlayArbiter';
@@ -39,7 +42,6 @@ import { buildIrregularVerbOptions, ensureCompleteIrregularVerbOptions } from '.
 import { irregularVerbPortionProgress } from './irregular_verb_portion_progress';
 import VerbLetterBank from '../components/VerbLetterBank';
 import { safeRouterBack } from './navigation_back';
-import { registerXP } from './xp_manager';
 import { addShards } from './shards_system';
 import ReportErrorButton from '../components/ReportErrorButton';
 import BouncyScrollView from '../components/BouncyScrollView';
@@ -68,7 +70,6 @@ import { SESSION_ATTEMPTS_MOTION } from '../constants/motionHybrid';
 export { IRREGULAR_VERB_COUNT_BY_LESSON, LESSONS_WITH_IRREGULAR_VERBS } from './irregular_verbs_data';
 
 const REQUIRED = 3;
-const POINTS_PER_VERB = 3;
 const safeVerbEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
 /** Как в «Словаре»: короткая пауза на подсветку; озвучка правильного ответа — сразу при тапе (не после таймера). */
@@ -257,7 +258,9 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
 }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
-  const { theme: t, f, themeMode } = useTheme();
+  const { theme: t, f, themeMode, liquidGlassThemeId } = useTheme();
+  // зачем (владелец 2026-09-30): «Неправильные глаголы» 1:1 по макету learn.html (H1–H5, Liquid Glass); только вид.
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const router = useRouter();
   const [attemptSessionId] = useState(makeFeedbackAttemptId);
   const accountToken = useMemo(() => captureAccountGeneration(), []);
@@ -278,9 +281,8 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
   const pack = stringsForLang(lang);
   const formMeta = formRowMeta(lang, themeMode);
   const isLightTheme = false;
-  const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
 
-  const { confirmSpendOne, acknowledgeSessionStart } = useEnergy();
+  const { confirmSpendOne, acknowledgeSessionStart, energyReady } = useEnergy();
   const verbsEnergyIntent = useEnergySessionIntent(
     'irregular_verbs',
     `${studyTarget ?? 'en'}:${lessonId ?? 0}`,
@@ -294,11 +296,10 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
   const onCancelStartRef = useRef(onCancelStart);
   useEffect(() => { onCancelStartRef.current = onCancelStart; }, [onCancelStart]);
 
-  // Старт тренировки неправильных глаголов = 10 ⚡ (numeric energy).
-  // зачем: пустой деп-массив — ровно одно списание на монтирование экрана.
+  // Старт тренировки неправильных глаголов = 1 ⚡ только при готовых упражнениях.
   const verbsEntryChargedRef = useRef(false);
   useEffect(() => {
-    if (verbsEntryChargedRef.current) return;
+    if (!canChargePreparedTrainingEntry({ energyReady, hasPlayableItems: verbs.length > 0 }) || verbsEntryChargedRef.current) return;
     verbsEntryChargedRef.current = true;
     let active = true;
     void confirmSpendOneRef.current(verbsEnergyIntent).then(result => {
@@ -308,7 +309,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
       if (result === 'cancelled') onCancelStartRef.current();
     });
     return () => { active = false; };
-  }, []);
+  }, [acknowledgeSessionStart, energyReady, verbs.length, verbsEnergyIntent]);
 
   const [portionVerbs, setPortionVerbs] = useState<IrregularVerb[]>(() => [...verbs]);
   const [queue, setQueue] = useState<IrregularVerb[]>(() => [...verbs]);
@@ -390,31 +391,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
   }, [initCounts]);
   const [letterBankKey, setLetterBankKey] = useState(0);
 
-  const xpTranslateY = useRef(new Animated.Value(40)).current;
-  const xpOpacity = useRef(new Animated.Value(0)).current;
-  const [xpToastVisible, setXpToastVisible] = useState(false);
-  const [xpToastAmount, setXpToastAmount] = useState(POINTS_PER_VERB);
   const locked = useRef(false);
-  const showXpToast = useCallback((amount: number = POINTS_PER_VERB) => {
-    const a = Number.isFinite(amount) && amount >= 0 ? amount : POINTS_PER_VERB;
-    setXpToastAmount(a);
-    xpTranslateY.setValue(40);
-    xpOpacity.setValue(0);
-    setXpToastVisible(true);
-    const easeIn = Easing.out(Easing.cubic);
-    const easeOut = Easing.in(Easing.cubic);
-    Animated.sequence([
-      Animated.parallel([
-        Animated.timing(xpTranslateY, { toValue: 0, duration: 420, easing: easeIn, useNativeDriver: true }),
-        Animated.timing(xpOpacity, { toValue: 1, duration: 400, easing: easeIn, useNativeDriver: true }),
-      ]),
-      Animated.delay(1200),
-      Animated.parallel([
-        Animated.timing(xpOpacity, { toValue: 0, duration: 480, easing: easeOut, useNativeDriver: true }),
-        Animated.timing(xpTranslateY, { toValue: -12, duration: 480, easing: easeOut, useNativeDriver: true }),
-      ]),
-    ]).start(() => setXpToastVisible(false));
-  }, [xpOpacity, xpTranslateY]);
 
   useEffect(() => {
     AsyncStorage.getItem('user_name').then(n => { if (n) setUserName(n); });
@@ -604,7 +581,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
         const noErrors = !hadErrorThisVerb.current && isCorrect;
         // зачем (владелец, 2026-08-27): руна — за глагол целиком, засчитанный
         // без единой ошибки по всем трём формам. Ошибка на любой форме — руны
-        // не будет за этот проход глагола, ровно как и медаль/XP ниже.
+        // не будет за этот проход глагола, ровно как и медаль/legacy reward ниже.
         if (noErrors) {
           const awarded = practiceRunes.onCorrectAnswer(verb.base);
           if (awarded > 0) runeFlight.fly(awarded);
@@ -612,7 +589,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
         if (noErrors) {
           // Correct — mark as learned
           // [FeedbackKit] Мини-победа «Глагол освоен» — на СУЩЕСТВУЮЩЕЕ событие
-          // освоения (чистый проход всех трёх форм). Только ощущение; счёт/XP ниже.
+          // освоения (чистый проход всех трёх форм). Только ощущение; счёт/legacy reward ниже.
           setLearnedBurst({ base: verb.base, past: verb.past, pp: verb.pp });
           const newCount = 3;
           const newCounts = { ...counts, [verb.base]: newCount };
@@ -624,32 +601,6 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
             AsyncStorage.setItem(irregularStorageKey, JSON.stringify(g));
           });
           setLearnedCnt(c => c + 1);
-          registerXP(POINTS_PER_VERB, 'verb_learned', userName || '', lang, lessonId, {
-            eventId: [
-              'verb',
-              safeVerbEventPart(studyTarget),
-              String(lessonId ?? 0),
-              safeVerbEventPart(verb.base, 50),
-              'learned',
-            ].join(':'),
-            payload: {
-              lessonId: lessonId ?? null,
-              studyTarget,
-              verb: verb.base,
-            },
-          })
-            .then((r) => {
-              const finalDelta = r?.finalDelta;
-              const earned = typeof finalDelta === 'number' && Number.isFinite(finalDelta) && finalDelta >= 0
-                ? finalDelta
-                : POINTS_PER_VERB;
-              setTotalPts(p => p + earned);
-              if (earned > 0) showXpToast(earned);
-            })
-            .catch(() => {
-              setTotalPts(p => p + POINTS_PER_VERB);
-              showXpToast(POINTS_PER_VERB);
-            });
           const nq = [...queue];
           nq.splice(pos % nq.length, 1);
           goNextVerb(nq, pos % Math.max(nq.length - 1, 1));
@@ -662,7 +613,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
         }
       }
     }, isCorrect ? ANSWER_FEEDBACK_MS.correct : ANSWER_FEEDBACK_MS.wrong);
-  }, [phase, queue, pos, step, options, allVerbs, counts, userName, lang, onUpdate, showXpToast, buildStep, goNextVerb, speakAudio, speechRate, voiceOut, irregularStorageKey, studyTarget, attempts.registerVerdict, attemptSessionId, lessonId]);
+  }, [phase, queue, pos, step, options, allVerbs, counts, userName, lang, onUpdate, buildStep, goNextVerb, speakAudio, speechRate, voiceOut, irregularStorageKey, studyTarget, attempts.registerVerdict, attemptSessionId, lessonId]);
 
   const activeVerb = queue[pos % Math.max(queue.length, 1)];
   const activeForm = FORM_SEQ[step];
@@ -718,10 +669,10 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
   if (allDone) return (
     <>
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', gap: 16, padding: 20 }}>
-        <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: t.bgCard, justifyContent: 'center', alignItems: 'center' }}>
-          <Ionicons name="checkmark-done-outline" size={36} color={t.correct} />
+        <View style={{ width: 61, height: 61, borderRadius: 16, backgroundColor: glass.opaqueControl, justifyContent: 'center', alignItems: 'center' }}>
+          <Ionicons name="checkmark-done-outline" size={28} color={t.correct} />
         </View>
-        <Text style={{ color: sx.primary, fontSize: f.h1, fontWeight: '700' }}>
+        <Text style={{ color: glass.text, fontSize: 20, lineHeight: 26, fontWeight: '700', textAlign: 'center' }}>
           {hasNextPortion ? triLang(lang, {
             ru: 'Порция глаголов пройдена!', uk: 'Порцію дієслів пройдено!',
             en: 'Verb batch complete!', es: '¡Grupo de verbos completado!',
@@ -739,31 +690,27 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
             pl: 'Wszystkie czasowniki opanowane!',
           })}
         </Text>
-        <Text style={{ color: sx.muted, fontSize: f.bodyLg }}>{learnedCnt} / {portionVerbs.length}</Text>
+        <Text style={{ color: glass.secondary, fontSize: 15, lineHeight: 20, fontWeight: '600', fontVariant: ['tabular-nums'] }}>{learnedCnt} / {portionVerbs.length}</Text>
         {hasNextPortion ? (
           <>
-            <Text style={{ color: sx.muted, fontSize: f.body }}>
+            <Text style={{ color: glass.secondary, fontSize: 15, lineHeight: 20, fontVariant: ['tabular-nums'] }}>
               {sectionProgress.learned} / {sectionProgress.total}
             </Text>
-            <TouchableOpacity
+            <PracticeCta
+              glass={glass}
               testID="irregular-verbs-next-portion"
               disabled={continuing || practiceRunes.hydrating}
-              accessibilityRole="button"
-              accessibilityState={{ disabled: continuing || practiceRunes.hydrating, busy: continuing }}
-              onPress={() => { void continuePortion(); }}
-              style={{ backgroundColor: t.correct, paddingHorizontal: 28, paddingVertical: 14, borderRadius: 14, opacity: continuing ? 0.6 : 1 }}
-            >
-              <Text style={{ color: t.correctText, fontSize: f.h2, fontWeight: '700' }}>
-                {triLang(lang, {
-                  ru: 'Следующая порция', uk: 'Наступна порція', en: 'Next batch', es: 'Siguiente grupo',
-                  'pt-BR': 'Próximo grupo', vi: 'Nhóm tiếp theo', id: 'Kelompok berikutnya', tr: 'Sonraki grup', pl: 'Następna partia',
-                })}
-              </Text>
-            </TouchableOpacity>
+              onPress={() => { fk.tap(); void continuePortion(); }}
+              trailingArrow
+              label={triLang(lang, {
+                ru: 'Следующая порция', uk: 'Наступна порція', en: 'Next batch', es: 'Siguiente grupo',
+                'pt-BR': 'Próximo grupo', vi: 'Nhóm tiếp theo', id: 'Kelompok berikutnya', tr: 'Sonraki grup', pl: 'Następna partia',
+              })}
+            />
           </>
         ) : null}
         {continuationFailed ? (
-              <Text accessibilityLiveRegion="polite" style={{ color: sx.muted, fontSize: f.body, textAlign: 'center' }}>
+              <Text accessibilityLiveRegion="polite" style={{ color: glass.secondary, fontSize: 15, lineHeight: 20, textAlign: 'center' }}>
                 {triLang(lang, {
                   ru: 'Не удалось сохранить награду. Нажмите ещё раз.', uk: 'Не вдалося зберегти нагороду. Натисніть ще раз.',
                   en: 'Could not save the reward. Tap again.', es: 'No se pudo guardar la recompensa. Pulsa de nuevo.',
@@ -773,23 +720,23 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
               </Text>
         ) : null}
         {totalPts > 0 && (
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: t.correctBg, borderRadius: 10, paddingHorizontal: 14, paddingVertical: 8 }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: glass.opaqueControl, borderRadius: 19, paddingHorizontal: 16, minHeight: 38 }}>
             <Ionicons name="star" size={16} color={t.correct} />
             {/* зачем (владелец, 2026-08-27): count-up вместо статичного числа —
                 pack.words.plusPoints(n) возвращает целую строку с числом внутри,
                 поэтому число вырезается по заведомо уникальному маркеру. */}
-            <Text style={{ color: t.correct, fontSize: f.bodyLg, fontWeight: '700' }}>
+            <Text style={{ color: t.correct, fontSize: 17, fontWeight: '700' }}>
               {pack.words.plusPoints(9999999).replace('9999999', '')}
             </Text>
             <AnimatedCountUpText
               value={totalPts}
-              style={{ color: t.correct, fontSize: f.bodyLg, fontWeight: '700', minWidth: 24 }}
+              style={{ color: t.correct, fontSize: 17, fontWeight: '700', minWidth: 24 }}
               accessibilityLabel={pack.words.plusPoints(totalPts)}
             />
           </View>
         )}
         {practiceRunes.runes > 0 && (
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: t.bgCard, borderRadius: 10, paddingHorizontal: 14, paddingVertical: 8 }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: glass.opaqueControl, borderRadius: 19, paddingHorizontal: 16, minHeight: 38 }}>
             {/* guard-ok: декоративный ассет, смысл несёт число рядом */}
             <Image
               source={require('../assets/images/level-spin-rewards/stars_10.webp')}
@@ -799,33 +746,37 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
               accessibilityElementsHidden
               importantForAccessibility="no"
             />
-            <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>+</Text>
+            <Text style={{ color: glass.text, fontSize: 17, fontWeight: '700' }}>+</Text>
             <AnimatedCountUpText
               value={practiceRunes.runes}
-              style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700', minWidth: 24 }}
+              style={{ color: glass.text, fontSize: 17, fontWeight: '700', minWidth: 24 }}
               accessibilityLabel={`+${practiceRunes.runes}`}
             />
           </View>
         )}
-        <TouchableOpacity
-          style={{ backgroundColor: t.correct, paddingHorizontal: 32, paddingVertical: 14, borderRadius: 14, marginTop: 8 }}
-          onPress={() => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any)}
-        >
-          <Text style={{ color: t.correctText, fontSize: f.h2, fontWeight: '700' }}>
-            {triLang(lang, { ru: '← К уроку', uk: '← До уроку', en: '← To lesson', es: '← Volver a la lección', 'pt-BR': '← Voltar à lição', vi: '← Về bài học', id: '← Kembali ke pelajaran', tr: '← Derse dön', pl: '← Do lekcji' })}
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{ backgroundColor: t.bgCard, paddingHorizontal: 32, paddingVertical: 13, borderRadius: 14, flexDirection: 'row', alignItems: 'center', gap: 8 }}
+        {(() => {
+          const backLabel = triLang(lang, { ru: 'К уроку', uk: 'До уроку', en: 'To lesson', es: 'Volver a la lección', 'pt-BR': 'Voltar à lição', vi: 'Về bài học', id: 'Kembali ke pelajaran', tr: 'Derse dön', pl: 'Do lekcji' });
+          const goBack = () => { fk.tap(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); };
+          // зачем: главная кнопка одна (макет): «Следующая порция», а если её нет — «К уроку».
+          return hasNextPortion ? (
+            <Pressable accessibilityRole="button" onPress={goBack} style={({ pressed }) => ({ minHeight: 44, paddingHorizontal: 24, alignItems: 'center', justifyContent: 'center', opacity: pressed ? 0.7 : 1 })}>
+              <Text style={{ color: glass.secondary, fontSize: 16, fontWeight: '600' }}>{backLabel}</Text>
+            </Pressable>
+          ) : (
+            <PracticeCta glass={glass} label={backLabel} onPress={goBack} style={{ marginTop: 8 }} />
+          );
+        })()}
+        <Pressable
+          accessibilityRole="button"
           disabled={continuing || practiceRunes.hydrating}
+          style={({ pressed }) => ({ minHeight: 44, paddingHorizontal: 24, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, opacity: continuing || practiceRunes.hydrating ? 0.45 : pressed ? 0.7 : 1 })}
           onPress={() => { fk.tap(); void continuePortion(true); }}
-          activeOpacity={0.8}
         >
-          <Ionicons name="refresh-outline" size={18} color={t.textSecond} />
-          <Text style={{ color: t.textSecond, fontSize: f.h2, fontWeight: '600' }}>
+          <Ionicons name="refresh-outline" size={18} color={glass.secondary} />
+          <Text style={{ color: glass.secondary, fontSize: 16, fontWeight: '600' }}>
             {triLang(lang, { ru: 'Начать заново', uk: 'Спочатку', en: 'Start over', es: 'Desde el principio', 'pt-BR': 'Começar de novo', vi: 'Bắt đầu lại', id: 'Mulai lagi', tr: 'Baştan başla', pl: 'Zacznij od nowa' })}
           </Text>
-        </TouchableOpacity>
+        </Pressable>
       </ScrollView>
       {/* Карточка за закрытый раздел глаголов — сюрприз поверх экрана итога. */}
       <CollectibleDropModal
@@ -842,8 +793,11 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
   const verb = activeVerb;
   if (!verb) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
-        <Text style={{ color: t.textSecond, fontSize: f.body, textAlign: 'center' }}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 28 }}>
+        <View style={{ width: 61, height: 61, borderRadius: 16, backgroundColor: glass.opaqueControl, alignItems: 'center', justifyContent: 'center' }}>
+          <Ionicons name="alert-circle-outline" size={26} color={glass.text} />
+        </View>
+        <Text style={{ color: glass.text, fontSize: 17, lineHeight: 23, fontWeight: '600', textAlign: 'center', marginTop: 18 }}>
           {triLang(lang, {
             ru: 'Что-то пошло не так. Вернись к уроку или открой вкладку «Словарь» и снова нажми «Начать тренировку».',
             uk: 'Щось пішло не так. Повернись до уроку або відкрий вкладку «Словник» і знову натисни «Почати тренування».',
@@ -870,32 +824,24 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
     { key: 'pp',   value: verb.pp,   isTarget: form === 'pp'   },
   ];
 
+  const tc = verbTenseCaptions(lang);
+  const tenseByKey: Record<FormKey, string> = { base: tc.present, past: tc.pastT, pp: tc.participle };
+  const feedbackTint = phase === 'feedback' ? (feedbackCorrect ? t.correct : t.wrong) : null;
+  const hintText = phase === 'answering'
+    ? (recallActive
+      ? triLang(lang, { ru: 'Собери форму из букв', uk: 'Збери форму з літер', en: 'Build the form from letters', es: 'Forma la palabra con letras', 'pt-BR': 'Monte a forma com letras', vi: 'Ghép dạng từ các chữ cái', id: 'Susun bentuk dari huruf', tr: 'Harflerden formu oluştur', pl: 'Ułóż formę z liter' })
+      : triLang(lang, { ru: 'Сначала попробуй вспомнить', uk: 'Спершу спробуй пригадати', en: 'First try to recall it', es: 'Primero intenta recordar', 'pt-BR': 'Primeiro tente lembrar', vi: 'Trước tiên hãy thử nhớ lại', id: 'Coba ingat dulu', tr: 'Önce hatırlamaya çalış', pl: 'Najpierw spróbuj przypomnieć' }))
+    : ' ';
+
   return (
     <View style={{ flex: 1 }}>
-      {/* XP Toast */}
-      {xpToastVisible && (
-        <Animated.View style={{
-          position: 'absolute', top: 50, alignSelf: 'center', zIndex: 999,
-          backgroundColor: isLightTheme ? '#92400E' : '#FFC800', borderRadius: 20,
-          paddingHorizontal: 18, paddingVertical: 8,
-          opacity: xpOpacity,
-          transform: [{ translateY: xpTranslateY }],
-        }}>
-          <XpGainBadge
-            amount={xpToastAmount}
-            visible={xpToastVisible}
-            noInnerAnimation
-            style={{ color: isLightTheme ? '#FFF3C4' : '#000', fontSize: 16, fontWeight: '800' }}
-          />
-        </Animated.View>
-      )}
 
       {/* ── Top card area ── */}
-      <View style={{ flex: 1, paddingHorizontal: 20, paddingTop: 10, justifyContent: 'space-between' }}>
+      <View style={{ flex: 1, paddingHorizontal: 16, paddingTop: 10 }}>
 
         {/* Progress counter */}
-        <View style={{ marginBottom: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
-          <Text style={{ color: sx.muted, fontSize: f.label }}>
+        <View style={{ marginBottom: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
+          <Text style={{ color: glass.secondary, fontSize: 15, lineHeight: 20, fontWeight: '600', fontVariant: ['tabular-nums'] }}>
             {triLang(lang, {
               ru: `${learnedCnt} / ${portionVerbs.length} выучено`,
               uk: `${learnedCnt} / ${portionVerbs.length} вивчено`,
@@ -913,8 +859,8 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
               <PracticeRuneCounter
                 runes={practiceRunes.runes}
                 lang={lang}
-                backgroundColor={t.bgCard}
-                color={t.textPrimary}
+                backgroundColor={glass.opaqueControl}
+                color={glass.text}
                 testID="irregular-verbs-practice-runes"
               />
             </View>
@@ -925,110 +871,59 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
             />
           </View>
         </View>
+        <PracticeProgressRow glass={glass} progress={portionVerbs.length > 0 ? learnedCnt / portionVerbs.length : 0} flush />
 
         {/* Card ── источник полёта рун (владелец, 2026-08-27) */}
-        <View ref={runeFlight.originRef} collapsable={false} style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 16 }}>
-          {/* Form badge */}
-          <View style={{ backgroundColor: meta.bg, borderRadius: 20, paddingHorizontal: 14, paddingVertical: 5, borderWidth: 0, borderColor: meta.color + '60' }}>
-            <Text style={{ color: meta.color, fontSize: f.label, fontWeight: '700', letterSpacing: 0.4 }}>{meta.label}</Text>
-          </View>
+        <View ref={runeFlight.originRef} collapsable={false} style={{ flex: 1, justifyContent: 'center' }}>
+          <PracticeQuestionCard glass={glass} minHeight={200} kicker={hintText} style={{ paddingBottom: 26 }}>
+            {/* Translation */}
+            <Text style={{ color: glass.secondary, fontSize: 22, lineHeight: 28, fontWeight: '600', textAlign: 'center', marginTop: 10 }}>
+              {irregularVerbTranslation(verb, lang)}
+            </Text>
 
-          {/* Режим/подсказка: «сначала попробуй вспомнить» (retrieval-first) или «впиши форму» (recall) */}
-          {phase === 'answering' && (
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
-              <Ionicons
-                name={recallActive ? 'create-outline' : 'bulb-outline'}
-                size={13}
-                color={sx.ghost}
-              />
-              <Text style={{ color: sx.ghost, fontSize: f.label, fontWeight: '600' }}>
-                {recallActive
-                  ? triLang(lang, { ru: 'Собери форму из букв', uk: 'Збери форму з літер', en: 'Build the form from letters', es: 'Forma la palabra con letras', 'pt-BR': 'Monte a forma com letras', vi: 'Ghép dạng từ các chữ cái', id: 'Susun bentuk dari huruf', tr: 'Harflerden formu oluştur', pl: 'Ułóż formę z liter' })
-                  : triLang(lang, { ru: 'Сначала попробуй вспомнить', uk: 'Спершу спробуй пригадати', en: 'First try to recall it', es: 'Primero intenta recordar', 'pt-BR': 'Primeiro tente lembrar', vi: 'Trước tiên hãy thử nhớ lại', id: 'Coba ingat dulu', tr: 'Önce hatırlamaya çalış', pl: 'Najpierw spróbuj przypomnieć' })}
-              </Text>
-            </View>
-          )}
-
-          {/* Translation */}
-          <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center' }}>
-            {irregularVerbTranslation(verb, lang)}
-          </Text>
-
-          {/* Chain with blank */}
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, flexWrap: 'wrap', justifyContent: 'center' }}>
-            {chainForms.map((cf, i) => (
-              <React.Fragment key={cf.key}>
-                {i > 0 && <Text style={{ color: sx.ghost, fontSize: f.bodyLg }}>→</Text>}
-                {cf.isTarget ? (
-                  <View style={{
-                    borderBottomWidth: 2,
-                    borderBottomColor: phase === 'feedback'
-                      ? (feedbackCorrect ? meta.color : t.wrong)
-                      : meta.color,
-                    paddingHorizontal: 8, paddingBottom: 2, minWidth: 60, alignItems: 'center',
-                  }}>
-                    <Text style={{
-                      color: phase === 'feedback'
-                        ? (feedbackCorrect ? meta.color : t.wrong)
-                        : meta.color,
-                      fontSize: f.h1, fontWeight: '700', letterSpacing: 0.5,
-                    }}>
-                      {phase === 'feedback' ? correctAnswer : '?'}
+            {/* Цепочка форм: подпись времени под каждой, пропуск — пунктирная ячейка (`.chain`) */}
+            <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 12, flexWrap: 'wrap', justifyContent: 'center', marginTop: 22 }}>
+              {chainForms.map((cf, i) => (
+                <React.Fragment key={cf.key}>
+                  {i > 0 && (
+                    <View style={{ height: 48, justifyContent: 'center' }}>
+                      <Ionicons name="arrow-forward" size={20} color={glass.mutedText} />
+                    </View>
+                  )}
+                  <View style={{ alignItems: 'center' }}>
+                    {cf.isTarget ? (
+                      <View style={{
+                        minWidth: 92, height: 48, paddingHorizontal: 12, borderRadius: 14,
+                        // guard-ok: 1 px ячейка-пропуск `.chain .q` макета (исключение PhraseMan 2.0).
+                        borderWidth: 1, // guard-ok
+                        borderStyle: feedbackTint ? 'solid' : 'dashed',
+                        borderColor: feedbackTint ?? glass.mutedText,
+                        alignItems: 'center', justifyContent: 'center',
+                      }}>
+                        <Text style={{ color: feedbackTint ?? glass.secondary, fontSize: 20, lineHeight: 26, fontWeight: '700' }}>
+                          {phase === 'feedback' ? correctAnswer : '?'}
+                        </Text>
+                      </View>
+                    ) : (
+                      <View style={{ height: 48, justifyContent: 'center' }}>
+                        <Text style={{ color: glass.text, fontSize: 24, lineHeight: 30, fontWeight: '700' }}>{cf.value}</Text>
+                      </View>
+                    )}
+                    <Text style={{ color: glass.mutedText, fontSize: 12, lineHeight: 16, fontWeight: '600', marginTop: 6, letterSpacing: 0.5 }}>
+                      {tenseByKey[cf.key]}
                     </Text>
                   </View>
-                ) : (
-                  <Text style={{ color: sx.second, fontSize: f.h2, fontWeight: '400' }}>{cf.value}</Text>
-                )}
-              </React.Fragment>
-            ))}
-          </View>
-
-          {/* Русские подписи-времена под формами (base→past→pp) + пример будущего */}
-          {(() => {
-            const tc = verbTenseCaptions(lang);
-            const tenseByKey: Record<FormKey, string> = {
-              base: tc.present,
-              past: tc.pastT,
-              pp: tc.participle,
-            };
-            return (
-              <View style={{ alignItems: 'center', gap: 2 }}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, flexWrap: 'wrap', justifyContent: 'center' }}>
-                  {chainForms.map((cf, i) => (
-                    <React.Fragment key={`cap-${cf.key}`}>
-                      {i > 0 && <Text style={{ color: 'transparent', fontSize: f.label }}>→</Text>}
-                      <Text style={{ color: sx.ghost, fontSize: f.label, minWidth: 60, textAlign: 'center' }}>
-                        {tenseByKey[cf.key]}
-                      </Text>
-                    </React.Fragment>
-                  ))}
-                </View>
-                <Text style={{ color: sx.ghost, fontSize: f.label }}>{tc.future(verb.base)}</Text>
-              </View>
-            );
-          })()}
-
-          {/* Step dots — aligned to visual chain order (base→past→pp) */}
-          <View style={{ flexDirection: 'row', gap: 6 }}>
-            {chainForms.map((cf, i) => {
-              const isDone = (FORM_SEQ.slice(0, step) as readonly string[]).includes(cf.key);
-              return (
-                <View key={i} style={{
-                  width: cf.isTarget ? 20 : 8, height: 8, borderRadius: 4,
-                  backgroundColor: isDone ? t.correct : cf.isTarget ? meta.color : sx.ghost,
-                }} />
-              );
-            })}
-          </View>
+                </React.Fragment>
+              ))}
+            </View>
+          </PracticeQuestionCard>
         </View>
       </View>
 
       {/* ── Bottom: либо сборка из букв (recall), либо 4 кнопки (recognition) ── */}
       <View style={{
-        paddingHorizontal: 16, paddingBottom: 20, paddingTop: 12,
-        gap: 10,
-        borderTopWidth: 0.5, borderTopColor: t.border,
-        backgroundColor: t.bgPrimary,
+        paddingHorizontal: 16, paddingBottom: 16, paddingTop: 12,
+        gap: 12,
       }}>
         {recallActive ? (
           <VerbLetterBank
@@ -1041,35 +936,41 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
           />
         ) : (
         [displayOptions.slice(0, 2), displayOptions.slice(2, 4)].map((row, rowIdx) => (
-          <View key={rowIdx} style={{ flexDirection: 'row', gap: 10 }}>
+          <View key={rowIdx} style={{ flexDirection: 'row', gap: 12 }}>
             {row.map((word, colIdx) => {
               const idx = rowIdx * 2 + colIdx;
               const state = btnStates[idx];
-              const bg = state === 'correct' ? t.correctBg
-                       : state === 'wrong'   ? 'rgba(240,84,84,0.15)'
-                       : t.bgCard;
-              const border = state === 'correct' ? t.correct
-                           : state === 'wrong'   ? t.wrong
-                           : t.border;
               const color = state === 'correct' ? t.correct
                           : state === 'wrong'   ? t.wrong
-                          : t.textPrimary;
+                          : glass.text;
+              const dim = phase !== 'answering' && state === 'idle';
               return (
-                <TouchableOpacity
+                <Pressable
                   key={idx}
+                  accessibilityRole="button"
+                  accessibilityLabel={word}
                   disabled={phase !== 'answering'}
                   onPress={() => { handleTap(word, idx); }}
-                  activeOpacity={0.75}
-                  style={{
-                    flex: 1, paddingVertical: 16, borderRadius: 16,
+                  style={({ pressed }) => ({
+                    flex: 1, minHeight: 56, paddingVertical: 10, paddingHorizontal: state === 'idle' ? 12 : 36, borderRadius: 16,
                     alignItems: 'center', justifyContent: 'center',
-                    backgroundColor: bg, borderWidth: 0, borderColor: border,
-                  }}
+                    // guard-ok: 1 px полупрозрачная кромка `.opt` макета (исключение PhraseMan 2.0).
+                    borderWidth: StyleSheet.hairlineWidth, // guard-ok
+                    borderColor: glass.line,
+                    backgroundColor: pressed ? glass.selected : glass.opaqueCard,
+                    opacity: dim ? 0.4 : 1,
+                    transform: [{ scale: pressed && phase === 'answering' ? 0.98 : 1 }],
+                  })}
                 >
-                  <Text style={{ color, fontSize: f.bodyLg, fontWeight: '700', textAlign: 'center' }} numberOfLines={2} maxFontSizeMultiplier={1.2}>
+                  {state !== 'idle' && (
+                    <View pointerEvents="none" style={{ position: 'absolute', right: 12, top: 0, bottom: 0, justifyContent: 'center' }}>
+                      <Ionicons name={state === 'correct' ? 'checkmark' : 'close'} size={18} color={color} />
+                    </View>
+                  )}
+                  <Text style={{ color, fontSize: 17, lineHeight: 22, fontWeight: '600', textAlign: 'center' }} maxFontSizeMultiplier={1.2}>
                     {word}
                   </Text>
-                </TouchableOpacity>
+                </Pressable>
               );
             })}
           </View>
@@ -1117,7 +1018,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
             }),
           ].join('\n')}
           style={{ alignSelf: 'flex-end', marginTop: 4, marginBottom: 4 }}
-          textColor={sx.muted}
+          textColor={glass.secondary}
         />
       )}
 
@@ -1146,84 +1047,89 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
 }
 
 // ── Dictionary Tab ────────────────────────────────────────────────────────────
-const COL = { base: 130, past: 110, pp: 130, tr: 260, save: 40 };
-const TABLE_W = COL.base + COL.past + COL.pp + COL.tr + COL.save + 32;
+// зачем (владелец 2026-09-30): словарь глаголов по макету verbsDict — одна карточка-таблица
+// (шапка 12px капсом, строки с тонкими разделителями), выученные приглушены; прокрутка вбок
+// оставлена, чтобы длинные формы и переводы не обрезались.
+const COL = { base: 104, past: 104, pp: 104, tr: 170, save: 40 };
+const TABLE_W = COL.base + COL.past + COL.pp + COL.tr + COL.save + 28;
 
-function IrregVerbsScrollTable({ t, f, lang, allVerbs, globalCounts, lessonId }: {
-  t: any; f: any; lang: Lang;
+function IrregVerbsScrollTable({ glass, lang, allVerbs, globalCounts, lessonId }: {
+  glass: ReturnType<typeof liquidGlassTokens>; lang: Lang;
   allVerbs: IrregularVerb[];
   globalCounts: Record<string, number>;
   lessonId?: number;
 }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
-  const { themeMode } = useTheme();
-  const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const scrollX = useRef(new Animated.Value(0)).current;
   const [containerW, setContainerW] = useState(0);
   const sv = stringsForLang(lang).verbs;
-  const canScroll = containerW > 0 && TABLE_W > containerW;
-  const thumbW = canScroll ? Math.max(40, (containerW / TABLE_W) * (containerW - 32)) : 0;
-  const trackW = containerW - 32;
+  const cardW = containerW - 32;
+  const canScroll = cardW > 0 && TABLE_W > cardW;
+  const thumbW = canScroll ? Math.max(40, (cardW / TABLE_W) * (cardW - 32)) : 0;
+  const trackW = cardW - 32;
   const thumbTranslate = canScroll
-    ? scrollX.interpolate({ inputRange: [0, TABLE_W - containerW], outputRange: [0, trackW - thumbW], extrapolate: 'clamp' })
+    ? scrollX.interpolate({ inputRange: [0, TABLE_W - cardW], outputRange: [0, trackW - thumbW], extrapolate: 'clamp' })
     : new Animated.Value(0);
+  const headStyle = { color: glass.mutedText, fontSize: 12, lineHeight: 16, fontWeight: '700' as const, letterSpacing: 1, textTransform: 'uppercase' as const };
 
   return (
     <View onLayout={e => setContainerW(e.nativeEvent.layout.width)} style={{ position:'relative' }}>
+      <View style={{
+        marginHorizontal: 16, marginTop: 22, borderRadius: 20, overflow: 'hidden', paddingTop: 6,
+        // guard-ok: 1 px полупрозрачная кромка карточки-таблицы макета (исключение PhraseMan 2.0).
+        borderWidth: StyleSheet.hairlineWidth, // guard-ok
+        borderColor: glass.line, backgroundColor: glass.opaqueCard,
+      }}>
       <Animated.ScrollView
         horizontal
         decelerationRate="fast"
         nestedScrollEnabled
-        showsHorizontalScrollIndicator={true}
+        showsHorizontalScrollIndicator={false}
         scrollEventThrottle={16}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], { useNativeDriver: true })}
-        contentContainerStyle={{ paddingHorizontal: 16 }}
+        contentContainerStyle={{ paddingHorizontal: 14 }}
       >
-        <View style={{ minWidth: TABLE_W }}>
-          <View style={{ flexDirection: 'row', paddingVertical: 9, borderBottomWidth: 1, borderBottomColor: t.border }}>
-            <Text style={{ width: COL.base, color: sx.muted, fontSize: f.label, fontWeight: '600' }}>{sv.base}</Text>
-            <Text style={{ width: COL.past, color: sx.muted, fontSize: f.label, fontWeight: '600' }}>{sv.past}</Text>
-            <Text style={{ width: COL.pp,   color: sx.muted, fontSize: f.label, fontWeight: '600' }}>{sv.pp}</Text>
-            <Text style={{ width: COL.tr,   color: sx.muted, fontSize: f.label, fontWeight: '600' }}>{sv.tr}</Text>
+        <View style={{ minWidth: TABLE_W - 28 }}>
+          <View style={{ flexDirection: 'row', paddingTop: 6, paddingBottom: 10 }}>
+            <Text style={[headStyle, { width: COL.base }]}>{sv.base}</Text>
+            <Text style={[headStyle, { width: COL.past }]}>{sv.past}</Text>
+            <Text style={[headStyle, { width: COL.pp }]}>{sv.pp}</Text>
+            <Text style={[headStyle, { width: COL.tr }]}>{sv.tr}</Text>
             <View style={{ width: COL.save }} />
           </View>
-          {allVerbs.map(verb => {
+          {allVerbs.map((verb, rowIdx) => {
             const count = globalCounts[verb.base] ?? 0;
             const learned = count >= REQUIRED;
-            const tc = verbTenseCaptions(lang);
+            const formColor = learned ? glass.secondary : glass.text;
             return (
               <View
                 key={verb.base}
-                style={{ flexDirection: 'row', alignItems: 'flex-start', paddingVertical: 11, borderBottomWidth: 0.5, borderBottomColor: t.border }}
+                style={{ flexDirection: 'row', alignItems: 'center', minHeight: 48, paddingVertical: 4, borderTopWidth: rowIdx === 0 ? 0 : StyleSheet.hairlineWidth /* guard-ok */, borderTopColor: glass.line }}
               >
                 <TouchableOpacity
                   onPress={() => speakAudio(verb.base, undefined, { language: 'en-US' })}
                   activeOpacity={0.6}
-                  style={{ width: COL.base }}
+                  style={{ width: COL.base, minHeight: 44, justifyContent: 'center' }}
                 >
-                  <Text style={{ color: learned ? sx.second : sx.primary, fontSize: f.body, fontWeight: '600', flexShrink: 0 }}>{verb.base}</Text>
-                  <Text style={{ color: sx.ghost, fontSize: f.label, flexShrink: 0, marginTop: 1 }}>{tc.present}</Text>
+                  <Text style={{ color: formColor, fontSize: 16, lineHeight: 21, fontWeight: '700' }}>{verb.base}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => speakAudio(verb.past, undefined, { language: 'en-US' })}
                   activeOpacity={0.6}
-                  style={{ width: COL.past }}
+                  style={{ width: COL.past, minHeight: 44, justifyContent: 'center' }}
                 >
-                  <Text style={{ color: sx.second, fontSize: f.body, flexShrink: 0 }}>{verb.past}</Text>
-                  <Text style={{ color: sx.ghost, fontSize: f.label, flexShrink: 0, marginTop: 1 }}>{tc.pastT}</Text>
+                  <Text style={{ color: formColor, fontSize: 16, lineHeight: 21 }}>{verb.past}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => speakAudio(verb.pp, undefined, { language: 'en-US' })}
                   activeOpacity={0.6}
-                  style={{ width: COL.pp }}
+                  style={{ width: COL.pp, minHeight: 44, justifyContent: 'center' }}
                 >
-                  <Text style={{ color: sx.second, fontSize: f.body, flexShrink: 0 }}>{verb.pp}</Text>
-                  <Text style={{ color: sx.ghost, fontSize: f.label, flexShrink: 0, marginTop: 1 }}>{tc.participle}</Text>
+                  <Text style={{ color: formColor, fontSize: 16, lineHeight: 21 }}>{verb.pp}</Text>
                 </TouchableOpacity>
                 <View style={{ width: COL.tr }}>
-                  <Text style={{ color: sx.muted, fontSize: f.sub, flexShrink: 0 }}>{irregularVerbTranslation(verb, lang)}</Text>
-                  <Text style={{ color: sx.ghost, fontSize: f.label, flexShrink: 0, marginTop: 2 }}>{tc.future(verb.base)}</Text>
+                  <Text style={{ color: glass.secondary, fontSize: 14, lineHeight: 19 }}>{irregularVerbTranslation(verb, lang)}</Text>
                 </View>
                 <View style={{ width: COL.save, alignItems: 'center', justifyContent: 'center' }}>
                   <AddToFlashcard
@@ -1239,11 +1145,12 @@ function IrregVerbsScrollTable({ t, f, lang, allVerbs, globalCounts, lessonId }:
           })}
         </View>
       </Animated.ScrollView>
+      </View>
 
       {/* Кастомный индикатор горизонтального скролла */}
       {canScroll && (
-        <View style={{ height: 4, marginTop: 4, marginHorizontal: 16, backgroundColor: sx.ghost, borderRadius: 2, overflow: 'hidden' }}>
-          <Animated.View style={{ height: 4, width: thumbW, borderRadius: 2, backgroundColor: '#4A90E2', transform: [{ translateX: thumbTranslate }] }} />
+        <View style={{ height: 4, marginTop: 8, marginHorizontal: 32, backgroundColor: glass.opaqueControl, borderRadius: 2, overflow: 'hidden' }}>
+          <Animated.View style={{ height: 4, width: thumbW, borderRadius: 2, backgroundColor: glass.cta, transform: [{ translateX: thumbTranslate }] }} />
         </View>
       )}
 
@@ -1262,7 +1169,7 @@ function IrregVerbsScrollTable({ t, f, lang, allVerbs, globalCounts, lessonId }:
           pl: `Lista czasowników nieregularnych z lekcji ${lessonId ?? ''}`,
         })}
         style={{ alignSelf: 'flex-end', marginHorizontal: 16, marginTop: 8 }}
-        textColor={sx.muted}
+        textColor={glass.secondary}
       />
 
     </View>
@@ -1276,53 +1183,57 @@ function DictTab({ allVerbs, globalCounts, lang, lessonId, onStartLearn }: {
   lessonId?: number;
   onStartLearn: () => void;
 }) {
-  const { theme: t, f } = useTheme();
+  const { liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const pack = stringsForLang(lang);
+  const learnedTotal = useMemo(() => allVerbs.filter(v => (globalCounts[v.base] ?? 0) >= REQUIRED).length, [allVerbs, globalCounts]);
   return (
     <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ paddingBottom: 30 }}>
+      {/* Полоса выученного (макет verbsDict): «6 / 18 выучено» */}
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, marginHorizontal: 16, marginTop: 22 }}>
+        <View style={{ flex: 1, height: 6, borderRadius: 3, overflow: 'hidden', backgroundColor: glass.opaqueControl }}>
+          <View style={{ width: '100%', height: '100%', borderRadius: 3, backgroundColor: glass.cta, transformOrigin: 'left', transform: [{ scaleX: allVerbs.length > 0 ? learnedTotal / allVerbs.length : 0 }] }} />
+        </View>
+        <Text style={{ color: glass.secondary, fontSize: 15, lineHeight: 20, fontWeight: '600', fontVariant: ['tabular-nums'] }}>
+          {`${learnedTotal} / ${allVerbs.length} ${triLang(lang, { ru: 'выучено', en: 'learned', uk: 'вивчено', es: 'aprendidos', 'pt-BR': 'aprendidos', vi: 'đã học', id: 'dipelajari', tr: 'öğrenildi', pl: 'opanowano' })}`}
+        </Text>
+      </View>
+
+      <IrregVerbsScrollTable glass={glass} lang={lang} allVerbs={allVerbs} globalCounts={globalCounts} lessonId={lessonId} />
+
       {/* зачем (PM-086, владелец 2026-09-24): ценник энергии над кнопкой
           убран — расход энергии не меняется. */}
-      <TouchableOpacity
-        onPress={onStartLearn}
-        style={{ margin: 16, marginBottom: 12, backgroundColor: t.bgCard, borderRadius: 14, paddingVertical: 13, alignItems: 'center', flexDirection: 'row', justifyContent: 'center', gap: 8 }}
-      >
-        <Ionicons name="pencil-outline" size={18} color={t.textSecond} />
-        <Text style={{ color: t.textSecond, fontSize: f.bodyLg, fontWeight: '600' }}>
-          {pack.words.listStartTraining}
-        </Text>
-      </TouchableOpacity>
-
-      <IrregVerbsScrollTable t={t} f={f} lang={lang} allVerbs={allVerbs} globalCounts={globalCounts} lessonId={lessonId} />
+      <View style={{ marginHorizontal: 16, marginTop: 22 }}>
+        <PracticeCta glass={glass} label={pack.words.listStartTraining} trailingArrow onPress={() => { fk.tap(); onStartLearn(); }} />
+      </View>
     </BouncyScrollView>
   );
 }
 
 function FrenchIrregularVerbsUnavailable({ lang, onBack }: { lang: Lang; onBack: () => void }) {
-  const { theme: t, f, themeMode } = useTheme();
-  const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
+  const { liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const copy = frenchVocabularyGateCopy('irregular_verbs', lang);
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 24, gap: 16 }}>
-      <View style={{ alignSelf: 'center', width: 72, height: 72, borderRadius: 36, backgroundColor: t.bgCard, alignItems: 'center', justifyContent: 'center' }}>
-        <Ionicons name="shield-checkmark-outline" size={34} color={sx.second} />
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 28, paddingBottom: 40 }}>
+      <View style={{ width: 61, height: 61, borderRadius: 16, backgroundColor: glass.opaqueControl, alignItems: 'center', justifyContent: 'center' }}>
+        <Ionicons name="shield-checkmark-outline" size={26} color={glass.text} />
       </View>
-      <Text style={{ color: sx.primary, fontSize: f.h1, fontWeight: '800', textAlign: 'center' }}>
+      <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 20, lineHeight: 26, fontWeight: '700', textAlign: 'center', marginTop: 18 }}>
         {copy.title}
       </Text>
-      <Text style={{ color: sx.muted, fontSize: f.bodyLg, lineHeight: 24, textAlign: 'center' }}>
+      <Text style={{ color: glass.secondary, fontSize: 15, lineHeight: 21, textAlign: 'center', marginTop: 8 }}>
         {copy.body}
       </Text>
-      <TouchableOpacity
+      <PracticeCta
+        glass={glass}
+        size="small"
         testID="lesson-irregular-verbs-french-source-gate-back"
+        label={copy.action}
         onPress={onBack}
-        activeOpacity={0.82}
-        style={{ marginTop: 8, alignSelf: 'center', backgroundColor: sx.second, borderRadius: 14, paddingHorizontal: 26, paddingVertical: 13 }}
-      >
-        <Text style={{ color: '#06111f', fontSize: f.bodyLg, fontWeight: '800' }}>
-          {copy.action}
-        </Text>
-      </TouchableOpacity>
+        style={{ marginTop: 22 }}
+      />
     </View>
   );
 }
@@ -1330,8 +1241,9 @@ function FrenchIrregularVerbsUnavailable({ lang, onBack }: { lang: Lang; onBack:
 // ── Root ──────────────────────────────────────────────────────────────────────
 function LessonIrregularVerbs() {
   const router = useRouter();
-  const { theme: t, f, themeMode } = useTheme();
-  const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
+  const { liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  const insets = useStableSafeAreaInsets();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const rootPack = stringsForLang(lang);
@@ -1410,19 +1322,17 @@ function LessonIrregularVerbs() {
 
   return (
     <ScreenGradient>
-      <SafeAreaView style={{ flex: 1 }}>
+      <View style={{ flex: 1, paddingTop: insets.top }}>
         <ContentWrap>
-          {/* Header */}
-          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingVertical: 13, borderBottomWidth: 0.5, borderBottomColor: sx.ghost }}>
-            <TapScale onPress={() => { fk.tap(); Keyboard.dismiss(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }}>
-              <Ionicons name="chevron-back" size={28} color={sx.primary} />
-            </TapScale>
-            {/* зачем: убран авто-сжимающий пропс шрифта (запрещённый паттерн, контракт layout
-                stability) — статично уменьшаем кегль до f.h3 (как в остальных хедерах проекта),
-                длинные названия уроков (напр. "Неправильные глаголы") влезают в одну строку
-                без сжатия. guard-ok */}
-            <Text style={{ color: sx.primary, fontSize: f.h3, fontWeight: '600', flex: 1, textAlign: 'center', marginHorizontal: 8 }} numberOfLines={1}>{lessonId}. {title}</Text>
-            <View style={{ width: 28 }} />
+          {/* Шапка макета `.hd`: круглая «‹» 34/44, заголовок 20/700. */}
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 12, paddingTop: 12 }}>
+            <PracticeBackButton
+              glass={glass}
+              color={glass.text}
+              accessibilityLabel={triLang(lang, { ru: 'Назад', en: 'Back', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
+              onPress={() => { fk.tap(); Keyboard.dismiss(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }}
+            />
+            <PracticeHeaderTitle glass={glass} title={`${lessonId}. ${title}`} />
           </View>
 
           <View style={{ flex: 1 }}>
@@ -1433,7 +1343,15 @@ function LessonIrregularVerbs() {
                 />
               : tab === 'learn' || practiceAll
               ? hydratedCountsKey !== irregularStorageKey
-                ? <ActivityIndicator testID="irregular-verbs-progress-loading" color={sx.primary} />
+                ? (
+                  // зачем: скелет вместо крутилки — геометрия первого кадра = итоговая (макет wordsLoading).
+                  <View testID="irregular-verbs-progress-loading" style={{ flex: 1, paddingHorizontal: 16, paddingTop: 10 }}>
+                    <PracticeProgressRow glass={glass} progress={0} flush />
+                    <View style={{ marginTop: 30, minHeight: 200, borderRadius: 16, backgroundColor: glass.opaqueCard, borderWidth: StyleSheet.hairlineWidth /* guard-ok */, borderColor: glass.line, alignItems: 'center', justifyContent: 'center' }}>
+                      <View style={{ width: '60%', height: 26, borderRadius: 8, backgroundColor: glass.opaqueControl }} />
+                    </View>
+                  </View>
+                )
                 : <LearnTab
                   key={`${studyTarget}:${lessonId}:${learnTabKey}`}
                   verbs={verbsForLearnTab}
@@ -1467,9 +1385,10 @@ function LessonIrregularVerbs() {
             }
           </View>
 
-          {/* Tab bar — тренировка first, словарь second */}
+          {/* Сегмент «Учить / Словарь» (макет `.tabbar .seg`): скругление 22, высота 44, активный — плитка-выделение. */}
           {!frenchIrregularBlocked && (
-          <View style={{ flexDirection: 'row', borderTopWidth: 0.5, borderTopColor: sx.ghost }}>
+          <View style={{ paddingHorizontal: 20, paddingTop: 10, paddingBottom: Math.max(insets.bottom, 12) }}>
+            <View style={{ flexDirection: 'row', height: 44, padding: 3, borderRadius: 22, backgroundColor: glass.opaqueCard, borderWidth: StyleSheet.hairlineWidth /* guard-ok */, borderColor: glass.line }}>
             {(['learn', 'dict'] as const).map(key => {
               const isActive = tab === key;
               const label = key === 'dict'
@@ -1495,31 +1414,28 @@ function LessonIrregularVerbs() {
                     tr: 'Öğren',
                     pl: 'Ucz się',
                   });
-              const icon: any = key === 'dict'
-                ? (isActive ? 'list' : 'list-outline')
-                : (isActive ? 'flash' : 'flash-outline');
               return (
-                <View key={key} style={{ flex: 1, position: 'relative', overflow: 'visible' }}>
-                <TouchableOpacity key={key}
-                  style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingVertical: 13, gap: 8, borderTopWidth: isActive ? 2 : 0, borderTopColor: sx.second }}
+                <Pressable key={key}
+                  accessibilityRole="tab"
+                  accessibilityState={{ selected: isActive }}
+                  style={{ flex: 1, alignItems: 'center', justifyContent: 'center', borderRadius: 19, backgroundColor: isActive ? glass.opaqueControl : 'transparent' }}
                   onPress={() => {
                     Keyboard.dismiss();
                     setUserTab(key);
                     if (key === 'dict') setPracticeAll(false);
                   }}
                 >
-                  <Ionicons name={icon} size={20} color={isActive ? sx.primary : sx.ghost} />
-                  <Text style={{ color: isActive ? sx.primary : sx.ghost, fontSize: f.body, fontWeight: '500' }}>{label}</Text>
-                </TouchableOpacity>
-                </View>
+                  <Text style={{ color: isActive ? glass.text : glass.secondary, fontSize: 15, fontWeight: '600' }}>{label}</Text>
+                </Pressable>
               );
             })}
+            </View>
           </View>
           )}
         </ContentWrap>
 
         <NoEnergyModal visible={noEnergyModalOpen} onClose={() => { setNoEnergyModalOpen(false); setUserTab('dict'); setPracticeAll(false); }} activity="irregular_verbs" />
-      </SafeAreaView>
+      </View>
     </ScreenGradient>
   );
 }

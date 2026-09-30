@@ -1,4 +1,3 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -6,8 +5,10 @@ import Animated, { Easing, SlideInRight, SlideOutLeft, useReducedMotion } from '
 
 import BouncyScrollView from '../BouncyScrollView';
 import ScreenGradient from '../ScreenGradient';
-import TapScale from '../TapScale';
 import { useTheme } from '../ThemeContext';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { PracticeCta } from '../practice/PracticeStates';
+import { ExamFooter, ExamHeader, ExamTrack, examCardStyle } from './ExamGlassParts';
 import LevelExamTimer from './LevelExamTimer';
 
 type Props = {
@@ -22,6 +23,8 @@ type Props = {
   canContinue: boolean;
   continueLabel: string;
   exitLabel: string;
+  /** Название в шапке («Зачёт A1»); без него — подпись формата. */
+  title?: string;
   children: React.ReactNode;
   onContinue: () => void;
   onExit: () => void;
@@ -39,86 +42,67 @@ export default function LevelExamQuestionFrame({
   canContinue,
   continueLabel,
   exitLabel,
+  title,
   children,
   onContinue,
   onExit,
 }: Props) {
-  const { theme: t, f, ds } = useTheme();
+  const { liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const reduceMotion = useReducedMotion();
   const progress = Math.max(0, Math.min(1, progressEnd / total));
   const progressLabel = progressStart === progressEnd
-    ? `${progressEnd}/${total}`
-    : `${progressStart}–${progressEnd}/${total}`;
+    ? `${progressEnd} / ${total}`
+    : `${progressStart}–${progressEnd} / ${total}`;
 
   return (
     <ScreenGradient artBackdrop="exam">
       <SafeAreaView style={styles.safeArea}>
-        <View style={[styles.topBar, { paddingHorizontal: ds.spacing.lg, gap: ds.spacing.md }]}> 
-          <TapScale
-            onPress={onExit}
-            accessibilityLabel={exitLabel}
-            style={[styles.exitButton, { backgroundColor: t.bgSurface }]}
-          >
-            <Ionicons name="close" size={24} color={t.textPrimary} />
-          </TapScale>
-          <LevelExamTimer remainingMs={remainingMs} totalMs={totalMs} />
+        {/* K4: шапка «‹ · название · n / 30 · таймер» по макету; «‹» открывает то же подтверждение выхода */}
+        <ExamHeader
+          glass={glass}
+          title={title ?? formatLabel}
+          subtitle={progressLabel}
+          onBack={onExit}
+          backLabel={exitLabel}
+          right={<LevelExamTimer remainingMs={remainingMs} totalMs={totalMs} />}
+        />
+        <View style={styles.trackWrap} accessibilityLabel={`${formatLabel}, ${progressLabel}`}>
+          <ExamTrack glass={glass} ratio={progress} />
         </View>
 
         <BouncyScrollView
           decelerationRate="fast"
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={[styles.content, { padding: ds.spacing.lg, gap: ds.spacing.lg }]}
+          contentContainerStyle={styles.content}
         >
           <Animated.View
             key={taskId}
             entering={reduceMotion ? undefined : SlideInRight.duration(320).easing(Easing.out(Easing.cubic))}
             exiting={reduceMotion ? undefined : SlideOutLeft.duration(180).easing(Easing.in(Easing.cubic))}
           >
-          <Text
-            accessibilityRole="header"
-            style={{ color: t.textPrimary, fontSize: f.h1, fontFamily: ds.fontFamily, fontWeight: '900', lineHeight: f.h1 * 1.25 }}
-          >
-            {prompt}
-          </Text>
-          <View style={{ gap: ds.spacing.sm }}>
-            {children}
-          </View>
+            <Text style={[styles.format, { color: glass.secondary }]}>{formatLabel}</Text>
+            <View style={[examCardStyle(glass), styles.promptCard]}>
+              <Text accessibilityRole="header" style={[styles.prompt, { color: glass.text }]}>
+                {prompt}
+              </Text>
+            </View>
+            <View style={styles.answers}>
+              {children}
+            </View>
           </Animated.View>
         </BouncyScrollView>
 
-        <View style={[styles.footer, { paddingHorizontal: ds.spacing.lg, paddingVertical: ds.spacing.md }]}>
-          <TapScale
-            onPress={onContinue}
+        <ExamFooter bottomInset={0}>
+          <PracticeCta
+            glass={glass}
+            label={continueLabel}
+            trailingArrow
             disabled={!canContinue}
+            onPress={onContinue}
             accessibilityLabel={continueLabel}
-            accessibilityState={{ disabled: !canContinue }}
-            style={[
-              styles.continueButton,
-              {
-                minHeight: ds.buttonHeight,
-                backgroundColor: canContinue ? t.accent : t.bgSurface2,
-                paddingHorizontal: ds.spacing.lg,
-              },
-            ]}
-          >
-            <Text style={{ color: canContinue ? t.correctText : t.textMuted, fontSize: f.bodyLg, fontFamily: ds.fontFamily, fontWeight: '900' }}>
-              {continueLabel}
-            </Text>
-          </TapScale>
-          <View style={styles.footerProgress} accessibilityLabel={`${formatLabel}, ${progressLabel}`}>
-            <View style={styles.progressLabels}>
-              <Text style={{ color: t.textMuted, fontSize: f.caption, fontFamily: ds.fontFamily, fontWeight: '800' }}>
-                {formatLabel}
-              </Text>
-              <Text style={{ color: t.textSecond, fontSize: f.caption, fontFamily: ds.fontFamily, fontWeight: '900' }}>
-                {progressLabel}
-              </Text>
-            </View>
-            <View style={[styles.progressTrack, { backgroundColor: t.bgSurface2 }]}> 
-              <View style={[styles.progressFill, { width: `${progress * 100}%`, backgroundColor: t.accent }]} />
-            </View>
-          </View>
-        </View>
+          />
+        </ExamFooter>
       </SafeAreaView>
     </ScreenGradient>
   );
@@ -126,13 +110,10 @@ export default function LevelExamQuestionFrame({
 
 const styles = StyleSheet.create({
   safeArea: { flex: 1 },
-  topBar: { minHeight: 74, flexDirection: 'row', alignItems: 'center' },
-  exitButton: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
-  footerProgress: { gap: 5, paddingTop: 10 },
-  progressLabels: { flexDirection: 'row', justifyContent: 'space-between', gap: 8 },
-  progressTrack: { height: 7, borderRadius: 4, overflow: 'hidden' },
-  progressFill: { height: '100%', borderRadius: 4 },
-  content: { flexGrow: 1, paddingBottom: 32 },
-  footer: { paddingTop: 12 },
-  continueButton: { borderRadius: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
+  trackWrap: { paddingHorizontal: 16, marginTop: 14 },
+  content: { flexGrow: 1, paddingHorizontal: 16, paddingTop: 22, paddingBottom: 24 },
+  format: { fontSize: 15, lineHeight: 20, fontWeight: '600', marginBottom: 12 },
+  promptCard: { paddingVertical: 22, paddingHorizontal: 22, minHeight: 96, justifyContent: 'center' },
+  prompt: { fontSize: 24, lineHeight: 30, fontWeight: '600' },
+  answers: { marginTop: 18, gap: 10 },
 });

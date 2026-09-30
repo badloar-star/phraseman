@@ -1,6 +1,4 @@
-import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import TapScale from '../components/TapScale';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Animated, ScrollView, Text, TouchableOpacity, View } from 'react-native';
@@ -11,17 +9,16 @@ import { triLang, type Lang } from '../constants/i18n';
 import { lessonNamesForLang } from '../constants/lessons';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { PracticeBackButton, PracticeHeaderTitle } from '../components/practice/PracticeChrome';
 import ScreenGradient from '../components/ScreenGradient';
-import XpGainBadge from '../components/XpGainBadge';
-import { registerXP, getCurrentMultiplier } from './xp_manager';
 import ReportErrorButton from '../components/ReportErrorButton';
-import { screenTextOnGradient, type Theme } from '../constants/theme';
+import type { Theme } from '../constants/theme';
 import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundary';
 import { getLessonIntroScreens } from './lesson_data_all';
 import { getFrenchLessonIntroScreens } from './lesson_intro_screens_fr';
 import type { IntroLine, LessonIntroScreen } from './lesson_data_types';
 import { frenchStudyActive } from './spanish_content_gate';
-import { lessonTheoryXpClaimedKey } from './target_storage_keys';
 import {
   frenchLessonSupportGateCopy,
   lessonSupportContentAvailableForTarget,
@@ -316,8 +313,12 @@ function LessonHelp() {
   const rawLessonId = Array.isArray(lessonIdParam) ? lessonIdParam[0] : lessonIdParam;
   const lessonId = Number(rawId || rawLessonId) || 1;
   const { studyTarget } = useStudyTarget();
-  const { theme: t, f, themeMode } = useTheme();
-  const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
+  const { theme: t, f, liquidGlassThemeId } = useTheme();
+  // зачем (владелец 2026-09-30): теория — 1:1 по learn.html G (Liquid Glass): шапка с круглой «‹»,
+  // крупный заголовок 30/700, блоки правил на стекле. Общие блоки теории берут цвета из темы,
+  // поэтому им отдаём копию темы с поверхностями стекла (зелёный/красный отклик не трогаем).
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  const tg = useMemo(() => ({ ...t, bgCard: glass.card, bgSurface: glass.opaqueControl, border: glass.line }), [t, glass.card, glass.opaqueControl, glass.line]);
   const { lang } = useLang();
   const isFrenchTarget = frenchStudyActive(studyTarget);
   const frenchTheoryAllowed = !isFrenchTarget || lessonSupportContentAvailableForTarget(studyTarget, 'lesson_theory', lessonId);
@@ -336,96 +337,6 @@ function LessonHelp() {
   const frenchTheoryGateCopy = isFrenchTarget && !frenchTheoryAllowed
     ? frenchLessonSupportGateCopy('lesson_theory', lang, lessonId)
     : null;
-  const canClaimTheoryXp = !isFrenchTarget || Boolean(frenchTheoryScreens?.length);
-  const [xpClaimed, setXpClaimed] = useState(false);
-  const [xpClaimHydrated, setXpClaimHydrated] = useState(false);
-  const [xpShown, setXpShown] = useState(false);
-  // [FeedbackKit] Мини-победа «Глава закрыта» на СУЩЕСТВУЮЩЕЕ событие завершения
-  // теории — успешный клейм XP (спек §10.2: трекинга дочитанности нет, отдельную
-  // «отметку прочтения» НЕ создаём; показываем только ощущение, без записи состояния).
-  const [chapterBurstShown, setChapterBurstShown] = useState(false);
-  const [earnedXP, setEarnedXP] = useState(0);
-  const [previewXP, setPreviewXP] = useState(25);
-  const claimInFlightRef = useRef(false);
-  const xpAnim = useRef(new Animated.Value(0)).current;
-
-  useEffect(() => {
-    const key = lessonTheoryXpClaimedKey(lessonId, studyTarget);
-    setXpClaimed(false);
-    setXpClaimHydrated(false);
-    if (!canClaimTheoryXp) {
-      setXpClaimHydrated(true);
-      return;
-    }
-    AsyncStorage.getItem(key)
-      .then(v => { if (v === '1') setXpClaimed(true); })
-      .catch(() => {})
-      .finally(() => setXpClaimHydrated(true));
-    getCurrentMultiplier().then(m => {
-      setPreviewXP(Math.round(25 * m));
-    }).catch(() => {});
-  }, [canClaimTheoryXp, lessonId, studyTarget]);
-
-  const handleClaimXP = async () => {
-    if (claimInFlightRef.current || xpClaimed || !xpClaimHydrated || !canClaimTheoryXp) return;
-    claimInFlightRef.current = true;
-    const key = lessonTheoryXpClaimedKey(lessonId, studyTarget);
-    if ((await AsyncStorage.getItem(key).catch(() => null)) === '1') {
-      setXpClaimed(true);
-      claimInFlightRef.current = false;
-      return;
-    }
-    setXpClaimed(true);
-    try {
-      await AsyncStorage.setItem(key, '1');
-    } catch {
-      setXpClaimed(false);
-      claimInFlightRef.current = false;
-      return;
-    }
-    // Показываем previewXP сразу, потом обновим на реальный finalDelta
-    setEarnedXP(previewXP);
-    const userName = (await AsyncStorage.getItem('user_name')) ?? '';
-    registerXP(25, 'vocabulary_learned', userName, lang, lessonId, {
-      eventId: [
-        'vocabulary',
-        String(studyTarget ?? 'na').replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, 40) || 'na',
-        String(lessonId),
-        'theory',
-        'claim',
-      ].join(':'),
-      payload: {
-        lessonId,
-        studyTarget,
-        surface: 'lesson_theory',
-      },
-    })
-      .then(result => {
-        if (Math.max(0, Math.round(result.finalDelta || 0)) <= 0) {
-          return;
-        }
-        setEarnedXP(result.finalDelta);
-        setXpShown(true);
-        // [FeedbackKit] Глава закрыта — мини-победа со звуком (одноразово: клейм
-        // защищён xpClaimed + ключом хранилища, повторно не сработает).
-        setChapterBurstShown(true);
-        xpAnim.setValue(0);
-        Animated.sequence([
-          Animated.timing(xpAnim, { toValue: 1, duration: 300, useNativeDriver: true }),
-          Animated.delay(1500),
-          Animated.timing(xpAnim, { toValue: 0, duration: 300, useNativeDriver: true }),
-        ]).start(() => setXpShown(false));
-      })
-      .catch(() => {
-        AsyncStorage.removeItem(key).catch(() => {});
-        setXpClaimed(false);
-        setXpShown(false);
-      })
-      .finally(() => {
-        claimInFlightRef.current = false;
-      });
-  };
-
   const unavailableTheoryTitle = triLang(lang, {
     uk: `Урок ${lessonId}`,
     ru: `Урок ${lessonId}`,
@@ -459,47 +370,42 @@ function LessonHelp() {
           alignItems: 'center',
           paddingHorizontal: 16,
           paddingVertical: 12,
-          borderBottomWidth: 0.5,
-          borderBottomColor: t.border,
+          gap: 10,
         }}>
-          <TapScale onPress={() => { fk.tap(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }} style={{ marginRight: 12, padding: 4 }}>
-            <Ionicons name="arrow-back" size={24} color={sx.primary} />
-          </TapScale>
-          <View style={{ flex: 1 }}>
-            <Text style={{ color: sx.muted, fontSize: f.caption }} numberOfLines={1} maxFontSizeMultiplier={1.2}>
-              {triLang(lang, {
-                uk: `Урок ${lessonId} — Теорія`,
-                ru: `Урок ${lessonId} — Теория`,
-                en: `Lesson ${lessonId} — Theory`,
-                es: `Lección ${lessonId} — Teoría`,
-                'pt-BR': `Lição ${lessonId} — Teoria`,
-                vi: `Bài ${lessonId} — Lý thuyết`,
-                id: `Pelajaran ${lessonId} — Teori`,
-                tr: `Ders ${lessonId} — Teori`,
-                pl: `Lekcja ${lessonId} — Teoria`,
-              })}
-            </Text>
-            <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700' }} numberOfLines={1}>
-              {isFrenchTarget
-                ? (frenchTheoryGateCopy?.title ?? frenchTheoryTitle ?? unavailableTheoryTitle)
-                : theory
-                ? theoryTitleForLang(lessonId, theory, lang, theoryTitleEs)
-                : unavailableTheoryTitle}
-            </Text>
-            <Text style={{ color: sx.muted, fontSize: f.caption, marginTop: 2 }} numberOfLines={1}>
-              {triLang(lang, {
-                uk: 'Коротко: правило + приклади + 25 XP',
-                ru: 'Правило, примеры и +25 XP в конце',
-                en: 'Rule, examples, and +25 XP at the end',
-                es: 'Resumen: regla + ejemplos + 25 XP',
-                'pt-BR': 'Resumo: regra + exemplos + 25 XP',
-                vi: 'Tóm tắt: quy tắc + ví dụ + 25 XP',
-                id: 'Ringkas: aturan + contoh + 25 XP',
-                tr: 'Kısa özet: kural + örnekler + 25 XP',
-                pl: 'Krótko: zasada + przykłady + 25 XP',
-              })}
-            </Text>
-          </View>
+          <PracticeBackButton
+            glass={glass}
+            color={glass.text}
+            onPress={() => { fk.tap(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }}
+            testID="lesson-help-back"
+            accessibilityLabel={triLang(lang, {
+              uk: 'Назад', ru: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
+            })}
+          />
+          <PracticeHeaderTitle
+            glass={glass}
+            title={triLang(lang, {
+              uk: `Урок ${lessonId} — Теорія`,
+              ru: `Урок ${lessonId} — Теория`,
+              en: `Lesson ${lessonId} — Theory`,
+              es: `Lección ${lessonId} — Teoría`,
+              'pt-BR': `Lição ${lessonId} — Teoria`,
+              vi: `Bài ${lessonId} — Lý thuyết`,
+              id: `Pelajaran ${lessonId} — Teori`,
+              tr: `Ders ${lessonId} — Teori`,
+              pl: `Lekcja ${lessonId} — Teoria`,
+            })}
+            subtitle={triLang(lang, {
+              uk: 'Коротко: правило + приклади',
+              ru: 'Правило и примеры',
+              en: 'Rule and examples',
+              es: 'Resumen: regla y ejemplos',
+              'pt-BR': 'Resumo: regra e exemplos',
+              vi: 'Tóm tắt: quy tắc + ví dụ',
+              id: 'Ringkas: aturan + contoh',
+              tr: 'Kısa özet: kural ve örnekler',
+              pl: 'Krótko: zasada i przykłady',
+            })}
+          />
         </View>
 
         {/* Content */}
@@ -508,9 +414,20 @@ function LessonHelp() {
           contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
           showsVerticalScrollIndicator={true}
         >
+          <Text
+            accessibilityRole="header"
+            maxFontSizeMultiplier={1.2}
+            style={{ color: glass.text, fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.4, marginBottom: 16 }}
+          >
+            {isFrenchTarget
+              ? (frenchTheoryGateCopy?.title ?? frenchTheoryTitle ?? unavailableTheoryTitle)
+              : theory
+              ? theoryTitleForLang(lessonId, theory, lang, theoryTitleEs)
+              : unavailableTheoryTitle}
+          </Text>
           {showSpanishTheoryNotice ? (
             <Warn
-              t={t}
+              t={tg}
               f={f}
               text="La teoría detallada está, por ahora, solo en ruso o en ucraniano; los ejemplos en inglés no cambian. Poco a poco añadiremos estas explicaciones también en español."
             />
@@ -518,34 +435,34 @@ function LessonHelp() {
           {isFrenchTarget && frenchTheoryGateCopy ? (
             <Body
               key="french-theory-source-gate"
-              t={t}
+              t={tg}
               f={f}
               text={frenchTheoryGateCopy.body}
             />
           ) : isFrenchTarget && frenchTheoryScreens?.length ? (
-            renderFrenchTheoryFromIntroScreens(frenchTheoryScreens, t, lang, f)
+            renderFrenchTheoryFromIntroScreens(frenchTheoryScreens, tg, lang, f)
           ) : isFrenchTarget ? (
             <Body
               key="unavailable"
-              t={t}
+              t={tg}
               f={f}
               text={unavailableTheoryText}
             />
           ) : plannedTheoryScreens?.length ? (
-            renderFrenchTheoryFromIntroScreens(plannedTheoryScreens, t, lang, f)
+            renderFrenchTheoryFromIntroScreens(plannedTheoryScreens, tg, lang, f)
           ) : plannedLocale ? (
             <Body
               key="planned-locale-theory-unavailable"
-              t={t}
+              t={tg}
               f={f}
               text={unavailableTheoryText}
             />
           ) : theory ? (
-            renderSpanishTheory ? theory.renderES!(t, f) : theory.render(t, renderLegacyAsUk, f)
+            renderSpanishTheory ? theory.renderES!(tg, f) : theory.render(tg, renderLegacyAsUk, f)
           ) : (
             <Body
               key="unavailable"
-              t={t}
+              t={tg}
               f={f}
               text={unavailableTheoryText}
             />
@@ -558,74 +475,8 @@ function LessonHelp() {
             style={{ alignSelf: 'flex-end', marginTop: 16 }}
           />
 
-          {/* XP reward button at the bottom of theory */}
-          {canClaimTheoryXp ? (
-          <View style={{ marginTop: 32, marginBottom: 8, alignItems: 'center' }}>
-            <TouchableOpacity
-              onPress={() => { fk.tap(); void handleClaimXP(); }}
-              disabled={xpClaimed || !xpClaimHydrated}
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: xpClaimed || !xpClaimHydrated ? t.border : '#F5A623',
-                borderRadius: 16,
-                paddingVertical: 14,
-                paddingHorizontal: 28,
-                gap: 8,
-                opacity: xpClaimed || !xpClaimHydrated ? 0.6 : 1,
-              }}
-            >
-              <Ionicons name={xpClaimed ? 'checkmark-circle' : 'star'} size={22} color="#fff" />
-              <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '700' }}>
-                {xpClaimed
-                  ? triLang(lang, {
-                      uk: `XP отримано (+${earnedXP})`,
-                      ru: `Готово — +${earnedXP} XP`,
-                      en: `Done — +${earnedXP} XP`,
-                      es: `Has obtenido +${earnedXP} XP`,
-                      'pt-BR': `Você ganhou +${earnedXP} XP`,
-                      vi: `Đã nhận +${earnedXP} XP`,
-                      id: `Mendapat +${earnedXP} XP`,
-                      tr: `+${earnedXP} XP alındı`,
-                      pl: `Otrzymano +${earnedXP} XP`,
-                    })
-                  : triLang(lang, {
-                      uk: `Отримати ${previewXP} XP`,
-                      ru: `Забрать ${previewXP} XP`,
-                      en: `Claim ${previewXP} XP`,
-                      es: `Reclamar ${previewXP} XP`,
-                      'pt-BR': `Resgatar ${previewXP} XP`,
-                      vi: `Nhận ${previewXP} XP`,
-                      id: `Klaim ${previewXP} XP`,
-                      tr: `${previewXP} XP al`,
-                      pl: `Odbierz ${previewXP} XP`,
-                    })}
-              </Text>
-            </TouchableOpacity>
-            {xpShown && (
-              <Animated.View style={{
-                marginTop: 10,
-                opacity: xpAnim,
-                transform: [{ translateY: xpAnim.interpolate({ inputRange: [0, 1], outputRange: [10, 0] }) }],
-              }}>
-              <XpGainBadge amount={earnedXP} visible={xpShown} style={{ color: '#F5A623', fontSize: f.h2, fontWeight: '700' }} />
-            </Animated.View>
-            )}
-          </View>
-          ) : null}
         </ScrollView>
       </ContentWrap>
-      {/* [FeedbackKit] «Глава закрыта» — мини-победа поверх экрана теории на
-          успешный клейм XP. Без записи прогресса дочитанности (спек §10.2). */}
-      <VictoryBurst
-        visible={chapterBurstShown}
-        title={theoryChapterDoneTitle(lang)}
-        subtitle={theoryChapterDoneSubtitle(lang)}
-        heroIcon="book"
-        celebrateSound="chord"
-        onDone={() => setChapterBurstShown(false)}
-      />
       </SafeAreaView>
     </ScreenGradient>
   );

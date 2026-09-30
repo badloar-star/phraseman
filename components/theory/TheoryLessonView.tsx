@@ -8,7 +8,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme, getVolumetricShadow } from '../ThemeContext';
 import { useLang } from '../LangContext';
 import { triLang } from '../../constants/i18n';
-import { isLightThemeMode } from '../../constants/theme';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { PracticeBackButton, PracticeHeaderTitle } from '../practice/PracticeChrome';
 
 import TapScale from '../TapScale';
 import ScreenGradient from '../ScreenGradient';
@@ -37,7 +38,6 @@ import {
  * - Цвет только для языков: английский = textPrimary, перевод = textMuted.
  * - АКЦЕНТ берётся из активной темы (t.accent), уникален на каждую тему.
  * - Семантика верно/промах = t.correct / t.wrong. Никаких ролевых цветов.
- * - XP-кнопка снизу — золотая (t.gold), с объёмной тенью.
  * - Текст НИКОГДА не обрезается (без numberOfLines/ellipsis).
  */
 
@@ -114,24 +114,11 @@ interface Props {
   subtitle?: string;
   sections: TheorySection[];
   metrics?: TheoryMetrics;
-  /** Награда за прохождение, по умолчанию 25. */
-  xpAmount?: number;
-  initialClaimed?: boolean;
   progressStorageKey?: string;
-  onClaimXP?: () => boolean | void | Promise<boolean | void>;
   onBack?: () => void;
 }
 
 // ─── Утилиты ─────────────────────────────────────────────────────────────────
-
-/** Цвет с альфой: '#RRGGBB' + 2 hex (или rgba(...) → как есть). */
-function withAlpha(color: string, alphaHex: string): string {
-  if (typeof color === 'string' && color.startsWith('#') && color.length === 7) {
-    return `${color}${alphaHex}`;
-  }
-  // rgba / именованные — возвращаем без изменений (подложка получит свой fallback).
-  return color;
-}
 
 // ─── Аккордеон-раздел ────────────────────────────────────────────────────────
 
@@ -144,10 +131,12 @@ interface SectionProps {
   renderBlock: (block: TheoryBlock, key: string) => React.ReactNode;
 }
 
-function AccordionSection({ section, open, onToggle, renderBlock }: SectionProps) {
-  const { theme: t } = useTheme();
+function AccordionSection({ section, index, total, open, onToggle, renderBlock }: SectionProps) {
+  const { liquidGlassThemeId } = useTheme();
   const { lang } = useLang();
-  const accent = t.accent;
+  // зачем: Liquid Glass по learn.html (theory) — разделы это строки внутри одной карточки.
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  const isLast = index === total - 1;
 
   const rotate = useMemo(() => new Animated.Value(open ? 1 : 0), []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -185,7 +174,7 @@ function AccordionSection({ section, open, onToggle, renderBlock }: SectionProps
     <View
       style={[
         styles.section,
-        open && { backgroundColor: t.bgCard },
+        !isLast && { borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: glass.line },
       ]}
     >
       <TapScale
@@ -199,21 +188,21 @@ function AccordionSection({ section, open, onToggle, renderBlock }: SectionProps
         <Text
           style={[
             styles.sectionNum,
-            { color: open ? accent : t.textMuted },
+            { color: open ? glass.text : glass.mutedText },
           ]}
         >
           {section.num}
         </Text>
         <View style={styles.sectionHeadText}>
-          <Text style={[styles.sectionTitle, { color: t.textPrimary }]}>
+          <Text style={[styles.sectionTitle, { color: glass.text }]}>
             {section.title}
           </Text>
           {!!metaText && (
-            <Text style={[styles.sectionMeta, { color: t.textMuted }]}>{metaText}</Text>
+            <Text style={[styles.sectionMeta, { color: glass.secondary }]}>{metaText}</Text>
           )}
         </View>
         <Animated.View style={{ transform: [{ rotate: chevronRotate }] }}>
-          <Ionicons name="chevron-down" size={20} color={t.textMuted} />
+          <Ionicons name="chevron-down" size={20} color={glass.secondary} />
         </Animated.View>
       </TapScale>
 
@@ -230,23 +219,19 @@ function AccordionSection({ section, open, onToggle, renderBlock }: SectionProps
 
 export default function TheoryLessonView({
   lessonId,
-  kicker,
   title,
   subtitle,
   sections,
-  metrics,
-  xpAmount = 25,
-  initialClaimed = false,
   progressStorageKey,
-  onClaimXP,
   onBack,
 }: Props) {
-  const { theme: t, themeMode } = useTheme();
+  const { theme: t, themeMode, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
-  const accent = t.accent;
-  const textOnGold = t.textOnGold ?? '#241A02';
+  // зачем: акцент = светлая кнопка макета (glass.cta), а не цвет темы приложения.
+  const accent = glass.cta;
   const seenHydratedRef = useRef(false);
 
   const sectionNums = useMemo(() => sections.map((section) => section.num), [sections]);
@@ -360,72 +345,31 @@ export default function TheoryLessonView({
     }));
   }, []);
 
-  const [claimed, setClaimed] = useState(initialClaimed);
-  const [claimBusy, setClaimBusy] = useState(false);
-
-  useEffect(() => {
-    setClaimed(initialClaimed);
-    setClaimBusy(false);
-  }, [initialClaimed, lessonId]);
-
   const seenCount = sections.reduce((acc, section) => acc + (seenSet.has(section.num) ? 1 : 0), 0);
   const completedDrillCount = useMemo(
     () => countCompletedTheoryDrills(drillProgress, drillIds),
     [drillProgress, drillIds],
   );
   const progress = theoryOverallProgressPct(seenCount, sections.length, completedDrillCount, drillIds.length) / 100;
-  const allSectionsSeen = sections.length === 0 || seenCount >= sections.length;
-  const allDrillsDone = drillIds.length === 0 || completedDrillCount >= drillIds.length;
-  const allTheoryStepsDone = allSectionsSeen && allDrillsDone;
-
-  const handleClaimPress = useCallback(async () => {
-    if (claimed) {
-      onBack?.();
-      return;
-    }
-    if (!allTheoryStepsDone || claimBusy) return;
-    setClaimBusy(true);
-    try {
-      const result = await onClaimXP?.();
-      if (result !== false) setClaimed(true);
-    } finally {
-      setClaimBusy(false);
-    }
-  }, [allTheoryStepsDone, claimBusy, claimed, onClaimXP, onBack]);
-
-  // Метрики (число разделов / примеров / тренировок).
-  const computedMetrics: TheoryMetrics = useMemo(() => {
-    if (metrics) return metrics;
-    let examples = 0;
-    let drills = 0;
-    sections.forEach((s) =>
-      s.blocks.forEach((b) => {
-        if (b.kind === 'examples') examples += b.examples?.length ?? 0;
-        if (b.kind === 'drill') drills += 1;
-      }),
-    );
-    return { sections: sections.length, examples, drills };
-  }, [metrics, sections]);
-
   // Тема для интерактивов (общая форма для всех четырёх).
   // зачем: чипы/слоты дриллов были захардкожены белыми альфами, а текст на
   // заливках correct/accent — тёмным #0F1115 «под тёмные темы». На sagePorcelain
   // чипы пропадали на светлом t.bgSurface, а на тёмно-зелёных заливках текст
   // становился тёмным-по-тёмному. Токены считаются здесь один раз на все дриллы.
-  const lightDrills = isLightThemeMode(themeMode);
   const drillTheme = useMemo(
     () => ({
-      textPrimary: t.textPrimary,
-      textMuted: t.textMuted,
+      textPrimary: glass.text,
+      textMuted: glass.secondary,
       correct: t.correct,
       wrong: t.wrong,
-      bgCard: t.bgCard,
-      chipBg: lightDrills ? 'rgba(23,32,29,0.06)' : 'rgba(255,255,255,0.06)',
-      chipBgStrong: lightDrills ? 'rgba(23,32,29,0.09)' : 'rgba(255,255,255,0.10)',
-      chipBgFaint: lightDrills ? 'rgba(23,32,29,0.04)' : 'rgba(255,255,255,0.04)',
-      onAccentText: lightDrills ? t.correctText : '#0F1115',
+      bgCard: glass.opaqueCard,
+      // зачем: чипы дриллов = непрозрачные плашки макета (.opt), а не белые альфы.
+      chipBg: glass.opaqueControl,
+      chipBgStrong: glass.selected,
+      chipBgFaint: glass.line,
+      onAccentText: glass.ctaInk,
     }),
-    [t.textPrimary, t.textMuted, t.correct, t.wrong, t.bgCard, t.correctText, lightDrills],
+    [glass, t.correct, t.wrong],
   );
 
   // ─── Рендер интерактива ───────────────────────────────────────────────────
@@ -500,7 +444,7 @@ export default function TheoryLessonView({
         case 'note':
           if (!block.text) return null;
           return (
-            <Text key={key} style={[styles.bodyText, { color: t.textMuted }]}>
+            <Text key={key} style={[styles.bodyText, { color: glass.secondary }]}>
               {block.text}
             </Text>
           );
@@ -510,9 +454,9 @@ export default function TheoryLessonView({
           return (
             <View
               key={key}
-              style={[styles.tipBox, { backgroundColor: withAlpha(accent, '0F') }]}
+              style={[styles.tipBox, { backgroundColor: glass.selected }]}
             >
-              <Text style={[styles.bodyText, { color: t.textPrimary }]}>{block.text}</Text>
+              <Text style={[styles.bodyText, { color: glass.text }]}>{block.text}</Text>
             </View>
           );
 
@@ -530,18 +474,21 @@ export default function TheoryLessonView({
                     : !!part.accent;
                 return (
                   <React.Fragment key={`${key}-f${i}`}>
-                    {i > 0 && (
-                      <Text style={[styles.formulaPlus, { color: t.textMuted }]}>+</Text>
-                    )}
-                    <Text
+                    <View
                       style={[
-                        styles.formulaPart,
-                        { color: isAccent ? accent : t.textPrimary },
-                        isAccent && styles.formulaPartAccent,
+                        styles.formulaChip,
+                        { backgroundColor: isAccent ? glass.cta : glass.opaqueControl },
                       ]}
                     >
-                      {text}
-                    </Text>
+                      <Text
+                        style={[
+                          styles.formulaPart,
+                          { color: isAccent ? glass.ctaInk : glass.text },
+                        ]}
+                      >
+                        {text}
+                      </Text>
+                    </View>
                   </React.Fragment>
                 );
               })}
@@ -561,20 +508,20 @@ export default function TheoryLessonView({
                     key={`${key}-e${i}`}
                     style={[
                       styles.exampleRow,
-                      i < examples.length - 1 && {
-                        borderBottomWidth: StyleSheet.hairlineWidth,
-                        borderBottomColor: withAlpha(t.border, '88'),
+                      i > 0 && {
+                        borderTopWidth: StyleSheet.hairlineWidth,
+                        borderTopColor: glass.line,
                       },
                     ]}
                   >
-                    <Text style={[styles.exampleEn, { color: t.textPrimary }]}>
+                    <Text style={[styles.exampleEn, { color: glass.text }]}>
                       {before}
                       {!!match && (
-                        <Text style={{ color: accent, fontWeight: '700' }}>{match}</Text>
+                        <Text style={{ color: glass.text, fontWeight: '800' }}>{match}</Text>
                       )}
                       {after}
                     </Text>
-                    <Text style={[styles.exampleTranslation, { color: t.textMuted }]}>{ex.translation}</Text>
+                    <Text style={[styles.exampleTranslation, { color: glass.secondary }]}>{ex.translation}</Text>
                   </View>
                 );
               })}
@@ -592,7 +539,7 @@ export default function TheoryLessonView({
                   <Text
                     style={[
                       styles.fixWrong,
-                      { color: t.textMuted, textDecorationLine: 'line-through' },
+                      { color: t.wrong, textDecorationLine: 'line-through' },
                     ]}
                   >
                     {fx.wrong}
@@ -600,10 +547,10 @@ export default function TheoryLessonView({
                   <Ionicons
                     name="arrow-forward"
                     size={14}
-                    color={t.textMuted}
+                    color={glass.secondary}
                     style={styles.fixArrow}
                   />
-                  <Text style={[styles.fixRight, { color: t.textPrimary }]}>{fx.right}</Text>
+                  <Text style={[styles.fixRight, { color: t.correct }]}>{fx.right}</Text>
                 </View>
               ))}
             </View>
@@ -614,7 +561,10 @@ export default function TheoryLessonView({
           if (!block.drill) return null;
           const drillId = key;
           return (
-            <View key={key} style={[styles.drillWrap, { backgroundColor: t.bgSurface }]}>
+            <View
+              key={key}
+              style={[styles.drillWrap, { backgroundColor: glass.bg, borderColor: glass.glassEdge }]}
+            >
               {renderDrill(block.drill, drillId)}
             </View>
           );
@@ -624,61 +574,8 @@ export default function TheoryLessonView({
           return null;
       }
     },
-    [t, accent, renderDrill],
+    [t, glass, renderDrill],
   );
-
-  const kickerText = kicker ?? triLang(lang, {
-    ru: 'Грамматика', uk: 'Граматика', en: 'Grammar', es: 'Gramática',
-    'pt-BR': 'Gramática', vi: 'Ngữ pháp', id: 'Tata bahasa', tr: 'Dilbilgisi', pl: 'Gramatyka',
-  });
-  const claimLabel = triLang(lang, {
-    ru: `Забрать +${xpAmount} XP`,
-    uk: `Забрати +${xpAmount} XP`,
-    en: `Claim +${xpAmount} XP`,
-    es: `Recibir +${xpAmount} XP`,
-    'pt-BR': `Receber +${xpAmount} XP`,
-    vi: `Nhận +${xpAmount} XP`,
-    id: `Ambil +${xpAmount} XP`,
-    tr: `+${xpAmount} XP al`,
-    pl: `Odbierz +${xpAmount} XP`,
-  });
-  const claimedLabel = triLang(lang, {
-    ru: `+${xpAmount} XP получено · Готово`,
-    uk: `+${xpAmount} XP отримано · Готово`,
-    en: `+${xpAmount} XP earned · Done`,
-    es: `+${xpAmount} XP recibido · Listo`,
-    'pt-BR': `+${xpAmount} XP recebido · Pronto`,
-    vi: `+${xpAmount} XP đã nhận · Xong`,
-    id: `+${xpAmount} XP diterima · Selesai`,
-    tr: `+${xpAmount} XP alındı · Tamam`,
-    pl: `+${xpAmount} XP odebrane · Gotowe`,
-  });
-  const lockedClaimLabel = triLang(lang, {
-    ru: `Открой все разделы · ${seenCount}/${sections.length}`,
-    uk: `Відкрий усі розділи · ${seenCount}/${sections.length}`,
-    en: `Open all sections · ${seenCount}/${sections.length}`,
-    es: `Abre todas las secciones · ${seenCount}/${sections.length}`,
-    'pt-BR': `Abra todas as seções · ${seenCount}/${sections.length}`,
-    vi: `Mở tất cả các phần · ${seenCount}/${sections.length}`,
-    id: `Buka semua bagian · ${seenCount}/${sections.length}`,
-    tr: `Tüm bölümleri aç · ${seenCount}/${sections.length}`,
-    pl: `Otwórz wszystkie sekcje · ${seenCount}/${sections.length}`,
-  });
-
-  const metricLabels = {
-    sections: triLang(lang, {
-      ru: 'разделов', uk: 'розділів', en: 'sections', es: 'secciones',
-      'pt-BR': 'seções', vi: 'phần', id: 'bagian', tr: 'bölüm', pl: 'sekcji',
-    }),
-    examples: triLang(lang, {
-      ru: 'примеров', uk: 'прикладів', en: 'examples', es: 'ejemplos',
-      'pt-BR': 'exemplos', vi: 'ví dụ', id: 'contoh', tr: 'örnek', pl: 'przykładów',
-    }),
-    drills: triLang(lang, {
-      ru: 'тренировок', uk: 'тренувань', en: 'drills', es: 'prácticas',
-      'pt-BR': 'práticas', vi: 'bài luyện', id: 'latihan', tr: 'alıştırma', pl: 'treningów',
-    }),
-  };
 
   const progressLabel = triLang(lang, {
     ru: `Просмотрено ${seenCount} из ${sections.length}`,
@@ -692,19 +589,6 @@ export default function TheoryLessonView({
     pl: `Obejrzano ${seenCount} z ${sections.length}`,
   });
 
-  const lockedClaimCtaLabel = allSectionsSeen && !allDrillsDone
-    ? triLang(lang, {
-        ru: `Выполни задания · ${completedDrillCount}/${drillIds.length}`,
-        uk: `Виконай завдання · ${completedDrillCount}/${drillIds.length}`,
-        en: `Complete the drills · ${completedDrillCount}/${drillIds.length}`,
-        es: `Completa las prácticas · ${completedDrillCount}/${drillIds.length}`,
-        'pt-BR': `Complete as práticas · ${completedDrillCount}/${drillIds.length}`,
-        vi: `Hoàn thành bài luyện · ${completedDrillCount}/${drillIds.length}`,
-        id: `Selesaikan latihan · ${completedDrillCount}/${drillIds.length}`,
-        tr: `Alıştırmaları tamamla · ${completedDrillCount}/${drillIds.length}`,
-        pl: `Ukończ ćwiczenia · ${completedDrillCount}/${drillIds.length}`,
-      })
-    : lockedClaimLabel;
   const theoryProgressLabel = drillIds.length > 0
     ? triLang(lang, {
         ru: `Разделы ${seenCount}/${sections.length} · задания ${completedDrillCount}/${drillIds.length}`,
@@ -731,25 +615,25 @@ export default function TheoryLessonView({
     pl: `Lekcja ${lessonId} · A1`,
   });
 
+  const progressPct = Math.round(progress * 100);
+
   return (
     <ScreenGradient>
-      <SafeAreaView style={[styles.safe, { backgroundColor: t.bgPrimary }]} edges={['top']}>
-        {/* Шапка */}
+      <SafeAreaView style={[styles.safe, { backgroundColor: glass.bg }]} edges={['top']}>
+        {/* Шапка: круглая «‹», «Урок N · A1» 20/700, флажок ошибки */}
         <View style={styles.topBar}>
-          <TapScale
+          <PracticeBackButton
+            glass={glass}
+            color={glass.text}
             onPress={onBack}
-            accessibilityRole="button"
             accessibilityLabel={triLang(lang, {
               ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás',
               'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
             })}
-            style={styles.iconBtn}
-          >
-            <Ionicons name="chevron-back" size={26} color={t.textPrimary} />
-          </TapScale>
-
-          <Text style={[styles.levelTag, { color: t.textMuted }]}>{levelTag}</Text>
-
+          />
+          <View style={styles.topTitle}>
+            <PracticeHeaderTitle glass={glass} title={levelTag} />
+          </View>
           <View style={styles.flagBtn}>
             <ReportErrorButton
               variant="icon-flag"
@@ -767,56 +651,35 @@ export default function TheoryLessonView({
             { paddingBottom: 24 + bottomInset },
           ]}
         >
-          {/* Hero */}
-          <Text style={[styles.kicker, { color: accent }]}>{kickerText.toUpperCase()}</Text>
-          <Text style={[styles.heroTitle, { color: t.textPrimary }]}>{title}</Text>
+          {/* Hero: 30/36 700 + подзаголовок 16 */}
+          <Text style={[styles.heroTitle, { color: glass.text }]}>{title}</Text>
           {!!subtitle && (
-            <Text style={[styles.heroSub, { color: t.textMuted }]}>{subtitle}</Text>
+            <Text style={[styles.heroSub, { color: glass.secondary }]}>{subtitle}</Text>
           )}
 
-          {/* Метрики */}
-          <View style={styles.metricsRow}>
-            <View style={styles.metric}>
-              <Text style={[styles.metricNum, { color: t.textPrimary }]}>
-                {computedMetrics.sections}
-              </Text>
-              <Text style={[styles.metricLabel, { color: t.textMuted }]}>
-                {metricLabels.sections}
-              </Text>
-            </View>
-            <View style={styles.metric}>
-              <Text style={[styles.metricNum, { color: t.textPrimary }]}>
-                {computedMetrics.examples}
-              </Text>
-              <Text style={[styles.metricLabel, { color: t.textMuted }]}>
-                {metricLabels.examples}
-              </Text>
-            </View>
-            <View style={styles.metric}>
-              <Text style={[styles.metricNum, { color: t.textPrimary }]}>
-                {computedMetrics.drills}
-              </Text>
-              <Text style={[styles.metricLabel, { color: t.textMuted }]}>
-                {metricLabels.drills}
-              </Text>
-            </View>
-          </View>
-
-          {/* Прогресс */}
+          {/* Прогресс: подпись слева, процент справа, дорожка 6 */}
           <View style={styles.progressWrap}>
-            <View style={[styles.progressTrack, { backgroundColor: withAlpha(t.border, 'AA') }]}>
+            <View style={styles.progressHead}>
+              <Text style={[styles.progressLabel, { color: glass.secondary }]}>{theoryProgressLabel}</Text>
+              <Text style={[styles.progressLabel, { color: glass.secondary }]}>{`${progressPct}%`}</Text>
+            </View>
+            <View style={[styles.progressTrack, { backgroundColor: glass.line }]}>
               <View
                 style={[
                   styles.progressFill,
-                  { backgroundColor: accent, width: `${Math.round(progress * 100)}%` },
+                  { backgroundColor: glass.cta, width: `${progressPct}%` },
                 ]}
               />
             </View>
-            <Text style={[styles.progressLabel, { color: t.textMuted }]}>{theoryProgressLabel}</Text>
           </View>
 
-          {/* Разделы */}
-          <View style={styles.sectionsWrap}>
+          {/* Разделы: строки внутри одной карточки */}
+          <View
+            style={[
+              styles.sectionsWrap,
+              { backgroundColor: glass.opaqueCard, borderColor: glass.glassEdge },
+            ]}
+          >
             {sections.map((section, i) => (
               <AccordionSection
                 key={section.num}
@@ -830,31 +693,6 @@ export default function TheoryLessonView({
             ))}
           </View>
 
-          {/* XP-кнопка — в самом низу, после всех разделов */}
-          <View style={styles.ctaBar}>
-            <TapScale
-              onPress={handleClaimPress}
-              disabled={claimBusy || (!claimed && !allTheoryStepsDone)}
-              accessibilityRole="button"
-              accessibilityLabel={claimed ? claimedLabel : allTheoryStepsDone ? claimLabel : lockedClaimCtaLabel}
-              style={[
-                styles.ctaBtn,
-                { backgroundColor: claimed ? withAlpha(t.gold, 'CC') : allTheoryStepsDone ? t.gold : t.bgSurface },
-                (!claimed && !allTheoryStepsDone) && { borderWidth: 0, borderColor: t.border },
-                getVolumetricShadow(themeMode, t, 2),
-              ]}
-            >
-              <Ionicons
-                name={claimed ? 'checkmark-circle' : allTheoryStepsDone ? 'star' : 'lock-closed-outline'}
-                size={18}
-                color={allTheoryStepsDone || claimed ? textOnGold : t.textMuted}
-                style={styles.ctaIcon}
-              />
-              <Text style={[styles.ctaText, { color: allTheoryStepsDone || claimed ? textOnGold : t.textMuted }]}>
-                {claimed ? claimedLabel : allTheoryStepsDone ? claimLabel : lockedClaimCtaLabel}
-              </Text>
-            </TapScale>
-          </View>
         </BouncyScrollView>
       </SafeAreaView>
     </ScreenGradient>
@@ -888,12 +726,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  levelTag: {
-    fontSize: 14,
-    fontWeight: '600',
-    letterSpacing: 0.2,
-    textAlign: 'center',
+  topTitle: {
     flex: 1,
+    minWidth: 0,
+    marginLeft: 6,
   },
 
   // Скролл
@@ -902,110 +738,97 @@ const styles = StyleSheet.create({
     paddingTop: 8,
   },
 
-  // Hero
-  kicker: {
-    fontSize: 12,
-    fontWeight: '700',
-    letterSpacing: 1.5,
-    marginBottom: 8,
-  },
+  // Hero (learn.html: 30/36 700, подзаголовок 16)
   heroTitle: {
-    fontSize: 26,
-    fontWeight: '800',
-    lineHeight: 32,
-    marginBottom: 8,
+    fontSize: 30,
+    fontWeight: '700',
+    lineHeight: 36,
+    letterSpacing: -0.4,
+    marginTop: 14,
   },
   heroSub: {
-    fontSize: 15,
+    fontSize: 16,
     lineHeight: 22,
+    marginTop: 6,
   },
 
-  // Метрики
-  metricsRow: {
-    flexDirection: 'row',
-    marginTop: 24,
-    marginBottom: 20,
-  },
-  metric: {
-    flex: 1,
-  },
-  metricNum: {
-    fontSize: 26,
-    fontWeight: '800',
-    lineHeight: 30,
-  },
-  metricLabel: {
-    fontSize: 12,
-    marginTop: 2,
-  },
-
-  // Прогресс
+  // Прогресс (.thprog)
   progressWrap: {
-    marginBottom: 20,
+    marginTop: 18,
+  },
+  progressHead: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 8,
   },
   progressTrack: {
-    height: 3,
-    borderRadius: 2,
+    height: 6,
+    borderRadius: 3,
     overflow: 'hidden',
   },
   progressFill: {
-    height: 3,
-    borderRadius: 2,
+    height: 6,
+    borderRadius: 3,
   },
   progressLabel: {
-    fontSize: 12,
-    marginTop: 8,
+    fontSize: 14,
+    lineHeight: 20,
+    fontWeight: '600',
   },
 
-  // Разделы
+  // Разделы: одна карточка, строки с разделителем 1 px (.card.acc)
   sectionsWrap: {
-    gap: 4,
-  },
-  section: {
-    borderRadius: 16,
+    marginTop: 22,
+    borderRadius: 20,
+    borderWidth: StyleSheet.hairlineWidth,
+    paddingHorizontal: 16,
     overflow: 'hidden',
   },
+  section: {},
   sectionHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 16,
-    paddingHorizontal: 14,
-    minHeight: 56,
+    paddingVertical: 12,
+    paddingHorizontal: 4,
+    minHeight: 60,
+    gap: 14,
   },
   sectionNum: {
-    fontSize: 15,
+    fontSize: 13,
     fontWeight: '700',
-    width: 30,
-    letterSpacing: 0.5,
+    width: 26,
+    fontVariant: ['tabular-nums'],
   },
   sectionHeadText: {
     flex: 1,
     paddingRight: 8,
   },
   sectionTitle: {
-    fontSize: 17,
-    fontWeight: '700',
-    lineHeight: 23,
+    fontSize: 16,
+    fontWeight: '600',
+    lineHeight: 21,
   },
   sectionMeta: {
-    fontSize: 12,
-    marginTop: 3,
+    fontSize: 13,
+    lineHeight: 18,
+    marginTop: 2,
   },
   sectionBody: {
-    paddingHorizontal: 14,
-    paddingBottom: 16,
+    paddingLeft: 44,
+    paddingRight: 4,
+    paddingBottom: 18,
     paddingTop: 2,
-    gap: 12,
+    gap: 14,
   },
 
   // body / note / tip
   bodyText: {
-    fontSize: 15,
-    lineHeight: 24,
+    fontSize: 16,
+    lineHeight: 23,
   },
   tipBox: {
-    padding: 12,
-    borderRadius: 12,
+    padding: 14,
+    borderRadius: 14,
   },
 
   // formula
@@ -1013,19 +836,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'center',
-    gap: 4,
+    gap: 8,
+  },
+  formulaChip: {
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+    borderRadius: 12,
   },
   formulaPart: {
     fontSize: 16,
     fontWeight: '600',
-    lineHeight: 24,
-  },
-  formulaPartAccent: {
-    fontWeight: '800',
-  },
-  formulaPlus: {
-    fontSize: 15,
-    marginHorizontal: 2,
+    lineHeight: 22,
   },
 
   // examples
@@ -1037,18 +858,18 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    paddingVertical: 10,
+    paddingVertical: 8,
   },
   exampleEn: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: '600',
     lineHeight: 24,
     flexShrink: 1,
     paddingRight: 10,
   },
   exampleTranslation: {
-    fontSize: 14,
-    lineHeight: 22,
+    fontSize: 15,
+    lineHeight: 24,
     textAlign: 'right',
     flexShrink: 1,
   },
@@ -1078,28 +899,10 @@ const styles = StyleSheet.create({
 
   // drill
   drillWrap: {
-    borderRadius: 14,
-    padding: 6,
+    borderRadius: 16,
+    borderWidth: StyleSheet.hairlineWidth,
+    padding: 10,
     marginTop: 2,
   },
 
-  // XP CTA
-  ctaBar: {
-    marginTop: 24,
-  },
-  ctaBtn: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 54,
-    borderRadius: 16,
-  },
-  ctaIcon: {
-    marginRight: 8,
-  },
-  ctaText: {
-    fontSize: 16,
-    fontWeight: '800',
-    letterSpacing: 0.3,
-  },
 });

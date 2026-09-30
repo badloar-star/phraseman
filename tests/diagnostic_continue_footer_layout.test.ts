@@ -12,9 +12,16 @@ describe('diagnostic continue button layout', () => {
     expect(previousScrollCloseIndex).toBeGreaterThan(-1);
     expect(footerIndex).toBeGreaterThan(previousScrollCloseIndex);
 
+    // зачем: подвал теперь <ExamFooter> (safe-area отступ внутри него), кнопка — <PracticeCta> (role=button, высота от 48).
     const footerBlock = source.slice(footerIndex, footerIndex + 1_500);
-    expect(footerBlock).toContain('paddingBottom: Math.max(20, bottomInset + 16)');
-    expect(footerBlock).toContain('minHeight: 52');
-    expect(footerBlock).toContain('accessibilityRole="button"');
+    expect(footerBlock).toContain('bottomInset={bottomInset}');
+    expect(footerBlock).toContain('<PracticeCta');
+    expect(footerBlock).toContain('accessibilityLabel={continueA11yLabel}');
+
+    const parts = fs.readFileSync(path.join(__dirname, '..', 'components', 'level-exam', 'ExamGlassParts.tsx'), 'utf8');
+    expect(parts).toContain('paddingBottom: Math.max(16, bottomInset + 8)');
+    const cta = fs.readFileSync(path.join(__dirname, '..', 'components', 'practice', 'PracticeStates.tsx'), 'utf8');
+    expect(cta).toContain('accessibilityRole="button"');
+    expect(cta).toContain('minHeight: 48');
   });
 });

@@ -4,7 +4,8 @@ import Animated, { FadeInDown, useReducedMotion } from 'react-native-reanimated'
 
 import type { LevelExamSpeedMatchTask } from '../../app/level_exam_types';
 import { useTheme } from '../ThemeContext';
-import { V2Chip } from '../ui/v2_ui';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { ExamOption, type ExamOptionState } from './ExamGlassParts';
 
 type Props = {
   task: LevelExamSpeedMatchTask;
@@ -13,7 +14,9 @@ type Props = {
 };
 
 export default function SpeedMatchQuestion({ task, matches, onChange }: Props) {
-  const { ds } = useTheme();
+  const { theme: t, ds, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  const optionColors = { okColor: t.correct, okBg: t.correctBg, noColor: t.wrong, noBg: t.wrongBg } as const;
   const reduceMotion = useReducedMotion();
   const [activeSourceId, setActiveSourceId] = useState<string | null>(null);
   const [wrongPair, setWrongPair] = useState<{ sourceId: string; targetId: string } | null>(null);
@@ -55,15 +58,17 @@ export default function SpeedMatchQuestion({ task, matches, onChange }: Props) {
           const matched = matches[pair.scoreUnitId] === pair.scoreUnitId;
           return (
             <Animated.View key={pair.scoreUnitId} entering={reduceMotion ? undefined : FadeInDown.delay(sourcePairs.indexOf(pair) * 40).duration(260)}>
-              <V2Chip
-                    selected={active || answered}
-                    verdict={wrongPair?.sourceId === pair.scoreUnitId ? 'bad' : matched ? 'ok' : answered ? 'bad' : 'idle'}
-                    disabled={answered}
-                    onPress={() => setActiveSourceId(pair.scoreUnitId)}
+              <ExamOption
+                glass={glass}
+                {...optionColors}
+                label={pair.target}
+                state={((): ExamOptionState => (
+                  wrongPair?.sourceId === pair.scoreUnitId ? 'no' : matched ? 'ok' : answered ? 'no' : active ? 'pressed' : 'idle'
+                ))()}
+                disabled={answered}
+                onPress={() => setActiveSourceId(pair.scoreUnitId)}
                 accessibilityLabel={pair.target}
-              >
-                {pair.target}
-              </V2Chip>
+              />
             </Animated.View>
           );
         })}
@@ -73,15 +78,15 @@ export default function SpeedMatchQuestion({ task, matches, onChange }: Props) {
           const matched = matchedTargets.has(pair.scoreUnitId);
           return (
             <Animated.View key={pair.scoreUnitId} entering={reduceMotion ? undefined : FadeInDown.delay(index * 40).duration(260)}>
-              <V2Chip
-                selected={matched}
-                verdict={wrongPair?.targetId === pair.scoreUnitId ? 'bad' : matched ? 'ok' : 'idle'}
+              <ExamOption
+                glass={glass}
+                {...optionColors}
+                label={pair.source}
+                state={wrongPair?.targetId === pair.scoreUnitId ? 'no' : matched ? 'ok' : 'idle'}
                 onPress={() => chooseTarget(pair.scoreUnitId)}
                 disabled={!activeSourceId || matched}
                 accessibilityLabel={pair.source}
-              >
-                {pair.source}
-              </V2Chip>
+              />
             </Animated.View>
           );
         })}

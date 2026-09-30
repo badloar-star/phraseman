@@ -29,6 +29,9 @@ import LessonArtBackdrop from '../components/LessonArtBackdrop';
 import LessonFirstFrame from '../modules/lesson_first_frame';
 import { triLang, type Lang } from '../constants/i18n';
 import { getCardShadow, useTheme } from '../components/ThemeContext';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { PracticeBackButton, PracticeHeaderTitle } from '../components/practice/PracticeChrome';
+import { PracticeStatePanel } from '../components/practice/PracticeStates';
 import { screenTextOnGradient, ThemeMode } from '../constants/theme';
 import { isCorrectAnswer, normalizeLessonAssemblyAnswer } from '../constants/contractions';
 import { checkAchievements } from './achievements';
@@ -564,6 +567,15 @@ const LessonContent = React.memo(function LessonContent({
   const { width: screenW, height: screenH } = useWindowDimensions();
   const { bottomInset } = useScreen();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
+  // зачем (владелец 2026-09-30): экран урока — 1:1 по learn.html (Liquid Glass); поверхности,
+  // кнопки, плитки и шапка берут токены стекла, зелёный/красный отклик остаётся у t.correct/t.wrong.
+  const { liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  const progressCellTheme = useMemo(() => ({ ...t, bgSurface2: glass.line }), [t, glass.line]);
+  const toolChip = {
+    flex: 1, alignItems: 'center' as const, justifyContent: 'center' as const, minHeight: 56,
+    marginHorizontal: 3, paddingVertical: 8, borderRadius: 18, backgroundColor: glass.opaqueControl,
+  };
   const progressCellCount = Math.max(1, totalCells);
   const linkedSliceCompact = false;
   const lessonHorizontalPadding = linkedSliceCompact ? 14 : 20;
@@ -980,46 +992,34 @@ const LessonContent = React.memo(function LessonContent({
           gap: 6,
         }}
       >
-        {/* Кнопка назад совмещена с названием урока — как на скриншоте */}
-        <LessonPressable
-          testID="lesson1-header-back"
+        {/* зачем: шапка макета D — круглая «‹» 34 (область нажатия 44) + «Урок N» 20/700; подзаголовка-уровня в данных урока нет. */}
+        <PracticeBackButton
+          glass={glass}
+          color={glass.text}
           onPress={onHeaderBack}
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            gap: 4,
-            flexShrink: 1,
-            minWidth: 0,
-            maxWidth: '44%',
-            backgroundColor: t.bgCard,
-            borderRadius: 20,
-            paddingHorizontal: linkedSliceCompact ? 8 : (isSmallScreen ? 8 : 12),
-            paddingVertical: linkedSliceCompact ? 5 : 7,
-          }}
-        >
-          <Ionicons name="chevron-back" size={18} color={t.textPrimary} />
-          <Text
-            numberOfLines={1}
-            ellipsizeMode="tail"
-            style={{ color: t.textPrimary, fontSize: isSmallScreen ? f.body : f.bodyLg, fontWeight: '600', flexShrink: 1 }}
-          >
-            {triLang(lang, {
-              uk: 'Урок',
-              ru: 'Урок',
-              en: 'Lesson',
-              es: 'Lección',
-              'pt-BR': 'Lição',
-              vi: 'Bài',
-              id: 'Pelajaran',
-              tr: 'Ders',
-              pl: 'Lekcja',
-            })} {lessonId}
-          </Text>
-        </LessonPressable>
+          testID="lesson1-header-back"
+          accessibilityLabel={triLang(lang, {
+            uk: 'Назад', ru: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
+          })}
+        />
+        <PracticeHeaderTitle
+          glass={glass}
+          title={`${triLang(lang, {
+            uk: 'Урок',
+            ru: 'Урок',
+            en: 'Lesson',
+            es: 'Lección',
+            'pt-BR': 'Lição',
+            vi: 'Bài',
+            id: 'Pelajaran',
+            tr: 'Ders',
+            pl: 'Lekcja',
+          })} ${lessonId}`}
+        />
         {/* Right side: attempts + combo badge + stats. Energy is paid once on entry. */}
         <View
           style={{
-            flex: 1,
+            flexShrink: 1,
             minWidth: 0,
             flexDirection: 'row',
             alignItems: 'center',
@@ -1085,7 +1085,7 @@ const LessonContent = React.memo(function LessonContent({
         <Animated.View style={[questionEnterStyle, { width: '100%' }]}>
         <Text
           testID="lesson1-task-instruction"
-          style={{ color: sx.muted, fontSize: f.caption, fontWeight: '700', textAlign: 'center', marginBottom: 8 }}
+          style={{ color: glass.secondary, fontSize: f.caption, fontWeight: '700', textAlign: 'center', marginBottom: 8 }}
         >
           {triLang(lang, {
             ru: settings.hardMode ? 'Напечатай фразу:' : 'Собери фразу:',
@@ -1103,7 +1103,7 @@ const LessonContent = React.memo(function LessonContent({
           <Text
             testID="lesson1-source-prompt"
             style={{
-              color: sx.primary,
+              color: glass.text,
               fontSize: linkedSlicePromptFont,
               lineHeight: Math.round(linkedSlicePromptFont * 1.16),
               marginBottom: linkedSliceCompact ? 8 : (compact ? 12 : 20),
@@ -1120,7 +1120,7 @@ const LessonContent = React.memo(function LessonContent({
             ref={runeFlightOriginRef}
             collapsable={false}
             testID="lesson1-answer-divider"
-            style={{ minHeight: linkedSliceCompact ? 46 : 60, alignSelf: 'stretch', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: emptyTapFlash ? '#F5A623' : t.border, marginBottom: speakingResult ? 4 : (linkedSliceCompact ? 8 : (compact ? 12 : 20)), justifyContent: 'center', backgroundColor: emptyTapFlash ? 'rgba(245,166,35,0.08)' : 'transparent', borderRadius: emptyTapFlash ? 8 : 0 } as any}>
+            style={{ minHeight: linkedSliceCompact ? 46 : 60, alignSelf: 'stretch', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: emptyTapFlash ? '#F5A623' : glass.line, marginBottom: speakingResult ? 4 : (linkedSliceCompact ? 8 : (compact ? 12 : 20)), justifyContent: 'center', backgroundColor: emptyTapFlash ? 'rgba(245,166,35,0.08)' : 'transparent', borderRadius: emptyTapFlash ? 8 : 0 } as any}>
             {(status === 'result' || speakingResult) ? (
               <View testID="lesson1-primary-answer-row" style={{ alignItems: 'center', justifyContent: 'center', width: '100%' }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', maxWidth: '100%' }}>
@@ -1253,7 +1253,7 @@ const LessonContent = React.memo(function LessonContent({
               }],
             }}>
               {wasWrong && (
-                <View style={{ backgroundColor: t.wrongBg, padding: linkedSliceCompact ? 10 : 15, borderRadius: 10, marginBottom: linkedSliceCompact ? 6 : 10, borderLeftWidth: 3, borderLeftColor: t.wrong }}>
+                <View style={{ backgroundColor: t.wrongBg, padding: linkedSliceCompact ? 12 : 16, borderRadius: 18, marginBottom: linkedSliceCompact ? 6 : 10, borderWidth: 1, borderColor: glass.glassEdge }}>
                   <Text
                     testID="lesson1-correct-answer-on-wrong"
                     style={{ color: t.correct, fontWeight: '600', fontSize: interactiveAnswerFont, textAlign: 'center' }}
@@ -1322,13 +1322,13 @@ const LessonContent = React.memo(function LessonContent({
             opacity: grammarHintAnim,
             marginHorizontal: 20,
             marginBottom: 6,
-            backgroundColor: t.bgCard,
-            borderRadius: 10,
-            padding: 12,
-            borderLeftWidth: 3,
-            borderLeftColor: t.accent,
+            backgroundColor: glass.card,
+            borderRadius: 18,
+            padding: 14,
+            borderWidth: 1,
+            borderColor: glass.glassEdge,
           }}>
-            <Text style={{ color: t.textSecond, fontSize: f.small, lineHeight: Math.round(f.small * 1.45) }}>{grammarHintText}</Text>
+            <Text style={{ color: glass.secondary, fontSize: f.small, lineHeight: Math.round(f.small * 1.45) }}>{grammarHintText}</Text>
           </Animated.View>
         )}
 
@@ -1373,18 +1373,17 @@ const LessonContent = React.memo(function LessonContent({
                       return (
                     <DuoPressable
                       testID={isCorrectOption ? 'lesson1-word-option-correct' : `lesson1-word-option-${i}`}
-                      edgeHeight={5}
-                      edgeColor={isFlashing ? t.accent : (false ? t.border : 'rgba(0,0,0,0.30)')}
                       pressedExternally={isFlashing}
                       withHaptic={false}
                       disabled={wordDispatchPending}
                       style={{
                         width: '100%',
-                        backgroundColor: isFlashing ? t.accent : t.bgCard,
-                        paddingVertical: linkedSliceCompact ? 7 : (compact ? 9 : 14),
-                        borderRadius: 12,
-                        borderWidth: 0,
-                        borderColor: isFlashing ? t.accent : t.border,
+                        backgroundColor: isFlashing ? glass.cta : glass.opaqueControl,
+                        paddingVertical: linkedSliceCompact ? 7 : (compact ? 10 : 15),
+                        minHeight: 52,
+                        borderRadius: 18,
+                        borderWidth: 1,
+                        borderColor: glass.glassEdge,
                       }}
                       onPress={() => {
                         if (showTapHint) setShowTapHint(false);
@@ -1418,7 +1417,7 @@ const LessonContent = React.memo(function LessonContent({
                           уроков есть слова до 15-16 знаков. Шрифт НЕ ужимаем (правило
                           владельца) — разрешаем вторую строку: фиксированной высоты у плитки
                           нет (DuoPressable: только minHeight), поэтому обрезки не будет. */}
-                      <FlowText testID="lesson-word-tile" provenance="authored" style={{ color: isFlashing ? (t.correctText ?? '#fff') : t.textPrimary, fontSize: f.numMd, fontWeight: isFlashing ? '700' : '500' }}>{displayText}</FlowText>
+                      <FlowText testID="lesson-word-tile" provenance="authored" style={{ color: isFlashing ? glass.ctaInk : glass.text, fontSize: f.numMd, fontWeight: isFlashing ? '700' : '500' }}>{displayText}</FlowText>
                     </DuoPressable>
                       );
                     })()}
@@ -1461,17 +1460,17 @@ const LessonContent = React.memo(function LessonContent({
                     flex: 1,
                     height: 8,
                     borderRadius: 4,
-                    backgroundColor: getProgressCellColor(progress[i], passCount, t, i === displayCell),
+                    backgroundColor: i === displayCell ? glass.text : getProgressCellColor(progress[i], passCount, progressCellTheme, false),
                   }} />
                 ))}
               </View>
             </View>
-            <Text style={{ color: sx.muted, fontSize: f.label, minWidth: 34, textAlign: 'right' }}>{displayCell + 1}/{progressCellCount}</Text>
+            <Text style={{ color: glass.secondary, fontSize: f.label, minWidth: 34, textAlign: 'right' }}>{displayCell + 1}/{progressCellCount}</Text>
           </View>
         </View>
 
         {/* ФУТЕР */}
-        <View style={{ flexDirection: 'row', paddingTop: linkedSliceCompact ? 8 : 14, paddingBottom: (linkedSliceCompact ? 8 : 14) + bottomInset, borderTopWidth: 0.5, borderTopColor: t.border }}>
+        <View style={{ flexDirection: 'row', paddingTop: linkedSliceCompact ? 8 : 14, paddingBottom: (linkedSliceCompact ? 8 : 14) + bottomInset, paddingHorizontal: 11 }}>
           {/* 50/50 — затемнить неверные плитки. Общий лимит с «Объясни» (fifty_fifty_* счётчик).
               Прячем, когда плиток-вариантов уже нет (ответ собран, ждём «Проверить») — гасить
               нечего, кнопка висела бесполезно. */}
@@ -1483,7 +1482,7 @@ const LessonContent = React.memo(function LessonContent({
                   testID="lesson1-fifty-fifty"
                   accessibilityRole="button"
                   accessibilityLabel="50/50"
-                  style={{ flex: 1, alignItems: 'center', opacity: canUse50 ? 1 : 0.35 }}
+                  style={{ ...toolChip, opacity: canUse50 ? 1 : 0.35 }}
                   disabled={!canUse50}
                   onPress={() => {
                     if (!canUse50) return;
@@ -1512,12 +1511,12 @@ const LessonContent = React.memo(function LessonContent({
                   }}
                 >
                   <View style={{ position: 'relative' }}>
-                    <Ionicons name="cut-outline" size={26} color={canUse50 ? t.accent : sx.second} />
-                    <View style={{ position: 'absolute', top: -4, right: -10, backgroundColor: canUse50 ? t.accent : t.textMuted, borderRadius: 8, minWidth: 16, height: 16, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 3 }}>
-                      <Text style={{ color: t.correctText, fontSize: 10, fontWeight: '700', lineHeight: 12 }}>{explainHintsLeft}</Text>
+                    <Ionicons name="cut-outline" size={26} color={canUse50 ? glass.text : glass.mutedText} />
+                    <View style={{ position: 'absolute', top: -4, right: -10, backgroundColor: canUse50 ? glass.cta : glass.mutedText, borderRadius: 8, minWidth: 16, height: 16, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 3 }}>
+                      <Text style={{ color: glass.ctaInk, fontSize: 10, fontWeight: '700', lineHeight: 12 }}>{explainHintsLeft}</Text>
                     </View>
                   </View>
-                  <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }}>50/50</Text>
+                  <Text style={{ color: glass.secondary, fontSize: f.label, marginTop: 4 }}>50/50</Text>
                 </LessonPressable>
               );
             })()
@@ -1525,9 +1524,9 @@ const LessonContent = React.memo(function LessonContent({
 
 
           {/* Theory Button */}
-          <LessonPressable testID="lesson1-theory" style={{ flex: 1, alignItems: 'center' }} onPress={() => { fk.tap(); /* зачем (владелец 2026-09-17): в комбинированном уроке тему задаёт ТЕКУЩАЯ фраза, а не маршрут — иначе открылась бы чужая теория. */ if (lessonTheorySupportBlocked) { router.push({ pathname: '/lesson_help', params: { id: topicLessonId } }); return; } router.push(isInteractiveTheoryLesson(topicLessonId) ? { pathname: '/hint', params: { id: topicLessonId } } : { pathname: '/lesson_help', params: { id: topicLessonId } }); }}>
-            <Ionicons name={lessonTheorySupportBlocked ? 'shield-checkmark-outline' : 'book-outline'} size={26} color={sx.second} />
-            <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }}>
+          <LessonPressable testID="lesson1-theory" style={toolChip} onPress={() => { fk.tap(); /* зачем (владелец 2026-09-17): в комбинированном уроке тему задаёт ТЕКУЩАЯ фраза, а не маршрут — иначе открылась бы чужая теория. */ if (lessonTheorySupportBlocked) { router.push({ pathname: '/lesson_help', params: { id: topicLessonId } }); return; } router.push(isInteractiveTheoryLesson(topicLessonId) ? { pathname: '/hint', params: { id: topicLessonId } } : { pathname: '/lesson_help', params: { id: topicLessonId } }); }}>
+            <Ionicons name={lessonTheorySupportBlocked ? 'shield-checkmark-outline' : 'book-outline'} size={26} color={glass.text} />
+            <Text style={{ color: glass.secondary, fontSize: f.label, marginTop: 4 }}>
               {lessonTheorySupportBlocked ? triLang(lang, {
                 ru: 'Теория',
                 uk: 'Теорія',
@@ -1558,19 +1557,19 @@ const LessonContent = React.memo(function LessonContent({
                 tr: 'Cümleyi sesli söyle',
                 pl: 'Powiedz frazę na głos',
               })}
-              style={{ flex: 1, alignItems: 'center' }}
+              style={toolChip}
               onPressIn={startSpeakingHold}
               onPressOut={endSpeakingHold}
             >
               <View style={{ position: 'relative' }}>
-                <Ionicons name="mic-outline" size={26} color={sx.second} />
+                <Ionicons name="mic-outline" size={26} color={glass.text} />
                 {!speakingIsPremium && (
                   <View style={{ position: 'absolute', top: -4, right: -8 }}>
-                    <Ionicons name="lock-closed" size={12} color={t.accent} />
+                    <Ionicons name="lock-closed" size={12} color={glass.text} />
                   </View>
                 )}
               </View>
-              <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }}>
+              <Text style={{ color: glass.secondary, fontSize: f.label, marginTop: 4 }}>
                 {triLang(lang, {
                   ru: 'Устно',
                   uk: 'Усно',
@@ -1604,14 +1603,14 @@ const LessonContent = React.memo(function LessonContent({
                 tr: 'Tamamlanan cümleleri gör',
                 pl: 'Zobacz ukończone frazy',
               })}
-              style={{ flex: 1, alignItems: 'center' }}
+              style={toolChip}
               onPress={openReview}
             >
               <View style={{ position: 'relative' }}>
-                <Ionicons name="arrow-undo-outline" size={26} color={sx.second} />
+                <Ionicons name="arrow-undo-outline" size={26} color={glass.text} />
                 <View style={{ position: 'absolute', top: -3, right: -8, width: 8, height: 8, borderRadius: 4, backgroundColor: t.correct }} />
               </View>
-              <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }} numberOfLines={1}>
+              <Text style={{ color: glass.secondary, fontSize: f.label, marginTop: 4 }} numberOfLines={1}>
                 {triLang(lang, {
                   ru: 'Назад',
                   uk: 'Назад',
@@ -1645,14 +1644,14 @@ const LessonContent = React.memo(function LessonContent({
                 tr: 'Cümleyi basit kelimelerle açıkla',
                 pl: 'Wyjaśnij frazę prościej',
               })}
-              style={{ flex: 1, alignItems: 'center' }}
+              style={toolChip}
               onPress={() => {
                 fk.tap();
                 setExplainOpen(true);
               }}
             >
-              <Ionicons name="bulb-outline" size={26} color={sx.second} />
-              <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }} numberOfLines={1}>
+              <Ionicons name="bulb-outline" size={26} color={glass.text} />
+              <Text style={{ color: glass.secondary, fontSize: f.label, marginTop: 4 }} numberOfLines={1}>
                 {triLang(lang, {
                   ru: 'Объяснить',
                   uk: 'Пояснити',
@@ -1684,14 +1683,14 @@ const LessonContent = React.memo(function LessonContent({
                 tr: 'Cümlenin sesini tekrar çal',
                 pl: 'Powtórz nagranie frazy',
               })}
-              style={{ flex: 1, alignItems: 'center' }}
+              style={toolChip}
               onPress={() => {
                 fk.tap();
                 onReplayPhraseAudio();
               }}
             >
-              <Ionicons name="volume-high" size={26} color={sx.second} />
-              <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }}>
+              <Ionicons name="volume-high" size={26} color={glass.text} />
+              <Text style={{ color: glass.secondary, fontSize: f.label, marginTop: 4 }}>
                 {triLang(lang, {
                   ru: 'Повтор',
                   uk: 'Повтор',
@@ -1709,7 +1708,7 @@ const LessonContent = React.memo(function LessonContent({
 
           <LessonPressable
             testID={status === 'result' ? 'lesson1-next' : 'lesson1-undo'}
-            style={{ flex: 1, alignItems: 'center', opacity: (status === 'playing' && (settings.hardMode ? typedText.trim().length === 0 : selectedWords.length === 0)) ? 0.3 : 1 }}
+            style={{ ...toolChip, opacity: (status === 'playing' && (settings.hardMode ? typedText.trim().length === 0 : selectedWords.length === 0)) ? 0.3 : 1 }}
             onPress={() => {
               fk.tap();
               if (status === 'result') { goNext(); return; }
@@ -1724,13 +1723,13 @@ const LessonContent = React.memo(function LessonContent({
           >
             {status === 'result' ? (
               <>
-                <Ionicons name="play-forward" size={26} color={sx.second} />
-                <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }}>{s.lesson.next}</Text>
+                <Ionicons name="play-forward" size={26} color={glass.text} />
+                <Text style={{ color: glass.secondary, fontSize: f.label, marginTop: 4 }}>{s.lesson.next}</Text>
               </>
             ) : (
               <>
-                <Ionicons name="arrow-undo" size={26} color={sx.second} />
-                <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }}>{s.lesson.undo}</Text>
+                <Ionicons name="arrow-undo" size={26} color={glass.text} />
+                <Text style={{ color: glass.secondary, fontSize: f.label, marginTop: 4 }}>{s.lesson.undo}</Text>
               </>
             )}
           </LessonPressable>
@@ -1739,7 +1738,7 @@ const LessonContent = React.memo(function LessonContent({
           {canManuallyCheckAnswer && (
             <LessonPressable
               testID="lesson1-check"
-              style={{ flex: 1, alignItems: 'center' }}
+              style={toolChip}
               onPress={() => {
                 if (!canManuallyCheckAnswer) return;
                 fk.tap();
@@ -1826,7 +1825,8 @@ function LessonScreen() {
   const { height: windowH, width: windowW } = useWindowDimensions();
   const compact = windowH < 780;
   const isSmallScreen = windowW < 400; // compact header/spacing on narrow widths (lesson top bar used to clip past ~380)
-  const { theme: t , f, themeMode } = useTheme();
+  const { theme: t , f, themeMode, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const reduceMotion = useReduceMotion();
   const { s, lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -3736,8 +3736,11 @@ function LessonScreen() {
         <ScreenGradient>
           <LessonArtBackdrop variant="practice" />
           <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 10 }}>
-              {triLang(lang, {
+            <PracticeStatePanel
+              glass={glass}
+              icon="cloud-offline-outline"
+              testID="lesson1-remote-failed"
+              message={triLang(lang, {
                 ru: 'Не удалось загрузить французский урок',
                 uk: 'Не вдалося завантажити французький урок',
                 en: 'Couldn’t load the French lesson',
@@ -3748,17 +3751,12 @@ function LessonScreen() {
                 tr: 'Fransızca ders yüklenemedi',
                 pl: 'Nie udało się załadować lekcji francuskiego',
               })}
-            </Text>
-            <TapScale
-              accessibilityRole="button"
-              onPress={() => setRemoteFrenchLessonReloadNonce((value) => value + 1)}
-              scaleTo={0.96}
-              style={{ backgroundColor: t.accent, borderRadius: 16, paddingHorizontal: 18, paddingVertical: 12 }}
-            >
-              <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '800' }}>
-                {triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
-              </Text>
-            </TapScale>
+              action={{
+                label: triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' }),
+                icon: 'refresh',
+                onPress: () => setRemoteFrenchLessonReloadNonce((value) => value + 1),
+              }}
+            />
           </SafeAreaView>
         </ScreenGradient>
       </TouchableWithoutFeedback>
@@ -3771,8 +3769,11 @@ function LessonScreen() {
         <ScreenGradient>
           <LessonArtBackdrop variant="practice" />
           <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 10 }}>
-              {triLang(lang, {
+            <PracticeStatePanel
+              glass={glass}
+              icon="cloud-offline-outline"
+              testID="lesson1-french-pack-blocked"
+              title={triLang(lang, {
                 ru: 'Французский пакет не загружен',
                 uk: 'Французький пакет не завантажено',
                 en: 'French pack not loaded',
@@ -3783,9 +3784,7 @@ function LessonScreen() {
                 tr: 'Fransızca paketi yüklenmedi',
                 pl: 'Pakiet francuski nie został załadowany',
               })}
-            </Text>
-            <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', lineHeight: f.body + 6, marginBottom: 18 }}>
-              {triLang(lang, {
+              message={triLang(lang, {
                 ru: 'Проверь интернет и повтори загрузку. Английские фразы не используются как замена.',
                 uk: 'Перевір інтернет і повтори завантаження. Англійські фрази не використовуються як заміна.',
                 en: 'Check your connection and reload. English phrases aren’t used as a substitute.',
@@ -3796,17 +3795,11 @@ function LessonScreen() {
                 tr: 'Bağlantını kontrol edip yeniden yükle. İngilizce ifadeler yedek olarak kullanılmaz.',
                 pl: 'Ta lekcja nie użyje angielskich fraz jako zamiennika.',
               })}
-            </Text>
-            <TapScale
-              accessibilityRole="button"
-              onPress={() => { markNextNavigationAsReplace(); router.replace('/lessons_list' as any); }}
-              scaleTo={0.96}
-              style={{ backgroundColor: t.accent, borderRadius: 16, paddingHorizontal: 18, paddingVertical: 12 }}
-            >
-              <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '800' }}>
-                {triLang(lang, { ru: 'К урокам', uk: 'До уроків', en: 'To lessons', es: 'A lecciones', 'pt-BR': 'Para aulas', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derslere', pl: 'Do lekcji' })}
-              </Text>
-            </TapScale>
+              action={{
+                label: triLang(lang, { ru: 'К урокам', uk: 'До уроків', en: 'To lessons', es: 'A lecciones', 'pt-BR': 'Para aulas', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derslere', pl: 'Do lekcji' }),
+                onPress: () => { markNextNavigationAsReplace(); router.replace('/lessons_list' as any); },
+              }}
+            />
           </SafeAreaView>
         </ScreenGradient>
       </TouchableWithoutFeedback>

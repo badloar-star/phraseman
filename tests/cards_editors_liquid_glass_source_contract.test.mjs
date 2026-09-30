@@ -26,7 +26,9 @@ test('every touched file exists', () => {
 test('kit reads the active 13-theme glass tokens', () => {
   const kit = read(KIT);
   assert.ok(kit.includes('liquidGlassTokens(liquidGlassThemeId)'), 'active theme token registry');
-  for (const token of ['g.opaqueCard', 'g.opaqueControl', 'g.glassEdge', 'g.cta', 'g.ctaInk']) {
+  // зачем (темы 2.0): главная кнопка берёт роли цвета темы g.accent/g.accentInk
+  // (в «Спокойно» они равны прежним cta/ctaInk — сторож палитры это проверяет).
+  for (const token of ['g.opaqueCard', 'g.opaqueControl', 'g.glassEdge', 'g.accent', 'g.accentInk']) {
     assert.ok(kit.includes(token), `kit uses ${token}`);
   }
 });

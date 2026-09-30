@@ -11,8 +11,10 @@ test('live tab bar takes surface, rim, cap and labels from the selected glass th
   assert.match(source, /const\s+\{\s*liquidGlassThemeId\s*\}\s*=\s*useTheme\(\)/);
   assert.match(source, /const palette = liquidGlassTokens\(liquidGlassThemeId\)/);
   assert.match(source, /backgroundColor:\s*Platform\.OS === 'android' \? palette\.bgBottom/);
-  assert.match(source, /<BarRim\s+width=\{width\}\s+color=\{palette\.cta\}/);
-  assert.match(source, /<CapFill\s+width=\{slotW\}\s+color=\{palette\.cta\}/);
+  assert.match(source, /<BarRim\s+width=\{width\}\s+color=\{palette\.isLight \? palette\.secondary : palette\.cta\}/);
+  // зачем (темы 2.0): капсула и активный значок — роли цвета темы; в «Спокойно» они равны cta (проверено ниже).
+  assert.match(source, /<CapFill\s+width=\{slotW\}\s+color=\{palette\.accentCap\}/);
+  assert.match(source, /const color = on \? palette\.accentBright/);
   assert.match(source, /palette\.mutedText/);
   assert.doesNotMatch(source, /const\s+(?:COLOR|GLASS_FILL)\s*=/);
 });
@@ -35,5 +37,19 @@ test('a tint changes the tab bar material and stays without Plus (themes are fre
       assert.notEqual(tint[role], graphite[role], `${id}: ${role}`);
     }
     assert.equal(liquidGlassTokens(resolveLiquidGlassTheme(id, false)).bgBottom, tint.bgBottom);
+  }
+});
+
+// зачем (владелец 2026-09-30, темы 2.0): в «Спокойно» таббар ровно прежний, в «Акценте» капсула
+// и активный значок получают цвет темы, фон таббара остаётся прежним.
+test('calm keeps the neutral capsule; accent colours capsule and active icon only', () => {
+  for (const id of ['graphite', 'slate', 'terracotta', 'marine']) {
+    const calm = liquidGlassTokens(id, { level: 'calm', appearance: 'dark' });
+    const acc = liquidGlassTokens(id, { level: 'accent', appearance: 'dark' });
+    assert.equal(calm.accentCap, calm.cta, id);
+    assert.equal(calm.accentBright, calm.cta, id);
+    assert.notEqual(acc.accentCap, calm.cta, id);
+    assert.equal(acc.bgBottom, calm.bgBottom, id);
+    assert.equal(acc.opaqueControl, calm.opaqueControl, id);
   }
 });

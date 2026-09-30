@@ -276,21 +276,28 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
     <Animated.View
       testID="v2-tab-bar"
       onLayout={handleLayout}
-      style={[s.bar, { bottom: bottomOffset, backgroundColor: Platform.OS === 'android' ? palette.bgBottom : 'transparent' }, collapseStyle]}
+      style={[
+        s.bar,
+        { bottom: bottomOffset, backgroundColor: Platform.OS === 'android' ? palette.bgBottom : 'transparent' },
+        // зачем (темы 2.0, светлое): тень в тон темы и мягче — чёрная .55 на светлом фоне грязнит.
+        palette.isLight ? { shadowColor: palette.shadowTint, shadowOpacity: 1, elevation: 8 } : null,
+        collapseStyle,
+      ]}
       {...responder.panHandlers}
     >
       <View pointerEvents="none" style={s.clip}>
-        {Platform.OS === 'ios' ? <BlurView intensity={22} tint="dark" style={StyleSheet.absoluteFill} /> : null}
+        {Platform.OS === 'ios' ? <BlurView intensity={22} tint={palette.isLight ? 'light' : 'dark'} style={StyleSheet.absoluteFill} /> : null}
         <LinearGradient colors={glassFill} style={StyleSheet.absoluteFill} />
         <View style={s.innerRim} />
       </View>
-      {width > 0 ? <BarRim width={width} color={palette.cta} /> : null}
+      {width > 0 ? <BarRim width={width} color={palette.isLight ? palette.secondary : palette.cta} /> : null}
       {slotW > 0 && activeIndex >= 0 ? (
         <Animated.View
           pointerEvents="none"
-          style={[s.cap, { width: slotW, shadowColor: palette.cta, transform: [{ translateX: capX }, { scale: capScale }] }]}
+          style={[s.cap, { width: slotW, shadowColor: palette.accentCap, transform: [{ translateX: capX }, { scale: capScale }] }]}
         >
-          <CapFill width={slotW} color={palette.cta} />
+          {/* зачем (темы 2.0): капсула в цвете темы в «Акценте/Максимуме»; в «Спокойно» accentCap = cta (как было). */}
+          <CapFill width={slotW} color={palette.accentCap} />
           <Animated.View style={[s.capBright, { opacity: capBright }]} />
         </Animated.View>
       ) : null}
@@ -298,7 +305,8 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
       <View pointerEvents="none" style={s.row}>
         {items.map((item, i) => {
           const on = i === activeIndex;
-          const color = on ? palette.cta : hoverIdx === i ? palette.secondary : palette.mutedText;
+          // Активный значок: в «Спокойно» accentBright = cta (как было), иначе — цвет темы.
+          const color = on ? palette.accentBright : hoverIdx === i ? palette.secondary : palette.mutedText;
           return (
             <View
               key={item.key}

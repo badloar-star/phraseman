@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import PressableHybrid from '../../PressableHybrid';
 import { useTheme } from '../../ThemeContext';
 import { liquidGlassTokens } from '../../../constants/liquidGlassThemePalette';
+import { ThemeAccentFill } from '../../v2/ThemeAccentFill';
 
 // зачем (владелец 2026-09-30): V2-экраны «Диалогов» переносятся «1 в 1» по макету
 // dialogs.html (Liquid Glass). Здесь один раз собраны презентационные части макета из
@@ -111,7 +112,8 @@ export function DialogueGlassCta({
 }: DialogueGlassCtaProps) {
   const small = size === 'small';
   const light = !disabled && !ghost;
-  const ink = disabled ? glass.mutedText : light ? glass.ctaInk : glass.text;
+  // зачем (темы 2.0): главная кнопка в цвете темы; в «Спокойно» accent/accentInk = cta/ctaInk.
+  const ink = disabled ? glass.mutedText : light ? glass.accentInk : glass.text;
   return (
     <PressableHybrid
       testID={testID}
@@ -125,9 +127,10 @@ export function DialogueGlassCta({
       style={[small ? styles.ctaSmallHit : styles.ctaHit, style]}
       contentStyle={[
         small ? styles.ctaSmall : styles.cta,
-        { backgroundColor: light ? glass.cta : glass.opaqueControl, opacity: disabled ? 0.72 : 1 },
+        { backgroundColor: light ? glass.accent : glass.opaqueControl, opacity: disabled ? 0.72 : 1 },
       ]}
     >
+      {light ? <ThemeAccentFill glass={glass} radius={small ? 22 : 26} /> : null}
       {icon ? <Ionicons name={icon} size={small ? 18 : 20} color={ink} /> : null}
       <Text maxFontSizeMultiplier={1.3} style={[small ? styles.ctaSmallText : styles.ctaText, { color: ink }]}>{label}</Text>
       {trailingArrow ? (

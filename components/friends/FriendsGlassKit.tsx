@@ -3,6 +3,7 @@ import { Image as RNImage, Text, View, type StyleProp, type ViewStyle } from 're
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { coinRankRowForDisplay, isValidCoinRank } from '../../app/coin_rank_table_v1';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { ThemeAccentFill } from '../v2/ThemeAccentFill';
 import PressableHybrid from '../PressableHybrid';
 import { LinearGradient } from '../SafeLinearGradient';
 import { FONT_SCALE, useTheme } from '../ThemeContext';
@@ -117,7 +118,8 @@ type ButtonProps = {
 export function FriendsGlassButton({ glass, textScale, label, onPress, variant = 'primary', compact = false, disabled = false, icon, testID, accessibilityLabel, style }: ButtonProps) {
   const primary = variant === 'primary';
   const height = compact ? 44 : 48;
-  const ink = disabled ? glass.mutedText : primary ? glass.ctaInk : glass.text;
+  // зачем (темы 2.0): главная кнопка в цвете темы; в «Спокойно» accent/accentInk = cta/ctaInk.
+  const ink = disabled ? glass.mutedText : primary ? glass.accentInk : glass.text;
   return (
     <PressableHybrid
       testID={testID}
@@ -139,13 +141,15 @@ export function FriendsGlassButton({ glass, textScale, label, onPress, variant =
         justifyContent: 'center',
         gap: 10,
         overflow: 'hidden',
-        backgroundColor: disabled ? glass.opaqueControl : primary ? glass.cta : 'transparent',
+        backgroundColor: disabled ? glass.opaqueControl : primary ? glass.accent : 'transparent',
         borderWidth: primary ? 0 : 1, // guard-ok: контур ghost-кнопки макета, 1 px полупрозрачный
         borderColor: glass.glassEdge,
       }}
     >
       {primary && !disabled ? (
-        <LinearGradient pointerEvents="none" colors={[glass.lightTint, glass.cta, glass.cta]} style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0 }} />
+        glass.level === 'calm' && !glass.isLight
+          ? <LinearGradient pointerEvents="none" colors={[glass.lightTint, glass.cta, glass.cta]} style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0 }} />
+          : <ThemeAccentFill glass={glass} radius={height / 2} />
       ) : null}
       {icon ? <Ionicons name={icon} size={18} color={ink} /> : null}
       <FlowText testID="friends-button-label" provenance="authored" style={{ flexShrink: 1, textAlign: 'center', color: ink, fontSize: (compact ? 16 : 17) * textScale, lineHeight: (compact ? 21 : 22) * textScale, fontWeight: compact ? '600' : '700', includeFontPadding: false }}>

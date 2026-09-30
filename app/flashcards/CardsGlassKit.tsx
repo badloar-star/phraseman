@@ -16,6 +16,7 @@ import { StyleSheet, Text, TouchableOpacity, View, type StyleProp, type ViewStyl
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useTheme } from '../../components/ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { ThemeAccentFill } from '../../components/v2/ThemeAccentFill';
 import { fcHaptic } from './SoundService';
 
 export type CardsGlassTokens = ReturnType<typeof liquidGlassTokens>;
@@ -157,18 +158,20 @@ export function CardsGlassPrimaryButton({
           paddingHorizontal: 20,
           alignItems: 'center',
           justifyContent: 'center',
-          backgroundColor: disabled ? g.opaqueControl : ghost ? g.opaqueControl : g.cta,
+          // зачем (темы 2.0): accent/accentInk — в «Спокойно» это прежние cta/ctaInk.
+          backgroundColor: disabled ? g.opaqueControl : ghost ? g.opaqueControl : g.accent,
         },
         style,
       ]}
     >
+      {!disabled && !ghost ? <ThemeAccentFill glass={g} radius={27} /> : null}
       <Text
         style={{
           fontSize: 17,
           lineHeight: 22,
           fontWeight: '700',
           textAlign: 'center',
-          color: disabled ? g.mutedText : ghost ? g.text : g.ctaInk,
+          color: disabled ? g.mutedText : ghost ? g.text : g.accentInk,
           opacity: disabled ? 0.6 : 1,
         }}
       >

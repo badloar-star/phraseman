@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { ThemeAccentFill } from '../v2/ThemeAccentFill';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useTheme } from '../ThemeContext';
 
@@ -79,7 +80,8 @@ export function lv2NodePaint(
   state: 'completed' | 'current' | 'next' | 'locked',
   available: boolean,
 ): { readonly face: string; readonly ink: string } {
-  if (state === 'completed') return { face: g.cta, ink: g.ctaInk };
+  // зачем (темы 2.0): пройденный узел карты — цвет темы (это «прогресс»); в «Спокойно» = cta.
+  if (state === 'completed') return { face: g.accent, ink: g.accentInk };
   if (state === 'current' && available) return { face: g.text, ink: g.ctaInk };
   if (available) return { face: g.opaqueControl, ink: g.text };
   if (state === 'next') return { face: g.opaqueControl, ink: g.secondary };
@@ -119,7 +121,8 @@ export const Lv2Chip = memo(function Lv2Chip({
   const g = useLv2Glass();
   const ok = verdict === 'ok';
   const bad = verdict === 'bad';
-  const bg = ok ? g.goodFill : bad ? g.badFill : selected ? g.selected : g.opaqueControl;
+  // зачем (темы 2.0): выбранный вариант в цвете темы; в «Спокойно» accentSoft = selected.
+  const bg = ok ? g.goodFill : bad ? g.badFill : selected ? g.accentSoft : g.opaqueControl;
   const ink = ok ? g.good : bad ? g.bad : g.text;
   const plate = ok ? lv2Alpha(LV2_GOOD, 0.25) : bad ? lv2Alpha(LV2_BAD, 0.25) : g.plate;
   return (
@@ -170,8 +173,9 @@ export const Lv2Option = memo(function Lv2Option({
   const g = useLv2Glass();
   const ok = verdict === 'ok';
   const bad = verdict === 'bad';
-  const bg = ok ? g.goodSoft : bad ? g.badSoft : selected ? g.selected : g.opaqueCard;
-  const edge = ok ? g.goodEdge : bad ? g.badEdge : selected ? g.text : g.glassEdge;
+  // зачем (темы 2.0): выбор в цвете темы; «верно/ошибка» темой не красятся никогда.
+  const bg = ok ? g.goodSoft : bad ? g.badSoft : selected ? g.accentSoft : g.opaqueCard;
+  const edge = ok ? g.goodEdge : bad ? g.badEdge : selected ? (g.level === 'calm' ? g.text : g.accentBorder) : g.glassEdge;
   const ink = ok ? g.good : bad ? g.bad : g.text;
   return (
     <Pressable
@@ -226,8 +230,9 @@ export const Lv2Cta = memo(function Lv2Cta({
   right?: React.ReactNode;
 }) {
   const g = useLv2Glass();
-  const bg = disabled ? g.opaqueControl : ghost ? 'transparent' : g.cta;
-  const ink = disabled ? g.mutedText : ghost ? g.text : g.ctaInk;
+  // зачем (темы 2.0): главная кнопка в цвете темы; в «Спокойно» accent/accentInk = cta/ctaInk.
+  const bg = disabled ? g.opaqueControl : ghost ? 'transparent' : g.accent;
+  const ink = disabled ? g.mutedText : ghost ? g.text : g.accentInk;
   return (
     <Pressable
       testID={testID}
@@ -253,6 +258,7 @@ export const Lv2Cta = memo(function Lv2Cta({
         style,
       ]}
     >
+      {!disabled && !ghost ? <ThemeAccentFill glass={g} radius={26} /> : null}
       <Text style={[styles.ctaText, { color: ink }]}>{children}</Text>
       {right ? <View style={styles.ctaRight}>{right}</View> : null}
     </Pressable>

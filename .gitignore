@@ -398,3 +398,6 @@ functions-*/node_modules/
 
 # PhraseMan 2.0: сырые исходники владельца (голос, скриншоты) — репозиторий публичный, не коммитить
 docs/phraseman-2.0/sources/
+
+# очередь на эмулятор — локальное состояние
+.claude/semaphore/emulator.lock.d/

@@ -15,16 +15,6 @@ function block(startMarker: string, endMarker: string): string {
 }
 
 const handlers = {
-  grantHelperShards: () =>
-    block(
-      "window.grantHelperShards = async function(uid) {",
-      "\n  window.grantHelperPlus",
-    ),
-  grantHelperPlus: () =>
-    block(
-      "window.grantHelperPlus = async function(uid) {",
-      "\n  window.editShards",
-    ),
   grantAdminPremiumChoice: () =>
     block(
       "async function grantAdminPremiumChoice(uid, spec) {",
@@ -37,6 +27,8 @@ const handlers = {
     ),
 };
 
+// зачем: борд помощников удалён целиком (540e660d2), жемчуг снят (D70) —
+// проверки grantHelperShards/grantHelperPlus убраны; выдача и отзыв Plus остаются под сторожем.
 describe("live admin Plus/helper protected callable contract", () => {
   it("has exactly one cached callable getter for access and reward mutations", () => {
     expect(
@@ -58,7 +50,6 @@ describe("live admin Plus/helper protected callable contract", () => {
   it.each([
     ["grantAdminPremiumChoice", true],
     ["revokeAdminVip", false],
-    ["grantHelperPlus", true],
   ] as const)(
     "%s requires a reason and sends an idempotent VIP access command",
     (name, active) => {
@@ -81,7 +72,6 @@ describe("live admin Plus/helper protected callable contract", () => {
   it.each([
     "grantAdminPremiumChoice",
     "revokeAdminVip",
-    "grantHelperPlus",
   ] as const)(
     "%s trusts only an acknowledged canonical server result before refreshing UI",
     (name) => {
@@ -131,27 +121,7 @@ describe("live admin Plus/helper protected callable contract", () => {
     expect(revoke).toContain("renderVipSurveyResponses()");
   });
 
-  it("grants helper shards through adminGrantReward with bounded input and optional bounded comment", () => {
-    const body = handlers.grantHelperShards();
-    expect(body).toMatch(/amt\s*>\s*10000/);
-    expect(body).toContain("const reason = String(await showInputModal({");
-    expect(body).toMatch(/if\s*\(!reason\)/);
-    expect(body).toContain("allowEmpty: true");
-    expect(body).toContain(".slice(0, 200)");
-    expect(body).toContain("await getAdminGrantFn()({");
-    expect(body).toContain("type: 'shards'");
-    expect(body).toContain("amount: amt");
-    expect(body).toContain("comment,");
-    expect(body).toContain("reason,");
-    expect(body).toContain("requestId,");
-    expect(body).toContain("idempotencyKey,");
-    expect(body).toContain("response.data.ok !== true");
-    expect(body).toContain("response.data.amount");
-  });
-
   it.each([
-    "grantHelperShards",
-    "grantHelperPlus",
     "grantAdminPremiumChoice",
     "revokeAdminVip",
   ] as const)(
@@ -171,9 +141,5 @@ describe("live admin Plus/helper protected callable contract", () => {
     const premium = handlers.grantAdminPremiumChoice();
     expect(premium).toContain("spec.kind === 'forever' ? 0 : spec.n * 30");
     expect(premium).toMatch(/durationDays\s*>\s*3650/);
-
-    const helper = handlers.grantHelperPlus();
-    expect(helper).toContain("months === 0 ? 0 : months * 30");
-    expect(helper).toMatch(/durationDays\s*>\s*3650/);
   });
 });

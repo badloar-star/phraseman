@@ -22,17 +22,16 @@ describe('live admin runtime recovery contract', () => {
   });
 
   test('retains every established control-panel workflow removed by the V9 merge', () => {
+    // зачем: недельные бонусы (boons) сняты в 2.0 вместе с Weekly Boon — их панель
+    // в Пульте удалена, поэтому 'cp-boons-json'/'loadControlPanelBoons' больше не сторожим. Панель цен уроков (cp-prem-lessons) снята вместе с покупкой уроков за жемчуг (D70).
     const ids = [
-      'cp-boons-json',
       'cp-force-min-version',
       'cp-manual-update-campaign',
       'cp-promo-banner-campaign',
       'cp-prem-features',
-      'cp-prem-lessons',
       'cp-prem-limits',
     ];
     const handlers = [
-      'loadControlPanelBoons',
       'loadControlPanelForceUpdate',
       'saveForceUpdateConfig',
       'saveManualUpdateConfig',

@@ -1,5 +1,5 @@
 import { LEARNING_V2_OWNER_EN_TITLES_RU } from "../../components/learning-v2/learningV2OwnerLayout";
-import LearningV2PulseCourse from "../../components/learning-v2/LearningV2PulseCourse";
+import LearningV2ChaptersCourse from "../../components/learning-v2/LearningV2ChaptersCourse";
 import React, {
   useState,
   useEffect,
@@ -56,6 +56,7 @@ import {
   LESSON_PEARL_UNLOCK_PRICE,
   buyLessonWithPearls,
 } from "../lessons_pearl_unlock";
+import { LESSON_PEARL_UNLOCK_ENABLED } from "../lessons_pearl_unlock_flag"; // зачем: PM-148 — покупка урока за жемчуг выключена, кнопка не показывается
 // зачем: настоящий ассет жемчужины на кнопке разблокировки (владелец 18.09).
 // Тот же источник, что в шите покупки наборов — иконка не разойдётся.
 import { oskolokImageForPackShards } from "../oskolok";
@@ -65,9 +66,11 @@ import { HOME_BACK_FALLBACK, safeRouterBack } from "../navigation_back";
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
+  subscribeAccountGeneration,
   withAccountTransitionLock,
 } from "../account_generation";
-import { useAppSnapshotSelector } from "../app_snapshot_store";
+import { subscribeAppSnapshot, useAppSnapshotSelector } from "../app_snapshot_store";
+import { getRunesBalanceRead, peekRunes } from "../runes_system";
 import { getStableId, peekStableId } from "../stable_id";
 import { projectDevLessonAccess } from "../dev_plus_controls";
 import { useTabNav } from "../TabContext";
@@ -80,6 +83,18 @@ import { useTopFadeScroll } from "../../components/TopFadeScrollContext";
 import { useBouncy, useBouncyStyle } from "../../components/BouncyScrollView";
 import { LinearGradient } from "../../components/SafeLinearGradient";
 import { triLang, type Lang } from "../../constants/i18n";
+import { liquidGlassTokens } from "../../constants/liquidGlassThemePalette";
+import { LessonsListGlassCard, type LessonsListCardState } from "../../components/lessons/LessonsListGlassCard";
+import {
+  LessonsListGlassAttestationCard,
+  LessonsListGlassExamCard,
+} from "../../components/lessons/LessonsListGlassExamCards";
+import {
+  lessonsGlassAlpha,
+  lessonsListCopy,
+  lessonsListStarCount,
+  LessonsListLevelHeader,
+} from "../../components/lessons/LessonsListGlassKit";
 import {
   GOLD_GRADIENTS,
   GOLD_RICH,
@@ -89,7 +104,6 @@ import {
   goldShadow,
 } from "../../constants/goldTheme";
 import { OLIVE_GRADIENTS, oliveShadow } from "../../constants/oliveTheme";
-import { getLessonExamIcon } from "../../constants/generatedThemeIconAssets";
 import { isLightThemeMode, type ThemeMode } from "../../constants/theme";
 import GoldBevel from "../../components/GoldBevel";
 import { DEV_CONTENT_UNLOCK, ENABLE_DEV_TOOLS, ENABLE_DEV_STUDY_TARGET_LANG } from "../config";
@@ -103,6 +117,7 @@ import { hapticSoftImpact, hapticTap } from "../../hooks/use-haptics";
 import { useReduceMotionPreference } from "../../hooks/use_reduce_motion";
 import { useTabContentBottomPad } from "../../hooks/use-tab-content-bottom-pad";
 import { useRuntimeActive } from "../../hooks/use_runtime_active";
+import { useMyCoinRankBinding } from "../../hooks/use_my_coin_rank";
 import LearningV2InlineNodeReveal from "../../components/LearningV2InlineNodeReveal";
 import LearningV2MapNode from "../../components/LearningV2MapNode";
 import type { LearningV2RuneFlightPoint } from "../../components/LearningV2RuneFlight";
@@ -114,7 +129,6 @@ import {
   subscribeLearningV2SessionStarResults,
   type LearningV2SessionStarResultsV1,
 } from "../learning_v2_session_star_results_store";
-import { getExamMedalTier, getEarnedDots } from "../medal_utils";
 import { prefetchLessonMenuCache } from "../lesson_menu";
 import ReportErrorButton from "../../components/ReportErrorButton";
 import ThemedChoiceModal from "../../components/ThemedChoiceModal";
@@ -129,20 +143,11 @@ import { useRequestedFeatureIntro } from "../../hooks/use_requested_feature_intr
 import FeatureIntroModal from "../../components/FeatureIntroModal";
 import PressableHybrid from "../../components/PressableHybrid";
 import EnergyBar from "../../components/EnergyBar";
+import { useEnergy } from "../../components/EnergyContext";
 import DialogsTabContent from "../../components/DialogsTabContent";
 import PlusBadge from "../../components/PlusBadge";
 import { isAiDialogEnabled } from "../ai_dialog_flags";
-import { readAnyPersonalPlanState } from "../personal_plan_state";
-import {
-  PERSONAL_PLAN_SUNSET_AT_MS,
-  resolvePersonalPlanPremiumProbe,
-  isPersonalPlanDevBypassActive,
-  resolvePersonalPlanSunsetAccess,
-} from "../personal_plan_sunset";
-import { readPersonalPlanSunsetEffectiveNow } from "../personal_plan_sunset_clock";
-import { redirectRetiredPersonalPlan } from "../personal_plan_retired_redirect";
 import { onAppEvent } from "../events";
-import { shouldGateFeature } from "../feature_gates";
 import {
   getVerifiedPremiumAccessStatus,
   invalidatePremiumCache,
@@ -167,7 +172,6 @@ import {
   loadLessonsTabStateFromStorage,
   type LessonsTabSnapshot,
 } from "../lessons_tab_state";
-import { getHomeMenuImages } from "../home_menu_icons";
 import { useStableSafeAreaInsets } from "../stable_safe_area_metrics";
 import {
   animateNextLayoutShiftWithoutEntryFade,
@@ -175,6 +179,7 @@ import {
 } from "../smooth_layout";
 import { peekCurrentExamBestPct } from "../exam_best_pct_overlay";
 import { noAndroidOutline } from "../../constants/androidGlow";
+import { coinRankRowForDisplay, isValidCoinRank } from "../coin_rank_table_v1";
 import {
   buildLearningV2CourseAccordionMapFromPreparedProgressV1,
   prepareLearningV2CourseAccordionProgressV1,
@@ -261,6 +266,7 @@ function loadLearningV2AudioPackV1() {
 import type { LearningV2ActiveCourseCatalogV1 } from "../../modules/learning-v2/runtime/course_active_catalog_v1";
 import type { LearningV2CourseSessionOutcomeKindV1 } from "../../modules/learning-v2/runtime/course_lesson_release_index_v1";
 import { learningV2CourseSessionIdV1 } from "../../modules/learning-v2/content/course_topology_v1";
+import { learningV2LessonIsAccessible } from "../learning_v2_access_policy";
 import { learningV2SessionTitleV1 } from "../../modules/learning-v2/content/session_titles_v1.generated";
 import {
   factoryNativeLearningV2AvailabilityV1,
@@ -533,7 +539,7 @@ function MedalDots({ dots }: { dots: string[] }) {
   );
 }
 function LessonExamThemeIcon({
-  themeMode,
+  themeMode: _themeMode,
   size,
   label,
 }: {
@@ -541,14 +547,11 @@ function LessonExamThemeIcon({
   size: number;
   label: string;
 }) {
+  const { theme: t } = useTheme();
   return (
-    <Image
-      source={getLessonExamIcon(themeMode)}
-      style={{ width: size, height: size, flexShrink: 0 }}
-      contentFit="contain"
-      accessibilityLabel={label}
-      accessibilityIgnoresInvertColors
-    />
+    <View accessible accessibilityLabel={label} style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+      <Ionicons name="school-outline" size={Math.round(size * 0.78)} color={t.accent} />
+    </View>
   );
 }
 /**
@@ -1454,6 +1457,7 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
   reduceMotion,
   runtimeActive,
   devUnlockAll,
+  isPremium,
   earnedStars,
   onSessionPress,
   onSessionCompleted,
@@ -1467,6 +1471,8 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
   runtimeActive: boolean;
   /** DEV-only presentation override; не изменяет learner progress или registry. */
   devUnlockAll: boolean;
+  /** Free включает первые два полных урока V2; с урока 3 нужен Plus. */
+  isPremium: boolean;
   /** Звёзды 0–3 за пройденную сессию (витрина, без авторитета). */
   earnedStars?: 0 | 1 | 2 | 3;
   onSessionPress: (
@@ -1519,7 +1525,8 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
   const current = row.state === "current";
   const completed = row.state === "completed";
   const devUnlocked = devUnlockAll && !current && !completed;
-  const accessible = devUnlockAll || current || completed;
+  const premiumLocked = !learningV2LessonIsAccessible(row.lessonOrdinal, isPremium);
+  const accessible = !premiumLocked && (devUnlockAll || current || completed);
   const checkpoint =
     row.role === "chapter_checkpoint" || row.role === "final_exam";
   const label =
@@ -1672,7 +1679,7 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
           onCompletedTransition={onSessionCompleted}
           style={{
             transform: [{ translateX: wave }],
-            opacity: row.state === "locked" && !devUnlocked ? 0.78 : 1,
+            opacity: premiumLocked || (row.state === "locked" && !devUnlocked) ? 0.78 : 1,
           }}
         >
           {checkpoint ? (
@@ -2160,6 +2167,82 @@ const ChapterCard = React.memo(function ChapterCard({
   );
 });
 
+type LegacyCoinBalanceBinding = Readonly<{
+  ownerStableId: string;
+  accountGeneration: number;
+  balance: number;
+}>;
+
+type LegacyAccountToken = ReturnType<typeof captureAccountGeneration>;
+
+function activeLegacyAccountOwner(token: LegacyAccountToken): string | null {
+  if (token.phase !== "active") return null;
+  return token.stableId?.trim() || null;
+}
+
+/**
+ * Read-only V1 header projection. It starts neutral and becomes visible only
+ * after a durable wallet read for the exact active owner/generation. Snapshot
+ * updates may refresh that already-validated binding, never establish it.
+ */
+function useLegacyCoinBalanceBinding(enabled: boolean): LegacyCoinBalanceBinding | null {
+  const initialTokenRef = useRef<LegacyAccountToken>(captureAccountGeneration());
+  const [token, setToken] = useState<LegacyAccountToken>(initialTokenRef.current);
+  const [binding, setBinding] = useState<LegacyCoinBalanceBinding | null>(null);
+
+  useEffect(() => {
+    const subscription = subscribeAccountGeneration((nextToken) => {
+      setBinding(null);
+      setToken(nextToken);
+    });
+    return () => subscription.remove();
+  }, []);
+
+  useEffect(() => {
+    const ownerStableId = activeLegacyAccountOwner(token);
+    if (!enabled || !ownerStableId) {
+      setBinding(null);
+      return undefined;
+    }
+
+    let alive = true;
+    let durableReadValidated = false;
+    setBinding(null);
+
+    void getRunesBalanceRead().then((read) => {
+      if (!alive
+        || read.quality !== "durable"
+        || !isCurrentAccountGeneration(token, ownerStableId)) return;
+      durableReadValidated = true;
+      setBinding(Object.freeze({
+        ownerStableId,
+        accountGeneration: token.generation,
+        balance: read.wallet.balance,
+      }));
+    }).catch(() => {
+      // Fail closed: an unavailable durable wallet remains a neutral placeholder.
+    });
+
+    const unsubscribeSnapshot = subscribeAppSnapshot(() => {
+      if (!alive
+        || !durableReadValidated
+        || !isCurrentAccountGeneration(token, ownerStableId)) return;
+      setBinding(Object.freeze({
+        ownerStableId,
+        accountGeneration: token.generation,
+        balance: peekRunes(),
+      }));
+    });
+
+    return () => {
+      alive = false;
+      unsubscribeSnapshot();
+    };
+  }, [enabled, token]);
+
+  return binding;
+}
+
 export default function LessonsTab({
   overlayIdentityEpoch: _overlayIdentityEpoch = 0,
   presentation = "push",
@@ -2196,7 +2279,9 @@ export default function LessonsTab({
   const router = useRouter();
   const topFadeScroll = useTopFadeScroll();
   const { goHome, focusTick, runtimeOwnerId } = useTabNav();
-  const { theme: t, f, themeMode } = useTheme();
+  const { theme: t, f, themeMode, liquidGlassThemeId } = useTheme();
+  const learnGlass = liquidGlassTokens(liquidGlassThemeId);
+  const { energyReady: legacyEnergyReady } = useEnergy();
   const learningV2ReduceMotionPreference = useReduceMotionPreference();
   const insets = useStableSafeAreaInsets();
   const listBottomPad = isRetainedTab
@@ -2210,7 +2295,6 @@ export default function LessonsTab({
   const goldAntique = GOLD_RICH.agedGold;
   const goldHairline = GOLD_RICH.hairline;
   const goldSurface = GOLD_RICH.blackPiano;
-  const menuImages = getHomeMenuImages(themeMode);
   const screenTitleColor = t.textPrimary;
   const { lang, s } = useLang();
   const learningV2SnapshotNickname = useAppSnapshotSelector(
@@ -2231,7 +2315,6 @@ export default function LessonsTab({
   const {
     hasPremiumAccess: isPremium,
     devLocalPlusOverride,
-    accessResolved,
   } = usePremium();
   const {
     devContentUnlock: effectiveDevContentUnlock,
@@ -2246,13 +2329,6 @@ export default function LessonsTab({
     },
     devLocalPlusOverride,
   );
-  const planAccess = useFeatureAccess("personal_plan");
-  const personalPlanFeatureRequiresPremium = shouldGateFeature(
-    "personal_plan",
-    false,
-  );
-  const [personalPlanSunsetTabVisible, setPersonalPlanSunsetTabVisible] =
-    useState(false);
   const dialogAccess = useFeatureAccess("ai_dialog");
   const [scores, setScores] = useState<number[]>(
     () => boot?.scores ?? new Array(32).fill(0),
@@ -2271,7 +2347,7 @@ export default function LessonsTab({
     () => boot?.examPassCounts ?? {},
   );
   // persistedUnlocked — это список уроков, ранее открытых через unlockLesson()
-  // (после прохождения предыдущего на ★2.5+, покупки премиума, сдачи зачёта).
+  // (после прохождения предыдущего на ★2+ (D71, BRONZE_UNLOCK_SCORE), покупки премиума, сдачи зачёта).
   // Используется как safety-net, чтобы юзер после restore из облака или просто
   // апдейта не терял уже открытые уроки, если у него best_score < 2.5
   // (медаль не сохранена) и lesson{N}_progress пропал (он не в SYNC_KEYS).
@@ -2329,6 +2405,21 @@ export default function LessonsTab({
   // вкладки — таббар с Главной оставался поверх карты (владелец 20.09).
   // Прячем его только пока открыта карта; при уходе запрос отпускается сам.
   useHideTabBar(page === "v2");
+  const legacyCoinRankBinding = useMyCoinRankBinding();
+  const legacyCoinBalanceBinding = useLegacyCoinBalanceBinding(
+    lessonsRuntimeActive && page === "lessons",
+  );
+  const legacyCoinProjectionTrusted = Boolean(
+    legacyCoinRankBinding
+    && legacyCoinBalanceBinding
+    && legacyCoinRankBinding.ownerStableId === legacyCoinBalanceBinding.ownerStableId
+    && legacyCoinRankBinding.accountGeneration === legacyCoinBalanceBinding.accountGeneration,
+  );
+  const legacyCoinRank = legacyCoinProjectionTrusted ? legacyCoinRankBinding?.rank ?? null : null;
+  const legacyCoinBalance = legacyCoinProjectionTrusted ? legacyCoinBalanceBinding?.balance ?? null : null;
+  const legacyCoinRankSource = isValidCoinRank(legacyCoinRank)
+    ? coinRankRowForDisplay(legacyCoinRank).source
+    : null;
   const [learningV2FounderNickname, setLearningV2FounderNickname] =
     useState<string | null>(() =>
       normalizeLearningV2FounderNicknameV1(learningV2SnapshotNickname),
@@ -3485,6 +3576,20 @@ export default function LessonsTab({
       sessionOrdinal: number,
       state: LearningV2AccordionSessionStateV1,
     ) => {
+      if (!learningV2LessonIsAccessible(selectedLesson, isPremium) && !learningV2DevUnlockAllActive) {
+        showLearningV2DenialHint(triLang(lang, {
+          ru: "Уроки 3+ доступны в Plus",
+          en: "Lessons 3+ are available in Plus",
+          uk: "Уроки 3+ доступні в Plus",
+          es: "Las lecciones 3+ están disponibles en Plus",
+          "pt-BR": "As lições 3+ estão disponíveis no Plus",
+          vi: "Bài 3+ có trong Plus",
+          id: "Pelajaran 3+ tersedia di Plus",
+          tr: "3+ dersleri Plus'ta kullanılabilir",
+          pl: "Lekcje 3+ są dostępne w Plus",
+        }));
+        return;
+      }
       const selectedCourseSessionId = learningV2CourseSessionIdV1(
         selectedLesson,
         sessionOrdinal,
@@ -3590,6 +3695,7 @@ export default function LessonsTab({
         });
     },
     [
+      isPremium,
       lang,
       learningV2DevUnlockAllActive,
       learningV2Progress.currentSessionId,
@@ -3624,170 +3730,6 @@ export default function LessonsTab({
     }
     safeRouterBack(router, HOME_BACK_FALLBACK as any);
   }, [goHome, initialPage, isRetainedTab, page, router]);
-  useFocusEffect(
-    useCallback(() => {
-      let alive = true;
-      let timer: ReturnType<typeof setTimeout> | null = null;
-      let refreshInFlight = false;
-      let refreshRequested = false;
-
-      const clearEligibilityTimer = (): void => {
-        if (timer === null) return;
-        clearTimeout(timer);
-        timer = null;
-      };
-
-      const scheduleEligibilityRefresh = (effectiveNowMs: number): void => {
-        clearEligibilityTimer();
-        if (!alive) return;
-        const remainingMs = PERSONAL_PLAN_SUNSET_AT_MS - effectiveNowMs;
-        if (remainingMs <= 0) return;
-        timer = setTimeout(
-          () => {
-            void refreshEligibility();
-          },
-          Math.min(remainingMs, 60_000),
-        );
-      };
-
-      const refreshEligibility = async (): Promise<void> => {
-        if (!alive) return;
-        if (refreshInFlight) {
-          refreshRequested = true;
-          return;
-        }
-        refreshInFlight = true;
-        clearEligibilityTimer();
-        let effectiveNowMs = Date.now();
-        let shouldPoll = false;
-        try {
-          const state = await readAnyPersonalPlanState();
-          const localAccess = resolvePersonalPlanSunsetAccess({
-            hasOriginalFeatureAccess: true,
-            savedState: state,
-            nowMs: effectiveNowMs,
-          });
-          if (localAccess.status !== "allowed") {
-            if (alive) setPersonalPlanSunsetTabVisible(false);
-            return;
-          }
-          shouldPoll = true;
-          effectiveNowMs = await readPersonalPlanSunsetEffectiveNow();
-          if (!alive) return;
-          const access = resolvePersonalPlanSunsetAccess({
-            hasOriginalFeatureAccess: true,
-            savedState: state,
-            nowMs: effectiveNowMs,
-          });
-          const allowed = access.status === "allowed";
-          shouldPoll = allowed;
-          setPersonalPlanSunsetTabVisible(allowed);
-        } catch {
-          if (alive) setPersonalPlanSunsetTabVisible(false);
-        } finally {
-          refreshInFlight = false;
-          if (!alive) return;
-          if (refreshRequested) {
-            refreshRequested = false;
-            void refreshEligibility();
-            return;
-          }
-          if (shouldPoll) scheduleEligibilityRefresh(effectiveNowMs);
-        }
-      };
-
-      const requestEligibilityRefresh = (): void => {
-        void refreshEligibility();
-      };
-      const subscriptions = [
-        onAppEvent("personal_plan_updated", requestEligibilityRefresh),
-        onAppEvent("cloud_profile_hydrated", requestEligibilityRefresh),
-        onAppEvent("auth_provider_linked", requestEligibilityRefresh),
-        onAppEvent("account_deleted", requestEligibilityRefresh),
-      ];
-      setPersonalPlanSunsetTabVisible(false);
-      void refreshEligibility();
-      return () => {
-        alive = false;
-        clearEligibilityTimer();
-        for (const subscription of subscriptions) subscription.remove();
-      };
-    }, []),
-  );
-  const openLearningRoute = useCallback(() => {
-    hapticTap();
-    if (!personalPlanSunsetTabVisible) return;
-    void (async () => {
-      try {
-        const state = await readAnyPersonalPlanState();
-        const effectiveNowMs = await readPersonalPlanSunsetEffectiveNow();
-        const access = resolvePersonalPlanSunsetAccess({
-          hasOriginalFeatureAccess: true,
-          savedState: state,
-          nowMs: effectiveNowMs,
-        });
-        if (access.status !== "allowed") {
-          setPersonalPlanSunsetTabVisible(false);
-          return;
-        }
-        // зачем (владелец 2026-08-24): раньше отсутствие плана прятало вкладку
-        // прямо по тапу — раздел «исчезал». В dev-обходе плана у разработчика
-        // нет никогда, поэтому ведём на создание плана вместо скрытия.
-        if (!state) {
-          if (isPersonalPlanDevBypassActive()) {
-            router.push("/personal_plan_setup" as never);
-            return;
-          }
-          setPersonalPlanSunsetTabVisible(false);
-          return;
-        }
-        const premiumProbe = resolvePersonalPlanPremiumProbe({
-          mode: "premium-required",
-          accessResolved,
-          featureRequiresPremium: personalPlanFeatureRequiresPremium,
-          featureAccess: planAccess,
-        });
-        // зачем: та же правка, что в personal_plan_sunset_guard — в dev-обходе
-        // премиум СЧИТАЕТСЯ подтверждённым. Пропуск одной лишь сетевой проверки
-        // оставлял verifiedPlanAccess=false и уводил на пейвол.
-        let verifiedPlanAccess =
-          premiumProbe === "allowed" || isPersonalPlanDevBypassActive();
-        if (!verifiedPlanAccess) {
-          invalidatePremiumCache();
-          verifiedPlanAccess = await getVerifiedPremiumAccessStatus().catch(
-            () => false,
-          );
-        }
-        const decisionNowMs = await readPersonalPlanSunsetEffectiveNow();
-        const finalAccess = resolvePersonalPlanSunsetAccess({
-          hasOriginalFeatureAccess: true,
-          savedState: state,
-          nowMs: decisionNowMs,
-        });
-        if (finalAccess.status !== "allowed") {
-          setPersonalPlanSunsetTabVisible(false);
-          return;
-        }
-        if (!verifiedPlanAccess) {
-          redirectRetiredPersonalPlan(router);
-          return;
-        }
-        router.push(
-          (state.status === "completed"
-            ? "/personal_plan_complete"
-            : "/personal_plan") as any,
-        );
-      } catch {
-        setPersonalPlanSunsetTabVisible(false);
-      }
-    })();
-  }, [
-    accessResolved,
-    personalPlanFeatureRequiresPremium,
-    personalPlanSunsetTabVisible,
-    planAccess,
-    router,
-  ]);
   const openDialogs = useCallback(() => {
     if (page === "dialogs") return;
     hapticTap();
@@ -4213,7 +4155,7 @@ export default function LessonsTab({
     // локальная, по уже загруженному списку — 0 чтений Firestore.
     const query = legacyLessonQuery.trim().toLocaleLowerCase();
     if (query) {
-      return listData.filter((item) => {
+      const matches = listData.filter((item) => {
         if (item.kind !== "lesson") return false;
         const lessonNumber = item.index + 1;
         return (
@@ -4221,6 +4163,23 @@ export default function LessonsTab({
           || String(lessonNumber) === query
         );
       });
+      // зачем (learn.html A3): найденные уроки идут под заголовками своих уровней,
+      // как в макете. Только вид: состав найденного тот же, заголовки берём из listData.
+      const grouped: ListItem[] = [];
+      let lastLevel: CourseLevel | null = null;
+      for (const item of matches) {
+        if (item.kind !== "lesson") continue;
+        const level = getCourseLevelForLesson(item.index + 1);
+        if (level !== lastLevel) {
+          const header = listData.find(
+            (entry) => entry.kind === "header" && entry.label === level,
+          );
+          if (header) grouped.push(header);
+          lastLevel = level;
+        }
+        grouped.push(item);
+      }
+      return grouped;
     }
     // зачем: владелец 21.09 — «убери A1 A2 B1 B2 кнопочки вверху, пусть всё
     // будет списком как было когда-то». Здесь стоял фильтр по выбранному
@@ -4357,6 +4316,12 @@ export default function LessonsTab({
     if (__DEV__) console.log('[COMBO-ENTRY] press:ok → /combined_lesson_pick');
     router.push('/combined_lesson_pick');
   }, [isPremium, router]);
+  // зачем: затухание справа у ряда кнопок нужно, только если ряд реально листается
+  // (крупный шрифт/узкий экран). Два замера на монтаж — дёшево, без работы в кадрах.
+  const [legacyRailWidth, setLegacyRailWidth] = useState(0);
+  const [legacyRailContentWidth, setLegacyRailContentWidth] = useState(0);
+  const legacyRailOverflows =
+    legacyRailWidth > 0 && legacyRailContentWidth > legacyRailWidth + 1;
   // зачем: здесь жила подкрутка рельсы к выбранному уровню
   // (доводка + ref на рельсу). Она подкручивала чип B2 в
   // зону видимости на узком экране. Чипов уровней больше нет (владелец
@@ -4394,14 +4359,45 @@ export default function LessonsTab({
     },
     [effectiveLegacyFreeLessonCap, router, scores],
   );
-  // ── Exam card: рендерится внутри своей главы, визуал без изменений ──
+  // зачем (владелец 2026-09-30, перенос списка на Liquid Glass): тот же обработчик нажатия,
+  // что жил внутри LessonCard для старой ветки — вынесен наверх, чтобы стеклянная карточка
+  // оставалась чистой разметкой. Ветка levelLockedByExam там всегда была false (см.
+  // renderLessonCard), поэтому её здесь нет — поведение то же самое.
+  const handleLegacyLessonPress = useCallback(
+    (num: number) => {
+      hapticTap();
+      const access = resolveLessonAccess({
+        lessonId: num,
+        unlocked: Boolean(unlockedLessons[num - 1]),
+        purchased: purchasedLessons.includes(num),
+        isPremium,
+        devMode: effectiveDevContentUnlock,
+        noLimits: effectiveNoLimits,
+        legacyFreeLessonCap: effectiveLegacyFreeLessonCap,
+      });
+      if (access === "available") {
+        void prefetchLessonMenuCache(num, studyTarget);
+        router.push({ pathname: "/lesson_menu", params: { id: num } });
+      } else if (access === "premium_required") {
+        openLessonPaywall(num);
+      } else {
+        setGateModal({ kind: "lesson", prevNum: num - 1, lessonNum: num });
+      }
+    },
+    [
+      effectiveDevContentUnlock,
+      effectiveLegacyFreeLessonCap,
+      effectiveNoLimits,
+      isPremium,
+      openLessonPaywall,
+      purchasedLessons,
+      router,
+      studyTarget,
+      unlockedLessons,
+    ],
+  );
+  // ── Exam card (Liquid Glass `.exc` макета learn.html) ──
   const renderExamCard = (lvl: string): React.ReactNode => {
-    const themeExamMeta = EXAM_META_BY_THEME[themeMode] ?? EXAM_META_SKETCH;
-    const sketchMeta = themeExamMeta[lvl];
-    const goldLevel = goldCefrAccent(lvl);
-    const meta = isGoldTheme
-      ? { bg: goldSurface, accent: goldLevel.accent }
-      : sketchMeta;
     const [from, to] =
       lvl === "A1"
         ? [1, 8]
@@ -4439,11 +4435,9 @@ export default function LessonsTab({
       studyTarget === "en" || studyTarget === "fr"
         ? peekCurrentExamBestPct(studyTarget, examLevel)
         : 0;
-    const examMedal = getExamMedalTier(
-      Math.max(currentTargetStateBestPct, overlayBestPct),
-    );
-    const examPass = examPassCounts[lvl] ?? 0;
-    const examDots = getEarnedDots(examMedal, examPass);
+    // зачем: медальные точки сняты в 2.0 (spec_learn «Удалено»); лучший результат
+    // остаётся — его озвучивает карточка экзамена для чтения экрана.
+    const examBestPct = Math.max(currentTargetStateBestPct, overlayBestPct);
     const label = triLang(lang, {
       ru: isB2 ? "Экзамен" : `Экзамен ${lvl}`,
       en: isB2 ? "Exam" : `${lvl} exam`,
@@ -4458,15 +4452,16 @@ export default function LessonsTab({
     const subLine = result
       ? result.passed
         ? triLang(lang, {
-            ru: `✅ Сдан — ${result.pct}%`,
-            en: `✅ Passed — ${result.pct}%`,
-            uk: `✅ Здано — ${result.pct}%`,
-            es: `✅ Superado — ${result.pct}%`,
-            "pt-BR": `✅ Aprovado — ${result.pct}%`,
-            vi: `✅ Đã vượt qua — ${result.pct}%`,
-            id: `✅ Lulus — ${result.pct}%`,
-            tr: `✅ Geçildi — ${result.pct}%`,
-            pl: `✅ Zdane — ${result.pct}%`,
+            // зачем: макет learn.html A5 — «Сдан — 92%» без эмодзи-галочки.
+            ru: `Сдан — ${result.pct}%`,
+            en: `Passed — ${result.pct}%`,
+            uk: `Здано — ${result.pct}%`,
+            es: `Superado — ${result.pct}%`,
+            "pt-BR": `Aprovado — ${result.pct}%`,
+            vi: `Đã vượt qua — ${result.pct}%`,
+            id: `Lulus — ${result.pct}%`,
+            tr: `Geçildi — ${result.pct}%`,
+            pl: `Zdane — ${result.pct}%`,
           })
         // зачем (аудит по Библии, 2026-08-26): голый крестик с процентом бил
         // по несдавшему (Часть V п.6). Рядом стоит «✅ Сдано» — держим тот же
@@ -4480,9 +4475,9 @@ export default function LessonsTab({
         ? frenchExamGateCopy("level", lang).title
         : allDone
           ? triLang(lang, {
-              ru: "Нажми чтобы начать",
+              ru: "Нажми, чтобы начать",
               en: "Tap to start",
-              uk: "Натисни щоб почати",
+              uk: "Натисни, щоб почати",
               es: "Toca para empezar",
               "pt-BR": "Toque para começar",
               vi: "Nhấn để bắt đầu",
@@ -4514,6 +4509,9 @@ export default function LessonsTab({
                   tr: `Önce ${prevExamLevel} sınavı`,
                   pl: `Najpierw egzamin ${prevExamLevel}`,
                 })
+              // зачем: макет пишет «на 2★», но проверка scoreReady выше всё ещё требует 4.5
+              // (90 %, выше порога 2★ по D36). Пока правило не сменили, честно называем
+              // реальный порог, иначе человек наберёт 2★ и упрётся в закрытый экзамен.
               : triLang(lang, {
                   ru: `Заверши все уроки ${lvl} на 4.5+`,
                   en: `Complete all ${lvl} lessons with 4.5+`,
@@ -4526,174 +4524,48 @@ export default function LessonsTab({
                   pl: `Ukończ wszystkie lekcje ${lvl} na 4,5+`,
                 });
     return (
-      <Animated.View
+      <LessonsListGlassExamCard
         key={`e-${lvl}`}
-        style={{
-          marginTop: 8,
-          transform: [{ scale: 1 }],
-          ...(isGoldTheme ? goldShadow(allDone ? 2 : 1) : {}),
-          ...{},
+        glass={learnGlass}
+        level={lvl}
+        title={label}
+        status={subLine}
+        faint={!allDone && !result}
+        bestPct={examBestPct}
+        onPress={() => {
+          hapticTap();
+          const firstLessonByLevel =
+            lvl === "A1" ? 1 : lvl === "A2" ? 9 : lvl === "B1" ? 19 : 29;
+          if (examPremiumRequired) {
+            openLessonPaywall(
+              requiresPremiumForLesson(
+                firstLessonByLevel,
+                effectiveLegacyFreeLessonCap,
+              )
+                ? firstLessonByLevel
+                : to,
+            );
+          } else if (!examSourceAvailable) {
+            setGateModal({ kind: "frenchExam", level: lvl });
+          } else if (allDone) {
+            router.push({ pathname: "/level_exam", params: { level: lvl } });
+          } else if (isPremium && prevExamLevel) {
+            setGateModal({
+              kind: "levelGate",
+              level: lvl,
+              prevLevel: prevExamLevel,
+              // зачем: соседняя сессия добавила механику «открыть урок за
+              // жемчужины» и сделала lessonNum обязательным, но эту точку
+              // вызова пропустила — сборка падала на типах. Берём первый урок
+              // уровня: именно он стоит за этим гейтом, и именно его логично
+              // предложить открыть. Саму механику не трогаем.
+              lessonNum: firstLessonByLevel,
+            });
+          } else {
+            setGateModal({ kind: "exam", level: lvl });
+          }
         }}
-      >
-        <TouchableOpacity
-          activeOpacity={0.82}
-          onPress={() => {
-            hapticTap();
-            const firstLessonByLevel =
-              lvl === "A1" ? 1 : lvl === "A2" ? 9 : lvl === "B1" ? 19 : 29;
-            if (examPremiumRequired) {
-              openLessonPaywall(
-                requiresPremiumForLesson(
-                  firstLessonByLevel,
-                  effectiveLegacyFreeLessonCap,
-                )
-                  ? firstLessonByLevel
-                  : to,
-              );
-            } else if (!examSourceAvailable) {
-              setGateModal({ kind: "frenchExam", level: lvl });
-            } else if (allDone) {
-              router.push({ pathname: "/level_exam", params: { level: lvl } });
-            } else if (isPremium && prevExamLevel) {
-              setGateModal({
-                kind: "levelGate",
-                level: lvl,
-                prevLevel: prevExamLevel,
-                // зачем: соседняя сессия добавила механику «открыть урок за
-                // жемчужины» и сделала lessonNum обязательным, но эту точку
-                // вызова пропустила — сборка падала на типах. Берём первый урок
-                // уровня: именно он стоит за этим гейтом, и именно его логично
-                // предложить открыть. Саму механику не трогаем.
-                lessonNum: firstLessonByLevel,
-              });
-            } else {
-              setGateModal({ kind: "exam", level: lvl });
-            }
-          }}
-          style={{
-            minHeight: 78,
-            marginHorizontal: isGoldTheme ? 14 : 0,
-            borderRadius: isGoldTheme ? 14 : 0,
-            borderWidth: isGoldTheme ? 1 : 0,
-            borderColor: isGoldTheme
-              ? allDone
-                ? GOLD_RICH.hairlineStrong
-                : GOLD_RICH.hairlineQuiet
-              : "transparent",
-            flexDirection: "row",
-            backgroundColor: meta.bg,
-            opacity: allDone ? 1 : isPremium ? 0.38 : 0.5,
-            overflow: "hidden",
-          }}
-        >
-          {isGoldTheme && (
-            <LinearGradient
-              colors={allDone ? goldLevel.card : goldCardGradient("muted")}
-              locations={GOLD_SURFACE_LOCATIONS}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={{
-                position: "absolute",
-                left: 0,
-                right: 0,
-                top: 0,
-                bottom: 0,
-              }}
-            />
-          )}
-          {false}
-          {false}
-          {isGoldTheme && (
-            <GoldBevel radius={14} intensity={allDone ? "strong" : "quiet"} />
-          )}
-          <View
-            style={{
-              flex: 1,
-              justifyContent: "center",
-              paddingHorizontal: 20,
-              gap: 4,
-            }}
-          >
-            <View
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                height: isGoldTheme ? 1 : 1.5,
-                backgroundColor: isGoldTheme
-                  ? GOLD_RICH.hairlineStrong
-                  : meta.accent + "30",
-              }}
-            />
-            <View
-              style={{
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                right: 0,
-                height: isGoldTheme ? 1 : 1.5,
-                backgroundColor: isGoldTheme
-                  ? GOLD_RICH.hairlineDark
-                  : meta.accent + "30",
-              }}
-            />
-            <View
-              style={{ flexDirection: "row", alignItems: "center", gap: 10 }}
-            >
-              {result?.passed ? (
-                <Ionicons
-                  name="checkmark-circle"
-                  size={isB2 ? 26 : 22}
-                  color={meta.accent}
-                />
-              ) : allDone || isPremium ? (
-                <LessonExamThemeIcon
-                  themeMode={themeMode}
-                  size={isB2 ? 34 : 30}
-                  label={label}
-                />
-              ) : (
-                <Ionicons
-                  name="lock-closed-outline"
-                  size={isB2 ? 26 : 22}
-                  color={meta.accent}
-                />
-              )}
-              <View style={{ flex: 1 }}>
-                <Text
-                  style={{
-                    color: meta.accent,
-                    fontSize: isB2 ? f.h2 : f.bodyLg,
-                    fontWeight: "800",
-                  }}
-                  maxFontSizeMultiplier={1}
-                >
-                  {label}
-                </Text>
-                <Text
-                  style={{
-                    color: meta.accent + "AA",
-                    fontSize: f.sub,
-                    marginTop: 1,
-                  }}
-                  maxFontSizeMultiplier={1}
-                >
-                  {subLine}
-                </Text>
-              </View>
-              {examDots.length > 0 && <MedalDots dots={examDots} />}
-              {allDone && (
-                <Ionicons
-                  name="chevron-forward"
-                  size={16}
-                  color={meta.accent + "80"}
-                />
-              )}
-            </View>
-          </View>
-        </TouchableOpacity>
-      </Animated.View>
+      />
     );
   };
 
@@ -4716,6 +4588,39 @@ export default function LessonsTab({
     onLearningV2PressOverride?: () => void;
   }): React.ReactNode => {
     const num = index + 1;
+    if (page !== "v2") {
+      // зачем (владелец 2026-09-30): старый каталог «Обучение» рисуется стеклянной карточкой
+      // `.lc` из learn.html. Состояние считается из тех же данных, что и прежняя плашка
+      // (unlockedLessons, progCounts, requiresPremiumForLesson), — доступ не меняется.
+      const legacyUnlocked = Boolean(unlockedLessons[index]);
+      const legacyPct = Math.min(100, Math.round(((progCounts[index] ?? 0) / 50) * 100));
+      const legacyPremiumRequired =
+        !isPremium &&
+        !legacyUnlocked &&
+        !effectiveNoLimits &&
+        requiresPremiumForLesson(num, effectiveLegacyFreeLessonCap);
+      const legacyState: LessonsListCardState = legacyPremiumRequired
+        ? { kind: "plus" }
+        : !legacyUnlocked
+          ? { kind: "locked", prevNum: Math.max(1, num - 1) }
+          : legacyPct >= 100
+            ? { kind: "done", stars: lessonsListStarCount(scores[index]) }
+            : legacyPct > 0
+              ? { kind: "progress", pct: legacyPct }
+              : { kind: "open" };
+      return (
+        <LessonsListGlassCard
+          key={`l-${num}`}
+          glass={learnGlass}
+          lang={lang}
+          num={num}
+          name={name}
+          state={legacyState}
+          current={currentLessonNum === num}
+          onPressLesson={handleLegacyLessonPress}
+        />
+      );
+    }
     const isUnlocked = page === "v2" ? learningV2Available : unlockedLessons[index];
     const bg = page === "v2" && !learningV2Available
       ? isLightThemeMode(themeMode) ? "#B5BABD" : "#555960"
@@ -4974,34 +4879,119 @@ export default function LessonsTab({
         flexShrink: 0,
       }}
     >
-      <View
-        collapsable={false}
+      <PressableHybrid
+        testID="legacy-lessons-liquid-resource"
+        accessibilityLabel={triLang(lang, {
+          ru: `Монеты: ${legacyCoinBalance ?? "не загружены"}`,
+          en: `Coins: ${legacyCoinBalance ?? "not loaded"}`,
+          uk: `Монети: ${legacyCoinBalance ?? "не завантажені"}`,
+          es: `Monedas: ${legacyCoinBalance ?? "sin cargar"}`,
+          "pt-BR": `Moedas: ${legacyCoinBalance ?? "não carregadas"}`,
+          vi: `Xu: ${legacyCoinBalance ?? "chưa tải"}`,
+          id: `Koin: ${legacyCoinBalance ?? "belum dimuat"}`,
+          tr: `Jetonlar: ${legacyCoinBalance ?? "yüklenmedi"}`,
+          pl: `Monety: ${legacyCoinBalance ?? "nie wczytano"}`,
+        })}
+        onPress={() => {
+          hapticTap();
+          router.push("/coin_rank");
+        }}
+        variant="icon"
+        // зачем: пилюля `.pill.s` макета (30 dp) — область нажатия добираем до 44 hitSlop'ом.
+        hitSlop={{ top: 7, bottom: 7, left: 4, right: 4 }}
         style={{
-          backgroundColor: t.bgCard,
-          borderRadius: 999,
-          paddingHorizontal: 7,
+          height: 30,
+          borderRadius: 15,
+          overflow: "hidden",
+        }}
+        contentStyle={{
+          height: 30,
+          paddingHorizontal: 12,
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 7,
         }}
       >
-        <RuneBalanceChip
-          testID="legacy-lessons-rune-balance"
-          color={t.textPrimary}
-          active={lessonsRuntimeActive && page === "lessons"}
-          size={22}
+        <LinearGradient
+          pointerEvents="none"
+          colors={[learnGlass.opaqueControl, learnGlass.opaqueCard]}
+          style={{ position: "absolute", top: 0, right: 0, bottom: 0, left: 0 }}
         />
-      </View>
-      <EnergyBar
-        size={24}
-        maxWidth={88}
-        ownerActive={lessonsRuntimeActive && page === "lessons"}
-        compact
-      />
+        {legacyCoinRankSource ? (
+          <Image
+            testID="legacy-lessons-coin-rank-asset"
+            source={legacyCoinRankSource}
+            style={{ width: 18, height: 18 }}
+            contentFit="contain"
+          />
+        ) : (
+          <View
+            testID="legacy-lessons-coin-rank-loading"
+            style={{ width: 18, height: 18, borderRadius: 9, backgroundColor: learnGlass.line }}
+          />
+        )}
+        <Text
+          testID="legacy-lessons-coin-balance"
+          maxFontSizeMultiplier={1.2}
+          style={{ color: learnGlass.text, fontSize: 15, fontWeight: "700", fontVariant: ["tabular-nums"] }}
+        >
+          {legacyCoinBalance === null ? "—" : String(legacyCoinBalance)}
+        </Text>
+      </PressableHybrid>
+      {legacyEnergyReady ? (
+        <EnergyBar
+          size={24}
+          maxWidth={88}
+          ownerActive={lessonsRuntimeActive && page === "lessons"}
+          compact
+        />
+      ) : (
+        <View
+          testID="legacy-lessons-energy-loading"
+          accessibilityLabel={triLang(lang, {
+            ru: "Энергия загружается",
+            en: "Energy is loading",
+            uk: "Енергія завантажується",
+            es: "La energía se está cargando",
+            "pt-BR": "A energia está carregando",
+            vi: "Đang tải năng lượng",
+            id: "Energi sedang dimuat",
+            tr: "Enerji yükleniyor",
+            pl: "Energia jest ładowana",
+          })}
+          style={{
+            width: 88,
+            height: 24,
+            borderRadius: 12,
+            borderWidth: 1,
+            borderColor: learnGlass.glassEdge,
+            backgroundColor: learnGlass.opaqueControl,
+          }}
+        />
+      )}
     </View>
   );
 
   return (
     <>
       <ScreenGradient forceFullBleed>
-        <View style={{ flex: 1, backgroundColor: page === "dialogs" ? "transparent" : t.bgPrimary }}>
+        {page === "lessons" ? (
+          <LinearGradient
+            pointerEvents="none"
+            colors={[learnGlass.bgTop, learnGlass.bg, learnGlass.bgBottom]}
+            style={{ position: "absolute", top: 0, right: 0, bottom: 0, left: 0 }}
+          />
+        ) : null}
+        <View
+          style={{
+            flex: 1,
+            backgroundColor:
+              page === "lessons" || page === "dialogs"
+                ? "transparent"
+                : t.bgPrimary,
+          }}
+        >
         {/* Фиксированная шапка (вне скролла): назад + заголовок + энергия.
           Push-экран сам держит верхний safe-area отступ (insets.top ниже). */}
         <View style={{ display: page === "dialogs" ? "flex" : "none" }}>
@@ -5161,33 +5151,6 @@ export default function LessonsTab({
                 }
               }}
             />
-            {personalPlanSunsetTabVisible ? (
-              <TabUnderlineButton
-                label={triLang(lang, {
-                  ru: "Маршрут",
-                  en: "Route",
-                  uk: "Маршрут",
-                  es: "Ruta",
-                  "pt-BR": "Rota",
-                  vi: "Lộ trình",
-                  id: "Rute",
-                  tr: "Rota",
-                  pl: "Trasa",
-                })}
-                active={false}
-                color={t.textPrimary}
-                mutedColor={t.textMuted}
-                accent={isGoldTheme ? GOLD_RICH.champagne : t.accent}
-                fontSize={f.body}
-                themeMode={themeMode}
-                plusBadge={
-                  personalPlanFeatureRequiresPremium &&
-                  (!accessResolved || !planAccess)
-                }
-                plusBadgeLabel="Plus"
-                onPress={openLearningRoute}
-              />
-            ) : null}
             {dialogsEnabled ? (
               <TabUnderlineButton
                 label={triLang(lang, {
@@ -5275,7 +5238,7 @@ export default function LessonsTab({
             // монтировалась ЗАНОВО и вступление играло второй раз. Карта
             // теперь рисуется сразу и живёт, пока раздел открыт; модал лежит
             // поверх неё.
-            <LearningV2PulseCourse
+            <LearningV2ChaptersCourse
               // зачем: здесь стоял key={learningV2ProjectionScopeKey}. Ключ
               // собирается из captureAccountGeneration().generation, который
               // читается ВНЕ зависимостей useMemo: при пересчёте мемо ключ
@@ -5353,144 +5316,102 @@ export default function LessonsTab({
           ) : (
           <View
             testID="legacy-lessons-catalog"
-            style={{ flex: 1, backgroundColor: t.bgPrimary }}
+            style={{ flex: 1, backgroundColor: "transparent" }}
           >
+            {/* зачем (владелец 2026-09-30, learn.html A1): шапка «Обучение» 40/46 в одну строку.
+                Раньше заголовок стоял с flex: 1 между кнопкой «назад» и плашками монет/энергии
+                и на узком экране ломался по буквам («Обу / чен / ие»). Теперь заголовок не
+                сжимается, а монета и энергия при нехватке места переносятся под него (flexWrap).
+                Вкладка корневая — «назад» только когда экран открыт поверх (push). */}
             <View
               style={{
                 paddingTop: headerTopPad,
-                paddingHorizontal: 12,
-                paddingBottom: 8,
+                paddingHorizontal: 20,
               }}
             >
               <View
                 style={{
-                  minHeight: 52,
+                  minHeight: 46,
                   flexDirection: "row",
+                  flexWrap: "wrap",
                   alignItems: "center",
-                  gap: 8,
+                  columnGap: 10,
+                  rowGap: 8,
                 }}
               >
-                <PressableHybrid
-                  testID="legacy-lessons-back-home"
-                  accessibilityLabel={triLang(lang, {
-                    ru: "Назад",
-                    en: "Back",
-                    uk: "Назад",
-                    es: "Atrás",
-                    "pt-BR": "Voltar",
-                    vi: "Quay lại",
-                    id: "Kembali",
-                    tr: "Geri",
-                    pl: "Wstecz",
-                  })}
-                  onPress={handleLessonsBack}
-                  variant="icon"
-                  style={{
-                    width: 44,
-                    height: 44,
-                    borderRadius: 18,
-                    backgroundColor: t.bgCard,
-                  }}
-                  contentStyle={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-                >
-                  <Ionicons
-                    name="chevron-back"
-                    size={23}
-                    color={t.textPrimary}
-                  />
-                </PressableHybrid>
+                {!isRetainedTab ? (
+                  <PressableHybrid
+                    testID="legacy-lessons-back-home"
+                    accessibilityLabel={triLang(lang, {
+                      ru: "Назад",
+                      en: "Back",
+                      uk: "Назад",
+                      es: "Atrás",
+                      "pt-BR": "Voltar",
+                      vi: "Quay lại",
+                      id: "Kembali",
+                      tr: "Geri",
+                      pl: "Wstecz",
+                    })}
+                    onPress={handleLessonsBack}
+                    variant="icon"
+                    style={{
+                      width: 44,
+                      height: 44,
+                      borderRadius: 22,
+                      backgroundColor: learnGlass.opaqueControl,
+                      borderWidth: 1,
+                      borderColor: learnGlass.glassEdge,
+                    }}
+                    contentStyle={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+                  >
+                    <Ionicons
+                      name="chevron-back"
+                      size={22}
+                      color={learnGlass.text}
+                    />
+                  </PressableHybrid>
+                ) : null}
                 <Text
+                  testID="legacy-lessons-title"
+                  accessibilityRole="header"
+                  maxFontSizeMultiplier={1.3}
                   style={{
-                    flex: 1,
-                    minWidth: 0,
-                    color: t.textPrimary,
-                    fontSize: 21,
-                    lineHeight: 25,
+                    flexShrink: 0,
+                    maxWidth: "100%",
+                    color: learnGlass.text,
+                    fontSize: 40,
+                    lineHeight: 46,
                     fontWeight: "700",
-                    letterSpacing: -0.35,
+                    letterSpacing: -0.6,
                   }}
                 >
                   {legacyLessonsScreenTitle}
                 </Text>
-                {legacyLessonsResourceHud}
+                <View style={{ marginLeft: "auto" }}>{legacyLessonsResourceHud}</View>
               </View>
-            </View>
-
-            {/* Поле поиска живёт НАД рядом чипов в своём слоте: ряд остаётся
-                ровно на месте, интерфейс не разъезжается (требование владельца). */}
-            {legacySearchOpen ? (
-              <View
+              <Text
                 style={{
-                  marginHorizontal: 16,
-                  marginBottom: 10,
-                  height: 46,
-                  borderRadius: 16,
-                  flexDirection: "row",
-                  alignItems: "center",
-                  gap: 10,
-                  paddingHorizontal: 14,
-                  backgroundColor: t.bgCard,
+                  marginTop: 6,
+                  color: learnGlass.secondary,
+                  fontSize: 16,
+                  lineHeight: 20,
                 }}
               >
-                <Ionicons name="search" size={18} color={t.textGhost} />
-                <TextInput
-                  testID="legacy-lessons-search-input"
-                  value={legacyLessonQuery}
-                  onChangeText={setLegacyLessonQuery}
-                  autoFocus
-                  returnKeyType="search"
-                  accessibilityLabel={triLang(lang, {
-                    ru: "Поиск по урокам", uk: "Пошук за уроками", en: "Search lessons",
-                    es: "Buscar lecciones", "pt-BR": "Buscar lições", vi: "Tìm bài học",
-                    id: "Cari pelajaran", tr: "Derslerde ara", pl: "Szukaj lekcji",
-                  })}
-                  placeholder={triLang(lang, {
-                    ru: "Урок или тема", uk: "Урок або тема", en: "Lesson or topic",
-                    es: "Lección o tema", "pt-BR": "Lição ou tema", vi: "Bài học hoặc chủ đề",
-                    id: "Pelajaran atau topik", tr: "Ders veya konu", pl: "Lekcja lub temat",
-                  })}
-                  placeholderTextColor={t.textGhost}
-                  style={{
-                    flex: 1,
-                    minWidth: 0,
-                    color: t.textPrimary,
-                    fontSize: 15,
-                    fontWeight: "600",
-                    padding: 0,
-                  }}
-                />
-                <TouchableOpacity
-                  testID="legacy-lessons-search-close"
-                  accessibilityRole="button"
-                  accessibilityLabel={triLang(lang, {
-                    ru: "Закрыть поиск", uk: "Закрити пошук", en: "Close search",
-                    es: "Cerrar búsqueda", "pt-BR": "Fechar busca", vi: "Đóng tìm kiếm",
-                    id: "Tutup pencarian", tr: "Aramayı kapat", pl: "Zamknij wyszukiwanie",
-                  })}
-                  hitSlop={10}
-                  onPress={() => {
-                    hapticTap();
-                    setLegacyLessonQuery("");
-                    setLegacySearchOpen(false);
-                  }}
-                >
-                  <Ionicons name="close" size={18} color={t.textMuted} />
-                </TouchableOpacity>
-              </View>
-            ) : null}
+                {lessonsListCopy.subtitle(lang)}
+              </Text>
+            </View>
 
+            {/* `.ltools` макета: круглые кнопки поиска и «Смешать темы» (комбинированный урок). */}
             <View
               style={{
                 flexDirection: "row",
                 alignItems: "center",
-                gap: 6,
-                paddingHorizontal: 8,
-                paddingBottom: 8,
+                gap: 10,
+                paddingHorizontal: 20,
+                marginTop: 26,
               }}
             >
-              {/* Лупа — ЧЛЕН ряда, а не гость: та же высота 44 и радиус 15,
-                  что у чипов уровней. Появляется всегда: список уроков длинный
-                  (32 урока), искать по нему глазами дорого. */}
               <TouchableOpacity
                 testID="legacy-lessons-search-toggle"
                 accessibilityRole="button"
@@ -5510,35 +5431,28 @@ export default function LessonsTab({
                   });
                 }}
                 style={{
-                  width: 46,
+                  width: 44,
                   height: 44,
-                  borderRadius: 15,
+                  borderRadius: 22,
                   alignItems: "center",
                   justifyContent: "center",
                   flexShrink: 0,
-                  backgroundColor: legacySearchOpen ? t.accent : t.bgCard,
+                  // зачем: активная лупа — светлая заливка cta, как «.rb.fill» в макете A3.
+                  backgroundColor: legacySearchOpen ? learnGlass.cta : learnGlass.opaqueControl,
+                  borderWidth: 1,
+                  borderColor: legacySearchOpen ? learnGlass.cta : learnGlass.glassEdge,
                 }}
               >
                 <Ionicons
                   name="search"
-                  size={18}
-                  color={legacySearchOpen ? t.correctText : t.textSecond}
+                  size={20}
+                  color={legacySearchOpen ? learnGlass.ctaInk : learnGlass.text}
                 />
               </TouchableOpacity>
 
-              {/* ОДИН РЯД ЦЕЛИКОМ (владелец 2026-09-17: «это один ряд весь»).
-                  Внутри прокрутки живут ВСЕ элементы: A1 A2 B1 B2, COMBO и
-                  «Новые уроки». Раньше чип «Новые уроки» стоял СОСЕДОМ рельсы и
-                  забирал до 150pt фиксированной ширины — уровням оставалось
-                  ~180pt на экране 360pt, и B2 срезало пополам (скриншот
-                  владельца). Теперь ширину никто не делит: ряд просто листается,
-                  а затухание справа показывает, что продолжение есть. Обводок
-                  нет нигде — граница только тоном, это запрет владельца.
-
-                  ПО ВЕРТИКАЛИ: PressableHybrid ставит alignSelf:'stretch' ПЕРЕД
-                  пользовательским стилем. Чип, перебивавший это на 'center',
-                  внутри горизонтального ScrollView схлопывался по высоте. Поэтому
-                  alignSelf у чипов не задаём — выравнивает контейнер прокрутки. */}
+              {/* Ряд листается, только если кнопкам тесно (крупный шрифт/узкий экран);
+                  затухание справа появляется лишь тогда — иначе оно ложилось бы полосой
+                  на фон темы. */}
               <View style={{ flex: 1, minWidth: 0 }}>
                 <ScrollView
                   horizontal
@@ -5547,33 +5461,18 @@ export default function LessonsTab({
                   // зачем: рельса обязана иметь свою высоту ДО замера контента —
                   // иначе первый кадр прыгает (правило стабильности раскладки).
                   style={{ flexGrow: 0 }}
+                  onLayout={(e) => setLegacyRailWidth(e.nativeEvent.layout.width)}
+                  onContentSizeChange={(w) => setLegacyRailContentWidth(w)}
                   contentContainerStyle={{
                     flexDirection: "row",
                     alignItems: "center",
-                    gap: 6,
-                    // зачем: место под затухание, чтобы последний чип
-                    // докручивался целиком и не жил под градиентом.
+                    gap: 10,
                     paddingRight: 18,
                   }}
                 >
-                  {/* зачем: владелец 21.09 — «убери A1 A2 B1 B2 кнопочки
-                      вверху, пусть всё будет списком как было когда-то».
-                      Здесь жили чипы уровней, собранные по COURSE_LEVELS. Список
-                      теперь идёт сплошняком, а границу уровня показывает
-                      заголовок прямо в потоке — переключатель дублировал бы
-                      то, что и так видно при прокрутке.
-                      Ряд остался: поиск, COMBO и «Новые уроки» владелец
-                      убирать не просил. */}
-                  {/* зачем (владелец 2026-09-17): пользователь просил
-                      «комбинированный урок» — несколько тем вперемешку, потому
-                      что после 50 вопросов одной темы первые вопросы следующей
-                      «туплю жёстко», а в жизни темы перемешаны. Вход владелец
-                      велел сделать ПЯТОЙ кнопкой в этом же ряду и ПОСЛЕДНЕЙ,
-                      чтобы привычный порядок уровней не сдвинулся.
-                      Геометрия копирует чипы уровней выше (minWidth/height/
-                      borderRadius), отличие только в цвете: золото = платное,
-                      иначе кнопку прочитают как «пятый уровень».
-                      alignSelf не задаём — см. комментарий к рельсе выше. */}
+                  {/* зачем (владелец 2026-09-17): «комбинированный урок» — несколько тем
+                      вперемешку. В макете 2.0 это круглая кнопка «Смешать темы» рядом с
+                      лупой. alignSelf не задаём: выравнивает контейнер прокрутки. */}
                   <PressableHybrid
                     testID="legacy-lessons-level-combo"
                     accessibilityRole="button"
@@ -5591,10 +5490,12 @@ export default function LessonsTab({
                     onPress={openCombinedLesson}
                     variant="chip"
                     style={{
-                      width: 52,
+                      width: 44,
                       height: 44,
-                      borderRadius: 15,
-                      backgroundColor: t.goldBg,
+                      borderRadius: 22,
+                      backgroundColor: learnGlass.opaqueControl,
+                      borderWidth: 1,
+                      borderColor: learnGlass.glassEdge,
                     }}
                     contentStyle={{
                       height: 44,
@@ -5603,104 +5504,142 @@ export default function LessonsTab({
                       justifyContent: "center",
                     }}
                   >
-                    {/* зачем (владелец 2026-09-17): «кнопка должна быть маленькой,
-                        а не длинной» — слово COMBO делало чип вдвое шире уровней
-                        и выдавливало ряд за экран. Оставляем один знак: иконка
-                        перемешивания читается без подписи, а размер совпадает
-                        с A1/A2/B1/B2. Название несёт accessibilityLabel выше. */}
-                    <Ionicons name="shuffle" size={22} color={t.gold} />
+                    <Ionicons name="shuffle" size={20} color={learnGlass.text} />
                   </PressableHybrid>
-                  <PressableHybrid
-                    testID="legacy-lessons-open-new-lessons"
-                    accessibilityLabel={triLang(lang, {
-                      ru: "Новые уроки",
-                      en: "New lessons",
-                      uk: "Нові уроки",
-                      es: "Lecciones nuevas",
-                      "pt-BR": "Lições novas",
-                      vi: "Bài học mới",
-                      id: "Pelajaran baru",
-                      tr: "Yeni dersler",
-                      pl: "Nowe lekcje",
-                    })}
-                    accessibilityState={{
-                      disabled: !LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY,
-                    }}
-                    onPress={openNewLessons}
-                    variant="chip"
-                    style={{
-                      // зачем: alignSelf убран намеренно — выравнивание задаёт
-                      // контейнер прокрутки; спор с alignSelf:'stretch' из
-                      // PressableHybrid схлопывал высоту чипа (B2 на скриншоте
-                      // владельца 2026-09-17).
-                      // зачем (владелец 2026-09-17): чип переехал ВНУТРЬ рельсы
-                      // («это один ряд весь») и получил ТОТ ЖЕ размер, что чипы
-                      // уровней и COMBO — 52×44. Раньше он занимал до 150pt и
-                      // выдавливал уровни за правый край; теперь ряд состоит из
-                      // одинаковых кнопок и читается как единая лента.
-                      flexShrink: 0,
-                      width: 52,
-                      height: 44,
-                      borderRadius: 15,
-                      backgroundColor: t.bgCard,
-                      // зачем: «серая» недоступность даётся тоном, а не обводкой —
-                      // владелец запрещает рамки вокруг контейнеров.
-                      opacity: LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? 1 : 0.45,
-                    }}
-                    contentStyle={{
-                      height: 44,
-                      paddingHorizontal: 0,
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    {/* зачем (владелец 2026-09-17): «кнопка новые уроки тоже
-                        должна быть такого же размера». Подпись убрана — при
-                        ширине 52 она не поместилась бы без ужатия шрифта, а
-                        ужимать шрифт владелец запрещает. Название несёт
-                        accessibilityLabel выше, а недоступность по-прежнему
-                        объясняет строка-ответ под рядом. */}
-                    <Ionicons
-                      name="sparkles"
-                      size={22}
-                      color={
-                        LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? t.accent : t.textMuted
-                      }
-                    />
-                  </PressableHybrid>
+                  {/* зачем (learn.html, spec_learn «Удалено в 2.0»): чип «Новые уроки» в шапке
+                      списка снят. Пока курс нельзя открыть вручную (релиз), кнопки нет вовсе —
+                      раньше она лишь отвечала «курс в разработке». В дев-сборке вход остаётся. */}
+                  {LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? (
+                    <PressableHybrid
+                      testID="legacy-lessons-open-new-lessons"
+                      accessibilityLabel={triLang(lang, {
+                        ru: "Новые уроки",
+                        en: "New lessons",
+                        uk: "Нові уроки",
+                        es: "Lecciones nuevas",
+                        "pt-BR": "Lições novas",
+                        vi: "Bài học mới",
+                        id: "Pelajaran baru",
+                        tr: "Yeni dersler",
+                        pl: "Nowe lekcje",
+                      })}
+                      accessibilityState={{
+                        disabled: !LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY,
+                      }}
+                      onPress={openNewLessons}
+                      variant="chip"
+                      style={{
+                        flexShrink: 0,
+                        width: 44,
+                        height: 44,
+                        borderRadius: 22,
+                        backgroundColor: learnGlass.opaqueControl,
+                        borderWidth: 1,
+                        borderColor: learnGlass.glassEdge,
+                        opacity: LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? 1 : 0.45,
+                      }}
+                      contentStyle={{
+                        height: 44,
+                        paddingHorizontal: 0,
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Ionicons name="sparkles" size={20} color={learnGlass.text} />
+                    </PressableHybrid>
+                  ) : null}
                 </ScrollView>
-                {/* зачем: единственный признак, что рельса листается. Тоном, а не
-                    обводкой — обводки контейнеров владелец запрещает. Не
-                    перехватывает тапы, поэтому чип под ним остаётся нажимаемым. */}
-                <LinearGradient
-                  pointerEvents="none"
-                  colors={[`${t.bgPrimary}00`, t.bgPrimary]}
-                  start={{ x: 0, y: 0.5 }}
-                  end={{ x: 1, y: 0.5 }}
-                  style={{
-                    position: "absolute",
-                    right: 0,
-                    top: 0,
-                    bottom: 0,
-                    width: 20,
-                  }}
-                />
+                {legacyRailOverflows ? (
+                  <LinearGradient
+                    pointerEvents="none"
+                    colors={[lessonsGlassAlpha(learnGlass.bgTop, 0), learnGlass.bgTop]}
+                    start={{ x: 0, y: 0.5 }}
+                    end={{ x: 1, y: 0.5 }}
+                    style={{
+                      position: "absolute",
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                      width: 20,
+                    }}
+                  />
+                ) : null}
               </View>
             </View>
 
-            {/* зачем: ответ недоступной кнопки. Живёт под строкой с чипом,
-                выровнен по правому краю — под самим чипом, а не под рельсом
-                уровней, чтобы было видно, на что именно это ответ. Читаемый
-                кегль, а не мелкая сноска-расшифровка. */}
+            {/* `.srch` макета A3: поле под рядом кнопок — ряд остаётся на месте. */}
+            {legacySearchOpen ? (
+              <View
+                style={{
+                  marginHorizontal: 20,
+                  marginTop: 16,
+                  height: 48,
+                  borderRadius: 16,
+                  flexDirection: "row",
+                  alignItems: "center",
+                  gap: 10,
+                  paddingLeft: 16,
+                  backgroundColor: learnGlass.opaqueControl,
+                  borderWidth: 1,
+                  borderColor: learnGlass.glassEdge,
+                }}
+              >
+                <Ionicons name="search" size={18} color={learnGlass.secondary} />
+                <TextInput
+                  testID="legacy-lessons-search-input"
+                  value={legacyLessonQuery}
+                  onChangeText={setLegacyLessonQuery}
+                  autoFocus
+                  returnKeyType="search"
+                  accessibilityLabel={triLang(lang, {
+                    ru: "Поиск по урокам", uk: "Пошук за уроками", en: "Search lessons",
+                    es: "Buscar lecciones", "pt-BR": "Buscar lições", vi: "Tìm bài học",
+                    id: "Cari pelajaran", tr: "Derslerde ara", pl: "Szukaj lekcji",
+                  })}
+                  placeholder={triLang(lang, {
+                    ru: "Урок или тема", uk: "Урок або тема", en: "Lesson or topic",
+                    es: "Lección o tema", "pt-BR": "Lição ou tema", vi: "Bài học hoặc chủ đề",
+                    id: "Pelajaran atau topik", tr: "Ders veya konu", pl: "Lekcja lub temat",
+                  })}
+                  placeholderTextColor={learnGlass.secondary}
+                  selectionColor={learnGlass.text}
+                  style={{
+                    flex: 1,
+                    minWidth: 0,
+                    color: learnGlass.text,
+                    fontSize: 16,
+                    padding: 0,
+                  }}
+                />
+                <TouchableOpacity
+                  testID="legacy-lessons-search-close"
+                  accessibilityRole="button"
+                  accessibilityLabel={triLang(lang, {
+                    ru: "Закрыть поиск", uk: "Закрити пошук", en: "Close search",
+                    es: "Cerrar búsqueda", "pt-BR": "Fechar busca", vi: "Đóng tìm kiếm",
+                    id: "Tutup pencarian", tr: "Aramayı kapat", pl: "Zamknij wyszukiwanie",
+                  })}
+                  onPress={() => {
+                    hapticTap();
+                    setLegacyLessonQuery("");
+                    setLegacySearchOpen(false);
+                  }}
+                  style={{ width: 44, height: 46, alignItems: "center", justifyContent: "center" }}
+                >
+                  <Ionicons name="close" size={18} color={learnGlass.secondary} />
+                </TouchableOpacity>
+              </View>
+            ) : null}
+
+            {/* зачем: ответ недоступной кнопки «Новые уроки» (только дев-сборка, см. выше). */}
             {learningV2LockedNoticeVisible ? (
               <Text
                 testID="legacy-lessons-new-lessons-locked-notice"
                 accessibilityLiveRegion="polite"
                 style={{
-                  paddingHorizontal: 12,
-                  paddingBottom: 10,
-                  marginTop: -2,
-                  color: t.textSecond,
+                  paddingHorizontal: 20,
+                  marginTop: 10,
+                  color: learnGlass.secondary,
                   fontSize: 14,
                   lineHeight: 19,
                   fontWeight: "600",
@@ -5741,15 +5680,15 @@ export default function LessonsTab({
               // поиска здесь невозможен (уровни всегда что-то содержат).
               ListEmptyComponent={
                 legacyLessonQuery.trim() ? (
-                  <View style={{ paddingHorizontal: 40, paddingTop: 44, alignItems: "center" }}>
-                    <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: "800", textAlign: "center" }}>
+                  <View style={{ paddingHorizontal: 30, paddingTop: 60, alignItems: "center" }}>
+                    <Text style={{ color: learnGlass.text, fontSize: 18, fontWeight: "700", textAlign: "center" }}>
                       {triLang(lang, {
                         ru: "Ничего не нашлось", uk: "Нічого не знайшлося", en: "Nothing found",
                         es: "No se encontró nada", "pt-BR": "Nada encontrado", vi: "Không tìm thấy gì",
                         id: "Tidak ada yang cocok", tr: "Bir şey bulunamadı", pl: "Nic nie znaleziono",
                       })}
                     </Text>
-                    <Text style={{ color: t.textMuted, fontSize: 14, lineHeight: 21, marginTop: 8, textAlign: "center" }}>
+                    <Text style={{ color: learnGlass.secondary, fontSize: 15, lineHeight: 21, marginTop: 8, textAlign: "center" }}>
                       {triLang(lang, {
                         ru: "Попробуй короче — например «прош» вместо целой фразы.",
                         uk: "Спробуй коротше — наприклад «мин» замість цілої фрази.",
@@ -5852,6 +5791,7 @@ export default function LessonsTab({
                       reduceMotion={learningV2ReduceMotionPreference !== false}
                       runtimeActive={lessonsRuntimeActive}
                       devUnlockAll={learningV2DevUnlockAllActive}
+                      isPremium={isPremium}
                       earnedStars={
                         item.kind === "v2_session"
                           ? learningV2StarResults[
@@ -5867,192 +5807,18 @@ export default function LessonsTab({
                   );
                 }
                 if (item.kind === "attestation") {
-                  const attestationAccent = isGoldTheme ? goldBright : t.accent;
-                  const attestationColors = isGoldTheme
-                    ? goldCardGradient("selected")
-                    : [t.bgSurface2, t.bgSurface, t.bgCard];
-                  const attestationBorder = isGoldTheme
-                    ? GOLD_RICH.hairlineStrong
-                    : t.borderHighlight;
-                  const attestationText = isGoldTheme
-                    ? t.textPrimary
-                    : t.textOnCard;
-                  const attestationMuted = isGoldTheme
-                    ? t.textMuted
-                    : t.textMuted;
+                  // зачем: `.attest` из learn.html A9 — стеклянная карточка вместо цветной
+                  // плашки с полосой-акцентом; маршрут прежний.
                   return (
-                    <Animated.View
+                    <LessonsListGlassAttestationCard
                       key="attestation-after-32"
-                      style={{
-                        marginTop: 12,
-                        marginHorizontal: 14,
-                        borderRadius: 18,
-                        transform: [{ scale: scaleAnim ?? 1 }],
-                        shadowColor: isGoldTheme ? "#000" : t.cardShadow,
-                        shadowOffset: { width: 0, height: 6 },
-                        shadowOpacity: isGoldTheme ? 0 : 0.16,
-                        shadowRadius: 14,
-                        ...noAndroidOutline,
-                        ...(isGoldTheme ? goldShadow(2) : {}),
-                        ...{},
+                      glass={learnGlass}
+                      title={s.home.attestTile}
+                      onPress={() => {
+                        hapticTap();
+                        router.push("/diagnostic_test");
                       }}
-                    >
-                      <TouchableOpacity
-                        activeOpacity={0.82}
-                        onPress={() => {
-                          hapticTap();
-                          router.push("/diagnostic_test");
-                        }}
-                        style={{
-                          minHeight: 126,
-                          borderRadius: 18,
-                          borderWidth: 0,
-                          borderColor: attestationBorder,
-                          overflow: "hidden",
-                          backgroundColor: isGoldTheme ? goldSurface : t.bgCard,
-                        }}
-                      >
-                        <LinearGradient
-                          colors={attestationColors as any}
-                          locations={
-                            isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined
-                          }
-                          start={{ x: 0, y: 0 }}
-                          end={{ x: 1, y: 1 }}
-                          style={{
-                            position: "absolute",
-                            left: 0,
-                            right: 0,
-                            top: 0,
-                            bottom: 0,
-                          }}
-                        />
-                        <Image
-                          source={menuImages.test}
-                          style={{
-                            position: "absolute",
-                            right: -16,
-                            top: 7,
-                            width: 128,
-                            height: 128,
-                            opacity: isGoldTheme ? 0.16 : 0.08,
-                          }}
-                          contentFit="contain"
-                        />
-                        <View
-                          style={{
-                            position: "absolute",
-                            left: 0,
-                            top: 0,
-                            bottom: 0,
-                            width: 6,
-                            backgroundColor: attestationAccent,
-                            opacity: 0.88,
-                          }}
-                        />
-                        <View
-                          style={{
-                            position: "absolute",
-                            left: 6,
-                            right: 0,
-                            top: 0,
-                            height: 1,
-                            backgroundColor: attestationAccent,
-                            opacity: 0.24,
-                          }}
-                        />
-                        {isGoldTheme && (
-                          <GoldBevel radius={18} intensity="normal" />
-                        )}
-                        <View
-                          style={{
-                            flex: 1,
-                            flexDirection: "row",
-                            alignItems: "center",
-                            paddingLeft: 20,
-                            paddingRight: 14,
-                            gap: 14,
-                          }}
-                        >
-                          <View
-                            style={{
-                              width: 72,
-                              height: 72,
-                              borderRadius: 36,
-                              alignItems: "center",
-                              justifyContent: "center",
-                              backgroundColor: isGoldTheme
-                                ? "rgba(255,235,180,0.10)"
-                                : t.accentBg,
-                              borderWidth: 1,
-                              borderColor: attestationBorder,
-                            }}
-                          >
-                            <Image
-                              source={menuImages.test}
-                              style={{ width: 58, height: 58, opacity: 0.96 }}
-                              contentFit="contain"
-                            />
-                          </View>
-                          <View
-                            style={{
-                              flex: 1,
-                              minWidth: 0,
-                              justifyContent: "center",
-                            }}
-                          >
-                            <Text
-                              style={{
-                                color: attestationMuted,
-                                fontSize: Math.max(12, f.label),
-                                fontWeight: "800",
-                                letterSpacing: 0,
-                                textTransform: "uppercase",
-                              }}
-                            >
-                              B2 / CEFR
-                            </Text>
-                            {/* зачем: динамическое сжатие шрифта убрано (запрещённый паттерн) — статично
-                          уменьшен базовый размер (было 27, стало 22), чтобы влезали длинные варианты
-                          перевода («Değerlendirme», «Evaluación») без ужимания на рендере, guard-ok */}
-                            <Text
-                              style={{
-                                color: attestationText,
-                                fontSize: Math.max(22, Math.min(f.h1, 27)),
-                                lineHeight: Math.max(
-                                  27,
-                                  Math.min(f.h1, 27) + 4,
-                                ),
-                                fontWeight: "900",
-                                letterSpacing: 0,
-                              }}
-                            >
-                              {s.home.attestTile}
-                            </Text>
-                          </View>
-                          <View
-                            style={{
-                              width: 46,
-                              height: 46,
-                              borderRadius: 23,
-                              alignItems: "center",
-                              justifyContent: "center",
-                              backgroundColor: isGoldTheme
-                                ? "rgba(255,235,180,0.12)"
-                                : t.accentBg,
-                              borderWidth: 0,
-                              borderColor: attestationBorder,
-                            }}
-                          >
-                            <Ionicons
-                              name="chevron-forward"
-                              size={26}
-                              color={attestationAccent}
-                            />
-                          </View>
-                        </View>
-                      </TouchableOpacity>
-                    </Animated.View>
+                    />
                   );
                 }
                 if (item.kind === "header") {
@@ -6061,54 +5827,25 @@ export default function LessonsTab({
                     !effectiveDevContentUnlock &&
                     !effectiveNoLimits &&
                     item.label !== "A1";
-                  const accent = isGoldTheme
-                    ? goldCefrAccent(item.label).accent
-                    : item.color;
+                  // зачем: `.lvh` макета — «A1» кеглем 22 и счётчик «1 из 8» (пройденные уроки
+                  // уровня по тем же progCounts, что и карточки). В поиске счётчика нет (A3).
+                  const [levelFrom, levelTo] = COURSE_LEVEL_RANGES[item.label];
+                  const levelDone = progCounts
+                    .slice(levelFrom - 1, levelTo)
+                    .filter((count) => (count ?? 0) >= 50).length;
                   return (
-                    <View
-                      style={{
-                        paddingLeft: 22,
-                        paddingTop: 14,
-                        paddingBottom: 4,
-                        flexDirection: "row",
-                        alignItems: "center",
-                        gap: 10,
-                      }}
-                    >
-                      <View
-                        style={{
-                          width: 3,
-                          height: 16,
-                          borderRadius: 2,
-                          backgroundColor: accent,
-                        }}
-                      />
-                      <Text
-                        style={{
-                          color: accent,
-                          fontSize: f.label,
-                          fontWeight: "800",
-                          letterSpacing: 1.4,
-                        }}
-                      >
-                        {item.label}
-                      </Text>
-                      {premiumLocked ? (
-                        <Ionicons
-                          name="lock-closed"
-                          size={12}
-                          color={accent}
-                          style={{ opacity: 0.7 }}
-                        />
-                      ) : null}
-                      <View
-                        style={{
-                          flex: 1,
-                          height: 0.5,
-                          backgroundColor: `${accent}30`,
-                        }}
-                      />
-                    </View>
+                    <LessonsListLevelHeader
+                      glass={learnGlass}
+                      lang={lang}
+                      label={item.label}
+                      locked={premiumLocked}
+                      countText={
+                        legacyLessonQuery.trim()
+                          ? null
+                          : lessonsListCopy.countOf(lang, levelDone, levelTo - levelFrom + 1)
+                      }
+                      first={i === 0}
+                    />
                   );
                 }
                 if (item.kind === "exam")
@@ -6403,15 +6140,15 @@ export default function LessonsTab({
                           // дубль ЗАГОЛОВКА вместо требования. Человек видел дважды
                           // одну и ту же фразу и НЕ знал, что именно нужно сделать.
                           // Остальные 8 языков всё это время были написаны верно.
-                          ru: `Пройди урок ${gateModal.prevNum} на 2.5+, чтобы открыть этот`,
-                      en: `Complete lesson ${gateModal.prevNum} with 2.5+ to unlock`,
-                      uk: `Пройдіть урок ${gateModal.prevNum} з оцінкою 2.5+, щоб відкрити`,
-                      es: `Completa la lección ${gateModal.prevNum} con nota mínima de 2,5 para desbloquear`,
-                      "pt-BR": `Conclua a lição ${gateModal.prevNum} com nota 2,5+ para desbloquear`,
-                      vi: `Hoàn thành bài học ${gateModal.prevNum} với điểm 2.5+ để mở khóa`,
-                      id: `Selesaikan pelajaran ${gateModal.prevNum} dengan nilai 2,5+ untuk membuka`,
-                      tr: `Kilidi açmak için ${gateModal.prevNum}. dersi 2.5+ puanla tamamla`,
-                      pl: `Ukończ lekcję ${gateModal.prevNum} z wynikiem 2,5+, aby odblokować`,
+                          ru: `Пройди урок ${gateModal.prevNum} на 2★, чтобы открыть этот`,
+                      en: `Complete lesson ${gateModal.prevNum} with 2★ to unlock`,
+                      uk: `Пройдіть урок ${gateModal.prevNum} на 2★, щоб відкрити`,
+                      es: `Completa la lección ${gateModal.prevNum} con 2★ para desbloquear`,
+                      "pt-BR": `Conclua a lição ${gateModal.prevNum} com 2★ para desbloquear`,
+                      vi: `Hoàn thành bài học ${gateModal.prevNum} với 2★ để mở khóa`,
+                      id: `Selesaikan pelajaran ${gateModal.prevNum} dengan 2★ untuk membuka`,
+                      tr: `Kilidi açmak için ${gateModal.prevNum}. dersi 2★ ile tamamla`,
+                      pl: `Ukończ lekcję ${gateModal.prevNum} na 2★, aby odblokować`,
                     })
                       : gateModal?.kind === "premium"
                         ? triLang(lang, {
@@ -6438,7 +6175,8 @@ export default function LessonsTab({
           // есть там, где замок ИМЕННО по прогрессу: у Plus — везде, у Free — на
           // уроках без пейвола (2–3). На уроках 4+ у Free пейвол, а не покупка —
           // туда ведёт отдельный экран, и покупка там не предлагается.
-          (isPremium || (gateModal?.kind === "lesson" && !requiresPremiumForLesson(gateModal.lessonNum)))
+          LESSON_PEARL_UNLOCK_ENABLED
+            && (isPremium || (gateModal?.kind === "lesson" && !requiresPremiumForLesson(gateModal.lessonNum)))
             && (gateModal?.kind === "lesson" || gateModal?.kind === "levelGate")
             ? [
                 {

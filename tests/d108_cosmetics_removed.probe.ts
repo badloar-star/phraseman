@@ -100,8 +100,6 @@ const COSMETIC_UI_TRACE = new RegExp(
  *   из design-ui (удалить вместе с последним импортом).
  */
 const ALLOWLIST: Readonly<Record<string, 'design-ui' | 'stub'>> = {
-  'app/(tabs)/home.tsx': 'design-ui',
-  'app/(tabs)/friends.tsx': 'design-ui',
   'app/community_packs/PackCommentsSheet.tsx': 'design-ui',
   'components/NotificationCenterButton.tsx': 'design-ui',
   'components/friends_together/FriendLevelUpModal.tsx': 'design-ui',

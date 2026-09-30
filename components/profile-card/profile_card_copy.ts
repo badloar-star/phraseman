@@ -1,14 +1,20 @@
-// ─── Визитка 2.0: тексты (ru/uk/en/es; остальные языки — английский) ─────────
-// зачем: тексты сняты с макета profile-card-pro.html дословно (ru). Переводы на
-// pt-BR/vi/id/tr/pl пока английские — отмечено в отчёте переноса.
+// ─── Визитка 2.0: тексты ru/uk/en/es + pt-BR/vi/id/tr/pl (profile_card_copy_more.ts) ─
+// зачем: тексты сняты с макета profile-card-pro.html дословно (ru). Пять языков —
+// отдельной таблицей по тем же ключам; нет ключа — английский.
 import { triLang, type Lang } from '../../constants/i18n';
+import { PC_MORE } from './profile_card_copy_more';
 
 type Four = Readonly<{ ru: string; uk: string; en: string; es: string }>;
 
 export function t4(lang: Lang, copy: Four): string {
+  const more = MORE_BY_COPY.get(copy);
   return triLang(lang, {
     ru: copy.ru, uk: copy.uk, es: copy.es, en: copy.en,
-    'pt-BR': copy.en, vi: copy.en, id: copy.en, tr: copy.en, pl: copy.en,
+    'pt-BR': more?.['pt-BR'] ?? copy.en,
+    vi: more?.vi ?? copy.en,
+    id: more?.id ?? copy.en,
+    tr: more?.tr ?? copy.en,
+    pl: more?.pl ?? copy.en,
   });
 }
 
@@ -73,3 +79,8 @@ export const PC = {
   shareText: { ru: 'Моя визитка в PhraseMan', uk: 'Моя візитка в PhraseMan', en: 'My PhraseMan card', es: 'Mi tarjeta de PhraseMan' },
   rankUnknown: { ru: 'Ранг игрока пока недоступен', uk: 'Ранг гравця поки недоступний', en: 'Player rank is not available yet', es: 'Rango aún no disponible' },
 } as const satisfies Record<string, Four>;
+
+// Сопоставление «объект текста → переводы» по ключу PC (ленивое, без копий строк).
+const MORE_BY_COPY: ReadonlyMap<Four, (typeof PC_MORE)[string]> = new Map(
+  Object.entries(PC).flatMap(([key, copy]) => (PC_MORE[key] ? [[copy as Four, PC_MORE[key]] as const] : [])),
+);

@@ -4087,7 +4087,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -4096,14 +4096,18 @@
       {
         "id": "PM-079-A1",
         "text": "Открытый ранг и диалоги не откатываются при расходах монет",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Ранг в отдельном ключе coin_rank_v1:<owner>, пишет только coin_rank_upgrade_v1.ts; доступ к диалогам только по рангу (shared/dialogue_v2_access_contract.ts, тест dialogue_v2_access_contract)"
+        ]
       },
       {
         "id": "PM-079-A2",
         "text": "недостающий баланс не означает потерю ранга",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "coin_rank_upgrade_v1.ts: insufficient_coins → отказ без записи; тест coin_rank_upgrade.test.ts «нехватка монет: ни списания, ни ранга»"
+        ]
       }
     ],
     "depends_on": [],
@@ -4651,8 +4655,10 @@
       {
         "id": "PM-089-A2",
         "text": "формула утверждена до rollout",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "D98 OWNER_FINAL до релиза; energy_state_v2.ts coerceEnergyStateV2 (запас>5→5, идемпотентно); тест energy_cap_d98_migration"
+        ]
       }
     ],
     "depends_on": [
@@ -5628,8 +5634,10 @@
       {
         "id": "PM-108-A1",
         "text": "Права автора/модератора разграничены",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "functions/src/community_packs.ts: submit/authorRemove только автор, moderate/adminModerate только админ; firestore.rules закрывают клиентскую запись community_packs"
+        ]
       },
       {
         "id": "PM-108-A2",
@@ -6282,14 +6290,18 @@
       {
         "id": "PM-121-A1",
         "text": "Глобальны баланс/ранг/подписка",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "coin_rank_v1:<owner> без языка; в target_storage_keys.ts нет баланса/ранга/подписки по языку; кошелёк в phone-state economy по аккаунту"
+        ]
       },
       {
         "id": "PM-121-A2",
         "text": "XP не возвращён",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "D02: XP удалён — нет totalXp/xp_boost/XpBar в app/components/hooks; сторожа *_xp_*_retirement.probe.ts"
+        ]
       },
       {
         "id": "PM-121-A3",
@@ -7316,7 +7328,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "planned",
+    "status": "superseded",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -7326,7 +7338,9 @@
         "id": "PM-142-A1",
         "text": "Есть grandfathered права либо согласованная компенсация",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "SUPERSEDED by D124 (OWNER_FINAL 2026-09-30): старые покупки диалогов за руны не учитываются, доступ только по монетному рангу"
+        ]
       },
       {
         "id": "PM-142-A2",
@@ -7528,8 +7542,10 @@
       {
         "id": "PM-146-A2",
         "text": "engine/progress/content не удалены вместе со старым оформлением",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "V1 engine/progress/content на месте: lesson_data_all.ts, lesson_lock_system.ts, legacy_free_lesson_access.ts; удалены только жемчужные модули (D70)"
+        ]
       }
     ],
     "depends_on": [],

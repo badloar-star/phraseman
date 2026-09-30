@@ -144,7 +144,21 @@ jest.mock('./openai_dialog_model_config', () => ({
   resolveConfiguredDialogModel: jest.fn(async () => 'gpt-4.1'),
 }));
 
-import { explainMistake as explainMistakeRaw } from './mistake_explain';
+// PM-231: Plus-потолок проверяется подменой статуса; по умолчанию — реальная логика.
+let mockPremiumOverride: boolean | null = null;
+jest.mock('./premium_status', () => {
+  const actual = jest.requireActual('./premium_status');
+  return {
+    ...actual,
+    resolvePremiumAccess: jest.fn((...args: unknown[]) => (
+      mockPremiumOverride === null
+        ? (actual.resolvePremiumAccess as (...a: unknown[]) => Promise<boolean>)(...args)
+        : Promise.resolve(mockPremiumOverride)
+    )),
+  };
+});
+
+import { explainMistake as explainMistakeRaw, PLUS_MISTAKE_EXPLAIN_DAILY_CAP } from './mistake_explain';
 import {
   mistakeHashFor,
   MISTAKE_COLLECTION,
@@ -255,8 +269,54 @@ beforeEach(() => {
 });
 
 afterEach(() => {
+  mockPremiumOverride = null;
   jest.useRealTimers();
   jest.restoreAllMocks();
+});
+
+describe('explainMistake PM-231 limits', () => {
+  it('Plus gets a silent daily ceiling of 100 paid breakdowns with a neutral rate-limit error', async () => {
+    mockPremiumOverride = true;
+    expect(PLUS_MISTAKE_EXPLAIN_DAILY_CAP).toBe(100);
+    // Засеваем счётчик Plus-потолка до 100 — без 100 реальных вызовов.
+    const { createHash } = jest.requireActual('crypto') as typeof import('crypto');
+    const hash = createHash('sha256').update('free_mistake_plus|auth-plus|stable-auth-plus').digest('hex').slice(0, 48);
+    docs.set(`explain_user_limits/free_mistake_plus_${hash}`, {
+      dailyCount: PLUS_MISTAKE_EXPLAIN_DAILY_CAP,
+      resetAtMs: Date.parse('2026-06-13T00:00:00.000Z'),
+    });
+
+    await expect(callExplain(validPayload, 'auth-plus')).rejects.toMatchObject({
+      code: 'resource-exhausted',
+      message: 'mistake_explain_rate_limited',
+    });
+    expect(global.fetch).not.toHaveBeenCalled();
+  });
+
+  it('Plus below the ceiling is not held to the Free cap of 3', async () => {
+    mockPremiumOverride = true;
+    for (const userAnswer of ['I has a', 'I has b', 'I has c', 'I has d']) {
+      await expect(callExplain({ ...validPayload, userAnswer }, 'auth-plus2')).resolves.toMatchObject({ ok: true });
+    }
+    expect(global.fetch).toHaveBeenCalledTimes(4);
+  });
+
+  it('passes a per-attempt fetch timeout and maps a timeout to a retryable error with the credit refunded', async () => {
+    const failing = jest.fn(async (_url: string, init: { signal?: AbortSignal }) => {
+      expect(init.signal).toBeInstanceOf(AbortSignal);
+      throw Object.assign(new Error('aborted due to timeout'), { name: 'TimeoutError' });
+    });
+    global.fetch = failing as unknown as typeof fetch;
+    for (const userAnswer of ['I has x', 'I has y', 'I has z', 'I has w']) {
+      await expect(callExplain({ ...validPayload, userAnswer })).rejects.toMatchObject({
+        code: 'unavailable',
+        message: 'mistake_explain_provider_timeout',
+      });
+    }
+    // 4 > Free-кап 3: кредит возвращался после каждого тайм-аута.
+    expect(failing).toHaveBeenCalledTimes(4);
+    expect(billingDocs()).toHaveLength(0);
+  });
 });
 
 describe('explainMistake', () => {

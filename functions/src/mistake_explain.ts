@@ -11,6 +11,7 @@ import {
   type FreeJobGenReservation,
 } from './explain/explain_budget';
 import { resolveConfiguredDialogModel } from './openai_dialog_model_config';
+import { PAID_AI_FETCH_TIMEOUT_MS, paidAiFetchFailureReason } from './paid_ai_fetch_timeout';
 import { resolvePromptLangKey, PROMPT_LANGUAGES } from './explain/explain_prompts';
 import {
   mistakeHashFor,
@@ -54,15 +55,46 @@ const PENDING_POLL_DELAY_MS = 200;
 
 type MistakeFreeCapReservation = FreeJobGenReservation;
 
+// зачем: PM-231 — у Plus не было суточного потолка: 40/ч × gpt-4.1 × до 3 попыток
+// ⇒ до ~2900 платных вызовов в сутки с одного аккаунта. Тихий потолок по образцу
+// PLUS_DIALOG_DAILY_REPLY_CAP (dialog_quota_contract.ts): считает только cache-miss,
+// живой ученик до него не доходит, спам-скрипт упирается.
+export const PLUS_MISTAKE_EXPLAIN_DAILY_CAP = 100;
+
 async function reserveFreeDailyGenCap(
   db: admin.firestore.Firestore,
   authUid: string,
   stableUid: string,
 ): Promise<MistakeFreeCapReservation | null> {
   const isPremium = await resolvePremiumAccess(db, stableUid, Date.now(), authUid);
-  if (isPremium) return null;
   const nowMs = Date.now();
+  if (isPremium) {
+    try {
+      return await enforceFreeJobGenLimit('mistake_plus', authUid, stableUid, PLUS_MISTAKE_EXPLAIN_DAILY_CAP, nowMs);
+    } catch (error) {
+      console.warn('[AI-LIMIT] mistake_explain plus daily cap refused', {
+        reason: error instanceof HttpsError ? error.message : 'limit_check_failed',
+        cap: PLUS_MISTAKE_EXPLAIN_DAILY_CAP,
+      });
+      // Plus не должен видеть «купи за руны» (это смысл explain_free_daily_limit на
+      // клиенте) — отдаём существующий нейтральный отказ по частоте.
+      if (error instanceof HttpsError && error.code === 'resource-exhausted') {
+        throw new HttpsError('resource-exhausted', 'mistake_explain_rate_limited');
+      }
+      throw error;
+    }
+  }
   return enforceFreeJobGenLimit('mistake', authUid, stableUid, FREE_DAILY_CAP, nowMs);
+}
+
+/** PM-231: запрет немого catch — сбой отката кредита/лока пишет причину. */
+function logMistakeCleanupFailure(step: string): (error: unknown) => void {
+  return (error: unknown) => {
+    console.error('[AI-LIMIT] mistake_explain cleanup failed', {
+      step,
+      reason: String((error as Error)?.message ?? error).slice(0, 200),
+    });
+  };
 }
 
 async function refundFreeDailyGenCap(reservation: MistakeFreeCapReservation | null): Promise<void> {
@@ -493,19 +525,35 @@ async function requestGeneration(
   messages: Array<{ role: 'system' | 'user'; content: string }>,
   maxTokens: number,
 ): Promise<RawGeneration> {
-  const response = await fetch(OPENAI_CHAT_URL, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      model,
-      temperature: 0.2,
-      max_tokens: maxTokens,
-      messages,
-    }),
-  });
+  let response: Response;
+  try {
+    response = await fetch(OPENAI_CHAT_URL, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        model,
+        temperature: 0.2,
+        max_tokens: maxTokens,
+        messages,
+      }),
+      // зачем: PM-231 — тайм-аут НА ПОПЫТКУ (3×35с < 120с потолка функции), чтобы
+      // сработал обычный путь ошибки: возврат кредита, снятие лока, биллинг попыток.
+      signal: AbortSignal.timeout(PAID_AI_FETCH_TIMEOUT_MS.mistakeExplain),
+    });
+  } catch (error) {
+    const reason = paidAiFetchFailureReason(error);
+    console.error('[AI-LIMIT] mistake_explain provider fetch failed', {
+      reason,
+      timeoutMs: PAID_AI_FETCH_TIMEOUT_MS.mistakeExplain,
+      error: String((error as Error)?.message ?? error).slice(0, 200),
+    });
+    throw new HttpsError('unavailable', reason === 'timeout'
+      ? 'mistake_explain_provider_timeout'
+      : 'mistake_explain_provider_failed');
+  }
 
   if (!response.ok) {
     console.error('mistake_explain chat failed', { status: response.status });
@@ -837,8 +885,8 @@ export const explainMistake = onCall({
         }, 'eli5');
         finalError = paidFailure.originalError;
       }
-      await refundFreeDailyGenCap(freeCapReservation).catch(() => {});
-      await releaseMistakeEli5PendingLock(mistakeHash, eli5ClaimedAtMs).catch(() => {});
+      await refundFreeDailyGenCap(freeCapReservation).catch(logMistakeCleanupFailure('refund_daily_credit'));
+      await releaseMistakeEli5PendingLock(mistakeHash, eli5ClaimedAtMs).catch(logMistakeCleanupFailure('release_eli5_lock'));
       throw finalError;
     }
     let eli5ResultText = gen.answer;
@@ -860,8 +908,8 @@ export const explainMistake = onCall({
         }
       }
     } catch (error) {
-      await refundFreeDailyGenCap(freeCapReservation).catch(() => {});
-      await releaseMistakeEli5PendingLock(mistakeHash, eli5ClaimedAtMs).catch(() => {});
+      await refundFreeDailyGenCap(freeCapReservation).catch(logMistakeCleanupFailure('refund_daily_credit'));
+      await releaseMistakeEli5PendingLock(mistakeHash, eli5ClaimedAtMs).catch(logMistakeCleanupFailure('release_eli5_lock'));
       throw error;
     }
     console.info('mistake_explain generated', {
@@ -968,8 +1016,8 @@ export const explainMistake = onCall({
         });
       });
     }
-    await refundFreeDailyGenCap(freeCapReservation).catch(() => {});
-    await releaseMistakePendingLock(mistakeHash, fullClaimedAtMs).catch(() => {});
+    await refundFreeDailyGenCap(freeCapReservation).catch(logMistakeCleanupFailure('refund_daily_credit'));
+    await releaseMistakePendingLock(mistakeHash, fullClaimedAtMs).catch(logMistakeCleanupFailure('release_full_lock'));
     throw finalError;
   }
 
@@ -1004,8 +1052,8 @@ export const explainMistake = onCall({
       }
     }
   } catch (error) {
-    await refundFreeDailyGenCap(freeCapReservation).catch(() => {});
-    await releaseMistakePendingLock(mistakeHash, fullClaimedAtMs).catch(() => {});
+    await refundFreeDailyGenCap(freeCapReservation).catch(logMistakeCleanupFailure('refund_daily_credit'));
+    await releaseMistakePendingLock(mistakeHash, fullClaimedAtMs).catch(logMistakeCleanupFailure('release_full_lock'));
     throw error;
   }
   console.info('mistake_explain generated', {

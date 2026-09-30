@@ -196,7 +196,8 @@ test('keeps the quota, attempt, hold, TTS, flight, and result runtime AST unchan
   assert.deepEqual(hashProtectedRuntimeAst(), {
     count: 33,
     // зачем (30.09): D127 — «Устно» отсеивает карточки «без языка» (voicedDeckCards, 2acba6874); квоты/попытки/TTS не менялись.
-    hash: 'f93c937a5d23f8688c1286fef3f26d8bc0e9a77841202f0c0d3e9e521a84cfd0',
+    // зачем (30.09): D128 — озвучка клипом OpenAI своего языка вместо голоса устройства (7b4631e7e).
+    hash: '1871148079d0b15458121ae23042b7b5cbdaf427741a1eb9caec3e7f1fdbb504',
   });
   assert.equal(
     hashProtectedRuntimeElements(),

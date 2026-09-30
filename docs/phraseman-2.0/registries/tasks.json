@@ -14192,7 +14192,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -14201,26 +14201,34 @@
       {
         "id": "PM-288-A1",
         "text": "В админке у загрузки фраз из документа есть кнопка добавления транскрипта (.srt/.vtt/текст YouTube); по нему фразам проставляется секунда (startSec)",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "admin/v2/legacy.html: #vp-transcript «⏱ Загрузить транскрипцию» → adminAlignVideoPhraseTranscript, поле startSec у фразы"
+        ]
       },
       {
         "id": "PM-288-A2",
         "text": "startSec доходит до карточек опубликованного набора из видео",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "fbdc873fb: functions/src/video_phrases.ts buildVideoPackDoc кладёт videoStartSec в карточку; communityFirestore.ts переносит в CardItem; тест functions video_phrases 9/9"
+        ]
       },
       {
         "id": "PM-288-A3",
         "text": "В наборе из видео тап по фразе открывает ролик сразу на этой секунде",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "fbdc873fb: FlashcardListItem кнопка «▶ м:сс» → HomeV2VideoPlayerModal с startSec, embed start=; тесты video_pack_phrase_moment 10/10, lingman_youtube 16/16"
+        ]
       },
       {
         "id": "PM-288-A4",
         "text": "Без транскрипта функция на этом наборе выключена: фразы не выглядят нажимаемыми, ничего не ломается",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "fbdc873fb: кнопка только при числовом videoStartSec + videoId + открытом видеоразделе (D129); иначе прежний вид, лог [VIDEO-SEEK]"
+        ]
       }
     ],
     "depends_on": [],

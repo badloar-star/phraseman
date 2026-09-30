@@ -1,0 +1,151 @@
+// ════════════════════════════════════════════════════════════════════════════
+// paywall_v3_source_contract — единственный пейвол Plus (владелец 2026-09-30,
+// макет paywall-v3.html «Честный пробный период»). Сторожит решения владельца:
+//  • пейвол ОДИН: нет файлов и импортов paywall_a…g, выбора варианта и A/B;
+//  • цена за ГОД крупнее «в месяц» (магазины отклоняют наоборот);
+//  • пробный период — только из магазина, без захардкоженной длительности;
+//  • все цвета — токены активной темы, темы не продаются как Plus;
+//  • «Все N возможностей» раскрывается на месте, не окном;
+//  • после покупки без разрешения на уведомления — экран «Напомнить…?».
+// ════════════════════════════════════════════════════════════════════════════
+import assert from 'node:assert/strict';
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
+import { join, relative } from 'node:path';
+import { test } from 'node:test';
+
+const root = join(import.meta.dirname, '..');
+const read = (path) => readFileSync(join(root, path), 'utf8');
+const code = (path) => read(path).replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+
+const SCREEN = 'components/paywall/PaywallPlusScreen.tsx';
+const UI = 'components/paywall/PaywallPlus.tsx';
+const COPY = 'components/paywall/PaywallPlusCopy.ts';
+const CMP = 'components/paywall/PaywallBenefitComparison.tsx';
+const PROMPT = 'components/paywall/PaywallTrialReminderPrompt.tsx';
+const PAYWALL_FILES = [SCREEN, UI, COPY, CMP, PROMPT];
+
+function walk(dir, out = []) {
+  for (const name of readdirSync(dir)) {
+    if (name === 'node_modules' || name.startsWith('.')) continue;
+    const full = join(dir, name);
+    if (statSync(full).isDirectory()) walk(full, out);
+    else if (/\.(ts|tsx)$/.test(name)) out.push(full);
+  }
+  return out;
+}
+
+test('the Plus paywall is the only one: A–G screens, variant picker and A/B shell are gone', () => {
+  for (const letter of 'abcdefg') {
+    assert.equal(existsSync(join(root, `app/paywall_${letter}.tsx`)), false, `app/paywall_${letter}.tsx must be deleted`);
+  }
+  for (const dead of ['app/paywall_variant.ts', 'app/direct_paywall_route.tsx', 'components/paywall/PaywallLiquidGlass.tsx']) {
+    assert.equal(existsSync(join(root, dead)), false, `${dead} must be deleted`);
+  }
+  const offenders = [];
+  for (const dir of ['app', 'components', 'hooks', 'modules']) {
+    if (!existsSync(join(root, dir))) continue;
+    for (const file of walk(join(root, dir))) {
+      const source = readFileSync(file, 'utf8');
+      if (/from ['"][^'"]*\/paywall_[a-g]['"]|from ['"][^'"]*paywall_variant['"]|PaywallLiquidGlass['"]/.test(source)) {
+        offenders.push(relative(root, file));
+      }
+    }
+  }
+  assert.deepEqual(offenders, [], 'nobody imports the removed paywalls');
+
+  const dispatcher = read('app/premium_modal.tsx');
+  assert.match(dispatcher, /import PaywallPlusScreen from '\.\.\/components\/paywall\/PaywallPlusScreen';/);
+  assert.match(dispatcher, /return <PaywallPlusScreen entry=\{entryResolution\.entry\} \/>;/);
+  const nav = read('app/paywall_navigation.ts');
+  assert.match(nav, /pathname: '\/premium_modal'/);
+  assert.doesNotMatch(nav, /paywall_[a-g]|resolvePaywallAbVariant/);
+});
+
+test('year price is the big one; «≈ per month» of the year plan is small', () => {
+  const ui = read(UI);
+  const size = (key) => Number(ui.match(new RegExp(`${key}: \\{[^}]*fontSize: ([\\d.]+)`))?.[1]);
+  assert.ok(size('priceBig') > size('priceMonth'), 'year total is larger than the month price');
+  assert.ok(size('priceBig') > size('planSmall'), 'year total is larger than «≈ per month»');
+  assert.match(ui, /testID="paywall-year-price" style=\{\[S\.priceBig/);
+  assert.match(ui, /yearPerMonthApprox\(lang, yearlyPerMonth\)/);
+  assert.match(ui, /<Text style=\{\[S\.planSmall[^>]*>\{yearPerMonthApprox/);
+});
+
+test('trial length comes only from the store — no hard-coded 7/12/17 day durations', () => {
+  const screen = read(SCREEN);
+  assert.match(screen, /pricesReady \? p\.yearlyTrialDays : null/);
+  const purchase = read('app/paywall_purchase.ts');
+  assert.match(purchase, /getTrialInfo\(packages\.yearly,/);
+  for (const path of PAYWALL_FILES) {
+    const source = code(path);
+    assert.doesNotMatch(source, /\b(?:7|12|17)\s*(?:дн|days?|día|dias?|hari|gün|dni|ngày)/iu, `${path}: hard-coded trial duration`);
+    assert.doesNotMatch(source, /trialDays\s*[=:]\s*(?:7|12|17)\b/, `${path}: hard-coded trialDays`);
+    assert.doesNotMatch(source, /\?\?\s*(?:7|12|17)\b/, `${path}: hard-coded fallback`);
+  }
+  // Лента пробного — только если пробный есть И выбран год И цены пришли.
+  assert.match(screen, /const showTimeline = !!yearlyTrialDays && p\.selected === 'yearly';/);
+  assert.match(screen, /const pricesReady = state === 'ready' && !!p\.yearlyPrice;/);
+});
+
+test('colours come from the active theme tokens; themes are not sold as Plus', () => {
+  const screen = read(SCREEN);
+  assert.match(screen, /liquidGlassTokens\(liquidGlassThemeId\)/);
+  for (const path of [SCREEN, UI, CMP, PROMPT]) {
+    const source = code(path);
+    assert.doesNotMatch(source, /#[0-9A-Fa-f]{3,8}\b/, `${path}: no own hex colours`);
+    assert.doesNotMatch(source, /rgba?\(/, `${path}: no own rgba colours`);
+    assert.doesNotMatch(source, /adjustsFontSizeToFit|numberOfLines/, `${path}: no shrinking or clipping`);
+    assert.doesNotMatch(source, /borderWidth:\s*(?:[2-9]|\d{2,})/, `${path}: no thick borders`);
+  }
+  const cmp = read(CMP);
+  assert.doesNotMatch(cmp, /id: 'theme'|LP\('Тем[ыа]/);
+  assert.doesNotMatch(read('app/settings_themes.tsx'), /premium_modal|PlusBadge/);
+  assert.match(read('components/ThemeContext.tsx'), /LIQUID_GLASS_THEME_IDS\.includes\(id\)/);
+});
+
+test('«All N features» expands in place — no modal, no sheet', () => {
+  const cmp = read(CMP);
+  assert.match(cmp, /const \[open, setOpen\] = useState\(false\);/);
+  assert.match(cmp, /PAYWALL_COMPARISON_ROWS\.slice\(0, PAYWALL_COMPARISON_VISIBLE_ROWS\)/);
+  assert.match(cmp, /accessibilityState=\{\{ expanded: open \}\}/);
+  assert.match(cmp, /compareMore\(lang, PAYWALL_COMPARISON_ROWS\.length\)/);
+  for (const path of PAYWALL_FILES) {
+    assert.doesNotMatch(code(path), /<Modal\b|ThemedConfirmModal|BottomSheet|router\.push/, `${path}: no window inside the window`);
+  }
+  // Exit-оффер-окно поверх пейвола выключено для пейвола Plus.
+  assert.match(read(SCREEN), /disableExitOffer: true/);
+});
+
+test('after purchase without notification permission the reminder prompt is shown', () => {
+  const purchase = read('app/paywall_purchase.ts');
+  assert.match(purchase, /const permission = await getNotificationPermissionStatus\(\);/);
+  assert.match(purchase, /setTrialReminderPrompt\(\{ days: reminderDays, priceLabel: reminderPrice, trialStartMs \}\);/);
+  assert.match(purchase, /const allowTrialReminder = useCallback/);
+  assert.match(purchase, /requestNotificationPermissionWithFallback\(\{ openSettingsIfBlocked: true \}\)/);
+  assert.match(purchase, /const skipTrialReminder = useCallback/);
+  assert.match(purchase, /\[TRIAL-REMINDER\]/);
+  const screen = read(SCREEN);
+  assert.match(screen, /prompt \? \(\s*<PaywallTrialReminderPrompt/);
+  assert.match(screen, /onAllow=\{p\.allowTrialReminder\} onSkip=\{p\.skipTrialReminder\}/);
+  const notifications = read('app/notifications.ts');
+  assert.match(notifications, /trialReminderDelaySeconds\(trialStartMs, trialDays, Date\.now\(\)\)/);
+  // Онбординг не трогаем: прежние дата («за сутки») и текст, новый расчёт — только Plus.
+  assert.match(notifications, /timing === 'plus_two_days'[\s\S]*?: onboardingTrialReminderDelaySeconds\(trialDays\)/);
+  assert.match(purchase, /onboardingTrialReminderCopy\(lang, reminderPrice\)[\s\S]*?'onboarding_day_before'\)/);
+  assert.equal((purchase.match(/'plus_two_days'\)/g) ?? []).length, 2, 'both Plus paths use the N−2 timing');
+  assert.ok(purchase.includes("ru: 'Триал заканчивается завтра'"), 'onboarding text unchanged');
+  assert.match(notifications, /\[TRIAL-REMINDER\]/);
+});
+
+test('the fixed CTA covers trial, yearly and monthly wording; taps stay ≥ 44dp', () => {
+  const copy = read(COPY);
+  for (const token of ['Начать {n} {days} бесплатно', 'Оформить за {v} в год', 'Оформить за {v} в месяц', 'Затем {v} в год · Отмена в любой момент']) {
+    assert.ok(copy.includes(token), `missing CTA copy «${token}»`);
+  }
+  const ui = read(UI);
+  assert.match(ui, /cta: \{ minHeight: 58/);
+  assert.match(ui, /close: \{ width: 44, height: 44/);
+  assert.match(ui, /linkHit: \{ minHeight: 44/);
+  assert.match(ui, /retry: \{ minHeight: 44/);
+  assert.match(read(SCREEN), /useStableSafeAreaInsets/);
+});

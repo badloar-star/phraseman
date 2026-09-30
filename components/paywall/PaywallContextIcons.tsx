@@ -36,7 +36,6 @@ const GENERIC: IconEl[] = [
 // Полный Record — TS заставит нарисовать иконку каждому новому контексту.
 const CONTEXT_ICON: Record<PremiumContext, IconEl[]> = {
   onboarding_plan: GENERIC,
-  season_pass_lane: GENERIC,
   no_energy: [{ t: 'p', d: 'M26 6 L12 27 H22 L20 42 L36 20 H25 Z' }],
   course_after_lesson3: BOOK,
   lesson_b1: BOOK,

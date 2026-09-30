@@ -33,19 +33,19 @@ jest.mock('../components/PremiumContext', () => ({
 jest.mock('../app/navigation_back', () => ({
   dismissPaywallModal: (...args: unknown[]) => mockDismiss(...args),
 }));
-jest.mock('../app/paywall_a', () => ({ PaywallAView: function PaywallAMock() { return React.createElement('PaywallA'); } }));
-jest.mock('../app/paywall_b', () => ({ PaywallBView: function PaywallBMock() { return React.createElement('PaywallB'); } }));
-jest.mock('../app/paywall_c', () => ({ PaywallCView: function PaywallCMock(props: { entry?: unknown }) {
-  mockPaywallCEntry = props.entry ?? null;
-  return React.createElement('PaywallC');
-} }));
-jest.mock('../app/paywall_d', () => ({ PaywallDView: function PaywallDMock() { return React.createElement('PaywallD'); } }));
-jest.mock('../app/paywall_e', () => ({ PaywallEView: function PaywallEMock() { return React.createElement('PaywallE'); } }));
-jest.mock('../app/paywall_f', () => ({ PaywallFView: function PaywallFMock() { return React.createElement('PaywallF'); } }));
-jest.mock('../app/paywall_g', () => ({ PaywallGView: function PaywallGMock() { return React.createElement('PaywallG'); } }));
+// 2026-09-30 (D78): пейволы A–G удалены — диспетчер рисует единственный пейвол Plus.
+jest.mock('../components/paywall/PaywallPlusScreen', () => ({
+  __esModule: true,
+  default: function PaywallPlusMock(props: { entry?: unknown }) {
+    mockPaywallCEntry = props.entry ?? null;
+    return React.createElement('PaywallPlus');
+  },
+}));
+jest.mock('../components/ThemeContext', () => ({
+  useTheme: () => ({ theme: { bgPrimary: '#000000', bgSurface: '#111111' } }),
+}));
 jest.mock('../app/paywall_navigation', () => ({
   openPremiumPaywall: jest.fn(),
-  resolveCurrentPaywallRoute: () => '/paywall_c',
 }));
 
 beforeEach(() => {
@@ -64,14 +64,14 @@ afterEach(async () => {
 
 test('premium modal waits for entitlement, shows only to free, and dismisses Plus without a flash', async () => {
   const view = await render(React.createElement(PremiumModalDispatcher));
-  expect(JSON.stringify(view.toJSON())).not.toContain('PaywallC');
+  expect(JSON.stringify(view.toJSON())).not.toContain('PaywallPlus');
   expect(JSON.stringify(view.toJSON())).toContain('LinearGradient');
   expect(mockDismiss).not.toHaveBeenCalled();
 
   mockAccessResolved = true;
   await view.rerender(React.createElement(PremiumModalDispatcher));
   await act(async () => Promise.resolve());
-  expect(JSON.stringify(view.toJSON())).toContain('PaywallC');
+  expect(JSON.stringify(view.toJSON())).toContain('PaywallPlus');
   expect(mockPaywallCEntry).toEqual({
     context: 'generic',
     source: 'direct',
@@ -83,7 +83,7 @@ test('premium modal waits for entitlement, shows only to free, and dismisses Plu
 
   mockHasPremiumAccess = true;
   await view.rerender(React.createElement(PremiumModalDispatcher));
-  expect(JSON.stringify(view.toJSON())).not.toContain('PaywallC');
+  expect(JSON.stringify(view.toJSON())).not.toContain('PaywallPlus');
   act(() => jest.runAllTimers());
   expect(mockDismiss).toHaveBeenCalledTimes(1);
 });

@@ -10,14 +10,7 @@ export type DevToolAction =
   | 'open-learning-v2-modes-showcase'
   | 'open-learning-v2-authoring-preview'
   | 'open-shop'
-  | 'open-paywall-a'
-  | 'open-paywall-b'
-  | 'open-paywall-c'
-  | 'open-paywall-d'
-  | 'open-paywall-e'
-  | 'open-paywall-f'
-  | 'open-paywall-g'
-  | 'open-paywall-onboarding'
+  | 'open-paywall-plus'
   | 'preview-lesson-results'
   | 'preview-daily-journey'
   | 'preview-session-attempt-gift'
@@ -324,7 +317,7 @@ export const DEV_TOOL_SECTIONS = [
       },
     ],
   },
-  // зачем 2026-08-24: кнопки paywall_a...g уже жили в «Витрине движения», но
+  // зачем 2026-08-24: кнопки пейволов уже жили в «Витрине движения», но
   // там их отфильтровывает isExecutableHybridItem (только пункты с "hybrid" в
   // id реально доходят до экрана) — владелец не мог их открыть. Отдельная
   // секция прямо в DEV-центре, без похода в витрину и без завязки на фильтр.
@@ -336,85 +329,17 @@ export const DEV_TOOL_SECTIONS = [
     testID: 'dev-hub-section-paywalls',
     collapsed: true,
     tools: [
+      // зачем (владелец 2026-09-30, D78): пейволы A–G и превью «с онбординга» удалены —
+      // остался один пейвол Plus. Онбординг-пейвол смотреть через «Запустить онбординг».
       {
-        id: 'paywall-a',
+        id: 'paywall-plus',
         order: 10,
-        title: 'Пейвол A · Компакт',
-        detail: 'Полноценный экран покупки, без скролла. Реальные цены из стора.',
+        title: 'Пейвол Plus',
+        detail: 'Единственный пейвол: реальные цены и пробный период из стора, выбранный контекст.',
         actionLabel: 'Открыть',
-        action: 'open-paywall-a',
+        action: 'open-paywall-plus',
         icon: 'card-outline',
-        testID: 'dev-open-paywall-a',
-      },
-      {
-        id: 'paywall-b',
-        order: 20,
-        title: 'Пейвол B',
-        detail: 'Полноценный экран покупки. Реальные цены из стора.',
-        actionLabel: 'Открыть',
-        action: 'open-paywall-b',
-        icon: 'card-outline',
-        testID: 'dev-open-paywall-b',
-      },
-      {
-        id: 'paywall-c',
-        order: 30,
-        title: 'Пейвол C',
-        detail: 'Полноценный экран покупки, с галереей доказательств. Реальные цены из стора.',
-        actionLabel: 'Открыть',
-        action: 'open-paywall-c',
-        icon: 'card-outline',
-        testID: 'dev-open-paywall-c',
-      },
-      {
-        id: 'paywall-d',
-        order: 40,
-        title: 'Пейвол D · Плитки',
-        detail: 'Тарифы плитками в ряд. Реальные цены из стора.',
-        actionLabel: 'Открыть',
-        action: 'open-paywall-d',
-        icon: 'card-outline',
-        testID: 'dev-open-paywall-d',
-      },
-      {
-        id: 'paywall-e',
-        order: 50,
-        title: 'Пейвол E · Один план',
-        detail: 'Один доминирующий оффер, остальные планы скрыты за «Другие варианты».',
-        actionLabel: 'Открыть',
-        action: 'open-paywall-e',
-        icon: 'card-outline',
-        testID: 'dev-open-paywall-e',
-      },
-      {
-        id: 'paywall-f',
-        order: 60,
-        title: 'Пейвол F',
-        detail: 'Полноценный экран покупки. Реальные цены из стора.',
-        actionLabel: 'Открыть',
-        action: 'open-paywall-f',
-        icon: 'card-outline',
-        testID: 'dev-open-paywall-f',
-      },
-      {
-        id: 'paywall-g',
-        order: 70,
-        title: 'Пейвол G · С приманкой',
-        detail: 'С якорем «6 месяцев» между Годом и Месяцем.',
-        actionLabel: 'Открыть',
-        action: 'open-paywall-g',
-        icon: 'card-outline',
-        testID: 'dev-open-paywall-g',
-      },
-      {
-        id: 'paywall-onboarding',
-        order: 80,
-        title: 'Пейвол · вариант с онбординга',
-        detail: 'Тот же экран (текущий A/B-вариант), что видит новичок в конце онбординга: source=onboarding_plan, полноэкранный без слайда.',
-        actionLabel: 'Открыть',
-        action: 'open-paywall-onboarding',
-        icon: 'rocket-outline',
-        testID: 'dev-open-paywall-onboarding',
+        testID: 'dev-open-paywall-plus',
       },
     ],
   },

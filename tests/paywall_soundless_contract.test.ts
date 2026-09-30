@@ -25,7 +25,9 @@ describe('paywall surfaces stay silent', () => {
       'app/premium_modal.tsx',
       'app/promo_code_entry.tsx',
       'app/manage_subscription.tsx',
-      'components/paywall/PaywallTrialTimeline.tsx',
+      'components/paywall/PaywallPlus.tsx',
+      'components/paywall/PaywallPlusScreen.tsx',
+      'components/paywall/PaywallTrialReminderPrompt.tsx',
     ];
 
     for (const file of directSoundSurfaces) {

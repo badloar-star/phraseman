@@ -7,15 +7,9 @@ import { PREMIUM_CONTEXT_SET } from '../app/premium_context';
 
 const ROOT = process.cwd();
 const SOURCE_ROOTS = ['app', 'components', 'hooks', 'modules'] as const;
+// 2026-09-30 (D78): экраны /paywall_a…g удалены — единственный вход /premium_modal.
 const PREMIUM_ROUTES = new Set([
   '/premium_modal',
-  '/paywall_a',
-  '/paywall_b',
-  '/paywall_c',
-  '/paywall_d',
-  '/paywall_e',
-  '/paywall_f',
-  '/paywall_g',
 ]);
 const SOURCE_SET: ReadonlySet<string> = new Set(PAYWALL_SOURCE_VALUES);
 const LEGACY_CONTEXT_ALIASES = new Set(['ai_dialog', 'hall_of_fame']);

@@ -24,7 +24,6 @@ jest.mock('../app/study_target_server_prefetch', () => ({
 }));
 
 import {
-  FREE_STUDY_LANGUAGE_LIMIT,
   STUDY_LANGUAGES_STARTED_KEY,
   applyStudyLanguageSelection,
   getLanguageProfile,
@@ -32,7 +31,6 @@ import {
   languageProfileKey,
   markStudyLanguageStarted,
   saveLanguageProfile,
-  shouldGateExtraLanguage,
 } from '../app/study_languages';
 import { prefetchAndRecordStudyTargetServerPack } from '../app/study_target_server_prefetch';
 
@@ -62,25 +60,12 @@ describe('study_languages — реестр начатых языков', () => {
   });
 });
 
-describe('study_languages — гейт «1 язык фри»', () => {
-  it('лимит фри-аккаунта равен одному языку', () => {
-    expect(FREE_STUDY_LANGUAGE_LIMIT).toBe(1);
-  });
-
-  it('первый язык бесплатен даже без премиума', () => {
-    expect(shouldGateExtraLanguage({ target: 'en', startedLanguages: [], hasPremiumAccess: false })).toBe(false);
-  });
-
-  it('второй язык без премиума — пейвол', () => {
-    expect(shouldGateExtraLanguage({ target: 'fr', startedLanguages: ['en'], hasPremiumAccess: false })).toBe(true);
-  });
-
-  it('уже начатый язык не гейтится (даунгрейд подписки не отбирает языки)', () => {
-    expect(shouldGateExtraLanguage({ target: 'fr', startedLanguages: ['en', 'fr'], hasPremiumAccess: false })).toBe(false);
-  });
-
-  it('с премиумом новые языки свободны', () => {
-    expect(shouldGateExtraLanguage({ target: 'fr', startedLanguages: ['en'], hasPremiumAccess: true })).toBe(false);
+// зачем (владелец 2026-09-30): «ЯЗЫКИ ОБУЧЕНИЯ ВСЕ ФРИ БЕЗ ПЛЮС» — гейт удалён целиком.
+describe('study_languages — языки бесплатны', () => {
+  it('модуль больше не экспортирует гейт «1 язык фри»', () => {
+    const mod = jest.requireActual('../app/study_languages') as Record<string, unknown>;
+    expect(mod.shouldGateExtraLanguage).toBeUndefined();
+    expect(mod.FREE_STUDY_LANGUAGE_LIMIT).toBeUndefined();
   });
 });
 

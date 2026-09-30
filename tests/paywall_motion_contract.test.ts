@@ -3,9 +3,8 @@
 //
 // Фиксирует: components/paywall/PaywallMotion.tsx существует и экспортирует все
 // четыре куска (Entrance/IdleFloat/CtaShine/BadgePop); бесконечные лупы гейтятся
-// фокусом экрана + AppState, reduce-motion выключает вход и лупы; экраны A–G
-// используют каскадный вход; общие компоненты несут float/shine/pop, чтобы
-// варианты D–G наследовали их бесплатно. Только source-grep, в стиле соседних
+// фокусом экрана + AppState, reduce-motion выключает вход и лупы. Экраны A–G,
+// CTA-блок и карточки тарифов удалены 2026-09-30 (единственный пейвол Plus). Только source-grep, в стиле соседних
 // контрактов (paywall_tonal_container_design_contract и др.).
 // ════════════════════════════════════════════════════════════════════════════
 import fs from 'fs';
@@ -54,48 +53,10 @@ describe('paywall motion module', () => {
   });
 });
 
-describe('paywall screens use the motion cascade', () => {
-  it.each(['a', 'b', 'c', 'd', 'e', 'f', 'g'])('app/paywall_%s.tsx mounts PaywallEntrance blocks', (letter) => {
-    const source = read(`app/paywall_${letter}.tsx`);
-    expect(source).toContain("from '../components/paywall/PaywallMotion'");
-    expect(source).toContain('<PaywallEntrance index={0}>');
-    expect(source).toContain('<PaywallEntrance index={1}>');
-  });
-
-  it('A/B/C visibly cascade glyph, plans, CTA and proof content', () => {
-    for (const letter of ['a', 'b', 'c']) {
-      const source = read(`app/paywall_${letter}.tsx`);
-      // Герой-глиф и заголовок — первые два звена каскада.
-      expect(source).toMatch(/<PaywallEntrance index=\{0\}>\s*<PaywallGlyphCapsule/);
-      expect(source).toMatch(/<PaywallEntrance index=\{4\}[^>]*>\s*<PaywallCtaBlock/);
-    }
-  });
-});
-
-describe('shared paywall components carry float, shine and badge pop (D–G inherit)', () => {
+describe('shared paywall chrome keeps the glyph float', () => {
   it('glyph capsule floats (paywallShared)', () => {
     const shared = read('components/paywall/paywallShared.tsx');
     expect(shared).toContain("import { PaywallIdleFloat } from './PaywallMotion';");
     expect(shared).toContain('<PaywallIdleFloat');
-  });
-
-  it('primary CTA has the shine sweep (PaywallCtaBlock)', () => {
-    const cta = read('components/paywall/PaywallCtaBlock.tsx');
-    expect(cta).toContain("import { PaywallCtaShine } from './PaywallMotion';");
-    expect(cta).toContain('<PaywallCtaShine />');
-  });
-
-  it('savings badges pop in plan cards and plan tiles', () => {
-    const cards = read('components/paywall/PaywallPlanCards.tsx');
-    expect(cards).toContain("import { PaywallBadgePop } from './PaywallMotion';");
-    expect(cards).toContain('<PaywallBadgePop');
-    const tiles = read('components/paywall/PaywallPlanTiles.tsx');
-    expect(tiles).toContain("import { PaywallBadgePop } from './PaywallMotion';");
-    expect(tiles).toContain('<PaywallBadgePop');
-  });
-
-  it('variant E offer badge pops too', () => {
-    const e = read('app/paywall_e.tsx');
-    expect(e).toContain('<PaywallBadgePop');
   });
 });

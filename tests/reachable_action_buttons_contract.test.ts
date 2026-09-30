@@ -41,7 +41,6 @@ const KNOWN_DEBT: readonly string[] = [
   'components/VerbLetterBank.tsx',
   'components/onboarding_aha/AhaScene.tsx',
   'components/onboarding_aha/SpeechBeat.tsx',
-  'components/paywall/PaywallCtaBlock.tsx',
   'components/roulette_win_modal.tsx',
 ];
 

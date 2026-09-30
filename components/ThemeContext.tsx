@@ -7,8 +7,7 @@ import { goldShadow } from '../constants/goldTheme';
 import { oliveShadow } from '../constants/oliveTheme';
 import { cinemaShadow, isCinemaMode } from '../constants/cinemaThemes';
 import { computeUiScale } from '../constants/layout-scale';
-import { getVerifiedPremiumStatus } from '../app/premium_guard';
-import { usePremium } from './PremiumContext';
+import { DebugLogger } from '../app/debug-logger';
 import { setOskolokThemeMode } from '../app/oskolok';
 import { APP_FONT_FAMILY } from '../app/typography';
 import {
@@ -245,12 +244,10 @@ const EMPTY_OWNED_THEME_MODES: ReadonlySet<ThemeMode> = new Set<ThemeMode>();
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const { width: layoutW, height: layoutH } = useWindowDimensions();
-  const { hasPremiumAccess, accessResolved } = usePremium();
   const windowUiScale = useMemo(() => computeUiScale(layoutW, layoutH), [layoutW, layoutH]);
 
   const [appliedLiquidGlassThemeId, setAppliedLiquidGlassThemeId] = useState<LiquidGlassThemeId>('graphite');
   const [previewLiquidGlassThemeId, setPreviewLiquidGlassThemeId] = useState<LiquidGlassThemeId | null>(null);
-  const [liquidGlassAccessResolved, setLiquidGlassAccessResolved] = useState(false);
   const liquidGlassThemeId = previewLiquidGlassThemeId ?? appliedLiquidGlassThemeId;
   const uiScale = windowUiScale;
   const [fontSize,  setFontSizeState]  = useState<FontSize>('medium');
@@ -259,9 +256,10 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     setOskolokThemeMode(LEGACY_GRAPHITE_THEME_MODE);
   }, []);
 
+  // зачем (владелец 2026-09-30): «ТЕМЫ ВСЕ ФРИ» — любая тема из реестра доступна без Plus.
   const isLiquidGlassThemeAvailable = useCallback((id: LiquidGlassThemeId) => (
-    id === 'graphite' || hasPremiumAccess
-  ), [hasPremiumAccess]);
+    LIQUID_GLASS_THEME_IDS.includes(id)
+  ), []);
 
   const commitLiquidGlassThemeId = useCallback((id: LiquidGlassThemeId) => {
     setAppliedLiquidGlassThemeId(id);
@@ -273,39 +271,25 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     commitLiquidGlassThemeId(id);
   }, [commitLiquidGlassThemeId, isLiquidGlassThemeAvailable]);
 
+  // зачем (владелец 2026-09-30): темы бесплатны — сохранённая тема читается ОДИН раз
+  // при старте и больше не ждёт проверки Plus (раньше эффект перечитывал хранилище
+  // при каждой смене доступа и сбрасывал тему в graphite после окончания Plus).
   useEffect(() => {
     let cancelled = false;
     void (async () => {
-      const [storedId, isPremium] = await Promise.all([
-        AsyncStorage.getItem('liquid_glass_theme'),
-        getVerifiedPremiumStatus(),
-      ]);
+      const storedId = await AsyncStorage.getItem('liquid_glass_theme');
       if (cancelled) return;
-      const candidate = LIQUID_GLASS_THEME_IDS.includes(storedId as LiquidGlassThemeId)
-        ? storedId as LiquidGlassThemeId
-        : 'graphite';
-      const resolved = resolveLiquidGlassTheme(candidate, isPremium || hasPremiumAccess);
+      const resolved = resolveLiquidGlassTheme(storedId);
       setAppliedLiquidGlassThemeId(resolved);
-      if (storedId !== resolved) {
+      if (storedId !== null && storedId !== resolved) {
         void AsyncStorage.setItem('liquid_glass_theme', resolved);
       }
-      setLiquidGlassAccessResolved(true);
-    })().catch(() => {
-      if (!cancelled) {
-        setAppliedLiquidGlassThemeId('graphite');
-        setLiquidGlassAccessResolved(true);
-      }
+    })().catch((e: unknown) => {
+      DebugLogger.error('ThemeContext:liquid_glass_theme', e instanceof Error ? e : new Error(String(e)), 'warning');
+      if (!cancelled) setAppliedLiquidGlassThemeId('graphite');
     });
     return () => { cancelled = true; };
-  }, [hasPremiumAccess]);
-
-  // A Plus entitlement loss takes effect immediately: any tinted theme falls
-  // back to the free graphite material and the persisted selection is repaired.
-  useEffect(() => {
-    if (!liquidGlassAccessResolved || !accessResolved || isLiquidGlassThemeAvailable(appliedLiquidGlassThemeId)) return;
-    setPreviewLiquidGlassThemeId(null);
-    commitLiquidGlassThemeId('graphite');
-  }, [accessResolved, appliedLiquidGlassThemeId, commitLiquidGlassThemeId, isLiquidGlassThemeAvailable, liquidGlassAccessResolved]);
+  }, []);
 
   useEffect(() => {
     let cancelled = false;

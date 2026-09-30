@@ -8,8 +8,8 @@ const STATIC_SCREEN_NAMES = [
   'flashcards_collection', 'flashcards_swipe', 'hint', 'language_welcome',
   'lesson_complete', 'lesson_help', 'lesson_irregular_verbs', 'lesson_menu',
   'lesson_theory_v2', 'lesson_words', 'level_exam',
-  'lingman_videos', 'manage_subscription', 'pack_opening', 'paywall_a', 'paywall_b', 'paywall_c',
-  'paywall_d', 'paywall_e', 'paywall_f', 'paywall_g',
+  // зачем (2026-09-30, D78): экраны paywall_a…g удалены — пейвол Plus живёт в premium_modal.
+  'lingman_videos', 'manage_subscription', 'pack_opening',
   'phrase_analytics_screen', 'premium_modal',
   'preposition_drill', 'privacy_screen', 'promo_code_entry',
   'referrals', 'settings_edu', 'settings_language',

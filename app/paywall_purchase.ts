@@ -1,14 +1,14 @@
 // ════════════════════════════════════════════════════════════════════════════
-// paywall_purchase.ts — общий хук покупки для пейволов A/B/C.
+// paywall_purchase.ts — общий хук покупки: единственный пейвол Plus
+// (app/paywall_plus.tsx) и встроенный пейвол онбординга (CleanOnboarding).
 //
 // Один источник правды для: загрузки пакетов RevenueCat, цен (ТОЛЬКО из стора,
 // никаких хардкодов), честного триала, покупки/восстановления, событий воронки
 // (trackEvent + paywall_funnel) и пуш-напоминания о конце триала.
 //
-// Общая покупка для активных A/B/C paywall-экранов:
-//  - funnel-лог для админ-дашборда A/B
-//  - запрос разрешения на пуш СРАЗУ после старта триала (момент Blinkist:
-//    «напомним за день до списания» — лучший повод дать разрешение)
+//  - funnel-лог для админ-дашборда
+//  - напоминание за 2 дня до списания (trial_end_reminder_schedule.ts); вне
+//    онбординга без разрешения — экран «Напомнить о конце пробного?» после покупки
 //  - реальное планирование напоминания
 // ════════════════════════════════════════════════════════════════════════════
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
@@ -33,13 +33,15 @@ import { getStorePromoPricing } from './premium_store_promo_display';
 import { getTrialInfo, type TrialEligibility, type TrialInfo } from './paywall_trial_info';
 import { readOnboardingNotificationChoice } from './onboarding_notification_choice';
 import { shouldShowExitTrialOffer } from './paywall_trial_offer';
-import { logPaywallFunnel } from './paywall_funnel';
-import type { PaywallAbVariant } from './paywall_variant';
+import { logPaywallFunnel, type PaywallVariantLabel } from './paywall_funnel';
 import {
   scheduleTrialEndReminder,
   schedulePaywallAbandonedNotification,
   requestNotificationPermission,
+  requestNotificationPermissionWithFallback,
+  getNotificationPermissionStatus,
 } from './notifications';
+import { canPromiseTrialReminder } from './trial_end_reminder_schedule';
 import { dismissPaywallModal, markNextNavigationAsReplace } from './navigation_back';
 import { hapticTap } from '../hooks/use-haptics';
 import { DEV_IAP_BYPASS } from './config';
@@ -194,6 +196,70 @@ function showDevPurchasePreviewAlert(lang: Lang): void {
   );
 }
 
+/** Экран «Plus ваш. Напомнить о конце пробного периода?» после покупки вне онбординга. */
+export type TrialReminderPromptState = Readonly<{
+  days: number;
+  priceLabel: string;
+  trialStartMs: number;
+}>;
+
+// зачем (владелец 2026-09-30): текст уведомления ПЕЙВОЛА PLUS совпадает с его обещанием
+// «Напомним за 2 дня до списания». Онбординг — свой прежний текст ниже.
+function trialReminderCopy(lang: Lang, price: string): { title: string; body: string } {
+  return {
+    title: triLang(lang, {
+      ru: 'Пробный период Plus закончится через 2 дня',
+      uk: 'Пробний період Plus закінчиться через 2 дні',
+      en: 'Your Plus trial ends in 2 days',
+      es: 'Tu prueba de Plus termina en 2 días',
+      'pt-BR': 'Seu teste do Plus termina em 2 dias',
+      vi: 'Dùng thử Plus kết thúc sau 2 ngày',
+      id: 'Uji coba Plus berakhir dalam 2 hari',
+      tr: 'Plus denemen 2 gün sonra bitiyor',
+      pl: 'Okres próbny Plus kończy się za 2 dni',
+    }),
+    body: triLang(lang, {
+      ru: `Затем — ${price}. Отменить можно в любой момент в настройках магазина.`,
+      uk: `Далі — ${price}. Скасувати можна будь-коли в налаштуваннях магазину.`,
+      en: `Then ${price}. You can cancel anytime in your store settings.`,
+      es: `Después: ${price}. Puedes cancelar cuando quieras en los ajustes de la tienda.`,
+      'pt-BR': `Depois: ${price}. Você pode cancelar quando quiser nas configurações da loja.`,
+      vi: `Sau đó: ${price}. Bạn có thể hủy bất cứ lúc nào trong cài đặt cửa hàng.`,
+      id: `Setelah itu ${price}. Kamu bisa membatalkan kapan saja di pengaturan toko.`,
+      tr: `Sonra ${price}. İstediğin zaman mağaza ayarlarından iptal edebilirsin.`,
+      pl: `Potem ${price}. Możesz anulować w każdej chwili w ustawieniach sklepu.`,
+    }),
+  };
+}
+
+// Онбординг: прежний текст без изменений (владелец 2026-09-30: «онбординг не трогаем»).
+function onboardingTrialReminderCopy(lang: Lang, price: string): { title: string; body: string } {
+  return {
+    title: triLang(lang, {
+      ru: 'Триал заканчивается завтра',
+      uk: 'Тріал закінчується завтра',
+      en: 'Your trial ends tomorrow',
+      es: 'Tu prueba termina mañana',
+      'pt-BR': 'Seu teste termina amanhã',
+      vi: 'Dùng thử kết thúc vào ngày mai',
+      id: 'Uji cobamu berakhir besok',
+      tr: 'Denemen yarın bitiyor',
+      pl: 'Okres próbny kończy się jutro',
+    }),
+    body: triLang(lang, {
+      ru: `Дальше — ${price}. Останешься? Отменить можно в два тапа.`,
+      uk: `Далі — ${price}. Залишишся? Скасувати можна у два тапи.`,
+      en: `Next: ${price}. Staying? Canceling takes two taps.`,
+      es: `Luego: ${price}. ¿Te quedas? Cancelar toma dos toques.`,
+      'pt-BR': `Depois: ${price}. Vai continuar? Cancelar leva dois toques.`,
+      vi: `Sau đó: ${price}. Bạn tiếp tục chứ? Hủy chỉ mất hai lần chạm.`,
+      id: `Berikutnya: ${price}. Tetap lanjut? Batal hanya dua ketukan.`,
+      tr: `Sonra: ${price}. Devam edecek misin? İptal iki dokunuş.`,
+      pl: `Dalej: ${price}. Zostajesz? Anulowanie to dwa stuknięcia.`,
+    }),
+  };
+}
+
 export function storePriceTrim(raw: string | undefined | null): string {
   if (!raw) return '';
   // (?![a-zа-яёіїєґ]) вместо \b: ASCII-\b не срабатывает после кириллицы
@@ -227,7 +293,7 @@ function storePricePerMonthTrim(pkg: PurchasesPackage | undefined): string {
 }
 
 export interface PaywallPurchaseArgs {
-  variant: PaywallAbVariant;
+  variant: PaywallVariantLabel;
   context: string;
   source: string;
   lang: Lang;
@@ -241,9 +307,14 @@ export interface PaywallPurchaseArgs {
   forceTrialUI?: boolean;
   /** Allowlisted legacy lesson id to reopen after confirmed access. */
   resumeLessonId?: number | null;
+  /**
+   * Пейвол Plus: закрытие без всплывающего окна-оффера поверх пейвола
+   * (владелец 2026-09-30: «никакого окна внутри окна»). Онбординг флаг не передаёт.
+   */
+  disableExitOffer?: boolean;
 }
 
-export function usePaywallPurchase({ variant, context, source, lang, forceTrialUI, resumeLessonId, impression: suppliedImpression }: PaywallPurchaseArgs) {
+export function usePaywallPurchase({ variant, context, source, lang, forceTrialUI, resumeLessonId, impression: suppliedImpression, disableExitOffer = false }: PaywallPurchaseArgs) {
   const router = useRouter();
   const { refillToMax } = useEnergy();
   const [impression] = useState(() => suppliedImpression ?? createPaywallAnalyticsImpression(Crypto.randomUUID));
@@ -261,6 +332,10 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   const [restoring, setRestoring] = useState(false);
   const operationRef = useRef<'purchase' | 'restore' | null>(null);
   const [lifetimeEnabled, setLifetimeEnabled] = useState(() => isLifetimeButtonEnabled());
+  // Экран после покупки: «Plus ваш. Напомнить о конце пробного?» (только вне онбординга,
+  // только если системного разрешения на уведомления ещё нет).
+  const [trialReminderPrompt, setTrialReminderPrompt] = useState<TrialReminderPromptState | null>(null);
+  const trialReminderPromptBusyRef = useRef(false);
 
   useEffect(() => {
     const subscription = onAppEvent('remote_config_changed', () => {
@@ -492,6 +567,15 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   const devForceTrial = DEV_IAP_BYPASS && forceTrialUI === true;
   const subscriptionTrialDays = trial.hasTrial ? trial.days : devForceTrial ? 3 : null;
   const trialDays = selected === 'lifetime' ? null : subscriptionTrialDays;
+  // зачем (владелец 2026-09-30): пробный показывается на карточке ГОДА независимо от
+  // выбранного тарифа — поэтому его длительность читается из годового пакета отдельно.
+  // Источник — только магазин (introPrice/defaultOption.freePhase + eligibility).
+  const yearlyProductId = packages.yearly?.product.identifier;
+  const yearlyTrial: TrialInfo = useMemo(
+    () => getTrialInfo(packages.yearly, yearlyProductId ? introEligibility[yearlyProductId] ?? 'unknown' : 'unknown'),
+    [introEligibility, packages.yearly, yearlyProductId],
+  );
+  const yearlyTrialDays = yearlyTrial.hasTrial ? yearlyTrial.days : devForceTrial ? 3 : null;
   const selectedAvailable = DEV_IAP_BYPASS || Boolean(selectedPkg);
   const ctaDisabled = purchasing || loading || restoring || !selectedAvailable;
 
@@ -639,50 +723,61 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       if (pkgTrial.hasTrial) {
         void trackEvent('trial_started', { context, plan: selected, product_id: pkg.product.identifier, paywall: variant, ...paywallImpressionParams(impression) });
         logPaywallFunnel('trial_started', { variant, context, plan: selected });
-        // Момент Blinkist: триал только что начался — просим разрешение и реально
-        // ставим напоминание за день до списания. Обещание таймлайна = правда.
-        void (async () => {
-          try {
-            const reminderChoice = ONBOARDING_PURCHASE_SOURCES.has(source)
-              ? await readOnboardingNotificationChoice()
-              : null;
-            if (reminderChoice === 'skip' || reminderChoice === 'blocked') return;
-            const granted = await requestNotificationPermission();
-            if (!granted) return;
-            const days = pkgTrial.days;
-            if (!days) return;
-            const price = storePriceTrim(pkg.product.priceString);
-            const ok = await scheduleTrialEndReminder(
-              days,
-              triLang(lang, {
-                ru: 'Триал заканчивается завтра',
-                uk: 'Тріал закінчується завтра',
-                en: 'Your trial ends tomorrow',
-                es: 'Tu prueba termina mañana',
-                'pt-BR': 'Seu teste termina amanhã',
-                vi: 'Dùng thử kết thúc vào ngày mai',
-                id: 'Uji cobamu berakhir besok',
-                tr: 'Denemen yarın bitiyor',
-                pl: 'Okres próbny kończy się jutro',
-              }),
-              triLang(lang, {
-                ru: `Дальше — ${price}. Останешься? Отменить можно в два тапа.`,
-                uk: `Далі — ${price}. Залишишся? Скасувати можна у два тапи.`,
-                en: `Next: ${price}. Staying? Canceling takes two taps.`,
-                es: `Luego: ${price}. ¿Te quedas? Cancelar toma dos toques.`,
-                'pt-BR': `Depois: ${price}. Vai continuar? Cancelar leva dois toques.`,
-                vi: `Sau đó: ${price}. Bạn tiếp tục chứ? Hủy chỉ mất hai lần chạm.`,
-                id: `Berikutnya: ${price}. Tetap lanjut? Batal hanya dua ketukan.`,
-                tr: `Sonra: ${price}. Devam edecek misin? İptal iki dokunuş.`,
-                pl: `Dalej: ${price}. Zostajesz? Anulowanie to dwa stuknięcia.`,
-              }),
-            );
-            if (ok) void trackEvent('trial_reminder_scheduled', { context, plan: selected, paywall: variant, days });
-          } catch (e) {
-      // напоминание — best-effort
-      DebugLogger.error('paywall_purchase:ok', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
-        })();
+        const reminderDays = pkgTrial.days;
+        const reminderPrice = storePriceTrim(pkg.product.priceString);
+        const trialStartMs = Date.now();
+        DebugLogger.info('[TRIAL-REMINDER]', `покупка: пробный начался source=${source} plan=${selected} days=${reminderDays ?? 'null'} price=${reminderPrice || '—'}`);
+        if (ONBOARDING_PURCHASE_SOURCES.has(source)) {
+          // Онбординг (владелец 2026-09-30: «онбординг не трогаем») — прежний путь:
+          // учитываем выбор шага уведомлений онбординга и сразу спрашиваем систему.
+          void (async () => {
+            try {
+              const reminderChoice = await readOnboardingNotificationChoice();
+              if (reminderChoice === 'skip' || reminderChoice === 'blocked') {
+                DebugLogger.info('[TRIAL-REMINDER]', `онбординг: выход — выбор шага уведомлений=${reminderChoice}`);
+                return;
+              }
+              const granted = await requestNotificationPermission();
+              if (!granted) {
+                DebugLogger.warn('[TRIAL-REMINDER]', `онбординг: выход — системное разрешение=${granted}`);
+                return;
+              }
+              if (!reminderDays) {
+                DebugLogger.warn('[TRIAL-REMINDER]', 'онбординг: выход — магазин не отдал длительность пробного');
+                return;
+              }
+              // Текст и дата онбординга — ровно как до 2026-09-30 («за сутки»).
+              const copy = onboardingTrialReminderCopy(lang, reminderPrice);
+              const ok = await scheduleTrialEndReminder(reminderDays, copy.title, copy.body, trialStartMs, 'onboarding_day_before');
+              if (ok) void trackEvent('trial_reminder_scheduled', { context, plan: selected, paywall: variant, days: reminderDays });
+            } catch (e) {
+              // напоминание — best-effort, но причину пишем
+              DebugLogger.error('[TRIAL-REMINDER] onboarding', e instanceof Error ? e : new Error(String(e)), 'warning');
+            }
+          })();
+        } else if (canPromiseTrialReminder(reminderDays)) {
+          // зачем (владелец 2026-09-30): «если у юзера не разрешены уведомления — после
+          // покупки должно спросить можно ли отправлять». Разрешение есть → ставим сразу.
+          // Нет → вместо закрытия пейвола показываем экран «Plus ваш. Напомнить…?»;
+          // навигацию дальше делает он (allowTrialReminder / skipTrialReminder).
+          const permission = await getNotificationPermissionStatus();
+          DebugLogger.info('[TRIAL-REMINDER]', `покупка: системное разрешение=${permission}`);
+          if (permission === 'granted') {
+            const copy = trialReminderCopy(lang, reminderPrice);
+            void scheduleTrialEndReminder(reminderDays, copy.title, copy.body, trialStartMs, 'plus_two_days')
+              .then((ok) => {
+                DebugLogger.info('[TRIAL-REMINDER]', `покупка: результат постановки=${ok}`);
+                if (ok) void trackEvent('trial_reminder_scheduled', { context, plan: selected, paywall: variant, days: reminderDays });
+              })
+              .catch((e: unknown) => DebugLogger.error('[TRIAL-REMINDER] purchase', e instanceof Error ? e : new Error(String(e)), 'warning'));
+          } else if (isOperationAccountCurrent()) {
+            DebugLogger.info('[TRIAL-REMINDER]', 'покупка: показываем экран «Напомнить о конце пробного?»');
+            setTrialReminderPrompt({ days: reminderDays, priceLabel: reminderPrice, trialStartMs });
+            return;
+          }
+        } else {
+          DebugLogger.warn('[TRIAL-REMINDER]', `покупка: напоминание не ставим — пробный ${reminderDays ?? 'null'} дн. (нужно больше 2)`);
+        }
       }
       if (source === 'onboarding') {
         if (!isOperationAccountCurrent()) return;
@@ -756,6 +851,48 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       setPurchasing(false);
     }
   }, [selected, packages, purchasing, restoring, router, context, source, variant, lang, refillToMax, finishOnboardingPaywallFlow, impression, introEligibility, resumeLessonId]);
+
+  // ── экран после покупки: напоминание о конце пробного ─────────────────────
+  const finishAfterTrialReminderPrompt = useCallback(() => {
+    setTrialReminderPrompt(null);
+    if (resumeLessonAfterPremium(router, resumeLessonId)) return;
+    dismissPaywallModal(router, source.startsWith('settings') ? '/(tabs)/settings' : undefined);
+  }, [resumeLessonId, router, source]);
+
+  /** «Разрешить напоминание» → системный запрос → при согласии ставим уведомление. */
+  const allowTrialReminder = useCallback(async () => {
+    const prompt = trialReminderPrompt;
+    if (!prompt || trialReminderPromptBusyRef.current) {
+      DebugLogger.info('[TRIAL-REMINDER]', `экран: повторный тап проигнорирован (prompt=${prompt ? 'есть' : 'нет'})`);
+      return;
+    }
+    trialReminderPromptBusyRef.current = true;
+    hapticTap();
+    DebugLogger.info('[TRIAL-REMINDER]', `экран: «Разрешить» days=${prompt.days}`);
+    try {
+      const permission = await requestNotificationPermissionWithFallback({ openSettingsIfBlocked: true });
+      DebugLogger.info('[TRIAL-REMINDER]', `экран: системный ответ granted=${permission.granted} blocked=${permission.blocked} openedSettings=${permission.openedSettings}`);
+      if (permission.granted) {
+        const copy = trialReminderCopy(lang, prompt.priceLabel);
+        const ok = await scheduleTrialEndReminder(prompt.days, copy.title, copy.body, prompt.trialStartMs, 'plus_two_days');
+        DebugLogger.info('[TRIAL-REMINDER]', `экран: результат постановки=${ok}`);
+        if (ok) void trackEvent('trial_reminder_scheduled', { context, plan: selected, paywall: variant, days: prompt.days });
+      }
+    } catch (e) {
+      DebugLogger.error('[TRIAL-REMINDER] allow', e instanceof Error ? e : new Error(String(e)), 'warning');
+    } finally {
+      trialReminderPromptBusyRef.current = false;
+      finishAfterTrialReminderPrompt();
+    }
+  }, [context, finishAfterTrialReminderPrompt, lang, selected, trialReminderPrompt, variant]);
+
+  /** «Не сейчас» — закрываем без системного запроса. */
+  const skipTrialReminder = useCallback(() => {
+    if (trialReminderPromptBusyRef.current) return;
+    hapticTap();
+    DebugLogger.info('[TRIAL-REMINDER]', 'экран: «Не сейчас» — без системного запроса');
+    finishAfterTrialReminderPrompt();
+  }, [finishAfterTrialReminderPrompt]);
 
   // ── восстановление ─────────────────────────────────────────────────────────
   const handleRestore = useCallback(async () => {
@@ -944,7 +1081,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     // Перехват на выходе: показываем тёплый оффер один раз за сессию экрана.
     // DEV/QA: при форс-триале (_force_trial_ui) показываем на ЛЮБОМ контексте и без
     // «уже видели», чтобы можно было проверять многократно из тест-меню.
-    const exitEligible = context !== 'dialog_limit' && (devForceTrial
+    const exitEligible = !disableExitOffer && context !== 'dialog_limit' && (devForceTrial
       ? source !== 'onboarding' && (reason === 'close' || reason === 'continue_free') && !!trialDays
       : shouldShowExitTrialOffer({
           context,
@@ -1027,7 +1164,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       return;
     }
     doClose(reason);
-  }, [context, source, variant, purchasing, restoring, trialDays, lang, handlePurchase, doClose, devForceTrial, impression]);
+  }, [context, source, variant, purchasing, restoring, trialDays, lang, handlePurchase, doClose, devForceTrial, impression, disableExitOffer]);
 
   return {
     selected, selectPlan,
@@ -1037,9 +1174,10 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     lifetimePrice, lifetimeAvailable,
     savingsPct, perDayLabel,
     storePromo, selectedPromo,
-    trial, trialDays, ctaDisabled, selectedAvailable,
+    trial, trialDays, yearlyTrialDays, ctaDisabled, selectedAvailable,
     handlePurchase, handleRestore, handleClose,
     exitOffer,
+    trialReminderPrompt, allowTrialReminder, skipTrialReminder,
   };
 }
 

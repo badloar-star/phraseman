@@ -18,8 +18,9 @@ const milestoneRuntimeSource = source('app/flashcards/custom_card_milestone.ts')
 
 assert.match(accessSource, /FREE_CUSTOM_CARD_LIMIT\s*=\s*50\b/u,
   'Free custom-card limit must remain exactly 50');
-assert.match(accessSource, /PLUS_CUSTOM_CARD_LIMIT\s*=\s*1_500\b/u,
-  'Plus custom-card policy must cap creation at 1,500 cards');
+// зачем (владелец 2026-09-30): «не 1500, а напиши безлимит» — у Plus лимита нет.
+assert.match(accessSource, /PLUS_CUSTOM_CARD_LIMIT\s*=\s*Number\.POSITIVE_INFINITY\b/u,
+  'Plus custom-card policy must be unlimited');
 assert.match(accessSource, /CUSTOM_CARD_OWNER_ALERT_MILESTONE\s*=\s*1_500\b/u,
   '1,500 remains an owner-alert milestone only');
 
@@ -27,15 +28,17 @@ assert.match(editorSource, /existingCards\.length\s*>=\s*cardLimit/u,
   'The editor must enforce the resolved Free/Plus card limit');
 assert.match(editorSource, /const cardLimit = hasPremiumAccess \? PLUS_CUSTOM_CARD_LIMIT : FREE_CUSTOM_CARD_LIMIT/u,
   'The editor must resolve the Free/Plus creation limit');
-assert.match(creatorSource, /Plus\s*[—-]\s*(?:до\s*)?1\s*500/u,
-  'Creator-access documentation must state the Plus 1,500-card cap');
+assert.match(creatorSource, /Plus\s*[—-]\s*свои карточки и наборы без лимита/u,
+  'Creator-access documentation must state that Plus has no card cap');
 
 async function verifyMilestoneOutbox(): Promise<void> {
   const access = await import(pathToFileURL(accessPath).href) as typeof import('../app/flashcards/custom_card_access');
   assert.equal(access.canCreateCustomCard(1_499, true), true,
     'Plus must allow the 1,499→1,500 creation');
-  assert.equal(access.canCreateCustomCard(1_500, true), false,
-    'Plus must block creation at 1,500 cards');
+  assert.equal(access.canCreateCustomCard(1_500, true), true,
+    'Plus must keep creating past 1,500 cards (no cap)');
+  assert.equal(access.canCreateCustomCard(1_000_000, true), true,
+    'Plus has no custom-card cap at all');
   assert.equal(access.canCreateCustomCard(49, false), true,
     'Free must allow the 49→50 creation');
   assert.equal(access.canCreateCustomCard(50, false), false,

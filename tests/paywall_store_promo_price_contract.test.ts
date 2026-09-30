@@ -17,8 +17,6 @@ import path from 'path';
 const read = (...p: string[]): string =>
   fs.readFileSync(path.join(process.cwd(), ...p), 'utf8');
 
-const PAYWALLS = ['a', 'b', 'c', 'd', 'e', 'f', 'g'] as const;
-
 describe('скидка стора доезжает до пейвола честно', () => {
   const hook = read('app', 'paywall_purchase.ts');
 
@@ -54,29 +52,25 @@ describe('скидка стора доезжает до пейвола чест�
     expect(hook).not.toContain('soundDirector');
   });
 
-  it('плашка есть на ВСЕХ семи пейволах', () => {
-    for (const key of PAYWALLS) {
-      const screen = read('app', `paywall_${key}.tsx`);
-      expect(screen).toContain('PaywallPromoBanner');
-      expect(screen).toContain('promo={p.selectedPromo}');
-    }
+  // 2026-09-30 (D78): пейволы A–G и их PaywallPromoBanner удалены. Единственный
+  // пейвол Plus показывает промо-цену стора прямо на карточке тарифа.
+  it('пейвол Plus показывает промо-цену, зачёркнутую обычную и что будет ПОТОМ', () => {
+    const screen = read('components', 'paywall', 'PaywallPlusScreen.tsx');
+    const plus = read('components', 'paywall', 'PaywallPlus.tsx');
+    expect(screen).toContain('p.storePromo.yearly');
+    expect(screen).toContain('p.storePromo.monthly');
+    expect(plus).toContain('yearlyPromo?.promoPriceString || yearlyPrice');
+    expect(plus).toContain('standardPriceString');
+    expect(plus).toContain("textDecorationLine: 'line-through'");
+    // CTA называет первую реальную платную фазу, подпись — обычную цену после неё.
+    expect(plus).toContain('args.yearlyPromo?.promoPriceString || args.yearlyPrice');
+    expect(plus).toContain('fineAfterTrial(lang, args.yearlyPromo.standardPriceString)');
   });
 
-  it('плашка показывает и цену со скидкой, и обычную, и что будет ПОТОМ', () => {
-    // Третья строка обязательна: без неё человек не знает, сколько спишется
-    // после промо-периода — ровно та ошибка, из-за которой заводили задачу.
-    const banner = read('components', 'paywall', 'PaywallPromoBanner.tsx');
-    expect(banner).toContain('promoPriceString');
-    expect(banner).toContain('standardPriceString');
-    expect(banner).toContain('paywall-promo-after');
-    expect(banner).toContain('textDecorationLine');
-  });
-
-  it('плашка соблюдает запреты владельца по дизайну', () => {
-    const banner = read('components', 'paywall', 'PaywallPromoBanner.tsx');
-    // Толстых/цветных рамок нет; в стекле 2.0 разрешена только тонкая полупрозрачная кромка в 1 px (правило владельца).
-    expect(banner).not.toMatch(/borderWidth\s*:\s*([2-9]|\d{2,})/u);
-    expect(banner).not.toMatch(/adjustsFontSizeToFit/u);
+  it('пейвол Plus соблюдает запреты владельца по дизайну', () => {
+    const plus = read('components', 'paywall', 'PaywallPlus.tsx');
+    expect(plus).not.toMatch(/borderWidth\s*:\s*([2-9]|\d{2,})/u);
+    expect(plus).not.toMatch(/adjustsFontSizeToFit/u);
   });
 
   it('звук скидки не зарегистрирован и не попадает в бандл', () => {

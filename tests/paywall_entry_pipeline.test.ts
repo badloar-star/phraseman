@@ -1,8 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 
-const mockResolveVariant = jest.fn(() => ({ variant: 'G' as const }));
-
 jest.mock('react-native', () => ({
   InteractionManager: {
     runAfterInteractions: (callback: () => void) => {
@@ -10,10 +8,6 @@ jest.mock('react-native', () => ({
       return { cancel: jest.fn() };
     },
   },
-}));
-jest.mock('../app/paywall_variant', () => ({
-  refreshPaywallAbConfigInBackground: jest.fn(),
-  resolvePaywallAbVariantSync: () => mockResolveVariant(),
 }));
 
 import { openPremiumPaywall } from '../app/paywall_navigation';
@@ -36,7 +30,6 @@ describe('typed paywall entry pipeline', () => {
         source: 'flashcards_training_direct',
       },
     });
-    expect(mockResolveVariant).not.toHaveBeenCalled();
   });
 
   test('manage navigation remains outside acquisition and preserves known params', () => {
@@ -48,7 +41,6 @@ describe('typed paywall entry pipeline', () => {
       pathname: '/manage_subscription',
       params: { plan: 'yearly' },
     });
-    expect(mockResolveVariant).not.toHaveBeenCalled();
   });
 
   test('winback entry emits the truthful winback context through the typed dispatcher', () => {
@@ -57,19 +49,14 @@ describe('typed paywall entry pipeline', () => {
     expect(source).not.toContain("params: { context: 'streak', source: 'winback' }");
   });
 
-  test.each(['a', 'b', 'c', 'd', 'e', 'f', 'g'])('paywall %s consumes the dispatcher entry instead of minting a disconnected identity', (variant) => {
-    const source = fs.readFileSync(path.join(process.cwd(), 'app', `paywall_${variant}.tsx`), 'utf8');
-    const component = variant.toUpperCase();
-
-    expect(source).toContain("import type { PaywallEntry } from './paywall_entry_contract';");
-    expect(source).toContain("import DirectPaywallRoute from './direct_paywall_route';");
-    expect(source).toContain(`export function Paywall${component}View({ entry }: { readonly entry: PaywallEntry })`);
+  test('the single Plus paywall consumes the dispatcher entry instead of minting a disconnected identity', () => {
+    const source = fs.readFileSync(path.join(process.cwd(), 'components', 'paywall', 'PaywallPlusScreen.tsx'), 'utf8');
+    expect(source).toContain("import { paywallEntryAnalyticsParams, type PaywallEntry } from '../../app/paywall_entry_contract';");
+    expect(source).toContain('export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEntry })');
     expect(source).toContain('const ctx = entry.context;');
     expect(source).toContain('const source = entry.source;');
     expect(source).toContain('createPaywallAnalyticsImpression(() => entry.impressionId)');
-    expect(source).toContain('const entryAnalytics = useMemo(() => paywallEntryAnalyticsParams({');
-    expect(source).toContain('...entryAnalytics, ...paywallImpressionParams(analyticsImpression)');
-    expect(source).toContain(`return <DirectPaywallRoute render={(entry) => <Paywall${component}View entry={entry} />} />;`);
+    expect(source).toContain('...entryAnalytics, ...paywallImpressionParams(impression)');
     expect(source).not.toContain('entry?.context');
     expect(source).not.toContain('entry?.source');
   });

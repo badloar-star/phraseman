@@ -27,13 +27,13 @@ test('tab bar is icon-only, enlarged, and keeps the screen-reader label', () => 
   assert.match(source, /tab:\s*\{\s*flex: 1, alignItems: 'center', justifyContent: 'center'\s*\}/);
 });
 
-test('Plus tint changes the tab bar material and expiry restores graphite', () => {
+test('a tint changes the tab bar material and stays without Plus (themes are free)', () => {
   const graphite = liquidGlassTokens('graphite');
   for (const id of ['iris', 'marine']) {
     const tint = liquidGlassTokens(id);
     for (const role of ['bgBottom', 'opaqueControl', 'cta', 'mutedText']) {
       assert.notEqual(tint[role], graphite[role], `${id}: ${role}`);
     }
-    assert.equal(liquidGlassTokens(resolveLiquidGlassTheme(id, false)).bgBottom, graphite.bgBottom);
+    assert.equal(liquidGlassTokens(resolveLiquidGlassTheme(id, false)).bgBottom, tint.bgBottom);
   }
 });

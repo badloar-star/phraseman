@@ -77,13 +77,6 @@ const SECTION_ROOTS: ReadonlyMap<string, NavigationSection> = new Map([
 // из Home, Friends, Stats, Flashcards, Arena/Tournaments и Avatar.
 const CONTEXTUAL_PORTAL_PATHS: ReadonlySet<string> = new Set([
   '/premium_modal',
-  '/paywall_a',
-  '/paywall_b',
-  '/paywall_c',
-  '/paywall_d',
-  '/paywall_e',
-  '/paywall_f',
-  '/paywall_g',
   '/manage_subscription',
   '/shards_shop',
   // зачем: D70/D78 — экран /coin_exchange (биржа жемчуга) удалён целиком.
@@ -103,20 +96,10 @@ const CONTEXTUAL_PORTAL_PATHS: ReadonlySet<string> = new Set([
   '/ai_companion_session',
 ]);
 
-// Единственный настоящий redirect в этой семье. premium_modal теперь сам
-// рисует выбранный paywall и поэтому является контекстным экраном, не redirect.
+// Единственный настоящий redirect в этой семье. premium_modal сам рисует
+// единственный пейвол Plus и поэтому является контекстным экраном, не redirect.
 const TRANSIENT_REDIRECT_PATHS: ReadonlySet<string> = new Set([
   '/premium_modal_v2',
-]);
-
-const PAYWALL_BASE_PATHS: ReadonlySet<string> = new Set([
-  '/paywall_a',
-  '/paywall_b',
-  '/paywall_c',
-  '/paywall_d',
-  '/paywall_e',
-  '/paywall_f',
-  '/paywall_g',
 ]);
 
 // Одноразовые экраны: попасть на них можно ТОЛЬКО через подготовку на экране
@@ -357,8 +340,8 @@ function rememberEntry(entry: NavigationEntry): void {
 
 function isNonBackTargetPath(path: string): boolean {
   const pathname = pathnameOf(path);
-  return PAYWALL_BASE_PATHS.has(pathname)
-    || pathname === '/premium_modal'
+  // зачем (2026-09-30): экраны /paywall_a…g удалены — пейвол живёт только в premium_modal.
+  return pathname === '/premium_modal'
     || TRANSIENT_REDIRECT_PATHS.has(pathname);
 }
 

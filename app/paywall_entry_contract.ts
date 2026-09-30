@@ -68,7 +68,6 @@ export const PAYWALL_SOURCE_VALUES = [
   'entitlement_expired',
   'winback',
   'referral_ended',
-  'season_pass_lane',
   'notification_upsell',
   'dev_hub',
   // зачем (2026-09-20): пять живых точек входа, которых не было в списке. На

@@ -45,13 +45,6 @@ export const SECTION: ShowcaseSection = {
   order: 30,
   title: cs('paywalls_section_title'),
   items: [
-    { id: 'paywall_a', title: cs('paywall_a_title'), detail: cs('real_screen'), kind: 'route', route: '/paywall_a' },
-    { id: 'paywall_b', title: cs('paywall_b_title'), detail: cs('real_screen'), kind: 'route', route: '/paywall_b' },
-    { id: 'paywall_c', title: cs('paywall_c_title'), detail: cs('real_screen'), kind: 'route', route: '/paywall_c' },
-    { id: 'paywall_d', title: cs('paywall_d_title'), detail: cs('real_screen'), kind: 'route', route: '/paywall_d' },
-    { id: 'paywall_e', title: cs('paywall_e_title'), detail: cs('real_screen'), kind: 'route', route: '/paywall_e' },
-    { id: 'paywall_f', title: cs('paywall_f_title'), detail: cs('real_screen'), kind: 'route', route: '/paywall_f' },
-    { id: 'paywall_g', title: cs('paywall_g_title'), detail: cs('real_screen'), kind: 'route', route: '/paywall_g' },
     {
       id: 'manage_subscription',
       title: cs('manage_subscription_title'),

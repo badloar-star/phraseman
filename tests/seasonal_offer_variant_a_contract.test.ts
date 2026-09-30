@@ -19,29 +19,9 @@ describe('seasonal offer variant A', () => {
     expect(homeBadge).not.toMatch(/rotate\(/u);
   });
 
-  it('uses one store-fed diagonal corner badge in every shared plan presentation', () => {
-    const corner = read('components', 'paywall', 'PaywallPromoCorner.tsx');
-    expect(corner).toContain('promoBadgeLabel');
-    expect(corner).toContain("rotate: '-10deg'");
-    expect(corner).toContain('PaywallBadgePop');
-    expect(corner).not.toMatch(/discount_offer_badge_percent|discountPercent\s*[:=]\s*50/u);
-
-    for (const file of ['PaywallPlanCards.tsx', 'PaywallPlanTiles.tsx']) {
-      expect(read('components', 'paywall', file)).toContain('PaywallPromoCorner');
-      expect(read('components', 'paywall', file)).toContain('promoPriceString');
-    }
-    expect(read('app', 'paywall_e.tsx')).toContain('PaywallPromoCorner');
-  });
-
-  it('passes the selected store promotion into all seven paywall price surfaces', () => {
-    for (const letter of ['a', 'b', 'c', 'd', 'e', 'f', 'g']) {
-      const screen = read('app', `paywall_${letter}.tsx`);
-      expect(screen).toContain('p.selectedPromo');
-      // CTA и sticky-панель обязаны называть первую реальную платную фазу,
-      // а не стандартную цену, которая начнёт действовать позже.
-      expect(screen).toContain('p.selectedPromo?.promoPriceString');
-    }
-  });
+  // Уголок −N% и семь пейволов A–G удалены 2026-09-30 (D78). Промо-цену стора
+  // единственный пейвол Plus показывает на карточке тарифа
+  // (tests/paywall_store_promo_price_contract.test.ts).
 
   it('keeps a separate admin control area explicit about store activation', () => {
     const admin = read('admin', 'v2', 'legacy.html');

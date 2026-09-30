@@ -17,8 +17,23 @@ import { Platform } from 'react-native';
 import { isAnalyticsConsentGranted } from './analytics_consent';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { getStableId } from './stable_id';
-import { hashToUnit, type PaywallAbVariant } from './paywall_variant';
 import { DebugLogger } from './debug-logger';
+
+/**
+ * Метка пейвола в воронке. 'PLUS' — единственный пейвол Plus (владелец 2026-09-30,
+ * A/B-эксперимент A–G удалён). 'C' пишет встроенный пейвол онбординга — его
+ * «онбординг не трогаем», метка сохранена ради непрерывности графиков.
+ */
+export type PaywallVariantLabel = 'PLUS' | 'C';
+
+/** djb2 → [0,1): короткий неидентифицирующий хэш stableId для счёта уникальных. */
+function hashToUnit(input: string): number {
+  let h = 5381;
+  for (let i = 0; i < input.length; i += 1) {
+    h = ((h << 5) + h + input.charCodeAt(i)) >>> 0;
+  }
+  return (h % 100000) / 100000;
+}
 
 export type PaywallFunnelStep =
   | 'shown'
@@ -58,12 +73,10 @@ async function getFirestoreModule(): Promise<FirestoreFactory | null> {
 }
 
 export interface PaywallFunnelPayload {
-  variant: PaywallAbVariant;
+  variant: PaywallVariantLabel;
   context: string;
-  // зачем: тариф MAX — полноценный план стора (PremiumStorePlan), и восстановление
-  // покупки может вернуть именно его. Раньше тип воронки о нём не знал и ломал
-  // сборку на logPaywallFunnel('restore_completed') — тест пейвола вообще не
-  // запускался. Держать в синхроне с PremiumStorePlan (premium_revenuecat_state).
+  // Тип плана хранит только активные предложения стора и допускает восстановление
+  // ранее оформленной покупки.
   plan?: 'monthly' | 'yearly' | 'lifetime' | null;
   obColor?: 'main';
   /**

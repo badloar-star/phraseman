@@ -59,23 +59,7 @@ export function pickPercentileLine(
     });
   }
 
-  // конец интро / экран перцентилей → гордимся недельным темпом
-  if (ctx === 'intro_ended' || ctx === 'percentiles') {
-    const p = visiblePercentile(percentiles.weekXp);
-    if (p === null) return null;
-    const top = Math.max(1, 100 - p);
-    return tri(lang, {
-      ru: `Твой темп за неделю — в топ-${top}% учеников.`,
-      uk: `Твій темп за тиждень — у топ-${top}% учнів.`,
-      en: `Your pace this week puts you in the top ${top}% of learners.`,
-      es: `Tu ritmo semanal está en el top-${top}% de los alumnos.`,
-      'pt-BR': `Seu ritmo da semana está no top-${top}% dos alunos.`,
-      vi: `Nhịp học tuần này của bạn nằm trong top-${top}% học viên.`,
-      id: `Ritme mingguanmu ada di top-${top}% murid.`,
-      tr: `Haftalık tempon öğrenciler arasında ilk %${top} içinde.`,
-      pl: `Twoje tempo w tym tygodniu jest w top-${top}% uczniów.`,
-    });
-  }
+  // Retired economy percentile social proof is not shown.
 
   return null;
 }

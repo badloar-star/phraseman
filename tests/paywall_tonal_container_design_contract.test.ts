@@ -4,20 +4,7 @@ import path from 'path';
 const ROOT = path.join(__dirname, '..');
 
 describe('paywall tonal container design contract', () => {
-  it('renders plan cards as lightweight tonal surfaces without container borders', () => {
-    const source = fs.readFileSync(path.join(ROOT, 'components', 'paywall', 'PaywallPlanCards.tsx'), 'utf8');
-
-    expect(source).toContain("import { LinearGradient } from '../SafeLinearGradient';");
-    expect(source).toContain('const planSurfaceColors =');
-    expect(source).toContain('colors={planSurfaceColors}');
-    expect(source).toContain('S.cardHighlight');
-    expect(source).toContain("borderWidth: 0");
-    expect(source).toContain("overflow: 'hidden'");
-    expect(source).not.toContain('<BlurView');
-    expect(source).not.toContain('backdropFilter');
-    expect(source).not.toContain('filter: blur');
-  });
-
+  // Тест карточек тарифов удалён 2026-09-30 вместе с PaywallPlanCards (D78).
   it('renders paywall proof cards as tonal layers instead of flat bordered panels', () => {
     const source = fs.readFileSync(path.join(ROOT, 'components', 'paywall', 'PaywallProofCards.tsx'), 'utf8');
     const proofCardStart = source.indexOf('function ProofCard');

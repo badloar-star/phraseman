@@ -37,11 +37,14 @@ test('approved registry has graphite plus twelve distinct dark tints', () => {
   }
 });
 
-test('Plus expiry immediately resolves a tinted selection to free graphite', () => {
+// зачем (владелец 2026-09-30): «ТЕМЫ ВСЕ ФРИ» — Plus больше не решает, какая тема доступна.
+test('every registered tint is free; only unknown names fall back to graphite', () => {
   assert.equal(resolveLiquidGlassTheme('marine', true), 'marine');
-  assert.equal(resolveLiquidGlassTheme('marine', false), 'graphite');
+  assert.equal(resolveLiquidGlassTheme('marine', false), 'marine');
+  assert.equal(resolveLiquidGlassTheme('marine'), 'marine');
   assert.equal(resolveLiquidGlassTheme('graphite', false), 'graphite');
   assert.equal(resolveLiquidGlassTheme('retired-theme', true), 'graphite');
+  assert.equal(resolveLiquidGlassTheme(null), 'graphite');
 });
 
 test('app mapping only tints neutral roles and preserves success, error and rewards', () => {

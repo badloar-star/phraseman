@@ -80,10 +80,13 @@ export function liquidGlassTokens(id: unknown): GlassTokens {
     : GRAPHITE;
 }
 
-/** Graphite is free; every tint requires an active Plus entitlement. */
-export function resolveLiquidGlassTheme(id: unknown, hasPlus: boolean): LiquidGlassThemeId {
-  if (id === 'graphite') return 'graphite';
-  return hasPlus && typeof id === 'string' && LIQUID_GLASS_THEME_IDS.includes(id as LiquidGlassThemeId)
+/**
+ * зачем (владелец 2026-09-30): «ТЕМЫ ВСЕ ФРИ, БЕЗ ПЛЮСА МОЖНО МЕНЯТЬ» — все 13 тем
+ * бесплатны, Plus больше ничего не решает. Неизвестное/снятое имя → graphite.
+ * Второй аргумент оставлен только для совместимости старых вызовов и игнорируется.
+ */
+export function resolveLiquidGlassTheme(id: unknown, _hasPlus?: boolean): LiquidGlassThemeId {
+  return typeof id === 'string' && LIQUID_GLASS_THEME_IDS.includes(id as LiquidGlassThemeId)
     ? id as LiquidGlassThemeId
     : 'graphite';
 }

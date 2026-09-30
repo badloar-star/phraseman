@@ -46,6 +46,14 @@ export function redirectSystemPath({
     return '/home';
   }
 
+  // зачем (владелец 2026-09-30): пейволы A–G удалены, остался один пейвол Plus
+  // за диспетчером /premium_modal. Старые внешние ссылки /paywall_a…/paywall_g
+  // (с их query — context/source) открывают его, а не «Unmatched Route».
+  const retiredPaywall = raw.match(/^\/?paywall_[a-g](?=[?#]|$)/i);
+  if (retiredPaywall) {
+    return `/premium_modal${raw.slice(retiredPaywall[0].length)}`;
+  }
+
   // Referral invite links should not route to a non-existent `/invite` screen.
   // The root layout captures the ref query from Linking.getInitialURL/listeners;
   // this redirect only keeps app launch/navigation on a valid screen.

@@ -3,17 +3,15 @@
 //
 // Горизонтальная лента карточек: иконка-флаг + подпись языка. Языки, которые
 // пользователь уже начал учить, помечены галочкой «учу» — их можно переключать
-// свободно (прогресс каждого языка живёт в своём namespace). Новый язык:
-//   • фри-аккаунт с ≥1 начатым языком → пейвол context='language_add';
-//   • иначе → экран приветствия /language_welcome (пара вопросов для плана).
+// свободно (прогресс каждого языка живёт в своём namespace). Новый язык →
+// экран приветствия /language_welcome (пара вопросов для плана). Plus не нужен:
+// владелец 2026-09-30 «языки обучения все фри без плюс».
 // ═══════════════════════════════════════════════════════════════════════════
 
 import React, { useCallback, useEffect, useState } from 'react';
 import { Image, ScrollView, Text, TouchableOpacity, View, type ImageSourcePropType } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
-import { openPremiumPaywall } from '../../app/paywall_navigation';
-import { usePremium } from '../PremiumContext';
 import { useTheme } from '../ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { studyTargetsForSourceLocale, type StudyTarget } from '../../app/study_target';
@@ -22,7 +20,6 @@ import type { Lang } from '../../constants/i18n';
 import {
   applyStudyLanguageSelection,
   getStartedStudyLanguages,
-  shouldGateExtraLanguage,
 } from '../../app/study_languages';
 import { hapticTap as doHaptic } from '../../hooks/use-haptics';
 import { actionToastTri, emitAppEvent } from '../../app/events';
@@ -92,10 +89,9 @@ export default function StudyLanguagePicker({
   onSwitched,
 }: StudyLanguagePickerProps) {
   const router = useRouter();
-  const { hasPremiumAccess } = usePremium();
   // зачем (profile.html «выбор языка изучения · шторка», владелец 2026-09-30): плитки языков на токенах
   // стекла темы — выбранная светлее и с тонкой кромкой, остальные плоским тоном; palette из настроек
-  // остаётся в пропсах для совместимости вызова, цвета берём из темы. Логика выбора/пейвола не менялась.
+  // остаётся в пропсах для совместимости вызова, цвета берём из темы. Логика выбора не менялась.
   const { liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const [startedLanguages, setStartedLanguages] = useState<readonly StudyTarget[]>([activeTarget]);
@@ -144,17 +140,9 @@ export default function StudyLanguagePicker({
     })();
       return;
     }
-    if (shouldGateExtraLanguage({ target: code, startedLanguages: started, hasPremiumAccess })) {
-      openPremiumPaywall(router, {
-        context: 'language_add',
-        source: 'settings_language_picker',
-        language: code,
-      });
-      return;
-    }
-    // Новый язык разрешён — приветствие и пара вопросов для будущего плана.
+    // Новый язык — приветствие и пара вопросов для будущего плана.
     router.push({ pathname: '/language_welcome', params: { target: code } } as any);
-  }, [busy, activeTarget, startedLanguages, startedLanguagesResolved, lang, hasPremiumAccess, router, onSwitched, reloadStarted]);
+  }, [busy, activeTarget, startedLanguages, startedLanguagesResolved, lang, router, onSwitched, reloadStarted]);
 
   return (
     <ScrollView
@@ -169,7 +157,6 @@ export default function StudyLanguagePicker({
         const active = code === activeTarget;
         const learning = startedLanguages.includes(code);
         const flagAsset = languageFlagAssetFor(code);
-        const locked = !learning && !hasPremiumAccess && startedLanguages.length > 0;
         return (
           <TouchableOpacity
             key={code}
@@ -224,23 +211,6 @@ export default function StudyLanguagePicker({
                   }}
                 >
                   <Ionicons name="checkmark" size={12} color={glass.ctaInk} />
-                </View>
-              ) : null}
-              {locked ? (
-                <View
-                  style={{
-                    position: 'absolute',
-                    right: 3,
-                    bottom: 3,
-                    width: 18,
-                    height: 18,
-                    borderRadius: 9,
-                    backgroundColor: glass.opaqueControl,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <Ionicons name="lock-closed" size={11} color={glass.text} />
                 </View>
               ) : null}
             </View>

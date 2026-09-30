@@ -63,14 +63,21 @@ describe('AI dialogue paywall truth contract', () => {
     expect(scenarioLimitMentions).toBe(exhaustedBranches * 2); // trackAiDialogEvent + router.push
   });
 
-  test('dialog_limit states the daily limit of a regular account and that Plus removes it', () => {
+  // зачем ПЕРЕПИСАНО (D111, 2026-09-30): лимит Free — 30 ответов в МЕСЯЦ (сервер
+  // считает по календарному месяцу UTC). Прежний сторож требовал «10 реплик в день»
+  // и тем самым охранял ложь — чиним сторожа, а не подгоняем текст под него.
+  test('dialog_limit states the monthly limit of a regular account and that Plus has no counter', () => {
     const copy = getPaywallCopy('dialog_limit');
     const planned = getHeroPlannedCopy('dialog_limit', 0);
-    expect(copy.titleRu).toBe('Дневной лимит диалогов исчерпан');
-    expect(copy.subtitleRu).toContain('10 реплик в день');
-    expect(copy.subtitleRu).toContain('Plus снимает дневной лимит');
-    expect(planned.title.en).toBe('Daily dialogue limit reached');
-    expect(planned.subtitle.en).toContain('10 replies a day');
+    expect(copy.subtitleRu).toContain('30 ответов в месяц');
+    expect(copy.subtitleRu).toContain('с подпиской счётчика нет');
+    expect(copy.subtitleUk).toContain('30 відповідей на місяць');
+    expect(copy.subtitleEs).toContain('30 respuestas al mes');
+    expect(planned.subtitle.en).toContain('30 replies a month');
+    const all = JSON.stringify({ copy, planned }).toLocaleLowerCase();
+    for (const dailyClaim of ['в день', 'на день', 'al día', 'a day', 'por dia', 'mỗi ngày', 'per hari', 'günde', 'dziennie']) {
+      expect(all).not.toContain(dailyClaim);
+    }
   });
 
   test.each(['dialog_locked_level'] as const)(

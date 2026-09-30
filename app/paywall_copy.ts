@@ -11,14 +11,15 @@ import { MAIN_COURSE_PLUS_TITLE, MAIN_COURSE_PLUS_DESCRIPTION, MAIN_COURSE_PLUS_
 // ════════════════════════════════════════════════════════════════════════════
 import { triLang, type Lang } from '../constants/i18n';
 import { PREMIUM_CONTEXT_SET, type PremiumContext } from './premium_context';
-import { REVENUE_DAILY_LIMITS } from './revenue_daily_limits';
+import { REVENUE_DAILY_LIMITS, REVENUE_MONTHLY_LIMITS } from './revenue_daily_limits';
 
 // зачем (владелец, 2026-09-13): дневные лимиты обычного аккаунта настоящие —
 // пейвол обязан говорить «лимит на сегодня исчерпан», а не «только в Plus».
 // Числа берутся из одного источника, чтобы текст не разошёлся с гейтом.
 const DAILY_TRAINING = REVENUE_DAILY_LIMITS.flashcard_training_starts;
 const DAILY_SPEAKING = REVENUE_DAILY_LIMITS.speaking_attempts;
-const DAILY_DIALOG = REVENUE_DAILY_LIMITS.ai_dialog_replies;
+// зачем (D111, 2026-09-30): Free-лимит Диалогов — 30 ответов в МЕСЯЦ, не в день.
+const MONTHLY_DIALOG = REVENUE_MONTHLY_LIMITS.ai_dialog_replies;
 const DAILY_MISTAKES = REVENUE_DAILY_LIMITS.mistake_practice_starts;
 
 export type PremiumPlannedCopy = {
@@ -45,7 +46,6 @@ export const PREMIUM_HERO_ART: Record<PremiumContext, PremiumHeroArt> = {
   // Preserve the existing generic hero treatment: Revenue VNext changes only
   // the context and copy, not the visual design of either paywall surface.
   onboarding_plan: { accent: '#C8FF00', accent2: '#67E8F9', shardAmount: 0 },
-  season_pass_lane: { accent: '#C8FF00', accent2: '#67E8F9', shardAmount: 0 },
   course_after_lesson3: { accent: '#63E6BE', accent2: '#FFD86B', shardAmount: 180 },
   lesson_b1: { accent: '#38BDF8', accent2: '#FACC15', shardAmount: 180 },
   flashcard_limit: { accent: '#8BD3FF', accent2: '#FDE68A', shardAmount: 80 },
@@ -122,12 +122,6 @@ const LESSON_B1_COPY: PaywallCopy = COURSE_AFTER_LESSON3_COPY;
 
 const LESSON_B1_PLANNED_COPY: PremiumPlannedHeroCopy = COURSE_AFTER_LESSON3_PLANNED_COPY;
 
-const SEASON_PASS_LANE_BENEFITS: Record<Lang, string>[] = [
-  { ru: 'Премиум-награды текущего сезона', uk: 'Преміум-нагороди поточного сезону', en: 'Premium rewards for the current season', es: 'Recompensas premium de la temporada actual', 'pt-BR': 'Recompensas premium da temporada atual', vi: 'Phần thưởng cao cấp của mùa hiện tại', id: 'Hadiah premium untuk musim ini', tr: 'Mevcut sezonun premium ödülleri', pl: 'Nagrody premium w bieżącym sezonie' },
-  { ru: 'Безлимитная энергия', uk: 'Безлімітна енергія', en: 'Unlimited energy', es: 'Energía ilimitada', 'pt-BR': 'Energia ilimitada', vi: 'Năng lượng không giới hạn', id: 'Energi tanpa batas', tr: 'Sınırsız enerji', pl: 'Nielimitowana energia' },
-  { ru: 'Разговорная практика и подробная статистика', uk: 'Розмовна практика й докладна статистика', en: 'Speaking practice and detailed statistics', es: 'Práctica oral y estadísticas detalladas', 'pt-BR': 'Prática de fala e estatísticas detalhadas', vi: 'Luyện nói và thống kê chi tiết', id: 'Latihan bicara dan statistik terperinci', tr: 'Konuşma pratiği ve ayrıntılı istatistikler', pl: 'Ćwiczenie mówienia i szczegółowe statystyki' },
-];
-
 export function normalizePremiumContext(raw: string | string[] | undefined): PremiumContext {
   const value = Array.isArray(raw) ? raw[0] : raw;
   if (!value) return 'generic';
@@ -161,14 +155,6 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
     subtitleRu: 'Курс из живых фраз, разговоры вслух и повторы ровно того, что забывается — всё открыто с первого дня.',
     subtitleUk: 'Курс із живих фраз, розмови вголос і повтори саме того, що забувається — усе відкрито з першого дня.',
     subtitleEs: 'Un curso de frases reales, práctica oral y repasos de justo lo que se olvida: todo abierto desde el primer día.',
-  },
-  season_pass_lane: {
-    titleRu: 'Забирай награды сезона',
-    titleUk: 'Забирай нагороди сезону',
-    titleEs: 'Llévate las recompensas de la temporada',
-    subtitleRu: 'Премиум-дорожка сезона открывается целиком — вместе с курсом, разговорами вслух, тренировками без счётчика и статистикой.',
-    subtitleUk: 'Преміум-доріжка сезону відкривається цілком — разом із курсом, розмовами вголос, тренуваннями без лічильника та статистикою.',
-    subtitleEs: 'La ruta premium de la temporada se abre entera, junto con el curso, la práctica oral, los entrenamientos sin contador y las estadísticas.',
   },
   language_add: {
     titleRu: 'Учи несколько языков сразу',
@@ -219,17 +205,17 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
     titleRu: 'Выбери, как будет выглядеть',
     titleUk: 'Обери, як це виглядатиме',
     titleEs: 'Elige cómo se va a ver',
-    subtitleRu: 'Тёмная, тёплая, контрастная — тема меняет всё приложение и остаётся у тебя навсегда. Входит в подписку вместе с курсом, разговорами и тренировками.',
-    subtitleUk: 'Темна, тепла, контрастна — тема змінює весь застосунок і залишається в тебе назавжди. Входить у передплату разом із курсом, розмовами та тренуваннями.',
-    subtitleEs: 'Oscuro, cálido, de alto contraste: el tema cambia toda la app y se queda contigo para siempre. Va incluido en la suscripción junto al curso, los diálogos y los entrenamientos.',
+    subtitleRu: '12 тёмных оттенков Liquid Glass доступны с Plus. Если Plus закончится, интерфейс вернётся к стандартному графиту.',
+    subtitleUk: '12 темних відтінків Liquid Glass доступні з Plus. Якщо Plus закінчиться, інтерфейс повернеться до стандартного графіту.',
+    subtitleEs: 'Los 12 tonos oscuros Liquid Glass están disponibles con Plus. Si Plus termina, la interfaz vuelve al grafito estándar.',
   },
   club: {
-    // зачем (владелец, 2026-09-22): «Усиль прогресс», «XP-бусты для ускорения» —
+    // зачем (владелец, 2026-09-22): «Усиль прогресс», «legacy reward-бусты для ускорения» —
     // три строки подряд без единого понятного слова. Названо то, что реально
     // происходит: недельная таблица, награды, повышение.
     titleRu: 'Соревнуйся за место в лиге',
     titleUk: 'Змагайся за місце в лізі',
-    titleEs: 'Compite por tu puesto en la liga',
+    titleEs: 'Practica con la comunidad',
     subtitleRu: 'Каждую неделю — таблица с живыми людьми, опыт растёт быстрее и подниматься проще. Вместе с этим открывается весь курс, разговоры и тренировки.',
     subtitleUk: 'Щотижня — таблиця з живими людьми, досвід зростає швидше й підійматися простіше. Разом із цим відкривається увесь курс, розмови та тренування.',
     subtitleEs: 'Cada semana, una tabla con personas reales: la experiencia sube más rápido y es más fácil ascender. Con esto se abre también el curso completo, los diálogos y los entrenamientos.',
@@ -244,9 +230,9 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
     titleRu: 'Разговаривай сколько хочется',
     titleUk: 'Розмовляй скільки хочеться',
     titleEs: 'Conversa todo lo que quieras',
-    subtitleRu: `Бесплатно — ${DAILY_DIALOG} реплик в день, с подпиской счётчика нет. Открываются все сценарии: кафе, собеседование, врач. И не только диалоги — весь курс, тренировки и статистика тоже.`,
-    subtitleUk: `Безкоштовно — ${DAILY_DIALOG} реплік на день, із передплатою лічильника немає. Відкриваються всі сценарії: кафе, співбесіда, лікар. І не лише діалоги — увесь курс, тренування та статистика теж.`,
-    subtitleEs: `Gratis son ${DAILY_DIALOG} respuestas al día; con la suscripción no hay contador. Se abren todos los escenarios: cafetería, entrevista, médico. Y no solo los diálogos: también el curso completo, los entrenamientos y las estadísticas.`,
+    subtitleRu: `Без подписки — ${MONTHLY_DIALOG} ответов в месяц, с подпиской счётчика нет. Открываются все сценарии: кафе, собеседование, врач. И не только диалоги — весь курс, тренировки и статистика тоже.`,
+    subtitleUk: `Безкоштовно — ${MONTHLY_DIALOG} відповідей на місяць, із передплатою лічильника немає. Відкриваються всі сценарії: кафе, співбесіда, лікар. І не лише діалоги — увесь курс, тренування та статистика теж.`,
+    subtitleEs: `Gratis son ${MONTHLY_DIALOG} respuestas al mes; con la suscripción no hay contador. Se abren todos los escenarios: cafetería, entrevista, médico. Y no solo los diálogos: también el curso completo, los entrenamientos y las estadísticas.`,
   },
   // зачем (владелец 2026-09-14): раздел ошибок бесплатен с дневным лимитом,
   // поэтому текст называет дневную норму, а не говорит «только в Plus».
@@ -430,9 +416,9 @@ PAYWALL_COPY.avatar_aura = {
   titleRu: 'Добавь аватару свечение',
   titleUk: 'Додай аватару сяйво',
   titleEs: 'Dale un brillo a tu avatar',
-  subtitleRu: 'Аура подсвечивает твой аватар в лигах, у друзей и в списках — тебя видно сразу. Входит в подписку вместе с курсом, разговорами и тренировками.',
-  subtitleUk: 'Аура підсвічує твій аватар у лігах, у друзів і в списках — тебе видно одразу. Входить у передплату разом із курсом, розмовами та тренуваннями.',
-  subtitleEs: 'El aura ilumina tu avatar en las ligas, entre amigos y en las listas: se te ve al instante. Va incluida en la suscripción junto al curso, los diálogos y los entrenamientos.',
+  subtitleRu: 'Аура подсвечивает твой аватар у друзей и в списках — тебя видно сразу. Входит в подписку вместе с курсом, разговорами и тренировками.',
+  subtitleUk: 'Аура підсвічує твій аватар у друзів і в списках — тебе видно одразу. Входить у передплату разом із курсом, розмовами та тренуваннями.',
+  subtitleEs: 'El aura ilumina tu avatar entre amigos y en las listas: se te ve al instante. Va incluida en la suscripción junto al curso, los diálogos y los entrenamientos.',
 };
 
 export const PAYWALL_PLANNED_COPY: Partial<Record<PremiumContext, PremiumPlannedHeroCopy>> & { generic: PremiumPlannedHeroCopy } = {
@@ -456,24 +442,6 @@ export const PAYWALL_PLANNED_COPY: Partial<Record<PremiumContext, PremiumPlanned
       id: 'Kursus berisi frasa nyata, latihan bicara lantang, dan pengulangan persis yang kamu lupakan — semua terbuka sejak hari pertama.',
       tr: 'Gerçek ifadelerden bir kurs, sesli konuşma ve tam da unuttuğun şeylerin tekrarı — ilk günden her şey açık.',
       pl: 'Kurs z prawdziwych zwrotów, mówienie na głos i powtórki dokładnie tego, co zapominasz — wszystko otwarte od pierwszego dnia.',
-    },
-  },
-  season_pass_lane: {
-    title: {
-      en: 'Claim the season rewards',
-      'pt-BR': 'Pegue as recompensas da temporada',
-      vi: 'Nhận phần thưởng của mùa',
-      id: 'Ambil hadiah musim ini',
-      tr: 'Sezon ödüllerini al',
-      pl: 'Odbierz nagrody sezonu',
-    },
-    subtitle: {
-      en: 'The premium season track opens in full — together with the course, speaking practice, training without a counter and statistics.',
-      'pt-BR': 'A trilha premium da temporada abre inteira — junto com o curso, a prática de fala, os treinos sem contador e as estatísticas.',
-      vi: 'Nhánh phần thưởng cao cấp của mùa mở trọn vẹn — cùng khóa học, luyện nói, luyện tập không giới hạn lượt và thống kê.',
-      id: 'Jalur premium musim ini terbuka penuh — bersama kursus, latihan bicara, latihan tanpa penghitung, dan statistik.',
-      tr: 'Sezonun premium yolu baştan sona açılır — kurs, konuşma pratiği, sayaçsız antrenman ve istatistiklerle birlikte.',
-      pl: 'Ścieżka premium sezonu otwiera się w całości — razem z kursem, mówieniem na głos, treningami bez licznika i statystykami.',
     },
   },
   language_add: {
@@ -534,14 +502,14 @@ export const PAYWALL_PLANNED_COPY: Partial<Record<PremiumContext, PremiumPlanned
     },
   },
   club: {
-    title: { en: 'Compete for a place in the league', 'pt-BR': 'Dispute seu lugar na liga', vi: 'Tranh vị trí trong giải đấu', id: 'Bersaing merebut posisi di liga', tr: 'Ligde bir yer için yarış', pl: 'Rywalizuj o miejsce w lidze' },
+    title: { en: 'Practice with the community', 'pt-BR': 'Pratique com a comunidade', vi: 'Luyện tập cùng cộng đồng', id: 'Berlatih bersama komunitas', tr: 'Toplulukla pratik yap', pl: 'Ćwicz ze społecznością' },
     subtitle: {
-      en: 'Every week a table with real people: experience grows faster and climbing is easier. The whole course, dialogues and training open up with it.',
-      'pt-BR': 'Toda semana uma tabela com pessoas reais: a experiência sobe mais rápido e subir fica mais fácil. Junto com isso abrem o curso inteiro, os diálogos e os treinos.',
-      vi: 'Mỗi tuần một bảng xếp hạng với người thật: điểm kinh nghiệm tăng nhanh hơn và leo hạng dễ hơn. Cùng lúc đó mở ra trọn khóa học, hội thoại và luyện tập.',
-      id: 'Tiap pekan ada tabel berisi orang sungguhan: pengalaman naik lebih cepat dan menanjak jadi lebih mudah. Bersamaan dengan itu terbuka seluruh kursus, dialog, dan latihan.',
-      tr: 'Her hafta gerçek kişilerden bir tablo: deneyim daha hızlı artar ve yükselmek kolaylaşır. Bununla birlikte kursun tamamı, diyaloglar ve antrenmanlar açılır.',
-      pl: 'Co tydzień tabela z prawdziwymi ludźmi: doświadczenie rośnie szybciej, a awans jest łatwiejszy. Razem z tym otwiera się cały kurs, dialogi i treningi.',
+      en: 'Practice with community features and keep your learning moving.',
+      'pt-BR': 'Pratique com recursos da comunidade e mantenha seu aprendizado.',
+      vi: 'Luyện tập cùng các tính năng cộng đồng và tiếp tục học.',
+      id: 'Berlatih dengan fitur komunitas dan lanjutkan belajarmu.',
+      tr: 'Topluluk özellikleriyle pratik yap ve öğrenmeye devam et.',
+      pl: 'Ćwicz z funkcjami społeczności i kontynuuj naukę.',
     },
   },
   mistake_practice: {
@@ -672,12 +640,12 @@ PAYWALL_PLANNED_COPY.dialog_limit = {
     pl: 'Rozmawiaj, ile chcesz',
   },
   subtitle: {
-    en: `${DAILY_DIALOG} replies a day for free, with a subscription there is no counter. Every scenario opens: a café, a job interview, the doctor. And not only dialogues — the whole course, training and statistics too.`,
-    'pt-BR': `Grátis são ${DAILY_DIALOG} respostas por dia; com a assinatura não há contador. Todos os cenários abrem: café, entrevista de emprego, médico. E não só os diálogos — o curso inteiro, os treinos e as estatísticas também.`,
-    vi: `Miễn phí là ${DAILY_DIALOG} câu mỗi ngày, với gói đăng ký thì không còn bộ đếm. Mọi kịch bản đều mở: quán cà phê, phỏng vấn, bác sĩ. Và không chỉ hội thoại — trọn khóa học, luyện tập và thống kê cũng vậy.`,
-    id: `Gratis ${DAILY_DIALOG} balasan per hari; dengan langganan tidak ada penghitung. Semua skenario terbuka: kafe, wawancara kerja, dokter. Dan bukan cuma dialog — seluruh kursus, latihan, dan statistik juga.`,
-    tr: `Ücretsizde günde ${DAILY_DIALOG} yanıt var, abonelikte sayaç yok. Tüm senaryolar açılır: kafe, iş görüşmesi, doktor. Ve yalnızca diyaloglar değil — kursun tamamı, antrenmanlar ve istatistikler de.`,
-    pl: `Za darmo ${DAILY_DIALOG} odpowiedzi dziennie, w subskrypcji nie ma licznika. Otwierają się wszystkie scenariusze: kawiarnia, rozmowa o pracę, lekarz. I nie tylko dialogi — cały kurs, treningi i statystyki też.`,
+    en: `${MONTHLY_DIALOG} replies a month for free, with a subscription there is no counter. Every scenario opens: a café, a job interview, the doctor. And not only dialogues — the whole course, training and statistics too.`,
+    'pt-BR': `Grátis são ${MONTHLY_DIALOG} respostas por mês; com a assinatura não há contador. Todos os cenários abrem: café, entrevista de emprego, médico. E não só os diálogos — o curso inteiro, os treinos e as estatísticas também.`,
+    vi: `Miễn phí là ${MONTHLY_DIALOG} câu trả lời mỗi tháng, với gói đăng ký thì không còn bộ đếm. Mọi kịch bản đều mở: quán cà phê, phỏng vấn, bác sĩ. Và không chỉ hội thoại — trọn khóa học, luyện tập và thống kê cũng vậy.`,
+    id: `Gratis ${MONTHLY_DIALOG} balasan per bulan; dengan langganan tidak ada penghitung. Semua skenario terbuka: kafe, wawancara kerja, dokter. Dan bukan cuma dialog — seluruh kursus, latihan, dan statistik juga.`,
+    tr: `Ücretsizde ayda ${MONTHLY_DIALOG} yanıt var, abonelikte sayaç yok. Tüm senaryolar açılır: kafe, iş görüşmesi, doktor. Ve yalnızca diyaloglar değil — kursun tamamı, antrenmanlar ve istatistikler de.`,
+    pl: `Za darmo ${MONTHLY_DIALOG} odpowiedzi miesięcznie, w subskrypcji nie ma licznika. Otwierają się wszystkie scenariusze: kawiarnia, rozmowa o pracę, lekarz. I nie tylko dialogi — cały kurs, treningi i statystyki też.`,
   },
 };
 PAYWALL_PLANNED_COPY.speaking = {
@@ -841,11 +809,11 @@ PAYWALL_PLANNED_COPY.avatar_aura = {
     pl: 'Wyróżnij się aurą wokół awatara',
   },
   subtitle: {
-    'pt-BR': 'A aura premium ilumina seu avatar nas ligas e entre amigos. Você é visto na hora em listas e chats.',
+    'pt-BR': 'A aura premium ilumina seu avatar entre amigos. Você é visto na hora em listas e chats.',
     vi: 'Hào quang cao cấp làm avatar của bạn nổi bật trong giải đấu và giữa bạn bè. Bạn được chú ý ngay trong danh sách và trò chuyện.',
-    id: 'Aura premium menyorot avatarmu di liga dan di antara teman. Kamu langsung terlihat di daftar dan obrolan.',
+    id: 'Aura premium menyorot avatarmu di antara teman. Kamu langsung terlihat di daftar dan obrolan.',
     tr: 'Premium aura, liglerde ve arkadaşlar arasında avatarını aydınlatır. Listelerde ve sohbetlerde hemen fark edilirsin.',
-    pl: 'Premium aura podświetla twój awatar w ligach i wśród znajomych. Widać cię od razu na listach i czatach.',
+    pl: 'Premium aura podświetla twój awatar wśród znajomych. Widać cię od razu na listach i czatach.',
   },
 };
 
@@ -855,11 +823,11 @@ export function getHeroPlannedCopy(ctx: PremiumContext, savedCards: number): Pre
   return {
     ...planned,
     title: {
-      'pt-BR': `${savedCards}/20 cartões salvos`,
-      vi: `Đã lưu ${savedCards}/20 thẻ`,
-      id: `${savedCards}/20 kartu tersimpan`,
-      tr: `${savedCards}/20 kart kaydedildi`,
-      pl: `Zapisano ${savedCards}/20 fiszek`,
+      'pt-BR': `${savedCards}/50 cartões salvos`,
+      vi: `Đã lưu ${savedCards}/50 thẻ`,
+      id: `${savedCards}/50 kartu tersimpan`,
+      tr: `${savedCards}/50 kart kaydedildi`,
+      pl: `Zapisano ${savedCards}/50 fiszek`,
     },
   };
 }
@@ -959,7 +927,6 @@ PAYWALL_COPY.notification_upsell = COURSE_AFTER_LESSON3_COPY;
 
 export const CONTEXT_BENEFITS: Partial<Record<PremiumContext, ({ ru: string; uk: string; es: string } & PremiumPlannedCopy)[]>> & { generic: ({ ru: string; uk: string; es: string } & PremiumPlannedCopy)[] } = {
   onboarding_plan: MAIN_COURSE_PLUS_BENEFITS,
-  season_pass_lane: SEASON_PASS_LANE_BENEFITS,
   language_add: [
     { ru: 'Несколько языков в одном аккаунте', uk: 'Кілька мов в одному акаунті', es: 'Varios idiomas en una cuenta', 'pt-BR': 'Vários idiomas em uma conta', vi: 'Nhiều ngôn ngữ trong một tài khoản', id: 'Beberapa bahasa dalam satu akun', tr: 'Tek hesapta birden çok dil', pl: 'Kilka języków na jednym koncie' },
     { ru: 'У каждого языка свой план и прогресс', uk: 'У кожної мови свій план і прогрес', es: 'Cada idioma con su plan y progreso', 'pt-BR': 'Cada idioma com seu plano e progresso', vi: 'Mỗi ngôn ngữ có kế hoạch và tiến độ riêng', id: 'Tiap bahasa punya rencana dan progres sendiri', tr: 'Her dilin kendi planı ve ilerlemesi', pl: 'Każdy język ma własny plan i postęp' },
@@ -992,15 +959,11 @@ export const CONTEXT_BENEFITS: Partial<Record<PremiumContext, ({ ru: string; uk:
     // называют проверяемые факты, а не продуктовые метрики.
     { ru: 'Меняет приложение целиком', uk: 'Змінює застосунок цілком', es: 'Cambia toda la app', 'pt-BR': 'Muda o app inteiro', vi: 'Đổi toàn bộ giao diện ứng dụng', id: 'Mengubah seluruh tampilan aplikasi', tr: 'Uygulamanın tamamını değiştirir', pl: 'Zmienia całą aplikację' },
     { ru: 'Переключать можно в любой момент', uk: 'Перемикати можна будь-коли', es: 'Puedes cambiarlo cuando quieras', 'pt-BR': 'Pode trocar quando quiser', vi: 'Đổi lúc nào cũng được', id: 'Bisa diganti kapan saja', tr: 'İstediğin an değiştirebilirsin', pl: 'Możesz przełączać w każdej chwili' },
-    { ru: 'Остаётся у тебя навсегда', uk: 'Залишається в тебе назавжди', es: 'Se queda contigo para siempre', 'pt-BR': 'Fica com você para sempre', vi: 'Ở lại với bạn mãi mãi', id: 'Tetap milikmu selamanya', tr: 'Sonsuza dek sende kalır', pl: 'Zostaje z tobą na zawsze' },
+    { ru: 'После Plus — стандартный графит', uk: 'Після Plus — стандартний графіт', es: 'Sin Plus, vuelve el grafito estándar', 'pt-BR': 'Sem Plus, volta o grafite padrão', vi: 'Hết Plus, trở về màu than chì mặc định', id: 'Tanpa Plus, kembali ke grafit standar', tr: 'Plus bitince standart grafite döner', pl: 'Po Plus wraca standardowy grafit' },
   ],
   club: [
-    // зачем (владелец, 2026-09-22): три строки подряд без единого понятного
-    // слова («XP-бусты для ускорения», «больше пользы с каждой сессии»).
-    // Названо то, что реально происходит в лигах.
-    { ru: 'Недельная таблица и награды за место', uk: 'Тижнева таблиця та нагороди за місце', es: 'Tabla semanal y premios por puesto', 'pt-BR': 'Tabela semanal e prêmios por posição', vi: 'Bảng xếp hạng tuần và phần thưởng theo thứ hạng', id: 'Tabel mingguan dan hadiah sesuai peringkat', tr: 'Haftalık tablo ve sıralama ödülleri', pl: 'Tygodniowa tabela i nagrody za miejsce' },
-    { ru: 'Опыт за занятия начисляется быстрее', uk: 'Досвід за заняття нараховується швидше', es: 'La experiencia por estudiar sube más rápido', 'pt-BR': 'A experiência por estudar sobe mais rápido', vi: 'Điểm kinh nghiệm khi học tăng nhanh hơn', id: 'Pengalaman dari belajar bertambah lebih cepat', tr: 'Çalışmadan kazanılan deneyim daha hızlı artar', pl: 'Doświadczenie za naukę rośnie szybciej' },
-    { ru: 'Повышение в лигу выше', uk: 'Підвищення в лігу вище', es: 'Ascenso a una liga superior', 'pt-BR': 'Promoção para uma liga superior', vi: 'Thăng hạng lên giải cao hơn', id: 'Naik ke liga yang lebih tinggi', tr: 'Bir üst lige yükselme', pl: 'Awans do wyższej ligi' },
+    { ru: 'Дополнительные возможности сообщества', uk: 'Додаткові можливості спільноти', es: 'Más funciones de comunidad', 'pt-BR': 'Mais recursos da comunidade', vi: 'Thêm tính năng cộng đồng', id: 'Fitur komunitas tambahan', tr: 'Ek topluluk özellikleri', pl: 'Dodatkowe funkcje społeczności' },
+    { ru: 'Больше способов заниматься регулярно', uk: 'Більше способів займатися регулярно', es: 'Más formas de practicar con regularidad', 'pt-BR': 'Mais formas de praticar com regularidade', vi: 'Nhiều cách học đều đặn hơn', id: 'Lebih banyak cara untuk belajar rutin', tr: 'Düzenli pratik için daha fazla yol', pl: 'Więcej sposobów na regularną naukę' },
   ],
   generic: [
     // зачем (владелец, 2026-09-22): «Плюс-опции сразу после активации» — фраза
@@ -1057,7 +1020,7 @@ CONTEXT_BENEFITS.weekly_review = [
 ];
 
 CONTEXT_BENEFITS.avatar_aura = [
-  { ru: 'Аура вокруг аватара — виден в лигах и списках', uk: 'Аура навколо аватара — тебе видно в лігах і списках', es: 'Aura en tu avatar: visible en ligas y listas', 'pt-BR': 'Aura no avatar: visível em ligas e listas', vi: 'Hào quang quanh avatar — nổi bật trong giải và danh sách', id: 'Aura di avatar: terlihat di liga dan daftar', tr: 'Avatarında aura — liglerde ve listelerde görünürsün', pl: 'Aura wokół awatara — widoczny w ligach i na listach' },
+  { ru: 'Аура вокруг аватара — виден у друзей и в списках', uk: 'Аура навколо аватара — тобі видно у друзів і списках', es: 'Aura en tu avatar: visible entre amigos y listas', 'pt-BR': 'Aura no avatar: visível entre amigos e listas', vi: 'Hào quang quanh avatar — nổi bật với bạn bè và danh sách', id: 'Aura di avatar: terlihat di teman dan daftar', tr: 'Avatarında aura — arkadaşlarda ve listelerde görünürsün', pl: 'Aura wokół awatara — widoczny u znajomych i na listach' },
   { ru: 'Уникальный стиль профиля, который замечают', uk: 'Унікальний стиль профілю, який помічають', es: 'Un estilo de perfil que se nota', 'pt-BR': 'Um estilo de perfil que chama atenção', vi: 'Phong cách hồ sơ độc đáo, ai cũng chú ý', id: 'Gaya profil unik yang diperhatikan', tr: 'Fark edilen benzersiz profil stili', pl: 'Wyjątkowy styl profilu, który się zauważa' },
   { ru: 'Работает везде: лидерборды, друзья, чаты', uk: 'Працює всюди: лідерборди, друзі, чати', es: 'Funciona en todas partes: rankings, amigos, chats', 'pt-BR': 'Funciona em tudo: rankings, amigos, chats', vi: 'Hiện ở mọi nơi: bảng xếp hạng, bạn bè, trò chuyện', id: 'Berlaku di mana saja: papan peringkat, teman, obrolan', tr: 'Her yerde çalışır: sıralamalar, arkadaşlar, sohbetler', pl: 'Działa wszędzie: rankingi, znajomi, czaty' },
 ];
@@ -1081,7 +1044,7 @@ CONTEXT_BENEFITS.intro_ended = [
 ];
 
 // зачем: выгоды привязаны к моменту level_up — что конкретно откроется на пути дальше
-// (старый третий пункт обещал «XP-бусты», которых у Plus нет — убран, чтобы не врать).
+// (старый третий пункт обещал «legacy reward-бусты», которых у Plus нет — убран, чтобы не врать).
 CONTEXT_BENEFITS.level_up = MAIN_COURSE_PLUS_BENEFITS;
 
 CONTEXT_BENEFITS.premium_expired = [
@@ -1126,7 +1089,6 @@ CONTEXT_BENEFITS.flashcard_training = [
 
 export const CONTEXT_BENEFITS_PLANNED: Partial<Record<PremiumContext, PremiumPlannedCopy[]>> & { generic: PremiumPlannedCopy[] } = {
   onboarding_plan: MAIN_COURSE_PLUS_BENEFITS,
-  season_pass_lane: SEASON_PASS_LANE_BENEFITS,
   language_add: [
     { 'pt-BR': 'Vários idiomas em uma conta', vi: 'Nhiều ngôn ngữ trong một tài khoản', id: 'Beberapa bahasa dalam satu akun', tr: 'Tek hesapta birden çok dil', pl: 'Kilka języków na jednym koncie' },
     { 'pt-BR': 'Cada idioma com seu plano e progresso', vi: 'Mỗi ngôn ngữ có kế hoạch và tiến độ riêng', id: 'Tiap bahasa punya rencana dan progres sendiri', tr: 'Her dilin kendi planı ve ilerlemesi', pl: 'Każdy język ma własny plan i postęp' },
@@ -1155,7 +1117,7 @@ export const CONTEXT_BENEFITS_PLANNED: Partial<Record<PremiumContext, PremiumPla
     { 'pt-BR': 'Mais conforto para estudar sempre', vi: 'Thoải mái hơn để học đều', id: 'Lebih nyaman untuk belajar rutin', tr: 'Düzenli çalışmak daha rahat', pl: 'Wygodniej uczyć się regularnie' },
   ],
   club: [
-    { 'pt-BR': 'Clubes e boosts de XP para acelerar', vi: 'Câu lạc bộ và boost XP để tăng tốc', id: 'Klub dan boost XP untuk mempercepat', tr: 'Hızlanmak için kulüpler ve XP boostları', pl: 'Kluby i boosty XP do przyspieszenia' },
+    { 'pt-BR': 'Recursos da comunidade para praticar', vi: 'Tính năng cộng đồng để luyện tập', id: 'Fitur komunitas untuk berlatih', tr: 'Pratik için topluluk özellikleri', pl: 'Funkcje społeczności do ćwiczeń' },
     { 'pt-BR': 'Mais valor em cada sessão', vi: 'Mỗi phiên học có ích hơn', id: 'Manfaat lebih besar di tiap sesi', tr: 'Her seanstan daha fazla fayda', pl: 'Więcej wartości z każdej sesji' },
     { 'pt-BR': 'Mais motivação para voltar amanhã', vi: 'Thêm động lực quay lại ngày mai', id: 'Lebih termotivasi untuk kembali besok', tr: 'Yarın dönmek için daha güçlü motivasyon', pl: 'Silniejsza motywacja, żeby wrócić jutro' },
   ],
@@ -1209,7 +1171,7 @@ CONTEXT_BENEFITS_PLANNED.weekly_review = [
 ];
 
 CONTEXT_BENEFITS_PLANNED.avatar_aura = [
-  { 'pt-BR': 'Aura no avatar: visível em ligas e listas', vi: 'Hào quang quanh avatar — nổi bật trong giải và danh sách', id: 'Aura di avatar: terlihat di liga dan daftar', tr: 'Avatarında aura — liglerde ve listelerde görünürsün', pl: 'Aura wokół awatara — widoczny w ligach i na listach' },
+  { 'pt-BR': 'Aura no avatar: visível entre amigos e listas', vi: 'Hào quang quanh avatar — nổi bật với bạn bè và danh sách', id: 'Aura di avatar: terlihat di teman dan daftar', tr: 'Avatarında aura — arkadaşlarda ve listelerde görünürsün', pl: 'Aura wokół awatara — widoczny u znajomych i na listach' },
   { 'pt-BR': 'Um estilo de perfil que chama atenção', vi: 'Phong cách hồ sơ độc đáo, ai cũng chú ý', id: 'Gaya profil unik yang diperhatikan', tr: 'Fark edilen benzersiz profil stili', pl: 'Wyjątkowy styl profilu, który się zauważa' },
   { 'pt-BR': 'Funciona em tudo: rankings, amigos, chats', vi: 'Hiện ở mọi nơi: bảng xếp hạng, bạn bè, trò chuyện', id: 'Berlaku di mana saja: papan peringkat, teman, obrolan', tr: 'Her yerde çalışır: sıralamalar, arkadaşlar, sohbetler', pl: 'Działa wszędzie: rankingi, znajomi, czaty' },
 ];

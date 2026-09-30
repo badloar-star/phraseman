@@ -102,8 +102,8 @@ describe('ThemeContext default theme', () => {
     expect(source).not.toMatch(/DEV_THEME_UNLOCKS\s*=\s*DEV_MODE/);
     // Мёртвый импорт DEV_MODE — сигнал, что кто-то забыл его убрать при откате правки.
     expect(source).not.toMatch(/import\s*\{[^}]*\bDEV_MODE\b[^}]*\}\s*from\s*'\.\.\/app\/config'/);
-    // settings_themes.tsx — тот же класс бага, уже исправленный там раньше;
-    // оба места обязаны использовать один и тот же безопасный источник.
-    expect(settingsThemesSource).toContain('const DEV_THEME_UNLOCKS = ENABLE_DEV_TOOLS;');
+    // 2026-09-30: в settings_themes.tsx dev-разблокировка больше не нужна —
+    // все темы бесплатны, замка нет вовсе.
+    expect(settingsThemesSource).not.toContain('DEV_THEME_UNLOCKS');
   });
 });

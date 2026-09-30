@@ -26,10 +26,10 @@ describe('paywall navigation and scroll smoothness contract', () => {
     const source = readAppFile('premium_modal.tsx');
     const navigation = readAppFile('paywall_navigation.ts');
 
-    for (const variant of ['A', 'B', 'C', 'D', 'E', 'F', 'G']) {
-      expect(source).toContain(`import { Paywall${variant}View as Paywall${variant} } from './paywall_${variant.toLowerCase()}';`);
-    }
-    expect(source).toContain('return renderPaywallRoute(paywallRouteRef.current, entryResolution.entry);');
+    // 2026-09-30 (D78): пейволы A–G удалены — диспетчер рисует единственный пейвол Plus.
+    expect(source).toContain("import PaywallPlusScreen from '../components/paywall/PaywallPlusScreen';");
+    expect(source).toContain('return <PaywallPlusScreen entry={entryResolution.entry} />;');
+    expect(source).not.toMatch(/paywall_[a-g]'/);
     expect(navigation).toContain("pathname: '/premium_modal'");
     expect(navigation).not.toContain('pathname: resolveCurrentPaywallRoute()');
     // Только manage=1 остаётся на подложке, потому что ведёт на
@@ -40,7 +40,7 @@ describe('paywall navigation and scroll smoothness contract', () => {
   it('does not re-navigate to a paywall it already rendered (no unmount/remount flash)', () => {
     const source = readAppFile('premium_modal.tsx');
     expect(source).toContain('if (!isManageContext) return;');
-    expect(source).toMatch(/if \(!isManageContext\)[\s\S]*return renderPaywallRoute\(paywallRouteRef\.current, entryResolution\.entry\)/);
+    expect(source).toMatch(/if \(!isManageContext\)[\s\S]*return <PaywallPlusScreen entry=\{entryResolution\.entry\} \/>/);
   });
 
   it('keeps regular paywalls dismissible but opens them without route delay', () => {
@@ -59,14 +59,9 @@ describe('paywall navigation and scroll smoothness contract', () => {
   });
 
   it('shows paywall content on the first modal frame without an inner JS entrance animation', () => {
-    for (const fileName of ['paywall_a.tsx', 'paywall_b.tsx', 'paywall_c.tsx']) {
-      const source = readAppFile(fileName);
-
-      expect(source).toContain('<View style={S.wrap}>');
-      expect(source).not.toContain('new Animated.Value');
-      expect(source).not.toContain('translateY: slideY');
-      expect(source).not.toContain('<Animated.View style={[S.wrap');
-    }
+    const source = fs.readFileSync(path.join(root, 'components', 'paywall', 'PaywallPlusScreen.tsx'), 'utf8');
+    expect(source).not.toContain('new Animated.Value');
+    expect(source).not.toContain('<Animated.View');
   });
 
   it('dismisses paywalls through native modal dismissal when possible', () => {
@@ -102,12 +97,9 @@ describe('paywall navigation and scroll smoothness contract', () => {
         const isPaywallTarget =
           after.includes("pathname: '/premium_modal'")
           || after.includes('pathname: "/premium_modal"')
-          || after.includes("pathname: '/paywall_a'")
-          || after.includes("pathname: '/paywall_b'")
-          || after.includes("pathname: '/paywall_c'")
           || after.includes("router.replace('/premium_modal")
           || after.includes('router.replace("/premium_modal')
-          || (after.includes('pathname: route') && before.includes("'/paywall_a'") && before.includes("'/paywall_b'"));
+          ;
 
         if (!isOpenPremiumReplace && !(isReplaceCall && isPaywallTarget)) continue;
         if (allowedRedirects.has(file)) continue;
@@ -118,19 +110,5 @@ describe('paywall navigation and scroll smoothness contract', () => {
     }
 
     expect(offenders).toEqual([]);
-  });
-
-  it('defers paywall C scroll-depth analytics until after interactions', () => {
-    const source = readAppFile('paywall_c.tsx');
-    const onScrollStart = source.indexOf('onScroll={(e) => {');
-    const onScrollEnd = source.indexOf('scrollEventThrottle={32}', onScrollStart);
-    const onScrollBlock = source.slice(onScrollStart, onScrollEnd);
-
-    expect(source).toContain('InteractionManager.runAfterInteractions');
-    expect(source).toContain('pendingScrollDepthRef');
-    expect(source).toContain('scrollDepthFlushRef.current?.cancel();');
-    expect(onScrollStart).toBeGreaterThanOrEqual(0);
-    expect(onScrollEnd).toBeGreaterThan(onScrollStart);
-    expect(onScrollBlock).not.toContain("trackEvent('paywall_scroll_depth'");
   });
 });

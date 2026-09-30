@@ -50,7 +50,6 @@ import {
   MOTION_SHOWCASE_ROUTE,
   SHOP_ROUTE,
 } from '../../constants/devRoutes';
-import { resolveCurrentPaywallRoute } from '../../app/paywall_navigation';
 import type { PremiumContext } from '../../app/premium_context';
 import { setDevFeatureIntroReplay, useDevFeatureIntroReplay } from '../../app/feature_intro_dev_replay';
 import { DEV_PAYWALL_CONTEXTS } from './paywallDevContexts';
@@ -447,33 +446,10 @@ export default function DevHubSheet({ visible, onClose, onOpen, onSurfaceActiveC
       // мог их открыть. source: 'dev_hub' даёт честный контекст «generic»
       // вместо синтетического direct, params остаются реальными (цены из
       // стора через usePaywallPurchase — тут ничего не подменяется).
-      case 'open-paywall-a':
-        openPaywallVariant('/paywall_a', selectedPaywallContext);
-        return;
-      case 'open-paywall-b':
-        openPaywallVariant('/paywall_b', selectedPaywallContext);
-        return;
-      case 'open-paywall-c':
-        openPaywallVariant('/paywall_c', selectedPaywallContext);
-        return;
-      case 'open-paywall-d':
-        openPaywallVariant('/paywall_d', selectedPaywallContext);
-        return;
-      case 'open-paywall-e':
-        openPaywallVariant('/paywall_e', selectedPaywallContext);
-        return;
-      case 'open-paywall-f':
-        openPaywallVariant('/paywall_f', selectedPaywallContext);
-        return;
-      case 'open-paywall-g':
-        openPaywallVariant('/paywall_g', selectedPaywallContext);
-        return;
-      // зачем: source: 'onboarding_plan' — тот же флаг, что ставит настоящий
-      // онбординг (isOnboarding=true): полноэкранный без слайда, sticky-CTA,
-      // тарифы скрыты. Роут берётся из resolveCurrentPaywallRoute() — это
-      // и есть текущий активный A/B-вариант, который реально увидит новичок.
-      case 'open-paywall-onboarding':
-        openPaywallVariant(resolveCurrentPaywallRoute(), 'onboarding_plan', 'onboarding_plan');
+      // зачем (владелец 2026-09-30): единственный пейвол Plus — через тот же
+      // диспетчер, что и у игроков (проверка доступа + выбранный контекст).
+      case 'open-paywall-plus':
+        openPaywallVariant('/premium_modal', selectedPaywallContext);
         return;
       // зачем (владелец 2026-09-02): показать НАСТОЯЩЕЕ окно обновления на этом
       // телефоне. Хаб закрывается до показа, иначе native Modal хаба останется

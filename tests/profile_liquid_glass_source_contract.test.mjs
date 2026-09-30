@@ -79,7 +79,8 @@ test('themes: 13 glass rows, preview/apply/paywall logic untouched', () => {
   assert.match(themes, /accessibilityRole="radio"/);
   assert.equal(themes.match(/\{ mode: '/g).length, 13);
   assert.match(themes, /setPreviewLiquidGlassThemeId\(mode === appliedLiquidGlassThemeId \? null : mode\)/);
-  assert.match(themes, /pathname: '\/premium_modal', params: \{ context: 'theme', source: 'settings_theme_picker' \}/);
+  // 2026-09-30: темы бесплатны — экран тем больше не ведёт на пейвол.
+  assert.doesNotMatch(themes, /premium_modal/);
   assert.match(themes, /profile_theme_set/);
   assert.doesNotMatch(themes, /TapScale|SectionSheetHeader|GRID_SCREEN_PAD|useWindowDimensions/);
 });

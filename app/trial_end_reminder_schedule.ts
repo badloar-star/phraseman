@@ -48,6 +48,18 @@ export function trialReminderDelaySeconds(
   return Math.max(MIN_DELAY_SECONDS, Math.round((fireAtMs - nowMs) / 1000));
 }
 
+/**
+ * Как ставится напоминание: 'plus_two_days' — пейвол Plus (старт + N−2 дня);
+ * 'onboarding_day_before' — онбординг, РОВНО как было до 2026-09-30 (владелец:
+ * «онбординг вообще не трогаем»): за сутки до конца, не раньше чем через час.
+ */
+export type TrialReminderTiming = 'plus_two_days' | 'onboarding_day_before';
+
+/** Прежний расчёт онбординга без изменений: max(1 час, (N − 1) суток) от постановки. */
+export function onboardingTrialReminderDelaySeconds(trialDays: number): number {
+  return Math.max(3600, Math.round((trialDays - 1) * 86400));
+}
+
 /* expo-router: не регистрировать файл как экран. */
 export default function __TrialEndReminderScheduleRouteShim() {
   return null;

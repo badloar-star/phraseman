@@ -254,13 +254,6 @@ const RU = {
 
   // ── paywalls ──
   paywalls_section_title: 'Пейволы и Premium',
-  paywall_a_title: 'Пейвол A',
-  paywall_b_title: 'Пейвол B',
-  paywall_c_title: 'Пейвол C',
-  paywall_d_title: 'Пейвол D',
-  paywall_e_title: 'Пейвол E',
-  paywall_f_title: 'Пейвол F',
-  paywall_g_title: 'Пейвол G',
   manage_subscription_title: 'Управление подпиской',
   intro_full_access_welcome_title: 'Приветствие «3 дня всё открыто»',
   intro_full_access_welcome_hybrid_title: 'Приветствие «3 дня всё открыто» · гибрид',
@@ -293,7 +286,7 @@ const RU = {
   card_pack_shard_paywall_insufficient_title: 'Покупка набора карточек — не хватает жемчужин',
   card_pack_shard_paywall_voucher_title: 'Покупка набора карточек — подарочный ваучер',
   paywall_dev_preview_route_title: 'Dev-превью цен пейвола',
-  paywall_dev_preview_route_detail: 'реальный экран (paywall_a с dev-ценами)',
+  paywall_dev_preview_route_detail: 'реальный экран (пейвол Plus с dev-ценами)',
   arena_limit_modal_title: 'Лимит арены',
   arena_limit_modal_note: 'ArenaLimitModal отсутствует в дереве — только в устаревших ворктри, безопасного запуска нет',
   energy_refill_shard_modal_title: 'Пополнение энергии за жемчужины',

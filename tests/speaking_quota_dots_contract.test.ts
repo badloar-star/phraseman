@@ -106,9 +106,9 @@ describe('speaking quota dots: подключены ВСЕ микрофоны', 
 });
 
 describe('выход с пейвола называется одинаково везде', () => {
-  it('пейволы A–G больше не пишут «Продолжить бесплатно»', () => {
-    const source = read('components', 'paywall', 'PaywallCtaBlock.tsx');
-    expect(source).toContain('Продолжить на обычном аккаунте');
+  it('единственный пейвол Plus не пишет «Продолжить бесплатно»', () => {
+    // 2026-09-30: CTA-блок A–G удалён; выход с пейвола — крестик «Закрыть».
+    const source = read('components', 'paywall', 'PaywallPlusCopy.ts');
     expect(source).not.toContain('Продолжить бесплатно');
     expect(source).not.toContain('Continue for free');
   });

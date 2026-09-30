@@ -17,7 +17,11 @@ import { createDisposableAdoption } from './disposable_adoption';
 import { persistPortablePreference } from './phone_state_preference_bridge';
 import { cancelRetiredLocalNotificationsOnce as runRetiredLocalNotificationsCancel } from './retired_local_notifications';
 import { DebugLogger, reportSwallowed, swallowError } from './debug-logger';
-import { trialReminderDelaySeconds } from './trial_end_reminder_schedule';
+import {
+  onboardingTrialReminderDelaySeconds,
+  trialReminderDelaySeconds,
+  type TrialReminderTiming,
+} from './trial_end_reminder_schedule';
 
 /** Android 8+: канал с high importance; `channelId` дублируется в каждом триггере. */
 const ANDROID_NOTIF_CHANNEL_ID = 'phraseman_reminders';
@@ -2432,6 +2436,7 @@ export const scheduleTrialEndReminder = async (
   title: string,
   body: string,
   trialStartMs: number = Date.now(),
+  timing: TrialReminderTiming = 'onboarding_day_before',
 ): Promise<boolean> => {
   // зачем (владелец 2026-09-30): «убедись что уведомление действительно отправляется».
   // Каждый ранний выход пишет причину с префиксом [TRIAL-REMINDER] — раньше любой
@@ -2456,8 +2461,12 @@ export const scheduleTrialEndReminder = async (
       return false;
     }
 
-    // Дата — одна чистая функция: старт + (N − 2) дней (обещание пейвола «за 2 дня»).
-    const seconds = trialReminderDelaySeconds(trialStartMs, trialDays, Date.now());
+    // Дата: пейвол Plus — старт + (N − 2) дней (обещание «за 2 дня»); онбординг —
+    // прежний расчёт «за сутки» без изменений (владелец: онбординг не трогаем).
+    const seconds = timing === 'plus_two_days'
+      ? trialReminderDelaySeconds(trialStartMs, trialDays, Date.now())
+      : onboardingTrialReminderDelaySeconds(trialDays);
+    DebugLogger.info('[TRIAL-REMINDER]', `schedule: режим=${timing} seconds=${seconds ?? 'null'}`);
     if (seconds === null) {
       DebugLogger.warn('[TRIAL-REMINDER]', `schedule: выход — пробный ${trialDays} дн. слишком короткий для напоминания за 2 дня`);
       return false;

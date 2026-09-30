@@ -1,21 +1,18 @@
 // ═══════════════════════════════════════════════════════════════════════════
-// study_languages.ts — реестр изучаемых языков пользователя + гейт «1 язык фри».
+// study_languages.ts — реестр изучаемых языков пользователя.
 //
-// Идея монетизации: бесплатный аккаунт учит ОДИН язык (тот, что выбран на
-// онбординге / первым). Каждый следующий язык — за Plus. Прогресс каждого языка
-// живёт в своём namespace (target_storage_keys.ts, `..._v2::{target}::...`),
-// поэтому «начатые» языки ничего не теряют при переключении.
-//
-// «Начатый» язык = язык, который пользователь хотя бы раз активировал через
-// экран приветствия (language_welcome) или который был активен на момент
-// первого сида списка. Переключение МЕЖДУ уже начатыми языками не гейтится —
-// наказание за даунгрейд подписки ограничено только добавлением НОВЫХ языков.
+// зачем (владелец 2026-09-30): «ЯЗЫКИ ОБУЧЕНИЯ ВСЕ ФРИ БЕЗ ПЛЮС» — гейт «1 язык фри»
+// удалён целиком (D78: удалённое удаляется, а не прячется). Любой язык добавляется
+// без Plus. Прогресс каждого языка живёт в своём namespace
+// (target_storage_keys.ts, `..._v2::{target}::...`), поэтому переключение ничего
+// не теряет. «Начатый» язык = язык, который пользователь хотя бы раз активировал
+// через экран приветствия (language_welcome) или который был активен на момент
+// первого сида списка.
 // ═══════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { Lang } from '../constants/i18n';
 import { isStudyTarget, setStoredStudyTarget, type StudyTarget } from './study_target';
-import { shouldGateFeature } from './feature_gates';
 import { DebugLogger } from './debug-logger';
 
 export type StudyTargetLang = StudyTarget;
@@ -23,9 +20,6 @@ export type StudyTargetLang = StudyTarget;
 export function isKnownStudyLanguage(value: unknown): value is StudyTargetLang {
   return isStudyTarget(value);
 }
-
-/** Сколько языков доступно бесплатному аккаунту. */
-export const FREE_STUDY_LANGUAGE_LIMIT = 1;
 
 /** JSON-массив кодов начатых языков. Входит в cloud_sync. */
 export const STUDY_LANGUAGES_STARTED_KEY = 'study_languages_started_v1';
@@ -89,24 +83,6 @@ export async function markStudyLanguageStarted(target: StudyTargetLang): Promise
       DebugLogger.error('study_languages:next', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
   return next;
-}
-
-/**
- * Гейт добавления нового языка. true → показать пейвол (context='language_add').
- *
- * Чистая функция для тестируемости: список начатых и премиум-статус передаёт
- * вызывающий. Замок можно снять для всех через админку
- * (gate_extra_languages_premium=false), как у остальных фич.
- */
-export function shouldGateExtraLanguage(params: {
-  target: StudyTargetLang;
-  startedLanguages: readonly StudyTargetLang[];
-  hasPremiumAccess: boolean;
-}): boolean {
-  const { target, startedLanguages, hasPremiumAccess } = params;
-  if (startedLanguages.includes(target)) return false; // уже учит — не гейтим
-  if (startedLanguages.length < FREE_STUDY_LANGUAGE_LIMIT) return false; // первый язык бесплатно
-  return shouldGateFeature('extra_languages', hasPremiumAccess);
 }
 
 export async function saveLanguageProfile(

@@ -7,9 +7,8 @@
 // выбранных настроек) и активирует язык. Прогресс каждого языка живёт в своём
 // namespace, поэтому предыдущий язык ничего не теряет.
 //
-// Гейт: фри-аккаунт = 1 язык. Экран страхует пикер — если сюда попали в обход
-// (диплинк), эффект-гейт уводит на пейвол. Replace из эффекта — ТОЛЬКО с
-// markNextNavigationAsReplace (иначе петля «назад», см. navigation_back.ts).
+// Plus не нужен: владелец 2026-09-30 «языки обучения все фри без плюс» — гейт
+// «1 язык фри» и уход на пейвол удалены (D78).
 //
 // Performance Bible: статичный экран, без бесконечных анимаций и подписок;
 // первый кадр — синхронный (все данные — локальные константы + параметр роута).
@@ -40,11 +39,9 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRootNavigationState, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
-import { usePremium } from '../components/PremiumContext';
 import { hapticTap } from '../hooks/use-haptics';
-import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
+import { safeRouterBack } from './navigation_back';
 import {
-  openPremiumPaywall,
   scheduleAfterRootNavigationReady,
   type ScheduledNavigation,
 } from './paywall_navigation';
@@ -53,7 +50,6 @@ import {
   getStartedStudyLanguages,
   isKnownStudyLanguage,
   saveLanguageProfile,
-  shouldGateExtraLanguage,
 } from './study_languages';
 import {
   studyTargetLabelForSourceUiLang,
@@ -127,7 +123,6 @@ const LEVEL_OPTIONS: ChoiceOption[] = [
 export default function LanguageWelcomeScreen() {
   const router = useRouter();
   const { lang } = useLang();
-  const { hasPremiumAccess } = usePremium();
   const params = useLocalSearchParams<{ target?: string; resolveStarted?: string }>();
   const rawTarget = Array.isArray(params.target) ? params.target[0] : params.target;
   const parsedTarget: StudyTargetLang | null = isKnownStudyLanguage(rawTarget) ? rawTarget : null;
@@ -152,8 +147,8 @@ export default function LanguageWelcomeScreen() {
   const rootNavState = useRootNavigationState();
   const rootNavReady = Boolean(rootNavState?.key);
 
-  // Эффект-гейт: невалидный язык → назад; фри с ≥1 начатым языком → пейвол.
-  // ОБЕ навигации — только после rootNavReady и через scheduleAfterRootNavigationReady:
+  // Эффект-вход: невалидный язык → назад. Пейвола больше нет — владелец 2026-09-30:
+  // «языки обучения все фри без плюс». Навигация — только после rootNavReady и через scheduleAfterRootNavigationReady:
   // key появляется раньше, чем роутер реально принимает replace на холодном deep-link.
   useEffect(() => {
     if (!rootNavReady) return;
@@ -175,25 +170,13 @@ export default function LanguageWelcomeScreen() {
         }
         return; // обычный deep-link уже начатого языка освежает план
       }
-      if (shouldGateExtraLanguage({ target, startedLanguages: started, hasPremiumAccess })) {
-        scheduled = scheduleAfterRootNavigationReady(() => {
-          if (cancelled) return;
-          markNextNavigationAsReplace();
-          openPremiumPaywall(router, {
-            context: 'language_add',
-            source: 'language_welcome_gate',
-            language: target,
-          }, 'replace');
-        });
-        return;
-      }
       setEntryResolved(true);
     })();
     return () => {
       cancelled = true;
       scheduled?.cancel();
     };
-  }, [rootNavReady, target, resolveStarted, lang, hasPremiumAccess, router, goBackSafely]);
+  }, [rootNavReady, target, resolveStarted, lang, goBackSafely]);
 
   const languageName = target
     ? studyTargetLabelForSourceUiLang(target, sourceUi)
@@ -206,17 +189,6 @@ export default function LanguageWelcomeScreen() {
     setBusy(true);
     void (async () => {
       try {
-        // Повторная проверка гейта в момент действия — статус мог измениться.
-        const started = await getStartedStudyLanguages();
-        if (!started.includes(target)
-          && shouldGateExtraLanguage({ target, startedLanguages: started, hasPremiumAccess })) {
-          openPremiumPaywall(router, {
-            context: 'language_add',
-            source: 'language_welcome_cta',
-            language: target,
-          });
-          return;
-        }
         const committed = await commitPhoneStateDurableAction(async () => {
           await saveLanguageProfile(target, { goal, level });
           await applyStudyLanguageSelection(target, lang);
@@ -231,7 +203,7 @@ export default function LanguageWelcomeScreen() {
         setBusy(false);
       }
     })();
-  }, [target, goal, level, busy, hasPremiumAccess, lang, router, tr]);
+  }, [target, goal, level, busy, lang]);
 
   // Кнопка на экране-подтверждении: язык уже активен — уводим в обучение (главная).
   const startLearning = useCallback(() => {

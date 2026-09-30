@@ -8,7 +8,7 @@
  * Данные читаются из уже существующих источников, асинхронно и без сети:
  *   - lifetime: readLifetimeProfileStatsCache() (мгновенный снимок);
  *   - дельта за период: stats_daily_breakdown_v1 (посуточные счётчики, en+fr);
- *   - streak/xp: AsyncStorage 'streak_count' / 'user_total_xp'.
+ *   - streak: AsyncStorage 'streak_count'.
  *
  * Ничего не мутирует — только читает. Все ошибки проглатываются (пейвол не должен
  * падать из-за статистики), при сбое возвращается «пустой» прогресс.
@@ -30,11 +30,10 @@ export interface ProgressMirror {
   lessons: number;
   phrases: number;
   words: number;
-  xp: number;
   streak: number;
 }
 
-const EMPTY_MIRROR: ProgressMirror = { lessons: 0, phrases: 0, words: 0, xp: 0, streak: 0 };
+const EMPTY_MIRROR: ProgressMirror = { lessons: 0, phrases: 0, words: 0, streak: 0 };
 
 function parseIntSafe(v: string | null): number {
   const n = parseInt(v ?? '', 10);
@@ -86,19 +85,17 @@ export async function sumDailyBreakdownSince(
   return total;
 }
 
-/** Lifetime «уже твоё»: мгновенный снимок из кэша + streak/xp. */
+/** Lifetime «уже твоё»: мгновенный снимок из кэша + серия. */
 export async function readProgressMirror(): Promise<ProgressMirror> {
   try {
-    const [cache, streakRaw, xpRaw] = await Promise.all([
+    const [cache, streakRaw] = await Promise.all([
       readLifetimeProfileStatsCache(),
       AsyncStorage.getItem('streak_count'),
-      AsyncStorage.getItem('user_total_xp'),
     ]);
     return {
       lessons: 0, // в lifetime-кэше нет числа уроков; для lifetime-режима фразы важнее
       phrases: cache?.phrasesLearned ?? 0,
       words: cache?.wordsLearned ?? 0,
-      xp: parseIntSafe(xpRaw),
       streak: parseIntSafe(streakRaw),
     };
   } catch {
@@ -109,7 +106,7 @@ export async function readProgressMirror(): Promise<ProgressMirror> {
 /**
  * Прогресс «за интро» (с момента старта 72ч полного доступа).
  * lessons здесь не считаем по дельте (нет посуточного счётчика уроков) — берём
- * фразы/слова из stats_daily_breakdown за период, xp/streak — текущие.
+ * фразы/слова из stats_daily_breakdown за период, серия — текущая.
  */
 export async function readIntroProgress(nowMs: number = Date.now()): Promise<ProgressMirror> {
   try {
@@ -117,18 +114,16 @@ export async function readIntroProgress(nowMs: number = Date.now()): Promise<Pro
     const startedAt = parseIntSafe(startedRaw);
     if (!startedAt) return { ...EMPTY_MIRROR };
 
-    const [phrases, words, streakRaw, xpRaw] = await Promise.all([
+    const [phrases, words, streakRaw] = await Promise.all([
       sumDailyBreakdownSince('phrases_learned', startedAt, nowMs),
       sumDailyBreakdownSince('words_learned', startedAt, nowMs),
       AsyncStorage.getItem('streak_count'),
-      AsyncStorage.getItem('user_total_xp'),
     ]);
 
     return {
       lessons: 0,
       phrases,
       words,
-      xp: parseIntSafe(xpRaw),
       streak: parseIntSafe(streakRaw),
     };
   } catch {

@@ -7,7 +7,8 @@ describe('admin revenue analytics contract', () => {
   const adminModuleScript = adminHtml.match(/<script type="module">([\s\S]*?)<\/script>/)?.[1] || '';
   const firebaseSource = fs.readFileSync(path.join(root, 'app', 'firebase.ts'), 'utf8');
   const premiumModalSource = fs.readFileSync(path.join(root, 'app', 'premium_modal.tsx'), 'utf8');
-  const paywallASource = fs.readFileSync(path.join(root, 'app', 'paywall_a.tsx'), 'utf8');
+  // 2026-09-30: пейволы A–G удалены — источник показа несёт единственный пейвол Plus.
+  const paywallPlusSource = fs.readFileSync(path.join(root, 'components', 'paywall', 'PaywallPlusScreen.tsx'), 'utf8');
   const onboardingSource = fs.readFileSync(path.join(root, 'components', 'CleanOnboarding.tsx'), 'utf8');
   const shardsShopSource = fs.readFileSync(path.join(root, 'app', 'shards_shop.tsx'), 'utf8');
   const firestoreIndexes = JSON.parse(fs.readFileSync(path.join(root, 'firestore.indexes.json'), 'utf8')) as {
@@ -39,8 +40,8 @@ describe('admin revenue analytics contract', () => {
 
   it('tracks onboarding paywall source from the onboarding flow', () => {
     expect(premiumModalSource).toContain("openPremiumPaywall(router, params, 'replace')");
-    expect(paywallASource).toContain('params.source');
-    expect(paywallASource).toContain("|| 'direct'");
+    expect(paywallPlusSource).toContain('const source = entry.source;');
+    expect(paywallPlusSource).toContain("trackEvent('paywall_shown'");
     expect(onboardingSource).toContain("trackEvent('onboarding_plan_paywall_view'");
     expect(onboardingSource).toContain("trackOnboardingActivity('onboarding_plan_paywall_view'");
     expect(onboardingSource).not.toContain('queuePendingPersonalPlanActivation');

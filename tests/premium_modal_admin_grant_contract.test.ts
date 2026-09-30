@@ -10,17 +10,12 @@ describe('premium modal dispatcher contract', () => {
 
   it('keeps /premium_modal as a dispatcher only, with no retired paywall UI', () => {
     expect(dispatcher).toContain('PremiumModalDispatcher');
-    // Маршруты вариантов живут в paywall_navigation; диспетчер делегирует туда.
-    expect(navigation).toContain('PAYWALL_ROUTES');
+    // 2026-09-30 (D78): A/B-маршруты A–G удалены — диспетчер сам рисует
+    // единственный пейвол Plus после проверки доступа.
+    expect(navigation).not.toContain('PAYWALL_ROUTES');
     expect(dispatcher).toContain('openPremiumPaywall');
-    expect(dispatcher).toContain('resolveCurrentPaywallRoute');
-    expect(dispatcher).toContain('/paywall_a');
-    expect(dispatcher).toContain('/paywall_b');
-    expect(dispatcher).toContain('/paywall_c');
-    expect(dispatcher).toContain('/paywall_d');
-    expect(dispatcher).toContain('/paywall_e');
-    expect(dispatcher).toContain('/paywall_f');
-    expect(dispatcher).toContain('/paywall_g');
+    expect(dispatcher).toContain('<PaywallPlusScreen entry={entryResolution.entry} />');
+    expect(dispatcher).not.toMatch(/\/paywall_[a-g]\b/);
     // Replace на целевой пейвол идёт через openPremiumPaywall (object-form replace
     // живёт внутри paywall_navigation).
     expect(dispatcher).toContain("openPremiumPaywall(router, params, 'replace')");
@@ -33,15 +28,15 @@ describe('premium modal dispatcher contract', () => {
     expect(dispatcher).not.toContain('Почему Premium тебе нужен');
   });
 
-  it('does not block routing on a fresh Firestore config read', () => {
-    // Конфиг читается кэш-first и обновляется в фоне — в paywall_navigation.
-    expect(navigation).toContain('refreshPaywallAbConfigInBackground');
-    expect(navigation).toContain('resolvePaywallAbVariant');
-    expect(dispatcher).toContain('resolveCurrentPaywallRoute');
+  it('does not block routing on any remote A/B config read', () => {
+    // Выбора варианта больше нет: ни Firestore-конфига, ни ожидания stableId.
+    expect(navigation).not.toContain('refreshPaywallAbConfigInBackground');
+    expect(navigation).not.toContain('resolvePaywallAbVariant');
+    expect(dispatcher).not.toContain('resolveCurrentPaywallRoute');
     expect(purchase).toContain('usePaywallPurchase');
   });
 
-  it('keeps purchase and restore safety in the shared A/B/C purchase hook', () => {
+  it('keeps purchase and restore safety in the shared purchase hook', () => {
     const purchaseStart = purchase.indexOf('const handlePurchase = useCallback');
     const restoreStart = purchase.indexOf('const handleRestore = useCallback');
     expect(purchaseStart).toBeGreaterThan(-1);

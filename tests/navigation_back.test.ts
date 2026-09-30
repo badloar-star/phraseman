@@ -329,7 +329,6 @@ describe('safeRouterBack', () => {
 
     navigation.markNextNavigationAsReplace();
     navigation.rememberNavigationPath('/premium_modal?context=course_after_lesson3');
-    navigation.rememberNavigationPath('/paywall_a?context=course_after_lesson3');
 
     navigation.safeRouterBack(router, '/(tabs)/home' as any);
 
@@ -342,7 +341,6 @@ describe('safeRouterBack', () => {
 
     navigation.rememberNavigationPath('/(tabs)/home');
     navigation.rememberNavigationPath('/premium_modal?context=generic');
-    navigation.rememberNavigationPath('/paywall_a?context=generic');
 
     navigation.dismissPaywallModal(router, '/(tabs)/home' as any);
 
@@ -359,22 +357,6 @@ describe('safeRouterBack', () => {
     navigation.rememberNavigationPath('/mistake_practice_session');
     navigation.markNextNavigationAsReplace();
     navigation.rememberNavigationPath('/premium_modal?context=mistake_practice');
-
-    navigation.dismissPaywallModal(router, '/(tabs)/home' as any);
-
-    expect(router.canDismiss).not.toHaveBeenCalled();
-    expect(router.dismiss).not.toHaveBeenCalled();
-    expect(router.dismissTo).toHaveBeenCalledWith('/(tabs)/home');
-  });
-
-  it('replaces instead of native-dismiss when a concrete paywall route replaced its source route', () => {
-    const navigation = loadNavigationBack();
-    const router = makeDismissableRouter();
-
-    navigation.rememberNavigationPath('/(tabs)/home');
-    navigation.rememberNavigationPath('/mistake_practice_session');
-    navigation.markNextNavigationAsReplace();
-    navigation.rememberNavigationPath('/paywall_a?context=mistake_practice');
 
     navigation.dismissPaywallModal(router, '/(tabs)/home' as any);
 

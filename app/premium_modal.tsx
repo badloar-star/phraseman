@@ -5,17 +5,10 @@ import * as Crypto from 'expo-crypto';
 
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useTheme } from '../components/ThemeContext';
-import {
-  openPremiumPaywall,
-  resolveCurrentPaywallRoute,
-} from './paywall_navigation';
-import { PaywallAView as PaywallA } from './paywall_a';
-import { PaywallBView as PaywallB } from './paywall_b';
-import { PaywallCView as PaywallC } from './paywall_c';
-import { PaywallDView as PaywallD } from './paywall_d';
-import { PaywallEView as PaywallE } from './paywall_e';
-import { PaywallFView as PaywallF } from './paywall_f';
-import { PaywallGView as PaywallG } from './paywall_g';
+import { openPremiumPaywall } from './paywall_navigation';
+// зачем (владелец 2026-09-30, D78): пейволы A–G и их A/B-распределение удалены.
+// Любой вход вне онбординга ведёт сюда и показывает ЕДИНСТВЕННЫЙ пейвол Plus.
+import PaywallPlusScreen from '../components/paywall/PaywallPlusScreen';
 import { usePremium } from '../components/PremiumContext';
 import { dismissPaywallModal } from './navigation_back';
 import { resolvePremiumModalEntry } from './paywall_entry_contract';
@@ -53,24 +46,10 @@ function replaceToPaywall(params: RouteParams, router: ReturnType<typeof useRout
   openPremiumPaywall(router, params, 'replace');
 }
 
-function renderPaywallRoute(
-  route: ReturnType<typeof resolveCurrentPaywallRoute>,
-  entry: Extract<ReturnType<typeof resolvePremiumModalEntry>, { decision: 'show' }>['entry'],
-) {
-  if (route === '/paywall_a') return <PaywallA entry={entry} />;
-  if (route === '/paywall_b') return <PaywallB entry={entry} />;
-  if (route === '/paywall_d') return <PaywallD entry={entry} />;
-  if (route === '/paywall_e') return <PaywallE entry={entry} />;
-  if (route === '/paywall_f') return <PaywallF entry={entry} />;
-  if (route === '/paywall_g') return <PaywallG entry={entry} />;
-  return <PaywallC entry={entry} />;
-}
-
 export default function PremiumModalDispatcher() {
   const router = useRouter();
   const { theme } = useTheme();
   const params = useLocalSearchParams<RouteParams>();
-  const paywallRouteRef = useRef<ReturnType<typeof resolveCurrentPaywallRoute> | null>(null);
   const { accessResolved, hasPremiumAccess } = usePremium();
   const [paywallImpressionId] = useState(() => Crypto.randomUUID());
 
@@ -81,11 +60,9 @@ export default function PremiumModalDispatcher() {
   const rootNavReady = Boolean(rootNavState?.key);
   const dispatchedRef = useRef(false);
 
-  // Replace на целевой пейвол — РОВНО ОДИН раз и только после монтирования рут-навигатора.
-  // Вариант решается синхронно из кэша; A/B-конфиг обновляется в фоне.
-  // Replace is scheduled after interactions; the root-state key can appear before
-  // Expo Router accepts navigation on cold deep links.
-  //
+  // Manage-режим: replace на экран управления подпиской — РОВНО ОДИН раз и только
+  // после монтирования рут-навигатора (на холодном deep-link key появляется раньше,
+  // чем Expo Router принимает навигацию).
   const isManageContext = firstParam(params.manage) === '1';
   const entryResolution = isManageContext
     ? null
@@ -125,10 +102,7 @@ export default function PremiumModalDispatcher() {
     // or when Plus is already active, keep the neutral backing instead of
     // flashing an acquisition screen to a paid user.
     if (entryResolution?.decision === 'show') {
-      if (paywallRouteRef.current === null) {
-        paywallRouteRef.current = resolveCurrentPaywallRoute();
-      }
-      return renderPaywallRoute(paywallRouteRef.current, entryResolution.entry);
+      return <PaywallPlusScreen entry={entryResolution.entry} />;
     }
   }
 

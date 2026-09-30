@@ -14,13 +14,15 @@ const PLANNED_LANGS = ['en', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
 const SALES_SURFACES = [
   'app/paywall_copy.ts',
   'app/main_course_plus_copy.ts',
-  'app/paywall_a.tsx', 'app/paywall_b.tsx', 'app/paywall_c.tsx', 'app/paywall_d.tsx',
-  'app/paywall_e.tsx', 'app/paywall_f.tsx', 'app/paywall_g.tsx',
+  // 2026-09-30 (D78): пейволы A–G удалены — единственный пейвол Plus.
+  'components/paywall/PaywallPlusScreen.tsx',
+  'components/paywall/PaywallPlus.tsx',
+  'components/paywall/PaywallPlusCopy.ts',
+  'components/paywall/PaywallBenefitComparison.tsx',
   'app/premium_modal.tsx',
   'components/CleanOnboarding.tsx',
   'components/paywall/PaywallProofCards.tsx',
   'components/paywall/paywallShared.tsx',
-  'components/paywall/PaywallTrialTimeline.tsx',
   'components/PremiumCelebrationModal.tsx',
   'components/EntitlementExpiredHost.tsx',
   'app/(tabs)/settings.tsx',
@@ -37,7 +39,7 @@ const RETIRED_PERSONAL_PLAN_SALES_COPY = [
 
 describe('дневные лимиты обычного аккаунта — правда в текстах пейвола', () => {
   test.each([
-    ['dialog_limit', REVENUE_DAILY_LIMITS.ai_dialog_replies],
+    // dialog_limit — МЕСЯЧНЫЙ лимит (D111), сторожится ai_dialog_paywall_truth_contract.
     ['speaking', REVENUE_DAILY_LIMITS.speaking_attempts],
     ['ai_voice_input', REVENUE_DAILY_LIMITS.speaking_attempts],
     ['flashcard_training', REVENUE_DAILY_LIMITS.flashcard_training_starts],

@@ -71,7 +71,6 @@ import { isLevelUpAccountTokenCurrent } from './level_up_account_guard';
 import { isCurrentAccountGeneration } from './account_generation';
 import { getStableId } from './stable_id';
 import type { Props as OnboardingProps } from '../components/onboarding';
-import { paywallScreenStackOptions } from '../components/paywall/paywallShared';
 import { PremiumProvider, usePremium } from '../components/PremiumContext';
 import { ThemeProvider, useTheme } from '../components/ThemeContext';
 import UpdateModal from '../components/UpdateModal';
@@ -2802,20 +2801,11 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
           <Stack.Screen>, а <>…</> считает посторонним ребёнком и печатает
           «Layout children must be of type Screen» на каждый старт (дважды за
           загрузку). Два отдельных условия дают тот же результат без обёртки. */}
-      {/* Диспетчер после готовности root-навигации делает replace на нужный пейвол.
-          Сам он без анимации и с paywall-подложкой, чтобы native-stack не показывал чёрный кадр. */}
+      {/* Диспетчер проверяет доступ и рисует единственный пейвол Plus (manage=1 → replace
+          на управление подпиской). Без анимации, с подложкой темы — без чёрного кадра. */}
       <Stack.Screen name="premium_modal" options={SECTION_SHEET_STACK_OPTIONS} />
-      {/* Эксперимент пейволов: варианты A/B/C + D/E/F/G (диспетчер — premium_modal). По умолчанию
-          выезжают снизу как модал. НА ОНБОРДИНГЕ (onboardingPaywallActive) — открываются как
-          обычный экран онбординга (card, без анимации/выезда снизу); presentation задаётся
-          на статическом <Stack.Screen>, т.к. mount-presentation нативный стек читает при push. */}
-      <Stack.Screen name="paywall_a" options={paywallScreenStackOptions(onboardingPaywallActive)} />
-      <Stack.Screen name="paywall_b" options={paywallScreenStackOptions(onboardingPaywallActive)} />
-      <Stack.Screen name="paywall_c" options={paywallScreenStackOptions(onboardingPaywallActive)} />
-      <Stack.Screen name="paywall_d" options={paywallScreenStackOptions(onboardingPaywallActive)} />
-      <Stack.Screen name="paywall_e" options={paywallScreenStackOptions(onboardingPaywallActive)} />
-      <Stack.Screen name="paywall_f" options={paywallScreenStackOptions(onboardingPaywallActive)} />
-      <Stack.Screen name="paywall_g" options={paywallScreenStackOptions(onboardingPaywallActive)} />
+      {/* зачем (владелец 2026-09-30, D78): экраны пейволов A–G удалены — единственный
+          пейвол Plus рисует сам диспетчер premium_modal. */}
       <Stack.Screen name="manage_subscription" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="account_details" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="referrals" options={SECTION_SHEET_STACK_OPTIONS} />

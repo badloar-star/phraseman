@@ -12,13 +12,10 @@ describe('legacy lesson purchase continuation wiring', () => {
     expect(read('app', 'level_exam.tsx')).toContain('lessonPurchaseContinuationParams(firstLessonForLevel)');
   });
 
-  it.each(['paywall_a.tsx', 'paywall_b.tsx', 'paywall_c.tsx'])(
-    '%s forwards the allowlisted lesson id into the shared purchase hook',
-    (file) => {
-      const source = read('app', file);
-      expect(source).toContain('resume_lesson_id?: string');
-      expect(source).toContain('parseResumeLessonId(params.resume_lesson_id)');
-      expect(source).toContain('resumeLessonId');
-    },
-  );
+  it('the single Plus paywall forwards the allowlisted lesson id into the shared purchase hook', () => {
+    const source = read('components', 'paywall', 'PaywallPlusScreen.tsx');
+    expect(source).toContain('resume_lesson_id?: string');
+    expect(source).toContain('parseResumeLessonId(params.resume_lesson_id)');
+    expect(source).toContain('resumeLessonId');
+  });
 });

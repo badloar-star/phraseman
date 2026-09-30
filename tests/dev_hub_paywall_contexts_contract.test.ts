@@ -12,21 +12,17 @@ describe('DEV Hub paywall context matrix', () => {
     expect(new Set(DEV_PAYWALL_CONTEXTS.map((item) => item.context)).size).toBe(PREMIUM_CONTEXT_VALUES.length);
   });
 
-  test('routes every A–G preview with the selected context and DEV attribution', () => {
+  // 2026-09-30 (D78): превью A–G и «вариант с онбординга» удалены — одна кнопка
+  // открывает единственный пейвол Plus через тот же диспетчер, что у игроков.
+  test('routes the single Plus paywall preview with the selected context and DEV attribution', () => {
     const source = fs.readFileSync(path.join(ROOT, 'components', 'dev', 'DevHubSheet.tsx'), 'utf8');
     expect(source).toContain('selectedPaywallContext');
     expect(source).toContain("source: 'dev_hub'");
     expect(source).toContain('params: { context, source }');
-    for (const variant of ['a', 'b', 'c', 'd', 'e', 'f', 'g']) {
-      expect(source).toContain(`case 'open-paywall-${variant}':`);
-      expect(source).toContain(`openPaywallVariant('/paywall_${variant}', selectedPaywallContext);`);
-    }
-  });
-
-  test('onboarding preview always uses onboarding_plan context and source', () => {
-    const source = fs.readFileSync(path.join(ROOT, 'components', 'dev', 'DevHubSheet.tsx'), 'utf8');
-    expect(source).toContain("openPaywallVariant(resolveCurrentPaywallRoute(), 'onboarding_plan', 'onboarding_plan');");
-    expect(source).toContain("source: 'dev_hub' | 'onboarding_plan' = 'dev_hub'");
+    expect(source).toContain("case 'open-paywall-plus':");
+    expect(source).toContain("openPaywallVariant('/premium_modal', selectedPaywallContext);");
+    expect(source).not.toMatch(/open-paywall-[a-g]'/);
+    expect(source).not.toContain('resolveCurrentPaywallRoute');
   });
 
   test('picker: русские подписи, radio, 44px, без обводки и без emoji; раздел свёрнут', () => {

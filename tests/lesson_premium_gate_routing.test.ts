@@ -13,10 +13,6 @@ jest.mock('../app/lesson_lock_system', () => ({
 jest.mock('../app/navigation_back', () => ({
   markNextNavigationAsReplace: jest.fn(),
 }));
-jest.mock('../app/paywall_variant', () => ({
-  refreshPaywallAbConfigInBackground: jest.fn(),
-  resolvePaywallAbVariantSync: jest.fn(() => ({ variant: 'A' })),
-}));
 
 import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from '../app/premium_guard';
 import {

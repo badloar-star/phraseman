@@ -13,8 +13,6 @@ import { useTheme, getVolumetricShadow } from '../components/ThemeContext';
 import { FlowText } from '../components/text-integrity/FlowText';
 import { useLang } from '../components/LangContext';
 import { hapticTap } from '../hooks/use-haptics';
-import PlusBadge from '../components/PlusBadge';
-import { ENABLE_DEV_TOOLS } from './config';
 import { triLang, type Lang } from '../constants/i18n';
 import { DARK, type Theme } from '../constants/theme';
 import { liquidGlassTokens, makeLiquidGlassTheme, type LiquidGlassThemeId } from '../constants/liquidGlassThemePalette';
@@ -33,9 +31,8 @@ import { themeDisplayName } from './theme_display_names';
 type ThemeOption = {
   mode: PickerThemeMode;
 };
-// ENABLE_DEV_TOOLS уже гасится `!IS_STORE_RELEASE` — в стор-сборке премиум/наградные
-// темы остаются закрытыми. Голый DEV_MODE здесь был багом (открывал темы бесплатно в проде).
-const DEV_THEME_UNLOCKS = ENABLE_DEV_TOOLS;
+// зачем (владелец 2026-09-30): «ТЕМЫ ВСЕ ФРИ, БЕЗ ПЛЮСА МОЖНО МЕНЯТЬ» — замка, значка
+// Plus и перехода на пейвол у тем больше нет; все 13 тем применяются сразу.
 
 const THEME_OPTIONS: ThemeOption[] = [
   { mode: 'graphite' }, { mode: 'polar' }, { mode: 'slate' }, { mode: 'ink' },
@@ -59,8 +56,7 @@ const paletteFor = (id: PickerThemeMode): Theme => makeLiquidGlassTheme(id, DARK
 type ThemeRowProps = {
   option: ThemeOption;
   label: string;
-  sub: string;
-  locked: boolean;
+  sub: string | null;
   applied: boolean;
   candidate: boolean;
   onPress: (mode: PickerThemeMode) => void;
@@ -71,15 +67,15 @@ type ThemeRowProps = {
 // строк: образец темы слева (красится НАСТОЯЩЕЙ палитрой самой темы, не ручным дублем),
 // имя + короткий статус, справа радио «выбрана для примерки/применена». Тап по-прежнему
 // примеряет тему на весь экран, применение и пейволл — кнопкой внизу (логика не менялась).
-const ThemeRow = memo(function ThemeRow({ option, label, sub, locked, applied, candidate, onPress, glass }: ThemeRowProps) {
+const ThemeRow = memo(function ThemeRow({ option, label, sub, applied, candidate, onPress, glass }: ThemeRowProps) {
   const palette = paletteFor(option.mode);
   return (
     <PressableHybrid
       testID={`theme-tile-${option.mode}`}
       accessibilityRole="radio"
       accessibilityState={{ selected: candidate, checked: candidate }}
-      accessibilityValue={{ text: locked ? 'locked' : applied ? 'applied' : candidate ? 'preview' : 'available' }}
-      accessibilityLabel={`${label}, ${sub}`}
+      accessibilityValue={{ text: applied ? 'applied' : candidate ? 'preview' : 'available' }}
+      accessibilityLabel={sub ? `${label}, ${sub}` : label}
       onPress={() => onPress(option.mode)}
       withHaptic={false}
       withSound={false}
@@ -99,9 +95,8 @@ const ThemeRow = memo(function ThemeRow({ option, label, sub, locked, applied, c
         {/* зачем: FlowText намеренно не принимает numberOfLines (text-integrity: без усечений) —
             длинное имя темы переносится, а не режется троеточием. */}
         <FlowText testID={`theme-tile-name-${option.mode}`} provenance="authored" style={{ color: glass.text, fontSize: 16, lineHeight: 21, fontWeight: '700' }}>{label}</FlowText>
-        <Text style={{ color: glass.mutedText, fontSize: 13, lineHeight: 18, marginTop: 3 }}>{sub}</Text>
+        {sub ? <Text style={{ color: glass.mutedText, fontSize: 13, lineHeight: 18, marginTop: 3 }}>{sub}</Text> : null}
       </View>
-      {locked ? <PlusBadge themeMode="dark" size="sm" /> : null}
       <View
         style={[
           styles.radio,
@@ -123,7 +118,6 @@ export default function SettingsThemes() {
     previewLiquidGlassThemeId,
     setPreviewLiquidGlassThemeId,
     setLiquidGlassThemeId,
-    isLiquidGlassThemeAvailable,
   } = useTheme();
   const { lang } = useLang();
   // зачем удалено (аудит 2026-08-25): мёртвая переменная — «Пульт» (remote-config
@@ -137,10 +131,6 @@ export default function SettingsThemes() {
 
   const candidate: PickerThemeMode = previewLiquidGlassThemeId ?? appliedLiquidGlassThemeId;
   const candidatePalette = paletteFor(candidate);
-  // зачем: доступность считает ThemeContext по единой политике (покупка/подписка/
-  // награда/«дедушка»). Экран больше не собирает свой замок из кусочков — раньше
-  // это уже расходилось с реальным правом применить тему.
-  const candidateLocked = !isLiquidGlassThemeAvailable(candidate) && !DEV_THEME_UNLOCKS;
   const candidateApplied = candidate === appliedLiquidGlassThemeId;
 
   const onRowPress = useCallback((mode: PickerThemeMode) => {
@@ -149,7 +139,7 @@ export default function SettingsThemes() {
     setPreviewLiquidGlassThemeId(mode === appliedLiquidGlassThemeId ? null : mode);
   }, [appliedLiquidGlassThemeId, setPreviewLiquidGlassThemeId]);
 
-  /** Применить тему + ачивка. Вынесено: используется и из CTA, и сразу после покупки. */
+  /** Применить тему + ачивка. */
   const applyCandidate = useCallback((mode: PickerThemeMode) => {
     setLiquidGlassThemeId(mode);
     setPreviewLiquidGlassThemeId(null);
@@ -162,19 +152,11 @@ export default function SettingsThemes() {
 
   const onCtaPress = useCallback(() => {
     hapticTap();
-    if (candidateLocked) {
-      // Примерку не сбрасываем: юзер вернётся из пейволла в примеряемой теме,
-      // а после покупки кнопка сама станет «Применить тему».
-      router.push({ pathname: '/premium_modal', params: { context: 'theme', source: 'settings_theme_picker' } } as any);
-      return;
-    }
     if (candidateApplied) return;
     applyCandidate(candidate);
-  }, [candidate, candidateApplied, candidateLocked, router, applyCandidate]);
+  }, [candidate, candidateApplied, applyCandidate]);
 
-  const ctaLabel = candidateLocked
-    ? triLang(lang, { ru: 'Открыть с Plus', uk: 'Відкрити з Plus', en: 'Unlock with Plus', es: 'Desbloquear con Plus', 'pt-BR': 'Desbloquear com Plus', vi: 'Mở khoá với Plus', id: 'Buka dengan Plus', tr: 'Plus ile aç', pl: 'Odblokuj z Plus' })
-    : candidateApplied
+  const ctaLabel = candidateApplied
       ? triLang(lang, { ru: 'Тема применена', uk: 'Тему застосовано', en: 'Theme applied', es: 'Tema aplicado', 'pt-BR': 'Tema aplicado', vi: 'Đã áp dụng chủ đề', id: 'Tema diterapkan', tr: 'Tema uygulandı', pl: 'Motyw zastosowany' })
       : triLang(lang, { ru: 'Применить тему', uk: 'Застосувати тему', en: 'Apply theme', es: 'Aplicar tema', 'pt-BR': 'Aplicar tema', vi: 'Áp dụng chủ đề', id: 'Terapkan tema', tr: 'Temayı uygula', pl: 'Zastosuj motyw' });
 
@@ -205,14 +187,12 @@ export default function SettingsThemes() {
             </Text>
             <View accessibilityRole="radiogroup" style={{ gap: 10, marginTop: 22 }}>
               {THEME_OPTIONS.map(item => {
-                const locked = !isLiquidGlassThemeAvailable(item.mode) && !DEV_THEME_UNLOCKS;
                 return (
                   <ThemeRow
                     key={item.mode}
                     option={item}
                     label={themeLabel(item.mode, lang)}
-                    sub={item.mode === 'graphite' ? standardLabel : 'Plus'}
-                    locked={locked}
+                    sub={item.mode === 'graphite' ? standardLabel : null}
                     applied={item.mode === appliedLiquidGlassThemeId}
                     candidate={item.mode === candidate}
                     onPress={onRowPress}
@@ -228,43 +208,28 @@ export default function SettingsThemes() {
             <TouchableOpacity
               testID="theme-cta"
               activeOpacity={0.9}
-              disabled={candidateApplied && !candidateLocked}
+              disabled={candidateApplied}
               onPress={onCtaPress}
               accessibilityRole="button"
-              accessibilityState={{ disabled: candidateApplied && !candidateLocked }}
+              accessibilityState={{ disabled: candidateApplied }}
               accessibilityLabel={ctaLabel}
               style={[
                 styles.cta,
-                candidateLocked
-                  ? null
-                  : { backgroundColor: candidateApplied ? candidatePalette.accentBg : candidatePalette.accent },
-                !candidateLocked && !candidateApplied ? getVolumetricShadow('dark', candidatePalette, 2) : null,
+                { backgroundColor: candidateApplied ? candidatePalette.accentBg : candidatePalette.accent },
+                !candidateApplied ? getVolumetricShadow('dark', candidatePalette, 2) : null,
               ]}
             >
-              {candidateLocked ? (
-                <LinearGradient
-                  pointerEvents="none"
-                  colors={[candidatePalette.accent, candidatePalette.accentBg]}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
-                  style={StyleSheet.absoluteFillObject}
-                />
-              ) : null}
-              {candidateLocked ? (
-                <Ionicons name="lock-closed" size={16} color={candidatePalette.correctText} />
-              ) : (
-                <Ionicons
-                  name={candidateApplied ? 'checkmark-circle' : 'color-palette'}
-                  size={18}
-                  color={candidateApplied ? candidatePalette.accent : candidatePalette.correctText}
-                />
-              )}
+              <Ionicons
+                name={candidateApplied ? 'checkmark-circle' : 'color-palette'}
+                size={18}
+                color={candidateApplied ? candidatePalette.accent : candidatePalette.correctText}
+              />
               <FlowText
                 testID="theme-cta-label"
                 provenance="authored"
                 style={[
                   styles.ctaText,
-                  { color: candidateLocked ? candidatePalette.correctText : candidateApplied ? candidatePalette.accent : candidatePalette.correctText },
+                  { color: candidateApplied ? candidatePalette.accent : candidatePalette.correctText },
                 ]}
               >
                 {ctaLabel}

@@ -3,25 +3,23 @@ import path from 'path';
 
 const ROOT = path.join(__dirname, '..');
 
-describe('A/B/C paywall footer locale contract', () => {
+describe('Plus paywall footer locale contract', () => {
   const dispatcher = fs.readFileSync(path.join(ROOT, 'app', 'premium_modal.tsx'), 'utf8');
-  const ctaBlock = fs.readFileSync(path.join(ROOT, 'components', 'paywall', 'PaywallCtaBlock.tsx'), 'utf8');
+  // 2026-09-30 (D78): CTA-блок A–G удалён — подвал и ссылки живут в пейволе Plus.
+  const plus = fs.readFileSync(path.join(ROOT, 'components', 'paywall', 'PaywallPlus.tsx'), 'utf8');
+  const plusCopy = fs.readFileSync(path.join(ROOT, 'components', 'paywall', 'PaywallPlusCopy.ts'), 'utf8');
 
-  it('keeps locale/legal footer copy in the shared new paywall CTA block', () => {
-    expect(ctaBlock).toContain('triLang(lang');
-    expect(ctaBlock).toContain('https://phraseman.app/terms');
-    expect(ctaBlock).toContain('https://phraseman.app/privacy');
-    expect(ctaBlock).toContain('onRestore');
-    expect(ctaBlock).toContain('onContinueFree');
+  it('keeps locale/legal footer copy in the single Plus paywall', () => {
+    expect(plusCopy).toContain('triLang(lang, copy)');
+    expect(plus).toContain('https://phraseman.app/terms');
+    expect(plus).toContain('https://phraseman.app/privacy');
+    expect(plus).toContain('onRestore');
   });
 
   it('keeps purchase and restore pending states visible and mutually blocked', () => {
-    expect(ctaBlock).toContain('busy');
-    expect(ctaBlock).toContain('disabled={restoring || busy}');
-    expect(ctaBlock).toContain('accessibilityState={{ disabled: restoring || busy, busy: restoring }}');
-    expect(ctaBlock).toContain('<ActivityIndicator color={tc.ctaText}');
-    expect(ctaBlock).toContain('<ActivityIndicator size="small" color={textMuted}');
-    expect(ctaBlock).toContain('busy && S.footerLinkDisabled');
+    expect(plus).toContain('accessibilityState={{ disabled: ctaDisabled, busy: purchasing }}');
+    expect(plus).toContain('<ActivityIndicator color={g.ctaInk} />');
+    expect(plus).toContain('accessibilityState={{ busy: restoring }}');
   });
 
   it('does not keep the old premium modal legal/footer renderer alive', () => {

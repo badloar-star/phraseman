@@ -15,7 +15,7 @@ const glassFiles = {
   introStage: 'components/feature_intro/FeatureIntroStage.tsx',
   introComic: 'components/feature_intro/DialogueComicStage.tsx',
   introReplay: 'components/feature_intro/DialogueConsentChatReplay.tsx',
-  promoBanner: 'components/paywall/PaywallPromoBanner.tsx',
+  // PaywallPromoBanner удалён 2026-09-30 вместе с пейволами A–G (D78).
 };
 const src = Object.fromEntries(Object.entries(glassFiles).map(([k, p]) => [k, read(p)]));
 
@@ -57,23 +57,4 @@ test('promo results are shown as a glass plate with an icon, not coloured text',
     assert.match(src[name], /close-circle-outline/);
     assert.match(src[name], /accessibilityRole="alert"/);
   }
-});
-
-test('store promo banner takes glass tokens from the A/D paywall and keeps the onboarding look without them', () => {
-  assert.match(src.promoBanner, /glass\?: PromoGlassTokens/);
-  assert.match(src.promoBanner, /glass\.card/);
-  assert.match(src.promoBanner, /glass\.glassEdge/);
-  assert.match(read('components/paywall/PaywallLiquidGlass.tsx'), /<PaywallPromoBanner[^>]*glass=\{g\}/);
-  // честность цены: третья строка «далее …» и обе цены остаются
-  for (const id of ['paywall-promo-price', 'paywall-promo-standard', 'paywall-promo-after']) {
-    assert.ok(src.promoBanner.includes(id), id);
-  }
-});
-
-test('paywalls B, C, E, F, G render through the same Liquid Glass surface as A and D', () => {
-  for (const v of ['b', 'c', 'd', 'e', 'f', 'g']) {
-    const s = read(`app/paywall_${v}.tsx`);
-    assert.match(s, /<PaywallLiquidGlass[\s\S]*?variant=\{VARIANT\}|<PaywallLiquidGlass/, `paywall_${v}`);
-  }
-  assert.match(read('components/paywall/PaywallLiquidGlass.tsx'), /ACTIVE_LAYOUT/);
 });

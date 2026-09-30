@@ -49,13 +49,11 @@ describe('paywall tonal surfaces contract', () => {
     expect(shared).not.toContain('backdropFilter');
   });
 
-  it('keeps proof and plan cards borderless while using the shared tonal surface', () => {
+  it('keeps proof cards borderless while using the shared tonal surface', () => {
+    // PaywallPlanCards удалён 2026-09-30 вместе с пейволами A–G.
     const proof = fs.readFileSync(path.join(ROOT, 'components', 'paywall', 'PaywallProofCards.tsx'), 'utf8');
-    const plans = fs.readFileSync(path.join(ROOT, 'components', 'paywall', 'PaywallPlanCards.tsx'), 'utf8');
 
     expect(proof).toContain('backgroundColor: chrome.cardBg');
     expect(proof).toContain('borderWidth: 0');
-    expect(plans).toContain('backgroundColor: sel ? chrome.cardBgStrong : cardBg');
-    expect(plans).toContain('borderWidth: 0');
   });
 });

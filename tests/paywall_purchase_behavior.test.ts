@@ -53,6 +53,9 @@ jest.mock('../app/notifications', () => ({
   scheduleTrialEndReminder: jest.fn(async () => true),
   schedulePaywallAbandonedNotification: jest.fn(async () => {}),
   requestNotificationPermission: jest.fn(async () => false),
+  // 2026-09-30: экран «Напомнить о конце пробного?» после покупки вне онбординга.
+  requestNotificationPermissionWithFallback: jest.fn(async () => ({ granted: false, blocked: false, openedSettings: false })),
+  getNotificationPermissionStatus: jest.fn(async () => 'undetermined'),
 }));
 jest.mock('../app/navigation_back', () => ({
   dismissPaywallModal: jest.fn(),

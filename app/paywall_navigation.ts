@@ -1,10 +1,5 @@
 import { InteractionManager } from 'react-native';
 
-import { refreshPaywallAbConfigInBackground, resolvePaywallAbVariantSync, type PaywallAbVariant } from './paywall_variant';
-
-type PaywallRoute = '/paywall_a' | '/paywall_b' | '/paywall_c'
-  | '/paywall_d' | '/paywall_e' | '/paywall_f' | '/paywall_g';
-
 type PaywallRouter = {
   push: (href: any) => void;
   replace: (href: any) => void;
@@ -13,16 +8,6 @@ type PaywallRouter = {
 type PaywallNavigationMode = 'push' | 'replace';
 
 export type PaywallNavigationParams = Record<string, string | number | boolean | string[] | undefined | null>;
-
-const PAYWALL_ROUTES: Record<PaywallAbVariant, PaywallRoute> = {
-  A: '/paywall_a',
-  B: '/paywall_b',
-  C: '/paywall_c',
-  D: '/paywall_d',
-  E: '/paywall_e',
-  F: '/paywall_f',
-  G: '/paywall_g',
-};
 
 function normalizePaywallParams(params: PaywallNavigationParams = {}): Record<string, string | string[]> {
   const normalized: Record<string, string | string[]> = {};
@@ -66,21 +51,6 @@ export function scheduleAfterRootNavigationReady(navigate: () => void): Schedule
   };
 }
 
-// зачем: владелец 2026-09-29 — вне онбординга РОВНО два пейвола: A «Классический» и D «Два тарифа».
-// Бакеты B/C/E/F/G эксперимента не удаляем (конфиг/аналитика прежние), но показываем им ближайший
-// из двух: B/E/F → A (планы вертикально), C/G → D (планы горизонтально). Для свёрнутых бакетов
-// experiment_exposure не пишется (вариант вида ≠ вариант назначения) — честнее, чем ложный замер.
-const ACTIVE_ROUTE_FOR_VARIANT: Record<PaywallAbVariant, '/paywall_a' | '/paywall_d'> = {
-  A: '/paywall_a', B: '/paywall_a', C: '/paywall_d', D: '/paywall_d',
-  E: '/paywall_a', F: '/paywall_a', G: '/paywall_d',
-};
-
-export function resolveCurrentPaywallRoute(): PaywallRoute {
-  refreshPaywallAbConfigInBackground();
-  const { variant } = resolvePaywallAbVariantSync();
-  return ACTIVE_ROUTE_FOR_VARIANT[variant];
-}
-
 export function openPremiumPaywall(
   router: PaywallRouter,
   params: PaywallNavigationParams = {},
@@ -98,9 +68,9 @@ export function openPremiumPaywall(
     return;
   }
   router[mode]({
-    // Acquisition always enters the entitlement-safe dispatcher. The A–G
-    // variant is resolved only after live access has hydrated, otherwise a
-    // normal opener can flash paid UI to an existing Plus user.
+    // Acquisition always enters the entitlement-safe dispatcher: the single Plus
+    // paywall renders only after live access has hydrated, otherwise a normal
+    // opener can flash paid UI to an existing Plus user (A–G removed 2026-09-30).
     pathname: '/premium_modal',
     params: normalized,
   } as any);

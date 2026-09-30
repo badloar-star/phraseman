@@ -5,28 +5,28 @@
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import {
-  View, Text, Platform, StyleSheet, TouchableOpacity, Animated, Easing,
+  View, Text, StyleSheet, TouchableOpacity, Animated, Easing,
   type LayoutChangeEvent, type NativeScrollEvent, type NativeSyntheticEvent,
   type ViewStyle, type StyleProp,
 } from 'react-native';
-import { Image } from 'expo-image';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from '../SafeLinearGradient';
 
 import { useTheme } from '../ThemeContext';
 import { getPaywallThemeConfig, type ThemePaywallConfig } from '../paywallThemeConfig';
-import { getPaywallSocialProof } from '../../app/paywall_variant';
 import { CONTEXT_BENEFITS, getContextBenefitPlanned, makeLP } from '../../app/paywall_copy';
 import { PaywallContextIcon } from './PaywallContextIcons';
 import type { PremiumContext } from '../../app/premium_context';
 import { triLang, type Lang } from '../../constants/i18n';
 import { BG_GRADIENTS as SCREEN_BG_GRADIENTS } from '../../constants/screenBackground';
 import { isLightThemeMode, SAGE_PORCELAIN, type ThemeMode } from '../../constants/theme';
-import { compassIconSource } from '../../constants/weeklyCompassIcons';
 import { PaywallIdleFloat } from './PaywallMotion';
 import { noAndroidOutline } from '../../constants/androidGlow';
 
-// ── фоновые градиенты активных A/B/C paywall-экранов; незнакомая тема → dark ──
+function glassAlpha(color: string, alpha: string): string {
+  return color.startsWith('#') && color.length === 7 ? `${color}${alpha}` : color;
+}
+
 function screenBgTuple(themeMode: string): [string, string, string] {
   const stops = SCREEN_BG_GRADIENTS[themeMode as keyof typeof SCREEN_BG_GRADIENTS] ?? SCREEN_BG_GRADIENTS.dark;
   return [stops[0], stops[1] ?? stops[0], stops[2] ?? stops[1] ?? stops[0]];
@@ -47,28 +47,60 @@ export interface PaywallChrome {
 
 /** Цветовая обвязка пейвола, адаптивная к теме (паттерн v2). */
 export function usePaywallChrome(overrideThemeMode?: ThemeMode): PaywallChrome {
-  const { themeMode } = useTheme();
+  const { themeMode, theme } = useTheme();
   return useMemo(() => {
     const mode = overrideThemeMode ?? themeMode;
-    const tc = getPaywallThemeConfig(mode);
-    // зачем: хром-текст был захардкожен белым «для всех тем», а sagePorcelain —
-    // светлая: заголовок/цены/пункты исчезали на фарфоровом фоне (скрин владельца
-    // 2026-08-02). Светлая ветка берёт утверждённые токены SAGE_PORCELAIN
-    // (план 2026-08-01), тёмные темы не меняются ни на бит.
+    const base = getPaywallThemeConfig(mode);
     const light = isLightThemeMode(mode);
+    if (overrideThemeMode) {
+      return {
+        tc: base,
+        themeMode: mode,
+        bgColors: screenBgTuple(mode),
+        textPrimary: light ? SAGE_PORCELAIN.textPrimary : '#FFFFFF',
+        textMuted: light ? SAGE_PORCELAIN.textMuted : 'rgba(255,255,255,0.62)',
+        divider: light ? 'rgba(23,32,29,0.08)' : 'rgba(255,255,255,0.06)',
+        cardBg: base.panelBg,
+        cardBgStrong: base.panelBgStrong,
+        cardBorder: light ? SAGE_PORCELAIN.border : 'rgba(255,255,255,0.08)',
+        uncheckedBorder: light ? SAGE_PORCELAIN.textGhost : 'rgba(255,255,255,0.22)',
+      };
+    }
+    // Every live Plus screen uses this hook. Keep its content and store flow
+    // unchanged, but resolve every material role from the active Liquid Glass
+    // palette so variants A–G and subscription management cannot drift apart.
+    const tc: ThemePaywallConfig = {
+      ...base,
+      heroAccent: theme.accent,
+      selectedCardBorder: theme.accent,
+      selectedCardBg: glassAlpha(theme.accent, '26'),
+      unselectedCardBg: glassAlpha(theme.bgSurface, 'E8'),
+      panelBg: glassAlpha(theme.bgCard, 'D9'),
+      panelBgStrong: glassAlpha(theme.bgSurface2, 'F0'),
+      selectedCardShadow: theme.accent,
+      ctaBg: theme.accent,
+      ctaText: theme.textOnGold ?? '#111318',
+      ctaShadow: theme.accent,
+      pillBg: glassAlpha(theme.accent, '22'),
+      pillText: theme.accent,
+      pillBorder: glassAlpha(theme.accent, '52'),
+      expandBtnText: theme.accent,
+      expandBtnBorder: glassAlpha(theme.accent, '52'),
+      socialProofText: theme.textMuted,
+    };
     return {
       tc,
       themeMode: mode,
-      bgColors: screenBgTuple(mode),
-      textPrimary: light ? SAGE_PORCELAIN.textPrimary : '#FFFFFF',
-      textMuted: light ? SAGE_PORCELAIN.textMuted : 'rgba(255,255,255,0.62)',
-      divider: light ? 'rgba(23,32,29,0.08)' : 'rgba(255,255,255,0.06)',
+      bgColors: [theme.bgPrimary, theme.bgSurface, theme.bgPrimary],
+      textPrimary: light ? SAGE_PORCELAIN.textPrimary : theme.textPrimary,
+      textMuted: light ? SAGE_PORCELAIN.textMuted : theme.textMuted,
+      divider: light ? 'rgba(23,32,29,0.08)' : glassAlpha(theme.border, 'AA'),
       cardBg: tc.panelBg,
       cardBgStrong: tc.panelBgStrong,
-      cardBorder: light ? SAGE_PORCELAIN.border : 'rgba(255,255,255,0.08)', // guard-ok: не новая рамка — перекраска давно живущего chrome-токена (кнопка закрытия, радио-строки)
-      uncheckedBorder: light ? SAGE_PORCELAIN.textGhost : 'rgba(255,255,255,0.22)',
+      cardBorder: light ? SAGE_PORCELAIN.border : glassAlpha(theme.border, 'E6'),
+      uncheckedBorder: light ? SAGE_PORCELAIN.textGhost : theme.textGhost,
     };
-  }, [overrideThemeMode, themeMode]);
+  }, [overrideThemeMode, theme, themeMode]);
 }
 
 /**
@@ -248,7 +280,7 @@ export function PaywallGlyphCapsule({ ctx, chrome }: { ctx: PremiumContext; chro
     <PaywallIdleFloat style={S.glyphFloat} haloColor={`${tc.heroAccent}2E`} haloRadius={42} haloInset={6}>
       <View style={[S.glyphCap, { shadowColor: tc.heroAccent, backgroundColor: `${tc.heroAccent}10` }]}>
         {isDialogLimit ? (
-          <Image source={compassIconSource(chrome.themeMode as ThemeMode)} style={S.glyphCompassImage} contentFit="contain" />
+          <Ionicons name="compass-outline" size={48} color={tc.heroAccent} />
         ) : (
           /* зачем: владелец убрал стоковые Ionicons из хиро — фирменный контурный
              набор PaywallContextIcons, у каждого контекста своя иконка (макеты
@@ -290,37 +322,8 @@ export function PaywallHeroExplain({ ctx, chrome, lang, subtitle }: {
   );
 }
 
-// ── соцстрока: ТОЛЬКО реальные числа из remote_config/paywall_ab ─────────────
-export function PaywallSocialRow({ lang, chrome }: { lang: Lang; chrome: PaywallChrome }) {
-  const { rating, count } = getPaywallSocialProof();
-  if (rating === null) return null;
-  const store = Platform.OS === 'ios' ? 'App Store' : 'Google Play';
-  const countLabel = count !== null
-    ? ' · ' + triLang(lang, {
-        ru: `${count.toLocaleString('ru-RU')} оценок`,
-        uk: `${count.toLocaleString('uk-UA')} оцінок`,
-        en: `${count.toLocaleString('en-US')} ratings`,
-        es: `${count.toLocaleString('es-ES')} reseñas`,
-        'pt-BR': `${count.toLocaleString('pt-BR')} avaliações`,
-        vi: `${count.toLocaleString('vi-VN')} đánh giá`,
-        id: `${count.toLocaleString('id-ID')} ulasan`,
-        tr: `${count.toLocaleString('tr-TR')} değerlendirme`,
-        pl: `${count.toLocaleString('pl-PL')} ocen`,
-      })
-    : '';
-  return (
-    <View style={S.socialRow}>
-      <View style={S.starsRow}>
-        {[0, 1, 2, 3, 4].map((i) => (
-          <Ionicons key={i} name="star" size={13} color={chrome.tc.socialProofStarColor} />
-        ))}
-      </View>
-      <Text style={[S.socialText, { color: chrome.tc.socialProofText }]}>
-        {rating.toFixed(1)} · {store}{countLabel}
-      </Text>
-    </View>
-  );
-}
+// зачем (2026-09-30): соцстрока с рейтингом жила в удалённых пейволах A–G и читала
+// remote_config/paywall_ab через paywall_variant — удалена вместе с ними (D78).
 
 // ── разделитель «для сомневающихся» ──────────────────────────────────────────
 export function PaywallSectionDivider({ label, chrome }: { label: string; chrome: PaywallChrome }) {
@@ -606,7 +609,6 @@ const S = StyleSheet.create({
     shadowOffset: { width: 0, height: 0 }, shadowOpacity: 0.38, shadowRadius: 16,
     ...noAndroidOutline,
   },
-  glyphCompassImage: { height: 62, width: 62 },
   // хиро-объяснение (субтайтл + выгоды момента) — фиксированная геометрия с
   // первого кадра: копия синхронная, без загрузок и сдвигов (layout stability).
   heroExplainWrap: { marginTop: 9, alignItems: 'center' },

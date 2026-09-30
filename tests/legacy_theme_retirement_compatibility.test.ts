@@ -65,8 +65,10 @@ describe('legacy theme retirement compatibility', () => {
   });
 
   it('never unlocks or restores a Liquid Glass tint through developer mode', () => {
-    assert.ok(contextSource.includes("id === 'graphite' || hasPremiumAccess"));
-    assert.ok(contextSource.includes('resolveLiquidGlassTheme(candidate, isPremium || hasPremiumAccess)'));
+    // 2026-09-30: темы бесплатны — доступность не зависит ни от Plus, ни от dev-флагов.
+    assert.ok(contextSource.includes('LIQUID_GLASS_THEME_IDS.includes(id)'));
+    assert.ok(contextSource.includes('resolveLiquidGlassTheme(storedId)'));
+    assert.equal(contextSource.includes('hasPremiumAccess'), false);
     assert.equal(contextSource.includes('DEV_THEME_UNLOCKS'), false);
     assert.equal(contextSource.includes('ENABLE_DEV_TOOLS'), false);
   });

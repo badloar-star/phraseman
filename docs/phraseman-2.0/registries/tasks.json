@@ -14119,5 +14119,66 @@
     "gate_evidence": {},
     "actual_model": "claude-sonnet-5",
     "actual_reasoning": "medium"
+  },
+  {
+    "id": "PM-288",
+    "epic": "E09",
+    "title": "Наборы из видео: тап по фразе открывает ролик на её моменте",
+    "requirement_ids": [
+      "D131"
+    ],
+    "basis": "OWNER",
+    "stage": "C",
+    "status": "planned",
+    "profile": "S1",
+    "model": "gpt-6-sol",
+    "reasoning": "medium",
+    "spec": "docs/phraseman-2.0/03_DECISIONS.md#D131",
+    "acceptance": [
+      {
+        "id": "PM-288-A1",
+        "text": "В админке у загрузки фраз из документа есть кнопка добавления транскрипта (.srt/.vtt/текст YouTube); по нему фразам проставляется секунда (startSec)",
+        "accepted": false,
+        "evidence": []
+      },
+      {
+        "id": "PM-288-A2",
+        "text": "startSec доходит до карточек опубликованного набора из видео",
+        "accepted": false,
+        "evidence": []
+      },
+      {
+        "id": "PM-288-A3",
+        "text": "В наборе из видео тап по фразе открывает ролик сразу на этой секунде",
+        "accepted": false,
+        "evidence": []
+      },
+      {
+        "id": "PM-288-A4",
+        "text": "Без транскрипта функция на этом наборе выключена: фразы не выглядят нажимаемыми, ничего не ломается",
+        "accepted": false,
+        "evidence": []
+      }
+    ],
+    "depends_on": [],
+    "gates": [
+      "BASELINE_SHA_APPROVED",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED",
+      "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
+    ],
+    "audit_sha": null,
+    "result_sha": null,
+    "owner": null,
+    "reviewer": null,
+    "evidence": [],
+    "notes": [
+      "Уже есть: shared/video_transcript_timing.ts, functions/src/video_phrase_timing.ts (adminAlignVideoPhraseTranscript), app/youtube_player_seek_bus.ts, components/youtube/YoutubeVideoPhrases.tsx (тап под плеером). Не хватает: связка до наборов карточек из видео."
+    ],
+    "actual_cost": null,
+    "kind": "unclassified",
+    "review_verdict": null,
+    "gate_evidence": {},
+    "actual_model": null,
+    "actual_reasoning": null
   }
 ]

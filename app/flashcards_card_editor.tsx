@@ -35,6 +35,7 @@ import {
   CardsGlassPrimaryButton,
   CardsGlassRoundButton,
   CardsGlassScreen,
+  CardsGlassStateBlock,
   CardsGlassSurface,
   useCardsGlass,
 } from './flashcards/CardsGlassKit';
@@ -167,6 +168,10 @@ export default function FlashcardsCardEditorScreen() {
   const [existing, setExisting] = useState<CardItem | null>(null);
   /** edit: пока карточка не найдена — форма не показывается (иначе save создаст дубликат). */
   const [loadingCard, setLoadingCard] = useState(isEdit);
+  // зачем (макет cards.html «Карточка не найдена»): вместо тоста и молчаливого
+  // ухода назад — экран с понятной причиной и кнопкой «Назад».
+  const [notFound, setNotFound] = useState(false);
+  const handleSaveRef = useRef<() => void>(() => {});
   const [draftEN, setDraftEN] = useState('');
   const [draftTR, setDraftTR] = useState('');
   const [draftDescription, setDraftDescription] = useState('');
@@ -319,15 +324,9 @@ export default function FlashcardsCardEditorScreen() {
         if (card) {
           applyCard(card);
         } else {
-          emitAppEvent(
-            'action_toast',
-            actionToastTri('error', {
-              ru: 'Карточка не найдена.',
-              uk: 'Картку не знайдено.',
-              es: 'No se encontró la tarjeta.',
-            }),
-          );
-          safeRouterBack(router, '/flashcards' as any);
+          console.warn('[CARD-EDITOR] card not found', { editId, studyTarget });
+          setNotFound(true);
+          setLoadingCard(false);
         }
       })
       .catch((e: unknown) => {
@@ -335,7 +334,7 @@ export default function FlashcardsCardEditorScreen() {
         if (!cancelled) setLoadingCard(false);
       });
     return () => { cancelled = true; };
-  }, [isEdit, editId, lang, router, studyTarget]);
+  }, [isEdit, editId, lang, studyTarget]);
 
   const leaveEditor = useCallback(() => {
     Keyboard.dismiss();
@@ -438,11 +437,20 @@ export default function FlashcardsCardEditorScreen() {
       setSaving(false);
       emitAppEvent(
         'action_toast',
-        actionToastTri('error', {
-          ru: 'Не удалось сохранить карточку.',
-          uk: 'Не вдалося зберегти картку.',
-          es: 'No se pudo guardar la tarjeta.',
-        }),
+        {
+          ...actionToastTri('error', {
+            ru: 'Не удалось сохранить карточку.',
+            uk: 'Не вдалося зберегти картку.',
+            es: 'No se pudo guardar la tarjeta.',
+          }),
+          // зачем (макет cards.html «Не удалось сохранить»): повтор в один тап,
+          // черновик не теряется — форма остаётся на месте.
+          action: {
+            labelRu: 'Повторить', labelUk: 'Повторити', labelEn: 'Retry', labelEs: 'Reintentar',
+            labelPtBr: 'Tentar de novo', labelVi: 'Thử lại', labelId: 'Coba lagi', labelTr: 'Tekrar dene', labelPl: 'Ponów',
+            onPress: () => handleSaveRef.current(),
+          },
+        },
       );
     }
   }, [
@@ -458,6 +466,7 @@ export default function FlashcardsCardEditorScreen() {
     creatorGated,
     saving,
   ]);
+  handleSaveRef.current = () => { void handleSave(); };
 
   // зачем (Liquid Glass, cards.html #21–22, #60–64): поле — одна непрозрачная
   // плашка с подписью ВНУТРИ и полем ввода без своей рамки; фокус — светлее
@@ -512,7 +521,22 @@ export default function FlashcardsCardEditorScreen() {
             {/* зачем: при закрытом создании показываем ТОТ ЖЕ скелет, что при
                 загрузке — форма не мелькает за кадр до ухода на пейвол, и
                 геометрия первого кадра совпадает с обычной (layout stability). */}
-            {loadingCard || creatorGated ? (
+            {notFound ? (
+              <CardsGlassStateBlock
+                g={g}
+                testID="fc-editor-not-found"
+                icon="search"
+                title={triLang(lang, {
+                  ru: 'Карточка не найдена', uk: 'Картку не знайдено', en: 'Card not found', es: 'No se encontró la tarjeta',
+                  'pt-BR': 'Cartão não encontrado', vi: 'Không tìm thấy thẻ', id: 'Kartu tidak ditemukan', tr: 'Kart bulunamadı', pl: 'Nie znaleziono karty',
+                })}
+                actionLabel={triLang(lang, {
+                  ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás',
+                  'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz',
+                })}
+                onAction={leaveEditor}
+              />
+            ) : loadingCard || creatorGated ? (
               <View testID="fc-editor-skeleton" style={{ flex: 1, paddingHorizontal: 20, paddingTop: 12 }}>
                 {[0, 1, 2].map((i) => (
                   <View key={i} style={{ marginTop: 14 }}>

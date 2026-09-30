@@ -1,38 +1,41 @@
 import React, { memo, useCallback, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { Pressable, StyleSheet, Text, View, type ViewStyle } from 'react-native';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import SafeLinearGradient, { LinearGradient } from '../components/SafeLinearGradient';
 import PressableHybrid from '../components/PressableHybrid';
 import { settingsGlassCardStyle } from '../components/settings/SettingsGlassRows';
+import { ThemeSwatch } from '../components/settings/ThemeSwatch';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
-import { useTheme, getVolumetricShadow } from '../components/ThemeContext';
+import { useTheme } from '../components/ThemeContext';
 import { FlowText } from '../components/text-integrity/FlowText';
 import { useLang } from '../components/LangContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { triLang, type Lang } from '../constants/i18n';
-import { DARK, type Theme } from '../constants/theme';
-import { liquidGlassTokens, makeLiquidGlassTheme, type LiquidGlassThemeId } from '../constants/liquidGlassThemePalette';
+import {
+  LIQUID_GLASS_COLOR_LEVELS,
+  liquidGlassTokens,
+  type GlassTokens,
+  type LiquidGlassAppearance,
+  type LiquidGlassColorLevel,
+  type LiquidGlassThemeId,
+} from '../constants/liquidGlassThemePalette';
 import { safeRouterBack } from './navigation_back';
-import { themeDisplayName } from './theme_display_names';
+import { DebugLogger } from './debug-logger';
+import { themeDisplayName, type ThemeDisplayName } from './theme_display_names';
 // зачем (PM-064, D38/D45): полка тем «за жемчуг» опустела ещё 2026-09-13 —
-// isThemeShardPurchasable/themePriceShards всегда возвращали false/0, а
-// ThemeShardPaywallModal и purchaseThemeWithShards были недостижимым кодом.
-// D45 требует убрать все модалки «за жемчуг» целиком — модуль и модалка удалены.
+// модалка покупки темы за жемчуг удалена целиком (D45).
 
-// зачем: «Примерочная» (решение владельца 2026-08-02) — каждая плашка рисуется
-// НАСТОЯЩИМИ токенами своей темы (никаких ручных дублей цветов: они уже
-// разъезжались с палитрами), тап примеряет тему на весь экран через
-// previewThemeMode, применение/пейволл — кнопкой внизу.
+// зачем (владелец 2026-09-30, макет themes-v2-proposals.html → «Темы»):
+// справа от заголовка луна и солнце без текста (тёмное / светлое, «Как в системе» убрано),
+// ниже сегмент «Спокойно / Акцент / Максимум», затем одна стеклянная карточка с 13 темами.
+// Подписей «Оформление / Цвет» и блока предпросмотра НЕТ. Тап по теме применяет её сразу —
+// экран перекрашивается в том же кадре, отдельной кнопки «Применить» больше нет.
+// Все темы бесплатны («ТЕМЫ ВСЕ ФРИ», владелец 30.09): ни замка, ни Plus, ни пейвола.
 
-type ThemeOption = {
-  mode: PickerThemeMode;
-};
-// зачем (владелец 2026-09-30): «ТЕМЫ ВСЕ ФРИ, БЕЗ ПЛЮСА МОЖНО МЕНЯТЬ» — замка, значка
-// Plus и перехода на пейвол у тем больше нет; все 13 тем применяются сразу.
+type ThemeOption = { mode: LiquidGlassThemeId };
 
 const THEME_OPTIONS: ThemeOption[] = [
   { mode: 'graphite' }, { mode: 'polar' }, { mode: 'slate' }, { mode: 'ink' },
@@ -41,69 +44,126 @@ const THEME_OPTIONS: ThemeOption[] = [
   { mode: 'marine' },
 ];
 
-// зачем: имя темы нужно и плитке, и модалке покупки — один помощник вместо
-// двух копий словаря (копии уже разъезжались в других местах приложения).
-function themeLabel(mode: string, lang: Lang): string {
-  // зачем: единый словарь имён тем живёт в theme_display_names.ts — карточке
-  // подарка из спина он нужен так же, как этому экрану. Копия здесь уже была
-  // источником расхождений.
-  return themeDisplayName(mode, lang);
+const LEVEL_LABELS: Readonly<Record<LiquidGlassColorLevel, ThemeDisplayName>> = {
+  calm: { ru: 'Спокойно', uk: 'Спокійно', en: 'Calm', es: 'Calma', 'pt-BR': 'Calmo', vi: 'Dịu', id: 'Tenang', tr: 'Sakin', pl: 'Spokojnie' },
+  accent: { ru: 'Акцент', uk: 'Акцент', en: 'Accent', es: 'Acento', 'pt-BR': 'Destaque', vi: 'Điểm nhấn', id: 'Aksen', tr: 'Vurgu', pl: 'Akcent' },
+  max: { ru: 'Максимум', uk: 'Максимум', en: 'Max', es: 'Máximo', 'pt-BR': 'Máximo', vi: 'Tối đa', id: 'Maksimal', tr: 'Maksimum', pl: 'Maksimum' },
+};
+
+const APPEARANCE_OPTIONS: ReadonlyArray<Readonly<{ key: LiquidGlassAppearance; icon: 'moon' | 'sunny'; label: ThemeDisplayName }>> = [
+  { key: 'dark', icon: 'moon', label: { ru: 'Тёмное оформление', uk: 'Темне оформлення', en: 'Dark appearance', es: 'Apariencia oscura', 'pt-BR': 'Aparência escura', vi: 'Giao diện tối', id: 'Tampilan gelap', tr: 'Koyu görünüm', pl: 'Ciemny wygląd' } },
+  { key: 'light', icon: 'sunny', label: { ru: 'Светлое оформление', uk: 'Світле оформлення', en: 'Light appearance', es: 'Apariencia clara', 'pt-BR': 'Aparência clara', vi: 'Giao diện sáng', id: 'Tampilan terang', tr: 'Açık görünüm', pl: 'Jasny wygląd' } },
+];
+
+/**
+ * Вид выбранного сегмента/значка по макету: тёмное «Спокойно» — светлая плашка стекла;
+ * тёмные «Акцент/Максимум» — капсула цвета темы; светлое — белая плашка с тенью в тон темы.
+ */
+function selectedChip(glass: GlassTokens): { box: ViewStyle; ink: string } {
+  if (glass.isLight) {
+    return {
+      box: {
+        backgroundColor: glass.level === 'calm' ? glass.opaqueCard : glass.accentSoft,
+        borderColor: glass.level === 'calm' ? glass.line : glass.accentCap, // guard-ok: 1px кромка 2.0 по макету
+        shadowColor: glass.shadowTint, shadowOpacity: 1, shadowRadius: 3, shadowOffset: { width: 0, height: 1 }, elevation: 1,
+      },
+      ink: glass.level === 'calm' ? glass.text : glass.accent,
+    };
+  }
+  if (glass.level === 'calm') {
+    return { box: { backgroundColor: 'rgba(255,255,255,0.12)', borderColor: 'rgba(255,255,255,0.14)' }, ink: glass.text }; // guard-ok: 1px кромка 2.0
+  }
+  return { box: { backgroundColor: `${glass.accentCap}38`, borderColor: `${glass.accentCap}4D` }, ink: glass.accentBright }; // guard-ok: 1px кромка 2.0
 }
 
-type PickerThemeMode = LiquidGlassThemeId;
-const paletteFor = (id: PickerThemeMode): Theme => makeLiquidGlassTheme(id, DARK);
+const AppearanceToggle = memo(function AppearanceToggle({ glass, lang, value, onChange }: {
+  glass: GlassTokens; lang: Lang; value: LiquidGlassAppearance; onChange: (next: LiquidGlassAppearance) => void;
+}) {
+  const on = selectedChip(glass);
+  return (
+    <View accessibilityRole="radiogroup" style={[styles.modeToggle, { backgroundColor: glass.opaqueControl }]}>
+      {APPEARANCE_OPTIONS.map(opt => {
+        const selected = opt.key === value;
+        return (
+          <Pressable
+            key={opt.key}
+            testID={`theme-appearance-${opt.key}`}
+            accessibilityRole="radio"
+            accessibilityState={{ selected, checked: selected }}
+            accessibilityLabel={triLang(lang, opt.label)}
+            hitSlop={4}
+            onPress={() => onChange(opt.key)}
+            style={[styles.modeItem, selected ? [styles.chipOn, on.box] : null]}
+          >
+            <Ionicons name={selected ? opt.icon : `${opt.icon}-outline`} size={19} color={selected ? on.ink : glass.secondary} />
+          </Pressable>
+        );
+      })}
+    </View>
+  );
+});
+
+const LevelSegment = memo(function LevelSegment({ glass, lang, value, onChange }: {
+  glass: GlassTokens; lang: Lang; value: LiquidGlassColorLevel; onChange: (next: LiquidGlassColorLevel) => void;
+}) {
+  const on = selectedChip(glass);
+  return (
+    <View accessibilityRole="radiogroup" style={[styles.segment, { backgroundColor: glass.opaqueControl }]}>
+      {LIQUID_GLASS_COLOR_LEVELS.map(level => {
+        const selected = level === value;
+        const label = triLang(lang, LEVEL_LABELS[level]);
+        return (
+          <Pressable
+            key={level}
+            testID={`theme-level-${level}`}
+            accessibilityRole="radio"
+            accessibilityState={{ selected, checked: selected }}
+            accessibilityLabel={label}
+            onPress={() => onChange(level)}
+            style={[styles.segmentItem, selected ? [styles.chipOn, on.box] : null]}
+          >
+            <Text style={[styles.segmentText, { color: selected ? (glass.isLight ? on.ink : glass.text) : glass.secondary }]}>{label}</Text>
+          </Pressable>
+        );
+      })}
+    </View>
+  );
+});
 
 type ThemeRowProps = {
   option: ThemeOption;
   label: string;
-  sub: string | null;
   applied: boolean;
-  candidate: boolean;
-  onPress: (mode: PickerThemeMode) => void;
-  glass: ReturnType<typeof liquidGlassTokens>;
+  first: boolean;
+  vivid: boolean;
+  onPress: (mode: LiquidGlassThemeId) => void;
+  glass: GlassTokens;
 };
 
-// зачем (владелец 2026-09-29, макет profile.html#PRF-06): «Темы» — плотный список стеклянных
-// строк: образец темы слева (красится НАСТОЯЩЕЙ палитрой самой темы, не ручным дублем),
-// имя + короткий статус, справа радио «выбрана для примерки/применена». Тап по-прежнему
-// примеряет тему на весь экран, применение и пейволл — кнопкой внизу (логика не менялась).
-const ThemeRow = memo(function ThemeRow({ option, label, sub, applied, candidate, onPress, glass }: ThemeRowProps) {
-  const palette = paletteFor(option.mode);
+const ThemeRow = memo(function ThemeRow({ option, label, applied, first, vivid, onPress, glass }: ThemeRowProps) {
+  // Радио выбранной темы: в «Спокойно» — нейтральное (белое в тёмном, чернильное в светлом),
+  // в «Акценте/Максимуме» — цвет темы.
+  const mark = glass.level === 'calm' ? (glass.isLight ? glass.text : glass.lightTint) : glass.accentBorder;
   return (
     <PressableHybrid
       testID={`theme-tile-${option.mode}`}
       accessibilityRole="radio"
-      accessibilityState={{ selected: candidate, checked: candidate }}
-      accessibilityValue={{ text: applied ? 'applied' : candidate ? 'preview' : 'available' }}
-      accessibilityLabel={sub ? `${label}, ${sub}` : label}
+      accessibilityState={{ selected: applied, checked: applied }}
+      accessibilityLabel={label}
       onPress={() => onPress(option.mode)}
       withHaptic={false}
       withSound={false}
       variant="card"
-      contentStyle={settingsGlassCardStyle(glass)}
+      contentStyle={[styles.row, first ? null : { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: glass.line }]}
     >
-      <SafeLinearGradient pointerEvents="none" colors={[glass.selected, 'transparent']} style={StyleSheet.absoluteFillObject} />
-      <LinearGradient
-        colors={palette.cardGradient}
-        start={{ x: 0.15, y: 0 }}
-        end={{ x: 0.85, y: 1 }}
-        style={styles.swatch}
-      >
-        <View style={[styles.swatchDot, { backgroundColor: palette.accent }]} />
-      </LinearGradient>
-      <View style={{ flex: 1, minWidth: 0 }}>
+      <ThemeSwatch id={option.mode} vivid={vivid} />
+      <View style={styles.rowText}>
         {/* зачем: FlowText намеренно не принимает numberOfLines (text-integrity: без усечений) —
             длинное имя темы переносится, а не режется троеточием. */}
-        <FlowText testID={`theme-tile-name-${option.mode}`} provenance="authored" style={{ color: glass.text, fontSize: 16, lineHeight: 21, fontWeight: '700' }}>{label}</FlowText>
-        {sub ? <Text style={{ color: glass.mutedText, fontSize: 13, lineHeight: 18, marginTop: 3 }}>{sub}</Text> : null}
+        <FlowText testID={`theme-tile-name-${option.mode}`} provenance="authored" style={[styles.rowName, { color: glass.text }]}>{label}</FlowText>
       </View>
-      <View
-        style={[
-          styles.radio,
-          { borderColor: candidate ? glass.lightTint : glass.glassEdge, backgroundColor: candidate ? glass.selected : 'transparent' },
-        ]}
-      >
-        {applied ? <Ionicons name="checkmark" size={14} color={glass.lightTint} /> : candidate ? <View style={[styles.radioDot, { backgroundColor: glass.lightTint }]} /> : null}
+      <View style={[styles.radio, { borderColor: applied ? mark : glass.glassEdge }]}>{/* guard-ok: кольцо радио */}
+        {applied ? <View style={[styles.radioDot, { backgroundColor: mark }]} /> : null}
       </View>
     </PressableHybrid>
   );
@@ -112,64 +172,60 @@ const ThemeRow = memo(function ThemeRow({ option, label, sub, applied, candidate
 export default function SettingsThemes() {
   const router = useRouter();
   const {
-    theme: t,
     liquidGlassThemeId,
     appliedLiquidGlassThemeId,
-    previewLiquidGlassThemeId,
     setPreviewLiquidGlassThemeId,
     setLiquidGlassThemeId,
+    liquidGlassColorLevel,
+    setLiquidGlassColorLevel,
+    liquidGlassAppearance,
+    setLiquidGlassAppearance,
   } = useTheme();
   const { lang } = useLang();
-  // зачем удалено (аудит 2026-08-25): мёртвая переменная — «Пульт» (remote-config
-  // тумблер 'themes') уже учтён ВНУТРИ ThemeContext как liveThemeAccess и подмешан
-  // в isThemeAvailable/isThemeUnlockedFor. Дублировать здесь — источник расхождения,
-  // не защита.
 
-  // зачем: примерка живёт только пока открыт экран «Темы» — уход с экрана
-  // всегда возвращает применённую тему (превью не персистится).
+  // зачем: примерки больше нет, но старая примерка (если осталась с прошлой версии
+  // экрана) не должна пережить уход — всегда возвращаем применённую тему.
   useEffect(() => () => setPreviewLiquidGlassThemeId(null), [setPreviewLiquidGlassThemeId]);
 
-  const candidate: PickerThemeMode = previewLiquidGlassThemeId ?? appliedLiquidGlassThemeId;
-  const candidatePalette = paletteFor(candidate);
-  const candidateApplied = candidate === appliedLiquidGlassThemeId;
-
-  const onRowPress = useCallback((mode: PickerThemeMode) => {
+  /** Тап по теме = применить сразу (optimistic: state мгновенно, диск догоняет фоном) + ачивка. */
+  const onRowPress = useCallback((mode: LiquidGlassThemeId) => {
+    if (mode === appliedLiquidGlassThemeId) return;
     hapticTap();
-    // Тап по применённой теме = выход из примерки; по любой другой — мгновенная примерка.
-    setPreviewLiquidGlassThemeId(mode === appliedLiquidGlassThemeId ? null : mode);
-  }, [appliedLiquidGlassThemeId, setPreviewLiquidGlassThemeId]);
-
-  /** Применить тему + ачивка. */
-  const applyCandidate = useCallback((mode: PickerThemeMode) => {
     setLiquidGlassThemeId(mode);
-    setPreviewLiquidGlassThemeId(null);
-    // зачем: ачивка — только за НАСТОЯЩЕЕ применение, примерка её не триггерит.
+    // зачем: ачивка — только за НАСТОЯЩУЮ смену темы.
     void (async () => {
       const { checkAchievements } = await import('./achievements');
       void checkAchievements({ type: 'profile_theme_set' });
-    })();
-  }, [setPreviewLiquidGlassThemeId, setLiquidGlassThemeId]);
+    })().catch((e: unknown) => {
+      DebugLogger.error('settings_themes:achievement', e instanceof Error ? e : new Error(String(e)), 'warning');
+    });
+  }, [appliedLiquidGlassThemeId, setLiquidGlassThemeId]);
 
-  const onCtaPress = useCallback(() => {
+  const onLevel = useCallback((level: LiquidGlassColorLevel) => {
+    if (level === liquidGlassColorLevel) return;
     hapticTap();
-    if (candidateApplied) return;
-    applyCandidate(candidate);
-  }, [candidate, candidateApplied, applyCandidate]);
+    setLiquidGlassColorLevel(level);
+  }, [liquidGlassColorLevel, setLiquidGlassColorLevel]);
 
-  const ctaLabel = candidateApplied
-      ? triLang(lang, { ru: 'Тема применена', uk: 'Тему застосовано', en: 'Theme applied', es: 'Tema aplicado', 'pt-BR': 'Tema aplicado', vi: 'Đã áp dụng chủ đề', id: 'Tema diterapkan', tr: 'Tema uygulandı', pl: 'Motyw zastosowany' })
-      : triLang(lang, { ru: 'Применить тему', uk: 'Застосувати тему', en: 'Apply theme', es: 'Aplicar tema', 'pt-BR': 'Aplicar tema', vi: 'Áp dụng chủ đề', id: 'Terapkan tema', tr: 'Temayı uygula', pl: 'Zastosuj motyw' });
+  const onAppearance = useCallback((appearance: LiquidGlassAppearance) => {
+    if (appearance === liquidGlassAppearance) return;
+    hapticTap();
+    setLiquidGlassAppearance(appearance);
+  }, [liquidGlassAppearance, setLiquidGlassAppearance]);
 
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
   const backLabel = triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' });
-  const standardLabel = triLang(lang, { ru: 'Стандартная', uk: 'Стандартна', en: 'Standard', es: 'Estándar', 'pt-BR': 'Padrão', vi: 'Mặc định', id: 'Standar', tr: 'Standart', pl: 'Standardowy' });
+  const vivid = liquidGlassColorLevel !== 'calm';
+  const listShadow: ViewStyle | null = glass.isLight
+    ? { shadowColor: glass.shadowTint, shadowOpacity: 1, shadowRadius: 14, shadowOffset: { width: 0, height: 6 }, elevation: 2 }
+    : null;
 
   return (
     <ScreenGradient>
       <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom, paddingLeft: insets.left, paddingRight: insets.right }}>
         <ContentWrap>
-          <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ paddingHorizontal: 15, paddingBottom: 16 }} showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
+          <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ paddingHorizontal: 15, paddingBottom: 24 }} showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
             <PressableHybrid
               testID="themes-back"
               accessibilityLabel={backLabel}
@@ -178,64 +234,35 @@ export default function SettingsThemes() {
               withHaptic={false}
               withSound={false}
               style={{ width: 48, height: 48, alignSelf: 'flex-start', marginTop: 4 }}
-              contentStyle={{ width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }}
+              contentStyle={{ width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, borderWidth: 1, borderColor: glass.glassEdge }} // guard-ok: 1px кромка 2.0
             >
               <Ionicons name="arrow-back" size={22} color={glass.lightTint} />
             </PressableHybrid>
-            <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: 10 }}>
-              {triLang(lang, { ru: 'Темы', uk: 'Теми', en: 'Themes', es: 'Temas', 'pt-BR': 'Temas', vi: 'Chủ đề', id: 'Tema', tr: 'Temalar', pl: 'Motywy' })}
-            </Text>
-            <View accessibilityRole="radiogroup" style={{ gap: 10, marginTop: 22 }}>
-              {THEME_OPTIONS.map(item => {
-                return (
-                  <ThemeRow
-                    key={item.mode}
-                    option={item}
-                    label={themeLabel(item.mode, lang)}
-                    sub={item.mode === 'graphite' ? standardLabel : null}
-                    applied={item.mode === appliedLiquidGlassThemeId}
-                    candidate={item.mode === candidate}
-                    onPress={onRowPress}
-                    glass={glass}
-                  />
-                );
-              })}
+            <View style={styles.head}>
+              <Text accessibilityRole="header" style={[styles.title, { color: glass.text }]}>
+                {triLang(lang, { ru: 'Темы', uk: 'Теми', en: 'Themes', es: 'Temas', 'pt-BR': 'Temas', vi: 'Chủ đề', id: 'Tema', tr: 'Temalar', pl: 'Motywy' })}
+              </Text>
+              <AppearanceToggle glass={glass} lang={lang} value={liquidGlassAppearance} onChange={onAppearance} />
+            </View>
+            <LevelSegment glass={glass} lang={lang} value={liquidGlassColorLevel} onChange={onLevel} />
+            <View
+              accessibilityRole="radiogroup"
+              style={[settingsGlassCardStyle(glass), styles.list, listShadow]}
+            >
+              {THEME_OPTIONS.map((item, index) => (
+                <ThemeRow
+                  key={item.mode}
+                  option={item}
+                  label={themeDisplayName(item.mode, lang)}
+                  applied={item.mode === appliedLiquidGlassThemeId}
+                  first={index === 0}
+                  vivid={vivid}
+                  onPress={onRowPress}
+                  glass={glass}
+                />
+              ))}
             </View>
           </BouncyScrollView>
-
-          {/* Кнопка существует с первого кадра (стабильная геометрия), меняется только содержимое. */}
-          <View style={styles.footer}>
-            <TouchableOpacity
-              testID="theme-cta"
-              activeOpacity={0.9}
-              disabled={candidateApplied}
-              onPress={onCtaPress}
-              accessibilityRole="button"
-              accessibilityState={{ disabled: candidateApplied }}
-              accessibilityLabel={ctaLabel}
-              style={[
-                styles.cta,
-                { backgroundColor: candidateApplied ? candidatePalette.accentBg : candidatePalette.accent },
-                !candidateApplied ? getVolumetricShadow('dark', candidatePalette, 2) : null,
-              ]}
-            >
-              <Ionicons
-                name={candidateApplied ? 'checkmark-circle' : 'color-palette'}
-                size={18}
-                color={candidateApplied ? candidatePalette.accent : candidatePalette.correctText}
-              />
-              <FlowText
-                testID="theme-cta-label"
-                provenance="authored"
-                style={[
-                  styles.ctaText,
-                  { color: candidateApplied ? candidatePalette.accent : candidatePalette.correctText },
-                ]}
-              >
-                {ctaLabel}
-              </FlowText>
-            </TouchableOpacity>
-          </View>
         </ContentWrap>
       </View>
     </ScreenGradient>
@@ -243,52 +270,19 @@ export default function SettingsThemes() {
 }
 
 const styles = StyleSheet.create({
-  swatch: {
-    width: 41,
-    height: 41,
-    borderRadius: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-    overflow: 'hidden',
-  },
-  swatchDot: {
-    width: 14,
-    height: 14,
-    borderRadius: 7,
-  },
-  radio: {
-    width: 26,
-    height: 26,
-    borderRadius: 13,
-    borderWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  radioDot: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-  },
-  footer: {
-    paddingHorizontal: 16,
-    paddingTop: 10,
-    paddingBottom: 10,
-  },
-  cta: {
-    // зачем: minHeight вместо height — длинная локаль переносится на 2 строки,
-    // кнопка растёт, а не режет текст (правило text-integrity: без ужатий).
-    minHeight: 54,
-    paddingVertical: 8,
-    borderRadius: 16,
-    overflow: 'hidden',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 8,
-  },
-  ctaText: {
-    fontSize: 16,
-    fontWeight: '900',
-    letterSpacing: -0.2,
-  },
+  head: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginTop: 10 },
+  title: { flexShrink: 1, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5 },
+  modeToggle: { flexDirection: 'row', gap: 3, padding: 3, borderRadius: 22 },
+  modeItem: { width: 42, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
+  // Тонкая 1px кромка выбранного сегмента — как в макете (разрешено в стиле 2.0).
+  chipOn: { borderWidth: 1 }, // guard-ok: 1px кромка 2.0
+  segment: { flexDirection: 'row', gap: 4, padding: 4, borderRadius: 16, marginTop: 20 },
+  segmentItem: { flex: 1, minHeight: 38, borderRadius: 12, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 4 },
+  segmentText: { fontSize: 15, lineHeight: 19, fontWeight: '600', textAlign: 'center' },
+  list: { flexDirection: 'column', alignItems: 'stretch', padding: 0, paddingVertical: 0, paddingHorizontal: 0, gap: 0, borderRadius: 20, marginTop: 14 },
+  row: { flexDirection: 'row', alignItems: 'center', gap: 14, minHeight: 58, paddingVertical: 8, paddingLeft: 14, paddingRight: 16 },
+  rowText: { flex: 1, minWidth: 0 },
+  rowName: { fontSize: 16.5, lineHeight: 21, fontWeight: '600' },
+  radio: { width: 22, height: 22, borderRadius: 11, borderWidth: 1.6, alignItems: 'center', justifyContent: 'center' }, // guard-ok: кольцо радио
+  radioDot: { width: 12, height: 12, borderRadius: 6 },
 });

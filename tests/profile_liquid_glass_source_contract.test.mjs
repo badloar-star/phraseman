@@ -73,12 +73,16 @@ test('account: new copy exists in all nine locales', () => {
   }
 });
 
-test('themes: 13 glass rows, preview/apply/paywall logic untouched', () => {
+test('themes: 13 glass rows, instant apply, level + appearance controls, no paywall', () => {
   assert.match(themes, /liquidGlassTokens\(liquidGlassThemeId\)/);
   assert.match(themes, /settingsGlassCardStyle/);
   assert.match(themes, /accessibilityRole="radio"/);
   assert.equal(themes.match(/\{ mode: '/g).length, 13);
-  assert.match(themes, /setPreviewLiquidGlassThemeId\(mode === appliedLiquidGlassThemeId \? null : mode\)/);
+  // 2026-09-30 (темы 2.0, макет themes-v2-proposals): тап по теме применяет её сразу —
+  // примерки и кнопки «Применить» нет; сверху луна/солнце и «Спокойно / Акцент / Максимум».
+  assert.match(themes, /setLiquidGlassThemeId\(mode\)/);
+  assert.match(themes, /testID=\{`theme-appearance-\$\{opt\.key\}`\}/);
+  assert.match(themes, /testID=\{`theme-level-\$\{level\}`\}/);
   // 2026-09-30: темы бесплатны — экран тем больше не ведёт на пейвол.
   assert.doesNotMatch(themes, /premium_modal/);
   assert.match(themes, /profile_theme_set/);

@@ -46,7 +46,7 @@ describe('Admin D2 bounded and truthful loader contract', () => {
       ['window.loadCancelSurveys = async function', '/**', 'CANCEL_SURVEYS_PAGE'],
       ['window.loadUgcPurchases = async function', 'window.renderUgcPurchases = function', 'UGC_PURCHASES_PAGE'],
       ['window.loadDailyPhrases = async function', 'window.renderDailyPhrases = function', 'DAILY_PHRASES_PAGE'],
-      ['window.loadCardPacks = async function', 'window.renderCardPacks = function', 'CARD_PACKS_PAGE'],
+      // зачем: D68 — «Наборы карточек» (card_packs) удалены из админки 2.0.
       ['async function loadShardSurveyResponses()', 'window.renderShardSurveyFeed = function', 'SHARD_SURVEY_RESPONSES_PAGE'],
     ];
     for (const [start, end, cap] of cases) {
@@ -170,7 +170,7 @@ describe('Admin D2 bounded and truthful loader contract', () => {
 
   test('the final overriding UGC loader is bounded and cannot turn unordered fallback into complete', () => {
     const source = lastBlock('window.loadUgcPurchases = async function', 'window.pmDebouncedRenderUgcPurchases');
-    const render = lastBlock('window.renderUgcPurchases = function', '/* Removed optimistic refund override');
+    const render = lastBlock('window.renderUgcPurchases = function', '/* зачем: D110');
     expect(source).toContain('limit(UGC_PURCHASES_PAGE + 1)');
     expect(source).toContain("state:'partial'");
     expect(source).toContain('window._ugcPurchasesLoaded = false');

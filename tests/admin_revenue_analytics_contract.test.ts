@@ -356,7 +356,8 @@ describe('admin revenue analytics contract', () => {
 
   it('keeps the users toolbar and table headers neutral', () => {
     expect(adminHtml).toContain('placeholder="Search name or UID"');
-    expect(adminHtml).toContain('<option value="xp" data-i18n-es="Por XP">Sort by XP</option>');
+    // зачем: D02 — XP удалён в 2.0, сортировки по XP в списке пользователей нет.
+    expect(adminHtml).not.toContain('Sort by XP</option>');
     expect(adminHtml).toContain('<option value="" data-i18n-es="Todos los idiomas">All languages</option>');
     expect(adminHtml).toContain('<option value="ios" data-i18n-es="iOS">iOS</option>');
     expect(adminHtml).toContain('<option value="any" data-i18n-es="Registradas">Registered</option>');
@@ -464,33 +465,24 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('#tab-app-messages .app-msg-card-actions button');
   });
 
-  it('unifies UGC purchases, Community, and Card packs content-commerce sections', () => {
+  // зачем: D68 — официальные наборы (card_packs) удалены в 2.0, раздел «Наборы карточек» вырезан из админки.
+  it('unifies UGC purchases and Community content-commerce sections', () => {
+    expect(adminHtml).not.toContain('id="tab-card-packs"');
+    expect(adminHtml).not.toContain('window.loadCardPacks');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-ugc-purchases');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-community-packs');
-    expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-card-packs');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #up-list');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #cp-pack-reports-list');
-    expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #cp-list');
     expect(adminHtml).toContain('#tab-ugc-purchases .report-card span[style*="background"]');
     expect(adminHtml).toContain('#tab-community-packs .report-card button');
-    expect(adminHtml).toContain('#tab-card-packs .report-card button');
     expect(adminHtml).toContain('applyCleanUgcPurchasesChrome');
     expect(adminHtml).toContain('class="report-card ugc-purchase-card"');
     expect(adminHtml).toContain('Loading UGC purchases...');
     expect(adminHtml).toContain('No purchases for this filter.');
-    expect(adminHtml).toContain('class="ugc-purchase-refund"');
-    expect(adminHtml).toContain('applyCleanCardPacksChrome');
-    expect(adminHtml).toContain('class="report-card cp-pack-card"');
-    expect(adminHtml).toContain('Loading card packs...');
-    expect(adminHtml).toContain('No card packs for this filter.');
-    expect(adminHtml).toContain('Shard price');
-    expect(adminHtml).toContain('Card pack updated');
-    expect(adminHtml).toContain('Publish card pack?');
-    expect(adminHtml).toContain('Unpublish card pack?');
+    // зачем: D110 — возврат покупки набора удалён, кнопки возврата в карточке покупки нет.
+    expect(adminHtml).not.toContain('class="ugc-purchase-refund"');
     expect(countOccurrences(adminHtml, 'window.renderUgcPurchases = function renderUgcPurchases()')).toBe(1);
     expect(adminHtml.lastIndexOf('Total purchases')).toBeGreaterThan(adminHtml.lastIndexOf('window.renderUgcPurchases = function renderUgcPurchases()'));
-    expect(countOccurrences(adminHtml, 'window.renderCardPacks = function renderCardPacks()')).toBe(1);
-    expect(adminHtml.lastIndexOf('Total packs')).toBeGreaterThan(adminHtml.lastIndexOf('window.renderCardPacks = function renderCardPacks()'));
   });
 
   it('unifies App Health, archive, audit, and ops log diagnostics sections', () => {
@@ -652,7 +644,6 @@ describe('admin revenue analytics contract', () => {
 
   it('neutralizes legacy inline colors in dynamic commerce lists', () => {
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-ugc-purchases .report-card span[style*="background"]');
-    expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-card-packs .report-card span[style*="background"]');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-daily-phrases td span[style*="background"]');
     expect(adminHtml).toContain('background: rgba(255,255,255,0.045) !important');
     expect(adminHtml).toContain('color: var(--admin-muted) !important');

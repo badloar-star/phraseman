@@ -156,14 +156,13 @@ describe('Admin D2 review truth and server-boundary contract', () => {
     const bans = block('window.renderBanList = function', 'function applyCleanPremiumChrome');
     const cancel = block('window.renderCancelSurveys = function', 'window.loadUgcPurchases = async function');
     const daily = block('window.renderDailyPhrases = function', 'window.dpDrop = async function');
-    const cards = block('window.renderCardPacks = function', 'window.viewCardPackContent');
-    for (const source of [bans, cancel, daily, cards]) {
+    // зачем: D68 — раздел официальных наборов удалён, его рендер больше не проверяется.
+    for (const source of [bans, cancel, daily]) {
       expect(source).toContain('загруженной выборке');
       expect(source).toMatch(/complete|SourceHealth/);
     }
     expect(bans).not.toContain("list.innerHTML = '<div class=\"reports-empty\">No users in the ban list.</div>'");
     expect(cancel).not.toContain("list.innerHTML = '<div class=\"reports-empty\">No cancel surveys for this filter.</div>'");
     expect(daily).not.toContain("empty.textContent = 'No daily phrases for this filter.'");
-    expect(cards).not.toContain("list.innerHTML = '<div class=\"reports-empty\">No card packs for this filter.</div>'");
   });
 });

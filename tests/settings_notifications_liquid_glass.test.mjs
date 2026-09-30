@@ -44,7 +44,8 @@ const protectedHashes = {
   scheduleAnyEnabled: 'c1806f95116fb5a4651c0a115d7db2371ab8109ae9e72fcde2d5ccae4c3d61d8',
   flashSaved: 'a44652baaecc9ed9e907e3bdae4f6e646bc4168cf22fe99de9e7790310390d1b',
   ensurePermissionIfEnabling: '5bea29535c1dc1de592053f15b6b8f3736046f4e1e9a0c5dd3a93047057213e3',
-  persistPrefs: '7b94d69c9c32d0633763c4a9c97c7feedd630a75eb0587c80b2641007defe05f',
+  // зачем (30.09): немой .catch(() => {}) заменён на swallowError('settings_notifications:persistPrefs') в efe19ae9d — правило «немых catch нет».
+  persistPrefs: '991a49f981eb282d503c009453b16c9005082a1405f3b8ce5f229086543e73b4',
   persistSchedule: 'fdb0dddf9017df4f718dc898feb09182e13a2f61545cfbda62f5f9b25181b47f',
   toggleMaster: '48e7e186a958d38d5d0bd17198b5bfc65f5867b7bdd4b73d58c9bb2cd117b387',
   toggleCategory: 'c735bcda2ed9177b35deec2f91bc78663f8e2f25083628f76e3469de63a9c4f5',

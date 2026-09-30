@@ -1202,7 +1202,8 @@ function LessonMenu() {
           right={(
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
             {menuEnergyReady ? (
-              <EnergyBar size={30} />
+              // зачем (learn.html B/C): меню урока на Liquid Glass — пилюля энергии стеклянная.
+              <EnergyBar size={30} glass />
             ) : (
               <View
                 testID="lesson-menu-energy-loading"

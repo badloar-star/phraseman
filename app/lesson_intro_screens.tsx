@@ -751,7 +751,8 @@ export default function LessonIntroScreens({
           </View>
 
           {introEnergyReady ? (
-            <EnergyBar size={30} />
+            // зачем (learn.html C4): интро урока на Liquid Glass — пилюля энергии тоже стеклянная.
+            <EnergyBar size={30} glass />
           ) : (
             <View
               testID="lesson-intro-energy-loading"

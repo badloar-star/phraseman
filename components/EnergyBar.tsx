@@ -1,5 +1,13 @@
 import React, { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Animated, {
+  Easing,
+  useAnimatedStyle,
+  useReducedMotion,
+  useSharedValue,
+  withSequence,
+  withTiming,
+} from 'react-native-reanimated';
 
 import { triLang } from '../constants/i18n';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
@@ -30,6 +38,11 @@ interface Props {
 const ENERGY_PILL_WIDTH = 60;
 const ENERGY_PILL_HEIGHT = 28;
 const ENERGY_PILL_TOUCH_HEIGHT = 44;
+
+/** kit.css @keyframes numdn: цифра «проваливается» (5 px вниз, .82, полупрозрачная) и пружинит обратно. */
+const DROP_IN_MS = 230;
+const DROP_OUT_MS = 420;
+const DROP_EASE = Easing.bezier(0.3, 1.4, 0.5, 1);
 
 const COLORS = Object.freeze({
   background: '#0D1123',
@@ -69,6 +82,25 @@ function EnergyBar({ ownerActive = true, glass = false }: Props) {
       ? (glass ? lg.bad : COLORS.low)
       : (glass ? lg.text : COLORS.normal);
   const iconSize = 13;
+  // зачем (владелец 2026-09-30, learn.html C4 «−1 энергии при старте: 5 → 4»): в стеклянной
+  // пилюле уменьшение энергии видно — цифра проваливается и пружинит обратно (650 мс), как
+  // numdn в kit.css. Только glass и только при списании; на UI-треде, reduceMotion — без движения.
+  const reducedMotion = useReducedMotion();
+  const drop = useSharedValue(0);
+  const previousCurrentRef = useRef(current);
+  useEffect(() => {
+    const previous = previousCurrentRef.current;
+    previousCurrentRef.current = current;
+    if (!glass || reducedMotion || !focused || !ownerActive || current >= previous) return;
+    drop.value = withSequence(
+      withTiming(1, { duration: DROP_IN_MS, easing: Easing.out(Easing.quad) }),
+      withTiming(0, { duration: DROP_OUT_MS, easing: DROP_EASE }),
+    );
+  }, [current, drop, focused, glass, ownerActive, reducedMotion]);
+  const dropStyle = useAnimatedStyle(() => ({
+    opacity: 1 - drop.value * 0.5,
+    transform: [{ translateY: drop.value * 5 }, { scale: 1 - drop.value * 0.18 }],
+  }));
   const accessibilityLabel = useMemo(() => {
     if (isUnlimited) {
       return triLang(lang, {
@@ -135,7 +167,7 @@ function EnergyBar({ ownerActive = true, glass = false }: Props) {
           style={styles.touchTarget}
           contentStyle={[
             styles.capsule,
-            glass ? { backgroundColor: lg.opaqueControl } : null,
+            glass ? { backgroundColor: lg.opaqueControl, borderRadius: ENERGY_PILL_HEIGHT / 2 } : null,
             bonusEnergyCapacity > 0 ? styles.overchargeGlow : null,
           ]}
         >
@@ -150,12 +182,14 @@ function EnergyBar({ ownerActive = true, glass = false }: Props) {
           {isUnlimited ? (
             <Text style={styles.infinity} maxFontSizeMultiplier={1.15}>∞</Text>
           ) : (
-            <AnimatedEnergyNumber
-              value={current}
-              active={focused && ownerActive}
-              color={glass ? lg.text : COLORS.value}
-              style={styles.valueCompact}
-            />
+            <Animated.View style={dropStyle}>
+              <AnimatedEnergyNumber
+                value={current}
+                active={focused && ownerActive}
+                color={glass ? lg.text : COLORS.value}
+                style={styles.valueCompact}
+              />
+            </Animated.View>
           )}
         </PressableHybrid>
       </View>

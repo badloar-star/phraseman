@@ -30,6 +30,7 @@ import { LinearGradient } from '../../components/SafeLinearGradient';
 import FriendsRequestCard from '../../components/friends/FriendsRequestCard';
 import FriendsFoundCard from '../../components/friends/FriendsFoundCard';
 import FriendsEmptyState from '../../components/friends/FriendsEmptyState';
+import DailyPollCard from '../../components/friends/DailyPollCard';
 import { FriendsFeedbackRow, FriendsRoundButton, FriendsSectionTitle, useFriendsGlass } from '../../components/friends/FriendsGlassKit';
 import { FlowText } from '../../components/text-integrity';
 import UnifiedPlayerModal, { PlayerInfo } from '../../components/PlayerProfileModal';
@@ -2104,6 +2105,10 @@ export default function FriendsTabScreen() {
     </View>
   );
 
+  // зачем (владелец 2026-09-30): «Опрос дня» по макету COM-04-ACTIVITY — первым блоком вкладки.
+  // Опроса на сегодня нет → карточка сама ничего не рисует (без пустой рамки).
+  const dailyPollCard = <DailyPollCard active={friendsRuntimeActive} />;
+
   // Всё, что на вкладке «Друзья» идёт до строк списка.
   const friendsPreList = (
     <>
@@ -2189,7 +2194,7 @@ export default function FriendsTabScreen() {
               </Reanimated.View>
             );
           }}
-          ListHeaderComponent={<>{listHeader}{friendsPreList}</>}
+          ListHeaderComponent={<>{dailyPollCard}{listHeader}{friendsPreList}</>}
           ListEmptyComponent={friendsEmptyState}
           ListFooterComponent={listFooter}
         />

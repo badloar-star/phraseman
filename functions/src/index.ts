@@ -871,6 +871,8 @@ export { adminCommunityPackQaReview, adminCommunityPackApplyQaFixes, adminCommun
 // украинским интерфейсом видел русский текст. Перевод на все языки интерфейса.
 export { adminCommunityPackTranslateLocales } from './admin_community_pack_translate';
 export { submitSettingsPollVote } from "./settings_poll_vote";
+// «Опрос дня» на вкладке «Друзья» (2026-09-30): голос + счётчик в одной транзакции.
+export { dailyPollVote } from "./daily_poll_vote";
 export { adminEmailBroadcast, adminEmailContactsBackfill } from "./admin_email";
 export { emailUnsubscribe } from "./email_unsubscribe";
 

@@ -149,23 +149,25 @@ test('trial reminder copy is conditional on notifications while scheduling stays
   assert.ok(purchase.includes('scheduleTrialEndReminder('));
 });
 
-test('A/D benefit model matches the approved five highlights and 16-row comparison', () => {
+// зачем (совет 2026-09-30, B7): «Сценарии диалогов» убраны (диалоги по рангу, не Plus) — строк 15,
+// пятая главная строка — «Заморозки серии»; «Свои карточки» у Plus = «До 1500» (код держит 1500).
+test('A/D benefit model matches the approved five highlights and 15-row comparison', () => {
   const source = read('components/paywall/PaywallBenefitComparison.tsx');
   assert.match(source, /export const PAYWALL_MAIN_BENEFIT_IDS[\s\S]*?as const;/);
   const mainBlock = source.match(/export const PAYWALL_MAIN_BENEFIT_IDS\s*=\s*\[([\s\S]*?)\]\s*as const;/)?.[1] ?? '';
   assert.equal((mainBlock.match(/'[^']+'/g) ?? []).length, 5, 'exactly five main benefit rows');
-  for (const id of ['cards_bundle', 'dialogue_scenarios', 'course_lessons', 'ai_mistake_explain', 'energy']) {
+  for (const id of ['cards_bundle', 'course_lessons', 'ai_mistake_explain', 'energy', 'streak_freezes']) {
     assert.ok(mainBlock.includes(`'${id}'`), `approved main row ${id}`);
   }
   const comparisonBlock = source.match(/export const PAYWALL_COMPARISON_BENEFIT_IDS\s*=\s*\[([\s\S]*?)\]\s*as const;/)?.[1] ?? '';
-  assert.equal((comparisonBlock.match(/'[^']+'/g) ?? []).length, 16, 'exactly 16 comparison rows');
+  assert.equal((comparisonBlock.match(/'[^']+'/g) ?? []).length, 15, 'exactly 15 comparison rows');
+  assert.ok(!source.includes('dialogue_scenarios'), 'rank-gated dialogue scenarios are not sold as Plus');
 
   for (const id of [
     'saved_phrases',
     'own_cards',
     'own_packs',
     'flashcard_training',
-    'dialogue_scenarios',
     'dialogue_replies',
     'text_dialogue_review',
     'pronunciation',
@@ -185,12 +187,11 @@ test('A/D benefit model matches the approved five highlights and 16-row comparis
   for (const forbidden of ['theme', 'aura', 'weekly_ai', 'mistake_pattern']) {
     assert.ok(!source.includes(`id: '${forbidden}'`), `forbidden benefit ${forbidden}`);
   }
-  assert.match(source, /RELEASE BLOCKER:[^\n]*card training/i);
-  assert.match(source, /RELEASE BLOCKER:[^\n]*AI mistake/i);
-  assert.match(source, /id: 'own_cards'[\s\S]*?plusValue: UNLIMITED/);
+  assert.ok(!/RELEASE BLOCKER/.test(source), 'Plus training and AI mistake caps are fixed, blockers resolved');
+  assert.match(source, /id: 'own_cards'[\s\S]*?plusValue: LP\('До 1500', 'Up to 1,500'/);
+  assert.match(read('app/flashcards/custom_card_access.ts'), /PLUS_CUSTOM_CARD_LIMIT = 1_500/);
   assert.match(source, /const UNLIMITED: Localized = LP\('Безлимит'/);
   assert.match(source, /id: 'cards_bundle'[\s\S]*?label: LP\('Карточки без ограничений'/);
-  assert.match(source, /RELEASE BLOCKER:[^\n]*cloud paging/i);
   assert.ok(source.includes('accessibilityState={{ expanded }}'), 'comparison disclosure is accessible');
   assert.ok(source.includes('freeValue'), 'rows expose the Free value');
   assert.ok(source.includes('plusValue'), 'rows expose the Plus value');

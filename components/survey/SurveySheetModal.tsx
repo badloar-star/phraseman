@@ -1,5 +1,4 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useReducer, useRef, useState } from 'react';
 import {
@@ -15,11 +14,6 @@ import {
   type LayoutChangeEvent,
 } from 'react-native';
 
-import Reanimated from 'react-native-reanimated';
-
-import { oskolokImageForPackShards } from '../../app/oskolok';
-import { peekLastKnownShardsBalance } from '../../app/shards_system';
-import { surveyRewardForDisplay } from '../../app/survey_submission_state';
 import { openStoreReviewPage } from '../../app/store_review';
 import { collectSurveyFollowUps, type SurveyFollowUp } from '../../app/survey_followups';
 import {
@@ -32,34 +26,22 @@ import type { SurveyQuestionClient } from '../../app/survey_client';
 import { SURVEY_HYBRID } from '../../constants/motionHybrid';
 import { triLang, type Lang } from '../../constants/i18n';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
-import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import HybridSheetShell from '../modal_fx/HybridSheetShell';
 import PressableHybrid from '../PressableHybrid';
 import { useTheme } from '../ThemeContext';
 import { FlowText } from '../text-integrity/FlowText';
-import SurveyPearlChip from './SurveyPearlChip';
-import SurveyPearlFlight, { type SurveyFlightPoint } from './SurveyPearlFlight';
 import SurveyQuestionTransition from './SurveyQuestionTransition';
 import SurveyRewardPanel, { type SurveyRewardPanelPhase } from './SurveyRewardPanel';
-import { useSurveyRewardImpact } from './useSurveyRewardImpact';
 
 const SURVEY_PROGRESS_GAP_PX = 2;
 
-/**
- * Тайминги хореографии «Прилив» (макет A, владелец 2026-09-13).
- * pillSettleMs — «+1» встал в строку, только потом старт перелёта;
- * settleMs — чип докрутился, человек увидел новое число, затем отправка.
- * Хореография играет ТОЛЬКО по кнопке «Отправить» (владелец, 2026-09-21):
- * выбор варианта ничего не запускает, поэтому шага «просто пауза» больше нет.
- */
-const SURVEY_TIDE = {
-  pillSettleMs: 140,
-  settleMs: 520,
-} as const;
+// зачем (решение владельца 2026-09-30): жемчуг удалён из приложения полностью — чип баланса,
+// «+1» в строке ответа и перелёт жемчужины в чип убраны вместе с хореографией «Прилив».
+// Кнопка «Продолжить/Отправить» теперь сразу ведёт на следующий шаг / отправку.
 
 type SurveyOptionClient = SurveyQuestionClient['options'][number];
 
-/** Логи ранних выходов хореографии (правило владельца «сперва логи»): редкие события, не покадровые. */
+/** Логи ранних выходов шагов опроса (правило владельца «сперва логи»): редкие события, не покадровые. */
 function logTide(message: string): void {
   console.log(`[SURVEY-TIDE] ${message}`); // guard-ok: ранние выходы обязаны логироваться и в проде
 }
@@ -86,32 +68,10 @@ export function __resetPendingSurveyFollowUpForTests(): void {
   pendingFollowUp = null;
 }
 
-type CelebrationToken = { cancelled: boolean; timers: ReturnType<typeof setTimeout>[] };
-
-type MeasuredBox = { x: number; y: number; width: number; height: number };
-
-function measureBox(node: View | null): Promise<MeasuredBox | null> {
-  return new Promise((resolve) => {
-    if (!node) {
-      resolve(null);
-      return;
-    }
-    node.measureInWindow((x, y, width, height) => {
-      resolve(Number.isFinite(x) && Number.isFinite(y) && width > 0 && height > 0 ? { x, y, width, height } : null);
-    });
-  });
-}
-
 export interface SurveySheetModalProps {
   visible: boolean;
   launch: SurveyLaunch;
   onClose: () => void;
-  /**
-   * Баланс жемчуга владельца экрана (Главная передаёт живой shardsBalance).
-   * Без него берём последний известный локальный баланс; чип показывает
-   * баланс + optimistic-дельту после ответа.
-   */
-  pearlBalance?: number;
   onDismissed?: () => void;
   onDurablyReconciled?: (scope: SurveyDurableScope) => void;
 }
@@ -124,7 +84,6 @@ type Copy = {
   sending: string;
   placeholder: string;
   progress: (current: number, total: number) => string;
-  pearlBalance: (value: number) => string;
 };
 
 function sheetCopy(lang: Lang): Copy {
@@ -146,10 +105,6 @@ function sheetCopy(lang: Lang): Copy {
       id: `Pertanyaan ${current} dari ${total}`,
       tr: `Soru ${current}/${total}`,
       pl: `Pytanie ${current} z ${total}`,
-    }),
-    pearlBalance: (value) => pick({
-      ru: `Жемчуг: ${value}`, uk: `Перлини: ${value}`, en: `Pearls: ${value}`, es: `Perlas: ${value}`, 'pt-BR': `Pérolas: ${value}`,
-      vi: `Ngọc trai: ${value}`, id: `Mutiara: ${value}`, tr: `İnci: ${value}`, pl: `Perły: ${value}`,
     }),
   };
 }
@@ -185,19 +140,19 @@ function submissionError(lang: Lang, messageKey: string | null): string {
 
 /**
  * зачем (владелец, 2026-09-13: «убери алмазик эмодзи»): тексты финала приходят
- * из библиотеки опросов в Firestore, где заголовок заканчивался «💎». Жемчужина
- * на панели уже нарисована ассетом, эмодзи-алмаз спорит с ней. Чистим на клиенте,
- * чтобы правка не ждала переиздания библиотеки.
+ * из библиотеки опросов в Firestore, где заголовок заканчивался «💎». Жемчуга в
+ * приложении больше нет (2026-09-30), валютный эмодзи тем более лишний. Чистим на
+ * клиенте, чтобы правка не ждала переиздания библиотеки.
  */
 function stripCurrencyEmoji(text?: string): string {
   return (text ?? '').replace(/\s*[💎🔷🔹💠]/gu, '').trim();
 }
 
-function completionTitle(lang: Lang, confirmedZero: boolean, configured?: string): string {
-  if (confirmedZero) return triLang(lang, {
-    ru: 'Опрос уже пройден', uk: 'Опитування вже пройдено', en: 'Survey already completed', es: 'Encuesta ya completada', 'pt-BR': 'Pesquisa já respondida',
-    vi: 'Đã hoàn thành khảo sát', id: 'Survei sudah diisi', tr: 'Anket zaten tamamlandı', pl: 'Ankieta już wypełniona',
-  });
+// зачем (2026-09-30): раньше «Опрос уже пройден» выводился из confirmedReward === 0,
+// но награда за опрос обнулена (PM-058), а жемчуг удалён — ноль больше ничего не значит
+// и давал ложное «уже пройден» на каждом первом прохождении. Заголовок — из библиотеки
+// или «Спасибо!».
+function completionTitle(lang: Lang, configured?: string): string {
   return configured?.trim() || triLang(lang, {
     ru: 'Спасибо!', uk: 'Дякуємо!', en: 'Thank you!', es: '¡Gracias!', 'pt-BR': 'Obrigado!', vi: 'Cảm ơn!', id: 'Terima kasih!', tr: 'Teşekkürler!', pl: 'Dziękujemy!',
   });
@@ -209,15 +164,11 @@ export default function SurveySheetModal({
   onClose,
   onDismissed,
   onDurablyReconciled,
-  pearlBalance,
 }: SurveySheetModalProps) {
   // зачем: Liquid Glass 2.0 — оболочка и цвета опроса берутся из токенов активной из 13 тем.
   const { liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const copy = useMemo(() => sheetCopy(launch.lang), [launch.lang]);
-  // зачем: чип обязан показать число с первого кадра; peek читает память сессии
-  // без диска и сети, а живой баланс родителя (если передан) главнее.
-  const resolvedPearlBalance = pearlBalance ?? peekLastKnownShardsBalance() ?? 0;
   const activeDeactivateRef = useRef<() => void>(() => {});
   const registerDeactivate = useCallback((deactivate: () => void) => {
     activeDeactivateRef.current = deactivate;
@@ -306,7 +257,6 @@ export default function SurveySheetModal({
           shellRequestDismiss={requestDismiss}
           registerDeactivate={registerDeactivate}
           onDurablyReconciled={onDurablyReconciled}
-          pearlBalance={resolvedPearlBalance}
           onFollowUp={handleFollowUp}
         />
       )}
@@ -319,14 +269,12 @@ function SurveySheetSession({
   shellRequestDismiss,
   registerDeactivate,
   onDurablyReconciled,
-  pearlBalance,
   onFollowUp,
 }: {
   launch: SurveyLaunch;
   shellRequestDismiss: () => void;
   registerDeactivate: (deactivate: () => void) => void;
   onDurablyReconciled?: (scope: SurveyDurableScope) => void;
-  pearlBalance: number;
   onFollowUp: (followUp: SurveyFollowUp) => void;
 }) {
   const dismissLifecycleStartedRef = useRef(false);
@@ -350,7 +298,6 @@ function SurveySheetSession({
       shellRequestDismiss={shellRequestDismiss}
       deactivateForDismiss={deactivateForDismiss}
       autoCloseRequest={autoCloseRequest}
-      pearlBalance={pearlBalance}
       onFollowUp={onFollowUp}
     />
   );
@@ -362,7 +309,6 @@ function SurveySheetContent({
   shellRequestDismiss,
   deactivateForDismiss,
   autoCloseRequest,
-  pearlBalance,
   onFollowUp,
 }: {
   launch: SurveyLaunch;
@@ -370,119 +316,22 @@ function SurveySheetContent({
   shellRequestDismiss: () => void;
   deactivateForDismiss: () => void;
   autoCloseRequest: number;
-  pearlBalance: number;
   onFollowUp: (followUp: SurveyFollowUp) => void;
 }) {
   const { f, liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
-  const reduceMotion = useReduceMotion();
   const { survey, lang } = launch;
   const copy = useMemo(() => sheetCopy(lang), [lang]);
   const sheetTitleRef = useRef<Text | null>(null);
   const questionTitleRef = useRef<Text | null>(null);
-  const rootRef = useRef<View | null>(null);
-  const chipRef = useRef<View | null>(null);
-  const rewardPillRef = useRef<View | null>(null);
   const previousQuestionIdRef = useRef(flow.currentQuestion.id);
   const handledAutoCloseRequestRef = useRef(autoCloseRequest);
-  const mountedRef = useRef(true);
   const goBack = flow.goBack;
   const goNext = flow.goNext;
   const goNextRef = useRef(goNext);
   useEffect(() => {
     goNextRef.current = goNext;
   }, [goNext]);
-
-  // ── Optimistic-дельта баланса (закон №10 владельца) ────────────────────────
-  // зачем: чип растёт сразу после перелёта, сервер догоняет фоном. Откат при
-  // retryable-error и при «опрос уже пройден» (confirmedReward === 0). Когда
-  // живой баланс родителя вырос — дельта схлопывается, чтобы число не прыгнуло
-  // дважды (last-write-guard как в истории с осколками).
-  const [optimisticDelta, setOptimisticDelta] = useState(0);
-  const pearlBaseRef = useRef(pearlBalance);
-  useEffect(() => {
-    const grew = pearlBalance - pearlBaseRef.current;
-    pearlBaseRef.current = pearlBalance;
-    if (grew > 0) setOptimisticDelta((delta) => Math.max(0, delta - grew));
-  }, [pearlBalance]);
-  const submissionPhase = flow.submission.phase;
-  const confirmedReward = flow.submission.confirmedReward;
-  useEffect(() => {
-    const rollback = submissionPhase === 'retryable-error'
-      || (submissionPhase === 'reconciled' && confirmedReward === 0);
-    if (!rollback) return;
-    setOptimisticDelta((delta) => {
-      if (delta !== 0) {
-        logTide(`откат optimistic-дельты: phase=${submissionPhase} confirmedReward=${confirmedReward} delta=${delta}`);
-      }
-      return 0;
-    });
-  }, [confirmedReward, submissionPhase]);
-  const pearlShown = pearlBalance + optimisticDelta;
-
-  // ── Хореография ответа: «+1» → перелёт → докрутка → автопереход ─────────────
-  const [celebrating, setCelebrating] = useState(false);
-  const [flight, setFlight] = useState<{ from: SurveyFlightPoint; to: SurveyFlightPoint } | null>(null);
-  const celebrationRef = useRef<CelebrationToken | null>(null);
-  const finishCelebration = useCallback(() => {
-    celebrationRef.current = null;
-    if (!mountedRef.current) return;
-    setFlight(null);
-    setCelebrating(false);
-  }, []);
-  const cancelCelebration = useCallback((reason: string) => {
-    const active = celebrationRef.current;
-    if (!active) return;
-    logTide(`хореография отменена: ${reason}`);
-    active.cancelled = true;
-    active.timers.forEach(clearTimeout);
-    finishCelebration();
-  }, [finishCelebration]);
-  useEffect(() => () => {
-    mountedRef.current = false;
-    cancelCelebration('unmount');
-  }, [cancelCelebration]);
-
-  const scheduleGoNext = useCallback((token: CelebrationToken, delayMs: number) => {
-    const timer = setTimeout(() => {
-      if (token.cancelled) return;
-      finishCelebration();
-      goNextRef.current();
-    }, delayMs);
-    token.timers.push(timer);
-  }, [finishCelebration]);
-
-  const startFlight = useCallback(async (token: CelebrationToken) => {
-    const [root, pill, chip] = await Promise.all([
-      measureBox(rootRef.current),
-      measureBox(rewardPillRef.current),
-      measureBox(chipRef.current),
-    ]);
-    if (token.cancelled || !mountedRef.current) return;
-    if (!root || !pill || !chip) {
-      logTide(`перелёт пропущен: root=${root ? 'ok' : 'null'} pill=${pill ? 'ok' : 'null'} chip=${chip ? 'ok' : 'null'}; начисляем без полёта`);
-      setOptimisticDelta((delta) => delta + 1);
-      scheduleGoNext(token, SURVEY_TIDE.settleMs);
-      return;
-    }
-    setFlight({
-      from: { x: pill.x - root.x + pill.width / 2, y: pill.y - root.y + pill.height / 2 },
-      to: { x: chip.x - root.x + chip.width / 2, y: chip.y - root.y + chip.height / 2 },
-    });
-  }, [scheduleGoNext]);
-
-  const handleFlightArrive = useCallback(() => {
-    const token = celebrationRef.current;
-    setFlight(null);
-    setOptimisticDelta((delta) => delta + 1);
-    if (!token || token.cancelled) {
-      logTide('прилёт после отмены: дельта показана, автопереход не делаем');
-      return;
-    }
-    scheduleGoNext(token, SURVEY_TIDE.settleMs);
-  }, [scheduleGoNext]);
-
-  const showInlineReward = flow.isLastStep && survey.rewardShards > 0;
 
   /**
    * зачем (владелец, 2026-09-21: «юзер может клоцать любую, пока не нажал
@@ -493,43 +342,22 @@ function SurveySheetContent({
    * исключительно по кнопке внизу.
    */
   const handlePicked = useCallback((option: SurveyOptionClient) => {
-    cancelCelebration('пересмотр выбора');
     logTide(`выбран вариант ${option.id}: ждём кнопку, автоперехода нет`);
-  }, [cancelCelebration]);
+  }, []);
 
-  /**
-   * Шаг вперёд по кнопке. На последнем шаге с наградой сначала играет перелёт
-   * жемчужины (он и ведёт к goNext → submit), иначе переходим сразу.
-   */
+  /** Шаг вперёд по кнопке: следующий вопрос или отправка на последнем шаге. */
   const handleAdvance = useCallback(() => {
-    if (celebrationRef.current) {
-      logTide('повторное нажатие кнопки во время хореографии: игнор');
+    if (flow.submitting) {
+      logTide('повторное нажатие кнопки во время отправки: игнор');
       return;
     }
-    if (!showInlineReward) {
-      goNextRef.current();
-      return;
-    }
-    const token: CelebrationToken = { cancelled: false, timers: [] };
-    celebrationRef.current = token;
-    setCelebrating(true);
-    if (reduceMotion) {
-      setOptimisticDelta((delta) => delta + 1);
-      scheduleGoNext(token, SURVEY_TIDE.settleMs);
-      return;
-    }
-    const timer = setTimeout(() => {
-      if (token.cancelled) return;
-      void startFlight(token);
-    }, SURVEY_TIDE.pillSettleMs);
-    token.timers.push(timer);
-  }, [reduceMotion, scheduleGoNext, showInlineReward, startFlight]);
+    goNextRef.current();
+  }, [flow.submitting]);
 
   const requestClose = useCallback(() => {
-    cancelCelebration('close');
     deactivateForDismiss();
     shellRequestDismiss();
-  }, [cancelCelebration, deactivateForDismiss, shellRequestDismiss]);
+  }, [deactivateForDismiss, shellRequestDismiss]);
 
   useEffect(() => {
     if (autoCloseRequest === handledAutoCloseRequestRef.current) return;
@@ -560,9 +388,8 @@ function SurveySheetContent({
   const progressLabel = copy.progress(current, total);
 
   const handleBack = useCallback(() => {
-    cancelCelebration('back');
     if (goBack() === 'close') requestClose();
-  }, [cancelCelebration, goBack, requestClose]);
+  }, [goBack, requestClose]);
 
   const showReward = flow.submission.phase === 'reconciled';
   const showError = flow.submission.phase === 'retryable-error';
@@ -573,8 +400,6 @@ function SurveySheetContent({
     : showPendingAccepted
       ? 'optimistic-reward'
       : 'reconciled';
-  const confirmedZero = flow.submission.phase === 'reconciled'
-    && flow.submission.confirmedReward === 0;
 
   // зачем: кнопки финала — производная от ответов, отдельного состояния нет.
   // Считаем только когда финальный экран реально виден: во время опроса эта
@@ -588,7 +413,7 @@ function SurveySheetContent({
   // не нажали, человек волен переклацывать варианты сколько угодно — ничего не
   // уходит само. Неактивна, пока на шаге нет ответа.
   const selectedOptionId = flow.answers[flow.currentQuestion.id]?.optionId;
-  const ctaDisabled = !flow.currentAnswered || flow.submitting || celebrating;
+  const ctaDisabled = !flow.currentAnswered || flow.submitting;
   const ctaLabel = flow.submitting
     ? copy.sending
     : (flow.isLastStep ? copy.submit : copy.next);
@@ -608,17 +433,12 @@ function SurveySheetContent({
   );
 
   return (
-    <View ref={rootRef} testID="survey-sheet-content" style={styles.sheetContent}>
+    <View testID="survey-sheet-content" style={styles.sheetContent}>
       {feedback ? (
         <>
           <View style={styles.bar}>
             <View style={styles.barSpacer} />
             <View style={styles.barRight}>
-              <SurveyPearlChip
-                testID="survey-pearl-chip"
-                value={pearlShown}
-                accessibilityLabel={copy.pearlBalance(pearlShown)}
-              />
               {closeButton}
             </View>
           </View>
@@ -640,8 +460,7 @@ function SurveySheetContent({
             </FlowText>
             <SurveyRewardPanel
               phase={feedbackPhase}
-              reward={surveyRewardForDisplay(flow.submission)}
-              title={completionTitle(lang, confirmedZero, stripCurrencyEmoji(survey.finalTitle))}
+              title={completionTitle(lang, stripCurrencyEmoji(survey.finalTitle))}
               subtitle={stripCurrencyEmoji(survey.finalSubtitle)}
               error={submissionError(lang, flow.submission.messageKey)}
               onDone={requestClose}
@@ -675,12 +494,6 @@ function SurveySheetContent({
                   <Ionicons name="chevron-back" size={24} color={glass.text} accessibilityElementsHidden />
                 </PressableHybrid>
                 <View style={styles.barRight}>
-                  <SurveyPearlChip
-                    ref={chipRef}
-                    testID="survey-pearl-chip"
-                    value={pearlShown}
-                    accessibilityLabel={copy.pearlBalance(pearlShown)}
-                  />
                   {closeButton}
                 </View>
               </View>
@@ -724,16 +537,13 @@ function SurveySheetContent({
                     question={flow.currentQuestion}
                     selectedOption={selectedOptionId}
                     comment={flow.answers[flow.currentQuestion.id]?.comment ?? ''}
-                    disabled={flow.submitting || celebrating}
+                    disabled={flow.submitting}
                     placeholder={copy.placeholder}
                     controller={flow}
                     questionTitleRef={questionTitleRef}
                     hideQuestionTitle={survey.questions.length === 1
                       && flow.currentQuestion.text.trim() === survey.title.trim()}
                     onPicked={handlePicked}
-                    showInlineReward={showInlineReward}
-                    inlineRewardAmount={survey.rewardShards}
-                    rewardPillRef={rewardPillRef}
                   />
                 </SurveyQuestionTransition>
               </View>
@@ -764,14 +574,6 @@ function SurveySheetContent({
           </PressableHybrid>
         </>
       )}
-      {flight ? (
-        <SurveyPearlFlight
-          testID="survey-pearl-flight"
-          from={flight.from}
-          to={flight.to}
-          onArrive={handleFlightArrive}
-        />
-      ) : null}
     </View>
   );
 }
@@ -840,9 +642,6 @@ function SurveyQuestionFields({
   questionTitleRef,
   hideQuestionTitle,
   onPicked,
-  showInlineReward,
-  inlineRewardAmount,
-  rewardPillRef,
 }: {
   question: SurveyQuestionClient;
   selectedOption?: string;
@@ -853,9 +652,6 @@ function SurveyQuestionFields({
   questionTitleRef: React.RefObject<Text | null>;
   hideQuestionTitle: boolean;
   onPicked: (option: SurveyOptionClient) => void;
-  showInlineReward: boolean;
-  inlineRewardAmount: number;
-  rewardPillRef: React.RefObject<View | null>;
 }) {
   const { f, liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
@@ -929,15 +725,6 @@ function SurveyQuestionFields({
                   >
                     {option.label}
                   </FlowText>
-                  {selected && showInlineReward ? (
-                    <SurveyInlineReward
-                      ref={rewardPillRef}
-                      testID={`survey-option-${option.id}-reward`}
-                      amount={inlineRewardAmount}
-                      accent={glass.cta}
-                      onAccent={glass.ctaInk}
-                    />
-                  ) : null}
                   <Ionicons
                     name={selected ? 'checkmark-circle' : 'radio-button-off'}
                     size={24}
@@ -959,41 +746,6 @@ function SurveyQuestionFields({
     </View>
   );
 }
-
-/**
- * «+1 жемчужина» в строке выбранного ответа (макет A): встаёт с лёгким
- * подлётом и пружиной (тот же useSurveyRewardImpact, что у панели), затем с
- * этой точки стартует перелёт в чип. Ref нужен родителю для замера точки старта.
- */
-const SurveyInlineReward = React.forwardRef<View, {
-  amount: number;
-  accent: string;
-  onAccent: string;
-  testID: string;
-}>(function SurveyInlineReward({ amount, accent, onAccent, testID }, ref) {
-  const { f, themeMode } = useTheme();
-  const motionStyle = useSurveyRewardImpact(true);
-  return (
-    <Reanimated.View
-      ref={ref}
-      testID={testID}
-      accessible
-      accessibilityLabel={`+${amount}`}
-      style={[styles.plusPill, { backgroundColor: accent }, motionStyle]}
-    >
-      <FlowText testID={`${testID}-label`} provenance="authored" style={[styles.plusLabel, { color: onAccent, fontSize: f.label }]}>
-        {`+${amount}`}
-      </FlowText>
-      <Image
-        source={oskolokImageForPackShards(amount, themeMode)}
-        style={styles.plusArt}
-        contentFit="contain"
-        accessible={false}
-        importantForAccessibility="no"
-      />
-    </Reanimated.View>
-  );
-});
 
 const styles = StyleSheet.create({
   sheetContent: { flex: 1, minHeight: 0, paddingBottom: 4 },
@@ -1027,9 +779,6 @@ const styles = StyleSheet.create({
   optionInner: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   optionDimmed: { opacity: 0.42 },
   optionLabel: { flex: 1, fontWeight: '700', lineHeight: 22 },
-  plusPill: { flexDirection: 'row', alignItems: 'center', gap: 5, height: 28, paddingLeft: 8, paddingRight: 6, borderRadius: 14 },
-  plusLabel: { fontWeight: '800', lineHeight: 18, fontVariant: ['tabular-nums'] },
-  plusArt: { width: 18, height: 18 },
   textInput: { minHeight: 120, borderRadius: 16, borderWidth: 1, padding: 16, textAlignVertical: 'top', lineHeight: 23 },
   cta: { minHeight: 52, borderRadius: 26, marginTop: 8 },
   ctaContent: { minHeight: 52, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingHorizontal: 18 },

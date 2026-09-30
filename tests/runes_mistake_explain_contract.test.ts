@@ -37,8 +37,10 @@ describe('Runes mistake explain contract', () => {
 
   // Автозагрузка сохранена (решение владельца), но останавливается, когда
   // бесплатные кончились и разбор не оплачен.
+  // B6 (2026-09-30): правило вынесено в mistake_explain_plus_gate.ts и учитывает Plus
+  // (сервер пропускает Plus без лимита); поведение правила — tests/mistake_explain_plus_gate.test.mjs.
   it('stops the autoload only when free runs out and nothing is paid', () => {
-    expect(hook).toMatch(/if \(freeExplainsLeft <= 0 && paidUnlockedForPhrase !== phraseKey\)/);
+    expect(hook).toMatch(/if \(isMistakeExplainBlockedByFreeLimit\(\{\s*freeLeft: freeExplainsLeft,\s*isPremium: hasPremiumAccess,\s*paidForThisPhrase: paidUnlockedForPhrase === phraseKey,/);
     expect(hook).toMatch(/\[MISTAKE-BUY\] autoload:stopped/);
   });
 

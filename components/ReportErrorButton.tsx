@@ -39,7 +39,6 @@ interface Props {
   /** What the user actually entered/assembled before sending the report. */
   userAnswer?: string;
   style?: object;
-  onSuccess?: (xpGained: number) => void;
   /** Только красный флаг без подписи. */
   variant?: 'default' | 'icon-flag';
   accessibilityLabel?: string;
@@ -87,15 +86,16 @@ const REPORT_ERROR_CATEGORY_LABELS: Record<string, Record<ReportErrorCategoryLan
     tr: 'Yanıt veya alıştırma mantığı hatalı',
     pl: 'Nieprawidłowa odpowiedź albo logika ćwiczenia',
   },
+  // зачем (решение владельца 2026-09-30): жемчуг удалён из приложения — из темы жалобы убран.
   payment_premium: {
-    ru: 'Подписка, покупка или жемчужины',
-    uk: 'Підписка, покупка або перлини',
-    es: 'Suscripción, compra o perlas',
-    'pt-BR': 'Assinatura, compra ou pérolas',
-    vi: 'Gói đăng ký, giao dịch mua hoặc xu thưởng',
-    id: 'Langganan, pembelian, atau koin',
-    tr: 'Abonelik, satın alma veya jetonlar',
-    pl: 'Subskrypcja, zakup albo monety',
+    ru: 'Подписка или покупка',
+    uk: 'Підписка або покупка',
+    es: 'Suscripción o compra',
+    'pt-BR': 'Assinatura ou compra',
+    vi: 'Gói đăng ký hoặc giao dịch mua',
+    id: 'Langganan atau pembelian',
+    tr: 'Abonelik veya satın alma',
+    pl: 'Subskrypcja albo zakup',
   },
   other: {
     ru: 'Другая проблема',
@@ -134,7 +134,6 @@ function ReportErrorButton({
   dataText,
   userAnswer,
   style,
-  onSuccess,
   variant = 'default',
   accessibilityLabel,
   testID,
@@ -225,7 +224,8 @@ function ReportErrorButton({
         setFailed(true);
         return;
       }
-      onSuccess?.(10);
+      // зачем (решение владельца 2026-09-30): XP и жемчуг удалены — за жалобу ничего не начисляем.
+      console.log(`[REPORT-ERROR] sent screen=${screen} dataId=${dataId ?? '-'}`); // guard-ok: итог отправки
       setTimeout(() => {
         setVisible(false);
       }, 900);
@@ -395,16 +395,18 @@ function ReportErrorButton({
                     {triLang(lang, { ru: 'Сообщение принято!', uk: 'Повідомлення прийнято!', en: 'Message received!', es: '¡Mensaje recibido!', 'pt-BR': 'Mensagem recebida!', vi: 'Đã nhận báo cáo!', id: 'Laporan diterima!', tr: 'Bildirim alındı!', pl: 'Zgłoszenie przyjęte!' })}
                   </Text>
                   <Text style={{ color: glass.secondary, fontSize: f.body, textAlign: 'center' }}>
+                    {/* зачем (решение владельца 2026-09-30): жемчуг удалён — награды за
+                        подтверждённую ошибку больше нет, обещать её нельзя. */}
                     {triLang(lang, {
-                      ru: 'Если ошибка подтвердится — получишь жемчужину.',
-                      uk: 'Якщо помилка підтвердиться — отримаєш перлину.',
-                      en: 'If the error is confirmed, you’ll get a pearl.',
-                      es: 'Si confirmamos el error, recibirás una perla.',
-                      'pt-BR': 'Se confirmarmos o erro, você receberá uma pérola.',
-                      vi: 'Nếu lỗi được xác nhận, bạn sẽ nhận một viên ngọc trai.',
-                      id: 'Jika kesalahan terkonfirmasi, kamu akan menerima satu mutiara.',
-                      tr: 'Hata doğrulanırsa bir inci alacaksın.',
-                      pl: 'Jeśli błąd się potwierdzi, otrzymasz perłę.',
+                      ru: 'Спасибо! Проверим и исправим.',
+                      uk: 'Дякуємо! Перевіримо й виправимо.',
+                      en: 'Thanks! We’ll check it and fix it.',
+                      es: '¡Gracias! Lo revisaremos y lo corregiremos.',
+                      'pt-BR': 'Obrigado! Vamos verificar e corrigir.',
+                      vi: 'Cảm ơn! Chúng mình sẽ kiểm tra và sửa.',
+                      id: 'Terima kasih! Kami akan memeriksa dan memperbaikinya.',
+                      tr: 'Teşekkürler! Kontrol edip düzelteceğiz.',
+                      pl: 'Dzięki! Sprawdzimy i poprawimy.',
                     })}
                   </Text>
                   {sending ? (

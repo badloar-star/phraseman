@@ -32,6 +32,11 @@ import { readUnifiedLevelSpinStars } from './level_spin_star_grants';
 import { DebugLogger } from './debug-logger';
 import { resolveAllMistakeTokens, resolvePhraseMistakeToken } from './mistake_token_resolver';
 import type { AiMistakeCardState } from '../components/AiMistakeCard';
+import { usePremium } from '../components/PremiumContext';
+import {
+  isMistakeExplainBlockedByFreeLimit,
+  shouldConsumeFreeMistakeExplain,
+} from './mistake_explain_plus_gate';
 import { hapticTap } from '../hooks/use-haptics';
 import { getNetStatus, subscribeNetStatus, type NetStatus } from './net_status';
 import {
@@ -198,6 +203,10 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
    * либо заставил платить повторно за уже оплаченный.
    */
   const [freeExplainsLeft, setFreeExplainsLeft] = useState(FREE_AI_MISTAKE_EXPLAINS_PER_DAY_DEFAULT);
+  // зачем (решение B6, 2026-09-30): сервер (functions/src/mistake_explain.ts) пропускает Plus
+  // без дневного лимита — клиент не должен останавливать Plus на 3 разборах и списывать их.
+  // Источник — сырое hasPremiumAccess, ровно как resolvePremiumAccess на сервере.
+  const { hasPremiumAccess } = usePremium();
   const [explainRuneBalance, setExplainRuneBalance] = useState(0);
   const [paidUnlockedForPhrase, setPaidUnlockedForPhrase] = useState<string | null>(null);
   const explainBuyingRef = useRef(false);
@@ -514,9 +523,14 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
         // Показ состоялся — списываем бесплатный разбор дня (владелец 17.09:
         // «оставить автозагрузку, считать каждый показ»). Считаем ЗДЕСЬ, а не
         // при запросе: неудавшийся запрос не должен съедать бесплатный разбор.
-        if (paidUnlockedForPhrase !== phraseKey) {
+        if (shouldConsumeFreeMistakeExplain({
+          isPremium: hasPremiumAccess,
+          paidForThisPhrase: paidUnlockedForPhrase === phraseKey,
+        })) {
           void markAiMistakeExplainUsed();
           setFreeExplainsLeft((prev: number) => Math.max(0, prev - 1));
+        } else {
+          console.log(`[MISTAKE-EXPLAIN] consume:skipped premium=${hasPremiumAccess} paidPhrase=${paidUnlockedForPhrase === phraseKey}`); // guard-ok: ветка лимита логируется и в релизе
         }
         const bundledEli5 = typeof res.eli5Text === 'string' ? res.eli5Text.trim() : '';
         if (bundledEli5) {
@@ -549,7 +563,7 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
         releaseInFlight();
       }
     },
-    [aiMistakeState, phraseKey, buildArgs, isExplanationScopeCurrent, scheduleMistakeRetry],
+    [aiMistakeState, phraseKey, buildArgs, isExplanationScopeCurrent, scheduleMistakeRetry, hasPremiumAccess, paidUnlockedForPhrase],
   );
 
   explainRef.current = (withHaptic = true, backgroundRetry = false) => {
@@ -635,13 +649,20 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
     // останавливается, экран показывает предложение купить за руны.
     // зачем ранний выход с логом: без него «разбор не появился» читалось бы
     // как поломка ИИ, а не как исчерпанный лимит.
-    if (freeExplainsLeft <= 0 && paidUnlockedForPhrase !== phraseKey) {
-      console.log(`[MISTAKE-BUY] autoload:stopped freeLeft=${freeExplainsLeft} phrase=${phraseKey}`); // guard-ok: ранний выход обязан логироваться и в релизе
+    if (isMistakeExplainBlockedByFreeLimit({
+      freeLeft: freeExplainsLeft,
+      isPremium: hasPremiumAccess,
+      paidForThisPhrase: paidUnlockedForPhrase === phraseKey,
+    })) {
+      console.log(`[MISTAKE-BUY] autoload:stopped freeLeft=${freeExplainsLeft} premium=${hasPremiumAccess} phrase=${phraseKey}`); // guard-ok: ранний выход обязан логироваться и в релизе
       return;
+    }
+    if (hasPremiumAccess && freeExplainsLeft <= 0) {
+      console.log(`[MISTAKE-EXPLAIN] autoload:plus_bypass freeLeft=${freeExplainsLeft} phrase=${phraseKey}`); // guard-ok: ветка Plus без лимита
     }
     if (!isAiExplainConsentGranted()) return;
     void explain(false);
-  }, [active, phraseKey, netStatus, aiMistakeState, explain, forceConsentRecheckTick]);
+  }, [active, phraseKey, netStatus, aiMistakeState, explain, forceConsentRecheckTick, hasPremiumAccess, freeExplainsLeft, paidUnlockedForPhrase]);
 
   const requestMistakeExplanation = useCallback(() => {
     if (!active || netStatusRef.current !== 'online') return;
@@ -728,7 +749,11 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
       freeLeft: freeExplainsLeft,
       priceRunes: MISTAKE_EXPLAIN_PRICE_RUNES,
       balanceRunes: explainRuneBalance,
-      awaitingPurchase: active && freeExplainsLeft <= 0 && paidUnlockedForPhrase !== phraseKey,
+      awaitingPurchase: active && isMistakeExplainBlockedByFreeLimit({
+        freeLeft: freeExplainsLeft,
+        isPremium: hasPremiumAccess,
+        paidForThisPhrase: paidUnlockedForPhrase === phraseKey,
+      }),
       onBuy: onBuyExplain,
     },
   };

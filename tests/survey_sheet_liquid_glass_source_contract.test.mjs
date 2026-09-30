@@ -22,8 +22,12 @@ test('survey sheet keeps every flow handler, prop and test hook', () => {
     'flow.retrySubmit', 'controller.pickOption(question.id, option.id)', 'controller.setComment(question.id, value)',
     'maxLength={500}', 'keyboardShouldPersistTaps="handled"', 'testID="survey-sheet-cta"', 'testID="survey-sheet-close"',
     'testID="survey-sheet-back"', 'testID="survey-question-comment"', 'accessibilityRole="radio"', 'handleAdvance',
-    'pearlBalance', 'SurveyRewardPanel', 'collectSurveyFollowUps',
+    'SurveyRewardPanel', 'collectSurveyFollowUps',
   ]) assert.ok(survey.includes(needle), `missing ${needle}`);
+  // зачем (решение владельца 2026-09-30): жемчуг удалён — ни чипа баланса, ни «+1», ни перелёта.
+  for (const gone of ['pearlBalance', 'SurveyPearlChip', 'SurveyPearlFlight', 'oskolok', 'shards_system']) {
+    assert.ok(!survey.includes(gone), `pearl piece ${gone} removed`);
+  }
 });
 
 test('survey controls are at least 44dp', () => {

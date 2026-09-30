@@ -29,16 +29,19 @@ function introCopy(lang: Lang) {
   return {
     welcomeEyebrow: triLang(lang, { ru: 'Подарок на старт', uk: 'Подарунок на старт', en: 'A gift to start', es: 'Regalo inicial', 'pt-BR': 'Presente inicial', vi: 'Quà khởi đầu', id: 'Hadiah awal', tr: 'Başlangıç hediyesi', pl: 'Prezent na start' }),
     welcomeTitle: triLang(lang, { ru: 'Три дня доступа начались', uk: 'Три дні доступу почалися', en: 'Your three days of access have begun', es: 'Empezaron tus tres días de acceso', 'pt-BR': 'Seus três dias de acesso começaram', vi: 'Ba ngày truy cập đã bắt đầu', id: 'Tiga hari akses dimulai', tr: 'Üç günlük erişim başladı', pl: 'Trzy dni dostępu się zaczęły' }),
+    // зачем (совет 2026-09-30, B8): «условия для 2.0 уточняются» — не ответ человеку. Три дня
+    // intro-доступа дают ровно hasPremiumAccess (PremiumContext: introState.active), то есть все
+    // Plus-возможности. Диалоги открываются по рангу, не по Plus, — поэтому их здесь не обещаем.
     welcomeBody: triLang(lang, {
-      ru: 'В течение трёх дней занятия не списывают энергию. Остальные условия полного доступа для 2.0 уточняются.',
-      uk: 'Протягом трьох днів заняття не списують енергію. Решта умов повного доступу для 2.0 уточнюється.',
-      en: 'For three days, lessons do not spend energy. The other full-access terms for 2.0 are still being finalized.',
-      es: 'Durante tres días, las clases no gastan energía. Las demás condiciones del acceso completo para 2.0 aún se están definiendo.',
-      'pt-BR': 'Durante três dias, as aulas não gastam energia. As demais condições do acesso completo para o 2.0 ainda estão sendo definidas.',
-      vi: 'Trong ba ngày, các buổi học không tiêu hao năng lượng. Các điều kiện còn lại của quyền truy cập đầy đủ cho 2.0 vẫn đang được xác định.',
-      id: 'Selama tiga hari, sesi belajar tidak menghabiskan energi. Ketentuan akses penuh lainnya untuk 2.0 masih diperjelas.',
-      tr: 'Üç gün boyunca dersler enerji harcamaz. Tam erişimin diğer koşulları 2.0 için henüz netleştiriliyor.',
-      pl: 'Przez trzy dni lekcje nie zużywają energii. Pozostałe warunki pełnego dostępu w wersji 2.0 są jeszcze doprecyzowywane.',
+      ru: 'Все возможности Plus открыты: уроки, карточки и занятия без траты энергии.',
+      uk: 'Усі можливості Plus відкриті: уроки, картки та заняття без витрати енергії.',
+      en: 'All Plus features are open: lessons, cards and sessions that don’t spend energy.',
+      es: 'Todas las funciones de Plus están abiertas: lecciones, tarjetas y sesiones sin gastar energía.',
+      'pt-BR': 'Todos os recursos do Plus estão liberados: lições, cartões e sessões sem gastar energia.',
+      vi: 'Mọi tính năng Plus đã mở: bài học, thẻ và buổi học không tốn năng lượng.',
+      id: 'Semua fitur Plus terbuka: pelajaran, kartu, dan sesi tanpa menghabiskan energi.',
+      tr: 'Tüm Plus özellikleri açık: dersler, kartlar ve enerji harcamayan çalışmalar.',
+      pl: 'Wszystkie funkcje Plus są otwarte: lekcje, karty i nauka bez zużywania energii.',
     }),
     welcomeCta: triLang(lang, { ru: 'Начать', uk: 'Почати', en: 'Start', es: 'Empezar', 'pt-BR': 'Começar', vi: 'Bắt đầu', id: 'Mulai', tr: 'Başla', pl: 'Zacznij' }),
     welcomeFooter: triLang(lang, { ru: 'Это подарок. Подписка не включается автоматически.', uk: 'Це подарунок. Підписка не вмикається автоматично.', en: 'This is a gift. A subscription does not start automatically.', es: 'Es un regalo. La suscripción no se activa automáticamente.', 'pt-BR': 'É um presente. A assinatura não é ativada automaticamente.', vi: 'Đây là quà tặng. Gói đăng ký không tự động bật.', id: 'Ini hadiah. Langganan tidak aktif otomatis.', tr: 'Bu bir hediye. Abonelik otomatik başlamaz.', pl: 'To prezent. Subskrypcja nie włącza się automatycznie.' }),

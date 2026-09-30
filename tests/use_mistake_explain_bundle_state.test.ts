@@ -44,6 +44,11 @@ jest.mock('../app/ai_mistake_explain_limit_session', () => ({
   peekAiMistakeLimitNoticeShownToday: jest.fn(() => false),
 }));
 
+// зачем (B6, 2026-09-30): хук читает Plus из PremiumContext; тяжёлый провайдер в тесте не нужен.
+jest.mock('../components/PremiumContext', () => ({
+  usePremium: () => ({ hasPremiumAccess: false }),
+}));
+
 jest.mock('../hooks/use-haptics', () => ({
   hapticTap: jest.fn(),
 }));

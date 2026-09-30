@@ -38,8 +38,11 @@ test('NoEnergyModal keeps its public props, both variants and every behavior', (
   assert.ok(source.includes("soundDirector.request('pm.energy.empty'"), 'empty cue remains');
   assert.ok(source.includes("scope: 'no-energy-modal'"));
   assert.ok(source.includes('useEnergyCountdown'), 'recovery countdown remains');
-  assert.ok(source.includes('refillOperationIdRef') && source.includes('refillLatchRef'), 'refill idempotency/latch remain');
-  assert.ok(source.includes('no-energy-buy-with-shards'), 'existing refill control remains');
+  // зачем (решение A1, 2026-09-30): жемчуг выведен из интерфейса — кнопки «за жемчужины» нет,
+  // окно = «Позже» + «Получить Plus». Ядро energy_shard_refill.ts не тронуто.
+  assert.ok(!source.includes('no-energy-buy-with-shards'), 'pearl refill control is gone');
+  assert.ok(!source.includes('refillEnergyWithShards'), 'modal no longer spends pearls');
+  assert.ok(source.includes('no-energy-modal-later') && source.includes('no-energy-modal-plus'), 'Later + Plus remain');
   assert.ok(source.includes('openPremiumAfterClose'), 'Plus flow remains');
   assert.ok(source.includes('useStableSafeAreaInsets'), 'classic branch respects safe area');
   assert.ok(source.includes('minHeight: 48'), 'touch targets are at least 44dp');

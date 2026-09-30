@@ -44,7 +44,9 @@ const refill = read('app/energy_shard_refill.ts');
 assert.ok(refill.includes('operationId?: string'), 'refill cannot receive a stable operation id');
 assert.ok(refill.includes('operationId,'), 'refill does not bind the debit and visual event to one id');
 const noEnergy = read('components/NoEnergyModal.tsx');
-assert.ok(noEnergy.includes('refillOperationIdRef'), 'NoEnergy retry does not preserve refill operation identity');
+// зачем (решение A1, 2026-09-30): кнопка покупки энергии за жемчуг убрана из окна —
+// окно больше не должно списывать жемчуг вообще.
+assert.ok(!noEnergy.includes('refillEnergyWithShards'), 'NoEnergy modal must not spend pearls after pearl UI retirement');
 
 const season = read('app/season_reward_apply.ts');
 assert.ok(season.includes('JSON.stringify({ ...bonus, amount: bonus.capacity })'), 'season battery does not fill active bonus capacity');
@@ -87,13 +89,8 @@ for (const marker of [
 }
 
 const popover = read('components/energy/EnergyInfoPopover.tsx');
-assert.ok(popover.includes('weeklyFreeWindow ? copy.freeWindow : copy.unlimited'), 'weekly free window is mislabeled as permanent unlimited energy');
-assert.ok(popover.includes('bonusExpiresAt > Date.now()'), 'expired gift capacity is announced as active');
-
-for (const file of ['app/boons/boon_effects_energy.ts', 'app/services/league_chest_rewards.ts']) {
-  const source = read(file);
-  assert.ok(source.includes('legacyOverrideObservedAt') || source.includes('legacyEnergyOverrideObservedAt'), `${file} backdates a legacy override without startedAt`);
-  assert.ok(source.includes('startedAt: Date.now()') || source.includes('startedAt: now.getTime()'), `${file} does not persist new override activation time`);
-}
+assert.ok(popover.includes('isUnlimited ? copy.unlimited : heading'), 'unlimited energy label is missing');
+assert.ok(!popover.includes('bonusExpiresAt'), 'retired gift-capacity state leaked into the popover');
+assert.ok(!popover.includes('copy.gift'), 'retired gift-capacity copy returned');
 
 console.log('ENERGY P1 SAFETY PROBE: PASS');

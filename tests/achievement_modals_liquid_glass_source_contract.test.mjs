@@ -36,17 +36,20 @@ test('AchievementNotifModal (lesson_complete) is opaque Liquid Glass with neutra
   assert.match(src, /<AchievementNotifModal[\s\S]{0,400}onDismiss=/, 'вызов с onDismiss сохранён');
 });
 
-test('SurveyRewardPanel uses Liquid Glass tokens and keeps reward chip/logic contract', () => {
+test('SurveyRewardPanel uses Liquid Glass tokens and has no pearl reward (pearls removed 2026-09-30)', () => {
   const src = read('../components/survey/SurveyRewardPanel.tsx');
   assert.ok(src.includes('liquidGlassTokens(liquidGlassThemeId)'));
   assert.ok(src.includes('glass.cta') && src.includes('glass.ctaInk'), 'CTA «Готово» нейтральный');
   assert.doesNotMatch(src, /t\.accent|t\.correctText|t\.accentBg|TonalSurface/, 'нет старого стиля');
   noThickBorders(src, 'SurveyRewardPanel');
-  for (const id of ['survey-reward-panel', 'survey-reward-motion', 'survey-reward-shard-asset', 'survey-reward-amount', 'survey-retry', 'survey-back', 'survey-done', 'survey-reward-error']) {
+  for (const id of ['survey-reward-panel', 'survey-pending-accepted', 'survey-completion-check', 'survey-retry', 'survey-back', 'survey-done', 'survey-reward-error']) {
     assert.ok(src.includes(id), `testID ${id} на месте`);
   }
   for (const h of ['onDone', 'onRetry', 'onBack', 'onFollowUp']) assert.ok(src.includes(h), `${h} на месте`);
-  assert.ok(src.includes('useSurveyRewardImpact(showGrantedReward)'), 'перелёт жемчужины не тронут');
+  // зачем (решение владельца 2026-09-30): жемчуг удалён полностью — ни ассета, ни «+N жемчужина».
+  for (const gone of ['survey-reward-shard-asset', 'survey-reward-amount', 'oskolok', 'SHARD_REWARDS', 'useSurveyRewardImpact']) {
+    assert.ok(!src.includes(gone), `pearl reward piece ${gone} removed`);
+  }
   assert.ok(src.includes('SURVEY_PURPLE_TONE'), 'экспорт цвета награды сохранён');
 });
 

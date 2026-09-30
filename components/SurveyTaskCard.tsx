@@ -12,8 +12,6 @@ import Reanimated, {
   withTiming,
 } from 'react-native-reanimated';
 import { getHomeSupportingArt } from '../app/home_supporting_art';
-import { oskolokImageForPackShards } from '../app/oskolok';
-import { SHARD_REWARDS } from '../app/shards_system';
 import type { SurveyOfferSnapshot } from '../app/survey_offer_model';
 import { triLang } from '../constants/i18n';
 import { SURVEY_HYBRID } from '../constants/motionHybrid';
@@ -71,18 +69,8 @@ export default function SurveyTaskCard({ challenge, onOpen }: SurveyTaskCardProp
   const completed = challenge.phase === 'completed';
   const active = challenge.phase === 'active' && challenge.survey !== null;
   const pulseStyle = useSurveyCardPulse(active);
-  const rewardAmount = SHARD_REWARDS.survey_completed;
-  const rewardLabel = triLang(lang, {
-    ru: `+${rewardAmount} жемчужина`,
-    uk: `+${rewardAmount} перлина`,
-    en: `+${rewardAmount} pearl`,
-    es: `+${rewardAmount} perla`,
-    'pt-BR': `+${rewardAmount} pérola`,
-    vi: `+${rewardAmount} ngọc trai`,
-    id: `+${rewardAmount} mutiara`,
-    tr: `+${rewardAmount} inci`,
-    pl: `+${rewardAmount} perła`,
-  });
+  // зачем (решение владельца 2026-09-30): жемчуг удалён из приложения полностью —
+  // плашка «+N жемчужина» с ассетом жемчужины убрана; активная карточка ведёт шевроном.
   const completedLabel = triLang(lang, {
     ru: 'Опрос пройден',
     uk: 'Опитування пройдено',
@@ -118,18 +106,15 @@ export default function SurveyTaskCard({ challenge, onOpen }: SurveyTaskCardProp
         </Text>
       </View>
       {active ? (
-        <View style={styles.reward}>
-          <Image
-            testID="survey-offer-reward-art"
-            source={oskolokImageForPackShards(rewardAmount, themeMode)}
-            contentFit="contain"
-            style={styles.rewardArt}
-            accessible={false}
-          />
-          <Text testID="survey-offer-reward-label" style={[styles.rewardLabel, { color: t.textPrimary }]}>
-            {`+${rewardAmount}`}
-          </Text>
-        </View>
+        <Ionicons
+          testID="survey-offer-open"
+          name="chevron-forward"
+          size={20}
+          color={t.textMuted}
+          accessible={false}
+          accessibilityElementsHidden
+          importantForAccessibility="no"
+        />
       ) : null}
       {completed ? (
         <Ionicons
@@ -166,7 +151,7 @@ export default function SurveyTaskCard({ challenge, onOpen }: SurveyTaskCardProp
         variant="card"
         pressScaleTo={1.02}
         onPress={() => onOpen(challenge)}
-        accessibilityLabel={`${challenge.title}. ${rewardLabel}`}
+        accessibilityLabel={challenge.title}
         contentStyle={[styles.card, { backgroundColor: t.bgCard }]}
       >
         {content}
@@ -191,7 +176,4 @@ const styles = StyleSheet.create({
   },
   copy: { flex: 1, minWidth: 0 },
   title: { fontSize: 14, lineHeight: 18, fontWeight: '800' },
-  reward: { flexDirection: 'row', alignItems: 'center', gap: 4, flexShrink: 0 },
-  rewardArt: { width: SURVEY_HYBRID.taskRewardIconSize, height: SURVEY_HYBRID.taskRewardIconSize },
-  rewardLabel: { fontSize: 15, lineHeight: 20, fontWeight: '800' },
 });

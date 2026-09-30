@@ -13,7 +13,6 @@ type BenefitId =
   | 'saved_phrases'
   | 'own_cards'
   | 'flashcard_training'
-  | 'dialogue_scenarios'
   | 'course_lessons'
   | 'study_languages'
   | 'energy'
@@ -49,8 +48,7 @@ const LP = (
 ): Localized => ({ ru, en, uk, es, 'pt-BR': ptBR, vi, id, tr, pl });
 
 // зачем: слово «Безлимит» для Plus — маркетинговое решение владельца и макет paywall-review.
-// Живой код при этом держит 1500 своих карточек на язык (custom_card_access.ts) — конфликт
-// вынесен в отчёт как BLOCKED-OWNER; entitlement здесь не меняется и не маскируется.
+// Ставим его только там, где код действительно не ограничивает Plus (см. совет 2026-09-30, B7).
 const UNLIMITED: Localized = LP('Безлимит', 'Unlimited', 'Безліміт', 'Ilimitado', 'Ilimitado', 'Không giới hạn', 'Tanpa batas', 'Sınırsız', 'Bez limitu');
 
 const BENEFITS: readonly Benefit[] = [
@@ -60,12 +58,13 @@ const BENEFITS: readonly Benefit[] = [
     freeValue: LP('До 50', 'Up to 50', 'До 50', 'Hasta 50', 'Até 50', 'Tối đa 50', 'Hingga 50', 'En fazla 50', 'Do 50'),
     plusValue: UNLIMITED,
   },
-  // RELEASE BLOCKER: cloud paging must be completed before unlimited own cards are release-ready end to end.
+  // зачем (совет 2026-09-30, B7a): код держит Plus на 1500 своих карточек на язык
+  // (app/flashcards/custom_card_access.ts, PLUS_CUSTOM_CARD_LIMIT) — «Безлимит» был неправдой.
   {
     id: 'own_cards', icon: 'create-outline',
     label: LP('Свои карточки', 'Your own cards', 'Власні картки', 'Tus propias tarjetas', 'Seus próprios cartões', 'Thẻ của bạn', 'Kartu buatanmu', 'Kendi kartların', 'Własne karty'),
     freeValue: LP('До 50', 'Up to 50', 'До 50', 'Hasta 50', 'Até 50', 'Tối đa 50', 'Hingga 50', 'En fazla 50', 'Do 50'),
-    plusValue: UNLIMITED,
+    plusValue: LP('До 1500', 'Up to 1,500', 'До 1500', 'Hasta 1500', 'Até 1.500', 'Tối đa 1.500', 'Hingga 1.500', 'En fazla 1.500', 'Do 1500'),
   },
   {
     id: 'own_packs', icon: 'albums-outline',
@@ -74,20 +73,16 @@ const BENEFITS: readonly Benefit[] = [
     plusValue: UNLIMITED,
     note: LP('10–50 карточек в наборе. Платные наборы приобретаются отдельно.', '10–50 cards per pack. Paid packs are purchased separately.', '10–50 карток у наборі. Платні набори купуються окремо.', '10–50 tarjetas por set. Los sets de pago se compran aparte.', '10–50 cartões por conjunto. Conjuntos pagos são comprados à parte.', '10–50 thẻ mỗi bộ. Bộ trả phí được mua riêng.', '10–50 kartu per paket. Paket berbayar dibeli terpisah.', 'Set başına 10–50 kart. Ücretli setler ayrıca alınır.', '10–50 kart w zestawie. Płatne zestawy kupuje się osobno.'),
   },
-  // RELEASE BLOCKER: card training still applies the same 30/month cap to Plus; fix and verify before release.
+  // зачем (B7c, 2026-09-30): Plus без лимита тренировок — app/monthly_training_sessions.ts
+  // пропускает hasPremiumAccess (tests/monthly_training_plus_unlimited.test.mjs).
   {
     id: 'flashcard_training', icon: 'repeat-outline',
     label: LP('Тренировки с карточками', 'Flashcard training', 'Тренування з картками', 'Entrenamiento con tarjetas', 'Treino com cartões', 'Luyện tập thẻ', 'Latihan kartu', 'Kart antrenmanı', 'Trening z kartami'),
     freeValue: LP('30 в месяц', '30 a month', '30 на місяць', '30 al mes', '30 por mês', '30 mỗi tháng', '30 per bulan', 'Ayda 30', '30 miesięcznie'),
     plusValue: UNLIMITED,
   },
-  {
-    id: 'dialogue_scenarios', icon: 'chatbubbles-outline',
-    label: LP('Сценарии диалогов', 'Dialogue scenarios', 'Сценарії діалогів', 'Escenarios de diálogo', 'Cenários de diálogo', 'Tình huống hội thoại', 'Skenario dialog', 'Diyalog senaryoları', 'Scenariusze dialogów'),
-    freeValue: LP('3 базовых + купленные', '3 basic + purchased', '3 базові + придбані', '3 básicos + comprados', '3 básicos + comprados', '3 cơ bản + đã mua', '3 dasar + dibeli', '3 temel + satın alınan', '3 podstawowe + kupione'),
-    plusValue: LP('51 активный сценарий', '51 active scenarios', '51 активний сценарій', '51 escenarios activos', '51 cenários ativos', '51 tình huống đang hoạt động', '51 skenario aktif', '51 etkin senaryo', '51 aktywnych scenariuszy'),
-    note: LP('Купленные за руны сценарии остаются доступными.', 'Scenarios bought with runes stay available.', 'Придбані за руни сценарії лишаються доступними.', 'Los escenarios comprados con runas siguen disponibles.', 'Cenários comprados com runas continuam disponíveis.', 'Tình huống mua bằng rune vẫn dùng được.', 'Skenario yang dibeli dengan rune tetap tersedia.', 'Rünle alınan senaryolar kullanılabilir kalır.', 'Scenariusze kupione za runy pozostają dostępne.'),
-  },
+  // зачем (совет 2026-09-30, B7b): строки «Сценарии диалогов» нет — диалоги открываются по
+  // рангу, а не по Plus (D05/PM-014); обещание «51 сценарий в Plus» было неправдой.
   {
     id: 'course_lessons', icon: 'school-outline',
     label: LP('Основной курс', 'Main course', 'Основний курс', 'Curso principal', 'Curso principal', 'Khóa học chính', 'Kursus utama', 'Ana kurs', 'Kurs główny'),
@@ -131,7 +126,7 @@ const BENEFITS: readonly Benefit[] = [
     freeValue: LP('1 раз в день', 'Once a day', '1 раз на день', '1 vez al día', '1 vez por dia', '1 lần mỗi ngày', '1 kali per hari', 'Günde 1 kez', 'Raz dziennie'),
     plusValue: UNLIMITED,
   },
-  // RELEASE BLOCKER: AI mistake explanation still has a client-side 3/day Plus cap; fix and verify before release.
+  // зачем (B6, 2026-09-30): клиент больше не режет Plus на 3 разбора (mistake_explain_plus_gate.ts).
   {
     id: 'ai_mistake_explain', icon: 'sparkles-outline',
     label: LP('AI-разборы ошибок', 'AI mistake explanations', 'AI-розбори помилок', 'Explicaciones de errores con IA', 'Explicações de erros com IA', 'AI phân tích lỗi', 'Penjelasan kesalahan AI', 'AI hata açıklamaları', 'Wyjaśnienia błędów AI'),
@@ -163,7 +158,6 @@ export const PAYWALL_COMPARISON_BENEFIT_IDS = [
   'own_cards',
   'own_packs',
   'flashcard_training',
-  'dialogue_scenarios',
   'dialogue_replies',
   'text_dialogue_review',
   'pronunciation',
@@ -179,10 +173,10 @@ export const PAYWALL_COMPARISON_BENEFIT_IDS = [
 
 export const PAYWALL_MAIN_BENEFIT_IDS = [
   'cards_bundle',
-  'dialogue_scenarios',
   'course_lessons',
   'ai_mistake_explain',
   'energy',
+  'streak_freezes',
 ] as const;
 
 const HIGHLIGHTS: readonly Benefit[] = [
@@ -192,10 +186,12 @@ const HIGHLIGHTS: readonly Benefit[] = [
     freeValue: LP('', '', '', '', '', '', '', '', ''),
     plusValue: LP('Сохраняй, создавай и тренируйся', 'Save, create and train', 'Зберігай, створюй і тренуйся', 'Guarda, crea y entrena', 'Salve, crie e treine', 'Lưu, tạo và luyện tập', 'Simpan, buat, dan berlatih', 'Kaydet, oluştur ve çalış', 'Zapisuj, twórz i ćwicz'),
   },
-  BENEFITS.find((benefit) => benefit.id === 'dialogue_scenarios')!,
   BENEFITS.find((benefit) => benefit.id === 'course_lessons')!,
   BENEFITS.find((benefit) => benefit.id === 'ai_mistake_explain')!,
   BENEFITS.find((benefit) => benefit.id === 'energy')!,
+  // зачем (B7b): пятая строка вместо «Сценариев диалогов» — подтверждённая кодом
+  // (app/premium_freeze_allowance.ts, PREMIUM_FREE_FREEZES_PER_MONTH = 3).
+  BENEFITS.find((benefit) => benefit.id === 'streak_freezes')!,
 ] as const;
 
 type GroupId = 'cards' | 'dialogues' | 'course' | 'personal' | 'stats';
@@ -209,7 +205,7 @@ const GROUP_TITLES: Readonly<Record<GroupId, Localized>> = {
 // Группы как в макете paywall-review-data.js: заголовок ставится перед первой строкой группы.
 const GROUP_OF: Readonly<Record<(typeof PAYWALL_COMPARISON_BENEFIT_IDS)[number], GroupId>> = {
   saved_phrases: 'cards', own_cards: 'cards', own_packs: 'cards', flashcard_training: 'cards',
-  dialogue_scenarios: 'dialogues', dialogue_replies: 'dialogues', text_dialogue_review: 'dialogues', pronunciation: 'dialogues',
+  dialogue_replies: 'dialogues', text_dialogue_review: 'dialogues', pronunciation: 'dialogues',
   course_lessons: 'course', combined_lesson: 'course', study_languages: 'course', mistake_practice: 'course', ai_mistake_explain: 'course',
   energy: 'personal', streak_freezes: 'personal',
   detailed_stats: 'stats',

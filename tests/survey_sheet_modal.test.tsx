@@ -31,7 +31,7 @@ const mockRequestDismiss = jest.fn();
 const mockOpenStoreReviewPage = jest.fn(async () => true);
 const mockRouterPush = jest.fn();
 const mockSetAccessibilityFocus = jest.spyOn(AccessibilityInfo, 'setAccessibilityFocus').mockImplementation(() => {});
-const mockRunAfterInteractions = jest.spyOn(InteractionManager, 'runAfterInteractions').mockImplementation((callback: () => void) => {
+const mockRunAfterInteractions = jest.spyOn(InteractionManager, 'runAfterInteractions').mockImplementation((callback?: any) => {
   callback();
   return { cancel: jest.fn(), then: jest.fn(), done: jest.fn() } as any;
 });
@@ -180,8 +180,6 @@ jest.mock('expo-image', () => ({
     return <NativeImage {...props} />;
   },
 }));
-jest.mock('../app/oskolok', () => ({ oskolokImageForPackShards: () => ({ uri: 'survey-shard' }) }));
-jest.mock('../app/shards_system', () => ({ SHARD_REWARDS: { survey_completed: 1 } }));
 jest.mock('../app/store_review', () => ({ openStoreReviewPage: () => mockOpenStoreReviewPage() }));
 jest.mock('expo-router', () => ({ useRouter: () => ({ push: mockRouterPush }) }));
 
@@ -402,20 +400,19 @@ describe('SurveySheetModal', () => {
     await waitFor(() => expect(readyFlow.goNext).toHaveBeenCalledTimes(1));
   });
 
-  test('shows +1 inline on the last single-choice step and auto-advances after the pearl lands', async () => {
+  // зачем (решение владельца 2026-09-30): жемчуг удалён полностью — на последнем шаге нет
+  // ни чипа баланса, ни «+1» в строке, ни перелёта; «Отправить» сразу ведёт к отправке.
+  test('shows no pearl chip or inline +1 on the last step and submits straight from the button', async () => {
     const lastFlow = editingFlow({ isLastStep: true });
     mockUseSurveyFlowController.mockReturnValue(lastFlow);
-    const screen = await render(<SurveySheetModal visible launch={launch} onClose={jest.fn()} pearlBalance={128} />);
+    const screen = await render(<SurveySheetModal visible launch={launch} onClose={jest.fn()} />);
 
-    expect(screen.getByTestId('survey-pearl-chip-value')).toHaveTextContent('128');
-    expect(screen.getByTestId('survey-option-a-reward')).toBeTruthy();
-    expect(screen.getByTestId('survey-option-a-reward-label')).toHaveTextContent('+1');
-    expect(screen.queryByTestId('survey-sheet-cta')).toBeNull();
+    expect(screen.queryByTestId('survey-pearl-chip')).toBeNull();
+    expect(screen.queryByTestId('survey-option-a-reward')).toBeNull();
+    expect(screen.queryByTestId('survey-pearl-flight')).toBeNull();
 
-    await fireEvent.press(screen.getByRole('radio', { name: 'Короткие задания' }));
-    await waitFor(() => expect(lastFlow.goNext).toHaveBeenCalledTimes(1), { timeout: 3000 });
-    // Optimistic-дельта: чип показывает +1 ещё до ответа сервера.
-    await waitFor(() => expect(screen.getByTestId('survey-pearl-chip-value')).toHaveTextContent('129'));
+    await fireEvent.press(screen.getByRole('button', { name: 'Отправить' }));
+    expect(lastFlow.goNext).toHaveBeenCalledTimes(1);
   });
 
   test('shows the survey explanation without repeating a one-question title', async () => {
@@ -448,7 +445,7 @@ describe('SurveySheetModal', () => {
       ...launch.survey.questions[0],
       options: [
         { id: 'rate_now', label: 'Сейчас поставлю', action: { kind: 'store_review' as const, cta: 'Открыть Store' } },
-        { id: 'ideas', label: 'Только узнал', action: { kind: 'app_route' as const, route: '/ideas_catalog' as const, cta: 'Открыть Идеи' } },
+        { id: 'ideas', label: 'Только узнал', action: { kind: 'app_route' as const, route: '/referrals' as const, cta: 'Открыть Идеи' } },
       ],
     };
     const flow = editingFlow({ currentQuestion, answers: {}, currentAnswered: false });
@@ -468,7 +465,7 @@ describe('SurveySheetModal', () => {
   test('lists every chosen action on the reward screen and navigates only after the sheet is gone', async () => {
     const questions = [
       { id: 'q1', type: 'single_choice' as const, text: 'Что помогает учиться?', options: [
-        { id: 'ideas', label: 'Только узнал', action: { kind: 'app_route' as const, route: '/ideas_catalog' as const, cta: 'Открыть Идеи' } },
+        { id: 'ideas', label: 'Только узнал', action: { kind: 'app_route' as const, route: '/referrals' as const, cta: 'Открыть Идеи' } },
       ] },
       { id: 'q2', type: 'single_choice' as const, text: 'Видео смотришь?', options: [
         { id: 'video', label: 'Хочу посмотреть', action: { kind: 'app_route' as const, route: '/lingman_videos' as const, cta: 'Открыть видео' } },
@@ -595,8 +592,8 @@ describe('SurveySheetModal', () => {
 
     expect(screen.queryByTestId('survey-question-title')).toBeNull();
     expect(screen.getByTestId('survey-reward-panel')).toBeTruthy();
-    expect(screen.queryByTestId('survey-pending-accepted')).toBeNull();
-    expect(screen.getByTestId('survey-reward-amount')).toHaveTextContent('+1 жемчужина уже на счету');
+    expect(screen.getByTestId('survey-pending-accepted')).toBeTruthy();
+    expect(screen.queryByTestId('survey-reward-amount')).toBeNull();
     expect(screen.queryByTestId('survey-sheet-cta')).toBeNull();
     expect(screen.queryByText('Отправляю…')).toBeNull();
     const liveOwners = collectLiveRegionOwners(screen.toJSON());
@@ -621,7 +618,7 @@ describe('SurveySheetModal', () => {
     expect(flow.deactivate).toHaveBeenCalledTimes(1);
     expect(mockRequestDismiss).toHaveBeenCalledTimes(1);
     expect(onClose).not.toHaveBeenCalled();
-    expect(screen.getByTestId('survey-reward-amount')).toBeTruthy();
+    expect(screen.getByTestId('survey-pending-accepted')).toBeTruthy();
 
     await act(async () => {
       mockCompleteDismiss?.();
@@ -704,8 +701,8 @@ describe('SurveySheetModal', () => {
   });
 
   test.each([
-    ['optimistic-reward', null, 'survey-reward-shard-asset'],
-    ['reconciled', null, 'survey-reward-shard-asset'],
+    ['optimistic-reward', null, 'survey-pending-accepted'],
+    ['reconciled', null, 'survey-completion-check'],
     ['retryable-error', 'network', 'survey-retry'],
     ['retryable-error', 'account_changed', 'survey-back'],
   ] as const)('keeps %s/%s feedback inside the same shell', async (phase, messageKey, expectedTestID) => {
@@ -736,13 +733,13 @@ describe('SurveySheetModal', () => {
     } else if (phase === 'optimistic-reward') {
       expect(screen.getByTestId('survey-reward-panel').props.accessibilityLiveRegion).toBe('polite');
       expect(liveOwners[0].props.testID).toBe('survey-reward-panel');
-      expect(screen.getByTestId('survey-reward-amount')).toBeTruthy();
-      expect(screen.getByTestId('survey-reward-shard-asset').props.accessible).toBe(false);
+      expect(screen.queryByTestId('survey-reward-amount')).toBeNull();
+      expect(screen.queryByTestId('survey-reward-shard-asset')).toBeNull();
     } else {
       expect(screen.getByTestId('survey-reward-panel').props.accessibilityLiveRegion).toBe('polite');
       expect(liveOwners[0].props.testID).toBe('survey-reward-panel');
       expect(screen.getByTestId('ionicon-checkmark-circle', { includeHiddenElements: true }).props.accessibilityElementsHidden).toBe(true);
-      expect(screen.getByTestId('survey-reward-shard-asset').props.accessible).toBe(false);
+      expect(screen.queryByTestId('survey-reward-shard-asset')).toBeNull();
     }
     if (messageKey === 'account_changed') {
       expect(screen.getByTestId('survey-retry').props.accessibilityState.disabled).toBe(true);
@@ -844,16 +841,11 @@ describe('SurveySheetModal', () => {
 
   test('keeps progress and reward motion lightweight and token-driven', () => {
     const transition = fs.readFileSync(path.join(ROOT, 'components/survey/SurveyQuestionTransition.tsx'), 'utf8');
-    const impact = fs.readFileSync(path.join(ROOT, 'components/survey/useSurveyRewardImpact.ts'), 'utf8');
     const sheet = fs.readFileSync(path.join(ROOT, 'components/survey/SurveySheetModal.tsx'), 'utf8');
-    const combined = `${transition}\n${impact}\n${sheet}`;
+    const combined = `${transition}\n${sheet}`;
 
     expect(transition).toContain('SURVEY_HYBRID.questionShiftPx');
     expect(transition.match(/progress\.value = withTiming/g)).toHaveLength(1);
-    expect(impact).toContain('SURVEY_HYBRID.rewardLiftPx');
-    expect(impact).toContain('SURVEY_HYBRID.rewardStartScale');
-    expect(impact).toContain('CHK.fallMs');
-    expect(impact).not.toContain('1 / SURVEY_HYBRID.rewardStartScale');
     expect(sheet).toContain('requestDismiss');
     expect(sheet).not.toContain('requestDismissRef.current');
     expect(sheet).toContain('onDismissRequested={deactivateActiveFlow}');

@@ -35,9 +35,12 @@ test('ExplainReportButton keeps API, guards, limits and reason whitelist', () =>
 
 test('ReportErrorButton keeps API, validation, throttle/failed/sent branches and no thick validation border', () => {
   for (const token of [
-    'submitOverride', 'onSuccess?.(10)', 'if (sending) return;', 'ERROR_REPORT_COMMENT_MIN_LEN',
+    'submitOverride', 'if (sending) return;', 'ERROR_REPORT_COMMENT_MIN_LEN',
     'maxLength={500}', "result === 'throttled'", "result === 'failed'", "result === 'invalid_comment'",
     "variant = 'default'", 'textColor', 'export function reportErrorCategoriesForLang', 'setSent(true)',
   ]) assert.ok(error.includes(token), `keeps ${token}`);
   assert.ok(!/borderWidth:\s*commentRequiredError/.test(error), 'validation error does not thicken the border');
+  // зачем (2026-09-30): XP и жемчуг удалены — ни начисления за жалобу, ни обещания жемчужины.
+  assert.ok(!error.includes('onSuccess'), 'no XP callback');
+  assert.ok(!/жемчуж|перлин/.test(error), 'no pearl copy');
 });

@@ -199,7 +199,6 @@ describe('motion hybrid contract', () => {
   it('keeps the survey sheet motion token-driven, finite, and compositor-only', () => {
     const surveyMotionFiles = [
       'components/survey/SurveyQuestionTransition.tsx',
-      'components/survey/useSurveyRewardImpact.ts',
       'components/survey/SurveyRewardPanel.tsx',
       'components/survey/SurveySheetModal.tsx',
     ];

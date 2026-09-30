@@ -24,21 +24,8 @@ import { hapticTap } from '../hooks/use-haptics';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { emitAppEvent } from '../app/events';
 import { incrementEnergyZeroCount } from '../app/paywall_personalization';
-import {
-  energyRefillShardCost,
-  createEnergyRefillOperationId,
-  refillEnergyWithShards,
-  toastEnergyRefilledWithShards,
-} from '../app/energy_shard_refill';
-import { peekLastKnownShardsBalance, getShardsBalance } from '../app/shards_system';
-import {
-  ruKnowledgeShardsAccusativeAfterNumber,
-  ukKnowledgeShardsAccusativeAfterNumber,
-  ruKnowledgeShardsGenitiveAfterNumber,
-  ukKnowledgeShardsGenitiveAfterNumber,
-} from '../constants/shard_plurals';
 import { shouldRenderNoEnergyModal } from '../app/services/no_energy_modal_visibility';
-import { triLang, type Lang } from '../constants/i18n';
+import { triLang } from '../constants/i18n';
 import { soundDirector } from '../modules/audio/sound_director';
 import { activityEnergyCost, ENERGY_SESSION_COST, type EnergyActivityKey } from '../app/energy_contract';
 import { energyGateMessage } from '../app/energy_activity_titles';
@@ -70,8 +57,8 @@ interface Props {
   paywallContext?: string;
   onBeforeOpenPremium?: () => void;
   /**
-   * Админ/QA: показать CTA «за осколки» даже при полной базовой энергии (превью в настройках тестера).
-   * Покупка тогда вернёт already_full — покажем info-тост.
+   * Устарело (жемчуг выведен из интерфейса 2026-09-30): кнопки «за жемчужины» больше нет,
+   * проп оставлен только для совместимости вызовов из настроек тестера и игнорируется.
    */
   qaForceShardCta?: boolean;
   /** Admin/QA preview: render the no-energy UI even for Premium/VIP accounts. */
@@ -89,7 +76,6 @@ function NoEnergyModal({
   activity,
   paywallContext = 'no_energy',
   onBeforeOpenPremium,
-  qaForceShardCta = false,
   qaIgnorePremiumAccess = false,
   motionVariant = 'classic',
 }: Props) {
@@ -100,9 +86,6 @@ function NoEnergyModal({
   const {
     energy,
     bonusEnergy,
-    maxEnergy,
-    isUnlimited,
-    reload,
     recoveryIntervalMs,
     timeUntilNextMs,
   } = useEnergy();
@@ -136,97 +119,10 @@ function NoEnergyModal({
     (onBeforeOpenPremium ?? onClose)();
   };
 
-  // ── Покупка полного заряда за жемчужины ────────────────────────────────────
-  // зачем: владелец 2026-08-23. refillEnergyWithShards была написана целиком, но
-  // не вызывалась НИОТКУДА — канал существовал только в коде, игрок его не видел.
-  // Владелец решил включить: это даёт жемчужинам применение и смягчает ожидание
-  // тем, кто не покупает подписку.
-  // зачем (аудит экономики 2026-08-24): цена считается по НЕДОСТАЮЩЕЙ энергии,
-  // а не по потолку. Окно открывается не только при нуле — экзамен и другие
-  // активности требуют порога (minRequired), и частично пустая шкала не должна
-  // стоить как полностью пустая. Кнопка обязана показывать ту же
-  // сумму, которую спишет refillEnergyWithShards, иначе списание разойдётся с
-  // обещанием на экране.
-  const shardCost = energyRefillShardCost(maxEnergy, energy);
-  // peek — синхронный снимок без сети: кнопка видна в ПЕРВОМ кадре, без прыжка.
-  const [shardBalance, setShardBalance] = useState<number>(() => peekLastKnownShardsBalance() ?? 0);
-  const [refilling, setRefilling] = useState(false);
-  const refillLatchRef = useRef(false);
-  const refillOperationIdRef = useRef(createEnergyRefillOperationId());
-
-  useEffect(() => {
-    if (!modalVisible) return;
-    let cancelled = false;
-    void getShardsBalance().then((value) => {
-      if (!cancelled) setShardBalance(value);
-    }).catch(() => {});
-    return () => { cancelled = true; };
-  }, [modalVisible]);
-
-  // База уже полна → покупать нечего (бонусные слоты refill не трогает).
-  const canBuyEnergy = !isUnlimited && (qaForceShardCta || energy < maxEnergy);
-  const enoughShards = shardBalance >= shardCost;
-
-  const buyEnergyWithShards = useCallback(async () => {
-    // Латч + state: двойной тап не спишет жемчужины дважды.
-    if (refillLatchRef.current) return;
-    refillLatchRef.current = true;
-    setRefilling(true);
-    try {
-      const result = await refillEnergyWithShards({
-        maxEnergy,
-        baseEnergy: energy,
-        isUnlimited,
-        operationId: refillOperationIdRef.current,
-      });
-      if (result.ok) {
-        refillOperationIdRef.current = createEnergyRefillOperationId();
-        toastEnergyRefilledWithShards();
-        // guard-ok: это НЕ понижение баланса, а синхронизация отображения после
-        // уже совершённого списания. Авторитетный дебет сделал
-        // commitShardCompositeOperation (жемчужины client-owned по дизайну:
-        // «server cannot approve, reject, reconcile, or roll back» — см.
-        // shards_system.ts). Без этой строки цифра в окне осталась бы старой
-        // до следующего чтения. Класс бага лиги здесь неприменим: там сервер
-        // был источником истины, тут — клиент.
-        setShardBalance((value) => Math.max(0, value - result.spent));
-        await reload();
-        onClose();
-        return;
-      }
-      // Отказ — показываем причину и оставляем окно открытым, чтобы человек
-      // мог выбрать «Плюс» или подождать.
-      emitAppEvent('action_toast', {
-        type: result.reason === 'insufficient_shards' ? 'info' : 'error',
-        messageRu:
-          result.reason === 'insufficient_shards'
-            ? 'Не хватает жемчужин.'
-            : result.reason === 'already_full'
-              ? 'Энергия уже полная.'
-              : 'Не получилось восстановить энергию.',
-        messageUk:
-          result.reason === 'insufficient_shards'
-            ? 'Не вистачає перлин.'
-            : result.reason === 'already_full'
-              ? 'Енергія вже повна.'
-              : 'Не вдалося відновити енергію.',
-        messageEs:
-          result.reason === 'insufficient_shards'
-            ? 'No tienes suficientes perlas.'
-            : result.reason === 'already_full'
-              ? 'La energía ya está llena.'
-              : 'No se pudo recuperar la energía.',
-      });
-      if (result.reason !== 'persist_failed' && result.reason !== 'spend_failed') {
-        refillOperationIdRef.current = createEnergyRefillOperationId();
-      }
-      // Баланс мог разойтись с локальным снимком — перечитываем.
-      void getShardsBalance().then(setShardBalance).catch(() => {});
-    } finally {
-      refillLatchRef.current = false;
-      setRefilling(false);
-    }
-  }, [energy, isUnlimited, maxEnergy, onClose, reload]);
+  // зачем (совет агентов 2026-09-30, решение A1): жемчуг выведен из интерфейса 2.0 —
+  // кнопка «Восстановить за N жемчужин» и её ветка (цена, баланс, покупка) убраны.
+  // Ядро app/energy_shard_refill.ts и баланс жемчуга НЕ тронуты: остаток пользователя
+  // остаётся в данных, просто здесь больше не тратится. Окно = «Позже» + «Получить Plus» (макет B5).
 
   /** Android: Modal.onDismiss из JS по сути не вызывает колбэк — ждём снятия окна и только потом переходим. */
   useEffect(() => {
@@ -433,30 +329,6 @@ function NoEnergyModal({
       <React.Fragment key={key}>{node}</React.Fragment>
     );
 
-  const shardLabel = enoughShards
-    ? triLang(lang, {
-        ru: `Восстановить за ${shardCost} ${ruKnowledgeShardsAccusativeAfterNumber(shardCost)}`,
-        uk: `Відновити за ${shardCost} ${ukKnowledgeShardsAccusativeAfterNumber(shardCost)}`,
-        en: `Refill for ${shardCost} pearls`,
-        es: `Recargar por ${shardCost} perlas`,
-        'pt-BR': `Recarregar por ${shardCost} pérolas`,
-        vi: `Hồi phục với ${shardCost} ngọc`,
-        id: `Isi ulang seharga ${shardCost} mutiara`,
-        tr: `${shardCost} inci karşılığında doldur`,
-        pl: `Odnów za ${shardCost} pereł`,
-      })
-    : triLang(lang, {
-        ru: `Не хватает ${shardCost - shardBalance} ${ruKnowledgeShardsGenitiveAfterNumber(shardCost - shardBalance)}`,
-        uk: `Не вистачає ${shardCost - shardBalance} ${ukKnowledgeShardsGenitiveAfterNumber(shardCost - shardBalance)}`,
-        en: `You need ${shardCost - shardBalance} more pearls`,
-        es: `Faltan ${shardCost - shardBalance} perlas`,
-        'pt-BR': `Faltam ${shardCost - shardBalance} pérolas`,
-        vi: `Thiếu ${shardCost - shardBalance} ngọc`,
-        id: `Kurang ${shardCost - shardBalance} mutiara`,
-        tr: `${shardCost - shardBalance} inci eksik`,
-        pl: `Brakuje ${shardCost - shardBalance} pereł`,
-      });
-
   const boltIcon = (
     <View style={[styles.boltCircle, { backgroundColor: glass.opaqueControl }]}>
       <EnergyIcon
@@ -504,28 +376,6 @@ function NoEnergyModal({
           {showBody}
         </Text>,
       )}
-      {!hybrid && canBuyEnergy ? (
-        <TouchableOpacity
-          key="shards"
-          testID="no-energy-buy-with-shards"
-          accessibilityRole="button"
-          accessibilityLabel={shardLabel}
-          accessibilityState={{ disabled: refilling || !enoughShards, busy: refilling }}
-          disabled={refilling || !enoughShards}
-          onPress={() => {
-            hapticTap();
-            void buyEnergyWithShards();
-          }}
-          activeOpacity={0.76}
-          style={[
-            styles.action,
-            styles.shardAction,
-            { backgroundColor: glass.opaqueControl, opacity: enoughShards ? 1 : 0.55 },
-          ]}
-        >
-          <Text style={[styles.actionLabel, { color: glass.text, fontSize: f.body }]}>{shardLabel}</Text>
-        </TouchableOpacity>
-      ) : null}
       {cascade(
         LUM.ladder[3],
         'actions',
@@ -686,6 +536,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  shardAction: { flex: 0, alignSelf: 'stretch' },
   actionLabel: { fontWeight: '700', textAlign: 'center' },
 });

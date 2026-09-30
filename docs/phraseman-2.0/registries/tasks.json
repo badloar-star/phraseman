@@ -1998,7 +1998,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -2007,14 +2007,18 @@
       {
         "id": "PM-043-A1",
         "text": "Одинаковый источник состояния с экранами тренировки",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "EnergyBar и Home читают один useEnergy(); EnergyBar в шапке и на экранах занятий"
+        ]
       },
       {
         "id": "PM-043-A2",
         "text": "у Plus нет ложного расхода",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Plus: EnergyBar скрыт, home showHomeEnergy=!hasPremiumAccess; гейт первого вопроса возвращает unlimited без списания"
+        ]
       }
     ],
     "depends_on": [],
@@ -4420,7 +4424,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -4429,14 +4433,18 @@
       {
         "id": "PM-085-A1",
         "text": "Цифра изменяется один раз без блокировки",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "AnimatedEnergyNumber: одна анимация на операцию (consumedOperationIds), UI-поток, pointerEvents none"
+        ]
       },
       {
         "id": "PM-085-A2",
         "text": "при reduce motion отображается сразу",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "AnimatedEnergyNumber.tsx:40 — при useReducedMotion значение ставится сразу"
+        ]
       }
     ],
     "depends_on": [],
@@ -4687,8 +4695,10 @@
       {
         "id": "PM-090-A1",
         "text": "Понятно время следующей единицы",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "NoEnergyModal: timeToStartMs из timeUntilNextMs/recoveryIntervalMs — показывает время до следующей единицы"
+        ]
       },
       {
         "id": "PM-090-A2",
@@ -7270,8 +7280,10 @@
       {
         "id": "PM-141-A2",
         "text": "реальные ограничения платного AI считаются отдельно и раскрыты явно",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Квота платного AI считается отдельно от ранга (dialog_quota_contract.ts) и раскрыта на пейволе (PaywallBenefitComparison)"
+        ]
       }
     ],
     "depends_on": [],
@@ -7457,8 +7469,10 @@
       {
         "id": "PM-145-A1",
         "text": "Нет обещания безлимитного внешнего API при бесплатном ранговом доступе",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Free=30 ответов/месяц на сервере (dialog_quota_contract.ts, D111, 1e2f77929); безлимит только Plus; companion закрыт для Free (dialogue_reply_access_contract.ts)"
+        ]
       },
       {
         "id": "PM-145-A2",
@@ -7696,7 +7710,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -7705,14 +7719,18 @@
       {
         "id": "PM-150-A1",
         "text": "Учебный prerequisite и подписка проверяются отдельно",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "monetization_policy.ts: requiresPremiumForLesson (paywall) и BRONZE_UNLOCK_SCORE=2 (D71) проверяются раздельно; resolveLessonAccess"
+        ]
       },
       {
         "id": "PM-150-A2",
         "text": "одни звёзды не обходят paywall, Plus не отменяет prerequisite",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "resolveLessonAccess отдаёт premium_required до проверки прогресса; buildPremiumLessonUnlocks требует >=2 у предыдущего и для Plus"
+        ]
       }
     ],
     "depends_on": [

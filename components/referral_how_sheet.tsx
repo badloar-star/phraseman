@@ -9,6 +9,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { useTheme } from './ThemeContext';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette'; // зачем: шит «Код от друга» на токенах стекла (overlays-more, ReferralCodeSheet)
 import { useLang } from './LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import ReferralSheetShell from './referral_sheet_shell';
@@ -24,7 +25,8 @@ interface ReferralHowSheetProps {
 }
 
 export default function ReferralHowSheet({ visible, onClose }: ReferralHowSheetProps) {
-  const { theme: t, f } = useTheme();
+  const { f, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
   const L = makeL(lang as Lang);
 
@@ -63,20 +65,20 @@ export default function ReferralHowSheet({ visible, onClose }: ReferralHowSheetP
       <View style={{ gap: 14 }}>
         {steps.map((s, i) => (
           <View key={s.title} style={{ flexDirection: 'row', gap: 12, alignItems: 'flex-start' }}>
-            <View style={{ width: 26, height: 26, borderRadius: 13, alignItems: 'center', justifyContent: 'center', backgroundColor: t.accent, marginTop: 1 }}>
-              <Text style={{ color: t.correctText, fontSize: f.label ?? 12, fontWeight: '700' }}>{i + 1}</Text>
+            <View style={{ width: 26, height: 26, borderRadius: 13, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.cta, marginTop: 1 }}>
+              <Text style={{ color: glass.ctaInk, fontSize: f.label ?? 12, fontWeight: '700' }}>{i + 1}</Text>
             </View>
             <View style={{ flex: 1, minWidth: 0 }}>
-              <Text style={{ color: t.textPrimary, fontSize: f.body ?? 16, fontWeight: '700' }}>{s.title}</Text>
-              <Text style={{ color: t.textSecond, fontSize: f.sub ?? 13, lineHeight: 19, fontWeight: '400', marginTop: 2 }}>{s.text}</Text>
+              <Text style={{ color: glass.text, fontSize: f.body ?? 16, fontWeight: '700' }}>{s.title}</Text>
+              <Text style={{ color: glass.secondary, fontSize: f.sub ?? 13, lineHeight: 19, fontWeight: '400', marginTop: 2 }}>{s.text}</Text>
             </View>
           </View>
         ))}
-        <View style={{ borderRadius: 14, padding: 12, gap: 6, backgroundColor: t.bgSurface }}>
+        <View style={{ borderRadius: 14, padding: 12, gap: 6, backgroundColor: glass.selected }}>
           {rules.map((r) => (
             <View key={r} style={{ flexDirection: 'row', gap: 8 }}>
-              <Text style={{ color: t.accent, fontSize: f.sub ?? 13, fontWeight: '700' }}>•</Text>
-              <Text style={{ color: t.textSecond, fontSize: f.sub ?? 13, lineHeight: 19, fontWeight: '400', flex: 1 }}>{r}</Text>
+              <Text style={{ color: glass.text, fontSize: f.sub ?? 13, fontWeight: '700' }}>•</Text>
+              <Text style={{ color: glass.secondary, fontSize: f.sub ?? 13, lineHeight: 19, fontWeight: '400', flex: 1 }}>{r}</Text>
             </View>
           ))}
         </View>

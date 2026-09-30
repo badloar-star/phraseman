@@ -10,6 +10,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, Text, TextInput, TouchableOpacity } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from './ThemeContext';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette'; // зачем: шит «Код от друга» на токенах стекла (overlays-more, ReferralCodeSheet)
 import { useLang } from './LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
@@ -173,7 +174,8 @@ interface ReferralCodeSheetProps {
 }
 
 export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeSheetProps) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const { lang } = useLang();
   const L = makeL(lang as Lang);
   const [code, setCode] = useState('');
@@ -225,7 +227,7 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
       title={L('Код от друга', 'Код від друга', 'Friend\'s code', 'Código de un amigo', 'Código de um amigo', 'Mã của bạn bè', 'Kode teman', 'Arkadaş kodu', 'Kod znajomego')}
       closeLabel={L('Закрыть', 'Закрити', 'Close', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij')}
     >
-      <Text style={{ color: t.textSecond, fontSize: f.sub ?? 13, lineHeight: 20, fontWeight: '400', marginBottom: 12 }}>
+      <Text style={{ color: glass.secondary, fontSize: f.sub ?? 13, lineHeight: 20, fontWeight: '400', marginBottom: 12 }}>
         {L(
           'Введи код и оформи Plus или Pro — другу откроется ключ к награде.',
           'Введи код і оформи Plus або Pro — друг отримає ключ до нагороди.',
@@ -246,13 +248,13 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
         autoCapitalize="characters"
         autoCorrect={false}
         placeholder={L('Введите код', 'Введіть код', 'Enter the code', 'Introduce el código', 'Digite o código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')}
-        placeholderTextColor={t.textMuted}
+        placeholderTextColor={glass.mutedText}
         style={{
           minHeight: 56,
-          borderRadius: 16,
-          paddingHorizontal: 16,
-          backgroundColor: t.bgSurface,
-          color: t.textPrimary,
+          borderRadius: 28,
+          paddingHorizontal: 20,
+          backgroundColor: glass.opaqueControl,
+          color: glass.text,
           fontSize: f.body ?? 16,
           fontWeight: '700',
           letterSpacing: 1,
@@ -267,27 +269,27 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
         onPress={() => { void submit(); }}
         style={{
           minHeight: 56,
-          borderRadius: 16,
+          borderRadius: 28,
           alignItems: 'center',
           justifyContent: 'center',
           flexDirection: 'row',
           gap: 8,
           marginTop: 12,
-          backgroundColor: canSubmit ? t.accent : t.bgSurface,
+          backgroundColor: canSubmit ? glass.cta : glass.selected,
           opacity: canSubmit ? 1 : 0.55,
         }}
       >
         {busy
-          ? <ActivityIndicator color={t.correctText} />
-          : <Ionicons name="checkmark-circle-outline" size={20} color={canSubmit ? t.correctText : t.textMuted} />}
-        <Text style={{ color: canSubmit ? t.correctText : t.textMuted, fontSize: f.body ?? 16, fontWeight: '700' }}>
+          ? <ActivityIndicator color={glass.ctaInk} />
+          : <Ionicons name="checkmark-circle-outline" size={20} color={canSubmit ? glass.ctaInk : glass.mutedText} />}
+        <Text style={{ color: canSubmit ? glass.ctaInk : glass.mutedText, fontSize: f.body ?? 16, fontWeight: '700' }}>
           {L('Применить код', 'Застосувати код', 'Apply code', 'Aplicar código', 'Aplicar código', 'Áp dụng mã', 'Terapkan kode', 'Kodu uygula', 'Zastosuj kod')}
         </Text>
       </TouchableOpacity>
       {feedback && (
         <Text
           testID="referral-code-sheet-feedback"
-          style={{ color: feedback.kind === 'ok' ? t.correct : t.wrong, fontSize: f.sub ?? 13, lineHeight: 20, fontWeight: '700', marginTop: 10 }}
+          style={{ color: feedback.kind === 'ok' ? glass.text : t.wrong, fontSize: f.sub ?? 13, lineHeight: 20, fontWeight: '700', marginTop: 10 }}
         >
           {feedback.text}
         </Text>
@@ -295,7 +297,7 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
       {friendRequested && (
         <Text
           testID="referral-code-sheet-friend-request"
-          style={{ color: t.textSecond, fontSize: f.sub ?? 13, lineHeight: 20, fontWeight: '400', marginTop: 6 }}
+          style={{ color: glass.secondary, fontSize: f.sub ?? 13, lineHeight: 20, fontWeight: '400', marginTop: 6 }}
         >
           {L(
             'Заявка в друзья отправлена — будете видеть прогресс друг друга.',

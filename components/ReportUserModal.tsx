@@ -3,6 +3,7 @@ import { Keyboard, KeyboardAvoidingView, Modal, Platform, ScrollView, Text, Touc
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { FlowText } from './text-integrity/FlowText';
 import { useTheme } from './ThemeContext';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette'; // зачем: окно жалобы на токенах стекла (overlays «Жалоба на ник»)
 import { submitUserReport } from '../app/user_report';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { triLang, type Lang } from '../constants/i18n';
@@ -23,7 +24,8 @@ interface Props {
 }
 
 function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onClose, motionVariant = 'hybrid' }: Props) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const reduceMotion = useReduceMotion();
   const isHybrid = motionVariant === 'hybrid';
   const [loading, setLoading] = useState(false);
@@ -123,20 +125,18 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
 
   const panelContent = (
     <View style={{
-      backgroundColor: t.bgCard,
-      borderRadius: 16,
+      backgroundColor: glass.opaqueSheet,
+      borderRadius: 24,
       padding: 24,
       width: '100%',
       maxWidth: 320,
-      borderWidth: 0,
-      borderColor: t.border,
       alignItems: 'center',
       overflow: 'hidden',
     }}>
       <Ionicons name="flag-outline" size={28} color={t.wrong} style={{ marginBottom: 12 }} />
 
       {done ? (
-        <Text style={{ color: t.correct, fontSize: f.body, fontWeight: '700' }}>
+        <Text style={{ color: glass.text, fontSize: f.body, fontWeight: '700' }}>
           {tx.sent}
         </Text>
       ) : (
@@ -148,7 +148,7 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
               testID="report-user-title"
               provenance="authored"
               style={{
-                color: t.textPrimary,
+                color: glass.text,
                 fontSize: f.h3,
                 fontWeight: '700',
                 marginBottom: 6,
@@ -158,7 +158,7 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
             >
               {tx.title}
             </FlowText>
-            <FlowText testID="report-user-name" provenance="user" style={{ color: t.textSecond, fontSize: f.body, marginBottom: 20, textAlign: 'center' }}>
+            <FlowText testID="report-user-name" provenance="user" style={{ color: glass.secondary, fontSize: f.body, marginBottom: 20, textAlign: 'center' }}>
               {reportedName}
             </FlowText>
           </CascadeItem>
@@ -170,24 +170,22 @@ function ReportUserModal({ visible, reportedUid, reportedName, screen, lang, onC
                   handleClose();
                 }}
                 style={{
-                  flex: 1, paddingVertical: 11, borderRadius: 10,
-                  backgroundColor: t.bgPrimary,
-                  borderWidth: 0,
-                  borderColor: t.border,
+                  flex: 1, minHeight: 48, paddingVertical: 11, borderRadius: 24, justifyContent: 'center',
+                  backgroundColor: glass.selected,
                   overflow: 'hidden',
                 }}
               >
-                <Text style={{ color: t.textSecond, textAlign: 'center', fontSize: f.body }}>
+                <Text style={{ color: glass.text, textAlign: 'center', fontSize: f.body, fontWeight: '700' }}>
                   {tx.cancel}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={handleSend}
                 disabled={loading}
-                style={{ flex: 1, paddingVertical: 11, borderRadius: 10, backgroundColor: t.accent, borderWidth: 0, borderColor: 'transparent', overflow: 'hidden' }}
+                style={{ flex: 1, minHeight: 48, paddingVertical: 11, borderRadius: 24, justifyContent: 'center', backgroundColor: glass.cta, overflow: 'hidden' }}
               >
                 {false && loading ? <View />
-                  : <Text style={{ color: t.correctText, textAlign: 'center', fontWeight: '700', fontSize: f.body }}>
+                  : <Text style={{ color: glass.ctaInk, textAlign: 'center', fontWeight: '700', fontSize: f.body }}>
                       {tx.send}
                     </Text>
                 }

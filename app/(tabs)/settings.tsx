@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   View, Text, TouchableOpacity,
   TextInput, Modal, DeviceEventEmitter,
-  Alert,
   Keyboard,
   InteractionManager,
   Platform,
@@ -46,6 +45,8 @@ import { triLang } from '../../constants/i18n';
 import { getLinkedAuthInfo, signOutAndWipeForAccountSwitch, type LinkedAuth } from '../auth_provider';
 import { reserveNameDetailed, warmNameAvailabilityAuth } from '../firestore_leaderboard';
 import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
+import { useGlassAlert } from '../../hooks/use-glass-alert';
+import GlassInlineAlert from '../../components/account/GlassInlineAlert';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
 import { useReferralRoulettePolicy } from '../referral_roulette_flag';
 import { getClaimableReferralState } from '../referral_vip';
@@ -137,6 +138,8 @@ export default function SettingsMain() {
   // зачем (владелец 2026-09-29): корень «Настройки» — 1 в 1 по макету PRF-01; все цвета плашек
   // берутся из общих токенов 13 тем Liquid Glass, как на уже перенесённых дочерних экранах.
   const glass = liquidGlassTokens(liquidGlassThemeId);
+  // зачем: нативные Alert.alert заменены стеклянными окнами (тот же текст/кнопки/обработчики)
+  const { showGlassAlert, node: glassAlertNode } = useGlassAlert();
   const [notifEnabled, setNotifEnabled] = React.useState(false);
   const [notifHour,    setNotifHour]    = React.useState(19);
 
@@ -170,27 +173,23 @@ export default function SettingsMain() {
   );
 
   /**
-   * Алерт, который можно показывать ПОВЕРХ открытой модалки имени.
+   * Сообщение поверх открытой модалки имени.
    *
    * showInfoAlert (enqueueThemedBlockingInfoAlert → ThemedBlockingAlertHost → OverlayArbiter)
    * рендерит themedAlert НАТИВНЫМ <Modal>. Модалка имени тут — тоже нативный <Modal>. На iOS
    * презентовать один <Modal> поверх другого (present-over-present) ломает стек презентаций:
-   * алерт не появляется ВООБЩЕ («Сохранить ничего не делает»), а экран виснет — кнопки/тапы
-   * мертвы, помогает только выход из приложения. Это воспроизводится на ЛЮБОМ имени, даже
-   * пустом/коротком, потому что валидация зовёт алерт ещё до всякой сети.
+   * алерт не появляется ВООБЩЕ («Сохранить ничего не делает»), а экран виснет.
    *
-   * Системный Alert.alert (UIAlertController на iOS) — НЕ RN-<Modal>, он корректно
-   * накладывается поверх открытого <Modal>, конфликта презентаций нет. Поэтому внутри
-   * saveName используем именно его.
+   * зачем (Liquid Glass, overlays-runtime «native alert · name»): раньше тут был системный
+   * Alert.alert. Теперь — стеклянный слой ВНУТРИ самой модалки имени (GlassInlineAlert — обычный
+   * View, не <Modal>), поэтому конфликта презентаций по-прежнему нет, а вид стеклянный.
    */
+  const [nameInlineAlert, setNameInlineAlert] = useState<string | null>(null);
   const alertOverName = React.useCallback(
     (message: string) => {
-      Alert.alert(
-        L('Сообщение', 'Повідомлення', 'Message', 'Message', 'Mensagem', 'Thông báo', 'Pesan', 'Mesaj', 'Wiadomość'),
-        message,
-      );
+      setNameInlineAlert(message);
     },
-    [lang],
+    [],
   );
 
   /**
@@ -205,6 +204,7 @@ export default function SettingsMain() {
    * всё виснет» (backdrop оставался поверх экрана и съедал все тапы).
    */
   const closeNameModalNow = useCallback(() => {
+    setNameInlineAlert(null);
     Keyboard.dismiss();
     setNameModal(false);
   }, []);
@@ -887,7 +887,7 @@ export default function SettingsMain() {
   const confirmClearCache = () => {
     if (clearCacheStateRef.current === 'running') return; // зачем: защита от двойного тапа — чистка диска идёт секунды
     doHaptic();
-    Alert.alert(
+    showGlassAlert(
       // зачем (аудит по Библии, 2026-08-26): «Вы уверены?» — обращение на «вы»
       // (Правило 14) и вопрос ни о чём. Заголовок называет само действие,
       // кнопки получили глаголы вместо «Да/Нет» (Правило 1).
@@ -1607,7 +1607,7 @@ export default function SettingsMain() {
                     setAuthPromptVisible(true);
                   };
                   if (!res.ok && res.reason === 'pending_shard_spend') {
-                    Alert.alert(
+                    showGlassAlert(
                       L(
                         'Покупка ещё синхронизируется',
                         'Покупка ще синхронізується',
@@ -1641,11 +1641,12 @@ export default function SettingsMain() {
                           onPress: runForcedAccountSwitchWithoutSaving,
                         },
                       ],
+                      { delayMs: 360 }, // зачем: модалка подтверждения смены аккаунта только что закрылась
                     );
                     return;
                   }
                   if (!res.ok && res.reason === 'shard_queue_quarantined') {
-                    Alert.alert(
+                    showGlassAlert(
                       L(
                         'Нужна проверка жемчуга',
                         'Потрібна перевірка перлин',
@@ -1679,13 +1680,14 @@ export default function SettingsMain() {
                           onPress: runForcedAccountSwitchWithoutSaving,
                         },
                       ],
+                      { delayMs: 360 }, // зачем: модалка подтверждения смены аккаунта только что закрылась
                     );
                     return;
                   }
                   if (!res.ok && res.reason === 'sync_failed') {
                     // Прогресс не доехал до облака — switch отменён, данные целы.
                     // Даём выбор: повторить при сети или явно сменить без сохранения.
-                    Alert.alert(
+                    showGlassAlert(
                       L('Прогресс не сохранён', 'Прогрес не збережено', 'Progress not saved', 'Progreso no guardado', 'Progresso não salvo', 'Chưa lưu tiến độ', 'Progres belum disimpan', 'İlerleme kaydedilmedi', 'Postęp nie został zapisany'),
                       L(
                         'Не удалось надёжно сохранить прогресс — похоже, нет соединения. Смена аккаунта отменена, всё осталось на месте. Проверь интернет и попробуй снова.',
@@ -1709,6 +1711,7 @@ export default function SettingsMain() {
                           onPress: runForcedAccountSwitchWithoutSaving,
                         },
                       ],
+                      { delayMs: 360 }, // зачем: модалка подтверждения смены аккаунта только что закрылась
                     );
                     return;
                   }
@@ -1767,8 +1770,8 @@ export default function SettingsMain() {
                 {
                   width: '80%',
                   minWidth: 280,
-                  backgroundColor: t.bgCard,
-                  borderRadius: 16,
+                  backgroundColor: glass.opaqueSheet,
+                  borderRadius: 24,
                   padding: 24,
                   borderWidth: 0,
                   borderColor: 'transparent',
@@ -1776,25 +1779,26 @@ export default function SettingsMain() {
                 },
               ]}
             >
-            <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '600', marginBottom: 16 }}>
+            <Text style={{ color: glass.text, fontSize: f.h2, fontWeight: '700', marginBottom: 16 }}>
               {L('Изменить имя', 'Змінити ім\'я', 'Change name', 'Cambiar nombre', 'Alterar nome', 'Đổi tên', 'Ubah nama', 'Adı değiştir', 'Zmień nazwę')}
             </Text>
             <TextInput
               accessibilityLabel={L('Имя профиля', 'Ім\'я профілю', 'Profile name', 'Nombre de perfil', 'Nome do perfil', 'Tên hồ sơ', 'Nama profil', 'Profil adı', 'Nazwa profilu')}
               style={{
-                backgroundColor: t.bgPrimary,
-                color: t.textPrimary,
+                backgroundColor: glass.opaqueControl,
+                color: glass.text,
                 fontSize: f.h2,
                 padding: 14,
-                borderRadius: 10,
-                borderWidth: 1,
-                borderColor: t.border,
+                minHeight: 52,
+                borderRadius: 16,
+                borderWidth: 1, // guard-ok: тонкая (1px) полупрозрачная кромка поля — разрешена для PhraseMan 2.0
+                borderColor: glass.line,
                 marginBottom: 20,
               }}
               value={newName}
               onChangeText={setNewName}
               placeholder={L('Введи имя...', 'Введіть ім\'я...', 'Enter a name...', 'Escribe tu nombre...', 'Digite seu nome...', 'Nhập tên...', 'Masukkan nama...', 'Adını gir...', 'Wpisz imię...')}
-              placeholderTextColor={t.textGhost}
+              placeholderTextColor={glass.mutedText}
               editable={!nameSaving}
               autoFocus maxLength={20}
               returnKeyType="done"
@@ -1809,18 +1813,20 @@ export default function SettingsMain() {
                   {
                     flex: 1,
                     padding: 12,
-                    borderRadius: 10,
+                    minHeight: 48,
+                    justifyContent: 'center',
+                    borderRadius: 24,
                     borderWidth: 0,
                     borderColor: 'transparent',
                     alignItems: 'center',
-                    backgroundColor: t.bgSurface,
+                    backgroundColor: glass.selected,
                     opacity: nameSaving ? 0.6 : 1,
                     overflow: 'hidden',
                   },
                 ]}
                 onPress={() => { if (nameSaving) return; doHaptic(); closeNameModal(); }}
               >
-                <Text style={{ color: t.textMuted, fontSize: f.body }} numberOfLines={1}>{L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}</Text>
+                <Text style={{ color: glass.text, fontSize: f.body, fontWeight: '700' }} numberOfLines={1}>{L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 activeOpacity={0.8}
@@ -1829,8 +1835,8 @@ export default function SettingsMain() {
                   {
                     flex: 1,
                     padding: 12,
-                    borderRadius: 10,
-                    backgroundColor: t.accent,
+                    borderRadius: 24,
+                    backgroundColor: glass.cta,
                     borderWidth: 0,
                     borderColor: 'transparent',
                     alignItems: 'center',
@@ -1844,14 +1850,14 @@ export default function SettingsMain() {
               >
                 <View style={{ minHeight: 22, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, maxWidth: '100%' }}>
                   {nameSaving ? (
-                    <ActivityIndicator size="small" color={t.correctText} />
+                    <ActivityIndicator size="small" color={glass.ctaInk} />
                   ) : null}
                   {/* зачем: динамическое сжатие шрифта убрано (запрещённый паттерн) — статично
                       уменьшен размер (было до 15, стало до 13), чтобы длинные варианты перевода
                       («Kaydediliyor», «Zapisywanie») влезали в flex:1-кнопку рядом с индикатором
                       без ужимания на рендере, guard-ok */}
                   <Text
-                    style={{ color: t.correctText, fontSize: Math.min(f.body, 13), fontWeight: '700', flexShrink: 1 }}
+                    style={{ color: glass.ctaInk, fontSize: Math.min(f.body, 13), fontWeight: '700', flexShrink: 1 }}
                     numberOfLines={1}
                   >
                     {nameSaving
@@ -1861,10 +1867,18 @@ export default function SettingsMain() {
                 </View>
               </TouchableOpacity>
             </View>
+            <GlassInlineAlert
+              visible={nameInlineAlert != null}
+              title={L('Сообщение', 'Повідомлення', 'Message', 'Message', 'Mensagem', 'Thông báo', 'Pesan', 'Mesaj', 'Wiadomość')}
+              message={nameInlineAlert ?? undefined}
+              onClose={() => setNameInlineAlert(null)}
+            />
             </View>
           </Pressable>
         </Pressable>
       </Modal>
+
+      {glassAlertNode}
 
     </ScreenGradient>
   );

@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Alert, Linking, ScrollView, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
+import { Linking, ScrollView, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
+import { useGlassAlert } from '../hooks/use-glass-alert'; // зачем: стеклянное окно вместо нативного Alert (overlays-runtime «video reminder»)
 import { FlashList } from '@shopify/flash-list';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -103,6 +104,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { liquidGlassThemeId } = useTheme();
+  const { showGlassAlert, node: glassAlertNode } = useGlassAlert();
   const g = liquidGlassTokens(liquidGlassThemeId);
   // зачем: вкладка премаунтится в фоне — каталог и плеер живут, только пока «Видео» на экране.
   const screenRuntimeActive = useRuntimeActive(inTab ? runtimeOwnerId === 'video' : true);
@@ -295,14 +297,14 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
       DebugLogger.warn('[VIDEO-TAB]', `напоминание не поставлено: reason=${result.reason}`);
       rollback();
       if (result.reason === 'permission_blocked') {
-        Alert.alert(copy.error, undefined, [{ text: 'OK' }, { text: 'Settings', onPress: () => void openYoutubePremiereNotificationSettings() }]);
+        showGlassAlert(copy.error, undefined, [{ text: 'OK' }, { text: 'Settings', onPress: () => void openYoutubePremiereNotificationSettings() }]);
       } else if (result.reason === 'master_disabled') {
-        Alert.alert(copy.error);
+        showGlassAlert(copy.error);
       }
     } catch (error) {
       DebugLogger.error('[VIDEO-TAB]:remind', error, 'warning');
       rollback();
-      Alert.alert(copy.error);
+      showGlassAlert(copy.error);
     }
   };
 
@@ -384,6 +386,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   return (
     <ScreenGradient artBackdrop="home">
       <LinearGradient pointerEvents="none" colors={[g.bgTop, g.bg, g.bgBottom]} style={StyleSheet.absoluteFill} />
+      {glassAlertNode}
       <FeatureIntroEntry id="videos_first_visit" enabled={screenRuntimeActive && !pickerVisible && !deepLinkedVideoId && !activeVideoId} />
       <SafeAreaView testID="lingman-videos-screen" style={styles.container} edges={inTab ? ['left', 'right'] : ['top', 'left', 'right', 'bottom']}>
         <YoutubeChannelHeader

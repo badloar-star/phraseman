@@ -9,15 +9,14 @@
 //     (onNotice), а не блокирующий Alert;
 //   • last-write-guard: поздний ответ устаревшей попытки не затирает более
 //     свежее локальное имя (double-tap / повторный сабмит).
-// Валидационные сообщения показываем системным Alert.alert: RN-<Modal> поверх
-// открытого <Modal> на iOS ломает стек презентаций (см. историю в settings.tsx),
-// а UIAlertController накладывается корректно.
+// Валидационные сообщения показываем стеклянным слоем ВНУТРИ этой же модалки
+// (GlassInlineAlert, не <Modal>): RN-<Modal> поверх открытого <Modal> на iOS ломает
+// стек презентаций (см. историю в settings.tsx), а обычный слой — нет.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   AccessibilityInfo,
   ActivityIndicator,
-  Alert,
   Keyboard,
   Modal,
   Platform,
@@ -30,6 +29,7 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { FlowText } from '../text-integrity/FlowText';
+import GlassInlineAlert from './GlassInlineAlert';
 import { useTheme } from '../ThemeContext';
 import { useLang } from '../LangContext';
 import { triLang } from '../../constants/i18n';
@@ -170,15 +170,15 @@ export default function NicknameEditModal({
     };
   }, [currentName, newName, visible]);
 
+  // зачем: было Alert.alert('Сообщение', message) — теперь стеклянный слой в модалке, текст тот же.
+  const [inlineAlertMessage, setInlineAlertMessage] = useState<string | null>(null);
   const alertOverModal = useCallback((message: string) => {
-    Alert.alert(
-      L('Сообщение', 'Повідомлення', 'Message', 'Mensaje', 'Mensagem', 'Thông báo', 'Pesan', 'Mesaj', 'Wiadomość'),
-      message,
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lang]);
+    traceNick(`validation:alert message=${message}`);
+    setInlineAlertMessage(message);
+  }, []);
 
   const closeNow = useCallback(() => {
+    setInlineAlertMessage(null);
     Keyboard.dismiss();
     onRequestClose();
   }, [onRequestClose]);
@@ -383,6 +383,7 @@ export default function NicknameEditModal({
         paddingHorizontal: 20,
         paddingTop: 12,
         paddingBottom: isHybrid ? Math.max(20, insets.bottom + 12) : 20,
+        overflow: 'hidden',
       }}
     >
       <View style={{ width: 42, height: 4, borderRadius: 2, alignSelf: 'center', marginBottom: 10, backgroundColor: glass.glassEdge }} />
@@ -536,6 +537,12 @@ export default function NicknameEditModal({
           </TouchableOpacity>
         </View>
       </CascadeItem>
+      <GlassInlineAlert
+        visible={inlineAlertMessage != null}
+        title={L('Сообщение', 'Повідомлення', 'Message', 'Mensaje', 'Mensagem', 'Thông báo', 'Pesan', 'Mesaj', 'Wiadomość')}
+        message={inlineAlertMessage ?? undefined}
+        onClose={() => setInlineAlertMessage(null)}
+      />
     </View>
   );
 

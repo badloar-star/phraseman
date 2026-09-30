@@ -32,7 +32,7 @@ import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { hapticTap } from '../hooks/use-haptics';
 import { useKeyboardBottomInset } from './keyboardAvoidance';
 import { useTheme } from './ThemeContext';
-import TonalSurface from './TonalSurface';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette'; // зачем: шит «Код от друга» на токенах стекла (overlays-more, ReferralCodeSheet)
 
 const SHEET_HIDDEN = 320;
 
@@ -53,7 +53,8 @@ export default function ReferralSheetShell({
   testID,
   children,
 }: ReferralSheetShellProps) {
-  const { theme: t, f } = useTheme();
+  const { f, liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { height: viewportHeight } = useWindowDimensions();
@@ -154,16 +155,15 @@ export default function ReferralSheetShell({
                 styles.sheet,
                 // зачем: паддинг снизу растёт на высоту клавиатуры вместо сдвига
                 // всего шита — заголовок/грабер не дёргаются, стабильная позиция.
-                { backgroundColor: t.bgCard, paddingBottom: 20 + Math.max(bottomInset, keyboardBottomInset) },
+                { backgroundColor: glass.opaqueSheet, paddingBottom: 20 + Math.max(bottomInset, keyboardBottomInset) },
                 sheetStyle,
               ]}
             >
-              <TonalSurface pointerEvents="none" radius={24} tone="raised" style={StyleSheet.absoluteFillObject} />
               <View style={styles.grabber} pointerEvents="none">
-                <View style={[styles.grabberPill, { backgroundColor: t.border }]} />
+                <View style={[styles.grabberPill, { backgroundColor: glass.glassEdge }]} />
               </View>
               <View style={styles.header}>
-                <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '700', flex: 1 }}>
+                <Text style={{ color: glass.text, fontSize: f.h3, fontWeight: '700', flex: 1 }}>
                   {title}
                 </Text>
                 <Pressable
@@ -171,9 +171,9 @@ export default function ReferralSheetShell({
                   hitSlop={8}
                   accessibilityRole="button"
                   accessibilityLabel={closeLabel}
-                  style={({ pressed }) => [styles.closeBtn, { backgroundColor: t.bgSurface2, opacity: pressed ? 0.7 : 1 }]}
+                  style={({ pressed }) => [styles.closeBtn, { backgroundColor: glass.selected, opacity: pressed ? 0.7 : 1 }]}
                 >
-                  <Ionicons name="close" size={20} color={t.textMuted} />
+                  <Ionicons name="close" size={20} color={glass.secondary} />
                 </Pressable>
               </View>
               {children}
@@ -219,9 +219,9 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   closeBtn: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     alignItems: 'center',
     justifyContent: 'center',
   },

@@ -77,8 +77,11 @@ describe('home counters: real numbers on the first frame', () => {
     // `user_total_xp`, а readDynMax берёт XP из personal_progress_store — у
     // когорты phone_state это РАЗНЫЕ числа, и знаменатель шкалы «X/Y» прыгал
     // после load(). Интервал восстановления должен совпадать с EnergyContext.
-    expect(cache).toContain("import('./personal_progress_store')");
-    expect(cache).toContain('getPersonalProgressSnapshot().totalXp');
+    // 30.09: PM-081 (D06/D07) — ёмкость ровно 5, опыт в потолке больше не участвует.
+    // Инвариант прежний: прогрев и readDynMax в EnergyContext считают ОДНОЙ формулой.
+    const context = readProjectFile('components', 'EnergyContext.tsx');
+    expect(cache).toContain('permanentEnergyCapacity({ base: 5 })');
+    expect(context).toContain('return permanentEnergyCapacity({ base: 5 });');
     expect(cache).not.toContain("getItem('user_total_xp')");
     expect(cache).toContain('getRecoveryIntervalMs');
   });
@@ -101,7 +104,8 @@ describe('home counters: real numbers on the first frame', () => {
     // Битое/пустое хранилище оставляет кэш пустым: провайдер отработает как
     // раньше, а не покажет выдуманное число.
     expect(cache).toContain('if (!raw || peekEnergyState) return;');
-    expect(cache).toContain('if (!Number.isFinite(current) || current < 0) return;');
+    // 30.09: ранний выход обязан писать причину в лог (правило «сперва логи») — проверяем смысл, не строку.
+    expect(cache).toMatch(/if \(!Number\.isFinite\(current\) \|\| current < 0\) \{\s*console\.warn\('\[ENERGY-PEEK\] prime:skip invalid_current'[\s\S]*?return;\s*\}/);
     // Прогрев только читает — чинит и дописывает хранилище обычная загрузка.
     expect(cache).not.toContain('setItem');
   });

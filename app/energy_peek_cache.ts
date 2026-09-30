@@ -128,6 +128,12 @@ export async function primeEnergyPeekFromBoot(): Promise<void> {
       maxEnergy: dynMax,
     });
     const current = Math.min(settled.state.current, dynMax);
+    // зачем (30.09): страж «не писать выдуманное число» потерялся при переходе на ёмкость 5 —
+    // нечисловой заряд оставляет кэш пустым, провайдер посчитает сам.
+    if (!Number.isFinite(current) || current < 0) {
+      console.warn('[ENERGY-PEEK] prime:skip invalid_current', JSON.stringify({ current, dynMax }));
+      return;
+    }
     if (peekEnergyState) return;
     writePeekEnergy(current, dynMax);
   } catch (e) {

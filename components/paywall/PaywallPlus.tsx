@@ -36,6 +36,12 @@ export type PaywallPlusState = 'ready' | 'loading' | 'error';
 const TERMS_URL = 'https://phraseman.app/terms';
 const PRIVACY_URL = 'https://phraseman.app/privacy';
 
+// зачем (темы 2.0, проверка в эмуляторе 30.09): выбор тарифа, плашка «Выгоднее всего» и значок
+// пробного периода красятся в цвет темы в «Акценте/Максимуме» — иначе в светлом режиме они
+// оставались чёрными рядом с синей кнопкой. В «Спокойно» — прежние g.text / g.bg.
+function markFill(g: GlassTokens): string { return g.level === 'accent' || g.level === 'max' ? g.accent : g.text; }
+function markInk(g: GlassTokens): string { return g.level === 'accent' || g.level === 'max' ? g.accentInk : g.bg; }
+
 function openLegal(url: string): void {
   Linking.openURL(url).catch((e: unknown) => {
     DebugLogger.error('[PAYWALL-PLUS] openLegal', e instanceof Error ? e : new Error(String(e)), 'warning');
@@ -93,8 +99,8 @@ export const PaywallPlusTrialTimeline = memo(function PaywallPlusTrialTimeline({
         return (
           <View key={step.icon} style={S.tlRow}>
             <View style={S.tlRail}>
-              <View style={[S.tlDot, { backgroundColor: first ? g.text : g.opaqueControl }]}>
-                <Ionicons name={step.icon} size={16} color={first ? g.bg : g.text} />
+              <View style={[S.tlDot, { backgroundColor: first ? markFill(g) : g.opaqueControl }]}>
+                <Ionicons name={step.icon} size={16} color={first ? markInk(g) : g.text} />
               </View>
               {last ? null : <View style={[S.tlLine, { backgroundColor: g.glassEdge }]} />}
             </View>
@@ -112,8 +118,8 @@ export const PaywallPlusTrialTimeline = memo(function PaywallPlusTrialTimeline({
 // ── тарифы ──────────────────────────────────────────────────────────────────
 function Radio({ on, g }: { on: boolean; g: GlassTokens }) {
   return (
-    <View style={[S.radio, { backgroundColor: on ? g.text : g.opaqueControl }]}>
-      {on ? <Ionicons name="checkmark" size={14} color={g.bg} /> : null}
+    <View style={[S.radio, { backgroundColor: on ? markFill(g) : g.opaqueControl }]}>
+      {on ? <Ionicons name="checkmark" size={14} color={markInk(g)} /> : null}
     </View>
   );
 }
@@ -132,7 +138,7 @@ export const PaywallPlusPlans = memo(function PaywallPlusPlans({
   const yearOn = selected === 'yearly';
   const monthOn = selected === 'monthly';
   // Выбранный тариф: тон подложки + тонкая светлая кромка (исключение 2.0: 1px полупрозрачная).
-  const selectedRing = { backgroundColor: g.selected, borderColor: g.lightTint, borderWidth: 1 }; // guard-ok: D43 1px кромка выбора
+  const selectedRing = { backgroundColor: g.selected, borderColor: g.level === 'accent' || g.level === 'max' ? g.accentCap : g.lightTint, borderWidth: 1 }; // guard-ok: D43 1px кромка выбора
   return (
     <View>
       <V2Pressable
@@ -151,8 +157,8 @@ export const PaywallPlusPlans = memo(function PaywallPlusPlans({
           <View style={S.planMid}>
             <View style={S.planNameRow}>
               <Text style={[S.planName, { color: g.text }]}>{pick(lang, COPY.year)}</Text>
-              <View style={[S.badge, { backgroundColor: g.text }]}>
-                <Text style={[S.badgeText, { color: g.bg }]}>{pick(lang, COPY.bestValue)}</Text>
+              <View style={[S.badge, { backgroundColor: markFill(g) }]}>
+                <Text style={[S.badgeText, { color: markInk(g) }]}>{pick(lang, COPY.bestValue)}</Text>
               </View>
             </View>
             {/* Мелко: «≈ X в месяц». Главная цена года — справа, крупно. */}
@@ -166,8 +172,8 @@ export const PaywallPlusPlans = memo(function PaywallPlusPlans({
         </View>
         {yearlyTrialDays ? (
           <View testID="paywall-trial-plate" style={[S.trialPlate, { backgroundColor: g.selected }]}>
-            <View style={[S.trialIcon, { backgroundColor: g.text }]}>
-              <Ionicons name="gift-outline" size={16} color={g.bg} />
+            <View style={[S.trialIcon, { backgroundColor: markFill(g) }]}>
+              <Ionicons name="gift-outline" size={16} color={markInk(g)} />
             </View>
             <Text style={[S.trialText, { color: g.text }]}>{trialFreeLabel(lang, yearlyTrialDays)}</Text>
           </View>

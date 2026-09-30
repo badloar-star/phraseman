@@ -64,6 +64,9 @@ import { aiGloballyDisabled } from './remote_gates';
 const REGION = 'us-central1';
 const PROVIDER_MAX_TOKENS = 500;
 const PROVIDER_MAX_CONTENT_LENGTH = 2_500;
+// зачем (D112): ответ с разбором (переводы, «Почему так», подсказка) длиннее голой реплики.
+const PROVIDER_MAX_TOKENS_CEILING = 1_200;
+const PROVIDER_MAX_COACHING_CONTENT_LENGTH = 7_000;
 const CONTEXT_MAX_USER_TEXT_BYTES = 2_048;
 const CONTEXT_MAX_ASSISTANT_TEXT_BYTES = 3_072;
 const CONTEXT_CONTROL_RE = /[\u0000-\u0009\u000b-\u001f\u007f-\u009f]/u;
@@ -222,7 +225,7 @@ function record(value: unknown): Record<string, unknown> | null {
     : null;
 }
 
-function providerContent(value: unknown): string | null {
+function providerContent(value: unknown, maxLength = PROVIDER_MAX_CONTENT_LENGTH): string | null {
   const payload = record(value);
   const choices = payload?.choices;
   if (!Array.isArray(choices) || choices.length < 1) return null;
@@ -231,7 +234,7 @@ function providerContent(value: unknown): string | null {
   const content = message?.content;
   return typeof content === 'string'
     && content.length > 0
-    && content.length <= PROVIDER_MAX_CONTENT_LENGTH
+    && content.length <= maxLength
     ? content
     : null;
 }
@@ -372,6 +375,9 @@ export function createDialogueV2ProviderGenerator(
       },
       DIALOGUE_V2_PROVIDER_DEADLINE_MS,
     );
+    const coachingRequested = Number.isSafeInteger(request.maxOutputTokens)
+      && (request.maxOutputTokens as number) > PROVIDER_MAX_TOKENS;
+    const coachingMaxTokens = Math.min(PROVIDER_MAX_TOKENS_CEILING, request.maxOutputTokens ?? PROVIDER_MAX_TOKENS);
     const beforeDeadline = <T>(operation: Promise<T>): Promise<T> => (
       Promise.race([operation, deadlineFailurePromise])
     );
@@ -392,7 +398,7 @@ export function createDialogueV2ProviderGenerator(
         },
         body: JSON.stringify({
           model: configuration.model,
-          max_tokens: PROVIDER_MAX_TOKENS,
+          max_tokens: coachingRequested ? coachingMaxTokens : PROVIDER_MAX_TOKENS,
           messages: providerMessages(request, runtime.nowMs?.() ?? Date.now()),
           temperature: 0.8,
           ...(modelSupportsJsonObject(configuration.model)
@@ -402,7 +408,10 @@ export function createDialogueV2ProviderGenerator(
         signal: abortController.signal,
       }));
       if (!response.ok) throw new Error('provider_http_failure');
-      const content = providerContent(await beforeDeadline(response.json()));
+      const content = providerContent(
+        await beforeDeadline(response.json()),
+        coachingRequested ? PROVIDER_MAX_COACHING_CONTENT_LENGTH : PROVIDER_MAX_CONTENT_LENGTH,
+      );
       if (!content) throw new Error('provider_shape_failure');
       return content;
     } catch {

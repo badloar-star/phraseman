@@ -1,0 +1,216 @@
+import type { DialogueV2StudyTarget } from '../../shared/dialogue_v2_language_pack_contract';
+
+// зачем (владелец 2026-09-30, D112): ход Диалогов V2 должен приносить ВМЕСТЕ с репликой
+// перевод, «Почему так», «Лучше так», подсказку, настроение собеседника и признак
+// «собеседник закрыл сцену» — всё одним вызовом модели, чтобы шторки открывались
+// мгновенно и без второго платного запроса. Модуль чистый: ни сети, ни хранилища.
+//
+// Совместимость со старыми клиентами: расширенный ответ включается ТОЛЬКО когда
+// запрос несёт `interfaceLang` (его шлёт лишь новый клиент 2.0). Старый клиент
+// проверяет ответ по точному набору ключей — лишний ключ сломал бы ему ход.
+
+export const DIALOGUE_V2_COACHING_INTERFACE_LANGS = Object.freeze([
+  'ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl', 'fr', 'de',
+] as const);
+
+export type DialogueV2CoachingInterfaceLang = typeof DIALOGUE_V2_COACHING_INTERFACE_LANGS[number];
+
+export const DIALOGUE_V2_COACHING_MOODS = Object.freeze([
+  'happy', 'smile', 'neutral', 'sad', 'angry',
+] as const);
+
+export type DialogueV2CoachingMood = typeof DIALOGUE_V2_COACHING_MOODS[number];
+
+export type DialogueV2TurnCoaching = Readonly<{
+  /** Перевод каждой реплики на язык интерфейса, по порядку `replies`. */
+  replyTranslations: readonly string[] | null;
+  /** «Почему так»: короткий разбор каждой реплики на языке интерфейса. */
+  replyExplanations: readonly string[] | null;
+  /** «Лучше так»: естественный вариант последней реплики ученика (язык изучения) или null. */
+  betterPhrasing: string | null;
+  /** Подсказка следующего шага на языке интерфейса (шаг, а не готовая фраза). */
+  hint: string | null;
+  /** Настроение собеседника после этого хода (5 зон макета). */
+  mood: DialogueV2CoachingMood | null;
+  /** Задание сцены, над которым ученик работает сейчас; null — всё выполнено или неизвестно. */
+  activeObjectiveId: string | null;
+  /** Собеседник закрыл сцену этой репликой. */
+  dialogueEnded: boolean;
+}>;
+
+/** Пустой разбор: модель не прислала блок или прислала мусор — ход всё равно проходит. */
+export const DIALOGUE_V2_EMPTY_COACHING: DialogueV2TurnCoaching = Object.freeze({
+  replyTranslations: null,
+  replyExplanations: null,
+  betterPhrasing: null,
+  hint: null,
+  mood: null,
+  activeObjectiveId: null,
+  dialogueEnded: false,
+});
+
+/** Запас токенов на разбор: реплики + переводы + пояснения + подсказка. */
+export const DIALOGUE_V2_COACHING_MAX_OUTPUT_TOKENS = 1_100 as const;
+
+const MAX_TRANSLATION_LENGTH = 800;
+const MAX_EXPLANATION_LENGTH = 600;
+const MAX_BETTER_PHRASING_LENGTH = 400;
+const MAX_HINT_LENGTH = 300;
+const CONTROL_RE = /[\u0000-\u001f\u007f]/u;
+const OBJECTIVE_ID_RE = /^(?=.{1,64}$)[a-z0-9]+(?:[_:-][a-z0-9]+)*$/;
+
+const LANGUAGE_NAMES: Readonly<Record<DialogueV2CoachingInterfaceLang, string>> = Object.freeze({
+  ru: 'Russian',
+  uk: 'Ukrainian',
+  en: 'English',
+  es: 'Spanish',
+  'pt-BR': 'Brazilian Portuguese',
+  vi: 'Vietnamese',
+  id: 'Indonesian',
+  tr: 'Turkish',
+  pl: 'Polish',
+  fr: 'French',
+  de: 'German',
+});
+
+export function isDialogueV2CoachingInterfaceLang(value: unknown): value is DialogueV2CoachingInterfaceLang {
+  return typeof value === 'string'
+    && (DIALOGUE_V2_COACHING_INTERFACE_LANGS as readonly string[]).includes(value);
+}
+
+/** Строки промпта, которые добавляются только в расширенном режиме. */
+export function dialogueV2CoachingPromptLines(interfaceLang: DialogueV2CoachingInterfaceLang): readonly string[] {
+  const language = LANGUAGE_NAMES[interfaceLang];
+  return Object.freeze([
+    'When every objective is complete, the persona may close the scene politely in character.',
+    'Return one compact JSON object: {"replies":[{"personaId":"authorized_id","text":"study-language reply"}],"coaching":{...}}.',
+    'Return exactly one reply per selectedSpeakerId, in the same order. "replies" items have no other fields.',
+    `"coaching" is learner help written in ${language} unless stated otherwise, with exactly these fields:`,
+    `- "replyTranslations": array with one faithful ${language} translation of each reply, same order.`,
+    `- "replyExplanations": array with one short ${language} note (max 2 sentences) per reply explaining why it is phrased that way: the useful phrase or pattern in it. No grammar terminology.`,
+    '- "betterPhrasing": a more natural version of the learner\'s last message in the study language, or null when it is already natural and correct.',
+    `- "hint": one short ${language} suggestion of the learner's next step toward the current objective. Describe the step; never write the ready-made sentence.`,
+    '- "mood": the selected persona\'s current mood caused by the learner\'s behaviour: one of "happy", "smile", "neutral", "sad", "angry".',
+    '- "activeObjectiveId": id of the objective the learner should work on next, or null when all objectives are complete.',
+    '- "dialogueEnded": true only when the persona has closed the scene with this reply, otherwise false.',
+  ]);
+}
+
+type PlainRecord = Record<string, unknown>;
+
+function plainRecord(value: unknown): PlainRecord | null {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
+  const prototype = Object.getPrototypeOf(value);
+  return prototype === Object.prototype || prototype === null ? value as PlainRecord : null;
+}
+
+function learnerText(value: unknown, maxLength: number): string | null {
+  if (typeof value !== 'string') return null;
+  const text = value.trim();
+  return text.length >= 1 && text.length <= maxLength && !CONTROL_RE.test(text) ? text : null;
+}
+
+function alignedTexts(value: unknown, expectedLength: number, maxLength: number): readonly string[] | null {
+  if (!Array.isArray(value) || value.length !== expectedLength) return null;
+  const texts: string[] = [];
+  for (const item of value) {
+    const text = learnerText(item, maxLength);
+    if (!text) return null;
+    texts.push(text);
+  }
+  return Object.freeze(texts);
+}
+
+function normalizedComparable(text: string): string {
+  return text.toLocaleLowerCase().replace(/[\s.,!?¡¿…'"’]+/gu, ' ').trim();
+}
+
+export type DialogueV2CoachingParseContext = Readonly<{
+  replyCount: number;
+  userMessage: string;
+  studyTarget: DialogueV2StudyTarget;
+  objectiveIds: readonly string[];
+  assertStudyLanguage(text: string, studyTarget: DialogueV2StudyTarget): void;
+}>;
+
+export type DialogueV2CoachingParseResult = Readonly<{
+  coaching: DialogueV2TurnCoaching;
+  /** Какие поля отброшены (только имена полей — без текста ученика и модели). */
+  droppedFields: readonly string[];
+}>;
+
+/**
+ * Поле за полем: битое поле обнуляется, остальные остаются. Разбор — подсказка
+ * к ходу, а не сам ход, поэтому его порча никогда не роняет реплику.
+ */
+export function parseDialogueV2TurnCoaching(
+  value: unknown,
+  context: DialogueV2CoachingParseContext,
+): DialogueV2CoachingParseResult {
+  const raw = plainRecord(value);
+  if (!raw) {
+    return Object.freeze({ coaching: DIALOGUE_V2_EMPTY_COACHING, droppedFields: Object.freeze(['coaching']) });
+  }
+  const dropped: string[] = [];
+  const replyTranslations = alignedTexts(raw.replyTranslations, context.replyCount, MAX_TRANSLATION_LENGTH);
+  if (!replyTranslations) dropped.push('replyTranslations');
+  const replyExplanations = alignedTexts(raw.replyExplanations, context.replyCount, MAX_EXPLANATION_LENGTH);
+  if (!replyExplanations) dropped.push('replyExplanations');
+
+  let betterPhrasing: string | null = null;
+  if (raw.betterPhrasing !== null && raw.betterPhrasing !== undefined) {
+    const candidate = learnerText(raw.betterPhrasing, MAX_BETTER_PHRASING_LENGTH);
+    let studyLanguageOk = false;
+    if (candidate) {
+      try {
+        context.assertStudyLanguage(candidate, context.studyTarget);
+        studyLanguageOk = true;
+      } catch {
+        studyLanguageOk = false;
+      }
+    }
+    // зачем: «Лучше так» с тем же текстом, что написал ученик, — пустая кнопка.
+    if (candidate && studyLanguageOk
+      && normalizedComparable(candidate) !== normalizedComparable(context.userMessage)) {
+      betterPhrasing = candidate;
+    } else {
+      dropped.push('betterPhrasing');
+    }
+  }
+
+  const hint = raw.hint === null || raw.hint === undefined ? null : learnerText(raw.hint, MAX_HINT_LENGTH);
+  if (raw.hint !== null && raw.hint !== undefined && !hint) dropped.push('hint');
+
+  const mood = typeof raw.mood === 'string'
+    && (DIALOGUE_V2_COACHING_MOODS as readonly string[]).includes(raw.mood)
+    ? raw.mood as DialogueV2CoachingMood
+    : null;
+  if (!mood) dropped.push('mood');
+
+  let activeObjectiveId: string | null = null;
+  if (raw.activeObjectiveId !== null && raw.activeObjectiveId !== undefined) {
+    if (typeof raw.activeObjectiveId === 'string'
+      && OBJECTIVE_ID_RE.test(raw.activeObjectiveId)
+      && context.objectiveIds.includes(raw.activeObjectiveId)) {
+      activeObjectiveId = raw.activeObjectiveId;
+    } else {
+      dropped.push('activeObjectiveId');
+    }
+  }
+
+  const dialogueEnded = raw.dialogueEnded === true;
+  if (typeof raw.dialogueEnded !== 'boolean') dropped.push('dialogueEnded');
+
+  return Object.freeze({
+    coaching: Object.freeze({
+      replyTranslations,
+      replyExplanations,
+      betterPhrasing,
+      hint,
+      mood,
+      activeObjectiveId,
+      dialogueEnded,
+    }),
+    droppedFields: Object.freeze(dropped),
+  });
+}

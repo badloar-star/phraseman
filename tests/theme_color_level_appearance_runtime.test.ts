@@ -88,4 +88,17 @@ describe('theme colour level and appearance', () => {
     expect(result.current.liquidGlassColorLevel).toBe('accent');
     expect(result.current.liquidGlassAppearance).toBe('dark');
   });
+
+  // зачем: сплеш ждёт liquidGlassChoiceReady — у выбравших светлое не должно быть тёмного первого кадра.
+  it('reports the choice as ready only after the stored read (process peek afterwards)', async () => {
+    mockStore.set('liquid_glass_appearance', 'light');
+    let release!: () => void;
+    mockMultiGetGate = new Promise<void>((resolve) => { release = resolve; });
+    const { result } = await renderHook(() => useTheme(), { wrapper });
+    expect(typeof result.current.liquidGlassChoiceReady).toBe('boolean');
+    await act(async () => { release(); });
+    await waitFor(() => expect(result.current.liquidGlassChoiceReady).toBe(true));
+    expect(result.current.liquidGlassAppearance).toBe('light');
+    expect(result.current.isDark).toBe(false);
+  });
 });

@@ -177,6 +177,8 @@ interface ThemeCtx {
   /** Темы 2.0: тёмное / светлое оформление. По умолчанию dark. */
   liquidGlassAppearance: LiquidGlassAppearance;
   setLiquidGlassAppearance: (appearance: LiquidGlassAppearance) => void;
+  /** Выбор темы/уровня/оформления прочитан из хранилища (или истёк потолок). Сплеш ждёт его. */
+  liquidGlassChoiceReady: boolean;
   isGoldThemeUnlocked: boolean;
   /** «Дедушка»: юзер жил на бесплатной «Полночи» до её ухода в премиум — тема остаётся ему доступной. */
   isMidnightGrandfathered: boolean;
@@ -231,6 +233,7 @@ const ThemeContext = createContext<ThemeCtx>({
   setLiquidGlassColorLevel: () => {},
   liquidGlassAppearance: 'dark',
   setLiquidGlassAppearance: () => {},
+  liquidGlassChoiceReady: true,
   isGoldThemeUnlocked: false,
   isMidnightGrandfathered: false,
   ownedThemeModes: new Set<ThemeMode>(),
@@ -265,6 +268,10 @@ const APPEARANCE_STORAGE_KEY = 'liquid_glass_appearance';
 // Модульный peek: повторный маунт провайдера в той же сессии (Fast Refresh, ремаунт
 // дерева) сразу рисует последнюю выбранную тему, без кадра графита.
 let peekLiquidGlassThemeId: LiquidGlassThemeId = 'graphite';
+// Выбор уже прочитан в этом процессе — ремаунт провайдера не ждёт хранилище повторно.
+let themeHydratedInProcess = false;
+// Чтение трёх ключей занимает единицы мс; 400 мс — страховка от зависшего хранилища.
+const THEME_HYDRATION_CEILING_MS = 400;
 
 const logThemeWriteError = (key: string) => (e: unknown) => {
   DebugLogger.error(`ThemeContext:${key}:write`, e instanceof Error ? e : new Error(String(e)), 'warning');
@@ -280,6 +287,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   // зачем: запоздалое чтение хранилища при старте не должно затереть выбор, который
   // человек успел сделать раньше (last-write-guard, как с осколками).
   const touchedRef = useRef({ theme: false, level: false, appearance: false });
+  const [liquidGlassChoiceReady, setLiquidGlassChoiceReady] = useState<boolean>(() => themeHydratedInProcess);
   const [previewLiquidGlassThemeId, setPreviewLiquidGlassThemeId] = useState<LiquidGlassThemeId | null>(null);
   const liquidGlassThemeId = previewLiquidGlassThemeId ?? appliedLiquidGlassThemeId;
   const uiScale = windowUiScale;
@@ -327,6 +335,19 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   // при каждой смене доступа и сбрасывал тему в graphite после окончания Plus).
   useEffect(() => {
     let cancelled = false;
+    // зачем (темы 2.0): сплеш ждёт этот флаг, иначе у выбравших светлое мог мелькнуть
+    // тёмный кадр. Потолок — чтобы сбой хранилища никогда не держал сплеш.
+    const ceiling = setTimeout(() => {
+      if (cancelled || themeHydratedInProcess) return;
+      DebugLogger.error('ThemeContext:hydration_ceiling', new Error(`theme read exceeded ${THEME_HYDRATION_CEILING_MS}ms`), 'warning');
+      themeHydratedInProcess = true;
+      setLiquidGlassChoiceReady(true);
+    }, THEME_HYDRATION_CEILING_MS);
+    const markHydrated = () => {
+      clearTimeout(ceiling);
+      themeHydratedInProcess = true;
+      if (!cancelled) setLiquidGlassChoiceReady(true);
+    };
     void (async () => {
       const pairs = await AsyncStorage.multiGet([THEME_STORAGE_KEY, COLOR_LEVEL_STORAGE_KEY, APPEARANCE_STORAGE_KEY]);
       if (cancelled) return;
@@ -341,11 +362,13 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       }
       if (!touchedRef.current.level) setColorLevelState(resolveLiquidGlassColorLevel(pairs[1]?.[1] ?? null));
       if (!touchedRef.current.appearance) setAppearanceState(resolveLiquidGlassAppearance(pairs[2]?.[1] ?? null));
+      markHydrated();
     })().catch((e: unknown) => {
       DebugLogger.error('ThemeContext:liquid_glass_theme', e instanceof Error ? e : new Error(String(e)), 'warning');
       if (!cancelled && !touchedRef.current.theme) setAppliedLiquidGlassThemeId('graphite');
+      markHydrated();
     });
-    return () => { cancelled = true; };
+    return () => { cancelled = true; clearTimeout(ceiling); };
   }, []);
 
   useEffect(() => {
@@ -449,6 +472,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       setLiquidGlassColorLevel,
       liquidGlassAppearance,
       setLiquidGlassAppearance,
+      liquidGlassChoiceReady,
       isGoldThemeUnlocked: false,
       isMidnightGrandfathered: false,
       ownedThemeModes: EMPTY_OWNED_THEME_MODES,
@@ -462,7 +486,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       f,
       ds,
     }),
-    [theme, isDark, statusBarLight, setPreviewThemeMode, liquidGlassThemeId, appliedLiquidGlassThemeId, previewLiquidGlassThemeId, setLiquidGlassThemeId, isLiquidGlassThemeAvailable, liquidGlassColorLevel, setLiquidGlassColorLevel, liquidGlassAppearance, setLiquidGlassAppearance, isThemeAvailable, markThemePurchased, toggle, setThemeMode, fontSize, setFontSize, uiScale, f, ds],
+    [theme, isDark, statusBarLight, setPreviewThemeMode, liquidGlassThemeId, appliedLiquidGlassThemeId, previewLiquidGlassThemeId, setLiquidGlassThemeId, isLiquidGlassThemeAvailable, liquidGlassColorLevel, setLiquidGlassColorLevel, liquidGlassAppearance, setLiquidGlassAppearance, liquidGlassChoiceReady, isThemeAvailable, markThemePurchased, toggle, setThemeMode, fontSize, setFontSize, uiScale, f, ds],
   );
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;

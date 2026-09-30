@@ -915,7 +915,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   // доступом (как у Виталия: premium_plan='annual', admin_premium_override=true,
   // но не realPremium/vip флаг).
   const { hasPremiumAccess } = usePremium();
-  const { theme: tTheme, themeMode, statusBarLight } = useTheme();
+  const { theme: tTheme, themeMode, statusBarLight, liquidGlassChoiceReady } = useTheme();
   const router = useRouter();
   const pathname = usePathname();
   const pathnameRef = useRef(pathname);
@@ -1395,7 +1395,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     };
   }, []);
 
-  const nativeSplashCanHide = fontsReady && ready
+  // зачем (темы 2.0): сплеш уходит только когда прочитан выбор темы/оформления — иначе у
+  // выбравших светлое первый кадр был бы тёмным. Чтение идёт параллельно, у флага потолок 400 мс.
+  const nativeSplashCanHide = fontsReady && ready && liquidGlassChoiceReady
     && (effectiveShowOnboarding || isBanned || (firstContentReady && homeScreenReady));
   // зачем (трассировка 2026-08-31): печатаем, КАКОЙ из трёх флагов держит сплеш.
   // Без этого «висит 40 секунд» неотличимо от «ждём шрифты» / «ждём первый кадр».
@@ -1407,9 +1409,10 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       homeScreenReady,
       effectiveShowOnboarding,
       isBanned,
+      liquidGlassChoiceReady,
       canHide: nativeSplashCanHide,
     });
-  }, [fontsReady, ready, firstContentReady, homeScreenReady, effectiveShowOnboarding, isBanned, nativeSplashCanHide]);
+  }, [fontsReady, ready, firstContentReady, homeScreenReady, effectiveShowOnboarding, isBanned, liquidGlassChoiceReady, nativeSplashCanHide]);
   useEffect(() => {
     const sub = onAppEvent('app_home_screen_ready', () => setHomeScreenReady(true));
     return () => sub.remove();
@@ -2706,7 +2709,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   // Expo Router requires the root layout to mount a navigator on the first
   // render. Startup, onboarding, and blocked-account states cover it as overlays.
   const appOverlaysEnabled = ready && !effectiveShowOnboarding && !isBanned;
-  const startupSplashVisible = !fontsReady || !ready
+  const startupSplashVisible = !fontsReady || !ready || !liquidGlassChoiceReady
     || (!effectiveShowOnboarding && !isBanned && (!firstContentReady || !homeScreenReady))
     // зачем (владелец, 2026-09-14): раньше здесь стояло голое
     // `effectiveShowOnboarding && !onboardingComponent` — единственная ветка

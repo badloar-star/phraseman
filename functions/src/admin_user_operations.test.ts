@@ -44,6 +44,10 @@ describe('protected admin user operations', () => {
     expect(normalizeAdminReportModerationCommand({
       uid: 'stable-user', reportId: 'report-1', expectedStatus: 'new', action: 'ban', ...commandMeta,
     })).toMatchObject({ action: 'ban', nextStatus: 'banned' });
+    // 30.09: модератор стирает свой текст визитки «Про» по жалобе.
+    expect(normalizeAdminReportModerationCommand({
+      uid: 'stable-user', reportId: 'report-1', expectedStatus: 'new', action: 'clear_bio', ...commandMeta,
+    })).toMatchObject({ action: 'clear_bio', nextStatus: 'reviewed', uid: 'stable-user' });
     expect(normalizeAdminReportModerationCommand({
       reportId: 'report-1', expectedStatus: 'new', action: 'status', nextStatus: 'archived', ...commandMeta,
     })).toMatchObject({ action: 'status', nextStatus: 'archived' });

@@ -15,7 +15,8 @@ const UID_RE = /^[A-Za-z0-9._-]{2,160}$/;
 const TOKEN_RE = /^[A-Za-z0-9._-]{1,160}$/;
 const PROFILE_FIELDS = ['user_name', 'streak_count'] as const;
 const RESET_TYPES = ['achievements'] as const;
-const REPORT_ACTIONS = ['warn', 'rename', 'ban', 'status'] as const;
+// clear_bio (30.09): модератор стирает свой текст визитки «Про» по жалобе offensive_profile_text.
+const REPORT_ACTIONS = ['warn', 'rename', 'ban', 'status', 'clear_bio'] as const;
 const MAX_MIGRATION_UIDS = 200;
 
 type ProfileField = typeof PROFILE_FIELDS[number];
@@ -301,6 +302,7 @@ export const adminResolveUserReport = onCall(ADMIN_SENSITIVE_WRITE_OPTIONS, asyn
   const leaderboardRef = input.uid ? db.collection('leaderboard').doc(input.uid) : null;
   const banRef = input.uid ? db.collection('banned_users').doc(input.uid) : null;
   const warningRef = input.action === 'warn' ? db.collection('user_warnings').doc(`report_${input.idempotencyKey}`) : null;
+  const publicProfileRef = input.action === 'clear_bio' && input.uid ? db.collection('public_profiles').doc(input.uid) : null;
   const operationRef = db.collection('admin_command_operations').doc(`report_moderation_${input.idempotencyKey}`);
   const auditRef = db.collection('admin_log').doc();
   const requestFingerprint = fingerprint('resolve_user_report', input);
@@ -315,6 +317,7 @@ export const adminResolveUserReport = onCall(ADMIN_SENSITIVE_WRITE_OPTIONS, asyn
     const userSnap = userRef ? await tx.get(userRef) : null;
     const leaderboardSnap = leaderboardRef ? await tx.get(leaderboardRef) : null;
     if (userRef && (!userSnap || !userSnap.exists)) throw new HttpsError('not-found', 'reported user not found');
+    const publicProfileSnap = publicProfileRef ? await tx.get(publicProfileRef) : null;
     const nowIso = new Date(nowMs).toISOString();
     if (input.action === 'warn' && warningRef) tx.create(warningRef, { uid: input.uid, name: input.name, message: input.message, createdAt: nowIso, createdBy: actor.actorUid, reportId: input.reportId, operationId: operationRef.id });
     if (input.action === 'rename' && userRef) {
@@ -325,6 +328,10 @@ export const adminResolveUserReport = onCall(ADMIN_SENSITIVE_WRITE_OPTIONS, asyn
       tx.update(userRef, { banned: true, bannedAt: nowIso, updatedAt: nowMs });
       tx.set(banRef, { uid: input.uid, name: input.name, reason: input.reason, bannedAt: nowIso, bannedBy: actor.actorUid, operationId: operationRef.id });
       if (leaderboardRef && leaderboardSnap?.exists) tx.delete(leaderboardRef);
+    }
+    if (input.action === 'clear_bio' && publicProfileRef && publicProfileSnap?.exists) {
+      // Только стираем текст; «Про» и стиль остаются — наказывается текст, а не покупка.
+      tx.update(publicProfileRef, { profileCardBio: admin.firestore.FieldValue.delete(), profileCardBioUpdatedAtMs: nowMs, updatedAt: admin.firestore.FieldValue.serverTimestamp() });
     }
     tx.update(reportRef, { status: input.nextStatus, reviewedAt: nowIso, adminStatusUpdatedAtMs: nowMs, adminStatusUpdatedBy: actor.actorUid });
     const audit = auditRecord(actor, `user_report_${input.action}`, { collection: 'user_reports', id: input.reportId }, input.reason, input.requestId, { status: currentStatus }, { status: input.nextStatus, uid: input.uid || null }, nowMs);

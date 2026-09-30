@@ -32193,6 +32193,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
               <button data-rid="${rid}" data-action="warn"     style="background:#2a1a00;border:1px solid #7c3f00;color:#fbbf24;border-radius:6px;padding:5px 12px;font-size:12px;cursor:pointer">⚠️ Предупреждение</button>
               <button data-rid="${rid}" data-action="rename"   style="background:#1a1a3a;border:1px solid #3a3a7a;color:#a78bfa;border-radius:6px;padding:5px 12px;font-size:12px;cursor:pointer">✏️ Переименовать</button>
               <button data-rid="${rid}" data-action="ban"      style="background:#3b0a0a;border:1px solid #7f1d1d;color:#f87171;border-radius:6px;padding:5px 12px;font-size:12px;cursor:pointer">🚫 Забанить</button>
+              ${r.reportedText ? `<button data-rid="${rid}" data-action="clear_bio" style="background:#2a1020;border:1px solid #6b2150;color:#f0abfc;border-radius:6px;padding:5px 12px;font-size:12px;cursor:pointer">🧽 Стереть текст визитки</button>` : ''}
               <button data-rid="${rid}" data-action="archived" style="background:#1a2a1a;border:1px solid #2a4a2a;color:#4ade80;border-radius:6px;padding:5px 12px;font-size:12px;cursor:pointer">📦 В архив</button>
             </div>
           </div>
@@ -32366,6 +32367,10 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     } else if (action === 'ban') {
       const ok = await showConfirmModal({ title: `Забанить "${escapeHtml(name)}"?`, desc: 'Пользователь исчезнет из лидерборда и не сможет вернуться.', confirmLabel: 'Забанить', danger: true });
       if (!ok) return;
+    } else if (action === 'clear_bio') {
+      // зачем (30.09): свой текст визитки «Про» по жалобе offensive_profile_text — стираем только текст, «Про» остаётся.
+      const ok = await showConfirmModal({ title: `Стереть текст визитки "${escapeHtml(name)}"?`, desc: 'Текст исчезнет с визитки у всех игроков. «Про» и стиль останутся.', confirmLabel: 'Стереть', danger: true });
+      if (!ok) return;
     } else {
       showToast('Неизвестное действие', 'err');
       return;
@@ -32387,7 +32392,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         const localUser = window._users.find(x=>x.uid===uid);
         if(localUser) { localUser.name=newName; renderTable(); }
       }
-      showToast(action === 'ban' ? `🚫 "${escapeHtml(name)}" забанен` : action === 'rename' ? `✅ Ник изменён на "${escapeHtml(newName)}"` : '✅ Предупреждение отправлено');
+      showToast(action === 'clear_bio' ? `🧽 Текст визитки "${escapeHtml(name)}" стёрт` : action === 'ban' ? `🚫 "${escapeHtml(name)}" забанен` : action === 'rename' ? `✅ Ник изменён на "${escapeHtml(newName)}"` : '✅ Предупреждение отправлено');
       loadUserReports();
       updateTabBadges(true);
     } catch(e) {

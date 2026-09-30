@@ -99,6 +99,8 @@ import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountG
 // зачем (PM-037, владелец 2026-09-24): плавающая кнопка спина на карточке
 // уровня удалена из хедера Главной — peekLevelSpinBalance/readLocalLevelSpinBalance/
 // иконка билета спина/animateNextLayoutTransition жили только ради неё и удалены вместе с ней.
+// 30.09: animateNextLayoutTransition вернулся — поздняя вставка карточки «Продолжить обучение».
+import { animateNextLayoutTransition } from '../smooth_layout';
 import { getAppSnapshot, patchAppSnapshot, resolveHydratedProfileName, subscribeAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
 import { getPersonalProgressSnapshot, hydratePersonalProgress } from '../personal_progress_store';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
@@ -903,6 +905,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         progress: number;
         score: string;
     } | null>(() => buildLastLessonFromHydration(lang, studyTarget) ?? null);
+    // зачем (эмулятор 30.09, лог [HOME-FIRST-FRAME]): на холодном старте снимок урока
+    // живёт только в памяти — карточка «Продолжить обучение» приходила после loadData
+    // и рывком сдвигала всю Главную. Ref помнит, была ли карточка, чтобы вставку анимировать.
+    const lastLessonShownRef = useRef(lastLesson !== null);
+    useEffect(() => { lastLessonShownRef.current = lastLesson !== null; }, [lastLesson]);
     // зачем (22.09): null означал «раздела ошибок нет» — на Главной у
     // испанского и немецкого карточка «Мои ошибки» не показывалась вовсе.
     const mistakeStudyTarget = isMistakeStudyTargetValue(studyTarget) ? studyTarget : null;
@@ -2591,6 +2598,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 const scoreStr = (correct / 50 * 5).toFixed(1);
                 snapLastLessonProgress = correct;
                 snapLastLessonScore = scoreStr;
+                if (!lastLessonShownRef.current) {
+                    // Performance Bible: вставка в поток после первого кадра — только плавно.
+                    if (__DEV__) console.log('[HOME-FIRST-FRAME] continue_card:late_insert', JSON.stringify({ lastId, correct }));
+                    animateNextLayoutTransition();
+                }
                 setLastLesson({ id: lastId, name: lessonNames[lastId - 1], progress: correct, score: scoreStr });
             }
             else if (mountedRef.current) {
